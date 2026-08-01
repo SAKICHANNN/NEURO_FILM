@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bq10-fivek-fixed-strong-lut-champion-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BQ10",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can one fit-only cross-group strong-style case LUT serve as a K=1 global champion that avoids coefficient-median blandness while keeping held-group error and tails bounded?",
+  "parent_bq9_decision": {
+    "path": "configs/u5_r2bq9_fivek_selected_lut_path_oracle_decision_v1.json",
+    "sha256": "47b25dd1c4ff51cb7753314fe24d1482d79bb5f27122dbfbb513f9fb4b232113"
+  },
+  "mature_baseline": {
+    "config": "configs/u5_r2bj2_fivek_strict_interior_lut_basis_development_v1.json",
+    "config_sha256": "031ec330e78499d0e36dd999258cf75a03dcd33f1469916137d4aa31f93790cd"
+  },
+  "parent_manifest": {
+    "path": "outputs/u5_r2bq0s2_fivek_casebank_normalization_v1/run_a_formal/manifest.json",
+    "sha256": "d07ace3173198e9902ebe7c8bbf2de5ecb4342ec67f1b640aa54d9edee903a20"
+  },
+  "decode": {"maximum_side": 128, "evaluation_samples_per_image": 512},
+  "split": {"group_bucket_modulus": 4, "validation_bucket": 0},
+  "selection": {
+    "candidate_source": "fit-group intact case LUTs only",
+    "score": "minimum cross-group mean target RMSE among style-eligible candidates",
+    "minimum_cross_group_median_target_style_retention": 0.7,
+    "minimum_cross_group_style_eligible_fraction": 0.9,
+    "same_camera_group_rows_excluded_from_candidate_score": true,
+    "target_or_validation_used_for_selection": false
+  },
+  "evaluation": {
+    "strength_doses": [0.0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1.0],
+    "maximum_mean_error_ratio_to_coefficient_median_global": 1.1,
+    "maximum_p95_error_ratio_to_coefficient_median_global": 1.1,
+    "maximum_worst_error_ratio_to_coefficient_median_global": 1.25,
+    "maximum_mean_error_ratio_to_global_strength_oracle": 1.1,
+    "minimum_median_target_style_retention": 0.7,
+    "minimum_style_eligible_fraction": 0.9,
+    "maximum_new_boundary_fraction": 0.0,
+    "maximum_out_of_cube_fraction": 0.0
+  },
+  "target_variants": ["aligned_expert", "filtered"],
+  "branch_rules": {
+    "development_fails": "retain coefficient-median global fallback and close BQ adaptive routing family; do not tune the champion selection gates",
+    "development_passes": "freeze each fixed champion and execute unchanged confirmation plus automatic visual candidate generation",
+    "style_fails": "close because K=1 did not solve blandness",
+    "tail_or_safety_fails": "close before visual review"
+  },
+  "router_training_allowed": false,
+  "confirmation_pixels_allowed": false,
+  "visual_review_allowed_only_after_automatic_pass": true,
+  "production_integration_allowed": false,
+  "film_or_stock_claim_allowed": false,
+  "claim_ceiling": "group-held development-only K=1 fixed strong-style LUT champion evidence on paired FiveK digital-retouch controls; no confirmation, film, preference or product claim"
+}
