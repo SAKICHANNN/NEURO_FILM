@@ -1,0 +1,29 @@
+{
+  "schema": "neuro-film.u5.r2br0.result-summary.v1",
+  "experiment_id": "u5.r2br0-kci-velvia-simulation-residual-v1",
+  "software_commit": "1fc1841499c09b8034ff4757ff3b5746ebad0ecd",
+  "config_sha256": "bd7edf5c86b3f1d50d639a8891cef6e8c52437216e8932f183da659dfe9556c3",
+  "formal_report_sha256": "47f7092504214e062d8eaac35041795b2a8463f2a43d66509872ab185949ca21",
+  "two_run_byte_identity": true,
+  "automatic_pass": false,
+  "selected_model": "none",
+  "decision": "close_controlled_chart_residual_without_capacity_rescue",
+  "metrics": {
+    "identity_mean_confirmation_chroma_rmse": 11.417636176056632,
+    "global_chroma_mean_confirmation_chroma_rmse": 11.256842130590234,
+    "full_matrix_mean_confirmation_chroma_rmse": 11.986058254599174,
+    "full_matrix_maximum_fold_chroma_rmse": 18.161984458096004,
+    "full_matrix_gain_over_global_chroma": -0.06477981262856214,
+    "full_matrix_train_test_chroma_rmse_gap": 0.8413292676723643,
+    "full_matrix_rmse_ratio_to_affine_ceiling": 1.0487584887707433,
+    "full_matrix_minimum_fold_determinant": 0.8138048094227975,
+    "full_matrix_maximum_fold_condition_number": 1.1042836950583663
+  },
+  "failed_gates": [
+    "full_matrix_gain_over_global_chroma",
+    "full_matrix_mean_confirmation_chroma_rmse",
+    "full_matrix_maximum_fold_chroma_rmse"
+  ],
+  "interpretation": "The controlled display-chain observation contains a material film-versus-digital-simulation difference, but a 2x2 hue-mixing matrix does not generalize beyond one global chroma scale. Nonlinear capacity, threshold changes and photo transfer are forbidden for this source.",
+  "claim_ceiling": "one controlled 24-patch publication display-chain comparison; not a digital-to-film operator, scanner-independent Velvia response, calibration, photo transfer, product promotion or stock truth"
+}

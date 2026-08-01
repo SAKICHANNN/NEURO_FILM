@@ -300,7 +300,12 @@ bounded and visible, but the P95 analytical-versus-Gaussian difference is only
 Visual review is forbidden; no energy, kernel or gate rescue is allowed. Retain
 P3Q only as synthetic mechanism evidence and move to a mechanism-distinct
 explicit colour or independent paired-evidence leaf. Current-stock material
-calibration remains closed.
+calibration remains closed. BR0 then measures a newly located controlled KCI
+ColorChecker comparison of real Velvia 50 and digital Velvia/Vivid. Two exact
+six-fold reports show a material chain difference, but the 2x2 chroma matrix
+regresses one global chroma scale by 6.48% and fails mean and worst-fold gates.
+Close without nonlinear capacity or threshold rescue; this is publication
+display-chain evidence, not a digital-to-film operator or stock calibration.
 
 The executable authority is `docs/ULTIMATE_EXECUTION_TRACKER.md`, governed by
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` and

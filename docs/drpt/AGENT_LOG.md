@@ -2,6 +2,21 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-02 - U5.R2BR0 controlled Velvia residual closes
+
+- Re-extracted exact 24-patch thumbnails from a controlled 2025 KCI real
+  Velvia 50 versus Fujifilm Velvia/Vivid comparison and verified both plot,
+  grid and patch hashes. The paper uses the same lens/chart/light, E-6 film,
+  controlled scanning and repeated bracketed captures, but only published
+  display plots are available.
+- Two six-fold reports are byte-identical (`47f70925...ca21`). After separate
+  neutral-offset removal, identity/global-chroma/full-2x2 RMSE are
+  `11.4176/11.2568/11.9861`; the matrix regresses global by 6.48% and its
+  worst fold reaches `18.162`.
+- Close without nonlinear capacity or photo stress. Retain only controlled
+  negative evidence; no operator, scanner-independent stock, calibration or
+  product claim opens.
+
 # 2026-08-02 - U6.P3Q source-grounded base-return topology pass
 
 - Acquired and hash-bound the exact 6,609,435-byte NIST/Bureau of Standards

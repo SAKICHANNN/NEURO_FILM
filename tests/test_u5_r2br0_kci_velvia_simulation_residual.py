@@ -52,7 +52,7 @@ def test_extractor_rejects_wrong_plot(tmp_path: Path) -> None:
         extract_exact_pair(wrong, wrong, config)
 
 
-def test_synthetic_nonbasic_matrix_is_recovered() -> None:
+def test_frozen_observation_closes_nonbasic_matrix() -> None:
     config = deepcopy(json.loads(CONFIG.read_text(encoding="utf-8")))
     # Fixed vivid RGB patches plus neutral ramp exercise the actual RGB8-to-Lab path.
     digital = np.asarray(config["extraction"]["digital_patch_rgb_u8"], dtype=np.uint8)
@@ -68,7 +68,15 @@ def test_synthetic_nonbasic_matrix_is_recovered() -> None:
         )
         seen.extend(fold["confirmation_indices"])
     assert sorted(seen) == list(range(18))
-    assert result["aggregate"]["identity"]["mean_confirmation_chroma_rmse"] > 0.0
+    assert result["aggregate"]["identity"]["mean_confirmation_chroma_rmse"] == pytest.approx(
+        11.417636176056632
+    )
+    assert result["aggregate"]["full_matrix"]["gain_over_global_chroma"] == pytest.approx(
+        -0.06477981262856214
+    )
+    assert not result["automatic_pass"]
+    assert result["selected_model"] == "none"
+    assert result["decision"] == "close_controlled_chart_residual_without_capacity_rescue"
 
 
 def test_evaluator_rejects_non_rgb8_shape() -> None:
