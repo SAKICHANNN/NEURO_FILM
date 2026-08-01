@@ -1,0 +1,42 @@
+{
+  "schema": "neuro-film.u5-r2bo1-flickr-single-author-pair-acquisition.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BO1",
+  "parent": {
+    "report": "outputs/u5_r2bo0_flickr_single_author_pair_source_v1/run_a/report.json",
+    "report_sha256": "b1e266508d718766a3c347cadff2693b97d72617bb3c2b57a44c6b756598e3cd",
+    "stable_evidence_id": "90d0e6bb1148cd5537fdbed638f35e8948cd82826a64d502df639521f5bf0c53"
+  },
+  "acquisition": {
+    "download_root": "data/research/flickr_analog_digital_album_v1",
+    "manifest": "outputs/u5_r2bo1_flickr_single_author_pair_acquisition_v1/download_manifest.json",
+    "report": "outputs/u5_r2bo1_flickr_single_author_pair_acquisition_v1/report.json",
+    "expected_pairs": 53,
+    "expected_files": 106,
+    "allowed_license_ids": [1],
+    "maximum_bytes_per_file": 8388608,
+    "maximum_bytes_total": 268435456,
+    "maximum_long_edge": 1024,
+    "minimum_pixels": 200000,
+    "required_format": "JPEG",
+    "allowed_modes": ["RGB"],
+    "require_single_frame": true,
+    "timeout_seconds": 60,
+    "retries": 3,
+    "retry_backoff_seconds": 1.0,
+    "request_interval_seconds": 0.05
+  },
+  "integrity_gates": {
+    "required_files": 106,
+    "required_complete_pairs": 53,
+    "maximum_exact_duplicate_groups": 0,
+    "maximum_cross_pair_dhash_le_4": 0
+  },
+  "allowed_next_if_pass": "registration feasibility only; operator fitting and training remain forbidden",
+  "branches": {
+    "pass": "freeze exact pixels and open U5.R2BO2 preregistered registration feasibility",
+    "fail": "close this source or use only the exact integrity-passing subset under a new preregistration; no fitting"
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "claim_ceiling": "one-author same-scene weak-pair derivative integrity evidence under CC-BY-NC-SA-2.0; no exact stock, calibrated response, process, scanner, exposure or commercial-use claim"
+}
