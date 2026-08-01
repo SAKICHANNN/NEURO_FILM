@@ -731,3 +731,8 @@ but the record exposes only one thesis PDF and one administrative ZIP: zero
 machine-readable pixel payloads, zero repository links and no explicit pixel reuse
 rights. Two reports are byte-identical (`e66066f1...24fbd`). Close acquisition
 before pixel decode or fitting; reopen only for an exact rights-clear data release.
+P6Z then tests the newest measured scanner context-glare table with one bounded
+same-hardware fraction transferred across laboratories. It wins 7/9 against
+both no-context and global controls, but confirmation p95 black-context error is
+`.03588 > .02`; two reports are exact (`f71f52ff...f85165`). Close this exact
+transfer and retain scanner/lab/polarity processing as nuisance, not stock truth.

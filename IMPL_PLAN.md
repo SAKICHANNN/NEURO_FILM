@@ -50,6 +50,12 @@
 > an administrative ZIP: no machine-readable film-MSI or painting-HSI payload,
 > repository link, or explicit pixel reuse right. Close before pixel decode,
 > registration or fitting; continue a distinct eligible physical-film algorithm.
+>
+> U6.P6Z evaluates the 2025 Plutino et al. measured Table 3 with one bounded
+> context-glare fraction transferred only within disclosed same-hardware groups.
+> It wins 7/9 versus both no-context and global controls, but p95 confirmation
+> error is `.03588`, above the frozen `.02` tail gate. Close this fraction model;
+> scanner/lab/polarity remain nuisance and no inverse or product mapping opens.
 
 > 2026-07-31: U6.P2M tests a bounded density-dependent interimage
 > development equation on synthetic known operators only. Two reports are

@@ -9466,3 +9466,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close acquisition before pixel decode, registration, fitting or visual review.
   Retain the 2026 study as method/baseline evidence and move to a distinct
   physical-film algorithm using already eligible measured inputs.
+
+## 2026-08-02 - U6.P6Z closes cross-lab one-fraction glare transfer
+
+- Retained the CC-BY 2025 Plutino et al. paper and exact numeric Table 3 only;
+  no scan pixels, figure digitization, inverse correction or visual review ran.
+- A development-scanner context fraction transferred within four disclosed
+  hardware families wins 7/9 against no-context and global controls. Median
+  error improvements are 88.38% and 73.46%, so the measured mechanism is real.
+- Two reports are byte-identical (`f71f52ff...f85165`), but p95 confirmation
+  black-context error is `.03588 > .02`. Close the exact model without rescue;
+  scanner, lab, polarity and in-camera processing remain nuisance variables.

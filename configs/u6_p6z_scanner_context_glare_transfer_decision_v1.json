@@ -1,0 +1,27 @@
+{
+  "schema": "neuro_film.u6_p6z_scanner_context_glare_transfer_decision.v1",
+  "experiment_id": "u6.p6z-scanner-context-glare-transfer-v1",
+  "status": "FAIL_CLOSED_CONTEXT_GLARE_FRACTION_NOT_TRANSFERABLE_ACROSS_LABS",
+  "contract_sha256": "0eb6bcbedc9a56205d6fc9b0788c44e899020a0d93a7d57f6332ea0b3b1ead10",
+  "source_table_semantic_sha256": "da3f8e171df82be5aadfb86957f766d9c3b09f032d9cd013baeb85e99be36e03",
+  "source_pdf_sha256": "7168488e638ad16fe993f0d5dd72a5df6bb76f4be77b448ab6cc7dde295c730b",
+  "software_commit": "de68a7ce",
+  "report_path": "outputs/experiments/u6_p6z_scanner_context_glare_transfer_v1/report.json",
+  "report_sha256": "f71f52ff42a4046ceced3f7158b0ac51df072b55eb191b39061c0d11f4f85165",
+  "stable_evidence_id": "c3f983edff14bddee43114c01c9c726c15effd48b400d5367405b31a5557bc8c",
+  "two_audits_byte_exact": true,
+  "metrics": {
+    "valid_confirmation_rows": 9,
+    "hardware_transfer_win_rate_vs_no_context": 0.7777777777777778,
+    "hardware_transfer_win_rate_vs_global": 0.7777777777777778,
+    "median_error_improvement_vs_no_context": 0.8838293743220149,
+    "median_error_improvement_vs_global": 0.7345789576769155,
+    "median_error_improvement_vs_wrong_group": 0.8306024008230017,
+    "confirmation_p95_absolute_bc_error": 0.035878426442663196
+  },
+  "failed_gates": [
+    "confirmation_p95_absolute_bc_error"
+  ],
+  "interpretation": "The one-fraction same-hardware candidate has substantial central signal but misses the frozen tail-error budget across laboratories. Scanner, laboratory, polarity, operator choices and in-camera processing remain nuisance variables; the result is not stock response, scanner calibration or an inverse correction.",
+  "branch": "close this exact cross-lab one-fraction transfer without threshold, split or model rescue; continue a materially distinct physical image-formation mechanism"
+}

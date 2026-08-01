@@ -1150,3 +1150,8 @@ public NTNU deposit. The thesis confirms the two-stock/two-light/multi-exposure
 PDF plus one administrative ZIP. It has zero machine-readable pixel payloads,
 zero repository links and no explicit pixel reuse right. Two reports are exact
 (`e66066f1...24fbd`); close before pixel decode, registration or operator fitting.
+U6.P6Z next uses the 2025 measured context-glare table without image or figure
+digitization. Same-hardware transfer shows central signal (7/9 wins; median
+improvement 88.38% versus no-context) but fails the frozen tail gate at `.03588`
+p95 absolute black-context error versus `.02`. Close the exact one-fraction
+cross-lab model and preserve scanner/lab/polarity as nuisance variables.
