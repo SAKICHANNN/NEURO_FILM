@@ -13,12 +13,12 @@
     {
       "decision": "configs/u5_r2bj2_fivek_strict_interior_lut_basis_development_decision_v1.json",
       "decision_sha256": "3090e38905d1b033e3e888cae68dbaaa91984fa84596110e9c5b38ba11f473b6",
-      "required_status": "closed_fresh_tail_failed"
+      "required_status": "closed_fresh_p95_tail_failed"
     },
     {
       "decision": "configs/u5_r2bm4_ao6_pairwise_compatibility_ranker_decision_v1.json",
       "decision_sha256": "05c6755dc77f1a1de209a7426d174d4f992856f7e1fc1a7988874efdf4588fab",
-      "required_status": "closed_no_transferable_pairwise_signal"
+      "required_decision": "close_current_case_router_retain_oracle_as_data_requirement"
     }
   ],
   "development_populations": [
