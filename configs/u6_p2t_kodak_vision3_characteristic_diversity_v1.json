@@ -1,0 +1,67 @@
+{
+  "schema": "neuro_film.u6_p2t_kodak_vision3_characteristic_diversity_contract.v1",
+  "experiment_id": "U6.P2T",
+  "parent_evidence": {
+    "u6_p2p_source_decision": "configs/u6_p2p_kodak_250d_characteristic_source_decision_v1.json",
+    "u6_p2q_prior_decision": "configs/u6_p2q_kodak_250d_characteristic_prior_decision_v1.json",
+    "u6_p2r_gauge_decision": "configs/u6_p2r_kodak_250d_anchored_shape_gauge_decision_v1.json"
+  },
+  "trace": {
+    "path": "configs/data/kodak_vision3_characteristic_curve_pixels_v1.json",
+    "sha256": "e7d9d45cd56066d1cc770c3a506117fcddc4ae52417c6d69d4088e8d0da61dfb"
+  },
+  "comparison": {
+    "channels": ["blue", "green", "red"],
+    "stocks": [
+      "kodak_vision3_50d_5203_7203",
+      "kodak_vision3_250d_5207_7207",
+      "kodak_vision3_500t_5219_7219"
+    ],
+    "monotonic_repair": "cumulative maximum in source density",
+    "shape_normalization": {
+      "density": "subtract first traced density and divide by traced density span",
+      "exposure": "map the 10 percent and 90 percent normalized-density crossings to 0 and 1",
+      "comparison_grid_min": -0.1,
+      "comparison_grid_max": 1.1,
+      "comparison_grid_samples": 257,
+      "pair_domain": "intersection of both traced normalized-exposure domains and the frozen comparison grid"
+    },
+    "direct_source_domain_diagnostic": "piecewise-linear density RMSE over the common traced log-relative-exposure domain; reported but not used for diversity promotion because graph gauges and unstated densitometric status remain nuisance variables"
+  },
+  "gates": {
+    "required_stock_count": 3,
+    "required_channel_count": 3,
+    "minimum_points_per_channel": 12,
+    "axis_max_residual_px": 1.0,
+    "trace_max_ink_distance_px": 2.0,
+    "maximum_monotonic_reversal_density": 0.01,
+    "minimum_density_span": 1.5,
+    "minimum_10_to_90_exposure_span": 2.0,
+    "minimum_pair_shape_rmse_per_channel": 0.02,
+    "minimum_material_channels_per_pair": 2,
+    "minimum_material_pair_count": 2,
+    "minimum_material_graph_degree_per_stock": 1,
+    "maximum_digitization_uncertainty_fraction_of_shape_gate": 0.5,
+    "digitization_uncertainty_px": 2.0,
+    "two_byte_identical_audits": true,
+    "visual_overlay_required": true
+  },
+  "decision_branches": {
+    "pass": "retain_source_domain_stock_shape_bank_and_open_separate_mapping_identifiability_research",
+    "fail": "retain_one_shared_manufacturer_shape_prior_and_close_stock_specific_shape_bank"
+  },
+  "allowed_actions": [
+    "Verify exact first-party PDF and embedded graph identities.",
+    "Audit the frozen solid-curve traces and generate source overlays.",
+    "Measure direct and affine-gauge-normalized source-curve diversity.",
+    "Retain a research-only source-domain bank only if frozen diversity gates pass."
+  ],
+  "forbidden_actions": [
+    "Do not interpret curve differences as calibrated stock response or digital RGB mapping.",
+    "Do not use photograph pixels, AO6 outputs or P2R failures to tune traces or gates.",
+    "Do not change thresholds after formal execution or rescue one channel with a larger model.",
+    "Do not map B/G/R layer labels directly onto an ordinary image RGB tensor.",
+    "Do not open product integration, photographic evaluation or latent modes from this source audit."
+  ],
+  "claim_ceiling": "First-party manufacturer-graph source-domain characteristic-shape diversity diagnostic for VISION3 50D/250D/500T; not calibrated stock response, particular-roll evidence, digital-to-film identification or a product operator."
+}
