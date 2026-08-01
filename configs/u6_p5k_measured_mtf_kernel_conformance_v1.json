@@ -1,0 +1,62 @@
+{
+  "schema": "neuro_film.u6_p5k_measured_mtf_kernel_conformance_contract.v1",
+  "experiment_id": "u6.p5k-measured-mtf-kernel-conformance-v1",
+  "node": "ULT > U6 > U6.P5 > U6.P5K",
+  "date_frozen": "2026-08-01",
+  "parent": {
+    "bundle": "outputs/u6_p5j_kodak_250d_positive_psf_compiler/bundle_run1.json",
+    "bundle_sha256": "b2d0ff39743ba3ec21a8d033fe38f3ebf6e7360e5a75ea6b838dc67b4b856270",
+    "bundle_id": "80bff073e5da5a4da1dcdd46b11238e1b2b3ca96596b3f082c419d791b60d1b8",
+    "report_sha256": "98759151cfa7b167b5f60f7cdaf0d8f11a90f9e66b3817315bc6286669015f85",
+    "stable_evidence_id": "bbf32daba6583d52ec017b26c7deb23510229f174a1f9cd78f659cd16c88fc55"
+  },
+  "question": "Can the exact P5J positive PSF bundle be compiled into finite, positive, no-ringing discrete kernels at a high-fidelity reference sampling rate while exposing the inadequacy of naive 4000-dpi direct sampling?",
+  "compiler": {
+    "reference_dpi": 16000.0,
+    "reference_pixel_pitch_um": 1.5875,
+    "direct_product_dpi_control": 4000.0,
+    "direct_product_pixel_pitch_um": 6.35,
+    "gaussian_cell_integration": "normal CDF over each pixel cell",
+    "truncate_sigma": 5.0,
+    "boundary_mode": "nearest",
+    "channels": ["blue", "green", "red"],
+    "frequency_interval_cycles_per_mm": [25.0, 65.0],
+    "frequency_grid_count": 161
+  },
+  "charts": {
+    "impulse_shape": [129, 129],
+    "step_shape": [257, 509],
+    "constant_values": [0.0, 0.18, 0.5, 1.0],
+    "row_partitions": [31, 47, 127]
+  },
+  "gates": {
+    "reference_discrete_vs_analytic_max_error": 0.01,
+    "kernel_sum_absolute_error": 1e-14,
+    "constant_max_error": 1e-12,
+    "impulse_negative_min": -1e-15,
+    "step_undershoot_max": 1e-12,
+    "step_overshoot_max": 1e-12,
+    "measured_frequency_channel_order_tolerance": 1e-12,
+    "row_partition_byte_exact": true,
+    "repeat_byte_exact": true,
+    "direct_4000dpi_warning_error": 0.02,
+    "two_byte_identical_reports": true
+  },
+  "allowed_after_pass": [
+    "retain a high-fidelity 16000-dpi reference kernel for synthetic/reference simulation",
+    "open a separately frozen reference-render-then-downsample versus cheap target-resolution LOD experiment"
+  ],
+  "forbidden": [
+    "claim that direct 4000-dpi kernel sampling is faithful when its measured-interval error exceeds the warning threshold",
+    "fit kernels to photographs, AO6 outputs or preference choices",
+    "apply the reference kernel as a production operator",
+    "claim calibrated stock, roll, process, scanner, colour or product response",
+    "change the physical-domain order or introduce negative/ringing taps to improve MTF fit"
+  ],
+  "branch_rule": {
+    "reference_pass_direct_warning": "Retain reference kernel and open an explicit LOD/downsample compiler; direct target-resolution use remains closed.",
+    "reference_pass_direct_ok": "Retain reference kernel and open photographic severe/value gates only under a separately frozen target-scale contract.",
+    "reference_fail": "Close discrete compilation and retain the analytic P5J bundle only."
+  },
+  "claim_ceiling": "Synthetic high-sampling conformance for a manufacturer-MTF-derived positive PSF; not target-resolution, photographic, calibrated or product evidence."
+}
