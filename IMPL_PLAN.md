@@ -306,6 +306,11 @@ six-fold reports show a material chain difference, but the 2x2 chroma matrix
 regresses one global chroma scale by 6.48% and fails mean and worst-fold gates.
 Close without nonlinear capacity or threshold rescue; this is publication
 display-chain evidence, not a digital-to-film operator or stock calibration.
+BR1 separately tests only the six neutral patches. Its two byte-identical
+leave-one-patch-out reports pass every frozen gate: the monotone PCHIP reaches
+`2.215` mean / `5.524` maximum Delta L-star and improves 36.96% over one
+gamma. Retain the curve only for one separately frozen photographic stress;
+it remains a display-chain tone observation, not sensitometry or stock truth.
 
 The executable authority is `docs/ULTIMATE_EXECUTION_TRACKER.md`, governed by
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` and

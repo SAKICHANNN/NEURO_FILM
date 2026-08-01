@@ -45,7 +45,26 @@ def test_frozen_neutral_observation_has_six_disjoint_folds() -> None:
         )
         seen.extend(fold["confirmation_indices"])
     assert sorted(seen) == list(range(6))
-    assert result["aggregate"]["identity"]["mean_confirmation_absolute_lstar_error"] > 0.0
+    assert result["aggregate"]["identity"][
+        "mean_confirmation_absolute_lstar_error"
+    ] == pytest.approx(8.559095003403819)
+    assert result["aggregate"]["monotone_pchip"][
+        "mean_confirmation_absolute_lstar_error"
+    ] == pytest.approx(2.2153300634730018)
+    assert result["aggregate"]["monotone_pchip"][
+        "maximum_confirmation_absolute_lstar_error"
+    ] == pytest.approx(5.523859455302297)
+    assert result["aggregate"]["monotone_pchip"][
+        "gain_over_gamma"
+    ] == pytest.approx(0.36963075637368203)
+    assert result["aggregate"]["monotone_pchip"][
+        "gain_over_affine"
+    ] == pytest.approx(0.7202145606491268)
+    assert result["automatic_pass"]
+    assert result["selected_model"] == "monotone_pchip"
+    assert result["decision"] == (
+        "retain_controlled_monotone_tone_residual_for_photo_stress"
+    )
 
 
 def test_evaluator_rejects_invalid_shape() -> None:

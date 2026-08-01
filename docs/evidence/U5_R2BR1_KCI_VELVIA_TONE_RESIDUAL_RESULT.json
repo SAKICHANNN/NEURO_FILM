@@ -1,0 +1,27 @@
+{
+  "schema": "neuro-film.u5.r2br1.result-summary.v1",
+  "experiment_id": "u5.r2br1-kci-velvia-tone-residual-v1",
+  "software_commit": "605d5b47",
+  "config_sha256": "2a0876d3ffee597e3d4005f39c45fb18c4084a060cbe632a6dff7ef941841ea5",
+  "formal_report_sha256": "d1787c559267d7f90a157aa8f54f8378859311e0c92c761ead92a77f940dc772",
+  "two_run_byte_identity": true,
+  "automatic_pass": true,
+  "selected_model": "monotone_pchip",
+  "decision": "retain_controlled_monotone_tone_residual_for_photo_stress",
+  "metrics": {
+    "identity_mean_confirmation_absolute_lstar_error": 8.559095003403819,
+    "gamma_mean_confirmation_absolute_lstar_error": 3.514337169638699,
+    "affine_mean_confirmation_absolute_lstar_error": 7.917960522222895,
+    "pchip_mean_confirmation_absolute_lstar_error": 2.2153300634730018,
+    "pchip_maximum_confirmation_absolute_lstar_error": 5.523859455302297,
+    "pchip_gain_over_gamma": 0.36963075637368203,
+    "pchip_gain_over_affine": 0.7202145606491268,
+    "pchip_train_test_absolute_lstar_gap": 2.2153300634730018,
+    "pchip_minimum_grid_derivative": 0.0,
+    "pchip_minimum_grid_output": 0.0,
+    "pchip_maximum_grid_output": 100.0
+  },
+  "failed_gates": [],
+  "interpretation": "The six neutral publication patches support a held-patch monotone display-tone residual beyond identity, one gamma and one affine line. This opens only a separately frozen photographic stress test; it does not identify a scene exposure curve, sensitometry or scanner-independent film response.",
+  "claim_ceiling": "development evidence on six neutral patches from one controlled publication display-chain comparison; not a scene exposure curve, characteristic curve, scanner-independent Velvia response, calibrated stock tone, photo transfer or product promotion"
+}

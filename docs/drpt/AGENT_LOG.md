@@ -2,6 +2,17 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-02 - U5.R2BR1 controlled neutral-tone residual passes development
+
+- Reused BR0's exact controlled publication extraction and evaluated only the
+  six neutral L-star observations with six leave-one-patch-out folds.
+- Two reports are byte-identical (`d1787c55...c772`). The fixed monotone PCHIP
+  reaches `2.215` mean / `5.524` maximum held-patch error, improving 36.96%
+  over gamma and 72.02% over affine; all frozen gates pass.
+- Open one separately frozen photographic stress only. The result remains a
+  scanner/publication display-chain observation, not sensitometry, calibrated
+  stock response or product evidence.
+
 # 2026-08-02 - U5.R2BR0 controlled Velvia residual closes
 
 - Re-extracted exact 24-patch thumbnails from a controlled 2025 KCI real
