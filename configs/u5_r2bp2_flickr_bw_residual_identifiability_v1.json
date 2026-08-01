@@ -7,12 +7,12 @@
   "parents": {
     "registration_report": {
       "path": "outputs/u5_r2bp1_flickr_bw_composite_pair_registration_v1/run_a/report.json",
-      "sha256": "9e6ec16784d394e3d116c16056e719b92a66692d89e1734ad398fd97da3acd05",
-      "required_stable_evidence_id": "6258d64ae650da67178f09b88ec0894d4a7466df51a3c7b035c5a37b254a08c5"
+      "sha256": "c22b13fbeacad50ea3d933c9efef553157843440e8791855e2019cf3be9bb391",
+      "required_stable_evidence_id": "6e56e5b2a6231c6bd284b43a00b78ce945f572415402f70e3fb24e022137320d"
     },
     "download_manifest": {
       "path": "outputs/u5_r2bp0_flickr_bw_composite_pair_acquisition_v1/download_manifest.json",
-      "sha256": "8dd00f57f92bb561f9e0ee1dcec83ea1aa2a11c0c65575c749471e47fdbab0b9"
+      "sha256": "880961b497694f10f75bcd7de7442ca5227c3f13090c4a9b75cda217d19ff3e1"
     }
   },
   "data_root": "data/research/flickr_bw_composite_pairs_v1",
