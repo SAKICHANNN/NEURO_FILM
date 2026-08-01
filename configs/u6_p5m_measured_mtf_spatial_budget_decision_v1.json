@@ -1,0 +1,28 @@
+{
+  "schema": "neuro_film.u6_p5m_measured_mtf_spatial_budget_decision.v1",
+  "node": "U6.P5M",
+  "date": "2026-08-01",
+  "contract_commit": "af2881a2",
+  "contract_sha256": "a0271a4b8ce6a8efe572c2696b5bde94d6990555ce819b53a0a2354eb6e54c1e",
+  "report_sha256": "375f86933f776c2558dd9ab9179208fd759b58011d2b3b6270f14c08ccbab43d",
+  "stable_evidence_id": "48a201af3bbc5e78198b3637406afabe650c2c0b6c4090d679e71fd395a4c32b",
+  "spatial_budget_id": "b343ed0eb32b6ea2df72b8d6cba005284b16117c4d31c49178216af339999e87",
+  "diagnostic_sha256": "914ae1db9f0b92e6612829e5476797ce7bed6b991b439c3e5f9950efc3f63f40",
+  "automatic_pass": true,
+  "visual_diagnostic_pass": true,
+  "result": {
+    "residual_above_unity_channels": [],
+    "residual_below_unity_channels": ["red", "green", "blue"],
+    "positive_residual_necessary_condition": true,
+    "stacked_max_absolute_error": 0.224616358809883,
+    "red_residual_range": [0.42263797090587935, 0.7165946177626648],
+    "green_residual_range": [0.7752323053847693, 0.9169064928879077],
+    "blue_residual_range": [0.6282531473704911, 0.91112269236062],
+    "row_partitions_byte_exact": true,
+    "repeat_byte_exact": true
+  },
+  "decision": "open_positive_residual_compiler",
+  "branch_decision": "The full measured-total LOD cannot be multiplied by the generic film spatial chain: the resulting response differs from the measured total by up to 0.22462. With the B/G/R curves mapped to RGB explicitly, measured/legacy is positive and below unity on all frozen frequencies, satisfying only the necessary condition for a positive residual blur. Freeze P5N to test whether a finite positive PSF can realize this residual; until then neither full measured replacement nor residual composition is active.",
+  "retained_boundary": "A later measured-total selection replaces forward scatter, development adjacency and dye diffusion unless P5N proves an explicit residual composition. Scanner MTF remains separate. P3 long-range backing return remains closed unless an excess-response audit proves non-overlap.",
+  "claim_ceiling": "Small-signal spatial-budget attribution for one manufacturer total-film MTF curve family; no identified internal decomposition, roll/process/scanner calibration, photographic value or product promotion."
+}

@@ -9087,3 +9087,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain only under the explicit reconstruction assumption. Open P5M joint
   spatial-budget attribution; no photographic, calibrated-stock or product
   claim opens.
+
+## 2026-08-01 - U6.P5M closes full stacking and opens a residual compiler
+
+- Added an explicit measured-total ownership object that maps named B/G/R
+  curves into RGB array order and rejects simultaneous generic film stages.
+- Full measured-total times the generic forward/adjacency/dye chain differs
+  from the measured response by up to `.22462`; the diagnostic visibly confirms
+  material over-blur in every channel. That composition is closed.
+- The required measured/legacy response is nevertheless positive and below one
+  over 25-65 cycles/mm for all channels. This is only a necessary condition.
+  Open P5N finite positive-residual compilation; no spatial arm, photograph or
+  product integration is authorized yet.

@@ -239,7 +239,12 @@ closed. P5L then compiles an exact positive 4000-dpi LOD under a frozen
 zero-order-hold reconstruction: maximum reference error `4.44e-16`, six-pixel
 halo, exact 7/17/31-row partitions and no step overshoot. P5M must now assign a
 single total film spatial budget so this measured MTF is not double-counted with
-P3/P5C scatter, dye diffusion or adjacency; scanner MTF stays downstream.
+P3/P5C scatter, dye diffusion or adjacency; scanner MTF stays downstream. P5M
+closes full measured-total stacking at `.22462` maximum response error. The
+correct named B/G/R-to-RGB mapping leaves measured/legacy positive and below one
+at every frozen frequency, which is only a necessary condition for a positive
+residual. P5N must fit and confirm that residual with a finite positive PSF;
+otherwise measured-total replacement wins by construction.
 
 The executable authority is `docs/ULTIMATE_EXECUTION_TRACKER.md`, governed by
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` and
