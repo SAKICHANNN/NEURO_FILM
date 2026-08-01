@@ -565,6 +565,10 @@ def run_audit(
                 >= int(split["minimum_development_rows"]),
                 "confirmation_support": split_result["confirmation_rows"]
                 >= int(split["minimum_confirmation_rows"]),
+                "confirmation_group_support": len(
+                    split_result["confirmation_groups"]
+                )
+                >= int(split.get("minimum_confirmation_groups", 1)),
                 "split_group_disjoint": not set(
                     split_result["development_groups"]
                 )
