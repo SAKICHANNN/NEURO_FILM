@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+from pathlib import Path
 from typing import Any, Mapping, Sequence
 
 import numpy as np
@@ -13,6 +14,7 @@ from src.roll2film.triangular_logit_transport import (
     fit_triangular_logit_transport,
     select_safe_transport,
 )
+from src.eval.fivek_unseen_content_confirmation import load_srgb16
 
 
 class FiveKCasebankOracleError(ValueError):
@@ -22,6 +24,65 @@ class FiveKCasebankOracleError(ValueError):
 def _array_sha256(value: np.ndarray) -> str:
     array = np.ascontiguousarray(value, dtype="<f8")
     return hashlib.sha256(array.tobytes()).hexdigest()
+
+
+def _file_sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def load_split_population(
+    manifest: Mapping[str, Any],
+    *,
+    split: str,
+    target_variant: str,
+    maximum_side: int,
+) -> list[dict[str, Any]]:
+    """Load one frozen split while validating every normalized asset hash."""
+
+    target_fields = {
+        "filtered": ("target_path", "target_sha256"),
+        "aligned_expert": (
+            "aligned_expert_path",
+            "aligned_expert_sha256",
+        ),
+    }
+    if split not in {"development", "confirmation"}:
+        raise FiveKCasebankOracleError("invalid population split")
+    if target_variant not in target_fields:
+        raise FiveKCasebankOracleError("invalid target variant")
+    target_path_field, target_hash_field = target_fields[target_variant]
+    loaded = []
+    for row in manifest.get("rows", []):
+        if row.get("split") != split:
+            continue
+        source_path = Path(str(row["source_path"]))
+        target_path = Path(str(row[target_path_field]))
+        if (
+            not source_path.is_file()
+            or not target_path.is_file()
+            or _file_sha256(source_path) != str(row["source_sha256"])
+            or _file_sha256(target_path) != str(row[target_hash_field])
+        ):
+            raise FiveKCasebankOracleError("normalized asset drift")
+        source = load_srgb16(source_path, maximum_side)
+        target = load_srgb16(target_path, maximum_side)
+        if source.shape != target.shape:
+            raise FiveKCasebankOracleError("normalized pair shape drift")
+        loaded.append(
+            {
+                "pair_id": str(row["pair_id"]),
+                "group": str(row["camera_model"]),
+                "source": source,
+                "target": target,
+            }
+        )
+    if not loaded:
+        raise FiveKCasebankOracleError("empty normalized split")
+    return sorted(loaded, key=lambda row: row["pair_id"])
 
 
 def _rgb(value: Any) -> np.ndarray:
@@ -348,4 +409,5 @@ def evaluate_offdiagonal_oracle(
 __all__ = [
     "FiveKCasebankOracleError",
     "evaluate_offdiagonal_oracle",
+    "load_split_population",
 ]

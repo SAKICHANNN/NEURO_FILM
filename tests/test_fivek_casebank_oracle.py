@@ -1,11 +1,13 @@
 from __future__ import annotations
 
+import hashlib
 import numpy as np
 import pytest
 
 from src.eval.fivek_casebank_oracle import (
     FiveKCasebankOracleError,
     evaluate_offdiagonal_oracle,
+    load_split_population,
 )
 from src.roll2film.triangular_logit_transport import TriangularLogitTransport
 
@@ -108,3 +110,58 @@ def test_oracle_rejects_self_case_overlap() -> None:
     confirmation[0]["pair_id"] = development[0]["pair_id"]
     with pytest.raises(FiveKCasebankOracleError, match="off-diagonal"):
         evaluate_offdiagonal_oracle(development, confirmation, _config())
+
+
+def test_split_loader_binds_paths_hashes_and_target_variant(
+    tmp_path, monkeypatch
+) -> None:
+    source = tmp_path / "source.tif"
+    filtered = tmp_path / "filtered.tif"
+    expert = tmp_path / "expert.tif"
+    for path, payload in (
+        (source, b"source"),
+        (filtered, b"filtered"),
+        (expert, b"expert"),
+    ):
+        path.write_bytes(payload)
+
+    def fake_load(path, maximum_side):
+        assert maximum_side == 256
+        value = {source: 0.2, filtered: 0.4, expert: 0.8}[path]
+        return np.full((4, 5, 3), value, dtype=np.float32)
+
+    monkeypatch.setattr(
+        "src.eval.fivek_casebank_oracle.load_srgb16", fake_load
+    )
+    manifest = {
+        "rows": [
+            {
+                "pair_id": "casebank-1",
+                "camera_model": "camera-a",
+                "split": "confirmation",
+                "source_path": str(source),
+                "source_sha256": hashlib.sha256(b"source").hexdigest(),
+                "target_path": str(filtered),
+                "target_sha256": hashlib.sha256(b"filtered").hexdigest(),
+                "aligned_expert_path": str(expert),
+                "aligned_expert_sha256": hashlib.sha256(b"expert").hexdigest(),
+            }
+        ]
+    }
+    loaded = load_split_population(
+        manifest,
+        split="confirmation",
+        target_variant="aligned_expert",
+        maximum_side=256,
+    )
+    assert loaded[0]["group"] == "camera-a"
+    assert np.all(loaded[0]["target"] == np.float32(0.8))
+
+    manifest["rows"][0]["aligned_expert_sha256"] = "0" * 64
+    with pytest.raises(FiveKCasebankOracleError, match="asset drift"):
+        load_split_population(
+            manifest,
+            split="confirmation",
+            target_variant="aligned_expert",
+            maximum_side=256,
+        )
