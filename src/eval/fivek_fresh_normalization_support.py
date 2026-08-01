@@ -430,6 +430,7 @@ def run_audit(
         )
         source_output = external_root / "source" / f"{source_name}.tif"
         target_output = external_root / "target" / f"{source_name}.tif"
+        expert_output = external_root / "expert" / f"{source_name}.tif"
         preview_output = external_root / "preview" / f"{source_name}.jpg"
         source_hash, source_bytes = _save_exact(
             source, source_output, save_tiff16
@@ -437,6 +438,16 @@ def run_audit(
         target_hash, target_bytes = _save_exact(
             target, target_output, save_tiff16
         )
+        expert_evidence = {}
+        if normalization.get("save_aligned_expert_target", False):
+            expert_hash, expert_bytes = _save_exact(
+                expert, expert_output, save_tiff16
+            )
+            expert_evidence = {
+                "aligned_expert_path": str(expert_output.as_posix()),
+                "aligned_expert_sha256": expert_hash,
+                "aligned_expert_bytes": expert_bytes,
+            }
         preview_hash, preview_bytes = _save_exact(
             source, preview_output, save_preview
         )
@@ -462,6 +473,7 @@ def run_audit(
                 "target_path": str(target_output.as_posix()),
                 "target_sha256": target_hash,
                 "target_bytes": target_bytes,
+                **expert_evidence,
                 "preview_path": str(preview_output.as_posix()),
                 "preview_sha256": preview_hash,
                 "preview_bytes": preview_bytes,

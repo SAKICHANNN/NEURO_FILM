@@ -30,6 +30,10 @@ def test_contract_preserves_failed_parent_and_forbids_fitting() -> None:
 def test_existing_contract_keeps_legacy_pair_id_prefix() -> None:
     config = json.loads(CONFIG.read_text(encoding="utf-8"))
     assert config["normalization"].get("pair_id_prefix", "fresh") == "fresh"
+    assert (
+        config["normalization"].get("save_aligned_expert_target", False)
+        is False
+    )
 
 
 def test_center_crop_landscape_to_narrower_landscape() -> None:
