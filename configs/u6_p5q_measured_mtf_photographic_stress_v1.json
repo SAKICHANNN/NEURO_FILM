@@ -1,0 +1,95 @@
+{
+  "schema": "neuro_film.u6_p5q_measured_mtf_photographic_stress_contract.v1",
+  "experiment_id": "u6.p5q-measured-mtf-photographic-stress-v1",
+  "node": "ULT > U6 > U6.P5 > U6.P5Q",
+  "date_frozen": "2026-08-01",
+  "parents": {
+    "p5p_decision": "configs/u6_p5p_measured_mtf_minimax_envelope_decision_v1.json",
+    "p5p_decision_sha256": "08d93206c57c905a228df8f2ead1c2266fbc412eb412470c4dab5f89ec4ee9f8",
+    "p5d_contract": "configs/u6_p5d_spatial_photographic_stress_v1.json",
+    "p5d_contract_sha256": "50a9d985b94dc1bd9f013b16d4d93f97d43bd4a8c867cde87d20a1370952955e",
+    "p5c_decision": "configs/u6_p5c_bounded_adjacency_decision_v1.json",
+    "p5c_decision_sha256": "9556561899eea5757b60936509b6f95831be4b13566a3c4b668de00303c88dc4"
+  },
+  "question": "Does the fixed P5P minimax measured-total MTF envelope remain severe-artifact-clean, nonempty and structurally useful on the frozen 18-photo/9-camera P5D OOD cohort when scanner MTF remains a separate common downstream stage?",
+  "input": {
+    "reuse_p5d_manifest_and_rights": true,
+    "expected_rows": 18,
+    "expected_camera_makes": 9,
+    "domain_use": "relative-display-sRGB-derived pseudo-exposure for structural and severe-artifact stress only"
+  },
+  "pipeline": {
+    "control_sensitometry_only": "fixed U2.2 sensitometry to transmittance plus unchanged scanner MTF",
+    "control_generic_p5c": "exact retained P5C generic film spatial chain plus unchanged scanner MTF",
+    "candidate": "exact P5P minimax transmittance envelope replacing generic film spatial stages, plus unchanged scanner MTF",
+    "uncertainty": "P5P pointwise placement half-range before scanner MTF",
+    "row_partitions": [257, 509],
+    "hard_clip_forbidden": true,
+    "single_final_preview_encoding": "deterministic sRGB8 PNG for visual evidence only"
+  },
+  "automatic_gates": {
+    "all_input_and_parent_hashes_exact": true,
+    "all_outputs_finite_and_inside_open_closed_unit_domain": true,
+    "row_partition_outputs_exact": true,
+    "maximum_candidate_vs_sensitometry_abs": 0.25,
+    "minimum_population_p95_candidate_vs_sensitometry_abs": 0.00001,
+    "minimum_population_p95_candidate_vs_generic_abs": 0.00001,
+    "maximum_flat_region_p99_abs": 0.05,
+    "maximum_difference_channel_spread": 0.25,
+    "maximum_isolated_excursion_count": 0,
+    "isolated_excursion_threshold": 0.03,
+    "isolated_support_radius_pixels": 2,
+    "minimum_isolated_support_count": 3,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_uncertainty_half_range": 0.05,
+    "maximum_population_p95_uncertainty_half_range": 0.01,
+    "minimum_strong_edge_gradient_ratio": 0.5,
+    "maximum_strong_edge_gradient_ratio": 1.0000001,
+    "minimum_texture_energy_ratio": 0.25,
+    "maximum_texture_energy_ratio": 1.0000001
+  },
+  "visual_protocol": {
+    "fixed_ids": [
+      "canon_eos250d_16x9",
+      "nikon_d6_12bit",
+      "sony_nex5_12bit",
+      "fujifilm_s2pro",
+      "olympus_epl8",
+      "panasonic_dmcg10",
+      "pentax_k20d",
+      "ricoh_grii",
+      "samsung_gx1l"
+    ],
+    "overview_columns": [
+      "source",
+      "sensitometry-only",
+      "generic P5C",
+      "P5P minimax",
+      "minimax minus sensitometry x8"
+    ],
+    "worst_patch_size": 256,
+    "severe_vetoes": [
+      "secondary bright or dark contours",
+      "red, green or blue speckle or posterization",
+      "objectionable colour fringing or edge echo",
+      "banding, clipping or flat-region colour blocks",
+      "row-partition seam",
+      "geometry or content corruption"
+    ],
+    "automatic_failure_forbids_visual_review": true,
+    "autonomous_visual_pass_cannot_override_automatic_failure": true
+  },
+  "branch_rule": {
+    "pass": "Retain photographic severe/OOD development evidence and open a separately frozen value comparison against the generic control.",
+    "fail": "Close P5P for photographic use and retain P5L/P5O/P5P as synthetic reference evidence only."
+  },
+  "forbidden": [
+    "change P5P, P5D, P5C, sensitometry, scanner or gates after results",
+    "select one P5O arm from photo appearance",
+    "use visual review after automatic failure",
+    "treat pseudo-exposure as scene exposure or the candidate as identified physical MTF placement",
+    "claim stock, process, scanner, calibrated or product response",
+    "integrate into production from this stress alone"
+  ],
+  "claim_ceiling": "Photographic structural and severe-artifact stress for one film-inspired placement-uncertainty MTF challenger on display-derived pseudo-exposure; not physical placement, calibrated stock response, preference or product promotion."
+}
