@@ -675,4 +675,7 @@ without rescue. U6.P2X tests a distinct intrinsically bounded sigmoid family;
 two exact runs remain boundary-clean but fail value (`.16768` median; 9/16
 visible) and isolated-excursion (126) gates. Stop heuristic photographic
 interimage families. U6.P2Y may only audit independently measured interimage
-response data before another operator is proposed.
+response data before another operator is proposed. That audit finds a genuine
+measured mechanism but zero published complete numeric rows; OCR, digitization
+and reconstruction stay forbidden. U6.P2Z now audits the latest Emulating
+Emulsion author package for exact code, fitted parameters or paired patch rows.

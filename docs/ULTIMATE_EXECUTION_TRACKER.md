@@ -1100,3 +1100,10 @@ and the bounded operator remains structurally safe, but only `13/33` complete
 groups win. The `17.86%` evaluator-Oracle gain establishes conditional value,
 not a reliable router. Keep the global fallback and require hard abstention or
 independent content-diverse evidence next.
+
+U6.P2Y closes the accessible measured-interimage source family before fitting.
+The CIC companion reports a real Ektachrome/CRT-recorder RGB-to-CMY experiment
+but publishes zero complete machine-readable rows against the frozen minimum
+of 24. Two reports are byte-identical; no OCR, manual digitization, operator fit
+or render occurred. U6.P2Z audits the 2025 Emulating Emulsion author package for
+reproducible code, fitted parameters or paired patch rows. AO6 remains incumbent.

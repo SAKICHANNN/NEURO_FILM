@@ -1,0 +1,41 @@
+{
+  "schema": "neuro_film.u6_p2y_measured_interimage_source_audit_decision.v1",
+  "node": "U6.P2Y",
+  "status": "fail-closed-no-reusable-row-level-data",
+  "contract": "configs/u6_p2y_measured_interimage_source_audit_v1.json",
+  "contract_sha256": "364c35b6532d8ad7a339f17d2de910cd32aaae38630a0c5eced74fccde701758",
+  "software_commit": "f2b273b239b14ccbcb08c82cf4ae288df7b37a1d",
+  "reports": [
+    {
+      "path": "outputs/u6_p2y_measured_interimage_source_audit_v1/run_a/report.json",
+      "sha256": "11a0fb05b619ec1050aa6c9310c7ce74fea0c8086cf3318cc016d052beaa5498"
+    },
+    {
+      "path": "outputs/u6_p2y_measured_interimage_source_audit_v1/run_b/report.json",
+      "sha256": "11a0fb05b619ec1050aa6c9310c7ce74fea0c8086cf3318cc016d052beaa5498"
+    }
+  ],
+  "replay": {
+    "two_reports_byte_identical": true,
+    "stable_evidence_id": "d5163e03b82785d8bdb6d2cba9043da6b4115e09fb1e56893498996b7ff32384"
+  },
+  "source_facts": {
+    "primary_thesis_browser_pages": 171,
+    "primary_thesis_local_pdf_available": false,
+    "primary_thesis_cli_boundary": "HTTP 202 AWS WAF challenge; no bypass and no local PDF retained",
+    "official_companion_pdf_sha256": "920f74eab439dc14a18cd95a3d3f441ca377a68c298e530b11a8bb44e6e3bbf9",
+    "official_companion_pages": 5,
+    "reported_rgb_to_cmy_dataset_colors": 36,
+    "published_complete_machine_readable_rows": 0,
+    "operator_fit_count": 0,
+    "image_render_count": 0
+  },
+  "failed_gates": [
+    "local_thesis_pdf_available_for_numeric_claim",
+    "minimum_complete_numeric_rows",
+    "machine_readable_or_explicitly_tabulated_values"
+  ],
+  "decision": "close-this-source-family-without-ocr-manual-digitization-or-heuristic-reconstruction",
+  "next_ready_leaf": "U6.P2Z latest Emulating Emulsion author-package reproducibility audit",
+  "claim_ceiling": "bounded source and data-feasibility audit; not a film-stock response, stock/process/scanner calibration, operator fit, product profile or authenticity claim"
+}

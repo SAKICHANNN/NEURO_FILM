@@ -9305,3 +9305,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Automatic failure forbids visual review. Retain P3Q as generic synthetic
   mechanism evidence only; do not retune halation topology. Continue a
   mechanism-distinct explicit colour or independent paired-evidence leaf.
+
+## 2026-08-02 - U6.P2Y closes without reusable measured rows
+
+- Audited the official RIT thesis record and exact CIC companion paper. The
+  companion reports a 36-colour Ektachrome/CRT-recorder RGB-to-CMY experiment
+  but exposes zero complete numeric rows against the frozen minimum of 24.
+- Two reports are byte-identical at `11a0fb05...a5498`; no OCR, manual
+  digitization, operator fit or render occurred. The thesis CLI path returned
+  an HTTP 202 challenge and was not bypassed.
+- Continue U6.P2Z with the latest 2025 Emulating Emulsion author package. This
+  is source feasibility only, not stock/process/scanner or product evidence.
