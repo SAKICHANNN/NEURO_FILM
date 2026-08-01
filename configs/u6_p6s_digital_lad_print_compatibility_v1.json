@@ -1,0 +1,93 @@
+{
+  "schema": "neuro_film.u6_p6s_digital_lad_print_compatibility_contract.v1",
+  "experiment_id": "u6.p6s-digital-lad-print-compatibility-v1",
+  "node": "ULT > U6 > U6.P6 > U6.P6S",
+  "date_frozen": "2026-08-02",
+  "parents": {
+    "p6r_contract": {
+      "path": "configs/u6_p6r_kodak_digital_lad_density_primitive_v1.json",
+      "sha256": "1c4e87b6d899cdb0e9bbfc93070db2294f9c7afef6b638d7aa1b0ea535a542c4"
+    },
+    "p6r_decision": {
+      "path": "configs/u6_p6r_kodak_digital_lad_density_primitive_decision_v1.json",
+      "sha256": "cdcdc5def08c6f1ed454b7ff5f56912cb361ba1185f0d4456e6dba9ebd5d1215",
+      "required_status": "pass-typed-digital-lad-density-primitive"
+    },
+    "p6r_report": {
+      "path": "outputs/u6_p6r_kodak_digital_lad_density_primitive_v1/run_a/report.json",
+      "sha256": "f5ec8fdedb6beab9219d2a2614de744cf7ccceb678eabeb80078c01c93655510"
+    },
+    "p2b_contract": {
+      "path": "configs/u6_p2b_interpretation_medium_contract_v1.json",
+      "sha256": "68b655cb343c26537438c3f242464669d533206c893a7ece26d21316e7630f41"
+    },
+    "sensitometry_contract": {
+      "path": "configs/u2_2a_sensitometry_primitive_v1.json",
+      "sha256": "8f43edcbc7e168af830081dce16ecb5f268a294d2f0cd777b942aec4b95c8af2"
+    },
+    "print_composition_contract": {
+      "path": "configs/u2_2b_sensitometry_print_composition_v1.json",
+      "sha256": "48093062cb8601c365717ba399a64559382233bdb9d3b05b1980dc81c243e137"
+    },
+    "print_source_contract": {
+      "path": "configs/u5_r2e0_density_domain_operator_v1.json",
+      "sha256": "fffb390eb7bb01789b770964da6cea081393ce09e0019dcd7d4a43098d3bf337"
+    }
+  },
+  "question": "Can H-387 neutral recorder printing-density aims be consumed by the existing generic density-to-print interpretation through a separate typed neutral anchor, without relabeling them as developed camera-film density, Status M, stock colour or scanner calibration?",
+  "adapter": {
+    "schema": "neuro_film.film_physics.digital_lad_print_anchor.v1",
+    "role": "recorder_printing_density_neutral_anchor",
+    "channel_order": ["red", "green", "blue"],
+    "neutral_replication": "raw printing density repeated exactly on RGB only after raw density is finite and nonnegative",
+    "print_witness": "neutral_density_reference",
+    "accepted_route": "color_negative_print",
+    "forbidden_routes": [
+      "color_negative_neutral_scan",
+      "slide_direct_scan",
+      "bw_developer_scan"
+    ],
+    "status_m_used_in_arithmetic": false,
+    "dmin_used_in_arithmetic": false,
+    "negative_raw_interpositive_tail_action": "reject_without_clamping",
+    "developed_exposure_result_fabrication_allowed": false
+  },
+  "automatic_gates": {
+    "all_four_lad_aims_compatible": true,
+    "aim_density_exact": true,
+    "neutral_axis_exact": true,
+    "print_output_finite_and_bounded": true,
+    "negative_and_interpositive_outputs_distinct": true,
+    "negative_code_output_strictly_monotone": true,
+    "interpositive_code_output_strictly_monotone": true,
+    "raw_negative_tail_rejected": true,
+    "forbidden_routes_rejected": true,
+    "status_m_and_dmin_arithmetic_reads_zero": true,
+    "input_aims_unchanged": true,
+    "serialization_byte_exact": true,
+    "partition_exact": true,
+    "rgb_image_transform_count_zero": true
+  },
+  "allowed_after_pass": [
+    "retain a research-only typed neutral recorder/print anchor adapter",
+    "use H-387 aims as neutral recorder-control priors in a separately frozen print-chain audit",
+    "compare neutral recorder controls with generic print interpretation without stock colour claims"
+  ],
+  "forbidden": [
+    "treat recorder printing density as camera-film developed density",
+    "treat printing density as Status M or add D-min twice",
+    "consume the clamped physical zero for negative raw interpositive tail codes",
+    "derive RGB colour response from neutral LAD aims",
+    "claim local recorder, print stock, process or scanner calibration",
+    "photographic fitting, visual promotion or product integration"
+  ],
+  "branch_rule": {
+    "pass": "Retain the isolated neutral compatibility adapter and open only a separately frozen neutral recorder/print-chain synthetic audit.",
+    "fail": "Keep P6R as a standalone typed primitive and do not force it through existing interpretation types."
+  },
+  "outputs": {
+    "report_a": "outputs/experiments/u6_p6s_digital_lad_print_compatibility_v1/report_a.json",
+    "report_b": "outputs/experiments/u6_p6s_digital_lad_print_compatibility_v1/report_b.json"
+  },
+  "claim_ceiling": "Exact neutral-axis interoperability between manufacturer-documented recorder printing density and one existing generic print interpretation; not camera-film density, RGB stock response, local calibration, scanner profile, photographic quality or product promotion."
+}
