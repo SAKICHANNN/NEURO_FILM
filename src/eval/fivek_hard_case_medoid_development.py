@@ -252,6 +252,8 @@ def _load_fresh_population(
     root: Path,
     ay0_config: Mapping[str, Any],
     manifest: Mapping[str, Any],
+    *,
+    group_field: str | None = "camera_model",
 ) -> dict[str, Any]:
     rows = []
     maximum_side = int(ay0_config["decode"]["maximum_side"])
@@ -270,7 +272,11 @@ def _load_fresh_population(
         rows.append(
             {
                 "pair_id": evidence["pair_id"],
-                "group": evidence["camera_model"],
+                "group": (
+                    evidence[group_field]
+                    if group_field is not None
+                    else "unknown"
+                ),
                 "source": source,
                 "target": target,
                 "descriptor": source_descriptor(source, ay0_config),

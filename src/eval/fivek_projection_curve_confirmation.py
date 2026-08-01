@@ -181,7 +181,10 @@ def run_confirmation(
     ay0 = _load_ay0_population(root, curve["ay0_config"], curve["ay0_report"])
     ay0["name"] = parent_config["development_populations"][0]["name"]
     confirmation = _load_fresh_population(
-        root, curve["ay0_config"], validated["confirmation_manifest"]
+        root,
+        curve["ay0_config"],
+        validated["confirmation_manifest"],
+        group_field=None,
     )
     confirmation["name"] = "ay2_disjoint_content_confirmation"
     operator = parent_config["operator"]
