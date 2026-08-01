@@ -1,0 +1,28 @@
+{
+  "schema": "neuro-film.u5-r2bo7-flickr-safe-bernstein-lut-decision.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BO7",
+  "decision": "close_fixed_global_safe_lut_without_confirmation",
+  "contract_sha256": "ee7a07a9168c90cb97bedfa08f7155bec6fad3ddfdcc229cc457c563274ac069",
+  "software_commit": "e6b461728aae91659028af106f04dc68d011d41a",
+  "reports": {
+    "run_a": "outputs/u5_r2bo7_flickr_safe_bernstein_lut_v1/run_a/report.json",
+    "run_b": "outputs/u5_r2bo7_flickr_safe_bernstein_lut_v1/run_b/report.json",
+    "sha256": "854771695bccfdcf1fe09c92e458693d8b57a72e383b8b242fa29e672557aee9",
+    "byte_identical": true,
+    "stable_evidence_id": "64a21b118836470ed75938c55ce80e2ded8830ff9f0c8bf8e752502648d4c381"
+  },
+  "observed": {
+    "mean_improvement_over_control": 0.020934115268140173,
+    "median_improvement_over_control": 0.016493549964264775,
+    "scene_win_fraction_over_control": 0.825,
+    "p95_error_ratio_to_control": 0.9532228419984768,
+    "worst_error_ratio_to_control": 0.9594719912894158,
+    "minimum_safe_residual_strength": 0.28,
+    "minimum_combined_jacobian_determinant": 0.0015173113789328679,
+    "maximum_new_boundary_fraction": 0.0
+  },
+  "confirmation_pixels_loaded": false,
+  "degree_or_ridge_rescue_allowed": false,
+  "training_allowed": false,
+  "claim_ceiling": "development-only negative fixed global smooth-LUT baseline on one-author weak-paired camera-film display chains; not stock, calibration or product evidence"
+}

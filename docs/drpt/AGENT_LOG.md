@@ -8835,3 +8835,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   to `1.103x`.
 - Do not add luma knots, matrices or a family router. Keep all 12 confirmation
   pairs unread and continue a more expressive but still bounded mechanism.
+
+## 2026-08-01 - U5.R2BO7 closes the fixed-global smooth-LUT baseline
+
+- Two exact reports (`85477169...7aee9`) retain an active `.28` safe residual,
+  positive combined Jacobian, zero new boundary, 33/40 scene wins and positive
+  family medians.
+- Mean/median gains are only `2.09%/1.65%`; P95 ratio `.9532` misses `.95`.
+  Close degree/ridge/strength rescue and preserve all confirmation pixels.

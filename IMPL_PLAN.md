@@ -2465,3 +2465,8 @@ python_coreml_stable_diffusion  # CoreML 转换
 > cube-safe but loses the BO3 global curve-plus-matrix control on mean, median,
 > win rate, every family median and worst tail. Close without capacity rescue.
 >
+> BO7 adds the mature fixed-global smooth-LUT baseline. The safe residual is
+> active and wins 33/40 held scenes, yet its 2.09%/1.65% mean/median gains are
+> below the frozen 5% gates. Degree/ridge/strength rescue and confirmation are
+> closed; more global capacity is not the next answer.
+>

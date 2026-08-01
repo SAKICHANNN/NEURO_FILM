@@ -551,3 +551,8 @@ U5.R2BO6 closes a smooth shadow/mid/high positive-matrix operator. It is
 exactly cube-safe, but mean/median held-scene gains are negative, it wins only
 17/40 scenes and worsens the worst tail. Do not add knots or matrices; the
 weak-pair confirmation remains unread.
+
+U5.R2BO7 supplies the mature fixed-global LUT baseline. It is active,
+Jacobian-positive and wins 33/40 scenes, but mean/median gains are only
+2.09%/1.65% and P95 narrowly misses. Do not increase LUT degree or retune;
+the next candidate must change information structure rather than capacity.
