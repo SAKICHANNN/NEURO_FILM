@@ -7,7 +7,7 @@ import json
 import os
 from pathlib import Path
 import random
-from typing import Any, Mapping
+from typing import Any, Callable, Mapping
 
 import cv2
 import numpy as np
@@ -216,20 +216,25 @@ def validate_contract(root: Path, config: Mapping[str, Any]) -> dict[str, Any]:
     }
 
 
-def run_audit(
+def _run_audit(
     *,
     root: Path,
     config: Mapping[str, Any],
     config_path: Path,
     output_dir: Path,
     software_commit: str,
+    validated: Mapping[str, Any],
+    feature_extractor: Callable[..., np.ndarray],
+    report_schema: str,
+    experiment_label: str,
 ) -> dict[str, Any]:
     if os.environ.get("OMP_NUM_THREADS") != "1":
-        raise AO6ContentHardRetrievalError("BM2 requires OMP_NUM_THREADS=1")
+        raise AO6ContentHardRetrievalError(
+            f"{experiment_label} requires OMP_NUM_THREADS=1"
+        )
     if output_dir.exists():
-        raise FileExistsError("BM2 output is create-only")
+        raise FileExistsError(f"{experiment_label} output is create-only")
     output_dir.mkdir(parents=True)
-    validated = validate_contract(root, config)
     source_rows = validated["source_rows"]
     target_rows = validated["target_rows"]
     fold_map = validated["fold_map"]
@@ -274,7 +279,7 @@ def run_audit(
         )
         del source, target
 
-    features = _extract_features(root=root, views=views, config=config)
+    features = feature_extractor(root=root, views=views, config=config)
     normalized = _normalized(features)
     feature_sha256 = hashlib.sha256(
         features.astype("<f4", copy=False).tobytes()
@@ -439,7 +444,7 @@ def run_audit(
         "zero_self_matches": aggregate["zero_self_matches"] is bool(gates["require_zero_self_matches"]),
     }
     core = {
-        "schema": SCHEMA,
+        "schema": report_schema,
         "software_commit": software_commit,
         "config_sha256": sha256_file(config_path),
         "feature_sha256": feature_sha256,
@@ -463,9 +468,31 @@ def run_audit(
     return report
 
 
+def run_audit(
+    *,
+    root: Path,
+    config: Mapping[str, Any],
+    config_path: Path,
+    output_dir: Path,
+    software_commit: str,
+) -> dict[str, Any]:
+    return _run_audit(
+        root=root,
+        config=config,
+        config_path=config_path,
+        output_dir=output_dir,
+        software_commit=software_commit,
+        validated=validate_contract(root, config),
+        feature_extractor=_extract_features,
+        report_schema=SCHEMA,
+        experiment_label="BM2",
+    )
+
+
 __all__ = [
     "AO6ContentHardRetrievalError",
     "_fold_selector",
+    "_run_audit",
     "run_audit",
     "validate_contract",
 ]
