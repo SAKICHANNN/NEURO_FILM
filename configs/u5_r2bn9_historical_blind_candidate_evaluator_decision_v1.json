@@ -1,0 +1,39 @@
+{
+  "schema": "neuro_film.u5_r2bn9_historical_blind_candidate_evaluator_decision.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bn9-historical-blind-candidate-evaluator-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BN9",
+  "status": "candidate_evaluator_fail_close_learning_route",
+  "pass": false,
+  "inputs": {
+    "config_sha256": "4faeba79add3a0e3574dc656d22c3c6a86adabbfb6187228fe8a6f08bf02ea7c",
+    "feasibility_report_sha256": "e4fec1d09307c918250d0b69d1fc56a85d1e9f7c78ec96a6920edc3cdf1ef9d5",
+    "bh1_rerender_report_sha256": "4ab65440ca7609fc465dce28bc6f609d22ba2a8838967192d18b4e2b063648ec",
+    "formal_report_sha256": "3e1679cd03f6b328d5b4499269c50883457936d8852f53daa28ce4a9daaf866f",
+    "formal_report_stable_evidence_id": "2caaf9b3f2db0a85034245d214a2a251f7af3e70a15226ff163cbd6ccdf7f25f"
+  },
+  "metrics": {
+    "unit_count": 108,
+    "source_count": 62,
+    "experiment_count": 8,
+    "cohort_count": 5,
+    "candidate_asset_count": 251,
+    "leave_one_source_out_accuracy": 0.5370370370370371,
+    "experiment_global_baseline_accuracy": 0.48148148148148145,
+    "leave_one_source_out_gain": 0.055555555555555636,
+    "source_interaction_gain": 0.0092592592592593,
+    "leave_one_experiment_out_accuracy": 0.4722222222222222,
+    "leave_one_experiment_gain_over_chance": 0.01697530864197533,
+    "leave_one_cohort_out_accuracy": 0.46296296296296297,
+    "leave_one_cohort_gain_over_chance": 0.007716049382716084,
+    "source_bootstrap_gain_lower_95": -0.02956989247311827,
+    "grouped_permutation_p_value": 0.6138613861386139,
+    "confirmed_severe_artifact_count": 0
+  },
+  "decision": "close_historical_preference_learning_retain_fixed_global_incumbent",
+  "larger_model_or_feature_rescue_allowed": false,
+  "router_training_allowed": false,
+  "production_default_changed": false,
+  "next_branch": "continue_mechanism_distinct_explicit_or_physical_renderer",
+  "claim_ceiling": "development-only autonomous blind-choice evaluator over historical deterministic film-inspired candidates; not owner or population preference, stock response, calibration, universal safety or product promotion"
+}

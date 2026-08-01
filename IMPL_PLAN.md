@@ -2437,3 +2437,11 @@ python_coreml_stable_diffusion  # CoreML 转换
 > source majorities. Retain AO6 and continue a mechanism-distinct explicit or
 > physical algorithm; no strength, threshold, extra-round or router rescue.
 >
+> `U5.R2BN8-BN9` tests the case-based premise directly on all usable sealed
+> autonomous blind evidence. BN8 yields 108 connected source-experiment units.
+> BN9's two reports are exact at `3e1679cd...f866f`; LOSO improves 5.56 points
+> over an experiment-global arm, but source interactions add only .93 points,
+> cross-experiment/cohort gains are 1.70/.77 points, the bootstrap lower bound
+> is negative and grouped permutation p=.614. Close this historical selector
+> without a larger-model or feature rescue and continue a distinct renderer.
+>

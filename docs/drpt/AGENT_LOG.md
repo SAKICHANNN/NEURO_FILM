@@ -8763,3 +8763,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   gates. AO6 receives `21/30` choices.
 - Close candidate promotion without retuning, extra rounds or router rescue.
   Retain BN4-BN6 as explicit-representation evidence and keep AO6 incumbent.
+
+## 2026-08-01 - U5.R2BN8-BN9 closes historical preference learning
+
+- BN8 collapses repeated blind rounds into 108 source-experiment units across
+  62 sources, eight experiments and five cohorts; all connectivity gates pass.
+- BN9 uses only interpretable distribution statistics and holds out sources,
+  experiments and cohorts. Two reports are byte-identical at
+  `3e1679cd...f866f`.
+- LOSO gains 5.56 points over experiment-global, but source interactions add
+  .93 points; LOEO/LOCO gains are 1.70/.77 points, bootstrap lower bound is
+  -2.96 points and permutation p=.614. Close the selector without capacity or
+  feature rescue; continue a mechanism-distinct explicit/physical renderer.
