@@ -1,0 +1,34 @@
+{
+  "schema": "neuro_film.u6_p3q0_nist_halation_mechanism_source_decision.v1",
+  "experiment_id": "U6.P3Q0",
+  "status": "complete_source_pass",
+  "contract": "configs/u6_p3q0_nist_halation_mechanism_source_v1.json",
+  "contract_sha256": "79e1267e589c698aec599d4e1cfce66a8fc768013c8577042f2fbfc0fcf8d410",
+  "software_commit": "549e3b1da1444851d0e17520492679b25ce29843",
+  "formal_evidence": {
+    "report_a": "outputs/u6_p3q_nist_halation_source/formal_a/report.json",
+    "report_b": "outputs/u6_p3q_nist_halation_source/formal_b/report.json",
+    "report_sha256": "39dae9ac2b48b8a85eedcfc00335a27d293d143581602eda803895919b2ce28e",
+    "stable_evidence_id": "e1401c890382f14c53375ac96551ca20ef6a67bf1543a497fd02921c65d8b0b7",
+    "two_byte_identical_audits": true,
+    "reviewed_page_sha256": {
+      "30": "a659178e6526909b57c6f6ccae12f482f6917f7936fb918f72b692ee7f1e7f35",
+      "31": "62240160a8989fdce92b684c8e57a200cf65c1a59b8426df7044077bea6a29e8"
+    },
+    "visual_reviewed": true
+  },
+  "result": {
+    "source_pass": true,
+    "mechanism": "support-mediated total-internal-reflection return",
+    "geometry_facts": [
+      "critical-angle threshold",
+      "support-thickness scale",
+      "refractive-index dependence",
+      "absorbing-backing control",
+      "thinner-film smaller-spread ordering"
+    ],
+    "modern_stock_parameters_available": false
+  },
+  "decision": "open_u6_p3q1_analytical_base_return_geometry",
+  "claim_ceiling": "Primary historical mechanism evidence only; no modern-stock material parameter, measured PSF, calibration or product claim."
+}

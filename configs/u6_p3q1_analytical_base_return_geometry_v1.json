@@ -1,0 +1,77 @@
+{
+  "schema": "neuro_film.u6_p3q1_analytical_base_return_geometry_contract.v1",
+  "experiment_id": "U6.P3Q1",
+  "status": "synthetic_contract_frozen_implementation_ready",
+  "question": "Can a deterministic total-internal-reflection pushforward produce an energy-bounded annular support-return kernel with the source-required thickness/index orderings and a topology materially distinct from an equal-second-moment Gaussian?",
+  "parent": {
+    "decision_path": "configs/u6_p3q0_nist_halation_mechanism_source_decision_v1.json",
+    "decision_sha256": "7f01192f2e34b5e0504712dad65e71214bdadb40e0b5d80785a41fdbd5d285a0",
+    "stable_evidence_id": "e1401c890382f14c53375ac96551ca20ef6a67bf1543a497fd02921c65d8b0b7"
+  },
+  "candidate": {
+    "domain": "film-layer-linear-exposure",
+    "geometry": "rear-surface round trip r = 2*t*tan(theta), theta >= asin(1/n)",
+    "angular_flux_density": "2*sin(theta)*cos(theta)",
+    "path_attenuation": "exp(-2*t/(attenuation_length*cos(theta)))",
+    "rasterization": "radial probability density per unit area sampled at pixel centres then normalized",
+    "boundary_mode": "symmetric-context",
+    "arithmetic": "float64",
+    "fitting_allowed": false,
+    "photograph_selection_allowed": false,
+    "hard_clipping_allowed": false
+  },
+  "generic_hypothesis_profile": {
+    "support_thickness_um": 120.0,
+    "refractive_index": 1.5,
+    "attenuation_length_um": 1200.0,
+    "maximum_radius_um": 1200.0,
+    "pixel_pitch_um": 8.0,
+    "return_fraction_rgb": [0.065, 0.018, 0.006]
+  },
+  "controls": {
+    "gaussian": "nonnegative normalized Gaussian with the exact candidate radial second moment",
+    "thickness_scale_profiles": [
+      {"support_thickness_um": 60.0, "attenuation_length_um": 600.0, "maximum_radius_um": 600.0},
+      {"support_thickness_um": 120.0, "attenuation_length_um": 1200.0, "maximum_radius_um": 1200.0}
+    ],
+    "higher_index": 1.65,
+    "shorter_attenuation_length_um": 360.0
+  },
+  "witnesses": {
+    "shape": [385, 385, 3],
+    "constant_exposure": 0.18,
+    "background_exposure": 0.01,
+    "highlight_exposure": 4.0,
+    "edge_column": 192
+  },
+  "automatic_gates": {
+    "maximum_kernel_sum_absolute_error": 1e-12,
+    "minimum_kernel_weight": 0.0,
+    "maximum_center_weight": 0.0,
+    "maximum_inner_support_energy": 0.0,
+    "minimum_mode_radius_fraction_of_critical_radius": 0.7,
+    "minimum_l1_distance_from_equal_moment_gaussian": 0.5,
+    "minimum_thickness_q50_ratio": 1.85,
+    "maximum_thickness_q50_ratio": 2.15,
+    "minimum_thickness_q95_ratio": 1.85,
+    "maximum_thickness_q95_ratio": 2.15,
+    "maximum_higher_index_critical_radius_ratio": 0.9,
+    "require_shorter_attenuation_q95_reduction": true,
+    "maximum_constant_residual": 1e-14,
+    "minimum_impulse_exterior_energy": 1e-4,
+    "minimum_far_red_over_blue_ratio": 8.0,
+    "maximum_out_of_domain_fraction": 0.0,
+    "two_byte_identical_audits": true
+  },
+  "branches": {
+    "pass": "retain the generic analytical topology and open a separately frozen response-matched fresh photographic topology comparison",
+    "fail": "close the analytical geometry without changing hypotheses, rasterization or gates"
+  },
+  "forbidden": [
+    "Do not fit thickness, refractive index, attenuation or return fractions to photographs.",
+    "Do not relabel the generic hypothesis profile as a modern stock or measured film PSF.",
+    "Do not change P3D-P3P results or use their failed visibility gate as a parameter target.",
+    "Do not promote from synthetic topology evidence."
+  ],
+  "claim_ceiling": "Generic source-grounded synthetic topology evidence for one analytical support-return kernel family; no measured material, stock, process, calibration, preference or product claim."
+}
