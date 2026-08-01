@@ -1,0 +1,29 @@
+{
+  "schema": "neuro-film.u5-r2bo2-flickr-single-author-pair-registration-decision.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BO2",
+  "decision": "open_development_only_explicit_operator_pilot",
+  "contract_sha256": "a39d5d6e8c12527fab8c40926221876edb7a0034d7efdf87ebf28486de140b27",
+  "software_commit": "12875f0b32b24254a4166ed135dcc49d3c8c5146",
+  "reports": {
+    "run_a": "outputs/u5_r2bo2_flickr_single_author_pair_registration_v1/run_a/report.json",
+    "run_b": "outputs/u5_r2bo2_flickr_single_author_pair_registration_v1/run_b/report.json",
+    "sha256": "954f5dc9f64a74615da695668fb924c80659d00620607c37ad149f0db2e089eb",
+    "byte_identical": true,
+    "stable_evidence_id": "fb19f395aa5d1850443372c1e4afef2f7dd8273fda1562a561d2d2702da10e65"
+  },
+  "observed": {
+    "registered_pairs": 52,
+    "total_pairs": 53,
+    "registered_pairs_per_family": {
+      "lumix_lc40_to_nikon_f90x_fuji200": 17,
+      "nikon_d70_to_ricoh_rw1": 18,
+      "olympus_c70_to_yashica_kodak400": 17
+    },
+    "rejected_pair": "olympus_c70_to_yashica_kodak400/scene-06",
+    "visual_false_passes": 0
+  },
+  "allowed_next": "freeze scene-group development/confirmation split and compare only low-capacity bounded explicit operators on development",
+  "operator_fitting_allowed": "development subset only after a separate frozen contract",
+  "training_allowed": false,
+  "claim_ceiling": "one-author same-scene weak-pair geometric registration feasibility; no exact stock, calibrated response, process, scanner, exposure or commercial-use claim"
+}

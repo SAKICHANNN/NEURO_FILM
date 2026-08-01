@@ -527,3 +527,7 @@ exposure and scanner state still forbid fitting, training or calibration.
 U5.R2BO1 acquires and verifies all 106 bounded derivatives (23.96MB): 53/53
 pairs, zero exact duplicates and zero cross-pair dHash<=4. Open only frozen
 registration feasibility; fitting/training remain closed pending geometry.
+
+U5.R2BO2 registers 52/53 pairs across all three families; two runs are exact
+and visual overlay review finds no obvious accepted warp failure. Keep the one
+2.021px reject and open only a scene-split bounded-operator development pilot.

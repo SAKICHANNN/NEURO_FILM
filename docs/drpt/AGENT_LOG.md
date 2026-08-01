@@ -8792,3 +8792,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   complete audits are byte-identical at `fe9b0697...a766d2`.
 - All 53 pairs are complete with zero exact duplicates and zero cross-pair
   dHash<=4. Open registration feasibility only; operator fitting stays closed.
+
+## 2026-08-01 - U5.R2BO2 registration feasibility passes
+
+- Two reports are byte-identical at `954f5dc9...2e089eb`; 52/53 pairs pass
+  across all three families. Full contact-sheet review finds no obvious false
+  positive among accepted overlays.
+- Retain Olympus/Yashica scene 06 as rejected at 2.021px median error versus
+  the frozen 2.0px gate. Open only a new scene-split bounded-operator pilot.
