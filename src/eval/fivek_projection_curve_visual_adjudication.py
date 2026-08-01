@@ -282,7 +282,7 @@ def adjudicate_files(
         "status": (
             "adaptive_visual_value_pass_research_challenger"
             if result["pass"]
-            else "adaptive_visual_value_fail_retain_global_projection_control"
+            else "adaptive_visual_value_fail_retain_ao6_incumbent"
         ),
         "inputs": {
             "config_sha256": sha256_file(config_path),
