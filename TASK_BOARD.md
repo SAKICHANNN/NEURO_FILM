@@ -653,3 +653,8 @@ U5.R2BQ9 finds 11.82%/15.33% mean path-Oracle value with 79.86%/82.43% style,
 but only 39.26%/49.63% of rows improve and style feasibility is 85.93%/88.15%.
 Close confidence/strength rescue. BQ10 tests a fixed fit-only strong-style
 medoid as the K=1 alternative to coefficient-median blandness.
+
+U5.R2BQ10 fixed champions retain 135.42%/134.74% style but cost 22.78%/20.53%
+mean error versus global. Close the FiveK adaptive route without confirmation.
+BQ1-BQ10 establish strict-interior LUT capacity but not source routing; retain
+AO6/global safe-rich and return to real-film/physical-image-formation work.

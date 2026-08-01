@@ -9032,3 +9032,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   is 85.93%/88.15%.
 - Close scalar confidence and sparse-path rescue. BQ10 tests one fixed fit-only
   strong medoid as the K=1 alternative to coefficient-median blandness.
+
+## 2026-08-01 - U5.R2BQ10 closes FiveK routing, retains LUT capacity
+
+- Fixed champions preserve 135.42%/134.74% target style with zero boundary or
+  cube failures, but cost 22.78%/20.53% mean error versus global.
+- BQ1-BQ10 leave strict-interior 4^3 LUT capacity as positive evidence while
+  closing dense, hard, path-strength and fixed-case routing before confirmation.
+- Retain AO6/global safe-rich and resume the real-film/physical programme.

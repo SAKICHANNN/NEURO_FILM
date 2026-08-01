@@ -2568,3 +2568,8 @@ python_coreml_stable_diffusion  # CoreML 转换
 > 85.93%/88.15% style availability pass. Close source-selected magnitude rescue.
 > BQ10 now tests a fit-only fixed strong medoid as the explicit K=1 branch.
 >
+> BQ10 retains 135.42%/134.74% style but costs 22.78%/20.53% mean error versus
+> global. Close this FiveK adaptive programme. Keep the proven strict-interior
+> LUT as a representation baseline, retain AO6/global safe-rich, and resume the
+> evidence-authorized real-film/physical-image-formation tree.
+>

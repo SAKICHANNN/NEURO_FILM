@@ -1,0 +1,38 @@
+{
+  "schema": "neuro-film.u5-r2bq10-fivek-fixed-strong-lut-champion-decision.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BQ10",
+  "decision": "close_fivek_fixed_strong_champion_retain_existing_global_product_route",
+  "implementation_commit": "99df2c980c02c5448d79fcfbf228621f7ab31113",
+  "reports": {
+    "run_a": "outputs/u5_r2bq10_fivek_fixed_strong_lut_champion_v1/run_a/report.json",
+    "run_b": "outputs/u5_r2bq10_fivek_fixed_strong_lut_champion_v1/run_b/report.json",
+    "sha256": "3934496c2dff49f8ae5e20b8e1a798eff1e4d7b0b16ddec6ff0b85632ba5d184",
+    "byte_identical": true,
+    "stable_evidence_id": "e8ccf0925dc9868a63ce92137c8d4598e465dbecd02a984a697602abca24fa66",
+    "automatic_pass": false,
+    "confirmation_loaded": false,
+    "visual_review_performed": false
+  },
+  "aligned_expert": {
+    "champion_case_id": "casebank_0169_a1393-jn_20080928_002",
+    "mean_error_ratio_to_global": 1.2278279685976783,
+    "mean_error_ratio_to_global_strength_oracle": 1.2788109169058597,
+    "median_target_style_retention": 1.3542445249699326,
+    "style_eligible_fraction": 0.9629629629629629,
+    "maximum_new_boundary_fraction": 0.0
+  },
+  "filtered": {
+    "champion_case_id": "casebank_0281_a2238-LSYD4O2464",
+    "mean_error_ratio_to_global": 1.2052882928448512,
+    "mean_error_ratio_to_global_strength_oracle": 1.2688216524962304,
+    "median_target_style_retention": 1.3474436275896364,
+    "style_eligible_fraction": 0.9555555555555556,
+    "maximum_new_boundary_fraction": 0.0
+  },
+  "diagnosis": "A fixed case champion solves blandness but pays excessive mean mismatch. Across BQ1-BQ10, the strict-interior LUT representation has proven capacity while current source-only routing and K=1 case selection have not earned confirmation.",
+  "next_leaf": "return to the evidence-authorized real-film/look and physical-image-formation tree; retain AO6/global safe-rich product fallback and the strict-interior LUT as a future explicit representation baseline",
+  "fivek_adaptive_route_rescue_allowed": false,
+  "confirmation_opened": false,
+  "product_integration_opened": false,
+  "claim_ceiling": "repeat-exact negative development evidence for fixed strong K=1 case champions on FiveK controls; no confirmation, film, preference or product claim"
+}
