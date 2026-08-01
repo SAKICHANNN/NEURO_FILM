@@ -2497,3 +2497,10 @@ python_coreml_stable_diffusion  # CoreML 转换
 > essentially tied. Stop fitting this source. New work requires independent
 > physical evidence or a mechanism unrelated to these seven composites.
 >
+> BQ0-BQ0S2 freezes a 512-pair independent FiveK architecture-control
+> population but closes BQ1 v1 before fitting. The 509 eligible rows pass all
+> support/alignment/exact-leakage gates, while two unrelated low-information
+> source pairs trigger the frozen single-dHash gate. Preserve the failure;
+> next implement a new source-only multi-evidence duplicate contract, then
+> re-split before any operator sees confirmation targets.
+>

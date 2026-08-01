@@ -581,3 +581,10 @@ seven held scenes improve nominally, the median PSD gain is only `.948%`, every
 fold selects the weakest candidate, the matched linear-luma control is better,
 and the safe scale falls to `.0267`. Stop fitting structure on this source;
 continue with independent physical evidence or an unrelated explicit mechanism.
+
+U5.R2BQ0-BQ0S2 acquired 512 independent FiveK digital-retouch controls and
+retained 509 across 28 camera models, but the frozen normalization gate closes:
+one prior-pool and one internal `dHash<=4` candidate exist. Both are visibly
+unrelated low-information scenes, so the next ready leaf is a separately
+versioned source-only multi-evidence duplicate adjudicator. BQ1 v1 operator
+fitting, row substitution and threshold weakening remain forbidden.

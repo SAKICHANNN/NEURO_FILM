@@ -386,6 +386,16 @@ The active dependencies, DoR/DoD and stop rules live in `docs/ULTIMATE_EXECUTION
 
 ---
 
+### 2026-08-01 FiveK large-case control boundary
+
+U5.R2BQ0-BQ0S2 acquires 512 FiveK digital-retouch control pairs and retains
+509 across 28 camera models, but BQ1 v1 remains closed before fitting. One
+prior-pool and one internal `dHash<=4` candidate fail the frozen leakage gate;
+visual diagnosis shows unrelated low-information scenes, which exposes a
+single-hash metric defect without overriding the result. Only a separately
+versioned source-only multi-evidence duplicate audit may reopen a new split;
+no threshold change, row substitution, operator, film, stock or product claim.
+
 ## 12. Update protocol
 
 Update this file when:

@@ -1,0 +1,40 @@
+{
+  "schema": "neuro-film.u5-r2bq0s2-fivek-casebank-normalization-decision.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BQ0S2",
+  "decision": "close_bq1_v1_before_operator_fitting_due_frozen_perceptual_leakage_gate",
+  "contract_sha256": "63e148e8b553250b9ab9cad9f3984ef6a967c0f715f17b5412ca95eee8b28e00",
+  "software_commit": "504497cbd06f2c69ce75b73ea7ec1221453144a5",
+  "report": {
+    "path": "outputs/u5_r2bq0s2_fivek_casebank_normalization_v1/run_a_formal/report.json",
+    "sha256": "f744cac82d604425736d4d8c2a0b9b1a6e91b28f2d0730ce786f933a54ab5885",
+    "manifest_sha256": "d07ace3173198e9902ebe7c8bbf2de5ecb4342ec67f1b640aa54d9edee903a20",
+    "stable_evidence_id": "d569e06abd6b910af22b83de46d4e55b823fffcc7264fdf0bfb6412695f4db29",
+    "automatic_pass": false,
+    "second_run_executed": false
+  },
+  "observed": {
+    "eligible_pairs": 509,
+    "rejected_pairs": 3,
+    "camera_models": 28,
+    "largest_camera_share": 0.1944990176817289,
+    "development_rows": 381,
+    "development_groups": 24,
+    "confirmation_rows": 128,
+    "confirmation_groups": 4,
+    "prior_pool_exact_cross_split_duplicates": 0,
+    "prior_pool_dhash_le_4_candidates": 1,
+    "internal_exact_cross_split_duplicates": 0,
+    "internal_dhash_le_4_candidates": 1,
+    "temporary_files": 0
+  },
+  "diagnostic_only_visual_review": {
+    "prior_candidate": "sunset beach versus dark wooden door; visibly unrelated",
+    "internal_candidate": "contrail sky versus asphalt pavement; visibly unrelated",
+    "interpretation": "the frozen 64-bit dHash-only gate produced low-information false positives; this post-result observation does not override the frozen automatic failure"
+  },
+  "operator_fitting_allowed": false,
+  "router_training_allowed": false,
+  "threshold_change_or_row_substitution_allowed": false,
+  "next_allowed_leaf": "a separately versioned source-only multi-evidence duplicate adjudication contract may be preregistered because no confirmation target pixels or operator outcomes were inspected",
+  "claim_ceiling": "failed data-only FiveK digital-retouch population gate plus post-hoc dHash false-positive diagnosis; no operator, router, film, stock, calibration, preference or product claim"
+}

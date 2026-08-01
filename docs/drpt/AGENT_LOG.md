@@ -8889,3 +8889,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   rescue are closed. This one-author target-normalized source has yielded its
   admissible structure information; move to independent evidence or another
   explicit mechanism.
+
+## 2026-08-01 - U5.R2BQ0-BQ0S2 closes before case-bank fitting
+
+- Acquired and hash-verified 512 FiveK DNG/Expert-C pairs (29,627,684,806
+  bytes) disjoint by identity from the prior 255-row controls.
+- One complete normalization run at `504497cb` retained 509 pairs/28 cameras
+  and formed a target-blind 381/128 whole-camera split. All support, alignment
+  and exact-leakage gates pass; report SHA is `f744cac8...5885`.
+- The frozen gate fails on one prior-pool and one internal `dHash<=4`
+  candidate. Visual source review finds beach/door and sky/asphalt, so this is
+  a low-information dHash false-positive diagnosis, not permission to alter
+  BQ0S2. BQ1 v1 remains closed and no second run or operator fit was started.
+- Next: preregister and implement a separately versioned source-only
+  multi-evidence duplicate adjudicator; confirmation targets remain unread.
