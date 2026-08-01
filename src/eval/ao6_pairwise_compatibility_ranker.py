@@ -278,7 +278,7 @@ def run_audit(
         threshold = (
             float(np.quantile(safe_margins, 0.1, method="linear"))
             if len(safe_margins) >= minimum_safe
-            else float("inf")
+            else float(np.finfo(np.float64).max)
         )
         x_train, y_train = _training_rows(
             development, development, indices, semantic, tone, errors, global_errors
