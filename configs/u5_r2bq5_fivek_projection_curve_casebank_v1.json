@@ -29,6 +29,8 @@
   },
   "variants": ["aligned_expert", "filtered"],
   "evaluation": {
+    "minimum_fit_eligible_fraction": 0.9,
+    "require_all_source_groups_after_fit_eligibility": true,
     "minimum_self_fit_mean_improvement_over_identity": 0.2,
     "minimum_self_fit_median_style_retention": 0.7,
     "minimum_group_oracle_mean_improvement_over_global": 0.1,
@@ -42,6 +44,7 @@
     "maximum_out_of_cube_fraction": 0.0
   },
   "branch_rules": {
+    "fit_eligibility_fails": "close without changing sample stride, knot count, directions or the primitive minimum-system requirement",
     "self_fit_style_or_accuracy_fails": "close this unchanged projection-curve fit on the BQ bank without fitting or selector rescue",
     "group_oracle_fails": "close before source prediction because the case bank lacks transferable operator diversity",
     "capacity_and_group_oracle_pass": "freeze coefficient banks and open one low-capacity source-only factorized basis predictor with hard OOD global fallback",

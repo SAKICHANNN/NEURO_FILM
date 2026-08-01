@@ -5,7 +5,10 @@ from pathlib import Path
 
 import numpy as np
 
-from src.eval.fivek_projection_curve_casebank import fit_projection_curve_bank
+from src.eval.fivek_projection_curve_casebank import (
+    fit_projection_curve_bank,
+    projection_curve_fit_eligible,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -28,3 +31,6 @@ def test_projection_curve_bank_uses_the_mature_fit_contract() -> None:
     )
     assert bank.shape == (1, 16, 9, 3)
     assert np.all(np.isfinite(bank))
+    eligible, count = projection_curve_fit_eligible(source, mature["operator"])
+    assert eligible is True
+    assert count >= 16 * 9

@@ -96,6 +96,27 @@ def fit_projection_curve_bank(
     return result
 
 
+def projection_curve_fit_eligible(
+    source: np.ndarray, operator: Mapping[str, Any]
+) -> tuple[bool, int]:
+    """Mirror the mature primitive's source-only minimum-system requirement."""
+
+    rgb = _rgb(source)
+    sampled = rgb[
+        :: int(operator["sample_stride"]),
+        :: int(operator["sample_stride"]),
+    ].reshape(-1, 3)
+    epsilon = float(operator["boundary_epsilon"])
+    headroom = np.maximum(
+        0.0, np.minimum(sampled - epsilon, 1.0 - epsilon - sampled)
+    )
+    valid = int(np.sum(np.all(headroom > 1.0e-12, axis=1)))
+    required = int(operator["control_point_count"]) * len(
+        operator["projection_directions"]
+    )
+    return valid >= required, valid
+
+
 def evaluate_projection_curve_casebank(
     *,
     rows: Sequence[Mapping[str, Any]],
@@ -104,7 +125,28 @@ def evaluate_projection_curve_casebank(
     evaluation: Mapping[str, Any],
     samples_per_image: int,
 ) -> tuple[dict[str, Any], np.ndarray]:
-    ordered = sorted(rows, key=lambda row: str(row["pair_id"]))
+    all_rows = sorted(rows, key=lambda row: str(row["pair_id"]))
+    eligibility = [
+        projection_curve_fit_eligible(row["source"], operator)
+        for row in all_rows
+    ]
+    ordered = [
+        row for row, (eligible, _) in zip(all_rows, eligibility, strict=True)
+        if eligible
+    ]
+    eligible_fraction = len(ordered) / len(all_rows)
+    all_groups = {str(row["group"]) for row in all_rows}
+    eligible_groups = {str(row["group"]) for row in ordered}
+    if (
+        eligible_fraction < float(evaluation["minimum_fit_eligible_fraction"])
+        or (
+            evaluation["require_all_source_groups_after_fit_eligibility"]
+            and eligible_groups != all_groups
+        )
+    ):
+        raise FiveKProjectionCurveCasebankError(
+            "projection-curve fit eligibility gate failed"
+        )
     ids = [str(row["pair_id"]) for row in ordered]
     groups = np.asarray([str(row["group"]) for row in ordered], dtype=object)
     fit, validation = _group_partition(
@@ -226,6 +268,19 @@ def evaluate_projection_curve_casebank(
     )
     all_diagnostics = diagnostics + [global_diagnostics]
     metrics = {
+        "input_rows": len(all_rows),
+        "fit_eligible_rows": len(ordered),
+        "fit_ineligible_rows": len(all_rows) - len(ordered),
+        "fit_eligible_fraction": eligible_fraction,
+        "fit_ineligible_pair_ids": [
+            str(row["pair_id"])
+            for row, (eligible, _) in zip(all_rows, eligibility, strict=True)
+            if not eligible
+        ],
+        "minimum_observed_strict_interior_fit_samples": min(
+            count for _, count in eligibility
+        ),
+        "all_source_groups_retained": eligible_groups == all_groups,
         "fit_rows": len(fit),
         "validation_rows": len(validation),
         "fit_groups": sorted(set(map(str, groups[fit]))),
@@ -264,6 +319,9 @@ def evaluate_projection_curve_casebank(
         ),
     }
     checks = {
+        "fit_eligibility": metrics["fit_eligible_fraction"]
+        >= float(evaluation["minimum_fit_eligible_fraction"])
+        and metrics["all_source_groups_retained"],
         "self_fit_accuracy": metrics["self_fit_mean_improvement_over_identity"]
         >= float(evaluation["minimum_self_fit_mean_improvement_over_identity"]),
         "self_fit_style": metrics["self_fit_median_style_retention"]
@@ -302,4 +360,5 @@ __all__ = [
     "FiveKProjectionCurveCasebankError",
     "evaluate_projection_curve_casebank",
     "fit_projection_curve_bank",
+    "projection_curve_fit_eligible",
 ]
