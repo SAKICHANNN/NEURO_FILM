@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 import numpy as np
-from scipy.signal import convolve2d
+from scipy.signal import fftconvolve
 
 from .backing_return import BackingReturnProfile, backing_return_kernel_2d
 from .contracts import PhysicalDomain, PhysicalDomainArray, PhysicalUnit
@@ -15,6 +15,23 @@ from .contracts import PhysicalDomain, PhysicalDomainArray, PhysicalUnit
 class PositiveSpreadReturn:
     exposure: PhysicalDomainArray
     residual: np.ndarray
+
+
+def _symmetric_fft_convolve2d(values: np.ndarray, kernel: np.ndarray) -> np.ndarray:
+    """FFT convolution with the same symmetric-context domain as the reference."""
+
+    radius_y = kernel.shape[0] // 2
+    radius_x = kernel.shape[1] // 2
+    padded = np.pad(
+        values,
+        ((radius_y, radius_y), (radius_x, radius_x)),
+        mode="symmetric",
+    )
+    convolved = fftconvolve(padded, kernel, mode="same")
+    return convolved[
+        radius_y : radius_y + values.shape[0],
+        radius_x : radius_x + values.shape[1],
+    ]
 
 
 def apply_positive_spread_backing_return(
@@ -42,11 +59,8 @@ def apply_positive_spread_backing_return(
         kernel = backing_return_kernel_2d(component, profile.scale)
         weights = component.return_weights
         for source_channel in range(3):
-            blurred = convolve2d(
-                values[..., source_channel],
-                kernel,
-                mode="same",
-                boundary="symm",
+            blurred = _symmetric_fft_convolve2d(
+                values[..., source_channel], kernel
             )
             positive = blurred - values[..., source_channel]
             positive = np.where(positive > tolerance, positive, 0.0)
@@ -69,4 +83,8 @@ def apply_positive_spread_backing_return(
     )
 
 
-__all__ = ["PositiveSpreadReturn", "apply_positive_spread_backing_return"]
+__all__ = [
+    "PositiveSpreadReturn",
+    "_symmetric_fft_convolve2d",
+    "apply_positive_spread_backing_return",
+]

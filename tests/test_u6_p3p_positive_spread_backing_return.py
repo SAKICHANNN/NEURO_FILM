@@ -5,10 +5,14 @@ from pathlib import Path
 
 import numpy as np
 import pytest
+from scipy.signal import convolve2d
 
 from src.film_physics.backing_return import backing_return_profile_from_contract
 from src.film_physics.contracts import PhysicalDomain, PhysicalDomainArray, PhysicalScale, PhysicalUnit
-from src.film_physics.positive_spread_return import apply_positive_spread_backing_return
+from src.film_physics.positive_spread_return import (
+    _symmetric_fft_convolve2d,
+    apply_positive_spread_backing_return,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -43,6 +47,18 @@ def test_positive_spread_is_repeat_exact() -> None:
     second = apply_positive_spread_backing_return(_array(values), _profile())
     assert np.array_equal(first.exposure.values, second.exposure.values)
     assert np.array_equal(first.residual, second.residual)
+
+
+def test_symmetric_fft_matches_direct_reference() -> None:
+    rng = np.random.default_rng(3032)
+    values = rng.normal(size=(17, 19))
+    axis = np.arange(-4, 5, dtype=np.float64)
+    one = np.exp(-0.5 * np.square(axis / 1.7))
+    kernel = np.multiply.outer(one, one)
+    kernel /= np.sum(kernel)
+    direct = convolve2d(values, kernel, mode="same", boundary="symm")
+    actual = _symmetric_fft_convolve2d(values, kernel)
+    np.testing.assert_allclose(actual, direct, rtol=0.0, atol=2e-15)
 
 
 @pytest.mark.parametrize("dtype", [np.float32, np.int16])
