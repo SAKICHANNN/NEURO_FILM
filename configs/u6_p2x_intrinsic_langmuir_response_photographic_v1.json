@@ -27,10 +27,10 @@
   },
   "fixed_operator": {
     "equation_family": "existing clean-room InterimageDevelopmentOperator sigmoid response with amplitude-matched Langmuir donor",
-    "source_witness": "U6.P2V symmetric-moderate",
+    "source_witness": "U6.P2V symmetric-moderate slope, midpoint, coupling and donor; density span bound to exact P7F interpretation references",
     "exposure_encoding": "P7F LogExposureEncoder applied to forward-scattered nonnegative linear exposure, converted from log10 to log2 exactly by multiplication with log2(10)",
-    "density_min": [0.08, 0.08, 0.08],
-    "density_max": [2.55, 2.55, 2.55],
+    "density_min": [0.14719754097543084, 0.14117073951741066, 0.1875968542258085],
+    "density_max": [1.5592587536220868, 1.4909662969231166, 1.4305309780614208],
     "slope": [1.35, 1.35, 1.35],
     "midpoint": [0.0, 0.0, 0.0],
     "coupling": [[0.0, 0.28, 0.18], [0.18, 0.0, 0.28], [0.28, 0.18, 0.0]],
@@ -98,6 +98,14 @@
     "hard clip density or RGB",
     "advance to visual review if any automatic gate fails",
     "call the result measured sensitometry or DIR chemistry, a stock/process/scanner response, calibration or product promotion"
+  ],
+  "execution_amendments": [
+    {
+      "date": "2026-08-02",
+      "trigger": "pre-formal one-crop smoke stopped before downstream output because the P2V synthetic density minimum lies below the exact P7F interpretation black reference",
+      "change": "bind density_min and density_max to the already frozen P7F interpretation black and white references; retain the P2V slope, midpoint, coupling and donor without clipping or fitting",
+      "scientific_effect": "maps the intrinsically bounded sigmoid response into the existing legal density domain; no photographic metric, rendered output or gate was observed"
+    }
   ],
   "branch_rule": {
     "automatic_fail": "close this intrinsically bounded family without rescue and move to a materially different physical mechanism or data-identification leaf",
