@@ -1,0 +1,27 @@
+{
+  "schema": "neuro-film.u5-r2bo6-flickr-luma-conditioned-matrix-decision.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BO6",
+  "decision": "close_luma_conditioned_positive_mixing_without_confirmation",
+  "contract_sha256": "93d492d21c40d7c93ca76490f5fe500203707055ee57cb22eef12609fa63ad2c",
+  "software_commit": "a6101e56b51e72b86663f206dc22d1468dcbebae",
+  "reports": {
+    "run_a": "outputs/u5_r2bo6_flickr_luma_conditioned_matrix_v1/run_a/report.json",
+    "run_b": "outputs/u5_r2bo6_flickr_luma_conditioned_matrix_v1/run_b/report.json",
+    "sha256": "d528d9fb649130cf46f849f6fb2542d679416c68730b892a810e519b8fd25603",
+    "byte_identical": true,
+    "stable_evidence_id": "f7c47a8505eae245fee4eacddbcfae8cd7971cad8f71e0bc9559dc80a138dfdd"
+  },
+  "observed": {
+    "mean_improvement_over_control": -0.004477679743584495,
+    "median_improvement_over_control": -0.011978173463864842,
+    "scene_win_fraction_over_control": 0.425,
+    "per_family_median_improvements": [-0.03537701794596293, -0.0024660542476510946, -0.00993384061595074],
+    "p95_error_ratio_to_control": 0.9751494223184907,
+    "worst_error_ratio_to_control": 1.1028978769698432,
+    "maximum_new_boundary_fraction": 0.0
+  },
+  "confirmation_pixels_loaded": false,
+  "retuning_allowed": false,
+  "training_allowed": false,
+  "claim_ceiling": "development-only negative luma-conditioned explicit operator result for one-author weak-paired camera-film display chains; not stock, calibration, product or commercial-use training"
+}

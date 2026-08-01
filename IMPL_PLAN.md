@@ -2460,3 +2460,8 @@ python_coreml_stable_diffusion  # CoreML 转换
 > Continue a distinct explicit colour or physical mechanism; do not fit a
 > generator to capture-chain nuisance.
 >
+> BO6 then tests a genuinely different explicit colour mechanism: basic tone
+> followed by source-luma interpolation across three positive matrices. It is
+> cube-safe but loses the BO3 global curve-plus-matrix control on mean, median,
+> win rate, every family median and worst tail. Close without capacity rescue.
+>

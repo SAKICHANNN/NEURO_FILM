@@ -546,3 +546,8 @@ high-frequency direction reverses across the three capture families
 correct alignment barely differs from a shifted control. Treat this as
 camera/scanner/sharpening nuisance, not emulsion structure; confirmation stays
 unread.
+
+U5.R2BO6 closes a smooth shadow/mid/high positive-matrix operator. It is
+exactly cube-safe, but mean/median held-scene gains are negative, it wins only
+17/40 scenes and worsens the worst tail. Do not add knots or matrices; the
+weak-pair confirmation remains unread.

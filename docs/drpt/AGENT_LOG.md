@@ -8826,3 +8826,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `.763/.730/4.138` by family, pooled positive PSD support is zero, and the
   correct/shifted residual ratio is `.99934`. Close generator fitting: this is
   capture-chain nuisance, not a stable emulsion texture signature.
+
+## 2026-08-01 - U5.R2BO6 closes luma-conditioned positive mixing
+
+- Two exact reports (`d528d9fb...25603`) show zero new cube boundary and full
+  convergence, but mean/median gains versus BO3 control are `-.45%/-1.20%`,
+  only 17/40 scenes win, every family median is negative and worst error grows
+  to `1.103x`.
+- Do not add luma knots, matrices or a family router. Keep all 12 confirmation
+  pairs unread and continue a more expressive but still bounded mechanism.
