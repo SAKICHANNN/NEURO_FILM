@@ -48,6 +48,7 @@ class FiveKTriangularVisualError(ValueError):
 
 
 def validate_contract(root: Path, config: Mapping[str, Any]) -> dict[str, Any]:
+    primary_pair = tuple(config["blind_protocol"].get("primary_pair", ()))
     if (
         config.get("status") != "contract_frozen_implementation_ready"
         or tuple(config.get("render_arms", ())) != ARMS
@@ -66,6 +67,10 @@ def validate_contract(root: Path, config: Mapping[str, Any]) -> dict[str, Any]:
         or not config["blind_protocol"].get(
             "mapping_hidden_until_all_observations_are_frozen"
         )
+        or len(primary_pair) != 2
+        or len(set(primary_pair)) != 2
+        or not set(primary_pair).issubset(ARMS)
+        or primary_pair[1] != ARMS[2]
     ):
         raise FiveKTriangularVisualError("BN6 boundary drift")
 
@@ -164,6 +169,13 @@ def run_visual_product_value(
     )
 
     epsilon = float(config["automatic_gate"]["boundary_epsilon"])
+    comparison_arm = str(config.get("comparison_reference_arm", ARMS[1]))
+    if comparison_arm not in {ARMS[0], ARMS[1]}:
+        raise FiveKTriangularVisualError("invalid material comparison arm")
+    comparison_name = (
+        "direct_ao6" if comparison_arm == ARMS[0] else "global"
+    )
+    delta_key = f"adaptive_vs_{comparison_name}_delta_e76"
     rows: list[dict[str, Any]] = []
     deltas: list[float] = []
     for index, row in enumerate(population["rows"]):
@@ -202,7 +214,8 @@ def run_visual_product_value(
                     _p999_gradient(output) / direct_gradient
                 ),
             }
-        delta = _median_delta_e76(global_look, adaptive_look)
+        comparison_output = direct if comparison_arm == ARMS[0] else global_look
+        delta = _median_delta_e76(comparison_output, adaptive_look)
         deltas.append(delta)
         rows.append(
             {
@@ -219,7 +232,7 @@ def run_visual_product_value(
                 "adaptive_safe_dose": float(adaptive_operator.dose),
                 "global_diagnostics": global_diagnostics,
                 "adaptive_diagnostics": adaptive_diagnostics,
-                "adaptive_vs_global_delta_e76": delta,
+                delta_key: delta,
                 "guard_fractions": {
                     ARMS[0]: direct_guard,
                     ARMS[1]: global_guard,
@@ -237,8 +250,8 @@ def run_visual_product_value(
         for item in (row["global_diagnostics"], row["adaptive_diagnostics"])
     ]
     summary = {
-        "median_adaptive_vs_global_delta_e76": float(np.median(deltas)),
-        "sources_with_adaptive_vs_global_delta_e76_ge_0p5": int(
+        f"median_{delta_key}": float(np.median(deltas)),
+        f"sources_with_{delta_key}_ge_0p5": int(
             np.sum(np.asarray(deltas) >= 0.5)
         ),
         "maximum_new_boundary_fraction_vs_source": max(
@@ -279,12 +292,10 @@ def run_visual_product_value(
         <= float(gate["maximum_inverse_roundtrip_error"]),
         "gradient_tail": summary["maximum_p999_gradient_ratio_vs_direct_ao6"]
         <= float(gate["maximum_p999_gradient_ratio_vs_direct_ao6"]),
-        "material_delta": summary["median_adaptive_vs_global_delta_e76"]
-        >= float(gate["minimum_median_adaptive_vs_global_delta_e76"]),
-        "material_source_count": summary[
-            "sources_with_adaptive_vs_global_delta_e76_ge_0p5"
-        ]
-        >= int(gate["minimum_sources_with_adaptive_vs_global_delta_e76_ge_0p5"]),
+        "material_delta": summary[f"median_{delta_key}"]
+        >= float(gate[f"minimum_median_{delta_key}"]),
+        "material_source_count": summary[f"sources_with_{delta_key}_ge_0p5"]
+        >= int(gate[f"minimum_sources_with_{delta_key}_ge_0p5"]),
     }
     stable = {"summary": summary, "gates": gates, "rows": rows}
     report = {
@@ -314,10 +325,13 @@ def build_blind_round(
     report: Mapping[str, Any],
     round_index: int,
     output_dir: Path,
+    primary_arms: tuple[str, str] = (ARMS[1], ARMS[2]),
 ) -> dict[str, Any]:
     if not report.get("blind_review_allowed"):
         raise FiveKTriangularVisualError("automatic gate forbids blind review")
-    primary = (ARMS[1], ARMS[2])
+    primary = tuple(primary_arms)
+    if len(primary) != 2 or primary[1] != ARMS[2] or primary[0] not in ARMS[:2]:
+        raise FiveKTriangularVisualError("invalid blind primary pair")
     font = ImageFont.load_default()
     tiles: list[Image.Image] = []
     mapping: list[dict[str, str]] = []

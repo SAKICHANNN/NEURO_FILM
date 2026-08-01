@@ -49,6 +49,7 @@
     "global_triangular_transport_then_fixed_ao6",
     "adaptive_triangular_transport_then_fixed_ao6"
   ],
+  "comparison_reference_arm": "fixed_ao6_direct",
   "automatic_gate": {
     "expected_outputs": 30,
     "boundary_epsilon": 0.00196078431372549,
