@@ -26,11 +26,12 @@
     "evaluation_samples_per_source": 65536,
     "context_tile_rows": 128,
     "global_baseline": "development case medoid minimizing mean pairwise operator-signature RGB RMSE",
-    "strength_control": "post-hoc least-squares scalar in [0,1.5] along the global-medoid residual direction",
+    "strength_control": "post-hoc least-squares scalar in [0,1.5] along the global-medoid residual direction, analytically reduced to remain in encoded RGB bounds without clipping",
     "case_oracle": "post-hoc hard Top-1 development case minimizing target RGB RMSE",
     "selection_is_hard": true,
     "dense_case_blending_allowed": false,
     "content_features_used": false,
+    "boundary_epsilon_encoded_srgb": 0.000015259021896696422,
     "seed": 20260801
   },
   "gates": {
