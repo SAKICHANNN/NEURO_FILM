@@ -1,0 +1,67 @@
+{
+  "schema": "neuro_film.u6_p5p_measured_mtf_minimax_envelope_contract.v1",
+  "experiment_id": "u6.p5p-measured-mtf-minimax-envelope-v1",
+  "node": "ULT > U6 > U6.P5 > U6.P5P",
+  "date_frozen": "2026-08-01",
+  "parents": {
+    "p5o_decision": "configs/u6_p5o_measured_mtf_domain_placement_decision_v1.json",
+    "p5o_decision_sha256": "8abff9d1553d160a7c08c014ca6a4867b9610d085eb7b594aa55790e101e83e0",
+    "p5l_bundle": "outputs/u6_p5l_measured_mtf_lod_compiler/bundle_run1.json",
+    "p5l_bundle_sha256": "03c0d983cbebf83f4feb79ed56fb8a8c20cf2e21e7e5d4ab2bd5f7dbfc1100fd",
+    "sensitometry_contract": "configs/u2_2a_sensitometry_primitive_v1.json",
+    "sensitometry_contract_sha256": "8f43edcbc7e168af830081dce16ecb5f268a294d2f0cd777b942aec4b95c8af2"
+  },
+  "question": "Can the three fixed P5O placement hypotheses be reduced to a deterministic bounded common-domain challenger that minimizes worst-case transmittance error without selecting or relabeling a physical domain?",
+  "algorithm": {
+    "common_domain": "scan_transmittance",
+    "lower": "pointwise minimum of the three fixed arm transmittances",
+    "upper": "pointwise maximum of the three fixed arm transmittances",
+    "output": "0.5 * (lower + upper)",
+    "uncertainty_half_range": "0.5 * (upper - lower)",
+    "optimization": "closed-form scalar Chebyshev center under absolute error",
+    "fitted_parameters": 0,
+    "hard_arm_selected": false,
+    "physical_domain_claimed": false
+  },
+  "probes": {
+    "log_exposure": {
+      "toe": -2.5,
+      "mid": -0.5,
+      "shoulder": 1.5
+    },
+    "relative_modulation_amplitudes": [0.1, 0.5],
+    "shapes": [[63, 95], [128, 191]],
+    "patterns": ["impulse", "vertical_step", "checker_3x5", "seeded_random", "chromatic_edge"],
+    "random_seeds": [20260817, 20260818],
+    "constant_values": [0.0, 0.18, 1.0, 8.0],
+    "row_partitions": [7, 17, 31]
+  },
+  "gates": {
+    "arm_interval_violation_max": 1e-15,
+    "chebyshev_identity_max_absolute_error": 1e-15,
+    "midpoint_worst_loss_excess_over_best_fixed_arm_max": 1e-15,
+    "constant_transmittance_max_absolute_error": 1e-12,
+    "constant_density_max_absolute_error": 1e-12,
+    "density_minimum": 0.0,
+    "transmittance_minimum_exclusive": 0.0,
+    "transmittance_maximum": 1.0,
+    "nonidentity_transmittance_max_absolute_difference_minimum": 0.0000152587890625,
+    "row_partition_byte_exact": true,
+    "repeat_byte_exact": true,
+    "two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "all_gates_pass": "Retain the minimax midpoint plus explicit uncertainty as a synthetic film-inspired measured-MTF challenger and open a separately frozen photographic severe/style comparison.",
+    "bound_or_numerical_fail": "Close the envelope and retain only the three explicit P5O hypotheses plus P5L reference evidence.",
+    "effect_empty": "Close photographic advancement even if numerical safety passes."
+  },
+  "forbidden": [
+    "call the midpoint an identified exposure, density, transmittance, emulsion or process operator",
+    "drop the uncertainty half-range from evidence",
+    "fit arm weights, per-image routing or thresholds",
+    "compose with the replaced generic film spatial stages",
+    "use photographs or preference to change this algorithm or its gates",
+    "claim calibrated stock, roll, process, scanner or product response"
+  ],
+  "claim_ceiling": "Analytical bounded common-domain challenger for three unidentified measured-total placement hypotheses; not physical identification, calibrated stock response, photographic value or product promotion."
+}
