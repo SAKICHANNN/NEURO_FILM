@@ -1,0 +1,93 @@
+{
+  "schema": "neuro_film.u6_p6y_controlled_reversal_source_audit_contract.v1",
+  "experiment_id": "u6.p6y-controlled-reversal-source-audit-v1",
+  "node": "ULT > U6 > U6.P6 > U6.P6Y",
+  "date_frozen": "2026-08-02",
+  "parent": {
+    "decision_path": "configs/u6_p6x_multispectral_scanner_band_compiler_decision_v1.json",
+    "decision_sha256": "771e6a4c1b34801364efde6e949979bdd721a73bff21d92e201f6453f9ba1dfa",
+    "status": "close_ideal_centres_require_measured_led_sensor_or_independent_film_cube"
+  },
+  "question": "Does the public NTNU deposit behind the 2026 Balica-Ciortan-Trumpy controlled reversal-film study expose separately downloadable, rights-clear machine-readable Ektachrome E100 / Velvia 50 film-MSI and painting-HSI payloads sufficient to open a later pixel-integrity audit?",
+  "claim_ceiling": "public-source availability audit for a controlled reversal-film and hyperspectral-ground-truth study; not a retained pixel dataset, stock response, scanner calibration, digital-to-film operator, training permission or product claim",
+  "primary_sources": [
+    {
+      "role": "2026 open-access journal article",
+      "url": "https://doi.org/10.1016/j.daach.2026.e00550",
+      "article_license": "CC-BY-4.0",
+      "expected_title": "Colour correction of archival photographs for change detection and digital restoration of paintings"
+    },
+    {
+      "role": "NTNU public thesis record",
+      "url": "https://api.nva.unit.no/publication/0199c398b026-a2da028d-a09e-4961-9651-6eb58addea0f",
+      "handle": "https://hdl.handle.net/11250/3221327",
+      "expected_record_bytes": 14419,
+      "expected_record_sha256": "a067f66129df93580c224ad580121030a4fbaa41d16366a0874266f9deb01e52",
+      "expected_title": "The Use of Analogue Photographic Documentation to Infer the Past Appearance of Paintings"
+    },
+    {
+      "role": "NTNU thesis PDF",
+      "file_identifier": "e96278b5-1af7-439e-a9ed-fd6b2c3e59c9",
+      "expected_bytes": 472364357,
+      "mime_type": "application/pdf",
+      "deposit_license": "https://nva.sikt.no/license/copyright-act/1.0"
+    },
+    {
+      "role": "NTNU submission attachments ZIP",
+      "file_identifier": "0191bb03-4938-4af8-bf5e-4d91ab054f55",
+      "expected_bytes": 2225944,
+      "expected_sha256": "9b150ca59274f8d0c9a01492f1d34347282d4b065ff5ea7500cc1b60aef970b7",
+      "mime_type": "application/zip",
+      "deposit_license": "https://nva.sikt.no/license/copyright-act/1.0"
+    }
+  ],
+  "acquisition": {
+    "destination": "data/external/u6_p6y_controlled_reversal_source_v1",
+    "maximum_total_bytes": 500000000,
+    "exact_record_and_file_identifiers_only": true,
+    "redirect_host_allowlist": [
+      "api.nva.unit.no",
+      "nva-resource-storage-755923822223.s3.eu-west-1.amazonaws.com"
+    ],
+    "retain_only_record_pdf_zip_and_machine_readable_inventory": true,
+    "no_other_payloads": true,
+    "rights_boundary": "The article is CC BY 4.0, but the NTNU deposit files carry only the Norwegian Copyright Act general-terms marker. Download and inspect internally; do not redistribute or treat deposit-file openness as commercial training permission."
+  },
+  "required_observations": {
+    "record_title_and_handle_exact": true,
+    "record_contains_only_declared_open_files": true,
+    "support_zip_safe_inventory": true,
+    "thesis_text_confirms_two_stock_two_illuminant_multiple_exposure_control": true,
+    "thesis_text_confirms_120_reversal_film_e6_process_and_multispectral_scan": true,
+    "separate_machine_readable_film_msi_payloads_publicly_listed": true,
+    "separate_machine_readable_painting_hsi_payloads_publicly_listed": true,
+    "pixel_payload_reuse_rights_explicit": true
+  },
+  "source_gate": {
+    "all_retained_payload_sizes_and_hashes_recorded": true,
+    "pdf_page_count_and_required_method_anchors_recorded": true,
+    "zip_member_paths_relative_unique_and_non_symlink": true,
+    "machine_readable_controlled_pixel_payloads_required": true,
+    "pixel_payload_rights_must_be_explicit": true,
+    "two_independent_audits": true,
+    "pixel_decode_operator_fit_render_and_visual_review_allowed": false
+  },
+  "allowed_after_pass": [
+    "freeze a separate exact pixel-integrity, rights, scene, stock, illuminant, exposure, process and scanner manifest",
+    "verify film-MSI to painting-HSI registration and group separation before any operator fit",
+    "compare root-polynomial and bounded explicit stock-specific baselines only after the pixel audit passes"
+  ],
+  "forbidden": [
+    "treat article figures or PDF-embedded images as controlled source pixels",
+    "infer missing film, exposure, illuminant, process or scanner labels from appearance",
+    "treat open download as redistribution or commercial-training permission",
+    "fit an operator from the article, thesis or administrative attachment PDFs",
+    "call archival-film colour correction an identified digital-to-film operator",
+    "stock calibration, latent-mode discovery, training, product integration or authenticity promotion"
+  ],
+  "branch_rule": {
+    "source_pass": "Open only a separate controlled-pixel integrity and rights audit; operator fitting remains forbidden.",
+    "papers_only_or_missing_pixel_payloads": "Retain the controlled experimental design and latest root-polynomial baseline as literature evidence, close acquisition before pixel fitting and continue another physical-film algorithm leaf.",
+    "rights_failure": "Retain factual metadata only, do not retain or use pixel payloads, and continue another ready leaf."
+  }
+}
