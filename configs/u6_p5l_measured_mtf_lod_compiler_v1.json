@@ -1,0 +1,68 @@
+{
+  "schema": "neuro_film.u6_p5l_measured_mtf_lod_compiler_contract.v1",
+  "experiment_id": "u6.p5l-measured-mtf-lod-compiler-v1",
+  "node": "ULT > U6 > U6.P5 > U6.P5L",
+  "date_frozen": "2026-08-01",
+  "parent": {
+    "bundle": "outputs/u6_p5j_kodak_250d_positive_psf_compiler/bundle_run1.json",
+    "bundle_sha256": "b2d0ff39743ba3ec21a8d033fe38f3ebf6e7360e5a75ea6b838dc67b4b856270",
+    "p5k_report": "outputs/u6_p5k_measured_mtf_kernel_conformance/report_run1.json",
+    "p5k_report_sha256": "283bcf9ccb550f040a1e6b6f331fd45ddf290ff4dd4ecb765605bfb286980b3c",
+    "p5k_stable_evidence_id": "0e8c31e16ab8165cb59a21eaa884619167449fec8e744a9863de1d3357cfb8c7"
+  },
+  "question": "Can an exact positive target-grid LOD be compiled from the 16000-dpi reference under an explicit zero-order-hold digital-source assumption, avoiding naive 4000-dpi kernel sampling without inventing subpixel content?",
+  "reference": {
+    "target_dpi": 4000.0,
+    "reference_dpi": 16000.0,
+    "integer_scale": 4,
+    "input_reconstruction": "zero_order_hold_repeat",
+    "reference_filter": "exact P5K 16000-dpi cell-integrated positive PSF",
+    "downsample": "nonoverlapping 4x4 area mean",
+    "boundary_mode": "nearest"
+  },
+  "compiler": {
+    "method": "derive each target-grid 1D component kernel from an isolated low-resolution impulse passed through the exact reference reconstruction/filter/downsample chain",
+    "component_weights": "unchanged P5J weights",
+    "negative_taps_forbidden": true,
+    "renormalization_after_derivation": false,
+    "target_halo_max_px": 8
+  },
+  "charts": {
+    "shapes": [[31, 47], [64, 97], [129, 191]],
+    "random_seeds": [20260801, 20260802],
+    "constant_values": [0.0, 0.18, 0.5, 1.0],
+    "row_partitions": [7, 17, 31],
+    "include_impulse_step_checker_and_random": true
+  },
+  "gates": {
+    "reference_vs_lod_max_error": 1e-12,
+    "reference_vs_lod_mean_error": 1e-13,
+    "lod_vs_naive_error_reduction_min": 0.99,
+    "kernel_sum_absolute_error": 1e-14,
+    "kernel_symmetry_max_error": 1e-14,
+    "kernel_minimum": -1e-15,
+    "constant_max_error": 1e-12,
+    "step_undershoot_max": 1e-12,
+    "step_overshoot_max": 1e-12,
+    "row_partition_byte_exact": true,
+    "repeat_byte_exact": true,
+    "two_byte_identical_reports": true
+  },
+  "allowed_after_pass": [
+    "retain the explicit-assumption positive 4000-dpi LOD compiler as a research runtime candidate",
+    "open a joint spatial-budget experiment that prevents double counting with P3/P5C/scanner stages",
+    "later test photographic severe safety and visible value only after spatial-budget attribution passes"
+  ],
+  "forbidden": [
+    "claim recovery of subpixel scene detail absent from the 4000-dpi input",
+    "silently substitute bilinear, bicubic or learned reconstruction",
+    "apply the measured MTF in addition to an already equivalent film blur budget",
+    "fit photographs, AO6 outputs or preference choices",
+    "claim calibrated stock, roll, process, scanner, colour or product response"
+  ],
+  "branch_rule": {
+    "pass": "Open one joint spatial-budget/double-counting audit before photographs.",
+    "fail": "Retain only the 16000-dpi reference simulator and close target-grid runtime use."
+  },
+  "claim_ceiling": "Exact target-grid realization of the P5K reference under a frozen zero-order-hold digital-source assumption; not subpixel recovery, calibrated film or product evidence."
+}
