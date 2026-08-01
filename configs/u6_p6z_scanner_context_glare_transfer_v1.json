@@ -1,0 +1,148 @@
+{
+  "schema": "neuro_film.u6_p6z_scanner_context_glare_transfer_contract.v1",
+  "experiment_id": "u6.p6z-scanner-context-glare-transfer-v1",
+  "node": "ULT > U6 > U6.P6 > U6.P6Z",
+  "date_frozen": "2026-08-01",
+  "parent": {
+    "decision_path": "configs/u6_p6y_controlled_reversal_source_audit_decision_v1.json",
+    "decision_sha256": "e9544a367cb1cd9870a97696d3aad3a29eecc116121a3e65af13a50dac75dbdd",
+    "status": "FAIL_CLOSED_PUBLIC_DEPOSIT_PAPERS_ONLY_NO_CONTROLLED_PIXEL_PAYLOADS"
+  },
+  "question": "Can one bounded positive context-glare fraction inferred from a development scanner transfer to a different laboratory scanner of the same disclosed hardware family and polarity, rather than treating scanner/lab processing as film response?",
+  "claim_ceiling": "measured-table scanner-context nuisance transfer evidence for one ARRI AQUA/Kodak 2254 test leader; not a scanner calibration, named stock response, inverse glare correction, arbitrary-film result or product profile",
+  "primary_source": {
+    "title": "Tonal distribution and glare assessment in cinematographic film scanners",
+    "authors": [
+      "Alice Plutino",
+      "Luca Armellin",
+      "Beatrice Sarti",
+      "Alessandro Rizzi"
+    ],
+    "year": 2025,
+    "doi": "10.1007/s11760-025-04569-8",
+    "article_url": "https://link.springer.com/article/10.1007/s11760-025-04569-8",
+    "pdf_url": "https://link.springer.com/content/pdf/10.1007/s11760-025-04569-8.pdf",
+    "license": "CC-BY-4.0",
+    "expected_pages": 9,
+    "reported_test_material": "ARRI AQUA 2017 test leader printed on KODAK Color Digital Intermediate Film 2254",
+    "reported_measurement": "Table 3 Context Glare ratio and difference for positive and negative scans",
+    "data_availability_statement": "No datasets were generated or analysed during the current study."
+  },
+  "acquisition": {
+    "destination": "data/external/u6_p6z_scanner_context_glare_v1/article.pdf",
+    "maximum_bytes": 20000000,
+    "exact_url_only": true,
+    "redirect_host_allowlist": [
+      "link.springer.com"
+    ],
+    "retain_pdf_only": true,
+    "no_image_or_scan_payload_request": true
+  },
+  "measurement_protocol": {
+    "table": 3,
+    "scanner_ids": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "polarities": [
+      "positive-scan-negative-image",
+      "negative-scan-positive-image"
+    ],
+    "development_scanners": [
+      1,
+      4,
+      8,
+      11
+    ],
+    "confirmation_scanners": [
+      2,
+      3,
+      10,
+      9,
+      12
+    ],
+    "same_hardware_groups": {
+      "group-123": [
+        1,
+        2,
+        3
+      ],
+      "group-4-10": [
+        4,
+        10
+      ],
+      "group-8-9": [
+        8,
+        9
+      ],
+      "group-11-12": [
+        11,
+        12
+      ]
+    },
+    "singleton_scanners_diagnostic_only": [
+      5,
+      6,
+      7
+    ],
+    "undefined_ratio_or_negative_difference_policy": "retain row facts but exclude from positive-fraction fitting and scoring",
+    "no_post_extraction_row_reassignment": true
+  },
+  "explicit_operator": {
+    "domain": "relative scanner-linear black and white-context signal",
+    "equation": "B_c_hat = (1 - f) * B_v + f * 1",
+    "f_estimator": "f = (B_c - B_v) / (1 - B_v), development row only",
+    "candidate": "same-hardware development f transferred unchanged to confirmation scanners of the same disclosed hardware family and scan polarity",
+    "global_control": "per-polarity median development f",
+    "no_context_control": "B_c_hat = B_v",
+    "wrong_group_control": "cyclically shifted same-polarity development f",
+    "oracle_diagnostic": "per-confirmation-row f; diagnostic only",
+    "minimum_f": 0.0,
+    "maximum_f": 0.25,
+    "no_clipping_or_projection": true,
+    "no_inverse_glare_removal": true
+  },
+  "automatic_gates": {
+    "minimum_valid_confirmation_rows": 6,
+    "minimum_hardware_transfer_win_rate_vs_no_context": 0.75,
+    "minimum_hardware_transfer_win_rate_vs_global": 0.6,
+    "minimum_median_error_improvement_vs_no_context": 0.2,
+    "minimum_median_error_improvement_vs_global": 0.05,
+    "minimum_median_error_improvement_vs_wrong_group": 0.05,
+    "maximum_confirmation_p95_absolute_bc_error": 0.02,
+    "maximum_development_fraction": 0.25,
+    "minimum_development_fraction": 0.0,
+    "zero_nonfinite_outputs": true,
+    "two_independent_audits": true
+  },
+  "controls": {
+    "fit_only_development_rows": true,
+    "confirmation_rows_unread_until_table_parser_and_operator_are_frozen": true,
+    "scanner_id_and_hardware_group_are_nuisance_labels_not_stock_or_mode": true,
+    "positive_and_negative_scan_polarities_never_pool": true,
+    "paper_numeric_table_only_no_figure_digitization": true,
+    "pixel_decode_operator_render_visual_review_allowed": false
+  },
+  "branch_rule": {
+    "pass": "Retain a generic same-hardware context-glare transfer hypothesis and open a separate synthetic spatial-kernel compiler; no scanner profile or product mapping.",
+    "fail": "Close cross-lab/hardware-family transfer for this one-fraction operator, retain scanner/lab/polarity as nuisance and continue a distinct physical-film mechanism without model or threshold rescue."
+  },
+  "forbidden": [
+    "post-result scanner split, row exclusion, fraction bound or threshold changes",
+    "treat context glare or scanner processing as film stock response or latent mode",
+    "fit or remove glare from article figures or embedded raster illustrations",
+    "pool positive and negative scan encodings",
+    "claim measured glare spread function, scanner calibration or inverse restoration",
+    "operator fitting to photographs, product integration, training or visual promotion"
+  ]
+}
