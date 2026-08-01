@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bq7-fivek-source-adaptive-lut-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BQ7",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can a low-capacity source-only factorized predictor recover a useful fraction of the BQ6 strict-interior LUT Oracle without averaging away style or regressing group-held tails?",
+  "parent_bq6_decision": {
+    "path": "configs/u5_r2bq6_fivek_strict_interior_lut_casebank_decision_v1.json",
+    "sha256": "830749346c9cd0255dade2d04f690bdc8a48f5bdf6b662d1cfd0de8ec3ce84c3"
+  },
+  "parent_nearest_decision": {
+    "path": "configs/u5_r2bq2a_fivek_source_hard_retrieval_decision_v1.json",
+    "sha256": "20baa96effe9487834a55457fe7738b81f045f4d0209be9871c894f76f92d9f5",
+    "required_selected_family": "tone_layout"
+  },
+  "mature_baseline": {
+    "config": "configs/u5_r2bj2_fivek_strict_interior_lut_basis_development_v1.json",
+    "config_sha256": "031ec330e78499d0e36dd999258cf75a03dcd33f1469916137d4aa31f93790cd",
+    "reuse": "strict-interior LUT fit plus rank-8 PCA and grouped inner-CV Ridge family"
+  },
+  "parent_manifest": {
+    "path": "outputs/u5_r2bq0s2_fivek_casebank_normalization_v1/run_a_formal/manifest.json",
+    "sha256": "d07ace3173198e9902ebe7c8bbf2de5ecb4342ec67f1b640aa54d9edee903a20"
+  },
+  "decode": {
+    "maximum_side": 128,
+    "evaluation_samples_per_image": 512
+  },
+  "descriptor": {
+    "families": ["spatial_photometric", "tone_layout"],
+    "source_pixels_only": true,
+    "spatial_grid": 4,
+    "luma_quantiles": 17,
+    "gradient_magnitude_quantiles": 9,
+    "pca_components": 32
+  },
+  "model": {
+    "family": "fit_only_pca_lut_basis_plus_group_cv_ridge",
+    "lut_basis_rank": 8,
+    "ridge_alphas": [1.0, 10.0, 100.0, 1000.0],
+    "group_bucket_hash": "sha256(utf8(camera_model))[0] modulo 4",
+    "group_bucket_modulus": 4,
+    "validation_bucket": 0,
+    "ood_distance_quantile": 0.95,
+    "shuffled_prediction_seed": 2026080171,
+    "query_target_used_at_inference": false,
+    "confirmation_used_for_fit_or_selection": false,
+    "direct_final_rgb_prediction": false
+  },
+  "evaluation": {
+    "strength_doses": [0.0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1.0],
+    "bootstrap_seed": 2026080173,
+    "bootstrap_repetitions": 2000,
+    "minimum_mean_improvement_over_global": 0.03,
+    "minimum_win_fraction_over_global": 0.55,
+    "maximum_p95_ratio_to_global": 1.0,
+    "maximum_worst_ratio_to_global": 1.1,
+    "minimum_oracle_gap_closure": 0.1,
+    "minimum_mean_improvement_over_strength_oracle": 0.01,
+    "minimum_win_fraction_over_strength_oracle": 0.55,
+    "minimum_mean_improvement_over_nearest": 0.005,
+    "minimum_win_fraction_over_nearest": 0.5,
+    "minimum_mean_improvement_over_shuffled": 0.03,
+    "minimum_bootstrap_lower_improvement": 0.0,
+    "minimum_median_target_style_retention": 0.7,
+    "minimum_mean_style_magnitude_ratio_to_global": 0.9,
+    "maximum_fallback_fraction": 0.5,
+    "maximum_new_boundary_fraction": 0.0,
+    "maximum_out_of_cube_fraction": 0.0
+  },
+  "target_variants": ["aligned_expert", "filtered"],
+  "branch_rules": {
+    "development_fails": "close this factorized predictor without confirmation or rank, descriptor, alpha, OOD or threshold rescue; proceed to a mechanism-distinct hard sparse LUT route",
+    "development_passes": "freeze the predictor and run unchanged confirmation before visual or product consideration",
+    "style_fails": "reject as averaged or bland even if error improves",
+    "safety_fails": "reject as implementation drift because the representation is intrinsically bounded"
+  },
+  "confirmation_pixels_allowed": false,
+  "visual_review_allowed_only_after_automatic_pass": true,
+  "production_integration_allowed": false,
+  "film_or_stock_claim_allowed": false,
+  "claim_ceiling": "group-held development-only source-predicted strict-interior LUT evidence on paired FiveK digital-retouch controls; not confirmation, film, stock, preference or product evidence"
+}
