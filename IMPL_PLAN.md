@@ -2431,3 +2431,9 @@ python_coreml_stable_diffusion  # CoreML 转换
 > challenger only. Its next legal test is an unchanged direct comparison with
 > the AO6 incumbent; no retuning, router, stock claim or integration opens.
 >
+> `U5.R2BN7` closes that promotion. Two 43-file runs are exact at
+> `b272fe14...99a1` and all automatic/severe gates pass, but adaptive loses
+> all three blinded rounds (`2/3/4`), receives only `9/30` choices and three
+> source majorities. Retain AO6 and continue a mechanism-distinct explicit or
+> physical algorithm; no strength, threshold, extra-round or router rescue.
+>

@@ -8752,3 +8752,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain only a research Look Approximation challenger. The next ready leaf is
   an unchanged direct comparison with AO6; product, stock and calibration
   claims remain closed.
+
+## 2026-08-01 - U5.R2BN7 closes triangular promotion against AO6
+
+- Used the ten-camera BH0S CC0 population, which had not been consumed by the
+  triangular family. Two 43-file runs are byte-identical at
+  `b272fe14...99a1`; every automatic and full-resolution severe gate passes.
+- Mapping-sealed autonomous choices decode to adaptive `2/3/4` by round,
+  `9/30` aggregate and three source majorities, missing all frozen preference
+  gates. AO6 receives `21/30` choices.
+- Close candidate promotion without retuning, extra rounds or router rescue.
+  Retain BN4-BN6 as explicit-representation evidence and keep AO6 incumbent.
