@@ -1,0 +1,163 @@
+{
+  "schema": "neuro_film.u5_r2bn9_historical_blind_candidate_evaluator.v1",
+  "schema_version": 1,
+  "experiment_id": "u5.r2bn9-historical-blind-candidate-evaluator-v1",
+  "node": "ULT > U5 > U5.R2BN9",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can interpretable source-by-explicit-render statistics select the sealed per-photo blind winner beyond an experiment-global arm, while holding out whole sources, candidate experiments and source cohorts?",
+  "feasibility_report": {
+    "path": "outputs/u5_r2bn8_historical_blind_preference_feasibility_v1/run_a/report.json",
+    "sha256": "e4fec1d09307c918250d0b69d1fc56a85d1e9f7c78ec96a6920edc3cdf1ef9d5"
+  },
+  "arm_aliases": {
+    "fixed_ao6_direct": "fixed_ao6_colour_only_t15_c35"
+  },
+  "asset_providers": [
+    {
+      "report": {
+        "path": "outputs/u5_r2bn9_historical_preference_evaluator_v1/bh1_rerender/report.json",
+        "sha256": "4ab65440ca7609fc465dce28bc6f609d22ba2a8838967192d18b4e2b063648ec"
+      },
+      "output_root": "outputs/u5_r2bn9_historical_preference_evaluator_v1/bh1_rerender",
+      "source_adapter": "manifest",
+      "manifest": {
+        "path": "outputs/u5_r2bh1s_global_policy_source_preflight_v1/manifest.json",
+        "sha256": "75a5139defa6a1f054eef5e3f5f6062483f4cc72e18416ece1cae3b10f4672fc"
+      },
+      "output_adapter": "row_arm"
+    },
+    {
+      "report": {
+        "path": "outputs/u5_r2bn6_triangular_logit_transport_visual_product_value_v1/run_a/report.json",
+        "sha256": "a6884435dbf6b93cc4e8906a0fb41ac13b31416130e857a37851b9dd34d4169e"
+      },
+      "output_root": "outputs/u5_r2bn6_triangular_logit_transport_visual_product_value_v1/run_a",
+      "source_adapter": "report_source_path",
+      "output_adapter": "nested_arms"
+    },
+    {
+      "report": {
+        "path": "outputs/u5_r2bn7_triangular_logit_transport_vs_ao6_v1/run_a/report.json",
+        "sha256": "b272fe140b1361f7b4771cff090d17ebecff800a68c8577b810d723bf05499a1"
+      },
+      "output_root": "outputs/u5_r2bn7_triangular_logit_transport_vs_ao6_v1/run_a",
+      "source_adapter": "report_source_path",
+      "output_adapter": "nested_arms"
+    },
+    {
+      "report": {
+        "path": "outputs/u5_r2bl8_filmmatch_strict_interior_fresh_confirmation_v1/run_a/report.json",
+        "sha256": "9ad3ad2ea4ea585c375dc13aabb87b21b96bf276ea522b70d1fd9d9abd71068f"
+      },
+      "output_root": "outputs/u5_r2bl8_filmmatch_strict_interior_fresh_confirmation_v1/run_a",
+      "source_adapter": "manifest",
+      "manifest": {
+        "path": "outputs/u5_r2bl8s_filmmatch_replacement_source_preflight_v1/run_a/manifest.json",
+        "sha256": "633e07202a92c2f8d60e4476f0b7768a7c5b9ed123c90c5757cbe541c4248733"
+      },
+      "output_adapter": "row_arm"
+    },
+    {
+      "report": {
+        "path": "outputs/u5_r2bl11_filmmatch_luma_preserving_chroma_transplant_v1/run_a/report.json",
+        "sha256": "cd7c452ef6add4e963268f69ec565920531dda9f00411787d6ae26dfde30bada"
+      },
+      "output_root": "outputs/u5_r2bl11_filmmatch_luma_preserving_chroma_transplant_v1/run_a",
+      "source_adapter": "manifest",
+      "manifest": {
+        "path": "outputs/u5_r2bl8s_filmmatch_replacement_source_preflight_v1/run_a/manifest.json",
+        "sha256": "633e07202a92c2f8d60e4476f0b7768a7c5b9ed123c90c5757cbe541c4248733"
+      },
+      "output_adapter": "fixed_arm_rows",
+      "fixed_arm_id": "ao6_lightness_bl5_chroma_analytical_safe"
+    },
+    {
+      "report": {
+        "path": "outputs/u5_r2bl13_ao6_nonbasic_chroma_emphasis_v1/formal_a/report.json",
+        "sha256": "ee381b4643a8a3e42cfcd65ecf2da5e2cea699ad9bc49cc2b7368c730560641f"
+      },
+      "output_root": "outputs/u5_r2bl13_ao6_nonbasic_chroma_emphasis_v1/formal_a",
+      "source_adapter": "manifest",
+      "manifest": {
+        "path": "outputs/u5_r2bl8s_filmmatch_replacement_source_preflight_v1/run_a/manifest.json",
+        "sha256": "633e07202a92c2f8d60e4476f0b7768a7c5b9ed123c90c5757cbe541c4248733"
+      },
+      "output_adapter": "fixed_arm_rows",
+      "fixed_arm_id": "ao6_nonbasic_chroma_emphasis_025"
+    },
+    {
+      "report": {
+        "path": "outputs/u5_r2bk8_smooth_perceptual_fresh_confirmation_v1/run_a/report.json",
+        "sha256": "c52622d3f7e4a3c847f57ac3f41d8b11a8e92ec0989215fd930b1c90d5698721"
+      },
+      "output_root": "outputs/u5_r2bk8_smooth_perceptual_fresh_confirmation_v1/run_a",
+      "source_adapter": "manifest",
+      "manifest": {
+        "path": "outputs/u5_r2bk8s_smooth_perceptual_fresh_source_v1/run_a/manifest.json",
+        "sha256": "8326272dd127040f82cce1cd65875dc470ddc5e1d6d753b6125c0af5c1387ed8"
+      },
+      "output_adapter": "row_arm",
+      "rows_key": "records"
+    },
+    {
+      "report": {
+        "path": "outputs/u5_r2bk14_orthogonal_residual_fifth_fresh_confirmation_v1/run_a/report.json",
+        "sha256": "641f36934958623575d11d34af1ac2ea8bab62c41105c14917955549152f4340"
+      },
+      "output_root": "outputs/u5_r2bk14_orthogonal_residual_fifth_fresh_confirmation_v1/run_a",
+      "source_adapter": "manifest",
+      "manifest": {
+        "path": "outputs/u5_r2bk13s_orthogonal_residual_replacement_v2_source_v1/run_a_retry/manifest.json",
+        "sha256": "a51e463431471f50c120c9dacf88aff06058d4cf8247b3091168299bea6a4547"
+      },
+      "output_adapter": "row_arm",
+      "rows_key": "records"
+    }
+  ],
+  "features": {
+    "maximum_side": 192,
+    "expected_base_dimension": 52,
+    "expected_dimension": 88,
+    "candidate_identity_used": false,
+    "experiment_identity_used": false,
+    "camera_identity_used": false,
+    "source_and_candidate_pixels_used_only_for_statistics": true,
+    "final_rgb_prediction": false
+  },
+  "model": {
+    "family": "fixed_l2_logistic_pairwise_utility",
+    "regularization_c": 0.1,
+    "fit_intercept": false,
+    "class_weight": "balanced",
+    "seed": 38117,
+    "hyperparameter_search_allowed": false
+  },
+  "controls": {
+    "bootstrap_seed": 38118,
+    "bootstrap_resamples": 2000,
+    "permutation_seed": 38119,
+    "permutations": 100,
+    "normalization_fit_on_development_only": true,
+    "repeated_rounds_collapsed_before_learning": true,
+    "multiarm_unit_total_weight": 1.0
+  },
+  "gates": {
+    "minimum_leave_one_source_out_gain": 0.05,
+    "minimum_source_interaction_gain": 0.02,
+    "minimum_leave_one_experiment_gain_over_chance": 0.05,
+    "minimum_leave_one_cohort_gain_over_chance": 0.05,
+    "minimum_source_bootstrap_gain_lower_95": 0.0,
+    "maximum_grouped_permutation_p_value": 0.05,
+    "maximum_confirmed_severe_artifact_count": 0
+  },
+  "branch_rules": {
+    "pass": "freeze evaluator and run a newly rendered candidate-family confirmation without changing the model or gates",
+    "fail": "close historical preference learning; retain AO6 and continue a mechanism-distinct explicit renderer leaf"
+  },
+  "production_default_changed": false,
+  "training_allowed": true,
+  "final_rgb_learning_allowed": false,
+  "product_integration_allowed": false,
+  "stock_or_calibration_claim_allowed": false,
+  "claim_ceiling": "development-only autonomous blind-choice evaluator over already-rendered deterministic film-inspired candidates; not owner or population preference, stock response, calibration, universal safety or product promotion"
+}
