@@ -1,0 +1,68 @@
+{
+  "schema": "neuro_film.u6_p5j_kodak_250d_positive_psf_compiler_contract.v1",
+  "experiment_id": "u6.p5j-kodak-250d-positive-psf-compiler-v1",
+  "node": "ULT > U6 > U6.P5 > U6.P5J",
+  "date_frozen": "2026-08-01",
+  "parent": {
+    "node": "U6.P5I",
+    "report": "outputs/u6_p5i_kodak_250d_mtf_source/report_run1.json",
+    "report_sha256": "b32d20f21abc12926d73b56a56e1516e41b35320663aa665e14f6758572f6164",
+    "stable_evidence_id": "63413b079953e7045a2fde674ebdbf1931cb5c66d0188c6770e5f44dec723a53",
+    "trace": "configs/data/kodak_250d_mtf_curve_pixels_v1.json"
+  },
+  "question": "Does development-only complexity selection produce a compact positive channel PSF family that predicts separately traced Kodak 250D MTF frequencies better than one Gaussian without extrapolation or ringing?",
+  "development": {
+    "frequencies_cycles_per_mm": [25.0, 30.0, 35.0, 40.0, 45.0, 55.0, 60.0, 65.0],
+    "selection": "leave-one-frequency-out",
+    "candidate_order": ["single_gaussian", "delta_plus_gaussian", "two_gaussian"],
+    "single_to_delta_min_relative_rmse_improvement": 0.20,
+    "delta_to_two_min_relative_rmse_improvement": 0.25,
+    "candidate_max_error_must_not_increase": true,
+    "sigma_um_bounds": [0.05, 30.0],
+    "mixture_weight_bounds": [0.0024726231566347743, 0.9975273768433653],
+    "two_gaussian_min_sigma_separation_um": 1.0,
+    "two_gaussian_min_component_weight": 0.10,
+    "deterministic_initializations": true
+  },
+  "confirmation": {
+    "trace": "configs/data/kodak_250d_mtf_confirmation_pixels_v1.json",
+    "frequencies_cycles_per_mm": [27.0, 33.0, 42.0, 52.0, 58.0, 63.0],
+    "points_hidden_until_after_contract_freeze": true,
+    "all_channel_rmse_ratio_max": 0.75,
+    "per_channel_rmse_ratio_max": 1.05,
+    "green_relative_rmse_improvement_min": 0.30,
+    "red_relative_rmse_improvement_min": 0.30,
+    "selected_max_absolute_error_max": 0.04,
+    "wrong_channel_mean_rmse_ratio_min": 1.05,
+    "two_byte_identical_reports": true
+  },
+  "operator_constraints": {
+    "transfer": "weighted sum of exp(-2*pi^2*sigma_mm^2*frequency_cpm^2)",
+    "dc_response": 1.0,
+    "positive_spatial_psf": true,
+    "weights_sum_to_one": true,
+    "nonnegative_mtf": true,
+    "monotone_mtf": true,
+    "ringing_forbidden": true,
+    "hard_clipping_forbidden": true,
+    "measured_frequency_interval_cycles_per_mm": [25.0, 65.0],
+    "extrapolation_forbidden": true
+  },
+  "allowed_after_pass": [
+    "compile a versioned research-only channel PSF bundle in physical micrometre units",
+    "open a separate impulse/edge/partition synthetic audit within the measured frequency interval",
+    "challenge the measured-MTF operator against the existing generic P5C path before any photographic value claim"
+  ],
+  "forbidden": [
+    "change trace points, split, candidate order or gates after confirmation values are recorded",
+    "fit photographic outputs, AO6 outputs, preference choices or scanner measurements",
+    "claim dye-cloud separation, scanner MTF, stock colour, roll, process or product calibration",
+    "apply the operator to photographs or production before separate severe-artifact and value gates",
+    "rescue a failed confirmation with more components, relaxed gates or extrapolation"
+  ],
+  "branch_rule": {
+    "pass": "Open a synthetic physical-kernel conformance leaf with the exact compiled bundle.",
+    "fail": "Close this compiler family and retain P5I as source evidence only; continue another physical mechanism."
+  },
+  "claim_ceiling": "A compact positive-PSF approximation of one printed Kodak VISION3 250D manufacturer MTF curve over 25-65 cycles/mm; not calibrated stock, roll, process, scanner, colour or product response."
+}
