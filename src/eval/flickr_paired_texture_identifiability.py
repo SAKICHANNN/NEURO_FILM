@@ -27,6 +27,10 @@ class FlickrPairedTextureError(ValueError):
     """Raised when the frozen BO5 inputs or analysis contract drift."""
 
 
+class FlickrPairedTextureSupportError(FlickrPairedTextureError):
+    """Raised when one valid pair lacks the frozen flat-patch support."""
+
+
 def _load_json_exact(root: Path, record: Mapping[str, Any]) -> dict[str, Any]:
     path = root / str(record["path"])
     if sha256_file(path) != str(record["sha256"]):
@@ -172,7 +176,7 @@ def analyze_pair(
                 score = float(np.quantile(gradient[y : y + size, x : x + size], 0.9))
                 candidates.append((score, y, x))
     if len(candidates) < int(contract["minimum_patches_per_scene"]):
-        raise FlickrPairedTextureError("too few fully valid texture patches")
+        raise FlickrPairedTextureSupportError("too few fully valid texture patches")
     scores = np.asarray([row[0] for row in candidates], dtype=np.float64)
     ordered = sorted(candidates)
     quantile_count = int(np.ceil(len(ordered) * float(contract["maximum_patch_gradient_quantile"])))
@@ -180,7 +184,7 @@ def analyze_pair(
     selected = ordered[: min(selected_count, int(contract["maximum_patches_per_scene"]))]
     cutoff = float(selected[-1][0])
     if len(selected) < int(contract["minimum_patches_per_scene"]):
-        raise FlickrPairedTextureError("too few low-gradient texture patches")
+        raise FlickrPairedTextureSupportError("too few low-gradient texture patches")
 
     slices = [(slice(y, y + size), slice(x, x + size)) for _, y, x in selected]
     digital_patches = np.stack([digital_hp[yy, xx] for yy, xx in slices])
@@ -235,17 +239,30 @@ def evaluate(root: Path, config: Mapping[str, Any]) -> dict[str, Any]:
     confirmation = [row for row in accepted if int(row["scene_id"]) % 4 == 0]
     data_root = root / str(config["data_root"])
     results: list[dict[str, Any]] = []
+    exclusions: list[dict[str, Any]] = []
     for row in sorted(development, key=lambda item: str(item["pair_id"])):
         digital_meta = manifest_rows[str(row["digital_local_path"])]
         film_meta = manifest_rows[str(row["film_local_path"])]
         digital = _load_rgb(data_root / str(row["digital_local_path"]), str(digital_meta["sha256"]))
         film = _load_rgb(data_root / str(row["film_local_path"]), str(film_meta["sha256"]))
-        texture = analyze_pair(
-            digital,
-            film,
-            np.asarray(row["diagnostics"]["homography_digital_to_film"], dtype=np.float64),
-            config["analysis"],
-        )
+        try:
+            texture = analyze_pair(
+                digital,
+                film,
+                np.asarray(row["diagnostics"]["homography_digital_to_film"], dtype=np.float64),
+                config["analysis"],
+            )
+        except FlickrPairedTextureSupportError as error:
+            exclusions.append(
+                {
+                    "pair_id": row["pair_id"],
+                    "family_id": row["family_id"],
+                    "scene_id": row["scene_id"],
+                    "reason": "insufficient_patch_support",
+                    "detail": str(error),
+                }
+            )
+            continue
         results.append(
             {
                 "pair_id": row["pair_id"],
@@ -280,6 +297,8 @@ def evaluate(root: Path, config: Mapping[str, Any]) -> dict[str, Any]:
     gates = config["evaluation"]
     metrics = {
         "development_scenes": len(results),
+        "development_scenes_attempted": len(development),
+        "development_scenes_excluded": len(exclusions),
         "sealed_confirmation_scenes_not_loaded": len(confirmation),
         "scenes_per_family": dict(sorted(counts.items())),
         "minimum_patches_in_any_scene": min(int(row["texture"]["patches"]) for row in results),
@@ -320,6 +339,7 @@ def evaluate(root: Path, config: Mapping[str, Any]) -> dict[str, Any]:
         "automatic_pass": automatic_pass,
         "branch": config["branches"]["pass" if automatic_pass else "fail"],
         "rows": results,
+        "excluded_rows": exclusions,
         "confirmation_pixels_loaded": False,
         "training_allowed": False,
         "operator_fitting_allowed": False,

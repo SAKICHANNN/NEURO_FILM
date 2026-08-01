@@ -6,7 +6,11 @@ from pathlib import Path
 import cv2
 import numpy as np
 
-from src.eval.flickr_paired_texture_identifiability import analyze_pair, evaluate
+from src.eval.flickr_paired_texture_identifiability import (
+    FlickrPairedTextureSupportError,
+    analyze_pair,
+    evaluate,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -41,3 +45,14 @@ def test_formal_report_does_not_load_confirmation_pixels() -> None:
     assert all(int(row["scene_id"]) % 4 != 0 for row in report["rows"])
     assert report["training_allowed"] is False
     assert report["operator_fitting_allowed"] is False
+
+
+def test_small_pair_has_explicit_support_failure() -> None:
+    config = json.loads(CONFIG.read_text(encoding="utf-8"))["analysis"]
+    image = np.full((64, 64, 3), 128, dtype=np.uint8)
+    try:
+        analyze_pair(image, image, np.eye(3), config)
+    except FlickrPairedTextureSupportError as error:
+        assert "patches" in str(error)
+    else:
+        raise AssertionError("small input must not fabricate patch support")
