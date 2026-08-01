@@ -8939,3 +8939,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   threshold rescue is allowed. Open one group-aware pairwise compatibility
   learner with hard Top-1 and global fallback; all film/product claims remain
   closed.
+
+## 2026-08-01 - U5.R2BQ2B closes pairwise hard routing before confirmation
+
+- Two corrected development-only reports are exact at `22a54363...bade44`.
+  PCA/normalization and ridge fit use 246 rows/19 camera groups; 135 rows/five
+  groups are held out. Confirmation loading is gated behind development pass.
+- Filtered passes with 8.52% mean gain and 66.67% wins. Aligned has 5.30% mean
+  gain and positive bootstrap, but wins 54.81% versus 55% and is 0.60% worse
+  than the frozen nearest baseline.
+- Confirmation remained unread. Close ranker capacity. Next test a bounded
+  source-conditioned explicit operator and guard style magnitude so averaging
+  cannot masquerade as success; FiveK remains architecture-control evidence.

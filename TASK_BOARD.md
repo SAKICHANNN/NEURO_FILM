@@ -600,3 +600,8 @@ U5.R2BQ2A closes simple source-only nearest-case retrieval without rescue.
 Tone-layout improves aligned/filtered confirmation mean error by 5.06%/7.45%,
 but aligned wins 76/128 rows and misses the frozen 60% gate by one row. Open
 one group-aware pairwise compatibility learner; keep hard Top-1/global fallback.
+
+U5.R2BQ2B closes that pairwise learner on disjoint development cameras before
+confirmation. Filtered passes, but aligned wins 54.81% and is 0.60% worse than
+nearest. Do not add ranker capacity. Next test a bounded source-conditioned
+explicit operator and require it to preserve strong style magnitude.

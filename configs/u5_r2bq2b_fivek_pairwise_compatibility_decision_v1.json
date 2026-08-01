@@ -1,0 +1,58 @@
+{
+  "schema": "neuro-film.u5-r2bq2b-fivek-pairwise-compatibility-decision.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BQ2B",
+  "decision": "close_pairwise_case_ranker_before_confirmation",
+  "implementation_commit": "694b80746ebb9c6ce5ed817bfe608d58bda340c0",
+  "reports": {
+    "run_a": "outputs/u5_r2bq2b_fivek_pairwise_compatibility_v1/run_a_formal/report.json",
+    "run_b": "outputs/u5_r2bq2b_fivek_pairwise_compatibility_v1/run_b_formal/report.json",
+    "sha256": "22a543633f03c3815f82deca5b17bedb1f2b9f61a8b8218225d39c3b47bade44",
+    "byte_identical": true,
+    "stable_evidence_id": "60f511a0db483f8bccae1d9576723c6e9f5ea1a51b61b0bfbe6d65335bc3dbac",
+    "development_pass": false,
+    "confirmation_executed": false,
+    "automatic_pass": false
+  },
+  "excluded_preformal_attempt": {
+    "path": "outputs/u5_r2bq2b_fivek_pairwise_compatibility_v1/run_a/report.invalid_preload.json",
+    "reason": "superseded runner decoded confirmation before checking development_pass; report content was not used for model, threshold or branch selection"
+  },
+  "development_partition": {
+    "fit_rows": 246,
+    "fit_camera_groups": 19,
+    "validation_rows": 135,
+    "validation_camera_groups": 5
+  },
+  "aligned_expert": {
+    "mean_improvement_over_global": 0.05303313901713095,
+    "win_fraction_over_global": 0.5481481481481482,
+    "required_win_fraction_over_global": 0.55,
+    "oracle_gap_closure": 0.15649094648978587,
+    "mean_improvement_over_nearest": -0.005996547211757496,
+    "win_fraction_over_nearest": 0.4666666666666667,
+    "mean_improvement_over_shuffled_ranker": 0.28324351325004793,
+    "bootstrap_ci95": [0.016923296352722744, 0.07668488257408154],
+    "p95_ratio_to_global": 0.9801433960596032,
+    "worst_ratio_to_global": 1.0931877234183007,
+    "automatic_pass": false,
+    "failed_gates": ["win_fraction_over_global", "mean_improvement_over_nearest", "win_fraction_over_nearest"]
+  },
+  "filtered": {
+    "mean_improvement_over_global": 0.08522514927062709,
+    "win_fraction_over_global": 0.6666666666666666,
+    "oracle_gap_closure": 0.21698828747979007,
+    "mean_improvement_over_nearest": 0.026810245434336903,
+    "win_fraction_over_nearest": 0.5481481481481482,
+    "mean_improvement_over_shuffled_ranker": 0.3725662213704408,
+    "bootstrap_ci95": [0.013390641046884694, 0.1299971353630158],
+    "p95_ratio_to_global": 0.950741125390263,
+    "worst_ratio_to_global": 1.0063732379991834,
+    "automatic_pass": true
+  },
+  "ranker_capacity_rescue_allowed": false,
+  "next_leaf": "test a mechanism-distinct source-conditioned bounded explicit operator on development groups; do not reopen hard case routing",
+  "dense_blending_allowed": false,
+  "learned_final_rgb_allowed": false,
+  "product_integration_opened": false,
+  "claim_ceiling": "repeat-exact group-held development evidence for one low-capacity pairwise hard case ranker on paired FiveK digital-retouch controls; confirmation remained unread and no film or product claim opens"
+}

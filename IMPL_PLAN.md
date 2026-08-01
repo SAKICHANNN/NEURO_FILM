@@ -2517,3 +2517,9 @@ python_coreml_stable_diffusion  # CoreML 转换
 > or threshold. The next leaf is one preregistered group-aware pairwise
 > compatibility learner, still hard Top-1 with pooled-global fallback.
 >
+> BQ2B also closes before confirmation: filtered passes, while aligned wins
+> only 54.81% and is 0.60% worse than nearest despite positive mean/bootstrap
+> evidence. The large case-bank Oracle therefore remains non-routable by this
+> family. Stop router capacity and test a source-conditioned bounded explicit
+> operator with an explicit anti-blandness/style-magnitude gate.
+>
