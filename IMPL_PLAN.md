@@ -262,6 +262,12 @@ P5Q closes the photographic route automatically: flat-region P99 is `.06791`,
 Visual review and any single-arm/threshold rescue are forbidden. The next
 distinct film-simulation leaf is P2P: exact source tracing of the Kodak 250D
 characteristic curves before any curve compiler or digital-input use.
+P2P passes with two byte-identical reports and an inspected overlay: all
+source/axis/ink/lineage/span/monotonicity/channel-order gates pass. P2Q is now
+the ready leaf: compile the observation into the simplest bounded monotone
+explicit prior and compare it with unchanged U2.2 curves. This does not make
+digital RGB an identified layer exposure or the trace a calibrated stock
+response.
 
 The executable authority is `docs/ULTIMATE_EXECUTION_TRACKER.md`, governed by
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` and

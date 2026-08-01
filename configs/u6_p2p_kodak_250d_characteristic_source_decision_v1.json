@@ -1,0 +1,32 @@
+{
+  "schema": "neuro_film.u6_p2p_kodak_250d_characteristic_source_decision.v1",
+  "node": "U6.P2P",
+  "status": "complete_source_pass",
+  "contract": "configs/u6_p2p_kodak_250d_characteristic_source_v1.json",
+  "trace": "configs/data/kodak_250d_characteristic_curve_pixels_v1.json",
+  "reports": [
+    "outputs/u6_p2p_kodak_250d_characteristic_source/report_run1.json",
+    "outputs/u6_p2p_kodak_250d_characteristic_source/report_run2.json"
+  ],
+  "report_sha256": "0d67915e5f009c464fe87656ce06b57eba44d515a2ce6814604cce0dde17bcf7",
+  "stable_evidence_id": "71bfba27b816a43f6ec23d918e800736707a668057a9ec5b4e3aa5a336e49778",
+  "overlay_sha256": "b79fa8b5359f8c0b56c5ae67de037924b792a789b3529c97f4904579529a39cb",
+  "metrics": {
+    "axis_max_residual_px": {"x": 0.8000000000000114, "y": 0.33333333333337123},
+    "trace_max_ink_distance_px": {"blue": 0.0, "green": 0.0, "red": 0.0},
+    "trace_span_log_exposure": {
+      "blue": 4.808558558558558,
+      "green": 4.864864864864864,
+      "red": 4.763513513513513
+    },
+    "maximum_monotonic_reversal_density": {
+      "blue": 0.0,
+      "green": 0.006741573033707704,
+      "red": 0.0
+    }
+  },
+  "visual_review": "The exact overlay follows the three solid B/G/R characteristic curves across toe, straight-line and shoulder regions and does not follow the dashed granularity curves. No point-label or axis substitution is visible.",
+  "branch_decision": "The exact first-party Kodak PDF, embedded graph and prior annotation lineage are intact. All source, axis, ink, span, monotonicity and channel-order gates pass in two byte-identical audits. Open only a separately frozen monotone explicit characteristic-prior compiler.",
+  "next_ready_leaf": "U6.P2Q — compile the traced observation into the simplest bounded monotone explicit prior and compare it with the unchanged generic U2.2 curves under explicit exposure semantics.",
+  "claim_ceiling": "Manufacturer-graph observation for one typical Kodak VISION3 250D daylight/ECN-2/Status-M sensitometric context; not a digital-to-film operator, particular roll response, full emulsion model or product calibration."
+}

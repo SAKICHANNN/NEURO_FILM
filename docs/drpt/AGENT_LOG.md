@@ -2,6 +2,18 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-01 - U6.P2P Kodak 250D characteristic source pass
+
+- Froze a dedicated, lineage-bound subset of the existing first-party Kodak
+  250D graph annotation before implementing the source evaluator. No curve or
+  image operator is fitted in this leaf.
+- Two formal audits are byte-identical at `0d67915e...bcf7` with stable ID
+  `71bfba27...9778`. Source, graph, annotation lineage, axes, source ink,
+  trace span, monotonicity and B/G/R order all pass.
+- The inspected overlay follows the three solid characteristic curves rather
+  than the dashed granularity curves. Open P2Q monotone explicit prior only;
+  digital RGB-to-layer exposure and calibrated 250D claims remain forbidden.
+
 # 2026-08-01 - U6.P4AK-P4AM source and transmittance closure
 
 - P4AK and P4AL retain two exact primary-source acquisitions as background,
