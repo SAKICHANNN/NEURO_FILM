@@ -447,6 +447,13 @@ photographs. Do not rescue the same marginal with sample centering; the next
 physical leaf must change the stochastic structure or move to another
 high-information mechanism.
 
+U6.P4AN/P4AO then close balanced and zero-DC copula source changes; the latter
+reduces low-frequency drift but improves the frozen flat error only 14.68%.
+U6.P4AP tests the current standards-derived causal AR family: all lag 1/2/3
+development fits exceed the frozen coefficient envelope, so the family closes
+with zero confirmation reads and no parameter rescue. The next grain leaf must
+use a stability-by-construction source family or move to another physical stage.
+
 BJ0 closed on the unchanged safety-limited tail gate despite strong mean,
 win-rate and P95 error improvements. Next: freeze an intrinsically
 cube-preserving residual basis; do not retune or confirm BJ0.

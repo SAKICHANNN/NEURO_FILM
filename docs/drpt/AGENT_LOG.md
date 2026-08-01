@@ -2,6 +2,19 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-02 - U6.P4AP causal AR family closes before confirmation
+
+- Implemented a clean-room explicit causal AR source and a development/confirmatory
+  NPS+ACF evaluator after reviewing the current ITU H.Sup21 family and 2025
+  FGA-NN work. This is not AFGS1 wire conformance.
+- Two formal reports are byte-identical (`9616ec95...f41a51`). Lag 1/2/3 fits
+  all leave the frozen coefficient envelope; raw extrema reach
+  `-0.68886..1.02942`. No candidate is admitted and confirmation pixel reads
+  remain exactly zero.
+- Close this exact AR family without coefficient, ridge or lag rescue. Next
+  ready work requires a stability-by-construction stochastic source or a
+  mechanism-distinct physical imaging stage.
+
 # 2026-08-02 - U6.P2X closes intrinsic photographic Langmuir family
 
 - Replaced P2W corrected-log-exposure execution with one shared intrinsically

@@ -1,0 +1,41 @@
+{
+  "automatic_pass": false,
+  "candidate_rows": [
+    {
+      "admitted": false,
+      "coefficient_count": 4,
+      "lag": 1,
+      "maximum_raw_coefficient": 0.6104720553653152,
+      "minimum_raw_coefficient": -0.3557719298126415,
+      "out_of_envelope_count": 3,
+      "rejection": "ValueError:AR coefficients are outside the frozen envelope"
+    },
+    {
+      "admitted": false,
+      "coefficient_count": 12,
+      "lag": 2,
+      "maximum_raw_coefficient": 0.8889021318667357,
+      "minimum_raw_coefficient": -0.547385706720921,
+      "out_of_envelope_count": 5,
+      "rejection": "ValueError:AR coefficients are outside the frozen envelope"
+    },
+    {
+      "admitted": false,
+      "coefficient_count": 24,
+      "lag": 3,
+      "maximum_raw_coefficient": 1.029419903686537,
+      "minimum_raw_coefficient": -0.6888633372602003,
+      "out_of_envelope_count": 6,
+      "rejection": "ValueError:AR coefficients are outside the frozen envelope"
+    }
+  ],
+  "claim_ceiling": "Development/confirmation evidence for one generic standards-derived scanner-convolved AR spatial-source baseline; not AFGS1 wire conformance, physical emulsion geometry, stock/process/scanner calibration, photographic quality or product promotion.",
+  "confirmation_pixel_reads": 0,
+  "contract_sha256": "60add276486abb89da9fdecedb8e97ba0bd67b0c3dad85c10b2beaf38d914940",
+  "decision": "close_no_admitted_ar_candidate_before_confirmation",
+  "formal_report_sha256": "9616ec95290a29c00a583b7807a1bc8bf8ad60003dcfd262d4993ab0e5f41a51",
+  "formal_runs": 2,
+  "formal_runs_byte_identical": true,
+  "schema": "neuro_film.u6_p4ap_standard_ar_grain_shape_evidence.v1",
+  "stable_evidence_id": "0b3be0a87042293edb7c1d290539f6f6a1e344c76d3d0fe76e0ebc539945f48d"
+}

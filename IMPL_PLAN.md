@@ -2437,6 +2437,13 @@ python_coreml_stable_diffusion  # CoreML 转换
 > retains `.00295` flat mean error. It closes before photographic rendering;
 > sample-dependent centering and marginal/gate retuning remain forbidden.
 >
+> `U6.P4AN-P4AO` close two further source-only copula changes. `U6.P4AP` then
+> evaluates an explicit lag 1/2/3 causal AR family derived from the current
+> film-grain standard. All development-only fits leave the frozen coefficient
+> envelope, so no candidate is admitted and confirmation pixels remain sealed.
+> Do not widen the envelope or tune ridge/lag on this cohort; use a
+> stability-by-construction source family or advance a different physical stage.
+>
 > `U5.R2AO4R` adds the missing mature root-polynomial baseline from the
 > controlled-film colour-correction literature. On the exact 71 Velvia
 > display-proxy rows it strongly regresses the bounded one-matrix control in
