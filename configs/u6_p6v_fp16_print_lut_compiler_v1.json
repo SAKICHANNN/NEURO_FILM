@@ -1,0 +1,65 @@
+{
+  "schema": "neuro_film.u6_p6v_fp16_print_lut_compiler_contract.v1",
+  "experiment_id": "u6.p6v-fp16-print-lut-compiler-v1",
+  "node": "ULT > U6 > U6.P6 > U6.P6V",
+  "date_frozen": "2026-08-02",
+  "parents": {
+    "p6u_contract": {
+      "path": "configs/u6_p6u_analytic_print_inverse_v1.json",
+      "sha256": "48d1610ac2cc2a20b6065b3c3c6746e5ff2af3548dabedae6f72ee9e196bd44d"
+    },
+    "p6u_evidence": {
+      "path": "docs/evidence/U6_P6U_ANALYTIC_PRINT_INVERSE_RESULT.json",
+      "sha256": "9fd1031ef21ecdf68b4f54bb778d7c15dab674f05f8bd2c8169146b175332c46",
+      "required_decision": "retain_analytic_print_inverse"
+    },
+    "p6u_report": {
+      "path": "outputs/experiments/u6_p6u_analytic_print_inverse_v1/report_a.json",
+      "sha256": "2575423d18cbea99603c722735f41fe8b2f3d600d1ac1b3284a9f6cda7a50654"
+    }
+  },
+  "question": "What is the smallest fixed FP16 tetrahedral 3D LUT that compiles the reversible generic density-to-print interpretation while preserving bounded output, topology and inverse-density fidelity on an independent interior grid?",
+  "compiler": {
+    "candidate_sizes": [17, 33],
+    "selection_order": [17, 33],
+    "storage_dtype": "float16",
+    "runtime_dtype": "float32",
+    "interpolation": "tetrahedral",
+    "domain": "declared three-channel layer-density references",
+    "audit_axis_size": 29,
+    "audit_sampling": "independent cell-centre fractions (i+0.5)/29",
+    "post_interpolation_clipping_allowed": false
+  },
+  "automatic_gates": {
+    "maximum_output_absolute_error": 0.001,
+    "maximum_output_rmse": 0.00025,
+    "maximum_inverse_density_absolute_error": 0.01,
+    "minimum_tetrahedral_jacobian_determinant": 1e-07,
+    "maximum_out_of_range_output_count": 0,
+    "maximum_inverse_rejection_count": 0,
+    "maximum_selected_bundle_bytes": 220000,
+    "compile_replay_byte_exact": true,
+    "runtime_partition_exact": true,
+    "post_interpolation_clipping_count_zero": true
+  },
+  "selection_rule": "Select the first candidate in selection_order that passes every automatic gate; if none pass, close without adding a size, changing interpolation, weakening precision or clipping.",
+  "allowed_after_pass": [
+    "retain one versioned compact generic print-LUT bundle for deterministic profile compilation",
+    "benchmark the selected LUT in a separately frozen canonical CPU runtime"
+  ],
+  "forbidden": [
+    "change candidate sizes, interpolation, precision, audit grid or thresholds after scoring",
+    "clip LUT nodes or interpolated outputs",
+    "treat the generic witness as measured print, stock, process or scanner calibration",
+    "photographic fitting, preference promotion or production-default change"
+  ],
+  "branch_rule": {
+    "pass": "Retain the smallest passing FP16 LUT bundle and open one canonical runtime/parity audit.",
+    "fail": "Keep the exact analytic forward/inverse pair and close LUT compilation without capacity rescue."
+  },
+  "outputs": {
+    "report_a": "outputs/experiments/u6_p6v_fp16_print_lut_compiler_v1/report_a.json",
+    "report_b": "outputs/experiments/u6_p6v_fp16_print_lut_compiler_v1/report_b.json"
+  },
+  "claim_ceiling": "Compact deterministic approximation evidence for one generic explicit density-to-print equation family; not measured film/print/scanner calibration, photographic quality or product promotion."
+}
