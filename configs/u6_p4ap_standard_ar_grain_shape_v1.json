@@ -66,6 +66,8 @@
     "coefficient_out_of_range_action": "reject_candidate_lag_without_clipping",
     "field_shape": [768, 768],
     "central_analysis_crop": [128, 128, 512, 512],
+    "comparison_target_density": 0.8,
+    "ar_positive_proxy_scale": 0.01,
     "development_seeds": [260901, 260903, 260909, 260917],
     "confirmation_seeds": [260921, 260927, 260929, 260933],
     "selection": "Minimize the maximum of development median NPS-error ratio and median ACF-error ratio versus P4T, then their sum, then lag.",
