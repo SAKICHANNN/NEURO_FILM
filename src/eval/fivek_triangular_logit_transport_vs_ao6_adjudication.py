@@ -1,27 +1,22 @@
-"""Adjudicate the frozen BN6 triangular-transport visual comparison."""
+"""Adjudicate the frozen BN7 triangular-transport versus AO6 comparison."""
 
 from __future__ import annotations
 
-from collections import Counter
 import hashlib
 import json
 from pathlib import Path
 from typing import Any, Mapping, Sequence
 
-from src.eval.fivek_triangular_logit_transport_visual_product_value import (
-    validate_contract,
+from src.eval.fivek_triangular_logit_transport_visual_adjudication import (
+    DIRECT_ARM,
+    FiveKTriangularVisualAdjudicationError,
+    adjudicate_choices,
 )
+from src.eval.fivek_triangular_logit_transport_vs_ao6 import validate_contract
 from src.eval.global_frontier import sha256_file
 
 
-SCHEMA = "neuro_film.u5_r2bn6_triangular_logit_transport_visual_decision.v1"
-GLOBAL_ARM = "global_triangular_transport_then_fixed_ao6"
-ADAPTIVE_ARM = "adaptive_triangular_transport_then_fixed_ao6"
-DIRECT_ARM = "fixed_ao6_direct"
-
-
-class FiveKTriangularVisualAdjudicationError(ValueError):
-    """Raised when frozen BN6 evidence or provenance is invalid."""
+SCHEMA = "neuro_film.u5_r2bn7_triangular_logit_transport_vs_ao6_decision.v1"
 
 
 def _canonical_sha256(payload: Mapping[str, Any]) -> str:
@@ -35,133 +30,6 @@ def _canonical_sha256(payload: Mapping[str, Any]) -> str:
     ).hexdigest()
 
 
-def adjudicate_choices(
-    *,
-    choices_by_round: Sequence[Mapping[str, str]],
-    mappings_by_round: Sequence[Mapping[str, Mapping[str, str]]],
-    thresholds: Mapping[str, Any],
-    confirmed_severe_count: int,
-    automatic_pass: bool,
-    repeat_exact: bool,
-    baseline_arm: str = GLOBAL_ARM,
-) -> dict[str, Any]:
-    """Apply the preregistered round, aggregate, and source-majority gates."""
-
-    if baseline_arm not in {GLOBAL_ARM, DIRECT_ARM}:
-        raise FiveKTriangularVisualAdjudicationError("invalid baseline arm")
-    if len(choices_by_round) != 3 or len(mappings_by_round) != 3:
-        raise FiveKTriangularVisualAdjudicationError(
-            "exactly three blind rounds are required"
-        )
-    sources = set(choices_by_round[0])
-    if not sources:
-        raise FiveKTriangularVisualAdjudicationError("empty source set")
-    aggregate: Counter[str] = Counter()
-    source_adaptive_choices: Counter[str] = Counter()
-    round_rows: list[dict[str, Any]] = []
-    for round_index, (choices, mapping) in enumerate(
-        zip(choices_by_round, mappings_by_round, strict=True), start=1
-    ):
-        if set(choices) != sources or set(mapping) != sources:
-            raise FiveKTriangularVisualAdjudicationError(
-                "source population drift across blind rounds"
-            )
-        counts: Counter[str] = Counter()
-        resolved: dict[str, str] = {}
-        for source_id in sorted(sources):
-            labels = mapping[source_id]
-            if set(labels) != {"A", "B"} or set(labels.values()) != {
-                baseline_arm,
-                ADAPTIVE_ARM,
-            }:
-                raise FiveKTriangularVisualAdjudicationError(
-                    "mapping does not cover the exact BN6 arms"
-                )
-            choice = choices[source_id]
-            if choice not in {"A", "B"}:
-                raise FiveKTriangularVisualAdjudicationError(
-                    "blind choice must be A or B"
-                )
-            arm = labels[choice]
-            resolved[source_id] = arm
-            counts[arm] += 1
-            aggregate[arm] += 1
-            if arm == ADAPTIVE_ARM:
-                source_adaptive_choices[source_id] += 1
-        winner = (
-            ADAPTIVE_ARM
-            if counts[ADAPTIVE_ARM] > counts[baseline_arm]
-            else baseline_arm
-            if counts[baseline_arm] > counts[ADAPTIVE_ARM]
-            else "tie"
-        )
-        round_rows.append(
-            {
-                "round": round_index,
-                "counts": dict(counts),
-                "winner": winner,
-                "resolved_choices": resolved,
-            }
-        )
-
-    adaptive_round_wins = sum(
-        row["winner"] == ADAPTIVE_ARM for row in round_rows
-    )
-    adaptive_source_majorities = sum(
-        source_adaptive_choices[source_id] >= 2 for source_id in sources
-    )
-    gates = {
-        "automatic_gate": {
-            "value": bool(automatic_pass),
-            "threshold": True,
-            "pass": bool(automatic_pass),
-        },
-        "repeat_exact": {
-            "value": bool(repeat_exact),
-            "threshold": True,
-            "pass": bool(repeat_exact),
-        },
-        "maximum_confirmed_severe_artifact_count": {
-            "value": int(confirmed_severe_count),
-            "threshold": int(
-                thresholds["maximum_confirmed_severe_artifact_count"]
-            ),
-            "pass": int(confirmed_severe_count)
-            <= int(thresholds["maximum_confirmed_severe_artifact_count"]),
-        },
-        "minimum_adaptive_round_wins": {
-            "value": adaptive_round_wins,
-            "threshold": int(thresholds["minimum_adaptive_round_wins"]),
-            "pass": adaptive_round_wins
-            >= int(thresholds["minimum_adaptive_round_wins"]),
-        },
-        "minimum_adaptive_aggregate_choices": {
-            "value": aggregate[ADAPTIVE_ARM],
-            "threshold": int(thresholds["minimum_adaptive_aggregate_choices"]),
-            "pass": aggregate[ADAPTIVE_ARM]
-            >= int(thresholds["minimum_adaptive_aggregate_choices"]),
-        },
-        "minimum_adaptive_source_majorities": {
-            "value": adaptive_source_majorities,
-            "threshold": int(thresholds["minimum_adaptive_source_majorities"]),
-            "pass": adaptive_source_majorities
-            >= int(thresholds["minimum_adaptive_source_majorities"]),
-        },
-    }
-    return {
-        "rounds": round_rows,
-        "aggregate_counts": dict(aggregate),
-        "adaptive_round_wins": adaptive_round_wins,
-        "adaptive_source_majorities": adaptive_source_majorities,
-        "per_source_adaptive_choices": {
-            source_id: source_adaptive_choices[source_id]
-            for source_id in sorted(sources)
-        },
-        "gates": gates,
-        "pass": all(gate["pass"] for gate in gates.values()),
-    }
-
-
 def adjudicate_files(
     *,
     root: Path,
@@ -173,7 +41,7 @@ def adjudicate_files(
     mapping_paths: Sequence[Path],
     adjudicator_software_commit: str,
 ) -> dict[str, Any]:
-    """Validate frozen inputs, reveal exact mappings, and issue one decision."""
+    """Validate exact evidence and apply the frozen AO6 head-to-head gates."""
 
     if len(adjudicator_software_commit) != 40 or any(
         character not in "0123456789abcdef"
@@ -286,6 +154,7 @@ def adjudicate_files(
         ),
         automatic_pass=bool(reports[0]["automatic_pass"]),
         repeat_exact=True,
+        baseline_arm=DIRECT_ARM,
     )
     payload: dict[str, Any] = {
         "schema": SCHEMA,
@@ -294,9 +163,9 @@ def adjudicate_files(
         "node": config["node"],
         "adjudicator_software_commit": adjudicator_software_commit,
         "status": (
-            "adaptive_visual_value_pass_research_challenger"
+            "adaptive_beats_ao6_open_gold_stress_regression"
             if result["pass"]
-            else "adaptive_visual_value_fail_retain_ao6_incumbent"
+            else "adaptive_fails_ao6_retain_incumbent"
         ),
         "inputs": {
             "config_sha256": sha256_file(config_path),
@@ -316,9 +185,9 @@ def adjudicate_files(
         "selector_or_router_training_allowed": False,
         "production_default_changed": False,
         "next_branch": (
-            "compare_adaptive_triangular_transport_against_ao6_incumbent"
+            "freeze_gold_stress_product_safety_regression"
             if result["pass"]
-            else "close_bn6_visual_promotion_and_continue_distinct_explicit_or_physical_algorithm"
+            else "close_triangular_promotion_retain_ao6_and_continue_distinct_algorithm"
         ),
         "claim_ceiling": config["claim_ceiling"],
     }
@@ -326,11 +195,4 @@ def adjudicate_files(
     return payload
 
 
-__all__ = [
-    "ADAPTIVE_ARM",
-    "DIRECT_ARM",
-    "GLOBAL_ARM",
-    "FiveKTriangularVisualAdjudicationError",
-    "adjudicate_choices",
-    "adjudicate_files",
-]
+__all__ = ["SCHEMA", "adjudicate_files"]

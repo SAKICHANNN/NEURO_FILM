@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bn7-triangular-logit-transport-vs-ao6-v1",
+  "status": "full_resolution_severe_review_complete",
+  "review_date": "2026-08-01",
+  "observer": "autonomous_codex_visual_review",
+  "render_report_sha256": "b272fe140b1361f7b4771cff090d17ebecff800a68c8577b810d723bf05499a1",
+  "confirmed_severe_count": 0,
+  "reviewed_scope": {
+    "blind_sheet_scope": "all 30 choices across nine exact full-decoded-source-render sheets",
+    "full_resolution_risk_rows": [
+      "dji_fc4382",
+      "om_system_om_3",
+      "fujifilm_x_e5",
+      "samsung_ek_gn120",
+      "google_pixel_7_pro"
+    ],
+    "arms_per_risk_row": 2,
+    "risk_coverage": [
+      "high-key sky above deep forest shadows",
+      "dense foliage and bright reflective surfaces",
+      "architecture edges and smooth cloud gradients",
+      "bright cloud detail above dark landscape",
+      "inverted geometry, fine plant structure and source clipping"
+    ]
+  },
+  "reviewed_outputs": [
+    {"source_id": "dji_fc4382", "arm": "fixed_ao6_direct", "sha256": "cb60ab7f88ce9817b87603b437dec7a59f804db9e5e42c906fe5769fe4b8c5f7"},
+    {"source_id": "dji_fc4382", "arm": "adaptive_triangular_transport_then_fixed_ao6", "sha256": "20f924808193a1fcad553ffa4adb21f911acf1ea569714d0311b4c4a8e684f1d"},
+    {"source_id": "om_system_om_3", "arm": "fixed_ao6_direct", "sha256": "9328d36c7bce6bea360ca734cdb7a95cee5d5b05d4e0099c8eba12d01b3af16c"},
+    {"source_id": "om_system_om_3", "arm": "adaptive_triangular_transport_then_fixed_ao6", "sha256": "8093ff2a562fb31d947619bbe3a5b1e2cfeeb6216cbce9cb47dbd0aaf44d623f"},
+    {"source_id": "fujifilm_x_e5", "arm": "fixed_ao6_direct", "sha256": "4438aa774da8f7add46f817996a1da1ddba4144bb73a85af3a6c006997c3b26d"},
+    {"source_id": "fujifilm_x_e5", "arm": "adaptive_triangular_transport_then_fixed_ao6", "sha256": "7ed24307b244d1a26899cc76559e650407a4889748a6f115603b6427a857a79a"},
+    {"source_id": "samsung_ek_gn120", "arm": "fixed_ao6_direct", "sha256": "060afc0d0d8235fada3bf24f3ce4e5b94e5f7a1b40b53ab9d09b666446822100"},
+    {"source_id": "samsung_ek_gn120", "arm": "adaptive_triangular_transport_then_fixed_ao6", "sha256": "50120ad2315a6405d31c89ff4d851b281bfcdbd6b33285b9ba37bce753f6b0ed"},
+    {"source_id": "google_pixel_7_pro", "arm": "fixed_ao6_direct", "sha256": "3973f69e3305dc69760742ea75a627390edf7d4ac0bfd0f7e9cd03d82936fe5a"},
+    {"source_id": "google_pixel_7_pro", "arm": "adaptive_triangular_transport_then_fixed_ao6", "sha256": "bfd6ddc459b7245997fb364006d4e0e2159c9cb03d42a32941567fde15bb8db7"}
+  ],
+  "findings": [
+    "No candidate-generated geometry failure, seam, colour block, red-speckle field, posterization or unstable texture was confirmed.",
+    "High-key clipping in the DJI, OM System, Samsung and Google rows is already present under fixed AO6 and the source boundary; the automatic new-boundary metric is exactly zero for every arm.",
+    "Architecture edges, cloud gradients, foliage and the inverted plant geometry remain spatially coherent in the adaptive arm.",
+    "The adaptive arm is frequently less photographically appealing than fixed AO6, but this preference failure is not relabelled as a severe artifact."
+  ],
+  "claim_ceiling": "risk-based autonomous full-resolution severe-artifact review on the frozen BN7 population; not universal safety, population preference, film truth or product promotion"
+}

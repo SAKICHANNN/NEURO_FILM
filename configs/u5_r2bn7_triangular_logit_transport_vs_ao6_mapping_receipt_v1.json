@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bn7-triangular-logit-transport-vs-ao6-v1",
+  "status": "mapping_identities_bound_after_observations_commit",
+  "mapping_revealed": true,
+  "observations_path": "configs/u5_r2bn7_triangular_logit_transport_vs_ao6_blind_observations_v1.json",
+  "observations_sha256": "30eb9ada979f1cf5eded4913e4f4e32971b580706aeaf9b672e6a03be4ccb53c",
+  "observations_commit": "fb5cc1cc1e3a8e6a21f9c6e75a8114f6acfff370",
+  "mapping_sha256_by_round": [
+    "2e51a973131cc5de9bc62baa2749b680f5a6b090260763837b450061a5822e7a",
+    "cff7c8521863bfe06d3eb9cd9c15b34cc36487dce466da92ab2d4e650066d4a9",
+    "ea0e9d7b3d9f0c968c0f0d271a3d288f70b424e8fba6d70e577e713fd99e5e97"
+  ],
+  "claim_ceiling": "mapping identity receipt only; not preference or promotion evidence"
+}
