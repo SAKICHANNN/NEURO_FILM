@@ -1,0 +1,99 @@
+{
+  "schema": "neuro_film.u6_p6q_kodak_digital_lad_source_audit_contract.v1",
+  "experiment_id": "u6.p6q-kodak-digital-lad-source-audit-v1",
+  "node": "ULT > U6 > U6.P6 > U6.P6Q",
+  "date_frozen": "2026-08-02",
+  "parent": {
+    "decision_path": "configs/u6_p2z_emulating_emulsion_author_package_audit_decision_v1.json",
+    "decision_sha256": "5b52f70df2579722eadbabe5a30aaac7df16342f7964f87daac648021a65f124",
+    "status": "fail-closed-paper-only-no-reproducible-author-package"
+  },
+  "question": "Do Kodak's current official Digital LAD downloads provide exact machine-readable DPX/Cineon test-image code values and documented recorder/print density semantics sufficient for a bounded neutral calibration primitive?",
+  "claim_ceiling": "Kodak motion-picture film-recorder and print-chain neutral calibration source audit; not a camera-to-film operator, stock colour response, measured local process result, scanner profile, still-film calibration or product promotion",
+  "primary_sources": [
+    {
+      "role": "current Kodak laboratory tools page",
+      "url": "https://www.kodak.com/en/motion/page/laboratory-tools-and-techniques/"
+    },
+    {
+      "role": "Digital LAD user guide H-387",
+      "url": "https://www.kodak.com/content/products-brochures/Film/Users-Guide-and-Digital-Recorder-Calibration-and-Aims-H-387.pdf",
+      "expected_bytes": 97320,
+      "expected_pages": 5
+    },
+    {
+      "role": "Cineon file-format description",
+      "url": "https://www.kodak.com/content/products-brochures/Film/Cineon-File-Format-Description.pdf",
+      "expected_bytes": 13873,
+      "expected_pages": 7
+    },
+    {
+      "role": "Digital LAD DPX archive",
+      "url": "https://www.kodak.com/content/products-zip/KODAK-Digital-LAD-Test-Image-DPX-Format.zip",
+      "expected_bytes": 32582940
+    },
+    {
+      "role": "Digital LAD Cineon archive",
+      "url": "https://www.kodak.com/content/products-zip/KODAK-Digital-LAD-Test-Image-Cineon-Format.zip",
+      "expected_bytes": 32582934
+    }
+  ],
+  "acquisition": {
+    "destination": "data/physical_scanner/kodak_digital_lad_v1",
+    "maximum_total_bytes": 70000000,
+    "expected_total_payload_bytes": 65277067,
+    "exact_urls_only": true,
+    "redirect_host_allowlist": [
+      "www.kodak.com"
+    ],
+    "resume_partial_download": false,
+    "retain_only_official_html_pdf_and_zip_payloads": true,
+    "no_other_payloads": true,
+    "rights_boundary": "Current official Kodak downloads without an explicit reusable-data licence in the audited page. Internal factual and interoperability research only; do not redistribute the PDFs, archives or extracted images."
+  },
+  "required_observations": {
+    "official_page_links_all_four_assets": true,
+    "guide_defines_printing_density": "Printing Density = 0.002 * 10-bit code value for the CINEON negative calibration aim.",
+    "guide_defines_lad_code": "The recommended Digital LAD patch is code 445 in all three channels.",
+    "guide_separates_negative_and_interpositive": true,
+    "guide_separates_printing_density_status_m_and_d_min": true,
+    "dpx_and_cineon_archives_have_bounded_safe_member_inventory": true,
+    "decoded_test_images_are_exactly_10_bit_three_channel_and_finite": true,
+    "dpx_and_cineon_active_pixels_are_equivalent_after_format_decode": true,
+    "observed_lad_patch_code_matches_445_445_445": true
+  },
+  "source_gate": {
+    "all_remote_sizes_match": true,
+    "all_payload_sha256_values_recorded": true,
+    "pdf_page_counts_match": true,
+    "zip_member_paths_are_relative_non_duplicate_and_non_symlink": true,
+    "zip_expansion_ratio_bounded_by": 4.0,
+    "no_archive_member_above_bytes": 50000000,
+    "exact_image_headers_and_geometry_recorded": true,
+    "machine_readable_lad_patch_found": true,
+    "dpx_cineon_pixel_equivalence_required": true,
+    "two_independent_audits": true,
+    "operator_fit_render_and_visual_review_allowed": false
+  },
+  "allowed_after_pass": [
+    "freeze an exact Cineon/DPX decoder and neutral code-to-printing-density primitive",
+    "test negative and interpositive branches separately against the documented tables",
+    "use the Digital LAD image as a format and neutral calibration fixture",
+    "compare existing U2.2 and U6.P6 print/scan domain semantics without changing completed gates"
+  ],
+  "forbidden": [
+    "treat the Digital LAD image as a photographic scene pair or colour-style target",
+    "infer a camera-to-film or digital-to-film operator",
+    "infer stock colour rendering, grain, halation, MTF or scanner response",
+    "treat manufacturer aim tables as measurements from the user's lab, process or scanner",
+    "merge negative and interpositive semantics",
+    "assume code values are display-sRGB",
+    "redistribute source assets",
+    "production integration or calibrated-reference claim"
+  ],
+  "branch_rule": {
+    "source_pass": "Open one exact neutral code-to-density and container-interoperability primitive with no style fitting.",
+    "format_or_pixel_mismatch": "Retain the guide tables as documentation-only evidence and close the machine-readable fixture route.",
+    "rights_or_source_failure": "Delete incomplete owned acquisition, retain only factual source metadata and continue another ready physical or identifying-data leaf."
+  }
+}
