@@ -1109,5 +1109,8 @@ paper exactly (`f0f5d6e8...17fbe` twice). Its one-roll, 4,620-pair,
 30-parameter design is retained as the strongest paired compact equation-family
 baseline, but no public runnable implementation, fitted values, complete rows,
 reproduction rights or full lineage exist. It closes before fitting or visual
-review. U6.P6Q audits Kodak Digital LAD as an official machine-readable neutral
-recorder/print calibration source. AO6 remains incumbent.
+review. U6.P6Q verifies Kodak Digital LAD guide semantics and archive inventory,
+but each archive contains a 51,019,264-byte member above the frozen 50,000,000
+limit. It closes before decompression (`85cf7b6a...b7c6a` twice). U6.P6R may use
+only the exact H-387 tables for a typed neutral code-to-density primitive. AO6
+remains incumbent.

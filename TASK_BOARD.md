@@ -679,4 +679,7 @@ published complete numeric rows. U6.P2Z then verifies the latest Emulating
 Emulsion paper and capture design but finds no reproducible public code,
 parameters or complete paired rows. Both close without fitting. U6.P6Q is the
 next ready leaf: audit Kodak Digital LAD as an official machine-readable
-recorder/print calibration anchor, not a stock-response target.
+recorder/print calibration anchor, not a stock-response target. P6Q confirms
+the guide semantics but closes the archive-image route because a 51,019,264-byte
+member exceeds the frozen 50,000,000-byte limit before decompression. P6R is
+ready: implement the H-387 guide-table-only typed code-to-density primitive.

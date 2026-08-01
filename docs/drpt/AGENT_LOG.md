@@ -9329,3 +9329,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain it as the current best paired compact equation/capture-design
   baseline, not transferable stock truth or complete film physics. Continue
   U6.P6Q with Kodak Digital LAD official machine-readable calibration assets.
+
+## 2026-08-02 - U6.P6Q closes before LAD archive decompression
+
+- Exact Kodak page, H-387, Cineon specification and two archives pass source,
+  hash, PDF, path and expansion checks. H-387 preserves separate negative/IP,
+  printing-density, Status-M and D-min semantics and the 445/445/445 LAD code.
+- Both archives contain a 51,019,264-byte member above the frozen 50,000,000
+  limit. Two exact reports (`85cf7b6a...b7c6a`) close before decompression,
+  image parsing, fitting or rendering; the limit was not rescued.
+- Continue P6R with only the exact H-387 tables and a typed neutral
+  code-to-density primitive. No stock-response or local-calibration claim opens.

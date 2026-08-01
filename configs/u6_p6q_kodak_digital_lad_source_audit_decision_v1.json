@@ -1,0 +1,43 @@
+{
+  "schema": "neuro_film.u6_p6q_kodak_digital_lad_source_audit_decision.v1",
+  "node": "U6.P6Q",
+  "status": "fail-closed-archive-member-exceeds-frozen-limit",
+  "contract": "configs/u6_p6q_kodak_digital_lad_source_audit_v1.json",
+  "contract_sha256": "e2b350cd86779da528a0355bec3cc7db184c62763730870a786fd1a9133611ca",
+  "software_commit": "14d93e23d491457429e73966d079896099c687f0",
+  "reports": [
+    {
+      "path": "outputs/u6_p6q_kodak_digital_lad_source_audit_v1/run_a/report.json",
+      "sha256": "85cf7b6aa311a341213079addfa90ac0e97e7a8e6189ac0458dd5db2534b7c6a"
+    },
+    {
+      "path": "outputs/u6_p6q_kodak_digital_lad_source_audit_v1/run_b/report.json",
+      "sha256": "85cf7b6aa311a341213079addfa90ac0e97e7a8e6189ac0458dd5db2534b7c6a"
+    }
+  ],
+  "replay": {
+    "two_reports_byte_identical": true,
+    "stable_evidence_id": "a47f3934e9f5c7e04a4ce18fece21bacee9b87c77629365e9cf0a84bee0c8294"
+  },
+  "source_facts": {
+    "official_assets_hash_size_and_parse_exact": true,
+    "guide_code_to_printing_density_equation_present": true,
+    "recommended_lad_code_rgb": [445, 445, 445],
+    "dpx_largest_member_bytes": 51019264,
+    "cineon_largest_member_bytes": 51019264,
+    "frozen_maximum_member_bytes": 50000000,
+    "archive_member_decompress_count": 0,
+    "pixel_decode_count": 0,
+    "operator_fit_count": 0,
+    "image_render_count": 0
+  },
+  "failed_gates": [
+    "all_archive_members_within_frozen_byte_limit",
+    "image_headers_and_geometry_recorded",
+    "machine_readable_lad_patch_found",
+    "dpx_cineon_pixel_equivalence"
+  ],
+  "decision": "close-machine-readable-image-route-without-threshold-rescue",
+  "next_ready_leaf": "U6.P6R Kodak H-387 guide-table-only exact code-to-density primitive",
+  "claim_ceiling": "Kodak motion-picture recorder/print neutral documentation and safe archive inventory only; not stock response, local calibration or product promotion"
+}
