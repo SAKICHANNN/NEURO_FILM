@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import numpy as np
 
+from src.eval.ao6_global_lut_distillation import _fold
+
 from src.roll2film.global_lut_distillation import (
     MonotoneRGBShaper,
     ShapedGlobalLUT,
@@ -69,3 +71,8 @@ def test_apply_rejects_out_of_domain_rgb() -> None:
         assert "[0,1]" in str(error)
     else:
         raise AssertionError("out-of-domain RGB accepted")
+
+
+def test_fold_assignment_is_stable_and_nonnegative() -> None:
+    assert _fold("camera-a", 3) == _fold("camera-a", 3)
+    assert 0 <= _fold("camera-b", 3) < 3
