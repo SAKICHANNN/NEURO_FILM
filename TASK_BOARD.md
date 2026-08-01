@@ -724,3 +724,10 @@ absolute CIEDE2000 error, but the fresh CAVE median improvement over RGB3 is
 only `64.74%`, below the frozen `75%` gate. Close this ideal-centre family; a
 successor requires measured LED/sensor responses or an independent film MSI
 cube, not band or threshold rescue.
+P6Y audits the newest controlled Ektachrome E100/Velvia 50 study's public NTNU
+deposit rather than inferring data availability from the paper. The exact 109-page
+thesis confirms the two-stock/two-light/multi-exposure/120-film/MSI-HSI design,
+but the record exposes only one thesis PDF and one administrative ZIP: zero
+machine-readable pixel payloads, zero repository links and no explicit pixel reuse
+rights. Two reports are byte-identical (`e66066f1...24fbd`). Close acquisition
+before pixel decode or fitting; reopen only for an exact rights-clear data release.

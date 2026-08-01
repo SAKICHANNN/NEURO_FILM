@@ -43,6 +43,13 @@
 > `64.74%`, below the frozen `75%` gate. Close the ideal-centre family without
 > band or threshold rescue; reopening requires measured LED/sensor response or
 > an independent film multispectral cube.
+>
+> U6.P6Y audits the public NTNU deposit behind the latest controlled
+> Ektachrome E100/Velvia 50 study. Two exact reports (`e66066f1...24fbd`)
+> preserve the high-value design facts but find only a 109-page thesis PDF and
+> an administrative ZIP: no machine-readable film-MSI or painting-HSI payload,
+> repository link, or explicit pixel reuse right. Close before pixel decode,
+> registration or fitting; continue a distinct eligible physical-film algorithm.
 
 > 2026-07-31: U6.P2M tests a bounded density-dependent interimage
 > development equation on synthetic known operators only. Two reports are

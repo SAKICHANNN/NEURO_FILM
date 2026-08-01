@@ -1144,3 +1144,9 @@ nonnegative XYZ compiler. The mechanism is strong and bounded, but formally
 closes: fresh CAVE median improvement over RGB3 is 64.74%, below the frozen
 75% gate, despite paper7/paper8 median Delta E00 of .739/.693 and exact replay.
 No band, threshold or same-pool rescue; measured LED/sensor evidence is required.
+U6.P6Y then audits the newest controlled Ektachrome E100/Velvia 50 study's
+public NTNU deposit. The thesis confirms the two-stock/two-light/multi-exposure
+120-film and MSI/HSI design, but the exact public inventory is only one thesis
+PDF plus one administrative ZIP. It has zero machine-readable pixel payloads,
+zero repository links and no explicit pixel reuse right. Two reports are exact
+(`e66066f1...24fbd`); close before pixel decode, registration or operator fitting.

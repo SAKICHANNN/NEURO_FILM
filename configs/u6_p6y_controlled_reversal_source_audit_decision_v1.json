@@ -1,0 +1,50 @@
+{
+  "schema": "neuro_film.u6_p6y_controlled_reversal_source_audit_decision.v1",
+  "node": "U6.P6Y",
+  "decision": "FAIL_CLOSED_PUBLIC_DEPOSIT_PAPERS_ONLY_NO_CONTROLLED_PIXEL_PAYLOADS",
+  "evidence": {
+    "contract": {
+      "path": "configs/u6_p6y_controlled_reversal_source_audit_v1.json",
+      "sha256": "16aad43d91e8a6713e2a33d8d50e2cd6f55f40b0657c9620c18a89beba2fe9d5"
+    },
+    "report": {
+      "path": "outputs/experiments/u6_p6y_controlled_reversal_source_audit_v1/report.json",
+      "sha256": "e66066f16f0c3e75372f47459d06e812f4389b3a9ff60e3622b95fffd5e24fbd",
+      "stable_evidence_id": "3261be2fb273578027d576fb5f0eb136a16321f17a1e07ec341407c2261bc02a"
+    },
+    "software_commit": "e654e26d",
+    "repeat_report_byte_exact": true
+  },
+  "results": {
+    "record_open_file_count": 2,
+    "record_open_file_mime_types": [
+      "application/pdf",
+      "application/zip"
+    ],
+    "thesis_bytes": 472364357,
+    "thesis_sha256": "e231da44fc8163559d8ae6d9b4f41cf825b4106a0316aeeb078efecdb43e8a68",
+    "thesis_pages": 109,
+    "support_zip_bytes": 2225944,
+    "support_zip_sha256": "9b150ca59274f8d0c9a01492f1d34347282d4b065ff5ea7500cc1b60aef970b7",
+    "support_zip_substantive_pdf_members": 2,
+    "separate_machine_readable_pixel_payloads": 0,
+    "separate_data_repository_links": 0,
+    "explicit_pixel_reuse_rights": false,
+    "pixel_decode_count": 0,
+    "operator_fit_count": 0,
+    "render_count": 0,
+    "visual_review_count": 0
+  },
+  "interpretation": [
+    "The thesis independently documents the high-value controlled design: Ektachrome E100 and Velvia 50, two mock paintings, halogen and LED illumination, multiple exposures, 120-format reversal film, ten-band multispectral film scans and hyperspectral painting ground truth.",
+    "The public NTNU record exposes exactly one thesis PDF and one administrative attachment ZIP. The ZIP has two substantive declaration PDFs plus macOS metadata; neither the record nor the thesis links a separately downloadable film-MSI, painting-HSI, code or machine-readable data payload.",
+    "The retained deposit files carry only the Norwegian Copyright Act general-terms marker. Open download is not treated as explicit pixel redistribution or training permission. The thesis text also does not independently name E-6, so the process label is not backfilled from domain expectation.",
+    "The latest controlled study remains valuable literature and future acquisition guidance, but this public deposit cannot open pixel integrity, registration or operator fitting. No threshold, query expansion, PDF-figure extraction or rights inference is allowed as rescue."
+  ],
+  "next_leaf": "Continue a distinct physical-film explicit-operator leaf using already eligible measured evidence. Reopen this route only if the authors or repository publish exact machine-readable film-MSI and painting-HSI payloads with explicit reuse rights.",
+  "pixel_integrity_audit_allowed": false,
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "papers-only controlled reversal-film design evidence and public-deposit data gap; no retained controlled pixels, stock response, scanner calibration, digital-to-film operator or product claim"
+}

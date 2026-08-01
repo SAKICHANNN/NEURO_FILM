@@ -9451,3 +9451,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close this abstraction without band, fit or threshold rescue. Reopen only
   with measured LED/sensor response or an independent film MSI cube; no scanner,
   stock, process, digital-to-film or product calibration claim opens.
+
+## 2026-08-02 - U6.P6Y closes the controlled reversal public deposit
+
+- Audited the exact NTNU record, 472,364,357-byte/109-page thesis and
+  2,225,944-byte support ZIP behind the latest controlled Ektachrome E100 and
+  Velvia 50 colour-correction study. Two complete reports are byte-identical
+  (`e66066f1...24fbd`; stable `3261be2f...c02a`).
+- The thesis preserves a valuable two-stock/two-painting/two-light/multiple-
+  exposure, 120-film, 10-band MSI and painting-HSI design. The public inventory,
+  however, contains only the thesis and two administrative PDFs plus macOS
+  metadata: no machine-readable pixels, data repository link or explicit pixel
+  reuse right. E-6 is not named in the thesis and remains unfilled.
+- Close acquisition before pixel decode, registration, fitting or visual review.
+  Retain the 2026 study as method/baseline evidence and move to a distinct
+  physical-film algorithm using already eligible measured inputs.
