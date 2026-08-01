@@ -8996,3 +8996,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close fit/selector rescue. Next apply the existing BJ2 intrinsic strict-
   interior 4^3 residual LUT unchanged as a capacity baseline. Confirmation,
   film and product claims remain closed.
+
+## 2026-08-01 - U5.R2BQ6 passes intrinsically bounded LUT capacity
+
+- Two formal reports and both 381-case LUT banks are byte-identical. The
+  unchanged BJ2 strict-interior 4^3 representation passes every frozen gate.
+- Self-fit gain is 49.78%/52.26% with 78.19%/79.41% style; group-held Oracle
+  gain is 30.06%/34.25% with 76.45%/82.65% style. New boundary and cube rates
+  remain zero.
+- Open only BQ7 source-only factorized LUT inference versus global and hard
+  retrieval controls. Confirmation, film, preference and product claims stay
+  closed.

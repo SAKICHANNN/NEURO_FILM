@@ -631,3 +631,9 @@ Oracle is strong (24.46%/31.44% over global), but Jacobian safety collapses
 median dose to .247/.300 and self-fit style to 27.59%/32.14%. More curves are
 not enough without intrinsic regularity. Test the mature strict-interior 4^3
 residual LUT next; no projection-curve selector or confirmation opens.
+
+U5.R2BQ6 passes the unchanged strict-interior 4^3 LUT case bank: self-fit gain
+is 49.78%/52.26% with 78.19%/79.41% style, and group-held Oracle gain is
+30.06%/34.25% with 76.45%/82.65% style. Boundary/cube rates are zero. Operator
+capacity is sufficient; BQ7 now tests source-only factorized LUT inference
+against global and hard-retrieval controls. Confirmation stays closed.

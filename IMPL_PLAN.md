@@ -2549,3 +2549,8 @@ python_coreml_stable_diffusion  # CoreML 转换
 > Next reuse BJ2's intrinsic strict-interior 4^3 residual LUT unchanged; it must
 > pass absolute target-style and case-bank Oracle gates before prediction.
 >
+> BQ6 passes that capacity gate repeat-exactly: self-fit style is 78.19%/79.41%,
+> group-held Oracle value is 30.06%/34.25% over global, and boundary/cube rates
+> are zero. BQ7 may now test a low-capacity source-only factorized LUT predictor
+> against global and hard retrieval; confirmation and product remain closed.
+>

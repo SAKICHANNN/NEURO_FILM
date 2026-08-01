@@ -1,0 +1,41 @@
+{
+  "schema": "neuro-film.u5-r2bq6-fivek-strict-interior-lut-casebank-decision.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BQ6",
+  "decision": "pass_strict_interior_lut_capacity_open_source_only_routing",
+  "implementation_commit": "b3dc6a8764c2da6b6050073b983cd50b4d9fee46",
+  "reports": {
+    "run_a": "outputs/u5_r2bq6_fivek_strict_interior_lut_casebank_v1/run_a/report.json",
+    "run_b": "outputs/u5_r2bq6_fivek_strict_interior_lut_casebank_v1/run_b/report.json",
+    "sha256": "04e410db3ce94870b027e1e13b19f2342c1fccc6d016890e780eded2676d441d",
+    "byte_identical": true,
+    "stable_evidence_id": "3b86b9d65d163295975f93ef5f1f0c22c61ed4beec4ccd2801af7769e628f072",
+    "automatic_pass": true,
+    "confirmation_loaded": false
+  },
+  "aligned_expert": {
+    "self_fit_mean_improvement_over_identity": 0.49775574566963066,
+    "self_fit_median_style_retention": 0.7818704641883238,
+    "group_oracle_mean_improvement_over_global": 0.3005671988174374,
+    "group_oracle_median_style_retention": 0.7645321226545023,
+    "style_eligible_case_fraction": 1.0,
+    "style_constrained_oracle_error_ratio": 1.02620534711755,
+    "maximum_new_boundary_fraction": 0.0,
+    "maximum_out_of_cube_fraction": 0.0
+  },
+  "filtered": {
+    "self_fit_mean_improvement_over_identity": 0.5225662008172184,
+    "self_fit_median_style_retention": 0.7941005935630666,
+    "group_oracle_mean_improvement_over_global": 0.342455835041243,
+    "group_oracle_median_style_retention": 0.8264567902053329,
+    "style_eligible_case_fraction": 1.0,
+    "style_constrained_oracle_error_ratio": 1.0239546966723616,
+    "maximum_new_boundary_fraction": 0.0,
+    "maximum_out_of_cube_fraction": 0.0
+  },
+  "diagnosis": "The intrinsically bounded 4x4x4 residual LUT is the first BQ per-case representation to pass both absolute style and group-held Oracle gates without safety-dose collapse. Operator capacity is sufficient; source-only selection or prediction is now the active bottleneck.",
+  "next_leaf": "compare a low-capacity source-only factorized LUT predictor against the frozen global LUT and hard case-retrieval baselines with camera-group-held validation and OOD fallback",
+  "source_only_routing_research_allowed": true,
+  "confirmation_opened": false,
+  "product_integration_opened": false,
+  "claim_ceiling": "repeat-exact development-only explicit-LUT capacity and group-held evaluator-Oracle evidence on FiveK digital-retouch controls; no source-only routing success, confirmation, film, preference or product claim"
+}
