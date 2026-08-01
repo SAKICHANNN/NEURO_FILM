@@ -1,0 +1,71 @@
+{
+  "schema": "neuro_film.u6_p6u_analytic_print_inverse_contract.v1",
+  "experiment_id": "u6.p6u-analytic-print-inverse-v1",
+  "node": "ULT > U6 > U6.P6 > U6.P6U",
+  "date_frozen": "2026-08-02",
+  "parents": {
+    "p6t_contract": {
+      "path": "configs/u6_p6t_digital_lad_print_sensitivity_v1.json",
+      "sha256": "e1fdd9304b42dc7345c0160f9f196c911df6de8e5754322ee34ed75fca21e985"
+    },
+    "p6t_evidence": {
+      "path": "docs/evidence/U6_P6T_DIGITAL_LAD_PRINT_SENSITIVITY_RESULT.json",
+      "sha256": "f571ef75795c3eaec0fa1bc4eb05535ac6fd2632edc9f20179ece617fc60b787",
+      "required_decision": "retain_analytic_print_sensitivity"
+    },
+    "p6t_report": {
+      "path": "outputs/experiments/u6_p6t_digital_lad_print_sensitivity_v1/report_a.json",
+      "sha256": "9bb08b2ab777c056f09dd6548d1f94314abc5e17f981fe2ae9e72ac3a6d1bd57"
+    }
+  },
+  "question": "Can the retained explicit density-to-print interpretation be inverted analytically, without optimization or clipping, across a three-dimensional interior density domain while preserving LAD anchors and local Jacobian invertibility?",
+  "mechanism": {
+    "inverse_order": [
+      "denormalize raw print reflectance",
+      "invert base-10 paper optical density",
+      "invert bounded logistic paper characteristic",
+      "invert log2 print exposure",
+      "invert print matrix",
+      "invert base-10 negative transmission",
+      "invert dye absorption matrix"
+    ],
+    "optimization_iterations": 0,
+    "clipping_allowed": false,
+    "grid_fractions": [0.05, 0.2, 0.35, 0.5, 0.65, 0.8, 0.95],
+    "partition_sizes": [91, 137, 115],
+    "lad_code": 445
+  },
+  "automatic_gates": {
+    "maximum_density_inverse_error": 1e-10,
+    "maximum_forward_replay_error": 1e-12,
+    "maximum_lad_inverse_error": 1e-10,
+    "maximum_jacobian_inverse_identity_error": 1e-10,
+    "minimum_absolute_forward_jacobian_determinant": 1e-06,
+    "maximum_forward_jacobian_condition_number": 10000.0,
+    "all_inverse_intermediates_physical": true,
+    "invalid_or_unreachable_output_rejected": true,
+    "partition_exact": true,
+    "serialization_byte_exact": true,
+    "optimization_iterations_zero": true,
+    "rgb_image_transform_count_zero": true
+  },
+  "allowed_after_pass": [
+    "retain the analytic inverse as a deterministic physical profile-compiler and diagnostic primitive",
+    "use exact forward/inverse consistency in later bounded parameter fitting or runtime conformance"
+  ],
+  "forbidden": [
+    "use iterative optimization, clipping or silent projection to manufacture invertibility",
+    "call the generic print witness a calibrated stock, process, printer or scanner",
+    "infer RGB stock response from neutral Digital LAD",
+    "photographic fitting, visual promotion or product integration"
+  ],
+  "branch_rule": {
+    "pass": "Retain the analytic inverse and open one separately frozen compiled-profile or bounded fitting experiment.",
+    "fail": "Close the inverse without grid, tolerance, matrix, clipping or numerical-optimizer rescue."
+  },
+  "outputs": {
+    "report_a": "outputs/experiments/u6_p6u_analytic_print_inverse_v1/report_a.json",
+    "report_b": "outputs/experiments/u6_p6u_analytic_print_inverse_v1/report_b.json"
+  },
+  "claim_ceiling": "Analytic reversibility and conditioning evidence for one generic explicit density-to-print interpretation; not measured film response, printer/scanner calibration, photographic quality or product promotion."
+}
