@@ -17,10 +17,12 @@ from src.film_physics.profile_consumer import (
     render_working_image_row_streamed,
 )
 from src.film_physics.display_look import (
+    build_display_look_stages_from_density_context,
     build_density_source_context_inplace_packed_lab,
     build_density_source_context_row_staged,
     build_source_context_display_look,
     build_source_context_display_look_row_streamed,
+    retarget_safe_lab_source_context,
 )
 from src.eval.density_witness_frontier import (
     encoded_srgb_to_linear,
@@ -167,6 +169,53 @@ def test_display_look_base_and_residual_row_stream_are_float_exact() -> None:
     )(input_values)
     assert np.array_equal(reference, streamed)
     assert np.array_equal(reference, precomputed)
+
+
+def test_explicit_density_context_preserves_existing_full_frame_output() -> None:
+    config = json.loads(P8B.read_text(encoding="utf-8"))
+    artifact = compile_standalone_profile_artifact(
+        root=ROOT, config=config
+    )
+    payload = artifact["component_payloads"][
+        "ao6-source-context-display-look"
+    ]
+    source = np.random.default_rng(2026080101).random((37, 41, 3))
+    query = np.random.default_rng(2026080102).random((37, 41, 3))
+    reference = build_source_context_display_look(payload, source)(query)
+    context = build_density_source_context_row_staged(
+        payload, source, tile_rows=11
+    )
+    apply_base, apply_residual = build_display_look_stages_from_density_context(
+        payload, context, application_shape=query.shape
+    )
+    assert np.array_equal(reference, apply_residual(apply_base(query)))
+
+
+def test_explicit_density_context_can_be_hard_selected_for_new_geometry() -> None:
+    config = json.loads(P8B.read_text(encoding="utf-8"))
+    artifact = compile_standalone_profile_artifact(
+        root=ROOT, config=config
+    )
+    payload = artifact["component_payloads"][
+        "ao6-source-context-display-look"
+    ]
+    case_source = np.random.default_rng(2026080103).random((29, 31, 3))
+    query = np.random.default_rng(2026080104).random((17, 19, 3))
+    context = build_density_source_context_row_staged(
+        payload, case_source, tile_rows=7
+    )
+    rebound = retarget_safe_lab_source_context(context, query.shape)
+    assert rebound.lab_mean == context.lab_mean
+    assert rebound.lab_std == context.lab_std
+    assert rebound.source_shape == query.shape
+    assert rebound.pixel_count == query.shape[0] * query.shape[1]
+    apply_base, apply_residual = build_display_look_stages_from_density_context(
+        payload, context, application_shape=query.shape
+    )
+    output = apply_residual(apply_base(query))
+    assert output.shape == query.shape
+    assert np.all(np.isfinite(output))
+    assert np.all((output >= 0.0) & (output <= 1.0))
 
 
 def test_density_source_context_row_cast_is_float_exact() -> None:

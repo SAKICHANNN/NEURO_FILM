@@ -187,13 +187,8 @@ def build_source_context_display_look_stages(
 
     validate_display_look_payload(payload)
     base = payload["base"]
-    anchor = payload["anchor"]
-    residual = payload["residual"]
     density_operator = DensityDomainNegativePrintOperator.from_dict(
         base["density_operator"]
-    )
-    residual_operator = PositiveFilmResponseOperator.from_dict(
-        residual["operator"]
     )
 
     def apply_density(encoded: np.ndarray) -> np.ndarray:
@@ -207,11 +202,83 @@ def build_source_context_display_look_stages(
         )
 
     source_value = np.asarray(source, dtype=np.float32)
-    source_shape = source_value.shape
     source_context = build_safe_lab_source_context(
         apply_density(source_value)
     )
     del source_value
+
+    return build_display_look_stages_from_density_context(
+        payload,
+        source_context,
+        application_shape=source_context.source_shape,
+    )
+
+
+def retarget_safe_lab_source_context(
+    source_context: SafeLabSourceContext,
+    application_shape: tuple[int, int, int],
+) -> SafeLabSourceContext:
+    """Bind explicit Lab statistics to a different full-frame geometry.
+
+    The Lab mean/std remain the complete case identity.  Only the structural
+    full-frame contract is rebound, so a hard-selected case can be evaluated
+    on a query image without pretending the query supplied those statistics.
+    """
+
+    validate_safe_lab_source_context(source_context)
+    shape = tuple(int(size) for size in application_shape)
+    if (
+        len(shape) != 3
+        or shape[-1] != 3
+        or shape[0] <= 0
+        or shape[1] <= 0
+    ):
+        raise ValueError("application_shape must be non-empty HxWx3")
+    rebound = SafeLabSourceContext(
+        source_shape=shape,
+        pixel_count=int(shape[0] * shape[1]),
+        lab_mean=source_context.lab_mean,
+        lab_std=source_context.lab_std,
+    )
+    validate_safe_lab_source_context(rebound)
+    return rebound
+
+
+def build_display_look_stages_from_density_context(
+    payload: dict[str, Any],
+    source_context: SafeLabSourceContext,
+    *,
+    application_shape: tuple[int, int, int],
+) -> tuple[
+    Callable[[np.ndarray], np.ndarray],
+    Callable[[np.ndarray], np.ndarray],
+]:
+    """Build exact AO6 stages from one explicit, hard-selected case context."""
+
+    validate_display_look_payload(payload)
+    base = payload["base"]
+    anchor = payload["anchor"]
+    residual = payload["residual"]
+    density_operator = DensityDomainNegativePrintOperator.from_dict(
+        base["density_operator"]
+    )
+    residual_operator = PositiveFilmResponseOperator.from_dict(
+        residual["operator"]
+    )
+    rebound_context = retarget_safe_lab_source_context(
+        source_context, application_shape
+    )
+    output_shape = rebound_context.source_shape
+
+    def apply_density(encoded: np.ndarray) -> np.ndarray:
+        linear = encoded_srgb_to_linear(
+            np.asarray(encoded, dtype=np.float64)
+        )
+        return linear_srgb_to_encoded(
+            density_operator.apply(
+                linear, strength=float(base["density_strength"])
+            )
+        )
 
     def apply_base(encoded: np.ndarray) -> np.ndarray:
         encoded_value = np.asarray(encoded, dtype=np.float32)
@@ -226,7 +293,7 @@ def build_source_context_display_look_stages(
             True,
             gamut_mode=str(anchor["gamut_mode"]),
             output_margin=0,
-            source_context=source_context,
+            source_context=rebound_context,
         )
         base_output = apply_output_margin(
             np.asarray(base_output, dtype=np.float64),
@@ -253,7 +320,7 @@ def build_source_context_display_look_stages(
         )
         output = linear_srgb_to_encoded(result.output)
         if (
-            output.shape != source_shape
+            output.shape != output_shape
             or not np.all(np.isfinite(output))
             or np.any(output < 0.0)
             or np.any(output > 1.0)
@@ -630,12 +697,14 @@ def build_density_source_context_inplace_packed_lab(
 
 __all__ = [
     "DISPLAY_LOOK_SCHEMA",
+    "build_display_look_stages_from_density_context",
     "build_source_context_display_look",
     "build_source_context_display_look_row_stages",
     "build_source_context_display_look_stages",
     "build_source_context_display_look_row_streamed",
     "build_density_source_context_row_staged",
     "build_density_source_context_inplace_packed_lab",
+    "retarget_safe_lab_source_context",
     "make_display_look_payload",
     "validate_display_look_payload",
 ]
