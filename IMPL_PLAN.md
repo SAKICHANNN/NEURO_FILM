@@ -188,6 +188,14 @@ all three blinded value rounds. Close runtime/product use without increasing
 the cap or changing P1/P3D; keep only the response-bound primitive as
 confirmed generic numerical infrastructure.
 
+U6.P3P tests a distinct positive-spread topology synthetically before any
+photograph: `max(blur(E)-E,0)` preserves constants and highlight centres while
+forming only an exterior red-weighted halo. All structural gates pass and two
+reports are exact, but unchanged P3D energy reaches only `.004091`
+scan-transmittance change against the frozen `.01` visibility floor. The
+response cap is inactive. Close without amplifying physical fractions and
+return to a mechanism with independent visible value.
+
 U6.P5F passes its distinct cross-layer interimage adjacency synthetic audit. P5C
 remains the independent-channel bounded path and AD1 remains a failed external
 spatial-DIR ablation. Two exact reports show constant/neutral identity,

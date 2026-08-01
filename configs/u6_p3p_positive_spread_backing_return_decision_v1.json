@@ -1,0 +1,37 @@
+{
+  "schema": "neuro_film.u6_p3p_positive_spread_backing_return_decision.v1",
+  "node": "U6.P3P",
+  "decision": "close_positive_spread_as_below_visible_response_floor",
+  "software_commit": "3b6681d9",
+  "contract": {
+    "path": "configs/u6_p3p_positive_spread_backing_return_v1.json",
+    "sha256": "c2c369f265e2a498845df3d216ad59f11e605a7d7b744bd54fa2a9fdd9eae42d"
+  },
+  "formal_report": {
+    "path": "outputs/u6_p3p_positive_spread_backing_return_v1/run_a/report.json",
+    "sha256": "c9a890f128b90b359174d24a85d87b734f54fd8ba24faf12680c8103d37c0037",
+    "repeat_sha256_exact": true,
+    "stable_evidence_id": "21febb41ef7d01904f2b0d2d28379c9e81ff4aad0ae6407f8af67d4eab7522a5"
+  },
+  "automatic_result": {
+    "passed": false,
+    "constant_maximum_residual": 0.0,
+    "impulse_center_maximum_increment": 0.0,
+    "impulse_halo_energy": 0.35377457231790554,
+    "far_red_over_blue_ratio": 9.222246414345337,
+    "edge_dark_side_maximum_increment": 0.12195492956692998,
+    "edge_bright_side_maximum_increment": 0.0,
+    "bounded_maximum_transmittance_delta": 0.004090952977520046,
+    "out_of_domain_fraction": 0.0
+  },
+  "failed_gate": "bounded maximum transmittance delta 0.00409 is below the frozen 0.01 visible-response floor",
+  "interpretation": "The positive exterior-lobe mechanism is numerically clean and spectrally plausible, but unchanged P3D return energy is intrinsically too weak to meet the synthetic visibility floor. The safety cap is inactive, so raising it cannot repair this result.",
+  "forbidden_followups": [
+    "amplify P3D return fractions after observing the failure",
+    "lower the frozen visible-response floor",
+    "present structural cleanliness as visible product value",
+    "open photographic review or runtime integration"
+  ],
+  "next_direction": "retain the primitive only as negative mechanism evidence; return to a mechanism-distinct colour or physical algorithm with independent value",
+  "claim_ceiling": "negative synthetic value evidence for a generic constant-preserving highlight-spread approximation; no measured film, stock, process, scanner, calibration, authenticity, preference or product claim"
+}

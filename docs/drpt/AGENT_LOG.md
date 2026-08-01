@@ -8605,3 +8605,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   the frozen `1.05x` maximum, and the shuffled-hard advantage is `4.8185%`
   versus the frozen 5% minimum.  No visual review, score addition or threshold
   rescue opens.  Close this source-conditioned ML family and retain global.
+
+## 2026-08-01 - U6.P3P closes clean but sub-visible positive spread
+
+- Implemented a constant-preserving positive exterior-lobe backing-return
+  compiler using unchanged P3D radii/fractions/coupling and the existing
+  shared sensitometry response bound. Replaced slow direct large-kernel
+  convolution with symmetric-pad FFT verified against a direct oracle.
+- Two reports are byte-identical at `c9a890f1...c0037` (stable ID
+  `21febb41...522a5`). Constants and impulse centres are exact, the edge adds
+  only on its dark side, far red/blue is `9.222x`, and domain failures are zero.
+- Automatic result fails only value: maximum transmittance change `.004091`
+  is below the frozen `.01` floor, while the `.02` safety cap is inactive.
+  Close without fraction amplification, threshold rescue or photographic use.
