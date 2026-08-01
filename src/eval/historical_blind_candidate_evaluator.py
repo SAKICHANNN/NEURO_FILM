@@ -140,38 +140,49 @@ def _image_stats(encoded: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarra
 def _utility_features(
     source: np.ndarray, output: np.ndarray
 ) -> tuple[np.ndarray, tuple[str, ...], int]:
-    if source.shape != output.shape:
-        raise HistoricalBlindCandidateEvaluatorError("source/output shape mismatch")
     source_stats, source_lab, source_gradient = _image_stats(source)
     output_stats, output_lab, output_gradient = _image_stats(output)
     delta_stats = output_stats - source_stats
-    delta_e = np.linalg.norm(
-        output_lab.astype(np.float64) - source_lab.astype(np.float64), axis=-1
-    ) / 100.0
     epsilon = 1.0 / 65535.0
-    source_boundary = np.any((source <= epsilon) | (source >= 1.0 - epsilon), axis=-1)
-    output_boundary = np.any((output <= epsilon) | (output >= 1.0 - epsilon), axis=-1)
-    gradient_ratio = float(
-        np.mean(output_gradient) / max(np.mean(source_gradient), 1e-8)
+    source_boundary_fraction = float(
+        np.mean(np.any((source <= epsilon) | (source >= 1.0 - epsilon), axis=-1))
     )
+    output_boundary_fraction = float(
+        np.mean(np.any((output <= epsilon) | (output >= 1.0 - epsilon), axis=-1))
+    )
+    # Historical sources and renders are not guaranteed to share pixel geometry:
+    # BH1, for example, compares a bounded display preview with the full RAW
+    # WorkingImage render.  Keep this evaluator distributional and never invent
+    # pixel correspondence through resizing or orientation guessing.
+    lab_mean_delta = np.mean(output_lab.astype(np.float64), axis=(0, 1)) - np.mean(
+        source_lab.astype(np.float64), axis=(0, 1)
+    )
+    source_gradient_mean = float(np.mean(source_gradient))
+    output_gradient_mean = float(np.mean(output_gradient))
+    if source_gradient_mean <= 1e-8 and output_gradient_mean <= 1e-8:
+        gradient_ratio_delta = 0.0
+    else:
+        gradient_ratio_delta = (
+            output_gradient_mean / max(source_gradient_mean, 1e-8) - 1.0
+        )
     change = np.asarray(
         [
-            np.mean(delta_e),
-            np.quantile(delta_e, 0.90),
-            np.quantile(delta_e, 0.99),
-            np.mean(output_boundary & ~source_boundary),
-            np.mean(output_boundary),
-            gradient_ratio,
+            np.linalg.norm(lab_mean_delta) / 100.0,
+            np.mean(np.abs(delta_stats[[6, 7, 8, 9, 10, 11, 12]])),
+            np.mean(np.abs(delta_stats[[15, 16, 17, 18]])),
+            output_boundary_fraction - source_boundary_fraction,
+            output_boundary_fraction,
+            gradient_ratio_delta,
         ],
         dtype=np.float64,
     )
     change_names = (
-        "delta_e_mean",
-        "delta_e_p90",
-        "delta_e_p99",
-        "new_boundary_fraction",
+        "delta_lab_mean_distance",
+        "delta_luma_quantile_l1",
+        "delta_chroma_summary_l1",
+        "delta_boundary_fraction",
         "output_boundary_fraction",
-        "gradient_ratio",
+        "delta_gradient_ratio",
     )
     base = np.concatenate([output_stats, delta_stats, change])
     base_names = tuple(f"output_{name}" for name in _STAT_NAMES) + tuple(
@@ -195,8 +206,8 @@ def _utility_features(
         "delta_luma_std",
         "delta_chroma_mean",
         "delta_ab_mean_a",
-        "delta_e_mean",
-        "gradient_ratio",
+        "delta_lab_mean_distance",
+        "delta_gradient_ratio",
     )
     interactions = np.outer(source_stats[list(source_indices)], signal).reshape(-1)
     interaction_names = tuple(

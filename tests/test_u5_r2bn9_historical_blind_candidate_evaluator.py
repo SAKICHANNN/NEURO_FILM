@@ -21,12 +21,15 @@ def test_utility_feature_schema_and_identity_delta() -> None:
     assert np.max(np.abs(features[delta_names])) == pytest.approx(0.0, abs=1e-12)
 
 
-def test_utility_features_reject_shape_mismatch() -> None:
-    with pytest.raises(HistoricalBlindCandidateEvaluatorError, match="shape mismatch"):
-        _utility_features(
-            np.zeros((8, 8, 3), dtype=np.float32),
-            np.zeros((7, 8, 3), dtype=np.float32),
-        )
+def test_utility_features_are_distributional_across_shape_mismatch() -> None:
+    source = np.full((8, 8, 3), 0.25, dtype=np.float32)
+    output = np.full((7, 9, 3), 0.25, dtype=np.float32)
+    features, names, base = _utility_features(source, output)
+    assert features.shape == (88,)
+    assert len(names) == 88
+    assert base == 52
+    delta_names = [index for index, name in enumerate(names) if name.startswith("delta_")]
+    assert np.max(np.abs(features[delta_names])) == pytest.approx(0.0, abs=1e-12)
 
 
 def test_source_group_cross_validation_can_learn_interaction() -> None:

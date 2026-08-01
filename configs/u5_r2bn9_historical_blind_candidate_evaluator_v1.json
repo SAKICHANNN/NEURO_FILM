@@ -49,7 +49,7 @@
     },
     {
       "experiment_ids": [
-        "U5.R2BL8",
+        "u5.r2bl8-filmmatch-strict-interior-fresh-confirmation-v1",
         "u5.r2bl11-filmmatch-luma-preserving-chroma-transplant-v1",
         "u5.r2bl13-ao6-nonbasic-chroma-emphasis-v1"
       ],
@@ -134,6 +134,8 @@
     "experiment_identity_used": false,
     "camera_identity_used": false,
     "source_and_candidate_pixels_used_only_for_statistics": true,
+    "pixel_correspondence_assumed": false,
+    "distributional_features_only": true,
     "final_rgb_prediction": false
   },
   "model": {
