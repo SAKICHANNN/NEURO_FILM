@@ -8914,3 +8914,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   ORB matches. Neither is a duplicate.
 - BQ0S2 remains failed. No target pixels were opened. Open only BQ1v2's frozen
   evaluator Oracle; router, film, stock, calibration and product remain closed.
+
+## 2026-08-01 - U5.R2BQ1V2 establishes large case-bank Oracle value
+
+- Two complete reports are byte-identical at `bb190d1f...40ae`, binding 381
+  development cases and 128 whole-camera confirmation rows at `7eb660fe`.
+- Aligned/filtered gains over pooled global are `33.39%/38.66%`; gains over a
+  continuous global-strength Oracle are `29.67%/33.43%`. Both pass identity,
+  random-case, tail, bootstrap, support and concentration gates.
+- The Oracle selects 87 different cases with maximum share `4.69%/5.47%`, so
+  this is not one average direction or a few dominant presets.
+- Open development-only source retrieval baselines and freeze their selection
+  before final confirmation. No deployable router or film/product claim yet.

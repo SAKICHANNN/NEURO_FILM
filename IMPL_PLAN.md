@@ -2504,3 +2504,10 @@ python_coreml_stable_diffusion  # CoreML 转换
 > next implement a new source-only multi-evidence duplicate contract, then
 > re-split before any operator sees confirmation targets.
 >
+> BQ0S3 separately rejects both source-only dHash candidates, leaving BQ0S2's
+> failure intact. BQ1v2 then establishes large off-diagonal evaluator-Oracle
+> value for both aligned and filtered targets, with 87 selected cases and
+> strong gains beyond global, strength and random-case controls. Freeze this
+> bank and test source-only hard retrieval with whole-camera development CV;
+> dense mixing and learned final RGB remain forbidden.
+>

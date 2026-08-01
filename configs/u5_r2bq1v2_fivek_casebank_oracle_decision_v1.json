@@ -1,0 +1,43 @@
+{
+  "schema": "neuro-film.u5-r2bq1v2-fivek-casebank-oracle-decision.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BQ1V2",
+  "decision": "freeze_case_bank_and_open_source_only_router_baselines",
+  "contract_commit": "7eb660fe86a89a904521e813bed9988b6fd0ae92",
+  "reports": {
+    "run_a": "outputs/u5_r2bq1v2_fivek_casebank_oracle_v1/run_a/report.json",
+    "run_b": "outputs/u5_r2bq1v2_fivek_casebank_oracle_v1/run_b/report.json",
+    "sha256": "bb190d1f1ce60cded40c9c56507ababc7885a4de8b85be1e4c995c8c309840ae",
+    "byte_identical": true,
+    "stable_evidence_id": "10ba20ae8b72f7e4a27c203060bf0ea0b3e9d231bc59478c70c41bac505bb60c",
+    "automatic_pass": true
+  },
+  "aligned_expert": {
+    "mean_improvement_over_identity": 0.4180033422432461,
+    "mean_improvement_over_global": 0.33388602888776353,
+    "mean_improvement_over_strength_oracle": 0.2967224754498637,
+    "mean_improvement_over_random_case": 0.40941529034053675,
+    "win_fraction_over_global": 1.0,
+    "p95_ratio_to_global": 0.5910217290669202,
+    "worst_ratio_to_global": 0.4855509245320413,
+    "group_bootstrap_ci95": [0.32808144757616253, 0.35470619863533354],
+    "distinct_selected_cases": 87,
+    "maximum_selected_case_share": 0.046875
+  },
+  "filtered": {
+    "mean_improvement_over_identity": 0.47266424442565724,
+    "mean_improvement_over_global": 0.3866250684460294,
+    "mean_improvement_over_strength_oracle": 0.3343039044605715,
+    "mean_improvement_over_random_case": 0.4721737455217316,
+    "win_fraction_over_global": 1.0,
+    "p95_ratio_to_global": 0.5395175541258016,
+    "worst_ratio_to_global": 0.44408523818272594,
+    "group_bootstrap_ci95": [0.3717522545453527, 0.42383390413913463],
+    "distinct_selected_cases": 87,
+    "maximum_selected_case_share": 0.0546875
+  },
+  "router_training_allowed": true,
+  "router_boundary": "development-only whole-camera cross-validation; final confirmation evaluation is frozen before source-only router results are inspected",
+  "dense_blending_allowed": false,
+  "learned_final_rgb_allowed": false,
+  "claim_ceiling": "target-aware evaluator-Oracle evidence that multiple explicit digital-retouch case directions exist; not source-only selection, film, stock, calibration, preference or product evidence"
+}

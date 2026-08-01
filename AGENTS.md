@@ -396,6 +396,14 @@ single-hash metric defect without overriding the result. Only a separately
 versioned source-only multi-evidence duplicate audit may reopen a new split;
 no threshold change, row substitution, operator, film, stock or product claim.
 
+U5.R2BQ0S3 rejects both low-information dHash candidates twice using a frozen
+source-only pHash/layout plus ORB/RANSAC protocol. BQ1v2 then passes its
+off-diagonal evaluator Oracle: aligned/filtered case-bank gains over pooled
+global are `33.39%/38.66%`, gains beyond global strength are `29.67%/33.43%`,
+and 87 cases are selected with at most `5.47%` share. This opens only
+development-cross-validated source-only hard retrieval; it is not a selector,
+film/stock response, calibration, preference or product result.
+
 ## 12. Update protocol
 
 Update this file when:

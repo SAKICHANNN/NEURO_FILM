@@ -588,3 +588,10 @@ one prior-pool and one internal `dHash<=4` candidate exist. Both are visibly
 unrelated low-information scenes, so the next ready leaf is a separately
 versioned source-only multi-evidence duplicate adjudicator. BQ1 v1 operator
 fitting, row substitution and threshold weakening remain forbidden.
+
+U5.R2BQ0S3 rejects both dHash candidates using frozen source-only pHash/layout
+and ORB/RANSAC evidence. BQ1v2 then proves strong evaluator-Oracle value on
+128 target-hidden whole-camera rows: 33.39%/38.66% gains over pooled global and
+29.67%/33.43% beyond global strength for aligned/filtered targets, with 87
+distinct cases. Open source-only hard retrieval on development cross-validation;
+no selector or product claim exists yet.
