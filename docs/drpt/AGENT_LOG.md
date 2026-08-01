@@ -8573,3 +8573,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   fails fresh preference, not another bland/basic model. Do not rescue it with
   strength or capacity. A future hard-fallback selector must first prove
   source-only value under nested development and then pass a new population.
+
+## 2026-08-01 - U5.R2BL10-BL13 retain AO6 after four distinct challenges
+
+- BL10's frozen DINO hard Top-1 rule adds only three choices and one correct
+  source over the global arm, tying the shuffled P95 control; retrieval closes.
+- BL11 keeps AO6 lightness and transplants BL5 chroma. It is boundary-clean but
+  wins only 3/17, confirming that BL5's chroma direction weakens AO6's preferred
+  cyan-magenta separation.
+- BL12 pins the official SA-LUT repository/checkpoint. Direct reproduction
+  closes before approximation: published CPU/CUDA LUT indexing is not operator
+  equivalent and the 512px dense context attention alone is 16GiB float32.
+- BL13 analytically amplifies only AO6's non-basic Lab chroma residual by the
+  frozen `.25`. Two 17-output runs are byte-identical (`ee381b46...0641`):
+  style gain `1.2186x`, AO6 difference `3.1121` DeltaE76, residual retention
+  `.9970`, P95 limited fraction `.05836`, zero new boundary and zero confirmed
+  severe artifact. Mapping-sealed choices are `13/8/9`, so only 1/3 rounds
+  clears the frozen 10/17 gate. Decision `f5eff796...3c63eb` closes BL13 and
+  retains AO6 without strength, threshold or extra-round rescue.

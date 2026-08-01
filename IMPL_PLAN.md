@@ -2348,3 +2348,11 @@ python_coreml_stable_diffusion  # CoreML 转换
 > internal Look Approximation candidate only: the scene is already consumed,
 > so independent paired confirmation and product use remain closed.
 >
+> `U5.R2BL10-BL13` close four follow-up mechanisms without weakening gates.
+> Semantic hard retrieval does not beat its shuffled control; the BL5 chroma
+> transplant is visually less useful than AO6; the pinned SA-LUT release has
+> non-equivalent CPU/CUDA operators and an infeasible 512px attention tensor on
+> 12GiB; and analytical AO6 non-basic chroma emphasis is clean and stronger but
+> passes only one of three frozen blind rounds (`13/8/9`). Keep fixed AO6
+> t15/c35 and move to a mechanism-distinct algorithm rather than retuning.
+>
