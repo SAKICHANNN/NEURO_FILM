@@ -4,8 +4,8 @@
   "software_commit": "d252c98c32ce451a2b2b0ae55eda79e58467aef6",
   "parent": {
     "report": "outputs/u5_r2bo9_flickr_bw_composite_pair_source_v1/run_a/report.json",
-    "report_sha256": "700169d20083747623442ff981ed58c93135e6d6015adbe97302d29846e05600",
-    "stable_evidence_id": "a6cb3ab540002b51da20095c8f4c97d94e1680dacb159c137abe89a12b7a54e8"
+    "report_sha256": "3ff7916b5668d2417dcc7bf2f32495f06dd12c42ceb06922662c18e6fd1d5b4b",
+    "stable_evidence_id": "564cacf033a2652cd0e5a029bf1188ce6c2f6693bdfd8e1b7b553f581ccdb7d0"
   },
   "acquisition": {
     "data_root": "data/research/flickr_bw_composite_pairs_v1",
