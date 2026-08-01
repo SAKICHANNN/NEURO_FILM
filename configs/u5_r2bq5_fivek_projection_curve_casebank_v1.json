@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bq5-fivek-projection-curve-casebank-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BQ5",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Does the unchanged mature BN1 strict-interior parallel projection-curve family provide enough per-case style and group-held Oracle value on the BQ case bank to justify later source-only routing research?",
+  "parent_bq4d_decision": {
+    "path": "configs/u5_r2bq4d_fivek_operator_style_ceiling_decision_v1.json",
+    "sha256": "a8cce919f1af7095ff11328c1974e476611f084ea1964599427772d3743664c4"
+  },
+  "mature_baseline": {
+    "config": "configs/u5_r2bn1_fivek_projection_curve_basis_development_v1.json",
+    "config_sha256": "2b1a6a1e742308f9fd3d1de48552139b9aa0906311e2077a29b0333521bd5467",
+    "decision": "configs/u5_r2bn1_fivek_projection_curve_basis_development_decision_v1.json",
+    "decision_sha256": "085809cfb5f635acf829906c47c6e36c5316037bac747220dfef609ad3f1b642",
+    "required_status": "development_pass_confirmation_required",
+    "reuse": "projection directions, knot count, fit regularization, strict-interior equation and Jacobian dose unchanged"
+  },
+  "parent_manifest": {
+    "path": "outputs/u5_r2bq0s2_fivek_casebank_normalization_v1/run_a_formal/manifest.json",
+    "sha256": "d07ace3173198e9902ebe7c8bbf2de5ecb4342ec67f1b640aa54d9edee903a20"
+  },
+  "decode": {"maximum_side": 128, "evaluation_samples_per_image": 512},
+  "split": {
+    "group_bucket_hash": "sha256(utf8(camera_model))[0] modulo 4",
+    "group_bucket_modulus": 4,
+    "validation_bucket": 0,
+    "confirmation_allowed": false
+  },
+  "variants": ["aligned_expert", "filtered"],
+  "evaluation": {
+    "minimum_self_fit_mean_improvement_over_identity": 0.2,
+    "minimum_self_fit_median_style_retention": 0.7,
+    "minimum_group_oracle_mean_improvement_over_global": 0.1,
+    "minimum_group_oracle_median_style_retention": 0.7,
+    "minimum_rows_with_style_eligible_fit_case": 0.9,
+    "maximum_style_constrained_oracle_error_ratio": 1.1,
+    "minimum_median_safe_dose": 0.5,
+    "minimum_worst_safe_dose": 0.2,
+    "maximum_nonpositive_jacobian_count": 0,
+    "maximum_new_boundary_fraction": 0.0,
+    "maximum_out_of_cube_fraction": 0.0
+  },
+  "branch_rules": {
+    "self_fit_style_or_accuracy_fails": "close this unchanged projection-curve fit on the BQ bank without fitting or selector rescue",
+    "group_oracle_fails": "close before source prediction because the case bank lacks transferable operator diversity",
+    "capacity_and_group_oracle_pass": "freeze coefficient banks and open one low-capacity source-only factorized basis predictor with hard OOD global fallback",
+    "safety_fails": "close as an implementation or representation failure before any visual review"
+  },
+  "source_selector_training_allowed": false,
+  "confirmation_pixels_allowed": false,
+  "visual_review_allowed": false,
+  "production_integration_allowed": false,
+  "film_or_stock_claim_allowed": false,
+  "claim_ceiling": "development-only capacity and group-held Oracle evidence for an unchanged mature explicit projection-curve baseline on paired FiveK digital-retouch controls; no confirmation, film, preference or product claim"
+}
