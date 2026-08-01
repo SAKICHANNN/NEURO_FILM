@@ -1,0 +1,54 @@
+{
+  "schema": "neuro_film.u6_p2u_shared_characteristic_shape_contract.v1",
+  "experiment_id": "U6.P2U",
+  "parent": {
+    "decision_path": "configs/u6_p2t_kodak_vision3_characteristic_diversity_decision_v1.json",
+    "decision_sha256": "9cd529029ad2495382750c6b61d3c0c167cdbb559ddc0cdecb0671411a14e6db",
+    "stable_evidence_id": "cdff0ee6c2178e4ee7088840c1b27695bc3345a0d689f312b6bdbcba3d9ed496",
+    "trace_path": "configs/data/kodak_vision3_characteristic_curve_pixels_v1.json",
+    "trace_sha256": "e7d9d45cd56066d1cc770c3a506117fcddc4ae52417c6d69d4088e8d0da61dfb"
+  },
+  "protocol": {
+    "stocks": [
+      "kodak_vision3_50d_5203_7203",
+      "kodak_vision3_250d_5207_7207",
+      "kodak_vision3_500t_5219_7219"
+    ],
+    "channels": ["blue", "green", "red"],
+    "normalization": "identical to P2T: cumulative-max density, endpoint density normalization, then 10/90 density crossings mapped to exposure coordinates 0/1",
+    "grid_min": -0.05,
+    "grid_max": 1.05,
+    "grid_samples": 257,
+    "validation": "leave one stock out; pointwise median of the other two normalized shapes predicts the held stock",
+    "baseline": "canonical straight 10-to-90 line clip(0.1 + 0.8*x, 0, 1)",
+    "final_candidate": "pointwise median of all three normalized stock shapes",
+    "uncertainty_envelope": "pointwise minimum and maximum of all three normalized stock shapes"
+  },
+  "gates": {
+    "required_loso_rows": 9,
+    "minimum_candidate_win_rows": 7,
+    "minimum_candidate_wins_per_channel": 2,
+    "minimum_median_rmse_improvement_fraction": 0.2,
+    "minimum_p95_rmse_improvement_fraction": 0.0,
+    "maximum_loso_rmse": 0.025,
+    "maximum_final_uncertainty_width": 0.05,
+    "maximum_anchor_error": 1e-12,
+    "minimum_template_step": 0.0,
+    "two_byte_identical_audits": true
+  },
+  "decision_branches": {
+    "pass": "retain_gauge_free_shared_manufacturer_shape_template_for_offline_reference_only",
+    "fail": "close_empirical_shared_template_and_retain_only_canonical_gauge_plus_raw_source_observations"
+  },
+  "allowed_actions": [
+    "Compile and serialize one source-domain normalized template and uncertainty envelope.",
+    "Evaluate only leave-one-stock-out source-shape prediction against the frozen canonical line.",
+    "Retain the template only if aggregate, tail and every-channel gates pass."
+  ],
+  "forbidden_actions": [
+    "Do not tune the grid, baseline, channel weights or gates after formal execution.",
+    "Do not reopen P2R mapping, infer an exposure gauge or apply the template to photographs.",
+    "Do not call the template a stock response, calibrated characteristic curve or product profile."
+  ],
+  "claim_ceiling": "Gauge-free source-document shape-template diagnostic across three Kodak VISION3 technical graphs; not a layer-exposure mapping, stock calibration, roll measurement or image operator."
+}
