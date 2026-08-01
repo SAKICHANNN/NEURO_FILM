@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bn6-triangular-logit-transport-visual-product-value-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BN6",
+  "status": "contract_frozen_implementation_ready",
+  "software_commit_at_freeze": "191b9a504a47b005210488b578b2020e2b64d295",
+  "question": "On an independent rights-cleared digital-photo population, does the confirmed source-adaptive triangular transport create visible product value over its global counterpart under fixed AO6 without severe artifacts?",
+  "parent": {
+    "decision": "configs/u5_r2bn5_fivek_triangular_logit_transport_confirmation_decision_v1.json",
+    "decision_sha256": "149465ab577d67145379e89ba79f960faba580852415bd41f37c90d8111c662d",
+    "required_status": "confirmation_pass_visual_product_value_required",
+    "required_report_sha256": "d3a4a1fcb41efebd8a141988e5a9af183a70c52c3b90fb53702cc6f2b0f6f0c7"
+  },
+  "frozen_model": {
+    "config": "configs/u5_r2bn4_fivek_triangular_logit_transport_development_v1.json",
+    "config_sha256": "de829f2bd51b9d52c8b34d0017901f8fb401c39da85ece8772677901e38d81f9",
+    "decision": "configs/u5_r2bn4_fivek_triangular_logit_transport_development_decision_v1.json",
+    "decision_sha256": "50dd9beacb5939fe1ac90a01590796ed4b46d00dd36b8e37fe48514402a35ec1",
+    "training_population": "unchanged AY0 complete camera-group population",
+    "parameter_refit": "reconstruct frozen AY0 parameter fit and source-only PCA plus Ridge predictor",
+    "target_pixels_available": false,
+    "operator_or_predictor_tuning_allowed": false
+  },
+  "independent_source": {
+    "decision": "configs/u5_r2bh1s_global_policy_source_preflight_decision_v1.json",
+    "decision_sha256": "9b3cb743e186d8c7fe9a27202aba9bbbd8aae6785a2ea318e44478a2b36e93a5",
+    "manifest": "outputs/u5_r2bh1s_global_policy_source_preflight_v1/manifest.json",
+    "manifest_sha256": "75a5139defa6a1f054eef5e3f5f6062483f4cc72e18416ece1cae3b10f4672fc",
+    "visual_review": "outputs/u5_r2bh1s_global_policy_source_preflight_v1/visual_source_review.json",
+    "visual_review_sha256": "388acf3710d2cb850a3f048db5b27441f63160f21dd944af24443fc2497ce268",
+    "expected_rows": 12,
+    "required_confirmed_severe_source_artifact_count": 0,
+    "allowed_use": "internal independent digital-photo evaluation"
+  },
+  "rendering": {
+    "descriptor_resolution": "unchanged maximum-side-256 AY0 source descriptor",
+    "operator_and_ao6_resolution": "exact decoded source pixels",
+    "operator_or_ao6_resampling_allowed": false
+  },
+  "render_arms": [
+    "fixed_ao6_direct",
+    "global_triangular_transport_then_fixed_ao6",
+    "adaptive_triangular_transport_then_fixed_ao6"
+  ],
+  "automatic_gate": {
+    "expected_outputs": 36,
+    "maximum_new_boundary_fraction_vs_source": 0.005,
+    "maximum_out_of_cube_fraction": 0.0,
+    "maximum_nonpositive_jacobian_count": 0,
+    "maximum_sampled_jacobian_condition": 30.0,
+    "minimum_sampled_jacobian_determinant": 0.02,
+    "maximum_inverse_roundtrip_error": 0.0000001,
+    "maximum_p999_gradient_ratio_vs_direct_ao6": 2.5,
+    "minimum_median_adaptive_vs_global_delta_e76": 1.0,
+    "minimum_sources_with_adaptive_vs_global_delta_e76_ge_0p5": 6,
+    "require_repeat_report_and_output_identity": true
+  },
+  "blind_protocol": {
+    "primary_pair": [
+      "global_triangular_transport_then_fixed_ao6",
+      "adaptive_triangular_transport_then_fixed_ao6"
+    ],
+    "source_visible": true,
+    "rounds": 3,
+    "sources_per_round": 12,
+    "ties_allowed": true,
+    "mapping_hidden_until_all_observations_are_frozen": true,
+    "independent_per_source_mapping_each_round": true,
+    "maximum_confirmed_severe_artifact_count": 0,
+    "minimum_adaptive_round_wins": 2,
+    "minimum_adaptive_aggregate_choices": 22,
+    "aggregate_choice_denominator": 36,
+    "minimum_adaptive_source_majorities": 7
+  },
+  "branch_rules": {
+    "repeat_or_automatic_fail": "close BN6 without changing the source set, model, arms, thresholds or AO6",
+    "severe_fail": "reject adaptive product value regardless of style strength",
+    "blind_gate_pass": "retain adaptive triangular transport as a research Look Approximation challenger; compare against incumbent AO6 before any integration",
+    "blind_gate_fail": "retain BN4/BN5 method evidence but keep the global counterpart or existing AO6 path; do not tune on blind outcomes"
+  },
+  "new_data_download_allowed": false,
+  "production_default_changed": false,
+  "film_or_stock_claim_allowed": false,
+  "claim_ceiling": "independent-population full-decoded-resolution autonomous visual product-value evidence for a confirmed explicit digital-retouch operator under fixed AO6; not population preference, film, stock, calibration, universal safety or product promotion"
+}
