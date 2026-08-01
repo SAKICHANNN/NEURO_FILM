@@ -1,0 +1,58 @@
+{
+  "schema": "neuro_film.u6_p2w_langmuir_interimage_photographic_decision.v1",
+  "node": "U6.P2W",
+  "status": "automatic-artifact-close-no-visual-review",
+  "contract": "configs/u6_p2w_langmuir_interimage_photographic_v1.json",
+  "contract_sha256": "9aec184fdd158dfdd0a4daa7e17280b1f912aa88a864eb58b789b18e3774e35f",
+  "software_commit": "8d8a55cc379f3a45e0c461c168022c6679b56873",
+  "implementation": "src/eval/physical_langmuir_photographic.py",
+  "implementation_sha256": "8659edffcc761146a0dbe8a7c020941e511b61be4848cf38ff448bf2c436e35b",
+  "reports": [
+    {
+      "path": "outputs/u6_p2w_langmuir_interimage_photographic_v1/run_a/report.json",
+      "sha256": "500ae294798c23f96d6f492fdebc7e01785f6857c30c76640979a527981422bf"
+    },
+    {
+      "path": "outputs/u6_p2w_langmuir_interimage_photographic_v1/run_b/report.json",
+      "sha256": "500ae294798c23f96d6f492fdebc7e01785f6857c30c76640979a527981422bf"
+    }
+  ],
+  "replay": {
+    "two_reports_byte_identical": true,
+    "inventories_byte_identical": true,
+    "files_per_run": 49,
+    "bytes_per_run": 125797763
+  },
+  "stable_evidence_id": "b693e2cc305ebfffe566f370f0e5ef0b792381699d3aeb1da3850133a9a78a95",
+  "summary": {
+    "source_count": 16,
+    "images_with_effect_delta_e76_at_least_0_1": 16,
+    "population_median_effect_delta_e76": 0.7351013165169851,
+    "maximum_per_image_median_effect_delta_e76": 1.4876688316716984,
+    "population_median_style_delta_e76_vs_input": 16.69344458298276,
+    "population_median_non_basic_delta_e76_vs_input": 10.16600351472816,
+    "worst_new_hard_boundary_fraction_vs_linear": 0.0,
+    "population_median_luma_absolute_shift_vs_linear": 0.004811809796067379,
+    "population_median_lab_chroma_ratio_vs_linear": 0.9879266567867631,
+    "minimum_gradient_energy_ratio_vs_linear": 1.0533250176512348,
+    "maximum_gradient_energy_ratio_vs_linear": 1.1255788824914599,
+    "maximum_isolated_excursion_count": 283,
+    "isolated_excursion_sample_id": "canon_eos_kiss_f"
+  },
+  "failed_gates": [
+    "maximum_isolated_excursion_count_must_equal_zero"
+  ],
+  "visual_review_performed": false,
+  "production_default_changed": false,
+  "decision": "close-photographic-use-without-rescue",
+  "forbidden_rescues": [
+    "same-cohort strength or coupling search",
+    "placement search",
+    "per-pixel safety-scale smoothing",
+    "artifact-threshold relaxation",
+    "post-gate visual promotion"
+  ],
+  "retained_evidence": "U6.P2V remains a valid generic synthetic primitive; U6.P2W establishes visible photographic value together with a severe-artifact failure for the corrected-log-exposure realization.",
+  "next_ready_leaf": "U6.P2X separately preregistered intrinsically bounded saturating-response photographic mechanism with no per-pixel post-hoc safety scale",
+  "claim_ceiling": "generic physical-inspired fixed photographic mechanism comparison on rights-cleared display-sRGB photographs; not measured chemistry, stock/process/scanner response, calibration, authenticity or product promotion"
+}

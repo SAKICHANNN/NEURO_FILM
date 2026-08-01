@@ -2,6 +2,17 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-02 - U6.P2W photographic Langmuir realization closes
+
+- Two complete 49-file runs are byte-identical (`500ae294...22bf`). All 16
+  fixed photographs show a material effect; style, non-basic, boundary, luma,
+  chroma, gradient and boundedness gates pass.
+- One `canon_eos_kiss_f` output has 283 isolated excursions against the frozen
+  zero gate. Automatic failure forbids visual review; none was performed.
+- Close without same-cohort parameter, placement, smoothing or threshold
+  rescue. Retain P2V synthetic evidence and move to one separately frozen,
+  intrinsically bounded response family without per-pixel post-hoc scaling.
+
 # 2026-08-02 - U5.R2BR2 direct photographic tone transfer closes
 
 - Applied the unchanged BR1 PCHIP to 12 independent camera makes with fixed

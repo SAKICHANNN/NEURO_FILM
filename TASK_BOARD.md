@@ -667,6 +667,9 @@ not an integration or preference promotion. The next ready leaf is one
 clean-room bounded donor primitive and synthetic identifiability pilot.
 
 U6.P2V passes that clean-room primitive with exact linear/reference limits,
-bounded monotone Jacobian behavior, neutral-axis and partition invariance. U6.P2W
-is now ready: one fixed photographic comparison in the existing generic
-physical chain, with no fitting, external-output teacher or parameter search.
+bounded monotone Jacobian behavior, neutral-axis and partition invariance.
+U6.P2W then produces a visible effect on all 16 photographs and passes every
+non-artifact automatic gate, but one image has 283 isolated excursions against
+the frozen zero gate. Visual review is forbidden and this realization closes
+without rescue. The next ready leaf is a separately preregistered intrinsically
+bounded response family with no per-pixel post-hoc safety scale.
