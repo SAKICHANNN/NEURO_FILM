@@ -8851,3 +8851,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   worst ratio `1.147x`, and correct-over-wrong adapter gain only `.048%`.
 - Do not infer exposure/WB or call this a successful NFRM stage. Keep the 12
   confirmation pairs unread and move to new evidence or mechanism.
+
+## 2026-08-01 - U5.R2BO9-BP2 identifies a generic B&W residual
+
+- A public-source audit retained seven complete CC BY 2.0 film-over-digital
+  B&W composites from one author; 1,449,449 source bytes split into fourteen
+  role-labelled PNGs and all seven pairs passed exact registration.
+- Two BP2 reports are byte-identical at `46009c9c...2b47`. After per-scene
+  monotone tone normalization, median film/basic luma high-pass is `1.2085x`,
+  all six pooled PSD bins are positive and six of seven leave-one-scene-out
+  shapes pass; shifted, edge and JPEG controls also pass.
+- Open one preregistered leave-one-scene-out mean-preserving density-domain
+  structure challenger. Keep stock, emulsion, developer, scanner, calibration
+  and product claims closed because this is seven-scene one-author display-chain
+  evidence and its evaluation normalization observes each target.

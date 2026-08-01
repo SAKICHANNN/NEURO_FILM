@@ -561,3 +561,10 @@ U5.R2BO8 tests source-only logit canonicalization and a shared preset with a
 wrong-adapter control. Correct adapters recover only .048% median over wrong,
 ordinary-control gain is .28%, and worst error grows 1.147x. Close this
 canonicalizer without relabeling it as exposure/WB; confirmation stays unread.
+
+U5.R2BO9-BP2 adds independent one-author B&W weak-pair evidence. Seven CC BY
+2.0 film-over-digital composites all register, and the basic-normalized film
+halves retain a cross-scene positive high-frequency/PSD residual while shifted,
+edge and JPEG controls pass. Open one LOO mean-preserving density-domain
+structure challenger only; this is not stock, emulsion, scanner or product
+evidence.

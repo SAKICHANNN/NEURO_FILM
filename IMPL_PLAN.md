@@ -2476,3 +2476,11 @@ python_coreml_stable_diffusion  # CoreML 转换
 > unidentified. Close without statistic/operator rescue and seek new evidence
 > or a genuinely different mechanism.
 >
+> BO9-BP2 find independent, rights-usable one-author B&W paired evidence.
+> Seven film-over-digital composites register and retain a positive residual
+> after per-scene monotone tone normalization: median luma high-pass is
+> `1.2085x`, all pooled PSD bins are positive and six of seven LOO shapes are
+> stable. Open one LOO mean-preserving density-domain structure challenger
+> with white/wrong-shape controls; keep all stock, emulsion, scanner,
+> calibration and product claims closed.
+>

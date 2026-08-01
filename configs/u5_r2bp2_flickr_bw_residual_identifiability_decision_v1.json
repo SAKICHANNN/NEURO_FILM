@@ -1,0 +1,39 @@
+{
+  "schema": "neuro-film.u5-r2bp2-flickr-bw-residual-identifiability-decision.v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BP2",
+  "decision": "open_one_generic_density_domain_bw_structure_challenger",
+  "software_commit": "871ea17ad5ed4d3b7b9aed7761c3f40e29af78aa",
+  "evidence": {
+    "source_report_sha256": "3ff7916b5668d2417dcc7bf2f32495f06dd12c42ceb06922662c18e6fd1d5b4b",
+    "source_stable_evidence_id": "564cacf033a2652cd0e5a029bf1188ce6c2f6693bdfd8e1b7b553f581ccdb7d0",
+    "acquisition_manifest_sha256": "880961b497694f10f75bcd7de7442ca5227c3f13090c4a9b75cda217d19ff3e1",
+    "acquisition_report_sha256": "82479a42a3db64482c849a1865587d20d3772bfa1c9f0c21b2fc7443aae3519c",
+    "acquisition_stable_evidence_id": "969b8d2902f40ba21993621974d1ecdab786481a019971ddeb74b8c2f1f5673d",
+    "registration_report_sha256": "c22b13fbeacad50ea3d933c9efef553157843440e8791855e2019cf3be9bb391",
+    "registration_stable_evidence_id": "6e56e5b2a6231c6bd284b43a00b78ce945f572415402f70e3fb24e022137320d",
+    "residual_report_sha256": "46009c9cb2189fb354fbb1a6be4fafe7f62f0093a4b67034fa7a57b1f1d92b47",
+    "residual_stable_evidence_id": "17e6e49fd019ab3890a89d7684c70085405d6db1f21459f66e7e1ae8993c3c23",
+    "repeat_report_byte_identical": true
+  },
+  "observed": {
+    "scenes": 7,
+    "median_film_to_basic_luma_highpass_energy_ratio": 1.208467279756913,
+    "scene_fraction_with_luma_excess": 1.0,
+    "positive_film_minus_basic_psd_bin_fraction": 1.0,
+    "loo_stable_scene_fraction": 0.8571428571428571,
+    "median_correct_to_shifted_residual_rms_ratio": 0.6167872814584542,
+    "median_residual_edge_correlation": 0.28763040788231525,
+    "median_film_jpeg_block_ratio": 1.00154244998548
+  },
+  "allowed_next": "one preregistered leave-one-scene-out mean-preserving density-domain B&W stochastic-structure challenger against basic, white-noise and wrong-shape controls",
+  "forbidden": [
+    "interpret the residual as a stock, emulsion, developer, process or scanner truth",
+    "fit or evaluate a neural texture generator",
+    "use target pixels at product inference",
+    "open product integration or calibrated claims",
+    "retune the completed BP2 gates"
+  ],
+  "training_allowed": false,
+  "product_integration_allowed": false,
+  "claim_ceiling": "generic one-author B&W display-chain mechanism evidence only; not stock, emulsion, developer, process, scanner, calibrated or product evidence"
+}
