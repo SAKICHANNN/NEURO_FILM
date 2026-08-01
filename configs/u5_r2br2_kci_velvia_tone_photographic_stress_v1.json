@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2br2-kci-velvia-tone-photographic-stress-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BR2",
+  "question": "Does the fixed BR1 controlled display-tone curve remain visible, monotone and artifact-safe on independent photographs when executed as a bounded explicit Lab lightness residual?",
+  "parent": {
+    "experiment_id": "u5.r2br1-kci-velvia-tone-residual-v1",
+    "config_sha256": "2a0876d3ffee597e3d4005f39c45fb18c4084a060cbe632a6dff7ef941841ea5",
+    "formal_report_sha256": "d1787c559267d7f90a157aa8f54f8378859311e0c92c761ead92a77f940dc772",
+    "selected_model": "monotone_pchip",
+    "curve_parameters_source": "full_fit_monotone_pchip",
+    "chart_result_unchanged": true
+  },
+  "population": {
+    "manifest_path": "outputs/u5_r2bh1s_global_policy_source_preflight_v1/manifest.json",
+    "manifest_sha256": "75a5139defa6a1f054eef5e3f5f6062483f4cc72e18416ece1cae3b10f4672fc",
+    "source_count_exact": 12,
+    "camera_make_count_exact": 12,
+    "allowed_use": "internal_independent_digital_ood_confirmation",
+    "maximum_long_edge": 1200,
+    "role": "independent photographic stress; no fitting, selection or threshold tuning"
+  },
+  "operator": {
+    "input": "display-referred sRGB decoded to linear-sRGB then D65 CIELAB",
+    "target": "replace L-star with the fixed BR1 full-fit PCHIP while preserving a-star and b-star",
+    "gamut_policy": "fixed 24-iteration source-to-target Lab segment compression in linear-sRGB",
+    "hard_clipping_forbidden": true,
+    "fit_on_photographs_forbidden": true,
+    "strength": 1.0,
+    "output": "display-referred sRGB diagnostic PNG"
+  },
+  "evaluation": {
+    "effect_metric": "absolute output-minus-source D65 L-star",
+    "gamut_scale_material_threshold": 0.99,
+    "hard_boundary_epsilon": 0.00392156862745098,
+    "gradient_sign_epsilon_lstar": 0.0001,
+    "visual_review_only_after_automatic_pass": true,
+    "visual_sheet_order": ["source", "candidate", "absolute_difference_x4"]
+  },
+  "automatic_gates": {
+    "source_count_exact": 12,
+    "camera_make_count_exact": 12,
+    "minimum_population_median_per_image_p95_lstar_effect": 4.0,
+    "maximum_per_image_p95_lstar_effect": 20.0,
+    "minimum_population_median_gamut_scale": 0.995,
+    "maximum_per_image_fraction_gamut_scale_below_0p99": 0.1,
+    "maximum_new_hard_boundary_fraction": 0.005,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.0,
+    "finite_and_bounded_rgb_required": true,
+    "two_run_report_byte_identity": true
+  },
+  "severe_visual_veto": [
+    "posterization_or_banding",
+    "large_unintended_clipping",
+    "colour_blocks_or_speckles",
+    "face_or_object_corruption",
+    "unstable_or_implausible_local_contrast"
+  ],
+  "selection_rule": "if every automatic and severe visual gate passes, retain BR1 only as a bounded controlled-tone component for a later factorized ablation; otherwise close without curve, strength, gamut-policy, population or threshold rescue",
+  "additional_pixel_acquisition_allowed": false,
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "calibrated_reference_claim_allowed": false,
+  "claim_ceiling": "photographic stress evidence for one fixed publication-derived display-tone component; not Velvia sensitometry, scene exposure response, scanner-independent stock tone, full film style, calibrated reference or product promotion"
+}
