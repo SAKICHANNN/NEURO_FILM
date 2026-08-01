@@ -8,6 +8,8 @@ from typing import Any
 
 import numpy as np
 from PIL import Image
+from scipy.interpolate import PchipInterpolator
+from scipy.optimize import minimize_scalar
 from skimage.color import rgb2lab
 
 
@@ -307,4 +309,215 @@ def evaluate_residual(
     }
 
 
-__all__ = ["evaluate_residual", "extract_exact_pair"]
+def _fit_tone_models(
+    source: np.ndarray, target: np.ndarray
+) -> dict[str, tuple[Any, dict[str, Any]]]:
+    gamma_result = minimize_scalar(
+        lambda gamma: float(
+            np.mean(np.square(100.0 * np.power(source / 100.0, gamma) - target))
+        ),
+        bounds=(0.1, 5.0),
+        method="bounded",
+        options={"xatol": 1e-12},
+    )
+    affine = np.linalg.lstsq(
+        np.column_stack((source, np.ones(len(source)))), target, rcond=None
+    )[0]
+    order = np.argsort(source)
+    knots_x = np.concatenate(([0.0], source[order], [100.0]))
+    knots_y = np.concatenate(([0.0], target[order], [100.0]))
+    if np.any(np.diff(knots_x) <= 0.0) or np.any(np.diff(knots_y) < 0.0):
+        raise ValueError("BR1 observed tone knots are not monotone")
+    pchip = PchipInterpolator(knots_x, knots_y, extrapolate=False)
+    return {
+        "gamma": (
+            lambda values: 100.0
+            * np.power(np.asarray(values, dtype=np.float64) / 100.0, gamma_result.x),
+            {"gamma": float(gamma_result.x)},
+        ),
+        "affine": (
+            lambda values: affine[0] * np.asarray(values, dtype=np.float64)
+            + affine[1],
+            {"slope": float(affine[0]), "intercept": float(affine[1])},
+        ),
+        "monotone_pchip": (
+            pchip,
+            {"source_knots": knots_x.tolist(), "target_knots": knots_y.tolist()},
+        ),
+    }
+
+
+def evaluate_tone_residual(
+    digital_rgb_u8: np.ndarray,
+    film_rgb_u8: np.ndarray,
+    config: dict[str, Any],
+) -> dict[str, Any]:
+    """Evaluate leave-one-neutral-patch-out monotone tone residuals."""
+
+    digital = np.asarray(digital_rgb_u8)
+    film = np.asarray(film_rgb_u8)
+    if (
+        digital.shape != (24, 3)
+        or film.shape != (24, 3)
+        or digital.dtype.kind not in "iu"
+        or film.dtype.kind not in "iu"
+        or np.any(digital < 0)
+        or np.any(digital > 255)
+        or np.any(film < 0)
+        or np.any(film > 255)
+    ):
+        raise ValueError("BR1 requires two RGB8 24x3 arrays")
+    digital_before = digital.copy()
+    film_before = film.copy()
+    neutral = np.asarray(config["observation"]["neutral_patch_indices"], dtype=np.int64)
+    source = rgb2lab(digital.astype(np.float64).reshape(4, 6, 3) / 255.0).reshape(24, 3)[neutral, 0]
+    target = rgb2lab(film.astype(np.float64).reshape(4, 6, 3) / 255.0).reshape(24, 3)[neutral, 0]
+    source_before = source.copy()
+    names = ("identity", "gamma", "affine", "monotone_pchip")
+    confirmation: dict[str, list[float]] = {name: [] for name in names}
+    development: dict[str, list[float]] = {name: [] for name in names[1:]}
+    folds: list[dict[str, Any]] = []
+    minimum_derivatives: list[float] = []
+    output_minima: list[float] = []
+    output_maxima: list[float] = []
+    grid = np.linspace(0.0, 100.0, int(config["evaluation"]["curve_grid_count"]))
+
+    for held_index in range(6):
+        development_indices = np.setdiff1d(np.arange(6), [held_index])
+        fitted = _fit_tone_models(source[development_indices], target[development_indices])
+        predictions = {"identity": source}
+        parameters: dict[str, Any] = {}
+        for name, (apply, model_parameters) in fitted.items():
+            predictions[name] = np.asarray(apply(source), dtype=np.float64)
+            parameters[name] = model_parameters
+        grid_output = np.asarray(fitted["monotone_pchip"][0](grid), dtype=np.float64)
+        minimum_derivatives.append(float(np.min(np.diff(grid_output) / np.diff(grid))))
+        output_minima.append(float(np.min(grid_output)))
+        output_maxima.append(float(np.max(grid_output)))
+        fold_models: dict[str, Any] = {}
+        for name, prediction in predictions.items():
+            confirmation_error = float(abs(prediction[held_index] - target[held_index]))
+            confirmation[name].append(confirmation_error)
+            record: dict[str, Any] = {
+                "confirmation_absolute_lstar_error": confirmation_error
+            }
+            if name != "identity":
+                development_error = float(
+                    np.mean(abs(prediction[development_indices] - target[development_indices]))
+                )
+                development[name].append(development_error)
+                record["development_mean_absolute_lstar_error"] = development_error
+                record["parameters"] = parameters[name]
+            fold_models[name] = record
+        folds.append(
+            {
+                "held_neutral_index": held_index,
+                "development_indices": development_indices.tolist(),
+                "confirmation_indices": [held_index],
+                "models": fold_models,
+            }
+        )
+
+    aggregate = {
+        name: {
+            "mean_confirmation_absolute_lstar_error": float(np.mean(values)),
+            "maximum_confirmation_absolute_lstar_error": float(np.max(values)),
+        }
+        for name, values in confirmation.items()
+    }
+    for name, values in development.items():
+        aggregate[name]["mean_development_absolute_lstar_error"] = float(
+            np.mean(values)
+        )
+        aggregate[name]["train_test_absolute_lstar_gap"] = (
+            aggregate[name]["mean_confirmation_absolute_lstar_error"]
+            - aggregate[name]["mean_development_absolute_lstar_error"]
+        )
+    pchip_error = aggregate["monotone_pchip"][
+        "mean_confirmation_absolute_lstar_error"
+    ]
+    gamma_error = aggregate["gamma"]["mean_confirmation_absolute_lstar_error"]
+    affine_error = aggregate["affine"]["mean_confirmation_absolute_lstar_error"]
+    aggregate["monotone_pchip"].update(
+        {
+            "gain_over_gamma": 1.0 - pchip_error / gamma_error,
+            "gain_over_affine": 1.0 - pchip_error / affine_error,
+            "minimum_grid_derivative": float(np.min(minimum_derivatives)),
+            "minimum_grid_output": float(np.min(output_minima)),
+            "maximum_grid_output": float(np.max(output_maxima)),
+        }
+    )
+    gates = config["gates"]
+    checks = [
+        {"name": "all_six_folds_present", "passed": len(folds) == 6},
+        {
+            "name": "identity_signal",
+            "passed": aggregate["identity"]["mean_confirmation_absolute_lstar_error"]
+            >= float(gates["identity_mean_confirmation_absolute_lstar_error_minimum"]),
+        },
+        {
+            "name": "pchip_mean_confirmation_error",
+            "passed": pchip_error
+            <= float(gates["pchip_mean_confirmation_absolute_lstar_error_maximum"]),
+        },
+        {
+            "name": "pchip_maximum_confirmation_error",
+            "passed": aggregate["monotone_pchip"][
+                "maximum_confirmation_absolute_lstar_error"
+            ]
+            <= float(gates["pchip_maximum_confirmation_absolute_lstar_error"]),
+        },
+        {
+            "name": "pchip_gain_over_gamma",
+            "passed": aggregate["monotone_pchip"]["gain_over_gamma"]
+            >= float(gates["pchip_minimum_gain_over_gamma"]),
+        },
+        {
+            "name": "pchip_gain_over_affine",
+            "passed": aggregate["monotone_pchip"]["gain_over_affine"]
+            >= float(gates["pchip_minimum_gain_over_affine"]),
+        },
+        {
+            "name": "pchip_train_test_gap",
+            "passed": aggregate["monotone_pchip"]["train_test_absolute_lstar_gap"]
+            <= float(gates["pchip_train_test_absolute_lstar_gap_maximum"]),
+        },
+        {
+            "name": "pchip_monotone",
+            "passed": aggregate["monotone_pchip"]["minimum_grid_derivative"]
+            >= float(gates["pchip_minimum_grid_derivative"]),
+        },
+        {
+            "name": "pchip_bounded",
+            "passed": aggregate["monotone_pchip"]["minimum_grid_output"]
+            >= float(gates["pchip_output_minimum"])
+            and aggregate["monotone_pchip"]["maximum_grid_output"]
+            <= float(gates["pchip_output_maximum"]),
+        },
+        {
+            "name": "source_nonmutation",
+            "passed": np.array_equal(digital, digital_before)
+            and np.array_equal(film, film_before)
+            and np.array_equal(source, source_before),
+        },
+    ]
+    automatic_pass = all(bool(check["passed"]) for check in checks)
+    full_fit = _fit_tone_models(source, target)["monotone_pchip"][1]
+    return {
+        "digital_neutral_lstar": source.tolist(),
+        "film_neutral_lstar": target.tolist(),
+        "folds": folds,
+        "aggregate": aggregate,
+        "full_fit_monotone_pchip": full_fit,
+        "automatic_checks": checks,
+        "automatic_pass": automatic_pass,
+        "selected_model": "monotone_pchip" if automatic_pass else "none",
+        "decision": (
+            "retain_controlled_monotone_tone_residual_for_photo_stress"
+            if automatic_pass
+            else "close_controlled_tone_residual_without_curve_rescue"
+        ),
+    }
+
+
+__all__ = ["evaluate_residual", "evaluate_tone_residual", "extract_exact_pair"]
