@@ -53,6 +53,18 @@
     "no_other_payloads": true,
     "rights_boundary": "The article is CC BY 4.0, but the NTNU deposit files carry only the Norwegian Copyright Act general-terms marker. Download and inspect internally; do not redistribute or treat deposit-file openness as commercial training permission."
   },
+  "execution_amendment": {
+    "reason": "The exact thesis PDF identity and deterministic text extraction facts were unavailable before the bounded acquisition. This amendment records observed source facts only; it changes no question, threshold, gate or branch rule.",
+    "thesis_pdf_sha256": "e231da44fc8163559d8ae6d9b4f41cf825b4106a0316aeeb078efecdb43e8a68",
+    "thesis_page_count": 109,
+    "pdftotext_layout_utf8_sha256": "18849216863a6bfd28aead8eb67c69ae2841ae28d3acfa3b02f2c74dda2859c9",
+    "observed_open_file_count": 2,
+    "observed_open_file_mime_types": [
+      "application/pdf",
+      "application/zip"
+    ],
+    "thresholds_or_gates_changed": false
+  },
   "required_observations": {
     "record_title_and_handle_exact": true,
     "record_contains_only_declared_open_files": true,
