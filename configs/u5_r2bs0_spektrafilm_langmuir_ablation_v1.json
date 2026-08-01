@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bs0-spektrafilm-langmuir-ablation-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BS0",
+  "question": "Does amplitude-matched Langmuir saturation of the non-spatial DIR donor create a material, repeatable and artifact-safe colour difference beyond the same-revision linear donor while retaining the incumbent external look strength?",
+  "external_source": {
+    "repository": "https://github.com/andreavolpato/spektrafilm.git",
+    "revision": "6cd00c8d4f30b5b550f50f4bbd3753c9f2a48507",
+    "branch_observed": "dev",
+    "commit_date": "2026-06-10T07:22:34+02:00",
+    "code_license": "GPL-3.0-or-later",
+    "profile_and_lut_license": "CC-BY-SA-4.0",
+    "tracked_source_or_profile_copy_allowed": false,
+    "output_use": "non-commercial internal research comparison only; never training data or teacher truth",
+    "file_sha256": {
+      "src/spektrafilm/model/couplers.py": "ad0f68d1103e653379151b2f1eb79111c7549050a878b9be99e5b92c904a4e85",
+      "src/spektrafilm/runtime/params_schema.py": "1f73fab3135af171da2c72ee537515642e1f347ea503ab74007a89365f5672c3",
+      "src/spektrafilm/data/profiles/kodak_ektar_100.json": "57c41c72cafd6ba351d54e69aedbc3a262fb065a53c2ed4ccdf7b0c1cea22d2d",
+      "src/spektrafilm/data/profiles/kodak_portra_endura.json": "b311666e02beb1ef4216835e976dfc62dad7892597aab065f77d9e193092b092"
+    }
+  },
+  "research_basis": [
+    {
+      "source": "Shuto et al., Mechanism of the Interimage-Effect in Color Reversal System and Its Application to Improve Color Reproduction, IS&T 1997",
+      "url": "https://www.imaging.org/common/uploaded%20files/pdfs/Papers/1997/IST-0-4/62.pdf",
+      "use": "primary experimental evidence that imagewise inhibitor release and cross-layer development suppression materially affect colour reproduction; no Langmuir parameter calibration"
+    },
+    {
+      "source": "spektrafilm dev commit 2ea9724",
+      "url": "https://github.com/andreavolpato/spektrafilm/commit/2ea972459e7811e65db552ed98b6993e70398618",
+      "use": "latest observed explicit amplitude-matched Langmuir donor hypothesis; external implementation is not copied"
+    }
+  ],
+  "runtime": {
+    "python_version": "3.13.14",
+    "gpu_allowed": false,
+    "paid_resource_allowed": false,
+    "maximum_download_bytes": 1073741824,
+    "maximum_long_edge": 1024
+  },
+  "inputs": {
+    "frozen_set": "outputs/filmcase/u41_provisional_eval_set.json",
+    "frozen_set_sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15",
+    "split": "gold",
+    "expected_samples": 9,
+    "input_interpretation": "display-sRGB proxy; Look Approximation only"
+  },
+  "fixed_pipeline": {
+    "film_profile": "kodak_ektar_100",
+    "print_profile": "kodak_portra_endura",
+    "interpretation": "negative_to_print",
+    "auto_exposure": false,
+    "exposure_compensation_ev": 0.0,
+    "direct_spectral_path": true,
+    "enlarger_lut": false,
+    "scanner_lut": false,
+    "spatial_effects": false,
+    "stochastic_effects": false,
+    "grain": false,
+    "halation": false,
+    "glare": false,
+    "lens_blur": false,
+    "scanner_unsharp_mask": [0.0, 0.0]
+  },
+  "arms": {
+    "linear_donor": {
+      "langmuir_donor_k_rgb": "infinite_linear_limit"
+    },
+    "langmuir_donor": {
+      "langmuir_donor_k_rgb": [1.0, 1.0, 1.0]
+    }
+  },
+  "diagnostics": {
+    "paired_effect_metric": "mean D65 Delta E76 between same-revision Langmuir and linear donor outputs",
+    "midpoint_signature": "diagnostic only: effect by linear-output luma quartile; no truth claim",
+    "basic_residual_factors": ["ev", "white_balance", "contrast", "saturation", "global_luma_curve"],
+    "hard_boundary_epsilon": 0.00196078431372549,
+    "visual_review_only_after_automatic_pass": true,
+    "known_regression": "ID11 red-speckle/posterization"
+  },
+  "automatic_gates": {
+    "two_complete_runs_must_be_exact": true,
+    "source_count_exact": 9,
+    "all_outputs_finite_and_bounded": true,
+    "minimum_median_langmuir_effect_delta_e76": 0.25,
+    "maximum_median_langmuir_effect_delta_e76": 4.0,
+    "minimum_median_style_delta_e76_vs_input": 7.0,
+    "minimum_median_non_basic_residual_delta_e76_vs_input": 4.9,
+    "maximum_worst_new_hard_boundary_fraction_vs_linear": 0.005,
+    "maximum_worst_new_isolated_red_speckle_fraction_vs_linear": 0.001,
+    "maximum_worst_luma_gradient_p99_ratio_vs_linear": 1.5,
+    "maximum_worst_chroma_high_frequency_p99_ratio_vs_linear": 1.5
+  },
+  "branch_rule": {
+    "automatic_pass": "open one blind same-input visual comparison against the linear donor and incumbent AO6 only",
+    "effect_too_weak": "close without knee or amount search",
+    "artifact_or_replay_failure": "close without smoothing, clipping, strength or threshold rescue"
+  },
+  "forbidden": [
+    "inspect Langmuir outputs before the automatic decision",
+    "change the knee, coupler amount, profiles, population, thresholds or controls after metrics",
+    "copy GPL source or CC-BY-SA profiles into tracked project files",
+    "use outputs as training targets or teachers",
+    "call the result a measured DIR response, Ektar response, stock calibration or identified digital-to-film operator",
+    "production integration"
+  ],
+  "output_root": "outputs/external_controls/spektrafilm_langmuir_bs0_v1",
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "production_integration_allowed": false,
+  "stock_response_claim_allowed": false,
+  "claim_ceiling": "same-revision external Look Approximation ablation of one amplitude-matched non-spatial DIR saturation hypothesis on nine display-sRGB proxy photographs"
+}
