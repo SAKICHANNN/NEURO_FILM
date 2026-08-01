@@ -1,0 +1,107 @@
+{
+  "schema": "neuro_film.u6_p6x_multispectral_scanner_band_compiler_contract.v1",
+  "node": "U6.P6X",
+  "question": "Do the prospectively fixed 2025 Balica-Trumpy 7/8-band centres retain enough spectral information for a shared nonnegative explicit XYZ compiler to outperform a three-band scanner on measured film spectra and a fresh natural-spectrum stress population?",
+  "claim_ceiling": "ideal-centre multispectral scanner compiler development with measured Velvia 100F spectra and independent CAVE reflectance stress; not measured LED, sensor, scanner, stock, process or product calibration",
+  "research_basis": {
+    "title": "Multi-Spectral Scanning for Analogue Film Digitisation: Addressing LED Variability in Spectral Band Selection",
+    "authors": ["Mihaela Elizabeta Balica", "Giorgio Trumpy"],
+    "published": "2025-06",
+    "doi": "10.2352/issn.2168-3204.2025.22.1.2",
+    "official_url": "https://library.imaging.org/admin/apis/public/api/ist/website/downloadArticle/archiving/22/1/2",
+    "local_pdf_path": "data/physics/balica_trumpy_multispectral_scanner_2025/balica_trumpy_2025_multispectral_film_scanning.pdf",
+    "local_pdf_bytes": 3969454,
+    "local_pdf_sha256": "0e8838a59552c16a28b6a9babc4e4df5b3a1d73ea4c5ba0b184e5ed764cbc35d",
+    "paper_reported_scope": "ideal and market LED capture simulation plus one physical Fujifilm F-64D patch validation",
+    "paper_reported_ideal_centres_nm": {
+      "six": [436.0, 475.0, 520.0, 563.0, 606.0, 646.0],
+      "seven": [435.0, 471.0, 515.0, 547.0, 583.0, 626.0, 648.0],
+      "eight": [435.0, 467.0, 508.0, 538.0, 571.0, 607.0, 637.0, 672.0]
+    },
+    "unavailable_inputs": [
+      "paper hyperspectral cube",
+      "commercial LED spectral power distributions as numeric tables",
+      "physical capture patch measurements",
+      "sensor spectral sensitivity table"
+    ]
+  },
+  "parents": {
+    "p6f_contract_path": "configs/u6_p6f_measured_slide_spectral_scanner_v1.json",
+    "p6f_contract_sha256": "ebe3d441e338623c55f086850dc79d11b2a107a5bc8c773bf6b2f2c23ac11b41",
+    "p6f_decision_path": "configs/u6_p6f_measured_slide_spectral_scanner_decision_v1.json",
+    "p6f_decision_sha256": "e85f10c08841c345a7ecae3da617d427b30c023d43b6865eaaa3fe45829fba57",
+    "measured_pair_table_path": "outputs/experiments/u5_r2aq1_colorreference_velvia100f_pair_table_v1/pair_table.tsv",
+    "measured_pair_table_sha256": "0bcb92eb5131b052705922caf747a467ed8a458c90bca2c14dbc66b800cdf595",
+    "cave_contract_path": "configs/u5_r2h0c1_cave_conditional_variability_v1.json",
+    "cave_contract_sha256": "b878aa9e2de93b5f633df084078a12d0ea204d78c6c8ecdc2b67cb03cccfb9d1",
+    "cave_snapshot_root": "data/real_film/cave/hf_snapshot",
+    "cave_official_tail_path": "data/real_film/cave/official_zip_tail_1m.bin",
+    "cave_official_tail_sha256": "464817d87acef9e4db91a5420e98a34f4c48df697769756e9fc0b57fcce43015",
+    "cie_xyz_path": "data/calibration/cie/CIE_xyz_1931_2deg.csv",
+    "cie_xyz_sha256": "fa663e3535a7e0763a745993a1f0a192eb0275ac46ad2d1befd7626841e713c1",
+    "cie_d65_path": "data/calibration/cie/CIE_std_illum_D65.csv",
+    "cie_d65_sha256": "e76f210bffff3d552ef7113025da5f325d5dfec200dd4b878b1a2f3a507032cb"
+  },
+  "spectral_domain": {
+    "wavelength_nm": {"start": 400.0, "stop": 700.0, "step": 10.0, "count": 31},
+    "band_observation": "piecewise-linear ideal delta-centre sample of spectral transmittance or reflectance",
+    "target": "full-grid CIE 1931 2-degree XYZ under D65, normalized to Y=1 for clear transmittance",
+    "metric": "CIEDE2000 in D65 Lab",
+    "hard_clipping_forbidden": true
+  },
+  "candidate_profiles": {
+    "rgb3_control": [435.0, 547.0, 648.0],
+    "paper6": [436.0, 475.0, 520.0, 563.0, 606.0, 646.0],
+    "paper7": [435.0, 471.0, 515.0, 547.0, 583.0, 626.0, 648.0],
+    "paper8": [435.0, 467.0, 508.0, 538.0, 571.0, 607.0, 637.0, 672.0],
+    "uniform7_diagnostic": [420.0, 463.3333333333333, 506.6666666666667, 550.0, 593.3333333333334, 636.6666666666666, 680.0]
+  },
+  "compiler": {
+    "fit_population": "P6F development test sets 1-4 x slides 1-3 only",
+    "fit_inputs": "candidate band observations",
+    "fit_targets": "full-grid D65 XYZ",
+    "solver": "independent nonnegative least squares per XYZ column followed by exact clear-response column normalization",
+    "bias": false,
+    "per_image_parameters": false,
+    "held_or_cave_fit_forbidden": true
+  },
+  "evaluation": {
+    "measured_development_status": "development-only because aggregate exploratory metrics were viewed before this contract",
+    "measured_report_cells": ["development", "held-set", "held-slide", "joint-held"],
+    "cave_status": "fresh cross-material confirmatory stress; reflectance is not film transmittance",
+    "cave_sampling": "all audited retained scenes, fixed 16x16 per-band cell medians, relative D65 Y in [0.01,0.95]",
+    "negative_control": "reverse candidate band observations before applying the unchanged paper7 compiler",
+    "repeat_runs": 2
+  },
+  "automatic_gates": {
+    "paper7_development_delta_e00_p95_max": 2.0,
+    "paper8_development_delta_e00_p95_max": 2.0,
+    "paper7_development_median_improvement_vs_rgb3_min": 0.85,
+    "paper8_development_median_improvement_vs_rgb3_min": 0.85,
+    "paper7_cave_delta_e00_median_max": 2.0,
+    "paper7_cave_delta_e00_p95_max": 6.0,
+    "paper7_cave_delta_e00_maximum_max": 15.0,
+    "paper8_cave_delta_e00_median_max": 2.0,
+    "paper8_cave_delta_e00_p95_max": 5.0,
+    "paper7_cave_median_improvement_vs_rgb3_min": 0.75,
+    "paper7_cave_p95_improvement_vs_rgb3_min": 0.65,
+    "paper8_cave_median_ratio_to_paper7_max": 1.1,
+    "reversed_band_cave_median_ratio_to_paper7_min": 2.0,
+    "clear_xyz_max_abs_error": 1e-12,
+    "candidate_output_minimum": 0.0,
+    "candidate_output_maximum_by_d65_white_tolerance": 1e-12,
+    "repeat_report_sha256_exact": true
+  },
+  "branch_rule": {
+    "pass": "retain the fixed paper7/paper8 ideal-band representation as an offline scanner-profile compiler candidate and next test measured LED SPDs or an independently released film MSI cube",
+    "fail": "close this ideal-centre compiler without changing P6D-F, adding bands, retuning centres, changing splits or increasing model capacity"
+  },
+  "forbidden_claims": [
+    "real LED or sensor characterization",
+    "real scanner calibration",
+    "Velvia 100F stock response outside the manufactured target spectra",
+    "CAVE reflectance as film evidence",
+    "camera-to-film or digital-to-film operator identification",
+    "product integration or calibrated reference"
+  ]
+}
