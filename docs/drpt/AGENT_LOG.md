@@ -9402,3 +9402,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain the Jacobian for future physical profile compilation. Stop neutral LAD
   interface work; the evidence remains generic and opens no camera-film,
   stock-colour, process/scanner, quality or product claim.
+
+## 2026-08-02 - U6.P6U retains a reversible explicit print primitive
+
+- Implemented the algebraic inverse of the existing print interpretation in
+  exact reverse stage order. It uses no optimizer, clipping or projection and
+  rejects outputs outside the physical image.
+- Two 343-point reports are byte-identical (`2575423d...50654`). All 12 gates
+  pass: density error `8.88e-16`, forward replay `6.66e-16`, Jacobian identity
+  `1.35e-15`, minimum determinant `1.56e-5`, maximum condition number `37.82`,
+  exact LAD recovery, partition parity and five invalid/unreachable rejections.
+- Retain the inverse for versioned physical profile compilation or bounded
+  fitting. This is generic equation-family evidence, not measured print,
+  scanner, stock or photographic product evidence.

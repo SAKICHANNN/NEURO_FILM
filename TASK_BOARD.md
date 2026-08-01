@@ -705,3 +705,8 @@ stock calibration. P6T passes two exact runs (`9bb08b2a...1bd57`): analytic
 error `3.83e-10`, whole-domain code-tangent relative error `1.36e-5`, and LAD
 local error `2.76e-4`. Retain the explicit Jacobian and continue to a distinct
 print/profile-compiler leaf; do not spend another leaf on neutral LAD glue.
+P6U analytically reverses the full explicit print chain on 343 interior density
+points with `8.88e-16` maximum inverse error and condition number `37.82`; five
+invalid/unreachable controls reject and all 12 gates pass in two exact reports
+(`2575423d...50654`). The next leaf should compile this reversible pair into a
+versioned generic profile or use it in a bounded fitting experiment.

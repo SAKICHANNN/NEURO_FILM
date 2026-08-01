@@ -15,6 +15,13 @@
 > linearization error is `2.76e-4`, with strict opposite negative/IP direction.
 > Retain this deterministic profile-compiler primitive, but stop neutral LAD
 > interface work here and advance a distinct physical imaging experiment.
+>
+> U6.P6U adds a non-iterative, no-clipping analytic inverse for the complete
+> generic print interpretation. Two exact 343-point runs (`2575423d...50654`)
+> pass all 12 gates with `8.88e-16` density error, `6.66e-16` replay error,
+> `1.35e-15` Jacobian identity error and worst condition number `37.82`.
+> Retain it for explicit profile compilation or bounded fitting, without
+> relabeling the generic witness as calibrated film, printer or scanner truth.
 
 > 2026-07-31: U6.P2M tests a bounded density-dependent interimage
 > development equation on synthetic known operators only. Two reports are

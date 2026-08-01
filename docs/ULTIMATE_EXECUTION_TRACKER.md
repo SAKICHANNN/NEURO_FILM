@@ -1126,5 +1126,9 @@ separately frozen local print-chain sensitivity audit. P6T passes all 12 gates
 in two exact runs (`9bb08b2a...1bd57`): analytic-vs-finite-difference error is
 `3.83e-10`, whole-domain code-tangent relative error is `1.36e-5`, and LAD
 local linearization error is `2.76e-4`. Retain the deterministic Jacobian for
-physical profile compilation; it remains generic neutral-axis evidence. AO6
-remains incumbent.
+physical profile compilation; it remains generic neutral-axis evidence. U6.P6U
+then analytically inverts the complete explicit print chain without optimization
+or clipping. Two exact 343-point reports (`2575423d...50654`) reach `8.88e-16`
+density error, `6.66e-16` replay error and maximum condition number `37.82`;
+all 12 gates pass. Retain the reversible primitive, still generic. AO6 remains
+incumbent.
