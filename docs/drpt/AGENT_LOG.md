@@ -8692,3 +8692,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Freeze the complete BN1 representation and gates. Next run it unchanged on
   the disjoint retained AY2 official FiveK content population; no visual,
   film, stock or product claim opens yet.
+
+## 2026-08-01 - U5.R2BN2 confirms the unchanged operator on disjoint content
+
+- Fixed an evaluation-only loader assumption by explicitly assigning the AY2
+  confirmation rows to an `unknown` nuisance group; no camera metadata was
+  inferred or backfilled. Pair-ID and SHA overlap with BN1 remain zero.
+- Two 64-row reports are byte-identical at `04cb352f...26fde` (stable ID
+  `5f7d4479...540ab`). Adaptive improves mean 5.35% over global, wins 60.94%,
+  improves P95/worst tails and retains 1.0226x AO6 style. New boundary,
+  out-of-cube and nonpositive-Jacobian counts remain zero.
+- Freeze BN1/BN2. Open one independent severe-artifact-first visual comparison
+  against the global projection-curve base under fixed AO6; no camera-OOD,
+  film, stock, calibration, preference or product claim opens yet.
