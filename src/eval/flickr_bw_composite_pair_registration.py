@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from collections import Counter
 from collections.abc import Mapping
 from pathlib import Path
@@ -27,6 +28,8 @@ class FlickrBwCompositeRegistrationError(ValueError):
 def _validate(root: Path, config: Mapping[str, Any]) -> tuple[dict[str, Any], dict[str, Any]]:
     if config.get("schema") != SCHEMA or config.get("status") != "contract_frozen_before_formal_execution":
         raise FlickrBwCompositeRegistrationError("invalid BP1 contract")
+    if re.fullmatch(r"[0-9a-f]{40}", str(config.get("software_commit", ""))) is None:
+        raise FlickrBwCompositeRegistrationError("software commit is not frozen")
     loaded: dict[str, dict[str, Any]] = {}
     for name, parent in config["parents"].items():
         path = root / str(parent["path"])
@@ -81,6 +84,7 @@ def evaluate(root: Path, config: Mapping[str, Any]) -> dict[str, Any]:
     stable = {
         "schema": "neuro-film.u5-r2bp1-flickr-bw-composite-pair-registration-report.v1",
         "node": config["node"],
+        "software_commit": config["software_commit"],
         "parent_report_sha256": config["parents"]["integrity_report"]["sha256"],
         "parent_manifest_sha256": config["parents"]["download_manifest"]["sha256"],
         "metrics": {

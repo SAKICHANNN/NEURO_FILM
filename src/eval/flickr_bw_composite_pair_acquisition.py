@@ -6,6 +6,7 @@ import hashlib
 import io
 import json
 import os
+import re
 import time
 from collections import Counter
 from collections.abc import Mapping
@@ -142,6 +143,8 @@ def _download(url: str, config: Mapping[str, Any], session: requests.Session) ->
 def acquire(parent: Mapping[str, Any], config: Mapping[str, Any], root: Path) -> tuple[dict[str, Any], dict[str, Any]]:
     if config.get("schema") != SCHEMA:
         raise FlickrBwCompositeAcquisitionError("invalid BP0 contract")
+    if re.fullmatch(r"[0-9a-f]{40}", str(config.get("software_commit", ""))) is None:
+        raise FlickrBwCompositeAcquisitionError("software commit is not frozen")
     if (
         parent.get("stable_evidence_id") != config["parent"]["stable_evidence_id"]
         or not parent.get("automatic_pass")
@@ -213,6 +216,7 @@ def acquire(parent: Mapping[str, Any], config: Mapping[str, Any], root: Path) ->
     manifest = {
         "schema": "neuro-film.u5-r2bp0-flickr-bw-composite-pair-manifest.v1",
         "node": config["node"],
+        "software_commit": config["software_commit"],
         "parent_report_sha256": config["parent"]["report_sha256"],
         "data_root": config["acquisition"]["data_root"],
         "files": len(rows) * 3,

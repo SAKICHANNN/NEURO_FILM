@@ -1,6 +1,7 @@
 {
   "schema": "neuro-film.u5-r2bp0-flickr-bw-composite-pair-acquisition.v1",
   "node": "ULT > U5 > U5.R2 > U5.R2BP0",
+  "software_commit": "d252c98c32ce451a2b2b0ae55eda79e58467aef6",
   "parent": {
     "report": "outputs/u5_r2bo9_flickr_bw_composite_pair_source_v1/run_a/report.json",
     "report_sha256": "700169d20083747623442ff981ed58c93135e6d6015adbe97302d29846e05600",

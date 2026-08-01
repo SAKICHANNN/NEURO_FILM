@@ -1,6 +1,7 @@
 {
   "schema": "neuro-film.u5-r2bo9-flickr-bw-composite-pair-source.v1",
   "node": "ULT > U5 > U5.R2 > U5.R2BO9",
+  "software_commit": "b835ea1aaa47d33bbe9f0a249cbcce42525f68d7",
   "source": {
     "search_page_url": "https://www.flickr.com/photos/tags/filmvsdigital/",
     "owner_nsid": "60452595@N02",

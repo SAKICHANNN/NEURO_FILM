@@ -1,6 +1,7 @@
 {
   "schema": "neuro-film.u5-r2bp2-flickr-bw-residual-identifiability.v1",
   "node": "ULT > U5 > U5.R2 > U5.R2BP2",
+  "software_commit": "871ea17ad5ed4d3b7b9aed7761c3f40e29af78aa",
   "status": "contract_frozen_before_formal_execution",
   "question": "After exact registration and per-scene monotone marginal tone normalization, is there a cross-scene B&W high-frequency residual stable enough to justify a density-domain structure challenger?",
   "parents": {

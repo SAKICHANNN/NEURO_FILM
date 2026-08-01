@@ -29,6 +29,8 @@ def canonical_bytes(value: Any) -> bytes:
 def audit_payload(payload: dict[str, Any], config: dict[str, Any]) -> dict[str, Any]:
     if config.get("schema") != SCHEMA or config["source"].get("image_payloads_allowed"):
         raise FlickrBwCompositeSourceError("invalid BO9 contract")
+    if re.fullmatch(r"[0-9a-f]{40}", str(config.get("software_commit", ""))) is None:
+        raise FlickrBwCompositeSourceError("software commit is not frozen")
     if payload.get("stat") != "ok" or not isinstance(payload.get("photos"), dict):
         raise FlickrBwCompositeSourceError("Flickr search response is not valid")
     source = config["source"]
@@ -99,6 +101,7 @@ def audit_payload(payload: dict[str, Any], config: dict[str, Any]) -> dict[str, 
     stable = {
         "schema": "neuro-film.u5-r2bo9-flickr-bw-composite-pair-source-report.v1",
         "node": config["node"],
+        "software_commit": config["software_commit"],
         "source": {
             "owner_nsid": source["owner_nsid"],
             "tag": source["tag"],

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from collections.abc import Mapping
 from pathlib import Path
 from typing import Any
@@ -161,6 +162,8 @@ def analyze_pair(
 def evaluate(root: Path, config: Mapping[str, Any]) -> dict[str, Any]:
     if config.get("schema") != SCHEMA or config.get("status") != "contract_frozen_before_formal_execution":
         raise FlickrBwResidualError("invalid BP2 contract")
+    if re.fullmatch(r"[0-9a-f]{40}", str(config.get("software_commit", ""))) is None:
+        raise FlickrBwResidualError("software commit is not frozen")
     registration = _load_json(root, config["parents"]["registration_report"])
     manifest = _load_json(root, config["parents"]["download_manifest"])
     if (
@@ -237,6 +240,7 @@ def evaluate(root: Path, config: Mapping[str, Any]) -> dict[str, Any]:
     stable = {
         "schema": "neuro-film.u5-r2bp2-flickr-bw-residual-identifiability-report.v1",
         "node": config["node"],
+        "software_commit": config["software_commit"],
         "parent_registration_sha256": config["parents"]["registration_report"]["sha256"],
         "parent_manifest_sha256": config["parents"]["download_manifest"]["sha256"],
         "metrics": metrics,

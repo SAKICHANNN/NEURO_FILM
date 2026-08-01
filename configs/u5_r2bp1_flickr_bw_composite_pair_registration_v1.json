@@ -1,6 +1,7 @@
 {
   "schema": "neuro-film.u5-r2bp1-flickr-bw-composite-pair-registration.v1",
   "node": "ULT > U5 > U5.R2 > U5.R2BP1",
+  "software_commit": "d1af8c90ccf4cb88261f66ee42c977ef464af761",
   "status": "contract_frozen_before_formal_execution",
   "parents": {
     "integrity_report": {
