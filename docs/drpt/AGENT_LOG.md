@@ -9490,3 +9490,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Boundary:** synthetic developed-density mechanism evidence only. No
   measured stock/process/scanner claim, photo render, preference review or
   product integration can open from this node.
+
+## 2026-08-02 - U6.P4AS retains the shared-scale synthetic mechanism
+
+- Two formal CPU reports are byte-identical (`6096a56e...db67bc`, stable
+  `6adb42ca...c4b09d`). MTF-only fitting recovers all three frozen layer scales
+  exactly; held MTF max RMSE is zero and independent Poisson NPS worst shape
+  RMSE is `.00812`.
+- Median NPS improvement versus no diffusion/wrong-layer radii is
+  `95.90%/91.64%`; NPS-only versus MTF scale p95 disagreement is `3.68%`.
+  Every density/domain/tail gate passes.
+- Retain the shared signal/noise scale as a generic synthetic primitive only.
+  The next admissible validation needs rights-cleared MTF and NPS measured from
+  the same material/process group; photographic tuning and product integration
+  remain forbidden.

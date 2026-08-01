@@ -32,6 +32,10 @@ def test_joint_evaluator_repeats_and_keeps_confirmation_separate() -> None:
     first = evaluate_joint_dye_cloud_signature(contract)
     second = evaluate_joint_dye_cloud_signature(contract)
     assert first == second
+    assert first["automatic_pass"] is True
+    assert first["stable_evidence_id"] == (
+        "6adb42caf988810a8a4cd885e2e793b7300edf23978b3090bc6037f02dc4b09d"
+    )
     assert (
         first["bundle"]["development_frequencies_cycles_per_pixel"]
         == (contract["split"]["development_mtf_frequencies_cycles_per_pixel"])

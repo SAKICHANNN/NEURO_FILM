@@ -1,0 +1,33 @@
+{
+  "schema": "neuro_film.u6_p4as_joint_dye_cloud_mtf_nps_decision.v1",
+  "node": "U6.P4AS",
+  "decision": "retain_shared_dye_cloud_scale_synthetic_mechanism",
+  "contract_commit": "36c2b5b1e8b338019cc0e8468d21bb9092c79345",
+  "implementation_commit": "9b3ada2b3a1b9b57af590f0b78f0cf22a288d405",
+  "contract_sha256": "251e639e81f1ff8441c7790b8f4939197311ce1163cdd6b31a43271f2a147cc9",
+  "report_path": "outputs/experiments/u6_p4as_joint_dye_cloud_mtf_nps_v1/report.json",
+  "report_sha256": "6096a56e2c367ef69f95a74fa6a5b249ea6c4c2c1d730c7d6e55c023b4db67bc",
+  "stable_evidence_id": "6adb42caf988810a8a4cd885e2e793b7300edf23978b3090bc6037f02dc4b09d",
+  "bundle_id": "1b1346bacace0b3d091a9f94b7a5eecc515b4c7a7e512a2d20043984b89834ab",
+  "two_reports_byte_exact": true,
+  "automatic_pass": true,
+  "metrics": {
+    "maximum_sigma_relative_error": 0.0,
+    "maximum_confirmation_mtf_rmse": 0.0,
+    "maximum_confirmation_nps_shape_rmse": 0.008119479368186815,
+    "median_nps_improvement_vs_no_diffusion": 0.9590343630960431,
+    "median_nps_improvement_vs_wrong_layer": 0.9163584706734802,
+    "median_nps_sigma_relative_disagreement": 0.006944444444444605,
+    "p95_nps_sigma_relative_disagreement": 0.03684210526315786
+  },
+  "interpretation": [
+    "A positive normalized Gaussian cloud scale fitted from development MTF alone predicts disjoint-frequency MTF and independent realized Poisson NPS shape for every frozen layer and density.",
+    "No-diffusion and wrong-layer controls lose by large margins, while the NPS-only diagnostic recovers a scale consistent with the MTF-fitted bundle. The shared signal/noise coupling is therefore identifiable on this synthetic reference family.",
+    "The result validates a joint mechanism contract, not the Gaussian profile or any radius for real film. It neither measures a stock/process/scanner nor authorizes photographic rendering or product integration."
+  ],
+  "next_leaf": "Audit a rights-cleared source for independently measured MTF and NPS from the same film material/process group. Without such paired physical measurements, return to another distinct film-image-formation mechanism rather than rendering or tuning P4AS photographically.",
+  "photographic_render_allowed": false,
+  "product_integration_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "generic synthetic shared-scale dye-cloud MTF/NPS identifiability evidence only"
+}

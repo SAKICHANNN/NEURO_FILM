@@ -2744,3 +2744,9 @@ python_coreml_stable_diffusion  # CoreML 转换
 > LUT as a representation baseline, retain AO6/global safe-rich, and resume the
 > evidence-authorized real-film/physical-image-formation tree.
 >
+> 2026-08-02: `U6.P4AS` closes the missing joint signal/noise mechanism check.
+> MTF-only development fitting recovers one positive cloud scale per colour
+> layer, and the frozen bundle predicts held MTF plus independent Poisson NPS
+> across three densities. Two reports are exact (`6096a56e...db67bc`); all
+> gates pass. This is synthetic mechanism evidence only. A measured successor
+> requires same-material/process MTF and NPS; no photo or product path opens.
