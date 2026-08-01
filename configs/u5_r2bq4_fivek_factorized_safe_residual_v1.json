@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bq4-fivek-factorized-safe-residual-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BQ4",
+  "status": "contract_frozen_implementation_ready",
+  "hypothesis": "Separating source-conditioned explicit-operator direction from magnitude can avoid direct-regression style averaging, while analytical source-to-candidate residual scaling can remove new gamut-boundary samples without hard clipping or learned RGB.",
+  "parent_bq3_decision": {
+    "path": "configs/u5_r2bq3_fivek_conditional_explicit_operator_decision_v1.json",
+    "sha256": "210ebaf31d05e9d9309fa4ee6de9764ebf4a1badb6db7a54145f87efaf2937c5"
+  },
+  "parent_bq3_report": {
+    "path": "outputs/u5_r2bq3_fivek_conditional_explicit_operator_v1/run_a/report.json",
+    "sha256": "41416bb71dca281ab371d852353aa650ef41fb42cbd51c94b0e54711c2c0d765",
+    "stable_evidence_id": "7eba2e178248033b0a266463c5316c97d71d65c2542ac11ee3f3d7e8940606cc"
+  },
+  "parent_oracle": {
+    "path": "outputs/u5_r2bq1v2_fivek_casebank_oracle_v1/run_a/report.json",
+    "sha256": "bb190d1f1ce60cded40c9c56507ababc7885a4de8b85be1e4c995c8c309840ae",
+    "stable_evidence_id": "10ba20ae8b72f7e4a27c203060bf0ea0b3e9d231bc59478c70c41bac505bb60c"
+  },
+  "parent_nearest_report": {
+    "path": "outputs/u5_r2bq2a_fivek_source_hard_retrieval_v1/run_a/report.json",
+    "sha256": "230133781aa6431b015f2b6dd45ff2c97e5f68ba531b308cd28266622b70b4a5"
+  },
+  "parent_manifest": {
+    "path": "outputs/u5_r2bq0s2_fivek_casebank_normalization_v1/run_a_formal/manifest.json",
+    "sha256": "d07ace3173198e9902ebe7c8bbf2de5ecb4342ec67f1b640aa54d9edee903a20"
+  },
+  "decode": {"maximum_side": 128, "asset_hash_validation": true},
+  "descriptor": {
+    "families": ["spatial_photometric", "tone_layout"],
+    "source_pixels_only": true,
+    "spatial_grid": 4,
+    "luma_quantiles": 17,
+    "gradient_magnitude_quantiles": 9
+  },
+  "model": {
+    "family": "factorized_identity_centered_parameter_direction_and_log_magnitude",
+    "pca_components": 32,
+    "ridge_alpha": 10.0,
+    "ridge_alpha_source": "fixed unchanged from BQ2B/BQ3",
+    "parameter_scaling": "fit-only per-coordinate maximum absolute effective parameter with 1e-6 floor",
+    "direction_normalization": "unit L2 in scaled parameter space",
+    "magnitude_transform": "fit-only log amplitude clipped to fit-only extrema",
+    "group_bucket_hash": "sha256(utf8(camera_model))[0] modulo 4",
+    "group_bucket_modulus": 4,
+    "validation_bucket": 0,
+    "shuffled_parameter_seed": 2026080157,
+    "query_target_used_at_inference": false,
+    "confirmation_used_for_fit_or_selection": false,
+    "direct_final_rgb_prediction": false
+  },
+  "operator": {
+    "family": "monotone_triangular_logit_transport_plus_analytical_source_residual",
+    "parameter_count": 14,
+    "lower_bounds": [-0.7, -1.0, -0.7, -0.7, -1.0, -1.0, -0.7, -0.7, -0.7, -0.7, -1.0, -1.0, -1.0, -1.0],
+    "upper_bounds": [0.7, 1.0, 0.7, 0.7, 1.0, 1.0, 0.7, 0.7, 0.7, 0.7, 1.0, 1.0, 1.0, 1.0],
+    "fit_samples_per_image": 1024,
+    "pooled_samples_per_image": 256,
+    "identity_shrinkage": 0.05,
+    "safe_dose_grid_size": 9,
+    "safe_dose_finite_difference": 0.00001,
+    "minimum_jacobian_determinant": 0.02,
+    "maximum_jacobian_condition": 30.0,
+    "safe_dose_bisection_iterations": 24,
+    "residual_origin": "source_rgb",
+    "residual_interior_margin_multiplier": 2.0,
+    "hard_clipping_allowed": false
+  },
+  "evaluation": {
+    "development_samples_per_image": 512,
+    "confirmation_samples_per_image": 1024,
+    "strength_doses": [0.0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1.0],
+    "boundary_epsilon": 0.00001525902189669642,
+    "ood_distance_quantile": 0.95,
+    "bootstrap_seed": 2026080159,
+    "bootstrap_repetitions": 2000
+  },
+  "target_variants": {
+    "aligned_expert": {"target_variant": "aligned_expert"},
+    "filtered": {"target_variant": "filtered"}
+  },
+  "required_pass_variants": ["aligned_expert", "filtered"],
+  "development_gates": {
+    "minimum_mean_improvement_over_identity": 0.05,
+    "minimum_mean_improvement_over_global": 0.03,
+    "minimum_win_fraction_over_global": 0.55,
+    "maximum_p95_ratio_to_global": 1.0,
+    "maximum_worst_ratio_to_global": 1.1,
+    "minimum_oracle_gap_closure": 0.1,
+    "minimum_mean_improvement_over_strength_oracle": 0.01,
+    "minimum_win_fraction_over_strength_oracle": 0.55,
+    "minimum_mean_improvement_over_nearest": 0.005,
+    "minimum_win_fraction_over_nearest": 0.5,
+    "minimum_mean_improvement_over_direct_bq3": 0.005,
+    "minimum_win_fraction_over_direct_bq3": 0.5,
+    "minimum_mean_improvement_over_shuffled_parameters": 0.03,
+    "minimum_bootstrap_lower_improvement": 0.0,
+    "minimum_median_style_retention_ratio": 0.7,
+    "minimum_mean_style_magnitude_ratio_to_global": 0.9,
+    "minimum_safe_dose": 0.5,
+    "maximum_parameter_clipping_fraction": 0.25,
+    "maximum_new_boundary_fraction": 0.0005,
+    "maximum_fallback_fraction": 0.5,
+    "minimum_median_image_mean_residual_scale": 0.9
+  },
+  "confirmation_gates": {
+    "minimum_mean_improvement_over_identity": 0.05,
+    "minimum_mean_improvement_over_global": 0.05,
+    "minimum_win_fraction_over_global": 0.6,
+    "maximum_p95_ratio_to_global": 1.0,
+    "maximum_worst_ratio_to_global": 1.1,
+    "minimum_oracle_gap_closure": 0.15,
+    "minimum_mean_improvement_over_strength_oracle": 0.02,
+    "minimum_win_fraction_over_strength_oracle": 0.55,
+    "minimum_mean_improvement_over_nearest": 0.005,
+    "minimum_win_fraction_over_nearest": 0.5,
+    "minimum_mean_improvement_over_shuffled_parameters": 0.03,
+    "minimum_bootstrap_lower_improvement": 0.02,
+    "minimum_median_style_retention_ratio": 0.7,
+    "minimum_mean_style_magnitude_ratio_to_global": 0.9,
+    "minimum_safe_dose": 0.5,
+    "maximum_parameter_clipping_fraction": 0.25,
+    "maximum_new_boundary_fraction": 0.0005,
+    "maximum_fallback_fraction": 0.5,
+    "minimum_median_image_mean_residual_scale": 0.9
+  },
+  "branch_rules": {
+    "development_fails": "close without confirmation or normalization, amplitude, alpha, feature, PCA, boundary or threshold rescue",
+    "confirmation_fails": "close this factorized family and move to a mechanism-distinct hard sparse residual bank or new evidence",
+    "confirmation_passes": "freeze candidate and acquire a fresh independent digital-control population before visual or product consideration",
+    "style_gate_fails": "reject as averaged/bland even if error improves",
+    "safety_gate_fails": "reject without hard clipping or learned dense correction"
+  },
+  "confirmation_model_selection_allowed": false,
+  "learned_final_rgb_allowed": false,
+  "production_integration_allowed": false,
+  "film_or_stock_claim_allowed": false,
+  "claim_ceiling": "group-held factorized bounded-parameter and analytical safe-residual evidence on paired FiveK digital-retouch controls; not film response, stock identity, calibration, preference or product evidence"
+}
