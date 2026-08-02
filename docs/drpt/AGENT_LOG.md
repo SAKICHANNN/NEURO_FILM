@@ -10160,3 +10160,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   runs are byte-identical at `e7947d29...0ab5`. Both target variants fail the
   parameter-matched global-LUT and encoded-boundary gates, so the exact family
   closes without predictor, grid or threshold rescue.
+
+# 2026-08-02 - U5.R2BU1 stock MTF PSF compiler closes
+
+- Implemented and twice ran the frozen positive Gaussian PSF compiler against
+  first-party VISION3 50D/250D/500T MTF traces.
+- Reports are byte-identical (`c06d79c5...f64f8`). Stock-specific kernels
+  materially beat shared, wrong-stock and identity controls, but median held
+  frequency RMSE `.05307` fails the frozen `.05` gate.
+- No rescue or product mapping; next work requires independent stock evidence.

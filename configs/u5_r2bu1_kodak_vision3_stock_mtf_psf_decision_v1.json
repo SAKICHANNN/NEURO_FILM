@@ -1,0 +1,28 @@
+{
+  "schema": "neuro_film.u5_r2bu1_kodak_vision3_stock_mtf_psf_decision.v1",
+  "experiment_id": "U5.R2BU1",
+  "contract_sha256": "80ea5f3931a77901352549433d4738637b57aa82349b467d9edb14487037c8fb",
+  "software_commit": "fbde5972a56c8807f41d988a35d0e52526c520ab",
+  "formal_evidence": {
+    "report_a": "outputs/u5_r2bu1_kodak_vision3_stock_mtf_psf/formal_a/report.json",
+    "report_b": "outputs/u5_r2bu1_kodak_vision3_stock_mtf_psf/formal_b/report.json",
+    "report_sha256": "c06d79c588d8e42b59a4810c48d62b562c55e7f1155786ad644fde86aeaf64f8",
+    "bundle_sha256": "267304bcb7129272790de3edcf7f077c7f536760f1fe6558ef992aa4647cb351",
+    "stable_evidence_id": "a4f58ddf87d0d7109b0db6ebd3adeb3d640df38ebf4377bd5c4477ac21c3174d",
+    "two_byte_identical_audits": true
+  },
+  "result": {
+    "stock_psf_pass": false,
+    "candidate_confirmation_median_rmse": 0.053066618029554924,
+    "candidate_confirmation_worst_rmse": 0.07253976697801083,
+    "shared_confirmation_median_rmse": 0.10097703883991752,
+    "wrong_stock_confirmation_median_rmse": 0.1740002492962707,
+    "overall_improvement_over_shared_fraction": 0.4744684668988628,
+    "overall_improvement_over_wrong_stock_fraction": 0.695019873568122,
+    "identity_rows_beaten": 9,
+    "failed_gates": ["candidate_median_rmse"]
+  },
+  "decision": "close_one_gaussian_stock_mtf_bank_without_rescue",
+  "next_ready_leaf": "Seek an independent stock-specific source observation or measured spatial mechanism; do not add Gaussian-mixture capacity on the same traces.",
+  "claim_ceiling": "Held-frequency compatibility of a simple positive Gaussian PSF with three first-party VISION3 MTF graphs; not real-roll calibration, complete film MTF, placement, photographic appearance or product integration."
+}

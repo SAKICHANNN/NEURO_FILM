@@ -860,3 +860,10 @@ against eight required; 52/104 edge attempts fail frozen robust line support
 and scan 34407 has 0/13 measurable edges. Two development locks and reports
 are byte-exact (`65075697...4a11`), with zero confirmation reads. Do not alter
 geometry or thresholds on this cohort and do not infer scanner or film MTF.
+
+# 2026-08-02 - U5.R2BU1 one-Gaussian MTF compiler closes
+
+- Three VISION3 stock-specific layer kernels beat shared/wrong/identity
+  controls, but confirmation median RMSE `.05307` misses the frozen `.05` gate.
+- Close without Gaussian-mixture or threshold rescue; pursue a fresh
+  stock-identifying source observation.

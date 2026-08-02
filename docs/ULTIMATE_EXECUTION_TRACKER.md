@@ -1203,3 +1203,10 @@ digitization. Same-hardware transfer shows central signal (7/9 wins; median
 improvement 88.38% versus no-context) but fails the frozen tail gate at `.03588`
 p95 absolute black-context error versus `.02`. Close the exact one-fraction
 cross-lab model and preserve scanner/lab/polarity as nuisance variables.
+
+U5.R2BU0 establishes a first-party VISION3 source-domain MTF signature across
+50D, 250D and 500T. U5.R2BU1 closes the one-Gaussian-per-layer compiler:
+stock-specific kernels improve confirmation RMSE by 47.45% versus a shared
+kernel and 69.50% versus cyclic wrong-stock kernels, but median RMSE `.05307`
+misses the frozen `.05` gate. Do not add Gaussian-mixture capacity or relax the
+gate on the same traces; seek an independent stock observation.
