@@ -1,0 +1,62 @@
+{
+  "schema": "neuro_film.u6_p6ab_circular_scanner_aperture_4000dpi_contract.v1",
+  "experiment_id": "u6.p6ab-circular-scanner-aperture-4000dpi-v1",
+  "node": "ULT > U6 > U6.P6 > U6.P6AB",
+  "date_frozen": "2026-08-02",
+  "parent": {
+    "node": "U6.P6AA",
+    "decision_path": "configs/u6_p6aa_circular_scanner_aperture_decision_v1.json",
+    "decision_sha256": "f3f6aac78ce8b69e784fe17b4c01406484b99ce0c76b243ce85c2a9415643048",
+    "stable_evidence_id": "c2e6e1d9002577d17e25f749b4c9570b2cb9c2751ffb4bdcb2514e141e5f9305"
+  },
+  "question": "Does the unchanged positive disk-area compiler remain an adequate direct representation of the 12.5um circular scanner aperture at 4000 dpi, without an oversampled reference dependency or a larger Gaussian approximation?",
+  "compiler": {
+    "aperture_diameter_um": 12.5,
+    "reference_pixel_pitch_um": 6.35,
+    "subpixels_per_axis": 1024,
+    "cell_rule": "unchanged deterministic subpixel-centre disk-area fraction followed by exact sum normalization and zero-border crop",
+    "dtype": "float64",
+    "support": "minimal odd square containing all positive cell-area weights",
+    "production_import_allowed": false
+  },
+  "evaluation": {
+    "frequencies_cycles_per_mm": [0, 10, 20, 30, 40, 50, 60, 70, 78.74015748031496],
+    "analytic_target": "2*J1(pi*diameter_mm*f)/(pi*diameter_mm*f)",
+    "equal_second_moment_gaussian_sigma_um": 3.125,
+    "point_aperture_mtf": 1.0,
+    "test_shape": [61, 47, 3],
+    "row_partitions": [7, 17, 31],
+    "seed": 26080262
+  },
+  "gates": {
+    "maximum_kernel_mtf_absolute_error": 0.05,
+    "minimum_rmse_improvement_vs_gaussian": 0.5,
+    "minimum_rmse_improvement_vs_point": 0.8,
+    "maximum_weight_sum_error": 1e-12,
+    "minimum_weight": 0.0,
+    "maximum_rotational_symmetry_error": 1e-15,
+    "maximum_constant_error": 1e-12,
+    "maximum_partition_error": 1e-15,
+    "maximum_repeat_error": 0.0,
+    "impulse_must_equal_kernel": true
+  },
+  "controls": [
+    "equal-second-moment Gaussian MTF at the same target lattice",
+    "point aperture",
+    "analytic 4000-dpi Nyquist endpoint",
+    "constant/impulse/rotation/repeat",
+    "7/17/31-row partitions"
+  ],
+  "forbidden": [
+    "change the disk-area compiler, aperture diameter, target pitch, subpixel count, controls or gates after scoring",
+    "fall back to the 1um reference inside target execution",
+    "add support, negative taps, deconvolution or fitted correction",
+    "modify the production scanner profile or native runtime",
+    "claim modern scanner calibration, photographic quality or product promotion"
+  ],
+  "branch_rule": {
+    "pass": "Retain a direct 4000-dpi circular-aperture research compiler and next measure cost/parity before any optional profile schema proposal.",
+    "fail": "Close direct target compilation without capacity rescue; retain P6AA reference and the existing Gaussian product approximation."
+  },
+  "claim_ceiling": "Generic synthetic 4000-dpi circular scanner-aperture compiler evidence; no measured modern device, scanner profile or product integration."
+}

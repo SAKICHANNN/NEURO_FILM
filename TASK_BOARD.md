@@ -767,3 +767,9 @@ kernel has `.00314` maximum analytic MTF error and reduces RMSE by
 rotation, repeat and row partitions pass in two exact reports
 (`e25be197...956891`). P6AB now tests the same fixed 12.5um compiler directly at
 4000-dpi pitch; production profile/runtime imports remain closed.
+
+U6.P6AB is frozen at exact 4000-dpi pitch (`6.35um`) with the unchanged
+disk-area compiler. It must stay within `.05` analytic MTF error through
+Nyquist, improve RMSE by `50%/80%` over Gaussian/point controls and preserve
+the P6AA execution invariants. No oversampled fallback or fitted correction is
+allowed in the target path.

@@ -9578,3 +9578,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain an isolated generic reference only. P6AB must establish whether the
   same disk-area construction is adequate directly at 4000 dpi before any
   profile/runtime discussion.
+
+## 2026-08-02 - Freeze U6.P6AB direct 4000-dpi aperture compiler
+
+- Reuse the exact P6AA disk-area algorithm at `6.35um` pixel pitch and freeze a
+  1024-subpixel area reference before scoring. The 1um kernel may not execute
+  inside this target path.
+- Require <=.05 maximum analytic MTF error through the target Nyquist and
+  >=50%/80% RMSE gains over equal-moment Gaussian/point controls, plus unchanged
+  positivity, impulse, constant, symmetry, repeat and partition gates.
+- No support increase, negative taps, deconvolution, fitted correction, profile
+  mutation or product claim is permitted after scoring.
