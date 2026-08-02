@@ -2,6 +2,16 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-02 - U6.P4AZ retains physical-domain grain amplitude conversion
+
+- Compiled P4AX density RMS through exact `T=10^-D` log-normal moments; two
+  bundles/reports are exact (`eee30936...b555` / `51c8fbba...258d`).
+- Analytic moments match independent 96-point quadrature to `8.22e-15`, invert
+  to density at near machine precision, and produce `157.56x` transmittance-RMS
+  range across fixed manufacturer-curve probes.
+- The bundle keeps spatial structure unidentified. This rejects fixed
+  display-RGB grain amplitude but does not select an NPS or open rendering.
+
 # 2026-08-02 - U6.P4AY closes generic spatial normalization
 
 - Three generic spectra analytically reproduce the P4AX 48um aperture amplitude

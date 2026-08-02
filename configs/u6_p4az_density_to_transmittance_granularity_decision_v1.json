@@ -1,0 +1,43 @@
+{
+  "schema": "neuro_film.u6_p4az_density_to_transmittance_granularity_decision.v1",
+  "node": "U6.P4AZ",
+  "decision": "retain_density_to_transmittance_amplitude_compiler",
+  "contract_commit": "58ab68626709ad893efee78d5b501e8861550915",
+  "implementation_commit": "a5a78a05029bdaa2cc08ca311db4ce4e6ddd3fe8",
+  "contract_sha256": "8e4aa083ad8a68fe691d51b6e45598f28466572d9d858de31346cd988289138f",
+  "profile_module_sha256": "a3e6b9f1244ccddf9c7d8c6533eb7c194d5d4f83b08e6931c43dda3eedce51c4",
+  "evaluator_sha256": "9f6cd2196554f6b390b206f4bdcfc343bd1c245ec8b111c92b010edafbd0170e",
+  "bundle_path": "outputs/experiments/u6_p4az_density_to_transmittance_granularity_v1/run_a/bundle.json",
+  "bundle_sha256": "eee309369341f829f25db8a546dc7923521c6a870cc218e854f1648ff38db555",
+  "profile_id": "7b857f8a40c601b4293d8cb5cd82b4ae282ae1856f9a5fd1ba9d5f2918c8dd05",
+  "reports": [
+    "outputs/experiments/u6_p4az_density_to_transmittance_granularity_v1/run_a/report.json",
+    "outputs/experiments/u6_p4az_density_to_transmittance_granularity_v1/run_b/report.json"
+  ],
+  "report_sha256": "51c8fbba2049a82d720bac789a0f09c99f0f9363dae6bccd43926ae9832c258d",
+  "stable_evidence_id": "f6511114d9e309805f6afdcb70b5624d42ab09c8fb68fc85478b8ea5e72ef45b",
+  "two_bundles_and_reports_byte_exact": true,
+  "automatic_pass": true,
+  "metrics": {
+    "probe_count": 15,
+    "maximum_relative_mean_quadrature_error": 4.440892098500626e-16,
+    "maximum_relative_rms_quadrature_error": 8.215650382226158e-15,
+    "maximum_density_inverse_error": 2.220446049250313e-16,
+    "maximum_rms_inverse_error": 1.734723475976807e-18,
+    "maximum_delta_method_relative_rms_error": 0.00047719771582488413,
+    "transmittance_rms_minimum": 0.00004630333819353975,
+    "transmittance_rms_maximum": 0.007295382846592826,
+    "transmittance_rms_dynamic_range_ratio": 157.556304387805
+  },
+  "interpretation": [
+    "The retained density-amplitude profile converts through the physical transmittance equation with analytic moments that agree with independent 96-point Gauss-Hermite quadrature and invert back to density moments at near machine precision.",
+    "The resulting transmittance RMS varies by 157.56x across the frozen manufacturer-curve probes. A constant display-RGB grain amplitude therefore cannot represent even this amplitude-only physical consequence.",
+    "The bundle explicitly leaves spatial structure unidentified. It supplies no NPS, cloud radius, scanner response, calibrated stock response or photographic render authorization."
+  ],
+  "next_ready_leaf": "Use the typed transmittance-amplitude profile only in a separately frozen physical composition or profile-compiler experiment; any spatial field still requires independent evidence.",
+  "spatial_structure_identified": false,
+  "photographic_render_allowed": false,
+  "product_integration_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "Typed exact density-to-transmittance amplitude conversion under an explicit Gaussian compatibility assumption; no spatial NPS, causal cloud geometry, calibration or product claim."
+}

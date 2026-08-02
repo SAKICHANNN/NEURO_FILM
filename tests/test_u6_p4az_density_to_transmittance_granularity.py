@@ -61,6 +61,9 @@ def test_exact_compiler_repeats() -> None:
     assert first_report["decision"] == (
         "retain_density_to_transmittance_amplitude_compiler"
     )
+    assert first_report["stable_evidence_id"] == (
+        "f6511114d9e309805f6afdcb70b5624d42ab09c8fb68fc85478b8ea5e72ef45b"
+    )
     assert first_report["probe_count"] == 15
     assert first_report["transmittance_rms_dynamic_range_ratio"] > 100.0
     assert first_bundle["spatial_structure_status"] == "unidentified"
