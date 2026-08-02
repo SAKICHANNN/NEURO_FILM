@@ -1,0 +1,74 @@
+{
+  "schema": "neuro_film.u6_p4bt_clustered_nps_canonical_field_contract.v1",
+  "experiment_id": "u6.p4bt-clustered-nps-canonical-field-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4BT",
+  "date_frozen": "2026-08-02",
+  "question": "Can the retained P4BS effective Thomas spectrum drive a deterministic unit-variance canonical field whose full periodic periodogram and covariance reproduce the exact frozen target before any finite-support or photographic approximation?",
+  "parents": {
+    "p4bs_contract": {
+      "path": "configs/u6_p4bs_real_uniform_thomas_confirmation_v1.json",
+      "sha256": "b8382fffd50763ee4a4a8498d3951d97bd21e4e7069c696baec7034c2309f2db"
+    },
+    "p4bs_decision": {
+      "path": "configs/u6_p4bs_real_uniform_thomas_confirmation_decision_v1.json",
+      "sha256": "a0b01b0fc08b407c26169f16d5efbc87aa9a20146e42d33ea113f8200ee57ff3",
+      "required_decision": "retain_generic_scanner_convolved_thomas_mechanism_candidate"
+    },
+    "p4bs_report": {
+      "path": "outputs/experiments/u6_p4bs_real_uniform_thomas_confirmation_v1/run_a/report.json",
+      "sha256": "657730398f3107379084103dd88cd47ac768b8fc65f7fd5cde9d1c490317279a",
+      "required_stable_evidence_id": "ba8a05ddcb073e2fc05aa92af9a78e4425aa2a8b99e1412caf479d383f2d14bc"
+    }
+  },
+  "profile": {
+    "profile_id": "generic-scanner-convolved-thomas-p4bs-v1",
+    "particle_sigma_pixels": 1.3253699417769098,
+    "cluster_sigma_pixels": 1.1268619873805532,
+    "mean_offspring": 27.765942352935905,
+    "amplitude_semantics": "unit spatial variance reference only",
+    "density_conditioning": null,
+    "stock_id": null,
+    "microscopic_geometry_claimed": false
+  },
+  "synthesis": {
+    "field_shape": [512, 512],
+    "seeds": [2608022901, 2608022902, 2608022903],
+    "phase_source": "counter_normal_region_then_unit_magnitude_fft_phase",
+    "radial_spectrum": "exp(-4*pi_squared*particle_sigma_squared*f_squared)*(1+mean_offspring*exp(-4*pi_squared*cluster_sigma_squared*f_squared))",
+    "spectrum_normalization": "discrete non-DC mean equals one",
+    "fourier_amplitude": "sqrt(pixel_count*normalized_target_spectrum)",
+    "dc_policy": "exact_zero_sample_mean",
+    "realized_amplitude_renormalization_allowed": false,
+    "tile_or_crop_parity_claimed": false,
+    "gaussian_marginal_claimed": false,
+    "photographic_render_allowed": false
+  },
+  "evaluation": {
+    "required_seed_count": 3,
+    "required_row_count": 3,
+    "covariance_lags_yx": [[0, 1], [1, 0], [1, 1], [0, 2], [2, 0], [0, 4], [4, 0], [0, 8], [8, 0], [0, 16], [16, 0]],
+    "maximum_periodogram_relative_error": 1e-10,
+    "maximum_covariance_absolute_error": 1e-12,
+    "maximum_variance_absolute_error": 1e-12,
+    "maximum_absolute_sample_mean": 1e-12,
+    "maximum_ifft_imaginary_residual": 1e-12,
+    "require_repeat_exact": true,
+    "require_seed_distinct_fields": true,
+    "require_two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain the global periodic unit-variance field as the canonical offline reference and open a separately frozen finite-support approximation with field/crop/seam evidence.",
+    "fail": "Close field synthesis without renormalizing realized samples or changing the P4BS spectrum, FFT convention, phase source or gates."
+  },
+  "forbidden": [
+    "apply the unit-variance reference directly to a photograph",
+    "infer density amplitude or stock identity",
+    "claim tile, crop or finite-support parity from a global periodic FFT",
+    "interpret random phase as particle geometry or a Gaussian marginal"
+  ],
+  "outputs": {
+    "report_a": "outputs/experiments/u6_p4bt_clustered_nps_canonical_field_v1/run_a/report.json",
+    "report_b": "outputs/experiments/u6_p4bt_clustered_nps_canonical_field_v1/run_b/report.json"
+  },
+  "claim_ceiling": "Deterministic offline unit-variance periodic fields reproducing the retained generic scanner-convolved Thomas second-order spectrum; not density amplitude, microscopic geometry, stock calibration, finite-support runtime or photographic rendering."
+}
