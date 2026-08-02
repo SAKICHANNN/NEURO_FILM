@@ -1,0 +1,68 @@
+{
+  "schema": "neuro_film.u5_r2bu4_vision3_source_signature_robustness_contract.v1",
+  "experiment_id": "U5.R2BU4",
+  "node": "ULT > U5 > U5.R2 > U5.R2BU4",
+  "date_frozen": "2026-08-02",
+  "question": "Does the non-renderable VISION3 MTF plus diffuse-rms granularity source signature remain stock-discriminating under frozen graph-digitization perturbations and one missing colour layer?",
+  "parent_decision": {
+    "path": "configs/u5_r2bu3_vision3_observed_source_profile_decision_v1.json",
+    "sha256": "d4c318a857f788b3ea5fdef292ba44f24f2d4386a03cb02928c77a24424c95a9",
+    "required_decision": "retain_non_renderable_observed_source_profile",
+    "required_bundle_sha256": "233decd329e07398c1c8f85ba7f1abd5420b39ba2c5e9291667e338421b25252"
+  },
+  "compiler_contract": {
+    "path": "configs/u5_r2bu3_vision3_observed_source_profile_v1.json",
+    "sha256": "8144dfc018839e61ba202c1f4182679624269ad33eb02e22cc4e524e53cdd3af"
+  },
+  "comparison": {
+    "stocks": [
+      "kodak_vision3_50d_5203_7203",
+      "kodak_vision3_250d_5207_7207",
+      "kodak_vision3_500t_5219_7219"
+    ],
+    "channels": ["blue", "green", "red"],
+    "channel_subsets": [
+      ["blue", "green", "red"],
+      ["blue", "green"],
+      ["blue", "red"],
+      ["green", "red"]
+    ],
+    "mtf_frequencies_cycles_per_mm": [28.0, 32.0, 36.0, 40.0, 44.0, 48.0, 52.0, 56.0, 60.0, 64.0],
+    "granularity_log_relative_exposures": [0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5, 2.75, 3.0, 3.25, 3.5, 3.75, 4.0],
+    "feature": "per-domain per-channel natural-log curve shape after subtracting the first common-grid value",
+    "distance": "mean per-domain per-channel RMSE to each nominal BU3 stock profile",
+    "digitization_uncertainty_pixels": 2.0,
+    "perturbation_patterns": [
+      "nominal",
+      "all_y_plus",
+      "all_y_minus",
+      "alternating_xy",
+      "inverse_alternating_xy"
+    ],
+    "negative_control": "cyclically relabel the exact joint predictions without refitting"
+  },
+  "gates": {
+    "required_case_count": 60,
+    "minimum_joint_top1_accuracy": 0.95,
+    "minimum_joint_recall_per_stock": 0.9,
+    "minimum_joint_accuracy_per_channel_subset": 0.9,
+    "minimum_normalized_worst_margin": 0.02,
+    "maximum_cyclic_label_control_accuracy": 0.34,
+    "joint_accuracy_must_not_be_lower_than_each_single_domain": true,
+    "exact_bundle_recompile": true,
+    "two_byte_identical_audits": true,
+    "no_render_authority": true
+  },
+  "forbidden": [
+    "change a trace, common grid, perturbation, feature, control or gate after scoring",
+    "tune a classifier, distance weight, threshold or channel subset on these three stocks",
+    "treat deterministic digitization perturbations as independent rolls or confirmation data",
+    "infer PSF, NPS, microscopic structure, spatial placement, RGB colour response or photographic appearance",
+    "render photographs, alter the current product default or claim roll/process/scanner calibration"
+  ],
+  "branch_rule": {
+    "pass": "Retain a robust manufacturer-source signature and continue only to independent measured real-film evidence.",
+    "fail": "Close source-signature classification without metric, grid, perturbation or gate rescue and seek a different independent stock observation."
+  },
+  "claim_ceiling": "Same-source robustness of three first-party manufacturer graph profiles under deterministic trace perturbations and missing-channel controls; not independent real-film confirmation, calibration, rendering or product evidence."
+}
