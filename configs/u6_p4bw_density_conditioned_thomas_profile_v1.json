@@ -1,0 +1,90 @@
+{
+  "schema": "neuro_film.u6_p4bw_density_conditioned_thomas_profile_contract.v1",
+  "experiment_id": "u6.p4bw-density-conditioned-thomas-profile-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4BW",
+  "date_frozen": "2026-08-02",
+  "question": "Can the retained P4AX 48-micrometre Sigma-D amplitude profile be composed with the independently retained P4BV scanner-convolved Thomas unit field by analytic aperture-energy normalization, without confusing point-sample RMS with diffuse-rms granularity?",
+  "parents": {
+    "p4ax_decision": {
+      "path": "configs/u6_p4ax_kodak_250d_granularity_amplitude_profile_decision_v1.json",
+      "sha256": "532a66bfac603d7383b890dce9cae1857ca8c2df2bbe0acfb250c788c42b2f05",
+      "required_decision": "retain_amplitude_only_profile"
+    },
+    "p4ax_bundle": {
+      "path": "outputs/experiments/u6_p4ax_kodak_250d_granularity_amplitude_profile_v1/bundle_a.json",
+      "sha256": "09f6a3f1fe8d552ec10016c9403e6075a369d28cab483abd2a3af9989e375348",
+      "required_profile_id": "d8d6d15fa08b21e2fa34b72d73c6393c19015267ec72c0bdcb1dba93a1c9cd25"
+    },
+    "p2q_bundle": {
+      "path": "outputs/u6_p2q_kodak_250d_characteristic_prior/bundle_run1.json",
+      "sha256": "087e67544f737401fa697b21f06215a31827189e0648b8d60da666b92113caaa",
+      "required_prior_id": "04d94af2e1fcad99fbb8c9abb57179f2b63f329c263b3bf2335c4117a670aacb"
+    },
+    "p4bs_decision": {
+      "path": "configs/u6_p4bs_real_uniform_thomas_confirmation_decision_v1.json",
+      "sha256": "a0b01b0fc08b407c26169f16d5efbc87aa9a20146e42d33ea113f8200ee57ff3",
+      "required_decision": "retain_generic_scanner_convolved_thomas_mechanism_candidate"
+    },
+    "p4bv_decision": {
+      "path": "configs/u6_p4bv_thomas_dc_projection_decision_v1.json",
+      "sha256": "878f406c9d0128e99a92933e73d52638831b4465eb2597b52bd3b24421edad20",
+      "required_decision": "retain_two_pass_dc_projected_thomas_unit_field"
+    }
+  },
+  "compiler": {
+    "profile_schema": "neuro_film.density_conditioned_thomas_profile.v1",
+    "input_domain": "relative_layer_log_exposure",
+    "output_domain": "status_m_developed_density_perturbation_on_4000dpi_scanner_grid",
+    "channel_order": ["red", "green", "blue"],
+    "source_scanner_resolution_dpi": 4000.0,
+    "sample_pitch_micrometres": 6.35,
+    "measurement_aperture_diameter_micrometres": 48.0,
+    "measurement_aperture": "normalized binary circular area kernel",
+    "spatial_profile_id": "generic-scanner-convolved-thomas-p4bs-v1",
+    "particle_sigma_samples": 1.3253699417769098,
+    "cluster_sigma_samples": 1.1268619873805532,
+    "mean_offspring": 27.765942352935905,
+    "component_seeds": [2611923443488327891, 11400714819323198485],
+    "truncate_sigma": 4.0,
+    "normalization": "point_scale = target_sigma_d / sqrt((energy(G_particle*A)+mean_offspring*energy(G_combined*A))/(energy(G_particle)+mean_offspring*energy(G_combined)))",
+    "parameter_refit_allowed": false,
+    "realized_variance_normalization_allowed": false
+  },
+  "evaluation": {
+    "profile_probe_domain_fractions": [0.2, 0.5, 0.8],
+    "field_shape": [1024, 1024],
+    "canonical_receipt_row_block_height": 31,
+    "seeds": [0, 1099511627776, 2199023255552, 3298534883328, 5497558138880, 7696581394432, 12094627905536, 14293651161088],
+    "measurement_crop_border_samples": 13,
+    "maximum_analytic_aperture_sigma_error": 1e-15,
+    "maximum_monte_carlo_median_absolute_relative_error": 0.015,
+    "maximum_monte_carlo_p95_absolute_relative_error": 0.05,
+    "minimum_profile_probe_sigma_d": 0.001,
+    "maximum_profile_probe_sigma_d": 0.05,
+    "maximum_full_field_absolute_mean": 1e-15,
+    "require_strict_positive_developed_density": true,
+    "require_exact_row_partition_parity": true,
+    "row_partition_height": 127,
+    "require_exact_profile_roundtrip": true,
+    "require_two_byte_identical_bundles_and_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain one explicitly hybrid, density-conditioned scanner-grid research profile and open nonstationary exposure-field and transmittance-domain tests; no photographic or product use opens.",
+    "fail": "Close this exact amplitude-shape composition without changing aperture, field, seeds, probes, parameters or gates; retain P4AX amplitude and P4BV spatial evidence separately."
+  },
+  "forbidden": [
+    "treat point-sample RMS as 48-micrometre diffuse-rms granularity",
+    "refit P4AX amplitude or P4BS spatial parameters",
+    "renormalize individual realized fields or tiles by measured variance",
+    "call the hybrid profile calibrated Kodak 250D spatial grain",
+    "apply density noise in display RGB",
+    "render photographs or change product defaults"
+  ],
+  "outputs": {
+    "bundle_a": "outputs/experiments/u6_p4bw_density_conditioned_thomas_profile_v1/run_a/bundle.json",
+    "bundle_b": "outputs/experiments/u6_p4bw_density_conditioned_thomas_profile_v1/run_b/bundle.json",
+    "report_a": "outputs/experiments/u6_p4bw_density_conditioned_thomas_profile_v1/run_a/report.json",
+    "report_b": "outputs/experiments/u6_p4bw_density_conditioned_thomas_profile_v1/run_b/report.json"
+  },
+  "claim_ceiling": "Explicit hybrid composition of a Kodak-250D-compatible 48-micrometre density-amplitude profile with an independently measured generic same-scanner Thomas spectrum; not a calibrated Kodak spatial profile, microscopic structure, scanner-independent film truth, photographic quality or product evidence."
+}
