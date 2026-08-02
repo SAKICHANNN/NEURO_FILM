@@ -989,3 +989,11 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
   held blocks and global/luminance/shifted controls before any score. Passing
   can open only a separate source-only predictor; failure closes this exact
   gate without model or curve rescue.
+
+# 2026-08-01 - U5.R2BV0 fixed semantic gate closes
+
+- Two reports are exact (`7eca2e9e...5a4df`). Semantic attention wins 0/48
+  against global in both target variants and worsens mean error 37.87%/39.86%.
+- It also loses to luminance and shifted controls and creates 15.97%/3.38%
+  new boundary. Do not train a predictor or tune this gate; retain the global
+  explicit colour incumbent and move to a genuinely new observation/mechanism.

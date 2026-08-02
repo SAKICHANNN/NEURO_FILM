@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bv0-fivek-semantic-gated-curves-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BV0",
+  "status": "complete_fail_closed",
+  "decision": "close_fixed_attention_semantic_gate_retain_global_explicit_colour",
+  "config_sha256": "c5418293af6117d85b6786cad9d462c9356472c94e503d460c0783c779176bc3",
+  "implementation_commit": "34b91c963f1d251d78a269fd17c0529a019f17a3",
+  "core_sha256": "ead7f6968536bd028533fd604f7303affc645a58681c5b72af7e3cf1d8fc750f",
+  "runner_sha256": "612302e3a0720a7e9e72485ad5f3921f5a6b2e30161b943c28fd764192da9639",
+  "formal_report_sha256": "7eca2e9e01bb2380c615cd65be1f644f835fc98cdeba7e5f885180c24c25a4df",
+  "stable_evidence_id": "aa327ccd7f659aaa383533731cb5773a08cc96f41b958df1a2e10fb9f9a85941",
+  "repeat_report_byte_identity": true,
+  "confirmation_rows_loaded": 0,
+  "results": {
+    "aligned_expert": {
+      "semantic_wins_over_global": 0,
+      "comparisons": 48,
+      "mean_improvement_over_global_gate": -0.37874946133989806,
+      "p95_error_ratio_to_global_gate": 1.3701404763841423,
+      "worst_error_ratio_to_global_gate": 1.536627158939745,
+      "mean_improvement_over_luminance_gate": -0.11664101573352664,
+      "mean_improvement_over_shifted_semantic_gate": -0.058973439245673796,
+      "maximum_new_boundary_fraction": 0.15970203488372092
+    },
+    "filtered": {
+      "semantic_wins_over_global": 0,
+      "comparisons": 48,
+      "mean_improvement_over_global_gate": -0.39855985442254926,
+      "p95_error_ratio_to_global_gate": 1.353697865243737,
+      "worst_error_ratio_to_global_gate": 1.4604890456411663,
+      "mean_improvement_over_luminance_gate": -0.39972712399559734,
+      "mean_improvement_over_shifted_semantic_gate": -0.11609587922228255,
+      "maximum_new_boundary_fraction": 0.03379360465116279
+    }
+  },
+  "passed_in_both_variants": [
+    "source_count",
+    "folds",
+    "semantic_variation",
+    "style",
+    "held_fit",
+    "cube"
+  ],
+  "failed_in_both_variants": [
+    "global_mean",
+    "global_wins",
+    "global_p95",
+    "global_worst",
+    "luminance",
+    "shifted",
+    "boundary"
+  ],
+  "branch_action": "Do not train a semantic curve-parameter predictor, fine-tune DINOv2, change the attention layer or normalization, alter the nine curves, weaken the boundary gate or open confirmation. Retain fixed AO6/global explicit colour and continue a new identifying observation or physical mechanism.",
+  "claim_ceiling": "One clean-room fixed-attention semantic gate failed held-block FiveK digital-retouch representation capacity; this does not reproduce or falsify PrismNet and does not establish film, stock, calibration, preference or product behavior."
+}

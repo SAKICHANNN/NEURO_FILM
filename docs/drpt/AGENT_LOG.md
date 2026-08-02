@@ -2,6 +2,18 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-01 - U5.R2BV0 closes fixed semantic-gated curves
+
+- Implemented fixed DINOv2-S CLS attention gating of nine explicit curves with
+  global, luminance and shifted controls under held blocks. Five mechanism,
+  gamut and target-isolation tests passed before formal execution.
+- Two reports are byte-identical (`7eca2e9e...5a4df`). Both target variants
+  have 0/48 semantic wins over global, 37.87%/39.86% mean regression and
+  15.97%/3.38% maximum new boundary; luminance and shifted controls also win.
+- Close without predictor/fine-tuning/gate/curve rescue or confirmation. This
+  is a clean-room mechanism negative, not a reproduction or falsification of
+  full PrismNet. Continue the mainline through a new identifying observation.
+
 # 2026-08-01 - Freeze U5.R2BV0 semantic-gated curve capacity
 
 - Latest-primary-source screening selected the CVPR 2026 PrismNet semantic

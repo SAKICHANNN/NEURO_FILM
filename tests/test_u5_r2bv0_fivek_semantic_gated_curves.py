@@ -17,6 +17,7 @@ from src.eval.fivek_semantic_gated_curves_run import validate_contract
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/u5_r2bv0_fivek_semantic_gated_curves_v1.json"
+DECISION = ROOT / "configs/u5_r2bv0_fivek_semantic_gated_curves_decision_v1.json"
 
 
 def test_bv0_contract_is_source_only_explicit_and_development_only() -> None:
@@ -109,3 +110,16 @@ def test_fit_mask_cannot_read_held_target_pixels() -> None:
     a = _fit_curves(source, first, gate, ~held, spec)
     b = _fit_curves(source, second, gate, ~held, spec)
     assert np.array_equal(a, b)
+
+
+def test_bv0_decision_closes_predictor_and_confirmation() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["status"] == "complete_fail_closed"
+    assert (
+        decision["decision"]
+        == "close_fixed_attention_semantic_gate_retain_global_explicit_colour"
+    )
+    assert decision["repeat_report_byte_identity"] is True
+    assert decision["confirmation_rows_loaded"] == 0
+    assert decision["results"]["aligned_expert"]["semantic_wins_over_global"] == 0
+    assert decision["results"]["filtered"]["semantic_wins_over_global"] == 0
