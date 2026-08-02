@@ -2,6 +2,16 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-02 - U6.P4BB compiles a positive measurement-cell mechanism
+
+- Compiled the retained 48um density mean/RMS into equal density marks and a
+  Poisson rate; two bundles/reports are exact (`67863dfb...e86d2` /
+  `96217308...9889`).
+- Density moments replay to `2.23e-16`; transmittance moments match 80-decimal
+  evaluation to `8.89e-16` and lie inside the full P4BA marginal interval.
+- This is a cell-level amplitude mechanism, not microscopic particle count or
+  spatial NPS. A next sampler leaf must stay generic/hypothesis-bound.
+
 # 2026-08-02 - U6.P4BA bounds density-marginal uncertainty
 
 - Compared equal-mean/RMS Gaussian, positive-Gamma and bounded-uniform density

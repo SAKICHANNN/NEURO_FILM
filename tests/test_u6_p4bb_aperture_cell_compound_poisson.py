@@ -66,6 +66,9 @@ def test_profile_roundtrip_and_exact_evaluator_repeat() -> None:
     assert first_report["decision"] == (
         "retain_aperture_cell_compound_poisson_amplitude_compiler"
     )
+    assert first_report["stable_evidence_id"] == (
+        "d79f8d6714c88b9985f83850a0134d1b35ce33859e46074ca9a5c79ba6369009"
+    )
     assert first_report["probe_count"] == 15
     assert first_bundle["microstructure_status"] == "unidentified"
     assert first_bundle["spatial_nps_status"] == "unidentified"

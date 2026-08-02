@@ -1,0 +1,42 @@
+{
+  "schema": "neuro_film.u6_p4bb_aperture_cell_compound_poisson_decision.v1",
+  "node": "U6.P4BB",
+  "decision": "retain_aperture_cell_compound_poisson_amplitude_compiler",
+  "contract_commit": "01e4bbebd9f87d0f355145a287a7b696835def06",
+  "implementation_commit": "5aa5308d3addc995a2e682779a0dbacaf373a239",
+  "contract_sha256": "7842ed2b1ab2dc33127a8c1e187e4269e30e65665ad33ed868053e49ec448c5d",
+  "profile_module_sha256": "1ea10bed10a4f144a1d199dcaadd741e6d20ac07e00f8c77cb314073fab41cc3",
+  "evaluator_sha256": "ab0d93c2cca5ac4df2960ad32a51abd03dfafac03ce2f36a32dc62ae75446e7e",
+  "bundle_path": "outputs/experiments/u6_p4bb_aperture_cell_compound_poisson_v1/run_a/bundle.json",
+  "bundle_sha256": "67863dfb28799062200dccb556c69db0280bbeb49afe667f942d4b40e9be86d2",
+  "profile_id": "3f55f2730205f7db3ee02d74e84bf6aaf812671b71ed0a5ce361dc5b1838d45f",
+  "reports": [
+    "outputs/experiments/u6_p4bb_aperture_cell_compound_poisson_v1/run_a/report.json",
+    "outputs/experiments/u6_p4bb_aperture_cell_compound_poisson_v1/run_b/report.json"
+  ],
+  "report_sha256": "962173085cb1660a21ec4afeb1f475beec926fc1676d47d99dab6cd14ad69889",
+  "stable_evidence_id": "d79f8d6714c88b9985f83850a0134d1b35ce33859e46074ca9a5c79ba6369009",
+  "two_bundles_and_reports_byte_exact": true,
+  "automatic_pass": true,
+  "metrics": {
+    "probe_count": 15,
+    "minimum_poisson_rate": 2432.612581852186,
+    "maximum_poisson_rate": 186330.23718236017,
+    "minimum_density_mark": 1.1761513995228647e-05,
+    "maximum_density_mark": 0.00014339502674720291,
+    "maximum_density_moment_replay_relative_error": 2.220446049250313e-16,
+    "maximum_high_precision_transmittance_moment_relative_error": 8.881784197001252e-16,
+    "maximum_parent_interval_excursion_relative": 0.0
+  },
+  "interpretation": [
+    "The retained 48-micrometre density mean/RMS has an exact positive equal-mark compound-Poisson representation at every frozen probe.",
+    "The compiled transmittance moments agree with 80-decimal evaluation to machine precision and remain inside the complete P4BA three-marginal interval.",
+    "The Poisson event rate is a measurement-cell representation, not an identified microscopic grain or dye-cloud count; geometry and spatial NPS remain unknown."
+  ],
+  "next_ready_leaf": "Implement and test a generic deterministic cell sampler only as a hypothesis-bound reference mechanism, with exact tile/partition identity and no measured-NPS or photographic-calibration claim.",
+  "microscopic_particle_count_identified": false,
+  "spatial_nps_identified": false,
+  "photographic_render_allowed": false,
+  "product_integration_allowed": false,
+  "claim_ceiling": "Exact positive compound-Poisson representation of retained density mean/RMS and transmittance moments inside one 48-micrometre measurement cell; no microscopic grain count, geometry, spatial NPS, calibration, render or product claim."
+}
