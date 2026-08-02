@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from itertools import combinations
 import math
+from itertools import combinations, pairwise
 from typing import Any
 
 import numpy as np
@@ -34,6 +34,32 @@ def _quadratic_detrend(values: np.ndarray) -> np.ndarray:
     )
     trend = (design @ coefficients).reshape(values.shape)
     return values - trend
+
+
+def standardized_quadratic_residual(
+    crop: np.ndarray, *, relative_to_mean: bool = True
+) -> np.ndarray:
+    """Return a finite zero-mean, unit-RMS quadratic-detrended residual."""
+    values = np.asarray(crop, dtype=np.float64)
+    if (
+        values.ndim != 2
+        or min(values.shape) < 64
+        or not np.all(np.isfinite(values))
+    ):
+        raise UniformGrainNpsError("residual crop must be finite 2D and at least 64px")
+    if relative_to_mean:
+        mean = float(np.mean(values, dtype=np.float64))
+        if mean <= 0.0:
+            raise UniformGrainNpsError("relative residual crop mean must be positive")
+        values = values / mean
+    residual = _quadratic_detrend(values)
+    residual -= float(np.mean(residual, dtype=np.float64))
+    rms = float(np.sqrt(np.mean(np.square(residual), dtype=np.float64)))
+    if not math.isfinite(rms) or rms <= 0.0:
+        raise UniformGrainNpsError("residual crop has zero or non-finite RMS")
+    output = np.ascontiguousarray(residual / rms, dtype=np.float64)
+    output.setflags(write=False)
+    return output
 
 
 def radial_nps_signature(
@@ -70,7 +96,7 @@ def radial_nps_signature(
     fx = np.fft.rfftfreq(values.shape[1])[None, :]
     radius = np.sqrt(fx * fx + fy * fy)
     bands = []
-    for lower, upper in zip(edges[:-1], edges[1:], strict=True):
+    for lower, upper in pairwise(edges):
         selected = power[(radius >= lower) & (radius < upper)]
         if selected.size == 0:
             raise UniformGrainNpsError("empty radial NPS band")
@@ -152,8 +178,8 @@ def fixed_fractional_crops(
     for center in centers_yx:
         if len(center) != 2 or any(not 0.0 < float(v) < 1.0 for v in center):
             raise UniformGrainNpsError("invalid fractional crop center")
-        center_y = int(round(float(center[0]) * (values.shape[0] - 1)))
-        center_x = int(round(float(center[1]) * (values.shape[1] - 1)))
+        center_y = round(float(center[0]) * (values.shape[0] - 1))
+        center_x = round(float(center[1]) * (values.shape[1] - 1))
         y0 = center_y - crop_size // 2
         x0 = center_x - crop_size // 2
         y1 = y0 + crop_size
@@ -314,4 +340,5 @@ __all__ = [
     "exact_balanced_label_permutation",
     "fixed_fractional_crops",
     "radial_nps_signature",
+    "standardized_quadratic_residual",
 ]
