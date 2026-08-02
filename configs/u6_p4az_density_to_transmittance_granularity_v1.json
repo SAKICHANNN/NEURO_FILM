@@ -1,0 +1,57 @@
+{
+  "schema": "neuro_film.u6_p4az_density_to_transmittance_granularity_contract.v1",
+  "experiment_id": "u6.p4az-density-to-transmittance-granularity-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4AZ",
+  "date_frozen": "2026-08-02",
+  "question": "Can the retained P4AX diffuse-rms density amplitude be converted into exact transmittance-domain moments without choosing a spatial spectrum or adding noise in display RGB?",
+  "parents": {
+    "p4ax_commit": "603a2c915fcff62deaf17ba187210fd8bd4293a9",
+    "p4ax_decision_path": "configs/u6_p4ax_kodak_250d_granularity_amplitude_profile_decision_v1.json",
+    "p4ax_decision_sha256": "532a66bfac603d7383b890dce9cae1857ca8c2df2bbe0acfb250c788c42b2f05",
+    "p4ax_bundle_path": "outputs/experiments/u6_p4ax_kodak_250d_granularity_amplitude_profile_v1/bundle_a.json",
+    "p4ax_bundle_sha256": "09f6a3f1fe8d552ec10016c9403e6075a369d28cab483abd2a3af9989e375348",
+    "p4ax_profile_id": "d8d6d15fa08b21e2fa34b72d73c6393c19015267ec72c0bdcb1dba93a1c9cd25",
+    "p2q_bundle_path": "outputs/u6_p2q_kodak_250d_characteristic_prior/bundle_run1.json",
+    "p2q_bundle_sha256": "087e67544f737401fa697b21f06215a31827189e0648b8d60da666b92113caaa",
+    "p2q_prior_identity": "04d94af2e1fcad99fbb8c9abb57179f2b63f329c263b3bf2335c4117a670aacb"
+  },
+  "compiler": {
+    "density_distribution_family": "gaussian_small_fluctuation_compatibility",
+    "physical_transform": "transmittance = pow(10, -density)",
+    "moment_family": "exact_log_normal",
+    "input_domain": "status_m_density_mean_and_diffuse_rms_at_48um",
+    "output_domain": "transmittance_mean_and_rms_at_48um",
+    "channel_order": ["red", "green", "blue"],
+    "spatial_spectrum_selection_allowed": false,
+    "clipping_or_display_rgb_noise_allowed": false,
+    "parameter_refit_allowed": false
+  },
+  "evaluation": {
+    "relative_exposure_domain_fractions": [0.15, 0.3, 0.5, 0.7, 0.85],
+    "gauss_hermite_order": 96,
+    "maximum_relative_mean_quadrature_error": 1e-12,
+    "maximum_relative_rms_quadrature_error": 1e-10,
+    "maximum_density_inverse_error": 1e-12,
+    "maximum_rms_inverse_error": 1e-12,
+    "maximum_delta_method_relative_rms_error": 0.001,
+    "minimum_transmittance_rms_dynamic_range_ratio": 100.0,
+    "require_positive_finite_moments": true,
+    "require_two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain a typed density-to-transmittance amplitude compiler for later physical profile composition. Spatial structure remains unidentified and no render path opens.",
+    "fail": "Close this exact Gaussian/log-normal moment family without changing probes, quadrature, domains or gates."
+  },
+  "references": [
+    "https://www.itu.int/rec/T-REC-H.Sup21-202501-I/en",
+    "https://www.kodak.com/content/products-brochures/Film/VISION3_250D_5207_Technical-Data.pdf"
+  ],
+  "forbidden": [
+    "select white, Gaussian or measured NPS from one aperture amplitude",
+    "add a constant grain amplitude in display RGB",
+    "clip density or transmittance to pass a gate",
+    "claim roll, process, scanner or stock calibration",
+    "render photographs or alter product defaults"
+  ],
+  "claim_ceiling": "Typed exact moment conversion from a retained 48-micrometre Status-M density-amplitude profile into transmittance amplitude under an explicit Gaussian compatibility assumption; no spatial NPS, causal cloud geometry, calibration or product claim."
+}
