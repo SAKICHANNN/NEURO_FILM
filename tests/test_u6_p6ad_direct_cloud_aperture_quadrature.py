@@ -23,6 +23,7 @@ CONTRACT = ROOT / "configs/u6_p6ad_direct_cloud_aperture_quadrature_v1.json"
 PARENT_REPORT = (
     ROOT / "outputs/experiments/u6_p6ac_presampling_dye_cloud_scan_v1/report_run1.json"
 )
+DECISION = ROOT / "configs/u6_p6ad_direct_cloud_aperture_quadrature_decision_v1.json"
 
 
 def test_disk_points_are_bounded_and_repeat_exact() -> None:
@@ -82,3 +83,14 @@ def test_frozen_evaluator_repeats_without_intermediate_raster() -> None:
     assert contract["quadrature"]["intermediate_raster_allowed"] is False
     assert first["metrics"]["repeat_error"] == 0.0
     assert first["metrics"]["partition_error"] == 0.0
+
+
+@pytest.mark.skipif(
+    not PARENT_REPORT.is_file(), reason="P6AC reference report unavailable"
+)
+def test_frozen_decision_matches_replay() -> None:
+    report = evaluate_direct_cloud_aperture_quadrature(load_contract(CONTRACT), ROOT)
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["stable_evidence_id"] == report["stable_evidence_id"]
+    assert decision["automatic_pass"] is False
+    assert decision["sample_count_rescue_allowed"] is False

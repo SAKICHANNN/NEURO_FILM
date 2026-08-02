@@ -9645,3 +9645,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Pass remains an offline synthetic compiler candidate only. No sample-count
   rescue, production profile, native runtime, scanner calibration or product
   claim is authorized.
+
+## 2026-08-02 - U6.P6AD closes direct cloud-aperture quadrature
+
+- Two formal reports are byte-identical at `b6bca9b9...0c96cd5`, stable
+  `f596eed9...0957c271`; transmittance range, repeat and 3/7/11-row partitions
+  pass.
+- The fixed 256-point sequence improves RMSE `44.47%` over 64 samples, but its
+  independent-16x RMSE/P95 `.007340/.014538` fail and it regresses `6.17%`
+  versus the frozen P6AC 8x raster.
+- Close without more samples or sequence tuning. The disagreement now makes
+  convergence of the assumed 16x reference a discriminating prerequisite;
+  audit that reference before judging another target compiler.

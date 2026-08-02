@@ -803,3 +803,10 @@ cloud centres/radii, with 64 samples and the frozen P6AC 8x raster as controls.
 It must meet the unchanged `.005/.0125` reference errors and materially beat
 both controls; the sample count, sequence, geometry and gates cannot be tuned
 after scoring.
+
+U6.P6AD closes unchanged. The 256-point direct method improves RMSE `44.47%`
+over the 64-point control, but misses the frozen 16x reference at
+`.007340/.014538` RMSE/P95 and is `6.17%` worse than the P6AC 8x raster. Two
+reports are exact (`b6bca9b9...0c96cd5`). Do not increase samples. Before
+testing another compiler, P6AE must establish whether the 16x raster target
+itself is converged.

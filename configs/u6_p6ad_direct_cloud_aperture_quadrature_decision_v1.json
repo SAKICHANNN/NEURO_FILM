@@ -1,0 +1,31 @@
+{
+  "schema": "neuro_film.u6_p6ad_direct_cloud_aperture_quadrature_decision.v1",
+  "node": "U6.P6AD",
+  "decision": "close_direct_cloud_aperture_quadrature",
+  "contract_commit": "c6b0f566",
+  "implementation_commit": "6448bb4c",
+  "report_path": "outputs/experiments/u6_p6ad_direct_cloud_aperture_quadrature_v1/report_run1.json",
+  "report_sha256": "b6bca9b9824533177321bb9b42c9018b9209a701a4fd2ac51682e1cfb0c96cd5",
+  "stable_evidence_id": "f596eed9eace63ad820d2fb9bfe5411c2a2587a6a9fc688f434d29050957c271",
+  "two_reports_byte_exact": true,
+  "automatic_pass": false,
+  "metrics": {
+    "candidate_rmse": 0.007340135913893602,
+    "candidate_p95_absolute_error": 0.01453772279859098,
+    "p6ac_8x_raster_rmse": 0.006913760525436627,
+    "low_sample_rmse": 0.01321866838053571,
+    "rmse_improvement_vs_8x_raster": -0.06167054628060719,
+    "rmse_improvement_vs_low_sample": 0.4447144218625046,
+    "repeat_error": 0.0,
+    "partition_error": 0.0
+  },
+  "failed_gates": [
+    "maximum_candidate_rmse",
+    "maximum_candidate_p95_absolute_error",
+    "minimum_rmse_improvement_vs_8x_raster"
+  ],
+  "sample_count_rescue_allowed": false,
+  "next_leaf": "U6.P6AE independently audits whether the frozen 16x raster reference is converged before any further compiler candidate is judged against it.",
+  "production_profile_integration_allowed": false,
+  "claim_ceiling": "Generic synthetic direct continuous-cloud scanner-aperture quadrature evidence; no measured film, scanner, stock, process, quality or product claim."
+}
