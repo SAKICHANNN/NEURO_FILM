@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bt0-fivek-bilateral-gain-capacity-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BT0",
+  "decision": "close_spatial_luma_gain_capacity_without_predictor_or_rescue",
+  "contract_commit": "577fe07077f3de0f30cfd7bd6dbed76587cbd2d3",
+  "implementation_commit": "5f574c9509026e6d92f5629a0454d47253c6097e",
+  "corrected_implementation_commit": "41a47524dc7e7235c86c874ed5f7dddf2e787a8f",
+  "reports": {
+    "run_a": "outputs/u5_r2bt0_fivek_bilateral_gain_capacity_v1/run_a/report.json",
+    "run_b": "outputs/u5_r2bt0_fivek_bilateral_gain_capacity_v1/run_b/report.json",
+    "sha256": "e7947d29599ec560e69efa0bef24cc90304594b0960f3e923fdd22817b680ab5",
+    "byte_identical": true,
+    "stable_evidence_id": "fc33893a858856855fb1f788d11af7413219d16c0398a8c612263d5d15d6d8f6",
+    "confirmation_rows_loaded": 0,
+    "visual_review_performed": false
+  },
+  "aligned_expert": {
+    "mean_improvement_over_parameter_matched_global_lut": -0.028231900100870237,
+    "win_fraction_over_parameter_matched_global_lut": 0.2916666666666667,
+    "p95_error_ratio_to_parameter_matched_global_lut": 1.0154480178433332,
+    "worst_error_ratio_to_parameter_matched_global_lut": 0.9593533271079174,
+    "mean_improvement_over_luminance_only": 0.05785367973742292,
+    "mean_improvement_over_spatial_only": 0.1871234377928482,
+    "median_style_retention": 0.8019041207243717,
+    "p95_held_to_fit_error_ratio": 1.0838090622736911,
+    "maximum_new_boundary_fraction": 0.015988372093023256
+  },
+  "filtered": {
+    "mean_improvement_over_parameter_matched_global_lut": 0.00562714409594065,
+    "win_fraction_over_parameter_matched_global_lut": 0.3958333333333333,
+    "p95_error_ratio_to_parameter_matched_global_lut": 0.9540674113997069,
+    "worst_error_ratio_to_parameter_matched_global_lut": 0.9572045121132395,
+    "mean_improvement_over_luminance_only": 0.03207811868784314,
+    "mean_improvement_over_spatial_only": 0.23273241427851205,
+    "median_style_retention": 0.8753724048051154,
+    "p95_held_to_fit_error_ratio": 1.1145488333128535,
+    "maximum_new_boundary_fraction": 0.024890988372093022
+  },
+  "diagnosis": "The explicit spatial-plus-luminance field captures non-global structure and beats a spatial-only control, but it does not beat a nearly parameter-matched global RGB LUT across held blocks and its linear-domain safety rail still creates encoded hard-boundary pixels under the frozen product metric.",
+  "implementation_amendment": "The first attempted report pair was discarded because target_variant_count_exact was incorrectly evaluated inside each single-variant result. The check moved to the aggregate report and divide-by-zero warnings on dose-zero boundary pixels were suppressed; inputs, folds, coefficients, outputs, metrics and thresholds were unchanged before the corrected full rerun.",
+  "forbidden_rescue": [
+    "do not change grid shape, luma guidance, regularization, folds, selected rows, targets, boundary epsilon or gates on this cohort",
+    "do not train a source-only predictor or router from this failed representation",
+    "do not perform visual review or load confirmation rows"
+  ],
+  "next_leaf": "return to a mechanism-distinct real-film or physical-image-formation leaf with new identifying evidence; retain the parameter-matched global LUT and AO6 as controls",
+  "production_integration_opened": false,
+  "film_or_stock_claim_opened": false,
+  "claim_ceiling": "repeat-exact negative held-block representation-capacity evidence on paired FiveK digital-retouch controls; no deployable predictor, film response, stock identity, calibration, preference or product claim"
+}

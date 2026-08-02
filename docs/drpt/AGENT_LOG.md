@@ -10142,3 +10142,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The fixed stack captures only `63.21% < 70%` of constant exposure and its
   checker first-layer amplitude ratio is `.50443 > .50`. Close the exact
   geometry/capture rule and move to a materially distinct mechanism.
+# 2026-08-01 - U5.R2BT0 spatial gain representation closes
+
+- Froze and implemented a clean-room CVPR 2026 FastGaMer-inspired explicit
+  spatial/luma-rank gain-field capacity test on 24 development camera groups;
+  no paper code, weights, HDR claim or confirmation rows were used.
+- After correcting a report-only target-variant aggregation defect, two full
+  runs are byte-identical at `e7947d29...0ab5`. Both target variants fail the
+  parameter-matched global-LUT and encoded-boundary gates, so the exact family
+  closes without predictor, grid or threshold rescue.

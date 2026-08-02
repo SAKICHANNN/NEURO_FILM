@@ -678,6 +678,14 @@ visual gates, ranking over its linear donor on 6/9 blinded photographs. It is
 not an integration or preference promotion. The next ready leaf is one
 clean-room bounded donor primitive and synthetic identifiability pilot.
 
+U5.R2BT0 closes the latest spatial explicit baseline without rescue. A
+clean-room 4x4x8 spatial/luma-rank colour-gain field is repeat-exact and beats
+its spatial-only control, but does not beat a parameter-matched global RGB LUT
+on held blocks (`-2.82%/+0.56%` mean; `29.17%/39.58%` wins) and creates up to
+`2.49%` new encoded boundaries. No predictor, confirmation or visual gate
+opens; return to new real-film or physical evidence rather than more grid
+capacity.
+
 U6.P2V passes that clean-room primitive with exact linear/reference limits,
 bounded monotone Jacobian behavior, neutral-axis and partition invariance.
 U6.P2W then produces a visible effect on all 16 photographs and passes every
