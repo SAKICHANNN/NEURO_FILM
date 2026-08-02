@@ -1,5 +1,11 @@
 # TASK_BOARD.md — Algorithm-first film colour-transfer and product path
 
+> 2026-08-01: U6.P4CF closes finite-capacity occupancy as the higher-order
+> explanation of the retained uniform scans. Despite second-order parity, it
+> wins 0/8 colour and 0/3 B&W scans; bounded/Gaussian median error ratios are
+> `1.0469/1.0147` (`e9f1eb6f...d982`). Keep P4BS as effective second-order
+> evidence and stop point-process capacity on these cohorts.
+>
 > 2026-08-01: U6.P3Z admits no local controlled-halation data. Two exact
 > metadata-only reports (`08c8eaf0...f2367`) find zero P3Y candidates across
 > 129 files; maximum overlap is 1/21 required fields. Sixty-six third-party

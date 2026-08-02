@@ -10314,3 +10314,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   no rescue is attempted and P3Y remains unchanged.
 - No pixels or candidates are admitted. Bypass this data gap and continue a
   mechanism-distinct physical-image-formation experiment.
+
+# 2026-08-01 - U6.P4CF real higher-order occupancy mechanism closes
+
+- Added a fixed higher-order discriminator over marginal quantiles, 16x16
+  local energy and positive/negative excursion topology after quadratic
+  detrending and unit-RMS normalization. No model, feature or gate is fitted
+  to the observed statistics.
+- Two exact reports (`e9f1eb6f...d982`) preserve P4CA/P4BS second-order parity,
+  but bounded occupancy wins 0/8 colour development and 0/3 B&W confirmation
+  scans; median error ratios are `1.0469/1.0147`.
+- Close P4CA as a real higher-order mechanism and stop point-process capacity
+  on these cohorts. P4BS remains generic scanner-convolved second-order
+  evidence only.

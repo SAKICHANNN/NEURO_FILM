@@ -1,0 +1,30 @@
+{
+  "schema": "neuro_film.u6_p4cf_real_uniform_higher_order_structure_decision.v1",
+  "experiment_id": "U6.P4CF",
+  "status": "complete_higher_order_mechanism_closed",
+  "decision": "close_bounded_occupancy_higher_order_mechanism_without_rescue",
+  "automatic_pass": false,
+  "contract_sha256": "61781d787f7116546fd08440765015e86c6c25b86f8ebc6217cb7ae2eaaee717",
+  "residual_helper_sha256": "0dc78327236d657c2d11af0bd836137637590e30815bbfad0a6862932b91326a",
+  "evaluator_sha256": "da4c42110ad185d2498cad9ef507ccd048ce16d5b78f6de19e5e7339e4505d02",
+  "runner_sha256": "f5982fbb5adbf1c13d20299773ae664bcbc1e946b24e6a8e10057af268607d63",
+  "report_sha256": "e9f1eb6f41a31fb14096a40503b743a15d9d4927e4d70fc815324a531502d982",
+  "repeat_report_sha256": "e9f1eb6f41a31fb14096a40503b743a15d9d4927e4d70fc815324a531502d982",
+  "stable_evidence_id": "2053c9a3a2e6a54db27e359a44624469308d57f6dec5ba420207d7b9d3f6771d",
+  "results": {
+    "development_source_count": 8,
+    "development_bounded_scan_wins": 0,
+    "development_median_metric_ratio": 1.0468733118243718,
+    "development_worst_metric_ratio": 1.113795701327765,
+    "confirmation_source_count": 3,
+    "confirmation_bounded_scan_wins": 0,
+    "confirmation_median_metric_ratio": 1.0147460139317437,
+    "confirmation_worst_metric_ratio": 1.0159648362281788,
+    "second_order_radial_cosine_error": 0.0009764860693537436,
+    "second_order_covariance_error": 0.02423576274348238
+  },
+  "interpretation": "The finite-capacity field preserves the retained second-order spectrum, but its marginal, local-energy and excursion-topology evidence never wins a scan-level majority against the unbounded Gaussian Thomas control. Its synthetic tail suppression is therefore not supported as the effective higher-order mechanism of these real same-scanner uniform scans.",
+  "retained_result": "Retain P4BS only as a generic scanner-convolved second-order Gaussian Thomas mechanism. Close P4CA as a real higher-order explanation and do not tune occupancy or feature definitions on these cohorts.",
+  "next_ready_leaf": "Advance a mechanism-distinct colour/development or spatial-response experiment requiring a new observable; do not continue point-process capacity on the consumed uniform scans.",
+  "claim_ceiling": "Negative same-scanner higher-order mechanism evidence; not microscopic grain, dye-cloud, stock, process, scanner-independent, calibration or product evidence."
+}

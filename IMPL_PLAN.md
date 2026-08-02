@@ -1583,6 +1583,13 @@ rows and find at most 1/21 required fields. Sixty-six non-standard third-party
 JSON files mean exhaustive absence is unproved, but no data is admitted and
 P3Y remains unchanged. Continue with a mechanism-distinct physical leaf.
 
+P4CF then asks whether P4CA's bounded innovation has real higher-order support
+after preserving P4BS second-order evidence. It does not: two exact reports
+(`e9f1eb6f...d982`) give 0/8 development and 0/3 B&W confirmation scan wins,
+with bounded/Gaussian median error ratios `1.0469/1.0147`. Close occupancy and
+further point-process capacity on these consumed cohorts; retain only P4BS's
+generic scanner-convolved second-order model.
+
 `SF2.9R` audits five ColorReference multi-family IT8/ISO 12641 transmission
 references instead of scanner RGB or uncontrolled photographs. Exact
 byte/CRC/parse gates and 288 shared target patches pass twice; each archive
