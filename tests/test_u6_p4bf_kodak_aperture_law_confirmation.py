@@ -31,5 +31,10 @@ def test_fixed_law_confirmation_repeats() -> None:
     assert first == second
     assert first["density_group_count"] == 23
     assert first["comparison_count"] == 138
+    assert first["automatic_pass"] is True
+    assert (
+        first["stable_evidence_id"]
+        == "ac18ff5e036e2dcbf75799f0a65a7b340065d08ba2d7115f97ff40998c426d7c"
+    )
     assert len(first["per_film_median_relative_error"]) == 4
     assert all(row["comparison_aperture_micrometres"] != 48.0 for row in first["rows"])

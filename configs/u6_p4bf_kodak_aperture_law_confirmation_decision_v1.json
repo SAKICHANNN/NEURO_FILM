@@ -1,0 +1,32 @@
+{
+  "schema": "neuro_film.u6_p4bf_kodak_aperture_law_confirmation_decision.v1",
+  "node": "U6.P4BF",
+  "decision": "retain_historical_photographic_aperture_law_compatibility",
+  "contract_commit": "79bcb9b885278f8ec0b5bcffdec74bd9e2dc3ed3",
+  "implementation_commit": "5f6e34e36f90ee4fad2e892353f3abc31a03fde1",
+  "contract_sha256": "0f3f8d05e527227e073eb830096ec4ac409033ea57d8c773a18c37a1c23b2031",
+  "evaluator_sha256": "d3e0074941e33f9ba20fe884ad44579a63f7678722c0bd495fe9c77c7a34cecb",
+  "reports": [
+    "outputs/experiments/u6_p4bf_kodak_aperture_law_confirmation_v1/run_a/report.json",
+    "outputs/experiments/u6_p4bf_kodak_aperture_law_confirmation_v1/run_b/report.json"
+  ],
+  "report_sha256": "0bd0dd20c336ac92002b8faaa98b3f5af68595db9ed5f6f712972696fa83adf4",
+  "stable_evidence_id": "ac18ff5e036e2dcbf75799f0a65a7b340065d08ba2d7115f97ff40998c426d7c",
+  "two_reports_byte_exact": true,
+  "automatic_pass": true,
+  "metrics": {
+    "density_group_count": 23,
+    "comparison_count": 138,
+    "median_candidate_relative_error": 0.04992006554056755,
+    "p90_candidate_relative_error": 0.19004166666666666,
+    "worst_candidate_relative_error": 0.64375,
+    "median_improvement_over_constant": 0.9416737666221726,
+    "median_descriptive_observed_exponent": 0.9848319798660119,
+    "median_selwyn_relative_span": 0.2
+  },
+  "retained_interpretation": "For these four historical photographic films, density granularity is compatible with inverse-aperture-diameter RMS scaling after per-density normalization at 48 micrometres.",
+  "next_ready_leaf": "Compile a typed aperture-scaling operator around the retained 48-micrometre amplitude and verify exact identity, roundtrip and scale composition without selecting a spatial NPS.",
+  "photographic_render_allowed": false,
+  "product_integration_allowed": false,
+  "claim_ceiling": "No-fit inverse-diameter aperture-law compatibility across four historical photographic films and 23 density groups; not Kodak 250D amplitude transfer, modern stock/process/scanner calibration, microscopic geometry, full NPS or product evidence."
+}

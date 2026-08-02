@@ -2,6 +2,15 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-02 - U6.P4BF confirms the fixed Kodak aperture law
+
+- The unchanged exponent-1 RMS law passes all 138 non-normalization points in
+  four historical Kodak film tables; two reports are exact (`0bd0dd20...83adf4`).
+- Median/p90/worst relative errors are `4.99%/19.00%/64.38%`, and the median
+  observed exponent is `.985`; no exponent, row or film was fitted or omitted.
+- Retain only typed aperture scaling around the separately compiled 48um
+  amplitude. Modern-stock amplitude, microscopic NPS and raster use stay open.
+
 # 2026-08-02 - U6.P4BE opens a fresh Kodak aperture-law confirmation
 
 - Current primary-source search found no newer open numerical multi-aperture
