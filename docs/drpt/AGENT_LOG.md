@@ -10039,3 +10039,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The formal run still fails because one ordinary finite realization has
   absolute interior mean `.0454 > .02`. Keep the kernel, forbid realized mean
   subtraction, and test a separately frozen coordinate-balanced noise source.
+
+# 2026-08-02 - U6.P4BV retains a two-pass DC-projected Thomas field
+
+- A canonical row-major Neumaier receipt freezes the whole-field DC before a
+  second coordinate-stable render pass; no variance or per-tile normalization
+  is allowed.
+- Two reports are exact (`36feb8b...809c`). Projected mean is at most
+  `1.35e-17`; nonzero FFT drift is at most `1.37e-12`, covariance drift at most
+  `2.23e-16`, variance drift is zero, and every frozen row partition is exact.
+- Retain this generic unit-reference field and proceed to density-domain
+  amplitude conditioning. Stock, microscopic-particle and product claims stay
+  closed.

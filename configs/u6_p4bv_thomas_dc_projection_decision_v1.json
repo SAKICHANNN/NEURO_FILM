@@ -1,0 +1,20 @@
+{
+  "schema": "neuro_film.u6_p4bv_thomas_dc_projection_decision.v1",
+  "node": "U6.P4BV",
+  "contract_sha256": "dbac0dc460857bcb6aa7b907397a9bfdda912193ef55329f45ee441c26d158c4",
+  "implementation_sha256": "cef336d97885fbb917d545cf2d0d749010d5019ce6f15cfac3fca06664fbe87e",
+  "evaluator_sha256": "8fc8178bf805172154c7dce627c136091fc34693063f9647c400617f6cea9f99",
+  "report_sha256": "36feb8b74c3ed68e53e194d334e5d6acc51edb554265fad6798821783f54809c",
+  "stable_evidence_id": "a6eec043c3a23a6516664f149e3a1c194f9c7b44b068f569e6175e917716b55c",
+  "automatic_pass": true,
+  "decision": "retain_two_pass_dc_projected_thomas_unit_field",
+  "maximum_projected_absolute_mean": 1.3455855095692153e-17,
+  "maximum_nonzero_spectrum_absolute_drift": 1.3642420526593924e-12,
+  "maximum_centered_covariance_absolute_drift": 2.220446049250313e-16,
+  "maximum_variance_absolute_drift": 0.0,
+  "maximum_interior_variance_absolute_error": 0.02637193434679652,
+  "row_partition_exact": true,
+  "receipt_tamper_rejected": true,
+  "interpretation": "The compact P4BU Thomas kernel is retained with a canonical first-pass full-field DC receipt. The second pass subtracts only that bound scalar, preserving nonzero spectrum, centered covariance, variance and exact row partitions. No amplitude, stock, microscopic-particle or product claim opens.",
+  "next_ready_leaf": "U6.P4BW density-domain amplitude conditioning"
+}
