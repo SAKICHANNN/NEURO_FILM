@@ -152,7 +152,10 @@ class GranularityAmplitudeProfile:
         return cls(
             characteristic_prior_identity=str(payload["characteristic_prior_identity"]),
             source_evidence_id=str(payload["source_evidence_id"]),
-            channel_floor_variance=dict(payload["channel_floor_variance"]),
+            channel_floor_variance={
+                channel: float(payload["channel_floor_variance"][channel])
+                for channel in CHANNELS
+            },
             shared_amplitude=float(payload["shared_amplitude"]),
             aperture_diameter_micrometres=float(
                 payload["aperture_diameter_micrometres"]

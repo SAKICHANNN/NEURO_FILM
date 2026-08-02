@@ -87,6 +87,7 @@ def test_profile_roundtrip_preserves_identity() -> None:
         channel_floor_variance={"red": 1e-5, "green": 2e-5, "blue": 3e-5},
         shared_amplitude=0.001,
     )
-    replay = GranularityAmplitudeProfile.from_dict(profile.to_dict())
+    canonical_payload = json.loads(json.dumps(profile.to_dict(), sort_keys=True))
+    replay = GranularityAmplitudeProfile.from_dict(canonical_payload)
     assert replay.to_dict() == profile.to_dict()
     assert replay.identity() == profile.identity()
