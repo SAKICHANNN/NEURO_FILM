@@ -1,0 +1,68 @@
+{
+  "schema": "neuro_film.u6_p3x_anchored_bracket_fusion_recovery_contract.v1",
+  "experiment_id": "u6.p3x-anchored-bracket-fusion-recovery-v1",
+  "node": "ULT > U6 > U6.P3 > U6.P3X",
+  "status": "contract_frozen_implementation_ready",
+  "parents": {
+    "p3w_contract": {
+      "path": "configs/u6_p3w_external_exposure_anchor_sufficiency_v1.json",
+      "sha256": "98a840f0f486425d37d83f546d25abf12a821b5d389a7f3f04fe0e9208a396b7"
+    },
+    "p3w_decision": {
+      "path": "configs/u6_p3w_external_exposure_anchor_sufficiency_decision_v1.json",
+      "sha256": "9984b9ea21f12ec6e66bfb12697bb85adea425abe91326122a3d4a76b47e88c3",
+      "required_decision": "close-tested-external-exposure-anchor-ladder"
+    },
+    "p3w_evaluator": {
+      "path": "src/eval/external_exposure_anchor_sufficiency.py",
+      "sha256": "e60efd2498b2e0354e614a5377b826d6533e9dbd026d095712eeac26c46830f6"
+    }
+  },
+  "question": "Can independent exposure anchoring plus source-only variance-weighted multi-exposure fusion close the unchanged P3U quantization/noise gates?",
+  "fusion": {
+    "group_key": "synthetic pattern identity",
+    "observations_per_group": 3,
+    "latent": "one source exposure base per pattern and scalar",
+    "source_correction": "divide each observed source by one plus its independent measured gain nuisance",
+    "normalized_observation": "gain-corrected source divided by nominal exposure scale",
+    "variance_model": "source_noise_sigma squared plus uniform quantization variance, propagated through gain correction and exposure normalization",
+    "estimator": "per-scalar inverse-variance weighted mean",
+    "reconstruction": "fused latent base times each nominal exposure scale",
+    "target_reads": false,
+    "post_score_changes_allowed": false
+  },
+  "anchor_precision_levels_ppm": [0, 100],
+  "required_passing_levels_ppm": [0, 100],
+  "unchanged_evaluation": {
+    "observations": "exact P3U 16/12/10-bit source and target observations",
+    "truth_cases": "exact P3T six pure plus two mixed cases",
+    "mechanism_candidates": "exact P3T physical and lens families",
+    "automatic_gates": "exact P3U per-regime and common gates"
+  },
+  "additional_gates": {
+    "both_anchor_levels_pass_all_three_regimes": true,
+    "fusion_target_read_count_max": 0,
+    "maximum_anchor_bound_violation_count": 0,
+    "maximum_reconstruction_clipped_scalar_count": 0,
+    "development_confirmation_pattern_overlap_count_max": 0,
+    "report_repeat_sha256_exact": true
+  },
+  "controls": [
+    "P3W exact-anchor failure without fusion",
+    "unchanged wrong equation family",
+    "unchanged mixed-mechanism abstention",
+    "exact versus 100-ppm independent anchor"
+  ],
+  "forbidden": [
+    "change fusion weights, anchor levels, observations or gates after scoring",
+    "read any target or outcome while fusing sources",
+    "fit spatial denoisers or learned models",
+    "drop dark pixels, rows, patterns or the 10-bit regime",
+    "claim real acquisition calibration, film measurement or product readiness"
+  ],
+  "branch_rule": {
+    "pass": "Retain anchored bracket fusion as a synthetic acquisition-sufficiency result and compile a minimal controlled chart protocol.",
+    "fail": "Close the exact fusion estimator without weighting or threshold rescue; require a different observation design."
+  },
+  "claim_ceiling": "Synthetic acquisition-sufficiency evidence for anchored multi-exposure source fusion; no real-film, stock, device or product calibration claim."
+}
