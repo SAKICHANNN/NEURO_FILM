@@ -1,0 +1,66 @@
+{
+  "schema": "neuro_film.u6_p6ah_piecewise_analytic_cloud_aperture_contract.v1",
+  "experiment_id": "u6.p6ah-piecewise-analytic-cloud-aperture-v1",
+  "node": "ULT > U6 > U6.P6 > U6.P6AH",
+  "date_frozen": "2026-08-02",
+  "parent": {
+    "decision_path": "configs/u6_p6ag_continuous_cloud_aperture_integration_decision_v1.json",
+    "decision_sha256": "eb845b0e65541dd806fa38af08bd675c39013ae4b0211bba1790909e58a49756",
+    "decision": "close_adaptive_quadrature_nonconvergence"
+  },
+  "question": "Can the circular aperture integral over continuous marked dye clouds be evaluated piecewise analytically by enumerating every topology-changing circle event, without adaptive quadrature or raster truth?",
+  "material": {
+    "input_shape": [17, 19],
+    "target_pixel_pitch_um": 6.35,
+    "aperture_diameter_um": 12.5,
+    "radius_um_cmy": [1.8, 2.2, 2.6],
+    "mark_optical_density_cmy": [0.16, 0.20, 0.24],
+    "monte_carlo_samples": 4,
+    "seed": 26080263
+  },
+  "integration": {
+    "topology_breakpoints": [
+      "aperture and cloud horizontal extrema",
+      "aperture-cloud intersections",
+      "cloud-cloud intersections"
+    ],
+    "segment_rule": "midpoint determines invariant boundary order and cloud coverage only within each exact topology interval",
+    "primitive": "closed-form integral of circle upper/lower chord y = cy +/- sqrt(r^2 - (x-cx)^2)",
+    "independent_confirmation": "swap physical x/y integration axes and rebuild all topology intervals"
+  },
+  "analytic_controls": [
+    "empty aperture",
+    "disjoint cloud",
+    "cloud fully covering aperture",
+    "concentric cloud smaller than aperture",
+    "two concentric clouds with nested radii"
+  ],
+  "evaluation": {
+    "row_partitions": [3, 7, 11],
+    "diagnostic_controls": [
+      "P6AD fixed 256-point direct quadrature",
+      "P6AF provisional 64x raster"
+    ]
+  },
+  "gates": {
+    "maximum_analytic_control_error": 1e-11,
+    "maximum_axis_swap_error": 1e-10,
+    "maximum_repeat_error": 0.0,
+    "maximum_partition_error": 0.0,
+    "minimum_transmittance": 0.0,
+    "maximum_transmittance": 1.0
+  },
+  "forbidden": [
+    "use adaptive quadrature, Monte Carlo samples or a raster as truth",
+    "change topology conventions, analytic controls, fixture or gates after scoring",
+    "discard circle intersections or merge topology intervals using a fitted tolerance",
+    "tune the analytic result toward P6AD or P6AF diagnostics",
+    "use this offline reference directly as a product runtime",
+    "claim measured film, scanner, stock, process, quality or product evidence"
+  ],
+  "branch_rule": {
+    "pass": "Retain the piecewise analytic integral as the offline synthetic reference and open a separately frozen bounded compiler candidate.",
+    "fail": "Close this analytic topology design without adaptive/raster rescue; require measured or otherwise independent reference evidence."
+  },
+  "claim_ceiling": "Generic synthetic piecewise analytic continuous cloud/aperture evidence; no measured film, scanner, stock, process, quality or product claim."
+}

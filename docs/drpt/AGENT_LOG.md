@@ -9727,3 +9727,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - A new leaf may analytically integrate circle-chord primitives between all
   topology-changing circle extrema/intersections. This removes both adaptive
   quadrature and raster truth and must be frozen separately.
+
+## 2026-08-02 - Freeze U6.P6AH piecewise analytic cloud/aperture integral
+
+- Enumerate aperture/cloud extrema and every aperture-cloud/cloud-cloud circle
+  intersection. Within each open topology interval, use one midpoint only to
+  identify invariant boundary order and coverage, then integrate each circle
+  chord with its closed-form antiderivative.
+- Freeze the five P6AG analytic geometries, exact repeat and 3/7/11-row
+  partitions. Independently rebuild the whole integral after swapping physical
+  x/y axes and require maximum parity error `<=1e-10`; analytic control error
+  must be `<=1e-11`.
+- Adaptive quadrature, raster truth and sample-based integration are forbidden.
+  P6AD/P6AF remain diagnostics only; pass retains an offline synthetic
+  reference, not a runtime or calibrated scanner model.
