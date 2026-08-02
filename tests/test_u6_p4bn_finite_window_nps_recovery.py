@@ -16,6 +16,7 @@ from src.eval.finite_window_nps_recovery import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u6_p4bn_finite_window_nps_recovery_v1.json"
+DECISION = ROOT / "configs/u6_p4bn_finite_window_nps_recovery_decision_v1.json"
 
 
 def test_p4bn_contract_is_frozen_before_recovery() -> None:
@@ -41,6 +42,18 @@ def test_finite_window_periodogram_preserves_white_noise_scale() -> None:
     assert hann[0, 0] < 1e-24
 
 
+def test_p4bn_decision_binds_formal_recovery() -> None:
+    payload = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert payload["decision"] == "retain_hann_finite_window_nps_measurement_bridge"
+    assert payload["report_sha256"] == (
+        "96e3c1ee4a809508ce64167163d59ffe0add236794c4f28951d1aeb9856f3872"
+    )
+    assert payload["stable_evidence_id"] == (
+        "33f09ddbbfa7789db74a08b0c55465972733a7d79ebcf9491e33a6841f24ff25"
+    )
+    assert payload["rectangular_diagnostic_outperformed_hann"] is True
+
+
 def test_radial_bin_means_rejects_empty_bins() -> None:
     with pytest.raises(ValueError, match="no frequency samples"):
         radial_bin_means(np.ones((4, 4)), 1.0, np.asarray([0.1, 0.2]))
@@ -64,4 +77,3 @@ def test_finite_window_nps_recovery_formal_decision() -> None:
     }
     assert report["maximum_periodic_control_log10_rmse"] < 1e-10
     assert report["gate_results"]["repeat_exact"] is True
-

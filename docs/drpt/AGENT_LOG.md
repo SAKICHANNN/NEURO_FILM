@@ -9955,3 +9955,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   byte-identical (`3c436567...01a6`).
 - This is an offline second-order reference, not particle geometry or a
   Gaussian marginal. Finite-window/radial-estimator robustness is next.
+
+## 2026-08-02 - U6.P4BN recovers spectra from finite windows
+
+- Three seeds and four crops per profile recover all five measured states at
+  100% nearest-profile accuracy. Hann median log10-RMSE is `.05116` at 128um
+  and `.02355` at 256um; two reports are exact (`96e3c1ee...3872`).
+- The diagnostic rectangular window is unexpectedly better (`.02812/.01362`).
+  Keep the frozen formal Hann pass, but do not promote rectangular post-score.
+- Next use fresh seeds and non-square windows to decide the simplest estimator;
+  this remains synthetic recovery evidence, not a real scan or stock result.
