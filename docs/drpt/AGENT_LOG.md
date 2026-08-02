@@ -9910,3 +9910,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `65075697...4a11`, stable ID `5a556c1c...0de0`). No same-cohort geometry or
   threshold rescue, effective-SFR compiler, scanner/film MTF or product claim
   opens; continue a materially distinct physical or joint colour/physics leaf.
+
+## 2026-08-02 - U6.P4BJ retains nonstationary aperture amplitude reference
+
+- Extended the retained counter sampler to pointwise rate/mark fields and
+  tested 36 ramp/step/checker/island x aperture x channel rows without
+  realized-field normalization or a spatial filter.
+- Two reports are byte-identical (`36d5ffe7...0850`, stable
+  `7d4fecdf...fcf92`). Worst local density/transmittance RMS errors are
+  `1.86%/2.03%`; exact partitions, frozen P4BH counts and physical-domain gates
+  pass.
+- Retain this only as an amplitude-correct synthetic reference. P4BI still
+  leaves NPS/correlation unidentified, so photographic and product rendering
+  remain closed.

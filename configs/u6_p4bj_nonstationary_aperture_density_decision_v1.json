@@ -1,0 +1,41 @@
+{
+  "schema": "neuro_film.u6_p4bj_nonstationary_aperture_density_decision.v1",
+  "node": "U6.P4BJ",
+  "decision": "retain_nonstationary_aperture_amplitude_reference",
+  "contract_commit": "b02fae454625f21d80a5e1b6c02fc63a5655e66e",
+  "implementation_commit": "72fbd2a873b18247a766893f7f014e8a0cc4dcef",
+  "contract_sha256": "d75208b910fbfa739d18e31b81e424896d8c211f2152604a4d1d03d5f74d08b5",
+  "sampler_sha256": "e5396d6fc8617c1baf9ee4156b5a9d723768b789b08d24267f6e8674de58f680",
+  "evaluator_sha256": "2dd181e3727f2d4b11d1c29ae0711ac9d074bf2b006dfc29cb1f05501b1135d3",
+  "reports": [
+    "outputs/experiments/u6_p4bj_nonstationary_aperture_density_v1/run_a/report.json",
+    "outputs/experiments/u6_p4bj_nonstationary_aperture_density_v1/run_b/report.json"
+  ],
+  "report_sha256": "36d5ffe72e43fface0a23b8e1f458c09efec616ae502203fc4999d5d0a300850",
+  "stable_evidence_id": "7d4fecdf700f9bb500dd490702c355bec77745cc5882045f39d3a79e621fcf92",
+  "two_reports_byte_exact": true,
+  "automatic_pass": true,
+  "metrics": {
+    "pattern_count": 4,
+    "aperture_count": 3,
+    "channel_count": 3,
+    "row_count": 36,
+    "maximum_global_density_mean_relative_error": 0.0004937476717481459,
+    "maximum_local_density_mean_relative_error": 0.001984655261766055,
+    "maximum_local_density_rms_relative_error": 0.018599816617274945,
+    "maximum_local_transmittance_mean_relative_error": 0.0052267613572423155,
+    "maximum_local_transmittance_rms_relative_error": 0.020348826208526516,
+    "ramp_monotonicity_violation_count": 0,
+    "contrast_sign_violation_count": 0
+  },
+  "interpretation": [
+    "The pointwise compound-Poisson operator preserves analytic local mixture moments on ramps, steps, checkerboards and a compact high-exposure island across the retained 7.25-384 micrometre aperture range.",
+    "Counter-based coordinates preserve exact repeat and odd partitions, and constant fields reproduce all frozen P4BH 48-micrometre count bytes without realized-field normalization.",
+    "This is an image-shaped developed-density reference mechanism only. Cell independence remains a generic fallback because P4BI did not identify a transferable correlation scale or NPS."
+  ],
+  "next_ready_leaf": "Use P4BJ only as an amplitude-correct synthetic reference/control while pursuing independently measured same-material spatial evidence or another distinct physical mechanism; do not promote photographic rendering from independent-cell topology.",
+  "spatial_nps_identified": false,
+  "photographic_render_allowed": false,
+  "product_integration_allowed": false,
+  "claim_ceiling": "Synthetic nonstationary application of a Kodak-scaled density-amplitude representation under a generic independent measurement-cell topology; not measured NPS, microscopic structure, photographic quality, modern-stock calibration, raster or product evidence."
+}
