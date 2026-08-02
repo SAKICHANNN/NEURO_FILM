@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import copy
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -55,3 +57,28 @@ def test_bw0_parent_hash_drift_rejected(tmp_path: Path) -> None:
     config["trace"]["sha256"] = "0" * 64
     with pytest.raises(VelviaMtfSignatureError, match="parent integrity mismatch"):
         audit_signature(config, ROOT, overlay_dir=tmp_path)
+
+
+def test_bw0_repository_script_is_directly_executable(tmp_path: Path) -> None:
+    output = tmp_path / "report.json"
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts/run_u5_r2bw0_fujifilm_velvia_mtf_signature.py"),
+            "--config",
+            str(CONFIG),
+            "--output",
+            str(output),
+            "--overlay-dir",
+            str(tmp_path / "overlays"),
+            "--root",
+            str(ROOT),
+        ],
+        cwd=ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert completed.returncode == 0, completed.stderr
+    assert output.is_file()
+    assert "decision=close_exact_velvia_revision_source_signature" in completed.stdout
