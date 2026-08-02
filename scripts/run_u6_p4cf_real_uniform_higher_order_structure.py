@@ -4,7 +4,12 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from src.eval.real_uniform_higher_order_structure import (
     evaluate_real_uniform_higher_order_structure,
@@ -14,7 +19,7 @@ from src.eval.real_uniform_higher_order_structure import (
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--root", type=Path, default=Path.cwd())
+    parser.add_argument("--root", type=Path, default=ROOT)
     parser.add_argument(
         "--contract",
         type=Path,
