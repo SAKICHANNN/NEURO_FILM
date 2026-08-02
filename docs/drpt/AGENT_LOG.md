@@ -2,6 +2,19 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-02 - U6.P4AV-P4AW closes same-sheet MTF/granularity coupling
+
+- Audited the exact Kodak 250D graph into a reproducible 48um-aperture
+  diffuse-rms trace, then froze and ran a disjoint-exposure compatibility test
+  against the existing P2Q characteristic curve and P5J positive PSF.
+- Two P4AW reports are byte-identical (`9d3180fd...d416c`). The effective
+  characteristic-slope family improves median log-sigma error `54.20%` over
+  channel constants and has `.841-.950` channel rank correlation.
+- The correct P5J channel mapping loses slightly to the frozen cyclic wrong
+  mapping (`-0.061%` improvement), so shared MTF/granularity channel coupling
+  closes. Retain only non-causal slope-shape compatibility; no photo, profile,
+  NPS, stock, process or scanner claim opens.
+
 # 2026-08-02 - U6.P4AR spectral mixture closes before confirmation
 
 - Implemented a nonnegative seven-basis PSD source with deterministic simplex

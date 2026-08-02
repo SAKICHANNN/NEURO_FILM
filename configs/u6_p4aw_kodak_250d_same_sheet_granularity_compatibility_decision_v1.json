@@ -1,0 +1,42 @@
+{
+  "schema": "neuro_film.u6_p4aw_kodak_250d_same_sheet_granularity_compatibility_decision.v1",
+  "node": "U6.P4AW",
+  "decision": "close_effective_same_sheet_joint_family_without_rescue",
+  "contract_commit": "36d9bd719ba1a1d6bdeeb0b3bb50c093dd858ae2",
+  "implementation_commit": "84b974dfcdf8fad86b3ec5a13c64102c70345ca1",
+  "contract_sha256": "a5e71b3f1b533489243e3993af55bb317172f5775b0858d0a013c88a235a9927",
+  "evaluator_sha256": "87a061e8b1683530d44e8ff803c426e3f8bff2b27721dcea2ffea999a8360b1f",
+  "reports": [
+    "outputs/experiments/u6_p4aw_kodak_250d_same_sheet_granularity_v1/report_a.json",
+    "outputs/experiments/u6_p4aw_kodak_250d_same_sheet_granularity_v1/report_b.json"
+  ],
+  "report_sha256": "9d3180fd2e509606c93df8d482143fa487c7ebf1433f9abfa424ed5b4efd416c",
+  "stable_evidence_id": "e430fcae53d533fbbc410808698966ac47e1d313b2e91c19454be97942f694c9",
+  "two_reports_byte_exact": true,
+  "automatic_pass": false,
+  "metrics": {
+    "selected_median_log_sigma_error": 0.07110320800147067,
+    "selected_p95_log_sigma_error": 0.22365579029740476,
+    "median_channel_spearman": 0.8833333333333333,
+    "minimum_channel_spearman": 0.8406680016960504,
+    "improvement_vs_channel_constant": 0.541950658603576,
+    "improvement_vs_density_only": 0.541950658603576,
+    "improvement_vs_characteristic_slope_without_p5j": 0.009727244511454444,
+    "improvement_vs_wrong_channel_p5j": -0.0006125146234901901,
+    "maximum_relative_channel_energy_grid_change": 0.00005350326596109678,
+    "shared_characteristic_slope_amplitude": 0.005422370522174246
+  },
+  "failed_gates": [
+    "improvement_vs_wrong_channel_p5j"
+  ],
+  "interpretation": [
+    "The characteristic-slope family is strongly shape-compatible with disjoint diffuse-rms points: it reduces median log-sigma error about 54.2% versus per-channel constants while retaining high per-channel rank correlation.",
+    "The exact P5J channel attenuation is not identified by these granularity curves. The preregistered cyclic wrong-channel mapping is slightly better, so the apparent small gain over channel-agnostic slope is not valid evidence for shared MTF/granularity channel coupling.",
+    "Retain only the weaker effective characteristic-slope compatibility observation. Do not infer a causal dye-cloud scale, full NPS, roll/process/scanner calibration, stock response or product profile."
+  ],
+  "next_ready_leaf": "Leave this exact same-sheet joint family closed. Advance to a materially different physical observation or a generic compiler challenge that does not claim P5J channel coupling.",
+  "photographic_render_allowed": false,
+  "product_integration_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "Manufacturer-graph compatibility evidence for an effective characteristic-slope variance shape only; the P5J MTF-to-granularity channel mapping is rejected."
+}

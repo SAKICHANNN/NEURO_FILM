@@ -45,6 +45,14 @@ def test_exact_same_sheet_experiment_is_repeatable() -> None:
     assert first["gate_results"]["spatial_energy_convergence"]
     assert first["channel_energy_primary"]["blue"] > 1.0
     assert first["channel_energy_primary"]["red"] < 1.0
+    assert not first["automatic_pass"]
+    assert first["decision"] == "close_effective_same_sheet_joint_family_without_rescue"
+    assert first["stable_evidence_id"] == (
+        "e430fcae53d533fbbc410808698966ac47e1d313b2e91c19454be97942f694c9"
+    )
+    assert [name for name, passed in first["gate_results"].items() if not passed] == [
+        "improvement_vs_wrong_channel_p5j"
+    ]
 
 
 def test_parent_hash_tamper_fails_before_scoring(tmp_path: Path) -> None:
