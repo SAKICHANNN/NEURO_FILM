@@ -2,6 +2,15 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-02 - U6.P4BC passes deterministic high-rate cell sampling
+
+- Added vectorized inverse-CDF Poisson sampling for P4BB's 2.4k-186k event
+  rates; two reports are exact (`4ba96721...93e7f`).
+- All 15 fields repeat and partition exactly. Maximum density/transmittance RMS
+  errors are `1.036%/1.043%`; maximum lag-1 correlation is `.01102`.
+- Independence is explicitly generic, not measured NPS. Before raster work,
+  challenge its implied aperture scaling against existing measurements.
+
 # 2026-08-02 - U6.P4BB compiles a positive measurement-cell mechanism
 
 - Compiled the retained 48um density mean/RMS into equal density marks and a

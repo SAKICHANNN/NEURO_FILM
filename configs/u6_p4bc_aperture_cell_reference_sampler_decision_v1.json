@@ -1,0 +1,40 @@
+{
+  "schema": "neuro_film.u6_p4bc_aperture_cell_reference_sampler_decision.v1",
+  "node": "U6.P4BC",
+  "decision": "retain_generic_aperture_cell_reference_sampler",
+  "contract_commit": "0e6af0bcfc09ce510f57d76a0912bc1f693deac1",
+  "implementation_commit": "7660533c7f132bb4182e0b7ffd3b0ac0e7bd7b9c",
+  "contract_sha256": "feb0b63e0efa63d6a796cb768b09b73a6a85cf19269ed0958e21631618dcadbc",
+  "sampler_module_sha256": "cd3855014c9b2e943eee76023211dbc1424a21d08ce5dac930b7e536e41aaf0c",
+  "evaluator_sha256": "b9c7cb7caf9810e3881d6f14f51aa00e2dea2b822e1ef018b81eaa017d78514e",
+  "reports": [
+    "outputs/experiments/u6_p4bc_aperture_cell_reference_sampler_v1/run_a/report.json",
+    "outputs/experiments/u6_p4bc_aperture_cell_reference_sampler_v1/run_b/report.json"
+  ],
+  "report_sha256": "4ba9672147ec5b6e2216febfd40c0f032400af7b4e4b6f79f5337a1a3c293e7f",
+  "stable_evidence_id": "bcdc8af89cefd1650dc7fd00e4a62a044a1ccf1eea956f31faa3ef5f45c01fbd",
+  "two_reports_byte_exact": true,
+  "automatic_pass": true,
+  "metrics": {
+    "probe_count": 15,
+    "field_shape_cells": [192, 193],
+    "maximum_density_mean_relative_error": 0.00012502788739565673,
+    "maximum_density_rms_relative_error": 0.01035356396019993,
+    "maximum_transmittance_mean_relative_error": 0.0003146073365631885,
+    "maximum_transmittance_rms_relative_error": 0.010429961245960961,
+    "maximum_absolute_lag_one_correlation": 0.011017225594394142,
+    "repeat_exact": true,
+    "odd_partition_exact": true
+  },
+  "interpretation": [
+    "The high-rate inverse-CDF sampler is coordinate-stable and exactly invariant to the frozen odd partition for all 15 P4BB probes.",
+    "Realized density/transmittance moments remain within frozen sampling-error gates without post-sample normalization.",
+    "Independent 48-micrometre cells are retained only as a generic reference hypothesis; this is not measured film NPS or a photographic grain renderer."
+  ],
+  "next_ready_leaf": "Challenge the implied inverse-area aperture law against existing measured multi-aperture granularity tables before any raster or LOD rendering work.",
+  "measured_nps_identified": false,
+  "microscopic_geometry_identified": false,
+  "photographic_render_allowed": false,
+  "product_integration_allowed": false,
+  "claim_ceiling": "Deterministic high-rate independent 48-micrometre measurement-cell reference sampling with exact coordinate/partition identity and bounded realized moments; independence is a generic hypothesis, not measured NPS, microscopic geometry, calibration or product rendering."
+}

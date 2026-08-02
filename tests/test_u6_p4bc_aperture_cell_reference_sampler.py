@@ -65,6 +65,9 @@ def test_frozen_sampler_repeats_and_passes() -> None:
     assert first == second
     assert first["automatic_pass"]
     assert first["decision"] == "retain_generic_aperture_cell_reference_sampler"
+    assert first["stable_evidence_id"] == (
+        "bcdc8af89cefd1650dc7fd00e4a62a044a1ccf1eea956f31faa3ef5f45c01fbd"
+    )
     assert first["probe_count"] == 15
     assert all(row["repeat_exact"] for row in first["rows"])
     assert all(row["odd_partition_exact"] for row in first["rows"])
