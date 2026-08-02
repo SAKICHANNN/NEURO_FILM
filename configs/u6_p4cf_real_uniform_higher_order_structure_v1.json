@@ -1,0 +1,103 @@
+{
+  "schema": "neuro_film.u6_p4cf_real_uniform_higher_order_structure_contract.v1",
+  "experiment_id": "u6.p4cf-real-uniform-higher-order-structure-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4CF",
+  "date_frozen": "2026-08-01",
+  "question": "After matching the retained P4BS second-order spectrum, do real uniform-film scan residuals support finite-capacity bounded cloud occupancy over an unbounded Gaussian Thomas field in candidate-independent higher-order statistics?",
+  "parents": {
+    "p4bs_decision": {
+      "path": "configs/u6_p4bs_real_uniform_thomas_confirmation_decision_v1.json",
+      "sha256": "a0b01b0fc08b407c26169f16d5efbc87aa9a20146e42d33ea113f8200ee57ff3",
+      "required_decision": "retain_generic_scanner_convolved_thomas_mechanism_candidate"
+    },
+    "p4ca_decision": {
+      "path": "configs/u6_p4ca_bounded_cloud_occupancy_decision_v1.json",
+      "sha256": "e811ba20d2a64cdc5f3928d9df0c883965fdac4493e289755eb20291b772ac4e",
+      "required_decision": "retain_bounded_cloud_occupancy_unit_field"
+    },
+    "p4bu_decision": {
+      "path": "configs/u6_p4bu_finite_support_thomas_filter_decision_v1.json",
+      "sha256": "c3e7dd1f568aaeb5cbfc1180aeba309a006d20165551f56c1a0e12086e3d0fc4",
+      "required_decision": "retain_finite_support_thomas_kernel_close_unbalanced_noise_realization"
+    },
+    "colour_source_contract": {
+      "path": "configs/u6_p4r_uniform_grain_source_v1.json",
+      "sha256": "27e4efe06804d6795b3ff03a37beff57a23b3a0f6ee455fbe7628d123bc6b80a"
+    },
+    "colour_acquisition_manifest": {
+      "path": "outputs/experiments/u6_p4r_uniform_grain_source_v1/acquisition_manifest.json",
+      "sha256": "54ce5dbedd681f40e870870e144a6eca851322457db250c50c858d9279d64929"
+    },
+    "bw_preflight_contract": {
+      "path": "configs/u6_p4z1_bw_uniform_grain_preflight_v1.json",
+      "sha256": "0bd238096109742cf429fd736f17ca2c7295cdf77fc41bba7063fa1ba00bc207"
+    },
+    "bw_preflight_decision": {
+      "path": "configs/u6_p4z1_bw_uniform_grain_preflight_decision_v1.json",
+      "sha256": "237ef648a169bb46b97ee401592f355fe988dc436c67d0aa54fd081ae4fe0d7e"
+    }
+  },
+  "fixed_models": {
+    "gaussian_control": "P4BU finite-support Thomas field with unbounded normal innovations",
+    "bounded_candidate": "P4CA finite-support Thomas field with 16-trial p=0.5 occupancy innovations",
+    "particle_sigma_pixels": 1.3253699417769098,
+    "cluster_sigma_pixels": 1.1268619873805532,
+    "mean_offspring": 27.765942352935905,
+    "component_seeds": [2611923443488327891, 11400714819323198485],
+    "occupancy_trials": 16,
+    "occupancy_probability": 0.5,
+    "truncate_sigma": 4.0,
+    "model_realization_seeds": [2608026101, 2608026102, 2608026103, 2608026104, 2608026105, 2608026106, 2608026107, 2608026108]
+  },
+  "observed_roles": {
+    "development": "all eight P4R colour uniform scans, each scan aggregated across the original four fixed crops and RGB channels",
+    "confirmation": "all three P4Z1 B&W uniform scans, each scan aggregated across the original nine fixed crops",
+    "confirmation_pixels_or_statistics_allowed_before_contract_freeze": false,
+    "refit_rescale_or_feature_selection_allowed": false
+  },
+  "preprocessing": {
+    "crop_size_pixels": 512,
+    "residual": "quadratic detrend of code divided by crop mean",
+    "normalization": "subtract residual mean and divide by population RMS",
+    "model_field_shape": [512, 512],
+    "local_energy_block_pixels": 16,
+    "connected_component_connectivity": 8
+  },
+  "higher_order_metrics": {
+    "marginal_quantile_probabilities": [0.001, 0.0025, 0.005, 0.01, 0.025, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95, 0.975, 0.99, 0.995, 0.9975, 0.999],
+    "local_rms_quantile_probabilities": [0.1, 0.25, 0.5, 0.75, 0.9],
+    "excursion_thresholds_sigma": [2.5, 3.0],
+    "excursion_component_area_bins_pixels": [[1, 1], [2, 4], [5, 16], [17, 262144]],
+    "excursion_feature": "log1p connected-component count per megapixel, separately for positive and negative excursions",
+    "scan_winner": "bounded candidate must have lower RMSE in at least two of marginal quantiles, local-RMS quantiles and excursion topology"
+  },
+  "automatic_gates": {
+    "maximum_parent_radial_signature_cosine_error": 0.005,
+    "maximum_parent_covariance_absolute_error": 0.03,
+    "minimum_development_scans_won": 6,
+    "maximum_development_median_metric_ratio": 0.9,
+    "minimum_confirmation_scans_won": 2,
+    "maximum_confirmation_median_metric_ratio": 0.9,
+    "maximum_confirmation_worst_scan_metric_ratio": 1.0,
+    "require_finite_features": true,
+    "require_model_seed_distinctness": true,
+    "require_two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain bounded occupancy only as a generic same-scanner effective higher-order innovation mechanism and open one independently frozen density-domain synthetic integration audit.",
+    "fail": "Close the exact P4CA higher-order mechanism without changing occupancy, features, crops, aggregation or gates; retain P4BS second-order evidence and seek a new observation or mechanism."
+  },
+  "forbidden": [
+    "fit either model, feature, crop, threshold or gate to observed higher-order statistics",
+    "treat scanner-convolved residual topology as microscopic grain or dye-cloud truth",
+    "use stock labels or photograph content",
+    "clip, winsorize, normalize realized variance or alter field tails",
+    "use a generative image model",
+    "promote a renderer, stock profile or product default"
+  ],
+  "outputs": {
+    "report_a": "outputs/experiments/u6_p4cf_real_uniform_higher_order_structure_v1/run_a/report.json",
+    "report_b": "outputs/experiments/u6_p4cf_real_uniform_higher_order_structure_v1/run_b/report.json"
+  },
+  "claim_ceiling": "Candidate-independent higher-order mechanism comparison on existing same-scanner uniform scans; not microscopic, stock, process, density, scanner-independent, calibrated or product evidence."
+}
