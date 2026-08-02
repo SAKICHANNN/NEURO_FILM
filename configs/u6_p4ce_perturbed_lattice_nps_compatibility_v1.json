@@ -1,0 +1,77 @@
+{
+  "schema": "neuro_film.u6_p4ce_perturbed_lattice_nps_compatibility_contract.v1",
+  "experiment_id": "u6.p4ce-perturbed-lattice-nps-compatibility-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4CE",
+  "date_frozen": "2026-08-02",
+  "question": "Can the continuous diffuse component of an independently Gaussian-perturbed lattice, multiplied by one positive developed-particle footprint, predict held historical photographic-film NPS bands better than both one-Gaussian and one-level Thomas-cluster controls?",
+  "parents": {
+    "p4bl_bundle_path": "outputs/experiments/u6_p4bl_historical_measured_nps_compiler_v1/run_a/bundle.json",
+    "p4bl_bundle_sha256": "2299a1acd914aaa865910fc2a7601f286db3df69ffa642d3bc31de8dbd0f310d",
+    "p4bl_bundle_id": "6a4050c4c03e8db33ee282608be50734f5e2aee1cf257bfcccdd85442f9c8567",
+    "p4br_report_path": "outputs/experiments/u6_p4br_thomas_cluster_nps_compatibility_v1/run_a/report.json",
+    "p4br_report_sha256": "5422f6b24df8b2efe8688cf8f5040b20143475e20e0d0d66f5b8c4019edef5bf",
+    "p4br_stable_evidence_id": "d00539e216d21a0416df79cff4df4f5b296d7d66224f865268938bede7b9e288"
+  },
+  "primary_model_source": {
+    "citation": "Daniela Flimmel, Fitting regular point patterns with a hyperuniform perturbed lattice, revised March 22 2026; Stochastic Processes and their Applications 2026, 105037",
+    "paper_url": "https://arxiv.org/pdf/2503.12179",
+    "paper_path": "data/physical_grain/perturbed_lattice_2026_v1/flimmel_perturbed_lattice_2026.pdf",
+    "paper_sha256": "40e8cf043de7a9892103b3acad0688daa0731eb7b04ff735b3f8bf4c1a782fe6",
+    "equation_basis": "Lemma 2 decomposes the independently perturbed-lattice spectral measure into continuous 1-|phi_p(k)|^2 plus reciprocal-lattice Bragg atoms; for isotropic Gaussian displacement phi_p gives the continuous factor 1-exp(-sigma_squared*angular_frequency_squared)",
+    "source_limit": "The paper studies metallic polycrystal centres, not photographic emulsion, and reports that the independent model can retain restrictive Bragg peaks; only its continuous repulsive baseline is tested here.",
+    "clean_room_equation_use_only": true
+  },
+  "model": {
+    "candidate": "gaussian_particle_mark_times_independent_gaussian_perturbed_lattice_diffuse_structure_factor",
+    "radial_spectrum": "amplitude*exp(-4*pi_squared*particle_sigma_squared*f_squared)*(1-exp(-4*pi_squared*jitter_sigma_squared*f_squared))*aperture_mtf_squared",
+    "particle_sigma_micrometres_shared_per_material_bounds": [0.1, 12.0],
+    "jitter_sigma_micrometres_per_state_bounds": [0.05, 50.0],
+    "state_amplitude": "analytic_log10_least_squares",
+    "bragg_atoms_modeled": false,
+    "density_interpolation_allowed": false,
+    "render_allowed": false
+  },
+  "fit": {
+    "frequency_grid_lines_per_mm": {"minimum": 5.0, "maximum": 500.0, "step": 5.0},
+    "build_bands_lines_per_mm": [[5.0, 100.0], [255.0, 350.0]],
+    "confirmation_bands_lines_per_mm": [[105.0, 250.0], [355.0, 500.0]],
+    "objective": "mean_squared_log10_error_on_build_bands",
+    "optimizer": "deterministic_scipy_differential_evolution_in_log_parameter_space_then_polish",
+    "optimizer_seed": 2608023101,
+    "optimizer_max_iterations": 160,
+    "optimizer_population_size": 15,
+    "controls": [
+      "one_gaussian_covariance_spectrum_per_state_fit_on_same_build_bands",
+      "frozen_p4br_one_level_thomas_cluster_prediction"
+    ],
+    "post_score_scale_jitter_frequency_split_model_or_gate_tuning_allowed": false
+  },
+  "evaluation": {
+    "required_material_count": 2,
+    "required_profile_count": 5,
+    "minimum_confirmation_median_relative_improvement_over_gaussian": 0.1,
+    "minimum_confirmation_median_relative_improvement_over_thomas": 0.1,
+    "minimum_each_material_confirmation_median_relative_improvement_over_gaussian": 0.0,
+    "maximum_candidate_to_gaussian_worst_confirmation_error_ratio": 1.0,
+    "minimum_profiles_beating_gaussian": 4,
+    "minimum_profiles_beating_thomas": 4,
+    "require_interior_particle_and_jitter_sigmas": true,
+    "interior_parameter_margin_fraction": 0.005,
+    "require_finite_positive_predictions": true,
+    "require_exact_parameter_and_report_replay": true,
+    "require_two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain the diffuse repulsive-point baseline only as historical measured-NPS compatibility and open a separately frozen finite-field/Bragg-atom falsification before any image use.",
+    "fail": "Close this exact independent perturbed-lattice diffuse family without adding dependent fields, Bragg smoothing, capacity or same-cohort gate changes; advance a new measured observation or mechanism.",
+    "always": "Never identify lattice spacing, crystal centres or photographic-emulsion hyperuniformity from this compatibility test."
+  },
+  "forbidden": [
+    "inspect confirmation bands before candidate and controls freeze",
+    "fit or smooth Bragg atoms after seeing the measured spectra",
+    "reuse a dependent perturbation field as a rescue",
+    "interpret fitted particle or jitter sigmas as microscopic measurements",
+    "density interpolation, photographic rendering, modern-stock or product claims"
+  ],
+  "claim_ceiling": "Held-band compatibility of one 2026 paper-derived continuous repulsive-point structure factor with five historical Fuji B&W measured spectra; not evidence of photographic-emulsion hyperuniformity, microscopic lattice geometry, modern stock or product quality."
+}
