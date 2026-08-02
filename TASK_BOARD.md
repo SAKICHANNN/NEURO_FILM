@@ -761,8 +761,9 @@ residual dispersion regresses `2.02%` versus no diffusion and improves only
 (`574f0c59...569c7a`). Retain P4AS synthetic mechanism only; do not rescue this
 profile on the same tables. Continue a distinct physical algorithm leaf.
 
-U6.P6AA is the next distinct core algorithm leaf. Compile the source-stated
-12.5um circular scanner aperture into one positive 2D reference kernel at 1um
-pitch and compare its sampled MTF with the analytic Bessel response, an
-equal-second-moment Gaussian and a point aperture. Production profile/runtime
-imports remain forbidden until the reference and partition gates pass.
+U6.P6AA passes the isolated circular-aperture reference. The 13x13 positive
+kernel has `.00314` maximum analytic MTF error and reduces RMSE by
+`95.78%/99.53%` versus equal-moment Gaussian/point controls; impulse, constants,
+rotation, repeat and row partitions pass in two exact reports
+(`e25be197...956891`). P6AB now tests the same fixed 12.5um compiler directly at
+4000-dpi pitch; production profile/runtime imports remain closed.

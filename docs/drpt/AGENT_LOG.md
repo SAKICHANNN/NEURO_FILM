@@ -9565,3 +9565,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   7/17/31-row partition gates.
 - This leaf is isolated reference mechanics. No production profile, native
   runtime, modern scanner calibration or photographic claim opens directly.
+
+## 2026-08-02 - U6.P6AA retains circular aperture reference
+
+- Two reports are byte-identical (`e25be197...956891`, stable
+  `c2e6e1d9...e5f9305`). The 13x13 kernel has 145 positive weights, exact
+  rotational symmetry and a `.00314` maximum analytic MTF error through
+  80 cycles/mm.
+- MTF RMSE improves 95.78% over the equal-second-moment Gaussian and 99.53%
+  over a point aperture. Constant, impulse, repeat and 7/17/31-row partition
+  gates pass.
+- Retain an isolated generic reference only. P6AB must establish whether the
+  same disk-area construction is adequate directly at 4000 dpi before any
+  profile/runtime discussion.

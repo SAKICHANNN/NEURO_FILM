@@ -1,0 +1,32 @@
+{
+  "schema": "neuro_film.u6_p6aa_circular_scanner_aperture_decision.v1",
+  "node": "U6.P6AA",
+  "decision": "retain_generic_circular_scanner_aperture_reference",
+  "contract_commit": "38d594f11edad8fccbdb5f912b21f3f6ebd21795",
+  "source_binding_amendment_commit": "218da80c57926fa9d9a1bb1f253d5d00e251ab87",
+  "implementation_commit": "49411160188084e6b49a482e43cfc07bbb79ca05",
+  "report_path": "outputs/experiments/u6_p6aa_circular_scanner_aperture_v1/report_run1.json",
+  "report_sha256": "e25be197883f0580ee1784c34fb4a7f8be020dcb3d2edca7d2f2644da7956891",
+  "stable_evidence_id": "c2e6e1d9002577d17e25f749b4c9570b2cb9c2751ffb4bdcb2514e141e5f9305",
+  "kernel_sha256": "23da1aff5bef5a294fa601f8893b44549f03d1d76f063d0ac7abab29e7d3e7a6",
+  "two_reports_byte_exact": true,
+  "automatic_pass": true,
+  "metrics": {
+    "kernel_shape": [13, 13],
+    "positive_weight_count": 145,
+    "maximum_kernel_mtf_absolute_error": 0.003139498650964745,
+    "kernel_mtf_rmse": 0.00207719945351542,
+    "gaussian_mtf_rmse": 0.04922003094813132,
+    "point_mtf_rmse": 0.4382248965709536,
+    "rmse_improvement_vs_gaussian": 0.9577976808729681,
+    "rmse_improvement_vs_point": 0.9952599693222152,
+    "constant_error": 1.887379141862766e-15,
+    "partition_error": 0.0,
+    "repeat_error": 0.0,
+    "impulse_error": 0.0
+  },
+  "next_leaf": "U6.P6AB tests the same fixed 12.5um disk-area compiler directly at 4000-dpi pitch against the analytic aperture MTF and unchanged controls before any profile integration.",
+  "production_profile_integration_allowed": false,
+  "modern_scanner_calibration_claim_allowed": false,
+  "claim_ceiling": "Generic synthetic circular scanner-aperture reference mechanics anchored to one public historical equation and aperture."
+}

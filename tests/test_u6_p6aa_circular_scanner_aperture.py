@@ -49,6 +49,10 @@ def test_evaluator_is_exact_and_reference_only() -> None:
     first = evaluate_circular_scanner_aperture(contract, ROOT)
     second = evaluate_circular_scanner_aperture(contract, ROOT)
     assert first == second
+    assert first["automatic_pass"] is True
+    assert first["stable_evidence_id"] == (
+        "c2e6e1d9002577d17e25f749b4c9570b2cb9c2751ffb4bdcb2514e141e5f9305"
+    )
     assert first["metrics"]["kernel_shape"] == [13, 13]
     assert first["metrics"]["minimum_weight"] >= 0.0
     assert contract["compiler"]["production_import_allowed"] is False
