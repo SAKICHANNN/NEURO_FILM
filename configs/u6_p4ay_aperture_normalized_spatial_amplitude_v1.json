@@ -13,7 +13,10 @@
     "p4ax_profile_id": "d8d6d15fa08b21e2fa34b72d73c6393c19015267ec72c0bdcb1dba93a1c9cd25",
     "p4ax_report_path": "outputs/experiments/u6_p4ax_kodak_250d_granularity_amplitude_profile_v1/report_a.json",
     "p4ax_report_sha256": "1ee9c07f4b9c3ad4898cd0243f00310275b5625cc15505fe24c6535844261736",
-    "p4ax_stable_evidence_id": "9595540018f9dd6cf7b2c288eb4d8d356df4c7778267713ce41b23e66ca7c722"
+    "p4ax_stable_evidence_id": "9595540018f9dd6cf7b2c288eb4d8d356df4c7778267713ce41b23e66ca7c722",
+    "p2q_bundle_path": "outputs/u6_p2q_kodak_250d_characteristic_prior/bundle_run1.json",
+    "p2q_bundle_sha256": "087e67544f737401fa697b21f06215a31827189e0648b8d60da666b92113caaa",
+    "p2q_prior_identity": "04d94af2e1fcad99fbb8c9abb57179f2b63f329c263b3bf2335c4117a670aacb"
   },
   "compiler": {
     "sample_pitch_micrometres": 1.0,
