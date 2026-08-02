@@ -59,6 +59,17 @@
       "y_axis": {"scale": "log10", "anchors": [[1.0, 426.510431], [1000.0, 562.564781]]}
     }
   },
+  "required_text_anchors": [
+    "APRIL 2026 H-1-5206",
+    "anti-halation undercoat",
+    "advanced Dye Layering Technology",
+    "shorter dynamic range when compared to KODAK VISION3",
+    "alternative linear response in higher densities",
+    "48-micrometre aperture",
+    "Exposure: 5500K Daylight",
+    "Process: ECN-2",
+    "Densitometry: Status M"
+  ],
   "vision3_evidence": {
     "characteristic_trace": {
       "path": "configs/data/kodak_vision3_characteristic_curve_pixels_v1.json",
