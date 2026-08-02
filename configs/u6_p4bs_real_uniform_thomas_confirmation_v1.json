@@ -1,0 +1,98 @@
+{
+  "schema": "neuro_film.u6_p4bs_real_uniform_thomas_confirmation_contract.v1",
+  "experiment_id": "u6.p4bs-real-uniform-thomas-confirmation-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4BS",
+  "date_frozen": "2026-08-02",
+  "question": "Does the P4BR Thomas clustered spectrum improve over a one-Gaussian spectrum when both are fit only to the existing CC0 colour uniform-scan cohort and then evaluated without refitting on the independent CC0 B&W uniform-scan cohort?",
+  "parents": {
+    "p4br_decision": {
+      "path": "configs/u6_p4br_thomas_cluster_nps_compatibility_decision_v1.json",
+      "sha256": "bddb56d87fbb1eb355c91dc066106ddd795c1454a0332370cec240ce65b165ff",
+      "required_decision": "close_one_level_thomas_cluster_measured_nps_equation_family"
+    },
+    "p4br_report": {
+      "path": "outputs/experiments/u6_p4br_thomas_cluster_nps_compatibility_v1/run_a/report.json",
+      "sha256": "5422f6b24df8b2efe8688cf8f5040b20143475e20e0d0d66f5b8c4019edef5bf",
+      "required_stable_evidence_id": "d00539e216d21a0416df79cff4df4f5b296d7d66224f865268938bede7b9e288"
+    },
+    "colour_source_contract": {
+      "path": "configs/u6_p4r_uniform_grain_source_v1.json",
+      "sha256": "27e4efe06804d6795b3ff03a37beff57a23b3a0f6ee455fbe7628d123bc6b80a"
+    },
+    "colour_acquisition_manifest": {
+      "path": "outputs/experiments/u6_p4r_uniform_grain_source_v1/acquisition_manifest.json",
+      "sha256": "54ce5dbedd681f40e870870e144a6eca851322457db250c50c858d9279d64929"
+    },
+    "signature_contract": {
+      "path": "configs/u6_p4r_uniform_grain_nps_feasibility_v1.json",
+      "sha256": "8fbbbbdc389ee46d609ec6f395b4ae5a78d60715d2e88d89ee22942353e4632d"
+    },
+    "bw_preflight_contract": {
+      "path": "configs/u6_p4z1_bw_uniform_grain_preflight_v1.json",
+      "sha256": "0bd238096109742cf429fd736f17ca2c7295cdf77fc41bba7063fa1ba00bc207"
+    },
+    "bw_preflight_decision": {
+      "path": "configs/u6_p4z1_bw_uniform_grain_preflight_decision_v1.json",
+      "sha256": "237ef648a169bb46b97ee401592f355fe988dc436c67d0aa54fd081ae4fe0d7e",
+      "required_decision": "open_fit_forbidden_bw_model_confirmation"
+    }
+  },
+  "development": {
+    "sources": "all eight P4R colour scans",
+    "unit": "one scan after median aggregation across four fixed crops and three RGB channels",
+    "target": "median of eight scan-level normalized log-radial NPS signatures",
+    "bw_pixels_or_statistics_allowed_during_fit": false
+  },
+  "confirmation": {
+    "sources": "all three P4Z1 B&W scans",
+    "unit": "one scan after median aggregation across nine fixed crops",
+    "refit_or_scale_allowed": false,
+    "stock_labels_used_for_scoring": false
+  },
+  "models": {
+    "gaussian_control": "exp(-4*pi_squared*particle_sigma_pixels_squared*frequency_cycles_per_pixel_squared)",
+    "thomas_candidate": "gaussian_control*(1+mean_offspring*exp(-4*pi_squared*cluster_sigma_pixels_squared*frequency_cycles_per_pixel_squared))",
+    "particle_sigma_pixels_bounds": [0.05, 8.0],
+    "cluster_sigma_pixels_bounds": [0.05, 24.0],
+    "mean_offspring_bounds": [0.01, 100.0],
+    "fit_space": "normalized centered log radial band power",
+    "acf": "unit-zero-lag inverse discrete Fourier transform of the fitted radial spectrum on a 512x512 frequency grid"
+  },
+  "optimizer": {
+    "algorithm": "deterministic scipy differential_evolution in log10 parameter space then polish",
+    "seed": 2608022801,
+    "max_iterations": 160,
+    "population_size": 15,
+    "tolerance": 1e-10,
+    "absolute_tolerance": 1e-13
+  },
+  "automatic_gates": {
+    "minimum_development_nps_median_improvement_over_gaussian": 0.1,
+    "minimum_confirmation_nps_median_improvement_over_gaussian": 0.1,
+    "maximum_confirmation_nps_worst_error_ratio": 1.0,
+    "minimum_confirmation_scans_beating_gaussian_nps": 2,
+    "minimum_confirmation_acf_median_improvement_over_gaussian": 0.1,
+    "maximum_confirmation_acf_worst_error_ratio": 1.0,
+    "minimum_confirmation_scans_beating_gaussian_acf": 2,
+    "minimum_candidate_nps_improvement_over_reversed_frequency_control": 0.25,
+    "require_interior_parameters": true,
+    "interior_parameter_margin_fraction": 0.005,
+    "require_two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain one generic same-scanner clustered-spectrum mechanism candidate and open a separately frozen canonical field/runtime approximation; no stock or microscopic parameter claim.",
+    "fail": "Close transfer of the exact P4BR one-level Thomas mechanism to these real uniform scans; do not tune on either historical spectra or the same scanner cohorts."
+  },
+  "forbidden": [
+    "fit or inspect B&W confirmation pixels before both models are frozen",
+    "treat crops or RGB channels as independent samples",
+    "fit stock-specific profiles or infer microscopic particle sizes",
+    "change bands, lags, crop locations, parameter bounds, controls or gates after scoring",
+    "claim scanner-independent emulsion structure, calibration or product readiness"
+  ],
+  "outputs": {
+    "report_a": "outputs/experiments/u6_p4bs_real_uniform_thomas_confirmation_v1/run_a/report.json",
+    "report_b": "outputs/experiments/u6_p4bs_real_uniform_thomas_confirmation_v1/run_b/report.json"
+  },
+  "claim_ceiling": "Retrospective mechanism comparison on exact same-scanner CC0 uniform scans with a disjoint colour-fit/B&W-confirmation split; effective scanner-convolved correlation scales only, not stock, process, density, microscopic or product calibration."
+}
