@@ -13,7 +13,7 @@
   "parent_observed_profile": {
     "path": "configs/u5_r2bu3_vision3_observed_source_profile_decision_v1.json",
     "sha256": "d4c318a857f788b3ea5fdef292ba44f24f2d4386a03cb02928c77a24424c95a9",
-    "required_decision": "retain_identity_bound_nonrenderable_source_profile"
+    "required_decision": "retain_non_renderable_observed_source_profile"
   },
   "comparison": {
     "velvia_revisions": ["fujichrome_velvia_rvp_af3_960e", "fujichrome_velvia_50_rvp50_af3_0221e2"],
