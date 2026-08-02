@@ -10063,3 +10063,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   positive.
 - Retain only an explicit hybrid research profile. Next test nonstationary
   exposure fields and physical transmittance; no calibrated stock/product claim.
+
+# 2026-08-02 - U6.P4BX passes nonstationary density/transmittance execution
+
+- Four structured exposure fields and independent RGB-layer realizations were
+  evaluated without clipping or realized normalization. Forty-two local 48um
+  groups have median/p95/worst amplitude errors `.868%/4.944%/6.464%`.
+- Maximum density bias is `3.31e-5`, transmittance mean error `.0621%`, and
+  cross-layer residual correlation `.0130`; density/transmittance remain
+  physical and all row partitions are exact.
+- Continue to a full synthetic image-formation/severe-boundary integration.
+  Evidence remains a hybrid same-scanner-grid mechanism, not stock calibration.

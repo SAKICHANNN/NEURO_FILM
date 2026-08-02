@@ -1,0 +1,22 @@
+{
+  "schema": "neuro_film.u6_p4bx_nonstationary_thomas_density_decision.v1",
+  "node": "U6.P4BX",
+  "contract_sha256": "04dcb8072d6e39778e06e4421120820cf500545b10428c4c082c69709380f3a4",
+  "implementation_sha256": "2aa2e71ba521547da1e83ca994e7b6adb14708e22b448911f8eb20c04f1c93d5",
+  "evaluator_sha256": "baece5937e6b7548e6f3a8d0dc4a3ea0b78bb29f1997ecfe0d70e71592a071aa",
+  "report_sha256": "480b79c5af17964a7d688d9fd83e635082fe4824232aaa6680f6cc3f05bd3a2e",
+  "stable_evidence_id": "7d29ba948e4c1086f9302e40c10167cd8580ef84a1a08ff4a5b5294b532ba6d1",
+  "automatic_pass": true,
+  "decision": "retain_nonstationary_thomas_density_transmittance_execution",
+  "local_group_count": 42,
+  "local_aperture_sigma_median_absolute_relative_error": 0.008681387923169914,
+  "local_aperture_sigma_p95_absolute_relative_error": 0.0494363459772409,
+  "local_aperture_sigma_worst_absolute_relative_error": 0.06464188356542233,
+  "maximum_global_density_bias_absolute": 0.000033018049197162215,
+  "maximum_transmittance_mean_relative_error": 0.0006207447287490675,
+  "maximum_cross_layer_residual_correlation": 0.012982806246233236,
+  "minimum_developed_density": 0.2032943995274124,
+  "maximum_transmittance": 0.6261892396274733,
+  "interpretation": "The P4BW hybrid executes on structured nonstationary layer exposures with local aperture amplitude, positive developed density, physical transmittance, independent layer realizations and exact row partitions. Evidence remains synthetic and same-scanner-grid bound.",
+  "next_ready_leaf": "U6.P4BY full synthetic characteristic-density-transmittance image-formation integration and severe boundary controls"
+}
