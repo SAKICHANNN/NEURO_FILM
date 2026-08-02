@@ -1,0 +1,61 @@
+{
+  "schema": "neuro_film.u6_p4bo_nonsquare_nps_window_confirmation_contract.v1",
+  "experiment_id": "u6.p4bo-nonsquare-nps-window-confirmation-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4BO",
+  "date_frozen": "2026-08-02",
+  "question": "Does the simpler rectangular finite-window NPS estimator retain its P4BN advantage over Hann on fresh seeds and two non-square physical windows, or was the apparent advantage specific to the original square periodic-field crops?",
+  "parents": {
+    "p4bn_contract_path": "configs/u6_p4bn_finite_window_nps_recovery_v1.json",
+    "p4bn_contract_sha256": "291020ea987416904e125b34264e2ab7e6e1d833859e102ec0033a1f8f1e5950",
+    "p4bn_decision_path": "configs/u6_p4bn_finite_window_nps_recovery_decision_v1.json",
+    "p4bn_decision_sha256": "a4f92cbbbba08aa5f82c61426d5388bbe6fbd244d78d87753d39f2046be2ac39",
+    "p4bn_report_path": "outputs/experiments/u6_p4bn_finite_window_nps_recovery_v1/run_a/report.json",
+    "p4bn_report_sha256": "96e3c1ee4a809508ce64167163d59ffe0add236794c4f28951d1aeb9856f3872",
+    "p4bn_stable_evidence_id": "33f09ddbbfa7789db74a08b0c55465972733a7d79ebcf9491e33a6841f24ff25",
+    "p4bl_bundle_path": "outputs/experiments/u6_p4bl_historical_measured_nps_compiler_v1/run_a/bundle.json",
+    "p4bl_bundle_sha256": "2299a1acd914aaa865910fc2a7601f286db3df69ffa642d3bc31de8dbd0f310d",
+    "p4bl_bundle_id": "6a4050c4c03e8db33ee282608be50734f5e2aee1cf257bfcccdd85442f9c8567"
+  },
+  "confirmation": {
+    "parent_field_shape": [512, 512],
+    "sample_pitch_millimetres": 0.001,
+    "field_kind": "aperture_observed",
+    "fresh_seeds": [2608022401, 2608022402, 2608022403],
+    "window_shapes": [[160, 224], [224, 160]],
+    "crop_layout": "four_corner_crops_per_shape",
+    "candidate_window": "rectangular",
+    "incumbent_window": "hann",
+    "mean_removal": "window_weighted_mean_before_window_application",
+    "periodogram_normalization": "sample_pitch_squared_times_abs_fft_squared_divided_by_sum_window_squared",
+    "radial_bin_edges_lines_per_mm": [10.0, 20.0, 30.0, 40.0, 50.0, 60.0, 70.0, 80.0, 90.0, 100.0, 110.0, 120.0, 130.0, 140.0, 150.0, 160.0, 170.0, 180.0, 190.0, 200.0, 210.0, 220.0, 230.0, 240.0, 250.0, 260.0, 270.0, 280.0, 290.0, 300.0, 310.0, 320.0, 330.0, 340.0, 350.0],
+    "aggregation": "arithmetic_mean_periodogram_across_three_fresh_seeds_and_four_crops_before_radial_binning",
+    "comparison": "paired_profile_log10_rmse_against_same_grid_exact_aperture_observed_target",
+    "post_score_shape_seed_window_or_bin_tuning_allowed": false,
+    "render_allowed": false
+  },
+  "evaluation": {
+    "required_profile_count": 5,
+    "required_shape_count": 2,
+    "required_observations_per_profile_and_shape": 12,
+    "minimum_shapes_where_rectangular_median_beats_hann": 2,
+    "minimum_each_shape_relative_median_improvement": 0.2,
+    "maximum_rectangular_median_log10_rmse": 0.05,
+    "maximum_rectangular_worst_log10_rmse": 0.08,
+    "minimum_rectangular_profile_top1_rate": 1.0,
+    "require_every_profile_rectangular_not_worse_than_hann": true,
+    "require_finite_positive_radial_estimates": true,
+    "require_repeat_exact": true,
+    "require_two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "pass": "Promote rectangular over Hann only for the synthetic/reference finite-window NPS measurement bridge and open an independent measured-image feasibility leaf; keep the periodic P4BM generator unchanged.",
+    "fail": "Keep the frozen P4BN Hann bridge and close rectangular selection without tuning seeds, shapes, bins or gates."
+  },
+  "forbidden": [
+    "reuse P4BN seeds or square crop shapes",
+    "change the rectangular or Hann estimators after scoring",
+    "treat synthetic profile recognition as stock identification",
+    "claim real-film or product validation"
+  ],
+  "claim_ceiling": "Fresh-seed non-square confirmation of a finite-window estimator for synthetic historical Fuji B&W NPS fields; not independent measured-image validation, microscopic structure, stock identity or product evidence."
+}
