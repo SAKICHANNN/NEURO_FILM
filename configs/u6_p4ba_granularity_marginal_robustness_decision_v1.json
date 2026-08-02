@@ -1,0 +1,41 @@
+{
+  "schema": "neuro_film.u6_p4ba_granularity_marginal_robustness_decision.v1",
+  "node": "U6.P4BA",
+  "decision": "retain_marginal_robust_transmittance_interval",
+  "contract_commit": "8405b241386d44733fc1cf685bfd8c33dd586731",
+  "implementation_commit": "1f596b2806d7975a7671595d1656c6c278d4b82f",
+  "contract_sha256": "9061eee5a714052ae9af1c6e2120063c8c7b7623ab13bc1e41b1d4d5352ce05c",
+  "profile_module_sha256": "daa9c84fd6c3da1dcaa6c2e232fb6b106b41c19434fb343cb20b2bda452c982f",
+  "evaluator_sha256": "4bbd102d2d79b8ceabca5ec273f133c9712046ff059072844de78994875a2c9f",
+  "bundle_path": "outputs/experiments/u6_p4ba_granularity_marginal_robustness_v1/run_a/bundle.json",
+  "bundle_sha256": "fc7a01f47d9a4d2925c2063305b6f1e8dbe5aea15f14f7b1b852e17e07bc1146",
+  "profile_id": "39cce38a355d052d16949cd3537b7f1a0d1351b7c05820ebe8f80f33d947087d",
+  "reports": [
+    "outputs/experiments/u6_p4ba_granularity_marginal_robustness_v1/run_a/report.json",
+    "outputs/experiments/u6_p4ba_granularity_marginal_robustness_v1/run_b/report.json"
+  ],
+  "report_sha256": "557e9294f72ab9cffb5833e1fe7f9bdf72c3312b4b6fd6e24610461bb092d4ad",
+  "stable_evidence_id": "20582d76fb1a14a4345c9f1f4e28b6cc0d9494f18d5f5b0b6e066c827c31acec",
+  "two_bundles_and_reports_byte_exact": true,
+  "automatic_pass": true,
+  "metrics": {
+    "probe_count": 15,
+    "maximum_gamma_mean_quadrature_relative_error": 1.5543122344752192e-15,
+    "maximum_gamma_rms_quadrature_relative_error": 6.594835788575892e-12,
+    "maximum_uniform_mean_quadrature_relative_error": 8.881784197001252e-16,
+    "maximum_uniform_rms_quadrature_relative_error": 1.7408297026122455e-12,
+    "maximum_cross_marginal_mean_relative_span": 5.2708051707917207e-08,
+    "maximum_cross_marginal_rms_relative_span": 0.000330115955269376
+  },
+  "interpretation": [
+    "Gaussian, positive-Gamma and bounded-uniform density marginals with the same P4AX mean/RMS produce nearly identical transmittance moments on all 15 frozen probes.",
+    "The maximum mean span is 5.28e-8 relative and the maximum RMS span is 0.0331%, so the retained amplitude consequence is robust to these three materially different marginal shapes.",
+    "This does not identify the true density marginal or any spatial spectrum. The compiled interval is an uncertainty bound, not an emulsion-geometry or photographic-render profile."
+  ],
+  "next_ready_leaf": "Advance to a separate spatial-identification or physical-composition leaf; the amplitude interval may be consumed without treating any one marginal as measured truth.",
+  "density_marginal_identified": false,
+  "spatial_structure_identified": false,
+  "photographic_render_allowed": false,
+  "product_integration_allowed": false,
+  "claim_ceiling": "Three-family marginal-robust transmittance amplitude interval at the retained 48-micrometre aperture; no identified marginal, spatial NPS, emulsion geometry, calibration or product claim."
+}

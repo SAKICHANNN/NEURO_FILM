@@ -2,6 +2,16 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-02 - U6.P4BA bounds density-marginal uncertainty
+
+- Compared equal-mean/RMS Gaussian, positive-Gamma and bounded-uniform density
+  marginals; two bundles/reports are exact (`fc7a01f4...c1146` /
+  `557e9294...2d4ad`).
+- Independent high-precision/Legendre quadratures pass. Maximum cross-family
+  transmittance mean/RMS spans are only `5.28e-8` and `0.0331%`.
+- Retain the interval as amplitude robustness evidence. Neither density marginal
+  nor spatial spectrum is identified, so photographic rendering remains closed.
+
 # 2026-08-02 - U6.P4AZ retains physical-domain grain amplitude conversion
 
 - Compiled P4AX density RMS through exact `T=10^-D` log-normal moments; two

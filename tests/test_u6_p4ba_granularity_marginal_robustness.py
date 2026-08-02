@@ -55,5 +55,8 @@ def test_exact_interval_compiler_repeats() -> None:
     assert first_report == second_report
     assert first_report["automatic_pass"]
     assert first_report["decision"] == ("retain_marginal_robust_transmittance_interval")
+    assert first_report["stable_evidence_id"] == (
+        "20582d76fb1a14a4345c9f1f4e28b6cc0d9494f18d5f5b0b6e066c827c31acec"
+    )
     assert first_report["probe_count"] == 15
     assert first_bundle["spatial_structure_status"] == "unidentified"
