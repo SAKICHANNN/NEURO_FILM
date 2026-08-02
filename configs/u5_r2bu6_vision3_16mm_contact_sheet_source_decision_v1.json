@@ -3,18 +3,19 @@
   "experiment_id": "U5.R2BU6",
   "contract_sha256": "76c213da796d86f17e8fbfe2bf6118a0b812b8434627a9988f7fcfa52efd5cfc",
   "observations_sha256": "0e957e99a06b1b2c6ad9f9cc41f0dda86559cb53058ef872dbc63fd90101b626",
-  "software_commit": "5db5aea1",
+  "software_commit": "55c484fc",
   "formal_evidence": {
     "report_a": "outputs/u5_r2bu6_vision3_16mm_contact_sheet_source/formal_a/report.json",
     "report_b": "outputs/u5_r2bu6_vision3_16mm_contact_sheet_source/formal_b/report.json",
-    "report_sha256": "40bac7fe27747e681fb54f9fdcf2c6a475b5fe7c0d08cbdc39987b8613af29fd",
-    "stable_evidence_id": "027ad1503202013b93109c4bd95a7d16f5d624f246c1e2ed51bd9db307ea5c6d",
+    "report_sha256": "6ca7bb04273b0d099ed057c483b03127a1f16a7804cf199f0dbbfffd042defa0",
+    "stable_evidence_id": "5c0d7e6d641ace27cdd04b48153510ae37ba39fb3f18c541ee5dde0e9940ed52",
     "two_byte_identical_audits": true
   },
   "result": {
     "pdf_pages": 4,
     "embedded_images": 52,
     "decoded_image_size": [798, 606],
+    "decoded_sample_layout": "RGB16BE",
     "stock_ids": ["7207", "7219"],
     "manual_label_anchors": 14,
     "explicit_cross_stock_paired_roles": 3,
