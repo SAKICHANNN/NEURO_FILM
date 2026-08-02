@@ -1,0 +1,97 @@
+{
+  "schema": "neuro_film.u6_p3t_multiexposure_mechanism_recovery_contract.v1",
+  "experiment_id": "u6.p3t-multiexposure-mechanism-recovery-v1",
+  "node": "ULT > U6 > U6.P3 > U6.P3T",
+  "status": "contract_frozen_implementation_ready",
+  "parents": {
+    "p3s_contract": {
+      "path": "configs/u6_p3s_promist_halation_identifiability_v1.json",
+      "sha256": "6a1593b5bdbd0233cd1b2cd6118c59f7842b99512ee33c0ee7e4361f82ac84c9"
+    },
+    "p3s_decision": {
+      "path": "configs/u6_p3s_promist_halation_identifiability_decision_v1.json",
+      "sha256": "622ddb1a3b8d0d61c8c44de6a492d4aad98bc7b0be21a33fe89b243eda95ea85",
+      "required_decision": "reject_scene_linear_lens_diffusion_as_a_film_backing_return_substitute"
+    },
+    "p3s_evaluator": {
+      "path": "src/eval/promist_halation_identifiability.py",
+      "sha256": "21a37733701ebd7411b817983a6843a0c986329a90434735bf009c398204a8ba"
+    }
+  },
+  "question": "Can a bounded explicit inverse procedure recover and distinguish additive pre-development film backing return from the latest six-scale scene-linear lens-diffusion equation family on disjoint patterns and exposure scales, while abstaining on mixed mechanisms?",
+  "roles": {
+    "development": "exact P3S development patterns at 0.35x, 1x and 2.5x exposure",
+    "confirmation": "exact disjoint P3S confirmation patterns at 0.5x, 1.5x and 4x exposure",
+    "fit_reads_confirmation": false
+  },
+  "observation": {
+    "response_toe": 0.18,
+    "response_density_scale": 1.7,
+    "deterministic_gaussian_noise_sigma": 1e-06,
+    "noise_seed": 20260801
+  },
+  "truth_cases": [
+    {"case_id": "physical-f04", "family": "physical-backing-return", "sigma_pixels": 8.0, "fraction": 0.04},
+    {"case_id": "physical-f08", "family": "physical-backing-return", "sigma_pixels": 8.0, "fraction": 0.08},
+    {"case_id": "physical-f12", "family": "physical-backing-return", "sigma_pixels": 8.0, "fraction": 0.12},
+    {"case_id": "lens-w08", "family": "lens-diffusion", "total_weight": 0.08},
+    {"case_id": "lens-w14", "family": "lens-diffusion", "total_weight": 0.14},
+    {"case_id": "lens-w20", "family": "lens-diffusion", "total_weight": 0.20},
+    {"case_id": "mixed-f05-w06", "family": "mixed-abstain", "sigma_pixels": 8.0, "fraction": 0.05, "total_weight": 0.06},
+    {"case_id": "mixed-f10-w10", "family": "mixed-abstain", "sigma_pixels": 8.0, "fraction": 0.10, "total_weight": 0.10}
+  ],
+  "candidate_families": {
+    "physical-backing-return": {
+      "sigma_grid_pixels": [4.0, 8.0, 16.0],
+      "fraction_bounds": [0.0, 0.2],
+      "equation": "response(source + fraction * gaussian(source, sigma))"
+    },
+    "lens-diffusion": {
+      "sigma_pixels": [1.0, 2.0, 4.0, 8.0, 16.0, 32.0],
+      "normalized_weight_shape": [0.05, 0.1, 0.2, 0.35, 0.2, 0.1],
+      "total_weight_bounds": [0.0, 0.3],
+      "equation": "response(source + total_weight * sum(shape_i * (gaussian_i(source) - source)))"
+    }
+  },
+  "selection": {
+    "fit_metric": "development full-scalar RMSE",
+    "decision_metric": "confirmation full-scalar RMSE",
+    "pure_case_rule": "select the lower confirmation-RMSE family",
+    "mixed_case_rule": "abstain when both family RMSE values exceed the fixed abstention floor"
+  },
+  "automatic_gates": {
+    "pure_case_correct_family_count_min": 6,
+    "pure_case_count": 6,
+    "pure_case_maximum_confirmation_rmse": 5e-06,
+    "pure_case_minimum_wrong_to_correct_rmse_ratio": 10.0,
+    "pure_case_maximum_relative_parameter_error": 0.02,
+    "physical_sigma_exact_count_min": 3,
+    "mixed_case_abstention_count_min": 2,
+    "mixed_case_count": 2,
+    "mixed_case_minimum_best_confirmation_rmse": 0.0002,
+    "development_confirmation_pattern_overlap_count_max": 0,
+    "report_repeat_sha256_exact": true
+  },
+  "controls": [
+    "identity model",
+    "wrong equation family",
+    "disjoint confirmation patterns and exposures",
+    "mixed physical-plus-lens observations requiring abstention",
+    "parent source and decision identity"
+  ],
+  "allowed_after_pass": [
+    "retain the bounded inverse procedure as a research compiler for future controlled multi-exposure highlight data",
+    "freeze a separately versioned uncertainty/noise robustness leaf before any real-data fit"
+  ],
+  "forbidden": [
+    "change truth cases, noise, grids, weight shape, thresholds or roles after scoring",
+    "fit application or confirmation targets",
+    "call the recovered parameters measured film, Pro-Mist calibration or a named-stock profile",
+    "render photographs, change product defaults or authorize a product profile"
+  ],
+  "branch_rule": {
+    "pass": "Retain the synthetic mechanism-recovery procedure and next challenge uncertainty/noise before controlled real data.",
+    "fail": "Close this inverse procedure without grid, optimizer, threshold or same-cohort rescue; retain P3S discrimination only."
+  },
+  "claim_ceiling": "Synthetic multi-exposure mechanism-identification evidence for two explicit equation families; no real-film measurement, lens-filter calibration, stock response, visual-quality or product claim."
+}
