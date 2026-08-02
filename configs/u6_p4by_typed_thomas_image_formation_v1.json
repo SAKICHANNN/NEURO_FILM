@@ -1,0 +1,101 @@
+{
+  "schema": "neuro_film.u6_p4by_typed_thomas_image_formation_contract.v1",
+  "experiment_id": "u6.p4by-typed-thomas-image-formation-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4BY",
+  "date_frozen": "2026-08-02",
+  "question": "Can the retained density-conditioned Thomas field execute through the complete typed layer-exposure to developed-density to transmittance to scan-linear chain without severe salt-like excursions, new boundaries, mean drift, domain relabelling, scanner double counting or row-partition drift?",
+  "parents": {
+    "p4bx_decision": {
+      "path": "configs/u6_p4bx_nonstationary_thomas_density_decision_v1.json",
+      "sha256": "68de758e59d9b5170364068870248e29fa529ab32e41fe59dcf47fbc806eb20b",
+      "required_decision": "retain_nonstationary_thomas_density_transmittance_execution"
+    },
+    "p4bw_bundle": {
+      "path": "outputs/experiments/u6_p4bw_density_conditioned_thomas_profile_v1/run_a/bundle.json",
+      "sha256": "4edf4eaaeae163a2f579584c7d9533134a7d6177d5cc78ed517cb15865e585bf",
+      "required_profile_id": "199c59fe7d046943bcd763de8cab0ab52e7156aba6d94fcd9f1ec64da4d5d6ff"
+    },
+    "p2q_bundle": {
+      "path": "outputs/u6_p2q_kodak_250d_characteristic_prior/bundle_run1.json",
+      "sha256": "087e67544f737401fa697b21f06215a31827189e0648b8d60da666b92113caaa",
+      "required_prior_id": "04d94af2e1fcad99fbb8c9abb57179f2b63f329c263b3bf2335c4117a670aacb"
+    }
+  },
+  "candidate": {
+    "field_shape": [512, 768],
+    "fixtures": [
+      "smooth_gradient",
+      "high_contrast_edges",
+      "chromatic_patches",
+      "text_like_bars",
+      "highlight_islands",
+      "flat_field"
+    ],
+    "normalized_exposure_fraction_minimum": 0.15,
+    "normalized_exposure_fraction_maximum": 0.85,
+    "layer_realization_seeds": [
+      2608024301,
+      11400714821016565496,
+      15111065704576690158
+    ],
+    "canonical_receipt_row_block_height": 31,
+    "row_partition_height": 127,
+    "pixel_pitch_micrometres": 6.35,
+    "typed_domain_order": [
+      "film-layer-linear-exposure",
+      "developed-optical-density",
+      "film-transmittance",
+      "scanner-linear-signal"
+    ],
+    "scanner_profile_id": "p4bs-effective-spectrum-identity-observer-v1",
+    "scanner_stages": ["spectral"],
+    "scanner_convolution_embedded_in_spatial_profile": true,
+    "additional_scanner_mtf_flare_or_noise_allowed": false,
+    "realized_variance_normalization_allowed": false,
+    "density_or_signal_clipping_allowed": false,
+    "display_encoding_allowed": false,
+    "diagnostic_delta_display_gain": 12.0
+  },
+  "evaluation": {
+    "required_fixture_count": 6,
+    "required_channel_count": 3,
+    "minimum_absolute_scan_delta_p99": 0.003,
+    "maximum_absolute_scan_delta_p99": 0.03,
+    "maximum_absolute_scan_delta": 0.08,
+    "boundary_epsilon": 0.00001525902189669642,
+    "maximum_new_boundary_fraction": 0.0,
+    "isolated_excursion_threshold": 0.01,
+    "isolated_neighbour_ratio": 0.5,
+    "maximum_isolated_excursion_count": 0,
+    "minimum_axis_lag1_residual_correlation": 0.75,
+    "maximum_absolute_mean_scan_delta": 0.001,
+    "maximum_density_transmittance_roundtrip_error": 1e-12,
+    "require_exact_identity_scanner": true,
+    "require_exact_repeat": true,
+    "require_exact_row_partition_parity": true,
+    "require_input_immutability": true,
+    "require_wrong_domain_rejection": true,
+    "require_finite_bounded_output": true,
+    "require_two_byte_identical_reports": true,
+    "require_visual_severe_artifact_acceptance": true
+  },
+  "branch_rule": {
+    "pass": "Retain the typed synthetic image-formation chain and run a separately frozen rights-cleared photographic severe-artifact stress using an explicit generic relative-exposure adapter; do not promote a stock or product profile.",
+    "fail": "Close the exact integrated chain without changing seeds, fixtures, spatial profile, domain order, scanner stages or gates; diagnose the failing physical stage before any photographic rendering."
+  },
+  "forbidden": [
+    "apply scanner MTF, flare or noise after a P4BS spatial spectrum that already contains same-scanner convolution",
+    "treat display RGB as layer exposure without an explicit adapter",
+    "renormalize a realized stochastic field, tile or fixture",
+    "clip density, transmittance or scan-linear values instead of failing",
+    "reuse one stochastic realization across colour layers",
+    "describe the hybrid profile as calibrated Kodak spatial grain or scanner-independent film truth",
+    "alter renderer defaults or product promotion state"
+  ],
+  "outputs": {
+    "report_a": "outputs/experiments/u6_p4by_typed_thomas_image_formation_v1/run_a/report.json",
+    "report_b": "outputs/experiments/u6_p4by_typed_thomas_image_formation_v1/run_b/report.json",
+    "diagnostic_contact_sheet": "outputs/experiments/u6_p4by_typed_thomas_image_formation_v1/run_a/diagnostic_contact_sheet.png"
+  },
+  "claim_ceiling": "Synthetic typed physical-image-formation evidence for a Kodak-250D-compatible density amplitude combined with a generic same-scanner effective Thomas spectrum; not calibrated stock grain, microscopic structure, scanner-independent film truth, photographic quality, input exposure calibration or product evidence."
+}
