@@ -10201,3 +10201,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   author/source-URL/explicit-rights/roll-process-scanner counts are zero.
 - Quarantine the exact corpus from source-signature validation and move to a
   genuinely controlled observation or a distinct generic physical mechanism.
+
+# 2026-08-02 - U5.R2BU6-BU7 public 16mm source and pixel gate
+
+- Downloaded only the exact 121,524,686-byte contact-sheet PDF and six frozen
+  TIFF rows. Fixed a real 16-bit ICCBased PDF decode/order defect before the
+  accepted BU6 replay; corrected reports are byte-identical at
+  `6ca7bb04...efa0`.
+- Three cross-stock exposure roles and file ordering pass strongly, but all six
+  TIFFs are RGBA8 with opaque alpha and no ICC. The frozen RGB16 gate fails, so
+  no colour statistic, fit, render or stock-response claim opens.

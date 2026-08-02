@@ -1,0 +1,29 @@
+{
+  "schema": "neuro_film.u5_r2bu7_vision3_16mm_tiff_integrity_decision.v1",
+  "experiment_id": "U5.R2BU7",
+  "contract_sha256": "90eb9cdd9df39f0c0b563bae5c4e96e5ecc7d66eb8d16ae457605e708b15307d",
+  "software_commit": "1d898214",
+  "formal_evidence": {
+    "report_a": "outputs/u5_r2bu7_vision3_16mm_tiff_integrity/formal_a/report.json",
+    "report_b": "outputs/u5_r2bu7_vision3_16mm_tiff_integrity/formal_b/report.json",
+    "report_sha256": "04bd4b333199bbd11743e1d145b59ab2f2d7a342df6c5b8996f89d4013380054",
+    "stable_evidence_id": "5d6cd9b41f0380c2882abddc90a3fb9c92bca7ba517c6ad4003297845d81ca63",
+    "two_byte_identical_audits": true
+  },
+  "result": {
+    "downloaded_files": 6,
+    "downloaded_bytes": 76583832,
+    "minimum_matched_gradient_ncc": 0.9881320535239551,
+    "minimum_margin_over_best_wrong_contact": 0.172637799931457,
+    "all_contact_order_and_role_gates_pass": true,
+    "actual_tiff_mode": "RGBA",
+    "actual_bits_per_sample": [8, 8, 8, 8],
+    "alpha_values": [255],
+    "embedded_icc_profiles": 0,
+    "frozen_rgb16_gate_pass": false,
+    "all_gates_pass": false
+  },
+  "decision": "close_exact_public_tiff_integrity_route",
+  "next_ready_leaf": "U5.R2BU8 seek a materially new rights-auditable controlled real-film observation; do not rescue this cohort by relaxing the RGB16/ICC gate or downloading more rows.",
+  "claim_ceiling": "Exact file-order and role evidence for six author-rendered 16mm TIFFs; their RGBA8/no-ICC packaging blocks colour-statistic use. No neutral pairing, scanner/process calibration, stock response, operator or product evidence."
+}

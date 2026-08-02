@@ -898,3 +898,12 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
   explicit-rights or roll/process/scanner lineage rows.
 - Quarantine this pool from BU4 validation. Unique paths and hashes do not turn
   weak Flickr captions into controlled stock evidence.
+
+# 2026-08-02 - U5.R2BU6-BU7 controlled 16mm source closes before colour use
+
+- The exact public contact sheet contains 52 correctly decoded RGB16 images,
+  explicit 7207/7219 labels and three matched exposure roles. Six bounded TIFFs
+  reproduce their declared rows with minimum gradient NCC `.98813`.
+- The downloadable TIFFs are unprofiled RGBA8, not the frozen RGB16 input.
+  Retain source/role evidence, close this cohort without more downloads, and
+  seek a materially new identifying observation.
