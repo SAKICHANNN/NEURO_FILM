@@ -1,0 +1,60 @@
+{
+  "schema": "neuro_film.u6_p4ax_kodak_250d_granularity_amplitude_profile_contract.v1",
+  "experiment_id": "u6.p4ax-kodak-250d-granularity-amplitude-profile-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4AX",
+  "date_frozen": "2026-08-02",
+  "question": "Can the supported channel-agnostic characteristic-slope result from P4AW be compiled into a deterministic, typed, amplitude-only 48-micrometre granularity profile without importing the rejected P5J channel coupling or inventing an NPS?",
+  "parents": {
+    "p4aw_commit": "ee83b9cfb740acb7906aaf57b717257e2b16604a",
+    "p4aw_contract_path": "configs/u6_p4aw_kodak_250d_same_sheet_granularity_compatibility_v1.json",
+    "p4aw_contract_sha256": "a5e71b3f1b533489243e3993af55bb317172f5775b0858d0a013c88a235a9927",
+    "p4aw_decision_path": "configs/u6_p4aw_kodak_250d_same_sheet_granularity_compatibility_decision_v1.json",
+    "p4aw_decision_sha256": "9e0b920f6837b4b35c5e06f8b221abc03fe20792770eb549e9e711f836a134a6",
+    "p4aw_report_path": "outputs/experiments/u6_p4aw_kodak_250d_same_sheet_granularity_v1/report_a.json",
+    "p4aw_report_sha256": "9d3180fd2e509606c93df8d482143fa487c7ebf1433f9abfa424ed5b4efd416c",
+    "p4aw_stable_evidence_id": "e430fcae53d533fbbc410808698966ac47e1d313b2e91c19454be97942f694c9",
+    "p2q_bundle_path": "outputs/u6_p2q_kodak_250d_characteristic_prior/bundle_run1.json",
+    "p2q_bundle_sha256": "087e67544f737401fa697b21f06215a31827189e0648b8d60da666b92113caaa",
+    "p2q_prior_identity": "04d94af2e1fcad99fbb8c9abb57179f2b63f329c263b3bf2335c4117a670aacb"
+  },
+  "compiler": {
+    "source_parameter_set": "characteristic_slope_without_p5j",
+    "profile_schema": "neuro_film.granularity_amplitude_profile.v1",
+    "input_domain": "relative_layer_log_exposure",
+    "output_domain": "diffuse_rms_status_m_density_at_stated_aperture",
+    "channel_order": ["red", "green", "blue"],
+    "aperture_diameter_micrometres": 48.0,
+    "variance_family": "channel_floor_variance + shared_amplitude * square(piecewise_linear_density_slope_per_log10_exposure) / pow(10, log10_exposure)",
+    "spatial_psf_or_nps_fields_allowed": false,
+    "parameter_refit_allowed": false
+  },
+  "evaluation": {
+    "require_exact_parent_parameters": true,
+    "require_exact_prior_identity": true,
+    "require_two_byte_identical_bundles_and_reports": true,
+    "require_all_p4aw_confirmation_predictions_exact": true,
+    "maximum_absolute_sigma_replay_error": 1e-15,
+    "minimum_sigma_d": 0.001,
+    "maximum_sigma_d": 0.05,
+    "domain_mismatch_must_reject": true,
+    "prior_identity_mismatch_must_reject": true,
+    "serialized_forbidden_tokens": [
+      "psf",
+      "mtf",
+      "nps",
+      "scanner",
+      "spatial_kernel"
+    ]
+  },
+  "branch_rule": {
+    "pass": "Retain the amplitude-only profile as a research compiler input. A later separately frozen spatial normalizer may consume a generic or independently measured NPS shape while preserving this 48-micrometre amplitude; no photographic use opens here.",
+    "fail": "Close the compiler without changing P4AW parameters, derivative semantics, domains or serialization."
+  },
+  "forbidden": [
+    "refit parameters on all points or on photographs",
+    "serialize the rejected P5J channel energy mapping",
+    "claim a measured NPS, grain radius, scanner response, particular roll/process or calibrated stock response",
+    "render photographs or alter product defaults"
+  ],
+  "claim_ceiling": "Deterministic amplitude-only compilation of one manufacturer-graph-compatible Kodak 250D diffuse-rms shape at a stated 48-micrometre aperture; not NPS, causal emulsion structure, roll/process/scanner calibration, stock response or product evidence."
+}
