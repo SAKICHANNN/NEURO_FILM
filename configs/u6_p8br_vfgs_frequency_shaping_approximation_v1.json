@@ -1,0 +1,114 @@
+{
+  "schema": "neuro_film.u6_p8br_vfgs_frequency_shaping_approximation_contract.v1",
+  "experiment_id": "u6.p8br-vfgs-frequency-shaping-approximation-v1",
+  "node": "ULT > U6 > U6.P8 > U6.P8BR",
+  "date_frozen": "2026-08-01",
+  "question": "Can the current public VFGS frequency-filtering cutoff family preserve most of the retained P4BS scanner-convolved Thomas NPS and ACF improvement as a compact standards-compatible runtime profile shape?",
+  "parents": {
+    "p4bs_decision": {
+      "path": "configs/u6_p4bs_real_uniform_thomas_confirmation_decision_v1.json",
+      "sha256": "a0b01b0fc08b407c26169f16d5efbc87aa9a20146e42d33ea113f8200ee57ff3",
+      "required_decision": "retain_generic_scanner_convolved_thomas_mechanism_candidate"
+    },
+    "p4bs_report": {
+      "path": "outputs/experiments/u6_p4bs_real_uniform_thomas_confirmation_v1/run_a/report.json",
+      "sha256": "657730398f3107379084103dd88cd47ac768b8fc65f7fd5cde9d1c490317279a",
+      "required_stable_evidence_id": "ba8a05ddcb073e2fc05aa92af9a78e4425aa2a8b99e1412caf479d383f2d14bc"
+    },
+    "p4cf_decision": {
+      "path": "configs/u6_p4cf_real_uniform_higher_order_structure_decision_v1.json",
+      "sha256": "83091498ac64fa66237f0beb411b988b99010c4f4a183192e04081f48093d94a",
+      "required_decision": "close_bounded_occupancy_higher_order_mechanism_without_rescue"
+    },
+    "colour_source_contract": {
+      "path": "configs/u6_p4r_uniform_grain_source_v1.json",
+      "sha256": "27e4efe06804d6795b3ff03a37beff57a23b3a0f6ee455fbe7628d123bc6b80a"
+    },
+    "colour_acquisition_manifest": {
+      "path": "outputs/experiments/u6_p4r_uniform_grain_source_v1/acquisition_manifest.json",
+      "sha256": "54ce5dbedd681f40e870870e144a6eca851322457db250c50c858d9279d64929"
+    },
+    "signature_contract": {
+      "path": "configs/u6_p4r_uniform_grain_nps_feasibility_v1.json",
+      "sha256": "8fbbbbdc389ee46d609ec6f395b4ae5a78d60715d2e88d89ee22942353e4632d"
+    },
+    "bw_preflight_contract": {
+      "path": "configs/u6_p4z1_bw_uniform_grain_preflight_v1.json",
+      "sha256": "0bd238096109742cf429fd736f17ca2c7295cdf77fc41bba7063fa1ba00bc207"
+    },
+    "bw_preflight_decision": {
+      "path": "configs/u6_p4z1_bw_uniform_grain_preflight_decision_v1.json",
+      "sha256": "237ef648a169bb46b97ee401592f355fe988dc436c67d0aa54fd081ae4fe0d7e"
+    }
+  },
+  "primary_sources": {
+    "fga_nn": {
+      "title": "Film Grain Analysis and Synthesis via Neural Network",
+      "year": 2025,
+      "url": "https://arxiv.org/pdf/2506.14350",
+      "pdf_bytes": 2511334,
+      "pdf_sha256": "cf55d2ab2cadd7d80cd50dde4c1fc2db286b7e6b203fe1de7cc0f46749c9e30a",
+      "use": "Primary evidence that a learned analyzer may predict explicit conventional FGC-SEI amplitude and frequency-cutoff parameters; no paper model or weights are used here."
+    },
+    "vfgs": {
+      "repository": "https://github.com/InterDigitalInc/VersatileFilmGrain",
+      "commit": "fbf4bd95058e934fb7246edd5e7fb8d6c9ed0ec0",
+      "commit_date": "2026-06-04",
+      "core_path": "src/vfgs_fw.c",
+      "core_bytes": 48912,
+      "core_sha256": "8051fbefc6fef8395e678a4a105457fc799a16044e51a6123f53fd0a28e0946a",
+      "license": "BSD-3-Clause-Clear",
+      "license_path": "LICENSE",
+      "license_bytes": 1637,
+      "license_sha256": "30855b0a7e752725de261b0073579a10c965e3cc8df54152370672c2ba28658c"
+    }
+  },
+  "roles": {
+    "development": "all eight exact P4R colour uniform scans; select one integer cutoff independently for the fixed soft and rectangular windows",
+    "confirmation": "all three exact P4Z1 B&W uniform scans; read only after both cutoff choices and the unchanged P4BS Gaussian/Thomas controls are frozen",
+    "refit_rescale_or_cutoff_change_on_confirmation": false
+  },
+  "model": {
+    "family": "VFGS FGC-SEI frequency-filtering mode, isotropic horizontal/vertical cutoff and shape-only comparison",
+    "cutoff_candidates_inclusive": [2, 14],
+    "soft_window_k": 1.118,
+    "rectangular_control_k": 0.0,
+    "window_bins": 64,
+    "window_quantization_scale": 128,
+    "window_formula": "exact vfgs_init_window cutoff table; separable expected power is squared horizontal window times squared vertical window",
+    "frequency_mapping": "absolute DFT cycles/pixel divided by Nyquist, then nearest 64-bin VFGS center",
+    "fit_space": "normalized centered log radial band power",
+    "acf": "unit-zero-lag inverse DFT of the 512x512 separable expected power",
+    "amplitude_intervals_used": false,
+    "learned_predictor_used": false
+  },
+  "automatic_gates": {
+    "minimum_development_nps_median_improvement_over_gaussian": 0.1,
+    "minimum_confirmation_scans_beating_gaussian_nps": 2,
+    "minimum_confirmation_scans_beating_gaussian_acf": 2,
+    "minimum_confirmation_nps_retained_thomas_improvement_fraction": 0.75,
+    "minimum_confirmation_acf_retained_thomas_improvement_fraction": 0.75,
+    "maximum_confirmation_nps_worst_error_ratio_to_gaussian": 1.0,
+    "maximum_confirmation_acf_worst_error_ratio_to_gaussian": 1.0,
+    "minimum_soft_nps_improvement_over_rectangular": 0.05,
+    "minimum_soft_acf_improvement_over_rectangular": 0.0,
+    "require_soft_cutoff_interior": true,
+    "require_two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain the exact fixed-K VFGS cutoff family as a compact standards-compatible approximation to the generic P4BS second-order shape and open direct public-source C parity plus bounded profile compilation; do not change physical ordering or claim microscopic grain.",
+    "fail": "Retain VFGS/FGA-NN only as an implementation baseline, keep the P4BS effective Thomas spectrum, and do not tune K, cutoff range, bands, controls or gates on these cohorts."
+  },
+  "forbidden": [
+    "treat this runtime approximation as a new point-process or microscopic film mechanism",
+    "fit K, frequency mapping, bands, controls or gates after reading confirmation",
+    "train or execute FGA-NN, or use a learned model to generate final RGB",
+    "claim density-domain placement, stock/process/scanner calibration or product promotion",
+    "replace the typed physical grain order with post-code additive video grain"
+  ],
+  "outputs": {
+    "report_a": "outputs/experiments/u6_p8br_vfgs_frequency_shaping_approximation_v1/run_a/report.json",
+    "report_b": "outputs/experiments/u6_p8br_vfgs_frequency_shaping_approximation_v1/run_b/report.json"
+  },
+  "claim_ceiling": "Compact standards-compatible spectral approximation test against retained same-scanner second-order evidence; not a microscopic, stock, process, density, scanner-independent, photographic-render or product result."
+}
