@@ -1,0 +1,114 @@
+{
+  "schema": "neuro_film.u6_p3s_promist_halation_identifiability_contract.v1",
+  "node": "U6.P3S",
+  "status": "contract_frozen_before_implementation_or_score",
+  "question": "Can the strongest bounded channel-neutral six-scale scene-linear diffusion family suggested by ProMist-5K explain an additive exposure-domain backing-return observation across unseen exposures and structures, or does nonlinear response make the two mechanisms identifiable?",
+  "primary_source": {
+    "title": "ProMist-5K: A Comprehensive Dataset for Digital Emulation of Cinematic Pro-Mist Filter Effects",
+    "arxiv_id": "2601.19295v1",
+    "publication_date": "2026-01-27",
+    "official_pdf_url": "https://arxiv.org/pdf/2601.19295",
+    "local_pdf_path": "data/physical_reference/promist5k_2026_v1/promist5k_2026.pdf",
+    "pdf_bytes": 1863685,
+    "pdf_sha256": "a0e2dda00f7e94d7e8281a30ffa741523f8bc09cec33ce82b52069938efb4bc9",
+    "required_text_anchors": [
+      "scene-referred linear color space",
+      "six Gaussian blur layers with progressively larger kernels",
+      "blurred layers are combined with the original",
+      "tone-mapped to a display-referred format"
+    ],
+    "reproduction_boundary": "The paper does not publish exact kernel radii or blend weights. P3S tests a clean-room equation family constrained by the published topology, not the authors' unreleased renderer or dataset targets."
+  },
+  "synthetic_truth": {
+    "domain_order": [
+      "relative layer exposure",
+      "additive energy-bounded support return",
+      "monotone saturating characteristic response"
+    ],
+    "backing_sigma_pixels": 8.0,
+    "backing_fraction": 0.08,
+    "response_toe": 0.18,
+    "response_density_scale": 1.7,
+    "channel_neutral": true,
+    "maximum_source_value": 0.23
+  },
+  "candidate_family": {
+    "name": "six-scale energy-conserving scene-linear diffusion",
+    "gaussian_sigma_pixels": [
+      1.0,
+      2.0,
+      4.0,
+      8.0,
+      16.0,
+      32.0
+    ],
+    "equation": "response((1-sum(w))*exposure + sum_i(w_i*gaussian_i(exposure)))",
+    "weight_bounds": [
+      0.0,
+      0.35
+    ],
+    "maximum_total_blur_weight": 0.35,
+    "channel_neutral": true,
+    "fit_objective": "development-pixel float64 RMSE",
+    "post_fit_parameter_changes_allowed": false
+  },
+  "controls": {
+    "identity": "response(exposure)",
+    "single_scale": "the same fitted family restricted to sigma=8 pixels",
+    "correct_topology": "the exact frozen additive backing-return truth equation"
+  },
+  "roles": {
+    "development_patterns": [
+      "vertical_edge",
+      "highlight_disc",
+      "sparse_highlights",
+      "coarse_checker"
+    ],
+    "confirmation_patterns": [
+      "impulse_cluster",
+      "slanted_edge",
+      "line_pairs",
+      "gradient_islands"
+    ],
+    "development_exposure_scales": [
+      0.35,
+      1.0,
+      2.5
+    ],
+    "confirmation_exposure_scales": [
+      0.5,
+      1.5,
+      4.0
+    ],
+    "image_shape": [
+      128,
+      128,
+      3
+    ]
+  },
+  "gates": {
+    "maximum_source_hash_mismatches": 0,
+    "maximum_correct_topology_confirmation_rmse": 1e-12,
+    "minimum_mist_improvement_over_identity": 0.25,
+    "minimum_mist_improvement_over_single_scale": 0.1,
+    "maximum_mist_confirmation_rmse": 0.002,
+    "maximum_mist_worst_pattern_exposure_rmse": 0.004,
+    "maximum_mist_development_to_confirmation_rmse_ratio": 2.0,
+    "minimum_weight_distance_from_bound": 1e-06,
+    "repeat_report_sha256_exact": true
+  },
+  "branch_rule": {
+    "all_gates_pass": "Treat channel-neutral post-lens diffusion as observationally equivalent under this synthetic protocol; real halation acquisition must add wavelength, layer, backing or geometry evidence before mechanism claims.",
+    "any_gate_fail": "Retain a multi-exposure mechanism discriminator and require exposure bracketing in future real halation evidence; do not tune scales, response, split, weights or gates on this cohort."
+  },
+  "forbidden_actions": [
+    "claim that ProMist-5K measures photographic-film halation",
+    "claim exact reproduction of unpublished ProMist-5K kernel radii or weights",
+    "use generated or learned final RGB",
+    "change scales, response, roles, objective or gates after the formal score",
+    "promote a stock, physical calibration or product renderer from synthetic evidence"
+  ],
+  "training_allowed": false,
+  "production_integration_allowed": false,
+  "claim_ceiling": "synthetic identifiability evidence separating a latest published scene-linear lens-diffusion equation family from additive pre-development film backing return; no real-film, stock, calibration, visual-quality or product claim"
+}
