@@ -1,0 +1,62 @@
+{
+  "schema": "neuro_film.u6_p4bh_multi_aperture_reference_sampler_contract.v1",
+  "experiment_id": "u6.p4bh-multi-aperture-reference-sampler-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4BH",
+  "date_frozen": "2026-08-02",
+  "question": "Does the deterministic cell sampler preserve the P4BG aperture-scaled compound-Poisson moments, coordinate partitions and exact 48-micrometre parent bytes throughout the evidence-backed aperture range?",
+  "parents": {
+    "p4bc_decision_path": "configs/u6_p4bc_aperture_cell_reference_sampler_decision_v1.json",
+    "p4bc_decision_sha256": "87b55d2b5c61578d5f137ac1df53ae0f9f95ffbabcf535292f9ecc8dddf1b471",
+    "p4bc_report_path": "outputs/experiments/u6_p4bc_aperture_cell_reference_sampler_v1/run_a/report.json",
+    "p4bc_report_sha256": "4ba9672147ec5b6e2216febfd40c0f032400af7b4e4b6f79f5337a1a3c293e7f",
+    "p4bc_stable_evidence_id": "bcdc8af89cefd1650dc7fd00e4a62a044a1ccf1eea956f31faa3ef5f45c01fbd",
+    "p4bg_commit": "0f2b4455251363e60752e13ceab269e4420cbc7f",
+    "p4bg_decision_path": "configs/u6_p4bg_aperture_scaled_compound_poisson_decision_v1.json",
+    "p4bg_decision_sha256": "a98bce5ab106dd8bc4c8fd0f2ebca193c3a1e6e440757541017bda6c6c9440fa",
+    "p4bg_bundle_path": "outputs/experiments/u6_p4bg_aperture_scaled_compound_poisson_v1/run_a/bundle.json",
+    "p4bg_bundle_sha256": "f504380764bc1958c132abb00fd1e8dd5680c8823e42b3e80578d08b254ea266",
+    "p4bg_report_path": "outputs/experiments/u6_p4bg_aperture_scaled_compound_poisson_v1/run_a/report.json",
+    "p4bg_report_sha256": "9428c88ce1e2b3ac0a67f5c0834d428c05c6d7726684e3dfe47ad951400ba94b",
+    "p4bg_stable_evidence_id": "38fbae4e66dbd742e080dcd4cbe86deb3ad17be32de94e044f79bbdc7a42dd53"
+  },
+  "sampler": {
+    "coordinate_uniform": "splitmix64-open-unit-interval",
+    "poisson_inverse": "ceil(scipy.special.pdtrik(uniform, rate))",
+    "count_dtype": "uint32",
+    "field_shape_cells": [192, 193],
+    "seed_base": 2608021100,
+    "seed_stride": 104729,
+    "apertures_micrometres": [7.25, 12.0, 24.0, 48.0, 96.0, 192.0, 384.0],
+    "maximum_supported_rate": 16000000.0,
+    "independent_cells": true,
+    "independence_status": "generic_hypothesis_not_measured_nps",
+    "realized_field_renormalization_allowed": false,
+    "photographic_render_allowed": false
+  },
+  "evaluation": {
+    "required_probe_count": 15,
+    "required_scaled_row_count": 105,
+    "maximum_density_mean_relative_error": 0.005,
+    "maximum_density_rms_relative_error": 0.025,
+    "maximum_transmittance_mean_relative_error": 0.005,
+    "maximum_transmittance_rms_relative_error": 0.025,
+    "maximum_absolute_lag_one_correlation": 0.04,
+    "maximum_per_probe_normalized_rms_span": 0.06,
+    "require_reference_aperture_exact_p4bc_counts": true,
+    "require_repeat_exact": true,
+    "require_odd_partition_exact": true,
+    "require_two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain deterministic multi-aperture cell sampling as a generic offline reference/LOD primitive, still without measured spatial NPS or photographic rendering.",
+    "fail": "Retain analytic P4BG and the exact P4BC 48-micrometre sampler only; do not tune seeds, sizes, inverses or gates."
+  },
+  "forbidden": [
+    "renormalize a realized field to force moments",
+    "interpret cell independence as measured film NPS",
+    "interpret event count as microscopic grain or dye-cloud count",
+    "add spatial filtering, scanner response or particle geometry",
+    "render photographs or alter product defaults"
+  ],
+  "claim_ceiling": "Deterministic generic independent-cell sampling across the evidence-backed aperture-amplitude range with bounded realized moments and exact partitions; not measured NPS, microscopic structure, modern-stock calibration, photographic rendering or product evidence."
+}
