@@ -1,0 +1,64 @@
+{
+  "schema": "neuro_film.u6_p6ai_applause_effective_sfr_temporal_decision.v1",
+  "node": "U6.P6AI",
+  "decision": "close_before_confirmation_insufficient_shared_edges",
+  "automatic_pass": false,
+  "software_commit": "c9b4cda87317c0526dd6f1f8d847934a978840d3",
+  "evidence": {
+    "contract": {
+      "path": "configs/u6_p6ai_applause_effective_sfr_temporal_v1.json",
+      "sha256": "901d3fea133639d125673ceb5a2e085c7b1ea900c1164f7502b89da21bdbfca0"
+    },
+    "development_lock": {
+      "path": "outputs/experiments/u6_p6ai_applause_effective_sfr_temporal_v1/development_lock_run1.json",
+      "sha256": "f1b2b6d25ab9b6debf92bb9d40f8ce07570e4a6ce70bc0dc26240ef719040648",
+      "stable_id": "b59a505885bb7967a9d1dc60d57d7ac081d9fc96f953046c0a4e67acf16a9ac2"
+    },
+    "report": {
+      "path": "outputs/experiments/u6_p6ai_applause_effective_sfr_temporal_v1/report_run1.json",
+      "sha256": "6507569748000857290e6ec623d265f3c8fa3c37e8308a3d33eb0d7d4c4a4a11",
+      "stable_id": "5a556c1ce0b0bcfd91930103cc49c339517ebd119da7ea5c8ae5df91d9bb0de0"
+    },
+    "repeat_development_lock_byte_identical": true,
+    "repeat_report_byte_identical": true
+  },
+  "support": {
+    "development_files": 8,
+    "confirmation_files_opened": 0,
+    "candidate_edges_per_file": 13,
+    "minimum_required_shared_edges": 8,
+    "observed_shared_edges": 0,
+    "eligible_edges_by_scan": {
+      "29725": 8,
+      "30160": 9,
+      "33444": 4,
+      "34407": 0,
+      "37687": 4,
+      "38598": 3,
+      "56574": 3,
+      "58873": 5
+    },
+    "failed_edge_measurements_by_reason": {
+      "edge line support is insufficient": 52
+    }
+  },
+  "controls": {
+    "synthetic_gaussian_sigmas_px": [0.65, 1.25, 2.0],
+    "synthetic_curve_and_mtf50_gates_pass": true,
+    "row_order_invariance_pass": true,
+    "development_lock_tamper_gate_pass": true,
+    "focused_tests": "7 passed"
+  },
+  "interpretation": [
+    "The frozen projected-edge method is valid on all three analytic Gaussian controls, but the recorded TG13 scans do not expose eight common measurable transitions under the prospectively frozen geometry and contrast gates.",
+    "One development scan has zero measurable candidate edges and 52 of 104 development edge attempts fail the frozen robust line-support requirement, making the shared-edge intersection empty.",
+    "The development gate closes before any confirmation image is opened. No shared effective SFR, time-regime SFR nuisance, absolute scanner MTF, film MTF or compiler is identified.",
+    "Changing nominal geometry, search extent, support, contrast or sampling on these scans would be same-cohort rescue and is forbidden."
+  ],
+  "branch_action": {
+    "close": "exact APPLAUSE TG13 projected effective-SFR temporal route",
+    "do_not_reopen": "P6AI with altered geometry, support, contrast, sampling or thresholds",
+    "next": "advance a materially distinct physical image-formation or joint colour-plus-physics leaf"
+  },
+  "claim_ceiling": "development-only negative effective-edge observability evidence for one recorded Epson 10000XL and TG13 workflow; not absolute scanner MTF, film MTF, scanner calibration, stock/process response or product evidence"
+}

@@ -19,6 +19,11 @@ from src.eval.applause_effective_sfr_temporal import (
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG_PATH = ROOT / "configs/u6_p6ai_applause_effective_sfr_temporal_v1.json"
 CONFIG = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+DECISION = json.loads(
+    (
+        ROOT / "configs/u6_p6ai_applause_effective_sfr_temporal_decision_v1.json"
+    ).read_text(encoding="utf-8")
+)
 
 
 def _synthetic_edge(sigma: float, *, reverse_rows: bool = False) -> np.ndarray:
@@ -124,3 +129,15 @@ def test_development_lock_rejects_tamper_before_confirmation() -> None:
     lock["selected_edge_indices"][0] = 12
     with pytest.raises(ApplauseEffectiveSFRError, match="lock hash"):
         validate_development_lock(lock, CONFIG, contract_sha256=contract_sha)
+
+
+def test_decision_binds_failed_development_gate_without_mtf_claim() -> None:
+    assert DECISION["automatic_pass"] is False
+    assert DECISION["decision"] == "close_before_confirmation_insufficient_shared_edges"
+    assert (
+        DECISION["evidence"]["contract"]["sha256"]
+        == hashlib.sha256(CONFIG_PATH.read_bytes()).hexdigest()
+    )
+    assert DECISION["support"]["observed_shared_edges"] == 0
+    assert DECISION["support"]["confirmation_files_opened"] == 0
+    assert "not absolute scanner MTF" in DECISION["claim_ceiling"]

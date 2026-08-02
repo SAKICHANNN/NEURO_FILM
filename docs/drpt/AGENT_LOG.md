@@ -9768,3 +9768,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - TG13 transitions are not ideal optical edges. Even a pass remains bound to
   one scanner model, wedge type and institutional workflow and cannot claim an
   absolute scanner PSF/MTF, calibration, stock response or product profile.
+
+## 2026-08-02 - U6.P6AI closes before confirmation
+
+- Implemented the frozen robust-line, quarter-pixel projected, monotone
+  effective edge-SFR evaluator with analytic Gaussian/MTF50, row-order and
+  development-lock controls; focused tests pass 7/7.
+- Eight development scans expose zero jointly eligible edges versus eight
+  required. There are 52/104 line-support failures and scan 34407 has 0/13
+  measurable candidates, so the prescore gate closes with zero confirmation
+  image reads.
+- Two development locks and reports are byte-identical (report SHA
+  `65075697...4a11`, stable ID `5a556c1c...0de0`). No same-cohort geometry or
+  threshold rescue, effective-SFR compiler, scanner/film MTF or product claim
+  opens; continue a materially distinct physical or joint colour/physics leaf.

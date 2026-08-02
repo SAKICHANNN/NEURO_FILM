@@ -839,8 +839,9 @@ byte-identical (`ea8bd2c6...ceccde`). Do not use higher precision or reordered
 sums as a same-fixture rescue. Seek rights-cleared measured scanner PSF/MTF
 evidence or advance another ready U6 physical mechanism.
 
-U6.P6AI is now the ready measured scanner leaf. It reuses the exact CC0 P6K
-Epson 10000XL/TG13 sequence and freezes an ISO-style projected edge-SFR audit
-before confirmation reads. The decision is three-way: one shared same-workflow
-effective response, two time-regime nuisance responses, or fail-closed. TG13 is
-not an ideal edge, so no branch can claim absolute scanner PSF/MTF calibration.
+U6.P6AI closes before confirmation. Synthetic Gaussian and row-order controls
+pass, but the eight development scans have zero common eligible transitions
+against eight required; 52/104 edge attempts fail frozen robust line support
+and scan 34407 has 0/13 measurable edges. Two development locks and reports
+are byte-exact (`65075697...4a11`), with zero confirmation reads. Do not alter
+geometry or thresholds on this cohort and do not infer scanner or film MTF.

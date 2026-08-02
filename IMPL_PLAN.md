@@ -1,5 +1,11 @@
 # Active stock-first pointer — 2026-07-16
 
+> 2026-08-02: U6.P6AI closes before confirmation. The frozen effective-edge
+> method passes synthetic Gaussian/MTF50 and row-order controls, but the eight
+> APPLAUSE development scans have zero common eligible edges versus eight
+> required. Two locks/reports are exact (`65075697...4a11`) and confirmation
+> reads remain zero. Do not rescue the cohort or claim scanner/film MTF.
+>
 > 2026-08-02: U6.P6AH closes the piecewise analytic aperture reference. Five
 > analytic controls, range, replay and partitions pass, but independent x/y
 > reconstruction differs by `3.96e-10 > 1e-10`. Two reports are exact
@@ -2785,9 +2791,7 @@ python_coreml_stable_diffusion  # CoreML 转换
 > gates pass. This is synthetic mechanism evidence only. A measured successor
 > requires same-material/process MTF and NPS; no photo or product path opens.
 >
-> `U6.P6AI` is the next scanner leaf after P6AH closes synthetic aperture
-> reference refinement. It uses the exact P6K CC0 Epson 10000XL/TG13 time
-> sequence to test whether effective edge-SFR is shared across the already
-> identified acquisition regimes or must remain regime-specific nuisance.
-> Development-only edge selection and both decision branches are frozen before
-> confirmation reads; the TG13 edge is not treated as absolute scanner MTF.
+> `U6.P6AI` closes before confirmation: zero edges are jointly eligible across
+> all eight development scans against eight required, and 52/104 attempts fail
+> robust line support. The synthetic evaluator controls pass and two reports
+> are exact, but no shared or regime-specific effective SFR is identified.
