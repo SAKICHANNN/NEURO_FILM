@@ -10252,3 +10252,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   wrong/correct RMSE ratio is 7,832x.
 - Claim remains synthetic research-compiler evidence. No real film, named stock,
   lens-filter calibration, renderer default or product status changes.
+
+# 2026-08-01 - U6.P3U raw uncertainty envelope closes
+
+- Challenged the exact P3T inverse under frozen 16/12/10-bit quantization,
+  source/target noise and row-wise exposure-gain uncertainty. Two reports are
+  byte-identical (`9601c010...278d`).
+- All regimes retain 6/6 family labels, 3/3 physical radii, 2/2 mixed
+  abstentions and zero clipping, but absolute residual gates fail throughout;
+  10-bit wrong/correct separation is 3.67x against the fixed 5x gate.
+- No threshold or same-estimator rescue. Next leaf changes the estimator to an
+  explicit errors-in-variables formulation while retaining inputs and gates.

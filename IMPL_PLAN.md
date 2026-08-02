@@ -1548,6 +1548,12 @@ RMSE ratio is 7,832x, and both mixed mechanisms abstain. Reports are exact at
 `ef729a38...e35a`. Keep this as a synthetic research compiler and next test
 prospectively frozen observation noise, quantization and exposure-role shifts.
 
+P3U performs that frozen challenge. The raw inverse keeps every family label,
+physical radius and mixed abstention, yet fails absolute confirmation error at
+16/12/10 bit and falls below the wrong-family margin at 10 bit. The exact report
+is `9601c010...278d`. Close same-estimator rescue; a distinct
+errors-in-variables estimator is the next ready research leaf.
+
 `SF2.9R` audits five ColorReference multi-family IT8/ISO 12641 transmission
 references instead of scanner RGB or uncontrolled photographs. Exact
 byte/CRC/parse gates and 288 shared target patches pass twice; each archive

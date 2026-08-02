@@ -356,6 +356,11 @@ physical sigma choices and both mixed-mechanism abstentions in two exact runs
 (`ef729a38...e35a`). This is synthetic compiler evidence only; noise,
 quantization and exposure-role robustness are the next ready challenge.
 
+U6.P3U closes the raw uncertainty envelope. Labels/radii/abstentions survive
+16/12/10-bit observations, but absolute residual gates fail in all three and
+10-bit wrong-family separation falls to 3.67x (`9601c010...278d`). Do not tune
+the frozen envelope; next test an explicit errors-in-variables estimator.
+
 Current real-grain leaf: U6.P4R closes stock association while retaining one
 generic scanner-convolved signature candidate. Eight exact CC0 16-bit RGBA
 TIFFs pass acquisition and visual gates; RGB NPS is highly repeatable, but

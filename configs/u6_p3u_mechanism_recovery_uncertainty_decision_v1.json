@@ -1,0 +1,51 @@
+{
+  "schema": "neuro_film.u6_p3u_mechanism_recovery_uncertainty_decision.v1",
+  "experiment_id": "U6.P3U",
+  "status": "complete_uncertainty_envelope_closed",
+  "decision": "close-failed-p3t-uncertainty-envelope",
+  "automatic_pass": false,
+  "contract_sha256": "6fb5ab4ca91d88f1f1fee716ec867d50a5dfca9ddb6f98cbf3f73b87fb0125e6",
+  "evaluator_sha256": "12e53e6d96ad020ad10c8fb2ca2c9f8484f13c07a3c21a167d28521a2618aeaf",
+  "runner_sha256": "f604138253de9a0104f5c0c1cce456acfdd4c6e9642c5271b40ccadd0b4b3475",
+  "report_sha256": "9601c01096d2a2de06dfbabbc0f590bd8ac9ce678eef4037949a5bf0548c278d",
+  "repeat_report_sha256": "9601c01096d2a2de06dfbabbc0f590bd8ac9ce678eef4037949a5bf0548c278d",
+  "scientific_stable_id": "2371b8058f53c746b1b03558af2df85c6d0e1b07595b9fc35cfab388ec3ac017",
+  "regime_metrics": [
+    {
+      "regime_id": "linear16-low-noise",
+      "maximum_pure_confirmation_rmse": 5.0356846334459766e-05,
+      "minimum_wrong_to_correct_rmse_ratio": 155.62091882591363,
+      "maximum_relative_parameter_error": 0.0009298483069882305,
+      "failed_gates": ["pure_confirmation_error"]
+    },
+    {
+      "regime_id": "linear12-moderate",
+      "maximum_pure_confirmation_rmse": 0.0009326970730169225,
+      "minimum_wrong_to_correct_rmse_ratio": 8.451990709796428,
+      "maximum_relative_parameter_error": 0.007273540147096497,
+      "failed_gates": ["pure_confirmation_error"]
+    },
+    {
+      "regime_id": "linear10-stress",
+      "maximum_pure_confirmation_rmse": 0.0024605512968310143,
+      "minimum_wrong_to_correct_rmse_ratio": 3.672117145782627,
+      "maximum_relative_parameter_error": 0.007765086961509608,
+      "failed_gates": ["pure_confirmation_error", "wrong_family_separation"]
+    }
+  ],
+  "retained_facts": {
+    "pure_correct_family_count_per_regime": 6,
+    "physical_sigma_exact_count_per_regime": 3,
+    "mixed_abstention_count_per_regime": 2,
+    "quantization_clipped_scalar_count": 0
+  },
+  "interpretation": "Family selection, physical radius recovery and mixed-mechanism abstention survive every frozen regime, but the raw source-as-exact least-squares inverse does not meet absolute residual gates and loses the required wrong-family margin at 10 bit. The uncertainty envelope is therefore closed despite correct labels.",
+  "closed_rescues": [
+    "relaxing confirmation RMSE or wrong-family ratio thresholds",
+    "dropping the 10-bit regime",
+    "reducing frozen noise or exposure-gain jitter",
+    "same-estimator parameter-grid tuning"
+  ],
+  "next_ready_leaf": "Test a prospectively frozen errors-in-variables estimator that explicitly models source observation uncertainty; retain identical cases, roles, perturbations and gates.",
+  "claim_ceiling": "Synthetic robustness failure boundary for the raw P3T inverse; no real-film measurement, calibrated uncertainty or product claim."
+}
