@@ -87,7 +87,7 @@
     "mtf_decision": {
       "path": "configs/u5_r2bu0_kodak_vision3_mtf_diversity_decision_v1.json",
       "sha256": "eae84870c4c3706228fecbe5696825c7d500020558dab94d8b6177baabe1848e",
-      "required_decision": "retain_source_domain_mtf_signature_and_open_joint_physical_prior_compiler"
+      "required_decision": "retain_source_domain_mtf_signature_and_open_joint_physical_prior"
     },
     "granularity_trace": {
       "path": "configs/data/kodak_vision3_granularity_curve_pixels_v1.json",
@@ -101,7 +101,7 @@
     "observed_profile_decision": {
       "path": "configs/u5_r2bu3_vision3_observed_source_profile_decision_v1.json",
       "sha256": "d4c318a857f788b3ea5fdef292ba44f24f2d4386a03cb02928c77a24424c95a9",
-      "required_decision": "retain_observed_source_profile_without_renderer"
+      "required_decision": "retain_non_renderable_observed_source_profile"
     }
   },
   "comparison": {
