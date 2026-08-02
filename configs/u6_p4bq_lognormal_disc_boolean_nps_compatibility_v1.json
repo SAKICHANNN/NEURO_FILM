@@ -1,0 +1,74 @@
+{
+  "schema": "neuro_film.u6_p4bq_lognormal_disc_boolean_nps_compatibility_contract.v1",
+  "experiment_id": "u6.p4bq-lognormal-disc-boolean-nps-compatibility-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4BQ",
+  "date_frozen": "2026-08-02",
+  "question": "Does a bounded lognormal disc-radius distribution shared across density states of each material explain held measured-NPS bands that the formally closed fixed-radius Boolean family cannot?",
+  "parents": {
+    "p4bl_bundle_path": "outputs/experiments/u6_p4bl_historical_measured_nps_compiler_v1/run_a/bundle.json",
+    "p4bl_bundle_sha256": "2299a1acd914aaa865910fc2a7601f286db3df69ffa642d3bc31de8dbd0f310d",
+    "p4bl_bundle_id": "6a4050c4c03e8db33ee282608be50734f5e2aee1cf257bfcccdd85442f9c8567",
+    "p4bp_contract_path": "configs/u6_p4bp_fixed_disc_boolean_nps_compatibility_v1.json",
+    "p4bp_contract_sha256": "8ab45856b4d55eba4bb8ffefef1f31348aea779b7c2983b9b716dbf4dc5bc14b",
+    "p4bp_decision_path": "configs/u6_p4bp_fixed_disc_boolean_nps_compatibility_decision_v1.json",
+    "p4bp_decision_sha256": "675e34f826c7b9c03e0279020b81d0008e6c927d66bb4a44f8d1aee8ade36e1e",
+    "p4bp_report_path": "outputs/experiments/u6_p4bp_fixed_disc_boolean_nps_compatibility_v1/run_a/report.json",
+    "p4bp_report_sha256": "4f289048b384aef3ad83ff9279d89682c84099101cdcaa10cecf7b2647b77232",
+    "p4bp_stable_evidence_id": "98288cc78212b7629f57b549a59806d122df5918ede8abc063bb9633d44aafd2"
+  },
+  "model": {
+    "primary_source": "Newson et al., Realistic Film Grain Rendering, IPOL 2017",
+    "source_radius_family": "log_normal",
+    "clean_room_equation_use_only": true,
+    "source_code_reuse_allowed": false,
+    "candidate": "one_bounded_lognormal_radius_distribution_shared_per_material_with_state_specific_coverage_and_analytic_log_amplitude",
+    "median_radius_micrometres_bounds": [0.25, 12.0],
+    "log_radius_sigma_bounds": [0.05, 0.55],
+    "radius_cdf_interval": [0.00001, 0.99999],
+    "radius_distribution_quadrature_nodes": 32,
+    "radial_hankel_quadrature_samples": 4097,
+    "coverage_probability_bounds": [0.02, 0.98]
+  },
+  "fit": {
+    "frequency_grid_lines_per_mm": {"minimum": 5.0, "maximum": 500.0, "step": 5.0},
+    "build_bands_lines_per_mm": [[5.0, 100.0], [255.0, 350.0]],
+    "confirmation_bands_lines_per_mm": [[105.0, 250.0], [355.0, 500.0]],
+    "objective": "mean_squared_log10_error_on_build_bands",
+    "optimizer": "deterministic_scipy_differential_evolution_then_polish",
+    "optimizer_seed": 2608022601,
+    "optimizer_max_iterations": 120,
+    "optimizer_population_size": 12,
+    "controls": [
+      "frozen_p4bp_fixed_disc_boolean_prediction",
+      "one_gaussian_covariance_spectrum_per_state_fit_on_same_build_bands"
+    ],
+    "post_score_distribution_bound_quadrature_frequency_split_model_or_gate_tuning_allowed": false,
+    "render_allowed": false
+  },
+  "evaluation": {
+    "required_material_count": 2,
+    "required_profile_count": 5,
+    "minimum_confirmation_median_relative_improvement_over_gaussian": 0.1,
+    "minimum_confirmation_median_relative_improvement_over_fixed_disc": 0.15,
+    "minimum_each_material_confirmation_median_relative_improvement_over_gaussian": 0.05,
+    "maximum_candidate_to_gaussian_worst_confirmation_error_ratio": 1.0,
+    "require_density_monotone_coverage_within_material": true,
+    "require_interior_distribution_parameters": true,
+    "interior_parameter_margin_fraction": 0.01,
+    "require_finite_positive_predictions": true,
+    "require_exact_parameter_and_report_replay": true,
+    "require_two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain bounded variable-radius Boolean geometry as a historical B&W measured-NPS equation-family candidate and open a separately frozen independent-measurement or particle-field confirmation.",
+    "fail": "Close the independent-disc Boolean NPS family, including fixed and bounded-lognormal radii, without tuning; the next grain mechanism must introduce particle clustering or another genuinely different spatial process."
+  },
+  "forbidden": [
+    "copy or adapt GPL implementation code",
+    "read confirmation errors inside candidate or control fitting",
+    "rescue the closed P4BP parameters or frequency split",
+    "interpret effective radius distribution as calibrated microscopic grain size",
+    "render photographs or open modern-stock, colour-film or product claims"
+  ],
+  "claim_ceiling": "Clean-room held-band compatibility test of a bounded lognormal-radius independent Poisson-disc Boolean equation family against five historical Fuji B&W spectra; not microscopic identification, modern-stock calibration or product evidence."
+}
