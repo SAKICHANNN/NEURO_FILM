@@ -9741,3 +9741,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Adaptive quadrature, raster truth and sample-based integration are forbidden.
   P6AD/P6AF remain diagnostics only; pass retains an offline synthetic
   reference, not a runtime or calibrated scanner model.
+
+## 2026-08-02 - U6.P6AH closes piecewise analytic aperture reference
+
+- Two formal reports are byte-identical at `ea8bd2c6...ceccde`, stable
+  `7efad6c2...70b82fd7`. All five analytic geometries are exact; bounded range,
+  repeat and 3/7/11-row partitions pass.
+- The independently rebuilt y-axis integral differs from the x-axis integral
+  by `3.96e-10`, above the frozen `1e-10` parity gate. Close despite the small
+  scale; do not change precision, summation order or the threshold on this
+  fixture.
+- End synthetic aperture-reference refinement here. The next scanner leaf must
+  obtain independent rights-cleared measured PSF/MTF evidence; otherwise move
+  to another ready U6 physical mechanism rather than block the programme.

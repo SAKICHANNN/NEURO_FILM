@@ -15,6 +15,10 @@ from src.film_physics.analytic_cloud_aperture import (
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u6_p6ah_piecewise_analytic_cloud_aperture_v1.json"
 PARENT = ROOT / "configs/u6_p6ag_continuous_cloud_aperture_integration_decision_v1.json"
+FORMAL_REPORT = (
+    ROOT
+    / "outputs/experiments/u6_p6ah_piecewise_analytic_cloud_aperture_v1/report_run1.json"
+)
 
 
 def _integrate(centers, radii, axis="x", mark=0.2):
@@ -61,3 +65,20 @@ def test_frozen_evaluator_executes_with_internal_replay():
     report = evaluate_analytic_cloud_aperture(load_contract(CONTRACT), ROOT)
     assert report["metrics"]["maximum_repeat_error"] == 0
     assert report["metrics"]["maximum_partition_error"] == 0
+
+
+@pytest.mark.skipif(not FORMAL_REPORT.is_file(), reason="P6AH report unavailable")
+def test_formal_result_is_stably_bound():
+    import hashlib
+    import json
+
+    payload = FORMAL_REPORT.read_bytes()
+    report = json.loads(payload)
+    assert hashlib.sha256(payload).hexdigest() == (
+        "ea8bd2c6e9d0ad1304c876a2519b2fd8f5907411d42afa3f24d1745e03ceccde"
+    )
+    assert report["stable_evidence_id"] == (
+        "7efad6c2b55f38318e2e8a401bbfab40d98f373d7381d2544dc533da70b82fd7"
+    )
+    assert report["automatic_pass"] is False
+    assert report["decision"] == "close_piecewise_analytic_aperture_reference"

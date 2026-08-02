@@ -1,0 +1,27 @@
+{
+  "schema": "neuro_film.u6_p6ah_piecewise_analytic_cloud_aperture_decision.v1",
+  "node": "U6.P6AH",
+  "decision": "close_piecewise_analytic_aperture_reference",
+  "contract_commit": "999e1fc6",
+  "implementation_commit": "4df9fcda",
+  "report_path": "outputs/experiments/u6_p6ah_piecewise_analytic_cloud_aperture_v1/report_run1.json",
+  "report_sha256": "ea8bd2c6e9d0ad1304c876a2519b2fd8f5907411d42afa3f24d1745e03ceccde",
+  "stable_evidence_id": "7efad6c2b55f38318e2e8a401bbfab40d98f373d7381d2544dc533da70b82fd7",
+  "two_reports_byte_exact": true,
+  "automatic_pass": false,
+  "metrics": {
+    "maximum_analytic_control_error": 0.0,
+    "maximum_axis_swap_error": 3.9590930533961455e-10,
+    "maximum_repeat_error": 0.0,
+    "maximum_partition_error": 0.0,
+    "rmse_vs_p6ad_256_point": 0.003838503133954156,
+    "rmse_vs_p6af_64x_raster": 0.016186662128630694
+  },
+  "failed_gates": [
+    "maximum_axis_swap_error"
+  ],
+  "same_fixture_precision_rescue_allowed": false,
+  "next_leaf": "Seek an independent rights-cleared measured scanner PSF/MTF observation, or advance another ready U6 physical mechanism; do not continue synthetic aperture-reference refinement on this fixture.",
+  "production_profile_integration_allowed": false,
+  "claim_ceiling": "Generic synthetic piecewise analytic continuous cloud/aperture evidence; no measured film, scanner, stock, process, quality or product claim."
+}

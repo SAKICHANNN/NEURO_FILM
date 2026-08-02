@@ -1,5 +1,11 @@
 # Active stock-first pointer — 2026-07-16
 
+> 2026-08-02: U6.P6AH closes the piecewise analytic aperture reference. Five
+> analytic controls, range, replay and partitions pass, but independent x/y
+> reconstruction differs by `3.96e-10 > 1e-10`. Two reports are exact
+> (`ea8bd2c6...ceccde`). Do not rescue with precision or summation changes;
+> seek independent measured scanner evidence or advance another U6 mechanism.
+>
 > 2026-08-02: U6.P6AF closes raster supersampling as the continuing reference
 > family. Exact 32x regeneration, P95 `.003033`, `67.10%` convergence and
 > replay pass, but 32x-to-64x RMSE `.0015179 > .0015`. Two reports are exact

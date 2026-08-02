@@ -831,3 +831,10 @@ metric or gate decision was emitted; do not loosen tolerance or suppress the
 warning. U6.P6AH may instead enumerate exact circle-topology intervals and use
 analytic circle-chord antiderivatives, with no adaptive quadrature or raster
 truth.
+
+U6.P6AH also closes unchanged. Five analytic geometries are exact; range,
+repeat and 3/7/11-row partitions pass, but independently rebuilding the entire
+integral after swapping x/y axes differs by `3.96e-10 > 1e-10`. Two reports are
+byte-identical (`ea8bd2c6...ceccde`). Do not use higher precision or reordered
+sums as a same-fixture rescue. Seek rights-cleared measured scanner PSF/MTF
+evidence or advance another ready U6 physical mechanism.
