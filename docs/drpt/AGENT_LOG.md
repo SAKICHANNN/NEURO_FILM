@@ -10100,3 +10100,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   hybrid closes while its typed synthetic evidence remains intact.
 - The next leaf must change the developed-image particle/statistical mechanism,
   not tune this failed family.
+
+# 2026-08-02 - U6.P4CA retains bounded cloud occupancy
+
+- Replaced the unbounded Gaussian source with fixed 16-trial half-occupancy
+  cloud counts under the unchanged two-scale P4BS kernels. No clipping,
+  nonlinear compression or realized variance normalization is used.
+- Two exact reports (`03ec162c...8388`) contain zero candidate versus 12
+  Gaussian values at absolute field >=4. The candidate maximum is `3.7197`;
+  radial signature, covariance and variance errors are `.000976`, `.02424` and
+  `.05392`, with exact DC receipts and row partitions.
+- This opens only a frozen density-domain synthetic severe comparison. The
+  capacity cells are not microscopic or stock-calibrated particles.

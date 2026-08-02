@@ -1,0 +1,23 @@
+{
+  "schema": "neuro_film.u6_p4ca_bounded_cloud_occupancy_decision.v1",
+  "node": "U6.P4CA",
+  "contract_sha256": "1fed093125b9137d2b2cd0305b696fd72e987530e93bf4da74544021323e6dc3",
+  "implementation_sha256": "93e3803f7dc7b97f749014a2c33b9b4c00b35c63be2543d6e1ec24fe58bd3eea",
+  "evaluator_sha256": "e11f0d8eb6b68f1c4f776474c3bc121440113d5cf605b84bff95642d3b1e3f07",
+  "report_sha256": "03ec162c94288b92945aa55eda5a4620073185bfb5ff599b023bc2c7d97e8388",
+  "stable_evidence_id": "c75588aaa265e20a84c81375fd81c3cd76f7f225a25cacfc9c88b32a867c92ac",
+  "automatic_pass": true,
+  "decision": "retain_bounded_cloud_occupancy_unit_field",
+  "candidate_extreme_count": 0,
+  "gaussian_extreme_count": 12,
+  "extreme_count_ratio_vs_gaussian": 0.0,
+  "candidate_maximum_absolute_field": 3.7196996656608543,
+  "candidate_absolute_quantile_9999": 3.5012616237325904,
+  "radial_signature_cosine_error_vs_gaussian": 0.0009764860693537436,
+  "maximum_covariance_absolute_error_vs_gaussian": 0.02423576274348238,
+  "maximum_variance_absolute_error": 0.053915689786211196,
+  "maximum_projected_absolute_mean": 2.3547746417461267e-17,
+  "interpretation": "Replacing unbounded Gaussian innovations with fixed 16-trial half-occupancy cloud counts removes all observed |z|>=4 extremes across four frozen fields while preserving the retained two-scale second-order signature within every frozen tolerance. No clipping, nonlinear tail compression or realized variance normalization is used.",
+  "claim_ceiling": "Synthetic finite-capacity scanner-grid occupancy evidence only; capacity cells are not calibrated microscopic dye clouds or grains, and no density, photographic, stock or product claim opens.",
+  "next_ready_leaf": "U6.P4CB compose the unchanged P4BW density amplitude with P4CA occupancy fields on frozen synthetic structures and compare severe tails directly against P4BY Gaussian fields."
+}
