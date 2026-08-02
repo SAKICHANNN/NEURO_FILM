@@ -1,0 +1,88 @@
+{
+  "schema": "neuro_film.u6_p4ca_bounded_cloud_occupancy_contract.v1",
+  "experiment_id": "u6.p4ca-bounded-cloud-occupancy-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4CA",
+  "date_frozen": "2026-08-02",
+  "question": "Can a finite-capacity overlapping-cloud occupancy process retain the P4BS two-scale second-order signature while materially reducing the extreme and isolated tails of the P4BZ-failed unbounded Gaussian excitation?",
+  "parents": {
+    "p4bs_decision": {
+      "path": "configs/u6_p4bs_real_uniform_thomas_confirmation_decision_v1.json",
+      "sha256": "a0b01b0fc08b407c26169f16d5efbc87aa9a20146e42d33ea113f8200ee57ff3",
+      "required_decision": "retain_generic_scanner_convolved_thomas_mechanism_candidate"
+    },
+    "p4bu_decision": {
+      "path": "configs/u6_p4bu_finite_support_thomas_filter_decision_v1.json",
+      "sha256": "c3e7dd1f568aaeb5cbfc1180aeba309a006d20165551f56c1a0e12086e3d0fc4",
+      "required_decision": "retain_finite_support_thomas_kernel_close_unbalanced_noise_realization"
+    },
+    "p4bz_decision": {
+      "path": "configs/u6_p4bz_thomas_photographic_stress_decision_v1.json",
+      "sha256": "25495ebcf0bfb96fe5aceeaebde3593fd8ad4f0192235196b62acb11f568b01c",
+      "required_decision": "close_thomas_photographic_stress_without_rescue"
+    }
+  },
+  "profile": {
+    "profile_id": "generic-scanner-convolved-bounded-cloud-p4ca-v1",
+    "particle_sigma_pixels": 1.3253699417769098,
+    "cluster_sigma_pixels": 1.1268619873805532,
+    "combined_sigma_pixels": 1.7396618697807282,
+    "mean_offspring": 27.765942352935905,
+    "component_seeds": [2611923443488327891, 11400714819323198485],
+    "occupancy_trials_per_cell": 16,
+    "occupancy_probability": 0.5,
+    "innovation": "standardized finite binomial occupancy",
+    "cloud_kernel": "positive normalized separable discrete Gaussian",
+    "truncate_sigma": 4.0,
+    "maximum_halo_pixels": 7,
+    "realized_variance_normalization_allowed": false,
+    "pointwise_clipping_allowed": false,
+    "stock_id": null
+  },
+  "receipt": {
+    "schema": "neuro_film.bounded_cloud_dc_receipt.v1",
+    "canonical_scan_order": "row-major",
+    "canonical_row_block_height": 31,
+    "reducer": "float64-neumaier-v1",
+    "require_exact_validation_before_render": true,
+    "remove_only_full_field_dc": true
+  },
+  "evaluation": {
+    "field_shape": [257, 263],
+    "interior_border_pixels": 14,
+    "row_partitions": [1, 7, 31, 64, 127],
+    "realization_seeds": [2608025011, 2608025012, 2608025013, 2608025014],
+    "radial_band_edges_cycles_per_pixel": [0.015625, 0.0192766719449429, 0.02378176520146871, 0.02933973030786375, 0.03619663079025841, 0.044656036944385955, 0.0550924655704434, 0.06796796066812788, 0.0838525491562421, 0.10344947723725297, 0.1276263446770152, 0.157453515383746, 0.1942515048083514, 0.2396494421121336, 0.2956571953525875, 0.3647543528303184, 0.45],
+    "covariance_lags_yx": [[0, 1], [1, 0], [1, 1], [0, 2], [2, 0], [0, 4], [4, 0], [0, 8], [8, 0]],
+    "extreme_absolute_field_threshold": 4.0,
+    "maximum_extreme_count_ratio_vs_gaussian": 0.75,
+    "maximum_candidate_absolute_field": 4.5,
+    "maximum_candidate_absolute_quantile_9999": 4.0,
+    "maximum_radial_signature_cosine_error_vs_gaussian": 0.005,
+    "maximum_covariance_absolute_error_vs_gaussian": 0.03,
+    "maximum_variance_absolute_error": 0.08,
+    "maximum_projected_absolute_mean": 1e-15,
+    "require_exact_row_partition_parity": true,
+    "require_exact_repeat_receipt": true,
+    "require_receipt_tamper_rejection": true,
+    "require_seed_distinct_fields": true,
+    "require_finite_output": true,
+    "require_two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain the bounded occupancy unit field and open a separately frozen P4BW density-amplitude synthetic severe comparison before any photographic execution.",
+    "fail": "Close this exact 16-trial half-occupancy mechanism without changing trials, probability, seeds, kernels or gates; retain P4BS analytic spectrum and P4BY synthetic chain only."
+  },
+  "forbidden": [
+    "clip, winsorize, tanh or otherwise compress a realized field",
+    "normalize realized variance globally or per tile",
+    "change occupancy trials or probability after observing metrics",
+    "interpret capacity cells as calibrated microscopic grains or dye clouds",
+    "apply to photographs before a separate synthetic density/severe gate",
+    "claim stock, scanner-independent film truth or product promotion"
+  ],
+  "outputs": {
+    "report_a": "outputs/experiments/u6_p4ca_bounded_cloud_occupancy_v1/run_a/report.json",
+    "report_b": "outputs/experiments/u6_p4ca_bounded_cloud_occupancy_v1/run_b/report.json"
+  },
+  "claim_ceiling": "Synthetic finite-capacity occupancy approximation to the retained generic same-scanner two-scale second-order spectrum; not microscopic geometry, measured density response, calibrated stock grain, photographic quality or product evidence."
+}
