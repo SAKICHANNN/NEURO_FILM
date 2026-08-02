@@ -1,0 +1,28 @@
+{
+  "schema": "neuro_film.u6_p4cc_crystal_light_depletion_decision.v1",
+  "node": "U6.P4CC",
+  "contract_sha256": "350cd6cd273f1519b5e3ecf311bf211251029c7da5357c85f9c3664d1f61f8c9",
+  "implementation_sha256": "b5b8df0b60a6a5a770bdd65fcac1e311dfbba562be1f73178043f2079c8c2141",
+  "evaluator_sha256": "dca81132335055322ea9d7d86565b34f7fc8ea0969c0b6cbbf27f342700356e4",
+  "report_sha256": "9480ded4081ab50b76e652b316bc5321ec1dd1254eff7684b808ce5078ef8bae",
+  "stable_evidence_id": "65572ae605c41b09efc6e72722abde36cfeb48209348ae17e09e8e26b2e9f1d1",
+  "automatic_pass": false,
+  "visual_review_allowed": false,
+  "decision": "close_crystal_light_depletion_without_rescue",
+  "maximum_energy_conservation_absolute_error": 1.1102230246251565e-16,
+  "domain_violation_count": 0,
+  "minimum_constant_total_capture_fraction": 0.632063377253952,
+  "maximum_last_to_first_layer_capture_ratio": 0.15866010807469832,
+  "checker_first_layer_amplitude_ratio_vs_point_control": 0.5044280262743239,
+  "minimum_no_depletion_energy_excess_fraction": 0.5292024646359454,
+  "minimum_forward_reverse_capture_rmse": 0.016846781454086128,
+  "maximum_density_transmittance_roundtrip_error": 5.551115123125783e-17,
+  "failed_gates": [
+    "minimum_constant_total_capture_fraction >= 0.7",
+    "checker_first_layer_amplitude_ratio_vs_point_control <= 0.5"
+  ],
+  "interpretation": "The fixed finite-footprint stack demonstrates exact remaining-light conservation, positive exposure, material layer-order dependence and a decisive no-depletion energy violation control. It nevertheless captures only 63.21 percent of constant exposure and narrowly misses the fixed checker detail-loss gate, so this exact geometry and capture rule do not establish a retained image-formation mechanism.",
+  "forbidden_rescue": "Do not change layer count, activation probability, radii, jitter, capture efficiency, fixtures, controls or gates on this cohort.",
+  "retained_scope": "The implementation is retained only as a closed synthetic mechanism/control; it does not enter developed structure, photographs, profiles or product execution.",
+  "next_ready_leaf": "Advance a materially distinct physical developed-image mechanism or measured predictive experiment; do not continue occupancy-tail or crystal-geometry tuning."
+}

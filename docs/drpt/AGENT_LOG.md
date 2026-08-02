@@ -10133,3 +10133,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Current 2026 production documentation motivates the mechanism, but the public
   derivation is an engineering article rather than peer-reviewed validation;
   the claim therefore remains synthetic and generic.
+
+# 2026-08-02 - U6.P4CC closes without crystal-geometry rescue
+
+- Two exact reports (`9480ded4...8bae`) conserve exposure to `1.11e-16`, stay
+  in domain and show material depletion/order behavior; the no-depletion
+  control exceeds input on at least `52.92%` of samples.
+- The fixed stack captures only `63.21% < 70%` of constant exposure and its
+  checker first-layer amplitude ratio is `.50443 > .50`. Close the exact
+  geometry/capture rule and move to a materially distinct mechanism.
