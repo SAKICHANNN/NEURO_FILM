@@ -1,0 +1,54 @@
+{
+  "schema": "neuro_film.u6_p4bd_aperture_scaling_compatibility_contract.v1",
+  "experiment_id": "u6.p4bd-aperture-scaling-compatibility-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4BD",
+  "date_frozen": "2026-08-02",
+  "question": "Is the inverse-diameter RMS law implied by independent two-dimensional P4BC measurement cells compatible with the existing measured 13/27/57-micrometre granularity tables?",
+  "parents": {
+    "p4bc_commit": "f61b39013a9e0ff7152671414426a05bc44463ed",
+    "p4bc_decision_path": "configs/u6_p4bc_aperture_cell_reference_sampler_decision_v1.json",
+    "p4bc_decision_sha256": "87b55d2b5c61578d5f137ac1df53ae0f9f95ffbabcf535292f9ecc8dddf1b471",
+    "p4aa_contract_path": "configs/u6_p4aa_nasa_density_grain_source_v1.json",
+    "p4aa_contract_sha256": "f11d1397c512b71250acd39542f42bf644d8c86174b5cefd9ab4c037723d9ad3",
+    "p4aa_report_path": "outputs/eval/u6_p4aa_nasa_density_grain_source_v1/report_run1.json",
+    "p4aa_report_sha256": "98be0f689842b9ec92ecc6ea9b51c2fd73269345da5508dcc9e07dba477c9b42",
+    "p4aa_stable_evidence_id": "c58138f5fff35cf5e116a7329ed4ff84ea96d2aca8b7eb104045a2eec947ff9b"
+  },
+  "candidate": {
+    "mechanism": "independent_two_dimensional_measurement_cells",
+    "rms_aperture_law": "sigma(d) = sigma(13um) * 13um / d",
+    "fixed_exponent": 1.0,
+    "normalization_aperture_micrometres": 13,
+    "comparison_apertures_micrometres": [
+      27,
+      57
+    ],
+    "parameter_fit_allowed": false,
+    "missing_value_imputation_allowed": false
+  },
+  "controls": {
+    "constant_rms_exponent": 0.0,
+    "descriptive_observed_exponent_only": true,
+    "descriptive_exponent_may_not_replace_candidate": true
+  },
+  "evaluation": {
+    "minimum_complete_comparisons": 20,
+    "maximum_median_relative_error": 0.2,
+    "maximum_worst_relative_error": 0.4,
+    "minimum_median_improvement_over_constant": 0.3,
+    "observed_exponent_median_minimum": 0.8,
+    "observed_exponent_median_maximum": 1.2,
+    "require_two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain independent-cell aperture scaling as cross-material compatibility only; it still does not identify Kodak spatial NPS.",
+    "fail": "Close independent-cell spatial/raster interpretation; retain P4BC only as a deterministic cell-statistics reference and require a materially different correlated spatial mechanism plus fresh evidence."
+  },
+  "forbidden": [
+    "fit or substitute the observed exponent after scoring",
+    "change aperture roles, omit hard rows or impute missing values",
+    "treat radiographic film/process/scanner tables as Kodak 250D calibration",
+    "render photographs or alter product defaults"
+  ],
+  "claim_ceiling": "No-fit cross-material compatibility of the independent-cell inverse-diameter aperture law against public radiographic-film granularity tables; not Kodak, stock, process, scanner, microscopic geometry, NPS calibration or product evidence."
+}
