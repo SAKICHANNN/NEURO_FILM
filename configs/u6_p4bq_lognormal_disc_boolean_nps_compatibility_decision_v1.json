@@ -1,0 +1,40 @@
+{
+  "schema": "neuro_film.u6_p4bq_lognormal_disc_boolean_nps_compatibility_decision.v1",
+  "experiment_id": "u6.p4bq-lognormal-disc-boolean-nps-compatibility-v1",
+  "date": "2026-08-02",
+  "decision": "close_independent_disc_boolean_measured_nps_equation_family",
+  "automatic_pass": false,
+  "report_path": "outputs/experiments/u6_p4bq_lognormal_disc_boolean_nps_compatibility_v1/run_a/report.json",
+  "report_sha256": "efc4f154659922bf0a40972b170bc52dc274145cbf74dd4324b59c3ed4617ee9",
+  "repeat_report_path": "outputs/experiments/u6_p4bq_lognormal_disc_boolean_nps_compatibility_v1/run_b/report.json",
+  "repeat_report_sha256": "efc4f154659922bf0a40972b170bc52dc274145cbf74dd4324b59c3ed4617ee9",
+  "stable_evidence_id": "968cb5a14ebbf19877ab8a07322c6b3dab3389719b56349f908da7f1194b4ffc",
+  "candidate_confirmation_median_log10_rmse": 0.814438837049174,
+  "gaussian_confirmation_median_log10_rmse": 0.3427077510061274,
+  "fixed_disc_confirmation_median_log10_rmse": 0.8120206256164244,
+  "confirmation_median_relative_improvement_over_gaussian": -1.376482103652836,
+  "confirmation_median_relative_improvement_over_fixed_disc": -0.0029780172528423637,
+  "candidate_to_gaussian_worst_error_ratio": 1.3901287302596528,
+  "fitted_material_parameters": {
+    "fuji_medical_xray_rendol_20c_5min": {
+      "median_radius_micrometres": 3.2988108086016723,
+      "log_radius_sigma": 0.07342296291210756,
+      "coverage_probabilities": [0.5506001697683217, 0.48556175859633793, 0.020000000003596863]
+    },
+    "fuji_neopan_sss_pandol_20c_10min": {
+      "median_radius_micrometres": 3.1996601476646465,
+      "log_radius_sigma": 0.050000000018330826,
+      "coverage_probabilities": [0.5372463084574552, 0.7697910834727301]
+    }
+  },
+  "failed_gates": [
+    "confirmation_median_beats_fixed_disc",
+    "confirmation_median_beats_gaussian",
+    "density_monotone_coverage",
+    "each_material_confirmation_median_beats_gaussian",
+    "interior_distribution_parameters",
+    "worst_confirmation_not_worse_than_gaussian"
+  ],
+  "next": "A new grain-spectrum mechanism must introduce particle clustering or another non-Poisson spatial interaction; do not tune either independent-disc family.",
+  "claim_ceiling": "Formal negative compatibility result for independent Poisson-disc Boolean geometry with fixed or bounded-lognormal radii on five historical Fuji B&W spectra; clustered processes remain untested and no microscopic or product calibration follows."
+}

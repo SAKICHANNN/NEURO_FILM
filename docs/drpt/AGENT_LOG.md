@@ -9986,3 +9986,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close the fixed-radius family without rescue. A separately frozen
   variable-radius or clustered-particle mechanism is the next scientific leaf;
   no render, microscopic-radius claim or product integration opens.
+# 2026-08-02 - U6.P4BQ closes independent-disc Boolean NPS
+
+- Replaced P4BP's fixed radius with a bounded lognormal distribution while
+  preserving the held bands and controls. Two full reports are exact
+  (`efc4f154...17ee9`).
+- Median confirmation RMSE `.81444` is worse than Gaussian `.34271` and fixed
+  discs `.81202`; both distribution widths approach the lower bound and the
+  Medical X-ray coverage reversal remains.
+- Close fixed and variable-radius independent Poisson discs. The next useful
+  grain leaf must introduce clustering or another genuinely different spatial
+  process; no image or product path opens.

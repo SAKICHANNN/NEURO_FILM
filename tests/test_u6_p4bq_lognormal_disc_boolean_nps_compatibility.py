@@ -19,6 +19,9 @@ from src.film_physics.variable_disc_boolean_nps import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u6_p4bq_lognormal_disc_boolean_nps_compatibility_v1.json"
+DECISION = (
+    ROOT / "configs/u6_p4bq_lognormal_disc_boolean_nps_compatibility_decision_v1.json"
+)
 
 
 def _sha256(path: Path) -> str:
@@ -93,3 +96,19 @@ def test_p4bq_contract_rejects_distribution_rescue(tmp_path: Path) -> None:
         LognormalDiscBooleanNPSCompatibilityError, match="contract drift"
     ):
         load_contract(path)
+
+
+def test_p4bq_decision_binds_exact_family_closure() -> None:
+    payload = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert payload["decision"] == (
+        "close_independent_disc_boolean_measured_nps_equation_family"
+    )
+    assert (
+        payload["report_sha256"]
+        == payload["repeat_report_sha256"]
+        == ("efc4f154659922bf0a40972b170bc52dc274145cbf74dd4324b59c3ed4617ee9")
+    )
+    assert payload["stable_evidence_id"] == (
+        "968cb5a14ebbf19877ab8a07322c6b3dab3389719b56349f908da7f1194b4ffc"
+    )
+    assert payload["confirmation_median_relative_improvement_over_fixed_disc"] < 0.0
