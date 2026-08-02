@@ -28,6 +28,10 @@
       "path": "outputs/experiments/u6_p4r_uniform_grain_source_v1/acquisition_manifest.json",
       "sha256": "54ce5dbedd681f40e870870e144a6eca851322457db250c50c858d9279d64929"
     },
+    "colour_signature_contract": {
+      "path": "configs/u6_p4r_uniform_grain_nps_feasibility_v1.json",
+      "sha256": "8fbbbbdc389ee46d609ec6f395b4ae5a78d60715d2e88d89ee22942353e4632d"
+    },
     "bw_preflight_contract": {
       "path": "configs/u6_p4z1_bw_uniform_grain_preflight_v1.json",
       "sha256": "0bd238096109742cf429fd736f17ca2c7295cdf77fc41bba7063fa1ba00bc207"
