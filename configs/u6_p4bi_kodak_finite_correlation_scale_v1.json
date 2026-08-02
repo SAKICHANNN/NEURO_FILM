@@ -1,0 +1,89 @@
+{
+  "schema": "neuro_film.u6_p4bi_kodak_finite_correlation_scale_contract.v1",
+  "experiment_id": "u6.p4bi-kodak-finite-correlation-scale-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4BI",
+  "date_frozen": "2026-08-02",
+  "question": "Do systematic departures from the confirmed Selwyn inverse-diameter law identify one finite Gaussian density-correlation scale per historical film that transfers across held density groups?",
+  "parents": {
+    "p4be_decision_path": "configs/u6_p4be_kodak_aperture_table_source_decision_v1.json",
+    "p4be_decision_sha256": "e96e854865dfe50bc0384a060ce14d716e82153aa98648e09c91737c7ad31eb7",
+    "p4be_report_path": "outputs/experiments/u6_p4be_kodak_aperture_table_source_v1/run_a/report.json",
+    "p4be_report_sha256": "052a2c026db65e0bbfc99846caa51c41e28779202d6f747673383489f8b28258",
+    "p4be_stable_evidence_id": "b7300e2e4bc306ec979f8287bb0590de9f7ac79612f4cbc94ef3c3f3b8f0ed8a",
+    "p4bf_decision_path": "configs/u6_p4bf_kodak_aperture_law_confirmation_decision_v1.json",
+    "p4bf_decision_sha256": "8da57f59bb44cce8e63659155bdca65aca784a1f4ff2f4cf8acc4fb31b7d0537",
+    "p4bf_report_path": "outputs/experiments/u6_p4bf_kodak_aperture_law_confirmation_v1/run_a/report.json",
+    "p4bf_report_sha256": "0bd0dd20c336ac92002b8faaa98b3f5af68595db9ed5f6f712972696fa83adf4",
+    "p4bf_stable_evidence_id": "ac18ff5e036e2dcbf75799f0a65a7b340065d08ba2d7115f97ff40998c426d7c"
+  },
+  "roles": {
+    "Kodak Royal-X Pan Film": {
+      "development_density": [1.12, 0.71, 0.31],
+      "confirmation_density": [0.94, 0.49, 0.2]
+    },
+    "Kodak Plus-X Negative Film": {
+      "development_density": [0.96, 0.55, 0.24],
+      "confirmation_density": [0.75, 0.39, 0.13]
+    },
+    "Kodak Panatomic-X Film": {
+      "development_density": [1.58, 0.84, 0.32],
+      "confirmation_density": [1.21, 0.54, 0.18]
+    },
+    "Eastman Fine Grain Release Positive Film": {
+      "development_density": [2.18, 0.78, 0.12],
+      "confirmation_density": [1.44, 0.34]
+    }
+  },
+  "candidate": {
+    "covariance": "C(r) = variance * exp(-r^2 / (2 * correlation_scale_um^2))",
+    "measurement": "continuous circular aperture area average",
+    "normalization_aperture_micrometres": 48.0,
+    "scale_grid_micrometres": {
+      "minimum": 0.1,
+      "maximum": 24.0,
+      "count": 481,
+      "spacing": "geometric"
+    },
+    "quadrature": {
+      "method": "Gauss-Legendre on normalized disk-overlap integral",
+      "order": 512
+    },
+    "fit_loss": "mean_squared_log_ratio_on_development_groups",
+    "parameters_per_film": 1,
+    "density_specific_parameters_allowed": false,
+    "confirmation_refit_allowed": false
+  },
+  "controls": {
+    "selwyn_zero_scale": "sigma(d) = sigma(48um) * 48um / d",
+    "wrong_film": "cyclic permutation of frozen development-fitted film scales",
+    "density_specific_oracle": "diagnostic only; fit each confirmation density independently",
+    "development_leave_one_group_out": true
+  },
+  "evaluation": {
+    "required_development_group_count": 12,
+    "required_confirmation_group_count": 11,
+    "required_confirmation_comparison_count": 66,
+    "maximum_confirmation_median_relative_error": 0.045,
+    "maximum_confirmation_p90_relative_error": 0.2,
+    "maximum_confirmation_worst_relative_error": 0.65,
+    "minimum_median_improvement_over_selwyn": 0.1,
+    "minimum_per_film_improvement_over_selwyn": 0.0,
+    "minimum_median_improvement_over_wrong_film": 0.05,
+    "maximum_leave_one_group_out_scale_relative_span": 0.5,
+    "require_grid_interior_scale": true,
+    "require_reversed_development_order_exact_scale": true,
+    "require_two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain one historical-film finite correlation-scale prior for B&W reference simulation; require separate material transfer before any other stock or product use.",
+    "fail": "Close finite Gaussian correlation-scale identification on these tables and retain only the P4BF aperture-amplitude law; do not change covariance, grid, roles or gates."
+  },
+  "forbidden": [
+    "fit on confirmation groups or omit hard densities/apertures",
+    "change covariance family, grid, loss, split or thresholds after scoring",
+    "transfer a historical B&W scale to Kodak 250D colour dye clouds",
+    "interpret correlation scale as a measured grain radius",
+    "render photographs or alter product defaults"
+  ],
+  "claim_ceiling": "Cross-density identification test for one Gaussian density-correlation scale per four historical photographic films using official multi-aperture granularity tables; not microscopic grain radius, colour-stock transfer, modern process/scanner calibration, raster or product evidence."
+}
