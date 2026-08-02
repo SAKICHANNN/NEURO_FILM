@@ -1,0 +1,132 @@
+{
+  "schema": "neuro_film.u6_p4bz_thomas_photographic_stress_contract.v1",
+  "experiment_id": "u6.p4bz-thomas-photographic-stress-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4BZ",
+  "date_frozen": "2026-08-02",
+  "question": "Does the exact P4BY typed Thomas image-formation chain remain finite, bounded, partition-exact and free of severe salt-like, boundary, seam or mean-drift artifacts on a rights-cleared camera-diverse photographic stress cohort under one explicit generic display-linear-to-layer-exposure adapter?",
+  "parents": {
+    "p4by_decision": {
+      "path": "configs/u6_p4by_typed_thomas_image_formation_decision_v1.json",
+      "sha256": "c216b4ddcae428c02e67bb301f99d6d3d72535893891f57860f9db6ee793c8ad",
+      "required_decision": "retain_typed_thomas_image_formation"
+    },
+    "p4bw_bundle": {
+      "path": "outputs/experiments/u6_p4bw_density_conditioned_thomas_profile_v1/run_a/bundle.json",
+      "sha256": "4edf4eaaeae163a2f579584c7d9533134a7d6177d5cc78ed517cb15865e585bf",
+      "required_profile_id": "199c59fe7d046943bcd763de8cab0ab52e7156aba6d94fcd9f1ec64da4d5d6ff"
+    },
+    "p2q_bundle": {
+      "path": "outputs/u6_p2q_kodak_250d_characteristic_prior/bundle_run1.json",
+      "sha256": "087e67544f737401fa697b21f06215a31827189e0648b8d60da666b92113caaa",
+      "required_prior_id": "04d94af2e1fcad99fbb8c9abb57179f2b63f329c263b3bf2335c4117a670aacb"
+    },
+    "source_manifest": {
+      "path": "outputs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1/manifest.json",
+      "sha256": "8ac0fa47b8ad3058c7bd3f9a398dfebe657b681cbd4a154152f0dbb255c4ecf1"
+    },
+    "source_preflight": {
+      "path": "outputs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1/automatic_report.json",
+      "sha256": "4cd54cc3f853a43b3afd08734f8a3078f1e76e1d2fcee26b63240b915d26c6de"
+    }
+  },
+  "input": {
+    "selected_ids": [
+      "canon_eos250d_16x9",
+      "nikon_d6_12bit",
+      "sony_nex5_12bit",
+      "fujifilm_s2pro",
+      "olympus_epl8",
+      "panasonic_dmcg10",
+      "pentax_k20d",
+      "ricoh_grii",
+      "samsung_gx1l"
+    ],
+    "expected_rows": 9,
+    "expected_camera_makes": 9,
+    "required_allowed_use": "internal_independent_digital_ood_confirmation",
+    "required_rights_scope": "CC0_public_domain_internal_evaluation",
+    "required_decoded_color_state": "relative_display_srgb_approximation",
+    "source_decode": "exact manifest-bound RGB8 PNG",
+    "display_linear_decode": "IEC-61966-2-1 sRGB EOTF to float64 linear RGB"
+  },
+  "adapter": {
+    "schema": "neuro_film.generic_relative_display_to_layer_exposure_adapter.v1",
+    "equation": "f_channel=0.15+0.70*display_linear_channel; logH_channel=curve_domain_low+f_channel*(curve_domain_high-curve_domain_low); H=10^logH",
+    "minimum_domain_fraction": 0.15,
+    "maximum_domain_fraction": 0.85,
+    "per_image_normalization_allowed": false,
+    "histogram_or_content_fit_allowed": false,
+    "clipping_allowed": false,
+    "interpretation": "fixed generic stress mapping only; display-linear RGB is not measured scene exposure or a camera IDT"
+  },
+  "candidate": {
+    "base_layer_realization_seeds": [
+      2608024501,
+      11400714821016565696,
+      15111065704576689758
+    ],
+    "per_source_seed_derivation": "uint64_le(sha256('u6.p4bz' || source_id || channel || base_seed)[0:8])",
+    "canonical_receipt_row_block_height": 31,
+    "row_partition_height": 257,
+    "pixel_pitch_micrometres": 6.35,
+    "scanner_profile_id": "p4bs-effective-spectrum-identity-observer-v1",
+    "scanner_stages": ["spectral"],
+    "scanner_convolution_embedded_in_spatial_profile": true,
+    "diagnostic_delta_display_gain": 12.0
+  },
+  "evaluation": {
+    "minimum_population_absolute_scan_delta_p95": 0.001,
+    "maximum_population_absolute_scan_delta_p99": 0.03,
+    "maximum_absolute_scan_delta": 0.08,
+    "maximum_flat_region_p99_absolute_scan_delta": 0.03,
+    "boundary_epsilon": 0.00001525902189669642,
+    "maximum_new_boundary_fraction": 0.0,
+    "isolated_excursion_threshold": 0.01,
+    "isolated_neighbour_ratio": 0.5,
+    "maximum_isolated_excursion_count": 0,
+    "minimum_axis_lag1_residual_correlation": 0.75,
+    "maximum_absolute_mean_scan_delta": 0.001,
+    "minimum_lowpass_structure_correlation": 0.995,
+    "maximum_density_transmittance_roundtrip_error": 1e-12,
+    "require_unique_source_receipts": true,
+    "require_exact_row_partition_parity": true,
+    "require_exact_input_hashes": true,
+    "require_finite_bounded_output": true,
+    "require_two_byte_identical_reports": true,
+    "require_visual_severe_artifact_acceptance": true
+  },
+  "visual_protocol": {
+    "columns": [
+      "source display approximation",
+      "mean-density negative scan",
+      "P4BY Thomas negative scan",
+      "P4BY-minus-mean signed delta x12"
+    ],
+    "severe_vetoes": [
+      "isolated bright or dark salt speckles",
+      "coloured point defects or worm-like clusters",
+      "banding, posterization, hard clipping or row seams",
+      "edge-locked secondary contours",
+      "geometry or content corruption"
+    ],
+    "visual_pass_cannot_override_automatic_failure": true
+  },
+  "branch_rule": {
+    "pass": "Retain a generic physical-inspired photographic grain arm for ablation against the existing procedural grain baseline; require separate product-value, performance and platform evidence before renderer use.",
+    "fail": "Close photographic use of this exact P4BW/P4BY hybrid without changing the adapter, seeds, profile or gates; retain synthetic physical-chain evidence only."
+  },
+  "forbidden": [
+    "interpret the fixed display-linear adapter as calibrated scene or layer exposure",
+    "fit exposure, histogram, tone, grain or strength to any selected photograph",
+    "add scanner MTF, flare or noise after the scanner-convolved P4BS spectrum",
+    "clip or normalize realized stochastic fields",
+    "replace failed images, gates or seeds after score",
+    "claim Kodak spatial-grain calibration, scanner independence, stock response or product promotion"
+  ],
+  "outputs": {
+    "report_a": "outputs/experiments/u6_p4bz_thomas_photographic_stress_v1/run_a/report.json",
+    "report_b": "outputs/experiments/u6_p4bz_thomas_photographic_stress_v1/run_b/report.json",
+    "contact_sheet": "outputs/experiments/u6_p4bz_thomas_photographic_stress_v1/run_a/contact_sheet.png"
+  },
+  "claim_ceiling": "Program-wide reused rights-cleared digital-photo severe-artifact stress of a fixed generic display-linear-to-layer-exposure adapter and the P4BY hybrid image-formation chain; not independent confirmation, measured scene exposure, camera IDT, calibrated Kodak spatial grain, scanner-independent film truth, population preference or product evidence."
+}
