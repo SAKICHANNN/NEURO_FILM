@@ -1,0 +1,60 @@
+{
+  "schema": "neuro_film.u6_p4bf_kodak_aperture_law_confirmation_contract.v1",
+  "experiment_id": "u6.p4bf-kodak-aperture-law-confirmation-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4BF",
+  "date_frozen": "2026-08-02",
+  "question": "Does the unchanged inverse-diameter RMS law pass the newly acquired Kodak Research multi-aperture photographic-film tables when normalized independently at 48 micrometres per density group?",
+  "parents": {
+    "p4be_commit": "6d621d50ad25da1c441451dffb36647d09b1e37d",
+    "p4be_decision_path": "configs/u6_p4be_kodak_aperture_table_source_decision_v1.json",
+    "p4be_decision_sha256": "e96e854865dfe50bc0384a060ce14d716e82153aa98648e09c91737c7ad31eb7",
+    "p4be_report_path": "outputs/experiments/u6_p4be_kodak_aperture_table_source_v1/run_a/report.json",
+    "p4be_report_sha256": "052a2c026db65e0bbfc99846caa51c41e28779202d6f747673383489f8b28258",
+    "p4be_stable_evidence_id": "b7300e2e4bc306ec979f8287bb0590de9f7ac79612f4cbc94ef3c3f3b8f0ed8a"
+  },
+  "candidate": {
+    "rms_aperture_law": "sigma(d) = sigma(48um) * 48um / d",
+    "fixed_exponent": 1.0,
+    "normalization_aperture_micrometres": 48.0,
+    "confirmation_apertures_micrometres": [
+      7.25,
+      12.0,
+      24.0,
+      96.0,
+      192.0,
+      384.0
+    ],
+    "normalization_per_density_group": true,
+    "parameter_fit_allowed": false,
+    "row_or_film_omission_allowed": false
+  },
+  "controls": {
+    "constant_rms_exponent": 0.0,
+    "descriptive_observed_exponent_only": true,
+    "selwyn_granularity_column_is_independent_table_check": true
+  },
+  "evaluation": {
+    "required_density_group_count": 23,
+    "required_comparison_count": 138,
+    "maximum_median_relative_error": 0.1,
+    "maximum_p90_relative_error": 0.3,
+    "maximum_worst_relative_error": 0.8,
+    "maximum_per_film_median_relative_error": 0.2,
+    "minimum_median_improvement_over_constant": 0.8,
+    "observed_exponent_median_minimum": 0.9,
+    "observed_exponent_median_maximum": 1.1,
+    "maximum_median_selwyn_relative_span": 0.2,
+    "require_two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain inverse-area aperture scaling as measured historical-photographic compatibility for a generic reference compiler; P4BB Kodak 250D amplitude remains separate and spatial NPS stays unidentified.",
+    "fail": "Close independent-cell spatial interpretation across both measured sources; retain only analytic P4BB cell moments and do not fit an exponent."
+  },
+  "forbidden": [
+    "fit or substitute an aperture exponent after scoring",
+    "omit low-density, large-aperture or film-specific hard rows",
+    "transfer historical B&W amplitudes into the Kodak 250D bundle",
+    "claim microscopic geometry, measured NPS, colour-stock calibration or product rendering"
+  ],
+  "claim_ceiling": "No-fit inverse-diameter aperture-law compatibility across four historical photographic films and 23 density groups; not Kodak 250D amplitude transfer, modern stock/process/scanner calibration, microscopic geometry, full NPS or product evidence."
+}
