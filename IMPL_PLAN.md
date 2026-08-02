@@ -1577,6 +1577,12 @@ zero clipping, dark/flat and alignment evidence, and 3-roll/2-process held-roll
 grouping. It has no render authority. Audit local manifests once, then either
 admit exact matches or record the data gap and move on.
 
+P3Z records that data gap without parser rescue. Two exact metadata-only runs
+(`08c8eaf0...f2367`) inspect 129 files/14,133 dictionary nodes, admit zero
+rows and find at most 1/21 required fields. Sixty-six non-standard third-party
+JSON files mean exhaustive absence is unproved, but no data is admitted and
+P3Y remains unchanged. Continue with a mechanism-distinct physical leaf.
+
 `SF2.9R` audits five ColorReference multi-family IT8/ISO 12641 transmission
 references instead of scanner RGB or uncontrolled photographs. Exact
 byte/CRC/parse gates and 288 shared target patches pass twice; each archive

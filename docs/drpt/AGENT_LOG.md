@@ -10304,3 +10304,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   exact (`a7dd4225...1170`). No data or render authority is created.
 - Next perform one bounded local metadata audit. Missing rows remain a data gap;
   protocol requirements will not be relaxed.
+
+# 2026-08-01 - U6.P3Z local manifest audit closes without data admission
+
+- Two metadata-only runs are byte-identical (`08c8eaf0...f2367`): 129 files,
+  14,133 dictionary nodes, zero exact P3Y rows and maximum overlap 1/21.
+- Sixty-six third-party non-standard JSON files block an exhaustive absence
+  claim. Parser compatibility would not add the missing acquisition facts, so
+  no rescue is attempted and P3Y remains unchanged.
+- No pixels or candidates are admitted. Bypass this data gap and continue a
+  mechanism-distinct physical-image-formation experiment.

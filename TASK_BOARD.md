@@ -1,5 +1,12 @@
 # TASK_BOARD.md — Algorithm-first film colour-transfer and product path
 
+> 2026-08-01: U6.P3Z admits no local controlled-halation data. Two exact
+> metadata-only reports (`08c8eaf0...f2367`) find zero P3Y candidates across
+> 129 files; maximum overlap is 1/21 required fields. Sixty-six third-party
+> non-standard JSON files prevent an exhaustive absence claim, but parser work
+> cannot supply the missing acquisition facts. Keep P3Y unchanged and advance
+> another physical mechanism.
+>
 > **Ultimate priority reset, 2026-07-15:** real-film scans now own the final
 > success criterion. See `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md`.
 > Specific `film_stock_id` experts are primary; historical/unknown-stock film

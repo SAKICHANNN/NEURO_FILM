@@ -1,0 +1,27 @@
+{
+  "schema": "neuro_film.u6_p3z_local_halation_manifest_audit_decision.v1",
+  "experiment_id": "U6.P3Z",
+  "status": "complete_incomplete_inventory_no_data_admitted",
+  "decision": "close-incomplete-local-manifest-audit-no-data-admitted",
+  "automatic_pass": false,
+  "contract_sha256": "42539a6f4cec3d1e8215043d8251546727b1820d1e2de33422c60ddb0f0f4256",
+  "evaluator_sha256": "a05c4c17c811d3d9db4992642f1970f7b594709f69a62cc60b8ecedadc38668a",
+  "runner_sha256": "011ad1ce5256d4a506dd5301d1526211cb53e07ddb779221aa59d2d4e935fe28",
+  "report_sha256": "08c8eaf00e357e4a5d28f1472f87aff5997b34633b4fce190e7e1b85fe2f2367",
+  "repeat_report_sha256": "08c8eaf00e357e4a5d28f1472f87aff5997b34633b4fce190e7e1b85fe2f2367",
+  "scientific_stable_id": "5f2f5aa75c1f78287640e3cd88f9508ad4d8798fab1e5d6e49ffa8f9008e6c8e",
+  "summary": {
+    "metadata_file_count": 129,
+    "metadata_total_bytes": 20280788,
+    "dictionary_node_count": 14133,
+    "parse_failure_count": 66,
+    "exact_candidate_count": 0,
+    "required_field_count": 21,
+    "maximum_required_field_overlap_count": 1,
+    "pixel_read_count": 0
+  },
+  "interpretation": "The bounded audit admits no local P3Y row. Because 66 third-party files are not strict JSON, it does not prove exhaustive absence; parser compatibility would not create the missing acquisition facts and is outside the scientific critical path.",
+  "retained_result": "Keep P3Y unchanged, admit no data, and bypass this data gap rather than weakening the protocol or expanding metadata tooling.",
+  "next_ready_leaf": "Advance a mechanism-distinct developed-image or spatial-response experiment with existing controlled evidence.",
+  "claim_ceiling": "Incomplete bounded metadata inventory and zero data admission only; no pixel evidence, acquisition validity, film mechanism or product claim."
+}
