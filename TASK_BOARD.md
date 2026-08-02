@@ -686,6 +686,13 @@ on held blocks (`-2.82%/+0.56%` mean; `29.17%/39.58%` wins) and creates up to
 opens; return to new real-film or physical evidence rather than more grid
 capacity.
 
+U5.R2BU0 establishes one stock-first physical source signal without changing
+the image operator. Exact Kodak VISION3 50D/250D/500T high-frequency MTF traces
+separate all three pairs in at least two layers (`fafed347...6020b` twice),
+while the characteristic-shape bank remains closed. BU1 may compile only an
+explicit source-domain prior bundle; no colour look, roll calibration or
+product path opens.
+
 U6.P2V passes that clean-room primitive with exact linear/reference limits,
 bounded monotone Jacobian behavior, neutral-axis and partition invariance.
 U6.P2W then produces a visible effect on all 16 photographs and passes every

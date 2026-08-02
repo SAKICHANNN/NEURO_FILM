@@ -1,0 +1,51 @@
+{
+  "schema": "neuro_film.u5_r2bu0_kodak_vision3_mtf_diversity_decision.v1",
+  "experiment_id": "U5.R2BU0",
+  "contract_sha256": "98e4dc9d4337abd8d17044f56c7f914a09d7b5713c8c3a421a0770ff131d5a7b",
+  "trace_sha256": "d88c0e698c0e0969696224df50f1573ed78a6de0a894075f6502d9b3f658a794",
+  "software_commit": "ba15f6d870ffdf526b877c6d4d50c721f089a7f5",
+  "execution_amendment": {
+    "diagnostic_report_sha256": "4e107e455d3143ab8d9a650a81c46693ff62fc1929ba69ad633ce01525e41b95",
+    "diagnostic_conclusion_used": false,
+    "cause": "The initial implementation required exact floating endpoint coverage even though the frozen graph traces are integer pixels.",
+    "repair": "Coverage now uses the already-frozen two-pixel digitization uncertainty in log-frequency; no trace, common frequency, metric or diversity threshold changed.",
+    "repair_commit": "ba15f6d870ffdf526b877c6d4d50c721f089a7f5"
+  },
+  "formal_evidence": {
+    "report_a": "outputs/u5_r2bu0_kodak_vision3_mtf_diversity/formal_fixed_a/report.json",
+    "report_b": "outputs/u5_r2bu0_kodak_vision3_mtf_diversity/formal_fixed_b/report.json",
+    "report_sha256": "fafed347c6596e43577f200f19574a2510437fd6098bff95c378b5b2aee6020b",
+    "stable_evidence_id": "7056a6888d4ce72106419c41041cd3fc5e9f54149ccf0d83609b042679f629c6",
+    "two_byte_identical_audits": true,
+    "visual_overlays_reviewed": true,
+    "overlay_sha256": {
+      "kodak_vision3_50d_5203_7203": "e439525114015284b9399f60c0386bc0f5bdf237292067a0595b23659e229174",
+      "kodak_vision3_250d_5207_7207": "dfb7ec8e067158495e7f10c33e2ce1f0bde5fdaef44c8fc1537da958624c5541",
+      "kodak_vision3_500t_5219_7219": "f6c45c93b391093c913a7e42892708efd0e9fd5d7888408c635f8fc1d4aa0f1c"
+    }
+  },
+  "result": {
+    "diversity_pass": true,
+    "material_pair_count": 3,
+    "material_graph_degree": {
+      "kodak_vision3_50d_5203_7203": 2,
+      "kodak_vision3_250d_5207_7207": 2,
+      "kodak_vision3_500t_5219_7219": 2
+    },
+    "normalized_log_shape_rmse": {
+      "50d_vs_250d": {"blue": 0.182651, "green": 0.168821, "red": 0.087928},
+      "50d_vs_500t": {"blue": 0.092136, "green": 0.111298, "red": 0.306616},
+      "250d_vs_500t": {"blue": 0.274482, "green": 0.066042, "red": 0.269904}
+    },
+    "all_non_diversity_gates_pass": true,
+    "parent_characteristic_material_pair_count": 0
+  },
+  "decision": "retain_source_domain_mtf_signature_and_open_joint_physical_prior",
+  "next_ready_leaf": "U5.R2BU1 compile an explicit characteristic-shape plus stock-MTF source-domain prior bundle with exact identities and no image-RGB operator",
+  "forbidden_followups": [
+    "No trace, threshold, frequency or normalization rescue is needed or allowed.",
+    "Do not infer colour response, roll calibration, scanner response or a photographic look from MTF diversity.",
+    "Do not change B0/AO6, train a router or render photographs from this source result."
+  ],
+  "claim_ceiling": "First-party manufacturer-graph source-domain MTF diversity for three VISION3 stocks; not a roll, process, scanner, colour-response, look, calibrated profile or product operator."
+}

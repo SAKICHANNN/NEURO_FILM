@@ -2,6 +2,15 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-01 - U5.R2BU0 passes VISION3 MTF source diversity
+
+- Exact first-party 50D/250D/500T traces pass every integrity and uncertainty
+  gate; all three pairs have at least two material MTF layers and degree two.
+- Two formal reports are exact (`fafed347...6020b`); overlays follow the solid
+  source curves. P2T characteristic diversity remains closed at zero pairs.
+- Retain only a source-domain physical prior. BU1 may compile identities and
+  MTF shapes, but no RGB look, roll calibration, router or product change.
+
 # 2026-08-02 - U6.P4BI closes a finite Gaussian spatial-scale claim
 
 - One scale per film lowers overall confirmation median error from `4.879%` to
