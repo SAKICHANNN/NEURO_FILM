@@ -1,0 +1,66 @@
+{
+  "schema": "neuro_film.u6_p4bm_measured_nps_field_synthesis_contract.v1",
+  "experiment_id": "u6.p4bm-measured-nps-field-synthesis-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4BM",
+  "date_frozen": "2026-08-02",
+  "question": "Can every retained P4BL profile drive a deterministic physical-scale random-phase field whose intrinsic and simulated 1um-aperture periodograms reproduce the measured spectra exactly enough for an offline second-order reference, without amplitude renormalization or microscopic-geometry claims?",
+  "parents": {
+    "p4bl_contract_path": "configs/u6_p4bl_historical_measured_nps_compiler_v1.json",
+    "p4bl_contract_sha256": "2bcea16b42b0fea4afdd8e47c8631440e6a3686479408207f2c8dafca2b7cead",
+    "p4bl_decision_path": "configs/u6_p4bl_historical_measured_nps_compiler_decision_v1.json",
+    "p4bl_decision_sha256": "603de9efa8579707540bc15f1ebd4bccb554b89723d4b3451117efc62a6f3bbe",
+    "p4bl_bundle_path": "outputs/experiments/u6_p4bl_historical_measured_nps_compiler_v1/run_a/bundle.json",
+    "p4bl_bundle_sha256": "2299a1acd914aaa865910fc2a7601f286db3df69ffa642d3bc31de8dbd0f310d",
+    "p4bl_bundle_id": "6a4050c4c03e8db33ee282608be50734f5e2aee1cf257bfcccdd85442f9c8567",
+    "p4bl_report_path": "outputs/experiments/u6_p4bl_historical_measured_nps_compiler_v1/run_a/report.json",
+    "p4bl_report_sha256": "e36bfc27a01f7ce20cd33bfab88f92542034ddcb3be777033f2ab6980413ea36",
+    "p4bl_stable_evidence_id": "47408aa84dc01b5a5b30b3a342752ddaa6e7c781162ecf625af7c0066b71d201"
+  },
+  "synthesis": {
+    "field_shape": [512, 512],
+    "sample_pitch_millimetres": 0.001,
+    "physical_extent_millimetres": [0.512, 0.512],
+    "nyquist_lines_per_mm": 500.0,
+    "radial_bandlimit_lines_per_mm": 500.0,
+    "seeds": [2608022301, 2608022302, 2608022303],
+    "phase_source": "counter_normal_region_then_unit_magnitude_fft_phase",
+    "fourier_amplitude": "sqrt(pixel_count*target_nps)/sample_pitch_millimetres",
+    "dc_policy": "exact_zero_sample_mean",
+    "outside_radial_band_policy": "exact_zero",
+    "aperture_simulation": "multiply_intrinsic_fourier_coefficients_by_source_circular_aperture_mtf",
+    "realized_amplitude_renormalization_allowed": false,
+    "tile_or_crop_parity_claimed": false,
+    "gaussian_marginal_claimed": false,
+    "microscopic_geometry_claimed": false,
+    "render_allowed": false
+  },
+  "evaluation": {
+    "required_profile_count": 5,
+    "required_seed_count": 3,
+    "required_row_count": 15,
+    "maximum_intrinsic_periodogram_relative_error": 1e-10,
+    "maximum_aperture_periodogram_relative_error": 1e-10,
+    "maximum_parseval_relative_error": 1e-12,
+    "maximum_absolute_sample_mean": 1e-12,
+    "maximum_ifft_imaginary_residual": 1e-12,
+    "require_repeat_exact": true,
+    "require_seed_distinct_fields": true,
+    "require_exact_zero_outside_radial_band": true,
+    "require_positive_finite_supported_spectrum": true,
+    "require_aperture_rms_not_above_intrinsic": true,
+    "require_profile_identity_preserved": true,
+    "require_two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain one offline historical B&W second-order field synthesizer and open a separately frozen finite-window/radial-estimator robustness leaf before any image-space diagnostic.",
+    "fail": "Close measured-NPS field synthesis without changing grid, pitch, phase normalization, spectra or gates; retain P4BL analytic profiles only."
+  },
+  "forbidden": [
+    "renormalize a realized field to force target variance",
+    "interpret fixed-amplitude random phase as measured particle geometry or a Gaussian marginal",
+    "claim tile or crop invariance for the global FFT reference",
+    "combine with P4BJ or Kodak amplitudes",
+    "apply the field to photographs or product rendering"
+  ],
+  "claim_ceiling": "Deterministic offline random-phase fields reproducing the retained historical Fuji B&W second-order spectra on a 1um periodic grid; not microscopic grain geometry, finite-window photographic validation, modern stock calibration, colour-film structure or product rendering."
+}
