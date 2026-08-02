@@ -1,0 +1,123 @@
+{
+  "schema": "neuro_film.kodak_vision3_granularity_curve_pixels.v1",
+  "annotation_method": "Exact integer pixels sampled on the B/G/R diffuse-rms granularity traces before numerical diversity scoring; overlays are mandatory. The shared 250D row is reused byte-for-byte from the frozen P4AV trace.",
+  "stocks": {
+    "kodak_vision3_50d_5203_7203": {
+      "source_pdf": {
+        "path": "data/physics/kodak_vision3_50d/technical_data.pdf",
+        "bytes": 701126,
+        "sha256": "b4613661abed641671329eff3bd7d5686b268eb26b954ef1c27ea68f363caca6"
+      },
+      "source_graph": {
+        "path": "outputs/u6_p2t_kodak_characteristic_diversity/extracted/50d-000.png",
+        "bytes": 134630,
+        "sha256": "b7a41ea8dd575c91a65cfe0537b7c7d76fd650a2412418b3c6eb875f004a7bbc",
+        "width": 587,
+        "height": 562
+      },
+      "measurement_context": {
+        "exposure": "5500 K daylight",
+        "process": "ECN-2",
+        "densitometry": "Status M",
+        "aperture_micrometres": 48.0,
+        "quantity": "diffuse rms granularity Sigma D"
+      },
+      "graph_axes": {
+        "x_scale": "linear",
+        "x_quantity": "log_relative_exposure",
+        "x_value_pixels": [[0.0, 63.0], [5.0, 506.0]],
+        "x_tick_value_pixels": [[0.0, 63.0], [1.0, 152.0], [2.0, 240.0], [3.0, 329.0], [4.0, 417.0], [5.0, 506.0]],
+        "y_scale": "log10",
+        "y_quantity": "diffuse_rms_granularity_sigma_d",
+        "y_value_pixels": [[0.001, 493.0], [1.0, 51.0]],
+        "y_tick_value_pixels": [[0.001, 493.0], [0.002, 449.0], [0.003, 423.0], [0.004, 404.0], [0.005, 390.0], [0.006, 379.0], [0.01, 346.0], [0.02, 301.0], [0.03, 275.0], [0.04, 257.0], [0.05, 242.0], [0.1, 198.0], [1.0, 51.0]]
+      },
+      "curves": {
+        "blue": [[85, 360], [107, 359], [129, 357], [152, 345], [174, 345], [196, 358], [218, 354], [240, 352], [262, 357], [284, 361], [307, 365], [329, 363], [351, 365], [373, 366], [395, 372], [417, 379], [440, 385]],
+        "green": [[85, 403], [107, 401], [129, 402], [152, 399], [174, 380], [196, 386], [218, 396], [240, 399], [262, 400], [284, 402], [307, 399], [329, 401], [351, 400], [373, 398], [395, 399], [417, 404], [440, 414]],
+        "red": [[85, 450], [107, 443], [129, 440], [152, 410], [174, 380], [196, 386], [218, 396], [240, 399], [262, 400], [284, 402], [307, 399], [329, 401], [351, 400], [373, 413], [395, 418], [417, 424], [440, 431]]
+      }
+    },
+    "kodak_vision3_250d_5207_7207": {
+      "source_pdf": {
+        "path": "data/physics/kodak_vision3_250d/technical_data.pdf",
+        "bytes": 684722,
+        "sha256": "70adb298a7aabb285d986b720e07c87c27eb2361f0925aea2b15903c08282e16"
+      },
+      "source_graph": {
+        "path": "outputs/u5_r2aa0_source_audit/extracted/250d_characteristic.png",
+        "bytes": 121845,
+        "sha256": "8d4ba7acec0be4a200ba4ab2f29f928bde63f430c8fd343d9a9e36bfc973ca0d",
+        "width": 587,
+        "height": 557
+      },
+      "trace_lineage": {
+        "path": "configs/data/kodak_250d_granularity_curve_pixels_v1.json",
+        "sha256": "d564f4ee49ca80fdc4b4e39199d9b894429774600b00b5ec52d95a8d3bfc4de2"
+      },
+      "measurement_context": {
+        "exposure": "5500 K daylight",
+        "process": "ECN-2",
+        "densitometry": "Status M",
+        "aperture_micrometres": 48.0,
+        "quantity": "diffuse rms granularity Sigma D"
+      },
+      "graph_axes": {
+        "x_scale": "linear",
+        "x_quantity": "log_relative_exposure",
+        "x_value_pixels": [[0.0, 62.0], [5.0, 506.0]],
+        "x_tick_value_pixels": [[0.0, 62.0], [1.0, 150.0], [2.0, 239.0], [3.0, 328.0], [4.0, 417.0], [5.0, 506.0]],
+        "y_scale": "log10",
+        "y_quantity": "diffuse_rms_granularity_sigma_d",
+        "y_value_pixels": [[0.001, 506.0], [1.0, 61.0]],
+        "y_tick_value_pixels": [[0.001, 506.0], [0.002, 461.0], [0.003, 435.0], [0.004, 417.0], [0.005, 402.0], [0.006, 391.0], [0.01, 358.0], [0.02, 313.0], [0.03, 287.0], [0.04, 268.0], [0.05, 254.0], [0.1, 209.0]]
+      },
+      "curves": {
+        "blue": [[70, 356], [100, 355], [138, 349], [149, 342], [161, 337], [173, 335], [198, 339], [223, 340], [246, 350], [271, 352], [296, 351], [321, 347], [346, 347], [371, 351], [395, 356], [420, 362], [444, 369], [468, 377], [491, 388]],
+        "green": [[77, 400], [89, 398], [102, 400], [127, 403], [149, 391], [159, 384], [180, 370], [191, 364], [202, 362], [214, 366], [225, 372], [238, 379], [249, 382], [283, 374], [325, 392], [350, 391], [363, 388], [375, 387], [387, 389], [400, 392], [412, 394], [437, 397], [449, 400], [461, 404], [474, 406], [486, 407]],
+        "red": [[78, 407], [92, 406], [104, 407], [116, 406], [127, 403], [141, 401], [153, 396], [162, 388], [200, 390], [260, 393], [286, 394], [298, 396], [308, 399], [321, 401], [333, 403], [346, 404], [359, 404], [371, 404], [383, 406], [395, 409], [408, 411], [420, 413], [433, 414], [446, 414], [458, 413], [471, 415], [483, 418], [495, 418]]
+      }
+    },
+    "kodak_vision3_500t_5219_7219": {
+      "source_pdf": {
+        "path": "data/physics/kodak_vision3_500t/technical_data.pdf",
+        "bytes": 747860,
+        "sha256": "6d037d8090373ee50d10bedfff3df14777a575dd107c50edcafc7ec5862d0972"
+      },
+      "source_graph": {
+        "path": "outputs/u6_p2t_kodak_characteristic_diversity/extracted/500t-000.png",
+        "bytes": 151904,
+        "sha256": "e8f7cd88c3b4b6859e82bddda8c14ae7d82726cd66c05be5d6a782eead6cbb11",
+        "width": 587,
+        "height": 574
+      },
+      "measurement_context": {
+        "exposure": "3200 K tungsten",
+        "process": "ECN-2",
+        "densitometry": "Status M",
+        "aperture_micrometres": 48.0,
+        "quantity": "diffuse rms granularity Sigma D"
+      },
+      "graph_axes": {
+        "x_scale": "linear",
+        "x_quantity": "log_relative_exposure",
+        "x_value_pixels": [[0.0, 61.0], [5.0, 507.0]],
+        "x_tick_value_pixels": [[0.0, 61.0], [1.0, 150.0], [2.0, 239.0], [3.0, 329.0], [4.0, 418.0], [5.0, 507.0]],
+        "y_scale": "log10",
+        "y_quantity": "diffuse_rms_granularity_sigma_d",
+        "y_value_pixels": [[0.001, 506.0], [1.0, 60.0]],
+        "y_tick_value_pixels": [[0.001, 506.0], [0.002, 461.0], [0.003, 435.0], [0.004, 416.0], [0.005, 402.0], [0.006, 391.0], [0.01, 357.0], [0.02, 313.0], [0.03, 286.0], [0.04, 268.0], [0.05, 253.0], [0.1, 209.0], [1.0, 60.0]]
+      },
+      "curves": {
+        "blue": [[83, 305], [106, 304], [128, 304], [150, 300], [172, 297], [195, 297], [217, 301], [239, 313], [262, 322], [284, 326], [306, 326], [329, 324], [351, 323], [373, 323], [396, 325], [418, 334], [440, 342]],
+        "green": [[83, 384], [106, 384], [128, 380], [150, 366], [172, 354], [195, 346], [217, 362], [239, 370], [262, 373], [284, 383], [306, 387], [329, 383], [351, 379], [373, 378], [396, 380], [418, 383], [440, 388]],
+        "red": [[83, 403], [106, 403], [128, 400], [150, 390], [172, 375], [195, 363], [217, 373], [239, 384], [262, 390], [284, 394], [306, 397], [329, 393], [351, 393], [373, 397], [396, 397], [418, 400], [440, 404]]
+      }
+    }
+  },
+  "limitations": [
+    "Diffuse RMS Sigma-D at one 48-micrometre aperture is not a film noise power spectrum or microscopic grain size.",
+    "The manufacturer warns that sensitometric and granularity curves were produced on different equipment.",
+    "The graphs are typical manufacturer observations, not particular rolls, process sessions, scanners or calibration targets."
+  ]
+}
