@@ -1531,6 +1531,16 @@ frames contain no same-illumination cross-stock pair. Preserve it as high-value
 method/acquisition evidence; do not fit publication figures or infer a stock
 response.
 
+P3S adds a current equation-family discriminator rather than another halation
+topology search. The exact 2026 ProMist-5K paper supports six progressively
+larger Gaussian layers in scene-linear space, but does not publish their exact
+radii or weights and is a lens-diffusion method. A clean-room bounded six-scale
+family improves 53.65% over identity on synthetic additive backing-return
+truth, yet is 0.76% worse than one 8px Gaussian and fails held absolute/worst
+error gates in two byte-identical runs (`5a5533fa...50aa`). Lens/creative
+diffusion therefore remains a separate downstream layer; P3S retains the
+multi-exposure discriminator and does not reopen same-cohort Gaussian tuning.
+
 `SF2.9R` audits five ColorReference multi-family IT8/ISO 12641 transmission
 references instead of scanner RGB or uncontrolled photographs. Exact
 byte/CRC/parse gates and 288 shared target patches pass twice; each archive

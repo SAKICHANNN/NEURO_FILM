@@ -345,6 +345,11 @@ not film halation or a measured filter profile. U6.4B then closes the fixed
 strong photographic route automatically: flat-region and isolated-excursion
 gates fail, so visual review, retuning and integration remain forbidden.
 
+U6.P3S independently closes lens-diffusion substitution for film backing
+return. The six-scale scene-linear family improves over identity but loses to
+one scale and fails held absolute/worst errors; retain the exposure-bracketed
+mechanism discriminator and keep lens mist separate from film halation.
+
 Current real-grain leaf: U6.P4R closes stock association while retaining one
 generic scanner-convolved signature candidate. Eight exact CC0 16-bit RGBA
 TIFFs pass acquisition and visual gates; RGB NPS is highly repeatable, but

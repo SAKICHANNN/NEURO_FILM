@@ -17,6 +17,7 @@ from src.eval.promist_halation_identifiability import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u6_p3s_promist_halation_identifiability_v1.json"
+DECISION = ROOT / "configs/u6_p3s_promist_halation_identifiability_decision_v1.json"
 
 
 def test_p3s_contract_freezes_latest_diffusion_family_before_score() -> None:
@@ -90,3 +91,17 @@ def test_p3s_runner_is_directly_invocable() -> None:
     )
     assert completed.returncode == 0, completed.stderr
     assert "--output" in completed.stdout
+
+
+def test_p3s_decision_binds_exact_failed_evidence() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["automatic_pass"] is False
+    assert decision["report_sha256"] == decision["repeat_report_sha256"]
+    assert decision["report_sha256"].startswith("5a5533fa")
+    assert decision["metrics"]["six_scale_improvement_over_identity"] > 0.5
+    assert decision["metrics"]["six_scale_improvement_over_single_scale"] < 0.0
+    assert decision["failed_gates"] == [
+        "mist_beats_single_scale",
+        "mist_confirmation_error",
+        "mist_worst_case",
+    ]

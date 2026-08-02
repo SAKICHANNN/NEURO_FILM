@@ -10142,6 +10142,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - This opens only a frozen density-domain synthetic severe comparison. The
   capacity cells are not microscopic or stock-calibrated particles.
 
+# 2026-08-01 - U6.P3S closes lens-diffusion substitution
+
+- Exact ProMist-5K source audit and a frozen multi-exposure synthetic
+  discriminator compare six-scale scene-linear lens diffusion with additive
+  exposure-domain backing return followed by nonlinear response.
+- Two reports are byte-identical (`5a5533fa...50aa`). Six-scale diffusion beats
+  identity by 53.65% but is 0.76% worse than one scale and fails absolute/worst
+  RMSE gates. Keep lens diffusion separate; retain the discriminator and do not
+  tune this Gaussian family on the same cohort.
+
 # 2026-08-02 - U6.P4CB closes bounded-cloud density composition
 
 - The unchanged P4BW amplitude with P4CA occupancy retains p99 strength at

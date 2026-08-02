@@ -1,0 +1,40 @@
+{
+  "schema": "neuro_film.u6_p3s_promist_halation_identifiability_decision.v1",
+  "experiment_id": "U6.P3S",
+  "status": "complete_mechanism_discriminator_retained",
+  "decision": "reject_scene_linear_lens_diffusion_as_a_film_backing_return_substitute",
+  "automatic_pass": false,
+  "contract_sha256": "6a1593b5bdbd0233cd1b2cd6118c59f7842b99512ee33c0ee7e4361f82ac84c9",
+  "evaluator_sha256": "21a37733701ebd7411b817983a6843a0c986329a90434735bf009c398204a8ba",
+  "runner_sha256": "a06a7edd95492a550a92f943eb28050098a6abccc8093f4621fc5b0f17343fc6",
+  "primary_source_sha256": "a0e2dda00f7e94d7e8281a30ffa741523f8bc09cec33ce82b52069938efb4bc9",
+  "report_sha256": "5a5533faa565f9dcc80e5dfb343967d75b005be0c5bc32e4d7d4ff8a672750aa",
+  "repeat_report_sha256": "5a5533faa565f9dcc80e5dfb343967d75b005be0c5bc32e4d7d4ff8a672750aa",
+  "stable_evidence_id": "5a5533faa565f9dcc80e5dfb343967d75b005be0c5bc32e4d7d4ff8a672750aa",
+  "metrics": {
+    "six_scale_confirmation_rmse": 0.014753873605930909,
+    "single_scale_confirmation_rmse": 0.014643093060960358,
+    "identity_confirmation_rmse": 0.0318280797063385,
+    "six_scale_improvement_over_identity": 0.5364510287124641,
+    "six_scale_improvement_over_single_scale": -0.007565378742685258,
+    "worst_pattern_exposure_rmse": 0.02335716299566924,
+    "development_to_confirmation_rmse_ratio": 1.0628290308810424,
+    "six_scale_total_weight": 0.10114299840817252,
+    "sigma_8_weight_fraction": 0.8046340779271097
+  },
+  "failed_gates": [
+    "mist_beats_single_scale",
+    "mist_confirmation_error",
+    "mist_worst_case"
+  ],
+  "interpretation": "The clean-room six-scale scene-linear diffusion family materially beats identity but collapses mostly onto the eight-pixel scale and does not beat its single-scale control. It cannot reproduce additive exposure-domain backing return followed by nonlinear characteristic response across held patterns and exposure scales.",
+  "retained_result": "Keep the multi-exposure mechanism discriminator and keep lens or creative diffusion separate from film backing return.",
+  "closed_rescues": [
+    "same-cohort Gaussian radius or weight retuning",
+    "additional scene-linear diffusion scales",
+    "threshold relaxation",
+    "relabeling lens mist as physical film halation"
+  ],
+  "next_ready_leaf": "Implement and test an exposure-dependent energy-bounded forward-scatter/backing-return compiler against the retained discriminator; require independent measured film data before any stock or calibrated claim.",
+  "claim_ceiling": "Synthetic equation-family identifiability evidence only; not real-film measurement, Pro-Mist calibration, visual quality, stock response or product promotion."
+}
