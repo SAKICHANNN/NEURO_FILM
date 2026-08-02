@@ -1,0 +1,74 @@
+{
+  "schema": "neuro_film.u6_p4br_thomas_cluster_nps_compatibility_contract.v1",
+  "experiment_id": "u6.p4br-thomas-cluster-nps-compatibility-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4BR",
+  "date_frozen": "2026-08-02",
+  "question": "Can a Gaussian-mark Thomas clustered particle process with one material-shared particle footprint and density-state cluster parameters predict held measured-NPS bands better than the one-Gaussian control after independent Poisson-disc models failed?",
+  "parents": {
+    "p4bl_bundle_path": "outputs/experiments/u6_p4bl_historical_measured_nps_compiler_v1/run_a/bundle.json",
+    "p4bl_bundle_sha256": "2299a1acd914aaa865910fc2a7601f286db3df69ffa642d3bc31de8dbd0f310d",
+    "p4bl_bundle_id": "6a4050c4c03e8db33ee282608be50734f5e2aee1cf257bfcccdd85442f9c8567",
+    "p4bq_contract_path": "configs/u6_p4bq_lognormal_disc_boolean_nps_compatibility_v1.json",
+    "p4bq_contract_sha256": "966b9ba5f3781b6a39526e54d2ab481d1b82e077574e98a171c24060a5972026",
+    "p4bq_decision_path": "configs/u6_p4bq_lognormal_disc_boolean_nps_compatibility_decision_v1.json",
+    "p4bq_decision_sha256": "680591c77f9d19fe1c5b598e51dbd013b4c385f4d5440e3a887fe31170555c52",
+    "p4bq_report_path": "outputs/experiments/u6_p4bq_lognormal_disc_boolean_nps_compatibility_v1/run_a/report.json",
+    "p4bq_report_sha256": "efc4f154659922bf0a40972b170bc52dc274145cbf74dd4324b59c3ed4617ee9",
+    "p4bq_stable_evidence_id": "968cb5a14ebbf19877ab8a07322c6b3dab3389719b56349f908da7f1194b4ffc"
+  },
+  "primary_model_source": {
+    "citation": "Hawat, Gautier, Bardenet and Lachièze-Rey, What is the Fourier Transform of a Spatial Point Process?, IEEE Transactions on Information Theory 69(8), 2023",
+    "official_vor_pdf_url": "https://discovery.ucl.ac.uk/id/eprint/10171752/13/Murrell_What%20is%20the%20Fourier%20Transform%20of%20a%20Spatial%20Point%20Process_VoR.pdf",
+    "official_vor_pdf_path": "data/physical_grain/thomas_point_process_spectrum_2023_v1.pdf",
+    "official_vor_pdf_sha256": "fe8f7239e896fda2164682359823ca7345a9be70ff6213e8013c98dc967d199c",
+    "equation_8_thomas_spectral_density": "lambda*(1+mu*exp(-4*pi_squared*frequency_squared*cluster_sigma_squared))",
+    "clean_room_equation_use_only": true
+  },
+  "model": {
+    "candidate": "gaussian_particle_mark_times_thomas_cluster_structure_factor",
+    "radial_spectrum": "amplitude*exp(-4*pi_squared*particle_sigma_squared*f_squared)*(1+mu*exp(-4*pi_squared*cluster_sigma_squared*f_squared))*aperture_mtf_squared",
+    "particle_sigma_micrometres_shared_per_material_bounds": [0.1, 12.0],
+    "cluster_sigma_micrometres_per_state_bounds": [0.1, 30.0],
+    "mean_offspring_per_cluster_per_state_bounds": [0.01, 100.0],
+    "state_amplitude": "analytic_log10_least_squares",
+    "density_interpolation_allowed": false,
+    "render_allowed": false
+  },
+  "fit": {
+    "frequency_grid_lines_per_mm": {"minimum": 5.0, "maximum": 500.0, "step": 5.0},
+    "build_bands_lines_per_mm": [[5.0, 100.0], [255.0, 350.0]],
+    "confirmation_bands_lines_per_mm": [[105.0, 250.0], [355.0, 500.0]],
+    "objective": "mean_squared_log10_error_on_build_bands",
+    "optimizer": "deterministic_scipy_differential_evolution_in_log_parameter_space_then_polish",
+    "optimizer_seed": 2608022701,
+    "optimizer_max_iterations": 160,
+    "optimizer_population_size": 15,
+    "control": "one_gaussian_covariance_spectrum_per_state_fit_on_same_build_bands",
+    "post_score_scale_multiplicity_frequency_split_model_or_gate_tuning_allowed": false
+  },
+  "evaluation": {
+    "required_material_count": 2,
+    "required_profile_count": 5,
+    "minimum_confirmation_median_relative_improvement_over_gaussian": 0.25,
+    "minimum_each_material_confirmation_median_relative_improvement_over_gaussian": 0.1,
+    "maximum_candidate_to_gaussian_worst_confirmation_error_ratio": 1.0,
+    "minimum_profiles_beating_gaussian": 4,
+    "require_interior_particle_sigma": true,
+    "require_interior_cluster_sigma_and_multiplicity": true,
+    "interior_parameter_margin_fraction": 0.005,
+    "require_finite_positive_predictions": true,
+    "require_exact_parameter_and_report_replay": true,
+    "require_two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain Thomas-cluster Gaussian-mark geometry as a historical measured-NPS equation-family candidate and open a separately frozen density-law or independent measured-image confirmation.",
+    "fail": "Close this exact one-level Thomas cluster family without tuning; a successor must change the spatial interaction or add independently observed structure rather than capacity on the same five spectra."
+  },
+  "forbidden": [
+    "fit or inspect confirmation bands before all candidate and control parameters freeze",
+    "reuse the failed independent-disc model under a new name",
+    "interpret fitted particle or cluster sigmas as microscopic measurements",
+    "density interpolation, photographic rendering, modern-stock or product claims"
+  ],
+  "claim_ceiling": "Held-band compatibility of an explicit one-level Thomas clustered Gaussian-mark particle spectrum with five historical Fuji B&W measurements; effective correlation scales only, not calibrated grain geometry, modern stock or product evidence."
+}
