@@ -54,6 +54,7 @@ def test_contact_sheet_opens_only_bounded_tiff_integrity_audit() -> None:
     assert report["stock_ids"] == ["7207", "7219"]
     assert report["pdf_facts"]["page_image_counts"] == [15, 15, 15, 7]
     assert report["pdf_facts"]["embedded_image_count"] == 52
+    assert report["pdf_facts"]["decoded_modes"] == ["RGB16BE"]
     assert len(report["distinct_condition_labels"]) >= 4
     assert len(report["paired_roles"]) == 3
     assert all(row["explicit_label_match"] for row in report["paired_roles"])

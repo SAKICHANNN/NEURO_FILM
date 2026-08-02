@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 from typing import Any
 
+import numpy as np
 from pypdf import PdfReader
 
 CONTRACT_SCHEMA = (
@@ -123,12 +124,27 @@ def _decode_contact_sheet(
     modes: set[str] = set()
     index = 0
     for page in reader.pages:
-        for embedded in page.images:
-            image = embedded.image.convert("RGB")
-            widths.add(image.width)
-            heights.add(image.height)
-            modes.add(image.mode)
-            image_hashes[index] = hashlib.sha256(image.tobytes()).hexdigest()
+        ordered_images = sorted(
+            page.images,
+            key=lambda image: int(image.indirect_reference.idnum),
+        )
+        for embedded in ordered_images:
+            image_object = embedded.indirect_reference.get_object()
+            width = int(image_object["/Width"])
+            height = int(image_object["/Height"])
+            bits = int(image_object["/BitsPerComponent"])
+            decoded = image_object.get_data()
+            if bits != 16 or len(decoded) != width * height * 3 * 2:
+                raise Vision3ContactSheetSourceError(
+                    "BU6 embedded image is not packed 16-bit RGB"
+                )
+            # pypdf's PIL convenience conversion treats these ICCBased 16-bit
+            # samples as byte-interleaved RGB. Decode the PDF samples directly.
+            samples = np.frombuffer(decoded, dtype=">u2").reshape(height, width, 3)
+            widths.add(width)
+            heights.add(height)
+            modes.add("RGB16BE")
+            image_hashes[index] = hashlib.sha256(samples.tobytes()).hexdigest()
             index += 1
     facts = {
         "page_count": len(reader.pages),
@@ -184,7 +200,7 @@ def evaluate_contact_sheet_source(
         "embedded_image_count": expected["embedded_image_count"],
         "embedded_image_widths": [expected["embedded_image_width"]],
         "embedded_image_heights": [expected["embedded_image_height"]],
-        "decoded_modes": ["RGB"],
+        "decoded_modes": ["RGB16BE"],
         "metadata_title": expected["metadata_title"],
         "metadata_author": expected["metadata_author"],
     }
