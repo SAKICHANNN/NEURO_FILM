@@ -9617,3 +9617,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - This is not a support/correction rescue for P6AB. Pass can retain only an
   offline synthetic presampling reference; measured scanner, stock, process,
   quality, native and product claims remain closed.
+
+## 2026-08-02 - U6.P6AC retains ordering evidence and closes 8x approximation
+
+- Two full reports are byte-identical at `203c0676...30f846`, stable evidence
+  `f6928274...52a82f78`. Constants, transmittance range, replay and 3/7/11-row
+  partition gates pass.
+- The physically ordered 8x path reduces RMSE `91.95%` versus the best
+  post-raster control and `89.10%` versus applying the aperture to density
+  before conversion to transmittance. The order is therefore material on the
+  fixed marked-Poisson dye-cloud fixture.
+- The approximation still fails its frozen independent-reference accuracy:
+  RMSE `.006914 > .005` and P95 `.013875 > .0125`. Close 8x without another
+  zoom, fixture or threshold. Retain only the deterministic 16x offline
+  reference and move to direct continuous-geometry aperture quadrature.

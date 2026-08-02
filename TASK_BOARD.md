@@ -788,3 +788,11 @@ circular aperture on an 8x physical lattice and only then samples at 4000 dpi.
 A separately rendered 16x lattice is the reference; wrong density ordering,
 post-raster P6AB and equal-moment Gaussian are fixed controls. This is an
 offline synthetic reference experiment, not a P6AB rescue or product profile.
+
+U6.P6AC confirms the physical ordering signal but closes the 8x raster
+approximation. It improves RMSE by `91.95%` versus the best post-raster control
+and `89.10%` versus aperture-on-density, yet misses its independent 16x
+reference gates at `.006914 > .005` RMSE and `.013875 > .0125` P95. Two reports
+are exact (`203c0676...30f846`). Retain the deterministic 16x path only as an
+offline reference; P6AD may test direct continuous-cloud aperture quadrature,
+not another oversampling factor or post-raster kernel.

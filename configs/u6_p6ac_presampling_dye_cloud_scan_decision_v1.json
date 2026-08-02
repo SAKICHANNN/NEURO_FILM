@@ -1,0 +1,36 @@
+{
+  "schema": "neuro_film.u6_p6ac_presampling_dye_cloud_scan_decision.v1",
+  "node": "U6.P6AC",
+  "decision": "retain_16x_presampling_reference_close_8x_approximation",
+  "contract_commit": "39f3281a",
+  "implementation_commit": "d74d915a",
+  "report_path": "outputs/experiments/u6_p6ac_presampling_dye_cloud_scan_v1/report_run1.json",
+  "report_sha256": "203c0676643c58d85bb627c9936bc559af88412682fe52ea99d5ffd4bb30f846",
+  "stable_evidence_id": "f6928274fa5c275878d2b032123092736be9649f6a5d935793e225d052a82f78",
+  "two_reports_byte_exact": true,
+  "automatic_pass": false,
+  "metrics": {
+    "candidate_rmse": 0.006913760525436627,
+    "candidate_p95_absolute_error": 0.013875157775390012,
+    "wrong_order_rmse": 0.06343386591135389,
+    "post_raster_circular_rmse": 0.08583761117507932,
+    "post_raster_gaussian_rmse": 0.12813833274177797,
+    "rmse_improvement_vs_best_post_raster": 0.9194553479437478,
+    "rmse_improvement_vs_wrong_order": 0.8910083686985385,
+    "constant_error": 3.885780586188048e-16,
+    "repeat_error": 0.0,
+    "partition_error": 0.0
+  },
+  "failed_gates": [
+    "maximum_candidate_rmse",
+    "maximum_candidate_p95_absolute_error"
+  ],
+  "retained_facts": [
+    "The typed density-to-transmittance-before-aperture order materially outperforms wrong-order and post-raster controls on the fixed dye-cloud fixture.",
+    "The independently rendered 16x path is deterministic, bounded and suitable only as an offline synthetic reference."
+  ],
+  "same_raster_family_rescue_allowed": false,
+  "next_leaf": "U6.P6AD tests direct deterministic circular-aperture quadrature on continuous cloud geometry without an intermediate oversampled raster.",
+  "production_profile_integration_allowed": false,
+  "claim_ceiling": "Generic synthetic colour dye-cloud plus scanner-aperture ordering evidence; no measured film, scanner, stock, process, quality or product claim."
+}

@@ -1,5 +1,13 @@
 # Active stock-first pointer — 2026-07-16
 
+> 2026-08-02: U6.P6AC establishes that scanner ordering matters but closes its
+> 8x raster approximation. It reduces RMSE `91.95%` versus the best post-raster
+> control and `89.10%` versus aperture-on-density, but independent-16x RMSE/P95
+> are `.006914/.013875`, above `.005/.0125`. Two reports are exact
+> (`203c0676...30f846`). Keep the 16x path as an offline reference only; next
+> test direct continuous-cloud aperture quadrature without a high-resolution
+> intermediate raster.
+>
 > 2026-08-02: U6.P6AB closes the direct 4000-dpi circular-aperture
 > discretization. The 3x3 positive kernel preserves execution invariants and
 > improves RMSE `82.17%` over a point aperture, but its `.12906` maximum
