@@ -11,7 +11,10 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.eval.promist_halation_identifiability import evaluate, write_report  # noqa: E402
+from src.eval.promist_halation_identifiability import (
+    evaluate,
+    write_report,
+)
 
 
 def main() -> None:
