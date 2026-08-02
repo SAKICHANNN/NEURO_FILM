@@ -1,0 +1,59 @@
+{
+  "schema": "neuro_film.u6_p4bg_aperture_scaled_compound_poisson_contract.v1",
+  "experiment_id": "u6.p4bg-aperture-scaled-compound-poisson-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4BG",
+  "date_frozen": "2026-08-02",
+  "question": "Can the retained 48-micrometre compound-Poisson amplitude be compiled into a typed, reversible multi-aperture profile using only the independently confirmed fixed Kodak aperture law?",
+  "parents": {
+    "p4bb_decision_path": "configs/u6_p4bb_aperture_cell_compound_poisson_decision_v1.json",
+    "p4bb_decision_sha256": "2398b418b9bc0283b5c3aeb40deffe621a669f3e6c463adf64de25c0ebee5c0a",
+    "p4bb_bundle_path": "outputs/experiments/u6_p4bb_aperture_cell_compound_poisson_v1/run_a/bundle.json",
+    "p4bb_bundle_sha256": "67863dfb28799062200dccb556c69db0280bbeb49afe667f942d4b40e9be86d2",
+    "p4bb_report_path": "outputs/experiments/u6_p4bb_aperture_cell_compound_poisson_v1/run_a/report.json",
+    "p4bb_report_sha256": "962173085cb1660a21ec4afeb1f475beec926fc1676d47d99dab6cd14ad69889",
+    "p4bb_stable_evidence_id": "d79f8d6714c88b9985f83850a0134d1b35ce33859e46074ca9a5c79ba6369009",
+    "p4bf_commit": "40eb4f51e11a11342af08a7f5da228a8d3902713",
+    "p4bf_decision_path": "configs/u6_p4bf_kodak_aperture_law_confirmation_decision_v1.json",
+    "p4bf_decision_sha256": "8da57f59bb44cce8e63659155bdca65aca784a1f4ff2f4cf8acc4fb31b7d0537",
+    "p4bf_report_path": "outputs/experiments/u6_p4bf_kodak_aperture_law_confirmation_v1/run_a/report.json",
+    "p4bf_report_sha256": "0bd0dd20c336ac92002b8faaa98b3f5af68595db9ed5f6f712972696fa83adf4",
+    "p4bf_stable_evidence_id": "ac18ff5e036e2dcbf75799f0a65a7b340065d08ba2d7115f97ff40998c426d7c"
+  },
+  "candidate": {
+    "schema": "neuro_film.aperture_scaled_compound_poisson_profile.v1",
+    "reference_aperture_micrometres": 48.0,
+    "minimum_aperture_micrometres": 7.25,
+    "maximum_aperture_micrometres": 384.0,
+    "density_mean_scaling": "identity",
+    "density_rms_scaling": "sigma_to = sigma_from * aperture_from / aperture_to",
+    "poisson_rate_scaling": "rate_to = rate_from * (aperture_to / aperture_from)^2",
+    "density_mark_scaling": "mark_to = mark_from * (aperture_from / aperture_to)^2",
+    "spatial_nps_selected": false,
+    "render_allowed": false
+  },
+  "evaluation": {
+    "apertures_micrometres": [7.25, 12.0, 24.0, 48.0, 96.0, 192.0, 384.0],
+    "required_probe_count": 15,
+    "required_scaled_row_count": 105,
+    "maximum_density_roundtrip_relative_error": 1e-14,
+    "maximum_scale_composition_relative_error": 1e-14,
+    "maximum_parameter_scaling_relative_error": 1e-14,
+    "maximum_high_precision_transmittance_relative_error": 1e-12,
+    "require_reference_aperture_exact_parent": true,
+    "require_profile_roundtrip_identity": true,
+    "require_two_byte_identical_bundles_and_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain a bounded typed aperture-amplitude compiler for the offline reference simulator; keep spatial NPS and photographic rendering closed.",
+    "fail": "Retain only the 48-micrometre P4BB profile and do not rescue the scaling implementation or broaden aperture support."
+  },
+  "forbidden": [
+    "fit an exponent or amplitude after scoring",
+    "extrapolate outside 7.25-384 micrometres",
+    "select a spatial spectrum or synthesize pixels",
+    "treat compound-Poisson events as identified grains or dye clouds",
+    "transfer historical Kodak table amplitudes into the Kodak 250D profile",
+    "alter a product default"
+  ],
+  "claim_ceiling": "Typed reversible aperture scaling of an existing 48-micrometre density-amplitude representation inside the independently confirmed historical 7.25-384 micrometre range; no spatial NPS, microscopic geometry, modern-stock calibration, raster or product claim."
+}
