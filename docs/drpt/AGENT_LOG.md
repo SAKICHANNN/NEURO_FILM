@@ -9657,3 +9657,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close without more samples or sequence tuning. The disagreement now makes
   convergence of the assumed 16x reference a discriminating prerequisite;
   audit that reference before judging another target compiler.
+
+## 2026-08-02 - Freeze U6.P6AE presampling reference convergence
+
+- Freeze an independent 32x render before using the P6AC 16x raster as a
+  continuing algorithm-selection target. First require a float64 FFT linear
+  convolution to reproduce the existing 16x spatial convolution within
+  `1e-12`; then compare 8x/16x against 32x on the unchanged physical fixture.
+- Require 16x RMSE/P95 at most `.003/.0075` and at least 50% convergence gain
+  from 8x to 16x, plus range and exact replay. No convergence correction,
+  extrapolation or P6AC/P6AD tuning is allowed.

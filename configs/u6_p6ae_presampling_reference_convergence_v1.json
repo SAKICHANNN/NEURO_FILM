@@ -1,0 +1,60 @@
+{
+  "schema": "neuro_film.u6_p6ae_presampling_reference_convergence_contract.v1",
+  "experiment_id": "u6.p6ae-presampling-reference-convergence-v1",
+  "node": "ULT > U6 > U6.P6 > U6.P6AE",
+  "date_frozen": "2026-08-02",
+  "parent": {
+    "decision_path": "configs/u6_p6ad_direct_cloud_aperture_quadrature_decision_v1.json",
+    "decision_sha256": "0f3a5b5d05ffd242ade85cc7399a02b7d50e7bb06f547bec590d45fcb38cd6e2",
+    "stable_evidence_id": "f596eed9eace63ad820d2fb9bfe5411c2a2587a6a9fc688f434d29050957c271",
+    "p6ac_reference_report_path": "outputs/experiments/u6_p6ac_presampling_dye_cloud_scan_v1/report_run1.json",
+    "p6ac_reference_report_sha256": "203c0676643c58d85bb627c9936bc559af88412682fe52ea99d5ffd4bb30f846"
+  },
+  "question": "Is the frozen P6AC 16x presampling raster sufficiently converged to a separately rendered 32x reference to serve as an algorithm-selection target?",
+  "material": {
+    "input_shape": [17, 19],
+    "target_pixel_pitch_um": 6.35,
+    "zooms": [8, 16, 32],
+    "aperture_diameter_um": 12.5,
+    "aperture_subpixels_per_axis": 256,
+    "radius_um_cmy": [1.8, 2.2, 2.6],
+    "mark_optical_density_cmy": [0.16, 0.20, 0.24],
+    "monte_carlo_samples": 4,
+    "seed": 26080263
+  },
+  "reference": {
+    "convolution": "edge-extended float64 FFT linear convolution",
+    "fft_must_match_existing_16x_spatial_convolution": true,
+    "sample_rule": "bilinear average of the four high-resolution samples surrounding each exact target-cell centre"
+  },
+  "evaluation": {
+    "interior_crop_target_pixels": 2,
+    "metrics": [
+      "16x FFT versus existing 16x spatial maximum absolute error",
+      "16x versus 32x RMSE and P95 absolute error",
+      "8x-to-16x convergence improvement against 32x",
+      "bounded transmittance and exact replay"
+    ]
+  },
+  "gates": {
+    "maximum_fft_vs_spatial_16x_error": 1e-12,
+    "maximum_16x_vs_32x_rmse": 0.003,
+    "maximum_16x_vs_32x_p95_absolute_error": 0.0075,
+    "minimum_convergence_improvement_from_8x_to_16x": 0.50,
+    "minimum_transmittance": 0.0,
+    "maximum_transmittance": 1.0,
+    "maximum_repeat_error": 0.0
+  },
+  "forbidden": [
+    "change zooms, fixture, geometry, aperture, sampling rule or gates after scoring",
+    "fit or extrapolate a convergence correction",
+    "use the 32x output inside a product or target compiler",
+    "reinterpret failure as permission to tune P6AC or P6AD",
+    "claim measured film/scanner convergence, calibration or product quality"
+  ],
+  "branch_rule": {
+    "pass": "Validate 16x as the frozen offline synthetic reference and keep P6AD closed; a future compiler must use a new mechanism and unchanged target.",
+    "fail": "Revoke 16x as an algorithm-selection target, retain 32x only as provisional offline reference, and require a separately frozen reference-convergence design before new compiler work."
+  },
+  "claim_ceiling": "Generic synthetic presampling reference-convergence evidence; no measured film, scanner, stock, process, quality or product claim."
+}
