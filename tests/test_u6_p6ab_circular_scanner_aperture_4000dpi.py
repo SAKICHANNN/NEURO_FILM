@@ -14,6 +14,7 @@ from src.eval.circular_scanner_aperture_4000dpi import (
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u6_p6ab_circular_scanner_aperture_4000dpi_v1.json"
 PARENT = ROOT / "configs/u6_p6aa_circular_scanner_aperture_decision_v1.json"
+DECISION = ROOT / "configs/u6_p6ab_circular_scanner_aperture_4000dpi_decision_v1.json"
 
 
 def test_contract_is_direct_and_reference_free() -> None:
@@ -40,3 +41,16 @@ def test_target_evaluator_repeats_without_profile_integration() -> None:
     assert first == second
     assert first["metrics"]["kernel_shape"] == [3, 3]
     assert contract["compiler"]["production_import_allowed"] is False
+
+
+@pytest.mark.skipif(not PARENT.is_file(), reason="P6AA parent decision unavailable")
+def test_frozen_decision_matches_replay() -> None:
+    report = evaluate_circular_scanner_aperture_4000dpi(load_contract(CONTRACT), ROOT)
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["decision"] == report["decision"]
+    assert decision["stable_evidence_id"] == report["stable_evidence_id"]
+    assert decision["automatic_pass"] is False
+    assert decision["failed_gates"] == [
+        "maximum_kernel_mtf_absolute_error",
+        "minimum_rmse_improvement_vs_gaussian",
+    ]

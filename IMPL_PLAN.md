@@ -1,5 +1,13 @@
 # Active stock-first pointer — 2026-07-16
 
+> 2026-08-02: U6.P6AB closes the direct 4000-dpi circular-aperture
+> discretization. The 3x3 positive kernel preserves execution invariants and
+> improves RMSE `82.17%` over a point aperture, but its `.12906` maximum
+> analytic MTF error fails `.05` and its RMSE is `60.80%` worse than the
+> equal-second-moment Gaussian. Two reports are exact
+> (`74d0a252...49da48`). Retain U6.P6AA as an offline reference only; do not
+> rescue P6AB with wider support, negative taps or fitted correction.
+>
 > 2026-08-02: U6.P6S retains a typed Kodak Digital LAD neutral recorder/print
 > anchor. Two byte-identical reports (`e57aa2b...d7eab`) pass all 16 gates:
 > exact LAD input density, 824 compatible negative and interpositive codes,

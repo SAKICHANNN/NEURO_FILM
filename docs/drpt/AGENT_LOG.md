@@ -9589,3 +9589,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   positivity, impulse, constant, symmetry, repeat and partition gates.
 - No support increase, negative taps, deconvolution, fitted correction, profile
   mutation or product claim is permitted after scoring.
+
+## 2026-08-02 - U6.P6AB closes direct 4000-dpi aperture compiler
+
+- Implemented the unchanged disk-area compiler at exact `6.35um` pitch and
+  ran the frozen evaluator twice. Reports are byte-identical at
+  `74d0a252...49da48` with stable evidence `9ca2cb6c...9dea77b4`.
+- The 3x3 positive kernel preserves normalization, rotation, constants,
+  impulse, repeat and 7/17/31-row partition behavior. It improves RMSE by
+  `82.17%` over a point aperture.
+- It fails the decisive target-resolution gates: maximum analytic MTF error is
+  `.12906 > .05`, and kernel RMSE `.07757` is `60.80%` worse than the
+  equal-second-moment Gaussian `.04824`. Close without support, negative-tap,
+  deconvolution or fitted-correction rescue. P6AA remains an offline reference;
+  no scanner profile or product integration opens.

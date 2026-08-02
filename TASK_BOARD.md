@@ -773,3 +773,11 @@ disk-area compiler. It must stay within `.05` analytic MTF error through
 Nyquist, improve RMSE by `50%/80%` over Gaussian/point controls and preserve
 the P6AA execution invariants. No oversampled fallback or fitted correction is
 allowed in the target path.
+
+U6.P6AB closes the direct 4000-dpi compiler. Its 3x3 positive kernel preserves
+constant, impulse, rotation, repeat and row-partition invariants and beats a
+point aperture by `82.17%`, but maximum analytic MTF error is `.12906` and its
+RMSE is `60.80%` worse than the equal-second-moment Gaussian. Two reports are
+byte-exact (`74d0a252...49da48`). Do not rescue this discretization with wider
+support, negative taps or a fitted correction; retain P6AA only as an offline
+reference and continue a mechanism-distinct physical imaging leaf.

@@ -1,0 +1,35 @@
+{
+  "schema": "neuro_film.u6_p6ab_circular_scanner_aperture_4000dpi_decision.v1",
+  "node": "U6.P6AB",
+  "decision": "close_direct_4000dpi_circular_aperture_compiler",
+  "contract_commit": "c523fdd4",
+  "source_binding_amendment_commit": "bfa3c464",
+  "implementation_commit": "aee872a3",
+  "report_path": "outputs/experiments/u6_p6ab_circular_scanner_aperture_4000dpi_v1/report_run1.json",
+  "report_sha256": "74d0a2521be963af158c4b0d946257380695f337fe62d15e31619a9ca549da48",
+  "stable_evidence_id": "9ca2cb6cf50f0b4aca1390c723dd21f6fb8fd177ffbebba2f715a8609dea77b4",
+  "kernel_sha256": "350c43c3fed74ec3f871772b566f909eb54cf062337639b86fc13e632f4a37a6",
+  "two_reports_byte_exact": true,
+  "automatic_pass": false,
+  "metrics": {
+    "kernel_shape": [3, 3],
+    "positive_weight_count": 9,
+    "maximum_kernel_mtf_absolute_error": 0.12906031499363857,
+    "kernel_mtf_rmse": 0.07757032798999638,
+    "gaussian_mtf_rmse": 0.04823944873018633,
+    "point_mtf_rmse": 0.4350408431632064,
+    "rmse_improvement_vs_gaussian": -0.6080268334711701,
+    "rmse_improvement_vs_point": 0.8216941484712604,
+    "constant_error": 0.0,
+    "partition_error": 0.0,
+    "repeat_error": 0.0,
+    "impulse_error": 0.0
+  },
+  "failed_gates": [
+    "maximum_kernel_mtf_absolute_error",
+    "minimum_rmse_improvement_vs_gaussian"
+  ],
+  "same_family_rescue_allowed": false,
+  "production_profile_integration_allowed": false,
+  "claim_ceiling": "Generic synthetic 4000-dpi circular scanner-aperture compiler evidence; no measured modern device, scanner profile or product integration."
+}
