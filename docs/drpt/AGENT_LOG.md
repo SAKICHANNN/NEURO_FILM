@@ -9975,3 +9975,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   (`44c2aacc...a6d6`).
 - Keep the P4BN Hann bridge and stop tuning this synthetic window family. The
   next useful evidence must be an independent measured-image route.
+# 2026-08-02 - U6.P4BP closes fixed-disc Boolean NPS geometry
+
+- Implemented the IPOL primary-paper fixed-disc Poisson Boolean covariance and
+  Hankel spectrum independently; the GPL reference implementation was not
+  copied. Two formal processes are exact (`4f289048...77232`).
+- Held-band median log10 RMSE is `.81202` versus `.34271` for a per-state
+  one-Gaussian control; Medical X-ray regresses `139.37%`, worst ratio is
+  `1.33348`, and fitted coverage is not density-monotone.
+- Close the fixed-radius family without rescue. A separately frozen
+  variable-radius or clustered-particle mechanism is the next scientific leaf;
+  no render, microscopic-radius claim or product integration opens.

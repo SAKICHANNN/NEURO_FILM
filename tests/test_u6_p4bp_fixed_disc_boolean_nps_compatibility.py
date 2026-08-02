@@ -19,6 +19,9 @@ from src.film_physics.fixed_disc_boolean_nps import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u6_p4bp_fixed_disc_boolean_nps_compatibility_v1.json"
+DECISION = (
+    ROOT / "configs/u6_p4bp_fixed_disc_boolean_nps_compatibility_decision_v1.json"
+)
 
 
 def _sha256(path: Path) -> str:
@@ -93,3 +96,21 @@ def test_p4bp_contract_rejects_postscore_radius_rescue(tmp_path: Path) -> None:
     path.write_text(json.dumps(payload), encoding="utf-8")
     with pytest.raises(FixedDiscBooleanNPSCompatibilityError, match="contract drift"):
         load_contract(path)
+
+
+def test_p4bp_decision_binds_two_exact_formal_negative_reports() -> None:
+    payload = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert payload["decision"] == "close_fixed_disc_boolean_measured_nps_equation_family"
+    assert payload["automatic_pass"] is False
+    assert payload["report_sha256"] == payload["repeat_report_sha256"] == (
+        "4f289048b384aef3ad83ff9279d89682c84099101cdcaa10cecf7b2647b77232"
+    )
+    assert payload["stable_evidence_id"] == (
+        "98288cc78212b7629f57b549a59806d122df5918ede8abc063bb9633d44aafd2"
+    )
+    assert payload["failed_gates"] == [
+        "confirmation_median_improvement",
+        "each_material_confirmation_median_improvement",
+        "worst_confirmation_not_worse",
+        "density_monotone_coverage",
+    ]

@@ -1,0 +1,32 @@
+{
+  "schema": "neuro_film.u6_p4bp_fixed_disc_boolean_nps_compatibility_decision.v1",
+  "experiment_id": "u6.p4bp-fixed-disc-boolean-nps-compatibility-v1",
+  "date": "2026-08-02",
+  "decision": "close_fixed_disc_boolean_measured_nps_equation_family",
+  "automatic_pass": false,
+  "report_path": "outputs/experiments/u6_p4bp_fixed_disc_boolean_nps_compatibility_v1/run_a/report.json",
+  "report_sha256": "4f289048b384aef3ad83ff9279d89682c84099101cdcaa10cecf7b2647b77232",
+  "repeat_report_path": "outputs/experiments/u6_p4bp_fixed_disc_boolean_nps_compatibility_v1/run_b/report.json",
+  "repeat_report_sha256": "4f289048b384aef3ad83ff9279d89682c84099101cdcaa10cecf7b2647b77232",
+  "stable_evidence_id": "98288cc78212b7629f57b549a59806d122df5918ede8abc063bb9633d44aafd2",
+  "candidate_confirmation_median_log10_rmse": 0.8120206256164244,
+  "gaussian_confirmation_median_log10_rmse": 0.3427077510061274,
+  "confirmation_median_relative_improvement": -1.3694259124063581,
+  "candidate_to_gaussian_worst_error_ratio": 1.3334839808911354,
+  "material_median_relative_improvements": {
+    "fuji_medical_xray_rendol_20c_5min": -1.3936862048016379,
+    "fuji_neopan_sss_pandol_20c_10min": 0.06139861750240707
+  },
+  "fitted_shared_radius_micrometres": {
+    "fuji_medical_xray_rendol_20c_5min": 3.3584427530952885,
+    "fuji_neopan_sss_pandol_20c_10min": 3.2390435659175187
+  },
+  "failed_gates": [
+    "confirmation_median_improvement",
+    "each_material_confirmation_median_improvement",
+    "worst_confirmation_not_worse",
+    "density_monotone_coverage"
+  ],
+  "next": "A separately frozen variable-radius or clustered-particle equation family may be tested because it materially changes the microscopic geometry; do not retune the fixed-radius family or its frequency split.",
+  "claim_ceiling": "Formal negative compatibility result for a clean-room fixed-disc Boolean equation family against five historical Fuji B&W measured spectra; it does not reject variable-radius or clustered-grain models and does not calibrate microscopic radius or any modern product profile."
+}
