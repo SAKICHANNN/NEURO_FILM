@@ -9933,3 +9933,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   1D-to-2D Wiener-spectrum conversion.
 - Open only a historical Fuji B&W measured-NPS compiler. This does not transfer
   a spatial spectrum to Kodak 250D, colour dye clouds, photographs or product.
+
+## 2026-08-02 - U6.P4BL compiles five measured historical spectra
+
+- Added immutable typed profiles for the five P4BK density states, retaining
+  the published 1D Gaussian sum, aperture-convolved 2D spectrum and 1um
+  circular-aperture correction.
+- Numerical projection of each 2D spectrum back to 1D is exact to `1.33e-15`;
+  the frozen 0-500 lines/mm interval stays zero-free with MTF >= `.72170` and
+  correction <= `1.91992x`. Two bundles/reports are byte-identical.
+- Next is an offline physical-scale field synthesis/parity test. Do not combine
+  these spectra with P4BJ/Kodak amplitudes or claim colour/product calibration.

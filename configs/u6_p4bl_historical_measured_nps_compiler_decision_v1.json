@@ -1,0 +1,29 @@
+{
+  "schema": "neuro_film.u6_p4bl_historical_measured_nps_compiler_decision.v1",
+  "experiment_id": "u6.p4bl-historical-measured-nps-compiler-v1",
+  "date": "2026-08-02",
+  "decision": "retain_historical_bw_measured_nps_profiles",
+  "automatic_pass": true,
+  "bundle_path": "outputs/experiments/u6_p4bl_historical_measured_nps_compiler_v1/run_a/bundle.json",
+  "bundle_sha256": "2299a1acd914aaa865910fc2a7601f286db3df69ffa642d3bc31de8dbd0f310d",
+  "bundle_id": "6a4050c4c03e8db33ee282608be50734f5e2aee1cf257bfcccdd85442f9c8567",
+  "report_path": "outputs/experiments/u6_p4bl_historical_measured_nps_compiler_v1/run_a/report.json",
+  "report_sha256": "e36bfc27a01f7ce20cd33bfab88f92542034ddcb3be777033f2ab6980413ea36",
+  "stable_evidence_id": "47408aa84dc01b5a5b30b3a342752ddaa6e7c781162ecf625af7c0066b71d201",
+  "profile_count": 5,
+  "component_count": 11,
+  "frequency_interval_lines_per_mm": [0.0, 500.0],
+  "maximum_projection_relative_error": 1.33226762955019e-15,
+  "minimum_aperture_mtf": 0.7217028449034383,
+  "maximum_aperture_correction_ratio": 1.9199201448073122,
+  "opens": [
+    "separately_frozen_historical_bw_measured_nps_spatial_field_synthesis"
+  ],
+  "does_not_open": [
+    "density_interpolation_or_extrapolation",
+    "kodak_or_colour_film_spectrum_transfer",
+    "composition_with_p4bj_amplitudes",
+    "photographic_render_or_product_integration"
+  ],
+  "claim_ceiling": "Typed exact compiler for five historical Fuji black-and-white measured spectra on 0-500 lines/mm, reproducing the source projection and aperture correction; not colour-film structure, modern-stock calibration, scanner response, photographic quality or product evidence."
+}

@@ -18,6 +18,7 @@ from src.film_physics.historical_noise_spectrum import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u6_p4bl_historical_measured_nps_compiler_v1.json"
+DECISION = ROOT / "configs/u6_p4bl_historical_measured_nps_compiler_decision_v1.json"
 SOURCE = ROOT / "configs/u6_p4bk_fuji_noise_spectrum_source_v1.json"
 SOURCE_EVIDENCE_ID = (
     "8561040664c2511b350ba6259dc9c32acba2c5733804be4993cafe96702eda1b"
@@ -46,6 +47,20 @@ def test_historical_profile_reproduces_published_equations() -> None:
     assert float(profile.circular_aperture_mtf(0.0)) == 1.0
     assert float(profile.intrinsic_2d(0.0, 0.0)) == pytest.approx(
         expected_q0, abs=0.0, rel=1e-15
+    )
+
+
+def test_p4bl_decision_binds_formal_compiler() -> None:
+    payload = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert payload["decision"] == "retain_historical_bw_measured_nps_profiles"
+    assert payload["bundle_sha256"] == (
+        "2299a1acd914aaa865910fc2a7601f286db3df69ffa642d3bc31de8dbd0f310d"
+    )
+    assert payload["report_sha256"] == (
+        "e36bfc27a01f7ce20cd33bfab88f92542034ddcb3be777033f2ab6980413ea36"
+    )
+    assert payload["stable_evidence_id"] == (
+        "47408aa84dc01b5a5b30b3a342752ddaa6e7c781162ecf625af7c0066b71d201"
     )
 
 
@@ -80,4 +95,3 @@ def test_historical_measured_nps_compiler_passes() -> None:
     assert len(bundle["profiles"]) == 5
     assert bundle["render_allowed"] is False
     assert all(report["gate_results"].values())
-
