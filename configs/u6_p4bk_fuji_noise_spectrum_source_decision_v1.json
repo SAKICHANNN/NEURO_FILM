@@ -1,0 +1,26 @@
+{
+  "schema": "neuro_film.u6_p4bk_fuji_noise_spectrum_source_decision.v1",
+  "experiment_id": "u6.p4bk-fuji-noise-spectrum-source-v1",
+  "date": "2026-08-02",
+  "decision": "open_historical_bw_measured_nps_compiler",
+  "automatic_pass": true,
+  "report_path": "outputs/experiments/u6_p4bk_fuji_noise_spectrum_source_v1/run_a/report.json",
+  "report_sha256": "213948034368e60f6d7c3a3d1f72ad94e309a9ee4c4817241def57f32d2bd1d8",
+  "stable_evidence_id": "8561040664c2511b350ba6259dc9c32acba2c5733804be4993cafe96702eda1b",
+  "source_pdf_sha256": "f03541cacdd0deacc0475f8a5ea3aa8bf2761e87d8183037e27a51283f4d92bf",
+  "transcription_sha256": "d0291e334d2396180d10b23b6f1dda5889fd74d37b223ec8d1f44feacfe75e09",
+  "table_row_count": 5,
+  "gaussian_component_count": 11,
+  "material_process_context_count": 2,
+  "graph_digitization_used": false,
+  "opens": [
+    "separately_frozen_historical_bw_measured_nps_compiler"
+  ],
+  "does_not_open": [
+    "modern_stock_or_colour_film_nps_transfer",
+    "photographic_render_or_quality_claim",
+    "scanner_or_print_response",
+    "product_integration_or_profile"
+  ],
+  "claim_ceiling": "Exact internal source audit for five historical Fuji black-and-white measured grain-spectrum states and their published 1D-to-2D aperture correction; not modern stock calibration, colour-film structure, photographic quality, raster rendering or product evidence."
+}

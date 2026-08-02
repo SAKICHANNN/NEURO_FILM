@@ -9923,3 +9923,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain this only as an amplitude-correct synthetic reference. P4BI still
   leaves NPS/correlation unidentified, so photographic and product rendering
   remain closed.
+
+## 2026-08-02 - U6.P4BK finds a measured historical B&W NPS source
+
+- Locked the exact official Ooue/Fuji 1960 PDF (`f03541ca...92bf`) and its
+  five Table 1 density states/11 Gaussian components without graph digitizing.
+- Two source audits are byte-identical (`21394803...d1d8`, stable
+  `85610406...da1b`); the 1um aperture and equations 5-9 provide an explicit
+  1D-to-2D Wiener-spectrum conversion.
+- Open only a historical Fuji B&W measured-NPS compiler. This does not transfer
+  a spatial spectrum to Kodak 250D, colour dye clouds, photographs or product.

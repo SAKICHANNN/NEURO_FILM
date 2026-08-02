@@ -13,6 +13,7 @@ from src.eval.fuji_noise_spectrum_source import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u6_p4bk_fuji_noise_spectrum_source_v1.json"
+DECISION = ROOT / "configs/u6_p4bk_fuji_noise_spectrum_source_decision_v1.json"
 
 
 def test_p4bk_contract_is_frozen_before_audit() -> None:
@@ -36,6 +37,18 @@ def test_p4bk_contract_rejects_coefficient_drift(tmp_path: Path) -> None:
     path.write_text(json.dumps(payload), encoding="utf-8")
     with pytest.raises(FujiNoiseSpectrumSourceError, match="contract drift"):
         load_contract(path)
+
+
+def test_p4bk_decision_binds_source_audit() -> None:
+    payload = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert payload["decision"] == "open_historical_bw_measured_nps_compiler"
+    assert payload["report_sha256"] == (
+        "213948034368e60f6d7c3a3d1f72ad94e309a9ee4c4817241def57f32d2bd1d8"
+    )
+    assert payload["stable_evidence_id"] == (
+        "8561040664c2511b350ba6259dc9c32acba2c5733804be4993cafe96702eda1b"
+    )
+    assert payload["graph_digitization_used"] is False
 
 
 def test_p4bk_source_audit_passes() -> None:
