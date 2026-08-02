@@ -1,0 +1,158 @@
+{
+  "schema": "neuro_film.u5_r2bu8_kodak_verita_200d_source_signature_contract.v1",
+  "experiment_id": "U5.R2BU8",
+  "node": "ULT > U5 > U5.R2 > U5.R2BU8",
+  "date_frozen": "2026-08-01",
+  "question": "Does Kodak's first-party 2026 VERITA 200D datasheet add a reproducible multi-domain stock source signature beyond the frozen VISION3 50D, 250D and 500T observed profiles?",
+  "source": {
+    "title": "KODAK VERITA 200D Color Negative Film 5206 / 7206 Technical Data",
+    "url": "https://www.kodak.com/content/pdfs/motion/KODAK-VERITA-200D-5206-7206-technical-information.pdf",
+    "path": "data/physics/kodak_verita_200d/technical_data.pdf",
+    "expected_bytes": 250124,
+    "sha256": "aa5bfd899003cf4a0ae5a86a33325e0eac2ed16b9fca61c8894532de1458bae2",
+    "publisher": "Eastman Kodak Company",
+    "publication": "H-1-5206 New 04-26",
+    "stock_id": "kodak_verita_200d_5206_7206",
+    "measurement_context": {
+      "nominal_balance": "5500 K daylight",
+      "process": "ECN-2",
+      "densitometry": "Status M",
+      "granularity_aperture_micrometres": 48.0,
+      "manufacturer_curve_scope": "representative production coatings, not a standard or a particular roll"
+    }
+  },
+  "vector_source": {
+    "page_zero_based": 2,
+    "decoded_content_bytes": 48293,
+    "decoded_content_sha256": "2f67a6759ca80d4839830c4037c00e268e253f0bb32c863d2f191e9e18f109f9",
+    "characteristic": {
+      "channels": {
+        "blue": {"stroke_operation_index": 685, "cubic_segments": 20},
+        "green": {"stroke_operation_index": 713, "cubic_segments": 20},
+        "red": {"stroke_operation_index": 741, "cubic_segments": 20}
+      },
+      "dash": "solid",
+      "line_width": 2.0,
+      "x_axis": {"scale": "linear", "anchors": [[-3.0, 377.061819], [2.0, 523.292691]]},
+      "y_axis": {"scale": "linear", "anchors": [[0.0, 393.848662], [3.2, 554.986473]]}
+    },
+    "granularity": {
+      "channels": {
+        "blue": {"stroke_operation_index": 770, "cubic_segments": 20},
+        "green": {"stroke_operation_index": 799, "cubic_segments": 20},
+        "red": {"stroke_operation_index": 828, "cubic_segments": 20}
+      },
+      "dash": [6, 8],
+      "line_width": 2.0,
+      "x_axis": {"scale": "linear", "anchors": [[-3.0, 377.061819], [2.0, 523.292691]]},
+      "y_axis": {"scale": "log10", "anchors": [[0.001, 393.848662], [1.0, 554.986473]]}
+    },
+    "mtf": {
+      "channels": {
+        "blue": {"stroke_operation_index": 2712, "cubic_segments": 6, "leading_lines": 2},
+        "green": {"stroke_operation_index": 2744, "cubic_segments": 6, "leading_lines": 2},
+        "red": {"stroke_operation_index": 2728, "cubic_segments": 5, "leading_lines": 3}
+      },
+      "dash": "solid",
+      "line_width": 2.667,
+      "x_axis": {"scale": "log10", "anchors": [[1.0, 68.796627], [100.0, 269.684621]]},
+      "y_axis": {"scale": "log10", "anchors": [[1.0, 426.510431], [1000.0, 562.564781]]}
+    }
+  },
+  "vision3_evidence": {
+    "characteristic_trace": {
+      "path": "configs/data/kodak_vision3_characteristic_curve_pixels_v1.json",
+      "sha256": "e7d9d45cd56066d1cc770c3a506117fcddc4ae52417c6d69d4088e8d0da61dfb"
+    },
+    "characteristic_decision": {
+      "path": "configs/u6_p2t_kodak_vision3_characteristic_diversity_decision_v1.json",
+      "sha256": "9cd529029ad2495382750c6b61d3c0c167cdbb559ddc0cdecb0671411a14e6db",
+      "required_decision": "retain_one_shared_manufacturer_shape_prior_and_close_stock_specific_shape_bank"
+    },
+    "mtf_trace": {
+      "path": "configs/data/kodak_vision3_mtf_curve_pixels_v1.json",
+      "sha256": "d88c0e698c0e0969696224df50f1573ed78a6de0a894075f6502d9b3f658a794"
+    },
+    "mtf_decision": {
+      "path": "configs/u5_r2bu0_kodak_vision3_mtf_diversity_decision_v1.json",
+      "sha256": "eae84870c4c3706228fecbe5696825c7d500020558dab94d8b6177baabe1848e",
+      "required_decision": "retain_source_domain_mtf_signature_and_open_joint_physical_prior_compiler"
+    },
+    "granularity_trace": {
+      "path": "configs/data/kodak_vision3_granularity_curve_pixels_v1.json",
+      "sha256": "00b3436c9619a477bf13dcae0ab90df6fd9470bc1976e77484983a4a0029f145"
+    },
+    "granularity_decision": {
+      "path": "configs/u5_r2bu2_kodak_vision3_granularity_diversity_decision_v1.json",
+      "sha256": "d9d55f2d04107fa52c82c5edec219fe9e04cb5634c1ccf6f5ab27e5cc4ebace1",
+      "required_decision": "retain_source_domain_granularity_signature"
+    },
+    "observed_profile_decision": {
+      "path": "configs/u5_r2bu3_vision3_observed_source_profile_decision_v1.json",
+      "sha256": "d4c318a857f788b3ea5fdef292ba44f24f2d4386a03cb02928c77a24424c95a9",
+      "required_decision": "retain_observed_source_profile_without_renderer"
+    }
+  },
+  "comparison": {
+    "vision3_stocks": [
+      "kodak_vision3_50d_5203_7203",
+      "kodak_vision3_250d_5207_7207",
+      "kodak_vision3_500t_5219_7219"
+    ],
+    "channels": ["blue", "green", "red"],
+    "characteristic": {
+      "sample_log_relative_exposures": [0.0, 0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5, 2.75, 3.0, 3.25, 3.5, 3.75, 4.0, 4.25, 4.5, 4.75, 5.0],
+      "normalization": "cumulative-maximum density; subtract first density and divide by span; map 10 and 90 percent crossings to zero and one",
+      "comparison_grid": [-0.1, 1.1, 257],
+      "metric": "RMSE of gauge-normalized characteristic shape on the intersected normalized-exposure domain",
+      "material_threshold": 0.02
+    },
+    "mtf": {
+      "common_frequencies_cycles_per_mm": [25.0, 30.0, 35.0, 40.0, 45.0, 55.0, 60.0, 65.0],
+      "normalization": "subtract per-channel natural-log response at 25 cycles/mm",
+      "metric": "RMSE of normalized natural-log MTF response",
+      "material_threshold": 0.08
+    },
+    "granularity": {
+      "common_log_relative_exposures": [0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5, 2.75, 3.0, 3.25, 3.5, 3.75, 4.0, 4.25],
+      "normalization": "subtract per-channel mean natural-log diffuse-rms Sigma-D",
+      "metric": "RMSE of mean-centred natural-log diffuse-rms Sigma-D",
+      "material_threshold": 0.08
+    }
+  },
+  "gates": {
+    "required_source_pages": 5,
+    "required_vector_domains": 3,
+    "required_channels_per_domain": 3,
+    "minimum_material_channels_per_domain_pair": 2,
+    "minimum_material_domains_per_vision3_pair": 2,
+    "minimum_material_vision3_pairs": 3,
+    "maximum_characteristic_monotonic_reversal_density": 0.01,
+    "minimum_characteristic_density_span": 1.5,
+    "minimum_characteristic_10_to_90_exposure_span": 2.0,
+    "minimum_mtf_response_percent": 1.0,
+    "maximum_mtf_response_percent": 110.0,
+    "maximum_mtf_monotonic_increase_percent": 2.0,
+    "minimum_granularity_sigma_d": 0.001,
+    "maximum_granularity_sigma_d": 0.05,
+    "two_byte_identical_audits": true,
+    "visual_overlay_required": true
+  },
+  "allowed_after_pass": [
+    "retain VERITA 200D as a fourth non-renderable first-party observed source profile",
+    "freeze a separate profile-bank robustness leaf using only source-domain curves",
+    "seek rights-cleared independent processed-film observations for VERITA 200D"
+  ],
+  "forbidden": [
+    "change vector paths, channel labels, sampling coordinates, metrics or gates after scoring",
+    "infer a digital RGB colour transform, scan interpretation, calibrated stock appearance or product operator",
+    "treat representative manufacturer curves as a particular roll, process session or scanner measurement",
+    "render photographs, train a router or alter the B0/AO6 default from this source-domain result",
+    "use Kodak marketing descriptions as numerical evidence or to rescue a failed curve gate"
+  ],
+  "branch_rule": {
+    "pass": "Retain a fourth non-renderable observed source profile and open only source-domain robustness plus independent real-film validation.",
+    "fail": "Retain the exact 2026 source audit but close VERITA profile-bank expansion without threshold, curve, domain or normalization rescue."
+  },
+  "claim_ceiling": "First-party 2026 manufacturer-graph multi-domain source signature for VERITA 200D versus three VISION3 stocks; not a particular-roll measurement, scanner response, digital-to-film mapping, calibrated appearance or product operator."
+}
