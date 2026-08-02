@@ -10028,3 +10028,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   relaxed and realized per-bin renormalization is not introduced.
 - P4BS mechanism evidence remains. The next leaf changes implementation to a
   directly normalized finite-support covariance/filter approximation.
+
+# 2026-08-02 - U6.P4BU retains the compact kernel but closes its noise source
+
+- Two Gaussian components with radii 5/7 approximate the P4BS radial signature
+  to `5.92e-11` cosine error and covariance to `1.71e-5`; all row partitions
+  are byte-exact and interior variance error is `.0264`.
+- A pre-formal check caught adjacent counter seeds producing correlated fields;
+  fixed distant domain seeds removed that defect before the formal run.
+- The formal run still fails because one ordinary finite realization has
+  absolute interior mean `.0454 > .02`. Keep the kernel, forbid realized mean
+  subtraction, and test a separately frozen coordinate-balanced noise source.

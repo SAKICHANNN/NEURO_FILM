@@ -1,0 +1,26 @@
+{
+  "schema": "neuro_film.u6_p4bu_finite_support_thomas_filter_decision.v1",
+  "node": "U6.P4BU",
+  "software_commit": "4e22b8a293be0562af124fe1bd1c85cc5624bca1",
+  "contract_sha256": "069b9ab93317dd11694ed2563a1205d7bdfe14f2acd0bf0dfc7e969d0fa73cc5",
+  "report_sha256": "93970b3f6a262738afed56cd0710a02089b21fdbfff529f90b849029100d9b5f",
+  "repeat_report_sha256": "93970b3f6a262738afed56cd0710a02089b21fdbfff529f90b849029100d9b5f",
+  "stable_evidence_id": "5c88918055e6580aea5f194a21baf42cb297adfc30b01d6e926b46a618e32ae4",
+  "automatic_pass": false,
+  "decision": "retain_finite_support_thomas_kernel_close_unbalanced_noise_realization",
+  "results": {
+    "radial_signature_cosine_error": 5.924560841918947e-11,
+    "maximum_covariance_absolute_error": 1.7053271245817854e-05,
+    "maximum_interior_variance_absolute_error": 0.02637193434679652,
+    "maximum_interior_absolute_mean": 0.0453628766456211,
+    "row_partition_exact": true,
+    "failed_gate": "maximum_interior_absolute_mean_0.02"
+  },
+  "interpretation": [
+    "The compact radii-5/7 separable filter is an extremely close approximation to the retained P4BS spectrum and covariance, and exact row partitions reproduce the full field.",
+    "Widely separated counter seeds repair the pre-formal component-correlation defect, but one finite 257x263 realization retains a 0.04536 low-frequency sample mean and fails the frozen 0.02 bound.",
+    "The kernel shape is retained as engineering evidence while this ordinary unbalanced counter-noise realization is closed; realized mean subtraction is not added because it would break one-pass tile locality."
+  ],
+  "next_leaf": "Freeze a coordinate-balanced antithetic counter source that guarantees whole-frame zero mean before symmetric finite-support filtering, then test local spectrum, variance and row-partition identity without realized normalization.",
+  "claim_ceiling": "Finite-support Thomas kernel approximation and partition evidence only; the ordinary finite realization fails its mean gate and is not a runtime/render profile."
+}
