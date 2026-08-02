@@ -1,0 +1,29 @@
+{
+  "schema": "neuro_film.u6_p3t_multiexposure_mechanism_recovery_decision.v1",
+  "experiment_id": "U6.P3T",
+  "status": "complete_synthetic_mechanism_recovery_retained",
+  "decision": "retain-bounded-synthetic-mechanism-recovery",
+  "automatic_pass": true,
+  "contract_sha256": "21e3480d7ad934a539a3e71fc61cf93b3eaa2be1ad91fd69bc6c91e541af1fee",
+  "evaluator_sha256": "07c56c215f87b95bde7e7beb8c1297cd42f0e83a9bbb9f4589f0597c26e6fb31",
+  "runner_sha256": "3363b652171c5628368f1624912046b304809940ddbc2b4df7e362b80ac145ca",
+  "report_sha256": "ef729a38b44f42094dd91de380405b13734e33e3d29d66dec15fed662b8be35a",
+  "repeat_report_sha256": "ef729a38b44f42094dd91de380405b13734e33e3d29d66dec15fed662b8be35a",
+  "scientific_stable_id": "63545a6fa2f4d487b7369b31b7881049d5f135f23731b4eae34623ded95db7d5",
+  "metrics": {
+    "pure_correct_family_count": 6,
+    "pure_case_count": 6,
+    "maximum_pure_confirmation_rmse": 1.0010628149549346e-06,
+    "minimum_wrong_to_correct_rmse_ratio": 7832.794787144094,
+    "maximum_relative_parameter_error": 1.0285419477923385e-07,
+    "physical_sigma_exact_count": 3,
+    "mixed_abstention_count": 2,
+    "mixed_case_count": 2,
+    "minimum_mixed_best_confirmation_rmse": 0.007246708688576015
+  },
+  "failed_gates": [],
+  "interpretation": "Under the frozen low-noise synthetic observation model, disjoint multi-exposure patterns identify the additive pre-development backing-return equation separately from the six-scale scene-linear lens-diffusion equation. Mixed observations remain inconsistent with either pure family and are rejected.",
+  "retained_result": "Retain the bounded inverse procedure as a research compiler and mechanism discriminator only.",
+  "next_ready_leaf": "Challenge the exact recovery procedure with prospectively frozen noise, quantization and exposure-role perturbations before any controlled real-data fit.",
+  "claim_ceiling": "Synthetic multi-exposure mechanism-identification evidence only; no real-film measurement, lens-filter calibration, stock response, visual-quality or product claim."
+}

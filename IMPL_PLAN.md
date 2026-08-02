@@ -1541,6 +1541,13 @@ error gates in two byte-identical runs (`5a5533fa...50aa`). Lens/creative
 diffusion therefore remains a separate downstream layer; P3S retains the
 multi-exposure discriminator and does not reopen same-cohort Gaussian tuning.
 
+P3T implements the retained discriminator as a bounded inverse procedure.
+Development-only fits recover physical backing return and six-scale lens
+diffusion on all six disjoint confirmation cases; the minimum wrong/correct
+RMSE ratio is 7,832x, and both mixed mechanisms abstain. Reports are exact at
+`ef729a38...e35a`. Keep this as a synthetic research compiler and next test
+prospectively frozen observation noise, quantization and exposure-role shifts.
+
 `SF2.9R` audits five ColorReference multi-family IT8/ISO 12641 transmission
 references instead of scanner RGB or uncontrolled photographs. Exact
 byte/CRC/parse gates and 288 shared target patches pass twice; each archive

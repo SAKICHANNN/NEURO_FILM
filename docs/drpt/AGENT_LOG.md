@@ -10241,3 +10241,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Three cross-stock exposure roles and file ordering pass strongly, but all six
   TIFFs are RGBA8 with opaque alpha and no ICC. The frozen RGB16 gate fails, so
   no colour statistic, fit, render or stock-response claim opens.
+
+# 2026-08-01 - U6.P3T synthetic mechanism recovery passes
+
+- Implemented a bounded development-only inverse for the retained P3S physical
+  backing-return and six-scale lens-diffusion equations, with disjoint held
+  patterns/exposures and mandatory mixed-mechanism abstention.
+- Two formal reports are byte-identical (`ef729a38...e35a`). All six pure cases,
+  all three physical sigma choices and both mixed abstentions pass; minimum
+  wrong/correct RMSE ratio is 7,832x.
+- Claim remains synthetic research-compiler evidence. No real film, named stock,
+  lens-filter calibration, renderer default or product status changes.

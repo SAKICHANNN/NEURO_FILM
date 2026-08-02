@@ -350,6 +350,12 @@ return. The six-scale scene-linear family improves over identity but loses to
 one scale and fails held absolute/worst errors; retain the exposure-bracketed
 mechanism discriminator and keep lens mist separate from film halation.
 
+U6.P3T turns that discriminator into a bounded development-only inverse. On
+disjoint confirmation patterns it recovers all six pure-family cases, exact
+physical sigma choices and both mixed-mechanism abstentions in two exact runs
+(`ef729a38...e35a`). This is synthetic compiler evidence only; noise,
+quantization and exposure-role robustness are the next ready challenge.
+
 Current real-grain leaf: U6.P4R closes stock association while retaining one
 generic scanner-convolved signature candidate. Eight exact CC0 16-bit RGBA
 TIFFs pass acquisition and visual gates; RGB NPS is highly repeatable, but
