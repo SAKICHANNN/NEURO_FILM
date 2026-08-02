@@ -1,0 +1,48 @@
+{
+  "schema": "neuro_film.u6_p4bb_aperture_cell_compound_poisson_contract.v1",
+  "experiment_id": "u6.p4bb-aperture-cell-compound-poisson-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4BB",
+  "date_frozen": "2026-08-02",
+  "question": "Can the retained 48-micrometre density mean/RMS be compiled into an exact positive compound-Poisson measurement-cell mechanism without inventing microscopic grain geometry or spatial NPS?",
+  "parents": {
+    "p4ba_commit": "a6cb940f7737a4643faeb6e4a6755f8e9ce615c5",
+    "p4ba_decision_path": "configs/u6_p4ba_granularity_marginal_robustness_decision_v1.json",
+    "p4ba_decision_sha256": "d038aedace1e2a9d7ad6a92cd2c4e7bc7e9a63fd9c2086a5a9f2544ab449a648",
+    "p4ba_bundle_path": "outputs/experiments/u6_p4ba_granularity_marginal_robustness_v1/run_a/bundle.json",
+    "p4ba_bundle_sha256": "fc7a01f47d9a4d2925c2063305b6f1e8dbe5aea15f14f7b1b852e17e07bc1146",
+    "p4ba_report_path": "outputs/experiments/u6_p4ba_granularity_marginal_robustness_v1/run_a/report.json",
+    "p4ba_report_sha256": "557e9294f72ab9cffb5833e1fe7f9bdf72c3312b4b6fd6e24610461bb092d4ad",
+    "p4ba_stable_evidence_id": "20582d76fb1a14a4345c9f1f4e28b6cc0d9494f18d5f5b0b6e066c827c31acec"
+  },
+  "candidate": {
+    "mechanism": "equal_mark_compound_poisson_density_per_measurement_cell",
+    "measurement_cell_micrometres": 48.0,
+    "poisson_rate": "density_mean_squared / density_variance",
+    "density_mark": "density_variance / density_mean",
+    "transmittance": "pow(10, -compound_poisson_density)",
+    "spatial_sampling_allowed": false,
+    "microscopic_particle_interpretation_allowed": false
+  },
+  "evaluation": {
+    "minimum_probe_count": 15,
+    "maximum_density_moment_replay_relative_error": 1e-14,
+    "maximum_high_precision_transmittance_moment_relative_error": 1e-12,
+    "maximum_parent_interval_excursion_relative": 1e-12,
+    "minimum_poisson_rate": 1.0,
+    "maximum_poisson_rate": 1000000.0,
+    "maximum_density_mark": 0.001,
+    "require_two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain an exact 48-micrometre measurement-cell compound-Poisson amplitude compiler; keep microscopic grain geometry and spatial NPS unidentified.",
+    "fail": "Close this cell mechanism and retain the P4BA marginal-robust amplitude interval without rescue or parameter tuning."
+  },
+  "forbidden": [
+    "interpret Poisson events as identified silver grains or dye clouds",
+    "infer particle radius, shape, layer count, spatial covariance or NPS",
+    "sample or render a spatial grain field",
+    "fit parameters beyond the retained density mean and RMS",
+    "alter product defaults"
+  ],
+  "claim_ceiling": "Exact positive compound-Poisson representation of retained density mean/RMS and transmittance moments inside one 48-micrometre measurement cell; no microscopic grain count, geometry, spatial NPS, calibration, render or product claim."
+}
