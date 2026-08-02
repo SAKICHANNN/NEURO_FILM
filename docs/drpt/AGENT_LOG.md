@@ -9688,3 +9688,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Failure closes raster supersampling as an algorithm-selection reference on
   this cohort. Increasing beyond 64x, extrapolating a correction, or tuning an
   earlier compiler is forbidden.
+
+## 2026-08-02 - U6.P6AF closes the raster presampling reference family
+
+- Two formal reports are byte-identical at `6a048782...f27397b`, stable
+  `6134aed4...1bcc6e2`. Regenerated 32x identity, bounded range and 64x replay
+  are exact.
+- P95 `.003033` and 16x-to-32x convergence gain `67.10%` pass, but RMSE
+  `.0015179` narrowly exceeds the frozen `.0015` threshold. Close rather than
+  increase zoom or fit an extrapolation.
+- The next mechanism may construct a continuous-geometry adaptive aperture
+  integral with a direct error bound and analytic unit geometries. It must not
+  use a denser raster as hidden truth.

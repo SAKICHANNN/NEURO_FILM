@@ -817,3 +817,10 @@ U6.P6AE revokes that 16x target. FFT and spatial 16x convolution agree within
 (`ad1155d4...8a66ef`). Do not rescue P6AC/P6AD or fit a convergence correction.
 U6.P6AF must test the provisional 32x render against a separately rendered 64x
 reference before another scanner compiler is selected.
+
+U6.P6AF closes the raster-reference family. The 32x output regenerates exactly;
+P95 `.003033`, convergence gain `67.10%` and exact replay pass, but 32x-to-64x
+RMSE `.0015179` narrowly exceeds the frozen `.0015` gate. Two reports are exact
+(`6a048782...f27397b`). Do not continue to 128x. U6.P6AG must instead test an
+adaptive continuous-cloud/circular-aperture integral with an explicit error
+bound and analytic unit geometries.

@@ -1,5 +1,11 @@
 # Active stock-first pointer — 2026-07-16
 
+> 2026-08-02: U6.P6AF closes raster supersampling as the continuing reference
+> family. Exact 32x regeneration, P95 `.003033`, `67.10%` convergence and
+> replay pass, but 32x-to-64x RMSE `.0015179 > .0015`. Two reports are exact
+> (`6a048782...f27397b`). Do not continue to 128x; move to bounded continuous
+> cloud/aperture integration with analytic unit checks.
+>
 > 2026-08-02: U6.P6AE revokes the P6AC 16x presampling target. FFT and
 > spatial convolution agree within `1.18e-14`, and P95/convergence pass, but
 > 16x-to-32x RMSE is `.0031875 > .003`. Two reports are exact

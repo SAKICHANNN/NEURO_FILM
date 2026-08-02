@@ -1,0 +1,28 @@
+{
+  "schema": "neuro_film.u6_p6af_presampling_reference_convergence_decision.v1",
+  "node": "U6.P6AF",
+  "decision": "close_raster_presampling_reference_family",
+  "contract_commit": "287e93fc",
+  "implementation_commit": "48d075d1",
+  "report_path": "outputs/experiments/u6_p6af_presampling_reference_convergence_v1/report_run1.json",
+  "report_sha256": "6a04878276c1437df3132265ce5412e71b08f1d4da07bf8c0fe34fe07f27397b",
+  "stable_evidence_id": "6134aed4341dbb938cd9596b1f201e7435332f21f55b73bf38cded31b1bcc6e2",
+  "two_reports_byte_exact": true,
+  "automatic_pass": false,
+  "metrics": {
+    "regenerated_32x_error": 0.0,
+    "rmse_16x_vs_64x": 0.004614444001743321,
+    "rmse_32x_vs_64x": 0.0015179274103915988,
+    "p95_32x_vs_64x": 0.003033432971071681,
+    "convergence_improvement_from_16x_to_32x": 0.6710486875952703,
+    "repeat_error": 0.0
+  },
+  "failed_gates": [
+    "maximum_32x_vs_64x_rmse"
+  ],
+  "raster_reference_family_valid_for_algorithm_selection": false,
+  "higher_zoom_rescue_allowed": false,
+  "next_leaf": "U6.P6AG may test a continuous-geometry adaptive aperture integral with an explicit numerical error bound; it must not use a higher raster reference as truth.",
+  "production_profile_integration_allowed": false,
+  "claim_ceiling": "Generic synthetic presampling reference-convergence evidence; no measured film, scanner, stock, process, quality or product claim."
+}
