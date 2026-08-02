@@ -2,6 +2,17 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-02 - U6.P4AY closes generic spatial normalization
+
+- Three generic spectra analytically reproduce the P4AX 48um aperture amplitude
+  and remain materially distinct in power response; two reports are exact
+  (`1f315665...6768e`).
+- Frozen finite-field validation misses only its median gate (`1.873% > 1.5%`);
+  p95 error is `3.168% < 5%`. No seed, field, spectrum or threshold rescue is
+  allowed.
+- P4AX remains amplitude-only. No spatial spectrum, measured NPS, photographic
+  render or product profile is selected; the next leaf must change mechanism.
+
 # 2026-08-02 - U6.P4AX compiles amplitude without inventing spatial truth
 
 - Added a typed characteristic-slope granularity amplitude profile bound to the

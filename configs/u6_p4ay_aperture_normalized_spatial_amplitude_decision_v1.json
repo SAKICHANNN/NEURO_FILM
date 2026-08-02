@@ -1,0 +1,40 @@
+{
+  "schema": "neuro_film.u6_p4ay_aperture_normalized_spatial_amplitude_decision.v1",
+  "node": "U6.P4AY",
+  "decision": "close_generic_aperture_normalization_without_rescue",
+  "initial_contract_commit": "1075dca4f5ac5392a74590a26419be9970249fcb",
+  "contract_commit": "0ac1b31ee2f2b20481c61ad4b46cdb8281b963f2",
+  "implementation_commit": "570eae13a692b6fd12164a2c768a3283fe4636a3",
+  "p4ax_deserialization_fix_commit": "603a2c915fcff62deaf17ba187210fd8bd4293a9",
+  "contract_sha256": "b9ae15d25274329e9c9be7aa3aef37f5dfc037caf0a60866c20b7a55c0d1aa17",
+  "spatial_module_sha256": "43f0735ede6268820b0981f35a3ca59b7197c09ddfd0728c925ef238f2a4baa3",
+  "evaluator_sha256": "1ab133bf43f66b3bdbdbf79391e4ca4db21276b613362220aea13c7d27cc0bbd",
+  "reports": [
+    "outputs/experiments/u6_p4ay_aperture_normalized_spatial_amplitude_v1/report_a.json",
+    "outputs/experiments/u6_p4ay_aperture_normalized_spatial_amplitude_v1/report_b.json"
+  ],
+  "report_sha256": "1f315665063188ae7ca51b360bc1b759281e6ba21b4fa3b5d6a7ea9a0cb6768e",
+  "stable_evidence_id": "385d922252c30bd2c2c6de628b78145e3da447c5f59a368c31eae2c776124a46",
+  "two_reports_byte_exact": true,
+  "automatic_pass": false,
+  "metrics": {
+    "aggregate_monte_carlo_median_absolute_relative_error": 0.018730313046957936,
+    "aggregate_monte_carlo_p95_absolute_relative_error": 0.031676372666547735,
+    "minimum_pairwise_power_transfer_separation": 0.20614634504017093,
+    "profile_probe_count": 9
+  },
+  "failed_gates": [
+    "monte_carlo_median"
+  ],
+  "interpretation": [
+    "The analytic aperture normalizer is exact and the white, fine and coarse hypotheses remain strongly separated in power response.",
+    "The frozen finite-field validation misses its 1.5% median error gate at 1.873%, although its 3.168% p95 error passes the 5% gate. The preregistered implementation therefore closes without changing seeds, field size, shapes or thresholds.",
+    "P4AX remains an amplitude-only profile. P4AY does not select a spatial spectrum and does not establish a measured Kodak NPS, causal grain structure, calibration or render permission."
+  ],
+  "next_ready_leaf": "Advance to a mechanism-distinct physical profile compiler that can carry the retained amplitude evidence while explicitly leaving spatial grain structure unidentified.",
+  "spatial_hypothesis_selected": false,
+  "photographic_render_allowed": false,
+  "product_integration_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "Exact analytic aperture normalization plus a failed frozen finite-field validation; no spatial-spectrum selection or measured film-grain claim."
+}

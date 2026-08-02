@@ -59,6 +59,9 @@ def test_exact_normalizer_experiment_repeats() -> None:
     assert first == second
     assert not first["automatic_pass"]
     assert first["decision"] == "close_generic_aperture_normalization_without_rescue"
+    assert first["stable_evidence_id"] == (
+        "385d922252c30bd2c2c6de628b78145e3da447c5f59a368c31eae2c776124a46"
+    )
     assert [name for name, passed in first["gate_results"].items() if not passed] == [
         "monte_carlo_median"
     ]
