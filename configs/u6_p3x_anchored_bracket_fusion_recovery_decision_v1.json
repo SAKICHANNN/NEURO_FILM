@@ -1,0 +1,46 @@
+{
+  "schema": "neuro_film.u6_p3x_anchored_bracket_fusion_recovery_decision.v1",
+  "experiment_id": "U6.P3X",
+  "status": "complete_synthetic_acquisition_sufficiency_retained",
+  "decision": "retain-anchored-bracket-fusion-recovery",
+  "automatic_pass": true,
+  "contract_sha256": "68e0e4db88deeb8ead477edfafddd12b20dd6955e2789b6e425af5779ce0a429",
+  "evaluator_sha256": "ba4baed1d5bd4a56e848c724e86a412a5062ec0c2b6116d0246b1633b67c43b8",
+  "runner_sha256": "86f7ea283e48aac03c7c6a78e8bf801bbe631d3397b4db8509af8f6d5fb03bc4",
+  "report_sha256": "2e4cc147faa1d46d575ff46fcceb8eacf5e086d0a016fa244212666d2e246dca",
+  "repeat_report_sha256": "2e4cc147faa1d46d575ff46fcceb8eacf5e086d0a016fa244212666d2e246dca",
+  "scientific_stable_id": "753923baa5c00b15c5d78ff2971ffa3e9809299eb204b6fb3a1d0924a9de31fa",
+  "passing_anchor_levels_ppm": [0, 100],
+  "metrics_at_100ppm": [
+    {
+      "regime_id": "linear16-low-noise",
+      "maximum_pure_confirmation_rmse": 1.84863282641685e-05,
+      "minimum_wrong_to_correct_rmse_ratio": 423.5057165962749,
+      "maximum_relative_parameter_error": 0.0002767937978476881
+    },
+    {
+      "regime_id": "linear12-moderate",
+      "maximum_pure_confirmation_rmse": 0.00026351063973256456,
+      "minimum_wrong_to_correct_rmse_ratio": 29.93679770041563,
+      "maximum_relative_parameter_error": 0.0008696756963940191
+    },
+    {
+      "regime_id": "linear10-stress",
+      "maximum_pure_confirmation_rmse": 0.0008319776399581811,
+      "minimum_wrong_to_correct_rmse_ratio": 9.797768005215355,
+      "maximum_relative_parameter_error": 0.03012111135410108
+    }
+  ],
+  "retained_facts": {
+    "pure_correct_family_count_per_regime": 6,
+    "physical_sigma_exact_count_per_regime": 3,
+    "mixed_abstention_count_per_regime": 2,
+    "fusion_target_read_count": 0,
+    "anchor_bound_violation_count": 0,
+    "reconstruction_clipped_scalar_count": 0
+  },
+  "interpretation": "Independent exposure anchoring resolves the absolute gain gauge, while variance-weighted three-exposure source fusion suppresses quantization and additive source noise. Together they close every unchanged P3U gate through the frozen 10-bit stress regime without target access during source reconstruction.",
+  "retained_result": "Use three aligned source exposures plus an independently measured per-row exposure anchor bounded to 100 ppm as the synthetic minimum acquisition design for the next controlled-data protocol.",
+  "next_ready_leaf": "Compile a non-renderable, fail-closed controlled halation acquisition protocol that binds three exposure brackets, a <=100-ppm independent anchor, no clipping, disjoint fit/confirmation structures and the retained P3T discriminator.",
+  "claim_ceiling": "Synthetic acquisition-sufficiency evidence only; no real-film, stock, device, meter or product calibration claim."
+}

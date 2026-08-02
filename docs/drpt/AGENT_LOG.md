@@ -10283,3 +10283,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `.0008891` and 10-bit RMSE/ratio `.0023953/3.699` outside frozen gates.
 - This isolates quantization/additive source noise as the next bottleneck. Next
   test anchored source-only multi-exposure pixel fusion, not finer gain metering.
+
+# 2026-08-01 - U6.P3X anchored bracket fusion passes
+
+- Added fixed inverse-variance fusion of three gain-corrected source brackets;
+  fusion reads no targets and retains all P3U candidates/cases/gates. Two full
+  reports are byte-identical (`2e4cc147...6dca`).
+- Exact and 100-ppm anchors both pass all 16/12/10-bit regimes. At 100 ppm the
+  hardest 10-bit max RMSE is `.000832` and wrong/correct ratio `9.80x`; all
+  labels, radii, abstentions, bounds and clipping gates pass.
+- Retain only as synthetic acquisition sufficiency. Next compile a strict
+  controlled halation acquisition protocol; no real-film calibration yet.

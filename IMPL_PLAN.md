@@ -1565,6 +1565,12 @@ regimes (`dfe68d3d...a1c85`). Exact gain already fails 12/10-bit, localizing the
 remaining error to quantized/noisy source samples. Next combine an independent
 anchor with fixed variance-weighted bracket fusion; do not relax P3U gates.
 
+P3X passes the combined design in two exact runs (`2e4cc147...6dca`). With a
+100-ppm independent anchor, inverse-variance fusion of three aligned source
+exposures reduces the 10-bit max RMSE to `.000832` and raises wrong-family
+separation to `9.80x`; all original gates pass. Compile this into a
+non-renderable controlled acquisition contract before seeking real data.
+
 `SF2.9R` audits five ColorReference multi-family IT8/ISO 12641 transmission
 references instead of scanner RGB or uncontrolled photographs. Exact
 byte/CRC/parse gates and 288 shared target patches pass twice; each archive

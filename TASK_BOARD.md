@@ -370,6 +370,11 @@ U6.P3W shows exposure anchoring alone is insufficient (`dfe68d3d...a1c85`):
 even an exact anchor leaves 12/10-bit residual gates open. The next ready leaf
 uses anchored multi-exposure pixel fusion to attack quantization/noise directly.
 
+U6.P3X passes that acquisition design (`2e4cc147...6dca`): exact and 100-ppm
+anchors plus three source brackets close every unchanged P3U gate through
+10-bit. Next compile a fail-closed controlled-data protocol; no real-film or
+product claim opens from the synthetic result.
+
 Current real-grain leaf: U6.P4R closes stock association while retaining one
 generic scanner-convolved signature candidate. Eight exact CC0 16-bit RGBA
 TIFFs pass acquisition and visual gates; RGB NPS is highly repeatable, but
