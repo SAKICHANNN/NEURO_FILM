@@ -13,6 +13,7 @@ from src.eval.nonsquare_nps_window_confirmation import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u6_p4bo_nonsquare_nps_window_confirmation_v1.json"
+DECISION = ROOT / "configs/u6_p4bo_nonsquare_nps_window_confirmation_decision_v1.json"
 
 
 def test_p4bo_contract_is_fresh_and_frozen() -> None:
@@ -39,6 +40,19 @@ def test_p4bo_contract_rejects_shape_rescue(tmp_path: Path) -> None:
         load_contract(path)
 
 
+def test_p4bo_decision_binds_formal_negative() -> None:
+    payload = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert payload["decision"] == "retain_hann_synthetic_nps_measurement_bridge"
+    assert payload["automatic_pass"] is False
+    assert payload["report_sha256"] == (
+        "44c2aacc08313547b52686d00d33267ae7a9bc9fa8406ca466306c4580a0a6d6"
+    )
+    assert payload["stable_evidence_id"] == (
+        "e48867e7373826c82b3c653daa7cdf0f2802c9686f35469261a5ec2703fcbb30"
+    )
+    assert payload["failed_gate"] == "every_profile_not_worse"
+
+
 def test_nonsquare_nps_window_confirmation_formal_decision() -> None:
     report = evaluate_nonsquare_nps_window_confirmation(
         load_contract(CONTRACT), ROOT
@@ -49,4 +63,3 @@ def test_nonsquare_nps_window_confirmation_formal_decision() -> None:
         "retain_hann_synthetic_nps_measurement_bridge",
     }
     assert report["gate_results"]["repeat_exact"] is True
-

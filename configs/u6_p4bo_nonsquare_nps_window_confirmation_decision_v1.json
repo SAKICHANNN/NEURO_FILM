@@ -1,0 +1,31 @@
+{
+  "schema": "neuro_film.u6_p4bo_nonsquare_nps_window_confirmation_decision.v1",
+  "experiment_id": "u6.p4bo-nonsquare-nps-window-confirmation-v1",
+  "date": "2026-08-02",
+  "decision": "retain_hann_synthetic_nps_measurement_bridge",
+  "automatic_pass": false,
+  "report_path": "outputs/experiments/u6_p4bo_nonsquare_nps_window_confirmation_v1/run_a/report.json",
+  "report_sha256": "44c2aacc08313547b52686d00d33267ae7a9bc9fa8406ca466306c4580a0a6d6",
+  "stable_evidence_id": "e48867e7373826c82b3c653daa7cdf0f2802c9686f35469261a5ec2703fcbb30",
+  "rectangular_median_beats_hann_both_shapes": true,
+  "rectangular_profile_top1_rate": 1.0,
+  "rectangular_relative_median_improvement_by_shape": {
+    "160x224": 0.3535265967529266,
+    "224x160": 0.22821102146463934
+  },
+  "failed_gate": "every_profile_not_worse",
+  "failed_profile": {
+    "material_id": "fuji_medical_xray_rendol_20c_5min",
+    "diffuse_density": 1.23,
+    "rectangular_worse_on_both_shapes": true
+  },
+  "closes": [
+    "rectangular_window_promotion_on_this_synthetic_family",
+    "same_family_window_or_bin_rescue"
+  ],
+  "retains": [
+    "p4bn_hann_synthetic_nps_measurement_bridge",
+    "p4bm_periodic_measured_nps_reference"
+  ],
+  "claim_ceiling": "Fresh-seed non-square confirmation of a finite-window estimator for synthetic historical Fuji B&W NPS fields; not independent measured-image validation, microscopic structure, stock identity or product evidence."
+}

@@ -9965,3 +9965,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Keep the frozen formal Hann pass, but do not promote rectangular post-score.
 - Next use fresh seeds and non-square windows to decide the simplest estimator;
   this remains synthetic recovery evidence, not a real scan or stock result.
+
+## 2026-08-02 - U6.P4BO closes rectangular-window promotion
+
+- Fresh seeds and 160x224/224x160um crops repeat rectangular median advantages
+  of `35.35%/22.82%`, with 100% five-profile nearest-spectrum accuracy.
+- The high-density medical X-ray state is nevertheless worse than Hann on both
+  shapes, so the frozen every-profile tail gate fails. Reports are exact
+  (`44c2aacc...a6d6`).
+- Keep the P4BN Hann bridge and stop tuning this synthetic window family. The
+  next useful evidence must be an independent measured-image route.
