@@ -10193,3 +10193,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   1.0; worst joint margin is `.56943`; cyclic relabeling is 0.
 - Retain only manufacturer-source robustness. No independent roll, process,
   scanner, photographic render, calibration or product claim opens.
+
+# 2026-08-02 - U5.R2BU5 legacy local source gate closes
+
+- Audited 1,103 Vision3-labelled manifest rows twice without reading pixels;
+  reports are exact (`8e468168...884a`). Only 250D/500T are present, and all
+  author/source-URL/explicit-rights/roll-process-scanner counts are zero.
+- Quarantine the exact corpus from source-signature validation and move to a
+  genuinely controlled observation or a distinct generic physical mechanism.

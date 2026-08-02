@@ -1,0 +1,29 @@
+{
+  "schema": "neuro_film.u5_r2bu5_local_vision3_source_gate_decision.v1",
+  "experiment_id": "U5.R2BU5",
+  "contract_sha256": "4ac9c1f87be75da941bdc3b412056a51d2618aeedba7f290ac3a0cd37fdfc5e4",
+  "software_commit": "48f008eb",
+  "formal_evidence": {
+    "report_a": "outputs/u5_r2bu5_local_vision3_source_gate/formal_a/report.json",
+    "report_b": "outputs/u5_r2bu5_local_vision3_source_gate/formal_b/report.json",
+    "report_sha256": "8e4681688c2d9e1ae5755bba3807d001cbcc14711c234c9819a8b2369fbd884a",
+    "stable_evidence_id": "81a4d10e0e2b5479d7429915224a680cd8eae9e2cdddbe136ffa110d3a022dde",
+    "two_byte_identical_audits": true
+  },
+  "result": {
+    "selected_row_count": 1103,
+    "vision3_50d_rows": 0,
+    "vision3_250d_rows": 539,
+    "vision3_500t_rows": 564,
+    "distinct_authors": 0,
+    "explicit_rights_rows": 0,
+    "source_url_rows": 0,
+    "roll_process_scanner_lineage_rows": 0,
+    "pixel_file_reads": 0,
+    "all_paths_and_manifest_hashes_unique": true,
+    "all_gates_pass": false
+  },
+  "decision": "quarantine_local_vision3_corpus_from_source_signature_validation",
+  "next_ready_leaf": "U5.R2BU6 identify a materially new rights-cleared controlled observation or execute a generic physical mechanism experiment that does not require pretending these rasters are stock truth.",
+  "claim_ceiling": "Metadata and rights eligibility of the existing local Vision3-labelled corpus only; no pixel, stock-response, appearance, calibration or product evidence."
+}

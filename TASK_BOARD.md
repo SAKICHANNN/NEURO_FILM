@@ -890,3 +890,11 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
   `.56943`, while cyclic relabeling scores zero.
 - This is same-source digitization robustness, not another roll or scanner.
   Rendering remains closed until an independent measured real-film observation.
+
+# 2026-08-02 - U5.R2BU5 local Vision3 source gate closes
+
+- Two exact metadata-only reports (`8e468168...884a`) audit 1,103 legacy rows
+  with zero pixel reads. The pool has no 50D and zero author, source URL,
+  explicit-rights or roll/process/scanner lineage rows.
+- Quarantine this pool from BU4 validation. Unique paths and hashes do not turn
+  weak Flickr captions into controlled stock evidence.
