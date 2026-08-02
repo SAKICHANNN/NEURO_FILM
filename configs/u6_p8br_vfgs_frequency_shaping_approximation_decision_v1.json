@@ -1,0 +1,26 @@
+{
+  "schema": "neuro_film.u6_p8br_vfgs_frequency_shaping_approximation_decision.v1",
+  "experiment_id": "U6.P8BR",
+  "status": "complete_source_conformance_closed_before_scan_read",
+  "decision": "close_default_vfgs_soft_window_before_scan_read",
+  "automatic_pass": false,
+  "contract_sha256": "d807e3bb4782b734c33d38ea5d86e40557ef50768c428aea36c108f3130c85db",
+  "evaluator_sha256": "fe7d0f21e1fe366e592473663a99605a70bafbb5124692589c3f7b495c8c822d",
+  "runner_sha256": "2ef65bdd9d748d34f3d88904d464a067e807c60a6e4e6d969a496424ed95cd44",
+  "report_sha256": "074b4136a91b1428eba9a52ee2e9c5eaf5f0108a59d73abf4f648f428f82c230",
+  "repeat_report_sha256": "074b4136a91b1428eba9a52ee2e9c5eaf5f0108a59d73abf4f648f428f82c230",
+  "stable_evidence_id": "4c9be3194f8082c08bec72992db38c1794158032bad5e9259de13b364b2bde81",
+  "results": {
+    "vfgs_commit": "fbf4bd95058e934fb7246edd5e7fb8d6c9ed0ec0",
+    "soft_window_k": 1.118,
+    "frozen_cutoff_count": 13,
+    "invalid_soft_cutoffs": [9],
+    "rectangular_cutoffs_defined": 13,
+    "development_source_reads": 0,
+    "confirmation_source_reads": 0
+  },
+  "interpretation": "At legal FGC-SEI cutoff 9, fc=0.625 is above K^2/2 but below every one of the 64 cumulative-energy samples. The public C search therefore exhausts the table and its interpolation reads beyond nrj[63]. A portable exact default-K compiler cannot silently extrapolate or omit that cutoff.",
+  "retained_result": "Retain FGA-NN and VFGS as current explicit-parameter implementation baselines only. P4BS remains the effective same-scanner second-order mechanism; no VFGS profile, runtime or photographic placement opens.",
+  "next_ready_leaf": "Seek a source-defined portable frequency response or a new measured physical observable. Any K=1 or other repaired window requires a separately frozen contract and cannot be called exact current-default VFGS.",
+  "claim_ceiling": "Source-conformance failure in the current public VFGS default soft-window implementation; no scan, grain-quality, physical-film or product conclusion."
+}

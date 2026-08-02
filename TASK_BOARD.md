@@ -1,5 +1,12 @@
 # TASK_BOARD.md — Algorithm-first film colour-transfer and product path
 
+> 2026-08-01: U6.P8BR closes the current public VFGS default soft-window
+> compiler before any scan read. At legal cutoff 9, `K=1.118` exhausts the
+> 64-entry energy search and the following C interpolation reads out of bounds
+> (`074b4136...2c230`). Do not skip the cutoff or invent extrapolation; retain
+> VFGS/FGA-NN only as explicit-parameter baselines and continue a new physical
+> observation or a separately frozen portable response.
+>
 > 2026-08-01: U6.P4CF closes finite-capacity occupancy as the higher-order
 > explanation of the retained uniform scans. Despite second-order parity, it
 > wins 0/8 colour and 0/3 B&W scans; bounded/Gaussian median error ratios are
@@ -38,7 +45,7 @@
 | Latent stock modes | hypothesis only; data-gated | no stock has proved `K>1`; LSM0 freezes semantics, LSM1 requires stock/connectivity/identifiability/rights gates, and `K=1` remains a formal branch |
 | Input pipeline | float32 + strengthened fail-closed HDR pass | one float32 main path; HEIF/AVIF and recognized HDR/gain-map signals reject before silent SDR fallback; bounded JPEG APP/PNG text traversal closes the prior edge-sampling blind spot |
 | Product standard | decided | strongly stylized output with no severe glitch/artifact |
-| Physical image formation | P4CE repulsive NPS family closed; seek new observation/mechanism | The 2026 perturbed-lattice diffuse factor collapses to its jitter ceiling on all five historical measured spectra and is `51.80%/26.03%` worse than Gaussian/Thomas on held bands. Stop point-process capacity tuning; retain earlier typed physical primitives and seek new measured film evidence or a mechanism-distinct developed-image leaf. |
+| Physical image formation | P8BR current VFGS compiler source-close; seek new observation/portable response | Current public VFGS default `K=1.118` has an undefined energy-table interpolation at legal cutoff 9, so the compact spectral comparison closes before scan read. Stop point-process capacity and do not patch/tune this family on consumed cohorts; retain typed primitives/P4BS and seek new measured evidence or a separately frozen portable response. |
 | Physical-arm routing value | P8BQ censored / no router | The exact P7F-to-native arm has a fresh winner-only Oracle hint (9/27 versus AO6 7/27), but B0 censors 15/27 pairwise comparisons. No imputation, extra P8BP rounds, selector training or routing opens; AO6 remains global. |
 | Complete fixed-bank Oracle | BH0 router closed; BH1 confirms AO6 incumbent | BH1's two exact 24-output runs pass automatic and severe gates. B0 wins all three anonymous rounds 7-5 but reaches 21/36 choices, one below the frozen 22-choice gate. No extra rounds or retuning: retain fixed AO6 t15/c35 and continue a distinct algorithm leaf. |
 | Public paired-film refresh | BI0 closed current public surface | SillyStill still exposes no data tree/root licence; Emulating Emulsion exposes no public data repository/link or dataset licence. Two official-source audits are exact; no pixels, contact, fitting or training. |

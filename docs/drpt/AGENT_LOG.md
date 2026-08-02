@@ -2,6 +2,17 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-01 - U6.P8BR closes current VFGS default soft window
+
+- Frozen the current FGA-NN paper and public VFGS `fbf4bd95...` source before
+  implementation; no neural model or final-RGB generator was used.
+- Exact clean-room source conformance finds legal cutoff 9 exhausts the
+  64-entry default-`K=1.118` energy search, making the next C interpolation
+  undefined. Two reports are exact (`074b4136...2c230`); scan reads are zero.
+- Do not omit cutoff 9, extrapolate the table or tune K. Retain the sources as
+  explicit-parameter baselines only and move to a new observable or separately
+  frozen portable response; P4BS remains the effective second-order evidence.
+
 # 2026-08-02 - U6.P4CE closes a 2026 repulsive-point NPS baseline
 
 - Implemented the paper's independent Gaussian-perturbed-lattice continuous
