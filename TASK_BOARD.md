@@ -882,3 +882,11 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
 - The bundle is explicitly non-renderable and contains no PSF, NPS, particle
   geometry, placement or RGB transform. Next seek independent measured
   real-film evidence rather than elaborating this serialization layer.
+
+# 2026-08-02 - U5.R2BU4 source signature robustness passes
+
+- Two exact reports (`5dc51d14...e2fc`) classify all 60 frozen perturbation
+  and missing-layer cases correctly; the worst normalized joint margin is
+  `.56943`, while cyclic relabeling scores zero.
+- This is same-source digitization robustness, not another roll or scanner.
+  Rendering remains closed until an independent measured real-film observation.

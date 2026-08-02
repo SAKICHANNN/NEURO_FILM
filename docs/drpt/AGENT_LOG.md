@@ -10185,3 +10185,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Two formal reports (`49c75234...306f`) and bundles (`233decd3...5252`) are
   byte-identical; all parent, stock/channel, roundtrip and forbidden-field gates
   pass. Next work seeks an independent measured real-film observation.
+
+# 2026-08-02 - U5.R2BU4 source signature robustness passes
+
+- The fixed 60-case +/-2 px and one-missing-layer audit is byte-identical at
+  `5dc51d14...e2fc`. Joint, MTF-only and granularity-only top-1 accuracy are
+  1.0; worst joint margin is `.56943`; cyclic relabeling is 0.
+- Retain only manufacturer-source robustness. No independent roll, process,
+  scanner, photographic render, calibration or product claim opens.

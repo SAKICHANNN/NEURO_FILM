@@ -1,0 +1,27 @@
+{
+  "schema": "neuro_film.u5_r2bu4_vision3_source_signature_robustness_decision.v1",
+  "experiment_id": "U5.R2BU4",
+  "contract_sha256": "997edc070dd1f27e80c3cb48c8ea39218469f1a7aa6b399583296241d2356f41",
+  "software_commit": "eee57ef5",
+  "formal_evidence": {
+    "report_a": "outputs/u5_r2bu4_vision3_source_signature_robustness/formal_a/report.json",
+    "report_b": "outputs/u5_r2bu4_vision3_source_signature_robustness/formal_b/report.json",
+    "report_sha256": "5dc51d14aeef6553713f40f4b471a96019131f186ec192b5de95294f8844e2fc",
+    "stable_evidence_id": "9afeed4d93f97ab58506abe11c9f118f3630e61279198f2463b478cdc33f5783",
+    "two_byte_identical_audits": true
+  },
+  "result": {
+    "case_count": 60,
+    "joint_top1_accuracy": 1.0,
+    "mtf_only_top1_accuracy": 1.0,
+    "granularity_only_top1_accuracy": 1.0,
+    "minimum_stock_recall": 1.0,
+    "minimum_channel_subset_accuracy": 1.0,
+    "worst_normalized_joint_margin": 0.5694308573768775,
+    "cyclic_label_control_accuracy": 0.0,
+    "all_gates_pass": true
+  },
+  "decision": "retain_robust_non_renderable_manufacturer_source_signature",
+  "next_ready_leaf": "U5.R2BU5 acquire or locate a rights-cleared independent measured real-film observation with explicit stock, material/process and scanner lineage; without it, do not map this source signature into rendering.",
+  "claim_ceiling": "Same-source robustness of three first-party manufacturer graph profiles under deterministic trace perturbations and missing-channel controls; not independent real-film confirmation, calibration, rendering or product evidence."
+}
