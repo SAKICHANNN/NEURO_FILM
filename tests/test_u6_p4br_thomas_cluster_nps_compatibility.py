@@ -4,6 +4,16 @@ import hashlib
 import json
 from pathlib import Path
 
+import numpy as np
+import pytest
+
+from src.eval.thomas_cluster_nps_compatibility import (
+    ThomasClusterNPSCompatibilityError,
+    load_contract,
+)
+from src.film_physics.thomas_cluster_nps import (
+    thomas_cluster_gaussian_mark_nps,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u6_p4br_thomas_cluster_nps_compatibility_v1.json"
@@ -53,3 +63,20 @@ def test_p4br_contract_binds_primary_spectrum_and_closed_disc_family() -> None:
     parents = payload["parents"]
     for stem in ("p4bl_bundle", "p4bq_contract", "p4bq_decision", "p4bq_report"):
         assert _sha256(ROOT / parents[f"{stem}_path"]) == parents[f"{stem}_sha256"]
+
+
+def test_thomas_cluster_spectrum_matches_structure_factor_endpoints() -> None:
+    frequency = np.asarray([0.0, 100.0, 500.0])
+    spectrum = thomas_cluster_gaussian_mark_nps(frequency, 0.001, 0.004, 3.0)
+    assert spectrum[0] == 4.0
+    assert np.all(np.diff(spectrum) < 0.0)
+    assert np.all(spectrum > 0.0)
+
+
+def test_p4br_contract_rejects_cluster_capacity_rescue(tmp_path: Path) -> None:
+    payload = json.loads(CONTRACT.read_text(encoding="utf-8"))
+    payload["model"]["mean_offspring_per_cluster_per_state_bounds"] = [0.001, 1000.0]
+    path = tmp_path / "contract.json"
+    path.write_text(json.dumps(payload), encoding="utf-8")
+    with pytest.raises(ThomasClusterNPSCompatibilityError, match="contract drift"):
+        load_contract(path)
