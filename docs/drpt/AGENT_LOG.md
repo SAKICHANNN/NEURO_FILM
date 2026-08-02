@@ -9700,3 +9700,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The next mechanism may construct a continuous-geometry adaptive aperture
   integral with a direct error bound and analytic unit geometries. It must not
   use a denser raster as hidden truth.
+
+## 2026-08-02 - Freeze U6.P6AG continuous cloud/aperture integration
+
+- Replace raster truth with exact vertical chord partition over the circular
+  aperture and every intersecting continuous cloud, followed by deterministic
+  adaptive Gauss-Kronrod integration over the horizontal coordinate.
+- Freeze empty, disjoint, full-cover, concentric single-cloud and nested
+  two-cloud analytic controls. Compare independent `1e-10` and `1e-12`
+  integrations; require analytic error `<=1e-9`, normalized reported numerical
+  error `<=1e-8`, candidate/confirmation difference `<=1e-7`, exact replay and
+  row partitions.
+- P6AD and P6AF outputs are diagnostic controls only, not truth gates. The
+  numerical error estimate is not a formal mathematical proof bound, and a
+  pass can retain only an offline synthetic reference.

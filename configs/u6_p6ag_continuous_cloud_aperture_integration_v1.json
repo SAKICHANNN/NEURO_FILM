@@ -1,0 +1,67 @@
+{
+  "schema": "neuro_film.u6_p6ag_continuous_cloud_aperture_integration_contract.v1",
+  "experiment_id": "u6.p6ag-continuous-cloud-aperture-integration-v1",
+  "node": "ULT > U6 > U6.P6 > U6.P6AG",
+  "date_frozen": "2026-08-02",
+  "parent": {
+    "decision_path": "configs/u6_p6af_presampling_reference_convergence_decision_v1.json",
+    "decision_sha256": "5aced2fc6095f685240f4f8e1ed5beddb7b06f6699815c4af61ba819d1e4d237",
+    "stable_evidence_id": "6134aed4341dbb938cd9596b1f201e7435332f21f55b73bf38cded31b1bcc6e2"
+  },
+  "question": "Can continuous marked-cloud geometry be integrated through the circular scanner aperture with direct analytic unit checks and a stable adaptive quadrature error budget, without a raster truth target?",
+  "material": {
+    "input_shape": [17, 19],
+    "target_pixel_pitch_um": 6.35,
+    "aperture_diameter_um": 12.5,
+    "radius_um_cmy": [1.8, 2.2, 2.6],
+    "mark_optical_density_cmy": [0.16, 0.20, 0.24],
+    "monte_carlo_samples": 4,
+    "seed": 26080263
+  },
+  "integration": {
+    "inner_axis": "exact interval partition of aperture and intersecting cloud chords",
+    "outer_axis": "scipy QUADPACK adaptive Gauss-Kronrod integration",
+    "candidate_absolute_tolerance": 1e-10,
+    "candidate_relative_tolerance": 1e-10,
+    "candidate_subinterval_limit": 512,
+    "confirmation_absolute_tolerance": 1e-12,
+    "confirmation_relative_tolerance": 1e-12,
+    "confirmation_subinterval_limit": 1024
+  },
+  "analytic_controls": [
+    "empty aperture",
+    "disjoint cloud",
+    "cloud fully covering aperture",
+    "concentric cloud smaller than aperture",
+    "two concentric clouds with nested radii"
+  ],
+  "evaluation": {
+    "row_partitions": [3, 7, 11],
+    "diagnostic_controls": [
+      "P6AD fixed 256-point direct quadrature",
+      "P6AF provisional 64x raster"
+    ]
+  },
+  "gates": {
+    "maximum_analytic_control_error": 1e-9,
+    "maximum_normalized_reported_quadrature_error": 1e-8,
+    "maximum_candidate_confirmation_error": 1e-7,
+    "maximum_repeat_error": 0.0,
+    "maximum_partition_error": 0.0,
+    "minimum_transmittance": 0.0,
+    "maximum_transmittance": 1.0
+  },
+  "forbidden": [
+    "use a denser raster as truth or gate",
+    "change analytic controls, tolerances, fixture or gates after scoring",
+    "tune tolerance to agree with P6AD or P6AF diagnostics",
+    "claim QUADPACK's estimate is a formal mathematical proof bound",
+    "use this offline integrator as a product runtime",
+    "claim measured film, scanner, stock, process, quality or product evidence"
+  ],
+  "branch_rule": {
+    "pass": "Retain the tight continuous-geometry integral as the offline synthetic reference and open a separately frozen bounded compiler candidate.",
+    "fail": "Close this adaptive integration design without denser-raster or tolerance rescue; require a new analytic or measured reference mechanism."
+  },
+  "claim_ceiling": "Generic synthetic continuous cloud/aperture integration evidence with numerical error estimates; no formal proof bound, measured film, scanner, stock, process, quality or product claim."
+}
