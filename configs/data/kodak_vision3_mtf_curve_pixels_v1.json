@@ -1,0 +1,123 @@
+{
+  "schema": "neuro_film.kodak_vision3_mtf_curve_pixels.v1",
+  "annotation_method": "Human-guided source-ink tracing of the solid B/G/R MTF curves on exact embedded Kodak graph rasters. Integer points were frozen before any cross-stock metric was computed.",
+  "stocks": {
+    "kodak_vision3_50d_5203_7203": {
+      "source_pdf": {
+        "path": "data/physics/kodak_vision3_50d/technical_data.pdf",
+        "bytes": 701126,
+        "sha256": "b4613661abed641671329eff3bd7d5686b268eb26b954ef1c27ea68f363caca6"
+      },
+      "source_graph": {
+        "path": "outputs/u6_p2t_kodak_characteristic_diversity/extracted/50d-002.png",
+        "bytes": 115121,
+        "sha256": "36f20641c69cccf14496862cfbadf8d27a36bec338bacc7bc96991a639a2d581",
+        "width": 738,
+        "height": 598,
+        "page_zero_based": 2,
+        "embedded_image_index": 2
+      },
+      "measurement_context": {
+        "exposure": "5500 K daylight",
+        "process": "ECN-2",
+        "densitometry": "Status M",
+        "spatial_frequency_unit": "cycles/mm",
+        "response_unit": "percent"
+      },
+      "graph_axes": {
+        "x_scale": "log10",
+        "x_value_pixels": [[1.0, 112.5], [700.0, 706.5]],
+        "x_tick_value_pixels": [[1.0, 112.5], [2.0, 175.0], [3.0, 212.0], [4.0, 238.0], [5.0, 258.0], [10.0, 321.0], [20.0, 384.0], [50.0, 467.0], [100.0, 530.0], [200.0, 592.0], [700.0, 706.5]],
+        "y_scale": "log10",
+        "y_value_pixels": [[1.0, 524.5], [200.0, 75.5]],
+        "y_tick_value_pixels": [[1.0, 524.5], [2.0, 465.0], [3.0, 431.0], [5.0, 388.0], [7.0, 359.0], [10.0, 329.0], [20.0, 271.0], [30.0, 236.0], [50.0, 193.0], [70.0, 165.0], [100.0, 135.0], [200.0, 75.5]]
+      },
+      "curves": {
+        "blue": [[400, 152], [420, 165], [440, 181], [450, 189], [460, 199], [470, 208], [490, 235], [500, 249]],
+        "green": [[400, 158], [420, 174], [440, 194], [450, 201], [460, 208], [470, 214], [490, 245], [500, 264]],
+        "red": [[400, 170], [420, 183], [440, 198], [450, 209], [460, 223], [470, 241], [490, 280], [500, 302]]
+      }
+    },
+    "kodak_vision3_250d_5207_7207": {
+      "source_pdf": {
+        "path": "data/physics/kodak_vision3_250d/technical_data.pdf",
+        "bytes": 684722,
+        "sha256": "70adb298a7aabb285d986b720e07c87c27eb2361f0925aea2b15903c08282e16"
+      },
+      "source_graph": {
+        "path": "outputs/u5_r2aa0_source_audit/extracted/250d_mtf.png",
+        "bytes": 127757,
+        "sha256": "c99ca3cefe1d028b68ecdbd8bae5f65fef601a4b8cefd6dc0907ca022beb4075",
+        "width": 710,
+        "height": 589,
+        "page_zero_based": 2,
+        "embedded_image_index": 2
+      },
+      "measurement_context": {
+        "exposure": "5500 K daylight",
+        "process": "ECN-2",
+        "densitometry": "Status M",
+        "spatial_frequency_unit": "cycles/mm",
+        "response_unit": "percent"
+      },
+      "trace_lineage": {
+        "path": "configs/data/kodak_250d_mtf_curve_pixels_v1.json",
+        "sha256": "71a32e2df6850a54509cef1e01517d6caa7d5f20b6a2a0d528c4bf75af3cec8a"
+      },
+      "graph_axes": {
+        "x_scale": "log10",
+        "x_value_pixels": [[1.0, 94.0], [600.0, 687.0]],
+        "x_tick_value_pixels": [[1.0, 94.0], [2.0, 158.0], [3.0, 196.0], [4.0, 223.0], [5.0, 243.0], [10.0, 307.0], [20.0, 372.0], [50.0, 457.0], [100.0, 521.0], [200.0, 585.0], [600.0, 687.0]],
+        "y_scale": "log10",
+        "y_value_pixels": [[1.0, 520.0], [200.0, 72.0]],
+        "y_tick_value_pixels": [[1.0, 520.0], [2.0, 461.0], [3.0, 427.0], [5.0, 384.0], [7.0, 355.0], [10.0, 325.0], [20.0, 267.0], [30.0, 232.0], [50.0, 189.0], [70.0, 161.0], [100.0, 131.0], [200.0, 72.0]]
+      },
+      "curves": {
+        "blue": [[392, 137], [409, 145], [424, 152], [436, 159], [447, 164], [465, 177], [474, 187], [481, 194]],
+        "green": [[392, 145], [409, 154], [424, 165], [436, 172], [447, 180], [465, 193], [474, 199], [481, 203]],
+        "red": [[392, 165], [409, 178], [424, 194], [436, 207], [447, 220], [465, 241], [474, 253], [481, 261]]
+      }
+    },
+    "kodak_vision3_500t_5219_7219": {
+      "source_pdf": {
+        "path": "data/physics/kodak_vision3_500t/technical_data.pdf",
+        "bytes": 747860,
+        "sha256": "6d037d8090373ee50d10bedfff3df14777a575dd107c50edcafc7ec5862d0972"
+      },
+      "source_graph": {
+        "path": "outputs/u6_p2t_kodak_characteristic_diversity/extracted/500t-002.png",
+        "bytes": 126380,
+        "sha256": "ef57579b70f72ebd4086f3b8cbe2324663e3c13f942723e44bf766c709d402a1",
+        "width": 748,
+        "height": 625,
+        "page_zero_based": 2,
+        "embedded_image_index": 2
+      },
+      "measurement_context": {
+        "exposure": "3200 K tungsten",
+        "process": "ECN-2",
+        "densitometry": "Status M",
+        "spatial_frequency_unit": "cycles/mm",
+        "response_unit": "percent"
+      },
+      "graph_axes": {
+        "x_scale": "log10",
+        "x_value_pixels": [[1.0, 101.0], [600.0, 723.0]],
+        "x_tick_value_pixels": [[1.0, 101.0], [2.0, 169.0], [3.0, 208.0], [4.0, 236.0], [5.0, 258.0], [10.0, 325.0], [20.0, 393.0], [50.0, 482.0], [100.0, 549.0], [200.0, 616.0], [600.0, 723.0]],
+        "y_scale": "log10",
+        "y_value_pixels": [[1.0, 548.0], [200.0, 78.0]],
+        "y_tick_value_pixels": [[1.0, 548.0], [2.0, 486.0], [3.0, 450.0], [5.0, 405.0], [7.0, 375.0], [10.0, 344.0], [20.0, 282.0], [30.0, 246.0], [50.0, 201.0], [70.0, 171.0], [100.0, 140.0], [200.0, 78.0]]
+      },
+      "curves": {
+        "blue": [[414, 175], [432, 189], [447, 202], [460, 215], [471, 227], [491, 251], [510, 276], [520, 291]],
+        "green": [[414, 150], [432, 160], [447, 170], [460, 179], [471, 187], [491, 206], [510, 227], [520, 240]],
+        "red": [[414, 144], [432, 152], [447, 162], [460, 168], [471, 178], [491, 194], [510, 210], [520, 219]]
+      }
+    }
+  },
+  "limitations": [
+    "The traces are typical manufacturer graph observations, not roll, batch, process or scanner calibration.",
+    "MTF is a spatial response and cannot identify a digital-to-film colour operator.",
+    "Manual source-ink tracing uncertainty is explicitly gated and the inspected overlays remain required evidence."
+  ]
+}

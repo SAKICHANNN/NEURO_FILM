@@ -1,0 +1,63 @@
+{
+  "schema": "neuro_film.u5_r2bu0_kodak_vision3_mtf_diversity_contract.v1",
+  "experiment_id": "U5.R2BU0",
+  "node": "ULT > U5 > U5.R2 > U5.R2BU0",
+  "date_frozen": "2026-08-01",
+  "question": "Do the first-party VISION3 50D, 250D and 500T high-frequency MTF shapes supply a stock-distinguishing physical source-domain signature after their characteristic-shape bank closed?",
+  "trace": {
+    "path": "configs/data/kodak_vision3_mtf_curve_pixels_v1.json",
+    "sha256": "d88c0e698c0e0969696224df50f1573ed78a6de0a894075f6502d9b3f658a794"
+  },
+  "parent_characteristic_decision": {
+    "path": "configs/u6_p2t_kodak_vision3_characteristic_diversity_decision_v1.json",
+    "sha256": "9cd529029ad2495382750c6b61d3c0c167cdbb559ddc0cdecb0671411a14e6db",
+    "required_decision": "retain_one_shared_manufacturer_shape_prior_and_close_stock_specific_shape_bank",
+    "required_material_pair_count": 0
+  },
+  "comparison": {
+    "stocks": [
+      "kodak_vision3_50d_5203_7203",
+      "kodak_vision3_250d_5207_7207",
+      "kodak_vision3_500t_5219_7219"
+    ],
+    "channels": ["blue", "green", "red"],
+    "common_frequencies_cycles_per_mm": [25.0, 30.0, 35.0, 40.0, 45.0, 55.0, 60.0, 65.0],
+    "metric": "RMSE of natural-log MTF response after subtracting the per-channel value at 25 cycles/mm",
+    "interpolation": "linear in log10 spatial frequency and natural-log response",
+    "negative_control": "the exact P2T characteristic-shape decision must remain closed"
+  },
+  "gates": {
+    "required_stock_count": 3,
+    "required_channel_count": 3,
+    "minimum_points_per_channel": 8,
+    "axis_max_residual_px": 1.0,
+    "trace_max_ink_distance_px": 2.0,
+    "minimum_response_percent": 10.0,
+    "maximum_response_percent": 110.0,
+    "maximum_monotonic_increase_percent": 2.0,
+    "minimum_pair_log_shape_rmse_per_channel": 0.08,
+    "minimum_material_channels_per_pair": 2,
+    "minimum_material_pair_count": 3,
+    "minimum_material_graph_degree_per_stock": 2,
+    "digitization_uncertainty_px": 2.0,
+    "maximum_digitization_uncertainty_fraction_of_shape_gate": 0.5,
+    "two_byte_identical_audits": true,
+    "visual_overlay_required": true
+  },
+  "allowed_after_pass": [
+    "retain a three-stock source-domain MTF signature as a physical FilmProfileBundle prior",
+    "freeze a separate joint characteristic-MTF profile compiler that keeps illuminant and graph identities explicit"
+  ],
+  "forbidden": [
+    "change any trace point, stock, channel, frequency, metric or gate after pairwise scoring",
+    "infer a digital RGB colour operator, real roll response, scanner response or calibrated stock appearance",
+    "render photographs, train a router or alter the current B0/AO6 product default",
+    "use a single material channel or only two stock pairs to claim a three-stock bank",
+    "treat manufacturer typical curves as uncertainty-free measurements"
+  ],
+  "branch_rule": {
+    "pass": "Retain source-domain MTF diversity and open only a separately frozen joint physical-prior compiler.",
+    "fail": "Close these exact VISION3 MTF traces without threshold, trace, stock, frequency or normalization rescue and return to new measured film evidence."
+  },
+  "claim_ceiling": "First-party manufacturer-graph source-domain MTF diversity for three VISION3 stocks; not a roll, process, scanner, colour-response, look, calibrated profile or product operator."
+}
