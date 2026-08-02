@@ -2,6 +2,15 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-02 - U6.P4BH validates multi-aperture sampling and exposes cost
+
+- All 105 scaled states pass empirical moment, lag, repeat and partition gates;
+  the 48um count fields remain exact P4BC bytes (`5194fd70...69694`).
+- Max density/transmittance RMS errors are `1.036%/1.084%`; normalized aperture
+  RMS span is `.043%`. No realized-field normalization was used.
+- A full matrix takes `51.8-52.7s`, so this is an offline reference. The next
+  leaf is a separately gated high-rate sampler optimization, not product use.
+
 # 2026-08-02 - U6.P4BG compiles the retained amplitude across apertures
 
 - A new immutable profile scales the existing 48um density RMS over the exact

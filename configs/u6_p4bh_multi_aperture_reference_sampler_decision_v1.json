@@ -1,0 +1,34 @@
+{
+  "schema": "neuro_film.u6_p4bh_multi_aperture_reference_sampler_decision.v1",
+  "node": "U6.P4BH",
+  "decision": "retain_generic_multi_aperture_reference_sampler",
+  "contract_commit": "39d80af902f838ec0fabaef5790c9b2bab2a6b96",
+  "implementation_commit": "c310dad0def39dee4f36dc3571505b90b4953e66",
+  "contract_sha256": "59437c8e51868e8946a9c185fbcdc694406c5c1558dbbbb660a1f2143d93d14f",
+  "sampler_module_sha256": "21e8c88fc68a385c1c4f7038640098bb4ad641c8a9b6fa4ab360fe77ec9d10f1",
+  "evaluator_sha256": "6e177f5c5a378e14aaf262e275c894482222d9f3f8c93a37a20ba43f4685a16b",
+  "reports": [
+    "outputs/experiments/u6_p4bh_multi_aperture_reference_sampler_v1/run_a/report.json",
+    "outputs/experiments/u6_p4bh_multi_aperture_reference_sampler_v1/run_b/report.json"
+  ],
+  "report_sha256": "5194fd7052310c2126ff182b291a20e0905df9e149280ea48906c0cba4969694",
+  "stable_evidence_id": "2e276e0bb07ce00fac8f16917076002cd6a0d0f444a6a9d47e95376fd1f559c3",
+  "two_reports_byte_exact": true,
+  "automatic_pass": true,
+  "metrics": {
+    "probe_count": 15,
+    "scaled_row_count": 105,
+    "maximum_density_mean_relative_error": 0.0008424731132748997,
+    "maximum_density_rms_relative_error": 0.010359690173696978,
+    "maximum_transmittance_mean_relative_error": 0.0020437943350748444,
+    "maximum_transmittance_rms_relative_error": 0.010837625417168373,
+    "maximum_absolute_lag_one_correlation": 0.011024717088674973,
+    "maximum_per_probe_normalized_rms_span": 0.00042928390068171197,
+    "observed_full_matrix_seconds": [51.8, 52.7]
+  },
+  "next_ready_leaf": "Replace the slow multi-million-rate inverse-CDF path with a separately versioned high-rate approximation only if it preserves distribution moments, failure atomicity, partition identity and the complete 48-micrometre legacy byte path.",
+  "spatial_nps_identified": false,
+  "photographic_render_allowed": false,
+  "product_integration_allowed": false,
+  "claim_ceiling": "Deterministic generic independent-cell sampling across the evidence-backed aperture-amplitude range with bounded realized moments and exact partitions; not measured NPS, microscopic structure, modern-stock calibration, photographic rendering or product evidence."
+}

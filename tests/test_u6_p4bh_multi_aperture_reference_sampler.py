@@ -54,5 +54,9 @@ def test_multi_aperture_sampler_repeats() -> None:
     contract = load_contract(CONTRACT)
     report = evaluate_sampler(contract, ROOT)
     assert report["automatic_pass"] is True
+    assert (
+        report["stable_evidence_id"]
+        == "2e276e0bb07ce00fac8f16917076002cd6a0d0f444a6a9d47e95376fd1f559c3"
+    )
     assert report["scaled_row_count"] == 105
     assert all(report["gate_results"].values())
