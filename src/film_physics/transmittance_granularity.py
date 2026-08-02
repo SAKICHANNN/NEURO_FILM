@@ -18,6 +18,7 @@ from src.film_physics.granularity_amplitude import GranularityAmplitudeProfile
 from src.film_physics.manufacturer_characteristic import ManufacturerCharacteristicPrior
 
 PROFILE_SCHEMA = "neuro_film.transmittance_granularity_profile.v1"
+INTERVAL_PROFILE_SCHEMA = "neuro_film.marginal_robust_transmittance_profile.v1"
 _LOG_10 = float(np.log(10.0))
 
 
@@ -107,6 +108,56 @@ def density_delta_method_transmittance_rms(
     return _LOG_10 * np.power(10.0, -mean) * sigma
 
 
+def density_gamma_to_transmittance_moments(
+    density_mean: np.ndarray, density_rms: np.ndarray
+) -> TransmittanceGranularityMoments:
+    """Map equal-mean/variance positive-Gamma density to transmittance moments."""
+
+    mean = np.asarray(density_mean, dtype=np.float64)
+    sigma = np.asarray(density_rms, dtype=np.float64)
+    if (
+        mean.shape != sigma.shape
+        or not np.all(np.isfinite(mean))
+        or not np.all(np.isfinite(sigma))
+    ):
+        raise ValueError("density moments must be finite and shape-matched")
+    if np.any(mean <= 0.0) or np.any(sigma <= 0.0):
+        raise ValueError("Gamma density mean/rms must be positive")
+    shape = np.square(mean / sigma)
+    scale = np.square(sigma) / mean
+    log_first = -shape * np.log1p(_LOG_10 * scale)
+    log_second = -shape * np.log1p(2.0 * _LOG_10 * scale)
+    first = np.exp(log_first)
+    rms = first * np.sqrt(np.expm1(log_second - 2.0 * log_first))
+    return TransmittanceGranularityMoments(mean, sigma, first, rms)
+
+
+def density_uniform_to_transmittance_moments(
+    density_mean: np.ndarray, density_rms: np.ndarray
+) -> TransmittanceGranularityMoments:
+    """Map a bounded equal-mean/variance density interval to exact moments."""
+
+    mean = np.asarray(density_mean, dtype=np.float64)
+    sigma = np.asarray(density_rms, dtype=np.float64)
+    if (
+        mean.shape != sigma.shape
+        or not np.all(np.isfinite(mean))
+        or not np.all(np.isfinite(sigma))
+    ):
+        raise ValueError("density moments must be finite and shape-matched")
+    half_width = np.sqrt(3.0) * sigma
+    if np.any(mean <= half_width) or np.any(sigma <= 0.0):
+        raise ValueError("bounded density interval leaves the positive domain")
+
+    def sinhc(value: np.ndarray) -> np.ndarray:
+        return np.sinh(value) / value
+
+    first = np.exp(-_LOG_10 * mean) * sinhc(_LOG_10 * half_width)
+    second = np.exp(-2.0 * _LOG_10 * mean) * sinhc(2.0 * _LOG_10 * half_width)
+    variance = np.maximum(second - np.square(first), 0.0)
+    return TransmittanceGranularityMoments(mean, sigma, first, np.sqrt(variance))
+
+
 @dataclass(frozen=True)
 class TransmittanceGranularityProfile:
     density_amplitude_profile: GranularityAmplitudeProfile
@@ -175,11 +226,96 @@ class TransmittanceGranularityProfile:
         return hashlib.sha256(encoded).hexdigest()
 
 
+@dataclass(frozen=True)
+class MarginalRobustTransmittanceProfile:
+    base_profile: TransmittanceGranularityProfile
+    marginal_families: tuple[str, str, str] = (
+        "gaussian",
+        "positive_gamma",
+        "bounded_uniform",
+    )
+
+    def __post_init__(self) -> None:
+        if self.marginal_families != (
+            "gaussian",
+            "positive_gamma",
+            "bounded_uniform",
+        ):
+            raise ValueError("unsupported density marginal family set")
+
+    def evaluate_bounds(
+        self,
+        prior: ManufacturerCharacteristicPrior,
+        relative_layer_log_exposure: np.ndarray,
+    ) -> dict[str, np.ndarray]:
+        gaussian = self.base_profile.evaluate(prior, relative_layer_log_exposure)
+        gamma = density_gamma_to_transmittance_moments(
+            gaussian.density_mean, gaussian.density_rms
+        )
+        uniform = density_uniform_to_transmittance_moments(
+            gaussian.density_mean, gaussian.density_rms
+        )
+        means = np.stack(
+            [
+                gaussian.transmittance_mean,
+                gamma.transmittance_mean,
+                uniform.transmittance_mean,
+            ]
+        )
+        rms = np.stack(
+            [
+                gaussian.transmittance_rms,
+                gamma.transmittance_rms,
+                uniform.transmittance_rms,
+            ]
+        )
+        return {
+            "transmittance_mean_minimum": np.min(means, axis=0),
+            "transmittance_mean_maximum": np.max(means, axis=0),
+            "transmittance_rms_minimum": np.min(rms, axis=0),
+            "transmittance_rms_maximum": np.max(rms, axis=0),
+        }
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "schema": INTERVAL_PROFILE_SCHEMA,
+            "base_profile": self.base_profile.to_dict(),
+            "marginal_families": list(self.marginal_families),
+            "shared_constraints": "equal_density_mean_and_variance",
+            "output": "transmittance_mean_and_rms_interval_at_48um",
+            "spatial_structure_status": "unidentified",
+        }
+
+    @classmethod
+    def from_dict(cls, payload: dict[str, Any]) -> MarginalRobustTransmittanceProfile:
+        if (
+            payload.get("schema") != INTERVAL_PROFILE_SCHEMA
+            or payload.get("shared_constraints") != "equal_density_mean_and_variance"
+            or payload.get("output") != "transmittance_mean_and_rms_interval_at_48um"
+            or payload.get("spatial_structure_status") != "unidentified"
+        ):
+            raise ValueError("unsupported marginal-robust profile schema")
+        return cls(
+            TransmittanceGranularityProfile.from_dict(payload["base_profile"]),
+            tuple(payload["marginal_families"]),  # type: ignore[arg-type]
+        )
+
+    def identity(self) -> str:
+        encoded = json.dumps(
+            self.to_dict(), sort_keys=True, separators=(",", ":"), allow_nan=False
+        ).encode("utf-8")
+        return hashlib.sha256(encoded).hexdigest()
+
+
 __all__ = [
+    "INTERVAL_PROFILE_SCHEMA",
     "PROFILE_SCHEMA",
+    "MarginalRobustTransmittanceProfile",
     "TransmittanceGranularityMoments",
     "TransmittanceGranularityProfile",
     "density_delta_method_transmittance_rms",
+    "density_gamma_to_transmittance_moments",
     "density_gaussian_to_transmittance_moments",
+    "density_uniform_to_transmittance_moments",
     "transmittance_moments_to_density_gaussian",
 ]
