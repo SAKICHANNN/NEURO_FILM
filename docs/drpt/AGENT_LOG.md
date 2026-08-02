@@ -10112,3 +10112,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `.05392`, with exact DC receipts and row partitions.
 - This opens only a frozen density-domain synthetic severe comparison. The
   capacity cells are not microscopic or stock-calibrated particles.
+
+# 2026-08-02 - U6.P4CB closes bounded-cloud density composition
+
+- The unchanged P4BW amplitude with P4CA occupancy retains p99 strength at
+  `.99926x` of P4BY, with zero isolated excursions/new boundaries and exact
+  typed domains, repeats and row partitions.
+- The maximum scan delta is `.05912` versus Gaussian `.05957`, only `.99251x`
+  rather than the frozen `.90x` comparative tail gate. Automatic failure
+  forbids visual review and photographic execution.
+- Close this composition without changing occupancy, amplitude, fixtures,
+  seeds or gates. Further work must add a genuinely identifying physical
+  mechanism rather than tune the bounded-source family.
