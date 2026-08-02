@@ -1,0 +1,42 @@
+{
+  "schema": "neuro_film.u6_p4bi_kodak_finite_correlation_scale_decision.v1",
+  "node": "U6.P4BI",
+  "decision": "close_finite_gaussian_correlation_scale_identification",
+  "contract_commit": "c75c29bc85188d09d0165b400194b1e055486eec",
+  "implementation_commit": "41fe51aee411bbeb50aa1805ba617f11c9b7da30",
+  "contract_sha256": "ca2cd69c53f2a1730f61c948ab1ff6b558cf4c5d6e0b6a7ac1baf511fb83b333",
+  "analytic_module_sha256": "158040dbac2eaff65ab1a32250d08939766e0794b2204dc57b712f097a07252c",
+  "evaluator_sha256": "7030e770a491e92122324c097a93aa945e7f85453cd594680f03c74a67908605",
+  "reports": [
+    "outputs/experiments/u6_p4bi_kodak_finite_correlation_scale_v1/run_a/report.json",
+    "outputs/experiments/u6_p4bi_kodak_finite_correlation_scale_v1/run_b/report.json"
+  ],
+  "report_sha256": "36195abc838ae47fef30fa223359ea96173d01579b2fb71f2b1b5a1b96a32843",
+  "stable_evidence_id": "2b6394a09eea6cc62d965d481f9e15ab21d5fb844c97e37a23ffaede6e270256",
+  "two_reports_byte_exact": true,
+  "automatic_pass": false,
+  "metrics": {
+    "development_group_count": 12,
+    "confirmation_group_count": 11,
+    "confirmation_comparison_count": 66,
+    "confirmation_median_relative_error": 0.04563482581981165,
+    "confirmation_p90_relative_error": 0.191799709433148,
+    "confirmation_worst_relative_error": 0.3008913108762391,
+    "selwyn_confirmation_median_relative_error": 0.04878921932574393,
+    "wrong_film_confirmation_median_relative_error": 0.059079549957464006,
+    "density_specific_oracle_confirmation_median_relative_error": 0.039397083566488855,
+    "median_improvement_over_selwyn": 0.0646534941432817,
+    "median_improvement_over_wrong_film": 0.22756984688157345,
+    "maximum_leave_one_group_out_scale_relative_span": 1.1551853333409732
+  },
+  "interpretation": [
+    "One Gaussian correlation scale captures a small central departure from the Selwyn law and beats cyclic wrong-film scales, but it does not transfer consistently across held density groups.",
+    "Three of four films regress against the zero-scale Selwyn control, development leave-one-group-out scales are unstable, and Plus-X selects the minimum grid boundary.",
+    "The official tables support aperture-amplitude scaling but do not identify a stable microscopic radius or one finite Gaussian spatial covariance."
+  ],
+  "next_ready_leaf": "Leave the P4BG/P4BH generic offline reference intact and advance a materially distinct physical-image-formation mechanism or independently measured same-material MTF/NPS source; do not rescue this covariance family.",
+  "spatial_nps_identified": false,
+  "photographic_render_allowed": false,
+  "product_integration_allowed": false,
+  "claim_ceiling": "Negative cross-density identification result for one Gaussian density-correlation scale per four historical photographic films; not microscopic grain radius, colour-stock transfer, modern process/scanner calibration, raster or product evidence."
+}

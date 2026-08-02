@@ -51,3 +51,8 @@ def test_frozen_scale_evaluator_repeats() -> None:
     assert first["development_group_count"] == 12
     assert first["confirmation_group_count"] == 11
     assert first["confirmation_comparison_count"] == 66
+    assert first["automatic_pass"] is False
+    assert (
+        first["stable_evidence_id"]
+        == "2b6394a09eea6cc62d965d481f9e15ab21d5fb844c97e37a23ffaede6e270256"
+    )

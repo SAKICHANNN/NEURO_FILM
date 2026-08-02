@@ -2,6 +2,15 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-02 - U6.P4BI closes a finite Gaussian spatial-scale claim
+
+- One scale per film lowers overall confirmation median error from `4.879%` to
+  `4.563%`, but improvement is only `6.47%` versus the frozen 10% gate.
+- Three films regress versus Selwyn; one fit hits the grid floor and LOO scale
+  span reaches `115.52%`. Two reports are exact (`36195abc...32843`).
+- Keep the measured aperture-amplitude law and generic offline sampler. The
+  table does not justify a microscopic radius or a selected spatial NPS.
+
 # 2026-08-02 - U6.P4BH validates multi-aperture sampling and exposes cost
 
 - All 105 scaled states pass empirical moment, lag, repeat and partition gates;
