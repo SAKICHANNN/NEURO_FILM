@@ -19,6 +19,9 @@ from src.film_physics.manufacturer_characteristic import ManufacturerCharacteris
 
 PROFILE_SCHEMA = "neuro_film.transmittance_granularity_profile.v1"
 INTERVAL_PROFILE_SCHEMA = "neuro_film.marginal_robust_transmittance_profile.v1"
+COMPOUND_POISSON_PROFILE_SCHEMA = (
+    "neuro_film.aperture_cell_compound_poisson_profile.v1"
+)
 _LOG_10 = float(np.log(10.0))
 
 
@@ -48,6 +51,78 @@ class TransmittanceGranularityMoments:
         for name, array in zip(self.__dataclass_fields__, arrays, strict=True):
             array.setflags(write=False)
             object.__setattr__(self, name, array)
+
+
+@dataclass(frozen=True)
+class ApertureCellCompoundPoissonParameters:
+    poisson_rate: np.ndarray
+    density_mark: np.ndarray
+
+    def __post_init__(self) -> None:
+        rate = np.array(self.poisson_rate, dtype=np.float64, copy=True)
+        mark = np.array(self.density_mark, dtype=np.float64, copy=True)
+        if (
+            rate.shape != mark.shape
+            or not np.all(np.isfinite(rate))
+            or not np.all(np.isfinite(mark))
+            or np.any(rate <= 0.0)
+            or np.any(mark <= 0.0)
+        ):
+            raise ValueError("compound-Poisson parameters must be positive and matched")
+        rate.setflags(write=False)
+        mark.setflags(write=False)
+        object.__setattr__(self, "poisson_rate", rate)
+        object.__setattr__(self, "density_mark", mark)
+
+
+def compile_aperture_cell_compound_poisson(
+    density_mean: np.ndarray, density_rms: np.ndarray
+) -> ApertureCellCompoundPoissonParameters:
+    """Compile equal density marks and Poisson rates from two density moments."""
+
+    mean = np.asarray(density_mean, dtype=np.float64)
+    sigma = np.asarray(density_rms, dtype=np.float64)
+    if (
+        mean.shape != sigma.shape
+        or not np.all(np.isfinite(mean))
+        or not np.all(np.isfinite(sigma))
+        or np.any(mean <= 0.0)
+        or np.any(sigma <= 0.0)
+    ):
+        raise ValueError("density mean/rms must be positive and shape-matched")
+    variance = np.square(sigma)
+    return ApertureCellCompoundPoissonParameters(
+        poisson_rate=np.square(mean) / variance,
+        density_mark=variance / mean,
+    )
+
+
+def density_compound_poisson_to_transmittance_moments(
+    density_mean: np.ndarray, density_rms: np.ndarray
+) -> tuple[ApertureCellCompoundPoissonParameters, TransmittanceGranularityMoments]:
+    """Evaluate exact transmittance moments for cell density ``q * Poisson(rate)``."""
+
+    mean = np.asarray(density_mean, dtype=np.float64)
+    sigma = np.asarray(density_rms, dtype=np.float64)
+    parameters = compile_aperture_cell_compound_poisson(mean, sigma)
+    first_log = parameters.poisson_rate * np.expm1(
+        -_LOG_10 * parameters.density_mark
+    )
+    transmittance_mean = np.exp(first_log)
+    # expm1(2x) - 2*expm1(x) == expm1(x)**2.  This form avoids
+    # cancellation when the density mark is small, as it is for a 48 um cell.
+    relative_log_variance = parameters.poisson_rate * np.square(
+        np.expm1(-_LOG_10 * parameters.density_mark)
+    )
+    relative_variance = np.expm1(relative_log_variance)
+    if np.any(relative_variance <= 0.0) or not np.all(np.isfinite(relative_variance)):
+        raise ValueError("compound-Poisson transmittance variance is invalid")
+    return parameters, TransmittanceGranularityMoments(
+        mean,
+        sigma,
+        transmittance_mean,
+        transmittance_mean * np.sqrt(relative_variance),
+    )
 
 
 def density_gaussian_to_transmittance_moments(
@@ -307,12 +382,97 @@ class MarginalRobustTransmittanceProfile:
         return hashlib.sha256(encoded).hexdigest()
 
 
+@dataclass(frozen=True)
+class ApertureCellCompoundPoissonProfile:
+    parent_profile: MarginalRobustTransmittanceProfile
+    source_evidence_id: str
+    measurement_cell_micrometres: float = 48.0
+
+    def __post_init__(self) -> None:
+        if (
+            len(self.source_evidence_id) != 64
+            or any(
+                character not in "0123456789abcdef"
+                for character in self.source_evidence_id
+            )
+            or self.measurement_cell_micrometres != 48.0
+        ):
+            raise ValueError("invalid aperture-cell compound-Poisson profile")
+
+    def evaluate(
+        self,
+        prior: ManufacturerCharacteristicPrior,
+        relative_layer_log_exposure: np.ndarray,
+    ) -> tuple[
+        ApertureCellCompoundPoissonParameters, TransmittanceGranularityMoments
+    ]:
+        base = self.parent_profile.base_profile.evaluate(
+            prior, relative_layer_log_exposure
+        )
+        return density_compound_poisson_to_transmittance_moments(
+            base.density_mean, base.density_rms
+        )
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "schema": COMPOUND_POISSON_PROFILE_SCHEMA,
+            "parent_profile": self.parent_profile.to_dict(),
+            "source_evidence_id": self.source_evidence_id,
+            "measurement_cell_micrometres": self.measurement_cell_micrometres,
+            "density_mechanism": "equal_mark_compound_poisson",
+            "parameterization": {
+                "poisson_rate": "density_mean_squared / density_variance",
+                "density_mark": "density_variance / density_mean",
+            },
+            "transform": "transmittance = pow(10, -compound_poisson_density)",
+            "microstructure_status": "unidentified",
+            "spatial_nps_status": "unidentified",
+            "render_allowed": False,
+        }
+
+    @classmethod
+    def from_dict(
+        cls, payload: dict[str, Any]
+    ) -> ApertureCellCompoundPoissonProfile:
+        if (
+            payload.get("schema") != COMPOUND_POISSON_PROFILE_SCHEMA
+            or payload.get("density_mechanism") != "equal_mark_compound_poisson"
+            or payload.get("parameterization")
+            != {
+                "poisson_rate": "density_mean_squared / density_variance",
+                "density_mark": "density_variance / density_mean",
+            }
+            or payload.get("transform")
+            != "transmittance = pow(10, -compound_poisson_density)"
+            or payload.get("microstructure_status") != "unidentified"
+            or payload.get("spatial_nps_status") != "unidentified"
+            or payload.get("render_allowed") is not False
+        ):
+            raise ValueError("unsupported aperture-cell compound-Poisson profile")
+        return cls(
+            MarginalRobustTransmittanceProfile.from_dict(payload["parent_profile"]),
+            str(payload["source_evidence_id"]),
+            float(payload["measurement_cell_micrometres"]),
+        )
+
+    def identity(self) -> str:
+        encoded = json.dumps(
+            self.to_dict(), sort_keys=True, separators=(",", ":"), allow_nan=False
+        ).encode("utf-8")
+        return hashlib.sha256(encoded).hexdigest()
+
+
 __all__ = [
+    "COMPOUND_POISSON_PROFILE_SCHEMA",
     "INTERVAL_PROFILE_SCHEMA",
     "PROFILE_SCHEMA",
+    "ApertureCellCompoundPoissonParameters",
+    "ApertureCellCompoundPoissonProfile",
     "MarginalRobustTransmittanceProfile",
     "TransmittanceGranularityMoments",
     "TransmittanceGranularityProfile",
+    "compile_aperture_cell_compound_poisson",
+    "density_compound_poisson_to_transmittance_moments",
     "density_delta_method_transmittance_rms",
     "density_gamma_to_transmittance_moments",
     "density_gaussian_to_transmittance_moments",
