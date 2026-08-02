@@ -3,7 +3,6 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u6_p3t_multiexposure_mechanism_recovery_v1.json"
 
