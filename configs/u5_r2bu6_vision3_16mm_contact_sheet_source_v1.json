@@ -1,0 +1,66 @@
+{
+  "schema": "neuro_film.u5_r2bu6_vision3_16mm_contact_sheet_source_contract.v1",
+  "experiment_id": "U5.R2BU6",
+  "node": "ULT > U5 > U5.R2 > U5.R2BU6",
+  "date_frozen": "2026-08-02",
+  "question": "Does the publicly downloadable 16mm VISION3 7207/7219 contact sheet expose enough exact condition and pairing structure to justify a separate bounded pixel audit?",
+  "source_page": {
+    "url": "https://vimeo.com/352603168",
+    "title": "Kodak 16mm Stock & Filtration Test",
+    "author": "PeterPascucci",
+    "observed_facts": [
+      "compares Kodak VISION3 250D 7207 and 500T 7219",
+      "contains interior and exterior daylight conditions",
+      "contains overexposure, underexposure and multiple filter tests",
+      "offers downloadable high-resolution stills and a contact sheet"
+    ]
+  },
+  "public_drive": {
+    "folder_id": "1ebwiJ1GTqapP0LT8p1opOlxl2vE5c9iG",
+    "inventory_counts": {
+      "jpeg_files": 49,
+      "tiff_files": 50,
+      "pdf_files": 1,
+      "directory_nodes": 1
+    },
+    "contact_sheet": {
+      "file_id": "19X7RMbwReubb4wD6lh4Gh9qbAJ8Hs46z",
+      "filename": "CONTACT_SHEET.pdf",
+      "http_content_length": 121524686,
+      "maximum_download_bytes": 130000000,
+      "destination": "data/physical_reference/vision3_16mm_stock_test_v1/CONTACT_SHEET.pdf"
+    },
+    "removed_prores_file_id": "1dhsaJtBh2w6au24xpMhKX7AK_iwEKrtd"
+  },
+  "rights": {
+    "page_explicitly_offers_download": true,
+    "explicit_reuse_license_found": false,
+    "allowed_use": "local quarantined internal research source audit only",
+    "redistribution": false,
+    "commercial_training_or_product": false
+  },
+  "gates": {
+    "download_only_contact_sheet": true,
+    "maximum_download_bytes": 130000000,
+    "pdf_decode_required": true,
+    "minimum_stock_ids": 2,
+    "required_stock_ids": ["7207", "7219"],
+    "minimum_distinct_condition_labels": 4,
+    "paired_scene_roles_must_be_explicit": true,
+    "scanner_and_process_must_remain_unknown_if_unstated": true,
+    "image_payload_downloads": 0,
+    "video_payload_downloads": 0
+  },
+  "forbidden": [
+    "download JPEG, TIFF or video payloads before this source gate passes",
+    "infer stock, exposure, filter, scene, process or scanner roles from visual appearance alone",
+    "treat a downloadable link as redistribution or commercial-product permission",
+    "fit an operator, train a model or score photographic transfer in this leaf",
+    "claim same scanner/process or independent stock response unless the contact sheet states it"
+  ],
+  "branch_rule": {
+    "pass": "Open a separately frozen bounded integrity and role audit over the minimum sufficient TIFF rows.",
+    "fail": "Close this exact public source before still-image download and seek another controlled observation."
+  },
+  "claim_ceiling": "Public source and contact-sheet role evidence for one author-run 16mm comparison; not pixel integrity, paired operator, process/scanner calibration, stock response or product evidence."
+}
