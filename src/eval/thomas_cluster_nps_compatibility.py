@@ -34,6 +34,23 @@ class ThomasClusterNPSCompatibilityError(RuntimeError):
     """Raised when frozen P4BR evidence or semantics drift."""
 
 
+def _optimizer_result_is_usable(result: Any, frozen_max_iterations: int) -> bool:
+    """Accept convergence or exact exhaustion of the preregistered budget."""
+
+    return bool(
+        np.all(np.isfinite(result.x))
+        and math.isfinite(float(result.fun))
+        and (
+            result.success
+            or (
+                int(result.nit) == frozen_max_iterations
+                and str(result.message)
+                == "Maximum number of iterations has been exceeded."
+            )
+        )
+    )
+
+
 def _canonical_json(value: Any) -> bytes:
     return (json.dumps(value, indent=2, sort_keys=True, allow_nan=False) + "\n").encode(
         "utf-8"
@@ -178,7 +195,7 @@ def _fit_material_candidate(
         tol=1e-10,
         atol=1e-13,
     )
-    if not result.success or not np.all(np.isfinite(result.x)):
+    if not _optimizer_result_is_usable(result, int(fit["optimizer_max_iterations"])):
         raise ThomasClusterNPSCompatibilityError(
             f"P4BR candidate optimization failed: {result.message}"
         )

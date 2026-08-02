@@ -3,12 +3,14 @@ from __future__ import annotations
 import hashlib
 import json
 from pathlib import Path
+from types import SimpleNamespace
 
 import numpy as np
 import pytest
 
 from src.eval.thomas_cluster_nps_compatibility import (
     ThomasClusterNPSCompatibilityError,
+    _optimizer_result_is_usable,
     load_contract,
 )
 from src.film_physics.thomas_cluster_nps import (
@@ -80,3 +82,16 @@ def test_p4br_contract_rejects_cluster_capacity_rescue(tmp_path: Path) -> None:
     path.write_text(json.dumps(payload), encoding="utf-8")
     with pytest.raises(ThomasClusterNPSCompatibilityError, match="contract drift"):
         load_contract(path)
+
+
+def test_p4br_accepts_only_exact_frozen_budget_exhaustion() -> None:
+    exhausted = SimpleNamespace(
+        x=np.asarray([1.0]),
+        fun=0.1,
+        success=False,
+        nit=160,
+        message="Maximum number of iterations has been exceeded.",
+    )
+    assert _optimizer_result_is_usable(exhausted, 160)
+    exhausted.nit = 159
+    assert not _optimizer_result_is_usable(exhausted, 160)
