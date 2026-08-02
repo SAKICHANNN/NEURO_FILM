@@ -1,0 +1,46 @@
+{
+  "schema": "neuro_film.u6_p4ce_perturbed_lattice_nps_compatibility_decision.v1",
+  "experiment_id": "u6.p4ce-perturbed-lattice-nps-compatibility-v1",
+  "decision": "close_independent_perturbed_lattice_diffuse_nps_family",
+  "automatic_pass": false,
+  "contract_sha256": "bf2b03d757afe1a7f59b0a00e3ea86e35608f9f6d5825b6d8db80c6ddb336dc0",
+  "core_sha256": "2243fad1e7d9b57d7b6ab30f3e824a81d0711468291ffb0a4e0f7b705c265909",
+  "evaluator_sha256": "a32c7a4e51c9ac3aabe8f6bc382b2cc25e599a4a8ad9a93e287f7d0a2396f64e",
+  "runner_sha256": "2fad2398d5ae386ebb034b5344b4c15317aa319021f68dbe4a6b58676e735181",
+  "report_sha256": "ffa4d801ae47565d77c51365ffbc1e9977c79deaf147a960ec3c94c01d0fddbb",
+  "repeat_report_sha256": "ffa4d801ae47565d77c51365ffbc1e9977c79deaf147a960ec3c94c01d0fddbb",
+  "stable_evidence_id": "42681d4aa3cf94ab3b318c3073244b86c6f9e7b5c0636476c002dbd652022d0d",
+  "metrics": {
+    "candidate_confirmation_median_log10_rmse": 0.5202389416383538,
+    "gaussian_confirmation_median_log10_rmse": 0.3427077510061274,
+    "thomas_confirmation_median_log10_rmse": 0.41277435696956877,
+    "relative_improvement_over_gaussian": -0.5180250231021251,
+    "relative_improvement_over_thomas": -0.26034704640508405,
+    "candidate_confirmation_worst_log10_rmse": 1.0052117942650822,
+    "candidate_to_gaussian_worst_error_ratio": 1.08661715982992,
+    "profiles_beating_gaussian": 2,
+    "profiles_beating_thomas": 1,
+    "fitted_jitter_sigma_range_micrometres": [
+      49.99999991071525,
+      49.99999999832408
+    ]
+  },
+  "failed_gates": [
+    "confirmation_median_improvement_over_gaussian",
+    "confirmation_median_improvement_over_thomas",
+    "each_material_not_worse_than_gaussian",
+    "worst_confirmation_not_worse_than_gaussian",
+    "profiles_beating_gaussian",
+    "profiles_beating_thomas",
+    "interior_particle_and_jitter_sigmas"
+  ],
+  "interpretation": "All five state jitter fits collapse to the frozen 50 micrometre ceiling, making the observed-band diffuse factor approach one rather than supporting measurable hyperuniform suppression. The lower-capacity material-shared footprint then underperforms both controls on held bands.",
+  "closed_rescues": [
+    "dependent perturbation field on the same five spectra",
+    "Bragg-atom smoothing or fitting",
+    "jitter or footprint bound expansion",
+    "frequency split, objective, threshold or gate changes"
+  ],
+  "next_ready_leaf": "Advance a new measured real-film observation or a mechanism-distinct developed-image experiment; do not continue point-process spatial-capacity tuning on the five historical spectra.",
+  "claim_ceiling": "Negative held-band compatibility evidence for one 2026 paper-derived independent perturbed-lattice diffuse NPS family; not a conclusion about real photographic-emulsion hyperuniformity."
+}

@@ -2,6 +2,16 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-02 - U6.P4CE closes a 2026 repulsive-point NPS baseline
+
+- Implemented the paper's independent Gaussian-perturbed-lattice continuous
+  diffuse factor as a clean-room explicit spectrum, excluding Bragg atoms.
+- Two reports are exact (`ffa4d801...fddbb`). All five state jitters hit the
+  `50um` ceiling; held median error `.52024` is `51.80%/26.03%` worse than the
+  Gaussian/Thomas controls and the worst tail also regresses.
+- Close dependent-field, Bragg-smoothing and bound rescue on this cohort. Move
+  to a new measured observation or mechanism, with no render or product claim.
+
 # 2026-08-02 - U6.P4CD closes latest Poisson-binomial grain marginal
 
 - Derived the compact density-variance family from the official Stanford
