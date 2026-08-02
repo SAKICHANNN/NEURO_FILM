@@ -366,6 +366,10 @@ Bracket redundancy closes 16-bit but not 12/10-bit because the absolute group
 exposure gauge is unobserved. Next quantify an independent exposure-anchor
 precision requirement instead of adding source-only capacity.
 
+U6.P3W shows exposure anchoring alone is insufficient (`dfe68d3d...a1c85`):
+even an exact anchor leaves 12/10-bit residual gates open. The next ready leaf
+uses anchored multi-exposure pixel fusion to attack quantization/noise directly.
+
 Current real-grain leaf: U6.P4R closes stock association while retaining one
 generic scanner-convolved signature candidate. Eight exact CC0 16-bit RGBA
 TIFFs pass acquisition and visual gates; RGB NPS is highly repeatable, but

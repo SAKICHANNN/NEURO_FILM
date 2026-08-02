@@ -10273,3 +10273,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   The source-only repeated bracket cannot identify its absolute group gain.
 - Same-cohort source-only rescue closes. Next quantify required precision of an
   independently measured exposure anchor under unchanged P3U gates.
+
+# 2026-08-01 - U6.P3W anchor-only ladder closes
+
+- Evaluated exact, 100, 250, 500 and 1000 ppm independent exposure anchors
+  under unchanged P3U observations/gates. Two full reports are exact at
+  `dfe68d3d...a1c85`; anchor target reads, bounds and correction clipping pass.
+- No level closes all regimes. Exact gain closes 16-bit but leaves 12-bit RMSE
+  `.0008891` and 10-bit RMSE/ratio `.0023953/3.699` outside frozen gates.
+- This isolates quantization/additive source noise as the next bottleneck. Next
+  test anchored source-only multi-exposure pixel fusion, not finer gain metering.

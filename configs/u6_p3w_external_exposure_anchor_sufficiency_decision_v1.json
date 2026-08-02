@@ -1,0 +1,43 @@
+{
+  "schema": "neuro_film.u6_p3w_external_exposure_anchor_sufficiency_decision.v1",
+  "experiment_id": "U6.P3W",
+  "status": "complete_anchor_only_ladder_closed",
+  "decision": "close-tested-external-exposure-anchor-ladder",
+  "automatic_pass": false,
+  "contract_sha256": "98a840f0f486425d37d83f546d25abf12a821b5d389a7f3f04fe0e9208a396b7",
+  "evaluator_sha256": "e60efd2498b2e0354e614a5377b826d6533e9dbd026d095712eeac26c46830f6",
+  "runner_sha256": "5b9fe70c08c30d48afbda50b11194967abef307a772d13cc74c262c64814fd2c",
+  "report_sha256": "dfe68d3d84a29e2e38e15f1acaaaaa8b0e9ae6f44eca80f7290fb5bb885a1c85",
+  "repeat_report_sha256": "dfe68d3d84a29e2e38e15f1acaaaaa8b0e9ae6f44eca80f7290fb5bb885a1c85",
+  "scientific_stable_id": "bb83282ce5dfbd558fa3649cd15d5efb9e8fdc0d83131a1de7439cdad9c3f8a8",
+  "passing_anchor_levels_ppm": [],
+  "exact_anchor_metrics": [
+    {
+      "regime_id": "linear16-low-noise",
+      "maximum_pure_confirmation_rmse": 4.07056671469822e-05,
+      "minimum_wrong_to_correct_rmse_ratio": 192.35031328672645,
+      "failed_gates": []
+    },
+    {
+      "regime_id": "linear12-moderate",
+      "maximum_pure_confirmation_rmse": 0.0008890619851516382,
+      "minimum_wrong_to_correct_rmse_ratio": 8.861087044707585,
+      "failed_gates": ["pure_confirmation_error"]
+    },
+    {
+      "regime_id": "linear10-stress",
+      "maximum_pure_confirmation_rmse": 0.0023952650865021216,
+      "minimum_wrong_to_correct_rmse_ratio": 3.6986034922790156,
+      "failed_gates": ["pure_confirmation_error", "wrong_family_separation"]
+    }
+  ],
+  "interpretation": "An exact independent exposure-gain anchor closes 16-bit but does not materially close 12-bit or 10-bit. The remaining residual is therefore driven by source quantization and additive observation noise propagated through the nonlinear response, not by exposure-gauge uncertainty alone.",
+  "closed_rescues": [
+    "finer exposure-anchor precision",
+    "different anchor error draws",
+    "interpolation below the exact-anchor endpoint",
+    "relaxed P3U gates"
+  ],
+  "next_ready_leaf": "Combine exact/100-ppm independent anchors with prospectively frozen source-only multi-exposure pixel fusion, retaining exact P3U targets, cases and gates.",
+  "claim_ceiling": "Synthetic negative acquisition-sufficiency evidence for exposure anchoring alone; no real meter, step wedge, film calibration or product claim."
+}

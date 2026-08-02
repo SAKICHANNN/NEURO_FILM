@@ -1560,6 +1560,11 @@ remain above the exact P3U gates (`d3a125c9...4ba8`). The limiting variable is
 the absolute exposure gauge, so the next experiment specifies external anchor
 precision rather than tuning the same data.
 
+P3W's exact-to-1000-ppm ladder shows no anchor-only level closes all P3U
+regimes (`dfe68d3d...a1c85`). Exact gain already fails 12/10-bit, localizing the
+remaining error to quantized/noisy source samples. Next combine an independent
+anchor with fixed variance-weighted bracket fusion; do not relax P3U gates.
+
 `SF2.9R` audits five ColorReference multi-family IT8/ISO 12641 transmission
 references instead of scanner RGB or uncontrolled photographs. Exact
 byte/CRC/parse gates and 288 shared target patches pass twice; each archive
