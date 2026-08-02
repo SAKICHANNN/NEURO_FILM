@@ -1,0 +1,70 @@
+{
+  "schema": "neuro_film.u6_p3v_bracket_eiv_mechanism_recovery_contract.v1",
+  "experiment_id": "u6.p3v-bracket-eiv-mechanism-recovery-v1",
+  "node": "ULT > U6 > U6.P3 > U6.P3V",
+  "status": "contract_frozen_implementation_ready",
+  "parents": {
+    "p3u_contract": {
+      "path": "configs/u6_p3u_mechanism_recovery_uncertainty_v1.json",
+      "sha256": "6fb5ab4ca91d88f1f1fee716ec867d50a5dfca9ddb6f98cbf3f73b87fb0125e6"
+    },
+    "p3u_decision": {
+      "path": "configs/u6_p3u_mechanism_recovery_uncertainty_decision_v1.json",
+      "sha256": "c04581953761353fb42496a3d8ff7acb53e3680ef8ac7fc32cadf3eb37736632",
+      "required_decision": "close-failed-p3t-uncertainty-envelope"
+    },
+    "p3u_evaluator": {
+      "path": "src/eval/mechanism_recovery_uncertainty.py",
+      "sha256": "12e53e6d96ad020ad10c8fb2ca2c9f8484f13c07a3c21a167d28521a2618aeaf"
+    }
+  },
+  "question": "Can source-only bracket redundancy identify row-wise exposure-gain nuisance before the unchanged P3T inverse, closing the frozen P3U residual and separation gates without reading any target?",
+  "estimator": {
+    "name": "bounded bracket errors-in-variables source normalizer",
+    "inputs": ["observed source scalars", "pattern group", "nominal exposure scale"],
+    "forbidden_inputs": ["development target", "confirmation target", "truth mechanism", "outcome metrics"],
+    "base_update": "per-pattern arithmetic mean of gain-corrected source divided by nominal exposure scale",
+    "gain_update": "per-row least-squares scalar through origin against nominal exposure scale times current base",
+    "gauge": "role-wide geometric mean gain equals one",
+    "iterations": 8,
+    "maximum_absolute_relative_gain": "two times the regime maximum absolute source gain jitter",
+    "post_fit_changes_allowed": false
+  },
+  "roles": {
+    "development": "exact P3U development observations",
+    "confirmation": "exact P3U disjoint confirmation observations",
+    "normalizer_reads_targets": false,
+    "mechanism_fit_reads_confirmation": false
+  },
+  "unchanged_evaluation": {
+    "regimes": "exact P3U 16/12/10-bit uncertainty regimes",
+    "truth_cases": "exact P3T six pure plus two mixed cases",
+    "mechanism_candidates": "exact P3T physical and lens families",
+    "automatic_gates": "exact P3U per-regime and common gates"
+  },
+  "additional_gates": {
+    "all_three_p3u_regimes_pass": true,
+    "source_normalizer_target_read_count_max": 0,
+    "maximum_gain_bound_violation_count": 0,
+    "development_confirmation_pattern_overlap_count_max": 0,
+    "report_repeat_sha256_exact": true
+  },
+  "controls": [
+    "raw source-as-exact P3U failure",
+    "unchanged wrong equation family",
+    "unchanged mixed-mechanism abstention",
+    "source-only normalizer with no target or outcome access"
+  ],
+  "forbidden": [
+    "change P3U observations, cases, regimes or gates after scoring",
+    "read targets while estimating row gains",
+    "use truth gain jitter at runtime",
+    "change iteration count, gauge, bounds or estimator after scoring",
+    "claim measured film, calibrated acquisition or product readiness"
+  ],
+  "branch_rule": {
+    "pass": "Retain bracket-normalized recovery and specify a minimal controlled acquisition protocol before real-data work.",
+    "fail": "Close this exact source-only EIV estimator without same-cohort rescue; retain P3T only under its clean synthetic envelope."
+  },
+  "claim_ceiling": "Synthetic source-only bracket-normalization evidence under the exact P3U uncertainty observations; no real-film measurement, calibration or product claim."
+}
