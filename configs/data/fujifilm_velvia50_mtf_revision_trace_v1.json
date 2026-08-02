@@ -1,0 +1,84 @@
+{
+  "schema": "neuro_film.fujifilm_velvia50_mtf_revision_trace.v1",
+  "annotation_method": "Human-guided source-ink tracing of the single composite MTF curve from exact embedded 1-bit graph objects. Integer points and axis anchors were frozen before any revision or cross-manufacturer metric was computed.",
+  "revisions": {
+    "fujichrome_velvia_rvp_af3_960e": {
+      "source_pdf": {
+        "path": "data/physics/fujifilm_velvia_rvp/technical_data.pdf",
+        "bytes": 205381,
+        "sha256": "4281e316d648e626d9a3a7127902489fb8e6bedabd90751aa32e3743c8bf8541",
+        "official_source": "https://www.fujifilm.com/us/en/business/professional-photography/film/velvia-50/support"
+      },
+      "source_graph": {
+        "path": "outputs/u5_r2bw0_velvia_mtf_revision_signature/extracted/rvp_mtf.png",
+        "bytes": 5598,
+        "sha256": "dd5e95e3bcc403ef361d1ed1a1248e675c439ec5712ecc97991900d62d0de1c1",
+        "width": 865,
+        "height": 719,
+        "page_one_based": 7,
+        "embedded_page_image_index_zero_based": 2
+      },
+      "measurement_context": {
+        "exposure": "Daylight",
+        "process": "E-6/CR-56",
+        "mtf_observation": "single composite response curve",
+        "spatial_frequency_unit": "cycles/mm",
+        "response_unit": "percent",
+        "diffuse_rms_granularity": 9,
+        "granularity_aperture_micrometres": 48,
+        "granularity_sample_density_above_minimum": 1.0
+      },
+      "graph_axes": {
+        "x_scale": "log10",
+        "x_value_pixels": [[1.0, 95.0], [200.0, 862.0]],
+        "x_tick_value_pixels": [[1.0, 95.0], [5.0, 327.0], [10.0, 429.0], [20.0, 529.0], [50.0, 662.0], [100.0, 761.0], [200.0, 862.0]],
+        "y_scale": "log10",
+        "y_value_pixels": [[150.0, 15.0], [2.0, 630.0]],
+        "y_tick_value_pixels": [[150.0, 15.0], [100.0, 74.0], [50.0, 173.0], [30.0, 247.0], [20.0, 306.0], [10.0, 405.0], [7.0, 457.0], [5.0, 505.0], [3.0, 588.0], [2.0, 630.0]]
+      },
+      "curve": [[254, 59], [296, 53], [354, 48], [396, 45], [455, 46], [496, 54], [561, 84], [610, 124], [646, 167], [688, 226]]
+    },
+    "fujichrome_velvia_50_rvp50_af3_0221e2": {
+      "source_pdf": {
+        "path": "data/physics/fujifilm_velvia_50/product_information_bulletin.pdf",
+        "bytes": 524708,
+        "sha256": "bebfb4305fd3edc5e3505a9a0f4a0a1078da1db7672aacb4aa1bac1de3d64cfd",
+        "official_source": "https://asset.fujifilm.com/master/emea/files/2020-10/a71dda63e2662f012b3b74110794918a/films_velvia-50_datasheet_01.pdf"
+      },
+      "source_graph": {
+        "path": "outputs/u5_r2bw0_velvia_mtf_revision_signature/extracted/rvp50_mtf.png",
+        "bytes": 15990,
+        "sha256": "a29ca62215998de6060d0613b67752af7599c73161293b04b46768aba87d40a6",
+        "width": 1762,
+        "height": 1476,
+        "page_one_based": 8,
+        "embedded_page_image_index_zero_based": 0
+      },
+      "measurement_context": {
+        "exposure": "Daylight",
+        "process": "E-6/CR-56",
+        "mtf_observation": "single composite response curve",
+        "spatial_frequency_unit": "cycles/mm",
+        "response_unit": "percent",
+        "diffuse_rms_granularity": 9,
+        "granularity_aperture_micrometres": 48,
+        "granularity_sample_density_above_minimum": 1.0
+      },
+      "graph_axes": {
+        "x_scale": "log10",
+        "x_value_pixels": [[1.0, 204.0], [200.0, 1736.0]],
+        "x_tick_value_pixels": [[1.0, 204.0], [5.0, 667.0], [10.0, 872.0], [20.0, 1071.0], [50.0, 1337.0], [100.0, 1536.0], [200.0, 1736.0]],
+        "y_scale": "log10",
+        "y_value_pixels": [[150.0, 51.0], [2.0, 1249.0]],
+        "y_tick_value_pixels": [[150.0, 51.0], [100.0, 169.0], [70.0, 265.0], [50.0, 369.0], [30.0, 542.0], [20.0, 634.0], [10.0, 832.0], [7.0, 939.0], [5.0, 1034.0], [3.0, 1165.0], [2.0, 1249.0]]
+      },
+      "curve": [[522, 141], [605, 130], [722, 117], [805, 112], [923, 113], [1006, 130], [1135, 189], [1232, 270], [1305, 355], [1388, 471]]
+    }
+  },
+  "limitations": [
+    "The two documents may reuse a manufacturer measurement and therefore revision agreement is source stability, not independent roll replication.",
+    "Velvia exposes one composite MTF curve whereas the Kodak VISION3 source exposes three layer-labelled curves; comparison uses only a declared geometric layer composite.",
+    "E-6 reversal and ECN-2 negative process, polarity, illumination, densitometry and manufacturer remain confounded.",
+    "The scalar diffuse-rms granularity value is retained as observed metadata and is not numerically compared with Kodak exposure-dependent curves."
+  ]
+}

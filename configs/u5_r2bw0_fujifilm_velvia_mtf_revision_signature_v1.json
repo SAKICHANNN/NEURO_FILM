@@ -1,0 +1,51 @@
+{
+  "schema": "neuro_film.u5_r2bw0_fujifilm_velvia_mtf_revision_signature_contract.v1",
+  "experiment_id": "U5.R2BW0",
+  "question": "Does the first-party Fujifilm Velvia 50 composite MTF remain stable across two exact official document revisions and remain materially separated from every existing VISION3 stock under one frozen composite-MTF comparison?",
+  "trace": {
+    "path": "configs/data/fujifilm_velvia50_mtf_revision_trace_v1.json",
+    "sha256": "d5e1d7bddbfa434434cb092fce438355673bb08173c5cc470600c39fbc1fc481"
+  },
+  "kodak_trace": {
+    "path": "configs/data/kodak_vision3_mtf_curve_pixels_v1.json",
+    "sha256": "d88c0e698c0e0969696224df50f1573ed78a6de0a894075f6502d9b3f658a794"
+  },
+  "parent_observed_profile": {
+    "path": "configs/u5_r2bu3_vision3_observed_source_profile_decision_v1.json",
+    "sha256": "d4c318a857f788b3ea5fdef292ba44f24f2d4386a03cb02928c77a24424c95a9",
+    "required_decision": "retain_identity_bound_nonrenderable_source_profile"
+  },
+  "comparison": {
+    "velvia_revisions": ["fujichrome_velvia_rvp_af3_960e", "fujichrome_velvia_50_rvp50_af3_0221e2"],
+    "current_revision": "fujichrome_velvia_50_rvp50_af3_0221e2",
+    "kodak_stocks": ["kodak_vision3_50d_5203_7203", "kodak_vision3_250d_5207_7207", "kodak_vision3_500t_5219_7219"],
+    "kodak_composite": "geometric mean of blue, green and red response at each common frequency",
+    "common_frequencies_cycles_per_mm": [25.0, 35.0, 45.0, 60.0],
+    "normalization": "subtract natural-log response at 25 cycles/mm",
+    "interpolation": "linear in log10 spatial frequency and natural-log response",
+    "metric": "root mean square difference of normalized natural-log response"
+  },
+  "gates": {
+    "required_revision_count": 2,
+    "minimum_trace_points_per_revision": 10,
+    "axis_max_residual_px": 2.0,
+    "trace_max_ink_distance_px": 2.0,
+    "minimum_response_percent": 20.0,
+    "maximum_response_percent": 140.0,
+    "maximum_revision_log_shape_rmse": 0.03,
+    "minimum_each_kodak_log_shape_rmse": 0.08,
+    "digitization_uncertainty_px": 2.0,
+    "maximum_uncertainty_fraction_of_separation_gate": 0.5,
+    "require_equal_granularity_observation": true,
+    "required_granularity_aperture_micrometres": 48,
+    "required_granularity_sample_density_above_minimum": 1.0,
+    "two_byte_identical_audits": true,
+    "visual_overlay_required": true
+  },
+  "stop_rules": [
+    "Do not tune trace points, frequencies, normalization, composite rule or gates after any score.",
+    "Failure closes this exact cross-manufacturer source signature without curve-capacity or threshold rescue.",
+    "Pass may retain a non-renderable source-domain Velvia observation only; it cannot open a PSF, NPS, RGB transform, stock calibration, photographic render or product profile."
+  ],
+  "claim_ceiling": "First-party manufacturer-graph Velvia 50 revision stability and source-domain composite-MTF separation under explicit E-6/ECN-2 and composite/layer confounds; not independent rolls, process/scanner calibration, colour response, NPS, microscopic structure, photographic appearance or product evidence."
+}
