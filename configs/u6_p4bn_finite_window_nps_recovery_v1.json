@@ -1,0 +1,63 @@
+{
+  "schema": "neuro_film.u6_p4bn_finite_window_nps_recovery_contract.v1",
+  "experiment_id": "u6.p4bn-finite-window-nps-recovery-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4BN",
+  "date_frozen": "2026-08-02",
+  "question": "Does a conventional mean-removed radial periodogram recover the retained P4BM aperture-observed spectra from finite 128um and 256um windows well enough to distinguish the five measured density states, or do crop/window effects invalidate direct NPS comparison?",
+  "parents": {
+    "p4bm_contract_path": "configs/u6_p4bm_measured_nps_field_synthesis_v1.json",
+    "p4bm_contract_sha256": "0020206b7ad20d9d962e63d3e357b9e9676fe2d0606e35d29d116c3e986eb562",
+    "p4bm_decision_path": "configs/u6_p4bm_measured_nps_field_synthesis_decision_v1.json",
+    "p4bm_decision_sha256": "990927bd9dffe624e9183d9bd37a4f9adefc847155809d85bf0dd07f187a2ddc",
+    "p4bm_report_path": "outputs/experiments/u6_p4bm_measured_nps_field_synthesis_v1/run_a/report.json",
+    "p4bm_report_sha256": "3c436567346c3fcacc6bc59792edead0f6735ed41368e4217b0bd594acec01a6",
+    "p4bm_stable_evidence_id": "0423ea423a41eaca9bf60f5689f7e20d7197bd77350dd863162044b7ff8440cc",
+    "p4bl_bundle_path": "outputs/experiments/u6_p4bl_historical_measured_nps_compiler_v1/run_a/bundle.json",
+    "p4bl_bundle_sha256": "2299a1acd914aaa865910fc2a7601f286db3df69ffa642d3bc31de8dbd0f310d",
+    "p4bl_bundle_id": "6a4050c4c03e8db33ee282608be50734f5e2aee1cf257bfcccdd85442f9c8567"
+  },
+  "estimator": {
+    "parent_field_shape": [512, 512],
+    "sample_pitch_millimetres": 0.001,
+    "field_kind": "aperture_observed",
+    "seeds": [2608022301, 2608022302, 2608022303],
+    "crop_sizes": [128, 256],
+    "crop_layout": "four_nonoverlapping_corner_crops",
+    "windows": ["rectangular", "hann"],
+    "mean_removal": "window_weighted_mean_before_window_application",
+    "periodogram_normalization": "sample_pitch_squared_times_abs_fft_squared_divided_by_sum_window_squared",
+    "radial_bin_edges_lines_per_mm": [10.0, 20.0, 30.0, 40.0, 50.0, 60.0, 70.0, 80.0, 90.0, 100.0, 110.0, 120.0, 130.0, 140.0, 150.0, 160.0, 170.0, 180.0, 190.0, 200.0, 210.0, 220.0, 230.0, 240.0, 250.0, 260.0, 270.0, 280.0, 290.0, 300.0, 310.0, 320.0, 330.0, 340.0, 350.0],
+    "aggregation": "arithmetic_mean_periodogram_across_three_seeds_and_four_crops_before_radial_binning",
+    "comparison": "log10_rmse_against_same_grid_radial_mean_of_exact_aperture_observed_target",
+    "classification": "nearest_exact_profile_by_log10_rmse",
+    "target_reads_or_fitting": "none",
+    "post_score_window_or_bin_tuning_allowed": false,
+    "render_allowed": false
+  },
+  "evaluation": {
+    "required_profile_count": 5,
+    "required_observations_per_profile_and_crop_size": 12,
+    "maximum_periodic_control_log10_rmse": 1e-10,
+    "maximum_256_hann_median_log10_rmse": 0.25,
+    "maximum_256_hann_worst_log10_rmse": 0.4,
+    "minimum_256_hann_profile_top1_rate": 0.8,
+    "maximum_128_hann_median_log10_rmse": 0.35,
+    "maximum_128_hann_worst_log10_rmse": 0.55,
+    "minimum_128_hann_profile_top1_rate": 0.8,
+    "require_finite_positive_radial_estimates": true,
+    "require_repeat_exact": true,
+    "require_two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain the frozen finite-window Hann radial estimator as a measurement bridge for synthetic/reference NPS diagnostics; next work may test independent measured image fields but still cannot infer modern-stock structure.",
+    "fail": "Close direct finite-window NPS recovery without tuning windows, bins, crop counts or gates; retain P4BM only as a periodic spectral reference and require a materially different estimator or independent measurement design."
+  },
+  "forbidden": [
+    "choose crop size, window or radial bins after scoring",
+    "fit target profiles to the same synthesized fields",
+    "interpret profile classification as film-stock identification",
+    "apply synthetic fields to photographs",
+    "change product rendering"
+  ],
+  "claim_ceiling": "Finite-window recovery diagnostic for five synthetic fields generated from historical Fuji B&W measured spectra; not an independent film scan, stock classifier, microscopic validation, photographic quality or product evidence."
+}
