@@ -89,6 +89,12 @@ def run_bilateral_gain_capacity(
             "gates": result["gates"],
         }
         all_rows.extend(result["rows"])
+    population_gates = {
+        "target_variant_count": len(variants)
+        == int(config["evaluation"]["automatic_gates"]["target_variant_count_exact"]),
+        "target_variant_identity": sorted(variants)
+        == sorted(map(str, config["population"]["target_variants"])),
+    }
     body = {
         "schema": "neuro_film.u5_r2bt0_fivek_bilateral_gain_capacity_formal_report.v1",
         "experiment_id": config["experiment_id"],
@@ -97,7 +103,9 @@ def run_bilateral_gain_capacity(
         "manifest_sha256": config["population"]["manifest_sha256"],
         "confirmation_rows_loaded": 0,
         "variants": variants,
-        "automatic_pass": all(row["automatic_pass"] for row in variants.values()),
+        "population_gates": population_gates,
+        "automatic_pass": all(population_gates.values())
+        and all(row["automatic_pass"] for row in variants.values()),
         "rows": sorted(
             all_rows,
             key=lambda row: (row["target_variant"], row["pair_id"], row["fold"]),

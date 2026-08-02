@@ -86,5 +86,6 @@ def test_spatial_luma_gain_beats_global_on_synthetic_local_effect() -> None:
             }
         )
     result = evaluate_gain_capacity(rows, config)
+    assert "target_variants" not in result["gates"]
     assert result["metrics"]["mean_improvement_over_parameter_matched_global_lut"] > 0.0
     assert result["metrics"]["maximum_out_of_cube_fraction"] == 0.0
