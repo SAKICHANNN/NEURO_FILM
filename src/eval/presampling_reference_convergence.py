@@ -74,7 +74,7 @@ def load_contract(path: Path) -> dict[str, Any]:
     return payload
 
 
-def _fixture(shape: tuple[int, int]) -> np.ndarray:
+def build_presampling_convergence_fixture(shape: tuple[int, int]) -> np.ndarray:
     h, w = shape
     y, x = np.meshgrid(np.linspace(0, 1, h), np.linspace(0, 1, w), indexing="ij")
     checker = ((np.indices(shape).sum(axis=0) // 3) % 2).astype(np.float64)
@@ -114,7 +114,7 @@ def evaluate_presampling_reference_convergence(
     ):
         raise PresamplingConvergenceAuditError("P6AE parent facts drift")
     material = config["material"]
-    target = _fixture(tuple(material["input_shape"]))
+    target = build_presampling_convergence_fixture(tuple(material["input_shape"]))
     common = {
         "target_pixel_pitch_um": material["target_pixel_pitch_um"],
         "aperture_diameter_um": material["aperture_diameter_um"],
@@ -184,6 +184,7 @@ def evaluate_presampling_reference_convergence(
 
 __all__ = [
     "PresamplingConvergenceAuditError",
+    "build_presampling_convergence_fixture",
     "evaluate_presampling_reference_convergence",
     "load_contract",
 ]
