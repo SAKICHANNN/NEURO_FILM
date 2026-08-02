@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -72,3 +74,19 @@ def test_p3s_contract_drift_fails_closed(tmp_path: Path) -> None:
     path.write_text(json.dumps(payload), encoding="utf-8")
     with pytest.raises(ProMistHalationError, match="unique and increasing"):
         load_contract(path)
+
+
+def test_p3s_runner_is_directly_invocable() -> None:
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts/run_u6_p3s_promist_halation_identifiability.py"),
+            "--help",
+        ],
+        cwd=ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert completed.returncode == 0, completed.stderr
+    assert "--output" in completed.stdout
