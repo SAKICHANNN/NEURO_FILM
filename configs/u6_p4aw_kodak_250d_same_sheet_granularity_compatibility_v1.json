@@ -1,0 +1,95 @@
+{
+  "schema": "neuro_film.u6_p4aw_kodak_250d_same_sheet_granularity_compatibility_contract.v1",
+  "experiment_id": "u6.p4aw-kodak-250d-same-sheet-granularity-compatibility-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4AW",
+  "date_frozen": "2026-08-02",
+  "question": "Does one fixed effective variance family, using the exact Kodak 250D characteristic-curve slope and the exact P5J positive-PSF channel attenuation under the sheet's 48-micrometre aperture, predict disjoint Kodak 250D diffuse-rms granularity points better than simpler and mismatched controls?",
+  "parents": {
+    "p4av_commit": "f7458c388de9272fca1c3fb1aeaad35bc6e00977",
+    "p4av_contract_path": "configs/u6_p4av_kodak_250d_granularity_source_v1.json",
+    "p4av_contract_sha256": "c3722252d9063cc54a46ac5aa467d12a1c3e08e1bbde625d5e0c81c7e0892d8b",
+    "p4av_trace_path": "configs/data/kodak_250d_granularity_curve_pixels_v1.json",
+    "p4av_trace_sha256": "d564f4ee49ca80fdc4b4e39199d9b894429774600b00b5ec52d95a8d3bfc4de2",
+    "p4av_report_path": "outputs/experiments/u6_p4av_kodak_250d_granularity_source_v1/report_a.json",
+    "p4av_report_sha256": "1ef868f81a66a0f27b18f660c3fb9b915a079a19b4d0d006235f567f50389137",
+    "p4av_stable_evidence_id": "ab990a241a4b22a725f48c203df380f55197b05d05bb58e75991013adb0825a6",
+    "p2q_contract_path": "configs/u6_p2q_kodak_250d_characteristic_prior_v1.json",
+    "p2q_contract_sha256": "3edbc61b132385500f7bb4acb93f58bb38b666e341f503e193dec10c8a6661f3",
+    "p2q_decision_path": "configs/u6_p2q_kodak_250d_characteristic_prior_decision_v1.json",
+    "p2q_decision_sha256": "80aef83b5868ed4dd86e9ea1c91e2a1ae9a6e5355ac450448c9c556f26a9da88",
+    "p2q_bundle_path": "outputs/u6_p2q_kodak_250d_characteristic_prior/bundle_run1.json",
+    "p2q_bundle_sha256": "087e67544f737401fa697b21f06215a31827189e0648b8d60da666b92113caaa",
+    "p2q_prior_identity": "04d94af2e1fcad99fbb8c9abb57179f2b63f329c263b3bf2335c4117a670aacb",
+    "p5j_contract_path": "configs/u6_p5j_kodak_250d_positive_psf_compiler_v1.json",
+    "p5j_contract_sha256": "c3ae861181f3551727b56d32d63a6f4c96b9caad96f5abb7b9d36ea113763051",
+    "p5j_decision_path": "configs/u6_p5j_kodak_250d_positive_psf_compiler_decision_v1.json",
+    "p5j_decision_sha256": "93ba7c33f95c2a589c4d97aa3c060add0d1d05b5ad6f4cccb70e003cb3855f2f",
+    "p5j_bundle_id": "80bff073e5da5a4da1dcdd46b11238e1b2b3ca96596b3f082c419d791b60d1b8",
+    "p5j_bundle_sha256": "b2d0ff39743ba3ec21a8d033fe38f3ebf6e7360e5a75ea6b838dc67b4b856270"
+  },
+  "model": {
+    "observed_quantity": "square(diffuse_rms_granularity_sigma_d)",
+    "selected_variance_family": "nonnegative_channel_floor_variance + shared_nonnegative_amplitude * square(piecewise_linear_status_m_density_slope_per_log10_exposure) / pow(10, log10_exposure) * normalized_channel_energy_after_p5j_psf_and_48um_circular_aperture",
+    "fit": "bounded_linear_least_squares_on_development_variances_only",
+    "fit_parameters": [
+      "one nonnegative variance floor per channel",
+      "one shared nonnegative characteristic-slope amplitude"
+    ],
+    "aperture_diameter_micrometres": 48.0,
+    "aperture_model": "normalized binary circular area aperture",
+    "spatial_energy_grid": {
+      "primary_pitch_micrometres": 0.25,
+      "confirmation_pitch_micrometres": 0.125,
+      "half_extent_micrometres": 64.0,
+      "channel_energy_normalization": "divide by geometric mean across blue, green and red"
+    },
+    "channel_order": ["blue", "green", "red"],
+    "wrong_channel_cycle": {"blue": "green", "green": "red", "red": "blue"},
+    "curve_derivative": "right_interval slope of the frozen piecewise-linear P2Q curve, clamped only at the first and last observed knot",
+    "post_result_parameter_or_family_change_allowed": false
+  },
+  "split": {
+    "eligibility": "finite P4AV points inside the same channel's inclusive P2Q characteristic exposure domain",
+    "ordering": "ascending log10 exposure independently within each channel",
+    "development": "eligible sorted index modulo 3 is 0 or 2",
+    "confirmation": "eligible sorted index modulo 3 is 1",
+    "minimum_development_rows_per_channel": 10,
+    "minimum_confirmation_rows_per_channel": 5
+  },
+  "controls": {
+    "channel_constant": "one nonnegative development variance mean per channel",
+    "density_only": "nonnegative channel floors plus one shared nonnegative amplitude times density above the channel minimum",
+    "characteristic_slope_without_p5j": "the selected family with every channel energy fixed to one",
+    "wrong_channel_p5j": "the selected family with the frozen cyclic channel-energy permutation"
+  },
+  "metrics": {
+    "point_error": "absolute natural-log ratio of predicted sigma_d to observed sigma_d",
+    "control_improvement": "(control confirmation median point error - selected confirmation median point error) / control confirmation median point error",
+    "shape_rank": "Spearman correlation between predicted and observed sigma_d per channel on confirmation rows"
+  },
+  "gates": {
+    "maximum_relative_channel_energy_change_between_grid_pitches": 0.002,
+    "minimum_improvement_vs_channel_constant": 0.1,
+    "minimum_improvement_vs_density_only": 0.05,
+    "minimum_improvement_vs_characteristic_slope_without_p5j": 0.005,
+    "minimum_improvement_vs_wrong_channel_p5j": 0.005,
+    "maximum_confirmation_median_log_sigma_error": 0.3,
+    "maximum_confirmation_p95_log_sigma_error": 0.7,
+    "maximum_worst_channel_median_log_sigma_error": 0.4,
+    "minimum_median_channel_spearman": 0.35,
+    "minimum_channel_spearman": 0.0,
+    "require_positive_shared_amplitude": true,
+    "two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain one effective same-sheet characteristic-slope/aperture/MTF compatibility family for a separately frozen synthetic compiler challenge; do not infer causal dye-cloud scale or stock calibration.",
+    "fail": "Close this exact joint family without changing floors, split, spatial-energy computation, controls or gates. Preserve whichever simpler control wins and move to a materially different physical observation."
+  },
+  "forbidden": [
+    "change the trace, split, derivative, PSF mapping, aperture model, fit family or gates after scoring",
+    "treat same-sheet publication as same-roll or same-equipment paired calibration",
+    "infer a causal emulsion, dye-cloud, process, scanner or stock-response parameter",
+    "render photographs, promote a profile or alter the product renderer"
+  ],
+  "claim_ceiling": "Compatibility test among first-party Kodak 250D typical graph observations under one stated ECN-2/Status-M context, using an effective bounded variance family; not causal mechanism identification, full NPS, roll/process/scanner calibration, stock response or product evidence."
+}
