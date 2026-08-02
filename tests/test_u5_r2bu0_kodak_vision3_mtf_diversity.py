@@ -44,6 +44,7 @@ def test_exact_kodak_mtf_diversity_is_repeatable(tmp_path: Path) -> None:
     second = audit_diversity(contract, ROOT, overlay_dir=tmp_path / "second")
     assert first == second
     assert first["gate_results"]["parent_characteristic_remains_closed"]
+    assert first["gate_results"]["common_frequency_coverage"]
     assert first["material_pair_count"] in range(4)
     assert first["decision"] in {
         "retain_source_domain_mtf_signature_and_open_joint_physical_prior",

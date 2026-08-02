@@ -265,6 +265,16 @@ def audit_diversity(
             * float(gates["maximum_digitization_uncertainty_fraction_of_shape_gate"])
         )
         uncertainty_gate &= stock_uncertainty_gate
+        log_frequency_per_pixel = abs(
+            math.log(float(axes["x_value_pixels"][1][0]))
+            - math.log(float(axes["x_value_pixels"][0][0]))
+        ) / abs(
+            float(axes["x_value_pixels"][1][1])
+            - float(axes["x_value_pixels"][0][1])
+        )
+        log_frequency_tolerance = (
+            float(gates["digitization_uncertainty_px"]) * log_frequency_per_pixel
+        )
 
         normalized[stock] = {}
         channel_rows: dict[str, Any] = {}
@@ -307,7 +317,16 @@ def audit_diversity(
                 ],
                 dtype=np.float64,
             )
-            channel_coverage = bool(frequencies[0] <= common[0] and frequencies[-1] >= common[-1])
+            # The frozen traces are integer source pixels.  Treat common-grid
+            # endpoints inside the already-frozen two-pixel digitization
+            # uncertainty as covered instead of requiring impossible exact
+            # floating equality with the graph-axis reconstruction.
+            channel_coverage = bool(
+                math.log(float(common[0]))
+                >= math.log(float(frequencies[0])) - log_frequency_tolerance
+                and math.log(float(common[-1]))
+                <= math.log(float(frequencies[-1])) + log_frequency_tolerance
+            )
             channel_response = bool(
                 np.all(responses >= float(gates["minimum_response_percent"]))
                 and np.all(responses <= float(gates["maximum_response_percent"]))
@@ -346,6 +365,7 @@ def audit_diversity(
             "measurement_context": row["measurement_context"],
             "axis_max_residual_px": axis_residual,
             "digitization_log_response_uncertainty": uncertainty,
+            "digitization_log_frequency_tolerance": log_frequency_tolerance,
             "trace_lineage_exact": lineage_exact,
             "channels": channel_rows,
         }
