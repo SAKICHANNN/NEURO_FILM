@@ -9944,3 +9944,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   correction <= `1.91992x`. Two bundles/reports are byte-identical.
 - Next is an offline physical-scale field synthesis/parity test. Do not combine
   these spectra with P4BJ/Kodak amplitudes or claim colour/product calibration.
+
+## 2026-08-02 - U6.P4BM synthesizes exact second-order reference fields
+
+- Added a deterministic 1um-grid random-phase FFT reference which preserves
+  each P4BL intrinsic spectrum and simulates the published circular aperture
+  in Fourier space; no realized-field amplitude normalization is used.
+- Across five profiles and three seeds, intrinsic/aperture periodogram errors
+  are `4.71e-13/5.96e-13`, Parseval error is `4.44e-16`, and two reports are
+  byte-identical (`3c436567...01a6`).
+- This is an offline second-order reference, not particle geometry or a
+  Gaussian marginal. Finite-window/radial-estimator robustness is next.

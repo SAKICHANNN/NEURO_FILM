@@ -1,0 +1,30 @@
+{
+  "schema": "neuro_film.u6_p4bm_measured_nps_field_synthesis_decision.v1",
+  "experiment_id": "u6.p4bm-measured-nps-field-synthesis-v1",
+  "date": "2026-08-02",
+  "decision": "retain_offline_measured_nps_field_synthesizer",
+  "automatic_pass": true,
+  "report_path": "outputs/experiments/u6_p4bm_measured_nps_field_synthesis_v1/run_a/report.json",
+  "report_sha256": "3c436567346c3fcacc6bc59792edead0f6735ed41368e4217b0bd594acec01a6",
+  "stable_evidence_id": "0423ea423a41eaca9bf60f5689f7e20d7197bd77350dd863162044b7ff8440cc",
+  "profile_count": 5,
+  "seed_count": 3,
+  "row_count": 15,
+  "field_shape": [512, 512],
+  "sample_pitch_millimetres": 0.001,
+  "maximum_intrinsic_periodogram_relative_error": 4.71178651650916e-13,
+  "maximum_aperture_periodogram_relative_error": 5.95634652711396e-13,
+  "maximum_parseval_relative_error": 4.44089209850063e-16,
+  "maximum_absolute_sample_mean": 1.33226762955019e-15,
+  "maximum_ifft_imaginary_residual": 9.92293436810437e-13,
+  "opens": [
+    "separately_frozen_finite_window_radial_estimator_robustness"
+  ],
+  "does_not_open": [
+    "fixed_amplitude_random_phase_as_microscopic_geometry",
+    "tile_or_crop_parity",
+    "composition_with_p4bj_or_kodak_amplitudes",
+    "photographic_render_or_product_integration"
+  ],
+  "claim_ceiling": "Deterministic offline random-phase fields reproducing the retained historical Fuji B&W second-order spectra on a 1um periodic grid; not microscopic grain geometry, finite-window photographic validation, modern stock calibration, colour-film structure or product rendering."
+}

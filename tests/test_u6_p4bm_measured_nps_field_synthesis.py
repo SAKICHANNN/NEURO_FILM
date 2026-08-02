@@ -22,6 +22,7 @@ from src.film_physics.measured_nps_field import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u6_p4bm_measured_nps_field_synthesis_v1.json"
+DECISION = ROOT / "configs/u6_p4bm_measured_nps_field_synthesis_decision_v1.json"
 BUNDLE = (
     ROOT
     / "outputs/experiments/u6_p4bl_historical_measured_nps_compiler_v1/run_a/bundle.json"
@@ -67,6 +68,18 @@ def test_measured_nps_field_has_exact_second_order_target() -> None:
     assert fields.construction_fourier_outside_band_exact_zero is True
 
 
+def test_p4bm_decision_binds_formal_synthesis() -> None:
+    payload = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert payload["decision"] == "retain_offline_measured_nps_field_synthesizer"
+    assert payload["report_sha256"] == (
+        "3c436567346c3fcacc6bc59792edead0f6735ed41368e4217b0bd594acec01a6"
+    )
+    assert payload["stable_evidence_id"] == (
+        "0423ea423a41eaca9bf60f5689f7e20d7197bd77350dd863162044b7ff8440cc"
+    )
+    assert payload["maximum_intrinsic_periodogram_relative_error"] < 1e-10
+
+
 def test_measured_nps_field_repeat_and_seed_behavior() -> None:
     profile = _first_profile()
     first = synthesize_measured_nps_field_pair(
@@ -101,4 +114,3 @@ def test_measured_nps_field_synthesis_passes() -> None:
     assert report["decision"] == "retain_offline_measured_nps_field_synthesizer"
     assert report["row_count"] == 15
     assert all(report["gate_results"].values())
-
