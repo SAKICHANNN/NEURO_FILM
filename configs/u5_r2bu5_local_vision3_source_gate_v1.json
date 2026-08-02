@@ -1,0 +1,49 @@
+{
+  "schema": "neuro_film.u5_r2bu5_local_vision3_source_gate_contract.v1",
+  "experiment_id": "U5.R2BU5",
+  "node": "ULT > U5 > U5.R2 > U5.R2BU5",
+  "date_frozen": "2026-08-02",
+  "question": "Can the existing local Vision3-labelled raster corpus provide an independent, rights-cleared and nuisance-controlled real-film observation for BU4?",
+  "manifest": {
+    "path": "data/processed/manifest.jsonl",
+    "bytes": 1766345,
+    "sha256": "0a58ef7775ff84d05f5744f42b3bc5183281590043bb35de58059b4fd73df233"
+  },
+  "accepted_style_ids": ["vision3_50d", "vision3_250d", "vision3_500t"],
+  "required_fields": [
+    "path",
+    "source",
+    "license",
+    "redistributable",
+    "sha256",
+    "author",
+    "source_url",
+    "film_stock_id",
+    "roll_id",
+    "process_id",
+    "scanner_id"
+  ],
+  "gates": {
+    "minimum_named_stock_count": 3,
+    "minimum_rows_per_stock": 16,
+    "minimum_distinct_authors_per_stock": 5,
+    "all_rows_require_explicit_derivative_rights": true,
+    "all_rows_require_source_url": true,
+    "all_rows_require_roll_process_scanner_lineage": true,
+    "all_paths_unique": true,
+    "all_manifest_sha256_unique": true,
+    "pixel_file_reads": 0
+  },
+  "forbidden": [
+    "open or hash image payloads before the metadata and rights gate passes",
+    "infer author, roll, process, scanner or stock identity from captions, filenames, directories or appearance",
+    "treat CineStill or other repackaged/remjet-modified material as exact VISION3 without explicit material provenance",
+    "repair missing rights or lineage by web guessing or source-content clustering",
+    "train, fit, render or promote from a failed source gate"
+  ],
+  "branch_rule": {
+    "pass": "Open a separately frozen integrity and nuisance audit before any pixel-derived statistic.",
+    "fail": "Quarantine this exact local corpus from BU4 validation and seek a genuinely controlled independent observation."
+  },
+  "claim_ceiling": "Metadata and rights eligibility of the existing local Vision3-labelled corpus only; no pixel, stock-response, appearance, calibration or product evidence."
+}
