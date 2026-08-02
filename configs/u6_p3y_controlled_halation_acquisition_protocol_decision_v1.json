@@ -1,0 +1,27 @@
+{
+  "schema": "neuro_film.u6_p3y_controlled_halation_acquisition_protocol_decision.v1",
+  "experiment_id": "U6.P3Y",
+  "status": "complete_protocol_compiled_no_data_admitted",
+  "decision": "retain-controlled-halation-acquisition-protocol",
+  "automatic_pass": true,
+  "protocol_sha256": "c74e886fd23a3e7aa151b79e7564171225b3d8747d1d965d244e8c06b71a03b2",
+  "validator_sha256": "399f25ae8e88da25fae527464e07bf586e2ff5438693f61313a4bd7247d622ed",
+  "runner_sha256": "4f10fd18ff4281a4d66a208c8cf3b4da5b624833455472740b5fed74d9239ff6",
+  "report_sha256": "a7dd422575e696204d02be12669a6e519da5ce6fd35347fe4189f4922d541170",
+  "repeat_report_sha256": "a7dd422575e696204d02be12669a6e519da5ce6fd35347fe4189f4922d541170",
+  "protocol_stable_id": "56de875ea74bef8cd34499854ebf7713cf8e847036a8cc2d1dd6e8322e249ac2",
+  "requirements": {
+    "development_structure_count": 4,
+    "confirmation_structure_count": 4,
+    "exposures_per_structure": 3,
+    "minimum_source_bits": 10,
+    "minimum_target_bits": 10,
+    "maximum_anchor_error_ppm": 100,
+    "minimum_rolls_per_stock": 3,
+    "minimum_process_sessions_per_stock": 2,
+    "required_row_field_count": 21
+  },
+  "interpretation": "P3X synthetic sufficiency is now compiled into a strict non-renderable acquisition boundary. It prevents display or scan RGB from being relabeled as layer exposure or density and requires independent anchors, aligned brackets, sealed confirmation structures and real-film nuisance grouping before fit.",
+  "next_ready_leaf": "Audit existing local metadata manifests against the exact P3Y field and grouping requirements without reading pixels; if none qualify, record the data gap and continue another ready physical R&D leaf.",
+  "claim_ceiling": "Validated acquisition protocol only; no admitted data, measured profile, stock calibration or product authority."
+}

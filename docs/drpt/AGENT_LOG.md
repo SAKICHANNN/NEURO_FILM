@@ -10294,3 +10294,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   labels, radii, abstentions, bounds and clipping gates pass.
 - Retain only as synthetic acquisition sufficiency. Next compile a strict
   controlled halation acquisition protocol; no real-film calibration yet.
+
+# 2026-08-01 - U6.P3Y controlled acquisition protocol retained
+
+- Compiled P3X into a strict non-renderable protocol binding two disjoint
+  structure roles, three brackets, >=10-bit, <=100-ppm independent exposure
+  anchors, zero clipping, alignment/dark/flat and stock nuisance groups.
+- Validator and candidate-row fail-closed tests pass; two protocol reports are
+  exact (`a7dd4225...1170`). No data or render authority is created.
+- Next perform one bounded local metadata audit. Missing rows remain a data gap;
+  protocol requirements will not be relaxed.

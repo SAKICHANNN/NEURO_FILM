@@ -1571,6 +1571,12 @@ exposures reduces the 10-bit max RMSE to `.000832` and raises wrong-family
 separation to `9.80x`; all original gates pass. Compile this into a
 non-renderable controlled acquisition contract before seeking real data.
 
+P3Y provides that exact protocol (`a7dd4225...1170`): two disjoint structure
+roles, three aligned brackets, >=10-bit samples, <=100-ppm independent anchor,
+zero clipping, dark/flat and alignment evidence, and 3-roll/2-process held-roll
+grouping. It has no render authority. Audit local manifests once, then either
+admit exact matches or record the data gap and move on.
+
 `SF2.9R` audits five ColorReference multi-family IT8/ISO 12641 transmission
 references instead of scanner RGB or uncontrolled photographs. Exact
 byte/CRC/parse gates and 288 shared target patches pass twice; each archive

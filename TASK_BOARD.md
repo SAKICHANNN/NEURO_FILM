@@ -375,6 +375,11 @@ anchors plus three source brackets close every unchanged P3U gate through
 10-bit. Next compile a fail-closed controlled-data protocol; no real-film or
 product claim opens from the synthetic result.
 
+U6.P3Y compiles the result into a non-renderable controlled-data protocol
+(`a7dd4225...1170`), including stock/roll/process/scanner/rights grouping.
+Next perform one bounded local manifest audit; absence is a data gap, not a
+reason to weaken the protocol.
+
 Current real-grain leaf: U6.P4R closes stock association while retaining one
 generic scanner-convolved signature candidate. Eight exact CC0 16-bit RGBA
 TIFFs pass acquisition and visual gates; RGB NPS is highly repeatable, but
