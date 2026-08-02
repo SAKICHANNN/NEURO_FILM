@@ -43,4 +43,7 @@ def test_official_source_audit_repeats_and_passes() -> None:
     assert first["density_group_count"] == 23
     assert first["numeric_measurement_count"] == 161
     assert first["decision"] == "open_fixed_kodak_aperture_law_confirmation"
+    assert first["stable_evidence_id"] == (
+        "b7300e2e4bc306ec979f8287bb0590de9f7ac79612f4cbc94ef3c3f3b8f0ed8a"
+    )
     assert all(len(group["measurements"]) == 7 for group in first["density_groups"])

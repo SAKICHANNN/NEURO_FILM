@@ -2,6 +2,15 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-02 - U6.P4BE opens a fresh Kodak aperture-law confirmation
+
+- Current primary-source search found no newer open numerical multi-aperture
+  film table; the official 1959 Kodak Research page is the best direct source.
+- Its 156,232-byte HTML (`7830415e...ffc3`) exposes four film tables, 23 density
+  groups and 161 measurements; two audits are exact (`052a2c02...8258`).
+- Publisher content remains internal research only. P4BF must keep exponent 1
+  and test all film groups without post-score fitting.
+
 # 2026-08-02 - U6.P4BD closes independent-cell spatial interpretation
 
 - Tested the no-fit inverse-diameter RMS law on 27 measured NASA aperture

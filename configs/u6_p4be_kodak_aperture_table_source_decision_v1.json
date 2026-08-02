@@ -1,0 +1,31 @@
+{
+  "schema": "neuro_film.u6_p4be_kodak_aperture_table_source_decision.v1",
+  "node": "U6.P4BE",
+  "decision": "open_fixed_kodak_aperture_law_confirmation",
+  "contract_commit": "518f46bc8145e1b8a6afdc08c79ef5896ad216b3",
+  "implementation_commit": "fe38a7e863ed6311c3168f8761b23430a5023b5d",
+  "contract_sha256": "3b2cdf9f1cb89bd6cc7836ee66fde5cf70daf165eb32cebab6fb8d39f8fd836b",
+  "evaluator_sha256": "d437f2b34f4e16b90600c84a45431ac0960d38a1166dfd1faf2c883a71c03716",
+  "source_path": "data/physical_grain/kodak_aperture_table_1959_v1/official_page.html",
+  "source_bytes": 156232,
+  "source_sha256": "7830415e8679f8f96766000cc1b6d4fba163fd3abfd931f4b18a39486744ffc3",
+  "reports": [
+    "outputs/experiments/u6_p4be_kodak_aperture_table_source_v1/run_a/report.json",
+    "outputs/experiments/u6_p4be_kodak_aperture_table_source_v1/run_b/report.json"
+  ],
+  "report_sha256": "052a2c026db65e0bbfc99846caa51c41e28779202d6f747673383489f8b28258",
+  "stable_evidence_id": "b7300e2e4bc306ec979f8287bb0590de9f7ac79612f4cbc94ef3c3f3b8f0ed8a",
+  "two_reports_byte_exact": true,
+  "source_pass": true,
+  "metrics": {
+    "table_count": 4,
+    "density_group_count": 23,
+    "numeric_measurement_count": 161,
+    "apertures_micrometres": [7.25, 12.0, 24.0, 48.0, 96.0, 192.0, 384.0]
+  },
+  "next_ready_leaf": "Run one fixed exponent-1, 48-micrometre-normalized confirmation with per-film and worst-tail gates; do not fit an exponent or omit low-density rows.",
+  "rights_scope": "in-copyright official publisher HTML retained locally for internal research only; no redistribution",
+  "photographic_render_allowed": false,
+  "product_integration_allowed": false,
+  "claim_ceiling": "Internal source-feasibility evidence from one official in-copyright 1959 Kodak Research multi-aperture table; not modern stock, colour, process, scanner, microscopic geometry, NPS calibration or product evidence."
+}
