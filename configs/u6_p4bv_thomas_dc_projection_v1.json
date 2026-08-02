@@ -1,0 +1,76 @@
+{
+  "schema": "neuro_film.u6_p4bv_thomas_dc_projection_contract.v1",
+  "experiment_id": "u6.p4bv-thomas-dc-projection-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4BV",
+  "date_frozen": "2026-08-02",
+  "question": "Can a canonical first-pass DC receipt remove finite-realization mean bias from the retained P4BU compact Thomas kernel while preserving every nonzero spatial frequency and exact second-pass row partition parity?",
+  "parents": {
+    "p4bu_decision": {
+      "path": "configs/u6_p4bu_finite_support_thomas_filter_decision_v1.json",
+      "sha256": "c3e7dd1f568aaeb5cbfc1180aeba309a006d20165551f56c1a0e12086e3d0fc4",
+      "required_decision": "retain_finite_support_thomas_kernel_close_unbalanced_noise_realization"
+    }
+  },
+  "profile": {
+    "profile_id": "generic-scanner-convolved-thomas-p4bs-v1",
+    "particle_sigma_pixels": 1.3253699417769098,
+    "cluster_sigma_pixels": 1.1268619873805532,
+    "mean_offspring": 27.765942352935905,
+    "component_seeds": [2611923443488327891, 11400714819323198485],
+    "truncate_sigma": 4.0,
+    "maximum_halo_pixels": 7,
+    "density_amplitude": null,
+    "stock_id": null
+  },
+  "receipt": {
+    "schema": "neuro_film.thomas_dc_receipt.v1",
+    "canonical_scan_order": "row-major",
+    "canonical_row_block_height": 31,
+    "reducer": "float64-neumaier-v1",
+    "bind": [
+      "full_shape",
+      "profile_id",
+      "profile_parameters",
+      "component_seeds",
+      "realization_seed",
+      "raw_field_sha256",
+      "sample_count",
+      "raw_sum",
+      "raw_mean"
+    ],
+    "require_exact_validation_before_render": true,
+    "allow_variance_rescaling": false
+  },
+  "evaluation": {
+    "field_shape": [257, 263],
+    "row_partitions": [1, 7, 31, 64, 127],
+    "seeds": [2608023011, 2608023012, 2608023013],
+    "maximum_projected_absolute_mean": 1e-15,
+    "maximum_nonzero_spectrum_absolute_drift": 1e-10,
+    "maximum_centered_covariance_absolute_drift": 1e-12,
+    "maximum_variance_absolute_drift": 1e-12,
+    "maximum_interior_variance_absolute_error": 0.05,
+    "require_exact_row_partition_parity": true,
+    "require_exact_repeat_receipt": true,
+    "require_receipt_tamper_rejection": true,
+    "require_seed_distinct_fields": true,
+    "require_finite_output": true,
+    "require_two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain the two-pass DC-projected finite-support Thomas unit field and open explicit density-domain amplitude conditioning.",
+    "fail": "Close this exact DC receipt/projection without changing reducer, partitions, seeds or gates; retain P4BS analytic spectrum and P4BU compact kernel evidence only."
+  },
+  "forbidden": [
+    "variance normalization or per-tile normalization",
+    "changing any nonzero spectral coefficient intentionally",
+    "rendering with a receipt from another shape, profile or seed",
+    "inferring stock, density or physical particle amplitude",
+    "applying to photographs or product output before separate density/amplitude and visual gates"
+  ],
+  "outputs": {
+    "report_a": "outputs/experiments/u6_p4bv_thomas_dc_projection_v1/run_a/report.json",
+    "report_b": "outputs/experiments/u6_p4bv_thomas_dc_projection_v1/run_b/report.json"
+  },
+  "claim_ceiling": "Deterministic two-pass DC projection for the retained generic scanner-convolved Thomas unit-reference field; not density amplitude, stock calibration, microscopic particle truth or photographic/product rendering."
+}
