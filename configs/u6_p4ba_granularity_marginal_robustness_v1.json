@@ -1,0 +1,52 @@
+{
+  "schema": "neuro_film.u6_p4ba_granularity_marginal_robustness_contract.v1",
+  "experiment_id": "u6.p4ba-granularity-marginal-robustness-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4BA",
+  "date_frozen": "2026-08-02",
+  "question": "Are P4AZ transmittance moments materially sensitive to choosing a Gaussian density marginal when only mean and diffuse-rms density are identified?",
+  "parents": {
+    "p4az_commit": "45c64fcba1818fe9070e376536a3ab4370870a8a",
+    "p4az_decision_path": "configs/u6_p4az_density_to_transmittance_granularity_decision_v1.json",
+    "p4az_decision_sha256": "9809d3a2723f2a5b964d54075ea8296b695f1442dfe936d49f6b0db0fc89f2b5",
+    "p4az_bundle_path": "outputs/experiments/u6_p4az_density_to_transmittance_granularity_v1/run_a/bundle.json",
+    "p4az_bundle_sha256": "eee309369341f829f25db8a546dc7923521c6a870cc218e854f1648ff38db555",
+    "p4az_report_path": "outputs/experiments/u6_p4az_density_to_transmittance_granularity_v1/run_a/report.json",
+    "p4az_report_sha256": "51c8fbba2049a82d720bac789a0f09c99f0f9363dae6bccd43926ae9832c258d",
+    "p4az_stable_evidence_id": "f6511114d9e309805f6afdcb70b5624d42ab09c8fb68fc85478b8ea5e72ef45b"
+  },
+  "candidate_marginals": [
+    "gaussian",
+    "positive_gamma",
+    "bounded_uniform"
+  ],
+  "shared_constraints": {
+    "same_density_mean_and_variance": true,
+    "same_physical_transform": "transmittance = pow(10, -density)",
+    "same_15_frozen_p4az_probes": true,
+    "spatial_structure_selection_allowed": false,
+    "parameter_fit_allowed": false
+  },
+  "evaluation": {
+    "gauss_hermite_order": 96,
+    "gauss_legendre_order": 96,
+    "maximum_gamma_mean_quadrature_relative_error": 1e-11,
+    "maximum_gamma_rms_quadrature_relative_error": 1e-9,
+    "maximum_uniform_mean_quadrature_relative_error": 1e-11,
+    "maximum_uniform_rms_quadrature_relative_error": 1e-9,
+    "maximum_cross_marginal_mean_relative_span": 1e-6,
+    "maximum_cross_marginal_rms_relative_span": 0.0005,
+    "minimum_probe_count": 15,
+    "require_two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain a three-family transmittance-moment interval as marginal-robust amplitude evidence; keep spatial structure unidentified.",
+    "fail": "Keep P4AZ Gaussian compatibility explicit and close the interval compiler without adding marginals or changing gates."
+  },
+  "forbidden": [
+    "select a spatial NPS or grain radius",
+    "fit a marginal to photographs or scanner grain samples",
+    "claim the tested marginals exhaust physical emulsion structure",
+    "render photographs or alter product defaults"
+  ],
+  "claim_ceiling": "Sensitivity of the P4AZ transmittance moments to three explicit equal-mean/equal-variance density marginals; no identified marginal, spatial NPS, emulsion geometry, calibration or product claim."
+}
