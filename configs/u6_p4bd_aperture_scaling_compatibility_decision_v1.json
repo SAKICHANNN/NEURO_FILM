@@ -1,0 +1,38 @@
+{
+  "schema": "neuro_film.u6_p4bd_aperture_scaling_compatibility_decision.v1",
+  "node": "U6.P4BD",
+  "decision": "close_independent_cell_spatial_interpretation",
+  "contract_commit": "ef7e4ac7864aa55044a7fa2e078b428fb5c68939",
+  "implementation_commit": "ac969649a04583d1cd4289a62ccc02ad13869fa0",
+  "contract_sha256": "1ac4c9f7e9456878c793a03db300e5f3742c3d9177053cc0ae5d9ca32c2e2ec7",
+  "evaluator_sha256": "7242da46a017a5afdf61192440e186474ad39a685561b20eb6ebbd3bb51ff0da",
+  "reports": [
+    "outputs/experiments/u6_p4bd_aperture_scaling_compatibility_v1/run_a/report.json",
+    "outputs/experiments/u6_p4bd_aperture_scaling_compatibility_v1/run_b/report.json"
+  ],
+  "report_sha256": "ecbd3b4586809506e97d8813c07833a68ef63a1ba29b7b673222c50e0ffbfc1a",
+  "stable_evidence_id": "77834a0f63f568cc3c6e483a527e8fce1f3794f6b75dc22d3c4a5d4e516a8092",
+  "two_reports_byte_exact": true,
+  "automatic_pass": false,
+  "metrics": {
+    "complete_comparison_count": 27,
+    "median_independent_cell_relative_error": 0.4298245614035088,
+    "worst_independent_cell_relative_error": 0.5927318295739348,
+    "median_constant_control_relative_error": 0.7857142857142858,
+    "median_improvement_over_constant": 0.4529505582137162,
+    "median_descriptive_observed_exponent": 0.5096070165010208,
+    "p10_descriptive_observed_exponent": 0.27520366365678484,
+    "p90_descriptive_observed_exponent": 0.6064032880635647
+  },
+  "interpretation": [
+    "The fixed inverse-diameter law improves median error by 45.3% over a constant-RMS control, so aperture averaging is material.",
+    "Its 43.0% median and 59.3% worst error fail the frozen gates; the descriptive measured exponent is about 0.51 rather than the independent-white-field value 1.0.",
+    "The NASA measurements include radiographic film, exposure/specimen/process and scanner nuisance, so this closes cross-material support rather than falsifying the P4BB cell moments."
+  ],
+  "next_ready_leaf": "Audit the newly located official Kodak Research multi-aperture primary table as a separate source; it may test the same fixed law on photographic films without reusing the NASA cohort.",
+  "p4bc_cell_statistics_retained": true,
+  "independent_cell_spatial_interpretation_retained": false,
+  "photographic_render_allowed": false,
+  "product_integration_allowed": false,
+  "claim_ceiling": "No-fit cross-material compatibility of the independent-cell inverse-diameter aperture law against public radiographic-film granularity tables; not Kodak, stock, process, scanner, microscopic geometry, NPS calibration or product evidence."
+}

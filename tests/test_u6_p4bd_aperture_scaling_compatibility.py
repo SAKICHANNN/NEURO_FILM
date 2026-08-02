@@ -31,6 +31,9 @@ def test_frozen_aperture_law_closes_without_rescue() -> None:
     assert first == second
     assert not first["automatic_pass"]
     assert first["decision"] == "close_independent_cell_spatial_interpretation"
+    assert first["stable_evidence_id"] == (
+        "77834a0f63f568cc3c6e483a527e8fce1f3794f6b75dc22d3c4a5d4e516a8092"
+    )
     assert first["complete_comparison_count"] == 27
     assert first["gate_results"]["improvement_over_constant"]
     assert not first["gate_results"]["median_relative_error"]

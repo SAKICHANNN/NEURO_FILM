@@ -2,6 +2,15 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-02 - U6.P4BD closes independent-cell spatial interpretation
+
+- Tested the no-fit inverse-diameter RMS law on 27 measured NASA aperture
+  comparisons; two reports are exact (`ecbd3b45...bfc1a`).
+- It beats constant RMS by 45.3%, but median/worst errors are `43.0%/59.3%` and
+  the descriptive aperture exponent is `.510`, failing the fixed value 1.
+- Keep P4BB/P4BC cell moments only. A separate official Kodak Research primary
+  table found in the latest search is a fresh source, not a NASA rescue.
+
 # 2026-08-02 - U6.P4BC passes deterministic high-rate cell sampling
 
 - Added vectorized inverse-CDF Poisson sampling for P4BB's 2.4k-186k event
