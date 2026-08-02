@@ -211,6 +211,48 @@ class DensityConditionedThomasProfile:
         result.setflags(write=False)
         return result
 
+    def render_nonstationary_developed_density_region(
+        self,
+        receipt: ThomasDcReceipt,
+        prior: ManufacturerCharacteristicPrior,
+        *,
+        channel: str,
+        full_relative_log_exposure: np.ndarray,
+        origin_yx: tuple[int, int],
+        shape: tuple[int, int],
+    ) -> np.ndarray:
+        """Render one region from a full coordinate-bound layer exposure field."""
+        self._validate_receipt(receipt)
+        if channel not in CHANNELS:
+            raise ValueError("unsupported density layer")
+        exposure = np.asarray(full_relative_log_exposure, dtype=np.float64)
+        if exposure.shape != receipt.full_shape or not np.all(np.isfinite(exposure)):
+            raise ValueError("nonstationary exposure must match the receipt full shape")
+        y0, x0 = origin_yx
+        height, width = shape
+        if not (
+            0 <= y0 < y0 + height <= exposure.shape[0]
+            and 0 <= x0 < x0 + width <= exposure.shape[1]
+        ):
+            raise ValueError("nonstationary density region is outside full field")
+        selected = exposure[y0 : y0 + height, x0 : x0 + width]
+        index = CHANNELS.index(channel)
+        density_mean = prior.curves[index].apply(selected)
+        sigma_d = self.amplitude_profile.evaluate_channel(
+            prior, channel, selected
+        )
+        unit = render_dc_projected_thomas_region(
+            receipt, origin_yx=origin_yx, shape=shape
+        )
+        result = np.ascontiguousarray(
+            density_mean + sigma_d * unit / math.sqrt(self.measurement_energy()),
+            dtype=np.float64,
+        )
+        if not np.all(np.isfinite(result)):
+            raise RuntimeError("nonstationary developed density is non-finite")
+        result.setflags(write=False)
+        return result
+
     def to_dict(self) -> dict[str, Any]:
         return {
             "schema": PROFILE_SCHEMA,
