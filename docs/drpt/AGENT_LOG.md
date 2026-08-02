@@ -2,6 +2,16 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-01 - Freeze U5.R2BV0 semantic-gated curve capacity
+
+- Latest-primary-source screening selected the CVPR 2026 PrismNet semantic
+  gate as the only mechanism-distinct ready colour test; its paper has no
+  reproducible code/checkpoint identity, so this is a bounded clean-room test.
+- The frozen experiment uses fixed source-only DINOv2-S CLS attention and the
+  same nine explicit curves under semantic/global/luminance/shifted gates on
+  development-only FiveK held blocks. No predictor training, confirmation,
+  visual review, film/stock claim or product action is permitted at this leaf.
+
 # 2026-08-01 - U6.P8BR closes current VFGS default soft window
 
 - Frozen the current FGA-NN paper and public VFGS `fbf4bd95...` source before

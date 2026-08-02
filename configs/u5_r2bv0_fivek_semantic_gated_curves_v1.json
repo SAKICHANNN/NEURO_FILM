@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bv0-fivek-semantic-gated-curves-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BV0",
+  "status": "contract_frozen_implementation_ready",
+  "software_commit_at_freeze": "ce5b54ef",
+  "question": "Does one fixed source-only semantic attention gate add held-block representation capacity to the same nine explicit colour curves beyond global, luminance and spatially shifted gates on paired FiveK digital-retouch controls?",
+  "research_basis": {
+    "paper": "Zhang, PrismNet: Semantic-Aware Image Enhancement via Vision Transformer and Zero-Cost Gating, CVPR Findings 2026",
+    "paper_url": "https://openaccess.thecvf.com/content/CVPR2026F/papers/Zhang_PrismNet_Semantic-Aware_Image_Enhancement_via_Vision_Transformer_and_Zero-Cost_Gating_CVPRF_2026_paper.pdf",
+    "paper_pdf_path": "data/literature/prismnet_cvpr2026/PrismNet_CVPRF_2026.pdf",
+    "paper_pdf_sha256": "64eb401aab8ddb908716d3c03a8afd80f97c5f97409f4638fcd6fc2c26fd72e6",
+    "paper_pdf_bytes": 1593638,
+    "paper_code_status": "The paper provides no code URL or checkpoint identity; this is a clean-room mechanism discriminator, not an official reproduction.",
+    "borrowed_idea_only": "predict an explicit nine-curve global residual and multiply that residual by a source-derived semantic gate",
+    "clean_room_difference": "fixed local DINOv2-S CLS-to-patch attention; no fine-tuning, sparse ParamHead, CNN branch, learned gate, paper weights, paper data, LPIPS curriculum or final-RGB network"
+  },
+  "population": {
+    "manifest": "outputs/u5_r2bq0s2_fivek_casebank_normalization_v1/run_a_formal/manifest.json",
+    "manifest_sha256": "d07ace3173198e9902ebe7c8bbf2de5ecb4342ec67f1b640aa54d9edee903a20",
+    "split": "development",
+    "row_selection": "lexicographically first pair_id within each exact development camera_model group",
+    "source_count_exact": 24,
+    "target_variants": ["aligned_expert", "filtered"],
+    "maximum_side": 128,
+    "confirmation_rows_allowed": false,
+    "role": "paired digital-retouch representation-capacity control; not film or stock evidence"
+  },
+  "semantic_gate": {
+    "model_id": "facebook/dinov2-small",
+    "revision": "ed25f3a31f01632728cabb09d1542f84ab7b0056",
+    "root": "data/models/huggingface/facebook-dinov2-small/ed25f3a31f01632728cabb09d1542f84ab7b0056",
+    "model_sha256": "ae1e99fcefd534ed978cdeb8326f08030c96e28b7a81ffcbc98a857c84d14be1",
+    "config_sha256": "1809f83e3bdb1609a501a610ad4a742f4fd8ae44d72ca4aa0df52d1f2ac8628d",
+    "preprocessor_sha256": "14e780d86fa1861f8751f868d7f45425b5feb55c38ca26f152ca5097ab30f828",
+    "input": "encoded sRGB resized to 224x224 then ImageNet normalized",
+    "attention_implementation": "eager",
+    "attention_layer": "last",
+    "attention_query": "CLS",
+    "attention_head_reduction": "arithmetic mean",
+    "patch_grid": [16, 16],
+    "gate_normalization": "per-image z-score then sigmoid",
+    "output_resize": "bilinear align_corners_false",
+    "device": "cuda",
+    "batch_size": 8,
+    "training_or_finetuning_allowed": false
+  },
+  "held_block_protocol": {
+    "macro_rows": 8,
+    "macro_columns": 8,
+    "folds": [0, 1],
+    "held_rule": "(macro_row + macro_column) modulo 2 equals fold",
+    "fit_uses_held_pixels": false,
+    "score_uses_fit_pixels": false
+  },
+  "explicit_operator": {
+    "family": "semantic_gated_nine_piecewise_linear_residual_curves",
+    "domain": "encoded_srgb",
+    "input_channels": ["red", "green", "blue"],
+    "output_channels": ["red", "green", "blue"],
+    "curves": 9,
+    "knot_positions": [0.0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1.0],
+    "endpoint_residuals": [0.0, 0.0],
+    "free_parameters_per_curve": 7,
+    "parameter_count": 63,
+    "ridge": 0.01,
+    "coefficient_bound": 0.75,
+    "boundary_epsilon": 0.000015259021896696422,
+    "application": "source plus gate times summed curve residual followed by one analytical per-pixel dose",
+    "hard_output_clipping_allowed": false,
+    "learned_final_rgb_allowed": false
+  },
+  "controls": {
+    "global_gate": "all ones with the exact same nine curves, fit mask, ridge, bounds and analytical dose",
+    "luminance_gate": "per-image z-scored encoded-sRGB luminance followed by sigmoid",
+    "shifted_semantic_gate": "semantic gate circularly shifted by half height and half width before fitting",
+    "identity": true
+  },
+  "evaluation": {
+    "primary_metric": "held-pixel encoded-sRGB RMSE",
+    "automatic_gates": {
+      "source_count_exact": 24,
+      "target_variant_count_exact": 2,
+      "fold_count_exact": 2,
+      "minimum_semantic_gate_spatial_std": 0.05,
+      "minimum_mean_improvement_over_global_gate": 0.02,
+      "minimum_win_fraction_over_global_gate": 0.6,
+      "maximum_p95_error_ratio_to_global_gate": 1.0,
+      "maximum_worst_error_ratio_to_global_gate": 1.1,
+      "minimum_mean_improvement_over_luminance_gate": 0.01,
+      "minimum_mean_improvement_over_shifted_semantic_gate": 0.01,
+      "minimum_median_style_retention": 0.5,
+      "maximum_p95_held_to_fit_error_ratio": 1.5,
+      "maximum_new_boundary_fraction": 0.0,
+      "maximum_out_of_cube_fraction": 0.0,
+      "two_run_report_byte_identity": true
+    }
+  },
+  "branch_rules": {
+    "all_gates_pass": "freeze the representation and open one separately frozen group-held source-only curve-parameter predictor; do not promote from this target-informed capacity leaf",
+    "any_gate_fails": "close the exact fixed-attention semantic-gate mechanism without changing model, attention layer, gate normalization, curve knots, controls, split or thresholds",
+    "visual_review": "forbidden in this target-informed representation-capacity leaf"
+  },
+  "confirmation_pixels_allowed": false,
+  "production_integration_allowed": false,
+  "film_or_stock_claim_allowed": false,
+  "claim_ceiling": "Development-only held-block representation-capacity evidence for one fixed source-only semantic gate and explicit curves on paired FiveK digital-retouch controls; not an official PrismNet reproduction, deployable predictor, film response, stock identity, calibration, preference or product result."
+}

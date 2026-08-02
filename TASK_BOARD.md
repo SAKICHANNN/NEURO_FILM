@@ -979,3 +979,13 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
   retained characteristic-slope baseline and reaches only `.15` median rank.
 - Close this exact marginal without tuning or spatial decoration. Continue
   with a new measured observation or mechanism-distinct developed-image test.
+
+# 2026-08-01 - Freeze U5.R2BV0 semantic-gated explicit curves
+
+- CVPR 2026 PrismNet contributes a materially distinct mechanism: a compact
+  nine-curve residual modulated by a semantic attention gate. The paper does
+  not expose a code/checkpoint identity, so BV0 is explicitly clean-room.
+- Freeze fixed DINOv2-S CLS attention, identical 63-parameter curve families,
+  held blocks and global/luminance/shifted controls before any score. Passing
+  can open only a separate source-only predictor; failure closes this exact
+  gate without model or curve rescue.
