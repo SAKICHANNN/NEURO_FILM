@@ -1,0 +1,75 @@
+{
+  "schema": "neuro_film.u6_p4bx_nonstationary_thomas_density_contract.v1",
+  "experiment_id": "u6.p4bx-nonstationary-thomas-density-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4BX",
+  "date_frozen": "2026-08-02",
+  "question": "Does the retained P4BW hybrid profile preserve local 48-micrometre density amplitude, positive developed density, physical transmittance and exact row partitions when its exposure-conditioned amplitude varies across structured fields?",
+  "parents": {
+    "p4bw_decision": {
+      "path": "configs/u6_p4bw_density_conditioned_thomas_profile_decision_v1.json",
+      "sha256": "c198397b1534615a381362a030cc64a5ef30403fb0790ebf62b7d1f228f1dc1e",
+      "required_decision": "retain_density_conditioned_thomas_hybrid_profile"
+    },
+    "p4bw_bundle": {
+      "path": "outputs/experiments/u6_p4bw_density_conditioned_thomas_profile_v1/run_a/bundle.json",
+      "sha256": "4edf4eaaeae163a2f579584c7d9533134a7d6177d5cc78ed517cb15865e585bf",
+      "required_profile_id": "199c59fe7d046943bcd763de8cab0ab52e7156aba6d94fcd9f1ec64da4d5d6ff"
+    },
+    "p2q_bundle": {
+      "path": "outputs/u6_p2q_kodak_250d_characteristic_prior/bundle_run1.json",
+      "sha256": "087e67544f737401fa697b21f06215a31827189e0648b8d60da666b92113caaa",
+      "required_prior_id": "04d94af2e1fcad99fbb8c9abb57179f2b63f329c263b3bf2335c4117a670aacb"
+    }
+  },
+  "candidate": {
+    "field_shape": [512, 513],
+    "patterns": ["horizontal_ramp", "vertical_step", "checker_64", "highlight_island"],
+    "normalized_exposure_fraction_minimum": 0.15,
+    "normalized_exposure_fraction_maximum": 0.85,
+    "ramp_strata": 8,
+    "layer_realization_seeds": [2608024101, 11400714821016565296, 15111065704576689958],
+    "canonical_receipt_row_block_height": 31,
+    "measurement_crop_border_samples": 13,
+    "row_partition_height": 127,
+    "density_equation": "D(x)=characteristic(logH(x))+SigmaD(logH(x))/sqrt(aperture_energy)*unit_Thomas(x)",
+    "transmittance_equation": "T(x)=pow(10,-D(x))",
+    "layer_noise_relationship": "independent deterministic realization per colour layer",
+    "realized_variance_normalization_allowed": false,
+    "clipping_allowed": false,
+    "photographic_render_allowed": false
+  },
+  "evaluation": {
+    "required_pattern_count": 4,
+    "required_channel_count": 3,
+    "required_local_group_count": 42,
+    "maximum_local_aperture_sigma_median_absolute_relative_error": 0.025,
+    "maximum_local_aperture_sigma_p95_absolute_relative_error": 0.08,
+    "maximum_local_aperture_sigma_worst_absolute_relative_error": 0.12,
+    "maximum_global_density_bias_absolute": 0.0001,
+    "maximum_transmittance_mean_relative_error": 0.001,
+    "maximum_cross_layer_residual_correlation": 0.05,
+    "minimum_developed_density": 0.0,
+    "maximum_transmittance": 1.0,
+    "require_exact_repeat": true,
+    "require_exact_row_partition_parity": true,
+    "require_finite_output": true,
+    "require_two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain nonstationary density/transmittance execution for synthetic physical-chain integration, then require full synthetic image-formation and photographic severe-artifact tests before any renderer candidate.",
+    "fail": "Close this exact pointwise amplitude execution without changing fields, seeds, boundary exclusion, equations or gates; retain P4BW flat-field profile only."
+  },
+  "forbidden": [
+    "renormalize local regions, realized fields or tiles",
+    "clip negative density or transmittance instead of failing",
+    "share one RGB noise field across all colour layers",
+    "apply the field after display encoding",
+    "claim calibrated Kodak spatial grain, microscopy or scanner-independent film truth",
+    "render photographs or alter product defaults"
+  ],
+  "outputs": {
+    "report_a": "outputs/experiments/u6_p4bx_nonstationary_thomas_density_v1/run_a/report.json",
+    "report_b": "outputs/experiments/u6_p4bx_nonstationary_thomas_density_v1/run_b/report.json"
+  },
+  "claim_ceiling": "Synthetic nonstationary developed-density and transmittance execution of the explicit P4BW hybrid profile on a 4000dpi scanner grid; not calibrated stock grain, microscopic structure, scanner-independent film truth, photographic quality or product evidence."
+}
