@@ -1,0 +1,105 @@
+{
+  "schema": "neuro_film.u6_p3y_controlled_halation_acquisition_protocol.v1",
+  "protocol_id": "u6.p3y-controlled-halation-acquisition-v1",
+  "node": "ULT > U6 > U6.P3 > U6.P3Y",
+  "status": "research-acquisition-protocol-not-data",
+  "parent_evidence": {
+    "p3x_contract": {
+      "path": "configs/u6_p3x_anchored_bracket_fusion_recovery_v1.json",
+      "sha256": "68e0e4db88deeb8ead477edfafddd12b20dd6955e2789b6e425af5779ce0a429"
+    },
+    "p3x_decision": {
+      "path": "configs/u6_p3x_anchored_bracket_fusion_recovery_decision_v1.json",
+      "sha256": "7fc91bd36dd00fad3437cfa1667cce8e11279e0bd52f3b1ab41abec2a02514e9",
+      "required_decision": "retain-anchored-bracket-fusion-recovery"
+    },
+    "p3x_evaluator": {
+      "path": "src/eval/anchored_bracket_fusion_recovery.py",
+      "sha256": "ba4baed1d5bd4a56e848c724e86a412a5062ec0c2b6116d0246b1633b67c43b8"
+    },
+    "p3x_report_sha256": "2e4cc147faa1d46d575ff46fcceb8eacf5e086d0a016fa244212666d2e246dca"
+  },
+  "measurement_domains": {
+    "source": "film-layer-linear-relative-exposure",
+    "target": "normalized-monotone-developed-response",
+    "forbidden_relabels": [
+      "display-rgb-as-layer-exposure",
+      "scan-rgb-as-developed-density",
+      "lens-bloom-as-film-backing-return"
+    ]
+  },
+  "bracket_roles": {
+    "development": {
+      "exposure_scales": [0.35, 1.0, 2.5],
+      "structures": ["vertical-edge", "highlight-disc", "sparse-highlights", "coarse-checker"]
+    },
+    "confirmation": {
+      "exposure_scales": [0.5, 1.5, 4.0],
+      "structures": ["impulse-cluster", "slanted-edge", "line-pairs", "gradient-islands"]
+    }
+  },
+  "hard_acquisition_requirements": {
+    "aligned_source_observations_per_structure": 3,
+    "minimum_linear_source_bits": 10,
+    "minimum_target_bits": 10,
+    "maximum_independent_exposure_anchor_error_ppm": 100,
+    "source_clipping_count": 0,
+    "target_clipping_count": 0,
+    "source_fusion_reads_target": false,
+    "fit_reads_confirmation_target": false,
+    "development_confirmation_structure_overlap_count": 0,
+    "exact_file_and_decoded_sample_hashes_required": true,
+    "alignment_evidence_required": true,
+    "dark_and_flat_measurements_required": true
+  },
+  "real_film_group_requirements": {
+    "minimum_independent_rolls_per_stock": 3,
+    "minimum_recorded_process_sessions_per_stock": 2,
+    "whole_roll_holdout_required": true,
+    "stock_id_required": true,
+    "roll_id_required": true,
+    "process_id_required": true,
+    "scanner_id_required": true,
+    "rights_and_lineage_required": true
+  },
+  "required_row_fields": [
+    "row_id",
+    "role",
+    "structure_id",
+    "exposure_scale",
+    "stock_id",
+    "roll_id",
+    "process_id",
+    "scanner_id",
+    "source_file_sha256",
+    "target_file_sha256",
+    "source_sample_sha256",
+    "target_sample_sha256",
+    "exposure_anchor_evidence_sha256",
+    "exposure_anchor_error_ppm",
+    "alignment_evidence_sha256",
+    "source_bits",
+    "target_bits",
+    "source_clipping_count",
+    "target_clipping_count",
+    "rights_scope",
+    "lineage_id"
+  ],
+  "required_controls": [
+    "identity-response",
+    "six-scale-scene-linear-lens-diffusion",
+    "mixed-mechanism-abstention",
+    "wrong-stock-or-profile",
+    "scanner-nuisance"
+  ],
+  "admission_rule": "Every hard acquisition and real-film group requirement must pass before mechanism fitting; otherwise retain only generic synthetic evidence.",
+  "allowed_claim_after_admission": "controlled-real-film-mechanism-candidate",
+  "forbidden_claims": [
+    "named-stock-calibration-before-held-roll-gates",
+    "display-proxy-as-physical-measurement",
+    "generic-bloom-as-film-halation",
+    "product-promotion",
+    "arbitrary-video-generalization"
+  ],
+  "claim_ceiling": "A non-renderable controlled acquisition protocol compiled from P3X synthetic sufficiency and project stock-first grouping requirements; not acquired data, a measured film profile or product authorization."
+}
