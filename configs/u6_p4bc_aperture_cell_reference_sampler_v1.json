@@ -1,0 +1,56 @@
+{
+  "schema": "neuro_film.u6_p4bc_aperture_cell_reference_sampler_contract.v1",
+  "experiment_id": "u6.p4bc-aperture-cell-reference-sampler-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4BC",
+  "date_frozen": "2026-08-02",
+  "question": "Can the P4BB cell mechanism be sampled deterministically at high Poisson rates with exact coordinate/partition identity and acceptable realized moment error, as a generic hypothesis-bound reference simulator?",
+  "parents": {
+    "p4bb_commit": "214791ad66daafed93bd63ccae794811901dcaa5",
+    "p4bb_decision_path": "configs/u6_p4bb_aperture_cell_compound_poisson_decision_v1.json",
+    "p4bb_decision_sha256": "2398b418b9bc0283b5c3aeb40deffe621a669f3e6c463adf64de25c0ebee5c0a",
+    "p4bb_bundle_path": "outputs/experiments/u6_p4bb_aperture_cell_compound_poisson_v1/run_a/bundle.json",
+    "p4bb_bundle_sha256": "67863dfb28799062200dccb556c69db0280bbeb49afe667f942d4b40e9be86d2",
+    "p4bb_report_path": "outputs/experiments/u6_p4bb_aperture_cell_compound_poisson_v1/run_a/report.json",
+    "p4bb_report_sha256": "962173085cb1660a21ec4afeb1f475beec926fc1676d47d99dab6cd14ad69889",
+    "p4bb_stable_evidence_id": "d79f8d6714c88b9985f83850a0134d1b35ce33859e46074ca9a5c79ba6369009"
+  },
+  "sampler": {
+    "coordinate_uniform": "splitmix64-open-unit-interval",
+    "poisson_inverse": "ceil(scipy.special.pdtrik(uniform, rate))",
+    "count_dtype": "uint32",
+    "field_shape_cells": [
+      192,
+      193
+    ],
+    "seed_base": 2608021100,
+    "seed_stride": 104729,
+    "measurement_cell_micrometres": 48.0,
+    "independent_cells": true,
+    "independence_status": "generic_hypothesis_not_measured_nps",
+    "spatial_filtering_allowed": false,
+    "photographic_render_allowed": false
+  },
+  "evaluation": {
+    "minimum_probe_count": 15,
+    "maximum_density_mean_relative_error": 0.0006,
+    "maximum_density_rms_relative_error": 0.02,
+    "maximum_transmittance_mean_relative_error": 0.0006,
+    "maximum_transmittance_rms_relative_error": 0.02,
+    "maximum_absolute_lag_one_correlation": 0.025,
+    "require_repeat_exact": true,
+    "require_odd_partition_exact": true,
+    "require_two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain the deterministic independent-cell sampler only as a generic research reference mechanism; a later LOD/spatial hypothesis must preserve its cell statistics and labels.",
+    "fail": "Close the sampler without seed, size, inverse, threshold or distribution rescue; retain analytic P4BB only."
+  },
+  "forbidden": [
+    "interpret cell independence as measured film NPS",
+    "interpret event count as microscopic grain or dye-cloud count",
+    "add spatial filtering, particle radius or scanner response",
+    "normalize realized fields to force target moments",
+    "render photographs or alter product defaults"
+  ],
+  "claim_ceiling": "Deterministic high-rate independent 48-micrometre measurement-cell reference sampling with exact coordinate/partition identity and bounded realized moments; independence is a generic hypothesis, not measured NPS, microscopic geometry, calibration or product rendering."
+}
