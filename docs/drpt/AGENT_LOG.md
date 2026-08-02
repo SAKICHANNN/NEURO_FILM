@@ -10018,3 +10018,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain only a same-scanner, scanner-convolved generic mechanism. Effective
   pixel scales are not microscopic grain measurements, stock profiles or a
   product renderer. The next leaf is deterministic canonical field synthesis.
+
+# 2026-08-02 - U6.P4BT closes the exact global field implementation
+
+- The P4BS spectrum drives repeat-exact, zero-mean, unit-variance periodic
+  fields. Covariance error is `4.44e-16`; variance error is `4.44e-16`.
+- Pointwise periodogram relative error reaches `2.76e-8` in bins with roughly
+  `1e-15` target power, failing the frozen `1e-10` gate. The gate is not
+  relaxed and realized per-bin renormalization is not introduced.
+- P4BS mechanism evidence remains. The next leaf changes implementation to a
+  directly normalized finite-support covariance/filter approximation.

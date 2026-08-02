@@ -1,0 +1,26 @@
+{
+  "schema": "neuro_film.u6_p4bt_clustered_nps_canonical_field_decision.v1",
+  "node": "U6.P4BT",
+  "software_commit": "a93462382ebb28c04275eb4aaba4fa77d5337f7a",
+  "contract_sha256": "647e6ed0e380db9a07c20cecbae220775411ffd837685880db5a6814abcb77bb",
+  "report_sha256": "deee6a70d476bd236e813f20626dc710fa964c43bf277d6b502b687008a2d92d",
+  "repeat_report_sha256": "deee6a70d476bd236e813f20626dc710fa964c43bf277d6b502b687008a2d92d",
+  "stable_evidence_id": "436d93f58e80af1f271c1938771f61f307383ccc7a63f2dcc2224326d664d940",
+  "automatic_pass": false,
+  "decision": "close_clustered_nps_canonical_field_under_frozen_pointwise_relative_gate",
+  "results": {
+    "maximum_periodogram_relative_error": 2.7577464090100534e-08,
+    "maximum_covariance_absolute_error": 4.440892098500626e-16,
+    "maximum_variance_absolute_error": 4.440892098500626e-16,
+    "maximum_absolute_sample_mean": 8.673617379884035e-19,
+    "maximum_ifft_imaginary_residual": 2.4167476949590558e-15,
+    "failed_gate": "maximum_periodogram_relative_error_1e-10"
+  },
+  "interpretation": [
+    "The fixed-amplitude random-phase construction is repeat-exact, unit variance, zero mean and covariance-exact, but double-precision FFT roundtrip relative error reaches 2.76e-8 in bins whose target power falls to approximately 1e-15.",
+    "The preregistered pointwise 1e-10 relative gate therefore fails. It is not relaxed post-result, and iterative per-bin amplitude correction is rejected because it would violate the no-realized-renormalization contract.",
+    "P4BS mechanism evidence remains valid; only this exact global periodic field admission closes."
+  ],
+  "next_leaf": "Evaluate a directly normalized finite-support covariance/filter approximation to the P4BS Thomas target under integrated band, covariance, partition and seam gates, without using the failed global FFT field as product truth.",
+  "claim_ceiling": "Closed deterministic global periodic implementation under its frozen pointwise relative-error gate; covariance-exact numerical diagnostics only, no field/runtime/render promotion."
+}
