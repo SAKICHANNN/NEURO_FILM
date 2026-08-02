@@ -1,0 +1,89 @@
+{
+  "schema": "neuro_film.u6_p4cd_poisson_binomial_granularity_contract.v1",
+  "experiment_id": "u6.p4cd-poisson-binomial-granularity-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4CD",
+  "date_frozen": "2026-08-02",
+  "question": "Does the density-dependent Poisson-binomial grain marginal formalized in the 2026 Stanford EE367 report predict held Kodak 250D diffuse-rms granularity better than both channel constants and the retained characteristic-slope baseline?",
+  "primary_source": {
+    "title": "Physically-Based Post-Processing Framework for Emulating Analog Color Photography",
+    "author": "Daiki Nakajima",
+    "publication_context": "Stanford EE367/CS448I Winter 2026 final project",
+    "official_url": "https://web.stanford.edu/class/ee367/Winter2026/projects2026.html",
+    "report_path": "data/physical_reference/stanford_ee367_analog_2026_v1/report_nakajima.pdf",
+    "report_bytes": 72036812,
+    "report_sha256": "62bf37e0c9b4cd9a5913e9b293fa0f78be76dabef7cd964eb85da08db5b75e20",
+    "equations": [15, 16, 17, 18, 19],
+    "source_boundary": "Use only the report's stated stochastic family and equations. Do not import or copy its derivative code or profiles, and do not treat those profiles as independent film measurements."
+  },
+  "parents": {
+    "p4av_contract_path": "configs/u6_p4av_kodak_250d_granularity_source_v1.json",
+    "p4av_contract_sha256": "c3722252d9063cc54a46ac5aa467d12a1c3e08e1bbde625d5e0c81c7e0892d8b",
+    "p4av_report_path": "outputs/experiments/u6_p4av_kodak_250d_granularity_source_v1/report_a.json",
+    "p4av_report_sha256": "1ef868f81a66a0f27b18f660c3fb9b915a079a19b4d0d006235f567f50389137",
+    "p2q_contract_path": "configs/u6_p2q_kodak_250d_characteristic_prior_v1.json",
+    "p2q_contract_sha256": "3edbc61b132385500f7bb4acb93f58bb38b666e341f503e193dec10c8a6661f3",
+    "p2q_bundle_path": "outputs/u6_p2q_kodak_250d_characteristic_prior/bundle_run1.json",
+    "p2q_bundle_sha256": "087e67544f737401fa697b21f06215a31827189e0648b8d60da666b92113caaa",
+    "p4aw_decision_path": "configs/u6_p4aw_kodak_250d_same_sheet_granularity_compatibility_decision_v1.json",
+    "p4aw_decision_sha256": "9e0b920f6837b4b35c5e06f8b221abc03fe20792770eb549e9e711f836a134a6",
+    "p4aw_report_path": "outputs/experiments/u6_p4aw_kodak_250d_same_sheet_granularity_v1/report_a.json",
+    "p4aw_report_sha256": "9d3180fd2e509606c93df8d482143fa487c7ebf1433f9abfa424ed5b4efd416c"
+  },
+  "model": {
+    "derivation": "Poisson thinning gives developed count Poisson(N*p/s), with p=(D-Dmin)/(Dmax-Dmin), s=1-u*p and density increment (Dmax-Dmin)*s/N; therefore variance is A*p*(1-u*p).",
+    "density_coordinate": "P2Q Status-M density normalized independently per channel to [0,1] over its frozen density bounds",
+    "uniformity": 0.98,
+    "fit": "nonnegative least squares on development variances only",
+    "fit_parameters": [
+      "one nonnegative variance floor per channel",
+      "one shared nonnegative Poisson-binomial amplitude"
+    ],
+    "post_result_parameter_or_family_change_allowed": false
+  },
+  "split": {
+    "eligibility": "finite P4AV points inside the same channel's inclusive P2Q exposure domain",
+    "ordering": "ascending log10 exposure independently within each channel",
+    "development": "eligible sorted index modulo 3 is 0 or 2",
+    "confirmation": "eligible sorted index modulo 3 is 1",
+    "minimum_development_rows_per_channel": 10,
+    "minimum_confirmation_rows_per_channel": 5
+  },
+  "controls": {
+    "channel_constant": "one development variance mean per channel",
+    "no_competition_poisson": "same fit with uniformity fixed to zero",
+    "characteristic_slope": "exact P4AW characteristic_slope_without_p5j confirmation predictions, without refitting"
+  },
+  "metrics": {
+    "point_error": "absolute natural-log ratio of predicted sigma_d to observed sigma_d",
+    "control_improvement": "(control median error - candidate median error) / control median error",
+    "shape_rank": "Spearman correlation between predicted and observed sigma_d per channel on confirmation rows"
+  },
+  "gates": {
+    "minimum_improvement_vs_channel_constant": 0.1,
+    "minimum_improvement_vs_no_competition": 0.05,
+    "minimum_improvement_vs_characteristic_slope": 0.05,
+    "maximum_confirmation_median_log_sigma_error": 0.25,
+    "maximum_confirmation_p95_log_sigma_error": 0.7,
+    "maximum_worst_channel_median_log_sigma_error": 0.4,
+    "minimum_median_channel_spearman": 0.35,
+    "minimum_channel_spearman": 0.0,
+    "require_positive_shared_amplitude": true,
+    "require_finite_nonnegative_prediction": true,
+    "two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain the Poisson-binomial marginal only as a compact generic density-dependent granularity baseline and open a separately frozen stochastic-executor parity test before any image use.",
+    "fail": "Close this exact uniformity, normalization, split, fit family and gates without tuning. Retain the simpler P4AX amplitude family and move to a new measured or mechanism-distinct observation."
+  },
+  "forbidden": [
+    "copy Stanford or spektrafilm code, profiles, parameters or output pixels",
+    "change uniformity, density normalization, split, controls or gates after scoring",
+    "interpret fitted amplitude as microscopic grain count or particle area",
+    "claim stock calibration, particular-roll/process/scanner truth, photographic quality or product readiness"
+  ],
+  "outputs": {
+    "report_a": "outputs/experiments/u6_p4cd_poisson_binomial_granularity_v1/run_a/report.json",
+    "report_b": "outputs/experiments/u6_p4cd_poisson_binomial_granularity_v1/run_b/report.json"
+  },
+  "claim_ceiling": "Held-exposure compatibility of one 2026 paper-derived Poisson-binomial density marginal with first-party Kodak 250D typical granularity curves; not spatial NPS, microscopic structure, roll/process/scanner calibration, stock response or product evidence."
+}
