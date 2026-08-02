@@ -10074,3 +10074,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   physical and all row partitions are exact.
 - Continue to a full synthetic image-formation/severe-boundary integration.
   Evidence remains a hybrid same-scanner-grid mechanism, not stock calibration.
+
+# 2026-08-02 - U6.P4BY retains the typed synthetic image-formation chain
+
+- Added an immutable layer-exposure -> developed-density -> transmittance ->
+  scan-linear reference path. Because P4BS is an effective same-scanner
+  spectrum, the scan observer is spectral identity only; no second MTF, flare
+  or noise stage is applied.
+- Two reports are exact (`e4f6c2ed...780b`). Across six severe structures,
+  p99/max scan delta are `.02065/.05957`, new boundaries and isolated
+  excursions are zero, minimum lag-1 is `.8256`, and density roundtrip error is
+  `5.56e-17`. Full/127-row outputs are exact.
+- The 12x signed-delta sheet is visually free of salt speckles, bands, seams
+  and edge explosions. Continue to a rights-cleared photographic stress with
+  an explicit generic exposure adapter; stock calibration and product use stay
+  closed.

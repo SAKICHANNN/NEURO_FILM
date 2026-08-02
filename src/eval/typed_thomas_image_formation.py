@@ -397,11 +397,7 @@ def evaluate_typed_thomas_image_formation(
         means.extend(abs(float(value)) for value in row_mean)
         roundtrip_errors.append(roundtrip_error)
         identity_scanner_exact.append(
-            bool(
-                np.array_equal(
-                    result.scan_linear.values, result.transmittance.values
-                )
-            )
+            bool(np.array_equal(result.scan_linear.values, result.transmittance.values))
         )
         exact_repeats.append(repeat_exact)
         exact_partitions.append(partition_exact)
