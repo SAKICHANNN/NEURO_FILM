@@ -86,6 +86,7 @@
     "maximum_isolated_excursion_count": 0,
     "minimum_axis_lag1_residual_correlation": 0.75,
     "maximum_absolute_mean_scan_delta": 0.001,
+    "lowpass_structure_sigma_pixels": 2.0,
     "minimum_lowpass_structure_correlation": 0.995,
     "maximum_density_transmittance_roundtrip_error": 1e-12,
     "require_unique_source_receipts": true,
