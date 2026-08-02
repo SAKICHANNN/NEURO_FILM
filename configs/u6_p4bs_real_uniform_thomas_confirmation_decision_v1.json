@@ -1,0 +1,38 @@
+{
+  "schema": "neuro_film.u6_p4bs_real_uniform_thomas_confirmation_decision.v1",
+  "node": "U6.P4BS",
+  "software_commit": "d299464816155c0e4952658a288d2359e165ad26",
+  "contract_sha256": "b8382fffd50763ee4a4a8498d3951d97bd21e4e7069c696baec7034c2309f2db",
+  "report_sha256": "657730398f3107379084103dd88cd47ac768b8fc65f7fd5cde9d1c490317279a",
+  "repeat_report_sha256": "657730398f3107379084103dd88cd47ac768b8fc65f7fd5cde9d1c490317279a",
+  "stable_evidence_id": "ba8a05ddcb073e2fc05aa92af9a78e4425aa2a8b99e1412caf479d383f2d14bc",
+  "automatic_pass": true,
+  "decision": "retain_generic_scanner_convolved_thomas_mechanism_candidate",
+  "results": {
+    "gaussian_particle_sigma_pixels": 2.1820811455665274,
+    "thomas_particle_sigma_pixels": 1.3253699417769098,
+    "thomas_cluster_sigma_pixels": 1.1268619873805532,
+    "thomas_mean_offspring": 27.765942352935905,
+    "development_nps_median_improvement_over_gaussian": 0.6032313310041018,
+    "confirmation_nps_median_improvement_over_gaussian": 0.5749762125347966,
+    "confirmation_nps_worst_error_ratio": 0.40623060711192777,
+    "confirmation_nps_scans_beating_gaussian": 3,
+    "confirmation_acf_median_improvement_over_gaussian": 0.4068008542438326,
+    "confirmation_acf_worst_error_ratio": 0.6082964333513708,
+    "confirmation_acf_scans_beating_gaussian": 3,
+    "candidate_nps_improvement_over_reversed_control": 0.9970630723357081
+  },
+  "interpretation": [
+    "A single effective Thomas clustered spectrum fit to the eight colour uniform scans transfers without refitting to all three B&W uniform scans and improves both radial NPS and short-lag ACF over the one-Gaussian control.",
+    "This independent mechanism result resolves the P4BR ambiguity in favour of retaining a generic clustered-spectrum candidate, while the historical Medical X-ray failure remains factual and unchanged.",
+    "The fitted pixel scales are effective scanner-convolved correlation scales. The shared scanner, unknown process and retrospective reuse of already audited cohorts prevent microscopic, scanner-independent or stock-specific interpretation."
+  ],
+  "next_leaf": "Freeze and test a deterministic canonical field generator whose periodogram and covariance reproduce the retained Thomas spectrum, followed by a bounded finite-support approximation only if exact reference evidence passes.",
+  "forbidden": [
+    "reinterpret effective pixel scales as particle or cluster microscopy",
+    "fit Ektar, UltraMax, T-MAX or Tri-X product profiles",
+    "retune the model or confirmation gates on these cohorts",
+    "promote a renderer, stock claim or product default from this mechanism result"
+  ],
+  "claim_ceiling": "Same-scanner CC0 colour-fit/B&W-confirmation evidence for one generic scanner-convolved clustered-spectrum mechanism; not stock, process, density, microscopic, scanner-independent or product calibration."
+}

@@ -10007,3 +10007,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close this exact one-level family. Further same-cohort components would test
   capacity, not identification; move to independent controlled uniform-field
   measurements. No microscopic or product claim opens.
+
+# 2026-08-02 - U6.P4BS retains a generic clustered-spectrum mechanism
+
+- Fit one Gaussian and one Thomas spectrum only to the eight exact P4R colour
+  uniform scans, then opened the three P4Z B&W scans without refitting.
+- Two reports are exact (`65773039...279a`). Thomas improves independent B&W
+  NPS and ACF median errors by `57.50%/40.68%`, wins all three scans, and keeps
+  worst error ratios at `.406/.608`; all fitted parameters are interior.
+- Retain only a same-scanner, scanner-convolved generic mechanism. Effective
+  pixel scales are not microscopic grain measurements, stock profiles or a
+  product renderer. The next leaf is deterministic canonical field synthesis.
