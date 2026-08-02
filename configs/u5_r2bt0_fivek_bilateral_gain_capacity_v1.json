@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bt0-fivek-bilateral-gain-capacity-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BT0",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Does a bounded spatial-plus-source-luminance color gain field provide held-block representation capacity beyond a parameter-matched global RGB LUT on paired FiveK digital-retouch controls?",
+  "research_basis": {
+    "paper": "Guan et al., FastGaMer: Efficient GainMap Learning for Practical Inverse Tone Mapping, CVPR 2026",
+    "paper_url": "https://openaccess.thecvf.com/content/CVPR2026/papers/Guan_FastGaMer_Efficient_GainMap_Learning_for_Practical_Inverse_Tone_Mapping_CVPR_2026_paper.pdf",
+    "paper_pdf_sha256": "6da186037542d4b134a618e99630b26c2e5337e27e9c9421ee6b4264dc6fcd74",
+    "paper_pdf_bytes": 15785593,
+    "borrowed_idea_only": "separate spatially varying local adaptation from global colour mapping and execute the high-resolution result through an explicit bounded gain field",
+    "clean_room_difference": "no paper code, weights or data; no HDR reconstruction, neural predictor, dynamic grid generator, learned LUT or absolute luminance estimation"
+  },
+  "population": {
+    "manifest": "outputs/u5_r2bq0s2_fivek_casebank_normalization_v1/run_a_formal/manifest.json",
+    "manifest_sha256": "d07ace3173198e9902ebe7c8bbf2de5ecb4342ec67f1b640aa54d9edee903a20",
+    "split": "development",
+    "row_selection": "lexicographically first pair_id within each of the exact 24 development camera_model groups",
+    "source_count_exact": 24,
+    "target_variants": ["aligned_expert", "filtered"],
+    "maximum_side": 128,
+    "confirmation_rows_allowed": false,
+    "role": "paired digital-retouch representation-capacity control; not film or stock evidence"
+  },
+  "held_block_protocol": {
+    "macro_rows": 8,
+    "macro_columns": 8,
+    "folds": [0, 1],
+    "held_rule": "(macro_row + macro_column) modulo 2 equals fold",
+    "fit_uses_held_pixels": false,
+    "score_uses_fit_pixels": false
+  },
+  "candidate": {
+    "family": "bounded_spatial_luma_rank_log_gain",
+    "grid_shape": [4, 4, 8],
+    "channels": 3,
+    "parameter_count": 384,
+    "source_guidance": "within-image stable midrank of linear-sRGB luminance",
+    "fit_target": "per-channel log((target + epsilon) / (source + epsilon))",
+    "log_gain_bound": 1.5,
+    "epsilon": 0.000244140625,
+    "ridge": 0.01,
+    "first_difference_smoothness": 0.05,
+    "application": "trilinear interpolation followed by one analytical per-pixel dose along the log-gain direction",
+    "hard_clipping_allowed": false
+  },
+  "controls": {
+    "parameter_matched_global_rgb_lut": {
+      "grid_shape": [5, 5, 5],
+      "channels": 3,
+      "parameter_count": 375,
+      "family": "strict-interior trilinear residual LUT fitted on the same non-held pixels",
+      "ridge": 0.01,
+      "first_difference_smoothness": 0.05
+    },
+    "luminance_only_gain": {
+      "grid_shape": [1, 1, 8],
+      "parameter_count": 24
+    },
+    "spatial_only_gain": {
+      "grid_shape": [4, 4, 1],
+      "parameter_count": 48
+    },
+    "identity": true
+  },
+  "evaluation": {
+    "primary_metric": "held-pixel encoded-sRGB RMSE",
+    "style_retention": "candidate held-pixel RMSE from source divided by target held-pixel RMSE from source",
+    "boundary_epsilon": 0.00392156862745098,
+    "automatic_gates": {
+      "two_run_report_byte_identity": true,
+      "source_count_exact": 24,
+      "target_variant_count_exact": 2,
+      "fold_count_exact": 2,
+      "minimum_mean_improvement_over_parameter_matched_global_lut": 0.05,
+      "minimum_win_fraction_over_parameter_matched_global_lut": 0.65,
+      "maximum_p95_error_ratio_to_parameter_matched_global_lut": 1.0,
+      "maximum_worst_error_ratio_to_parameter_matched_global_lut": 1.1,
+      "minimum_mean_improvement_over_luminance_only": 0.05,
+      "minimum_mean_improvement_over_spatial_only": 0.05,
+      "minimum_median_style_retention": 0.75,
+      "maximum_p95_held_to_fit_error_ratio": 1.5,
+      "maximum_new_boundary_fraction": 0.0,
+      "maximum_out_of_cube_fraction": 0.0
+    }
+  },
+  "branch_rules": {
+    "all_gates_pass": "retain the explicit representation and open one separately frozen group-held source-only predictor or hard sparse coefficient route",
+    "any_gate_fails": "close this exact spatial-gain representation without grid, regularization, split, target, population, metric or threshold rescue",
+    "visual_review": "forbidden in this target-informed representation-capacity leaf"
+  },
+  "learned_final_rgb_allowed": false,
+  "confirmation_pixels_allowed": false,
+  "production_integration_allowed": false,
+  "film_or_stock_claim_allowed": false,
+  "claim_ceiling": "development-only held-block representation-capacity evidence for one explicit bounded spatial gain field on paired FiveK digital-retouch controls; not a deployable predictor, film response, stock identity, calibration, preference or product result"
+}
