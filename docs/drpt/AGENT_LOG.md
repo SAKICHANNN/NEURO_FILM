@@ -9997,3 +9997,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close fixed and variable-radius independent Poisson discs. The next useful
   grain leaf must introduce clustering or another genuinely different spatial
   process; no image or product path opens.
+# 2026-08-02 - U6.P4BR finds cluster signal but closes the exact family
+
+- Implemented the 2023 IEEE Thomas structure factor with an explicit Gaussian
+  particle mark. Two formal reports are exact (`5422f6b2...ef5bf`).
+- The model beats Gaussian on 4/5 profiles and halves the worst error ratio to
+  `.55203`; Neopan median improves `42.69%`. Overall median still regresses
+  `20.45%`, so the frozen median and Medical X-ray gates fail.
+- Close this exact one-level family. Further same-cohort components would test
+  capacity, not identification; move to independent controlled uniform-field
+  measurements. No microscopic or product claim opens.

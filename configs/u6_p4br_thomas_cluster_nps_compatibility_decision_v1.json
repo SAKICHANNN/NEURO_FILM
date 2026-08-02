@@ -1,0 +1,30 @@
+{
+  "schema": "neuro_film.u6_p4br_thomas_cluster_nps_compatibility_decision.v1",
+  "experiment_id": "u6.p4br-thomas-cluster-nps-compatibility-v1",
+  "date": "2026-08-02",
+  "decision": "close_one_level_thomas_cluster_measured_nps_equation_family",
+  "automatic_pass": false,
+  "report_path": "outputs/experiments/u6_p4br_thomas_cluster_nps_compatibility_v1/run_a/report.json",
+  "report_sha256": "5422f6b24df8b2efe8688cf8f5040b20143475e20e0d0d66f5b8c4019edef5bf",
+  "repeat_report_path": "outputs/experiments/u6_p4br_thomas_cluster_nps_compatibility_v1/run_b/report.json",
+  "repeat_report_sha256": "5422f6b24df8b2efe8688cf8f5040b20143475e20e0d0d66f5b8c4019edef5bf",
+  "stable_evidence_id": "d00539e216d21a0416df79cff4df4f5b296d7d66224f865268938bede7b9e288",
+  "candidate_confirmation_median_log10_rmse": 0.41277435696956877,
+  "gaussian_confirmation_median_log10_rmse": 0.3427077510061274,
+  "confirmation_median_relative_improvement": -0.20445001829616816,
+  "candidate_confirmation_worst_log10_rmse": 0.5106757601864778,
+  "gaussian_confirmation_worst_log10_rmse": 0.9250836738326684,
+  "candidate_to_gaussian_worst_error_ratio": 0.5520319670876065,
+  "profiles_beating_gaussian": 4,
+  "material_median_relative_improvements": {
+    "fuji_medical_xray_rendol_20c_5min": -0.20445001829616816,
+    "fuji_neopan_sss_pandol_20c_10min": 0.42694829119114025
+  },
+  "failed_gates": [
+    "confirmation_median_improvement",
+    "each_material_confirmation_median_improvement"
+  ],
+  "execution_amendment": "A pre-report run exhausted the exactly frozen 160 optimizer generations and stopped before confirmation scoring because SciPy reports budget exhaustion as success=false. The evaluator was corrected to accept only finite exact exhaustion of that frozen budget; no iteration, tolerance, parameter, pixel, frequency or gate changed, and both formal runs started from scratch.",
+  "next": "Do not add same-cohort cluster capacity. Seek independent controlled uniform-field measurements; retain the 4-of-5 and worst-tail improvements only as evidence that clustering is a plausible mechanism.",
+  "claim_ceiling": "Formal negative for this exact one-level Thomas clustered Gaussian-mark model on five historical Fuji B&W spectra; clustering is mechanistically promising but unconfirmed, and no microscopic or product calibration follows."
+}

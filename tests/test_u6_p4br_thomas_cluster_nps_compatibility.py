@@ -19,6 +19,7 @@ from src.film_physics.thomas_cluster_nps import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u6_p4br_thomas_cluster_nps_compatibility_v1.json"
+DECISION = ROOT / "configs/u6_p4br_thomas_cluster_nps_compatibility_decision_v1.json"
 
 
 def _sha256(path: Path) -> str:
@@ -95,3 +96,20 @@ def test_p4br_accepts_only_exact_frozen_budget_exhaustion() -> None:
     assert _optimizer_result_is_usable(exhausted, 160)
     exhausted.nit = 159
     assert not _optimizer_result_is_usable(exhausted, 160)
+
+
+def test_p4br_decision_binds_two_exact_formal_reports() -> None:
+    payload = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert payload["decision"] == (
+        "close_one_level_thomas_cluster_measured_nps_equation_family"
+    )
+    assert (
+        payload["report_sha256"]
+        == payload["repeat_report_sha256"]
+        == ("5422f6b24df8b2efe8688cf8f5040b20143475e20e0d0d66f5b8c4019edef5bf")
+    )
+    assert payload["stable_evidence_id"] == (
+        "d00539e216d21a0416df79cff4df4f5b296d7d66224f865268938bede7b9e288"
+    )
+    assert payload["profiles_beating_gaussian"] == 4
+    assert payload["candidate_to_gaussian_worst_error_ratio"] < 1.0
