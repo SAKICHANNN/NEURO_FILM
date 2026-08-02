@@ -1,0 +1,104 @@
+{
+  "schema": "neuro_film.u6_p6ai_applause_effective_sfr_temporal_contract.v1",
+  "experiment_id": "u6.p6ai-applause-effective-sfr-temporal-v1",
+  "node": "ULT > U6 > U6.P6 > U6.P6AI",
+  "date_frozen": "2026-08-02",
+  "question": "Is the effective edge spatial-frequency response of the same recorded Epson 10000XL and TG13 workflow stable across the two independently confirmed P6K tone-response regimes, or must spatial response also remain a time-regime scanner nuisance?",
+  "parents": {
+    "p6k_contract": {
+      "path": "configs/u6_p6k_applause_tg13_temporal_v1.json",
+      "sha256": "0d854de01923b1ada2b5feeeaaae7d715c9281510b5462dce042bce537d7d745"
+    },
+    "p6k_decision": {
+      "path": "configs/u6_p6k_applause_tg13_temporal_decision_v1.json",
+      "sha256": "71b21a03577ed18b90a63d28de932cd266c9fd003a174d8bd483096911b057a6"
+    },
+    "p6z_decision": {
+      "path": "configs/u6_p6z_scanner_context_glare_transfer_decision_v1.json",
+      "sha256": "f9f80e38212db0e3483c0c731b69ae9aa5f4f3dde49e49b5cfd0b37b0c487997"
+    },
+    "p6ah_decision": {
+      "path": "configs/u6_p6ah_piecewise_analytic_cloud_aperture_decision_v1.json",
+      "sha256": "61dfa57bc9e1e0cf9e0e0e45427d62e402c234d1ae67b674b960da628a6285cd"
+    }
+  },
+  "method_basis": {
+    "current_standard": {
+      "name": "ISO 12233:2024 Digital cameras - Resolution and spatial frequency responses",
+      "url": "https://www.iso.org/standard/88626.html",
+      "use": "Terminology and e-SFR measurement principle only; this experiment does not claim ISO conformance."
+    },
+    "current_film_scanner_evidence": {
+      "name": "Plutino et al. 2025 Tonal distribution and glare assessment in cinematographic film scanners",
+      "doi": "10.1007/s11760-025-04569-8",
+      "use": "Independent evidence that scanner and laboratory processing are nuisance variables; its P6Z table is not reused for fitting here."
+    }
+  },
+  "source": {
+    "parent_data_root": "data/external/applause_tg13_temporal_v1",
+    "scanner": "Epson Expression 10000XL",
+    "wedge_type": "TG13",
+    "rows": 14,
+    "development_early": [30160, 29725, 34407],
+    "development_late": [33444, 37687, 38598, 58873, 56574],
+    "confirmation_early": [33709, 33989, 31623],
+    "confirmation_late": [39262, 30375, 54572],
+    "all_file_bytes": 13700160,
+    "rights": "APPLAUSE DR4 CC0-1.0; reuse exact local P6K files only, with no new download."
+  },
+  "measurement": {
+    "row_start": 150,
+    "row_stop": 600,
+    "nominal_step_edges_x": [562, 1229, 1879, 2555, 3206, 3869, 4518, 5177, 5834, 6488, 7144, 7788, 8456],
+    "edge_half_window_px": 48,
+    "gradient_smoothing_kernel": [0.25, 0.5, 0.25],
+    "maximum_row_edge_offset_px": 8,
+    "robust_line_residual_px": 2.5,
+    "minimum_line_inlier_rows": 300,
+    "profile_radius_px": 16.0,
+    "wing_start_px": 8.0,
+    "projected_bin_width_px": 0.25,
+    "isotonic_direction": "increasing_after_edge_polarity_normalization",
+    "curve_frequency_samples_cycles_per_pixel": [0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5],
+    "development_edge_minimum_normalized_contrast": 0.015,
+    "minimum_shared_eligible_edges": 8,
+    "edge_selection_information_flow": "Use only the eight development scans. Freeze the intersection of edges meeting the contrast and line-support gates before opening any confirmation image."
+  },
+  "controls": {
+    "synthetic_gaussian_sigma_px": [0.65, 1.25, 2.0],
+    "maximum_synthetic_curve_abs_error": 0.03,
+    "maximum_synthetic_mtf50_abs_error_cycles_per_pixel": 0.02,
+    "maximum_row_order_curve_abs_error": 1e-12,
+    "require_parent_file_hashes": true,
+    "require_parent_roles_exact": true,
+    "require_two_byte_exact_formal_reports": true
+  },
+  "gates": {
+    "shared_stability": {
+      "maximum_confirmation_curve_rmse_to_shared_development_prototype": 0.025,
+      "maximum_confirmation_relative_mtf50_drift": 0.08,
+      "maximum_development_regime_curve_rmse_for_shared_claim": 0.03,
+      "required_confirmation_rows": 6
+    },
+    "regime_nuisance": {
+      "minimum_development_early_late_curve_rmse": 0.03,
+      "required_correct_prototype_wins": 6,
+      "minimum_confirmation_wrong_minus_correct_curve_rmse": 0.015
+    }
+  },
+  "branch_rule": {
+    "regime_nuisance_pass": "Retain two effective scanner/wedge spatial-response regimes as nuisance controls. Do not compile one shared scanner MTF.",
+    "shared_stability_pass": "Open one separately frozen same-device effective-SFR compiler, still bound to this scanner, wedge type and workflow.",
+    "otherwise": "Close before compiler work and continue a distinct physical image-formation leaf."
+  },
+  "forbidden": [
+    "treat the TG13 transition as an ideal optical edge or an absolute scanner PSF/MTF truth",
+    "infer exact physical wedge identity, film stock, emulsion, exposure, development or scanner calibration",
+    "select edges, thresholds, smoothing, roles or branch after confirmation scoring",
+    "reuse the P6Z context-glare table as fit data",
+    "visual or product promotion from this experiment"
+  ],
+  "training_allowed": false,
+  "product_integration_allowed": false,
+  "claim_ceiling": "Same-workflow effective TG13 edge-SFR stability or time-regime nuisance evidence for one recorded Epson 10000XL stream; not absolute scanner MTF, film MTF, stock/process response, calibration or product evidence."
+}

@@ -9754,3 +9754,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - End synthetic aperture-reference refinement here. The next scanner leaf must
   obtain independent rights-cleared measured PSF/MTF evidence; otherwise move
   to another ready U6 physical mechanism rather than block the programme.
+
+## 2026-08-02 - Freeze U6.P6AI APPLAUSE effective edge-SFR temporal audit
+
+- Reuse the exact 14-file CC0 P6K Epson 10000XL/TG13 sequence; no new pixels or
+  downloads are introduced. Freeze development-only edge eligibility and a
+  deterministic projected, monotone edge-SFR measurement before confirmation
+  images are opened by the new runner.
+- The experiment asks whether one effective edge response is stable across the
+  two P6K tone-response regimes or whether spatial response is also a
+  time-regime scanner nuisance. Shared-stability and regime-separation gates
+  are both fixed prospectively; an ambiguous result closes without tuning.
+- TG13 transitions are not ideal optical edges. Even a pass remains bound to
+  one scanner model, wedge type and institutional workflow and cannot claim an
+  absolute scanner PSF/MTF, calibration, stock response or product profile.

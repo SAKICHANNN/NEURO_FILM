@@ -2784,3 +2784,10 @@ python_coreml_stable_diffusion  # CoreML 转换
 > across three densities. Two reports are exact (`6096a56e...db67bc`); all
 > gates pass. This is synthetic mechanism evidence only. A measured successor
 > requires same-material/process MTF and NPS; no photo or product path opens.
+>
+> `U6.P6AI` is the next scanner leaf after P6AH closes synthetic aperture
+> reference refinement. It uses the exact P6K CC0 Epson 10000XL/TG13 time
+> sequence to test whether effective edge-SFR is shared across the already
+> identified acquisition regimes or must remain regime-specific nuisance.
+> Development-only edge selection and both decision branches are frozen before
+> confirmation reads; the TG13 edge is not treated as absolute scanner MTF.

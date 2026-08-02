@@ -838,3 +838,9 @@ integral after swapping x/y axes differs by `3.96e-10 > 1e-10`. Two reports are
 byte-identical (`ea8bd2c6...ceccde`). Do not use higher precision or reordered
 sums as a same-fixture rescue. Seek rights-cleared measured scanner PSF/MTF
 evidence or advance another ready U6 physical mechanism.
+
+U6.P6AI is now the ready measured scanner leaf. It reuses the exact CC0 P6K
+Epson 10000XL/TG13 sequence and freezes an ISO-style projected edge-SFR audit
+before confirmation reads. The decision is three-way: one shared same-workflow
+effective response, two time-regime nuisance responses, or fail-closed. TG13 is
+not an ideal edge, so no branch can claim absolute scanner PSF/MTF calibration.
