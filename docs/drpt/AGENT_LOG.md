@@ -10124,3 +10124,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close this composition without changing occupancy, amplitude, fixtures,
   seeds or gates. Further work must add a genuinely identifying physical
   mechanism rather than tune the bounded-source family.
+
+# 2026-08-02 - U6.P4CC finite-crystal depletion contract frozen
+
+- Freeze a clean-room synthetic test of finite crystal footprints, footprint-
+  averaged capture and explicit layerwise remaining-light depletion. Pointwise
+  depletion and independent no-depletion stacking are fixed controls.
+- Current 2026 production documentation motivates the mechanism, but the public
+  derivation is an engineering article rather than peer-reviewed validation;
+  the claim therefore remains synthetic and generic.

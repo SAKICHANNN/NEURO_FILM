@@ -1,0 +1,98 @@
+{
+  "schema": "neuro_film.u6_p4cc_crystal_light_depletion_contract.v1",
+  "experiment_id": "u6.p4cc-crystal-light-depletion-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4CC",
+  "date_frozen": "2026-08-02",
+  "question": "Can a deterministic finite-crystal stack produce an energy-conserving, layer-order-sensitive exposure-capture mechanism with within-footprint detail loss that independent additive or point-capture grain controls cannot reproduce?",
+  "parent": {
+    "path": "configs/u6_p4cb_bounded_cloud_density_chain_decision_v1.json",
+    "sha256": "239e92822052ee82974bdec0f4fa97459649d2809e50b49224f04c0710558e37",
+    "required_decision": "close_bounded_cloud_density_chain_without_rescue"
+  },
+  "source_basis": [
+    {
+      "title": "Photographic grain",
+      "publisher": "Ansel",
+      "date": "2026-03-23",
+      "url": "https://ansel.photos/en/doc/views/darkroom/modules/photographic-grain/",
+      "role": "latest production description of finite crystal footprints, layer filling and remaining-light depletion"
+    },
+    {
+      "title": "Stochastic photographic grain synthesis from crystallographic structure simulation",
+      "publisher": "Aurelien Pierre Engineering",
+      "date": "2023-07-27",
+      "url": "https://eng.aurelienpierre.com/2023/07/stochastic-photographic-grain-synthesis-from-crystallographic-structure-simulation/",
+      "role": "public engineering hypothesis and equations; not treated as peer-reviewed physical validation"
+    },
+    {
+      "title": "Film grain synthesis technology for video applications",
+      "publisher": "ITU-T H.Sup21",
+      "date": "2025-01",
+      "url": "https://www.itu.int/rec/T-REC-H.Sup21-202501-I/en",
+      "role": "current additive frequency/AR engineering baseline family, not an emulsion-physics authority"
+    }
+  ],
+  "mechanism": {
+    "profile_id": "generic-crystal-light-depletion-p4cc-v1",
+    "field_shape": [161, 167],
+    "channels": ["red", "green", "blue"],
+    "pixel_pitch_um": 1.0,
+    "layer_count_per_channel": 12,
+    "cell_pitch_pixels": 8,
+    "crystal_activation_probability": 0.85,
+    "crystal_radius_min_pixels": 2.25,
+    "crystal_radius_max_pixels": 3.75,
+    "centre_jitter_fraction_of_pitch": 0.5,
+    "capture_efficiency_per_layer": 0.32,
+    "channel_seed_bases": [2611923443488327891, 11400714819323198485, 10723151780598845931],
+    "layer_seed_stride": 1442695040888963407,
+    "overlap_resolution": "nearest normalized crystal centre; canonical crystal id breaks exact ties",
+    "footprint_capture": "capture_efficiency times mean remaining exposure over each finite footprint, capped only by local remaining exposure",
+    "remaining_light": "next layer receives previous remaining exposure exactly",
+    "global_mean_renormalization_allowed": false,
+    "pointwise_output_clipping_allowed": false
+  },
+  "fixtures": {
+    "constant_exposures": [0.15, 0.35, 0.75],
+    "ramp_range": [0.1, 0.9],
+    "checker_values": [0.35, 0.65],
+    "checker_period_pixels": 2,
+    "edge_values": [0.2, 0.8]
+  },
+  "controls": {
+    "point_capture_depletion": "same crystal maps and remaining-light recursion, but each covered pixel captures its own exposure without footprint averaging",
+    "no_depletion_footprint": "same crystal maps and footprint averages, but every layer rereads original exposure and sums independently",
+    "reverse_layer_order": "same exact crystal maps applied bottom-to-top"
+  },
+  "evaluation": {
+    "maximum_energy_conservation_absolute_error": 2e-15,
+    "maximum_domain_violation_count": 0,
+    "minimum_constant_total_capture_fraction": 0.7,
+    "maximum_last_to_first_layer_capture_ratio": 0.5,
+    "maximum_checker_first_layer_amplitude_ratio_vs_point_control": 0.5,
+    "minimum_no_depletion_energy_excess_fraction": 0.1,
+    "minimum_forward_reverse_capture_rmse": 0.0001,
+    "maximum_density_transmittance_roundtrip_error": 1e-12,
+    "require_distinct_channel_crystal_maps": true,
+    "require_exact_repeat": true,
+    "require_finite_output": true,
+    "require_two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain the layered finite-crystal capture/depletion mechanism and open a separately frozen exposure-to-developed-structure synthetic compiler comparison before photographs.",
+    "fail": "Close this exact crystal geometry and capture rule without changing layers, geometry, efficiency, fixtures or gates; use H.274/H.Sup21 frequency/AR synthesis only as an engineering control, not a physical rescue."
+  },
+  "forbidden": [
+    "claim microscopic crystal dimensions, stock calibration or measured emulsion truth",
+    "copy Ansel or article source code",
+    "renormalize realized fields or globally compensate brightness",
+    "change crystal geometry, capture efficiency, fixtures or gates after scoring",
+    "apply additive display-RGB grain or generate final RGB with a learned model",
+    "run photographic or product evaluation before a separate typed compiler gate"
+  ],
+  "outputs": {
+    "report_a": "outputs/experiments/u6_p4cc_crystal_light_depletion_v1/run_a/report.json",
+    "report_b": "outputs/experiments/u6_p4cc_crystal_light_depletion_v1/run_b/report.json"
+  },
+  "claim_ceiling": "Clean-room synthetic mechanism evidence for finite crystal footprints and layerwise remaining-light depletion in relative layer exposure; not peer-reviewed validation, microscopic calibration, developed dye-cloud or silver geometry, stock response, photographic quality or product evidence."
+}
