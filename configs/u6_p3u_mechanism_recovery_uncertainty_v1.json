@@ -1,0 +1,93 @@
+{
+  "schema": "neuro_film.u6_p3u_mechanism_recovery_uncertainty_contract.v1",
+  "experiment_id": "u6.p3u-mechanism-recovery-uncertainty-v1",
+  "node": "ULT > U6 > U6.P3 > U6.P3U",
+  "status": "contract_frozen_implementation_ready",
+  "parents": {
+    "p3t_contract": {
+      "path": "configs/u6_p3t_multiexposure_mechanism_recovery_v1.json",
+      "sha256": "21e3480d7ad934a539a3e71fc61cf93b3eaa2be1ad91fd69bc6c91e541af1fee"
+    },
+    "p3t_decision": {
+      "path": "configs/u6_p3t_multiexposure_mechanism_recovery_decision_v1.json",
+      "sha256": "6e523c96beed4f640fd76480d1fc68f88606bfcbbc2923df4b2207bcfaa04e82",
+      "required_decision": "retain-bounded-synthetic-mechanism-recovery"
+    },
+    "p3t_evaluator": {
+      "path": "src/eval/multiexposure_mechanism_recovery.py",
+      "sha256": "07c56c215f87b95bde7e7beb8c1297cd42f0e83a9bbb9f4589f0597c26e6fb31"
+    }
+  },
+  "question": "Does the exact P3T inverse remain discriminative under prospectively frozen source/target quantization, observation noise and row-wise exposure-gain uncertainty?",
+  "roles": {
+    "development": "exact P3T development rows",
+    "confirmation": "exact P3T disjoint confirmation rows",
+    "fit_reads_confirmation": false
+  },
+  "uncertainty_seed": 2026080103,
+  "quantization": {
+    "source_full_scale": 1.0,
+    "target_full_scale": 1.0,
+    "rounding": "nearest-even",
+    "clipping_allowed": false
+  },
+  "regimes": [
+    {
+      "regime_id": "linear16-low-noise",
+      "bits": 16,
+      "source_noise_sigma": 2e-06,
+      "target_noise_sigma": 2e-06,
+      "maximum_absolute_source_gain_jitter": 0.00025,
+      "maximum_pure_confirmation_rmse": 5e-05,
+      "maximum_relative_parameter_error": 0.02
+    },
+    {
+      "regime_id": "linear12-moderate",
+      "bits": 12,
+      "source_noise_sigma": 1e-05,
+      "target_noise_sigma": 1e-05,
+      "maximum_absolute_source_gain_jitter": 0.001,
+      "maximum_pure_confirmation_rmse": 0.0005,
+      "maximum_relative_parameter_error": 0.05
+    },
+    {
+      "regime_id": "linear10-stress",
+      "bits": 10,
+      "source_noise_sigma": 5e-05,
+      "target_noise_sigma": 5e-05,
+      "maximum_absolute_source_gain_jitter": 0.0025,
+      "maximum_pure_confirmation_rmse": 0.002,
+      "maximum_relative_parameter_error": 0.1
+    }
+  ],
+  "common_gates": {
+    "pure_case_correct_family_count_min_per_regime": 6,
+    "pure_case_count": 6,
+    "minimum_wrong_to_correct_rmse_ratio_per_regime": 5.0,
+    "physical_sigma_exact_count_min_per_regime": 3,
+    "mixed_case_abstention_count_min_per_regime": 2,
+    "mixed_case_count": 2,
+    "minimum_mixed_best_confirmation_rmse_per_regime": 0.0002,
+    "maximum_quantization_clipped_scalar_count": 0,
+    "development_confirmation_pattern_overlap_count_max": 0,
+    "report_repeat_sha256_exact": true
+  },
+  "controls": [
+    "unchanged P3T physical and lens equation families",
+    "wrong equation family",
+    "identity model",
+    "mixed mechanism abstention",
+    "disjoint development and confirmation roles"
+  ],
+  "forbidden": [
+    "change regimes, seeds, quantizers, parameter grids or gates after scoring",
+    "fit confirmation observations",
+    "rescue one regime by dropping rows or mechanisms",
+    "claim real measurement uncertainty, calibrated film or product readiness"
+  ],
+  "branch_rule": {
+    "pass": "Retain the bounded inverse under the frozen uncertainty envelope and next specify controlled acquisition sufficiency.",
+    "fail": "Close the failed uncertainty envelope without same-cohort tuning; retain only the strongest earlier passing envelope."
+  },
+  "claim_ceiling": "Synthetic robustness evidence for the P3T inverse under explicit quantization, noise and exposure-gain perturbations; no real-film measurement or product claim."
+}
