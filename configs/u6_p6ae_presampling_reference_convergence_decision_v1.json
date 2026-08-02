@@ -1,0 +1,28 @@
+{
+  "schema": "neuro_film.u6_p6ae_presampling_reference_convergence_decision.v1",
+  "node": "U6.P6AE",
+  "decision": "revoke_16x_presampling_reference",
+  "contract_commit": "ae986d77",
+  "implementation_commit": "2ff0314c",
+  "report_path": "outputs/experiments/u6_p6ae_presampling_reference_convergence_v1/report_run1.json",
+  "report_sha256": "ad1155d40f9a718b7596fc091d246067ae2195eb02610fcbec6a4735238a66ef",
+  "stable_evidence_id": "6fe3d8828dc243cc4e66263a5e959b9451d4a6593003b1be85b4244b6985c24a",
+  "two_reports_byte_exact": true,
+  "automatic_pass": false,
+  "metrics": {
+    "fft_vs_spatial_16x_error": 1.176836406102666e-14,
+    "rmse_8x_vs_32x": 0.009652411191326506,
+    "rmse_16x_vs_32x": 0.0031875307033554855,
+    "p95_16x_vs_32x": 0.006028699952552307,
+    "convergence_improvement_from_8x_to_16x": 0.6697684505795042,
+    "repeat_error": 0.0
+  },
+  "failed_gates": [
+    "maximum_16x_vs_32x_rmse"
+  ],
+  "p6ac_16x_target_valid": false,
+  "p6ad_rescue_allowed": false,
+  "next_leaf": "U6.P6AF must independently test 32x against a 64x render before any new scanner compiler is selected against the provisional 32x reference.",
+  "production_profile_integration_allowed": false,
+  "claim_ceiling": "Generic synthetic presampling reference-convergence evidence; no measured film, scanner, stock, process, quality or product claim."
+}

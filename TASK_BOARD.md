@@ -810,3 +810,10 @@ over the 64-point control, but misses the frozen 16x reference at
 reports are exact (`b6bca9b9...0c96cd5`). Do not increase samples. Before
 testing another compiler, P6AE must establish whether the 16x raster target
 itself is converged.
+
+U6.P6AE revokes that 16x target. FFT and spatial 16x convolution agree within
+`1.18e-14`, and P95 plus the 8x-to-16x convergence gain pass, but the frozen
+16x-to-32x RMSE is `.0031875 > .003`. Two formal reports are byte-identical
+(`ad1155d4...8a66ef`). Do not rescue P6AC/P6AD or fit a convergence correction.
+U6.P6AF must test the provisional 32x render against a separately rendered 64x
+reference before another scanner compiler is selected.

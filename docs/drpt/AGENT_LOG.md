@@ -9667,3 +9667,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Require 16x RMSE/P95 at most `.003/.0075` and at least 50% convergence gain
   from 8x to 16x, plus range and exact replay. No convergence correction,
   extrapolation or P6AC/P6AD tuning is allowed.
+
+## 2026-08-02 - U6.P6AE revokes the 16x presampling reference
+
+- Two formal reports are byte-identical at `ad1155d4...8a66ef`, stable
+  `6fe3d882...6985c24a`; repeat, range and FFT/spatial equivalence pass, with
+  maximum FFT/spatial error `1.18e-14`.
+- The frozen 16x-to-32x P95 `.006029` and convergence gain `66.98%` pass, but
+  RMSE `.0031875` exceeds `.003`. Revoke the 16x raster as an
+  algorithm-selection target without correcting or tuning P6AC/P6AD.
+- The next discriminating leaf is a separately frozen 32x-to-64x convergence
+  audit. Until it passes, 32x is provisional offline synthetic evidence only.

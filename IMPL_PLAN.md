@@ -1,5 +1,11 @@
 # Active stock-first pointer — 2026-07-16
 
+> 2026-08-02: U6.P6AE revokes the P6AC 16x presampling target. FFT and
+> spatial convolution agree within `1.18e-14`, and P95/convergence pass, but
+> 16x-to-32x RMSE is `.0031875 > .003`. Two reports are exact
+> (`ad1155d4...8a66ef`). Do not rescue P6AC/P6AD or fit a correction; P6AF
+> must independently establish whether 32x is converged against 64x.
+>
 > 2026-08-02: U6.P6AC establishes that scanner ordering matters but closes its
 > 8x raster approximation. It reduces RMSE `91.95%` versus the best post-raster
 > control and `89.10%` versus aperture-on-density, but independent-16x RMSE/P95
