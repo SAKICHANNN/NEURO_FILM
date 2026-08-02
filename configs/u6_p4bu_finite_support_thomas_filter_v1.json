@@ -1,0 +1,72 @@
+{
+  "schema": "neuro_film.u6_p4bu_finite_support_thomas_filter_contract.v1",
+  "experiment_id": "u6.p4bu-finite-support-thomas-filter-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4BU",
+  "date_frozen": "2026-08-02",
+  "question": "Can two independent counter-noise fields convolved by compact separable Gaussian kernels reproduce the retained P4BS Thomas spectrum closely enough while remaining deterministic and exactly row-partition invariant?",
+  "parents": {
+    "p4bs_decision": {
+      "path": "configs/u6_p4bs_real_uniform_thomas_confirmation_decision_v1.json",
+      "sha256": "a0b01b0fc08b407c26169f16d5efbc87aa9a20146e42d33ea113f8200ee57ff3",
+      "required_decision": "retain_generic_scanner_convolved_thomas_mechanism_candidate"
+    },
+    "p4bt_decision": {
+      "path": "configs/u6_p4bt_clustered_nps_canonical_field_decision_v1.json",
+      "sha256": "bf8b58ae53cb875660e51341158f167880fcc90fd58c2a3c04c09300d6a270a7",
+      "required_decision": "close_clustered_nps_canonical_field_under_frozen_pointwise_relative_gate"
+    }
+  },
+  "profile": {
+    "profile_id": "generic-scanner-convolved-thomas-p4bs-v1",
+    "particle_sigma_pixels": 1.3253699417769098,
+    "cluster_sigma_pixels": 1.1268619873805532,
+    "combined_sigma_pixels": 1.7396618697807282,
+    "mean_offspring": 27.765942352935905,
+    "component_seeds": [2608023001, 2608023002],
+    "density_amplitude": null,
+    "stock_id": null
+  },
+  "filter": {
+    "kernel": "normalized separable discrete Gaussian",
+    "truncate_sigma": 4.0,
+    "particle_radius_pixels": 5,
+    "combined_radius_pixels": 7,
+    "maximum_halo_pixels": 7,
+    "component_weighting": "raw filtered variances preserve 1:mean_offspring spectral power before one analytic unit-variance normalization",
+    "boundary_mode": "zero outside finite full image",
+    "realized_field_renormalization_allowed": false
+  },
+  "evaluation": {
+    "spectral_grid_shape": [512, 512],
+    "radial_band_edges_cycles_per_pixel": [0.015625, 0.0192766719449429, 0.02378176520146871, 0.02933973030786375, 0.03619663079025841, 0.044656036944385955, 0.0550924655704434, 0.06796796066812788, 0.0838525491562421, 0.10344947723725297, 0.1276263446770152, 0.157453515383746, 0.1942515048083514, 0.2396494421121336, 0.2956571953525875, 0.3647543528303184, 0.45],
+    "covariance_lags_yx": [[0, 1], [1, 0], [1, 1], [0, 2], [2, 0], [0, 4], [4, 0], [0, 8], [8, 0], [0, 16], [16, 0]],
+    "field_shape": [257, 263],
+    "interior_border_pixels": 14,
+    "row_partitions": [1, 7, 31, 64, 127],
+    "seeds": [2608023011, 2608023012, 2608023013],
+    "maximum_radial_signature_cosine_error": 0.005,
+    "maximum_covariance_absolute_error": 0.01,
+    "maximum_interior_variance_absolute_error": 0.05,
+    "maximum_interior_absolute_mean": 0.02,
+    "require_exact_row_partition_parity": true,
+    "require_repeat_exact": true,
+    "require_seed_distinct_fields": true,
+    "require_finite_unit_reference": true,
+    "require_two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain one finite-support unit-reference field kernel and open explicit density-amplitude conditioning plus canonical CPU runtime integration.",
+    "fail": "Close this exact two-Gaussian finite-support approximation without changing radii, truncation, seeds or gates; retain P4BS analytic spectrum only."
+  },
+  "forbidden": [
+    "renormalize realized fields or tiles",
+    "reuse one noise field for both independent Thomas components",
+    "infer stock, density or physical particle amplitude",
+    "apply to photographs or product output before separate density/amplitude and visual gates"
+  ],
+  "outputs": {
+    "report_a": "outputs/experiments/u6_p4bu_finite_support_thomas_filter_v1/run_a/report.json",
+    "report_b": "outputs/experiments/u6_p4bu_finite_support_thomas_filter_v1/run_b/report.json"
+  },
+  "claim_ceiling": "Deterministic finite-support unit-reference approximation to the retained generic scanner-convolved Thomas second-order spectrum, with exact row partitioning; not density amplitude, stock calibration or photographic/product rendering."
+}
