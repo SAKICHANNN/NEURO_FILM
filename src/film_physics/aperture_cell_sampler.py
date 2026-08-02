@@ -135,9 +135,79 @@ def sample_aperture_scaled_density_region(
     return counts, density
 
 
+def sample_nonstationary_aperture_density_region(
+    poisson_rate: np.ndarray,
+    density_mark: np.ndarray,
+    *,
+    origin_yx: tuple[int, int],
+    shape: tuple[int, int],
+    seed: int,
+) -> tuple[np.ndarray, np.ndarray]:
+    """Sample one region from pointwise aperture-cell density parameters.
+
+    The rate and mark arrays describe the complete coordinate field.  Region
+    calls therefore retain the same counter coordinates as a full-field call.
+    No realized-field moment correction or spatial filtering is performed.
+    """
+
+    rate = np.asarray(poisson_rate, dtype=np.float64)
+    mark = np.asarray(density_mark, dtype=np.float64)
+    if (
+        rate.ndim != 2
+        or rate.shape != mark.shape
+        or not rate.size
+        or not np.all(np.isfinite(rate))
+        or not np.all(np.isfinite(mark))
+        or np.any(rate < 1.0)
+        or np.any(rate > 16_000_000.0)
+        or np.any(mark <= 0.0)
+    ):
+        raise ValueError("nonstationary aperture parameters are invalid")
+    if not isinstance(seed, int) or seed < 0 or seed >= 2**64:
+        raise ValueError("seed must be unsigned 64-bit")
+    origin_y, origin_x = origin_yx
+    height, width = shape
+    if (
+        not isinstance(origin_y, int)
+        or not isinstance(origin_x, int)
+        or not isinstance(height, int)
+        or not isinstance(width, int)
+        or origin_y < 0
+        or origin_x < 0
+        or height <= 0
+        or width <= 0
+        or origin_y + height > rate.shape[0]
+        or origin_x + width > rate.shape[1]
+    ):
+        raise ValueError("nonstationary aperture region is invalid")
+    uniform = counter_uniform_region(
+        rate.shape, origin_yx=origin_yx, shape=shape, seed=seed
+    )
+    selected_rate = rate[
+        origin_y : origin_y + height, origin_x : origin_x + width
+    ]
+    inverse = np.ceil(pdtrik(uniform, selected_rate))
+    if (
+        not np.all(np.isfinite(inverse))
+        or np.any(inverse < 0.0)
+        or np.any(inverse > np.iinfo(np.uint32).max)
+    ):
+        raise RuntimeError("Poisson inverse left the uint32 count domain")
+    counts = np.asarray(inverse, dtype=np.uint32)
+    density = counts.astype(np.float64) * mark[
+        origin_y : origin_y + height, origin_x : origin_x + width
+    ]
+    if not np.all(np.isfinite(density)) or np.any(density <= 0.0):
+        raise RuntimeError("sampled nonstationary density left its physical domain")
+    counts.setflags(write=False)
+    density.setflags(write=False)
+    return counts, density
+
+
 __all__ = [
     "counter_aperture_scaled_poisson_region",
     "counter_high_rate_poisson_region",
     "sample_aperture_cell_density_region",
     "sample_aperture_scaled_density_region",
+    "sample_nonstationary_aperture_density_region",
 ]
