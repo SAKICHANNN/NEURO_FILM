@@ -1,0 +1,20 @@
+{
+  "schema": "neuro_film.u6_p4bw_density_conditioned_thomas_profile_decision.v1",
+  "node": "U6.P4BW",
+  "contract_sha256": "eafaa7262d7e1458e7c797e9ed8a3bb0f0f4787dc99b3546e39cf69c8702f564",
+  "implementation_sha256": "0d71764796417f9605f3c27cf1139315e5732b099dbfe29ab1ad2dae88319bb2",
+  "evaluator_sha256": "75c1aeaceceeac76205256c00780cee0f75643561d355d75a8cfb1baa380de43",
+  "bundle_sha256": "4edf4eaaeae163a2f579584c7d9533134a7d6177d5cc78ed517cb15865e585bf",
+  "report_sha256": "d456f7ec43643eff13b623693be211386bf0e4b15a29ed3ceff47ec90a3aa338",
+  "stable_evidence_id": "8fe0966081f42be92653480c22cc5bcf853d05c49d016e9d43f883fe42eda662",
+  "profile_id": "199c59fe7d046943bcd763de8cab0ab52e7156aba6d94fcd9f1ec64da4d5d6ff",
+  "automatic_pass": true,
+  "decision": "retain_density_conditioned_thomas_hybrid_profile",
+  "measurement_energy": 0.42674186556428034,
+  "point_scale_for_unit_sigma_d": 1.5307961957457046,
+  "monte_carlo_median_absolute_relative_error": 0.00475298181066891,
+  "monte_carlo_p95_absolute_relative_error": 0.007285528507445482,
+  "minimum_developed_density": 0.20805447051016945,
+  "interpretation": "The P4AX Kodak-250D-compatible 48um Sigma-D amplitude is analytically normalized onto the independent P4BV generic same-scanner Thomas field. The composition is explicit and typed, but remains a hybrid research profile rather than calibrated Kodak spatial grain.",
+  "next_ready_leaf": "U6.P4BX nonstationary exposure-field density and transmittance evaluation"
+}

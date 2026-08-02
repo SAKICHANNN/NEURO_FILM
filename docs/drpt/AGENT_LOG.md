@@ -10051,3 +10051,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain this generic unit-reference field and proceed to density-domain
   amplitude conditioning. Stock, microscopic-particle and product claims stay
   closed.
+
+# 2026-08-02 - U6.P4BW composes typed density amplitude and spatial shape
+
+- The independent P4BV field is normalized through the exact 48um circular
+  measurement aperture before applying P4AX Sigma-D; point-sample RMS is never
+  substituted for diffuse-rms granularity.
+- Two bundles/reports are exact (`4edf4eaa...85bf`, `d456f7ec...a338`). Eight
+  fields reproduce the aperture amplitude with median/p95 error `.475%/.729%`,
+  all nine exposure/channel probes are analytic-exact, and density remains
+  positive.
+- Retain only an explicit hybrid research profile. Next test nonstationary
+  exposure fields and physical transmittance; no calibrated stock/product claim.
