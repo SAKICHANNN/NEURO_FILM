@@ -8,6 +8,7 @@
   "source": {
     "record_id": "19730022682",
     "source_sha256": "8773bb57946c38573d2feb42a08ddf3b0d5001745bc46ac23d825d6cdad90814",
+    "source_report_path": "outputs/eval/u6_p4at_nasa_joint_mtf_granularity_source_v1/report_run1.json",
     "source_report_sha256": "53748b3eeb92fa3a9b103db50ea32f1bb2edba4278ae72e2a9b74f8aa2fd447b",
     "mechanism": "The report gives the circular aperture transfer 2*J1(2*pi*a*f)/(2*pi*a*f), a 12.5 micrometre aperture and its separate scanner role.",
     "current_context": "ITU-T H.Sup21 (2025) retains MTF/NPS as current film-restoration spatial-quality measures."
