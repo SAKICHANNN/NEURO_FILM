@@ -1,0 +1,122 @@
+{
+  "schema": "neuro_film.u6_p4bk_fuji_noise_spectrum_source_contract.v1",
+  "experiment_id": "u6.p4bk-fuji-noise-spectrum-source-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4BK",
+  "date_frozen": "2026-08-02",
+  "question": "Does the exact official 1960 Fuji primary source provide machine-lockable measured one-dimensional grain spectra, aperture correction and fitted coefficients sufficient to compile a historical black-and-white two-dimensional Wiener-spectrum reference without graph digitization or modern-stock transfer?",
+  "source": {
+    "title": "Graininess and Granularity of Photographic Materials I. Measurement of Power Spectrum",
+    "author": "Shingo OOUE",
+    "affiliation": "Research Laboratory, Fuji Photo Film Co., Ltd., Minamiashigara, Kanagawa-ken",
+    "journal": "Journal of Applied Physics, Japan",
+    "volume": 29,
+    "issue": 3,
+    "year": 1960,
+    "pages": "169-175",
+    "doi": "10.11470/oubutsu1932.29.169",
+    "official_article_url": "https://www.jstage.jst.go.jp/article/oubutsu1932/29/3/29_3_169/_article",
+    "official_pdf_url": "https://www.jstage.jst.go.jp/article/oubutsu1932/29/3/29_3_169/_pdf",
+    "pdf_path": "data/physical_grain/fuji_noise_spectrum_1960_v1/official.pdf",
+    "pdf_sha256": "f03541cacdd0deacc0475f8a5ea3aa8bf2761e87d8183037e27a51283f4d92bf",
+    "pdf_bytes": 1171684,
+    "pdf_pages": 7,
+    "language": "Japanese with English title, abstract, captions and table labels",
+    "allowed_use": "internal_research_source_and_numeric_reference",
+    "redistribution_allowed": false
+  },
+  "measurement": {
+    "material_class": "uniformly_exposed_and_developed_black_and_white_photographic_material",
+    "measured_quantity": "one_dimensional_power_spectrum_of_transmittance_pattern",
+    "compiled_quantity": "two_dimensional_isotropic_wiener_spectrum",
+    "spatial_frequency_unit": "lines_per_millimetre_in_grain_plane",
+    "scanning_aperture_shape": "circular",
+    "scanning_aperture_diameter_micrometres": 1.0,
+    "one_dimensional_model": "f(u)=sum_i k_i*exp(-u^2/(2*p_i^2))",
+    "aperture_convolved_two_dimensional_model": "Q(u,v)=1/sqrt(2*pi)*sum_i(k_i/p_i)*exp(-(u^2+v^2)/(2*p_i^2))",
+    "circular_aperture_mtf": "G(s)=2*J1(pi*s*a)/(pi*s*a), s=sqrt(u^2+v^2), a in millimetres",
+    "intrinsic_two_dimensional_model": "F(u,v)=Q(u,v)/abs(G(u,v))^2",
+    "equation_numbers": [5, 6, 7, 8, 9],
+    "assumptions": [
+      "stationary_uniform_field",
+      "isotropic_spectrum",
+      "monotone_decrease_with_spatial_frequency"
+    ]
+  },
+  "table_1": [
+    {
+      "material_id": "fuji_neopan_sss_pandol_20c_10min",
+      "material": "Fuji Neopan SSS Film",
+      "developer": "Fuji Pandol",
+      "temperature_celsius": 20.0,
+      "development_minutes": 10.0,
+      "diffuse_density": 0.41,
+      "k": [140.0, 126.0],
+      "p_lines_per_mm": [57.2, 113.0]
+    },
+    {
+      "material_id": "fuji_neopan_sss_pandol_20c_10min",
+      "material": "Fuji Neopan SSS Film",
+      "developer": "Fuji Pandol",
+      "temperature_celsius": 20.0,
+      "development_minutes": 10.0,
+      "diffuse_density": 1.72,
+      "k": [308.0, 248.0, 7.6],
+      "p_lines_per_mm": [49.5, 119.0, 360.0]
+    },
+    {
+      "material_id": "fuji_medical_xray_rendol_20c_5min",
+      "material": "Fuji Medical X-ray Film",
+      "developer": "Fuji Rendol",
+      "temperature_celsius": 20.0,
+      "development_minutes": 5.0,
+      "diffuse_density": 0.58,
+      "k": [355.0, 270.0],
+      "p_lines_per_mm": [32.8, 112.0]
+    },
+    {
+      "material_id": "fuji_medical_xray_rendol_20c_5min",
+      "material": "Fuji Medical X-ray Film",
+      "developer": "Fuji Rendol",
+      "temperature_celsius": 20.0,
+      "development_minutes": 5.0,
+      "diffuse_density": 1.03,
+      "k": [680.0, 70.0],
+      "p_lines_per_mm": [66.4, 150.0]
+    },
+    {
+      "material_id": "fuji_medical_xray_rendol_20c_5min",
+      "material": "Fuji Medical X-ray Film",
+      "developer": "Fuji Rendol",
+      "temperature_celsius": 20.0,
+      "development_minutes": 5.0,
+      "diffuse_density": 1.23,
+      "k": [625.0, 560.0],
+      "p_lines_per_mm": [41.0, 99.0]
+    }
+  ],
+  "audit": {
+    "required_table_rows": 5,
+    "required_gaussian_components": 11,
+    "require_exact_pdf_identity": true,
+    "require_page_count": true,
+    "require_english_title_abstract_and_figure_markers": true,
+    "require_two_material_process_contexts": true,
+    "require_equation_semantics": true,
+    "require_positive_finite_coefficients": true,
+    "require_unique_material_density_rows": true,
+    "require_no_graph_digitization": true,
+    "require_two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "pass": "Open one separately frozen historical B&W measured-NPS compiler that reproduces the paper's 1D Gaussian sums, aperture-convolved 2D spectra and aperture-corrected intrinsic spectra over a zero-free bounded frequency interval.",
+    "fail": "Close this source route without repairing coefficients from figures or substituting modern datasheet granularity; retain P4BJ only as the generic nonstationary amplitude reference."
+  },
+  "forbidden": [
+    "digitize plotted curves or refit Table 1",
+    "transfer Fuji B&W or medical-film spectra to Kodak 250D or colour dye-cloud layers",
+    "infer scanner, print, development adjacency or modern product parameters",
+    "treat equation reproduction as photographic validation",
+    "redistribute the source PDF"
+  ],
+  "claim_ceiling": "Exact internal source audit for five historical Fuji black-and-white measured grain-spectrum states and their published 1D-to-2D aperture correction; not modern stock calibration, colour-film structure, photographic quality, raster rendering or product evidence."
+}
