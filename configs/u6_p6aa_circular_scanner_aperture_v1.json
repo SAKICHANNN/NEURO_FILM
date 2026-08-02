@@ -1,0 +1,64 @@
+{
+  "schema": "neuro_film.u6_p6aa_circular_scanner_aperture_contract.v1",
+  "experiment_id": "u6.p6aa-circular-scanner-aperture-v1",
+  "node": "ULT > U6 > U6.P6 > U6.P6AA",
+  "date_frozen": "2026-08-02",
+  "parent": "U6.P6 typed scanner boundary plus U6.P4AT exact NASA source",
+  "question": "Can a compact positive two-dimensional circular-aperture kernel reproduce the analytic Bessel scanner MTF materially better than equal-second-moment Gaussian and point-aperture controls while preserving constants, impulse positivity and row-partition parity?",
+  "source": {
+    "record_id": "19730022682",
+    "source_sha256": "8773bb57946c38573d2feb42a08ddf3b0d5001745bc46ac23d825d6cdad90814",
+    "source_report_sha256": "53748b3eeb92fa3a9b103db50ea32f1bb2edba4278ae72e2a9b74f8aa2fd447b",
+    "mechanism": "The report gives the circular aperture transfer 2*J1(2*pi*a*f)/(2*pi*a*f), a 12.5 micrometre aperture and its separate scanner role.",
+    "current_context": "ITU-T H.Sup21 (2025) retains MTF/NPS as current film-restoration spatial-quality measures."
+  },
+  "compiler": {
+    "aperture_diameter_um": 12.5,
+    "reference_pixel_pitch_um": 1.0,
+    "subpixels_per_axis": 512,
+    "cell_rule": "deterministic subpixel-centre disk-area fraction followed by exact sum normalization and zero-border crop",
+    "dtype": "float64",
+    "support": "minimal odd square containing all positive cell-area weights",
+    "production_import_allowed": false
+  },
+  "evaluation": {
+    "frequencies_cycles_per_mm": [0, 10, 20, 30, 40, 50, 60, 70, 80],
+    "analytic_target": "2*J1(pi*diameter_mm*f)/(pi*diameter_mm*f)",
+    "equal_second_moment_gaussian_sigma_um": 3.125,
+    "point_aperture_mtf": 1.0,
+    "test_shape": [61, 47, 3],
+    "row_partitions": [7, 17, 31],
+    "seed": 26080261
+  },
+  "gates": {
+    "maximum_kernel_mtf_absolute_error": 0.02,
+    "minimum_rmse_improvement_vs_gaussian": 0.75,
+    "minimum_rmse_improvement_vs_point": 0.75,
+    "maximum_weight_sum_error": 1e-12,
+    "minimum_weight": 0.0,
+    "maximum_rotational_symmetry_error": 1e-15,
+    "maximum_constant_error": 1e-12,
+    "maximum_partition_error": 1e-15,
+    "maximum_repeat_error": 0.0,
+    "impulse_must_equal_kernel": true
+  },
+  "controls": [
+    "equal-second-moment Gaussian MTF",
+    "point aperture",
+    "rotated kernel",
+    "constant field",
+    "centred impulse",
+    "7/17/31-row partitions"
+  ],
+  "forbidden": [
+    "fit diameter, pitch, subpixel count, frequency support or gates after scoring",
+    "replace the existing scanner profile or native runtime in this leaf",
+    "call the historical Optronics aperture a modern scanner calibration",
+    "claim photographic quality, stock response, NPS calibration or product promotion"
+  ],
+  "branch_rule": {
+    "pass": "Retain a generic circular scanner-aperture reference primitive and next test a bounded target-resolution compiler or measured scanner profile only when evidence permits.",
+    "fail": "Close this discrete compiler without supersampling, support or threshold rescue and retain the existing Gaussian scanner approximation."
+  },
+  "claim_ceiling": "Generic synthetic scanner-aperture reference mechanics anchored to one public historical equation and aperture; no modern device calibration or product integration."
+}

@@ -760,3 +760,9 @@ residual dispersion regresses `2.02%` versus no diffusion and improves only
 `1.15%` versus wrong-film, below both frozen 5% gates. Two reports are exact
 (`574f0c59...569c7a`). Retain P4AS synthetic mechanism only; do not rescue this
 profile on the same tables. Continue a distinct physical algorithm leaf.
+
+U6.P6AA is the next distinct core algorithm leaf. Compile the source-stated
+12.5um circular scanner aperture into one positive 2D reference kernel at 1um
+pitch and compare its sampled MTF with the analytic Bessel response, an
+equal-second-moment Gaussian and a point aperture. Production profile/runtime
+imports remain forbidden until the reference and partition gates pass.

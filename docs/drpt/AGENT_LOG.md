@@ -9553,3 +9553,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   versus frozen 5% minimum gains.
 - Close this exact measured Gaussian family without profile, gate or same-table
   rescue. This does not falsify dye-cloud coupling; P4AS remains synthetic-only.
+
+## 2026-08-02 - Freeze U6.P6AA circular scanner-aperture reference
+
+- Move to a distinct scanner-image-formation mechanism rather than rescuing
+  P4AU. The exact public source gives a 12.5um circular aperture and analytic
+  Bessel MTF; the current generic scanner approximation is Gaussian.
+- Freeze a positive 2D disk-area kernel at 1um reference pitch. It must beat
+  equal-second-moment Gaussian and point controls by 75% RMSE, stay within .02
+  analytic MTF error, and pass normalization, symmetry, impulse, repeat and
+  7/17/31-row partition gates.
+- This leaf is isolated reference mechanics. No production profile, native
+  runtime, modern scanner calibration or photographic claim opens directly.
