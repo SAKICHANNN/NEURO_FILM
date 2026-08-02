@@ -237,6 +237,16 @@ def _validate_and_select_paths(
             if not dash_ok:
                 raise VeritaSourceSignatureError(f"BU8 {domain}/{channel} dash drift")
             selected[domain][channel] = path
+        probe_x = float(domain_config["label_probe_x_pdf"])
+        observed_order = tuple(
+            sorted(
+                CHANNELS,
+                key=lambda name: _path_value_at_x(selected[domain][name], probe_x),
+                reverse=True,
+            )
+        )
+        if observed_order != tuple(domain_config["channel_order_high_to_low_pdf_y"]):
+            raise VeritaSourceSignatureError(f"BU8 {domain} source-label order drift")
     return selected
 
 

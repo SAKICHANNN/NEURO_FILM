@@ -31,6 +31,8 @@
         "green": {"stroke_operation_index": 713, "cubic_segments": 20},
         "red": {"stroke_operation_index": 741, "cubic_segments": 20}
       },
+      "label_probe_x_pdf": 500.0,
+      "channel_order_high_to_low_pdf_y": ["blue", "green", "red"],
       "dash": "solid",
       "line_width": 2.0,
       "x_axis": {"scale": "linear", "anchors": [[-3.0, 377.061819], [2.0, 523.292691]]},
@@ -42,6 +44,8 @@
         "green": {"stroke_operation_index": 799, "cubic_segments": 20},
         "red": {"stroke_operation_index": 828, "cubic_segments": 20}
       },
+      "label_probe_x_pdf": 480.0,
+      "channel_order_high_to_low_pdf_y": ["blue", "red", "green"],
       "dash": [6, 8],
       "line_width": 2.0,
       "x_axis": {"scale": "linear", "anchors": [[-3.0, 377.061819], [2.0, 523.292691]]},
@@ -50,9 +54,11 @@
     "mtf": {
       "channels": {
         "blue": {"stroke_operation_index": 2712, "cubic_segments": 6, "leading_lines": 2},
-        "green": {"stroke_operation_index": 2744, "cubic_segments": 6, "leading_lines": 2},
-        "red": {"stroke_operation_index": 2728, "cubic_segments": 5, "leading_lines": 3}
+        "green": {"stroke_operation_index": 2728, "cubic_segments": 5, "leading_lines": 3},
+        "red": {"stroke_operation_index": 2744, "cubic_segments": 6, "leading_lines": 2}
       },
+      "label_probe_x_pdf": 255.0,
+      "channel_order_high_to_low_pdf_y": ["green", "blue", "red"],
       "dash": "solid",
       "line_width": 2.667,
       "x_axis": {"scale": "log10", "anchors": [[1.0, 68.796627], [100.0, 269.684621]]},
