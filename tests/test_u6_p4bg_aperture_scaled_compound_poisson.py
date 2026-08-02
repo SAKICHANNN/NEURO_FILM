@@ -54,6 +54,10 @@ def test_profile_and_evaluator_repeat() -> None:
     profile = ApertureScaledCompoundPoissonProfile.from_dict(serialized)
     assert profile.identity() == profile_id
     assert first_report["automatic_pass"] is True
+    assert (
+        first_report["stable_evidence_id"]
+        == "38fbae4e66dbd742e080dcd4cbe86deb3ad17be32de94e044f79bbdc7a42dd53"
+    )
     assert first_report["scaled_row_count"] == 105
     assert all(first_report["gate_results"].values())
     with pytest.raises(ValueError, match="evidence-backed range"):

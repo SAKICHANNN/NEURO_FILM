@@ -2,6 +2,15 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-02 - U6.P4BG compiles the retained amplitude across apertures
+
+- A new immutable profile scales the existing 48um density RMS over the exact
+  P4BF evidence range; it does not select a spectrum or expose pixel rendering.
+- Across 105 states, 48um is parent-exact, scale/parameter errors are at most
+  `4.45e-16`, and 80-decimal transmittance-moment error is `1.34e-15`.
+- Two bundles/reports are exact (`f5043807...a266` / `9428c88c...ba94b`).
+  Next work is sampler behavior, not further source or governance audit.
+
 # 2026-08-02 - U6.P4BF confirms the fixed Kodak aperture law
 
 - The unchanged exponent-1 RMS law passes all 138 non-normalization points in
