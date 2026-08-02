@@ -10089,3 +10089,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   and edge explosions. Continue to a rights-cleared photographic stress with
   an explicit generic exposure adapter; stock calibration and product use stay
   closed.
+
+# 2026-08-02 - U6.P4BZ closes the photographic Thomas hybrid
+
+- Two exact nine-photo reports (`fd3ca303...031c`) retain finite/bounded,
+  zero-boundary, low-pass, mean, row-partition and replay evidence, but contain
+  132 isolated excursions under the frozen severe-artifact definition.
+- The automatic failure forbids visual rescue. The adapter, seeds, cohort and
+  gates remain unchanged; photographic use of the exact P4BW/P4BY Gaussian
+  hybrid closes while its typed synthetic evidence remains intact.
+- The next leaf must change the developed-image particle/statistical mechanism,
+  not tune this failed family.
