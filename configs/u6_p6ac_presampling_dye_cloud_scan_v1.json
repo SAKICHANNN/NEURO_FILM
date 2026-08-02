@@ -1,0 +1,92 @@
+{
+  "schema": "neuro_film.u6_p6ac_presampling_dye_cloud_scan_contract.v1",
+  "experiment_id": "u6.p6ac-presampling-dye-cloud-scan-v1",
+  "node": "ULT > U6 > U6.P6 > U6.P6AC",
+  "date_frozen": "2026-08-02",
+  "parents": {
+    "developed_structure_decision_path": "configs/u6_p1b_developed_structure_decision_v1.json",
+    "developed_structure_decision_sha256": "a7a8a6402e5de35922723b0a46b8afbfb2f4b95741bac32a7c42a4314bfcacef",
+    "developed_structure_stable_evidence_id": "099aeea91cec96b91a31b2c01423a673c66c608617880666b2558c8370894cf8",
+    "target_compiler_decision_path": "configs/u6_p6ab_circular_scanner_aperture_4000dpi_decision_v1.json",
+    "target_compiler_decision_sha256": "9267de83bab912caceb89b4022f1a18dd5255da63ad4d84107ba36816bfba7a1",
+    "target_compiler_stable_evidence_id": "9ca2cb6cf50f0b4aca1390c723dd21f6fb8fd177ffbebba2f715a8609dea77b4"
+  },
+  "primary_sources": [
+    {
+      "role": "continuous-domain stochastic grain reference",
+      "citation": "Newson et al., Realistic Film Grain Rendering, IPOL 2017",
+      "url": "https://www.ipol.im/pub/art/2017/192/article.pdf"
+    },
+    {
+      "role": "current engineering comparator, not copied",
+      "citation": "Ansel Photographic Grain documentation, 2026-03-23",
+      "url": "https://ansel.photos/en/doc/views/darkroom/modules/photographic-grain/"
+    },
+    {
+      "role": "current dye-cloud domain boundary",
+      "citation": "ITU-T H Supplement 21, 2025",
+      "url": "https://www.itu.int/rec/T-REC-H.Sup21-202501-I/en"
+    },
+    {
+      "role": "circular scanner aperture equation and measured diameter",
+      "citation": "NASA CR-133016 / record 19730022682",
+      "url": "https://ntrs.nasa.gov/citations/19730022682"
+    }
+  ],
+  "question": "Does physically ordered presampling integration of colour dye-cloud transmittance through a circular scanner aperture admit a bounded 8x reference approximation at 4000 dpi that materially outperforms post-raster circular and Gaussian controls?",
+  "material": {
+    "input_shape": [17, 19],
+    "target_pixel_pitch_um": 6.35,
+    "candidate_zoom": 8,
+    "reference_zoom": 16,
+    "aperture_diameter_um": 12.5,
+    "aperture_subpixels_per_axis": 256,
+    "radius_um_cmy": [1.8, 2.2, 2.6],
+    "mark_optical_density_cmy": [0.16, 0.20, 0.24],
+    "monte_carlo_samples": 4,
+    "seed": 26080263,
+    "target_density_fixture": "fixed smooth ramp plus checker and sparse step components in three dye-density layers"
+  },
+  "operators": {
+    "candidate": "render dye density at 8x physical lattice, convert D to T=10^-D, integrate the circular aperture, then sample exact target-cell centres",
+    "reference": "same frozen marked-Poisson geometry at 16x physical lattice with the same D-to-T-before-aperture ordering",
+    "wrong_order_control": "integrate dye density through the 8x aperture, sample, then convert D to T",
+    "post_raster_circular_control": "sample unfiltered 8x transmittance then apply the frozen failed P6AB 3x3 disk-area kernel",
+    "post_raster_gaussian_control": "sample unfiltered 8x transmittance then apply an equal-second-moment Gaussian at target pitch"
+  },
+  "evaluation": {
+    "interior_crop_target_pixels": 2,
+    "row_partitions": [3, 7, 11],
+    "constant_transmittance": 0.37,
+    "metrics": [
+      "candidate RMSE and P95 absolute error versus 16x reference",
+      "RMSE improvement versus best post-raster control",
+      "RMSE improvement versus wrong density-order control",
+      "constant, finite-range, repeat and row-partition invariants"
+    ]
+  },
+  "gates": {
+    "maximum_candidate_rmse": 0.005,
+    "maximum_candidate_p95_absolute_error": 0.0125,
+    "minimum_rmse_improvement_vs_best_post_raster": 0.25,
+    "minimum_rmse_improvement_vs_wrong_order": 0.25,
+    "maximum_constant_error": 1e-12,
+    "minimum_transmittance": 0.0,
+    "maximum_transmittance": 1.0,
+    "maximum_repeat_error": 0.0,
+    "maximum_partition_error": 1e-15
+  },
+  "forbidden": [
+    "change zooms, density fixture, cloud radii/marks, aperture, controls or gates after scoring",
+    "reuse the 16x reference inside the candidate path",
+    "fit a correction, alter support or tune the random realization",
+    "treat the Ansel engineering implementation as a complete colour-film chemical model",
+    "modify a production profile, native runtime or product default",
+    "claim measured scanner, stock, process or photographic calibration"
+  ],
+  "branch_rule": {
+    "pass": "Retain presampling D-to-T aperture integration as an offline physical reference and next test a bounded target-resolution compiler distinct from post-raster convolution.",
+    "fail": "Close the 8x approximation unchanged; retain the 16x reference only if its physical invariants pass, otherwise close this synthetic family."
+  },
+  "claim_ceiling": "Generic synthetic colour dye-cloud plus scanner-aperture ordering evidence; no measured film, scanner, stock, process, quality or product claim."
+}

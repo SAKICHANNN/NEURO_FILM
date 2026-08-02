@@ -781,3 +781,10 @@ RMSE is `60.80%` worse than the equal-second-moment Gaussian. Two reports are
 byte-exact (`74d0a252...49da48`). Do not rescue this discretization with wider
 support, negative taps or a fitted correction; retain P6AA only as an offline
 reference and continue a mechanism-distinct physical imaging leaf.
+
+U6.P6AC is frozen as that distinct leaf. It keeps colour dye clouds in developed
+density, converts to transmittance before scanner optics, integrates the 12.5um
+circular aperture on an 8x physical lattice and only then samples at 4000 dpi.
+A separately rendered 16x lattice is the reference; wrong density ordering,
+post-raster P6AB and equal-moment Gaussian are fixed controls. This is an
+offline synthetic reference experiment, not a P6AB rescue or product profile.

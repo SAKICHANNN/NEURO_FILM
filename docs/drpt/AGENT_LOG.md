@@ -9603,3 +9603,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   equal-second-moment Gaussian `.04824`. Close without support, negative-tap,
   deconvolution or fitted-correction rescue. P6AA remains an offline reference;
   no scanner profile or product integration opens.
+
+## 2026-08-02 - Freeze U6.P6AC presampling dye-cloud scan reference
+
+- Current-source review retains Newson et al. 2017 as the primary continuous-
+  domain grain paper, with the 2026 Ansel implementation as an engineering
+  comparator and ITU-T H Suppl. 21 (2025) as the colour dye-cloud boundary.
+  No external implementation is copied.
+- Freeze the typed order `developed dye density -> transmittance -> circular
+  scanner aperture -> 4000-dpi sample`. Compare an 8x candidate with an
+  independently rendered 16x reference, wrong density ordering, post-raster
+  P6AB and equal-second-moment Gaussian controls.
+- This is not a support/correction rescue for P6AB. Pass can retain only an
+  offline synthetic presampling reference; measured scanner, stock, process,
+  quality, native and product claims remain closed.
