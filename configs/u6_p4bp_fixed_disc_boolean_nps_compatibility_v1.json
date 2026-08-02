@@ -1,0 +1,85 @@
+{
+  "schema": "neuro_film.u6_p4bp_fixed_disc_boolean_nps_compatibility_contract.v1",
+  "experiment_id": "u6.p4bp-fixed-disc-boolean-nps-compatibility-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4BP",
+  "date_frozen": "2026-08-02",
+  "question": "Can one fixed-radius Poisson-disc Boolean geometry shared across the measured density states of each historical material predict held frequency bands better than a separately fitted one-Gaussian covariance spectrum per state?",
+  "parents": {
+    "p4bl_contract_path": "configs/u6_p4bl_historical_measured_nps_compiler_v1.json",
+    "p4bl_contract_sha256": "2bcea16b42b0fea4afdd8e47c8631440e6a3686479408207f2c8dafca2b7cead",
+    "p4bl_decision_path": "configs/u6_p4bl_historical_measured_nps_compiler_decision_v1.json",
+    "p4bl_decision_sha256": "603de9efa8579707540bc15f1ebd4bccb554b89723d4b3451117efc62a6f3bbe",
+    "p4bl_bundle_path": "outputs/experiments/u6_p4bl_historical_measured_nps_compiler_v1/run_a/bundle.json",
+    "p4bl_bundle_sha256": "2299a1acd914aaa865910fc2a7601f286db3df69ffa642d3bc31de8dbd0f310d",
+    "p4bl_bundle_id": "6a4050c4c03e8db33ee282608be50734f5e2aee1cf257bfcccdd85442f9c8567",
+    "p4bl_report_path": "outputs/experiments/u6_p4bl_historical_measured_nps_compiler_v1/run_a/report.json",
+    "p4bl_report_sha256": "e36bfc27a01f7ce20cd33bfab88f92542034ddcb3be777033f2ab6980413ea36",
+    "p4bl_stable_evidence_id": "47408aa84dc01b5a5b30b3a342752ddaa6e7c781162ecf625af7c0066b71d201"
+  },
+  "primary_model_source": {
+    "citation": "Newson, Faraj, Delon and Galerne, Realistic Film Grain Rendering, IPOL 7 (2017), 165-183",
+    "article_url": "https://www.ipol.im/pub/art/2017/192/",
+    "doi": "10.5201/ipol.2017.192",
+    "article_low_resolution_pdf_path": "data/physical_grain/ipol_realistic_film_grain_2017_v1/article_lr.pdf",
+    "article_low_resolution_pdf_sha256": "413e28c419728daaee48bf243d439bf0a6b6a870146c41e0fb81c98ffd832103",
+    "official_source_archive_path": "data/physical_grain/ipol_realistic_film_grain_2017_v1/Film_grain_rendering_IPOL.tar.gz",
+    "official_source_archive_sha256": "c368599ed44e9d6c73cc984d1cc85e557240f60491583822d035ddce2454746b",
+    "official_source_license": "GPL-3.0-or-later",
+    "source_code_reuse_allowed": false,
+    "clean_room_equation_use_only": true,
+    "frozen_equations": {
+      "coverage_probability": "1-exp(-lambda*pi*radius_squared)",
+      "fixed_disc_overlap_area": "2*r_squared*acos(distance/(2*r))-0.5*distance*sqrt(4*r_squared-distance_squared)",
+      "covered_indicator_covariance": "exp(-2*lambda*pi*r_squared)*(exp(lambda*overlap_area)-1)",
+      "radial_power_spectrum": "2*pi*integral_0_to_2r(covariance(distance)*J0(2*pi*frequency*distance)*distance*ddistance)"
+    }
+  },
+  "fit": {
+    "target_spectrum": "p4bl_aperture_convolved_2d_radial_slice",
+    "frequency_grid_lines_per_mm": {
+      "minimum": 5.0,
+      "maximum": 500.0,
+      "step": 5.0
+    },
+    "build_bands_lines_per_mm": [[5.0, 100.0], [255.0, 350.0]],
+    "confirmation_bands_lines_per_mm": [[105.0, 250.0], [355.0, 500.0]],
+    "candidate": "one_fixed_disc_radius_shared_per_material_with_state_specific_coverage_and_analytic_log_amplitude",
+    "candidate_radius_micrometres_bounds": [0.25, 20.0],
+    "candidate_coverage_probability_bounds": [0.02, 0.98],
+    "candidate_radial_quadrature_samples": 4097,
+    "control": "one_gaussian_covariance_spectrum_per_state_with_analytic_log_amplitude",
+    "control_scale_lines_per_mm_bounds": [5.0, 1000.0],
+    "objective": "mean_squared_log10_error_on_build_bands",
+    "optimizer": "deterministic_scipy_differential_evolution_then_polish",
+    "optimizer_seed": 2608022501,
+    "optimizer_max_iterations": 120,
+    "optimizer_population_size": 12,
+    "post_score_radius_coverage_frequency_split_model_or_gate_tuning_allowed": false,
+    "render_allowed": false
+  },
+  "evaluation": {
+    "required_material_count": 2,
+    "required_profile_count": 5,
+    "minimum_confirmation_median_relative_improvement_over_gaussian": 0.1,
+    "minimum_each_material_confirmation_median_relative_improvement": 0.05,
+    "maximum_candidate_to_control_worst_confirmation_error_ratio": 1.0,
+    "require_density_monotone_coverage_within_material": true,
+    "require_interior_shared_radius": true,
+    "interior_radius_margin_fraction": 0.01,
+    "require_finite_positive_predictions": true,
+    "require_exact_parameter_and_report_replay": true,
+    "require_two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain fixed-disc Boolean geometry as a historical B&W measured-NPS equation-family candidate and open a separately frozen variable-radius or independent measured-image confirmation leaf.",
+    "fail": "Close the fixed-radius Boolean NPS family on these historical measurements without tuning the frequency split, radius bounds, coverage bounds, optimizer or gates; retain P4BL/P4BM as measured second-order references."
+  },
+  "forbidden": [
+    "copy or adapt GPL implementation code into Neuro-Film",
+    "fit or inspect confirmation bands before candidate and control parameters are frozen",
+    "interpret fitted radius as microscopic grain size without independent calibration",
+    "interpolate or extrapolate density states",
+    "render photographic images or claim modern stock, colour-film or product calibration"
+  ],
+  "claim_ceiling": "Clean-room compatibility test between a primary-paper fixed-disc Boolean equation family and five historical Fuji B&W measured spectra; fitted radii are effective correlation geometry, not identified microscopic grain size, modern-stock calibration or product evidence."
+}
