@@ -9678,3 +9678,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   algorithm-selection target without correcting or tuning P6AC/P6AD.
 - The next discriminating leaf is a separately frozen 32x-to-64x convergence
   audit. Until it passes, 32x is provisional offline synthetic evidence only.
+
+## 2026-08-02 - Freeze U6.P6AF 32x presampling reference convergence
+
+- Keep the exact P6AE fixture and render independent 16x, 32x and 64x outputs;
+  require regenerated 32x identity before scoring.
+- Freeze 32x-to-64x RMSE/P95 at `.0015/.00375`, at least 50% convergence gain
+  from 16x to 32x against 64x, bounded transmittance and exact 64x replay.
+- Failure closes raster supersampling as an algorithm-selection reference on
+  this cohort. Increasing beyond 64x, extrapolating a correction, or tuning an
+  earlier compiler is forbidden.

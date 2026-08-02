@@ -1,0 +1,55 @@
+{
+  "schema": "neuro_film.u6_p6af_presampling_reference_convergence_contract.v1",
+  "experiment_id": "u6.p6af-presampling-reference-convergence-v1",
+  "node": "ULT > U6 > U6.P6 > U6.P6AF",
+  "date_frozen": "2026-08-02",
+  "parent": {
+    "decision_path": "configs/u6_p6ae_presampling_reference_convergence_decision_v1.json",
+    "decision_sha256": "8014605b78b5c8a7ab20b0f6b60ca834a287a9da3d15afd0fb15a4e427caf011",
+    "stable_evidence_id": "6fe3d8828dc243cc4e66263a5e959b9451d4a6593003b1be85b4244b6985c24a",
+    "provisional_32x_sha256": "b399cada3cecf588ed3837c60757ec0ddc19d51effdbea53d87b1eff996af1aa"
+  },
+  "question": "Is the provisional 32x presampling render sufficiently converged to an independently rendered 64x reference to serve as an offline algorithm-selection target?",
+  "material": {
+    "input_shape": [17, 19],
+    "target_pixel_pitch_um": 6.35,
+    "zooms": [16, 32, 64],
+    "aperture_diameter_um": 12.5,
+    "aperture_subpixels_per_axis": 256,
+    "radius_um_cmy": [1.8, 2.2, 2.6],
+    "mark_optical_density_cmy": [0.16, 0.20, 0.24],
+    "monte_carlo_samples": 4,
+    "seed": 26080263
+  },
+  "evaluation": {
+    "interior_crop_target_pixels": 2,
+    "metrics": [
+      "regenerated 32x identity against P6AE",
+      "32x versus 64x RMSE and P95 absolute error",
+      "16x-to-32x convergence improvement against 64x",
+      "bounded transmittance and exact replay"
+    ]
+  },
+  "gates": {
+    "maximum_regenerated_32x_error": 0.0,
+    "maximum_32x_vs_64x_rmse": 0.0015,
+    "maximum_32x_vs_64x_p95_absolute_error": 0.00375,
+    "minimum_convergence_improvement_from_16x_to_32x": 0.50,
+    "minimum_transmittance": 0.0,
+    "maximum_transmittance": 1.0,
+    "maximum_repeat_error": 0.0
+  },
+  "forbidden": [
+    "change zooms, fixture, geometry, aperture, sampling rule or gates after scoring",
+    "fit, extrapolate or correct the convergence sequence",
+    "increase beyond 64x as a same-cohort rescue",
+    "use the 64x output inside a product or runtime profile",
+    "reinterpret failure as permission to tune P6AC or P6AD",
+    "claim measured film, scanner, stock, process, quality or product convergence"
+  ],
+  "branch_rule": {
+    "pass": "Validate 32x as the frozen offline synthetic reference and continue with a materially different scanner compiler mechanism.",
+    "fail": "Close this raster reference family for algorithm selection and require a non-raster analytic or measured reference design; do not increase zoom."
+  },
+  "claim_ceiling": "Generic synthetic presampling reference-convergence evidence; no measured film, scanner, stock, process, quality or product claim."
+}
