@@ -874,3 +874,11 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
   gates; every pair is material in all three channels.
 - Open only an identity-bound observed-source bundle. No NPS, microscopic
   structure, placement, photographic render or product mapping opens.
+
+# 2026-08-02 - U5.R2BU3 observed source profile retained
+
+- Two formal compiler runs are byte-identical (`49c75234...306f` report,
+  `233decd3...5252` bundle) and retain exact BU0/BU2 curve identities.
+- The bundle is explicitly non-renderable and contains no PSF, NPS, particle
+  geometry, placement or RGB transform. Next seek independent measured
+  real-film evidence rather than elaborating this serialization layer.

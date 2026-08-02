@@ -1,0 +1,30 @@
+{
+  "schema": "neuro_film.u5_r2bu3_vision3_observed_source_profile_decision.v1",
+  "experiment_id": "U5.R2BU3",
+  "contract_sha256": "8144dfc018839e61ba202c1f4182679624269ad33eb02e22cc4e524e53cdd3af",
+  "software_commit": "2e8b545f52fe3f333b9ca8bccf39ba59a670af68",
+  "formal_evidence": {
+    "report_a": "outputs/u5_r2bu3_vision3_observed_source_profile/formal_a/report.json",
+    "report_b": "outputs/u5_r2bu3_vision3_observed_source_profile/formal_b/report.json",
+    "report_sha256": "49c7523440101f854c688e536a623a98c0d60980422034b3015de968faf5306f",
+    "bundle_a": "outputs/u5_r2bu3_vision3_observed_source_profile/formal_a/bundle.json",
+    "bundle_b": "outputs/u5_r2bu3_vision3_observed_source_profile/formal_b/bundle.json",
+    "bundle_sha256": "233decd329e07398c1c8f85ba7f1abd5420b39ba2c5e9291667e338421b25252",
+    "stable_evidence_id": "0921ad4fae1f60fb865f4f4b55873116927a422a9aa000c9f9dbce5305ec0ba5",
+    "bundle_id": "78f6a9efc8ea8c46ea3b832621ce49fa598a032b615453808848a7555a1ccc6e",
+    "two_byte_identical_reports": true,
+    "two_byte_identical_bundles": true
+  },
+  "result": {
+    "compiler_pass": true,
+    "stock_count": 3,
+    "mtf_channel_count": 9,
+    "granularity_channel_count": 9,
+    "exact_roundtrip": true,
+    "forbidden_render_fields_absent": true,
+    "execution_authority": "observed-source-prior-only-not-renderable"
+  },
+  "decision": "retain_non_renderable_observed_source_profile",
+  "next_ready_leaf": "U5.R2BU4 seek a rights-cleared independent measured real-film observation that can test whether the retained source signatures survive material, process and scanner nuisance before any renderer mapping.",
+  "claim_ceiling": "Identity-bound first-party observed VISION3 MTF and 48-micrometre diffuse-rms granularity curves; not a PSF, NPS, microscopic structure, spatial placement, roll/process/scanner calibration, photographic appearance, RGB operator or product profile."
+}

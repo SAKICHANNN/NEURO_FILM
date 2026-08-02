@@ -10177,3 +10177,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   intended granularity curves.
 - All three pairs and all nine channels are material after log-shape centering.
   This opens a typed observed-source bundle only; no spatial NPS or renderer.
+
+# 2026-08-02 - U5.R2BU3 observed source profile retained
+
+- Compiled exact BU0 MTF and BU2 48-micrometre diffuse-rms curves for VISION3
+  50D/250D/500T into a typed profile with no render authority.
+- Two formal reports (`49c75234...306f`) and bundles (`233decd3...5252`) are
+  byte-identical; all parent, stock/channel, roundtrip and forbidden-field gates
+  pass. Next work seeks an independent measured real-film observation.
