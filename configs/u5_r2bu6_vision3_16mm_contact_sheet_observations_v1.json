@@ -1,0 +1,41 @@
+{
+  "schema": "neuro_film.u5_r2bu6_vision3_16mm_contact_sheet_observations.v1",
+  "experiment_id": "U5.R2BU6",
+  "contact_sheet": {
+    "bytes": 121524686,
+    "sha256": "7ba0d96372ec35f04f2d1ed13c4410a33a5050fc1b17471fc576b47e0a5abd97",
+    "page_count": 4,
+    "page_image_counts": [15, 15, 15, 7],
+    "embedded_image_width": 798,
+    "embedded_image_height": 606,
+    "embedded_image_count": 52,
+    "metadata_title": "Lightroom (16MM_TEST_01.tif and 51 others)",
+    "metadata_author": "Peter Pascucci"
+  },
+  "transcription_method": "manual_visual_transcription_of_burned_in_labels_bound_to_exact_pdf",
+  "anchors": [
+    {"index": 0, "stock_id": "7207", "key_fill": "5.8/1.4", "f_stop": "5.6", "exposure": "0", "filtration": ["N/A"]},
+    {"index": 1, "stock_id": "7207", "key_fill": "5.8/1.4", "f_stop": "4.0", "exposure": "+1", "filtration": ["N/A"]},
+    {"index": 2, "stock_id": "7207", "key_fill": "5.8/1.4", "f_stop": "2.8", "exposure": "+2", "filtration": ["N/A"]},
+    {"index": 6, "stock_id": "7207", "key_fill": "5.8/1.4", "f_stop": "2.0", "exposure": "0", "filtration": ["ND.6", "CS 1/4"]},
+    {"index": 7, "stock_id": "7207", "key_fill": "5.8/1.4", "f_stop": "2.0", "exposure": "0", "filtration": ["ND.6", "CS 1/2"]},
+    {"index": 8, "stock_id": "7207", "key_fill": "5.8/1.4", "f_stop": "2.0", "exposure": "0", "filtration": ["ND.6", "SATIN 1/4"]},
+    {"index": 10, "stock_id": "7207", "key_fill": "5.8/1.4", "f_stop": "2.0", "exposure": "0", "filtration": ["ND.6", "812 WARMING"]},
+    {"index": 42, "stock_id": "7219", "key_fill": "5.8/1.4", "f_stop": "5.6", "exposure": "0", "filtration": ["85B"]},
+    {"index": 43, "stock_id": "7219", "key_fill": "5.8/1.4", "f_stop": "4.0", "exposure": "+1", "filtration": ["85B"]},
+    {"index": 44, "stock_id": "7219", "key_fill": "5.8/1.4", "f_stop": "2.8", "exposure": "+2", "filtration": ["85B"]},
+    {"index": 48, "stock_id": "7219", "key_fill": "5.8/1.4", "f_stop": "2.0", "exposure": "0", "filtration": ["85B", "ND.6", "CS 1/4"]},
+    {"index": 49, "stock_id": "7219", "key_fill": "5.8/1.4", "f_stop": "2.0", "exposure": "0", "filtration": ["85B", "ND.6", "CS 1/2"]},
+    {"index": 50, "stock_id": "7219", "key_fill": "5.8/1.4", "f_stop": "2.0", "exposure": "0", "filtration": ["85B", "ND.6", "CS 1/2", "812 WARMING"]},
+    {"index": 51, "stock_id": "7219", "key_fill": "5.8/1.4", "f_stop": "2.0", "exposure": "0", "filtration": ["85B", "ND.6", "SATIN 1/2", "812 WARMING"]}
+  ],
+  "paired_roles": [
+    {"role_id": "key-fill-5.8-1.4_exposure-0", "indices": [0, 42]},
+    {"role_id": "key-fill-5.8-1.4_exposure-plus1", "indices": [1, 43]},
+    {"role_id": "key-fill-5.8-1.4_exposure-plus2", "indices": [2, 44]}
+  ],
+  "scanner_id": null,
+  "process_id": null,
+  "external_image_payload_downloads": 0,
+  "external_video_payload_downloads": 0
+}
