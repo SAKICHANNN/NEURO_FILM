@@ -1,0 +1,71 @@
+{
+  "schema": "neuro_film.u6_p3w_external_exposure_anchor_sufficiency_contract.v1",
+  "experiment_id": "u6.p3w-external-exposure-anchor-sufficiency-v1",
+  "node": "ULT > U6 > U6.P3 > U6.P3W",
+  "status": "contract_frozen_implementation_ready",
+  "parents": {
+    "p3v_contract": {
+      "path": "configs/u6_p3v_bracket_eiv_mechanism_recovery_v1.json",
+      "sha256": "9daed0f8c4351bfba28052ec8ec0fd3e4f12b88b6c03415dc4fd595463606c2a"
+    },
+    "p3v_decision": {
+      "path": "configs/u6_p3v_bracket_eiv_mechanism_recovery_decision_v1.json",
+      "sha256": "f81b6ae6a7fcf00e95e78172dd5e9528c2d7c4483cb0777842ec2393025f1213",
+      "required_decision": "close-source-only-bracket-eiv-recovery"
+    },
+    "p3v_evaluator": {
+      "path": "src/eval/bracket_eiv_mechanism_recovery.py",
+      "sha256": "b002b83634f9cebdcee9ac22857e4c85dba2a68dab7e7848d0014eae9a81df35"
+    }
+  },
+  "question": "What independent per-row exposure-anchor precision is sufficient to close the unchanged P3U gates after the source-only P3V gauge failure?",
+  "anchor_observation": {
+    "type": "independent bounded relative exposure-gain measurement",
+    "inputs": ["true acquisition gain nuisance", "independent anchor error"],
+    "forbidden_inputs": ["source pixels", "targets", "truth mechanism", "outcome metrics"],
+    "error_distribution": "deterministic uniform within the stated hard ppm bound",
+    "seed": 2026080104,
+    "correction": "observed source divided by one plus measured gain nuisance",
+    "clipping_allowed": false
+  },
+  "anchor_precision_levels_ppm": [0, 100, 250, 500, 1000],
+  "required_passing_levels_ppm": [0, 100],
+  "roles": {
+    "anchor_reads_targets": false,
+    "mechanism_fit_reads_confirmation": false,
+    "development_and_confirmation_anchor_errors_are_independent": true
+  },
+  "unchanged_evaluation": {
+    "observations": "exact P3U 16/12/10-bit source and target observations",
+    "truth_cases": "exact P3T six pure plus two mixed cases",
+    "mechanism_candidates": "exact P3T physical and lens families",
+    "automatic_gates": "exact P3U per-regime and common gates"
+  },
+  "additional_gates": {
+    "required_anchor_levels_pass_all_three_regimes": true,
+    "passing_anchor_levels_form_prefix": true,
+    "anchor_target_read_count_max": 0,
+    "maximum_anchor_bound_violation_count": 0,
+    "maximum_source_correction_clipped_scalar_count": 0,
+    "development_confirmation_pattern_overlap_count_max": 0,
+    "report_repeat_sha256_exact": true
+  },
+  "controls": [
+    "raw P3U source-as-exact failure",
+    "source-only P3V gauge failure",
+    "exact external anchor",
+    "four prospectively frozen nonzero anchor-error bounds"
+  ],
+  "forbidden": [
+    "change precision levels, errors, roles, observations or gates after scoring",
+    "read targets or outcome metrics while constructing anchors",
+    "select favorable error draws",
+    "interpolate beyond the frozen precision ladder",
+    "claim a real meter, step wedge, film calibration or product readiness"
+  ],
+  "branch_rule": {
+    "pass": "Retain the largest passing tested anchor bound as a synthetic acquisition precision requirement and next specify a controlled chart protocol.",
+    "fail": "Close this anchor ladder without same-cohort rescue; require a materially different identifying observation before real-data work."
+  },
+  "claim_ceiling": "Synthetic acquisition-sufficiency evidence for an independent exposure anchor under exact P3U observations; no real-device, film, stock or product calibration claim."
+}
