@@ -1,0 +1,68 @@
+{
+  "schema": "neuro_film.u5_r2bu3_vision3_observed_source_profile_contract.v1",
+  "experiment_id": "U5.R2BU3",
+  "node": "ULT > U5 > U5.R2 > U5.R2BU3",
+  "date_frozen": "2026-08-02",
+  "question": "Can the independently retained VISION3 MTF and diffuse-rms granularity observations be compiled into a typed, identity-bound stock source profile without inventing an executable PSF, NPS, microscopic structure or physical placement?",
+  "parents": {
+    "mtf_decision": {
+      "path": "configs/u5_r2bu0_kodak_vision3_mtf_diversity_decision_v1.json",
+      "sha256": "eae84870c4c3706228fecbe5696825c7d500020558dab94d8b6177baabe1848e",
+      "required_decision": "retain_source_domain_mtf_signature_and_open_joint_physical_prior"
+    },
+    "granularity_decision": {
+      "path": "configs/u5_r2bu2_kodak_vision3_granularity_diversity_decision_v1.json",
+      "sha256": "d9d55f2d04107fa52c82c5edec219fe9e04cb5634c1ccf6f5ab27e5cc4ebace1",
+      "required_decision": "retain_source_domain_granularity_signature"
+    },
+    "mtf_trace": {
+      "path": "configs/data/kodak_vision3_mtf_curve_pixels_v1.json",
+      "sha256": "d88c0e698c0e0969696224df50f1573ed78a6de0a894075f6502d9b3f658a794"
+    },
+    "granularity_trace": {
+      "path": "configs/data/kodak_vision3_granularity_curve_pixels_v1.json",
+      "sha256": "00b3436c9619a477bf13dcae0ab90df6fd9470bc1976e77484983a4a0029f145"
+    }
+  },
+  "bundle": {
+    "schema": "neuro_film.vision3_observed_stock_source_profile_bundle.v1",
+    "stocks": [
+      "kodak_vision3_50d_5203_7203",
+      "kodak_vision3_250d_5207_7207",
+      "kodak_vision3_500t_5219_7219"
+    ],
+    "channels": ["blue", "green", "red"],
+    "mtf_domain": "spatial_frequency_cycles_per_mm_to_status_m_response_fraction",
+    "granularity_domain": "relative_log10_exposure_to_diffuse_rms_status_m_sigma_d_at_48_micrometres",
+    "curve_interpolation": "piecewise_linear_in_stored_coordinate_domain",
+    "execution_authority": "observed-source-prior-only-not-renderable"
+  },
+  "gates": {
+    "required_stock_count": 3,
+    "required_channel_count": 3,
+    "minimum_mtf_samples_per_channel": 8,
+    "minimum_granularity_samples_per_channel": 16,
+    "strictly_increasing_coordinates": true,
+    "finite_values": true,
+    "mtf_response_fraction_bounds": [0.0, 1.1],
+    "granularity_sigma_d_bounds": [0.001, 0.05],
+    "exact_roundtrip": true,
+    "exact_recompile_identity": true,
+    "reject_parent_or_trace_drift": true,
+    "forbidden_serialized_fields": [
+      "psf_sigma",
+      "nps",
+      "grain_radius",
+      "particle_count",
+      "dye_cloud_radius",
+      "physical_placement",
+      "render_operator",
+      "rgb_transform"
+    ]
+  },
+  "branch_rule": {
+    "pass": "Retain a non-renderable observed-source profile as a future profile-compiler input; separately identify placement and executable spatial mechanisms.",
+    "fail": "Close this compiler without changing parent observations, samples, domains or serialization gates."
+  },
+  "claim_ceiling": "Typed identity-bound serialization of first-party VISION3 MTF and 48-micrometre diffuse-rms granularity observations; not an executable spatial model, NPS, microscopic structure, placement, calibration, photographic look or product profile."
+}
