@@ -1,0 +1,50 @@
+{
+  "schema": "neuro_film.u6_p3v_bracket_eiv_mechanism_recovery_decision.v1",
+  "experiment_id": "U6.P3V",
+  "status": "complete_source_only_eiv_closed",
+  "decision": "close-source-only-bracket-eiv-recovery",
+  "automatic_pass": false,
+  "contract_sha256": "9daed0f8c4351bfba28052ec8ec0fd3e4f12b88b6c03415dc4fd595463606c2a",
+  "evaluator_sha256": "b002b83634f9cebdcee9ac22857e4c85dba2a68dab7e7848d0014eae9a81df35",
+  "runner_sha256": "0d6bf44c907ac4ea883504e0f27bd603d879f447ab45240e33c4f4abb1404e24",
+  "report_sha256": "d3a125c917f88744835ccbe048979ad609b3e8aa9fa27535e4b50803f15a4ba8",
+  "repeat_report_sha256": "d3a125c917f88744835ccbe048979ad609b3e8aa9fa27535e4b50803f15a4ba8",
+  "scientific_stable_id": "eaede3dd97762b17119ca64ba6ce3c6f537e1add206052880f3f728bfd13b31a",
+  "regime_metrics": [
+    {
+      "regime_id": "linear16-low-noise",
+      "maximum_pure_confirmation_rmse": 3.9469407528905774e-05,
+      "minimum_wrong_to_correct_rmse_ratio": 198.74874769861486,
+      "failed_gates": []
+    },
+    {
+      "regime_id": "linear12-moderate",
+      "maximum_pure_confirmation_rmse": 0.0009243051869347252,
+      "minimum_wrong_to_correct_rmse_ratio": 8.469231586108831,
+      "failed_gates": ["pure_confirmation_error"]
+    },
+    {
+      "regime_id": "linear10-stress",
+      "maximum_pure_confirmation_rmse": 0.002310737018309915,
+      "minimum_wrong_to_correct_rmse_ratio": 3.9353007631093044,
+      "failed_gates": ["pure_confirmation_error", "wrong_family_separation"]
+    }
+  ],
+  "retained_facts": {
+    "normalizer_target_read_count": 0,
+    "gain_bound_violation_count": 0,
+    "gain_geometric_mean_per_role": 1.0,
+    "pure_correct_family_count_per_regime": 6,
+    "physical_sigma_exact_count_per_regime": 3,
+    "mixed_abstention_count_per_regime": 2
+  },
+  "interpretation": "Source-only bracket redundancy improves the 16-bit envelope and modestly reduces 10-bit error, but its role-wide gauge cannot identify the group-level absolute exposure offset. The unchanged 12-bit and 10-bit P3U gates therefore remain open failures.",
+  "closed_rescues": [
+    "more alternating iterations",
+    "different source-only gauge normalization",
+    "wider gain bounds",
+    "relaxed P3U residual or separation gates"
+  ],
+  "next_ready_leaf": "Prospectively quantify the independent external exposure-anchor precision required to close the unchanged P3U gates.",
+  "claim_ceiling": "Synthetic failure boundary for source-only bracket normalization; no real-film measurement, calibrated acquisition or product claim."
+}

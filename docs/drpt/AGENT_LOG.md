@@ -10263,3 +10263,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   10-bit wrong/correct separation is 3.67x against the fixed 5x gate.
 - No threshold or same-estimator rescue. Next leaf changes the estimator to an
   explicit errors-in-variables formulation while retaining inputs and gates.
+
+# 2026-08-01 - U6.P3V source-only EIV closes on exposure gauge
+
+- Added an eight-iteration bounded bracket normalizer using only source pixels,
+  pattern identity and nominal exposure scale; target reads and gain-bound
+  violations are zero. Reports are exact (`d3a125c9...4ba8`).
+- It closes 16-bit but misses 12-bit absolute RMSE and 10-bit RMSE/separation.
+  The source-only repeated bracket cannot identify its absolute group gain.
+- Same-cohort source-only rescue closes. Next quantify required precision of an
+  independently measured exposure anchor under unchanged P3U gates.

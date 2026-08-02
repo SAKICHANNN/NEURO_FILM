@@ -361,6 +361,11 @@ U6.P3U closes the raw uncertainty envelope. Labels/radii/abstentions survive
 10-bit wrong-family separation falls to 3.67x (`9601c010...278d`). Do not tune
 the frozen envelope; next test an explicit errors-in-variables estimator.
 
+U6.P3V closes source-only errors-in-variables rescue (`d3a125c9...4ba8`).
+Bracket redundancy closes 16-bit but not 12/10-bit because the absolute group
+exposure gauge is unobserved. Next quantify an independent exposure-anchor
+precision requirement instead of adding source-only capacity.
+
 Current real-grain leaf: U6.P4R closes stock association while retaining one
 generic scanner-convolved signature candidate. Eight exact CC0 16-bit RGBA
 TIFFs pass acquisition and visual gates; RGB NPS is highly repeatable, but

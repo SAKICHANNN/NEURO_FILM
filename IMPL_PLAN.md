@@ -1554,6 +1554,12 @@ physical radius and mixed abstention, yet fails absolute confirmation error at
 is `9601c010...278d`. Close same-estimator rescue; a distinct
 errors-in-variables estimator is the next ready research leaf.
 
+P3V tests that distinct source-only estimator. It preserves target blindness
+and all labels/radii/abstentions, but only closes 16-bit; 12/10-bit residuals
+remain above the exact P3U gates (`d3a125c9...4ba8`). The limiting variable is
+the absolute exposure gauge, so the next experiment specifies external anchor
+precision rather than tuning the same data.
+
 `SF2.9R` audits five ColorReference multi-family IT8/ISO 12641 transmission
 references instead of scanner RGB or uncontrolled photographs. Exact
 byte/CRC/parse gates and 288 shared target patches pass twice; each archive
