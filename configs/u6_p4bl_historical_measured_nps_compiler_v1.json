@@ -1,0 +1,62 @@
+{
+  "schema": "neuro_film.u6_p4bl_historical_measured_nps_compiler_contract.v1",
+  "experiment_id": "u6.p4bl-historical-measured-nps-compiler-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4BL",
+  "date_frozen": "2026-08-02",
+  "question": "Can the exact P4BK Table 1 coefficients be compiled into immutable typed historical B&W one-dimensional, aperture-convolved two-dimensional and aperture-corrected intrinsic Wiener spectra that numerically reproduce the published projection identity over a bounded zero-free frequency interval?",
+  "parents": {
+    "p4bk_contract_path": "configs/u6_p4bk_fuji_noise_spectrum_source_v1.json",
+    "p4bk_contract_sha256": "91204804c03f90e2f2febbe48918cfc1d75633bf393c097392aba9137698b14f",
+    "p4bk_decision_path": "configs/u6_p4bk_fuji_noise_spectrum_source_decision_v1.json",
+    "p4bk_decision_sha256": "e6d7565f775e529194a43cc80089ba2f517544026490b7288a0409c51da1a6bd",
+    "p4bk_report_path": "outputs/experiments/u6_p4bk_fuji_noise_spectrum_source_v1/run_a/report.json",
+    "p4bk_report_sha256": "213948034368e60f6d7c3a3d1f72ad94e309a9ee4c4817241def57f32d2bd1d8",
+    "p4bk_stable_evidence_id": "8561040664c2511b350ba6259dc9c32acba2c5733804be4993cafe96702eda1b"
+  },
+  "compiler": {
+    "profile_schema": "neuro_film.historical_bw_noise_spectrum_profile.v1",
+    "spatial_frequency_unit": "lines_per_millimetre_in_grain_plane",
+    "spectrum_value_semantics": "transmittance_pattern_power_spectrum_under_source_normalization",
+    "scanning_aperture_shape": "circular",
+    "scanning_aperture_diameter_millimetres": 0.001,
+    "frequency_minimum_lines_per_mm": 0.0,
+    "frequency_maximum_lines_per_mm": 500.0,
+    "frequency_grid_lines_per_mm": [0.0, 10.0, 25.0, 50.0, 100.0, 200.0, 300.0, 400.0, 500.0],
+    "projection_check_frequencies_lines_per_mm": [0.0, 25.0, 100.0, 250.0, 500.0],
+    "projection_integral": "numerical_integral_over_v_from_negative_infinity_to_positive_infinity_of_Q(u,v)",
+    "aperture_zero_crossing_allowed": false,
+    "density_interpolation_allowed": false,
+    "density_extrapolation_allowed": false,
+    "coefficient_refit_allowed": false,
+    "graph_digitization_allowed": false,
+    "render_allowed": false
+  },
+  "evaluation": {
+    "required_profile_count": 5,
+    "required_component_count": 11,
+    "maximum_projection_relative_error": 1e-10,
+    "maximum_profile_roundtrip_absolute_error": 0.0,
+    "minimum_aperture_mtf_on_grid": 0.7,
+    "maximum_intrinsic_to_aperture_convolved_ratio": 2.0,
+    "require_positive_finite_spectra": true,
+    "require_monotone_nonincreasing_one_dimensional_spectra": true,
+    "require_monotone_nonincreasing_aperture_convolved_spectra": true,
+    "require_intrinsic_not_below_aperture_convolved": true,
+    "require_unique_profile_identities": true,
+    "require_exact_bundle_roundtrip": true,
+    "require_repeat_exact": true,
+    "require_two_byte_identical_bundles_and_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain the five exact historical Fuji B&W spectra as an offline measured-NPS reference and open a separately frozen spatial-field synthesis/parity leaf that must preserve these spectra and physical scale.",
+    "fail": "Close the compiled NPS route without changing equations, coefficients, aperture, frequency interval or numerical gates; retain the P4BK source only."
+  },
+  "forbidden": [
+    "fit or tune coefficients after compilation",
+    "interpolate or extrapolate between measured densities",
+    "transfer profiles to Kodak 250D, colour dye-cloud layers or arbitrary film",
+    "compose with P4BJ amplitudes as though independently calibrated quantities were jointly identified",
+    "render photographs or alter product defaults"
+  ],
+  "claim_ceiling": "Typed exact compiler for five historical Fuji black-and-white measured spectra on 0-500 lines/mm, reproducing the source projection and aperture correction; not colour-film structure, modern-stock calibration, scanner response, photographic quality or product evidence."
+}
