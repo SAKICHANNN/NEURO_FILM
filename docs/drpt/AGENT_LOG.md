@@ -10169,3 +10169,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   materially beat shared, wrong-stock and identity controls, but median held
   frequency RMSE `.05307` fails the frozen `.05` gate.
 - No rescue or product mapping; next work requires independent stock evidence.
+
+# 2026-08-02 - U5.R2BU2 granularity source diversity passes
+
+- Froze exact first-party 50D/250D/500T 48 µm diffuse-rms traces before scoring;
+  two formal reports are exact (`6a17bc9b...0e45`) and all overlays follow the
+  intended granularity curves.
+- All three pairs and all nine channels are material after log-shape centering.
+  This opens a typed observed-source bundle only; no spatial NPS or renderer.

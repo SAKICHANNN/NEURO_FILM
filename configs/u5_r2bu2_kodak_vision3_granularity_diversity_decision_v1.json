@@ -1,0 +1,38 @@
+{
+  "schema": "neuro_film.u5_r2bu2_kodak_vision3_granularity_diversity_decision.v1",
+  "experiment_id": "U5.R2BU2",
+  "contract_sha256": "c09fcf0f1ff64d9b8dc98381186660af8f808c2573fd17765f969227b90b2cff",
+  "software_commit": "7c1ba5225af3163f308bb4b7fc6e9e92c824ad96",
+  "formal_evidence": {
+    "report_a": "outputs/u5_r2bu2_kodak_vision3_granularity_diversity/formal_a/report.json",
+    "report_b": "outputs/u5_r2bu2_kodak_vision3_granularity_diversity/formal_b/report.json",
+    "report_sha256": "6a17bc9b875ceee20883ad7133f1182fab5de7bf3ba0390ab397777973e50e45",
+    "stable_evidence_id": "e4dc1290e054069351e8344fd72bd3af6a1e39bfa383f1f78619b9be25f2c2ed",
+    "two_byte_identical_audits": true,
+    "visual_overlays_reviewed": true,
+    "overlay_sha256": {
+      "kodak_vision3_50d_5203_7203": "101d5c3911e5cf6f1c64d669de71409c05c9c3d186bfce32afd40ab93ef30817",
+      "kodak_vision3_250d_5207_7207": "4be1d504011f8a1f6737c8f07261494aaee8bf4894e36a1bf3231a5a5b475f63",
+      "kodak_vision3_500t_5219_7219": "1c82a6515f76a8c958f94110b8f33d9bd27dccbd389db277e9d2dc76c20b4abc"
+    }
+  },
+  "result": {
+    "diversity_pass": true,
+    "material_pair_count": 3,
+    "material_graph_degree": {
+      "kodak_vision3_50d_5203_7203": 2,
+      "kodak_vision3_250d_5207_7207": 2,
+      "kodak_vision3_500t_5219_7219": 2
+    },
+    "centered_log_shape_rmse": {
+      "50d_vs_250d": {"blue": 0.084975, "green": 0.130543, "red": 0.225852},
+      "50d_vs_500t": {"blue": 0.112697, "green": 0.107022, "red": 0.197896},
+      "250d_vs_500t": {"blue": 0.140507, "green": 0.125447, "red": 0.10038}
+    },
+    "all_nine_channels_material": true,
+    "all_gates_pass": true
+  },
+  "decision": "retain_source_domain_granularity_signature",
+  "next_ready_leaf": "U5.R2BU3 compile an identity-bound observed-source VISION3 profile that preserves exact MTF and diffuse-rms curves without inventing NPS, microscopic structure or placement.",
+  "claim_ceiling": "First-party manufacturer-graph diffuse-rms granularity diversity at one stated 48-micrometre aperture for three VISION3 stocks; not NPS, microscopic structure, roll/process/scanner calibration, photographic appearance or product evidence."
+}

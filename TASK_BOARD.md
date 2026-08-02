@@ -867,3 +867,10 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
   controls, but confirmation median RMSE `.05307` misses the frozen `.05` gate.
 - Close without Gaussian-mixture or threshold rescue; pursue a fresh
   stock-identifying source observation.
+
+# 2026-08-02 - U5.R2BU2 granularity diversity passes
+
+- First-party 50D/250D/500T 48 µm Sigma-D curves pass all source and diversity
+  gates; every pair is material in all three channels.
+- Open only an identity-bound observed-source bundle. No NPS, microscopic
+  structure, placement, photographic render or product mapping opens.

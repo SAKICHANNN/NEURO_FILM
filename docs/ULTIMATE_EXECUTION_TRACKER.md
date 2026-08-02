@@ -1210,3 +1210,10 @@ stock-specific kernels improve confirmation RMSE by 47.45% versus a shared
 kernel and 69.50% versus cyclic wrong-stock kernels, but median RMSE `.05307`
 misses the frozen `.05` gate. Do not add Gaussian-mixture capacity or relax the
 gate on the same traces; seek an independent stock observation.
+
+U5.R2BU2 supplies that independent observation: the exact 48 µm diffuse-rms
+granularity curves yield three material stock pairs and 9/9 material channel
+comparisons (`.08497-.22585` centered-log-shape RMSE). All trace and source
+gates plus visual overlays pass. Retain only a source-domain signature; BU1's
+one-Gaussian MTF compiler stays closed. BU3 may serialize the observed curves
+without inventing an NPS, microscopic model or photographic placement.
