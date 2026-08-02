@@ -824,3 +824,10 @@ RMSE `.0015179` narrowly exceeds the frozen `.0015` gate. Two reports are exact
 (`6a048782...f27397b`). Do not continue to 128x. U6.P6AG must instead test an
 adaptive continuous-cloud/circular-aperture integral with an explicit error
 bound and analytic unit geometries.
+
+U6.P6AG closes before a formal report: a cloud-dense fixture pixel causes
+QUADPACK roundoff-limited nonconvergence at the frozen `1e-10` tolerance. No
+metric or gate decision was emitted; do not loosen tolerance or suppress the
+warning. U6.P6AH may instead enumerate exact circle-topology intervals and use
+analytic circle-chord antiderivatives, with no adaptive quadrature or raster
+truth.

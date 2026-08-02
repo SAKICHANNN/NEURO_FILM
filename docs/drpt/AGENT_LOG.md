@@ -9714,3 +9714,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - P6AD and P6AF outputs are diagnostic controls only, not truth gates. The
   numerical error estimate is not a formal mathematical proof bound, and a
   pass can retain only an offline synthetic reference.
+
+## 2026-08-02 - U6.P6AG closes on adaptive-quadrature nonconvergence
+
+- Analytic unit tests passed, but the first full-fixture implementation test
+  reached a cloud-dense pixel where QUADPACK reported roundoff-limited failure
+  at the frozen `1e-10` candidate tolerance. The test stopped before any formal
+  report or aggregate gate metrics were emitted.
+- Preserve the failure rather than relaxing tolerances, increasing subdivision
+  limits or suppressing the warning. The uncommitted implementation was
+  discarded.
+- A new leaf may analytically integrate circle-chord primitives between all
+  topology-changing circle extrema/intersections. This removes both adaptive
+  quadrature and raster truth and must be frozen separately.

@@ -1,0 +1,19 @@
+{
+  "schema": "neuro_film.u6_p6ag_continuous_cloud_aperture_integration_decision.v1",
+  "node": "U6.P6AG",
+  "decision": "close_adaptive_quadrature_nonconvergence",
+  "contract_commit": "aaa77ff9",
+  "formal_report_created": false,
+  "automatic_pass": false,
+  "failure": {
+    "stage": "pre-formal implementation test",
+    "reason": "QUADPACK reported roundoff-limited nonconvergence at the frozen 1e-10 candidate tolerance on a full-fixture cloud-dense pixel",
+    "partial_target_reads_occurred": true,
+    "metrics_or_gate_decision_emitted": false
+  },
+  "tolerance_relaxation_allowed": false,
+  "warning_suppression_allowed": false,
+  "next_leaf": "U6.P6AH may freeze exact topology intervals and analytic circle-chord antiderivatives before implementation; it must not reuse adaptive quadrature or raster truth.",
+  "production_profile_integration_allowed": false,
+  "claim_ceiling": "Implementation failure evidence for one synthetic adaptive-quadrature design; no statement about continuous aperture integration in general."
+}
