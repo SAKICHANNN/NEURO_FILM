@@ -43,6 +43,12 @@ def test_exact_amplitude_profile_compiles_and_replays() -> None:
     assert first_report["decision"] == "retain_amplitude_only_profile"
     assert all(first_report["gate_results"].values())
     assert first_report["maximum_absolute_sigma_replay_error"] <= 1e-15
+    assert first_report["profile_id"] == (
+        "d8d6d15fa08b21e2fa34b72d73c6393c19015267ec72c0bdcb1dba93a1c9cd25"
+    )
+    assert first_report["stable_evidence_id"] == (
+        "9595540018f9dd6cf7b2c288eb4d8d356df4c7778267713ce41b23e66ca7c722"
+    )
     encoded = json.dumps(first_bundle, sort_keys=True).lower()
     assert all(token not in encoded for token in ("psf", "mtf", "nps", "scanner"))
 

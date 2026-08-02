@@ -2,6 +2,17 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-02 - U6.P4AX compiles amplitude without inventing spatial truth
+
+- Added a typed characteristic-slope granularity amplitude profile bound to the
+  exact P2Q prior and the simpler supported P4AW parameter set.
+- Two bundles/reports are byte-identical (`09f6a3f1...75348` /
+  `1ee9c07f...61736`); all 24 confirmation predictions replay exactly, domains
+  and prior identity fail closed, and sampled Sigma-D spans `.00449-.01410`.
+- Bundle serialization has no spatial spectrum, MTF, scanner or radius fields.
+  P4AY may test explicit generic spatial normalization, but cannot relabel its
+  shape as Kodak measurement or open photographic/product use.
+
 # 2026-08-02 - U6.P4AV-P4AW closes same-sheet MTF/granularity coupling
 
 - Audited the exact Kodak 250D graph into a reproducible 48um-aperture

@@ -1,0 +1,35 @@
+{
+  "schema": "neuro_film.u6_p4ax_kodak_250d_granularity_amplitude_profile_decision.v1",
+  "node": "U6.P4AX",
+  "decision": "retain_amplitude_only_profile",
+  "contract_commit": "3345799f15b99568d0f6c25323e093c54e5cc987",
+  "implementation_commit": "267d87760a69c757a26b1682e0793e41cafaa7de",
+  "contract_sha256": "bdda2cace5538cb67149a52abdc7847a874a06b7f2e106a01cc29ac1761ecdac",
+  "profile_module_sha256": "ecdcb2939c936bcbe77b46d0e58db53a46072f4cd1993ef4c9c01e206b581b3f",
+  "evaluator_sha256": "35aa78874c4a4ae62d3e93285faf26316f79725a26de7066b10c59e9fd310b3d",
+  "bundle_path": "outputs/experiments/u6_p4ax_kodak_250d_granularity_amplitude_profile_v1/bundle_a.json",
+  "bundle_sha256": "09f6a3f1fe8d552ec10016c9403e6075a369d28cab483abd2a3af9989e375348",
+  "profile_id": "d8d6d15fa08b21e2fa34b72d73c6393c19015267ec72c0bdcb1dba93a1c9cd25",
+  "report_path": "outputs/experiments/u6_p4ax_kodak_250d_granularity_amplitude_profile_v1/report_a.json",
+  "report_sha256": "1ee9c07f4b9c3ad4898cd0243f00310275b5625cc15505fe24c6535844261736",
+  "stable_evidence_id": "9595540018f9dd6cf7b2c288eb4d8d356df4c7778267713ce41b23e66ca7c722",
+  "two_bundles_and_reports_byte_exact": true,
+  "automatic_pass": true,
+  "metrics": {
+    "confirmation_row_count": 24,
+    "maximum_absolute_sigma_replay_error": 0.0,
+    "sampled_sigma_d_minimum": 0.004492564978830401,
+    "sampled_sigma_d_maximum": 0.014101597542008477,
+    "forbidden_serialized_token_count": 0
+  },
+  "interpretation": [
+    "The P4AW channel-agnostic characteristic-slope parameters compile into a compact typed profile and replay every held prediction exactly.",
+    "The profile contains only measurement-aperture amplitude semantics. It deliberately carries no spatial spectrum, MTF, scanner or grain-radius field, so the rejected P5J coupling is not reintroduced.",
+    "A later spatial compiler may normalize an explicit generic or independently measured spectrum to this amplitude. Its spatial shape remains a separate hypothesis."
+  ],
+  "next_ready_leaf": "U6.P4AY - freeze an aperture-normalized generic spatial-structure compiler and verify that its developed-density field reproduces the P4AX 48-micrometre amplitude without claiming a measured NPS.",
+  "photographic_render_allowed": false,
+  "product_integration_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "Typed amplitude-only Kodak 250D manufacturer-graph compatibility profile at a stated 48-micrometre aperture; not NPS, causal grain structure, roll/process/scanner calibration, stock response or product evidence."
+}
