@@ -1,0 +1,41 @@
+{
+  "schema": "neuro_film.u6_p4cd_poisson_binomial_granularity_decision.v1",
+  "node": "U6.P4CD",
+  "decision": "close_poisson_binomial_density_marginal_without_rescue",
+  "contract_commit": "b5e002b6742145e5edcb89749bf540c698f5d41e",
+  "implementation_commit": "1d3974eed0a4523b0ccd487043a4e3662c67c2db",
+  "contract_sha256": "86428ede14021e5c8a91a3a28f6690a6ef329ca87637ba8c8ab38c48aadab221",
+  "evaluator_sha256": "c18747fa57af26fefa7f54aef9db2fa57f4a24d982f693e81b915ffde3d6ed4e",
+  "runner_sha256": "4b4826e09f6f71d979140e6b7f5ae7ef73605f89ba42f7d8ee557fc135ef6229",
+  "report_sha256": "9fab26a4c897fce97705eceeda958e545a63f670ca888bd4af55202ef69a045e",
+  "stable_evidence_id": "2398bdcb0f4acb1962a264169879012d14ded8d38a2377e09ed74aabb3b5c53c",
+  "two_reports_byte_exact": true,
+  "automatic_pass": false,
+  "metrics": {
+    "candidate_median_log_sigma_error": 0.12802133832989998,
+    "candidate_p95_log_sigma_error": 0.30503538525043256,
+    "characteristic_slope_median_log_sigma_error": 0.07180164011115533,
+    "channel_constant_median_log_sigma_error": 0.15523045570746405,
+    "no_competition_median_log_sigma_error": 0.15523045570746405,
+    "improvement_vs_channel_constant": 0.17528208142891996,
+    "improvement_vs_no_competition": 0.17528208142891996,
+    "improvement_vs_characteristic_slope": -0.7829862678862425,
+    "median_channel_spearman": 0.15,
+    "minimum_channel_spearman": 0.11595420713048968
+  },
+  "failed_gates": [
+    "improvement_vs_characteristic_slope",
+    "median_channel_spearman"
+  ],
+  "interpretation": [
+    "The 2026 paper-derived competition term improves the held median error by 17.53 percent versus per-channel constants and the no-competition Poisson control, so it contains a real density-shape effect.",
+    "It is nevertheless 78.30 percent worse than the already retained characteristic-slope baseline and has only 0.15 median per-channel rank correlation. The compact marginal does not explain the first-party Kodak 250D granularity curve shape.",
+    "The Stanford report and derivative profiles remain an informative external algorithm baseline, not an independent material measurement or stock calibration source."
+  ],
+  "forbidden_rescue": "Do not change uniformity, density normalization, floors, shared amplitude, split, controls or gates on this cohort.",
+  "next_ready_leaf": "Advance a new measured observation or a mechanism-distinct developed-image experiment; do not add Poisson-binomial capacity or spatial decoration to rescue this failed marginal.",
+  "photographic_render_allowed": false,
+  "product_integration_allowed": false,
+  "stock_calibration_claim_allowed": false,
+  "claim_ceiling": "Negative held-exposure evidence for one 2026 paper-derived Poisson-binomial density marginal against first-party Kodak 250D typical granularity curves."
+}

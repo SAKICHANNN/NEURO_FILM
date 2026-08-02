@@ -2,6 +2,16 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-02 - U6.P4CD closes latest Poisson-binomial grain marginal
+
+- Derived the compact density-variance family from the official Stanford
+  EE367 2026 report without importing its derivative code or profiles.
+- Two reports are exact (`9fab26a4...045e`). Competition improves `17.53%`
+  over constants, but the candidate is `78.30%` worse than the retained
+  characteristic-slope baseline and fails median rank at `.15`.
+- No tuning, image render or product mapping opens. The next leaf must add a
+  new observation or materially different developed-image mechanism.
+
 # 2026-08-01 - U5.R2BU0 passes VISION3 MTF source diversity
 
 - Exact first-party 50D/250D/500T traces pass every integrity and uncertainty

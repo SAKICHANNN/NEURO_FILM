@@ -52,6 +52,17 @@ def test_frozen_poisson_binomial_experiment_is_repeatable() -> None:
         "no_competition_poisson"
     ]["predicted_sigma_d"]
     assert first["parameters"]["candidate"]["uniformity"] == 0.98
+    assert not first["automatic_pass"]
+    assert first["decision"] == (
+        "close_poisson_binomial_density_marginal_without_rescue"
+    )
+    assert first["stable_evidence_id"] == (
+        "2398bdcb0f4acb1962a264169879012d14ded8d38a2377e09ed74aabb3b5c53c"
+    )
+    assert [name for name, passed in first["gate_results"].items() if not passed] == [
+        "improvement_vs_characteristic_slope",
+        "median_channel_spearman",
+    ]
 
 
 def test_parent_hash_tamper_fails_before_scoring(tmp_path: Path) -> None:

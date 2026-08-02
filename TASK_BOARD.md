@@ -907,3 +907,11 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
 - The downloadable TIFFs are unprofiled RGBA8, not the frozen RGB16 input.
   Retain source/role evidence, close this cohort without more downloads, and
   seek a materially new identifying observation.
+
+# 2026-08-02 - U6.P4CD latest Poisson-binomial grain baseline closes
+
+- The clean-room Stanford EE367 2026 marginal improves held median error
+  `17.53%` over constants/no-competition, but regresses `78.30%` against the
+  retained characteristic-slope baseline and reaches only `.15` median rank.
+- Close this exact marginal without tuning or spatial decoration. Continue
+  with a new measured observation or mechanism-distinct developed-image test.
