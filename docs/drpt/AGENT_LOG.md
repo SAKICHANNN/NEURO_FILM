@@ -10253,6 +10253,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   TIFFs are RGBA8 with opaque alpha and no ICC. The frozen RGB16 gate fails, so
   no colour statistic, fit, render or stock-response claim opens.
 
+# 2026-08-01 - U5.R2BU8 VERITA 200D multi-domain source closes
+
+- Downloaded the exact 250,124-byte April-2026 Kodak technical sheet and parsed
+  characteristic, MTF and diffuse-rms granularity directly from its vector
+  paths. Visual review caught and corrected an initial green/red MTF label swap
+  before the accepted evidence; corrected reports are exact (`0e70714e...cec1a`).
+- VERITA differs from 250D/500T in MTF+granularity, but only granularity is
+  material versus 50D. The frozen 3/3 multi-domain gate therefore fails at 2/3.
+  Retain exact source priors only; no fourth profile, render or product use.
+
 # 2026-08-01 - U6.P3T synthetic mechanism recovery passes
 
 - Implemented a bounded development-only inverse for the retained P3S physical

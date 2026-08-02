@@ -1,0 +1,35 @@
+{
+  "schema": "neuro_film.u5_r2bu8_kodak_verita_200d_source_signature_decision.v1",
+  "experiment_id": "U5.R2BU8",
+  "contract_sha256": "a84758255e19f178f5c0b54d980e3db83aa9c271f449fbb6b4e16e1be62e0daa",
+  "software_commit": "872799b3",
+  "formal_evidence": {
+    "report_a": "outputs/u5_r2bu8_verita_200d_source_signature/report_a.json",
+    "report_b": "outputs/u5_r2bu8_verita_200d_source_signature/report_b.json",
+    "report_sha256": "0e70714e16f1eb730f0c9b4b0c29476c85c5072b51a6d1cffa4dd86cf7ecec1a",
+    "overlay_sha256": "a3d34e7de20b1986890aa8e10f36af1936247e8d1c996815db5f6853f9397f9d",
+    "stable_evidence_id": "e2cb6f704d72c025c95a0fd6504570dea374b0c727396b1ac06101ff803c89a1",
+    "two_byte_identical_audits": true,
+    "visual_overlay_reviewed": true
+  },
+  "result": {
+    "source_pdf_bytes": 250124,
+    "source_pdf_pages": 5,
+    "vector_domains": 3,
+    "vector_channels_per_domain": 3,
+    "characteristic_material_channels_vs_50d_250d_500t": [1, 1, 0],
+    "mtf_material_channels_vs_50d_250d_500t": [1, 3, 2],
+    "granularity_material_channels_vs_50d_250d_500t": [3, 3, 3],
+    "material_domains_vs_50d": ["granularity"],
+    "material_domains_vs_250d": ["mtf", "granularity"],
+    "material_domains_vs_500t": ["mtf", "granularity"],
+    "required_material_domains_per_pair": 2,
+    "material_pair_count": 2,
+    "required_material_pair_count": 3,
+    "all_non_signature_gates_pass": true,
+    "all_gates_pass": false
+  },
+  "decision": "close_verita_observed_profile_bank_expansion_without_rescue",
+  "next_ready_leaf": "Seek a materially new rights-auditable controlled real-film observation or a mechanism-distinct explicit stock operator; retain the exact VERITA curves as source priors but do not rescue the failed 50D comparison.",
+  "claim_ceiling": "Exact first-party 2026 VERITA 200D characteristic, MTF and 48-micrometre diffuse-rms-granularity vector evidence. It distinguishes VERITA from 250D/500T in two physical domains but not from 50D under the frozen multi-domain gate; no fourth observed profile, RGB mapping, calibration, render or product claim opens."
+}

@@ -963,6 +963,15 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
   Retain source/role evidence, close this cohort without more downloads, and
   seek a materially new identifying observation.
 
+# 2026-08-01 - U5.R2BU8 VERITA 200D source signature closes at 2/3 pairs
+
+- Parsed Kodak's April-2026 VERITA 200D characteristic, MTF and 48-micrometre
+  diffuse-rms granularity as exact PDF vector paths; two corrected formal
+  reports are byte-identical (`0e70714e...cec1a`).
+- MTF+granularity distinguish VERITA from 250D/500T, but only granularity is
+  material versus 50D. The frozen all-three-pair gate fails without rescue;
+  retain source priors only and continue to a new identifying observation.
+
 # 2026-08-02 - U6.P4CD latest Poisson-binomial grain baseline closes
 
 - The clean-room Stanford EE367 2026 marginal improves held median error

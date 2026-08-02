@@ -36,6 +36,18 @@ def test_verita_source_signature_is_exact_and_evidence_bounded(tmp_path: Path) -
     assert "output_rgb" not in encoded
     assert "rendered_pixels" not in encoded
     assert "product_operator" not in first
+    assert first["signature_pass"] is False
+    assert first["material_domains_by_pair"] == {
+        "kodak_verita_200d_5206_7206__vs__kodak_vision3_50d_5203_7203": ["granularity"],
+        "kodak_verita_200d_5206_7206__vs__kodak_vision3_250d_5207_7207": [
+            "mtf",
+            "granularity",
+        ],
+        "kodak_verita_200d_5206_7206__vs__kodak_vision3_500t_5219_7219": [
+            "mtf",
+            "granularity",
+        ],
+    }
 
 
 def test_verita_source_signature_rejects_vector_operation_drift(tmp_path: Path) -> None:
