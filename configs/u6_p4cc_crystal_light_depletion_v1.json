@@ -47,7 +47,7 @@
     "channel_seed_bases": [2611923443488327891, 11400714819323198485, 10723151780598845931],
     "layer_seed_stride": 1442695040888963407,
     "overlap_resolution": "nearest normalized crystal centre; canonical crystal id breaks exact ties",
-    "footprint_capture": "capture_efficiency times mean remaining exposure over each finite footprint, capped only by local remaining exposure",
+    "footprint_capture": "capture_efficiency times the minimum of mean remaining exposure over each finite footprint and local remaining exposure",
     "remaining_light": "next layer receives previous remaining exposure exactly",
     "global_mean_renormalization_allowed": false,
     "pointwise_output_clipping_allowed": false
