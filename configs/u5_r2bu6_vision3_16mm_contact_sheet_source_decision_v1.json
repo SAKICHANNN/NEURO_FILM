@@ -1,0 +1,30 @@
+{
+  "schema": "neuro_film.u5_r2bu6_vision3_16mm_contact_sheet_source_decision.v1",
+  "experiment_id": "U5.R2BU6",
+  "contract_sha256": "76c213da796d86f17e8fbfe2bf6118a0b812b8434627a9988f7fcfa52efd5cfc",
+  "observations_sha256": "0e957e99a06b1b2c6ad9f9cc41f0dda86559cb53058ef872dbc63fd90101b626",
+  "software_commit": "5db5aea1",
+  "formal_evidence": {
+    "report_a": "outputs/u5_r2bu6_vision3_16mm_contact_sheet_source/formal_a/report.json",
+    "report_b": "outputs/u5_r2bu6_vision3_16mm_contact_sheet_source/formal_b/report.json",
+    "report_sha256": "40bac7fe27747e681fb54f9fdcf2c6a475b5fe7c0d08cbdc39987b8613af29fd",
+    "stable_evidence_id": "027ad1503202013b93109c4bd95a7d16f5d624f246c1e2ed51bd9db307ea5c6d",
+    "two_byte_identical_audits": true
+  },
+  "result": {
+    "pdf_pages": 4,
+    "embedded_images": 52,
+    "decoded_image_size": [798, 606],
+    "stock_ids": ["7207", "7219"],
+    "manual_label_anchors": 14,
+    "explicit_cross_stock_paired_roles": 3,
+    "external_image_downloads": 0,
+    "external_video_downloads": 0,
+    "scanner_id": null,
+    "process_id": null,
+    "all_gates_pass": true
+  },
+  "decision": "open_minimum_sufficient_tiff_integrity_and_role_audit",
+  "next_ready_leaf": "U5.R2BU7 download only TIFF rows 01/02/03 and 43/44/45, then test exact contact-sheet ordering, decode integrity and explicit cross-stock exposure roles before any colour statistic or operator fit.",
+  "claim_ceiling": "Public source and contact-sheet role evidence for one author-run 16mm comparison; not pixel integrity, paired operator, process/scanner calibration, stock response or product evidence."
+}

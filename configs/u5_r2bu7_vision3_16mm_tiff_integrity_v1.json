@@ -1,0 +1,67 @@
+{
+  "schema": "neuro_film.u5_r2bu7_vision3_16mm_tiff_integrity_contract.v1",
+  "experiment_id": "U5.R2BU7",
+  "node": "ULT > U5 > U5.R2 > U5.R2BU7",
+  "date_frozen": "2026-08-02",
+  "question": "Do the six minimum public TIFF rows decode cleanly and verify the contact-sheet file ordering plus three explicit cross-stock exposure roles without fitting or scoring colour response?",
+  "parent": {
+    "experiment_id": "U5.R2BU6",
+    "contact_sheet_sha256": "7ba0d96372ec35f04f2d1ed13c4410a33a5050fc1b17471fc576b47e0a5abd97",
+    "report_sha256": "40bac7fe27747e681fb54f9fdcf2c6a475b5fe7c0d08cbdc39987b8613af29fd",
+    "stable_evidence_id": "027ad1503202013b93109c4bd95a7d16f5d624f246c1e2ed51bd9db307ea5c6d"
+  },
+  "source": {
+    "folder_url": "https://drive.google.com/drive/folders/1ebwiJ1GTqapP0LT8p1opOlxl2vE5c9iG",
+    "destination": "data/physical_reference/vision3_16mm_stock_test_v1/tiff_minimum",
+    "files": [
+      {"filename": "16MM_TEST_01.tif", "file_id": "1q0RxOEpHhRsNs8iGDtGz4GwUF_1S5oLB", "bytes": 12763972, "contact_index": 0, "stock_id": "7207", "key_fill": "5.8/1.4", "f_stop": "5.6", "exposure": "0"},
+      {"filename": "16MM_TEST_02.tif", "file_id": "1wfYE3qZ65baLHnuB0bCbme23i5yJqTYI", "bytes": 12763972, "contact_index": 1, "stock_id": "7207", "key_fill": "5.8/1.4", "f_stop": "4.0", "exposure": "+1"},
+      {"filename": "16MM_TEST_03.tif", "file_id": "1LNdMsT4buaXO-nyd9LiHByAkePssZlmv", "bytes": 12763972, "contact_index": 2, "stock_id": "7207", "key_fill": "5.8/1.4", "f_stop": "2.8", "exposure": "+2"},
+      {"filename": "16MM_TEST_43.tif", "file_id": "1I8HqiBfQxH9nZJAW1LxGrfgzliXuqQha", "bytes": 12763972, "contact_index": 42, "stock_id": "7219", "key_fill": "5.8/1.4", "f_stop": "5.6", "exposure": "0"},
+      {"filename": "16MM_TEST_44.tif", "file_id": "1NzzL4naTA2zj6D234BEAhvpgrZhBc4an", "bytes": 12763972, "contact_index": 43, "stock_id": "7219", "key_fill": "5.8/1.4", "f_stop": "4.0", "exposure": "+1"},
+      {"filename": "16MM_TEST_45.tif", "file_id": "1kSb3uFgcCQkhaRXcLaO6-mTJGjjAlIq1", "bytes": 12763972, "contact_index": 44, "stock_id": "7219", "key_fill": "5.8/1.4", "f_stop": "2.8", "exposure": "+2"}
+    ]
+  },
+  "acquisition": {
+    "maximum_total_bytes": 80000000,
+    "expected_total_bytes": 76583832,
+    "no_other_tiff_jpeg_pdf_or_video_downloads": true
+  },
+  "decode": {
+    "required_file_count": 6,
+    "required_mode": "RGB",
+    "required_bits_per_sample": 16,
+    "minimum_width": 1500,
+    "minimum_height": 1000,
+    "contact_match": "resize TIFF RGB to the exact embedded contact image dimensions with OpenCV INTER_AREA, convert both to float64 grayscale gradients, and compute normalized correlation",
+    "minimum_matched_gradient_ncc": 0.98,
+    "minimum_margin_over_best_wrong_contact": 0.002
+  },
+  "gates": {
+    "all_declared_files_exact_size_and_unique_sha256": true,
+    "all_six_tiffs_decode_rgb16_and_meet_minimum_geometry": true,
+    "all_six_contact_order_matches_pass_ncc_and_wrong_margin": true,
+    "three_cross_stock_exposure_roles_explicit": true,
+    "icc_profile_identity_recorded_without_calibration_claim": true,
+    "scanner_and_process_remain_unknown": true,
+    "operator_fit_render_colour_score_and_training_reads": 0
+  },
+  "rights": {
+    "explicit_reuse_license_found": false,
+    "allowed_use": "local quarantined internal research integrity and role audit only",
+    "redistribution": false,
+    "commercial_training_or_product": false
+  },
+  "forbidden": [
+    "download any non-listed still, PDF or video payload in this leaf",
+    "repair a failed file-order mapping after pixels are read",
+    "fit or score any colour operator or infer stock response",
+    "treat an ICC profile as scanner, process, stock-response or calibration evidence",
+    "treat a downloadable link as redistribution or commercial-product permission"
+  ],
+  "branch_rule": {
+    "pass": "Open a separately frozen source-matched colour-statistic discriminant with nuisance controls and a held-out role; do not fit a product operator.",
+    "fail": "Close this exact TIFF mapping/integrity route without downloading further rows."
+  },
+  "claim_ceiling": "Exact pixel integrity and role mapping for six author-rendered 16mm TIFFs from one comparison; not neutral digital/film pairing, scanner/process calibration, stock response, reusable operator or product evidence."
+}
