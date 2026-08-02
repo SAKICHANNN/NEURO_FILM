@@ -27,7 +27,7 @@
       ["blue", "red"],
       ["green", "red"]
     ],
-    "mtf_frequencies_cycles_per_mm": [28.0, 32.0, 36.0, 40.0, 44.0, 48.0, 52.0, 56.0, 60.0, 64.0],
+    "mtf_frequencies_cycles_per_mm": [28.0, 32.0, 36.0, 40.0, 44.0, 48.0, 52.0, 56.0, 60.0, 63.0],
     "granularity_log_relative_exposures": [0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5, 2.75, 3.0, 3.25, 3.5, 3.75, 4.0],
     "feature": "per-domain per-channel natural-log curve shape after subtracting the first common-grid value",
     "distance": "mean per-domain per-channel RMSE to each nominal BU3 stock profile",
