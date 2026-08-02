@@ -1,0 +1,73 @@
+{
+  "schema": "neuro_film.u6_p4ay_aperture_normalized_spatial_amplitude_contract.v1",
+  "experiment_id": "u6.p4ay-aperture-normalized-spatial-amplitude-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4AY",
+  "date_frozen": "2026-08-02",
+  "question": "Can an explicit generic spatial structure be analytically normalized so multiple deliberately different spatial hypotheses reproduce the P4AX 48-micrometre diffuse-rms amplitude, while remaining measurably spectrum-distinct and never relabeling a hypothesis as Kodak NPS?",
+  "parents": {
+    "p4ax_commit": "0fa66812a12f25f5ec6d590b2857abb663c0349b",
+    "p4ax_decision_path": "configs/u6_p4ax_kodak_250d_granularity_amplitude_profile_decision_v1.json",
+    "p4ax_decision_sha256": "532a66bfac603d7383b890dce9cae1857ca8c2df2bbe0acfb250c788c42b2f05",
+    "p4ax_bundle_path": "outputs/experiments/u6_p4ax_kodak_250d_granularity_amplitude_profile_v1/bundle_a.json",
+    "p4ax_bundle_sha256": "09f6a3f1fe8d552ec10016c9403e6075a369d28cab483abd2a3af9989e375348",
+    "p4ax_profile_id": "d8d6d15fa08b21e2fa34b72d73c6393c19015267ec72c0bdcb1dba93a1c9cd25",
+    "p4ax_report_path": "outputs/experiments/u6_p4ax_kodak_250d_granularity_amplitude_profile_v1/report_a.json",
+    "p4ax_report_sha256": "1ee9c07f4b9c3ad4898cd0243f00310275b5625cc15505fe24c6535844261736",
+    "p4ax_stable_evidence_id": "9595540018f9dd6cf7b2c288eb4d8d356df4c7778267713ce41b23e66ca7c722"
+  },
+  "compiler": {
+    "sample_pitch_micrometres": 1.0,
+    "aperture_diameter_micrometres": 48.0,
+    "aperture": "normalized binary circular area kernel on the fixed physical grid",
+    "normalization": "innovation_sigma = target_sigma_d / sqrt(sum(square(full_convolution(spatial_kernel, aperture_kernel))))",
+    "spatial_hypotheses": [
+      {"id": "white", "family": "delta", "gaussian_sigma_micrometres": 0.0},
+      {"id": "fine", "family": "gaussian", "gaussian_sigma_micrometres": 2.0},
+      {"id": "coarse", "family": "gaussian", "gaussian_sigma_micrometres": 6.0}
+    ],
+    "gaussian_truncate_sigma": 4.0,
+    "profile_probe_domain_fractions": [0.2, 0.5, 0.8],
+    "parameter_fit_allowed": false,
+    "hypothesis_selection_allowed": false
+  },
+  "simulation": {
+    "field_shape": [1024, 1024],
+    "reference_sigma_d": 0.01,
+    "seeds": [
+      0,
+      1099511627776,
+      2199023255552,
+      3298534883328,
+      5497558138880,
+      7696581394432,
+      12094627905536,
+      14293651161088
+    ],
+    "counter_source": "existing coordinate-stable SplitMix64 Box-Muller normal",
+    "measurement_crop": "exclude aperture radius plus spatial-kernel radius plus two samples on every edge",
+    "report_runs": 2
+  },
+  "evaluation": {
+    "spectrum_probe_cycles_per_micrometre": 0.1,
+    "maximum_analytic_sigma_replay_error": 1e-15,
+    "maximum_monte_carlo_median_absolute_relative_error": 0.015,
+    "maximum_monte_carlo_p95_absolute_relative_error": 0.05,
+    "minimum_pairwise_power_transfer_separation": 0.15,
+    "minimum_profile_probe_sigma_d": 0.001,
+    "maximum_profile_probe_sigma_d": 0.05,
+    "require_exact_repeat": true,
+    "require_all_hypotheses": true
+  },
+  "branch_rule": {
+    "pass": "Retain a generic aperture-normalization primitive and keep white/fine/coarse as explicit, non-selected spatial hypotheses. A separately evidenced source is still required to choose a spectrum before photographic or profile use.",
+    "fail": "Close the compiler without changing kernels, field size, seeds, crop, error gates or spectrum probe."
+  },
+  "forbidden": [
+    "select a spatial hypothesis from this amplitude-only experiment",
+    "call any hypothesis Kodak grain, measured NPS, dye-cloud radius or scanner response",
+    "normalize each realized field from its observed output variance",
+    "fit kernels or amplitudes on photographs",
+    "render photographs or alter product defaults"
+  ],
+  "claim_ceiling": "Generic deterministic aperture-amplitude normalization and explicit demonstration that one diffuse-rms amplitude is compatible with multiple distinct spatial spectra; not measured Kodak NPS, causal grain structure, calibration or product evidence."
+}
