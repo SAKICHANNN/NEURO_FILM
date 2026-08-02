@@ -1,0 +1,50 @@
+{
+  "schema": "neuro_film.u6_p4av_kodak_250d_granularity_source_contract.v1",
+  "experiment_id": "u6.p4av-kodak-250d-granularity-source-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4AV",
+  "date_frozen": "2026-08-02",
+  "question": "Does the exact first-party Kodak VISION3 250D sheet expose reproducible channel-wise diffuse-rms granularity versus log exposure, under the stated ECN-2, Status-M and 48-micrometre-aperture context, sufficient for a later same-sheet MTF/granularity compatibility test?",
+  "source": {
+    "path": "data/physics/kodak_vision3_250d/technical_data.pdf",
+    "expected_bytes": 684722,
+    "sha256": "70adb298a7aabb285d986b720e07c87c27eb2361f0925aea2b15903c08282e16",
+    "official_url": "https://www.kodak.com/content/products-brochures/Film/VISION3_250D_5207_TI-2650_EN.pdf",
+    "measurement_context": {
+      "exposure": "5500 K daylight",
+      "process": "ECN-2",
+      "densitometry": "Status M",
+      "aperture_micrometres": 48.0,
+      "quantity": "diffuse rms granularity Sigma D"
+    }
+  },
+  "graph": {
+    "path": "outputs/u5_r2aa0_source_audit/extracted/250d_characteristic.png",
+    "width": 587,
+    "height": 557,
+    "expected_bytes": 121845,
+    "sha256": "8d4ba7acec0be4a200ba4ab2f29f928bde63f430c8fd343d9a9e36bfc973ca0d"
+  },
+  "trace": "configs/data/kodak_250d_granularity_curve_pixels_v1.json",
+  "trace_sha256": "d564f4ee49ca80fdc4b4e39199d9b894429774600b00b5ec52d95a8d3bfc4de2",
+  "gates": {
+    "axis_max_residual_px": 1.5,
+    "trace_max_ink_distance_px": 2.0,
+    "minimum_points_per_channel": 18,
+    "minimum_trace_span_log_exposure": 4.0,
+    "minimum_sigma_d": 0.001,
+    "maximum_sigma_d": 0.05,
+    "two_byte_identical_audits": true,
+    "visual_overlay_required": true
+  },
+  "branch_rule": {
+    "pass": "Freeze a separate no-rescue compatibility experiment that fits only amplitude on a development exposure subset and tests the fixed P5J spatial response plus a characteristic-slope variance family on disjoint exposure points.",
+    "fail": "Close before any joint model; do not repair points, axes or gates after inspecting the report."
+  },
+  "forbidden": [
+    "fit a grain model while selecting source pixels",
+    "treat 48-micrometre Sigma-D as a full NPS or scanner-independent emulsion spectrum",
+    "change trace points after the source report is inspected",
+    "claim a particular roll, process session, scanner, calibrated stock or product profile"
+  ],
+  "claim_ceiling": "First-party manufacturer-graph observation of typical Kodak VISION3 250D diffuse-rms granularity under one stated ECN-2/Status-M/48-micrometre context; not full NPS, particular-roll evidence, calibration or product evidence."
+}

@@ -1,0 +1,26 @@
+{
+  "schema": "neuro_film.kodak_250d_granularity_curve_pixels.v1",
+  "source_graph": "outputs/u5_r2aa0_source_audit/extracted/250d_characteristic.png",
+  "source_graph_sha256": "8d4ba7acec0be4a200ba4ab2f29f928bde63f430c8fd343d9a9e36bfc973ca0d",
+  "annotation_method": "Exact integer source pixels sampled on the dashed B/G/R diffuse-rms-granularity traces. Points were selected without consulting a numerical grain model; the source overlay is a required independent review artifact.",
+  "graph_axes": {
+    "x_scale": "linear",
+    "x_quantity": "log_relative_exposure",
+    "x_value_pixels": [[0.0, 62.0], [5.0, 506.0]],
+    "x_tick_value_pixels": [[0.0, 62.0], [1.0, 150.0], [2.0, 239.0], [3.0, 328.0], [4.0, 417.0], [5.0, 506.0]],
+    "y_scale": "log10",
+    "y_quantity": "diffuse_rms_granularity_sigma_d",
+    "y_value_pixels": [[0.001, 506.0], [1.0, 61.0]],
+    "y_tick_value_pixels": [[0.001, 506.0], [0.002, 461.0], [0.003, 435.0], [0.004, 417.0], [0.005, 402.0], [0.006, 391.0], [0.01, 358.0], [0.02, 313.0], [0.03, 287.0], [0.04, 268.0], [0.05, 254.0], [0.1, 209.0]]
+  },
+  "curves": {
+    "blue": [[70, 356], [100, 355], [138, 349], [149, 342], [161, 337], [173, 335], [198, 339], [223, 340], [246, 350], [271, 352], [296, 351], [321, 347], [346, 347], [371, 351], [395, 356], [420, 362], [444, 369], [468, 377], [491, 388]],
+    "green": [[77, 400], [89, 398], [102, 400], [127, 403], [149, 391], [159, 384], [180, 370], [191, 364], [202, 362], [214, 366], [225, 372], [238, 379], [249, 382], [283, 374], [325, 392], [350, 391], [363, 388], [375, 387], [387, 389], [400, 392], [412, 394], [437, 397], [449, 400], [461, 404], [474, 406], [486, 407]],
+    "red": [[78, 407], [92, 406], [104, 407], [116, 406], [127, 403], [141, 401], [153, 396], [162, 388], [200, 390], [260, 393], [286, 394], [298, 396], [308, 399], [321, 401], [333, 403], [346, 404], [359, 404], [371, 404], [383, 406], [395, 409], [408, 411], [420, 413], [433, 414], [446, 414], [458, 413], [471, 415], [483, 418], [495, 418]]
+  },
+  "limitations": [
+    "The graph states a 48-micrometre microdensitometer aperture but not a full noise power spectrum.",
+    "Sensitometric and diffuse-rms curves were produced on different equipment; the source explicitly warns that curve-shape variation may result.",
+    "The trace is a typical manufacturer observation, not a roll, process, scanner or stock calibration."
+  ]
+}
