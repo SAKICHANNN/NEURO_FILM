@@ -1,0 +1,60 @@
+{
+  "schema": "neuro_film.u5_r2bu2_kodak_vision3_granularity_diversity_contract.v1",
+  "experiment_id": "U5.R2BU2",
+  "node": "ULT > U5 > U5.R2 > U5.R2BU2",
+  "date_frozen": "2026-08-02",
+  "question": "Do first-party VISION3 50D, 250D and 500T diffuse-rms granularity shapes provide a stock-distinguishing source-domain signature independent of the already-identified MTF diversity?",
+  "trace": {
+    "path": "configs/data/kodak_vision3_granularity_curve_pixels_v1.json",
+    "sha256": "00b3436c9619a477bf13dcae0ab90df6fd9470bc1976e77484983a4a0029f145"
+  },
+  "parent_mtf_compiler_decision": {
+    "path": "configs/u5_r2bu1_kodak_vision3_stock_mtf_psf_decision_v1.json",
+    "sha256": "c324882aab1df73cc03da2b3482d789b68309d23bc56e808283bef11e42bd419",
+    "required_decision": "close_one_gaussian_stock_mtf_bank_without_rescue"
+  },
+  "comparison": {
+    "stocks": [
+      "kodak_vision3_50d_5203_7203",
+      "kodak_vision3_250d_5207_7207",
+      "kodak_vision3_500t_5219_7219"
+    ],
+    "channels": ["blue", "green", "red"],
+    "common_log_relative_exposures": [0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5, 2.75, 3.0, 3.25, 3.5, 3.75, 4.0, 4.25],
+    "metric": "RMSE of natural-log diffuse-rms Sigma-D after subtracting each stock-channel mean on the common exposure grid",
+    "interpolation": "linear in log-relative exposure and natural-log Sigma-D",
+    "negative_control": "the exact one-Gaussian MTF compiler must remain closed; granularity diversity cannot rescue or relabel its failed representation"
+  },
+  "gates": {
+    "required_stock_count": 3,
+    "required_channel_count": 3,
+    "minimum_points_per_channel": 16,
+    "axis_max_residual_px": 1.5,
+    "trace_max_ink_distance_px": 2.0,
+    "minimum_sigma_d": 0.001,
+    "maximum_sigma_d": 0.05,
+    "minimum_pair_log_shape_rmse_per_channel": 0.08,
+    "minimum_material_channels_per_pair": 2,
+    "minimum_material_pair_count": 3,
+    "minimum_material_graph_degree_per_stock": 2,
+    "digitization_uncertainty_px": 2.0,
+    "maximum_digitization_uncertainty_fraction_of_shape_gate": 0.5,
+    "two_byte_identical_audits": true,
+    "visual_overlay_required": true
+  },
+  "allowed_after_pass": [
+    "retain a three-stock source-domain granularity signature alongside the independent MTF signature",
+    "freeze a separate source-prior bundle that serializes observed MTF and granularity curves without yet selecting microscopic NPS or photographic placement"
+  ],
+  "forbidden": [
+    "change trace pixels, common exposures, normalization, metric or gates after pairwise scoring",
+    "use granularity diversity to rescue the failed BU1 one-Gaussian MTF compiler",
+    "infer microscopic grain size, NPS, roll/process/scanner calibration or digital RGB appearance",
+    "render photographs, train a router or alter B0/AO6 from this source result"
+  ],
+  "branch_rule": {
+    "pass": "Retain source-domain granularity diversity and open only a typed observed-source profile bundle.",
+    "fail": "Close these exact VISION3 granularity traces without trace, stock, exposure, threshold or normalization rescue."
+  },
+  "claim_ceiling": "First-party manufacturer-graph diffuse-rms granularity diversity at one stated 48-micrometre aperture for three VISION3 stocks; not NPS, microscopic structure, roll/process/scanner calibration, photographic appearance or product evidence."
+}
