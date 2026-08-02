@@ -796,3 +796,10 @@ reference gates at `.006914 > .005` RMSE and `.013875 > .0125` P95. Two reports
 are exact (`203c0676...30f846`). Retain the deterministic 16x path only as an
 offline reference; P6AD may test direct continuous-cloud aperture quadrature,
 not another oversampling factor or post-raster kernel.
+
+U6.P6AD is frozen with no intermediate raster. It evaluates 256 deterministic
+golden-angle disk samples per target pixel directly against the exact marked
+cloud centres/radii, with 64 samples and the frozen P6AC 8x raster as controls.
+It must meet the unchanged `.005/.0125` reference errors and materially beat
+both controls; the sample count, sequence, geometry and gates cannot be tuned
+after scoring.

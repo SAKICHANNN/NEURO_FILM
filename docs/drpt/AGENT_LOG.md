@@ -9631,3 +9631,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   RMSE `.006914 > .005` and P95 `.013875 > .0125`. Close 8x without another
   zoom, fixture or threshold. Retain only the deterministic 16x offline
   reference and move to direct continuous-geometry aperture quadrature.
+
+## 2026-08-02 - Freeze U6.P6AD direct cloud-aperture quadrature
+
+- Replace the failed intermediate-raster approximation with a materially
+  different execution: deterministic disk quadrature points evaluate the
+  frozen continuous marked-cloud geometry directly, convert accumulated
+  density to transmittance per point, then average within each target aperture.
+- Freeze 256 samples, a 64-sample control, the exact P6AC 16x reference and 8x
+  control, target geometry, sequence, accuracy/materiality gates and row
+  partitions before implementation. No reference pixels or oversampled image
+  may enter candidate execution.
+- Pass remains an offline synthetic compiler candidate only. No sample-count
+  rescue, production profile, native runtime, scanner calibration or product
+  claim is authorized.

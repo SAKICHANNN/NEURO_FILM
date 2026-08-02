@@ -1,0 +1,72 @@
+{
+  "schema": "neuro_film.u6_p6ad_direct_cloud_aperture_quadrature_contract.v1",
+  "experiment_id": "u6.p6ad-direct-cloud-aperture-quadrature-v1",
+  "node": "ULT > U6 > U6.P6 > U6.P6AD",
+  "date_frozen": "2026-08-02",
+  "parent": {
+    "decision_path": "configs/u6_p6ac_presampling_dye_cloud_scan_decision_v1.json",
+    "decision_sha256": "fcff603cd8da2978ffa1659bf38c7cffbbd9d72c5927cde6ebf637994bae6c45",
+    "stable_evidence_id": "f6928274fa5c275878d2b032123092736be9649f6a5d935793e225d052a82f78",
+    "reference_report_path": "outputs/experiments/u6_p6ac_presampling_dye_cloud_scan_v1/report_run1.json",
+    "reference_report_sha256": "203c0676643c58d85bb627c9936bc559af88412682fe52ea99d5ffd4bb30f846",
+    "target_density_sha256": "6cb2267330726e0915e71a8363f5486d028bb564ed9dbf32f5131cf6c93c02d0",
+    "reference_output_sha256": "7766720aafe57a3c8c6d10503a8bce59d60169a003700610bfa1a0783fe26420"
+  },
+  "question": "Can deterministic direct quadrature of the circular scanner aperture against continuous marked dye-cloud geometry meet the frozen P6AC reference accuracy without any intermediate oversampled raster?",
+  "material": {
+    "input_shape": [17, 19],
+    "target_pixel_pitch_um": 6.35,
+    "reference_zoom": 16,
+    "reference_aperture_subpixels_per_axis": 256,
+    "aperture_diameter_um": 12.5,
+    "radius_um_cmy": [1.8, 2.2, 2.6],
+    "mark_optical_density_cmy": [0.16, 0.20, 0.24],
+    "geometry_seed": 26080263,
+    "reference_monte_carlo_samples": 4
+  },
+  "quadrature": {
+    "candidate_samples": 256,
+    "low_sample_control": 64,
+    "sequence": "deterministic concentric golden-angle disk points with midpoint radial mass",
+    "point_chunk_size": 4096,
+    "output_dtype": "float64",
+    "intermediate_raster_allowed": false
+  },
+  "evaluation": {
+    "interior_crop_target_pixels": 2,
+    "row_partitions": [3, 7, 11],
+    "metrics": [
+      "candidate RMSE and P95 absolute error versus exact P6AC 16x reference",
+      "RMSE improvement versus frozen P6AC 8x approximation",
+      "RMSE improvement versus 64-sample direct quadrature",
+      "finite transmittance range, repeat and exact row partitions"
+    ]
+  },
+  "gates": {
+    "maximum_candidate_rmse": 0.005,
+    "maximum_candidate_p95_absolute_error": 0.0125,
+    "minimum_rmse_improvement_vs_8x_raster": 0.20,
+    "minimum_rmse_improvement_vs_low_sample": 0.10,
+    "minimum_transmittance": 0.0,
+    "maximum_transmittance": 1.0,
+    "maximum_repeat_error": 0.0,
+    "maximum_partition_error": 0.0
+  },
+  "controls": [
+    "frozen P6AC independently rendered 16x physical reference",
+    "frozen P6AC 8x presampling raster approximation",
+    "64-sample direct quadrature with identical geometry and sequence"
+  ],
+  "forbidden": [
+    "change the geometry, fixture, reference, quadrature sequence/count, controls or gates after scoring",
+    "construct any oversampled image inside the candidate or low-sample paths",
+    "fit quadrature weights, jitter points, tune the seed or reuse reference pixels",
+    "rescue with more samples on this fixed cohort",
+    "modify production profile/native runtime or claim measured scanner/film calibration"
+  ],
+  "branch_rule": {
+    "pass": "Retain direct continuous-cloud aperture quadrature as an offline compiler candidate and next measure bounded cost/scaling before any lower-sample compiler design.",
+    "fail": "Close this exact deterministic quadrature unchanged and retain only the P6AC 16x offline reference."
+  },
+  "claim_ceiling": "Generic synthetic direct continuous-cloud scanner-aperture quadrature evidence; no measured film, scanner, stock, process, quality or product claim."
+}
