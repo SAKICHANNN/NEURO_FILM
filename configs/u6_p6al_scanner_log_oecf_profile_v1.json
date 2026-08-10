@@ -1,0 +1,41 @@
+{
+  "schema": "neuro_film.u6_p6al_scanner_log_oecf_profile_contract.v1",
+  "experiment_id": "u6.p6al-scanner-log-oecf-profile-v1",
+  "node": "ULT > U6 > U6.P6 > U6.P6AL",
+  "date_frozen": "2026-08-10",
+  "parent": {
+    "experiment_id": "u6.p6ak-uchicago-step-wedge-oecf-correction-v1",
+    "evidence_path": "docs/evidence/U6_P6AK_UCHICAGO_STEP_WEDGE_OECF_CORRECTION_RESULT.json",
+    "evidence_sha256": "ea6dc9af0a6bd12d96e442f5e705edb033e1a4b91b0f8ea3dd69a5de8aeb3494",
+    "status": "pass-exact-workflow-refit-log-oecf"
+  },
+  "profile": {
+    "profile_id": "uchicago-epson-12000xl-positive-wedge-development-refit-v1",
+    "black_code": 2341.2112744450556,
+    "gamma": 1.4157742735467813,
+    "maximum_code": 65535.0,
+    "minimum_calibrated_density": 0.06,
+    "maximum_calibrated_density": 3.08,
+    "source_positive_wedge_sha256": "f0e88f558123ea688162cf9dad154b7b5eb868a85e8a9ec34fcf3c9460546522",
+    "source_density_table_sha256": "1bc24d545279e0be8272fe8f0b8adf46abf235148d8f84985d1cfb4f61d77b8a",
+    "calibration_mode": "development-only-held-step-checked",
+    "independent_confirmation": false,
+    "production_eligible": false
+  },
+  "gates": {
+    "all_65536_integer_codes_preflighted": true,
+    "valid_code_domain_strictly_decreasing_density": true,
+    "calibrated_density_inverse_roundtrip_max_abs_error": 1e-12,
+    "valid_code_roundtrip_max_abs_error": 1e-9,
+    "serialization_byte_exact": true,
+    "identity_byte_exact": true,
+    "invalid_code_density_or_profile_fails_closed": true
+  },
+  "forbidden": [
+    "clamp invalid codes or extrapolate calibrated density silently",
+    "label the profile independently confirmed or scanner-population calibrated",
+    "attach it to another scanner, mode, wedge or acquisition workflow",
+    "production integration"
+  ],
+  "claim_ceiling": "Typed exact-workflow scanner-code/optical-density OECF primitive compiled from P6AK development evidence; not independent, population, colour, stock or product calibration."
+}
