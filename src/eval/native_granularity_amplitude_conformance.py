@@ -147,8 +147,8 @@ def reference_outputs(
         ]
     )
     return (
-        np.ascontiguousarray(density, dtype=np.float32),
-        np.ascontiguousarray(sigma, dtype=np.float32),
+        np.ascontiguousarray(density, dtype=np.float64),
+        np.ascontiguousarray(sigma, dtype=np.float64),
     )
 
 
