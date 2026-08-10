@@ -1,0 +1,58 @@
+{
+  "schema": "neuro_film.u6_p8ca_native_thomas_gauged_sink_contract.v1",
+  "experiment_id": "u6.p8ca-native-thomas-gauged-sink-v1",
+  "node": "ULT > U6 > U6.P8 > U6.P8CA",
+  "date_frozen": "2026-08-10",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can exact P8BZ film-transmittance tiles pass through the already validated post-scan neutral-axis gauge without retaining a full output, changing P8BW arithmetic, or crossing into output transfer and quantization?",
+  "parents": {
+    "p8bz_evidence": {
+      "path": "docs/evidence/U6_P8BZ_NATIVE_THOMAS_INTERLEAVED_SINK_RESULT.json",
+      "sha256": "ee6e6bd15b31e6931e93f04c8741e7caa1f7e1a26c8249720c882f85d58ec80b",
+      "required_decision": "retain_exact_native_thomas_interleaved_sink"
+    },
+    "p8ag_decision": {
+      "path": "configs/u6_p8ag_native_neutral_gauge_decision_v1.json",
+      "sha256": "b9bac43b368e4d2de2f16d8cc49fa3910c6bacab3d915dd7ecdaf6508dc4e2a2",
+      "required_result_status": "pass"
+    }
+  },
+  "candidate": {
+    "row_abi_and_p8bw_profiles_unchanged": true,
+    "neutral_gauge_payload_sha256": "0ca93d8ff3d02ffc86d0c7b54451fde71323a69915e91962403d14bb3f615f30",
+    "domain_order": [
+      "relative-layer-log-exposure",
+      "developed-density-and-thomas-structure",
+      "film-transmittance-as-identity-scan-linear",
+      "neutral-axis-display-linear-gauge"
+    ],
+    "sink_order": "strictly increasing row_start with contiguous read-only HWC float32 display-linear tiles",
+    "row_partition": 128,
+    "full_output_or_channel_plane_allowed": false,
+    "model_or_profile_change_allowed": false,
+    "output_transfer_quantization_or_encoding_allowed": false
+  },
+  "conformance": {
+    "shape_chw": [3, 193, 257],
+    "require_exact_p8bz_input_tiles": true,
+    "require_exact_full_array_gauge_output": true,
+    "require_exact_raw_means": true,
+    "require_exact_sink_order": true,
+    "require_input_immutability": true,
+    "require_sink_failure_propagation": true,
+    "require_gauge_failure_atomicity": true
+  },
+  "performance": {
+    "shape_chw": [3, 3000, 4000],
+    "maximum_wall_seconds": 13.0,
+    "maximum_process_tree_rss_bytes": 440000000,
+    "maximum_repeat_wall_ratio": 1.25,
+    "maximum_repeat_rss_ratio": 1.10,
+    "require_two_fresh_processes": true,
+    "require_exact_stream_identity": true,
+    "require_zero_surviving_processes": true
+  },
+  "decision_if_pass": "retain_exact_native_thomas_to_display_linear_sink",
+  "decision_if_fail": "close_gauged_sink_and_retain_p8bz_scan_linear_boundary",
+  "claim_ceiling": "Host-only non-retaining composition of unchanged generic P8BW arithmetic and the existing P8AG neutral-axis gauge; not an output transfer, quantizer, encoder, device runtime, calibrated stock profile or product authorization."
+}
