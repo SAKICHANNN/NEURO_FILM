@@ -1,0 +1,99 @@
+{
+  "schema": "neuro_film.u6_p4ci_official_newson_first_channel_gaussian_lod_contract.v1",
+  "experiment_id": "u6.p4ci-official-newson-first-channel-gaussian-lod-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4CI",
+  "date_frozen": "2026-08-10",
+  "question": "Under the official repository's explicit first-channel loader semantics, does an exact same-periodogram Gaussian surrogate reproduce higher-order Newson residual structure at unresolved radii but fail at visible radii?",
+  "predecessor": {
+    "path": "docs/evidence/U6_P4CH_OFFICIAL_NEWSON_GAUSSIAN_LOD_RESULT.json",
+    "required_decision": "close_p4ch_exact_rows_and_decoder_contract_without_rescue",
+    "excluded_indices_path": "configs/u6_p4ch_official_newson_gaussian_lod_v1.json"
+  },
+  "primary_source": {
+    "citation": "Lesne, Gousseau, Ladjal and Newson, Neural Film Grain Rendering, Computer Graphics Forum 44(2), 2025",
+    "doi": "10.1111/cgf.70076",
+    "paper_url": "https://diglib.eg.org/items/a0985d06-ee1c-402c-8d9f-827c7258d9bc",
+    "paper_sha256": "0cbd736fce9310c5a7ad6e84af761035a58de8a4ee824123deb5aa84cc058e59",
+    "official_repository": "https://github.com/Gwilherm-LESNE/Neural_Film_Grain_Rendering",
+    "official_repository_commit": "865c4940040531db5f9308177b077dcfe3ea122e",
+    "official_loader_semantics": "torchvision.io.read_image(path)[:1,1:,1:]",
+    "official_repository_license": "all-rights-reserved-academic-research-only",
+    "dataset_page": "https://www.kaggle.com/datasets/gwilhermlsn/neuralfilmgrainrendering",
+    "dataset_license": "CC-BY-NC-4.0",
+    "product_or_training_dependency_allowed": false
+  },
+  "archive": {
+    "public_download_endpoint": "https://www.kaggle.com/api/v1/datasets/download/gwilhermlsn/neuralfilmgrainrendering?datasetVersionNumber=1",
+    "version": 1,
+    "content_length_bytes": 2354389185,
+    "etag_md5": "10e6f5442bbeaa82cb1e21ae1e938769",
+    "entry_count": 8722,
+    "central_directory_offset": 2353290552,
+    "central_directory_size": 1098611,
+    "test_hyperparameters_sha256": "0ad799160fa15d4ee631ba15b92b8f352d519f7aa2eed03d078340f0511c4a45",
+    "test_hyperparameters_rows": 4000,
+    "test_clean_png_count": 400,
+    "test_grain_png_count": 3962,
+    "known_missing_test_grain_rows": 38,
+    "metadata_and_central_directory_read_before_freeze": true,
+    "p4ci_selected_png_member_bytes_read_before_freeze": false
+  },
+  "bounded_source_selection": {
+    "split": "test",
+    "radii_input_pixels": [0.05, 0.2, 0.4, 0.8],
+    "rows_per_radius": 16,
+    "selection_salt": "u6.p4ci-v1",
+    "selection_rule": "Exclude every P4CH selected index. For each radius in ascending frozen order, sort eligible rows by SHA-256 of 'u6.p4ci-v1|test|index|img_name|seed|radius'; require clean and grain members; require globally unique img_name; take first 16.",
+    "selected_indices_by_radius": {
+      "0.05": [2257, 1381, 2955, 3725, 39, 1790, 2154, 145, 785, 459, 659, 3651, 1343, 3562, 3696, 2263],
+      "0.2": [3329, 1836, 3157, 269, 2088, 937, 633, 1774, 3270, 2358, 1977, 2670, 55, 1736, 2165, 2058],
+      "0.4": [665, 2123, 3407, 2316, 3820, 2620, 2560, 1646, 2226, 609, 578, 3051, 1080, 2335, 3742, 1601],
+      "0.8": [749, 3294, 771, 1919, 1122, 1119, 1991, 3519, 118, 324, 3495, 850, 2114, 2656, 998, 2033]
+    },
+    "maximum_downloaded_member_bytes": 67108864,
+    "maximum_http_requests": 320,
+    "member_integrity": "central/local identity, method, size, CRC32, exact member SHA-256, single-frame PNG and clean/grain geometry",
+    "decode_contract": "Accept only uint8 L or RGB single-frame PNG. Convert L directly or RGB by exact channel index 0, then drop first row and column as the official loader; crop bottom/right to a multiple of 16 only for features."
+  },
+  "comparison": {
+    "residual": "float64(first_channel(grain)-first_channel(clean))/255 after official crop",
+    "normalization": "per-row residual mean subtraction and population-RMS division",
+    "gaussian_control": "four deterministic real-valued random-phase surrogates per row, preserving the exact residual periodogram and zero DC",
+    "gaussian_seed_rule": "first 64 bits of SHA-256('u6.p4ch-gaussian-v1|row_index|replicate_index')",
+    "feature_families": {
+      "marginal_quantiles": [0.001, 0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 0.75, 0.9, 0.95, 0.975, 0.99, 0.995, 0.999],
+      "local_rms": {"block_pixels": 16, "quantiles": [0.1, 0.25, 0.5, 0.75, 0.9]},
+      "excursion_topology": {"thresholds_sigma": [2.0, 2.5], "component_area_bins_pixels": [[1, 1], [2, 4], [5, 16], [17, 1048576]]}
+    },
+    "distance_ratio": "Per row/family, target-to-median-Gaussian feature RMSE divided by median pairwise Gaussian-to-Gaussian feature RMSE.",
+    "radius_summary": "median row ratio per family and median across the three families"
+  },
+  "automatic_gates": {
+    "maximum_small_radius_median_ratio": 1.5,
+    "small_radii_requiring_adequacy": [0.05, 0.2],
+    "minimum_large_radius_median_ratio": 2.0,
+    "large_radii_requiring_divergence": [0.4, 0.8],
+    "minimum_large_to_small_ratio_of_medians": 1.5,
+    "minimum_rows_per_radius": 16,
+    "maximum_periodogram_relative_error": 1e-12,
+    "require_all_finite_nonzero_residuals": true,
+    "require_two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain a research-only official synthetic-reference radius boundary and open a separate runtime LOD experiment.",
+    "fail": "Close this disjoint official-dataset boundary without row, channel, radius, feature, seed or gate rescue; retain P4BS Gaussian and require a materially different observable."
+  },
+  "forbidden": [
+    "reuse any P4CH selected index",
+    "download the full archive or read unselected PNG members",
+    "replace missing members, mix RGB channels or tune rows/features/gates after target reads",
+    "copy or execute academic neural code/weights or train a final-RGB model",
+    "claim real-film, stock, process, scanner, product or visual-safety evidence"
+  ],
+  "outputs": {
+    "source_lock": "outputs/experiments/u6_p4ci_official_newson_first_channel_gaussian_lod_v1/source_lock.json",
+    "report_a": "outputs/experiments/u6_p4ci_official_newson_first_channel_gaussian_lod_v1/run_a/report.json",
+    "report_b": "outputs/experiments/u6_p4ci_official_newson_first_channel_gaussian_lod_v1/run_b/report.json"
+  },
+  "claim_ceiling": "Bounded noncommercial synthetic-reference evidence about higher-order sufficiency of exact-spectrum Gaussian surrogates under the official first-channel loader; not measured film, calibration, visual safety or product admission."
+}
