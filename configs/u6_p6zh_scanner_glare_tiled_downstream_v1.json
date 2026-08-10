@@ -1,0 +1,54 @@
+{
+  "schema": "neuro_film.u6_p6zh_scanner_glare_tiled_downstream_contract.v1",
+  "node": "U6.P6ZH",
+  "status": "contract_frozen_implementation_ready",
+  "parents": {
+    "p6zg_evidence_path": "docs/evidence/U6_P6ZG_SCANNER_GLARE_TYPED_CHAIN_RESULT.json",
+    "p6zg_evidence_sha256": "486e5e5e1d9fdbb7bef137d749c9d336a42e516847162c0ffe383da3f9ab9579",
+    "p6zg_chain_path": "src/eval/scanner_glare_typed_chain.py",
+    "p6zg_chain_sha256": "4ee8ee10655e46dbfdb6cfd1e648386e4b207b853a87c463b6b39b5a48a314a8",
+    "scanner_core_path": "src/film_physics/scanner.py",
+    "scanner_core_sha256": "0706dbdaed9adbc022c77dc4489406ce977b86dc937b480ea5872c1a7b8a82d9"
+  },
+  "mechanism": {
+    "stage_order": ["spectral", "p6za-multiscale-glare", "dmax", "mtf", "noise"],
+    "glare_row_chunk": 512,
+    "downstream_tile_rows": 512,
+    "release_spectral_before_downstream": true,
+    "reuse_existing_reference_row_tiled_scanner": true
+  },
+  "benchmark": {
+    "shape": [2000, 3000, 3],
+    "execution_order": [
+      "full-downstream",
+      "tiled-downstream",
+      "tiled-downstream",
+      "full-downstream"
+    ],
+    "fixture_seed": 6206106,
+    "rss_sample_interval_seconds": 0.01,
+    "worker_timeout_seconds": 120.0
+  },
+  "automatic_gates": {
+    "maximum_cross_chain_absolute_error": 1e-12,
+    "maximum_cross_chain_rmse": 1e-13,
+    "maximum_candidate_peak_process_tree_rss_bytes": 1610612736,
+    "maximum_candidate_to_reference_median_peak_rss_ratio": 0.85,
+    "maximum_candidate_median_apply_seconds": 15.0,
+    "maximum_candidate_to_reference_median_apply_time_ratio": 3.0,
+    "maximum_repeat_peak_rss_ratio": 1.15,
+    "maximum_repeat_apply_time_ratio": 1.20
+  },
+  "forbidden_fallbacks": [
+    "change profile, stage order, dtype, glare or downstream tile rows, fixture or gates",
+    "drop deterministic noise, Dmax or MTF",
+    "accept a seam or nonexact counter-noise result",
+    "claim measured scanner calibration, native/mobile/GPU or product readiness"
+  ],
+  "branch_rule": {
+    "pass": "retain the tiled experimental scanner chain and open isolated profile serialization",
+    "fail": "close this Reference tiled composition and retain P6ZF isolated"
+  },
+  "production_integration_allowed": false,
+  "claim_ceiling": "Local Windows/Python numerical and resource evidence for a generic tiled scanner chain; not measured scanner calibration, native/mobile/GPU performance, photographic quality or product readiness."
+}
