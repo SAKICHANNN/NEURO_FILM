@@ -8,6 +8,7 @@ from pathlib import Path
 
 import numpy as np
 
+from .native_gauge_profile import NativeGaugeProfileF32V1
 from .native_granularity_amplitude import (
     NativeGranularityAmplitudeError,
     NativeGranularityAmplitudeProfileV1,
@@ -419,10 +420,65 @@ def stream_native_exposure_thomas_rgb_interleaved(
     return raw_means, workspace_bytes, sink_calls
 
 
+def stream_native_exposure_thomas_rgb_gauged(
+    amplitude_library: ctypes.CDLL,
+    rows_library: ctypes.CDLL,
+    gauge_library: ctypes.CDLL,
+    amplitude_profile: NativeGranularityAmplitudeProfileV1,
+    field_profiles: tuple[
+        NativeThomasFieldProfile,
+        NativeThomasFieldProfile,
+        NativeThomasFieldProfile,
+    ],
+    gauge_profile: NativeGaugeProfileF32V1,
+    relative_log_exposure_chw: np.ndarray,
+    sink: Callable[[int, np.ndarray], None],
+    *,
+    row_partition: int,
+) -> tuple[tuple[float, float, float], int, int]:
+    """Stream P8BW transmittance through the retained post-scan gauge."""
+
+    if not callable(sink):
+        raise TypeError("expected a callable display-linear sink")
+    gauged: np.ndarray | None = None
+
+    def gauge_sink(row_start: int, scan_linear: np.ndarray) -> None:
+        nonlocal gauged
+        if gauged is None or gauged.shape != scan_linear.shape:
+            gauged = np.empty_like(scan_linear)
+        status = gauge_library.nf_neutral_gauge_f32_apply_v1(
+            ctypes.byref(gauge_profile),
+            _pointer(scan_linear),
+            scan_linear.shape[0] * scan_linear.shape[1],
+            _pointer(gauged),
+        )
+        if status != 0:
+            raise NativeThomasRowsError(
+                f"native neutral gauge failed at row {row_start}: {status}"
+            )
+        view = gauged.view()
+        view.setflags(write=False)
+        sink(row_start, view)
+
+    means, workspace_bytes, calls = (
+        stream_native_exposure_thomas_rgb_interleaved(
+            amplitude_library,
+            rows_library,
+            amplitude_profile,
+            field_profiles,
+            relative_log_exposure_chw,
+            gauge_sink,
+            row_partition=row_partition,
+        )
+    )
+    return means, workspace_bytes + (0 if gauged is None else gauged.nbytes), calls
+
+
 __all__ = [
     "NativeThomasRowsError",
     "load_native_thomas_rows_library",
     "render_native_exposure_thomas_rgb_rows",
+    "stream_native_exposure_thomas_rgb_gauged",
     "stream_native_exposure_thomas_rgb_interleaved",
     "stream_native_exposure_thomas_rgb_rows",
 ]
