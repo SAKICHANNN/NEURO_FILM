@@ -10518,3 +10518,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Signal-conditioned RMS differs `6.10x`; P99/max scan deltas are
   `.01716/.05220`, mean drift is `9.17e-5`, and new boundary is zero. Retain
   only as generic same-scanner temporal reference, not calibrated grain.
+
+# 2026-08-10 - U6.P9E retains typed mean-reverting exposure flicker
+
+- Implemented a bounded counter-addressed log2 exposure trajectory before
+  development; the latest AbsoluteDegradation iid per-frame gamma is a frozen
+  discontinuous control, not copied as the candidate.
+- Two reports are exact (`a4575960...8dbc`). P95 frame jump falls from `.84817`
+  stops for iid gamma to `.03269`; low-frequency power rises from `.13574` to
+  `.93490`, lag-1 is `.95887`, clip fraction is zero, and random-walk ensemble
+  variance grows `3.07x` while the candidate remains stationary.
+- Retain only synthetic mechanism capacity. Measured camera/projector/scanner
+  flicker, rendered video quality and product readiness remain unclaimed.
