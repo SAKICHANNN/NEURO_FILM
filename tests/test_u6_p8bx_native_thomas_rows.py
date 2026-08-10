@@ -33,11 +33,23 @@ from src.film_physics.native_granularity_amplitude import (
 from src.film_physics.native_thomas_density import load_native_thomas_density_library
 from src.film_physics.native_thomas_rows import (
     render_native_exposure_thomas_rgb_rows,
+    stream_native_exposure_thomas_rgb_rows,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/u6_p8bx_native_thomas_row_stream_v1.json"
 CLANG = ROOT / "outputs/tmp/tools/llvm-mingw-20260616-ucrt-x86_64/bin/clang.exe"
+
+
+class _CollectSink:
+    def __init__(self) -> None:
+        self.order: list[tuple[int, int]] = []
+        self.streamed = bytearray()
+
+    def __call__(self, channel: int, row_start: int, values: np.ndarray) -> None:
+        assert not values.flags.writeable
+        self.order.append((channel, row_start))
+        self.streamed.extend(values.tobytes())
 
 
 def _json(path: Path) -> dict[str, object]:
@@ -105,3 +117,41 @@ def test_row_partitions_are_bit_exact_and_failure_atomic(tmp_path: Path) -> None
             assert np.array_equal(exposure, input_copy)
             assert np.all(actual > 0.0)
             assert np.all(actual <= 1.0)
+
+        sink = _CollectSink()
+
+        means, _, calls = stream_native_exposure_thomas_rgb_rows(
+            amplitude_libraries[name],
+            rows_library,
+            amplitude_profile,
+            profiles,
+            exposure,
+            sink,
+            row_partition=128,
+        )
+        assert bytes(sink.streamed) == expected.tobytes()
+        assert means == expected_means
+        assert calls == len(sink.order)
+        assert sink.order == sorted(sink.order)
+
+    failure_calls = 0
+
+    def failing_sink(channel: int, row_start: int, values: np.ndarray) -> None:
+        nonlocal failure_calls
+        del channel, row_start, values
+        failure_calls += 1
+        if failure_calls == 2:
+            raise RuntimeError("injected sink failure")
+
+    with pytest.raises(RuntimeError, match="injected sink failure"):
+        stream_native_exposure_thomas_rgb_rows(
+            amplitude_libraries["msvc"],
+            row_libraries["msvc"],
+            amplitude_profile,
+            profiles,
+            exposure,
+            failing_sink,
+            row_partition=128,
+        )
+    assert failure_calls == 2
+    assert np.array_equal(exposure, input_copy)
