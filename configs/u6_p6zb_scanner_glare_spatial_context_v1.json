@@ -1,0 +1,50 @@
+{
+  "schema": "neuro_film.u6_p6zb_scanner_glare_spatial_context_contract.v1",
+  "node": "U6.P6ZB",
+  "question": "Does the retained multiscale scanner-glare spread respond distinctly to equal-energy near, intermediate and far bright contexts rather than collapsing to an equal-second-moment Gaussian or global-black-lift control?",
+  "parents": {
+    "p6za_contract": "configs/u6_p6za_multiscale_scanner_glare_v1.json",
+    "p6za_contract_sha256": "6ee5bb8427f52d4313b0e39cffe5e18d6e2cf9e4122cc05f50a7789567743167",
+    "p6za_evidence": "docs/evidence/U6_P6ZA_MULTISCALE_SCANNER_GLARE_RESULT.json",
+    "p6za_evidence_sha256": "117726c59459fa64834430e5698b72fcfb112ae680b73a4f158d35ff381ca773",
+    "scanner_glare_primitive": "src/film_physics/scanner_glare.py",
+    "scanner_glare_primitive_sha256": "53754573470db93528ab141cda1e4a175820cffd8cfd21103f5e92b674d72c35"
+  },
+  "experiment": {
+    "selected_bright_pixel_count": 500,
+    "radial_context_bands_pixels": {
+      "near": [6.0, 14.0],
+      "intermediate": [16.0, 28.0],
+      "far": [28.0, 44.0]
+    },
+    "dark_transmittance": 0.02,
+    "bright_transmittance": 0.9
+  },
+  "automatic_gates": {
+    "parent_hashes_exact": true,
+    "all_contexts_equal_bright_pixel_count": true,
+    "candidate_near_lift_above_intermediate": true,
+    "candidate_intermediate_lift_above_far": true,
+    "candidate_far_lift_positive": true,
+    "minimum_candidate_far_to_single_gaussian_lift_ratio": 100.0,
+    "maximum_candidate_near_to_single_gaussian_lift_ratio": 0.5,
+    "minimum_candidate_intermediate_to_single_gaussian_lift_ratio": 1.5,
+    "global_control_context_span_maximum": 0.0,
+    "pointwise_control_context_span_maximum": 0.0,
+    "rotation_invariance_error_maximum": 1e-15,
+    "all_values_finite": true,
+    "display_rgb_effect_count_zero": true
+  },
+  "forbidden": [
+    "change spatial bands, pixel count, profile or gates after formal scoring",
+    "treat the synthetic response curve as a measured scanner glare-spread function",
+    "fit to P6Z measured table rows or article figures",
+    "integrate the profile into product rendering from this capacity result",
+    "merge scanner glare with backing return, lens bloom or creative bloom"
+  ],
+  "branch_rule": {
+    "pass": "retain the multiscale spread as a spatially discriminating research reference but stop profile integration until a rights-cleared measured glare-spread function is available",
+    "fail": "close the multiscale scanner-glare reference without band, component or threshold rescue"
+  },
+  "claim_ceiling": "Synthetic spatial-context discrimination for one generic scanner-glare reference only; not a measured GSF, scanner calibration, stock response, inverse correction, visual validation or product profile."
+}
