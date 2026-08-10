@@ -1,19 +1,16 @@
 #!/usr/bin/env python
-"""Fresh-process U6.P6ZE full-frame versus block-FFT glare benchmark."""
+"""Fresh-process U6.P6ZF channel-serial block-FFT glare benchmark."""
 
 from __future__ import annotations
 
 import argparse
 import hashlib
 import json
-import subprocess
 import sys
 from pathlib import Path
-from time import perf_counter, sleep
 from typing import Any
 
 import numpy as np
-import psutil
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
@@ -27,13 +24,16 @@ from scripts.benchmark_u6_p6zd_scanner_glare_streaming import (
     _ratio,
     _sha256,
 )
+from scripts.benchmark_u6_p6ze_scanner_glare_block_fft import _launch
 from src.film_physics.scanner_glare import (
     apply_scanner_glare,
     compile_scanner_glare_kernel,
 )
-from src.film_physics.scanner_glare_block_fft import apply_scanner_glare_block_fft
+from src.film_physics.scanner_glare_channel_serial_fft import (
+    apply_scanner_glare_channel_serial_block_fft,
+)
 
-SCHEMA = "neuro_film.u6_p6ze_scanner_glare_block_fft_contract.v1"
+SCHEMA = "neuro_film.u6_p6zf_scanner_glare_channel_serial_fft_contract.v1"
 
 
 def worker(
@@ -42,13 +42,15 @@ def worker(
     profile, kernel_size = _profile(ROOT)
     kernel = compile_scanner_glare_kernel(profile, kernel_size=kernel_size)
     values = _field(shape, seed)
+    from time import perf_counter
+
     started = perf_counter()
     if algorithm == "fft-2d-reference":
         output = apply_scanner_glare(
             values, kernel, flare_fraction=profile.flare_fraction
         )
-    elif algorithm == "block-fft-streaming":
-        output = apply_scanner_glare_block_fft(
+    elif algorithm == "channel-serial-block-fft":
+        output = apply_scanner_glare_channel_serial_block_fft(
             values,
             kernel,
             flare_fraction=profile.flare_fraction,
@@ -73,69 +75,6 @@ def worker(
     }
 
 
-def _launch(
-    algorithm: str,
-    shape: tuple[int, int, int],
-    output: Path,
-    *,
-    seed: int,
-    row_chunk: int,
-    interval: float,
-    timeout: float,
-    worker_script: Path | None = None,
-) -> dict[str, Any]:
-    output.unlink(missing_ok=True)
-    command = [
-        sys.executable,
-        str(worker_script or Path(__file__).resolve()),
-        "--worker-algorithm",
-        algorithm,
-        "--worker-shape",
-        *[str(value) for value in shape],
-        "--worker-output",
-        str(output),
-        "--seed",
-        str(seed),
-        "--row-chunk",
-        str(row_chunk),
-    ]
-    started = perf_counter()
-    process = subprocess.Popen(
-        command,
-        cwd=ROOT,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        text=True,
-    )
-    monitored = psutil.Process(process.pid)
-    peak_rss = 0
-    timed_out = False
-    while process.poll() is None:
-        try:
-            tree = [monitored, *monitored.children(recursive=True)]
-            peak_rss = max(
-                peak_rss,
-                sum(item.memory_info().rss for item in tree if item.is_running()),
-            )
-        except (psutil.NoSuchProcess, psutil.AccessDenied):
-            pass
-        if perf_counter() - started > timeout:
-            timed_out = True
-            process.kill()
-            break
-        sleep(interval)
-    stdout, stderr = process.communicate()
-    return {
-        "exit_code": process.returncode,
-        "timed_out": timed_out,
-        "wall_seconds": perf_counter() - started,
-        "peak_process_tree_rss_bytes": peak_rss,
-        "stdout": stdout,
-        "stderr": stderr,
-        "result_exists": output.exists(),
-    }
-
-
 def numerical_probe(seed: int, partitions: list[int]) -> dict[str, Any]:
     profile, kernel_size = _profile(ROOT)
     kernel = compile_scanner_glare_kernel(profile, kernel_size=kernel_size)
@@ -146,7 +85,7 @@ def numerical_probe(seed: int, partitions: list[int]) -> dict[str, Any]:
     rows = []
     outputs = []
     for row_chunk in partitions:
-        output = apply_scanner_glare_block_fft(
+        output = apply_scanner_glare_channel_serial_block_fft(
             values,
             kernel,
             flare_fraction=profile.flare_fraction,
@@ -182,7 +121,7 @@ def parent(config_path: Path, output_dir: Path) -> dict[str, Any]:
     raw = config_path.read_bytes()
     config = json.loads(raw.decode("utf-8"))
     if config.get("schema") != SCHEMA:
-        raise ValueError("unsupported U6.P6ZE contract")
+        raise ValueError("unsupported U6.P6ZF contract")
     parent_hashes = {
         key.removesuffix("_path"): _sha256(ROOT / path)
         for key, path in config["parents"].items()
@@ -208,6 +147,7 @@ def parent(config_path: Path, output_dir: Path) -> dict[str, Any]:
             row_chunk=int(config["mechanism"]["row_chunk"]),
             interval=float(benchmark["rss_sample_interval_seconds"]),
             timeout=float(benchmark["worker_timeout_seconds"]),
+            worker_script=Path(__file__).resolve(),
         )
         result = (
             json.loads(result_path.read_text(encoding="utf-8"))
@@ -241,14 +181,14 @@ def parent(config_path: Path, output_dir: Path) -> dict[str, Any]:
         [int(value) for value in config["mechanism"]["functional_row_partitions"]],
     )
     reference = summaries["fft-2d-reference"]
-    candidate = summaries["block-fft-streaming"]
+    candidate = summaries["channel-serial-block-fft"]
     gates = config["automatic_gates"]
     measurements = {
-        "block_fft_to_reference_median_peak_rss_ratio": (
+        "candidate_to_reference_median_peak_rss_ratio": (
             candidate["median_peak_process_tree_rss_bytes"]
             / reference["median_peak_process_tree_rss_bytes"]
         ),
-        "block_fft_to_reference_median_apply_time_ratio": (
+        "candidate_to_reference_median_apply_time_ratio": (
             candidate["median_apply_seconds"] / reference["median_apply_seconds"]
         ),
     }
@@ -270,17 +210,17 @@ def parent(config_path: Path, output_dir: Path) -> dict[str, Any]:
         "partition": probe["maximum_partition_absolute_error"]
         <= float(gates["maximum_partition_absolute_error"]),
         "candidate_memory": candidate["maximum_peak_process_tree_rss_bytes"]
-        <= int(gates["maximum_block_fft_peak_process_tree_rss_bytes"]),
+        <= int(gates["maximum_candidate_peak_process_tree_rss_bytes"]),
         "candidate_memory_ratio": measurements[
-            "block_fft_to_reference_median_peak_rss_ratio"
+            "candidate_to_reference_median_peak_rss_ratio"
         ]
-        <= float(gates["maximum_block_fft_to_reference_median_peak_rss_ratio"]),
+        <= float(gates["maximum_candidate_to_reference_median_peak_rss_ratio"]),
         "candidate_time": candidate["median_apply_seconds"]
-        <= float(gates["maximum_block_fft_median_apply_seconds"]),
+        <= float(gates["maximum_candidate_median_apply_seconds"]),
         "candidate_time_ratio": measurements[
-            "block_fft_to_reference_median_apply_time_ratio"
+            "candidate_to_reference_median_apply_time_ratio"
         ]
-        <= float(gates["maximum_block_fft_to_reference_median_apply_time_ratio"]),
+        <= float(gates["maximum_candidate_to_reference_median_apply_time_ratio"]),
         "repeat_rss": all(
             row["repeat_peak_rss_ratio"]
             <= float(gates["maximum_repeat_peak_rss_ratio"])
@@ -312,7 +252,7 @@ def parent(config_path: Path, output_dir: Path) -> dict[str, Any]:
         json.dumps(stable_core, sort_keys=True, separators=(",", ":")).encode("ascii")
     ).hexdigest()
     report = {
-        "schema": "neuro_film.u6_p6ze_scanner_glare_block_fft_report.v1",
+        "schema": "neuro_film.u6_p6zf_scanner_glare_channel_serial_fft_report.v1",
         "node": config["node"],
         "contract_sha256": hashlib.sha256(raw).hexdigest(),
         "parent_hashes": parent_hashes,
@@ -335,7 +275,7 @@ def main() -> None:
     parser.add_argument(
         "--config",
         type=Path,
-        default=Path("configs/u6_p6ze_scanner_glare_block_fft_v1.json"),
+        default=Path("configs/u6_p6zf_scanner_glare_channel_serial_fft_v1.json"),
     )
     parser.add_argument("--output-dir", type=Path)
     parser.add_argument("--worker-algorithm")
