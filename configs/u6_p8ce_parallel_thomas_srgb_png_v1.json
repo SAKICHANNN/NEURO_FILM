@@ -1,0 +1,44 @@
+{
+  "schema": "neuro_film.u6_p8ce_parallel_thomas_srgb_png_contract.v1",
+  "experiment_id": "u6.p8ce-parallel-thomas-srgb-png-v1",
+  "node": "ULT > U6 > U6.P8 > U6.P8CE",
+  "date_frozen": "2026-08-10",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Does the retained P8CD scheduler preserve the exact P8CC PNG while materially reducing complete 12MP compute-plus-encode wall time?",
+  "parents": {
+    "p8cc_evidence": {
+      "path": "docs/evidence/U6_P8CC_NATIVE_THOMAS_SRGB_PNG_STREAM_RESULT.json",
+      "sha256": "641c5ee9270d5095904c9c0c1c5d9a872dcc0f805a9d1d47406492b73363d8a3",
+      "required_decision": "retain_exact_native_thomas_srgb_png_stream",
+      "reference_maximum_wall_seconds": 15.8363251999981,
+      "reference_png_sha256": "9484eeecaa88be773451cd052be359a76a098d8495473c5f360167318fc847f8"
+    },
+    "p8cd_evidence": {
+      "path": "docs/evidence/U6_P8CD_NATIVE_THOMAS_PARALLEL_QUANTIZED_SINK_RESULT.json",
+      "sha256": "c4fc3d0b26dee7dd519e355775287978145c31e96b152f9cf874d59a4953f209",
+      "required_decision": "retain_exact_parallel_native_thomas_quantized_sink"
+    }
+  },
+  "candidate": {
+    "p8cc_encoder_unchanged": true,
+    "p8cd_scheduler_unchanged": true,
+    "row_partition": 128,
+    "bit_depths": [8, 16],
+    "full_output_allowed": false,
+    "model_profile_or_sample_change_allowed": false
+  },
+  "performance": {
+    "shape_chw": [3, 3000, 4000],
+    "primary_bit_depth": 16,
+    "maximum_wall_seconds": 13.5,
+    "maximum_wall_ratio_vs_p8cc": 0.86,
+    "maximum_process_tree_rss_bytes": 470000000,
+    "maximum_repeat_wall_ratio": 1.25,
+    "maximum_repeat_rss_ratio": 1.10,
+    "require_two_fresh_processes": true,
+    "require_exact_p8cc_png_identity": true
+  },
+  "decision_if_pass": "retain_exact_parallel_native_thomas_srgb_png",
+  "decision_if_fail": "close_parallel_png_composition_and_retain_p8cc",
+  "claim_ceiling": "Host-only exact generic Thomas-to-sRGB PNG performance result; not device runtime, calibrated stock response, product authorization or general media support."
+}
