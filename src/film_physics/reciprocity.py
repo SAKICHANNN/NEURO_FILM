@@ -118,8 +118,86 @@ class DocumentedIdentityInterval:
         return metered.copy()
 
 
+@dataclass(frozen=True)
+class IntensityConditionedReciprocityProfile:
+    """A bounded explicit exponent field over current incident rate."""
+
+    profile_id: str
+    bright_exponent: float
+    dark_exponent: float
+    log2_pivot_rate: float
+    log2_transition_width: float
+    reference_time_seconds: float = 1.0
+
+    def __post_init__(self) -> None:
+        if not self.profile_id:
+            raise ReciprocityDomainError("profile_id must be non-empty")
+        for name, value in (
+            ("bright_exponent", self.bright_exponent),
+            ("dark_exponent", self.dark_exponent),
+        ):
+            if not np.isfinite(value) or value < 1.0:
+                raise ReciprocityDomainError(f"{name} must be finite and at least one")
+        if not np.isfinite(self.log2_pivot_rate):
+            raise ReciprocityDomainError("log2_pivot_rate must be finite")
+        if (
+            not np.isfinite(self.log2_transition_width)
+            or self.log2_transition_width <= 0.0
+        ):
+            raise ReciprocityDomainError(
+                "log2_transition_width must be positive and finite"
+            )
+        if (
+            not np.isfinite(self.reference_time_seconds)
+            or self.reference_time_seconds <= 0.0
+        ):
+            raise ReciprocityDomainError(
+                "reference_time_seconds must be positive and finite"
+            )
+
+    def exponent_for_rate(self, incident_rate: ArrayLike) -> NDArray[np.float64]:
+        rate = _positive_finite(incident_rate, name="incident_rate")
+        coordinate = (
+            np.log2(rate) - self.log2_pivot_rate
+        ) / self.log2_transition_width
+        dark_weight = 1.0 / (1.0 + np.exp(np.clip(coordinate, -80.0, 80.0)))
+        return self.bright_exponent + (
+            self.dark_exponent - self.bright_exponent
+        ) * dark_weight
+
+    def effective_time_seconds(
+        self,
+        incident_rate: ArrayLike,
+        physical_time_seconds: ArrayLike,
+    ) -> NDArray[np.float64]:
+        rate = _positive_finite(incident_rate, name="incident_rate")
+        physical = _positive_finite(
+            physical_time_seconds, name="physical_time_seconds"
+        )
+        exponent = self.exponent_for_rate(rate)
+        reference = self.reference_time_seconds
+        return np.where(
+            physical <= reference,
+            physical,
+            reference * np.power(physical / reference, 1.0 / exponent),
+        )
+
+    def effective_exposure(
+        self,
+        incident_rate: ArrayLike,
+        physical_time_seconds: ArrayLike,
+    ) -> NDArray[np.float64]:
+        rate = _positive_finite(incident_rate, name="incident_rate")
+        return np.multiply(
+            rate,
+            self.effective_time_seconds(rate, physical_time_seconds),
+            dtype=np.float64,
+        )
+
+
 __all__ = [
     "DocumentedIdentityInterval",
+    "IntensityConditionedReciprocityProfile",
     "PowerReciprocityProfile",
     "ReciprocityDomainError",
 ]
