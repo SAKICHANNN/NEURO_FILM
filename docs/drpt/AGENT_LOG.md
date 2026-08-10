@@ -10901,5 +10901,6 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 ## 2026-08-10 - U6.P8BZ exact interleaved sink passes
 
 - Exactness: MSVC/LLVM HWC tile reassembly equals P8BW pixels and raw means exactly; order and injected sink failure pass.
+- U6.P8CA now composes those exact scan-linear tiles through the existing P8AG neutral-axis gauge. Full-array bytes, dual-compiler rows, failure atomicity and order pass; two 12MP runs peak at 418.32-418.62MB and take 11.58-12.15s. Output remains display-linear and unquantized.
 - Resource result: two 12MP runs emit 24 tiles at 409,948,160-410,091,520 bytes peak and 9.31-9.55s; bounded workspace is 22,528,000 bytes.
 - Decision: retain this as the one-final-quantization/encoder ingress boundary. No encoder, device or product claim opens yet.
