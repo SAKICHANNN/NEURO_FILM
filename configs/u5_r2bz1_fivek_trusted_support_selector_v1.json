@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bz1-fivek-trusted-support-selector-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BZ1",
+  "status": "contract_frozen_implementation_ready",
+  "question": "With the BZ0 scorer, split, explicit operator and FedPAIE objective unchanged, does hard restriction to the scorer's exact trusted-support bank make per-source selection safe and materially outperform the K=1 fixed trusted operator?",
+  "parent": {
+    "contract": "configs/u5_r2bz0_fedpaie_proxy_exploitation_control_v1.json",
+    "contract_sha256": "b0268ded1be3e348746c31f13426930d150c470a173b52cc7d63d37159cdfbc6",
+    "evidence": "docs/evidence/U5_R2BZ0_FEDPAIE_PROXY_EXPLOITATION_CONTROL_RESULT.json",
+    "evidence_sha256": "b047f3af8839456eac2d244a8b95a47b49da1c42a02675f93f3b66bf4679336e",
+    "required_decision": "close_exact_excess_gap_control_without_transfer_claim",
+    "required_failed_gate": "full_true_gain_is_positive",
+    "required_fixed_trusted_hidden_mean_gain": 0.3454850484806341
+  },
+  "frozen_reuse": {
+    "data_manifest": true,
+    "split_seed_and_counts": true,
+    "decode_side": true,
+    "operator_family_and_bounds": true,
+    "trusted_candidate_seed_and_count": true,
+    "scorer_features_and_ridge": true,
+    "objective_weights_and_gap_tolerance": true,
+    "hidden_test_rows": true
+  },
+  "only_change": {
+    "search_bank": "the exact 96-member BZ0 trusted-support bank",
+    "broad_512_member_bank_used_for_selection": false,
+    "projection_or_refit": false,
+    "source_specific_selector": "hard argmin with candidate-index tie break"
+  },
+  "comparators": {
+    "primary": "fidelity_plus_gap trusted-support hard selector",
+    "fixed_k1": "fit-target-selected fixed trusted-support candidate from BZ0",
+    "proxy_only": "same trusted bank without fidelity or gap",
+    "oracle": "per-source hidden-target argmax within the trusted bank, diagnostic only",
+    "identity": "no-op"
+  },
+  "evaluation": {
+    "primary_split": "hidden_test",
+    "minimum_oracle_mean_gain_advantage_over_fixed_k1": 0.05,
+    "minimum_primary_mean_gain_advantage_over_fixed_k1": 0.01,
+    "minimum_primary_win_fraction_over_fixed_k1": 0.55,
+    "maximum_primary_p95_rmse_ratio_to_fixed_k1": 0.98,
+    "minimum_primary_worst_gain_advantage_over_fixed_k1": 0.0,
+    "maximum_primary_mean_positive_proxy_excess": 0.05,
+    "maximum_new_boundary_fraction": 0.0,
+    "require_repeat_exact": true
+  },
+  "branch_rules": {
+    "oracle_gap_fails": "retain the fixed K=1 trusted operator because the bank has insufficient per-source routing value",
+    "primary_fails": "retain fixed K=1; the frozen scorer does not earn routing even inside support, and no scorer/candidate/weight/gate rescue is allowed",
+    "passes": "retain trusted-support hard selection only as a digital-retouch development candidate; require disjoint confirmation before visual or product consideration"
+  },
+  "forbidden": [
+    "change the BZ0 scorer, features, Ridge alpha, split or paper coefficients",
+    "add candidates, refit candidates or project broad-bank candidates into support",
+    "use validation or hidden targets in source-specific selection",
+    "tune a router after hidden results",
+    "claim film, stock, preference, calibration or product evidence"
+  ],
+  "claim_ceiling": "FiveK digital-retouch K=1-versus-trusted-support hard-selection evidence for bounded explicit parameters only; not film, stock, preference, calibration or product evidence"
+}
