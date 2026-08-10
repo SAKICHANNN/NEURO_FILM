@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import ctypes
 import hashlib
 import json
@@ -375,6 +376,20 @@ def _monitored(
     }
 
 
+def _stable_payload(report: dict[str, Any]) -> dict[str, Any]:
+    stable = copy.deepcopy(report)
+    for build in stable["conformance"]["toolchains"].values():
+        build.pop("dll_path", None)
+    for row in stable["performance"]["runs"]:
+        row["worker"].pop("wall_seconds", None)
+        row.pop("peak_process_tree_rss_bytes", None)
+    stable["performance"].pop("wall_seconds", None)
+    stable["performance"].pop("peak_process_tree_rss_bytes", None)
+    stable["performance"].pop("wall_repeat_ratio", None)
+    stable["performance"].pop("rss_repeat_ratio", None)
+    return stable
+
+
 def evaluate(contract_path: Path, output_dir: Path, llvm: Path) -> dict[str, Any]:
     contract = _json(contract_path)
     _validate_contract(contract)
@@ -427,16 +442,7 @@ def evaluate(contract_path: Path, output_dir: Path, llvm: Path) -> dict[str, Any
         ),
         "claim_ceiling": contract["claim_ceiling"],
     }
-    stable = dict(report)
-    for build in stable["conformance"]["toolchains"].values():
-        build.pop("dll_path", None)
-    for row in stable["performance"]["runs"]:
-        row["worker"].pop("wall_seconds", None)
-        row.pop("peak_process_tree_rss_bytes", None)
-    stable["performance"].pop("wall_seconds", None)
-    stable["performance"].pop("peak_process_tree_rss_bytes", None)
-    stable["performance"].pop("wall_repeat_ratio", None)
-    stable["performance"].pop("rss_repeat_ratio", None)
+    stable = _stable_payload(report)
     report["stable_evidence_id"] = hashlib.sha256(canonical_bytes(stable)).hexdigest()
     return report
 
