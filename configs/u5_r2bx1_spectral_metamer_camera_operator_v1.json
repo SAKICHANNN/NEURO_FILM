@@ -1,0 +1,52 @@
+{
+  "schema": "neuro_film.u5_r2bx1_spectral_metamer_camera_operator_contract.v1",
+  "experiment_id": "U5.R2BX1",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Do two positive illuminant spectra that are exactly metameric to a fixed synthetic observer require materially different white-balanced camera-to-observer explicit colour operators on held reflectances, proving that white-point chromaticity alone is not an identifying source-normalization observation?",
+  "parent": {
+    "decision": "configs/u5_r2bx0_c2lut_chromaticity_identifiability_decision_v1.json",
+    "sha256": "3ea0bf11d69379ef8377d814878daad2cb917df5b1b57c95be68d3f095456ca9",
+    "required_decision": "retain_capacity_close_underpowered_metamer_fixture"
+  },
+  "primary_source": {
+    "title": "Illuminant-Adaptive 3D Lookup Tables for Camera Color Correction",
+    "url": "https://arxiv.org/abs/2607.11681",
+    "paper_identity": "arXiv:2607.11681",
+    "mechanism_used": "normalized illuminant white-point descriptor conditions an explicit camera colour operator",
+    "mechanism_not_used": "paper code, data, cameras, spectra, Tucker implementation, neural weights or final-RGB prediction"
+  },
+  "fixture": {
+    "seed": 62181,
+    "wavelength_start_nm": 400,
+    "wavelength_stop_nm": 700,
+    "wavelength_step_nm": 5,
+    "development_reflectance_count": 384,
+    "confirmation_reflectance_count": 192,
+    "reflectance_basis_count": 12,
+    "null_seed_cycles": [1.0, 2.0, 3.0, 5.0],
+    "illuminant_minimum": 0.08,
+    "null_amplitude_fraction_of_positive_limit": 0.8,
+    "operator": "white-balanced camera RGB to normalized synthetic-observer XYZ 3x3 matrix fitted by development-only least squares",
+    "shared_control": "one pooled 3x3 matrix fitted to both illuminants because their observer chromaticity descriptors are identical",
+    "oracle": "one independently fitted 3x3 matrix per illuminant; illuminant identity is used only by this diagnostic oracle"
+  },
+  "gates": {
+    "maximum_observer_white_xyz_difference": 1e-12,
+    "maximum_observer_chromaticity_difference": 1e-12,
+    "minimum_illuminant_relative_rms_difference": 0.2,
+    "minimum_camera_white_relative_difference": 0.01,
+    "maximum_oracle_confirmation_rmse_each": 0.08,
+    "minimum_operator_relative_frobenius_distance": 0.01,
+    "minimum_shared_confirmation_error_penalty_each": 0.05,
+    "minimum_shared_confirmation_error_penalty_median": 0.1,
+    "maximum_target_reads_before_operator_freeze": 0,
+    "two_byte_identical_runs": true
+  },
+  "stop_rules": [
+    "Do not alter observer curves, camera sensitivities, null seed, amplitude, reflectance generator, split, operator family or thresholds after any score.",
+    "Any nonpositive illuminant, observer-white mismatch, target leakage or failed oracle-quality gate closes this exact fixture.",
+    "A pass establishes only an information-theoretic synthetic source-normalization limitation; it does not falsify C2LUT on its datasets or imply that every real illuminant metamer is material.",
+    "Do not map this result to film stock, photographic quality, a product profile or a learned final-RGB path."
+  ],
+  "claim_ceiling": "Synthetic spectral-integration evidence that observer white-point chromaticity can be insufficient to identify a camera colour-correction operator; not real camera calibration, real illuminant prevalence, film/stock response or product promotion."
+}
