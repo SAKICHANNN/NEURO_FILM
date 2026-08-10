@@ -1,0 +1,42 @@
+{
+  "automatic_pass": true,
+  "claim_ceiling": "Synthetic typed composition-order evidence using the existing generic sensitometry curve only; not measured flicker, film-stock response, scanner behavior, rendered video quality or product integration.",
+  "contract_sha256": "85b9bccd3a1edbfaf3a5066f8f4fb6e5273dedcb7e3b349de42570afd558239e",
+  "decision": "retain pre-development exposure composition and forbid post-development brightness emulation in the physical video chain",
+  "exposure_sample_count": 33,
+  "formal_replay_count": 2,
+  "formal_report_sha256": "100c3cbab6420acd31ce0d0d0f0348de2da2d413961df4b8278d0ee0a694bd90",
+  "frame_count_scored": 3584,
+  "gate_results": {
+    "all_values_finite": true,
+    "correct_order_partition_byte_exact": true,
+    "correct_order_replay_byte_exact": true,
+    "density_boundary_violation_count_maximum": true,
+    "maximum_correct_order_implied_stop_error": true,
+    "minimum_wrong_order_p50_implied_stop_span": true,
+    "minimum_wrong_order_p95_implied_stop_span": true,
+    "minimum_wrong_order_p95_maximum_stop_error": true,
+    "parent_hashes_exact": true,
+    "scanner_or_display_transform_count_zero": true,
+    "zero_offset_density_identity_exact": true
+  },
+  "measurements": {
+    "all_values_finite": true,
+    "correct_order_partition_byte_exact": true,
+    "correct_order_replay_byte_exact": true,
+    "density_boundary_violation_count": 0,
+    "maximum_correct_order_implied_stop_error": 3.316791286067655e-15,
+    "parent_hashes_exact": true,
+    "scanner_or_display_transform_count_zero": true,
+    "wrong_order_maximum_implied_stop_span": 0.294625701439627,
+    "wrong_order_maximum_stop_error": 0.256640617892657,
+    "wrong_order_p50_implied_stop_span": 0.0637198544018027,
+    "wrong_order_p95_implied_stop_span": 0.19225269394242508,
+    "wrong_order_p95_maximum_stop_error": 0.16227915478535215,
+    "zero_offset_density_identity_exact": true
+  },
+  "p9e_stable_evidence_id": "1c9b5204ad752e0e98e7ead146299c978df54817aadd1aa03f31fbe000eeb9e1",
+  "schema": "neuro_film.u6_p9f_exposure_development_order_report.v1",
+  "sensitometry_config_sha256": "8f43edcbc7e168af830081dce16ecb5f268a294d2f0cd777b942aec4b95c8af2",
+  "stable_evidence_id": "896be5596fd53d78ac98f611ea2682b503c9eebcd83b62667bd820956591f1f7"
+}

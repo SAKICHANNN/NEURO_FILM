@@ -10530,3 +10530,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   variance grows `3.07x` while the candidate remains stationary.
 - Retain only synthetic mechanism capacity. Measured camera/projector/scanner
   flicker, rendered video quality and product readiness remain unclaimed.
+
+# 2026-08-10 - U6.P9F verifies pre-development exposure ordering
+
+- Composed the unchanged P9E trajectory before the existing U2.2 generic
+  sensitometry curve and challenged it with a post-development density offset
+  matched at one frozen exposure.
+- Two reports are exact (`100c3cba...bd90`). Correct ordering recovers one
+  common temporal offset within `3.32e-15` stops; the wrong ordering creates
+  P50/P95 exposure-dependent spans of `.06372/.19225` stops and P95 maximum
+  error `.16228`.
+- Physical video composition must vary layer exposure before development.
+  This is synthetic order evidence, not a measured stock or flicker profile.
