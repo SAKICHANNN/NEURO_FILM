@@ -1,0 +1,45 @@
+{
+  "schema": "neuro_film.u6_p9a_gate_weave_ou_evidence.v1",
+  "node": "U6.P9A",
+  "decision": "retain_deterministic_bounded_gate_weave_trajectory_primitive",
+  "software_commit": "cd7e1f9a",
+  "bindings": {
+    "contract": {
+      "path": "configs/u6_p9a_gate_weave_ou_v1.json",
+      "sha256": "bb91ba107b00ca71ce178538b9f9e0290804208f06a97082acaae0738d27c564"
+    },
+    "primitive": {
+      "path": "src/film_physics/gate_weave.py",
+      "sha256": "e66564ef989f4fe2713acd77629e3800a5c9faa35e6d02c6762d8c4cec86a864"
+    },
+    "evaluator": {
+      "path": "src/eval/gate_weave_ou.py",
+      "sha256": "ec5645d7e523242021138625bcd696aad0db0d177fe6f231bf6b0634d9c9b391"
+    },
+    "report": {
+      "path": "outputs/experiments/u6_p9a_gate_weave_ou_v1/run_1.json",
+      "sha256": "b0b710347109d56cf57e5a1df6f60d839cceee2f7d376316d30d34879874855d",
+      "stable_evidence_id": "bec856b5e30b77aa41e692a3ed76f2947f431798333df3fc1b5edffa80b84b2a"
+    }
+  },
+  "results": {
+    "automatic_pass": true,
+    "two_reports_byte_exact": true,
+    "full_vs_partition_byte_exact": true,
+    "coordinate_clip_fraction": 0.0,
+    "stationary_mean_x_y_pixels": [0.01578146329238891, -0.04335150729898526],
+    "stationary_lag1_x_y": [0.9203593979954511, 0.9370838113354657],
+    "stationary_std_over_profile_sigma_x_y": [1.0297396264788463, 1.005254280673364],
+    "theta_y_span": 0.04846732834180997,
+    "ou_late_to_early_variance_ratio": 0.7496288450244314,
+    "random_walk_late_to_early_ensemble_variance_ratio": 4.538529011269044,
+    "pixel_render_count": 0
+  },
+  "interpretation": [
+    "The clean-room bounded OU trajectory reproduces exactly under complete replay and arbitrary state-handoff partitions because all innovations are indexed by absolute transition coordinates.",
+    "The trajectory is finite, remains inside explicit crop padding with zero coordinate clipping on the frozen fixture, and is mean-reverting rather than a nonstationary random walk.",
+    "This opens only a separate crop/resampling semantics experiment. It does not establish measured film-gate motion, rendered temporal quality, stock identity or product readiness."
+  ],
+  "next_leaf": "Test explicit integer-crop and subpixel resampling semantics separately with synthetic chart controls and no hidden geometry rewrite.",
+  "claim_ceiling": "Synthetic deterministic gate-weave trajectory capacity only; not measured film motion, restoration quality, rendered video quality, temporal product readiness or stock calibration."
+}

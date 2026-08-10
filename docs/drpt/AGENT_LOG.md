@@ -10472,3 +10472,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   per-time normalization is ill-conditioned at `1.469e8`.
 - Require one absolute density/transmittance anchor shared across exposure
   times. Close further synthetic reciprocity capacity until real data exists.
+
+# 2026-08-10 - U6.P9A adds deterministic bounded gate weave
+
+- Clean-roomed the horizontal and time-varying vertical OU equations from the
+  July-2026 AbsoluteDegradation paper into an explicit counter-driven state
+  trajectory; no paper code, model, data or restoration network is used.
+- Two reports are exact (`b0b71034...855d`). Complete replay and arbitrary
+  state-handoff partitions are byte-identical; clip fraction is zero, lag-1 is
+  `.9204/.9371`, and the matched random-walk ensemble variance grows `4.54x`.
+- Retain only trajectory capacity. Pixel crop/resampling and rendered temporal
+  quality remain separate leaves; no measured gate, stock or product claim.
