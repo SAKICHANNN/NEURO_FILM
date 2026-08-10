@@ -1,0 +1,88 @@
+{
+  "schema": "neuro_film.u6_p4ci_official_newson_first_channel_gaussian_lod_result.v1",
+  "experiment_id": "u6.p4ci-official-newson-first-channel-gaussian-lod-v1",
+  "date": "2026-08-10",
+  "contract_commit": "df0e6759",
+  "implementation_commits": ["d52e2e55", "054563e5", "a946505d"],
+  "source_lock_sha256": "43e8ad0abf2a880e9fcacbcd7a33d37e27c0d6dba6fb225462410e82104fe8cc",
+  "source_lock_id": "acad56dec69d178085ada144b7269f60ea02954527d64c2db9ad314d1d86be10",
+  "report_sha256": "701f17960820685d1b7d975863bd6149a77163c740239ec3007f53d2e1a8910b",
+  "report_id": "fe2fecca817204fb4dc435fc05305afbc95e63bc35c50b3818d8ed5b64ed0553",
+  "two_full_runs_byte_identical": true,
+  "source": {
+    "official_repository_commit": "865c4940040531db5f9308177b077dcfe3ea122e",
+    "archive_version": 1,
+    "archive_content_length_bytes": 2354389185,
+    "archive_etag_md5": "10e6f5442bbeaa82cb1e21ae1e938769",
+    "selected_rows": 64,
+    "selected_rows_per_radius": 16,
+    "p4ch_indices_reused": 0,
+    "member_compressed_bytes": 20812001,
+    "member_uncompressed_bytes": 21668566,
+    "clean_to_grain_modes": "L-to-RGB",
+    "channel_semantics": "exact channel index 0, then first-row/first-column drop matching the official loader"
+  },
+  "maximum_periodogram_relative_error": 1.3902228431602255e-15,
+  "radius_results": [
+    {
+      "radius": 0.05,
+      "median_family_distance_ratio": 90.15486348734478,
+      "family_median_distance_ratios": {
+        "marginal_quantiles": 107.08273785409838,
+        "local_rms_quantiles": 119.56750474719024,
+        "excursion_topology": 10.218669575358966
+      },
+      "median_residual_rms": 0.027623331778607034,
+      "median_output_boundary_fraction": 0.0
+    },
+    {
+      "radius": 0.2,
+      "median_family_distance_ratio": 25.420871799419743,
+      "family_median_distance_ratios": {
+        "marginal_quantiles": 25.420871799419743,
+        "local_rms_quantiles": 61.14415054119569,
+        "excursion_topology": 4.557107493863875
+      },
+      "median_residual_rms": 0.05052536206831597,
+      "median_output_boundary_fraction": 0.0002935581425598335
+    },
+    {
+      "radius": 0.4,
+      "median_family_distance_ratio": 10.568578963344638,
+      "family_median_distance_ratios": {
+        "marginal_quantiles": 10.568578963344638,
+        "local_rms_quantiles": 33.16446168143325,
+        "excursion_topology": 2.601537088251594
+      },
+      "median_residual_rms": 0.09287480988746395,
+      "median_output_boundary_fraction": 0.027640475280740547
+    },
+    {
+      "radius": 0.8,
+      "median_family_distance_ratio": 5.040710137177631,
+      "family_median_distance_ratios": {
+        "marginal_quantiles": 10.685720944976058,
+        "local_rms_quantiles": 14.583027530698924,
+        "excursion_topology": 1.9523868902976313
+      },
+      "median_residual_rms": 0.17846986807097442,
+      "median_output_boundary_fraction": 0.03534505208333333
+    }
+  ],
+  "gates": {
+    "row_counts": true,
+    "periodogram_exact": true,
+    "large_radius_divergence": true,
+    "small_radius_adequacy": false,
+    "scale_separation": false
+  },
+  "decision": "close_official_newson_gaussian_lod_boundary_without_rescue",
+  "interpretation": [
+    "The exact-spectrum Gaussian control fails higher-order equivalence at all four radii; the frozen unresolved-radius adequacy claim is not supported.",
+    "Distance ratios decrease rather than increase with radius. The zero-boundary smallest-radius rows are the most non-Gaussian, so clipping does not explain the failure.",
+    "A likely but unproved explanation is that 8-bit output quantization dominates weak small-radius residuals. The archive cannot identify a product LOD transition without a higher-precision or real physical observable."
+  ],
+  "implementation_correction": "The first two scientifically identical runs differed only because transient HTTP retry count was included in source_lock_id. Structured diff proved every member hash, pixel-derived value, feature and gate exact. Retry count was removed from scientific identity, then two fresh full runs produced exact source-lock and report bytes.",
+  "next_action": "Do not add a Boolean/explicit-geometry product LOD from this source. Retain the P4BS real-scan Gaussian second-order mechanism and seek a higher-bit-depth independently calibrated or real physical observable before revisiting geometry.",
+  "claim_ceiling": "Bounded CC-BY-NC synthetic Newson-simulator evidence under the official first-channel loader; not measured film, stock/process/scanner calibration, visual safety or product admission."
+}

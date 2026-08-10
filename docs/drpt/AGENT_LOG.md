@@ -10852,3 +10852,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   decoder therefore failed closed with zero evaluated rows and no report.
 - P4CH will not be rescued. A disjoint cohort may test the same scientific
   question only under the official loader's explicit first-channel behavior.
+
+### U6.P4CI disjoint official first-channel LOD result
+
+- Froze 64 new test rows with zero P4CH index reuse and downloaded only 20.8MB
+  of selected compressed members. All pairs are clean `L` to grain `RGB`; the
+  exact official loader channel 0 and crop semantics were used.
+- Two fresh full runs have identical source lock (`43e8ad0a...fe8cc`) and
+  report (`701f1796...910b`). Gaussian periodograms match to `1.39e-15`.
+- The hypothesized boundary fails: median higher-order distance ratios are
+  `90.15/25.42/10.57/5.04x` at radii `.05/.2/.4/.8`. Small-grain adequacy and
+  increasing scale separation both fail; the smallest-radius median clipping
+  fraction is zero, so clipping is not the explanation.
+- The 8-bit synthetic archive cannot authorize a Gaussian-to-geometry LOD.
+  Retain P4BS's real-scan Gaussian mechanism and require a higher-precision or
+  real calibrated physical observable before reopening explicit geometry.
