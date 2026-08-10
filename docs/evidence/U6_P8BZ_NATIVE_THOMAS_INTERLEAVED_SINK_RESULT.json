@@ -1,0 +1,41 @@
+{
+  "schema": "neuro_film.u6_p8bz_native_thomas_interleaved_sink_evidence.v1",
+  "experiment_id": "u6.p8bz-native-thomas-interleaved-sink-v1",
+  "status": "pass-retain-exact-native-thomas-interleaved-sink",
+  "contract_sha256": "5f3f30e4db861b8a8556c5786fb291f7b9b5ddefa8601044b993bcd76d879ddd",
+  "implementation": {
+    "commits": ["55351ae8", "f2297253"],
+    "host_binding_sha256": "182bc9b154905ffe9d393242d9adaf85a88319f8e976e0cdffa91e8ff0ceb1a2",
+    "formal_runner_sha256": "85b93eb5439084d83689341955cb10af3e341baabb64e1d3160b21de11571d43",
+    "test_sha256": "b59a542dda8003bcb195c6f7dd594cf888d38bb1c1684e06107a72ed13df382c"
+  },
+  "conformance": {
+    "dual_windows_compilers": ["msvc-x64-c11", "llvm-mingw-20260616-clang-22.1.8-x64"],
+    "exact_p8bw_pixels_after_hwc_reassembly": true,
+    "exact_raw_field_means": true,
+    "strict_increasing_row_order": true,
+    "sink_failure_propagation": true,
+    "input_immutability": true,
+    "output_hwc_sha256": "eaf58d75298740ed12b4cb1f3a4f0697817917a4956c51c2d6a0bef24fe5d58c",
+    "channel_sha256": [
+      "41bca434100c628d459f06a9a2115f6196665ae7bc44779c0de55c1cdff955c0",
+      "acb14ed99502a5ad3d8ec9f26f98c8131ffc43f43d2a01e8cf5e740867e516af",
+      "871f152f9454343969f4cdcabbfa7b242128beedc2f7cc9631d57483d9a5d8fe"
+    ]
+  },
+  "performance_12mp_rgb": {
+    "shape_chw": [3, 3000, 4000],
+    "sink_calls": 24,
+    "two_fresh_wall_seconds": [9.313903599999321, 9.548969600000419],
+    "two_fresh_peak_process_tree_rss_bytes": [409948160, 410091520],
+    "bounded_workspace_bytes": 22528000,
+    "maximum_rss_gate_bytes": 430000000,
+    "wall_gate_seconds": 12.5,
+    "fresh_stream_exact": true
+  },
+  "formal_report_sha256": "05e46529ab59fc2bd626abadc7391de1e4d228d41de2ad1bd7b6fbcc7fc7da88",
+  "stable_evidence_id": "cadfa95dc63c88078c9b547dc40c465e0eedf4c1fb3705265739662c89022eee",
+  "decision": "retain_exact_native_thomas_interleaved_sink",
+  "retained_boundary": "The sink publishes increasing-row contiguous HWC float32 tiles and retains no full output channel. Final quantization and durable encoding remain separate.",
+  "claim_ceiling": "Interleaved non-retaining host sink for unchanged generic P8BW arithmetic only; not quantization, an image encoder, mobile runtime, calibrated stock profile or product authorization."
+}
