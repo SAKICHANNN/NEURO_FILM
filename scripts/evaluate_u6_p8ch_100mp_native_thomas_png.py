@@ -5,14 +5,17 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 from typing import Any
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from scripts import evaluate_u6_p8cg_24mp_native_thomas_png as p8cg
 from src.eval.native_msvc import sha256_file
 from src.eval.native_thomas_field_conformance import canonical_bytes
-
-ROOT = Path(__file__).resolve().parents[1]
 
 
 def _validate_contract(contract: dict[str, Any]) -> None:
