@@ -10806,3 +10806,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   published constants miss held density at `.22135/.51338` RMSE/max; a
   development-only two-parameter refit reaches `.05571/.10714` and passes.
   This is one historical scanner workflow and not independent confirmation.
+
+### U6.P6AL typed scanner log-OECF profile
+
+- Compiled the P6AK development refit into a strict research profile with an
+  evidence-bound identity, bounded density inverse and no product authority.
+- Two formal reports are byte-exact (`fda99300...5087`). Exhaustive 16-bit
+  code validation and a 4,097-point density sweep give maximum roundtrip
+  errors `1.10e-11` and `8.89e-16`; serialization and identity are exact.
+- The result remains one historical Epson 12000XL workflow. Independent source
+  confirmation is still required before any wider scanner claim.

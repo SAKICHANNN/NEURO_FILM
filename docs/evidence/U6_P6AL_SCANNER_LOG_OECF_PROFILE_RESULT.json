@@ -1,0 +1,44 @@
+{
+  "schema": "neuro_film.u6_p6al_scanner_log_oecf_profile_evidence.v1",
+  "experiment_id": "u6.p6al-scanner-log-oecf-profile-v1",
+  "status": "pass-exact-workflow-typed-log-oecf-profile",
+  "decision": "retain_research_only_scanner_log_oecf_profile",
+  "contract_commit": "f0850306d86d274f0006f1a3469e6aafc5f4f7e3",
+  "implementation_commit": "420cdcf7c641364eb6acfc08b178b3ede253c205",
+  "runner_fix_commit": "8566baaf512a2d89eaa9092a316bb0ab10b33a2d",
+  "contract_sha256": "a11d858364808fd82d8cbe5ec9ede951f18b43809c64e26b0e40d9c79fe0f1b1",
+  "profile_module_sha256": "9a3d1ed533eca9727f5a8223f53340ff1809d3fc919907f3e6f8b8b488497a86",
+  "evaluator_sha256": "d0cf750c6afe22acb8c337be841eb8127849376a361221858016d7d130cff7d9",
+  "runner_sha256": "3a8e2032f46b67b808c961c09c4923157cd5753600999d18aa86776a37dd180d",
+  "parent_evidence_sha256": "ea6dc9af0a6bd12d96e442f5e705edb033e1a4b91b0f8ea3dd69a5de8aeb3494",
+  "formal_report_sha256": "fda9930091f0a09c7baafd6111a506980009ecf2268e61f98040bfaa76c75087",
+  "two_independent_reports_byte_exact": true,
+  "profile_sha256": "9a66b56c0917b6b7022a88b9e2c1b5e8e7e85bc3924b9fc129c6063ef2059b3e",
+  "profile": {
+    "black_code": 2341.2112744450556,
+    "gamma": 1.4157742735467813,
+    "maximum_code": 65535.0,
+    "minimum_calibrated_density": 0.06,
+    "maximum_calibrated_density": 3.08,
+    "independent_confirmation": false,
+    "production_eligible": false
+  },
+  "verification": {
+    "integer_codes_preflighted": 65536,
+    "valid_integer_codes": 63194,
+    "calibrated_integer_codes": 59005,
+    "valid_code_domain_strictly_decreasing_density": true,
+    "calibrated_code_roundtrip_max_abs_error": 1.0913936421275139e-11,
+    "calibrated_density_grid_points": 4097,
+    "calibrated_density_roundtrip_max_abs_error": 8.881784197001252e-16,
+    "serialization_byte_exact": true,
+    "identity_byte_exact": true,
+    "invalid_inputs_fail_closed": true
+  },
+  "interpretation": [
+    "P6AK's development-only two-parameter logarithmic OECF is now a typed, deterministic, reversible research profile rather than an unstructured report value.",
+    "The valid logarithmic code domain is exhaustive over all 65,536 integer codes; calibrated density inversion is restricted to 0.06 through 3.08 and does not extrapolate.",
+    "This compilation adds no independent scanner evidence and does not change the default scanner chain or authorize product use."
+  ],
+  "claim_ceiling": "Typed exact-workflow scanner-code/optical-density OECF primitive compiled from P6AK development evidence; not independent, population, colour, stock or product calibration."
+}
