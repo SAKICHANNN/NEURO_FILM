@@ -1,0 +1,65 @@
+{
+  "schema": "neuro_film.u6_p6zd_scanner_glare_streaming_benchmark_contract.v1",
+  "node": "U6.P6ZD",
+  "status": "contract_frozen_run_ready",
+  "parents": {
+    "p6zc_contract_path": "configs/u6_p6zc_scanner_glare_separable_streaming_v1.json",
+    "p6zc_contract_sha256": "742faaec187b3f69d9c224e702df2bf73e06dac24f5d41c30fcc3f589fd34168",
+    "p6zc_evidence_path": "docs/evidence/U6_P6ZC_SCANNER_GLARE_SEPARABLE_STREAMING_RESULT.json",
+    "p6zc_evidence_sha256": "d4f4736f883dae10de06f1bc7b1daf463543479494d1cd831fa921fc3189eb2a",
+    "streaming_core_path": "src/film_physics/scanner_glare_streaming.py",
+    "streaming_core_sha256": "7aa6c6aea97c5fef39bfd3d123fa38241cba8bba927873e2b9f0753db9c81ddf",
+    "reference_core_path": "src/film_physics/scanner_glare.py",
+    "reference_core_sha256": "53754573470db93528ab141cda1e4a175820cffd8cfd21103f5e92b674d72c35"
+  },
+  "algorithms": [
+    "fft-2d-reference",
+    "separable-row-streaming"
+  ],
+  "execution_order_per_shape": [
+    "fft-2d-reference",
+    "separable-row-streaming",
+    "separable-row-streaming",
+    "fft-2d-reference"
+  ],
+  "runs_per_algorithm_shape": 2,
+  "row_chunk": 64,
+  "shapes": [
+    [
+      1000,
+      1500,
+      3
+    ],
+    [
+      3000,
+      4000,
+      3
+    ]
+  ],
+  "fixture_seed": 6206104,
+  "rss_sample_interval_seconds": 0.01,
+  "worker_timeout_seconds": 180.0,
+  "automatic_gates": {
+    "maximum_cross_algorithm_absolute_error": 1e-12,
+    "maximum_cross_algorithm_rmse": 1e-13,
+    "maximum_streaming_peak_process_tree_rss_bytes_at_12mp": 1073741824,
+    "maximum_streaming_to_reference_median_peak_rss_ratio_at_12mp": 0.75,
+    "maximum_streaming_median_apply_seconds_at_12mp": 15.0,
+    "maximum_streaming_to_reference_median_apply_time_ratio_at_12mp": 1.25,
+    "maximum_repeat_peak_rss_ratio": 1.15,
+    "maximum_repeat_apply_time_ratio": 1.20
+  },
+  "forbidden_fallbacks": [
+    "change the P6ZA profile, kernel, numerical dtype, row chunk, shapes, input field, thread settings or run order after observing results",
+    "exclude a slow or high-memory run",
+    "warm-cache one algorithm without the other",
+    "weaken exact replay or numerical agreement gates",
+    "claim native, mobile, GPU, calibrated scanner or product performance"
+  ],
+  "branch_rule": {
+    "pass": "retain the separable row-streaming compiler as the local CPU development implementation and open a combined-chain integration benchmark",
+    "fail": "retain P6ZC numerical evidence only and close this exact Python streaming performance candidate"
+  },
+  "production_integration_allowed": false,
+  "claim_ceiling": "Local Windows/Python fresh-process time and process-tree RSS evidence for one generic scanner-glare compiler only; not native/mobile/GPU performance, measured scanner calibration, photographic quality or product readiness."
+}
