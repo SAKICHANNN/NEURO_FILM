@@ -13,7 +13,10 @@ from src.film_physics.scanner_glare import (
     apply_scanner_glare,
     compile_scanner_glare_kernel,
 )
-from src.film_physics.scanner_glare_block_fft import apply_scanner_glare_block_fft
+from src.film_physics.scanner_glare_block_fft import (
+    apply_scanner_glare_block_fft,
+    apply_scanner_glare_channel_serial_block_fft,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs" / "u6_p6ze_scanner_glare_block_fft_v1.json"
@@ -53,6 +56,18 @@ def test_block_fft_matches_full_reference(row_chunk: int) -> None:
     difference = candidate - reference
     assert float(np.max(np.abs(difference))) <= 1e-12
     assert float(np.sqrt(np.mean(np.square(difference)))) <= 1e-13
+
+
+@pytest.mark.parametrize("row_chunk", [257, 512, 769])
+def test_channel_serial_block_fft_is_exactly_the_same_operator(row_chunk: int) -> None:
+    source, kernel, flare = _fixture()
+    original = apply_scanner_glare_block_fft(
+        source, kernel, flare_fraction=flare, row_chunk=row_chunk
+    )
+    candidate = apply_scanner_glare_channel_serial_block_fft(
+        source, kernel, flare_fraction=flare, row_chunk=row_chunk
+    )
+    assert np.array_equal(candidate, original)
 
 
 def test_block_fft_preserves_constant_and_impulse_energy() -> None:
