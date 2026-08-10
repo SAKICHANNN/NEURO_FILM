@@ -2,6 +2,17 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-11 - U5.R2CB5 recorder-RGB forward family closes
+
+- The source-only affine proxy uses 30 leave-one-test-set-and-slide-out folds;
+  confirmation targets are never used to build their fold mapping.
+- Two reports are byte-identical (`603a4f61...673fe`). Correct-basis signal
+  survives versus wrong bases (`.79201` wins, median `+.08743`), but median/p95
+  density RMSE are `.32155/.67788` and direct spectral regression wins most
+  rows. Absolute-error and direct-control gates fail unchanged.
+- Do not add same-pool polynomial capacity or relax gates. The next scientific
+  leaf requires a new source-observable colourimetric or exposure observation.
+
 # 2026-08-11 - U5.R2CB4 measured dye-basis compatibility passes
 
 - The new question uses 8,640 existing measured Velvia 100F spectra to test

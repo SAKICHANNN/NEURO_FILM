@@ -1179,3 +1179,11 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
   12MP resource gates. Do not reopen the closed P4BZ photographic candidate.
 - Result: PASS. Dual-compiler bytes are exact, float64 max error is `2.98e-8`,
   and four 12MP runs take 0.947-1.084s at 408.2-408.4MB peak. P4BZ stays closed.
+# 2026-08-11 - U5.R2CB5 recorder-RGB forward proxy closes
+
+- Thirty leave-one-test-set-and-slide-out folds are byte-exact across two
+  formal runs (`603a4f61...673fe`). The correct dye basis retains stock signal
+  versus wrong bases, but absolute error and the direct-spectral control fail.
+- Close the exact affine recorder-RGB-to-dye-coordinate family. The next leaf
+  must add a materially new source-observable colourimetric/exposure fact, not
+  more same-cohort capacity or relaxed gates.

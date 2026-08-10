@@ -1,0 +1,36 @@
+{
+  "schema": "neuro_film.u5_r2cb5_fujifilm_dye_forward_proxy_decision.v1",
+  "experiment_id": "U5.R2CB5",
+  "contract_commit": "305fbe94",
+  "implementation_commit": "424d2d7d",
+  "contract_sha256": "614ff361874f015e83ca8a3b95e7a0df5f60eec3a80424b9b1b7d917c33e4014",
+  "implementation_sha256": "eb89a16218a96513d86a2ccc4609ba2d1a7362a1741da022fcffab95e142ec8e",
+  "runner_sha256": "12c53c078c338865eb83b6fc1f99b599b1055587f2c6e576d261ac73a0270d1f",
+  "formal_report_path": "outputs/experiments/u5_r2cb5_fujifilm_dye_forward_proxy_v1/report_run1.json",
+  "formal_report_sha256": "603a4f61f9275e0a25a5025fca9db70ca7fe76e83a9532a107d0678a53c673fe",
+  "stable_evidence_id": "368ea3992789e9ac4decc630d42e6f3e1fc874b0e813a98af40f2b055dddb710",
+  "repeat_report_byte_exact": true,
+  "passed": false,
+  "decision": "close_low_capacity_recorder_rgb_to_dye_forward_family",
+  "metrics": {
+    "correct_basis_win_fraction_vs_best_wrong": 0.7920138888888889,
+    "median_relative_improvement_vs_best_wrong": 0.08742867307627356,
+    "correct_basis_win_fraction_vs_direct_nonnegative_spectral": 0.36342592592592593,
+    "median_relative_improvement_vs_direct_nonnegative_spectral": -0.058920076492517806,
+    "median_relative_improvement_vs_development_mean": 0.5773480587696305,
+    "median_density_rmse": 0.3215505584616217,
+    "p95_density_rmse": 0.6778793544545694,
+    "maximum_density_rmse": 1.257578258761281
+  },
+  "failed_gates": [
+    "absolute_error",
+    "direct_spectral"
+  ],
+  "interpretation": [
+    "The fixed Velvia 100F dye basis retains source-linked stock signal relative to the exact wrong-stock bases, but the frozen recorder-RGB affine proxy does not predict target dye coordinates accurately enough.",
+    "A direct nonnegative recorder-RGB to measured-density mapping outperforms the factorized dye-coordinate proxy on the majority of held-out rows, so CB4 target-representation compatibility does not become a useful forward model.",
+    "These manufactured-target rows were consumed by prior AQ and CB4 work; the leave-one-test-set-and-slide-out role is exact but not a pristine population confirmation."
+  ],
+  "next_action": "Require a materially new source-observable colourimetric or exposure observation on an independent population; do not rescue this cohort with higher polynomial capacity, retuned folds or relaxed gates.",
+  "claim_ceiling": "Closed recorder-RGB-to-fixed-dye-coordinate forward proxy on existing measured Velvia 100F manufactured-target rows; not a photographic stock response, scanner calibration, independent roll/process confirmation or product profile."
+}
