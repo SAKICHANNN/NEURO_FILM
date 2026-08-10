@@ -10,6 +10,15 @@ Durable handoff log for non-trivial DRPT-governed work. Keep implementation trut
 - Zero folds/clips and cross-scanner stock separation are hard gates. This is a
   film-inspired capacity test only and cannot create calibrated stock truth.
 
+# 2026-08-11 - U5.R2CB2 retains bounded operator capacity
+
+- Two formal compiles are byte-identical (`e2f7c00b...6c16d`). Every gate
+  passes: worst pair separation is `.01866` linear RGB / `1.41995` DeltaE76,
+  scanner retention is `.92972`, minimum Jacobian determinant is `.19360`, and
+  all folds, hard clips and neutral drift are zero.
+- This retains only an explicit film-inspired mechanism. Photographic/OOD and
+  severe-artifact evidence are required before any profile or product action.
+
 # 2026-08-11 - Freeze U5.R2CB0 same-manufacturer E-6 source test
 
 - Froze exact official Velvia 100 and Provia 100F graph traces, axis/ink error

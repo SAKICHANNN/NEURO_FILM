@@ -1059,6 +1059,9 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
   observers, neutral calibration and convex residual execution.
 - Require zero fold/clip, exact neutral and cross-scanner stock separation.
   Pass remains film-inspired capacity only; no calibration or product mapping.
+- Complete: two reports exact (`e2f7c00b...6c16d`); all frozen gates pass,
+  including zero folds/clips and `.92972` worst scanner-retention ratio. Open
+  only a separately frozen photographic/OOD development test.
 
 - The clean-room WACV-2026-inspired coordinate family recovers all six frozen
   axes exactly and keeps the interior Jacobian positive; two reports are exact

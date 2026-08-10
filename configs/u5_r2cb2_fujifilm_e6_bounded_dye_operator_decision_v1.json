@@ -1,0 +1,27 @@
+{
+  "schema": "neuro_film.u5_r2cb2_fujifilm_e6_bounded_dye_operator_decision.v1",
+  "experiment_id": "U5.R2CB2",
+  "contract_commit": "d5770fd6eb353fed0b8ad108658cb0a53484e5ac",
+  "implementation_commit": "08464f760fe73c6f2539c4f70e626ae7898ae0e0",
+  "contract_sha256": "5663d54698b3e6f4efed1bc64cdd526fbac0f46ec36fa05d749e793bf7f12985",
+  "formal_report_file_sha256": "e2f7c00be1d83296c4f00f9088db19426ae674f26008c92040a7dd9df7f6c16d",
+  "stable_evidence_id": "90d5f5d4b379432dee4bdc8c8b4aedabc467acefa52a93810967617f6890046f",
+  "passed": true,
+  "decision": "retain_bounded_film_inspired_dye_operator_capacity",
+  "metrics": {
+    "maximum_dye_balance_rmse": 0.12365527034673988,
+    "minimum_stock_style_delta_e76_median": 17.620089574896973,
+    "minimum_stock_vs_pooled_delta_e76_median": 0.8328402119383687,
+    "minimum_pair_output_linear_rgb_rmse": 0.01866304874420166,
+    "minimum_pair_output_delta_e76_median": 1.419947983521562,
+    "minimum_observer_to_primary_pair_separation_ratio": 0.9297179754166041,
+    "minimum_jacobian_determinant": 0.1936001831289129,
+    "maximum_jacobian_spectral_norm": 1.096247012239611,
+    "maximum_negative_jacobian_fraction": 0.0,
+    "maximum_interior_hard_clip_fraction": 0.0,
+    "maximum_neutral_rgb_spread": 0.0
+  },
+  "failed_gates": [],
+  "claim_ceiling": "Bounded explicit film-inspired source-curve compiler capacity from exact first-party separated-light dye-density shapes under synthetic scanner controls; not calibrated Fujifilm response, film-roll/process/scanner truth, photographic preference, authenticity or product evidence.",
+  "next_action": "Freeze and run a rights-cleared photographic/OOD development test of the exact compiled operators, with severe-artifact, topology, stock-separation and basic-adjustment-residual controls before any profile or product consideration."
+}
