@@ -1,0 +1,65 @@
+{
+  "schema": "neuro_film.u6_p9d_temporal_typed_grain_contract.v1",
+  "node": "U6.P9D",
+  "question": "Do frame-addressed independent realization seeds compose through the retained density-conditioned Thomas image-formation chain while preserving typed order, temporal independence, signal dependence and artifact bounds?",
+  "parents": {
+    "p9c_evidence": {
+      "path": "docs/evidence/U6_P9C_TEMPORAL_GRAIN_INNOVATION_RESULT.json",
+      "sha256": "9c46123e0e60195846328dc3073d80cbe507808ed04dc2ec4d5cf8f08736b2b7",
+      "required_decision": "retain_frame_and_layer_independent_counter_grain_innovations"
+    },
+    "p4by_decision": {
+      "path": "configs/u6_p4by_typed_thomas_image_formation_decision_v1.json",
+      "sha256": "c216b4ddcae428c02e67bb301f99d6d3d72535893891f57860f9db6ee793c8ad",
+      "required_decision": "retain_typed_thomas_image_formation"
+    },
+    "p4bw_bundle": {
+      "path": "outputs/experiments/u6_p4bw_density_conditioned_thomas_profile_v1/run_a/bundle.json",
+      "sha256": "4edf4eaaeae163a2f579584c7d9533134a7d6177d5cc78ed517cb15865e585bf"
+    },
+    "p2q_bundle": {
+      "path": "outputs/u6_p2q_kodak_250d_characteristic_prior/bundle_run1.json",
+      "sha256": "087e67544f737401fa697b21f06215a31827189e0648b8d60da666b92113caaa"
+    }
+  },
+  "experiment": {
+    "profile_sha256": "e542b99e052a4d3d91ca8005473e42ad9fa94546329195d052dae5b245faa361",
+    "seed": 1729,
+    "frame_count": 12,
+    "field_shape": [128, 192],
+    "canonical_receipt_row_block_height": 31,
+    "render_partition_height": 47,
+    "normalized_exposure_fraction_minimum": 0.15,
+    "normalized_exposure_fraction_maximum": 0.85,
+    "scanner_profile_id": "p4bs-effective-spectrum-identity-observer-v1"
+  },
+  "automatic_gates": {
+    "replay_byte_exact": true,
+    "reverse_frame_order_byte_exact": true,
+    "row_partition_byte_exact": true,
+    "all_frame_hashes_unique": true,
+    "all_values_finite": true,
+    "maximum_absolute_adjacent_frame_delta_correlation": 0.08,
+    "minimum_static_reuse_adjacent_frame_correlation": 0.999999,
+    "minimum_signal_conditioned_delta_rms_ratio": 1.10,
+    "minimum_absolute_scan_delta_p99": 0.003,
+    "maximum_absolute_scan_delta_p99": 0.03,
+    "maximum_absolute_scan_delta": 0.08,
+    "maximum_absolute_mean_scan_delta": 0.001,
+    "maximum_new_boundary_fraction": 0.0,
+    "identity_scanner_pixel_exact": true,
+    "display_rgb_noise_application_count_zero": true
+  },
+  "forbidden": [
+    "reuse one realization across frames or colour layers",
+    "add grain in display RGB",
+    "add scanner MTF, flare or noise after the already scanner-convolved P4BS spectrum",
+    "call the generic P4BS/P4BY chain microscopic or stock-calibrated grain",
+    "change seeds, fixture, physical order or gates after formal scoring"
+  ],
+  "branch_rule": {
+    "pass": "retain the typed temporal composition as research reference and next measure a tile-stream runtime without changing physical order",
+    "fail": "close temporal composition without seed, amplitude, threshold or profile rescue"
+  },
+  "claim_ceiling": "Synthetic typed temporal composition of a generic same-scanner second-order grain mechanism; not microscopic structure, calibrated stock/process/scanner response, photographic-video quality or product readiness."
+}
