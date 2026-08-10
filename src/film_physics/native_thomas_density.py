@@ -88,8 +88,72 @@ def render_native_thomas_transmittance(
     return output.reshape(base.shape), raw_mean.value, workspace.nbytes
 
 
+def render_native_thomas_rgb_transmittance(
+    library: ctypes.CDLL,
+    profiles: tuple[
+        NativeThomasFieldProfile,
+        NativeThomasFieldProfile,
+        NativeThomasFieldProfile,
+    ],
+    base_density_chw: np.ndarray,
+    point_density_sigma_chw: np.ndarray,
+) -> tuple[np.ndarray, tuple[float, float, float], int]:
+    """Render three independent planar layers with one reused workspace."""
+
+    base = np.asarray(base_density_chw)
+    sigma = np.asarray(point_density_sigma_chw)
+    if (
+        base.dtype != np.float32
+        or sigma.dtype != np.float32
+        or base.ndim != 3
+        or base.shape[0] != 3
+        or sigma.shape != base.shape
+        or not base.flags.c_contiguous
+        or not sigma.flags.c_contiguous
+    ):
+        raise ValueError("RGB density and sigma must be contiguous float32 CHW arrays")
+    _, height, width = base.shape
+    count = height * width
+    workspace_count = ctypes.c_size_t()
+    status = library.nf_thomas_density_f32_workspace_floats_v1(
+        height, width, ctypes.byref(workspace_count)
+    )
+    if status != 0:
+        raise NativeThomasDensityError(f"native workspace request failed: {status}")
+    workspace = np.empty(workspace_count.value, dtype=np.float32)
+    scratch = np.empty(count, dtype=np.float32)
+    output = np.empty_like(base)
+    raw_means: list[float] = []
+    for channel, profile in enumerate(profiles):
+        raw_mean = ctypes.c_double()
+        abi_profile = profile.as_abi()
+        status = library.nf_thomas_density_f32_apply_v1(
+            ctypes.byref(abi_profile),
+            height,
+            width,
+            _pointer(base[channel]),
+            count,
+            _pointer(sigma[channel]),
+            count,
+            _pointer(workspace),
+            workspace.size,
+            _pointer(scratch),
+            scratch.size,
+            ctypes.byref(raw_mean),
+        )
+        if status != 0:
+            raise NativeThomasDensityError(
+                f"native RGB density composition failed at channel {channel}: {status}"
+            )
+        output[channel] = scratch.reshape(height, width)
+        raw_means.append(raw_mean.value)
+    output.setflags(write=False)
+    return output, tuple(raw_means), workspace.nbytes + scratch.nbytes  # type: ignore[return-value]
+
+
 __all__ = [
     "NativeThomasDensityError",
     "load_native_thomas_density_library",
+    "render_native_thomas_rgb_transmittance",
     "render_native_thomas_transmittance",
 ]
