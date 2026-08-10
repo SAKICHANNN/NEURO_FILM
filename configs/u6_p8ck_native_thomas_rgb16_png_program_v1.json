@@ -1,0 +1,71 @@
+{
+  "schema": "neuro_film.u6_p8ck_native_thomas_rgb16_png_program_contract.v1",
+  "experiment_id": "u6.p8ck-native-thomas-rgb16-png-program-v1",
+  "node": "ULT > U6 > U6.P8 > U6.P8CK",
+  "date_frozen": "2026-08-11",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can the exact P8CJ freestanding RGB16 sample program publish one deterministic streaming PNG with the fixed sRGB ICC using only caller workspace and a byte sink?",
+  "parents": {
+    "p8cj_evidence": {
+      "path": "docs/evidence/U6_P8CJ_NATIVE_THOMAS_RGB16_PROGRAM_RESULT.json",
+      "sha256": "531152b44e516bf1ae1ba4ca3bd39fc805fd08b7315bc8375874153232b0127c",
+      "required_decision": "retain_freestanding_native_thomas_rgb16_program"
+    },
+    "p8cc_evidence": {
+      "path": "docs/evidence/U6_P8CC_NATIVE_THOMAS_SRGB_PNG_STREAM_RESULT.json",
+      "sha256": "641c5ee9270d5095904c9c0c1c5d9a872dcc0f805a9d1d47406492b73363d8a3",
+      "required_decision": "retain_exact_native_thomas_srgb_png_stream"
+    },
+    "icc_source": {
+      "path": "native/reference_srgb_icc_profile_v1.c",
+      "sha256": "5c8c1c7ab06e59c613a96f7982130f6928af6402a41f29fe6d9d76814c221d1d"
+    },
+    "icc_header": {
+      "path": "native/reference_srgb_icc_profile_v1.h",
+      "sha256": "7d3ae0e07f2dd79762d1bc3fef3916667a98f05daeb9861a0984c605ec98885d"
+    }
+  },
+  "candidate": {
+    "language": "freestanding-c11",
+    "format": "PNG",
+    "bit_depth": 16,
+    "color_type": 2,
+    "filter_per_row": 0,
+    "interlace": 0,
+    "compression": "zlib-stored-blocks",
+    "idat_payload_bytes": 65536,
+    "icc_profile_sha256": "217fe48ec958c667f8eef725aa27198f465df95d7662593b90d0a1cc30114356",
+    "icc_profile_bytes": 588,
+    "sample_byte_order": "big-endian",
+    "row_partition": 128,
+    "one_final_quantization": true,
+    "full_output_allowed": false,
+    "post_quantization_processing_allowed": false,
+    "output_transaction_owned_by_caller": true,
+    "model_profile_or_sample_change_allowed": false
+  },
+  "conformance": {
+    "shape_chw": [3, 193, 257],
+    "require_msvc_llvm_png_byte_exact": true,
+    "require_repeat_byte_exact": true,
+    "require_exact_p8cj_decoded_samples": true,
+    "require_exact_embedded_icc": true,
+    "require_strict_complete_byte_order": true,
+    "require_invalid_input_before_byte_sink": true,
+    "require_byte_sink_failure_propagation": true,
+    "require_caller_workspace_bound": true
+  },
+  "performance": {
+    "shape_chw": [3, 3000, 4000],
+    "maximum_wall_seconds": 22.0,
+    "maximum_process_tree_rss_bytes": 500000000,
+    "maximum_repeat_wall_ratio": 1.25,
+    "maximum_repeat_rss_ratio": 1.1,
+    "require_two_fresh_processes": true,
+    "require_exact_png_identity": true,
+    "require_zero_surviving_processes": true
+  },
+  "decision_if_pass": "retain_freestanding_native_thomas_rgb16_png_program",
+  "decision_if_fail": "retain_p8cj_sample_program_and_p8cc_host_png_stream",
+  "claim_ceiling": "Host C11 generic Thomas-to-sRGB16 PNG byte-stream evidence with fixed sRGB ICC; not target-device runtime, calibrated stock response, media transaction authorization or product promotion."
+}
