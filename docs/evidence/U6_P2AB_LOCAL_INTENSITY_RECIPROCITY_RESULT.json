@@ -1,0 +1,46 @@
+{
+  "schema": "neuro_film.u6_p2ab_local_intensity_reciprocity_evidence.v1",
+  "node": "U6.P2AB",
+  "decision": "retain_synthetic_local_intensity_capacity_require_controlled_time_by_intensity_measurement",
+  "software_commit": "fbb3b835",
+  "bindings": {
+    "contract": {
+      "path": "configs/u6_p2ab_local_intensity_reciprocity_v1.json",
+      "sha256": "8ae386dfe03e279584ee1d42f52597b1ac7f33256166bfffbee74ba9d9b6d0aa"
+    },
+    "implementation": {
+      "path": "src/film_physics/reciprocity.py",
+      "sha256": "107985baf61aad9f6e54384215d163a6206ca3c673c8673051077d09b8a4edc3"
+    },
+    "evaluator": {
+      "path": "src/eval/local_intensity_reciprocity.py",
+      "sha256": "b47a5de3792eff198824a4f0f1317baf5b11a657d8c31e1cb27fe600d1e61536"
+    },
+    "report": {
+      "path": "outputs/experiments/u6_p2ab_local_intensity_reciprocity_v1/run_1.json",
+      "sha256": "9b1e6d3a26288e54802fea171b9e7ddc8ecf8fe836fc07b9072a24f42b08febd",
+      "stable_evidence_id": "eb7864799f1a3eb3df2a4ea21ab52316d42981ec0774644a161f4026a19094fe"
+    }
+  },
+  "results": {
+    "automatic_pass": true,
+    "two_reports_byte_exact": true,
+    "reference_time_identity_maximum_absolute_error": 0.0,
+    "longest_time_truth_log_contrast_drift": 0.8411830470711852,
+    "longest_time_global_shape_rmse": 0.3263955751781774,
+    "longest_time_global_shape_max_error": 0.43494809190734784,
+    "maximum_any_global_log_contrast_drift": 0.0,
+    "wrong_conditioning_shape_rmse": 0.6523223413587823,
+    "local_rate_monotone_strict": true,
+    "local_time_monotone_strict": true,
+    "partition_maximum_absolute_error": 0.0,
+    "all_outputs_positive_finite": true
+  },
+  "interpretation": [
+    "At one fixed physical exposure duration, every scalar reciprocity exponent multiplies all incident rates by the same factor and therefore has exactly zero normalized-log contrast drift. A different scalar exponent cannot repair this structural limitation.",
+    "The bounded log-incident-rate-conditioned exponent field is positive, monotone in rate and time, partition exact and can express the synthetic local contrast effect. Swapping bright and dark conditioning produces a large independent failure control.",
+    "This is representation capacity only. The four synthetic parameters are not manufacturer values and cannot be applied to photographs without a controlled time-by-intensity density experiment."
+  ],
+  "next_leaf": "U6.P2AC preregister a minimal synthetic identifiability and measurement-design audit with disjoint exposure-time rows, nuisance controls and whole-parameter recovery; do not render photographs.",
+  "claim_ceiling": "Synthetic capacity and scalar-model limitation for local-intensity reciprocity; not measured film, colour-layer, particular-roll/process, photographic quality or product evidence."
+}

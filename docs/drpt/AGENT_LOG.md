@@ -10452,3 +10452,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   groups, identity error is zero and forward/inverse error is `6.32e-16`.
 - Retain the primitive only. P2AB will test local incident-rate contrast versus
   global correction; no colour-layer, roll/process, scanner or product claim.
+
+# 2026-08-10 - U6.P2AB proves scalar reciprocity cannot form local contrast
+
+- Compared all P2AA scalar exponents with one bounded log-incident-rate
+  exponent field on a fixed synthetic rate/time grid.
+- Two reports are exact (`9b1e6d3a...febd`). Scalar contrast drift is exactly
+  zero; the local truth drift is `.84118`, leaving `.32640/.43495` scalar
+  shape RMSE/max error. Swapped conditioning fails at `.65232` RMSE.
+- Retain synthetic capacity only. Next identify the minimal controlled
+  time-by-intensity measurement design; do not render photographs.
