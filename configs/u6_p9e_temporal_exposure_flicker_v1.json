@@ -49,7 +49,7 @@
     "minimum_candidate_to_iid_low_frequency_power_ratio": 2.0,
     "maximum_late_to_early_candidate_variance_ratio": 1.75,
     "minimum_random_walk_late_to_early_ensemble_variance_ratio": 1.75,
-    "layer_exposure_roundtrip_exact": true,
+    "zero_offset_layer_exposure_identity_exact": true,
     "display_rgb_transform_count_zero": true
   },
   "forbidden": [
