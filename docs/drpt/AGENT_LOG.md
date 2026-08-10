@@ -10506,3 +10506,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Static and toroidally shifted reuse inverse-align to correlation `~1.0`, so
   neither is accepted as independent motion-picture grain. Next reuse the
   existing physical density/NPS stages rather than create another grain model.
+
+# 2026-08-10 - U6.P9D composes independent frames through typed physical grain
+
+- Frame/layer-addressed seeds now instantiate the unchanged P4BY
+  density-conditioned Thomas receipts and execute layer exposure to developed
+  density to transmittance to identity scan-linear.
+- Two reports are exact (`96995295...0504`). Twelve frame hashes are unique;
+  reverse order, replay and 47-row partitions are exact. Maximum adjacent
+  residual correlation is `.04161` versus `1.0` for static reuse.
+- Signal-conditioned RMS differs `6.10x`; P99/max scan deltas are
+  `.01716/.05220`, mean drift is `9.17e-5`, and new boundary is zero. Retain
+  only as generic same-scanner temporal reference, not calibrated grain.

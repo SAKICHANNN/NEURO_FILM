@@ -1,0 +1,47 @@
+{
+  "schema": "neuro_film.u6_p9d_temporal_typed_grain_evidence.v1",
+  "node": "U6.P9D",
+  "decision": "retain_typed_temporal_density_conditioned_thomas_composition",
+  "software_commit": "e34cfef7",
+  "bindings": {
+    "contract": {
+      "path": "configs/u6_p9d_temporal_typed_grain_v1.json",
+      "sha256": "92c4cd5b995d1e08b655af4b00fd6b152573a494662e046ec8db6b776403e943"
+    },
+    "seed_and_innovation_primitive": {
+      "path": "src/film_physics/temporal_grain.py",
+      "sha256": "4f782c751cf0fdb95c61b16e567b96fda8fd4f6a126e83c5e74624fb5b2bb809"
+    },
+    "evaluator": {
+      "path": "src/eval/temporal_typed_grain.py",
+      "sha256": "b19ba3d035680ea1fad4bdea2726e918732488a17eaf5530594e968db69d3c49"
+    },
+    "report": {
+      "path": "outputs/experiments/u6_p9d_temporal_typed_grain_v1/run_1.json",
+      "sha256": "96995295cc89e201392f0321879a3692aa9c9a5004a6efc57659039c8c0f0504",
+      "stable_evidence_id": "f93975192435e225cde5562736c8d1df934e8050291d0cfbc907ee12330a5bac"
+    }
+  },
+  "results": {
+    "automatic_pass": true,
+    "two_reports_byte_exact": true,
+    "replay_reverse_order_and_row_partition_byte_exact": true,
+    "unique_frame_hashes": 12,
+    "maximum_absolute_adjacent_frame_delta_correlation": 0.041610245161512266,
+    "static_reuse_adjacent_frame_correlation": 1.0,
+    "signal_conditioned_delta_rms_ratio": 6.100809980851819,
+    "absolute_scan_delta_p99": 0.017160765129752162,
+    "maximum_absolute_scan_delta": 0.05220190271161773,
+    "maximum_absolute_mean_scan_delta": 0.00009165232979286799,
+    "new_boundary_fraction": 0.0,
+    "identity_scanner_pixel_exact": true,
+    "display_rgb_noise_application_count": 0
+  },
+  "interpretation": [
+    "Frame/layer-addressed seeds now drive the retained density-conditioned Thomas receipt and the complete typed density to transmittance to scan-linear path without changing its physical order.",
+    "The temporal residual is independent rather than statically reused, remains signal-conditioned, bounded and zero-new-boundary, and is exactly reproducible independent of frame order or row partition.",
+    "The retained Thomas spectrum is a generic same-scanner second-order mechanism. This result does not upgrade it to microscopic dye-cloud or silver structure, calibrated stock grain or a video product."
+  ],
+  "next_leaf": "Measure a full-width row-stream execution of the same typed chain against the immutable full-frame reference before any video runtime integration.",
+  "claim_ceiling": "Synthetic typed temporal composition of a generic same-scanner second-order grain mechanism; not microscopic structure, calibrated stock/process/scanner response, photographic-video quality or product readiness."
+}
