@@ -1,0 +1,56 @@
+{
+  "schema": "neuro_film.u6_p9i_shot_boundary_state_contract.v1",
+  "node": "U6.P9I",
+  "question": "Does an explicit sequence identity prevent temporal grain repetition and state carryover across unrelated shots while preserving deterministic replay and partition handoff within each shot?",
+  "parents": {
+    "p9a_contract": "configs/u6_p9a_gate_weave_ou_v1.json",
+    "p9a_contract_sha256": "bb91ba107b00ca71ce178538b9f9e0290804208f06a97082acaae0738d27c564",
+    "p9d_contract": "configs/u6_p9d_temporal_typed_grain_v1.json",
+    "p9d_contract_sha256": "92c4cd5b995d1e08b655af4b00fd6b152573a494662e046ec8db6b776403e943",
+    "p9e_contract": "configs/u6_p9e_temporal_exposure_flicker_v1.json",
+    "p9e_contract_sha256": "52e1cb7ef6d7e894b003b04c043c4e533b51825a4123c4cf5a736dc253e9b13d",
+    "p9h_evidence": "docs/evidence/U6_P9H_TEMPORAL_PHYSICAL_ABLATION_RESULT.json",
+    "p9h_evidence_sha256": "9c51f15d3b9ed7c04d16f42862307c8d7fe2804e59692f0687d32af1160ba185"
+  },
+  "experiment": {
+    "sequence_ids": [
+      "synthetic-shot-a-0001",
+      "synthetic-shot-b-0001"
+    ],
+    "frame_count_per_shot": 128,
+    "partition_transition_counts": [17, 43, 67],
+    "grain_probe_shape": [32, 48],
+    "grain_layer_count": 3
+  },
+  "stream_roles": [
+    "exposure_flicker",
+    "gate_weave",
+    "density_grain"
+  ],
+  "automatic_gates": {
+    "parent_hashes_exact": true,
+    "sequence_identity_replay_exact": true,
+    "stream_role_domain_separation_exact": true,
+    "within_shot_partition_exact": true,
+    "shot_initial_exposure_reset_exact": true,
+    "shot_initial_gate_weave_reset_exact": true,
+    "cross_shot_grain_duplicate_frame_count_maximum": 0,
+    "naive_local_frame_grain_duplicate_fraction_minimum": 1.0,
+    "continuous_control_boundary_exposure_nonzero": true,
+    "continuous_control_boundary_gate_weave_nonzero": true,
+    "all_values_finite": true,
+    "display_rgb_effect_count_zero": true
+  },
+  "forbidden": [
+    "reuse a local frame index and unscoped seed across unrelated shots",
+    "carry exposure or gate-weave state across a shot boundary without an explicit same-sequence declaration",
+    "derive sequence identity from image content, timestamps, filenames or hidden target pixels",
+    "change identifiers, controls, frame counts or gates after formal scoring",
+    "claim synthetic state semantics establish measured transport behavior or video product quality"
+  ],
+  "branch_rule": {
+    "pass": "retain explicit sequence-scoped temporal stream identities and shot-reset semantics as the reference contract",
+    "fail": "close the sequence-state mechanism without seed, identifier, frame-count or threshold rescue"
+  },
+  "claim_ceiling": "Synthetic deterministic shot-boundary state and counter-domain semantics only; not measured film transport, scene-cut detection, temporal image quality, arbitrary video support or product readiness."
+}
