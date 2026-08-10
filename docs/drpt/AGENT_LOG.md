@@ -10432,3 +10432,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   hidden oracle +60.58%, localizing failure to unconstrained scorer-guided
   selection. Close the exact route; test hard support restriction next without
   changing the scorer, objective weights or gates.
+
+# 2026-08-10 - U5.R2BZ1 retains K=1 inside trusted support
+
+- Reused the exact BZ0 scorer, split, operator, objective and 96 trusted
+  candidates; only broad-bank selection was removed.
+- Two reports are exact (`acdb7604...c3a6a8`). The trusted oracle improves the
+  fixed +34.55% mean gain by only 2.51 points, below the frozen 5-point routing
+  requirement. Proxy-only selection reaches +33.44%; gap+L1 reaches +3.87%
+  and wins 2/64 hidden rows.
+- Retain the fixed K=1 operator and close this scorer/cohort family. Continue a
+  materially distinct real-film or physical observation, not a router rescue.

@@ -1,0 +1,59 @@
+{
+  "schema": "neuro_film.u5_r2bz1_fivek_trusted_support_selector_result.v1",
+  "experiment_id": "u5.r2bz1-fivek-trusted-support-selector-v1",
+  "status": "complete_k1",
+  "contract": {
+    "path": "configs/u5_r2bz1_fivek_trusted_support_selector_v1.json",
+    "sha256": "83d7a929244e96d2cd6091515a871256c600620d3d3b0a585b50a30daeeb328e",
+    "commit": "b5de54d4"
+  },
+  "implementation_commit": "9cedbe9a",
+  "parent_evidence_sha256": "b047f3af8839456eac2d244a8b95a47b49da1c42a02675f93f3b66bf4679336e",
+  "formal_reports": {
+    "run_1": "outputs/experiments/u5_r2bz1_fivek_trusted_support_selector_v1/run_1.json",
+    "run_2": "outputs/experiments/u5_r2bz1_fivek_trusted_support_selector_v1/run_2.json",
+    "sha256": "acdb76045cd291310c46da1dd8c94b0e35d846ff2d05d1c58e9e61f3b3c3a6a8",
+    "byte_identical": true,
+    "stable_evidence_id": "c51576ecfa5e6cc1be2091a5ffcc3bde09e1aa858083d1aa0aaf46d99f4f3266"
+  },
+  "hidden_test": {
+    "fixed_k1": {
+      "mean_true_gain": 0.3454850484806341,
+      "worst_true_gain": 0.11667858895600598,
+      "p95_rmse": 0.05635462430404405
+    },
+    "trusted_bank_oracle": {
+      "mean_true_gain": 0.37060585846989513,
+      "worst_true_gain": 0.20877931254367996,
+      "p95_rmse": 0.052835166351796865,
+      "mean_gain_advantage_over_fixed": 0.025120809989261028
+    },
+    "proxy_only_hard_selector": {
+      "mean_true_gain": 0.3344197524801472,
+      "worst_true_gain": 0.09293420920057816,
+      "p95_rmse": 0.05652537056137209
+    },
+    "fidelity_plus_gap_hard_selector": {
+      "mean_true_gain": 0.03873702138366921,
+      "worst_true_gain": -0.07983544627492839,
+      "p95_rmse": 0.08400046632844126,
+      "win_fraction_over_fixed": 0.03125,
+      "mean_positive_proxy_excess": 0.02610339237602563
+    },
+    "scorer_candidate_spearman": 0.9747348338868277,
+    "maximum_new_boundary_fraction": 0.0
+  },
+  "gates": {
+    "oracle_has_material_routing_value": false,
+    "primary_improves_mean": false,
+    "primary_wins_sources": false,
+    "primary_improves_p95": false,
+    "primary_improves_worst": false,
+    "primary_proxy_excess_bounded": true,
+    "boundary_safe": true
+  },
+  "decision": "retain_fixed_k1_no_material_trusted_bank_oracle_gain",
+  "interpretation": "Hard support restriction removes the catastrophic BZ0 extrapolation, but the exact trusted bank has only 2.51 percentage points of oracle mean gain beyond its fixed K=1 champion. The frozen excess-gap objective over-regularizes this normalized scorer and wins only 2 of 64 hidden rows. Neither fact justifies a source router.",
+  "next_leaf": "leave this FiveK cohort and scorer family closed; continue a materially distinct real-film or physical-image-formation observation",
+  "claim_ceiling": "FiveK digital-retouch K=1 evidence for one bounded explicit operator bank; not film, stock, preference, calibration or product evidence"
+}
