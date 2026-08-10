@@ -4,7 +4,7 @@
   "question": "Does the retained P9E flicker preserve one physically interpretable exposure offset across the nonlinear characteristic curve only when it is applied before development?",
   "parents": {
     "p9e_evidence": "docs/evidence/U6_P9E_TEMPORAL_EXPOSURE_FLICKER_RESULT.json",
-    "p9e_evidence_sha256": "7cd66626431627cf941fb0af6dfce90831f8e04f088e540ea2066239d6c5e2bd",
+    "p9e_evidence_sha256": "4135ebbd2031135a980b0f4fcc18079e8e899be32188b4c65b3c768064a63d2c",
     "sensitometry_config": "configs/u2_2a_sensitometry_primitive_v1.json",
     "sensitometry_config_sha256": "8f43edcbc7e168af830081dce16ecb5f268a294d2f0cd777b942aec4b95c8af2"
   },
