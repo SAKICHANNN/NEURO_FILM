@@ -13,6 +13,17 @@ Durable handoff log for non-trivial DRPT-governed work. Keep implementation trut
 - Do not add same-pool polynomial capacity or relax gates. The next scientific
   leaf requires a new source-observable colourimetric or exposure observation.
 
+# 2026-08-11 - U6.P8CK freestanding PNG program passes
+
+- Composed the unchanged P8CJ sample program with a heapless C11 PNG byte
+  stream using stored zlib blocks and the fixed 588-byte sRGB ICC.
+- MSVC/LLVM PNG bytes, decoded RGB16 samples and ICC are exact. Invalid input
+  and short workspace emit zero bytes; byte-sink failures propagate.
+- Four fresh 12MP workers produce the same 72,054,675-byte PNG in
+  11.73-12.15s at 429.1-429.7MB peak. Stable ID is `acec4302...ca1ce`.
+- Retain host runtime only. Device execution and caller-owned atomic file
+  publication remain the next boundaries.
+
 # 2026-08-11 - U5.R2CB4 measured dye-basis compatibility passes
 
 - The new question uses 8,640 existing measured Velvia 100F spectra to test

@@ -1187,3 +1187,11 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
 - Close the exact affine recorder-RGB-to-dye-coordinate family. The next leaf
   must add a materially new source-observable colourimetric/exposure fact, not
   more same-cohort capacity or relaxed gates.
+
+# 2026-08-11 - U6.P8CK native Thomas PNG program passes
+
+- The complete C11 amplitude-to-Thomas-to-neutral-gauge-to-sRGB16 core now
+  streams deterministic PNG with the exact fixed ICC and no Python/zlib/heap.
+- Dual compiler samples and bytes are exact. Four fresh 12MP workers complete
+  in 11.73-12.15s at 429.1-429.7MB peak. Next is actual target-device runtime;
+  durable atomic publication remains caller-owned.

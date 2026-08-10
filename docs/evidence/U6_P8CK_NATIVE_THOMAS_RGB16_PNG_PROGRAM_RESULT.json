@@ -1,0 +1,67 @@
+{
+  "schema": "neuro_film.u6_p8ck_native_thomas_rgb16_png_program_evidence.v1",
+  "experiment_id": "u6.p8ck-native-thomas-rgb16-png-program-v1",
+  "status": "pass-retain-freestanding-native-thomas-rgb16-png-program",
+  "contract_commit": "1e255293",
+  "implementation_commits": [
+    "72cc3a75",
+    "ce1f9c54",
+    "055ca295"
+  ],
+  "contract_sha256": "44b8ccde4cbb9d136df381bb32ac874c17e8351166bd6623ce5536d185ea3069",
+  "source_sha256": "e2d64585c4fab116d931f5968759db145be70377eadbec3fbafd9153ad3a0e43",
+  "header_sha256": "e5e0078b4c149c0ea464dda5bc066ae8c6f8d3b996c8059b9478981613bb4e8b",
+  "conformance_builder_sha256": "5c429aad7b61f60f239f1c199a1282a2c9c8af306b278c17f0ea8fb4db1e5142",
+  "evaluator_sha256": "bf36103049b0adcf00f727e39b021ec2a101d8beeb6266936751448fc2d6db1a",
+  "formal_report_paths": [
+    "outputs/experiments/u6_p8ck_native_thomas_rgb16_png_program_v1/report_run1.json",
+    "outputs/experiments/u6_p8ck_native_thomas_rgb16_png_program_v1/report_run2.json"
+  ],
+  "formal_report_sha256": [
+    "5a7eb30204d62e64c55de4bfebf85329698c7dc5e29e547e528a0af5e31cae83",
+    "ad739342954e24248581cdaa92f3f2668a53b14d6ea8a0fdc150ea3bf07bf2eb"
+  ],
+  "stable_evidence_id": "acec4302ec33a4121db5ff766130209b8f02125a7262801b7b2b26e6112ca1ce",
+  "stable_identity_repeat_exact": true,
+  "conformance": {
+    "shape_chw": [3, 193, 257],
+    "compilers": [
+      "msvc-x64-c11-strict",
+      "llvm-mingw-x64-c11-strict"
+    ],
+    "png_sha256": "0e37a530470f57150c1bd8931385c3759498bfef5d520289a3199ed5b78a3022",
+    "png_bytes": 301755,
+    "decoded_samples_sha256": "20d84ec2f239c4f87732476030f700a3f43f22fec4e59504bbe16654305d39cb",
+    "icc_sha256": "217fe48ec958c667f8eef725aa27198f465df95d7662593b90d0a1cc30114356",
+    "compiler_and_repeat_png_byte_exact": true,
+    "decoded_samples_match_p8cj": true,
+    "invalid_input_zero_byte_callbacks": true,
+    "short_workspace_zero_byte_callbacks": true,
+    "byte_sink_failure_propagates": true,
+    "workspace_bytes": 1911065
+  },
+  "performance_12mp_rgb16": {
+    "shape_chw": [3, 3000, 4000],
+    "fresh_worker_runs": 4,
+    "wall_seconds": [
+      12.139730099999724,
+      12.14875480000046,
+      11.731217099999412,
+      12.000118900001326
+    ],
+    "peak_process_tree_rss_bytes": [
+      429584384,
+      429088768,
+      429662208,
+      429395968
+    ],
+    "workspace_bytes": 29744013,
+    "png_bytes": 72054675,
+    "png_sha256": "e7b2c3d8ea6ee9cb143f48a680bb2a6a8a59666f3b63f4d1b621a03869ce5909",
+    "all_png_bytes_exact": true,
+    "zero_surviving_processes": true
+  },
+  "decision": "retain_freestanding_native_thomas_rgb16_png_program",
+  "interpretation": "The complete generic amplitude-to-Thomas-to-neutral-gauge-to-sRGB16 path now emits a deterministic PNG byte stream from C11 with no Python runtime control flow, heap allocation or zlib dependency. The fixed ICC and decoded samples are exact. Persistent file atomicity remains the caller's responsibility.",
+  "claim_ceiling": "Host C11 generic Thomas-to-sRGB16 PNG byte-stream evidence with fixed sRGB ICC; not target-device runtime, calibrated stock response, media transaction authorization or product promotion."
+}

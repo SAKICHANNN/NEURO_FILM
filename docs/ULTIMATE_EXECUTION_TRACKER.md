@@ -1317,3 +1317,10 @@ reproduces the complete amplitude-to-Thomas-to-neutral-gauge-to-sRGB16 sample
 stream under MSVC/LLVM and four partitions, exactly matching P8CB. Python is no
 longer a runtime dependency for this sample core. Native PNG publication and
 actual target-device execution remain.
+
+U6.P8CK closes native PNG publication for the generic core. One freestanding
+C11 caller-workspace program emits deterministic RGB16 PNG bytes using stored
+zlib blocks and the fixed sRGB ICC; MSVC/LLVM bytes, decoded P8CJ samples and
+ICC are exact. Four fresh 12MP workers take 11.73-12.15s at 429.1-429.7MB peak.
+Retain the host program; actual target-device execution and caller-owned atomic
+file publication remain open.
