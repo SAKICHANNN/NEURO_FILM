@@ -9,20 +9,14 @@ from typing import Any
 
 import numpy as np
 
-from src.film_physics.contracts import (
-    PhysicalDomain,
-    PhysicalDomainArray,
-    PhysicalScale,
-    PhysicalUnit,
-)
 from src.film_physics.density_conditioned_thomas import DensityConditionedThomasProfile
 from src.film_physics.manufacturer_characteristic import ManufacturerCharacteristicPrior
-from src.film_physics.temporal_grain import temporal_grain_realization_seeds
-from src.film_physics.thomas_dc_projection import build_thomas_dc_receipt
+from src.film_physics.temporal_grain import (
+    baseline_scan_from_log_exposure,
+    build_temporal_reference_exposure,
+    render_temporal_typed_thomas_frame,
+)
 from src.film_physics.thomas_image_formation import (
-    CHANNELS,
-    ThomasImageFormationContext,
-    render_typed_thomas_image_formation,
     render_typed_thomas_image_formation_region,
 )
 
@@ -57,49 +51,6 @@ def _bound(root: Path, binding: dict[str, Any]) -> dict[str, Any]:
     return _load(path)
 
 
-def _layer_exposure(
-    shape: tuple[int, int],
-    prior: ManufacturerCharacteristicPrior,
-    minimum_fraction: float,
-    maximum_fraction: float,
-    pixel_pitch_um: float,
-) -> tuple[PhysicalDomainArray, np.ndarray]:
-    y = np.linspace(0.0, 1.0, shape[0], dtype=np.float64)[:, None]
-    x = np.linspace(0.0, 1.0, shape[1], dtype=np.float64)[None, :]
-    fractions = np.stack(
-        (
-            np.broadcast_to(x, shape),
-            np.broadcast_to(y, shape),
-            0.5 * (np.broadcast_to(x, shape) + np.broadcast_to(y, shape)),
-        ),
-        axis=-1,
-    )
-    fractions = minimum_fraction + (maximum_fraction - minimum_fraction) * fractions
-    relative_log = np.empty_like(fractions)
-    for index, curve in enumerate(prior.curves):
-        lower, upper = curve.domain
-        relative_log[..., index] = lower + fractions[..., index] * (upper - lower)
-    return (
-        PhysicalDomainArray(
-            np.power(10.0, relative_log),
-            PhysicalDomain.LAYER_EXPOSURE,
-            PhysicalUnit.RELATIVE_LAYER_EXPOSURE,
-            CHANNELS,
-            PhysicalScale(pixel_pitch_um),
-        ),
-        relative_log,
-    )
-
-
-def _baseline_scan(
-    prior: ManufacturerCharacteristicPrior, relative_log: np.ndarray
-) -> np.ndarray:
-    density = np.empty_like(relative_log)
-    for index, curve in enumerate(prior.curves):
-        density[..., index] = curve.apply(relative_log[..., index])
-    return np.power(10.0, -density)
-
-
 def _correlation(left: np.ndarray, right: np.ndarray) -> float:
     return float(np.corrcoef(left.ravel(), right.ravel())[0, 1])
 
@@ -121,51 +72,31 @@ def run_audit(*, root: Path, contract: dict[str, Any]) -> dict[str, Any]:
     prior = ManufacturerCharacteristicPrior.from_dict(prior_payload["prior"])
     experiment = contract["experiment"]
     shape = tuple(int(value) for value in experiment["field_shape"])
-    exposure, relative_log = _layer_exposure(
+    exposure, relative_log = build_temporal_reference_exposure(
         shape,
         prior,
-        float(experiment["normalized_exposure_fraction_minimum"]),
-        float(experiment["normalized_exposure_fraction_maximum"]),
-        profile.sample_pitch_micrometres,
+        minimum_fraction=float(experiment["normalized_exposure_fraction_minimum"]),
+        maximum_fraction=float(experiment["normalized_exposure_fraction_maximum"]),
+        pixel_pitch_um=profile.sample_pitch_micrometres,
     )
-    baseline = _baseline_scan(prior, relative_log)
+    baseline = baseline_scan_from_log_exposure(prior, relative_log)
 
     def render_frame(
         frame: int, *, verify_partition: bool
     ) -> tuple[np.ndarray, bool, bool]:
-        seeds = temporal_grain_realization_seeds(
+        rendered = render_temporal_typed_thomas_frame(
+            exposure,
+            profile,
+            prior,
             profile_sha256=experiment["profile_sha256"],
             seed=int(experiment["seed"]),
             frame=frame,
-            layer_count=3,
-        )
-        receipts = tuple(
-            build_thomas_dc_receipt(
-                shape,
-                profile_id=profile.spatial_profile_id,
-                particle_sigma_pixels=profile.particle_sigma_samples,
-                cluster_sigma_pixels=profile.cluster_sigma_samples,
-                mean_offspring=profile.mean_offspring,
-                component_seeds=profile.component_seeds,
-                realization_seed=seed,
-                truncate=profile.truncate,
-                canonical_row_block_height=int(
-                    experiment["canonical_receipt_row_block_height"]
-                ),
-            )
-            for seed in seeds
-        )
-        context = ThomasImageFormationContext(
-            profile_id=profile.identity(),
-            prior_id=prior.identity(),
             scanner_profile_id=experiment["scanner_profile_id"],
-            full_shape=shape,
-            receipt_ids=tuple(receipt.receipt_id for receipt in receipts),
-            layer_realization_seeds=seeds,
+            canonical_receipt_row_block_height=int(
+                experiment["canonical_receipt_row_block_height"]
+            ),
         )
-        result = render_typed_thomas_image_formation(
-            exposure, profile, prior, receipts, context
-        )
+        result = rendered.result
         partition_exact = True
         if verify_partition:
             assembled = np.empty_like(result.scan_linear.values)
@@ -176,8 +107,8 @@ def run_audit(*, root: Path, contract: dict[str, Any]) -> dict[str, Any]:
                     exposure,
                     profile,
                     prior,
-                    receipts,
-                    context,
+                    rendered.receipts,
+                    rendered.context,
                     origin_yx=(y0, 0),
                     shape=(height, shape[1]),
                 )
