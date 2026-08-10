@@ -1,0 +1,35 @@
+{
+  "schema": "neuro_film.u6_p8cc_native_thomas_srgb_png_stream_evidence.v1",
+  "experiment_id": "u6.p8cc-native-thomas-srgb-png-stream-v1",
+  "status": "pass-retain-exact-native-thomas-srgb-png-stream",
+  "contract_sha256": "8fc98a10532315589dbf27a649a17cb83942a52623450fdf2e40f2760adf9184",
+  "formal_report_sha256": "cd683ed51ccfcddea3ffce0925bd134d1262be147edea20bcbe35f5e02436430",
+  "stable_evidence_id": "1c6db5dec014935639e7a1f6e4d14e423f5100e9d865f8f5b894dcb5602dca92",
+  "icc_profile_sha256": "217fe48ec958c667f8eef725aa27198f465df95d7662593b90d0a1cc30114356",
+  "conformance": {
+    "shape_chw": [3, 193, 257],
+    "msvc_llvm_png_byte_exact": true,
+    "decoded_samples_exact": true,
+    "embedded_icc_bytes_exact": true,
+    "srgb8_png_sha256": "7a2188824ffc8227b355fd31825f9729658e4df302ba9a860f629a78abcbf21e",
+    "srgb16_png_sha256": "fc16063af2f1d033459ca7c847737953ff119f27d2c66cbeba035d4955e5fd57",
+    "incomplete_stream_cleanup_exact": true
+  },
+  "performance_12mp_srgb16": {
+    "shape_chw": [3, 3000, 4000],
+    "runs": 2,
+    "peak_process_tree_rss_bytes": [430051328, 430141440],
+    "wall_seconds": [15.8363251999981, 15.815854100001161],
+    "rss_repeat_ratio": 1.000209537778709,
+    "wall_repeat_ratio": 1.0012943404679573,
+    "bounded_compute_workspace_bytes": 26560000,
+    "sink_calls": 24,
+    "png_bytes": 68399187,
+    "png_sha256": "9484eeecaa88be773451cd052be359a76a098d8495473c5f360167318fc847f8",
+    "worker_cleanup_exact": true
+  },
+  "automatic_pass": true,
+  "decision": "retain_exact_native_thomas_srgb_png_stream",
+  "interpretation": "The exact P8CB integer stream can be serialized directly as deterministic RGB8 or RGB16 PNG with the fixed 588-byte sRGB ICC. Decoding reproduces every quantized sample, both native compiler paths emit identical PNG bytes, and the 12MP path stays below the frozen host RSS and wall limits without retaining a full output image.",
+  "claim_ceiling": "Host-only deterministic sRGB PNG serialization of exact generic P8CB samples with the fixed ICC; not device runtime, calibrated stock response, product authorization or general media support."
+}

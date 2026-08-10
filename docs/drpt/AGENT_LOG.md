@@ -10905,3 +10905,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - U6.P8CB then applies the merged exact sRGB threshold ABI once per P8CA tile. MSVC/LLVM sRGB8 and sRGB16 bytes equal the independent full-array oracle; two 12MP sRGB16 runs peak at 428.64-428.70MB and take 13.15-13.40s. No image container or device claim opens.
 - Resource result: two 12MP runs emit 24 tiles at 409,948,160-410,091,520 bytes peak and 9.31-9.55s; bounded workspace is 22,528,000 bytes.
 - Decision: retain this as the one-final-quantization/encoder ingress boundary. No encoder, device or product claim opens yet.
+
+## 2026-08-10 - U6.P8CC exact bounded-row PNG publication passes
+
+- Implementation: a deterministic RGB PNG writer consumes exact P8CB uint8/uint16 tiles in row order, applies only PNG filter-zero serialization and uint16 network byte order, embeds the existing exact 588-byte sRGB ICC, and publishes without retaining a full output image.
+- Conformance: MSVC and LLVM-MinGW paths produce byte-identical PNG8/PNG16 files; independent decode recovers every quantized sample and the embedded ICC bytes exactly. Incomplete streams leave no output or temporary file.
+- Resource result: two fresh 12MP RGB16 runs produce the same 68,399,187-byte PNG (`9484eeec...47f8`) in 15.82-15.84s at 430.05-430.14MB process-tree peak.
+- Decision: retain the host PNG path. This does not establish device runtime, calibrated stock response, product authorization or general media support.
