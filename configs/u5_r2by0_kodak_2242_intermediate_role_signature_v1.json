@@ -1,0 +1,139 @@
+{
+  "schema": "neuro_film.u5_r2by0_kodak_2242_intermediate_role_signature_contract.v1",
+  "experiment_id": "U5.R2BY0",
+  "node": "ULT > U5 > U5.R2 > U5.R2BY0",
+  "date_frozen": "2026-08-10",
+  "question": "Does Kodak's March-2026 first-party VISION Color Intermediate 5242/2242/3242 source contain a reproducible two-domain material-role signature distinct from the frozen VISION3 50D, 250D and 500T camera-negative profiles?",
+  "source": {
+    "title": "KODAK VISION Color Intermediate Film 5242 / 2242 / 3242 Technical Information",
+    "url": "https://www.kodak.com/content/products-brochures/motion-picture/KODAK-VISION-2242-3242-5242-technical-information.pdf",
+    "path": "outputs/source_recon/u5_r2by0_kodak_2242/technical_data.pdf",
+    "expected_bytes": 804590,
+    "sha256": "85404f73abb698567e7ad6b84f621f724b99b6e7159c864c14f725c5ab40be63",
+    "publisher": "Eastman Kodak Company",
+    "publication": "MARCH 2026 H-1-2242",
+    "material_id": "kodak_vision_color_intermediate_5242_2242_3242",
+    "material_role": "colour_intermediate_master_positive_or_duplicate_negative",
+    "measurement_context": {
+      "process": "ECN-2",
+      "densitometry": "Status M",
+      "mtf_input_modulation_percent": 60.0,
+      "granularity_aperture_micrometres": 48.0,
+      "manufacturer_curve_scope": "representative product characteristics, not a standard or a particular roll"
+    }
+  },
+  "required_text_anchors": [
+    "MARCH 2026 H-1-2242",
+    "production of master positives and duplicate negatives from negative originals",
+    "For the Master Positive LAD Aim",
+    "1.15 1.60 1.70",
+    "For the Duplicate Negative LAD Aim",
+    "1.00 1.45 1.55",
+    "60 percent modulation",
+    "48-micrometer diameter aperture",
+    "the granularity of the intermediate film is lower than the granularity of any original negative"
+  ],
+  "raster_sources": {
+    "page_zero_based": 3,
+    "mtf": {
+      "xobject": "/Im0",
+      "width": 707,
+      "height": 695,
+      "decoded_rgb_bytes": 1474095,
+      "decoded_rgb_sha256": "eb4ac3c0e19682a64f7c8d8e4b6fb1c35509f7f92410c09d23afba1f3b7801b8",
+      "x_axis": {"scale": "log10", "anchors": [[1.0, 89.0], [1000.0, 674.0]]},
+      "y_axis": {"scale": "log10", "anchors": [[1000.0, 71.0], [1.0, 607.0]]},
+      "samples": {
+        "frequencies_cycles_per_mm": [25.0, 30.0, 35.0, 40.0, 45.0, 55.0, 60.0, 65.0],
+        "x_pixels": [362, 377, 390, 401, 411, 428, 436, 443],
+        "channels": {
+          "blue": [274, 280, 287, 293, 299, 306, 309, 312],
+          "green": [263, 267, 271, 274, 278, 283, 286, 289],
+          "red": [268, 272, 278, 284, 290, 300, 306, 310]
+        }
+      }
+    },
+    "granularity": {
+      "xobject": "/Im1",
+      "width": 720,
+      "height": 688,
+      "decoded_rgb_bytes": 1486080,
+      "decoded_rgb_sha256": "d5298a25a12260d696a5b988cad0338863888a025359415b3f2834157f743cb6",
+      "x_axis": {"scale": "linear", "anchors": [[0.0, 71.0], [3.0, 478.0]]},
+      "y_axis": {"scale": "log10", "anchors": [[0.1, 270.0], [0.001, 604.0]]},
+      "samples": {
+        "log_relative_exposures": [0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5, 2.75],
+        "x_pixels": [105, 139, 173, 207, 241, 274, 308, 342, 376, 410, 444],
+        "channels": {
+          "blue": [538, 523, 511, 513, 514, 513, 512, 510, 512, 513, 511],
+          "green": [581, 562, 536, 535, 536, 536, 536, 531, 535, 539, 538],
+          "red": [553, 528, 527, 527, 515, 516, 520, 516, 513, 513, 512]
+        }
+      }
+    }
+  },
+  "vision3_evidence": {
+    "mtf_trace": {
+      "path": "configs/data/kodak_vision3_mtf_curve_pixels_v1.json",
+      "sha256": "d88c0e698c0e0969696224df50f1573ed78a6de0a894075f6502d9b3f658a794"
+    },
+    "granularity_trace": {
+      "path": "configs/data/kodak_vision3_granularity_curve_pixels_v1.json",
+      "sha256": "00b3436c9619a477bf13dcae0ab90df6fd9470bc1976e77484983a4a0029f145"
+    },
+    "observed_profile_decision": {
+      "path": "configs/u5_r2bu3_vision3_observed_source_profile_decision_v1.json",
+      "sha256": "d4c318a857f788b3ea5fdef292ba44f24f2d4386a03cb02928c77a24424c95a9",
+      "required_decision": "retain_non_renderable_observed_source_profile"
+    }
+  },
+  "comparison": {
+    "vision3_stocks": [
+      "kodak_vision3_50d_5203_7203",
+      "kodak_vision3_250d_5207_7207",
+      "kodak_vision3_500t_5219_7219"
+    ],
+    "channels": ["blue", "green", "red"],
+    "domains": ["mtf", "granularity"],
+    "normalization": "subtract each channel's mean natural-log response on the exact common coordinate grid",
+    "metric": "RMSE of mean-centred natural-log response",
+    "material_threshold": 0.08,
+    "trace_uncertainty_pixels": 2
+  },
+  "gates": {
+    "required_source_pages": 6,
+    "required_channels_per_domain": 3,
+    "minimum_mtf_samples_per_channel": 8,
+    "minimum_granularity_samples_per_channel": 11,
+    "maximum_trace_local_minimum_uint8": 100,
+    "trace_local_radius_pixels": 2,
+    "minimum_mtf_response_percent": 1.0,
+    "maximum_mtf_response_percent": 110.0,
+    "maximum_mtf_monotonic_increase_percent": 2.0,
+    "minimum_granularity_sigma_d": 0.001,
+    "maximum_granularity_sigma_d": 0.01,
+    "minimum_material_channels_per_domain_pair": 2,
+    "minimum_material_domains_per_vision3_pair": 2,
+    "minimum_material_vision3_pairs": 3,
+    "require_material_classification_under_trace_uncertainty": true,
+    "two_byte_identical_audits": true,
+    "visual_overlay_required": true
+  },
+  "allowed_after_pass": [
+    "retain a non-renderable first-party observed intermediate-material role profile",
+    "use the role profile as a measured prior in a separately frozen negative-intermediate-positive or duplicate chain simulator",
+    "seek rights-cleared processed intermediate-film observations with process and scanner controls"
+  ],
+  "forbidden": [
+    "change trace points, axes, channel labels, normalization, threshold or gates after formal scoring",
+    "treat intermediate or duplicating material as a camera stock, final print stock or scanner response",
+    "infer a digital RGB look, calibrated stock appearance, product profile or output transform",
+    "render photographs, train a router or alter the B0/AO6 default from this source-domain result",
+    "use explanatory or marketing prose to rescue a failed quantitative signature gate"
+  ],
+  "branch_rule": {
+    "pass": "Retain one non-renderable material_role=colour_intermediate profile and open only a separately frozen physical duplication-chain prior leaf.",
+    "fail": "Retain the official source facts but close quantitative intermediate-role profile expansion without trace, threshold, normalization or gate rescue."
+  },
+  "claim_ceiling": "First-party March-2026 manufacturer-raster MTF and diffuse-rms-granularity material-role signature for Kodak 5242/2242/3242 versus three VISION3 camera-negative source profiles; not a particular-roll measurement, final print, scanner response, RGB mapping, calibrated appearance or product operator."
+}
