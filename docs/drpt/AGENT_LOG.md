@@ -10752,3 +10752,8 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Reuse one P8BT workspace and scratch output across the three exact P4BY layer
   seeds. Require channelwise P8BT identity and two fresh 12MP RGB runs under
   6s/1GiB. This tests the colour-layer runtime shape, not a new grain model.
+- **Result:** PASS. Three exact/distinct layer hashes and complete RGB output
+  repeat across four fresh executions; 12MP takes 3.063-3.233s at
+  744.2-770.0MB peak. One 240MB workspace/scratch allocation is reused across
+  layers. Next scientific/runtime gap is compiling the supplied point-density
+  amplitude from the retained exposure/characteristic profile.

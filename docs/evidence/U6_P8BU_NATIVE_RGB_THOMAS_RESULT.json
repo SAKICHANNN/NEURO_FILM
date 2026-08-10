@@ -1,0 +1,42 @@
+{
+  "schema": "neuro_film.u6_p8bu_native_rgb_thomas_evidence.v1",
+  "experiment_id": "u6.p8bu-native-rgb-thomas-serial-v1",
+  "status": "pass-retain-serial-native-rgb-density-thomas-executor",
+  "contract_sha256": "37a63458f8f6f7f7e7355be53f87d322869d3eb2c594fe5140d0542805a31325",
+  "implementation": {
+    "commits": ["ac5c99e8", "f60a9c03", "112fbd14"],
+    "executor_sha256": "f032baf636ad51e371eca4a6ecb485ef7fbad1adb2b297e4f4ea1217eea57aab",
+    "formal_runner_sha256": "7356d849284a6ac1b2d0bb80313f479f10b11404a5dfcd45dd4f1c520597d96b"
+  },
+  "performance_12mp_rgb": {
+    "shape_chw": [3, 3000, 4000],
+    "output_sha256": "ad2dccac6827c820b1c5d33188e736c170da4d1a877e3253a26d648074112a21",
+    "channel_sha256": [
+      "6fd7f64f9bf65da859e8bdb3e6369f95309d2cad6417f43bc2e44198c37cb6cc",
+      "ec7babbf28b1165fefcb1a19293754022138b9283d9d72b20530c6c96594d774",
+      "fffc9d1afd70216e7fbbbdbe1c8fcb8e2aa3d3d7c366b5abf265748cc7363682"
+    ],
+    "input_bytes": 288000000,
+    "reused_workspace_and_scratch_bytes": 240000000,
+    "output_bytes": 144000000,
+    "four_fresh_wall_seconds_range": [3.062805899997329, 3.233002700002544],
+    "four_fresh_peak_process_tree_rss_bytes_range": [744218624, 770011136],
+    "transmittance_range": [0.026225179433822632, 0.3739807903766632],
+    "maximum_wall_seconds_gate": 6.0,
+    "maximum_process_tree_rss_bytes_gate": 1073741824,
+    "exact_repeat": true,
+    "distinct_layer_outputs": true,
+    "all_gates_pass": true
+  },
+  "formal_replay": {
+    "report_sha256": [
+      "9d260f6ca41e2911808ee4a873335d7cd94e79720f62a58ff50684031507f757",
+      "8404ce26eff50c7c0ecddf9551b0413fc3ecd7d6f3129e81a9c768f5371e3331"
+    ],
+    "stable_evidence_id": "ded7019813adaf7eb2a35cefd7df40bfe77d1eea1a284a9ea996caf6342fa672",
+    "scientific_identity_exact": true
+  },
+  "decision": "retain_serial_native_rgb_density_thomas_executor",
+  "retained_boundary": "P4BZ photographic stress remains closed; the executor consumes supplied synthetic density and point-sigma planes and does not identify or calibrate them.",
+  "claim_ceiling": "Portable synthetic three-layer density/transmittance runtime evidence only; not calibrated colour-film structure, photographic promotion, scanner-independent truth or product authorization."
+}
