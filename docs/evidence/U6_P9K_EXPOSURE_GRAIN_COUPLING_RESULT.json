@@ -1,0 +1,43 @@
+{
+  "automatic_pass": true,
+  "claim_ceiling": "Synthetic physical-order evidence for exposure-conditioned generic emulsion structure only; not measured film stock, process, scanner, temporal footage quality or product readiness.",
+  "contract_sha256": "0edb5c25e8dbf1f8ac0edbfda866289bf0371a3a871e82a28e9b3f7b108c11b6",
+  "decision": "freeze temporal exposure before density-conditioned emulsion structure; post-scan brightness remains a separate nonphysical control",
+  "gate_results": {
+    "candidate_all_values_finite": true,
+    "candidate_new_boundary_fraction_maximum": true,
+    "density_conditioned_residual_rms_span_minimum": true,
+    "display_rgb_effect_count_zero": true,
+    "matched_control_smooth_tone_error_maximum": true,
+    "minimum_nonzero_offset_different_fraction": true,
+    "minimum_nonzero_offset_order_difference_p95_absolute": true,
+    "minimum_nonzero_offset_order_difference_rmse": true,
+    "parent_hashes_exact": true,
+    "replay_byte_exact": true,
+    "reverse_exposure_order_byte_exact": true,
+    "row_partition_byte_exact": true,
+    "zero_offset_candidate_control_error_maximum": true
+  },
+  "measurements": {
+    "candidate_all_values_finite": true,
+    "candidate_new_boundary_fraction": 0.0,
+    "density_conditioned_residual_rms": {
+      "-0.25": 0.004094459632037298,
+      "0.0": 0.003926696666337039,
+      "0.25": 0.0037878081540791086
+    },
+    "density_conditioned_residual_rms_span": 0.00030665147795818975,
+    "display_rgb_effect_count": 0,
+    "matched_control_smooth_tone_error": 0.0,
+    "nonzero_offset_different_fraction": 1.0,
+    "nonzero_offset_minimum_order_difference_rmse": 0.000495984048872105,
+    "nonzero_offset_order_difference_p95_absolute": 0.0005579937308170385,
+    "parent_hashes_exact": true,
+    "replay_byte_exact": true,
+    "reverse_exposure_order_byte_exact": true,
+    "row_partition_byte_exact": true,
+    "zero_offset_candidate_control_error": 0.0
+  },
+  "schema": "neuro_film.u6_p9k_exposure_grain_coupling_report.v1",
+  "stable_evidence_id": "ebea35d97960bc1a01db50df470dfb752275302822d9218016911cf069f231d6"
+}

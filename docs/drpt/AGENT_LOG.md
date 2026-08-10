@@ -10607,3 +10607,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   replay, reverse order, partitions and boundary gates pass.
 - Physical emulsion grain stays before scanner motion. Codec/display grain is
   a separate layer; no measured film-video or product claim opens.
+
+# 2026-08-10 - U6.P9K freezes exposure before density-conditioned structure
+
+- Compared physical regeneration at `-.25/0/+.25` stop against a post-scan
+  control with exact adjusted smooth tone and pointwise matched neutral-grain
+  scaling.
+- Two reports are exact (`9206c073...7ef9`). Residual RMS changes
+  `.004094/.003927/.003788`; every nonzero-offset pixel differs from the
+  control with minimum RMSE `.000496`, while zero exposure is exact.
+- Temporal exposure stays before development and emulsion structure. This is
+  generic synthetic coupling, not measured stock/process/video evidence.
