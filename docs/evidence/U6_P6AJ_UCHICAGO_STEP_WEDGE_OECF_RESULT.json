@@ -1,0 +1,66 @@
+{
+  "schema": "neuro_film.u6_p6aj_uchicago_step_wedge_oecf_evidence.v1",
+  "experiment_id": "u6.p6aj-uchicago-step-wedge-oecf-v1",
+  "status": "pass-monotone-only-scanner-oecf-required",
+  "decision": "require_scanner_specific_monotone_oecf",
+  "contract_sha256": "881846341ba77b573bc09d7cb67b9a1e59941945088d02b741590287225dd606",
+  "implementation_commit": "bf186ca07b738422a53de0d38e8de3c8728856b7",
+  "implementation_sha256": "577fb2c33d06b6aab7d99455d38f4ce32ecfa2076805b80569b636bc7ed5a86f",
+  "runner_sha256": "97a157905c104d716110a0e78bac02dd6b298a9a01491a1bf8cebbbfb6e39c88",
+  "formal_report_sha256": "39a14d597e8bf1f7166f6d60ffab7aa97c9f30b2d0ba0026479158bbb5579918",
+  "two_independent_reports_byte_exact": true,
+  "source_files": [
+    {
+      "name": "f0005.tif",
+      "role": "positive_step_wedge",
+      "bytes": 730994,
+      "sha256": "f0e88f558123ea688162cf9dad154b7b5eb868a85e8a9ec34fcf3c9460546522"
+    },
+    {
+      "name": "f0006.tif",
+      "role": "negative_step_wedge",
+      "bytes": 673926,
+      "sha256": "46587164f92dfb85420cf74c13ee34ae4d51e1a2316904251c92535074ecdfbe"
+    },
+    {
+      "name": "README_step_wedge_densities.txt",
+      "role": "density_table",
+      "bytes": 261,
+      "sha256": "1bc24d545279e0be8272fe8f0b8adf46abf235148d8f84985d1cfb4f61d77b8a"
+    }
+  ],
+  "results": [
+    {
+      "role": "positive_step_wedge",
+      "axis_range_ratio": 5.937076527128527,
+      "density_code_spearman": -1.0,
+      "best_parametric_family": "affine_code_from_transmittance_10_pow_minus_density",
+      "best_parametric_confirmation_rmse": 0.08909277106020451,
+      "other_parametric_confirmation_rmse": 0.13356186762017747,
+      "monotone_confirmation_rmse": 0.007636671602198752,
+      "monotone_rmse_ratio_vs_best_parametric": 0.08571595103982416
+    },
+    {
+      "role": "negative_step_wedge",
+      "axis_range_ratio": 6.452919873245814,
+      "density_code_spearman": -0.9987012987012988,
+      "best_parametric_family": "affine_code_from_optical_density",
+      "best_parametric_confirmation_rmse": 0.13471430114531585,
+      "other_parametric_confirmation_rmse": 0.2782230675756122,
+      "monotone_confirmation_rmse": 0.006056099550772972,
+      "monotone_rmse_ratio_vs_best_parametric": 0.04495513467601542
+    }
+  ],
+  "gates": {
+    "source_gate": true,
+    "same_best_parametric_family": false,
+    "parametric_pass": false,
+    "monotone_only_pass": true
+  },
+  "interpretation": [
+    "The two polarity scans do not support one shared affine code-versus-transmittance or code-versus-density interpretation.",
+    "A fixed development-only monotone piecewise-linear calibration predicts the seven held density steps far better on both scans.",
+    "Raw TIFF code values therefore remain scanner/workflow-specific and must not be relabeled as film transmittance or optical density without a bound OECF."
+  ],
+  "claim_ceiling": "One CC-BY-4.0 historical flatbed scanner workflow step-wedge OECF measurement; not stock, emulsion, camera, process, colour, population or product calibration."
+}

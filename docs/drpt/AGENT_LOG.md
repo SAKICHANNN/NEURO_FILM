@@ -10787,3 +10787,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Boundary:** Explicit supplied layer exposure to generic transmittance only;
   no exposure inference, stock identification, photographic calibration or
   product authorization.
+
+## 2026-08-10 — U6.P6AJ real scanner step-wedge OECF
+
+- Froze and ran a two-polarity, 21-step CC-BY-4.0 scanner-response test with
+  seven held density steps. Two reports are byte-exact (`39a14d59...79918`).
+- The positive/negative scans select different affine code domains, while the
+  frozen monotone calibration reduces held-step RMSE to `8.57%/4.50%` of the
+  best affine model. Retain a workflow-specific OECF requirement only; no
+  stock, scanner-population, colour or product calibration claim.
