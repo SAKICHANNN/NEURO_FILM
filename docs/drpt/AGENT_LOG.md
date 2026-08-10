@@ -10867,3 +10867,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The 8-bit synthetic archive cannot authorize a Gaussian-to-geometry LOD.
   Retain P4BS's real-scan Gaussian mechanism and require a higher-precision or
   real calibrated physical observable before reopening explicit geometry.
+## 2026-08-10 - U6.P8BX native Thomas row-stream contract frozen
+
+- Parent: U6.P8BW exact serial native pipeline.
+- Decision: retain every physical/profile parameter and add only a global-coordinate two-pass row ABI: pass one derives the unchanged full-field DC receipt; pass two compiles density/sigma and transmittance in bounded row tiles.
+- Frozen gates: bit-exact P8BW pixels/raw means for 1/7/31/128-row partitions and MSVC/LLVM-MinGW, output atomicity, strict domain/input identity, 12MP peak <=500MB and >=128MiB reduction versus the measured 693,121,024-byte P8BW peak.
+- Claim ceiling: generic portable runtime arithmetic only; no stock, photographic, device or product promotion.

@@ -1,0 +1,50 @@
+{
+  "schema": "neuro_film.u6_p8bx_native_thomas_row_stream_contract.v1",
+  "experiment_id": "u6.p8bx-native-thomas-row-stream-v1",
+  "node": "ULT > U6 > U6.P8 > U6.P8BX",
+  "date_frozen": "2026-08-10",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can the unchanged P8BW exposure-to-density-to-Thomas pipeline execute in global-coordinate row tiles with bit-exact full-frame output and materially lower 12MP peak memory?",
+  "parents": {
+    "p8bw_evidence": {
+      "path": "docs/evidence/U6_P8BW_NATIVE_EXPOSURE_THOMAS_PIPELINE_RESULT.json",
+      "sha256": "a689e1fe7c2e2ef7b250d45e3b2fa323dad6ec0b38934268b2cea3988fafe6da",
+      "required_decision": "retain_native_exposure_to_thomas_serial_pipeline"
+    }
+  },
+  "candidate": {
+    "field_and_profile_unchanged": true,
+    "global_counter_coordinates_required": true,
+    "two_pass_full_field_dc_projection_required": true,
+    "row_partitions": [1, 7, 31, 128],
+    "performance_row_partition": 128,
+    "model_or_profile_change_allowed": false,
+    "realized_field_renormalization_allowed": false,
+    "output_quantization_allowed": false
+  },
+  "conformance": {
+    "shape_chw": [3, 193, 257],
+    "require_bit_exact_p8bw_output": true,
+    "require_exact_raw_means": true,
+    "require_all_row_partitions_exact": true,
+    "require_dual_windows_compiler_exact": true,
+    "require_failure_output_atomicity": true,
+    "require_input_immutability": true,
+    "require_strict_transmittance_domain": true
+  },
+  "performance": {
+    "shape_chw": [3, 3000, 4000],
+    "maximum_wall_seconds": 12.0,
+    "maximum_process_tree_rss_bytes": 500000000,
+    "minimum_rss_reduction_bytes_vs_p8bw": 134217728,
+    "p8bw_reference_peak_rss_bytes": 693121024,
+    "maximum_repeat_wall_ratio": 1.25,
+    "maximum_repeat_rss_ratio": 1.10,
+    "require_two_fresh_processes": true,
+    "require_exact_output_identity": true,
+    "require_zero_surviving_processes": true
+  },
+  "decision_if_pass": "retain_exact_native_thomas_row_stream",
+  "decision_if_fail": "close_native_thomas_row_stream_and_retain_p8bw",
+  "claim_ceiling": "Portable bounded-row execution of the unchanged generic P8BW physical arithmetic only; not a calibrated stock profile, photographic promotion, mobile-device runtime or product authorization."
+}
