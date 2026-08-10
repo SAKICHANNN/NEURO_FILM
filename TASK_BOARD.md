@@ -1044,6 +1044,12 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
   are material and the equal-granularity Velvia100/Provia100F pair separates
   in MTF shape. Retain source prior only; next test spectral dye density.
 
+# 2026-08-11 - Freeze U5.R2CB1 independent spectral source test
+
+- Freeze exact first-party Yellow/Magenta/Cyan separated-light density traces
+  for Velvia 50, Velvia 100 and Provia 100F before any cross-stock score.
+- Pass remains a technical source prior; it cannot directly define RGB output.
+
 - The clean-room WACV-2026-inspired coordinate family recovers all six frozen
   axes exactly and keeps the interior Jacobian positive; two reports are exact
   (`25f7ea0e...73eb1`).

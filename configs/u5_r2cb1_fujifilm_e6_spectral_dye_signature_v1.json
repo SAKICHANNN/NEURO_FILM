@@ -1,0 +1,53 @@
+{
+  "schema": "neuro_film.u5_r2cb1_fujifilm_e6_spectral_dye_signature_contract.v1",
+  "experiment_id": "U5.R2CB1",
+  "question": "Do exact first-party separated-light spectral dye density curves independently distinguish current Fujifilm Velvia 50, Velvia 100 and Provia 100F technical source profiles under the same E-6/CR-56 process label?",
+  "trace": {
+    "path": "configs/data/fujifilm_e6_spectral_dye_density_trace_v1.json",
+    "sha256": "3b6b36ef55062275e3a8a7058a9b9089bd43d0b45a532f48e936ec9417de381d"
+  },
+  "parent_source_signature": {
+    "path": "configs/u5_r2cb0_fujifilm_e6_stock_source_signature_decision_v1.json",
+    "sha256": "bf947740f6ff3353c030f78ac7bb0cb5f29576046442ee354613fb9972ce3664",
+    "required_decision": "retain_non_renderable_fujifilm_e6_stock_source_signature"
+  },
+  "stocks": [
+    "fujichrome_velvia_50_rvp50_af3_0221e2",
+    "fujichrome_velvia_100_rvp100_af3_202e",
+    "fujichrome_provia_100f_rdpiii_af3_036e"
+  ],
+  "comparison": {
+    "channels": ["yellow", "magenta", "cyan"],
+    "common_wavelengths_nm": {
+      "yellow": [410.0, 430.0, 450.0, 470.0, 490.0, 510.0, 530.0, 550.0, 570.0, 590.0],
+      "magenta": [410.0, 430.0, 450.0, 470.0, 490.0, 510.0, 530.0, 550.0, 570.0, 590.0, 610.0, 630.0, 650.0],
+      "cyan": [410.0, 430.0, 450.0, 470.0, 490.0, 510.0, 530.0, 550.0, 570.0, 590.0, 610.0, 630.0, 650.0, 670.0, 690.0]
+    },
+    "interpolation": "linear in wavelength and spectral diffuse density",
+    "pair_metric": "root mean square density difference across the concatenated channel-specific common wavelength samples"
+  },
+  "gates": {
+    "required_stock_count": 3,
+    "required_channel_count": 3,
+    "minimum_trace_points_per_channel": 10,
+    "axis_max_residual_px": 5.0,
+    "trace_max_ink_distance_px": 3.0,
+    "minimum_density": -0.02,
+    "maximum_density": 1.05,
+    "minimum_each_pair_density_rmse": 0.035,
+    "required_material_pair_count": 3,
+    "digitization_uncertainty_px": 3.0,
+    "maximum_uncertainty_fraction_of_observed_pair_separation": 0.5,
+    "required_process": "E-6/CR-56",
+    "required_exposure": "Separated Light",
+    "required_density_unit": "spectral diffuse density",
+    "two_byte_identical_audits": true,
+    "visual_overlay_required": true
+  },
+  "stop_rules": [
+    "Do not tune curve points, channel extents, wavelengths, interpolation, uncertainty or gates after any pair score.",
+    "Failure closes this exact spectral source signature without channel deletion, smoothing, peak alignment or threshold rescue.",
+    "Pass may strengthen the non-renderable technical source profile and open a separately frozen operator-identifiability experiment only; it cannot define a scene-to-display RGB transform, calibrated stock response or product profile."
+  ],
+  "claim_ceiling": "First-party same-manufacturer E-6 separated-light spectral-dye technical-source distinction; not independent film rolls, spectral transmittance, process/scanner calibration, scene-to-display colour response, photographic appearance, stock calibration or product evidence."
+}

@@ -1,0 +1,110 @@
+{
+  "schema": "neuro_film.fujifilm_e6_spectral_dye_density_trace.v1",
+  "annotation_method": "Human-guided source-ink tracing of exact first-party Fujifilm spectral dye density curves. Axis anchors, channel labels and integer curve points were frozen before any cross-stock metric was computed.",
+  "stocks": {
+    "fujichrome_velvia_50_rvp50_af3_0221e2": {
+      "source_pdf": {
+        "path": "outputs/source_recon/fujifilm_e6_stock_signature_2026/velvia_50_af3_0221e2.pdf",
+        "bytes": 538337,
+        "sha256": "668844e4cf81d5d234645c90d0b3217ed81c3be925a063b4752f7a71c3954d4c",
+        "official_source": "https://asset.fujifilm.com/master/emea/files/2020-10/a71dda63e2662f012b3b74110794918a/films_velvia-50_datasheet_01.pdf"
+      },
+      "source_graph": {
+        "path": "outputs/source_recon/fujifilm_e6_stock_signature_2026/extracted/velvia50_page8_image1.png",
+        "bytes": 23679,
+        "sha256": "2a1be7354789d465299a6892988936e09002c0fcae1600ced0442c7782f00a75",
+        "width": 1842,
+        "height": 1436,
+        "page_one_based": 8,
+        "embedded_page_image_index_zero_based": 1
+      },
+      "measurement_context": {"exposure": "Separated Light", "process": "E-6/CR-56", "density_unit": "spectral diffuse density", "wavelength_unit": "nm"},
+      "graph_axes": {
+        "x_scale": "linear",
+        "x_value_pixels": [[400.0, 278.0], [700.0, 1729.0]],
+        "x_tick_value_pixels": [[400.0, 278.0], [500.0, 766.0], [600.0, 1248.0], [700.0, 1729.0]],
+        "y_scale": "linear",
+        "y_value_pixels": [[1.0, 260.0], [0.0, 1219.0]],
+        "y_tick_value_pixels": [[1.0, 260.0], [0.5, 740.0], [0.0, 1219.0]]
+      },
+      "curves": {
+        "yellow": [[325, 634], [418, 370], [512, 258], [606, 388], [700, 682], [793, 928], [887, 1048], [980, 1120], [1074, 1170], [1168, 1202]],
+        "magenta": [[325, 1087], [418, 1046], [512, 1035], [606, 988], [700, 835], [793, 588], [887, 348], [980, 258], [1074, 358], [1168, 640], [1262, 920], [1355, 1078], [1449, 1145]],
+        "cyan": [[325, 1104], [418, 1134], [512, 1162], [606, 1173], [700, 1169], [793, 1148], [887, 1103], [980, 1025], [1074, 919], [1168, 780], [1262, 602], [1355, 420], [1449, 297], [1542, 258], [1636, 315]]
+      }
+    },
+    "fujichrome_velvia_100_rvp100_af3_202e": {
+      "source_pdf": {
+        "path": "outputs/source_recon/fujifilm_e6_stock_signature_2026/velvia_100_af3_202e.pdf",
+        "bytes": 442939,
+        "sha256": "4c57a27b978311ca2ef819f2bf2d74c757639d27f9f0bd94e5f49c4b1c3d5902",
+        "official_source": "https://asset.fujifilm.com/master/emea/files/2020-10/2f3c7f90a0b0c6e605e84f98b7d489c2/films_velvia-100_datasheet_01.pdf"
+      },
+      "source_graph": {
+        "path": "outputs/source_recon/fujifilm_e6_stock_signature_2026/extracted/velvia100_dye_density_crop.png",
+        "bytes": 34361,
+        "sha256": "e7ca2786c25235c3267d6fd97f7cb015036ba2884d7e9c9ee084895bf3b716b4",
+        "width": 590,
+        "height": 605,
+        "page_one_based": 8,
+        "derivation": {
+          "full_page_render_path": "outputs/source_recon/fujifilm_e6_stock_signature_2026/extracted/velvia100_page8-8.png",
+          "full_page_render_sha256": "66d672491fc701b9f3e7b5ee4d5976b3910d911c864d8183a7d9b6c494ccee16",
+          "full_page_render_width": 1653,
+          "full_page_render_height": 2206,
+          "crop_box_left_top_right_bottom": [900, 1230, 1490, 1835]
+        }
+      },
+      "measurement_context": {"exposure": "Separated Light", "process": "E-6/CR-56", "density_unit": "spectral diffuse density", "wavelength_unit": "nm"},
+      "graph_axes": {
+        "x_scale": "linear",
+        "x_value_pixels": [[400.0, 58.0], [700.0, 550.0]],
+        "x_tick_value_pixels": [[400.0, 58.0], [500.0, 223.0], [600.0, 387.0], [700.0, 550.0]],
+        "y_scale": "linear",
+        "y_value_pixels": [[1.0, 97.0], [0.0, 428.0]],
+        "y_tick_value_pixels": [[1.0, 97.0], [0.5, 262.0], [0.0, 428.0]]
+      },
+      "curves": {
+        "yellow": [[74, 186], [107, 123], [140, 100], [173, 175], [206, 303], [238, 380], [271, 407], [304, 424], [337, 428], [370, 428]],
+        "magenta": [[74, 405], [107, 412], [140, 410], [173, 386], [206, 333], [238, 243], [271, 154], [304, 99], [337, 147], [370, 285], [402, 371], [435, 404], [468, 420]],
+        "cyan": [[74, 418], [107, 418], [140, 418], [173, 420], [206, 418], [238, 415], [271, 407], [304, 386], [337, 350], [370, 285], [402, 212], [435, 149], [468, 108], [501, 110], [534, 189]]
+      }
+    },
+    "fujichrome_provia_100f_rdpiii_af3_036e": {
+      "source_pdf": {
+        "path": "outputs/source_recon/fujifilm_e6_stock_signature_2026/provia_100f_af3_036e.pdf",
+        "bytes": 186924,
+        "sha256": "8787f805d159562b46cd9bbde7300ff41bd1bfbce6f92966a7b4cc41b815219c",
+        "official_source": "https://asset.fujifilm.com/www/us/files/2020-03/6325e0d91ad8f74448c5968b5a954199/Provia100f.pdf"
+      },
+      "source_graph": {
+        "path": "outputs/source_recon/fujifilm_e6_stock_signature_2026/extracted/provia_page6_image1.png",
+        "bytes": 10581,
+        "sha256": "90bcce388bfa8ce9b8f83e96c4998a6133dfd4bd1dafff2d6c3655615fb766cc",
+        "width": 955,
+        "height": 715,
+        "page_one_based": 6,
+        "embedded_page_image_index_zero_based": 1
+      },
+      "measurement_context": {"exposure": "Separated Light", "process": "E-6/CR-56", "density_unit": "spectral diffuse density", "wavelength_unit": "nm"},
+      "graph_axes": {
+        "x_scale": "linear",
+        "x_value_pixels": [[400.0, 153.0], [700.0, 895.0]],
+        "x_tick_value_pixels": [[400.0, 153.0], [500.0, 405.0], [600.0, 647.0], [700.0, 895.0]],
+        "y_scale": "linear",
+        "y_value_pixels": [[1.0, 117.0], [0.0, 618.0]],
+        "y_tick_value_pixels": [[1.0, 117.0], [0.5, 371.0], [0.0, 618.0]]
+      },
+      "curves": {
+        "yellow": [[178, 280], [227, 155], [277, 124], [326, 220], [376, 389], [425, 513], [475, 540], [524, 597], [573, 602], [623, 604]],
+        "magenta": [[178, 508], [227, 510], [277, 515], [326, 488], [376, 404], [425, 273], [475, 145], [524, 126], [573, 218], [623, 358], [672, 488], [722, 548], [771, 574]],
+        "cyan": [[178, 528], [227, 528], [277, 544], [326, 556], [376, 565], [425, 561], [475, 540], [524, 497], [573, 437], [623, 358], [672, 263], [722, 175], [771, 124], [821, 130], [870, 190]]
+      }
+    }
+  },
+  "limitations": [
+    "Manufacturer curves are technical source priors, not independent film-roll, process, scanner or spectral-transmittance measurements.",
+    "The separated-light normalized dye-density curves do not define a scene-to-display RGB operator.",
+    "Graph digitization and raster-axis error are explicitly bounded in the frozen experiment contract."
+  ]
+}

@@ -17,6 +17,13 @@ Durable handoff log for non-trivial DRPT-governed work. Keep implementation trut
 - Retain source profile only. Next independent observation is spectral dye
   density; no render, calibration or product action opens.
 
+# 2026-08-11 - Freeze U5.R2CB1 spectral dye density confirmation
+
+- Froze exact first-party separated-light Yellow/Magenta/Cyan curves for the
+  same three Fujifilm E-6 stocks, unified wavelength samples and +/-3px error.
+- Score remains unread. Pass can only open a bounded operator-identifiability
+  experiment, not a scene-to-display transform or product profile.
+
 # 2026-08-10 - U5.R2BY0 closes conservative Kodak intermediate-role expansion
 
 - Audited the exact March-2026 Kodak 5242/2242/3242 source and digitized its
