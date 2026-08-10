@@ -10542,3 +10542,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   error `.16228`.
 - Physical video composition must vary layer exposure before development.
   This is synthetic order evidence, not a measured stock or flicker profile.
+
+# 2026-08-10 - U6.P9G fixes gate weave at the scanner-sampling boundary
+
+- Compared immutable-source bilinear sampling after development/transmittance
+  with the shortcut that first interpolates layer exposure and then develops.
+- Two reports are exact (`0a1f3cf3...d728`). The correct path has exact replay
+  and frame partitions; the wrong order differs on every frame with minimum
+  and median RMSE `.01616/.03085` and P95 maximum error `.15113`.
+- Gate weave remains after film formation and before digital output sampling.
+  No measured scanner mechanics or rendered-video quality is claimed.
