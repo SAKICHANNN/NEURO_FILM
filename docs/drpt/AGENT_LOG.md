@@ -2,6 +2,13 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-11 - Freeze U5.R2CB0 same-manufacturer E-6 source test
+
+- Froze exact official Velvia 100 and Provia 100F graph traces, axis/ink error
+  budgets and joint MTF/granularity gates before any stock-pair score.
+- Velvia 50 contributes only its valid 48um scalar granularity observation;
+  the failed BW0 MTF axis is forbidden. Next action is exact evaluator execution.
+
 # 2026-08-10 - U5.R2BY0 closes conservative Kodak intermediate-role expansion
 
 - Audited the exact March-2026 Kodak 5242/2242/3242 source and digitized its

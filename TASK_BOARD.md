@@ -1034,6 +1034,13 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
 
 # 2026-08-10 - U5.R2CA0 closes learnable-axis cylindrical colour
 
+# 2026-08-11 - Freeze U5.R2CB0 Fujifilm E-6 source signature
+
+- Freeze exact first-party Velvia 100 and Provia 100F composite-MTF traces plus
+  like-for-like 48um diffuse RMS granularity before cross-stock scoring.
+- Reuse Velvia 50 only for its exact scalar granularity fact; its failed BW0
+  MTF axis is explicitly forbidden. Pass cannot open a render or product path.
+
 - The clean-room WACV-2026-inspired coordinate family recovers all six frozen
   axes exactly and keeps the interior Jacobian positive; two reports are exact
   (`25f7ea0e...73eb1`).

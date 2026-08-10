@@ -1,0 +1,90 @@
+{
+  "schema": "neuro_film.fujifilm_e6_stock_mtf_trace.v1",
+  "annotation_method": "Human-guided source-ink tracing of exact first-party Fujifilm MTF graphs. Integer axis anchors, tick locations and curve points were frozen before any cross-stock metric was computed. Velvia 50 reuses the exact previously frozen U5.R2BW0 trace rather than redigitizing it.",
+  "stocks": {
+    "fujichrome_velvia_100_rvp100_af3_202e": {
+      "source_pdf": {
+        "path": "outputs/source_recon/fujifilm_e6_stock_signature_2026/velvia_100_af3_202e.pdf",
+        "bytes": 442939,
+        "sha256": "4c57a27b978311ca2ef819f2bf2d74c757639d27f9f0bd94e5f49c4b1c3d5902",
+        "official_source": "https://asset.fujifilm.com/master/emea/files/2020-10/2f3c7f90a0b0c6e605e84f98b7d489c2/films_velvia-100_datasheet_01.pdf"
+      },
+      "source_graph": {
+        "path": "outputs/source_recon/fujifilm_e6_stock_signature_2026/extracted/velvia100_mtf_crop.png",
+        "bytes": 31063,
+        "sha256": "b52f085b8eb10a6d09338d8baf1b095f4ce195ce44b5869d2c223b6aa13f0434",
+        "width": 640,
+        "height": 605,
+        "page_one_based": 8,
+        "derivation": {
+          "full_page_render_path": "outputs/source_recon/fujifilm_e6_stock_signature_2026/extracted/velvia100_page8-8.png",
+          "full_page_render_sha256": "66d672491fc701b9f3e7b5ee4d5976b3910d911c864d8183a7d9b6c494ccee16",
+          "full_page_render_width": 1653,
+          "full_page_render_height": 2206,
+          "crop_box_left_top_right_bottom": [185, 1230, 825, 1835]
+        }
+      },
+      "measurement_context": {
+        "exposure": "Daylight",
+        "process": "E-6/CR-56",
+        "mtf_observation": "single composite response curve",
+        "spatial_frequency_unit": "cycles/mm",
+        "response_unit": "percent",
+        "diffuse_rms_granularity": 8,
+        "granularity_aperture_micrometres": 48,
+        "granularity_sample_density_above_minimum": 1.0
+      },
+      "graph_axes": {
+        "x_scale": "log10",
+        "x_value_pixels": [[1.0, 53.0], [200.0, 596.0]],
+        "x_tick_value_pixels": [[1.0, 53.0], [5.0, 219.0], [10.0, 290.0], [20.0, 362.0], [50.0, 453.0], [100.0, 523.0], [200.0, 596.0]],
+        "y_scale": "log10",
+        "y_value_pixels": [[150.0, 13.0], [2.0, 423.0]],
+        "y_tick_value_pixels": [[150.0, 13.0], [100.0, 54.0], [70.0, 87.0], [50.0, 120.0], [30.0, 166.0], [20.0, 206.0], [10.0, 273.0], [7.0, 305.0], [5.0, 339.0], [3.0, 384.0], [2.0, 423.0]]
+      },
+      "curve": [[124, 46], [166, 45], [195, 45], [237, 46], [266, 46], [308, 50], [337, 59], [383, 81], [417, 101], [473, 142], [514, 175]]
+    },
+    "fujichrome_provia_100f_rdpiii_af3_036e": {
+      "source_pdf": {
+        "path": "outputs/source_recon/fujifilm_e6_stock_signature_2026/provia_100f_af3_036e.pdf",
+        "bytes": 186924,
+        "sha256": "8787f805d159562b46cd9bbde7300ff41bd1bfbce6f92966a7b4cc41b815219c",
+        "official_source": "https://asset.fujifilm.com/www/us/files/2020-03/6325e0d91ad8f74448c5968b5a954199/Provia100f.pdf"
+      },
+      "source_graph": {
+        "path": "outputs/source_recon/fujifilm_e6_stock_signature_2026/extracted/provia_page6_image0.png",
+        "bytes": 6602,
+        "sha256": "b06512daf0966ad6353cb9f92ee0bb52cac8e148445dacebbf7cac1c2f67b0ce",
+        "width": 894,
+        "height": 732,
+        "page_one_based": 6,
+        "embedded_page_image_index_zero_based": 0
+      },
+      "measurement_context": {
+        "exposure": "Daylight",
+        "process": "E-6/CR-56",
+        "mtf_observation": "single composite response curve",
+        "spatial_frequency_unit": "cycles/mm",
+        "response_unit": "percent",
+        "diffuse_rms_granularity": 8,
+        "granularity_aperture_micrometres": 48,
+        "granularity_sample_density_above_minimum": 1.0
+      },
+      "graph_axes": {
+        "x_scale": "log10",
+        "x_value_pixels": [[1.0, 110.0], [200.0, 868.0]],
+        "x_tick_value_pixels": [[1.0, 110.0], [5.0, 342.0], [10.0, 438.0], [20.0, 541.0], [50.0, 667.0], [100.0, 764.0], [200.0, 868.0]],
+        "y_scale": "log10",
+        "y_value_pixels": [[150.0, 11.0], [2.0, 624.0]],
+        "y_tick_value_pixels": [[150.0, 11.0], [100.0, 73.0], [70.0, 122.0], [50.0, 171.0], [30.0, 240.0], [20.0, 301.0], [10.0, 400.0], [7.0, 448.0], [5.0, 498.0], [3.0, 567.0], [2.0, 624.0]]
+      },
+      "curve": [[209, 50], [267, 50], [308, 50], [366, 51], [407, 52], [466, 58], [507, 69], [571, 102], [619, 148], [670, 224], [695, 266]]
+    }
+  },
+  "limitations": [
+    "Manufacturer technical graphs are source priors, not independent roll, process or scanner measurements.",
+    "Diffuse RMS granularity is a single scalar measured with a 48 micrometre aperture at density 1 above minimum and is not an NPS curve.",
+    "The graph digitization uncertainty and source raster axis residual are explicitly bounded in the frozen experiment contract.",
+    "A source-domain distinction cannot by itself authorize a rendering operator, calibrated stock response or product profile."
+  ]
+}

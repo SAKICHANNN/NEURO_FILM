@@ -1,0 +1,68 @@
+{
+  "schema": "neuro_film.u5_r2cb0_fujifilm_e6_stock_source_signature_contract.v1",
+  "experiment_id": "U5.R2CB0",
+  "question": "Do exact first-party Fujifilm E-6 source profiles provide a stable joint stock signature across Velvia 50, Velvia 100 and Provia 100F using composite-MTF shape plus like-for-like 48-micrometre diffuse RMS granularity?",
+  "trace": {
+    "path": "configs/data/fujifilm_e6_stock_mtf_trace_v1.json",
+    "sha256": "2985b1166c5e1df4fe1a180d120164aa1abc9280c8d44836d28e9cc531ca64fe"
+  },
+  "velvia50_parent_trace": {
+    "path": "configs/data/fujifilm_velvia50_mtf_revision_trace_v1.json",
+    "sha256": "d5e1d7bddbfa434434cb092fce438355673bb08173c5cc470600c39fbc1fc481",
+    "stock_id": "fujichrome_velvia_50_rvp50_af3_0221e2",
+    "allowed_observation": "diffuse_rms_granularity_and_measurement_context_only",
+    "forbidden_observation": "mtf_curve_or_axis_calibration"
+  },
+  "velvia50_parent_decision": {
+    "path": "configs/u5_r2bw0_fujifilm_velvia_mtf_revision_signature_decision_v1.json",
+    "sha256": "19703d1236f7463b6569a4c73cca305e582ad8539b20527e96c4bc453baedcba",
+    "required_failed_gate": "axis_calibration"
+  },
+  "stocks": [
+    "fujichrome_velvia_50_rvp50_af3_0221e2",
+    "fujichrome_velvia_100_rvp100_af3_202e",
+    "fujichrome_provia_100f_rdpiii_af3_036e"
+  ],
+  "comparison": {
+    "mtf_stocks": [
+      "fujichrome_velvia_100_rvp100_af3_202e",
+      "fujichrome_provia_100f_rdpiii_af3_036e"
+    ],
+    "common_frequencies_cycles_per_mm": [10.0, 20.0, 30.0, 40.0, 50.0, 59.0],
+    "normalization": "subtract natural-log response at 10 cycles/mm",
+    "interpolation": "linear in log10 spatial frequency and natural-log response",
+    "mtf_metric": "root mean square difference of normalized natural-log response",
+    "joint_pair_rule": "a stock pair is materially distinct when MTF RMSE is at least its MTF gate or absolute diffuse RMS granularity difference is at least its granularity gate",
+    "required_mtf_pair": [
+      "fujichrome_velvia_100_rvp100_af3_202e",
+      "fujichrome_provia_100f_rdpiii_af3_036e"
+    ]
+  },
+  "gates": {
+    "required_stock_count": 3,
+    "required_new_graph_count": 2,
+    "minimum_trace_points_per_new_stock": 10,
+    "axis_max_residual_px": 5.0,
+    "trace_max_ink_distance_px": 2.0,
+    "minimum_response_percent": 20.0,
+    "maximum_response_percent": 140.0,
+    "minimum_required_pair_mtf_log_shape_rmse": 0.05,
+    "minimum_granularity_absolute_difference": 1,
+    "required_material_pair_count": 3,
+    "digitization_uncertainty_px": 2.0,
+    "maximum_uncertainty_fraction_of_observed_mtf_separation": 0.5,
+    "required_process": "E-6/CR-56",
+    "required_exposure": "Daylight",
+    "required_granularity_aperture_micrometres": 48,
+    "required_granularity_sample_density_above_minimum": 1.0,
+    "two_byte_identical_audits": true,
+    "visual_overlay_required": true
+  },
+  "stop_rules": [
+    "Do not tune trace points, frequencies, normalization, pair rule, uncertainty model or gates after any cross-stock score.",
+    "Do not use the invalid U5.R2BW0 Velvia 50 MTF curve or repair its failed axis calibration; reuse only its exact like-for-like scalar granularity observation.",
+    "Failure closes this exact manufacturer-source joint signature without curve-capacity, stock-subset or threshold rescue.",
+    "Pass may retain a non-renderable stock source profile and open a separately frozen independent-observation leaf only; it cannot open a PSF, NPS, RGB transform, stock calibration, photographic render or product profile."
+  ],
+  "claim_ceiling": "First-party same-manufacturer E-6 technical-source distinction under explicit graph digitization uncertainty; not independent rolls, process/scanner calibration, spectral colour response, NPS, microscopic structure, photographic appearance, stock-response calibration or product evidence."
+}
