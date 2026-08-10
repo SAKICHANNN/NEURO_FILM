@@ -1,0 +1,37 @@
+{
+  "schema": "neuro_film.u6_p8cb_native_thomas_srgb_quantized_sink_evidence.v1",
+  "experiment_id": "u6.p8cb-native-thomas-srgb-quantized-sink-v1",
+  "status": "pass-retain-exact-native-thomas-srgb-quantized-sink",
+  "contract_sha256": "4269375b72b1de43a4d76f602e94d7ed344dc14365ddd1d3af06ff3d945655a0",
+  "formal_report_sha256": "abfe7fcf71357f510e2ae51c601ea3fcfef9d848bc3c3e1c18ac0ef354615ac7",
+  "stable_evidence_id": "cb8690e4cac68f9152127d0697720930825a25379e74ec5212a9b8d7b43c0b42",
+  "threshold_identity": "fae645ef1aad04fcd1233631a32f820cf7696e3ca65d31939acf60d7f123674c",
+  "conformance": {
+    "shape_chw": [3, 193, 257],
+    "msvc_llvm_exact": true,
+    "full_array_oracle_exact": true,
+    "srgb8_hwc_sha256": "7ca0b8341356815a608ccf7268b42c50953edf5653225f401afa2e0a41f4fd77",
+    "srgb16_hwc_sha256": "20d84ec2f239c4f87732476030f700a3f43f22fec4e59504bbe16654305d39cb",
+    "raw_means_exact": true,
+    "sink_order_exact": true,
+    "sink_failure_propagates": true,
+    "quantizer_failure_output_unchanged": true
+  },
+  "performance_12mp_srgb16": {
+    "shape_chw": [3, 3000, 4000],
+    "runs": 2,
+    "peak_process_tree_rss_bytes": [428642304, 428699648],
+    "wall_seconds": [13.397171899996465, 13.146907499998633],
+    "rss_repeat_ratio": 1.0001337805425756,
+    "wall_repeat_ratio": 1.0190359900225858,
+    "bounded_workspace_bytes": 26560000,
+    "sink_calls": 24,
+    "sample_range": [413, 50080],
+    "output_hwc_sha256": "5a0f531fe9b28183dba4634b0c1d739f71c2677e2f9ba74dd16c33c2fa6530fd",
+    "worker_cleanup_exact": true
+  },
+  "automatic_pass": true,
+  "decision": "retain_exact_native_thomas_srgb_quantized_sink",
+  "interpretation": "The existing exact sRGB threshold ABI can consume each P8CA display-linear tile and emit final integer samples without a full-frame float or integer output. Both output depths equal the independent full-array oracle. The 12MP 16-bit wall gate passes with limited margin and remains a host measurement.",
+  "claim_ceiling": "Host-only exact sRGB sample quantization after the unchanged generic P8CA display-linear stream; not an image encoder, ICC/container publication, device runtime, calibrated stock profile or product authorization."
+}
