@@ -1,0 +1,45 @@
+{
+  "schema": "neuro_film.u6_p8bz_native_thomas_interleaved_sink_contract.v1",
+  "experiment_id": "u6.p8bz-native-thomas-interleaved-sink-v1",
+  "node": "ULT > U6 > U6.P8 > U6.P8BZ",
+  "date_frozen": "2026-08-10",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can the exact P8BY arithmetic publish row-major interleaved RGB tiles suitable for one downstream quantization/encoder without retaining any full output plane?",
+  "parents": {
+    "p8by_evidence": {
+      "path": "docs/evidence/U6_P8BY_NATIVE_THOMAS_ROW_SINK_RESULT.json",
+      "sha256": "1929a83fe856da9e74415c2e26254bba14ad8bb5ae553689141cb46ded48773a",
+      "required_decision": "retain_exact_native_thomas_row_sink"
+    }
+  },
+  "candidate": {
+    "row_abi_and_profiles_unchanged": true,
+    "sink_order": "strictly increasing row_start with contiguous HWC float32 tiles",
+    "sink_may_retain_tiles": false,
+    "row_partition": 128,
+    "full_output_or_channel_plane_allowed": false,
+    "model_or_profile_change_allowed": false,
+    "quantization_or_encoding_allowed": false
+  },
+  "conformance": {
+    "shape_chw": [3, 193, 257],
+    "require_exact_p8bw_pixels_after_hwc_reassembly": true,
+    "require_exact_raw_means": true,
+    "require_exact_sink_order": true,
+    "require_input_immutability": true,
+    "require_sink_failure_propagation": true
+  },
+  "performance": {
+    "shape_chw": [3, 3000, 4000],
+    "maximum_wall_seconds": 12.5,
+    "maximum_process_tree_rss_bytes": 430000000,
+    "maximum_repeat_wall_ratio": 1.25,
+    "maximum_repeat_rss_ratio": 1.10,
+    "require_two_fresh_processes": true,
+    "require_exact_stream_identity": true,
+    "require_zero_surviving_processes": true
+  },
+  "decision_if_pass": "retain_exact_native_thomas_interleaved_sink",
+  "decision_if_fail": "close_interleaved_sink_and_retain_channel_major_p8by",
+  "claim_ceiling": "Interleaved non-retaining host sink for unchanged generic P8BW arithmetic only; not quantization, an image encoder, mobile runtime, calibrated stock profile or product authorization."
+}
