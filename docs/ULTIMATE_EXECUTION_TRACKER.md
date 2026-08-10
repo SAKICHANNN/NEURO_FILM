@@ -1294,3 +1294,8 @@ generic Thomas path. Two complete RGB16 PNG runs are byte exact at
 `13.67/14.04s` and `718.41/718.66MB` peak, with independently decoded samples
 and the embedded ICC exact. Retain this host implementation and advance to the
 separately frozen 100MP tiled proof; no calibrated-stock or product claim opens.
+
+U6.P8CH passes that 100MP host proof without changing the P8CG implementation.
+Two complete 10000x10000 RGB16 PNG runs preserve exact bytes, decoded samples
+and ICC at `49.48/54.32s` and `2.5422GB` peak, inside the frozen 75s/4GB gates.
+The next runtime question is target-device execution, not further host scaling.

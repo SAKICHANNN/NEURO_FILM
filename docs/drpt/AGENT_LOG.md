@@ -10938,3 +10938,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Two fresh 6000x4000 RGB16 PNG runs preserve one exact artifact and decoded sample stream, including the existing 588-byte sRGB ICC.
 - Wall time is 13.67/14.04s and process-tree peak is 718.41/718.66MB, passing the frozen 15s and 1GB gates.
 - Retain the ordinary-CPU host path. The next execution leaf is a separately frozen 100MP tiled measurement; device and calibrated-stock claims remain open.
+
+## 2026-08-10 - U6.P8CH 100MP row-streamed host PNG passes
+
+- The unchanged P8CG path completes two fresh 10000x10000 RGB16 PNG runs in 49.48/54.32s at 2.5422GB process-tree peak.
+- PNG bytes, decoded samples and ICC are exact across runs; all frozen 75s/4GB/repeat/cleanup gates pass.
+- Retain the 100MP desktop path and move to target-device runtime evidence rather than further host scaling.
