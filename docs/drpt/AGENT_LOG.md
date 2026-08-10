@@ -10772,3 +10772,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Boundary:** This compiles explicit relative layer exposure into the retained
   P4BW density and point-sigma planes. It does not infer exposure, synthesize
   the field, reopen P4BZ photographic evidence, or authorize a product path.
+
+## 2026-08-10 — Freeze U6.P8BW native exposure-to-Thomas pipeline
+
+- Compose the unchanged P8BV and P8BU primitives per layer, reusing density,
+  sigma, Thomas workspace and scratch rather than retaining all RGB
+  intermediates. Require exact separated-execution output and at least 180MB
+  modeled live-array reduction at 12MP, then measure two fresh workers under
+  7s/1GiB. No model, profile, exposure estimator or photographic claim changes.

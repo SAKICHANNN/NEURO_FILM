@@ -1,0 +1,51 @@
+{
+  "schema": "neuro_film.u6_p8bw_native_exposure_to_thomas_pipeline_contract.v1",
+  "experiment_id": "u6.p8bw-native-exposure-to-thomas-pipeline-v1",
+  "node": "ULT > U6 > U6.P8 > U6.P8BW",
+  "date_frozen": "2026-08-10",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can the retained P8BV amplitude compiler feed the retained P8BU three-layer Thomas executor one layer at a time with exact separated-execution pixels and materially less live intermediate storage?",
+  "parents": {
+    "p8bu_evidence": {
+      "path": "docs/evidence/U6_P8BU_NATIVE_RGB_THOMAS_RESULT.json",
+      "sha256": "2724087318b6e632d0030485404c6ced584dceb224b5bc2d72ede3507c07e673",
+      "required_decision": "retain_serial_native_rgb_density_thomas_executor"
+    },
+    "p8bv_evidence": {
+      "path": "docs/evidence/U6_P8BV_NATIVE_GRANULARITY_AMPLITUDE_RESULT.json",
+      "sha256": "3710ceccf64ee21fd7fd07fb2a4c79450f34d28726f30fb17ce947dd4be406c7",
+      "required_decision": "retain_native_p4bw_granularity_amplitude_compiler"
+    }
+  },
+  "candidate": {
+    "input_domain": "explicit_relative_layer_log_exposure_chw",
+    "output_domain": "three_layer_film_transmittance_chw",
+    "channel_order": ["red", "green", "blue"],
+    "layer_realization_seeds": [2608024301, 11400714821016565496, 15111065704576690158],
+    "execution_order": "for each layer: compile density and point sigma, then execute exact Thomas density composition; reuse layer intermediates, field workspace and output scratch",
+    "model_or_profile_change_allowed": false,
+    "exposure_estimation_allowed": false,
+    "parallel_full_frame_layers_allowed": false
+  },
+  "conformance": {
+    "shape": [3, 193, 257],
+    "require_exact_separated_execution_output": true,
+    "require_exact_repeat": true,
+    "require_input_immutability": true,
+    "require_strict_transmittance_domain": true,
+    "minimum_modeled_live_array_reduction_bytes_12mp": 180000000
+  },
+  "performance": {
+    "shape_chw": [3, 3000, 4000],
+    "maximum_wall_seconds": 7.0,
+    "maximum_process_tree_rss_bytes": 1073741824,
+    "maximum_repeat_wall_ratio": 1.25,
+    "maximum_repeat_rss_ratio": 1.1,
+    "require_two_fresh_processes": true,
+    "require_exact_output_identity": true,
+    "require_zero_surviving_processes": true
+  },
+  "decision_if_pass": "retain_native_exposure_to_thomas_serial_pipeline",
+  "decision_if_fail": "close_composed_pipeline_and_retain_separate_p8bv_p8bu_primitives",
+  "claim_ceiling": "Portable composition of retained generic exposure-density-amplitude and Thomas primitives only; not exposure estimation, calibrated colour film, photographic promotion, scanner-independent truth or product authorization."
+}
