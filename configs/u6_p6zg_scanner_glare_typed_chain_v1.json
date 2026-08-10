@@ -1,0 +1,68 @@
+{
+  "schema": "neuro_film.u6_p6zg_scanner_glare_typed_chain_contract.v1",
+  "node": "U6.P6ZG",
+  "status": "contract_frozen_implementation_ready",
+  "parents": {
+    "p6zf_evidence_path": "docs/evidence/U6_P6ZF_SCANNER_GLARE_CHANNEL_SERIAL_FFT_RESULT.json",
+    "p6zf_evidence_sha256": "4aeeb863a845094471c6efa5effd06476f909732f447ea0adacafd61ef1147fe",
+    "channel_serial_core_path": "src/film_physics/scanner_glare_channel_serial_fft.py",
+    "channel_serial_core_sha256": "990049e8ce3e1a8d34c83fc713e89479a42fbde41850cec3a0171cec4304ca83",
+    "typed_scanner_core_path": "src/film_physics/scanner.py",
+    "typed_scanner_core_sha256": "0706dbdaed9adbc022c77dc4489406ce977b86dc937b480ea5872c1a7b8a82d9",
+    "scanner_profile_contract_path": "configs/u6_p6a_scanner_profile_boundary_v1.json",
+    "scanner_profile_contract_sha256": "bdf9595635002cee726e2dc63ab4a0a2def7d350a3e3033bab2e43c502cc34e7"
+  },
+  "chain": {
+    "input_domain": "film-transmittance",
+    "stage_order": [
+      "spectral",
+      "p6za-multiscale-glare",
+      "dmax",
+      "mtf",
+      "noise"
+    ],
+    "scanner_profile": "scanner_a",
+    "pixel_pitch_um": 1.0,
+    "glare_row_chunk": 512,
+    "replace_existing_generic_flare": true,
+    "combine_with_existing_generic_flare": false
+  },
+  "benchmark": {
+    "shape": [
+      2000,
+      3000,
+      3
+    ],
+    "execution_order": [
+      "typed-chain-full-fft-glare",
+      "typed-chain-channel-serial-glare",
+      "typed-chain-channel-serial-glare",
+      "typed-chain-full-fft-glare"
+    ],
+    "fixture_seed": 6206106,
+    "rss_sample_interval_seconds": 0.01,
+    "worker_timeout_seconds": 120.0
+  },
+  "automatic_gates": {
+    "maximum_cross_chain_absolute_error": 1e-11,
+    "maximum_cross_chain_rmse": 1e-12,
+    "maximum_candidate_peak_process_tree_rss_bytes": 2147483648,
+    "maximum_candidate_to_reference_median_peak_rss_ratio": 0.9,
+    "maximum_candidate_median_apply_seconds": 15.0,
+    "maximum_candidate_to_reference_median_apply_time_ratio": 3.0,
+    "maximum_repeat_peak_rss_ratio": 1.15,
+    "maximum_repeat_apply_time_ratio": 1.20
+  },
+  "forbidden_fallbacks": [
+    "change stage order, scanner profile, glare profile, dtype, row chunk, fixture or gates",
+    "run both the legacy generic flare and P6ZA glare in one chain",
+    "drop Dmax, MTF or deterministic noise after observing cost",
+    "claim measured scanner calibration, stock response, native/mobile/GPU or product readiness"
+  ],
+  "branch_rule": {
+    "pass": "retain the typed experimental scanner chain and open an isolated profile-compiler contract",
+    "fail": "retain P6ZF as an isolated compiler only and close typed-chain composition"
+  },
+  "production_integration_allowed": false,
+  "claim_ceiling": "Local Windows/Python typed-chain numerical and resource evidence for one generic scanner profile with one uncalibrated multiscale glare replacement; not measured scanner calibration, stock response, native/mobile/GPU or product readiness."
+}
