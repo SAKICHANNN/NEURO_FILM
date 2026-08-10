@@ -1,0 +1,60 @@
+{
+  "schema": "neuro_film.u5_r2bw1_velvia_vision3_joint_source_signature_contract.v1",
+  "experiment_id": "U5.R2BW1",
+  "question": "Does a prospectively fixed joint first-party MTF plus density-aligned 48-micrometre diffuse-RMS signature robustly separate current Velvia 50 from every retained VISION3 observed source profile, especially the MTF-near 50D profile?",
+  "parents": {
+    "bw0_decision": {
+      "path": "configs/u5_r2bw0_fujifilm_velvia_mtf_revision_signature_decision_v1.json",
+      "sha256": "19703d1236f7463b6569a4c73cca305e582ad8539b20527e96c4bc453baedcba",
+      "required_decision": "close_exact_velvia_revision_source_signature"
+    },
+    "vision3_profile_decision": {
+      "path": "configs/u5_r2bu3_vision3_observed_source_profile_decision_v1.json",
+      "sha256": "d4c318a857f788b3ea5fdef292ba44f24f2d4386a03cb02928c77a24424c95a9",
+      "required_decision": "retain_non_renderable_observed_source_profile"
+    },
+    "characteristic_trace": {
+      "path": "configs/data/kodak_vision3_characteristic_curve_pixels_v1.json",
+      "sha256": "e7d9d45cd56066d1cc770c3a506117fcddc4ae52417c6d69d4088e8d0da61dfb"
+    },
+    "granularity_trace": {
+      "path": "configs/data/kodak_vision3_granularity_curve_pixels_v1.json",
+      "sha256": "00b3436c9619a477bf13dcae0ab90df6fd9470bc1976e77484983a4a0029f145"
+    }
+  },
+  "comparison": {
+    "velvia_profile": "fujichrome_velvia_50_rvp50_af3_0221e2",
+    "kodak_profiles": [
+      "kodak_vision3_50d_5203_7203",
+      "kodak_vision3_250d_5207_7207",
+      "kodak_vision3_500t_5219_7219"
+    ],
+    "density_alignment": "For each Kodak layer, subtract its minimum traced characteristic density, solve the monotone piecewise-linear curve at 1.0 D above that minimum, and evaluate the same layer's log-linear diffuse-RMS curve at the recovered log-relative exposure.",
+    "kodak_granularity_composite": "geometric mean of the three density-aligned layer Sigma-D values",
+    "velvia_granularity_compatibility_hypothesis": "Interpret the reported Fujifilm RMS granularity value 9 as 0.009 D at the stated 1.0 D above minimum and 48-micrometre aperture; this is an explicit cross-manufacturer compatibility hypothesis, not a source-stated unit equivalence.",
+    "velvia_granularity_sensitivity_sigma_d": [0.008, 0.009, 0.01],
+    "mtf_distance": "reuse the exact current-Velvia-to-Kodak normalized-log-shape RMSE from U5.R2BW0",
+    "joint_distance": "Euclidean norm of MTF distance and absolute natural-log granularity ratio"
+  },
+  "gates": {
+    "required_kodak_profile_count": 3,
+    "required_layer_count": 3,
+    "target_density_above_minimum": 1.0,
+    "minimum_characteristic_points": 12,
+    "minimum_granularity_points": 16,
+    "require_monotone_characteristic_inversion": true,
+    "require_target_density_bracketed": true,
+    "minimum_nominal_absolute_log_granularity_ratio_each_profile": 0.15,
+    "minimum_joint_distance_each_profile": 0.1,
+    "minimum_worst_sensitivity_joint_distance_each_profile": 0.08,
+    "maximum_characteristic_axis_residual_px": 2.0,
+    "maximum_granularity_axis_residual_px": 1.5,
+    "two_byte_identical_audits": true
+  },
+  "stop_rules": [
+    "Do not change the 0.001 conversion, density anchor, layer composite, sensitivity interval, metric or thresholds after any score.",
+    "Any failed source integrity, inversion, nominal, sensitivity or every-profile gate closes this exact joint signature.",
+    "A pass may retain only a non-renderable cross-manufacturer source-domain observation; it cannot identify independent rolls, process/scanner-invariant stock response, NPS, colour appearance, an RGB operator or a product profile."
+  ],
+  "claim_ceiling": "Prospective compatibility test joining exact first-party MTF and 48-micrometre diffuse-RMS observations under an explicit cross-manufacturer unit/alignment hypothesis and E-6/ECN-2 confounds; not calibration, independent replication, photographic appearance, render or product evidence."
+}
