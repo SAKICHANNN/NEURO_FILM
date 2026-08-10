@@ -1,0 +1,51 @@
+{
+  "schema": "neuro_film.u6_p2aa_reciprocity_compiler_evidence.v1",
+  "node": "U6.P2AA",
+  "decision": "retain_typed_reciprocity_primitive_and_open_local_intensity_contrast_test",
+  "software_commit": "82c18493",
+  "bindings": {
+    "contract": {
+      "path": "configs/u6_p2aa_reciprocity_compiler_v1.json",
+      "sha256": "53e35d2be582a2412acdaeb3bd179be97bf2c6564f7227f2f1034916ee2300b9"
+    },
+    "implementation": {
+      "path": "src/film_physics/reciprocity.py",
+      "sha256": "7892f8cf7d80958b03d250189480c5f4a1052e834af3d2bb87e7228e846555b6"
+    },
+    "evaluator": {
+      "path": "src/eval/reciprocity_compiler.py",
+      "sha256": "fc2c21319faf79d4290d2d61371fc46a942ac9ebb1adf34239a304bf4ae3991f"
+    },
+    "report": {
+      "path": "outputs/experiments/u6_p2aa_reciprocity_compiler_v1/run_1.json",
+      "sha256": "4e8004cd67301d02e497e0a2fbeaeb9cbac6420334877e799b6c60359ecd41ed",
+      "stable_evidence_id": "e8f6d99dedcfe686482ca2f2445567467cf6ccd5fbf7315063a2d9c9584f8e6f"
+    },
+    "official_sources": {
+      "ilford_sha256": "aa353153987f6ddaf40c8e47fc2ef17cafcd02bdb97cda0564c34fed98fa4c2e",
+      "kodak_vision3_50d_2026_sha256": "b4613661abed641671329eff3bd7d5686b268eb26b954ef1c27ea68f363caca6"
+    }
+  },
+  "results": {
+    "automatic_pass": true,
+    "two_reports_byte_exact": true,
+    "report_sha256": "4e8004cd67301d02e497e0a2fbeaeb9cbac6420334877e799b6c60359ecd41ed",
+    "ilford_profile_count": 11,
+    "ilford_distinct_exponent_group_count": 7,
+    "identity_maximum_absolute_error": 0.0,
+    "forward_inverse_maximum_relative_error": 6.315935428978669e-16,
+    "minimum_long_exposure_correction_ratio": 1.189207115002721,
+    "minimum_distinct_group_signature_l2": 0.07936388632020218,
+    "kodak_documented_identity_maximum_absolute_error": 0.0,
+    "kodak_outside_interval_rejected": true,
+    "partition_exact": true,
+    "rgb_image_transform_count_zero": true
+  },
+  "interpretation": [
+    "The ILFORD Tc=Tm^P guidance compiles exactly into a positive monotone exposure-time primitive. Eleven named films collapse to seven exponent-equivalence groups, so this source does not by itself distinguish every named stock.",
+    "Kodak VISION3 50D is represented only by its March-2026 documented 1/1000-to-1-second no-correction interval. The compiler rejects rather than extrapolates beyond that interval.",
+    "The pass opens a synthetic local-incident-rate experiment because the ILFORD source explicitly states that highlight and shadow light levels can experience different reciprocity failure. It does not open photographic rendering or product integration."
+  ],
+  "next_leaf": "U6.P2AB freeze and test a local-intensity reciprocity contrast operator against global-time correction, exponent-1 identity and wrong-exponent controls.",
+  "claim_ceiling": "First-party formula compiler and documented identity interval for exposure-time mechanics; not colour-film reciprocity, particular-roll/process calibration, scanner response, photographic quality or product promotion."
+}

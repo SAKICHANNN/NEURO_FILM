@@ -10443,3 +10443,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   and wins 2/64 hidden rows.
 - Retain the fixed K=1 operator and close this scorer/cohort family. Continue a
   materially distinct real-film or physical observation, not a router rescue.
+
+# 2026-08-10 - U6.P2AA compiles first-party reciprocity mechanics
+
+- Bound the ILFORD `Tc=Tm^P` table and Kodak's March-2026 VISION3 50D
+  1/1000--1s identity interval into a typed exposure-time primitive.
+- Two reports are exact (`4e8004cd...41ed`): 11 profiles form seven exponent
+  groups, identity error is zero and forward/inverse error is `6.32e-16`.
+- Retain the primitive only. P2AB will test local incident-rate contrast versus
+  global correction; no colour-layer, roll/process, scanner or product claim.
