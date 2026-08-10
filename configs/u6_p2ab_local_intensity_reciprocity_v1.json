@@ -1,0 +1,54 @@
+{
+  "schema": "neuro_film.u6_p2ab_local_intensity_reciprocity_contract.v1",
+  "node": "U6.P2AB",
+  "question": "Can a bounded incident-rate-conditioned reciprocity exponent express the local long-exposure contrast change that every scalar P profile is mathematically unable to represent?",
+  "parent": {
+    "evidence_path": "docs/evidence/U6_P2AA_RECIPROCITY_COMPILER_RESULT.json",
+    "evidence_sha256": "d80f1461ec69bc5c2e6058a79da7351b988fee79aa63af2e3f9af5e6d468df97",
+    "required_decision": "retain_typed_reciprocity_primitive_and_open_local_intensity_contrast_test"
+  },
+  "mechanism": {
+    "schema": "neuro_film.intensity_conditioned_reciprocity_profile.v1",
+    "bright_exponent": 1.20,
+    "dark_exponent": 1.43,
+    "log2_pivot_rate": -3.0,
+    "log2_transition_width": 1.5,
+    "reference_time_seconds": 1.0,
+    "incident_rate_range_log2": [-10.0, 4.0],
+    "incident_rate_sample_count": 257,
+    "physical_times_seconds": [1.0, 2.0, 10.0, 60.0, 600.0],
+    "partition_sizes": [31, 97, 129]
+  },
+  "controls": {
+    "identity_exponent": 1.0,
+    "global_exponents_from_p2aa": true,
+    "wrong_conditioning": "swap bright and dark exponents",
+    "comparison_domain": "geometric-mean-normalized natural-log effective exposure"
+  },
+  "automatic_gates": {
+    "reference_time_identity_maximum_absolute_error": 0.0,
+    "minimum_longest_time_truth_log_contrast_drift": 0.80,
+    "minimum_longest_time_global_shape_rmse": 0.30,
+    "minimum_longest_time_global_shape_max_error": 0.40,
+    "maximum_any_global_log_contrast_drift": 1e-12,
+    "minimum_wrong_conditioning_shape_rmse": 0.60,
+    "local_rate_monotone_strict": true,
+    "local_time_monotone_strict": true,
+    "partition_maximum_absolute_error": 0.0,
+    "all_outputs_positive_finite": true,
+    "serialization_byte_exact": true,
+    "rgb_image_transform_count_zero": true
+  },
+  "forbidden": [
+    "call the synthetic exponents measured ILFORD, Kodak, colour-layer, roll or process parameters",
+    "fit or tune the profile on photographs or P-unavailable datasets",
+    "interpret a scalar exposure-time correction as local contrast formation",
+    "render photographs, alter AO6 or open product integration from this capacity test",
+    "change the synthetic truth, controls, grid or gates after scoring"
+  ],
+  "branch_rule": {
+    "pass": "retain the bounded local-intensity representation as synthetic capacity and require time-by-intensity controlled measurements before any photographic use",
+    "fail": "close the representation without parameter or threshold rescue"
+  },
+  "claim_ceiling": "Synthetic capacity and scalar-model limitation for local-intensity reciprocity; not measured film, colour-layer, particular-roll/process, photographic quality or product evidence."
+}
