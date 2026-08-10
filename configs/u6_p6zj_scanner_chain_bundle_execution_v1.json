@@ -1,0 +1,45 @@
+{
+  "schema": "neuro_film.u6_p6zj_scanner_chain_bundle_execution_contract.v1",
+  "node": "U6.P6ZJ",
+  "status": "contract_frozen_implementation_ready",
+  "parents": {
+    "p6zi_evidence_path": "docs/evidence/U6_P6ZI_SCANNER_CHAIN_PROFILE_SERIALIZATION_RESULT.json",
+    "p6zi_evidence_sha256": "bd70b3053a822926f7433d855f9deb7983468bc3130e437d3935cb853509f4c0",
+    "profile_serializer_path": "src/film_physics/scanner_chain_profile.py",
+    "profile_serializer_sha256": "b4385cc7dc35197e588459413041e9267d5a2a3af4cb56063cdf25fc0bff3de3",
+    "p6zh_executor_path": "src/eval/scanner_glare_tiled_downstream.py",
+    "p6zh_executor_sha256": "772b41f6c4f911d1e03738dfd449a83a206276506067786d790d489d82da8a34",
+    "profile_sha256": "3ebdee37366871460b1f5feaedbe0362c59e593efd3485652a892183bba6b891"
+  },
+  "execution": {
+    "caller_holds_expected_profile_sha256": true,
+    "canonical_bytes_required": true,
+    "input_dtype": "float64",
+    "input_domain": "film-transmittance",
+    "output_domain": "scanner-linear-signal",
+    "pixel_output_mutation_before_validation": false,
+    "product_runtime_allowed": false
+  },
+  "automatic_gates": {
+    "parent_hashes_exact": true,
+    "bundle_identity_exact": true,
+    "canonical_bytes_exact": true,
+    "direct_vs_bundle_output_bit_exact": true,
+    "repeat_output_exact": true,
+    "wrong_identity_rejected_before_execution": true,
+    "noncanonical_and_tampered_bundle_rejected_before_execution": true,
+    "dtype_shape_domain_rejected_before_execution": true
+  },
+  "forbidden_fallbacks": [
+    "normalize noncanonical bundle bytes or infer missing fields",
+    "run pixels before bundle identity, canonical form and input validation",
+    "change P6ZH execution parameters, profile, glare, dtype or physical domains",
+    "claim scanner calibration, photographic quality, native runtime or product readiness"
+  ],
+  "branch_rule": {
+    "pass": "retain bundle-driven generic scanner execution and open bounded file packaging only",
+    "fail": "retain code-constructed P6ZH and serialized P6ZI as separate research components"
+  },
+  "production_integration_allowed": false,
+  "claim_ceiling": "Exact local Python execution of one generic experimental scanner chain from caller-verified canonical profile bytes; not scanner calibration, native runtime, image-file delivery or product readiness."
+}
