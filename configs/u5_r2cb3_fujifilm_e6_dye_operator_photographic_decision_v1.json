@@ -1,0 +1,25 @@
+{
+  "schema": "neuro_film.u5_r2cb3_fujifilm_e6_dye_operator_photographic_decision.v1",
+  "experiment_id": "U5.R2CB3",
+  "initial_contract_commit": "e1574b8b477a101d24250faf36dd9d05be9e3992",
+  "final_pre_score_contract_commit": "27202a3f5db709f269d968b5f299b8ea66033483",
+  "implementation_commit": "c8d369025b56e978f97c0bf5cbd336f562a23bb7",
+  "contract_sha256": "72a812082f62501decddaef7bf4564bc36be6b58aee905d6f460c52d4759b171",
+  "formal_report_file_sha256": "6485647d36a88a62a904bd773dbef48d7150b11a85a029789ef23c216a3d54f0",
+  "stable_evidence_id": "e767223044c9dca2a203938e701e91c99efbdf645c47749ad147e929e7d1df15",
+  "passed": false,
+  "decision": "close_exact_photographic_development_family",
+  "metrics": {
+    "maximum_new_boundary_fraction": 0.009614573570759137,
+    "minimum_stock_median_style_delta_e76": 2.42752340857613,
+    "minimum_stock_median_joint_basic_residual_delta_e76": 0.4345790352342479,
+    "minimum_stock_median_vs_pooled_delta_e76": 0.13207155787325658,
+    "minimum_pair_median_stock_delta_e76": 0.4399339132923745,
+    "maximum_lut_direct_reference_rmse": 0.0000742604066417146,
+    "maximum_lut_direct_reference_max_abs": 0.00019523128867149353
+  },
+  "failed_gates": ["boundary", "non_basic", "pooled_separation", "stock_separation"],
+  "visual_review_opened": false,
+  "claim_ceiling": "Rights-cleared ten-camera photographic OOD development evidence for exact bounded Fujifilm-source-curve film-inspired operators; not calibrated stock response, population preference, independent film-scan truth, authenticity or product promotion.",
+  "next_action": "Close the exact endpoint-hold, NNLS-balance, synthetic-scanner, fixed-strength 17-cube compiler without rescue. Seek a materially different identified observation or paired calibrated equation-family control rather than adding capacity to these normalized dye shapes."
+}

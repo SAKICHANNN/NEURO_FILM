@@ -26,6 +26,14 @@ Durable handoff log for non-trivial DRPT-governed work. Keep implementation trut
 - Frozen controls separate style, stock distinction, pooled behaviour, basic
   colour adjustment, LUT fidelity, boundaries, gradients and severe artifacts.
 
+# 2026-08-11 - U5.R2CB3 closes exact photographic compiler family
+
+- Two reports and outputs are exact (`6485647d...d54f0`). LUT fidelity and
+  style pass, but boundary, non-basic, pooled and stock-separation gates fail;
+  the weakest stock-pair median is only `.43993` DeltaE76.
+- Automatic failure keeps visual review closed. Do not tune density, strength,
+  scanner or LUT; a next leaf needs a materially new identifying observation.
+
 # 2026-08-11 - Freeze U5.R2CB0 same-manufacturer E-6 source test
 
 - Froze exact official Velvia 100 and Provia 100F graph traces, axis/ink error

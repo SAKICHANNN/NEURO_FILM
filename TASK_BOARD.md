@@ -1069,6 +1069,9 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
   rights/visual population before candidate rendering.
 - Require exact replay, no severe/boundary/gradient failure, non-basic residual,
   stock separation, pooled separation and 17-cube/direct-compiler fidelity.
+- Complete negative: exact reports (`6485647d...d54f0`) fail boundary,
+  non-basic, pooled and stock-separation gates. Visual review stays closed; do
+  not tune this compiler family.
 
 - The clean-room WACV-2026-inspired coordinate family recovers all six frozen
   axes exactly and keeps the interior Jacobian positive; two reports are exact
