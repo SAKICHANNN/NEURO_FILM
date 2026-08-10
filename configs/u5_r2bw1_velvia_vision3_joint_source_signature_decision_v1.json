@@ -1,0 +1,14 @@
+{
+  "schema": "neuro_film.u5_r2bw1_velvia_vision3_joint_source_signature_decision.v1",
+  "experiment_id": "U5.R2BW1",
+  "implementation_commit": "11e7e2c2d260d124c80ec879036728c0facae6ae",
+  "formal_report_file_sha256": "ce32bda98af918a8d670ea7ca149f1c0165701ccf150955edcc83f51d71154a9",
+  "formal_report_canonical_sha256": "2843c280827849b0d63ef2b0bbfec74b77f77241b0c1c4c1a654e9db58bb5afc",
+  "stable_evidence_id": "5ed47c3ebcbcce5d866f10509bce647bb2622c6d9a8a515a5c70f52d64c41bb5",
+  "passed": false,
+  "decision": "close_before_joint_score_on_parent_source_calibration",
+  "joint_feature_rows_computed": 0,
+  "granularity_unit_conversions_applied": 0,
+  "reason": "The exact BW0 parent retains a failed axis_calibration gate. A new granularity dimension cannot repair or bypass an invalid parent source calibration, so BW1 closes before cross-manufacturer unit conversion or joint scoring.",
+  "claim_ceiling": "Fail-closed parent-evidence adjudication only; no joint stock signature, unit equivalence, calibration, render or product claim."
+}

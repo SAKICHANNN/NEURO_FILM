@@ -2,6 +2,14 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-01 - U5.R2BW1 closes before joint source scoring
+
+- The exact BW0 axis-calibration failure is checked before any cross-manufacturer
+  granularity conversion or joint feature computation. Two reports are exact
+  (`ce32bda9...154a9`), with zero scored rows and zero unit conversions.
+- Do not use an additional feature to rescue an invalid parent source trace.
+  Continue with a new identifying observation or mechanism.
+
 # 2026-08-01 - U5.R2BW0 closes exact Velvia source signature
 
 - Added deterministic extraction/audit for exact first-party RVP and RVP50
