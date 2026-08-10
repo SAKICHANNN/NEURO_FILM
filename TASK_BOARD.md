@@ -1112,3 +1112,10 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
   precede pixel execution; wrong/tampered/noncanonical/domain inputs fail closed.
 - Retain as generic research execution. Only bounded profile-file packaging
   opens; image delivery, native runtime, calibration and product state stay closed.
+
+# 2026-08-10 - Freeze U6.P8BS portable Thomas-field runtime
+
+- Compile the retained P4BS/P4BV two-component second-order field rather than
+  reopening the closed P4CF point-process capacity family.
+- Freeze dual-compiler float32 conformance, failure atomicity and 12MP
+  runtime/RSS gates before implementation; no refit or realized normalization.

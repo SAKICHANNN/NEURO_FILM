@@ -10713,3 +10713,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   first bundle and repeat bundle output SHA is `9f2c8001...2d34`.
 - Wrong identity, tamper, noncanonical bytes and invalid dtype/shape/domain never
   reach pixel execution. Only bounded research profile-file packaging opens.
+# 2026-08-10 - Freeze U6.P8BS native Thomas-field runtime
+
+- **Question:** Can the retained generic P4BS/P4BV field become a portable,
+  bounded-memory C11 runtime primitive without changing its spatial model?
+- **Boundary:** Freeze float64-reference, dual-compiler, failure-atomic and
+  12MP resource gates. P4CF point-process capacity remains closed; no stock,
+  microscopic-grain, scanner-calibration or product claim can open here.
+- **Research basis:** Current FGA-NN/VFGS is retained only as a public compact
+  baseline and remains closed at P8BR. P8BS implements the already-retained
+  Thomas mechanism rather than repairing or tuning VFGS.

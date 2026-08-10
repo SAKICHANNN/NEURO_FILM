@@ -1,0 +1,65 @@
+{
+  "schema": "neuro_film.u6_p8bs_native_thomas_field_contract.v1",
+  "experiment_id": "u6.p8bs-native-thomas-field-v1",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can the retained P4BS/P4BV generic Thomas second-order field be compiled into a portable bounded-memory C11 float32 primitive without changing its spatial model?",
+  "parents": {
+    "p4bv_decision": {
+      "path": "configs/u6_p4bv_thomas_dc_projection_decision_v1.json",
+      "sha256": "878f406c9d0128e99a92933e73d52638831b4465eb2597b52bd3b24421edad20",
+      "required_decision": "retain_two_pass_dc_projected_thomas_unit_field"
+    },
+    "p4bw_decision": {
+      "path": "configs/u6_p4bw_density_conditioned_thomas_profile_decision_v1.json",
+      "sha256": "c198397b1534615a381362a030cc64a5ef30403fb0790ebf62b7d1f228f1dc1e",
+      "required_decision": "retain_density_conditioned_thomas_hybrid_profile"
+    }
+  },
+  "candidate": {
+    "language": "freestanding-c11-with-libm",
+    "precision": "ieee-binary32-output-binary64-accumulation",
+    "field_model": "unchanged-two-component-finite-support-thomas",
+    "particle_sigma_samples": 1.3253699417769098,
+    "cluster_sigma_samples": 1.1268619873805532,
+    "mean_offspring": 27.765942352935905,
+    "component_seeds": [117031, 928271],
+    "realization_seed": 424242,
+    "truncate_sigma": 4.0,
+    "dc_projection": "full-field-neumaier-mean-subtraction",
+    "parameter_refit_allowed": false,
+    "additional_model_capacity_allowed": false,
+    "realized_variance_normalization_allowed": false
+  },
+  "conformance": {
+    "shape": [257, 389],
+    "maximum_absolute_error_vs_float64_reference": 0.00005,
+    "maximum_rmse_vs_float64_reference": 0.000005,
+    "minimum_correlation_vs_float64_reference": 0.999999,
+    "maximum_absolute_projected_mean": 0.000001,
+    "minimum_variance_ratio": 0.995,
+    "maximum_variance_ratio": 1.005,
+    "maximum_cross_compiler_absolute_error": 0.000002,
+    "require_repeat_exact_within_compiler": true,
+    "require_failure_atomicity": true
+  },
+  "performance": {
+    "shape": [3000, 4000],
+    "maximum_wall_seconds": 5.0,
+    "maximum_process_tree_rss_bytes": 402653184,
+    "require_two_fresh_processes": true,
+    "maximum_repeat_wall_ratio": 1.25,
+    "maximum_repeat_rss_ratio": 1.1
+  },
+  "baselines": [
+    "p4bv-python-float64-two-pass",
+    "constant-zero-field",
+    "independent-white-counter-field"
+  ],
+  "source_context": {
+    "latest_baseline": "FGA-NN 2025 predicts conventional grain-synthesis parameters but its public VFGS path is closed separately at U6.P8BR",
+    "primary_url": "https://arxiv.org/abs/2506.14350"
+  },
+  "decision_if_pass": "retain_native_generic_thomas_field_primitive",
+  "decision_if_fail": "close_native_thomas_field_implementation_without_model_or_gate_rescue",
+  "claim_ceiling": "Portable generic same-scanner second-order grain-field runtime evidence only; not microscopic grain, dye-cloud or silver structure, stock/process/scanner calibration, photographic quality or product promotion."
+}
