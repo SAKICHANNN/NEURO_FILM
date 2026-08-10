@@ -1,0 +1,63 @@
+{
+  "schema": "neuro_film.u6_p9c_temporal_grain_innovation_contract.v1",
+  "node": "U6.P9C",
+  "question": "Can the existing physical counter contract generate frame-order-independent, tile-exact, temporally independent and RGB-layer-independent grain innovations without static or shifted texture reuse?",
+  "primary_sources": [
+    {
+      "title": "AOMedia Film Grain Synthesis Technology v2",
+      "url": "https://aomedia.org/docs/CWG-C051o_TR_AOMedia_film_grain_synthesis_technology_v2.pdf",
+      "published": "2026",
+      "used_facts": ["grain is temporally independent", "analog RGB grain is channel independent", "grain strength is signal dependent"]
+    },
+    {
+      "title": "Recommendation ITU-T H.274 (V4)",
+      "url": "https://www.itu.int/epublications/publication/itu-t-h-274-v4-2026-01-versatile-supplemental-enhancement-information-messages-for-coded-video-bitstreams",
+      "published": "2026-01",
+      "used_fact": "current standardized video metadata supports parameterized film-grain synthesis"
+    }
+  ],
+  "innovation_profile": {
+    "schema": "neuro_film.temporal_grain_innovation.v1",
+    "profile_sha256": "e542b99e052a4d3d91ca8005473e42ad9fa94546329195d052dae5b245faa361",
+    "seed": 1729,
+    "frame_count": 64,
+    "height": 128,
+    "width": 160,
+    "layer_count": 3,
+    "tile_rows": [17, 31, 43, 37]
+  },
+  "controls": {
+    "static_reuse": "reuse frame zero for every frame",
+    "shifted_reuse": "circularly translate frame zero by frame-index offsets",
+    "density_or_signal_envelope_application_count": 0,
+    "spatial_nps_filter_application_count": 0
+  },
+  "automatic_gates": {
+    "replay_byte_exact": true,
+    "reverse_frame_order_byte_exact": true,
+    "tile_partition_byte_exact": true,
+    "all_frame_hashes_unique": true,
+    "all_values_finite": true,
+    "maximum_absolute_frame_mean": 0.035,
+    "minimum_frame_standard_deviation": 0.95,
+    "maximum_frame_standard_deviation": 1.05,
+    "maximum_absolute_adjacent_frame_correlation": 0.04,
+    "maximum_absolute_cross_layer_correlation": 0.04,
+    "minimum_static_reuse_adjacent_correlation": 0.999999,
+    "minimum_shifted_reuse_inverse_aligned_correlation": 0.999999,
+    "density_or_signal_envelope_application_count_zero": true,
+    "spatial_nps_filter_application_count_zero": true,
+    "rgb_image_transform_count_zero": true
+  },
+  "forbidden": [
+    "treat a static, toroidally shifted or interpolated prior-frame texture as temporally independent grain",
+    "claim white innovations are a complete dye-cloud, metallic-silver, density-conditioned or scanner-convolved grain model",
+    "fit on photographs or unavailable P-drive data",
+    "change seed, shape, controls or gates after formal scoring"
+  ],
+  "branch_rule": {
+    "pass": "retain the temporal innovation primitive and compose it only through existing density/NPS physical stages in a separate leaf",
+    "fail": "close the temporal innovation implementation without seed, threshold or cohort rescue"
+  },
+  "claim_ceiling": "Synthetic temporal and layer independence of grain innovations only; not complete film grain, measured stock/process/scanner evidence, rendered-video quality or product readiness."
+}
