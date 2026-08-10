@@ -10919,3 +10919,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Exactness: MSVC/LLVM and serial/parallel sRGB8/16 sample streams, raw means and row order are identical; injected sink failure propagates.
 - Resource result: two fresh 12MP RGB16 runs take 9.71/9.91s at 428.24-429.10MB peak. Worst wall time is 73.98% of the retained serial P8CB result while output SHA remains `5a0f531f...530fd`.
 - Decision: retain the scheduler and next measure it through the existing P8CC PNG writer. No algorithm, profile, device or product claim changes.
+
+## 2026-08-10 - U6.P8CE parallel compute-to-PNG path passes
+
+- Composition: unchanged P8CD scheduling feeds unchanged P8CC PNG16 serialization; the exact 68,399,187-byte serial artifact SHA `9484eeec...47f8` is preserved.
+- Resource result: two fresh 12MP complete runs take 11.19/11.25s at 430.00-430.31MB peak, a worst-wall ratio of .711 versus serial P8CC.
+- Decision: retain the host generic physical arithmetic-to-PNG path as the current runtime implementation result. Device runtime, calibrated stock response and product authorization remain separate evidence questions.

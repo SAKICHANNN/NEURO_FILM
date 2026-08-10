@@ -1,0 +1,27 @@
+{
+  "schema": "neuro_film.u6_p8ce_parallel_thomas_srgb_png_evidence.v1",
+  "experiment_id": "u6.p8ce-parallel-thomas-srgb-png-v1",
+  "status": "pass-retain-exact-parallel-native-thomas-srgb-png",
+  "contract_sha256": "5cf7e70939024509c51f5bb1ea04ee9071d0b3b50193997e2ab782221a7ae663",
+  "formal_report_sha256": "12d0548a199e26f5db8d8a8773741855d0b9d12ce4d328706806f2af351d697a",
+  "stable_evidence_id": "00a2993ebaad1f06dbe838de3b3999d9d9be6f94c794408cfe2b467048cfbf7c",
+  "performance_12mp_srgb16": {
+    "shape_chw": [3, 3000, 4000],
+    "runs": 2,
+    "peak_process_tree_rss_bytes": [430002176, 430313472],
+    "wall_seconds": [11.25271619999694, 11.186181999997643],
+    "wall_ratio_vs_p8cc": 0.7105635971657294,
+    "rss_repeat_ratio": 1.0007239405225707,
+    "wall_repeat_ratio": 1.0059478917828542,
+    "bounded_compute_workspace_bytes": 59328000,
+    "sink_calls": 24,
+    "png_bytes": 68399187,
+    "png_sha256": "9484eeecaa88be773451cd052be359a76a098d8495473c5f360167318fc847f8",
+    "p8cc_png_identity_exact": true,
+    "worker_cleanup_exact": true
+  },
+  "automatic_pass": true,
+  "decision": "retain_exact_parallel_native_thomas_srgb_png",
+  "interpretation": "The retained parallel colour-layer scheduler composes directly with the retained bounded-row PNG writer. The complete 12MP physical arithmetic, gauge, one final quantization, ICC embedding, compression and publication path preserves the exact serial PNG while reducing the worst measured wall time by 28.94%.",
+  "claim_ceiling": "Host-only exact generic Thomas-to-sRGB PNG performance result; not device runtime, calibrated stock response, product authorization or general media support."
+}
