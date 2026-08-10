@@ -1,0 +1,42 @@
+{
+  "schema": "neuro_film.u6_p8cg_24mp_native_thomas_png_contract.v1",
+  "experiment_id": "u6.p8cg-24mp-native-thomas-png-v1",
+  "node": "ULT > U6 > U6.P8 > U6.P8CG",
+  "date_frozen": "2026-08-10",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Does the exact P8CF scheduler plus P8CC writer meet the provisional ordinary-desktop 24MP CPU target for a complete RGB16 PNG?",
+  "parents": {
+    "p8cf_evidence": {
+      "path": "docs/evidence/U6_P8CF_NATIVE_NEUMAIER_REDUCER_RESULT.json",
+      "sha256": "b5a97a19da0078947ac0c120abe2043e5b36509fe9c8ab0055b5eab2dd0b6b42",
+      "required_decision": "retain_exact_native_neumaier_thomas_scheduler"
+    },
+    "p8cc_evidence": {
+      "path": "docs/evidence/U6_P8CC_NATIVE_THOMAS_SRGB_PNG_STREAM_RESULT.json",
+      "sha256": "641c5ee9270d5095904c9c0c1c5d9a872dcc0f805a9d1d47406492b73363d8a3",
+      "required_decision": "retain_exact_native_thomas_srgb_png_stream"
+    }
+  },
+  "candidate": {
+    "scheduler_reducer_encoder_unchanged": true,
+    "shape_chw": [3, 4000, 6000],
+    "row_partition": 128,
+    "bit_depth": 16,
+    "full_output_allowed": false,
+    "model_profile_or_sample_change_allowed": false
+  },
+  "gates": {
+    "maximum_wall_seconds": 15.0,
+    "maximum_process_tree_rss_bytes": 1000000000,
+    "maximum_repeat_wall_ratio": 1.20,
+    "maximum_repeat_rss_ratio": 1.10,
+    "require_two_fresh_processes": true,
+    "require_exact_png_and_sample_replay": true,
+    "require_exact_decoded_samples": true,
+    "require_exact_icc": true,
+    "require_zero_surviving_processes": true
+  },
+  "decision_if_pass": "retain_24mp_ordinary_cpu_native_thomas_png",
+  "decision_if_fail": "retain_12mp_path_and_open_targeted_24mp_optimization",
+  "claim_ceiling": "One measured Windows ordinary-desktop CPU 24MP generic Thomas-to-sRGB16 PNG result; not mobile, GPU, 100MP, calibrated stock response or product authorization."
+}
