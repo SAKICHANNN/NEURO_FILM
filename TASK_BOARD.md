@@ -1049,6 +1049,9 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
 - Freeze exact first-party Yellow/Magenta/Cyan separated-light density traces
   for Velvia 50, Velvia 100 and Provia 100F before any cross-stock score.
 - Pass remains a technical source prior; it cannot directly define RGB output.
+- Complete: two reports exact (`91d831e5...a14f6`); all three pairs pass with
+  maximum digitization-uncertainty fraction `.22979`. Next compile the exact
+  curves into a bounded film-inspired operator and test whether signal survives.
 
 - The clean-room WACV-2026-inspired coordinate family recovers all six frozen
   axes exactly and keeps the interior Jacobian positive; two reports are exact

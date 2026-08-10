@@ -27,6 +27,13 @@ Durable handoff log for non-trivial DRPT-governed work. Keep implementation trut
   used a wrong 700nm grid location. The exact visible grid and curve ink were
   corrected and rehashed before any pair metric or formal report existed.
 
+# 2026-08-11 - U5.R2CB1 retains independent spectral source distinction
+
+- Two reports are exact (`91d831e5...a14f6`). All pairs pass at density RMSE
+  `.03967/.08596/.09448`; maximum digitization uncertainty fraction is `.22979`.
+- Next test compiles the exact curves into a bounded film-inspired operator;
+  source distinction alone still does not define calibrated RGB or product use.
+
 # 2026-08-10 - U5.R2BY0 closes conservative Kodak intermediate-role expansion
 
 - Audited the exact March-2026 Kodak 5242/2242/3242 source and digitized its

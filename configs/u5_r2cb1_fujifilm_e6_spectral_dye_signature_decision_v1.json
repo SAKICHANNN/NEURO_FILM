@@ -1,0 +1,23 @@
+{
+  "schema": "neuro_film.u5_r2cb1_fujifilm_e6_spectral_dye_signature_decision.v1",
+  "experiment_id": "U5.R2CB1",
+  "initial_contract_commit": "6dc0b9047e1541facebac0512f8ea4dc8c9d6faa",
+  "pre_score_axis_correction_commit": "5b0b8f5a0f68867c143c3ee102f85e7a529e4851",
+  "implementation_commit": "c20b0b8e9ee3b6446a30a62bf65249267f34373f",
+  "contract_sha256": "4aa78a31d73e2452b1a9a8e111ea30af40284fa68d3284c641fcf2764bf21d62",
+  "trace_sha256": "996f45892ccb33836aa0d063bb79e3bd0be3c38cc43f452ba05f46e7c4538066",
+  "formal_report_file_sha256": "91d831e5f55d9a312fd9bb3f555a08f5cac02aa18dab723dce389718614a14f6",
+  "stable_evidence_id": "e51c86656dd9ae5f592b66e7bc1bcac630d9237912b5bbc9bc11a23490000cd5",
+  "passed": true,
+  "decision": "retain_non_renderable_fujifilm_e6_spectral_dye_signature",
+  "metrics": {
+    "velvia50_velvia100_density_rmse": 0.08596261267378007,
+    "velvia50_provia100f_density_rmse": 0.0396718062961788,
+    "velvia100_provia100f_density_rmse": 0.09448378720905169,
+    "maximum_digitization_uncertainty_fraction": 0.22979247495683222,
+    "material_pair_count": 3
+  },
+  "failed_gates": [],
+  "claim_ceiling": "First-party same-manufacturer E-6 separated-light spectral-dye technical-source distinction; not independent film rolls, spectral transmittance, process/scanner calibration, scene-to-display colour response, photographic appearance, stock calibration or product evidence.",
+  "next_action": "Test whether these exact source curves survive compilation into a bounded explicit film-inspired transmittance operator with neutral, gamut and stock-separation controls."
+}
