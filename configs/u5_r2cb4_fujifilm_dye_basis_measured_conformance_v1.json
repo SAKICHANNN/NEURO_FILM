@@ -1,0 +1,69 @@
+{
+  "schema": "neuro_film.u5_r2cb4_fujifilm_dye_basis_measured_conformance_contract.v1",
+  "experiment_id": "U5.R2CB4",
+  "question": "Do exact first-party Fujifilm separated-light dye-density bases identify independently measured Velvia 100F slide spectra, before any source-to-output or photographic rendering claim?",
+  "parents": {
+    "cb1_decision_path": "configs/u5_r2cb1_fujifilm_e6_spectral_dye_signature_decision_v1.json",
+    "cb1_decision_sha256": "62f4867d43ae7a4fbf69062879381e55293d90de03c73707523c080c126afdf5",
+    "cb1_required_decision": "retain_non_renderable_fujifilm_e6_spectral_dye_signature",
+    "cb1_required_stable_evidence_id": "e51c86656dd9ae5f592b66e7bc1bcac630d9237912b5bbc9bc11a23490000cd5",
+    "trace_path": "configs/data/fujifilm_e6_spectral_dye_density_trace_v1.json",
+    "trace_sha256": "996f45892ccb33836aa0d063bb79e3bd0be3c38cc43f452ba05f46e7c4538066",
+    "aq1_report_path": "outputs/experiments/u5_r2aq1_colorreference_velvia100f_pair_table_v1/report.json",
+    "aq1_report_sha256": "21177de2944d866079e8ac3c45862e6a83b397928a01366d3ded53bc52555e6c",
+    "pair_table_path": "outputs/experiments/u5_r2aq1_colorreference_velvia100f_pair_table_v1/pair_table.tsv",
+    "pair_table_sha256": "0bcb92eb5131b052705922caf747a467ed8a458c90bca2c14dbc66b800cdf595"
+  },
+  "measured_target": {
+    "material": "Fujichrome Velvia 100F (RVP 100F)",
+    "rows": 8640,
+    "wavelength_nm": {"start": 410.0, "stop": 690.0, "step": 10.0, "count": 29},
+    "conversion": "spectral diffuse transmittance percent to optical density using -log10(percent/100); all consumed values must be strictly positive",
+    "rights_scope": "internal research and audit only; redistribution and commercial training unidentified"
+  },
+  "split": {
+    "development_test_sets": [1, 2, 3, 4],
+    "development_slides": [1, 2, 3],
+    "held_test_sets": [5, 9],
+    "held_slides": [4, 5],
+    "cells": ["development", "held-set", "held-slide", "joint-held"],
+    "freshness": "algorithm-new but measurement rows were consumed by earlier AQ/P6 experiments; this is not a pristine confirmation population"
+  },
+  "representation": {
+    "candidates": [
+      "constant-density-only",
+      "velvia-50-fixed-dye-basis",
+      "velvia-100-fixed-dye-basis",
+      "provia-100f-fixed-dye-basis"
+    ],
+    "basis_columns": "one nonnegative wavelength-constant base-density column plus exact CB1 yellow/magenta/cyan density curves",
+    "coefficient_fit": "independent scipy.optimize.nnls fit to each measured target spectrum",
+    "primary": "velvia-100-fixed-dye-basis",
+    "wrong-stock-control": "per-row lower RMSE of the Velvia 50 and Provia 100F bases",
+    "constant-control": "one nonnegative wavelength-constant density coefficient",
+    "important_boundary": "coefficients consume each target spectrum and are an oracle representation diagnostic, never an application-time forward operator"
+  },
+  "gates": {
+    "required_rows": 8640,
+    "required_development_rows": 3456,
+    "required_held_set_rows": 1728,
+    "required_held_slide_rows": 2304,
+    "required_joint_held_rows": 1152,
+    "all_values_finite": true,
+    "all_transmittance_strictly_positive": true,
+    "joint_held_correct_basis_win_fraction_minimum": 0.95,
+    "joint_held_median_relative_improvement_vs_best_wrong_minimum": 0.20,
+    "joint_held_median_density_rmse_maximum": 0.065,
+    "joint_held_p95_density_rmse_maximum": 0.13,
+    "joint_held_median_relative_improvement_vs_constant_minimum": 0.75,
+    "each_cell_correct_basis_win_fraction_minimum": 0.95,
+    "maximum_each_dye_zero_coefficient_fraction": 0.15,
+    "two_byte_identical_reports": true
+  },
+  "stop_rules": [
+    "Do not alter wavelengths, bases, coefficient sign, split, controls or gates after the formal report.",
+    "Failure closes direct measured-spectrum conformance for these exact first-party dye curves without smoothing, peak alignment, extra basis capacity or threshold rescue.",
+    "Pass retains a measured source-basis compatibility result only; it does not authorize source-to-spectrum prediction, photographic rendering, calibration, profile compilation or product mapping."
+  ],
+  "claim_ceiling": "Target-dependent spectral representation compatibility between exact first-party Fujifilm dye-density curves and independently measured Velvia 100F manufactured-target spectra; not a forward film response, independent roll/process, scanner calibration, photographic appearance or product profile."
+}
