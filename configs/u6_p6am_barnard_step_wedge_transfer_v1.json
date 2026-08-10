@@ -1,0 +1,71 @@
+{
+  "schema": "neuro_film.u6_p6am_barnard_step_wedge_transfer_contract.v1",
+  "experiment_id": "u6.p6am-barnard-step-wedge-transfer-v1",
+  "node": "ULT > U6 > U6.P6 > U6.P6AM",
+  "date_frozen": "2026-08-10",
+  "mode": "post-source-inspection-fixed-parameter-transfer-diagnostic",
+  "question": "Does the exact P6AL Ry60 scanner OECF parameterization transfer to a separate 10B-161 Epson 12000XL workflow, while the latter paper's already-published fixed parameters recover its stated valid density range?",
+  "source": {
+    "record_url": "https://knowledge.uchicago.edu/records/1cnjt-w1076",
+    "doi": "10.6082/uchicago.3550",
+    "license": "CC-BY-4.0",
+    "paper_url": "https://doi.org/10.1088/1538-3873/ac87cf",
+    "tiff_path": "outputs/u6_p6am_barnard_step_wedge_independent_v1/source/10B-161_full_scan_with_step_wedge.tif",
+    "tiff_bytes": 352239726,
+    "tiff_sha256": "a34bec205e9d487c870a0dbc947b5a48dfd987198d6ee709bc2ccd74e90a320b",
+    "density_table_path": "outputs/u6_p6am_barnard_step_wedge_independent_v1/source/README_step_wedge_densities.txt",
+    "density_table_sha256": "1bc24d545279e0be8272fe8f0b8adf46abf235148d8f84985d1cfb4f61d77b8a",
+    "paper_path": "outputs/u6_p6am_barnard_step_wedge_independent_v1/source/barnard_scanner_paper.pdf",
+    "paper_sha256": "6726dfe2a11fe5b33c02de862de5ac61816df3c7bd42a40e2fe1cea8670756c3"
+  },
+  "p6al_binding": {
+    "profile_contract_path": "configs/u6_p6al_scanner_log_oecf_profile_v1.json",
+    "profile_contract_sha256": "a11d858364808fd82d8cbe5ec9ede951f18b43809c64e26b0e40d9c79fe0f1b1",
+    "evidence_path": "docs/evidence/U6_P6AL_SCANNER_LOG_OECF_PROFILE_RESULT.json",
+    "evidence_sha256": "0d55f4076ad05967134d95c93a97f81e1000894db6debf7357a21a81ef500fa8"
+  },
+  "measurement": {
+    "page_index": 0,
+    "required_page_count": 2,
+    "required_shape": [7852, 7275, 3],
+    "required_dtype": "uint16-big-endian",
+    "row_start_inclusive": 300,
+    "row_end_exclusive": 390,
+    "step_column_boundaries": [963, 1103, 1233, 1363, 1493, 1623, 1753, 1883, 2013, 2143, 2273, 2403, 2533, 2663, 2793, 2923, 3053, 3183, 3313, 3443, 3573, 3703],
+    "plateau_inner_fraction": 0.5,
+    "pixel_reduction": "arithmetic mean over all three RGB channels and all retained plateau pixels",
+    "density_values": [0.06, 0.20, 0.37, 0.51, 0.67, 0.82, 0.97, 1.13, 1.27, 1.43, 1.57, 1.72, 1.88, 2.04, 2.18, 2.34, 2.50, 2.63, 2.78, 2.94, 3.08],
+    "paper_stated_valid_indices_zero_based": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+  },
+  "fixed_candidates": {
+    "p6al_exact_profile": {
+      "black_code": 2341.2112744450556,
+      "gamma": 1.4157742735467813
+    },
+    "barnard_paper_blue_equation": {
+      "black_code": 1825.0,
+      "gamma": 1.74
+    }
+  },
+  "gates": {
+    "source_hashes_and_tiff_structure_exact": true,
+    "valid_range_codes_strictly_decreasing": true,
+    "barnard_paper_valid_density_rmse_maximum": 0.05,
+    "barnard_paper_valid_density_max_abs_error_maximum": 0.10,
+    "p6al_transfer_density_rmse_maximum": 0.10,
+    "p6al_transfer_density_max_abs_error_maximum": 0.15,
+    "highest_density_monotonic_failure_must_be_reported": true,
+    "two_independent_reports_byte_exact": true
+  },
+  "branch_rule": {
+    "p6al_and_local_pass": "Retain equation-family transfer and open a prospective third-workflow confirmation; do not call the numeric profile universal.",
+    "local_pass_p6al_fail": "Reject cross-workflow numeric-parameter transfer and retain per-workflow typed scanner OECF profiles.",
+    "local_fail": "Close this ROI/extraction diagnostic without fitting, threshold or ROI rescue."
+  },
+  "forbidden": [
+    "fit any parameter on the 10B-161 source",
+    "change the inspected ROI, valid density range or gates after formal execution",
+    "claim stock, plate, scanner-population, colour or product calibration"
+  ],
+  "claim_ceiling": "Source-inspected fixed-parameter transfer diagnostic across two historical Epson 12000XL workflows; not prospective independent confirmation, population calibration or product evidence."
+}
