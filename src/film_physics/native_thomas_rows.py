@@ -474,11 +474,72 @@ def stream_native_exposure_thomas_rgb_gauged(
     return means, workspace_bytes + (0 if gauged is None else gauged.nbytes), calls
 
 
+def stream_native_exposure_thomas_rgb_quantized(
+    amplitude_library: ctypes.CDLL,
+    rows_library: ctypes.CDLL,
+    gauge_library: ctypes.CDLL,
+    quantizer_library: ctypes.CDLL,
+    amplitude_profile: NativeGranularityAmplitudeProfileV1,
+    field_profiles: tuple[
+        NativeThomasFieldProfile,
+        NativeThomasFieldProfile,
+        NativeThomasFieldProfile,
+    ],
+    gauge_profile: NativeGaugeProfileF32V1,
+    relative_log_exposure_chw: np.ndarray,
+    sink: Callable[[int, np.ndarray], None],
+    *,
+    row_partition: int,
+    bit_depth: int,
+) -> tuple[tuple[float, float, float], int, int]:
+    """Apply exact sRGB OETF/quantization once to each P8CA tile."""
+
+    if not callable(sink):
+        raise TypeError("expected a callable quantized sink")
+    if isinstance(bit_depth, bool) or bit_depth not in (8, 16):
+        raise ValueError("bit_depth must be 8 or 16")
+    dtype = np.uint8 if bit_depth == 8 else np.uint16
+    quantized: np.ndarray | None = None
+
+    def quantize_sink(row_start: int, display_linear: np.ndarray) -> None:
+        nonlocal quantized
+        if quantized is None or quantized.shape != display_linear.shape:
+            quantized = np.empty(display_linear.shape, dtype=dtype)
+        status = quantizer_library.nf_srgb_oetf_quantize_apply_v1(
+            _pointer(display_linear),
+            display_linear.size,
+            bit_depth,
+            quantized.ctypes.data,
+            quantized.size,
+        )
+        if status != 1:
+            raise NativeThomasRowsError(
+                f"native sRGB quantizer failed at row {row_start}: {status}"
+            )
+        view = quantized.view()
+        view.setflags(write=False)
+        sink(row_start, view)
+
+    means, workspace_bytes, calls = stream_native_exposure_thomas_rgb_gauged(
+        amplitude_library,
+        rows_library,
+        gauge_library,
+        amplitude_profile,
+        field_profiles,
+        gauge_profile,
+        relative_log_exposure_chw,
+        quantize_sink,
+        row_partition=row_partition,
+    )
+    return means, workspace_bytes + (0 if quantized is None else quantized.nbytes), calls
+
+
 __all__ = [
     "NativeThomasRowsError",
     "load_native_thomas_rows_library",
     "render_native_exposure_thomas_rgb_rows",
     "stream_native_exposure_thomas_rgb_gauged",
     "stream_native_exposure_thomas_rgb_interleaved",
+    "stream_native_exposure_thomas_rgb_quantized",
     "stream_native_exposure_thomas_rgb_rows",
 ]
