@@ -14,6 +14,7 @@ def test_p8ci_freezes_exact_freestanding_stream_program() -> None:
     assert contract["candidate"]["row_partitions"] == [1, 7, 31, 128]
     assert contract["candidate"]["field_density_and_reducer_sources_unchanged"] is True
     assert contract["candidate"]["model_profile_or_sample_change_allowed"] is False
+    assert contract["conformance"]["shape_chw"] == [3, 193, 257]
 
 
 def test_p8ci_keeps_streaming_failure_and_claim_boundaries_explicit() -> None:

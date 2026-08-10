@@ -25,6 +25,9 @@
     "failure_stops_before_next_callback": true,
     "model_profile_or_sample_change_allowed": false
   },
+  "conformance": {
+    "shape_chw": [3, 193, 257]
+  },
   "gates": {
     "require_msvc_llvm_exact_raw_mean_bits": true,
     "require_msvc_llvm_exact_transmittance_bytes": true,
