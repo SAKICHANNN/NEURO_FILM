@@ -1,0 +1,47 @@
+{
+  "automatic_pass": true,
+  "claim_ceiling": "Synthetic joint-ablation evidence for three retained generic temporal mechanisms only; not measured film stock, camera, transport, scanner, photographic video quality or product readiness.",
+  "contract_sha256": "6bf8f27184ea7c95a3842e5719b7f7f3afaf04a56c6e1952d6c37a6edab94f81",
+  "decision": "retain the three effects as independently switchable typed temporal reference stages and next challenge shot-boundary state semantics",
+  "formal_replay_count": 2,
+  "formal_report_sha256": "363731920d8cc60ad4a91805911da9ca9f998699e75bf10128a07eb303ff84dd",
+  "frame_count": 8,
+  "gate_results": {
+    "all_values_finite": true,
+    "display_rgb_effect_count_zero": true,
+    "effect_switch_count_exact": true,
+    "frame_partition_byte_exact": true,
+    "full_chain_replay_byte_exact": true,
+    "maximum_absolute_pairwise_effect_correlation": true,
+    "minimum_density_grain_delta_rms": true,
+    "minimum_exposure_flicker_delta_rms": true,
+    "minimum_gate_weave_delta_rms": true,
+    "new_boundary_fraction_maximum": true,
+    "parent_hashes_exact": true,
+    "reverse_frame_order_byte_exact": true
+  },
+  "measurements": {
+    "all_values_finite": true,
+    "display_rgb_effect_count": 0,
+    "effect_delta_rms": {
+      "density_grain": 0.0039327628896796375,
+      "exposure_flicker": 0.0016856272605571636,
+      "gate_weave": 0.0009935063194300559
+    },
+    "effect_switch_count": 3,
+    "frame_partition_byte_exact": true,
+    "full_chain_replay_byte_exact": true,
+    "maximum_absolute_pairwise_effect_correlation": 0.2579949900409641,
+    "new_boundary_fraction": 0.0,
+    "pairwise_effect_correlations": {
+      "density_grain__gate_weave": -0.06221167323458387,
+      "exposure_flicker__density_grain": 0.008092680115634885,
+      "exposure_flicker__gate_weave": -0.2579949900409641
+    },
+    "parent_hashes_exact": true,
+    "reverse_frame_order_byte_exact": true
+  },
+  "output_shape": [116, 184],
+  "schema": "neuro_film.u6_p9h_temporal_physical_ablation_report.v1",
+  "stable_evidence_id": "e54189ac803e8a2b2d2c12069b28b93a5d3ba58b7d8d93ce8e3cbc60b12c8241"
+}

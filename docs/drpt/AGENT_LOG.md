@@ -10552,3 +10552,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   and median RMSE `.01616/.03085` and P95 maximum error `.15113`.
 - Gate weave remains after film formation and before digital output sampling.
   No measured scanner mechanics or rendered-video quality is claimed.
+
+# 2026-08-10 - U6.P9H retains three independent temporal physical switches
+
+- Composed exposure flicker, density-conditioned temporal grain and scanner
+  gate weave in typed order, then removed each effect independently.
+- Two reports are exact (`36373192...84dd`); effect RMS values are
+  `.001686/.003933/.000994`, maximum pairwise correlation is `.25799`, and
+  replay, reverse order and 3+5 frame partitions are exact with no boundary.
+- Keep three explicit controls. The result is a generic synthetic reference,
+  not measured motion-picture film or product-video evidence.
