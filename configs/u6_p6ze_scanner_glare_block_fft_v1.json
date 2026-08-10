@@ -1,0 +1,62 @@
+{
+  "schema": "neuro_film.u6_p6ze_scanner_glare_block_fft_contract.v1",
+  "node": "U6.P6ZE",
+  "status": "contract_frozen_implementation_ready",
+  "parents": {
+    "p6zd_evidence_path": "docs/evidence/U6_P6ZD_SCANNER_GLARE_STREAMING_BENCHMARK_RESULT.json",
+    "p6zd_evidence_sha256": "481ea8549e266c6b0267109d46d3ac0cb81970c1d928796b2b99520b69afd501",
+    "reference_core_path": "src/film_physics/scanner_glare.py",
+    "reference_core_sha256": "53754573470db93528ab141cda1e4a175820cffd8cfd21103f5e92b674d72c35"
+  },
+  "mechanism": {
+    "name": "symmetric-halo block FFT convolution",
+    "kernel_identity": "unchanged P6ZA 177x177 positive two-Gaussian spread",
+    "row_chunk": 512,
+    "functional_row_partitions": [
+      257,
+      512,
+      769
+    ],
+    "output_semantics": "same bounded float64 array as full-frame FFT reference"
+  },
+  "benchmark": {
+    "shape": [
+      3000,
+      4000,
+      3
+    ],
+    "execution_order": [
+      "fft-2d-reference",
+      "block-fft-streaming",
+      "block-fft-streaming",
+      "fft-2d-reference"
+    ],
+    "rss_sample_interval_seconds": 0.01,
+    "worker_timeout_seconds": 120.0,
+    "fixture_seed": 6206105
+  },
+  "automatic_gates": {
+    "maximum_reference_absolute_error": 1e-12,
+    "maximum_reference_rmse": 1e-13,
+    "maximum_partition_absolute_error": 1e-12,
+    "maximum_block_fft_peak_process_tree_rss_bytes": 1073741824,
+    "maximum_block_fft_to_reference_median_peak_rss_ratio": 0.75,
+    "maximum_block_fft_median_apply_seconds": 5.0,
+    "maximum_block_fft_to_reference_median_apply_time_ratio": 3.0,
+    "maximum_repeat_peak_rss_ratio": 1.15,
+    "maximum_repeat_apply_time_ratio": 1.20
+  },
+  "forbidden_fallbacks": [
+    "change the P6ZA profile, kernel, dtype, row chunk, shape, fixture, run order or thread settings after observing results",
+    "exclude a slow or high-memory run",
+    "reuse the P6ZD direct separable implementation",
+    "weaken numerical, repeat, memory or time gates",
+    "claim native/mobile/GPU, measured scanner or product performance"
+  ],
+  "branch_rule": {
+    "pass": "retain block FFT as the local CPU development compiler and open combined-chain integration measurement",
+    "fail": "close exact Python block FFT performance and keep the full-frame FFT reference until a native implementation is justified"
+  },
+  "production_integration_allowed": false,
+  "claim_ceiling": "Local Windows/Python numerical and fresh-process resource evidence for a generic block-FFT scanner-glare compiler only; not measured scanner calibration, native/mobile/GPU performance, photographic quality or product readiness."
+}
