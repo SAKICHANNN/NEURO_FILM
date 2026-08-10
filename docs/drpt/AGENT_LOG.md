@@ -10420,3 +10420,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close P4CA as a real higher-order mechanism and stop point-process capacity
   on these cohorts. P4BS remains generic scanner-convolved second-order
   evidence only.
+
+# 2026-08-10 - U5.R2BZ0 localizes frozen-scorer failure outside trusted support
+
+- Clean-roomed the 2026 FedPAIE excess-gap equation on a bounded explicit
+  five-parameter operator bank and the existing 256-pair FiveK control cache.
+- Two corrected reports are exact (`a422df74...a7c63`). Gap+L1 reduces mean
+  positive proxy excess by 94.04% and improves true gain from -61.44% to
+  -5.16%, but the frozen positive-gain gate still fails.
+- A fixed trusted-support operator reaches +34.55% hidden true gain and the
+  hidden oracle +60.58%, localizing failure to unconstrained scorer-guided
+  selection. Close the exact route; test hard support restriction next without
+  changing the scorer, objective weights or gates.
