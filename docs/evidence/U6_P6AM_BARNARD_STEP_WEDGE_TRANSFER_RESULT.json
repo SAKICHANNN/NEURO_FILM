@@ -1,0 +1,52 @@
+{
+  "schema": "neuro_film.u6_p6am_barnard_step_wedge_transfer_evidence.v1",
+  "experiment_id": "u6.p6am-barnard-step-wedge-transfer-v1",
+  "status": "pass-local-equation-reject-p6al-parameter-transfer",
+  "decision": "retain_per_workflow_typed_scanner_oecf_profiles",
+  "mode": "post-source-inspection-fixed-parameter-transfer-diagnostic",
+  "contract_commit": "c829715cfbb4e898e2dc336532222ec56ad0182c",
+  "implementation_commit": "175153b63899aa94d613251928b82e8bec4ddab7",
+  "contract_sha256": "a0d133139e3d70ceef17e9cd258b6219990910510b1a251b5c74f849818c528e",
+  "implementation_sha256": "213939fe682e2b50bad4a082f998d72cc229fc2fc67d2a566b5bfad3ced0ee93",
+  "runner_sha256": "142bf664686cb61d9c836d63fddaaa639e0d23c0dafd5fa01243f39af2d9a80e",
+  "formal_report_sha256": "b7b162b09ebb032349c8ee7adda697c6e836be4cb2b5634d3fd397fd295ae1d5",
+  "two_independent_reports_byte_exact": true,
+  "source": {
+    "record": "https://knowledge.uchicago.edu/records/1cnjt-w1076",
+    "doi": "10.6082/uchicago.3550",
+    "license": "CC-BY-4.0",
+    "tiff_bytes": 352239726,
+    "tiff_sha256": "a34bec205e9d487c870a0dbc947b5a48dfd987198d6ee709bc2ccd74e90a320b",
+    "paper_sha256": "6726dfe2a11fe5b33c02de862de5ac61816df3c7bd42a40e2fe1cea8670756c3",
+    "density_table_sha256": "1bc24d545279e0be8272fe8f0b8adf46abf235148d8f84985d1cfb4f61d77b8a"
+  },
+  "fixed_parameter_results": {
+    "barnard_paper_blue_equation": {
+      "black_code": 1825.0,
+      "gamma": 1.74,
+      "valid_density_rmse": 0.028711187848674786,
+      "valid_density_maximum_absolute_error": 0.07586163617566566,
+      "passes_local_positive_control": true
+    },
+    "p6al_exact_profile": {
+      "black_code": 2341.2112744450556,
+      "gamma": 1.4157742735467813,
+      "valid_density_rmse": 0.24051692102157415,
+      "valid_density_maximum_absolute_error": 0.3840522968825826,
+      "passes_transfer_gate": false
+    }
+  },
+  "controls": {
+    "valid_density_range": [0.37, 2.18],
+    "valid_range_codes_strictly_decreasing": true,
+    "highest_density_scanner_reversal_observed": true,
+    "parameters_fit_on_10b_161": false
+  },
+  "interpretation": [
+    "The second historical Epson 12000XL workflow independently supports a logarithmic code-to-density equation over the paper's stated 0.37 to 2.18 density range.",
+    "The P6AL Ry60 numeric parameters fail unchanged on 10B-161, so scanner model name alone is insufficient identity for an OECF profile.",
+    "The highest-density reversal reproduces the source paper's saturation warning and supports bounded rather than extrapolated calibration domains.",
+    "Because ROI and gates were frozen after source inspection, this is a fixed-parameter transfer diagnostic, not a prospective independent confirmation."
+  ],
+  "claim_ceiling": "Source-inspected fixed-parameter transfer diagnostic across two historical Epson 12000XL workflows; not prospective independent confirmation, population calibration or product evidence."
+}

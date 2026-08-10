@@ -10816,3 +10816,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   errors `1.10e-11` and `8.89e-16`; serialization and identity are exact.
 - The result remains one historical Epson 12000XL workflow. Independent source
   confirmation is still required before any wider scanner claim.
+
+### U6.P6AM scanner OECF cross-workflow diagnostic
+
+- Acquired the separate CC-BY-4.0 10B-161 RGB16 TIFF and fixed a source-inspected
+  plateau ROI. No parameter was fitted on the source.
+- Two exact reports show the Barnard paper's fixed equation passes its stated
+  density range at `.02871/.07586` RMSE/max, while P6AL transfers at only
+  `.24052/.38405` and fails. The darkest step also reproduces scanner reversal.
+- Result: retain the typed equation family but require acquisition-workflow
+  profile identity; Epson 12000XL model identity alone is not calibration.
