@@ -10562,3 +10562,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   replay, reverse order and 3+5 frame partitions are exact with no boundary.
 - Keep three explicit controls. The result is a generic synthetic reference,
   not measured motion-picture film or product-video evidence.
+
+# 2026-08-10 - U6.P9I closes shot-boundary temporal identity semantics
+
+- Added a caller-owned sequence identity that domain-separates exposure,
+  gate-weave and grain counter streams and resets state for unrelated shots.
+- Two reports are exact (`c2a0aa23...f5446`). Unscoped local frame indices
+  repeat all 128 grain frames across shots; scoped identities repeat none.
+- A continuous-state control carries `-.03587` stop and `1.43489px` across the
+  boundary, whereas both scoped shots start exactly neutral and retain exact
+  partition replay. This is synthetic state semantics, not cut detection or
+  measured film transport.

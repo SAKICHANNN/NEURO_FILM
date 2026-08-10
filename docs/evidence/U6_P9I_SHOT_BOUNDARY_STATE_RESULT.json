@@ -1,0 +1,38 @@
+{
+  "automatic_pass": true,
+  "claim_ceiling": "Synthetic deterministic shot-boundary state and counter-domain semantics only; not measured film transport, scene-cut detection, temporal image quality, arbitrary video support or product readiness.",
+  "contract_sha256": "76617a3d18d0758009d374f9f54b404e9dbe4da48da37753bb6b4286c9ff0fc3",
+  "decision": "retain explicit sequence-scoped temporal stream identities and shot-reset semantics as the reference contract",
+  "frame_count_per_shot": 128,
+  "gate_results": {
+    "all_values_finite": true,
+    "continuous_control_boundary_exposure_nonzero": true,
+    "continuous_control_boundary_gate_weave_nonzero": true,
+    "cross_shot_grain_duplicate_frame_count_maximum": true,
+    "display_rgb_effect_count_zero": true,
+    "naive_local_frame_grain_duplicate_fraction_minimum": true,
+    "parent_hashes_exact": true,
+    "sequence_identity_replay_exact": true,
+    "shot_initial_exposure_reset_exact": true,
+    "shot_initial_gate_weave_reset_exact": true,
+    "stream_role_domain_separation_exact": true,
+    "within_shot_partition_exact": true
+  },
+  "measurements": {
+    "all_values_finite": true,
+    "continuous_control_boundary_exposure_stops": -0.035874915349447534,
+    "continuous_control_boundary_gate_weave_norm_pixels": 1.4348933981769383,
+    "cross_shot_grain_duplicate_frame_count": 0,
+    "display_rgb_effect_count": 0,
+    "naive_local_frame_grain_duplicate_fraction": 1.0,
+    "parent_hashes_exact": true,
+    "sequence_identity_replay_exact": true,
+    "shot_initial_exposure_reset_exact": true,
+    "shot_initial_gate_weave_reset_exact": true,
+    "stream_role_domain_separation_exact": true,
+    "within_shot_partition_exact": true
+  },
+  "schema": "neuro_film.u6_p9i_shot_boundary_state_report.v1",
+  "sequence_count": 2,
+  "stable_evidence_id": "44585b15dcff5d7916c8753a86827938159a799ae805148774df77f3444438fb"
+}
