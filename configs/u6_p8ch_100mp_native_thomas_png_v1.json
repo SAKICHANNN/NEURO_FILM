@@ -1,0 +1,37 @@
+{
+  "schema": "neuro_film.u6_p8ch_100mp_native_thomas_png_contract.v1",
+  "experiment_id": "u6.p8ch-100mp-native-thomas-png-v1",
+  "node": "ULT > U6 > U6.P8 > U6.P8CH",
+  "date_frozen": "2026-08-10",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Does the unchanged P8CG row-streamed host path complete a 100MP RGB16 PNG inside the provisional desktop tiled memory and wall targets?",
+  "parents": {
+    "p8cg_evidence": {
+      "path": "docs/evidence/U6_P8CG_24MP_NATIVE_THOMAS_PNG_RESULT.json",
+      "sha256": "e8d9fea1c2413331df2393eb383369b0d9d361a11b808d0c115e28ba0f9f94b2",
+      "required_decision": "retain_24mp_ordinary_cpu_native_thomas_png"
+    }
+  },
+  "candidate": {
+    "scheduler_reducer_encoder_unchanged": true,
+    "shape_chw": [3, 10000, 10000],
+    "row_partition": 128,
+    "bit_depth": 16,
+    "full_output_allowed": false,
+    "model_profile_or_sample_change_allowed": false
+  },
+  "gates": {
+    "maximum_wall_seconds": 75.0,
+    "maximum_process_tree_rss_bytes": 4000000000,
+    "maximum_repeat_wall_ratio": 1.20,
+    "maximum_repeat_rss_ratio": 1.10,
+    "require_two_fresh_processes": true,
+    "require_exact_png_and_sample_replay": true,
+    "require_exact_decoded_samples": true,
+    "require_exact_icc": true,
+    "require_zero_surviving_processes": true
+  },
+  "decision_if_pass": "retain_100mp_desktop_row_streamed_native_thomas_png",
+  "decision_if_fail": "retain_24mp_path_and_open_targeted_100mp_optimization",
+  "claim_ceiling": "One measured Windows desktop CPU 100MP generic Thomas-to-sRGB16 PNG result; not mobile, GPU, calibrated stock response or product authorization."
+}
