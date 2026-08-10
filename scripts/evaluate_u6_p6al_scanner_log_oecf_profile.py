@@ -1,7 +1,12 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
+import sys
 from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
 
 from src.eval.scanner_log_oecf_profile import canonical_json, evaluate, load_contract
 
@@ -11,15 +16,16 @@ def main() -> int:
     parser.add_argument(
         "--config",
         type=Path,
-        default=Path("configs/u6_p6al_scanner_log_oecf_profile_v1.json"),
+        default=ROOT / "configs/u6_p6al_scanner_log_oecf_profile_v1.json",
     )
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
-    root = Path(__file__).resolve().parents[1]
-    config = load_contract(root / args.config, root)
+    config = load_contract(args.config, ROOT)
     report = evaluate(config)
+    payload = canonical_json(report) + b"\n"
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_bytes(canonical_json(report) + b"\n")
+    args.output.write_bytes(payload)
+    print(hashlib.sha256(payload).hexdigest())
     return 0
 
 
