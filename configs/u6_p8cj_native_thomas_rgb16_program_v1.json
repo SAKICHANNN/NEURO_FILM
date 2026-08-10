@@ -1,0 +1,44 @@
+{
+  "schema": "neuro_film.u6_p8cj_native_thomas_rgb16_program_contract.v1",
+  "experiment_id": "u6.p8cj-native-thomas-rgb16-program-v1",
+  "node": "ULT > U6 > U6.P8 > U6.P8CJ",
+  "date_frozen": "2026-08-10",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can one caller-workspace C11 program reproduce the complete P8CB three-layer amplitude-to-Thomas-to-neutral-gauge-to-sRGB16 sample stream without Python runtime control flow?",
+  "parents": {
+    "p8ci_evidence": {
+      "path": "docs/evidence/U6_P8CI_NATIVE_THOMAS_STREAM_PROGRAM_RESULT.json",
+      "sha256": "27824102bef66f5c4d3def173b15c53b60d01f5bcc04814c577df901620f3eb6",
+      "required_decision": "retain_freestanding_native_thomas_stream_program"
+    },
+    "p8cb_evidence": {
+      "path": "docs/evidence/U6_P8CB_NATIVE_THOMAS_SRGB_QUANTIZED_SINK_RESULT.json",
+      "sha256": "7cc558beba98988af0c737ba4ee35575f636beb11fa991d20ec07d3467a6b416",
+      "required_decision": "retain_exact_native_thomas_srgb_quantized_sink"
+    }
+  },
+  "candidate": {
+    "language": "freestanding-c11",
+    "output_layout": "row-major-interleaved-rgb16",
+    "row_partitions": [1, 7, 31, 128],
+    "amplitude_field_gauge_quantizer_sources_unchanged": true,
+    "one_final_quantization": true,
+    "full_output_allowed": false,
+    "model_profile_or_sample_change_allowed": false
+  },
+  "conformance": {
+    "shape_chw": [3, 193, 257]
+  },
+  "gates": {
+    "require_msvc_llvm_p8cb_sample_exactness": true,
+    "require_msvc_llvm_raw_mean_bits": true,
+    "require_partition_exactness": true,
+    "require_strict_row_order": true,
+    "require_invalid_input_before_callback": true,
+    "require_callback_failure_propagation": true,
+    "require_workspace_bound": true
+  },
+  "decision_if_pass": "retain_freestanding_native_thomas_rgb16_program",
+  "decision_if_fail": "retain_python_rgb_scheduler_and_close_exact_c11_rgb_program",
+  "claim_ceiling": "Portable C11 generic Thomas-to-sRGB16 sample-stream evidence; not PNG encoding, device runtime, calibrated stock response or product authorization."
+}
