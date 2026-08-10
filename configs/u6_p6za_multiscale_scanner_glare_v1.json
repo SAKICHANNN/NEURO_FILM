@@ -1,0 +1,72 @@
+{
+  "schema": "neuro_film.u6_p6za_multiscale_scanner_glare_contract.v1",
+  "node": "U6.P6ZA",
+  "question": "Can a positive energy-normalized multiscale scanner glare spread represent context-dependent dark-patch lift and a heavier spatial tail than the current equal-second-moment single-Gaussian flare control?",
+  "primary_source": {
+    "title": "Tonal distribution and glare assessment in cinematographic film scanners",
+    "authors": ["Alice Plutino", "Luca Armellin", "Beatrice Sarti", "Alessandro Rizzi"],
+    "version": "Signal, Image and Video Processing 19, 976 (2025)",
+    "published": "2025-09-05",
+    "doi": "10.1007/s11760-025-04569-8",
+    "url": "https://link.springer.com/article/10.1007/s11760-025-04569-8",
+    "use": "The measured finding that film-scanner glare lifts dark values according to surrounding bright context, and that absolute-value LUTs cannot account for its spatial distribution.",
+    "excluded": [
+      "paper image or table fitting",
+      "scanner-specific parameter inference",
+      "inverse restoration",
+      "claim that a Gaussian mixture is the paper's measured glare-spread function"
+    ]
+  },
+  "parents": {
+    "p6z_decision": "configs/u6_p6z_scanner_context_glare_transfer_decision_v1.json",
+    "p6z_decision_sha256": "f9f80e38212db0e3483c0c731b69ae9aa5f4f3dde49e49b5cfd0b37b0c487997",
+    "scanner_primitive": "src/film_physics/scanner.py",
+    "scanner_primitive_sha256": "0706dbdaed9adbc022c77dc4489406ce977b86dc937b480ea5872c1a7b8a82d9"
+  },
+  "profile": {
+    "schema": "neuro_film.multiscale_scanner_glare_profile.v1",
+    "components": [
+      {"weight": 0.8, "sigma_pixels": 2.0},
+      {"weight": 0.2, "sigma_pixels": 12.0}
+    ],
+    "flare_fraction": 0.08,
+    "truncate_sigma": 6.0
+  },
+  "experiment": {
+    "kernel_size": 177,
+    "tail_radius_pixels": 16.0,
+    "chart_size": 257,
+    "dark_patch_half_width": 4,
+    "bright_context_half_widths": [12, 24, 48, 96],
+    "dark_transmittance": 0.02,
+    "bright_transmittance": 0.9
+  },
+  "automatic_gates": {
+    "parent_hashes_exact": true,
+    "kernel_nonnegative": true,
+    "kernel_sum_error_maximum": 1e-12,
+    "second_moment_relative_error_maximum": 0.01,
+    "multiscale_center_peak_below_single_gaussian": true,
+    "minimum_multiscale_to_single_tail_energy_ratio": 2.0,
+    "context_center_lift_strictly_increasing": true,
+    "minimum_largest_context_center_lift": 0.001,
+    "pointwise_control_context_span_maximum": 0.0,
+    "constant_field_identity_error_maximum": 1e-12,
+    "impulse_energy_error_maximum": 1e-12,
+    "all_values_finite": true,
+    "display_rgb_effect_count_zero": true
+  },
+  "forbidden": [
+    "fit parameters to P6Z table rows after scoring",
+    "call the synthetic mixture a measured glare-spread function",
+    "merge scanner glare with film backing return, lens bloom or creative bloom",
+    "apply a pointwise LUT or black-level lift as the candidate",
+    "change mixture, charts, controls or gates after formal scoring",
+    "claim scanner calibration, stock response, inverse correction or product readiness"
+  ],
+  "branch_rule": {
+    "pass": "retain a generic multiscale scanner-glare reference mechanism and next challenge it against spatially varying synthetic contexts before any profile integration",
+    "fail": "close this exact multiscale scanner-glare mechanism without component or threshold rescue"
+  },
+  "claim_ceiling": "Synthetic capacity evidence for a generic positive multiscale scanner-glare spread only; not measured scanner calibration, film stock response, inverse restoration, photographic validation or product readiness."
+}
