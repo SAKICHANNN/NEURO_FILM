@@ -10885,3 +10885,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Reuse: exact P8BX C arithmetic, profiles, DC receipt and 128-row partition remain unchanged.
 - New question only: replace the full returned output array with a channel-major ordered sink that cannot retain row views.
 - Frozen gates: exact P8BW CHW stream/raw means, strict order, input identity and sink-failure propagation; 12MP peak <=440MB and >=100MB below P8BX with <=12s wall time.
+
+## 2026-08-10 - U6.P8BY exact row sink passes
+
+- Conformance: both Windows compilers stream the exact P8BW CHW bytes and raw means in strict channel/row order; injected sink failure stops on the second call and propagates.
+- Resource result: two 12MP runs use 409,763,840-410,062,848 bytes peak and 9.66-11.33s, with 16,384,000 bytes bounded workspace. This is 143,126,528 bytes below P8BX and 283,058,176 below the original P8BW peak.
+- Decision: retain the non-retaining float32 row sink as the encoder-facing runtime boundary. Image encoding, device runtime and product authorization remain separate leaves.

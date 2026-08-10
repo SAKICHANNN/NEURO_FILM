@@ -1,0 +1,51 @@
+{
+  "schema": "neuro_film.u6_p8by_native_thomas_row_sink_evidence.v1",
+  "experiment_id": "u6.p8by-native-thomas-row-sink-v1",
+  "status": "pass-retain-exact-native-thomas-row-sink",
+  "contract_sha256": "04a40e2e690d5ebfb091aee8ccd1ccdb307843e0ee7cea57d0d59eb629f46225",
+  "implementation": {
+    "commits": ["15069f14", "5bf4ed67"],
+    "host_binding_sha256": "2991e947958134a37ceeb1e519c39dc09c557df256444159ad750230e45acbdc",
+    "formal_runner_sha256": "cb8afd8a69027d2ae24d5196d7ed73911f9b7b3a2ee9a715459f32f650192a8e",
+    "test_sha256": "63497b1dd353c4dd3ee237cf413354e23a345e339b0a5dd6dfceb1a9d89129bb"
+  },
+  "conformance": {
+    "dual_windows_compilers": ["msvc-x64-c11", "llvm-mingw-20260616-clang-22.1.8-x64"],
+    "exact_p8bw_chw_byte_stream": true,
+    "exact_raw_field_means": true,
+    "strict_channel_major_row_order": true,
+    "sink_failure_propagation": true,
+    "input_immutability": true,
+    "output_sha256": "bb30a40b4c43056655cf6c3e226811cbcd380a1bf059c904b1d595e469386252"
+  },
+  "performance_12mp_rgb": {
+    "shape_chw": [3, 3000, 4000],
+    "sink_calls": 72,
+    "two_fresh_wall_seconds": [9.66270230000373, 11.332532200001879],
+    "two_fresh_peak_process_tree_rss_bytes": [410062848, 409763840],
+    "bounded_workspace_bytes": 16384000,
+    "p8bx_reference_peak_rss_bytes": 553189376,
+    "rss_reduction_bytes_vs_p8bx": 143126528,
+    "rss_reduction_bytes_vs_p8bw": 283058176,
+    "maximum_rss_gate_bytes": 440000000,
+    "minimum_rss_reduction_gate_bytes": 100000000,
+    "wall_gate_seconds": 12.0,
+    "output_sha256": "d8cc5dbac2e24e850c4f902e9a6e5bf77aa6a81e1101f12775a77671546f336b",
+    "fresh_stream_exact": true
+  },
+  "gate_results": {
+    "exact_p8bw_stream": true,
+    "sink_failure_propagation": true,
+    "fresh_stream_exact": true,
+    "maximum_wall": true,
+    "maximum_rss": true,
+    "minimum_rss_reduction": true,
+    "repeat_stability": true,
+    "worker_cleanup": true
+  },
+  "formal_report_sha256": "be11bcce050af2b8fab48475c08c4eb0756f441631541218e0b877f27bf59921",
+  "stable_evidence_id": "028e76f8bba669fcd4aac6f7628db87f6275f279805bb05fb427ddc6aa6a9023",
+  "decision": "retain_exact_native_thomas_row_sink",
+  "retained_boundary": "The sink consumes exact channel-major float32 transmittance rows immediately and does not retain a full output image. A separately versioned encoder or device runtime must consume this boundary.",
+  "claim_ceiling": "Ordered non-retaining host sink for unchanged generic P8BW arithmetic only; not an image encoder, mobile runtime, calibrated stock profile or product authorization."
+}
