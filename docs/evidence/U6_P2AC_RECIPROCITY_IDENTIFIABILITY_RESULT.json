@@ -1,0 +1,41 @@
+{
+  "schema": "neuro_film.u6_p2ac_reciprocity_identifiability_evidence.v1",
+  "node": "U6.P2AC",
+  "decision": "require_shared_absolute_density_or_transmittance_anchor_for_future_reciprocity_acquisition",
+  "software_commit": "4d6ee3ca",
+  "bindings": {
+    "contract": {
+      "path": "configs/u6_p2ac_reciprocity_identifiability_v1.json",
+      "sha256": "5197da1161e894051b631f0494c28c2b66908b971df652fe5894bb07687a1624"
+    },
+    "evaluator": {
+      "path": "src/eval/reciprocity_identifiability.py",
+      "sha256": "17f7885129412b4e38f94c6e5a79ea16a0240604a5de9701a59b82f9cb59c2cc"
+    },
+    "report": {
+      "path": "outputs/experiments/u6_p2ac_reciprocity_identifiability_v1/run_1.json",
+      "sha256": "25b4caee2a311c76d35fac8fd503bc971b2f298fac1055a1f2058ba3ee9c0aac",
+      "stable_evidence_id": "32732b5f83df5ad879a8def2295cd7407d70767e5871906f45d9ad5bce6302ce"
+    }
+  },
+  "results": {
+    "automatic_pass": true,
+    "two_reports_byte_exact": true,
+    "anchored_fit": [1.1998467999635363, 1.4303859636189724, -2.9933059189505133, 1.5096765312754796, 0.1703677839212842],
+    "maximum_anchored_parameter_absolute_error": 0.009676531275479627,
+    "anchored_scaled_jacobian_condition": 23.03683730129597,
+    "anchored_confirmation_log_rmse": 0.0007087368381397686,
+    "unanchored_scaled_jacobian_condition": 146911907.4120692,
+    "maximum_unanchored_exponent_absolute_error": 0.016501000949358247,
+    "global_confirmation_log_rmse": 0.22466929492576365,
+    "wrong_time_confirmation_log_rmse": 0.6529473525843493,
+    "confirmation_target_reads_before_fit_freeze": 0
+  },
+  "interpretation": [
+    "A single scanner log-gain shared across all exposure times preserves the absolute response needed to recover both reciprocity exponents, pivot and transition width. Recovery transfers to disjoint rate and time rows under the frozen measurement noise.",
+    "Independent gain normalization at every exposure time introduces a near-null absolute-exponent direction. Repeat scans without a common absolute density or transmittance anchor cannot be treated as full reciprocity calibration.",
+    "The global scalar and wrong-time controls fail strongly. This closes synthetic measurement-design work for the current representation; real use requires controlled time-by-intensity wedges with a shared absolute anchor."
+  ],
+  "next_leaf": "Return to a distinct stock-first or physical-film algorithm/data leaf. Do not add reciprocity capacity until controlled anchored measurements exist.",
+  "claim_ceiling": "Synthetic identifiability and controlled-acquisition design for local-intensity reciprocity; not measured film, roll/process/scanner calibration, photographic quality or product evidence."
+}

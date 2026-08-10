@@ -10462,3 +10462,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   shape RMSE/max error. Swapped conditioning fails at `.65232` RMSE.
 - Retain synthetic capacity only. Next identify the minimal controlled
   time-by-intensity measurement design; do not render photographs.
+
+# 2026-08-10 - U6.P2AC freezes the required reciprocity measurement anchor
+
+- Fitted the four-parameter local profile under shared-gain and per-time-gain
+  scanner nuisance, then scored disjoint rate/time rows.
+- Two reports are exact (`25b4caee...0aac`). Shared anchoring gives `.00968`
+  maximum parameter error, `.000709` confirmation RMSE and condition `23.04`;
+  per-time normalization is ill-conditioned at `1.469e8`.
+- Require one absolute density/transmittance anchor shared across exposure
+  times. Close further synthetic reciprocity capacity until real data exists.
