@@ -1,0 +1,45 @@
+{
+  "schema": "neuro_film.u6_p9f_exposure_development_order_contract.v1",
+  "node": "U6.P9F",
+  "question": "Does the retained P9E flicker preserve one physically interpretable exposure offset across the nonlinear characteristic curve only when it is applied before development?",
+  "parents": {
+    "p9e_evidence": "docs/evidence/U6_P9E_TEMPORAL_EXPOSURE_FLICKER_RESULT.json",
+    "p9e_evidence_sha256": "7cd66626431627cf941fb0af6dfce90831f8e04f088e540ea2066239d6c5e2bd",
+    "sensitometry_config": "configs/u2_2a_sensitometry_primitive_v1.json",
+    "sensitometry_config_sha256": "8f43edcbc7e168af830081dce16ecb5f268a294d2f0cd777b942aec4b95c8af2"
+  },
+  "experiment": {
+    "exposure_minimum": 0.005,
+    "exposure_maximum": 8.0,
+    "exposure_sample_count": 33,
+    "anchor_sample_index": 16,
+    "burn_in_frames": 512,
+    "row_partition_counts": [7, 11, 15]
+  },
+  "negative_control": "develop the neutral exposure ramp first, then add the per-channel density offset that matches the correct candidate at only the anchor exposure",
+  "automatic_gates": {
+    "parent_hashes_exact": true,
+    "correct_order_replay_byte_exact": true,
+    "correct_order_partition_byte_exact": true,
+    "maximum_correct_order_implied_stop_error": 1e-10,
+    "minimum_wrong_order_p50_implied_stop_span": 0.04,
+    "minimum_wrong_order_p95_implied_stop_span": 0.12,
+    "minimum_wrong_order_p95_maximum_stop_error": 0.10,
+    "zero_offset_density_identity_exact": true,
+    "all_values_finite": true,
+    "density_boundary_violation_count_maximum": 0,
+    "scanner_or_display_transform_count_zero": true
+  },
+  "forbidden": [
+    "change the retained P9E trajectory or U2.2 sensitometry operator",
+    "fit the negative control at more than one frozen anchor exposure",
+    "apply exposure flicker after development, interpretation, scanner or output transform",
+    "claim the generic U2.2 curve or P9E profile is measured stock response",
+    "change exposures, anchor, controls or gates after formal scoring"
+  ],
+  "branch_rule": {
+    "pass": "retain pre-development exposure composition and forbid post-development brightness emulation in the physical video chain",
+    "fail": "close P9E development composition without threshold or anchor rescue"
+  },
+  "claim_ceiling": "Synthetic typed composition-order evidence using the existing generic sensitometry curve only; not measured flicker, film-stock response, scanner behavior, rendered video quality or product integration."
+}
