@@ -1,0 +1,53 @@
+{
+  "schema": "neuro_film.u6_p6zc_scanner_glare_separable_streaming_contract.v1",
+  "node": "U6.P6ZC",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can the retained positive multiscale scanner-glare reference be compiled into component-wise separable, halo-aware row streaming with bounded workspace while preserving the full 2-D reference within strict numerical tolerance?",
+  "parents": {
+    "p6za_contract": "configs/u6_p6za_multiscale_scanner_glare_v1.json",
+    "p6za_contract_sha256": "6ee5bb8427f52d4313b0e39cffe5e18d6e2cf9e4122cc05f50a7789567743167",
+    "p6za_evidence": "docs/evidence/U6_P6ZA_MULTISCALE_SCANNER_GLARE_RESULT.json",
+    "p6za_evidence_sha256": "117726c59459fa64834430e5698b72fcfb112ae680b73a4f158d35ff381ca773",
+    "scanner_glare_core": "src/film_physics/scanner_glare.py",
+    "scanner_glare_core_sha256": "53754573470db93528ab141cda1e4a175820cffd8cfd21103f5e92b674d72c35"
+  },
+  "profile": {
+    "components": [
+      {"weight": 0.8, "sigma_pixels": 2.0},
+      {"weight": 0.2, "sigma_pixels": 12.0}
+    ],
+    "flare_fraction": 0.08,
+    "truncate_sigma": 6.0,
+    "kernel_size": 177
+  },
+  "fixture": {
+    "seed": 6206103,
+    "height": 321,
+    "width": 513,
+    "channels": 3,
+    "row_partitions": [1, 17, 64, 193, 321],
+    "workspace_probe_height": 3000,
+    "workspace_probe_width": 4000,
+    "workspace_probe_channels": 3,
+    "workspace_probe_rows": 64
+  },
+  "automatic_gates": {
+    "parent_hashes_exact": true,
+    "maximum_reference_absolute_error": 2e-12,
+    "maximum_reference_rmse": 2e-13,
+    "maximum_partition_absolute_error": 2e-12,
+    "constant_field_error_maximum": 1e-12,
+    "impulse_energy_error_maximum": 1e-12,
+    "minimum_output": 0.0,
+    "maximum_output": 1.0,
+    "maximum_tracked_workspace_bytes_12mp_rgb": 268435456,
+    "two_stable_identities_exact": true
+  },
+  "stop_rules": [
+    "Do not change the P6ZA profile, support, boundary mode, fixtures, partitions or gates after any score.",
+    "Failure closes this exact direct-separable compiler without wider support, looser tolerance or component retuning.",
+    "A numerical pass opens a separately frozen performance benchmark only; it does not open scanner-profile integration.",
+    "Do not call the synthetic P6ZA mixture a measured scanner glare-spread function."
+  ],
+  "claim_ceiling": "Synthetic numerical and workspace evidence for a generic multiscale scanner-glare compiler only; not measured scanner calibration, product performance, stock response or photographic validation."
+}
