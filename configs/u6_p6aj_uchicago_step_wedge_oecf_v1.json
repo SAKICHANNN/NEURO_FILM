@@ -1,0 +1,84 @@
+{
+  "schema": "neuro_film.u6_p6aj_uchicago_step_wedge_oecf_contract.v1",
+  "experiment_id": "u6.p6aj-uchicago-step-wedge-oecf-v1",
+  "node": "ULT > U6 > U6.P6 > U6.P6AJ",
+  "date_frozen": "2026-08-10",
+  "question": "Do the exact positive and negative Stouffer step-wedge scans identify whether this historical flatbed workflow encodes optical transmittance, optical density, or only a separately calibrated monotone scanner response?",
+  "primary_sources": [
+    {
+      "role": "rights-cleared scanner dataset",
+      "url": "https://knowledge.uchicago.edu/records/qw505-gq084",
+      "doi": "10.6082/uchicago.3901",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "role": "current film-digitizer measurement baseline",
+      "url": "https://www.iso.org/standard/87451.html",
+      "fact": "ISO FDIS 14096-1 treats density range, density contrast sensitivity and characteristic transfer curve as separate digitizer measurements."
+    }
+  ],
+  "acquisition": {
+    "destination": "outputs/u6_p6aj_uchicago_step_wedge_oecf_v1/source",
+    "maximum_total_bytes": 1405181,
+    "files": [
+      {
+        "name": "f0005.tif",
+        "role": "positive_step_wedge",
+        "bytes": 730994,
+        "md5": "d49915acef88dd755a8df190398d8c5e",
+        "url": "https://knowledge.uchicago.edu/api/records/qw505-gq084/files/f0005.tif/content"
+      },
+      {
+        "name": "f0006.tif",
+        "role": "negative_step_wedge",
+        "bytes": 673926,
+        "md5": "9c4594d79ba2d9f56f0cfd4d6fe317a5",
+        "url": "https://knowledge.uchicago.edu/api/records/qw505-gq084/files/f0006.tif/content"
+      },
+      {
+        "name": "README_step_wedge_densities.txt",
+        "role": "density_table",
+        "bytes": 261,
+        "md5": "b16b768f3336232fcb741542c55c69d9",
+        "url": "https://knowledge.uchicago.edu/api/records/qw505-gq084/files/README_step_wedge_densities.txt/content"
+      }
+    ]
+  },
+  "density_values": [0.06, 0.20, 0.37, 0.51, 0.67, 0.82, 0.97, 1.13, 1.27, 1.43, 1.57, 1.72, 1.88, 2.04, 2.18, 2.34, 2.50, 2.63, 2.78, 2.94, 3.08],
+  "measurement": {
+    "step_count": 21,
+    "trim_fraction": 0.18,
+    "axis_rule": "choose the image axis whose 21 equal-bin trimmed medians have the larger robust range; reject if the winning range is less than twice the other axis",
+    "orientation_rule": "for each wedge independently choose the direction with larger absolute Spearman correlation to the frozen density order; report the chosen reversal",
+    "development_step_indices_zero_based": [0, 1, 3, 4, 6, 7, 9, 10, 12, 13, 15, 16, 18, 19],
+    "confirmation_step_indices_zero_based": [2, 5, 8, 11, 14, 17, 20]
+  },
+  "candidates": [
+    "affine_code_from_transmittance_10_pow_minus_density",
+    "affine_code_from_optical_density",
+    "monotone_piecewise_linear_code_from_density"
+  ],
+  "gates": {
+    "exact_source_hashes": true,
+    "single_frame_uint16_grayscale": true,
+    "axis_range_ratio_minimum": 2.0,
+    "absolute_step_spearman_minimum": 0.98,
+    "two_wedges_same_best_parametric_family": true,
+    "best_parametric_confirmation_rmse_ratio_vs_other_maximum": 0.75,
+    "best_parametric_confirmation_max_error_ratio_vs_other_maximum": 0.85,
+    "monotone_calibrator_confirmation_rmse_ratio_vs_best_parametric_maximum": 0.90,
+    "two_independent_reports_byte_exact": true
+  },
+  "branch_rule": {
+    "parametric_pass": "Retain only the winning measured scanner-code domain for this exact workflow and open a separately versioned bounded inverse primitive.",
+    "monotone_only_pass": "Retain a scanner-specific monotone OECF requirement; do not label raw codes as transmittance or density.",
+    "fail": "Close this exact wedge extraction/OECF route without changing bins, held steps, models or gates."
+  },
+  "forbidden": [
+    "infer film stock, camera exposure, development or colour response",
+    "generalize one scanner workflow to other scanners",
+    "tune extraction, split, models or thresholds after reading pixels",
+    "production integration or calibrated-reference claim"
+  ],
+  "claim_ceiling": "One CC-BY-4.0 historical flatbed scanner workflow step-wedge OECF measurement; not stock, emulsion, camera, process, colour, population or product calibration."
+}
