@@ -1305,3 +1305,9 @@ colour layer. A freestanding, caller-workspace C11 program reproduces the exact
 P8BX/P8CF mean and transmittance under MSVC/LLVM and four row partitions, while
 preserving strict callback order and bounded failure propagation. Retain it as
 the target-runtime core; RGB orchestration and actual device execution remain.
+
+U6.P8CJ closes the RGB orchestration part: one caller-workspace C11 ABI now
+reproduces the complete amplitude-to-Thomas-to-neutral-gauge-to-sRGB16 sample
+stream under MSVC/LLVM and four partitions, exactly matching P8CB. Python is no
+longer a runtime dependency for this sample core. Native PNG publication and
+actual target-device execution remain.

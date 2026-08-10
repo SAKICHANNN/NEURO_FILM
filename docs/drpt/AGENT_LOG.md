@@ -10950,3 +10950,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The unchanged row field, native Neumaier reducer and density composition now execute behind one caller-workspace C11 callback ABI.
 - MSVC/LLVM and 1/7/31/128-row partitions reproduce one exact raw mean and transmittance SHA; invalid inputs call no sink, while injected callback failure stops at call two and leaves the receipt unchanged.
 - Retain this as the device-facing one-layer core. RGB orchestration, encoding and actual device runtime remain separate leaves.
+
+## 2026-08-10 - U6.P8CJ complete freestanding RGB16 sample program passes
+
+- One caller-workspace C11 ABI now composes the unchanged amplitude, three Thomas layers, neutral gauge and exact sRGB16 quantizer.
+- MSVC/LLVM and 1/7/31/128-row partitions reproduce P8CB's exact output SHA and three raw-mean bits; invalid input and callback failure boundaries pass.
+- Python is no longer required by the sample pipeline. Native PNG publication and actual device runtime remain open.

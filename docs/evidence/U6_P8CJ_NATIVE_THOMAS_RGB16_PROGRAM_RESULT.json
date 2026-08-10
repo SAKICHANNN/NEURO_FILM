@@ -1,0 +1,30 @@
+{
+  "schema": "neuro_film.u6_p8cj_native_thomas_rgb16_program_evidence.v1",
+  "experiment_id": "u6.p8cj-native-thomas-rgb16-program-v1",
+  "status": "pass-retain-freestanding-native-thomas-rgb16-program",
+  "contract_sha256": "a769488d92d1bc305d4c309108c5ced6d83bbf65e44eaf940cd06685195a9335",
+  "formal_report_sha256": "9c41202e10d7dce72221885884c95ff2ea59c907ca3853642ee3087c53fd394d",
+  "stable_evidence_id": "f2b7557ff5454d37b0131bb73d23e891c2f0e644c2caac0adc054855ad3d384a",
+  "source_sha256": "dac1335bf2ea5c3e78c46bbbeca0ebadd471b93f9e41aa7a67363ce62141bade",
+  "header_sha256": "d72b7e9093a16e405d6695d7bd076139daba6ee6ab282f45d91abbb629c4e291",
+  "conformance": {
+    "shape_chw": [3, 193, 257],
+    "compilers": ["msvc-x64-c11-strict", "llvm-mingw-x64-c11-strict"],
+    "row_partitions": [1, 7, 31, 128],
+    "output_sha256": "20d84ec2f239c4f87732476030f700a3f43f22fec4e59504bbe16654305d39cb",
+    "raw_mean_hex": [
+      "-0x1.aad108eec1d5bp-5",
+      "-0x1.bc145220f4970p-9",
+      "-0x1.66847a5bb18e2p-5"
+    ],
+    "maximum_workspace_bytes": 1907968,
+    "p8cb_samples_exact": true,
+    "partition_and_compiler_exact": true,
+    "strict_callback_order": true,
+    "invalid_input_zero_callbacks": true,
+    "callback_failure_stops_on_second_call": true,
+    "failure_raw_means_unchanged": true
+  },
+  "decision": "retain_freestanding_native_thomas_rgb16_program",
+  "claim_ceiling": "Portable C11 generic Thomas-to-sRGB16 sample-stream evidence; not PNG encoding, device runtime, calibrated stock response or product authorization."
+}
