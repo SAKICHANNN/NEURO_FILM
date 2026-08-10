@@ -1,0 +1,63 @@
+{
+  "schema": "neuro_film.u5_r2by0_kodak_2242_intermediate_role_result.v1",
+  "experiment_id": "U5.R2BY0",
+  "date": "2026-08-10",
+  "contract_commit": "494c940b",
+  "implementation_commit": "6e6bfaa1",
+  "direct_runner_fix_commit": "3eba0b86",
+  "combined_uncertainty_fix_commit": "c2cc43fbea890bca158d2f3d5986a21e38154708",
+  "contract_sha256": "13e5a270691981f0eb7a70669dc82bd021785fb0f0f290785cd7b64cd2b60c9c",
+  "implementation_sha256": "c5c5539f3d01e1a60a95ee55bdf299fa147da94f2e039375c65de989b6085122",
+  "runner_sha256": "9a7dffd1e3571e4cf25436a0e8eaa0844bad85abfa939ac3a02c2b616c71361d",
+  "source": {
+    "title": "KODAK VISION Color Intermediate Film 5242 / 2242 / 3242 Technical Information",
+    "publication": "MARCH 2026 H-1-2242",
+    "bytes": 804590,
+    "sha256": "85404f73abb698567e7ad6b84f621f724b99b6e7159c864c14f725c5ab40be63"
+  },
+  "formal_report_sha256": "7e6a2b4396941a1611da61815955f6645534c858fe5754633057846e7f3894dc",
+  "formal_replays": 2,
+  "formal_reports_byte_identical": true,
+  "stable_evidence_id": "cac33e863d27e8a752e1a2ab99ecadf2e116c1a337261bf64d057f66feb8c21a",
+  "trace_overlay_sha256": "80127a0a6cc2ceccb838e38a81e3251801164fad9c751dc04e8dfea50211cda4",
+  "source_diagnostics": {
+    "mtf_response_percent_minimum": 44.78364133952716,
+    "mtf_response_percent_maximum": 84.21183567285442,
+    "mtf_maximum_monotonic_increase_percent": 0.0,
+    "granularity_sigma_d_minimum": 0.001373170772073274,
+    "granularity_sigma_d_maximum": 0.0036548895019758282,
+    "all_source_trace_gates_passed": true
+  },
+  "material_domains_by_camera_negative_pair": {
+    "kodak_vision3_50d_5203_7203": ["mtf", "granularity"],
+    "kodak_vision3_250d_5207_7207": [],
+    "kodak_vision3_500t_5219_7219": ["mtf", "granularity"]
+  },
+  "vision3_250d_conservative_material_channel_counts": {
+    "mtf": 1,
+    "granularity": 1
+  },
+  "required_material_pairs": 3,
+  "observed_material_pairs": 2,
+  "passed": false,
+  "decision": "close_quantitative_intermediate_role_profile_expansion",
+  "correction_record": {
+    "initial_direct_runner_attempt_read_source": false,
+    "initial_direct_runner_attempt_scored": false,
+    "pre_correction_report_was_propagated": false,
+    "defect": "the first complete implementation bounded only the 2242 raster trace and omitted the frozen VISION3 parent-raster trace uncertainty",
+    "repair": "combine both independent two-pixel log-axis uncertainty bounds before material classification",
+    "effect": "the invalid preliminary pass became the final fail-closed result"
+  },
+  "retained": [
+    "exact March-2026 first-party source and role facts",
+    "exact MTF and 48-micrometre diffuse-rms-granularity raster traces",
+    "50D and 500T two-domain source differences as scoped diagnostics"
+  ],
+  "closed": [
+    "non-renderable intermediate-material profile expansion from this quantitative comparator",
+    "trace, threshold, normalization or channel-count rescue on the same source",
+    "RGB look, camera-stock, final-print, scanner, calibrated appearance or product mapping"
+  ],
+  "claim_ceiling": "First-party manufacturer-raster source audit and conservative camera-negative comparison only."
+}

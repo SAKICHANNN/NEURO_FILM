@@ -1020,3 +1020,12 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
   differences, but a shared matrix costs only 1.08%/0.85% held error.
 - Frozen material-value gates fail. Stop synthetic metamer elaboration and
   return to an independently observed stock or physical-image signal.
+
+# 2026-08-10 - U5.R2BY0 closes quantitative intermediate-role expansion
+
+- Exact March-2026 Kodak 5242/2242/3242 MTF and 48um granularity traces are
+  valid, and two formal reports are exact (`7e6a2b43...894dc`).
+- Combined +/-2px uncertainty for both compared manufacturer graphs leaves
+  two-domain separation from 50D and 500T, but neither domain from 250D reaches
+  two material channels. Retain role facts only; no trace/threshold rescue or
+  RGB/product mapping.

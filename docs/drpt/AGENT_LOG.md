@@ -2,6 +2,17 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-10 - U5.R2BY0 closes conservative Kodak intermediate-role expansion
+
+- Audited the exact March-2026 Kodak 5242/2242/3242 source and digitized its
+  embedded MTF and 48-micrometre diffuse-rms-granularity graphs without P:.
+- A first complete report exposed that only the new graph's pixel uncertainty
+  was bounded. Before propagation, the evaluator was corrected to combine the
+  independent +/-2px bounds of both the intermediate and VISION3 graphs.
+- Corrected reports are byte-identical (`7e6a2b43...894dc`). Source gates pass;
+  50D and 500T separate in both domains, while 250D reaches only one material
+  channel per domain. Close at 2/3 pairs and retain only official role facts.
+
 # 2026-08-10 - U5.R2BX1 closes same-white spectral operator value
 
 - Built a fully synthetic spectral integration fixture with positive
