@@ -1,0 +1,37 @@
+{
+  "automatic_pass": false,
+  "claim_ceiling": "Local Windows/Python fresh-process time and process-tree RSS evidence for one generic scanner-glare compiler only; not native/mobile/GPU performance, measured scanner calibration, photographic quality or product readiness.",
+  "contract_sha256": "69072802da1536ef6d386d2a565b3351694da1db784b0d5efa3dca2e5ab1859f",
+  "decision": "close_exact_python_separable_streaming_performance_candidate",
+  "formal_report_sha256": "a67f3d2da696dec10137af736907c6ed1e32a7346a3a6ccbbd7893424952f105",
+  "gate_results": {
+    "finite_bounded": true,
+    "numerical_absolute": true,
+    "numerical_rmse": true,
+    "parent_hashes": true,
+    "repeat_output": true,
+    "repeat_rss": true,
+    "repeat_time": true,
+    "source_identity": true,
+    "streaming_memory": true,
+    "streaming_memory_ratio": true,
+    "streaming_time": false,
+    "streaming_time_ratio": false,
+    "workers": true
+  },
+  "implementation_commit": "dbf2de6f3430f119c3a26d10606a1e311a14b153",
+  "measurements": {
+    "maximum_cross_algorithm_absolute_error": 1.1102230246251565e-16,
+    "cross_algorithm_rmse": 3.803301909053001e-17,
+    "reference_median_apply_seconds_12mp": 1.7878947499993956,
+    "reference_median_peak_process_tree_rss_bytes_12mp": 1490429952.0,
+    "streaming_median_apply_seconds_12mp": 19.94633579999936,
+    "streaming_median_peak_process_tree_rss_bytes_12mp": 1004380160.0,
+    "streaming_to_reference_median_apply_time_ratio_12mp": 11.15632550518206,
+    "streaming_to_reference_median_peak_rss_ratio_12mp": 0.6738861887821213
+  },
+  "node": "U6.P6ZD",
+  "next_leaf": "A materially different block-FFT streaming compiler may be tested prospectively; row-chunk tuning or gate rescue on this implementation is forbidden.",
+  "schema": "neuro_film.u6_p6zd_scanner_glare_streaming_benchmark_evidence.v1",
+  "stable_evidence_id": "81c566a9b8f7ab1071e3c2e6e72f24c1183ed019bd7800542056e18d580dfabb"
+}

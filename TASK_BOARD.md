@@ -1049,3 +1049,12 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
 - Constant and impulse-energy checks pass, and tracked 12MP RGB scratch is
   69.12MB. Proceed directly to a real throughput/RSS benchmark; calibration
   and product-profile integration remain closed.
+
+# 2026-08-10 - U6.P6ZD closes Python separable glare performance
+
+- At 12MP the exact row-streaming implementation reduces median process-tree
+  RSS from 1.490GB to 1.004GB (`.674x`) while preserving the reference within
+  `1.11e-16`.
+- Median apply time rises from 1.788s to 19.946s (`11.16x`), failing both
+  frozen time gates. Close this implementation without row-chunk tuning; test
+  a materially different block-FFT compiler next.

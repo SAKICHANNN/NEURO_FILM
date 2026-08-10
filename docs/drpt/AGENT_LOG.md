@@ -10640,3 +10640,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   scratch is 69.12MB. Eleven focused/parent tests and Ruff pass.
 - This opens only P6ZD real performance measurement. It is not measured
   scanner calibration, photographic evidence, or a product profile.
+
+# 2026-08-10 - U6.P6ZD closes exact Python separable performance
+
+- The frozen interleaved fresh-process benchmark completed all eight workers
+  with exact per-algorithm replay and `1.11e-16` cross-method max error.
+- At 12MP median RSS falls `1.490GB -> 1.004GB`, but median apply time grows
+  `1.788s -> 19.946s`; the `.674x` memory result passes while the `11.16x`
+  time ratio and 15-second gates fail.
+- The exact implementation is closed without row-chunk or threshold rescue.
+  A new block-FFT streaming compiler is the next discriminating development
+  leaf; scanner calibration and product integration remain closed.
