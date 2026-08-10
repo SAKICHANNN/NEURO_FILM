@@ -1,0 +1,48 @@
+{
+  "schema": "neuro_film.u6_p9b_gate_weave_sampling_contract.v1",
+  "node": "U6.P9B",
+  "question": "Does immutable-source bilinear sampling follow a continuous bounded gate-weave trajectory more faithfully than rounded integer crops while retaining high-frequency chart contrast and exact integer semantics?",
+  "parent": {
+    "evidence_path": "docs/evidence/U6_P9A_GATE_WEAVE_OU_RESULT.json",
+    "evidence_sha256": "7e66ac2fbc4ab2cd6b11fcd14c7517db3d9c4c99c31f5226ebc76f8f0c5be228",
+    "required_decision": "retain_deterministic_bounded_gate_weave_trajectory_primitive"
+  },
+  "experiment": {
+    "frame_count": 512,
+    "output_height": 96,
+    "output_width": 128,
+    "chart_frequencies_cycles_per_pixel": [0.03125, 0.09375, 0.1875],
+    "chart_amplitude": 0.25,
+    "bilinear_partition_sizes": [13, 111, 173, 215]
+  },
+  "controls": {
+    "integer_crop": "round continuous offsets to nearest integer and crop",
+    "analytic_truth": "evaluate the same continuous sinusoidal chart at displaced coordinates",
+    "immutable_source_required": true,
+    "chained_resampling_forbidden": true
+  },
+  "automatic_gates": {
+    "integer_crop_pixel_exact": true,
+    "bilinear_integer_offset_pixel_exact": true,
+    "bilinear_partition_byte_exact": true,
+    "constant_field_pixel_exact": true,
+    "all_outputs_finite": true,
+    "all_outputs_within_source_range": true,
+    "maximum_bilinear_analytic_rmse": 0.02,
+    "minimum_bilinear_rmse_improvement_over_integer": 0.40,
+    "minimum_high_frequency_amplitude_retention": 0.75,
+    "maximum_high_frequency_amplitude_retention": 1.01,
+    "rgb_quantization_count_zero": true
+  },
+  "forbidden": [
+    "resample an already transformed prior frame",
+    "hide crop, zoom, rotation, perspective, rolling-shutter or registration inside the gate-weave layer",
+    "claim the synthetic chart establishes measured film motion or video quality",
+    "change interpolation, chart, trajectory, controls or gates after formal scoring"
+  ],
+  "branch_rule": {
+    "pass": "retain immutable-source bilinear sampling as the continuous gate-weave reference and keep integer crop as an explicit lower-quality mode",
+    "fail": "retain integer crop only and close subpixel sampling without interpolation or threshold rescue"
+  },
+  "claim_ceiling": "Synthetic translation-sampling accuracy and frequency retention only; not measured gate motion, photographic video quality, registration, temporal product readiness or stock calibration."
+}
