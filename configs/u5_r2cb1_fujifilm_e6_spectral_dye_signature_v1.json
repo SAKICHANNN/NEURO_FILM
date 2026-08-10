@@ -4,7 +4,7 @@
   "question": "Do exact first-party separated-light spectral dye density curves independently distinguish current Fujifilm Velvia 50, Velvia 100 and Provia 100F technical source profiles under the same E-6/CR-56 process label?",
   "trace": {
     "path": "configs/data/fujifilm_e6_spectral_dye_density_trace_v1.json",
-    "sha256": "3b6b36ef55062275e3a8a7058a9b9089bd43d0b45a532f48e936ec9417de381d"
+    "sha256": "996f45892ccb33836aa0d063bb79e3bd0be3c38cc43f452ba05f46e7c4538066"
   },
   "parent_source_signature": {
     "path": "configs/u5_r2cb0_fujifilm_e6_stock_source_signature_decision_v1.json",

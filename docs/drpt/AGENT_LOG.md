@@ -23,6 +23,9 @@ Durable handoff log for non-trivial DRPT-governed work. Keep implementation trut
   same three Fujifilm E-6 stocks, unified wavelength samples and +/-3px error.
 - Score remains unread. Pass can only open a bounded operator-identifiability
   experiment, not a scene-to-display transform or product profile.
+- A pre-score implementation test found the Velvia 50 point x-coordinates had
+  used a wrong 700nm grid location. The exact visible grid and curve ink were
+  corrected and rehashed before any pair metric or formal report existed.
 
 # 2026-08-10 - U5.R2BY0 closes conservative Kodak intermediate-role expansion
 
