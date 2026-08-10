@@ -10704,3 +10704,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   ID is `3ebdee37...b891`, and reconstructed profile/kernel are exact.
 - All strictness and parent-hash gates pass. Execution from serialized bytes is
   the next leaf; no calibration, product authority or native runtime opens.
+
+# 2026-08-10 - U6.P6ZJ executes exactly from canonical bundle bytes
+
+- Added a fail-closed executor requiring caller-held profile SHA, exact canonical
+  bytes and float64 film-transmittance input before invoking the P6ZH chain.
+- Two deterministic reports are byte-identical (`b8bc7115...6e8ca`); direct,
+  first bundle and repeat bundle output SHA is `9f2c8001...2d34`.
+- Wrong identity, tamper, noncanonical bytes and invalid dtype/shape/domain never
+  reach pixel execution. Only bounded research profile-file packaging opens.

@@ -1103,3 +1103,12 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
   drift fails closed. No pixels, machine paths or runtime context are embedded.
 - Next prove the chain executes exactly from reconstructed bundle bytes; this
   remains generic research evidence, not scanner calibration or product state.
+
+# 2026-08-10 - U6.P6ZJ bundle-driven scanner execution passes
+
+- Direct P6ZH, first bundle execution and repeat bundle execution are bit-exact
+  at output SHA `9f2c8001...2d34`.
+- Caller-held identity, canonical bytes and float64 transmittance validation all
+  precede pixel execution; wrong/tampered/noncanonical/domain inputs fail closed.
+- Retain as generic research execution. Only bounded profile-file packaging
+  opens; image delivery, native runtime, calibration and product state stay closed.

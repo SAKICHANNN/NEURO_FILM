@@ -1,0 +1,26 @@
+{
+  "automatic_pass": true,
+  "claim_ceiling": "Exact local Python execution of one generic experimental scanner chain from caller-verified canonical profile bytes; not scanner calibration, native runtime, image-file delivery or product readiness.",
+  "decision": "retain_bundle_driven_generic_scanner_execution",
+  "formal_report_sha256": "b8bc71153d9c956115a5a03f310d37fc0a6f5ee0954d1e99017cfea68906e8ca",
+  "gate_results": {
+    "bundle_identity_exact": true,
+    "canonical_bytes_exact": true,
+    "direct_vs_bundle_output_bit_exact": true,
+    "dtype_shape_domain_rejected_before_execution": true,
+    "noncanonical_and_tampered_bundle_rejected_before_execution": true,
+    "parent_hashes_exact": true,
+    "repeat_output_exact": true,
+    "wrong_identity_rejected_before_execution": true
+  },
+  "implementation_commit": "2a19dbab",
+  "measurements": {
+    "output_sha256": "9f2c80016893e80fdf0685ad6f00772b7a6329d3d87d52880140fdaee6142d34",
+    "profile_sha256": "3ebdee37366871460b1f5feaedbe0362c59e593efd3485652a892183bba6b891",
+    "source_sha256": "466411bb20f47048cc1d606ab96dcf2837d6de7126197df69fd05486fa5a98b8"
+  },
+  "node": "U6.P6ZJ",
+  "next_leaf": "Package only canonical profile bytes plus identity in a bounded research file artifact; keep image delivery and product integration closed.",
+  "schema": "neuro_film.u6_p6zj_scanner_chain_bundle_execution_evidence.v1",
+  "stable_evidence_id": "16bcf8652eae91fc1383b6a073c58c9bc85447f29a34e64ff205fe4a0c24a6e9"
+}
