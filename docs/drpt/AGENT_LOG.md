@@ -10780,3 +10780,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   intermediates. Require exact separated-execution output and at least 180MB
   modeled live-array reduction at 12MP, then measure two fresh workers under
   7s/1GiB. No model, profile, exposure estimator or photographic claim changes.
+- **Result:** PASS. The fused serial output is byte-exact against separated
+  P8BV then P8BU execution. Four fresh 12MP runs take 4.394-4.683s at
+  649.5-693.1MB peak; modeled retained intermediates fall 528MB to 288MB.
+  Both formal reports share stable ID `11cc3f81...149aee`.
+- **Boundary:** Explicit supplied layer exposure to generic transmittance only;
+  no exposure inference, stock identification, photographic calibration or
+  product authorization.

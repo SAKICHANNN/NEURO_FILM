@@ -1,0 +1,51 @@
+{
+  "schema": "neuro_film.u6_p8bw_native_exposure_thomas_pipeline_evidence.v1",
+  "experiment_id": "u6.p8bw-native-exposure-to-thomas-pipeline-v1",
+  "status": "pass-retain-native-exposure-to-thomas-serial-pipeline",
+  "contract_sha256": "8c1313117f3f36dbcc4657038c4ccc5e7b6040f1a347a6ff0c7612417f43dbdc",
+  "implementation": {
+    "commits": ["c17cb961", "48a0533c", "4dce76fe"],
+    "pipeline_sha256": "4222745829cb194aaae696cbc2bf814762575c2994494e757b547dae9a112dba",
+    "amplitude_c_source_sha256": "4be9b1ce289240fad6da21e8d28d01f1e97a68db81001e25ba86c194edc1e8dd",
+    "amplitude_c_header_sha256": "9a7ca93a0fb8c2717d32ccff8ebb248c3da9551a19bb3f14b7059d6c596d8654",
+    "formal_runner_sha256": "ca470bd06fd746f17f812d9dbbe191f78114ac980ba6815c28b3a9fbb4b617ba"
+  },
+  "conformance": {
+    "amplitude_conformance_id": "3287898a06813d5b29f3cffbb11feb72c2f31de9ff805ae50ff1d286b1bb626f",
+    "thomas_conformance_id": "d64974650605789ae1f515ad3d2772c48c22645b1502e3222d24dfeb00fa64cf",
+    "separated_execution_output_sha256": "bb30a40b4c43056655cf6c3e226811cbcd380a1bf059c904b1d595e469386252",
+    "exact_separated_execution": true,
+    "dual_amplitude_compiler_exact": true,
+    "strict_transmittance": true
+  },
+  "performance_12mp_rgb": {
+    "shape_chw": [3, 3000, 4000],
+    "output_sha256": "d8cc5dbac2e24e850c4f902e9a6e5bf77aa6a81e1101f12775a77671546f336b",
+    "channel_sha256": [
+      "41bca434100c628d459f06a9a2115f6196665ae7bc44779c0de55c1cdff955c0",
+      "acb14ed99502a5ad3d8ec9f26f98c8131ffc43f43d2a01e8cf5e740867e516af",
+      "871f152f9454343969f4cdcabbfa7b242128beedc2f7cc9631d57483d9a5d8fe"
+    ],
+    "four_fresh_wall_seconds_range": [4.394459600000118, 4.6831474999999045],
+    "four_fresh_peak_process_tree_rss_bytes_range": [649531392, 693121024],
+    "modeled_separated_intermediate_bytes": 528000000,
+    "reused_pipeline_intermediate_bytes": 288000000,
+    "modeled_live_array_reduction_bytes": 240000000,
+    "transmittance_range": [0.0009117047884501517, 0.655083179473877],
+    "maximum_wall_seconds_gate": 7.0,
+    "maximum_process_tree_rss_bytes_gate": 1073741824,
+    "exact_repeat": true,
+    "all_gates_pass": true
+  },
+  "formal_replay": {
+    "report_sha256": [
+      "17c9db58a1f811dd578eae7f8fcd980a7074ff17beb67217b5fb6710b712cb49",
+      "7120153a00746fbbb6d4541a56e4647d092e1de28b7c6b590f12daeaeea48f4a"
+    ],
+    "stable_evidence_id": "11cc3f81e3ad9b9c728840974c80d40201c05e3836378c80f3cadda44d149aee",
+    "scientific_identity_exact": true
+  },
+  "decision": "retain_native_exposure_to_thomas_serial_pipeline",
+  "retained_boundary": "The pipeline consumes explicit relative layer exposures and the unchanged P4BW/P8BU profiles; it does not estimate exposure or identify a film stock.",
+  "claim_ceiling": "Portable composition of retained generic exposure-density-amplitude and Thomas primitives only; not exposure estimation, calibrated colour film, photographic promotion, scanner-independent truth or product authorization."
+}
