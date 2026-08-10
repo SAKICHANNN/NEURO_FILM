@@ -8,6 +8,7 @@ import io
 import json
 import math
 import struct
+import time
 import zlib
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
@@ -186,12 +187,15 @@ class HttpRangeArchive:
     def __init__(self, contract: Mapping[str, Any]) -> None:
         self._contract = contract
         self._url = str(contract["archive"]["public_download_endpoint"])
+        self._resolved_url: str | None = None
         self._session = requests.Session()
         self.request_count = 0
         self.member_compressed_bytes = 0
         self.member_uncompressed_bytes = 0
         self.content_length = 0
         self.etag = ""
+        self._last_content_range = ""
+        self._last_etag = ""
         self.entries: dict[str, ZipEntry] = {}
 
     def _get_range(self, start: int, end: int, *, count_member: bool = False) -> bytes:
@@ -200,47 +204,58 @@ class HttpRangeArchive:
         limit = int(self._contract["bounded_source_selection"]["maximum_http_requests"])
         if self.request_count >= limit:
             raise OfficialNewsonLodError("HTTP request bound exhausted")
-        response = self._session.get(
-            self._url,
-            headers={"Range": f"bytes={start}-{end}"},
-            allow_redirects=True,
-            timeout=120,
-        )
-        self.request_count += 1
-        if response.status_code != 206:
-            raise OfficialNewsonLodError(
-                f"server rejected bounded range: {response.status_code}"
-            )
+        response: requests.Response | None = None
+        content: bytes | None = None
+        for attempt in range(3):
+            if self.request_count >= limit:
+                raise OfficialNewsonLodError("HTTP request bound exhausted")
+            self.request_count += 1
+            try:
+                response = self._session.get(
+                    self._resolved_url or self._url,
+                    headers={"Range": f"bytes={start}-{end}"},
+                    allow_redirects=True,
+                    timeout=(30, 120),
+                )
+                if response.status_code == 403 and self._resolved_url is not None:
+                    response.close()
+                    self._resolved_url = None
+                    continue
+                if response.status_code != 206:
+                    raise OfficialNewsonLodError(
+                        f"server rejected bounded range: {response.status_code}"
+                    )
+                content = response.content
+                self._resolved_url = response.url
+                self._last_content_range = response.headers.get("Content-Range", "")
+                self._last_etag = response.headers.get("ETag", "").strip('"')
+                response.close()
+                break
+            except (requests.ConnectionError, requests.Timeout):
+                if response is not None:
+                    response.close()
+                response = None
+                if attempt == 2:
+                    raise OfficialNewsonLodError("bounded HTTP range retries exhausted")
+                time.sleep(0.25 * (attempt + 1))
+        if response is None or content is None:
+            raise OfficialNewsonLodError("bounded HTTP range produced no response")
         expected = end - start + 1
-        if len(response.content) != expected:
+        if len(content) != expected:
             raise OfficialNewsonLodError("HTTP range length drift")
-        content_range = response.headers.get("Content-Range", "")
+        content_range = self._last_content_range
         if not content_range.startswith(f"bytes {start}-{end}/"):
             raise OfficialNewsonLodError("HTTP Content-Range drift")
         if count_member:
-            self.member_compressed_bytes += len(response.content)
-        return response.content
+            self.member_compressed_bytes += len(content)
+        return content
 
     def open(self) -> None:
         probe = self._get_range(0, 0)
         if len(probe) != 1:
             raise OfficialNewsonLodError("archive probe drift")
-        response = self._session.get(
-            self._url,
-            headers={"Range": "bytes=0-0"},
-            allow_redirects=True,
-            stream=True,
-            timeout=120,
-        )
-        self.request_count += 1
-        try:
-            if response.status_code != 206:
-                raise OfficialNewsonLodError("archive identity probe rejected")
-            content_range = response.headers.get("Content-Range", "")
-            self.content_length = int(content_range.rsplit("/", 1)[1])
-            self.etag = response.headers.get("ETag", "").strip('"')
-        finally:
-            response.close()
+        self.content_length = int(self._last_content_range.rsplit("/", 1)[1])
+        self.etag = self._last_etag
         expected = self._contract["archive"]
         if (
             self.content_length != expected["content_length_bytes"]
