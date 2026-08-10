@@ -1,0 +1,68 @@
+{
+  "schema": "neuro_film.u5_r2bx0_c2lut_chromaticity_identifiability_contract.v1",
+  "experiment_id": "U5.R2BX0",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can a source-only illuminant-chromaticity-conditioned convex bank of bounded explicit LUTs recover held synthetic camera normalization better than global and affine controls, and does an exact same-chromaticity/different-spectrum control prove that chromaticity alone is not an identifying nuisance observation?",
+  "primary_source": {
+    "title": "Illuminant-Adaptive 3D Lookup Tables for Camera Color Correction",
+    "venue": "arXiv:2607.11681, 2026",
+    "url": "https://arxiv.org/abs/2607.11681",
+    "pdf_sha256": "366571627c286bfc2bd3bde00b556c572ca96e4ad861acb3eeb17116941551f5",
+    "official_repository": "https://github.com/claudiom4sir/C2LUT",
+    "official_repository_head": "454662890b3a4f918334528f39cc88081866257b",
+    "repository_state_at_freeze": "placeholder_readme_code_promised_upon_acceptance"
+  },
+  "clean_room_scope": {
+    "paper_code_or_weights_used": false,
+    "paper_data_used": false,
+    "new_data_download_allowed": false,
+    "learned_final_rgb_allowed": false,
+    "product_integration_allowed": false,
+    "film_or_stock_claim_allowed": false,
+    "mechanism": "source-only normalized white-point r,g selects nonnegative sum-to-one weights over bounded explicit residual LUTs; final RGB is deterministic trilinear LUT evaluation",
+    "difference_from_source": "synthetic full-LUT and SVD-basis capacity/identifiability test, not a reproduction of the paper's Tucker factors, MLP, cameras, spectra or datasets"
+  },
+  "fixture": {
+    "seed": 62081,
+    "lut_grid_size": 9,
+    "evaluation_grid_size": 17,
+    "anchor_r": [0.24, 0.33, 0.42],
+    "anchor_g": [0.24, 0.33, 0.42],
+    "held_r": [0.285, 0.375],
+    "held_g": [0.285, 0.375],
+    "metamer_descriptors": [[0.3, 0.36], [0.36, 0.3]],
+    "metamer_hidden_coordinates": [-1.0, 1.0],
+    "visible_residual_scale": 0.07,
+    "hidden_spectral_residual_scale": 0.045,
+    "low_rank_basis_rank": 4,
+    "boundary_epsilon": 1e-09
+  },
+  "methods": [
+    "identity",
+    "global_explicit_lut",
+    "chromaticity_conditioned_affine",
+    "chromaticity_conditioned_convex_lut",
+    "chromaticity_conditioned_rank4_lut",
+    "hidden_coordinate_oracle_lut"
+  ],
+  "gates": {
+    "maximum_convex_weight_error": 1e-12,
+    "maximum_injective_rank4_rmse": 0.002,
+    "minimum_injective_median_improvement_over_global": 0.75,
+    "minimum_injective_worst_improvement_over_global": 0.6,
+    "minimum_injective_median_improvement_over_affine": 0.35,
+    "maximum_new_boundary_fraction": 0.0,
+    "maximum_metamer_predicted_pair_difference": 1e-12,
+    "minimum_metamer_truth_pair_difference": 0.02,
+    "minimum_metamer_rank4_rmse": 0.008,
+    "maximum_metamer_oracle_rmse": 1e-12,
+    "two_byte_identical_runs": true
+  },
+  "stop_rules": [
+    "Do not alter the fixture, descriptors, rank, baselines, metrics or thresholds after any score.",
+    "A capacity pass cannot establish illuminant or camera identifiability when the same-chromaticity hidden-spectrum control fails.",
+    "Do not rescue same-chromaticity ambiguity with target pixels, application outcomes, scene identity, stock labels or a post-score descriptor.",
+    "A result may only guide future source-normalization evidence design; it cannot promote a film look, calibrated camera correction or product path."
+  ],
+  "claim_ceiling": "Synthetic clean-room mechanism capacity and information-sufficiency evidence for a bounded explicit source-normalization operator; not camera calibration, real illuminant recovery, film/stock response, photographic quality or product promotion."
+}
