@@ -1,0 +1,53 @@
+{
+  "schema": "neuro_film.u6_p4cg_boolean_gaussian_lod_boundary_evidence.v1",
+  "experiment_id": "u6.p4cg-boolean-gaussian-lod-boundary-v1",
+  "status": "complete_negative_close_exact_synthetic_scale_boundary",
+  "decision": "close_boolean_to_gaussian_scale_boundary_without_rescue",
+  "automatic_pass": false,
+  "software_commit": "ee3db0d0326a5c0bddb7766baf0abdef99390ce4",
+  "contract_sha256": "5d416e6ad7660dd58bd726edb376def6660da3b2cbc7a8e1283b7cca339aba3e",
+  "evaluator_sha256": "7799495d2915f86c0020b409beb0a7f7667bc7a4689ac4a271f9870017b437da",
+  "runner_sha256": "89b75b8f4dd39d37e8c1af17d65e8abe7a8e11ab93cb707ed4720166a3f38ab1",
+  "report_sha256": "fbbafdf828437b2c1595f3f089d79bc04bc781dd9af301eb977e678b2840ac0c",
+  "repeat_report_sha256": "fbbafdf828437b2c1595f3f089d79bc04bc781dd9af301eb977e678b2840ac0c",
+  "stable_evidence_id": "efcda09a44e8fe3a86986111cf894b498e00afc2833c00190278e36f12e95d76",
+  "results": {
+    "maximum_exact_spectrum_periodogram_relative_error": 1.53130384927564e-15,
+    "small_radius_input_pixels": 0.22,
+    "small_radius_output_pixels": 0.88,
+    "small_radius_gaussian_to_boolean_distance_ratio": 27.34839469596522,
+    "middle_radius_input_pixels": 0.38,
+    "middle_radius_output_pixels": 1.52,
+    "middle_radius_gaussian_to_boolean_distance_ratio": 34.123351931211936,
+    "large_radius_input_pixels": 0.7,
+    "large_radius_output_pixels": 2.8,
+    "large_radius_gaussian_to_boolean_distance_ratio": 20.82110229625518,
+    "large_minus_small_distance_ratio": -6.5272923997100385,
+    "small_radius_family_ratios": {
+      "marginal_quantiles": 27.34839469596522,
+      "local_rms_quantiles": 23.078185898196033,
+      "excursion_topology": "unbounded because Boolean confirmation median distance is exactly zero while Gaussian distance is positive"
+    },
+    "large_radius_family_ratios": {
+      "marginal_quantiles": 6.523843819749567,
+      "local_rms_quantiles": 20.82110229625518,
+      "excursion_topology": "unbounded because Boolean confirmation median distance is exactly zero while Gaussian distance is positive"
+    }
+  },
+  "checks": {
+    "small_radius_gaussian_adequacy": false,
+    "large_radius_gaussian_divergence": true,
+    "scale_separation": false,
+    "large_radius_multiple_feature_divergence": true,
+    "exact_second_order_control": true,
+    "finite_nonzero_and_distinct": true
+  },
+  "interpretation": [
+    "The Gaussian controls reproduce each development Boolean spectrum to numerical precision, so the large higher-order distances are not a second-order fitting failure.",
+    "The exact U6.2A Boolean reference is already strongly non-Gaussian at the smallest frozen projected radius and does not become monotonically less Gaussian with radius. It therefore cannot identify the transition claimed for unresolved versus visible physical grain.",
+    "Together with the prior U6.2B salt-like severe-artifact failure and P4CF real-scan preference for Gaussian Thomas innovations, this closes the exact synthetic Boolean reference as a product LOD authority. P4BS remains the generic same-scanner second-order mechanism.",
+    "DeGrainVAR's FilmGrainStyle740k and DCT pairs remain synthetic controls. The 2025 neural renderer is academic-only and is not copied, executed or made a product dependency."
+  ],
+  "next_ready_leaf": "Return to a new real or independently calibrated physical observable; do not tune the U6.2A radii, Monte Carlo count, feature families or gates and do not train a final-RGB grain network.",
+  "claim_ceiling": "Negative clean-room synthetic mechanism evidence; not real-film calibration, visual safety, stock identity, microscopic grain, scanner independence or product admission."
+}

@@ -10826,3 +10826,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `.24052/.38405` and fails. The darkest step also reproduces scanner reversal.
 - Result: retain the typed equation family but require acquisition-workflow
   profile identity; Epson 12000XL model identity alone is not calibration.
+
+### U6.P4CG Boolean/Gaussian LOD boundary
+
+- The 2025 Neural Film Grain Rendering paper motivates an unresolved-versus-
+  visible-grain distinction, while CVPRW 2026 DeGrainVAR still evaluates on
+  synthetic Nuke/DCT grain. The academic-only neural code was not copied or
+  executed; the experiment used the existing clean-room U6.2A Boolean model.
+- A Gaussian control matched the development Boolean periodogram to
+  `1.54e-15`, then independent high-order features were compared at projected
+  radii `.88/1.52/2.8px`. Two reports are exact (`fbbafdf8...ac0c`).
+- The frozen transition fails: distance ratios are `27.35/34.12/20.82x`, so
+  the smallest radius is already highly non-Gaussian and no monotone boundary
+  appears. Combined with U6.2B's severe speckles and P4CF's real-scan result,
+  U6.2A is closed as an LOD authority; P4BS remains the generic real-scan
+  second-order mechanism pending a genuinely new physical observable.
