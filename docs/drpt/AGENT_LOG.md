@@ -10873,3 +10873,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Decision: retain every physical/profile parameter and add only a global-coordinate two-pass row ABI: pass one derives the unchanged full-field DC receipt; pass two compiles density/sigma and transmittance in bounded row tiles.
 - Frozen gates: bit-exact P8BW pixels/raw means for 1/7/31/128-row partitions and MSVC/LLVM-MinGW, output atomicity, strict domain/input identity, 12MP peak <=500MB and >=128MiB reduction versus the measured 693,121,024-byte P8BW peak.
 - Claim ceiling: generic portable runtime arithmetic only; no stock, photographic, device or product promotion.
+
+## 2026-08-10 - U6.P8BX exact row mechanism passes; array-return path closes
+
+- Exactness: MSVC and LLVM-MinGW reproduce P8BW pixels and raw means bit-for-bit at 1/7/31/128-row partitions; output atomicity, strict domain and input identity pass.
+- Resource result: bounded workspace is 16,384,000 bytes and two 12MP runs peak at 553,189,376/552,976,384 bytes, reducing the P8BW reference peak by 139,931,648 bytes. Wall time is 9.43-9.50s.
+- Decision: fail the frozen 500,000,000-byte gate without relaxation. The remaining cost is the simultaneous 144MB input and 144MB returned output; a separately frozen row-sink executor is the next runtime leaf.

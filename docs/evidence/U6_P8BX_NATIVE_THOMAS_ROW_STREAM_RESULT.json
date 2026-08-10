@@ -1,0 +1,49 @@
+{
+  "schema": "neuro_film.u6_p8bx_native_thomas_row_stream_evidence.v1",
+  "experiment_id": "u6.p8bx-native-thomas-row-stream-v1",
+  "status": "exact-mechanism-pass-array-return-memory-fail",
+  "contract_sha256": "9845c6e38fdf360d2f244b2a2c1337666a4eec9e35f39907e30cbe996c2b1685",
+  "implementation": {
+    "commits": ["0c6c188f", "341b5fba"],
+    "c_source_sha256": "ff191a519aef74d08fac9a1bddf49653b26edd3874d13d216630619d84f91548",
+    "c_header_sha256": "19ddfe509635bd93f1e89e5def9509b0b36a6c4e1c42592dd9d6f132d10518a7",
+    "host_binding_sha256": "77ec578aa0988cf8d321c6a110ecc67f18218798b329a90180393ffb835f8726",
+    "conformance_sha256": "8b2b1ade6ed1a7d4be9d446184aa86732221bcbefaad0d9908df0db6aec9c6da",
+    "formal_runner_sha256": "cf864c2b5b9a5acf3d3da5617148c208f103a444d2bb91b35b37f72df267f3ef"
+  },
+  "conformance": {
+    "row_partitions": [1, 7, 31, 128],
+    "dual_windows_compilers": ["msvc-x64-c11", "llvm-mingw-20260616-clang-22.1.8-x64"],
+    "bit_exact_p8bw_output": true,
+    "exact_raw_field_means": true,
+    "failure_output_atomicity": true,
+    "input_immutability": true,
+    "strict_transmittance": true,
+    "output_sha256": "bb30a40b4c43056655cf6c3e226811cbcd380a1bf059c904b1d595e469386252"
+  },
+  "performance_12mp_rgb": {
+    "shape_chw": [3, 3000, 4000],
+    "two_fresh_wall_seconds": [9.49711550000211, 9.427645499999926],
+    "two_fresh_peak_process_tree_rss_bytes": [553189376, 552976384],
+    "bounded_workspace_bytes": 16384000,
+    "p8bw_reference_peak_rss_bytes": 693121024,
+    "rss_reduction_bytes": 139931648,
+    "maximum_rss_gate_bytes": 500000000,
+    "minimum_rss_reduction_gate_bytes": 134217728,
+    "wall_gate_seconds": 12.0,
+    "output_sha256": "d8cc5dbac2e24e850c4f902e9a6e5bf77aa6a81e1101f12775a77671546f336b",
+    "fresh_output_exact": true
+  },
+  "gate_results": {
+    "exact_arithmetic": true,
+    "bounded_workspace": true,
+    "minimum_rss_reduction": true,
+    "maximum_wall": true,
+    "maximum_rss": false
+  },
+  "formal_report_sha256": "3f23629f27b2896fd0656551cdc9f8ee4f41a9d0188233fe848b716ef36b1459",
+  "stable_evidence_id": "034f45f4487564296536b566cfd35ea0b7ab4157dc7a65fb763fe856fd30eaa5",
+  "decision": "close_native_thomas_row_stream_and_retain_p8bw",
+  "next_leaf": "A separately frozen row-sink executor may retain the exact row ABI while eliminating the full 144MB output array; the failed 500MB gate is not relaxed.",
+  "claim_ceiling": "Portable bounded-row execution evidence for unchanged generic P8BW arithmetic only; not a calibrated stock profile, photographic promotion, mobile-device runtime or product authorization."
+}
