@@ -997,3 +997,11 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
 - It also loses to luminance and shifted controls and creates 15.97%/3.38%
   new boundary. Do not train a predictor or tune this gate; retain the global
   explicit colour incumbent and move to a genuinely new observation/mechanism.
+
+# 2026-08-01 - U5.R2BW0 Velvia source signature closes
+
+- Two exact first-party Fujifilm revision traces are shape-stable
+  (`RMSE=.01465`) and digitization uncertainty is bounded.
+- The frozen chart-axis calibration fails, and Velvia does not separate from
+  VISION3 50D (`.05074 < .08`). Retain source priors only; do not repair the
+  axis or relax the gate after observing the result.

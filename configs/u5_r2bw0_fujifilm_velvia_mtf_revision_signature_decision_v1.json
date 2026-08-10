@@ -1,0 +1,27 @@
+{
+  "schema": "neuro_film.u5_r2bw0_fujifilm_velvia_mtf_revision_signature_decision.v1",
+  "experiment_id": "U5.R2BW0",
+  "implementation_commit": "e8e365248377f4e5771b6791a7b3df8ba04fc42a",
+  "contract_sha256": "91f710307b08b9427e91727c5aa030c802e14261e65117539eefdba7b0547c05",
+  "trace_sha256": "d5e1d7bddbfa434434cb092fce438355673bb08173c5cc470600c39fbc1fc481",
+  "formal_report_file_sha256": "4983bb1d875977f6ee2fc0a06efc9281d22ee6521b5ed1e52a22b86ad44d40f5",
+  "formal_report_canonical_sha256": "37d2de413ea43c23c1c6331bbbe8b0074a7b09716f9aff9682317142db048f3c",
+  "stable_evidence_id": "e19b113cb2fa53fcaeba58db7444a7d27d38a86652a269c94233207852ddd5b7",
+  "passed": false,
+  "decision": "close_exact_velvia_revision_source_signature",
+  "metrics": {
+    "revision_log_shape_rmse": 0.014653554098831586,
+    "maximum_digitization_uncertainty_fraction_of_separation_gate": 0.3510152937834399,
+    "current_velvia_to_kodak_50d_log_shape_rmse": 0.05074447733757163,
+    "current_velvia_to_kodak_250d_log_shape_rmse": 0.1527324268164271,
+    "current_velvia_to_kodak_500t_log_shape_rmse": 0.13657899079216143,
+    "historical_velvia_axis_max_residual_px": 15.756045860257814,
+    "current_velvia_axis_max_residual_px": 44.419356720172914
+  },
+  "failed_gates": [
+    "axis_calibration",
+    "each_kodak_stock_separation"
+  ],
+  "claim_ceiling": "First-party manufacturer-graph source audit only; not an independent material, roll, process, scanner, colour-response, NPS, photographic-appearance, calibrated-stock or product result.",
+  "next_action": "Do not repair the frozen global graph axis with a post-result piecewise calibration or relax the separation gate. Retain the official Velvia traces only as source priors and require a new identifying observation or mechanism."
+}

@@ -2,6 +2,16 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-01 - U5.R2BW0 closes exact Velvia source signature
+
+- Added deterministic extraction/audit for exact first-party RVP and RVP50
+  composite-MTF graphs plus their scalar diffuse-granularity observations.
+- Two formal reports are byte-identical (`4983bb1d...d40f5`). Revision shape
+  stability passes, but global axis calibration fails and Velvia-to-50D
+  separation is `.05074`, below the frozen `.08` gate.
+- Close without piecewise-axis or threshold rescue. Keep the traces as
+  non-renderable source priors and continue with a new identifying mechanism.
+
 # 2026-08-01 - U5.R2BV0 closes fixed semantic-gated curves
 
 - Implemented fixed DINOv2-S CLS attention gating of nine explicit curves with
