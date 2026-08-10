@@ -1,0 +1,67 @@
+{
+  "schema": "neuro_film.u6_p9e_temporal_exposure_flicker_contract.v1",
+  "node": "U6.P9E",
+  "question": "Can a bounded counter-driven mean-reverting log2 exposure trajectory provide exact temporal flicker state handoff while avoiding the frame-to-frame jumps of an iid gamma control and the drift of a random walk?",
+  "primary_source": {
+    "title": "AbsoluteDegradation: A Physics-Inspired Synthetic Film-Degradation Pipeline and Archival Film Restoration Benchmark",
+    "version": "arXiv:2607.02131v1",
+    "published": "2026-07-02",
+    "url": "https://arxiv.org/html/2607.02131v1",
+    "use": "latest film-degradation baseline and exact per-frame iid gamma control from equation text; the candidate is a clean-room bounded exposure-domain alternative",
+    "excluded": [
+      "paper code",
+      "paper model weights",
+      "paper datasets",
+      "restoration network",
+      "claim that iid gamma is physically calibrated flicker"
+    ]
+  },
+  "profile": {
+    "schema": "neuro_film.temporal_exposure_profile.v1",
+    "theta": 0.04,
+    "stationary_sigma_stops": 0.06,
+    "maximum_absolute_stops": 0.25,
+    "seed": 12253293483092280231
+  },
+  "experiment": {
+    "frame_count": 4096,
+    "partition_transition_counts": [31, 257, 1024, 2783],
+    "burn_in_frames": 512,
+    "iid_gamma_log_standard_deviation": 0.125,
+    "iid_gamma_minimum": 0.2,
+    "iid_gamma_maximum": 4.0,
+    "iid_gamma_probe_linear": 0.18,
+    "random_walk_scale_stops": 0.012,
+    "low_frequency_cutoff_cycles_per_frame": 0.0625
+  },
+  "automatic_gates": {
+    "replay_byte_exact": true,
+    "partition_byte_exact": true,
+    "all_values_finite": true,
+    "all_offsets_within_bound": true,
+    "maximum_clip_fraction": 0.01,
+    "maximum_absolute_stationary_mean_stops": 0.02,
+    "minimum_stationary_lag1": 0.85,
+    "maximum_stationary_lag1": 0.995,
+    "minimum_stationary_std_over_profile_sigma": 0.75,
+    "maximum_stationary_std_over_profile_sigma": 1.25,
+    "maximum_candidate_to_iid_p95_jump_ratio": 0.65,
+    "minimum_candidate_to_iid_low_frequency_power_ratio": 2.0,
+    "maximum_late_to_early_candidate_variance_ratio": 1.75,
+    "minimum_random_walk_late_to_early_ensemble_variance_ratio": 1.75,
+    "layer_exposure_roundtrip_exact": true,
+    "display_rgb_transform_count_zero": true
+  },
+  "forbidden": [
+    "claim the synthetic profile is measured from a film camera, projector, scanner or stock",
+    "apply flicker after density, scanner or output transform",
+    "use per-frame gamma as the candidate physical exposure operator",
+    "add spatial banding, rolling-shutter, color drift or automatic exposure compensation",
+    "change profile, controls, gates or seed after formal scoring"
+  ],
+  "branch_rule": {
+    "pass": "retain the typed deterministic temporal exposure primitive as an independently switchable synthetic reference and next test composition order with development response",
+    "fail": "close this exact temporal exposure mechanism without parameter or threshold rescue"
+  },
+  "claim_ceiling": "Synthetic deterministic exposure-domain flicker mechanism only; not measured film-camera exposure variance, projector flicker, scanner instability, temporal video quality, product readiness or stock calibration."
+}
