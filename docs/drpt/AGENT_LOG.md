@@ -10796,3 +10796,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   frozen monotone calibration reduces held-step RMSE to `8.57%/4.50%` of the
   best affine model. Retain a workflow-specific OECF requirement only; no
   stock, scanner-population, colour or product calibration claim.
+
+### P6AJ correction / P6AK replacement
+
+- Paper-method verification found that P6AJ's equal bins split the wider first
+  plateau and that only the positive wedge has an authorized calibrated-density
+  role. P6AJ is retained but superseded, not used for inference.
+- Corrected P6AK uses fixed plateau ROIs and the paper's log equation. The
+  published constants miss held density at `.22135/.51338` RMSE/max; a
+  development-only two-parameter refit reaches `.05571/.10714` and passes.
+  This is one historical scanner workflow and not independent confirmation.

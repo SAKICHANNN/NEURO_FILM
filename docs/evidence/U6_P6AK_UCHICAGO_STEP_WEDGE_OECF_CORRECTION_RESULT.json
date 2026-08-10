@@ -1,0 +1,45 @@
+{
+  "schema": "neuro_film.u6_p6ak_uchicago_step_wedge_oecf_correction_evidence.v1",
+  "experiment_id": "u6.p6ak-uchicago-step-wedge-oecf-correction-v1",
+  "status": "pass-exact-workflow-refit-log-oecf",
+  "decision": "retain_exact_workflow_bounded_log_oecf_profile",
+  "mode": "post-source-inspection-development-correction-not-independent-confirmation",
+  "supersedes": "u6.p6aj-uchicago-step-wedge-oecf-v1",
+  "contract_sha256": "a57ca337195a6d678978c2b139294695090edf73c3e74cd287e9aa94c0222a93",
+  "implementation_commit": "645cb1743e8caae7658ed4ad5464ff24e0d1426e",
+  "implementation_sha256": "7f8d0210d53561438a785f8607883792dc7a41b271909f3ec608a254f827da2f",
+  "runner_sha256": "61d56ba041dc05bc091dda8c0973663ede2ad7ca816a295cccfc6a40662a253f",
+  "formal_report_sha256": "568200db417c24abb708305000c570b4dc4c9a9d7e835c22a79fd98218b01d55",
+  "two_independent_reports_byte_exact": true,
+  "positive_wedge_sha256": "f0e88f558123ea688162cf9dad154b7b5eb868a85e8a9ec34fcf3c9460546522",
+  "density_table_sha256": "1bc24d545279e0be8272fe8f0b8adf46abf235148d8f84985d1cfb4f61d77b8a",
+  "published_equation": {
+    "black_code": 1900.0,
+    "gamma": 1.4,
+    "confirmation_density_rmse": 0.22134846318415916,
+    "confirmation_density_max_abs_error": 0.5133824755815888
+  },
+  "development_only_refit": {
+    "black_code": 2341.2112744450556,
+    "gamma": 1.4157742735467813,
+    "confirmation_density_rmse": 0.05571353086603127,
+    "confirmation_density_max_abs_error": 0.10714057329948723,
+    "confirmation_rmse_improvement_vs_published": 0.7482994457491294
+  },
+  "monotone_control": {
+    "confirmation_code_rmse": 0.004814052595217069,
+    "confirmation_code_max_abs_error": 0.008484016174563236
+  },
+  "gates": {
+    "strictly_decreasing_plateau_codes": true,
+    "refit_pass": true,
+    "monotone_control_pass": true
+  },
+  "interpretation": [
+    "The paper's equation family is supported, but its published constants do not meet the frozen held-step density gate on the retained scan.",
+    "A two-parameter fit using only 14 development steps predicts seven held steps at 0.05571 density RMSE and 0.10714 maximum error.",
+    "The retained result is one exact historical scanner-workflow profile and is not independent confirmation or a transferable scanner calibration."
+  ],
+  "negative_wedge_role": "unscored polarity/control image without an independently authorized density table",
+  "claim_ceiling": "Development reanalysis of one calibrated CC-BY-4.0 positive step-wedge scan for one historical scanner workflow; not independent confirmation, stock, emulsion, colour, scanner-population or product calibration."
+}
