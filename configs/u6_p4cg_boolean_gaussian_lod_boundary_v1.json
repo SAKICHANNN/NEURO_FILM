@@ -1,0 +1,97 @@
+{
+  "schema": "neuro_film.u6_p4cg_boolean_gaussian_lod_boundary_contract.v1",
+  "experiment_id": "u6.p4cg-boolean-gaussian-lod-boundary-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4CG",
+  "date_frozen": "2026-08-10",
+  "question": "When a Gaussian field exactly matches the development-set second-order spectrum of the retained clean-room Boolean reference, does its higher-order approximation remain adequate at subpixel grain scale but fail as individual grains become resolvable?",
+  "primary_sources": [
+    {
+      "citation": "Lesne, Gousseau, Ladjal and Newson, Neural Film Grain Rendering, Computer Graphics Forum 44(2), 2025",
+      "url": "https://diglib.eg.org/items/a0985d06-ee1c-402c-8d9f-827c7258d9bc",
+      "doi": "10.1111/cgf.70076",
+      "paper_sha256": "0cbd736fce9310c5a7ad6e84af761035a58de8a4ee824123deb5aa84cc058e59",
+      "official_repository_commit": "865c4940040531db5f9308177b077dcfe3ea122e",
+      "finding_used": "Second-order filtered-Gaussian approximations are efficient for unresolved grain but lose higher-order Boolean texture at large visible grain sizes."
+    },
+    {
+      "citation": "Wang, Choudhury and Su, DeGrainVAR, CVPRW 2026",
+      "url": "https://openaccess.thecvf.com/content/CVPR2026W/LoViF/html/Wang_DeGrainVAR_Film_Grain_Removal_with_Visual_AutoRegressive_Modeling_CVPRW_2026_paper.html",
+      "paper_sha256": "a032179cea1fa3115cbded2d9eeedda59342b2dfd945110561786e71138e2ab7",
+      "finding_used": "Its FilmGrainStyle740k evaluation targets and DCT pretraining pairs are synthetic; they are not real-film calibration evidence."
+    }
+  ],
+  "license_and_reuse_boundary": {
+    "neural_film_grain_repository_license": "all-rights-reserved-academic-research-only",
+    "paper_code_data_or_weights_downloaded_or_copied": false,
+    "clean_room_inputs": "Only published qualitative mechanism claims plus the already retained project-owned U6.2A Boolean implementation are used.",
+    "product_or_training_dependency_allowed": false
+  },
+  "parents": {
+    "boolean_representation_decision": {
+      "path": "configs/u6_2a_boolean_grain_representation_decision_v1.json",
+      "required_decision": "synthetic_representation_pass_open_visual_crop_frontier_only"
+    },
+    "boolean_visual_decision": {
+      "path": "configs/u6_2b_boolean_grain_crop_frontier_decision_v1.json",
+      "required_status": "closed_visual_severe_veto"
+    },
+    "real_uniform_higher_order_decision": {
+      "path": "configs/u6_p4cf_real_uniform_higher_order_structure_decision_v1.json",
+      "required_decision": "close_bounded_occupancy_higher_order_mechanism_without_rescue"
+    }
+  },
+  "reference": {
+    "input_shape": [24, 24],
+    "input_intensity": 0.5,
+    "output_zoom": 4,
+    "radius_input_pixels": [0.22, 0.38, 0.7],
+    "monte_carlo_samples": 32,
+    "gaussian_filter_sigma_output_pixels": 0.12,
+    "maximum_input_intensity": 0.99609375,
+    "epsilon": 1e-12,
+    "development_seeds": [2608101001, 2608101002, 2608101003, 2608101004, 2608101005, 2608101006, 2608101007, 2608101008],
+    "confirmation_seeds": [2608102001, 2608102002, 2608102003, 2608102004, 2608102005, 2608102006, 2608102007, 2608102008],
+    "gaussian_confirmation_seeds": [2608103001, 2608103002, 2608103003, 2608103004, 2608103005, 2608103006, 2608103007, 2608103008],
+    "edge_crop_output_pixels": 12
+  },
+  "second_order_control": {
+    "spectrum": "mean full 2-D periodogram of standardized development Boolean interiors, with exact conjugate-symmetric random phase and zero DC",
+    "normalization": "each interior subtracts its own mean and divides by population RMS before spectrum or feature extraction",
+    "fit_confirmation_reuse": false,
+    "confirmation_boolean_or_gaussian_pixels_read_before_contract_freeze": false
+  },
+  "higher_order_features": {
+    "marginal_quantile_probabilities": [0.001, 0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 0.75, 0.9, 0.95, 0.975, 0.99, 0.995, 0.999],
+    "local_rms_block_pixels": 8,
+    "local_rms_quantile_probabilities": [0.1, 0.25, 0.5, 0.75, 0.9],
+    "excursion_thresholds_sigma": [2.0, 2.5],
+    "excursion_component_area_bins_pixels": [[1, 1], [2, 4], [5, 16], [17, 5184]],
+    "comparison": "Euclidean RMSE after feature-family scaling by development Boolean interquartile replicate spread; report each family and their median."
+  },
+  "automatic_gates": {
+    "maximum_small_radius_gaussian_to_boolean_distance_ratio": 1.5,
+    "minimum_large_radius_gaussian_to_boolean_distance_ratio": 2.0,
+    "minimum_large_minus_small_distance_ratio": 0.75,
+    "minimum_large_radius_feature_families_diverging": 2,
+    "maximum_second_order_periodogram_relative_error": 1e-12,
+    "require_all_finite_and_nonzero_variance": true,
+    "require_two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain an evidence-bounded Boolean-to-Gaussian LOD distinction for the existing synthetic reference and open a separately frozen implementation experiment that chooses explicit geometry only when projected grain scale crosses the observed interval.",
+    "fail": "Close this exact scale boundary without tuning radii, seeds, features or gates; retain Gaussian Thomas as the generic current mechanism and require a new real or independently simulated observable before explicit geometry work."
+  },
+  "forbidden": [
+    "retune radii, seeds, feature families or gates after reading results",
+    "reinterpret the old visually rejected U6.2B composition as product-safe",
+    "claim real-film, microscopic, stock, process, scanner or density calibration",
+    "copy or execute the 2025 academic-only neural implementation",
+    "train a network or allow ML to generate final RGB",
+    "promote a renderer, profile or product default"
+  ],
+  "outputs": {
+    "report_a": "outputs/experiments/u6_p4cg_boolean_gaussian_lod_boundary_v1/run_a/report.json",
+    "report_b": "outputs/experiments/u6_p4cg_boolean_gaussian_lod_boundary_v1/run_b/report.json"
+  },
+  "claim_ceiling": "Clean-room synthetic mechanism evidence for when an exact second-order Gaussian control ceases to reproduce higher-order statistics of the existing Boolean reference; not real-film calibration, visual safety, stock identity or product admission."
+}
