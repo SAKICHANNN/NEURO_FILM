@@ -506,7 +506,6 @@ def acquire_selected_pairs(
             "entry_count": len(archive.entries),
             "test_hyperparameters_sha256": _sha256(metadata_bytes),
         },
-        "request_count": archive.request_count,
         "member_compressed_bytes": archive.member_compressed_bytes,
         "member_uncompressed_bytes": archive.member_uncompressed_bytes,
         "selected_rows": source_rows,
