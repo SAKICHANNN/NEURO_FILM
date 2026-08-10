@@ -10757,3 +10757,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   744.2-770.0MB peak. One 240MB workspace/scratch allocation is reused across
   layers. Next scientific/runtime gap is compiling the supplied point-density
   amplitude from the retained exposure/characteristic profile.
+
+## 2026-08-10 — Freeze U6.P8BV native P4BW amplitude compiler
+
+- Compile explicit relative layer log exposure into piecewise-linear developed
+  density and characteristic-slope point sigma using the exact P4BW/P2Q bundle.
+- Freeze knots/adjacent float32 values, 4097 samples/layer, dual compilers,
+  failure atomicity and 12MP RGB resources. No fit, spatial field or exposure
+  estimation is part of this leaf.

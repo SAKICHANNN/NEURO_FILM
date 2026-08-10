@@ -1,0 +1,62 @@
+{
+  "schema": "neuro_film.u6_p8bv_native_granularity_amplitude_contract.v1",
+  "experiment_id": "u6.p8bv-native-granularity-amplitude-v1",
+  "node": "ULT > U6 > U6.P8 > U6.P8BV",
+  "date_frozen": "2026-08-10",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can the retained P4BW characteristic-slope granularity profile compile relative layer log exposure into developed-density mean and point-density sigma in portable C11 without changing the empirical profile?",
+  "parents": {
+    "p8bu_evidence": {
+      "path": "docs/evidence/U6_P8BU_NATIVE_RGB_THOMAS_RESULT.json",
+      "sha256": "2724087318b6e632d0030485404c6ced584dceb224b5bc2d72ede3507c07e673",
+      "required_decision": "retain_serial_native_rgb_density_thomas_executor"
+    },
+    "p4bw_bundle": {
+      "path": "outputs/experiments/u6_p4bw_density_conditioned_thomas_profile_v1/run_a/bundle.json",
+      "sha256": "4edf4eaaeae163a2f579584c7d9533134a7d6177d5cc78ed517cb15865e585bf",
+      "required_profile_id": "199c59fe7d046943bcd763de8cab0ab52e7156aba6d94fcd9f1ec64da4d5d6ff"
+    },
+    "p2q_bundle": {
+      "path": "outputs/u6_p2q_kodak_250d_characteristic_prior/bundle_run1.json",
+      "sha256": "087e67544f737401fa697b21f06215a31827189e0648b8d60da666b92113caaa",
+      "required_prior_id": "04d94af2e1fcad99fbb8c9abb57179f2b63f329c263b3bf2335c4117a670aacb"
+    }
+  },
+  "candidate": {
+    "abi_version": 1,
+    "maximum_knots_per_layer": 16,
+    "channel_order": ["red", "green", "blue"],
+    "input_domain": "relative_layer_log_exposure_chw",
+    "outputs": ["status_m_developed_density_mean_chw", "point_density_sigma_chw"],
+    "density_interpolation": "piecewise_linear_no_extrapolation",
+    "variance_formula": "floor_variance[channel] + shared_amplitude * slope^2 / pow(10, log_exposure)",
+    "point_sigma_formula": "sqrt(variance / measurement_energy)",
+    "measurement_energy": 0.42674186556428034,
+    "profile_refit_allowed": false,
+    "spatial_field_generation_allowed": false
+  },
+  "conformance": {
+    "samples_per_layer": 4097,
+    "maximum_density_absolute_error_vs_float64": 2e-6,
+    "maximum_point_sigma_absolute_error_vs_float64": 2e-7,
+    "maximum_cross_compiler_absolute_error": 2e-6,
+    "require_all_knots_and_adjacent_float32_values": true,
+    "require_repeat_exact": true,
+    "require_input_immutability": true,
+    "require_failure_atomicity": true,
+    "require_out_of_domain_rejection": true
+  },
+  "performance": {
+    "shape_chw": [3, 3000, 4000],
+    "maximum_wall_seconds": 2.0,
+    "maximum_process_tree_rss_bytes": 805306368,
+    "maximum_repeat_wall_ratio": 1.25,
+    "maximum_repeat_rss_ratio": 1.1,
+    "require_two_fresh_processes": true,
+    "require_exact_output_identity": true,
+    "require_zero_surviving_processes": true
+  },
+  "decision_if_pass": "retain_native_p4bw_granularity_amplitude_compiler",
+  "decision_if_fail": "close_native_amplitude_compiler_and_retain_host_supplied_p8bu_inputs",
+  "claim_ceiling": "Portable execution of the retained hybrid P4BW amplitude profile only; not calibrated Kodak spatial grain, microscopic structure, exposure estimation, photographic promotion or product authorization."
+}
