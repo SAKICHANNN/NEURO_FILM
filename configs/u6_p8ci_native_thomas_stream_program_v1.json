@@ -1,0 +1,40 @@
+{
+  "schema": "neuro_film.u6_p8ci_native_thomas_stream_program_contract.v1",
+  "experiment_id": "u6.p8ci-native-thomas-stream-program-v1",
+  "node": "ULT > U6 > U6.P8 > U6.P8CI",
+  "date_frozen": "2026-08-10",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can the exact two-pass Thomas mean-and-density row program move from Python control flow into one freestanding C11 streaming ABI without changing any sample or receipt bit?",
+  "parents": {
+    "p8bx_evidence": {
+      "path": "docs/evidence/U6_P8BX_NATIVE_THOMAS_ROW_STREAM_RESULT.json",
+      "sha256": "c692019e844d764490582810be6664ca62ea1c890648b130cb33ba058e93f0ce",
+      "required_decision": "close_native_thomas_row_stream_and_retain_p8bw"
+    },
+    "p8cf_evidence": {
+      "path": "docs/evidence/U6_P8CF_NATIVE_NEUMAIER_REDUCER_RESULT.json",
+      "sha256": "b5a97a19da0078947ac0c120abe2043e5b36509fe9c8ab0055b5eab2dd0b6b42",
+      "required_decision": "retain_exact_native_neumaier_thomas_scheduler"
+    }
+  },
+  "candidate": {
+    "language": "freestanding-c11",
+    "field_density_and_reducer_sources_unchanged": true,
+    "row_partitions": [1, 7, 31, 128],
+    "callback_may_retain_rows": false,
+    "failure_stops_before_next_callback": true,
+    "model_profile_or_sample_change_allowed": false
+  },
+  "gates": {
+    "require_msvc_llvm_exact_raw_mean_bits": true,
+    "require_msvc_llvm_exact_transmittance_bytes": true,
+    "require_partition_exactness": true,
+    "require_strict_row_order": true,
+    "require_callback_failure_propagation": true,
+    "require_invalid_input_before_callback": true,
+    "require_workspace_bound": true
+  },
+  "decision_if_pass": "retain_freestanding_native_thomas_stream_program",
+  "decision_if_fail": "retain_python_scheduler_and_close_exact_c11_program",
+  "claim_ceiling": "Portable one-channel C11 scheduling and callback evidence for unchanged generic Thomas arithmetic; not RGB orchestration, encoding, device runtime, calibrated stock response or product authorization."
+}
