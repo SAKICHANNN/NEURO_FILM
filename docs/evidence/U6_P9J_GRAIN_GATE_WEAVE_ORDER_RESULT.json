@@ -1,0 +1,34 @@
+{
+  "automatic_pass": true,
+  "claim_ceiling": "Synthetic physical-order evidence separating developed emulsion grain from post-decoder screen-space grain only; not measured film, scanner, codec quality or video product readiness.",
+  "contract_sha256": "6cdc08b726fc280b9f8143d811f450a35c88b8ebbedb15ca6c86f6c279c7e17b",
+  "decision": "freeze developed emulsion grain before scanner gate-weave sampling and keep screen-space codec grain as a separate control or product layer",
+  "gate_results": {
+    "correct_order_all_values_finite": true,
+    "correct_order_new_boundary_fraction_maximum": true,
+    "display_rgb_effect_count_zero": true,
+    "frame_partition_byte_exact": true,
+    "minimum_nonzero_offset_different_frame_fraction": true,
+    "minimum_order_difference_median_rmse": true,
+    "minimum_order_difference_p95_absolute": true,
+    "parent_hashes_exact": true,
+    "replay_byte_exact": true,
+    "reverse_frame_order_byte_exact": true,
+    "zero_offset_order_error_maximum": true
+  },
+  "measurements": {
+    "correct_order_all_values_finite": true,
+    "correct_order_new_boundary_fraction": 0.0,
+    "display_rgb_effect_count": 0,
+    "frame_partition_byte_exact": true,
+    "nonzero_offset_different_frame_fraction": 1.0,
+    "order_difference_median_rmse": 0.0005480663400141095,
+    "order_difference_p95_absolute": 0.0012725286510479605,
+    "parent_hashes_exact": true,
+    "replay_byte_exact": true,
+    "reverse_frame_order_byte_exact": true,
+    "zero_offset_order_maximum_error": 0.0
+  },
+  "schema": "neuro_film.u6_p9j_grain_gate_weave_order_report.v1",
+  "stable_evidence_id": "f6c098217c96e4b85879b50a30e306deb25ac431b8ac7566c897df80ad02410a"
+}

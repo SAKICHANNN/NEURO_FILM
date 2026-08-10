@@ -10596,3 +10596,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   narrow-core/long-tail shape.
 - Retain only as a research reference. No product scanner-profile integration
   opens before a rights-cleared measured glare-spread function is available.
+
+# 2026-08-10 - U6.P9J freezes emulsion grain before gate-weave sampling
+
+- Compared developed grain sampled with the moving film frame against a
+  matched unshifted residual added after scanner motion, analogous only in
+  ordering to post-decoder codec grain.
+- Two reports are exact (`c4f40a87...129d6`). Zero offset is exact; all eight
+  shifted frames differ with median RMSE `.0005481` and P95 `.0012725`, while
+  replay, reverse order, partitions and boundary gates pass.
+- Physical emulsion grain stays before scanner motion. Codec/display grain is
+  a separate layer; no measured film-video or product claim opens.
