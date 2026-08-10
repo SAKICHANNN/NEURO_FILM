@@ -1,0 +1,47 @@
+{
+  "schema": "neuro_film.u6_p8by_native_thomas_row_sink_contract.v1",
+  "experiment_id": "u6.p8by-native-thomas-row-sink-v1",
+  "node": "ULT > U6 > U6.P8 > U6.P8BY",
+  "date_frozen": "2026-08-10",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can the exact P8BX row ABI publish ordered channel rows to a non-retaining sink while preserving the P8BW byte stream and bringing 12MP host peak below the array-return path?",
+  "parents": {
+    "p8bx_evidence": {
+      "path": "docs/evidence/U6_P8BX_NATIVE_THOMAS_ROW_STREAM_RESULT.json",
+      "sha256": "c692019e844d764490582810be6664ca62ea1c890648b130cb33ba058e93f0ce",
+      "required_decision": "close_native_thomas_row_stream_and_retain_p8bw"
+    }
+  },
+  "candidate": {
+    "row_abi_and_profiles_unchanged": true,
+    "sink_order": "channel-major then strictly increasing row_start",
+    "sink_may_retain_rows": false,
+    "row_partition": 128,
+    "output_array_allowed": false,
+    "model_or_profile_change_allowed": false,
+    "quantization_or_encoding_allowed": false
+  },
+  "conformance": {
+    "shape_chw": [3, 193, 257],
+    "require_exact_p8bw_chw_byte_stream": true,
+    "require_exact_raw_means": true,
+    "require_exact_sink_order": true,
+    "require_input_immutability": true,
+    "require_sink_failure_propagation": true
+  },
+  "performance": {
+    "shape_chw": [3, 3000, 4000],
+    "maximum_wall_seconds": 12.0,
+    "maximum_process_tree_rss_bytes": 440000000,
+    "minimum_rss_reduction_bytes_vs_p8bx": 100000000,
+    "p8bx_reference_peak_rss_bytes": 553189376,
+    "maximum_repeat_wall_ratio": 1.25,
+    "maximum_repeat_rss_ratio": 1.10,
+    "require_two_fresh_processes": true,
+    "require_exact_stream_identity": true,
+    "require_zero_surviving_processes": true
+  },
+  "decision_if_pass": "retain_exact_native_thomas_row_sink",
+  "decision_if_fail": "close_native_thomas_row_sink_and_retain_p8bx_mechanism_only",
+  "claim_ceiling": "Ordered non-retaining host sink for unchanged generic P8BW arithmetic only; not an image encoder, mobile runtime, calibrated stock profile or product authorization."
+}

@@ -10879,3 +10879,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Exactness: MSVC and LLVM-MinGW reproduce P8BW pixels and raw means bit-for-bit at 1/7/31/128-row partitions; output atomicity, strict domain and input identity pass.
 - Resource result: bounded workspace is 16,384,000 bytes and two 12MP runs peak at 553,189,376/552,976,384 bytes, reducing the P8BW reference peak by 139,931,648 bytes. Wall time is 9.43-9.50s.
 - Decision: fail the frozen 500,000,000-byte gate without relaxation. The remaining cost is the simultaneous 144MB input and 144MB returned output; a separately frozen row-sink executor is the next runtime leaf.
+
+## 2026-08-10 - U6.P8BY non-retaining row-sink contract frozen
+
+- Reuse: exact P8BX C arithmetic, profiles, DC receipt and 128-row partition remain unchanged.
+- New question only: replace the full returned output array with a channel-major ordered sink that cannot retain row views.
+- Frozen gates: exact P8BW CHW stream/raw means, strict order, input identity and sink-failure propagation; 12MP peak <=440MB and >=100MB below P8BX with <=12s wall time.
