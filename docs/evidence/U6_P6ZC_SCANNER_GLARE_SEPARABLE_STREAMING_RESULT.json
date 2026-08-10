@@ -1,0 +1,34 @@
+{
+  "automatic_pass": true,
+  "claim_ceiling": "Synthetic numerical and workspace evidence for a generic multiscale scanner-glare compiler only; not measured scanner calibration, product performance, stock response or photographic validation.",
+  "contract_sha256": "742faaec187b3f69d9c224e702df2bf73e06dac24f5d41c30fcc3f589fd34168",
+  "decision": "retain_separable_streaming_open_performance_benchmark",
+  "formal_report_sha256": "c4faf001d04eb86930b791b25bd7f10a5014e07684b6ea885b692fc175083073",
+  "gate_results": {
+    "constant": true,
+    "impulse_energy": true,
+    "parent_hashes": true,
+    "partition": true,
+    "range": true,
+    "reference_absolute": true,
+    "reference_rmse": true,
+    "workspace": true
+  },
+  "implementation_commit": "7dbc8ba9",
+  "measurements": {
+    "constant_field_error": 5.551115123125783e-17,
+    "impulse_energy_error": 0.0,
+    "maximum_partition_absolute_error": 0.0,
+    "maximum_reference_absolute_error": 1.1102230246251565e-16,
+    "maximum_reference_rmse": 4.3518658131447315e-17,
+    "tracked_workspace_bytes_12mp_rgb": 69120000
+  },
+  "node": "U6.P6ZC",
+  "parent_hashes": {
+    "p6za_contract": "6ee5bb8427f52d4313b0e39cffe5e18d6e2cf9e4122cc05f50a7789567743167",
+    "p6za_evidence": "117726c59459fa64834430e5698b72fcfb112ae680b73a4f158d35ff381ca773",
+    "scanner_glare_core_before_compiler": "53754573470db93528ab141cda1e4a175820cffd8cfd21103f5e92b674d72c35"
+  },
+  "schema": "neuro_film.u6_p6zc_scanner_glare_separable_streaming_evidence.v1",
+  "stable_evidence_id": "dfd0a596daf61226554f3887b670349ccd3dae2efc47d10e3ef956ccf9dff37b"
+}

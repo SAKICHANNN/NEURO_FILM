@@ -1040,3 +1040,12 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
 - Analytical no-clip execution exposes the decisive failure: minimum safe
   scale is `.23449`, `20.62%` of pixels are limited, and new-boundary control
   fails. Close this exact axis/amplitude family without strength or gate rescue.
+
+# 2026-08-10 - U6.P6ZC passes exact scanner-glare streaming compilation
+
+- The independent row-streaming compiler preserves the frozen P6ZA core and
+  matches the full reference within `1.11e-16`; row partitions 1/17/64/193/321
+  are mutually exact.
+- Constant and impulse-energy checks pass, and tracked 12MP RGB scratch is
+  69.12MB. Proceed directly to a real throughput/RSS benchmark; calibration
+  and product-profile integration remain closed.

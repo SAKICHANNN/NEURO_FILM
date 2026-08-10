@@ -10629,3 +10629,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   scale, `20.62%` limiting and new boundaries close the exact mechanism.
 - Verified 11 focused/adjacent tests and Ruff. No P: data, GPU, cloud, paper
   code/weights/data, film claim or product path was used.
+
+# 2026-08-10 - U6.P6ZC compiles multiscale glare for bounded row streaming
+
+- Added an independent separable streaming module so the frozen P6ZA scanner-
+  glare core and its exact hash remain unchanged. A bounded horizontal cache
+  removes redundant work for small row partitions.
+- Two formal reports are byte-identical (`c4faf001...3073`); full-reference
+  error is `1.11e-16`, every tested partition is exact, and tracked 12MP RGB
+  scratch is 69.12MB. Eleven focused/parent tests and Ruff pass.
+- This opens only P6ZD real performance measurement. It is not measured
+  scanner calibration, photographic evidence, or a product profile.
