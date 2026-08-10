@@ -1,0 +1,37 @@
+{
+  "schema": "neuro_film.u6_p8cf_native_neumaier_reducer_evidence.v1",
+  "experiment_id": "u6.p8cf-native-neumaier-reducer-v1",
+  "status": "pass-retain-exact-native-neumaier-thomas-scheduler",
+  "contract_sha256": "326e23a788296bc7e66c94326a0632230d4d5ff5bf4427a97e1110c4282d0aa5",
+  "formal_report_sha256": "07eb824332a3488f2038008451173b1ffa55e09dbe441e7bce4c95cb0865fd17",
+  "stable_evidence_id": "c90317c2188836f7968e29e61b96285012a299818d748eaa08790ecdab1edaef",
+  "reducer_source_sha256": "e5ad350d6315f92b4fa09252bcecc1f6c403ac6d88c12b2f9907318cc5dbffc8",
+  "reducer_header_sha256": "a27b88d257e19ed4c2bd8db03980d3cca842705844eb1819b38b2d03b73c44f2",
+  "conformance": {
+    "shape_chw": [3, 193, 257],
+    "msvc_llvm_reducer_state_exact": true,
+    "python_native_raw_mean_bits_exact": true,
+    "python_native_srgb8_bytes_exact": true,
+    "python_native_srgb16_bytes_exact": true,
+    "invalid_input_state_unchanged": true,
+    "srgb8_hwc_sha256": "7ca0b8341356815a608ccf7268b42c50953edf5653225f401afa2e0a41f4fd77",
+    "srgb16_hwc_sha256": "20d84ec2f239c4f87732476030f700a3f43f22fec4e59504bbe16654305d39cb"
+  },
+  "performance_12mp_srgb16": {
+    "shape_chw": [3, 3000, 4000],
+    "runs": 2,
+    "peak_process_tree_rss_bytes": [429248512, 428785664],
+    "wall_seconds": [4.215429800002312, 4.249594300003082],
+    "wall_ratio_vs_p8cd": 0.4287780631137566,
+    "rss_repeat_ratio": 1.001079439073784,
+    "wall_repeat_ratio": 1.0081046302801084,
+    "bounded_workspace_bytes": 59328000,
+    "sink_calls": 24,
+    "output_hwc_sha256": "5a0f531fe9b28183dba4634b0c1d739f71c2677e2f9ba74dd16c33c2fa6530fd",
+    "worker_cleanup_exact": true
+  },
+  "automatic_pass": true,
+  "decision": "retain_exact_native_neumaier_thomas_scheduler",
+  "interpretation": "Moving only the ordered float32-to-double Neumaier accumulation from Python scalar iteration to an independent strict-float C11 ABI preserves every raw-mean bit and final sample byte. It removes the measured reduction bottleneck and cuts the worst 12MP P8CD wall time by 57.12% without increasing peak RSS.",
+  "claim_ceiling": "Host portable reduction and scheduling performance only; no physical model/profile, pixel, device, calibration or product claim change."
+}

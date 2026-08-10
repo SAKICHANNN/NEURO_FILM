@@ -10925,3 +10925,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Composition: unchanged P8CD scheduling feeds unchanged P8CC PNG16 serialization; the exact 68,399,187-byte serial artifact SHA `9484eeec...47f8` is preserved.
 - Resource result: two fresh 12MP complete runs take 11.19/11.25s at 430.00-430.31MB peak, a worst-wall ratio of .711 versus serial P8CC.
 - Decision: retain the host generic physical arithmetic-to-PNG path as the current runtime implementation result. Device runtime, calibrated stock response and product authorization remain separate evidence questions.
+
+## 2026-08-10 - U6.P8CF exact native Neumaier reducer removes the main host bottleneck
+
+- Attribution found about 4.94s of the 9.91s P8CD wall in Python scalar raw-mean accumulation. A separate strict-float C11 reducer now updates the same ordered double Neumaier state without modifying the frozen Thomas row ABI.
+- Exactness: MSVC/LLVM reducer state, Python/native raw-mean bits and sRGB8/16 output bytes match exactly; invalid non-finite input leaves caller state unchanged.
+- Resource result: two fresh 12MP sample-stream runs take 4.22/4.25s at 428.79-429.25MB peak, a worst-wall ratio of .429 versus P8CD with unchanged output SHA `5a0f531f...530fd`.
+- Decision: retain the reducer and proceed directly to a 24MP complete PNG measurement. No physical model/profile or product claim changes.
