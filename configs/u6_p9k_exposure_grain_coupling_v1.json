@@ -1,0 +1,47 @@
+{
+  "schema": "neuro_film.u6_p9k_exposure_grain_coupling_contract.v1",
+  "node": "U6.P9K",
+  "question": "Does pre-development temporal exposure change density-conditioned emulsion structure in a way that cannot be reproduced by a post-scan brightness control with exactly matched smooth tone?",
+  "parents": {
+    "p9f_evidence": "docs/evidence/U6_P9F_EXPOSURE_DEVELOPMENT_ORDER_RESULT.json",
+    "p9f_evidence_sha256": "9bf1202f7653dff4459f766e1000bb1d413ccdeba7d84bbf9843e968c263f6ed",
+    "p9j_evidence": "docs/evidence/U6_P9J_GRAIN_GATE_WEAVE_ORDER_RESULT.json",
+    "p9j_evidence_sha256": "c4f40a87804694c112a600540104863b6ff18f66a8b6118ba4b09f81305129d6",
+    "p9d_contract": "configs/u6_p9d_temporal_typed_grain_v1.json",
+    "p9d_contract_sha256": "92c4cd5b995d1e08b655af4b00fd6b152573a494662e046ec8db6b776403e943",
+    "p9e_contract": "configs/u6_p9e_temporal_exposure_flicker_v1.json",
+    "p9e_contract_sha256": "52e1cb7ef6d7e894b003b04c043c4e533b51825a4123c4cf5a736dc253e9b13d"
+  },
+  "experiment": {
+    "frame_index": 5,
+    "exposure_offsets_stops": [-0.25, 0.0, 0.25],
+    "row_partition_counts": [31, 47, 50]
+  },
+  "matched_post_scan_control": "For each nonzero offset, add the neutral-exposure grain residual multiplied pointwise by adjusted_smooth_scan / neutral_smooth_scan to the exact adjusted smooth scan; this matches local smooth tone and relative residual scaling while withholding density-conditioned structure regeneration.",
+  "automatic_gates": {
+    "parent_hashes_exact": true,
+    "replay_byte_exact": true,
+    "reverse_exposure_order_byte_exact": true,
+    "row_partition_byte_exact": true,
+    "zero_offset_candidate_control_error_maximum": 1e-15,
+    "minimum_nonzero_offset_different_fraction": 1.0,
+    "minimum_nonzero_offset_order_difference_rmse": 0.0001,
+    "minimum_nonzero_offset_order_difference_p95_absolute": 0.0001,
+    "density_conditioned_residual_rms_span_minimum": 0.0001,
+    "matched_control_smooth_tone_error_maximum": 1e-15,
+    "candidate_all_values_finite": true,
+    "candidate_new_boundary_fraction_maximum": 0.0,
+    "display_rgb_effect_count_zero": true
+  },
+  "forbidden": [
+    "apply temporal exposure after development, transmittance, scanner or output transform in the retained chain",
+    "reuse neutral-exposure grain without labeling it as the post-scan control",
+    "change offsets, frame, profile, controls or gates after formal scoring",
+    "claim synthetic density coupling is a measured stock, process, scanner or temporal-video profile"
+  ],
+  "branch_rule": {
+    "pass": "freeze temporal exposure before density-conditioned emulsion structure; post-scan brightness remains a separate nonphysical control",
+    "fail": "close this exact exposure-grain coupling without offset, seed, profile or threshold rescue"
+  },
+  "claim_ceiling": "Synthetic physical-order evidence for exposure-conditioned generic emulsion structure only; not measured film stock, process, scanner, temporal footage quality or product readiness."
+}
