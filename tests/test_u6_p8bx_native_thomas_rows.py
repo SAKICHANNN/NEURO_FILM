@@ -33,6 +33,7 @@ from src.film_physics.native_granularity_amplitude import (
 from src.film_physics.native_thomas_density import load_native_thomas_density_library
 from src.film_physics.native_thomas_rows import (
     render_native_exposure_thomas_rgb_rows,
+    stream_native_exposure_thomas_rgb_interleaved,
     stream_native_exposure_thomas_rgb_rows,
 )
 
@@ -50,6 +51,18 @@ class _CollectSink:
         assert not values.flags.writeable
         self.order.append((channel, row_start))
         self.streamed.extend(values.tobytes())
+
+
+class _InterleavedSink:
+    def __init__(self) -> None:
+        self.order: list[int] = []
+        self.tiles: list[np.ndarray] = []
+
+    def __call__(self, row_start: int, values: np.ndarray) -> None:
+        assert not values.flags.writeable
+        assert values.shape[2] == 3
+        self.order.append(row_start)
+        self.tiles.append(values.copy())
 
 
 def _json(path: Path) -> dict[str, object]:
@@ -133,6 +146,24 @@ def test_row_partitions_are_bit_exact_and_failure_atomic(tmp_path: Path) -> None
         assert means == expected_means
         assert calls == len(sink.order)
         assert sink.order == sorted(sink.order)
+
+        interleaved_sink = _InterleavedSink()
+        interleaved_means, _, interleaved_calls = (
+            stream_native_exposure_thomas_rgb_interleaved(
+                amplitude_libraries[name],
+                rows_library,
+                amplitude_profile,
+                profiles,
+                exposure,
+                interleaved_sink,
+                row_partition=128,
+            )
+        )
+        reassembled = np.concatenate(interleaved_sink.tiles, axis=0)
+        assert np.array_equal(reassembled, np.transpose(expected, (1, 2, 0)))
+        assert interleaved_means == expected_means
+        assert interleaved_calls == len(interleaved_sink.order)
+        assert interleaved_sink.order == sorted(interleaved_sink.order)
 
     failure_calls = 0
 

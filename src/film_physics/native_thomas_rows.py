@@ -311,9 +311,118 @@ def stream_native_exposure_thomas_rgb_rows(
     return raw_means, workspace_bytes, sink_calls
 
 
+def stream_native_exposure_thomas_rgb_interleaved(
+    amplitude_library: ctypes.CDLL,
+    rows_library: ctypes.CDLL,
+    amplitude_profile: NativeGranularityAmplitudeProfileV1,
+    field_profiles: tuple[
+        NativeThomasFieldProfile,
+        NativeThomasFieldProfile,
+        NativeThomasFieldProfile,
+    ],
+    relative_log_exposure_chw: np.ndarray,
+    sink: Callable[[int, np.ndarray], None],
+    *,
+    row_partition: int,
+) -> tuple[tuple[float, float, float], int, int]:
+    """Publish exact increasing-row HWC tiles without full output planes."""
+
+    exposure = np.asarray(relative_log_exposure_chw)
+    if (
+        exposure.dtype != np.float32
+        or exposure.ndim != 3
+        or exposure.shape[0] != 3
+        or not exposure.flags.c_contiguous
+        or not callable(sink)
+        or isinstance(row_partition, bool)
+        or not isinstance(row_partition, int)
+        or row_partition <= 0
+    ):
+        raise ValueError("expected contiguous float32 CHW exposure, sink and rows")
+    for channel in range(3):
+        values = exposure[channel]
+        count = int(amplitude_profile.knot_count[channel])
+        lower = float(amplitude_profile.log_exposure_knots[channel][0])
+        upper = float(amplitude_profile.log_exposure_knots[channel][count - 1])
+        if (
+            not np.all(np.isfinite(values))
+            or float(np.min(values)) < lower
+            or float(np.max(values)) > upper
+        ):
+            raise ValueError("relative layer log exposure is outside the profile domain")
+
+    _, height, width = exposure.shape
+    tile_rows = min(height, row_partition)
+    workspace = _workspace(rows_library, width, tile_rows)
+    density = np.empty(tile_rows * width, dtype=np.float32)
+    sigma = np.empty(tile_rows * width, dtype=np.float32)
+    channel_output = np.empty(tile_rows * width, dtype=np.float32)
+    interleaved = np.empty((tile_rows, width, 3), dtype=np.float32)
+    raw_means = tuple(
+        _neumaier_rows(rows_library, profile, (height, width), row_partition)
+        for profile in field_profiles
+    )
+    sink_calls = 0
+    for row_start in range(0, height, row_partition):
+        rows = min(row_partition, height - row_start)
+        count = rows * width
+        for channel, field_profile in enumerate(field_profiles):
+            exposure_rows = exposure[channel, row_start : row_start + rows]
+            status = amplitude_library.nf_granularity_amplitude_f32_apply_layer_v1(
+                ctypes.byref(amplitude_profile),
+                channel,
+                _pointer(exposure_rows),
+                count,
+                _pointer(density),
+                _pointer(sigma),
+            )
+            if status != 0:
+                raise NativeGranularityAmplitudeError(
+                    f"native interleaved amplitude failed at channel {channel}: {status}"
+                )
+            abi_profile = field_profile.as_abi()
+            status = rows_library.nf_thomas_rows_f32_density_v1(
+                ctypes.byref(abi_profile),
+                height,
+                width,
+                row_start,
+                rows,
+                _pointer(density),
+                count,
+                _pointer(sigma),
+                count,
+                raw_means[channel],
+                _pointer(workspace),
+                workspace.size,
+                _pointer(channel_output),
+                channel_output.size,
+            )
+            if status != 0:
+                raise NativeThomasRowsError(
+                    f"native interleaved density failed at channel {channel}, "
+                    f"row {row_start}: {status}"
+                )
+            interleaved[:rows, :, channel] = channel_output[:count].reshape(
+                rows, width
+            )
+        view = interleaved[:rows].view()
+        view.setflags(write=False)
+        sink(row_start, view)
+        sink_calls += 1
+    workspace_bytes = (
+        workspace.nbytes
+        + density.nbytes
+        + sigma.nbytes
+        + channel_output.nbytes
+        + interleaved.nbytes
+    )
+    return raw_means, workspace_bytes, sink_calls
+
+
 __all__ = [
     "NativeThomasRowsError",
     "load_native_thomas_rows_library",
     "render_native_exposure_thomas_rgb_rows",
+    "stream_native_exposure_thomas_rgb_interleaved",
     "stream_native_exposure_thomas_rgb_rows",
 ]
