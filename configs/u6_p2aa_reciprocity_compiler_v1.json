@@ -1,0 +1,83 @@
+{
+  "schema": "neuro_film.u6_p2aa_reciprocity_compiler_contract.v1",
+  "node": "U6.P2AA",
+  "question": "Can current first-party reciprocity guidance be compiled into an exact typed exposure-time primitive without inventing unreported colour-layer or out-of-range stock behaviour?",
+  "sources": {
+    "ilford": {
+      "title": "FILM RECIPROCITY FAILURE COMPENSATION",
+      "publisher": "HARMAN technology Limited",
+      "publication_date": "2023-12",
+      "url": "https://www.ilfordphoto.com/wp/wp-content/uploads/2024/05/Reciprocity-Failure-Compensation-v2.pdf",
+      "local_research_copy": "outputs/source_recon/u6_p2aa_reciprocity/ilford_reciprocity_failure_compensation_v2.pdf",
+      "bytes": 40194,
+      "sha256": "aa353153987f6ddaf40c8e47fc2ef17cafcd02bdb97cda0564c34fed98fa4c2e",
+      "formula": "corrected_time_seconds = metered_time_seconds ** P",
+      "no_correction_maximum_seconds": 1.0,
+      "profiles": {
+        "ilford_sfx": 1.43,
+        "ilford_pan_f_plus": 1.33,
+        "ilford_delta_100": 1.26,
+        "ilford_delta_400": 1.41,
+        "ilford_delta_3200": 1.33,
+        "ilford_fp4_plus": 1.26,
+        "ilford_hp5_plus": 1.31,
+        "ilford_xp2": 1.31,
+        "ilford_ortho_plus": 1.25,
+        "kentmere_100": 1.26,
+        "kentmere_400": 1.30
+      }
+    },
+    "kodak_vision3_50d": {
+      "title": "KODAK VISION3 50D Color Negative Film 5203 / 7203 Technical Information",
+      "publisher": "Eastman Kodak Company",
+      "publication": "MARCH 2026 H-1-5203",
+      "url": "https://www.kodak.com/content/products-brochures/motion-picture/KODAK-VISION3-50D-5203-7203-technical-information.pdf",
+      "local_research_copy": "outputs/source_recon/u6_p2aa_reciprocity/kodak_vision3_50d_2026.pdf",
+      "bytes": 701126,
+      "sha256": "b4613661abed641671329eff3bd7d5686b268eb26b954ef1c27ea68f363caca6",
+      "documented_identity_interval_seconds": [0.001, 1.0],
+      "outside_interval": "unknown-fail-closed"
+    }
+  },
+  "domain_contract": {
+    "metered_time": "positive finite seconds",
+    "corrected_time": "positive finite seconds",
+    "effective_time": "positive finite seconds at the same constant incident rate",
+    "reference_time_seconds": 1.0,
+    "arithmetic": "float64",
+    "identity_at_or_below_reference": true,
+    "hard_clipping": "forbidden",
+    "rgb_transform_count": 0
+  },
+  "audit": {
+    "metered_times_seconds": [0.001, 0.01, 0.1, 1.0, 2.0, 10.0, 60.0, 600.0, 3600.0],
+    "long_exposure_signature_seconds": [10.0, 60.0, 600.0],
+    "partition_sizes": [1, 3, 5]
+  },
+  "automatic_gates": {
+    "ilford_profile_count": 11,
+    "ilford_distinct_exponent_group_count": 7,
+    "identity_maximum_absolute_error": 0.0,
+    "forward_inverse_maximum_relative_error": 1e-12,
+    "minimum_long_exposure_correction_ratio": 1.0,
+    "minimum_distinct_group_signature_l2": 0.01,
+    "kodak_documented_identity_maximum_absolute_error": 0.0,
+    "kodak_outside_interval_rejected": true,
+    "monotone_strict": true,
+    "partition_exact": true,
+    "serialization_byte_exact": true,
+    "rgb_image_transform_count_zero": true
+  },
+  "forbidden": [
+    "infer colour-layer reciprocity or colour-balance correction from a scalar black-and-white factor",
+    "extrapolate Kodak VISION3 50D outside its documented 1/1000-to-1-second interval",
+    "treat manufacturer typical guidance as a particular roll, developer, process, temperature or scanner calibration",
+    "render photographs or change the AO6/product default from this compiler leaf",
+    "fit exponents or change the source table after scoring"
+  ],
+  "branch_rule": {
+    "pass": "retain the typed reciprocity primitive and immediately test the independently stated local-intensity contrast consequence on synthetic exposure fields",
+    "fail": "repair only a source transcription or numerical defect; do not infer a photographic operator"
+  },
+  "claim_ceiling": "First-party formula compiler and documented identity interval for exposure-time mechanics; not colour-film reciprocity, particular-roll/process calibration, scanner response, photographic quality or product promotion."
+}
