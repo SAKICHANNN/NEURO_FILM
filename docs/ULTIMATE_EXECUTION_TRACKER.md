@@ -1299,3 +1299,9 @@ U6.P8CH passes that 100MP host proof without changing the P8CG implementation.
 Two complete 10000x10000 RGB16 PNG runs preserve exact bytes, decoded samples
 and ICC at `49.48/54.32s` and `2.5422GB` peak, inside the frozen 75s/4GB gates.
 The next runtime question is target-device execution, not further host scaling.
+
+U6.P8CI removes the remaining Python control-flow dependency from one Thomas
+colour layer. A freestanding, caller-workspace C11 program reproduces the exact
+P8BX/P8CF mean and transmittance under MSVC/LLVM and four row partitions, while
+preserving strict callback order and bounded failure propagation. Retain it as
+the target-runtime core; RGB orchestration and actual device execution remain.

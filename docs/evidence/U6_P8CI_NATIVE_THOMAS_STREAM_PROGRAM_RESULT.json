@@ -1,0 +1,25 @@
+{
+  "schema": "neuro_film.u6_p8ci_native_thomas_stream_program_evidence.v1",
+  "experiment_id": "u6.p8ci-native-thomas-stream-program-v1",
+  "status": "pass-retain-freestanding-native-thomas-stream-program",
+  "contract_sha256": "51d447df86a3ec877753311a10aef40e6b8c20f5a2b0dab14c183aaffac8c349",
+  "formal_report_sha256": "ba8a4fd3ebba0747f30cf5f8fb73ddf4bbb2cef97fa4486db1efc7b4398800a4",
+  "stable_evidence_id": "a3d5367ee2f465ea9ceb75a9ba63e504aceb7cdd50f0fa19dbfbf76642c2c932",
+  "source_sha256": "81cf11a2a47211881768b8d45f430973e75ef8567def2d4f82ee3f8eff5a28a3",
+  "header_sha256": "d3e7875c8d715555f39c5f971777b17763f53b5c097a564dd1d7db38a755bb34",
+  "conformance": {
+    "shape_chw": [3, 193, 257],
+    "compilers": ["msvc-x64-c11-strict", "llvm-mingw-x64-c11-strict"],
+    "row_partitions": [1, 7, 31, 128],
+    "output_sha256": "3bba3236551d89bc0eb37f4434740df5100f34dd7386cba668d82dce43eafe16",
+    "raw_mean_hex": "-0x1.aad108eec1d5bp-5",
+    "maximum_workspace_bytes": 789504,
+    "partition_and_compiler_exact": true,
+    "strict_callback_order": true,
+    "invalid_input_zero_callbacks": true,
+    "callback_failure_stops_on_second_call": true,
+    "failure_raw_mean_unchanged": true
+  },
+  "decision": "retain_freestanding_native_thomas_stream_program",
+  "claim_ceiling": "Portable one-channel C11 scheduling and callback evidence for unchanged generic Thomas arithmetic; not RGB orchestration, encoding, device runtime, calibrated stock response or product authorization."
+}

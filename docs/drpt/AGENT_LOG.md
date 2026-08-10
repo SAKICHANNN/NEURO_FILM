@@ -10944,3 +10944,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The unchanged P8CG path completes two fresh 10000x10000 RGB16 PNG runs in 49.48/54.32s at 2.5422GB process-tree peak.
 - PNG bytes, decoded samples and ICC are exact across runs; all frozen 75s/4GB/repeat/cleanup gates pass.
 - Retain the 100MP desktop path and move to target-device runtime evidence rather than further host scaling.
+
+## 2026-08-10 - U6.P8CI freestanding C11 stream program passes
+
+- The unchanged row field, native Neumaier reducer and density composition now execute behind one caller-workspace C11 callback ABI.
+- MSVC/LLVM and 1/7/31/128-row partitions reproduce one exact raw mean and transmittance SHA; invalid inputs call no sink, while injected callback failure stops at call two and leaves the receipt unchanged.
+- Retain this as the device-facing one-layer core. RGB orchestration, encoding and actual device runtime remain separate leaves.
