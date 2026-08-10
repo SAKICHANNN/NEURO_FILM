@@ -1,0 +1,26 @@
+{
+  "automatic_pass": true,
+  "claim_ceiling": "Canonical serialization of one generic physical-inspired experimental scanner chain; not measured calibration, stock response, photographic validation, native runtime or product readiness.",
+  "decision": "retain_generic_serialized_scanner_component_and_open_execution_parity",
+  "formal_report_sha256": "9de25fcc31affb6b4540d4664325874551bab1ba5574af8163ef81c3e62bcac7",
+  "gate_results": {
+    "canonical_roundtrip_exact": true,
+    "domain_stage_claim_and_execution_drift_rejected": true,
+    "duplicate_json_keys_rejected": true,
+    "identity_roundtrip_exact": true,
+    "nonfinite_json_constants_rejected": true,
+    "p6zh_parent_hashes_exact": true,
+    "reconstructed_profile_and_kernel_exact": true,
+    "strict_top_level_and_nested_fields": true
+  },
+  "implementation_commit": "ec93cfb4",
+  "measurements": {
+    "canonical_profile_bytes": 1006,
+    "kernel_sha256": "79d3449110d45c97552cdb844e5d67dfc9ac35bb79d88048afcfb19c862a25ef",
+    "profile_sha256": "3ebdee37366871460b1f5feaedbe0362c59e593efd3485652a892183bba6b891"
+  },
+  "node": "U6.P6ZI",
+  "next_leaf": "Execute the P6ZH chain exclusively from reconstructed canonical bundle bytes and prove exact parity and identity binding.",
+  "schema": "neuro_film.u6_p6zi_scanner_chain_profile_evidence.v1",
+  "stable_evidence_id": "833c60095cfa4e977c0a9546d37aa0e39d63d60a040918a87aca7d314a866994"
+}

@@ -10695,3 +10695,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   respectively `1.011x` and `.447x` the reference; maximum RSS is 831,639,552B.
 - All automatic gates pass. Only isolated generic profile serialization opens;
   calibration, photographic quality, native/mobile/GPU and product claims do not.
+
+# 2026-08-10 - U6.P6ZI freezes the generic scanner-chain profile
+
+- Added strict canonical serialization for the exact scanner profile, P6ZA
+  glare mixture, physical domains, stage order and P6ZH execution parameters.
+- Two evaluator runs are byte-identical (`9de25fcc...bcac7`); canonical profile
+  ID is `3ebdee37...b891`, and reconstructed profile/kernel are exact.
+- All strictness and parent-hash gates pass. Execution from serialized bytes is
+  the next leaf; no calibration, product authority or native runtime opens.

@@ -1093,3 +1093,13 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
   and maximum RSS is 831,639,552B. All frozen gates pass.
 - Retain as an experimental CPU chain and open isolated generic profile
   serialization; scanner calibration and product integration remain closed.
+
+# 2026-08-10 - U6.P6ZI generic scanner profile serialization passes
+
+- The complete P6ZH scanner/glare/domain/execution profile serializes to 1006
+  canonical bytes with stable ID `3ebdee37...b891`; profile and kernel rebuild
+  exactly in two independent evaluator runs.
+- Unknown/duplicate/nonfinite/type/domain/stage/calibration/product-authority
+  drift fails closed. No pixels, machine paths or runtime context are embedded.
+- Next prove the chain executes exactly from reconstructed bundle bytes; this
+  remains generic research evidence, not scanner calibration or product state.
