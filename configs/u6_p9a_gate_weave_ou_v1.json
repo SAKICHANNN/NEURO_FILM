@@ -1,0 +1,68 @@
+{
+  "schema": "neuro_film.u6_p9a_gate_weave_ou_contract.v1",
+  "node": "U6.P9A",
+  "question": "Can a bounded counter-driven Ornstein-Uhlenbeck gate-weave primitive provide deterministic mean-reverting film-gate displacement with exact state-handoff partitioning?",
+  "primary_source": {
+    "title": "AbsoluteDegradation: A Physics-Inspired Synthetic Film-Degradation Pipeline and Archival Film Restoration Benchmark",
+    "version": "arXiv:2607.02131v1",
+    "published": "2026-07-02",
+    "url": "https://arxiv.org/html/2607.02131v1",
+    "use": "clean-room use of the published horizontal OU and time-varying vertical OU equations only",
+    "excluded": ["paper code", "paper model weights", "paper datasets", "restoration network"]
+  },
+  "profile": {
+    "schema": "neuro_film.gate_weave_profile.v1",
+    "theta_x": 0.08,
+    "sigma_x_pixels": 0.65,
+    "theta_y_initial": 0.06,
+    "theta_y_average": 0.06,
+    "kappa": 0.04,
+    "theta_y_sigma": 0.008,
+    "theta_y_minimum": 0.015,
+    "theta_y_maximum": 0.15,
+    "sigma_y_pixels": 0.90,
+    "padding_x_pixels": 4,
+    "padding_y_pixels": 6,
+    "seed": 6321283972865761271
+  },
+  "experiment": {
+    "frame_count": 4096,
+    "partition_transition_counts": [17, 251, 1000, 2827],
+    "burn_in_frames": 512,
+    "random_walk_control_scale_pixels": 0.20
+  },
+  "automatic_gates": {
+    "replay_byte_exact": true,
+    "partition_byte_exact": true,
+    "integer_offsets_repeat_exact": true,
+    "all_values_finite": true,
+    "all_offsets_within_padding": true,
+    "maximum_coordinate_clip_fraction": 0.01,
+    "maximum_absolute_stationary_mean_x_pixels": 0.15,
+    "maximum_absolute_stationary_mean_y_pixels": 0.20,
+    "minimum_stationary_lag1_x": 0.70,
+    "maximum_stationary_lag1_x": 0.99,
+    "minimum_stationary_lag1_y": 0.70,
+    "maximum_stationary_lag1_y": 0.995,
+    "minimum_stationary_std_x_over_sigma": 0.50,
+    "maximum_stationary_std_x_over_sigma": 1.50,
+    "minimum_stationary_std_y_over_sigma": 0.50,
+    "maximum_stationary_std_y_over_sigma": 1.50,
+    "minimum_theta_y_span": 0.005,
+    "maximum_late_to_early_ou_variance_ratio": 1.75,
+    "minimum_random_walk_late_to_early_variance_ratio": 1.75,
+    "rgb_image_transform_count_zero": true
+  },
+  "forbidden": [
+    "claim the synthetic profile is measured gate weave from a film stock, camera, scanner or projector",
+    "apply interpolation, crop or pixel resampling in this trajectory-only leaf",
+    "reuse paper code, models or data",
+    "open video product integration before image-quality and temporal artifact gates",
+    "change the profile, seed, controls or gates after formal scoring"
+  ],
+  "branch_rule": {
+    "pass": "retain the deterministic bounded trajectory primitive and next test explicit crop or resampling semantics separately",
+    "fail": "close this exact primitive without parameter or threshold rescue"
+  },
+  "claim_ceiling": "Synthetic deterministic gate-weave trajectory capacity only; not measured film motion, restoration quality, rendered video quality, temporal product readiness or stock calibration."
+}
