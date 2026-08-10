@@ -1,0 +1,61 @@
+{
+  "schema": "neuro_film.u6_p6zf_scanner_glare_channel_serial_fft_contract.v1",
+  "node": "U6.P6ZF",
+  "status": "contract_frozen_implementation_ready",
+  "parents": {
+    "p6ze_evidence_path": "docs/evidence/U6_P6ZE_SCANNER_GLARE_BLOCK_FFT_RESULT.json",
+    "p6ze_evidence_sha256": "598eee4ae4c62a5dda8dc7da61c0eb93648e5325dff3a3af1c7ebc66c07d1cce",
+    "block_fft_core_before_channel_serial_path": "src/film_physics/scanner_glare_block_fft.py",
+    "block_fft_core_before_channel_serial_sha256": "dff5de99cd0f58b1a42594eb9d6b01cdc11f2542ddcbff4cedadf4d1bd292546"
+  },
+  "mechanism": {
+    "name": "channel-serial symmetric-halo block FFT convolution",
+    "change": "construct and release one channel strip and horizontal pad at a time",
+    "unchanged": "P6ZA kernel, float64 arithmetic, 512-row chunk, output allocation and FFT convolution order per channel",
+    "row_chunk": 512,
+    "functional_row_partitions": [
+      257,
+      512,
+      769
+    ]
+  },
+  "benchmark": {
+    "shape": [
+      3000,
+      4000,
+      3
+    ],
+    "execution_order": [
+      "fft-2d-reference",
+      "channel-serial-block-fft",
+      "channel-serial-block-fft",
+      "fft-2d-reference"
+    ],
+    "rss_sample_interval_seconds": 0.01,
+    "worker_timeout_seconds": 120.0,
+    "fixture_seed": 6206105
+  },
+  "automatic_gates": {
+    "maximum_reference_absolute_error": 1e-12,
+    "maximum_reference_rmse": 1e-13,
+    "maximum_partition_absolute_error": 1e-12,
+    "maximum_candidate_peak_process_tree_rss_bytes": 1073741824,
+    "maximum_candidate_to_reference_median_peak_rss_ratio": 0.75,
+    "maximum_candidate_median_apply_seconds": 5.0,
+    "maximum_candidate_to_reference_median_apply_time_ratio": 3.0,
+    "maximum_repeat_peak_rss_ratio": 1.15,
+    "maximum_repeat_apply_time_ratio": 1.20
+  },
+  "forbidden_fallbacks": [
+    "change kernel, dtype, row chunk, image shape, fixture, run order or gates",
+    "exclude any run or retain a post-result memory threshold exception",
+    "alter FFT result ordering or quantize intermediates",
+    "claim native/mobile/GPU, measured scanner or product performance"
+  ],
+  "branch_rule": {
+    "pass": "retain the channel-serial block FFT as local CPU development compiler and open combined-chain measurement",
+    "fail": "close Python block-FFT optimization and retain the full-frame FFT reference"
+  },
+  "production_integration_allowed": false,
+  "claim_ceiling": "Local Windows/Python numerical and fresh-process resource evidence for one channel-serial block-FFT scanner-glare compiler only; not measured scanner calibration, native/mobile/GPU performance, photographic quality or product readiness."
+}
