@@ -10674,3 +10674,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain only as a local Python CPU development compiler. The next leaf is a
   typed scanner-chain measurement; calibration, native and product claims stay
   closed.
+
+# 2026-08-10 - U6.P6ZG typed chain exposes downstream memory dominance
+
+- Composed the retained glare as an explicit replacement, not an addition, in
+  `spectral -> glare -> Dmax -> MTF -> noise`. Reference and candidate chain
+  outputs are bit-identical at the numerical probe.
+- At 6MP the candidate records 3.723s and 1.841GB peak, but its median RSS is
+  `1.008x` the full-FFT reference, failing the frozen `.9x` gate. Absolute
+  time/memory and repeat gates pass.
+- Profile compilation stays closed. The next development leaf must identify
+  and alter the dominant downstream full-frame lifetime rather than retune the
+  already-passing glare kernel or relax the integration gate.

@@ -1075,3 +1075,12 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
   (`.683x`), and maximum RSS 1,005,629,440B. All frozen gates pass.
 - Retain as the local CPU development compiler; next measure the unchanged
   kernel in the typed scanner chain, not another micro-optimization.
+
+# 2026-08-10 - U6.P6ZG closes typed-chain integration on memory ratio
+
+- The full typed chain is bit-exact between full and channel-serial glare;
+  candidate 6MP apply is 3.723s and peak RSS 1.841GB.
+- The `.9x` relative-memory gate fails at `1.008x`: downstream Dmax/MTF/noise
+  full-frame intermediates dominate and erase the isolated glare saving.
+- Do not open a profile compiler. Attribute scanner-stage peaks and change the
+  dominant lifetime mechanism before another integration attempt.
