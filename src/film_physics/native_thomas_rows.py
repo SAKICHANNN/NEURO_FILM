@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import ctypes
 from collections.abc import Callable
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 import numpy as np
@@ -420,6 +421,134 @@ def stream_native_exposure_thomas_rgb_interleaved(
     return raw_means, workspace_bytes, sink_calls
 
 
+def stream_native_exposure_thomas_rgb_interleaved_parallel(
+    amplitude_library: ctypes.CDLL,
+    rows_library: ctypes.CDLL,
+    amplitude_profile: NativeGranularityAmplitudeProfileV1,
+    field_profiles: tuple[
+        NativeThomasFieldProfile,
+        NativeThomasFieldProfile,
+        NativeThomasFieldProfile,
+    ],
+    relative_log_exposure_chw: np.ndarray,
+    sink: Callable[[int, np.ndarray], None],
+    *,
+    row_partition: int,
+) -> tuple[tuple[float, float, float], int, int]:
+    """Run independent colour layers concurrently and publish ordered HWC tiles."""
+
+    exposure = np.asarray(relative_log_exposure_chw)
+    if (
+        exposure.dtype != np.float32
+        or exposure.ndim != 3
+        or exposure.shape[0] != 3
+        or not exposure.flags.c_contiguous
+        or not callable(sink)
+        or isinstance(row_partition, bool)
+        or not isinstance(row_partition, int)
+        or row_partition <= 0
+    ):
+        raise ValueError("expected contiguous float32 CHW exposure, sink and rows")
+    for channel in range(3):
+        values = exposure[channel]
+        count = int(amplitude_profile.knot_count[channel])
+        lower = float(amplitude_profile.log_exposure_knots[channel][0])
+        upper = float(amplitude_profile.log_exposure_knots[channel][count - 1])
+        if (
+            not np.all(np.isfinite(values))
+            or float(np.min(values)) < lower
+            or float(np.max(values)) > upper
+        ):
+            raise ValueError("relative layer log exposure is outside the profile domain")
+
+    _, height, width = exposure.shape
+    tile_rows = min(height, row_partition)
+    with ThreadPoolExecutor(max_workers=3) as executor:
+        mean_futures = [
+            executor.submit(
+                _neumaier_rows,
+                rows_library,
+                profile,
+                (height, width),
+                row_partition,
+            )
+            for profile in field_profiles
+        ]
+        raw_means = tuple(future.result() for future in mean_futures)
+        states = [
+            (
+                _workspace(rows_library, width, tile_rows),
+                np.empty(tile_rows * width, dtype=np.float32),
+                np.empty(tile_rows * width, dtype=np.float32),
+                np.empty(tile_rows * width, dtype=np.float32),
+                field_profiles[channel].as_abi(),
+            )
+            for channel in range(3)
+        ]
+        interleaved = np.empty((tile_rows, width, 3), dtype=np.float32)
+
+        def render_channel(
+            channel: int, row_start: int, rows: int
+        ) -> np.ndarray:
+            workspace, density, sigma, output, abi_profile = states[channel]
+            count = rows * width
+            exposure_rows = exposure[channel, row_start : row_start + rows]
+            status = amplitude_library.nf_granularity_amplitude_f32_apply_layer_v1(
+                ctypes.byref(amplitude_profile),
+                channel,
+                _pointer(exposure_rows),
+                count,
+                _pointer(density),
+                _pointer(sigma),
+            )
+            if status != 0:
+                raise NativeGranularityAmplitudeError(
+                    f"native parallel amplitude failed at channel {channel}: {status}"
+                )
+            status = rows_library.nf_thomas_rows_f32_density_v1(
+                ctypes.byref(abi_profile),
+                height,
+                width,
+                row_start,
+                rows,
+                _pointer(density),
+                count,
+                _pointer(sigma),
+                count,
+                raw_means[channel],
+                _pointer(workspace),
+                workspace.size,
+                _pointer(output),
+                output.size,
+            )
+            if status != 0:
+                raise NativeThomasRowsError(
+                    f"native parallel density failed at channel {channel}, "
+                    f"row {row_start}: {status}"
+                )
+            return output[:count].reshape(rows, width)
+
+        sink_calls = 0
+        for row_start in range(0, height, row_partition):
+            rows = min(row_partition, height - row_start)
+            futures = [
+                executor.submit(render_channel, channel, row_start, rows)
+                for channel in range(3)
+            ]
+            for channel, future in enumerate(futures):
+                interleaved[:rows, :, channel] = future.result()
+            view = interleaved[:rows].view()
+            view.setflags(write=False)
+            sink(row_start, view)
+            sink_calls += 1
+
+    workspace_bytes = interleaved.nbytes + sum(
+        workspace.nbytes + density.nbytes + sigma.nbytes + output.nbytes
+        for workspace, density, sigma, output, _ in states
+    )
+    return raw_means, workspace_bytes, sink_calls
+
+
 def stream_native_exposure_thomas_rgb_gauged(
     amplitude_library: ctypes.CDLL,
     rows_library: ctypes.CDLL,
@@ -534,12 +663,90 @@ def stream_native_exposure_thomas_rgb_quantized(
     return means, workspace_bytes + (0 if quantized is None else quantized.nbytes), calls
 
 
+def stream_native_exposure_thomas_rgb_quantized_parallel(
+    amplitude_library: ctypes.CDLL,
+    rows_library: ctypes.CDLL,
+    gauge_library: ctypes.CDLL,
+    quantizer_library: ctypes.CDLL,
+    amplitude_profile: NativeGranularityAmplitudeProfileV1,
+    field_profiles: tuple[
+        NativeThomasFieldProfile,
+        NativeThomasFieldProfile,
+        NativeThomasFieldProfile,
+    ],
+    gauge_profile: NativeGaugeProfileF32V1,
+    relative_log_exposure_chw: np.ndarray,
+    sink: Callable[[int, np.ndarray], None],
+    *,
+    row_partition: int,
+    bit_depth: int,
+) -> tuple[tuple[float, float, float], int, int]:
+    """Parallelize independent layers, then preserve exact gauge/quantizer order."""
+
+    if not callable(sink):
+        raise TypeError("expected a callable quantized sink")
+    if isinstance(bit_depth, bool) or bit_depth not in (8, 16):
+        raise ValueError("bit_depth must be 8 or 16")
+    dtype = np.uint8 if bit_depth == 8 else np.uint16
+    gauged: np.ndarray | None = None
+    quantized: np.ndarray | None = None
+
+    def output_sink(row_start: int, scan_linear: np.ndarray) -> None:
+        nonlocal gauged, quantized
+        if gauged is None or gauged.shape != scan_linear.shape:
+            gauged = np.empty_like(scan_linear)
+            quantized = np.empty(scan_linear.shape, dtype=dtype)
+        assert quantized is not None
+        status = gauge_library.nf_neutral_gauge_f32_apply_v1(
+            ctypes.byref(gauge_profile),
+            _pointer(scan_linear),
+            scan_linear.shape[0] * scan_linear.shape[1],
+            _pointer(gauged),
+        )
+        if status != 0:
+            raise NativeThomasRowsError(
+                f"native parallel neutral gauge failed at row {row_start}: {status}"
+            )
+        status = quantizer_library.nf_srgb_oetf_quantize_apply_v1(
+            _pointer(gauged),
+            gauged.size,
+            bit_depth,
+            quantized.ctypes.data,
+            quantized.size,
+        )
+        if status != 1:
+            raise NativeThomasRowsError(
+                f"native parallel sRGB quantizer failed at row {row_start}: {status}"
+            )
+        view = quantized.view()
+        view.setflags(write=False)
+        sink(row_start, view)
+
+    means, workspace_bytes, calls = (
+        stream_native_exposure_thomas_rgb_interleaved_parallel(
+            amplitude_library,
+            rows_library,
+            amplitude_profile,
+            field_profiles,
+            relative_log_exposure_chw,
+            output_sink,
+            row_partition=row_partition,
+        )
+    )
+    tile_bytes = (0 if gauged is None else gauged.nbytes) + (
+        0 if quantized is None else quantized.nbytes
+    )
+    return means, workspace_bytes + tile_bytes, calls
+
+
 __all__ = [
     "NativeThomasRowsError",
     "load_native_thomas_rows_library",
     "render_native_exposure_thomas_rgb_rows",
     "stream_native_exposure_thomas_rgb_gauged",
     "stream_native_exposure_thomas_rgb_interleaved",
+    "stream_native_exposure_thomas_rgb_interleaved_parallel",
     "stream_native_exposure_thomas_rgb_quantized",
+    "stream_native_exposure_thomas_rgb_quantized_parallel",
     "stream_native_exposure_thomas_rgb_rows",
 ]
