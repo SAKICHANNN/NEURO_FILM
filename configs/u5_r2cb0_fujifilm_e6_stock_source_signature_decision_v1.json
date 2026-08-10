@@ -1,0 +1,24 @@
+{
+  "schema": "neuro_film.u5_r2cb0_fujifilm_e6_stock_source_signature_decision.v1",
+  "experiment_id": "U5.R2CB0",
+  "contract_commit": "3153aac0b1fdd27891ce814d2d064bda527b015a",
+  "implementation_commit": "1571756d7a838221749fd79e0e3b51cc819c0dde",
+  "contract_sha256": "f3351cf46d6159564de7761f04834395bcf5c8fc9e93e98e53d39d3638e7e008",
+  "trace_sha256": "2985b1166c5e1df4fe1a180d120164aa1abc9280c8d44836d28e9cc531ca64fe",
+  "formal_report_file_sha256": "9e1eaf4abbd8433cff849bc031a9c28018045b1c71bef68cd7c5c16402cbd99a",
+  "stable_evidence_id": "e8702cd135fa4af7ed80e026f0d4941891daa42d4666b9a629989fe42aef2efb",
+  "passed": true,
+  "decision": "retain_non_renderable_fujifilm_e6_stock_source_signature",
+  "metrics": {
+    "velvia100_provia100f_mtf_log_shape_rmse": 0.25742005952823743,
+    "mtf_digitization_uncertainty_bound": 0.07029467775669669,
+    "mtf_digitization_uncertainty_fraction": 0.2730738151701258,
+    "material_pair_count": 3,
+    "velvia50_diffuse_rms_granularity": 9.0,
+    "velvia100_diffuse_rms_granularity": 8.0,
+    "provia100f_diffuse_rms_granularity": 8.0
+  },
+  "failed_gates": [],
+  "claim_ceiling": "First-party same-manufacturer E-6 technical-source distinction under explicit graph digitization uncertainty; not independent rolls, process/scanner calibration, spectral colour response, NPS, microscopic structure, photographic appearance, stock-response calibration or product evidence.",
+  "next_action": "Freeze an independent spectral-dye-density observation for the same stocks. Do not construct a renderer or product profile from the MTF/granularity source prior."
+}

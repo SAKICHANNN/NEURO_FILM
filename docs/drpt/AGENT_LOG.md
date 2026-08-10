@@ -9,6 +9,14 @@ Durable handoff log for non-trivial DRPT-governed work. Keep implementation trut
 - Velvia 50 contributes only its valid 48um scalar granularity observation;
   the failed BW0 MTF axis is forbidden. Next action is exact evaluator execution.
 
+# 2026-08-11 - U5.R2CB0 retains a non-renderable E-6 source signature
+
+- Two formal reports are exact (`9e1eaf4a...bd99a`). All gates pass: the
+  equal-granularity Velvia100/Provia100F pair has MTF RMSE `.25742` with a
+  conservative digitization-uncertainty fraction of `.27307`.
+- Retain source profile only. Next independent observation is spectral dye
+  density; no render, calibration or product action opens.
+
 # 2026-08-10 - U5.R2BY0 closes conservative Kodak intermediate-role expansion
 
 - Audited the exact March-2026 Kodak 5242/2242/3242 source and digitized its
