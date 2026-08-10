@@ -1,0 +1,79 @@
+{
+  "schema": "neuro_film.u5_r2ca0_learnable_axis_cylindrical_operator_contract.v1",
+  "experiment_id": "U5.R2CA0",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Does a paired-evidence-selected luminance axis add held-cube capacity to one bounded cylindrical tone/chroma operator beyond a fixed neutral axis, independent RGB curves and wrong-axis controls while retaining analytical gamut safety and a positive local Jacobian?",
+  "primary_source": {
+    "title": "Perception-Inspired Color Space Design for Photo White Balance Editing",
+    "venue": "WACV 2026",
+    "official_url": "https://openaccess.thecvf.com/content/WACV2026/html/Cheng_Perception-Inspired_Color_Space_Design_for_Photo_White_Balance_Editing_WACV_2026_paper.html",
+    "arxiv_url": "https://arxiv.org/abs/2512.09383",
+    "official_repository": "https://github.com/YangCheng58/WB_Color_Space",
+    "official_repository_head_observed": "44f6384c220f0fbe4f283935c9246e5275d29bce",
+    "repository_license_observed": "none-at-repository-root"
+  },
+  "clean_room_scope": {
+    "paper_code_weights_or_data_used": false,
+    "neural_network_used": false,
+    "learned_final_rgb_allowed": false,
+    "product_integration_allowed": false,
+    "film_or_stock_claim_allowed": false,
+    "borrowed_idea_only": "a learnable luminance axis can define a cylindrical luminance/chroma coordinate system",
+    "project_mechanism": "paired build samples select one frozen positive RGB axis; a fixed analytical tone/chroma transform is reconstructed in RGB and executed through the existing per-pixel maximum safe residual scale"
+  },
+  "fixture": {
+    "build_grid_size": 9,
+    "confirmation_grid_size": 15,
+    "confirmation_minimum": 0.03,
+    "confirmation_maximum": 0.97,
+    "jacobian_grid_size": 7,
+    "jacobian_minimum": 0.12,
+    "jacobian_maximum": 0.88,
+    "jacobian_step": 0.00001,
+    "axis_bank": [
+      [1.0, 1.0, 1.0],
+      [1.32, 0.82, 0.94],
+      [0.82, 1.31, 0.93],
+      [0.9, 0.78, 1.35],
+      [1.22, 1.08, 0.76],
+      [0.78, 1.18, 1.16],
+      [1.12, 0.72, 1.27]
+    ],
+    "truth_axis_indices": [1, 2, 3, 4, 5, 6],
+    "tone_amplitude": 0.045,
+    "chroma_gain": 0.12,
+    "maximum_rotation_radians": 0.11,
+    "boundary_epsilon": 1e-12,
+    "rgb_curve_degree": 3,
+    "wrong_axis_offset": 2
+  },
+  "methods": [
+    "identity",
+    "fixed_equal_rgb_axis",
+    "independent_rgb_cubic",
+    "wrong_axis_cylindrical",
+    "selected_axis_cylindrical_analytical_safe"
+  ],
+  "gates": {
+    "maximum_selected_axis_build_rmse": 1e-12,
+    "maximum_selected_axis_confirmation_rmse": 1e-12,
+    "minimum_axis_selection_margin_fraction": 0.1,
+    "minimum_median_improvement_over_fixed_axis": 0.7,
+    "minimum_worst_improvement_over_fixed_axis": 0.5,
+    "minimum_median_improvement_over_rgb_cubic": 0.5,
+    "minimum_worst_improvement_over_rgb_cubic": 0.25,
+    "minimum_median_improvement_over_wrong_axis": 0.7,
+    "minimum_safe_scale": 0.55,
+    "maximum_limited_pixel_fraction": 0.2,
+    "minimum_local_jacobian_determinant": 0.02,
+    "maximum_new_boundary_fraction": 0.0,
+    "two_byte_identical_runs": true
+  },
+  "stop_rules": [
+    "Do not alter axes, transform amplitudes, grids, baselines, metrics or gates after any score.",
+    "Failure closes this exact learnable-axis cylindrical representation without axis-bank, parameter, curve-degree or threshold rescue.",
+    "Pass establishes synthetic explicit-operator capacity and safety only; it does not identify a film stock, real photographic style, illuminant, camera or product transform.",
+    "A later photographic challenger must use independently frozen paired or display-proxy evidence and unchanged severe-artifact and preference gates."
+  ],
+  "claim_ceiling": "Synthetic clean-room representation capacity and analytical gamut-safety evidence for a bounded explicit colour operator; not photographic quality, film/stock response, calibration or product promotion."
+}
