@@ -1,0 +1,56 @@
+{
+  "schema": "neuro_film.u6_p8cb_native_thomas_srgb_quantized_sink_contract.v1",
+  "experiment_id": "u6.p8cb-native-thomas-srgb-quantized-sink-v1",
+  "node": "ULT > U6 > U6.P8 > U6.P8CB",
+  "date_frozen": "2026-08-10",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can P8CA display-linear tiles undergo the existing exact sRGB OETF and their single final 8/16-bit quantization without a full-frame float or integer output?",
+  "parents": {
+    "p8ca_evidence": {
+      "path": "docs/evidence/U6_P8CA_NATIVE_THOMAS_GAUGED_SINK_RESULT.json",
+      "sha256": "a43c5b3d181a264d7a9c39d23c1e835abd2adadbe762c396c39d959e46f579b8",
+      "required_decision": "retain_exact_native_thomas_to_display_linear_sink"
+    }
+  },
+  "quantizer": {
+    "source": "native/reference_srgb_oetf_quantize_v1.c",
+    "source_sha256": "460cb37da34c2098757cf75e05f393c03c5b9a654766d871ea4a72d8a1a5ddc1",
+    "header": "native/reference_srgb_oetf_quantize_v1.h",
+    "header_sha256": "f8ac3e4489a79dd283c41fef17cdb33de1cc498b9cc351060f0ac4ff543d548d",
+    "threshold_identity": "fae645ef1aad04fcd1233631a32f820cf7696e3ca65d31939acf60d7f123674c",
+    "bit_depths": [8, 16]
+  },
+  "candidate": {
+    "p8ca_arithmetic_and_gauge_unchanged": true,
+    "row_partition": 128,
+    "sink_order": "strictly increasing row_start with contiguous read-only HWC integer tiles",
+    "one_final_quantization_only": true,
+    "full_output_or_channel_plane_allowed": false,
+    "post_quantization_float_processing_allowed": false,
+    "image_encoding_allowed": false,
+    "model_or_profile_change_allowed": false
+  },
+  "conformance": {
+    "shape_chw": [3, 193, 257],
+    "require_exact_full_array_quantizer_output": true,
+    "require_exact_raw_means": true,
+    "require_exact_sink_order": true,
+    "require_input_immutability": true,
+    "require_sink_failure_propagation": true,
+    "require_quantizer_failure_atomicity": true
+  },
+  "performance": {
+    "shape_chw": [3, 3000, 4000],
+    "primary_bit_depth": 16,
+    "maximum_wall_seconds": 13.5,
+    "maximum_process_tree_rss_bytes": 440000000,
+    "maximum_repeat_wall_ratio": 1.25,
+    "maximum_repeat_rss_ratio": 1.10,
+    "require_two_fresh_processes": true,
+    "require_exact_stream_identity": true,
+    "require_zero_surviving_processes": true
+  },
+  "decision_if_pass": "retain_exact_native_thomas_srgb_quantized_sink",
+  "decision_if_fail": "close_quantized_sink_and_retain_p8ca_display_linear_boundary",
+  "claim_ceiling": "Host-only exact sRGB sample quantization after the unchanged generic P8CA display-linear stream; not an image encoder, ICC/container publication, device runtime, calibrated stock profile or product authorization."
+}
