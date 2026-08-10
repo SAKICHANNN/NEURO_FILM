@@ -1,0 +1,47 @@
+{
+  "schema": "neuro_film.u6_p8cd_native_thomas_parallel_quantized_sink_contract.v1",
+  "experiment_id": "u6.p8cd-native-thomas-parallel-quantized-sink-v1",
+  "node": "ULT > U6 > U6.P8 > U6.P8CD",
+  "date_frozen": "2026-08-10",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can the three independent Thomas colour layers use three host threads and private workspaces while preserving exact P8CB row order and final samples at materially lower wall time?",
+  "parents": {
+    "p8cb_evidence": {
+      "path": "docs/evidence/U6_P8CB_NATIVE_THOMAS_SRGB_QUANTIZED_SINK_RESULT.json",
+      "sha256": "7cc558beba98988af0c737ba4ee35575f636beb11fa991d20ec07d3467a6b416",
+      "required_decision": "retain_exact_native_thomas_srgb_quantized_sink",
+      "reference_maximum_wall_seconds": 13.397171899996465
+    }
+  },
+  "candidate": {
+    "arithmetic_profiles_and_quantizer_unchanged": true,
+    "row_partition": 128,
+    "worker_count": 3,
+    "one_private_workspace_per_channel": true,
+    "strict_increasing_output_rows": true,
+    "full_output_allowed": false,
+    "model_or_profile_change_allowed": false
+  },
+  "conformance": {
+    "shape_chw": [3, 193, 257],
+    "bit_depths": [8, 16],
+    "require_exact_p8cb_stream": true,
+    "require_exact_raw_means": true,
+    "require_input_immutability": true,
+    "require_sink_failure_propagation": true
+  },
+  "performance": {
+    "shape_chw": [3, 3000, 4000],
+    "primary_bit_depth": 16,
+    "maximum_wall_seconds": 10.75,
+    "maximum_wall_ratio_vs_p8cb": 0.81,
+    "maximum_process_tree_rss_bytes": 520000000,
+    "maximum_repeat_wall_ratio": 1.25,
+    "maximum_repeat_rss_ratio": 1.10,
+    "require_two_fresh_processes": true,
+    "require_exact_stream_identity": true
+  },
+  "decision_if_pass": "retain_exact_parallel_native_thomas_quantized_sink",
+  "decision_if_fail": "close_parallel_scheduler_and_retain_serial_p8cb",
+  "claim_ceiling": "Host-only three-channel scheduling optimization for the exact generic P8CB sample stream; not an algorithm/profile change, device runtime, calibrated stock profile or product authorization."
+}
