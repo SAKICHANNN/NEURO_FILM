@@ -1,0 +1,24 @@
+{
+  "schema": "neuro_film.u5_r2bx0_c2lut_chromaticity_identifiability_decision.v1",
+  "experiment_id": "U5.R2BX0",
+  "status": "complete_fail_closed",
+  "decision": "retain_capacity_close_underpowered_metamer_fixture",
+  "contract": "configs/u5_r2bx0_c2lut_chromaticity_identifiability_v1.json",
+  "contract_sha256": "a8115cc13ff3e3a5d4c0610fece2bed478e8bf4dab3a451d1aabfda91603251f",
+  "implementation_commit": "62a53aa9",
+  "report": "outputs/u5_r2bx0_c2lut_chromaticity_identifiability/run_a/report.json",
+  "report_sha256": "fa17cc74bde6fa7242fd7057b603cd65f171fabd709252213ad2b726c5a501ef",
+  "stable_evidence_id": "acd030149c4466e7ff7582413b816a7be40e42c2dfcf35ecfe42b767888f7571",
+  "facts": {
+    "two_byte_identical_runs": true,
+    "capacity_gates_pass": true,
+    "maximum_rank4_rmse": 4.299016492955024e-17,
+    "maximum_new_boundary_fraction": 0.0,
+    "metamer_truth_pair_rmse": 0.0183491377708489,
+    "required_metamer_truth_pair_rmse": 0.02,
+    "descriptor_only_metamer_rmse": 0.009174568885424452,
+    "hidden_coordinate_oracle_rmse": 0.0
+  },
+  "next_ready_leaf": "Use a materially different physical spectral-integration fixture with exact same-white chromaticity illuminants and camera sensitivities; do not increase the hidden scale or lower the U5.R2BX0 gate.",
+  "claim_ceiling": "Synthetic clean-room mechanism capacity only. The frozen metamer fixture was underpowered and therefore does not prove descriptor insufficiency, camera calibration, stock response or product value."
+}

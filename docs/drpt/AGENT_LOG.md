@@ -2,6 +2,17 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-10 - U5.R2BX0 isolates chromaticity-LUT capacity from identifiability
+
+- Implemented a clean-room bounded convex explicit-LUT test from the latest
+  C2LUT mechanism, with global, affine, rank-4 and hidden-coordinate controls.
+- Two reports are exact (`fa17cc74...501ef`). Held capacity and cube safety pass,
+  but the frozen metamer truth-pair magnitude is `.018349 < .02`; the fixture is
+  underpowered for an identifiability conclusion.
+- Retain capacity only. No post-score scale/gate rescue; next use a physically
+  integrated same-white spectral observation while P:-dependent work remains
+  fail-closed.
+
 # 2026-08-01 - U5.R2BW1 closes before joint source scoring
 
 - The exact BW0 axis-calibration failure is checked before any cross-manufacturer

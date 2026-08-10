@@ -1005,3 +1005,11 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
 - The frozen chart-axis calibration fails, and Velvia does not separate from
   VISION3 50D (`.05074 < .08`). Retain source priors only; do not repair the
   axis or relax the gate after observing the result.
+
+# 2026-08-10 - U5.R2BX0 retains LUT capacity and closes its metamer fixture
+
+- The C2LUT-inspired rank-4 convex explicit LUT passes held synthetic capacity
+  and cube-safety gates with maximum RMSE `4.30e-17` and zero new boundary.
+- The frozen same-chromaticity hidden-spectrum truth separation is only
+  `.018349`, below the `.02` evidence gate. Do not tune the fixture; proceed to
+  a materially different physical spectral-integration leaf.
