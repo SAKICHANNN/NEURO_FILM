@@ -1,0 +1,60 @@
+{
+  "schema": "neuro_film.u6_p9h_temporal_physical_ablation_contract.v1",
+  "node": "U6.P9H",
+  "question": "When retained exposure flicker, density-conditioned temporal grain and scanner-stage gate weave are composed in physical order, does each switch retain a visible, reproducible and distinguishable effect signature?",
+  "parents": {
+    "p9d_contract": "configs/u6_p9d_temporal_typed_grain_v1.json",
+    "p9d_contract_sha256": "92c4cd5b995d1e08b655af4b00fd6b152573a494662e046ec8db6b776403e943",
+    "p9d_evidence": "docs/evidence/U6_P9D_TEMPORAL_TYPED_GRAIN_RESULT.json",
+    "p9d_evidence_sha256": "340c3e8e8a87ca8709a304b4216c2fdf51c390598ea45ed2f9ee66f474db05f4",
+    "p9e_evidence": "docs/evidence/U6_P9E_TEMPORAL_EXPOSURE_FLICKER_RESULT.json",
+    "p9e_evidence_sha256": "4135ebbd2031135a980b0f4fcc18079e8e899be32188b4c65b3c768064a63d2c",
+    "p9g_evidence": "docs/evidence/U6_P9G_GATE_WEAVE_PHYSICAL_ORDER_RESULT.json",
+    "p9g_evidence_sha256": "3c4fa3d8e217534eb33b3f4992d2cb941fcd343cf6bc0c959373ed2dae6c0e50"
+  },
+  "experiment": {
+    "frame_count": 8,
+    "trajectory_frame_start": 512,
+    "frame_partition_counts": [3, 5],
+    "effect_visibility_rms_minimum": {
+      "exposure_flicker": 0.0001,
+      "density_grain": 0.0001,
+      "gate_weave": 0.0001
+    }
+  },
+  "physical_order": [
+    "layer_exposure",
+    "temporal_exposure_multiplier",
+    "characteristic_development",
+    "density_conditioned_grain",
+    "transmittance",
+    "scanner_gate_weave_sampling"
+  ],
+  "automatic_gates": {
+    "parent_hashes_exact": true,
+    "full_chain_replay_byte_exact": true,
+    "reverse_frame_order_byte_exact": true,
+    "frame_partition_byte_exact": true,
+    "minimum_exposure_flicker_delta_rms": 0.0001,
+    "minimum_density_grain_delta_rms": 0.0001,
+    "minimum_gate_weave_delta_rms": 0.0001,
+    "maximum_absolute_pairwise_effect_correlation": 0.95,
+    "all_values_finite": true,
+    "new_boundary_fraction_maximum": 0.0,
+    "effect_switch_count_exact": 3,
+    "display_rgb_effect_count_zero": true
+  },
+  "forbidden": [
+    "merge exposure, grain and gate-weave controls into one unlabeled random seed",
+    "move any effect across its typed physical boundary",
+    "reuse static grain across frames",
+    "chain scanner resampling from prior output frames",
+    "change parent profiles, frames, switches or gates after formal scoring",
+    "claim synthetic effect separability is measured film-video quality or product readiness"
+  ],
+  "branch_rule": {
+    "pass": "retain the three effects as independently switchable typed temporal reference stages and next challenge shot-boundary state semantics",
+    "fail": "close the combined temporal reference without amplitude, seed, order or threshold rescue"
+  },
+  "claim_ceiling": "Synthetic joint-ablation evidence for three retained generic temporal mechanisms only; not measured film stock, camera, transport, scanner, photographic video quality or product readiness."
+}
