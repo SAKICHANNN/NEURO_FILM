@@ -88,6 +88,7 @@ def _report(root: Path, toolchain: str, dll: Path) -> dict[str, Any]:
 def build_msvc(root: Path, output_dir: Path) -> dict[str, Any]:
     installation = find_msvc_installation()
     vcvars = installation / "Common7/Tools/VsDevCmd.bat"
+    output_dir = output_dir.resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
     dll = (output_dir / "nf_thomas_rgb16_png_msvc_v1.dll").resolve()
     import_library = (output_dir / "nf_thomas_rgb16_png_msvc_v1.lib").resolve()
@@ -120,6 +121,7 @@ def build_msvc(root: Path, output_dir: Path) -> dict[str, Any]:
 
 
 def build_llvm(root: Path, output_dir: Path, clang: Path) -> dict[str, Any]:
+    output_dir = output_dir.resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
     dll = (output_dir / "nf_thomas_rgb16_png_llvm_v1.dll").resolve()
     command = [
