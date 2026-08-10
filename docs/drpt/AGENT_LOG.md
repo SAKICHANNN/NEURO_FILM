@@ -10584,3 +10584,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   field plus impulse energy are preserved within floating-point tolerance.
 - This is generic synthetic scanner-glare capacity, not measured calibration,
   inverse correction, stock response or product integration.
+
+# 2026-08-10 - U6.P6ZB proves spatial discrimination and holds integration
+
+- Equal-energy contexts moved 500 bright pixels through near, intermediate and
+  far bands around the same dark patch. Two reports are exact
+  (`e445ad67...7fe8`).
+- Candidate lift falls `.006036 -> .002488 -> .000399`; global and pointwise
+  controls are invariant. The far response is `1206.65x` an equal-second-
+  moment Gaussian while the near response is `.16081x`, confirming a distinct
+  narrow-core/long-tail shape.
+- Retain only as a research reference. No product scanner-profile integration
+  opens before a rights-cleared measured glare-spread function is available.
