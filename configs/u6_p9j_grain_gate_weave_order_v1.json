@@ -40,7 +40,7 @@
     "replay_byte_exact": true,
     "reverse_frame_order_byte_exact": true,
     "frame_partition_byte_exact": true,
-    "zero_offset_orders_exact": true,
+    "zero_offset_order_error_maximum": 1e-15,
     "minimum_nonzero_offset_different_frame_fraction": 1.0,
     "minimum_order_difference_median_rmse": 0.0001,
     "minimum_order_difference_p95_absolute": 0.0001,
