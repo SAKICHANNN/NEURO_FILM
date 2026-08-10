@@ -1,0 +1,36 @@
+{
+  "schema": "neuro_film.u6_p8cd_native_thomas_parallel_quantized_sink_evidence.v1",
+  "experiment_id": "u6.p8cd-native-thomas-parallel-quantized-sink-v1",
+  "status": "pass-retain-exact-parallel-native-thomas-quantized-sink",
+  "contract_sha256": "311e2eaa3b44fecceb712ff253c2ab73561bc1012b105f6f648e4e86505583f0",
+  "formal_report_sha256": "117619246dd53caf960772608ab9c8ca3e705c6d44ff3f82b75e69c1be859125",
+  "stable_evidence_id": "ac41c32c7b1243d7725af590bf350b442152ae3e6d849cd5c999532c057ce027",
+  "conformance": {
+    "shape_chw": [3, 193, 257],
+    "msvc_llvm_srgb8_exact": true,
+    "msvc_llvm_srgb16_exact": true,
+    "serial_parallel_samples_exact": true,
+    "raw_means_exact": true,
+    "sink_order_exact": true,
+    "sink_failure_propagates": true,
+    "srgb8_hwc_sha256": "7ca0b8341356815a608ccf7268b42c50953edf5653225f401afa2e0a41f4fd77",
+    "srgb16_hwc_sha256": "20d84ec2f239c4f87732476030f700a3f43f22fec4e59504bbe16654305d39cb"
+  },
+  "performance_12mp_srgb16": {
+    "shape_chw": [3, 3000, 4000],
+    "runs": 2,
+    "peak_process_tree_rss_bytes": [429096960, 428240896],
+    "wall_seconds": [9.712340099998983, 9.910941499998444],
+    "wall_ratio_vs_p8cb": 0.73977863193657,
+    "rss_repeat_ratio": 1.0019990243995753,
+    "wall_repeat_ratio": 1.0204483572398255,
+    "bounded_workspace_bytes": 59328000,
+    "sink_calls": 24,
+    "output_hwc_sha256": "5a0f531fe9b28183dba4634b0c1d739f71c2677e2f9ba74dd16c33c2fa6530fd",
+    "worker_cleanup_exact": true
+  },
+  "automatic_pass": true,
+  "decision": "retain_exact_parallel_native_thomas_quantized_sink",
+  "interpretation": "The three independent physical colour layers can share no mutable workspace and execute concurrently while preserving exact P8CB means, row order and final integer samples. On the measured 16-core host this reduces the worst 12MP wall time by 26.02% without increasing observed peak RSS over the serial path.",
+  "claim_ceiling": "Host-only three-channel scheduling optimization for the exact generic P8CB sample stream; not an algorithm/profile change, device runtime, calibrated stock profile or product authorization."
+}

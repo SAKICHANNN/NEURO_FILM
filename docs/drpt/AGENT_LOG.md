@@ -10912,3 +10912,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Conformance: MSVC and LLVM-MinGW paths produce byte-identical PNG8/PNG16 files; independent decode recovers every quantized sample and the embedded ICC bytes exactly. Incomplete streams leave no output or temporary file.
 - Resource result: two fresh 12MP RGB16 runs produce the same 68,399,187-byte PNG (`9484eeec...47f8`) in 15.82-15.84s at 430.05-430.14MB process-tree peak.
 - Decision: retain the host PNG path. This does not establish device runtime, calibrated stock response, product authorization or general media support.
+
+## 2026-08-10 - U6.P8CD exact parallel colour-layer scheduler passes
+
+- Mechanism: only the three independent Thomas colour layers and their raw-mean passes run concurrently; each owns its workspace. Gauge, row publication and one final quantization remain ordered and unchanged.
+- Exactness: MSVC/LLVM and serial/parallel sRGB8/16 sample streams, raw means and row order are identical; injected sink failure propagates.
+- Resource result: two fresh 12MP RGB16 runs take 9.71/9.91s at 428.24-429.10MB peak. Worst wall time is 73.98% of the retained serial P8CB result while output SHA remains `5a0f531f...530fd`.
+- Decision: retain the scheduler and next measure it through the existing P8CC PNG writer. No algorithm, profile, device or product claim changes.
