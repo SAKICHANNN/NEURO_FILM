@@ -1,4 +1,4 @@
-"""Symmetric-halo block-FFT execution for a compiled scanner-glare kernel."""
+"""Channel-serial block-FFT scanner-glare execution."""
 
 from __future__ import annotations
 
@@ -8,24 +8,17 @@ import numpy as np
 from scipy.signal import fftconvolve
 
 from .scanner_glare import ScannerGlareDomainError
+from .scanner_glare_block_fft import _symmetric_indices
 
 
-def _symmetric_indices(indices: np.ndarray, size: int) -> np.ndarray:
-    if size < 1:
-        raise ScannerGlareDomainError("spatial dimensions must be positive")
-    period = 2 * size
-    folded = np.mod(indices, period)
-    return np.where(folded < size, folded, period - 1 - folded).astype(np.intp)
-
-
-def apply_scanner_glare_block_fft(
+def apply_scanner_glare_channel_serial_block_fft(
     transmittance: np.ndarray,
     kernel: np.ndarray,
     *,
     flare_fraction: float,
     row_chunk: int,
 ) -> np.ndarray:
-    """Apply the exact full-frame operator in independent halo-complete row blocks."""
+    """Apply block FFT while retaining only one channel halo and pad at a time."""
     values = np.asarray(transmittance, dtype=np.float64)
     spread = np.asarray(kernel, dtype=np.float64)
     if values.ndim not in (2, 3) or (values.ndim == 3 and values.shape[-1] != 3):
@@ -54,16 +47,16 @@ def apply_scanner_glare_block_fft(
         stop = min(start + row_chunk, height)
         raw_rows = np.arange(start - radius, stop + radius, dtype=np.int64)
         mapped_rows = _symmetric_indices(raw_rows, height)
-        strip = planes[mapped_rows]
-        padded = np.pad(strip, ((0, 0), (radius, radius), (0, 0)), mode="symmetric")
         for channel in range(planes.shape[-1]):
-            blurred = fftconvolve(padded[..., channel], spread, mode="valid")
+            strip = planes[mapped_rows, :, channel]
+            padded = np.pad(strip, ((0, 0), (radius, radius)), mode="symmetric")
+            blurred = fftconvolve(padded, spread, mode="valid")
             output[start:stop, :, channel] += flare_fraction * blurred
     if (
         not np.all(np.isfinite(output))
         or np.any(output < -1e-12)
         or np.any(output > 1.0 + 1e-12)
     ):
-        raise RuntimeError("block FFT scanner glare left bounded transmittance domain")
+        raise RuntimeError("channel-serial block FFT left bounded transmittance domain")
     bounded = np.clip(output, 0.0, 1.0)
     return bounded[..., 0] if values.ndim == 2 else bounded
