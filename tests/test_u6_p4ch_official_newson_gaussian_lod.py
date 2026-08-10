@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import io
 import json
 import struct
 import zlib
@@ -7,10 +8,12 @@ from pathlib import Path
 
 import numpy as np
 import pytest
+from PIL import Image
 
 from src.eval.official_newson_gaussian_lod import (
     OfficialNewsonLodError,
     ZipEntry,
+    _decode_png,
     _evaluate_pair,
     _selected_rows,
     higher_order_features,
@@ -54,6 +57,19 @@ def test_contract_rejects_archive_or_selection_drift() -> None:
     contract = load_contract()
     contract["archive"]["entry_count"] -= 1
     with pytest.raises(OfficialNewsonLodError, match="contract drift"):
+        validate_contract(contract)
+
+
+def test_p4ci_contract_is_disjoint_and_valid() -> None:
+    contract = json.loads(
+        (
+            ROOT
+            / "configs/u6_p4ci_official_newson_first_channel_gaussian_lod_v1.json"
+        ).read_text(encoding="utf-8")
+    )
+    validate_contract(contract)
+    contract["bounded_source_selection"]["selected_indices_by_radius"]["0.05"][0] = 2436
+    with pytest.raises(OfficialNewsonLodError, match="disjointness"):
         validate_contract(contract)
 
     contract = load_contract()
@@ -110,6 +126,20 @@ def test_higher_order_features_are_shape_stable() -> None:
         "excursion_topology": (16,),
     }
     assert all(np.all(np.isfinite(value)) for value in features.values())
+
+
+def test_first_channel_decoder_matches_official_loader_semantics() -> None:
+    values = np.zeros((20, 21, 3), dtype=np.uint8)
+    values[:, :, 0] = 17
+    values[:, :, 1] = 91
+    buffer = io.BytesIO()
+    Image.fromarray(values, mode="RGB").save(buffer, format="PNG")
+    decoded, mode = _decode_png(buffer.getvalue(), first_channel=True)
+    assert mode == "RGB"
+    assert decoded.shape == (20, 21)
+    assert np.all(decoded == 17)
+    with pytest.raises(OfficialNewsonLodError, match="mode"):
+        _decode_png(buffer.getvalue(), first_channel=False)
 
 
 def test_pair_evaluation_is_exact_and_periodogram_matched() -> None:

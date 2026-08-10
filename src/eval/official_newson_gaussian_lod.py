@@ -24,9 +24,13 @@ from src.eval.boolean_gaussian_lod_boundary import (
 )
 
 SCHEMA = "neuro_film.u6_p4ch_official_newson_gaussian_lod_contract.v1"
+P4CI_SCHEMA = (
+    "neuro_film.u6_p4ci_official_newson_first_channel_gaussian_lod_contract.v1"
+)
 SOURCE_SCHEMA = "neuro_film.u6_p4ch_official_newson_source_lock.v1"
 REPORT_SCHEMA = "neuro_film.u6_p4ch_official_newson_gaussian_lod_report.v1"
 ARCHIVE_ROOT = "NeuralFilmGrainRendering_Dataset"
+ROOT = Path(__file__).resolve().parents[2]
 
 
 class OfficialNewsonLodError(RuntimeError):
@@ -49,17 +53,24 @@ def validate_contract(contract: Mapping[str, Any]) -> None:
     comparison = contract.get("comparison", {})
     gates = contract.get("automatic_gates", {})
     expected_indices = selection.get("selected_indices_by_radius", {})
+    schema = contract.get("schema")
+    expected_salt = "u6.p4ci-v1" if schema == P4CI_SCHEMA else "u6.p4ch-v1"
+    pixels_unread = (
+        archive.get("p4ci_selected_png_member_bytes_read_before_freeze")
+        if schema == P4CI_SCHEMA
+        else archive.get("png_member_bytes_read_before_freeze")
+    )
     if (
-        contract.get("schema") != SCHEMA
+        schema not in (SCHEMA, P4CI_SCHEMA)
         or archive.get("version") != 1
         or archive.get("content_length_bytes") != 2_354_389_185
         or archive.get("entry_count") != 8_722
         or archive.get("test_hyperparameters_rows") != 4_000
-        or archive.get("png_member_bytes_read_before_freeze") is not False
+        or pixels_unread is not False
         or selection.get("split") != "test"
         or selection.get("radii_input_pixels") != [0.05, 0.2, 0.4, 0.8]
         or selection.get("rows_per_radius") != 16
-        or selection.get("selection_salt") != "u6.p4ch-v1"
+        or selection.get("selection_salt") != expected_salt
         or sorted(expected_indices) != ["0.05", "0.2", "0.4", "0.8"]
         or any(len(expected_indices[key]) != 16 for key in expected_indices)
         or len({index for rows in expected_indices.values() for index in rows}) != 64
@@ -77,6 +88,28 @@ def validate_contract(contract: Mapping[str, Any]) -> None:
         or gates.get("require_two_byte_identical_reports") is not True
     ):
         raise OfficialNewsonLodError("P4CH frozen contract drift")
+    if schema == P4CI_SCHEMA:
+        predecessor = contract.get("predecessor", {})
+        evidence = json.loads((ROOT / predecessor.get("path", "")).read_text("utf-8"))
+        old_contract = json.loads(
+            (ROOT / predecessor.get("excluded_indices_path", "")).read_text("utf-8")
+        )
+        excluded = {
+            index
+            for rows in old_contract["bounded_source_selection"][
+                "selected_indices_by_radius"
+            ].values()
+            for index in rows
+        }
+        current = {
+            index for rows in expected_indices.values() for index in rows
+        }
+        if (
+            evidence.get("decision") != predecessor.get("required_decision")
+            or excluded & current
+            or len(excluded) != 64
+        ):
+            raise OfficialNewsonLodError("P4CI predecessor or disjointness drift")
 
 
 @dataclass(frozen=True)
@@ -292,11 +325,26 @@ def _selected_rows(
 ) -> list[dict[str, Any]]:
     selection = contract["bounded_source_selection"]
     salt = str(selection["selection_salt"])
+    excluded: set[int] = set()
+    if contract.get("schema") == P4CI_SCHEMA:
+        predecessor = contract["predecessor"]
+        old_contract = json.loads(
+            (ROOT / predecessor["excluded_indices_path"]).read_text("utf-8")
+        )
+        excluded = {
+            index
+            for indices in old_contract["bounded_source_selection"][
+                "selected_indices_by_radius"
+            ].values()
+            for index in indices
+        }
     used: set[str] = set()
     selected: list[dict[str, Any]] = []
     for radius in selection["radii_input_pixels"]:
         candidates: list[tuple[str, int, Mapping[str, Any]]] = []
         for index, row in enumerate(metadata_rows):
+            if index in excluded:
+                continue
             image_name = str(row["img_name"])
             grain_name = f"{index:06d}.png"
             clean_path = f"{ARCHIVE_ROOT}/Mixed/test/{image_name}"
@@ -336,12 +384,21 @@ def _selected_rows(
     return selected
 
 
-def _decode_png(data: bytes) -> np.ndarray:
+def _decode_png(data: bytes, *, first_channel: bool) -> tuple[np.ndarray, str]:
     try:
         with Image.open(io.BytesIO(data)) as image:
-            if image.format != "PNG" or image.mode != "L" or image.n_frames != 1:
+            allowed_modes = ("L", "RGB") if first_channel else ("L",)
+            if (
+                image.format != "PNG"
+                or image.mode not in allowed_modes
+                or image.n_frames != 1
+            ):
                 raise OfficialNewsonLodError("PNG mode, format or frame count drift")
-            values = np.asarray(image, dtype=np.uint8).copy()
+            mode = image.mode
+            decoded = np.asarray(image)
+            if decoded.dtype != np.uint8:
+                raise OfficialNewsonLodError("PNG sample type drift")
+            values = (decoded if decoded.ndim == 2 else decoded[:, :, 0]).copy()
     except OfficialNewsonLodError:
         raise
     except Exception as exc:
@@ -349,7 +406,7 @@ def _decode_png(data: bytes) -> np.ndarray:
     if values.ndim != 2 or min(values.shape) <= 17:
         raise OfficialNewsonLodError("PNG geometry is invalid")
     values.setflags(write=False)
-    return values
+    return values, mode
 
 
 def acquire_selected_pairs(
@@ -391,7 +448,8 @@ def acquire_selected_pairs(
         raise OfficialNewsonLodError("test member inventory drift")
 
     selected = _selected_rows(contract, rows, archive.entries)
-    clean_cache: dict[str, tuple[bytes, np.ndarray]] = {}
+    first_channel = contract.get("schema") == P4CI_SCHEMA
+    clean_cache: dict[str, tuple[bytes, np.ndarray, str]] = {}
     acquired: list[tuple[dict[str, Any], np.ndarray, np.ndarray]] = []
     source_rows: list[dict[str, Any]] = []
     for row in selected:
@@ -399,10 +457,13 @@ def acquire_selected_pairs(
         grain_member = f"{ARCHIVE_ROOT}/Mixed_grain/test/{row['grain_member']}"
         if clean_member not in clean_cache:
             clean_bytes = archive.read_member(clean_member)
-            clean_cache[clean_member] = (clean_bytes, _decode_png(clean_bytes))
-        clean_bytes, clean = clean_cache[clean_member]
+            clean, clean_mode = _decode_png(
+                clean_bytes, first_channel=first_channel
+            )
+            clean_cache[clean_member] = (clean_bytes, clean, clean_mode)
+        clean_bytes, clean, clean_mode = clean_cache[clean_member]
         grain_bytes = archive.read_member(grain_member)
-        grain = _decode_png(grain_bytes)
+        grain, grain_mode = _decode_png(grain_bytes, first_channel=first_channel)
         if clean.shape != grain.shape:
             raise OfficialNewsonLodError("clean/grain shape drift")
         acquired.append((row, clean, grain))
@@ -414,7 +475,9 @@ def acquire_selected_pairs(
                 "grain_member_path": grain_member,
                 "grain_member_sha256": _sha256(grain_bytes),
                 "shape": list(clean.shape),
-                "mode": "L",
+                "clean_mode": clean_mode,
+                "grain_mode": grain_mode,
+                "channel_index": 0,
             }
         )
 
