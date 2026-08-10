@@ -21,9 +21,7 @@ from src.eval.kodak_verita_source_signature import (
 )
 
 SCHEMA = "neuro_film.u5_r2by0_kodak_2242_intermediate_role_signature_contract.v1"
-REPORT_SCHEMA = (
-    "neuro_film.u5_r2by0_kodak_2242_intermediate_role_signature_report.v1"
-)
+REPORT_SCHEMA = "neuro_film.u5_r2by0_kodak_2242_intermediate_role_signature_report.v1"
 EXPERIMENT_ID = "U5.R2BY0"
 MATERIAL = "kodak_vision_color_intermediate_5242_2242_3242"
 VISION3_STOCKS = (
@@ -77,9 +75,7 @@ def load_contract(path: Path) -> dict[str, Any]:
     for domain in DOMAINS:
         samples = raster.get(domain, {}).get("samples", {})
         coordinates_key = (
-            "frequencies_cycles_per_mm"
-            if domain == "mtf"
-            else "log_relative_exposures"
+            "frequencies_cycles_per_mm" if domain == "mtf" else "log_relative_exposures"
         )
         coordinates = samples.get(coordinates_key, ())
         x_pixels = samples.get("x_pixels", ())
@@ -233,21 +229,42 @@ def _trace_log_uncertainty(config: Mapping[str, Any], pixels: int) -> float:
     return float(max(values))
 
 
+def _parent_trace_log_uncertainty(
+    trace: Mapping[str, Any], stock: str, pixels: int
+) -> float:
+    axis = trace["stocks"][stock]["graph_axes"]
+    (value0, pixel0), (value1, pixel1) = axis["y_value_pixels"]
+    if axis["y_scale"] != "log10" or math.isclose(float(pixel0), float(pixel1)):
+        raise IntermediateRoleSignatureError("BY0 parent log-axis drift")
+    log_per_pixel = abs(
+        (math.log(float(value1)) - math.log(float(value0)))
+        / (float(pixel1) - float(pixel0))
+    )
+    return float(log_per_pixel * pixels)
+
+
 def _compare_domain(
     config: Mapping[str, Any],
     material: Mapping[str, Any],
     vision3: Mapping[str, Any],
+    vision3_trace: Mapping[str, Any],
     *,
     domain: str,
 ) -> tuple[dict[str, Any], list[str]]:
     threshold = float(config["comparison"]["material_threshold"])
-    uncertainty = _trace_log_uncertainty(
+    material_uncertainty = _trace_log_uncertainty(
         config["raster_sources"][domain],
         int(config["comparison"]["trace_uncertainty_pixels"]),
     )
     pairwise: dict[str, Any] = {}
     material_pairs: list[str] = []
     for stock in VISION3_STOCKS:
+        parent_uncertainty = _parent_trace_log_uncertainty(
+            vision3_trace,
+            stock,
+            int(config["comparison"]["trace_uncertainty_pixels"]),
+        )
+        combined_uncertainty = material_uncertainty + parent_uncertainty
         channels: dict[str, Any] = {}
         material_count = 0
         for channel in CHANNELS:
@@ -258,12 +275,14 @@ def _compare_domain(
             first = first - float(np.mean(first))
             second = second - float(np.mean(second))
             rmse = float(np.sqrt(np.mean(np.square(first - second))))
-            conservative = max(0.0, rmse - uncertainty)
+            conservative = max(0.0, rmse - combined_uncertainty)
             is_material = conservative >= threshold
             material_count += int(is_material)
             channels[channel] = {
                 "mean_centered_log_rmse": rmse,
-                "trace_uncertainty_log_rmse_bound": uncertainty,
+                "material_trace_uncertainty_log_rmse_bound": material_uncertainty,
+                "parent_trace_uncertainty_log_rmse_bound": parent_uncertainty,
+                "combined_trace_uncertainty_log_rmse_bound": combined_uncertainty,
                 "conservative_lower_bound": conservative,
                 "material": is_material,
             }
@@ -298,7 +317,9 @@ def _draw_overlay(
             ):
                 x = int(x_pixel)
                 y = int(y_pixel)
-                draw.ellipse((x - 3, y - 3, x + 3, y + 3), outline=colours[channel], width=2)
+                draw.ellipse(
+                    (x - 3, y - 3, x + 3, y + 3), outline=colours[channel], width=2
+                )
         rendered.append(image)
     width = max(image.width for image in rendered)
     height = sum(image.height for image in rendered)
@@ -326,8 +347,12 @@ def audit_intermediate_role_signature(
     reader = PdfReader(str(source_path))
     if len(reader.pages) != int(config["gates"]["required_source_pages"]):
         raise IntermediateRoleSignatureError("BY0 source page count drift")
-    text = " ".join(" ".join((page.extract_text() or "").split()) for page in reader.pages)
-    text_gate = all(" ".join(anchor.split()) in text for anchor in config["required_text_anchors"])
+    text = " ".join(
+        " ".join((page.extract_text() or "").split()) for page in reader.pages
+    )
+    text_gate = all(
+        " ".join(anchor.split()) in text for anchor in config["required_text_anchors"]
+    )
     page = reader.pages[int(config["raster_sources"]["page_zero_based"])]
     images: dict[str, np.ndarray] = {}
     traces: dict[str, Any] = {}
@@ -358,7 +383,11 @@ def audit_intermediate_role_signature(
     }
     for domain in DOMAINS:
         domain_rows, material_pairs = _compare_domain(
-            config, traces[domain], vision3[domain], domain=domain
+            config,
+            traces[domain],
+            vision3[domain],
+            parents[f"{domain}_trace"],
+            domain=domain,
         )
         pairwise[domain] = domain_rows
         for pair_id in material_pairs:
