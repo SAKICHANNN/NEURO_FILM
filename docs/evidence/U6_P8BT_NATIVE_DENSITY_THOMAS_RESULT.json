@@ -1,0 +1,51 @@
+{
+  "schema": "neuro_film.u6_p8bt_native_density_thomas_evidence.v1",
+  "experiment_id": "u6.p8bt-native-density-thomas-transmittance-v1",
+  "status": "pass-retain-native-density-domain-thomas-transmittance-primitive",
+  "contract_sha256": "108e606bc5ab5080b520e4fa450fd757f976bbe00cf926c8ca84af595d83ef0d",
+  "implementation": {
+    "commits": ["679cde9d", "6283727f", "125792f0"],
+    "source_sha256": "aa25c5a2cba0dec5561af5fb01b867b2cd3c4b3e2bb40109b51270627fb02abe",
+    "header_sha256": "f995043d9733c57dc8c64ddb2e1473a73c345f1bc4935908f34cb7b58add07fb",
+    "python_binding_sha256": "9ffc8a652b42ab614ace13bd2caece29fbe5c4b30015b1eaa1c1a7602103abfb",
+    "conformance_runner_sha256": "d2abb9cdc73fe5fc321e407140a7b0ec89bbfa919c8ddb13d0d7428db7b29412",
+    "formal_runner_sha256": "c085f95c827df36582516e1b04fab41c67e7db7eb61924413e2a2570006a19d7"
+  },
+  "conformance": {
+    "shape": [193, 257],
+    "stable_evidence_id": "d64974650605789ae1f515ad3d2772c48c22645b1502e3222d24dfeb00fa64cf",
+    "output_sha256": "c5100d86438bcb774ff1ce2155bc466455568eed68a10d808c7b9dfa5708c6c8",
+    "maximum_absolute_error_vs_float64": 2.9802322387695312e-8,
+    "rmse_vs_float64": 1.7338763191410597e-9,
+    "maximum_density_offset_ratio_error": 1.359858700089589e-7,
+    "maximum_cross_compiler_absolute_error": 0.0,
+    "transmittance_range": [0.048441082239151, 0.35634371638298035],
+    "msvc_llvm_output_byte_exact": true,
+    "repeat_exact": true,
+    "failure_atomic": true,
+    "all_gates_pass": true
+  },
+  "performance_12mp": {
+    "shape": [3000, 4000],
+    "output_sha256": "f82cd399a4e53ceeba4e18041c0d1f16144652695dafc450a7a945c7c39f80dd",
+    "input_bytes": 96000000,
+    "workspace_bytes": 192000000,
+    "output_bytes": 48000000,
+    "four_fresh_wall_seconds_range": [0.9474928000017826, 1.0836880999995628],
+    "four_fresh_peak_process_tree_rss_bytes_range": [408162304, 408436736],
+    "maximum_wall_seconds_gate": 4.0,
+    "maximum_process_tree_rss_bytes_gate": 805306368,
+    "all_gates_pass": true
+  },
+  "formal_replay": {
+    "report_sha256": [
+      "9313ac1d1b2756f5c90dfd2c81328094c0e8efd59caf77cf84dafcd5656680e3",
+      "002419d7ff491d89ffd299846489f3a19aea7e458fdc041eca03e057e794cf6e"
+    ],
+    "stable_evidence_id": "d9d26583d66d78220b9fb4b0976833c0a8e44eaaebeabcd57d85fa0be710d538",
+    "scientific_identity_exact": true
+  },
+  "decision": "retain_native_density_domain_thomas_transmittance_primitive",
+  "retained_boundary": "P4BZ photographic stress remains closed; this result advances only the generic typed native runtime primitive.",
+  "claim_ceiling": "Portable generic same-scanner density-domain composition evidence only; not photographic promotion, microscopic grain, calibrated stock/process/scanner response, or product authorization."
+}

@@ -10740,3 +10740,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Gate:** Compare MSVC and LLVM against the float64 P4BW/P8BS reference,
   require strict transmittance and failure atomicity, then run two fresh 12MP
   workers under 4s/768MiB. P4BZ remains closed and no model parameters may move.
+- **Result:** PASS. MSVC/LLVM outputs are byte-exact; max/RMSE against float64
+  are `2.98e-8`/`1.73e-9`, density-offset response and strict transmittance
+  pass, and failed domains leave outputs unchanged. Four fresh 12MP workers
+  take 0.947-1.084s at 408.2-408.4MB peak; stable ID `d9d26583...10d538`.
+- **Boundary:** Generic typed native composition only. The P4BZ photographic
+  stress failure is unchanged; no calibrated stock, microscopic or product use.

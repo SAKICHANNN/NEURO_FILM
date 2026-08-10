@@ -1129,3 +1129,5 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
   unchanged P8BS unit field, then perform exactly one `T=10^-D` conversion.
 - Freeze dual-compiler float64/domain/failure-atomic conformance and two fresh
   12MP resource gates. Do not reopen the closed P4BZ photographic candidate.
+- Result: PASS. Dual-compiler bytes are exact, float64 max error is `2.98e-8`,
+  and four 12MP runs take 0.947-1.084s at 408.2-408.4MB peak. P4BZ stays closed.
