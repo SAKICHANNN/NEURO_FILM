@@ -9,8 +9,12 @@
     "p9d_evidence_sha256": "340c3e8e8a87ca8709a304b4216c2fdf51c390598ea45ed2f9ee66f474db05f4",
     "p9e_evidence": "docs/evidence/U6_P9E_TEMPORAL_EXPOSURE_FLICKER_RESULT.json",
     "p9e_evidence_sha256": "4135ebbd2031135a980b0f4fcc18079e8e899be32188b4c65b3c768064a63d2c",
+    "p9e_contract": "configs/u6_p9e_temporal_exposure_flicker_v1.json",
+    "p9e_contract_sha256": "52e1cb7ef6d7e894b003b04c043c4e533b51825a4123c4cf5a736dc253e9b13d",
     "p9g_evidence": "docs/evidence/U6_P9G_GATE_WEAVE_PHYSICAL_ORDER_RESULT.json",
-    "p9g_evidence_sha256": "3c4fa3d8e217534eb33b3f4992d2cb941fcd343cf6bc0c959373ed2dae6c0e50"
+    "p9g_evidence_sha256": "3c4fa3d8e217534eb33b3f4992d2cb941fcd343cf6bc0c959373ed2dae6c0e50",
+    "p9a_contract": "configs/u6_p9a_gate_weave_ou_v1.json",
+    "p9a_contract_sha256": "bb91ba107b00ca71ce178538b9f9e0290804208f06a97082acaae0738d27c564"
   },
   "experiment": {
     "frame_count": 8,
