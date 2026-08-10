@@ -36,6 +36,7 @@
     "basic_control": "per-image joint EV/WB/contrast/saturation adjustment fit from source linear RGB to candidate linear RGB",
     "basic_fit_sampling": "at most 65536 evenly spaced flattened pixels including both endpoints",
     "basic_fit_max_samples": 65536,
+    "colour_metric_sampling": "the same at-most-65536 evenly spaced flattened pixels used by the basic fit",
     "direct_reference_population": "33-cube exact spectral compiler versus trilinear 17-cube",
     "contact_sheet_cell_width": 420
   },
