@@ -1,0 +1,30 @@
+{
+  "schema": "neuro_film.u6_p8cg_24mp_native_thomas_png_evidence.v1",
+  "experiment_id": "u6.p8cg-24mp-native-thomas-png-v1",
+  "status": "pass-retain-24mp-ordinary-cpu-native-thomas-png",
+  "contract_sha256": "04d0cd163de7fef663ec98eb44e64dbb57e7214beea6fe8a4dc41b8a704e8376",
+  "formal_report_sha256": "2dfad2e7271d062b7d30dca7402a299e1e24c768a1a0909dd9299e379c1b8971",
+  "stable_evidence_id": "54595e7e0a657ff95f2bf0d20c2e97028f54a703380f8a52b2da31a1ca2b964e",
+  "performance": {
+    "shape_chw": [3, 4000, 6000],
+    "bit_depth": 16,
+    "wall_seconds": [13.67231940000056, 14.043080600000394],
+    "peak_process_tree_rss_bytes": [718405632, 718663680],
+    "bounded_compute_workspace_bytes": 86400000,
+    "png_bytes": 134597076,
+    "png_sha256": "fe9fb521334c25fe601aa49724ef312fe27dc2af69cde27560b9547a27ef6115",
+    "sample_hwc_sha256": "36eb5483c6afcef76820aaaceb8873c1008a654d16c6d3c63b32f935966ef428",
+    "icc_sha256": "217fe48ec958c667f8eef725aa27198f465df95d7662593b90d0a1cc30114356"
+  },
+  "gates": {
+    "exact_png_replay": true,
+    "decoded_samples_exact": true,
+    "icc_exact": true,
+    "maximum_wall_seconds_15": true,
+    "maximum_peak_rss_bytes_1000000000": true,
+    "repeat_stability": true,
+    "worker_cleanup": true
+  },
+  "decision": "retain_24mp_ordinary_cpu_native_thomas_png",
+  "claim_ceiling": "One measured Windows ordinary-desktop CPU 24MP generic Thomas-to-sRGB16 PNG result; not mobile, GPU, 100MP, calibrated stock response or product authorization."
+}

@@ -1288,3 +1288,9 @@ comparisons (`.08497-.22585` centered-log-shape RMSE). All trace and source
 gates plus visual overlays pass. Retain only a source-domain signature; BU1's
 one-Gaussian MTF compiler stays closed. BU3 may serialize the observed curves
 without inventing an NPS, microscopic model or photographic placement.
+
+U6.P8CG closes the provisional 24MP ordinary-CPU still-export target for the
+generic Thomas path. Two complete RGB16 PNG runs are byte exact at
+`13.67/14.04s` and `718.41/718.66MB` peak, with independently decoded samples
+and the embedded ICC exact. Retain this host implementation and advance to the
+separately frozen 100MP tiled proof; no calibrated-stock or product claim opens.

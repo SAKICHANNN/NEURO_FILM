@@ -10932,3 +10932,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Exactness: MSVC/LLVM reducer state, Python/native raw-mean bits and sRGB8/16 output bytes match exactly; invalid non-finite input leaves caller state unchanged.
 - Resource result: two fresh 12MP sample-stream runs take 4.22/4.25s at 428.79-429.25MB peak, a worst-wall ratio of .429 versus P8CD with unchanged output SHA `5a0f531f...530fd`.
 - Decision: retain the reducer and proceed directly to a 24MP complete PNG measurement. No physical model/profile or product claim changes.
+
+## 2026-08-10 - U6.P8CG 24MP complete host PNG target passes
+
+- Two fresh 6000x4000 RGB16 PNG runs preserve one exact artifact and decoded sample stream, including the existing 588-byte sRGB ICC.
+- Wall time is 13.67/14.04s and process-tree peak is 718.41/718.66MB, passing the frozen 15s and 1GB gates.
+- Retain the ordinary-CPU host path. The next execution leaf is a separately frozen 100MP tiled measurement; device and calibrated-stock claims remain open.
