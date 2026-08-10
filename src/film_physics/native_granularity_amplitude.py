@@ -73,6 +73,15 @@ def load_native_granularity_amplitude_library(path: Path) -> ctypes.CDLL:
         ctypes.POINTER(ctypes.c_float),
     ]
     library.nf_granularity_amplitude_f32_apply_v1.restype = ctypes.c_int
+    library.nf_granularity_amplitude_f32_apply_layer_v1.argtypes = [
+        ctypes.POINTER(NativeGranularityAmplitudeProfileV1),
+        ctypes.c_uint32,
+        ctypes.POINTER(ctypes.c_float),
+        ctypes.c_size_t,
+        ctypes.POINTER(ctypes.c_float),
+        ctypes.POINTER(ctypes.c_float),
+    ]
+    library.nf_granularity_amplitude_f32_apply_layer_v1.restype = ctypes.c_int
     if library.nf_granularity_amplitude_f32_abi_version_v1() != 1:
         raise NativeGranularityAmplitudeError("native amplitude ABI version mismatch")
     return library

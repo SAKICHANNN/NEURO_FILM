@@ -50,4 +50,14 @@ nf_granularity_amplitude_f32_apply_v1(
     float* developed_density_chw,
     float* point_density_sigma_chw);
 
+/* One planar layer, for serial bounded-memory RGB composition. */
+NF_GRANULARITY_AMPLITUDE_F32_API nf_granularity_amplitude_f32_status_v1
+nf_granularity_amplitude_f32_apply_layer_v1(
+    const nf_granularity_amplitude_f32_profile_v1* profile,
+    uint32_t channel,
+    const float* relative_log_exposure,
+    size_t sample_count,
+    float* developed_density,
+    float* point_density_sigma);
+
 #endif

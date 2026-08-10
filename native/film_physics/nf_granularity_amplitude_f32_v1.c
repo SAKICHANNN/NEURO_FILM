@@ -177,3 +177,57 @@ nf_granularity_amplitude_f32_apply_v1(
     }
     return NF_GRANULARITY_AMPLITUDE_F32_OK_V1;
 }
+
+nf_granularity_amplitude_f32_status_v1
+nf_granularity_amplitude_f32_apply_layer_v1(
+    const nf_granularity_amplitude_f32_profile_v1* profile,
+    uint32_t channel,
+    const float* relative_log_exposure,
+    size_t sample_count,
+    float* developed_density,
+    float* point_density_sigma) {
+    size_t index;
+    uint32_t count;
+    double lower;
+    double upper;
+    if (!nf_profile_valid(profile)) {
+        return profile == NULL ? NF_GRANULARITY_AMPLITUDE_F32_INVALID_ARGUMENT_V1 :
+            NF_GRANULARITY_AMPLITUDE_F32_INVALID_PROFILE_V1;
+    }
+    if (channel >= 3u || relative_log_exposure == NULL ||
+        developed_density == NULL || point_density_sigma == NULL ||
+        sample_count == 0u || sample_count > SIZE_MAX / sizeof(float) ||
+        nf_ranges_overlap(relative_log_exposure, sample_count,
+            developed_density, sample_count) ||
+        nf_ranges_overlap(relative_log_exposure, sample_count,
+            point_density_sigma, sample_count) ||
+        nf_ranges_overlap(developed_density, sample_count,
+            point_density_sigma, sample_count)) {
+        return NF_GRANULARITY_AMPLITUDE_F32_INVALID_ARGUMENT_V1;
+    }
+    count = profile->knot_count[channel];
+    lower = profile->log_exposure_knots[channel][0];
+    upper = profile->log_exposure_knots[channel][count - 1u];
+    for (index = 0; index < sample_count; ++index) {
+        double density;
+        double point_sigma;
+        const double exposure = (double)relative_log_exposure[index];
+        if (!isfinite(exposure) || exposure < lower || exposure > upper) {
+            return NF_GRANULARITY_AMPLITUDE_F32_DOMAIN_ERROR_V1;
+        }
+        nf_evaluate(profile, channel, exposure, &density, &point_sigma);
+        if (!isfinite(density) || density < 0.0 ||
+            !isfinite(point_sigma) || point_sigma <= 0.0) {
+            return NF_GRANULARITY_AMPLITUDE_F32_DOMAIN_ERROR_V1;
+        }
+    }
+    for (index = 0; index < sample_count; ++index) {
+        double density;
+        double point_sigma;
+        nf_evaluate(profile, channel, (double)relative_log_exposure[index],
+            &density, &point_sigma);
+        developed_density[index] = (float)density;
+        point_density_sigma[index] = (float)point_sigma;
+    }
+    return NF_GRANULARITY_AMPLITUDE_F32_OK_V1;
+}
