@@ -1,0 +1,53 @@
+{
+  "schema": "neuro_film.u6_p6zi_scanner_chain_profile_serialization_contract.v1",
+  "node": "U6.P6ZI",
+  "status": "contract_frozen_implementation_ready",
+  "parents": {
+    "p6zh_evidence_path": "docs/evidence/U6_P6ZH_SCANNER_GLARE_TILED_DOWNSTREAM_RESULT.json",
+    "p6zh_evidence_sha256": "953076fb415fd1d0e9b550d607111fa4f9c2fe68a9e33630f3d2cd8333f73f5b",
+    "p6zh_implementation_path": "src/eval/scanner_glare_tiled_downstream.py",
+    "p6zh_implementation_sha256": "772b41f6c4f911d1e03738dfd449a83a206276506067786d790d489d82da8a34"
+  },
+  "profile": {
+    "schema": "neuro_film.generic_scanner_chain_profile.v1",
+    "claim_level": "generic-physical-inspired",
+    "input_domain": "film-transmittance",
+    "output_domain": "scanner-linear-signal",
+    "arithmetic": "float64-reference",
+    "stage_order": [
+      "spectral",
+      "p6za-multiscale-glare",
+      "dmax",
+      "mtf",
+      "noise"
+    ],
+    "glare_algorithm": "channel-serial-block-fft",
+    "glare_kernel_size": 177,
+    "glare_row_chunk": 512,
+    "downstream_tile_rows": 512,
+    "product_runtime_allowed": false,
+    "scanner_calibrated": false
+  },
+  "automatic_gates": {
+    "canonical_roundtrip_exact": true,
+    "identity_roundtrip_exact": true,
+    "strict_top_level_and_nested_fields": true,
+    "duplicate_json_keys_rejected": true,
+    "nonfinite_json_constants_rejected": true,
+    "domain_stage_claim_and_execution_drift_rejected": true,
+    "reconstructed_profile_and_kernel_exact": true,
+    "p6zh_parent_hashes_exact": true
+  },
+  "forbidden_fallbacks": [
+    "infer scanner calibration, stock, process or product readiness",
+    "accept unknown fields, duplicate keys, nonfinite constants or type coercion",
+    "change P6ZH profile values, stage order, algorithms, kernel or tile sizes",
+    "embed image pixels, runtime context or machine-specific paths"
+  ],
+  "branch_rule": {
+    "pass": "retain a generic research-only serialized scanner component and open execution-from-bundle parity",
+    "fail": "keep P6ZH code-constructed profile only"
+  },
+  "production_integration_allowed": false,
+  "claim_ceiling": "Canonical serialization of one generic physical-inspired experimental scanner chain; not measured calibration, stock response, photographic validation, native runtime or product readiness."
+}
