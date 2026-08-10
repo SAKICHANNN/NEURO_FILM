@@ -1,0 +1,74 @@
+{
+  "schema": "neuro_film.u6_p2ac_reciprocity_identifiability_contract.v1",
+  "node": "U6.P2AC",
+  "question": "Does a time-by-intensity step-wedge design require one shared absolute density/transmittance anchor to identify all four bounded local-reciprocity parameters under scanner-gain nuisance?",
+  "parent": {
+    "evidence_path": "docs/evidence/U6_P2AB_LOCAL_INTENSITY_RECIPROCITY_RESULT.json",
+    "evidence_sha256": "e11329ac59923e63f441bbc7116df8c34129edae0e0287ad157e4094c7d1815f",
+    "required_decision": "retain_synthetic_local_intensity_capacity_require_controlled_time_by_intensity_measurement"
+  },
+  "truth": {
+    "bright_exponent": 1.20,
+    "dark_exponent": 1.43,
+    "log2_pivot_rate": -3.0,
+    "log2_transition_width": 1.5,
+    "reference_time_seconds": 1.0
+  },
+  "development_design": {
+    "incident_rate_log2": [-10.0, 4.0, 33],
+    "physical_times_seconds": [2.0, 10.0, 60.0, 300.0],
+    "log_measurement_noise_sigma": 0.002,
+    "seed": 20260810,
+    "anchored_shared_log_gain": 0.17,
+    "unanchored_per_time_log_gains": [0.20, -0.10, 0.30, -0.20]
+  },
+  "confirmation_design": {
+    "incident_rate_log2": [-9.75, 3.75, 32],
+    "physical_times_seconds": [5.0, 30.0, 120.0, 600.0],
+    "target_noise": "none",
+    "target_read_after_fit_freeze": true
+  },
+  "fit": {
+    "initial_parameters": [1.25, 1.35, -2.0, 2.0],
+    "lower_bounds": [1.0, 1.0, -8.0, 0.5],
+    "upper_bounds": [1.6, 1.6, 2.0, 4.0],
+    "shared_gain_initial": 0.0,
+    "shared_gain_bounds": [-1.0, 1.0],
+    "per_time_gain_initial": [0.0, 0.0, 0.0, 0.0],
+    "per_time_gain_bounds": [-1.0, 1.0],
+    "parameter_scales": [0.6, 0.6, 10.0, 3.5],
+    "gain_scale": 2.0,
+    "least_squares_tolerances": 1e-13,
+    "maximum_function_evaluations": 10000
+  },
+  "controls": {
+    "unanchored": "one independent scanner log-gain per exposure time",
+    "global_scalar": "one P plus one shared scanner log-gain",
+    "wrong_time_order": "reverse physical-time labels after observations are frozen"
+  },
+  "automatic_gates": {
+    "maximum_anchored_parameter_absolute_error": 0.02,
+    "maximum_anchored_scaled_jacobian_condition": 50.0,
+    "minimum_unanchored_scaled_jacobian_condition": 1000000.0,
+    "minimum_unanchored_exponent_absolute_error": 0.01,
+    "maximum_anchored_confirmation_log_rmse": 0.002,
+    "minimum_global_confirmation_log_rmse": 0.05,
+    "minimum_wrong_time_confirmation_log_rmse": 0.02,
+    "confirmation_target_reads_before_fit_freeze": 0,
+    "all_fits_finite": true,
+    "serialization_byte_exact": true,
+    "rgb_image_transform_count_zero": true
+  },
+  "forbidden": [
+    "treat per-time normalized scans as absolute reciprocity calibration",
+    "change parameter bounds, initialization, noise, roles, optimizer or gates after fitting",
+    "claim the synthetic truth parameters describe any named film, roll, developer or scanner",
+    "render photographs or integrate the mechanism into a profile/product",
+    "use P-unavailable project data"
+  ],
+  "branch_rule": {
+    "pass": "freeze the shared absolute density/transmittance anchor as a required future acquisition field and retain only the synthetic identifiability result",
+    "fail": "close the four-parameter representation or measurement design without optimizer or gate rescue"
+  },
+  "claim_ceiling": "Synthetic identifiability and controlled-acquisition design for local-intensity reciprocity; not measured film, roll/process/scanner calibration, photographic quality or product evidence."
+}
