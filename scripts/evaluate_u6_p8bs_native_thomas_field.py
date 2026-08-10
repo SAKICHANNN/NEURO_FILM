@@ -33,7 +33,7 @@ from src.film_physics.native_thomas_field import (
 def _load_contract(path: Path) -> dict[str, Any]:
     payload = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(payload, dict):
-        raise ValueError("P8BS contract must be an object")
+        raise TypeError("P8BS contract must be an object")
     return payload
 
 
