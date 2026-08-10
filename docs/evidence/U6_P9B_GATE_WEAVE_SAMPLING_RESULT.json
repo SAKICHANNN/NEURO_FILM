@@ -1,0 +1,45 @@
+{
+  "schema": "neuro_film.u6_p9b_gate_weave_sampling_evidence.v1",
+  "node": "U6.P9B",
+  "decision": "retain_immutable_source_bilinear_sampling_for_continuous_gate_weave",
+  "software_commit": "ac061306",
+  "bindings": {
+    "contract": {
+      "path": "configs/u6_p9b_gate_weave_sampling_v1.json",
+      "sha256": "4588f3813b322bbeb86cd5d5f79e0d0283f6f9d8171ef98b50ce97710f345a80"
+    },
+    "primitive": {
+      "path": "src/film_physics/gate_weave_sampling.py",
+      "sha256": "703ee9ff242f4958b11d0d58abb49328e4cbeec74ab64eefd4430722477aa4d2"
+    },
+    "evaluator": {
+      "path": "src/eval/gate_weave_sampling.py",
+      "sha256": "cb1d3741e26b4967dbab612daa4e445e1ffe5f0262a2e7be2227f629736c2b2d"
+    },
+    "report": {
+      "path": "outputs/experiments/u6_p9b_gate_weave_sampling_v1/run_1.json",
+      "sha256": "91409ade8016495ba7efcdbae119711ecfe9e310b8bce800fbfe4ad5259a5b64",
+      "stable_evidence_id": "de27904b93d9bff66800b5d6083c975601dd9c0b62cdb4f4546b4e77c9a9e606"
+    }
+  },
+  "results": {
+    "automatic_pass": true,
+    "two_reports_byte_exact": true,
+    "integer_crop_and_bilinear_integer_offsets_pixel_exact": true,
+    "bilinear_partition_byte_exact": true,
+    "constant_field_pixel_exact": true,
+    "bilinear_analytic_rmse": 0.014547704925582185,
+    "integer_analytic_rmse": 0.040444278467647796,
+    "bilinear_rmse_improvement_over_integer": 0.6403025229583663,
+    "high_frequency_amplitude_retention_range": [0.8075248762393399, 1.0],
+    "bilinear_stream_sha256": "7341fb8c1fe193a1f060aab93c0733a7d4ab90a16c7e3bbd129aa23bbab8822f",
+    "quantization_count": 0
+  },
+  "interpretation": [
+    "Sampling every frame directly from one immutable padded source preserves exact integer-crop semantics while materially reducing continuous-trajectory error versus rounded crop offsets.",
+    "The frozen highest-frequency sinusoid retains at least 80.75 percent amplitude; constant fields and sample bounds remain exact. This supports bilinear sampling as a reference translation primitive, not repeated sampling of prior outputs.",
+    "No photographic video, measured gate motion, registration, rotation, zoom, perspective or product performance was evaluated."
+  ],
+  "next_leaf": "Measure a fused tile-stream implementation against the immutable full-frame reference, including halo and memory scaling, before any video integration.",
+  "claim_ceiling": "Synthetic translation-sampling accuracy and frequency retention only; not measured gate motion, photographic video quality, registration, temporal product readiness or stock calibration."
+}

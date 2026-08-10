@@ -10483,3 +10483,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `.9204/.9371`, and the matched random-walk ensemble variance grows `4.54x`.
 - Retain only trajectory capacity. Pixel crop/resampling and rendered temporal
   quality remain separate leaves; no measured gate, stock or product claim.
+
+# 2026-08-10 - U6.P9B retains immutable-source subpixel sampling
+
+- Compared explicit bilinear translation against rounded integer crops on a
+  frozen analytic three-frequency chart under the unchanged P9A trajectory.
+- Two reports are exact (`91409ade...5b64`). Bilinear RMSE is `.01455` versus
+  `.04044` for integer crops, a `64.03%` reduction; worst high-frequency
+  amplitude retention is `80.75%`, with exact integer, partition and constant
+  semantics and no output-range expansion.
+- Keep every frame anchored to the immutable source. Chained resampling,
+  photographic video quality and product integration remain forbidden.
