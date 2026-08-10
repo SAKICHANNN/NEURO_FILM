@@ -46,7 +46,7 @@
     "kernel_nonnegative": true,
     "kernel_sum_error_maximum": 1e-12,
     "second_moment_relative_error_maximum": 0.01,
-    "multiscale_center_peak_below_single_gaussian": true,
+    "multiscale_center_peak_above_single_gaussian": true,
     "minimum_multiscale_to_single_tail_energy_ratio": 2.0,
     "context_center_lift_strictly_increasing": true,
     "minimum_largest_context_center_lift": 0.001,
