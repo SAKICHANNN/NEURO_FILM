@@ -1,0 +1,51 @@
+{
+  "schema": "neuro_film.u6_p8bs_native_thomas_field_evidence.v1",
+  "experiment_id": "u6.p8bs-native-thomas-field-v1",
+  "status": "pass-retain-native-generic-thomas-field-primitive",
+  "contract_sha256": "343d98c2f59d1632e336402b64e890dad4180db9ea1af8f4c46b7d228edef860",
+  "implementation": {
+    "commits": ["1449c775", "2e935f76", "f9c7c683", "d26678d1", "16a5581a", "fcf77b33"],
+    "source_sha256": "4a5d78f2ac549456f9504004a7e355740d912122f7f7213bd97cb5d4f70c96bb",
+    "header_sha256": "d964948078fdeccf9d420d2371247a66f0ed27886f2fd5ce77b95a16de0e7a73",
+    "python_binding_sha256": "20839f33dd540db383da53a30723eecdff7cf65fc801bc6400c741ed632f3072",
+    "conformance_runner_sha256": "9dfc5f84d475c0defea278c4b4e14d60da5fefaf67a8887c4d303751e91af649",
+    "formal_runner_sha256": "ae6bf4a004bac29e6859b4a8deeb333c4847bd575abad49c2dca4f485a4665f7"
+  },
+  "conformance": {
+    "shape": [257, 389],
+    "stable_evidence_id": "ff08cc284eb239d0c675e0a0e320ab415abed869c078fe988d3208cddac3cbcc",
+    "reference_sha256": "489fe79f59b021779f33002b564315ee9e3f3c1d5ad08f77afe27eb63ac356b3",
+    "output_sha256": "202b2b4f1c22b433eda6afef1d9c5a1b4ad1d2cb7d3d08496f6aa12c461b5eed",
+    "maximum_absolute_error_vs_float64": 4.562104285454893e-7,
+    "rmse_vs_float64": 5.620400882831988e-8,
+    "correlation_vs_float64": 0.9999999999999994,
+    "variance_ratio": 1.0000000302377745,
+    "maximum_cross_compiler_absolute_error": 0.0,
+    "msvc_llvm_output_byte_exact": true,
+    "repeat_exact": true,
+    "failure_atomic": true,
+    "all_gates_pass": true
+  },
+  "performance_12mp": {
+    "shape": [3000, 4000],
+    "output_sha256": "04889733d0a12102be185c3cc51571f9867d91a937fb3b715dcb2ec49eb8c28d",
+    "workspace_bytes": 144000000,
+    "output_bytes": 48000000,
+    "four_fresh_wall_seconds_range": [0.7344477000006009, 0.7992817000013019],
+    "four_fresh_peak_process_tree_rss_bytes_range": [288505856, 308629504],
+    "maximum_wall_seconds_gate": 5.0,
+    "maximum_process_tree_rss_bytes_gate": 402653184,
+    "all_gates_pass": true
+  },
+  "formal_replay": {
+    "report_sha256": [
+      "7f10976e699da51a00fddcb2f7e097c84cf8eb5341787d4b033992325daf9b09",
+      "cae12cc61754c6ee30674e1aa20680b098727b44c3214e8557bb7f91650ea9a5"
+    ],
+    "stable_evidence_id": "d6c88e88e38296d65f9ee449c804a8f3e317d0909f82a8097e792a44a4c731aa",
+    "scientific_identity_exact": true,
+    "note": "LLVM-MinGW PE container hashes vary across links and remain in raw reports; compiler/source/output/numerical/gate facts define the stable scientific identity."
+  },
+  "decision": "retain_native_generic_thomas_field_primitive",
+  "claim_ceiling": "Portable generic same-scanner second-order grain-field runtime evidence only; not microscopic grain, dye-cloud or silver structure, stock/process/scanner calibration, photographic quality or product promotion."
+}

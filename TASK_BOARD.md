@@ -1119,3 +1119,6 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
   reopening the closed P4CF point-process capacity family.
 - Freeze dual-compiler float32 conformance, failure atomicity and 12MP
   runtime/RSS gates before implementation; no refit or realized normalization.
+- Result: PASS. MSVC/LLVM are output-byte-exact; 12MP runs take 0.734-0.799s
+  at 288.5-308.6MB peak RSS. Retain only the generic second-order native
+  primitive; no calibration, microscopic-film or product authority opens.

@@ -10723,3 +10723,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Research basis:** Current FGA-NN/VFGS is retained only as a public compact
   baseline and remains closed at P8BR. P8BS implements the already-retained
   Thomas mechanism rather than repairing or tuning VFGS.
+- **Result:** PASS. C11 MSVC/LLVM outputs are byte-exact; float64 max/RMSE are
+  `4.56e-7`/`5.62e-8`, failure atomicity passes, and four fresh 12MP workers
+  take 0.734-0.799s with 288.5-308.6MB peak process-tree RSS. Two formal
+  reports share stable ID `d6c88e88...c731aa`; differing LLVM PE hashes remain
+  build facts but are excluded from scientific identity.
+- **Boundary:** Retain a generic same-scanner second-order field primitive.
+  This is not microscopic grain, dye-cloud/silver structure, stock/process
+  calibration, photographic validation or product promotion.
