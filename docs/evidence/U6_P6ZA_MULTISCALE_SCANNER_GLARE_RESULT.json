@@ -1,0 +1,47 @@
+{
+  "automatic_pass": true,
+  "claim_ceiling": "Synthetic capacity evidence for a generic positive multiscale scanner-glare spread only; not measured scanner calibration, film stock response, inverse restoration, photographic validation or product readiness.",
+  "contract_sha256": "6ee5bb8427f52d4313b0e39cffe5e18d6e2cf9e4122cc05f50a7789567743167",
+  "decision": "retain a generic multiscale scanner-glare reference mechanism and next challenge it against spatially varying synthetic contexts before any profile integration",
+  "gate_results": {
+    "all_values_finite": true,
+    "constant_field_identity_error_maximum": true,
+    "context_center_lift_strictly_increasing": true,
+    "display_rgb_effect_count_zero": true,
+    "impulse_energy_error_maximum": true,
+    "kernel_nonnegative": true,
+    "kernel_sum_error_maximum": true,
+    "minimum_largest_context_center_lift": true,
+    "minimum_multiscale_to_single_tail_energy_ratio": true,
+    "multiscale_center_peak_above_single_gaussian": true,
+    "parent_hashes_exact": true,
+    "pointwise_control_context_span_maximum": true,
+    "second_moment_relative_error_maximum": true
+  },
+  "measurements": {
+    "all_values_finite": true,
+    "candidate_center_peak": 0.03205203715045122,
+    "candidate_second_moment_sigma_pixels": 5.656854249469563,
+    "candidate_tail_energy": 0.08324690889592129,
+    "constant_field_identity_error": 5.551115123125783e-17,
+    "context_center_lifts": [
+      0.008305241535651504,
+      0.014300924116023562,
+      0.015433730541281426,
+      0.015435217592702614
+    ],
+    "control_center_peak": 0.004973591971621729,
+    "control_second_moment_sigma_pixels": 5.6568542494923815,
+    "control_tail_energy": 0.019348559173793915,
+    "display_rgb_effect_count": 0,
+    "impulse_energy_error": 2.220446049250313e-16,
+    "kernel_minimum": 9.752040524104833e-28,
+    "kernel_sum_error": 0.0,
+    "multiscale_to_single_tail_energy_ratio": 4.302486203141814,
+    "parent_hashes_exact": true,
+    "pointwise_control_context_span": 0.0,
+    "second_moment_relative_error": 4.0337245356044854e-12
+  },
+  "schema": "neuro_film.u6_p6za_multiscale_scanner_glare_report.v1",
+  "stable_evidence_id": "8a30022ce282a2bd7e9601680ac5bc9d41799c808e45cfe23bfa0c66847c476f"
+}

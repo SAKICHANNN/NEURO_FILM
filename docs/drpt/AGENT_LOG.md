@@ -10573,3 +10573,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   boundary, whereas both scoped shots start exactly neutral and retain exact
   partition replay. This is synthetic state semantics, not cut detection or
   measured film transport.
+
+# 2026-08-10 - U6.P6ZA retains a multiscale scanner-glare reference
+
+- The 2025 film-scanner study reports context-dependent dark-value lift that
+  pointwise LUTs cannot represent. A clean-room positive two-scale spread was
+  compared with an equal-second-moment single Gaussian and pointwise control.
+- Two reports are exact (`117726c5...a773`). Tail energy is `4.30x` the
+  single-Gaussian control, context lift rises `.00831 -> .01544`, and constant
+  field plus impulse energy are preserved within floating-point tolerance.
+- This is generic synthetic scanner-glare capacity, not measured calibration,
+  inverse correction, stock response or product integration.
