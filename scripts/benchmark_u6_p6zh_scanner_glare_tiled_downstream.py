@@ -25,9 +25,11 @@ from scripts.benchmark_u6_p6zd_scanner_glare_streaming import (
     _sha256,
 )
 from scripts.benchmark_u6_p6ze_scanner_glare_block_fft import _launch
+from src.eval.scanner_glare_tiled_downstream import (
+    apply_typed_scanner_glare_chain_tiled_downstream,
+)
 from src.eval.scanner_glare_typed_chain import (
     apply_typed_scanner_glare_chain,
-    apply_typed_scanner_glare_chain_tiled_downstream,
     scanner_profile,
 )
 from src.eval.scanner_glare_typed_chain import (
