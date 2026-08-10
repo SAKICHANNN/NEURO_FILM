@@ -62,3 +62,26 @@ def temporal_grain_innovation_frame(
         ],
         axis=-1,
     )
+
+
+def temporal_grain_realization_seeds(
+    *,
+    profile_sha256: str,
+    seed: int,
+    frame: int,
+    layer_count: int,
+) -> tuple[int, ...]:
+    """Derive frame/layer-addressed seeds for existing physical field engines."""
+    if not isinstance(layer_count, int) or layer_count < 1:
+        raise ValueError("layer count must be positive")
+    return tuple(
+        coordinate_counter_u64(
+            profile_sha256=profile_sha256,
+            seed=seed,
+            frame=frame,
+            x=0,
+            y=0,
+            layer=layer,
+        )
+        for layer in range(layer_count)
+    )
