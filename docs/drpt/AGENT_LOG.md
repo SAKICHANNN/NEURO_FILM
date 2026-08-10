@@ -10686,3 +10686,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Profile compilation stays closed. The next development leaf must identify
   and alter the dominant downstream full-frame lifetime rather than retune the
   already-passing glare kernel or relax the integration gate.
+
+# 2026-08-10 - U6.P6ZH removes downstream full-frame lifetime overlap
+
+- Isolated the tiled candidate so the frozen P6ZG chain retains exact SHA
+  `4ee8ee10...14a8`, then reran the unchanged interleaved 6MP benchmark.
+- Output is exact. Candidate median apply is 3.797s and median RSS 830.8MB,
+  respectively `1.011x` and `.447x` the reference; maximum RSS is 831,639,552B.
+- All automatic gates pass. Only isolated generic profile serialization opens;
+  calibration, photographic quality, native/mobile/GPU and product claims do not.

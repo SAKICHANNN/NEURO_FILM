@@ -1,0 +1,36 @@
+{
+  "automatic_pass": true,
+  "claim_ceiling": "Local Windows/Python numerical and resource evidence for a generic tiled scanner chain; not measured scanner calibration, native/mobile/GPU performance, photographic quality or product readiness.",
+  "decision": "retain_tiled_experimental_chain_and_open_isolated_profile_serialization",
+  "formal_report_sha256": "4ec47654cf4deaba901b631037bd0eb7fd6f7feddec31f01aae7786b861f02a1",
+  "gate_results": {
+    "candidate_memory": true,
+    "candidate_memory_ratio": true,
+    "candidate_time": true,
+    "candidate_time_ratio": true,
+    "finite_bounded": true,
+    "numeric_exact": true,
+    "parent_hashes": true,
+    "repeat_output": true,
+    "repeat_rss": true,
+    "repeat_time": true,
+    "source_identity": true,
+    "workers": true
+  },
+  "implementation_commits": [
+    "afa258e8",
+    "14e3ddf2"
+  ],
+  "measurements": {
+    "candidate_maximum_peak_process_tree_rss_bytes": 831639552,
+    "candidate_median_apply_seconds": 3.7968716500017763,
+    "candidate_median_peak_process_tree_rss_bytes": 830789632.0,
+    "candidate_to_reference_median_apply_time_ratio": 1.0105738153315194,
+    "candidate_to_reference_median_peak_rss_ratio": 0.4468053000848102,
+    "output_sha256": "acbbca26fe64f9e5f2169bdb9c91affbfb057c727c520d88ca085b9568e9e448"
+  },
+  "node": "U6.P6ZH",
+  "next_leaf": "Freeze an isolated generic scanner profile serialization contract without opening calibration or production integration.",
+  "schema": "neuro_film.u6_p6zh_scanner_glare_tiled_downstream_evidence.v1",
+  "stable_evidence_id": "80e1847169be2490b1f7f2cf593daa661420b3942ca0b163e5e6b70f867d9ac6"
+}

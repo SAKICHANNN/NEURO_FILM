@@ -1084,3 +1084,12 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
   full-frame intermediates dominate and erase the isolated glare saving.
 - Do not open a profile compiler. Attribute scanner-stage peaks and change the
   dominant lifetime mechanism before another integration attempt.
+
+# 2026-08-10 - U6.P6ZH tiled downstream chain passes
+
+- Releasing spectral storage and using the existing row-tiled Dmax/MTF/noise
+  path preserves the 6MP typed-chain output exactly.
+- Median apply is 3.797s (`1.011x` reference); median RSS is 830.8MB (`.447x`)
+  and maximum RSS is 831,639,552B. All frozen gates pass.
+- Retain as an experimental CPU chain and open isolated generic profile
+  serialization; scanner calibration and product integration remain closed.
