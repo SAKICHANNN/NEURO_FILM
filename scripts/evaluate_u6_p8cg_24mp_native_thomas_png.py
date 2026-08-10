@@ -146,7 +146,7 @@ def _worker(
 
 
 def _monitored(
-    command: list[str], result_path: Path
+    command: list[str], result_path: Path, *, timeout_seconds: float = 45.0
 ) -> dict[str, Any]:
     process = subprocess.Popen(
         command,
@@ -159,11 +159,11 @@ def _monitored(
     observed: set[int] = set()
     started = time.perf_counter()
     while process.poll() is None:
-        if time.perf_counter() - started > 45.0:
+        if time.perf_counter() - started > timeout_seconds:
             for child in root_process.children(recursive=True):
                 child.kill()
             root_process.kill()
-            raise TimeoutError("P8CG worker exceeded timeout")
+            raise TimeoutError("native Thomas PNG worker exceeded timeout")
         try:
             total = 0
             for item in [root_process, *root_process.children(recursive=True)]:
@@ -220,7 +220,10 @@ def evaluate(contract_path: Path, output_dir: Path, llvm: Path) -> dict[str, Any
             "--png", str(png_path),
             "--result", str(result_path),
         ]
-        runs.append(_monitored(command, result_path))
+        timeout_seconds = max(
+            45.0, float(contract["gates"]["maximum_wall_seconds"]) + 15.0
+        )
+        runs.append(_monitored(command, result_path, timeout_seconds=timeout_seconds))
 
     decoded = cv2.imread(str(png_paths[0]), cv2.IMREAD_UNCHANGED)
     if decoded is None:
