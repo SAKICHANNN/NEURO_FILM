@@ -1,0 +1,51 @@
+{
+  "schema": "neuro_film.u6_p8bv_native_granularity_amplitude_evidence.v1",
+  "experiment_id": "u6.p8bv-native-granularity-amplitude-v1",
+  "status": "pass-retain-native-p4bw-granularity-amplitude-compiler",
+  "contract_sha256": "06e3d751678097be788ccc2df7869a568c0809837f3aaa35c6bba1b84dd28202",
+  "implementation": {
+    "commits": ["0e9d335d", "a1934816", "fd8f6239", "84219c11"],
+    "c_source_sha256": "df67bad409a8f4a79ca86375b7b4fdde47855dff7a7012da53d9074e08556739",
+    "c_header_sha256": "f3c74d8604ce981e1ed941fa570e12e461e1a18f112e0a8d3394e028ea157960",
+    "python_binding_sha256": "433e3251002056419d7572453f20dfc395888a7212fa51f709e921f6f4b547a5",
+    "conformance_sha256": "9a66c529e19000d1e0cc91f910fcf895ce3a4fc5456ce4e32b682385f024af63",
+    "formal_runner_sha256": "cced4fff32bb2cb6e24c12d7b5bb6dbf19ee82674bfd2793bad9da759d84a084"
+  },
+  "conformance": {
+    "stable_evidence_id": "620bd98cc1531456b1a76cd7fdd0b7f0f92d48d827106a228bda851336fedaf9",
+    "samples_per_layer": 4097,
+    "maximum_density_absolute_error_vs_float64": 1.1919143050320713e-7,
+    "maximum_point_sigma_absolute_error_vs_float64": 9.308461501600362e-10,
+    "maximum_cross_compiler_absolute_error": 0.0,
+    "repeat_exact": true,
+    "failure_atomic": true,
+    "all_gates_pass": true
+  },
+  "performance_12mp_rgb": {
+    "shape_chw": [3, 3000, 4000],
+    "exposure_sha256": "81a91bcdafe07f48701ae8a8e4339fa74af3be25326b422a9f6ccaa5c431fc3b",
+    "density_sha256": "74cdf9ece69273f51cb07b20478a5e44ff05c7cc047f0a3d9333715336d78730",
+    "point_sigma_sha256": "e32fe4d83748f079c69ecc3e00757dbd6b61fee426c18691f347e91951729c8d",
+    "input_bytes": 144000000,
+    "output_bytes": 288000000,
+    "four_fresh_wall_seconds_range": [1.7240941999989445, 1.8302479000012681],
+    "four_fresh_peak_process_tree_rss_bytes_range": [696766464, 697118720],
+    "density_range": [0.21368198096752167, 2.9796392917633057],
+    "point_sigma_range": [0.00687720300629735, 0.021586546674370766],
+    "maximum_wall_seconds_gate": 2.0,
+    "maximum_process_tree_rss_bytes_gate": 805306368,
+    "exact_repeat": true,
+    "all_gates_pass": true
+  },
+  "formal_replay": {
+    "report_sha256": [
+      "8c4f217fbcf65ba25a15c52313b95e8ec783459530bd318ff1414b9f9e352611",
+      "d6a706b81b9896bf6c160b1d4b96efc14e5d3aaf7822adc48568c832112c398d"
+    ],
+    "stable_evidence_id": "74f37c17ca2b7568ed0656c82afcbde6eeb65d17b98551d31330573d64bcbe95",
+    "scientific_identity_exact": true
+  },
+  "decision": "retain_native_p4bw_granularity_amplitude_compiler",
+  "retained_boundary": "The compiler consumes explicit relative layer log exposure and the unchanged P4BW/P2Q profile; it does not estimate exposure or generate a spatial field.",
+  "claim_ceiling": "Portable execution of the retained hybrid P4BW amplitude profile only; not calibrated Kodak spatial grain, microscopic structure, exposure estimation, photographic promotion or product authorization."
+}

@@ -10765,3 +10765,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Freeze knots/adjacent float32 values, 4097 samples/layer, dual compilers,
   failure atomicity and 12MP RGB resources. No fit, spatial field or exposure
   estimation is part of this leaf.
+- **Result:** PASS. MSVC and LLVM-MinGW are byte-exact; corrected direct
+  float64 comparison gives maximum density/sigma errors `1.19e-7`/`9.31e-10`.
+  Four fresh 12MP RGB executions are exact at 1.724-1.830s and
+  696.8-697.1MB process-tree peak. Stable evidence ID `74f37c17...bcbe95`.
+- **Boundary:** This compiles explicit relative layer exposure into the retained
+  P4BW density and point-sigma planes. It does not infer exposure, synthesize
+  the field, reopen P4BZ photographic evidence, or authorize a product path.
