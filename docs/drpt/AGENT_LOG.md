@@ -10618,3 +10618,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   control with minimum RMSE `.000496`, while zero exposure is exact.
 - Temporal exposure stays before development and emulsion structure. This is
   generic synthetic coupling, not measured stock/process/video evidence.
+
+# 2026-08-10 - U5.R2CA0 closes latest-paper learnable-axis colour mechanism
+
+- Used the WACV 2026 LHSI luminance-axis idea only; the official repository had
+  no root licence, so the implementation is independent NumPy and reuses only
+  the project's analytical gamut guard.
+- Two formal reports are byte-identical (`25f7ea0e...73eb1`). Axis recovery,
+  confirmation error, baselines and Jacobian pass, while `.23449` minimum safe
+  scale, `20.62%` limiting and new boundaries close the exact mechanism.
+- Verified 11 focused/adjacent tests and Ruff. No P: data, GPU, cloud, paper
+  code/weights/data, film claim or product path was used.

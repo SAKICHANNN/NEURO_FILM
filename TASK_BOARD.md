@@ -1031,3 +1031,12 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
   two-domain separation from 50D and 500T, but neither domain from 250D reaches
   two material channels. Retain role facts only; no trace/threshold rescue or
   RGB/product mapping.
+
+# 2026-08-10 - U5.R2CA0 closes learnable-axis cylindrical colour
+
+- The clean-room WACV-2026-inspired coordinate family recovers all six frozen
+  axes exactly and keeps the interior Jacobian positive; two reports are exact
+  (`25f7ea0e...73eb1`).
+- Analytical no-clip execution exposes the decisive failure: minimum safe
+  scale is `.23449`, `20.62%` of pixels are limited, and new-boundary control
+  fails. Close this exact axis/amplitude family without strength or gate rescue.

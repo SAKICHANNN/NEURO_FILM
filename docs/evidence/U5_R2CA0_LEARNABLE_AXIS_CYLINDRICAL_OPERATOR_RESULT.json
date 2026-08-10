@@ -1,0 +1,30 @@
+{
+  "schema": "neuro_film.u5_r2ca0_learnable_axis_cylindrical_operator_evidence.v1",
+  "experiment_id": "U5.R2CA0",
+  "contract_sha256": "60f5f66aa06f450c4874f33b1e6236fe7f364163777868a23ca4c6e8e265407a",
+  "implementation_commit": "e9ce8fbc0c1b2d9bf1646aec3e34aa1226ebf9bc",
+  "formal_report_sha256": "25f7ea0ef0391c1fb3be89a9a4a35b7f80a45fcc85b6200101b38bbca4273eb1",
+  "stable_evidence_id": "3423b7a2408b6ef7ce1d1890f3ae0c5b20fe86c3c9d8bf61802c12f9dfef23cd",
+  "replays": 2,
+  "byte_identical": true,
+  "passed": false,
+  "decision": "close_exact_learnable_axis_cylindrical_representation",
+  "metrics": {
+    "axis_recovery_count": 6,
+    "axis_case_count": 6,
+    "maximum_selected_confirmation_rmse": 0.0,
+    "minimum_improvement_over_fixed_axis": 1.0,
+    "minimum_improvement_over_rgb_cubic": 1.0,
+    "minimum_improvement_over_wrong_axis": 1.0,
+    "minimum_local_jacobian_determinant": 1.0444231216517101,
+    "minimum_safe_scale": 0.2344884933130659,
+    "maximum_limited_pixel_fraction": 0.20622222222222222
+  },
+  "failed_gates": [
+    "minimum_safe_scale",
+    "maximum_limited_pixel_fraction",
+    "maximum_new_boundary_fraction"
+  ],
+  "interpretation": "The selected axis exactly represents its own synthetic family and has a positive interior Jacobian, but the requested strength consumes too much RGB-cube headroom under analytical no-clip execution. Axis learning does not resolve the strength-versus-gamut conflict.",
+  "claim_ceiling": "Synthetic clean-room representation and safety evidence only; no photographic quality, film/stock response, calibration or product promotion."
+}
