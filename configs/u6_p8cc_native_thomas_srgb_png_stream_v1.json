@@ -1,0 +1,59 @@
+{
+  "schema": "neuro_film.u6_p8cc_native_thomas_srgb_png_stream_contract.v1",
+  "experiment_id": "u6.p8cc-native-thomas-srgb-png-stream-v1",
+  "node": "ULT > U6 > U6.P8 > U6.P8CC",
+  "date_frozen": "2026-08-10",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can exact P8CB integer tiles be serialized once into a deterministic RGB PNG with the fixed 588-byte sRGB ICC while retaining neither the full image nor a second quantized copy?",
+  "parents": {
+    "p8cb_evidence": {
+      "path": "docs/evidence/U6_P8CB_NATIVE_THOMAS_SRGB_QUANTIZED_SINK_RESULT.json",
+      "sha256": "7cc558beba98988af0c737ba4ee35575f636beb11fa991d20ec07d3467a6b416",
+      "required_decision": "retain_exact_native_thomas_srgb_quantized_sink"
+    }
+  },
+  "encoder": {
+    "format": "PNG",
+    "color_type": 2,
+    "interlace": 0,
+    "filter_per_row": 0,
+    "compression_level": 6,
+    "icc_profile_sha256": "217fe48ec958c667f8eef725aa27198f465df95d7662593b90d0a1cc30114356",
+    "icc_profile_bytes": 588,
+    "bit_depths": [8, 16],
+    "uint16_sample_byte_order": "big-endian"
+  },
+  "candidate": {
+    "p8cb_arithmetic_and_samples_unchanged": true,
+    "row_partition": 128,
+    "sink_order": "strictly increasing complete rows",
+    "one_final_quantization_only": true,
+    "full_output_allowed": false,
+    "post_quantization_float_processing_allowed": false,
+    "deterministic_png_stream": true,
+    "model_or_profile_change_allowed": false
+  },
+  "conformance": {
+    "shape_chw": [3, 193, 257],
+    "require_exact_decoded_samples": true,
+    "require_exact_icc_bytes": true,
+    "require_exact_png_bytes_across_compilers_and_replays": true,
+    "require_input_immutability": true,
+    "require_out_of_order_rejection": true,
+    "require_failure_cleanup": true
+  },
+  "performance": {
+    "shape_chw": [3, 3000, 4000],
+    "primary_bit_depth": 16,
+    "maximum_wall_seconds": 18.0,
+    "maximum_process_tree_rss_bytes": 460000000,
+    "maximum_repeat_wall_ratio": 1.25,
+    "maximum_repeat_rss_ratio": 1.10,
+    "require_two_fresh_processes": true,
+    "require_exact_png_identity": true,
+    "require_zero_surviving_processes": true
+  },
+  "decision_if_pass": "retain_exact_native_thomas_srgb_png_stream",
+  "decision_if_fail": "close_png_stream_and_retain_p8cb_integer_sample_boundary",
+  "claim_ceiling": "Host-only deterministic sRGB PNG serialization of exact generic P8CB samples with the fixed ICC; not device runtime, calibrated stock response, product authorization or general media support."
+}
