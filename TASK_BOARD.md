@@ -1073,6 +1073,15 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
   non-basic, pooled and stock-separation gates. Visual review stays closed; do
   not tune this compiler family.
 
+# 2026-08-11 - U5.R2CB4 measured dye-basis conformance
+
+- Exact first-party Fujifilm dye bases were tested against all 8,640 existing
+  measured Velvia 100F target spectra with target-only NNLS coefficients.
+- Two reports are exact (`128333e1...e727`). The correct basis wins 98.52% of
+  joint-held rows with median 32.68% advantage over the best wrong-stock basis.
+- Retain source-basis compatibility only. A next forward leaf must predict
+  coefficients from source-observable evidence on independent pairs.
+
 - The clean-room WACV-2026-inspired coordinate family recovers all six frozen
   axes exactly and keeps the interior Jacobian positive; two reports are exact
   (`25f7ea0e...73eb1`).

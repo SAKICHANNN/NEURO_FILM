@@ -2,6 +2,18 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-11 - U5.R2CB4 measured dye-basis compatibility passes
+
+- The new question uses 8,640 existing measured Velvia 100F spectra to test
+  exact CB1 bases, with constant and wrong-stock controls. Per-spectrum NNLS
+  coefficients are explicitly target-only and cannot define a forward render.
+- Two reports are byte-identical (`128333e1...e727`). All four split cells pass;
+  joint-held correct-basis win/margin are `.98524/.32676`, and median/p95
+  density RMSE are `.04941/.11123`.
+- Retain the physical source-basis compatibility result. The next useful leaf
+  needs source-observable coefficient prediction on independent paired data;
+  CB2/CB3 remains closed and no product/profile action opens.
+
 # 2026-08-11 - Freeze U5.R2CB2 bounded dye-operator compiler
 
 - Frozen before operator score: exact CB1 curves, endpoint-hold interpolation,

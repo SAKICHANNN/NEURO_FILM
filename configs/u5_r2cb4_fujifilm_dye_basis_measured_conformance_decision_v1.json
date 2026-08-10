@@ -1,0 +1,38 @@
+{
+  "schema": "neuro_film.u5_r2cb4_fujifilm_dye_basis_measured_conformance_decision.v1",
+  "experiment_id": "U5.R2CB4",
+  "contract_commit": "965a91fa",
+  "implementation_commit": "19dde695",
+  "contract_sha256": "868e5a40892737768b2a1c054f9e26761eeb44b484515c1147b294e708694c6f",
+  "implementation_sha256": "c0e6ba9a78ab84bec1287aa895342a48e0c6e2532926acdcd6ac1e14fda4a962",
+  "runner_sha256": "d3106bd04e21d24cb4f46d50df3ce1f1930d7a82a3b7a351bc44948e80110d9c",
+  "formal_report_path": "outputs/experiments/u5_r2cb4_fujifilm_dye_basis_measured_conformance_v1/report_run1.json",
+  "formal_report_sha256": "128333e1fd94ff83214ae610e8aa073a0f2360ff7acd59d193dc360306a9e727",
+  "stable_evidence_id": "8edec3e6a14f8f971c2a2a81eacace285e3a81f8c1600d9ed72604eed4c681d6",
+  "repeat_report_byte_exact": true,
+  "passed": true,
+  "decision": "retain_measured_velvia100f_dye_basis_compatibility",
+  "joint_held": {
+    "rows": 1152,
+    "correct_basis_win_fraction_vs_best_wrong": 0.9852430555555556,
+    "median_relative_improvement_vs_best_wrong": 0.3267621996421074,
+    "median_relative_improvement_vs_constant": 0.8102330076182905,
+    "median_density_rmse": 0.04940590622875449,
+    "p95_density_rmse": 0.1112296884097516,
+    "maximum_density_rmse": 0.17167743687807444,
+    "dye_zero_coefficient_fraction": [
+      0.0026041666666666665,
+      0.020833333333333332,
+      0.125
+    ]
+  },
+  "all_cell_correct_basis_win_fraction_minimum": 0.9791666666666666,
+  "failed_gates": [],
+  "interpretation": [
+    "The exact first-party Velvia 100 dye-density basis is materially more compatible with independently measured Velvia 100F target spectra than the exact Velvia 50 and Provia 100F bases.",
+    "Each spectrum supplies its own NNLS coefficients, so this is target-dependent representation evidence and cannot be used as an application-time forward transform.",
+    "The measurement rows were used by earlier AQ/P6 experiments; the model question is new, but this is not a pristine population or an independent roll/process confirmation."
+  ],
+  "next_action": "Seek a source-observable mapping from recorder or scene exposure into the retained fixed dye coordinates on an independent paired population; do not infer coefficients from application targets or retune the closed CB2/CB3 renderer.",
+  "claim_ceiling": "Target-dependent spectral representation compatibility between exact first-party Fujifilm dye-density curves and independently measured Velvia 100F manufactured-target spectra; not a forward film response, independent roll/process, scanner calibration, photographic appearance or product profile."
+}
