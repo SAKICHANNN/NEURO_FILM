@@ -1,0 +1,55 @@
+{
+  "schema": "neuro_film.u6_p9g_gate_weave_physical_order_contract.v1",
+  "node": "U6.P9G",
+  "question": "Does film-gate translation materially differ when the same bilinear sampling is placed after development/transmittance, as required by physical scan order, rather than incorrectly interpolating layer exposure before its nonlinear characteristic response?",
+  "parents": {
+    "p9b_evidence": "docs/evidence/U6_P9B_GATE_WEAVE_SAMPLING_RESULT.json",
+    "p9b_evidence_sha256": "c6c65fccf6000d9736b7c4063de7f433065a0148507f1290ad940c7ec84c479c",
+    "p9f_evidence": "docs/evidence/U6_P9F_EXPOSURE_DEVELOPMENT_ORDER_RESULT.json",
+    "p9f_evidence_sha256": "9bf1202f7653dff4459f766e1000bb1d413ccdeba7d84bbf9843e968c263f6ed",
+    "gate_weave_contract": "configs/u6_p9a_gate_weave_ou_v1.json",
+    "gate_weave_contract_sha256": "bb91ba107b00ca71ce178538b9f9e0290804208f06a97082acaae0738d27c564",
+    "sensitometry_config": "configs/u2_2a_sensitometry_primitive_v1.json",
+    "sensitometry_config_sha256": "8f43edcbc7e168af830081dce16ecb5f268a294d2f0cd777b942aec4b95c8af2"
+  },
+  "experiment": {
+    "output_height": 96,
+    "output_width": 128,
+    "frame_start": 512,
+    "frame_count": 256,
+    "minimum_layer_exposure": 0.005,
+    "maximum_layer_exposure": 8.0,
+    "checker_period_x": 7,
+    "checker_period_y": 9,
+    "frame_partition_counts": [17, 61, 178]
+  },
+  "correct_order": "layer exposure -> characteristic/development -> transmittance -> immutable-source bilinear scanner sampling",
+  "negative_control": "immutable-source bilinear interpolation of layer exposure -> characteristic/development -> transmittance",
+  "automatic_gates": {
+    "parent_hashes_exact": true,
+    "correct_order_replay_byte_exact": true,
+    "correct_order_partition_byte_exact": true,
+    "zero_offset_orders_byte_exact": true,
+    "minimum_frame_rmse": 0.01,
+    "minimum_median_frame_rmse": 0.02,
+    "minimum_p95_frame_absolute_error": 0.05,
+    "minimum_p95_frame_maximum_error": 0.12,
+    "all_values_finite": true,
+    "output_range_minimum": 0.0,
+    "output_range_maximum": 1.0,
+    "hard_clip_count_maximum": 0,
+    "display_rgb_transform_count_zero": true
+  },
+  "forbidden": [
+    "move gate weave into scene or layer exposure to simplify runtime",
+    "replace immutable-source sampling with chained frame-to-frame resampling",
+    "change the P9A trajectory, P9B bilinear sampler or U2.2 curve",
+    "tune the chart, frame window, controls or gates after scoring",
+    "claim this synthetic raster comparison is measured scanner mechanics or video quality"
+  ],
+  "branch_rule": {
+    "pass": "freeze gate weave after development/transmittance and before digital output sampling; forbid exposure-domain interpolation as a runtime shortcut",
+    "fail": "close this exact ordering audit without chart, trajectory or threshold rescue"
+  },
+  "claim_ceiling": "Synthetic physical-order discrimination for the existing generic characteristic curve and gate trajectory only; not measured film transport, scanner calibration, rendered photographic video quality or product readiness."
+}
