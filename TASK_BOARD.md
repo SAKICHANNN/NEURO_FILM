@@ -1058,3 +1058,11 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
 - Median apply time rises from 1.788s to 19.946s (`11.16x`), failing both
   frozen time gates. Close this implementation without row-chunk tuning; test
   a materially different block-FFT compiler next.
+
+# 2026-08-10 - U6.P6ZE block FFT narrowly misses absolute memory
+
+- Block FFT preserves the reference within `1.11e-16`, runs in 2.321s at
+  12MP (`1.333x` full-frame FFT), and reduces median RSS to `.688x`.
+- Peak RSS is 1,076,789,248B, exceeding the frozen 1GiB gate by 3,047,424B.
+  Close this exact three-channel-block implementation; next remove unnecessary
+  simultaneous three-channel halo/pad residency under a new frozen leaf.

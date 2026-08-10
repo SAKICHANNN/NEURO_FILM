@@ -1,0 +1,37 @@
+{
+  "automatic_pass": false,
+  "claim_ceiling": "Local Windows/Python numerical and fresh-process resource evidence for a generic block-FFT scanner-glare compiler only; not measured scanner calibration, native/mobile/GPU performance, photographic quality or product readiness.",
+  "decision": "close_exact_three_channel_block_fft_on_absolute_memory_gate",
+  "formal_report_sha256": "91c5d856f3b3a3a1c4c2a8f5d3fcbf10ef40643e93c7b690bee559b39222f13f",
+  "gate_results": {
+    "candidate_memory": false,
+    "candidate_memory_ratio": true,
+    "candidate_time": true,
+    "candidate_time_ratio": true,
+    "finite_bounded": true,
+    "parent_hashes": true,
+    "partition": true,
+    "reference_absolute": true,
+    "reference_rmse": true,
+    "repeat_output": true,
+    "repeat_rss": true,
+    "repeat_time": true,
+    "source_identity": true,
+    "workers": true
+  },
+  "implementation_commit": "e46cba6b",
+  "measurements": {
+    "maximum_partition_absolute_error": 1.1102230246251565e-16,
+    "maximum_reference_absolute_error": 1.1102230246251565e-16,
+    "block_fft_median_apply_seconds": 2.3211728999995103,
+    "block_fft_maximum_peak_process_tree_rss_bytes": 1076789248,
+    "block_fft_to_reference_median_apply_time_ratio": 1.3330984168859779,
+    "block_fft_to_reference_median_peak_rss_ratio": 0.6880419630936678,
+    "absolute_memory_gate_bytes": 1073741824,
+    "absolute_memory_excess_bytes": 3047424
+  },
+  "node": "U6.P6ZE",
+  "next_leaf": "Prospectively test channel-serial halo construction that removes unused three-channel strip and pad residency without changing the kernel, dtype, row chunk or gates.",
+  "schema": "neuro_film.u6_p6ze_scanner_glare_block_fft_evidence.v1",
+  "stable_evidence_id": "97b370e3a5bc20206cfa81f925fdc4c0226b06d48c744f43babbe0d364c66249"
+}

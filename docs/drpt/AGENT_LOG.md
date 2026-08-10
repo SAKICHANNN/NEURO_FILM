@@ -10651,3 +10651,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The exact implementation is closed without row-chunk or threshold rescue.
   A new block-FFT streaming compiler is the next discriminating development
   leaf; scanner calibration and product integration remain closed.
+
+# 2026-08-10 - U6.P6ZE block FFT passes speed but misses 1GiB
+
+- The materially different 512-row symmetric-halo block FFT is repeat-exact,
+  stays within `1.11e-16` of the full-frame reference, and records 2.321s at
+  12MP versus 1.741s for the reference.
+- Median RSS ratio `.688` passes, but candidate peak 1,076,789,248B exceeds
+  the frozen 1GiB gate by 3,047,424B. The exact implementation is closed.
+- Profiling-by-inspection identifies simultaneous three-channel strip and pad
+  residency before per-channel FFT. A new channel-serial implementation may
+  test that root cause without changing the kernel, dtype, chunk or gates.
