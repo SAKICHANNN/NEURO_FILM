@@ -49,7 +49,7 @@
     "step_count": 21,
     "trim_fraction": 0.18,
     "axis_rule": "choose the image axis whose 21 equal-bin trimmed medians have the larger robust range; reject if the winning range is less than twice the other axis",
-    "orientation_rule": "for each wedge independently choose the direction with larger absolute Spearman correlation to the frozen density order; report the chosen reversal",
+    "orientation_rule": "for each wedge independently choose the direction with the more negative Spearman correlation to the frozen increasing-density order; report the chosen reversal",
     "development_step_indices_zero_based": [0, 1, 3, 4, 6, 7, 9, 10, 12, 13, 15, 16, 18, 19],
     "confirmation_step_indices_zero_based": [2, 5, 8, 11, 14, 17, 20]
   },
