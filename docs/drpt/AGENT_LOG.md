@@ -10494,3 +10494,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   semantics and no output-range expansion.
 - Keep every frame anchored to the immutable source. Chained resampling,
   photographic video quality and product integration remain forbidden.
+
+# 2026-08-10 - U6.P9C separates temporal grain innovations from texture reuse
+
+- Implemented frame/layer/coordinate counter-addressed white innovations from
+  the current AOMedia temporal/RGB-independence facts; density and NPS shaping
+  deliberately remain outside this leaf.
+- Two reports are exact (`56874c31...fab2`). All 192 frame-layer hashes are
+  unique; reverse order, replay and row partitions are exact. Maximum adjacent
+  frame/cross-layer correlations are `.01924/.01833`.
+- Static and toroidally shifted reuse inverse-align to correlation `~1.0`, so
+  neither is accepted as independent motion-picture grain. Next reuse the
+  existing physical density/NPS stages rather than create another grain model.

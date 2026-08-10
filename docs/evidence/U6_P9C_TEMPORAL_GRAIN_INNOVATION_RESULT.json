@@ -1,0 +1,44 @@
+{
+  "schema": "neuro_film.u6_p9c_temporal_grain_innovation_evidence.v1",
+  "node": "U6.P9C",
+  "decision": "retain_frame_and_layer_independent_counter_grain_innovations",
+  "software_commit": "7677a5fc",
+  "bindings": {
+    "contract": {
+      "path": "configs/u6_p9c_temporal_grain_innovation_v1.json",
+      "sha256": "d890df841bc8340d443d53c4374335cc92eb8d7165cd1ddd4df1a363bfa16841"
+    },
+    "primitive": {
+      "path": "src/film_physics/temporal_grain.py",
+      "sha256": "ec07ac9ffbb091d3bf1abb2d9592f8f92d78166056f1d1ee86fd76010853a4b2"
+    },
+    "evaluator": {
+      "path": "src/eval/temporal_grain_innovation.py",
+      "sha256": "005a456a874b4654e281859ce14d438190eeee76619569b988b6cc4b1f8624ad"
+    },
+    "report": {
+      "path": "outputs/experiments/u6_p9c_temporal_grain_innovation_v1/run_1.json",
+      "sha256": "56874c3127f1a57584926cdb84deab2b2ee297a620b856c814ee7304d36afab2",
+      "stable_evidence_id": "cd2cbbad95754435393c62f85787983d69864dddbdf4237bf2c5eae5d41bd0b1"
+    }
+  },
+  "results": {
+    "automatic_pass": true,
+    "two_reports_byte_exact": true,
+    "replay_reverse_order_and_tile_partition_byte_exact": true,
+    "unique_frame_layer_hashes": 192,
+    "maximum_absolute_frame_mean": 0.017474036217541806,
+    "frame_standard_deviation_range": [0.98759638326815, 1.0135811759619697],
+    "maximum_absolute_adjacent_frame_correlation": 0.019243995584045687,
+    "maximum_absolute_cross_layer_correlation": 0.018332140989059914,
+    "static_and_shifted_reuse_inverse_aligned_correlation_minimum": 0.9999999999999998,
+    "density_envelope_nps_filter_and_rgb_transform_count": 0
+  },
+  "interpretation": [
+    "The project counter contract now addresses every innovation by profile, seed, frame, layer and spatial coordinate, so generation is independent of frame order and spatial partitioning.",
+    "Independent innovations satisfy the current AOMedia temporal and RGB-layer independence facts. Static texture reuse and toroidal shifting are correctly exposed as near-perfectly dependent controls after inverse alignment.",
+    "White innovations are not complete grain. Density or signal envelopes, dye-cloud or silver structure and scanner-convolved NPS remain separate existing physical stages."
+  ],
+  "next_leaf": "Compose the unchanged independent innovations through one existing density-conditioned and NPS-shaped physical grain path, with static-reuse and display-RGB-noise controls.",
+  "claim_ceiling": "Synthetic temporal and layer independence of grain innovations only; not complete film grain, measured stock/process/scanner evidence, rendered-video quality or product readiness."
+}
