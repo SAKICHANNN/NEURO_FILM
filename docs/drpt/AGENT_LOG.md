@@ -10841,3 +10841,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   appears. Combined with U6.2B's severe speckles and P4CF's real-scan result,
   U6.2A is closed as an LOD authority; P4BS remains the generic real-scan
   second-order mechanism pending a genuinely new physical observable.
+
+### U6.P4CH official Newson archive preanalysis closure
+
+- Range-audited official archive v1 without downloading the 2.35GB ZIP and
+  froze 64 test rows before target reads. The archive has 400 clean and 3,962
+  grain test PNGs plus 38 missing grain rows.
+- The first formal pair stopped before residual/features: the clean member met
+  grayscale `L`, but exact grain member `002436.png` is RGB. The frozen P4CH
+  decoder therefore failed closed with zero evaluated rows and no report.
+- P4CH will not be rescued. A disjoint cohort may test the same scientific
+  question only under the official loader's explicit first-channel behavior.

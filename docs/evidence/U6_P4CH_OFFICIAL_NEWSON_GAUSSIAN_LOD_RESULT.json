@@ -1,0 +1,38 @@
+{
+  "schema": "neuro_film.u6_p4ch_official_newson_gaussian_lod_result.v1",
+  "experiment_id": "u6.p4ch-official-newson-gaussian-lod-v1",
+  "date": "2026-08-10",
+  "contract_commit": "473100d7",
+  "implementation_commit": "5b5e49eb",
+  "status": "closed_source_contract_before_feature_analysis",
+  "archive_facts": {
+    "content_length_bytes": 2354389185,
+    "etag_md5": "10e6f5442bbeaa82cb1e21ae1e938769",
+    "entry_count": 8722,
+    "test_hyperparameters_sha256": "0ad799160fa15d4ee631ba15b92b8f352d519f7aa2eed03d078340f0511c4a45",
+    "test_clean_png_count": 400,
+    "test_grain_png_count": 3962,
+    "missing_test_grain_rows": 38
+  },
+  "formal_attempt": {
+    "source_lock_written": false,
+    "report_written": false,
+    "feature_rows_evaluated": 0,
+    "failure": "The first selected clean PNG passed the frozen single-frame grayscale-L contract, but its exact paired grain PNG was single-frame RGB. The frozen decoder rejected it before residual or feature computation.",
+    "failed_member": "NeuralFilmGrainRendering_Dataset/Mixed_grain/test/002436.png",
+    "failed_member_sha256": "4e100b74ba07cd0ee4d678ebbed5812220b367e990991fe41b1f59d0858c7bcc",
+    "failed_member_format": "PNG",
+    "failed_member_mode": "RGB",
+    "failed_member_frames": 1,
+    "failed_member_size": [512, 512]
+  },
+  "decision": "close_p4ch_exact_rows_and_decoder_contract_without_rescue",
+  "next_leaf": "Freeze a disjoint P4CI cohort that excludes every P4CH selected index and implements the official repository loader semantics of taking the first channel before the same unchanged Gaussian-LOD analysis.",
+  "forbidden": [
+    "change P4CH decode semantics after its first selected target was read",
+    "reuse any P4CH selected index in P4CI",
+    "interpret this source-contract failure as a Gaussian or Boolean result",
+    "claim real-film, stock, process, scanner, visual-safety or product evidence"
+  ],
+  "claim_ceiling": "Exact official archive and first-pair input-contract failure only; no higher-order grain result."
+}
