@@ -1053,6 +1053,13 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
   maximum digitization-uncertainty fraction `.22979`. Next compile the exact
   curves into a bounded film-inspired operator and test whether signal survives.
 
+# 2026-08-11 - Freeze U5.R2CB2 bounded dye-operator compiler
+
+- Compile the exact CB1 curves with fixed NNLS balance, synthetic scanner
+  observers, neutral calibration and convex residual execution.
+- Require zero fold/clip, exact neutral and cross-scanner stock separation.
+  Pass remains film-inspired capacity only; no calibration or product mapping.
+
 - The clean-room WACV-2026-inspired coordinate family recovers all six frozen
   axes exactly and keeps the interior Jacobian positive; two reports are exact
   (`25f7ea0e...73eb1`).

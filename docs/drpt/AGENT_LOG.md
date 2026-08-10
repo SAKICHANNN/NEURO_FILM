@@ -2,6 +2,14 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-11 - Freeze U5.R2CB2 bounded dye-operator compiler
+
+- Frozen before operator score: exact CB1 curves, endpoint-hold interpolation,
+  NNLS dye balance, two synthetic scanner observers, exact neutral calibration,
+  convex residual strength and a 17-cube.
+- Zero folds/clips and cross-scanner stock separation are hard gates. This is a
+  film-inspired capacity test only and cannot create calibrated stock truth.
+
 # 2026-08-11 - Freeze U5.R2CB0 same-manufacturer E-6 source test
 
 - Froze exact official Velvia 100 and Provia 100F graph traces, axis/ink error

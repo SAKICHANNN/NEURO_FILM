@@ -1,0 +1,89 @@
+{
+  "schema": "neuro_film.u5_r2cb2_fujifilm_e6_bounded_dye_operator_contract.v1",
+  "experiment_id": "U5.R2CB2",
+  "question": "Do the exact CB1 Fujifilm E-6 separated-light dye-density shapes survive compilation into a bounded, topology-preserving explicit film-inspired operator with useful three-stock separation under two synthetic scanner observers?",
+  "parent_source_signature": {
+    "path": "configs/u5_r2cb1_fujifilm_e6_spectral_dye_signature_decision_v1.json",
+    "sha256": "62f4867d43ae7a4fbf69062879381e55293d90de03c73707523c080c126afdf5",
+    "required_decision": "retain_non_renderable_fujifilm_e6_spectral_dye_signature",
+    "required_stable_evidence_id": "e51c86656dd9ae5f592b66e7bc1bcac630d9237912b5bbc9bc11a23490000cd5"
+  },
+  "trace": {
+    "path": "configs/data/fujifilm_e6_spectral_dye_density_trace_v1.json",
+    "sha256": "996f45892ccb33836aa0d063bb79e3bd0be3c38cc43f452ba05f46e7c4538066"
+  },
+  "stocks": [
+    "fujichrome_velvia_50_rvp50_af3_0221e2",
+    "fujichrome_velvia_100_rvp100_af3_202e",
+    "fujichrome_provia_100f_rdpiii_af3_036e"
+  ],
+  "compiler": {
+    "wavelength_nm": {"start": 410.0, "stop": 690.0, "step": 10.0},
+    "trace_interpolation": "piecewise-linear within each traced support and constant endpoint hold outside support",
+    "dye_order_for_complementary_rgb": ["yellow", "magenta", "cyan"],
+    "complementary_rgb_amounts": ["1-blue", "1-green", "1-red"],
+    "dye_balance": "nonnegative least squares of transposed dye curves against a unit-density spectrum, followed by normalization to unit mean summed density",
+    "density_strength": 0.85,
+    "residual_strength": 0.75,
+    "neutral_calibration_samples": 1025,
+    "neutral_calibration": "per-channel monotone piecewise-linear inverse of the exact neutral scanner ramp; scanner values outside the neutral endpoint range fail instead of clamp",
+    "lut_size": 17,
+    "lut_dtype": "float32",
+    "output": "convex residual blend between identity linear RGB and neutral-calibrated synthetic scanner RGB",
+    "pooled_control": "arithmetic mean of the three stock dye curves before the unchanged compiler"
+  },
+  "scanner_profiles": [
+    {
+      "profile_id": "u5-r2cb2-primary-synthetic-scanner-v1",
+      "illuminant_components": [{"center_nm": 550.0, "sigma_nm": 200.0, "weight": 1.0}],
+      "sensor_center_nm_rgb": [610.0, 540.0, 450.0],
+      "sensor_sigma_nm_rgb": [45.0, 40.0, 35.0]
+    },
+    {
+      "profile_id": "u5-r2cb2-observer-synthetic-scanner-v1",
+      "illuminant_components": [{"center_nm": 535.0, "sigma_nm": 170.0, "weight": 1.0}],
+      "sensor_center_nm_rgb": [600.0, 530.0, 440.0],
+      "sensor_sigma_nm_rgb": [55.0, 50.0, 45.0]
+    }
+  ],
+  "gates": {
+    "required_stock_count": 3,
+    "maximum_dye_balance_rmse": 0.2,
+    "all_values_finite": true,
+    "output_minimum": 0.0,
+    "output_maximum": 1.0,
+    "maximum_interior_hard_clip_fraction": 0.0,
+    "maximum_neutral_rgb_spread": 1e-8,
+    "minimum_stock_style_delta_e76_median": 2.0,
+    "minimum_each_pair_output_linear_rgb_rmse": 0.01,
+    "minimum_each_pair_output_delta_e76_median": 1.0,
+    "minimum_each_stock_vs_pooled_delta_e76_median": 0.5,
+    "minimum_observer_to_primary_pair_separation_ratio": 0.5,
+    "maximum_negative_jacobian_fraction": 0.0,
+    "minimum_jacobian_determinant": 0.0001,
+    "maximum_jacobian_spectral_norm": 4.0,
+    "two_byte_identical_reports": true,
+    "all_compiled_array_hashes_exact": true
+  },
+  "controls": [
+    "identity cube",
+    "pooled three-stock mean-dye compiler",
+    "second synthetic scanner observer",
+    "exact neutral ramp",
+    "full-cube local Jacobian determinants and spectral norms"
+  ],
+  "stop_rules": [
+    "Do not change density strength, residual strength, LUT size, endpoint rule, dye balance, scanner profiles or gates after any operator score.",
+    "Failure closes this exact source-curve compiler family without strength, scanner, smoothing, curve, threshold or LUT-size rescue.",
+    "Pass retains only explicit film-inspired operator capacity and may open a separately frozen photographic/OOD experiment; it cannot establish calibrated film response, true dye amount, scanner response, stock authenticity or product promotion."
+  ],
+  "forbidden_inputs": [
+    "RGB-to-spectrum reconstruction or retrieval",
+    "scene/application/source pixels outside the synthetic cube and neutral ramp",
+    "paired digital-film targets",
+    "characteristic curves or spectral sensitivity curves from the failed U5.R2H0A route",
+    "measured scanner claims",
+    "post-score visual or numerical tuning"
+  ],
+  "claim_ceiling": "Bounded explicit film-inspired source-curve compiler capacity from exact first-party separated-light dye-density shapes under synthetic scanner controls; not calibrated Fujifilm response, film-roll/process/scanner truth, photographic preference, authenticity or product evidence."
+}
