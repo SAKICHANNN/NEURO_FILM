@@ -69,6 +69,22 @@ def load_native_thomas_rows_library(path: Path) -> ctypes.CDLL:
     return library
 
 
+def load_native_neumaier_library(path: Path) -> ctypes.CDLL:
+    library = ctypes.CDLL(str(path.resolve()))
+    library.nf_neumaier_f32_abi_version_v1.argtypes = []
+    library.nf_neumaier_f32_abi_version_v1.restype = ctypes.c_uint32
+    library.nf_neumaier_f32_accumulate_v1.argtypes = [
+        ctypes.POINTER(ctypes.c_float),
+        ctypes.c_size_t,
+        ctypes.POINTER(ctypes.c_double),
+        ctypes.POINTER(ctypes.c_double),
+    ]
+    library.nf_neumaier_f32_accumulate_v1.restype = ctypes.c_int
+    if library.nf_neumaier_f32_abi_version_v1() != 1:
+        raise NativeThomasRowsError("native Neumaier ABI version mismatch")
+    return library
+
+
 def _workspace(library: ctypes.CDLL, width: int, rows: int) -> np.ndarray:
     count = ctypes.c_size_t()
     status = library.nf_thomas_rows_f32_workspace_floats_v1(
@@ -117,6 +133,50 @@ def _neumaier_rows(
                 compensation += (sample - updated) + total
             total = updated
     return (total + compensation) / float(height * width)
+
+
+def _neumaier_rows_native(
+    rows_library: ctypes.CDLL,
+    reducer_library: ctypes.CDLL,
+    profile: NativeThomasFieldProfile,
+    shape: tuple[int, int],
+    row_partition: int,
+) -> float:
+    height, width = shape
+    workspace = _workspace(rows_library, width, min(height, row_partition))
+    output = np.empty(min(height, row_partition) * width, dtype=np.float32)
+    abi_profile = profile.as_abi()
+    total = ctypes.c_double(0.0)
+    compensation = ctypes.c_double(0.0)
+    for row_start in range(0, height, row_partition):
+        rows = min(row_partition, height - row_start)
+        count = rows * width
+        status = rows_library.nf_thomas_rows_f32_field_v1(
+            ctypes.byref(abi_profile),
+            height,
+            width,
+            row_start,
+            rows,
+            _pointer(workspace),
+            workspace.size,
+            _pointer(output),
+            output.size,
+        )
+        if status != 0:
+            raise NativeThomasRowsError(
+                f"native field-row pass failed at row {row_start}: {status}"
+            )
+        status = reducer_library.nf_neumaier_f32_accumulate_v1(
+            _pointer(output),
+            count,
+            ctypes.byref(total),
+            ctypes.byref(compensation),
+        )
+        if status != 1:
+            raise NativeThomasRowsError(
+                f"native Neumaier reduction failed at row {row_start}: {status}"
+            )
+    return (total.value + compensation.value) / float(height * width)
 
 
 def render_native_exposure_thomas_rgb_rows(
@@ -434,6 +494,7 @@ def stream_native_exposure_thomas_rgb_interleaved_parallel(
     sink: Callable[[int, np.ndarray], None],
     *,
     row_partition: int,
+    reducer_library: ctypes.CDLL | None = None,
 ) -> tuple[tuple[float, float, float], int, int]:
     """Run independent colour layers concurrently and publish ordered HWC tiles."""
 
@@ -464,10 +525,12 @@ def stream_native_exposure_thomas_rgb_interleaved_parallel(
     _, height, width = exposure.shape
     tile_rows = min(height, row_partition)
     with ThreadPoolExecutor(max_workers=3) as executor:
+        reducer = _neumaier_rows if reducer_library is None else _neumaier_rows_native
         mean_futures = [
             executor.submit(
-                _neumaier_rows,
+                reducer,
                 rows_library,
+                *(() if reducer_library is None else (reducer_library,)),
                 profile,
                 (height, width),
                 row_partition,
@@ -680,6 +743,7 @@ def stream_native_exposure_thomas_rgb_quantized_parallel(
     *,
     row_partition: int,
     bit_depth: int,
+    reducer_library: ctypes.CDLL | None = None,
 ) -> tuple[tuple[float, float, float], int, int]:
     """Parallelize independent layers, then preserve exact gauge/quantizer order."""
 
@@ -731,6 +795,7 @@ def stream_native_exposure_thomas_rgb_quantized_parallel(
             relative_log_exposure_chw,
             output_sink,
             row_partition=row_partition,
+            reducer_library=reducer_library,
         )
     )
     tile_bytes = (0 if gauged is None else gauged.nbytes) + (
@@ -741,6 +806,7 @@ def stream_native_exposure_thomas_rgb_quantized_parallel(
 
 __all__ = [
     "NativeThomasRowsError",
+    "load_native_neumaier_library",
     "load_native_thomas_rows_library",
     "render_native_exposure_thomas_rgb_rows",
     "stream_native_exposure_thomas_rgb_gauged",
