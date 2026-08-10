@@ -1,0 +1,59 @@
+{
+  "schema": "neuro_film.u5_r2cb5_fujifilm_dye_forward_proxy_contract.v1",
+  "experiment_id": "U5.R2CB5",
+  "question": "Can unknown-profile recorder RGB predict independently measured Velvia 100F spectra through the exact retained CB4 dye coordinates with bounded low-capacity source-only coefficients?",
+  "parents": {
+    "cb4_decision_path": "configs/u5_r2cb4_fujifilm_dye_basis_measured_conformance_decision_v1.json",
+    "cb4_decision_sha256": "3d6b70773510cc66a23250692d1b9ccb51b1ab086164476bfb4c156d9eb2e444",
+    "cb4_required_decision": "retain_measured_velvia100f_dye_basis_compatibility",
+    "cb4_required_stable_evidence_id": "8edec3e6a14f8f971c2a2a81eacace285e3a81f8c1600d9ed72604eed4c681d6",
+    "pair_table_path": "outputs/experiments/u5_r2aq1_colorreference_velvia100f_pair_table_v1/pair_table.tsv",
+    "pair_table_sha256": "0bcb92eb5131b052705922caf747a467ed8a458c90bca2c14dbc66b800cdf595",
+    "trace_path": "configs/data/fujifilm_e6_spectral_dye_density_trace_v1.json",
+    "trace_sha256": "996f45892ccb33836aa0d063bb79e3bd0be3c38cc43f452ba05f46e7c4538066"
+  },
+  "evaluation": {
+    "folds": "all 6 test_set x 5 slide_index joint leave-one-set-and-slide-out folds",
+    "development": "test_set != held_test_set AND slide_index != held_slide_index",
+    "confirmation": "test_set == held_test_set AND slide_index == held_slide_index",
+    "expected_fold_count": 30,
+    "expected_development_rows_per_fold": 5760,
+    "expected_confirmation_rows_per_fold": 288,
+    "freshness": "model-new but all rows were consumed by earlier AQ/P6/CB4 experiments; not a pristine confirmation"
+  },
+  "candidate": {
+    "source_features": ["1", "1-R", "1-G", "1-B"],
+    "target_coordinates": "per-row nonnegative CB4 [base,yellow,magenta,cyan] oracle coefficients fitted only to construct development targets",
+    "fit": "four independent scipy.optimize.lsq_linear nonnegative affine coefficient regressions per fold",
+    "apply": "source features times fitted coefficient matrix, then exact fixed dye basis",
+    "application_target_reads": 0,
+    "output": "29-sample optical-density spectrum on 410..690nm"
+  },
+  "controls": {
+    "wrong_stock_bases": "unchanged source-only coefficient mapping fitted separately for exact Velvia 50 and Provia 100F bases",
+    "direct_nonnegative_spectral": "same four source features fitted independently to each of 29 target density samples",
+    "development_mean_spectrum": "development optical-density mean",
+    "target_oracle": "CB4 per-row target-consuming coefficient fit, diagnostic ceiling only"
+  },
+  "gates": {
+    "required_rows": 8640,
+    "required_fold_count": 30,
+    "all_values_finite": true,
+    "all_predicted_density_nonnegative": true,
+    "correct_basis_win_fraction_vs_best_wrong_minimum": 0.75,
+    "median_relative_improvement_vs_best_wrong_minimum": 0.05,
+    "win_fraction_vs_direct_nonnegative_spectral_minimum": 0.5,
+    "median_relative_improvement_vs_direct_nonnegative_spectral_minimum": 0.0,
+    "median_density_rmse_maximum": 0.15,
+    "p95_density_rmse_maximum": 0.30,
+    "maximum_density_rmse": 0.80,
+    "median_relative_improvement_vs_development_mean_minimum": 0.5,
+    "two_byte_identical_reports": true
+  },
+  "stop_rules": [
+    "Do not change features, basis, coefficient sign, folds, controls or gates after formal scoring.",
+    "Failure closes this exact low-capacity recorder-RGB-to-dye-coordinate forward family without quadratic capacity, clipping, source-profile assumptions, row rescue or threshold relaxation.",
+    "Pass remains a manufactured-target recorder-proxy result and cannot establish camera-to-film, independent-roll, photographic or product behaviour."
+  ],
+  "claim_ceiling": "Internal unknown-recorder-RGB to measured Velvia 100F manufactured-target spectral proxy evidence; not camera RGB, scene exposure, independent film response, calibration, photographic appearance or product profile."
+}
