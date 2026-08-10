@@ -39,6 +39,24 @@ def sha256_bytes(value: bytes) -> str:
     return hashlib.sha256(value).hexdigest()
 
 
+def stable_conformance_identity_payload(report: Mapping[str, Any]) -> dict[str, Any]:
+    """Return scientific conformance facts without build-container identity.
+
+    PE link metadata is not reproducible across otherwise identical LLVM-MinGW
+    builds.  The emitted DLL hash remains in the report for audit, while the
+    scientific identity binds the compiler, compiler binary, C sources, exact
+    outputs, numerical comparisons, and gate results.
+    """
+
+    stable = json.loads(json.dumps(report))
+    stable.pop("stable_evidence_id", None)
+    for toolchain in stable["toolchains"].values():
+        toolchain.pop("dll_path", None)
+        toolchain.pop("dll_sha256", None)
+        toolchain.pop("compiler_output", None)
+    return stable
+
+
 def validate_contract(root: Path, contract: Mapping[str, Any]) -> None:
     if (
         contract.get("schema") != SCHEMA
@@ -231,8 +249,14 @@ def evaluate_conformance(
         "automatic_pass": all(gate_results.values()),
         "claim_ceiling": contract["claim_ceiling"],
     }
+    identity_payload = stable_conformance_identity_payload(stable)
     stable_id = sha256_bytes(
-        json.dumps(stable, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()
+        json.dumps(
+            identity_payload,
+            sort_keys=True,
+            separators=(",", ":"),
+            allow_nan=False,
+        ).encode()
     )
     return {**stable, "stable_evidence_id": stable_id}
 
@@ -243,5 +267,6 @@ __all__ = [
     "canonical_bytes",
     "evaluate_conformance",
     "profile_from_contract",
+    "stable_conformance_identity_payload",
     "validate_contract",
 ]

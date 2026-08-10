@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import ctypes
+import hashlib
 import json
 from pathlib import Path
 
@@ -10,6 +11,7 @@ from src.eval.native_thomas_field_conformance import (
     NativeThomasConformanceError,
     evaluate_conformance,
     profile_from_contract,
+    stable_conformance_identity_payload,
     validate_contract,
 )
 from src.film_physics.native_thomas_field import NativeThomasFieldProfileV1
@@ -41,6 +43,37 @@ def test_contract_rejects_capacity_drift() -> None:
     contract["candidate"]["additional_model_capacity_allowed"] = True  # type: ignore[index]
     with pytest.raises(NativeThomasConformanceError, match="contract drift"):
         validate_contract(ROOT, contract)
+
+
+def test_stable_identity_excludes_only_build_container_facts() -> None:
+    report = {
+        "schema": "example",
+        "toolchains": {
+            "llvm_mingw": {
+                "toolchain": "clang-22",
+                "clang_sha256": "c" * 64,
+                "source_sha256": "s" * 64,
+                "header_sha256": "h" * 64,
+                "dll_sha256": "a" * 64,
+                "dll_path": "first.dll",
+            }
+        },
+        "results": {"output_sha256": "o" * 64},
+    }
+    changed_container = json.loads(json.dumps(report))
+    changed_container["toolchains"]["llvm_mingw"]["dll_sha256"] = "b" * 64
+    changed_container["toolchains"]["llvm_mingw"]["dll_path"] = "second.dll"
+    changed_output = json.loads(json.dumps(report))
+    changed_output["results"]["output_sha256"] = "p" * 64
+
+    def identity(value: dict[str, object]) -> str:
+        payload = stable_conformance_identity_payload(value)
+        return hashlib.sha256(
+            json.dumps(payload, sort_keys=True, separators=(",", ":")).encode()
+        ).hexdigest()
+
+    assert identity(report) == identity(changed_container)
+    assert identity(report) != identity(changed_output)
 
 
 @pytest.mark.skipif(not CLANG.is_file(), reason="pinned LLVM-MinGW unavailable")
