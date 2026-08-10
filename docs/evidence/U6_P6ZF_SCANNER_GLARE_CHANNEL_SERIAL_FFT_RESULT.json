@@ -1,0 +1,36 @@
+{
+  "automatic_pass": true,
+  "claim_ceiling": "Local Windows/Python numerical and fresh-process resource evidence for one channel-serial block-FFT scanner-glare compiler only; not measured scanner calibration, native/mobile/GPU performance, photographic quality or product readiness.",
+  "decision": "retain_channel_serial_block_fft_open_combined_chain_measurement",
+  "formal_report_sha256": "06ebbb458c5655da6eaba9c2a03f99d459f007b265565524256d96510e353e8d",
+  "gate_results": {
+    "candidate_memory": true,
+    "candidate_memory_ratio": true,
+    "candidate_time": true,
+    "candidate_time_ratio": true,
+    "finite_bounded": true,
+    "parent_hashes": true,
+    "partition": true,
+    "reference_absolute": true,
+    "reference_rmse": true,
+    "repeat_output": true,
+    "repeat_rss": true,
+    "repeat_time": true,
+    "source_identity": true,
+    "workers": true
+  },
+  "implementation_commit": "bda46a0f",
+  "measurements": {
+    "maximum_partition_absolute_error": 1.1102230246251565e-16,
+    "maximum_reference_absolute_error": 1.1102230246251565e-16,
+    "candidate_median_apply_seconds": 2.3501538000000437,
+    "candidate_median_peak_process_tree_rss_bytes": 983504896.0,
+    "candidate_maximum_peak_process_tree_rss_bytes": 1005629440,
+    "candidate_to_reference_median_apply_time_ratio": 1.2654427692371275,
+    "candidate_to_reference_median_peak_rss_ratio": 0.6833899472473115
+  },
+  "node": "U6.P6ZF",
+  "next_leaf": "Measure the retained compiler in the typed scanner chain without changing its frozen kernel or resource contract.",
+  "schema": "neuro_film.u6_p6zf_scanner_glare_channel_serial_fft_evidence.v1",
+  "stable_evidence_id": "7498f04d1e3513c4743cee7b3cacded03412e985346a8bd6fcb18b2940083f14"
+}

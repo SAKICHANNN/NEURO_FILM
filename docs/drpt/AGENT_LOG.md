@@ -10662,3 +10662,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Profiling-by-inspection identifies simultaneous three-channel strip and pad
   residency before per-channel FFT. A new channel-serial implementation may
   test that root cause without changing the kernel, dtype, chunk or gates.
+
+# 2026-08-10 - U6.P6ZF closes scanner-glare compiler resource gates
+
+- Moved the optimization into a separate module so the P6ZE core retains its
+  exact frozen hash. Channel-serial halo/pad construction is pixel-identical
+  to P6ZE for every frozen partition.
+- The 12MP fresh-process benchmark passes all gates: 2.350s apply, 983.5MB
+  median RSS, 1,005,629,440B maximum RSS, `.683x` reference memory and `1.265x`
+  reference time; numerical maximum error remains `1.11e-16`.
+- Retain only as a local Python CPU development compiler. The next leaf is a
+  typed scanner-chain measurement; calibration, native and product claims stay
+  closed.

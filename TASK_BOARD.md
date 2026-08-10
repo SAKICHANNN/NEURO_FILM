@@ -1066,3 +1066,12 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
 - Peak RSS is 1,076,789,248B, exceeding the frozen 1GiB gate by 3,047,424B.
   Close this exact three-channel-block implementation; next remove unnecessary
   simultaneous three-channel halo/pad residency under a new frozen leaf.
+
+# 2026-08-10 - U6.P6ZF channel-serial block FFT passes
+
+- Serializing halo and pad construction by channel preserves P6ZE exactly and
+  matches the full-frame reference within `1.11e-16`.
+- At 12MP median apply is 2.350s (`1.265x` reference), median RSS 983.5MB
+  (`.683x`), and maximum RSS 1,005,629,440B. All frozen gates pass.
+- Retain as the local CPU development compiler; next measure the unchanged
+  kernel in the typed scanner chain, not another micro-optimization.
