@@ -1,0 +1,26 @@
+{
+  "schema": "neuro_film.u5_r2bx1_spectral_metamer_camera_operator_decision.v1",
+  "experiment_id": "U5.R2BX1",
+  "status": "complete_fail_closed",
+  "decision": "close_exact_spectral_metamer_fixture",
+  "contract": "configs/u5_r2bx1_spectral_metamer_camera_operator_v1.json",
+  "contract_sha256": "c127cab221c9bb4a97e2b14b5f172454c08994536cd762997c660c8001a4f2b3",
+  "implementation_commit": "d2f79351",
+  "report": "outputs/u5_r2bx1_spectral_metamer_camera_operator/run_a/report.json",
+  "report_sha256": "7fdc0e23365efaa0994790360af6a9bbe617b8c8ad0494d4e90205f7a60f6364",
+  "stable_evidence_id": "fa60b7a5026693efb4fbd6f227068119e64dff30304aada2ca43f676772c420e",
+  "facts": {
+    "two_byte_identical_runs": true,
+    "observer_white_xyz_difference": 2.220446049250313e-16,
+    "observer_chromaticity_difference": 0.0,
+    "illuminant_relative_rms_difference": 0.44855023387047854,
+    "camera_white_relative_difference": 0.0645817911037598,
+    "operator_relative_frobenius_distance": 0.06558704574957953,
+    "shared_error_penalty_first": 0.010823384618573018,
+    "shared_error_penalty_second": 0.008530658570090166,
+    "required_each_penalty": 0.05,
+    "required_median_penalty": 0.1
+  },
+  "next_ready_leaf": "Stop synthetic white-point/metamer elaboration. Return to a stock-first or physical-image-formation mechanism with an independently observable signal; real calibrated spectral data remain a data-gated future route.",
+  "claim_ceiling": "Synthetic spectral fixture negative. It shows operator differences without material held-reflectance value and creates no camera, film, stock or product claim."
+}

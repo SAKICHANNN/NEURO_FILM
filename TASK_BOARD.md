@@ -1013,3 +1013,10 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
 - The frozen same-chromaticity hidden-spectrum truth separation is only
   `.018349`, below the `.02` evidence gate. Do not tune the fixture; proceed to
   a materially different physical spectral-integration leaf.
+
+# 2026-08-10 - U5.R2BX1 closes the physical spectral metamer fixture
+
+- Same-observer-white spectra create 6.46% camera-white and 6.56% fitted-matrix
+  differences, but a shared matrix costs only 1.08%/0.85% held error.
+- Frozen material-value gates fail. Stop synthetic metamer elaboration and
+  return to an independently observed stock or physical-image signal.

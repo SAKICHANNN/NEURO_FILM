@@ -2,6 +2,16 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-10 - U5.R2BX1 closes same-white spectral operator value
+
+- Built a fully synthetic spectral integration fixture with positive
+  observer-metameric illuminants, independent camera sensitivities and disjoint
+  reflectance sets. Two reports are exact (`7fdc0e23...f6364`).
+- Camera whites and per-spectrum matrices differ materially, but the shared
+  matrix penalty is only 1.08%/0.85%; both frozen value gates fail.
+- Stop this synthetic descriptor branch. It neither proves real-camera
+  insufficiency nor advances film/stock/product status.
+
 # 2026-08-10 - U5.R2BX0 isolates chromaticity-LUT capacity from identifiability
 
 - Implemented a clean-room bounded convex explicit-LUT test from the latest
