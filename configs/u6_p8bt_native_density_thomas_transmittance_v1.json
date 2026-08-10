@@ -1,0 +1,65 @@
+{
+  "schema": "neuro_film.u6_p8bt_native_density_thomas_transmittance_contract.v1",
+  "experiment_id": "u6.p8bt-native-density-thomas-transmittance-v1",
+  "node": "ULT > U6 > U6.P8 > U6.P8BT",
+  "date_frozen": "2026-08-10",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can the retained P4BW developed-density amplitude and P8BS native second-order field be composed in a portable C11 kernel as D_mean + sigma_point * field followed by exactly one T=10^-D conversion, with failure atomicity and bounded 12MP resources?",
+  "parents": {
+    "p8bs_evidence": {
+      "path": "docs/evidence/U6_P8BS_NATIVE_THOMAS_FIELD_RESULT.json",
+      "sha256": "9c47b4af89f43dc683520271cbe5dcc0017cee4938c64575a8c998eaf527ed35",
+      "required_decision": "retain_native_generic_thomas_field_primitive"
+    },
+    "p4bw_decision": {
+      "path": "configs/u6_p4bw_density_conditioned_thomas_profile_decision_v1.json",
+      "sha256": "c198397b1534615a381362a030cc64a5ef30403fb0790ebf62b7d1f228f1dc1e",
+      "required_decision": "retain_density_conditioned_thomas_hybrid_profile"
+    },
+    "p4bw_contract": {
+      "path": "configs/u6_p4bw_density_conditioned_thomas_profile_v1.json",
+      "sha256": "eafaa7262d7e1458e7c797e9ed8a3bb0f0f4787dc99b3546e39cf69c8702f564"
+    }
+  },
+  "candidate": {
+    "abi_version": 1,
+    "input_domain": "developed_optical_density_mean_plus_point_density_sigma",
+    "output_domain": "film_transmittance",
+    "composition": "density = base_density + point_density_sigma * p8bs_dc_projected_unit_field; transmittance = pow(10, -density)",
+    "workspace_planes": 4,
+    "output_commit": "copy only after every candidate transmittance is finite and inside (0,1]",
+    "p8bs_profile_unchanged": true,
+    "p4bw_amplitude_refit_allowed": false,
+    "realized_field_normalization_allowed": false,
+    "display_rgb_noise_allowed": false
+  },
+  "fixture": {
+    "shape": [193, 257],
+    "base_density_formula": "0.45 + 0.60*x + 0.25*y + 0.05*sin(2*pi*x)*cos(2*pi*y)",
+    "point_density_sigma_formula": "0.010 + 0.006*x + 0.004*y",
+    "coordinate_formula": "x=(column+0.5)/width; y=(row+0.5)/height",
+    "density_offset_probe": 0.1
+  },
+  "conformance": {
+    "maximum_absolute_error_vs_float64_reference": 2e-6,
+    "maximum_rmse_vs_float64_reference": 2e-7,
+    "maximum_cross_compiler_absolute_error": 2e-6,
+    "maximum_density_offset_ratio_error": 2e-6,
+    "require_strict_transmittance_domain": true,
+    "require_repeat_exact": true,
+    "require_failure_atomicity": true
+  },
+  "performance": {
+    "shape": [3000, 4000],
+    "maximum_wall_seconds": 4.0,
+    "maximum_process_tree_rss_bytes": 805306368,
+    "maximum_repeat_wall_ratio": 1.25,
+    "maximum_repeat_rss_ratio": 1.1,
+    "require_two_fresh_processes": true,
+    "require_exact_output_identity": true,
+    "require_zero_surviving_processes": true
+  },
+  "decision_if_pass": "retain_native_density_domain_thomas_transmittance_primitive",
+  "decision_if_fail": "close_native_density_domain_composition_without_model_or_gate_rescue",
+  "claim_ceiling": "Portable generic same-scanner density-domain composition evidence only; not photographic promotion, microscopic grain, calibrated stock/process/scanner response, or product authorization."
+}

@@ -10731,3 +10731,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Boundary:** Retain a generic same-scanner second-order field primitive.
   This is not microscopic grain, dye-cloud/silver structure, stock/process
   calibration, photographic validation or product promotion.
+
+## 2026-08-10 — Freeze U6.P8BT native density-domain composition
+
+- **Question:** Can P8BS consume the retained P4BW point-density amplitude and
+  execute `D_mean + sigma_point*field -> 10^-D` in portable C11 without domain
+  drift, partial output, or desktop-scale resource regression?
+- **Gate:** Compare MSVC and LLVM against the float64 P4BW/P8BS reference,
+  require strict transmittance and failure atomicity, then run two fresh 12MP
+  workers under 4s/768MiB. P4BZ remains closed and no model parameters may move.

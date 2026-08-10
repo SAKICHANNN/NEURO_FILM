@@ -1122,3 +1122,10 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
 - Result: PASS. MSVC/LLVM are output-byte-exact; 12MP runs take 0.734-0.799s
   at 288.5-308.6MB peak RSS. Retain only the generic second-order native
   primitive; no calibration, microscopic-film or product authority opens.
+
+# 2026-08-10 - Freeze U6.P8BT native density-domain composition
+
+- Compose supplied developed-density mean and P4BW point-density sigma with the
+  unchanged P8BS unit field, then perform exactly one `T=10^-D` conversion.
+- Freeze dual-compiler float64/domain/failure-atomic conformance and two fresh
+  12MP resource gates. Do not reopen the closed P4BZ photographic candidate.
