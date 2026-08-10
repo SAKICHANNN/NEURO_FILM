@@ -1063,6 +1063,13 @@ geometry or thresholds on this cohort and do not infer scanner or film MTF.
   including zero folds/clips and `.92972` worst scanner-retention ratio. Open
   only a separately frozen photographic/OOD development test.
 
+# 2026-08-11 - Freeze U5.R2CB3 photographic OOD development
+
+- Bind the exact CB2 primary-scanner LUTs to the existing ten-camera BH0S
+  rights/visual population before candidate rendering.
+- Require exact replay, no severe/boundary/gradient failure, non-basic residual,
+  stock separation, pooled separation and 17-cube/direct-compiler fidelity.
+
 - The clean-room WACV-2026-inspired coordinate family recovers all six frozen
   axes exactly and keeps the interior Jacobian positive; two reports are exact
   (`25f7ea0e...73eb1`).

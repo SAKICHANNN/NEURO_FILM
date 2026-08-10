@@ -1,0 +1,74 @@
+{
+  "schema": "neuro_film.u5_r2cb3_fujifilm_e6_dye_operator_photographic_contract.v1",
+  "experiment_id": "U5.R2CB3",
+  "question": "Do the exact CB2 primary-scanner 17-cube operators remain bounded, visually severe-clean, materially stock-separating and non-basic on a rights-cleared ten-camera photographic OOD population?",
+  "parent_operator": {
+    "decision_path": "configs/u5_r2cb2_fujifilm_e6_bounded_dye_operator_decision_v1.json",
+    "decision_sha256": "2961a76ad37819cde990ed15af6c260e6f18e5f2cf7e3a607ccb59c3a3713879",
+    "required_decision": "retain_bounded_film_inspired_dye_operator_capacity",
+    "required_stable_evidence_id": "90d5f5d4b379432dee4bdc8c8b4aedabc467acefa52a93810967617f6890046f",
+    "compiler_contract_path": "configs/u5_r2cb2_fujifilm_e6_bounded_dye_operator_v1.json",
+    "compiler_contract_sha256": "5663d54698b3e6f4efed1bc64cdd526fbac0f46ec36fa05d749e793bf7f12985",
+    "scanner_profile_id": "u5-r2cb2-primary-synthetic-scanner-v1",
+    "lut_interpolation": "trilinear"
+  },
+  "source_population": {
+    "decision_path": "configs/u5_r2bh0s_fixed_bank_oracle_source_preflight_decision_v1.json",
+    "decision_sha256": "0f1a518d7554cb0ce3bcea9e9bf06492604f7484743c96479207421226732ba9",
+    "manifest_path": "outputs/u5_r2bh0s_fixed_bank_oracle_source_preflight_v1/manifest.json",
+    "manifest_sha256": "e7dc8c861871de83a0aa3f92a717e23fd024bed15b8a19b739516c48f1f58e0e",
+    "visual_review_path": "outputs/u5_r2bh0s_fixed_bank_oracle_source_preflight_v1/visual_source_review.json",
+    "visual_review_sha256": "388d298af94e9a8507092717941d96c28414d0fa18ac5e9411b44ff2eaea3e5e",
+    "required_decision": "pass_fresh_population_and_open_complete_fixed_bank_oracle",
+    "required_visual_decision": "pass_source_visual_gate_with_two_fixed_failures_and_no_replacement",
+    "required_rows": 10,
+    "required_camera_makes": 10,
+    "allowed_use": "internal independent digital-photo evaluation",
+    "exclude_ids": ["canon_powershot_v1"]
+  },
+  "execution": {
+    "input_interpretation": "relative-display sRGB approximation from the frozen source manifest",
+    "decode": "exact PNG RGB8 followed by IEC 61966-2-1 sRGB EOTF to linear sRGB",
+    "operator": "exact CB2 float32 17-cube with deterministic float64 trilinear interpolation",
+    "output": "IEC 61966-2-1 sRGB OETF and deterministic RGB16 PNG",
+    "row_order": "source manifest order after exact visual eligibility filtering",
+    "gradient_domain": "linear RGB horizontal and vertical finite differences",
+    "basic_control": "per-image joint EV/WB/contrast/saturation adjustment fit from source linear RGB to candidate linear RGB",
+    "direct_reference_population": "33-cube exact spectral compiler versus trilinear 17-cube",
+    "contact_sheet_cell_width": 420
+  },
+  "gates": {
+    "required_rows": 10,
+    "required_camera_makes": 10,
+    "all_outputs_finite": true,
+    "output_minimum": 0.0,
+    "output_maximum": 1.0,
+    "boundary_epsilon": 0.00196078431372549,
+    "maximum_new_boundary_fraction": 0.005,
+    "maximum_p999_gradient_ratio_vs_source": 2.5,
+    "minimum_each_stock_median_style_delta_e76": 2.0,
+    "minimum_each_stock_median_joint_basic_residual_delta_e76": 0.5,
+    "minimum_rows_per_stock_joint_basic_residual_delta_e76_ge_0p25": 8,
+    "minimum_each_pair_median_stock_delta_e76": 1.0,
+    "minimum_rows_per_pair_stock_delta_e76_ge_0p5": 8,
+    "minimum_each_stock_median_vs_pooled_delta_e76": 0.5,
+    "minimum_rows_per_stock_vs_pooled_delta_e76_ge_0p25": 8,
+    "maximum_lut_direct_reference_rmse": 0.001,
+    "maximum_lut_direct_reference_max_abs": 0.005,
+    "maximum_confirmed_severe_visual_artifact_count": 0,
+    "two_byte_identical_reports_and_outputs": true
+  },
+  "controls": [
+    "identity source",
+    "pooled three-stock CB2 operator",
+    "joint basic adjustment fit per source and stock",
+    "direct spectral compiler on an independent 33-cube",
+    "source-visible contact sheets for autonomous severe-artifact review"
+  ],
+  "stop_rules": [
+    "Do not change the source set, stock curves, scanner, LUT size/interpolation, density/residual strength, output encoding, controls or gates after any candidate pixel is scored.",
+    "Any automatic or confirmed severe-artifact failure closes this exact photographic development family without source replacement, strength, gamut, scanner, LUT or threshold rescue.",
+    "Pass may retain a research Look Approximation candidate and open a wholly fresh photographic confirmation plus direct comparison with fixed AO6; it cannot establish Fujifilm calibration, authenticity, scanner/process truth or product promotion."
+  ],
+  "claim_ceiling": "Rights-cleared ten-camera photographic OOD development evidence for exact bounded Fujifilm-source-curve film-inspired operators; not calibrated stock response, population preference, independent film-scan truth, authenticity or product promotion."
+}

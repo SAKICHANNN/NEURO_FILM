@@ -19,6 +19,13 @@ Durable handoff log for non-trivial DRPT-governed work. Keep implementation trut
 - This retains only an explicit film-inspired mechanism. Photographic/OOD and
   severe-artifact evidence are required before any profile or product action.
 
+# 2026-08-11 - Freeze U5.R2CB3 photographic development
+
+- Bound the unchanged CB2 17-cube operators to the rights-cleared ten-camera
+  BH0S source/visual population before any candidate pixel score.
+- Frozen controls separate style, stock distinction, pooled behaviour, basic
+  colour adjustment, LUT fidelity, boundaries, gradients and severe artifacts.
+
 # 2026-08-11 - Freeze U5.R2CB0 same-manufacturer E-6 source test
 
 - Froze exact official Velvia 100 and Provia 100F graph traces, axis/ink error
