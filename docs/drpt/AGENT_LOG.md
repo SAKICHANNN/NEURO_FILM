@@ -10746,3 +10746,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   take 0.947-1.084s at 408.2-408.4MB peak; stable ID `d9d26583...10d538`.
 - **Boundary:** Generic typed native composition only. The P4BZ photographic
   stress failure is unchanged; no calibrated stock, microscopic or product use.
+
+## 2026-08-10 — Freeze U6.P8BU serial native RGB execution
+
+- Reuse one P8BT workspace and scratch output across the three exact P4BY layer
+  seeds. Require channelwise P8BT identity and two fresh 12MP RGB runs under
+  6s/1GiB. This tests the colour-layer runtime shape, not a new grain model.

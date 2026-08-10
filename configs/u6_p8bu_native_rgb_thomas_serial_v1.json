@@ -1,0 +1,48 @@
+{
+  "schema": "neuro_film.u6_p8bu_native_rgb_thomas_serial_contract.v1",
+  "experiment_id": "u6.p8bu-native-rgb-thomas-serial-v1",
+  "node": "ULT > U6 > U6.P8 > U6.P8BU",
+  "date_frozen": "2026-08-10",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can three independent P4BY colour layers execute through P8BT with one serially reused workspace while preserving per-layer exactness and the desktop CPU memory target?",
+  "parents": {
+    "p8bt_evidence": {
+      "path": "docs/evidence/U6_P8BT_NATIVE_DENSITY_THOMAS_RESULT.json",
+      "sha256": "e8d7dda8b6dc342ab89235d99610d87497bec1980eac8a2f8e392cb3a5b0d601",
+      "required_decision": "retain_native_density_domain_thomas_transmittance_primitive"
+    },
+    "p4by_contract": {
+      "path": "configs/u6_p4by_typed_thomas_image_formation_v1.json",
+      "sha256": "68be18a23aa0a8829c108e5871dcfcfa9e3a54730f5bd9aa6a2547364e1c8ded"
+    }
+  },
+  "candidate": {
+    "channel_order": ["red", "green", "blue"],
+    "layer_realization_seeds": [2608024301, 11400714821016565496, 15111065704576690158],
+    "execution_order": "three independent planar layers, serial, one reused four-plane workspace and one reused output scratch",
+    "parallel_full_frame_workspaces_allowed": false,
+    "cross_layer_field_reuse_allowed": false,
+    "model_or_amplitude_change_allowed": false
+  },
+  "conformance": {
+    "shape": [193, 257],
+    "require_exact_channelwise_p8bt_identity": true,
+    "require_distinct_layer_hashes": true,
+    "require_repeat_exact": true,
+    "require_strict_transmittance_domain": true,
+    "require_input_immutability": true
+  },
+  "performance": {
+    "shape": [3000, 4000],
+    "maximum_wall_seconds": 6.0,
+    "maximum_process_tree_rss_bytes": 1073741824,
+    "maximum_repeat_wall_ratio": 1.25,
+    "maximum_repeat_rss_ratio": 1.1,
+    "require_two_fresh_processes": true,
+    "require_exact_output_identity": true,
+    "require_zero_surviving_processes": true
+  },
+  "decision_if_pass": "retain_serial_native_rgb_density_thomas_executor",
+  "decision_if_fail": "close_rgb_executor_and_retain_single_layer_p8bt_only",
+  "claim_ceiling": "Portable synthetic three-layer density/transmittance runtime evidence only; not calibrated colour-film structure, photographic promotion, scanner-independent truth or product authorization."
+}
