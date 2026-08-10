@@ -34,6 +34,8 @@
     "row_order": "source manifest order after exact visual eligibility filtering",
     "gradient_domain": "linear RGB horizontal and vertical finite differences",
     "basic_control": "per-image joint EV/WB/contrast/saturation adjustment fit from source linear RGB to candidate linear RGB",
+    "basic_fit_sampling": "at most 65536 evenly spaced flattened pixels including both endpoints",
+    "basic_fit_max_samples": 65536,
     "direct_reference_population": "33-cube exact spectral compiler versus trilinear 17-cube",
     "contact_sheet_cell_width": 420
   },
