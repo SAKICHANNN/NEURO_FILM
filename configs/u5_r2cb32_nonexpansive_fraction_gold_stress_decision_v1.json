@@ -1,0 +1,41 @@
+{
+  "schema": "neuro_film.u5_r2cb32_nonexpansive_fraction_gold_stress_decision.v1",
+  "experiment_id": "U5.R2CB32",
+  "contract_commit": "d951f044fbcd981fd19a1d2dd9840253df5ce0bf",
+  "contract_amendment_commit": "c299bfeb0a4e2a4c713593e6fcd0a718c3a1de44",
+  "implementation_commit": "bf46193fc2db6aa3b55d75902b78b310b5ab7ef6",
+  "contract_sha256": "9cddfd8686830c9d134ba130911c0e4f442b62bef7f8c675587ff9bccd1403af",
+  "formal_report_paths": [
+    "D:/nf-019f4b76-cb32-report-a.json",
+    "D:/nf-019f4b76-cb32-report-b.json"
+  ],
+  "formal_report_sha256": "2dac1715f875221a4436d23b1ec02acd40f983cc8a2c6c5ae8756e6640696ec4",
+  "stable_evidence_id": "6a10871d3805ea6b4aa2524a0e5d9fb4a509dc98315c54a2aaced0bb65f84bff",
+  "repeat_report_byte_exact": true,
+  "automatic_pass": false,
+  "visual_review_permitted": false,
+  "measurements": {
+    "available_source_count": 40,
+    "gold_median_style_delta_e76": 10.273824485781264,
+    "stress_median_style_delta_e76": 10.621259267032695,
+    "maximum_luminance_reconstruction_error": 2.9432773551718583e-08,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_observed_fraction_slope": 1.0,
+    "maximum_p999_gradient_ratio_vs_source": 1.5410255713023677,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.0,
+    "population_median_direction_scale": 1.0,
+    "population_median_fraction_direction_scale_below_0p5": 0.000018353916361573765,
+    "unavailable_ids": ["FS_FACE_01"]
+  },
+  "comparison": {
+    "cb31_maximum_p999_gradient_ratio_vs_source": 1.7694735243578221,
+    "relative_gradient_reduction": 0.1291084265276417,
+    "same_worst_source_id": "18",
+    "interpretation": "A 1-Lipschitz fraction map materially reduces but does not close image-space gradient amplification; hue rotation and cube-section geometry remain outside the scalar fraction derivative bound."
+  },
+  "failed_gates": ["maximum_p999_gradient_ratio_vs_source"],
+  "passed": false,
+  "decision": "close_fraction_only_nonexpansive_transport_on_gold_gradient_gate",
+  "next_action": "Freeze a single image-global residual dose selected before output publication to satisfy the unchanged image-space gradient budget; retain no local mask or threshold relaxation.",
+  "claim_ceiling": "Exact negative development evidence on the consumed 40-row frozen display-proxy cohort; not visual adjudication, independent confirmation, stock response, calibration or product promotion."
+}

@@ -11645,3 +11645,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   so the same frozen gate fails and visual review remains forbidden. The
   failure is driven by steep mapping across adjacent unequal fractions; the
   next operator must impose an explicit derivative envelope.
+
+# 2026-08-11 - U5.R2CB32 shows fraction non-expansion is insufficient
+
+- A fixed origin-anchored 257-knot map enforces exact fraction slope at most
+  one. Two reports are byte exact (`2dac1715...96ec4`; stable
+  `6a10871d...84bff`), with boundary zero and strong style retained.
+- ID18 falls from `1.76947` to `1.54103` p99.9 gradient ratio but remains above
+  `1.35`; visual review is forbidden. Scalar fraction geometry alone cannot
+  bound the complete hue/cube-section RGB transform. Next test uses only one
+  image-global residual dose against the unchanged image-space budget.
