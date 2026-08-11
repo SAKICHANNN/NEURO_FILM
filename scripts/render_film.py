@@ -16,13 +16,36 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from scripts.pipeline_color_baseline import (  # noqa: E402
+from scripts.pipeline_color_baseline import (
     load_guardrail_config,
     load_profile_values,
     style_transfer,
     style_transfer_rgb,
 )
-from src.preprocess import (  # noqa: E402
+from src.filmfx import (
+    PhysicalHalationControls,
+    build_physical_halation_layer,
+    composite_layers,
+    describe_physical_halation_controls,
+    dust_scratch_layer,
+    get_halation_preset,
+    grain_residual_layer,
+    halation_layer,
+    layer_metrics,
+    physical_halation_layer,
+    resolve_physical_halation_controls,
+)
+from src.inference import (
+    atomic_write_json,
+    build_render_recipe,
+    load_render_profile,
+    sha256_file,
+)
+from src.inference.analytic_y_chromaticity_profile import (
+    load_analytic_y_chromaticity_profile,
+    render_analytic_y_chromaticity_profile,
+)
+from src.preprocess import (
     load_working_image,
     resolve_look_approximation_claim,
     save_srgb8,
@@ -32,65 +55,102 @@ from src.preprocess import (  # noqa: E402
     srgb_icc_profile_sha256,
     working_image_to_srgb_float,
 )
-from src.filmfx import (  # noqa: E402
-    PhysicalHalationControls,
-    build_physical_halation_layer,
-    composite_layers,
-    describe_physical_halation_controls,
-    dust_scratch_layer,
-    grain_residual_layer,
-    halation_layer,
-    layer_metrics,
-    physical_halation_layer,
-    get_halation_preset,
-    resolve_physical_halation_controls,
-)
-from src.inference import (  # noqa: E402
-    atomic_write_json,
-    build_render_recipe,
-    load_render_profile,
-    sha256_file,
-)
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Render a content-preserving film look.")
+    parser = argparse.ArgumentParser(
+        description="Render a content-preserving film look."
+    )
     parser.add_argument("input", type=Path)
     parser.add_argument("--style", default="velvia_50")
-    parser.add_argument("--color-engine", choices=("safe_lab",), default="safe_lab")
+    parser.add_argument(
+        "--color-engine",
+        choices=("safe_lab", "analytic-y-chromaticity"),
+        default="safe_lab",
+    )
     parser.add_argument("--preset", choices=("safe-rich",), default="safe-rich")
-    parser.add_argument("--stats", type=Path, default=ROOT / "configs" / "film_color_stats.json")
-    parser.add_argument("--profile-config", type=Path, default=ROOT / "configs" / "color_rendering_profiles.yaml")
+    parser.add_argument(
+        "--stats", type=Path, default=ROOT / "configs" / "film_color_stats.json"
+    )
+    parser.add_argument(
+        "--profile-config",
+        type=Path,
+        default=ROOT / "configs" / "color_rendering_profiles.yaml",
+    )
     parser.add_argument(
         "--render-profile",
         type=Path,
         default=ROOT / "configs" / "render_profiles" / "safe_rich_v1.json",
     )
     parser.add_argument(
+        "--analytic-profile",
+        type=Path,
+        default=ROOT
+        / "configs"
+        / "render_profiles"
+        / "analytic_y_chromaticity_cb56_v1.json",
+    )
+    parser.add_argument(
         "--use-render-profile",
         action="store_true",
         help="Source colour parameters from the validated versioned render profile.",
     )
-    parser.add_argument("--guardrails", type=Path, default=ROOT / "configs" / "color_guardrails.json")
+    parser.add_argument(
+        "--guardrails", type=Path, default=ROOT / "configs" / "color_guardrails.json"
+    )
     parser.add_argument("--grain", type=float, default=0.0)
     parser.add_argument("--halation", type=float, default=0.0)
-    parser.add_argument("--halation-model", choices=("simple", "physical"), default="simple")
+    parser.add_argument(
+        "--halation-model", choices=("simple", "physical"), default="simple"
+    )
     parser.add_argument("--halation-preset", default=None)
-    parser.add_argument("--halation-model-family", choices=("auto", "color_negative_backscatter", "bw_density_halation"), default="auto")
+    parser.add_argument(
+        "--halation-model-family",
+        choices=("auto", "color_negative_backscatter", "bw_density_halation"),
+        default="auto",
+    )
     parser.add_argument(
         "--halation-type",
-        choices=("auto", "vision3_ahu", "cinestill_no_remjet", "classic_dense_base", "bw_clear_base"),
+        choices=(
+            "auto",
+            "vision3_ahu",
+            "cinestill_no_remjet",
+            "classic_dense_base",
+            "bw_clear_base",
+        ),
         default="auto",
     )
     parser.add_argument(
         "--halation-color-response",
-        choices=("red_orange_core", "deep_red", "amber_core", "neutral_density", "warm_neutral_density"),
+        choices=(
+            "red_orange_core",
+            "deep_red",
+            "amber_core",
+            "neutral_density",
+            "warm_neutral_density",
+        ),
         default=None,
     )
-    parser.add_argument("--halation-profile", choices=("vision3_500t", "cinestill_800t", "generic"), default=None)
-    parser.add_argument("--halation-control-mode", choices=("locked", "expert"), default="locked")
-    parser.add_argument("--halation-physics-lock", dest="halation_control_mode", action="store_const", const="locked")
-    parser.add_argument("--halation-expert-controls", dest="halation_control_mode", action="store_const", const="expert")
+    parser.add_argument(
+        "--halation-profile",
+        choices=("vision3_500t", "cinestill_800t", "generic"),
+        default=None,
+    )
+    parser.add_argument(
+        "--halation-control-mode", choices=("locked", "expert"), default="locked"
+    )
+    parser.add_argument(
+        "--halation-physics-lock",
+        dest="halation_control_mode",
+        action="store_const",
+        const="locked",
+    )
+    parser.add_argument(
+        "--halation-expert-controls",
+        dest="halation_control_mode",
+        action="store_const",
+        const="expert",
+    )
     parser.add_argument("--halation-amount", type=float, default=None)
     parser.add_argument("--halation-impact", type=float, default=None)
     parser.add_argument("--halation-anti-halation", type=float, default=None)
@@ -98,7 +158,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--halation-diffusion", type=float, default=None)
     parser.add_argument("--halation-warm-core", type=float, default=None)
     parser.add_argument("--halation-background-visibility", type=float, default=None)
-    parser.add_argument("--halation-source-normalization", choices=("percentile", "none"), default="percentile")
+    parser.add_argument(
+        "--halation-source-normalization",
+        choices=("percentile", "none"),
+        default="percentile",
+    )
     parser.add_argument("--halation-source-limiter", type=float, default=2.0)
     parser.add_argument("--halation-local-diffusion", type=float, default=1.0)
     parser.add_argument("--halation-global-diffusion", type=float, default=0.18)
@@ -216,8 +280,30 @@ def build_color_render_float(
 
 def main() -> int:
     args = parse_args()
-    if args.output_bit_depth == 16 and args.output.suffix.casefold() not in {".png", ".tif", ".tiff"}:
+    if args.output_bit_depth == 16 and args.output.suffix.casefold() not in {
+        ".png",
+        ".tif",
+        ".tiff",
+    }:
         raise ValueError("16-bit output requires .png, .tif or .tiff")
+    analytic_runtime = None
+    color_diagnostics = None
+    if args.color_engine == "analytic-y-chromaticity":
+        if args.style != "velvia_50":
+            raise ValueError(
+                "analytic Y/chromaticity research profile only supports velvia_50"
+            )
+        if args.use_render_profile:
+            raise ValueError(
+                "safe-Lab --use-render-profile cannot be combined with the analytic research engine"
+            )
+        if args.write_recipe:
+            raise ValueError(
+                "render recipe v1 does not support the analytic research engine"
+            )
+        analytic_runtime = load_analytic_y_chromaticity_profile(
+            args.analytic_profile, root=ROOT
+        )
     profile_manifest = None
     profile_values = None
     if args.use_render_profile or args.write_recipe:
@@ -227,22 +313,38 @@ def main() -> int:
             raise ValueError(f"Render profile does not contain style {args.style!r}")
         profile_values = dict(profile_manifest["style_parameters"][args.style])
         if not args.use_render_profile:
-            legacy_values = load_profile_values(args.profile_config, args.preset, args.style)
+            legacy_values = load_profile_values(
+                args.profile_config, args.preset, args.style
+            )
             if profile_values != legacy_values:
-                raise ValueError(f"Recipe profile does not exactly migrate style {args.style!r}")
+                raise ValueError(
+                    f"Recipe profile does not exactly migrate style {args.style!r}"
+                )
     working = load_working_image(args.input)
     output_claim = resolve_look_approximation_claim(working)
-    base = build_color_render_float(
-        working_image_to_srgb_float(working),
-        args,
-        profile_values=profile_values if args.use_render_profile else None,
-    )
+    if analytic_runtime is None:
+        base = build_color_render_float(
+            working_image_to_srgb_float(working),
+            args,
+            profile_values=profile_values if args.use_render_profile else None,
+        )
+    else:
+        base, color_diagnostics = render_analytic_y_chromaticity_profile(
+            working, analytic_runtime
+        )
     layers = []
     halation_resolved = None
     halation_metadata = None
     halation_preset_id = None
     if args.grain > 0:
-        layers.append(grain_residual_layer(base, strength=args.grain, seed=args.seed, color=args.style not in {"hp5", "tri_x_400"}))
+        layers.append(
+            grain_residual_layer(
+                base,
+                strength=args.grain,
+                seed=args.seed,
+                color=args.style not in {"hp5", "tri_x_400"},
+            )
+        )
     if args.halation > 0:
         if args.halation_model == "physical":
             if args.halation_control_mode == "locked":
@@ -259,16 +361,26 @@ def main() -> int:
                     halation_type=base_controls.halation_type
                     if args.halation_type == "auto"
                     else args.halation_type,
-                    color_response=_arg_or(args.halation_color_response, base_controls.color_response),
+                    color_response=_arg_or(
+                        args.halation_color_response, base_controls.color_response
+                    ),
                     profile=_arg_or(args.halation_profile, base_controls.profile),
-                    amount=args.halation if args.halation_amount is None else args.halation_amount,
+                    amount=args.halation
+                    if args.halation_amount is None
+                    else args.halation_amount,
                     impact=_arg_or(args.halation_impact, base_controls.impact),
-                    anti_halation=_arg_or(args.halation_anti_halation, base_controls.anti_halation),
-                    source_selectivity=_arg_or(args.halation_source_selectivity, base_controls.source_selectivity),
+                    anti_halation=_arg_or(
+                        args.halation_anti_halation, base_controls.anti_halation
+                    ),
+                    source_selectivity=_arg_or(
+                        args.halation_source_selectivity,
+                        base_controls.source_selectivity,
+                    ),
                     diffusion=_arg_or(args.halation_diffusion, base_controls.diffusion),
                     warm_core=_arg_or(args.halation_warm_core, base_controls.warm_core),
                     background_visibility=_arg_or(
-                        args.halation_background_visibility, base_controls.background_visibility
+                        args.halation_background_visibility,
+                        base_controls.background_visibility,
                     ),
                     source_normalization=args.halation_source_normalization,
                 )
@@ -276,11 +388,15 @@ def main() -> int:
                 halation_metadata = describe_physical_halation_controls(controls)
                 layers.append(build_physical_halation_layer(base, controls))
             else:
-                no_remjet = None if args.halation_no_remjet < 0 else args.halation_no_remjet
+                no_remjet = (
+                    None if args.halation_no_remjet < 0 else args.halation_no_remjet
+                )
                 halation_resolved = {
                     "profile": _arg_or(args.halation_profile, "cinestill_800t"),
                     "source_normalization": args.halation_source_normalization,
-                    "amplify": args.halation if args.halation_amount is None else args.halation_amount,
+                    "amplify": args.halation
+                    if args.halation_amount is None
+                    else args.halation_amount,
                     "impact": _arg_or(args.halation_impact, 0.85),
                     "source_limiter_stops": args.halation_source_limiter,
                     "local_diffusion": args.halation_local_diffusion,
@@ -299,8 +415,14 @@ def main() -> int:
         else:
             layers.append(halation_layer(base, strength=args.halation))
     if args.dust > 0:
-        layers.append(dust_scratch_layer(base.shape, strength=args.dust, seed=args.seed + 17))
-    out = composite_layers(base, layers, output_margin=4)
+        layers.append(
+            dust_scratch_layer(base.shape, strength=args.dust, seed=args.seed + 17)
+        )
+    out = composite_layers(
+        base,
+        layers,
+        output_margin=0 if analytic_runtime is not None else 4,
+    )
     output_format = save_rgb(out, args.output, args.output_bit_depth)
     recipe_path = None
     recipe_sha256 = None
@@ -360,9 +482,16 @@ def main() -> int:
             else:
                 view = layer_on_black(layer)
             save_rgb(view, layer_dir / f"{layer.name}.png")
-            if layer.name in {"halation", "physical_halation", "density_halation"} and layer.mode == "screen":
-                save_rgb(layer_on_black(layer), layer_dir / f"{layer.name}_on_black.png")
-                save_rgb(layer_on_white(layer), layer_dir / f"{layer.name}_on_white.png")
+            if (
+                layer.name in {"halation", "physical_halation", "density_halation"}
+                and layer.mode == "screen"
+            ):
+                save_rgb(
+                    layer_on_black(layer), layer_dir / f"{layer.name}_on_black.png"
+                )
+                save_rgb(
+                    layer_on_white(layer), layer_dir / f"{layer.name}_on_white.png"
+                )
     if args.write_metrics:
         quantization_max = 65535 if args.output_bit_depth == 16 else 255
         arr = np.rint(out * quantization_max).astype(
@@ -375,6 +504,17 @@ def main() -> int:
             "color_engine": args.color_engine,
             "preset": args.preset,
             "profile_driven_adapter": args.use_render_profile,
+            "analytic_research_profile": (
+                None
+                if analytic_runtime is None
+                else {
+                    "profile_id": analytic_runtime.profile["profile_id"],
+                    "profile_version": analytic_runtime.profile["profile_version"],
+                    "profile_sha256": analytic_runtime.profile_sha256,
+                    "product_default": False,
+                    "selector_facts": color_diagnostics,
+                }
+            ),
             "output_claim": output_claim,
             "input_decode": {
                 "working_space": working.working_space,
@@ -399,7 +539,9 @@ def main() -> int:
             },
             "bounds": [int(arr.min()), int(arr.max())],
             "layers": [layer_metrics(layer) for layer in layers],
-            "halation_control_mode": args.halation_control_mode if halation_resolved else None,
+            "halation_control_mode": args.halation_control_mode
+            if halation_resolved
+            else None,
             "halation_preset": halation_preset_id,
             "halation_metadata": halation_metadata,
             "halation_resolved": halation_resolved,
@@ -410,7 +552,9 @@ def main() -> int:
                 "path": str(recipe_path),
                 "sha256": recipe_sha256,
             }
-        args.output.with_suffix(".metrics.json").write_text(json.dumps(metrics, indent=2), encoding="utf-8")
+        args.output.with_suffix(".metrics.json").write_text(
+            json.dumps(metrics, indent=2), encoding="utf-8"
+        )
     print(args.output)
     return 0
 
