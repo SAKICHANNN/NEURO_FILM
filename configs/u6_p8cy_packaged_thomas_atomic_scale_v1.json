@@ -1,0 +1,57 @@
+{
+  "schema": "neuro_film.u6_p8cy_packaged_thomas_atomic_scale_contract.v1",
+  "experiment_id": "u6.p8cy-packaged-thomas-atomic-scale-v1",
+  "node": "ULT > U6 > U6.P8 > U6.P8CY",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Does the hash-bound Windows package runtime reproduce the exact P8CV 12MP result within the same ordinary-desktop resource gates?",
+  "parent": {
+    "path": "docs/evidence/U6_P8CV_CANONICAL_PROFILE_ATOMIC_SCALE_RESULT.json",
+    "sha256": "abf78873e728ce496f51333ddd30f3f3a5bee3d3930eef2d16c6ce87f046c8b9",
+    "required_decision": "retain_canonical_profile_to_atomic_12mp_runtime"
+  },
+  "package": {
+    "path": "configs/native_thomas_export_package_win_x64_v1.json",
+    "sha256": "b95c30c5fdd0d04c1dabbc22f889042ed690c7f55eec3650e6c4bf8b6c7330fb",
+    "profile_path": "configs/render_profiles/generic_physical_thomas_p8cr_v1.json"
+  },
+  "profile_sha256": "923a985aa90e029332c723a33afb793afe05cae777b3c07061d54828b91e21b4",
+  "profile_source_bindings": {
+    "p2q_characteristic": "087e67544f737401fa697b21f06215a31827189e0648b8d60da666b92113caaa",
+    "p4bw_profile": "4edf4eaaeae163a2f579584c7d9533134a7d6177d5cc78ed517cb15865e585bf",
+    "p8bs_thomas": "343d98c2f59d1632e336402b64e890dad4180db9ea1af8f4c46b7d228edef860",
+    "p8bv_amplitude": "06e3d751678097be788ccc2df7869a568c0809837f3aaa35c6bba1b84dd28202",
+    "p8bw_layers": "8c1313117f3f36dbcc4657038c4ccc5e7b6040f1a347a6ff0c7612417f43dbdc",
+    "p8ca_gauge": "1aa83cfbb91c6bbfbdefc6165d700384bb23df0df2b5d65abd931e3c8affa06c",
+    "p8cq_export_core": "3d9c08e6fe1b039e099c4cbfbe95cdbd3290df033ebc56934b2aa2c19f387467"
+  },
+  "fixture": {
+    "height": 3000,
+    "width": 4000,
+    "row_partition": 128,
+    "runs": 2,
+    "exposure_fixture": "p8bw-domain-linear-gradient-v1",
+    "maximum_output_bytes": 80000000
+  },
+  "expected": {
+    "input_sha256": "81a91bcdafe07f48701ae8a8e4339fa74af3be25326b422a9f6ccaa5c431fc3b",
+    "output_sha256": "e7b2c3d8ea6ee9cb143f48a680bb2a6a8a59666f3b63f4d1b621a03869ce5909",
+    "decoded_rgb16_sha256": "5a0f531fe9b28183dba4634b0c1d739f71c2677e2f9ba74dd16c33c2fa6530fd",
+    "icc_sha256": "217fe48ec958c667f8eef725aa27198f465df95d7662593b90d0a1cc30114356"
+  },
+  "gates": {
+    "maximum_wall_seconds": 12.0,
+    "maximum_process_tree_rss_bytes": 600000000,
+    "maximum_repeat_wall_ratio": 1.20,
+    "maximum_repeat_rss_ratio": 1.10,
+    "require_exact_output_replay": true,
+    "require_exact_decoded_replay": true,
+    "require_exact_icc": true,
+    "require_zero_stage_residue": true,
+    "require_zero_surviving_processes": true,
+    "require_parent_output_exact": true
+  },
+  "decision_if_pass": "retain_packaged_native_thomas_12mp_runtime",
+  "decision_if_fail": "retain_unpacked_p8cv_runtime_only",
+  "claim_ceiling": "One measured Windows ordinary-desktop CPU hash-bound package-to-create-only-atomic 12MP RGB16 PNG path for the exact generic physical-inspired P8CR profile; not calibrated stock response, arbitrary media, device runtime or delivered product."
+}

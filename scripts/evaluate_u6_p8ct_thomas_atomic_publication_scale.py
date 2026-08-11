@@ -37,6 +37,8 @@ from src.film_physics.atomic_native_output import (
     publish_native_thomas_profile_rgb16_png,
     publish_native_thomas_rgb16_png,
 )
+from src.film_physics.native_thomas_package import resolve_native_thomas_package
+from src.film_physics.native_thomas_runtime import NativeThomasExportRuntime
 from src.preprocess.output_encode import srgb_icc_profile
 
 
@@ -54,6 +56,7 @@ def _validate_contract(contract_path: Path) -> dict[str, Any]:
             "neuro_film.u6_p8ct_thomas_atomic_publication_scale_contract.v1",
             "neuro_film.u6_p8cu_thomas_atomic_domain_scale_contract.v1",
             "neuro_film.u6_p8cv_canonical_profile_atomic_scale_contract.v1",
+            "neuro_film.u6_p8cy_packaged_thomas_atomic_scale_contract.v1",
         }
         or contract.get("status") != "contract_frozen_implementation_ready"
         or fixture.get("height") != 3000
@@ -78,6 +81,11 @@ def _validate_contract(contract_path: Path) -> dict[str, Any]:
         or payload.get("decision") != parent["required_decision"]
     ):
         raise NativeThomasAtomicScaleError("P8CT parent drift")
+    package = contract.get("package")
+    if isinstance(package, dict):
+        package_path = ROOT / package["path"]
+        if sha256_file(package_path) != package["sha256"]:
+            raise NativeThomasAtomicScaleError("P8CY package drift")
     return contract
 
 
@@ -100,8 +108,14 @@ def _worker(
 ) -> None:
     contract = _validate_contract(contract_path)
     fixture = contract["fixture"]
-    is_domain_valid = "p8cu_" in contract["schema"] or "p8cv_" in contract["schema"]
-    if "p8cv_" in contract["schema"]:
+    is_packaged = "p8cy_" in contract["schema"]
+    is_domain_valid = any(
+        marker in contract["schema"] for marker in ("p8cu_", "p8cv_", "p8cy_")
+    )
+    if is_packaged:
+        prior, _profile = _compile_profile_payload(ROOT, contract)
+        profile = amplitude = fields = gauge = None
+    elif "p8cv_" in contract["schema"]:
         prior, profile = _compile_profile_payload(ROOT, contract)
         amplitude = fields = gauge = None
     else:
@@ -117,7 +131,19 @@ def _worker(
     library = load_library(dll_path)
     _configure_parallel(library)
     started = time.perf_counter()
-    if profile is not None:
+    if is_packaged:
+        package_path = ROOT / contract["package"]["path"]
+        package = _json(package_path)
+        resolved = resolve_native_thomas_package(
+            package,
+            profile_path=ROOT / contract["package"]["profile_path"],
+            library_path=dll_path,
+        )
+        receipt = NativeThomasExportRuntime(
+            package=package, resolved=resolved
+        ).publish(exposure, destination=destination)
+        published = receipt["output"]
+    elif profile is not None:
         published = publish_native_thomas_profile_rgb16_png(
             library,
             profile,
