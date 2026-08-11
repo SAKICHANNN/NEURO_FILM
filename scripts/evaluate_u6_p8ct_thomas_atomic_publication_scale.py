@@ -25,11 +25,18 @@ from scripts.evaluate_u6_p8bw_native_exposure_thomas_pipeline import (
 )
 from scripts.evaluate_u6_p8ck_native_thomas_rgb16_png_program import _icc_payload
 from src.eval.native_msvc import sha256_file
-from src.eval.native_thomas_atomic_publication import _compile_profile, _json
+from src.eval.native_thomas_atomic_publication import (
+    _compile_profile,
+    _compile_profile_payload,
+    _json,
+)
 from src.eval.native_thomas_export_profile import _configure_parallel
 from src.eval.native_thomas_field_conformance import canonical_bytes
 from src.eval.native_thomas_rgb16_png_conformance import build_msvc, load_library
-from src.film_physics.atomic_native_output import publish_native_thomas_rgb16_png
+from src.film_physics.atomic_native_output import (
+    publish_native_thomas_profile_rgb16_png,
+    publish_native_thomas_rgb16_png,
+)
 from src.preprocess.output_encode import srgb_icc_profile
 
 
@@ -46,6 +53,7 @@ def _validate_contract(contract_path: Path) -> dict[str, Any]:
         not in {
             "neuro_film.u6_p8ct_thomas_atomic_publication_scale_contract.v1",
             "neuro_film.u6_p8cu_thomas_atomic_domain_scale_contract.v1",
+            "neuro_film.u6_p8cv_canonical_profile_atomic_scale_contract.v1",
         }
         or contract.get("status") != "contract_frozen_implementation_ready"
         or fixture.get("height") != 3000
@@ -92,10 +100,14 @@ def _worker(
 ) -> None:
     contract = _validate_contract(contract_path)
     fixture = contract["fixture"]
-    prior, amplitude, fields, gauge = _compile_profile(ROOT, contract)
-    if contract["schema"].endswith(
-        "p8cu_thomas_atomic_domain_scale_contract.v1"
-    ):
+    is_domain_valid = "p8cu_" in contract["schema"] or "p8cv_" in contract["schema"]
+    if "p8cv_" in contract["schema"]:
+        prior, profile = _compile_profile_payload(ROOT, contract)
+        amplitude = fields = gauge = None
+    else:
+        prior, amplitude, fields, gauge = _compile_profile(ROOT, contract)
+        profile = None
+    if is_domain_valid:
         exposure = _domain_valid_exposure_fixture(
             prior, (int(fixture["height"]), int(fixture["width"]))
         )
@@ -105,16 +117,27 @@ def _worker(
     library = load_library(dll_path)
     _configure_parallel(library)
     started = time.perf_counter()
-    published = publish_native_thomas_rgb16_png(
-        library,
-        amplitude,
-        fields,
-        gauge,
-        exposure,
-        row_partition=int(fixture["row_partition"]),
-        destination=destination,
-        maximum_output_bytes=int(fixture["maximum_output_bytes"]),
-    )
+    if profile is not None:
+        published = publish_native_thomas_profile_rgb16_png(
+            library,
+            profile,
+            exposure,
+            expected_profile_sha256=contract["profile_sha256"],
+            row_partition=int(fixture["row_partition"]),
+            destination=destination,
+            maximum_output_bytes=int(fixture["maximum_output_bytes"]),
+        )
+    else:
+        published = publish_native_thomas_rgb16_png(
+            library,
+            amplitude,
+            fields,
+            gauge,
+            exposure,
+            row_partition=int(fixture["row_partition"]),
+            destination=destination,
+            maximum_output_bytes=int(fixture["maximum_output_bytes"]),
+        )
     wall_seconds = time.perf_counter() - started
     if hashlib.sha256(exposure.tobytes()).hexdigest() != input_sha256:
         raise NativeThomasAtomicScaleError("P8CT input mutated")
@@ -237,6 +260,14 @@ def evaluate(contract_path: Path, output_dir: Path) -> dict[str, Any]:
             for row in runs
         ),
     }
+    expected = contract.get("expected")
+    if isinstance(expected, dict):
+        gates["parent_output_exact"] = (
+            workers[0]["input_sha256"] == expected["input_sha256"]
+            and workers[0]["output_sha256"] == expected["output_sha256"]
+            and decoded_hashes[0] == expected["decoded_rgb16_sha256"]
+            and icc_hashes[0] == expected["icc_sha256"]
+        )
     passed = all(gates.values())
     stable = {
         "contract_sha256": sha256_file(contract_path),
@@ -256,7 +287,7 @@ def evaluate(contract_path: Path, output_dir: Path) -> dict[str, Any]:
         else contract["decision_if_fail"],
         "claim_ceiling": contract["claim_ceiling"],
     }
-    report_prefix = "p8cu" if "p8cu_" in contract["schema"] else "p8ct"
+    report_prefix = contract["experiment_id"].split(".", 1)[1].split("-", 1)[0]
     return {
         "schema": f"neuro_film.u6_{report_prefix}_thomas_atomic_publication_scale_report.v1",
         "experiment_id": contract["experiment_id"],

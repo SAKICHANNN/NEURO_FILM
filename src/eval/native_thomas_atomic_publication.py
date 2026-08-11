@@ -54,7 +54,9 @@ def _json(path: Path) -> dict[str, Any]:
     return payload
 
 
-def _compile_profile(root: Path, contract: dict[str, Any]) -> tuple[object, ...]:
+def _compile_profile_payload(
+    root: Path, contract: dict[str, Any]
+) -> tuple[ManufacturerCharacteristicPrior, dict[str, Any]]:
     p4bw, prior_payload = _parent_payloads()
     prior = ManufacturerCharacteristicPrior.from_dict(prior_payload["prior"])
     amplitude = compile_native_granularity_amplitude_profile(p4bw, prior_payload)
@@ -70,6 +72,11 @@ def _compile_profile(root: Path, contract: dict[str, Any]) -> tuple[object, ...]
     )
     if validate_native_thomas_export_profile(profile) != contract["profile_sha256"]:
         raise NativeThomasAtomicPublicationError("P8CS profile identity drift")
+    return prior, profile
+
+
+def _compile_profile(root: Path, contract: dict[str, Any]) -> tuple[object, ...]:
+    prior, profile = _compile_profile_payload(root, contract)
     rebuilt = reconstruct_native_thomas_export_profile(
         json.loads(canonical_profile_bytes(profile))
     )
@@ -199,4 +206,8 @@ def evaluate(*, root: Path, contract_path: Path, output_dir: Path) -> dict[str, 
     }
 
 
-__all__ = ["NativeThomasAtomicPublicationError", "evaluate"]
+__all__ = [
+    "NativeThomasAtomicPublicationError",
+    "_compile_profile_payload",
+    "evaluate",
+]
