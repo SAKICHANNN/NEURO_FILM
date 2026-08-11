@@ -11153,3 +11153,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   The next algorithm leaf will test per-pixel analytical maximum-safe scaling
   along the same residual direction, matching the project's bounded explicit
   execution hypothesis rather than adding capacity or post-hoc clipping.
+
+# 2026-08-11 - Freeze U5.R2CB9 analytical safe residual execution
+
+- CB9 keeps the exact CB8 curve and nominal 20% residual. It adds no learned
+  capacity: one shared per-pixel alpha is the analytical maximum in `[0,1]`
+  that prevents every source-interior channel from entering the frozen lower
+  or upper epsilon boundary along the actual residual direction.
+- Alpha is shared across RGB and no hard clipping or post-hoc gamut compressor
+  is allowed. Boundary safety, effect retention, attenuation, gradient order,
+  non-basic value and severe review gates are frozen before any CB9 pixel score.
+- Failure closes this exact executor without reducing strength or changing the
+  boundary definition. Pass remains generic development evidence and would
+  only open a fresh comparison with fixed AO6.
