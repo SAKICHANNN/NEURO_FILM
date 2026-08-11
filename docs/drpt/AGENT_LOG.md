@@ -11297,3 +11297,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close unchanged CB11 and retain AO6 t15/c35 as the colour incumbent. CB6
   remains manufactured-target mechanism evidence only; no product, stock,
   calibration, RAW, scene-linear or population-preference claim changes.
+
+# 2026-08-11 - Freeze U5.R2CB15 characteristic/AO6 factorization
+
+- Test the specific mechanism implied by CB14: preserve CB11's exact
+  characteristic luminance while borrowing only AO6's zero-luminance chroma,
+  with one analytical cube/source-boundary scale and no fitted parameter.
+- Freeze the previously consumed BK6S 12-camera population as development-only.
+  Automatic exactness, safety, chroma-retention and material-separation gates
+  precede any blind review; pass can open only a wholly new confirmation.
