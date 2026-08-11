@@ -1,0 +1,108 @@
+{
+  "schema": "neuro_film.u6_p4cp_density_conditioned_marked_phase_contract.v1",
+  "experiment_id": "u6.p4cp-density-conditioned-marked-phase-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4CP",
+  "date_frozen": "2026-08-11",
+  "question": "Does a bounded current-density-conditioned marked topology remove P4CO's cross-source tail without target or source-identity access?",
+  "primary_basis": [
+    "ITU-T H Supplement 21 (01/2025): light-dependent film-grain parameters",
+    "Ameur et al., FGA-NN, arXiv:2506.14350: analysis predicts conventional synthesis parameters",
+    "Newson et al., resolution-independent stochastic film grain: inhomogeneous Boolean intensity depends on image level"
+  ],
+  "parent": {
+    "p4co_evidence_path": "docs/evidence/U6_P4CO_MARKED_POISSON_PHASE_CONFIRMATION_RESULT.json",
+    "p4co_evidence_sha256": "74d245931cc62e6d372314cca31b9d3561133eee032df8a1ff8cbbea702e9530",
+    "required_decision": "FAIL_CLOSED_MARKED_POISSON_PHASE_TRANSFER",
+    "fixed_cluster_sigma_pixels": 1.0,
+    "fixed_offspring_per_parent": 8,
+    "p4bs_particle_sigma_pixels": 1.3253699417769098,
+    "p4bs_cluster_sigma_pixels": 1.1268619873805532,
+    "p4bs_mean_offspring": 27.765942352935905
+  },
+  "development": {
+    "source_scratch": "D:/trace-019f4b76-p4co-absolute-cinema",
+    "source_names": [
+      "steamscow_cinderella_and_ferryboat_cincinnati__http_www.loc.gov_item_2015600176",
+      "the_extra_turn__http_www.loc.gov_item_96519489",
+      "the_first_sleigh-ride__http_www.loc.gov_item_00694206",
+      "the_touaregs_in_their_country__http_www.loc.gov_item_2006641955"
+    ],
+    "frames_per_source": 10
+  },
+  "confirmation": {
+    "dataset_ref": "absolutedegradation/absolutecinema-real-scene-split-review-sample",
+    "dataset_version": 6,
+    "api_url": "https://www.kaggle.com/api/v1/datasets/list/absolutedegradation/absolutecinema-real-scene-split-review-sample",
+    "license": "CC-BY-4.0",
+    "selection_rule": "Sort eligible first clips with ten PNG frames and select indices 24 through 27; confirmation pixels remain unread until both bin parameters and all model statistics freeze.",
+    "source_names": [
+      "titanic_disaster__http_www.loc.gov_item_mp73125400",
+      "tr_at_fargo_n.d._during_progressive_campaign_1912_1__http_www.loc.gov_item_mp76000130",
+      "tr_in_africa_1909_2__http_www.loc.gov_item_mp76000261",
+      "tr_in_baltimore_during_liberty_loan_drive_1918__http_www.loc.gov_item_mp76000198"
+    ],
+    "source_count": 4,
+    "frames_per_source": 10,
+    "expected_total_bytes": 31838397,
+    "metadata_lock_sha256": "3ee90ac134a40b271b1c69ca2b51dcdcfbca537fbea56a8377a9940f09d759ea",
+    "maximum_download_bytes": 34000000,
+    "scratch": "D:/trace-019f4b76-p4cp-absolute-cinema"
+  },
+  "decode": {
+    "accepted_png_modes": ["L", "RGB", "RGBA"],
+    "rgba_requires_opaque_alpha": true,
+    "required_dtype": "uint8"
+  },
+  "patch_observation": {
+    "patch_size_pixels": 96,
+    "border_pixels": 48,
+    "patches_per_frame": 8,
+    "lowpass_gaussian_sigma_pixels": 3.0,
+    "accepted_patch_mean_interval": [0.1, 0.9],
+    "residual_normalization": "subtract mean and divide by population RMS",
+    "density_split": 0.5,
+    "minimum_development_patches_per_bin": 64
+  },
+  "candidate": {
+    "name": "two-bin-current-density-marked-phase-v1",
+    "construction": "use only the current patch lowpass mean to select one of two globally fitted parent counts; generate the fixed signed clustered skeleton and project to exact Thomas power",
+    "expected_parent_count_grid": [4, 8, 16, 32, 64, 128],
+    "cluster_sigma_pixels": 1.0,
+    "offspring_per_parent": 8,
+    "fit_rule": "independently minimize median patch feature distance in mean<0.5 and mean>=0.5 development bins; ties choose lower count",
+    "fit_sample_count_per_count": 512,
+    "evaluation_sample_count_per_count": 512,
+    "candidate_seed": 2608110416,
+    "p4cm_scale_sigma_pixels": 12.0,
+    "p4cm_scale_bounds": [0.25, 4.0],
+    "p4cm_log_scale_std": 0.2847407310619019,
+    "features": ["skew", "excess_kurtosis", "local_energy_cv_8x8", "absolute_excursion_component_density_z2p5"],
+    "feature_distance": "patchwise RMS feature distance scaled by fixed Gaussian-control MAD; aggregate by source median"
+  },
+  "second_order": {
+    "acf_lags_yx": [[0, 1], [1, 0], [1, 1], [0, 2], [2, 0], [2, 2], [0, 4], [4, 0]],
+    "maximum_per_sample_power_relative_error": 5e-8,
+    "maximum_per_sample_acf_absolute_error": 1e-12
+  },
+  "confirmation_gates": {
+    "minimum_sources_beating_fixed_p4co": 3,
+    "minimum_median_source_improvement_over_fixed_p4co": 0.2,
+    "maximum_worst_source_distance_ratio_to_fixed_p4co": 1.0,
+    "minimum_confirmation_patches_per_bin": 32,
+    "require_exact_power_projection": true,
+    "require_exact_acf_projection": true,
+    "require_finite_fields": true,
+    "require_two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain current-density conditioning as a generic high-order development mechanism and open disjoint photographic severe-artifact stress.",
+    "fail": "Close this exact split, counts and source roles without threshold, split or same-cohort rescue."
+  },
+  "forbidden": [
+    "read confirmation pixels before both bin counts and model statistics freeze",
+    "use source identity, target pixels, observed residual features or confirmation outcomes to choose a count",
+    "change split, grid, features or gates after development",
+    "claim stock, emulsion, scanner, process, physical calibration, visual safety or product readiness"
+  ],
+  "claim_ceiling": "Fresh-source archival current-density/grain-topology evidence only; no stock, calibration, scanner separation, visual safety or product claim."
+}
