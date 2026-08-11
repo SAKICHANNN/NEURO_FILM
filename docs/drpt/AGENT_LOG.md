@@ -11597,3 +11597,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - No candidate render is emitted. The affine fraction family closes without
   slope clipping or threshold rescue; the next leaf changes to monotone
   empirical quantile transport while AO6 remains incumbent.
+
+# 2026-08-11 - U5.R2CB27 passes development and opens confirmation
+
+- Stable-rank CB11 gamut fractions are mapped to AO6 empirical quantiles and
+  reconstructed with one global hue rotation at exact CB11 luminance. Two
+  reports are byte exact (`86023644...8cb4`; stable `6d713b90...6f42d`).
+- All automatic/severe gates pass. Frozen blind choices reveal `3/3` round
+  wins, `33/36` choices and `11/12` source majorities. Retain the unchanged
+  candidate only for source-disjoint confirmation; AO6 remains product/default.

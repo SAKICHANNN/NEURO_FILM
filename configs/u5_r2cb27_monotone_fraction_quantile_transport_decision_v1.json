@@ -1,0 +1,42 @@
+{
+  "schema": "neuro_film.u5_r2cb27_monotone_fraction_quantile_transport_decision.v1",
+  "experiment_id": "U5.R2CB27",
+  "contract_commit": "ee0369c6ffe3271cfb319dc0f5df796116af37ae",
+  "implementation_commit": "890b882c97965ce63a2fc8995b81ab29cd8a709a",
+  "observations_commit": "935297f3aa9384820ba6780f8828b361b5217355",
+  "mapping_receipt_commit": "c2f3e0c127c33af676fcd8f3938facd624a68c8c",
+  "contract_sha256": "867884f1a95b1175ec1b470596706760cea83935eac40caf599f27bd056ada41",
+  "implementation_sha256": "2ef3908055e7eea6bc4e6d04a21d8b2f0e6875fa309f6329326e8bf646b6a7ea",
+  "runner_sha256": "8556780b9607dcef0c1121d583d5061624bf63f0f38789f9d5e8f054e08692b8",
+  "observations_sha256": "7cd85512a85ae9416c94860f5a646758c70ddd5e32e72a46f4859c73abf7199c",
+  "mapping_receipt_sha256": "30bbb51a81cb1af876e1133916e9fdbf40c773752fc0085806b5529398352c14",
+  "formal_report_path": "D:/nf-019f4b76-cb27/report1.json",
+  "formal_report_sha256": "860236446bd23deb4f90de04e451deb8fa92b4575e41d1bce7d70ac5fa808cb4",
+  "stable_evidence_id": "6d713b901d7defcbf52dc3afca7a23956dbe47c7dd26ea36dfe1b3381536f42d",
+  "repeat_report_byte_exact": true,
+  "automatic_pass": true,
+  "blind_measurements": {
+    "candidate_round_wins": 3,
+    "candidate_aggregate_choices": 33,
+    "aggregate_choice_count": 36,
+    "candidate_source_majorities": 11,
+    "source_count": 12,
+    "candidate_confirmed_severe_source_count": 0
+  },
+  "gates": {
+    "automatic_gates": true,
+    "minimum_candidate_round_wins": true,
+    "minimum_candidate_aggregate_choices": true,
+    "minimum_candidate_source_majorities": true,
+    "severe_artifact_veto": true
+  },
+  "passed": true,
+  "decision": "retain_monotone_fraction_transport_open_independent_confirmation",
+  "interpretation": [
+    "One-dimensional monotone empirical fraction transport avoids CB26's invalid paired affine slope while remaining intrinsically in gamut.",
+    "The candidate passes every automatic gate, is preferred 33/36, wins all three rounds and has 11/12 source majorities with no confirmed severe artifact.",
+    "This is development evidence on a repeatedly consumed population and cannot promote the candidate without unchanged source-disjoint confirmation."
+  ],
+  "next_action": "Run the unchanged CB27 operator and gates on the disjoint BK13S 12-camera population with a new sealed blind mapping.",
+  "claim_ceiling": "Passing development candidate that opens independent confirmation only; not stock response, calibration, population preference or product promotion."
+}
