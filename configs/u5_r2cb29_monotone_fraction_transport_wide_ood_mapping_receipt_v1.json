@@ -1,0 +1,10 @@
+{
+  "schema": "neuro_film.u5_r2cb29_monotone_fraction_transport_wide_ood_mapping_receipt.v1",
+  "experiment_id": "U5.R2CB29",
+  "status": "mapping_revealed_after_blind_observations_commit",
+  "mapping_revealed": true,
+  "observations_commit": "c455862d562fe9b85c60b5ab0ea02bc0123d8491",
+  "observations_sha256": "5ac9ca8f6b5d33eaa8b79026925a709263064ca2194de7ac64d4b6cc5a183463",
+  "report_sha256": "fcd377e50359d2c0dfe9789fe12d3bcf085ff0e02c8401e80f5976afa3f542ba",
+  "sealed_mappings_canonical_sha256": "e507bba1b7d626d52024e7a717fa08d43bec425eb74b1c6a1d98c6185d10d3ad"
+}
