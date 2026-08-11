@@ -78,6 +78,7 @@ def select_direct_lab_lch_candidate(
         ),
         dtype=np.float32,
     )
+    mapped_lstar = np.clip(mapped_lstar, 0.1, 99.9)
     chroma_delta = target_lab[..., 1:].astype(np.float64) - source_lab[
         ..., 1:
     ].astype(np.float64)

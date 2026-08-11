@@ -49,3 +49,22 @@ def test_cb46_neutral_ramp_is_finite_safe_and_order_preserving() -> None:
     assert facts["selected_new_boundary_fraction"] == 0.0
     assert np.max(np.abs(luma_error)) <= 0.0001
     assert scale.shape == source.shape[:-1]
+
+
+def test_cb46_exact_black_white_endpoints_use_internal_neutral_rails() -> None:
+    source = np.asarray([[[0.0, 0.0, 0.0], [1.0, 1.0, 1.0]]], dtype=np.float32)
+    candidate, _, _, facts = select_direct_lab_lch_candidate(
+        source,
+        source.copy(),
+        curve=_curve(),
+        strength=0.2,
+        boundary_epsilon=1.0 / 65535.0,
+        dose_grid=[1.0, 0.0],
+        maximum_gradient_ratio=2.0,
+        maximum_lstar_inversion_fraction=0.0,
+        lstar_order_epsilon=0.0001,
+        gamut_iterations=24,
+    )
+    assert np.min(candidate) > 0.0
+    assert np.max(candidate) < 1.0
+    assert facts["selected_new_boundary_fraction"] == 0.0
