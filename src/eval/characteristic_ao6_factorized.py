@@ -198,6 +198,20 @@ def _inputs(config: Mapping[str, Any], root: Path):
     rows = _load_exact_json(
         root, population["manifest_path"], population["manifest_sha256"]
     )
+    included_source_ids = population.get("included_source_ids")
+    if included_source_ids is not None:
+        if (
+            not isinstance(included_source_ids, list)
+            or not included_source_ids
+            or len(set(included_source_ids)) != len(included_source_ids)
+        ):
+            raise CharacteristicAo6FactorizedError("CB15 source subset drift")
+        row_by_id = {row["id"]: row for row in rows}
+        if len(row_by_id) != len(rows) or any(
+            source_id not in row_by_id for source_id in included_source_ids
+        ):
+            raise CharacteristicAo6FactorizedError("CB15 source subset drift")
+        rows = [row_by_id[source_id] for source_id in included_source_ids]
     if (
         decision.get("status") != population["required_status"]
         or len(rows) != population["source_count_exact"]
