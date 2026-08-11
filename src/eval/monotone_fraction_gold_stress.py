@@ -128,6 +128,7 @@ def evaluate(
     report_schema: str = REPORT_SCHEMA,
     experiment_id: str = EXPERIMENT_ID,
     contract_filename: str = "u5_r2cb30_monotone_fraction_gold_stress_v1.json",
+    candidate_builder: Any | None = None,
 ) -> dict[str, Any]:
     cb11, ao6_config, artifact, curve, available, unavailable = _inputs(config, root)
     if output_dir.exists():
@@ -162,13 +163,22 @@ def evaluate(
             boundary_epsilon=epsilon,
             minimum_valid_fraction=minimum_valid_fraction,
         )
-        candidate, scale, luma_error = apply_safe_base_direction_target(
-            source,
-            safe_base,
-            target,
-            weights=weights,
-            boundary_epsilon=epsilon,
-        )
+        if candidate_builder is None:
+            candidate, scale, luma_error = apply_safe_base_direction_target(
+                source,
+                safe_base,
+                target,
+                weights=weights,
+                boundary_epsilon=epsilon,
+            )
+        else:
+            candidate, scale, luma_error = candidate_builder(
+                source,
+                safe_base,
+                target,
+                weights=weights,
+                boundary_epsilon=epsilon,
+            )
         candidate_bytes, candidate_u8 = _encode_png(candidate)
         output_rel = Path("renders") / f"{source_row['id']}.png"
         output_path = output_dir / output_rel
