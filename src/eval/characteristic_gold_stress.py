@@ -310,4 +310,85 @@ def write_report(report: Mapping[str, Any], path: Path) -> str:
     return hashlib.sha256(payload).hexdigest()
 
 
-__all__ = ["CharacteristicGoldStressError", "evaluate", "load_contract", "write_report"]
+def adjudicate_files(
+    *,
+    config_path: Path,
+    report_paths: list[Path],
+    review_path: Path,
+    adjudicator_software_commit: str,
+) -> dict[str, Any]:
+    """Bind exact CB13 replay and autonomous severe review."""
+
+    if len(report_paths) != 2:
+        raise CharacteristicGoldStressError("two CB13 reports are required")
+    if len(adjudicator_software_commit) != 40 or any(
+        value not in "0123456789abcdef" for value in adjudicator_software_commit
+    ):
+        raise CharacteristicGoldStressError("invalid adjudicator commit")
+    config = load_contract(config_path)
+    reports = [json.loads(path.read_text(encoding="utf-8")) for path in report_paths]
+    hashes = [hash_file(path) for path in report_paths]
+    if (
+        reports[0] != reports[1]
+        or len(set(hashes)) != 1
+        or reports[0].get("automatic_pass") is not True
+        or reports[0].get("complete_gold_set") is not False
+    ):
+        raise CharacteristicGoldStressError("CB13 replay is not exact and eligible")
+    review = json.loads(review_path.read_text(encoding="utf-8"))
+    if (
+        review.get("status") != "partial_gold_stress_severe_review_complete"
+        or review.get("report_sha256") != hashes[0]
+        or review.get("confirmed_severe_artifact_count") != 0
+    ):
+        raise CharacteristicGoldStressError("CB13 severe review is invalid")
+    expected_sheets = {
+        row["name"]: row["sha256"] for row in reports[0]["contact_sheets"]
+    }
+    if review.get("contact_sheet_sha256") != expected_sheets:
+        raise CharacteristicGoldStressError("CB13 contact sheet identity drift")
+    report_rows = {row["id"]: row for row in reports[0]["rows"]}
+    reviewed_ids: set[str] = set()
+    for row in review["original_resolution_outputs"]:
+        source_id = row["id"]
+        if (
+            source_id in reviewed_ids
+            or report_rows[source_id]["output_sha256"] != row["sha256"]
+        ):
+            raise CharacteristicGoldStressError("CB13 full-resolution identity drift")
+        reviewed_ids.add(source_id)
+    required_ids = set(config["visual"]["review_original_resolution_ids"])
+    if reviewed_ids != required_ids:
+        raise CharacteristicGoldStressError("CB13 full-resolution review is incomplete")
+
+    payload: dict[str, Any] = {
+        "schema": "neuro_film.u5_r2cb13_characteristic_gold_stress_decision.v1",
+        "experiment_id": EXPERIMENT_ID,
+        "adjudicator_software_commit": adjudicator_software_commit,
+        "status": "retain_partial_gold_stress_safety_face_open",
+        "inputs": {
+            "contract_sha256": hash_file(config_path),
+            "report_sha256": hashes[0],
+            "report_stable_evidence_id": reports[0]["stable_evidence_id"],
+            "review_sha256": hash_file(review_path),
+        },
+        "measurements": reports[0]["metrics"],
+        "automatic_checks": reports[0]["checks"],
+        "confirmed_severe_artifact_count": 0,
+        "partial_available_cohort_pass": True,
+        "complete_gold_set_pass": False,
+        "production_default_changed": False,
+        "next_branch": "restore_exact_fs_face_01_then_complete_gold_or_continue_independent_ood",
+        "claim_ceiling": config["claim_ceiling"],
+    }
+    payload["stable_evidence_id"] = hashlib.sha256(canonical_json(payload)).hexdigest()
+    return payload
+
+
+__all__ = [
+    "CharacteristicGoldStressError",
+    "adjudicate_files",
+    "evaluate",
+    "load_contract",
+    "write_report",
+]

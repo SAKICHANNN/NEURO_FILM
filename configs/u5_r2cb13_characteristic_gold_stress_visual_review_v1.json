@@ -1,0 +1,27 @@
+{
+  "schema": "neuro_film.u5_r2cb13_characteristic_gold_stress_visual_review.v1",
+  "experiment_id": "U5.R2CB13",
+  "status": "partial_gold_stress_severe_review_complete",
+  "report_sha256": "ed961e4e30d5093515c2aea7dfa37ba309fdb36f672a14566a3e0ef7d8471ef1",
+  "contact_sheet_sha256": {
+    "gold": "c85ace085e8b05fc581081c5a356dff7287079bbb7174dbd2c5d5bfddb045518",
+    "stress_1": "c0cb94e18688c9263b1ad24a9b1562d5c8cda07356c6a3dc348c2c806bd822ca",
+    "stress_2": "725d9f73b6205c1d04ca96997a8c62ece2986f14272c03594081731cfe15c014"
+  },
+  "original_resolution_outputs": [
+    {"id": "01", "sha256": "943f8ac871ff86931d92d95dc182bdc3e9cca0e96181688dc03398b34730bb36"},
+    {"id": "05", "sha256": "6dde7fcfcd81adb26e8b591f88c960c8368fe52aadc92ea92f6c5bc3eeee9461"},
+    {"id": "08", "sha256": "c94162a00ef5c009080a7e1f4d8ddaeea250129ff806f96de2090958b644743d"},
+    {"id": "09", "sha256": "82e0f36cceedec37bea4d4b67db132994a611af7dc7ccc39f3143a1fae7fceda"},
+    {"id": "11", "sha256": "6635285dbfa9780ba6ff961a437e96b49ee6246823da6b29a2a306d7aff4f886"},
+    {"id": "18", "sha256": "80e210546dd08b4e82dca93725e5bd1b4ecc56dc5e7042e5c496b399664c6b20"},
+    {"id": "21", "sha256": "8634548b65ec5f17fd658c60cc6830354135f8d6801b956abc57581ecd3c37b9"},
+    {"id": "29", "sha256": "db9e57160963348e5f65c9790676cf2267fab4e4a617746643dcc4405434d354"}
+  ],
+  "confirmed_severe_artifact_count": 0,
+  "notes": [
+    "All three contact sheets preserve source geometry, faces, text-like detail and fine structure without a confirmed seam, block, repeated texture, banding, posterization or red-speckle field.",
+    "Original-resolution review covers all eight locally available gold rows, including explicit ID11 red-speckle regression and the available astronaut face row 21.",
+    "FS_FACE_01 remains unavailable and is not counted or substituted; this review is not complete-gold or population evidence."
+  ]
+}
