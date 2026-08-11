@@ -58,6 +58,11 @@
     "selection": "lowest low-pass gradient RMS with y/x tie break",
     "residual_normalization": "subtract mean and divide by population RMS"
   },
+  "decode": {
+    "accepted_png_modes": ["L", "RGB", "RGBA"],
+    "rgba_requires_opaque_alpha": true,
+    "required_dtype": "uint8"
+  },
   "candidate": {
     "name": "bounded_compound_thomas_v1",
     "base": "zero-DC Gaussian random field with exact fixed P4BS Thomas power",
@@ -75,6 +80,8 @@
   "second_order": {
     "radial_bin_count": 24,
     "frequency_interval_cycles_per_pixel": [0.010416666666666666, 0.45],
+    "minimum_frequency_cycles_per_pixel": 0.010416666666666666,
+    "maximum_frequency_cycles_per_pixel": 0.45,
     "acf_lags_yx": [[0, 1], [1, 0], [1, 1], [0, 2], [2, 0], [2, 2], [0, 4], [4, 0]],
     "maximum_candidate_to_gaussian_nps_error_ratio": 1.1,
     "maximum_candidate_to_gaussian_acf_error_ratio": 1.1
