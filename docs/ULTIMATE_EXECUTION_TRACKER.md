@@ -1324,3 +1324,9 @@ zlib blocks and the fixed sRGB ICC; MSVC/LLVM bytes, decoded P8CJ samples and
 ICC are exact. Four fresh 12MP workers take 11.73-12.15s at 429.1-429.7MB peak.
 Retain the host program; actual target-device execution and caller-owned atomic
 file publication remain open.
+
+U6.P8CL closes the target-build boundary for that unchanged program. Official
+NDK r27d builds arm64-v8a and x86_64 shared libraries twice with exact object
+and final-library bytes; ELF machine identities and all three public P8CK
+entry points are present. Retain the dual-ABI build; actual Android execution
+and caller-owned atomic publication remain open.

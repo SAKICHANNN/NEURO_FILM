@@ -1,0 +1,46 @@
+{
+  "schema": "neuro_film.u6_p8cl_android_thomas_rgb16_png_build_evidence.v1",
+  "experiment_id": "u6.p8cl-android-thomas-rgb16-png-build-v1",
+  "status": "pass-retain-android-dual-abi-build-for-p8ck",
+  "contract_commit": "5f9c37f3",
+  "implementation_commit": "15847e8a",
+  "contract_sha256": "df13126dc662d53e5a8369f157f4e3902eb73a502a8156869eca31cb720c9ac7",
+  "builder_sha256": "d1b2deaa82b5bd30e1430970aae5c4a0899abc1595c76e71a6098cf2d23b66e8",
+  "evaluator_sha256": "8eb6611d4e50d7ebd6b2efaab77f6b94d5f8700df080f5dde6bc9fc276d4c824",
+  "test_sha256": "499ab990ffa7434bd49307bf03ad2b143a4990956cf590c6042e852bef9fd2ef",
+  "ndk": {
+    "release": "r27d",
+    "revision": "27.3.13750724",
+    "archive_bytes": 781506724,
+    "archive_sha1": "56607cbccd3642d4a1991f6bb3114a00f884f426",
+    "source_properties_sha256": "fb5eec1ca5dac09442109cf79e9ce49faecd8b312dbc997e88903a394e14994a",
+    "notice_sha256": "4d5224d1c0b54ffa88b0dc0088191638fdbb7227835095dfb98f7f66b416a323"
+  },
+  "formal_report_paths": [
+    "outputs/experiments/u6_p8cl_android_thomas_rgb16_png_build_v1/report_run1.json",
+    "outputs/experiments/u6_p8cl_android_thomas_rgb16_png_build_v1/report_run2.json"
+  ],
+  "formal_report_sha256": [
+    "7e406a14a53406660d42591f6189afc50420bf8cc8a3549982089c0fce8c80c9",
+    "53da7a7590abdc8840d5054342ada56548c64beedc0978ba3321ef19bb355f55"
+  ],
+  "stable_evidence_id": "2d22b6976d2090b3b4de6797a778ab4f4e86218c156a1a43375a53c74ee233ca",
+  "abis": {
+    "arm64-v8a": {
+      "elf_machine": "AArch64",
+      "bytes": 293704,
+      "sha256": "444809e1402b6e17dc66e8564218e61b403fb3c2fd551ddcb51cfd08660b2383",
+      "byte_exact_rebuild": true
+    },
+    "x86_64": {
+      "elf_machine": "Advanced Micro Devices X86-64",
+      "bytes": 298272,
+      "sha256": "6627ab6e9faff5ea80832213a7ae9256ffcef9fb6edda84fea6359f74d5c3d0c",
+      "byte_exact_rebuild": true
+    }
+  },
+  "required_dynamic_symbols_present": true,
+  "decision": "retain_android_dual_abi_build_for_p8ck",
+  "interpretation": "The unchanged P8CK C11 sources compile and link under the pinned official Android NDK r27d for arm64-v8a and x86_64. Two fresh builds per ABI reproduce every object and final shared-library byte exactly.",
+  "claim_ceiling": "Android arm64-v8a and x86_64 compile/link/reproducibility evidence only; not Android runtime, device execution, JNI/app integration, atomic file publication, calibrated stock response or product promotion."
+}

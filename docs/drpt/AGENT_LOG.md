@@ -2,6 +2,16 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-11 - U6.P8CL Android dual-ABI target build passes
+
+- Verified the exact official NDK r27d archive before extraction, then built
+  the unchanged P8CK C11 program for arm64-v8a and x86_64.
+- Two fresh builds per ABI reproduce every object and final shared library
+  byte exactly; required P8CK dynamic symbols and ELF machine IDs are present.
+  Stable ID is `2d22b697...233ca`.
+- This is compile/link evidence only. Actual Android execution is the next
+  active leaf; no runtime, device, app or product claim opens here.
+
 # 2026-08-11 - U5.R2CB5 recorder-RGB forward family closes
 
 - The source-only affine proxy uses 30 leave-one-test-set-and-slide-out folds;
