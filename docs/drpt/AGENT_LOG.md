@@ -2,6 +2,16 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-11 - U6.P8CO cached parallel Thomas candidate closes
+
+- Full-field caching plus three independent layer workers preserves the exact
+  12MP RGB16 stream across host and two Android 14 x86_64 cold boots.
+- Host improves from 6.422s to 2.39-2.50s; Android improves from
+  14.19-15.41s to 7.72-8.22s at 196,224,000 workspace bytes.
+- One of four Android parallel observations is 8.219s, above the frozen 8s
+  maximum. Stable ID `8fadaa44...c61815`; retain P8CN and seek a materially
+  different execution mechanism rather than relaxing the gate.
+
 # 2026-08-11 - U6.P8CN Android 12MP scale runtime passes
 
 - The unchanged freestanding Thomas RGB16 PNG core was confirmed across two

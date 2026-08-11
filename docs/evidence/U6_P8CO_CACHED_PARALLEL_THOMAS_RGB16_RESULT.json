@@ -1,0 +1,59 @@
+{
+  "schema": "neuro_film.u6_p8co_cached_parallel_thomas_rgb16_evidence.v1",
+  "experiment_id": "u6.p8co-cached-parallel-thomas-rgb16-v1",
+  "date": "2026-08-11",
+  "status": "FAIL_CLOSED",
+  "implementation_commit": "a392c0816746066b7ba766d0b526c658d0741668",
+  "contract_sha256": "982d75776173844ff1d2c4b2ad0fe8e0d6c17a123e94a97d1eab393c68f252e5",
+  "formal_report_sha256": "a75185cc72c63aa8032652431862b016097e39ca7fd9d84eac2d0187f331682b",
+  "stable_evidence_id": "8fadaa442faa44fee02421b5eff846336f6721d052d7f26804d6c877d4c61815",
+  "fixture": {
+    "height": 3000,
+    "width": 4000,
+    "row_partition": 128,
+    "raw_rgb16_bytes": 72000000,
+    "raw_rgb16_sha256": "8bd04a76d58597610fb7328b872a4497e85582e8d4892deb1bb517b6fcc581b3"
+  },
+  "host": {
+    "legacy_seconds": 6.422,
+    "cached_serial_seconds": 4.844,
+    "cached_parallel_seconds": [
+      2.5,
+      2.39
+    ],
+    "cached_parallel_peak_rss_bytes": 338157568
+  },
+  "android_14_x86_64_virtual": {
+    "legacy_seconds": [
+      14.187,
+      15.406
+    ],
+    "cached_serial_seconds": [
+      10.344,
+      11.078
+    ],
+    "cached_parallel_seconds": [
+      8.219,
+      7.765,
+      7.719,
+      7.984
+    ],
+    "cached_parallel_workspace_bytes": 196224000,
+    "owned_processes_surviving": 0
+  },
+  "gates": {
+    "old_cached_rgb16_byte_exact": true,
+    "cached_single_parallel_byte_exact": true,
+    "host_repeat_exact": true,
+    "android_cold_boot_repeat_exact": true,
+    "host_android_exact": true,
+    "android_parallel_wall_bounded_max_8_seconds": false,
+    "cached_workspace_bounded_max_230686720_bytes": true,
+    "invalid_input_zero_sink_calls": true,
+    "device_identity_exact": true,
+    "cleanup_exact": true
+  },
+  "decision": "retain_p8cn_serial_android_core",
+  "interpretation": "Caching and independent layer execution preserve every RGB16 value and materially reduce host and Android runtime, but one of four frozen Android parallel observations exceeded 8 seconds. The exact P8CO candidate therefore does not enter the retained runtime path. A successor must change execution mechanism rather than relax this threshold.",
+  "claim_ceiling": "Private synthetic-profile raw RGB16 performance evidence on Windows x64 and Android 14 x86_64 virtual device; not PNG or file publication, physical arm64, JNI or app integration, media integration, calibrated film response, or product export performance."
+}
