@@ -1,0 +1,53 @@
+{
+  "schema": "neuro_film.u5_r2cb30_monotone_fraction_gold_stress_contract.v1",
+  "experiment_id": "U5.R2CB30",
+  "question": "Does the unchanged CB27 monotone hue/fraction transport remain deterministic and severe-safe on every locally available member of the frozen U4.1 gold/stress set?",
+  "parents": {
+    "cb29_decision_path": "configs/u5_r2cb29_monotone_fraction_transport_wide_ood_decision_v1.json",
+    "cb29_decision_sha256": "10f727920db596814d929ba9676f4203f4902acb158975f3312dc059db0a9f03",
+    "cb29_required_decision": "retain_monotone_fraction_transport_as_research_look_champion_open_gold_stress",
+    "cb27_contract_path": "configs/u5_r2cb27_monotone_fraction_quantile_transport_v1.json",
+    "cb27_contract_sha256": "3206dbbf22749f51a200cd0fbf759d4aec12a434ad0fd9acb43455ee67147753",
+    "cb11_contract_path": "configs/u5_r2cb11_fujifilm_characteristic_luma_chroma_v1.json",
+    "cb11_contract_sha256": "fd6127a0c336fdfc661870d8636e8c7a8bbe741f096465e52c73a5a327213b5f",
+    "cb12_contract_path": "configs/u5_r2cb12_characteristic_vs_ao6_fresh_v1.json",
+    "cb12_contract_sha256": "0951b3ec44049f76afda12b90ba40e1bc644000336fcc340b1b862ea986823c1"
+  },
+  "population": {
+    "frozen_set_path": "outputs/filmcase/u41_provisional_eval_set.json",
+    "frozen_set_sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15",
+    "expected_available_source_count": 40,
+    "expected_available_gold_count": 8,
+    "expected_available_stress_count": 32,
+    "required_unavailable_ids": ["FS_FACE_01"],
+    "maximum_long_edge": 1600,
+    "input_rail": "legacy hash-bound encoded-sRGB JPEG display proxies; not RAW or scene-linear evidence"
+  },
+  "operator": {
+    "identity": "exact U5.R2CB27 global circular hue plus stable-rank empirical gamut-fraction transport",
+    "minimum_valid_fraction": 0.0001,
+    "safe_executor": "unchanged analytical source-boundary and float32-margin step"
+  },
+  "automatic_gates": {
+    "maximum_luminance_reconstruction_error": 0.000001,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio_vs_source": 1.35,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.0,
+    "minimum_population_median_direction_scale": 0.8,
+    "maximum_population_median_fraction_direction_scale_below_0p5": 0.1,
+    "require_exact_repeat": true,
+    "require_id11_presence": true
+  },
+  "visual": {
+    "maximum_confirmed_severe_artifact_count": 0,
+    "review_all_contact_sheets": true,
+    "review_original_resolution_ids": ["01", "05", "08", "09", "11", "18", "21", "29"],
+    "explicit_id11_red_speckle_regression": true
+  },
+  "stop_rules": [
+    "Automatic failure closes CB27 on this safety cohort without changing rank, quantile interpolation, hue, safe executor, threshold or population.",
+    "The unavailable FilmSet face remains explicit; do not substitute a derivative or call the available set complete.",
+    "A pass retains only partial local gold/stress safety evidence and cannot authorize product promotion or a default change."
+  ],
+  "claim_ceiling": "Partial autonomous severe-artifact regression for unchanged CB27 on the 40 locally available frozen encoded-sRGB display proxies; not the complete gold set, face closure, RAW, scene-linear, stock response, calibration, population preference or product promotion."
+}
