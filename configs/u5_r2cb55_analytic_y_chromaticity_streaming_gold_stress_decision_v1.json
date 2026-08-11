@@ -1,0 +1,19 @@
+{
+  "schema": "neuro_film.u5_r2cb55_analytic_y_chromaticity_streaming_gold_stress_decision.v1",
+  "experiment_id": "U5.R2CB55",
+  "formal_report_sha256": "f8898c89645ab3f99a287de0fcb0e574c0af3a8db5fc20165453b676cea537f9",
+  "stable_evidence_id": "90fae71c7b700fa6ef16d284adcd1e83d9e3317e49b2040c587e6062ed79294b",
+  "automatic_pass": true,
+  "replay": {
+    "source_count": 40,
+    "matching_output_hash_count": 40,
+    "matching_row_fact_count": 40,
+    "metrics_exact": true,
+    "checks_exact": true,
+    "scratch_residue": []
+  },
+  "decision": "pass_cb55_streamed_gold_stress_exact_replay",
+  "next_leaf": "Resolve the highest-value remaining promotion evidence gap: fresh severe face stress and independent preference versus AO6; do not spend another leaf on resource harness polish.",
+  "product_default_changed": false,
+  "claim_ceiling": "Exact streamed replay of the existing partial CB52 display-proxy OOD evidence only; no new visual review, face closure, film truth, calibration or product promotion."
+}
