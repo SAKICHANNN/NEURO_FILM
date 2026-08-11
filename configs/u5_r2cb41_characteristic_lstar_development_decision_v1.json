@@ -1,0 +1,19 @@
+{
+  "schema": "neuro_film.u5_r2cb41_characteristic_lstar_development_decision.v1",
+  "experiment_id": "U5.R2CB41",
+  "status": "failed_closed_before_visual_review",
+  "report_sha256": "2c17d191ec1d28aa10cb10892bf7ddc9f004eeb8371561ad8bfdf07726f297c0",
+  "stable_evidence_id": "5f7b1280a0f2e42890ef69b2677d2eca2fdf0c879df9f265e72e0af6a6bf5512",
+  "repeat_report_sha256_exact": true,
+  "failure": {
+    "completed_source_count": 2,
+    "minimum_gradient_ratio": 0.7881665082953763,
+    "minimum_lstar_inversion_fraction": 0.0000014750141453856543
+  },
+  "partial_artifacts_removed": true,
+  "visual_review_status": "forbidden",
+  "decision": "close_neutral_inverse_characteristic_lstar_open_chromaticity_preserving_scalar_solve",
+  "next_leaf": "Solve the frozen characteristic L-star target by a positive per-pixel scale on source RGB, preserving source chromaticity before the unchanged CB32 chroma direction is applied.",
+  "forbidden": "population rescue, relaxed order epsilon, curve or strength tuning, empirical histogram maps, changed chroma target or post-result threshold changes",
+  "claim_ceiling": "Mechanism failure of neutral-axis inverse execution; not visual, stock, calibration, preference or product evidence."
+}

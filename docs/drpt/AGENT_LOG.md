@@ -11723,3 +11723,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   third at `0.00155` L* inversion; gradient remains safe (`1.147`).
 - Do not test further identity blends or knots. Move to the pre-existing CB11
   monotone characteristic curve applied directly in L* on a new population.
+
+# 2026-08-12 - U5.R2CB41 isolates neutral inverse order loss
+
+- Two exact reports (`2c17d191...f297c`) fail at the third AI1S source with
+  `1.48e-6` L* inversion; visual review remains forbidden.
+- Keep the exact curve and gates. Next use a positive source-RGB scalar solve,
+  preserving chromaticity instead of reconstructing tone on the neutral axis.

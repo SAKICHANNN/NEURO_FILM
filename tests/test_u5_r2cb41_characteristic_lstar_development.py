@@ -15,6 +15,7 @@ from src.eval.fujifilm_characteristic_photographic import _compiled_curve
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u5_r2cb41_characteristic_lstar_development_v1.json"
+DECISION = ROOT / "configs/u5_r2cb41_characteristic_lstar_development_decision_v1.json"
 
 
 def test_cb41_contract_reuses_exact_cb11_curve_without_histogram_fit() -> None:
@@ -57,3 +58,12 @@ def test_cb41_selector_is_exactly_neutral_on_neutral_ramp() -> None:
     )
     actual = linear_rgb_to_lab(candidate, working_space="linear_srgb")[..., 0]
     assert float(np.max(np.abs(actual - expected))) < 1e-3
+
+
+def test_cb41_decision_opens_chromaticity_preserving_successor() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["failure"]["completed_source_count"] == 2
+    assert decision["failure"]["minimum_gradient_ratio"] < 1.35
+    assert decision["decision"] == (
+        "close_neutral_inverse_characteristic_lstar_open_chromaticity_preserving_scalar_solve"
+    )

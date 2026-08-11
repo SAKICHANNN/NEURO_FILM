@@ -1465,3 +1465,9 @@ the third with `0.00155` L* inversion despite safe gradient (`1.147`). Two
 reports are exact (`fa95ac30...e9822`). This closes the empirical histogram
 tone family rather than testing more blend weights. The next leaf directly
 applies the already-frozen monotone CB11 characteristic curve in L* space.
+
+U5.R2CB41 removes histogram fitting and applies that exact curve directly to
+actual L*. Two reports are exact (`2c17d191...f297c`), but the third AI1S row
+still has `1.48e-6` L* inversions despite safe gradient (`0.788`). This isolates
+the remaining defect to neutral-axis inverse execution. Next, solve the target
+with a positive scalar on each source RGB pixel before unchanged CB32 chroma.
