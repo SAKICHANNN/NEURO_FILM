@@ -21,6 +21,9 @@ if str(ROOT) not in sys.path:
 from src.eval.analytic_y_chromaticity_memory_optimized import (
     render_analytic_y_chromaticity_memory_candidate,
 )
+from src.eval.analytic_y_chromaticity_throughput_candidate import (
+    render_analytic_y_chromaticity_throughput_candidate,
+)
 from src.eval.nonexpansive_fraction_transport_external_sort import (
     nonexpansive_fraction_transport_target_external_sorted,
 )
@@ -74,6 +77,14 @@ def _worker(config: dict, output: Path, scratch: Path) -> dict:
             runtime,
             scratch_root=scratch,
             row_chunk=int(config["candidate"]["row_chunk"]),
+        )
+    elif materializer == "parallel_ao6_row_safe_base_external_sorted_v1":
+        candidate, facts = render_analytic_y_chromaticity_throughput_candidate(
+            working,
+            runtime,
+            scratch_root=scratch,
+            row_chunk=int(config["candidate"]["row_chunk"]),
+            ao6_workers=int(config["candidate"]["ao6_workers"]),
         )
     elif target_builder is None:
         raise ValueError("unsupported CB memory target materializer")

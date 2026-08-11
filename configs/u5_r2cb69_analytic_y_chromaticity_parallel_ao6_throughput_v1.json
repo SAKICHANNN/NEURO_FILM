@@ -1,0 +1,52 @@
+{
+  "schema": "neuro_film.u5_r2cb69_analytic_y_chromaticity_parallel_ao6_throughput_contract.v1",
+  "report_schema": "neuro_film.u5_r2cb69_analytic_y_chromaticity_parallel_ao6_throughput_report.v1",
+  "experiment_id": "U5.R2CB69",
+  "question": "Can four independent AO6 row workers reduce complete 24MP CB66 latency by at least 20% while preserving exact output and the 4GB memory gate?",
+  "parent": {
+    "cb66_decision_path": "configs/u5_r2cb66_analytic_y_chromaticity_row_safe_base_memory_decision_v1.json",
+    "cb66_decision_sha256": "9b8d4ebed72daf1eac689b0bdaf16391ce8faaa37243c858eec8b0479f42328d",
+    "cb66_required_decision": "pass_cb66_output_exact_row_bounded_safe_base_complete_memory"
+  },
+  "baseline": {
+    "input_path": "D:/nf-019f4b76-cb60-input.png",
+    "input_sha256": "f9a369f384126a0837880a79828f3608290e8ef013a0156f72a263a19762ed98",
+    "output_sha256": "949ffce7f86faee4296de52e51b90ae8e5cd4dc205d4a5a9e0f5cb86c6c6e9fa",
+    "peak_process_tree_rss_bytes": 5004148736,
+    "wall_seconds": 137.08510640000168,
+    "selector_facts": {
+      "characteristic_strength": 0.2,
+      "fraction_gamut_scale_below_0p8": 0.000487875,
+      "global_dose": 1.0,
+      "maximum_luminance_error": 2.8280287112103508e-08,
+      "median_gamut_scale": 1.0,
+      "selected_gradient_ratio": 0.8636540824585575,
+      "selected_lstar_inversion_fraction": 0.0,
+      "selected_new_boundary_fraction": 0.0
+    }
+  },
+  "candidate": {
+    "algorithm": "four-worker-single-target-ao6-plus-cb66-v1",
+    "target_materializer": "parallel_ao6_row_safe_base_external_sorted_v1",
+    "row_chunk": 128,
+    "ao6_workers": 4,
+    "ao6_implementation_sha256": "3e39a5d0bd627dcb629ce3e964249e559fad44b5f55fea42cbf5b16b38e4ce2f",
+    "renderer_implementation_sha256": "d11829be12cb31fa34c7d295cbcc525daddf76f30c57c66e220e504b15034ed9",
+    "runner_sha256": "7be7f41696632358f3bd2170789637d286c3ba3a54609652ed897ec36feaced9",
+    "output_bit_depth": 16
+  },
+  "gates": {
+    "output_sha256_exact": true,
+    "selector_facts_exact": true,
+    "maximum_peak_process_tree_rss_bytes": 4000000000,
+    "maximum_peak_rss_ratio_to_baseline": 0.8,
+    "maximum_wall_ratio_to_baseline": 0.8,
+    "scratch_residue_count": 0
+  },
+  "stop_rules": [
+    "Do not change pixels, row partition, worker count, source, bit depth, selector or safety gates.",
+    "Do not relax the 4GB, 0.8x memory or 0.8x time gates after measurement.",
+    "Fail closed on either fresh-process identity, memory, time or cleanup failure."
+  ],
+  "claim_ceiling": "Local Windows/Python complete 24MP analytic renderer throughput evidence only; no native/device, photographic preference, stock, calibration, default-product or arbitrary-media claim."
+}
