@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 
@@ -39,7 +40,16 @@ def load_contract(path: Path) -> dict[str, Any]:
     return payload
 
 
-def evaluate(config: dict[str, Any], root: Path, output_dir: Path) -> dict[str, Any]:
+def evaluate_with_selector(
+    config: dict[str, Any],
+    root: Path,
+    output_dir: Path,
+    *,
+    selector: Callable[..., tuple[np.ndarray, np.ndarray, np.ndarray, dict[str, float]]],
+    report_schema: str,
+    experiment_id: str,
+    contract_filename: str,
+) -> dict[str, Any]:
     cb51 = _load_exact_json(
         root,
         config["parents"]["cb51_decision_path"],
@@ -84,7 +94,7 @@ def evaluate(config: dict[str, Any], root: Path, output_dir: Path) -> dict[str, 
         boundary_epsilon: float,
     ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
         del safe_base, weights
-        candidate, scale, error, row_facts = select_analytic_y_chromaticity_candidate(
+        candidate, scale, error, row_facts = selector(
             source,
             target,
             curve=curve,
@@ -110,9 +120,9 @@ def evaluate(config: dict[str, Any], root: Path, output_dir: Path) -> dict[str, 
         output_dir,
         target_builder=target_builder,
         candidate_builder=candidate_builder,
-        report_schema=REPORT_SCHEMA,
-        experiment_id=EXPERIMENT_ID,
-        contract_filename="u5_r2cb52_analytic_y_chromaticity_gold_stress_v1.json",
+        report_schema=report_schema,
+        experiment_id=experiment_id,
+        contract_filename=contract_filename,
     )
     if len(facts) != len(report["rows"]):
         raise AnalyticYChromaticityGoldStressError("CB52 row diagnostics drift")
@@ -185,4 +195,16 @@ def evaluate(config: dict[str, Any], root: Path, output_dir: Path) -> dict[str, 
     return report
 
 
-__all__ = ["evaluate", "load_contract"]
+def evaluate(config: dict[str, Any], root: Path, output_dir: Path) -> dict[str, Any]:
+    return evaluate_with_selector(
+        config,
+        root,
+        output_dir,
+        selector=select_analytic_y_chromaticity_candidate,
+        report_schema=REPORT_SCHEMA,
+        experiment_id=EXPERIMENT_ID,
+        contract_filename="u5_r2cb52_analytic_y_chromaticity_gold_stress_v1.json",
+    )
+
+
+__all__ = ["evaluate", "evaluate_with_selector", "load_contract"]

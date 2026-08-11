@@ -1,0 +1,22 @@
+{
+  "schema": "neuro_film.u5_r2cb55_analytic_y_chromaticity_streaming_gold_stress_contract.v1",
+  "experiment_id": "U5.R2CB55",
+  "question": "Does the CB54 streamed selector reproduce every frozen CB52 gold/stress output byte and row fact?",
+  "parents": {
+    "cb54_decision_path": "configs/u5_r2cb54_analytic_y_chromaticity_streaming_24mp_decision_v1.json",
+    "cb54_decision_sha256": "56644591c348927179d46c94aa0a9c7b2fdfa57ba93b98fd5a82d0919214bd5b",
+    "cb54_required_decision": "pass_cb54_output_exact_streaming_24mp",
+    "cb52_contract_path": "configs/u5_r2cb52_analytic_y_chromaticity_gold_stress_v1.json",
+    "cb52_contract_sha256": "8ac4a761a167b24d679ebf8f2896ab90335dd15621d3424c585171248b6dca1a",
+    "cb52_baseline_report_sha256": "c3e8534242ab05f8ae2f26c3f1cd674bf4a34d5a4aa3b1033cbf6f5a86d18647",
+    "cb52_baseline_stable_evidence_id": "4bc19a321c2267eaf48b9bcde41da37eb64fa0ad87d0a1aaca4e413cd38d5169"
+  },
+  "execution": {
+    "row_chunk": 64,
+    "required_source_count": 40,
+    "required_output_hash_match_count": 40,
+    "required_row_fact_match_count": 40,
+    "scratch_residue_allowed": false
+  },
+  "claim_ceiling": "Exact streamed replay of the existing partial CB52 display-proxy OOD evidence only; no new visual review, face closure, film truth, calibration or product promotion."
+}
