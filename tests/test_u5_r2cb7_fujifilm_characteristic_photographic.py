@@ -14,6 +14,7 @@ from src.eval.fujifilm_characteristic_photographic import (
     _compiled_curve,
     _gamma_residual,
     apply_characteristic_tone,
+    evaluate_photographic,
     load_contract,
 )
 from src.eval.fujifilm_dye_basis_measured_conformance import hash_file
@@ -84,3 +85,16 @@ def test_invalid_source_fails_before_tone_execution() -> None:
             curve,
             strength=0.2,
         )
+
+
+def test_formal_photographic_compiler_closes_before_visual_review(
+    tmp_path: Path,
+) -> None:
+    report = evaluate_photographic(load_contract(CONFIG), ROOT, tmp_path / "run")
+    assert report["automatic_pass"] is False
+    assert report["visual_review_allowed"] is False
+    assert report["visual_review_status"] == "forbidden"
+    assert report["visual_assets"] == {}
+    assert report["checks"]["non_gamma"] is True
+    assert report["checks"]["new_boundaries"] is False
+    assert report["checks"]["gradient_order"] is False

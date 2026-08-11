@@ -11115,3 +11115,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   non-basic, gamut, boundary, gradient and severe gates are frozen before any
   candidate pixel score. Failure closes this exact generic compiler without
   strength or coordinate rescue.
+
+# 2026-08-11 - U5.R2CB7 closes Lab characteristic execution
+
+- Two reports are byte-identical (`ae5c39f9...f7d07b`). The fixed curve is
+  visible (median per-image P95 `8.215` Delta L-star) and retains a median
+  `1.425` Delta L-star residual beyond the best one-parameter gamma.
+- Safety fails before visual review: maximum new hard-boundary fraction is
+  `3.209%` and material adjacent L-star sign inversion reaches `1.026%`.
+  Median gamut scale of 1.0 is therefore misleading; the harmful subset is
+  concentrated at the cube edge.
+- Close the exact Lab/source-segment executor without lowering the frozen
+  strength. CB6 remains retained. The next distinct algorithm leaf must make
+  cube preservation intrinsic rather than rely on post-hoc gamut compression.

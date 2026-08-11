@@ -1,0 +1,36 @@
+{
+  "schema": "neuro_film.u5_r2cb7_fujifilm_characteristic_photographic_decision.v1",
+  "experiment_id": "U5.R2CB7",
+  "contract_commit": "cf7d5bce",
+  "implementation_commit": "086eaafa",
+  "contract_sha256": "6871ea260a8aaa1463fd48e8cddaf32224e6532908940cadfb66ee34f4a2c5e0",
+  "implementation_sha256": "1ff01be55be57049e9e00d5ac44668016e974ccbe4b1d907271ddf23bb3ee2af",
+  "runner_sha256": "6de0b9e473e68c2d953cb0230665604af83c3792cd037efd321139110977b870",
+  "formal_report_path": "outputs/experiments/u5_r2cb7_fujifilm_characteristic_photographic_v1/report_run1.json",
+  "formal_report_sha256": "ae5c39f9664f77781feda23f0723daa98997c0f3f9a9e6f6febe5d0335f7d07b",
+  "stable_evidence_id": "dee1c7d139ab49c448b5954e1c0af183573aeab7cd30d56971bb1bd75d799c7c",
+  "repeat_report_byte_exact": true,
+  "passed": false,
+  "decision": "close_characteristic_photographic_compiler_without_rescue",
+  "metrics": {
+    "population_median_per_image_p95_lstar_effect": 8.215465545654297,
+    "maximum_per_image_p95_lstar_effect": 8.868106842041016,
+    "population_median_per_image_gamma_residual_delta_lstar": 1.4254335974435333,
+    "rows_gamma_residual_delta_lstar_ge_0p75": 8,
+    "population_median_gamut_scale": 1.0,
+    "maximum_per_image_fraction_gamut_scale_below_0p99": 0.1487329844847775,
+    "maximum_new_hard_boundary_fraction": 0.03209215826403326,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.010261586572918611
+  },
+  "failed_gates": [
+    "gradient_order",
+    "new_boundaries"
+  ],
+  "interpretation": [
+    "The retained characteristic shape is visibly material and not reducible to the fitted one-parameter gamma control at the frozen 20 percent strength.",
+    "The Lab L-star plus source-segment gamut executor is not safe for this curve: high-chroma photographs reach 3.21 percent new hard-boundary pixels and 1.03 percent material adjacent L-star order inversions.",
+    "Median gamut scale alone hides the failure because most pixels need no attenuation while a consequential boundary subset is forced to the cube edge. Automatic failure forbids visual review."
+  ],
+  "next_action": "Preserve the CB6 characteristic mechanism but replace the failed Lab source-segment execution with one separately frozen intrinsically cube-preserving monotone RGB operator; do not reduce strength or alter the curve on this cohort.",
+  "claim_ceiling": "Closed generic Lab-tone photographic compiler for the retained first-party reversal characteristic shape; not a negative result about CB6 manufactured-target evidence, Velvia film, all characteristic operators or intrinsically cube-preserving execution."
+}
