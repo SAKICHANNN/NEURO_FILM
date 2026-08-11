@@ -9,6 +9,7 @@ from src.eval.gradient_budgeted_fraction_transport import (
     load_contract,
     select_gradient_budgeted_candidate,
 )
+from src.eval.safe_base_ao6_chroma_direction import evaluate_direction_candidate
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u5_r2cb33_gradient_budgeted_fraction_gold_stress_v1.json"
@@ -88,3 +89,7 @@ def test_cb33_visual_decision_binds_exact_reviewed_outputs() -> None:
     assert decision["decision"] == (
         "pass_development_gold_stress_open_source_disjoint_confirmation"
     )
+
+
+def test_direction_evaluator_exposes_candidate_builder_hook() -> None:
+    assert "candidate_builder" in evaluate_direction_candidate.__annotations__

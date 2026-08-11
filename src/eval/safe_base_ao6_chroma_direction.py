@@ -180,6 +180,7 @@ def evaluate_direction_candidate(
     contract_filename: str,
     blind_seed: int = 20260811 + 1700,
     source_aware_target_builder: bool = False,
+    candidate_builder: Any | None = None,
 ) -> dict[str, Any]:
     decision = _load_exact_json(
         root,
@@ -226,13 +227,22 @@ def evaluate_direction_candidate(
                 weights=weights,
                 boundary_epsilon=epsilon,
             )
-        candidate, scale, luma_error = apply_safe_base_direction_target(
-            source,
-            safe_base,
-            target,
-            weights=weights,
-            boundary_epsilon=epsilon,
-        )
+        if candidate_builder is None:
+            candidate, scale, luma_error = apply_safe_base_direction_target(
+                source,
+                safe_base,
+                target,
+                weights=weights,
+                boundary_epsilon=epsilon,
+            )
+        else:
+            candidate, scale, luma_error = candidate_builder(
+                source,
+                safe_base,
+                target,
+                weights=weights,
+                boundary_epsilon=epsilon,
+            )
         row_dir = output_dir / "renders" / source_row["id"]
         source_path = row_dir / "source.png"
         ao6_path = row_dir / "ao6.png"
