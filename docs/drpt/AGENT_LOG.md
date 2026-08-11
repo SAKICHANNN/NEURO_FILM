@@ -11333,3 +11333,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The residual still requires scale below `.5` on a median `30.04%` of pixels,
   above the frozen `10%` ceiling. Close magnitude transfer before blind review;
   next separate AO6 chroma direction from magnitude.
+
+# 2026-08-11 - Freeze U5.R2CB17 AO6 chroma direction transfer
+
+- Keep CB11 luminance and Euclidean zero-luminance chroma magnitude, replace
+  only chroma direction with AO6 direction, then take one analytical maximum
+  safe step from the valid CB11 base.
+- Freeze the same development population and automatic-first protocol. No
+  angular interpolation, strength fitting or blind review is allowed after an
+  automatic failure.
