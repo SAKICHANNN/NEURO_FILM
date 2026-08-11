@@ -20,6 +20,9 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from scripts.evaluate_u6_p8bw_native_exposure_thomas_pipeline import (
+    _exposure_fixture as _domain_valid_exposure_fixture,
+)
 from scripts.evaluate_u6_p8ck_native_thomas_rgb16_png_program import _icc_payload
 from src.eval.native_msvc import sha256_file
 from src.eval.native_thomas_atomic_publication import _compile_profile, _json
@@ -37,9 +40,13 @@ class NativeThomasAtomicScaleError(RuntimeError):
 def _validate_contract(contract_path: Path) -> dict[str, Any]:
     contract = _json(contract_path)
     fixture = contract.get("fixture", {})
+    schema = contract.get("schema")
     if (
-        contract.get("schema")
-        != "neuro_film.u6_p8ct_thomas_atomic_publication_scale_contract.v1"
+        schema
+        not in {
+            "neuro_film.u6_p8ct_thomas_atomic_publication_scale_contract.v1",
+            "neuro_film.u6_p8cu_thomas_atomic_domain_scale_contract.v1",
+        }
         or contract.get("status") != "contract_frozen_implementation_ready"
         or fixture.get("height") != 3000
         or fixture.get("width") != 4000
@@ -50,6 +57,11 @@ def _validate_contract(contract_path: Path) -> dict[str, Any]:
         != "923a985aa90e029332c723a33afb793afe05cae777b3c07061d54828b91e21b4"
     ):
         raise NativeThomasAtomicScaleError("P8CT contract drift")
+    if schema.endswith("p8ct_thomas_atomic_publication_scale_contract.v1"):
+        if "exposure_formula" not in fixture:
+            raise NativeThomasAtomicScaleError("P8CT exposure fixture drift")
+    elif fixture.get("exposure_fixture") != "p8bw-domain-linear-gradient-v1":
+        raise NativeThomasAtomicScaleError("P8CU exposure fixture drift")
     parent = contract["parent"]
     parent_path = ROOT / parent["path"]
     payload = _json(parent_path)
@@ -80,8 +92,15 @@ def _worker(
 ) -> None:
     contract = _validate_contract(contract_path)
     fixture = contract["fixture"]
-    _prior, amplitude, fields, gauge = _compile_profile(ROOT, contract)
-    exposure = _exposure_fixture(int(fixture["height"]), int(fixture["width"]))
+    prior, amplitude, fields, gauge = _compile_profile(ROOT, contract)
+    if contract["schema"].endswith(
+        "p8cu_thomas_atomic_domain_scale_contract.v1"
+    ):
+        exposure = _domain_valid_exposure_fixture(
+            prior, (int(fixture["height"]), int(fixture["width"]))
+        )
+    else:
+        exposure = _exposure_fixture(int(fixture["height"]), int(fixture["width"]))
     input_sha256 = hashlib.sha256(exposure.tobytes()).hexdigest()
     library = load_library(dll_path)
     _configure_parallel(library)
@@ -237,8 +256,9 @@ def evaluate(contract_path: Path, output_dir: Path) -> dict[str, Any]:
         else contract["decision_if_fail"],
         "claim_ceiling": contract["claim_ceiling"],
     }
+    report_prefix = "p8cu" if "p8cu_" in contract["schema"] else "p8ct"
     return {
-        "schema": "neuro_film.u6_p8ct_thomas_atomic_publication_scale_report.v1",
+        "schema": f"neuro_film.u6_{report_prefix}_thomas_atomic_publication_scale_report.v1",
         "experiment_id": contract["experiment_id"],
         "automatic_pass": passed,
         "stable_evidence_id": hashlib.sha256(canonical_bytes(stable)).hexdigest(),

@@ -4,9 +4,12 @@ import hashlib
 
 import numpy as np
 
+from scripts.evaluate_u6_p8bw_native_exposure_thomas_pipeline import _parent_payloads
 from scripts.evaluate_u6_p8ct_thomas_atomic_publication_scale import (
+    _domain_valid_exposure_fixture,
     _exposure_fixture,
 )
+from src.film_physics.manufacturer_characteristic import ManufacturerCharacteristicPrior
 
 
 def test_exposure_fixture_matches_frozen_scalar_formula() -> None:
@@ -29,3 +32,12 @@ def test_exposure_fixture_replays_exactly() -> None:
     assert hashlib.sha256(first.tobytes()).digest() == hashlib.sha256(
         second.tobytes()
     ).digest()
+
+
+def test_domain_valid_fixture_stays_inside_profile_domains() -> None:
+    prior = ManufacturerCharacteristicPrior.from_dict(_parent_payloads()[1]["prior"])
+    exposure = _domain_valid_exposure_fixture(prior, (65, 67))
+    for channel, curve in enumerate(prior.curves):
+        lower, upper = curve.domain
+        assert float(exposure[channel].min()) >= lower
+        assert float(exposure[channel].max()) <= upper
