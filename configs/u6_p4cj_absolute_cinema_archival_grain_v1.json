@@ -61,6 +61,7 @@
     "minimum_frequency_cycles_per_pixel": 0.010416666666666666,
     "maximum_frequency_cycles_per_pixel": 0.45,
     "signature": "unit-normalized centered log annular power",
+    "error_metric": "root mean square error over the frozen signature or lag vector",
     "acf_lags_yx": [[0, 1], [1, 0], [1, 1], [0, 2], [2, 0], [2, 2], [0, 4], [4, 0]],
     "models": ["fixed_p4bs_thomas", "fixed_p4bs_gaussian_control"],
     "minimum_sources_where_thomas_beats_gaussian_nps": 3,
