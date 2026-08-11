@@ -1,0 +1,50 @@
+{
+  "schema": "neuro_film.u5_r2cb61_analytic_y_chromaticity_row_hue_memory_contract.v1",
+  "report_schema": "neuro_film.u5_r2cb61_analytic_y_chromaticity_row_hue_memory_report.v1",
+  "experiment_id": "U5.R2CB61",
+  "question": "Can row-bounded hue normalization and maximum-chroma materialization cross the unchanged CB60 complete-renderer memory gate without changing any float64 global fit, selector fact or output byte?",
+  "parent": {
+    "cb60_decision_path": "configs/u5_r2cb60_analytic_y_chromaticity_target_memory_decision_v1.json",
+    "cb60_required_decision": "close_cb60_full_frame_hue_fraction_materialization_without_gate_relaxation",
+    "cb60_formal_report_sha256": "d667b40881084f9a9ca3001cbe673672e15f4f387f57d54135aaf749d427c401"
+  },
+  "baseline": {
+    "git_commit": "68fa15b6d4eac0cfaeb48218440584ac7d131275",
+    "input_path": "D:/nf-019f4b76-cb60-input.png",
+    "input_shape": [4000, 6000, 3],
+    "output_sha256": "949ffce7f86faee4296de52e51b90ae8e5cd4dc205d4a5a9e0f5cb86c6c6e9fa",
+    "peak_process_tree_rss_bytes": 7223758848,
+    "wall_seconds": 119.56197120000434,
+    "selector_facts": {
+      "characteristic_strength": 0.2,
+      "fraction_gamut_scale_below_0p8": 0.000487875,
+      "global_dose": 1.0,
+      "maximum_luminance_error": 2.8280287112103508e-08,
+      "median_gamut_scale": 1.0,
+      "selected_gradient_ratio": 0.8636540824585575,
+      "selected_lstar_inversion_fraction": 0.0,
+      "selected_new_boundary_fraction": 0.0
+    }
+  },
+  "candidate": {
+    "algorithm": "float64-global-statistics-row-bounded-hue-and-target-v1",
+    "row_chunk": 64,
+    "implementation_sha256": "b796e41c6412e597d7ee1441d5e30e4a396069b438c92df4d19a3ed2ed907f19",
+    "runner_sha256": "5b3c58b87923c524dc90d466043bffe6f35f6e9002b72ad819207a90e03572e6",
+    "output_bit_depth": 16
+  },
+  "gates": {
+    "output_sha256_exact": true,
+    "selector_facts_exact": true,
+    "maximum_peak_process_tree_rss_bytes": 5637144576,
+    "maximum_peak_rss_ratio_to_baseline": 0.78,
+    "maximum_wall_ratio_to_baseline": 1.1,
+    "scratch_residue_count": 0
+  },
+  "stop_rules": [
+    "Do not relax any CB60 identity, memory, time or cleanup gate.",
+    "Do not alter global statistic ordering, image dimensions, bit depth, dose grid or safety checks.",
+    "Fail closed if either fresh process misses a gate."
+  ],
+  "claim_ceiling": "Local Windows/Python complete 24MP analytic renderer resource evidence only; no native/device, photographic preference, stock, calibration, default-product or arbitrary-media claim."
+}
