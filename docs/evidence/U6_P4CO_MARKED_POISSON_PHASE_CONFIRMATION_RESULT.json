@@ -1,0 +1,50 @@
+{
+  "schema": "neuro_film.u6_p4co_marked_poisson_phase_confirmation_result.v1",
+  "experiment_id": "u6.p4co-marked-poisson-phase-confirmation-v1",
+  "date": "2026-08-11",
+  "contract_commit": "b8425995",
+  "implementation_commit": "af0c782b",
+  "contract_sha256": "9c1ba3e07a0a063a1c24e5879885da9e78134fe4d440f84abea90f13475d6901",
+  "report_sha256": "255df12aaf3d15df7d3184897eaafa228da5ddb5dd78483629bb9ec5c7eb60b7",
+  "stable_evidence_id": "b93697d022ddb901be6bf6089ce47cbf75c21b8b4914d8ce2c5941f6ea177848",
+  "two_full_runs_byte_identical": true,
+  "development": {
+    "consumed_sources": 4,
+    "selected_expected_parent_count": 64,
+    "selected_cluster_sigma_pixels": 1.0,
+    "model_freeze_id": "6c44fb57a64e06ed331fe3beb617f2d7d5661ac7ba931432f77028c2034be7ae"
+  },
+  "confirmation": {
+    "fresh_sources": 4,
+    "frames": 40,
+    "selected_bytes": 28425036,
+    "metadata_lock_sha256": "f0277eab5ba67e726965fb087d8ffe1a15642f3dc440beee46880937c4dc7c36",
+    "source_decode_count_at_model_freeze": 0,
+    "sources_beating_p4cm": 3,
+    "median_feature_distance_improvement_over_p4cm": 0.33908313419885316,
+    "worst_feature_distance_ratio_to_p4cm": 1.1939954571056977,
+    "worst_source_improvement": -0.19399545710569766
+  },
+  "projection": {
+    "maximum_per_sample_power_relative_error": 4.05384184793983e-8,
+    "maximum_per_sample_acf_absolute_error": 4.44089209850063e-16,
+    "power_gate": true,
+    "acf_gate": true
+  },
+  "gates": {
+    "source_wins": true,
+    "minimum_20_percent_median_feature_improvement": true,
+    "worst_feature_distance": false,
+    "exact_power_projection": true,
+    "exact_acf_projection": true,
+    "confirmation_pixels_unread_at_freeze": true
+  },
+  "decision": "FAIL_CLOSED_MARKED_POISSON_PHASE_TRANSFER",
+  "interpretation": [
+    "A fixed signed-cluster phase skeleton materially improves the median high-order fit while preserving the exact Thomas spectrum and ACF.",
+    "Three of four fresh sources improve and the 33.91% median gain passes, but one source regresses 19.40%; the frozen worst-tail veto therefore closes this fixed topology.",
+    "The heterogeneous tail motivates a source-observable density-conditioned mechanism, not per-source target fitting or a relaxed gate."
+  ],
+  "next_action": "Test a bounded current-density-conditioned topology using development-only fitting and fresh sources; retain exact spectrum projection and the same tail veto.",
+  "claim_ceiling": "Fresh-source archival-code excursion-topology evidence only; no stock, physical calibration, scanner separation, visual safety or product claim."
+}

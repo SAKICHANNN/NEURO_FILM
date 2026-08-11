@@ -9,6 +9,7 @@ from src.eval import marked_poisson_phase_confirmation as p4co
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u6_p4co_marked_poisson_phase_confirmation_v1.json"
+EVIDENCE = ROOT / "docs/evidence/U6_P4CO_MARKED_POISSON_PHASE_CONFIRMATION_RESULT.json"
 
 
 def test_contract_freezes_new_sources_and_bounded_topology_grid() -> None:
@@ -51,3 +52,13 @@ def test_topology_parameters_change_high_order_features() -> None:
     sparse = p4co._marked_fields(contract, 8, 4, 1.0, seed_offset=11)
     broad = p4co._marked_fields(contract, 8, 64, 8.0, seed_offset=11)
     assert not np.array_equal(p4co._feature_matrix(sparse), p4co._feature_matrix(broad))
+
+
+def test_evidence_retains_median_signal_but_closes_worst_tail() -> None:
+    evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+    assert evidence["two_full_runs_byte_identical"] is True
+    assert evidence["confirmation"]["sources_beating_p4cm"] == 3
+    assert evidence["gates"]["minimum_20_percent_median_feature_improvement"] is True
+    assert evidence["gates"]["worst_feature_distance"] is False
+    assert evidence["projection"]["power_gate"] is True
+    assert evidence["decision"] == "FAIL_CLOSED_MARKED_POISSON_PHASE_TRANSFER"

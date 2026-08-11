@@ -11527,3 +11527,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   pass and all four sources improve, but median gain is only `9.83% < 20%`.
 - Close this polynomial family without rescue. The next leaf directly models a
   sparse signed excursion skeleton while preserving the exact spectrum.
+
+# 2026-08-11 - U6.P4CO finds marked-topology signal but fails the tail
+
+- A development-only grid selects 64 signed parent clusters at `sigma=1px`.
+  Two reports are exact (`255df12a...60b7`), and power/ACF remain exact.
+- Three of four new sources improve and median gain is `33.91%`, but one source
+  regresses `19.40%`; the unchanged worst-tail veto closes fixed topology.
+- The next leaf tests current-density conditioning, not per-source target fit.
