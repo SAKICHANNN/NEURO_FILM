@@ -1,0 +1,58 @@
+{
+  "schema": "neuro_film.u6_p9l_gate_weave_shutter_integration_contract.v1",
+  "node": "U6.P9L",
+  "question": "Does explicit within-frame integration of a bounded gate-weave trajectory reproduce analytic shutter blur more faithfully than the retained instantaneous end-of-frame sampler without chained resampling or range escape?",
+  "parents": {
+    "p9a_contract": "configs/u6_p9a_gate_weave_ou_v1.json",
+    "p9a_contract_sha256": "bb91ba107b00ca71ce178538b9f9e0290804208f06a97082acaae0738d27c564",
+    "p9a_evidence": "docs/evidence/U6_P9A_GATE_WEAVE_OU_RESULT.json",
+    "p9a_evidence_sha256": "7e66ac2fbc4ab2cd6b11fcd14c7517db3d9c4c99c31f5226ebc76f8f0c5be228",
+    "p9b_evidence": "docs/evidence/U6_P9B_GATE_WEAVE_SAMPLING_RESULT.json",
+    "p9b_evidence_sha256": "c6c65fccf6000d9736b7c4063de7f433065a0148507f1290ad940c7ec84c479c",
+    "sampling_core": "src/film_physics/gate_weave_sampling.py",
+    "sampling_core_sha256": "bfe2a325c6c4b92dd447e1b868df6730196856f7851e50fdd260d51d689691d3"
+  },
+  "experiment": {
+    "trajectory_frame_start": 256,
+    "frame_count": 128,
+    "output_height": 96,
+    "output_width": 128,
+    "chart_frequencies_cycles_per_pixel": [0.03125, 0.09375, 0.1875],
+    "chart_amplitude": 0.25,
+    "candidate_midpoint_sample_count": 8,
+    "reference_midpoint_sample_count": 256,
+    "frame_partition_counts": [11, 37, 29, 51]
+  },
+  "controls": {
+    "instantaneous": "sample the immutable source once at the current frame offset",
+    "analytic_truth": "closed-form temporal mean of the same sinusoidal chart along the linear prior-to-current offset segment",
+    "dense_reference": "256 midpoint samples from the immutable source",
+    "static_trajectory": "equal start and end offsets must equal the retained bilinear sampler exactly"
+  },
+  "automatic_gates": {
+    "parent_and_core_hashes_exact": true,
+    "candidate_replay_byte_exact": true,
+    "candidate_reverse_frame_order_byte_exact": true,
+    "candidate_partition_byte_exact": true,
+    "static_trajectory_pixel_exact": true,
+    "constant_field_pixel_exact": true,
+    "all_outputs_finite": true,
+    "all_outputs_within_source_range": true,
+    "minimum_instantaneous_analytic_rmse": 0.0001,
+    "maximum_candidate_analytic_rmse": 0.005,
+    "minimum_candidate_rmse_improvement_over_instantaneous": 0.50,
+    "maximum_candidate_dense_reference_rmse": 0.0005,
+    "rgb_quantization_count_zero": true
+  },
+  "forbidden": [
+    "resample an already shifted prior frame",
+    "infer shutter duration, transport mechanics or rolling shutter from image content",
+    "change trajectory, sample counts, chart, controls or gates after formal scoring",
+    "claim synthetic shutter integration is measured scanner, projector, camera or stock behaviour"
+  ],
+  "branch_rule": {
+    "pass": "retain bounded midpoint shutter integration as an optional generic physical-inspired gate-weave sampling mode and next measure streamed sequence cost",
+    "fail": "retain instantaneous immutable-source sampling and close within-frame integration without sample-count or gate rescue"
+  },
+  "claim_ceiling": "Synthetic within-frame translation-integration accuracy only; not measured film transport, shutter, scanner, projector, camera, video quality, stock calibration or product readiness."
+}
