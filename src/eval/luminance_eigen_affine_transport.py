@@ -58,6 +58,7 @@ def select_luminance_eigen_affine_candidate(
     lstar_order_epsilon: float,
     minimum_luminance_slope: float,
     maximum_luminance_slope: float,
+    origin_anchored: bool = False,
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray, dict[str, float]]:
     del curve, strength
     source = np.asarray(source_linear)
@@ -83,22 +84,29 @@ def select_luminance_eigen_affine_candidate(
     target_q = target64 @ _BASIS.T
     source_y = source_q[..., 0].reshape(-1)
     target_y = target_q[..., 0].reshape(-1)
-    centered = source_y - float(np.mean(source_y))
+    centered = source_y if origin_anchored else source_y - float(np.mean(source_y))
     variance = float(np.dot(centered, centered))
     if variance <= 0.0:
         raise CharacteristicLstarTransportError("CB47 source luminance is degenerate")
     slope = float(
         np.clip(
-            np.dot(centered, target_y - float(np.mean(target_y))) / variance,
+            np.dot(
+                centered,
+                target_y if origin_anchored else target_y - float(np.mean(target_y)),
+            )
+            / variance,
             minimum_luminance_slope,
             maximum_luminance_slope,
         )
     )
-    intercept = float(np.mean(target_y) - slope * np.mean(source_y))
-    design = np.concatenate(
-        [source_q.reshape(-1, 3), np.ones((source_y.size, 1), dtype=np.float64)],
-        axis=1,
+    intercept = (
+        0.0 if origin_anchored else float(np.mean(target_y) - slope * np.mean(source_y))
     )
+    design = source_q.reshape(-1, 3)
+    if not origin_anchored:
+        design = np.concatenate(
+            [design, np.ones((source_y.size, 1), dtype=np.float64)], axis=1
+        )
     chroma_coefficients = np.linalg.lstsq(
         design, target_q.reshape(-1, 3)[:, 1:], rcond=None
     )[0]
