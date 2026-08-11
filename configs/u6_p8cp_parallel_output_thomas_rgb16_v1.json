@@ -1,0 +1,61 @@
+{
+  "schema": "neuro_film.u6_p8cp_parallel_output_thomas_rgb16_contract.v1",
+  "experiment_id": "u6.p8cp-parallel-output-thomas-rgb16-v1",
+  "node": "ULT > U6 > U6.P8 > U6.P8CP",
+  "date_frozen": "2026-08-11",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can independent within-tile output workers remove the measured interleave, neutral-gauge and quantization bottleneck while preserving the exact cached Thomas RGB16 stream and ordered sink contract?",
+  "parent": {
+    "path": "docs/evidence/U6_P8CO_CACHED_PARALLEL_THOMAS_RGB16_RESULT.json",
+    "sha256": "5077e12b5a33416eaf4bc4d2a42cbfb3c1212fe31948c2539ef4010c4db6bdb5",
+    "required_decision": "retain_p8cn_serial_android_core"
+  },
+  "mechanism": {
+    "field_and_development": "exact P8CO full-field cache with three independent colour-layer workers",
+    "output_partition": "each ordered row tile is split into three contiguous pixel ranges",
+    "output_workers": "three independent workers perform field interleave, neutral gauge and sRGB16 quantization on disjoint ranges",
+    "sink_order": "wait for all three output ranges, then invoke the original sink once for the complete row tile",
+    "forbidden_changes": [
+      "Thomas field generation",
+      "raw mean accumulation order",
+      "density and transmittance arithmetic",
+      "neutral gauge profile",
+      "quantization thresholds",
+      "row partition",
+      "sink order"
+    ]
+  },
+  "fixture": {
+    "height": 3000,
+    "width": 4000,
+    "row_partition": 128,
+    "field_and_development_workers": 3,
+    "output_workers": 3,
+    "profile": "exact P8CO synthetic amplitude, fields, neutral gauge and exposure formula"
+  },
+  "development_observation": {
+    "host_output_stage_seconds": [
+      0.9992066,
+      0.9584388
+    ],
+    "android_output_stage_seconds": [
+      3.557268,
+      3.8343299,
+      3.5315867
+    ],
+    "interpretation": "The output stage is about half of Android cached-parallel runtime; file-vs-discard ordering showed no consistent I/O cost."
+  },
+  "gates": {
+    "require_p8co_parallel_rgb16_byte_exact": true,
+    "require_single_parallel_output_byte_exact": true,
+    "require_host_repeat_exact": true,
+    "require_android_cold_boot_repeat_exact": true,
+    "max_android_parallel_output_command_seconds": 7.0,
+    "required_workspace_bytes": 196224000,
+    "require_invalid_input_zero_sink_calls": true,
+    "require_zero_surviving_owned_processes": true
+  },
+  "decision_if_pass": "retain_parallel_output_android_thomas_rgb16_core",
+  "decision_if_fail": "retain_p8cn_serial_android_core",
+  "claim_ceiling": "Private exact 12MP raw RGB16 core performance on Windows x64 and Android 14 x86_64 virtual device; not PNG/file publication, physical arm64, JNI/app/media integration, calibrated film response or complete product export performance."
+}
