@@ -9,6 +9,7 @@ from src.eval import hermite_phase_coupling_confirmation as p4cn
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u6_p4cn_hermite_phase_coupling_confirmation_v1.json"
+EVIDENCE = ROOT / "docs/evidence/U6_P4CN_HERMITE_PHASE_COUPLING_CONFIRMATION_RESULT.json"
 
 
 def test_contract_freezes_disjoint_development_and_confirmation() -> None:
@@ -53,3 +54,13 @@ def test_nonzero_alpha_changes_phase_features_without_power_drift() -> None:
     assert not np.array_equal(p4cn._feature_matrix(base), p4cn._feature_matrix(coupled))
     errors = p4cn._projection_errors(contract, bases, coupled)
     assert errors["maximum_per_sample_power_relative_error"] <= 5e-8
+
+
+def test_evidence_closes_hermite_strength_without_losing_direction() -> None:
+    evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+    assert evidence["two_full_runs_byte_identical"] is True
+    assert evidence["confirmation"]["sources_beating_p4cm"] == 4
+    assert evidence["projection"]["power_gate"] is True
+    assert evidence["projection"]["acf_gate"] is True
+    assert evidence["gates"]["minimum_20_percent_median_feature_improvement"] is False
+    assert evidence["decision"] == "FAIL_CLOSED_HERMITE_PHASE_COUPLING_TRANSFER"

@@ -11518,3 +11518,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - All four fresh sources improve, but median high-order gain is only `13.43%`
   versus the unchanged `20%` gate. Excursion-component density remains the
   main mismatch; close this envelope and test a new explicit phase coupling.
+
+# 2026-08-11 - U6.P4CN closes polynomial phase coupling
+
+- One global Hermite coefficient (`alpha=.03125`) was selected from four already
+  consumed P4CM sources before any of four new confirmation sources were read.
+- Two reports are byte exact (`6058ebcc...efbdc`). Exact Thomas power/ACF gates
+  pass and all four sources improve, but median gain is only `9.83% < 20%`.
+- Close this polynomial family without rescue. The next leaf directly models a
+  sparse signed excursion skeleton while preserving the exact spectrum.
