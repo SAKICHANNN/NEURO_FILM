@@ -1,0 +1,62 @@
+{
+  "schema": "neuro_film.u5_r2cb56_analytic_y_chromaticity_face_stress_contract.v1",
+  "experiment_id": "U5.R2CB56",
+  "question": "Does the unchanged CB54 streamed analytic Y/chromaticity operator remain exact and severe-artifact-safe on the missing U4.1 face after recovering two identical, lineage-bound decoded-sRGB arrays?",
+  "parents": {
+    "cb55_decision_path": "configs/u5_r2cb55_analytic_y_chromaticity_streaming_gold_stress_decision_v1.json",
+    "cb55_decision_sha256": "8cfe9d132334e1e6d1c1a370002716fe0387d9c6d1c08c666f75da9a9f5560da",
+    "cb55_required_decision": "pass_cb55_streamed_gold_stress_exact_replay",
+    "cb52_contract_path": "configs/u5_r2cb52_analytic_y_chromaticity_gold_stress_v1.json",
+    "cb52_contract_sha256": "8ac4a761a167b24d679ebf8f2896ab90335dd15621d3424c585171248b6dca1a"
+  },
+  "source": {
+    "sample_id": "FS_FACE_01",
+    "original_logical_path": "data/raw/filmset/FilmSet/train/input/DSCF01200 iso1600.png",
+    "original_file_sha256": "204d587efad91e41cb01d3de026a5ac837f0402ff8d0a31daca41c7223203ad1",
+    "manifest_paths": [
+      "outputs/external_controls/spektrafilm_langmuir_bs0_v1/run_a/manifest.json",
+      "outputs/external_controls/spektrafilm_langmuir_bs0_v1/run_b/manifest.json"
+    ],
+    "manifest_sha256": [
+      "3b1cd42a04df85072f37c60ce17d94f40efe4b6e91238140f1695f53ef421803",
+      "129537d6162bf4e4b8859fcc376d28be17fde92b58285519bbbca74f66a0a691"
+    ],
+    "decoded_srgb_npy_paths": [
+      "outputs/external_controls/spektrafilm_langmuir_bs0_v1/run_a/FS_FACE_01__source.npy",
+      "outputs/external_controls/spektrafilm_langmuir_bs0_v1/run_b/FS_FACE_01__source.npy"
+    ],
+    "decoded_srgb_npy_sha256": "85f82dbe9aed757b2159eae3ce0dfd688ea2d39f44d3d1a31acba9846016229e",
+    "expected_shape": [512, 512, 3],
+    "expected_dtype": "float64",
+    "input_interpretation": "exact prior decoded and resized encoded-sRGB array; converted once to float32 linear-sRGB using the current canonical transfer",
+    "claim_exclusion": "The unavailable original file is not reopened, so this does not prove current file ingress, resize or decoder replay."
+  },
+  "execution": {
+    "row_chunk": 64,
+    "require_two_source_artifacts_exact": true,
+    "require_two_fresh_reports_exact": true
+  },
+  "automatic_gates": {
+    "maximum_luminance_reconstruction_error": 0.000001,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio_vs_source": 1.35,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.0,
+    "minimum_direction_scale": 0.5,
+    "maximum_fraction_direction_scale_below_0p5": 0.1,
+    "minimum_global_dose": 0.5,
+    "minimum_gamut_scale": 0.8,
+    "maximum_fraction_gamut_scale_below_0p8": 0.1,
+    "minimum_style_delta_e76": 5.0,
+    "minimum_delta_e76_vs_cb11": 1.0
+  },
+  "visual": {
+    "maximum_confirmed_severe_artifact_count": 0,
+    "required_views": ["source", "ao6", "candidate", "full-resolution candidate"]
+  },
+  "stop_rules": [
+    "Any automatic failure closes this face leaf before visual review.",
+    "Do not replace, regenerate or infer the unavailable original source file.",
+    "Do not change the operator, target, curve, dose grid or thresholds."
+  ],
+  "claim_ceiling": "Decoded-pixel face severe-artifact evidence for the unchanged CB54 streamed Look Approximation only; not original file ingress replay, film truth, stock response, calibration, population preference or product promotion."
+}
