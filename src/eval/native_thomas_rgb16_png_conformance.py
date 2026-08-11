@@ -23,11 +23,13 @@ from src.film_physics.native_thomas_field import NativeThomasFieldProfileV1
 
 SOURCE_PATHS = (
     *RGB16_SOURCE_PATHS,
+    "native/film_physics/nf_thomas_rgb16_cached_f32_v1.c",
     "native/reference_srgb_icc_profile_v1.c",
     "native/film_physics/nf_thomas_rgb16_png_f32_v1.c",
 )
 HEADER_PATHS = (
     *RGB16_HEADER_PATHS,
+    "native/film_physics/nf_thomas_rgb16_cached_f32_v1.h",
     "native/reference_srgb_icc_profile_v1.h",
     "native/film_physics/nf_thomas_rgb16_png_f32_v1.h",
 )

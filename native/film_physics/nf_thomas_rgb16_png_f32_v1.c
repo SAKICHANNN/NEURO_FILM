@@ -296,6 +296,37 @@ nf_thomas_rgb16_png_f32_status_v1 nf_thomas_rgb16_png_f32_workspace_bytes_v1(
     return NF_THOMAS_RGB16_PNG_F32_OK_V1;
 }
 
+nf_thomas_rgb16_png_f32_status_v1
+nf_thomas_rgb16_png_cached_parallel_workspace_bytes_v1(
+    size_t full_height,
+    size_t width,
+    size_t row_partition,
+    size_t* workspace_bytes) {
+    size_t inner;
+    size_t raw;
+    size_t blocks;
+    size_t payload;
+    if (workspace_bytes == NULL || width == 0u ||
+        nf_thomas_rgb16_cached_f32_workspace_bytes_v1(
+            full_height, width, row_partition, 3u, &inner) !=
+            NF_THOMAS_RGB16_CACHED_F32_OK_V1 ||
+        width > (SIZE_MAX - 1u) / 6u) {
+        return NF_THOMAS_RGB16_PNG_F32_INVALID_ARGUMENT_V1;
+    }
+    raw = 1u + 6u * width;
+    blocks = (raw + 65534u) / 65535u;
+    if (blocks > (SIZE_MAX - raw - 6u) / 5u) {
+        return NF_THOMAS_RGB16_PNG_F32_INVALID_ARGUMENT_V1;
+    }
+    payload = raw + 6u + 5u * blocks;
+    if (payload > NF_THOMAS_RGB16_PNG_F32_MAX_IDAT_PAYLOAD_V1 ||
+        inner > SIZE_MAX - payload || inner + payload > SIZE_MAX - raw) {
+        return NF_THOMAS_RGB16_PNG_F32_INVALID_ARGUMENT_V1;
+    }
+    *workspace_bytes = inner + payload + raw;
+    return NF_THOMAS_RGB16_PNG_F32_OK_V1;
+}
+
 nf_thomas_rgb16_png_f32_status_v1 nf_thomas_rgb16_png_f32_apply_v1(
     const nf_granularity_amplitude_f32_profile_v1* amplitude_profile,
     const nf_thomas_field_f32_profile_v1 field_profiles[3],
@@ -357,6 +388,82 @@ nf_thomas_rgb16_png_f32_status_v1 nf_thomas_rgb16_png_f32_apply_v1(
         &state,
         means);
     if (status != NF_THOMAS_RGB16_F32_OK_V1) {
+        return (nf_thomas_rgb16_png_f32_status_v1)status;
+    }
+    if (!state.started || state.next_row != full_height ||
+        !nf_emit_chunk(&state, iend_type, NULL, 0u)) {
+        return NF_THOMAS_RGB16_PNG_F32_CALLBACK_FAILED_V1;
+    }
+    raw_field_means[0] = means[0];
+    raw_field_means[1] = means[1];
+    raw_field_means[2] = means[2];
+    return NF_THOMAS_RGB16_PNG_F32_OK_V1;
+}
+
+nf_thomas_rgb16_png_f32_status_v1
+nf_thomas_rgb16_png_cached_parallel_apply_v1(
+    const nf_granularity_amplitude_f32_profile_v1* amplitude_profile,
+    const nf_thomas_field_f32_profile_v1 field_profiles[3],
+    const nf_neutral_gauge_f32_profile_v1* gauge_profile,
+    size_t full_height,
+    size_t width,
+    size_t row_partition,
+    const float* relative_log_exposure_chw,
+    size_t exposure_floats,
+    void* workspace,
+    size_t workspace_bytes,
+    nf_thomas_rgb16_png_f32_byte_sink_v1 sink,
+    void* sink_context,
+    double raw_field_means[3]) {
+    static const uint8_t iend_type[4] = {'I', 'E', 'N', 'D'};
+    size_t required;
+    size_t inner;
+    size_t raw;
+    size_t blocks;
+    size_t payload;
+    double means[3] = {-13.0, -13.0, -13.0};
+    nf_png_state_v1 state;
+    nf_thomas_rgb16_cached_f32_status_v1 status;
+    if (sink == NULL || raw_field_means == NULL || workspace == NULL ||
+        (uintptr_t)workspace % _Alignof(float) != 0u ||
+        nf_thomas_rgb16_png_cached_parallel_workspace_bytes_v1(
+            full_height, width, row_partition, &required) !=
+            NF_THOMAS_RGB16_PNG_F32_OK_V1 ||
+        nf_thomas_rgb16_cached_f32_workspace_bytes_v1(
+            full_height, width, row_partition, 3u, &inner) !=
+            NF_THOMAS_RGB16_CACHED_F32_OK_V1 ||
+        workspace_bytes < required) {
+        return NF_THOMAS_RGB16_PNG_F32_INVALID_ARGUMENT_V1;
+    }
+    state.sink = sink;
+    state.sink_context = sink_context;
+    state.payload = (uint8_t*)workspace + inner;
+    raw = 1u + 6u * width;
+    blocks = (raw + 65534u) / 65535u;
+    payload = raw + 6u + 5u * blocks;
+    state.payload_capacity = payload;
+    state.raw_row = state.payload + payload;
+    state.width = width;
+    state.height = full_height;
+    state.next_row = 0u;
+    state.adler_s1 = 1u;
+    state.adler_s2 = 0u;
+    state.started = 0;
+    status = nf_thomas_rgb16_cached_f32_apply_parallel_output_v1(
+        amplitude_profile,
+        field_profiles,
+        gauge_profile,
+        full_height,
+        width,
+        row_partition,
+        relative_log_exposure_chw,
+        exposure_floats,
+        workspace,
+        inner,
+        nf_png_rows,
+        &state,
+        means);
+    if (status != NF_THOMAS_RGB16_CACHED_F32_OK_V1) {
         return (nf_thomas_rgb16_png_f32_status_v1)status;
     }
     if (!state.started || state.next_row != full_height ||

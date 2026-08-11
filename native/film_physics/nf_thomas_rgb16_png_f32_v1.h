@@ -1,7 +1,7 @@
 #ifndef NF_THOMAS_RGB16_PNG_F32_V1_H
 #define NF_THOMAS_RGB16_PNG_F32_V1_H
 
-#include "nf_thomas_rgb16_f32_v1.h"
+#include "nf_thomas_rgb16_cached_f32_v1.h"
 
 #if defined(_WIN32)
 #  if defined(NF_THOMAS_RGB16_PNG_F32_BUILD)
@@ -51,6 +51,33 @@ nf_thomas_rgb16_png_f32_workspace_bytes_v1(
  */
 NF_THOMAS_RGB16_PNG_F32_API nf_thomas_rgb16_png_f32_status_v1
 nf_thomas_rgb16_png_f32_apply_v1(
+    const nf_granularity_amplitude_f32_profile_v1* amplitude_profile,
+    const nf_thomas_field_f32_profile_v1 field_profiles[3],
+    const nf_neutral_gauge_f32_profile_v1* gauge_profile,
+    size_t full_height,
+    size_t width,
+    size_t row_partition,
+    const float* relative_log_exposure_chw,
+    size_t exposure_floats,
+    void* workspace,
+    size_t workspace_bytes,
+    nf_thomas_rgb16_png_f32_byte_sink_v1 sink,
+    void* sink_context,
+    double raw_field_means[3]);
+
+NF_THOMAS_RGB16_PNG_F32_API nf_thomas_rgb16_png_f32_status_v1
+nf_thomas_rgb16_png_cached_parallel_workspace_bytes_v1(
+    size_t full_height,
+    size_t width,
+    size_t row_partition,
+    size_t* workspace_bytes);
+
+/*
+ * The exact P8CP cached/parallel raw core composed with the unchanged PNG
+ * byte stream. Durable publication and rollback remain caller-owned.
+ */
+NF_THOMAS_RGB16_PNG_F32_API nf_thomas_rgb16_png_f32_status_v1
+nf_thomas_rgb16_png_cached_parallel_apply_v1(
     const nf_granularity_amplitude_f32_profile_v1* amplitude_profile,
     const nf_thomas_field_f32_profile_v1 field_profiles[3],
     const nf_neutral_gauge_f32_profile_v1* gauge_profile,

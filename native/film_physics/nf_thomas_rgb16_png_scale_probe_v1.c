@@ -4,6 +4,7 @@
 #include "nf_thomas_rgb16_png_f32_v1.h"
 
 #include <errno.h>
+#include <math.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -125,6 +126,11 @@ static int nf_parse_size(const char* text, size_t minimum, size_t* output) {
 }
 
 int main(int argc, char** argv) {
+    const int parallel = argc == 6 && strcmp(argv[1], "parallel") == 0;
+    const int path_index = parallel ? 2 : 1;
+    const int height_index = parallel ? 3 : 2;
+    const int width_index = parallel ? 4 : 3;
+    const int rows_index = parallel ? 5 : 4;
     size_t height;
     size_t width;
     size_t row_partition;
@@ -138,13 +144,18 @@ int main(int argc, char** argv) {
     void* workspace = NULL;
     FILE* output = NULL;
     nf_scale_sink_v1 sink = {0};
+    nf_scale_sink_v1 invalid_sink = {0};
     double means[3] = {-13.0, -13.0, -13.0};
+    double invalid_means[3] = {-13.0, -13.0, -13.0};
     nf_thomas_rgb16_png_f32_status_v1 status;
+    nf_thomas_rgb16_png_f32_status_v1 invalid_status =
+        NF_THOMAS_RGB16_PNG_F32_OK_V1;
     int result = 1;
 
-    if (argc != 5 || !nf_parse_size(argv[2], 1u, &height) ||
-        !nf_parse_size(argv[3], 1u, &width) ||
-        !nf_parse_size(argv[4], 1u, &row_partition) ||
+    if ((!parallel && argc != 5) ||
+        !nf_parse_size(argv[height_index], 1u, &height) ||
+        !nf_parse_size(argv[width_index], 1u, &width) ||
+        !nf_parse_size(argv[rows_index], 1u, &row_partition) ||
         row_partition > height || height > SIZE_MAX / width) {
         return 2;
     }
@@ -162,21 +173,31 @@ int main(int argc, char** argv) {
         goto cleanup;
     }
     nf_build_exposure(exposure, sample_count);
-    if (nf_thomas_rgb16_png_f32_workspace_bytes_v1(
-            width, row_partition, &workspace_bytes) !=
-        NF_THOMAS_RGB16_PNG_F32_OK_V1) {
+    if (((parallel && nf_thomas_rgb16_png_cached_parallel_workspace_bytes_v1(
+                          height, width, row_partition, &workspace_bytes) !=
+                          NF_THOMAS_RGB16_PNG_F32_OK_V1) ||
+         (!parallel && nf_thomas_rgb16_png_f32_workspace_bytes_v1(
+                           width, row_partition, &workspace_bytes) !=
+                           NF_THOMAS_RGB16_PNG_F32_OK_V1))) {
         goto cleanup;
     }
     workspace = malloc(workspace_bytes);
-    output = fopen(argv[1], "wb");
+    output = fopen(argv[path_index], "wb");
     if (workspace == NULL || output == NULL) {
         goto cleanup;
     }
     sink.file = output;
-    status = nf_thomas_rgb16_png_f32_apply_v1(
-        &amplitude, fields, &gauge, height, width, row_partition,
-        exposure, exposure_count, workspace, workspace_bytes,
-        nf_scale_sink, &sink, means);
+    if (parallel) {
+        status = nf_thomas_rgb16_png_cached_parallel_apply_v1(
+            &amplitude, fields, &gauge, height, width, row_partition,
+            exposure, exposure_count, workspace, workspace_bytes,
+            nf_scale_sink, &sink, means);
+    } else {
+        status = nf_thomas_rgb16_png_f32_apply_v1(
+            &amplitude, fields, &gauge, height, width, row_partition,
+            exposure, exposure_count, workspace, workspace_bytes,
+            nf_scale_sink, &sink, means);
+    }
     if (fclose(output) != 0) {
         output = NULL;
         goto cleanup;
@@ -185,11 +206,27 @@ int main(int argc, char** argv) {
     if (status != NF_THOMAS_RGB16_PNG_F32_OK_V1) {
         goto cleanup;
     }
-    printf(
-        "status=%d height=%zu width=%zu rows=%zu bytes=%zu calls=%zu "
-        "workspace=%zu means=%a,%a,%a\n",
-        (int)status, height, width, row_partition, sink.bytes, sink.calls,
-        workspace_bytes, means[0], means[1], means[2]);
+    if (parallel) {
+        exposure[exposure_count - 1u] = NAN;
+        invalid_status = nf_thomas_rgb16_png_cached_parallel_apply_v1(
+            &amplitude, fields, &gauge, height, width, row_partition,
+            exposure, exposure_count, workspace, workspace_bytes,
+            nf_scale_sink, &invalid_sink, invalid_means);
+        printf(
+            "mode=parallel status=%d height=%zu width=%zu rows=%zu bytes=%zu "
+            "calls=%zu workspace=%zu means=%a,%a,%a invalid_status=%d "
+            "invalid_bytes=%zu invalid_calls=%zu invalid_means=%a,%a,%a\n",
+            (int)status, height, width, row_partition, sink.bytes, sink.calls,
+            workspace_bytes, means[0], means[1], means[2], (int)invalid_status,
+            invalid_sink.bytes, invalid_sink.calls, invalid_means[0],
+            invalid_means[1], invalid_means[2]);
+    } else {
+        printf(
+            "status=%d height=%zu width=%zu rows=%zu bytes=%zu calls=%zu "
+            "workspace=%zu means=%a,%a,%a\n",
+            (int)status, height, width, row_partition, sink.bytes, sink.calls,
+            workspace_bytes, means[0], means[1], means[2]);
+    }
     result = 0;
 
 cleanup:
