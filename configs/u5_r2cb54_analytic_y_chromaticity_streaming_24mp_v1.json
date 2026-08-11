@@ -1,0 +1,41 @@
+{
+  "schema": "neuro_film.u5_r2cb54_analytic_y_chromaticity_streaming_24mp_contract.v1",
+  "experiment_id": "U5.R2CB54",
+  "question": "Does output-exact row streaming remove the CB53 24MP resource blocker without changing any CB50-CB52 pixel or safety semantics?",
+  "parents": {
+    "cb53_decision_path": "configs/u5_r2cb53_analytic_y_chromaticity_24mp_resources_decision_v1.json",
+    "cb53_decision_sha256": "9bd8db0e367f68ae6be3ebef0b574fc767c23292f0d5aa6ef0c8ac48a6654485",
+    "cb53_required_decision": "close_cb53_open_exact_streaming_optimization",
+    "cb53_workload_runner_path": "scripts/benchmark_u5_r2cb53_analytic_y_chromaticity_24mp.py",
+    "cb53_workload_runner_sha256": "7bf7720d5b551e3daad4f57e68523842c59d1b35a484e9c4572af9e89858b0aa",
+    "streaming_operator_path": "src/eval/analytic_y_chromaticity_streaming.py",
+    "streaming_operator_sha256": "2ec1f2bca90bc0c5c43e06df6c433f2125f186a97bc045071be4b63f1d3a9ac6",
+    "cb11_contract_path": "configs/u5_r2cb11_fujifilm_characteristic_luma_chroma_v1.json",
+    "cb11_contract_sha256": "fd6127a0c336fdfc661870d8636e8c7a8bbe741f096465e52c73a5a327213b5f",
+    "cb6_contract_path": "configs/u5_r2cb6_fujifilm_characteristic_forward_proxy_v1.json",
+    "cb6_contract_sha256": "e8f754c96b88491f9e6c1f467ddc1e3f9ec4d8b87afde9c40d0bea4e49b78150"
+  },
+  "workload": {
+    "shape": [4000, 6000, 3],
+    "generator": "cb53-deterministic-display-linear-field-v1",
+    "generation_row_chunk": 64,
+    "operator_row_chunk": 64,
+    "runs": 2,
+    "rss_sample_interval_seconds": 0.02,
+    "worker_timeout_seconds": 180.0
+  },
+  "operator": {
+    "dose_grid": [1.0, 0.9375, 0.875, 0.8125, 0.75, 0.6875, 0.625, 0.5625, 0.5, 0.4375, 0.375, 0.3125, 0.25, 0.1875, 0.125, 0.0625, 0.0],
+    "lstar_order_epsilon": 0.0001,
+    "maximum_gradient_ratio": 1.35,
+    "maximum_lstar_inversion_fraction": 0.0
+  },
+  "gates": {
+    "maximum_peak_process_tree_rss_bytes": 4294967296,
+    "maximum_worker_seconds": 60.0,
+    "maximum_peak_rss_repeat_ratio": 1.15,
+    "maximum_wall_repeat_ratio": 1.15,
+    "maximum_luminance_error": 0.000001
+  },
+  "claim_ceiling": "Local Windows/Python synthetic 24MP output-exact streamed mechanism evidence only; not complete renderer, native/device, photographic quality, stock, calibration or product performance."
+}
