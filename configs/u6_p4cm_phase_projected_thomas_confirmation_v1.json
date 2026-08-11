@@ -1,0 +1,89 @@
+{
+  "schema": "neuro_film.u6_p4cm_phase_projected_thomas_confirmation_contract.v1",
+  "experiment_id": "u6.p4cm-phase-projected-thomas-confirmation-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4CM",
+  "date_frozen": "2026-08-11",
+  "question": "Does the P4CL transferable phase signal survive exact per-sample projection back to the fixed P4BS Thomas power spectrum on wholly new archival sources?",
+  "parent": {
+    "p4cl_evidence_path": "docs/evidence/U6_P4CL_COMPOUND_THOMAS_ARCHIVAL_CONFIRMATION_RESULT.json",
+    "p4cl_evidence_sha256": "2f89879ed25ca0b8fd8dc20f31a4754d1ddc47d00ae500d206540bda7024f8ef",
+    "required_decision": "FAIL_CLOSED_COMPOUND_THOMAS_HIGH_ORDER_TRANSFER",
+    "fixed_log_scale_std": 0.2847407310619019,
+    "fixed_model_freeze_id": "058c10886ed20cdd8478303e6c434aae779f459fcf617cce9f567e678830b2f9",
+    "p4bs_particle_sigma_pixels": 1.3253699417769098,
+    "p4bs_cluster_sigma_pixels": 1.1268619873805532,
+    "p4bs_mean_offspring": 27.765942352935905
+  },
+  "dataset": {
+    "ref": "absolutedegradation/absolutecinema-real-scene-split-review-sample",
+    "version": 6,
+    "api_url": "https://www.kaggle.com/api/v1/datasets/list/absolutedegradation/absolutecinema-real-scene-split-review-sample",
+    "license": "CC-BY-4.0",
+    "selection_rule": "Sort eligible first clips with ten PNG frames and select indices 12 through 15, excluding all twelve P4CJ/P4CL source identities.",
+    "selected_source_names": [
+      "governor_roosevelt_and_staff__http_www.loc.gov_item_98500892",
+      "iola_s_promise__http_www.loc.gov_item_2014600155",
+      "market_street_before_parade__http_www.loc.gov_item_00694416",
+      "pawtucket_fire_department__http_www.loc.gov_item_00564565"
+    ],
+    "source_count": 4,
+    "frames_per_source": 10,
+    "expected_total_bytes": 37634804,
+    "selected_metadata_lock_sha256": "d7a17a5c4e27bacccd9caa7873480444b433ed2908298de72b1746c6b917e2b7",
+    "maximum_download_bytes": 40000000,
+    "download_destination_rule": "caller-owned scratch outside the unavailable repository data junction"
+  },
+  "decode": {
+    "accepted_png_modes": ["L", "RGB", "RGBA"],
+    "rgba_requires_opaque_alpha": true,
+    "required_dtype": "uint8"
+  },
+  "patch_observation": {
+    "patch_size_pixels": 96,
+    "border_pixels": 48,
+    "patches_per_frame": 8,
+    "lowpass_gaussian_sigma_pixels": 3.0,
+    "accepted_patch_mean_interval": [0.1, 0.9],
+    "residual_normalization": "subtract mean and divide by population RMS"
+  },
+  "candidate": {
+    "name": "phase_projected_compound_thomas_v1",
+    "construction": "form the exact P4CL bounded compound field, retain its Fourier phase, replace every non-DC Fourier magnitude with the fixed P4BS Thomas magnitude, inverse transform, zero-mean and unit-RMS normalize",
+    "scale_sigma_pixels": 12.0,
+    "scale_bounds": [0.25, 4.0],
+    "log_scale_std": 0.2847407310619019,
+    "candidate_seed": 2608110413,
+    "evaluation_sample_count": 512,
+    "features": ["skew", "excess_kurtosis", "local_energy_cv_8x8", "absolute_excursion_component_density_z2p5"],
+    "feature_distance": "RMS feature-median difference scaled by the fixed Gaussian-control MAD floor 1e-6"
+  },
+  "second_order": {
+    "radial_bin_count": 24,
+    "minimum_frequency_cycles_per_pixel": 0.010416666666666666,
+    "maximum_frequency_cycles_per_pixel": 0.45,
+    "acf_lags_yx": [[0, 1], [1, 0], [1, 1], [0, 2], [2, 0], [2, 2], [0, 4], [4, 0]],
+    "maximum_per_sample_power_relative_error": 1e-12,
+    "maximum_per_sample_acf_absolute_error": 1e-12
+  },
+  "confirmation_gates": {
+    "minimum_sources_beating_gaussian_feature_distance": 3,
+    "minimum_median_feature_distance_improvement": 0.2,
+    "maximum_worst_feature_distance_ratio": 1.0,
+    "require_exact_power_projection": true,
+    "require_exact_acf_projection": true,
+    "require_finite_fields": true,
+    "require_two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain phase-projected compound Thomas as a generic high-order research mechanism and open a disjoint photographic severe-artifact stress only.",
+    "fail": "Close the exact projected mechanism without changing inherited scale, projection, sources, features or gates."
+  },
+  "forbidden": [
+    "fit any parameter on the four confirmation sources",
+    "read source pixels before candidate and Gaussian control statistics are frozen",
+    "change the inherited P4CL parameter, projection, source roles, features or 20 percent gate",
+    "claim stock, emulsion, scanner, process or physical calibration",
+    "integrate the P4BZ-closed photographic hybrid regardless of outcome"
+  ],
+  "claim_ceiling": "Fresh-source archival-code phase-structure evidence only; no stock, physical calibration, scanner separation, visual safety or product claim."
+}
