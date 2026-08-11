@@ -11606,3 +11606,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - All automatic/severe gates pass. Frozen blind choices reveal `3/3` round
   wins, `33/36` choices and `11/12` source majorities. Retain the unchanged
   candidate only for source-disjoint confirmation; AO6 remains product/default.
+
+# 2026-08-11 - U5.R2CB28 passes source-disjoint confirmation
+
+- Exact CB27 passes every automatic gate on BK13S; two reports are byte exact
+  (`16ee25b4...7d67`; stable `6f27ca94...cf683`), with median style `5.1608`
+  and zero new hard boundaries.
+- Frozen blind choices reveal `3/3`, `36/36`, `12/12`, severe count zero.
+  Retain the mechanism for wider OOD/full-resolution severe stress; no stock,
+  calibration, population-preference or product claim opens.

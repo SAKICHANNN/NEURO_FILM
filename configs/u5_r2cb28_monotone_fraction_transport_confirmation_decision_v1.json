@@ -1,0 +1,42 @@
+{
+  "schema": "neuro_film.u5_r2cb28_monotone_fraction_transport_confirmation_decision.v1",
+  "experiment_id": "U5.R2CB28",
+  "contract_commit": "98f483e9c7a11ed76019349a4a1c4c2efb12c7e8",
+  "implementation_commit": "4a1e3df5ba58f747168de51667a10db2d907f55e",
+  "observations_commit": "0d4dc139bdef60caa6dbe079c97f8aa575f83132",
+  "mapping_receipt_commit": "1bba386695665b3454776afc48c09ff6176bf771",
+  "contract_sha256": "73fd9494cee9dfc570ef2b69dfabe3678859d33c503a27e4c01766ed8be95fcd",
+  "implementation_sha256": "c581f93d2a4885e867a4f577f430cb02776d763c14cc0e491aaebd15a433e160",
+  "runner_sha256": "ac7ab996657976eb51df0d3cac78731dbb200ad2a5529e491e1658dd7c51b5e8",
+  "observations_sha256": "efc6b994af8d2adace200d101dcd54ada1818f81653f7f882258cf8965ac25ee",
+  "mapping_receipt_sha256": "8c73edb26c03c6777830f3b6d74aff698c9dc34278120c0ef3c9ce909083d627",
+  "formal_report_path": "D:/nf-019f4b76-cb28/report1.json",
+  "formal_report_sha256": "16ee25b49c1ceccbe884d8b9d1e9f215c407ef30f4a4e05ec5be04681e747d67",
+  "stable_evidence_id": "6f27ca945cbab1335fb84a84bdb5521b64b591ea740e469093cfad5b8f9cf683",
+  "repeat_report_byte_exact": true,
+  "automatic_pass": true,
+  "blind_measurements": {
+    "candidate_round_wins": 3,
+    "candidate_aggregate_choices": 36,
+    "aggregate_choice_count": 36,
+    "candidate_source_majorities": 12,
+    "source_count": 12,
+    "candidate_confirmed_severe_source_count": 0
+  },
+  "gates": {
+    "automatic_gates": true,
+    "minimum_candidate_round_wins": true,
+    "minimum_candidate_aggregate_choices": true,
+    "minimum_candidate_source_majorities": true,
+    "severe_artifact_veto": true
+  },
+  "passed": true,
+  "decision": "source_disjoint_mechanism_confirmation_pass_retain_for_wide_ood_stress",
+  "interpretation": [
+    "The unchanged CB27 operator passes every automatic gate on a 12-camera source-disjoint population, including zero new hard boundaries and median style 5.1608 DeltaE76.",
+    "The candidate is preferred in every one of 36 blind choices and all 12 source majorities, with no confirmed severe contact-sheet artifact.",
+    "This confirms the explicit mechanism across the two frozen populations but does not establish film-stock authenticity, population preference or product readiness."
+  ],
+  "next_action": "Run the unchanged operator on a wider heterogeneous OOD and full-resolution severe-artifact stress set; do not add another similar 12-camera blind cohort.",
+  "claim_ceiling": "Source-disjoint mechanism confirmation for a bounded display-look operator; not stock response, calibration, population preference or product promotion."
+}
