@@ -11306,3 +11306,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Freeze the previously consumed BK6S 12-camera population as development-only.
   Automatic exactness, safety, chroma-retention and material-separation gates
   precede any blind review; pass can open only a wholly new confirmation.
+
+# 2026-08-11 - U5.R2CB15 closes exact chroma substitution
+
+- Two formal reports are byte exact (`dc66f160...12a0a`; stable
+  `e897d5ab...b2cca2`). Exact luminance, gradient and material-style gates pass,
+  but new source-relative boundaries reach `1.5037%` and the population median
+  fraction requiring chroma scale below `.5` is `16.66%`.
+- The failure is structural: when target luminance itself enters a channel
+  boundary, reducing AO6 chroma to zero cannot restore the original safe side.
+  Blind review is forbidden and this exact substitution closes without rescue.

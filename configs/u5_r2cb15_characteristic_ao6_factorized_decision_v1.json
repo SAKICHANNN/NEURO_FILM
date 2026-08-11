@@ -1,0 +1,37 @@
+{
+  "schema": "neuro_film.u5_r2cb15_characteristic_ao6_factorized_decision.v1",
+  "experiment_id": "U5.R2CB15",
+  "contract_commit": "3627381c",
+  "implementation_correction_commit": "bd643767",
+  "contract_sha256": "7502f24a4b29f232c5effae709502b601663403fc0f8eafa1e82debcc4c7deb6",
+  "implementation_sha256": "4e52341072d31592812e9350b06a9d4feaf7acc5e6aa025a42c123ca0685c426",
+  "runner_sha256": "468e55b262ac5f218c18c0606d21ef7d30cb943ba2745fb70e90bda2f2427175",
+  "formal_report_path": "outputs/experiments/u5_r2cb15_characteristic_ao6_factorized_v1/report_run1.json",
+  "formal_report_sha256": "dc66f160b76ce9ec63bd70876553704c82af42ec4f1556d2e2b7808315122a0a",
+  "stable_evidence_id": "e897d5aba3dc1644f7cbe87b65f99972bbb3289a2cf5ac81321d344502b2cca2",
+  "repeat_report_byte_exact": true,
+  "passed": false,
+  "decision": "close_exact_characteristic_ao6_factorization_without_rescue",
+  "metrics": {
+    "maximum_luminance_reconstruction_error": 2.9802322498717615e-08,
+    "maximum_new_hard_boundary_fraction": 0.015037010008340283,
+    "maximum_p999_gradient_ratio_vs_source": 1.5827404492096453,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 4.697979103388948e-05,
+    "population_median_chroma_scale": 1.0,
+    "population_median_fraction_chroma_scale_below_0p5": 0.16661885661595205,
+    "population_median_style_delta_e76": 15.20837485404994,
+    "population_median_delta_e76_vs_ao6": 30.14974391324769
+  },
+  "failed_gates": [
+    "new_boundaries",
+    "chroma_retention"
+  ],
+  "execution_amendment": "Two pre-report runs exposed that alpha=0 cannot preserve source-relative channel boundaries when mapped luminance itself lies in the boundary region. The evaluator was corrected to report this frozen-gate failure instead of raising before evidence; the operator, inputs, thresholds and metrics were unchanged.",
+  "interpretation": [
+    "The factorization retains exact target luminance, low gradient inversion, strong visible separation and a population median chroma scale of one.",
+    "For dark or channel-extreme pixels, target luminance alone can enter a new source-relative boundary; reducing AO6 chroma cannot repair this, and five rows also require substantial chroma attenuation.",
+    "The exact zero-luminance AO6 chroma substitution is therefore structurally incompatible with the frozen boundary contract on this development population."
+  ],
+  "next_action": "Retain AO6 and close this exact factorization. A successor must preserve the already-safe CB11 chroma base and add only a continuously bounded AO6-relative chroma residual, rather than scaling AO6 chroma from zero.",
+  "claim_ceiling": "Closed development-only factorization on consumed CC0 display proxies; not a negative result about AO6, CB11 luminance, calibrated film response or all bounded chroma-residual mechanisms."
+}
