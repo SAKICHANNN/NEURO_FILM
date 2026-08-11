@@ -1,0 +1,19 @@
+{
+  "schema": "neuro_film.u5_r2cb58_analytic_y_chromaticity_recipe_contract.v1",
+  "experiment_id": "U5.R2CB58",
+  "question": "Can the CB57 opt-in renderer emit and verify a separately versioned, hash-bound replay recipe without weakening safe-Lab recipe v1?",
+  "parents": {
+    "cb57_decision_path": "configs/u5_r2cb57_analytic_y_chromaticity_renderer_integration_decision_v1.json",
+    "cb57_decision_sha256": "c3f863687960bc5ecb58527193ee3d375518f1b76a550e4c5124ae7bd90a08c4",
+    "cb57_required_decision": "pass_cb57_opt_in_renderer_open_versioned_replay_recipe"
+  },
+  "gates": {
+    "safe_lab_recipe_v1_unchanged": true,
+    "analytic_profile_assets_input_output_and_commit_hash_bound": true,
+    "selector_facts_and_effect_parameters_recorded": true,
+    "strict_validation_and_file_verification_pass": true,
+    "two_emitted_recipes_normalize_exact": true,
+    "identity_or_file_mutation_fails_closed": true
+  },
+  "claim_ceiling": "Replay/provenance recipe mechanics for the opt-in analytic Look Approximation only; not stock response, calibration, authenticity or default-product promotion."
+}
