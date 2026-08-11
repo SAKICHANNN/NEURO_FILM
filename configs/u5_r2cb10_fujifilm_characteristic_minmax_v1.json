@@ -28,7 +28,7 @@
     "nominal_strength": 0.2,
     "boundary_epsilon": 0.00196078431372549,
     "anchored_curve": "identity outside [epsilon,1-epsilon]; inside, normalize to [0,1], apply the exact CB8 convex characteristic curve, then denormalize",
-    "minmax_coordinate": "map per-pixel min and max with the anchored curve and linearly preserve every channel's normalized position between them",
+    "minmax_coordinate": "use ordered knots at the per-pixel min, epsilon, 1-epsilon and max when present; boundary segments remain identity, while channels in the interior preserve normalized position between the clipped min/max interior knots after those endpoints are mapped",
     "contracts": "continuous, symmetric in channel labels, channel-order preserving, neutral preserving, cube bounded and no new epsilon boundary",
     "forbidden": "hard clipping, per-pixel alpha minimum, spatial smoothing, curve refit or strength rescue"
   },
