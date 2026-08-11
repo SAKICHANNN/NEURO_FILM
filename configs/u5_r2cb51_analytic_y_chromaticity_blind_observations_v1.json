@@ -1,0 +1,20 @@
+{
+  "schema": "neuro_film.u5_r2cb51_analytic_y_chromaticity_blind_observations.v1",
+  "experiment_id": "U5.R2CB51",
+  "report_sha256": "6b0f0a43f21a52ec7d2f580482b5d0451eeed551b0595a3d4768fc7c31f4e069",
+  "stable_evidence_id": "d09252d7159f666e2c9d8abcd2e01d4d25848e52fc853b22b49a265532030db2",
+  "reviewer": "autonomous_visual_review",
+  "review_protocol": "Commit A/B choices and severe-artifact findings before opening sealed mappings.",
+  "source_order": ["canon_eos250d_16x9", "nikon_d6_12bit", "sony_nex5_12bit", "olympus_epl8", "panasonic_dmcg10", "pentax_k20d", "ricoh_grii", "samsung_gx1l", "canon_eos7d_mraw", "nikon_d3s_14bit", "sony_dslra560", "fujifilm_s7000", "olympus_sp565uz", "panasonic_dmcg2", "pentax_k30", "ricoh_gx200", "samsung_smg930a"],
+  "rounds": [
+    {"round": 1, "sheet_sha256": "9e1eaa2a2751c5955241536c6c8948902bf433fa7d1004b09e4354374b2d14ac", "choices": ["A", "A", "B", "A", "A", "A", "A", "A", "B", "B", "A", "A", "A", "B", "B", "A", "A"]},
+    {"round": 2, "sheet_sha256": "ffc11c320ad0be440683dfd5f5d95ec1f3a918ab580e0e8363af755974b3d12b", "choices": ["A", "B", "B", "A", "B", "A", "B", "A", "B", "B", "B", "A", "A", "B", "B", "B", "A"]},
+    {"round": 3, "sheet_sha256": "d70cceed33f6bf9a00234097f93fa7d1c423b43e3cca773898c40e37ac0d95bc", "choices": ["B", "A", "A", "A", "A", "B", "B", "B", "B", "A", "A", "B", "B", "B", "A", "B", "B"]}
+  ],
+  "severe_review": {
+    "confirmed_severe_artifact_count": 0,
+    "observations": "Across seventeen disjoint rows and both unlabeled arms, garment and product contours, people, architecture, foliage, water, wall texture, bird silhouettes, window frames, lily edges and snow geometry remain continuous; no confirmed geometry break, text corruption, banding, posterization, block artifact, seam or unintended hard clipping. Strong colour and tone shifts remain intended style."
+  },
+  "mapping_opened": false,
+  "claim_ceiling": "Autonomous source-disjoint confirmation choices and severe-artifact review only; not population preference, film truth, stock response, calibration or product promotion."
+}
