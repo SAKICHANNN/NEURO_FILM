@@ -11,6 +11,7 @@ from .atomic_native_output import (
     NativeByteSink,
     publish_native_thomas_profile_rgb16_png,
 )
+from .contracts import PhysicalDomainArray
 from .native_gauge_profile import NativeGaugeProfileF32V1
 from .native_granularity_amplitude import NativeGranularityAmplitudeProfileV1
 from .native_thomas_field import NativeThomasFieldProfileV1
@@ -113,6 +114,17 @@ class NativeThomasExportRuntime:
                 "not calibrated stock response, arbitrary media or delivery"
             ),
         }
+
+    def publish_layer_exposure(
+        self, exposure: PhysicalDomainArray, *, destination: Path
+    ) -> dict[str, Any]:
+        """Publish explicit linear film-layer exposure through the package."""
+        if not isinstance(exposure, PhysicalDomainArray):
+            raise TypeError("native Thomas runtime requires PhysicalDomainArray")
+        return self.publish(
+            RelativeLayerLogExposure.from_layer_exposure(exposure),
+            destination=destination,
+        )
 
 
 __all__ = ["NativeThomasExportRuntime", "NativeThomasRuntimeError"]

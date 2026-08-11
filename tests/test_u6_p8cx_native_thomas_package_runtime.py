@@ -11,6 +11,7 @@ from scripts.evaluate_u6_p8bw_native_exposure_thomas_pipeline import (
     _parent_payloads,
 )
 from src.eval.native_thomas_rgb16_png_conformance import build_msvc
+from src.film_physics.contracts import PhysicalDomain, PhysicalDomainArray, PhysicalUnit
 from src.film_physics.manufacturer_characteristic import ManufacturerCharacteristicPrior
 from src.film_physics.native_thomas_input import RelativeLayerLogExposure
 from src.film_physics.native_thomas_package import (
@@ -92,6 +93,65 @@ def test_native_thomas_runtime_rejects_untyped_or_mislabeled_input(
     adopted = RelativeLayerLogExposure.adopt_chw(adopted_source)
     assert adopted.values_chw is adopted_source
     assert not adopted_source.flags.writeable
+
+
+def test_native_thomas_runtime_accepts_only_typed_linear_layer_exposure(
+    tmp_path: Path,
+) -> None:
+    package = _package()
+    build = build_msvc(ROOT, tmp_path / "build")
+    resolved = resolve_native_thomas_package(
+        package,
+        profile_path=ROOT
+        / "configs/render_profiles/generic_physical_thomas_p8cr_v1.json",
+        library_path=Path(build["dll_path"]),
+    )
+    runtime = NativeThomasExportRuntime(package=package, resolved=resolved)
+    prior = ManufacturerCharacteristicPrior.from_dict(_parent_payloads()[1]["prior"])
+    log_exposure = _exposure_fixture(prior, (129, 67))
+    linear_hwc = np.transpose(
+        np.power(10.0, log_exposure.astype(np.float64)), (1, 2, 0)
+    )
+    layer_exposure = PhysicalDomainArray(
+        linear_hwc,
+        PhysicalDomain.LAYER_EXPOSURE,
+        PhysicalUnit.RELATIVE_LAYER_EXPOSURE,
+        ("red", "green", "blue"),
+    )
+    typed = RelativeLayerLogExposure.from_layer_exposure(layer_exposure)
+    np.testing.assert_array_equal(typed.values_chw, log_exposure)
+    receipt = runtime.publish_layer_exposure(
+        layer_exposure, destination=tmp_path / "linear-layer.png"
+    )
+    assert receipt["input_sha256"] == hashlib.sha256(log_exposure.tobytes()).hexdigest()
+
+    scene = PhysicalDomainArray(
+        np.ones((2, 2, 3), dtype=np.float32),
+        PhysicalDomain.SCENE_LINEAR,
+        PhysicalUnit.RELATIVE_SCENE_EXPOSURE,
+        ("red", "green", "blue"),
+    )
+    try:
+        runtime.publish_layer_exposure(scene, destination=tmp_path / "scene.png")
+    except ValueError as exc:
+        assert "domain mismatch" in str(exc)
+    else:
+        raise AssertionError("scene-linear RGB was accepted as film-layer exposure")
+    assert not (tmp_path / "scene.png").exists()
+
+    zero = PhysicalDomainArray(
+        np.zeros((2, 2, 3), dtype=np.float32),
+        PhysicalDomain.LAYER_EXPOSURE,
+        PhysicalUnit.RELATIVE_LAYER_EXPOSURE,
+        ("red", "green", "blue"),
+    )
+    try:
+        runtime.publish_layer_exposure(zero, destination=tmp_path / "zero.png")
+    except ValueError as exc:
+        assert "strictly positive" in str(exc)
+    else:
+        raise AssertionError("zero layer exposure was accepted by log10 ingress")
+    assert not (tmp_path / "zero.png").exists()
 
 
 def test_native_thomas_package_rejects_wrong_library(tmp_path: Path) -> None:

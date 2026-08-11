@@ -8,6 +8,8 @@ from typing import Any
 
 import numpy as np
 
+from .contracts import PhysicalDomain, PhysicalDomainArray
+
 NATIVE_THOMAS_INPUT_SCHEMA = "neuro_film.relative_layer_log_exposure.v1"
 
 
@@ -53,6 +55,24 @@ class RelativeLayerLogExposure:
     def adopt_chw(cls, values_chw: np.ndarray) -> RelativeLayerLogExposure:
         """Transfer ownership of one contiguous CHW array without a full-frame copy."""
         return cls(values_chw, _copy=False)
+
+    @classmethod
+    def from_layer_exposure(
+        cls, exposure: PhysicalDomainArray
+    ) -> RelativeLayerLogExposure:
+        """Convert explicit positive linear layer exposure to log10 ABI input."""
+        if not isinstance(exposure, PhysicalDomainArray):
+            raise TypeError("exposure must be a PhysicalDomainArray")
+        exposure.require(PhysicalDomain.LAYER_EXPOSURE)
+        if exposure.channels != ("red", "green", "blue"):
+            raise ValueError("layer exposure requires red/green/blue order")
+        if np.any(exposure.values <= 0.0):
+            raise ValueError("layer exposure must be strictly positive before log10")
+        values_hwc = np.log10(exposure.values.astype(np.float64))
+        values_chw = np.ascontiguousarray(
+            np.transpose(values_hwc, (2, 0, 1)), dtype=np.float32
+        )
+        return cls.adopt_chw(values_chw)
 
     def descriptor(self) -> dict[str, Any]:
         return {
