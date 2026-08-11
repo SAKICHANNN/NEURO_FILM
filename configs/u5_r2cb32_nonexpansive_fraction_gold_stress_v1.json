@@ -1,0 +1,68 @@
+{
+  "schema": "neuro_film.u5_r2cb32_nonexpansive_fraction_gold_stress_contract.v1",
+  "experiment_id": "U5.R2CB32",
+  "question": "Can a fixed non-expansive monotone fraction map remove CB30/CB31 high-frequency amplification while retaining useful AO6-distribution style on the consumed gold/stress development cohort?",
+  "parents": {
+    "cb31_contract_path": "configs/u5_r2cb31_tie_preserving_fraction_gold_stress_v1.json",
+    "cb31_contract_sha256": "e1e466ab6644813194a6880331555e68daa3da8934c8852d878e3734f1671fe5",
+    "cb31_decision_path": "configs/u5_r2cb31_tie_preserving_fraction_gold_stress_decision_v1.json",
+    "cb31_decision_sha256": "8db69629f2bcf51a8c0790d9693d7b3162c426715fd474c922876efd4c48acb3",
+    "cb31_required_decision": "close_grouped_midrank_transport_on_gold_gradient_gate"
+  },
+  "population": {
+    "frozen_set_path": "outputs/filmcase/u41_provisional_eval_set.json",
+    "frozen_set_sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15",
+    "expected_available_source_count": 40,
+    "expected_available_gold_count": 8,
+    "expected_available_stress_count": 32,
+    "required_unavailable_ids": ["FS_FACE_01"],
+    "maximum_long_edge": 1600,
+    "role": "development_only_consumed_by_CB30_CB31",
+    "input_rail": "legacy hash-bound encoded-sRGB JPEG display proxies; not RAW or scene-linear evidence"
+  },
+  "operator": {
+    "basis": "unchanged deterministic Rec.709 zero-luminance plane",
+    "hue": "unchanged global circular Procrustes rotation",
+    "minimum_valid_fraction": 0.0001,
+    "fraction_knots": 257,
+    "knot_selection": "uniform deterministic indices over exact unique sorted valid base fractions, including both endpoints",
+    "raw_targets": "AO6 empirical fraction quantiles evaluated at each base knot grouped-midrank",
+    "maximum_fraction_slope": 1.0,
+    "slope_projection": "clip every nonnegative raw target increment to maximum_fraction_slope times its base-knot increment",
+    "vertical_anchor": "single least-squares constant offset from the clipped cumulative increments to raw knot targets, clipped only to keep all knots in [0,1]",
+    "interpolation": "piecewise linear with constant endpoint extension",
+    "equal_input_invariant": "exactly equal valid base fractions map to exactly equal target fractions",
+    "reconstruction": "unchanged rotated hue and mapped fraction at exact CB11 luminance",
+    "safe_executor": "unchanged analytical source-boundary and float32-margin step",
+    "forbidden": "gold-tuned slope, adaptive knot count, cubic overshoot, local map, semantic mask, derivative rescue or post-score tuning"
+  },
+  "research_basis": {
+    "latest_explicit_transport_comparator": "ColorFM, arXiv:2607.07119 (2026), https://arxiv.org/abs/2607.07119",
+    "latest_explicit_lut_comparator": "StatLUT, arXiv:2607.08227 (2026), https://arxiv.org/abs/2607.08227",
+    "classical_basis": "one-dimensional monotone transport with a 1-Lipschitz envelope is non-expansive in normalized gamut-fraction distance",
+    "position": "clean-room deterministic bounded explicit baseline; no paper code, model, weights or novelty claim"
+  },
+  "automatic_gates": {
+    "maximum_luminance_reconstruction_error": 0.000001,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio_vs_source": 1.35,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.0,
+    "minimum_population_median_direction_scale": 0.8,
+    "maximum_population_median_fraction_direction_scale_below_0p5": 0.1,
+    "maximum_observed_fraction_slope": 1.000000000001,
+    "require_equal_input_mapping": true,
+    "require_exact_repeat": true,
+    "require_id11_presence": true
+  },
+  "visual": {
+    "maximum_confirmed_severe_artifact_count": 0,
+    "review_all_contact_sheets": true,
+    "review_original_resolution_ids": ["01", "05", "08", "09", "11", "18", "21", "29"]
+  },
+  "stop_rules": [
+    "Any non-expansive invariant or automatic failure closes this exact 257-knot mechanism before visual review.",
+    "Do not tune slope, knot count, anchor or interpolation on the consumed cohort.",
+    "A development pass requires a separately frozen source-disjoint automatic and severe confirmation before any research-champion reconsideration."
+  ],
+  "claim_ceiling": "Development-only non-expansive explicit fraction-transport evidence on the already consumed 40-row frozen cohort; not independent confirmation, complete face closure, stock response, calibration, population preference or product promotion."
+}
