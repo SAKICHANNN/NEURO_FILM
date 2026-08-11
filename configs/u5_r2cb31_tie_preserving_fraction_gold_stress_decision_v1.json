@@ -1,0 +1,42 @@
+{
+  "schema": "neuro_film.u5_r2cb31_tie_preserving_fraction_gold_stress_decision.v1",
+  "experiment_id": "U5.R2CB31",
+  "contract_commit": "fce82d29757519e5868af019d4a2288246ce7590",
+  "contract_amendment_commit": "0817b34cc72a473de59316325a8ece2f940e8561",
+  "implementation_commit": "0690e5b9196a9b05851c864bbf837fb67d5ef1f9",
+  "implementation_fix_commit": "b7bcd9a0319cc36d6ac378c91ca0506cd24605cb",
+  "contract_sha256": "e1e466ab6644813194a6880331555e68daa3da8934c8852d878e3734f1671fe5",
+  "formal_report_paths": [
+    "D:/nf-019f4b76-cb31-run-report-a.json",
+    "D:/nf-019f4b76-cb31-run-report-b.json"
+  ],
+  "formal_report_sha256": "a24bfc7a557af7899e8d5a5865776da653fecdd8dece11fd22642f66905d4c0f",
+  "stable_evidence_id": "17b930eda5d52748f31e14b5608a1bb080f29ae92cf29667da4f019be8095c89",
+  "repeat_report_byte_exact": true,
+  "automatic_pass": false,
+  "visual_review_permitted": false,
+  "measurements": {
+    "available_source_count": 40,
+    "gold_median_style_delta_e76": 12.843839524055433,
+    "stress_median_style_delta_e76": 10.521940203630123,
+    "maximum_luminance_reconstruction_error": 4.123449326431938e-08,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio_vs_source": 1.7694735243578221,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.0,
+    "population_median_direction_scale": 1.0,
+    "population_median_fraction_direction_scale_below_0p5": 0.00022122237191502656,
+    "unavailable_ids": ["FS_FACE_01"]
+  },
+  "comparison_to_cb30": {
+    "cb30_maximum_p999_gradient_ratio_vs_source": 1.769955754606776,
+    "absolute_reduction": 0.00048223024895377464,
+    "relative_reduction": 0.0002724532778133405,
+    "same_worst_source_id": "18",
+    "interpretation": "Preserving exact-fraction ties changes the failure negligibly; steep transport across adjacent unequal fractions, not tie splitting, dominates the high-frequency amplification."
+  },
+  "failed_gates": ["maximum_p999_gradient_ratio_vs_source"],
+  "passed": false,
+  "decision": "close_grouped_midrank_transport_on_gold_gradient_gate",
+  "next_action": "Freeze a separately versioned derivative-bounded monotone fraction map with a predeclared Lipschitz envelope and no gold-set parameter tuning, then test it first as development evidence.",
+  "claim_ceiling": "Exact negative mechanistic evidence on the consumed 40-row frozen display-proxy cohort; not visual adjudication, independent confirmation, stock response, calibration or product promotion."
+}

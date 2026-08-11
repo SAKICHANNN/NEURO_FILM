@@ -11635,3 +11635,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   exact-fraction tie groups split across distinct stable ranks and target
   quantiles, with finite mapped-fraction slope p99.9 `29.24`. Close CB27; a
   new version must preserve ties and later pass a disjoint population.
+
+# 2026-08-11 - U5.R2CB31 rejects the tie-splitting hypothesis
+
+- CB31 maps each exact-fraction tie group to one grouped-midrank quantile and
+  passes the equality invariant. Two reports are byte exact
+  (`a24bfc7a...d4c0f`; stable `17b930ed...5c89`).
+- ID18 still reaches p99.9 gradient ratio `1.76947`, only `0.027%` below CB30,
+  so the same frozen gate fails and visual review remains forbidden. The
+  failure is driven by steep mapping across adjacent unequal fractions; the
+  next operator must impose an explicit derivative envelope.
