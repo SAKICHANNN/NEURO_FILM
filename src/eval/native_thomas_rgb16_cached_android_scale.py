@@ -35,7 +35,7 @@ SOURCE_PATHS = (
 )
 
 _FACT_PATTERN = re.compile(
-    r"^mode=(?P<mode>legacy|cached) status=(?P<status>\d+) "
+    r"^mode=(?P<mode>legacy|cached|cached_output3) status=(?P<status>\d+) "
     r"height=(?P<height>\d+) width=(?P<width>\d+) rows=(?P<rows>\d+) "
     r"parallel=(?P<parallel>\d+) values=(?P<values>\d+) "
     r"calls=(?P<calls>\d+) workspace=(?P<workspace>\d+) "
@@ -223,6 +223,7 @@ def _one_android_boot(
     height: int,
     width: int,
     row_partition: int,
+    modes: tuple[tuple[str, str, int], ...] | None = None,
 ) -> dict[str, Any]:
     emulator_exe = sdk / "emulator/emulator.exe"
     adb = sdk / "platform-tools/adb.exe"
@@ -233,9 +234,15 @@ def _one_android_boot(
     process: subprocess.Popen[bytes] | None = None
     result: dict[str, Any] | None = None
     remote_probe = "/data/local/tmp/nf_p8co_probe"
+    if modes is None:
+        modes = (
+            ("legacy", "legacy", 1),
+            ("cached1", "cached", 1),
+            ("cached3a", "cached", 3),
+            ("cached3b", "cached", 3),
+        )
     remote_outputs = [
-        f"/data/local/tmp/nf_p8co_b{boot_index}_{tag}.raw"
-        for tag in ("legacy", "cached1", "cached3a", "cached3b")
+        f"/data/local/tmp/nf_p8co_b{boot_index}_{tag}.raw" for tag, _, _ in modes
     ]
     with stdout_path.open("wb") as stdout_file, stderr_path.open("wb") as stderr_file:
         started = time.monotonic()
@@ -267,12 +274,6 @@ def _one_android_boot(
             _adb(adb, serial, "push", str(probe), remote_probe, env=env)
             _adb(adb, serial, "shell", "chmod", "755", remote_probe, env=env)
             runs = []
-            modes = (
-                ("legacy", "legacy", 1),
-                ("cached1", "cached", 1),
-                ("cached3a", "cached", 3),
-                ("cached3b", "cached", 3),
-            )
             for remote_output, (tag, mode, parallel) in zip(remote_outputs, modes):
                 run_started = time.monotonic()
                 stdout = _adb(

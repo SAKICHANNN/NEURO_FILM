@@ -61,6 +61,7 @@ def test_cached_probe_builds_and_small_outputs_are_exact(tmp_path: Path) -> None
             ("legacy", "legacy", 1),
             ("cached1", "cached", 1),
             ("cached3", "cached", 3),
+            ("output3", "cached_output3", 3),
         )
     ]
     assert {row["raw_sha256"] for row in runs} == {

@@ -123,6 +123,8 @@ static int nf_parse_size(const char* text, size_t minimum, size_t* output) {
 int main(int argc, char** argv) {
     const int cached = argc == 7 && strcmp(argv[1], "cached") == 0;
     const int legacy = argc == 7 && strcmp(argv[1], "legacy") == 0;
+    const int cached_output3 =
+        argc == 7 && strcmp(argv[1], "cached_output3") == 0;
     size_t height;
     size_t width;
     size_t row_partition;
@@ -142,7 +144,8 @@ int main(int argc, char** argv) {
     int status;
     int invalid_status;
     int result = 1;
-    if ((!cached && !legacy) || !nf_parse_size(argv[3], 1u, &height) ||
+    if ((!cached && !legacy && !cached_output3) ||
+        !nf_parse_size(argv[3], 1u, &height) ||
         !nf_parse_size(argv[4], 1u, &width) ||
         !nf_parse_size(argv[5], 1u, &row_partition) ||
         !nf_parse_size(argv[6], 1u, &parallel_layers) ||
@@ -161,7 +164,8 @@ int main(int argc, char** argv) {
         goto cleanup;
     }
     nf_build_exposure(exposure, sample_count);
-    if ((cached && nf_thomas_rgb16_cached_f32_workspace_bytes_v1(
+    if (((cached || cached_output3) &&
+         nf_thomas_rgb16_cached_f32_workspace_bytes_v1(
             height, width, row_partition, (uint32_t)parallel_layers,
             &workspace_bytes) != NF_THOMAS_RGB16_CACHED_F32_OK_V1) ||
         (legacy && nf_thomas_rgb16_f32_workspace_bytes_v1(
@@ -174,7 +178,12 @@ int main(int argc, char** argv) {
         goto cleanup;
     }
     sink.file = output;
-    if (cached) {
+    if (cached_output3) {
+        status = (int)nf_thomas_rgb16_cached_f32_apply_parallel_output_v1(
+            &amplitude, fields, &gauge, height, width, row_partition,
+            exposure, 3u * sample_count, workspace, workspace_bytes,
+            nf_raw_sink, &sink, means);
+    } else if (cached) {
         status = (int)nf_thomas_rgb16_cached_f32_apply_v1(
             &amplitude, fields, &gauge, height, width, row_partition,
             (uint32_t)parallel_layers, exposure, 3u * sample_count,
@@ -194,7 +203,13 @@ int main(int argc, char** argv) {
         goto cleanup;
     }
     exposure[3u * sample_count - 1u] = NAN;
-    if (cached) {
+    if (cached_output3) {
+        invalid_status =
+            (int)nf_thomas_rgb16_cached_f32_apply_parallel_output_v1(
+                &amplitude, fields, &gauge, height, width, row_partition,
+                exposure, 3u * sample_count, workspace, workspace_bytes,
+                nf_raw_sink, &invalid_sink, invalid_means);
+    } else if (cached) {
         invalid_status = (int)nf_thomas_rgb16_cached_f32_apply_v1(
             &amplitude, fields, &gauge, height, width, row_partition,
             (uint32_t)parallel_layers, exposure, 3u * sample_count,
@@ -210,7 +225,8 @@ int main(int argc, char** argv) {
         "mode=%s status=%d height=%zu width=%zu rows=%zu parallel=%zu "
         "values=%zu calls=%zu workspace=%zu means=%a,%a,%a "
         "invalid_status=%d invalid_calls=%zu invalid_means=%a,%a,%a\n",
-        cached ? "cached" : "legacy", status, height, width, row_partition,
+        cached_output3 ? "cached_output3" : (cached ? "cached" : "legacy"),
+        status, height, width, row_partition,
         parallel_layers, sink.values, sink.calls, workspace_bytes,
         means[0], means[1], means[2], invalid_status, invalid_sink.calls,
         invalid_means[0], invalid_means[1], invalid_means[2]);

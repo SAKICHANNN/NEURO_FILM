@@ -44,6 +44,18 @@ typedef struct nf_develop_job_v1 {
     int ok;
 } nf_develop_job_v1;
 
+typedef struct nf_output_job_v1 {
+    const nf_neutral_gauge_f32_profile_v1* gauge_profile;
+    const float* fields;
+    size_t full_count;
+    size_t field_offset;
+    size_t tile_start;
+    size_t count;
+    float* interleaved;
+    uint16_t* quantized;
+    int ok;
+} nf_output_job_v1;
+
 static int nf_ranges_overlap_bytes(
     const void* first,
     size_t first_bytes,
@@ -126,6 +138,35 @@ static void nf_develop_field(nf_develop_job_v1* job) {
     job->ok = 1;
 }
 
+static void nf_finish_output(nf_output_job_v1* job) {
+    size_t index;
+    size_t channel;
+    job->ok = 0;
+    for (index = 0u; index < job->count; ++index) {
+        const size_t tile_index = job->tile_start + index;
+        for (channel = 0u; channel < 3u; ++channel) {
+            job->interleaved[3u * tile_index + channel] =
+                job->fields[channel * job->full_count + job->field_offset +
+                    tile_index];
+        }
+    }
+    if (nf_neutral_gauge_f32_apply_v1(
+            job->gauge_profile,
+            job->interleaved + 3u * job->tile_start,
+            job->count,
+            job->interleaved + 3u * job->tile_start) !=
+            NF_NEUTRAL_GAUGE_F32_OK_V1 ||
+        nf_srgb_oetf_quantize_apply_v1(
+            job->interleaved + 3u * job->tile_start,
+            3u * job->count,
+            16u,
+            job->quantized + 3u * job->tile_start,
+            3u * job->count) != 1) {
+        return;
+    }
+    job->ok = 1;
+}
+
 #if defined(_WIN32)
 static DWORD WINAPI nf_field_thread(LPVOID context) {
     nf_generate_field((nf_field_job_v1*)context);
@@ -136,6 +177,11 @@ static DWORD WINAPI nf_develop_thread(LPVOID context) {
     nf_develop_field((nf_develop_job_v1*)context);
     return 0u;
 }
+
+static DWORD WINAPI nf_output_thread(LPVOID context) {
+    nf_finish_output((nf_output_job_v1*)context);
+    return 0u;
+}
 #else
 static void* nf_field_thread(void* context) {
     nf_generate_field((nf_field_job_v1*)context);
@@ -144,6 +190,11 @@ static void* nf_field_thread(void* context) {
 
 static void* nf_develop_thread(void* context) {
     nf_develop_field((nf_develop_job_v1*)context);
+    return NULL;
+}
+
+static void* nf_output_thread(void* context) {
+    nf_finish_output((nf_output_job_v1*)context);
     return NULL;
 }
 #endif
@@ -266,6 +317,59 @@ static int nf_run_develop_jobs(
     return 1;
 }
 
+static int nf_run_output_jobs(
+    nf_output_job_v1 jobs[3], uint32_t output_workers) {
+    size_t worker;
+    if (output_workers == 1u) {
+        nf_finish_output(&jobs[0]);
+        return jobs[0].ok;
+    }
+#if defined(_WIN32)
+    {
+        HANDLE threads[3] = {NULL, NULL, NULL};
+        for (worker = 0u; worker < 3u; ++worker) {
+            threads[worker] = CreateThread(
+                NULL, 0u, nf_output_thread, &jobs[worker], 0u, NULL);
+            if (threads[worker] == NULL) {
+                size_t prior;
+                for (prior = 0u; prior < worker; ++prior) {
+                    WaitForSingleObject(threads[prior], INFINITE);
+                    CloseHandle(threads[prior]);
+                }
+                return 0;
+            }
+        }
+        WaitForMultipleObjects(3u, threads, TRUE, INFINITE);
+        for (worker = 0u; worker < 3u; ++worker) {
+            CloseHandle(threads[worker]);
+            if (!jobs[worker].ok) {
+                return 0;
+            }
+        }
+    }
+#else
+    {
+        pthread_t threads[3];
+        for (worker = 0u; worker < 3u; ++worker) {
+            if (pthread_create(
+                    &threads[worker], NULL, nf_output_thread, &jobs[worker]) != 0) {
+                size_t prior;
+                for (prior = 0u; prior < worker; ++prior) {
+                    pthread_join(threads[prior], NULL);
+                }
+                return 0;
+            }
+        }
+        for (worker = 0u; worker < 3u; ++worker) {
+            if (pthread_join(threads[worker], NULL) != 0 || !jobs[worker].ok) {
+                return 0;
+            }
+        }
+    }
+#endif
+    return 1;
+}
+
 uint32_t nf_thomas_rgb16_cached_f32_abi_version_v1(void) {
     return NF_THOMAS_RGB16_CACHED_F32_ABI_VERSION_V1;
 }
@@ -313,7 +417,8 @@ nf_thomas_rgb16_cached_f32_workspace_bytes_v1(
     return NF_THOMAS_RGB16_CACHED_F32_OK_V1;
 }
 
-nf_thomas_rgb16_cached_f32_status_v1 nf_thomas_rgb16_cached_f32_apply_v1(
+static nf_thomas_rgb16_cached_f32_status_v1
+nf_thomas_rgb16_cached_f32_apply_internal_v1(
     const nf_granularity_amplitude_f32_profile_v1* amplitude_profile,
     const nf_thomas_field_f32_profile_v1 field_profiles[3],
     const nf_neutral_gauge_f32_profile_v1* gauge_profile,
@@ -321,6 +426,7 @@ nf_thomas_rgb16_cached_f32_status_v1 nf_thomas_rgb16_cached_f32_apply_v1(
     size_t width,
     size_t row_partition,
     uint32_t parallel_layers,
+    uint32_t output_workers,
     const float* relative_log_exposure_chw,
     size_t exposure_floats,
     void* workspace,
@@ -344,6 +450,7 @@ nf_thomas_rgb16_cached_f32_status_v1 nf_thomas_rgb16_cached_f32_apply_v1(
     uint16_t* quantized;
     nf_field_job_v1 field_jobs[3];
     nf_develop_job_v1 develop_jobs[3];
+    nf_output_job_v1 output_jobs[3];
     if (nf_granularity_amplitude_f32_validate_profile_v1(amplitude_profile) !=
             NF_GRANULARITY_AMPLITUDE_F32_OK_V1 || field_profiles == NULL ||
         nf_neutral_gauge_f32_validate_profile_v1(gauge_profile) !=
@@ -358,6 +465,7 @@ nf_thomas_rgb16_cached_f32_status_v1 nf_thomas_rgb16_cached_f32_apply_v1(
     }
     if (relative_log_exposure_chw == NULL || workspace == NULL || sink == NULL ||
         raw_field_means == NULL || (uintptr_t)workspace % _Alignof(float) != 0u ||
+        (output_workers != 1u && output_workers != 3u) ||
         nf_thomas_rgb16_cached_f32_workspace_bytes_v1(
             full_height, width, row_partition, parallel_layers,
             &required_bytes) != NF_THOMAS_RGB16_CACHED_F32_OK_V1 ||
@@ -440,17 +548,25 @@ nf_thomas_rgb16_cached_f32_status_v1 nf_thomas_rgb16_cached_f32_apply_v1(
             row_partition : full_height - row_start;
         const size_t count = row_count * width;
         const size_t offset = row_start * width;
-        for (index = 0u; index < count; ++index) {
-            for (channel = 0u; channel < 3u; ++channel) {
-                interleaved[3u * index + channel] =
-                    fields[channel * full_count + offset + index];
-            }
+        const size_t base_count = count / output_workers;
+        const size_t remainder = count % output_workers;
+        size_t tile_start = 0u;
+        size_t worker;
+        for (worker = 0u; worker < output_workers; ++worker) {
+            const size_t worker_count =
+                base_count + (worker < remainder ? 1u : 0u);
+            output_jobs[worker].gauge_profile = gauge_profile;
+            output_jobs[worker].fields = fields;
+            output_jobs[worker].full_count = full_count;
+            output_jobs[worker].field_offset = offset;
+            output_jobs[worker].tile_start = tile_start;
+            output_jobs[worker].count = worker_count;
+            output_jobs[worker].interleaved = interleaved;
+            output_jobs[worker].quantized = quantized;
+            output_jobs[worker].ok = 0;
+            tile_start += worker_count;
         }
-        if (nf_neutral_gauge_f32_apply_v1(
-                gauge_profile, interleaved, count, interleaved) !=
-                NF_NEUTRAL_GAUGE_F32_OK_V1 ||
-            nf_srgb_oetf_quantize_apply_v1(
-                interleaved, 3u * count, 16u, quantized, 3u * count) != 1) {
+        if (!nf_run_output_jobs(output_jobs, output_workers)) {
             return NF_THOMAS_RGB16_CACHED_F32_DOMAIN_ERROR_V1;
         }
         if (sink(
@@ -462,4 +578,70 @@ nf_thomas_rgb16_cached_f32_status_v1 nf_thomas_rgb16_cached_f32_apply_v1(
         raw_field_means[channel] = field_jobs[channel].mean;
     }
     return NF_THOMAS_RGB16_CACHED_F32_OK_V1;
+}
+
+nf_thomas_rgb16_cached_f32_status_v1 nf_thomas_rgb16_cached_f32_apply_v1(
+    const nf_granularity_amplitude_f32_profile_v1* amplitude_profile,
+    const nf_thomas_field_f32_profile_v1 field_profiles[3],
+    const nf_neutral_gauge_f32_profile_v1* gauge_profile,
+    size_t full_height,
+    size_t width,
+    size_t row_partition,
+    uint32_t parallel_layers,
+    const float* relative_log_exposure_chw,
+    size_t exposure_floats,
+    void* workspace,
+    size_t workspace_bytes,
+    nf_thomas_rgb16_f32_sink_v1 sink,
+    void* sink_context,
+    double raw_field_means[3]) {
+    return nf_thomas_rgb16_cached_f32_apply_internal_v1(
+        amplitude_profile,
+        field_profiles,
+        gauge_profile,
+        full_height,
+        width,
+        row_partition,
+        parallel_layers,
+        1u,
+        relative_log_exposure_chw,
+        exposure_floats,
+        workspace,
+        workspace_bytes,
+        sink,
+        sink_context,
+        raw_field_means);
+}
+
+nf_thomas_rgb16_cached_f32_status_v1
+nf_thomas_rgb16_cached_f32_apply_parallel_output_v1(
+    const nf_granularity_amplitude_f32_profile_v1* amplitude_profile,
+    const nf_thomas_field_f32_profile_v1 field_profiles[3],
+    const nf_neutral_gauge_f32_profile_v1* gauge_profile,
+    size_t full_height,
+    size_t width,
+    size_t row_partition,
+    const float* relative_log_exposure_chw,
+    size_t exposure_floats,
+    void* workspace,
+    size_t workspace_bytes,
+    nf_thomas_rgb16_f32_sink_v1 sink,
+    void* sink_context,
+    double raw_field_means[3]) {
+    return nf_thomas_rgb16_cached_f32_apply_internal_v1(
+        amplitude_profile,
+        field_profiles,
+        gauge_profile,
+        full_height,
+        width,
+        row_partition,
+        3u,
+        3u,
+        relative_log_exposure_chw,
+        exposure_floats,
+        workspace,
+        workspace_bytes,
+        sink,
+        sink_context,
+        raw_field_means);
 }
