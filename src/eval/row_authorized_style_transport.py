@@ -15,7 +15,6 @@ from src.eval.characteristic_lstar_transport import (
     CharacteristicLstarTransportError,
 )
 from src.eval.characteristic_lstar_transport import evaluate as evaluate_characteristic
-from src.eval.exact_lab_y_monotone_tone_transport import LEGACY_LAB_Y_WEIGHTS
 from src.eval.fujifilm_characteristic_rgb import _gradient_inversion_fraction
 from src.eval.fujifilm_dye_basis_measured_conformance import canonical_json
 from src.eval.fujifilm_e6_dye_operator_photographic import _new_boundary_fraction
@@ -54,7 +53,7 @@ def select_row_authorized_style_candidate(
         source,
         safe_base_linear,
         full_target_linear,
-        weights=LEGACY_LAB_Y_WEIGHTS,
+        weights=np.asarray([0.2126, 0.7152, 0.0722], dtype=np.float64),
         boundary_epsilon=boundary_epsilon,
         dose_grid=dose_grid,
         maximum_gradient_ratio=maximum_gradient_ratio,
