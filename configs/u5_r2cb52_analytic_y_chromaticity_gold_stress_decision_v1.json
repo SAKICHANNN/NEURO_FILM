@@ -1,0 +1,44 @@
+{
+  "schema": "neuro_film.u5_r2cb52_analytic_y_chromaticity_gold_stress_decision.v1",
+  "experiment_id": "U5.R2CB52",
+  "status": "partial_gold_stress_pass_research_champion_not_promoted",
+  "report_sha256": "c3e8534242ab05f8ae2f26c3f1cd674bf4a34d5a4aa3b1033cbf6f5a86d18647",
+  "stable_evidence_id": "4bc19a321c2267eaf48b9bcde41da37eb64fa0ad87d0a1aaca4e413cd38d5169",
+  "repeat_report_and_output_hashes_exact": true,
+  "automatic_metrics": {
+    "available_source_count": 40,
+    "available_gold_count": 8,
+    "available_stress_count": 32,
+    "gold_median_style_delta_e76": 10.628469085017702,
+    "stress_median_style_delta_e76": 10.997091529994549,
+    "gold_median_delta_e76_vs_cb11": 11.857008135394807,
+    "stress_median_delta_e76_vs_cb11": 11.525995420362838,
+    "population_median_global_dose": 1.0,
+    "population_median_gamut_scale": 1.0,
+    "maximum_gradient_ratio": 1.3368691765706202,
+    "maximum_lstar_inversion_fraction": 0.0,
+    "maximum_new_boundary_fraction": 0.0,
+    "maximum_luminance_reconstruction_error": 2.9647133081844856e-08,
+    "unavailable_ids": ["FS_FACE_01"]
+  },
+  "visual_review": {
+    "contact_sheet_sha256": ["c6cf7916f6c783c3cbd9843f4a7385245c6bf8217b9836b0684cc6f20645dcf3", "784a7d5e18ef9fce6fafb7130323bcc99c91e6188ff7be2bea07d91a013d9109", "1624e7a1edb9a8ce022a80fe10114e4e9290af5d3d1226c1baac9f6084686d29"],
+    "original_resolution_outputs": [
+      {"id": "01", "sha256": "5153047e9f4522af489b842cff38673f49e7c002a3f834c680dd5a33d8bef2dc"},
+      {"id": "05", "sha256": "ac1e0c6673b06353618a599a5f0c6192541148b5463972d14ee6435211a84e13"},
+      {"id": "08", "sha256": "a0d391f9ebb8c1d0e01484b26a52f974cf27a59772c5f5ff6405a72eaf186d2e"},
+      {"id": "09", "sha256": "62bccc524fff095bb3fda95ca1c9784ba71bc067b6022bb7161e673cd60166af"},
+      {"id": "11", "sha256": "791ae1756be81ca35509b0fac47fb640b49f291e6f8a024aabfd8b14e3ab3f3d"},
+      {"id": "18", "sha256": "9511160c455b13a7b31e98a535472f17013590802671db4f68222930c7d30601"},
+      {"id": "21", "sha256": "34816747fe0de5a9f57c5408682d2dd77dea14c4689e89fc8b0738df454b9ff6"},
+      {"id": "29", "sha256": "ae828bea2dba095e3c5e44c2b4360327aff6b1d2cda09958860c34e6f714bf22"}
+    ],
+    "confirmed_severe_artifact_count": 0,
+    "observations": "All three contact sheets and eight required original-resolution outputs retain geometry, text, face, fine texture and high-contrast structure. ID11 has no confirmed red-speckle recurrence; ID18 texture remains continuous. No confirmed banding, posterization, block corruption, seam or unintended clipping."
+  },
+  "decision": "pass_cb52_partial_gold_stress_retain_analytic_y_chromaticity_research_champion",
+  "next_leaf": "Measure unchanged CB50/CB51 execution latency and peak memory on fixed 24MP host inputs before any integration proposal; separately preserve the missing FS_FACE_01 limitation.",
+  "product_default_changed": false,
+  "forbidden": "complete-gold or face-closure claim, stock-response relabeling, product promotion, changed operator or gates",
+  "claim_ceiling": "Partial autonomous OOD severe-artifact pass on 40 frozen display proxies; not complete face closure, population preference, film truth, stock response, calibration or product promotion."
+}
