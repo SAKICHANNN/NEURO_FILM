@@ -22,7 +22,7 @@
   },
   "implementation": {
     "atomic_sink_sha256": "fefdc1e1099cdcff338477a556970e6046671942e5174ea06b91ae57fd9351e2",
-    "evaluator_sha256": "66a147cfc5baa0db41e8c6aa96e143252eef28b8fa1c91c056597501ff738461",
+    "evaluator_sha256": "37914950f736f2dd7ad9e8129e2de80babcda8d1a0f1f87b4341c20326c7fad1",
     "runner_sha256": "591c49e2d49adcafcae975c98e2f97ec1aaa6076695b9c8258732a8bfed313fd"
   },
   "fixture": {

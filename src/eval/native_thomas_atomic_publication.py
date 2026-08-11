@@ -14,11 +14,13 @@ from scripts.evaluate_u6_p8bw_native_exposure_thomas_pipeline import (
     _profiles,
 )
 from scripts.evaluate_u6_p8ca_native_thomas_gauged_sink import _gauge_payload
+from scripts.evaluate_u6_p8ck_native_thomas_rgb16_png_program import (
+    _decode_rgb16,
+    _icc_payload,
+)
 from src.eval.native_msvc import sha256_file
 from src.eval.native_thomas_export_profile import _configure_parallel
 from src.eval.native_thomas_rgb16_png_conformance import (
-    _decode_rgb16,
-    _icc_payload,
     build_msvc,
     load_library,
 )
