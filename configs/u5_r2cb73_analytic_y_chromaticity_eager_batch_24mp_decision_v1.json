@@ -1,0 +1,22 @@
+{
+  "schema": "neuro_film.u5_r2cb73_analytic_y_chromaticity_eager_batch_24mp_decision.v1",
+  "experiment_id": "U5.R2CB73",
+  "contract_path": "configs/u5_r2cb73_analytic_y_chromaticity_eager_batch_24mp_v1.json",
+  "contract_sha256": "d062f79c1395e58272917dab8e9e3b87c63222ee27bf541c9c535b6e38468a82",
+  "formal_report_path": "D:/nf-019f4b76-cb73-report.json",
+  "formal_report_sha256": "c1761fad3901de9ded82015e4a12a7987a54e500bd91675ddbfc3eec03082165",
+  "automatic_pass": false,
+  "decision": "fail_close_parallel_target_family_retain_cb69_v4",
+  "metrics": {
+    "output_sha256_exact": true,
+    "selector_facts_exact": true,
+    "repeat_exact": true,
+    "maximum_peak_process_tree_rss_bytes": 2523758592,
+    "peak_rss_ratio_to_cb69": 1.1176955031109983,
+    "maximum_wall_seconds": 60.31463789999543,
+    "wall_ratio_to_cb69": 0.9578921624367981,
+    "scratch_cleanup": true
+  },
+  "interpretation": "Immediate per-batch consumption preserves exact semantics but still misses both frozen resource gates. Four concurrent target row kernels themselves dominate working-set growth. Close target scheduling variants without worker-count, row-size or gate tuning; retain analytic profile v4/CB69.",
+  "claim_ceiling": "Local Windows/Python 24MP negative resource evidence only; no profile, default, product, stock, calibration or arbitrary-media change."
+}
