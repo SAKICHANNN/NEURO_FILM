@@ -11369,3 +11369,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   the frozen `1.0` materiality minimum.
 - Do not rescue the confidence dose. CB17's defect is spatial speckling, so the
   next mechanism regularizes the direction field itself with fixed support.
+
+# 2026-08-11 - Freeze U5.R2CB19 spatially coherent direction
+
+- Apply the fixed separable `[1,2,1]/4` reflect-boundary kernel to AO6's
+  zero-luminance chroma vector before direction normalization, while preserving
+  CB11 chroma magnitude and the same analytical safe step.
+- This tests spatial coherence directly. Radius/kernel search and confidence
+  dose rescue are forbidden; blind review still requires all automatic gates.
