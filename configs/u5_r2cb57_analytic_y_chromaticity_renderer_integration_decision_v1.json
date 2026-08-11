@@ -1,0 +1,39 @@
+{
+  "schema": "neuro_film.u5_r2cb57_analytic_y_chromaticity_renderer_integration_decision.v1",
+  "experiment_id": "U5.R2CB57",
+  "contract_sha256": "f28f57ebe2cbe34234d3b28e2a52b887891488fad084ce75ec10063e7e87e425",
+  "implementation_commit": "0a84d906",
+  "profile_sha256": "dbccb9242283d0b46433d788f1d8512c316d985faa0f0b5e214e0987ee88b70d",
+  "runtime_sha256": "3e8dc7eec01e2ff32460a9c5f1f763a36bc57908efa5fe84a31ca27155c63adf",
+  "renderer_sha256": "d2f95f861fb0d58e12906eb347f034d103f9a458ed4afd3d2ddd81f0f8bac538",
+  "test_sha256": "e8169d0af57736fa5a8e8f281cc5d206faa3eb802d99faffa85ba9471be265cf",
+  "checks": {
+    "direct_runtime_vs_cli_encoded_output_exact": true,
+    "two_cli_output_files_byte_exact": true,
+    "profile_and_asset_drift_fail_before_output": true,
+    "unsupported_style_and_recipe_fail_before_output": true,
+    "default_safe_lab_output_byte_unchanged": true,
+    "procedural_effects_repeat_exact": true,
+    "metrics_bind_profile_and_selector_facts": true
+  },
+  "verification": {
+    "focused_tests": "7 passed",
+    "renderer_ingress_and_profile_regression": "42 passed",
+    "real_input_sha256": "b551eeccf6ec90c6b6b52e09174705d81360afb0d83734f802bcd17cc43c4bb5",
+    "real_output_sha256": "a70cf7950ccaf0787fbd241b99f7cd887dc7945130af99401183669a524fefa0",
+    "real_normalized_metrics_sha256": "69cb30b0efa4f9a814386813668770912b0daed1016ac11681bba442e87aacee",
+    "real_selector_facts": {
+      "global_dose": 1.0,
+      "selected_gradient_ratio": 1.2238753703338916,
+      "selected_lstar_inversion_fraction": 0.0,
+      "selected_new_boundary_fraction": 0.0,
+      "median_gamut_scale": 1.0,
+      "fraction_gamut_scale_below_0p8": 0.0006514742524916943,
+      "maximum_luminance_error": 2.904026996652931e-08
+    }
+  },
+  "decision": "pass_cb57_opt_in_renderer_open_versioned_replay_recipe",
+  "next_leaf": "Add a separately versioned replay recipe for this engine; keep existing safe-Lab recipe v1 unchanged.",
+  "product_default_changed": false,
+  "claim_ceiling": "Opt-in host renderer integration for the analytic Look Approximation research champion; no stock response, calibration, authenticity or default-product promotion."
+}
