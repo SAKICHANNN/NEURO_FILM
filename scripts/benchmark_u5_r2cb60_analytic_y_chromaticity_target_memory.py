@@ -8,6 +8,7 @@ import hashlib
 import json
 import subprocess
 import sys
+from functools import partial
 from pathlib import Path
 from time import perf_counter, sleep
 
@@ -17,6 +18,9 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from src.eval.nonexpansive_fraction_transport_external_sort import (
+    nonexpansive_fraction_transport_target_external_sorted,
+)
 from src.eval.nonexpansive_fraction_transport_statistics_streaming import (
     nonexpansive_fraction_transport_target_statistics_streamed,
 )
@@ -56,6 +60,10 @@ def _worker(config: dict, output: Path, scratch: Path) -> dict:
     target_builder = {
         "row_bounded_hue_v1": nonexpansive_fraction_transport_target_row_materialized,
         "statistics_streamed_v1": nonexpansive_fraction_transport_target_statistics_streamed,
+        "external_sorted_v1": partial(
+            nonexpansive_fraction_transport_target_external_sorted,
+            scratch_root=scratch,
+        ),
     }.get(materializer)
     if target_builder is None:
         raise ValueError("unsupported CB memory target materializer")

@@ -9,6 +9,9 @@ from src.eval.nonexpansive_fraction_transport import (
     NonexpansiveFractionTransportError,
     nonexpansive_fraction_transport_target,
 )
+from src.eval.nonexpansive_fraction_transport_external_sort import (
+    nonexpansive_fraction_transport_target_external_sorted,
+)
 from src.eval.nonexpansive_fraction_transport_statistics_streaming import (
     nonexpansive_fraction_transport_target_statistics_streamed,
 )
@@ -65,7 +68,36 @@ def test_cb63_statistics_streamed_target_is_byte_exact(row_chunk: int) -> None:
     assert actual.tobytes() == expected.tobytes()
 
 
-def test_cb60_complete_profile_output_is_exact() -> None:
+@pytest.mark.parametrize("row_chunk", [1, 7, 64])
+def test_cb64_external_sorted_target_is_byte_exact(
+    row_chunk: int, tmp_path: Path
+) -> None:
+    rng = np.random.default_rng(6464)
+    base = rng.uniform(0.002, 0.94, size=(79, 113, 3)).astype(np.float32)
+    ao6 = np.empty_like(base)
+    ao6[..., 0] = np.float32(0.88) * base[..., 0] + np.float32(0.12) * base[..., 1]
+    ao6[..., 1] = np.float32(0.88) * base[..., 1] + np.float32(0.12) * base[..., 2]
+    ao6[..., 2] = np.float32(0.88) * base[..., 2] + np.float32(0.12) * base[..., 0]
+    expected = nonexpansive_fraction_transport_target(base, ao6, weights=WEIGHTS)
+    actual = nonexpansive_fraction_transport_target_external_sorted(
+        base,
+        ao6,
+        weights=WEIGHTS,
+        row_chunk=row_chunk,
+        scratch_root=tmp_path,
+    )
+    assert actual.tobytes() == expected.tobytes()
+    assert list(tmp_path.iterdir()) == []
+
+
+@pytest.mark.parametrize(
+    "target_builder",
+    [
+        nonexpansive_fraction_transport_target_row_materialized,
+        nonexpansive_fraction_transport_target_external_sorted,
+    ],
+)
+def test_cb60_complete_profile_output_is_exact(target_builder, tmp_path: Path) -> None:
     rng = np.random.default_rng(6060)
     pixels = rng.uniform(0.002, 0.94, size=(61, 89, 3)).astype(np.float32)
     working = WorkingImage(
@@ -85,7 +117,8 @@ def test_cb60_complete_profile_output_is_exact() -> None:
     actual, actual_facts = render_analytic_y_chromaticity_profile(
         working,
         runtime,
-        target_builder=nonexpansive_fraction_transport_target_row_materialized,
+        scratch_root=tmp_path,
+        target_builder=target_builder,
     )
     assert actual.tobytes() == expected.tobytes()
     assert actual_facts == expected_facts

@@ -1,0 +1,50 @@
+{
+  "schema": "neuro_film.u5_r2cb64_analytic_y_chromaticity_external_sort_memory_contract.v1",
+  "report_schema": "neuro_film.u5_r2cb64_analytic_y_chromaticity_external_sort_memory_report.v1",
+  "experiment_id": "U5.R2CB64",
+  "question": "Can D-backed in-place fraction sorting and streamed unique-group scans reduce the exact complete 24MP renderer below 4GB without changing knots, quantiles or pixels?",
+  "parent": {
+    "cb63_decision_path": "configs/u5_r2cb63_analytic_y_chromaticity_statistics_streaming_decision_v1.json",
+    "cb63_decision_sha256": "b9f181c8bb130654c561b099365c99ad2e37f82e3ef636dc160f9db9d6645200",
+    "cb63_required_decision": "close_cb63_hue_statistics_streaming_without_memory_gain"
+  },
+  "baseline": {
+    "input_path": "D:/nf-019f4b76-cb60-input.png",
+    "input_sha256": "f9a369f384126a0837880a79828f3608290e8ef013a0156f72a263a19762ed98",
+    "output_sha256": "949ffce7f86faee4296de52e51b90ae8e5cd4dc205d4a5a9e0f5cb86c6c6e9fa",
+    "peak_process_tree_rss_bytes": 5004148736,
+    "wall_seconds": 131.08845460000157,
+    "selector_facts": {
+      "characteristic_strength": 0.2,
+      "fraction_gamut_scale_below_0p8": 0.000487875,
+      "global_dose": 1.0,
+      "maximum_luminance_error": 2.8280287112103508e-08,
+      "median_gamut_scale": 1.0,
+      "selected_gradient_ratio": 0.8636540824585575,
+      "selected_lstar_inversion_fraction": 0.0,
+      "selected_new_boundary_fraction": 0.0
+    }
+  },
+  "candidate": {
+    "algorithm": "float64-disk-memmap-inplace-sort-streamed-group-scan-v1",
+    "target_materializer": "external_sorted_v1",
+    "row_chunk": 64,
+    "implementation_sha256": "851ae430c7249bdabdfc34b34351839decb5e930942035bfffd518159a1c61d5",
+    "runner_sha256": "b628ef012084f5dbead7e95c721da9e553e6025bc9394bfa762a915a99054a22",
+    "output_bit_depth": 16
+  },
+  "gates": {
+    "output_sha256_exact": true,
+    "selector_facts_exact": true,
+    "maximum_peak_process_tree_rss_bytes": 4000000000,
+    "maximum_peak_rss_ratio_to_baseline": 0.8,
+    "maximum_wall_ratio_to_baseline": 1.5,
+    "scratch_residue_count": 0
+  },
+  "stop_rules": [
+    "Do not change global reduction order, numeric precision, knot selection, quantiles, source, bit depth, selector or safety gates.",
+    "Do not relax the 4GB, 0.8x memory or 1.5x time gates after measurement.",
+    "Fail closed on either fresh-process identity, memory, time or cleanup failure."
+  ],
+  "claim_ceiling": "Local Windows/Python complete 24MP analytic renderer resource evidence only; no native/device, photographic preference, stock, calibration, default-product or arbitrary-media claim."
+}
