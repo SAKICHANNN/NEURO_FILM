@@ -1,0 +1,77 @@
+{
+  "schema": "neuro_film.u5_r2cb46_direct_lab_lch_development_contract.v1",
+  "experiment_id": "U5.R2CB46",
+  "question": "Can direct actual-CIELAB construction combine the frozen monotone characteristic L-star coordinate with CB32 chroma while hue-preserving gamut compression maintains exact order, safety and visible style?",
+  "parents": {
+    "cb45_decision_path": "configs/u5_r2cb45_row_authorized_style_development_decision_v1.json",
+    "cb45_decision_sha256": "02e4d766a0a43f31e4f9cfd7ae20b4bcabb974c0221c6e540fc7281b6ca79db0",
+    "cb45_required_decision": "close_row_authorized_style_open_direct_perceptual_lightness_chroma_construction",
+    "cb33_contract_path": "configs/u5_r2cb33_gradient_budgeted_fraction_gold_stress_v1.json",
+    "cb33_contract_sha256": "b38d5238a57957dbf55a321529cb3b275ba653054088eb9642d82d342ef69e41",
+    "cb16_decision_path": "configs/u5_r2cb16_safe_base_ao6_chroma_residual_decision_v1.json",
+    "cb16_decision_sha256": "965a1c0c0eba887673bd1f9793a5c28425edfe5495cb4bb151a70e3b9f20008f",
+    "cb16_required_status": "close_safe_base_ao6_chroma_magnitude_residual_without_rescue",
+    "cb14_decision_path": "configs/u5_r2cb14_characteristic_vs_ao6_ood_decision_v1.json",
+    "cb14_decision_sha256": "acb2e53031db6e9fe33f84d615ad259ea856190016ab7f26e2030775b8a2c8b9",
+    "cb14_required_status": "candidate_fails_ao6_retain_incumbent",
+    "cb11_contract_path": "configs/u5_r2cb11_fujifilm_characteristic_luma_chroma_v1.json",
+    "cb11_contract_sha256": "fd6127a0c336fdfc661870d8636e8c7a8bbe741f096465e52c73a5a327213b5f",
+    "cb12_contract_path": "configs/u5_r2cb12_characteristic_vs_ao6_fresh_v1.json",
+    "cb12_contract_sha256": "0951b3ec44049f76afda12b90ba40e1bc644000336fcc340b1b862ea986823c1"
+  },
+  "population": {
+    "decision_path": "configs/u5_r2cb46_direct_lab_lch_source_decision_v1.json",
+    "decision_sha256": "e4727fb33e594b22f3791d2b65560c7cd7e90016394b89f9722d48a02da77a59",
+    "required_status": "source_eligible_fixed_comparison_open",
+    "manifest_path": "outputs/u6_p8bn_fresh_strength_population_v1/manifest.json",
+    "manifest_sha256": "f773411c2ca8764d5ac27b9b400698f50a5588abeb0a83d02d1c0b234dceb85c",
+    "included_source_ids": ["ricoh_gr_iiix", "olympus_em10_ii", "pentax_k1_ii", "nikon_z_fc", "fujifilm_xt30_iii", "panasonic_s1m2", "canon_r6_iii"],
+    "source_count_exact": 7,
+    "camera_make_count_exact": 7,
+    "maximum_long_edge": 1600,
+    "role": "direct-Lab mechanism development on the exact P8BN ordinary-photo population; decoded SHA disjoint from CB45"
+  },
+  "operator": {
+    "lightness": "exact CB11 anchored monotone characteristic applied to actual source CIELAB L-star",
+    "chroma": "global dose interpolation from source CIELAB a/b toward unchanged CB32 target a/b",
+    "gamut": "24-step binary chroma contraction from neutral at fixed target L-star and hue into linear-sRGB",
+    "dose_grid": [1.0, 0.9375, 0.875, 0.8125, 0.75, 0.6875, 0.625, 0.5625, 0.5, 0.4375, 0.375, 0.3125, 0.25, 0.1875, 0.125, 0.0625, 0.0],
+    "gamut_iterations": 24,
+    "lstar_order_epsilon": 0.0001,
+    "minimum_valid_fraction": 0.0001,
+    "fraction_knots": 257,
+    "maximum_fraction_slope": 1.0,
+    "primary_near_neighbor": "Tajbakhsh and Mirzaei, Computationally-efficient Hue-preserving Gamut Mapping in RGB and YUV, Electronic Imaging 2025, DOI 10.2352/EI.2025.37.10.IPAS-226",
+    "forbidden": "per-pixel repair, RGB residual rebase, local mask, learned final RGB, changed target, adaptive dose grid or post-result threshold"
+  },
+  "evaluation": {"maximum_colour_metric_samples_per_source": 65536},
+  "automatic_gates": {
+    "maximum_luminance_reconstruction_error": 0.0001,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio_vs_source": 1.35,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.0,
+    "minimum_population_median_direction_scale": 0.5,
+    "maximum_population_median_fraction_direction_scale_below_0p5": 0.1,
+    "minimum_population_median_style_delta_e76": 5.0,
+    "minimum_population_median_delta_e76_vs_cb11": 1.0,
+    "minimum_population_median_global_dose": 0.5,
+    "maximum_fraction_global_dose_below_0p25": 0.1,
+    "minimum_population_median_gamut_chroma_retention": 0.8,
+    "maximum_confirmed_severe_artifact_count": 0
+  },
+  "blind_protocol": {
+    "rounds": 3,
+    "seed": 20260812,
+    "ties_allowed": false,
+    "minimum_candidate_round_wins": 2,
+    "minimum_candidate_aggregate_choices": 13,
+    "minimum_candidate_source_majorities": 5,
+    "mapping_hidden_until_choices_commit": true
+  },
+  "stop_rules": [
+    "Any exact order, gradient, boundary, style, dose or gamut-retention failure closes before visual review.",
+    "A severe or blind failure closes without changing the population, Lab space, characteristic curve, target, grid or thresholds.",
+    "A pass opens only a separately frozen source-disjoint confirmation."
+  ],
+  "claim_ceiling": "Development-only direct-CIELAB Look Approximation evidence on a previously consumed ordinary-photo population; not independent confirmation, novelty claim, stock response, calibration, population preference or product promotion."
+}
