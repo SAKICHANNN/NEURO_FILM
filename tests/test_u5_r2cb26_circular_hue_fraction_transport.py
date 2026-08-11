@@ -7,6 +7,7 @@ import pytest
 
 from src.eval.circular_hue_fraction_transport import (
     CircularHueFractionTransportError,
+    _fit_parameters,
     circular_hue_fraction_transport_target,
     load_contract,
 )
@@ -52,3 +53,25 @@ def test_cb26_rejects_fraction_slope_outside_envelope() -> None:
     ao6[..., 0] += 1e-3 * (base[..., 0] - 0.5)
     with pytest.raises(CircularHueFractionTransportError, match="slope envelope"):
         circular_hue_fraction_transport_target(base, ao6, weights=WEIGHTS)
+
+
+def test_cb26_fit_parameters_reports_slope_before_envelope_policy() -> None:
+    base_unit = np.asarray([[[1.0, 0.0], [0.0, 1.0]]])
+    ao6_unit = base_unit.copy()
+    base_fraction = np.asarray([[0.2, 0.8]])
+    ao6_fraction = np.asarray([[0.45, 0.55]])
+    valid = np.ones((1, 2), dtype=bool)
+    angle, slope, intercept, count = _fit_parameters(
+        base_unit,
+        ao6_unit,
+        base_fraction,
+        ao6_fraction,
+        valid,
+        valid,
+        fraction_logit_epsilon=1.0 / 65535.0,
+        minimum_valid_fraction=1e-4,
+    )
+    assert angle == pytest.approx(0.0)
+    assert slope == pytest.approx(0.144752, rel=1e-5)
+    assert intercept == pytest.approx(0.0, abs=1e-12)
+    assert count == 2

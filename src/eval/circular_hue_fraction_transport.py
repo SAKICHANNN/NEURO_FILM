@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 from collections.abc import Mapping
 from pathlib import Path
@@ -9,8 +10,15 @@ from typing import Any
 
 import numpy as np
 
+from src.eval.characteristic_ao6_factorized import _inputs
+from src.eval.fixed_global_policy_confirmation import render_fixed_pair
+from src.eval.fujifilm_characteristic_luma_chroma import (
+    apply_characteristic_luma_chroma,
+)
 from src.eval.fujifilm_characteristic_photographic import _load_exact_json
+from src.eval.fujifilm_dye_basis_measured_conformance import canonical_json
 from src.eval.global_chroma_procrustes import _plane_basis
+from src.eval.kci_velvia_tone_photographic_stress import _load_rgb
 from src.eval.logit_gamut_fraction_transport import _maximum_chroma_magnitude
 from src.eval.safe_base_ao6_chroma_direction import evaluate_direction_candidate
 
@@ -47,6 +55,56 @@ def _hue_fraction(
     return luma, unit_xy, fraction, valid
 
 
+def _fit_parameters(
+    base_unit: np.ndarray,
+    ao6_unit: np.ndarray,
+    base_fraction: np.ndarray,
+    ao6_fraction: np.ndarray,
+    base_valid: np.ndarray,
+    ao6_valid: np.ndarray,
+    *,
+    fraction_logit_epsilon: float,
+    minimum_valid_fraction: float,
+) -> tuple[float, float, float, int]:
+    fit_valid = (
+        base_valid
+        & ao6_valid
+        & (base_fraction >= minimum_valid_fraction)
+        & (ao6_fraction >= minimum_valid_fraction)
+    )
+    valid_count = int(np.count_nonzero(fit_valid))
+    if valid_count < 2:
+        raise CircularHueFractionTransportError("CB26 valid population failed")
+    base_fit = base_unit[fit_valid]
+    ao6_fit = ao6_unit[fit_valid]
+    dot = float(np.sum(base_fit[:, 0] * ao6_fit[:, 0] + base_fit[:, 1] * ao6_fit[:, 1]))
+    cross = float(
+        np.sum(base_fit[:, 0] * ao6_fit[:, 1] - base_fit[:, 1] * ao6_fit[:, 0])
+    )
+    angle = float(np.arctan2(cross, dot))
+    clipped_base = np.clip(
+        base_fraction[fit_valid],
+        fraction_logit_epsilon,
+        1.0 - fraction_logit_epsilon,
+    )
+    clipped_ao6 = np.clip(
+        ao6_fraction[fit_valid],
+        fraction_logit_epsilon,
+        1.0 - fraction_logit_epsilon,
+    )
+    base_logit = np.log(clipped_base / (1.0 - clipped_base))
+    ao6_logit = np.log(clipped_ao6 / (1.0 - clipped_ao6))
+    centered = base_logit - float(np.mean(base_logit))
+    denominator = float(np.sum(centered * centered))
+    if not np.isfinite(denominator) or denominator <= 0.0:
+        raise CircularHueFractionTransportError("CB26 fraction variance failed")
+    slope = float(
+        np.sum(centered * (ao6_logit - float(np.mean(ao6_logit)))) / denominator
+    )
+    intercept = float(np.mean(ao6_logit) - slope * np.mean(base_logit))
+    return angle, slope, intercept, valid_count
+
+
 def circular_hue_fraction_transport_target(
     safe_base_linear: np.ndarray,
     ao6_linear: np.ndarray,
@@ -79,50 +137,28 @@ def circular_hue_fraction_transport_target(
     basis = _plane_basis(w)
     base_luma, base_unit, base_fraction, base_valid = _hue_fraction(base64, w, basis)
     _, ao6_unit, ao6_fraction, ao6_valid = _hue_fraction(ao664, w, basis)
-    fit_valid = (
-        base_valid
-        & ao6_valid
-        & (base_fraction >= minimum_valid_fraction)
-        & (ao6_fraction >= minimum_valid_fraction)
+    angle, slope, intercept, _ = _fit_parameters(
+        base_unit,
+        ao6_unit,
+        base_fraction,
+        ao6_fraction,
+        base_valid,
+        ao6_valid,
+        fraction_logit_epsilon=fraction_logit_epsilon,
+        minimum_valid_fraction=minimum_valid_fraction,
     )
-    if np.count_nonzero(fit_valid) < 2:
-        raise CircularHueFractionTransportError("CB26 valid population failed")
-
-    base_fit = base_unit[fit_valid]
-    ao6_fit = ao6_unit[fit_valid]
-    dot = float(np.sum(base_fit[:, 0] * ao6_fit[:, 0] + base_fit[:, 1] * ao6_fit[:, 1]))
-    cross = float(
-        np.sum(base_fit[:, 0] * ao6_fit[:, 1] - base_fit[:, 1] * ao6_fit[:, 0])
-    )
-    angle = float(np.arctan2(cross, dot))
     cosine = float(np.cos(angle))
     sine = float(np.sin(angle))
     rotated_unit = np.empty_like(base_unit)
     rotated_unit[..., 0] = cosine * base_unit[..., 0] - sine * base_unit[..., 1]
     rotated_unit[..., 1] = sine * base_unit[..., 0] + cosine * base_unit[..., 1]
 
-    clipped_base = np.clip(
-        base_fraction[fit_valid], fraction_logit_epsilon, 1.0 - fraction_logit_epsilon
-    )
-    clipped_ao6 = np.clip(
-        ao6_fraction[fit_valid], fraction_logit_epsilon, 1.0 - fraction_logit_epsilon
-    )
-    base_logit = np.log(clipped_base / (1.0 - clipped_base))
-    ao6_logit = np.log(clipped_ao6 / (1.0 - clipped_ao6))
-    centered = base_logit - float(np.mean(base_logit))
-    denominator = float(np.sum(centered * centered))
-    if not np.isfinite(denominator) or denominator <= 0.0:
-        raise CircularHueFractionTransportError("CB26 fraction variance failed")
-    slope = float(
-        np.sum(centered * (ao6_logit - float(np.mean(ao6_logit)))) / denominator
-    )
     if (
         not np.isfinite(slope)
         or slope < minimum_fraction_slope
         or slope > maximum_fraction_slope
     ):
         raise CircularHueFractionTransportError("CB26 fraction slope envelope failed")
-    intercept = float(np.mean(ao6_logit) - slope * np.mean(base_logit))
     all_base_fraction = np.clip(
         base_fraction, fraction_logit_epsilon, 1.0 - fraction_logit_epsilon
     )
@@ -147,6 +183,93 @@ def circular_hue_fraction_transport_target(
     ):
         raise CircularHueFractionTransportError("CB26 target invariant failed")
     return target
+
+
+def evaluate_preflight(config: Mapping[str, Any], root: Path) -> dict[str, Any]:
+    decision = _load_exact_json(
+        root,
+        config["parents"]["cb25_decision_path"],
+        config["parents"]["cb25_decision_sha256"],
+    )
+    if decision.get("decision") != config["parents"]["cb25_required_status"]:
+        raise CircularHueFractionTransportError("CB25 decision drift")
+    cb11, ao6_config, artifact, source_rows, curve = _inputs(config, root)
+    cb11_operator = cb11["operator"]
+    operator = config["operator"]
+    weights = np.asarray(cb11_operator["luminance_weights"], dtype=np.float64)
+    epsilon = float(cb11_operator["boundary_epsilon"])
+    rows: list[dict[str, Any]] = []
+    for source_row in source_rows:
+        source = _load_rgb(
+            root / source_row["decoded_path"],
+            maximum_long_edge=int(config["population"]["maximum_long_edge"]),
+        )
+        ao6 = render_fixed_pair(source, artifact, ao6_config["component"])[
+            ao6_config["arm_id"]
+        ]
+        safe_base, _, _ = apply_characteristic_luma_chroma(
+            source,
+            curve,
+            weights=weights,
+            strength=float(cb11_operator["nominal_strength"]),
+            boundary_epsilon=epsilon,
+        )
+        basis = _plane_basis(weights)
+        _, base_unit, base_fraction, base_valid = _hue_fraction(
+            safe_base.astype(np.float64), weights, basis
+        )
+        _, ao6_unit, ao6_fraction, ao6_valid = _hue_fraction(
+            ao6.astype(np.float64), weights, basis
+        )
+        angle, slope, intercept, valid_count = _fit_parameters(
+            base_unit,
+            ao6_unit,
+            base_fraction,
+            ao6_fraction,
+            base_valid,
+            ao6_valid,
+            fraction_logit_epsilon=float(operator["fraction_logit_epsilon"]),
+            minimum_valid_fraction=float(operator["minimum_valid_fraction"]),
+        )
+        passed = bool(
+            np.isfinite(slope)
+            and float(operator["minimum_fraction_slope"])
+            <= slope
+            <= float(operator["maximum_fraction_slope"])
+        )
+        rows.append(
+            {
+                "id": source_row["id"],
+                "make": source_row["make"],
+                "valid_pixel_count": valid_count,
+                "hue_rotation_radians": angle,
+                "fraction_slope": slope,
+                "fraction_intercept": intercept,
+                "passed_fraction_slope_envelope": passed,
+            }
+        )
+        if not passed:
+            break
+    failed = bool(rows and not rows[-1]["passed_fraction_slope_envelope"])
+    report: dict[str, Any] = {
+        "schema": "neuro_film.u5_r2cb26_circular_hue_fraction_transport_preflight_report.v1",
+        "experiment_id": EXPERIMENT_ID,
+        "rows": rows,
+        "source_count_read": len(rows),
+        "source_count_unread": int(config["population"]["source_count_exact"])
+        - len(rows),
+        "failed_source_id": rows[-1]["id"] if failed else None,
+        "passed": not failed
+        and len(rows) == int(config["population"]["source_count_exact"]),
+        "decision": (
+            "close_circular_hue_fraction_transport_on_slope_envelope"
+            if failed
+            else "preflight_fraction_slope_envelope_pass"
+        ),
+        "claim_ceiling": config["claim_ceiling"],
+    }
+    report["stable_evidence_id"] = hashlib.sha256(canonical_json(report)).hexdigest()
+    return report
 
 
 def evaluate(config: Mapping[str, Any], root: Path, output_dir: Path) -> dict[str, Any]:
@@ -193,5 +316,6 @@ __all__ = [
     "CircularHueFractionTransportError",
     "circular_hue_fraction_transport_target",
     "evaluate",
+    "evaluate_preflight",
     "load_contract",
 ]
