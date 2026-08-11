@@ -13,6 +13,9 @@ from src.eval.nonnegative_y_eigen_matrix_transport import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u5_r2cb49_nonnegative_y_eigen_matrix_development_v1.json"
+DECISION = (
+    ROOT / "configs/u5_r2cb49_nonnegative_y_eigen_matrix_development_decision_v1.json"
+)
 
 
 def test_cb49_contract_freezes_nonnegative_cube_safe_matrix() -> None:
@@ -60,3 +63,13 @@ def test_cb49_candidate_is_safe_and_order_preserving() -> None:
     assert facts["selected_lstar_inversion_fraction"] == 0
     assert np.max(np.abs(error)) <= 1e-6
     assert np.all(scale == facts["global_dose"])
+
+
+def test_cb49_decision_closes_global_linear_family() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["repeat_report_sha256_exact"] is True
+    assert decision["metrics"]["maximum_lstar_inversion_fraction"] == 0.0
+    assert decision["metrics"]["population_median_style_delta_e76"] < 5.0
+    assert decision["decision"] == (
+        "close_global_linear_safety_family_open_analytic_y_chromaticity_factorization"
+    )

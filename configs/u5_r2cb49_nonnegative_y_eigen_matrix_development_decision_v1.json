@@ -1,0 +1,25 @@
+{
+  "schema": "neuro_film.u5_r2cb49_nonnegative_y_eigen_matrix_development_decision.v1",
+  "experiment_id": "U5.R2CB49",
+  "status": "failed_closed_before_visual_review",
+  "report_sha256": "5aaccbab70903ca9546a2a6d2648a673b0018004cfa200a8d4935ac064e8168e",
+  "stable_evidence_id": "07271736e9f0094f0dd41b9a0e281b605b217d2fa4902faac181ce40fde9d1df",
+  "repeat_report_sha256_exact": true,
+  "metrics": {
+    "source_count": 7,
+    "minimum_matrix_coefficient": 0.0,
+    "maximum_matrix_row_sum": 1.0,
+    "maximum_lstar_inversion_fraction": 0.0,
+    "maximum_new_boundary_fraction": 0.0,
+    "maximum_gradient_ratio": 0.9849556710007442,
+    "population_median_global_dose": 0.25,
+    "fraction_global_dose_below_0p25": 0.2857142857142857,
+    "population_median_style_delta_e76": 1.539184838164049
+  },
+  "failed_checks": ["direction_retention", "global_dose", "global_dose_tail", "visible_style"],
+  "visual_review_status": "forbidden",
+  "decision": "close_global_linear_safety_family_open_analytic_y_chromaticity_factorization",
+  "next_leaf": "Use one explicit monotone analytic source-Y to output-Y curve and separately blend exact normalized RGB/Y chromaticity toward the CB32 target, with analytical same-Y gamut contraction before RGB reconstruction.",
+  "forbidden": "further global matrix constraints, coefficient or dose rescue, changed target, relaxed gates",
+  "claim_ceiling": "Mechanism evidence that a fully cube-safe nonnegative Y-eigen matrix remains too low-dose and weakly styled; closes the current global linear safety family without visual, stock, calibration, preference or product claims."
+}
