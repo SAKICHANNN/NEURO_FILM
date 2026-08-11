@@ -1,0 +1,50 @@
+{
+  "schema": "neuro_film.u6_p8cq_parallel_thomas_rgb16_png_contract.v1",
+  "experiment_id": "u6.p8cq-parallel-thomas-rgb16-png-v1",
+  "node": "ULT > U6 > U6.P8 > U6.P8CQ",
+  "date_frozen": "2026-08-11",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Does the exact P8CP raw core remain inside the provisional 8-second Android still-export target after composing the unchanged deterministic RGB16 PNG and fixed sRGB ICC writer?",
+  "parent": {
+    "path": "docs/evidence/U6_P8CP_PARALLEL_OUTPUT_THOMAS_RGB16_RESULT.json",
+    "sha256": "2c8fd0c1ae9c28cc9ed27c634340b9c85b0cc3e6288f5793625ab5b191693fcf",
+    "required_decision": "retain_parallel_output_android_thomas_rgb16_core"
+  },
+  "mechanism": {
+    "raw_core": "exact P8CP cached three-layer plus within-tile three-range output execution",
+    "encoder": "unchanged P8CK filter-0 stored-zlib RGB16 PNG writer",
+    "profile": "unchanged fixed 588-byte sRGB ICC",
+    "publication": "caller byte sink; durable atomic file publication remains outside this leaf",
+    "forbidden_changes": [
+      "Thomas or development arithmetic",
+      "neutral gauge or sRGB16 quantization",
+      "PNG filter or zlib mode",
+      "ICC bytes",
+      "row partition",
+      "timing threshold"
+    ]
+  },
+  "fixture": {
+    "height": 3000,
+    "width": 4000,
+    "row_partition": 128,
+    "expected_png_bytes": 72054675,
+    "expected_png_sha256": "7ee2819fe7d6cfc8ef1c8caf5d63fa8eacfe639c7cb0654e13726d9dfeed8cb3",
+    "expected_decoded_rgb16_sha256": "8bd04a76d58597610fb7328b872a4497e85582e8d4892deb1bb517b6fcc581b3"
+  },
+  "gates": {
+    "require_p8cn_png_byte_exact": true,
+    "require_decoded_rgb16_exact": true,
+    "require_icc_exact": true,
+    "require_host_repeat_exact": true,
+    "require_android_cold_boot_repeat_exact": true,
+    "max_android_command_seconds": 8.0,
+    "max_host_peak_rss_bytes": 402653184,
+    "max_workspace_bytes": 201326592,
+    "require_preoutput_failure_zero_bytes": true,
+    "require_zero_surviving_owned_processes": true
+  },
+  "decision_if_pass": "retain_parallel_thomas_rgb16_png_android_export_core",
+  "decision_if_fail": "retain_p8cp_raw_core_only",
+  "claim_ceiling": "Private exact synthetic-profile 12MP RGB16 PNG stream performance on Windows x64 and Android 14 x86_64 virtual device; not durable file publication, physical arm64, JNI/app/media integration, calibrated film response or complete product export performance."
+}
