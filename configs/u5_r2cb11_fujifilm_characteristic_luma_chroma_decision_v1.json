@@ -1,0 +1,31 @@
+{
+  "schema": "neuro_film.u5_r2cb11_fujifilm_characteristic_luma_chroma_decision.v1",
+  "experiment_id": "U5.R2CB11",
+  "contract_commit": "2db41e38",
+  "implementation_commit": "68f38b98",
+  "contract_sha256": "fd6127a0c336fdfc661870d8636e8c7a8bbe741f096465e52c73a5a327213b5f",
+  "implementation_sha256": "aeea2654e2f3353e8333884822c8cff48c98fe688047b04b0206c221776128be",
+  "runner_sha256": "0f06ecea5310ca407573b75106592d74a1da4601696d392b407435f1ad4677fe",
+  "formal_report_path": "outputs/experiments/u5_r2cb11_fujifilm_characteristic_luma_chroma_v1/report_run1.json",
+  "formal_report_sha256": "23eb47e87c0a6f8b8f44bbc77ed13ebc4caea4d220c6e73b6b69a3b369ad4eea",
+  "stable_evidence_id": "23de84bd58bd6637e390304c6e4cb0a5e89712360f188fb8a1cffde38bbaa8bd",
+  "repeat_report_byte_exact": true,
+  "automatic_pass": true,
+  "visual_review_path": "configs/u5_r2cb11_fujifilm_characteristic_luma_chroma_visual_review_v1.json",
+  "visual_review_decision": "pass_autonomous_severe_artifact_veto",
+  "decision": "retain_exact_luminance_bounded_chroma_mechanism",
+  "metrics": {
+    "maximum_luminance_reconstruction_error": 2.9802318946003936e-08,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.0,
+    "maximum_p999_gradient_ratio_vs_source": 1.158277460960039,
+    "population_median_chroma_scale": 1.0,
+    "population_median_fraction_chroma_scale_below_0p5": 0.0,
+    "population_median_style_delta_e76": 3.8107183878204776,
+    "population_median_joint_basic_residual_delta_e76": 2.112604498725741,
+    "rows_joint_basic_residual_delta_e76_ge_0p25": 10,
+    "confirmed_severe_artifact_count": 0
+  },
+  "next_action": "Freeze a fresh independent-population direct comparison against the unchanged fixed AO6 t15/c35 incumbent, with severe veto before blind style preference; do not promote from this development population.",
+  "claim_ceiling": "Retained generic exact-luminance bounded-chroma photographic mechanism derived from a first-party reversal characteristic shape; not Velvia stock response, calibration, authenticity, preference or product promotion."
+}

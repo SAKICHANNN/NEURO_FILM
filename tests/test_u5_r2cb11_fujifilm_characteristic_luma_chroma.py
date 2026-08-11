@@ -16,6 +16,7 @@ from src.eval.fujifilm_e6_dye_operator_photographic import _new_boundary_fractio
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/u5_r2cb11_fujifilm_characteristic_luma_chroma_v1.json"
+DECISION = ROOT / "configs/u5_r2cb11_fujifilm_characteristic_luma_chroma_decision_v1.json"
 
 
 def _curve():
@@ -49,3 +50,13 @@ def test_invalid_source_fails():
             strength=0.2,
             boundary_epsilon=1 / 510,
         )
+
+
+def test_formal_decision_retains_only_the_mechanism():
+    import json
+
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["decision"] == "retain_exact_luminance_bounded_chroma_mechanism"
+    assert decision["repeat_report_byte_exact"] is True
+    assert decision["automatic_pass"] is True
+    assert "not Velvia stock response" in decision["claim_ceiling"]

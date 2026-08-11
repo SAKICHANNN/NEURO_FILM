@@ -1,0 +1,25 @@
+{
+  "schema": "neuro_film.u5_r2cb11_fujifilm_characteristic_luma_chroma_visual_review.v1",
+  "experiment_id": "U5.R2CB11",
+  "review_scope": "autonomous severe-artifact veto only; not preference, authenticity or population evidence",
+  "formal_report_sha256": "23eb47e87c0a6f8b8f44bbc77ed13ebc4caea4d220c6e73b6b69a3b369ad4eea",
+  "contact_sheet_sha256": "5a802fcdc6d6abd61240b1be4a8c70977c2b388bcbaae726b591c9e1613f53b2",
+  "reviewed_source_count": 10,
+  "reviewed_full_resolution_candidate_ids": [
+    "sony_ilme_fx2",
+    "phase_one_p45_plus",
+    "samsung_ek_gn120",
+    "google_pixel_7_pro"
+  ],
+  "criteria": [
+    "banding_or_posterization",
+    "halo_or_edge_breakage",
+    "colour_blocks_or_speckles",
+    "geometry_or_content_corruption",
+    "large_unintended_clipping",
+    "unstable_local_discontinuity"
+  ],
+  "confirmed_severe_artifact_count": 0,
+  "decision": "pass_autonomous_severe_artifact_veto",
+  "notes": "The fixed tone lift is clearly visible across dark and bright scenes. No reviewed contact-sheet or full-resolution candidate shows a confirmed severe artifact under the frozen veto categories. This does not establish aesthetic preference or film authenticity."
+}

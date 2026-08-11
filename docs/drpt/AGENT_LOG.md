@@ -11208,3 +11208,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - This construction targets CB10's colour-dependent luminance reorder while
   retaining colour where the cube permits it. Luminance reconstruction,
   chroma retention, boundary, gradient, style and severe gates are frozen.
+
+# 2026-08-11 - U5.R2CB11 retains exact-luminance bounded chroma mechanism
+
+- Two reports and candidate outputs are byte-identical (`23eb47e8...d4eea`).
+  Maximum luminance reconstruction error is `2.98e-8`; new boundaries and
+  adjacent L-star inversions are both zero; p99.9 gradient ratio is `1.158`.
+  Median chroma scale remains `1.0`, while median style/non-basic Delta E is
+  `3.811/2.113` and all ten rows clear the non-basic floor.
+- Autonomous severe review of the ten-source contact sheet and four selected
+  full-resolution candidates finds no confirmed banding, halo, colour block,
+  geometry corruption, clipping or local discontinuity.
+- Retain only the generic mechanism. The consumed development population does
+  not establish preference or Velvia authenticity; next freeze a fresh direct
+  comparison against unchanged AO6 t15/c35 with severe veto before blind style.
