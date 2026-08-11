@@ -1,0 +1,79 @@
+{
+  "schema": "neuro_film.u5_r2cb38_exact_lab_y_monotone_tone_development_contract.v1",
+  "experiment_id": "U5.R2CB38",
+  "question": "Does constructing the fixed monotone tone and chroma plane in the exact legacy CIELAB Y coordinate close CB37's approximate-luminance order leak while retaining material style?",
+  "parents": {
+    "cb37_decision_path": "configs/u5_r2cb37_monotone_source_tone_fraction_development_decision_v1.json",
+    "cb37_decision_sha256": "5a3f6a430d0cc8c495268b37ec7e914f7270b51ef7f4629483bf329f9307327e",
+    "cb37_required_decision": "close_approximate_y_monotone_tone_open_exact_lab_y_successor",
+    "cb33_contract_path": "configs/u5_r2cb33_gradient_budgeted_fraction_gold_stress_v1.json",
+    "cb33_contract_sha256": "b38d5238a57957dbf55a321529cb3b275ba653054088eb9642d82d342ef69e41",
+    "cb16_decision_path": "configs/u5_r2cb16_safe_base_ao6_chroma_residual_decision_v1.json",
+    "cb16_decision_sha256": "965a1c0c0eba887673bd1f9793a5c28425edfe5495cb4bb151a70e3b9f20008f",
+    "cb16_required_status": "close_safe_base_ao6_chroma_magnitude_residual_without_rescue",
+    "cb14_decision_path": "configs/u5_r2cb14_characteristic_vs_ao6_ood_decision_v1.json",
+    "cb14_decision_sha256": "acb2e53031db6e9fe33f84d615ad259ea856190016ab7f26e2030775b8a2c8b9",
+    "cb14_required_status": "candidate_fails_ao6_retain_incumbent",
+    "cb11_contract_path": "configs/u5_r2cb11_fujifilm_characteristic_luma_chroma_v1.json",
+    "cb11_contract_sha256": "fd6127a0c336fdfc661870d8636e8c7a8bbe741f096465e52c73a5a327213b5f",
+    "cb12_contract_path": "configs/u5_r2cb12_characteristic_vs_ao6_fresh_v1.json",
+    "cb12_contract_sha256": "0951b3ec44049f76afda12b90ba40e1bc644000336fcc340b1b862ea986823c1"
+  },
+  "population": {
+    "decision_path": "configs/u5_r2bk3s_encoded_log_chroma_fresh_source_decision_v1.json",
+    "decision_sha256": "d6a8988d434f0c058a01fbed5631b594ee9048d68d7674a68775c1d81c4f77e4",
+    "required_status": "source_eligible_fixed_comparison_open",
+    "manifest_path": "outputs/u5_r2bk3s_encoded_log_chroma_fresh_source_v1/manifest.json",
+    "manifest_sha256": "a6f23a8507b0ef28c9ff76eb6d44e57b8e72bda8ae7249fa4730caa0b7a01761",
+    "source_count_exact": 11,
+    "camera_make_count_exact": 11,
+    "maximum_long_edge": 1600,
+    "exact_decoded_sha_overlap_with_cb27_through_cb37": 0,
+    "role": "new mechanism development on an existing independent digital-photo population not used by CB27-CB37"
+  },
+  "operator": {
+    "luminance_coordinate": "exact legacy linear-sRGB to CIELAB XYZ Y row",
+    "luminance_weights": [0.212671, 0.715160, 0.072169],
+    "tone_target": "exact CB11 luminance marginal measured in legacy Lab-Y",
+    "tone_map": "257 fixed monotone quantile knots",
+    "tone_knot_count": 257,
+    "chroma_target": "exact CB32 target reprojected into the legacy Lab-Y chroma plane",
+    "execution": "analytic cube-safe Lab-Y chroma followed by one global chroma dose",
+    "dose_grid": [1.0, 0.9375, 0.875, 0.8125, 0.75, 0.6875, 0.625, 0.5625, 0.5, 0.4375, 0.375, 0.3125, 0.25, 0.1875, 0.125, 0.0625, 0.0],
+    "lstar_order_epsilon": 0.0001,
+    "minimum_valid_fraction": 0.0001,
+    "fraction_knots": 257,
+    "maximum_fraction_slope": 1.0,
+    "forbidden": "BK1/BK8/BK17 reuse, approximate luma, spatial tone, local masks, filtering, per-channel dose, changed targets, threshold relaxation or post-score rescue"
+  },
+  "evaluation": {"maximum_colour_metric_samples_per_source": 65536},
+  "automatic_gates": {
+    "maximum_luminance_reconstruction_error": 0.000001,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio_vs_source": 1.35,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.0,
+    "minimum_population_median_direction_scale": 0.5,
+    "maximum_population_median_fraction_direction_scale_below_0p5": 0.1,
+    "minimum_population_median_style_delta_e76": 5.0,
+    "minimum_population_median_delta_e76_vs_cb11": 1.0,
+    "minimum_population_median_global_dose": 0.5,
+    "maximum_fraction_global_dose_below_0p25": 0.1,
+    "minimum_tone_knot_count": 64,
+    "maximum_confirmed_severe_artifact_count": 0
+  },
+  "blind_protocol": {
+    "rounds": 3,
+    "seed": 20260812,
+    "ties_allowed": false,
+    "minimum_candidate_round_wins": 2,
+    "minimum_candidate_aggregate_choices": 20,
+    "minimum_candidate_source_majorities": 7,
+    "mapping_hidden_until_choices_commit": true
+  },
+  "stop_rules": [
+    "Any support, exact order, gradient, boundary, style or dose failure closes before visual review.",
+    "A severe or blind failure closes without coordinate, knot, target, source, dose or threshold rescue.",
+    "A pass opens only a separately frozen source-disjoint confirmation."
+  ],
+  "claim_ceiling": "Development-only exact-Lab-Y monotone tone plus bounded chroma Look Approximation evidence; not independent confirmation, stock response, calibration, population preference or product promotion."
+}
