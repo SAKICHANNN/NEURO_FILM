@@ -1,0 +1,17 @@
+{
+  "schema": "neuro_film.u5_r2cb50_analytic_y_chromaticity_adjudication_contract.v1",
+  "experiment_id": "U5.R2CB50A",
+  "evidence": {
+    "report_sha256": "2f7aed877474d13d5be83148aaa44e469b9076aab1d03d61c48590f9d0c56125",
+    "stable_evidence_id": "167a4427e2f56ef6eebd01fbb7120a5a028c7f535b0e965241374872ae56dd4a",
+    "observations_path": "configs/u5_r2cb50_analytic_y_chromaticity_blind_observations_v1.json",
+    "observations_sha256": "6ec6cedea563b372bb39c381665207b53815d3be578c5b355d180f7456c053f0"
+  },
+  "gates": {
+    "maximum_confirmed_severe_artifact_count": 0,
+    "minimum_candidate_round_wins": 2,
+    "minimum_candidate_aggregate_choices": 13,
+    "minimum_candidate_source_majorities": 5
+  },
+  "claim_ceiling": "Autonomous development pass requiring source-disjoint confirmation; not population preference, film truth, stock response, calibration or product promotion."
+}

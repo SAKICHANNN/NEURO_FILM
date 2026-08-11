@@ -1,0 +1,32 @@
+{
+  "schema": "neuro_film.u5_r2cb50_analytic_y_chromaticity_development_decision.v1",
+  "experiment_id": "U5.R2CB50",
+  "status": "development_pass_requires_source_disjoint_confirmation",
+  "automatic_report_sha256": "2f7aed877474d13d5be83148aaa44e469b9076aab1d03d61c48590f9d0c56125",
+  "automatic_stable_evidence_id": "167a4427e2f56ef6eebd01fbb7120a5a028c7f535b0e965241374872ae56dd4a",
+  "repeat_report_and_output_hashes_exact": true,
+  "adjudication_report_sha256": "5a6875b1d7bb29c13a214bd6a3f90aa57f83a68e9e63d98996a236bb5a37643c",
+  "adjudication_stable_evidence_id": "9f658a803e92263fa7f327e779a3d1b4ac9271370270fd5f83aa8d54747eb548",
+  "automatic_metrics": {
+    "source_count": 12,
+    "population_median_style_delta_e76": 7.565589198821629,
+    "population_median_delta_e76_vs_cb11": 6.681566394821438,
+    "population_median_global_dose": 1.0,
+    "population_median_gamut_scale": 1.0,
+    "maximum_gradient_ratio": 1.346855270727901,
+    "maximum_lstar_inversion_fraction": 0.0,
+    "maximum_new_boundary_fraction": 0.0,
+    "maximum_luminance_reconstruction_error": 2.9624377284598324e-08
+  },
+  "autonomous_visual_metrics": {
+    "confirmed_severe_artifact_count": 0,
+    "candidate_round_choices": [8, 8, 8],
+    "candidate_round_wins": 3,
+    "candidate_aggregate_choices": 24,
+    "candidate_source_majorities": 8
+  },
+  "decision": "pass_cb50_development_open_source_disjoint_confirmation",
+  "next_leaf": "Apply the exact CB50 operator, curve, dose grid and gates without changes to a decoded-SHA-disjoint natural-photo cohort; a pass must repeat automatic, severe-artifact and blind gates.",
+  "forbidden": "same-cohort tuning, changed curve or target, altered gamut contraction, threshold rescue, product promotion before source-disjoint confirmation",
+  "claim_ceiling": "Autonomous development pass for analytic luminance/chromaticity Look Approximation; not independent confirmation, population preference, film truth, stock response, calibration or product promotion."
+}
