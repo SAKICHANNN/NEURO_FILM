@@ -11561,3 +11561,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Style is strong and boundary/gradient gates pass, but `13.3331%` of pixels
   need less than half strength versus the frozen `10%` maximum. Blind review
   stays closed; do not repair the covariance, eigenvalues or threshold.
+
+# 2026-08-11 - U5.R2CB23 passes development and opens confirmation
+
+- A single per-image dose is fixed before target construction from the lower
+  10th percentile of analytical feasible step; the Gaussian map and safe
+  executor are otherwise unchanged. Two reports are exact
+  (`8724c4fd...11c33`; stable `e233bc51...df258`).
+- All automatic and severe gates pass. Frozen blind choices reveal `3/3`
+  round wins, `31/36` choices and `11/12` source majorities. Retain the exact
+  mechanism only for source-disjoint confirmation; AO6 remains product/default.

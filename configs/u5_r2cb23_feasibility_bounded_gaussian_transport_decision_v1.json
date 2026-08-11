@@ -1,0 +1,42 @@
+{
+  "schema": "neuro_film.u5_r2cb23_feasibility_bounded_gaussian_transport_decision.v1",
+  "experiment_id": "U5.R2CB23",
+  "contract_commit": "94a3b7e383db963e48fee1fc90f62ad2b4f5e5ea",
+  "implementation_commit": "bf6f0a28e34fb0cc36b16ce4c0c00bafe18da62f",
+  "observations_commit": "66514a354bff39f05f5dd02182fd70ec1a24d819",
+  "mapping_receipt_commit": "508f371d72f82934e96e92965f88b59e40b87c86",
+  "contract_sha256": "40eea7eaab999fffd441daec58c64670eec118491d4bc7d6547abf4926a7f614",
+  "implementation_sha256": "dc6a358c62cca870c7ef957ab754bdd9923f978769e06f0de76d44a340790745",
+  "runner_sha256": "e903c6e24c7ccea37564ee1111a94e269f864f6b30d846cb3350d60f2b071763",
+  "observations_sha256": "42025e644467b206fd25b314b174000654b713f0360e7bd2df45e9099c6ea5dd",
+  "mapping_receipt_sha256": "cc9e8edfe9d2e35eb1c21db449b1c50461758654197999ab7527eb5c0b15ff3d",
+  "formal_report_path": "D:/nf-019f4b76-cb23/report_run1.json",
+  "formal_report_sha256": "8724c4fded742b8a91b17bd616ca4af5315f673b674568b141d1552b8e511c33",
+  "stable_evidence_id": "e233bc511dfb13e229ccc0df788499649c07311249edefc07a0e99d6487df258",
+  "repeat_report_byte_exact": true,
+  "automatic_pass": true,
+  "blind_measurements": {
+    "candidate_round_wins": 3,
+    "candidate_aggregate_choices": 31,
+    "aggregate_choice_count": 36,
+    "candidate_source_majorities": 11,
+    "source_count": 12,
+    "candidate_confirmed_severe_source_count": 0
+  },
+  "gates": {
+    "automatic_gates": true,
+    "minimum_candidate_round_wins": true,
+    "minimum_candidate_aggregate_choices": true,
+    "minimum_candidate_source_majorities": true,
+    "severe_artifact_veto": true
+  },
+  "passed": true,
+  "decision": "retain_feasibility_bounded_gaussian_transport_open_independent_confirmation",
+  "interpretation": [
+    "One source-observable global feasibility dose closes CB22's gamut-attenuation failure while preserving material style and exact boundary safety.",
+    "The candidate is preferred 31/36, wins all three rounds and has 11/12 source majorities without the prior Panasonic posterized speckle.",
+    "This is development evidence on a repeatedly consumed population and cannot promote the candidate without unchanged source-disjoint confirmation."
+  ],
+  "next_action": "Run the unchanged CB23 operator and gates on the disjoint BK13S 12-camera population with a new sealed blind mapping.",
+  "claim_ceiling": "Passing development candidate that opens independent confirmation only; not stock response, calibration, population preference or product promotion."
+}
