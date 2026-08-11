@@ -1,0 +1,51 @@
+{
+  "schema": "neuro_film.u5_r2cb66_analytic_y_chromaticity_row_safe_base_memory_contract.v1",
+  "report_schema": "neuro_film.u5_r2cb66_analytic_y_chromaticity_row_safe_base_memory_report.v1",
+  "experiment_id": "U5.R2CB66",
+  "question": "Can row-bounded exact safe-base construction plus the exact external fraction map reduce the complete 24MP renderer below 4GB?",
+  "parent": {
+    "cb65_attribution_path": "configs/u5_r2cb65_analytic_renderer_memory_attribution_v1.json",
+    "cb65_attribution_sha256": "2c28efd34241babfd3c6d0b192e5209da08d380307a2d7632d7d15126ff7e133",
+    "cb65_required_decision": "optimize_safe_base_row_materialization_then_remeasure_complete_path"
+  },
+  "baseline": {
+    "input_path": "D:/nf-019f4b76-cb60-input.png",
+    "input_sha256": "f9a369f384126a0837880a79828f3608290e8ef013a0156f72a263a19762ed98",
+    "output_sha256": "949ffce7f86faee4296de52e51b90ae8e5cd4dc205d4a5a9e0f5cb86c6c6e9fa",
+    "peak_process_tree_rss_bytes": 5004148736,
+    "wall_seconds": 131.08845460000157,
+    "selector_facts": {
+      "characteristic_strength": 0.2,
+      "fraction_gamut_scale_below_0p8": 0.000487875,
+      "global_dose": 1.0,
+      "maximum_luminance_error": 2.8280287112103508e-08,
+      "median_gamut_scale": 1.0,
+      "selected_gradient_ratio": 0.8636540824585575,
+      "selected_lstar_inversion_fraction": 0.0,
+      "selected_new_boundary_fraction": 0.0
+    }
+  },
+  "candidate": {
+    "algorithm": "row-bounded-safe-base-plus-external-fraction-sort-v1",
+    "target_materializer": "row_safe_base_external_sorted_v1",
+    "row_chunk": 128,
+    "implementation_sha256": "5ac286fd73c5b31e6953c1374f1593ec9db7733d4ae260fa06efc9163ffe57d5",
+    "external_fraction_map_sha256": "851ae430c7249bdabdfc34b34351839decb5e930942035bfffd518159a1c61d5",
+    "runner_sha256": "1ccbe23b3b9eb59087da6e6589ccb48ba4ebb9b4d2f0e225b696d418985a323e",
+    "output_bit_depth": 16
+  },
+  "gates": {
+    "output_sha256_exact": true,
+    "selector_facts_exact": true,
+    "maximum_peak_process_tree_rss_bytes": 4000000000,
+    "maximum_peak_rss_ratio_to_baseline": 0.8,
+    "maximum_wall_ratio_to_baseline": 1.5,
+    "scratch_residue_count": 0
+  },
+  "stop_rules": [
+    "Do not change global reduction order, numeric precision, pixels, source, bit depth, selector or safety gates.",
+    "Do not relax the 4GB, 0.8x memory or 1.5x time gates after measurement.",
+    "Fail closed on either fresh-process identity, memory, time or cleanup failure."
+  ],
+  "claim_ceiling": "Local Windows/Python complete 24MP analytic renderer resource evidence only; no native/device, photographic preference, stock, calibration, default-product or arbitrary-media claim."
+}

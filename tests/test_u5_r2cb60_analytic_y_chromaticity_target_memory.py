@@ -5,6 +5,13 @@ from pathlib import Path
 import numpy as np
 import pytest
 
+from src.eval.analytic_y_chromaticity_memory_optimized import (
+    apply_characteristic_luma_chroma_output_row_materialized,
+    render_analytic_y_chromaticity_memory_candidate,
+)
+from src.eval.fujifilm_characteristic_luma_chroma import (
+    apply_characteristic_luma_chroma,
+)
 from src.eval.nonexpansive_fraction_transport import (
     NonexpansiveFractionTransportError,
     nonexpansive_fraction_transport_target,
@@ -122,3 +129,53 @@ def test_cb60_complete_profile_output_is_exact(target_builder, tmp_path: Path) -
     )
     assert actual.tobytes() == expected.tobytes()
     assert actual_facts == expected_facts
+
+
+@pytest.mark.parametrize("row_chunk", [1, 7, 64])
+def test_cb66_row_materialized_safe_base_is_byte_exact(row_chunk: int) -> None:
+    rng = np.random.default_rng(6661)
+    pixels = rng.uniform(0.002, 0.94, size=(37, 53, 3)).astype(np.float32)
+    runtime = load_analytic_y_chromaticity_profile(PROFILE, root=ROOT)
+    operator = runtime.cb11["operator"]
+    weights = np.asarray(operator["luminance_weights"], dtype=np.float64)
+    expected, _, _ = apply_characteristic_luma_chroma(
+        pixels,
+        runtime.curve,
+        weights=weights,
+        strength=float(operator["nominal_strength"]),
+        boundary_epsilon=float(operator["boundary_epsilon"]),
+    )
+    actual = apply_characteristic_luma_chroma_output_row_materialized(
+        pixels,
+        runtime.curve,
+        weights=weights,
+        strength=float(operator["nominal_strength"]),
+        boundary_epsilon=float(operator["boundary_epsilon"]),
+        row_chunk=row_chunk,
+    )
+    assert actual.tobytes() == expected.tobytes()
+
+
+def test_cb66_complete_memory_candidate_is_byte_exact(tmp_path: Path) -> None:
+    rng = np.random.default_rng(6662)
+    pixels = rng.uniform(0.002, 0.94, size=(61, 89, 3)).astype(np.float32)
+    working = WorkingImage(
+        pixels=pixels,
+        working_space="linear_srgb",
+        transfer_state="display_linear",
+        source_transfer_state="display_referred",
+        source_profile=SourceProfile(kind="assumed_srgb", description="test"),
+        hdr_metadata={},
+        bit_depth_in=8,
+        orientation_applied=True,
+        alpha_policy="absent",
+        source_path=Path("synthetic.png"),
+    )
+    runtime = load_analytic_y_chromaticity_profile(PROFILE, root=ROOT)
+    expected, expected_facts = render_analytic_y_chromaticity_profile(working, runtime)
+    actual, actual_facts = render_analytic_y_chromaticity_memory_candidate(
+        working, runtime, scratch_root=tmp_path, row_chunk=7
+    )
+    assert actual.tobytes() == expected.tobytes()
+    assert actual_facts == expected_facts
+    assert list(tmp_path.iterdir()) == []
