@@ -1483,3 +1483,9 @@ reports (`faa73848...de4871`) have zero L* inversion/boundary and retain full
 CB32 chroma on all seven P8BN sources. It still fails because six fitted
 negative intercepts force tone dose zero; median style is `4.05 < 5`. Next
 project the same fit into the nonnegative-intercept cube-feasible set.
+
+U5.R2CB44 improves median tone dose to `0.594` while retaining exact order,
+boundary safety and full chroma, but 5/12 rows still fall below dose 0.25 and
+median style remains `3.98`. Two reports are exact (`ba57bad0...8f512`). Close
+the affine family. Next evaluate whole-row authorization of strong CB33 style
+with identity fallback for any row failing unchanged safety gates.

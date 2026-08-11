@@ -11745,3 +11745,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   full chroma dose across 7/7 rows, but negative fitted intercepts reduce median
   tone dose to zero and style to `4.05`.
 - Next project the same low-capacity fit to `intercept>=0`; no spatial rescue.
+
+# 2026-08-12 - U5.R2CB44 closes global affine tone
+
+- Nonnegative intercept raises median tone dose to `0.594`, but 5/12 remain
+  below 0.25 and median style is `3.98`; safety stays exact. Reports match at
+  `ba57bad0...8f512`.
+- Stop affine variants. Test source-row safety authorization of the strong
+  CB33 candidate with identity fallback, matching the product fail-closed model.

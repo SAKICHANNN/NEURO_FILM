@@ -11,6 +11,7 @@ from src.eval.global_affine_tone_transport import select_global_affine_tone_cand
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u5_r2cb44_constrained_affine_tone_development_v1.json"
+DECISION = ROOT / "configs/u5_r2cb44_constrained_affine_tone_development_decision_v1.json"
 
 
 def test_cb44_contract_adds_only_nonnegative_intercept_projection() -> None:
@@ -45,3 +46,13 @@ def test_cb44_projection_clamps_negative_fit_intercept_to_zero() -> None:
     )
     assert facts["fitted_affine_intercept"] == 0.0
     assert facts["selected_lstar_inversion_fraction"] == 0.0
+
+
+def test_cb44_decision_closes_affine_family_for_row_fallback() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["metrics"]["maximum_lstar_inversion_fraction"] == 0.0
+    assert decision["metrics"]["population_median_tone_dose"] == 0.59375
+    assert decision["failed_checks"] == ["tone_dose", "visible_style"]
+    assert decision["decision"] == (
+        "close_global_affine_tone_family_open_row_level_safe_style_fallback"
+    )

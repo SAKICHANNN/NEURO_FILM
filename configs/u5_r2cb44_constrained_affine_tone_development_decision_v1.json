@@ -1,0 +1,23 @@
+{
+  "schema": "neuro_film.u5_r2cb44_constrained_affine_tone_development_decision.v1",
+  "experiment_id": "U5.R2CB44",
+  "status": "failed_closed_before_visual_review",
+  "report_sha256": "ba57bad014bfd43a106cedfc9df2582f289810bf7c8969c58cc63851ea98f512",
+  "stable_evidence_id": "bec25d1255fb31fd56b2939651499b0cd0d13db74cff9c1f9ce013c56514b992",
+  "repeat_report_sha256_exact": true,
+  "metrics": {
+    "source_count": 12,
+    "maximum_lstar_inversion_fraction": 0.0,
+    "maximum_gradient_ratio": 1.014833939314085,
+    "population_median_global_chroma_dose": 1.0,
+    "population_median_tone_dose": 0.59375,
+    "fraction_tone_dose_below_0p25": 0.4166666666666667,
+    "population_median_style_delta_e76": 3.9801612353775098
+  },
+  "failed_checks": ["tone_dose", "visible_style"],
+  "visual_review_status": "forbidden",
+  "decision": "close_global_affine_tone_family_open_row_level_safe_style_fallback",
+  "next_leaf": "Retain the exact CB33 strong-style candidate only for whole source rows that pass unchanged gradient, order and boundary gates; otherwise emit identity for that row, then measure coverage and population style on a distinct consumed cohort.",
+  "forbidden": "further affine constraints, same-cohort rescue, per-pixel repair, changed CB32 target, relaxed style or dose gates",
+  "claim_ceiling": "Mechanism evidence that constrained global affine tone is safe but insufficiently salient; not visual, stock, calibration, preference or product evidence."
+}
