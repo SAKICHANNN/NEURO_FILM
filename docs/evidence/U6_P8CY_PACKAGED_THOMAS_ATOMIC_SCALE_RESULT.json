@@ -1,0 +1,39 @@
+{
+  "schema": "neuro_film.u6_p8cy_packaged_thomas_atomic_scale_evidence.v1",
+  "experiment_id": "u6.p8cy-packaged-thomas-atomic-scale-v1",
+  "date": "2026-08-12",
+  "status": "PASS",
+  "implementation_commit": "040b3942",
+  "contract_sha256": "ceb9d85d5617897c95a2650a460761b510e6ac4b186447248e72ae5d0bc42776",
+  "formal_report_sha256": "e07a784a9ac6646c5823a4b6cb7c966f1c5ee497eea660d4e456ebd158579621",
+  "stable_evidence_id": "9dd531e23645e6a9ff0aa5befc1e0bc44f0b968aea9ab77ee57fff6b7477f84c",
+  "profile_sha256": "923a985aa90e029332c723a33afb793afe05cae777b3c07061d54828b91e21b4",
+  "result": {
+    "shape_chw": [3, 3000, 4000],
+    "input_sha256": "81a91bcdafe07f48701ae8a8e4339fa74af3be25326b422a9f6ccaa5c431fc3b",
+    "output_bytes": 72054675,
+    "output_sha256": "e7b2c3d8ea6ee9cb143f48a680bb2a6a8a59666f3b63f4d1b621a03869ce5909",
+    "decoded_rgb16_sha256": "5a0f531fe9b28183dba4634b0c1d739f71c2677e2f9ba74dd16c33c2fa6530fd",
+    "icc_sha256": "217fe48ec958c667f8eef725aa27198f465df95d7662593b90d0a1cc30114356",
+    "maximum_wall_seconds": 7.004751800006488,
+    "maximum_peak_process_tree_rss_bytes": 481202176,
+    "wall_repeat_ratio": 1.0024566137724187,
+    "rss_repeat_ratio": 1.000272458684195
+  },
+  "gates": {
+    "parent_output_exact": true,
+    "exact_output_replay": true,
+    "exact_input_replay": true,
+    "exact_decoded_replay": true,
+    "icc_exact": true,
+    "maximum_wall": true,
+    "maximum_rss": true,
+    "wall_repeat": true,
+    "rss_repeat": true,
+    "no_stage_residue": true,
+    "worker_cleanup": true
+  },
+  "decision": "retain_packaged_native_thomas_12mp_runtime",
+  "interpretation": "The hash-bound Windows package runtime resolves the tracked canonical profile and exact prebuilt DLL, preserves input identity, and reproduces the P8CV 12MP atomic PNG exactly within the frozen resource gates.",
+  "claim_ceiling": "One measured Windows ordinary-desktop CPU hash-bound package-to-create-only-atomic 12MP RGB16 PNG path for the exact generic physical-inspired P8CR profile; not calibrated stock response, arbitrary media, device runtime or delivered product."
+}
