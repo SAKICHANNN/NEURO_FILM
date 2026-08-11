@@ -1,0 +1,27 @@
+{
+  "schema": "neuro_film.u5_r2cb34_gradient_budgeted_fraction_confirmation_decision.v1",
+  "experiment_id": "U5.R2CB34",
+  "report_sha256": "2a80ad0b5834e3dbffa7392a3f0a0276ca3a1c1bcf3d29f006433ca9394434a3",
+  "stable_evidence_id": "8f8a61108e14c574a14a783ea5a274bef4f7cf3b3b7c8a99e6cef5513177c999",
+  "repeat_byte_identical": true,
+  "automatic_pass": false,
+  "failed_checks": ["gradient_order"],
+  "metrics": {
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.000034663282696271716,
+    "maximum_p999_gradient_ratio_vs_source": 1.1921825169764921,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "population_median_global_dose": 1.0,
+    "fraction_global_dose_below_0p25": 0.0,
+    "population_median_style_delta_e76": 6.030836024446474,
+    "population_median_delta_e76_vs_cb11": 5.009388699192384
+  },
+  "largest_lstar_inversion_rows": [
+    {"id": "huawei_eml_l29", "fraction": 0.000034663282696271716},
+    {"id": "blackmagic_pocket_cinema_camera_4k", "fraction": 0.000012872400437661558},
+    {"id": "lg_lg_h850", "fraction": 0.000010947615140238916}
+  ],
+  "visual_review_status": "forbidden_by_automatic_gate",
+  "decision": "close_exact_cb33_on_source_disjoint_lstar_order_failure",
+  "next_direction": "On a different development population, test an analytically L-star-order-preserving bounded execution mechanism; do not change the CB34 cohort, threshold, dose grid or result.",
+  "claim_ceiling": "Stable negative source-disjoint mechanism evidence only; not a severe review, stock response, calibration, population preference or product decision."
+}

@@ -1421,3 +1421,9 @@ dose keeps max p99.9 gradient ratio at `1.34689`, boundary and severe counts at
 zero, and gold/stress style at `8.95/10.62`. Only ID18 attenuates (`.0625`).
 Advance unchanged to source-disjoint confirmation; the partial cohort and
 autonomous review do not alter the product/default.
+
+U5.R2CB34 closes exact CB33 on mechanism-source-disjoint BH1S. Two reports are
+byte exact (`2a80ad0b...434a3`); all boundary, gradient-magnitude, dose and style
+gates pass, but adjacent L* order inversion reaches `3.47e-5` against exact
+zero. Visual review is forbidden. Any order-preserving successor must develop
+on a different population; no BH1S threshold/dose rescue is allowed.

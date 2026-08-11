@@ -11666,3 +11666,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   severe artifacts. The reused sheet's stale `CB11` right-column header is
   presentation-only; candidate hashes are unambiguous. Open only source-
   disjoint confirmation; AO6 remains the product/default.
+
+# 2026-08-12 - U5.R2CB34 closes exact CB33 on L* order
+
+- BH1S has zero encoded-source SHA overlap with CB27/28/29 and U4.1. Two exact
+  reports (`2a80ad0b...434a3`; stable `8f8a6110...7c999`) pass boundary,
+  gradient-magnitude, dose and style gates.
+- Adjacent L* order inversion reaches `3.47e-5` against the frozen exact-zero
+  gate, so visual review is forbidden. Close CB33 without BH1S rescue; a new
+  analytic order-preserving executor must develop on another population.
