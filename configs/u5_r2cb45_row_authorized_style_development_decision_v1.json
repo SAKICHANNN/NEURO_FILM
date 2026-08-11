@@ -1,0 +1,31 @@
+{
+  "schema": "neuro_film.u5_r2cb45_row_authorized_style_development_decision.v1",
+  "experiment_id": "U5.R2CB45",
+  "status": "failed_closed_before_visual_review",
+  "report_sha256": "e12defaca6e28bda7cd576cac00a75b9807f405990f560c75d8523d893960068",
+  "stable_evidence_id": "f32b19f6d9d8364f887a3cd06d2875e25c00378cf7bbeb20575f9f18dec685eb",
+  "repeat_report_sha256_exact": true,
+  "metrics": {
+    "source_count": 12,
+    "authorized_source_count": 2,
+    "authorized_source_fraction": 0.16666666666666666,
+    "lstar_order_veto_count": 10,
+    "maximum_preauthorization_lstar_inversion_fraction": 0.0000497264781980799,
+    "maximum_published_lstar_inversion_fraction": 0.0,
+    "maximum_published_gradient_ratio": 1.178096288612847,
+    "maximum_published_new_boundary_fraction": 0.0,
+    "population_median_style_delta_e76": 0.0
+  },
+  "failed_checks": [
+    "direction_retention",
+    "global_dose",
+    "global_dose_tail",
+    "row_authorization_coverage",
+    "visible_style"
+  ],
+  "visual_review_status": "forbidden",
+  "decision": "close_row_authorized_style_open_direct_perceptual_lightness_chroma_construction",
+  "next_leaf": "Construct the target directly in actual CIELAB with a globally monotone characteristic L-star coordinate and hue-preserving bounded chroma contraction, rather than repairing or thresholding the CB33 RGB result.",
+  "forbidden": "CB45 threshold rescue, per-pixel repair of the rejected CB33 result, row exceptions, changed cohort or changed safety gates",
+  "claim_ceiling": "Mechanism evidence that exact whole-row fallback preserves safety but collapses coverage and style because CB33 has nonzero L-star inversion on 10/12 rows; not visual, stock, calibration, preference or product evidence."
+}

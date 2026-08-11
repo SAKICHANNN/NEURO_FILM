@@ -11,6 +11,7 @@ from src.eval.row_authorized_style_transport import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u5_r2cb45_row_authorized_style_development_v1.json"
+DECISION = ROOT / "configs/u5_r2cb45_row_authorized_style_development_decision_v1.json"
 
 
 def _selector(source: np.ndarray, base: np.ndarray, target: np.ndarray, **overrides: float):
@@ -64,3 +65,14 @@ def test_cb45_rejects_entire_row_on_order_failure() -> None:
     assert np.array_equal(candidate, source)
     assert np.count_nonzero(scale) == 0
     assert np.count_nonzero(luma_error) == 0
+
+
+def test_cb45_decision_closes_row_fallback_for_direct_lab_construction() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["repeat_report_sha256_exact"] is True
+    assert decision["metrics"]["authorized_source_count"] == 2
+    assert decision["metrics"]["lstar_order_veto_count"] == 10
+    assert decision["visual_review_status"] == "forbidden"
+    assert decision["decision"] == (
+        "close_row_authorized_style_open_direct_perceptual_lightness_chroma_construction"
+    )
