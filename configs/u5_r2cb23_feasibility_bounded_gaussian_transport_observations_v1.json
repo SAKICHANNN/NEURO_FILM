@@ -1,0 +1,74 @@
+{
+  "schema": "neuro_film.u5_r2cb23_feasibility_bounded_gaussian_transport_observations.v1",
+  "experiment_id": "U5.R2CB23",
+  "status": "blind_observations_frozen_mapping_unread",
+  "observer": "autonomous_codex_visual_review",
+  "report": "D:/nf-019f4b76-cb23/report_run1.json",
+  "report_sha256": "8724c4fded742b8a91b17bd616ca4af5315f673b674568b141d1552b8e511c33",
+  "criteria": "after the severe-artifact veto, prefer the more visibly stylized and photographically coherent result; ties are not allowed",
+  "sheet_sha256": {
+    "round_1.png": "d5b311ae817bccf0fc32ff67b7c1acf8a291c33304402d476c8a4d2e6d6ec25a",
+    "round_2.png": "571b9a5aef853411fb61d117617825ca0e532d486bca5202895d7f586e3a8121",
+    "round_3.png": "85cf9d2a8b3910d0c4c970e9257aee9fc83cbaf16a8f4861562201a5d7f25d32"
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "choices": [
+        {"source_id": "canon_powershot_s120", "choice": "A"},
+        {"source_id": "fujifilm_finepix_s5200", "choice": "B"},
+        {"source_id": "nikon_d4s", "choice": "B"},
+        {"source_id": "sony_slt_a33", "choice": "B"},
+        {"source_id": "panasonic_dmc_fz38", "choice": "B"},
+        {"source_id": "pentax_k5_iis", "choice": "B"},
+        {"source_id": "olympus_ep2", "choice": "A"},
+        {"source_id": "samsung_sm_g950u", "choice": "A"},
+        {"source_id": "leica_x2", "choice": "A"},
+        {"source_id": "apple_iphone_se", "choice": "B"},
+        {"source_id": "google_pixel_3a", "choice": "A"},
+        {"source_id": "huawei_vog_l29", "choice": "A"}
+      ]
+    },
+    {
+      "round": 2,
+      "choices": [
+        {"source_id": "canon_powershot_s120", "choice": "A"},
+        {"source_id": "fujifilm_finepix_s5200", "choice": "A"},
+        {"source_id": "nikon_d4s", "choice": "A"},
+        {"source_id": "sony_slt_a33", "choice": "A"},
+        {"source_id": "panasonic_dmc_fz38", "choice": "A"},
+        {"source_id": "pentax_k5_iis", "choice": "A"},
+        {"source_id": "olympus_ep2", "choice": "B"},
+        {"source_id": "samsung_sm_g950u", "choice": "B"},
+        {"source_id": "leica_x2", "choice": "B"},
+        {"source_id": "apple_iphone_se", "choice": "A"},
+        {"source_id": "google_pixel_3a", "choice": "A"},
+        {"source_id": "huawei_vog_l29", "choice": "B"}
+      ]
+    },
+    {
+      "round": 3,
+      "choices": [
+        {"source_id": "canon_powershot_s120", "choice": "B"},
+        {"source_id": "fujifilm_finepix_s5200", "choice": "A"},
+        {"source_id": "nikon_d4s", "choice": "A"},
+        {"source_id": "sony_slt_a33", "choice": "A"},
+        {"source_id": "panasonic_dmc_fz38", "choice": "B"},
+        {"source_id": "pentax_k5_iis", "choice": "A"},
+        {"source_id": "olympus_ep2", "choice": "A"},
+        {"source_id": "samsung_sm_g950u", "choice": "A"},
+        {"source_id": "leica_x2", "choice": "A"},
+        {"source_id": "apple_iphone_se", "choice": "B"},
+        {"source_id": "google_pixel_3a", "choice": "B"},
+        {"source_id": "huawei_vog_l29", "choice": "A"}
+      ]
+    }
+  ],
+  "sheet_level_confirmed_severe_artifact_count": 0,
+  "notes": [
+    "No arm shows geometry corruption, text destruction, colour blocks, repeated texture or the prior Panasonic purple-blue posterized speckle field.",
+    "Large coherent exposure and colour differences were treated as preference differences rather than structural artifacts.",
+    "This is autonomous visual evidence, not population preference."
+  ],
+  "mapping_files_read": false
+}
