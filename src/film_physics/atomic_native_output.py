@@ -13,6 +13,10 @@ import numpy as np
 
 from .native_gauge_profile import NativeGaugeProfileF32V1
 from .native_granularity_amplitude import NativeGranularityAmplitudeProfileV1
+from .native_thomas_export_profile import (
+    reconstruct_native_thomas_export_profile,
+    validate_native_thomas_export_profile,
+)
 from .native_thomas_field import NativeThomasFieldProfileV1
 
 NativeByteSink = ctypes.CFUNCTYPE(
@@ -189,9 +193,43 @@ def publish_native_thomas_rgb16_png(
     }
 
 
+def publish_native_thomas_profile_rgb16_png(
+    library: Any,
+    profile: dict[str, Any],
+    exposure: np.ndarray,
+    *,
+    expected_profile_sha256: str,
+    row_partition: int,
+    destination: Path,
+    maximum_output_bytes: int,
+) -> dict[str, Any]:
+    """Validate one canonical profile and atomically publish its native PNG."""
+    try:
+        profile_sha256 = validate_native_thomas_export_profile(profile)
+        if profile_sha256 != expected_profile_sha256:
+            raise ValueError("native Thomas expected profile identity drift")
+        amplitude, fields, gauge = reconstruct_native_thomas_export_profile(profile)
+    except (KeyError, TypeError, ValueError) as exc:
+        raise AtomicNativeOutputError("native Thomas export profile rejected") from exc
+    return {
+        **publish_native_thomas_rgb16_png(
+            library,
+            amplitude,
+            fields,
+            gauge,
+            exposure,
+            row_partition=row_partition,
+            destination=destination,
+            maximum_output_bytes=maximum_output_bytes,
+        ),
+        "profile_sha256": profile_sha256,
+    }
+
+
 __all__ = [
     "AtomicNativeOutputError",
     "AtomicNativeOutputSink",
     "NativeByteSink",
+    "publish_native_thomas_profile_rgb16_png",
     "publish_native_thomas_rgb16_png",
 ]

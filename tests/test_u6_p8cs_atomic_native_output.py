@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 from pathlib import Path
 
 import numpy as np
@@ -16,6 +17,7 @@ from src.eval.native_thomas_rgb16_png_conformance import build_msvc, load_librar
 from src.film_physics.atomic_native_output import (
     AtomicNativeOutputError,
     AtomicNativeOutputSink,
+    publish_native_thomas_profile_rgb16_png,
     publish_native_thomas_rgb16_png,
 )
 from src.film_physics.manufacturer_characteristic import (
@@ -24,6 +26,9 @@ from src.film_physics.manufacturer_characteristic import (
 from src.film_physics.native_gauge_profile import native_gauge_profile_struct
 from src.film_physics.native_granularity_amplitude import (
     compile_native_granularity_amplitude_profile,
+)
+from src.film_physics.native_thomas_export_profile import (
+    compile_native_thomas_export_profile,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -134,3 +139,64 @@ def test_p8cs_native_png_stream_is_exact_and_failure_atomic(tmp_path: Path) -> N
         )
     assert not failed.exists()
     assert not list(tmp_path.glob(".failed.png.*.stage"))
+
+
+def test_profile_bound_atomic_publication_validates_before_output(
+    tmp_path: Path,
+) -> None:
+    p4bw, prior_payload = _parent_payloads()
+    prior = ManufacturerCharacteristicPrior.from_dict(prior_payload["prior"])
+    amplitude = compile_native_granularity_amplitude_profile(p4bw, prior_payload)
+    fields = _profiles(
+        json.loads(
+            (ROOT / "configs/u6_p8bw_native_exposure_to_thomas_pipeline_v1.json")
+            .read_text(encoding="utf-8")
+        )
+    )
+    contract = json.loads(
+        (ROOT / "configs/u6_p8cs_thomas_atomic_publication_v1.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    profile = compile_native_thomas_export_profile(
+        amplitude,
+        fields,
+        _gauge_payload(),
+        source_bindings=contract["profile_source_bindings"],
+    )
+    exposure = np.empty((3, 17, 19), dtype=np.float32)
+    rng = np.random.default_rng(2026081202)
+    for channel, curve in enumerate(prior.curves):
+        exposure[channel] = rng.uniform(*curve.domain, size=(17, 19)).astype(
+            np.float32
+        )
+    build = build_msvc(ROOT, tmp_path / "profile-build")
+    library = load_library(Path(build["dll_path"]))
+    _configure_parallel(library)
+    destination = (tmp_path / "profile.png").resolve()
+    result = publish_native_thomas_profile_rgb16_png(
+        library,
+        profile,
+        exposure,
+        expected_profile_sha256=profile["profile_sha256"],
+        row_partition=7,
+        destination=destination,
+        maximum_output_bytes=1048576,
+    )
+    assert destination.is_file()
+    assert result["profile_sha256"] == profile["profile_sha256"]
+
+    rejected = dict(profile)
+    rejected["profile_sha256"] = "0" * 64
+    rejected_path = (tmp_path / "rejected.png").resolve()
+    with pytest.raises(AtomicNativeOutputError, match="profile rejected"):
+        publish_native_thomas_profile_rgb16_png(
+            library,
+            rejected,
+            exposure,
+            expected_profile_sha256=profile["profile_sha256"],
+            row_partition=7,
+            destination=rejected_path,
+            maximum_output_bytes=1048576,
+        )
+    assert not rejected_path.exists()
