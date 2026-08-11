@@ -1,0 +1,82 @@
+{
+  "schema": "neuro_film.u5_r2cb17_safe_base_ao6_chroma_direction_observations.v1",
+  "experiment_id": "U5.R2CB17",
+  "status": "blind_observations_frozen_mapping_unread",
+  "observer": "autonomous_codex_visual_review",
+  "report": "outputs/experiments/u5_r2cb17_safe_base_ao6_chroma_direction_v1/report_run1.json",
+  "report_sha256": "312238b4a893e9b0468f3cf505fc07bb860b24d0ecbccf01fc5c342b7dec9333",
+  "criteria": "after the severe-artifact veto, prefer the more visibly stylized and photographically coherent result; ties are not allowed",
+  "sheet_sha256": {
+    "round_1.png": "0d890389f7de33911482e759cce581a1b1aac94fadfb793bedf57c042d2df938",
+    "round_2.png": "76fc9dca167a589c4346fed9f0a8787c7bb19e6206a3ae47500519c4be2fe394",
+    "round_3.png": "89e6493ae35fc294f74c3d1cfabd8a0ed32a5ffb7d1e7d8bce28974a8a03ecb5"
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "choices": [
+        {"source_id": "canon_powershot_s120", "choice": "A"},
+        {"source_id": "fujifilm_finepix_s5200", "choice": "B"},
+        {"source_id": "nikon_d4s", "choice": "A"},
+        {"source_id": "sony_slt_a33", "choice": "A"},
+        {"source_id": "panasonic_dmc_fz38", "choice": "B"},
+        {"source_id": "pentax_k5_iis", "choice": "B"},
+        {"source_id": "olympus_ep2", "choice": "A"},
+        {"source_id": "samsung_sm_g950u", "choice": "A"},
+        {"source_id": "leica_x2", "choice": "A"},
+        {"source_id": "apple_iphone_se", "choice": "B"},
+        {"source_id": "google_pixel_3a", "choice": "A"},
+        {"source_id": "huawei_vog_l29", "choice": "A"}
+      ],
+      "confirmed_severe_cells": [
+        {"source_id": "panasonic_dmc_fz38", "arm": "A", "reason": "large purple-blue posterized speckle field across the tabletop"}
+      ]
+    },
+    {
+      "round": 2,
+      "choices": [
+        {"source_id": "canon_powershot_s120", "choice": "A"},
+        {"source_id": "fujifilm_finepix_s5200", "choice": "A"},
+        {"source_id": "nikon_d4s", "choice": "A"},
+        {"source_id": "sony_slt_a33", "choice": "B"},
+        {"source_id": "panasonic_dmc_fz38", "choice": "A"},
+        {"source_id": "pentax_k5_iis", "choice": "B"},
+        {"source_id": "olympus_ep2", "choice": "A"},
+        {"source_id": "samsung_sm_g950u", "choice": "A"},
+        {"source_id": "leica_x2", "choice": "B"},
+        {"source_id": "apple_iphone_se", "choice": "A"},
+        {"source_id": "google_pixel_3a", "choice": "A"},
+        {"source_id": "huawei_vog_l29", "choice": "B"}
+      ],
+      "confirmed_severe_cells": [
+        {"source_id": "panasonic_dmc_fz38", "arm": "B", "reason": "large purple-blue posterized speckle field across the tabletop"}
+      ]
+    },
+    {
+      "round": 3,
+      "choices": [
+        {"source_id": "canon_powershot_s120", "choice": "B"},
+        {"source_id": "fujifilm_finepix_s5200", "choice": "B"},
+        {"source_id": "nikon_d4s", "choice": "B"},
+        {"source_id": "sony_slt_a33", "choice": "A"},
+        {"source_id": "panasonic_dmc_fz38", "choice": "B"},
+        {"source_id": "pentax_k5_iis", "choice": "A"},
+        {"source_id": "olympus_ep2", "choice": "A"},
+        {"source_id": "samsung_sm_g950u", "choice": "A"},
+        {"source_id": "leica_x2", "choice": "A"},
+        {"source_id": "apple_iphone_se", "choice": "A"},
+        {"source_id": "google_pixel_3a", "choice": "A"},
+        {"source_id": "huawei_vog_l29", "choice": "A"}
+      ],
+      "confirmed_severe_cells": [
+        {"source_id": "panasonic_dmc_fz38", "arm": "A", "reason": "large purple-blue posterized speckle field across the tabletop"}
+      ]
+    }
+  ],
+  "notes": [
+    "The same physical candidate cell on panasonic_dmc_fz38 shows a severe posterized speckle field in all three randomized rounds; mapping remains unread at freeze time.",
+    "Other rows preserve geometry, objects, text and fine structure; pale or strongly coloured rendering alone was treated as preference, not severe corruption.",
+    "This is autonomous visual evidence, not population preference."
+  ],
+  "mapping_files_read": false
+}
