@@ -1,0 +1,33 @@
+{
+  "schema": "neuro_film.u5_r2cb9_fujifilm_characteristic_safe_residual_decision.v1",
+  "experiment_id": "U5.R2CB9",
+  "contract_commit": "3c57b15d",
+  "implementation_commit": "3538efee",
+  "contract_sha256": "7081cb8079af12a0cb6b2e657046290d01fbdd806de105e0d244af27031bd60e",
+  "implementation_sha256": "1366f4083ddfab0c3f98ed15274b2a5a6e9d60b6ad58705e032165734e1b09c3",
+  "runner_sha256": "d951b13c95bdc2febee588471f05f83f7b34be007dfcfc01f4a9beef2223af8f",
+  "formal_report_path": "outputs/experiments/u5_r2cb9_fujifilm_characteristic_safe_residual_v1/report_run1.json",
+  "formal_report_sha256": "9213293c8610a3f8cdea78667cacd957acf5875d6a3091efd56ceaf03cda795e",
+  "stable_evidence_id": "b23a39bab26e0fe246a5c06f9cd5e8d8d3cd2b86c2277bb10ba45721ad06cbe6",
+  "repeat_report_byte_exact": true,
+  "passed": false,
+  "decision": "close_analytical_safe_residual_without_rescue",
+  "metrics": {
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "population_median_applied_alpha": 1.0,
+    "population_median_fraction_alpha_below_0p99": 0.025093768296252927,
+    "maximum_p999_gradient_ratio_vs_source": 1.1255406789348017,
+    "population_median_style_delta_e76": 3.7625687399928873,
+    "population_median_joint_basic_residual_delta_e76": 2.9435671048702816,
+    "rows_joint_basic_residual_delta_e76_ge_0p25": 10,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.040105838795839434
+  },
+  "failed_gates": ["gradient_order"],
+  "interpretation": [
+    "The exact analytical scale eliminates every new epsilon-boundary crossing while retaining the full nominal residual for the median pixel and preserving essentially all style and non-basic value.",
+    "The hard per-pixel minimum over three channel constraints is spatially discontinuous near dark-channel boundaries; adjacent material L-star order inversion therefore rises to 4.01 percent on the worst source.",
+    "This separates gamut-boundary correctness from spatial regularity: an exact pointwise safe scale is necessary but not sufficient for severe-safe photographic execution."
+  ],
+  "next_action": "Test one prospectively frozen continuous boundary-interior coordinate whose transform is globally monotone and intrinsically cube-safe; do not smooth, retune or rescue the CB9 alpha field on this cohort.",
+  "claim_ceiling": "Closed hard pointwise analytical safe-scale executor; not a negative result about CB6 manufactured-target evidence, continuous intrinsic coordinates, Velvia film, calibration or product quality."
+}

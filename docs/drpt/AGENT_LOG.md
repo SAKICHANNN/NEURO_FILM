@@ -11166,3 +11166,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Failure closes this exact executor without reducing strength or changing the
   boundary definition. Pass remains generic development evidence and would
   only open a fresh comparison with fixed AO6.
+
+# 2026-08-11 - U5.R2CB9 closes hard pointwise safe scaling
+
+- Two reports and outputs are byte-identical (`9213293c...a795e`). The exact
+  scale eliminates all new epsilon-boundary crossings, leaves median alpha at
+  `1.0`, attenuates fewer than `2.51%` of pixels on the median source and
+  preserves median style/non-basic Delta E at `3.763/2.944`.
+- The hard per-pixel minimum over channel constraints is spatially
+  discontinuous: maximum adjacent material L-star order inversion rises to
+  `4.011%`. Automatic failure again forbids visual review.
+- Close the exact alpha-field executor without smoothing it on the consumed
+  cohort. The next mechanism must use a continuous globally monotone intrinsic
+  coordinate, not another boundary patch or dose rescue.
