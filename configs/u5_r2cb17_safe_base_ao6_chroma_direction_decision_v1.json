@@ -1,0 +1,42 @@
+{
+  "schema": "neuro_film.u5_r2cb17_safe_base_ao6_chroma_direction_decision.v1",
+  "experiment_id": "U5.R2CB17",
+  "contract_commit": "9328f1c4",
+  "implementation_correction_commit": "b3e43910",
+  "contract_sha256": "442438f6a8380693d38417893ef7869dbbaade6fe1626d57f2870f16c84dd4a4",
+  "implementation_sha256": "d1a7cfda1a2dfc3b9df79684c1614bbb6df39914647ea1e7f497e3e878ae69cc",
+  "runner_sha256": "b4d9b99ad104b86157bb9f51a57dc8287c1249f01b6b7d122839d46bc797453b",
+  "formal_report_path": "outputs/experiments/u5_r2cb17_safe_base_ao6_chroma_direction_v1/report_run1.json",
+  "formal_report_sha256": "312238b4a893e9b0468f3cf505fc07bb860b24d0ecbccf01fc5c342b7dec9333",
+  "stable_evidence_id": "7fe81de23bea32675be4749a76c68221a0eca3f3c18ba2c99d33a4e4e242e164",
+  "repeat_report_byte_exact": true,
+  "automatic_pass": true,
+  "blind_measurements": {
+    "candidate_round_wins": 3,
+    "candidate_aggregate_choices": 32,
+    "aggregate_choice_count": 36,
+    "candidate_source_majorities": 11,
+    "source_count": 12,
+    "candidate_confirmed_severe_source_count": 1,
+    "candidate_confirmed_severe_cell_count": 3,
+    "confirmed_severe_source_ids": [
+      "panasonic_dmc_fz38"
+    ]
+  },
+  "gates": {
+    "automatic_gates": true,
+    "minimum_candidate_round_wins": true,
+    "minimum_candidate_aggregate_choices": true,
+    "minimum_candidate_source_majorities": true,
+    "severe_artifact_veto": false
+  },
+  "passed": false,
+  "decision": "close_direction_candidate_on_severe_artifact_retain_ao6",
+  "interpretation": [
+    "Direction-only transfer fixes the CB16 retention failure and is strongly preferred to AO6 on this development population.",
+    "The same candidate render for panasonic_dmc_fz38 shows a large purple-blue posterized speckle field in every randomized round, so the severe-artifact veto is decisive despite preference.",
+    "The failure is consistent with an unstable hue direction on low-chroma texture; a successor may add prospectively frozen neutral-direction confidence shrinkage but cannot reuse this candidate as promoted."
+  ],
+  "next_action": "Freeze a neutral-confidence direction mechanism that continuously shrinks AO6 direction influence to identity as either CB11 or AO6 chroma norm approaches zero, then rerun automatic and blind gates without threshold rescue.",
+  "claim_ceiling": "Closed preferred-but-severe development candidate; no fresh confirmation, stock response, calibration, population preference or product promotion."
+}

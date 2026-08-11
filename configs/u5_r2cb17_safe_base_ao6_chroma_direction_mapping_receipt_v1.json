@@ -1,0 +1,10 @@
+{
+  "schema": "neuro_film.u5_r2cb17_safe_base_ao6_chroma_direction_mapping_receipt.v1",
+  "experiment_id": "U5.R2CB17",
+  "status": "mapping_revealed_after_blind_observations_commit",
+  "mapping_revealed": true,
+  "observations_commit": "3f067b51a94f1580da8feee8e33cbd39aea252e6",
+  "observations_sha256": "f6ec906e2aa7091fe03bc3f1014c96b24a5f37da363a36875576c3cb5c02363b",
+  "report_sha256": "312238b4a893e9b0468f3cf505fc07bb860b24d0ecbccf01fc5c342b7dec9333",
+  "sealed_mappings_canonical_sha256": "fde53f4b07c784cbf9f816ba8d34850b76ac61ab998fe904d7be80ed8cd06d34"
+}

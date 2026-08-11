@@ -11342,3 +11342,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Freeze the same development population and automatic-first protocol. No
   angular interpolation, strength fitting or blind review is allowed after an
   automatic failure.
+
+# 2026-08-11 - U5.R2CB17 is preferred but fails the severe veto
+
+- Two reports are byte exact (`312238b4...c9333`; stable
+  `7fe81de2...42e164`) and every automatic gate passes. Choices were frozen
+  before mapping reveal; the candidate wins `3/3` rounds, `32/36` choices and
+  `11/12` source majorities.
+- The candidate cell for `panasonic_dmc_fz38` has the same large purple-blue
+  posterized speckle field in all three randomized rounds. Severe-artifact veto
+  overrides preference, so the exact direction transfer closes.
