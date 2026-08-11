@@ -1414,3 +1414,10 @@ byte exactly. Two fresh MSVC processes emit byte-identical reports
 and ICC before/after reconstruction. Retain the hash-bound generic profile
 boundary; photographic placement, calibration and product profile integration
 remain open.
+
+U5.R2CB33 passes the consumed gold/stress development gate. Two reports are
+byte exact (`0cd2c971...9060e`; stable `c6078c82...53862`); the selected global
+dose keeps max p99.9 gradient ratio at `1.34689`, boundary and severe counts at
+zero, and gold/stress style at `8.95/10.62`. Only ID18 attenuates (`.0625`).
+Advance unchanged to source-disjoint confirmation; the partial cohort and
+autonomous review do not alter the product/default.

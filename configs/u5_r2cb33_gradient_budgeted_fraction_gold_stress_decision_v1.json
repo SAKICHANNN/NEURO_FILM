@@ -1,0 +1,35 @@
+{
+  "schema": "neuro_film.u5_r2cb33_gradient_budgeted_fraction_gold_stress_decision.v1",
+  "experiment_id": "U5.R2CB33",
+  "report_sha256": "0cd2c971989e0c857aeac7556df39e1171753d4cf0adc3579eb9c9065519060e",
+  "stable_evidence_id": "c6078c8281b99409c4f2581fb1f75f7189564978167275306ca12778e9e53862",
+  "automatic_pass": true,
+  "visual_review": {
+    "reviewed_contact_sheet_sha256": [
+      "8a13d3e4b162d778e363e3b296c4b4a5e369bbe26d4fd6880e59f5f5703853f7",
+      "fa09fb02fe38ff51e85af50ac68b84b1050fd7eb513976f4d1e239b8a347e5e1",
+      "ca25875b0917d7e4eba32e346f6f9a07fe2d03d80d2fd38fb8bea86c3f974a45"
+    ],
+    "original_resolution_outputs": [
+      {"id": "01", "sha256": "b55ba01367c1e134934b8a677c2e613f1bcffa72b901af828b5b0a2155e428f6"},
+      {"id": "05", "sha256": "b78701fa8796c4a921e6a2a28c633865e44ed1c5d69d7bd07a0a919d18693feb"},
+      {"id": "08", "sha256": "60747685e66d56e3f24458d3cd1a0f124dec0673ff3e8d8a12e62fe9c42fd7ad"},
+      {"id": "09", "sha256": "29e47122a9061aaa1faae409f183330c03546a89d2a03a6af9ef62990ab2cb96"},
+      {"id": "11", "sha256": "34b08a19774a552840de7b0a4d15276bfcfc4cfe912ea9090e2aa33486567eda"},
+      {"id": "18", "sha256": "4edf9c1dc08e97a7b8cc70b29b5e644894b15a0dabcc763ffb6122a11860746e"},
+      {"id": "21", "sha256": "763df5fc82c4672b098c61e853b97f399cf93c41ad7371447474e9c056971df0"},
+      {"id": "29", "sha256": "473d26404f0644fe35b5edd89df4220df389bfd8b0edffc65c4c8b8055ad09be"}
+    ],
+    "confirmed_severe_artifact_count": 0,
+    "observations": {
+      "id11": "no confirmed red-speckle or posterization recurrence",
+      "id18": "fine texture and line structure remain continuous at the selected 0.0625 global dose",
+      "id21": "face, suit and badge structure remain intact",
+      "id29": "high-contrast bridge geometry remains intact",
+      "all_reviewed": "no confirmed geometry break, banding, block artifact, tile seam or unintended clipping"
+    },
+    "presentation_note": "The reused contact-sheet helper labels the right column CB11, but the right-column files and hashes are the CB33 candidate rows bound above; the stale header is not evidence identity."
+  },
+  "decision": "pass_development_gold_stress_open_source_disjoint_confirmation",
+  "claim_ceiling": "Development-only automatic and autonomous severe-review pass on the already consumed 40-row partial U4.1 cohort; FS_FACE_01 remains unavailable, and this is not independent confirmation, stock response, calibration, population preference or product promotion."
+}

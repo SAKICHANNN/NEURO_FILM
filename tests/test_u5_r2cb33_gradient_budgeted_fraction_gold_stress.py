@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 import numpy as np
@@ -11,6 +12,9 @@ from src.eval.gradient_budgeted_fraction_transport import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u5_r2cb33_gradient_budgeted_fraction_gold_stress_v1.json"
+DECISION = (
+    ROOT / "configs/u5_r2cb33_gradient_budgeted_fraction_gold_stress_decision_v1.json"
+)
 
 
 def test_cb33_contract_freezes_global_only_dose() -> None:
@@ -68,3 +72,19 @@ def test_cb33_selector_is_deterministic() -> None:
     assert np.array_equal(first[1], second[1])
     assert np.array_equal(first[2], second[2])
     assert first[3] == second[3]
+
+
+def test_cb33_visual_decision_binds_exact_reviewed_outputs() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    review = decision["visual_review"]
+    assert decision["report_sha256"] == (
+        "0cd2c971989e0c857aeac7556df39e1171753d4cf0adc3579eb9c9065519060e"
+    )
+    assert [row["id"] for row in review["original_resolution_outputs"]] == [
+        "01", "05", "08", "09", "11", "18", "21", "29"
+    ]
+    assert all(len(row["sha256"]) == 64 for row in review["original_resolution_outputs"])
+    assert review["confirmed_severe_artifact_count"] == 0
+    assert decision["decision"] == (
+        "pass_development_gold_stress_open_source_disjoint_confirmation"
+    )

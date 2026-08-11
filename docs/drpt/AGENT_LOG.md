@@ -11655,3 +11655,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `1.35`; visual review is forbidden. Scalar fraction geometry alone cannot
   bound the complete hue/cube-section RGB transform. Next test uses only one
   image-global residual dose against the unchanged image-space budget.
+
+# 2026-08-11 - U5.R2CB33 passes development safety and style
+
+- Two exact reports (`0cd2c971...9060e`; stable `c6078c82...53862`) pass all
+  frozen automatic gates. One global dose per image yields max p99.9 gradient
+  `1.34689`, zero new boundary/L* inversion, median dose `1.0`, and gold/stress
+  style `8.95/10.62`; only ID18 selects `.0625`.
+- All contact sheets and eight hash-bound original outputs have zero confirmed
+  severe artifacts. The reused sheet's stale `CB11` right-column header is
+  presentation-only; candidate hashes are unambiguous. Open only source-
+  disjoint confirmation; AO6 remains the product/default.
