@@ -1,0 +1,41 @@
+{
+  "schema": "neuro_film.u5_r2cb19_spatially_coherent_ao6_direction_decision.v1",
+  "experiment_id": "U5.R2CB19",
+  "implementation_commit": "03cb430b",
+  "contract_sha256": "051a535f8da999c462fd405ba7a7b430982fbd904b423ee30d63847f8725ba4d",
+  "implementation_sha256": "c6cf9b298b7be89ee63ae97d71708a222f367ec2962aa5b08706bd10ac46279d",
+  "runner_sha256": "709369c3b0ad55c3ac158a80e330e7b7d41223351e98317747e5f9c966172c57",
+  "formal_report_path": "outputs/experiments/u5_r2cb19_spatially_coherent_ao6_direction_v1/report_run1.json",
+  "formal_report_sha256": "cc95a6630fd765e13faa6e37c996267eea469018b430cfcd687839ba1c8268e6",
+  "stable_evidence_id": "25946b74759a8acd744e914f4eb42db0f6d2822bdcf6b1044cc7d8e6a709c210",
+  "repeat_report_byte_exact": true,
+  "automatic_pass": true,
+  "blind_measurements": {
+    "candidate_round_wins": 3,
+    "candidate_aggregate_choices": 32,
+    "aggregate_choice_count": 36,
+    "candidate_source_majorities": 11,
+    "source_count": 12,
+    "candidate_confirmed_severe_source_count": 1,
+    "candidate_confirmed_severe_cell_count": 3,
+    "confirmed_severe_source_ids": [
+      "panasonic_dmc_fz38"
+    ]
+  },
+  "gates": {
+    "automatic_gates": true,
+    "minimum_candidate_round_wins": true,
+    "minimum_candidate_aggregate_choices": true,
+    "minimum_candidate_source_majorities": true,
+    "severe_artifact_veto": false
+  },
+  "passed": false,
+  "decision": "close_spatial_direction_candidate_on_severe_artifact",
+  "interpretation": [
+    "Fixed 3x3 spatial coherence retains CB17's strong preference and all automatic safety gates.",
+    "It does not remove the Panasonic purple-blue posterized speckle field, which remains candidate-owned in every round.",
+    "The failure is not repaired by local direction smoothing; a successor should use one image-global chroma rotation rather than a pixelwise AO6 direction field."
+  ],
+  "next_action": "Freeze one analytical image-global weighted 2D Procrustes rotation from CB11 chroma coordinates toward AO6 chroma coordinates, preserve CB11 chroma norm, then apply the unchanged safe step.",
+  "claim_ceiling": "Closed preferred-but-severe development candidate; no fresh confirmation, stock response, calibration, population preference or product promotion."
+}

@@ -11377,3 +11377,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   CB11 chroma magnitude and the same analytical safe step.
 - This tests spatial coherence directly. Radius/kernel search and confidence
   dose rescue are forbidden; blind review still requires all automatic gates.
+
+# 2026-08-11 - U5.R2CB19 retains preference but not safety
+
+- Two reports are exact (`cc95a663...268e6`; stable `25946b74...09c210`) and
+  blind results again reach `3/3`, `32/36`, `11/12` after mapping reveal.
+- The same Panasonic candidate retains the severe posterized speckle field in
+  all rounds. Local 3x3 direction smoothing is therefore closed; next replace
+  the pixelwise direction field with one analytical image-global rotation.

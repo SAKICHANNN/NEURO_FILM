@@ -1,0 +1,10 @@
+{
+  "schema": "neuro_film.u5_r2cb19_spatially_coherent_ao6_direction_mapping_receipt.v1",
+  "experiment_id": "U5.R2CB19",
+  "status": "mapping_revealed_after_blind_observations_commit",
+  "mapping_revealed": true,
+  "observations_commit": "22abd7a56a5a131e26011ad793281a714a8579ae",
+  "observations_sha256": "5a671775b4aa7a8a9b5c19ea42159afde147de97dabd2f5ce4c5f9e00e02c7ac",
+  "report_sha256": "cc95a6630fd765e13faa6e37c996267eea469018b430cfcd687839ba1c8268e6",
+  "sealed_mappings_canonical_sha256": "fde53f4b07c784cbf9f816ba8d34850b76ac61ab998fe904d7be80ed8cd06d34"
+}
