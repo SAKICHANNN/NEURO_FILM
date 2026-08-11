@@ -163,6 +163,7 @@ def select_monotone_source_tone_candidate(
     selected_dose = -1.0
     selected_gradient = float("inf")
     selected_inversion = float("inf")
+    dose_diagnostics: list[dict[str, float]] = []
     for dose in doses:
         candidate = np.asarray(tone64 + float(dose) * residual, dtype=np.float32)
         gradient = _gradient_p999_ratio(source, candidate)
@@ -171,6 +172,13 @@ def select_monotone_source_tone_candidate(
         )[..., 0]
         inversion = _gradient_inversion_fraction(
             source_lstar, candidate_lstar, epsilon=lstar_order_epsilon
+        )
+        dose_diagnostics.append(
+            {
+                "dose": float(dose),
+                "gradient_ratio": float(gradient),
+                "lstar_inversion_fraction": float(inversion),
+            }
         )
         if (
             gradient <= maximum_gradient_ratio
@@ -182,8 +190,19 @@ def select_monotone_source_tone_candidate(
             selected_inversion = float(inversion)
             break
     if selected is None:
+        minimum_gradient = min(dose_diagnostics, key=lambda row: row["gradient_ratio"])
+        minimum_inversion = min(
+            dose_diagnostics, key=lambda row: row["lstar_inversion_fraction"]
+        )
+        zero = dose_diagnostics[-1]
         raise MonotoneSourceToneFractionTransportError(
-            "CB37 dose grid has no gradient- and order-safe monotone-tone candidate"
+            "CB37 dose grid has no gradient- and order-safe monotone-tone candidate; "
+            f"minimum_gradient={minimum_gradient['gradient_ratio']:.17g}; "
+            f"minimum_gradient_dose={minimum_gradient['dose']:.17g}; "
+            f"minimum_inversion={minimum_inversion['lstar_inversion_fraction']:.17g}; "
+            f"minimum_inversion_dose={minimum_inversion['dose']:.17g}; "
+            f"dose0_gradient={zero['gradient_ratio']:.17g}; "
+            f"dose0_inversion={zero['lstar_inversion_fraction']:.17g}"
         )
     selected_y = np.sum(selected.astype(np.float64) * w, axis=-1)
     effective_scale = np.asarray(
