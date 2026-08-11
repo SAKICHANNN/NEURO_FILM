@@ -13,6 +13,7 @@ from src.eval.monotone_source_tone_fraction_transport import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u5_r2cb38_exact_lab_y_monotone_tone_development_v1.json"
+DECISION = ROOT / "configs/u5_r2cb38_exact_lab_y_monotone_tone_development_decision_v1.json"
 
 
 def test_cb38_contract_freezes_exact_lab_y_on_distinct_population() -> None:
@@ -53,3 +54,13 @@ def test_cb38_selector_uses_exact_lab_y_without_inversion() -> None:
     )
     assert float(np.max(np.abs(luma_error))) < 1e-6
     assert facts["selected_lstar_inversion_fraction"] == 0.0
+
+
+def test_cb38_decision_requires_direct_lstar_coordinate() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["failure"]["minimum_gradient_ratio"] < 1.35
+    assert decision["failure"]["minimum_lstar_inversion_fraction"] > 0.0
+    assert decision["decision"] == (
+        "close_exact_weight_proxy_open_direct_lstar_successor"
+    )
+    assert decision["visual_review_status"] == "forbidden"

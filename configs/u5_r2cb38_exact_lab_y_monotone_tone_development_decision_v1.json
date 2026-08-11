@@ -1,0 +1,22 @@
+{
+  "schema": "neuro_film.u5_r2cb38_exact_lab_y_monotone_tone_development_decision.v1",
+  "experiment_id": "U5.R2CB38",
+  "status": "failed_closed_before_visual_review",
+  "report_sha256": "082e8e04bd199f93affe6bf1211c1a8a6df2b0a72c7243d058ca10631757a043",
+  "stable_evidence_id": "e0e47fc761a3473d84d3fe614e55bfa10ca0eb4dbf0d974e5975edf69ce00b28",
+  "repeat_report_sha256_exact": true,
+  "failure": {
+    "source_id": "apple_iphone_xs",
+    "completed_source_count": 0,
+    "minimum_gradient_ratio": 0.8945397043884068,
+    "minimum_lstar_inversion_fraction": 0.00024895991823852611,
+    "dose0_gradient_ratio": 0.9009743428687714,
+    "dose0_lstar_inversion_fraction": 0.00024895991823852611
+  },
+  "partial_artifacts_removed": true,
+  "visual_review_status": "forbidden",
+  "decision": "close_exact_weight_proxy_open_direct_lstar_successor",
+  "next_leaf": "Map the actual frozen linear_rgb_to_lab source L-star values monotonically to CB11 L-star, analytically invert that tone to neutral linear Y, then apply unchanged CB32 chroma on a different source population.",
+  "forbidden": "BK3 rescue, alternate floating-point reductions, changed knots or thresholds, local masks, filtering or post-result tuning",
+  "claim_ceiling": "Mechanism failure showing that even exact coefficients are an insufficient proxy for the frozen float32 CIELAB execution order; not visual, stock, calibration, preference or product evidence."
+}

@@ -11701,3 +11701,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The mismatch is coordinate-level: CB11 approximate luma differs from the
   legacy CIELAB Y row. Move to exact Lab-Y on a new population; do not tune
   knots, dose or thresholds on BK1.
+
+# 2026-08-12 - U5.R2CB38 exact-weight proxy closes
+
+- Two exact BK3 diagnostics (`082e8e04...57a043`) stop at the first source.
+  Gradient is safe, but exact L* inversion is `2.49e-4`.
+- Coefficients alone do not reproduce the frozen float32 Lab reduction/order.
+  The next mechanism maps actual L* and inverts it to neutral Y; no BK3 rescue.

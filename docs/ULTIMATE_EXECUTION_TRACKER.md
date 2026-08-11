@@ -1447,3 +1447,9 @@ diagnostics (`55d2998e...744cb`) fail on the first BK1 source: gradient passes
 at `1.1585`, but L* inversion remains `2.995e-7` at every chroma dose. The
 CB11 `[.2126,.7152,.0722]` coordinate is not the exact legacy CIELAB Y row.
 The successor must construct tone and chroma in exact Lab-Y, not tune BK1.
+
+U5.R2CB38 shows exact coefficients are still only a proxy for the frozen
+float32 Lab execution. Two exact diagnostics (`082e8e04...57a043`) fail on
+BK3's first source with safe gradient (`0.895`) but `2.49e-4` L* inversions.
+Close without reduction-order rescue. The next leaf must map actual computed
+L* directly and analytically invert its neutral tone coordinate.
