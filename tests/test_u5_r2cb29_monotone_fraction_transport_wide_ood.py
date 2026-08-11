@@ -24,6 +24,7 @@ def test_cb29_contract_uses_exact_screened_source_subset() -> None:
         )
     )
     assert contract["population"]["included_source_ids"] == review["eligible_ids"]
+    assert contract["population"]["decision_field"] == "result.decision"
     assert len(contract["population"]["included_source_ids"]) == 10
     assert "canon_powershot_v1" not in contract["population"]["included_source_ids"]
 

@@ -195,6 +195,14 @@ def _inputs(config: Mapping[str, Any], root: Path):
     decision = _load_exact_json(
         root, population["decision_path"], population["decision_sha256"]
     )
+    decision_field = population.get("decision_field", "status")
+    if decision_field == "status":
+        decision_status = decision.get("status")
+    elif decision_field == "result.decision":
+        result = decision.get("result")
+        decision_status = result.get("decision") if isinstance(result, dict) else None
+    else:
+        raise CharacteristicAo6FactorizedError("CB15 decision field drift")
     rows = _load_exact_json(
         root, population["manifest_path"], population["manifest_sha256"]
     )
@@ -213,7 +221,7 @@ def _inputs(config: Mapping[str, Any], root: Path):
             raise CharacteristicAo6FactorizedError("CB15 source subset drift")
         rows = [row_by_id[source_id] for source_id in included_source_ids]
     if (
-        decision.get("status") != population["required_status"]
+        decision_status != population["required_status"]
         or len(rows) != population["source_count_exact"]
         or len({row["make"] for row in rows}) != population["camera_make_count_exact"]
     ):
