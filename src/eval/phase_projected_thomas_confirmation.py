@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+import time
 from collections import defaultdict
 from collections.abc import Mapping, Sequence
 from pathlib import Path
@@ -88,13 +89,20 @@ def enumerate_selected_metadata(contract: Mapping[str, Any]) -> list[dict[str, A
     rows: list[dict[str, Any]] = []
     session = requests.Session()
     for _ in range(16):
-        response = session.get(
-            str(dataset["api_url"]),
-            params=params,
-            headers={"User-Agent": "neuro-film-u6-p4cm/1.0"},
-            timeout=60,
-        )
-        response.raise_for_status()
+        for attempt in range(3):
+            try:
+                response = session.get(
+                    str(dataset["api_url"]),
+                    params=params,
+                    headers={"User-Agent": "neuro-film-u6-p4cm/1.0"},
+                    timeout=60,
+                )
+                response.raise_for_status()
+                break
+            except requests.RequestException:
+                if attempt == 2:
+                    raise
+                time.sleep(float(attempt + 1))
         payload = response.json()
         rows.extend(payload.get("datasetFiles", []))
         token = payload.get("nextPageTokenNullable")
