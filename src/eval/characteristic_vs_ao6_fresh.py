@@ -24,12 +24,12 @@ from src.eval.fujifilm_characteristic_photographic import (
 from src.eval.fujifilm_dye_basis_measured_conformance import canonical_json, hash_file
 from src.eval.fujifilm_e6_dye_operator_photographic import _new_boundary_fraction
 from src.eval.kci_velvia_tone_photographic_stress import _load_rgb, _save_rgb
-from src.film_physics.profile_consumer import compile_standalone_profile_artifact
+from src.film_physics.profile_consumer import validate_standalone_profile_artifact
 
 SCHEMA = "neuro_film.u5_r2cb12_characteristic_vs_ao6_fresh_contract.v1"
 REPORT_SCHEMA = "neuro_film.u5_r2cb12_characteristic_vs_ao6_fresh_report.v1"
 EXPERIMENT_ID = "U5.R2CB12"
-CONTRACT_SHA256 = "3178bc089348c32ac306ce1114ed34089ea26baf674078ea98f0c8f1cc5eea6b"
+CONTRACT_SHA256 = "0951b3ec44049f76afda12b90ba40e1bc644000336fcc340b1b862ea986823c1"
 
 
 class CharacteristicVsAo6FreshError(RuntimeError):
@@ -79,12 +79,27 @@ def _validate(config: Mapping[str, Any], root: Path):
         raise CharacteristicVsAo6FreshError("BH1S population drift")
     ao6 = config["ao6"]
     _load_exact_json(root, ao6["parent_contract_path"], ao6["parent_contract_sha256"])
-    compiler = _load_exact_json(
+    _load_exact_json(
         root,
         ao6["profile_compiler_config_path"],
         ao6["profile_compiler_config_sha256"],
     )
-    artifact = compile_standalone_profile_artifact(root=root, config=compiler)
+    artifact_report = _load_exact_json(
+        root,
+        ao6["frozen_artifact_report_path"],
+        ao6["frozen_artifact_report_sha256"],
+    )
+    if (
+        artifact_report.get("artifact_canonical_sha256")
+        != ao6["frozen_artifact_canonical_sha256"]
+        or artifact_report.get("artifact", {}).get("bundle_sha256")
+        != ao6["frozen_bundle_sha256"]
+        or not artifact_report.get("artifact_exact")
+        or not artifact_report.get("replay_exact")
+    ):
+        raise CharacteristicVsAo6FreshError("frozen AO6 artifact drift")
+    artifact = artifact_report["artifact"]
+    validate_standalone_profile_artifact(artifact)
     curve = _compiled_curve(load_cb6(root / cb11["parents"]["cb6_contract_path"]))
     return cb11, artifact, eligible, rows, curve
 

@@ -27,6 +27,10 @@
     "parent_contract_sha256": "e28a71160267aabf1ecf088de5ef8907da0c94bc36d1148da281988cf5c14223",
     "profile_compiler_config_path": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json",
     "profile_compiler_config_sha256": "0d238a4970ae4c131d0cf39d00d30638e53e2baa63a3eccf56353c93a1ff16c4",
+    "frozen_artifact_report_path": "outputs/u6_p8b_artifact_only_cpu_consumer_v1/run_a/report.json",
+    "frozen_artifact_report_sha256": "454f31cfec49ed2ef9e2c2de6d9801a113ae0ba8004cb77cf085b84537f3b732",
+    "frozen_artifact_canonical_sha256": "e5168fe89f94efc0e1a3b0a7b38ed26f6c4f4dd142dbe9f951be596c398267ae",
+    "frozen_bundle_sha256": "3a14cb3c9257cf1a7dade92a03b15f1af2f74ba74c06233f0e9732fe536237af",
     "component": "ao6-source-context-display-look",
     "arm_id": "fixed_ao6_colour_only_t15_c35"
   },
