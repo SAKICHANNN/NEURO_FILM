@@ -180,7 +180,10 @@ def evaluate(config: Mapping[str, Any], root: Path, output_dir: Path) -> dict[st
         *,
         weights: np.ndarray,
         boundary_epsilon: float,
+        minimum_valid_fraction: float,
     ) -> np.ndarray:
+        if minimum_valid_fraction != float(operator["minimum_valid_fraction"]):
+            raise TiePreservingFractionTransportError("CB31 fraction threshold drift")
         return tie_preserving_fraction_transport_target(
             safe_base_linear,
             ao6_linear,
