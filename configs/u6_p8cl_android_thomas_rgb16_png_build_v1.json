@@ -1,0 +1,49 @@
+{
+  "schema": "neuro_film.u6_p8cl_android_thomas_rgb16_png_build_contract.v1",
+  "experiment_id": "u6.p8cl-android-thomas-rgb16-png-build-v1",
+  "node": "ULT > U6 > U6.P8 > U6.P8CL",
+  "date_frozen": "2026-08-11",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Does the unchanged P8CK freestanding Thomas RGB16 PNG program compile and link reproducibly for Android arm64-v8a and x86_64 with the exact official NDK r27d toolchain?",
+  "parent": {
+    "path": "docs/evidence/U6_P8CK_NATIVE_THOMAS_RGB16_PNG_PROGRAM_RESULT.json",
+    "sha256": "e67061e21defeb3f0e25e0244cae11b581378de6b2ff2bd6a8a8450bc9697f1e",
+    "required_decision": "retain_freestanding_native_thomas_rgb16_png_program"
+  },
+  "toolchain": {
+    "release": "r27d",
+    "revision": "27.3.13750724",
+    "source_properties_sha256": "fb5eec1ca5dac09442109cf79e9ce49faecd8b312dbc997e88903a394e14994a",
+    "notice_sha256": "4d5224d1c0b54ffa88b0dc0088191638fdbb7227835095dfb98f7f66b416a323",
+    "minimum_api": 21,
+    "abis": {
+      "arm64-v8a": {
+        "compiler": "aarch64-linux-android21-clang.cmd",
+        "elf_machine": "AArch64"
+      },
+      "x86_64": {
+        "compiler": "x86_64-linux-android21-clang.cmd",
+        "elf_machine": "Advanced Micro Devices X86-64"
+      }
+    }
+  },
+  "build": {
+    "language": "C11",
+    "optimization": "O2",
+    "strict_warnings": true,
+    "strict_float": true,
+    "shared_library": "libnf_thomas_rgb16_png_f32_v1.so",
+    "required_dynamic_symbols": [
+      "nf_thomas_rgb16_png_f32_abi_version_v1",
+      "nf_thomas_rgb16_png_f32_workspace_bytes_v1",
+      "nf_thomas_rgb16_png_f32_apply_v1"
+    ],
+    "require_no_undefined_symbols": true,
+    "require_two_fresh_builds": true,
+    "require_byte_exact_rebuild": true,
+    "source_or_header_change_allowed": false
+  },
+  "decision_if_pass": "retain_android_dual_abi_build_for_p8ck",
+  "decision_if_fail": "retain_host_p8ck_and_close_android_build_leaf",
+  "claim_ceiling": "Android arm64-v8a and x86_64 compile/link/reproducibility evidence only; not Android runtime, device execution, JNI/app integration, atomic file publication, calibrated stock response or product promotion."
+}
