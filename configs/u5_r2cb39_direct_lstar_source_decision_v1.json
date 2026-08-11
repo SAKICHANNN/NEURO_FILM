@@ -1,0 +1,37 @@
+{
+  "schema": "neuro_film.u5_r2cb39_direct_lstar_source_decision.v1",
+  "experiment_id": "U5.R2CB39S",
+  "status": "source_eligible_fixed_comparison_open",
+  "parent_decision_path": "configs/u5_r2ao7s_fresh_rawpixls_source_preflight_decision_v1.json",
+  "parent_decision_sha256": "4086e5838d758a34d661413f95d8d37312ed318cd27ba349957be40f55ff1e97",
+  "parent_required_decision": "pass_16_of_18_open_frozen_u5_r2ao7_confirmation",
+  "manifest_path": "outputs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1/run_c/manifest.json",
+  "manifest_sha256": "048992242c82a2cd9efd193c6766065c7148ad0607a5505b88185d0ab781b101",
+  "included_source_ids": [
+    "canon_eos_kiss_f",
+    "canon_eos_1d_mark_iv",
+    "nikon_d2x",
+    "nikon_d200",
+    "sony_nex_3n",
+    "sony_dslr_a290",
+    "fujifilm_finepix_s5000",
+    "olympus_sp550uz",
+    "olympus_e_p7",
+    "panasonic_dmc_gf2",
+    "panasonic_dmc_fz100",
+    "pentax_k_r",
+    "pentax_k100d_super",
+    "leica_d_lux_6",
+    "leica_digilux_3",
+    "kodak_dcs_pro_14n"
+  ],
+  "source_count_exact": 16,
+  "camera_make_count_exact": 9,
+  "exact_decoded_sha_overlap_with_cb27_through_cb38": 0,
+  "excluded_parent_rows": {
+    "fujifilm_x_s10": "test target, excluded by frozen AO7S visual rule",
+    "kodak_dcs_pro_slr_c": "frozen HTTP 404, absent from decoded manifest"
+  },
+  "operator_outputs_inspected_for_this_role": false,
+  "claim_ceiling": "Existing source-only natural-photo role lock for direct-L-star mechanism development; not fresh project-global data, algorithm, preference, film, stock, calibration or product evidence."
+}
