@@ -1,0 +1,65 @@
+{
+  "schema": "neuro_film.u5_r2cb28_monotone_fraction_transport_confirmation_contract.v1",
+  "experiment_id": "U5.R2CB28",
+  "question": "Does the unchanged CB27 monotone gamut-fraction transport retain safety, material style and blind preference on a source-disjoint camera population?",
+  "parents": {
+    "cb27_decision_path": "configs/u5_r2cb27_monotone_fraction_quantile_transport_decision_v1.json",
+    "cb27_decision_sha256": "bc96c668ef422886ce4b693e839f320974b278d51def4619fe3a8f6f7d828097",
+    "cb27_required_status": "retain_monotone_fraction_transport_open_independent_confirmation",
+    "cb16_decision_path": "configs/u5_r2cb16_safe_base_ao6_chroma_residual_decision_v1.json",
+    "cb16_decision_sha256": "965a1c0c0eba887673bd1f9793a5c28425edfe5495cb4bb151a70e3b9f20008f",
+    "cb16_required_status": "close_safe_base_ao6_chroma_magnitude_residual_without_rescue",
+    "cb14_decision_path": "configs/u5_r2cb14_characteristic_vs_ao6_ood_decision_v1.json",
+    "cb14_decision_sha256": "acb2e53031db6e9fe33f84d615ad259ea856190016ab7f26e2030775b8a2c8b9",
+    "cb14_required_status": "candidate_fails_ao6_retain_incumbent",
+    "cb11_contract_path": "configs/u5_r2cb11_fujifilm_characteristic_luma_chroma_v1.json",
+    "cb11_contract_sha256": "fd6127a0c336fdfc661870d8636e8c7a8bbe741f096465e52c73a5a327213b5f",
+    "cb12_contract_path": "configs/u5_r2cb12_characteristic_vs_ao6_fresh_v1.json",
+    "cb12_contract_sha256": "0951b3ec44049f76afda12b90ba40e1bc644000336fcc340b1b862ea986823c1"
+  },
+  "population": {
+    "decision_path": "configs/u5_r2bk13s_orthogonal_residual_replacement_v2_source_decision_v1.json",
+    "decision_sha256": "710d750bc3515136f2b9e42b5689eadccc430a5f0170d68243d935fb79240a16",
+    "required_status": "source_eligible_fixed_comparison_open",
+    "manifest_path": "outputs/u5_r2bk13s_orthogonal_residual_replacement_v2_source_v1/run_a_retry/manifest.json",
+    "manifest_sha256": "a51e463431471f50c120c9dacf88aff06058d4cf8247b3091168299bea6a4547",
+    "source_count_exact": 12,
+    "camera_make_count_exact": 12,
+    "maximum_long_edge": 1600,
+    "role": "independent_mechanism_confirmation_disjoint_from_cb27_development_but_previously_consumed_by_unrelated_algorithms"
+  },
+  "operator": {
+    "identity": "exact unchanged U5.R2CB27 circular hue plus empirical monotone gamut-fraction transport",
+    "implementation_path": "src/eval/monotone_fraction_quantile_transport.py",
+    "implementation_sha256": "2ef3908055e7eea6bc4e6d04a21d8b2f0e6875fa309f6329326e8bf646b6a7ea",
+    "minimum_valid_fraction": 0.0001,
+    "forbidden": "target/reference parameter change, paired affine slope, alternative rank or interpolation, local map, target dose, semantic mask or post-score rescue"
+  },
+  "evaluation": {"maximum_colour_metric_samples_per_source": 65536},
+  "automatic_gates": {
+    "maximum_luminance_reconstruction_error": 0.000001,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio_vs_source": 2.5,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.001,
+    "minimum_population_median_direction_scale": 0.8,
+    "maximum_population_median_fraction_direction_scale_below_0p5": 0.1,
+    "minimum_population_median_style_delta_e76": 5.0,
+    "minimum_population_median_delta_e76_vs_cb11": 1.0,
+    "maximum_confirmed_severe_artifact_count": 0
+  },
+  "blind_protocol": {
+    "rounds": 3,
+    "seed": 20263611,
+    "ties_allowed": false,
+    "minimum_candidate_round_wins": 2,
+    "minimum_candidate_aggregate_choices": 22,
+    "minimum_candidate_source_majorities": 7,
+    "mapping_hidden_until_choices_commit": true
+  },
+  "stop_rules": [
+    "Any automatic failure closes independent confirmation before visual preference.",
+    "Any severe or preference failure closes the exact CB27 operator without rescue.",
+    "Pass establishes only source-disjoint mechanism confirmation and cannot promote a product or stock claim."
+  ],
+  "claim_ceiling": "Independent mechanism confirmation on a CB27-disjoint but otherwise previously consumed CC0 digital-photo source set; not stock response, calibration, population preference or product promotion."
+}
