@@ -1,0 +1,17 @@
+{
+  "schema": "neuro_film.u5_r2cb63_analytic_y_chromaticity_statistics_streaming_decision.v1",
+  "experiment_id": "U5.R2CB63",
+  "formal_report_sha256": "149055ba0343918fe93c854528f3e257ec0563bc7d87cae289c3c176b254a410",
+  "output_sha256_exact": true,
+  "selector_facts_exact": true,
+  "maximum_peak_process_tree_rss_bytes": 4998615040,
+  "peak_rss_ratio_to_baseline": 0.9988941783524158,
+  "wall_ratio_to_baseline": 0.7355404920610169,
+  "automatic_pass": false,
+  "failed_gates": [
+    "peak_rss",
+    "peak_rss_ratio"
+  ],
+  "decision": "close_cb63_hue_statistics_streaming_without_memory_gain",
+  "claim_ceiling": "Output-exact local 24MP engineering negative; no product performance closure."
+}

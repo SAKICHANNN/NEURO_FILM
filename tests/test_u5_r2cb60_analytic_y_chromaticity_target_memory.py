@@ -9,6 +9,9 @@ from src.eval.nonexpansive_fraction_transport import (
     NonexpansiveFractionTransportError,
     nonexpansive_fraction_transport_target,
 )
+from src.eval.nonexpansive_fraction_transport_statistics_streaming import (
+    nonexpansive_fraction_transport_target_statistics_streamed,
+)
 from src.eval.nonexpansive_fraction_transport_streaming import (
     nonexpansive_fraction_transport_target_row_materialized,
 )
@@ -45,6 +48,21 @@ def test_cb60_rejects_invalid_row_chunk_without_output() -> None:
         nonexpansive_fraction_transport_target_row_materialized(
             source, source, weights=WEIGHTS, row_chunk=0
         )
+
+
+@pytest.mark.parametrize("row_chunk", [1, 7, 64])
+def test_cb63_statistics_streamed_target_is_byte_exact(row_chunk: int) -> None:
+    rng = np.random.default_rng(6359)
+    base = rng.uniform(0.002, 0.94, size=(79, 113, 3)).astype(np.float32)
+    ao6 = np.empty_like(base)
+    ao6[..., 0] = np.float32(0.88) * base[..., 0] + np.float32(0.12) * base[..., 1]
+    ao6[..., 1] = np.float32(0.88) * base[..., 1] + np.float32(0.12) * base[..., 2]
+    ao6[..., 2] = np.float32(0.88) * base[..., 2] + np.float32(0.12) * base[..., 0]
+    expected = nonexpansive_fraction_transport_target(base, ao6, weights=WEIGHTS)
+    actual = nonexpansive_fraction_transport_target_statistics_streamed(
+        base, ao6, weights=WEIGHTS, row_chunk=row_chunk
+    )
+    assert actual.tobytes() == expected.tobytes()
 
 
 def test_cb60_complete_profile_output_is_exact() -> None:

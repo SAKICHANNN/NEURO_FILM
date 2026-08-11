@@ -17,6 +17,9 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from src.eval.nonexpansive_fraction_transport_statistics_streaming import (
+    nonexpansive_fraction_transport_target_statistics_streamed,
+)
 from src.eval.nonexpansive_fraction_transport_streaming import (
     nonexpansive_fraction_transport_target_row_materialized,
 )
@@ -49,11 +52,18 @@ def _worker(config: dict, output: Path, scratch: Path) -> dict:
         ROOT / "configs/render_profiles/analytic_y_chromaticity_cb56_v1.json",
         root=ROOT,
     )
+    materializer = config["candidate"].get("target_materializer", "row_bounded_hue_v1")
+    target_builder = {
+        "row_bounded_hue_v1": nonexpansive_fraction_transport_target_row_materialized,
+        "statistics_streamed_v1": nonexpansive_fraction_transport_target_statistics_streamed,
+    }.get(materializer)
+    if target_builder is None:
+        raise ValueError("unsupported CB memory target materializer")
     candidate, facts = render_analytic_y_chromaticity_profile(
         working,
         runtime,
         scratch_root=scratch,
-        target_builder=nonexpansive_fraction_transport_target_row_materialized,
+        target_builder=target_builder,
     )
     image = composite_layers(candidate, [], output_margin=0)
     save_srgb16_png(image, output)
