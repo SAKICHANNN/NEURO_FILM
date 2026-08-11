@@ -59,3 +59,26 @@ def test_cb37_selector_keeps_monotone_tone_with_chroma() -> None:
     assert float(np.max(np.abs(luma_error))) < 1e-6
     assert facts["selected_lstar_inversion_fraction"] == 0.0
     assert facts["global_dose"] > 0.0
+
+
+def test_cb37_tone_endpoints_do_not_create_new_boundaries() -> None:
+    source = np.full((9, 11, 3), 0.5, dtype=np.float32)
+    source[:, :5] = np.float32(0.25)
+    safe_base = np.zeros_like(source)
+    safe_base[:, 5:] = np.float32(1.0)
+    weights = np.asarray([0.2126, 0.7152, 0.0722], dtype=np.float64)
+    candidate, _, _, facts = select_monotone_source_tone_candidate(
+        source,
+        safe_base,
+        safe_base.copy(),
+        weights=weights,
+        boundary_epsilon=1.0 / 65535.0,
+        tone_knot_count=17,
+        dose_grid=[1.0, 0.0],
+        maximum_gradient_ratio=10.0,
+        maximum_lstar_inversion_fraction=0.0,
+        lstar_order_epsilon=0.0001,
+    )
+    assert np.min(candidate) > 1.0 / 65535.0
+    assert np.max(candidate) < 1.0 - 1.0 / 65535.0
+    assert facts["tone_minimum"] > 1.0 / 65535.0

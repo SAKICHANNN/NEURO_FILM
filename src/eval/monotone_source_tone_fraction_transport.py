@@ -132,6 +132,19 @@ def select_monotone_source_tone_candidate(
     tone_y, tone_facts = monotone_quantile_luminance_map(
         source_y, base_y, knot_count=tone_knot_count
     )
+    lower_target = float(
+        np.float32(boundary_epsilon)
+        + np.float32(4.0) * np.spacing(np.float32(boundary_epsilon))
+    )
+    upper_edge = np.float32(1.0 - boundary_epsilon)
+    upper_target = float(upper_edge - np.float32(4.0) * np.spacing(upper_edge))
+    lower = np.where(np.any(source > boundary_epsilon, axis=-1), lower_target, 0.0)
+    upper = np.where(
+        np.any(source < 1.0 - boundary_epsilon, axis=-1), upper_target, 1.0
+    )
+    tone_y = np.clip(tone_y, lower, upper)
+    tone_facts["tone_minimum"] = float(np.min(tone_y))
+    tone_facts["tone_maximum"] = float(np.max(tone_y))
     tone_base = np.repeat(tone_y[..., None], 3, axis=-1).astype(np.float32)
     target_y = np.sum(target64 * w, axis=-1)
     target_chroma = target64 - target_y[..., None]
