@@ -11,6 +11,9 @@ ROOT = Path(__file__).resolve().parents[1]
 CONTRACT_PATH = (
     ROOT / "configs/u6_p4ck_absolute_degradation_blue_noise_release_audit_v1.json"
 )
+EVIDENCE_PATH = (
+    ROOT / "docs/evidence/U6_P4CK_ABSOLUTE_DEGRADATION_BLUE_NOISE_RELEASE_RESULT.json"
+)
 
 
 def _contract() -> dict:
@@ -62,3 +65,14 @@ def test_official_roll_resize_retains_real_nonzero_basis() -> None:
     )
     assert np.count_nonzero(layer) > 0
     assert float(layer.std()) > 0.0
+
+
+def test_evidence_closes_only_the_exact_released_baseline() -> None:
+    evidence = json.loads(EVIDENCE_PATH.read_text(encoding="utf-8"))
+    assert evidence["two_independent_download_reports_byte_identical"] is True
+    assert evidence["array"]["numeric_nonzero_count"] == 0
+    assert evidence["execution"]["branches_with_nonzero_variance"] == 0
+    assert evidence["decision"] == (
+        "FAIL_CLOSED_RELEASED_BLUE_NOISE_TERM_IDENTICALLY_ZERO"
+    )
+    assert "unreleased intended asset" in evidence["claim_ceiling"]

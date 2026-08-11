@@ -1,0 +1,39 @@
+{
+  "schema": "neuro_film.u6_p4ck_absolute_degradation_blue_noise_release_result.v1",
+  "experiment_id": "u6.p4ck-absolute-degradation-blue-noise-release-audit-v1",
+  "date": "2026-08-11",
+  "contract_commit": "5717c107",
+  "implementation_commit": "6f8901b2",
+  "report_sha256": "4936c07d51c1ec327c59439aa3a4335006c108c2527ae6a3b113802dbb16dddf",
+  "stable_evidence_id": "c1df2831036f35c405eabd0292e6d6edcc311e1af210d6f74a70c55dcd61e7d2",
+  "two_independent_download_reports_byte_identical": true,
+  "released_files": {
+    "repository_zip_sha256": "38267f8cb5fa92441af8de20584a47fe9139d8ca4e4714f7251974e962e29c9a",
+    "film_grain_code_sha256": "83d7c3c8a8a496d6401ec24db578aebaa4e712e101bb70ed96d3a4bda5edac10",
+    "blue_noise_sha256": "6bf4d2154a5f7f1b1d04562eea954eb9cddb290f8b2da62a57a827c0ab54ed14"
+  },
+  "array": {
+    "shape": [2048, 2048, 5],
+    "dtype": "float16",
+    "payload_bytes": 41943040,
+    "numeric_nonzero_count": 0,
+    "standard_deviation": 0.0,
+    "positive_zero_bit_count": 10485760,
+    "negative_zero_bit_count": 10485760
+  },
+  "execution": {
+    "official_channel_offset_size_branches": 60,
+    "branches_with_nonzero_variance": 0,
+    "signal_dependent_nonzero_count": 0,
+    "scanner_noise_sigma_for_isolation": 0.0,
+    "source_code_load_resize_and_composition_path_exact": true
+  },
+  "decision": "FAIL_CLOSED_RELEASED_BLUE_NOISE_TERM_IDENTICALLY_ZERO",
+  "interpretation": [
+    "The exact released asset contains only float16 positive and negative zero. The released loader, toroidal roll and bilinear grain-size branches therefore produce an identically zero grain layer.",
+    "With scanner noise isolated to zero, the published k*x^gamma*u signal-dependent blue-noise term is identically zero for every frozen probe. The exact public release cannot serve as an executable blue-noise challenger to P4CJ.",
+    "This is a release-source defect, not evidence against an unreleased intended asset, the conceptual model, or the restoration networks trained by the authors."
+  ],
+  "next_action": "Do not regenerate or silently replace the asset under the published identity. Continue P4CJ's high-order mechanism search using independently specified and executable non-Gaussian or nonstationary controls.",
+  "claim_ceiling": "Exact public-release source and arithmetic audit only; not a judgment of an unreleased intended asset, film stock, physical calibration, restoration quality or product suitability."
+}

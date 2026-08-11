@@ -11488,3 +11488,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   phase controls nevertheless expose stable high-order structure in all four
   sources. Retain only the second-order reference; scanner/process/content
   nuisance prevents a complete emulsion or product claim.
+
+# 2026-08-11 - U6.P4CK closes the released blue-noise baseline at source
+
+- The exact AbsoluteDegradation release code and asset were independently
+  downloaded twice; reports are byte exact (`4936c07d...6dddf`; stable
+  `c1df2831...61e7d2`).
+- The published `2048x2048x5 float16` basis contains only equal counts of `+0`
+  and `-0`. All 60 official roll/resize branches and the isolated
+  signal-dependent term remain identically zero. Do not repair or regenerate
+  the asset under the published identity; continue with an independent
+  executable high-order mechanism.
