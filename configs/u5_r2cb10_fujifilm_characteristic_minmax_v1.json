@@ -1,0 +1,57 @@
+{
+  "schema": "neuro_film.u5_r2cb10_fujifilm_characteristic_minmax_contract.v1",
+  "experiment_id": "U5.R2CB10",
+  "question": "Can a continuous epsilon-anchored min-max RGB coordinate retain the characteristic shape while jointly preserving cube boundaries, channel order and photographic gradients?",
+  "parents": {
+    "cb6_contract_path": "configs/u5_r2cb6_fujifilm_characteristic_forward_proxy_v1.json",
+    "cb6_contract_sha256": "e8f754c96b88491f9e6c1f467ddc1e3f9ec4d8b87afde9c40d0bea4e49b78150",
+    "cb9_decision_path": "configs/u5_r2cb9_fujifilm_characteristic_safe_residual_decision_v1.json",
+    "cb9_decision_sha256": "f888f076238bcfd278730afc80ab87af5745181736452153fd23096c7c4b7660",
+    "cb9_required_decision": "close_analytical_safe_residual_without_rescue"
+  },
+  "population": {
+    "decision_path": "configs/u5_r2bh0s_fixed_bank_oracle_source_preflight_decision_v1.json",
+    "decision_sha256": "0f1a518d7554cb0ce3bcea9e9bf06492604f7484743c96479207421226732ba9",
+    "manifest_path": "outputs/u5_r2bh0s_fixed_bank_oracle_source_preflight_v1/manifest.json",
+    "manifest_sha256": "e7dc8c861871de83a0aa3f92a717e23fd024bed15b8a19b739516c48f1f58e0e",
+    "visual_review_path": "outputs/u5_r2bh0s_fixed_bank_oracle_source_preflight_v1/visual_source_review.json",
+    "visual_review_sha256": "388d298af94e9a8507092717941d96c28414d0fa18ac5e9411b44ff2eaea3e5e",
+    "required_decision": "pass_fresh_population_and_open_complete_fixed_bank_oracle",
+    "required_visual_decision": "pass_source_visual_gate_with_two_fixed_failures_and_no_replacement",
+    "source_count_exact": 10,
+    "camera_make_count_exact": 10,
+    "exclude_ids": ["canon_powershot_v1"],
+    "maximum_long_edge": 1280
+  },
+  "operator": {
+    "input": "relative display-linear sRGB only",
+    "nominal_strength": 0.2,
+    "boundary_epsilon": 0.00196078431372549,
+    "anchored_curve": "identity outside [epsilon,1-epsilon]; inside, normalize to [0,1], apply the exact CB8 convex characteristic curve, then denormalize",
+    "minmax_coordinate": "map per-pixel min and max with the anchored curve and linearly preserve every channel's normalized position between them",
+    "contracts": "continuous, symmetric in channel labels, channel-order preserving, neutral preserving, cube bounded and no new epsilon boundary",
+    "forbidden": "hard clipping, per-pixel alpha minimum, spatial smoothing, curve refit or strength rescue"
+  },
+  "automatic_gates": {
+    "source_count_exact": 10,
+    "camera_make_count_exact": 10,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio_vs_source": 2.5,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.001,
+    "minimum_population_median_style_delta_e76": 2.0,
+    "minimum_population_median_joint_basic_residual_delta_e76": 0.5,
+    "minimum_rows_joint_basic_residual_delta_e76_ge_0p25": 8,
+    "two_byte_identical_reports_and_outputs": true,
+    "maximum_confirmed_severe_visual_artifact_count": 0
+  },
+  "evaluation": {
+    "gradient_sign_epsilon_lstar": 0.0001,
+    "colour_metric_max_samples": 65536
+  },
+  "stop_rules": [
+    "Do not change curve, strength, epsilon, coordinate, population, controls or gates after candidate pixels are scored.",
+    "Any automatic failure closes this exact coordinate before visual review and without rescue.",
+    "Pass opens severe visual review only; it does not establish Velvia calibration, authenticity, preference or product promotion."
+  ],
+  "claim_ceiling": "Rights-cleared photographic development evidence for a continuous intrinsic RGB coordinate compiled from a retained reversal characteristic shape; not Velvia calibration, authenticity, preference or product promotion."
+}

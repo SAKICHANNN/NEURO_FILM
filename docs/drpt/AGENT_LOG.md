@@ -11179,3 +11179,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close the exact alpha-field executor without smoothing it on the consumed
   cohort. The next mechanism must use a continuous globally monotone intrinsic
   coordinate, not another boundary patch or dose rescue.
+
+# 2026-08-11 - Freeze U5.R2CB10 continuous min-max execution
+
+- CB10 replaces CB9's discontinuous alpha minimum with a symmetric intrinsic
+  coordinate. The frozen characteristic curve is anchored to identity at the
+  epsilon boundaries, applied to each pixel's RGB minimum and maximum, and
+  every channel retains its normalized position between those endpoints.
+- The construction is continuous, cube/boundary preserving and channel-order
+  preserving by design. The same development population and effect,
+  joint-basic, gradient and severe gates are frozen before score.
