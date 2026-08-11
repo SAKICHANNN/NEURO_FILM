@@ -1,0 +1,105 @@
+{
+  "schema": "neuro_film.u6_p4cj_absolute_cinema_archival_grain_contract.v1",
+  "experiment_id": "u6.p4cj-absolute-cinema-archival-grain-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4CJ",
+  "date_frozen": "2026-08-11",
+  "question": "On wholly new public-domain archival-film sources from the 2026 AbsoluteCinema benchmark, does the retained P4BS scanner-convolved Thomas spectrum transfer beyond its original uniform-scan cohort, and do phase-sensitive residual statistics reject any Gaussian second-order field as a complete grain model?",
+  "primary_source": {
+    "paper_title": "AbsoluteDegradation: A Physics-Inspired Synthetic Film-Degradation Pipeline and Archival Film Restoration Benchmark",
+    "paper_url": "https://arxiv.org/abs/2607.02131",
+    "dataset_ref": "absolutedegradation/absolutecinema-real-scene-split-review-sample",
+    "dataset_version": 6,
+    "dataset_api_url": "https://www.kaggle.com/api/v1/datasets/list/absolutedegradation/absolutecinema-real-scene-split-review-sample",
+    "dataset_page_url": "https://www.kaggle.com/datasets/absolutedegradation/absolutecinema-real-scene-split-review-sample",
+    "license": "CC-BY-4.0",
+    "source_scope": "910-frame reviewer sample drawn from 30 public-domain Library of Congress archival videos; scanner, film stock, process, restoration and transfer functions remain nuisance variables"
+  },
+  "selection": {
+    "metadata_only_rule": "Enumerate dataset version 6, retain PNG rows grouped by top-level source and clip, keep sources whose lexicographically first clip has exactly ten frames, then select the first four source names and all ten ordered frames from each first clip.",
+    "selected_source_names": [
+      "a_gold_necklace__http_www.loc.gov_item_2015600160",
+      "a_storm_at_sea__http_www.loc.gov_item_00694309",
+      "a_trip_down_market_street_before_the_fire__http_www.loc.gov_item_00694408",
+      "army_pack_train_bringing_supplies__http_www.loc.gov_item_00694429"
+    ],
+    "selected_clip": "000",
+    "expected_source_count": 4,
+    "expected_frames_per_source": 10,
+    "expected_total_bytes": 33111370,
+    "selected_metadata_lock_sha256": "b05e6645bcf865ef1f8328247abd9be560adcab722837490b3635e78f2dcb7f8",
+    "maximum_download_bytes": 35000000,
+    "download_destination_rule": "caller-owned scratch outside the repository data junction; no project data tree creation"
+  },
+  "parent": {
+    "p4bs_decision_path": "configs/u6_p4bs_real_uniform_thomas_confirmation_decision_v1.json",
+    "p4bs_decision_sha256": "a0b01b0fc08b407c26169f16d5efbc87aa9a20146e42d33ea113f8200ee57ff3",
+    "required_decision": "retain_generic_scanner_convolved_thomas_mechanism_candidate",
+    "particle_sigma_pixels": 1.3253699417769098,
+    "cluster_sigma_pixels": 1.1268619873805532,
+    "mean_offspring": 27.765942352935905,
+    "gaussian_control_sigma_pixels": 2.1820811455665274
+  },
+  "decode": {
+    "accepted_png_modes": ["L", "RGB", "RGBA"],
+    "rgba_requires_opaque_alpha": true,
+    "rgb_scalar_conversion": "BT.709 coefficients 0.2126,0.7152,0.0722 applied directly to decoded uint8 code values divided by 255; this is an archival-code residual diagnostic, not scene-linear film density",
+    "required_dtype": "uint8",
+    "require_finite": true
+  },
+  "patch_observation": {
+    "patch_size_pixels": 96,
+    "border_pixels": 48,
+    "patches_per_frame": 8,
+    "lowpass_gaussian_sigma_pixels": 3.0,
+    "accepted_patch_mean_interval": [0.1, 0.9],
+    "selection_score": "RMS spatial gradient of the low-pass patch; deterministic lowest scores with y/x tie break",
+    "residual": "decoded code scalar minus reflect-mode Gaussian low-pass",
+    "normalization": "subtract patch mean and divide by population RMS; reject RMS below 1e-6"
+  },
+  "second_order": {
+    "radial_bin_count": 24,
+    "minimum_frequency_cycles_per_pixel": 0.010416666666666666,
+    "maximum_frequency_cycles_per_pixel": 0.45,
+    "signature": "unit-normalized centered log annular power",
+    "acf_lags_yx": [[0, 1], [1, 0], [1, 1], [0, 2], [2, 0], [2, 2], [0, 4], [4, 0]],
+    "models": ["fixed_p4bs_thomas", "fixed_p4bs_gaussian_control"],
+    "minimum_sources_where_thomas_beats_gaussian_nps": 3,
+    "minimum_sources_where_thomas_beats_gaussian_acf": 3,
+    "minimum_median_nps_improvement_over_gaussian": 0.1,
+    "minimum_median_acf_improvement_over_gaussian": 0.1,
+    "maximum_worst_nps_error_ratio": 1.0,
+    "maximum_worst_acf_error_ratio": 1.0
+  },
+  "phase_sensitive": {
+    "features": ["skew", "excess_kurtosis", "local_energy_cv_8x8", "absolute_excursion_component_density_z2p5"],
+    "phase_scrambles_per_patch": 128,
+    "counter_seed": 2608110401,
+    "material_z_threshold": 4.0,
+    "half_split_z_threshold": 2.0,
+    "minimum_features_per_source": 2,
+    "minimum_sources_for_material_phase_evidence": 3,
+    "half_split": "even versus odd ordered frames within each source",
+    "interpretation": "Phase-scrambled controls preserve each observed patch magnitude spectrum exactly. Stable feature departures therefore test information absent from any Gaussian random field with the same second-order spectrum."
+  },
+  "automatic_gates": {
+    "require_exact_source_sizes": true,
+    "require_source_sha256_capture": true,
+    "require_at_least_expected_patches": true,
+    "require_two_byte_identical_reports": true,
+    "require_zero_project_data_writes": true
+  },
+  "branch_rule": {
+    "second_order_pass_phase_null": "Retain P4BS as a generic cross-source archival second-order reference only; no microscopic, stock, scanner or product claim.",
+    "second_order_pass_phase_material": "Retain only the P4BS second-order transfer and record that real archival residuals require a non-Gaussian or nonstationary observable before any image-formation claim.",
+    "second_order_fail": "Close transfer of the exact P4BS spectrum beyond its original same-scanner cohort and seek a new measured response; do not refit on these four sources."
+  },
+  "forbidden": [
+    "fit P4BS or Gaussian parameters on selected archival pixels",
+    "change sources, clips, patches, residual filter, features, thresholds or gates after download",
+    "treat the selected flat patches as emulsion-only observations",
+    "infer film stock, process, scanner, microscopic cloud size or calibrated grain",
+    "render product photographs or promote the P4BZ-closed photographic hybrid",
+    "write selected payloads under the unavailable repository data junction"
+  ],
+  "claim_ceiling": "Independent multi-source archival-code residual diagnostic using a 2026 public benchmark; scanner/process/content/degradation remain mixed, and no stock, microscopy, calibration or product claim is allowed."
+}
