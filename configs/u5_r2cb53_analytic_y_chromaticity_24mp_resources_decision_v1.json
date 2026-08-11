@@ -1,0 +1,19 @@
+{
+  "schema": "neuro_film.u5_r2cb53_analytic_y_chromaticity_24mp_resources_decision.v1",
+  "experiment_id": "U5.R2CB53",
+  "contract_sha256": "3839d71a1d33597dd92456d9a7884780da0bc1e775ca095ac93e51ee5eaea0b0",
+  "runner_sha256": "7bf7720d5b551e3daad4f57e68523842c59d1b35a484e9c4572af9e89858b0aa",
+  "formal_report_sha256": "beddc89eecb54c8b2342a7f951f0ef031419996e35daf6969e230efad63f4fb9",
+  "stable_evidence_id": "d4cb3157709fa3485bead934a0d802825c868363dbbde08dbbe9d5b4a8adbced",
+  "observed": {
+    "resource_limit_exceeded": true,
+    "peak_process_tree_rss_bytes": 4376952832,
+    "wall_seconds_before_fail_fast": 8.911112600006163,
+    "worker_result_published": false
+  },
+  "automatic_pass": false,
+  "decision": "close_cb53_open_exact_streaming_optimization",
+  "next_leaf": "Implement an output-exact row-streamed CB50 selector with bounded scratch for global quantiles, then rerun the unchanged 24MP workload and gates.",
+  "product_default_changed": false,
+  "claim_ceiling": "Local Windows/Python synthetic 24MP resource failure only; it diagnoses the full-array research implementation, not the analytic operator quality, native runtime or product performance."
+}
