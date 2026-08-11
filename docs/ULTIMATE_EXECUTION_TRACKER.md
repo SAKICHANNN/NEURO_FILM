@@ -1427,3 +1427,10 @@ byte exact (`2a80ad0b...434a3`); all boundary, gradient-magnitude, dose and styl
 gates pass, but adjacent L* order inversion reaches `3.47e-5` against exact
 zero. Visual review is forbidden. Any order-preserving successor must develop
 on a different population; no BH1S threshold/dose rescue is allowed.
+
+U5.R2CB35 shows dose selection cannot repair exact L* order. Two diagnostic
+reports are exact (`e587be3b...d4e66`); BK17's second source has no dual-safe
+dose because dose zero already inverts `2.88e-6` of eligible adjacencies, while
+the best dose reaches only `2.62e-7`. Partial scratch is removed and visual
+review stays forbidden. A successor must reconstruct exact source luminance,
+not densify the grid or relax the zero gate.

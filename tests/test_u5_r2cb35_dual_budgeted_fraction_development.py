@@ -13,6 +13,7 @@ from src.eval.dual_budgeted_fraction_transport import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u5_r2cb35_dual_budgeted_fraction_development_v1.json"
+DECISION = ROOT / "configs/u5_r2cb35_dual_budgeted_fraction_development_decision_v1.json"
 
 
 def test_cb35_contract_freezes_dual_global_budget_on_disjoint_sources() -> None:
@@ -66,3 +67,15 @@ def test_cb35_selector_fails_when_base_already_reverses_order() -> None:
             maximum_lstar_inversion_fraction=0.0,
             lstar_order_epsilon=0.0001,
         )
+
+
+def test_cb35_decision_records_base_order_failure() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["report_sha256"] == (
+        "e587be3b062e7dbd6f1262c1638d5a91a7c83cd1a297070435d07304bf3d4e66"
+    )
+    assert decision["failure"]["dose0_lstar_inversion_fraction"] > 0.0
+    assert decision["partial_artifacts_removed"] is True
+    assert decision["decision"] == (
+        "close_global_dual_budget_because_base_itself_breaks_exact_lstar_order"
+    )

@@ -11675,3 +11675,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Adjacent L* order inversion reaches `3.47e-5` against the frozen exact-zero
   gate, so visual review is forbidden. Close CB33 without BH1S rescue; a new
   analytic order-preserving executor must develop on another population.
+
+# 2026-08-12 - U5.R2CB35 closes global dual-budget dose selection
+
+- BK17 is hash-disjoint from all CB27-CB34 populations. Two exact fail-closed
+  diagnostics (`e587be3b...d4e66`; stable `45d18430...b6e4a2`) stop at its
+  second source and remove partial outputs.
+- Dose zero itself has `2.88e-6` L* adjacency inversions; the best frozen dose
+  still has `2.62e-7`. Therefore dose search cannot meet the exact-zero gate.
+  Change to exact source-luminance reconstruction; do not rescue BK17.

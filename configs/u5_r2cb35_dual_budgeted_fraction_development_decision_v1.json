@@ -1,0 +1,21 @@
+{
+  "schema": "neuro_film.u5_r2cb35_dual_budgeted_fraction_development_decision.v1",
+  "experiment_id": "U5.R2CB35",
+  "report_sha256": "e587be3b062e7dbd6f1262c1638d5a91a7c83cd1a297070435d07304bf3d4e66",
+  "stable_evidence_id": "45d1843047772c0c33a07bfbb172bd3ac8d33b38fd238c70f8680c1ca3b6e4a2",
+  "repeat_byte_identical": true,
+  "automatic_pass": false,
+  "failure": {
+    "source_id": "eyedeas_e1",
+    "completed_source_count": 1,
+    "minimum_lstar_inversion_fraction": 0.00000026213955156311195,
+    "minimum_lstar_inversion_dose": 0.1875,
+    "dose0_lstar_inversion_fraction": 0.0000028835350671942313,
+    "dose0_gradient_ratio": 1.0479747584514867
+  },
+  "partial_artifacts_removed": true,
+  "visual_review_status": "forbidden",
+  "decision": "close_global_dual_budget_because_base_itself_breaks_exact_lstar_order",
+  "next_direction": "Change the mechanism to exact source-luminance reconstruction followed by cube-safe chroma execution; do not densify dose, relax zero inversion or rescue BK17.",
+  "claim_ceiling": "Stable pre-render mechanism failure only; not an algorithm pass, independent confirmation, stock response, calibration, preference or product decision."
+}
