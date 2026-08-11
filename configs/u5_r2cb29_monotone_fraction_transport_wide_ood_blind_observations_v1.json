@@ -1,0 +1,32 @@
+{
+  "schema": "neuro_film.u5_r2cb29_monotone_fraction_transport_wide_ood_blind_observations.v1",
+  "experiment_id": "U5.R2CB29",
+  "report_sha256": "fcd377e50359d2c0dfe9789fe12d3bcf085ff0e02c8401e80f5976afa3f542ba",
+  "stable_evidence_id": "c99f8168206e96d79aed16ae445f584cd4224e9da4287d5b99dac0c506cbda17",
+  "mapping_read_before_commit": false,
+  "review_policy": "severe-artifact veto first, then visibly stylized film-inspired appeal",
+  "confirmed_severe_artifact_count": 0,
+  "rounds": [
+    {
+      "round": 1,
+      "sheet_sha256": "e047426b95611097e9c448ac31530bae21fdd85e4003e4dd2e0dda4cda63a936",
+      "choices_in_display_order": ["B", "B", "B", "B", "B", "A", "A", "A", "A", "A"]
+    },
+    {
+      "round": 2,
+      "sheet_sha256": "cd8b14306b4415b7b784a55b2dd8f5ed8d65da4da30d0ae092862fea55071814",
+      "choices_in_display_order": ["B", "B", "B", "B", "B", "B", "B", "B", "B", "A"]
+    },
+    {
+      "round": 3,
+      "sheet_sha256": "3d397729915a8bc6ef1794777c74092fca326a754a77f83721ed224db8e8960a",
+      "choices_in_display_order": ["A", "B", "A", "B", "B", "B", "B", "A", "B", "B"]
+    }
+  ],
+  "observations": [
+    "The denser rendering is consistently preferred on foliage, water, branches, pylons, buildings and village scenes because the pale alternative often adds a cyan or pink veil.",
+    "The lifted magenta castle rendering is preferred over the very dark alternative because it restores visible subject separation without a severe structural defect.",
+    "No option is rejected for severe geometry, text, object, banding, seam, clipping-block or repeated-texture corruption at contact-sheet scale."
+  ],
+  "claim_ceiling": "Autonomous blind visual evidence on a third modern-camera OOD contact-sheet population; not population preference, full-resolution universal safety, stock response, calibration or product promotion."
+}
