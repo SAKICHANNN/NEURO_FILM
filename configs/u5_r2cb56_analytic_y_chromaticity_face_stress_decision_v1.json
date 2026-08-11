@@ -1,0 +1,35 @@
+{
+  "schema": "neuro_film.u5_r2cb56_analytic_y_chromaticity_face_stress_decision.v1",
+  "experiment_id": "U5.R2CB56",
+  "contract_sha256": "6e874588d5980e34fd35e528926cda7e8d64421acee35b5bb0c3bc40f103280e",
+  "formal_report_sha256": "d7b7fcde14f09b8decd628f7a50f25216e85d50a1fb410ddb85ef3e0990b2996",
+  "stable_evidence_id": "85ce8fd5199f2887d9970aca11bfca01021ed82325c2f4de22d8bd811c2c1238",
+  "two_fresh_reports_and_outputs_exact": true,
+  "automatic_pass": true,
+  "metrics": {
+    "style_delta_e76": 5.090187564952593,
+    "delta_e76_vs_cb11": 6.605302793167843,
+    "global_dose": 1.0,
+    "median_direction_scale": 1.0,
+    "fraction_direction_scale_below_0p5": 0.0010223388671875,
+    "median_gamut_scale": 1.0,
+    "fraction_gamut_scale_below_0p8": 0.001293182373046875,
+    "maximum_luminance_reconstruction_error": 2.804209542350833e-08,
+    "new_hard_boundary_fraction": 0.0,
+    "p999_gradient_ratio_vs_source": 1.2057711982149018,
+    "adjacent_lstar_gradient_sign_inversion_fraction": 0.0
+  },
+  "visual_review": {
+    "source_sha256": "5e97915f74ec742c808482d6e4899703621c146a5dfc41908a496b659b5893f9",
+    "ao6_sha256": "d757d00b9765a5fd4c7de8a4329dae90c745a9d244a1530f68e321bdec3df38a",
+    "candidate_sha256": "1b4d552d402557aaab0bdb5d528c8fb0f9d3a2f0d28cc7a9c30ce7bc65cf1873",
+    "contact_sheet_sha256": "eef91a8c05c2fe08ade041adf4cec8253f223a98a0eeb963696cf1a1ed3390fa",
+    "confirmed_severe_artifact_count": 0,
+    "observations": "At full 512x512 decoded resolution the candidate preserves face geometry, eyes, hair, skin texture, fingers and garment edges. The cooler muted colour is intended look variation; no banding, posterization, block corruption, red speckle, unintended clipping or seam is confirmed."
+  },
+  "decision": "pass_cb56_decoded_face_severe_retain_analytic_y_chromaticity_research_champion",
+  "next_leaf": "Integrate the exact streamed operator as an explicit opt-in research profile path and verify parity through the real renderer without changing the AO6 product default.",
+  "product_default_changed": false,
+  "original_file_ingress_replayed": false,
+  "claim_ceiling": "Decoded-pixel face severe-artifact pass for the unchanged streamed Look Approximation; not original file ingress replay, film truth, stock response, calibration, population preference or product promotion."
+}

@@ -57,3 +57,16 @@ def test_cb56_keeps_cb52_automatic_gates() -> None:
     assert config["source"]["claim_exclusion"].startswith(
         "The unavailable original file is not reopened"
     )
+
+
+def test_cb56_decision_preserves_claim_boundary() -> None:
+    decision = json.loads(
+        (
+            ROOT
+            / "configs/u5_r2cb56_analytic_y_chromaticity_face_stress_decision_v1.json"
+        ).read_text(encoding="utf-8")
+    )
+    assert decision["automatic_pass"] is True
+    assert decision["visual_review"]["confirmed_severe_artifact_count"] == 0
+    assert decision["product_default_changed"] is False
+    assert decision["original_file_ingress_replayed"] is False
