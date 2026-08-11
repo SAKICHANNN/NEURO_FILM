@@ -1,0 +1,57 @@
+{
+  "schema": "neuro_film.u5_r2cb33_gradient_budgeted_fraction_gold_stress_contract.v1",
+  "experiment_id": "U5.R2CB33",
+  "question": "Can one per-image global residual dose maximize CB32 style subject to the unchanged image-space gradient budget, without local masks or safety-gate relaxation?",
+  "parents": {
+    "cb32_contract_path": "configs/u5_r2cb32_nonexpansive_fraction_gold_stress_v1.json",
+    "cb32_contract_sha256": "9cddfd8686830c9d134ba130911c0e4f442b62bef7f8c675587ff9bccd1403af",
+    "cb32_decision_path": "configs/u5_r2cb32_nonexpansive_fraction_gold_stress_decision_v1.json",
+    "cb32_decision_sha256": "7927b2a1f63fd7b8ce702d67f1ea3b97934178db785c10a017f13de61db3b5ef",
+    "cb32_required_decision": "close_fraction_only_nonexpansive_transport_on_gold_gradient_gate"
+  },
+  "population": {
+    "frozen_set_path": "outputs/filmcase/u41_provisional_eval_set.json",
+    "frozen_set_sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15",
+    "expected_available_source_count": 40,
+    "expected_available_gold_count": 8,
+    "expected_available_stress_count": 32,
+    "required_unavailable_ids": ["FS_FACE_01"],
+    "maximum_long_edge": 1600,
+    "role": "development_only_consumed_by_CB30_CB32",
+    "input_rail": "legacy hash-bound encoded-sRGB JPEG display proxies; not RAW or scene-linear evidence"
+  },
+  "operator": {
+    "base": "exact CB11 luminance/chroma-safe output",
+    "full_target": "exact CB32 origin-anchored 257-knot 1-Lipschitz fraction candidate after unchanged gamut-safe execution",
+    "dose_grid": [1.0, 0.9375, 0.875, 0.8125, 0.75, 0.6875, 0.625, 0.5625, 0.5, 0.4375, 0.375, 0.3125, 0.25, 0.1875, 0.125, 0.0625, 0.0],
+    "selection": "first descending dose whose p99.9 RGB gradient magnitude is at most 1.35 times the source p99.9 gradient magnitude",
+    "execution": "one scalar dose for the whole image: CB11 + dose*(CB32-CB11), evaluated before encoding or review",
+    "luminance": "exact CB11 luminance because the residual is zero-luminance up to float32 reconstruction tolerance",
+    "forbidden": "continuous gate fitting, local dose, semantic mask, spatial filtering, per-channel dose, changed gradient metric or post-review rescue"
+  },
+  "automatic_gates": {
+    "maximum_luminance_reconstruction_error": 0.000001,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio_vs_source": 1.35,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.0,
+    "minimum_population_median_direction_scale": 0.8,
+    "maximum_population_median_fraction_direction_scale_below_0p5": 0.1,
+    "minimum_gold_median_style_delta_e76": 5.0,
+    "minimum_stress_median_style_delta_e76": 5.0,
+    "minimum_population_median_global_dose": 0.5,
+    "maximum_fraction_global_dose_below_0p25": 0.1,
+    "require_exact_repeat": true,
+    "require_id11_presence": true
+  },
+  "visual": {
+    "maximum_confirmed_severe_artifact_count": 0,
+    "review_all_contact_sheets": true,
+    "review_original_resolution_ids": ["01", "05", "08", "09", "11", "18", "21", "29"]
+  },
+  "stop_rules": [
+    "Any automatic, dose-floor or style-salience failure closes this exact global-dose executor before visual review.",
+    "Do not densify the dose grid, lower the style floor or change the gradient metric on the consumed cohort.",
+    "A development pass requires separately frozen source-disjoint automatic and severe confirmation before any research-champion or product reconsideration."
+  ],
+  "claim_ceiling": "Development-only gradient-budgeted global-strength evidence on the already consumed 40-row frozen cohort; not independent confirmation, complete face closure, stock response, calibration, population preference or product promotion."
+}
