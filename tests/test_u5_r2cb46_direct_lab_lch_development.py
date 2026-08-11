@@ -11,6 +11,7 @@ from src.eval.fujifilm_characteristic_photographic import _compiled_curve
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u5_r2cb46_direct_lab_lch_development_v1.json"
+DECISION = ROOT / "configs/u5_r2cb46_direct_lab_lch_development_decision_v1.json"
 
 
 def _curve():
@@ -89,3 +90,13 @@ def test_cb46_out_of_gamut_chroma_is_reduced_without_rgb_clipping() -> None:
     )
     assert np.min(candidate) >= 0.0 and np.max(candidate) <= 1.0
     assert facts["median_gamut_chroma_retention"] < 1.0
+
+
+def test_cb46_decision_closes_lab_roundtrip_for_analytic_rgb_family() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["repeat_report_sha256_exact"] is True
+    assert decision["failure"]["completed_source_count"] == 0
+    assert decision["visual_review_status"] == "forbidden"
+    assert decision["decision"] == (
+        "close_direct_lab_roundtrip_open_analytic_luminance_eigen_affine"
+    )

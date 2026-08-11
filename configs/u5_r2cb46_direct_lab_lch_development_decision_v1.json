@@ -1,0 +1,17 @@
+{
+  "schema": "neuro_film.u5_r2cb46_direct_lab_lch_development_decision.v1",
+  "experiment_id": "U5.R2CB46",
+  "status": "failed_closed_before_complete_render",
+  "report_sha256": "f4ea28ed7837caba1109e556ecf6538087e027574e2b4fc6f1ab5e5b72cfb063",
+  "stable_evidence_id": "9c965c4cd3b459606bd31be69f21dc19f89c48b7627f330a1d23ca0c1dd074ec",
+  "repeat_report_sha256_exact": true,
+  "failure": {
+    "completed_source_count": 0,
+    "reason": "CB46 dose grid has no safe direct-Lab candidate"
+  },
+  "visual_review_status": "forbidden",
+  "decision": "close_direct_lab_roundtrip_open_analytic_luminance_eigen_affine",
+  "next_leaf": "Fit one global RGB affine operator whose exact CIELAB-Y row is constrained to a positive affine scalar, while the two chromatic rows remain free; execute only by one whole-image source-to-affine dose so luminance ordering is analytic before float32 validation.",
+  "forbidden": "CB46 dose or tolerance rescue, alternate Lab space on the same cohort, per-pixel repair, changed target or relaxed safety gate",
+  "claim_ceiling": "Mechanism evidence that fixed-L-star Lab construction still cannot satisfy exact order after the project float32 Lab-RGB roundtrip on the first source; not visual, stock, calibration, preference or product evidence."
+}
