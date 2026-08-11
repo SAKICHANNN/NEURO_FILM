@@ -1,0 +1,50 @@
+{
+  "schema": "neuro_film.u6_p8cm_android_thomas_rgb16_png_runtime_evidence.v1",
+  "experiment_id": "u6.p8cm-android-thomas-rgb16-png-runtime-v1",
+  "status": "pass-retain-android-virtual-runtime-for-p8ck",
+  "contract_commits": ["1609f035", "17a1d42b"],
+  "implementation_commit": "fc514b5e",
+  "contract_sha256": "98aee0e324918788a7d9e916dfcef734df9130275ea0209a3090a10bedd76a62",
+  "probe_sha256": "b7e4fdb4f018291d96af499f83cbae8925ae4d05072e9ce70d95dfcfc8a52258",
+  "runner_sha256": "2910f66f66e948d0f1bfe3753dab4e0b40373612d06809b60e0dd025df77eb1a",
+  "evaluator_sha256": "b1cd6a76e3d0d04395f4eb6dc47b3c9c6eda57caf72defd66ed77860b399dd20",
+  "test_sha256": "42ec38e246f358a50a3947c40d4b489273269d1c9227cc4fb0b6e6f243e9ab41",
+  "formal_report_paths": [
+    "outputs/experiments/u6_p8cm_android_thomas_rgb16_png_runtime_v1/report_run1.json",
+    "outputs/experiments/u6_p8cm_android_thomas_rgb16_png_runtime_v1/report_run2.json"
+  ],
+  "formal_report_sha256": [
+    "5200e611e6775cd89e387b4c7aa504e99da21b276c648377d996b7bb1571bd07",
+    "9a232ae9e69ac05af6acee7682b7edacf01a44dbd2bac4db49ec44c00ff64f23"
+  ],
+  "stable_evidence_id": "4b39b35f6ab977e879ce277c939fc37f9a4368692a384cdb16514d7a3fbd5388",
+  "runtime": {
+    "api": 34,
+    "abi": "x86_64",
+    "model": "sdk_gphone64_x86_64",
+    "build_fingerprint": "google/sdk_gphone64_x86_64/emu64xa:14/UE1A.230829.050/12077443:userdebug/dev-keys",
+    "system_image_source_properties_sha256": "bd7597e0dfa855335194fbafaf63bde93aa86bc3b56cea73cd54635715e77abc",
+    "emulator_sha256": "7f101ca769c15e8b6311801c1487f28583ce643fa87d19a9e0da4cc230be7653",
+    "adb_sha256": "957e46b8615f7af5b7292a2ddabe98d2e61940c3fb2b0545756507f080613e71",
+    "complete_formal_processes": 2,
+    "wipe_data_cold_boots_per_process": 2,
+    "fresh_probe_processes_per_boot": 2,
+    "boot_seconds": [82.953, 80.406, 65.563, 65.531],
+    "emulator_force_cleanup_required": false,
+    "zero_surviving_probe_processes": true,
+    "zero_surviving_emulator_processes": true
+  },
+  "artifacts": {
+    "host_probe_sha256": "4a8687554575c1dba58121279d34771d45165e5e43a09dbb038e9f5c88aed3bd",
+    "android_probe_sha256": "b4c202650c7b2b84b7cef3749e2f72d331900c3ae1479ea05ea96426d408e4bb",
+    "png_bytes": 16467,
+    "png_sha256": "7737cac78befc65cec140fd5c22c89a7b750faca24f18781896709a70f6ba31a",
+    "host_android_png_byte_exact": true,
+    "stdout_fact_exact": true,
+    "invalid_input_zero_sink_calls": true,
+    "failed_sink_status_exact": true
+  },
+  "decision": "retain_android_virtual_runtime_for_p8ck",
+  "interpretation": "The complete P8CK caller-workspace C11 path executes on Android 14 x86_64 and emits host-identical PNG bytes and facts across eight fresh probe processes spanning four wipe-data cold boots. Failure atomicity facts and owned-process cleanup are exact.",
+  "claim_ceiling": "Private Android 14 x86_64 virtual-device execution of one fixed P8CK fixture; not physical arm64, JNI/app/media integration, atomic file publication, calibrated stock response or product promotion."
+}

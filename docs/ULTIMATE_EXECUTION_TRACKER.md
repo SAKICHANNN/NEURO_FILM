@@ -1330,3 +1330,10 @@ NDK r27d builds arm64-v8a and x86_64 shared libraries twice with exact object
 and final-library bytes; ELF machine identities and all three public P8CK
 entry points are present. Retain the dual-ABI build; actual Android execution
 and caller-owned atomic publication remain open.
+
+U6.P8CM closes one real target-runtime boundary. Across two complete formal
+processes, four Android 14 x86_64 wipe-data cold boots and eight fresh native
+probe processes emit the exact host PNG `7737cac7...a31a`, identical facts and
+the expected pre-output/failing-sink statuses; probe and emulator processes
+both cleanly exit. Retain virtual-device runtime evidence. Physical arm64,
+JNI/app/media integration and caller-owned atomic publication remain open.

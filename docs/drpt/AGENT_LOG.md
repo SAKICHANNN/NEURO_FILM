@@ -2,6 +2,18 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-11 - U6.P8CM Android 14 virtual runtime passes
+
+- A host preflight correctly rejected the first synthetic amplitude fixture
+  before any Android execution; the amplitude was reduced prospectively while
+  runtime gates, dimensions, seeds, sources and target stayed fixed.
+- Two complete formal processes span four x86_64 wipe-data cold boots and
+  eight fresh native probes. Every Android PNG is byte-identical to host
+  (`7737cac7...a31a`), facts/failure behavior are exact, and stable ID is
+  `4b39b35f...d5388`.
+- No probe or emulator process survives. Retain private Android 14 virtual
+  runtime evidence only; physical arm64 and app/media publication remain open.
+
 # 2026-08-11 - U6.P8CL Android dual-ABI target build passes
 
 - Verified the exact official NDK r27d archive before extraction, then built
