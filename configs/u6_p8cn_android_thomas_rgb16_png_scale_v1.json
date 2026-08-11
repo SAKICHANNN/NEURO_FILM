@@ -1,0 +1,36 @@
+{
+  "schema": "neuro_film.u6_p8cn_android_thomas_rgb16_png_scale_contract.v1",
+  "experiment_id": "u6.p8cn-android-thomas-rgb16-png-scale-v1",
+  "node": "ULT > U6 > U6.P8 > U6.P8CN",
+  "date_frozen": "2026-08-11",
+  "status": "contract_frozen_confirmation_ready",
+  "question": "Does the exact freestanding Thomas RGB16 PNG core retain host-identical bytes and bounded practical runtime at 12MP on an Android 14 x86_64 virtual device?",
+  "parent": {
+    "path": "docs/evidence/U6_P8CM_ANDROID_THOMAS_RGB16_PNG_RUNTIME_RESULT.json",
+    "sha256": "3198585b6700c4ea5dce4d86bf5e65408a044c80a94edb87ff0f04dfa5e21839"
+  },
+  "fixture": {
+    "height": 3000,
+    "width": 4000,
+    "row_partition": 128,
+    "exposure_formula": "(((pixel_index * 17 + channel * 13) mod 193) - 96) / 64",
+    "profile": "exact P8CM synthetic amplitude, three Thomas fields and identity neutral gauge"
+  },
+  "confirmation": {
+    "host_processes": 2,
+    "android_wipe_data_cold_boots": 2,
+    "android_processes_per_boot": 1,
+    "require_host_android_png_and_decoded_bytes_exact": true
+  },
+  "gates": {
+    "max_host_wall_seconds": 30.0,
+    "max_host_peak_rss_bytes": 314572800,
+    "max_android_command_seconds": 45.0,
+    "require_srgb_icc_exact": true,
+    "require_zero_surviving_owned_processes": true
+  },
+  "development_observation": "Before this confirmation contract, one host two-process development run and one Android wipe-data boot with two processes produced identical 72054675-byte PNGs at 6.88-7.80s host and 14.88-15.48s Android. These observations selected no dimension, partition, profile or threshold; 12MP and row partition 128 were inherited from P8CK.",
+  "decision_if_pass": "retain_android_virtual_12mp_runtime_for_p8ck",
+  "decision_if_fail": "retain_p8cm_small_fixture_runtime_only",
+  "claim_ceiling": "Private Android 14 x86_64 virtual-device 12MP execution of one synthetic display-sRGB profile with host-identical PNG bytes; not physical arm64, JNI/app/media integration, calibrated film response, broad device performance or product promotion."
+}
