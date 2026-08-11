@@ -179,6 +179,7 @@ def evaluate_direction_candidate(
     experiment_id: str,
     contract_filename: str,
     blind_seed: int = 20260811 + 1700,
+    source_aware_target_builder: bool = False,
 ) -> dict[str, Any]:
     decision = _load_exact_json(
         root,
@@ -210,12 +211,21 @@ def evaluate_direction_candidate(
             strength=float(op["nominal_strength"]),
             boundary_epsilon=epsilon,
         )
-        target = target_builder(
-            safe_base,
-            ao6,
-            weights=weights,
-            boundary_epsilon=epsilon,
-        )
+        if source_aware_target_builder:
+            target = target_builder(
+                source,
+                safe_base,
+                ao6,
+                weights=weights,
+                boundary_epsilon=epsilon,
+            )
+        else:
+            target = target_builder(
+                safe_base,
+                ao6,
+                weights=weights,
+                boundary_epsilon=epsilon,
+            )
         candidate, scale, luma_error = apply_safe_base_direction_target(
             source,
             safe_base,
