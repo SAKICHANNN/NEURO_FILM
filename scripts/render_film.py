@@ -89,7 +89,7 @@ def parse_args() -> argparse.Namespace:
         default=ROOT
         / "configs"
         / "render_profiles"
-        / "analytic_y_chromaticity_cb61_v2.json",
+        / "analytic_y_chromaticity_cb66_v3.json",
     )
     parser.add_argument(
         "--analytic-scratch-root",

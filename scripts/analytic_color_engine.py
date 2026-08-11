@@ -23,7 +23,7 @@ from src.inference.analytic_y_chromaticity_profile import (
     load_analytic_y_chromaticity_profile,
 )
 
-DEFAULT_PROFILE = ROOT / "configs/render_profiles/analytic_y_chromaticity_cb61_v2.json"
+DEFAULT_PROFILE = ROOT / "configs/render_profiles/analytic_y_chromaticity_cb66_v3.json"
 
 
 def _parser() -> argparse.ArgumentParser:

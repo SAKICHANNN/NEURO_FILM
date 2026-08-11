@@ -1,0 +1,51 @@
+{
+  "schema_id": "kmcfm.research-render-profile.v1",
+  "profile_id": "analytic-y-chromaticity-cb66-v3",
+  "profile_version": "3.0.0",
+  "display_name": "Analytic Y-Chromaticity CB66",
+  "engine_id": "analytic_y_chromaticity_cb56_v1",
+  "style": "velvia_50",
+  "identity": {
+    "film_stock_id": null,
+    "interpretation": "look_approximation",
+    "research_champion": true,
+    "product_default": false
+  },
+  "evidence": {
+    "development_decision": "configs/u5_r2cb50_analytic_y_chromaticity_development_decision_v1.json",
+    "confirmation_decision": "configs/u5_r2cb51_analytic_y_chromaticity_confirmation_decision_v1.json",
+    "gold_stress_decision": "configs/u5_r2cb52_analytic_y_chromaticity_gold_stress_decision_v1.json",
+    "resource_decision": "configs/u5_r2cb66_analytic_y_chromaticity_row_safe_base_memory_decision_v1.json",
+    "streaming_replay_decision": "configs/u5_r2cb55_analytic_y_chromaticity_streaming_gold_stress_decision_v1.json",
+    "decoded_face_decision": "configs/u5_r2cb56_analytic_y_chromaticity_face_stress_decision_v1.json",
+    "claim_ceiling": "opt-in deterministic film-inspired Look Approximation research champion; no stock response, calibration, authenticity or default-product claim"
+  },
+  "assets": [
+    {"role": "cb11_operator_contract", "path": "configs/u5_r2cb11_fujifilm_characteristic_luma_chroma_v1.json", "sha256": "fd6127a0c336fdfc661870d8636e8c7a8bbe741f096465e52c73a5a327213b5f"},
+    {"role": "cb12_ao6_contract", "path": "configs/u5_r2cb12_characteristic_vs_ao6_fresh_v1.json", "sha256": "0951b3ec44049f76afda12b90ba40e1bc644000336fcc340b1b862ea986823c1"},
+    {"role": "cb52_operator_contract", "path": "configs/u5_r2cb52_analytic_y_chromaticity_gold_stress_v1.json", "sha256": "8ac4a761a167b24d679ebf8f2896ab90335dd15621d3424c585171248b6dca1a"},
+    {"role": "cb56_decision", "path": "configs/u5_r2cb56_analytic_y_chromaticity_face_stress_decision_v1.json", "sha256": "d3edb4bec5675b31043c1547402a1ed4722adc805bb80831d125c6483101ae44"},
+    {"role": "cb66_decision", "path": "configs/u5_r2cb66_analytic_y_chromaticity_row_safe_base_memory_decision_v1.json", "sha256": "9b8d4ebed72daf1eac689b0bdaf16391ce8faaa37243c858eec8b0479f42328d"},
+    {"role": "cb6_curve_contract", "path": "configs/u5_r2cb6_fujifilm_characteristic_forward_proxy_v1.json", "sha256": "e8f754c96b88491f9e6c1f467ddc1e3f9ec4d8b87afde9c40d0bea4e49b78150"},
+    {"role": "ao6_artifact_report", "path": "outputs/u6_p8b_artifact_only_cpu_consumer_v1/run_a/report.json", "sha256": "454f31cfec49ed2ef9e2c2de6d9801a113ae0ba8004cb77cf085b84537f3b732"},
+    {"role": "streaming_selector_code", "path": "src/eval/analytic_y_chromaticity_streaming.py", "sha256": "2ec1f2bca90bc0c5c43e06df6c433f2125f186a97bc045071be4b63f1d3a9ac6"},
+    {"role": "target_transport_code", "path": "src/eval/nonexpansive_fraction_transport.py", "sha256": "7509a4941e98c366991a4e1ac0a31d4ea23c853923f0ed222f4c70487badf898"},
+    {"role": "memory_optimized_renderer_code", "path": "src/eval/analytic_y_chromaticity_memory_optimized.py", "sha256": "5ac286fd73c5b31e6953c1374f1593ec9db7733d4ae260fa06efc9163ffe57d5"},
+    {"role": "external_fraction_map_code", "path": "src/eval/nonexpansive_fraction_transport_external_sort.py", "sha256": "851ae430c7249bdabdfc34b34351839decb5e930942035bfffd518159a1c61d5"},
+    {"role": "renderer_adapter_code", "path": "src/inference/analytic_y_chromaticity_profile.py", "sha256": "bd256ccb16a4b415b15577ecf4456da4adaf3953e777e377dadef5885502d7be"}
+  ],
+  "execution": {
+    "input_working_space": "linear_srgb",
+    "input_color_state": "display_linear",
+    "row_chunk": 128,
+    "target_materializer": "row_safe_base_external_sorted_v1",
+    "effects_after_colour_allowed": true,
+    "recipe_v1_allowed": false
+  },
+  "output": {
+    "working_space": "linear_srgb",
+    "transfer": "sRGB",
+    "icc_profile": "standard_sRGB",
+    "supported_bit_depths": [8, 16]
+  }
+}

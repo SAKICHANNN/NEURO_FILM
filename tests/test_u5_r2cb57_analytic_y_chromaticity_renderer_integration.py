@@ -24,7 +24,8 @@ from src.preprocess import load_working_image, save_srgb8
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts/render_film.py"
 ENGINE_SCRIPT = ROOT / "scripts/analytic_color_engine.py"
-PROFILE = ROOT / "configs/render_profiles/analytic_y_chromaticity_cb61_v2.json"
+PROFILE = ROOT / "configs/render_profiles/analytic_y_chromaticity_cb66_v3.json"
+V2_PROFILE = ROOT / "configs/render_profiles/analytic_y_chromaticity_cb61_v2.json"
 LEGACY_PROFILE = ROOT / "configs/render_profiles/analytic_y_chromaticity_cb56_v1.json"
 
 
@@ -79,7 +80,7 @@ def test_cb57_cli_is_exact_to_direct_runtime_and_repeats(
     )
     metrics = json.loads(outputs[0].with_suffix(".metrics.json").read_text())
     profile = metrics["analytic_research_profile"]
-    assert profile["profile_id"] == "analytic-y-chromaticity-cb61-v2"
+    assert profile["profile_id"] == "analytic-y-chromaticity-cb66-v3"
     assert profile["profile_sha256"] == runtime.profile_sha256
     assert profile["product_default"] is False
     assert profile["selector_facts"] == direct_facts
@@ -97,7 +98,9 @@ def test_cb57_default_safe_lab_output_remains_exact(
     assert implicit.read_bytes() == explicit.read_bytes()
 
 
-def test_cb61_legacy_analytic_profile_remains_explicitly_replayable(
+@pytest.mark.parametrize("profile_path", [V2_PROFILE, LEGACY_PROFILE])
+def test_cb66_prior_analytic_profiles_remain_explicitly_replayable(
+    profile_path: Path,
     tmp_path: Path, source: Path
 ) -> None:
     current = tmp_path / "current.png"
@@ -109,7 +112,7 @@ def test_cb61_legacy_analytic_profile_remains_explicitly_replayable(
         "--color-engine",
         "analytic-y-chromaticity",
         "--analytic-profile",
-        str(LEGACY_PROFILE),
+        str(profile_path),
     )
     assert first.returncode == 0, first.stderr
     assert second.returncode == 0, second.stderr

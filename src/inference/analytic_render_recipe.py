@@ -88,11 +88,16 @@ def validate_analytic_render_recipe(recipe: Mapping[str, Any]) -> None:
     if profile_identity not in {
         ("analytic-y-chromaticity-cb56-v1", "1.0.0"),
         ("analytic-y-chromaticity-cb61-v2", "2.0.0"),
+        ("analytic-y-chromaticity-cb66-v3", "3.0.0"),
     }:
         raise AnalyticRenderRecipeError("analytic profile identity drift")
     _hash(profile["sha256"], "profile.sha256")
     assets = recipe["assets"]
-    expected_assets = 10 if profile_identity[0].endswith("cb61-v2") else 8
+    expected_assets = (
+        12
+        if profile_identity[0].endswith("cb66-v3")
+        else 10 if profile_identity[0].endswith("cb61-v2") else 8
+    )
     if not isinstance(assets, list) or len(assets) != expected_assets:
         raise AnalyticRenderRecipeError("analytic recipe asset inventory drift")
     roles: set[str] = set()

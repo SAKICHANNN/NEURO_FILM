@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+import tempfile
 from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
@@ -99,6 +100,7 @@ def load_analytic_y_chromaticity_profile(
         not in {
             ("analytic-y-chromaticity-cb56-v1", "1.0.0"),
             ("analytic-y-chromaticity-cb61-v2", "2.0.0"),
+            ("analytic-y-chromaticity-cb66-v3", "3.0.0"),
         }
         or profile["engine_id"] != ENGINE_ID
         or profile["style"] != "velvia_50"
@@ -115,14 +117,23 @@ def load_analytic_y_chromaticity_profile(
     if (
         execution.get("input_working_space") != "linear_srgb"
         or execution.get("input_color_state") != "display_linear"
-        or execution.get("row_chunk") != 64
+        or execution.get("row_chunk")
+        != (128 if profile_identity[0].endswith("cb66-v3") else 64)
         or execution.get("recipe_v1_allowed") is not False
         or execution.get("target_materializer", "legacy_full_frame_v1")
-        not in {"legacy_full_frame_v1", "row_bounded_float64_v1"}
+        not in {
+            "legacy_full_frame_v1",
+            "row_bounded_float64_v1",
+            "row_safe_base_external_sorted_v1",
+        }
     ):
         raise AnalyticYChromaticityProfileError("research execution drift")
     assets = profile["assets"]
-    expected_asset_count = 10 if profile_identity[0].endswith("cb61-v2") else 8
+    expected_asset_count = (
+        12
+        if profile_identity[0].endswith("cb66-v3")
+        else 10 if profile_identity[0].endswith("cb61-v2") else 8
+    )
     if not isinstance(assets, list) or len(assets) != expected_asset_count:
         raise AnalyticYChromaticityProfileError("research asset inventory drift")
     by_role = {str(asset.get("role")): asset for asset in assets}
@@ -138,11 +149,24 @@ def load_analytic_y_chromaticity_profile(
     }
     if profile_identity[0].endswith("cb61-v2"):
         required_roles |= {"cb61_decision", "row_target_materializer_code"}
+    if profile_identity[0].endswith("cb66-v3"):
+        required_roles |= {
+            "cb66_decision",
+            "memory_optimized_renderer_code",
+            "external_fraction_map_code",
+            "renderer_adapter_code",
+        }
     if len(by_role) != len(assets) or set(by_role) != required_roles:
         raise AnalyticYChromaticityProfileError("research asset roles drift")
     code_roles = {"streaming_selector_code", "target_transport_code"}
     if profile_identity[0].endswith("cb61-v2"):
         code_roles.add("row_target_materializer_code")
+    if profile_identity[0].endswith("cb66-v3"):
+        code_roles |= {
+            "memory_optimized_renderer_code",
+            "external_fraction_map_code",
+            "renderer_adapter_code",
+        }
     for role in code_roles:
         asset = by_role[role]
         asset_path = root / str(asset["path"])
@@ -164,6 +188,14 @@ def load_analytic_y_chromaticity_profile(
             or resource_decision.get("automatic_pass") is not True
         ):
             raise AnalyticYChromaticityProfileError("CB61 resource decision drift")
+    if profile_identity[0].endswith("cb66-v3"):
+        resource_decision = _load_asset(root, by_role["cb66_decision"])
+        if (
+            resource_decision.get("decision")
+            != "pass_cb66_output_exact_row_bounded_safe_base_complete_memory"
+            or resource_decision.get("automatic_pass") is not True
+        ):
+            raise AnalyticYChromaticityProfileError("CB66 resource decision drift")
     if (
         decision.get("decision")
         != "pass_cb56_decoded_face_severe_retain_analytic_y_chromaticity_research_champion"
@@ -205,6 +237,29 @@ def render_analytic_y_chromaticity_profile(
         raise AnalyticYChromaticityProfileError(
             "analytic Y/chromaticity profile requires display-linear linear-sRGB"
         )
+    if (
+        target_builder is None
+        and runtime.profile["execution"].get("target_materializer")
+        == "row_safe_base_external_sorted_v1"
+    ):
+        from src.eval.analytic_y_chromaticity_memory_optimized import (
+            render_analytic_y_chromaticity_memory_candidate,
+        )
+
+        if scratch_root is not None:
+            return render_analytic_y_chromaticity_memory_candidate(
+                working,
+                runtime,
+                scratch_root=scratch_root,
+                row_chunk=int(runtime.profile["execution"]["row_chunk"]),
+            )
+        with tempfile.TemporaryDirectory(prefix="cb66-") as temporary:
+            return render_analytic_y_chromaticity_memory_candidate(
+                working,
+                runtime,
+                scratch_root=Path(temporary),
+                row_chunk=int(runtime.profile["execution"]["row_chunk"]),
+            )
     source = np.asarray(working.pixels, dtype=np.float32)
     operator = runtime.cb11["operator"]
     weights = np.asarray(operator["luminance_weights"], dtype=np.float64)
