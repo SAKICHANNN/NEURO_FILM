@@ -2,6 +2,17 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-11 - U6.P8CN Android 12MP scale runtime passes
+
+- The unchanged freestanding Thomas RGB16 PNG core was confirmed across two
+  complete processes, four host executions and four Android 14 x86_64
+  wipe-data cold boots at 3000x4000.
+- All PNG, decoded RGB16 and ICC identities are exact across platforms. Host
+  takes 7.06-7.83s at 175.9-176.3MB RSS; Android takes 15.98-18.11s. Stable ID
+  is `af41eb0b...a9369`, and no owned emulator/probe process survives.
+- This is synthetic-profile virtual-device scale evidence only. Physical
+  arm64, JNI/app/media integration and product performance remain open.
+
 # 2026-08-11 - U6.P8CM Android 14 virtual runtime passes
 
 - A host preflight correctly rejected the first synthetic amplitude fixture

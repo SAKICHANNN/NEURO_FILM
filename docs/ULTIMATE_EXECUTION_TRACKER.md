@@ -1354,3 +1354,11 @@ probe processes emit the exact host PNG `7737cac7...a31a`, identical facts and
 the expected pre-output/failing-sink statuses; probe and emulator processes
 both cleanly exit. Retain virtual-device runtime evidence. Physical arm64,
 JNI/app/media integration and caller-owned atomic publication remain open.
+
+U6.P8CN closes the next scale boundary without changing that core. Two formal
+processes cover four MSVC executions and four Android 14 x86_64 wipe-data cold
+boots at 12MP. Every run emits the same 72,054,675-byte PNG
+`7ee2819f...dfeed8cb3`, decoded RGB16 hash and exact ICC. Host execution is
+7.06-7.83s at 175.9-176.3MB RSS; Android command time is 15.98-18.11s, with no
+owned process surviving. Retain virtual-device 12MP evidence only; physical
+arm64, app/media integration and product performance remain open.

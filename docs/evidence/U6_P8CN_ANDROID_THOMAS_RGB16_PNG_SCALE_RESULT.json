@@ -1,0 +1,62 @@
+{
+  "schema": "neuro_film.u6_p8cn_android_thomas_rgb16_png_scale_evidence.v1",
+  "experiment_id": "u6.p8cn-android-thomas-rgb16-png-scale-v1",
+  "status": "pass-retain-android-virtual-12mp-runtime-for-p8ck",
+  "contract_commit": "befb4f3a",
+  "implementation_commit": "89925342",
+  "contract_sha256": "b8a780ba6c7e3efe14789ad00b22304fb0b9e5850bfe1d3eddd3d1aeaa55f212",
+  "probe_sha256": "dafc70270a8b8fd8eb430c887d6f72e0a9519cf56abeeb658be97fa4c8e3edd2",
+  "evaluator_sha256": "aefee6756f992388f612c22f7e98d6dec8a4e7f61dcad755e73fc51ae8189a0d",
+  "runner_sha256": "7e32bd687593f45627ce052d89d45633fe050e931c499e5eae18eb353e7fbc90",
+  "test_sha256": "08d1a4fd679567a8d60418b19abfed1d52e11f1f5192f9945cb2266a8dbde496",
+  "formal_report_sha256": [
+    "6140bfd7f3f05cf3f6a6a9f3c13141e32c55636b858bd214b747277a3cc48328",
+    "5146c57921825077425b68ab544f2696df1b954d694b133d73e57f7e32fd43aa"
+  ],
+  "stable_evidence_id": "af41eb0b7ac5d631431f54c8cdbabfedcf153af1837eaf69f59e32ab982a9369",
+  "fixture": {
+    "shape_hwc": [3000, 4000, 3],
+    "dtype": "uint16",
+    "row_partition": 128,
+    "png_bytes": 72054675,
+    "png_sha256": "7ee2819fe7d6cfc8ef1c8caf5d63fa8eacfe639c7cb0654e13726d9dfeed8cb3",
+    "decoded_sha256": "8bd04a76d58597610fb7328b872a4497e85582e8d4892deb1bb517b6fcc581b3",
+    "icc_sha256": "217fe48ec958c667f8eef725aa27198f465df95d7662593b90d0a1cc30114356",
+    "workspace_bytes": 29744013,
+    "sink_calls": 12012
+  },
+  "host": {
+    "toolchain": "msvc-x64-c11-strict",
+    "executable_sha256": "270943b9ae67f37d868036c76e25d1493242a3abda7300bde45d0c0f63c0dcba",
+    "processes": 4,
+    "wall_seconds_range": [7.061999999998079, 7.828000000001339],
+    "peak_rss_bytes_range": [175939584, 176324608]
+  },
+  "android": {
+    "api": 34,
+    "abi": "x86_64",
+    "model": "sdk_gphone64_x86_64",
+    "build_fingerprint": "google/sdk_gphone64_x86_64/emu64xa:14/UE1A.230829.050/12077443:userdebug/dev-keys",
+    "toolchain": "android-ndk-r27d-x86_64-c11-strict",
+    "executable_sha256": "4cb34d4f48bad2c57f0575bb2a96df56c7fb127e692d9d1b8ef75a510749fc53",
+    "wipe_data_cold_boots": 4,
+    "fresh_processes": 4,
+    "boot_seconds_range": [55.42199999999866, 59.875],
+    "device_command_seconds_range": [15.98399999999674, 18.110000000000582],
+    "zero_surviving_owned_processes": true
+  },
+  "gates": {
+    "host_repeat_exact": true,
+    "android_cold_boot_exact": true,
+    "host_android_png_and_decoded_bytes_exact": true,
+    "icc_exact": true,
+    "host_wall_bounded": true,
+    "host_rss_bounded": true,
+    "android_wall_bounded": true,
+    "device_identity_exact": true,
+    "cleanup_exact": true
+  },
+  "decision": "retain_android_virtual_12mp_runtime_for_p8ck",
+  "interpretation": "The unchanged freestanding Thomas RGB16 PNG core emits identical 12MP PNG and decoded RGB16 bytes under MSVC and Android 14 x86_64 across two complete formal processes and four wipe-data cold boots. This closes one practical virtual-device scale boundary without extending the algorithm or its product claim.",
+  "claim_ceiling": "Private Android 14 x86_64 virtual-device 12MP execution of one synthetic display-sRGB profile with host-identical PNG bytes; not physical arm64, JNI/app/media integration, calibrated film response, broad device performance or product promotion."
+}
