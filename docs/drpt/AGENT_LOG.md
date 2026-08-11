@@ -11544,3 +11544,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Only one of four new sources improves; median is `-2.91%` and worst ratio
   `1.4271`. Close further archive-proxy splitting and move to controlled
   reference simulation until real density/process observations exist.
+
+# 2026-08-11 - U6.P4CQ closes archival cross-component fitting before confirmation
+
+- Two exact reports (`48ed4cbb...a6fff`) find the four-source encoded-RGB
+  residual matrix nearly rank-one: maximum correlation `.94963`, minimum
+  eigenvalue `.0499783 < .05`. The frozen envelope fails before any held-source
+  enumeration, download or decode. Retain independent layers and require
+  controlled density/process evidence; no numerical repair or archive rescue.

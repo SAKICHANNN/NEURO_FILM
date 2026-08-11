@@ -69,8 +69,9 @@ def test_evidence_matches_frozen_branch_when_present() -> None:
         pytest.skip("formal P4CQ evidence has not been published")
     evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
     assert evidence["two_full_runs_byte_identical"] is True
-    assert evidence["decision"] in {
-        "PASS_RETAIN_GENERIC_CROSS_COMPONENT_GRAIN_CORRELATION",
-        "FAIL_CLOSED_CROSS_COMPONENT_GRAIN_CORRELATION_TRANSFER",
-        "FAIL_CLOSED_BEFORE_CONFIRMATION_MATRIX_ENVELOPE",
-    }
+    assert evidence["report_sha256"] == (
+        "48ed4cbb0a15ab11e887ed4e604fb3c1b35c7f0ecef2a13c2b444fcf619a6fff"
+    )
+    assert evidence["confirmation"]["download_count"] == 0
+    assert evidence["gates"]["minimum_eigenvalue"] is False
+    assert evidence["decision"] == "FAIL_CLOSED_BEFORE_CONFIRMATION_MATRIX_ENVELOPE"
