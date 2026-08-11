@@ -1,0 +1,51 @@
+{
+  "schema": "neuro_film.u6_p8cm_android_thomas_rgb16_png_runtime_contract.v1",
+  "experiment_id": "u6.p8cm-android-thomas-rgb16-png-runtime-v1",
+  "node": "ULT > U6 > U6.P8 > U6.P8CM",
+  "date_frozen": "2026-08-11",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Does the exact P8CK C11 program execute on an Android 14 x86_64 virtual device with host-identical PNG bytes, stable replay and failure atomicity?",
+  "parent": {
+    "path": "docs/evidence/U6_P8CL_ANDROID_THOMAS_RGB16_PNG_BUILD_RESULT.json",
+    "sha256": "ffc043d946c482bd9ecc5e21aeb5fefac09f77aa1ed69b56069687d5485f47f5",
+    "required_decision": "retain_android_dual_abi_build_for_p8ck"
+  },
+  "runtime": {
+    "api_level": 34,
+    "abi": "x86_64",
+    "system_image": "system-images;android-34;google_apis;x86_64",
+    "system_image_source_properties_sha256": "bd7597e0dfa855335194fbafaf63bde93aa86bc3b56cea73cd54635715e77abc",
+    "require_wipe_data_cold_boots": 2,
+    "fresh_processes_per_boot": 2,
+    "require_host_android_png_byte_exact": true,
+    "require_stdout_fact_exact": true,
+    "require_invalid_input_zero_sink_calls": true,
+    "require_failed_sink_status": true,
+    "require_remote_process_cleanup": true
+  },
+  "fixture": {
+    "height": 47,
+    "width": 53,
+    "row_partition": 17,
+    "exposure_formula": "(((pixel_index * 17 + channel * 13) mod 193) - 96) / 64",
+    "amplitude": {
+      "log_exposure_knots": [-2.0, 0.0, 2.0],
+      "density_knots": [0.15, 0.55, 1.2],
+      "channel_floor_variance": [0.0004, 0.0005, 0.0006],
+      "shared_amplitude": 0.03,
+      "measurement_energy": 0.75
+    },
+    "field": {
+      "particle_sigma_pixels": 0.8,
+      "cluster_sigma_pixels": 1.7,
+      "mean_offspring": 3.0,
+      "truncate": 3.0,
+      "component_seeds": [[17, 29], [37, 43], [53, 61]],
+      "realization_seeds": [101, 103, 107]
+    },
+    "gauge": "two-knot identity"
+  },
+  "decision_if_pass": "retain_android_virtual_runtime_for_p8ck",
+  "decision_if_fail": "retain_p8cl_build_without_android_runtime_claim",
+  "claim_ceiling": "Private Android 14 x86_64 virtual-device execution of one fixed P8CK fixture; not physical arm64, JNI/app/media integration, atomic file publication, calibrated stock response or product promotion."
+}
