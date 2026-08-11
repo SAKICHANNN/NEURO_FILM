@@ -1,0 +1,50 @@
+{
+  "schema": "neuro_film.u6_p4cl_compound_thomas_archival_confirmation_result.v1",
+  "experiment_id": "u6.p4cl-compound-thomas-archival-confirmation-v1",
+  "date": "2026-08-11",
+  "contract_commit": "9e48ae98",
+  "implementation_commit": "5d578411",
+  "contract_sha256": "d16b8981870e45efcb36d5a37163344c82925f4e3e7ad782ce3075473caca92e",
+  "report_sha256": "5019c4e76c3a917962e6018b746f54b1933c97bb4e9e8b0ef8fbb9e0177de4f0",
+  "stable_evidence_id": "3bb9743fee11dd89e1787c6f1594e4036686bc47c1ffd6dbc6274b3abdfb2c12",
+  "two_full_runs_byte_identical": true,
+  "source": {
+    "development_sources": 4,
+    "confirmation_sources": 4,
+    "frames": 80,
+    "selected_bytes": 65904382,
+    "metadata_lock_sha256": "470a4bdbc88e9134040aaeefd1f1146aebd8f922154a63de1692d445a09a732a",
+    "confirmation_decode_count_at_model_freeze": 0
+  },
+  "model": {
+    "fitted_log_scale_std": 0.2847407310619019,
+    "model_freeze_id": "058c10886ed20cdd8478303e6c434aae779f459fcf617cce9f567e678830b2f9",
+    "development_local_energy_target": 0.883297780558439,
+    "fitted_local_energy_prediction": 0.8832977116107941
+  },
+  "confirmation": {
+    "sources_beating_gaussian_high_order_distance": 4,
+    "median_high_order_distance_improvement": 0.14036575882872665,
+    "worst_candidate_to_gaussian_distance_ratio": 0.9319314958914648,
+    "candidate_to_gaussian_nps_error_ratio": 214413.30131266962,
+    "candidate_to_gaussian_acf_error_ratio": 721.6879071824851,
+    "absolute_candidate_nps_rmse": 0.00019594493880580776,
+    "absolute_candidate_acf_rmse": 0.001413145094311158
+  },
+  "gates": {
+    "source_wins": true,
+    "worst_feature_distance": true,
+    "minimum_20_percent_median_feature_improvement": false,
+    "second_order_nps_retention_relative_to_exact_gaussian": false,
+    "second_order_acf_retention_relative_to_exact_gaussian": false,
+    "confirmation_unread_at_freeze": true
+  },
+  "decision": "FAIL_CLOSED_COMPOUND_THOMAS_HIGH_ORDER_TRANSFER",
+  "interpretation": [
+    "A single source-independent low-frequency scale field transfers directionally: it improves the frozen four-feature distance on all four fresh confirmation sources, including the worst source.",
+    "The median improvement is only 14.04%, below the frozen 20% gate. The modulation also cannot meet a 1.1x error ratio against a numerically near-exact Gaussian construction of the target second-order spectrum, despite small absolute NPS and ACF errors.",
+    "Close the exact envelope scale, bounds and one-parameter fit without threshold rescue. The positive 4/4 direction is mechanism evidence only and does not open photographic rendering."
+  ],
+  "next_action": "A successor must preserve second order by construction rather than by tolerance while adding transferable phase structure; do not tune this scale-mixture family on the consumed cohort.",
+  "claim_ceiling": "Generic archival-code nonstationary residual mechanism evidence only; scanner/restoration/content remain mixed and no stock, physical calibration, visual safety or product claim is allowed."
+}

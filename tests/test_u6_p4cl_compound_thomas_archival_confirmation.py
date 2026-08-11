@@ -9,6 +9,9 @@ from src.eval import compound_thomas_archival_confirmation as p4cl
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT_PATH = ROOT / "configs/u6_p4cl_compound_thomas_archival_confirmation_v1.json"
+EVIDENCE_PATH = (
+    ROOT / "docs/evidence/U6_P4CL_COMPOUND_THOMAS_ARCHIVAL_CONFIRMATION_RESULT.json"
+)
 
 
 def _contract() -> dict:
@@ -54,3 +57,12 @@ def test_feature_scoring_prefers_exact_model_median() -> None:
     )
     assert rows[0]["gaussian_feature_distance"] == 0.0
     assert rows[0]["compound_feature_distance"] == 0.0
+
+
+def test_evidence_preserves_directional_signal_and_failed_gates() -> None:
+    evidence = json.loads(EVIDENCE_PATH.read_text(encoding="utf-8"))
+    assert evidence["two_full_runs_byte_identical"] is True
+    assert evidence["source"]["confirmation_decode_count_at_model_freeze"] == 0
+    assert evidence["confirmation"]["sources_beating_gaussian_high_order_distance"] == 4
+    assert evidence["gates"]["minimum_20_percent_median_feature_improvement"] is False
+    assert evidence["decision"] == "FAIL_CLOSED_COMPOUND_THOMAS_HIGH_ORDER_TRANSFER"

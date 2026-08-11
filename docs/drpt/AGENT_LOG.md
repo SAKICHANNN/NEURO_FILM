@@ -11499,3 +11499,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   signal-dependent term remain identically zero. Do not repair or regenerate
   the asset under the published identity; continue with an independent
   executable high-order mechanism.
+
+# 2026-08-11 - U6.P4CL closes bounded compound Thomas without rescue
+
+- Four development sources fit one global log-scale standard deviation
+  (`.2847407`) before any of four new confirmation sources were decoded. Two
+  reports are exact (`5019c4e7...de4f0`; stable `3bb9743f...fb2c12`).
+- High-order distance improves on `4/4` confirmation sources, but median gain
+  is `14.04% < 20%`; second-order ratio gates also fail against the near-exact
+  Gaussian target. Retain only the directional nonstationarity evidence. A
+  successor must add phase structure while preserving power by construction.
