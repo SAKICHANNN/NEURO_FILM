@@ -1,0 +1,40 @@
+{
+  "schema": "neuro_film.u6_p8co_cached_parallel_thomas_rgb16_contract.v1",
+  "experiment_id": "u6.p8co-cached-parallel-thomas-rgb16-v1",
+  "node": "ULT > U6 > U6.P8 > U6.P8CO",
+  "date_frozen": "2026-08-11",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can a full-field cache plus independent three-layer execution remove duplicate Thomas generation, retain exact RGB16 bytes, and bring the 12MP Android raw core inside the provisional 8-second boundary?",
+  "parent": {
+    "path": "docs/evidence/U6_P8CN_ANDROID_THOMAS_RGB16_PNG_SCALE_RESULT.json",
+    "sha256": "8e1fa403add32929826ad87e620b8556d7871978d67580397176ccf6e92d40c2",
+    "required_decision": "retain_android_virtual_12mp_runtime_for_p8ck"
+  },
+  "mechanism": {
+    "field_cache": "three full-resolution float32 uncentered Thomas fields",
+    "parallelism": "three independent colour layers; per-layer row and Neumaier order unchanged",
+    "development": "each layer develops in place after all exact raw means are frozen",
+    "output": "original row-major interleave, neutral gauge and sRGB16 quantization order",
+    "allowed_parallel_layer_counts": [1, 3]
+  },
+  "fixture": {
+    "height": 3000,
+    "width": 4000,
+    "row_partition": 128,
+    "profile": "exact P8CN synthetic amplitude, fields, neutral gauge and exposure formula"
+  },
+  "gates": {
+    "require_old_cached_rgb16_byte_exact": true,
+    "require_cached_single_parallel_byte_exact": true,
+    "require_host_repeat_exact": true,
+    "require_android_cold_boot_repeat_exact": true,
+    "max_android_parallel_command_seconds": 8.0,
+    "max_cached_workspace_bytes": 230686720,
+    "require_invalid_input_zero_sink_calls": true,
+    "require_zero_surviving_owned_processes": true
+  },
+  "development_observation": "A nontracked 12MP prototype produced the exact legacy RGB16 SHA on host and Android. Host sequential caching reduced wall time from 6.45-6.92s to 4.86-4.92s. Android sequential caching reduced 13.61-14.45s to 11.02-11.19s; independent field generation reduced it to 9.95-10.01s; independent field plus development execution reduced it to 7.28-7.33s. No profile, dimensions, partition, output order or arithmetic threshold changed.",
+  "decision_if_pass": "retain_cached_parallel_android_thomas_rgb16_core",
+  "decision_if_fail": "retain_p8cn_serial_android_core",
+  "claim_ceiling": "Private exact 12MP raw RGB16 core performance on Windows x64 and Android 14 x86_64 virtual device; not PNG/file publication, physical arm64, JNI/app/media integration, calibrated film response or complete product export performance."
+}
