@@ -1,0 +1,98 @@
+{
+  "schema": "neuro_film.u6_p4co_marked_poisson_phase_confirmation_contract.v1",
+  "experiment_id": "u6.p4co-marked-poisson-phase-confirmation-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4CO",
+  "date_frozen": "2026-08-11",
+  "question": "Can an explicit signed clustered excursion skeleton close the high-order archival gap while preserving the exact P4BS Thomas spectrum on new sources?",
+  "parent": {
+    "p4cn_evidence_path": "docs/evidence/U6_P4CN_HERMITE_PHASE_COUPLING_CONFIRMATION_RESULT.json",
+    "p4cn_evidence_sha256": "69bcbdd1f77e19ea3c653417b264ed13e3ae83522ebf286d466040e8529e9bad",
+    "required_decision": "FAIL_CLOSED_HERMITE_PHASE_COUPLING_TRANSFER",
+    "p4bs_particle_sigma_pixels": 1.3253699417769098,
+    "p4bs_cluster_sigma_pixels": 1.1268619873805532,
+    "p4bs_mean_offspring": 27.765942352935905
+  },
+  "development": {
+    "source_scratch": "D:/trace-019f4b76-p4cn-absolute-cinema",
+    "source_names": [
+      "pennsylvania_tunnel_excavation__http_www.loc.gov_item_00694392",
+      "president_mckinley_reviewing_the_troops_at_the_pan-american_exposition__http_www.loc.gov_item_00694343",
+      "president_mckinley_taking_the_oath__http_www.loc.gov_item_00694336",
+      "procession_of_floats__http_www.loc.gov_item_00694283"
+    ],
+    "frames_per_source": 10
+  },
+  "confirmation": {
+    "dataset_ref": "absolutedegradation/absolutecinema-real-scene-split-review-sample",
+    "dataset_version": 6,
+    "api_url": "https://www.kaggle.com/api/v1/datasets/list/absolutedegradation/absolutecinema-real-scene-split-review-sample",
+    "license": "CC-BY-4.0",
+    "selection_rule": "Sort eligible first clips with ten PNG frames and select indices 20 through 23; confirmation pixels remain unread until the global topology choice and model statistics freeze.",
+    "source_names": [
+      "steamscow_cinderella_and_ferryboat_cincinnati__http_www.loc.gov_item_2015600176",
+      "the_extra_turn__http_www.loc.gov_item_96519489",
+      "the_first_sleigh-ride__http_www.loc.gov_item_00694206",
+      "the_touaregs_in_their_country__http_www.loc.gov_item_2006641955"
+    ],
+    "source_count": 4,
+    "frames_per_source": 10,
+    "expected_total_bytes": 28425036,
+    "metadata_lock_sha256": "f0277eab5ba67e726965fb087d8ffe1a15642f3dc440beee46880937c4dc7c36",
+    "maximum_download_bytes": 30000000,
+    "scratch": "D:/trace-019f4b76-p4co-absolute-cinema"
+  },
+  "decode": {
+    "accepted_png_modes": ["L", "RGB", "RGBA"],
+    "rgba_requires_opaque_alpha": true,
+    "required_dtype": "uint8"
+  },
+  "patch_observation": {
+    "patch_size_pixels": 96,
+    "border_pixels": 48,
+    "patches_per_frame": 8,
+    "lowpass_gaussian_sigma_pixels": 3.0,
+    "accepted_patch_mean_interval": [0.1, 0.9],
+    "residual_normalization": "subtract mean and divide by population RMS"
+  },
+  "candidate": {
+    "name": "signed_clustered_mark_phase_projected_thomas_v1",
+    "construction": "draw a zero-truncated Poisson parent count, give each parent one symmetric sign and eight Gaussian-offset offspring on the periodic patch, sum signed impulses, then retain its phase while replacing all non-DC Fourier magnitudes with exact P4BS Thomas magnitudes",
+    "expected_parent_count_grid": [4, 8, 16, 32, 64, 128],
+    "cluster_sigma_grid_pixels": [1.0, 2.0, 4.0, 8.0],
+    "offspring_per_parent": 8,
+    "p4cm_scale_sigma_pixels": 12.0,
+    "p4cm_scale_bounds": [0.25, 4.0],
+    "p4cm_log_scale_std": 0.2847407310619019,
+    "fit_rule": "minimize median four-source high-order feature distance; ties within 1e-12 choose lower parent count then lower sigma",
+    "fit_sample_count": 256,
+    "evaluation_sample_count": 512,
+    "candidate_seed": 2608110415,
+    "features": ["skew", "excess_kurtosis", "local_energy_cv_8x8", "absolute_excursion_component_density_z2p5"],
+    "feature_distance": "RMS feature-median difference scaled by the fixed Gaussian-control MAD floor 1e-6"
+  },
+  "second_order": {
+    "acf_lags_yx": [[0, 1], [1, 0], [1, 1], [0, 2], [2, 0], [2, 2], [0, 4], [4, 0]],
+    "maximum_per_sample_power_relative_error": 5e-8,
+    "maximum_per_sample_acf_absolute_error": 1e-12
+  },
+  "confirmation_gates": {
+    "minimum_sources_beating_p4cm_feature_distance": 3,
+    "minimum_median_feature_distance_improvement_over_p4cm": 0.2,
+    "maximum_worst_feature_distance_ratio_to_p4cm": 1.0,
+    "require_exact_power_projection": true,
+    "require_exact_acf_projection": true,
+    "require_finite_fields": true,
+    "require_two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain the marked-Poisson phase skeleton as a generic high-order development mechanism and open disjoint photographic severe-artifact stress.",
+    "fail": "Close this exact topology grid and source roles without parameter, threshold or same-cohort rescue."
+  },
+  "forbidden": [
+    "read confirmation pixels before topology and model statistics freeze",
+    "fit topology per source or use confirmation rows for selection",
+    "change parent counts, offspring count, sigma grid, features or 20 percent gate after fitting",
+    "claim stock, emulsion, scanner, process, physical calibration, visual safety or product readiness"
+  ],
+  "claim_ceiling": "Fresh-source archival-code excursion-topology evidence only; no stock, physical calibration, scanner separation, visual safety or product claim."
+}
