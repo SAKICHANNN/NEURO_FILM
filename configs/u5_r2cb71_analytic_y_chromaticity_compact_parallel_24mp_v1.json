@@ -1,0 +1,52 @@
+{
+  "schema": "neuro_film.u5_r2cb71_analytic_y_chromaticity_compact_parallel_24mp_contract.v1",
+  "report_schema": "neuro_film.u5_r2cb71_analytic_y_chromaticity_compact_parallel_24mp_report.v1",
+  "experiment_id": "U5.R2CB71",
+  "question": "Can eliminating the unused full-frame float64 luma-error plane offset parallel-target memory while preserving exact CB69 output and reducing complete 24MP latency by at least 5%?",
+  "parent": {
+    "cb69_decision_path": "configs/u5_r2cb69_analytic_y_chromaticity_parallel_ao6_throughput_decision_v1.json",
+    "cb69_decision_sha256": "647a8cb858468a978302475652f1779c94c01b653718fc46916312e0001d8235",
+    "cb70_decision_path": "configs/u5_r2cb70_analytic_y_chromaticity_parallel_target_24mp_decision_v1.json",
+    "cb70_required_decision": "fail_cb70_parallel_target_relative_memory_gate"
+  },
+  "baseline": {
+    "input_path": "D:/nf-019f4b76-cb60-input.png",
+    "input_sha256": "f9a369f384126a0837880a79828f3608290e8ef013a0156f72a263a19762ed98",
+    "output_sha256": "949ffce7f86faee4296de52e51b90ae8e5cd4dc205d4a5a9e0f5cb86c6c6e9fa",
+    "peak_process_tree_rss_bytes": 2258001920,
+    "wall_seconds": 62.966,
+    "selector_facts": {
+      "characteristic_strength": 0.2,
+      "fraction_gamut_scale_below_0p8": 0.000487875,
+      "global_dose": 1.0,
+      "maximum_luminance_error": 2.8280287112103508e-08,
+      "median_gamut_scale": 1.0,
+      "selected_gradient_ratio": 0.8636540824585575,
+      "selected_lstar_inversion_fraction": 0.0,
+      "selected_new_boundary_fraction": 0.0
+    }
+  },
+  "candidate": {
+    "algorithm": "compact-selector-ordered-parallel-target-plus-cb69-v1",
+    "row_chunk": 128,
+    "workers": 4,
+    "compact_selector_sha256": "7f3f176491d7c8376c474d46609e61c3afbda560708d4543ea7dadc892a84cb3",
+    "renderer_implementation_sha256": "cadbf37c33a62e0a11f02433d211b905ed35f60e1c620cef0e368811b40a5662",
+    "runner_sha256": "7efd3f033eb22f322750737145da0369210be9e6c46262613b75f75e188e0a7a",
+    "output_bit_depth": 16
+  },
+  "gates": {
+    "output_sha256_exact": true,
+    "selector_facts_exact": true,
+    "maximum_peak_process_tree_rss_bytes": 2500000000,
+    "maximum_peak_rss_ratio_to_baseline": 1.02,
+    "maximum_wall_ratio_to_baseline": 0.95,
+    "scratch_residue_count": 0
+  },
+  "stop_rules": [
+    "Do not change pixels, row partition, worker count, source, bit depth, selector decisions, sort, quantile or safety gates.",
+    "Do not relax the 2.5GB, 1.02x memory or 0.95x time gates after measurement.",
+    "Fail closed on either fresh-process identity, memory, time or cleanup failure."
+  ],
+  "claim_ceiling": "Local Windows/Python complete 24MP analytic renderer resource evidence only; no native/device, photographic preference, stock, calibration, default-product or arbitrary-media claim."
+}
