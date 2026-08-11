@@ -1,0 +1,10 @@
+{
+  "schema": "neuro_film.u5_r2cb27_monotone_fraction_quantile_transport_mapping_receipt.v1",
+  "experiment_id": "U5.R2CB27",
+  "status": "mapping_revealed_after_blind_observations_commit",
+  "mapping_revealed": true,
+  "observations_commit": "935297f3aa9384820ba6780f8828b361b5217355",
+  "observations_sha256": "7cd85512a85ae9416c94860f5a646758c70ddd5e32e72a46f4859c73abf7199c",
+  "report_sha256": "860236446bd23deb4f90de04e451deb8fa92b4575e41d1bce7d70ac5fa808cb4",
+  "sealed_mappings_canonical_sha256": "1a6174eca800f6171fbc5e86abbf0758a9ce6b02e783d8009d4a45f6a990e6dc"
+}
