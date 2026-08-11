@@ -1,0 +1,74 @@
+{
+  "schema": "neuro_film.u5_r2cb14_characteristic_vs_ao6_ood_observations.v1",
+  "experiment_id": "U5.R2CB14",
+  "status": "blind_observations_frozen_mapping_unread",
+  "observer": "autonomous_codex_visual_review",
+  "report": "outputs/experiments/u5_r2cb14_characteristic_vs_ao6_ood_v1/report_b.json",
+  "report_sha256": "f486b88a1356d5f9abce405382025559920bc7a568e75ba540e72e6b7d9e600e",
+  "criteria": "after the severe-artifact veto, prefer the more visibly stylized and photographically coherent result; ties are not allowed by the frozen contract",
+  "sheet_sha256": {
+    "round_1.png": "2f872b7629eba62ca967c021ca159fc28204ca1e2f984ede8d06f0c1d5ab0eaa",
+    "round_2.png": "5e6d43315b2b3038b9b2536f91324d7fcedcb34b24116e19a9b5495394c8ee5b",
+    "round_3.png": "d181854054adb6d26cc6a83173a3b26137dce436618523626c3c8f7e0c34176d"
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "choices": [
+        {"source_id": "arashi_vision_insta360_one_x", "choice": "A"},
+        {"source_id": "bq_aquaris_u_plus", "choice": "A"},
+        {"source_id": "canon_eos_m2", "choice": "A"},
+        {"source_id": "eyedeas_e1", "choice": "A"},
+        {"source_id": "fujifilm_x_s20", "choice": "A"},
+        {"source_id": "nikon_d3100", "choice": "A"},
+        {"source_id": "olympus_e_pl10", "choice": "A"},
+        {"source_id": "panasonic_dmc_gf8", "choice": "A"},
+        {"source_id": "pentax_k2000", "choice": "A"},
+        {"source_id": "realme_rmx1851", "choice": "A"},
+        {"source_id": "sony_dsc_rx100", "choice": "A"},
+        {"source_id": "yi_technology_m1", "choice": "A"}
+      ]
+    },
+    {
+      "round": 2,
+      "choices": [
+        {"source_id": "arashi_vision_insta360_one_x", "choice": "B"},
+        {"source_id": "bq_aquaris_u_plus", "choice": "B"},
+        {"source_id": "canon_eos_m2", "choice": "B"},
+        {"source_id": "eyedeas_e1", "choice": "B"},
+        {"source_id": "fujifilm_x_s20", "choice": "B"},
+        {"source_id": "nikon_d3100", "choice": "B"},
+        {"source_id": "olympus_e_pl10", "choice": "B"},
+        {"source_id": "panasonic_dmc_gf8", "choice": "B"},
+        {"source_id": "pentax_k2000", "choice": "B"},
+        {"source_id": "realme_rmx1851", "choice": "B"},
+        {"source_id": "sony_dsc_rx100", "choice": "B"},
+        {"source_id": "yi_technology_m1", "choice": "B"}
+      ]
+    },
+    {
+      "round": 3,
+      "choices": [
+        {"source_id": "arashi_vision_insta360_one_x", "choice": "B"},
+        {"source_id": "bq_aquaris_u_plus", "choice": "A"},
+        {"source_id": "canon_eos_m2", "choice": "A"},
+        {"source_id": "eyedeas_e1", "choice": "A"},
+        {"source_id": "fujifilm_x_s20", "choice": "B"},
+        {"source_id": "nikon_d3100", "choice": "A"},
+        {"source_id": "olympus_e_pl10", "choice": "B"},
+        {"source_id": "panasonic_dmc_gf8", "choice": "B"},
+        {"source_id": "pentax_k2000", "choice": "B"},
+        {"source_id": "realme_rmx1851", "choice": "B"},
+        {"source_id": "sony_dsc_rx100", "choice": "A"},
+        {"source_id": "yi_technology_m1", "choice": "A"}
+      ]
+    }
+  ],
+  "sheet_level_confirmed_severe_artifact_count": 0,
+  "notes": [
+    "All 36 comparisons preserve geometry, objects, text and fine structure without a confirmed seam, repeated texture, block, posterization or speckle field.",
+    "The preferred arm consistently retains more coherent density and highlight colour; the alternate arm is visibly pale or pink-cyan on most rows.",
+    "This is autonomous visual evidence, not population preference."
+  ],
+  "mapping_files_read": false
+}
