@@ -1,0 +1,35 @@
+{
+  "schema": "neuro_film.u5_r2cb16_safe_base_ao6_chroma_residual_decision.v1",
+  "experiment_id": "U5.R2CB16",
+  "implementation_commit": "54306879",
+  "contract_sha256": "8ede1e4eee987934404fa1dc4f163ba9103554b1d5d66ca2c118adef37501140",
+  "implementation_sha256": "c55a6c9c9eac4d113e6f61fe47f20106104b953cadda703bfe0aaa85076b8eca",
+  "runner_sha256": "860d44bac65c872eafcc83572e864e812a50503264ae070825c0869b52287512",
+  "formal_report_path": "outputs/experiments/u5_r2cb16_safe_base_ao6_chroma_residual_v1/report_run1.json",
+  "formal_report_sha256": "1e3ff3890d28ceec2c239acfc9d6a832d780552aaa43e0a5c9598ffa7b312f82",
+  "stable_evidence_id": "0433e43d89cdbbecb0f100b7a43479a546fe4114137d073a486de784ff0af18f",
+  "repeat_report_byte_exact": true,
+  "passed": false,
+  "decision": "close_safe_base_ao6_chroma_magnitude_residual_without_rescue",
+  "metrics": {
+    "maximum_luminance_reconstruction_error": 2.9802322498717615e-08,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio_vs_source": 1.9591406149645825,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 4.8023786390198135e-05,
+    "population_median_residual_scale": 1.0,
+    "population_median_fraction_residual_scale_below_0p5": 0.30044027705739973,
+    "population_median_style_delta_e76": 13.37899460406826,
+    "population_median_delta_e76_vs_cb11": 12.672150368098638,
+    "population_median_delta_e76_vs_ao6": 30.305267274035675
+  },
+  "failed_gates": [
+    "residual_retention"
+  ],
+  "interpretation": [
+    "Using CB11 as the base removes CB15's structural boundary failure: exact luminance, zero new boundaries and both gradient gates pass.",
+    "The full AO6-minus-CB11 chroma magnitude residual is nevertheless too large near the available cube: the median per-source fraction below half scale is 30.04 percent.",
+    "The next useful factorization should preserve CB11 chroma magnitude and test AO6 chroma direction separately, rather than trying to import AO6 magnitude."
+  ],
+  "next_action": "Freeze a chroma-direction-only mechanism that rotates the CB11 zero-luminance chroma toward AO6 while preserving CB11 chroma norm before the same analytical boundary scale.",
+  "claim_ceiling": "Closed development-only AO6 chroma-magnitude residual; not a negative result about safe-base execution, AO6 preference, direction-only chroma transfer or calibrated film response."
+}

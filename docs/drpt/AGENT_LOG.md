@@ -11324,3 +11324,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   step. Unlike CB15, alpha zero is always the already-valid base.
 - Reuse BK6S only as a development population. Exact automatic gates precede
   blind comparison with AO6; a pass can open only a wholly new confirmation.
+
+# 2026-08-11 - U5.R2CB16 closes AO6 chroma magnitude transfer
+
+- Two reports are byte exact (`1e3ff389...12f82`; stable
+  `0433e43d...0af18f`). The CB11 base eliminates new-boundary failure and all
+  luminance/gradient/style gates pass.
+- The residual still requires scale below `.5` on a median `30.04%` of pixels,
+  above the frozen `10%` ceiling. Close magnitude transfer before blind review;
+  next separate AO6 chroma direction from magnitude.
