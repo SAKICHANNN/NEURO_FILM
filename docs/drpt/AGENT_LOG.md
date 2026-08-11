@@ -11624,3 +11624,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Frozen blind choices reveal `3/3`, `27/30`, `9/10`, severe count zero. Keep
   it as the research Look Approximation champion and move to the frozen
   face/text/high-contrast severe gold set before any integration/default change.
+
+# 2026-08-11 - U5.R2CB30 closes per-pixel rank transport
+
+- Exact CB27 runs twice on all 40 locally available frozen U4.1 gold/stress
+  rows with byte-identical reports (`e9b331de...6247`; stable
+  `d754961e...21c1`). Luminance, boundary, L* order and safe-step gates pass.
+- Gold ID18 reaches p99.9 gradient ratio `1.76996` against the frozen `1.35`
+  maximum, so visual review is forbidden. Numerical localization finds large
+  exact-fraction tie groups split across distinct stable ranks and target
+  quantiles, with finite mapped-fraction slope p99.9 `29.24`. Close CB27; a
+  new version must preserve ties and later pass a disjoint population.

@@ -1,0 +1,48 @@
+{
+  "schema": "neuro_film.u5_r2cb30_monotone_fraction_gold_stress_decision.v1",
+  "experiment_id": "U5.R2CB30",
+  "contract_commit": "61ee8a03b6d8711879fe120f760f840e7bc3bd12",
+  "pre_execution_identity_amendment_commit": "b200aaf3043a180205c7c1df075db0f95414dab3",
+  "implementation_commit": "94b30b9be64dc75bc50566d88618981481f3e74a",
+  "formal_report_paths": [
+    "D:/nf-019f4b76-cb30-report-a.json",
+    "D:/nf-019f4b76-cb30-report-b.json"
+  ],
+  "formal_report_sha256": "e9b331de50dc635a6bd73ad8dbb06522cefe2c749e3b704be0fc3617c3dd6247",
+  "stable_evidence_id": "d754961e1ccde272e97433b34613a0cdda8ad772b6b04e8477b61b8411bc21c1",
+  "repeat_report_byte_exact": true,
+  "automatic_pass": false,
+  "visual_review_permitted": false,
+  "measurements": {
+    "available_source_count": 40,
+    "available_gold_count": 8,
+    "available_stress_count": 32,
+    "gold_median_style_delta_e76": 12.847973753324741,
+    "stress_median_style_delta_e76": 10.5269679167638,
+    "maximum_luminance_reconstruction_error": 4.527568830958728e-08,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio_vs_source": 1.769955754606776,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.0,
+    "population_median_direction_scale": 1.0,
+    "population_median_fraction_direction_scale_below_0p5": 0.00022092949468915964,
+    "unavailable_ids": ["FS_FACE_01"]
+  },
+  "failed_gates": ["maximum_p999_gradient_ratio_vs_source"],
+  "failure_localization": {
+    "source_id": "18",
+    "split": "gold",
+    "buckets": ["fine_detail", "text_logo"],
+    "source_p999_gradient_ratio": 1.769955754606776,
+    "next_highest_ratio": 1.3168147783340436,
+    "finite_empirical_fraction_slope_p999": 29.23873686495771,
+    "finite_empirical_fraction_slope_p9999": 106.01524849128519,
+    "maximum_finite_empirical_fraction_slope": 200.8631521783328,
+    "duplicate_adjacent_sorted_fraction_count": 1671114,
+    "valid_fraction_count": 1704000,
+    "interpretation": "Stable per-pixel ranks split large exact-fraction tie groups across different target quantiles, creating an unbounded local fraction derivative and a concentrated high-frequency gradient failure."
+  },
+  "passed": false,
+  "decision": "close_per_pixel_stable_rank_transport_on_gold_gradient_gate",
+  "next_action": "Freeze a separately versioned tie-preserving grouped-midrank monotone transport; develop it without changing CB30 gates, then require new source-disjoint confirmation.",
+  "claim_ceiling": "Exact negative severe-artifact development evidence for CB27 on the 40 locally available frozen display proxies; not visual adjudication, complete face closure, stock response, calibration or product promotion."
+}
