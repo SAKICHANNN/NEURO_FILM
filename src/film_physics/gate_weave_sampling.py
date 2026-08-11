@@ -74,3 +74,60 @@ def sample_padded_translation(
         + source[y1[:, None], x1[None, :]] * fx
     )
     return top * (1.0 - fy) + bottom * fy
+
+
+def integrate_padded_translation(
+    padded_image: np.ndarray,
+    *,
+    output_shape: tuple[int, int],
+    padding_yx: tuple[int, int],
+    start_offset_yx: tuple[float, float],
+    end_offset_yx: tuple[float, float],
+    sample_count: int,
+) -> np.ndarray:
+    """Integrate one linear within-frame gate trajectory from immutable source.
+
+    Midpoint quadrature makes the temporal window explicit and symmetric.  The
+    source is never updated between samples, so this cannot accumulate chained
+    resampling error across either shutter samples or output frames.
+    """
+    if not isinstance(sample_count, int) or not 1 <= sample_count <= 4096:
+        raise GateWeaveSamplingError("sample_count must be an integer in [1, 4096]")
+    start = np.asarray(start_offset_yx, dtype=np.float64)
+    end = np.asarray(end_offset_yx, dtype=np.float64)
+    if start.shape != (2,) or end.shape != (2,):
+        raise GateWeaveSamplingError("start and end offsets must be y/x pairs")
+    if not np.all(np.isfinite(start)) or not np.all(np.isfinite(end)):
+        raise GateWeaveSamplingError("shutter offsets must be finite")
+    padding = np.asarray(padding_yx, dtype=np.float64)
+    if np.any(np.abs(start) > padding) or np.any(np.abs(end) > padding):
+        raise GateWeaveSamplingError("shutter trajectory exceeds declared padding")
+    if np.array_equal(start, end):
+        return sample_padded_translation(
+            padded_image,
+            output_shape=output_shape,
+            padding_yx=padding_yx,
+            offset_yx=(float(start[0]), float(start[1])),
+            interpolation="bilinear",
+        )
+
+    accumulator: np.ndarray | None = None
+    delta = end - start
+    for sample_index in range(sample_count):
+        phase = (sample_index + 0.5) / sample_count
+        offset = start + phase * delta
+        sample = sample_padded_translation(
+            padded_image,
+            output_shape=output_shape,
+            padding_yx=padding_yx,
+            offset_yx=(float(offset[0]), float(offset[1])),
+            interpolation="bilinear",
+        )
+        if accumulator is None:
+            accumulator = np.asarray(sample, dtype=np.float64).copy()
+        else:
+            accumulator += sample
+    if accumulator is None:  # pragma: no cover - guarded by sample_count validation
+        raise GateWeaveSamplingError("empty shutter integration")
+    accumulator /= sample_count
+    return accumulator

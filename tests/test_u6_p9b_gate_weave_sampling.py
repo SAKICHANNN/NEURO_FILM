@@ -8,6 +8,7 @@ import pytest
 from src.eval.gate_weave_sampling import load_contract, run_audit
 from src.film_physics.gate_weave_sampling import (
     GateWeaveSamplingError,
+    integrate_padded_translation,
     sample_padded_translation,
 )
 
@@ -53,6 +54,58 @@ def test_sampler_rejects_out_of_padding_and_unknown_interpolation() -> None:
             padding_yx=(2, 2),
             offset_yx=(0.0, 0.0),
             interpolation="cubic",  # type: ignore[arg-type]
+        )
+
+
+def test_shutter_integration_preserves_static_and_linear_fields() -> None:
+    y = np.arange(10, dtype=np.float64)[:, None]
+    x = np.arange(12, dtype=np.float64)[None, :]
+    source = 0.1 + 0.01 * y + 0.02 * x
+    static = integrate_padded_translation(
+        source,
+        output_shape=(6, 8),
+        padding_yx=(2, 2),
+        start_offset_yx=(0.25, -0.5),
+        end_offset_yx=(0.25, -0.5),
+        sample_count=8,
+    )
+    point = sample_padded_translation(
+        source,
+        output_shape=(6, 8),
+        padding_yx=(2, 2),
+        offset_yx=(0.25, -0.5),
+        interpolation="bilinear",
+    )
+    assert np.array_equal(static, point)
+
+    integrated = integrate_padded_translation(
+        source,
+        output_shape=(6, 8),
+        padding_yx=(2, 2),
+        start_offset_yx=(-1.0, -1.5),
+        end_offset_yx=(1.0, 1.5),
+        sample_count=8,
+    )
+    center = sample_padded_translation(
+        source,
+        output_shape=(6, 8),
+        padding_yx=(2, 2),
+        offset_yx=(0.0, 0.0),
+        interpolation="bilinear",
+    )
+    assert np.allclose(integrated, center, rtol=0.0, atol=2e-16)
+
+
+@pytest.mark.parametrize("sample_count", [0, -1, 4097, 1.5])
+def test_shutter_integration_rejects_invalid_sample_count(sample_count: object) -> None:
+    with pytest.raises(GateWeaveSamplingError):
+        integrate_padded_translation(
+            np.zeros((8, 10), dtype=np.float64),
+            output_shape=(4, 6),
+            padding_yx=(2, 2),
+            start_offset_yx=(0.0, 0.0),
+            end_offset_yx=(1.0, 1.0),
+            sample_count=sample_count,  # type: ignore[arg-type]
         )
 
 
