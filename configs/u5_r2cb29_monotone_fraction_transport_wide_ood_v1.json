@@ -1,0 +1,79 @@
+{
+  "schema": "neuro_film.u5_r2cb29_monotone_fraction_transport_wide_ood_contract.v1",
+  "experiment_id": "U5.R2CB29",
+  "question": "Does the unchanged CB27 operator retain safety and appeal on the independently screened modern-camera BH0S OOD population?",
+  "parents": {
+    "cb28_decision_path": "configs/u5_r2cb28_monotone_fraction_transport_confirmation_decision_v1.json",
+    "cb28_decision_sha256": "16bfc2535bfd7e922ade2ae76799bb97368bba644e1a42516669e8279d13cddd",
+    "cb28_required_status": "source_disjoint_mechanism_confirmation_pass_retain_for_wide_ood_stress",
+    "cb16_decision_path": "configs/u5_r2cb16_safe_base_ao6_chroma_residual_decision_v1.json",
+    "cb16_decision_sha256": "965a1c0c0eba887673bd1f9793a5c28425edfe5495cb4bb151a70e3b9f20008f",
+    "cb16_required_status": "close_safe_base_ao6_chroma_magnitude_residual_without_rescue",
+    "cb14_decision_path": "configs/u5_r2cb14_characteristic_vs_ao6_ood_decision_v1.json",
+    "cb14_decision_sha256": "acb2e53031db6e9fe33f84d615ad259ea856190016ab7f26e2030775b8a2c8b9",
+    "cb14_required_status": "candidate_fails_ao6_retain_incumbent",
+    "cb11_contract_path": "configs/u5_r2cb11_fujifilm_characteristic_luma_chroma_v1.json",
+    "cb11_contract_sha256": "fd6127a0c336fdfc661870d8636e8c7a8bbe741f096465e52c73a5a327213b5f",
+    "cb12_contract_path": "configs/u5_r2cb12_characteristic_vs_ao6_fresh_v1.json",
+    "cb12_contract_sha256": "0951b3ec44049f76afda12b90ba40e1bc644000336fcc340b1b862ea986823c1"
+  },
+  "population": {
+    "decision_path": "configs/u5_r2bh0s_fixed_bank_oracle_source_preflight_decision_v1.json",
+    "decision_sha256": "0f1a518d7554cb0ce3bcea9e9bf06492604f7484743c96479207421226732ba9",
+    "required_status": "pass_fresh_population_and_open_complete_fixed_bank_oracle",
+    "manifest_path": "outputs/u5_r2bh0s_fixed_bank_oracle_source_preflight_v1/manifest.json",
+    "manifest_sha256": "e7dc8c861871de83a0aa3f92a717e23fd024bed15b8a19b739516c48f1f58e0e",
+    "visual_review_path": "outputs/u5_r2bh0s_fixed_bank_oracle_source_preflight_v1/visual_source_review.json",
+    "visual_review_sha256": "388d298af94e9a8507092717941d96c28414d0fa18ac5e9411b44ff2eaea3e5e",
+    "included_source_ids": [
+      "sony_ilme_fx2",
+      "panasonic_dc_s1m2es",
+      "nikon_d5300",
+      "dji_fc4382",
+      "om_system_om_3",
+      "minolta_dimage_5",
+      "phase_one_p45_plus",
+      "fujifilm_x_e5",
+      "samsung_ek_gn120",
+      "google_pixel_7_pro"
+    ],
+    "source_count_exact": 10,
+    "camera_make_count_exact": 10,
+    "maximum_long_edge": 1600,
+    "role": "third modern-camera OOD stress disjoint from CB27 development and CB28 confirmation"
+  },
+  "operator": {
+    "identity": "exact unchanged U5.R2CB27 circular hue plus empirical monotone gamut-fraction transport",
+    "implementation_path": "src/eval/monotone_fraction_quantile_transport.py",
+    "implementation_sha256": "2ef3908055e7eea6bc4e6d04a21d8b2f0e6875fa309f6329326e8bf646b6a7ea",
+    "minimum_valid_fraction": 0.0001,
+    "forbidden": "parameter change, paired affine slope, alternative rank or interpolation, local map, target dose, source replacement or post-score rescue"
+  },
+  "evaluation": {"maximum_colour_metric_samples_per_source": 65536},
+  "automatic_gates": {
+    "maximum_luminance_reconstruction_error": 0.000001,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio_vs_source": 2.5,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.001,
+    "minimum_population_median_direction_scale": 0.8,
+    "maximum_population_median_fraction_direction_scale_below_0p5": 0.1,
+    "minimum_population_median_style_delta_e76": 5.0,
+    "minimum_population_median_delta_e76_vs_cb11": 1.0,
+    "maximum_confirmed_severe_artifact_count": 0
+  },
+  "blind_protocol": {
+    "rounds": 3,
+    "seed": 20264611,
+    "ties_allowed": false,
+    "minimum_candidate_round_wins": 2,
+    "minimum_candidate_aggregate_choices": 19,
+    "minimum_candidate_source_majorities": 6,
+    "mapping_hidden_until_choices_commit": true
+  },
+  "stop_rules": [
+    "Any source identity, automatic or severe-artifact failure closes this OOD stress without replacement.",
+    "Any blind failure closes product advancement without changing the operator or gates.",
+    "Pass retains a research Look Approximation champion only; calibrated stock and product promotion remain separate."
+  ],
+  "claim_ceiling": "Third-population modern-camera OOD and autonomous visual stress for an explicit display-look operator; not stock response, calibration, population preference or product promotion."
+}
