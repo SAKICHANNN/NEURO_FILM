@@ -11753,3 +11753,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `ba57bad0...8f512`.
 - Stop affine variants. Test source-row safety authorization of the strong
   CB33 candidate with identity fallback, matching the product fail-closed model.
+
+# 2026-08-12 - U6.P8CZ types native Thomas ingress
+
+- The packaged runtime now accepts only explicit immutable RGB relative-layer
+  log10 exposure, never ordinary scene/display RGB. A zero-copy CHW ownership
+  transfer avoided an initial full-frame-copy RSS regression.
+- The final 12MP replay preserves the P8CY input/output/decoded/ICC hashes and
+  passes at 481.6MB peak RSS and 7.38s maximum wall time.

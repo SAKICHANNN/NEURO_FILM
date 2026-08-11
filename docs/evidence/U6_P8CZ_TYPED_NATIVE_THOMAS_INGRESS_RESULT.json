@@ -1,0 +1,31 @@
+{
+  "schema": "neuro_film.u6_p8cz_typed_native_thomas_ingress_evidence.v1",
+  "experiment_id": "u6.p8cz-typed-native-thomas-ingress-v1",
+  "status": "pass-retain-typed-relative-layer-log-exposure-ingress",
+  "implementation_commit": "e218673b",
+  "input_contract": {
+    "schema": "neuro_film.relative_layer_log_exposure.v1",
+    "domain": "film-layer-log10-relative-exposure",
+    "unit": "log10-relative-layer-exposure",
+    "layout": "contiguous-float32-chw",
+    "channels": ["red", "green", "blue"],
+    "working_image_conversion": false
+  },
+  "formal_replay": {
+    "report_path": "D:/nf-019f4b76-p8cz-typed-replay-v3-report.json",
+    "report_sha256": "427a917404fdc9e42dcb64ea8c66d084f11900e10bb4dfca2bd2694182aa66cd",
+    "stable_evidence_id": "8679603e1d48e8e3a7901525ddaeeea8757f4b5aa290583d3a96026a32678a28",
+    "input_sha256": "81a91bcdafe07f48701ae8a8e4339fa74af3be25326b422a9f6ccaa5c431fc3b",
+    "output_sha256": "e7b2c3d8ea6ee9cb143f48a680bb2a6a8a59666f3b63f4d1b621a03869ce5909",
+    "decoded_rgb16_sha256": "5a0f531fe9b28183dba4634b0c1d739f71c2677e2f9ba74dd16c33c2fa6530fd",
+    "icc_sha256": "217fe48ec958c667f8eef725aa27198f465df95d7662593b90d0a1cc30114356",
+    "maximum_wall_seconds": 7.379233700004988,
+    "maximum_peak_process_tree_rss_bytes": 481644544,
+    "wall_repeat_ratio": 1.0044858489859556,
+    "rss_repeat_ratio": 1.0007233796296295,
+    "all_gates_pass": true
+  },
+  "development_observation": "An initial HWC wrapper added two full-frame copies and failed the frozen RSS gate. The retained native-specific CHW ownership-transfer representation removes those copies while remaining immutable during execution.",
+  "decision": "retain_typed_relative_layer_log_exposure_package_runtime",
+  "claim_ceiling": "Exact typed explicit relative-layer log-exposure ingress for the existing generic Windows package runtime only; not scene-to-layer exposure estimation, calibrated stock response, arbitrary media or product promotion."
+}
