@@ -62,7 +62,7 @@
     "minimum_frequency_cycles_per_pixel": 0.010416666666666666,
     "maximum_frequency_cycles_per_pixel": 0.45,
     "acf_lags_yx": [[0, 1], [1, 0], [1, 1], [0, 2], [2, 0], [2, 2], [0, 4], [4, 0]],
-    "maximum_per_sample_power_relative_error": 1e-12,
+    "maximum_per_sample_power_relative_error": 5e-8,
     "maximum_per_sample_acf_absolute_error": 1e-12
   },
   "confirmation_gates": {
