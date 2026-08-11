@@ -30,9 +30,9 @@
     "exposure_formula": "(((pixel_index * 17 + channel * 13) mod 193) - 96) / 64",
     "amplitude": {
       "log_exposure_knots": [-2.0, 0.0, 2.0],
-      "density_knots": [0.15, 0.55, 1.2],
-      "channel_floor_variance": [0.0004, 0.0005, 0.0006],
-      "shared_amplitude": 0.03,
+      "density_knots": [0.3, 0.6, 0.9],
+      "channel_floor_variance": [1e-08, 1.2e-08, 1.4e-08],
+      "shared_amplitude": 1e-06,
       "measurement_energy": 0.75
     },
     "field": {
@@ -47,5 +47,6 @@
   },
   "decision_if_pass": "retain_android_virtual_runtime_for_p8ck",
   "decision_if_fail": "retain_p8cl_build_without_android_runtime_claim",
+  "execution_amendment": "Before any Android execution, host-only preflight showed the initial synthetic amplitude fixture could produce negative developed density and was correctly rejected before output. The fixture amplitude was reduced prospectively; runtime gates, operator sources, dimensions, seeds and target remained unchanged.",
   "claim_ceiling": "Private Android 14 x86_64 virtual-device execution of one fixed P8CK fixture; not physical arm64, JNI/app/media integration, atomic file publication, calibrated stock response or product promotion."
 }
