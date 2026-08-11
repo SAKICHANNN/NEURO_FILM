@@ -34,7 +34,7 @@
   "operator": {
     "lightness": "exact CB11 anchored monotone characteristic applied to actual source CIELAB L-star, then clamped only to the existing project-wide strict interior Lab interval [0.1,99.9] before gamut construction",
     "chroma": "global dose interpolation from source CIELAB a/b toward unchanged CB32 target a/b",
-    "gamut": "24-step binary chroma contraction from neutral at fixed target L-star and hue into linear-sRGB",
+    "gamut": "24-step binary chroma contraction from neutral at fixed target L-star and hue into linear-sRGB, followed by one fixed (1-boundary_epsilon) chroma-only interior step and strict [0,1] revalidation",
     "dose_grid": [1.0, 0.9375, 0.875, 0.8125, 0.75, 0.6875, 0.625, 0.5625, 0.5, 0.4375, 0.375, 0.3125, 0.25, 0.1875, 0.125, 0.0625, 0.0],
     "gamut_iterations": 24,
     "lstar_order_epsilon": 0.0001,

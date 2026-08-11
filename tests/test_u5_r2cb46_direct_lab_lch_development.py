@@ -68,3 +68,24 @@ def test_cb46_exact_black_white_endpoints_use_internal_neutral_rails() -> None:
     assert np.min(candidate) > 0.0
     assert np.max(candidate) < 1.0
     assert facts["selected_new_boundary_fraction"] == 0.0
+
+
+def test_cb46_out_of_gamut_chroma_is_reduced_without_rgb_clipping() -> None:
+    source = np.full((1, 32, 3), 0.18, dtype=np.float32)
+    target = source.copy()
+    target[..., 0] = 0.99
+    target[..., 1] = 0.01
+    candidate, _, _, facts = select_direct_lab_lch_candidate(
+        source,
+        target,
+        curve=_curve(),
+        strength=0.2,
+        boundary_epsilon=1.0 / 65535.0,
+        dose_grid=[1.0, 0.0],
+        maximum_gradient_ratio=100.0,
+        maximum_lstar_inversion_fraction=0.0,
+        lstar_order_epsilon=0.0001,
+        gamut_iterations=24,
+    )
+    assert np.min(candidate) >= 0.0 and np.max(candidate) <= 1.0
+    assert facts["median_gamut_chroma_retention"] < 1.0

@@ -101,11 +101,17 @@ def select_direct_lab_lch_candidate(
             desired_lab,
             working_space="linear_srgb",
             iterations=gamut_iterations,
-            tolerance=0.0,
+            tolerance=2e-6,
         )
+        compressed_lab = compressed_lab.copy()
+        compressed_lab[..., 1:] *= np.float32(1.0 - boundary_epsilon)
         candidate = lab_to_linear_rgb(
             compressed_lab, working_space="linear_srgb"
         )
+        if np.min(candidate) < 0.0 or np.max(candidate) > 1.0:
+            raise CharacteristicLstarTransportError(
+                "CB46 fixed interior chroma guard escaped linear-sRGB"
+            )
         actual_lab = linear_rgb_to_lab(candidate, working_space="linear_srgb")
         gradient = _gradient_p999_ratio(source, candidate)
         inversion = _gradient_inversion_fraction(
