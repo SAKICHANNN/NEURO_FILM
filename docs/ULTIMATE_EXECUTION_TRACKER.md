@@ -1371,3 +1371,11 @@ Android from 14.19-15.41s to 7.72-8.22s at a 196,224,000-byte workspace. The
 frozen 8s Android maximum fails on one of four observations (8.219s), so retain
 P8CN and close this exact candidate without threshold rescue. A successor must
 change execution mechanism rather than retune the same cache or gate.
+
+U6.P8CP changes that mechanism at the measured output bottleneck: three workers
+process disjoint contiguous pixel ranges inside each row tile, then the original
+whole-tile sink fires in unchanged order. The exact 72,000,000-byte RGB16 stream
+and 196,224,000-byte workspace persist across host and two Android cold boots.
+Host takes 1.97-2.05s; Android takes 5.86-6.74s, with all four runs below the
+frozen 7s maximum and no owned process surviving. Retain this raw-core path;
+PNG publication, physical arm64 and app/media integration remain separate.

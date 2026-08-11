@@ -2,6 +2,16 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-11 - U6.P8CP parallel output passes
+
+- Stage attribution found interleave, neutral gauge and exact quantization took
+  3.53-3.83s on Android. Three disjoint within-tile workers reduce the complete
+  raw core to 5.86-6.74s while retaining whole-tile sink order.
+- Host takes 1.97-2.05s. All host/Android outputs keep the exact P8CO RGB16 hash
+  and 196,224,000-byte workspace; stable ID is `99f0d8b2...859c8e`.
+- Retain the raw core only. PNG, physical arm64 and app/media integration remain
+  unproved and are not implied by this performance result.
+
 # 2026-08-11 - U6.P8CO cached parallel Thomas candidate closes
 
 - Full-field caching plus three independent layer workers preserves the exact
