@@ -32,7 +32,11 @@ def main() -> None:
     )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_bytes(canonical_json(report))
-    print(json.dumps(report["summary"], sort_keys=True))
+    print(
+        json.dumps(
+            report.get("summary", {"decision": report["decision"]}), sort_keys=True
+        )
+    )
 
 
 if __name__ == "__main__":
