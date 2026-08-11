@@ -1,0 +1,29 @@
+{
+  "schema": "neuro_film.u5_r2cb48_origin_anchored_luminance_linear_development_decision.v1",
+  "experiment_id": "U5.R2CB48",
+  "status": "failed_closed_before_visual_review",
+  "report_sha256": "680078099fd5040ce2ea9073c2a1ac48cc71b2c5057170f50c98a6df5e8cf962",
+  "stable_evidence_id": "edece22a95ab4cf322dba05f88526f536a2d4d940428f50096933eba648a028f",
+  "repeat_report_sha256_exact": true,
+  "metrics": {
+    "source_count": 17,
+    "zero_dose_source_count": 7,
+    "maximum_absolute_luminance_intercept": 0.0,
+    "maximum_lstar_inversion_fraction": 0.0,
+    "maximum_luminance_reconstruction_error": 2.9611686547248439e-08,
+    "population_median_global_dose": 0.125,
+    "fraction_global_dose_below_0p25": 0.5294117647058824,
+    "population_median_style_delta_e76": 0.8122160684822615
+  },
+  "failed_checks": [
+    "direction_retention",
+    "global_dose",
+    "global_dose_tail",
+    "visible_style"
+  ],
+  "visual_review_status": "forbidden",
+  "decision": "close_origin_anchored_unconstrained_linear_open_nonnegative_y_eigen_matrix",
+  "next_leaf": "Fit a nonnegative origin-anchored 3x3 RGB matrix under exact weighted-column constraints w^T M = slope*w^T, so the whole nonnegative RGB cone preserves positive luminance order without negative-channel contributions.",
+  "forbidden": "CB48 coefficient clipping, same-cohort matrix repair, dose densification, changed target or relaxed safety/style gates",
+  "claim_ceiling": "Mechanism evidence that origin anchoring removes offset failure but unconstrained negative channel contributions still collapse dose and style; not visual, stock, calibration, preference or product evidence."
+}
