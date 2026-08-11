@@ -1,0 +1,56 @@
+{
+  "schema": "neuro_film.u6_p8cr_thomas_export_profile_contract.v1",
+  "experiment_id": "u6.p8cr-thomas-export-profile-v1",
+  "node": "ULT > U6 > U6.P8 > U6.P8CR",
+  "date_frozen": "2026-08-11",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can the retained Kodak-250D-derived amplitude, generic Thomas fields and neutral gauge be serialized as one strict canonical profile and reconstructed into the P8CQ ABI without changing any RGB16 PNG byte?",
+  "parents": {
+    "p8cq_export_core": {
+      "path": "docs/evidence/U6_P8CQ_PARALLEL_THOMAS_RGB16_PNG_RESULT.json",
+      "sha256": "3d9c08e6fe1b039e099c4cbfbe95cdbd3290df033ebc56934b2aa2c19f387467",
+      "required_decision": "retain_parallel_thomas_rgb16_png_android_export_core"
+    },
+    "p8bv_amplitude": {
+      "path": "configs/u6_p8bv_native_granularity_amplitude_v1.json",
+      "sha256": "06e3d751678097be788ccc2df7869a568c0809837f3aaa35c6bba1b84dd28202"
+    },
+    "p8bs_thomas": {
+      "path": "configs/u6_p8bs_native_thomas_field_v1.json",
+      "sha256": "343d98c2f59d1632e336402b64e890dad4180db9ea1af8f4c46b7d228edef860"
+    },
+    "p8bw_layers": {
+      "path": "configs/u6_p8bw_native_exposure_to_thomas_pipeline_v1.json",
+      "sha256": "8c1313117f3f36dbcc4657038c4ccc5e7b6040f1a347a6ff0c7612417f43dbdc"
+    },
+    "p8ca_gauge": {
+      "path": "configs/u6_p8ca_native_thomas_gauged_sink_v1.json",
+      "sha256": "1aa83cfbb91c6bbfbdefc6165d700384bb23df0df2b5d65abd931e3c8affa06c"
+    }
+  },
+  "fixture": {
+    "height": 65,
+    "width": 67,
+    "row_partition": 17,
+    "exposure_seed": 2026081101,
+    "runs": 2
+  },
+  "gates": {
+    "canonical_roundtrip_exact": true,
+    "abi_struct_bytes_exact": true,
+    "png_bytes_exact": true,
+    "decoded_rgb16_exact": true,
+    "icc_exact": true,
+    "invalid_profile_rejected_before_output": true,
+    "repeat_exact": true
+  },
+  "forbidden": [
+    "profile refit or parameter change",
+    "new stock, process or scanner identity",
+    "output threshold, transfer, quantizer, ICC or PNG change",
+    "product promotion or default change"
+  ],
+  "decision_if_pass": "retain_hash_bound_thomas_export_profile_ingress",
+  "decision_if_fail": "retain_p8cq_synthetic_probe_only",
+  "claim_ceiling": "Canonical hash-bound ingress for one existing Kodak-250D-derived amplitude plus generic Thomas/gauge profile into the private native RGB16 PNG core; not calibrated stock response, photographic placement, product profile, durable publication or device runtime."
+}
