@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import copy
 import ctypes
+import hashlib
 import json
 from pathlib import Path
 
@@ -114,3 +115,17 @@ def test_profile_file_loader_requires_canonical_expected_identity(
         load_native_thomas_export_profile(
             path, expected_profile_sha256=payload["profile_sha256"]
         )
+
+
+def test_tracked_generic_thomas_profile_asset_is_exact() -> None:
+    path = ROOT / "configs/render_profiles/generic_physical_thomas_p8cr_v1.json"
+    payload = load_native_thomas_export_profile(
+        path,
+        expected_profile_sha256=(
+            "923a985aa90e029332c723a33afb793afe05cae777b3c07061d54828b91e21b4"
+        ),
+    )
+    assert payload["claim_level"] == "generic-physical-inspired"
+    assert hashlib.sha256(path.read_bytes()).hexdigest() == (
+        "ce11da8e336b322342941ec639e4dac0fe3521224cf0fc907e9841cac51cf2c0"
+    )
