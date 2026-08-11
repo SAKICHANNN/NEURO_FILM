@@ -11104,3 +11104,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   is unknown-profile and the population was consumed before CB6. One new
   photographic severe/style test may compile the mechanism without curve
   refitting; calibration and product mapping remain closed.
+
+# 2026-08-11 - Freeze U5.R2CB7 photographic characteristic compiler
+
+- CB7 does not apply unknown-recorder CB6 parameters to photographic sRGB.
+  It compiles only the retained first-party curve shape: normalized
+  `T=10^-D`, three-channel mean, fixed 20% L-star blend and the existing
+  source-segment gamut-safe executor.
+- The ten-camera BH0S population, best-gamma control, visible-effect,
+  non-basic, gamut, boundary, gradient and severe gates are frozen before any
+  candidate pixel score. Failure closes this exact generic compiler without
+  strength or coordinate rescue.

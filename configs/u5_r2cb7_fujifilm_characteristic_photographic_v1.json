@@ -1,0 +1,75 @@
+{
+  "schema": "neuro_film.u5_r2cb7_fujifilm_characteristic_photographic_contract.v1",
+  "experiment_id": "U5.R2CB7",
+  "question": "Does the retained first-party reversal characteristic shape provide a visible, gamut-safe and non-gamma photographic tone mechanism on a rights-cleared camera-diverse population?",
+  "parent": {
+    "decision_path": "configs/u5_r2cb6_fujifilm_characteristic_forward_proxy_decision_v1.json",
+    "decision_sha256": "5bf79d2ebaa40f3187cd3bc62686b1ee90a6b3d8142400d663e076eb37d24297",
+    "required_decision": "retain_characteristic_constrained_forward_mechanism",
+    "required_stable_evidence_id": "f4e3bec72b673379103617ac2b247eed88cd500c8159a984a4f3237eb5379bae",
+    "contract_path": "configs/u5_r2cb6_fujifilm_characteristic_forward_proxy_v1.json",
+    "contract_sha256": "e8f754c96b88491f9e6c1f467ddc1e3f9ec4d8b87afde9c40d0bea4e49b78150"
+  },
+  "population": {
+    "decision_path": "configs/u5_r2bh0s_fixed_bank_oracle_source_preflight_decision_v1.json",
+    "decision_sha256": "0f1a518d7554cb0ce3bcea9e9bf06492604f7484743c96479207421226732ba9",
+    "manifest_path": "outputs/u5_r2bh0s_fixed_bank_oracle_source_preflight_v1/manifest.json",
+    "manifest_sha256": "e7dc8c861871de83a0aa3f92a717e23fd024bed15b8a19b739516c48f1f58e0e",
+    "visual_review_path": "outputs/u5_r2bh0s_fixed_bank_oracle_source_preflight_v1/visual_source_review.json",
+    "visual_review_sha256": "388d298af94e9a8507092717941d96c28414d0fa18ac5e9411b44ff2eaea3e5e",
+    "required_decision": "pass_fresh_population_and_open_complete_fixed_bank_oracle",
+    "required_visual_decision": "pass_source_visual_gate_with_two_fixed_failures_and_no_replacement",
+    "source_count_exact": 10,
+    "camera_make_count_exact": 10,
+    "exclude_ids": ["canon_powershot_v1"],
+    "maximum_long_edge": 1280,
+    "allowed_use": "internal independent digital-photo evaluation"
+  },
+  "operator": {
+    "input": "relative display-linear sRGB only",
+    "curve_compile": "for each frozen channel trace compute T=10^-D, normalize exact first/last T to 0/1, average the three normalized transmissions, and PCHIP on normalized traced log-exposure position",
+    "application_domain": "CIELAB L-star only; a-star/b-star initially unchanged",
+    "input_coordinate": "L-star / 100, explicitly a generic display-look coordinate rather than scene or film exposure",
+    "strength": 0.2,
+    "blend": "target=(1-strength)*identity+strength*compiled_curve",
+    "gamut_execution": "existing source-segment linear-sRGB gamut compression with 24 iterations",
+    "output": "deterministic sRGB8 PNG research asset",
+    "curve_refit": false,
+    "cb6_recorder_parameter_reuse": false
+  },
+  "controls": {
+    "identity": "source L-star",
+    "best_gamma": "one per-image bounded gamma fitted on the exact colour-metric sample to candidate L-star; diagnostic basic-tone control",
+    "source_boundary": "new epsilon boundary relative to source",
+    "gradient_order": "adjacent material L-star sign inversion"
+  },
+  "automatic_gates": {
+    "source_count_exact": 10,
+    "camera_make_count_exact": 10,
+    "minimum_population_median_per_image_p95_lstar_effect": 3.0,
+    "maximum_per_image_p95_lstar_effect": 20.0,
+    "minimum_population_median_per_image_gamma_residual_delta_lstar": 1.0,
+    "minimum_rows_gamma_residual_delta_lstar_ge_0p75": 8,
+    "minimum_population_median_gamut_scale": 0.95,
+    "maximum_per_image_fraction_gamut_scale_below_0p99": 0.2,
+    "maximum_new_hard_boundary_fraction": 0.005,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.001,
+    "output_linear_minimum": 0.0,
+    "output_linear_maximum": 1.0,
+    "two_byte_identical_reports_and_outputs": true,
+    "maximum_confirmed_severe_visual_artifact_count": 0
+  },
+  "evaluation": {
+    "hard_boundary_epsilon": 0.00196078431372549,
+    "gamut_scale_material_threshold": 0.99,
+    "gradient_sign_epsilon_lstar": 0.0001,
+    "colour_metric_max_samples": 65536,
+    "gamma_bounds": [0.25, 4.0]
+  },
+  "stop_rules": [
+    "Do not change trace, transmittance normalization, strength, colour domain, source population, gamma control, gamut executor or gates after candidate pixels are scored.",
+    "Any automatic or confirmed severe-artifact failure closes this exact generic characteristic-look compiler without strength, coordinate, curve, source or threshold rescue.",
+    "Pass may retain a generic film-inspired tone mechanism for a fresh comparison with the incumbent; it cannot establish Velvia calibration, scene exposure, dye colour, scanner/process truth or product promotion."
+  ],
+  "claim_ceiling": "Rights-cleared photographic development evidence for a generic tone mechanism compiled from a retained first-party reversal characteristic shape; not Velvia calibration, stock colour, scene exposure, authenticity, preference or product promotion."
+}
