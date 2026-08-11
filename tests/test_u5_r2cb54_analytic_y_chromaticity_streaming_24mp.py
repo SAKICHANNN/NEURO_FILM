@@ -5,6 +5,7 @@ from pathlib import Path
 
 from scripts.benchmark_u5_r2cb54_analytic_y_chromaticity_streaming_24mp import (
     _validate,
+    generate_edge_bearing_fields,
     worker,
 )
 
@@ -17,6 +18,9 @@ def test_cb54_resource_contract_binds_cb53_failure_and_streaming_core() -> None:
     _validate(config)
     assert config["workload"]["shape"] == [4000, 6000, 3]
     assert config["workload"]["operator_row_chunk"] == 64
+    first = generate_edge_bearing_fields((33, 49, 3), row_chunk=7)
+    second = generate_edge_bearing_fields((33, 49, 3), row_chunk=31)
+    assert all((left == right).all() for left, right in zip(first, second, strict=True))
 
 
 def test_cb54_resource_worker_smoke_is_clean(tmp_path: Path) -> None:

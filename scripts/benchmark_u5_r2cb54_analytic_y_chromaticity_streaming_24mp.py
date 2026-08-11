@@ -10,6 +10,7 @@ import sys
 from pathlib import Path
 from time import perf_counter, sleep
 
+import numpy as np
 import psutil
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -51,11 +52,33 @@ def _validate(config: dict) -> None:
         raise ValueError("CB54 prerequisite decision drift")
 
 
+def generate_edge_bearing_fields(
+    shape: tuple[int, int, int], *, row_chunk: int
+) -> tuple[np.ndarray, np.ndarray]:
+    source, target = generate_fields(shape, row_chunk=row_chunk)
+    del target
+    width = shape[1]
+    x_blocks = np.arange(width, dtype=np.int64) // 16
+    for y0 in range(0, shape[0], row_chunk):
+        y1 = min(shape[0], y0 + row_chunk)
+        y_blocks = np.arange(y0, y1, dtype=np.int64)[:, None] // 16
+        pattern = (((x_blocks[None, :] + y_blocks) % 2) * 2 - 1).astype(
+            np.float32
+        )
+        source[y0:y1] += np.float32(0.2) * pattern[..., None]
+        np.clip(source[y0:y1], np.float32(0.002), np.float32(0.94), out=source[y0:y1])
+    target = np.empty_like(source)
+    target[..., 0] = np.float32(0.88) * source[..., 0] + np.float32(0.12) * source[..., 1]
+    target[..., 1] = np.float32(0.88) * source[..., 1] + np.float32(0.12) * source[..., 2]
+    target[..., 2] = np.float32(0.88) * source[..., 2] + np.float32(0.12) * source[..., 0]
+    return source, target
+
+
 def worker(config: dict, *, scratch_root: Path) -> dict:
     _validate(config)
     workload = config["workload"]
     started = perf_counter()
-    source, target = generate_fields(
+    source, target = generate_edge_bearing_fields(
         tuple(int(item) for item in workload["shape"]),
         row_chunk=int(workload["generation_row_chunk"]),
     )
