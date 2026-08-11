@@ -1,0 +1,31 @@
+{
+  "schema": "neuro_film.u5_r2cb10_fujifilm_characteristic_minmax_decision.v1",
+  "experiment_id": "U5.R2CB10",
+  "contract_commit": "6e84b169",
+  "implementation_commit": "e25783e2",
+  "contract_sha256": "e89d3a1d279bfd0580c08feefe46006665833e88fe4e61314ebc0ac2e2d8096c",
+  "implementation_sha256": "4d23a64a3622e9ff6b6d28af40bdccc4635e0c7bf23509fa40aa985f29cb32ed",
+  "runner_sha256": "cd9096fa73709e8671c0588a0b7714f9f018262dbfa9dbb49d53be66aa0ab166",
+  "formal_report_path": "outputs/experiments/u5_r2cb10_fujifilm_characteristic_minmax_v1/report_run1.json",
+  "formal_report_sha256": "d634c0876f24000928c14f1af57c37c7ffe4055162035025595912ca50780556",
+  "stable_evidence_id": "02beacd7dbfb98fcdb5c9db89e3e33102c1a3b51f5ea800dead25e6db35e370d",
+  "repeat_report_byte_exact": true,
+  "passed": false,
+  "decision": "close_characteristic_minmax_without_rescue",
+  "metrics": {
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio_vs_source": 1.1315816378337449,
+    "population_median_style_delta_e76": 3.766791255928383,
+    "population_median_joint_basic_residual_delta_e76": 2.5958011873130076,
+    "rows_joint_basic_residual_delta_e76_ge_0p25": 10,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.070643876070368
+  },
+  "failed_gates": ["gradient_order"],
+  "interpretation": [
+    "The epsilon-knot min-max coordinate is finite, boundary exact and retains visible non-basic style.",
+    "Its dependence on each pixel's chromatic extrema still makes the luminance response colour-dependent; adjacent material L-star order inversion reaches 7.06 percent despite continuity and within-pixel channel-order preservation.",
+    "Further tuning of RGB extrema coordinates is not justified. Luminance must be an exact globally monotone coordinate independent of chroma."
+  ],
+  "next_action": "Freeze an exact linear-luminance characteristic map plus a zero-luminance chroma residual with analytical cube/boundary scale; do not rescue the consumed min-max family.",
+  "claim_ceiling": "Closed continuous RGB min-max photographic compiler; not a negative result about CB6 manufactured-target evidence, luminance-exact bounded chroma execution, Velvia calibration or product quality."
+}

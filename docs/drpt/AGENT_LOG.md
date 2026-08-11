@@ -11189,3 +11189,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The construction is continuous, cube/boundary preserving and channel-order
   preserving by design. The same development population and effect,
   joint-basic, gradient and severe gates are frozen before score.
+
+# 2026-08-11 - U5.R2CB10 closes RGB min-max execution
+
+- Two reports are exact (`d634c087...80556`). Boundary safety is exact and
+  median style/non-basic Delta E remains `3.767/2.596`, but the worst adjacent
+  L-star order inversion rises to `7.064%`.
+- Continuous within-pixel channel ordering does not protect between-pixel
+  luminance ordering when the coordinate depends on chromatic extrema. Close
+  this family; next make luminance an exact global monotone coordinate and
+  analytically subordinate only the zero-luminance chroma component.

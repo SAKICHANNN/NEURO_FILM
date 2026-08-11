@@ -18,6 +18,7 @@ from src.eval.fujifilm_e6_dye_operator_photographic import _new_boundary_fractio
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/u5_r2cb10_fujifilm_characteristic_minmax_v1.json"
+DECISION = ROOT / "configs/u5_r2cb10_fujifilm_characteristic_minmax_decision_v1.json"
 
 
 def _curve():
@@ -61,3 +62,12 @@ def test_invalid_source_fails_before_execution() -> None:
             strength=0.2,
             boundary_epsilon=1.0 / 510.0,
         )
+
+
+def test_formal_decision_binds_exact_failed_replay() -> None:
+    import json
+
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["decision"] == "close_characteristic_minmax_without_rescue"
+    assert decision["repeat_report_byte_exact"] is True
+    assert decision["failed_gates"] == ["gradient_order"]
