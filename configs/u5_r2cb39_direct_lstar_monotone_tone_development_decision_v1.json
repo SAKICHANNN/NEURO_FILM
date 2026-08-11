@@ -1,0 +1,19 @@
+{
+  "schema": "neuro_film.u5_r2cb39_direct_lstar_monotone_tone_development_decision.v1",
+  "experiment_id": "U5.R2CB39",
+  "status": "failed_closed_before_visual_review",
+  "report_sha256": "e05afaf9d9dc592394f778d35bf9e4903692e38ec4fe1e7607b8207fa615bd9d",
+  "stable_evidence_id": "45f63ddafa6c13897a46bed50644daf5c34860e5b297772fc4ba1904287d0d09",
+  "repeat_report_sha256_exact": true,
+  "failure": {
+    "completed_source_count": 0,
+    "minimum_gradient_ratio": 1.0041903133044592,
+    "minimum_lstar_inversion_fraction": 0.0044118477856608176
+  },
+  "partial_artifacts_removed": true,
+  "visual_review_status": "forbidden",
+  "decision": "close_nonstrict_lstar_quantile_open_identity_slope_successor",
+  "next_leaf": "Use a fixed convex source-L-star identity component to impose a positive minimum tone slope before the same analytic inverse and CB32 chroma execution, on a different source population.",
+  "forbidden": "AO7S rescue, more knots, adaptive slope, changed thresholds, local masks, filtering or post-result tuning",
+  "claim_ceiling": "Mechanism failure showing that nondecreasing direct-L-star quantile transport remains order-unstable in flat regions; not visual, stock, calibration, preference or product evidence."
+}

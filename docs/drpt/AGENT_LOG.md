@@ -11708,3 +11708,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Gradient is safe, but exact L* inversion is `2.49e-4`.
 - Coefficients alone do not reproduce the frozen float32 Lab reduction/order.
   The next mechanism maps actual L* and inverts it to neutral Y; no BK3 rescue.
+
+# 2026-08-12 - U5.R2CB39 non-strict direct-L* tone closes
+
+- Two exact diagnostics (`e05afaf9...15bd9d`) stop at AO7S row zero. Gradient
+  is safe while L* inversion is `0.00441`.
+- Direct coordinate alignment is insufficient when quantile transport has flat
+  regions. Add a fixed positive source-identity slope on a distinct population;
+  do not densify knots or tune AO7S.

@@ -13,6 +13,7 @@ from src.eval.direct_lstar_monotone_tone_transport import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u5_r2cb39_direct_lstar_monotone_tone_development_v1.json"
+DECISION = ROOT / "configs/u5_r2cb39_direct_lstar_monotone_tone_development_decision_v1.json"
 
 
 def test_cb39_contract_freezes_direct_lstar_and_source_subset() -> None:
@@ -60,3 +61,12 @@ def test_cb39_selector_has_zero_direct_lstar_inversion() -> None:
     )
     assert float(np.max(np.abs(luma_error))) < 1e-6
     assert facts["selected_lstar_inversion_fraction"] == 0.0
+
+
+def test_cb39_decision_opens_positive_identity_slope() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["failure"]["minimum_gradient_ratio"] < 1.35
+    assert decision["failure"]["minimum_lstar_inversion_fraction"] > 0.0
+    assert decision["decision"] == (
+        "close_nonstrict_lstar_quantile_open_identity_slope_successor"
+    )

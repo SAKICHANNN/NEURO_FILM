@@ -1453,3 +1453,9 @@ float32 Lab execution. Two exact diagnostics (`082e8e04...57a043`) fail on
 BK3's first source with safe gradient (`0.895`) but `2.49e-4` L* inversions.
 Close without reduction-order rescue. The next leaf must map actual computed
 L* directly and analytically invert its neutral tone coordinate.
+
+U5.R2CB39 maps actual computed L* but closes before visual review. Two exact
+diagnostics (`e05afaf9...15bd9d`) show safe gradient (`1.004`) yet `0.00441`
+L* inversions on the first AO7S row: the nondecreasing quantile map has flat
+regions whose float32 inverse is not strictly order-stable. The next leaf adds
+a fixed positive source-identity slope on a different population; no AO7 rescue.
