@@ -119,7 +119,16 @@ def _inputs(config: Mapping[str, Any], root: Path):
     return cb11, ao6_config, artifact, curve, available, unavailable
 
 
-def evaluate(config: Mapping[str, Any], root: Path, output_dir: Path) -> dict[str, Any]:
+def evaluate(
+    config: Mapping[str, Any],
+    root: Path,
+    output_dir: Path,
+    *,
+    target_builder: Any = monotone_fraction_quantile_transport_target,
+    report_schema: str = REPORT_SCHEMA,
+    experiment_id: str = EXPERIMENT_ID,
+    contract_filename: str = "u5_r2cb30_monotone_fraction_gold_stress_v1.json",
+) -> dict[str, Any]:
     cb11, ao6_config, artifact, curve, available, unavailable = _inputs(config, root)
     if output_dir.exists():
         raise FileExistsError("CB30 is create-only")
@@ -146,7 +155,7 @@ def evaluate(config: Mapping[str, Any], root: Path, output_dir: Path) -> dict[st
             strength=float(operator["nominal_strength"]),
             boundary_epsilon=epsilon,
         )
-        target = monotone_fraction_quantile_transport_target(
+        target = target_builder(
             safe_base,
             ao6,
             weights=weights,
@@ -287,11 +296,9 @@ def evaluate(config: Mapping[str, Any], root: Path, output_dir: Path) -> dict[st
     }
     automatic = all(checks.values())
     report: dict[str, Any] = {
-        "schema": REPORT_SCHEMA,
-        "experiment_id": EXPERIMENT_ID,
-        "contract_sha256": hash_file(
-            root / "configs/u5_r2cb30_monotone_fraction_gold_stress_v1.json"
-        ),
+        "schema": report_schema,
+        "experiment_id": experiment_id,
+        "contract_sha256": hash_file(root / "configs" / contract_filename),
         "rows": rows,
         "contact_sheets": sheets,
         "metrics": metrics,
