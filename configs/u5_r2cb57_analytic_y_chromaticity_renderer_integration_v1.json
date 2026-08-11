@@ -1,0 +1,25 @@
+{
+  "schema": "neuro_film.u5_r2cb57_analytic_y_chromaticity_renderer_integration_contract.v1",
+  "experiment_id": "U5.R2CB57",
+  "question": "Can the exact CB54 streamed research champion run through the real WorkingImage/effects/output renderer as an explicit opt-in profile without changing the safe-Lab default?",
+  "parents": {
+    "cb56_decision_path": "configs/u5_r2cb56_analytic_y_chromaticity_face_stress_decision_v1.json",
+    "cb56_decision_sha256": "d3edb4bec5675b31043c1547402a1ed4722adc805bb80831d125c6483101ae44",
+    "cb56_required_decision": "pass_cb56_decoded_face_severe_retain_analytic_y_chromaticity_research_champion"
+  },
+  "profile_path": "configs/render_profiles/analytic_y_chromaticity_cb56_v1.json",
+  "gates": {
+    "direct_runtime_vs_cli_linear_samples_exact": true,
+    "two_cli_output_files_byte_exact": true,
+    "profile_and_asset_drift_fail_before_output": true,
+    "unsupported_style_and_recipe_fail_before_output": true,
+    "default_safe_lab_output_byte_unchanged": true,
+    "metrics_bind_profile_and_selector_facts": true
+  },
+  "stop_rules": [
+    "Do not change CB50-CB56 operator, target, curve, dose grid or thresholds.",
+    "Do not change the default engine or relabel the profile as stock response or calibrated.",
+    "Do not weaken the existing recipe v1 safe-Lab contract; the research engine must reject recipe v1 until separately versioned."
+  ],
+  "claim_ceiling": "Opt-in renderer integration and exact host parity for the analytic Look Approximation research champion; AO6/safe-Lab default unchanged and no stock, calibration or product promotion."
+}
