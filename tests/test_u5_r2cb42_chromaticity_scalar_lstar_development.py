@@ -47,3 +47,23 @@ def test_cb42_scalar_solve_preserves_rgb_ratios_on_neutral_target() -> None:
     assert facts["scalar_gamut_limited_fraction"] == 0.0
     assert np.array_equal(candidate[..., 0], candidate[..., 1])
     assert np.array_equal(candidate[..., 1], candidate[..., 2])
+
+
+def test_cb42_scalar_solve_does_not_create_black_boundary() -> None:
+    contract = json.loads(CONTRACT.read_text(encoding="utf-8"))
+    cb11 = json.loads((ROOT / contract["parents"]["cb11_contract_path"]).read_text())
+    curve = _compiled_curve(load_cb6(ROOT / cb11["parents"]["cb6_contract_path"]))
+    source = np.asarray([[[0.003, 0.02, 0.2], [0.02, 0.003, 0.2]]], dtype=np.float32)
+    candidate, _, _, _ = select_chromaticity_scalar_candidate(
+        source,
+        source.copy(),
+        curve=curve,
+        strength=float(cb11["operator"]["nominal_strength"]),
+        boundary_epsilon=float(cb11["operator"]["boundary_epsilon"]),
+        dose_grid=[1.0, 0.0],
+        maximum_gradient_ratio=10.0,
+        maximum_lstar_inversion_fraction=1.0,
+        lstar_order_epsilon=0.0001,
+    )
+    epsilon = float(cb11["operator"]["boundary_epsilon"])
+    assert np.all(candidate[source > epsilon] > epsilon)

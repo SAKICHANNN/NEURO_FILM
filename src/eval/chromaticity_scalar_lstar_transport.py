@@ -84,6 +84,10 @@ def select_chromaticity_scalar_candidate(
         np.float32(1.0 - boundary_epsilon)
         - np.float32(4.0) * np.spacing(np.float32(1.0 - boundary_epsilon))
     )
+    interior_lower = float(
+        np.float32(boundary_epsilon)
+        + np.float32(4.0) * np.spacing(np.float32(boundary_epsilon))
+    )
     maximum_scalar = np.min(
         np.divide(
             interior_upper,
@@ -93,8 +97,17 @@ def select_chromaticity_scalar_candidate(
         ),
         axis=-1,
     )
-    limited = scalar > maximum_scalar
-    scalar = np.minimum(scalar, maximum_scalar)
+    minimum_scalar = np.max(
+        np.divide(
+            interior_lower,
+            source64,
+            out=np.zeros_like(source64),
+            where=source64 > boundary_epsilon,
+        ),
+        axis=-1,
+    )
+    limited = (scalar > maximum_scalar) | (scalar < minimum_scalar)
+    scalar = np.clip(scalar, minimum_scalar, maximum_scalar)
     tone_base = np.asarray(source64 * scalar[..., None], dtype=np.float32)
     tone_lstar = linear_rgb_to_lab(tone_base, working_space="linear_srgb")[..., 0]
     tone_y = np.sum(tone_base.astype(np.float64) * LEGACY_LAB_Y_WEIGHTS, axis=-1)
