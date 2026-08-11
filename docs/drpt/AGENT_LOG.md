@@ -11283,3 +11283,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   severe review precede mapping reveal.
 - This leaf tests independent display-proxy OOD preference and safety only. It
   cannot repair CB13's unavailable original face or open calibration/product.
+
+# 2026-08-11 - U5.R2CB14 closes CB11 on the second OOD population
+
+- Two fresh-process render reports and all 39 run artifacts are exact
+  (`f486b88a...e600e`; stable `96f7c9e...31a163`); both fixed arms retain the
+  frozen zero-new-boundary guarantee and the blind sheets have no confirmed
+  severe structural artifact.
+- Choices were committed before mapping reveal. CB11 receives `16/36`, wins
+  `1/3` rounds and has `5/12` source majorities, below all frozen `2/22/7`
+  gates. Preference failure is already decisive, so no non-decision-changing
+  full-resolution promotion audit or rescue round was added.
+- Close unchanged CB11 and retain AO6 t15/c35 as the colour incumbent. CB6
+  remains manufactured-target mechanism evidence only; no product, stock,
+  calibration, RAW, scene-linear or population-preference claim changes.
