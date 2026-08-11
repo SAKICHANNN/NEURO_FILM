@@ -1,0 +1,35 @@
+{
+  "schema": "neuro_film.u6_p8ct_thomas_atomic_publication_scale_contract.v1",
+  "experiment_id": "u6.p8ct-thomas-atomic-publication-scale-v1",
+  "node": "ULT > U6 > U6.P8 > U6.P8CT",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can the exact P8CR profile and P8CS create-only native PNG publication path execute at 12MP with deterministic bytes and bounded ordinary-desktop resources?",
+  "parent": {
+    "path": "docs/evidence/U6_P8CS_THOMAS_ATOMIC_PUBLICATION_RESULT.json",
+    "sha256": "25b4755e4e0912c04b719276b6c635a8f0a282c5543061d93a47c01970cd7073",
+    "required_decision": "retain_profile_bound_atomic_native_png_publication"
+  },
+  "fixture": {
+    "height": 3000,
+    "width": 4000,
+    "row_partition": 128,
+    "runs": 2,
+    "exposure_formula": "(((pixel_index * 17 + channel * 13) mod 193) - 96) / 64",
+    "maximum_output_bytes": 80000000
+  },
+  "gates": {
+    "maximum_wall_seconds": 12.0,
+    "maximum_process_tree_rss_bytes": 600000000,
+    "maximum_repeat_wall_ratio": 1.20,
+    "maximum_repeat_rss_ratio": 1.10,
+    "require_exact_output_replay": true,
+    "require_exact_decoded_replay": true,
+    "require_exact_icc": true,
+    "require_zero_stage_residue": true,
+    "require_zero_surviving_processes": true
+  },
+  "decision_if_pass": "retain_12mp_profile_bound_atomic_native_png_publication",
+  "decision_if_fail": "retain_small_fixture_atomic_publication_only",
+  "claim_ceiling": "One measured Windows ordinary-desktop CPU 12MP create-only atomic RGB16 PNG publication using the exact generic physical-inspired P8CR profile; not calibrated stock response, arbitrary media, device runtime or delivered product."
+}
