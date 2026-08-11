@@ -11580,3 +11580,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `9857cda0...197d76`), stop at the same tenth source and leave two later
   sources unread. Do not add epsilon, minimum dose or quantile rescue. AO6
   remains incumbent; a successor must be intrinsically interior.
+
+# 2026-08-11 - U5.R2CB25 closes logit transport before render
+
+- The first development row requires a 3D logit-Gaussian transport eigenvalue
+  `.23319`, below the frozen `.25` minimum. Two diagnostics are byte exact
+  (`acc7cb3c...012`; stable `f8f79273...935e1`).
+- No candidate image is emitted. Do not widen the compression envelope; close
+  this 3D covariance family and move to a lower-dimensional bounded mechanism.

@@ -1,0 +1,31 @@
+{
+  "schema": "neuro_film.u5_r2cb25_logit_gamut_fraction_transport_decision.v1",
+  "experiment_id": "U5.R2CB25",
+  "contract_commit": "fb3d109203be153c49407c39206fc85abc36bca0",
+  "implementation_commit": "dd966701994b255dbefd7d9d1f243998497d42f6",
+  "contract_sha256": "ebbe508875ee0c3c2edd30bd87ccc21b28899e1413629cf4ecb3a67ad944d237",
+  "implementation_sha256": "cfd40a797540d50785bb58127c9b32c349ca0079fbac9ef58f7069c793af9968",
+  "runner_sha256": "f31c505f80866085e01ce2756c4f8d671753b9e8d27b7b44b57385a8fb4b094d",
+  "formal_preflight_path": "D:/nf-019f4b76-cb25/preflight_run1.json",
+  "formal_preflight_sha256": "acc7cb3cbeddf71cb0e1ed6c94a58bbb50540c4fce0083c0cab4113197662012",
+  "stable_evidence_id": "f8f7927307e18cd3cfdf145f94aff9b99272a36932700a432e12b72f48a935e1",
+  "repeat_report_byte_exact": true,
+  "full_render_report_emitted": false,
+  "failed_source_id": "canon_powershot_s120",
+  "transport_eigenvalues": [
+    0.23319171554714388,
+    0.5154157408397976,
+    0.7139065687613235
+  ],
+  "minimum_transport_eigenvalue": 0.25,
+  "blind_review_opened": false,
+  "passed": false,
+  "decision": "close_logit_gamut_fraction_transport_before_first_render",
+  "interpretation": [
+    "The first development source requires a logit-space transport eigenvalue 0.23319 below the frozen 0.25 envelope.",
+    "The covariance matrices are finite and positive definite; the failure is excessive global compression under the exact mechanism rather than numerical singularity.",
+    "No candidate render is emitted and the envelope cannot be widened after observing this row."
+  ],
+  "next_action": "Close the 3D logit-Gaussian family; test a lower-dimensional intrinsically bounded hue/fraction operator without covariance-axis compression rescue.",
+  "claim_ceiling": "Stable negative pre-render evidence for logit-RGB Gaussian gamut-fraction transport; not stock response, calibration, population preference or product promotion."
+}
