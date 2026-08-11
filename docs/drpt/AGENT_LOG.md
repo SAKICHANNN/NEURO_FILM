@@ -11232,3 +11232,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   the existing fixed AO6 compiler. It will not claim RAW or scene-linear
   confirmation. Repeat/boundary and severe gates precede three hidden-mapping
   autonomous preference rounds with fixed `2/22/7` promotion thresholds.
+
+# 2026-08-11 - U5.R2CB12 promotes CB11 to gold/stress challenger
+
+- Two path-normalized formal reports are byte exact (`3d8af27c...fff82e`;
+  stable `c4fb6ee5...e8c1b`). Both fixed arms introduce zero new hard-boundary
+  pixels on the twelve-camera BH1S display-proxy population.
+- Blind choices were committed before reading the embedded mappings. CB11 wins
+  all three rounds, receives `34/36` choices and has a majority on `12/12`
+  sources. Sheet and selected original-resolution review find zero confirmed
+  severe artifacts.
+- Retain CB11 as a generic explicit Look Approximation challenger and next run
+  the frozen gold/stress safety regression. AO6 remains the product/default
+  incumbent until that independent safety leaf closes; no stock, calibration,
+  RAW, scene-linear or population-preference claim opens.

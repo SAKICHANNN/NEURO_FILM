@@ -39,6 +39,27 @@ def test_cb12_adjudication_passes_frozen_gates() -> None:
     assert all(result["gates"].values())
 
 
+def test_cb12_decision_matches_frozen_evidence() -> None:
+    expected = json.loads(
+        (
+            ROOT / "configs/u5_r2cb12_characteristic_vs_ao6_fresh_decision_v1.json"
+        ).read_text(encoding="utf-8")
+    )
+    actual = adjudicate_files(
+        root=ROOT,
+        config_path=ROOT / "configs/u5_r2cb12_characteristic_vs_ao6_fresh_v1.json",
+        observations_path=ROOT
+        / "configs/u5_r2cb12_characteristic_vs_ao6_fresh_observations_v1.json",
+        review_path=ROOT
+        / "configs/u5_r2cb12_characteristic_vs_ao6_full_resolution_review_v1.json",
+        mapping_receipt_path=ROOT
+        / "configs/u5_r2cb12_characteristic_vs_ao6_mapping_receipt_v1.json",
+        report_paths=[BASE / "report_run4.json", BASE / "report_run5.json"],
+        adjudicator_software_commit=expected["adjudicator_software_commit"],
+    )
+    assert actual == expected
+
+
 def test_cb12_adjudication_rejects_observation_mutation(tmp_path: Path) -> None:
     source = ROOT / "configs/u5_r2cb12_characteristic_vs_ao6_fresh_observations_v1.json"
     payload = json.loads(source.read_text(encoding="utf-8"))

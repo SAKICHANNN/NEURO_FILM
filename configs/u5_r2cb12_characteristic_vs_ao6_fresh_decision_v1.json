@@ -1,0 +1,41 @@
+{
+  "additional_rounds_allowed": false,
+  "adjudicator_software_commit": "1d53f78432dc67495ecdd92b32f6e5e0490d8c4a",
+  "claim_ceiling": "Independent-camera autonomous comparison of fixed explicit display-proxy Look Approximation arms; not RAW, scene-linear, Velvia calibration, stock response, population preference or product promotion.",
+  "experiment_id": "U5.R2CB12",
+  "gates": {
+    "automatic_boundary_gate": true,
+    "minimum_candidate_aggregate_choices": true,
+    "minimum_candidate_round_wins": true,
+    "minimum_candidate_source_majorities": true,
+    "severe_artifact_veto": true
+  },
+  "inputs": {
+    "config_sha256": "0951b3ec44049f76afda12b90ba40e1bc644000336fcc340b1b862ea986823c1",
+    "mapping_receipt_sha256": "63e0d428be2c5ebd20cc949f0908e2b51eb7b61a4afb4dc2f9688578e82190b2",
+    "observations_sha256": "bfdc5e392d9090612de3e208da74bbb6c1a1fc693f70075cbf9b03547f5220c3",
+    "render_report_sha256": "3d8af27c533ab6f1cdf7c9d94f4f412022a27a7ed18d2483a57b09e21dfff82e",
+    "render_stable_evidence_id": "c4fb6ee5f4aa28993a1296a1df190c0c55b26016b241eebfe252f0b16bbe8c1b",
+    "review_sha256": "88c51a2fc9ae71d04e14ab116bdb6184a4f6099bc4fd3da0032a23cf76c29eff"
+  },
+  "measurements": {
+    "aggregate_choice_count": 36,
+    "candidate_aggregate_choices": 34,
+    "candidate_round_wins": 3,
+    "candidate_source_majorities": 12,
+    "round_counts": [
+      {"ao6": 1, "candidate": 11},
+      {"ao6": 1, "candidate": 11},
+      {"candidate": 12}
+    ],
+    "source_count": 12
+  },
+  "next_branch": "freeze_gold_stress_product_safety_regression",
+  "operator_retuning_allowed": false,
+  "pass": true,
+  "production_default_changed": false,
+  "schema": "neuro_film.u5_r2cb12_characteristic_vs_ao6_decision.v1",
+  "stable_evidence_id": "d5129080d12c80977a9e3a3b98fa1e1f429e00f6e4c4f9611414bc441af59dc8",
+  "status": "candidate_beats_ao6_open_gold_stress",
+  "thresholds_changed": false
+}
