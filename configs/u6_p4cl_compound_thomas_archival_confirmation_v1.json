@@ -1,0 +1,103 @@
+{
+  "schema": "neuro_film.u6_p4cl_compound_thomas_archival_confirmation_contract.v1",
+  "experiment_id": "u6.p4cl-compound-thomas-archival-confirmation-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4CL",
+  "date_frozen": "2026-08-11",
+  "question": "Can one source-independent, bounded low-frequency scale field explain P4CJ's transferable high-order archival residual structure while retaining the fixed P4BS Thomas second-order spectrum?",
+  "primary_sources": [
+    {
+      "title": "AbsoluteDegradation: A Physics-Inspired Synthetic Film-Degradation Pipeline and Archival Film Restoration Benchmark",
+      "url": "https://arxiv.org/abs/2607.02131",
+      "use": "latest 2026 public archival benchmark and signal-dependent/nonstationary motivation; its exact released blue-noise executable is closed by P4CK"
+    },
+    {
+      "title": "Realistic Film Noise Generation Based on Experimental Noise Spectra",
+      "url": "https://doi.org/10.1109/TIP.2019.2955284",
+      "use": "measured-film precedent for spatially varying local noise statistics with preserved cross-region correlation; no code or data is copied"
+    }
+  ],
+  "dataset": {
+    "ref": "absolutedegradation/absolutecinema-real-scene-split-review-sample",
+    "version": 6,
+    "api_url": "https://www.kaggle.com/api/v1/datasets/list/absolutedegradation/absolutecinema-real-scene-split-review-sample",
+    "license": "CC-BY-4.0",
+    "selection_rule": "After excluding all four P4CJ sources, sort eligible source names whose first clip has exactly ten PNG frames; take the next eight sources. First four are development and last four are confirmation.",
+    "selected_source_names": [
+      "at_the_foot_of_the_flatiron__http_www.loc.gov_item_00694378",
+      "beginning_of_a_skyscraper__http_www.loc.gov_item_00694382",
+      "bombardment_of_taku_forts_by_the_allied_fleets__http_www.loc.gov_item_00694156",
+      "buster_makes_room_for_his_mama_at_the_bargain_counter__http_www.loc.gov_item_2011600508",
+      "catching_an_early_train__http_www.loc.gov_item_00694170",
+      "duel_au_pistolet__http_www.loc.gov_item_76710470",
+      "esquimaux_game_of_snap-the-whip__http_www.loc.gov_item_00694349",
+      "free-for-all_race_at_charter_oak_park__http_www.loc.gov_item_00694210"
+    ],
+    "development_source_count": 4,
+    "confirmation_source_count": 4,
+    "frames_per_source": 10,
+    "expected_total_bytes": 65904382,
+    "selected_metadata_lock_sha256": "470a4bdbc88e9134040aaeefd1f1146aebd8f922154a63de1692d445a09a732a",
+    "maximum_download_bytes": 70000000,
+    "download_destination_rule": "caller-owned scratch outside the unavailable repository data junction"
+  },
+  "parent": {
+    "p4cj_evidence_path": "docs/evidence/U6_P4CJ_ABSOLUTE_CINEMA_ARCHIVAL_GRAIN_RESULT.json",
+    "p4cj_evidence_sha256": "a3a41c157b1f52f126c13f32657197878e839f27524cc87fca67e8154669cc72",
+    "required_decision": "PASS_SECOND_ORDER_ONLY_REJECT_GAUSSIAN_COMPLETE_STRUCTURE",
+    "p4bs_particle_sigma_pixels": 1.3253699417769098,
+    "p4bs_cluster_sigma_pixels": 1.1268619873805532,
+    "p4bs_mean_offspring": 27.765942352935905
+  },
+  "patch_observation": {
+    "patch_size_pixels": 96,
+    "border_pixels": 48,
+    "patches_per_frame": 8,
+    "lowpass_gaussian_sigma_pixels": 3.0,
+    "accepted_patch_mean_interval": [0.1, 0.9],
+    "scalar_decode": "uint8 PNG BT.709 code-luma divided by 255",
+    "selection": "lowest low-pass gradient RMS with y/x tie break",
+    "residual_normalization": "subtract mean and divide by population RMS"
+  },
+  "candidate": {
+    "name": "bounded_compound_thomas_v1",
+    "base": "zero-DC Gaussian random field with exact fixed P4BS Thomas power",
+    "scale_field": "independent zero-mean unit-RMS Gaussian field with 12-pixel Gaussian low-pass amplitude, transformed by exp(s*z-0.5*s^2), clipped to [0.25,4.0]",
+    "scale_sigma_pixels": 12.0,
+    "scale_bounds": [0.25, 4.0],
+    "fit_parameter": "single global log-scale standard deviation s",
+    "fit_rule": "32-step bisection on [0,1.5] matching the median development local_energy_cv_8x8 to the median of 256 fixed-seed candidate fields; fail if the target is outside endpoint predictions",
+    "candidate_seed": 2608110412,
+    "fit_sample_count": 256,
+    "evaluation_sample_count": 512,
+    "features": ["skew", "excess_kurtosis", "local_energy_cv_8x8", "absolute_excursion_component_density_z2p5"],
+    "feature_distance": "RMS difference between observed and model feature medians after scaling all differences by the fixed Gaussian-control feature MAD floor 1e-6"
+  },
+  "second_order": {
+    "radial_bin_count": 24,
+    "frequency_interval_cycles_per_pixel": [0.010416666666666666, 0.45],
+    "acf_lags_yx": [[0, 1], [1, 0], [1, 1], [0, 2], [2, 0], [2, 2], [0, 4], [4, 0]],
+    "maximum_candidate_to_gaussian_nps_error_ratio": 1.1,
+    "maximum_candidate_to_gaussian_acf_error_ratio": 1.1
+  },
+  "confirmation_gates": {
+    "minimum_sources_beating_gaussian_feature_distance": 3,
+    "minimum_median_feature_distance_improvement": 0.2,
+    "maximum_worst_feature_distance_ratio": 1.0,
+    "require_second_order_nps_retention": true,
+    "require_second_order_acf_retention": true,
+    "require_finite_bounded_fields": true,
+    "require_two_byte_identical_reports": true
+  },
+  "branch_rule": {
+    "pass": "Retain one generic nonstationary compound-Thomas research mechanism and open disjoint photographic severe-artifact composition only.",
+    "fail": "Close the exact one-parameter scale-mixture mechanism without changing envelope scale, bounds, fit rule, features, sources or gates."
+  },
+  "forbidden": [
+    "read confirmation pixels before the single parameter and all model-control statistics are frozen",
+    "fit per-source parameters or use source identity at application",
+    "change sources, patches, scale, bounds, feature set, sample counts or gates after download",
+    "claim emulsion, stock, scanner or microscopic calibration from archival display-code residuals",
+    "integrate the P4BZ-closed photographic hybrid regardless of this result"
+  ],
+  "claim_ceiling": "Generic archival-code nonstationary residual mechanism evidence only; scanner/restoration/content remain mixed and no stock, physical calibration, visual safety or product claim is allowed."
+}
