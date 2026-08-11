@@ -7,7 +7,7 @@
     "cb29_decision_sha256": "10f727920db596814d929ba9676f4203f4902acb158975f3312dc059db0a9f03",
     "cb29_required_decision": "retain_monotone_fraction_transport_as_research_look_champion_open_gold_stress",
     "cb27_contract_path": "configs/u5_r2cb27_monotone_fraction_quantile_transport_v1.json",
-    "cb27_contract_sha256": "3206dbbf22749f51a200cd0fbf759d4aec12a434ad0fd9acb43455ee67147753",
+    "cb27_contract_sha256": "867884f1a95b1175ec1b470596706760cea83935eac40caf599f27bd056ada41",
     "cb11_contract_path": "configs/u5_r2cb11_fujifilm_characteristic_luma_chroma_v1.json",
     "cb11_contract_sha256": "fd6127a0c336fdfc661870d8636e8c7a8bbe741f096465e52c73a5a327213b5f",
     "cb12_contract_path": "configs/u5_r2cb12_characteristic_vs_ao6_fresh_v1.json",
