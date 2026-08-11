@@ -11,6 +11,7 @@ from src.eval.luminance_eigen_affine_transport import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u5_r2cb47_luminance_eigen_affine_development_v1.json"
+DECISION = ROOT / "configs/u5_r2cb47_luminance_eigen_affine_development_decision_v1.json"
 
 
 def test_cb47_contract_freezes_positive_luminance_eigen_affine() -> None:
@@ -49,3 +50,14 @@ def test_cb47_global_affine_preserves_order_and_fits_chroma() -> None:
     assert facts["selected_lstar_inversion_fraction"] == 0.0
     assert np.max(np.abs(luma_error)) <= 1e-6
     assert np.all(scale == facts["global_dose"])
+
+
+def test_cb47_decision_closes_offsets_for_origin_anchored_linear() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["repeat_report_sha256_exact"] is True
+    assert decision["metrics"]["zero_dose_source_count"] == 9
+    assert decision["metrics"]["negative_fitted_luminance_intercept_count"] == 9
+    assert decision["metrics"]["maximum_lstar_inversion_fraction"] == 0.0
+    assert decision["decision"] == (
+        "close_luminance_eigen_affine_open_origin_anchored_linear"
+    )

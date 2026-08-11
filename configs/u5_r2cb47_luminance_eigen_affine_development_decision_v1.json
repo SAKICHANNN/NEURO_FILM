@@ -1,0 +1,28 @@
+{
+  "schema": "neuro_film.u5_r2cb47_luminance_eigen_affine_development_decision.v1",
+  "experiment_id": "U5.R2CB47",
+  "status": "failed_closed_before_visual_review",
+  "report_sha256": "17d388d81e6c0cb9fb96bb219a3f7921a0d1009bf08b6ba4081f3f144adc57e9",
+  "stable_evidence_id": "674e6ca23102c740e7958b02a9e6dd9a63dab517f43660ce243cb38d09f6988b",
+  "repeat_report_sha256_exact": true,
+  "metrics": {
+    "source_count": 9,
+    "zero_dose_source_count": 9,
+    "negative_fitted_luminance_intercept_count": 9,
+    "maximum_lstar_inversion_fraction": 0.0,
+    "maximum_luminance_reconstruction_error": 1.1102230246251565e-16,
+    "maximum_gradient_ratio": 1.0,
+    "population_median_style_delta_e76": 0.0
+  },
+  "failed_checks": [
+    "direction_retention",
+    "global_dose",
+    "global_dose_tail",
+    "visible_style"
+  ],
+  "visual_review_status": "forbidden",
+  "decision": "close_luminance_eigen_affine_open_origin_anchored_linear",
+  "next_leaf": "Remove every additive coordinate offset and fit one origin-anchored 3x3 map in the same exact luminance/chroma basis, retaining a positive scalar luminance row and free chromatic rows.",
+  "forbidden": "same-cohort intercept clamp, per-row offset exception, channel clipping, changed target, relaxed boundary/style/dose gates",
+  "claim_ceiling": "Mechanism evidence that analytic positive-affine luminance preserves exact order but all nine negative intercept fits force identity under strict boundary safety; not visual, stock, calibration, preference or product evidence."
+}
