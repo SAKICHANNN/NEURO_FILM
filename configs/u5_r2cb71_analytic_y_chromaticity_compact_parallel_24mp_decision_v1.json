@@ -1,0 +1,22 @@
+{
+  "schema": "neuro_film.u5_r2cb71_analytic_y_chromaticity_compact_parallel_24mp_decision.v1",
+  "experiment_id": "U5.R2CB71",
+  "contract_path": "configs/u5_r2cb71_analytic_y_chromaticity_compact_parallel_24mp_v1.json",
+  "contract_sha256": "4327220f8a7a72aa64f8adc64da192836e038eff800f0dafef18ab5cb2383cbb",
+  "formal_report_path": "D:/nf-019f4b76-cb71-report.json",
+  "formal_report_sha256": "c2b99f670d0b17757d45acc96e02b1bebfa4e1fee7cf785d86de81e0770f7adb",
+  "automatic_pass": false,
+  "decision": "fail_cb71_compact_selector_does_not_reduce_parallel_target_peak",
+  "metrics": {
+    "output_sha256_exact": true,
+    "selector_facts_exact": true,
+    "repeat_exact": true,
+    "maximum_peak_process_tree_rss_bytes": 2401587200,
+    "peak_rss_ratio_to_cb69": 1.063589529631578,
+    "maximum_wall_seconds": 58.616240500006825,
+    "wall_ratio_to_cb69": 0.9309189165582509,
+    "scratch_cleanup": true
+  },
+  "interpretation": "Removing the unused selector error plane preserves exact semantics and time improvement, but does not change the earlier parallel-target peak. Retain CB69 profile v4; reduce parallel target worker result residency rather than relaxing the memory gate.",
+  "claim_ceiling": "Local Windows/Python 24MP negative resource evidence only; no profile, default, product, stock, calibration or arbitrary-media change."
+}
