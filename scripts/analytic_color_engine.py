@@ -23,7 +23,7 @@ from src.inference.analytic_y_chromaticity_profile import (
     load_analytic_y_chromaticity_profile,
 )
 
-DEFAULT_PROFILE = ROOT / "configs/render_profiles/analytic_y_chromaticity_cb56_v1.json"
+DEFAULT_PROFILE = ROOT / "configs/render_profiles/analytic_y_chromaticity_cb61_v2.json"
 
 
 def _parser() -> argparse.ArgumentParser:
@@ -60,6 +60,7 @@ def _capabilities(profile_path: Path) -> dict[str, object]:
             "icc_profile": profile["output"]["icc_profile"],
         },
         "recipe_schema_id": RECIPE_SCHEMA_ID,
+        "explicit_scratch_root_supported": True,
         "effects_after_colour_allowed": profile["execution"][
             "effects_after_colour_allowed"
         ],

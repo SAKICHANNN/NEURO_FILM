@@ -89,7 +89,13 @@ def parse_args() -> argparse.Namespace:
         default=ROOT
         / "configs"
         / "render_profiles"
-        / "analytic_y_chromaticity_cb56_v1.json",
+        / "analytic_y_chromaticity_cb61_v2.json",
+    )
+    parser.add_argument(
+        "--analytic-scratch-root",
+        type=Path,
+        default=None,
+        help="Existing local directory for analytic selector scratch files.",
     )
     parser.add_argument(
         "--use-render-profile",
@@ -301,6 +307,11 @@ def main() -> int:
         analytic_runtime = load_analytic_y_chromaticity_profile(
             args.analytic_profile, root=ROOT
         )
+        if (
+            args.analytic_scratch_root is not None
+            and not args.analytic_scratch_root.is_dir()
+        ):
+            raise ValueError("analytic scratch root must be an existing directory")
     profile_manifest = None
     profile_values = None
     if args.use_render_profile or (args.write_recipe and analytic_runtime is None):
@@ -327,7 +338,9 @@ def main() -> int:
         )
     else:
         base, color_diagnostics = render_analytic_y_chromaticity_profile(
-            working, analytic_runtime
+            working,
+            analytic_runtime,
+            scratch_root=args.analytic_scratch_root,
         )
     layers = []
     halation_resolved = None
@@ -485,9 +498,7 @@ def main() -> int:
                     "working_space": working.working_space,
                     "source_profile_kind": working.source_profile.kind,
                     "bit_depth": working.bit_depth_in,
-                    "warnings": [
-                        warning.__dict__ for warning in working.warnings
-                    ],
+                    "warnings": [warning.__dict__ for warning in working.warnings],
                 },
                 selector_facts=color_diagnostics,
                 effects=effects,

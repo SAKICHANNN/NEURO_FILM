@@ -68,21 +68,32 @@ def _finite_tree(value: object, label: str) -> None:
 def validate_analytic_render_recipe(recipe: Mapping[str, Any]) -> None:
     _exact_keys(
         recipe,
-        {"schema_id", "profile", "assets", "input", "render", "output", "claim", "software"},
+        {
+            "schema_id",
+            "profile",
+            "assets",
+            "input",
+            "render",
+            "output",
+            "claim",
+            "software",
+        },
         "recipe",
     )
     if recipe["schema_id"] != SCHEMA_ID:
         raise AnalyticRenderRecipeError("unsupported analytic recipe schema")
     profile = recipe["profile"]
     _exact_keys(profile, {"profile_id", "profile_version", "sha256"}, "profile")
-    if (
-        profile["profile_id"] != "analytic-y-chromaticity-cb56-v1"
-        or profile["profile_version"] != "1.0.0"
-    ):
+    profile_identity = (profile["profile_id"], profile["profile_version"])
+    if profile_identity not in {
+        ("analytic-y-chromaticity-cb56-v1", "1.0.0"),
+        ("analytic-y-chromaticity-cb61-v2", "2.0.0"),
+    }:
         raise AnalyticRenderRecipeError("analytic profile identity drift")
     _hash(profile["sha256"], "profile.sha256")
     assets = recipe["assets"]
-    if not isinstance(assets, list) or len(assets) != 8:
+    expected_assets = 10 if profile_identity[0].endswith("cb61-v2") else 8
+    if not isinstance(assets, list) or len(assets) != expected_assets:
         raise AnalyticRenderRecipeError("analytic recipe asset inventory drift")
     roles: set[str] = set()
     for asset in assets:
@@ -96,13 +107,21 @@ def validate_analytic_render_recipe(recipe: Mapping[str, Any]) -> None:
     source = recipe["input"]
     _exact_keys(
         source,
-        {"path", "sha256", "source_color_state", "runtime_transfer_state", "working_space", "source_profile_kind", "bit_depth", "warnings"},
+        {
+            "path",
+            "sha256",
+            "source_color_state",
+            "runtime_transfer_state",
+            "working_space",
+            "source_profile_kind",
+            "bit_depth",
+            "warnings",
+        },
         "input",
     )
     if (
         not isinstance(source["path"], str)
-        or source["source_color_state"]
-        not in {"display_referred", "display_linear"}
+        or source["source_color_state"] not in {"display_referred", "display_linear"}
         or source["runtime_transfer_state"] != "display_linear"
         or source["working_space"] != "linear_srgb"
         or not isinstance(source["warnings"], list)
@@ -113,14 +132,24 @@ def validate_analytic_render_recipe(recipe: Mapping[str, Any]) -> None:
     _exact_keys(render, {"engine_id", "style", "selector_facts", "effects"}, "render")
     if render["engine_id"] != ENGINE_ID or render["style"] != "velvia_50":
         raise AnalyticRenderRecipeError("analytic recipe engine/style drift")
-    if not isinstance(render["selector_facts"], Mapping) or set(render["selector_facts"]) != _SELECTOR_KEYS:
+    if (
+        not isinstance(render["selector_facts"], Mapping)
+        or set(render["selector_facts"]) != _SELECTOR_KEYS
+    ):
         raise AnalyticRenderRecipeError("analytic selector facts drift")
     _finite_tree(render["selector_facts"], "selector_facts")
     _finite_tree(render["effects"], "effects")
     output = recipe["output"]
     _exact_keys(
         output,
-        {"path", "sha256", "format", "bit_depth", "transfer", "icc_profile_fingerprint_sha256"},
+        {
+            "path",
+            "sha256",
+            "format",
+            "bit_depth",
+            "transfer",
+            "icc_profile_fingerprint_sha256",
+        },
         "output",
     )
     if (
@@ -135,7 +164,15 @@ def validate_analytic_render_recipe(recipe: Mapping[str, Any]) -> None:
     claim = recipe["claim"]
     _exact_keys(
         claim,
-        {"render_mode", "output_label", "evidence_grade", "input_color_state", "color_state_policy", "calibrated_reference_allowed", "claim_ceiling"},
+        {
+            "render_mode",
+            "output_label",
+            "evidence_grade",
+            "input_color_state",
+            "color_state_policy",
+            "calibrated_reference_allowed",
+            "claim_ceiling",
+        },
         "claim",
     )
     if (
@@ -149,7 +186,9 @@ def validate_analytic_render_recipe(recipe: Mapping[str, Any]) -> None:
         raise AnalyticRenderRecipeError("analytic recipe claim escalation")
     software = recipe["software"]
     _exact_keys(software, {"commit"}, "software")
-    if not isinstance(software["commit"], str) or not _COMMIT.fullmatch(software["commit"]):
+    if not isinstance(software["commit"], str) or not _COMMIT.fullmatch(
+        software["commit"]
+    ):
         raise AnalyticRenderRecipeError("analytic recipe commit drift")
 
 

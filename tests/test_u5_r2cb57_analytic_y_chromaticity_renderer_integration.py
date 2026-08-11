@@ -24,7 +24,8 @@ from src.preprocess import load_working_image, save_srgb8
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts/render_film.py"
 ENGINE_SCRIPT = ROOT / "scripts/analytic_color_engine.py"
-PROFILE = ROOT / "configs/render_profiles/analytic_y_chromaticity_cb56_v1.json"
+PROFILE = ROOT / "configs/render_profiles/analytic_y_chromaticity_cb61_v2.json"
+LEGACY_PROFILE = ROOT / "configs/render_profiles/analytic_y_chromaticity_cb56_v1.json"
 
 
 @pytest.fixture(scope="module")
@@ -78,7 +79,7 @@ def test_cb57_cli_is_exact_to_direct_runtime_and_repeats(
     )
     metrics = json.loads(outputs[0].with_suffix(".metrics.json").read_text())
     profile = metrics["analytic_research_profile"]
-    assert profile["profile_id"] == "analytic-y-chromaticity-cb56-v1"
+    assert profile["profile_id"] == "analytic-y-chromaticity-cb61-v2"
     assert profile["profile_sha256"] == runtime.profile_sha256
     assert profile["product_default"] is False
     assert profile["selector_facts"] == direct_facts
@@ -94,6 +95,25 @@ def test_cb57_default_safe_lab_output_remains_exact(
     assert first.returncode == 0, first.stderr
     assert second.returncode == 0, second.stderr
     assert implicit.read_bytes() == explicit.read_bytes()
+
+
+def test_cb61_legacy_analytic_profile_remains_explicitly_replayable(
+    tmp_path: Path, source: Path
+) -> None:
+    current = tmp_path / "current.png"
+    legacy = tmp_path / "legacy.png"
+    first = _run(source, current, "--color-engine", "analytic-y-chromaticity")
+    second = _run(
+        source,
+        legacy,
+        "--color-engine",
+        "analytic-y-chromaticity",
+        "--analytic-profile",
+        str(LEGACY_PROFILE),
+    )
+    assert first.returncode == 0, first.stderr
+    assert second.returncode == 0, second.stderr
+    assert current.read_bytes() == legacy.read_bytes()
 
 
 def test_cb57_procedural_effects_repeat_after_opt_in_colour(
@@ -212,6 +232,7 @@ def test_cb59_analytic_srgb16_recipe_and_discovery_cli(
     capabilities = json.loads(discovery.stdout)
     assert capabilities["engine"]["cli_value"] == "analytic-y-chromaticity"
     assert capabilities["output"]["bit_depths"] == [8, 16]
+    assert capabilities["explicit_scratch_root_supported"] is True
     assert capabilities["product_default"] is False
     assert capabilities["research_champion"] is True
 

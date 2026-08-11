@@ -24,6 +24,9 @@ from src.eval.fujifilm_characteristic_photographic import _compiled_curve
 from src.eval.nonexpansive_fraction_transport import (
     nonexpansive_fraction_transport_target,
 )
+from src.eval.nonexpansive_fraction_transport_streaming import (
+    nonexpansive_fraction_transport_target_row_materialized,
+)
 from src.film_physics.profile_consumer import validate_standalone_profile_artifact
 from src.preprocess.types import WorkingImage
 
@@ -90,9 +93,13 @@ def load_analytic_y_chromaticity_profile(
     }
     if set(profile) != required or profile["schema_id"] != PROFILE_SCHEMA:
         raise AnalyticYChromaticityProfileError("research profile structure drift")
+    profile_identity = (profile["profile_id"], profile["profile_version"])
     if (
-        profile["profile_id"] != "analytic-y-chromaticity-cb56-v1"
-        or profile["profile_version"] != "1.0.0"
+        profile_identity
+        not in {
+            ("analytic-y-chromaticity-cb56-v1", "1.0.0"),
+            ("analytic-y-chromaticity-cb61-v2", "2.0.0"),
+        }
         or profile["engine_id"] != ENGINE_ID
         or profile["style"] != "velvia_50"
         or profile["identity"]
@@ -110,10 +117,13 @@ def load_analytic_y_chromaticity_profile(
         or execution.get("input_color_state") != "display_linear"
         or execution.get("row_chunk") != 64
         or execution.get("recipe_v1_allowed") is not False
+        or execution.get("target_materializer", "legacy_full_frame_v1")
+        not in {"legacy_full_frame_v1", "row_bounded_float64_v1"}
     ):
         raise AnalyticYChromaticityProfileError("research execution drift")
     assets = profile["assets"]
-    if not isinstance(assets, list) or len(assets) != 8:
+    expected_asset_count = 10 if profile_identity[0].endswith("cb61-v2") else 8
+    if not isinstance(assets, list) or len(assets) != expected_asset_count:
         raise AnalyticYChromaticityProfileError("research asset inventory drift")
     by_role = {str(asset.get("role")): asset for asset in assets}
     required_roles = {
@@ -126,9 +136,14 @@ def load_analytic_y_chromaticity_profile(
         "streaming_selector_code",
         "target_transport_code",
     }
+    if profile_identity[0].endswith("cb61-v2"):
+        required_roles |= {"cb61_decision", "row_target_materializer_code"}
     if len(by_role) != len(assets) or set(by_role) != required_roles:
         raise AnalyticYChromaticityProfileError("research asset roles drift")
-    for role in ("streaming_selector_code", "target_transport_code"):
+    code_roles = {"streaming_selector_code", "target_transport_code"}
+    if profile_identity[0].endswith("cb61-v2"):
+        code_roles.add("row_target_materializer_code")
+    for role in code_roles:
         asset = by_role[role]
         asset_path = root / str(asset["path"])
         if not asset_path.is_file() or _sha256_file(asset_path) != asset["sha256"]:
@@ -141,6 +156,14 @@ def load_analytic_y_chromaticity_profile(
     decision = _load_asset(root, by_role["cb56_decision"])
     _load_asset(root, by_role["cb6_curve_contract"])
     artifact_report = _load_asset(root, by_role["ao6_artifact_report"])
+    if profile_identity[0].endswith("cb61-v2"):
+        resource_decision = _load_asset(root, by_role["cb61_decision"])
+        if (
+            resource_decision.get("decision")
+            != "pass_cb61_output_exact_row_bounded_hue_target_memory"
+            or resource_decision.get("automatic_pass") is not True
+        ):
+            raise AnalyticYChromaticityProfileError("CB61 resource decision drift")
     if (
         decision.get("decision")
         != "pass_cb56_decoded_face_severe_retain_analytic_y_chromaticity_research_champion"
@@ -197,11 +220,15 @@ def render_analytic_y_chromaticity_profile(
         boundary_epsilon=epsilon,
     )
     config = runtime.cb52
-    build_target = (
-        nonexpansive_fraction_transport_target
-        if target_builder is None
-        else target_builder
-    )
+    if target_builder is None:
+        build_target = (
+            nonexpansive_fraction_transport_target_row_materialized
+            if runtime.profile["execution"].get("target_materializer")
+            == "row_bounded_float64_v1"
+            else nonexpansive_fraction_transport_target
+        )
+    else:
+        build_target = target_builder
     target = build_target(
         safe_base,
         ao6,
