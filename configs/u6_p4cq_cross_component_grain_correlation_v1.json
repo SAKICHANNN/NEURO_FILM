@@ -1,0 +1,102 @@
+{
+  "schema": "neuro_film.u6_p4cq_cross_component_grain_correlation_contract.v1",
+  "experiment_id": "u6.p4cq-cross-component-grain-correlation-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4CQ",
+  "date_frozen": "2026-08-11",
+  "question": "Does one bounded source-independent cross-component residual-correlation matrix transfer to wholly new archival-film sources and materially outperform independent colour-layer grain?",
+  "primary_basis": [
+    {
+      "title": "Recommendation ITU-T H.274 (V4)",
+      "date": "2026-01",
+      "url": "https://www.itu.int/rec/T-REC-H.274-202601-I",
+      "relevance": "The current standard explicitly permits component-dependent film-grain models and cross-component contribution; this experiment tests only the missing cross-component observable, not wire conformance."
+    },
+    {
+      "title": "FGA-NN: Film Grain Analysis Neural Network",
+      "date": "2025-06",
+      "url": "https://arxiv.org/abs/2506.14350",
+      "relevance": "The latest analysis paper predicts conventional intensity- and component-specific synthesis parameters; no paper code, model or data is consumed here."
+    }
+  ],
+  "development": {
+    "source_scratch": "D:/trace-019f4b76-p4cp-absolute-cinema",
+    "source_names": [
+      "titanic_disaster__http_www.loc.gov_item_mp73125400",
+      "tr_at_fargo_n.d._during_progressive_campaign_1912_1__http_www.loc.gov_item_mp76000130",
+      "tr_in_africa_1909_2__http_www.loc.gov_item_mp76000261",
+      "tr_in_baltimore_during_liberty_loan_drive_1918__http_www.loc.gov_item_mp76000198"
+    ],
+    "frames_per_source": 10,
+    "role": "fit one shared cross-component correlation matrix; no source identity enters the fit"
+  },
+  "confirmation": {
+    "dataset_ref": "absolutedegradation/absolutecinema-real-scene-split-review-sample",
+    "dataset_version": 6,
+    "api_url": "https://www.kaggle.com/api/v1/datasets/list/absolutedegradation/absolutecinema-real-scene-split-review-sample",
+    "license": "CC-BY-4.0",
+    "selection_rule": "Sort eligible first clips with exactly ten PNG frames and select indices 28 and 29; confirmation pixels remain unread until the matrix and all gates freeze.",
+    "source_names": [
+      "tr_reviews_and_addresses_troops_fort_sheridan_ill._tr_riding_in_auto_chicago_1917__http_www.loc.gov_item_mp76000043",
+      "turkish_dance_ella_lola__http_www.loc.gov_item_96509503"
+    ],
+    "source_count": 2,
+    "frames_per_source": 10,
+    "expected_total_bytes": 14791583,
+    "metadata_lock_sha256": "0dfbf2b19000a301af064cfae24a2d363677149863709ea99f7a43b2f471507d",
+    "maximum_download_bytes": 16000000,
+    "scratch": "D:/trace-019f4b76-p4cq-absolute-cinema"
+  },
+  "decode": {
+    "accepted_png_mode": "RGB",
+    "required_dtype": "uint8",
+    "interpretation": "encoded archival RGB code values divided by 255; not scene-linear exposure, dye density or scanner-independent colour"
+  },
+  "patch_observation": {
+    "patch_size_pixels": 96,
+    "border_pixels": 48,
+    "patches_per_frame": 8,
+    "selection_luminance": [0.2126, 0.7152, 0.0722],
+    "lowpass_gaussian_sigma_pixels": 3.0,
+    "accepted_patch_luminance_interval": [0.1, 0.9],
+    "selection_score": "lowest RMS gradient of low-pass luminance with y/x tie break",
+    "residual": "each RGB code channel minus its reflect-mode Gaussian low-pass",
+    "normalization": "per patch and channel subtract mean and divide by population RMS; reject RMS below 1e-6"
+  },
+  "candidate": {
+    "family": "single-shared-lower-triangular-cross-component-correlation",
+    "fit": "equal-patch mean of each normalized residual outer product, symmetrize, force exact unit diagonal, then require the unfixed matrix itself to be positive definite and inside the frozen envelope",
+    "minimum_eigenvalue": 0.05,
+    "maximum_absolute_off_diagonal": 0.95,
+    "candidate_control": "cyclic channel permutation of the frozen fitted matrix",
+    "independent_control": "3x3 identity matrix",
+    "no_fit_after_confirmation": true
+  },
+  "metrics": {
+    "per_source_observation": "mean of per-patch 3x3 residual correlation matrices",
+    "error": "off-diagonal Frobenius RMSE",
+    "minimum_sources_beating_independent": 2,
+    "minimum_median_improvement_over_independent": 0.2,
+    "maximum_worst_error_ratio_to_independent": 1.0,
+    "minimum_sources_beating_cyclic_control": 2,
+    "minimum_median_improvement_over_cyclic_control": 0.1,
+    "maximum_development_to_confirmation_matrix_rmse": 0.25,
+    "require_exact_repeat": true,
+    "require_finite": true
+  },
+  "branch_rule": {
+    "pass": "Retain one bounded generic cross-component grain correlation as an archival scanner-convolved mechanism and open only an exact-spectrum synthesis control; no photographic or product integration.",
+    "fail": "Retain independent colour layers and close this exact shared-matrix family without shrinkage, channel remapping, source routing or threshold rescue."
+  },
+  "forbidden": [
+    "read confirmation pixels before the shared matrix, controls, metrics and gates freeze",
+    "fit per-source, per-frame, per-patch, stock-specific or scanner-specific matrices",
+    "clip, shrink, eigencorrect or otherwise repair a failed fitted matrix",
+    "change the channel order, low-pass, split, source set, metric or gate after confirmation",
+    "claim physical dye-layer coupling, stock/process/scanner calibration, visual safety or product readiness"
+  ],
+  "outputs": {
+    "report_a": "outputs/experiments/u6_p4cq_cross_component_grain_correlation_v1/report_a.json",
+    "report_b": "outputs/experiments/u6_p4cq_cross_component_grain_correlation_v1/report_b.json"
+  },
+  "claim_ceiling": "Two-source held-out archival RGB-code evidence for one generic cross-component residual correlation; scanner, restoration, compression and content remain mixed."
+}
