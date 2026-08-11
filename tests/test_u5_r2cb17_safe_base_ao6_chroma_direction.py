@@ -4,7 +4,11 @@ from pathlib import Path
 
 import numpy as np
 
-from src.eval.safe_base_ao6_chroma_direction import ao6_direction_target, load_contract
+from src.eval.safe_base_ao6_chroma_direction import (
+    ao6_direction_target,
+    apply_safe_base_direction_target,
+    load_contract,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -27,3 +31,15 @@ def test_cb17_direction_target_preserves_base_luma_and_chroma_norm() -> None:
     target_norm = np.linalg.norm(target64 - target_luma[..., None], axis=-1)
     assert float(np.max(np.abs(target_luma - base_luma))) <= 1e-7
     assert float(np.max(np.abs(target_norm - base_norm))) <= 1e-7
+    output, scale, error = apply_safe_base_direction_target(
+        base,
+        base,
+        target,
+        weights=weights,
+        boundary_epsilon=1.0 / 65535.0,
+    )
+    assert float(output.min()) >= 0.0
+    assert float(output.max()) <= 1.0
+    assert float(scale.min()) >= 0.0
+    assert float(scale.max()) <= 1.0
+    assert float(np.max(np.abs(error))) <= 1e-6

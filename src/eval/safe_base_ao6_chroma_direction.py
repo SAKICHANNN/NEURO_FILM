@@ -29,9 +29,6 @@ from src.eval.fujifilm_e6_dye_operator_photographic import (
     _new_boundary_fraction,
 )
 from src.eval.kci_velvia_tone_photographic_stress import _load_rgb, _save_rgb
-from src.eval.safe_base_ao6_chroma_residual import (
-    apply_safe_base_ao6_chroma_residual,
-)
 
 SCHEMA = "neuro_film.u5_r2cb17_safe_base_ao6_chroma_direction_contract.v1"
 REPORT_SCHEMA = "neuro_film.u5_r2cb17_safe_base_ao6_chroma_direction_report.v1"
@@ -79,6 +76,97 @@ def ao6_direction_target(
     return target
 
 
+def apply_safe_base_direction_target(
+    source_linear: np.ndarray,
+    safe_base_linear: np.ndarray,
+    target_linear: np.ndarray,
+    *,
+    weights: np.ndarray,
+    boundary_epsilon: float,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    source = np.asarray(source_linear)
+    base = np.asarray(safe_base_linear)
+    target = np.asarray(target_linear)
+    w = np.asarray(weights, dtype=np.float64)
+    before = (source.copy(), base.copy(), target.copy())
+    if (
+        source.dtype != np.float32
+        or base.dtype != np.float32
+        or target.dtype != np.float32
+        or source.shape != base.shape
+        or source.shape != target.shape
+        or source.ndim < 2
+        or source.shape[-1] != 3
+        or not np.isfinite(source).all()
+        or not np.isfinite(base).all()
+        or not np.isfinite(target).all()
+        or np.min(source) < 0.0
+        or np.max(source) > 1.0
+        or np.min(base) < 0.0
+        or np.max(base) > 1.0
+    ):
+        raise SafeBaseAo6DirectionError("CB17 apply input drift")
+    base64 = base.astype(np.float64)
+    residual = target.astype(np.float64) - base64
+    base_luma = np.sum(base64 * w, axis=-1)
+    scale = np.ones(base_luma.shape, dtype=np.float64)
+    lower_target = float(
+        np.float32(boundary_epsilon)
+        + np.float32(4.0) * np.spacing(np.float32(boundary_epsilon))
+    )
+    upper_edge = np.float32(1.0 - boundary_epsilon)
+    upper_target = float(upper_edge - np.float32(4.0) * np.spacing(upper_edge))
+    for channel in range(3):
+        delta = residual[..., channel]
+        source_value = source[..., channel]
+        lower = np.where(source_value > boundary_epsilon, lower_target, 0.0)
+        upper = np.where(source_value < 1.0 - boundary_epsilon, upper_target, 1.0)
+        positive = delta > 0.0
+        negative = delta < 0.0
+        scale = np.minimum(
+            scale,
+            np.where(
+                positive,
+                np.divide(
+                    upper - base64[..., channel],
+                    delta,
+                    out=np.full_like(delta, np.inf),
+                    where=positive,
+                ),
+                np.inf,
+            ),
+        )
+        scale = np.minimum(
+            scale,
+            np.where(
+                negative,
+                np.divide(
+                    base64[..., channel] - lower,
+                    -delta,
+                    out=np.full_like(delta, np.inf),
+                    where=negative,
+                ),
+                np.inf,
+            ),
+        )
+    scale = np.clip(scale, 0.0, 1.0)
+    limited = scale < 1.0
+    scale[limited] = np.nextafter(scale[limited], 0.0)
+    output = np.asarray(base64 + scale[..., None] * residual, dtype=np.float32)
+    luma_error = np.sum(output.astype(np.float64) * w, axis=-1) - base_luma
+    if (
+        not np.isfinite(output).all()
+        or np.min(output) < 0.0
+        or np.max(output) > 1.0
+        or _new_boundary_fraction(source, output, boundary_epsilon) != 0.0
+        or not np.array_equal(source, before[0])
+        or not np.array_equal(base, before[1])
+        or not np.array_equal(target, before[2])
+    ):
+        raise SafeBaseAo6DirectionError("CB17 intrinsic invariant failed")
+    return output, scale.astype(np.float32), luma_error
+
+
 def evaluate(config: Mapping[str, Any], root: Path, output_dir: Path) -> dict[str, Any]:
     decision = _load_exact_json(
         root,
@@ -111,7 +199,7 @@ def evaluate(config: Mapping[str, Any], root: Path, output_dir: Path) -> dict[st
             boundary_epsilon=epsilon,
         )
         target = ao6_direction_target(safe_base, ao6, weights=weights)
-        candidate, scale, luma_error = apply_safe_base_ao6_chroma_residual(
+        candidate, scale, luma_error = apply_safe_base_direction_target(
             source,
             safe_base,
             target,
@@ -271,6 +359,7 @@ def write_report(report: Mapping[str, Any], output: Path) -> str:
 
 __all__ = [
     "SafeBaseAo6DirectionError",
+    "apply_safe_base_direction_target",
     "ao6_direction_target",
     "evaluate",
     "load_contract",
