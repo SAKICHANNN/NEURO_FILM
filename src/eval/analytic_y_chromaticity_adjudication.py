@@ -88,8 +88,8 @@ def adjudicate(config: dict[str, Any], root: Path, report_path: Path) -> dict[st
     }
     passed = all(checks.values())
     result: dict[str, Any] = {
-        "schema": REPORT_SCHEMA,
-        "experiment_id": EXPERIMENT_ID,
+        "schema": config.get("report_schema", REPORT_SCHEMA),
+        "experiment_id": config["experiment_id"],
         "automatic_report_sha256": config["evidence"]["report_sha256"],
         "automatic_stable_evidence_id": config["evidence"]["stable_evidence_id"],
         "observations_sha256": config["evidence"]["observations_sha256"],
@@ -102,9 +102,12 @@ def adjudicate(config: dict[str, Any], root: Path, report_path: Path) -> dict[st
         "checks": checks,
         "pass": passed,
         "decision": (
-            "pass_cb50_development_open_source_disjoint_confirmation"
+            config.get(
+                "pass_decision",
+                "pass_cb50_development_open_source_disjoint_confirmation",
+            )
             if passed
-            else "close_cb50_without_rescue"
+            else config.get("close_decision", "close_cb50_without_rescue")
         ),
         "claim_ceiling": config["claim_ceiling"],
     }
