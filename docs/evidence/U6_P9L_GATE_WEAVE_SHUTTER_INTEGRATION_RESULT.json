@@ -1,0 +1,39 @@
+{
+  "automatic_pass": false,
+  "claim_ceiling": "Synthetic within-frame translation-integration accuracy only; not measured film transport, shutter, scanner, projector, camera, video quality, stock calibration or product readiness.",
+  "contract_sha256": "2733cee4eb1728ba5a36c88452994393e070447b4351db87328a38817ea63135",
+  "decision": "retain instantaneous immutable-source sampling and close within-frame integration without sample-count or gate rescue",
+  "frame_count": 128,
+  "gate_results": {
+    "all_outputs_finite": true,
+    "all_outputs_within_source_range": true,
+    "candidate_partition_byte_exact": true,
+    "candidate_replay_byte_exact": true,
+    "candidate_reverse_frame_order_byte_exact": true,
+    "constant_field_pixel_exact": true,
+    "maximum_candidate_analytic_rmse": false,
+    "maximum_candidate_dense_reference_rmse": true,
+    "minimum_candidate_rmse_improvement_over_instantaneous": false,
+    "minimum_instantaneous_analytic_rmse": true,
+    "parent_and_core_hashes_exact": true,
+    "rgb_quantization_count_zero": true,
+    "static_trajectory_pixel_exact": true
+  },
+  "measurements": {
+    "all_outputs_finite": true,
+    "all_outputs_within_source_range": true,
+    "candidate_analytic_rmse": 0.014629568963064766,
+    "candidate_dense_reference_rmse": 1.2060526656039403e-05,
+    "candidate_partition_byte_exact": true,
+    "candidate_replay_byte_exact": true,
+    "candidate_reverse_frame_order_byte_exact": true,
+    "candidate_rmse_improvement_over_instantaneous": 0.3645287930332074,
+    "constant_field_pixel_exact": true,
+    "instantaneous_analytic_rmse": 0.02302160790713725,
+    "parent_and_core_hashes_exact": true,
+    "rgb_quantization_count": 0,
+    "static_trajectory_pixel_exact": true
+  },
+  "schema": "neuro_film.u6_p9l_gate_weave_shutter_integration_report.v1",
+  "stable_evidence_id": "0e44a8d50695640cc34392be5884b97edfd8333f60e5e9ae856e2e230511333d"
+}

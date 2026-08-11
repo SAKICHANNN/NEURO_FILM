@@ -11416,3 +11416,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   gates pass, but median style is only `3.56659` Delta E76 versus frozen `5.0`.
 - Blind review remains unopened. Close the exact one-angle family without
   threshold or fit rescue; AO6 remains the research colour incumbent.
+
+# 2026-08-11 - U6.P9L closes within-frame gate-weave integration
+
+- Added an immutable-source midpoint shutter integrator and froze it before
+  scoring against the retained P9A trajectory, instantaneous sampling, a
+  256-sample discrete reference and closed-form sinusoidal time averaging.
+- Two formal reports are byte exact (`613cc713...ae132`; stable
+  `0e44a8d5...11333d`). Eight samples match the dense reference to `1.21e-5`
+  RMSE and reduce instantaneous error by `36.45%`, but miss the frozen `50%`
+  improvement and `.005` analytic-error gates (`.01463`). Retain instantaneous
+  sampling and close this exact integration family; no product path changed.
