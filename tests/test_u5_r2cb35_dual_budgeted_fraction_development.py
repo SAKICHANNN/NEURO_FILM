@@ -51,7 +51,10 @@ def test_cb35_selector_fails_when_base_already_reverses_order() -> None:
     base = np.full_like(source, 0.4)
     base[:, 4:] = 0.2
     weights = np.asarray([0.2126, 0.7152, 0.0722], dtype=np.float64)
-    with pytest.raises(DualBudgetedFractionTransportError, match="no dual-safe dose"):
+    with pytest.raises(
+        DualBudgetedFractionTransportError,
+        match=r"no dual-safe dose; .*dose0_inversion=",
+    ):
         select_dual_budgeted_candidate(
             source,
             base,
