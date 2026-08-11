@@ -6,7 +6,7 @@
     "cb33_contract_path": "configs/u5_r2cb33_gradient_budgeted_fraction_gold_stress_v1.json",
     "cb33_contract_sha256": "b38d5238a57957dbf55a321529cb3b275ba653054088eb9642d82d342ef69e41",
     "cb33_decision_path": "configs/u5_r2cb33_gradient_budgeted_fraction_gold_stress_decision_v1.json",
-    "cb33_decision_sha256": "cff103d61dbc5082268a5a74adee2b2850a51413537d99e1330fdddddd09b570b",
+    "cb33_decision_sha256": "cff103d61dbc5082268a5a74adee2b2850a51413537d99e1330fddddd09b570b",
     "cb33_required_decision": "pass_development_gold_stress_open_source_disjoint_confirmation",
     "cb16_decision_path": "configs/u5_r2cb16_safe_base_ao6_chroma_residual_decision_v1.json",
     "cb16_decision_sha256": "965a1c0c0eba887673bd1f9793a5c28425edfe5495cb4bb151a70e3b9f20008f",
