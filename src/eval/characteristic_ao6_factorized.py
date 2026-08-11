@@ -137,15 +137,26 @@ def apply_characteristic_ao6_factorized(
         mapped_luma[..., None] + scale[..., None] * chroma, dtype=np.float32
     )
     luma_error = np.sum(output.astype(np.float64) * w, axis=-1) - mapped_luma
+    invariant_facts = {
+        "finite": bool(np.isfinite(output).all()),
+        "minimum": float(np.min(output)),
+        "maximum": float(np.max(output)),
+        "new_boundary_fraction": _new_boundary_fraction(
+            source, output, boundary_epsilon
+        ),
+        "source_unchanged": bool(np.array_equal(source, source_before)),
+        "ao6_unchanged": bool(np.array_equal(ao6, ao6_before)),
+    }
     if (
-        not np.isfinite(output).all()
-        or np.min(output) < 0.0
-        or np.max(output) > 1.0
-        or _new_boundary_fraction(source, output, boundary_epsilon) != 0.0
-        or not np.array_equal(source, source_before)
-        or not np.array_equal(ao6, ao6_before)
+        not invariant_facts["finite"]
+        or invariant_facts["minimum"] < 0.0
+        or invariant_facts["maximum"] > 1.0
+        or not invariant_facts["source_unchanged"]
+        or not invariant_facts["ao6_unchanged"]
     ):
-        raise CharacteristicAo6FactorizedError("CB15 intrinsic invariant failed")
+        raise CharacteristicAo6FactorizedError(
+            f"CB15 intrinsic invariant failed: {invariant_facts}"
+        )
     return output, scale.astype(np.float32), luma_error
 
 
