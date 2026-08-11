@@ -1,0 +1,75 @@
+{
+  "schema": "neuro_film.u5_r2cb36_source_luminance_rebased_fraction_development_contract.v1",
+  "experiment_id": "U5.R2CB36",
+  "question": "Can the fixed CB32 chroma target be rebased onto exact source luminance, then cube- and gradient-bounded, to preserve source-relative L-star order without sacrificing material style?",
+  "parents": {
+    "cb35_decision_path": "configs/u5_r2cb35_dual_budgeted_fraction_development_decision_v1.json",
+    "cb35_decision_sha256": "c2cf244979a2c24fc2b6f13cdd105f30170993c448cc8cbf5e1e74c971244ac8",
+    "cb35_required_decision": "close_global_dual_budget_because_base_itself_breaks_exact_lstar_order",
+    "cb33_contract_path": "configs/u5_r2cb33_gradient_budgeted_fraction_gold_stress_v1.json",
+    "cb33_contract_sha256": "b38d5238a57957dbf55a321529cb3b275ba653054088eb9642d82d342ef69e41",
+    "cb16_decision_path": "configs/u5_r2cb16_safe_base_ao6_chroma_residual_decision_v1.json",
+    "cb16_decision_sha256": "965a1c0c0eba887673bd1f9793a5c28425edfe5495cb4bb151a70e3b9f20008f",
+    "cb16_required_status": "close_safe_base_ao6_chroma_magnitude_residual_without_rescue",
+    "cb14_decision_path": "configs/u5_r2cb14_characteristic_vs_ao6_ood_decision_v1.json",
+    "cb14_decision_sha256": "acb2e53031db6e9fe33f84d615ad259ea856190016ab7f26e2030775b8a2c8b9",
+    "cb14_required_status": "candidate_fails_ao6_retain_incumbent",
+    "cb11_contract_path": "configs/u5_r2cb11_fujifilm_characteristic_luma_chroma_v1.json",
+    "cb11_contract_sha256": "fd6127a0c336fdfc661870d8636e8c7a8bbe741f096465e52c73a5a327213b5f",
+    "cb12_contract_path": "configs/u5_r2cb12_characteristic_vs_ao6_fresh_v1.json",
+    "cb12_contract_sha256": "0951b3ec44049f76afda12b90ba40e1bc644000336fcc340b1b862ea986823c1"
+  },
+  "population": {
+    "decision_path": "configs/u5_r2bk8s_smooth_perceptual_fresh_source_decision_v1.json",
+    "decision_sha256": "3d3778470d3dc2cf2ac0e393b78bb8a0e7fa81bc2005248e42d63b95045000ce",
+    "required_status": "source_eligible_fixed_comparison_open",
+    "manifest_path": "outputs/u5_r2bk8s_smooth_perceptual_fresh_source_v1/run_a/manifest.json",
+    "manifest_sha256": "8326272dd127040f82cce1cd65875dc470ddc5e1d6d753b6125c0af5c1387ed8",
+    "source_count_exact": 11,
+    "camera_make_count_exact": 11,
+    "maximum_long_edge": 1600,
+    "exact_decoded_sha_overlap_with_cb27_cb28_cb34_cb35": 0,
+    "role": "new mechanism development on an existing independent digital-photo population not used by CB27-CB35"
+  },
+  "operator": {
+    "target": "exact CB32 origin-anchored 257-knot one-Lipschitz chroma target",
+    "execution_base": "exact source linear RGB",
+    "luminance_rebase": "subtract target weighted luminance and add exact source weighted luminance before analytic cube-safe execution",
+    "dose_grid": [1.0, 0.9375, 0.875, 0.8125, 0.75, 0.6875, 0.625, 0.5625, 0.5, 0.4375, 0.375, 0.3125, 0.25, 0.1875, 0.125, 0.0625, 0.0],
+    "selection": "first descending global dose satisfying p99.9 RGB gradient ratio at most 1.35 and exact source-relative adjacent L-star order at epsilon 0.0001",
+    "lstar_order_epsilon": 0.0001,
+    "minimum_valid_fraction": 0.0001,
+    "fraction_knots": 257,
+    "maximum_fraction_slope": 1.0,
+    "forbidden": "BK17 reuse, local masks, spatial filtering, channel-wise dose, changed CB32 target, threshold relaxation or post-score rescue"
+  },
+  "evaluation": {"maximum_colour_metric_samples_per_source": 65536},
+  "automatic_gates": {
+    "maximum_luminance_reconstruction_error": 0.000001,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio_vs_source": 1.35,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.0,
+    "minimum_population_median_direction_scale": 0.5,
+    "maximum_population_median_fraction_direction_scale_below_0p5": 0.1,
+    "minimum_population_median_style_delta_e76": 5.0,
+    "minimum_population_median_delta_e76_vs_cb11": 1.0,
+    "minimum_population_median_global_dose": 0.5,
+    "maximum_fraction_global_dose_below_0p25": 0.1,
+    "maximum_confirmed_severe_artifact_count": 0
+  },
+  "blind_protocol": {
+    "rounds": 3,
+    "seed": 20260812,
+    "ties_allowed": false,
+    "minimum_candidate_round_wins": 2,
+    "minimum_candidate_aggregate_choices": 20,
+    "minimum_candidate_source_majorities": 7,
+    "mapping_hidden_until_choices_commit": true
+  },
+  "stop_rules": [
+    "Any source-luminance, order, gradient, boundary, style or dose failure closes this exact mechanism before visual review.",
+    "A severe or blind development failure closes without changing target, population, dose grid or gates.",
+    "A pass opens only a separately frozen source-disjoint confirmation."
+  ],
+  "claim_ceiling": "Development-only source-luminance-rebased Look Approximation evidence; not independent confirmation, stock response, calibration, population preference or product promotion."
+}
