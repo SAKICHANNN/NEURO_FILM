@@ -1,0 +1,46 @@
+{
+  "schema": "neuro_film.u5_r2cb6_fujifilm_characteristic_forward_proxy_decision.v1",
+  "experiment_id": "U5.R2CB6",
+  "contract_commit": "c3051e24",
+  "implementation_commit": "11fc9279",
+  "contract_sha256": "e8f754c96b88491f9e6c1f467ddc1e3f9ec4d8b87afde9c40d0bea4e49b78150",
+  "implementation_sha256": "f9e9536b0c38a045f8a719b7938932262beb5d4b729ab9fadc280674fe333bd6",
+  "runner_sha256": "856bb687d9cf0299e5067b5e2eb01b639d761c5c27c888082bab2d8dfe66e5c6",
+  "formal_report_path": "outputs/experiments/u5_r2cb6_fujifilm_characteristic_forward_proxy_v1/report_run1.json",
+  "formal_report_sha256": "0fb1ef9a7644dd08d81a7b86e141f3128c44ae2f536ef532552a47edf3e15ada",
+  "stable_evidence_id": "f4e3bec72b673379103617ac2b247eed88cd500c8159a984a4f3237eb5379bae",
+  "repeat_report_byte_exact": true,
+  "passed": true,
+  "decision": "retain_characteristic_constrained_forward_mechanism",
+  "metrics": {
+    "candidate_density_rmse_median": 0.15592262680518182,
+    "candidate_density_rmse_p95": 0.40043608674353165,
+    "candidate_density_rmse_maximum": 0.6383595464845334,
+    "cb5_affine_density_rmse_median": 0.3215505584616217,
+    "direct_spectral_density_rmse_median": 0.29176968121723873,
+    "win_fraction_vs_cb5_affine": 0.8363425925925926,
+    "median_relative_improvement_vs_cb5_affine": 0.4475549840211547,
+    "win_fraction_vs_direct_nonnegative_spectral": 0.8319444444444445,
+    "median_relative_improvement_vs_direct_nonnegative_spectral": 0.4193012810144491,
+    "win_fraction_vs_cyclic_layer": 0.9532407407407407,
+    "median_relative_improvement_vs_cyclic_layer": 0.7351112484241247,
+    "median_relative_improvement_vs_development_mean": 0.7838492696369332
+  },
+  "postscore_mechanism_audit": {
+    "gate_effect": "diagnostic only; no frozen gate changed",
+    "confirmation_endpoint_clip_fraction_all_layers_all_folds": 0.0,
+    "median_expected_primary_weight_share": {
+      "blue_to_yellow": 1.0,
+      "green_to_magenta": 0.9033456507211648,
+      "red_to_cyan": 0.9088237285312455
+    },
+    "interpretation": "The gain is not produced by endpoint clipping. The fitted positive exposure mixtures remain strongly dominated by the physically expected recorder channel in every layer."
+  },
+  "interpretation": [
+    "At the same 16 fitted scalars as CB5, replacing affine dye-coordinate prediction with positive recorder-to-layer exposure followed by the frozen first-party reversal characteristic curves more than halves median held density error.",
+    "The candidate beats both the exact CB5 affine family and the direct nonnegative spectral baseline on more than 83 percent of held rows, while the cyclic layer assignment fails strongly. This isolates value in the characteristic response and physical channel assignment rather than parameter count alone.",
+    "The source curve is Velvia 100 while the manufactured target is labelled Velvia 100F, all rows predate CB6, and recorder RGB remains unknown-profile. This is therefore mechanism evidence, not calibrated stock response or independent photographic confirmation."
+  ],
+  "next_action": "Freeze one independent photographic severe-artifact and style-value test that compiles the retained characteristic-constrained mechanism without refitting the curves; require analytical gamut-safe execution and retain identity fallback.",
+  "claim_ceiling": "Retained first-party reversal-characteristic mechanism evidence on existing manufactured-target recorder/measurement rows; not Velvia 100F calibration, camera RGB, scene exposure, independent roll/process, photographic appearance or product profile."
+}

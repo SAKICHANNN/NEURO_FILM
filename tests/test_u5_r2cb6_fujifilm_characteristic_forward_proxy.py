@@ -11,6 +11,7 @@ from src.eval.fujifilm_characteristic_forward_proxy import (
     _apply_curve,
     _characteristic_curves,
     _fit_characteristic_layer,
+    evaluate_characteristic_forward_proxy,
     load_contract,
 )
 from src.eval.fujifilm_dye_basis_measured_conformance import hash_file
@@ -64,3 +65,15 @@ def test_invalid_source_fails_before_curve_application() -> None:
             exposure,
             curves[0],
         )
+
+
+def test_formal_characteristic_forward_proxy_is_repeat_exact_and_passes() -> None:
+    contract = load_contract(CONFIG)
+    first = evaluate_characteristic_forward_proxy(contract, ROOT)
+    second = evaluate_characteristic_forward_proxy(contract, ROOT)
+    assert first == second
+    assert first["passed"] is True
+    assert first["failed_gates"] == []
+    assert first["decision"] == "retain_characteristic_constrained_forward_mechanism"
+    assert first["comparisons"]["win_fraction_vs_cb5_affine"] > 0.83
+    assert first["summaries"]["characteristic"]["median"] < 0.16

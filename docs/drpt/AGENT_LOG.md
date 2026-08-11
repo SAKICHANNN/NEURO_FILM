@@ -11088,3 +11088,19 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   remain mandatory under the same 30 held-set-and-slide folds.
 - Failure closes this physical-prior family without curve refit, extra capacity
   or gate rescue. Pass would remain internal manufactured-target evidence only.
+
+# 2026-08-11 - U5.R2CB6 retains the characteristic mechanism
+
+- Two formal 8,640-row/30-fold reports are byte-identical
+  (`0fb1ef9a...15ada`). Median density RMSE falls from CB5's `.32155` to
+  `.15592`; the candidate wins `83.63%` of held rows with `44.76%` median
+  relative improvement. It also wins `83.19%` versus direct spectral.
+- Cyclic dye-layer assignment loses on `95.32%` of rows. A fixed post-score
+  mechanism audit changes no gate and finds zero endpoint clipping; median
+  expected-channel weight shares are `1.000/.903/.909` for B-to-Y, G-to-M and
+  R-to-C. The result is not a generic sigmoid or clipping shortcut.
+- Retain only the physical characteristic-response mechanism. The target is
+  manufactured Velvia 100F, the first-party curve is Velvia 100, recorder RGB
+  is unknown-profile and the population was consumed before CB6. One new
+  photographic severe/style test may compile the mechanism without curve
+  refitting; calibration and product mapping remain closed.
