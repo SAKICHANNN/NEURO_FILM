@@ -8,7 +8,7 @@ from collections.abc import Mapping
 from pathlib import Path
 from typing import Any
 
-from src.inference.analytic_y_chromaticity_profile import (
+from src.inference.analytic_y_chromaticity_profile_v4 import (
     ENGINE_ID,
     AnalyticYChromaticityRuntime,
     load_analytic_y_chromaticity_profile,
@@ -89,14 +89,19 @@ def validate_analytic_render_recipe(recipe: Mapping[str, Any]) -> None:
         ("analytic-y-chromaticity-cb56-v1", "1.0.0"),
         ("analytic-y-chromaticity-cb61-v2", "2.0.0"),
         ("analytic-y-chromaticity-cb66-v3", "3.0.0"),
+        ("analytic-y-chromaticity-cb69-v4", "4.0.0"),
     }:
         raise AnalyticRenderRecipeError("analytic profile identity drift")
     _hash(profile["sha256"], "profile.sha256")
     assets = recipe["assets"]
     expected_assets = (
-        12
+        5
+        if profile_identity[0].endswith("cb69-v4")
+        else 12
         if profile_identity[0].endswith("cb66-v3")
-        else 10 if profile_identity[0].endswith("cb61-v2") else 8
+        else 10
+        if profile_identity[0].endswith("cb61-v2")
+        else 8
     )
     if not isinstance(assets, list) or len(assets) != expected_assets:
         raise AnalyticRenderRecipeError("analytic recipe asset inventory drift")

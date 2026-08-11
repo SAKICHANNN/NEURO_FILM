@@ -18,12 +18,12 @@ from src.inference.analytic_render_recipe import (
 from src.inference.analytic_render_recipe import (
     verify_analytic_render_recipe_files,
 )
-from src.inference.analytic_y_chromaticity_profile import (
+from src.inference.analytic_y_chromaticity_profile_v4 import (
     ENGINE_ID,
     load_analytic_y_chromaticity_profile,
 )
 
-DEFAULT_PROFILE = ROOT / "configs/render_profiles/analytic_y_chromaticity_cb66_v3.json"
+DEFAULT_PROFILE = ROOT / "configs/render_profiles/analytic_y_chromaticity_cb69_v4.json"
 
 
 def _parser() -> argparse.ArgumentParser:

@@ -42,7 +42,7 @@ from src.inference import (
     sha256_file,
 )
 from src.inference.analytic_render_recipe import build_analytic_render_recipe
-from src.inference.analytic_y_chromaticity_profile import (
+from src.inference.analytic_y_chromaticity_profile_v4 import (
     load_analytic_y_chromaticity_profile,
     render_analytic_y_chromaticity_profile,
 )
@@ -89,7 +89,7 @@ def parse_args() -> argparse.Namespace:
         default=ROOT
         / "configs"
         / "render_profiles"
-        / "analytic_y_chromaticity_cb66_v3.json",
+        / "analytic_y_chromaticity_cb69_v4.json",
     )
     parser.add_argument(
         "--analytic-scratch-root",

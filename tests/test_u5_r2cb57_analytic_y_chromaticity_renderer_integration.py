@@ -15,7 +15,7 @@ from src.inference.analytic_render_recipe import (
     validate_analytic_render_recipe,
     verify_analytic_render_recipe_files,
 )
-from src.inference.analytic_y_chromaticity_profile import (
+from src.inference.analytic_y_chromaticity_profile_v4 import (
     load_analytic_y_chromaticity_profile,
     render_analytic_y_chromaticity_profile,
 )
@@ -24,7 +24,8 @@ from src.preprocess import load_working_image, save_srgb8
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts/render_film.py"
 ENGINE_SCRIPT = ROOT / "scripts/analytic_color_engine.py"
-PROFILE = ROOT / "configs/render_profiles/analytic_y_chromaticity_cb66_v3.json"
+PROFILE = ROOT / "configs/render_profiles/analytic_y_chromaticity_cb69_v4.json"
+V3_PROFILE = ROOT / "configs/render_profiles/analytic_y_chromaticity_cb66_v3.json"
 V2_PROFILE = ROOT / "configs/render_profiles/analytic_y_chromaticity_cb61_v2.json"
 LEGACY_PROFILE = ROOT / "configs/render_profiles/analytic_y_chromaticity_cb56_v1.json"
 
@@ -80,7 +81,7 @@ def test_cb57_cli_is_exact_to_direct_runtime_and_repeats(
     )
     metrics = json.loads(outputs[0].with_suffix(".metrics.json").read_text())
     profile = metrics["analytic_research_profile"]
-    assert profile["profile_id"] == "analytic-y-chromaticity-cb66-v3"
+    assert profile["profile_id"] == "analytic-y-chromaticity-cb69-v4"
     assert profile["profile_sha256"] == runtime.profile_sha256
     assert profile["product_default"] is False
     assert profile["selector_facts"] == direct_facts
@@ -98,7 +99,7 @@ def test_cb57_default_safe_lab_output_remains_exact(
     assert implicit.read_bytes() == explicit.read_bytes()
 
 
-@pytest.mark.parametrize("profile_path", [V2_PROFILE, LEGACY_PROFILE])
+@pytest.mark.parametrize("profile_path", [V3_PROFILE, V2_PROFILE, LEGACY_PROFILE])
 def test_cb66_prior_analytic_profiles_remain_explicitly_replayable(
     profile_path: Path,
     tmp_path: Path, source: Path

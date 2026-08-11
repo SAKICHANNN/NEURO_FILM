@@ -1,0 +1,45 @@
+{
+  "schema_id": "kmcfm.research-render-profile.v1",
+  "profile_id": "analytic-y-chromaticity-cb69-v4",
+  "profile_version": "4.0.0",
+  "display_name": "Analytic Y-Chromaticity CB69",
+  "engine_id": "analytic_y_chromaticity_cb56_v1",
+  "style": "velvia_50",
+  "identity": {
+    "film_stock_id": null,
+    "interpretation": "look_approximation",
+    "research_champion": true,
+    "product_default": false
+  },
+  "evidence": {
+    "development_decision": "configs/u5_r2cb50_analytic_y_chromaticity_development_decision_v1.json",
+    "confirmation_decision": "configs/u5_r2cb51_analytic_y_chromaticity_confirmation_decision_v1.json",
+    "gold_stress_decision": "configs/u5_r2cb52_analytic_y_chromaticity_gold_stress_decision_v1.json",
+    "resource_decision": "configs/u5_r2cb69_analytic_y_chromaticity_parallel_ao6_throughput_decision_v1.json",
+    "streaming_replay_decision": "configs/u5_r2cb55_analytic_y_chromaticity_streaming_gold_stress_decision_v1.json",
+    "decoded_face_decision": "configs/u5_r2cb56_analytic_y_chromaticity_face_stress_decision_v1.json",
+    "claim_ceiling": "opt-in deterministic film-inspired Look Approximation research champion; no stock response, calibration, authenticity or default-product claim"
+  },
+  "assets": [
+    {"role": "cb66_base_profile", "path": "configs/render_profiles/analytic_y_chromaticity_cb66_v3.json", "sha256": "103fadfb59fad5c4023cf3b7f19a33f42845b2c6a81462975c10ab997f6b3d71"},
+    {"role": "cb69_decision", "path": "configs/u5_r2cb69_analytic_y_chromaticity_parallel_ao6_throughput_decision_v1.json", "sha256": "647a8cb858468a978302475652f1779c94c01b653718fc46916312e0001d8235"},
+    {"role": "single_target_ao6_code", "path": "src/eval/fixed_ao6_single_target.py", "sha256": "3e39a5d0bd627dcb629ce3e964249e559fad44b5f55fea42cbf5b16b38e4ce2f"},
+    {"role": "throughput_renderer_code", "path": "src/eval/analytic_y_chromaticity_throughput_candidate.py", "sha256": "d11829be12cb31fa34c7d295cbcc525daddf76f30c57c66e220e504b15034ed9"},
+    {"role": "v4_adapter_code", "path": "src/inference/analytic_y_chromaticity_profile_v4.py", "sha256": "f9d5657656b7490ce69a8926f99c87609dc418c4a6b7f10e7b68a60533f997e6"}
+  ],
+  "execution": {
+    "input_working_space": "linear_srgb",
+    "input_color_state": "display_linear",
+    "row_chunk": 128,
+    "target_materializer": "parallel_ao6_row_safe_base_external_sorted_v1",
+    "ao6_workers": 4,
+    "effects_after_colour_allowed": true,
+    "recipe_v1_allowed": false
+  },
+  "output": {
+    "working_space": "linear_srgb",
+    "transfer": "sRGB",
+    "icc_profile": "standard_sRGB",
+    "supported_bit_depths": [8, 16]
+  }
+}
