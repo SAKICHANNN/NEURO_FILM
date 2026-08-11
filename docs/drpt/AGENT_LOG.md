@@ -11316,3 +11316,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The failure is structural: when target luminance itself enters a channel
   boundary, reducing AO6 chroma to zero cannot restore the original safe side.
   Blind review is forbidden and this exact substitution closes without rescue.
+
+# 2026-08-11 - Freeze U5.R2CB16 safe-base AO6 chroma residual
+
+- Preserve the complete boundary-safe CB11 output and add only the
+  zero-luminance AO6-minus-CB11 chroma residual under one analytical maximum
+  step. Unlike CB15, alpha zero is always the already-valid base.
+- Reuse BK6S only as a development population. Exact automatic gates precede
+  blind comparison with AO6; a pass can open only a wholly new confirmation.
