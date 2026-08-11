@@ -11477,3 +11477,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `2e93c141...15ae3`). ABI structs, PNG `0f164ac9...fcaf`, decoded RGB16 and
   ICC remain exact after JSON reconstruction. Product-profile placement is the
   next scientific boundary.
+
+# 2026-08-11 - U6.P4CJ retains Thomas second order, rejects completeness
+
+- Two full AbsoluteCinema v6 reviewer-sample reports are byte exact
+  (`699faccb...e9bb`; stable `e8b6b384...d235408`) across four independent
+  archival sources, 40 frames and 320 fixed low-gradient patches.
+- The unchanged P4BS Thomas spectrum beats the matched Gaussian control on NPS
+  and ACF in `4/4` sources (median improvements `10.65%/25.14%`). Exact-power
+  phase controls nevertheless expose stable high-order structure in all four
+  sources. Retain only the second-order reference; scanner/process/content
+  nuisance prevents a complete emulsion or product claim.

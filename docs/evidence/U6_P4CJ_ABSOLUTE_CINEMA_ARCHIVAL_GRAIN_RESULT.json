@@ -1,0 +1,49 @@
+{
+  "schema": "neuro_film.u6_p4cj_absolute_cinema_archival_grain_result.v1",
+  "experiment_id": "u6.p4cj-absolute-cinema-archival-grain-v1",
+  "date": "2026-08-11",
+  "contract_commit": "bbe3f719",
+  "implementation_commit": "cf9985e6",
+  "contract_sha256": "a3381f47797b5f256a9c60f9520d67f4dd75bd1eca186584ad2953e17d378868",
+  "source_metadata_lock_sha256": "b05e6645bcf865ef1f8328247abd9be560adcab722837490b3635e78f2dcb7f8",
+  "report_sha256": "699faccb64a3058d1d44ed19a4317471367c39b4342d065eb8e1515a8f03e9bb",
+  "stable_evidence_id": "e8b6b3847fc03753d1e1c4655e9b179f456b26aee03f1182e593f70a5d235408",
+  "two_full_runs_byte_identical": true,
+  "source": {
+    "dataset": "AbsoluteCinema real-scene split reviewer sample",
+    "dataset_version": 6,
+    "license": "CC-BY-4.0",
+    "source_count": 4,
+    "frame_count": 40,
+    "selected_bytes": 33111370,
+    "patch_count": 320
+  },
+  "second_order": {
+    "nps_sources_where_fixed_p4bs_thomas_beats_gaussian": 4,
+    "acf_sources_where_fixed_p4bs_thomas_beats_gaussian": 4,
+    "median_nps_improvement_over_gaussian": 0.10651710677451298,
+    "median_acf_improvement_over_gaussian": 0.25144018755088615,
+    "worst_nps_error_ratio": 0.9795263822859428,
+    "worst_acf_error_ratio": 0.7761663433644862,
+    "all_frozen_gates_pass": true
+  },
+  "phase_sensitive": {
+    "sources_with_stable_material_evidence": 4,
+    "minimum_material_features_per_source": 2,
+    "feature_family": [
+      "skew",
+      "excess_kurtosis",
+      "local_energy_cv_8x8",
+      "absolute_excursion_component_density_z2p5"
+    ],
+    "interpretation": "Observed residual structure differs from 128 exact-power phase scrambles in every source, so no Gaussian random field defined only by the measured second-order spectrum is a complete explanation."
+  },
+  "decision": "PASS_SECOND_ORDER_ONLY_REJECT_GAUSSIAN_COMPLETE_STRUCTURE",
+  "interpretation": [
+    "The fixed P4BS Thomas spectrum transfers beyond its original uniform-scan cohort as an effective second-order reference and beats the fixed Gaussian control on both NPS and ACF in all four independent archival sources.",
+    "Stable phase-sensitive departures in all four sources prove that second-order agreement is insufficient. They may include non-Gaussian grain, nonstationarity, scanner/restoration structure or residual scene content and cannot be assigned to emulsion without a new identifying observation.",
+    "Retain the Thomas second-order baseline, but do not integrate the P4BZ-closed photographic hybrid or claim a complete physical grain model."
+  ],
+  "next_action": "Develop a bounded higher-order or nonstationary residual mechanism against disjoint archival sources, with fixed Thomas second-order structure retained and explicit scanner/content nuisance controls; do not refit P4BS on this cohort.",
+  "claim_ceiling": "Independent multi-source archival-code residual diagnostic using a 2026 public benchmark; scanner/process/content/degradation remain mixed, and no stock, microscopy, calibration or product claim is allowed."
+}

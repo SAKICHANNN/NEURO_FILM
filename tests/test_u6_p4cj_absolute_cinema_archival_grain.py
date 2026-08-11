@@ -10,6 +10,7 @@ from src.eval import absolute_cinema_archival_grain as p4cj
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT_PATH = ROOT / "configs/u6_p4cj_absolute_cinema_archival_grain_v1.json"
+EVIDENCE_PATH = ROOT / "docs/evidence/U6_P4CJ_ABSOLUTE_CINEMA_ARCHIVAL_GRAIN_RESULT.json"
 
 
 def _contract() -> dict:
@@ -62,3 +63,14 @@ def test_patch_selection_is_deterministic() -> None:
     second = p4cj._select_patches(image, _contract())
     assert len(first) == 8
     assert all(np.array_equal(a, b) for a, b in zip(first, second, strict=True))
+
+
+def test_evidence_preserves_second_order_and_complete_model_boundary() -> None:
+    evidence = json.loads(EVIDENCE_PATH.read_text(encoding="utf-8"))
+    assert evidence["two_full_runs_byte_identical"] is True
+    assert evidence["second_order"]["all_frozen_gates_pass"] is True
+    assert evidence["phase_sensitive"]["sources_with_stable_material_evidence"] == 4
+    assert evidence["decision"] == (
+        "PASS_SECOND_ORDER_ONLY_REJECT_GAUSSIAN_COMPLETE_STRUCTURE"
+    )
+    assert "no stock" in evidence["claim_ceiling"]
