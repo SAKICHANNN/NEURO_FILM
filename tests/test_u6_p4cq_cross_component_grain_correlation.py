@@ -72,4 +72,5 @@ def test_evidence_matches_frozen_branch_when_present() -> None:
     assert evidence["decision"] in {
         "PASS_RETAIN_GENERIC_CROSS_COMPONENT_GRAIN_CORRELATION",
         "FAIL_CLOSED_CROSS_COMPONENT_GRAIN_CORRELATION_TRANSFER",
+        "FAIL_CLOSED_BEFORE_CONFIRMATION_MATRIX_ENVELOPE",
     }

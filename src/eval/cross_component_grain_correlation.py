@@ -181,6 +181,29 @@ def _fit_shared_matrix(
     return output
 
 
+def _matrix_envelope_facts(
+    matrix: np.ndarray, contract: Mapping[str, Any]
+) -> dict[str, Any]:
+    eigenvalues = np.linalg.eigvalsh(matrix)
+    off_diagonal = matrix[np.triu_indices(3, 1)]
+    candidate = contract["candidate"]
+    return {
+        "matrix": matrix.tolist(),
+        "eigenvalues": eigenvalues.tolist(),
+        "minimum_eigenvalue": float(np.min(eigenvalues)),
+        "maximum_absolute_off_diagonal": float(np.max(np.abs(off_diagonal))),
+        "minimum_eigenvalue_gate": float(candidate["minimum_eigenvalue"]),
+        "maximum_absolute_off_diagonal_gate": float(
+            candidate["maximum_absolute_off_diagonal"]
+        ),
+        "positive_definite_envelope_passed": bool(
+            float(np.min(eigenvalues)) >= float(candidate["minimum_eigenvalue"])
+            and float(np.max(np.abs(off_diagonal)))
+            <= float(candidate["maximum_absolute_off_diagonal"])
+        ),
+    }
+
+
 def _matrix_error(observed: np.ndarray, candidate: np.ndarray) -> float:
     indexes = np.triu_indices(3, 1)
     return math.sqrt(
@@ -337,10 +360,45 @@ def evaluate_cross_component_grain_correlation(
         contract, Path(str(contract["development"]["source_scratch"]))
     )
     development = _group_observations(development_rows, contract)
-    fitted = _fit_shared_matrix(
-        [value for source in sorted(development) for value in development[source]],
-        contract,
+    development_residuals = [
+        value for source in sorted(development) for value in development[source]
+    ]
+    raw_matrix = np.mean(
+        np.asarray([_correlation_matrix(value) for value in development_residuals]),
+        axis=0,
     )
+    raw_matrix = (raw_matrix + raw_matrix.T) * 0.5
+    np.fill_diagonal(raw_matrix, 1.0)
+    envelope = _matrix_envelope_facts(raw_matrix, contract)
+    development_files = [
+        {
+            "source": str(row["source"]),
+            "name": Path(row["path"]).name,
+            "bytes": Path(row["path"]).stat().st_size,
+            "sha256": sha256_file(Path(row["path"])),
+        }
+        for row in development_rows
+    ]
+    if not envelope["positive_definite_envelope_passed"]:
+        return {
+            "schema": REPORT_SCHEMA,
+            "experiment_id": contract["experiment_id"],
+            "contract_path": contract_path.relative_to(root).as_posix(),
+            "contract_sha256": sha256_file(contract_path),
+            "development_files": development_files,
+            "development": {
+                "source_count": len(development),
+                "patch_count": len(development_residuals),
+                "matrix_envelope": envelope,
+            },
+            "confirmation_enumeration_count": 0,
+            "confirmation_download_count": 0,
+            "confirmation_decode_count": 0,
+            "gates": {"development_matrix_envelope": False},
+            "decision": "FAIL_CLOSED_BEFORE_CONFIRMATION_MATRIX_ENVELOPE",
+            "claim_ceiling": contract["claim_ceiling"],
+        }
+    fitted = _fit_shared_matrix(development_residuals, contract)
     permutation = np.asarray([1, 2, 0])
     cyclic = np.ascontiguousarray(fitted[np.ix_(permutation, permutation)])
     independent = np.eye(3, dtype=np.float64)
@@ -418,6 +476,12 @@ def evaluate_cross_component_grain_correlation(
         "contract_path": contract_path.relative_to(root).as_posix(),
         "contract_sha256": sha256_file(contract_path),
         "model_freeze": model_freeze,
+        "development_files": development_files,
+        "development": {
+            "source_count": len(development),
+            "patch_count": len(development_residuals),
+            "matrix_envelope": envelope,
+        },
         "confirmation_files": [
             {key: value for key, value in row.items() if key != "path"}
             for row in acquired
