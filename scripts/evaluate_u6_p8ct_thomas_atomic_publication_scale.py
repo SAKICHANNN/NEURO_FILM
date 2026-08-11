@@ -46,6 +46,8 @@ def _validate_contract(contract_path: Path) -> dict[str, Any]:
         or fixture.get("row_partition") != 128
         or fixture.get("runs") != 2
         or fixture.get("maximum_output_bytes") != 80000000
+        or contract.get("profile_sha256")
+        != "923a985aa90e029332c723a33afb793afe05cae777b3c07061d54828b91e21b4"
     ):
         raise NativeThomasAtomicScaleError("P8CT contract drift")
     parent = contract["parent"]
