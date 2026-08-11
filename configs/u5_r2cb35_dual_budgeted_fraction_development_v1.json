@@ -1,0 +1,74 @@
+{
+  "schema": "neuro_film.u5_r2cb35_dual_budgeted_fraction_development_contract.v1",
+  "experiment_id": "U5.R2CB35",
+  "question": "Can one fixed descending image-global dose enforce both the existing p99.9 gradient-magnitude budget and exact source-relative L-star adjacent-order preservation while retaining material CB32 style?",
+  "parents": {
+    "cb34_decision_path": "configs/u5_r2cb34_gradient_budgeted_fraction_confirmation_decision_v1.json",
+    "cb34_decision_sha256": "19065fedc1ba7d377edd849c5d62593dab2ad73c4ab9df509a81f82eb6853d91",
+    "cb34_required_decision": "close_exact_cb33_on_source_disjoint_lstar_order_failure",
+    "cb33_contract_path": "configs/u5_r2cb33_gradient_budgeted_fraction_gold_stress_v1.json",
+    "cb33_contract_sha256": "b38d5238a57957dbf55a321529cb3b275ba653054088eb9642d82d342ef69e41",
+    "cb16_decision_path": "configs/u5_r2cb16_safe_base_ao6_chroma_residual_decision_v1.json",
+    "cb16_decision_sha256": "965a1c0c0eba887673bd1f9793a5c28425edfe5495cb4bb151a70e3b9f20008f",
+    "cb16_required_status": "close_safe_base_ao6_chroma_magnitude_residual_without_rescue",
+    "cb14_decision_path": "configs/u5_r2cb14_characteristic_vs_ao6_ood_decision_v1.json",
+    "cb14_decision_sha256": "acb2e53031db6e9fe33f84d615ad259ea856190016ab7f26e2030775b8a2c8b9",
+    "cb14_required_status": "candidate_fails_ao6_retain_incumbent",
+    "cb11_contract_path": "configs/u5_r2cb11_fujifilm_characteristic_luma_chroma_v1.json",
+    "cb11_contract_sha256": "fd6127a0c336fdfc661870d8636e8c7a8bbe741f096465e52c73a5a327213b5f",
+    "cb12_contract_path": "configs/u5_r2cb12_characteristic_vs_ao6_fresh_v1.json",
+    "cb12_contract_sha256": "0951b3ec44049f76afda12b90ba40e1bc644000336fcc340b1b862ea986823c1"
+  },
+  "population": {
+    "decision_path": "configs/u5_r2bk17s_factorized_ao6_sixth_fresh_source_decision_v1.json",
+    "decision_sha256": "fe4fe8944efa216a45459228d07e0d4850710ec6326a80ac2fe237ad725664de",
+    "required_status": "source_eligible_fixed_comparison_open",
+    "manifest_path": "outputs/u5_r2bk17s_factorized_ao6_sixth_fresh_source_v1/run_a/manifest.json",
+    "manifest_sha256": "a1a77d472037289bc31fccaae38d565a92d5ec843f27d35c4490962c860eccad",
+    "source_count_exact": 12,
+    "camera_make_count_exact": 12,
+    "maximum_long_edge": 1600,
+    "exact_decoded_sha_overlap_with_cb27_cb28_cb29_cb34_u41": 0,
+    "role": "new mechanism development, source-disjoint from all CB27-CB34 evaluations"
+  },
+  "operator": {
+    "base": "exact CB11 luminance/chroma-safe output",
+    "full_target": "exact CB32 origin-anchored 257-knot one-Lipschitz fraction target after unchanged cube-safe execution",
+    "dose_grid": [1.0, 0.9375, 0.875, 0.8125, 0.75, 0.6875, 0.625, 0.5625, 0.5, 0.4375, 0.375, 0.3125, 0.25, 0.1875, 0.125, 0.0625, 0.0],
+    "selection": "first descending dose with p99.9 RGB gradient ratio at most 1.35 and source-relative adjacent L-star sign-inversion fraction exactly zero at epsilon 0.0001",
+    "scope": "one scalar dose for the complete image; no spatial or semantic conditioning",
+    "minimum_valid_fraction": 0.0001,
+    "fraction_knots": 257,
+    "maximum_fraction_slope": 1.0,
+    "forbidden": "continuous dose fitting, changed grid or epsilon, local dose, mask, filtering, per-channel dose, source replacement, threshold or post-score rescue"
+  },
+  "evaluation": {"maximum_colour_metric_samples_per_source": 65536},
+  "automatic_gates": {
+    "maximum_luminance_reconstruction_error": 0.000001,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio_vs_source": 1.35,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.0,
+    "minimum_population_median_direction_scale": 0.5,
+    "maximum_population_median_fraction_direction_scale_below_0p5": 0.1,
+    "minimum_population_median_style_delta_e76": 5.0,
+    "minimum_population_median_delta_e76_vs_cb11": 1.0,
+    "minimum_population_median_global_dose": 0.5,
+    "maximum_fraction_global_dose_below_0p25": 0.1,
+    "maximum_confirmed_severe_artifact_count": 0
+  },
+  "blind_protocol": {
+    "rounds": 3,
+    "seed": 20260812,
+    "ties_allowed": false,
+    "minimum_candidate_round_wins": 2,
+    "minimum_candidate_aggregate_choices": 22,
+    "minimum_candidate_source_majorities": 7,
+    "mapping_hidden_until_choices_commit": true
+  },
+  "stop_rules": [
+    "If no frozen dose passes both budgets for any row, close before visual review.",
+    "Any dose-floor, automatic, severe or preference failure closes this exact mechanism without rescue.",
+    "A pass opens only a separately frozen source-disjoint confirmation."
+  ],
+  "claim_ceiling": "Development-only explicit global-dose Look Approximation evidence; not independent confirmation, stock response, calibration, population preference or product promotion."
+}
