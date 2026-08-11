@@ -1,0 +1,34 @@
+{
+  "schema": "neuro_film.u5_r2cb18_neutral_confident_ao6_direction_decision.v1",
+  "experiment_id": "U5.R2CB18",
+  "implementation_commit": "77f7832e",
+  "contract_sha256": "481dc4508849a9f4d10ccb16d2789b9f4a28a0e3b20bec536ac77e44dad141e0",
+  "implementation_sha256": "bb61f8ddedaa93cb4dfe3648fcae792b6232905eddc5bc32d57f1db17e78b361",
+  "runner_sha256": "e57794e60e7138681a79cb13596c2bc2d04849f2ffac03e70df8b96bf4c8192b",
+  "formal_report_path": "outputs/experiments/u5_r2cb18_neutral_confident_ao6_direction_v1/report_run1.json",
+  "formal_report_sha256": "cbf7c693b951b92b4069b55b8afe4b0596ba6fdce91c9717bfc97a912a692b37",
+  "stable_evidence_id": "53edf2fe9cb43b8fc1cdefb5643ae67b5b8dd1d69c78a571ad64b07202923d1a",
+  "repeat_report_byte_exact": true,
+  "passed": false,
+  "decision": "close_neutral_confidence_as_too_conservative_without_rescue",
+  "metrics": {
+    "maximum_luminance_reconstruction_error": 4.135370246238779e-08,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio_vs_source": 1.2743611540930644,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 1.4975613395870094e-05,
+    "population_median_direction_scale": 1.0,
+    "population_median_fraction_direction_scale_below_0p5": 0.035231513978385906,
+    "population_median_style_delta_e76": 5.416077896762343,
+    "population_median_delta_e76_vs_cb11": 0.9123956720230477
+  },
+  "failed_gates": [
+    "material_vs_cb11"
+  ],
+  "interpretation": [
+    "Continuous relative-chroma confidence is safe: all luminance, boundary, gradient and scale-retention gates pass.",
+    "It suppresses direction transfer too broadly, leaving median separation from CB11 at 0.9124 Delta E76 below the frozen 1.0 gate.",
+    "The CB17 defect is spatially coherent speckling, so the next mechanism should regularize the direction field itself rather than globally reduce direction dose."
+  ],
+  "next_action": "Freeze fixed 3x3 separable binomial smoothing of the AO6 zero-luminance chroma vector before CB11-magnitude direction transfer and the unchanged analytical safe step.",
+  "claim_ceiling": "Closed development-only neutral-confidence formula; not a negative result about spatially coherent direction fields, AO6 preference or calibrated film response."
+}

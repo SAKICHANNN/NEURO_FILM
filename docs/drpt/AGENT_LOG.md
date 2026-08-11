@@ -11360,3 +11360,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   preserving CB11 chroma magnitude. Neutral or degenerate pixels return CB11.
 - Freeze the same automatic-first and blind protocol. No exponent, threshold,
   angular dose or population tuning is allowed after observation.
+
+# 2026-08-11 - U5.R2CB18 closes as too conservative
+
+- Two reports are byte exact (`cbf7c693...92b37`; stable
+  `53edf2fe...923d1a`). Every safety, gradient, boundary, scale and visible-style
+  gate passes, but median separation from CB11 is only `.9124` Delta E76 versus
+  the frozen `1.0` materiality minimum.
+- Do not rescue the confidence dose. CB17's defect is spatial speckling, so the
+  next mechanism regularizes the direction field itself with fixed support.
