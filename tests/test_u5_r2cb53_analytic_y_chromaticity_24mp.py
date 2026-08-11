@@ -21,6 +21,7 @@ def test_cb53_contract_binds_unchanged_cb52_operator() -> None:
     assert config["workload"]["shape"] == [4000, 6000, 3]
     assert config["gates"]["maximum_peak_process_tree_rss_bytes"] == 4 * 1024**3
     assert config["claim_ceiling"].startswith("Local Windows/Python 24MP")
+    assert config["workload"]["worker_timeout_seconds"] == 180.0
 
 
 def test_cb53_generator_is_exact_and_bounded() -> None:

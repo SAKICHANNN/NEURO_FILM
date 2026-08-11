@@ -152,7 +152,14 @@ def _kill_tree(root: psutil.Process) -> None:
         pass
 
 
-def _launch(config_path: Path, result_path: Path, *, interval: float, timeout: float) -> dict:
+def _launch(
+    config_path: Path,
+    result_path: Path,
+    *,
+    interval: float,
+    timeout: float,
+    maximum_rss: int,
+) -> dict:
     result_path.unlink(missing_ok=True)
     process = subprocess.Popen(
         [sys.executable, str(Path(__file__).resolve()), "--config", str(config_path), "--worker-output", str(result_path)],
@@ -166,6 +173,7 @@ def _launch(config_path: Path, result_path: Path, *, interval: float, timeout: f
     pids = {process.pid}
     started = perf_counter()
     timed_out = False
+    resource_limit_exceeded = False
     while process.poll() is None:
         try:
             tree = [root, *root.children(recursive=True)]
@@ -173,6 +181,10 @@ def _launch(config_path: Path, result_path: Path, *, interval: float, timeout: f
             peak = max(peak, sum(item.memory_info().rss for item in tree if item.is_running()))
         except (psutil.NoSuchProcess, psutil.AccessDenied):
             pass
+        if peak > maximum_rss:
+            resource_limit_exceeded = True
+            _kill_tree(root)
+            break
         if perf_counter() - started > timeout:
             timed_out = True
             _kill_tree(root)
@@ -182,6 +194,7 @@ def _launch(config_path: Path, result_path: Path, *, interval: float, timeout: f
     return {
         "exit_code": process.returncode,
         "timed_out": timed_out,
+        "resource_limit_exceeded": resource_limit_exceeded,
         "wall_seconds": perf_counter() - started,
         "peak_process_tree_rss_bytes": peak,
         "stdout": stdout,
@@ -204,9 +217,12 @@ def run_parent(config_path: Path, work_dir: Path) -> dict:
             result_path.resolve(),
             interval=float(workload["rss_sample_interval_seconds"]),
             timeout=float(workload["worker_timeout_seconds"]),
+            maximum_rss=int(config["gates"]["maximum_peak_process_tree_rss_bytes"]),
         )
         result = json.loads(result_path.read_text(encoding="utf-8")) if result_path.exists() else None
         runs.append({"monitor": monitor, "result": result})
+        if monitor["timed_out"] or monitor["resource_limit_exceeded"]:
+            break
     gates = config["gates"]
     valid = len(runs) == 2 and all(item["result"] is not None for item in runs)
     hash_keys = ("source_sha256", "target_sha256", "candidate_sha256", "scale_sha256")
