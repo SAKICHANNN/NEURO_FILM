@@ -16,6 +16,9 @@
   ],
   "source_count_exact": 17,
   "camera_make_count_exact": 9,
+  "excluded_parent_rows": {
+    "fujifilm_s2pro": "visible control target excluded by the frozen AI1S selection rule"
+  },
   "exact_decoded_sha_overlap_with_cb47": 0,
   "previously_consumed_mechanism_development_role": true,
   "operator_outputs_inspected_for_this_role": false,

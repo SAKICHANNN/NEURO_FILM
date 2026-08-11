@@ -19,7 +19,10 @@ def test_cb48_source_role_binds_exact_disjoint_population() -> None:
         "manifest_sha256"
     ]
     rows = json.loads(manifest.read_text(encoding="utf-8"))
-    assert [row["id"] for row in rows] == payload["included_source_ids"]
-    assert len(rows) == payload["source_count_exact"] == 17
-    assert len({row["make"] for row in rows}) == payload["camera_make_count_exact"]
+    included = [row for row in rows if row["id"] in payload["included_source_ids"]]
+    excluded = [row["id"] for row in rows if row["id"] not in payload["included_source_ids"]]
+    assert [row["id"] for row in included] == payload["included_source_ids"]
+    assert excluded == list(payload["excluded_parent_rows"])
+    assert len(included) == payload["source_count_exact"] == 17
+    assert len({row["make"] for row in included}) == payload["camera_make_count_exact"]
     assert payload["exact_decoded_sha_overlap_with_cb47"] == 0
