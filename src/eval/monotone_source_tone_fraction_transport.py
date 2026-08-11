@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import shutil
 from collections.abc import Mapping, Sequence
 from pathlib import Path
 from typing import Any
@@ -239,6 +240,13 @@ def evaluate(config: Mapping[str, Any], root: Path, output_dir: Path) -> dict[st
     )
     op = config["operator"]
     facts: list[dict[str, float | int]] = []
+    source_rows = _load_exact_json(
+        root,
+        config["population"]["manifest_path"],
+        config["population"]["manifest_sha256"],
+    )
+    source_ids = [row["id"] for row in source_rows]
+    failure: dict[str, Any] | None = None
 
     def target_builder(
         safe_base_linear: np.ndarray,
@@ -265,38 +273,79 @@ def evaluate(config: Mapping[str, Any], root: Path, output_dir: Path) -> dict[st
         weights: np.ndarray,
         boundary_epsilon: float,
     ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-        candidate, scale, luma_error, row_facts = select_monotone_source_tone_candidate(
-            source_linear,
-            safe_base_linear,
-            full_target_linear,
-            weights=weights,
-            boundary_epsilon=boundary_epsilon,
-            tone_knot_count=int(op["tone_knot_count"]),
-            dose_grid=op["dose_grid"],
-            maximum_gradient_ratio=float(
-                config["automatic_gates"]["maximum_p999_gradient_ratio_vs_source"]
-            ),
-            maximum_lstar_inversion_fraction=float(
-                config["automatic_gates"][
-                    "maximum_adjacent_lstar_gradient_sign_inversion_fraction"
-                ]
-            ),
-            lstar_order_epsilon=float(op["lstar_order_epsilon"]),
-        )
+        nonlocal failure
+        try:
+            candidate, scale, luma_error, row_facts = (
+                select_monotone_source_tone_candidate(
+                    source_linear,
+                    safe_base_linear,
+                    full_target_linear,
+                    weights=weights,
+                    boundary_epsilon=boundary_epsilon,
+                    tone_knot_count=int(op["tone_knot_count"]),
+                    dose_grid=op["dose_grid"],
+                    maximum_gradient_ratio=float(
+                        config["automatic_gates"][
+                            "maximum_p999_gradient_ratio_vs_source"
+                        ]
+                    ),
+                    maximum_lstar_inversion_fraction=float(
+                        config["automatic_gates"][
+                            "maximum_adjacent_lstar_gradient_sign_inversion_fraction"
+                        ]
+                    ),
+                    lstar_order_epsilon=float(op["lstar_order_epsilon"]),
+                )
+            )
+        except MonotoneSourceToneFractionTransportError as exc:
+            failure = {
+                "source_id": source_ids[len(facts)],
+                "completed_source_count": len(facts),
+                "reason": str(exc),
+            }
+            raise
         facts.append(row_facts)
         return candidate, scale, luma_error
 
-    report = evaluate_direction_candidate(
-        config,
-        root,
-        output_dir,
-        target_builder=target_builder,
-        candidate_builder=candidate_builder,
-        report_schema=REPORT_SCHEMA,
-        experiment_id=EXPERIMENT_ID,
-        contract_filename="u5_r2cb37_monotone_source_tone_fraction_development_v1.json",
-        blind_seed=int(config["blind_protocol"]["seed"]),
-    )
+    try:
+        report = evaluate_direction_candidate(
+            config,
+            root,
+            output_dir,
+            target_builder=target_builder,
+            candidate_builder=candidate_builder,
+            report_schema=REPORT_SCHEMA,
+            experiment_id=EXPERIMENT_ID,
+            contract_filename=(
+                "u5_r2cb37_monotone_source_tone_fraction_development_v1.json"
+            ),
+            blind_seed=int(config["blind_protocol"]["seed"]),
+        )
+    except MonotoneSourceToneFractionTransportError:
+        if failure is None:
+            raise
+        shutil.rmtree(output_dir)
+        diagnostic: dict[str, Any] = {
+            "schema": REPORT_SCHEMA,
+            "experiment_id": EXPERIMENT_ID,
+            "contract_sha256": hashlib.sha256(
+                (
+                    root
+                    / "configs/u5_r2cb37_monotone_source_tone_fraction_development_v1.json"
+                ).read_bytes()
+            ).hexdigest(),
+            "automatic_pass": False,
+            "checks": {"gradient_and_order_safe_candidate": False},
+            "failure": failure,
+            "partial_artifacts_removed": True,
+            "visual_review_status": "forbidden",
+            "decision": "close_monotone_source_tone_before_complete_render",
+            "claim_ceiling": config["claim_ceiling"],
+        }
+        diagnostic["stable_evidence_id"] = hashlib.sha256(
+            canonical_json(diagnostic)
+        ).hexdigest()
+        return diagnostic
     if len(facts) != len(report["rows"]):
         raise MonotoneSourceToneFractionTransportError("CB37 diagnostic count drift")
     for row, row_facts in zip(report["rows"], facts, strict=True):
