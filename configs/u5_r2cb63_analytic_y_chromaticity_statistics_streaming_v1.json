@@ -1,0 +1,50 @@
+{
+  "schema": "neuro_film.u5_r2cb63_analytic_y_chromaticity_statistics_streaming_contract.v1",
+  "report_schema": "neuro_film.u5_r2cb63_analytic_y_chromaticity_statistics_streaming_report.v1",
+  "experiment_id": "U5.R2CB63",
+  "question": "Can compact legacy-ordered global angle terms plus row-recomputed hue direction reduce complete 24MP v2 residency below 4GB while remaining byte exact?",
+  "parent": {
+    "cb61_decision_path": "configs/u5_r2cb61_analytic_y_chromaticity_row_hue_memory_decision_v1.json",
+    "cb61_decision_sha256": "2d732eb9aa7f3877f875defcd1e4c761e0b77411eb34b714c715c7e3452fc063",
+    "cb61_required_decision": "pass_cb61_output_exact_row_bounded_hue_target_memory"
+  },
+  "baseline": {
+    "input_path": "D:/nf-019f4b76-cb60-input.png",
+    "input_sha256": "f9a369f384126a0837880a79828f3608290e8ef013a0156f72a263a19762ed98",
+    "output_sha256": "949ffce7f86faee4296de52e51b90ae8e5cd4dc205d4a5a9e0f5cb86c6c6e9fa",
+    "peak_process_tree_rss_bytes": 5004148736,
+    "wall_seconds": 131.08845460000157,
+    "selector_facts": {
+      "characteristic_strength": 0.2,
+      "fraction_gamut_scale_below_0p8": 0.000487875,
+      "global_dose": 1.0,
+      "maximum_luminance_error": 2.8280287112103508e-08,
+      "median_gamut_scale": 1.0,
+      "selected_gradient_ratio": 0.8636540824585575,
+      "selected_lstar_inversion_fraction": 0.0,
+      "selected_new_boundary_fraction": 0.0
+    }
+  },
+  "candidate": {
+    "algorithm": "float64-global-statistics-compact-angle-row-recompute-v1",
+    "target_materializer": "statistics_streamed_v1",
+    "row_chunk": 64,
+    "implementation_sha256": "ac7423c07a1f02f06b7370362a7c40318a97d92732953b69a06ad83bfae9c42e",
+    "runner_sha256": "53264a69b235313e9a80b0e96b21e42c9395c7f7882194bdbfe30206a5fcb4cb",
+    "output_bit_depth": 16
+  },
+  "gates": {
+    "output_sha256_exact": true,
+    "selector_facts_exact": true,
+    "maximum_peak_process_tree_rss_bytes": 4000000000,
+    "maximum_peak_rss_ratio_to_baseline": 0.8,
+    "maximum_wall_ratio_to_baseline": 1.25,
+    "scratch_residue_count": 0
+  },
+  "stop_rules": [
+    "Do not change global reduction order, numeric precision, source, bit depth, selector or safety gates.",
+    "Do not relax the 4GB or 0.8x memory gates after measurement.",
+    "Fail closed on either fresh-process identity, memory, time or cleanup failure."
+  ],
+  "claim_ceiling": "Local Windows/Python complete 24MP analytic renderer resource evidence only; no native/device, photographic preference, stock, calibration, default-product or arbitrary-media claim."
+}
