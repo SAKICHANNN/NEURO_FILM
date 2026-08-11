@@ -1,0 +1,17 @@
+{
+  "schema": "neuro_film.u5_r2cb65_analytic_renderer_memory_attribution.v1",
+  "experiment_id": "U5.R2CB65",
+  "formal_report_sha256": "e2db5bc88f4bec6b54609bfe7f8959c2a07085f470136e2a76555e3f31411eaa",
+  "output_sha256": "949ffce7f86faee4296de52e51b90ae8e5cd4dc205d4a5a9e0f5cb86c6c6e9fa",
+  "phase_peak_process_tree_rss_bytes": {
+    "load": 1938239488,
+    "ao6": 1479630848,
+    "safe_base": 5011648512,
+    "target": 4016594944,
+    "selector": 2644656128,
+    "composite": 2332401664,
+    "encode": 2578509824
+  },
+  "decision": "optimize_safe_base_row_materialization_then_remeasure_complete_path",
+  "claim_ceiling": "Local coarse phase attribution only; not a product benchmark."
+}
