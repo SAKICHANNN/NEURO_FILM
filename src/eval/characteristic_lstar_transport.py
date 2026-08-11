@@ -164,14 +164,29 @@ def select_characteristic_lstar_candidate(
     return selected, effective_scale, selected_y - tone_y, facts
 
 
-def evaluate(config: Mapping[str, Any], root: Path, output_dir: Path) -> dict[str, Any]:
+def evaluate(
+    config: Mapping[str, Any],
+    root: Path,
+    output_dir: Path,
+    *,
+    selector: Any = select_characteristic_lstar_candidate,
+    report_schema: str = REPORT_SCHEMA,
+    experiment_id: str = EXPERIMENT_ID,
+    contract_filename: str = "u5_r2cb41_characteristic_lstar_development_v1.json",
+    prerequisite_path_key: str = "cb40_decision_path",
+    prerequisite_sha_key: str = "cb40_decision_sha256",
+    prerequisite_required_key: str = "cb40_required_decision",
+    diagnostic_decision: str = "close_characteristic_lstar_before_complete_render",
+    pass_decision: str = "open_characteristic_lstar_severe_review_then_blind_development",
+    close_decision: str = "close_characteristic_lstar_without_rescue",
+) -> dict[str, Any]:
     cb40 = _load_exact_json(
         root,
-        config["parents"]["cb40_decision_path"],
-        config["parents"]["cb40_decision_sha256"],
+        config["parents"][prerequisite_path_key],
+        config["parents"][prerequisite_sha_key],
     )
-    if cb40.get("decision") != config["parents"]["cb40_required_decision"]:
-        raise CharacteristicLstarTransportError("CB40 decision drift")
+    if cb40.get("decision") != config["parents"][prerequisite_required_key]:
+        raise CharacteristicLstarTransportError("CB41 prerequisite decision drift")
     source_decision = _load_exact_json(
         root,
         config["population"]["decision_path"],
@@ -182,7 +197,10 @@ def evaluate(config: Mapping[str, Any], root: Path, output_dir: Path) -> dict[st
         source_decision["parent_decision_path"],
         source_decision["parent_decision_sha256"],
     )
-    if parent_source.get("decision") != source_decision["parent_required_decision"]:
+    parent_source_decision = parent_source.get("decision")
+    if parent_source_decision is None and isinstance(parent_source.get("result"), dict):
+        parent_source_decision = parent_source["result"].get("decision")
+    if parent_source_decision != source_decision["parent_required_decision"]:
         raise CharacteristicLstarTransportError("CB41 source parent drift")
     cb33 = _load_exact_json(
         root,
@@ -234,26 +252,22 @@ def evaluate(config: Mapping[str, Any], root: Path, output_dir: Path) -> dict[st
         nonlocal failure
         del safe_base_linear, weights
         try:
-            candidate, scale, luma_error, row_facts = (
-                select_characteristic_lstar_candidate(
-                    source_linear,
-                    full_target_linear,
-                    curve=curve,
-                    strength=strength,
-                    boundary_epsilon=boundary_epsilon,
-                    dose_grid=op["dose_grid"],
-                    maximum_gradient_ratio=float(
-                        config["automatic_gates"][
-                            "maximum_p999_gradient_ratio_vs_source"
-                        ]
-                    ),
-                    maximum_lstar_inversion_fraction=float(
-                        config["automatic_gates"][
-                            "maximum_adjacent_lstar_gradient_sign_inversion_fraction"
-                        ]
-                    ),
-                    lstar_order_epsilon=float(op["lstar_order_epsilon"]),
-                )
+            candidate, scale, luma_error, row_facts = selector(
+                source_linear,
+                full_target_linear,
+                curve=curve,
+                strength=strength,
+                boundary_epsilon=boundary_epsilon,
+                dose_grid=op["dose_grid"],
+                maximum_gradient_ratio=float(
+                    config["automatic_gates"]["maximum_p999_gradient_ratio_vs_source"]
+                ),
+                maximum_lstar_inversion_fraction=float(
+                    config["automatic_gates"][
+                        "maximum_adjacent_lstar_gradient_sign_inversion_fraction"
+                    ]
+                ),
+                lstar_order_epsilon=float(op["lstar_order_epsilon"]),
             )
         except CharacteristicLstarTransportError as exc:
             failure = {"completed_source_count": len(facts), "reason": str(exc)}
@@ -268,9 +282,9 @@ def evaluate(config: Mapping[str, Any], root: Path, output_dir: Path) -> dict[st
             output_dir,
             target_builder=target_builder,
             candidate_builder=candidate_builder,
-            report_schema=REPORT_SCHEMA,
-            experiment_id=EXPERIMENT_ID,
-            contract_filename="u5_r2cb41_characteristic_lstar_development_v1.json",
+            report_schema=report_schema,
+            experiment_id=experiment_id,
+            contract_filename=contract_filename,
             blind_seed=int(config["blind_protocol"]["seed"]),
         )
     except CharacteristicLstarTransportError:
@@ -278,19 +292,17 @@ def evaluate(config: Mapping[str, Any], root: Path, output_dir: Path) -> dict[st
             raise
         shutil.rmtree(output_dir)
         diagnostic: dict[str, Any] = {
-            "schema": REPORT_SCHEMA,
-            "experiment_id": EXPERIMENT_ID,
+            "schema": report_schema,
+            "experiment_id": experiment_id,
             "contract_sha256": hashlib.sha256(
-                (
-                    root / "configs/u5_r2cb41_characteristic_lstar_development_v1.json"
-                ).read_bytes()
+                (root / "configs" / contract_filename).read_bytes()
             ).hexdigest(),
             "automatic_pass": False,
             "checks": {"gradient_and_order_safe_candidate": False},
             "failure": failure,
             "partial_artifacts_removed": True,
             "visual_review_status": "forbidden",
-            "decision": "close_characteristic_lstar_before_complete_render",
+            "decision": diagnostic_decision,
             "claim_ceiling": config["claim_ceiling"],
         }
         diagnostic["stable_evidence_id"] = hashlib.sha256(
@@ -321,11 +333,7 @@ def evaluate(config: Mapping[str, Any], root: Path, output_dir: Path) -> dict[st
     report["visual_review_status"] = (
         "pending" if report["automatic_pass"] else "forbidden"
     )
-    report["decision"] = (
-        "open_characteristic_lstar_severe_review_then_blind_development"
-        if report["automatic_pass"]
-        else "close_characteristic_lstar_without_rescue"
-    )
+    report["decision"] = pass_decision if report["automatic_pass"] else close_decision
     report.pop("stable_evidence_id", None)
     report["stable_evidence_id"] = hashlib.sha256(canonical_json(report)).hexdigest()
     return report
