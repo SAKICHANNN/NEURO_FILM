@@ -52,6 +52,7 @@ def select_global_affine_tone_candidate(
     tone_dose_grid: list[float],
     minimum_affine_slope: float,
     maximum_affine_slope: float,
+    minimum_affine_intercept: float = -float("inf"),
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray, dict[str, float]]:
     del curve, strength
     source = np.asarray(source_linear)
@@ -84,7 +85,9 @@ def select_global_affine_tone_candidate(
     fitted_slope = float(
         np.clip(fitted_slope, minimum_affine_slope, maximum_affine_slope)
     )
-    fitted_intercept = float(np.mean(y) - fitted_slope * np.mean(x))
+    fitted_intercept = max(
+        float(np.mean(y) - fitted_slope * np.mean(x)), minimum_affine_intercept
+    )
     source_lstar = linear_rgb_to_lab(source, working_space="linear_srgb")[..., 0]
     target_chroma = target64 - target_y[..., None]
     selected: np.ndarray | None = None

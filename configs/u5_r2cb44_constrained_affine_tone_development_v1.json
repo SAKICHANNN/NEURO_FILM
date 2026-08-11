@@ -1,0 +1,79 @@
+{
+  "schema": "neuro_film.u5_r2cb44_constrained_affine_tone_development_contract.v1",
+  "experiment_id": "U5.R2CB44",
+  "question": "Does projecting the global positive affine tone fit to a nonnegative intercept retain exact order, usable tone dose and visible style with unchanged CB32 chroma?",
+  "parents": {
+    "cb43_decision_path": "configs/u5_r2cb43_global_affine_tone_development_decision_v1.json",
+    "cb43_decision_sha256": "b361d6198070e06d3dfb770fb8e3595dbf310ded990328ff7812c4f54145a41e",
+    "cb43_required_decision": "close_unconstrained_affine_tone_open_nonnegative_intercept_projection",
+    "cb33_contract_path": "configs/u5_r2cb33_gradient_budgeted_fraction_gold_stress_v1.json",
+    "cb33_contract_sha256": "b38d5238a57957dbf55a321529cb3b275ba653054088eb9642d82d342ef69e41",
+    "cb16_decision_path": "configs/u5_r2cb16_safe_base_ao6_chroma_residual_decision_v1.json",
+    "cb16_decision_sha256": "965a1c0c0eba887673bd1f9793a5c28425edfe5495cb4bb151a70e3b9f20008f",
+    "cb16_required_status": "close_safe_base_ao6_chroma_magnitude_residual_without_rescue",
+    "cb14_decision_path": "configs/u5_r2cb14_characteristic_vs_ao6_ood_decision_v1.json",
+    "cb14_decision_sha256": "acb2e53031db6e9fe33f84d615ad259ea856190016ab7f26e2030775b8a2c8b9",
+    "cb14_required_status": "candidate_fails_ao6_retain_incumbent",
+    "cb11_contract_path": "configs/u5_r2cb11_fujifilm_characteristic_luma_chroma_v1.json",
+    "cb11_contract_sha256": "fd6127a0c336fdfc661870d8636e8c7a8bbe741f096465e52c73a5a327213b5f",
+    "cb12_contract_path": "configs/u5_r2cb12_characteristic_vs_ao6_fresh_v1.json",
+    "cb12_contract_sha256": "0951b3ec44049f76afda12b90ba40e1bc644000336fcc340b1b862ea986823c1"
+  },
+  "population": {
+    "decision_path": "configs/u5_r2cb44_constrained_affine_tone_source_decision_v1.json",
+    "decision_sha256": "b6672c65d480506304579165611de02acf93eb42068a5aed6e3ade1ff4800f6f",
+    "required_status": "source_eligible_fixed_comparison_open",
+    "manifest_path": "outputs/u5_r2bk6s_bounded_opponent_fresh_source_v1/run_a/manifest.json",
+    "manifest_sha256": "444f162f22e6bc40940eb82557a11ed2b1fa67e6736efb1362df7ef1069d5978",
+    "included_source_ids": ["canon_powershot_s120", "fujifilm_finepix_s5200", "nikon_d4s", "sony_slt_a33", "panasonic_dmc_fz38", "pentax_k5_iis", "olympus_ep2", "samsung_sm_g950u", "leica_x2", "apple_iphone_se", "google_pixel_3a", "huawei_vog_l29"],
+    "source_count_exact": 12,
+    "camera_make_count_exact": 12,
+    "maximum_long_edge": 1600,
+    "role": "previously consumed mechanism development; not independent confirmation"
+  },
+  "operator": {
+    "tone_fit": "least-squares positive affine map from exact source legacy-Y to unchanged CB32 target legacy-Y, projected to intercept>=0",
+    "tone_execution": "RGB_out = positive_slope * RGB_source + nonnegative_neutral_intercept",
+    "tone_dose_grid": [1.0, 0.9375, 0.875, 0.8125, 0.75, 0.6875, 0.625, 0.5625, 0.5, 0.4375, 0.375, 0.3125, 0.25, 0.1875, 0.125, 0.0625, 0.0],
+    "dose_grid": [1.0, 0.9375, 0.875, 0.8125, 0.75, 0.6875, 0.625, 0.5625, 0.5, 0.4375, 0.375, 0.3125, 0.25, 0.1875, 0.125, 0.0625, 0.0],
+    "minimum_affine_slope": 0.25,
+    "maximum_affine_slope": 2.0,
+    "minimum_affine_intercept": 0.0,
+    "lstar_order_epsilon": 0.0001,
+    "minimum_valid_fraction": 0.0001,
+    "fraction_knots": 257,
+    "maximum_fraction_slope": 1.0,
+    "forbidden": "negative intercept, spatial tone, nonlinear histogram map, channel-specific affine, changed CB32 target, adaptive grids or post-result thresholds"
+  },
+  "evaluation": {"maximum_colour_metric_samples_per_source": 65536},
+  "automatic_gates": {
+    "maximum_luminance_reconstruction_error": 0.000001,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio_vs_source": 1.35,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.0,
+    "minimum_population_median_direction_scale": 0.5,
+    "maximum_population_median_fraction_direction_scale_below_0p5": 0.1,
+    "minimum_population_median_style_delta_e76": 5.0,
+    "minimum_population_median_delta_e76_vs_cb11": 1.0,
+    "minimum_population_median_global_dose": 0.5,
+    "maximum_fraction_global_dose_below_0p25": 0.1,
+    "minimum_population_median_tone_dose": 0.5,
+    "maximum_fraction_tone_dose_below_0p25": 0.1,
+    "maximum_confirmed_severe_artifact_count": 0
+  },
+  "blind_protocol": {
+    "rounds": 3,
+    "seed": 20260812,
+    "ties_allowed": false,
+    "minimum_candidate_round_wins": 2,
+    "minimum_candidate_aggregate_choices": 22,
+    "minimum_candidate_source_majorities": 7,
+    "mapping_hidden_until_choices_commit": true
+  },
+  "stop_rules": [
+    "Any affine fit, exact order, gradient, boundary, style or dose failure closes before visual review.",
+    "A severe or blind failure closes without changing constraint, population, grids, target or thresholds.",
+    "Any pass is development-only and still requires a source-disjoint confirmation."
+  ],
+  "claim_ceiling": "Consumed-population development evidence for constrained global-affine tone plus bounded chroma Look Approximation; not independent confirmation, stock response, calibration, population preference or product promotion."
+}
