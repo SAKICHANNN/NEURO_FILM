@@ -1,0 +1,17 @@
+{
+  "schema": "neuro_film.u5_r2cb64_analytic_y_chromaticity_external_sort_memory_decision.v1",
+  "experiment_id": "U5.R2CB64",
+  "formal_report_sha256": "c6f530ff18d79fbc3a2e55c4cf4dc137e9865bbb5e43a42875af5cf7fcb8021f",
+  "output_sha256_exact": true,
+  "selector_facts_exact": true,
+  "maximum_peak_process_tree_rss_bytes": 4959744000,
+  "peak_rss_ratio_to_baseline": 0.9911264156317835,
+  "wall_ratio_to_baseline": 0.7520791239841091,
+  "automatic_pass": false,
+  "failed_gates": [
+    "peak_rss",
+    "peak_rss_ratio"
+  ],
+  "decision": "close_cb64_external_fraction_sort_without_material_peak_reduction",
+  "claim_ceiling": "Output-exact local 24MP engineering negative; no product performance closure."
+}
