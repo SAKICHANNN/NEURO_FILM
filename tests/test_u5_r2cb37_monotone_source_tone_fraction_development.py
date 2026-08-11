@@ -12,6 +12,7 @@ from src.eval.monotone_source_tone_fraction_transport import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u5_r2cb37_monotone_source_tone_fraction_development_v1.json"
+DECISION = ROOT / "configs/u5_r2cb37_monotone_source_tone_fraction_development_decision_v1.json"
 
 
 def test_cb37_contract_freezes_distinct_population_and_monotone_tone() -> None:
@@ -82,3 +83,13 @@ def test_cb37_tone_endpoints_do_not_create_new_boundaries() -> None:
     assert np.min(candidate) > 1.0 / 65535.0
     assert np.max(candidate) < 1.0 - 1.0 / 65535.0
     assert facts["tone_minimum"] > 1.0 / 65535.0
+
+
+def test_cb37_decision_closes_approximate_y_order() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["failure"]["minimum_gradient_ratio"] < 1.35
+    assert decision["failure"]["minimum_lstar_inversion_fraction"] > 0.0
+    assert decision["visual_review_status"] == "forbidden"
+    assert decision["decision"] == (
+        "close_approximate_y_monotone_tone_open_exact_lab_y_successor"
+    )

@@ -1441,3 +1441,9 @@ zero L* inversions, `5.63e-8` luminance error and no new boundary, but median
 style is only `2.70` and 3/11 sources require dose below 0.25. Visual review is
 forbidden. The next mechanism may restore tone only through a fixed monotone
 source-luminance map on a different population.
+
+U5.R2CB37 closes approximate-Y monotone tone before visual review. Two exact
+diagnostics (`55d2998e...744cb`) fail on the first BK1 source: gradient passes
+at `1.1585`, but L* inversion remains `2.995e-7` at every chroma dose. The
+CB11 `[.2126,.7152,.0722]` coordinate is not the exact legacy CIELAB Y row.
+The successor must construct tone and chroma in exact Lab-Y, not tune BK1.

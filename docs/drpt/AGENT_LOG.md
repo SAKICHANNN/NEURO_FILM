@@ -11692,3 +11692,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Median style is only `2.70` and the low-dose tail is 3/11, so visual review
   is forbidden. Retain the source-Y mechanism result; move to a fixed monotone
   tone map on a distinct source population without changing CB32 chroma.
+
+# 2026-08-12 - U5.R2CB37 approximate-Y monotone tone closes
+
+- Two exact diagnostics (`55d2998e...744cb`) stop at the first BK1 source and
+  remove partial output. Gradient is safe, while exact L* inversion remains
+  `2.995e-7` for all doses.
+- The mismatch is coordinate-level: CB11 approximate luma differs from the
+  legacy CIELAB Y row. Move to exact Lab-Y on a new population; do not tune
+  knots, dose or thresholds on BK1.

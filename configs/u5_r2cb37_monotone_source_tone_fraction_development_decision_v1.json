@@ -1,0 +1,22 @@
+{
+  "schema": "neuro_film.u5_r2cb37_monotone_source_tone_fraction_development_decision.v1",
+  "experiment_id": "U5.R2CB37",
+  "status": "failed_closed_before_visual_review",
+  "report_sha256": "55d2998e8306b3393e094280db377487b3c45fb830798b4b4618e5cd420744cb",
+  "stable_evidence_id": "4f295c73e0aec99af020ec964ee712f4174deecbac0ac29381f36564c803c477",
+  "repeat_report_sha256_exact": true,
+  "failure": {
+    "source_id": "sigma_sd14",
+    "completed_source_count": 0,
+    "minimum_gradient_ratio": 1.1584678314934413,
+    "minimum_lstar_inversion_fraction": 2.9950692175471521e-07,
+    "dose0_gradient_ratio": 1.2768261882730676,
+    "dose0_lstar_inversion_fraction": 2.9950692175471521e-07
+  },
+  "partial_artifacts_removed": true,
+  "visual_review_status": "forbidden",
+  "decision": "close_approximate_y_monotone_tone_open_exact_lab_y_successor",
+  "next_leaf": "Construct the monotone tone and chroma plane in the exact legacy linear-sRGB-to-CIELAB Y coordinate used by the frozen order metric, on a different source population.",
+  "forbidden": "BK1 rescue, changed knots or thresholds, approximate-Y order claims, local masks, spatial filtering or post-result tuning",
+  "claim_ceiling": "Mechanism failure showing that monotonicity in approximate CB11 luminance is insufficient for exact CIELAB L-star order; not visual, stock, calibration, preference or product evidence."
+}
