@@ -1,0 +1,37 @@
+{
+  "schema": "neuro_film.u6_p8cr_thomas_export_profile_evidence.v1",
+  "experiment_id": "u6.p8cr-thomas-export-profile-v1",
+  "date": "2026-08-11",
+  "status": "PASS",
+  "implementation_commit": "a71c66ae665ad2569e9bfacf2180dba984d26680",
+  "contract_sha256": "03977e8b12d9af84a792ba9ff2cd62199e77c56ace8a8934f44049af2b760426",
+  "formal_report_sha256": "61b64ed796c63a4ed891077a61334b6024739a9bab6edd4183b509e960aeb448",
+  "stable_evidence_id": "2e93c141c6f9507164e1f9eb159e1fcee802ed49c62f53b6a28c4d382d715ae3",
+  "profile": {
+    "profile_sha256": "923a985aa90e029332c723a33afb793afe05cae777b3c07061d54828b91e21b4",
+    "canonical_bytes": 157637,
+    "claim_level": "generic-physical-inspired"
+  },
+  "fixture": {
+    "height": 65,
+    "width": 67,
+    "row_partition": 17,
+    "input_sha256": "34824b7a22482cfd18982f9d15227f9b38fc39a23e52689f4f021aac53dbf106",
+    "png_sha256": "0f164ac92add4de56d9bb649cc1d8e4fac64d5e3f522542bc5bd4b580fc1fcaf",
+    "decoded_rgb16_sha256": "486e24dd23a1704a58344fe4f0b762af169c600829ec3605c12971d0944a316b",
+    "icc_sha256": "217fe48ec958c667f8eef725aa27198f465df95d7662593b90d0a1cc30114356",
+    "workspace_bytes": 347743
+  },
+  "gates": {
+    "canonical_roundtrip_exact": true,
+    "abi_struct_bytes_exact": true,
+    "png_bytes_exact": true,
+    "decoded_rgb16_exact": true,
+    "icc_exact": true,
+    "invalid_profile_rejected_before_output": true,
+    "repeat_exact": true
+  },
+  "decision": "retain_hash_bound_thomas_export_profile_ingress",
+  "interpretation": "The retained Kodak-250D-derived amplitude, generic Thomas fields and neutral gauge can cross one canonical hash-bound profile boundary and reconstruct the exact native ABI and RGB16 PNG output without refitting.",
+  "claim_ceiling": "Canonical hash-bound ingress for one existing Kodak-250D-derived amplitude plus generic Thomas/gauge profile into the private native RGB16 PNG core; not calibrated stock response, photographic placement, product profile, durable publication or device runtime."
+}

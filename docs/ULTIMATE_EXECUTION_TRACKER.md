@@ -1386,3 +1386,12 @@ exact P8CN 72,054,675-byte PNG, decoded RGB16 and ICC. Host takes 2.39-2.49s at
 338.2-338.6MB RSS; Android takes 5.88-7.56s, inside the frozen 8s boundary.
 Retain this virtual-device export core. Durable publication, physical arm64 and
 JNI/app/media integration remain separate product leaves.
+
+U6.P8CR closes the profile-ingress gap without refitting. One 157,637-byte
+canonical payload binds the retained Kodak-250D-derived amplitude, generic
+Thomas fields and neutral gauge; JSON roundtrip reconstructs every ABI struct
+byte exactly. Two fresh MSVC processes emit byte-identical reports
+(`61b64ed7...b448`) and the same RGB16 PNG (`0f164ac9...fcaf`), decoded pixels
+and ICC before/after reconstruction. Retain the hash-bound generic profile
+boundary; photographic placement, calibration and product profile integration
+remain open.

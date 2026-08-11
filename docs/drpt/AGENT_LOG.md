@@ -11468,3 +11468,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   RMSE and reduce instantaneous error by `36.45%`, but miss the frozen `50%`
   improvement and `.005` analytic-error gates (`.01463`). Retain instantaneous
   sampling and close this exact integration family; no product path changed.
+
+# 2026-08-11 - U6.P8CR passes canonical Thomas profile ingress
+
+- Added one strict canonical payload for the retained amplitude, three Thomas
+  fields and neutral gauge; no parameter fit or product default changed.
+- Two fresh MSVC reports are byte exact (`61b64ed7...b448`; stable
+  `2e93c141...15ae3`). ABI structs, PNG `0f164ac9...fcaf`, decoded RGB16 and
+  ICC remain exact after JSON reconstruction. Product-profile placement is the
+  next scientific boundary.
