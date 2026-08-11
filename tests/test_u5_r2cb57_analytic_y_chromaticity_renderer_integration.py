@@ -23,6 +23,7 @@ from src.preprocess import load_working_image, save_srgb8
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts/render_film.py"
+ENGINE_SCRIPT = ROOT / "scripts/analytic_color_engine.py"
 PROFILE = ROOT / "configs/render_profiles/analytic_y_chromaticity_cb56_v1.json"
 
 
@@ -166,6 +167,53 @@ def test_cb58_analytic_recipe_verifies_and_binds_files(
     output.write_bytes(output.read_bytes() + b"tamper")
     with pytest.raises(AnalyticRenderRecipeError, match="output file drift"):
         verify_analytic_render_recipe_files(recipe, profile_path=PROFILE, root=ROOT)
+
+
+def test_cb59_analytic_srgb16_recipe_and_discovery_cli(
+    tmp_path: Path, source: Path
+) -> None:
+    outputs = [tmp_path / "first-16.png", tmp_path / "second-16.png"]
+    for output in outputs:
+        result = _run(
+            source,
+            output,
+            "--color-engine",
+            "analytic-y-chromaticity",
+            "--output-bit-depth",
+            "16",
+            "--write-recipe",
+        )
+        assert result.returncode == 0, result.stderr
+    assert outputs[0].read_bytes() == outputs[1].read_bytes()
+
+    recipe_path = outputs[0].with_suffix(".recipe.json")
+    recipe = json.loads(recipe_path.read_text(encoding="utf-8"))
+    assert recipe["output"]["bit_depth"] == 16
+    verify = subprocess.run(
+        [sys.executable, str(ENGINE_SCRIPT), "--verify-recipe", str(recipe_path)],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert verify.returncode == 0, verify.stderr
+    verified = json.loads(verify.stdout)
+    assert verified["verified"] is True
+    assert verified["output_sha256"] == recipe["output"]["sha256"]
+
+    discovery = subprocess.run(
+        [sys.executable, str(ENGINE_SCRIPT), "--capabilities"],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert discovery.returncode == 0, discovery.stderr
+    capabilities = json.loads(discovery.stdout)
+    assert capabilities["engine"]["cli_value"] == "analytic-y-chromaticity"
+    assert capabilities["output"]["bit_depths"] == [8, 16]
+    assert capabilities["product_default"] is False
+    assert capabilities["research_champion"] is True
 
 
 def test_cb57_profile_asset_drift_fails_before_output(
