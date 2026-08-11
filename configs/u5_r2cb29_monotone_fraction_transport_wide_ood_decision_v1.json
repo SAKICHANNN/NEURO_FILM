@@ -1,0 +1,43 @@
+{
+  "schema": "neuro_film.u5_r2cb29_monotone_fraction_transport_wide_ood_decision.v1",
+  "experiment_id": "U5.R2CB29",
+  "contract_commit": "0eef710b1b33f939b793f09956f438ea6fb3825c",
+  "implementation_commit": "d862029abe11800a748710857ef69996e5626440",
+  "pre_execution_compatibility_amendment_commit": "fa9c35721580c3dc1d468f315b43410e4078eff1",
+  "observations_commit": "c455862d562fe9b85c60b5ab0ea02bc0123d8491",
+  "mapping_receipt_commit": "23176fb406bf21d49cc3ffdeb0be9a610b7c6f18",
+  "contract_sha256": "25cab10e4258a3b20facd927cd9fe5f7e428a5a39b2cd9afdc39a808e1d3e13a",
+  "implementation_sha256": "9ff8f8d5841dadffa5baee8de46128373a52fda7c1a955a751b050b81d84c530",
+  "runner_sha256": "2f23756bfff407223b0cdfdc0e760a60c6e70d1f67ee165d4c101e117f2772cc",
+  "observations_sha256": "5ac9ca8f6b5d33eaa8b79026925a709263064ca2194de7ac64d4b6cc5a183463",
+  "mapping_receipt_sha256": "a864b99020ad8e40fcbc7e260c074ab4ae95b4e260653b7cfeee47ed5c9fae76",
+  "formal_report_path": "D:/nf-019f4b76-cb29/report1.json",
+  "formal_report_sha256": "fcd377e50359d2c0dfe9789fe12d3bcf085ff0e02c8401e80f5976afa3f542ba",
+  "stable_evidence_id": "c99f8168206e96d79aed16ae445f584cd4224e9da4287d5b99dac0c506cbda17",
+  "repeat_report_byte_exact": true,
+  "automatic_pass": true,
+  "blind_measurements": {
+    "candidate_round_wins": 3,
+    "candidate_aggregate_choices": 27,
+    "aggregate_choice_count": 30,
+    "candidate_source_majorities": 9,
+    "source_count": 10,
+    "candidate_confirmed_severe_source_count": 0
+  },
+  "gates": {
+    "automatic_gates": true,
+    "minimum_candidate_round_wins": true,
+    "minimum_candidate_aggregate_choices": true,
+    "minimum_candidate_source_majorities": true,
+    "severe_artifact_veto": true
+  },
+  "passed": true,
+  "decision": "retain_monotone_fraction_transport_as_research_look_champion_open_gold_stress",
+  "interpretation": [
+    "The unchanged CB27 operator passes a third disjoint modern-camera population with zero new hard boundaries and median style 5.7422 DeltaE76.",
+    "The candidate is preferred 27/30, wins all three rounds and has 9/10 source majorities without a confirmed severe contact-sheet artifact.",
+    "The sole pre-execution stop was a source-decision field-path mismatch; it read no source pixels and the amendment changed no source, operator, metric or gate."
+  ],
+  "next_action": "Run the exact operator on the frozen face/text/high-contrast severe-artifact gold set before any integration or default change.",
+  "claim_ceiling": "Leading research Look Approximation candidate after three camera populations; not universal safety, stock response, calibration, population preference or product promotion."
+}

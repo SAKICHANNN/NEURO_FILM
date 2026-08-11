@@ -11615,3 +11615,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Frozen blind choices reveal `3/3`, `36/36`, `12/12`, severe count zero.
   Retain the mechanism for wider OOD/full-resolution severe stress; no stock,
   calibration, population-preference or product claim opens.
+
+# 2026-08-11 - U5.R2CB29 passes third-population OOD stress
+
+- Exact CB27 passes all automatic gates on ten independently screened modern
+  cameras; two reports are exact (`fcd377e5...42ba`; stable
+  `c99f8168...bda17`), with style `5.7422` and boundary zero.
+- Frozen blind choices reveal `3/3`, `27/30`, `9/10`, severe count zero. Keep
+  it as the research Look Approximation champion and move to the frozen
+  face/text/high-contrast severe gold set before any integration/default change.
