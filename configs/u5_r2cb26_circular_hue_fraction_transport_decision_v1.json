@@ -1,0 +1,28 @@
+{
+  "schema": "neuro_film.u5_r2cb26_circular_hue_fraction_transport_decision.v1",
+  "experiment_id": "U5.R2CB26",
+  "contract_commit": "3d791c3d4ab4da5d0a43311a47020ddc80d4f98b",
+  "implementation_commit": "69fdb3d698d824e3c44538289f745fcb0ca998cd",
+  "diagnostic_commit": "a6ac861d32916d3889d84bc348f00a7d618befa1",
+  "contract_sha256": "af9e4558e6adccbe754f999d4158ce7960582ab637f513665b8cab9a1ae437c0",
+  "implementation_sha256": "6288d34cca432f9490084e946e283d58c6eb87fd5489bece1689b58357af3a5e",
+  "runner_sha256": "4f3d283aae5e62fae91b0100e93426abfe0d487c8f3c8594a6f62b66efab3b64",
+  "formal_preflight_path": "D:/nf-019f4b76-cb26/preflight1.json",
+  "formal_preflight_sha256": "bb6b93a9410cc142c04967dde79a707f5a6d8b908cd0c9b604dee4c65f4ae92c",
+  "stable_evidence_id": "d75636b58f3f174a209dd3eaf9528cf1d162f26e62c179e8307e9ea41075822f",
+  "repeat_report_byte_exact": true,
+  "full_render_report_emitted": false,
+  "failed_source_id": "canon_powershot_s120",
+  "fraction_slope": -0.0596779563941792,
+  "minimum_fraction_slope": 0.25,
+  "blind_review_opened": false,
+  "passed": false,
+  "decision": "close_circular_hue_fraction_transport_on_slope_envelope",
+  "interpretation": [
+    "The first development source has a negative fitted CB11-to-AO6 logit gamut-fraction slope, outside the frozen positive envelope.",
+    "This is a direction reversal in the strength statistic, not a marginal numerical miss, and no candidate render was emitted.",
+    "The exact affine fraction family closes without clipping the slope or replacing it after observing the row."
+  ],
+  "next_action": "Test a separately frozen monotone empirical quantile transport for gamut fraction; do not rescue the affine slope family.",
+  "claim_ceiling": "Stable negative pre-render evidence for circular hue plus affine gamut-fraction transport; not stock response, calibration, population preference or product promotion."
+}

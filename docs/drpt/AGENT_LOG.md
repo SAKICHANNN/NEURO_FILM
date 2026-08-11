@@ -11588,3 +11588,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   (`acc7cb3c...012`; stable `f8f79273...935e1`).
 - No candidate image is emitted. Do not widen the compression envelope; close
   this 3D covariance family and move to a lower-dimensional bounded mechanism.
+
+# 2026-08-11 - U5.R2CB26 closes affine hue/fraction transport
+
+- The first development row yields a negative logit gamut-fraction slope
+  (`-.05968`) against the frozen positive `[.25, 4]` envelope. Two diagnostic
+  reports are byte exact (`bb6b93a9...ae92c`; stable `d75636b5...75822f`).
+- No candidate render is emitted. The affine fraction family closes without
+  slope clipping or threshold rescue; the next leaf changes to monotone
+  empirical quantile transport while AO6 remains incumbent.
