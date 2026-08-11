@@ -11076,3 +11076,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - One caller-workspace C11 ABI now composes the unchanged amplitude, three Thomas layers, neutral gauge and exact sRGB16 quantizer.
 - MSVC/LLVM and 1/7/31/128-row partitions reproduce P8CB's exact output SHA and three raw-mean bits; invalid input and callback failure boundaries pass.
 - Python is no longer required by the sample pipeline. Native PNG publication and actual device runtime remain open.
+
+# 2026-08-11 - Freeze U5.R2CB6 characteristic-constrained forward test
+
+- CB5 cannot be rescued by polynomial capacity. CB6 instead adds one materially
+  new source observation: the exact first-party Velvia 100 daylight/E-6/Status-A
+  reversal characteristic curves, traced before any CB6 fit or score.
+- The candidate keeps CB5's 16 fitted scalars but gives 12 of them a positive
+  recorder-to-layer-exposure meaning and freezes nonlinear development to the
+  source curves. Exact CB5 affine, direct spectral and cyclic-layer controls
+  remain mandatory under the same 30 held-set-and-slide folds.
+- Failure closes this physical-prior family without curve refit, extra capacity
+  or gate rescue. Pass would remain internal manufactured-target evidence only.

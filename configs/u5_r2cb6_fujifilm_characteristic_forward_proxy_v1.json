@@ -1,0 +1,88 @@
+{
+  "schema": "neuro_film.u5_r2cb6_fujifilm_characteristic_forward_proxy_contract.v1",
+  "experiment_id": "U5.R2CB6",
+  "question": "Does an exact first-party Velvia 100 reversal characteristic-curve observation improve held-group source-only prediction of the retained CB4 dye coordinates beyond the closed CB5 affine family?",
+  "parents": {
+    "cb5_decision_path": "configs/u5_r2cb5_fujifilm_dye_forward_proxy_decision_v1.json",
+    "cb5_decision_sha256": "1a764b293ce75b77cd053140ca463e4f056eb5eecce26507ca4c5d7cdc70660d",
+    "cb5_required_decision": "close_low_capacity_recorder_rgb_to_dye_forward_family",
+    "cb4_decision_path": "configs/u5_r2cb4_fujifilm_dye_basis_measured_conformance_decision_v1.json",
+    "cb4_decision_sha256": "3d6b70773510cc66a23250692d1b9ccb51b1ab086164476bfb4c156d9eb2e444",
+    "cb4_required_stable_evidence_id": "8edec3e6a14f8f971c2a2a81eacace285e3a81f8c1600d9ed72604eed4c681d6",
+    "pair_table_path": "outputs/experiments/u5_r2aq1_colorreference_velvia100f_pair_table_v1/pair_table.tsv",
+    "pair_table_sha256": "0bcb92eb5131b052705922caf747a467ed8a458c90bca2c14dbc66b800cdf595",
+    "dye_trace_path": "configs/data/fujifilm_e6_spectral_dye_density_trace_v1.json",
+    "dye_trace_sha256": "996f45892ccb33836aa0d063bb79e3bd0be3c38cc43f452ba05f46e7c4538066",
+    "characteristic_source_path": "outputs/source_recon/fujifilm_e6_stock_signature_2026/velvia_100_af3_202e.pdf",
+    "characteristic_source_sha256": "4c57a27b978311ca2ef819f2bf2d74c757639d27f9f0bd94e5f49c4b1c3d5902",
+    "characteristic_page_render_path": "outputs/source_recon/fujifilm_e6_stock_signature_2026/extracted/velvia100_page8-8.png",
+    "characteristic_page_render_sha256": "66d672491fc701b9f3e7b5ee4d5976b3910d911c864d8183a7d9b6c494ccee16"
+  },
+  "source_observation": {
+    "material": "FUJICHROME Velvia 100 Professional [RVP100]",
+    "page_one_based": 8,
+    "graph": "21. CHARACTERISTIC CURVES",
+    "exposure": "Daylight",
+    "process": "E-6/CR-56",
+    "densitometry": "Status A",
+    "x_quantity": "log H lux-seconds",
+    "y_quantity": "density",
+    "trace_method": "Human-guided source-ink trace frozen before any CB6 fit or score; values are graph observations, not fitted AQ1 measurements.",
+    "trace_uncertainty_density": 0.04,
+    "log_exposure": [-3.3, -2.8, -2.3, -2.0, -1.8, -1.6, -1.4, -1.2, -1.0, -0.8, -0.6, -0.4, -0.2, 0.0, 0.5, 1.0],
+    "density": {
+      "red_sensitive_cyan_dye": [3.39, 3.39, 3.37, 3.20, 2.91, 2.43, 1.94, 1.42, 0.96, 0.64, 0.42, 0.27, 0.17, 0.12, 0.09, 0.08],
+      "green_sensitive_magenta_dye": [3.83, 3.83, 3.80, 3.52, 3.10, 2.49, 1.99, 1.44, 0.97, 0.63, 0.40, 0.25, 0.16, 0.11, 0.08, 0.07],
+      "blue_sensitive_yellow_dye": [3.70, 3.70, 3.67, 3.40, 3.02, 2.45, 1.97, 1.43, 0.96, 0.63, 0.41, 0.26, 0.16, 0.11, 0.08, 0.07]
+    }
+  },
+  "evaluation": {
+    "folds": "all 6 test_set x 5 slide_index joint leave-one-set-and-slide-out folds",
+    "development": "test_set != held_test_set AND slide_index != held_slide_index",
+    "confirmation": "test_set == held_test_set AND slide_index == held_slide_index",
+    "expected_fold_count": 30,
+    "expected_development_rows_per_fold": 5760,
+    "expected_confirmation_rows_per_fold": 288,
+    "freshness": "mechanism-new but all AQ1 rows were consumed previously; exact held grouping is not a pristine population confirmation"
+  },
+  "candidate": {
+    "source": "unknown-profile recorder RGB only",
+    "latent_exposure": "three positive affine mixtures of [1,R,G,B], with offset constrained to the traced log-exposure domain",
+    "development": "fixed monotone PCHIP interpolation of the three frozen first-party characteristic traces",
+    "dye_assignment": "blue-sensitive to yellow, green-sensitive to magenta, red-sensitive to cyan",
+    "base_density": "one nonnegative affine [1,1-R,1-G,1-B] coefficient",
+    "fit": "one deterministic bounded least-squares solve per fold; 16 fitted scalars total, equal to CB5's coefficient count",
+    "application_target_reads": 0,
+    "output": "29-sample optical-density spectrum on 410..690nm through the exact retained Velvia 100 dye basis"
+  },
+  "controls": {
+    "cb5_nonnegative_affine": "exact four-feature CB5 correct-basis family refit on the same development rows",
+    "direct_nonnegative_spectral": "same CB5 four source features fitted independently to each target density sample",
+    "cyclic_layer_assignment": "same fitted physical coefficients with yellow/magenta/cyan assignment cyclically permuted",
+    "development_mean_spectrum": "development optical-density mean",
+    "target_oracle": "CB4 per-row target-consuming coefficient fit, diagnostic ceiling only"
+  },
+  "gates": {
+    "required_rows": 8640,
+    "required_fold_count": 30,
+    "all_values_finite": true,
+    "all_predicted_coefficients_nonnegative": true,
+    "win_fraction_vs_cb5_affine_minimum": 0.65,
+    "median_relative_improvement_vs_cb5_affine_minimum": 0.10,
+    "win_fraction_vs_direct_nonnegative_spectral_minimum": 0.55,
+    "median_relative_improvement_vs_direct_nonnegative_spectral_minimum": 0.02,
+    "win_fraction_vs_cyclic_layer_minimum": 0.65,
+    "median_relative_improvement_vs_cyclic_layer_minimum": 0.05,
+    "median_density_rmse_maximum": 0.25,
+    "p95_density_rmse_maximum": 0.55,
+    "maximum_density_rmse": 1.10,
+    "median_relative_improvement_vs_development_mean_minimum": 0.55,
+    "two_byte_identical_reports": true
+  },
+  "stop_rules": [
+    "Do not change trace points, curve interpolation, parameter count, initialization, bounds, folds, controls or gates after formal scoring.",
+    "Failure closes this exact first-party-characteristic constrained forward family without curve refitting, polynomial residuals, multiple starts, extra layers, row rescue or threshold relaxation.",
+    "Pass remains an internal manufactured-target mechanism result and cannot establish camera-to-film, independent-roll, photographic or product behaviour."
+  ],
+  "claim_ceiling": "Internal test of a first-party Velvia 100 characteristic-curve prior on existing manufactured-target recorder/measurement rows; not Velvia 100F calibration, camera RGB, scene exposure, independent roll/process, photographic appearance or product profile."
+}
