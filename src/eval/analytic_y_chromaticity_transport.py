@@ -204,21 +204,35 @@ def select_analytic_y_chromaticity_candidate(
     )
 
 
-def evaluate(config: dict[str, Any], root: Path, output_dir: Path) -> dict[str, Any]:
+def evaluate_with_context(
+    config: dict[str, Any],
+    root: Path,
+    output_dir: Path,
+    *,
+    report_schema: str,
+    experiment_id: str,
+    contract_filename: str,
+    prerequisite_path_key: str,
+    prerequisite_sha_key: str,
+    prerequisite_required_key: str,
+    diagnostic_decision: str,
+    pass_decision: str,
+    close_decision: str,
+) -> dict[str, Any]:
     report = evaluate_characteristic(
         config,
         root,
         output_dir,
         selector=select_analytic_y_chromaticity_candidate,
-        report_schema=REPORT_SCHEMA,
-        experiment_id=EXPERIMENT_ID,
-        contract_filename="u5_r2cb50_analytic_y_chromaticity_development_v1.json",
-        prerequisite_path_key="cb49_decision_path",
-        prerequisite_sha_key="cb49_decision_sha256",
-        prerequisite_required_key="cb49_required_decision",
-        diagnostic_decision="close_analytic_y_chromaticity_before_complete_render",
-        pass_decision="open_analytic_y_chromaticity_severe_review_then_blind_development",
-        close_decision="close_analytic_y_chromaticity_without_rescue",
+        report_schema=report_schema,
+        experiment_id=experiment_id,
+        contract_filename=contract_filename,
+        prerequisite_path_key=prerequisite_path_key,
+        prerequisite_sha_key=prerequisite_sha_key,
+        prerequisite_required_key=prerequisite_required_key,
+        diagnostic_decision=diagnostic_decision,
+        pass_decision=pass_decision,
+        close_decision=close_decision,
     )
     if report.get("rows"):
         rows = report["rows"]
@@ -240,7 +254,7 @@ def evaluate(config: dict[str, Any], root: Path, output_dir: Path) -> dict[str, 
             report["blind_sheets"] = []
             report["sealed_mappings"] = {}
             report["visual_review_status"] = "forbidden"
-            report["decision"] = "close_analytic_y_chromaticity_without_rescue"
+            report["decision"] = close_decision
         report.pop("stable_evidence_id", None)
         report["stable_evidence_id"] = hashlib.sha256(
             canonical_json(report)
@@ -248,10 +262,28 @@ def evaluate(config: dict[str, Any], root: Path, output_dir: Path) -> dict[str, 
     return report
 
 
+def evaluate(config: dict[str, Any], root: Path, output_dir: Path) -> dict[str, Any]:
+    return evaluate_with_context(
+        config,
+        root,
+        output_dir,
+        report_schema=REPORT_SCHEMA,
+        experiment_id=EXPERIMENT_ID,
+        contract_filename="u5_r2cb50_analytic_y_chromaticity_development_v1.json",
+        prerequisite_path_key="cb49_decision_path",
+        prerequisite_sha_key="cb49_decision_sha256",
+        prerequisite_required_key="cb49_required_decision",
+        diagnostic_decision="close_analytic_y_chromaticity_before_complete_render",
+        pass_decision="open_analytic_y_chromaticity_severe_review_then_blind_development",
+        close_decision="close_analytic_y_chromaticity_without_rescue",
+    )
+
+
 __all__ = [
     "_bounded_same_y_reconstruction",
     "_normalized_zero_y_chromaticity",
     "evaluate",
+    "evaluate_with_context",
     "load_contract",
     "select_analytic_y_chromaticity_candidate",
 ]
