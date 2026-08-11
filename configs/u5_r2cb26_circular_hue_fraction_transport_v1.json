@@ -1,0 +1,77 @@
+{
+  "schema": "neuro_film.u5_r2cb26_circular_hue_fraction_transport_contract.v1",
+  "experiment_id": "U5.R2CB26",
+  "question": "Can one global circular hue rotation plus one bounded 1D gamut-fraction map retain AO6 style without 3D covariance compression or an infeasible target?",
+  "parents": {
+    "cb25_decision_path": "configs/u5_r2cb25_logit_gamut_fraction_transport_decision_v1.json",
+    "cb25_decision_sha256": "e9bb509a8ebd4e570b3ae10764022913d9f114ac21ad8ec220db241d7edc23c0",
+    "cb25_required_status": "close_logit_gamut_fraction_transport_before_first_render",
+    "cb16_decision_path": "configs/u5_r2cb16_safe_base_ao6_chroma_residual_decision_v1.json",
+    "cb16_decision_sha256": "965a1c0c0eba887673bd1f9793a5c28425edfe5495cb4bb151a70e3b9f20008f",
+    "cb16_required_status": "close_safe_base_ao6_chroma_magnitude_residual_without_rescue",
+    "cb14_decision_path": "configs/u5_r2cb14_characteristic_vs_ao6_ood_decision_v1.json",
+    "cb14_decision_sha256": "acb2e53031db6e9fe33f84d615ad259ea856190016ab7f26e2030775b8a2c8b9",
+    "cb14_required_status": "candidate_fails_ao6_retain_incumbent",
+    "cb11_contract_path": "configs/u5_r2cb11_fujifilm_characteristic_luma_chroma_v1.json",
+    "cb11_contract_sha256": "fd6127a0c336fdfc661870d8636e8c7a8bbe741f096465e52c73a5a327213b5f",
+    "cb12_contract_path": "configs/u5_r2cb12_characteristic_vs_ao6_fresh_v1.json",
+    "cb12_contract_sha256": "0951b3ec44049f76afda12b90ba40e1bc644000336fcc340b1b862ea986823c1"
+  },
+  "population": {
+    "decision_path": "configs/u5_r2bk6s_bounded_opponent_fresh_source_decision_v1.json",
+    "decision_sha256": "c09b30f2e66c694ee167e4c3ca4205a9bd14e086cf9b30237712354a31806e73",
+    "required_status": "source_eligible_fixed_comparison_open",
+    "manifest_path": "outputs/u5_r2bk6s_bounded_opponent_fresh_source_v1/run_a/manifest.json",
+    "manifest_sha256": "444f162f22e6bc40940eb82557a11ed2b1fa67e6736efb1362df7ef1069d5978",
+    "source_count_exact": 12,
+    "camera_make_count_exact": 12,
+    "maximum_long_edge": 1600,
+    "role": "development_only_previously_consumed_by_unrelated_algorithms"
+  },
+  "operator": {
+    "basis": "deterministic orthonormal basis of the Rec.709 zero-luminance plane",
+    "hue": "one unweighted circular Procrustes rotation between valid CB11 and AO6 unit chroma directions",
+    "gamut_fraction": "chroma magnitude divided by exact maximum magnitude on the fixed-luminance RGB cube section",
+    "fraction_fit": "one ordinary least-squares affine from CB11 to AO6 clipped-logit gamut fraction",
+    "fraction_logit_epsilon": 0.00001525902189669642,
+    "minimum_valid_fraction": 0.0001,
+    "minimum_fraction_slope": 0.25,
+    "maximum_fraction_slope": 4.0,
+    "reconstruction": "rotated CB11 hue and sigmoid-predicted gamut fraction at exact CB11 luminance",
+    "neutral_rule": "CB11 chroma below 1e-12 remains exact neutral",
+    "scale": "unchanged analytical safe step only for source-boundary and float32 margin preservation",
+    "forbidden": "3D covariance, local hue/fraction, robust weights, nonlinear fraction curve, slope clipping, target dose, semantic mask or post-score rescue"
+  },
+  "research_basis": {
+    "colorfm": "arXiv:2607.07119 explicit colour transport comparator",
+    "modflows": "AAAI 2025 / arXiv:2503.19062 invertible RGB transport comparator",
+    "ccc_trans": "2025 hue-preserving convex-combination gamut transformation comparator",
+    "position": "clean-room two-factor bounded baseline; no paper code, model, weights or novelty claim"
+  },
+  "evaluation": {"maximum_colour_metric_samples_per_source": 65536},
+  "automatic_gates": {
+    "maximum_luminance_reconstruction_error": 0.000001,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio_vs_source": 2.5,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.001,
+    "minimum_population_median_direction_scale": 0.8,
+    "maximum_population_median_fraction_direction_scale_below_0p5": 0.1,
+    "minimum_population_median_style_delta_e76": 5.0,
+    "minimum_population_median_delta_e76_vs_cb11": 1.0,
+    "maximum_confirmed_severe_artifact_count": 0
+  },
+  "blind_protocol": {
+    "rounds": 3,
+    "ties_allowed": false,
+    "minimum_candidate_round_wins": 2,
+    "minimum_candidate_aggregate_choices": 22,
+    "minimum_candidate_source_majorities": 7,
+    "mapping_hidden_until_choices_commit": true
+  },
+  "stop_rules": [
+    "Any hue/fraction fit, envelope or automatic failure closes before visual preference.",
+    "Any severe or preference failure closes without changing coordinates, fit or slope envelope.",
+    "Pass opens only a wholly new source confirmation."
+  ],
+  "claim_ceiling": "Development-only bounded circular hue/fraction transport evidence on consumed CC0 display proxies; not fresh confirmation, stock response, calibration, population preference or product promotion."
+}
