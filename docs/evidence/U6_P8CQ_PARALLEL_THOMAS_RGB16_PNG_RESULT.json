@@ -1,0 +1,56 @@
+{
+  "schema": "neuro_film.u6_p8cq_parallel_thomas_rgb16_png_evidence.v1",
+  "experiment_id": "u6.p8cq-parallel-thomas-rgb16-png-v1",
+  "date": "2026-08-11",
+  "status": "PASS",
+  "implementation_commit": "c3a9767b0aaac9c9bed4285da1a12afc7d0ab0a2",
+  "contract_sha256": "2132d0d4d1f69cec937ab11091a84cd4773ad7566e4b4fa51fe4b982d18380bc",
+  "formal_report_sha256": "9d349b7007033fc458280fa8fcf839a7aad1152d74b6577e8523c198e81d8b39",
+  "stable_evidence_id": "81b9e1549468b722f4418f49def8b61353fd4f96ec8ff260fe786ff9e5231ed1",
+  "fixture": {
+    "height": 3000,
+    "width": 4000,
+    "row_partition": 128,
+    "png_bytes": 72054675,
+    "png_sha256": "7ee2819fe7d6cfc8ef1c8caf5d63fa8eacfe639c7cb0654e13726d9dfeed8cb3",
+    "decoded_rgb16_sha256": "8bd04a76d58597610fb7328b872a4497e85582e8d4892deb1bb517b6fcc581b3",
+    "icc_sha256": "217fe48ec958c667f8eef725aa27198f465df95d7662593b90d0a1cc30114356"
+  },
+  "host": {
+    "seconds": [
+      2.485,
+      2.391
+    ],
+    "peak_rss_bytes": [
+      338616320,
+      338210816
+    ]
+  },
+  "android_14_x86_64_virtual": {
+    "seconds": [
+      6.328,
+      7.562,
+      5.875,
+      6.953
+    ],
+    "workspace_bytes": 196272013,
+    "owned_processes_surviving": 0
+  },
+  "gates": {
+    "p8cn_png_byte_exact": true,
+    "decoded_rgb16_exact": true,
+    "icc_exact": true,
+    "host_repeat_exact": true,
+    "android_cold_boot_repeat_exact": true,
+    "host_android_exact": true,
+    "android_wall_bounded_max_8_seconds": true,
+    "host_rss_bounded": true,
+    "workspace_bounded": true,
+    "preoutput_failure_zero_bytes": true,
+    "device_identity_exact": true,
+    "cleanup_exact": true
+  },
+  "decision": "retain_parallel_thomas_rgb16_png_android_export_core",
+  "interpretation": "The exact P8CP raw core composes with the unchanged deterministic RGB16 PNG and fixed sRGB ICC writer while remaining inside the provisional 8-second Android still-export boundary.",
+  "claim_ceiling": "Private exact synthetic-profile 12MP RGB16 PNG stream performance on Windows x64 and Android 14 x86_64 virtual device; not durable file publication, physical arm64, JNI or app integration, media integration, calibrated film response, or complete product export performance."
+}

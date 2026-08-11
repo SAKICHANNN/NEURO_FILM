@@ -1379,3 +1379,10 @@ and 196,224,000-byte workspace persist across host and two Android cold boots.
 Host takes 1.97-2.05s; Android takes 5.86-6.74s, with all four runs below the
 frozen 7s maximum and no owned process surviving. Retain this raw-core path;
 PNG publication, physical arm64 and app/media integration remain separate.
+
+U6.P8CQ composes P8CP with the unchanged deterministic RGB16 PNG and fixed sRGB
+ICC writer. Two host and four Android 14 x86_64 cold-boot streams reproduce the
+exact P8CN 72,054,675-byte PNG, decoded RGB16 and ICC. Host takes 2.39-2.49s at
+338.2-338.6MB RSS; Android takes 5.88-7.56s, inside the frozen 8s boundary.
+Retain this virtual-device export core. Durable publication, physical arm64 and
+JNI/app/media integration remain separate product leaves.

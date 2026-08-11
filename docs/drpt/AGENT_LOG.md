@@ -2,6 +2,16 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-11 - U6.P8CQ complete Android PNG stream passes
+
+- The unchanged deterministic RGB16 PNG/ICC writer now consumes the exact P8CP
+  raw core. All host and Android streams reproduce the P8CN PNG, decoded pixels
+  and ICC bytes.
+- Host takes 2.39-2.49s at 338.2-338.6MB RSS. Four Android cold-boot runs take
+  5.88-7.56s, below the frozen 8s maximum; stable ID `81b9e154...231ed1`.
+- This is still a synthetic-profile virtual-device stream. Durable publication,
+  physical arm64 and JNI/app/media integration remain open.
+
 # 2026-08-11 - U6.P8CP parallel output passes
 
 - Stage attribution found interleave, neutral gauge and exact quantization took
