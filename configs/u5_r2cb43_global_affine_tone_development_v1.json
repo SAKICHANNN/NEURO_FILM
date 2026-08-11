@@ -35,7 +35,7 @@
     "tone_fit": "least-squares positive affine map from exact source legacy-Y to unchanged CB32 target legacy-Y",
     "tone_execution": "RGB_out = positive_slope * RGB_source + neutral_intercept",
     "tone_dose_grid": [1.0, 0.9375, 0.875, 0.8125, 0.75, 0.6875, 0.625, 0.5625, 0.5, 0.4375, 0.375, 0.3125, 0.25, 0.1875, 0.125, 0.0625, 0.0],
-    "chroma_dose_grid": [1.0, 0.9375, 0.875, 0.8125, 0.75, 0.6875, 0.625, 0.5625, 0.5, 0.4375, 0.375, 0.3125, 0.25, 0.1875, 0.125, 0.0625, 0.0],
+    "dose_grid": [1.0, 0.9375, 0.875, 0.8125, 0.75, 0.6875, 0.625, 0.5625, 0.5, 0.4375, 0.375, 0.3125, 0.25, 0.1875, 0.125, 0.0625, 0.0],
     "minimum_affine_slope": 0.25,
     "maximum_affine_slope": 2.0,
     "lstar_order_epsilon": 0.0001,

@@ -18,6 +18,8 @@ def test_cb43_contract_freezes_global_positive_affine_family() -> None:
     assert contract["experiment_id"] == "U5.R2CB43"
     assert contract["population"]["source_count_exact"] == 7
     assert contract["operator"]["minimum_affine_slope"] == 0.25
+    assert contract["operator"]["dose_grid"][0] == 1.0
+    assert contract["operator"]["dose_grid"][-1] == 0.0
     assert "spatially varying tone" in contract["operator"]["forbidden"]
 
 
