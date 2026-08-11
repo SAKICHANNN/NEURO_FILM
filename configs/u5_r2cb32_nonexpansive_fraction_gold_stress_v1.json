@@ -25,16 +25,16 @@
     "hue": "unchanged global circular Procrustes rotation",
     "minimum_valid_fraction": 0.0001,
     "fraction_knots": 257,
-    "knot_selection": "uniform deterministic indices over exact unique sorted valid base fractions, including both endpoints",
+    "knot_selection": "fixed origin (0,0) plus at most 256 uniform deterministic indices over exact unique sorted valid base fractions, including both endpoints",
     "raw_targets": "AO6 empirical fraction quantiles evaluated at each base knot grouped-midrank",
     "maximum_fraction_slope": 1.0,
     "slope_projection": "clip every nonnegative raw target increment to maximum_fraction_slope times its base-knot increment",
-    "vertical_anchor": "single least-squares constant offset from the clipped cumulative increments to raw knot targets, clipped only to keep all knots in [0,1]",
+    "origin_anchor": "fraction 0 maps exactly to 0; clipped increments accumulate from the fixed origin with no fitted intercept",
     "interpolation": "piecewise linear with constant endpoint extension",
     "equal_input_invariant": "exactly equal valid base fractions map to exactly equal target fractions",
     "reconstruction": "unchanged rotated hue and mapped fraction at exact CB11 luminance",
     "safe_executor": "unchanged analytical source-boundary and float32-margin step",
-    "forbidden": "gold-tuned slope, adaptive knot count, cubic overshoot, local map, semantic mask, derivative rescue or post-score tuning"
+    "forbidden": "gold-tuned slope, fitted intercept, adaptive knot count, cubic overshoot, local map, semantic mask, derivative rescue or post-score tuning"
   },
   "research_basis": {
     "latest_explicit_transport_comparator": "ColorFM, arXiv:2607.07119 (2026), https://arxiv.org/abs/2607.07119",
