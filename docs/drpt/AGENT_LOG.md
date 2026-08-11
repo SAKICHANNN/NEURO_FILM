@@ -11246,3 +11246,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   the frozen gold/stress safety regression. AO6 remains the product/default
   incumbent until that independent safety leaf closes; no stock, calibration,
   RAW, scene-linear or population-preference claim opens.
+
+# 2026-08-11 - Freeze U5.R2CB13 locally available gold/stress regression
+
+- The frozen U4.1 manifest and 40 exact sources remain locally readable: eight
+  gold and 32 stress images. The original `FS_FACE_01` source is the sole
+  unavailable row because the canonical P: data junction is offline.
+- CB13 does not replace that row with a transformed derivative. It freezes an
+  exact two-run CB11 regression over the 40 available sources, including ID11,
+  with analytical luminance/boundary/gradient gates before contact-sheet and
+  selected original-resolution severe review.
+- Pass can retain only partial local safety evidence. Complete gold closure and
+  any product decision remain blocked on the original face source restoration.

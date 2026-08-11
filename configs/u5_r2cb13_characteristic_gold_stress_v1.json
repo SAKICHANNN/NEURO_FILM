@@ -1,0 +1,42 @@
+{
+  "schema": "neuro_film.u5_r2cb13_characteristic_gold_stress_contract.v1",
+  "experiment_id": "U5.R2CB13",
+  "question": "Does unchanged CB11 remain deterministic and severe-safe on every locally available member of the frozen gold/stress set?",
+  "parents": {
+    "cb12_decision_path": "configs/u5_r2cb12_characteristic_vs_ao6_fresh_decision_v1.json",
+    "cb12_decision_sha256": "2cf5edbea79c2cfc56e2912e1df39f26ce7cab46fc8efcdb6db4d8aa8389ba17",
+    "cb12_required_status": "candidate_beats_ao6_open_gold_stress",
+    "cb11_contract_path": "configs/u5_r2cb11_fujifilm_characteristic_luma_chroma_v1.json",
+    "cb11_contract_sha256": "fd6127a0c336fdfc661870d8636e8c7a8bbe741f096465e52c73a5a327213b5f"
+  },
+  "population": {
+    "frozen_set_path": "outputs/filmcase/u41_provisional_eval_set.json",
+    "frozen_set_sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15",
+    "expected_available_source_count": 40,
+    "expected_available_gold_count": 8,
+    "expected_available_stress_count": 32,
+    "required_unavailable_ids": ["FS_FACE_01"],
+    "maximum_long_edge": 1600,
+    "input_rail": "legacy hash-bound encoded-sRGB JPEG display proxies; not RAW or scene-linear evidence"
+  },
+  "automatic_gates": {
+    "maximum_luminance_reconstruction_error": 0.0000005,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio_vs_source": 1.35,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.0,
+    "require_exact_repeat": true,
+    "require_id11_presence": true
+  },
+  "visual": {
+    "maximum_confirmed_severe_artifact_count": 0,
+    "review_all_contact_sheets": true,
+    "review_original_resolution_ids": ["01", "05", "08", "09", "11", "18", "21", "29"],
+    "explicit_id11_red_speckle_regression": true
+  },
+  "stop_rules": [
+    "Automatic failure closes CB11 without strength, curve, chroma, threshold or population rescue.",
+    "The unavailable FilmSet face remains an explicit blocker; do not substitute a transformed derivative as the original source.",
+    "A pass retains only a partial locally available gold/stress safety result and cannot authorize product promotion."
+  ],
+  "claim_ceiling": "Autonomous safety regression for unchanged CB11 on the 40 locally available legacy encoded-sRGB gold/stress display proxies; not the complete gold set, RAW, scene-linear, face closure, Velvia calibration, stock response, population preference or product promotion."
+}
