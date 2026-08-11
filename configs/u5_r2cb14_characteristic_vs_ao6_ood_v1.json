@@ -1,0 +1,46 @@
+{
+  "schema": "neuro_film.u5_r2cb14_characteristic_vs_ao6_ood_contract.v1",
+  "experiment_id": "U5.R2CB14",
+  "question": "Does unchanged CB11 beat unchanged AO6 on a second disjoint twelve-camera OOD/stress population?",
+  "parents": {
+    "cb12_decision_path": "configs/u5_r2cb12_characteristic_vs_ao6_fresh_decision_v1.json",
+    "cb12_decision_sha256": "2cf5edbea79c2cfc56e2912e1df39f26ce7cab46fc8efcdb6db4d8aa8389ba17",
+    "cb12_required_status": "candidate_beats_ao6_open_gold_stress",
+    "cb13_decision_path": "configs/u5_r2cb13_characteristic_gold_stress_decision_v1.json",
+    "cb13_decision_sha256": "d56aad8111188f72ef79d8060f44f8ca16db6f9eb476de48f349fb2fe7a48ad2",
+    "cb13_required_status": "retain_partial_gold_stress_safety_face_open",
+    "cb12_contract_path": "configs/u5_r2cb12_characteristic_vs_ao6_fresh_v1.json",
+    "cb12_contract_sha256": "0951b3ec44049f76afda12b90ba40e1bc644000336fcc340b1b862ea986823c1"
+  },
+  "population": {
+    "decision_path": "configs/u5_r2bk17s_factorized_ao6_sixth_fresh_source_decision_v1.json",
+    "decision_sha256": "fe4fe8944efa216a45459228d07e0d4850710ec6326a80ac2fe237ad725664de",
+    "required_status": "source_eligible_fixed_comparison_open",
+    "manifest_path": "outputs/u5_r2bk17s_factorized_ao6_sixth_fresh_source_v1/run_a/manifest.json",
+    "manifest_sha256": "a1a77d472037289bc31fccaae38d565a92d5ec843f27d35c4490962c860eccad",
+    "source_count_exact": 12,
+    "camera_make_count_exact": 12,
+    "maximum_long_edge": 1600,
+    "input_rail": "hash-bound decoded relative_display_srgb_approximation PNG only; not RAW or scene-linear evidence"
+  },
+  "protocol": {
+    "candidate_arm_id": "fixed_cb11_characteristic_luma_chroma",
+    "baseline_arm_id": "fixed_ao6_colour_only_t15_c35",
+    "rounds": 3,
+    "independent_per_source_mapping_each_round": true,
+    "ties_allowed": false,
+    "minimum_candidate_round_wins": 2,
+    "minimum_candidate_aggregate_choices": 22,
+    "aggregate_choice_denominator": 36,
+    "minimum_candidate_source_majorities": 7,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_confirmed_severe_artifact_count": 0,
+    "mapping_hidden_until_all_choices_are_frozen": true
+  },
+  "stop_rules": [
+    "Do not change either operator, population, mappings, thresholds or round count after rendering begins.",
+    "Automatic or severe failure closes CB11 on this OOD population before preference; preference failure retains AO6 without rescue.",
+    "Pass remains autonomous disjoint-population Look Approximation evidence and does not close the unavailable CB13 face row or promote product."
+  ],
+  "claim_ceiling": "Second disjoint twelve-camera autonomous OOD comparison of fixed explicit display-proxy Look Approximation arms; not complete-gold, RAW, scene-linear, Velvia calibration, stock response, population preference or product promotion."
+}

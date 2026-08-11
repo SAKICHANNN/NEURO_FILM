@@ -11272,3 +11272,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   and ID11 red-speckle regression. The absent original `FS_FACE_01` remains an
   explicit complete-gold blocker. Retain partial safety evidence only and move
   to a disjoint OOD leaf rather than waiting on storage.
+
+# 2026-08-11 - Freeze U5.R2CB14 disjoint OOD AO6 comparison
+
+- Reuse the already source-gated BK17S population: twelve hash-bound decoded
+  display proxies from twelve makes, disjoint from CB12 and spanning dark,
+  rotated, abstract, backlit and dual-fisheye stress content.
+- Both operators, AO6 artifact, CB11 curve/strength, zero-boundary gate and the
+  `2/22/7` three-round blind thresholds remain unchanged. Repeat identity and
+  severe review precede mapping reveal.
+- This leaf tests independent display-proxy OOD preference and safety only. It
+  cannot repair CB13's unavailable original face or open calibration/product.
