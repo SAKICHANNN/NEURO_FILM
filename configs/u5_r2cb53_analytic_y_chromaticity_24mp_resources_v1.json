@@ -1,0 +1,47 @@
+{
+  "schema": "neuro_film.u5_r2cb53_analytic_y_chromaticity_24mp_resources_contract.v1",
+  "experiment_id": "U5.R2CB53",
+  "question": "Can the unchanged CB50-CB52 analytic Y/chromaticity research champion execute deterministically at 24MP within a bounded Windows/Python host resource envelope?",
+  "parents": {
+    "cb52_decision_path": "configs/u5_r2cb52_analytic_y_chromaticity_gold_stress_decision_v1.json",
+    "cb52_decision_sha256": "83610f9ce34c5f75749a362c810b57d0e78041fca622c0221af7f0b1824417ee",
+    "cb52_required_decision": "pass_cb52_partial_gold_stress_retain_analytic_y_chromaticity_research_champion",
+    "operator_path": "src/eval/analytic_y_chromaticity_transport.py",
+    "operator_sha256": "75a8b038d503f47f91700cb14e25ac48565a1b50292f320344a58c57f70bf26e",
+    "cb11_contract_path": "configs/u5_r2cb11_fujifilm_characteristic_luma_chroma_v1.json",
+    "cb11_contract_sha256": "fd6127a0c336fdfc661870d8636e8c7a8bbe741f096465e52c73a5a327213b5f",
+    "cb6_contract_path": "configs/u5_r2cb6_fujifilm_characteristic_forward_proxy_v1.json",
+    "cb6_contract_sha256": "e8f754c96b88491f9e6c1f467ddc1e3f9ec4d8b87afde9c40d0bea4e49b78150"
+  },
+  "workload": {
+    "shape": [4000, 6000, 3],
+    "generator": "cb53-deterministic-display-linear-field-v1",
+    "generation_row_chunk": 64,
+    "runs": 2,
+    "rss_sample_interval_seconds": 0.02,
+    "worker_timeout_seconds": 180.0,
+    "rail": "synthetic finite bounded display-linear sRGB mechanism workload; not photographic quality evidence"
+  },
+  "operator": {
+    "dose_grid": [1.0, 0.9375, 0.875, 0.8125, 0.75, 0.6875, 0.625, 0.5625, 0.5, 0.4375, 0.375, 0.3125, 0.25, 0.1875, 0.125, 0.0625, 0.0],
+    "lstar_order_epsilon": 0.0001,
+    "maximum_gradient_ratio": 1.35,
+    "maximum_lstar_inversion_fraction": 0.0
+  },
+  "gates": {
+    "maximum_peak_process_tree_rss_bytes": 4294967296,
+    "maximum_worker_seconds": 60.0,
+    "maximum_peak_rss_repeat_ratio": 1.15,
+    "maximum_wall_repeat_ratio": 1.15,
+    "maximum_luminance_error": 0.000001,
+    "require_output_hash_exact": true,
+    "require_selected_facts_exact": true,
+    "require_finite_bounded": true,
+    "require_zero_orphans": true
+  },
+  "stop_rules": [
+    "Any resource, repeat, luma, boundary, gradient or order failure closes CB53 and opens implementation optimization without changing CB50-CB52 semantics.",
+    "A pass is Windows/Python research-core feasibility only and cannot promote product integration."
+  ],
+  "claim_ceiling": "Local Windows/Python 24MP synthetic mechanism resource evidence for unchanged CB50-CB52 only; not complete renderer, native/device, photographic quality, stock, calibration or product performance."
+}
