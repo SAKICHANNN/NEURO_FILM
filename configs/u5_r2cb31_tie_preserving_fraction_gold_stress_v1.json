@@ -1,0 +1,66 @@
+{
+  "schema": "neuro_film.u5_r2cb31_tie_preserving_fraction_gold_stress_contract.v1",
+  "experiment_id": "U5.R2CB31",
+  "question": "Is CB30's concentrated gradient failure caused by assigning distinct target quantiles to exactly equal source gamut fractions, and does grouped-midrank transport remove it without changing the frozen safety gates?",
+  "parents": {
+    "cb30_decision_path": "configs/u5_r2cb30_monotone_fraction_gold_stress_decision_v1.json",
+    "cb30_decision_sha256": "49059093ee9c637409394ea60bf2d062203dee1c980385caa69f5409ec905b28",
+    "cb30_required_decision": "close_per_pixel_stable_rank_transport_on_gold_gradient_gate",
+    "cb27_contract_path": "configs/u5_r2cb27_monotone_fraction_quantile_transport_v1.json",
+    "cb27_contract_sha256": "867884f1a95b1175ec1b470596706760cea83935eac40caf599f27bd056ada41",
+    "cb11_contract_path": "configs/u5_r2cb11_fujifilm_characteristic_luma_chroma_v1.json",
+    "cb11_contract_sha256": "fd6127a0c336fdfc661870d8636e8c7a8bbe741f096465e52c73a5a327213b5f",
+    "cb12_contract_path": "configs/u5_r2cb12_characteristic_vs_ao6_fresh_v1.json",
+    "cb12_contract_sha256": "0951b3ec44049f76afda12b90ba40e1bc644000336fcc340b1b862ea986823c1"
+  },
+  "population": {
+    "frozen_set_path": "outputs/filmcase/u41_provisional_eval_set.json",
+    "frozen_set_sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15",
+    "expected_available_source_count": 40,
+    "expected_available_gold_count": 8,
+    "expected_available_stress_count": 32,
+    "required_unavailable_ids": ["FS_FACE_01"],
+    "maximum_long_edge": 1600,
+    "role": "development_only_consumed_by_CB30_failure_localization",
+    "input_rail": "legacy hash-bound encoded-sRGB JPEG display proxies; not RAW or scene-linear evidence"
+  },
+  "operator": {
+    "basis": "unchanged deterministic Rec.709 zero-luminance plane",
+    "hue": "unchanged global circular Procrustes rotation",
+    "minimum_valid_fraction": 0.0001,
+    "fraction_transport": "each exact base-fraction tie group receives one group-midrank quantile of the sorted AO6 fraction distribution",
+    "group_midrank": "for sorted group indices [start,end), q=(start+end)/(2N)",
+    "quantile_rule": "unchanged linear interpolation over sorted valid AO6 fractions at midpoint ranks",
+    "equal_input_invariant": "exactly equal valid base fractions map to exactly equal target fractions",
+    "reconstruction": "unchanged rotated hue and mapped fraction at exact CB11 luminance",
+    "safe_executor": "unchanged analytical source-boundary and float32-margin step",
+    "forbidden": "per-pixel stable ranks, slope clipping, derivative fitting, local map, semantic mask or post-score rescue"
+  },
+  "research_basis": {
+    "latest_explicit_transport_comparator": "ColorFM, arXiv:2607.07119 (2026), https://arxiv.org/abs/2607.07119",
+    "latest_explicit_lut_comparator": "StatLUT, arXiv:2607.08227 (2026), https://arxiv.org/abs/2607.08227",
+    "position": "clean-room deterministic equality-preserving empirical monotone baseline; no paper code, model, weights or novelty claim"
+  },
+  "automatic_gates": {
+    "maximum_luminance_reconstruction_error": 0.000001,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio_vs_source": 1.35,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.0,
+    "minimum_population_median_direction_scale": 0.8,
+    "maximum_population_median_fraction_direction_scale_below_0p5": 0.1,
+    "require_equal_input_mapping": true,
+    "require_exact_repeat": true,
+    "require_id11_presence": true
+  },
+  "visual": {
+    "maximum_confirmed_severe_artifact_count": 0,
+    "review_all_contact_sheets": true,
+    "review_original_resolution_ids": ["01", "05", "08", "09", "11", "18", "21", "29"]
+  },
+  "stop_rules": [
+    "Any equality invariant or automatic failure closes this exact grouped-midrank mechanism before visual review.",
+    "Do not add derivative clipping or tune quantiles on the consumed gold/stress cohort.",
+    "A development pass requires a separately frozen source-disjoint confirmation before any champion or product claim."
+  ],
+  "claim_ceiling": "Development-only mechanistic evidence on the already consumed 40-row frozen gold/stress cohort; not independent confirmation, complete face closure, stock response, calibration, population preference or product promotion."
+}
