@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from collections.abc import Callable, Iterator
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
@@ -25,17 +26,17 @@ def _bounds(height: int, row_chunk: int) -> list[tuple[int, int]]:
 
 def _bounded_parallel_map(
     executor: ThreadPoolExecutor,
-    function: object,
+    function: Callable[[tuple[int, int]], object],
     bounds: list[tuple[int, int]],
     *,
     workers: int,
-) -> list[object]:
-    results: list[object] = []
+) -> Iterator[object]:
+    """Yield one bounded batch in input order before submitting the next."""
     for start in range(0, len(bounds), workers):
         batch = bounds[start : start + workers]
         futures = [executor.submit(function, item) for item in batch]
-        results.extend(future.result() for future in futures)
-    return results
+        for future in futures:
+            yield future.result()
 
 
 def nonexpansive_fraction_transport_target_shared_parallel(
@@ -173,7 +174,10 @@ def nonexpansive_fraction_transport_target_shared_parallel(
         )
 
     with ThreadPoolExecutor(max_workers=workers) as executor:
-        _bounded_parallel_map(executor, synthesize, all_bounds, workers=workers)
+        for _ in _bounded_parallel_map(
+            executor, synthesize, all_bounds, workers=workers
+        ):
+            pass
     if (
         not np.isfinite(target).all()
         or np.min(target) < -1e-7
