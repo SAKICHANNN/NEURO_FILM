@@ -1,0 +1,111 @@
+"""Opt-in canonical-profile native Thomas RGB16 PNG runtime."""
+
+from __future__ import annotations
+
+import ctypes
+import hashlib
+from pathlib import Path
+from typing import Any
+
+import numpy as np
+
+from .atomic_native_output import (
+    NativeByteSink,
+    publish_native_thomas_profile_rgb16_png,
+)
+from .native_gauge_profile import NativeGaugeProfileF32V1
+from .native_granularity_amplitude import NativeGranularityAmplitudeProfileV1
+from .native_thomas_field import NativeThomasFieldProfileV1
+from .native_thomas_package import (
+    ResolvedNativeThomasPackage,
+    native_thomas_package_sha256,
+    validate_native_thomas_package,
+)
+
+
+class NativeThomasRuntimeError(RuntimeError):
+    """Raised when the native Thomas export runtime fails closed."""
+
+
+def _load_library(path: Path) -> ctypes.CDLL:
+    library = ctypes.CDLL(str(path))
+    library.nf_thomas_rgb16_png_f32_abi_version_v1.argtypes = []
+    library.nf_thomas_rgb16_png_f32_abi_version_v1.restype = ctypes.c_uint32
+    library.nf_thomas_rgb16_png_cached_parallel_workspace_bytes_v1.argtypes = [
+        ctypes.c_size_t,
+        ctypes.c_size_t,
+        ctypes.c_size_t,
+        ctypes.POINTER(ctypes.c_size_t),
+    ]
+    library.nf_thomas_rgb16_png_cached_parallel_workspace_bytes_v1.restype = (
+        ctypes.c_int
+    )
+    library.nf_thomas_rgb16_png_cached_parallel_apply_v1.argtypes = [
+        ctypes.POINTER(NativeGranularityAmplitudeProfileV1),
+        ctypes.POINTER(NativeThomasFieldProfileV1),
+        ctypes.POINTER(NativeGaugeProfileF32V1),
+        ctypes.c_size_t,
+        ctypes.c_size_t,
+        ctypes.c_size_t,
+        ctypes.POINTER(ctypes.c_float),
+        ctypes.c_size_t,
+        ctypes.c_void_p,
+        ctypes.c_size_t,
+        NativeByteSink,
+        ctypes.c_void_p,
+        ctypes.POINTER(ctypes.c_double),
+    ]
+    library.nf_thomas_rgb16_png_cached_parallel_apply_v1.restype = ctypes.c_int
+    if library.nf_thomas_rgb16_png_f32_abi_version_v1() != 1:
+        raise NativeThomasRuntimeError("native Thomas export ABI mismatch")
+    return library
+
+
+class NativeThomasExportRuntime:
+    """Resolved package runtime for one canonical physical-inspired profile."""
+
+    def __init__(
+        self,
+        *,
+        package: dict[str, Any],
+        resolved: ResolvedNativeThomasPackage,
+    ) -> None:
+        validate_native_thomas_package(package)
+        if native_thomas_package_sha256(package) != resolved.package_sha256:
+            raise ValueError("resolved native Thomas package drift")
+        self.package_sha256 = resolved.package_sha256
+        self.profile = resolved.profile
+        self.profile_sha256 = package["profile_asset"]["profile_sha256"]
+        self.policy = dict(package["execution_policy"])
+        self._library = _load_library(resolved.library_path)
+
+    def publish(self, exposure: np.ndarray, *, destination: Path) -> dict[str, Any]:
+        """Publish one exact profile render and return a provenance receipt."""
+        source = np.asarray(exposure)
+        input_sha256 = hashlib.sha256(source.tobytes()).hexdigest()
+        published = publish_native_thomas_profile_rgb16_png(
+            self._library,
+            self.profile,
+            source,
+            expected_profile_sha256=self.profile_sha256,
+            row_partition=int(self.policy["row_partition"]),
+            destination=destination,
+            maximum_output_bytes=int(self.policy["maximum_output_bytes"]),
+        )
+        if hashlib.sha256(source.tobytes()).hexdigest() != input_sha256:
+            raise NativeThomasRuntimeError("native Thomas runtime mutated input")
+        return {
+            "schema": "neuro_film.native_thomas_export_receipt.v1",
+            "package_sha256": self.package_sha256,
+            "profile_sha256": self.profile_sha256,
+            "input_sha256": input_sha256,
+            "output": published,
+            "production_default_changed": False,
+            "claim_ceiling": (
+                "opt-in exact-package generic physical-inspired RGB16 PNG; "
+                "not calibrated stock response, arbitrary media or delivery"
+            ),
+        }
+
+
+__all__ = ["NativeThomasExportRuntime", "NativeThomasRuntimeError"]

@@ -1,0 +1,26 @@
+{
+  "schema": "neuro_film.native_thomas_export_package.v1",
+  "package_id": "native-thomas-generic-p8cr-win-x64-v1",
+  "profile_asset": {
+    "schema": "neuro_film.native_thomas_export_profile.v1",
+    "profile_sha256": "923a985aa90e029332c723a33afb793afe05cae777b3c07061d54828b91e21b4",
+    "file_sha256": "ce11da8e336b322342941ec639e4dac0fe3521224cf0fc907e9841cac51cf2c0"
+  },
+  "platform": {
+    "os": "windows",
+    "architecture": "x86_64",
+    "float": "ieee754-binary32"
+  },
+  "export_core": {
+    "abi": "nf_thomas_rgb16_png_cached_parallel_f32_v1",
+    "abi_version": 1,
+    "sha256": "e92a638b8cfcc5cfdcb178b76b58b015712be9723f492dc9434b8e1c13e3e914"
+  },
+  "execution_policy": {
+    "row_partition": 128,
+    "maximum_output_bytes": 80000000,
+    "publication": "create-only-atomic-same-directory"
+  },
+  "production_default_changed": false,
+  "claim_ceiling": "Opt-in Windows x64 package for the exact generic physical-inspired P8CR profile and native RGB16 PNG core; not calibrated stock response, arbitrary media, delivery or production promotion."
+}
