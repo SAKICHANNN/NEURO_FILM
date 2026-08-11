@@ -1,0 +1,39 @@
+{
+  "schema": "neuro_film.u6_p8cv_canonical_profile_atomic_scale_evidence.v1",
+  "experiment_id": "u6.p8cv-canonical-profile-atomic-scale-v1",
+  "date": "2026-08-12",
+  "status": "PASS",
+  "implementation_commit": "8485a04f",
+  "contract_sha256": "a8288039aa296ede14a7436295dafb983a6249b9f2fe9bf9a0b6e87884e8ee14",
+  "formal_report_sha256": "4797bbec3f35e5b9e2e90c0b164b5e2988c419157d059a5d83daab7472a4b0ae",
+  "stable_evidence_id": "0401e31f0f64fc2ac6c8a17c79a27eedd49d970550746d5e0d4b286e45e96e6c",
+  "profile_sha256": "923a985aa90e029332c723a33afb793afe05cae777b3c07061d54828b91e21b4",
+  "result": {
+    "shape_chw": [3, 3000, 4000],
+    "input_sha256": "81a91bcdafe07f48701ae8a8e4339fa74af3be25326b422a9f6ccaa5c431fc3b",
+    "output_bytes": 72054675,
+    "output_sha256": "e7b2c3d8ea6ee9cb143f48a680bb2a6a8a59666f3b63f4d1b621a03869ce5909",
+    "decoded_rgb16_sha256": "5a0f531fe9b28183dba4634b0c1d739f71c2677e2f9ba74dd16c33c2fa6530fd",
+    "icc_sha256": "217fe48ec958c667f8eef725aa27198f465df95d7662593b90d0a1cc30114356",
+    "maximum_wall_seconds": 4.2200759000115795,
+    "maximum_peak_process_tree_rss_bytes": 480923648,
+    "wall_repeat_ratio": 1.0203717423042507,
+    "rss_repeat_ratio": 1.0000425865358409
+  },
+  "gates": {
+    "parent_output_exact": true,
+    "exact_output_replay": true,
+    "exact_input_replay": true,
+    "exact_decoded_replay": true,
+    "icc_exact": true,
+    "maximum_wall": true,
+    "maximum_rss": true,
+    "wall_repeat": true,
+    "rss_repeat": true,
+    "no_stage_residue": true,
+    "worker_cleanup": true
+  },
+  "decision": "retain_canonical_profile_to_atomic_12mp_runtime",
+  "interpretation": "The public canonical-profile atomic publisher reconstructs the ABI only from the validated profile payload and reproduces P8CU exactly at 12MP within the same resource gates.",
+  "claim_ceiling": "One measured Windows ordinary-desktop CPU canonical-profile-to-create-only-atomic 12MP RGB16 PNG path for the exact generic physical-inspired P8CR profile; not calibrated stock response, arbitrary media, device runtime or delivered product."
+}
