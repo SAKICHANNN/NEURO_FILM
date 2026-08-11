@@ -1,0 +1,22 @@
+{
+  "schema": "neuro_film.u5_r2cb70_analytic_y_chromaticity_parallel_target_24mp_decision.v1",
+  "experiment_id": "U5.R2CB70",
+  "contract_path": "configs/u5_r2cb70_analytic_y_chromaticity_parallel_target_24mp_v1.json",
+  "contract_sha256": "ac8685bffab1451ef91cdddd60a0c8cd1f5cea3d1faac1313389e1544d8cfff9",
+  "formal_report_path": "D:/nf-019f4b76-cb70-report.json",
+  "formal_report_sha256": "351468e1075c0cf4f31dd4129d2e8aa98e5ab6f738ac0c2c618b6b82ee5192c8",
+  "automatic_pass": false,
+  "decision": "fail_cb70_parallel_target_relative_memory_gate",
+  "metrics": {
+    "output_sha256_exact": true,
+    "selector_facts_exact": true,
+    "repeat_exact": true,
+    "maximum_peak_process_tree_rss_bytes": 2418966528,
+    "peak_rss_ratio_to_cb69": 1.0712863025377763,
+    "maximum_wall_seconds": 58.1048129999981,
+    "wall_ratio_to_cb69": 0.922796636279867,
+    "scratch_cleanup": true
+  },
+  "interpretation": "Ordered parallel target rows preserve exact renderer semantics and improve time, but their concurrent row temporaries exceed the frozen relative-memory gate. Retain CB69 profile v4 and do not relax the gate or publish CB70.",
+  "claim_ceiling": "Local Windows/Python 24MP negative resource evidence only; no profile, default, product, stock, calibration or arbitrary-media change."
+}
