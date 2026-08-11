@@ -1,0 +1,52 @@
+{
+  "schema": "neuro_film.u5_r2cb72_analytic_y_chromaticity_shared_parallel_24mp_contract.v1",
+  "report_schema": "neuro_film.u5_r2cb72_analytic_y_chromaticity_shared_parallel_24mp_report.v1",
+  "experiment_id": "U5.R2CB72",
+  "question": "Can bounded-inflight target workers writing disjoint shared slices retain CB71 speed while bringing complete 24MP peak memory back within 1.02x of CB69?",
+  "parent": {
+    "cb69_decision_path": "configs/u5_r2cb69_analytic_y_chromaticity_parallel_ao6_throughput_decision_v1.json",
+    "cb69_required_decision": "pass_cb69_output_exact_parallel_ao6_complete_throughput",
+    "cb71_decision_path": "configs/u5_r2cb71_analytic_y_chromaticity_compact_parallel_24mp_decision_v1.json",
+    "cb71_required_decision": "fail_cb71_compact_selector_does_not_reduce_parallel_target_peak"
+  },
+  "baseline": {
+    "input_path": "D:/nf-019f4b76-cb60-input.png",
+    "input_sha256": "f9a369f384126a0837880a79828f3608290e8ef013a0156f72a263a19762ed98",
+    "output_sha256": "949ffce7f86faee4296de52e51b90ae8e5cd4dc205d4a5a9e0f5cb86c6c6e9fa",
+    "peak_process_tree_rss_bytes": 2258001920,
+    "wall_seconds": 62.966,
+    "selector_facts": {
+      "characteristic_strength": 0.2,
+      "fraction_gamut_scale_below_0p8": 0.000487875,
+      "global_dose": 1.0,
+      "maximum_luminance_error": 2.8280287112103508e-08,
+      "median_gamut_scale": 1.0,
+      "selected_gradient_ratio": 0.8636540824585575,
+      "selected_lstar_inversion_fraction": 0.0,
+      "selected_new_boundary_fraction": 0.0
+    }
+  },
+  "candidate": {
+    "algorithm": "bounded-shared-target-compact-selector-plus-cb69-v1",
+    "row_chunk": 128,
+    "workers": 4,
+    "shared_target_sha256": "c7ba3ff497634d76674f8bed7782e72a5ebe42df582047a2e059012e6d457683",
+    "renderer_implementation_sha256": "b056339913f991a39343865a124a1ff945e8baa3a3d04465314a1939e5ac723e",
+    "runner_sha256": "2bf30cfee8edece4ec10418f2ef2b5887e244f882dd868fa122300aa1e2ac90b",
+    "output_bit_depth": 16
+  },
+  "gates": {
+    "output_sha256_exact": true,
+    "selector_facts_exact": true,
+    "maximum_peak_process_tree_rss_bytes": 2500000000,
+    "maximum_peak_rss_ratio_to_baseline": 1.02,
+    "maximum_wall_ratio_to_baseline": 0.95,
+    "scratch_residue_count": 0
+  },
+  "stop_rules": [
+    "Do not change pixels, row partition, worker count, source, bit depth, selector decisions, sort, quantile or safety gates.",
+    "Do not relax the 2.5GB, 1.02x memory or 0.95x time gates after measurement.",
+    "Fail closed on either fresh-process identity, memory, time or cleanup failure."
+  ],
+  "claim_ceiling": "Local Windows/Python complete 24MP analytic renderer resource evidence only; no native/device, photographic preference, stock, calibration, default-product or arbitrary-media claim."
+}
