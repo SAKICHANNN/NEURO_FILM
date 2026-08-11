@@ -11,8 +11,13 @@
     "cb16_decision_path": "configs/u5_r2cb16_safe_base_ao6_chroma_residual_decision_v1.json",
     "cb16_decision_sha256": "965a1c0c0eba887673bd1f9793a5c28425edfe5495cb4bb151a70e3b9f20008f",
     "cb16_required_status": "close_safe_base_ao6_chroma_magnitude_residual_without_rescue",
+    "cb14_decision_path": "configs/u5_r2cb14_characteristic_vs_ao6_ood_decision_v1.json",
+    "cb14_decision_sha256": "acb2e53031db6e9fe33f84d615ad259ea856190016ab7f26e2030775b8a2c8b9",
+    "cb14_required_status": "candidate_fails_ao6_retain_incumbent",
     "cb11_contract_path": "configs/u5_r2cb11_fujifilm_characteristic_luma_chroma_v1.json",
-    "cb11_contract_sha256": "fd6127a0c336fdfc661870d8636e8c7a8bbe741f096465e52c73a5a327213b5f"
+    "cb11_contract_sha256": "fd6127a0c336fdfc661870d8636e8c7a8bbe741f096465e52c73a5a327213b5f",
+    "cb12_contract_path": "configs/u5_r2cb12_characteristic_vs_ao6_fresh_v1.json",
+    "cb12_contract_sha256": "0951b3ec44049f76afda12b90ba40e1bc644000336fcc340b1b862ea986823c1"
   },
   "population": {
     "decision_path": "configs/u5_r2cb45_row_authorized_style_source_decision_v1.json",
