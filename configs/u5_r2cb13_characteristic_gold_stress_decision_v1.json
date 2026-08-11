@@ -1,0 +1,40 @@
+{
+  "adjudicator_software_commit": "0b04584d4b61733ae83c7414483c6ef436a80352",
+  "automatic_checks": {
+    "gradient_magnitude": true,
+    "gradient_order": true,
+    "id11_present": true,
+    "luminance_exact": true,
+    "new_boundaries": true,
+    "source_counts": true
+  },
+  "claim_ceiling": "Autonomous safety regression for unchanged CB11 on the 40 locally available legacy encoded-sRGB gold/stress display proxies; not the complete gold set, RAW, scene-linear, face closure, Velvia calibration, stock response, population preference or product promotion.",
+  "complete_gold_set_pass": false,
+  "confirmed_severe_artifact_count": 0,
+  "experiment_id": "U5.R2CB13",
+  "inputs": {
+    "contract_sha256": "3206dbbf22749f51a200cd0fbf759d4aec12a434ad0fd9acb43455ee67147753",
+    "report_sha256": "ed961e4e30d5093515c2aea7dfa37ba309fdb36f672a14566a3e0ef7d8471ef1",
+    "report_stable_evidence_id": "4455fdcf3207d90b96bc1ae23d7748c304cfb203748a8c89531d6029456bdccc",
+    "review_sha256": "cd34ab98adbd458f3069d6faddf4865f859737bec216846011ca2837ddf71b99"
+  },
+  "measurements": {
+    "available_gold_count": 8,
+    "available_source_count": 40,
+    "available_stress_count": 32,
+    "gold_median_style_delta_e76": 4.121927721878978,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.0,
+    "maximum_luminance_reconstruction_error": 2.9802318946003936e-08,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio_vs_source": 1.3382463965303995,
+    "population_median_chroma_scale": 1.0,
+    "stress_median_style_delta_e76": 4.719013312195296,
+    "unavailable_ids": ["FS_FACE_01"]
+  },
+  "next_branch": "restore_exact_fs_face_01_then_complete_gold_or_continue_independent_ood",
+  "partial_available_cohort_pass": true,
+  "production_default_changed": false,
+  "schema": "neuro_film.u5_r2cb13_characteristic_gold_stress_decision.v1",
+  "stable_evidence_id": "b367aa3c6f6231ed20529e0ba082ccefaf5a6b31432b584d3b4aee62dff6689f",
+  "status": "retain_partial_gold_stress_safety_face_open"
+}

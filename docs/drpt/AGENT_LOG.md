@@ -11258,3 +11258,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   selected original-resolution severe review.
 - Pass can retain only partial local safety evidence. Complete gold closure and
   any product decision remain blocked on the original face source restoration.
+
+# 2026-08-11 - U5.R2CB13 passes the available gold/stress cohort
+
+- Two complete computations are exact without duplicating persistent output
+  storage (`ed961e4e...71ef1`; stable `4455fdcf...dccc`). All 40 local rows
+  pass: eight gold, 32 stress and explicit ID11.
+- Maximum luminance error is `2.98e-8`, new boundaries and adjacent L-star
+  inversions are zero, p99.9 gradient ratio is `1.33825`, and median gold/stress
+  style is `4.122/4.719` Delta E76 with median chroma scale `1.0`.
+- Three contact sheets and every available gold output at original resolution
+  show zero confirmed severe artifacts, including the available astronaut face
+  and ID11 red-speckle regression. The absent original `FS_FACE_01` remains an
+  explicit complete-gold blocker. Retain partial safety evidence only and move
+  to a disjoint OOD leaf rather than waiting on storage.

@@ -63,3 +63,20 @@ def test_cb13_rejects_review_identity_drift(tmp_path: Path) -> None:
             review_path=mutated,
             adjudicator_software_commit="0" * 40,
         )
+
+
+def test_cb13_decision_matches_exact_evidence() -> None:
+    base = ROOT / "outputs/experiments/u5_r2cb13_characteristic_gold_stress_v1"
+    decision = json.loads(
+        (
+            ROOT / "configs/u5_r2cb13_characteristic_gold_stress_decision_v1.json"
+        ).read_text(encoding="utf-8")
+    )
+    actual = adjudicate_files(
+        config_path=ROOT / "configs/u5_r2cb13_characteristic_gold_stress_v1.json",
+        report_paths=[base / "report_a.json", base / "report_b.json"],
+        review_path=ROOT
+        / "configs/u5_r2cb13_characteristic_gold_stress_visual_review_v1.json",
+        adjudicator_software_commit=decision["adjudicator_software_commit"],
+    )
+    assert actual == decision
