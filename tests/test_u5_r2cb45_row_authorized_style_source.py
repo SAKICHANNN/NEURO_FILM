@@ -4,7 +4,6 @@ import hashlib
 import json
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
 DECISION = ROOT / "configs/u5_r2cb45_row_authorized_style_source_decision_v1.json"
 

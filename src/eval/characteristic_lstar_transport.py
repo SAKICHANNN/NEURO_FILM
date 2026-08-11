@@ -179,6 +179,7 @@ def evaluate(
     diagnostic_decision: str = "close_characteristic_lstar_before_complete_render",
     pass_decision: str = "open_characteristic_lstar_severe_review_then_blind_development",
     close_decision: str = "close_characteristic_lstar_without_rescue",
+    selector_receives_safe_base: bool = False,
 ) -> dict[str, Any]:
     cb40 = _load_exact_json(
         root,
@@ -250,24 +251,29 @@ def evaluate(
         boundary_epsilon: float,
     ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
         nonlocal failure
-        del safe_base_linear, weights
+        del weights
         try:
-            candidate, scale, luma_error, row_facts = selector(
-                source_linear,
-                full_target_linear,
-                curve=curve,
-                strength=strength,
-                boundary_epsilon=boundary_epsilon,
-                dose_grid=op["dose_grid"],
-                maximum_gradient_ratio=float(
+            selector_kwargs = {
+                "curve": curve,
+                "strength": strength,
+                "boundary_epsilon": boundary_epsilon,
+                "dose_grid": op["dose_grid"],
+                "maximum_gradient_ratio": float(
                     config["automatic_gates"]["maximum_p999_gradient_ratio_vs_source"]
                 ),
-                maximum_lstar_inversion_fraction=float(
+                "maximum_lstar_inversion_fraction": float(
                     config["automatic_gates"][
                         "maximum_adjacent_lstar_gradient_sign_inversion_fraction"
                     ]
                 ),
-                lstar_order_epsilon=float(op["lstar_order_epsilon"]),
+                "lstar_order_epsilon": float(op["lstar_order_epsilon"]),
+            }
+            if selector_receives_safe_base:
+                selector_kwargs["safe_base_linear"] = safe_base_linear
+            candidate, scale, luma_error, row_facts = selector(
+                source_linear,
+                full_target_linear,
+                **selector_kwargs,
             )
         except CharacteristicLstarTransportError as exc:
             failure = {"completed_source_count": len(facts), "reason": str(exc)}
