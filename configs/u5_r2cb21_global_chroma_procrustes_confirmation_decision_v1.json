@@ -1,0 +1,36 @@
+{
+  "schema": "neuro_film.u5_r2cb21_global_chroma_procrustes_confirmation_decision.v1",
+  "experiment_id": "U5.R2CB21",
+  "implementation_commit": "1c5ae1e4",
+  "contract_sha256": "d8849e691f59aebe18c4ab93c2f59f15f7b3aec31db3fd20d4f2cf57cdcaafca",
+  "operator_implementation_sha256": "5a2508978a605706a0b8c001eb56db93f38c6ea0af7e6a87bccbbc6dca8f1ba3",
+  "confirmation_implementation_sha256": "a2efee2be9567d1f685e604a90987c377a067dc1effa9da56925c703840bd9eb",
+  "formal_report_path": "outputs/experiments/u5_r2cb21_global_chroma_procrustes_confirmation_v1/report_run1.json",
+  "formal_report_sha256": "1b826d629c0400637f6a4e08c1677a9027164f94fb815713b8cddb3db0005211",
+  "stable_evidence_id": "f16e541e9398a5aefdee6d92703691e5722c64595b4500ffb90994508234b938",
+  "repeat_report_byte_exact": true,
+  "automatic_pass": false,
+  "metrics": {
+    "population_median_style_delta_e76": 3.5665900784268776,
+    "minimum_population_median_style_delta_e76": 5.0,
+    "population_median_delta_e76_vs_cb11": 1.2725770666185148,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio_vs_source": 1.207963723255318,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 3.523726128957805e-7,
+    "population_median_direction_scale": 1.0,
+    "population_median_fraction_direction_scale_below_0p5": 0.019263071335722314
+  },
+  "failed_gates": [
+    "population_median_style_delta_e76_below_5p0"
+  ],
+  "blind_review_opened": false,
+  "passed": false,
+  "decision": "close_global_chroma_rotation_after_source_disjoint_style_failure",
+  "interpretation": [
+    "The exact CB20 operator remains numerically safe and materially distinct from CB11 on the BK13S source-disjoint confirmation set.",
+    "Its median visible style falls to 3.56659 Delta E76, below the frozen 5.0 gate, so visual preference cannot be opened.",
+    "The BK6S development preference does not confirm across source sets; no threshold, fit, rotation or blind-review rescue is allowed."
+  ],
+  "next_action": "Return AO6 as the research colour incumbent and require a materially different mechanism rather than extending the one-angle chroma family.",
+  "claim_ceiling": "Stable negative source-disjoint confirmation of one image-global chroma rotation; not stock response, calibration, population preference or product promotion."
+}

@@ -11408,3 +11408,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   cameras disjoint from CB20 development, though used by unrelated algorithms.
 - Use a new sealed blind seed. No parameter, threshold or post-result rescue is
   allowed; even a pass remains mechanism evidence rather than promotion.
+
+# 2026-08-11 - U5.R2CB21 closes global chroma rotation
+
+- Two BK13S reports are byte exact (`1b826d62...05211`; stable
+  `f16e541e...4b938`). Luminance, boundary, gradient, scale and material-vs-CB11
+  gates pass, but median style is only `3.56659` Delta E76 versus frozen `5.0`.
+- Blind review remains unopened. Close the exact one-angle family without
+  threshold or fit rescue; AO6 remains the research colour incumbent.
