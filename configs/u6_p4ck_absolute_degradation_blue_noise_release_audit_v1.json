@@ -1,0 +1,60 @@
+{
+  "schema": "neuro_film.u6_p4ck_absolute_degradation_blue_noise_release_audit_contract.v1",
+  "experiment_id": "u6.p4ck-absolute-degradation-blue-noise-release-audit-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4CK",
+  "date_frozen": "2026-08-11",
+  "question": "Can the exact publicly released AbsoluteDegradation v1 code and blue-noise asset execute the paper's signal-dependent blue-noise grain term as published?",
+  "primary_source": {
+    "paper_title": "AbsoluteDegradation: A Physics-Inspired Synthetic Film-Degradation Pipeline and Archival Film Restoration Benchmark",
+    "paper_url": "https://arxiv.org/abs/2607.02131",
+    "paper_pdf_sha256": "1c275e3a12767746a94eba0a5702342a06817a6d3bf1d728ccc549af7a655570",
+    "repository": "https://anonymous.4open.science/r/AbsoluteDegradation-B624",
+    "repository_zip_sha256": "38267f8cb5fa92441af8de20584a47fe9139d8ca4e4714f7251974e962e29c9a",
+    "license": "MIT for released software; bundled texture-asset provenance remains as stated by the paper/repository and is used only for this internal audit"
+  },
+  "released_files": {
+    "film_grain_code_path": "absolute_degradation/distortions/steps/film_gain_step.py",
+    "film_grain_code_url": "https://anonymous.4open.science/api/repo/AbsoluteDegradation-B624/file/absolute_degradation/distortions/steps/film_gain_step.py",
+    "film_grain_code_sha256": "83d7c3c8a8a496d6401ec24db578aebaa4e712e101bb70ed96d3a4bda5edac10",
+    "blue_noise_path": "data/blue_noise/blue_noise_2048_5ch.npy",
+    "blue_noise_url": "https://anonymous.4open.science/api/repo/AbsoluteDegradation-B624/file/data/blue_noise/blue_noise_2048_5ch.npy?download=true",
+    "blue_noise_sha256": "6bf4d2154a5f7f1b1d04562eea954eb9cddb290f8b2da62a57a827c0ab54ed14",
+    "blue_noise_file_bytes": 41943168
+  },
+  "frozen_checks": {
+    "expected_shape": [2048, 2048, 5],
+    "expected_dtype": "float16",
+    "expected_array_payload_bytes": 41943040,
+    "fixed_channels": [0, 1, 2, 3, 4],
+    "fixed_offsets_yx": [[0, 0], [17, 31], [1024, 1024], [2047, 2047]],
+    "fixed_grain_sizes": [1.0, 1.15, 1.3],
+    "probe_height": 257,
+    "probe_width": 263,
+    "signal_lattice_values": [0.001, 0.05, 0.25, 0.5, 0.75, 1.0],
+    "iso": 0.075,
+    "gamma": 0.5,
+    "scanner_noise_sigma": 0.0,
+    "require_two_independent_download_reports_byte_identical": true
+  },
+  "automatic_gates": {
+    "source_hashes_exact": true,
+    "array_shape_dtype_and_payload_exact": true,
+    "array_has_finite_nonzero_variance": true,
+    "all_channels_have_nonzero_values": true,
+    "all_roll_resize_branches_have_nonzero_variance": true,
+    "signal_dependent_term_has_nonzero_values": true,
+    "two_reports_byte_identical": true
+  },
+  "branch_rule": {
+    "pass": "Retain only executable release-source evidence and separately test high-order transfer against P4CJ; no physical or product claim.",
+    "fail": "Close the exact public release as an executable signal-dependent blue-noise grain baseline. Do not invent or regenerate a replacement asset under the same identity."
+  },
+  "forbidden": [
+    "replace, repair, renormalize or regenerate the released asset",
+    "change dtype, source hash, code path, offsets, sizes or gates after formal execution",
+    "treat scanner Gaussian noise as evidence that the blue-noise term executed",
+    "generalize a release-asset failure to the conceptual paper model or trained restoration results",
+    "copy the 40 MiB asset into the repository"
+  ],
+  "claim_ceiling": "Exact public-release source and arithmetic audit only; not a judgment of an unreleased intended asset, film stock, physical calibration, restoration quality or product suitability."
+}
