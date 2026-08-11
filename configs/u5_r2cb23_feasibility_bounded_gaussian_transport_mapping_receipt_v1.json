@@ -1,0 +1,10 @@
+{
+  "schema": "neuro_film.u5_r2cb23_feasibility_bounded_gaussian_transport_mapping_receipt.v1",
+  "experiment_id": "U5.R2CB23",
+  "status": "mapping_revealed_after_blind_observations_commit",
+  "mapping_revealed": true,
+  "observations_commit": "66514a354bff39f05f5dd02182fd70ec1a24d819",
+  "observations_sha256": "42025e644467b206fd25b314b174000654b713f0360e7bd2df45e9099c6ea5dd",
+  "report_sha256": "8724c4fded742b8a91b17bd616ca4af5315f673b674568b141d1552b8e511c33",
+  "sealed_mappings_canonical_sha256": "1036ec0c5d55fb341cb796f3315646e1f1430d5429141799c7450495ad25e86a"
+}
