@@ -11128,3 +11128,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close the exact Lab/source-segment executor without lowering the frozen
   strength. CB6 remains retained. The next distinct algorithm leaf must make
   cube preservation intrinsic rather than rely on post-hoc gamut compression.
+
+# 2026-08-11 - Freeze U5.R2CB8 intrinsic RGB characteristic execution
+
+- CB8 preserves the CB6/CB7 curve and 20% dose but applies it independently to
+  linear R/G/B through a convex blend. This makes cube, neutral-axis and
+  positive-diagonal-Jacobian safety intrinsic; no clipping or gamut compressor
+  is present.
+- The same BH0S development population now tests visible style, residual beyond
+  a joint EV/WB/contrast/saturation fit, hard boundaries, gradients and severe
+  artifacts. Any failure closes this exact executor without dose rescue.

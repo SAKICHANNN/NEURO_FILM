@@ -1,0 +1,77 @@
+{
+  "schema": "neuro_film.u5_r2cb8_fujifilm_characteristic_rgb_contract.v1",
+  "experiment_id": "U5.R2CB8",
+  "question": "Does the retained reversal characteristic shape remain photographically useful and severe-safe when execution is intrinsically RGB-cube-preserving rather than post-hoc Lab gamut compressed?",
+  "parents": {
+    "cb6_decision_path": "configs/u5_r2cb6_fujifilm_characteristic_forward_proxy_decision_v1.json",
+    "cb6_decision_sha256": "5bf79d2ebaa40f3187cd3bc62686b1ee90a6b3d8142400d663e076eb37d24297",
+    "cb6_required_decision": "retain_characteristic_constrained_forward_mechanism",
+    "cb6_required_stable_evidence_id": "f4e3bec72b673379103617ac2b247eed88cd500c8159a984a4f3237eb5379bae",
+    "cb6_contract_path": "configs/u5_r2cb6_fujifilm_characteristic_forward_proxy_v1.json",
+    "cb6_contract_sha256": "e8f754c96b88491f9e6c1f467ddc1e3f9ec4d8b87afde9c40d0bea4e49b78150",
+    "cb7_decision_path": "configs/u5_r2cb7_fujifilm_characteristic_photographic_decision_v1.json",
+    "cb7_decision_sha256": "1abeab7e5eeae89114b50588f7c1f9deb85d20a6de571ca358f12c967d4e5cb2",
+    "cb7_required_decision": "close_characteristic_photographic_compiler_without_rescue"
+  },
+  "population": {
+    "decision_path": "configs/u5_r2bh0s_fixed_bank_oracle_source_preflight_decision_v1.json",
+    "decision_sha256": "0f1a518d7554cb0ce3bcea9e9bf06492604f7484743c96479207421226732ba9",
+    "manifest_path": "outputs/u5_r2bh0s_fixed_bank_oracle_source_preflight_v1/manifest.json",
+    "manifest_sha256": "e7dc8c861871de83a0aa3f92a717e23fd024bed15b8a19b739516c48f1f58e0e",
+    "visual_review_path": "outputs/u5_r2bh0s_fixed_bank_oracle_source_preflight_v1/visual_source_review.json",
+    "visual_review_sha256": "388d298af94e9a8507092717941d96c28414d0fa18ac5e9411b44ff2eaea3e5e",
+    "required_decision": "pass_fresh_population_and_open_complete_fixed_bank_oracle",
+    "required_visual_decision": "pass_source_visual_gate_with_two_fixed_failures_and_no_replacement",
+    "source_count_exact": 10,
+    "camera_make_count_exact": 10,
+    "exclude_ids": ["canon_powershot_v1"],
+    "maximum_long_edge": 1280,
+    "allowed_use": "internal independent digital-photo evaluation"
+  },
+  "operator": {
+    "input": "relative display-linear sRGB only",
+    "compiled_curve": "exact CB7 three-channel mean normalized-transmittance PCHIP; no refit",
+    "application": "apply the same scalar curve independently to each linear RGB channel, then blend y=(1-strength)*x+strength*curve(x)",
+    "strength": 0.2,
+    "cube_contract": "curve maps 0 to 0 and 1 to 1; blend is convex; no clipping or gamut compression",
+    "neutral_contract": "equal RGB remains equal RGB",
+    "jacobian_contract": "diagonal derivative is at least 1-strength and all off-diagonal entries are zero",
+    "output": "deterministic sRGB8 PNG research asset",
+    "cb6_recorder_parameter_reuse": false
+  },
+  "controls": {
+    "identity": "source linear RGB",
+    "joint_basic": "per-image joint EV/WB/contrast/saturation fit on the exact sample from source to candidate",
+    "source_boundary": "new epsilon boundary relative to source",
+    "gradient": "linear-RGB p99.9 gradient magnitude and adjacent material L-star sign inversion"
+  },
+  "automatic_gates": {
+    "source_count_exact": 10,
+    "camera_make_count_exact": 10,
+    "all_outputs_finite": true,
+    "output_linear_minimum": 0.0,
+    "output_linear_maximum": 1.0,
+    "minimum_curve_derivative": 0.8,
+    "maximum_new_hard_boundary_fraction": 0.005,
+    "maximum_p999_gradient_ratio_vs_source": 2.5,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.001,
+    "minimum_population_median_style_delta_e76": 2.0,
+    "minimum_population_median_joint_basic_residual_delta_e76": 0.5,
+    "minimum_rows_joint_basic_residual_delta_e76_ge_0p25": 8,
+    "two_byte_identical_reports_and_outputs": true,
+    "maximum_confirmed_severe_visual_artifact_count": 0
+  },
+  "evaluation": {
+    "hard_boundary_epsilon": 0.00196078431372549,
+    "gradient_sign_epsilon_lstar": 0.0001,
+    "colour_metric_max_samples": 65536,
+    "derivative_probe_count": 65537,
+    "contact_sheet_cell_width": 420
+  },
+  "stop_rules": [
+    "Do not change curve, strength, channel domain, source population, basic control or gates after candidate pixels are scored.",
+    "Any automatic or confirmed severe-artifact failure closes this exact channelwise compiler without strength, colour-space, curve, source or threshold rescue.",
+    "Pass may retain a generic film-inspired colour-tone mechanism for a fresh direct comparison with fixed AO6; it cannot establish Velvia calibration, scene exposure, dye colour, authenticity, preference or product promotion."
+  ],
+  "claim_ceiling": "Rights-cleared photographic development evidence for an intrinsically cube-preserving generic RGB operator compiled from a retained first-party reversal characteristic shape; not Velvia calibration, stock colour, scene exposure, authenticity, preference or product promotion."
+}
