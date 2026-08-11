@@ -1,0 +1,78 @@
+{
+  "schema": "neuro_film.u5_r2cb39_direct_lstar_monotone_tone_development_contract.v1",
+  "experiment_id": "U5.R2CB39",
+  "question": "Does monotone mapping in the actual frozen float32 CIELAB L-star coordinate, followed by analytic neutral-Y inversion and unchanged CB32 chroma, close exact order while restoring material style?",
+  "parents": {
+    "cb38_decision_path": "configs/u5_r2cb38_exact_lab_y_monotone_tone_development_decision_v1.json",
+    "cb38_decision_sha256": "aad6d6f1ac0ef31de4b5117f4c98eb0df44f7bf4083c0bed43c097f7d7056100",
+    "cb38_required_decision": "close_exact_weight_proxy_open_direct_lstar_successor",
+    "cb33_contract_path": "configs/u5_r2cb33_gradient_budgeted_fraction_gold_stress_v1.json",
+    "cb33_contract_sha256": "b38d5238a57957dbf55a321529cb3b275ba653054088eb9642d82d342ef69e41",
+    "cb16_decision_path": "configs/u5_r2cb16_safe_base_ao6_chroma_residual_decision_v1.json",
+    "cb16_decision_sha256": "965a1c0c0eba887673bd1f9793a5c28425edfe5495cb4bb151a70e3b9f20008f",
+    "cb16_required_status": "close_safe_base_ao6_chroma_magnitude_residual_without_rescue",
+    "cb14_decision_path": "configs/u5_r2cb14_characteristic_vs_ao6_ood_decision_v1.json",
+    "cb14_decision_sha256": "acb2e53031db6e9fe33f84d615ad259ea856190016ab7f26e2030775b8a2c8b9",
+    "cb14_required_status": "candidate_fails_ao6_retain_incumbent",
+    "cb11_contract_path": "configs/u5_r2cb11_fujifilm_characteristic_luma_chroma_v1.json",
+    "cb11_contract_sha256": "fd6127a0c336fdfc661870d8636e8c7a8bbe741f096465e52c73a5a327213b5f",
+    "cb12_contract_path": "configs/u5_r2cb12_characteristic_vs_ao6_fresh_v1.json",
+    "cb12_contract_sha256": "0951b3ec44049f76afda12b90ba40e1bc644000336fcc340b1b862ea986823c1"
+  },
+  "population": {
+    "decision_path": "configs/u5_r2cb39_direct_lstar_source_decision_v1.json",
+    "decision_sha256": "d8c805c76043f3c02c90057f68a203a007b6ff6dc2ac4f77ff3b2dbcaabd7a52",
+    "required_status": "source_eligible_fixed_comparison_open",
+    "manifest_path": "outputs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1/run_c/manifest.json",
+    "manifest_sha256": "048992242c82a2cd9efd193c6766065c7148ad0607a5505b88185d0ab781b101",
+    "included_source_ids": ["canon_eos_kiss_f", "canon_eos_1d_mark_iv", "nikon_d2x", "nikon_d200", "sony_nex_3n", "sony_dslr_a290", "fujifilm_finepix_s5000", "olympus_sp550uz", "olympus_e_p7", "panasonic_dmc_gf2", "panasonic_dmc_fz100", "pentax_k_r", "pentax_k100d_super", "leica_d_lux_6", "leica_digilux_3", "kodak_dcs_pro_14n"],
+    "source_count_exact": 16,
+    "camera_make_count_exact": 9,
+    "maximum_long_edge": 1600,
+    "role": "direct-L-star mechanism development on the exact source-only AO7S natural-photo subset"
+  },
+  "operator": {
+    "tone_coordinate": "actual frozen float32 CIELAB L-star",
+    "tone_target": "exact CB11 L-star marginal distribution",
+    "tone_map": "257 monotone quantile knots with duplicate-source knots collapsed and target knots maximum-accumulated",
+    "tone_knot_count": 257,
+    "tone_inverse": "the exact analytic neutral-axis inverse used by the current Lab implementation",
+    "chroma_target": "unchanged CB32 target reprojected into the legacy Lab-Y chroma plane",
+    "dose_grid": [1.0, 0.9375, 0.875, 0.8125, 0.75, 0.6875, 0.625, 0.5625, 0.5, 0.4375, 0.375, 0.3125, 0.25, 0.1875, 0.125, 0.0625, 0.0],
+    "lstar_order_epsilon": 0.0001,
+    "minimum_valid_fraction": 0.0001,
+    "fraction_knots": 257,
+    "maximum_fraction_slope": 1.0,
+    "forbidden": "prior CB populations, proxy luminance order, spatial tone, local masks, filtering, per-channel dose, changed targets, threshold relaxation or post-score rescue"
+  },
+  "evaluation": {"maximum_colour_metric_samples_per_source": 65536},
+  "automatic_gates": {
+    "maximum_luminance_reconstruction_error": 0.000001,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio_vs_source": 1.35,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.0,
+    "minimum_population_median_direction_scale": 0.5,
+    "maximum_population_median_fraction_direction_scale_below_0p5": 0.1,
+    "minimum_population_median_style_delta_e76": 5.0,
+    "minimum_population_median_delta_e76_vs_cb11": 1.0,
+    "minimum_population_median_global_dose": 0.5,
+    "maximum_fraction_global_dose_below_0p25": 0.1,
+    "minimum_tone_knot_count": 64,
+    "maximum_confirmed_severe_artifact_count": 0
+  },
+  "blind_protocol": {
+    "rounds": 3,
+    "seed": 20260812,
+    "ties_allowed": false,
+    "minimum_candidate_round_wins": 2,
+    "minimum_candidate_aggregate_choices": 29,
+    "minimum_candidate_source_majorities": 10,
+    "mapping_hidden_until_choices_commit": true
+  },
+  "stop_rules": [
+    "Any support, exact order, gradient, boundary, style or dose failure closes before visual review.",
+    "A severe or blind failure closes without coordinate, knot, target, source, dose or threshold rescue.",
+    "A pass opens only a separately frozen source-disjoint confirmation."
+  ],
+  "claim_ceiling": "Development-only direct-L-star monotone tone plus bounded chroma Look Approximation evidence; not independent confirmation, stock response, calibration, population preference or product promotion."
+}
