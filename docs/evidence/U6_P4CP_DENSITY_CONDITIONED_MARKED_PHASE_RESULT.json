@@ -1,0 +1,54 @@
+{
+  "schema": "neuro_film.u6_p4cp_density_conditioned_marked_phase_result.v1",
+  "experiment_id": "u6.p4cp-density-conditioned-marked-phase-v1",
+  "date": "2026-08-11",
+  "contract_commit": "5ada8270",
+  "implementation_commit": "d15ef190",
+  "contract_sha256": "823ffc5cede9f9de475d3476dc79f7c049b42a4486af08ce173f95408f0a5153",
+  "report_sha256": "b34bc829b2f89e41c2f62071b226e40f93d300bbaf0f28e144433fcc65298969",
+  "stable_evidence_id": "c775c0c5515a4eeb858c92e2207c293766d8cd62830e124d3dd24e2b46d2c66a",
+  "two_full_runs_byte_identical": true,
+  "development": {
+    "consumed_sources": 4,
+    "low_bin_patches": 90,
+    "high_bin_patches": 230,
+    "selected_low_parent_count": 64,
+    "selected_high_parent_count": 128,
+    "model_freeze_id": "938e0525723c2064940d6b5b94d644bd74bcebd17f19d214fff32d0dc67776f5"
+  },
+  "confirmation": {
+    "fresh_sources": 4,
+    "frames": 40,
+    "selected_bytes": 31838397,
+    "metadata_lock_sha256": "3ee90ac134a40b271b1c69ca2b51dcdcfbca537fbea56a8377a9940f09d759ea",
+    "source_decode_count_at_model_freeze": 0,
+    "low_bin_patches": 131,
+    "high_bin_patches": 189,
+    "sources_beating_fixed_p4co": 1,
+    "median_source_improvement_over_fixed_p4co": -0.029060162140004397,
+    "worst_source_distance_ratio_to_fixed_p4co": 1.427124973195754
+  },
+  "projection": {
+    "maximum_per_sample_power_relative_error": 4.05384184793983e-8,
+    "maximum_per_sample_acf_absolute_error": 4.44089209850063e-16,
+    "power_gate": true,
+    "acf_gate": true
+  },
+  "gates": {
+    "source_wins": false,
+    "minimum_20_percent_median_source_improvement": false,
+    "worst_source_distance": false,
+    "development_and_confirmation_bin_support": true,
+    "exact_power_projection": true,
+    "exact_acf_projection": true,
+    "confirmation_pixels_unread_at_freeze": true
+  },
+  "decision": "FAIL_CLOSED_DENSITY_CONDITIONED_MARKED_PHASE_TRANSFER",
+  "interpretation": [
+    "Current lowpass brightness is observable and both bins have ample support, but it is not a transferable explanation for archival grain topology across these scanner/source nuisances.",
+    "The conditioned model improves only one of four fresh sources; median performance is worse than fixed P4CO and the worst source regresses 42.71%.",
+    "Close the exact two-bin mechanism without further splits. New progress requires controlled density/process evidence or a reference simulator, not additional archive-proxy routing."
+  ],
+  "next_action": "Pivot from archival proxy fitting to a typed high-fidelity stochastic reference simulator and controlled synthetic density/process invariants; wait for controlled real density fields before calibration claims.",
+  "claim_ceiling": "Fresh-source archival current-density/grain-topology evidence only; no stock, calibration, scanner separation, visual safety or product claim."
+}

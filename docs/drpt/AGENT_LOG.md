@@ -11535,3 +11535,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Three of four new sources improve and median gain is `33.91%`, but one source
   regresses `19.40%`; the unchanged worst-tail veto closes fixed topology.
 - The next leaf tests current-density conditioning, not per-source target fit.
+
+# 2026-08-11 - U6.P4CP closes archive brightness conditioning
+
+- Development selects 64/128 parents for low/high current-patch brightness;
+  both development and confirmation bins have ample support. Two reports are
+  exact (`b34bc829...98969`) and exact spectrum gates pass.
+- Only one of four new sources improves; median is `-2.91%` and worst ratio
+  `1.4271`. Close further archive-proxy splitting and move to controlled
+  reference simulation until real density/process observations exist.
