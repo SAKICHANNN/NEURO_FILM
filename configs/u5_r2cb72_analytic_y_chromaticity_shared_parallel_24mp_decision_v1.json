@@ -1,0 +1,22 @@
+{
+  "schema": "neuro_film.u5_r2cb72_analytic_y_chromaticity_shared_parallel_24mp_decision.v1",
+  "experiment_id": "U5.R2CB72",
+  "contract_path": "configs/u5_r2cb72_analytic_y_chromaticity_shared_parallel_24mp_v1.json",
+  "contract_sha256": "420c1338519b3db10dfbd2ac4d5cb600b77e581dea2ec397eaba14258bab0817",
+  "formal_report_path": "D:/nf-019f4b76-cb72-report.json",
+  "formal_report_sha256": "02ee4bccc82248160cfa7f825e7861e19a8517bdeac98ed5bbc5588e3943aaba",
+  "automatic_pass": false,
+  "decision": "fail_cb72_helper_retains_all_completed_batches",
+  "metrics": {
+    "output_sha256_exact": true,
+    "selector_facts_exact": true,
+    "repeat_exact": true,
+    "maximum_peak_process_tree_rss_bytes": 2497744896,
+    "peak_rss_ratio_to_cb69": 1.1061748326591325,
+    "maximum_wall_seconds": 62.867940299998736,
+    "wall_ratio_to_cb69": 0.9984426563542028,
+    "scratch_cleanup": true
+  },
+  "interpretation": "The shared-slice kernels are exact, but the bounded helper accumulated every completed batch result in one list. Close CB72; a successor may yield and consume each batch immediately without changing arithmetic or gates.",
+  "claim_ceiling": "Local Windows/Python 24MP negative resource evidence only; no profile, default, product, stock, calibration or arbitrary-media change."
+}
