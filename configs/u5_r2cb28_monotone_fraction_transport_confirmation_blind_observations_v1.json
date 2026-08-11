@@ -1,0 +1,32 @@
+{
+  "schema": "neuro_film.u5_r2cb28_monotone_fraction_transport_confirmation_blind_observations.v1",
+  "experiment_id": "U5.R2CB28",
+  "report_sha256": "16ee25b49c1ceccbe884d8b9d1e9f215c407ef30f4a4e05ec5be04681e747d67",
+  "stable_evidence_id": "6f27ca945cbab1335fb84a84bdb5521b64b591ea740e469093cfad5b8f9cf683",
+  "mapping_read_before_commit": false,
+  "review_policy": "severe-artifact veto first, then visibly stylized film-inspired appeal",
+  "confirmed_severe_artifact_count": 0,
+  "rounds": [
+    {
+      "round": 1,
+      "sheet_sha256": "b86de3c4cccfa0fbc858553316e5664af1fc26760b2583d63ca1e473823c0c9e",
+      "choices_in_display_order": ["B", "B", "B", "A", "B", "A", "A", "A", "A", "B", "B", "A"]
+    },
+    {
+      "round": 2,
+      "sheet_sha256": "da4a35538d6046c949d7e93de4a83a8295e3e925e43d7f9a1a8a9e5e148039ee",
+      "choices_in_display_order": ["B", "A", "B", "A", "A", "B", "B", "A", "A", "A", "A", "A"]
+    },
+    {
+      "round": 3,
+      "sheet_sha256": "aa54c1ec5ca1d72e29a9f4683208d950427e25bd338907c84658695d3089c04c",
+      "choices_in_display_order": ["A", "B", "A", "B", "B", "A", "B", "A", "B", "B", "B", "B"]
+    }
+  ],
+  "observations": [
+    "The darker, denser rendering is consistently preferred on foliage, water, street furniture, architecture and fisheye interiors because it retains structure and avoids a pale cyan veil.",
+    "The warm wood cabinet is preferred to the pale cabinet rendering; the magenta night balcony is preferred to the cyan lifted alternative despite its stronger colour cast.",
+    "No option is rejected for severe geometry, text, object, banding, seam, clipping-block or repeated-texture corruption at contact-sheet scale."
+  ],
+  "claim_ceiling": "Autonomous blind visual evidence on source-disjoint confirmation contact sheets; not population preference, full-resolution adjudication, stock response, calibration or product promotion."
+}
