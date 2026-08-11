@@ -1,0 +1,14 @@
+{
+  "schema": "neuro_film.u5_r2cb69_analytic_y_chromaticity_parallel_ao6_throughput_decision.v1",
+  "experiment_id": "U5.R2CB69",
+  "formal_report_sha256": "a03dc5f6b06e12f723a299b11c6872154283ca05c4f4850220b8e1196a84c88f",
+  "output_sha256_exact": true,
+  "selector_facts_exact": true,
+  "maximum_peak_process_tree_rss_bytes": 2258001920,
+  "peak_rss_ratio_to_baseline": 0.4512259805061078,
+  "wall_ratio_to_baseline": 0.4593226029694678,
+  "automatic_pass": true,
+  "failed_gates": [],
+  "decision": "pass_cb69_output_exact_parallel_ao6_complete_throughput",
+  "claim_ceiling": "Local Windows/Python complete 24MP analytic renderer throughput evidence only; no native/device, photographic preference, stock, calibration, default-product or arbitrary-media claim."
+}
