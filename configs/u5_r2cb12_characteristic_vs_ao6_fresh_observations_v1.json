@@ -1,0 +1,74 @@
+{
+  "schema": "neuro_film.u5_r2cb12_characteristic_vs_ao6_fresh_observations.v1",
+  "experiment_id": "U5.R2CB12",
+  "status": "blind_observations_frozen_mapping_unread",
+  "observer": "autonomous_codex_visual_review",
+  "report": "outputs/experiments/u5_r2cb12_characteristic_vs_ao6_fresh_v1/run4/report_run4.json",
+  "report_sha256": "3d8af27c533ab6f1cdf7c9d94f4f412022a27a7ed18d2483a57b09e21dfff82e",
+  "criteria": "after the severe-artifact veto, prefer the more visibly stylized and photographically coherent result; ties are not allowed by the frozen contract",
+  "sheet_sha256": {
+    "round_1.png": "da1427595002fd4e03ba89d14ac5a988aab3b56d361bdffcda4f8d0bfa22534c",
+    "round_2.png": "221fac9a0ca8a4ff045bab7358251e5f3e9c29cfa3ce7ce0776a5e2d9594da7d",
+    "round_3.png": "83abebdb2a2dc382c50250d77d4eb2863fb0456d7621532695371df06986829b"
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "choices": [
+        {"source_id": "epson_r_d1x", "choice": "A"},
+        {"source_id": "motorola_moto_g_7_play", "choice": "A"},
+        {"source_id": "lg_lg_h850", "choice": "B"},
+        {"source_id": "autel_robotics_xb015", "choice": "A"},
+        {"source_id": "hasselblad_lunar", "choice": "B"},
+        {"source_id": "huawei_eml_l29", "choice": "A"},
+        {"source_id": "apple_iphone_12_pro", "choice": "A"},
+        {"source_id": "blackmagic_pocket_cinema_camera_4k", "choice": "B"},
+        {"source_id": "leica_c_typ_112", "choice": "B"},
+        {"source_id": "olympus_e_450", "choice": "A"},
+        {"source_id": "xiaomi_m2010j19cg", "choice": "B"},
+        {"source_id": "leaf_aptus_22", "choice": "B"}
+      ]
+    },
+    {
+      "round": 2,
+      "choices": [
+        {"source_id": "epson_r_d1x", "choice": "A"},
+        {"source_id": "motorola_moto_g_7_play", "choice": "A"},
+        {"source_id": "lg_lg_h850", "choice": "B"},
+        {"source_id": "autel_robotics_xb015", "choice": "A"},
+        {"source_id": "hasselblad_lunar", "choice": "B"},
+        {"source_id": "huawei_eml_l29", "choice": "A"},
+        {"source_id": "apple_iphone_12_pro", "choice": "A"},
+        {"source_id": "blackmagic_pocket_cinema_camera_4k", "choice": "A"},
+        {"source_id": "leica_c_typ_112", "choice": "A"},
+        {"source_id": "olympus_e_450", "choice": "A"},
+        {"source_id": "xiaomi_m2010j19cg", "choice": "A"},
+        {"source_id": "leaf_aptus_22", "choice": "A"}
+      ]
+    },
+    {
+      "round": 3,
+      "choices": [
+        {"source_id": "epson_r_d1x", "choice": "A"},
+        {"source_id": "motorola_moto_g_7_play", "choice": "A"},
+        {"source_id": "lg_lg_h850", "choice": "B"},
+        {"source_id": "autel_robotics_xb015", "choice": "B"},
+        {"source_id": "hasselblad_lunar", "choice": "B"},
+        {"source_id": "huawei_eml_l29", "choice": "B"},
+        {"source_id": "apple_iphone_12_pro", "choice": "A"},
+        {"source_id": "blackmagic_pocket_cinema_camera_4k", "choice": "A"},
+        {"source_id": "leica_c_typ_112", "choice": "A"},
+        {"source_id": "olympus_e_450", "choice": "A"},
+        {"source_id": "xiaomi_m2010j19cg", "choice": "B"},
+        {"source_id": "leaf_aptus_22", "choice": "A"}
+      ]
+    }
+  ],
+  "sheet_level_confirmed_severe_artifact_count": 0,
+  "notes": [
+    "All 36 comparisons preserve geometry, objects and fine structure without a confirmed seam, repeated texture, block, posterization, text/object break or red-speckle field.",
+    "Strong warmth, cool shadows and exposure-like density differences are treated as style unless they create confirmed clipping, banding or structural corruption.",
+    "This is autonomous visual evidence, not population preference."
+  ],
+  "mapping_files_read": false
+}
