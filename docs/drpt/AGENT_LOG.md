@@ -11401,3 +11401,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `3/3` rounds, `33/36` choices and `11/12` source majorities.
 - The Panasonic posterized speckle is absent. Retain the unchanged one-angle
   mechanism for a disjoint BK13S confirmation only; product/default unchanged.
+
+# 2026-08-11 - U5.R2CB21 source-disjoint confirmation frozen
+
+- Freeze the exact CB20 operator and automatic/blind gates on BK13S: twelve
+  cameras disjoint from CB20 development, though used by unrelated algorithms.
+- Use a new sealed blind seed. No parameter, threshold or post-result rescue is
+  allowed; even a pass remains mechanism evidence rather than promotion.

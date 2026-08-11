@@ -178,6 +178,7 @@ def evaluate_direction_candidate(
     report_schema: str,
     experiment_id: str,
     contract_filename: str,
+    blind_seed: int = 20260811 + 1700,
 ) -> dict[str, Any]:
     decision = _load_exact_json(
         root,
@@ -330,7 +331,7 @@ def evaluate_direction_candidate(
         for round_index in range(config["blind_protocol"]["rounds"]):
             path = output_dir / "blind" / f"round_{round_index + 1}.png"
             digest, mapping = _sheet(
-                rows, path, seed=20260811 + 1700, round_index=round_index
+                rows, path, seed=blind_seed, round_index=round_index
             )
             sheets.append(
                 {
