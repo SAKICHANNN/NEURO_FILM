@@ -11509,3 +11509,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   is `14.04% < 20%`; second-order ratio gates also fail against the near-exact
   Gaussian target. Retain only the directional nonstationarity evidence. A
   successor must add phase structure while preserving power by construction.
+
+# 2026-08-11 - U6.P4CM preserves power but misses high-order strength
+
+- Exact phase projection reduces maximum power/ACF error to `3.80e-8` and
+  `5.55e-16`. Two reports are exact (`e0d4a6da...3782e`; stable
+  `a4d64dae...1cebeb`) and model statistics freeze before new pixels.
+- All four fresh sources improve, but median high-order gain is only `13.43%`
+  versus the unchanged `20%` gate. Excursion-component density remains the
+  main mismatch; close this envelope and test a new explicit phase coupling.

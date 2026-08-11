@@ -1,0 +1,46 @@
+{
+  "schema": "neuro_film.u6_p4cm_phase_projected_thomas_confirmation_result.v1",
+  "experiment_id": "u6.p4cm-phase-projected-thomas-confirmation-v1",
+  "date": "2026-08-11",
+  "contract_commit": "0bae1bbf",
+  "implementation_commits": ["f301e9c8", "e1c132b2"],
+  "contract_sha256": "4f64dd153382d080077ef955577cf1c0394151ddbc0ecb0bc66e044df48ba77d",
+  "report_sha256": "e0d4a6da783c03da8da6fb2fbc4243bc7eb334224340501e90e647cc4cb3782e",
+  "stable_evidence_id": "a4d64daebab043a9d1342c255fa979e0708d6f744efa2ea7c755eff2b71cebeb",
+  "two_full_runs_byte_identical": true,
+  "source": {
+    "fresh_sources": 4,
+    "frames": 40,
+    "selected_bytes": 37634804,
+    "metadata_lock_sha256": "d7a17a5c4e27bacccd9caa7873480444b433ed2908298de72b1746c6b917e2b7",
+    "source_decode_count_at_model_freeze": 0
+  },
+  "projection": {
+    "maximum_per_sample_power_relative_error": 3.79928214822696e-8,
+    "maximum_per_sample_acf_absolute_error": 5.551115123125783e-16,
+    "power_gate": true,
+    "acf_gate": true
+  },
+  "confirmation": {
+    "sources_beating_gaussian_high_order_distance": 4,
+    "median_high_order_distance_improvement": 0.13429563368659325,
+    "worst_projected_to_gaussian_distance_ratio": 0.9456281019242414,
+    "minimum_source_improvement": 0.054371898075758596
+  },
+  "gates": {
+    "source_wins": true,
+    "worst_feature_distance": true,
+    "minimum_20_percent_median_feature_improvement": false,
+    "exact_power_projection": true,
+    "exact_acf_projection": true,
+    "source_pixels_unread_at_freeze": true
+  },
+  "decision": "FAIL_CLOSED_PHASE_PROJECTED_THOMAS_TRANSFER",
+  "interpretation": [
+    "Exact Fourier-magnitude projection removes P4CL's second-order conflict while retaining directional high-order improvement on all four fresh sources.",
+    "Median improvement is 13.43%, below the unchanged 20% gate. The projected model raises kurtosis and local-energy variation, but its excursion-component density remains materially below the observed sources.",
+    "Close the exact inherited envelope and projection without threshold rescue. The repeated 4/4 direction supports a new phase-coupling observation, not product integration."
+  ],
+  "next_action": "Test a separately frozen explicit higher-order phase coupling that targets excursion topology while retaining exact Thomas power, using new sources and the unchanged confirmation gates.",
+  "claim_ceiling": "Fresh-source archival-code phase-structure evidence only; no stock, physical calibration, scanner separation, visual safety or product claim."
+}

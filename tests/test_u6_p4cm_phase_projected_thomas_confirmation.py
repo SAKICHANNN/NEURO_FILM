@@ -9,6 +9,9 @@ from src.eval import phase_projected_thomas_confirmation as p4cm
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT_PATH = ROOT / "configs/u6_p4cm_phase_projected_thomas_confirmation_v1.json"
+EVIDENCE_PATH = (
+    ROOT / "docs/evidence/U6_P4CM_PHASE_PROJECTED_THOMAS_CONFIRMATION_RESULT.json"
+)
 
 
 def _contract() -> dict:
@@ -46,3 +49,13 @@ def test_score_prefers_exact_projected_median() -> None:
     rows = p4cm._score_sources({"source": list(fields)}, median, np.ones(4), median)
     assert rows[0]["gaussian_feature_distance"] == 0.0
     assert rows[0]["projected_feature_distance"] == 0.0
+
+
+def test_evidence_preserves_exact_projection_and_failed_strength() -> None:
+    evidence = json.loads(EVIDENCE_PATH.read_text(encoding="utf-8"))
+    assert evidence["two_full_runs_byte_identical"] is True
+    assert evidence["projection"]["power_gate"] is True
+    assert evidence["projection"]["acf_gate"] is True
+    assert evidence["confirmation"]["sources_beating_gaussian_high_order_distance"] == 4
+    assert evidence["gates"]["minimum_20_percent_median_feature_improvement"] is False
+    assert evidence["decision"] == "FAIL_CLOSED_PHASE_PROJECTED_THOMAS_TRANSFER"
