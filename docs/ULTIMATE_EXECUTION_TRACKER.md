@@ -1477,3 +1477,9 @@ pre-report cube-bound amendment, two corrected reports are exact
 (`98fbf600...918a6e`) and the first P8BP row still has `0.00615` L* inversions.
 Close spatially varying tone scale. The next mechanism is one globally positive
 affine RGB tone projection plus unchanged bounded chroma.
+
+U5.R2CB43 proves the global affine direction is structurally safer: two exact
+reports (`faa73848...de4871`) have zero L* inversion/boundary and retain full
+CB32 chroma on all seven P8BN sources. It still fails because six fitted
+negative intercepts force tone dose zero; median style is `4.05 < 5`. Next
+project the same fit into the nonnegative-intercept cube-feasible set.

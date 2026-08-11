@@ -11,6 +11,7 @@ from src.eval.global_affine_tone_transport import select_global_affine_tone_cand
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u5_r2cb43_global_affine_tone_development_v1.json"
+DECISION = ROOT / "configs/u5_r2cb43_global_affine_tone_development_decision_v1.json"
 
 
 def test_cb43_contract_freezes_global_positive_affine_family() -> None:
@@ -49,3 +50,13 @@ def test_cb43_affine_target_preserves_order_and_luminance() -> None:
     assert facts["tone_dose"] == 1.0
     assert facts["global_dose"] == 1.0
     assert np.allclose(candidate, target, atol=2e-7)
+
+
+def test_cb43_decision_retains_order_result_and_opens_constrained_affine() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["metrics"]["maximum_lstar_inversion_fraction"] == 0.0
+    assert decision["metrics"]["population_median_global_chroma_dose"] == 1.0
+    assert decision["failed_checks"] == ["tone_dose", "visible_style"]
+    assert decision["decision"] == (
+        "close_unconstrained_affine_tone_open_nonnegative_intercept_projection"
+    )

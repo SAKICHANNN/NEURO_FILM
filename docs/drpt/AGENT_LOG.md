@@ -11738,3 +11738,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   was a missing lower cube bound and was repaired without changing the study.
 - Stop spatially varying tone-scale rescue; next test a globally positive
   affine RGB tone projection on a distinct source role.
+
+# 2026-08-12 - U5.R2CB43 global affine is safe but too weak
+
+- Two exact reports (`faa73848...de4871`) preserve zero inversion/boundary and
+  full chroma dose across 7/7 rows, but negative fitted intercepts reduce median
+  tone dose to zero and style to `4.05`.
+- Next project the same low-capacity fit to `intercept>=0`; no spatial rescue.
