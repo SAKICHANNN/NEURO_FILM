@@ -1,0 +1,28 @@
+{
+  "schema": "neuro_film.u6_p8ct_thomas_atomic_publication_scale_evidence.v1",
+  "experiment_id": "u6.p8ct-thomas-atomic-publication-scale-v1",
+  "date": "2026-08-12",
+  "status": "FAIL_CLOSED_BEFORE_PUBLICATION",
+  "implementation_commit": "82b85d2a",
+  "fixture": {
+    "height": 3000,
+    "width": 4000,
+    "exposure_minimum": -1.5,
+    "exposure_maximum": 1.5,
+    "profile_domain_by_channel": [
+      [0.033783783783783786, 4.797297297297297],
+      [0.033783783783783786, 4.898648648648648],
+      [0.033783783783783786, 4.842342342342342]
+    ]
+  },
+  "observed": {
+    "profile_reconstruction_exact": true,
+    "native_stream_rejected": true,
+    "destination_created": false,
+    "stage_residue_count": 0,
+    "formal_report_created": false
+  },
+  "decision": "close_p8cn_exposure_fixture_for_p8cr_profile",
+  "next_leaf": "Test the unchanged profile-bound atomic path with the previously frozen domain-valid P8BW exposure fixture; do not clamp or reinterpret P8CN exposure values.",
+  "claim_ceiling": "Input-domain fail-closed evidence only; no 12MP performance or publication claim."
+}
