@@ -13,6 +13,9 @@ from src.eval.fujifilm_characteristic_photographic import _compiled_curve
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u5_r2cb42_chromaticity_scalar_lstar_development_v1.json"
+DECISION = (
+    ROOT / "configs/u5_r2cb42_chromaticity_scalar_lstar_development_decision_v1.json"
+)
 
 
 def test_cb42_contract_changes_execution_not_curve_or_chroma_target() -> None:
@@ -67,3 +70,12 @@ def test_cb42_scalar_solve_does_not_create_black_boundary() -> None:
     )
     epsilon = float(cb11["operator"]["boundary_epsilon"])
     assert np.all(candidate[source > epsilon] > epsilon)
+
+
+def test_cb42_decision_opens_global_affine_successor() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["failure"]["completed_source_count"] == 0
+    assert decision["repeat_report_sha256_exact"] is True
+    assert decision["decision"] == (
+        "close_per_pixel_scalar_tone_open_global_positive_affine_tone_projection"
+    )

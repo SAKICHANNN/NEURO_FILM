@@ -1471,3 +1471,9 @@ actual L*. Two reports are exact (`2c17d191...f297c`), but the third AI1S row
 still has `1.48e-6` L* inversions despite safe gradient (`0.788`). This isolates
 the remaining defect to neutral-axis inverse execution. Next, solve the target
 with a positive scalar on each source RGB pixel before unchanged CB32 chroma.
+
+U5.R2CB42's chromaticity-preserving per-pixel scalar is worse: after one
+pre-report cube-bound amendment, two corrected reports are exact
+(`98fbf600...918a6e`) and the first P8BP row still has `0.00615` L* inversions.
+Close spatially varying tone scale. The next mechanism is one globally positive
+affine RGB tone projection plus unchanged bounded chroma.

@@ -1,0 +1,20 @@
+{
+  "schema": "neuro_film.u5_r2cb42_chromaticity_scalar_lstar_development_decision.v1",
+  "experiment_id": "U5.R2CB42",
+  "status": "failed_closed_before_visual_review",
+  "report_sha256": "98fbf60079f2eab1c9859e5fb84e7b0f655d25e20a3bb924b436c7d469918a6e",
+  "stable_evidence_id": "63c20226d9fb0fa3f26b61cd38ec37dab4de0ad49bb7f0e750af49d5cd80d2e5",
+  "repeat_report_sha256_exact": true,
+  "failure": {
+    "completed_source_count": 0,
+    "minimum_gradient_ratio": 1.2216554629389904,
+    "minimum_lstar_inversion_fraction": 0.006154182792904911
+  },
+  "pre_report_amendment": "The first attempt exposed a missing scalar lower-bound constraint before report creation; the analytic lower bound was added without changing data, curve, target, dose grid or gates, then two corrected runs were exact.",
+  "partial_artifacts_removed": true,
+  "visual_review_status": "forbidden",
+  "decision": "close_per_pixel_scalar_tone_open_global_positive_affine_tone_projection",
+  "next_leaf": "Replace spatially varying scalar tone with one globally positive affine RGB tone projection, then apply the unchanged CB32 chroma direction under the same order and gradient gates.",
+  "forbidden": "same-cohort rescue, relaxed order epsilon, scalar smoothing, curve or strength tuning, changed chroma target or post-result threshold changes",
+  "claim_ceiling": "Mechanism failure of per-pixel scalar tone execution; not visual, stock, calibration, preference or product evidence."
+}

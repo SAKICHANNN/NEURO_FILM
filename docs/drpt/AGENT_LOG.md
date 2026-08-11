@@ -11730,3 +11730,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `1.48e-6` L* inversion; visual review remains forbidden.
 - Keep the exact curve and gates. Next use a positive source-RGB scalar solve,
   preserving chromaticity instead of reconstructing tone on the neutral axis.
+
+# 2026-08-12 - U5.R2CB42 closes per-pixel scalar tone
+
+- Two corrected exact reports (`98fbf600...918a6e`) fail on the first P8BP
+  source at `0.00615` L* inversion. The earlier no-report implementation defect
+  was a missing lower cube bound and was repaired without changing the study.
+- Stop spatially varying tone-scale rescue; next test a globally positive
+  affine RGB tone projection on a distinct source role.
