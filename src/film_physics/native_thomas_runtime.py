@@ -7,8 +7,6 @@ import hashlib
 from pathlib import Path
 from typing import Any
 
-import numpy as np
-
 from .atomic_native_output import (
     NativeByteSink,
     publish_native_thomas_profile_rgb16_png,
@@ -16,6 +14,7 @@ from .atomic_native_output import (
 from .native_gauge_profile import NativeGaugeProfileF32V1
 from .native_granularity_amplitude import NativeGranularityAmplitudeProfileV1
 from .native_thomas_field import NativeThomasFieldProfileV1
+from .native_thomas_input import RelativeLayerLogExposure
 from .native_thomas_package import (
     ResolvedNativeThomasPackage,
     native_thomas_package_sha256,
@@ -79,10 +78,15 @@ class NativeThomasExportRuntime:
         self.policy = dict(package["execution_policy"])
         self._library = _load_library(resolved.library_path)
 
-    def publish(self, exposure: np.ndarray, *, destination: Path) -> dict[str, Any]:
-        """Publish one exact profile render and return a provenance receipt."""
-        source = np.asarray(exposure)
-        input_sha256 = hashlib.sha256(source.tobytes()).hexdigest()
+    def publish(
+        self, exposure: RelativeLayerLogExposure, *, destination: Path
+    ) -> dict[str, Any]:
+        """Publish one explicitly typed log-exposure render and return a receipt."""
+        if not isinstance(exposure, RelativeLayerLogExposure):
+            raise TypeError("native Thomas runtime requires RelativeLayerLogExposure")
+        input_descriptor = exposure.descriptor()
+        source = exposure.values_chw
+        native_input_sha256 = hashlib.sha256(source.tobytes()).hexdigest()
         published = publish_native_thomas_profile_rgb16_png(
             self._library,
             self.profile,
@@ -92,13 +96,16 @@ class NativeThomasExportRuntime:
             destination=destination,
             maximum_output_bytes=int(self.policy["maximum_output_bytes"]),
         )
-        if hashlib.sha256(source.tobytes()).hexdigest() != input_sha256:
+        if hashlib.sha256(source.tobytes()).hexdigest() != native_input_sha256:
             raise NativeThomasRuntimeError("native Thomas runtime mutated input")
+        if exposure.descriptor() != input_descriptor:
+            raise NativeThomasRuntimeError("native Thomas runtime mutated typed input")
         return {
             "schema": "neuro_film.native_thomas_export_receipt.v1",
             "package_sha256": self.package_sha256,
             "profile_sha256": self.profile_sha256,
-            "input_sha256": input_sha256,
+            "input_sha256": native_input_sha256,
+            "input_contract": input_descriptor,
             "output": published,
             "production_default_changed": False,
             "claim_ceiling": (

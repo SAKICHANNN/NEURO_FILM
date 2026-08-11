@@ -37,6 +37,7 @@ from src.film_physics.atomic_native_output import (
     publish_native_thomas_profile_rgb16_png,
     publish_native_thomas_rgb16_png,
 )
+from src.film_physics.native_thomas_input import RelativeLayerLogExposure
 from src.film_physics.native_thomas_package import resolve_native_thomas_package
 from src.film_physics.native_thomas_runtime import NativeThomasExportRuntime
 from src.preprocess.output_encode import srgb_icc_profile
@@ -141,7 +142,9 @@ def _worker(
         )
         receipt = NativeThomasExportRuntime(
             package=package, resolved=resolved
-        ).publish(exposure, destination=destination)
+        ).publish(
+            RelativeLayerLogExposure.adopt_chw(exposure), destination=destination
+        )
         published = receipt["output"]
     elif profile is not None:
         published = publish_native_thomas_profile_rgb16_png(
