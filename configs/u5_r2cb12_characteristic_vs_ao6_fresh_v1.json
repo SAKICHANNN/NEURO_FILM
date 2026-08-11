@@ -19,6 +19,7 @@
     "required_decision": "pass_fresh_population_and_open_fixed_global_policy_confirmation",
     "source_count_exact": 12,
     "camera_make_count_exact": 12,
+    "maximum_long_edge": 1600,
     "input_rail": "hash-bound relative_display_srgb_approximation PNG only; not RAW or scene-linear evidence"
   },
   "ao6": {
