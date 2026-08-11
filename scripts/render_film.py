@@ -41,6 +41,7 @@ from src.inference import (
     load_render_profile,
     sha256_file,
 )
+from src.inference.analytic_render_recipe import build_analytic_render_recipe
 from src.inference.analytic_y_chromaticity_profile import (
     load_analytic_y_chromaticity_profile,
     render_analytic_y_chromaticity_profile,
@@ -297,16 +298,12 @@ def main() -> int:
             raise ValueError(
                 "safe-Lab --use-render-profile cannot be combined with the analytic research engine"
             )
-        if args.write_recipe:
-            raise ValueError(
-                "render recipe v1 does not support the analytic research engine"
-            )
         analytic_runtime = load_analytic_y_chromaticity_profile(
             args.analytic_profile, root=ROOT
         )
     profile_manifest = None
     profile_values = None
-    if args.use_render_profile or args.write_recipe:
+    if args.use_render_profile or (args.write_recipe and analytic_runtime is None):
         profile_manifest = load_render_profile(args.render_profile, root=ROOT)
         _verify_recipe_profile_assets(profile_manifest, args)
         if args.style not in profile_manifest["style_parameters"]:
@@ -427,50 +424,80 @@ def main() -> int:
     recipe_path = None
     recipe_sha256 = None
     if args.write_recipe:
-        assert profile_manifest is not None and profile_values is not None
-        recipe = build_render_recipe(
-            profile_path=args.render_profile,
-            profile=profile_manifest,
-            input_path=args.input,
-            input_metadata={
-                "color_state": working.source_transfer_state,
-                "working_space": working.working_space,
-                "source_profile_kind": working.source_profile.kind,
-                "source_profile_fingerprint_sha256": None,
-                "bit_depth": working.bit_depth_in,
-                "warnings": [warning.__dict__ for warning in working.warnings],
-            },
-            render_metadata={
-                "engine_id": "safe_lab_v1",
-                "preset": args.preset,
-                "style": args.style,
+        input_metadata = {
+            "color_state": working.source_transfer_state,
+            "working_space": working.working_space,
+            "source_profile_kind": working.source_profile.kind,
+            "bit_depth": working.bit_depth_in,
+            "warnings": [warning.__dict__ for warning in working.warnings],
+        }
+        effects = {
+            "grain": {
+                "strength": args.grain,
                 "seed": args.seed,
-                "color_parameters": profile_values,
-                "effects": {
-                    "grain": {
-                        "strength": args.grain,
-                        "seed": args.seed,
-                        "color": args.style not in {"hp5", "tri_x_400"},
-                    },
-                    "halation": {
-                        "strength": args.halation,
-                        "model": args.halation_model,
-                        "preset": halation_preset_id,
-                        "control_mode": args.halation_control_mode,
-                        "resolved_parameters": halation_resolved,
-                    },
-                    "dust": {"strength": args.dust, "seed": args.seed + 17},
-                },
+                "color": args.style not in {"hp5", "tri_x_400"},
             },
-            output_path=args.output,
-            output_format=output_format,
-            output_bit_depth=args.output_bit_depth,
-            output_icc_fingerprint_sha256=srgb_icc_profile_fingerprint_sha256(),
-            output_claim=output_claim,
-            software_commit=subprocess.check_output(
-                ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True, encoding="utf-8"
-            ).strip(),
-        )
+            "halation": {
+                "strength": args.halation,
+                "model": args.halation_model,
+                "preset": halation_preset_id,
+                "control_mode": args.halation_control_mode,
+                "resolved_parameters": halation_resolved,
+            },
+            "dust": {"strength": args.dust, "seed": args.seed + 17},
+        }
+        commit = subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True, encoding="utf-8"
+        ).strip()
+        if analytic_runtime is None:
+            assert profile_manifest is not None and profile_values is not None
+            recipe = build_render_recipe(
+                profile_path=args.render_profile,
+                profile=profile_manifest,
+                input_path=args.input,
+                input_metadata={
+                    **input_metadata,
+                    "source_profile_fingerprint_sha256": None,
+                },
+                render_metadata={
+                    "engine_id": "safe_lab_v1",
+                    "preset": args.preset,
+                    "style": args.style,
+                    "seed": args.seed,
+                    "color_parameters": profile_values,
+                    "effects": effects,
+                },
+                output_path=args.output,
+                output_format=output_format,
+                output_bit_depth=args.output_bit_depth,
+                output_icc_fingerprint_sha256=srgb_icc_profile_fingerprint_sha256(),
+                output_claim=output_claim,
+                software_commit=commit,
+            )
+        else:
+            assert color_diagnostics is not None
+            recipe = build_analytic_render_recipe(
+                runtime=analytic_runtime,
+                input_path=args.input,
+                input_metadata={
+                    "source_color_state": working.source_transfer_state,
+                    "runtime_transfer_state": working.transfer_state,
+                    "working_space": working.working_space,
+                    "source_profile_kind": working.source_profile.kind,
+                    "bit_depth": working.bit_depth_in,
+                    "warnings": [
+                        warning.__dict__ for warning in working.warnings
+                    ],
+                },
+                selector_facts=color_diagnostics,
+                effects=effects,
+                output_path=args.output,
+                output_format=output_format,
+                output_bit_depth=args.output_bit_depth,
+                output_icc_fingerprint_sha256=srgb_icc_profile_fingerprint_sha256(),
+                output_claim=output_claim,
+                software_commit=commit,
+            )
         recipe_path = args.output.with_suffix(".recipe.json")
         recipe_sha256 = atomic_write_json(recipe_path, recipe)
 

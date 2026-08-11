@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import copy
 import json
 import subprocess
 import sys
@@ -9,6 +10,11 @@ import numpy as np
 import pytest
 from PIL import Image
 
+from src.inference.analytic_render_recipe import (
+    AnalyticRenderRecipeError,
+    validate_analytic_render_recipe,
+    verify_analytic_render_recipe_files,
+)
 from src.inference.analytic_y_chromaticity_profile import (
     load_analytic_y_chromaticity_profile,
     render_analytic_y_chromaticity_profile,
@@ -116,7 +122,6 @@ def test_cb57_procedural_effects_repeat_after_opt_in_colour(
     "extra",
     [
         ("--style", "ektar_100"),
-        ("--write-recipe",),
         ("--use-render-profile",),
     ],
 )
@@ -127,6 +132,40 @@ def test_cb57_unsupported_combinations_fail_before_output(
     result = _run(source, output, "--color-engine", "analytic-y-chromaticity", *extra)
     assert result.returncode != 0
     assert not output.exists()
+
+
+def test_cb58_analytic_recipe_verifies_and_binds_files(
+    tmp_path: Path, source: Path
+) -> None:
+    output = tmp_path / "recipe.png"
+    result = _run(
+        source,
+        output,
+        "--color-engine",
+        "analytic-y-chromaticity",
+        "--grain",
+        "0.02",
+        "--write-recipe",
+        "--write-metrics",
+    )
+    assert result.returncode == 0, result.stderr
+    recipe_path = output.with_suffix(".recipe.json")
+    recipe = json.loads(recipe_path.read_text(encoding="utf-8"))
+    verify_analytic_render_recipe_files(recipe, profile_path=PROFILE, root=ROOT)
+    assert recipe["schema_id"] == "kmcfm.analytic-render-recipe.v1"
+    assert recipe["render"]["engine_id"] == "analytic_y_chromaticity_cb56_v1"
+    assert recipe["claim"]["calibrated_reference_allowed"] is False
+    metrics = json.loads(output.with_suffix(".metrics.json").read_text())
+    assert metrics["render_recipe"]["schema_id"] == recipe["schema_id"]
+
+    identity_drift = copy.deepcopy(recipe)
+    identity_drift["profile"]["profile_id"] = "forged-profile"
+    with pytest.raises(AnalyticRenderRecipeError):
+        validate_analytic_render_recipe(identity_drift)
+
+    output.write_bytes(output.read_bytes() + b"tamper")
+    with pytest.raises(AnalyticRenderRecipeError, match="output file drift"):
+        verify_analytic_render_recipe_files(recipe, profile_path=PROFILE, root=ROOT)
 
 
 def test_cb57_profile_asset_drift_fails_before_output(
