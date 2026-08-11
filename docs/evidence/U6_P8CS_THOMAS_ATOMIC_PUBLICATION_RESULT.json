@@ -1,0 +1,34 @@
+{
+  "schema": "neuro_film.u6_p8cs_thomas_atomic_publication_evidence.v1",
+  "experiment_id": "u6.p8cs-thomas-atomic-publication-v1",
+  "date": "2026-08-12",
+  "status": "PASS",
+  "implementation_commit": "7985683e5a92747d403cca289ef5a5e0e1852a6f",
+  "contract_sha256": "0949dfecd070a0cb3a438a622b74139e44648a8e1ca34b2e9a3fb99d48657c07",
+  "formal_report_sha256": "33b0ff92bc0554baa34be8f91c07eb3bca60a4b1f9d106bee4daf5ef878cba1a",
+  "stable_evidence_id": "a4a4ce78f38f22e78c6e8774626cfa18ab9a12e5deb88dc49f04c3ffc1c61433",
+  "profile_sha256": "923a985aa90e029332c723a33afb793afe05cae777b3c07061d54828b91e21b4",
+  "output": {
+    "bytes": 27975,
+    "png_sha256": "0f164ac92add4de56d9bb649cc1d8e4fac64d5e3f522542bc5bd4b580fc1fcaf",
+    "decoded_rgb16_sha256": "486e24dd23a1704a58344fe4f0b762af169c600829ec3605c12971d0944a316b",
+    "icc_sha256": "217fe48ec958c667f8eef725aa27198f465df95d7662593b90d0a1cc30114356",
+    "raw_field_means": [
+      -0.09875855359437809,
+      -0.061946068115632774,
+      0.0516454675876308
+    ],
+    "workspace_bytes": 347743
+  },
+  "gates": {
+    "png_bytes_exact": true,
+    "decoded_rgb16_exact": true,
+    "icc_exact": true,
+    "repeat_exact": true,
+    "failure_atomic": true,
+    "no_stage_residue": true
+  },
+  "decision": "retain_profile_bound_atomic_native_png_publication",
+  "interpretation": "The exact P8CR profile can drive the existing P8CQ native renderer directly into a same-directory create-only atomic PNG sink while preserving the frozen PNG, decoded RGB16 and ICC identities and leaving no partial file after injected failure.",
+  "claim_ceiling": "Create-only atomic local publication of the exact generic physical-inspired P8CQ PNG from the exact P8CR profile; not calibrated stock response, photographic placement, delivered product or arbitrary-media support."
+}
