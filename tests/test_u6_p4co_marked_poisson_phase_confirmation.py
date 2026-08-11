@@ -3,6 +3,9 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import numpy as np
+
+from src.eval import marked_poisson_phase_confirmation as p4co
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u6_p4co_marked_poisson_phase_confirmation_v1.json"
@@ -29,3 +32,22 @@ def test_contract_retains_exact_spectrum_and_strength_gate() -> None:
     ] == 0.2
     assert contract["confirmation_gates"]["require_exact_power_projection"] is True
     assert contract["confirmation_gates"]["require_exact_acf_projection"] is True
+
+
+def test_marked_phase_is_repeat_exact_and_power_preserving() -> None:
+    contract = json.loads(CONTRACT.read_text(encoding="utf-8"))
+    first = p4co._marked_fields(contract, 4, 8, 2.0, seed_offset=7)
+    second = p4co._marked_fields(contract, 4, 8, 2.0, seed_offset=7)
+    assert np.array_equal(first, second)
+    compat = p4co._p4cm_contract(contract)
+    bases, _scales = p4co._base_and_scale_fields(compat, 4, seed_offset=7)
+    errors = p4co._projection_errors(contract, bases, first)
+    assert errors["maximum_per_sample_power_relative_error"] <= 5e-8
+    assert errors["maximum_per_sample_acf_absolute_error"] <= 1e-12
+
+
+def test_topology_parameters_change_high_order_features() -> None:
+    contract = json.loads(CONTRACT.read_text(encoding="utf-8"))
+    sparse = p4co._marked_fields(contract, 8, 4, 1.0, seed_offset=11)
+    broad = p4co._marked_fields(contract, 8, 64, 8.0, seed_offset=11)
+    assert not np.array_equal(p4co._feature_matrix(sparse), p4co._feature_matrix(broad))
