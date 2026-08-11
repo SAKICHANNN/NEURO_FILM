@@ -203,9 +203,16 @@ def evaluate(config: Mapping[str, Any], root: Path, output_dir: Path) -> dict[st
             path = output_dir / "blind" / f"round_{round_index + 1}.png"
             digest, mapping = _sheet(rows, path, seed=20260811, round_index=round_index)
             sheets.append(
-                {"round": round_index + 1, "path": str(path), "sha256": digest}
+                {
+                    "round": round_index + 1,
+                    "path": path.relative_to(output_dir).as_posix(),
+                    "sha256": digest,
+                }
             )
             mappings[str(round_index + 1)] = mapping
+    for row in rows:
+        for key in ("source_path", "ao6_path", "candidate_path"):
+            row[key] = Path(row[key]).relative_to(output_dir).as_posix()
     report = {
         "schema": REPORT_SCHEMA,
         "experiment_id": EXPERIMENT_ID,
