@@ -1,0 +1,57 @@
+{
+  "schema": "neuro_film.u6_p8cs_thomas_atomic_publication_contract.v1",
+  "experiment_id": "u6.p8cs-thomas-atomic-publication-v1",
+  "node": "ULT > U6 > U6.P8 > U6.P8CS",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can the exact P8CR profile drive the unchanged P8CQ native PNG stream directly into a create-only fsynced atomic file without retaining the complete PNG or changing any byte?",
+  "parent": {
+    "path": "docs/evidence/U6_P8CR_THOMAS_EXPORT_PROFILE_RESULT.json",
+    "sha256": "7500c6b311eb37833ece11d9d289ae586108f3736b20e44b3583c39e1f11c87a",
+    "required_decision": "retain_hash_bound_thomas_export_profile_ingress"
+  },
+  "profile_sha256": "923a985aa90e029332c723a33afb793afe05cae777b3c07061d54828b91e21b4",
+  "profile_source_bindings": {
+    "p2q_characteristic": "087e67544f737401fa697b21f06215a31827189e0648b8d60da666b92113caaa",
+    "p4bw_profile": "4edf4eaaeae163a2f579584c7d9533134a7d6177d5cc78ed517cb15865e585bf",
+    "p8bs_thomas": "343d98c2f59d1632e336402b64e890dad4180db9ea1af8f4c46b7d228edef860",
+    "p8bv_amplitude": "06e3d751678097be788ccc2df7869a568c0809837f3aaa35c6bba1b84dd28202",
+    "p8bw_layers": "8c1313117f3f36dbcc4657038c4ccc5e7b6040f1a347a6ff0c7612417f43dbdc",
+    "p8ca_gauge": "1aa83cfbb91c6bbfbdefc6165d700384bb23df0df2b5d65abd931e3c8affa06c",
+    "p8cq_export_core": "3d9c08e6fe1b039e099c4cbfbe95cdbd3290df033ebc56934b2aa2c19f387467"
+  },
+  "implementation": {
+    "atomic_sink_sha256": "fefdc1e1099cdcff338477a556970e6046671942e5174ea06b91ae57fd9351e2",
+    "evaluator_sha256": "66a147cfc5baa0db41e8c6aa96e143252eef28b8fa1c91c056597501ff738461",
+    "runner_sha256": "591c49e2d49adcafcae975c98e2f97ec1aaa6076695b9c8258732a8bfed313fd"
+  },
+  "fixture": {
+    "height": 65,
+    "width": 67,
+    "row_partition": 17,
+    "exposure_seed": 2026081101,
+    "runs": 2,
+    "maximum_output_bytes": 1048576
+  },
+  "expected": {
+    "png_sha256": "0f164ac92add4de56d9bb649cc1d8e4fac64d5e3f522542bc5bd4b580fc1fcaf",
+    "decoded_rgb16_sha256": "486e24dd23a1704a58344fe4f0b762af169c600829ec3605c12971d0944a316b",
+    "icc_sha256": "217fe48ec958c667f8eef725aa27198f465df95d7662593b90d0a1cc30114356"
+  },
+  "gates": {
+    "png_bytes_exact": true,
+    "decoded_rgb16_exact": true,
+    "icc_exact": true,
+    "repeat_exact": true,
+    "failure_atomic": true,
+    "no_stage_residue": true
+  },
+  "forbidden": [
+    "PNG, ICC, quantizer, profile or native arithmetic change",
+    "destination overwrite",
+    "calibrated-stock, photographic-placement, delivery or product-default claim"
+  ],
+  "decision_if_pass": "retain_profile_bound_atomic_native_png_publication",
+  "decision_if_fail": "retain_p8cr_profile_and_p8cq_stream_without_file_publication",
+  "claim_ceiling": "Create-only atomic local publication of the exact generic physical-inspired P8CQ PNG from the exact P8CR profile; not calibrated stock response, photographic placement, delivered product or arbitrary-media support."
+}
