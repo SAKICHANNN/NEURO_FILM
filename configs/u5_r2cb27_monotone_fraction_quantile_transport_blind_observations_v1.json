@@ -1,0 +1,32 @@
+{
+  "schema": "neuro_film.u5_r2cb27_monotone_fraction_quantile_transport_blind_observations.v1",
+  "experiment_id": "U5.R2CB27",
+  "report_sha256": "860236446bd23deb4f90de04e451deb8fa92b4575e41d1bce7d70ac5fa808cb4",
+  "stable_evidence_id": "6d713b901d7defcbf52dc3afca7a23956dbe47c7dd26ea36dfe1b3381536f42d",
+  "mapping_read_before_commit": false,
+  "review_policy": "severe-artifact veto first, then visibly stylized film-inspired appeal",
+  "confirmed_severe_artifact_count": 0,
+  "rounds": [
+    {
+      "round": 1,
+      "sheet_sha256": "901b98ebcfed5fc5a160a1c117b6bf62a8030e455a3666ff4f51f9eec66824c2",
+      "choices_in_display_order": ["A", "B", "A", "A", "A", "A", "B", "A", "A", "B", "A", "A"]
+    },
+    {
+      "round": 2,
+      "sheet_sha256": "f5bd1dbf50b0f17373ecf324bab42ce7257a840d7842d888d93c3b29e0cae727",
+      "choices_in_display_order": ["A", "A", "B", "A", "B", "A", "A", "A", "A", "A", "A", "B"]
+    },
+    {
+      "round": 3,
+      "sheet_sha256": "6dc078769af3ba96944fa295376d684ca9772506b61031d18847dfa9fcbb123a",
+      "choices_in_display_order": ["A", "A", "A", "B", "A", "B", "A", "B", "A", "A", "A", "B"]
+    }
+  ],
+  "observations": [
+    "The darker rich rendering is generally preferred to the cyan or pale high-key alternative on architecture, documents and low-light scenes.",
+    "The more chromatic blue-yellow snow and magenta-cloud variants are preferred where they add separation without washing out structure.",
+    "No candidate is rejected for severe face, text, object, geometry, banding, seam, clipping-block or repeated-texture failure at contact-sheet scale."
+  ],
+  "claim_ceiling": "Autonomous blind visual evidence on development contact sheets; not population preference, full-resolution adjudication, stock response, calibration or product promotion."
+}
