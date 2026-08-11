@@ -1,0 +1,52 @@
+{
+  "schema": "neuro_film.u5_r2cb12_characteristic_vs_ao6_fresh_contract.v1",
+  "experiment_id": "U5.R2CB12",
+  "question": "Does the fixed CB11 mechanism beat unchanged AO6 t15/c35 on an independent twelve-camera display-proxy population after severe-artifact veto?",
+  "candidate": {
+    "decision_path": "configs/u5_r2cb11_fujifilm_characteristic_luma_chroma_decision_v1.json",
+    "decision_sha256": "e38befd4166e55c31ff992741dd726b67c7ca397b7a6e22ffaf8f865cfaccfab",
+    "required_decision": "retain_exact_luminance_bounded_chroma_mechanism",
+    "contract_path": "configs/u5_r2cb11_fujifilm_characteristic_luma_chroma_v1.json",
+    "contract_sha256": "fd6127a0c336fdfc661870d8636e8c7a8bbe741f096465e52c73a5a327213b5f"
+  },
+  "population": {
+    "decision_path": "configs/u5_r2bh1s_global_policy_source_preflight_decision_v1.json",
+    "decision_sha256": "9b3cb743e186d8c7fe9a27202aba9bbbd8aae6785a2ea318e44478a2b36e93a5",
+    "manifest_path": "outputs/u5_r2bh1s_global_policy_source_preflight_v1/manifest.json",
+    "manifest_sha256": "75a5139defa6a1f054eef5e3f5f6062483f4cc72e18416ece1cae3b10f4672fc",
+    "visual_review_path": "outputs/u5_r2bh1s_global_policy_source_preflight_v1/visual_source_review.json",
+    "visual_review_sha256": "388acf3710d2cb850a3f048db5b27441f63160f21dd944af24443fc2497ce268",
+    "required_decision": "pass_fresh_population_and_open_fixed_global_policy_confirmation",
+    "source_count_exact": 12,
+    "camera_make_count_exact": 12,
+    "input_rail": "hash-bound relative_display_srgb_approximation PNG only; not RAW or scene-linear evidence"
+  },
+  "ao6": {
+    "parent_contract_path": "configs/u5_r2bh1_fixed_global_policy_confirmation_v1.json",
+    "parent_contract_sha256": "e28a71160267aabf1ecf088de5ef8907da0c94bc36d1148da281988cf5c14223",
+    "profile_compiler_config_path": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json",
+    "profile_compiler_config_sha256": "0d238a4970ae4c131d0cf39d00d30638e53e2baa63a3eccf56353c93a1ff16c4",
+    "component": "ao6-source-context-display-look",
+    "arm_id": "fixed_ao6_colour_only_t15_c35"
+  },
+  "protocol": {
+    "candidate_arm_id": "fixed_cb11_characteristic_luma_chroma",
+    "create_only": true,
+    "rounds": 3,
+    "independent_per_source_mapping_each_round": true,
+    "ties_allowed": false,
+    "minimum_candidate_round_wins": 2,
+    "minimum_candidate_aggregate_choices": 22,
+    "aggregate_choice_denominator": 36,
+    "minimum_candidate_source_majorities": 7,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_confirmed_severe_artifact_count": 0,
+    "mapping_hidden_until_all_choices_are_frozen": true
+  },
+  "stop_rules": [
+    "Do not change either operator, population, input rail, mappings, thresholds or number of rounds after rendering begins.",
+    "Automatic or severe failure closes CB11 before preference; preference failure retains AO6 without rescue.",
+    "Pass retains a research Look Approximation challenger only; product promotion, stock identity, calibration and population preference remain closed."
+  ],
+  "claim_ceiling": "Independent-camera autonomous comparison of fixed explicit display-proxy Look Approximation arms; not RAW, scene-linear, Velvia calibration, stock response, population preference or product promotion."
+}

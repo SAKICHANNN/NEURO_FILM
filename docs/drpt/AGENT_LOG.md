@@ -11222,3 +11222,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain only the generic mechanism. The consumed development population does
   not establish preference or Velvia authenticity; next freeze a fresh direct
   comparison against unchanged AO6 t15/c35 with severe veto before blind style.
+
+# 2026-08-11 - Freeze U5.R2CB12 fresh AO6 comparison
+
+- The P: RAW roots are unavailable, but BH1S retains twelve exact decoded PNGs
+  on its explicit `relative_display_srgb_approximation` rail. All twelve live
+  files and hashes pass, across twelve makes.
+- CB12 will linearize that same display-proxy input for both unchanged CB11 and
+  the existing fixed AO6 compiler. It will not claim RAW or scene-linear
+  confirmation. Repeat/boundary and severe gates precede three hidden-mapping
+  autonomous preference rounds with fixed `2/22/7` promotion thresholds.
