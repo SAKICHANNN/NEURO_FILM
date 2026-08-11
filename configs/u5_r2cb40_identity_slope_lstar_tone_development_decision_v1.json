@@ -1,0 +1,19 @@
+{
+  "schema": "neuro_film.u5_r2cb40_identity_slope_lstar_tone_development_decision.v1",
+  "experiment_id": "U5.R2CB40",
+  "status": "failed_closed_before_visual_review",
+  "report_sha256": "fa95ac303d331ab1c7ff11ed548b6d99e0759bc2127a192a71da4584869e9822",
+  "stable_evidence_id": "f93ab3c097e34b0826f7705c053461b81db9d1b5dcb36a0589c2f8577e75771b",
+  "repeat_report_sha256_exact": true,
+  "failure": {
+    "completed_source_count": 2,
+    "minimum_gradient_ratio": 1.1465493325453711,
+    "minimum_lstar_inversion_fraction": 0.0015450346148873401
+  },
+  "partial_artifacts_removed": true,
+  "visual_review_status": "forbidden",
+  "decision": "close_histogram_tone_family_open_characteristic_lstar_successor",
+  "next_leaf": "Apply the already-frozen CB11 monotone characteristic curve directly to normalized source L-star, analytically invert to neutral Y, and retain unchanged CB32 chroma on a different source population.",
+  "forbidden": "BL8S rescue, alternate identity fractions, more histogram knots, adaptive slopes, changed thresholds or post-result tuning",
+  "claim_ceiling": "Mechanism failure closing the empirical histogram-tone family; not visual, stock, calibration, preference or product evidence."
+}

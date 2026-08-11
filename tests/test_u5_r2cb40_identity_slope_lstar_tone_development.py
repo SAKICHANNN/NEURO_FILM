@@ -11,6 +11,7 @@ from src.eval.identity_slope_lstar_tone_transport import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u5_r2cb40_identity_slope_lstar_tone_development_v1.json"
+DECISION = ROOT / "configs/u5_r2cb40_identity_slope_lstar_tone_development_decision_v1.json"
 
 
 def test_cb40_contract_freezes_one_eighth_identity_slope() -> None:
@@ -43,3 +44,12 @@ def test_cb40_selector_preserves_order_with_flat_target_distribution() -> None:
     assert float(np.max(np.abs(luma_error))) < 1e-6
     assert facts["selected_lstar_inversion_fraction"] == 0.0
     assert facts["source_identity_fraction"] == 0.125
+
+
+def test_cb40_decision_closes_histogram_tone_family() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["failure"]["completed_source_count"] == 2
+    assert decision["failure"]["minimum_gradient_ratio"] < 1.35
+    assert decision["decision"] == (
+        "close_histogram_tone_family_open_characteristic_lstar_successor"
+    )

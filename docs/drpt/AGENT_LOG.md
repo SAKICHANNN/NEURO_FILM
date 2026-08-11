@@ -11716,3 +11716,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Direct coordinate alignment is insufficient when quantile transport has flat
   regions. Add a fixed positive source-identity slope on a distinct population;
   do not densify knots or tune AO7S.
+
+# 2026-08-12 - U5.R2CB40 closes empirical histogram tone
+
+- Two exact reports (`fa95ac30...e9822`) pass two BL8S sources and fail the
+  third at `0.00155` L* inversion; gradient remains safe (`1.147`).
+- Do not test further identity blends or knots. Move to the pre-existing CB11
+  monotone characteristic curve applied directly in L* on a new population.

@@ -1459,3 +1459,9 @@ diagnostics (`e05afaf9...15bd9d`) show safe gradient (`1.004`) yet `0.00441`
 L* inversions on the first AO7S row: the nondecreasing quantile map has flat
 regions whose float32 inverse is not strictly order-stable. The next leaf adds
 a fixed positive source-identity slope on a different population; no AO7 rescue.
+
+U5.R2CB40's fixed one-eighth identity slope passes two BL8S sources, then fails
+the third with `0.00155` L* inversion despite safe gradient (`1.147`). Two
+reports are exact (`fa95ac30...e9822`). This closes the empirical histogram
+tone family rather than testing more blend weights. The next leaf directly
+applies the already-frozen monotone CB11 characteristic curve in L* space.
