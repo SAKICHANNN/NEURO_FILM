@@ -1,0 +1,22 @@
+{
+  "schema": "neuro_film.u5_r2cb61_analytic_y_chromaticity_row_hue_memory_decision.v1",
+  "experiment_id": "U5.R2CB61",
+  "formal_report_sha256": "2c38e0bde0787175cca8c49cfe2d1abce2133e41dd78552dadcc8dc0c5aa23ad",
+  "input": {
+    "path": "D:/nf-019f4b76-cb60-input.png",
+    "sha256": "f9a369f384126a0837880a79828f3608290e8ef013a0156f72a263a19762ed98",
+    "shape": [4000, 6000, 3],
+    "generator": "RGB uint8 channels ((7x+3y+19), (2x+11y+47), (13x+5y+101)) modulo 256; OpenCV PNG compression 3"
+  },
+  "output_sha256": "949ffce7f86faee4296de52e51b90ae8e5cd4dc205d4a5a9e0f5cb86c6c6e9fa",
+  "maximum_peak_process_tree_rss_bytes": 5004148736,
+  "peak_rss_ratio_to_baseline": 0.6927347439602679,
+  "maximum_wall_seconds": 131.08845460000157,
+  "wall_ratio_to_baseline": 1.096405933126643,
+  "output_sha256_exact": true,
+  "selector_facts_exact": true,
+  "repeat_exact": true,
+  "automatic_pass": true,
+  "decision": "pass_cb61_output_exact_row_bounded_hue_target_memory",
+  "claim_ceiling": "Local Windows/Python complete 24MP analytic renderer resource evidence only; no native/device, photographic preference, stock, calibration, default-product or arbitrary-media claim."
+}

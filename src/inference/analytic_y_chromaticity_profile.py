@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -172,6 +173,7 @@ def render_analytic_y_chromaticity_profile(
     runtime: AnalyticYChromaticityRuntime,
     *,
     scratch_root: Path | None = None,
+    target_builder: Callable[..., np.ndarray] | None = None,
 ) -> tuple[np.ndarray, dict[str, float]]:
     if (
         working.working_space != "linear_srgb"
@@ -195,7 +197,12 @@ def render_analytic_y_chromaticity_profile(
         boundary_epsilon=epsilon,
     )
     config = runtime.cb52
-    target = nonexpansive_fraction_transport_target(
+    build_target = (
+        nonexpansive_fraction_transport_target
+        if target_builder is None
+        else target_builder
+    )
+    target = build_target(
         safe_base,
         ao6,
         weights=weights,
