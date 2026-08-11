@@ -3,6 +3,8 @@
   "experiment_id": "U5.R2CB31",
   "question": "Is CB30's concentrated gradient failure caused by assigning distinct target quantiles to exactly equal source gamut fractions, and does grouped-midrank transport remove it without changing the frozen safety gates?",
   "parents": {
+    "cb30_contract_path": "configs/u5_r2cb30_monotone_fraction_gold_stress_v1.json",
+    "cb30_contract_sha256": "34fdd9ea0fbf55af9b6dd9f9aa9a566bf264836016e048995b03ecacb4381bbd",
     "cb30_decision_path": "configs/u5_r2cb30_monotone_fraction_gold_stress_decision_v1.json",
     "cb30_decision_sha256": "49059093ee9c637409394ea60bf2d062203dee1c980385caa69f5409ec905b28",
     "cb30_required_decision": "close_per_pixel_stable_rank_transport_on_gold_gradient_gate",
