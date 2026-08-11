@@ -8,6 +8,7 @@ import json
 import math
 from collections.abc import Mapping, Sequence
 from itertools import pairwise
+from pathlib import Path
 from typing import Any
 
 from .native_gauge_profile import (
@@ -301,10 +302,39 @@ def reconstruct_native_thomas_export_profile(
     return amplitude, fields, native_gauge_profile_struct(payload["gauge"])
 
 
+def load_native_thomas_export_profile(
+    path: Path,
+    *,
+    expected_profile_sha256: str,
+    maximum_bytes: int = 1048576,
+) -> dict[str, Any]:
+    """Load one bounded canonical profile artifact and verify its identity."""
+    if (
+        isinstance(maximum_bytes, bool)
+        or not isinstance(maximum_bytes, int)
+        or maximum_bytes <= 0
+        or not path.is_file()
+        or path.stat().st_size > maximum_bytes
+    ):
+        raise ValueError("native Thomas profile file preflight failed")
+    raw = path.read_bytes()
+    try:
+        payload = json.loads(raw)
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise ValueError("native Thomas profile JSON rejected") from exc
+    if not isinstance(payload, dict) or canonical_profile_bytes(payload) != raw:
+        raise ValueError("native Thomas profile is not canonical")
+    actual = validate_native_thomas_export_profile(payload)
+    if actual != expected_profile_sha256:
+        raise ValueError("native Thomas expected profile identity drift")
+    return payload
+
+
 __all__ = [
     "PROFILE_SCHEMA",
     "canonical_profile_bytes",
     "compile_native_thomas_export_profile",
+    "load_native_thomas_export_profile",
     "reconstruct_native_thomas_export_profile",
     "validate_native_thomas_export_profile",
 ]

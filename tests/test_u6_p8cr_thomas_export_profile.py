@@ -17,7 +17,9 @@ from src.film_physics.native_granularity_amplitude import (
     compile_native_granularity_amplitude_profile,
 )
 from src.film_physics.native_thomas_export_profile import (
+    canonical_profile_bytes,
     compile_native_thomas_export_profile,
+    load_native_thomas_export_profile,
     reconstruct_native_thomas_export_profile,
     validate_native_thomas_export_profile,
 )
@@ -89,3 +91,26 @@ def test_profile_rejects_invalid_or_tampered_payloads(mutator, message: str) -> 
     mutator(payload)
     with pytest.raises(ValueError, match=message):
         validate_native_thomas_export_profile(payload)
+
+
+def test_profile_file_loader_requires_canonical_expected_identity(
+    tmp_path: Path,
+) -> None:
+    payload = _payload()
+    path = tmp_path / "profile.json"
+    path.write_bytes(canonical_profile_bytes(payload))
+    assert (
+        load_native_thomas_export_profile(
+            path, expected_profile_sha256=payload["profile_sha256"]
+        )
+        == payload
+    )
+    with pytest.raises(ValueError, match="expected profile"):
+        load_native_thomas_export_profile(
+            path, expected_profile_sha256="0" * 64
+        )
+    path.write_bytes(canonical_profile_bytes(payload) + b"\n")
+    with pytest.raises(ValueError, match="not canonical"):
+        load_native_thomas_export_profile(
+            path, expected_profile_sha256=payload["profile_sha256"]
+        )
