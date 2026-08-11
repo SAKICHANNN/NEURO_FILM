@@ -11571,3 +11571,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - All automatic and severe gates pass. Frozen blind choices reveal `3/3`
   round wins, `31/36` choices and `11/12` source majorities. Retain the exact
   mechanism only for source-disjoint confirmation; AO6 remains product/default.
+
+# 2026-08-11 - U5.R2CB24 closes bounded transport confirmation
+
+- Exact CB23 reaches a zero lower-10th-percentile feasible step on
+  `nokia_lumia_930`; the full render stops before that candidate is emitted.
+- Two diagnostic preflights are byte exact (`fc2173e7...eec1d`; stable
+  `9857cda0...197d76`), stop at the same tenth source and leave two later
+  sources unread. Do not add epsilon, minimum dose or quantile rescue. AO6
+  remains incumbent; a successor must be intrinsically interior.

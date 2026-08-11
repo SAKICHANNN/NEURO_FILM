@@ -1,0 +1,29 @@
+{
+  "schema": "neuro_film.u5_r2cb24_feasibility_bounded_transport_confirmation_decision.v1",
+  "experiment_id": "U5.R2CB24",
+  "contract_commit": "22d3a4ffd75c6078eb319c6ac07eabb553eb78b8",
+  "confirmation_implementation_commit": "a3ff0551b4791e208a00d25ab7a9c64191b3b844",
+  "contract_sha256": "eaa5dcc9e3d143260ce6539185875809aa029ced337c9555a37705e4e5c070b2",
+  "preflight_implementation_sha256": "58c8d58ee25b9015693a8a33c3f0501ac668e455d8f9f685ad133af7ffd7f734",
+  "runner_sha256": "a3e2065709e2c6b51c4ca928446d1ee146a72a79dc8470fe47ec24dd986205dc",
+  "formal_preflight_path": "D:/nf-019f4b76-cb24/preflight_run1.json",
+  "formal_preflight_sha256": "fc2173e7334c5970ecdf1f08d7c9e764cf18d540d2fbddf87cbf2bbc2eceec1d",
+  "stable_evidence_id": "9857cda06635f7488e1292a9b08fe9686ee138853682463e9e68a533a9197d76",
+  "repeat_report_byte_exact": true,
+  "full_render_report_emitted": false,
+  "failed_source_id": "nokia_lumia_930",
+  "failed_source_feasibility_quantile_step": 0.0,
+  "failed_source_global_dose": 0.0,
+  "source_count_read": 10,
+  "source_count_unread": 2,
+  "blind_review_opened": false,
+  "passed": false,
+  "decision": "close_feasibility_bounded_transport_after_source_disjoint_zero_dose",
+  "interpretation": [
+    "The exact CB23 mechanism cannot construct a positive global dose for Nokia Lumia 930 under the frozen lower-10th-percentile feasibility rule.",
+    "Several earlier confirmation sources also require very small global doses, including 0.02055 for Parrot Bebop2 and 0.09765 for OnePlus One.",
+    "The source-disjoint failure occurs before the tenth candidate render and closes confirmation without epsilon, minimum-dose, quantile or threshold rescue."
+  ],
+  "next_action": "Retain AO6 as incumbent; any successor must make the colour operator intrinsically interior rather than deriving a global rescue dose from an infeasible linear-RGB target.",
+  "claim_ceiling": "Stable negative source-disjoint confirmation of feasibility-bounded Gaussian chroma transport; not stock response, calibration, population preference or product promotion."
+}
