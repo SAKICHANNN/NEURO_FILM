@@ -1,0 +1,30 @@
+{
+  "schema": "neuro_film.u5_r2cb54_analytic_y_chromaticity_streaming_24mp_decision.v1",
+  "experiment_id": "U5.R2CB54",
+  "contract_sha256": "d9bfe7f6bae63190e55101f8d4d35b0be88119ae9a57f318cc4376fdf52f98a7",
+  "streaming_operator_sha256": "2ec1f2bca90bc0c5c43e06df6c433f2125f186a97bc045071be4b63f1d3a9ac6",
+  "runner_sha256": "fbf1f2598e11a733372b19758602c3be6c98fa32615ca3c3eeea245acdeedf74",
+  "formal_report_sha256": "281bb02017e92eee56d585c2bb49b521e0936d4a995e7d3aa537e2e1977b1581",
+  "stable_evidence_id": "d6a19c7e25e9fdf8676f54dafce6aca2114c5900a9134565c6aaf7ef05c28921",
+  "automatic_pass": true,
+  "metrics": {
+    "maximum_peak_process_tree_rss_bytes": 1873612800,
+    "maximum_worker_seconds": 12.539073400010238,
+    "peak_rss_repeat_ratio": 1.0001727357405552,
+    "wall_repeat_ratio": 1.000365766815417,
+    "cb53_to_cb54_peak_rss_reduction_bytes": 2503340032,
+    "cb53_to_cb54_peak_rss_reduction_fraction": 0.571936716726309,
+    "candidate_sha256": "8cdea2be0c93752cdaf62e43df3011e39f091c9552ec1585feca929c27b38bae"
+  },
+  "checks": {
+    "two_fresh_workers_completed": true,
+    "output_and_selected_facts_exact": true,
+    "finite_bounded_and_luminance_safe": true,
+    "resource_gates": true,
+    "scratch_cleanup": true
+  },
+  "decision": "pass_cb54_output_exact_streaming_24mp",
+  "next_leaf": "Replay the exact CB52 40-source gold/stress set through the streamed selector and require every encoded output hash and row fact to match the frozen CB52 baseline.",
+  "product_default_changed": false,
+  "claim_ceiling": "Local Windows/Python synthetic 24MP output-exact streamed mechanism evidence only; not complete renderer, native/device, photographic quality, stock, calibration or product performance."
+}
