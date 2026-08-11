@@ -11684,3 +11684,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Dose zero itself has `2.88e-6` L* adjacency inversions; the best frozen dose
   still has `2.62e-7`. Therefore dose search cannot meet the exact-zero gate.
   Change to exact source-luminance reconstruction; do not rescue BK17.
+
+# 2026-08-12 - U5.R2CB36 exact source-luminance rebase closes on style
+
+- Two independent BK8 executions are byte-identical (`04500f6c...4a42e`).
+  Exact L* order, luminance, gradient and boundary gates pass.
+- Median style is only `2.70` and the low-dose tail is 3/11, so visual review
+  is forbidden. Retain the source-Y mechanism result; move to a fixed monotone
+  tone map on a distinct source population without changing CB32 chroma.

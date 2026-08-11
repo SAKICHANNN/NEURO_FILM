@@ -1,0 +1,24 @@
+{
+  "schema": "neuro_film.u5_r2cb36_source_luminance_rebased_fraction_development_decision.v1",
+  "experiment_id": "U5.R2CB36",
+  "status": "failed_closed_before_visual_review",
+  "report_sha256": "04500f6ca68c5ecb226e346b1d69bde88246f8258b501f0de0a769894ea4a42e",
+  "stable_evidence_id": "9d98803379f0a7c5fdd120290ad67c90c89b8b62f9b3d25afa208d6350d14253",
+  "repeat_report_sha256_exact": true,
+  "metrics": {
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.0,
+    "maximum_luminance_reconstruction_error": 5.6278705584666966e-08,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio_vs_source": 1.0165730598688039,
+    "population_median_style_delta_e76": 2.702503507875375,
+    "population_median_delta_e76_vs_cb11": 6.661174764823783,
+    "population_median_global_dose": 1.0,
+    "fraction_global_dose_below_0p25": 0.2727272727272727
+  },
+  "failed_checks": ["visible_style", "global_dose_tail"],
+  "visual_review_status": "forbidden",
+  "decision": "close_source_luminance_rebase_open_monotone_source_tone_successor",
+  "next_leaf": "Fit one fixed monotone source-luminance quantile map to the CB11 luminance distribution, then apply the unchanged CB32 chroma target with analytic cube and gradient bounds on a different source population.",
+  "forbidden": "BK8 rescue, lower style or dose gates, altered CB32 target, local masks, spatial filtering or post-result tuning",
+  "claim_ceiling": "Mechanism evidence that source-luminance rebasing closes exact L-star order but loses material style; not visual, stock, calibration, preference or product evidence."
+}

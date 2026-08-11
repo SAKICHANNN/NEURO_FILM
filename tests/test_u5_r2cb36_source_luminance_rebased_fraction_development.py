@@ -14,6 +14,10 @@ ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = (
     ROOT / "configs/u5_r2cb36_source_luminance_rebased_fraction_development_v1.json"
 )
+DECISION = (
+    ROOT
+    / "configs/u5_r2cb36_source_luminance_rebased_fraction_development_decision_v1.json"
+)
 
 
 def test_cb36_contract_freezes_new_population_and_source_luminance_base() -> None:
@@ -59,3 +63,15 @@ def test_cb36_selector_preserves_source_order_on_chromatic_target() -> None:
     assert float(np.max(np.abs(luma_error))) < 1e-7
     assert facts["selected_lstar_inversion_fraction"] == 0.0
     assert facts["global_dose"] > 0.0
+
+
+def test_cb36_decision_closes_low_style_without_order_regression() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["metrics"][
+        "maximum_adjacent_lstar_gradient_sign_inversion_fraction"
+    ] == 0.0
+    assert decision["metrics"]["population_median_style_delta_e76"] < 5.0
+    assert decision["visual_review_status"] == "forbidden"
+    assert decision["decision"] == (
+        "close_source_luminance_rebase_open_monotone_source_tone_successor"
+    )

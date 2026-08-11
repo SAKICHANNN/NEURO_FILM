@@ -1434,3 +1434,10 @@ dose because dose zero already inverts `2.88e-6` of eligible adjacencies, while
 the best dose reaches only `2.62e-7`. Partial scratch is removed and visual
 review stays forbidden. A successor must reconstruct exact source luminance,
 not densify the grid or relax the zero gate.
+
+U5.R2CB36 validates that diagnosis but closes the simplest repair. Two reports
+are exact (`04500f6c...4a42e`): rebasing CB32 chroma on source luminance gives
+zero L* inversions, `5.63e-8` luminance error and no new boundary, but median
+style is only `2.70` and 3/11 sources require dose below 0.25. Visual review is
+forbidden. The next mechanism may restore tone only through a fixed monotone
+source-luminance map on a different population.
