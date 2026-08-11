@@ -1,0 +1,30 @@
+{
+  "schema": "neuro_film.u5_r2cb50_analytic_y_chromaticity_source_decision.v1",
+  "experiment_id": "U5.R2CB50S",
+  "status": "source_eligible_fixed_comparison_open",
+  "parent_decision_path": "configs/u5_r2bk17s_factorized_ao6_sixth_fresh_source_decision_v1.json",
+  "parent_decision_sha256": "fe4fe8944efa216a45459228d07e0d4850710ec6326a80ac2fe237ad725664de",
+  "parent_required_decision": "open_fixed_bk16_sixth_fresh_confirmation",
+  "manifest_path": "outputs/u5_r2bk17s_factorized_ao6_sixth_fresh_source_v1/run_a/manifest.json",
+  "manifest_sha256": "a1a77d472037289bc31fccaae38d565a92d5ec843f27d35c4490962c860eccad",
+  "included_source_ids": [
+    "yi_technology_m1",
+    "eyedeas_e1",
+    "realme_rmx1851",
+    "bq_aquaris_u_plus",
+    "olympus_e_pl10",
+    "arashi_vision_insta360_one_x",
+    "nikon_d3100",
+    "canon_eos_m2",
+    "pentax_k2000",
+    "sony_dsc_rx100",
+    "panasonic_dmc_gf8",
+    "fujifilm_x_s20"
+  ],
+  "source_count_exact": 12,
+  "camera_make_count_exact": 12,
+  "exact_decoded_sha_overlap_with_cb49": 0,
+  "previously_consumed_mechanism_development_role": true,
+  "operator_outputs_inspected_for_this_role": false,
+  "claim_ceiling": "Existing natural-photo mechanism-development role, decoded-disjoint from CB49 but not project-global fresh data; not preference, film, stock, calibration or product evidence."
+}
