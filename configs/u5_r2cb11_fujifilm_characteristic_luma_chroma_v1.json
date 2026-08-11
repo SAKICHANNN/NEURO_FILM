@@ -1,0 +1,60 @@
+{
+  "schema": "neuro_film.u5_r2cb11_fujifilm_characteristic_luma_chroma_contract.v1",
+  "experiment_id": "U5.R2CB11",
+  "question": "Can exact monotone linear luminance plus analytically bounded zero-luminance chroma retain the characteristic look without boundary or luminance-order failures?",
+  "parents": {
+    "cb6_contract_path": "configs/u5_r2cb6_fujifilm_characteristic_forward_proxy_v1.json",
+    "cb6_contract_sha256": "e8f754c96b88491f9e6c1f467ddc1e3f9ec4d8b87afde9c40d0bea4e49b78150",
+    "cb10_decision_path": "configs/u5_r2cb10_fujifilm_characteristic_minmax_decision_v1.json",
+    "cb10_decision_sha256": "b8d5f3c146342edd658013e9b49e9ce832e7ecf0ff27eafde4b51797f8cdb8f0",
+    "cb10_required_decision": "close_characteristic_minmax_without_rescue"
+  },
+  "population": {
+    "decision_path": "configs/u5_r2bh0s_fixed_bank_oracle_source_preflight_decision_v1.json",
+    "decision_sha256": "0f1a518d7554cb0ce3bcea9e9bf06492604f7484743c96479207421226732ba9",
+    "manifest_path": "outputs/u5_r2bh0s_fixed_bank_oracle_source_preflight_v1/manifest.json",
+    "manifest_sha256": "e7dc8c861871de83a0aa3f92a717e23fd024bed15b8a19b739516c48f1f58e0e",
+    "visual_review_path": "outputs/u5_r2bh0s_fixed_bank_oracle_source_preflight_v1/visual_source_review.json",
+    "visual_review_sha256": "388d298af94e9a8507092717941d96c28414d0fa18ac5e9411b44ff2eaea3e5e",
+    "required_decision": "pass_fresh_population_and_open_complete_fixed_bank_oracle",
+    "required_visual_decision": "pass_source_visual_gate_with_two_fixed_failures_and_no_replacement",
+    "source_count_exact": 10,
+    "camera_make_count_exact": 10,
+    "exclude_ids": ["canon_powershot_v1"],
+    "maximum_long_edge": 1280
+  },
+  "operator": {
+    "input": "relative display-linear sRGB only",
+    "luminance_weights": [0.2126, 0.7152, 0.0722],
+    "nominal_strength": 0.2,
+    "boundary_epsilon": 0.00196078431372549,
+    "luminance": "Y is mapped by the exact epsilon-anchored CB10 scalar characteristic curve, making output luminance globally monotone and independent of chroma",
+    "chroma": "C=RGB-Y has exact weighted sum zero; output=Y_mapped+k*C with one analytically maximal k in [0,1] satisfying cube bounds and stricter epsilon bounds only for source-interior channels",
+    "forbidden": "hard clipping, post-hoc Lab gamut compression, spatial smoothing, curve refit or strength rescue"
+  },
+  "automatic_gates": {
+    "source_count_exact": 10,
+    "camera_make_count_exact": 10,
+    "maximum_luminance_reconstruction_error": 0.000001,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio_vs_source": 2.5,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.001,
+    "minimum_population_median_chroma_scale": 0.8,
+    "maximum_population_median_fraction_chroma_scale_below_0p5": 0.1,
+    "minimum_population_median_style_delta_e76": 2.0,
+    "minimum_population_median_joint_basic_residual_delta_e76": 0.5,
+    "minimum_rows_joint_basic_residual_delta_e76_ge_0p25": 8,
+    "two_byte_identical_reports_and_outputs": true,
+    "maximum_confirmed_severe_visual_artifact_count": 0
+  },
+  "evaluation": {
+    "gradient_sign_epsilon_lstar": 0.0001,
+    "colour_metric_max_samples": 65536
+  },
+  "stop_rules": [
+    "Do not change luminance weights, curve, strength, epsilon, chroma-scale equation, population, controls or gates after candidate pixels are scored.",
+    "Any automatic failure closes this exact luma/chroma executor before visual review and without rescue.",
+    "Pass opens severe visual review only and cannot establish Velvia calibration, authenticity, preference or product promotion."
+  ],
+  "claim_ceiling": "Rights-cleared photographic development evidence for exact-luminance analytically bounded chroma execution of a retained reversal characteristic shape; not Velvia calibration, authenticity, preference or product promotion."
+}

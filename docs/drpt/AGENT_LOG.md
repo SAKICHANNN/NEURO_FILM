@@ -11199,3 +11199,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   luminance ordering when the coordinate depends on chromatic extrema. Close
   this family; next make luminance an exact global monotone coordinate and
   analytically subordinate only the zero-luminance chroma component.
+
+# 2026-08-11 - Freeze U5.R2CB11 exact-luminance bounded chroma execution
+
+- CB11 makes the characteristic response a single global monotone function of
+  Rec.709 linear luminance. The remaining RGB chroma has exact zero weighted
+  luminance and is restored with one analytical maximum cube/boundary scale.
+- This construction targets CB10's colour-dependent luminance reorder while
+  retaining colour where the cube permits it. Luminance reconstruction,
+  chroma retention, boundary, gradient, style and severe gates are frozen.
