@@ -1,0 +1,37 @@
+{
+  "schema": "neuro_film.u5_r2cb8_fujifilm_characteristic_rgb_decision.v1",
+  "experiment_id": "U5.R2CB8",
+  "contract_commit": "2e57d280",
+  "implementation_commit": "80813490",
+  "contract_sha256": "3886642bd944732f6c1ea4a32d45a6cabc4862a7c4e1a199d993bb0e78512862",
+  "implementation_sha256": "aa2175944bfa67d25db39685a2628f5bd7df49f185279d2409656084bcef90cd",
+  "runner_sha256": "5c995a967c64424e06cb977648405b22ff8287b08b6a26a6db12cb502dc35190",
+  "formal_report_path": "outputs/experiments/u5_r2cb8_fujifilm_characteristic_rgb_v1/report_run1.json",
+  "formal_report_sha256": "2510e9a9afb03fdb34f954cc5d59984f34cbd61899e158b8e7e6715ea15c4f20",
+  "stable_evidence_id": "df8ff39652587c2ed4f685a48467b56b019009eda83b9117e274af71671d93f5",
+  "repeat_report_byte_exact": true,
+  "passed": false,
+  "decision": "close_intrinsic_rgb_characteristic_without_rescue",
+  "metrics": {
+    "minimum_curve_derivative": 0.8,
+    "output_linear_minimum": 0.0,
+    "output_linear_maximum": 1.0,
+    "maximum_p999_gradient_ratio_vs_source": 1.1255406789348017,
+    "population_median_style_delta_e76": 3.7831400697268895,
+    "population_median_joint_basic_residual_delta_e76": 2.942255264724311,
+    "rows_joint_basic_residual_delta_e76_ge_0p25": 10,
+    "maximum_new_hard_boundary_fraction": 0.14737997658079624,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.009911455305187672
+  },
+  "failed_gates": [
+    "gradient_order",
+    "new_boundaries"
+  ],
+  "interpretation": [
+    "The channelwise convex executor proves finite cube bounds, a positive diagonal Jacobian and modest gradient magnitude while retaining visible characteristic-curve style beyond the frozen joint basic control.",
+    "Cube membership is insufficient for product safety: compressing nonzero dark channel values toward zero creates a 14.74 percent new epsilon-boundary fraction on the worst source, despite zero literal clipping.",
+    "Independent channel nonlinearities also reorder material adjacent luminance differences on up to 0.991 percent of comparisons, so automatic failure forbids visual review."
+  ],
+  "next_action": "Preserve the CB6 characteristic mechanism and fixed 20 percent nominal dose, but execute its RGB residual through a separately frozen per-pixel analytical maximum-safe scale that prevents new epsilon-boundary crossings without hard clipping; do not retune CB8.",
+  "claim_ceiling": "Closed channelwise intrinsic-cube photographic compiler; not a negative result about CB6 manufactured-target evidence, all analytical residual executors, Velvia film, calibration or product quality."
+}

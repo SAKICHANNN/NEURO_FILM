@@ -20,6 +20,7 @@ from src.eval.fujifilm_dye_basis_measured_conformance import hash_file
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/u5_r2cb8_fujifilm_characteristic_rgb_v1.json"
+DECISION = ROOT / "configs/u5_r2cb8_fujifilm_characteristic_rgb_decision_v1.json"
 
 
 def test_contract_is_frozen() -> None:
@@ -74,3 +75,15 @@ def test_invalid_source_fails_before_rgb_execution() -> None:
             curve,
             strength=0.2,
         )
+
+
+def test_formal_decision_binds_exact_failed_replay() -> None:
+    import json
+
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["decision"] == "close_intrinsic_rgb_characteristic_without_rescue"
+    assert decision["repeat_report_byte_exact"] is True
+    assert decision["formal_report_sha256"] == (
+        "2510e9a9afb03fdb34f954cc5d59984f34cbd61899e158b8e7e6715ea15c4f20"
+    )
+    assert decision["failed_gates"] == ["gradient_order", "new_boundaries"]

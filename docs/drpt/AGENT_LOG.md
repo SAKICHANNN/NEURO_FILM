@@ -11138,3 +11138,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The same BH0S development population now tests visible style, residual beyond
   a joint EV/WB/contrast/saturation fit, hard boundaries, gradients and severe
   artifacts. Any failure closes this exact executor without dose rescue.
+
+# 2026-08-11 - U5.R2CB8 closes channelwise intrinsic-cube execution
+
+- Two formal reports and outputs are byte-identical (`2510e9a9...5c4f20`).
+  The operator remains finite and cube-bounded with minimum derivative `.8`,
+  maximum p99.9 gradient ratio `1.126`, median style Delta E `3.783` and median
+  residual beyond the joint basic control `2.942`.
+- Product safety still fails before visual review. The worst source gains
+  `14.738%` new epsilon-boundary pixels and adjacent material L-star order
+  inversion reaches `.991%`; literal cube clipping therefore was not the
+  relevant failure mode.
+- Close this exact channelwise executor without reducing the frozen dose.
+  The next algorithm leaf will test per-pixel analytical maximum-safe scaling
+  along the same residual direction, matching the project's bounded explicit
+  execution hypothesis rather than adding capacity or post-hoc clipping.
