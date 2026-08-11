@@ -359,8 +359,8 @@ def write_report(report: Mapping[str, Any], output: Path) -> str:
 
 __all__ = [
     "SafeBaseAo6DirectionError",
-    "apply_safe_base_direction_target",
     "ao6_direction_target",
+    "apply_safe_base_direction_target",
     "evaluate",
     "load_contract",
     "write_report",
