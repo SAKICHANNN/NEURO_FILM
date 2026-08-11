@@ -1,0 +1,76 @@
+{
+  "schema": "neuro_film.u5_r2cb27_monotone_fraction_quantile_transport_contract.v1",
+  "experiment_id": "U5.R2CB27",
+  "question": "Can a distributional monotone gamut-fraction transport preserve AO6 style while remaining intrinsically bounded and avoiding the invalid CB26 paired affine slope?",
+  "parents": {
+    "cb26_decision_path": "configs/u5_r2cb26_circular_hue_fraction_transport_decision_v1.json",
+    "cb26_decision_sha256": "0e9bbe0e74c142ee4c8c3acd9ad132bb129df03e78eab29e50498b9d3395091b",
+    "cb26_required_status": "close_circular_hue_fraction_transport_on_slope_envelope",
+    "cb16_decision_path": "configs/u5_r2cb16_safe_base_ao6_chroma_residual_decision_v1.json",
+    "cb16_decision_sha256": "965a1c0c0eba887673bd1f9793a5c28425edfe5495cb4bb151a70e3b9f20008f",
+    "cb16_required_status": "close_safe_base_ao6_chroma_magnitude_residual_without_rescue",
+    "cb14_decision_path": "configs/u5_r2cb14_characteristic_vs_ao6_ood_decision_v1.json",
+    "cb14_decision_sha256": "acb2e53031db6e9fe33f84d615ad259ea856190016ab7f26e2030775b8a2c8b9",
+    "cb14_required_status": "candidate_fails_ao6_retain_incumbent",
+    "cb11_contract_path": "configs/u5_r2cb11_fujifilm_characteristic_luma_chroma_v1.json",
+    "cb11_contract_sha256": "fd6127a0c336fdfc661870d8636e8c7a8bbe741f096465e52c73a5a327213b5f",
+    "cb12_contract_path": "configs/u5_r2cb12_characteristic_vs_ao6_fresh_v1.json",
+    "cb12_contract_sha256": "0951b3ec44049f76afda12b90ba40e1bc644000336fcc340b1b862ea986823c1"
+  },
+  "population": {
+    "decision_path": "configs/u5_r2bk6s_bounded_opponent_fresh_source_decision_v1.json",
+    "decision_sha256": "c09b30f2e66c694ee167e4c3ca4205a9bd14e086cf9b30237712354a31806e73",
+    "required_status": "source_eligible_fixed_comparison_open",
+    "manifest_path": "outputs/u5_r2bk6s_bounded_opponent_fresh_source_v1/run_a/manifest.json",
+    "manifest_sha256": "444f162f22e6bc40940eb82557a11ed2b1fa67e6736efb1362df7ef1069d5978",
+    "source_count_exact": 12,
+    "camera_make_count_exact": 12,
+    "maximum_long_edge": 1600,
+    "role": "development_only_previously_consumed_by_unrelated_algorithms"
+  },
+  "operator": {
+    "basis": "deterministic orthonormal basis of the Rec.709 zero-luminance plane",
+    "hue": "one unweighted circular Procrustes rotation between valid CB11 and AO6 unit chroma directions",
+    "gamut_fraction": "chroma magnitude divided by exact maximum magnitude on the fixed-luminance RGB cube section",
+    "fraction_transport": "stable-rank empirical CB11 gamut fractions mapped to linearly interpolated AO6 empirical quantiles",
+    "rank_rule": "stable mergesort with midpoint ranks (rank+0.5)/N over valid CB11 pixels",
+    "quantile_rule": "linear interpolation over sorted valid AO6 fractions at midpoint ranks",
+    "minimum_valid_fraction": 0.0001,
+    "reconstruction": "rotated CB11 hue and mapped AO6-distribution gamut fraction at exact CB11 luminance",
+    "neutral_rule": "CB11 chroma below 1e-12 remains exact neutral",
+    "scale": "unchanged analytical safe step only for source-boundary and float32 margin preservation",
+    "forbidden": "paired affine slope, 3D covariance, local map, robust weights, nonlinear fitted parameters, target dose, semantic mask or post-score rescue"
+  },
+  "research_basis": {
+    "colorfm": "arXiv:2607.07119 explicit colour transport comparator",
+    "modflows": "AAAI 2025 / arXiv:2503.19062 invertible RGB transport comparator",
+    "classical_basis": "one-dimensional monotone rearrangement is the exact empirical optimal transport for scalar gamut fraction",
+    "position": "clean-room explicit distributional baseline; no paper code, model, weights or novelty claim"
+  },
+  "evaluation": {"maximum_colour_metric_samples_per_source": 65536},
+  "automatic_gates": {
+    "maximum_luminance_reconstruction_error": 0.000001,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio_vs_source": 2.5,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.001,
+    "minimum_population_median_direction_scale": 0.8,
+    "maximum_population_median_fraction_direction_scale_below_0p5": 0.1,
+    "minimum_population_median_style_delta_e76": 5.0,
+    "minimum_population_median_delta_e76_vs_cb11": 1.0,
+    "maximum_confirmed_severe_artifact_count": 0
+  },
+  "blind_protocol": {
+    "rounds": 3,
+    "ties_allowed": false,
+    "minimum_candidate_round_wins": 2,
+    "minimum_candidate_aggregate_choices": 22,
+    "minimum_candidate_source_majorities": 7,
+    "mapping_hidden_until_choices_commit": true
+  },
+  "stop_rules": [
+    "Any fraction-transport invariant or automatic failure closes before visual preference.",
+    "Any severe or preference failure closes without changing rank, quantile interpolation or gates.",
+    "Pass opens only a wholly new source confirmation."
+  ],
+  "claim_ceiling": "Development-only bounded monotone gamut-fraction transport evidence on consumed CC0 display proxies; not fresh confirmation, stock response, calibration, population preference or product promotion."
+}
