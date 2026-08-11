@@ -34,6 +34,7 @@ def test_cb50_adjudicator_counts_sealed_choices(monkeypatch, tmp_path) -> None:
         lambda *_: copy.deepcopy(next(values)),
     )
     config = {
+        "experiment_id": "TEST",
         "evidence": {
             "report_sha256": "report",
             "stable_evidence_id": "stable",
