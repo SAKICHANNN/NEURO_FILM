@@ -1,0 +1,34 @@
+{
+  "schema": "neuro_film.u5_r2cb12_characteristic_vs_ao6_full_resolution_review.v1",
+  "experiment_id": "U5.R2CB12",
+  "status": "full_resolution_severe_review_complete",
+  "render_report_sha256": "3d8af27c533ab6f1cdf7c9d94f4f412022a27a7ed18d2483a57b09e21dfff82e",
+  "reviewed_outputs": [
+    {
+      "source_id": "motorola_moto_g_7_play",
+      "arm": "candidate",
+      "sha256": "5c3e453f48ff3393a18820b57d22acb25a0026c3c4d4e0a30b61c026986ea632"
+    },
+    {
+      "source_id": "lg_lg_h850",
+      "arm": "candidate",
+      "sha256": "b90fcdd86c6cf61fc3bca0dafefdcc3121163b28673797c4d45b41882cd0d885"
+    },
+    {
+      "source_id": "blackmagic_pocket_cinema_camera_4k",
+      "arm": "candidate",
+      "sha256": "1ed325f7d0bd885c50f80af75cd0611aeb759c282c90b2bc889913687fdba889"
+    },
+    {
+      "source_id": "leica_c_typ_112",
+      "arm": "candidate",
+      "sha256": "4cd944fcc19ebefaabaccdf5b2bca343e58b941dded2f4ef43858c91b48f6e67"
+    }
+  ],
+  "confirmed_severe_count": 0,
+  "review_notes": [
+    "Original-resolution review covered the high-dynamic-range city, noisy rotated still-life, hard backlit lake and fine water/feather structures.",
+    "No confirmed geometry corruption, repeated texture, seam, block, banding, posterization, clipping patch or red-speckle field was observed.",
+    "This is autonomous severe-artifact evidence, not population preference."
+  ]
+}

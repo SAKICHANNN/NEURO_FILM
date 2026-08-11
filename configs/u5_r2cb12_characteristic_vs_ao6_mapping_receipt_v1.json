@@ -1,0 +1,10 @@
+{
+  "schema": "neuro_film.u5_r2cb12_characteristic_vs_ao6_mapping_receipt.v1",
+  "experiment_id": "U5.R2CB12",
+  "status": "mapping_revealed_after_blind_observations_commit",
+  "observations_path": "configs/u5_r2cb12_characteristic_vs_ao6_fresh_observations_v1.json",
+  "observations_sha256": "bfdc5e392d9090612de3e208da74bbb6c1a1fc693f70075cbf9b03547f5220c3",
+  "observations_commit": "3b9875349dab6c5e0e6b100f5a6140bca216eaaf",
+  "report_sha256": "3d8af27c533ab6f1cdf7c9d94f4f412022a27a7ed18d2483a57b09e21dfff82e",
+  "mapping_revealed": true
+}
