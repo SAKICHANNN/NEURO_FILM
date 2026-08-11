@@ -1,0 +1,28 @@
+{
+  "schema": "neuro_film.u5_r2cb58_analytic_y_chromaticity_recipe_decision.v1",
+  "experiment_id": "U5.R2CB58",
+  "contract_sha256": "8750edfc5ed458591b80ac271ea2265a1b924db7ace6998a230b0e385f41755d",
+  "implementation_commit": "9474fe58",
+  "recipe_runtime_sha256": "031c97915f925dafcd07d233da88608597516dcedd343030d3e3fd5c72020b93",
+  "renderer_sha256": "df492cc604014cd018f25f289e6a303af700c395ab1ad05675c8e1fac203b7af",
+  "test_sha256": "7b479ed741f0b78ee831c1b11b869d155fa500613f47a6011bfcf5f30bc5244c",
+  "checks": {
+    "safe_lab_recipe_v1_unchanged": true,
+    "analytic_profile_assets_input_output_and_commit_hash_bound": true,
+    "selector_facts_and_effect_parameters_recorded": true,
+    "strict_validation_and_file_verification_pass": true,
+    "two_emitted_recipes_normalize_exact": true,
+    "identity_or_file_mutation_fails_closed": true
+  },
+  "verification": {
+    "focused_and_adjacent_tests": "48 passed",
+    "real_output_sha256": "f7d21ccd1f22de65d55e84a436dcffc256b50d7ccc3c6a01132b7b15a38ca526",
+    "real_normalized_recipe_sha256": "5ae227253771035ea57e4e6974056a051101f645a10b3af71bd097d8a3fd8dbe",
+    "two_real_outputs_byte_exact": true,
+    "two_real_recipes_equal_after_output_path_normalization": true
+  },
+  "decision": "pass_cb58_versioned_analytic_replay_recipe",
+  "next_leaf": "Exercise one real 16-bit output and a decoded-pixel OOD set through the recipe-enabled renderer, then evaluate whether the opt-in research profile is ready for user-facing discovery.",
+  "product_default_changed": false,
+  "claim_ceiling": "Replay/provenance recipe mechanics for the opt-in analytic Look Approximation only; not stock response, calibration, authenticity or default-product promotion."
+}
