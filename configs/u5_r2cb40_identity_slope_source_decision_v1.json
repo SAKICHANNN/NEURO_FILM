@@ -1,0 +1,26 @@
+{
+  "schema": "neuro_film.u5_r2cb40_identity_slope_source_decision.v1",
+  "experiment_id": "U5.R2CB40S",
+  "status": "source_eligible_fixed_comparison_open",
+  "parent_decision_path": "configs/u5_r2bl8s_filmmatch_replacement_source_preflight_decision_v1.json",
+  "parent_decision_sha256": "7065b6a0d98fa21e7985696ea02f580e8bef64ac0d2c2d587ada85d0b1961c63",
+  "parent_required_decision": "pass_replacement_fresh_population_open_fixed_bl5_vs_ao6_confirmation",
+  "manifest_path": "outputs/u5_r2bl8s_filmmatch_replacement_source_preflight_v1/run_a/manifest.json",
+  "manifest_sha256": "633e07202a92c2f8d60e4476f0b7768a7c5b9ed123c90c5757cbe541c4248733",
+  "included_source_ids": [
+    "ricoh_gr_iii", "google_pixel_4_xl", "leica_c_lux", "huawei_ane_lx1",
+    "oneplus_oneplus_a6003", "minolta_dynax_5d", "dji_fc7303",
+    "blackmagic_design_pocket_cinema_camera_6k_pro", "olympus_e_10",
+    "phase_one_p40", "panasonic_dc_gh7", "fujifilm_x_t30_iii", "nikon_d2x",
+    "leaf_credo_40", "motorola_moto_g_5s_plus", "epson_r_d1s",
+    "kodak_easyshare_z981"
+  ],
+  "source_count_exact": 17,
+  "camera_make_count_exact": 17,
+  "exact_decoded_sha_overlap_with_cb27_through_cb39": 0,
+  "excluded_parent_rows": {
+    "apple_iphone_8": "non-ordinary content excluded by frozen BL8S visual rule"
+  },
+  "operator_outputs_inspected_for_this_role": false,
+  "claim_ceiling": "Existing source-only natural-photo role lock for fixed identity-slope mechanism development; not project-global fresh data, algorithm, preference, film, stock, calibration or product evidence."
+}
