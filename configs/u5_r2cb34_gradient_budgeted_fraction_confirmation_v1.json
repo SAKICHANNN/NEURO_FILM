@@ -1,0 +1,78 @@
+{
+  "schema": "neuro_film.u5_r2cb34_gradient_budgeted_fraction_confirmation_contract.v1",
+  "experiment_id": "U5.R2CB34",
+  "question": "Does the unchanged CB33 origin-anchored fraction target plus image-global gradient-budgeted dose retain safety, material style and autonomous preference on a source-disjoint camera population?",
+  "parents": {
+    "cb33_contract_path": "configs/u5_r2cb33_gradient_budgeted_fraction_gold_stress_v1.json",
+    "cb33_contract_sha256": "b38d5238a57957dbf55a321529cb3b275ba653054088eb9642d82d342ef69e41",
+    "cb33_decision_path": "configs/u5_r2cb33_gradient_budgeted_fraction_gold_stress_decision_v1.json",
+    "cb33_decision_sha256": "cff103d61dbc5082268a5a74adee2b2850a51413537d99e1330fdddddd09b570b",
+    "cb33_required_decision": "pass_development_gold_stress_open_source_disjoint_confirmation",
+    "cb16_decision_path": "configs/u5_r2cb16_safe_base_ao6_chroma_residual_decision_v1.json",
+    "cb16_decision_sha256": "965a1c0c0eba887673bd1f9793a5c28425edfe5495cb4bb151a70e3b9f20008f",
+    "cb16_required_status": "close_safe_base_ao6_chroma_magnitude_residual_without_rescue",
+    "cb14_decision_path": "configs/u5_r2cb14_characteristic_vs_ao6_ood_decision_v1.json",
+    "cb14_decision_sha256": "acb2e53031db6e9fe33f84d615ad259ea856190016ab7f26e2030775b8a2c8b9",
+    "cb14_required_status": "candidate_fails_ao6_retain_incumbent",
+    "cb11_contract_path": "configs/u5_r2cb11_fujifilm_characteristic_luma_chroma_v1.json",
+    "cb11_contract_sha256": "fd6127a0c336fdfc661870d8636e8c7a8bbe741f096465e52c73a5a327213b5f",
+    "cb12_contract_path": "configs/u5_r2cb12_characteristic_vs_ao6_fresh_v1.json",
+    "cb12_contract_sha256": "0951b3ec44049f76afda12b90ba40e1bc644000336fcc340b1b862ea986823c1"
+  },
+  "population": {
+    "decision_path": "configs/u5_r2bh1s_global_policy_source_preflight_decision_v1.json",
+    "decision_sha256": "9b3cb743e186d8c7fe9a27202aba9bbbd8aae6785a2ea318e44478a2b36e93a5",
+    "decision_field": "result.decision",
+    "required_status": "pass_fresh_population_and_open_fixed_global_policy_confirmation",
+    "manifest_path": "outputs/u5_r2bh1s_global_policy_source_preflight_v1/manifest.json",
+    "manifest_sha256": "75a5139defa6a1f054eef5e3f5f6062483f4cc72e18416ece1cae3b10f4672fc",
+    "source_count_exact": 12,
+    "camera_make_count_exact": 12,
+    "maximum_long_edge": 1600,
+    "exact_decoded_sha_overlap_with_cb27_cb28_cb29_u41": 0,
+    "role": "mechanism-source-disjoint confirmation; previously consumed by unrelated global-policy research, therefore not project-global fresh"
+  },
+  "operator": {
+    "identity": "exact CB32 origin-anchored 257-knot one-Lipschitz fraction target followed by exact CB33 descending 17-dose image-global gradient budget",
+    "cb32_implementation_path": "src/eval/nonexpansive_fraction_transport.py",
+    "cb32_implementation_sha256": "7509a4941e98c366991a4e1ac0a31d4ea23c853923f0ed222f4c70487badf898",
+    "cb33_implementation_path": "src/eval/gradient_budgeted_fraction_transport.py",
+    "cb33_implementation_sha256": "fde71a96efcf09e79b0a755a4997ecd676b611999afcba1c12b4922f1b80db45",
+    "evaluator_path": "src/eval/safe_base_ao6_chroma_direction.py",
+    "evaluator_sha256": "1576ee4b236be738c8d7c71bed9a13776ad5dfd6c2a46b8756a6f77d044e8b03",
+    "minimum_valid_fraction": 0.0001,
+    "fraction_knots": 257,
+    "maximum_fraction_slope": 1.0,
+    "dose_grid": [1.0, 0.9375, 0.875, 0.8125, 0.75, 0.6875, 0.625, 0.5625, 0.5, 0.4375, 0.375, 0.3125, 0.25, 0.1875, 0.125, 0.0625, 0.0],
+    "forbidden": "operator, target, knot, dose-grid, gradient metric, local mask, source replacement, gate or post-score rescue"
+  },
+  "evaluation": {"maximum_colour_metric_samples_per_source": 65536},
+  "automatic_gates": {
+    "maximum_luminance_reconstruction_error": 0.000001,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio_vs_source": 1.35,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.0,
+    "minimum_population_median_direction_scale": 0.5,
+    "maximum_population_median_fraction_direction_scale_below_0p5": 0.1,
+    "minimum_population_median_style_delta_e76": 5.0,
+    "minimum_population_median_delta_e76_vs_cb11": 1.0,
+    "minimum_population_median_global_dose": 0.5,
+    "maximum_fraction_global_dose_below_0p25": 0.1,
+    "maximum_confirmed_severe_artifact_count": 0
+  },
+  "blind_protocol": {
+    "rounds": 3,
+    "seed": 20260811,
+    "ties_allowed": false,
+    "minimum_candidate_round_wins": 2,
+    "minimum_candidate_aggregate_choices": 22,
+    "minimum_candidate_source_majorities": 7,
+    "mapping_hidden_until_choices_commit": true
+  },
+  "stop_rules": [
+    "Any identity, automatic, dose-floor or severe failure closes this exact CB33 mechanism without rescue.",
+    "Any autonomous preference failure retains the mechanism only as development evidence.",
+    "Pass remains research Look Approximation evidence and cannot promote a product or stock claim."
+  ],
+  "claim_ceiling": "Mechanism-source-disjoint but project-previously-consumed autonomous confirmation of an explicit display-look operator; not stock response, calibration, population preference or product promotion."
+}
