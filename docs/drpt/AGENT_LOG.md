@@ -11352,3 +11352,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The candidate cell for `panasonic_dmc_fz38` has the same large purple-blue
   posterized speckle field in all three randomized rounds. Severe-artifact veto
   overrides preference, so the exact direction transfer closes.
+
+# 2026-08-11 - Freeze U5.R2CB18 neutral-confident direction
+
+- Define confidence as the smaller clipped chroma-to-luminance ratio of CB11
+  and AO6, then normalize their confidence-weighted direction mixture while
+  preserving CB11 chroma magnitude. Neutral or degenerate pixels return CB11.
+- Freeze the same automatic-first and blind protocol. No exponent, threshold,
+  angular dose or population tuning is allowed after observation.

@@ -1,0 +1,66 @@
+{
+  "schema": "neuro_film.u5_r2cb18_neutral_confident_ao6_direction_contract.v1",
+  "experiment_id": "U5.R2CB18",
+  "question": "Can continuous source-observable relative-chroma confidence retain CB17 preference while removing its low-chroma direction instability?",
+  "parents": {
+    "cb17_decision_path": "configs/u5_r2cb17_safe_base_ao6_chroma_direction_decision_v1.json",
+    "cb17_decision_sha256": "d47687dccb88624ceb6883c000051c6274154d2a7ec0da0b6d91e3585a7d8bb2",
+    "cb17_required_status": "close_direction_candidate_on_severe_artifact_retain_ao6",
+    "cb16_decision_path": "configs/u5_r2cb16_safe_base_ao6_chroma_residual_decision_v1.json",
+    "cb16_decision_sha256": "965a1c0c0eba887673bd1f9793a5c28425edfe5495cb4bb151a70e3b9f20008f",
+    "cb16_required_status": "close_safe_base_ao6_chroma_magnitude_residual_without_rescue",
+    "cb14_decision_path": "configs/u5_r2cb14_characteristic_vs_ao6_ood_decision_v1.json",
+    "cb14_decision_sha256": "acb2e53031db6e9fe33f84d615ad259ea856190016ab7f26e2030775b8a2c8b9",
+    "cb14_required_status": "candidate_fails_ao6_retain_incumbent",
+    "cb11_contract_path": "configs/u5_r2cb11_fujifilm_characteristic_luma_chroma_v1.json",
+    "cb11_contract_sha256": "fd6127a0c336fdfc661870d8636e8c7a8bbe741f096465e52c73a5a327213b5f",
+    "cb12_contract_path": "configs/u5_r2cb12_characteristic_vs_ao6_fresh_v1.json",
+    "cb12_contract_sha256": "0951b3ec44049f76afda12b90ba40e1bc644000336fcc340b1b862ea986823c1"
+  },
+  "population": {
+    "decision_path": "configs/u5_r2bk6s_bounded_opponent_fresh_source_decision_v1.json",
+    "decision_sha256": "c09b30f2e66c694ee167e4c3ca4205a9bd14e086cf9b30237712354a31806e73",
+    "required_status": "source_eligible_fixed_comparison_open",
+    "manifest_path": "outputs/u5_r2bk6s_bounded_opponent_fresh_source_v1/run_a/manifest.json",
+    "manifest_sha256": "444f162f22e6bc40940eb82557a11ed2b1fa67e6736efb1362df7ef1069d5978",
+    "source_count_exact": 12,
+    "camera_make_count_exact": 12,
+    "maximum_long_edge": 1600,
+    "role": "development_only_previously_consumed_by_unrelated_algorithms"
+  },
+  "operator": {
+    "safe_base": "unchanged CB11 output and chroma norm",
+    "confidence": "min(clip(C_cb11/(abs(Y_cb11)+epsilon),0,1), clip(C_ao6/(abs(Y_ao6)+epsilon),0,1))",
+    "direction": "normalize((1-confidence)*unit(C_cb11)+confidence*unit(C_ao6)); degenerate or neutral rows retain C_cb11",
+    "scale": "one maximum analytical safe step from CB11 to the confidence-weighted direction target",
+    "forbidden": "fit, threshold search, chroma magnitude transfer, per-image control, spatial mask or post-score rescue"
+  },
+  "evaluation": {
+    "maximum_colour_metric_samples_per_source": 65536
+  },
+  "automatic_gates": {
+    "maximum_luminance_reconstruction_error": 0.000001,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio_vs_source": 2.5,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.001,
+    "minimum_population_median_direction_scale": 0.8,
+    "maximum_population_median_fraction_direction_scale_below_0p5": 0.1,
+    "minimum_population_median_style_delta_e76": 5.0,
+    "minimum_population_median_delta_e76_vs_cb11": 1.0,
+    "maximum_confirmed_severe_artifact_count": 0
+  },
+  "blind_protocol": {
+    "rounds": 3,
+    "ties_allowed": false,
+    "minimum_candidate_round_wins": 2,
+    "minimum_candidate_aggregate_choices": 22,
+    "minimum_candidate_source_majorities": 7,
+    "mapping_hidden_until_choices_commit": true
+  },
+  "stop_rules": [
+    "Any automatic failure closes exact confidence weighting before visual preference.",
+    "Any confirmed severe artifact or preference failure closes without confidence exponent, threshold, strength or population rescue.",
+    "Pass opens only a wholly new source confirmation."
+  ],
+  "claim_ceiling": "Development-only neutral-confident chroma-direction evidence on consumed CC0 display proxies; not fresh confirmation, stock response, calibration, population preference or product promotion."
+}

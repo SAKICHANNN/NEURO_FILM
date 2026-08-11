@@ -51,7 +51,9 @@ def ao6_direction_target(
     ao6_linear: np.ndarray,
     *,
     weights: np.ndarray,
+    boundary_epsilon: float | None = None,
 ) -> np.ndarray:
+    del boundary_epsilon
     base = np.asarray(safe_base_linear)
     ao6 = np.asarray(ao6_linear)
     w = np.asarray(weights, dtype=np.float64)
@@ -167,7 +169,16 @@ def apply_safe_base_direction_target(
     return output, scale.astype(np.float32), luma_error
 
 
-def evaluate(config: Mapping[str, Any], root: Path, output_dir: Path) -> dict[str, Any]:
+def evaluate_direction_candidate(
+    config: Mapping[str, Any],
+    root: Path,
+    output_dir: Path,
+    *,
+    target_builder: Any,
+    report_schema: str,
+    experiment_id: str,
+    contract_filename: str,
+) -> dict[str, Any]:
     decision = _load_exact_json(
         root,
         config["parents"]["cb16_decision_path"],
@@ -198,7 +209,12 @@ def evaluate(config: Mapping[str, Any], root: Path, output_dir: Path) -> dict[st
             strength=float(op["nominal_strength"]),
             boundary_epsilon=epsilon,
         )
-        target = ao6_direction_target(safe_base, ao6, weights=weights)
+        target = target_builder(
+            safe_base,
+            ao6,
+            weights=weights,
+            boundary_epsilon=epsilon,
+        )
         candidate, scale, luma_error = apply_safe_base_direction_target(
             source,
             safe_base,
@@ -328,11 +344,9 @@ def evaluate(config: Mapping[str, Any], root: Path, output_dir: Path) -> dict[st
         for key in ("source_path", "ao6_path", "cb11_path", "candidate_path"):
             row[key] = Path(row[key]).relative_to(output_dir).as_posix()
     report: dict[str, Any] = {
-        "schema": REPORT_SCHEMA,
-        "experiment_id": EXPERIMENT_ID,
-        "contract_sha256": hash_file(
-            root / "configs/u5_r2cb17_safe_base_ao6_chroma_direction_v1.json"
-        ),
+        "schema": report_schema,
+        "experiment_id": experiment_id,
+        "contract_sha256": hash_file(root / f"configs/{contract_filename}"),
         "rows": rows,
         "metrics": metrics,
         "checks": checks,
@@ -350,6 +364,18 @@ def evaluate(config: Mapping[str, Any], root: Path, output_dir: Path) -> dict[st
     return report
 
 
+def evaluate(config: Mapping[str, Any], root: Path, output_dir: Path) -> dict[str, Any]:
+    return evaluate_direction_candidate(
+        config,
+        root,
+        output_dir,
+        target_builder=ao6_direction_target,
+        report_schema=REPORT_SCHEMA,
+        experiment_id=EXPERIMENT_ID,
+        contract_filename="u5_r2cb17_safe_base_ao6_chroma_direction_v1.json",
+    )
+
+
 def write_report(report: Mapping[str, Any], output: Path) -> str:
     payload = canonical_json(report)
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -362,6 +388,7 @@ __all__ = [
     "ao6_direction_target",
     "apply_safe_base_direction_target",
     "evaluate",
+    "evaluate_direction_candidate",
     "load_contract",
     "write_report",
 ]
