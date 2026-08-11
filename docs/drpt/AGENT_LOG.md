@@ -11385,3 +11385,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The same Panasonic candidate retains the severe posterized speckle field in
   all rounds. Local 3x3 direction smoothing is therefore closed; next replace
   the pixelwise direction field with one analytical image-global rotation.
+
+# 2026-08-11 - Freeze U5.R2CB20 image-global chroma rotation
+
+- Build a deterministic orthonormal basis of the Rec.709 zero-luminance plane,
+  solve one full-image 2D Procrustes angle from CB11 to AO6 chroma, rotate all
+  CB11 chroma vectors by that angle, and preserve their norms.
+- Freeze unweighted full-image fitting and the existing automatic/blind gates.
+  No robust weights, angle cap, local rotation or post-result rescue is allowed.
