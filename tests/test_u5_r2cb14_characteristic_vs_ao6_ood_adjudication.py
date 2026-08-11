@@ -37,6 +37,25 @@ def test_cb14_adjudication_retains_ao6() -> None:
     assert result["full_resolution_review_required"] is False
 
 
+def test_cb14_decision_matches_frozen_evidence() -> None:
+    expected = json.loads(
+        (
+            ROOT / "configs/u5_r2cb14_characteristic_vs_ao6_ood_decision_v1.json"
+        ).read_text(encoding="utf-8")
+    )
+    actual = adjudicate_files(
+        config_path=ROOT / "configs/u5_r2cb14_characteristic_vs_ao6_ood_v1.json",
+        observations_path=ROOT
+        / "configs/u5_r2cb14_characteristic_vs_ao6_ood_observations_v1.json",
+        mapping_receipt_path=ROOT
+        / "configs/u5_r2cb14_characteristic_vs_ao6_ood_mapping_receipt_v1.json",
+        report_paths=[BASE / "report_b.json", BASE / "report_c.json"],
+        render_dir=BASE / "run_b",
+        adjudicator_software_commit=expected["adjudicator_software_commit"],
+    )
+    assert actual == expected
+
+
 def test_cb14_adjudication_rejects_observation_mutation(tmp_path: Path) -> None:
     source = ROOT / "configs/u5_r2cb14_characteristic_vs_ao6_ood_observations_v1.json"
     payload = json.loads(source.read_text(encoding="utf-8"))

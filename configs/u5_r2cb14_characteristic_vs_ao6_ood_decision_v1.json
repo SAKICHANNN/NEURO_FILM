@@ -1,0 +1,41 @@
+{
+  "additional_rounds_allowed": false,
+  "adjudicator_software_commit": "781285e79e296940c5401401d618bb9241cccd2e",
+  "claim_ceiling": "Second disjoint twelve-camera autonomous OOD comparison of fixed explicit display-proxy Look Approximation arms; not complete-gold, RAW, scene-linear, Velvia calibration, stock response, population preference or product promotion.",
+  "experiment_id": "U5.R2CB14",
+  "full_resolution_review_required": false,
+  "gates": {
+    "automatic_boundary_gate": true,
+    "minimum_candidate_aggregate_choices": false,
+    "minimum_candidate_round_wins": false,
+    "minimum_candidate_source_majorities": false,
+    "sheet_level_severe_artifact_veto": true
+  },
+  "inputs": {
+    "config_sha256": "43f26af8af5b78fc1299dae54ab30b8750054adc8195923e1c3d3443c1aa5061",
+    "mapping_receipt_sha256": "789cc4d5c09ec5503582f312d71cd5a05174212ca4db2eac788133248162ff24",
+    "observations_sha256": "6cae3c4f52b77395248938844c720072cdc82a6b336809db86a7c48ed13bd1cf",
+    "render_report_sha256": "f486b88a1356d5f9abce405382025559920bc7a568e75ba540e72e6b7d9e600e",
+    "render_stable_evidence_id": "96f7c9e799c10a2be95bac958a2fbe7a3a6fa3d2c6a04376794591063431a163"
+  },
+  "measurements": {
+    "aggregate_choice_count": 36,
+    "candidate_aggregate_choices": 16,
+    "candidate_round_wins": 1,
+    "candidate_source_majorities": 5,
+    "round_counts": [
+      {"ao6": 5, "candidate": 7},
+      {"ao6": 6, "candidate": 6},
+      {"ao6": 9, "candidate": 3}
+    ],
+    "source_count": 12
+  },
+  "next_branch": "close_cb11_ood_challenger_retain_ao6",
+  "operator_retuning_allowed": false,
+  "pass": false,
+  "production_default_changed": false,
+  "schema": "neuro_film.u5_r2cb14_characteristic_vs_ao6_ood_decision.v1",
+  "stable_evidence_id": "995ba26ec5880eadb116369dd8f5aff07e4be94aa1a8b224cb9cdb04a7c9c607",
+  "status": "candidate_fails_ao6_retain_incumbent",
+  "thresholds_changed": false
+}
