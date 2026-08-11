@@ -11552,3 +11552,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   eigenvalue `.0499783 < .05`. The frozen envelope fails before any held-source
   enumeration, download or decode. Retain independent layers and require
   controlled density/process evidence; no numerical repair or archive rescue.
+
+# 2026-08-11 - U5.R2CB22 closes global Gaussian chroma transport
+
+- A clean-room analytic Gaussian 2-Wasserstein map replaces CB21's single
+  rotation while keeping CB11 luminance and the existing analytical cube step.
+- Two reports are exact (`dc036538...18a84`; stable `be02db4f...ecb1f3`).
+  Style is strong and boundary/gradient gates pass, but `13.3331%` of pixels
+  need less than half strength versus the frozen `10%` maximum. Blind review
+  stays closed; do not repair the covariance, eigenvalues or threshold.

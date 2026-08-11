@@ -1,0 +1,39 @@
+{
+  "schema": "neuro_film.u5_r2cb22_global_chroma_gaussian_transport_decision.v1",
+  "experiment_id": "U5.R2CB22",
+  "contract_commit": "6c06f90315dbf9752e5cc65c2723011015e9f429",
+  "implementation_commit": "8307030f5238437ee941c6561ab2765c94950e12",
+  "contract_sha256": "cc3f892bcc3d70c892aca1f33448b02bd9efa90e31e6392deb77a021164970e0",
+  "implementation_sha256": "be3a1cb5cd2281d49f5af206af99008b9cd7f3c552808e723f21988226165762",
+  "runner_sha256": "01531c239dce1d1b20a3da7a3826d1d9e3b1783ac401ebfa19a1735740e3d1fa",
+  "formal_report_path": "D:/nf-019f4b76-cb22/report_run1.json",
+  "formal_report_sha256": "dc036538a782955c9309bd4703b490747a4050eeafaa4600583f5ed8abc18a84",
+  "stable_evidence_id": "be02db4fa535f0a0a38a2f4798933a4c550cb5f5e86809db39b7e60e63ecb1f3",
+  "repeat_report_byte_exact": true,
+  "automatic_pass": false,
+  "metrics": {
+    "source_count": 12,
+    "camera_make_count": 12,
+    "maximum_luminance_reconstruction_error": 5.195140839742152e-8,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio_vs_source": 1.3135187006596456,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 5.905695567108705e-5,
+    "population_median_direction_scale": 1.0,
+    "population_median_fraction_direction_scale_below_0p5": 0.1333306246091307,
+    "population_median_style_delta_e76": 11.106081334792865,
+    "population_median_delta_e76_vs_cb11": 11.25856247978137
+  },
+  "failed_gates": [
+    "population_median_fraction_direction_scale_below_0p5_above_0p1"
+  ],
+  "blind_review_opened": false,
+  "passed": false,
+  "decision": "close_global_gaussian_chroma_transport_on_gamut_attenuation",
+  "interpretation": [
+    "The analytic Gaussian transport is materially stronger than CB11 and preserves luminance, hard-boundary and gradient safety on the development population.",
+    "Its stronger anisotropic chroma target requires a sub-half analytical safe step for a median 13.3331% of pixels, exceeding the frozen 10% maximum.",
+    "The result does not justify covariance regularization, eigenvalue clipping, threshold relaxation or blind review."
+  ],
+  "next_action": "Retain AO6 as the colour incumbent and require a mechanism that predicts bounded transport strength before constructing an infeasible chroma target.",
+  "claim_ceiling": "Stable negative development evidence for image-global Gaussian chroma transport; not stock response, calibration, population preference or product promotion."
+}
