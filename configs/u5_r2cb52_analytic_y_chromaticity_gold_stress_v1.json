@@ -1,0 +1,58 @@
+{
+  "schema": "neuro_film.u5_r2cb52_analytic_y_chromaticity_gold_stress_contract.v1",
+  "experiment_id": "U5.R2CB52",
+  "question": "Does the unchanged CB50/CB51 mechanism remain exact, safe and visibly styled on every locally available U4.1 gold/stress source?",
+  "parents": {
+    "cb51_decision_path": "configs/u5_r2cb51_analytic_y_chromaticity_confirmation_decision_v1.json",
+    "cb51_decision_sha256": "1061fef27e85f2381a53fc478307188e66a443554b8aaba827bb3f7fed3e2f26",
+    "cb51_required_decision": "pass_cb51_source_disjoint_confirmation_retain_analytic_y_chromaticity_research_champion",
+    "cb29_decision_path": "configs/u5_r2cb29_monotone_fraction_transport_wide_ood_decision_v1.json",
+    "cb29_decision_sha256": "10f727920db596814d929ba9676f4203f4902acb158975f3312dc059db0a9f03",
+    "cb29_required_decision": "retain_monotone_fraction_transport_as_research_look_champion_open_gold_stress",
+    "cb27_contract_path": "configs/u5_r2cb27_monotone_fraction_quantile_transport_v1.json",
+    "cb27_contract_sha256": "867884f1a95b1175ec1b470596706760cea83935eac40caf599f27bd056ada41",
+    "cb11_contract_path": "configs/u5_r2cb11_fujifilm_characteristic_luma_chroma_v1.json",
+    "cb11_contract_sha256": "fd6127a0c336fdfc661870d8636e8c7a8bbe741f096465e52c73a5a327213b5f",
+    "cb12_contract_path": "configs/u5_r2cb12_characteristic_vs_ao6_fresh_v1.json",
+    "cb12_contract_sha256": "0951b3ec44049f76afda12b90ba40e1bc644000336fcc340b1b862ea986823c1"
+  },
+  "population": {
+    "frozen_set_path": "outputs/filmcase/u41_provisional_eval_set.json",
+    "frozen_set_sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15",
+    "expected_available_source_count": 40,
+    "expected_available_gold_count": 8,
+    "expected_available_stress_count": 32,
+    "required_unavailable_ids": ["FS_FACE_01"],
+    "maximum_long_edge": 1600,
+    "input_rail": "legacy hash-bound encoded-sRGB JPEG display proxies; not RAW or scene-linear evidence"
+  },
+  "operator": {
+    "identity": "exact unchanged CB50/CB51 analytic Y plus normalized chromaticity transport",
+    "minimum_valid_fraction": 0.0001,
+    "fraction_knots": 257,
+    "maximum_fraction_slope": 1.0,
+    "dose_grid": [1.0, 0.9375, 0.875, 0.8125, 0.75, 0.6875, 0.625, 0.5625, 0.5, 0.4375, 0.375, 0.3125, 0.25, 0.1875, 0.125, 0.0625, 0.0],
+    "lstar_order_epsilon": 0.0001,
+    "forbidden": "any operator, target, curve, dose grid, rail or threshold change"
+  },
+  "automatic_gates": {
+    "maximum_luminance_reconstruction_error": 0.000001,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio_vs_source": 1.35,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.0,
+    "minimum_population_median_direction_scale": 0.5,
+    "maximum_population_median_fraction_direction_scale_below_0p5": 0.1,
+    "minimum_population_median_global_dose": 0.5,
+    "maximum_fraction_global_dose_below_0p25": 0.1,
+    "minimum_population_median_gamut_scale": 0.8,
+    "maximum_population_median_fraction_gamut_scale_below_0p8": 0.1,
+    "minimum_gold_median_style_delta_e76": 5.0,
+    "minimum_stress_median_style_delta_e76": 5.0,
+    "minimum_split_median_delta_e76_vs_cb11": 1.0,
+    "require_exact_repeat": true,
+    "require_id11_presence": true
+  },
+  "visual": {"maximum_confirmed_severe_artifact_count": 0, "review_all_contact_sheets": true, "review_original_resolution_ids": ["01", "05", "08", "09", "11", "18", "21", "29"]},
+  "stop_rules": ["Any automatic failure closes this stress leaf before visual review.", "The unavailable FilmSet face stays explicit and no replacement is allowed."],
+  "claim_ceiling": "Partial autonomous OOD severe-artifact regression for the unchanged analytic Look Approximation on 40 frozen display proxies; not the complete gold set, face closure, film truth, stock response, calibration, preference or product promotion."
+}
