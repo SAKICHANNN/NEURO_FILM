@@ -1,0 +1,10 @@
+{
+  "schema": "neuro_film.u5_r2cb20_global_chroma_procrustes_mapping_receipt.v1",
+  "experiment_id": "U5.R2CB20",
+  "status": "mapping_revealed_after_blind_observations_commit",
+  "mapping_revealed": true,
+  "observations_commit": "39e02a261ad92af847511d4dedb8fb2c43049dc8",
+  "observations_sha256": "0dd99ff1f18ae1766702a9c5b1d9db788821b15ca878a86bc4325399fd9e09bb",
+  "report_sha256": "5632c300c9e1dd626301f785f15bce2f90506903c7ba20dd4adfa59b5d78494a",
+  "sealed_mappings_canonical_sha256": "fde53f4b07c784cbf9f816ba8d34850b76ac61ab998fe904d7be80ed8cd06d34"
+}

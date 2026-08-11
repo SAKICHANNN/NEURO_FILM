@@ -1,0 +1,37 @@
+{
+  "schema": "neuro_film.u5_r2cb20_global_chroma_procrustes_decision.v1",
+  "experiment_id": "U5.R2CB20",
+  "implementation_commit": "4d0ae51e",
+  "contract_sha256": "8dd9ab27d412c38a9cd77dc7767a18a46e25144fdccc6590287a1e25e9ee1c2b",
+  "implementation_sha256": "5a2508978a605706a0b8c001eb56db93f38c6ea0af7e6a87bccbbc6dca8f1ba3",
+  "runner_sha256": "33a00e14dcbcb7b5dd96f5087e0a3ec402b9f33ed9b979267d3c2294ef76e021",
+  "formal_report_path": "outputs/experiments/u5_r2cb20_global_chroma_procrustes_v1/report_run1.json",
+  "formal_report_sha256": "5632c300c9e1dd626301f785f15bce2f90506903c7ba20dd4adfa59b5d78494a",
+  "stable_evidence_id": "51ac255650cc7d13e08480f5f6daded727d6f14cb91326f73770482c0095be87",
+  "repeat_report_byte_exact": true,
+  "automatic_pass": true,
+  "blind_measurements": {
+    "candidate_round_wins": 3,
+    "candidate_aggregate_choices": 33,
+    "aggregate_choice_count": 36,
+    "candidate_source_majorities": 11,
+    "source_count": 12,
+    "candidate_confirmed_severe_source_count": 0
+  },
+  "gates": {
+    "automatic_gates": true,
+    "minimum_candidate_round_wins": true,
+    "minimum_candidate_aggregate_choices": true,
+    "minimum_candidate_source_majorities": true,
+    "severe_artifact_veto": true
+  },
+  "passed": true,
+  "decision": "retain_global_chroma_rotation_open_independent_confirmation",
+  "interpretation": [
+    "One image-global chroma rotation removes the CB17/CB19 pixelwise Panasonic speckle failure while retaining exact automatic safety.",
+    "The candidate is preferred 33/36, wins all rounds and has 11/12 source majorities on the development population.",
+    "This is only development evidence because the mechanism was selected after multiple BK6S attempts; it requires an unchanged independent source-set confirmation."
+  ],
+  "next_action": "Run the unchanged CB20 operator and gates on the disjoint BK13S 12-camera eligible source set; do not alter basis, fit, thresholds or blind protocol.",
+  "claim_ceiling": "Passing development candidate that opens independent confirmation only; not stock response, calibration, population preference or product promotion."
+}

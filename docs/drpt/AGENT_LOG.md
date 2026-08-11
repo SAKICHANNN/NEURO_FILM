@@ -11393,3 +11393,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   CB11 chroma vectors by that angle, and preserve their norms.
 - Freeze unweighted full-image fitting and the existing automatic/blind gates.
   No robust weights, angle cap, local rotation or post-result rescue is allowed.
+
+# 2026-08-11 - U5.R2CB20 passes development and opens confirmation
+
+- Two reports are exact (`5632c300...8494a`; stable `51ac2556...95be87`).
+  Automatic and severe gates pass; after frozen choices the candidate wins
+  `3/3` rounds, `33/36` choices and `11/12` source majorities.
+- The Panasonic posterized speckle is absent. Retain the unchanged one-angle
+  mechanism for a disjoint BK13S confirmation only; product/default unchanged.
