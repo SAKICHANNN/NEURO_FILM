@@ -3,7 +3,12 @@
 
 from __future__ import annotations
 
+import sys
 from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 import scripts.benchmark_u5_r2cb70_parallel_target_24mp as harness
 from src.eval.analytic_y_chromaticity_compact_parallel_candidate import (
