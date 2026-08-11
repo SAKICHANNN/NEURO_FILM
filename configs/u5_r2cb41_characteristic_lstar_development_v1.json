@@ -1,0 +1,75 @@
+{
+  "schema": "neuro_film.u5_r2cb41_characteristic_lstar_development_contract.v1",
+  "experiment_id": "U5.R2CB41",
+  "question": "Does applying the already-frozen CB11 characteristic curve directly to actual source L-star preserve exact order while retaining material tone and unchanged CB32 chroma?",
+  "parents": {
+    "cb40_decision_path": "configs/u5_r2cb40_identity_slope_lstar_tone_development_decision_v1.json",
+    "cb40_decision_sha256": "829043c852b223268d73a825b5e593a224929b29fdd2d4658607c9810d5db70e",
+    "cb40_required_decision": "close_histogram_tone_family_open_characteristic_lstar_successor",
+    "cb33_contract_path": "configs/u5_r2cb33_gradient_budgeted_fraction_gold_stress_v1.json",
+    "cb33_contract_sha256": "b38d5238a57957dbf55a321529cb3b275ba653054088eb9642d82d342ef69e41",
+    "cb16_decision_path": "configs/u5_r2cb16_safe_base_ao6_chroma_residual_decision_v1.json",
+    "cb16_decision_sha256": "965a1c0c0eba887673bd1f9793a5c28425edfe5495cb4bb151a70e3b9f20008f",
+    "cb16_required_status": "close_safe_base_ao6_chroma_magnitude_residual_without_rescue",
+    "cb14_decision_path": "configs/u5_r2cb14_characteristic_vs_ao6_ood_decision_v1.json",
+    "cb14_decision_sha256": "acb2e53031db6e9fe33f84d615ad259ea856190016ab7f26e2030775b8a2c8b9",
+    "cb14_required_status": "candidate_fails_ao6_retain_incumbent",
+    "cb11_contract_path": "configs/u5_r2cb11_fujifilm_characteristic_luma_chroma_v1.json",
+    "cb11_contract_sha256": "fd6127a0c336fdfc661870d8636e8c7a8bbe741f096465e52c73a5a327213b5f",
+    "cb12_contract_path": "configs/u5_r2cb12_characteristic_vs_ao6_fresh_v1.json",
+    "cb12_contract_sha256": "0951b3ec44049f76afda12b90ba40e1bc644000336fcc340b1b862ea986823c1"
+  },
+  "population": {
+    "decision_path": "configs/u5_r2cb41_characteristic_lstar_source_decision_v1.json",
+    "decision_sha256": "f7f14b435cd0cc442b13dca7e0e6772a43f9c21e98a56f1e610354c9f4541a7f",
+    "required_status": "source_eligible_fixed_comparison_open",
+    "manifest_path": "outputs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1/manifest.json",
+    "manifest_sha256": "8ac0fa47b8ad3058c7bd3f9a398dfebe657b681cbd4a154152f0dbb255c4ecf1",
+    "included_source_ids": ["canon_eos250d_16x9", "nikon_d6_12bit", "sony_nex5_12bit", "olympus_epl8", "panasonic_dmcg10", "pentax_k20d", "ricoh_grii", "samsung_gx1l", "canon_eos7d_mraw", "nikon_d3s_14bit", "sony_dslra560", "fujifilm_s7000", "olympus_sp565uz", "panasonic_dmcg2", "pentax_k30", "ricoh_gx200", "samsung_smg930a"],
+    "source_count_exact": 17,
+    "camera_make_count_exact": 9,
+    "maximum_long_edge": 1600,
+    "role": "direct characteristic-L-star mechanism development on the exact AI1S ordinary-photo subset"
+  },
+  "operator": {
+    "tone_coordinate": "actual frozen float32 CIELAB L-star normalized by 100",
+    "tone_target": "exact epsilon-anchored CB11 characteristic curve at unchanged nominal strength",
+    "tone_inverse": "current analytic neutral-axis L-star inverse",
+    "chroma_target": "unchanged CB32 target in the legacy Lab-Y chroma plane",
+    "dose_grid": [1.0, 0.9375, 0.875, 0.8125, 0.75, 0.6875, 0.625, 0.5625, 0.5, 0.4375, 0.375, 0.3125, 0.25, 0.1875, 0.125, 0.0625, 0.0],
+    "lstar_order_epsilon": 0.0001,
+    "minimum_valid_fraction": 0.0001,
+    "fraction_knots": 257,
+    "maximum_fraction_slope": 1.0,
+    "forbidden": "empirical histogram maps, curve refit, alternate strength, spatial tone, local masks, filtering, per-channel dose, changed targets or thresholds"
+  },
+  "evaluation": {"maximum_colour_metric_samples_per_source": 65536},
+  "automatic_gates": {
+    "maximum_luminance_reconstruction_error": 0.000001,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio_vs_source": 1.35,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.0,
+    "minimum_population_median_direction_scale": 0.5,
+    "maximum_population_median_fraction_direction_scale_below_0p5": 0.1,
+    "minimum_population_median_style_delta_e76": 5.0,
+    "minimum_population_median_delta_e76_vs_cb11": 1.0,
+    "minimum_population_median_global_dose": 0.5,
+    "maximum_fraction_global_dose_below_0p25": 0.1,
+    "maximum_confirmed_severe_artifact_count": 0
+  },
+  "blind_protocol": {
+    "rounds": 3,
+    "seed": 20260812,
+    "ties_allowed": false,
+    "minimum_candidate_round_wins": 2,
+    "minimum_candidate_aggregate_choices": 31,
+    "minimum_candidate_source_majorities": 10,
+    "mapping_hidden_until_choices_commit": true
+  },
+  "stop_rules": [
+    "Any exact order, gradient, boundary, style or dose failure closes before visual review.",
+    "A severe or blind failure closes without changing curve, strength, target, source, dose or thresholds.",
+    "A pass opens only a separately frozen source-disjoint confirmation."
+  ],
+  "claim_ceiling": "Development-only characteristic-L-star tone plus bounded chroma Look Approximation evidence; not independent confirmation, stock response, calibration, population preference or product promotion."
+}

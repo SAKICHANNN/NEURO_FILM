@@ -1,7 +1,6 @@
 import json
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
 DECISION = ROOT / "configs/u5_r2cb41_characteristic_lstar_source_decision_v1.json"
 
