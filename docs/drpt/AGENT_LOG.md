@@ -12756,3 +12756,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   contain repeated quantiles. Accuracy and monotonicity therefore fail.
 - Do not add bisection iterations. The next distinct mechanism adds a frozen
   high-shape asymptotic branch while retaining direct inversion below it.
+
+### 2026-08-13 - U6.P4HP retains hybrid native Gamma inversion
+
+- The unchanged P4HO grid exercises 12,336 direct-CDF and 1,542 high-shape
+  Cornish-Fisher samples. Maximum density error is `1.09e-10`, relative error
+  `2.34e-9`, and cross-compiler difference `5.11e-14`.
+- Strict monotonicity, repeatability, positive finite output and injected-failure
+  atomicity all pass without changing the P4HO thresholds.
+- Advance to profile-bound composition with P4HN uniforms. Spatial generation,
+  photographic parity and product integration remain open.

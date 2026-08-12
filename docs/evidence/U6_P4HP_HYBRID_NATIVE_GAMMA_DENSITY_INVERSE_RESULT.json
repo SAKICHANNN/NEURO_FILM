@@ -1,0 +1,31 @@
+{
+  "schema": "neuro-film.u6-p4hp-hybrid-native-gamma-density-inverse-evidence.v1",
+  "node": "U6.P4HP",
+  "date": "2026-08-13",
+  "contract_commit": "6cc4cfab",
+  "implementation_commit": "32f894c5",
+  "contract_file_sha256": "efd2d8467bb38506214438cd25d953124a23297189cccdb502f7ac984499331e",
+  "native_header_sha256": "4835a01ee888c3e1e4c4bd637ac7a310db13190faa1c4df393c302d83c74afbb",
+  "native_source_sha256": "7677cdf6ed3f8da2732e94eb5a4cb3b0e1453108d58bb66206983516571aa5ff",
+  "python_wrapper_sha256": "85af29be345d3b0bbb538187731904b8df42049320aa41ef0747dba21d1257e1",
+  "evaluator_sha256": "81b00133841c312ebf3808e0e4e2f7d090e75891123d88d994c44f9da3c6a354",
+  "runner_sha256": "0c631539c613e46ce7198b873428eb7787705db019850b38e6857a27ce8c665f",
+  "formal_report_sha256": "4c1752442f75dea0aaed516cf6890de7adf9405c494702f594adcd74d5ab6f18",
+  "stable_evidence_id": "d55bcbc5b9c60aa2cf288ec77d81c4f1b80ad3c614c0052e4daf35c1af5d54b3",
+  "observations": {
+    "sample_count": 13878,
+    "direct_branch_count": 12336,
+    "asymptotic_branch_count": 1542,
+    "maximum_absolute_developed_density_error": 1.0800249583553523e-10,
+    "maximum_relative_developed_density_error": 2.332742217323668e-9,
+    "maximum_cross_compiler_absolute_error": 5.10702591327572e-14,
+    "strict_monotonicity": true,
+    "repeat_exact": true,
+    "failure_atomic": true
+  },
+  "automatic_pass": true,
+  "decision": "retain_hybrid_native_gamma_density_inverse_for_composed_density_structure",
+  "scientific_conclusion": "A fixed high-shape Cornish-Fisher branch resolves P4HO's CDF-resolution failure while preserving its direct inverse below shape 10000. Both numerical branches are exercised on the unchanged 13,878-point grid, and all accuracy, monotonicity, repeat, cross-compiler and failure-atomic gates pass.",
+  "next_leaf": "Compose the retained P4HN calibrated uniforms and P4HP inverse-Gamma primitive under the exact profile density/sigma mapping, then compare developed-density output against the Python reference before spatial or media integration.",
+  "claim_ceiling": "Portable hybrid native inverse-Gamma density arithmetic on synthetic parameter coverage; not complete grain structure, photographic parity, calibrated emulsion response, media integration or product promotion."
+}
