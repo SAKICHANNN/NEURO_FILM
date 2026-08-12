@@ -1,0 +1,20 @@
+{
+  "schema": "neuro_film.u6_p4ej_native_cloud_chain_performance_evidence.v2",
+  "node": "U6.P4EJ",
+  "date": "2026-08-12",
+  "implementation_commit": "4bf3bc6e",
+  "contract_sha256": "f9ab5468394786e282ce05c9b9d792bf0516e68a180c76516d34260e30ff9794",
+  "formal_report_sha256": [
+    "4c8eb1b90c9abe84c91acc491c55338d3d431cf5be372ba31251d270804cf4d6",
+    "da5eb9bf59f3e63e11cb767b4b654ad2e1cb72b51e493ad5a380b34d5872a6d8"
+  ],
+  "stable_evidence_id": "9a90eeca0accc56b6c9fbd5b22352262b1c317f25a2a2bfa25f8c108479a7bbf",
+  "automatic_pass": true,
+  "native_python_wall_ratio": [0.3744504566252861, 0.36797924180544295],
+  "native_workspace_ratio_vs_v1": 0.5,
+  "maximum_density_absolute_error": 0.0,
+  "maximum_transmittance_absolute_error": 0.00000005960464477539063,
+  "repeat_exact": true,
+  "decision": "retain_native_cloud_chain_performance_v2",
+  "claim_ceiling": "Local Windows synthetic throughput and modeled native workspace only; not end-to-end renderer latency, measured emulsion, mobile runtime or product authorization."
+}
