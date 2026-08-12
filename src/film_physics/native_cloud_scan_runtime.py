@@ -4,13 +4,12 @@ from __future__ import annotations
 
 import ctypes
 import hashlib
-from typing import Callable
+from collections.abc import Callable
 
 import numpy as np
 
 from src.film_physics.native_abi_layouts import NativeGaussianProfileV1
 from src.film_physics.native_standard_runtime import _load_gaussian, _pointer
-
 
 PhysicalRows = Callable[[np.ndarray, int, int], np.ndarray]
 OutputSink = Callable[[int, int, np.ndarray], None]

@@ -40,19 +40,21 @@ def test_p4fc_runtime_boundary(tmp_path:Path)->None:
     assert lib.nf_gaussian_f32_apply_v1(ctypes.byref(profile),_pointer(source),source.shape[0],source.shape[1],_pointer(workspace),workspace.size,_pointer(reference))==0
     reference=np.ascontiguousarray(reference*.5,dtype=np.float32)
     component=hashlib.sha256((ROOT/"native/film_physics/nf_cloud_post_spatial_f32_v1.c").read_bytes()).hexdigest()
-    observed=[]
     def provider(forward:np.ndarray,y0:int,height:int)->np.ndarray:
         return np.ascontiguousarray(forward[y0:y0+height]*.5,dtype=np.float32)
     hashes=[]
     for tile_rows in (contract["fixture"]["tile_rows"],contract["fixture"]["alternate_tile_rows"]):
         runtime=NativeCloudScanRuntime(gaussian_library=dll,forward_scatter_profile=profile,
             physical_rows=provider,physical_component_sha256=component,tile_rows=tile_rows)
-        sink_rows=[];receipt=runtime.render_to_sink(source,output_sink=lambda y0,y1,rows:sink_rows.append((y0,y1,rows.copy())))
+        sink_rows=[]
+        def sink(y0:int,y1:int,rows:np.ndarray)->None:
+            sink_rows.append((y0,y1,rows.copy()))
+        receipt=runtime.render_to_sink(source,output_sink=sink)
         assembled=np.concatenate([row[2] for row in sink_rows],axis=0)
         assert np.array_equal(assembled,reference)
         assert [row[0] for row in sink_rows]==sorted(row[0] for row in sink_rows)
         assert receipt["physical_component_sha256"]==component
-        hashes.append(receipt["output_sha256"]);observed.append(receipt)
+        hashes.append(receipt["output_sha256"])
     assert len(set(hashes))==1
     before=source.copy()
     runtime=NativeCloudScanRuntime(gaussian_library=dll,forward_scatter_profile=profile,
