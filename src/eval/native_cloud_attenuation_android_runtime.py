@@ -1,0 +1,174 @@
+"""Android virtual runtime for the P4DZ attenuation kernel."""
+
+from __future__ import annotations
+
+import json
+import subprocess
+from pathlib import Path
+
+from src.eval.native_thomas_rgb16_png_android_runtime import (
+    _android_env,
+    _finish_owned_emulator_processes,
+    _run,
+    _wait_for_boot,
+)
+
+
+def build(
+    root: Path, compiler: Path, target: str, output: Path, *, android: bool
+) -> None:
+    output.parent.mkdir(parents=True, exist_ok=True)
+    command = [
+        str(compiler),
+        f"--target={target}",
+        "-std=c11",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-ffp-model=strict",
+        "-I",
+        str(root / "native/film_physics"),
+        str(root / "native/film_physics/nf_cloud_attenuation_f32_v1.c"),
+        str(root / "native/film_physics/nf_cloud_attenuation_runtime_probe_v1.c"),
+        "-lm",
+        "-o",
+        str(output),
+    ]
+    if android:
+        command[8:8] = ["-fPIE", "-pie", "-Wl,--build-id=none"]
+    else:
+        command.extend(["-Wl,--no-insert-timestamp"])
+    _run(command, cwd=root)
+
+
+def evaluate(
+    root: Path,
+    contract_path: Path,
+    ndk: Path,
+    host_clang: Path,
+    sdk: Path,
+    avd_home: Path,
+    output: Path,
+    port: int = 5582,
+) -> dict:
+    contract = json.loads(contract_path.read_text())
+    output.mkdir(parents=True, exist_ok=True)
+    host = output / "host.exe"
+    android = output / "android-probe"
+    build(root, host_clang, "x86_64-w64-windows-gnu", host, android=False)
+    build(
+        root,
+        ndk / "toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe",
+        "x86_64-linux-android21",
+        android,
+        android=True,
+    )
+    host_stdout = _run([str(host)], cwd=output)
+    env = _android_env(sdk, avd_home)
+    emulator_exe = sdk / "emulator/emulator.exe"
+    adb = sdk / "platform-tools/adb.exe"
+    serial = f"emulator-{port}"
+    boots = []
+    for boot in range(2):
+        process = subprocess.Popen(
+            [
+                str(emulator_exe),
+                "-avd",
+                contract["runtime"]["avd_name"],
+                "-port",
+                str(port),
+                "-no-window",
+                "-no-audio",
+                "-no-boot-anim",
+                "-no-snapshot",
+                "-wipe-data",
+                "-gpu",
+                "swiftshader_indirect",
+            ],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            env=env,
+            creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0),
+        )
+        try:
+            _wait_for_boot(adb, serial, process, env=env, timeout=180.0)
+            _run(
+                [
+                    str(adb),
+                    "-s",
+                    serial,
+                    "push",
+                    str(android),
+                    "/data/local/tmp/nf_p4eb_probe",
+                ],
+                cwd=output,
+                env=env,
+            )
+            _run(
+                [
+                    str(adb),
+                    "-s",
+                    serial,
+                    "shell",
+                    "chmod",
+                    "755",
+                    "/data/local/tmp/nf_p4eb_probe",
+                ],
+                cwd=output,
+                env=env,
+            )
+            rows = [
+                _run(
+                    [str(adb), "-s", serial, "shell", "/data/local/tmp/nf_p4eb_probe"],
+                    cwd=output,
+                    env=env,
+                )
+                for _ in range(2)
+            ]
+            abi = _run(
+                [str(adb), "-s", serial, "shell", "getprop", "ro.product.cpu.abi"],
+                cwd=output,
+                env=env,
+            )
+            boots.append({"abi": abi, "runs": rows})
+        finally:
+            try:
+                _run(
+                    [str(adb), "-s", serial, "emu", "kill"],
+                    cwd=output,
+                    env=env,
+                    timeout=15,
+                )
+            except (RuntimeError, subprocess.SubprocessError):
+                process.terminate()
+            try:
+                process.wait(timeout=30)
+            except subprocess.TimeoutExpired:
+                process.kill()
+                process.wait()
+            _finish_owned_emulator_processes(
+                emulator_exe, contract["runtime"]["avd_name"], port
+            )
+    all_rows = [row for boot in boots for row in boot["runs"]]
+    gates = {
+        "host_android": all(row == host_stdout for row in all_rows),
+        "within_boot": all(b["runs"][0] == b["runs"][1] for b in boots),
+        "cross_boot": boots[0]["runs"][0] == boots[1]["runs"][0],
+        "atomic": all("invalid_status=2 unchanged=1" in row for row in all_rows),
+        "abi": all(b["abi"] == "x86_64" for b in boots),
+    }
+    return {
+        "schema": "neuro_film.u6_p4eb_native_cloud_attenuation_android_runtime.v1",
+        "automatic_pass": all(gates.values()),
+        "host_stdout": host_stdout,
+        "boots": boots,
+        "gates": gates,
+        "decision": contract["decision_if_pass"]
+        if all(gates.values())
+        else contract["decision_if_fail"],
+        "claim_ceiling": contract["claim_ceiling"],
+    }
+
+
+__all__ = ["evaluate"]
