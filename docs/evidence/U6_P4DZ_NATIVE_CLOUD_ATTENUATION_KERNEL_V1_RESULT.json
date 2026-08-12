@@ -1,0 +1,18 @@
+{
+  "schema": "neuro_film.u6_p4dz_native_cloud_attenuation_kernel_evidence.v1",
+  "node": "U6.P4DZ",
+  "date": "2026-08-12",
+  "implementation_commit": "13c67142",
+  "contract_sha256": "3a038123c6ad0385db43aad1278506003f1ff7639f6720f5c37720dfbd48ab11",
+  "formal_report_sha256": "bd9b860f8832a1c035fda609ab75b66195f4474c75675022cd49afc4970d680f",
+  "stable_evidence_id": "9f65a476b99619c3915891ed522d0c7229d0fd6a9b3ad33d73ca7bf7cf5e6d81",
+  "exact_replays": 2,
+  "automatic_pass": true,
+  "sample_scalars": 196608,
+  "maximum_transmittance_absolute_error_vs_float64": 0.00000003352292310410121,
+  "maximum_density_absolute_error_vs_float64": 0.00000007865638762538652,
+  "maximum_cross_compiler_absolute_error": 0.0,
+  "failure_atomicity": true,
+  "decision": "retain_native_cloud_attenuation_kernel_v1",
+  "claim_ceiling": "Windows x64 C11 arithmetic kernel only; not stochastic-field native runtime, mobile runtime, calibration or product authorization."
+}

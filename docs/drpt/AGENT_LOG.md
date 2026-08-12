@@ -12094,3 +12094,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   gain drift changes identity.
 - The Python reference chain is now executable end to end. Move to a small C
   reference kernel for attenuation/density conversion, not more protocol work.
+
+# 2026-08-12 - U6.P4DZ retains the native attenuation arithmetic
+
+- MSVC and LLVM-MinGW execute 196,608 scalars with exact cross-compiler output.
+  Maximum float64-oracle errors are 3.36e-8 transmittance and 7.87e-8 density;
+  repeat identity and failure atomicity pass in two byte-identical reports.
+- This ports only the compiled residual/density arithmetic. Next prove mobile
+  builds and Android virtual runtime; stochastic field generation stays Python.
