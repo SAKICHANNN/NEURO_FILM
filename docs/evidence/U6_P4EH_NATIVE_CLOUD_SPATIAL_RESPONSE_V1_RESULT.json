@@ -1,0 +1,18 @@
+{
+  "schema": "neuro_film.u6_p4eh_native_cloud_spatial_response_evidence.v1",
+  "node": "U6.P4EH",
+  "date": "2026-08-12",
+  "implementation_commit": "1cfa7c07",
+  "contract_sha256": "51cedb3390372a26b8c9d91efe27eba0d7783970e26c6d4d06dc94e888a35f69",
+  "formal_report_sha256": "9140658e5c507f4ee6b5ec4fe33d239930d674c3b39eed1fe6aefc116ed90975",
+  "stable_evidence_id": "bc949400285cf543791d39593ad3e444e928339af8909a154bd45c5e5364a96c",
+  "exact_replays": 2,
+  "automatic_pass": true,
+  "maximum_density_absolute_error": 0.0000000074504648839290866,
+  "maximum_transmittance_absolute_error": 0.000000029802199374984184,
+  "cross_compiler_exact": true,
+  "repeat_exact": true,
+  "failure_atomicity": true,
+  "decision": "retain_native_cloud_spatial_response_v1",
+  "claim_ceiling": "Windows x64 C11 separable Gaussian cloud spatial response only; not a complete renderer, measured MTF, calibrated emulsion or product authorization."
+}
