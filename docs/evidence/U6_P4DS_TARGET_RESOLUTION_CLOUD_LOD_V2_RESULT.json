@@ -1,0 +1,19 @@
+{
+  "schema": "neuro_film.u6_p4ds_target_resolution_cloud_lod_evidence.v2",
+  "node": "U6.P4DS",
+  "date": "2026-08-12",
+  "implementation_commit": "28921687",
+  "contract_sha256": "3f6e9a03d703fe58c46e4cf5bd78f2d656556c729ddd9e7ea1586bd6a4481a44",
+  "formal_report_sha256": "c102e32c41a625ca0b6847c4f8f12d45fb336a86b317890479c17e5ad7b4807c",
+  "stable_evidence_id": "eed726a869a858d3e2166da86b6c23eba11b1d16f63f9c9ee6a41804045b74e4",
+  "exact_replays": 2,
+  "automatic_pass": false,
+  "maximum_mean_transmittance_absolute_error": 0.00011659453003194653,
+  "maximum_marginal_noise_rms_relative_error": 0.5176982996410241,
+  "maximum_cross_channel_correlation_absolute_error": 0.01913835788589527,
+  "maximum_radial_nps_shape_rmse": 0.036570320496652646,
+  "edge_overshoot_absolute_difference": 0.0027370991416728434,
+  "failed_gate": "marginal_noise_rms_relative_error",
+  "decision": "close_target_resolution_compound_poisson_cloud_lod_v2",
+  "claim_ceiling": "Synthetic target-resolution approximation evidence only; not measured NPS, film granularity, scanner aperture, calibrated stock or product authorization."
+}

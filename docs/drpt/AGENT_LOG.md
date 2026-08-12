@@ -12035,3 +12035,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   error to 0.000288 and creates no boundary sample; factor 8 is not selected.
 - Compile factor 4 into a bounded streaming runtime next. This is still only a
   synthetic engineering LOD, not a measured scanner or film aperture.
+
+# 2026-08-12 - U6.P4DS closes naive target-resolution scaling
+
+- Rate x16 / mark divided by 16 preserves mean, cross-layer correlation, NPS
+  shape, edge and boundary gates, but misses marginal noise RMS by 51.77%.
+- Do not ship the cheap approximation or tune on confirmation seeds. A new
+  development-only moment compiler may select an equivalent event scale while
+  the same confirmation rows remain sealed.
