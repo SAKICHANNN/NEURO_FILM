@@ -1,0 +1,16 @@
+{
+  "schema": "neuro_film.u6_p4dk_typed_bw_silver_chain_contract.v1",
+  "experiment_id": "u6.p4dk-typed-bw-silver-chain-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4DK",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parents": {
+    "colour_separation": {"path": "docs/evidence/U6_P4DJ_TYPED_SENSITOMETRY_CLOUD_CHAIN_RESULT.json", "sha256": "c84227a30bce488bd39cebcdab9c6691958909f621587b6e9a417d6756178948", "required_decision": "retain_typed_colour_sensitometry_cloud_chain"},
+    "silver_reference": {"path": "configs/u6_p1b_developed_structure_reference_v1.json", "sha256": "86df2b1eaf737a5178036668afafaaf347384d073070e89b2c19d809f8bf6ff6", "required_schema": "neuro_film.u6_p1b_developed_structure_reference_contract.v1"}
+  },
+  "fixture": {"input_height": 64, "input_width": 80, "output_zoom": 4, "output_pixel_pitch_um": 8.0, "radius_um": 5.0, "monte_carlo_samples": 8, "seed": 44181},
+  "gates": {"maximum_interior_mean_transmittance_absolute_error": 0.05, "minimum_interior_variance": 0.0001, "require_full_partition_bit_identity": true, "require_repeat_identity": true, "require_bw_material_and_transmittance_domain": true, "require_colour_route_rejection": true},
+  "decision_if_pass": "retain_typed_bw_metallic_silver_chain",
+  "decision_if_fail": "close_typed_bw_metallic_silver_chain",
+  "claim_ceiling": "Generic synthetic B&W metallic-silver structure only; not developer-calibrated, stock-specific, scanner-calibrated or product evidence."
+}
