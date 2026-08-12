@@ -1,0 +1,23 @@
+{
+  "schema": "neuro_film.u6_p4ey_native_sensitometry_cloud_bridge.v1",
+  "experiment_id": "u6.p4ey-native-sensitometry-cloud-bridge-v1",
+  "date_executed": "2026-08-12",
+  "implementation_commit": "da965715",
+  "automatic_pass": true,
+  "formal_replays": {"count": 2, "byte_exact": true},
+  "stable_evidence_id": "7c3b2e1c63cbe1a34bf3271e4ed2d73acd66ff4450fbcd1638bd39fe6d0e7357",
+  "contract_sha256": "31545f94f716cce123bb66ea47d9a1366cbbef609d2a04c14f51bb0dd7529f22",
+  "source_sha256": "0b62c98493b53bd3441e818116dfc7fbef22064cd5a0b18f75edcf438ab23cf3",
+  "header_sha256": "d45a4e3420eba405867a9321e3ace369b9ebddb5e37c28a39ffdf3b6762de2aa",
+  "results": {
+    "composed_manual_output_bit_exact": true,
+    "msvc_llvm_output_bit_exact": true,
+    "repeat_bit_exact": true,
+    "invalid_input_output_unchanged": true,
+    "new_boundary_values": 0,
+    "density_sha256": "802ee47925278a0e88a6d6cabf8495ec47f86a8b31bab5ac4e434dc2adee09f9",
+    "transmittance_sha256": "7c4c43a84b5ae0d928f26d39bb09249bd5342c7c250171b442dcbfbbcfa5584c"
+  },
+  "decision": "retain_native_sensitometry_cloud_bridge_v1",
+  "claim_ceiling": "Local Windows x64 synthetic-profile scene-linear to developed-density stochastic-cloud arithmetic; not the historical profile, calibrated emulsion, scanner interpretation, image quality, mobile runtime or product authorization."
+}
