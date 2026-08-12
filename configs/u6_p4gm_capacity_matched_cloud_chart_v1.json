@@ -1,0 +1,54 @@
+{
+  "schema": "neuro-film.u6-p4gm-capacity-matched-cloud-chart-contract.v1",
+  "experiment_id": "u6.p4gm-capacity-matched-cloud-chart-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4GM",
+  "date_frozen": "2026-08-12",
+  "status": "contract-frozen-implementation-ready",
+  "parents": {
+    "response": {
+      "path": "docs/evidence/U6_P4GL_CAPACITY_MATCHED_CLOUD_RESPONSE_RESULT.json",
+      "sha256": "f5f6151be1e359f315da52a4e8cec26819c94e13ddf07512b56b98be599d584c",
+      "required_decision": "retain_capacity_matched_cloud_response_v1_for_chart_confirmation"
+    },
+    "failed_chart": {
+      "path": "docs/evidence/U6_P4GH_CLOUD_RESIDUAL_CHART_ARTIFACT_RESULT.json",
+      "sha256": "37b33ea9af6549411044ae6709769b5be04a0c63fbe069418f6eb51ff8a1cd12",
+      "required_decision": "close_cloud_residual_after_chart_artifact_gate"
+    }
+  },
+  "candidate": {
+    "cloud_profile": "exact-p4di-sensitometry-capacity-compiled-profile-v2",
+    "source_to_density": "exact-p4gj-source-derived-sensitometry-v2",
+    "density_residual": "p4gk-analytical-envelope-no-clipping",
+    "display_interpretation": "p4fb-scan-linear-output-direct-no-second-neutral-gauge",
+    "look": "existing-ao6-linear-residual-only",
+    "hard_clipping_allowed": false
+  },
+  "fixture": {
+    "height": 768,
+    "width": 1024,
+    "tile_rows": [127, 193],
+    "neutral_patch_margin": 24,
+    "edge_exclusion": 24
+  },
+  "gates": {
+    "maximum_neutral_chroma_p99": 0.09,
+    "maximum_neutral_patch_mean_chroma": 0.012,
+    "maximum_edge_overshoot": 0.025,
+    "maximum_edge_undershoot": 0.025,
+    "maximum_new_boundary_fraction": 0.0005,
+    "maximum_residual_neutral_chroma_increase": 0.01,
+    "maximum_residual_edge_overshoot_increase": 0.005,
+    "maximum_residual_edge_undershoot_increase": 0.005,
+    "require_partition_exact": true,
+    "require_repeat_exact": true
+  },
+  "execution": {
+    "formal_processes": 2,
+    "visual_after_numeric_gates": true,
+    "post_result_retuning_allowed": false
+  },
+  "decision_if_pass": "retain_capacity_matched_cloud_chart_v1_for_visual_review",
+  "decision_if_fail": "close_capacity_matched_cloud_chart_v1",
+  "claim_ceiling": "Synthetic chart severe-artifact evidence only; not calibrated film, measured stock response, human preference or product promotion."
+}
