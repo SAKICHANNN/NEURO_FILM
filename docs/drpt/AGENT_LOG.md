@@ -12272,3 +12272,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   range, variance, boundary and replay gates are frozen before formal runs.
 - Failure closes this exact cloud-profile plus frozen gauge/display pairing;
   the cohort cannot be rescued by tuning either profile or the gates.
+
+# 2026-08-12 - U6.P4GC closes the exact cloud/AO6 pairing
+
+- Two formal processes are byte exact across six new procedural scenes. Cloud
+  scan and gauge/OETF physics-only outputs retain nonzero dynamic range, but
+  AO6 composition collapses all six to one identical constant image.
+- Pass rate is 0/6 and the exact pairing closes without tuning. Future work
+  requires a profile-bound display mapping or explicit normalization contract,
+  not reuse of the frozen AO6 context outside its fitted input distribution.
