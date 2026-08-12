@@ -1,0 +1,19 @@
+{
+  "schema": "neuro_film.u6_p4dr_optical_density_cloud_aperture_lod_evidence.v2",
+  "node": "U6.P4DR",
+  "date": "2026-08-12",
+  "implementation_commit": "d85ebb1e",
+  "contract_sha256": "18d66f55602b6a1428a6e78317f0fd1b22661c4d230a60a990339d4837cc33d1",
+  "formal_report_sha256": "0f7435646f48a8aedfdaae259ac813592a1f9f834c0f1f16d1f1ae05fc7007bc",
+  "stable_evidence_id": "11dd4c22f2ff2a5cb5db88925c8f8abef79366955b35f3708c3c0631c281763e",
+  "exact_replays": 2,
+  "automatic_pass": true,
+  "selected_factor": 4,
+  "selected_edge_overshoot": 0.0152344349336467,
+  "selected_edge_undershoot": 0.0036523436244105005,
+  "selected_noise_rms_retention_ratio": 0.6341870626535238,
+  "selected_mean_transmittance_error": 0.0002876644479212487,
+  "selected_new_boundary_fraction": 0.0,
+  "decision": "retain_minimum_safe_optical_density_cloud_aperture_lod_v2",
+  "claim_ceiling": "Fresh synthetic aperture-LOD evidence only; not measured film granularity, scanner aperture, visual preference, stock calibration or product evidence."
+}

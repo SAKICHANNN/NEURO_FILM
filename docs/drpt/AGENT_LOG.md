@@ -12027,3 +12027,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Point-sampled cloud edge overshoot is 0.02517 versus the frozen 0.02 ceiling.
   Do not tune adjacency or the gate; next test the already retained physical
   aperture integration under the corrected v2 transmittance law.
+
+# 2026-08-12 - U6.P4DR selects the minimum safe aperture LOD
+
+- Factor 2 remains above the frozen edge gate at 0.02097 overshoot. Factor 4
+  is the first full pass at 0.01523, retains 63.42% cloud-noise RMS, holds mean
+  error to 0.000288 and creates no boundary sample; factor 8 is not selected.
+- Compile factor 4 into a bounded streaming runtime next. This is still only a
+  synthetic engineering LOD, not a measured scanner or film aperture.
