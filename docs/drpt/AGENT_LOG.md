@@ -12509,3 +12509,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The next leaf changes the material execution itself: density-conditioned
   subpixel LOD must suppress unresolved excursions before common-density
   projection. This consumed cohort remains development-only.
+
+### 2026-08-12 - U6.P4GT closes density LOD v1
+
+- A fixed five-tap pixel aperture and analytic `4Y(1-Y)` density visibility
+  envelope reduce population p95 deviation to 0.00273 and isolated excursions
+  from 56 to 9. Two full processes and contact sheets are byte exact.
+- The Nikon packaging row still contains severe high-density islands; maximum
+  limiting is 11.49% and new boundary reaches 0.000873. A near-zero RGB ratio
+  metric is also numerically ill-conditioned, but is left failed because the
+  independent severe and boundary gates already close the candidate.
+- The next material hypothesis is finite-tail compound-Poisson density
+  execution, not more blur or a weaker threshold.

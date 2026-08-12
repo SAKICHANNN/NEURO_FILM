@@ -1,0 +1,56 @@
+{
+  "schema": "neuro-film.u6-p4gt-density-lod-photographic-development-evidence.v1",
+  "node": "U6.P4GT",
+  "date": "2026-08-12",
+  "implementation_commit": "7431a5b8",
+  "contract_commit": "da09313c",
+  "formal_processes": 2,
+  "formal_report_sha256": "2aaa509d788cec1eb0063000facc600d77b931ea58ae24aeedde9b8c8cbb1152",
+  "reports_byte_exact": true,
+  "contact_sheet_sha256": "39b7c21e73ad03aafe19e7bdcd9221eaa07511ce5a2d94f87ec3e3c6e96d17ee",
+  "contact_sheets_byte_exact": true,
+  "stable_evidence_id": "538a32c3505b3cef6480beabaed827413eb08461300f45306159abd134289b9f",
+  "compiled_profile_identity": "9d9d86e1f2fc695d431810cbe06cbe9749be601838d4fc4cdfed18b63f13879a",
+  "source_cohort": {
+    "rows": 9,
+    "camera_makes": 9,
+    "rights_scope": "CC0_public_domain_internal_evaluation",
+    "input_domain": "relative-display-sRGB-derived pseudo-exposure",
+    "manifest_sha256": "edb1b45552f9bf5712c922ed816b6f9a70f5f0bee2b72a024144cde0087dd521",
+    "cohort_status": "consumed-development-only"
+  },
+  "observations": {
+    "minimum_physical_residual_rms": 0.0006477709060366484,
+    "maximum_limited_fraction": 0.11489503816793892,
+    "population_p95_combined_vs_ao6_abs": 0.002729440573602915,
+    "population_p99_combined_vs_ao6_abs": 0.011104441620409487,
+    "maximum_flat_region_p99_abs": 0.29677164554595947,
+    "total_isolated_excursion_count": 9,
+    "maximum_new_boundary_fraction_vs_ao6": 0.0008734727443609023,
+    "maximum_naive_rgb_ratio_error": 0.000244140625,
+    "all_rows_partition_exact": true,
+    "all_outputs_finite": true,
+    "hard_clipping_used": false
+  },
+  "failed_automatic_gates": [
+    "flat_regions",
+    "isolated_excursions",
+    "limited_fraction",
+    "new_boundaries",
+    "rgb_ratio_preservation"
+  ],
+  "metric_note": "The absolute ratio metric is ill-conditioned near zero inputs; the implementation applies one scalar gain per pixel by construction. It remains a frozen failure and is not repaired post-result because independent severe visual and boundary gates already close the candidate.",
+  "autonomous_visual_review": {
+    "pass": false,
+    "confirmed_severe_artifact_count": 1,
+    "failure_families": [
+      "large high-contrast density islands and saturated highlight patches on the Nikon packaging row"
+    ],
+    "notes": "Pixel-aperture integration and the density visibility envelope further reduce widespread texture and isolated excursions, but do not remove the localized Nikon density islands. The candidate therefore remains below the severe-artifact bar despite improved population statistics."
+  },
+  "automatic_pass": false,
+  "decision": "close_density_lod_residual_v1_without_rescue",
+  "scientific_conclusion": "Resolution-aware aperture integration plus a fixed density envelope improves the P4GS mechanism: population p95 falls from 0.00404 to 0.00273 and isolated excursions fall from 56 to 9. The persistent localized high-density island shows that the remaining defect is a heavy-tailed particle realization, not merely chromatic decorrelation or unresolved pixel scale. A successor must model finite density fluctuation statistics explicitly rather than increase blur or weaken gates.",
+  "next_leaf": "Test a prospectively fixed variance-stabilized compound-Poisson density field with smooth finite-tail execution before the same common-density and density-visibility projection.",
+  "claim_ceiling": "Consumed nine-camera CC0 relative-display photographic mechanism development only; not independent confirmation, scene exposure, calibrated film, stock response, human preference or product promotion."
+}
