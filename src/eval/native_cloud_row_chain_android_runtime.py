@@ -29,11 +29,15 @@ def _build(root: Path, compiler: Path, target: str, output: Path, android: bool)
     command += ["-o",str(output)]; _run(command,cwd=root)
 
 
-def evaluate(root: Path, contract_path: Path, ndk: Path, host_clang: Path, sdk: Path, avd_home: Path, output: Path, port: int=5586) -> dict:
+def evaluate(root: Path, contract_path: Path, ndk: Path, host_clang: Path, sdk: Path, avd_home: Path, output: Path, port: int=5586, probe_source: str | None=None) -> dict:
     c=json.loads(contract_path.read_text()); parent=root/c["parent"]["path"]
     if _sha(parent)!=c["parent"]["sha256"] or json.loads(parent.read_text())["decision"]!=c["parent"]["required_decision"]: raise RuntimeError("P4EP parent drift")
     output.mkdir(parents=True,exist_ok=True); host=output/"host.exe"; android=output/"android-probe"
-    _build(root,host_clang,"x86_64-w64-windows-gnu",host,False); _build(root,ndk/"toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe","x86_64-linux-android34",android,True)
+    original_probe=SOURCES[-1]
+    if probe_source is not None:SOURCES[-1]=probe_source
+    try:
+        _build(root,host_clang,"x86_64-w64-windows-gnu",host,False); _build(root,ndk/"toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe","x86_64-linux-android34",android,True)
+    finally:SOURCES[-1]=original_probe
     host_paths=[output/"host-density.f32",output/"host-t.f32"]; host_stdout=_run([str(host),*map(str,host_paths)],cwd=output)
     env=_android_env(sdk,avd_home); emulator=sdk/"emulator/emulator.exe"; adb=sdk/"platform-tools/adb.exe"; serial=f"emulator-{port}"; boots=[]
     for boot in range(c["runtime"]["cold_boots"]):
@@ -58,7 +62,7 @@ def evaluate(root: Path, contract_path: Path, ndk: Path, host_clang: Path, sdk: 
     density_differing=max(int(np.count_nonzero(x!=hd)) for x in ds)
     gates={"density":all(np.array_equal(x,hd) for x in ds),"transmittance":all(np.array_equal(x,ht) for x in ts),"repeat":all(np.array_equal(x,ds[0]) for x in ds) and all(np.array_equal(x,ts[0]) for x in ts),"workspace":all("counts=6909 convolution=2303 core=4371" in r["stdout"] for r in rows),"atomic":all("invalid=2" in r["stdout"] for r in rows),"abi":all(b["abi"]=="x86_64" for b in boots),"cleanup":_cleanup_owned_launchers(emulator,c["runtime"]["avd_name"],port)}
     stable={"contract_sha256":_sha(contract_path),"host_density_sha256":_sha(host_paths[0]),"host_transmittance_sha256":_sha(host_paths[1]),"maximum_density_absolute_error":max_density,"density_differing_values":density_differing,"gates":gates,"decision":c["decision_if_pass"] if all(gates.values()) else c["decision_if_fail"],"claim_ceiling":c["claim_ceiling"]}
-    return {"schema":"neuro_film.u6_p4ep_native_cloud_row_chain_android_runtime.v1","automatic_pass":all(gates.values()),"stable":stable,"stable_evidence_id":hashlib.sha256(json.dumps(stable,sort_keys=True,separators=(",",":")).encode()).hexdigest(),"host_stdout":host_stdout}
+    return {"schema":"neuro_film.u6_p4ep_native_cloud_row_chain_android_runtime.v1","automatic_pass":all(gates.values()),"stable":stable,"stable_evidence_id":hashlib.sha256(json.dumps(stable,sort_keys=True,separators=(",",":")).encode()).hexdigest(),"host_stdout":host_stdout,"stdout_rows":[r["stdout"] for r in rows]}
 
 
 __all__=["evaluate"]
