@@ -1,0 +1,24 @@
+{
+  "schema": "neuro_film.u6_p4ep_native_cloud_row_chain_android_runtime_contract.v1",
+  "experiment_id": "u6.p4ep-native-cloud-row-chain-android-runtime-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4EP",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {
+    "path": "docs/evidence/U6_P4EO_NATIVE_CLOUD_ROW_CHAIN_PORTABLE_V1_RESULT.json",
+    "sha256": "17e93dcc4738dc26759e9d3938591553d13b3479789226b78740cf5d18efff16",
+    "required_decision": "retain_native_cloud_row_chain_portable_v1"
+  },
+  "fixture": {"full_height": 73, "core_height": 31, "width": 47, "origin_y": 61, "halo": 9, "seed": 78277},
+  "runtime": {"api_level": 34, "abi": "x86_64", "avd_name": "nf-019f4b76-p8cm-api34-x86", "cold_boots": 2, "fresh_processes_per_boot": 2},
+  "gates": {
+    "require_host_android_output_bit_identity": true,
+    "require_android_repeat_bit_identity": true,
+    "require_workspace_query_identity": true,
+    "require_failure_atomicity": true,
+    "require_zero_surviving_owned_processes": true
+  },
+  "decision_if_pass": "retain_android_virtual_runtime_for_native_cloud_row_chain_v1",
+  "decision_if_fail": "retain_portable_build_without_android_row_chain_runtime_claim",
+  "claim_ceiling": "Private Android 14 x86_64 virtual-device synthetic row-chain arithmetic; not physical arm64, JNI/app, calibrated emulsion or product runtime."
+}
