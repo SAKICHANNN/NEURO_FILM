@@ -6,6 +6,8 @@ import json
 import subprocess
 from pathlib import Path
 
+import numpy as np
+
 from src.eval.native_thomas_rgb16_png_android_runtime import (
     _android_env,
     _finish_owned_emulator_processes,
@@ -64,7 +66,11 @@ def evaluate(
         android,
         android=True,
     )
-    host_stdout = _run([str(host)], cwd=output)
+    host_density = output / "host-density.f32"
+    host_transmittance = output / "host-transmittance.f32"
+    host_stdout = _run(
+        [str(host), str(host_density), str(host_transmittance)], cwd=output
+    )
     env = _android_env(sdk, avd_home)
     emulator_exe = sdk / "emulator/emulator.exe"
     adb = sdk / "platform-tools/adb.exe"
@@ -118,14 +124,53 @@ def evaluate(
                 cwd=output,
                 env=env,
             )
-            rows = [
-                _run(
-                    [str(adb), "-s", serial, "shell", "/data/local/tmp/nf_p4eb_probe"],
+            rows = []
+            for process_index in range(2):
+                remote_density = f"/data/local/tmp/p4ec-{boot}-{process_index}-d.f32"
+                remote_t = f"/data/local/tmp/p4ec-{boot}-{process_index}-t.f32"
+                stdout = _run(
+                    [
+                        str(adb),
+                        "-s",
+                        serial,
+                        "shell",
+                        "/data/local/tmp/nf_p4eb_probe",
+                        remote_density,
+                        remote_t,
+                    ],
                     cwd=output,
                     env=env,
                 )
-                for _ in range(2)
-            ]
+                local_density = (
+                    output / f"boot{boot}-process{process_index}-density.f32"
+                )
+                local_t = (
+                    output / f"boot{boot}-process{process_index}-transmittance.f32"
+                )
+                _run(
+                    [
+                        str(adb),
+                        "-s",
+                        serial,
+                        "pull",
+                        remote_density,
+                        str(local_density),
+                    ],
+                    cwd=output,
+                    env=env,
+                )
+                _run(
+                    [str(adb), "-s", serial, "pull", remote_t, str(local_t)],
+                    cwd=output,
+                    env=env,
+                )
+                rows.append(
+                    {
+                        "stdout": stdout,
+                        "density_path": str(local_density),
+                        "transmittance_path": str(local_t),
+                    }
+                )
             abi = _run(
                 [str(adb), "-s", serial, "shell", "getprop", "ro.product.cpu.abi"],
                 cwd=output,
@@ -151,18 +196,30 @@ def evaluate(
                 emulator_exe, contract["runtime"]["avd_name"], port
             )
     all_rows = [row for boot in boots for row in boot["runs"]]
+    host_d = np.fromfile(host_density, dtype="<f4")
+    host_t = np.fromfile(host_transmittance, dtype="<f4")
+    densities = [np.fromfile(row["density_path"], dtype="<f4") for row in all_rows]
+    transmittances = [
+        np.fromfile(row["transmittance_path"], dtype="<f4") for row in all_rows
+    ]
+    density_error = max(float(np.max(np.abs(value - host_d))) for value in densities)
     gates = {
-        "host_android": all(row == host_stdout for row in all_rows),
-        "within_boot": all(b["runs"][0] == b["runs"][1] for b in boots),
-        "cross_boot": boots[0]["runs"][0] == boots[1]["runs"][0],
-        "atomic": all("invalid_status=2 unchanged=1" in row for row in all_rows),
+        "density_tolerance": density_error
+        <= contract["gates"]["maximum_host_android_density_absolute_error"],
+        "transmittance": all(np.array_equal(value, host_t) for value in transmittances),
+        "repeat": all(np.array_equal(value, densities[0]) for value in densities)
+        and all(np.array_equal(value, transmittances[0]) for value in transmittances),
+        "atomic": all(
+            "invalid_status=2 unchanged=1" in row["stdout"] for row in all_rows
+        ),
         "abi": all(b["abi"] == "x86_64" for b in boots),
     }
     return {
-        "schema": "neuro_film.u6_p4eb_native_cloud_attenuation_android_runtime.v1",
+        "schema": "neuro_film.u6_p4ec_native_cloud_attenuation_android_tolerance.v2",
         "automatic_pass": all(gates.values()),
         "host_stdout": host_stdout,
         "boots": boots,
+        "maximum_host_android_density_absolute_error": density_error,
         "gates": gates,
         "decision": contract["decision_if_pass"]
         if all(gates.values())

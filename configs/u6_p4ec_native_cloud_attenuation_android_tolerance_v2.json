@@ -13,6 +13,13 @@
     "pixel_count": 4096,
     "channel_residual_gain": [0.7874638824806821, 0.7008792161934756, 0.6589818299954651]
   },
+  "runtime": {
+    "api_level": 34,
+    "abi": "x86_64",
+    "avd_name": "nf-019f4b76-p8cm-api34-x86",
+    "cold_boots": 2,
+    "fresh_processes_per_boot": 2
+  },
   "gates": {
     "maximum_host_android_density_absolute_error": 0.0000002,
     "require_host_android_transmittance_bit_exact": true,

@@ -14,7 +14,7 @@ static uint64_t hash_bytes(const unsigned char* bytes, size_t count) {
     return hash;
 }
 
-int main(void) {
+int main(int argc, char** argv) {
     const size_t pixels = 4096u;
     const size_t total = pixels * 3u;
     const float gain[3] = {0.7874638824806821f, 0.7008792161934756f,
@@ -41,6 +41,19 @@ int main(void) {
     base[total - 1u] = 0.0f;
     bad_status = nf_cloud_attenuation_f32_apply_v1(
         expected, base, pixels, gain, density, output);
+    if (argc == 3) {
+        FILE* density_file = fopen(argv[1], "wb");
+        FILE* transmittance_file = fopen(argv[2], "wb");
+        if (density_file == NULL || transmittance_file == NULL ||
+            fwrite(density, sizeof(float), total, density_file) != total ||
+            fwrite(output, sizeof(float), total, transmittance_file) != total) {
+            if (density_file != NULL) fclose(density_file);
+            if (transmittance_file != NULL) fclose(transmittance_file);
+            return 4;
+        }
+        fclose(density_file);
+        fclose(transmittance_file);
+    }
     printf("status=%d density=%016" PRIx64 " transmittance=%016" PRIx64
            " invalid_status=%d unchanged=%d\n",
         status, hash_bytes((const unsigned char*)density, total * sizeof(float)),
