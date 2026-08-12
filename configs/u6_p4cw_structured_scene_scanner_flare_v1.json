@@ -1,0 +1,30 @@
+{
+  "schema": "neuro_film.u6_p4cw_structured_scene_scanner_flare_contract.v1",
+  "experiment_id": "u6.p4cw-structured-scene-scanner-flare-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4CW",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "question": "With a known structured scene-density baseline removed before residual correlation, does broad-PSF scanner flare create false layer coupling and does exact PSF subtraction restore it?",
+  "parents": {"p4cv_evidence": {"path": "docs/evidence/U6_P4CV_SIGNAL_DEPENDENT_SCANNER_FLARE_RESULT.json", "sha256": "57a557af5434642a26a84c722916bb0f10c960592f9eb211f335ef49b6a9af6b", "required_decision": "close_current_signal_dependent_scanner_flare_control_without_tuning"}},
+  "simulation": {
+    "shape": [384, 512],
+    "development_seeds": [2026081281, 2026081282, 2026081283, 2026081284],
+    "confirmation_seeds": [2026081291, 2026081292, 2026081293, 2026081294],
+    "layer_correlation": [[1.0, 0.42, 0.18], [0.42, 1.0, 0.31], [0.18, 0.31, 1.0]],
+    "mean_density_rgb": [0.65, 0.82, 0.74],
+    "grain_density_sigma": 0.035,
+    "scene_density_amplitude_rgb": [0.18, 0.12, 0.15],
+    "scene_frequencies_xy": [[1, 1], [2, 1], [1, 3]],
+    "scene_weights": [0.5, 0.3, 0.2],
+    "scanner_matrix": [[0.78, 0.17, 0.05], [0.12, 0.76, 0.12], [0.04, 0.22, 0.74]],
+    "flare_fraction": 0.06,
+    "gaussian_sigma_pixels": 18.0,
+    "wrong_psf_sigma_pixels": 6.0,
+    "order": "structured scene density + correlated grain density -> transmittance -> scanner matrix -> broad-PSF flare -> correction -> inverse -> subtract known scene density -> grain correlation"
+  },
+  "metrics": {"maximum_corrected_correlation_rmse": 0.01, "minimum_uncorrected_correlation_rmse": 0.02, "minimum_wrong_psf_correlation_rmse": 0.012, "minimum_corrected_improvement_over_uncorrected": 0.8, "maximum_development_confirmation_rmse_gap": 0.005, "require_exact_repeat": true},
+  "decision_if_pass": "require_scanner_psf_and_scene_baseline_binding_before_layer_residual_correlation",
+  "decision_if_fail": "close_current_structured_scene_scanner_flare_control_without_tuning",
+  "forbidden": ["fit scene, PSF or flare from confirmation", "change gates after scoring", "claim real scanner or stock calibration", "map to product"],
+  "claim_ceiling": "Controlled float64 structured-scene simulator evidence only; not real scanner, stock or product calibration."
+}
