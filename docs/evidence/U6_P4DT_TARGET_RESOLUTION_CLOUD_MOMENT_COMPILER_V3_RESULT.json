@@ -1,0 +1,22 @@
+{
+  "schema": "neuro_film.u6_p4dt_target_resolution_cloud_moment_compiler_evidence.v3",
+  "node": "U6.P4DT",
+  "date": "2026-08-12",
+  "implementation_commit": "c1ccb9b0",
+  "contract_sha256": "097bc825d4604ad3853f97b1bd6c74a8326bb19e984cd817236389accf9922d2",
+  "formal_report_sha256": "fd50f2579fab144e5f35e4dca3334bcb6fb50ac8d9482cc137755618ad4d4668",
+  "stable_evidence_id": "51fc51b8153436856d789e9313872e7c2e53aba1b72941bed97f280193e1a45e",
+  "exact_replays": 2,
+  "automatic_pass": false,
+  "selected_rate_multiplier": 16,
+  "development_noise_rms_relative_error": 0.5193982369609407,
+  "confirmation_noise_rms_relative_error": 0.5185022033712802,
+  "confirmation_cross_channel_correlation_absolute_error": 0.017912720212875377,
+  "confirmation_radial_nps_shape_rmse": 0.03645241048936524,
+  "failed_gates": [
+    "development_noise_rms_relative_error",
+    "confirmation_marginal_noise_rms_relative_error"
+  ],
+  "decision": "close_moment_compiled_target_resolution_cloud_lod_v3",
+  "claim_ceiling": "Synthetic moment-compiled target-resolution approximation only; not measured NPS, film granularity, scanner aperture, stock calibration or product authorization."
+}

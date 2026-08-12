@@ -12043,3 +12043,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Do not ship the cheap approximation or tune on confirmation seeds. A new
   development-only moment compiler may select an equivalent event scale while
   the same confirmation rows remain sealed.
+
+# 2026-08-12 - U6.P4DT closes the four-point event-scale compiler
+
+- Development selects multiplier 16, but noise RMS remains 51.94% low and the
+  sealed confirmation reproduces 51.85% error. Multiplier 8 is already 114.5%
+  high, so the frozen discrete family has no passing member.
+- Do not densify this grid. The next candidate must match independent first and
+  second transmittance moments per channel, then face unchanged confirmation.
