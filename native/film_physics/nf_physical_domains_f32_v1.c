@@ -281,6 +281,38 @@ nf_physical_sensitometry_f32_apply_v1(
 }
 
 nf_physical_domains_f32_status_v1
+nf_physical_sensitometry_f64_apply_v2(
+    const nf_physical_domains_f32_profile_v1* profile,
+    const float* scene_linear_rgb,
+    size_t rgb_count,
+    double* developed_density_rgb) {
+    size_t index;
+    size_t channel;
+    const nf_physical_domains_f32_status_v1 status =
+        nf_physical_domains_f32_validate_profile_v1(profile);
+    if (status != NF_PHYSICAL_DOMAINS_F32_OK_V1) return status;
+    if (scene_linear_rgb == NULL || developed_density_rgb == NULL ||
+        rgb_count == 0u || rgb_count > SIZE_MAX / (3u * sizeof(double)))
+        return NF_PHYSICAL_DOMAINS_F32_INVALID_ARGUMENT_V1;
+    for (index = 0u; index < rgb_count * 3u; ++index) {
+        if (!isfinite((double)scene_linear_rgb[index]) ||
+            scene_linear_rgb[index] < 0.0f || scene_linear_rgb[index] > 1.0f)
+            return NF_PHYSICAL_DOMAINS_F32_INVALID_INPUT_V1;
+    }
+    for (index = 0u; index < rgb_count; ++index) {
+        for (channel = 0u; channel < 3u; ++channel) {
+            const double sample = (double)scene_linear_rgb[index * 3u + channel];
+            const double exposure = log10(
+                (sample + profile->black_offset) /
+                (profile->reference_linear + profile->black_offset));
+            developed_density_rgb[index * 3u + channel] =
+                nf_spline_apply(profile, channel, exposure);
+        }
+    }
+    return NF_PHYSICAL_DOMAINS_F32_OK_V1;
+}
+
+nf_physical_domains_f32_status_v1
 nf_physical_interpretation_f32_apply_v1(
     const nf_physical_domains_f32_profile_v1* profile,
     const float* developed_density_rgb,

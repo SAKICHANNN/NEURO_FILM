@@ -68,6 +68,18 @@ nf_physical_sensitometry_f32_apply_v1(
     size_t rgb_count,
     float* developed_density_rgb);
 
+/*
+ * Versioned double-output companion for stochastic developed-density
+ * consumers. The profile and scene samples remain identical to v1; only the
+ * output storage avoids an otherwise irreversible float32 quantization.
+ */
+NF_PHYSICAL_DOMAINS_F32_API nf_physical_domains_f32_status_v1
+nf_physical_sensitometry_f64_apply_v2(
+    const nf_physical_domains_f32_profile_v1* profile,
+    const float* scene_linear_rgb,
+    size_t rgb_count,
+    double* developed_density_rgb);
+
 NF_PHYSICAL_DOMAINS_F32_API nf_physical_domains_f32_status_v1
 nf_physical_interpretation_f32_apply_v1(
     const nf_physical_domains_f32_profile_v1* profile,

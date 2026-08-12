@@ -3,14 +3,19 @@
   "experiment_id": "u6.p4ex-native-sensitometry-f64-v2",
   "node": "ULT > U6 > U6.P4 > U6.P4EX",
   "date_frozen": "2026-08-12",
-  "status": "contract_frozen_implementation_ready",
+  "status": "contract_frozen_after_preflight_amendment",
   "parent": {
     "path": "docs/evidence/U6_P4EW_NATIVE_CLOUD_SCALE_WINDOW_PORTABLE_V1_RESULT.json",
     "sha256": "d0b1b6ec1eed5480f8029e86d3160f07bc9fd7b92a236bca96b021441087920c",
     "required_decision": "retain_native_cloud_scale_window_portable_v1"
   },
-  "profile_artifact": {
-    "config": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json"
+  "profile_fixture": {
+    "identity": "neuro-film.p4ex-synthetic-three-knot-density-profile.v1",
+    "reference_linear": 0.18,
+    "black_offset": 0.0000152587890625,
+    "x_knots": [-4.0717306, -1.0, 0.7446556],
+    "y_knots": [0.05, 0.65, 1.25],
+    "derivatives": [0.1953296, 0.25, 0.3439074]
   },
   "fixture": {"height": 73, "width": 47, "seed": 78277},
   "gates": {
@@ -18,9 +23,10 @@
     "require_msvc_llvm_output_bit_identity": true,
     "require_repeat_bit_identity": true,
     "require_failure_atomicity": true,
-    "maximum_absolute_error_vs_python_float64": 1e-12
+    "maximum_cross_compiler_absolute_error": 0.0
   },
   "decision_if_pass": "retain_native_sensitometry_f64_v2_for_exact_cloud_scale",
   "decision_if_fail": "close_direct_sensitometry_to_exact_cloud_scale_path",
-  "claim_ceiling": "Local Windows x64 synthetic double developed-density sensitometry arithmetic for an opt-in physical structure path; not calibrated sensitometry, image quality, mobile runtime or product authorization."
+  "execution_amendment": "Before any successful P4EX execution, the unavailable canonical P: data root prevented rebuilding the historical profile artifact. The test therefore freezes a self-contained valid synthetic three-knot profile and measures only the new ABI's arithmetic/rounding behavior; no historical profile or pixel claim is made.",
+  "claim_ceiling": "Local Windows x64 synthetic-profile double developed-density sensitometry arithmetic for an opt-in physical structure path; not the historical profile, calibrated sensitometry, image quality, mobile runtime or product authorization."
 }
