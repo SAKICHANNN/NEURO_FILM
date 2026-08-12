@@ -1,0 +1,18 @@
+{
+  "schema": "neuro_film.u6_p8dg_cross_layer_cloud_row_stream_evidence.v1",
+  "node": "U6.P8DG",
+  "date": "2026-08-12",
+  "implementation_commit": "6e4a4273",
+  "contract_sha256": "69e820f4191e14b6b0e865a1aac47bbe80113eeebaa3e6db6f98c73ba1350713",
+  "formal_report_sha256": "615697b146076a429ffa274adcc55973cf922d8e74a429a952028b95bf0a707e",
+  "stable_evidence_id": "781c488dfcdf75c80065a324799b4a90df9514860cef8cb411bca42df0818bab",
+  "exact_replays": 2,
+  "automatic_pass": true,
+  "profile_identity": "2993d09a7876f4188670aa123f26ce908054bdaa5d704e40646091edba0a06bf",
+  "partitions": [
+    {"row_tile_height": 31, "modeled_live_bytes": 2068802, "stream_to_full_modeled_ratio": 0.04394384590270976},
+    {"row_tile_height": 127, "modeled_live_bytes": 7675778, "stream_to_full_modeled_ratio": 0.16304276852758734}
+  ],
+  "decision": "retain_exact_bounded_cross_layer_cloud_row_stream",
+  "claim_ceiling": "Synthetic Python reference row-stream evidence only; not native runtime, stock calibration or product authorization."
+}

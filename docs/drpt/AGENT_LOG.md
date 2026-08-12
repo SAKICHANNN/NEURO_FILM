@@ -11897,3 +11897,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   recompute correlation and aperture-kernel identities.
 - The payload remains synthetic, research-only and product-disabled. Next
   implement a bounded row-stream reference executor against this exact profile.
+
+# 2026-08-12 - U6.P8DG proves exact bounded cloud row streaming
+
+- Explicit periodic halos make 31-row and 127-row execution bit-exact to the
+  1021x1537 full-frame density and transmittance references.
+- Modeled live arrays are 2.07MB and 7.68MB (4.39% and 16.30% of full-frame).
+  Retain the Python reference executor; next test density-conditioned shared
+  event rates rather than further runtime plumbing.
