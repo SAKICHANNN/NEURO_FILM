@@ -1,0 +1,20 @@
+{
+  "schema": "neuro_film.u6_p4ew_native_cloud_scale_window_portable.v1",
+  "experiment_id": "u6.p4ew-native-cloud-scale-window-portable-v1",
+  "date_executed": "2026-08-12",
+  "implementation_commit": "fae56110",
+  "automatic_pass": true,
+  "formal_replays": {"count": 2, "byte_exact": true},
+  "stable_evidence_id": "27163a7637c43be25be2aff0798c62db58230ff8fcc41a42510631072f7322ab",
+  "contract_sha256": "a743ce00279f7a1ec5c03e4a7651d03f5698901015a15806774a27a60484fbca",
+  "results": {
+    "android_arm64_shared_library_sha256": "cb18d7cd7627d59c9929106fcc32512588b4287c825c4e521c72ed1ccc198e4e",
+    "android_x86_64_shared_library_sha256": "74b4ae9285ce01b15547cdb33c30d0f29f0b9800ce2497607d39a6ce550af209",
+    "android_exact_exports": true,
+    "macos_arm64_object_compile": true,
+    "ios_arm64_object_compile": true,
+    "repeat_build_byte_exact": true
+  },
+  "decision": "retain_native_cloud_scale_window_portable_v1",
+  "claim_ceiling": "Android shared-library link and Apple Mach-O arm64 object compile for the exact bounded scale-window kernel; not Apple SDK link/runtime, physical Android arm64 runtime, image quality or product authorization."
+}
