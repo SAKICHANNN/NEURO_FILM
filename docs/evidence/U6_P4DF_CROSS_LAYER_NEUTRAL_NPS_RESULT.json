@@ -1,0 +1,16 @@
+{
+  "schema": "neuro_film.u6_p4df_cross_layer_neutral_nps_evidence.v1",
+  "node": "U6.P4DF",
+  "date": "2026-08-12",
+  "implementation_commit": "3b197a46",
+  "contract_sha256": "048a195d115728c4492c386085f1f2acfb328fcb50dd7bd53c68ce014881e05f",
+  "formal_report_sha256": "d7e133e8bdeb47a092b0007efe6752e8f06c9a6e104fc1781dcd355d493e106c",
+  "stable_evidence_id": "06d3e6b184d837725a5e125dde0a8918285ca82e410dcacdbc7c05fc69407286",
+  "exact_replays": 2,
+  "automatic_pass": true,
+  "shared_to_independent_chroma_noise_power_ratio": 0.785563444913265,
+  "shared_to_independent_marginal_noise_power_ratio": 0.9974958734111077,
+  "maximum_marginal_variance_relative_difference": 0.00399859593940466,
+  "decision": "retain_shared_cross_layer_cloud_for_neutral_stability",
+  "claim_ceiling": "Synthetic neutral-field NPS mechanism evidence only; not visual preference, measured film grain, stock calibration or product evidence."
+}

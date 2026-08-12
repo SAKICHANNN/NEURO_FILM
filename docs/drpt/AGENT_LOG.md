@@ -11927,3 +11927,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   partitioning are exact, and targets beyond the compiled domain are rejected.
 - Next compare perceptually relevant neutral/NPS behavior against independent
   dye-layer and display-RGB noise controls.
+
+# 2026-08-12 - U6.P4DF retains shared clouds for neutral stability
+
+- Against independent dye layers with matched marginals, shared events retain
+  99.75% marginal noise power while reducing normalized neutral chroma noise
+  to 78.56%; marginal variance differs by at most 0.40%.
+- Display-RGB additive noise places 80.3% of difference power in the high band,
+  versus 9.0-9.8% for cloud structure. Proceed to an image-domain artifact
+  test; this is mechanism evidence, not visual preference or calibration.
