@@ -12340,3 +12340,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The retained full chain now faces the existing P4DG neutral-patch, hard-edge
   and boundary ceilings unchanged, plus incremental residual-versus-physics
   chroma and edge-halo gates. Partition and repeat identity remain mandatory.
+
+# 2026-08-12 - U6.P4GH closes the current physical display chain
+
+- Two formal processes are byte exact. The residual reduces neutral chroma
+  p99 from 0.1332 to 0.1023 and does not worsen edge or boundary metrics, but
+  the retained chain still fails the frozen 0.09 neutral and 0.012 patch gates.
+- Autonomous chart review confirms a severe dark-magenta cast and loss of gray
+  and edge distinction in both physics-only and residual outputs. The failure
+  is assigned to the current cloud-profile display interpretation, not to the
+  bounded residual mechanism; the next leaf compiles a profile-bound neutral
+  response rather than reusing the unrelated Standard gauge.
