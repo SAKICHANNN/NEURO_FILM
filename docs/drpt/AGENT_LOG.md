@@ -12110,3 +12110,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - A first Apple compile exposed an accidental `math.h` SDK dependency; the C11
   kernel now uses a self-contained finite check and explicit `log10f` symbol.
   No Apple runtime or Android device claim follows; Android virtual execution is next.
+
+# 2026-08-12 - U6.P4EB closes cross-libc density bit identity
+
+- Two Android 14 wipe-data boots with two processes each reproduce exact
+  transmittance and density hashes internally; transmittance also matches
+  Windows exactly and failure atomicity passes.
+- Windows and Android `log10f` density hashes differ, so the frozen whole-line
+  bit-exact gate fails. P4EB remains closed. Next compare density under a frozen
+  numerical tolerance while retaining exact transmittance and repeat identity.

@@ -1,0 +1,18 @@
+{
+  "schema": "neuro_film.u6_p4eb_native_cloud_attenuation_android_runtime_evidence.v1",
+  "node": "U6.P4EB",
+  "date": "2026-08-12",
+  "implementation_commit": "5a935c97",
+  "contract_sha256": "c326d549ff7ed004e1959eea0045ca32dfd26fb3fe93ee92563ff3a7550d76e0",
+  "formal_report_sha256": "d459f6eedc9cf7a94261a18ed9bc16a6ff9fa979a2825120fc8461c57b25b80c",
+  "automatic_pass": false,
+  "cold_boots": 2,
+  "fresh_processes_per_boot": 2,
+  "android_transmittance_hash_exact": true,
+  "android_density_hash_exact": true,
+  "host_android_transmittance_hash_exact": true,
+  "host_android_density_hash_exact": false,
+  "failure_atomicity": true,
+  "decision": "retain_portable_build_without_android_runtime_claim",
+  "claim_ceiling": "P4EB bit-exact cross-libc density hypothesis failed; Android repeat arithmetic and host-identical transmittance are diagnostic only, not runtime qualification."
+}
