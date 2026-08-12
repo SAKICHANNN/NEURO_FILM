@@ -69,7 +69,6 @@ nf_conditioned_cloud_row_chain_f32_apply_v1(
         spatial_transmittance_workspace == NULL || output_density_cmy == NULL ||
         output_transmittance_cmy == NULL || full_height == 0u ||
         origin_y >= full_height || core_height > full_height ||
-        origin_y > full_height - core_height ||
         !nf_mul_size(full_height, width, &full_pixels) ||
         full_pixels > SIZE_MAX / 3u || scale_values < 3u * full_pixels ||
         expected_values < required_core || output_values < required_core ||
