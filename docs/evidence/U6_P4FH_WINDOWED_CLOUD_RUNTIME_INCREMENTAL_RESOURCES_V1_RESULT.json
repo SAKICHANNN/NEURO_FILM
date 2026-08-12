@@ -1,0 +1,25 @@
+{
+  "schema": "neuro_film.u6_p4fh_windowed_cloud_runtime_incremental_resources.v1",
+  "experiment_id": "u6.p4fh-windowed-cloud-runtime-incremental-resources-v1",
+  "date_executed": "2026-08-12",
+  "implementation_commit": "57098f9c",
+  "automatic_pass": true,
+  "stable_evidence_id": "e92e49f80fbae742de24565799ddbf6811a3503987fa81a221bcdf30cde7f71e",
+  "contract_sha256": "6218ef85b0fde4971a0caf1de95a8fcb083214d5746bb2229e1cb4a00681f238",
+  "results": {
+    "source_sha_matches_p4fg": true,
+    "output_sha_matches_p4fg": true,
+    "two_successful_runs_per_variant": true,
+    "full_render_incremental_peaks_bytes": [179765248, 181235712],
+    "windowed_render_incremental_peaks_bytes": [38969344, 38940672],
+    "full_median_render_incremental_peak_bytes": 180500480,
+    "windowed_median_render_incremental_peak_bytes": 38955008,
+    "median_reduction_bytes": 141545472,
+    "median_ratio": 0.215816645,
+    "median_wall_ratio": 1.022571126,
+    "input_sha256": "d2647ee01ef91402a181d6e183af2b326bd4cade340131878f1e49464b9a0b46",
+    "output_sha256": "a3eb79bfe0aeada767721ab321df8aed68c97649154f1278b4cdf95e98943ee4"
+  },
+  "decision": "retain_windowed_cloud_incremental_resources_v1_and_open_24mp",
+  "claim_ceiling": "Local Windows x64 Python/native synthetic-profile 6MP render-entry and process-tree incremental RSS evidence; not 24MP, Standard/AO6 package, calibrated image quality, mobile runtime or product promotion."
+}
