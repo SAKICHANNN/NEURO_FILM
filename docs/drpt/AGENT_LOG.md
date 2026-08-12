@@ -12306,3 +12306,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   residual with analytical safe scaling and no source-context or density base.
 - Six fresh scenes now gate nonzero effect, physics dynamic-range retention,
   boundary safety, exact replay and partition invariance before any formal run.
+
+# 2026-08-12 - U6.P4GE retains residual-only composition
+
+- Two formal processes are byte exact. All six fresh scenes pass with residual
+  RMS about 0.00885, retain 93.9-95.0% of physics-only dynamic range, add zero
+  boundary pixels and remain partition/replay exact with distinct outputs.
+- This is the retained downstream composition mechanism. P4FY/P4GD full AO6
+  base compositions remain closed and must not be treated as active paths.
