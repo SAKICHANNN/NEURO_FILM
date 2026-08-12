@@ -11773,3 +11773,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The exact 128-row chain exceeded its 60s watchdog before publication because
   the 180px backing halo repeats too much convolution. No output or worker
   report was published; next compare the existing full-frame mechanism.
+
+# 2026-08-12 - U6.P8DC full-frame spatial integration passes
+
+- Two 12MP runs reproduce exact output/decoded/ICC identities at 799.3MB peak
+  and 29.0s maximum wall. The physical order is unchanged.
+- This isolates P8DB's failure to halo recomputation; no measured-halation,
+  stock-calibration or product claim opens.

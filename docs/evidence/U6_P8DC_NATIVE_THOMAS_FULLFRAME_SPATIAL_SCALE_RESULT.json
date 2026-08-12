@@ -1,0 +1,23 @@
+{
+  "schema": "neuro_film.u6_p8dc_native_thomas_fullframe_spatial_scale_evidence.v1",
+  "experiment_id": "u6.p8dc-native-thomas-fullframe-spatial-scale-v1",
+  "status": "pass-retain-fullframe-spatial-exposure-to-native-thomas-12mp-runtime",
+  "implementation_commit": "f5ad24fe",
+  "formal_replay": {
+    "report_path": "D:/nf-019f4b76-p8dc-report-v2.json",
+    "report_sha256": "df06e2484053b7d14673ffe37e1ca2b606aa96b673fb8faf1edbedb5413a8aad",
+    "stable_evidence_id": "d9f47dfe8f833fcff76d649f4e2622d3c3c596762d78715d4150106d19ff8c90",
+    "input_sha256": "c4b96ae3ef7e3b23e475d3fdeea420fb3a399f61d99512b0d2534c2487116cbc",
+    "output_sha256": "83656d386e6e7d798ac78d7f19ce88f1167c8caefb1c33723cdc40497ccab3c7",
+    "decoded_rgb16_sha256": "69d3a45f9b5ec4fd3af7e56062ebc74bb7e3684e8b45dc9681e6640ecb067b74",
+    "icc_sha256": "217fe48ec958c667f8eef725aa27198f465df95d7662593b90d0a1cc30114356",
+    "maximum_wall_seconds": 28.99776969999948,
+    "maximum_peak_process_tree_rss_bytes": 799277056,
+    "wall_repeat_ratio": 1.108423102792477,
+    "rss_repeat_ratio": 1.0393007983723643,
+    "all_gates_pass": true
+  },
+  "mechanism_conclusion": "Full-frame separable execution avoids the P8DB 180-pixel halo recomputation cost while preserving the same forward-scatter then additive-backing-return order.",
+  "decision": "retain_fullframe_spatial_exposure_to_native_thomas_12mp_runtime",
+  "claim_ceiling": "Generic synthetic 12MP host composition only; not measured halation, calibrated stock response, scene-to-layer estimation or product promotion."
+}
