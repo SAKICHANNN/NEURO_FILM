@@ -94,14 +94,16 @@ def benchmark(contract_path:Path,output_dir:Path)->dict:
         runs.append(monitor(command,worker_output,scenario["timeout_seconds"],scenario["sample_interval_seconds"]))
     by_variant={name:[r for r in runs if r["worker"]["variant"]==name] for name in ("full","windowed")}
     median=lambda values:float(np.median(np.asarray(values,dtype=np.float64)))
-    full_rss=median([r["peak_process_tree_rss_bytes"] for r in by_variant["full"]]);window_rss=median([r["peak_process_tree_rss_bytes"] for r in by_variant["windowed"]])
-    full_wall=median([r["worker"]["wall_seconds"] for r in by_variant["full"]]);window_wall=median([r["worker"]["wall_seconds"] for r in by_variant["windowed"]])
+    full_rss=median([r["peak_process_tree_rss_bytes"] for r in by_variant["full"]]) if by_variant["full"] else 0.0
+    window_rss=median([r["peak_process_tree_rss_bytes"] for r in by_variant["windowed"]]) if by_variant["windowed"] else 0.0
+    full_wall=median([r["worker"]["wall_seconds"] for r in by_variant["full"]]) if by_variant["full"] else 0.0
+    window_wall=median([r["worker"]["wall_seconds"] for r in by_variant["windowed"]]) if by_variant["windowed"] else 0.0
     hashes={r["worker"]["output_sha256"] for r in runs};g=contract["gates"]
-    gates={"output":len(hashes)==1,"runs":all(len(by_variant[v])==2 for v in by_variant),"rss_bytes":full_rss-window_rss>=g["minimum_median_peak_rss_reduction_bytes"],
-        "rss_ratio":window_rss/full_rss<=g["maximum_median_peak_rss_ratio"],"wall":window_wall/full_wall<=g["maximum_median_worker_wall_ratio"],
+    gates={"output":len(hashes)==1,"runs":all(len(by_variant[v])==2 for v in by_variant),"rss_bytes":bool(full_rss and full_rss-window_rss>=g["minimum_median_peak_rss_reduction_bytes"]),
+        "rss_ratio":bool(full_rss and window_rss/full_rss<=g["maximum_median_peak_rss_ratio"]),"wall":bool(full_wall and window_wall/full_wall<=g["maximum_median_worker_wall_ratio"]),
         "cleanup":not any(r.is_running() for r in []),"windowed_no_full":all(not r["worker"]["full_forward_frame_retained"] for r in by_variant["windowed"])}
     stable={"contract_sha256":sha256_file(contract_path),"runs":runs,"metrics":{"full_median_peak_rss_bytes":full_rss,"windowed_median_peak_rss_bytes":window_rss,
-        "rss_reduction_bytes":full_rss-window_rss,"rss_ratio":window_rss/full_rss,"full_median_wall_seconds":full_wall,"windowed_median_wall_seconds":window_wall,"wall_ratio":window_wall/full_wall},
+        "rss_reduction_bytes":full_rss-window_rss,"rss_ratio":window_rss/full_rss if full_rss else None,"full_median_wall_seconds":full_wall,"windowed_median_wall_seconds":window_wall,"wall_ratio":window_wall/full_wall if full_wall else None},
         "gates":gates,"decision":contract["decision_if_pass"] if all(gates.values()) else contract["decision_if_fail"],"claim_ceiling":contract["claim_ceiling"]}
     return {"schema":"neuro_film.u6_p4fg_windowed_cloud_runtime_resources.v1","automatic_pass":all(gates.values()),"stable":stable}
 

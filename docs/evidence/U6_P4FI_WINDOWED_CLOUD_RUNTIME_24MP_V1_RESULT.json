@@ -1,0 +1,24 @@
+{
+  "schema": "neuro_film.u6_p4fi_windowed_cloud_runtime_24mp.v1",
+  "experiment_id": "u6.p4fi-windowed-cloud-runtime-24mp-v1",
+  "date_executed": "2026-08-12",
+  "implementation_commit": "82bb717b",
+  "automatic_pass": true,
+  "stable_evidence_id": "8766bf24b67d0515b674de0f90c55533052284a26c128bd4ff9db235fbefb19f",
+  "contract_sha256": "a00904d3cbd39f4cba4534d49fd8f27e5c582b61c7fd2bc1e888588516802ade",
+  "results": {
+    "two_successful_runs": true,
+    "repeat_output_bit_identity": true,
+    "no_full_forward_frame": true,
+    "peak_process_tree_rss_bytes": [494690304, 492838912],
+    "render_incremental_peak_bytes": [76292096, 74518528],
+    "worker_wall_seconds": [68.1065123, 69.1513716],
+    "peak_repeat_ratio": 1.0037565865,
+    "input_sha256": "04c8a193926014a5b3012085372c6150948d6c177537623c48415880fcca924d",
+    "output_sha256": "8be7d9ce0d9e96a5f4e72809359ce440eae07058941f09e04e9ecdfe108fe412",
+    "maximum_forward_workspace_values": 5220000
+  },
+  "measurement_note": "The generic A/B harness emitted empty-full-group NumPy warnings after producing the complete windowed-only result. No P4FI metric used that empty group. The harness was mechanically hardened after the run; the formal pixel executions were not repeated or reinterpreted.",
+  "decision": "retain_windowed_cloud_runtime_24mp_v1",
+  "claim_ceiling": "Local Windows x64 Python/native synthetic-profile 24MP windowed scene-linear to scan-linear runtime resource evidence; not a real image, Standard/AO6 package, calibrated image quality, mobile runtime or product promotion."
+}
