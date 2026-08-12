@@ -1,0 +1,18 @@
+{
+  "schema": "neuro_film.u6_p4ct_scanner_flare_layer_correlation_evidence.v1",
+  "node": "U6.P4CT",
+  "date": "2026-08-12",
+  "implementation_commit": "51f08aea",
+  "contract_sha256": "0af05710a0c246acfcdd1a903393c48e8169381eebffac311dbd133dfb7c65fc",
+  "formal_report_sha256": "428009695c33d9a00ce891609c0e940742a4375ab0e191bf852a209d0dacc024",
+  "stable_evidence_id": "02292e73f19ba73f9ea6f6e10f06335cef358d5e7f4aab7349507137e8444234",
+  "exact_replays": 2,
+  "automatic_pass": false,
+  "confirmation_correct_flare_rmse": 0.0023895718797020413,
+  "confirmation_uncorrected_flare_rmse": 0.002390422594381842,
+  "confirmation_wrong_flare_rmse": 0.0023900320382734845,
+  "failed_gates": ["uncorrected_is_confounded", "wrong_flare_is_confounded", "corrected_beats_uncorrected"],
+  "interpretation": "A spatially constant additive scanner flare is largely removed by centering and does not materially confound the frozen correlation statistic at this density spread.",
+  "decision": "close_current_additive_scanner_flare_control_without_tuning",
+  "claim_ceiling": "Controlled float64 negative evidence for constant additive scanner flare only; not a general scanner-glare result or real calibration."
+}

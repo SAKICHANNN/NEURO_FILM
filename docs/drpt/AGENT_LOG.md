@@ -11813,3 +11813,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   the next `1%` level reaches `0.01275` and discriminates.
 - Retain this only as a synthetic admission tolerance. Real scanner response
   still needs independent measurement; next isolate additive scanner flare.
+
+# 2026-08-12 - U6.P4CT closes constant scanner flare
+
+- Two byte-exact runs show correct, half-corrected and uncorrected constant
+  flare all remain near `0.00239` correlation RMSE. The frozen confound and
+  improvement gates fail; no magnitude rescue is allowed.
+- Constant offsets are largely removed by centering here. Move to a separately
+  frozen spatial glare field, which can add shared covariance rather than only
+  shifting channel means.
