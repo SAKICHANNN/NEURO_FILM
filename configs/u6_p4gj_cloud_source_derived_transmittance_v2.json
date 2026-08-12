@@ -21,7 +21,7 @@
     "height": 257,
     "width": 257,
     "level_count": 257,
-    "layout": "latin-balanced-neutral-levels-step-17",
+    "layout": "independent-uniform-neutral-frames-shared-geometry-and-seed",
     "tile_rows": [17, 64]
   },
   "gates": {
@@ -37,7 +37,8 @@
     "formal_processes": 2,
     "post_result_retuning_allowed": false,
     "p4gh_chart_pixels_read": false,
-    "historical_v1_modified": false
+    "historical_v1_modified": false,
+    "operational_amendment": "The first MSVC endpoint smoke used a Latin pixel-interleaved ramp and was rejected before formal evidence because forward scatter and MTF average that high-frequency pattern. Independent uniform fields replace the layout without changing profile, levels, candidate, thresholds or gates."
   },
   "decision_if_pass": "retain_source_derived_cloud_transmittance_v2_for_chart_confirmation",
   "decision_if_fail": "close_source_derived_cloud_transmittance_v2",

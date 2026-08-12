@@ -12388,3 +12388,25 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   10^-developed-density before the unchanged bounded cloud/spatial chain.
   V1 stays byte-frozen; native/manual/compiler/partition/atomicity and neutral
   response gates precede any chart rerun.
+
+# 2026-08-12 - U6.P4GJ corrects neutral-field execution
+
+- The first MSVC smoke raised response span materially, but its pixel-Latin
+  ramp was itself blurred as high-frequency content by the physical chain.
+- Before formal evidence, calibration changed to independent uniform fields
+  with shared geometry and seed. The 257/256 levels, mechanism, thresholds and
+  gates remain frozen; P4GH chart pixels remain unread.
+
+# 2026-08-12 - U6.P4GJ exposes a density-envelope gap
+
+- The corrected uniform black field reaches source-derived cloud density, but
+  post-spatial adjacency rejects status 23 because fixed cloud attenuation can
+  leave the profile's black/white density envelope.
+- Avoiding endpoints would hide the defect. P4GJ closes; the next mechanism
+  must analytically scale the cloud residual to the valid density interval
+  before adjacency, with no hard clipping.
+
+- Two final MSVC processes are byte exact (`c89624e4...e644`). The white
+  endpoint completes, while black deterministically reaches the v2 bridge and
+  is rejected by post-spatial adjacency status 23. No chart is read and no
+  partial candidate is retained.

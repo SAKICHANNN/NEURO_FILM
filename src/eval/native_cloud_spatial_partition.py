@@ -43,10 +43,20 @@ SOURCES = tuple(
 _SHA = b"0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
 
 
-def _build(root: Path, output: Path, llvm: Path | None) -> Path:
+def _build(
+    root: Path,
+    output: Path,
+    llvm: Path | None,
+    *,
+    bridge_source: str = "nf_sensitometry_cloud_bridge_f32_v1.c",
+) -> Path:
     output.mkdir(parents=True, exist_ok=True)
     dll = output / ("p4fb-llvm.dll" if llvm else "p4fb-msvc.dll")
-    sources = [str((root / item).resolve()) for item in SOURCES]
+    source_names = [
+        item.replace("nf_sensitometry_cloud_bridge_f32_v1.c", bridge_source)
+        for item in SOURCES
+    ]
+    sources = [str((root / item).resolve()) for item in source_names]
     if llvm:
         result = subprocess.run(
             [str(llvm), "--target=x86_64-w64-windows-gnu", "-std=c11", "-O2",
@@ -89,6 +99,45 @@ def _configure(path: Path) -> ctypes.CDLL:
     ]
     lib.nf_sensitometry_cloud_bridge_f32_apply_window_v1.restype = ctypes.c_int
     lib.nf_cloud_post_spatial_f32_required_halo_v1.argtypes = [gp, gp, gp, ctypes.POINTER(ctypes.c_uint32)]
+    lib.nf_cloud_post_spatial_f32_required_halo_v1.restype = ctypes.c_int
+    lib.nf_cloud_post_spatial_f32_apply_core_v1.argtypes = [
+        ctypes.POINTER(NativePrintProfileV1), gp,
+        ctypes.POINTER(NativeAdjacencyProfileV1), gp, gp, fp,
+        size, size, size, size, size, size, fp, fp, fp, fp, fp, fp, size, fp, size,
+    ]
+    lib.nf_cloud_post_spatial_f32_apply_core_v1.restype = ctypes.c_int
+    return lib
+
+
+def _configure_source_derived(path: Path) -> ctypes.CDLL:
+    lib = _chain_library(path)
+    size = ctypes.c_size_t
+    fp = ctypes.POINTER(ctypes.c_float)
+    dp = ctypes.POINTER(ctypes.c_double)
+    gp = ctypes.POINTER(NativeGaussianProfileV1)
+    lib.nf_sensitometry_cloud_bridge_f32_apply_window_v2.argtypes = [
+        ctypes.POINTER(NativePrintProfileV1), ctypes.POINTER(_CountProfile),
+        ctypes.POINTER(_SpatialProfile), size, size, size, size, size, fp, size,
+        dp, dp, size, fp, size, fp, ctypes.POINTER(ctypes.c_uint16), size,
+        dp, size, fp, fp, size, fp, fp, size,
+    ]
+    lib.nf_sensitometry_cloud_bridge_f32_apply_window_v2.restype = ctypes.c_int
+    lib.nf_sensitometry_cloud_bridge_f32_abi_version_v2.argtypes = []
+    lib.nf_sensitometry_cloud_bridge_f32_abi_version_v2.restype = ctypes.c_uint32
+    lib.nf_physical_sensitometry_f64_apply_v2.argtypes = [
+        ctypes.POINTER(NativePrintProfileV1), fp, size, dp
+    ]
+    lib.nf_physical_sensitometry_f64_apply_v2.restype = ctypes.c_int
+    lib.nf_conditioned_cloud_row_chain_f32_apply_window_v3.argtypes = [
+        ctypes.POINTER(_CountProfile), ctypes.POINTER(_SpatialProfile),
+        size, size, size, size, size, dp, size, fp, size, fp,
+        ctypes.POINTER(ctypes.c_uint16), size, dp, size, fp, fp, size,
+        fp, fp, size,
+    ]
+    lib.nf_conditioned_cloud_row_chain_f32_apply_window_v3.restype = ctypes.c_int
+    lib.nf_cloud_post_spatial_f32_required_halo_v1.argtypes = [
+        gp, gp, gp, ctypes.POINTER(ctypes.c_uint32)
+    ]
     lib.nf_cloud_post_spatial_f32_required_halo_v1.restype = ctypes.c_int
     lib.nf_cloud_post_spatial_f32_apply_core_v1.argtypes = [
         ctypes.POINTER(NativePrintProfileV1), gp,
@@ -219,6 +268,8 @@ def render_physical_partition(
     scene_full: np.ndarray | Callable[[int, int], np.ndarray],
     start: int,
     height: int,
+    *,
+    source_derived_expected: bool = False,
 ) -> np.ndarray:
     """Run the exact P4EY/P4FB physical provider for one logical core."""
 
@@ -251,13 +302,20 @@ def render_physical_partition(
     size=ctypes.c_size_t;cn=size();dn=size();fn=size()
     if lib.nf_conditioned_cloud_row_chain_f32_workspace_v1(ext_height,width,cloud_halo,ctypes.byref(cn),ctypes.byref(dn),ctypes.byref(fn))!=0:
         raise RuntimeError("P4FB provider workspace failed")
-    expected=np.full((ext_height,width,3),.6,np.float32);counts=np.empty(cn.value,np.uint16)
+    expected=np.empty((ext_height,width,3),np.float32) if source_derived_expected else np.full((ext_height,width,3),.6,np.float32)
+    counts=np.empty(cn.value,np.uint16)
     conv=np.empty(dn.value,np.float64);scale=np.empty(cn.value,np.float64)
     sd=np.empty(fn.value,np.float32);st=np.empty(fn.value,np.float32);density=np.empty(fn.value,np.float32);trans=np.empty(fn.value,np.float32)
-    status=lib.nf_sensitometry_cloud_bridge_f32_apply_window_v1(ctypes.byref(domains),ctypes.byref(cp),ctypes.byref(sp),full,width,first,
-        ext_height,cloud_halo,scene.ctypes.data_as(fp),scene.size,capacity.ctypes.data_as(dp),scale.ctypes.data_as(dp),scale.size,
-        expected.ctypes.data_as(fp),expected.size,gain.ctypes.data_as(fp),counts.ctypes.data_as(ctypes.POINTER(ctypes.c_uint16)),counts.size,
-        conv.ctypes.data_as(dp),conv.size,sd.ctypes.data_as(fp),st.ctypes.data_as(fp),st.size,density.ctypes.data_as(fp),trans.ctypes.data_as(fp),density.size)
+    if source_derived_expected:
+        status=lib.nf_sensitometry_cloud_bridge_f32_apply_window_v2(ctypes.byref(domains),ctypes.byref(cp),ctypes.byref(sp),full,width,first,
+            ext_height,cloud_halo,scene.ctypes.data_as(fp),scene.size,capacity.ctypes.data_as(dp),scale.ctypes.data_as(dp),scale.size,
+            expected.ctypes.data_as(fp),expected.size,gain.ctypes.data_as(fp),counts.ctypes.data_as(ctypes.POINTER(ctypes.c_uint16)),counts.size,
+            conv.ctypes.data_as(dp),conv.size,sd.ctypes.data_as(fp),st.ctypes.data_as(fp),st.size,density.ctypes.data_as(fp),trans.ctypes.data_as(fp),density.size)
+    else:
+        status=lib.nf_sensitometry_cloud_bridge_f32_apply_window_v1(ctypes.byref(domains),ctypes.byref(cp),ctypes.byref(sp),full,width,first,
+            ext_height,cloud_halo,scene.ctypes.data_as(fp),scene.size,capacity.ctypes.data_as(dp),scale.ctypes.data_as(dp),scale.size,
+            expected.ctypes.data_as(fp),expected.size,gain.ctypes.data_as(fp),counts.ctypes.data_as(ctypes.POINTER(ctypes.c_uint16)),counts.size,
+            conv.ctypes.data_as(dp),conv.size,sd.ctypes.data_as(fp),st.ctypes.data_as(fp),st.size,density.ctypes.data_as(fp),trans.ctypes.data_as(fp),density.size)
     if status: raise RuntimeError(f"P4FB physical provider cloud failed: {status}")
     cloud=density.reshape(ext_height,width,3);flat=np.ascontiguousarray(cloud.reshape(-1),np.float32)
     work=[np.empty_like(flat) for _ in range(6)];output=np.empty(height*width*3,np.float32)
