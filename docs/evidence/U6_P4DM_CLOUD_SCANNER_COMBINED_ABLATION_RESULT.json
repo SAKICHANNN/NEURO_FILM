@@ -1,0 +1,19 @@
+{
+  "schema": "neuro_film.u6_p4dm_cloud_scanner_combined_ablation_evidence.v1",
+  "node": "U6.P4DM",
+  "date": "2026-08-12",
+  "implementation_commit": "b66b33c3",
+  "contract_sha256": "4c27d03e13122bd374297f6887afa88d145144ced647b9b4dcf7712f3bac6154",
+  "formal_report_sha256": "a278edd34ed7a75b8f591cd1b08ac62bd8730b3953dea7911b4bed8bc8f34ac7",
+  "stable_evidence_id": "20b0d022b2c3b43dd91e82cf41b0254cd01911b1bfa43bdf0e3c8d8d6ac6652a",
+  "exact_replays": 2,
+  "automatic_pass": true,
+  "cloud_residual_rms_before_scanner": 0.013387208775431024,
+  "cloud_residual_rms_after_scanner": 0.011494945282370387,
+  "cloud_residual_attenuation_ratio": 0.8586513794769953,
+  "scanner_nuisance_rms_without_cloud": 0.022931920890815208,
+  "wrong_scanner_to_correct_residual_ratio": 1.5875563574563618,
+  "combined_new_boundary_fraction": 0.0,
+  "decision": "retain_cloud_and_scanner_as_separate_combined_stages",
+  "claim_ceiling": "Synthetic colour-cloud/scanner ablation only; not visual preference, calibrated scanner/film, stock identity or product evidence."
+}

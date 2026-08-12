@@ -11985,3 +11985,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   separation; scanner profiles carry no stock or mode identity.
 - Next run a colour-chain ablation to test whether cloud structure remains
   measurable after scanner nuisance rather than being swallowed by it.
+
+# 2026-08-12 - U6.P4DM retains cloud and scanner as separate stages
+
+- In the combined synthetic colour chain, scanner A retains 85.87% of the
+  cloud residual RMS while contributing a separately measurable 0.02293 RMS
+  nuisance; scanner B raises the residual to 1.588x the correct-scanner value.
+- No new boundary sample appears and two reports are byte-identical. Proceed
+  to a complete typed-chain ablation; this is not calibration or preference.
