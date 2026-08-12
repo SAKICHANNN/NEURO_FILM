@@ -10,11 +10,13 @@ from .backing_return import backing_return_profile_from_contract
 from .compiled_backing_return import (
     CompiledBackingReturnProfile,
     apply_compiled_backing_return,
+    apply_compiled_backing_return_row_tiled,
     compile_backing_return_profile,
 )
 from .compiled_scatter import (
     CompiledScatterProfile,
     apply_compiled_scatter,
+    apply_compiled_scatter_row_tiled,
     compile_scatter_profile,
 )
 from .contracts import PhysicalDomain, PhysicalDomainArray
@@ -71,8 +73,31 @@ def apply_native_thomas_spatial_chain(
     return apply_compiled_backing_return(forward, chain.backing_return)
 
 
+def apply_native_thomas_spatial_chain_row_tiled(
+    exposure: PhysicalDomainArray,
+    chain: NativeThomasSpatialChain,
+    *,
+    tile_rows: int,
+) -> PhysicalDomainArray:
+    """Execute the same physical order with exact full-frame halo windows."""
+    exposure.require(PhysicalDomain.LAYER_EXPOSURE)
+    if exposure.channels != (
+        "red-sensitive",
+        "green-sensitive",
+        "blue-sensitive",
+    ):
+        raise ValueError("native Thomas spatial chain requires sensitive-layer order")
+    forward = apply_compiled_scatter_row_tiled(
+        exposure, chain.forward_scatter, tile_rows=tile_rows
+    )
+    return apply_compiled_backing_return_row_tiled(
+        forward, chain.backing_return, tile_rows=tile_rows
+    )
+
+
 __all__ = [
     "NativeThomasSpatialChain",
     "apply_native_thomas_spatial_chain",
+    "apply_native_thomas_spatial_chain_row_tiled",
     "compile_native_thomas_spatial_chain",
 ]

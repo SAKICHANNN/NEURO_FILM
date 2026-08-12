@@ -16,6 +16,7 @@ from src.film_physics.native_thomas_package import resolve_native_thomas_package
 from src.film_physics.native_thomas_runtime import NativeThomasExportRuntime
 from src.film_physics.native_thomas_spatial_chain import (
     apply_native_thomas_spatial_chain,
+    apply_native_thomas_spatial_chain_row_tiled,
     compile_native_thomas_spatial_chain,
 )
 
@@ -42,7 +43,11 @@ def test_native_thomas_spatial_chain_reuses_fixed_physical_order() -> None:
     )
     first = apply_native_thomas_spatial_chain(exposure, chain)
     second = apply_native_thomas_spatial_chain(exposure, chain)
+    tiled = apply_native_thomas_spatial_chain_row_tiled(
+        exposure, chain, tile_rows=31
+    )
     assert first.values.tobytes() == second.values.tobytes()
+    assert first.values.tobytes() == tiled.values.tobytes()
     assert first.domain is PhysicalDomain.LAYER_EXPOSURE
     assert first.channels == exposure.channels
     assert np.all(first.values > 0.0)
@@ -115,7 +120,7 @@ def test_native_thomas_runtime_spatial_entry_matches_explicit_composition(
         explicit, destination=tmp_path / "explicit.png"
     )
     composed_receipt = runtime.publish_spatial_layer_exposure(
-        exposure, chain, destination=tmp_path / "composed.png"
+        exposure, chain, destination=tmp_path / "composed.png", tile_rows=31
     )
     assert explicit_receipt["output"]["sha256"] == composed_receipt["output"][
         "sha256"

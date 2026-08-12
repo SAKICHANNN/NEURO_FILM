@@ -24,6 +24,7 @@ from .native_thomas_package import (
 from .native_thomas_spatial_chain import (
     NativeThomasSpatialChain,
     apply_native_thomas_spatial_chain,
+    apply_native_thomas_spatial_chain_row_tiled,
 )
 
 
@@ -136,9 +137,16 @@ class NativeThomasExportRuntime:
         spatial_chain: NativeThomasSpatialChain,
         *,
         destination: Path,
+        tile_rows: int | None = None,
     ) -> dict[str, Any]:
         """Apply retained exposure-domain spatial physics before publication."""
-        spatial = apply_native_thomas_spatial_chain(exposure, spatial_chain)
+        spatial = (
+            apply_native_thomas_spatial_chain(exposure, spatial_chain)
+            if tile_rows is None
+            else apply_native_thomas_spatial_chain_row_tiled(
+                exposure, spatial_chain, tile_rows=tile_rows
+            )
+        )
         return self.publish_layer_exposure(spatial, destination=destination)
 
 

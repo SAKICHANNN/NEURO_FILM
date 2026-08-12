@@ -1,0 +1,51 @@
+{
+  "schema": "neuro_film.u6_p8db_native_thomas_spatial_scale_contract.v1",
+  "experiment_id": "u6.p8db-native-thomas-spatial-scale-v1",
+  "node": "ULT > U6 > U6.P8 > U6.P8DB",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can the retained forward-scatter then additive-backing-return exposure chain feed P8DA at 12MP with exact replay and ordinary-desktop resources?",
+  "parents": {
+    "p8da_evidence": {
+      "path": "docs/evidence/U6_P8DA_LINEAR_LAYER_EXPOSURE_ATOMIC_SCALE_RESULT.json",
+      "sha256": "243f9124c309ac93916c1d0f8a24bb83a7636a3f0f7b644515d69c3b4ce2d667",
+      "required_decision": "retain_linear_layer_exposure_to_packaged_native_thomas_runtime"
+    },
+    "p1_contract": {
+      "path": "configs/u6_p1_reference_scatter_simulator_v1.json",
+      "sha256": "3f673a537205e95181a4342aec5bd77cedfbe43cf84ea83ea079d5623b31a22b"
+    },
+    "p3d_contract": {
+      "path": "configs/u6_p3d_backing_return_reference_v1.json",
+      "sha256": "2b27173834345bf7d0492c213dea6b1d5ef8020d604046347f6915898ef6cc12"
+    },
+    "package": {
+      "path": "configs/native_thomas_export_package_win_x64_v1.json",
+      "sha256": "b95c30c5fdd0d04c1dabbc22f889042ed690c7f55eec3650e6c4bf8b6c7330fb",
+      "profile_path": "configs/render_profiles/generic_physical_thomas_p8cr_v1.json"
+    }
+  },
+  "fixture": {
+    "height": 3000,
+    "width": 4000,
+    "pixel_pitch_um": 8.0,
+    "tile_rows": 128,
+    "runs": 2,
+    "log_domain_fraction_low": 0.2,
+    "log_domain_fraction_high": 0.6
+  },
+  "gates": {
+    "maximum_wall_seconds": 45.0,
+    "maximum_process_tree_rss_bytes": 1000000000,
+    "maximum_repeat_wall_ratio": 1.25,
+    "maximum_repeat_rss_ratio": 1.10,
+    "require_exact_output_replay": true,
+    "require_exact_decoded_replay": true,
+    "require_exact_icc": true,
+    "require_zero_stage_residue": true,
+    "require_zero_surviving_processes": true
+  },
+  "decision_if_pass": "retain_spatial_exposure_to_native_thomas_12mp_runtime",
+  "decision_if_fail": "retain_p8da_without_spatial_runtime_integration",
+  "claim_ceiling": "Generic synthetic 12MP host composition of retained forward scatter, additive backing return and the exact native Thomas package; not measured halation, calibrated stock response, scene-to-layer estimation or product promotion."
+}
