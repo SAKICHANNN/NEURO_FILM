@@ -11,6 +11,10 @@
       "sha256": "a3a24ab3478a97c053a47c561ed0c3453aed8dc2e2a54390f830573ffa57d03e",
       "required_decision": "retain_paired_scanner_mtf_developed_structure_for_fresh_confirmation"
     },
+    "p4he_contract": {
+      "path": "configs/u6_p4he_paired_scanner_mtf_photographic_development_v1.json",
+      "sha256": "c8d59ceba9be7d9c427021de70731038f0feab173992c1e99cd1439e69736d69"
+    },
     "p4fa_result": {
       "path": "docs/evidence/U6_P4FA_NATIVE_CLOUD_SPATIAL_INTERPRETATION_CHAIN_V1_RESULT.json",
       "sha256": "efbea3ce62a5c04629abd60e18a9d1e603a7ba8beb00319de9bd4c5b1ad40361",
