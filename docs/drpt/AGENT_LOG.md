@@ -12642,3 +12642,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain this exact ordered bundle for source-disjoint confirmation. It is a
   generic relative-display development result, not measured film/scanner MTF,
   calibrated stock response or product promotion.
+
+### 2026-08-13 - U6.P4HF confirms the fixed bundle on disjoint sources
+
+- The confirmation manifest contributes 18 decoded identities across nine
+  camera makes with zero decoded-SHA overlap against P4HE. The exact P4HE
+  candidate, seed schedule, paired `0.7 px` scanner MTF and gates are unchanged.
+- Two full reports/contact sheets are byte exact. All `18/18` rows pass the
+  chroma gate (median `0.00316`, worst `0.00363`) and all other automatic gates;
+  no severe contact-sheet failure is confirmed.
+- Retain as a confirmed generic profile and move to canonical CPU/tiled runtime
+  compilation. This remains relative-display evidence, not calibrated film,
+  scanner, stock, preference or product promotion.
