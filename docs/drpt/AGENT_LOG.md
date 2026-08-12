@@ -12378,3 +12378,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The response is neither observable nor monotone enough for a safe inverse;
   no spline is fit and confirmation remains unread. The root cause moves
   upstream to scene-exposure/developed-density coupling in the P4FB provider.
+
+# 2026-08-12 - U6.P4GJ freezes source-derived cloud transmittance
+
+- Audit found the P4FB research provider reused P4EY's constant 0.6 expected
+  transmittance fixture. Source sensitometry therefore changed stochastic
+  cloud occupancy but not the base film transmittance, collapsing tone.
+- A separately versioned bridge will derive core expected transmittance as
+  10^-developed-density before the unchanged bounded cloud/spatial chain.
+  V1 stays byte-frozen; native/manual/compiler/partition/atomicity and neutral
+  response gates precede any chart rerun.
