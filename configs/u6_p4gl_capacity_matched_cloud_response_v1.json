@@ -1,0 +1,55 @@
+{
+  "schema": "neuro-film.u6-p4gl-capacity-matched-cloud-response-contract.v1",
+  "experiment_id": "u6.p4gl-capacity-matched-cloud-response-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4GL",
+  "date_frozen": "2026-08-12",
+  "status": "contract-frozen-implementation-ready",
+  "parents": {
+    "failed_fixture": {
+      "path": "docs/evidence/U6_P4GK_ANALYTICAL_CLOUD_DENSITY_ENVELOPE_RESULT.json",
+      "sha256": "1d50d4b2cbadb19a0fdc001819d5218c815f97f84de219d18dc8c4ba8a25362d",
+      "required_decision": "close_analytical_cloud_density_envelope_v1"
+    },
+    "capacity_profile": {
+      "path": "docs/evidence/U6_P4DI_SENSITOMETRY_CLOUD_CAPACITY_V2_RESULT.json",
+      "sha256": "b5c65ec6e0343b94f4c02640e190b2b06863b5fa021d578e4c5d0794c0e770c4",
+      "required_decision": "retain_sensitometry_capacity_compiled_cloud_profile_v2",
+      "required_profile_identity": "9d9d86e1f2fc695d431810cbe06cbe9749be601838d4fc4cdfed18b63f13879a"
+    }
+  },
+  "candidate": {
+    "cloud_profile": "exact-p4di-sensitometry-capacity-compiled-profile-v2",
+    "additional_rate_multiplier": 1.0,
+    "source_to_density": "exact-p4gj-source-derived-sensitometry-v2",
+    "density_residual": "p4gk-analytical-envelope-no-clipping",
+    "post_spatial_chain": "unchanged-p4fb",
+    "hard_clipping_allowed": false
+  },
+  "fixture": {
+    "height": 129,
+    "width": 131,
+    "build_levels": 33,
+    "confirmation_midpoints": 32,
+    "layout": "independent-uniform-neutral-fields-shared-geometry-and-seed",
+    "tile_rows": [17, 64]
+  },
+  "gates": {
+    "minimum_channel_scan_response_span": 0.5,
+    "maximum_nonpositive_scan_steps": 0,
+    "minimum_interior_bounded_density_residual_rms": 0.0001,
+    "maximum_absolute_mean_transmittance_bias": 0.02,
+    "maximum_density_envelope_violation": 0.0,
+    "maximum_new_boundary_fraction": 0.0005,
+    "require_endpoint_acceptance": true,
+    "require_partition_and_process_exact": true,
+    "require_no_hard_clipping": true
+  },
+  "execution": {
+    "formal_processes": 2,
+    "post_result_retuning_allowed": false,
+    "p4gh_chart_pixels_read": false
+  },
+  "decision_if_pass": "retain_capacity_matched_cloud_response_v1_for_chart_confirmation",
+  "decision_if_fail": "close_capacity_matched_cloud_response_v1",
+  "claim_ceiling": "Synthetic capacity-matched uniform-field response evidence only; not calibrated film, measured granularity, photographic quality, native product runtime or promotion."
+}
