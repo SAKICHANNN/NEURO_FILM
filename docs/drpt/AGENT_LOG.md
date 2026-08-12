@@ -12777,3 +12777,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   active support and unit-cube gates all pass.
 - Next integrate exact bounded Thomas receipt fields and rerun the frozen P4HJ
   photographic/scanner gates; calibration and product claims remain closed.
+
+### 2026-08-13 - U6.P4HR closes on host runtime timeout
+
+- The first monitored nine-camera worker remained in active native computation
+  but did not finish before the frozen 900-second timeout. No partial report was
+  published, no second worker started, and all owned processes exited.
+- Photographic/scanner gates are unevaluated; this is a runtime failure, not a
+  negative scientific result. Observed memory remained below roughly 768 MiB,
+  but that is not a completed formal peak measurement.
+- Replace the fixed 80-step per-sample inverse with an analytic initial estimate
+  plus safeguarded Newton refinement, reprove the unchanged numerical grid, then
+  rerun this photographic gate.

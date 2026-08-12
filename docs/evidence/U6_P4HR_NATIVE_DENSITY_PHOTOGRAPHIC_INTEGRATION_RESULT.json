@@ -1,0 +1,22 @@
+{
+  "schema": "neuro-film.u6-p4hr-native-density-photographic-integration-evidence.v1",
+  "node": "U6.P4HR",
+  "date": "2026-08-13",
+  "contract_commit": "b8c73205",
+  "implementation_commit": "2cc7f706",
+  "execution": {
+    "formal_worker_index": 1,
+    "worker_timeout_seconds": 900.0,
+    "worker_completed": false,
+    "partial_report_written": false,
+    "second_worker_started": false,
+    "owned_processes_remaining": 0,
+    "observed_working_set_below_bytes": 805306368,
+    "observation_is_not_formal_peak_measurement": true
+  },
+  "automatic_pass": false,
+  "decision": "close_native_density_photographic_integration_without_rescue",
+  "scientific_conclusion": "The first monitored worker did not complete the nine-camera photographic chain before the frozen 900-second execution timeout. No partial report was published and no second worker was started, so photographic gates remain unevaluated. The observed active compute was dominated by per-sample fixed-iteration inverse-Gamma evaluation; this is a runtime failure, not a scientific failure of the retained profile or photographic mechanism.",
+  "next_leaf": "Replace fixed 80-step per-sample inversion with a separately frozen analytic initial estimate plus safeguarded Newton refinement, first proving the unchanged P4HP numerical grid and only then rerunning the photographic integration.",
+  "claim_ceiling": "Negative Windows host runtime result before photographic adjudication; no photographic, calibrated film/scanner, device or product conclusion."
+}
