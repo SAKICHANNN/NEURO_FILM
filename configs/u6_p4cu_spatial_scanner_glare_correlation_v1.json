@@ -1,0 +1,48 @@
+{
+  "schema": "neuro_film.u6_p4cu_spatial_scanner_glare_correlation_contract.v1",
+  "experiment_id": "u6.p4cu-spatial-scanner-glare-correlation-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4CU",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Does a nonnegative low-frequency spatial scanner-glare field create shared covariance that confounds dye-layer correlation after the correct matrix inverse, and can an independently bound field remove it?",
+  "parents": {
+    "p4ct_evidence": {
+      "path": "docs/evidence/U6_P4CT_SCANNER_FLARE_LAYER_CORRELATION_RESULT.json",
+      "sha256": "419ba8880dc5eccdae938bc23a6e568e4b795cdae7899bb327bd2172cf3f94d5",
+      "required_decision": "close_current_additive_scanner_flare_control_without_tuning"
+    }
+  },
+  "simulation": {
+    "shape": [384, 512],
+    "development_seeds": [2026081241, 2026081242, 2026081243, 2026081244],
+    "confirmation_seeds": [2026081251, 2026081252, 2026081253, 2026081254],
+    "layer_correlation": [[1.0, 0.42, 0.18], [0.42, 1.0, 0.31], [0.18, 0.31, 1.0]],
+    "mean_density_rgb": [0.65, 0.82, 0.74],
+    "density_sigma": 0.035,
+    "scanner_matrix": [[0.78, 0.17, 0.05], [0.12, 0.76, 0.12], [0.04, 0.22, 0.74]],
+    "glare_fraction_of_channel_mean": 0.04,
+    "glare_rgb_multiplier": [1.0, 0.7, 0.4],
+    "field_frequencies_xy": [[1, 1], [2, 1], [1, 3]],
+    "field_weights": [0.5, 0.3, 0.2],
+    "wrong_field_roll_yx": [73, 109],
+    "order": "developed density -> transmittance -> scanner matrix -> nonnegative normalized spatial glare -> field subtraction -> scanner inverse -> density correlation"
+  },
+  "metrics": {
+    "maximum_corrected_correlation_rmse": 0.01,
+    "minimum_uncorrected_correlation_rmse": 0.02,
+    "minimum_wrong_field_correlation_rmse": 0.015,
+    "minimum_corrected_improvement_over_uncorrected": 0.8,
+    "maximum_development_confirmation_rmse_gap": 0.005,
+    "require_exact_repeat": true,
+    "require_positive_corrected_scan": true
+  },
+  "decision_if_pass": "require_independent_spatial_scanner_glare_binding_before_layer_correlation_inference",
+  "decision_if_fail": "close_current_spatial_scanner_glare_control_without_tuning",
+  "forbidden": [
+    "fit glare field, shift, colour or magnitude from simulated layer truth",
+    "change field construction or gates after scoring",
+    "infer a real scanner glare profile or film-stock layer covariance",
+    "map this result to renderer defaults or product state"
+  ],
+  "claim_ceiling": "Controlled float64 evidence about low-frequency spatial scanner-glare confounding; not measured scanner, stock or product calibration."
+}
