@@ -236,9 +236,81 @@ def build_cross_layer_cloud_geometry(
     return CrossLayerCloudGeometry(context, tuple(components))
 
 
+def build_conditioned_total_cloud_geometry(
+    profile: CrossLayerPoissonProfile,
+    input_shape: tuple[int, int],
+    *,
+    radius_um_cmy: tuple[float, float, float],
+    output_zoom: int,
+    output_pixel_pitch_um: float,
+    monte_carlo_samples: int,
+) -> CrossLayerCloudGeometry:
+    """Materialize a finite-window binomial process with exact totals."""
+
+    if any(not isinstance(value, int) or value <= 0 for value in input_shape):
+        raise ValueError("input shape must be positive")
+    area = input_shape[0] * input_shape[1]
+    all_rate = profile.shared_all_rate
+    cm, cy, my = profile.shared_pair_rates_cm_cy_my
+    ic, im, iy = profile.independent_rates_cmy
+    rates = (all_rate, cm, cy, my, ic, im, iy)
+    components = []
+    for index, rate in enumerate(rates):
+        count = round(rate * area)
+        if not math.isclose(count, rate * area, rel_tol=0.0, abs_tol=1e-9):
+            raise ValueError("conditioned total is not integral")
+        seed = (profile.seed + index * profile.component_seed_stride) % (2**64)
+        rng = np.random.default_rng(seed ^ 0xD2B74407B1CE6E93)
+        centers = np.empty((count, 2), dtype=np.float64)
+        centers[:, 0] = rng.random(count) * input_shape[0]
+        centers[:, 1] = rng.random(count) * input_shape[1]
+        components.append(centers)
+    (
+        shared_all,
+        pair_cm,
+        pair_cy,
+        pair_my,
+        independent_c,
+        independent_m,
+        independent_y,
+    ) = components
+    layers = (
+        np.concatenate((shared_all, pair_cm, pair_cy, independent_c)),
+        np.concatenate((shared_all, pair_cm, pair_my, independent_m)),
+        np.concatenate((shared_all, pair_cy, pair_my, independent_y)),
+    )
+    if (
+        not isinstance(output_zoom, int)
+        or output_zoom <= 0
+        or not isinstance(monte_carlo_samples, int)
+        or monte_carlo_samples <= 0
+        or not math.isfinite(output_pixel_pitch_um)
+        or output_pixel_pitch_um <= 0.0
+        or any(not math.isfinite(value) or value <= 0.0 for value in radius_um_cmy)
+    ):
+        raise ValueError("invalid conditioned-total render geometry")
+    input_pitch_um = output_zoom * output_pixel_pitch_um
+    radii_input = tuple(float(value) / input_pitch_um for value in radius_um_cmy)
+    offset_rng = np.random.default_rng((profile.seed ^ 0xA24BAED4963EE407) % (2**64))
+    offsets = offset_rng.uniform(-0.5, 0.5, size=(monte_carlo_samples, 2))
+    context = DevelopedStructureContext(
+        "colour-dye-cloud",
+        input_shape,
+        output_zoom,
+        output_pixel_pitch_um,
+        layers,
+        radii_input,
+        profile.mark_optical_density_cmy,
+        offsets,
+        profile.seed,
+    )
+    return CrossLayerCloudGeometry(context, tuple(components))
+
+
 __all__ = [
     "CrossLayerCloudGeometry",
     "CrossLayerPoissonProfile",
+    "build_conditioned_total_cloud_geometry",
     "build_cross_layer_cloud_geometry",
     "cross_layer_counts_to_density",
     "sample_cross_layer_poisson_region",
