@@ -12059,3 +12059,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - A single Poisson event scale cannot match all marginal second moments. Move
   to an explicit bounded per-channel residual/NPS approximation while keeping
   the compound-Poisson mean, correlation and spectrum as its base.
+
+# 2026-08-12 - U6.P4DV rejects amplification but identifies safe attenuation
+
+- The frozen residual compiler requires channel gains at or above one, while
+  development selects 0.7877/0.7000/0.6588: the x16 base overstates rather than
+  understates target marginal noise. P4DV therefore fails its only failed gate.
+- All unchanged confirmation metrics pass, including 0.21% RMS error, 0.0366
+  NPS-shape RMSE, edge parity and zero new boundaries. Open a separately frozen
+  attenuation leaf; do not rewrite P4DV or claim measured film/scanner NPS.

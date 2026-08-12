@@ -1,0 +1,28 @@
+{
+  "schema": "neuro_film.u6_p4dv_nps_preserving_cloud_residual_lod_evidence.v5",
+  "node": "U6.P4DV",
+  "date": "2026-08-12",
+  "implementation_commit": "70c9bdbd",
+  "contract_sha256": "cadbbaade0bd805568dc13dd63033f59716db8c45969a8f031b734c298326198",
+  "formal_report_sha256": "3abd633e965193c920e4c21b95968c4533dbd26d4f51147dee7e0f9f453795fa",
+  "stable_evidence_id": "17252dbc26fa9eaa7d76632b163a4d71816d7f981cf2e7ef5ca42ccfa972b4c5",
+  "exact_replays": 2,
+  "automatic_pass": false,
+  "compiled_channel_gain": [
+    0.7876735031235126,
+    0.7000171198387726,
+    0.6587743294682413
+  ],
+  "confirmation_mean_transmittance_absolute_error": 0.00011136999454336438,
+  "confirmation_marginal_noise_rms_relative_error": 0.0021041221042854487,
+  "confirmation_cross_channel_correlation_absolute_error": 0.019138357885895296,
+  "confirmation_radial_nps_shape_rmse": 0.036570320496652646,
+  "confirmation_edge_overshoot_absolute_difference": 0.000537058157656662,
+  "confirmation_edge_undershoot_absolute_difference": 0.00006514763369924281,
+  "new_boundary_fraction": 0.0,
+  "failed_gates": [
+    "minimum_gain"
+  ],
+  "decision": "close_nps_preserving_target_resolution_cloud_residual_lod_v5",
+  "claim_ceiling": "Synthetic NPS-preserving target-resolution approximation only; not measured film granularity, scanner aperture, calibrated stock or product authorization."
+}
