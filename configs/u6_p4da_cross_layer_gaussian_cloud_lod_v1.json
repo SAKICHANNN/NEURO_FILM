@@ -1,0 +1,27 @@
+{
+  "schema": "neuro_film.u6_p4da_cross_layer_gaussian_cloud_lod_contract.v1",
+  "experiment_id": "u6.p4da-cross-layer-gaussian-cloud-lod-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4DA",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Does P4CX shared-event coupling survive distinct layer Gaussian cloud footprints with the analytically predicted zero-lag covariance?",
+  "parent": {"path": "docs/evidence/U6_P4CX_CROSS_LAYER_COMPOUND_POISSON_RESULT.json", "sha256": "3ffbcd8c3c94477b64afc846ccaedd930600df866243de3d4b3c89de3dbf9301", "required_decision": "retain_shared_component_poisson_as_explicit_cross_layer_reference_primitive"},
+  "field": {
+    "shape": [512, 768],
+    "development_seeds": [2026081361, 2026081362],
+    "confirmation_seeds": [2026081371, 2026081372],
+    "marginal_count_rates_cmy": [12.0, 18.0, 15.0],
+    "shared_all_rate": 2.0,
+    "shared_pair_rates_cm_cy_my": [2.0, 1.0, 1.5],
+    "mark_optical_density_cmy": [0.02, 0.018, 0.022],
+    "gaussian_sigma_pixels_cmy": [0.8, 1.1, 1.4],
+    "gaussian_truncate": 4.0,
+    "component_seed_stride": 1009,
+    "boundary_mode": "wrap"
+  },
+  "metrics": {"maximum_absolute_correlation_error": 0.015, "maximum_marginal_variance_relative_error": 0.02, "maximum_independent_control_absolute_correlation": 0.01, "minimum_shared_correlation": 0.08, "require_repeat_bit_exact": true, "require_density_nonnegative": true},
+  "decision_if_pass": "retain_cross_layer_gaussian_cloud_lod_reference",
+  "decision_if_fail": "close_cross_layer_gaussian_cloud_lod_without_rescue",
+  "forbidden": ["fit rates or sigmas after sampling", "change shape, seeds or gates after scoring", "claim measured dye-cloud size/correlation or stock calibration", "enable product rendering"],
+  "claim_ceiling": "Controlled synthetic Gaussian-cloud LOD evidence for shared-event coupling; not measured film, scanner or product evidence."
+}
