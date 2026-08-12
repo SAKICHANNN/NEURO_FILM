@@ -1,0 +1,33 @@
+{
+  "schema": "neuro_film.u6_p4eg_native_density_conditioned_poisson_contract.v2",
+  "experiment_id": "u6.p4eg-native-density-conditioned-poisson-v2",
+  "node": "ULT > U6 > U6.P4 > U6.P4EG",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {
+    "path": "docs/evidence/U6_P4EF_NATIVE_CROSS_LAYER_POISSON_COUNTS_V1_RESULT.json",
+    "sha256": "d6777d28c54465a754f37480b96f1ede6f33dda5cf4f48f0049b65d1c71483dc",
+    "required_decision": "retain_native_cross_layer_poisson_counts_v1"
+  },
+  "fixture": {
+    "height": 257,
+    "width": 389,
+    "profile_seed": 68371,
+    "scale_seed": 68389,
+    "partition_heights": [1, 37, 128],
+    "marginal_rates_cmy": [12.0, 18.0, 15.0],
+    "shared_all_rate": 2.0,
+    "shared_pair_rates_cm_cy_my": [2.0, 1.0, 1.5],
+    "component_seed_stride": 1009
+  },
+  "gates": {
+    "require_python_count_identity": true,
+    "require_cross_compiler_identity": true,
+    "require_partition_identity": true,
+    "require_zero_scale_zero_counts": true,
+    "require_failure_atomicity": true
+  },
+  "decision_if_pass": "retain_native_density_conditioned_poisson_v2",
+  "decision_if_fail": "close_native_density_conditioned_poisson_v2",
+  "claim_ceiling": "Windows x64 C11 density-conditioned shared-count generation only; not native cloud filtering, measured emulsion calibration, mobile runtime or product authorization."
+}
