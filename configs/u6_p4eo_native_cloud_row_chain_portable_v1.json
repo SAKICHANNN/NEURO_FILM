@@ -1,0 +1,25 @@
+{
+  "schema": "neuro_film.u6_p4eo_native_cloud_row_chain_portable_contract.v1",
+  "experiment_id": "u6.p4eo-native-cloud-row-chain-portable-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4EO",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {
+    "path": "docs/evidence/U6_P4EN_NATIVE_CLOUD_ROW_CHAIN_ABI_V1_RESULT.json",
+    "sha256": "c8872fb086989788c94824d4019c1cb8323e5dbfdb532fc011b509d7a163c9f7",
+    "required_decision": "retain_native_cloud_row_chain_abi_v1"
+  },
+  "targets": {
+    "android": {
+      "arm64-v8a": "aarch64-linux-android34",
+      "x86_64": "x86_64-linux-android34"
+    },
+    "apple_object_only": {
+      "macos-arm64": "arm64-apple-macos13",
+      "ios-arm64": "arm64-apple-ios15"
+    }
+  },
+  "decision_if_pass": "retain_native_cloud_row_chain_portable_v1",
+  "decision_if_fail": "close_native_cloud_row_chain_portable_v1",
+  "claim_ceiling": "Android shared-library link and Apple Mach-O object compile only; not device runtime, SDK link, measured emulsion or product authorization."
+}
