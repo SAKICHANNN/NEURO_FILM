@@ -12610,3 +12610,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   make independent colour layers safe enough.
 - Next test the already retained P4DF cross-layer shared-cloud correlation as a
   fixed copula; do not fit correlation on this consumed cohort.
+
+### 2026-08-13 - U6.P4HC retains a fixed cross-layer Thomas copula
+
+- Two 15-condition synthetic reports are byte exact. The P4DF target
+  correlation is reproduced within `5.72e-5`, marginal Thomas neighbor
+  correlation drifts only `3.76e-4`, and Gamma variance error is `5.99e-6`.
+- All density-support, finite-tail, repeat and no-clipping gates pass. Advance
+  the exact fixed copula to the consumed photographic development cohort.

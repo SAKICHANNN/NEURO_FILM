@@ -1,0 +1,28 @@
+{
+  "schema": "neuro-film.u6-p4hc-cross-layer-thomas-gamma-copula-evidence.v1",
+  "node": "U6.P4HC",
+  "date": "2026-08-13",
+  "contract_commit": "34157301",
+  "implementation_commit": "63cc196e",
+  "contract_sha256": "4baf8974b647ca12d27226b30cb5dafc184ee8b0cd9fcd53cf8b99753fe10fba",
+  "implementation_sha256": "b44594409974816a6342e0ad86e793e913f5efaf7947445b57245ebf6c8c2ea2",
+  "evaluator_sha256": "b4a171fe52919270b2d7cec69c735df09791b32077325c9384777ad4817cf58b",
+  "formal_processes": 2,
+  "formal_report_sha256": "61b8c22d1f60095d6d450703a4b33add05fa7cd2356286ef47866c2fa2de443d",
+  "reports_byte_exact": true,
+  "stable_evidence_id": "0e7e1d2ff2ff72d28f11f06bc96542a97c3fe24ff90117726ab4850e9e313c7e",
+  "observations": {
+    "maximum_mean_absolute_in_target_sigma": 1.49302224223549e-7,
+    "maximum_variance_relative_error": 5.98779831761931e-6,
+    "maximum_p999_absolute_in_target_sigma": 3.3782094336882063,
+    "maximum_copula_correlation_absolute_error": 0.0000572153676421105,
+    "maximum_neighbor_correlation_absolute_drift": 0.0003764580473906154,
+    "minimum_developed_density": 0.014172568820637305,
+    "hard_clipping_or_posthoc_limiting_used": false
+  },
+  "automatic_pass": true,
+  "decision": "retain_fixed_cross_layer_thomas_gamma_copula_for_photographic_development",
+  "scientific_conclusion": "Empirical whitening followed by the fixed P4DF Gaussian copula accurately reproduces the retained cross-layer correlation while preserving each P4BW Thomas spatial spectrum and exact P4GZ Gamma marginal moments. The mechanism remains finite and support-safe without clipping or limiting.",
+  "next_leaf": "Apply this exact fixed copula to the consumed P4HA/P4HB photographic cohort with unchanged gates. Do not tune the correlation matrix, Thomas profile, amplitude or chroma threshold.",
+  "claim_ceiling": "Synthetic fixed-correlation dye-layer mechanism only; P4DF correlation is a controlled generic simulator primitive, not measured real-film layer coupling, stock calibration, photographic safety or product evidence."
+}
