@@ -1,0 +1,27 @@
+{
+  "schema": "neuro_film.u6_p4fo_gaussian_row_window_portable_contract.v1",
+  "experiment_id": "u6.p4fo-gaussian-row-window-portable-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4FO",
+  "date_frozen": "2026-08-12",
+  "parent": {
+    "path": "docs/evidence/U6_P4FM_REPLAYABLE_CLOUD_SOURCE_100MP_V1_RESULT.json",
+    "sha256": "99a48dcd793d0fb69a3de97d6aaa34bebeffa02d4f780fed2e158fffbe83fb2a",
+    "required_decision": "retain_replayable_cloud_source_100mp_v1"
+  },
+  "required_exports": [
+    "nf_gaussian_row_window_f32_abi_version_v1",
+    "nf_gaussian_row_window_f32_apply_v1"
+  ],
+  "targets": {
+    "android": {
+      "arm64-v8a": "aarch64-linux-android21",
+      "x86_64": "x86_64-linux-android21"
+    },
+    "apple_object_only": {
+      "macos-arm64": "arm64-apple-macosx13.0",
+      "ios-arm64": "arm64-apple-ios15.0"
+    }
+  },
+  "decision_if_pass": "retain_gaussian_row_window_portable_v1",
+  "claim_ceiling": "Android arm64/x86_64 link and Apple arm64 object-only evidence for the separate row-window companion ABI; no Android or Apple runtime, app, media, product or frozen Standard package change."
+}
