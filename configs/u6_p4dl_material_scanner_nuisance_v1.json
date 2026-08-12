@@ -1,0 +1,17 @@
+{
+  "schema": "neuro_film.u6_p4dl_material_scanner_nuisance_contract.v1",
+  "experiment_id": "u6.p4dl-material-scanner-nuisance-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4DL",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parents": {
+    "colour": {"path": "docs/evidence/U6_P4DJ_TYPED_SENSITOMETRY_CLOUD_CHAIN_RESULT.json", "sha256": "c84227a30bce488bd39cebcdab9c6691958909f621587b6e9a417d6756178948", "required_decision": "retain_typed_colour_sensitometry_cloud_chain"},
+    "bw": {"path": "docs/evidence/U6_P4DK_TYPED_BW_SILVER_CHAIN_RESULT.json", "sha256": "e4d0ebaf64c1a9fbea797855e1856b8ccac8d277f32353830a9f6caa89f282c0", "required_decision": "retain_typed_bw_metallic_silver_chain"},
+    "scanner": {"path": "configs/u6_p6a_scanner_profile_boundary_v1.json", "sha256": "bdf9595635002cee726e2dc63ab4a0a2def7d350a3e3033bab2e43c502cc34e7", "required_schema": "neuro_film.u6_p6a_scanner_profile_contract.v1"}
+  },
+  "fixture": {"height": 257, "width": 385, "pixel_pitch_um": 6.35},
+  "gates": {"require_identity_scanner_exact_for_both_materials": true, "minimum_scanner_a_vs_b_max_abs": 0.005, "minimum_same_scanner_material_separation": 0.005, "require_scanner_profile_has_no_stock_or_mode_identity": true, "require_repeat_identity": true, "require_finite_bounded_outputs": true},
+  "decision_if_pass": "retain_material_separated_scanner_nuisance_chain",
+  "decision_if_fail": "close_material_scanner_nuisance_integration",
+  "claim_ceiling": "Generic synthetic material/scanner nuisance separation only; not measured scanner, stock identity, calibrated interpretation or product evidence."
+}
