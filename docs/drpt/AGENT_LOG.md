@@ -12360,3 +12360,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Strict response monotonicity, inverse slope, neutral chroma, confirmation
   error, boundary and exact-replay gates are frozen. Failure closes this
   compiler without changing the physical profile or relaxing chart gates.
+
+# 2026-08-12 - U6.P4GI corrects spatially confounded ramp layout
+
+- The first pre-fit execution stopped before spline fit or confirmation because
+  the vertical ramp assigned each level to only one x coordinate, so cloud
+  position and response were inseparable. It is not a scientific negative.
+- A Latin-balanced layout now places every level once in every row and column;
+  confirmation uses a separate 256-level Latin midpoint grid. Levels, profile,
+  fit family, thresholds and stop rules are unchanged.

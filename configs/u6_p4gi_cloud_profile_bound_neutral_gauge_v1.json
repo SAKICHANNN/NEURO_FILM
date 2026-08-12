@@ -19,17 +19,17 @@
     "height": 257,
     "width": 257,
     "level_count": 257,
-    "layout": "vertical-neutral-levels",
-    "aggregation": "per-level-channel-median",
+    "layout": "latin-balanced-neutral-levels-step-17",
+    "aggregation": "per-level-channel-median-over-one-sample-per-row-and-column",
     "spline": "strict-monotone-rational-quadratic-inverse",
     "endpoint_policy": "identity-endpoints-with-interior-response-knots"
   },
   "confirmation": {
-    "height": 257,
-    "width": 257,
+    "height": 256,
+    "width": 256,
     "level_count": 256,
-    "layout": "horizontal-neutral-midpoints",
-    "aggregation": "per-level-channel-median"
+    "layout": "latin-balanced-neutral-midpoints-step-17",
+    "aggregation": "per-level-channel-median-over-one-sample-per-row-and-column"
   },
   "gates": {
     "minimum_channel_response_span": 0.01,
@@ -46,7 +46,8 @@
     "formal_processes": 2,
     "tile_rows": [17, 64],
     "post_result_retuning_allowed": false,
-    "chart_pixels_used_for_fit": false
+    "chart_pixels_used_for_fit": false,
+    "operational_amendment": "The first pre-fit run exposed level-to-x spatial confounding in the vertical layout and stopped before spline fit or confirmation. Latin-balanced layouts replace it without changing levels, profile, thresholds or gates."
   },
   "decision_if_pass": "retain_cloud_profile_bound_neutral_gauge_v1_for_chart_confirmation",
   "decision_if_fail": "close_cloud_profile_bound_neutral_gauge_v1",
