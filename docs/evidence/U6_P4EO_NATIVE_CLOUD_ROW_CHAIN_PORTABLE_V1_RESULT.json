@@ -1,0 +1,27 @@
+{
+  "schema": "neuro_film.u6_p4eo_native_cloud_row_chain_portable.v1",
+  "experiment_id": "u6.p4eo-native-cloud-row-chain-portable-v1",
+  "date_executed": "2026-08-12",
+  "implementation_commit": "0cc5dd4e",
+  "automatic_pass": true,
+  "formal_replays": {
+    "count": 2,
+    "report_sha256": "14ac2d5ce8dfff6f4856a9df4bf01d724fb753777ee4324288aaa5623b67194b",
+    "byte_exact": true
+  },
+  "stable_evidence_id": "90a920b1eaa2f8d0e422f0284136a524e204c61fdda74bc1e7fa71ea3d884029",
+  "contract_sha256": "e437ff56543ff9ba113c53e4f7cc4b4597a80d0dcb39433ab5b3b19cfe76369f",
+  "android": {
+    "arm64-v8a": {"bytes": 12504, "sha256": "a1e7f8b38f7378a1de852d3978ac3a2e89100973bb87b4189a1e10de4a5c8707"},
+    "x86_64": {"bytes": 14208, "sha256": "d395ca62b6ccc03bb00bf3ea606939a61dc354afd01671bb16182866da40c784"},
+    "required_exports_exact": true
+  },
+  "apple": {
+    "macos_arm64_object_count": 4,
+    "ios_arm64_object_count": 4,
+    "mach_o_arm64": true,
+    "required_definitions_exact": true
+  },
+  "decision": "retain_native_cloud_row_chain_portable_v1",
+  "claim_ceiling": "Android shared-library link and Apple Mach-O object compile only; not device runtime, SDK link, measured emulsion or product authorization."
+}
