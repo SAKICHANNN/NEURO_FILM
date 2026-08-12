@@ -1,0 +1,29 @@
+{
+  "schema": "neuro_film.u6_p4ee_native_cloud_typed_chain_parity_contract.v1",
+  "experiment_id": "u6.p4ee-native-cloud-typed-chain-parity-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4EE",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {
+    "path": "docs/evidence/U6_P4ED_NATIVE_CLOUD_ROW_INTEGRATION_V1_RESULT.json",
+    "sha256": "ced8977efc5a6643950369032ec9242898683868a8bcbb245c521d70abdb22c0",
+    "required_decision": "retain_native_cloud_row_integration_v1"
+  },
+  "fixture": {
+    "height": 257,
+    "width": 385,
+    "seed": 62213,
+    "pixel_pitch_um": 6.35,
+    "row_partition_height": 61
+  },
+  "gates": {
+    "maximum_final_scan_absolute_error": 0.000001,
+    "maximum_final_scan_rmse": 0.0000002,
+    "require_stage_contribution_nonzero": true,
+    "require_zero_new_boundary": true,
+    "require_repeat_identity": true
+  },
+  "decision_if_pass": "retain_native_cloud_typed_chain_parity_v1",
+  "decision_if_fail": "close_native_cloud_typed_chain_parity_v1",
+  "claim_ceiling": "Synthetic typed-chain Python/native parity only; not calibrated stock, scanner, complete native renderer or product authorization."
+}
