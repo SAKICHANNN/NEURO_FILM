@@ -24,6 +24,8 @@ def apply_density_lod_residual(
     neutral_base: np.ndarray,
     physical_scan: np.ndarray,
     cloud_free_scan: np.ndarray,
+    *,
+    finite_tail_density: float | None = None,
 ) -> tuple[np.ndarray, dict[str, float]]:
     """Integrate one common density field over a pixel and gate by density."""
 
@@ -48,6 +50,12 @@ def apply_density_lod_residual(
     layer_density_delta = -np.log10(physical / reference)
     common_density_delta = np.mean(layer_density_delta, axis=-1)
     integrated_density_delta = _separable_aperture(common_density_delta)
+    if finite_tail_density is not None:
+        if not np.isfinite(finite_tail_density) or finite_tail_density <= 0.0:
+            raise ValueError("invalid compound-Poisson finite-tail density")
+        integrated_density_delta = finite_tail_density * np.tanh(
+            integrated_density_delta / finite_tail_density
+        )
     luminance = (
         0.2126 * base[..., 0] + 0.7152 * base[..., 1] + 0.0722 * base[..., 2]
     )
@@ -87,6 +95,9 @@ def apply_density_lod_residual(
             np.sqrt(np.mean(chromatic_density * chromatic_density))
         ),
         "mean_density_visibility": float(np.mean(visibility)),
+        "finite_tail_density": float(
+            finite_tail_density if finite_tail_density is not None else np.inf
+        ),
         "bounded_residual_rms": float(np.sqrt(np.mean(residual * residual))),
         "minimum_residual_scale": float(np.min(scale)),
         "limited_fraction": float(np.mean(limited)),

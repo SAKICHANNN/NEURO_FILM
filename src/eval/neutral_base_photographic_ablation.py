@@ -42,6 +42,9 @@ SHARED_DENSITY_SCHEMA = (
     "neuro-film.u6-p4gs-shared-density-photographic-development-contract.v1"
 )
 DENSITY_LOD_SCHEMA = "neuro-film.u6-p4gt-density-lod-photographic-development-contract.v1"
+COMPOUND_POISSON_SCHEMA = (
+    "neuro-film.u6-p4gu-compound-poisson-density-photographic-development-contract.v1"
+)
 P4FB = Path("configs/u6_p4fb_native_cloud_spatial_partition_v1.json")
 CAPACITY = Path("configs/u6_p4di_sensitometry_cloud_capacity_v2.json")
 
@@ -52,7 +55,12 @@ def sha256_file(path: Path) -> str:
 
 def load_contract(path: Path) -> dict[str, Any]:
     payload = json.loads(path.read_text(encoding="utf-8"))
-    if payload.get("schema") not in {SCHEMA, SHARED_DENSITY_SCHEMA, DENSITY_LOD_SCHEMA}:
+    if payload.get("schema") not in {
+        SCHEMA,
+        SHARED_DENSITY_SCHEMA,
+        DENSITY_LOD_SCHEMA,
+        COMPOUND_POISSON_SCHEMA,
+    }:
         raise ValueError("unsupported photographic physical-residual contract")
     return payload
 
@@ -155,7 +163,10 @@ def evaluate(
         root / "src/film_physics/bounded_linear_residual.py",
         root / "native/film_physics/nf_cloud_post_spatial_f32_v1.c",
     ]
-    if contract["candidate"].get("residual_projection") == "density-lod-multiplicative":
+    if contract["candidate"].get("residual_projection") in {
+        "density-lod-multiplicative",
+        "compound-poisson-density-multiplicative",
+    }:
         component_sources.append(root / "src/film_physics/density_lod_residual.py")
     component_sha = hashlib.sha256(
         b"".join(path.read_bytes() for path in component_sources)
@@ -183,8 +194,40 @@ def evaluate(
                 all_diagnostics: list[dict[str, float]] = []
                 density_lod = (
                     contract["candidate"].get("residual_projection")
-                    == "density-lod-multiplicative"
+                    in {
+                        "density-lod-multiplicative",
+                        "compound-poisson-density-multiplicative",
+                    }
                 )
+                compound_poisson = (
+                    contract["candidate"].get("residual_projection")
+                    == "compound-poisson-density-multiplicative"
+                )
+                finite_tail_density = None
+                if compound_poisson:
+                    rates = np.asarray(
+                        cloud_profile.count_profile.marginal_rates_cmy,
+                        dtype=np.float64,
+                    )
+                    marks = np.asarray(
+                        cloud_profile.count_profile.mark_optical_density_cmy,
+                        dtype=np.float64,
+                    )
+                    correlation = cloud_profile.count_profile.analytic_correlation()
+                    covariance = correlation * np.sqrt(
+                        rates[:, None] * rates[None, :]
+                    )
+                    common_sigma = float(np.sqrt(marks @ covariance @ marks / 9.0))
+                    aperture = np.asarray(
+                        contract["candidate"]["pixel_aperture_kernel"],
+                        dtype=np.float64,
+                    )
+                    aperture_sigma_scale = float(np.sum(aperture * aperture))
+                    finite_tail_density = (
+                        float(contract["candidate"]["tail_sigma"])
+                        * common_sigma
+                        * aperture_sigma_scale
+                    )
                 for tile_rows in contract["candidate"]["tile_rows"]:
                     diagnostics: list[dict[str, float]] = []
 
@@ -197,6 +240,7 @@ def evaluate(
                         _source: np.ndarray = source,
                         _diagnostics: list[dict[str, float]] = diagnostics,
                         _density_lod: bool = density_lod,
+                        _finite_tail_density: float | None = finite_tail_density,
                         _height: int = height,
                     ) -> np.ndarray:
                         render_y0 = max(0, y0 - 2) if _density_lod else y0
@@ -224,7 +268,10 @@ def evaluate(
                         )
                         if _density_lod:
                             full_result, row_diagnostics = apply_density_lod_residual(
-                                _source[render_y0:render_y1], cloud_scan, baseline[0]
+                                _source[render_y0:render_y1],
+                                cloud_scan,
+                                baseline[0],
+                                finite_tail_density=_finite_tail_density,
                             )
                             crop_start = y0 - render_y0
                             result = np.ascontiguousarray(
