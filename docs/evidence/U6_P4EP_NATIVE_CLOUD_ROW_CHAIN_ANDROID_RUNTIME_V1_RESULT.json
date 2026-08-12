@@ -1,0 +1,30 @@
+{
+  "schema": "neuro_film.u6_p4ep_native_cloud_row_chain_android_runtime.v1",
+  "experiment_id": "u6.p4ep-native-cloud-row-chain-android-runtime-v1",
+  "date_executed": "2026-08-12",
+  "implementation_commit": "646fe778",
+  "automatic_pass": false,
+  "formal_replays": {
+    "count": 2,
+    "cold_boots_per_replay": 2,
+    "fresh_processes_per_boot": 2,
+    "report_sha256": "a81748a5e096f1cf673af29655f54aa5d4907d23180852f0e185da6f0dcfc24c",
+    "byte_exact": true
+  },
+  "stable_evidence_id": "c2fecd4b898aaa9f9eab8d199cedd6b79829729e4ad53017c8da1fb516f6e516",
+  "results": {
+    "android_abi": "x86_64",
+    "transmittance_host_android_bit_exact": true,
+    "density_host_android_bit_exact": false,
+    "density_differing_values": 451,
+    "density_total_values": 4371,
+    "maximum_density_absolute_error": 0.0000000298023223876953125,
+    "within_android_repeat_exact": true,
+    "workspace_query_exact": true,
+    "failure_output_unchanged": true,
+    "owned_process_cleanup": true
+  },
+  "diagnosis": "The final transmittance is bit exact; platform log10f produces stable one-to-two-ULP density differences. The frozen bit-exact density gate is not relaxed.",
+  "decision": "retain_portable_build_without_android_row_chain_runtime_claim",
+  "claim_ceiling": "Private Android 14 x86_64 virtual-device synthetic row-chain diagnostic; no cross-platform bit-exact density, physical arm64, JNI/app, calibrated emulsion or product runtime."
+}
