@@ -12051,3 +12051,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   high, so the frozen discrete family has no passing member.
 - Do not densify this grid. The next candidate must match independent first and
   second transmittance moments per channel, then face unchanged confirmation.
+
+# 2026-08-12 - U6.P4DU closes a single continuous event scale
+
+- The bounded optimizer converges to multiplier 15.998, yet maximum channel
+  RMS error remains 51.93% in development and 51.74% on confirmation.
+- A single Poisson event scale cannot match all marginal second moments. Move
+  to an explicit bounded per-channel residual/NPS approximation while keeping
+  the compound-Poisson mean, correlation and spectrum as its base.

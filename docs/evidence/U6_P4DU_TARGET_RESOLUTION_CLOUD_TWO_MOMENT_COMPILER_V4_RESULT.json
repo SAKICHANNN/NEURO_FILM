@@ -1,0 +1,22 @@
+{
+  "schema": "neuro_film.u6_p4du_target_resolution_cloud_two_moment_compiler_evidence.v4",
+  "node": "U6.P4DU",
+  "date": "2026-08-12",
+  "implementation_commit": "d17543e3",
+  "contract_sha256": "81b9e18694815fddac167ae6549b36906271fb0e2f851e4cd1a53a3362176c2a",
+  "formal_report_sha256": "7056e02cf11878e57283d9c3a314e1c48dcc0fe2d22f55b236188199225975d2",
+  "stable_evidence_id": "8845e16fa17c89831c423fbf8a68ecfc844b2d86bb2075b17169b3cefd83e571",
+  "exact_replays": 2,
+  "automatic_pass": false,
+  "selected_rate_multiplier": 15.997747706471612,
+  "development_marginal_noise_rms_relative_error": 0.5193071287271452,
+  "confirmation_marginal_noise_rms_relative_error": 0.5174305359385625,
+  "confirmation_cross_channel_correlation_absolute_error": 0.019110476481041166,
+  "confirmation_radial_nps_shape_rmse": 0.036599412861749336,
+  "failed_gates": [
+    "development_marginal_noise_rms_relative_error",
+    "confirmation_marginal_noise_rms_relative_error"
+  ],
+  "decision": "close_two_moment_target_resolution_cloud_lod_v4",
+  "claim_ceiling": "Synthetic two-moment target-resolution approximation only; not measured NPS, film granularity, scanner aperture, stock calibration or product authorization."
+}
