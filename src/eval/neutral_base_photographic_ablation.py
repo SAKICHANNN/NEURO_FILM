@@ -41,9 +41,14 @@ SCHEMA = "neuro-film.u6-p4gr-neutral-base-photographic-ablation-contract.v1"
 SHARED_DENSITY_SCHEMA = (
     "neuro-film.u6-p4gs-shared-density-photographic-development-contract.v1"
 )
-DENSITY_LOD_SCHEMA = "neuro-film.u6-p4gt-density-lod-photographic-development-contract.v1"
+DENSITY_LOD_SCHEMA = (
+    "neuro-film.u6-p4gt-density-lod-photographic-development-contract.v1"
+)
 COMPOUND_POISSON_SCHEMA = (
     "neuro-film.u6-p4gu-compound-poisson-density-photographic-development-contract.v1"
+)
+NPS_COMPILED_SCHEMA = (
+    "neuro-film.u6-p4gv-nps-compiled-density-photographic-development-contract.v1"
 )
 P4FB = Path("configs/u6_p4fb_native_cloud_spatial_partition_v1.json")
 CAPACITY = Path("configs/u6_p4di_sensitometry_cloud_capacity_v2.json")
@@ -60,6 +65,7 @@ def load_contract(path: Path) -> dict[str, Any]:
         SHARED_DENSITY_SCHEMA,
         DENSITY_LOD_SCHEMA,
         COMPOUND_POISSON_SCHEMA,
+        NPS_COMPILED_SCHEMA,
     }:
         raise ValueError("unsupported photographic physical-residual contract")
     return payload
@@ -124,11 +130,16 @@ def evaluate(
     root: Path,
     contact_sheet_path: Path,
 ) -> dict[str, Any]:
-    parent_path = root / contract["parent"]["path"]
+    parent_contract = contract.get(
+        "parent", contract.get("parents", {}).get("photographic")
+    )
+    if not isinstance(parent_contract, dict):
+        raise TypeError("P4GR parent contract missing")
+    parent_path = root / parent_contract["path"]
     parent = json.loads(parent_path.read_text(encoding="utf-8"))
     if (
-        sha256_file(parent_path) != contract["parent"]["sha256"]
-        or parent["decision"] != contract["parent"]["required_decision"]
+        sha256_file(parent_path) != parent_contract["sha256"]
+        or parent["decision"] != parent_contract["required_decision"]
     ):
         raise ValueError("P4GR parent drift")
     source_contract = contract["source"]
@@ -166,6 +177,7 @@ def evaluate(
     if contract["candidate"].get("residual_projection") in {
         "density-lod-multiplicative",
         "compound-poisson-density-multiplicative",
+        "nps-compiled-compound-poisson-density-multiplicative",
     }:
         component_sources.append(root / "src/film_physics/density_lod_residual.py")
     component_sha = hashlib.sha256(
@@ -192,17 +204,31 @@ def evaluate(
                 source_sha = hashlib.sha256(memoryview(source).cast("B")).hexdigest()
                 physical_outputs: list[np.ndarray] = []
                 all_diagnostics: list[dict[str, float]] = []
-                density_lod = (
+                density_lod = contract["candidate"].get("residual_projection") in {
+                    "density-lod-multiplicative",
+                    "compound-poisson-density-multiplicative",
+                    "nps-compiled-compound-poisson-density-multiplicative",
+                }
+                compound_poisson = contract["candidate"].get("residual_projection") in {
+                    "compound-poisson-density-multiplicative",
+                    "nps-compiled-compound-poisson-density-multiplicative",
+                }
+                channel_density_gain = None
+                if (
                     contract["candidate"].get("residual_projection")
-                    in {
-                        "density-lod-multiplicative",
-                        "compound-poisson-density-multiplicative",
-                    }
-                )
-                compound_poisson = (
-                    contract["candidate"].get("residual_projection")
-                    == "compound-poisson-density-multiplicative"
-                )
+                    == "nps-compiled-compound-poisson-density-multiplicative"
+                ):
+                    nps_parent = contract["parents"]["nps_compiler"]
+                    nps_path = root / nps_parent["path"]
+                    nps_evidence = json.loads(nps_path.read_text(encoding="utf-8"))
+                    if (
+                        sha256_file(nps_path) != nps_parent["sha256"]
+                        or nps_evidence["decision"] != nps_parent["required_decision"]
+                        or nps_evidence["compiled_channel_gain"]
+                        != nps_parent["compiled_channel_gain"]
+                    ):
+                        raise ValueError("P4GV NPS compiler drift")
+                    channel_density_gain = tuple(nps_parent["compiled_channel_gain"])
                 finite_tail_density = None
                 if compound_poisson:
                     rates = np.asarray(
@@ -213,10 +239,10 @@ def evaluate(
                         cloud_profile.count_profile.mark_optical_density_cmy,
                         dtype=np.float64,
                     )
+                    if channel_density_gain is not None:
+                        marks = marks * np.asarray(channel_density_gain)
                     correlation = cloud_profile.count_profile.analytic_correlation()
-                    covariance = correlation * np.sqrt(
-                        rates[:, None] * rates[None, :]
-                    )
+                    covariance = correlation * np.sqrt(rates[:, None] * rates[None, :])
                     common_sigma = float(np.sqrt(marks @ covariance @ marks / 9.0))
                     aperture = np.asarray(
                         contract["candidate"]["pixel_aperture_kernel"],
@@ -241,17 +267,17 @@ def evaluate(
                         _diagnostics: list[dict[str, float]] = diagnostics,
                         _density_lod: bool = density_lod,
                         _finite_tail_density: float | None = finite_tail_density,
+                        _channel_density_gain: tuple[float, float, float]
+                        | None = channel_density_gain,
                         _height: int = height,
                     ) -> np.ndarray:
                         render_y0 = max(0, y0 - 2) if _density_lod else y0
                         render_y1 = (
-                            min(_height, y0 + count + 2)
-                            if _density_lod
-                            else y0 + count
+                            min(_height, y0 + count + 2) if _density_lod else y0 + count
                         )
                         render_count = render_y1 - render_y0
-                        render_forward_rows = (
-                            lambda start, requested: forward_rows(start, requested)
+                        render_forward_rows = lambda start, requested: forward_rows(
+                            start, requested
                         )
                         baseline: list[np.ndarray] = []
                         cloud_scan = render_physical_partition(
@@ -272,6 +298,7 @@ def evaluate(
                                 cloud_scan,
                                 baseline[0],
                                 finite_tail_density=_finite_tail_density,
+                                channel_density_gain=_channel_density_gain,
                             )
                             crop_start = y0 - render_y0
                             result = np.ascontiguousarray(

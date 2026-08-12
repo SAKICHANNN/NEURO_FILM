@@ -26,6 +26,7 @@ def apply_density_lod_residual(
     cloud_free_scan: np.ndarray,
     *,
     finite_tail_density: float | None = None,
+    channel_density_gain: tuple[float, float, float] | None = None,
 ) -> tuple[np.ndarray, dict[str, float]]:
     """Integrate one common density field over a pixel and gate by density."""
 
@@ -48,6 +49,15 @@ def apply_density_lod_residual(
         raise ValueError("invalid density-LOD residual input")
 
     layer_density_delta = -np.log10(physical / reference)
+    if channel_density_gain is not None:
+        channel_gain = np.asarray(channel_density_gain, dtype=np.float64)
+        if (
+            channel_gain.shape != (3,)
+            or not np.all(np.isfinite(channel_gain))
+            or np.any(channel_gain <= 0.0)
+        ):
+            raise ValueError("invalid NPS-compiled channel density gain")
+        layer_density_delta = layer_density_delta * channel_gain
     common_density_delta = np.mean(layer_density_delta, axis=-1)
     integrated_density_delta = _separable_aperture(common_density_delta)
     if finite_tail_density is not None:
@@ -56,9 +66,7 @@ def apply_density_lod_residual(
         integrated_density_delta = finite_tail_density * np.tanh(
             integrated_density_delta / finite_tail_density
         )
-    luminance = (
-        0.2126 * base[..., 0] + 0.7152 * base[..., 1] + 0.0722 * base[..., 2]
-    )
+    luminance = 0.2126 * base[..., 0] + 0.7152 * base[..., 1] + 0.0722 * base[..., 2]
     visibility = 4.0 * luminance * (1.0 - luminance)
     log_gain = -np.log(10.0) * integrated_density_delta * visibility
 
@@ -97,6 +105,9 @@ def apply_density_lod_residual(
         "mean_density_visibility": float(np.mean(visibility)),
         "finite_tail_density": float(
             finite_tail_density if finite_tail_density is not None else np.inf
+        ),
+        "minimum_channel_density_gain": float(
+            np.min(channel_density_gain) if channel_density_gain is not None else 1.0
         ),
         "bounded_residual_rms": float(np.sqrt(np.mean(residual * residual))),
         "minimum_residual_scale": float(np.min(scale)),
