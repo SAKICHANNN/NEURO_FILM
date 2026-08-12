@@ -12248,3 +12248,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   every frozen identity, streaming, resource and repeat gate passes.
 - This closes local synthetic float execution only. Image publication and
   restart verification remain a distinct transaction leaf.
+
+# 2026-08-12 - U6.P4GA reaches restart-verified PNG16
+
+- The correct-domain cloud plus frozen display composition now stages its
+  float rows report-last, reuses the existing single-final-quantization PNG16
+  transaction, and restart-verifies the committed image.
+- This is a functional synthetic transaction. Large-image encoded resource
+  evidence and visual preference remain unclaimed.
