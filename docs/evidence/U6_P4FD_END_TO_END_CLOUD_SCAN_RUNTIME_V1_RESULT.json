@@ -1,0 +1,38 @@
+{
+  "schema": "neuro_film.u6_p4fd_end_to_end_cloud_scan_runtime.v1",
+  "experiment_id": "u6.p4fd-end-to-end-cloud-scan-runtime-v1",
+  "date_executed": "2026-08-12",
+  "implementation_commit": "908dc714",
+  "automatic_pass": true,
+  "formal_replays": {
+    "outer_processes": 2,
+    "tile_policies": [11, 32],
+    "replays_per_policy": 2,
+    "byte_exact": true
+  },
+  "contract_sha256": "36802c0cfaaf02e8061eb18044b57f4cf2f19a37f8084832f3d338a06f9b1dc2",
+  "runtime_sha256": "7135301ec011961703bf525bc2988d5e6922a351e6469aad2586cd13e4f3c307",
+  "provider_sha256": "845468185a75a9a86089e0c73ff58973a112967055052fb908abce4b7c740732",
+  "results": {
+    "end_to_end_full_reference_bit_exact": true,
+    "tile_policy_bit_exact": true,
+    "repeat_bit_exact": true,
+    "input_immutable": true,
+    "sink_failure_propagated": true,
+    "scan_closed_unit_domain": true,
+    "output_sha256": "a0ca31effbe1535c4f142c6ce35f185c2cacc10a1f481826f938f294e928f951"
+  },
+  "physical_order": [
+    "scene-linear",
+    "forward-scatter",
+    "float64-sensitometry",
+    "developed-dye-cloud-density",
+    "bounded-development-adjacency",
+    "dye-diffusion",
+    "density-interpretation",
+    "scanner-mtf",
+    "scan-linear-row-sink"
+  ],
+  "decision": "retain_end_to_end_cloud_scan_runtime_v1",
+  "claim_ceiling": "Opt-in local Windows x64 synthetic-profile end-to-end scene-linear through forward scatter, stochastic developed density, post-cloud spatial response and scan-linear row runtime; not frozen Standard package/AO6 display, production memory closure, calibrated film/scanner response, mobile runtime or product promotion."
+}
