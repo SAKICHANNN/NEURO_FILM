@@ -11787,3 +11787,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   14.26s (`2.04x`) at 913.5MB peak RSS; both FFT runs replay exactly.
 - Versus the direct reference, 0.007014% of RGB16 channel codes differ by at
   most one code; the fixed exposure probe is p99 one ULP and maximum five ULP.
+
+# 2026-08-12 - U6.P8DE streamed spatial input closes on latency
+
+- Combined-halo tile-512 streaming into a hash-bound mapped CHW input reduces
+  P8DD peak RSS by 171.6MB to 741.9MB; two outputs and mapped inputs replay
+  exactly, with 0.008794% RGB16 codes changed by at most one code.
+- Both fresh streamed runs miss the frozen latency gates (17.79/19.30s;
+  worst 1.353x the pinned P8DD wall). Retain P8DD full FFT and do not extend
+  this exact streamed mechanism to 24MP.

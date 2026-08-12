@@ -1,0 +1,30 @@
+{
+  "schema": "neuro_film.u6_p8de_streamed_native_thomas_scale_evidence.v1",
+  "experiment_id": "u6.p8de-streamed-native-thomas-scale-v1",
+  "status": "fail-retain-p8dd-full-fft-spatial-native-thomas-runtime",
+  "implementation_commit": "598f9881",
+  "formal_replay": {
+    "report_path": "D:/nf-019f4b76-p8de-report.json",
+    "report_sha256": "050b911937a45f4eb9936a73db8c73caecbb6f1731e2ae7a0fa63e46a1c18406",
+    "stable_evidence_id": "06c18362452fbe3d7a2fccad793fd42802facdd24453ea8267bcb9436a538a7f",
+    "streamed_input_sha256": "64c3645bf2fa0cdd63c95f85487743fe80bfa51b6ecd2ca55e3ded8f3adf611d",
+    "streamed_output_sha256": "d8ce5d9d2a761578d2df273dfc5cfd75c247fcfbe6e18f493f772a2b5ee12127",
+    "streamed_decoded_rgb16_sha256": "aa8bf4160a81478f9fd89f2f3db8cbd1f7b58e8dec4a5d3d6966abe9048ce0f6",
+    "maximum_streamed_process_tree_rss_bytes": 741879808,
+    "rss_reduction_bytes": 171614208,
+    "rss_ratio_to_p8dd": 0.8121342833186113,
+    "maximum_streamed_wall_seconds": 19.301476000007824,
+    "wall_ratio_to_p8dd": 1.3533940449869186,
+    "maximum_decoded_code_error": 1,
+    "maximum_changed_decoded_fraction": 0.00008794444444444445,
+    "exact_streamed_replay": true,
+    "zero_mapped_input_or_stage_residue": true,
+    "failed_gates": [
+      "maximum_streamed_wall_seconds",
+      "maximum_wall_ratio_to_p8dd"
+    ]
+  },
+  "mechanism_conclusion": "Combined-halo row streaming and mapped CHW ingress materially reduce peak memory and preserve bounded final RGB16 differences, but the frozen 12MP latency gates fail in both fresh streamed runs. The exact tile-512 mechanism is closed without threshold or tile-size rescue.",
+  "decision": "retain_p8dd_full_fft_spatial_native_thomas_runtime",
+  "claim_ceiling": "Generic synthetic 12MP Windows host negative performance evidence only; not measured film physics, calibrated stock response, device evidence or product promotion."
+}
