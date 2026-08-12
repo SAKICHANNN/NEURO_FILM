@@ -1,0 +1,56 @@
+{
+  "schema": "neuro-film.u6-p4hg-quantized-histogram-rank-approximation-contract.v1",
+  "experiment_id": "u6.p4hg-quantized-histogram-rank-approximation-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4HG",
+  "date_frozen": "2026-08-13",
+  "status": "contract-frozen-implementation-ready",
+  "question": "Can a fixed uint16 histogram-midrank transform approximate P4HC's full-frame exact sorts closely enough to preserve all physical gates and enable bounded multi-pass execution?",
+  "parents": {
+    "p4hf_result": {
+      "path": "docs/evidence/U6_P4HF_PAIRED_SCANNER_MTF_SOURCE_DISJOINT_CONFIRMATION_RESULT.json",
+      "sha256": "d8a4e626700e4ee248d2a69ceb40333812b02b7a3c1f910673f2c6ab79ff17c8",
+      "required_decision": "retain_paired_scanner_mtf_developed_structure_as_confirmed_generic_profile"
+    },
+    "p4hc_result": {
+      "path": "docs/evidence/U6_P4HC_CROSS_LAYER_THOMAS_GAMMA_COPULA_RESULT.json",
+      "sha256": "fa128fadc14353d17cab8e68303706e2cce3c6dba9ed120d22f1519c09ce1355",
+      "required_decision": "retain_fixed_cross_layer_thomas_gamma_copula_for_photographic_development"
+    },
+    "p4hc_contract": {
+      "path": "configs/u6_p4hc_cross_layer_thomas_gamma_copula_v1.json",
+      "sha256": "4baf8974b647ca12d27226b30cb5dafc184ee8b0cd9fcd53cf8b99753fe10fba"
+    }
+  },
+  "candidate": {
+    "rank_bins": 65536,
+    "quantizer": "per-field finite-minmax round-to-nearest uint16",
+    "bin_uniform": "global histogram bin midpoint",
+    "histogram_count_dtype": "uint64",
+    "full_frame_sort_allowed": false,
+    "post_result_bin_or_gate_tuning_allowed": false
+  },
+  "automatic_gates": {
+    "maximum_output_rmse_vs_exact": 0.00005,
+    "maximum_output_p999_absolute_vs_exact": 0.0005,
+    "maximum_output_absolute_vs_exact": 0.005,
+    "maximum_non_degenerate_mean_absolute_in_target_sigma": 0.01,
+    "maximum_non_degenerate_variance_relative_error": 0.03,
+    "maximum_non_degenerate_p999_absolute_in_target_sigma": 5.0,
+    "maximum_copula_correlation_absolute_error": 0.02,
+    "maximum_marginal_neighbor_correlation_absolute_drift": 0.02,
+    "minimum_developed_density": -1e-12,
+    "minimum_transmittance": 0.0,
+    "maximum_transmittance": 1.0,
+    "maximum_support_degenerate_residual_absolute": 0.0,
+    "require_repeat_identity": true,
+    "require_finite_without_clipping_or_limiting": true
+  },
+  "execution": {
+    "formal_processes": 2,
+    "post_result_retuning_allowed": false,
+    "same_fixture_rescue_allowed": false
+  },
+  "decision_if_pass": "retain_uint16_histogram_rank_core_for_bounded_multipass_implementation",
+  "decision_if_fail": "close_uint16_histogram_rank_core_without_rescue",
+  "claim_ceiling": "Synthetic numerical approximation of a confirmed generic structure profile; not yet bounded-memory execution, photographic confirmation, measured film/scanner calibration or product runtime."
+}
