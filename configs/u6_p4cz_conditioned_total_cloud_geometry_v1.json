@@ -1,0 +1,32 @@
+{
+  "schema": "neuro_film.u6_p4cz_conditioned_total_cloud_geometry_contract.v1",
+  "experiment_id": "u6.p4cz-conditioned-total-cloud-geometry-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4CZ",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can a binomial point process conditioned on exact component totals remove P4CY finite-area rate noise while retaining locally Poisson-like occupancy and exact shared continuous centers?",
+  "parent": {"path": "docs/evidence/U6_P4CY_CROSS_LAYER_CLOUD_GEOMETRY_RESULT.json", "sha256": "ccd3d46f7e026b3f492fa92610880090063a0b87035a7199a0f60468c19a65f1", "required_decision": "close_cross_layer_cloud_geometry_without_rescue"},
+  "geometry": {
+    "input_shape": [96, 128],
+    "seeds": [2026081341, 2026081342, 2026081343, 2026081344],
+    "marginal_count_rates_cmy": [12.0, 18.0, 15.0],
+    "shared_all_rate": 2.0,
+    "shared_pair_rates_cm_cy_my": [2.0, 1.0, 1.5],
+    "mark_optical_density_cmy": [0.02, 0.018, 0.022],
+    "component_seed_stride": 1009,
+    "occupancy_cell_size": 8
+  },
+  "metrics": {
+    "maximum_component_rate_relative_error": 0.00001,
+    "maximum_cell_mean_relative_error": 0.02,
+    "maximum_cell_variance_to_binomial_expectation_relative_error": 0.08,
+    "maximum_absolute_nonoverlap_cell_correlation": 0.03,
+    "require_repeat_center_fingerprint_exact": true,
+    "require_shared_center_identity_exact": true,
+    "require_all_centers_in_bounds": true
+  },
+  "decision_if_pass": "retain_conditioned_total_binomial_cloud_geometry_as_reference_variance_reduction",
+  "decision_if_fail": "close_conditioned_total_cloud_geometry_without_rescue",
+  "forbidden": ["call the conditioned-total process an unconditional Poisson process", "change field size, cell size, seeds or gates after scoring", "claim measured film geometry or stock calibration", "enable product rendering"],
+  "claim_ceiling": "Synthetic finite-window binomial point-process reference and variance-reduction evidence only; not unconditional Poisson, measured film or product evidence."
+}
