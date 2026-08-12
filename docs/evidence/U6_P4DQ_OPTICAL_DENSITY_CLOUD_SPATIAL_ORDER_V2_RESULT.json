@@ -1,0 +1,19 @@
+{
+  "schema": "neuro_film.u6_p4dq_optical_density_cloud_spatial_order_evidence.v2",
+  "node": "U6.P4DQ",
+  "date": "2026-08-12",
+  "implementation_commit": "ba6fe627",
+  "contract_sha256": "84a3c543610ff8457216f819cfcb556db312d82daf494626c5f964ad50ac0b01",
+  "formal_report_sha256": "c8a76081519ef172f13a5a88caa896ffc34c5aaf064b16cf12eadc321fca23bf",
+  "stable_evidence_id": "7326adac908b8d926cf363dbef122e499ac3065d904885c72f5844762b5a93d8",
+  "exact_replays": 2,
+  "automatic_pass": false,
+  "precloud_mean_transmittance_error": 0.00008364771037050467,
+  "postcloud_to_precloud_noise_ratio": 0.7196971309572316,
+  "precloud_edge_overshoot": 0.025166785525835077,
+  "precloud_edge_undershoot": 0.005503396805766275,
+  "precloud_new_boundary_fraction": 0.0,
+  "failed_gate": "precloud_edge_overshoot",
+  "decision": "close_optical_density_cloud_spatial_order_v2",
+  "claim_ceiling": "Fresh synthetic optical-density ordering evidence only; not measured development, dye diffusion, film MTF, stock calibration, visual preference or product evidence."
+}

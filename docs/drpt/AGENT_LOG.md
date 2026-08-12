@@ -12019,3 +12019,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Analytic mean error is zero, observed flat-field error is 0.000386 and the
   0.288% capacity correction still covers U2.2. Re-evaluate spatial ordering
   only in a fresh v2-bound leaf; P4DO remains failed.
+
+# 2026-08-12 - U6.P4DQ closes point-sampled v2 spatial composition
+
+- The corrected optical-density runtime reduces flat-field mean error to
+  8.36e-5 and passes noise, reverse-order, boundary and partition gates.
+- Point-sampled cloud edge overshoot is 0.02517 versus the frozen 0.02 ceiling.
+  Do not tune adjacency or the gate; next test the already retained physical
+  aperture integration under the corrected v2 transmittance law.
