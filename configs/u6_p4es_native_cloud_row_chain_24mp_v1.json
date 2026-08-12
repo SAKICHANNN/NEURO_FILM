@@ -1,0 +1,13 @@
+{
+  "schema": "neuro_film.u6_p4es_native_cloud_row_chain_24mp_contract.v1",
+  "experiment_id": "u6.p4es-native-cloud-row-chain-24mp-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4ES",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {"path": "docs/evidence/U6_P4ER_NATIVE_CLOUD_ROW_CHAIN_V2_RESULT.json", "sha256": "47f0f7ba6de1966adcb58463ef04d96fc058c7047ceef09b7606492d5961600a", "required_decision": "retain_native_cloud_row_chain_v2"},
+  "fixture": {"height": 4000, "width": 6000, "row_tile_height": 128, "halo": 9, "seed": 78277},
+  "gates": {"maximum_wall_seconds": 30.0, "maximum_caller_scratch_bytes": 67108864, "require_two_replay_hash_identity": true, "require_zero_new_boundary": true},
+  "decision_if_pass": "retain_native_cloud_row_chain_24mp_v1",
+  "decision_if_fail": "close_native_cloud_row_chain_24mp_v1",
+  "claim_ceiling": "Local Windows x64 CPU synthetic 24MP row-chain timing and caller scratch only; not complete renderer, image quality, calibrated stock or product authorization."
+}
