@@ -1,0 +1,30 @@
+{
+  "schema": "neuro-film.u6-p4hu-native-spatial-density-photographic-integration-evidence.v1",
+  "node": "U6.P4HU",
+  "date": "2026-08-13",
+  "contract_commit": "ff001b1a",
+  "implementation_commit": "4f22f338",
+  "contract_file_sha256": "5b6259e386404c022542372bcd15fc333fde8e6398a87f01fd7cc311ed8880ce",
+  "evaluator_sha256": "068e059a563591a72c42b57cf5f276a110a6e735f571df1145f1882e30ca4017",
+  "test_sha256": "e6f91f0218925ca17c37a791600291bbe96a959d5f49feed58f3fde459c1fcf6",
+  "formal_report_sha256": "9dea2abf2694d9f1dc29556cc34c1c9c33d0217affcd10679b071c67e7d2222c",
+  "stable_evidence_id": "9fcb1ad47782dbd9d6f397dd9bf9f18d9dc2f7af1500ff2f3536fd2ef10f5b1e",
+  "observations": {
+    "rows": 9,
+    "scientific_repeat_exact": true,
+    "contact_sheet_repeat_exact": true,
+    "contact_sheet_sha256": "d734256d480980d4ec225be0287d35693e64d486b31f33d69a338d7ef4b8d208",
+    "peak_process_tree_rss_bytes": [986218496, 986071040],
+    "worker_wall_seconds": [196.93807429997833, 186.16277930000797],
+    "maximum_new_boundary_fraction_vs_ao6": 1.1157601115760111e-5,
+    "maximum_flat_region_p99_abs": 0.016926234588027,
+    "maximum_high_frequency_chroma_p999": 0.003460819134488702,
+    "hard_clipping_or_limiting": false,
+    "all_p4he_photographic_gates": true
+  },
+  "automatic_pass": true,
+  "decision": "retain_native_spatial_density_photographic_integration_for_portable_runtime",
+  "scientific_conclusion": "The retained P8BS portable float32 Thomas field composes with the exact P4HN/P4HS density path and preserves all nine-camera P4HE photographic/scanner gates in two fresh workers. Native field hashes replace, rather than impersonate, the distinct P4HJ float64 receipt identities.",
+  "next_leaf": "Build the unchanged field, copula and fast-density C sources for the existing Android and Apple target toolchains, then execute the portable arithmetic on the available Android virtual runtime before any product claim.",
+  "claim_ceiling": "Windows MSVC host integration of portable native spatial and density arithmetic on the consumed nine-camera relative-display cohort; not independent confirmation, calibrated film/scanner response, device runtime or product promotion."
+}

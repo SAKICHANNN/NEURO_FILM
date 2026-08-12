@@ -12810,3 +12810,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - A first completed run exposed only build-directory strings inside the
   scientific payload; a regression now excludes those non-scientific fields.
   Advance to bounded native spatial generation, not calibration or product use.
+
+### 2026-08-13 - U6.P4HU retains portable native spatial integration
+
+- The existing P8BS float32 Thomas field now composes with P4HN/P4HS on the
+  unchanged nine-camera cohort. Two workers and contact sheets replay exactly;
+  all P4HE photographic/scanner gates pass with no clipping or limiting.
+- Worker wall is 186.2-196.9 seconds and peak process-tree RSS is about 986 MB.
+  Stable evidence ID is `9fcb1ad4...f5b1e`.
+- Native field hashes are deliberately distinct from P4HJ float64 receipts.
+  Next prove target builds/runtime; no calibrated-film or product claim opens.
