@@ -1,0 +1,51 @@
+{
+  "schema": "neuro-film.u6-p4hs-fast-hybrid-native-gamma-inverse-contract.v1",
+  "experiment_id": "u6.p4hs-fast-hybrid-native-gamma-inverse-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4HS",
+  "date_frozen": "2026-08-13",
+  "status": "contract-frozen-implementation-ready",
+  "question": "Can a three-region inverse-Gamma implementation preserve P4HP accuracy while materially reducing the P4HR profile-bound kernel time?",
+  "parents": {
+    "p4hr_evidence": {
+      "path": "docs/evidence/U6_P4HR_NATIVE_DENSITY_PHOTOGRAPHIC_INTEGRATION_RESULT.json",
+      "sha256": "712c5bdce936bded555606d9d6ae20f5e69cf8c09c08ed9b1852f8a9c40d6389",
+      "required_decision": "close_native_density_photographic_integration_without_rescue"
+    },
+    "p4hp_evidence": {
+      "path": "docs/evidence/U6_P4HP_HYBRID_NATIVE_GAMMA_DENSITY_INVERSE_RESULT.json",
+      "sha256": "5aa722eb9e6d4cf77e0aa33822cfe366f9876503aafb89268483c9ac3bd9a732",
+      "required_decision": "retain_hybrid_native_gamma_density_inverse_for_composed_density_structure"
+    }
+  },
+  "candidate": {
+    "direct_shape_upper_exclusive": 50.0,
+    "newton_shape_upper_exclusive": 10000.0,
+    "direct_inverse_iterations": 80,
+    "newton_iterations": 6,
+    "newton_initialization": "fixed fourth-order Cornish-Fisher",
+    "newton_safeguard": "positive finite step with CDF bracket fallback",
+    "high_shape_branch": "fixed fourth-order Cornish-Fisher",
+    "shape_values": [0.25, 0.5, 1.0, 2.0, 5.0, 20.0, 49.0, 50.0, 100.0, 1000.0, 9999.0, 10000.0, 100000.0],
+    "mean_density_values": [0.004, 0.05, 0.3, 1.0, 2.0, 4.0],
+    "uniform_grid_count": 257,
+    "uniform_tail_denominator": 131072,
+    "performance_fixture_samples": 131793,
+    "performance_shape_log10_min": 2.0212,
+    "performance_shape_log10_max": 12.4066,
+    "formal_replays": 2,
+    "parameter_refit_allowed": false
+  },
+  "automatic_gates": {
+    "maximum_absolute_developed_density_error": 0.00000002,
+    "maximum_relative_developed_density_error": 0.000002,
+    "maximum_cross_compiler_absolute_error": 0.00000002,
+    "maximum_kernel_seconds_per_131793_samples": 2.0,
+    "require_all_three_branches_exercised": true,
+    "require_repeat_exact": true,
+    "require_strict_monotonicity": true,
+    "require_failure_atomic": true
+  },
+  "decision_if_pass": "retain_fast_hybrid_native_gamma_inverse_for_photographic_rerun",
+  "decision_if_fail": "retain_p4hp_without_photographic_runtime",
+  "claim_ceiling": "Host native inverse-Gamma arithmetic and kernel timing on synthetic parameters; not photographic completion, device runtime, calibrated film response or product promotion."
+}
