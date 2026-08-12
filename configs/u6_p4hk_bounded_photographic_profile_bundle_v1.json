@@ -1,0 +1,60 @@
+{
+  "schema": "neuro-film.u6-p4hk-bounded-photographic-profile-bundle-contract.v1",
+  "experiment_id": "u6.p4hk-bounded-photographic-profile-bundle-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4HK",
+  "date_frozen": "2026-08-13",
+  "status": "contract-frozen-implementation-ready",
+  "question": "Can the confirmed generic structure, copula, bounded executor and paired scanner MTF be compiled into one canonical hash-bound bundle and reconstructed without changing any fixture pixel?",
+  "parents": {
+    "p4hj_evidence": {
+      "path": "docs/evidence/U6_P4HJ_LIFETIME_SCHEDULED_BOUNDED_PHOTOGRAPHIC_RUNTIME_RESULT.json",
+      "sha256": "b2b3b0908c4a9820d8f493c79a387e2b42542173701f8c60f2d375462e5d89f8",
+      "required_decision": "retain_lifetime_scheduled_bounded_photographic_runtime_for_profile_compilation"
+    },
+    "p4hf_evidence": {
+      "path": "docs/evidence/U6_P4HF_PAIRED_SCANNER_MTF_SOURCE_DISJOINT_CONFIRMATION_RESULT.json",
+      "sha256": "d8a4e626700e4ee248d2a69ceb40333812b02b7a3c1f910673f2c6ab79ff17c8",
+      "required_decision": "retain_paired_scanner_mtf_developed_structure_as_confirmed_generic_profile"
+    },
+    "p4bw_profile": {
+      "path": "outputs/experiments/u6_p4bw_density_conditioned_thomas_profile_v1/run_a/bundle.json",
+      "sha256": "4edf4eaaeae163a2f579584c7d9533134a7d6177d5cc78ed517cb15865e585bf"
+    },
+    "p2q_prior": {
+      "path": "outputs/u6_p2q_kodak_250d_characteristic_prior/bundle_run1.json",
+      "sha256": "087e67544f737401fa697b21f06215a31827189e0648b8d60da666b92113caaa"
+    },
+    "p4he_contract": {
+      "path": "configs/u6_p4he_paired_scanner_mtf_photographic_development_v1.json",
+      "sha256": "c8d59ceba9be7d9c427021de70731038f0feab173992c1e99cd1439e69736d69"
+    }
+  },
+  "bundle": {
+    "rank_bins": 65536,
+    "canonical_row_block_height": 128,
+    "domain_order": ["display-linear-relative-srgb", "layer-exposure", "developed-density", "film-transmittance", "paired-scanner-mtf", "downstream-display-look"],
+    "claim_level": "generic-physical-inspired-relative-display",
+    "calibrated_stock_or_scanner_claimed": false
+  },
+  "fixture": {
+    "height": 257,
+    "width": 263,
+    "source_seed": 2026081307,
+    "source_index": 4,
+    "runs": 2
+  },
+  "automatic_gates": {
+    "canonical_bundle_repeat_exact": true,
+    "profile_identity_roundtrip_exact": true,
+    "prior_identity_roundtrip_exact": true,
+    "physical_output_exact": true,
+    "paired_scanner_output_exact": true,
+    "diagnostics_exact_excluding_resource_accounting": true,
+    "tampered_bundle_rejected": true,
+    "noncanonical_bundle_rejected": true,
+    "unknown_field_rejected": true
+  },
+  "decision_if_pass": "retain_canonical_bounded_photographic_profile_bundle",
+  "decision_if_fail": "retain_p4hj_runtime_without_profile_bundle",
+  "claim_ceiling": "Canonical generic physical-inspired relative-display profile bundle reconstructed on a synthetic fixture; not calibrated stock/scanner identity, photographic reconfirmation, native/mobile runtime or product promotion."
+}
