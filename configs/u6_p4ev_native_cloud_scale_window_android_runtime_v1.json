@@ -1,0 +1,25 @@
+{
+  "schema": "neuro_film.u6_p4ev_native_cloud_scale_window_android_runtime_contract.v1",
+  "experiment_id": "u6.p4ev-native-cloud-scale-window-android-runtime-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4EV",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {
+    "path": "docs/evidence/U6_P4EU_NATIVE_CLOUD_DEVELOPED_WINDOW_V4_RESULT.json",
+    "sha256": "1d38ecb10d9ac1dd8141db420a1f05ef0bd769c006a94d4d7520a7ae6a254e9b",
+    "required_decision": "close_native_cloud_developed_window_v4"
+  },
+  "fixture": {"full_height": 73, "core_height": 31, "width": 47, "origin_y": 61, "halo": 9, "seed": 78277},
+  "runtime": {"api_level": 34, "abi": "x86_64", "avd_name": "nf-019f4b76-p8cm-api34-x86", "cold_boots": 2, "fresh_processes_per_boot": 2},
+  "gates": {
+    "require_full_window_output_bit_identity": true,
+    "require_host_android_output_bit_identity": true,
+    "require_android_repeat_bit_identity": true,
+    "require_workspace_query_identity": true,
+    "require_failure_atomicity": true,
+    "require_zero_surviving_owned_processes": true
+  },
+  "decision_if_pass": "retain_android_virtual_runtime_for_native_cloud_scale_window_v3",
+  "decision_if_fail": "retain_windows_scale_window_v3_without_android_runtime_claim",
+  "claim_ceiling": "Private Android 14 x86_64 virtual-device synthetic bounded scale-window arithmetic; not physical arm64, JNI/app, calibrated emulsion or product runtime."
+}
