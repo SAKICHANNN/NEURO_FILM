@@ -12491,3 +12491,8 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   (97/129/153/174/191/207/221/234). The physical residual is nonzero and fine
   grained; no gray collapse, colour blocks, edge explosion or salt speckles
   are observed. Fresh natural-photo confirmation is now the ready leaf.
+### 2026-08-12 — U6.P4GR photographic ablation closes P4GQ material field
+
+- Ran the unchanged P4GQ neutral-base physical residual on the frozen nine-camera CC0 P8BP cohort in two exact processes. Both reports and contact sheets were byte-identical.
+- The candidate remained finite, clipping-free and partition-exact, but failed flat-region, isolated-excursion, safety-scale, boundary and population-tail gates. Autonomous inspection confirmed dense coloured salt-like texture, especially in dark foliage, sky and water.
+- Closed this material field before 24MP/resource or product work. The next physical leaf must change the density-conditioned chroma/LOD mechanism; the neutral-base composition itself is not relabelled as the cause.

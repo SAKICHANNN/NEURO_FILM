@@ -1,0 +1,55 @@
+{
+  "schema": "neuro-film.u6-p4gr-neutral-base-photographic-ablation-evidence.v1",
+  "node": "U6.P4GR",
+  "date": "2026-08-12",
+  "implementation_commit": "acc66e4e",
+  "contract_commit": "562361c9",
+  "formal_processes": 2,
+  "formal_report_sha256": "9c81813644ee896c557a8619bd281faa0d0ff7276148ed3fa54d38334425d0c5",
+  "reports_byte_exact": true,
+  "contact_sheet_sha256": "ac58df3ec3fba1aea9bcf5e6cf70b86201bebb6e75d149b7059292bdd93b8b6c",
+  "contact_sheets_byte_exact": true,
+  "stable_evidence_id": "72a4dcc8a304c893c08eaa9e0815c80d7bec10135e0488b598c42c129e15de63",
+  "compiled_profile_identity": "9d9d86e1f2fc695d431810cbe06cbe9749be601838d4fc4cdfed18b63f13879a",
+  "source_cohort": {
+    "rows": 9,
+    "camera_makes": 9,
+    "rights_scope": "CC0_public_domain_internal_evaluation",
+    "input_domain": "relative-display-sRGB-derived pseudo-exposure",
+    "manifest_sha256": "edb1b45552f9bf5712c922ed816b6f9a70f5f0bee2b72a024144cde0087dd521"
+  },
+  "observations": {
+    "minimum_physical_residual_rms": 0.007980459958800094,
+    "maximum_limited_fraction": 0.1583377659574468,
+    "population_p95_combined_vs_ao6_abs": 0.05867948830127716,
+    "population_p99_combined_vs_ao6_abs": 0.09100724875926972,
+    "maximum_flat_region_p99_abs": 0.11448904126882553,
+    "total_isolated_excursion_count": 49271,
+    "maximum_new_boundary_fraction_vs_ao6": 0.006775006956037841,
+    "all_rows_partition_exact": true,
+    "all_outputs_finite": true,
+    "hard_clipping_used": false
+  },
+  "failed_automatic_gates": [
+    "flat_regions",
+    "isolated_excursions",
+    "limited_fraction",
+    "new_boundaries",
+    "population_tail"
+  ],
+  "autonomous_visual_review": {
+    "pass": false,
+    "confirmed_severe_artifact_count": 5,
+    "failure_families": [
+      "dense coloured grain and salt-like speckle in dark foliage and shadow",
+      "coloured texture contamination across smooth sky and water",
+      "highlight and dark-region boundary accumulation on high-dynamic-range rows"
+    ],
+    "notes": "The physical-only and combined arms visibly add dense chromatic point texture. The failure is strongest on OM System, Phase One and Google rows and remains visible on several other rows. AO6-only does not show the new texture. No geometry change or row seam is visible."
+  },
+  "automatic_pass": false,
+  "decision": "close_neutral_base_physical_residual_v1_on_photographic_stress",
+  "scientific_conclusion": "P4GQ preserved a synthetic neutral chart, but the unchanged capacity-matched stochastic cloud residual does not transfer safely to heterogeneous photographs. The failure is the material field itself, not the neutral-base gauge or AO6 residual. Do not proceed to 24MP resource or product integration for this candidate.",
+  "next_leaf": "Return to the physical material model and identify a density-conditioned chroma-correlation or subpixel LOD mechanism that removes salt-like coloured texture before another fresh photographic test.",
+  "claim_ceiling": "Nine-camera CC0 relative-display photographic severe-artifact and ablation evidence only; not scene exposure, calibrated film, stock response, human preference or product promotion."
+}

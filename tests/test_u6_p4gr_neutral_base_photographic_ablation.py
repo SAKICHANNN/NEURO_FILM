@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 import numpy as np
@@ -32,3 +33,21 @@ def test_p4gr_new_boundary_ignores_boundaries_already_in_ao6():
     reference = np.array([[[0.0, 0.5, 1.0]]], dtype=np.float32)
     candidate = np.array([[[0.0, 0.0, 1.0]]], dtype=np.float32)
     assert _new_boundary_fraction(reference, candidate) == 1.0 / 3.0
+
+
+def test_p4gr_formal_photographic_result_closes_severe_candidate():
+    evidence = json.loads(
+        (
+            ROOT
+            / "docs/evidence/U6_P4GR_NEUTRAL_BASE_PHOTOGRAPHIC_ABLATION_RESULT.json"
+        ).read_text(encoding="utf-8")
+    )
+    assert evidence["formal_processes"] == 2
+    assert evidence["reports_byte_exact"] is True
+    assert evidence["automatic_pass"] is False
+    assert evidence["autonomous_visual_review"]["pass"] is False
+    assert evidence["observations"]["all_rows_partition_exact"] is True
+    assert evidence["observations"]["hard_clipping_used"] is False
+    assert evidence["observations"]["maximum_limited_fraction"] > 0.05
+    assert evidence["observations"]["total_isolated_excursion_count"] > 0
+    assert evidence["decision"].startswith("close_neutral_base")
