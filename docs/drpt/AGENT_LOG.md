@@ -11846,3 +11846,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   confound gates fail in two exact runs.
 - Stop spending on scanner flare under this statistic. Return to the P4
   dye-cloud/marked-Poisson structure and its LOD approximation evidence.
+
+# 2026-08-12 - U6.P4CX adds explicit cross-layer Poisson structure
+
+- A seven-component shared/pair/independent Poisson construction passes two
+  exact runs. Confirmation correlation error is `0.001245`, marginal mean and
+  variance errors are `0.000408`/`0.002052`, and the independent control stays
+  below `0.000461` absolute correlation.
+- Full and 31/127-row partitions are bit exact and Beer-Lambert output remains
+  bounded. Retain as a research primitive; next bind shared events to explicit
+  continuous dye-cloud geometry before any renderer integration.

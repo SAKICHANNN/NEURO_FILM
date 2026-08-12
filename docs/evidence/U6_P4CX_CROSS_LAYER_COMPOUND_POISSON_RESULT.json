@@ -1,0 +1,19 @@
+{
+  "schema": "neuro_film.u6_p4cx_cross_layer_compound_poisson_evidence.v1",
+  "node": "U6.P4CX",
+  "date": "2026-08-12",
+  "implementation_commit": "f2a32985",
+  "contract_sha256": "a650be5471a6527668e921bd050a8de815e05ad227742f7fb6ae199d768f8e37",
+  "formal_report_sha256": "6c9c39ba91782fda7133bfa65ff9e026e32a1e2e36ae9959cfb9c2830d200ccd",
+  "stable_evidence_id": "ac47bea3a173c2f4a8f489be69f130a78c667a1d6cdd49a7f9d23a8e2d96f681",
+  "exact_replays": 2,
+  "automatic_pass": true,
+  "confirmation_maximum_absolute_correlation_error": 0.00124477210799262,
+  "confirmation_maximum_marginal_mean_relative_error": 0.0004075368245442708,
+  "confirmation_maximum_marginal_variance_relative_error": 0.0020523928197409744,
+  "confirmation_maximum_independent_control_absolute_correlation": 0.00046053192895637366,
+  "repeat_and_row_partition_bit_exact": true,
+  "density_and_transmittance_physical": true,
+  "decision": "retain_shared_component_poisson_as_explicit_cross_layer_reference_primitive",
+  "claim_ceiling": "Controlled synthetic count/density-domain reference primitive for positive cross-layer coupling; not measured film, scanner or product evidence."
+}
