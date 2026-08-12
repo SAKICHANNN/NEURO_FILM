@@ -7,6 +7,7 @@ import ctypes
 import hashlib
 import json
 import subprocess
+from collections.abc import Callable
 from pathlib import Path
 
 import numpy as np
@@ -214,15 +215,17 @@ def _execute(lib: ctypes.CDLL, contract: dict) -> dict:
 def render_physical_partition(
     lib: ctypes.CDLL,
     contract: dict,
-    scene_full: np.ndarray,
+    scene_full: np.ndarray | Callable[[int, int], np.ndarray],
     start: int,
     height: int,
 ) -> np.ndarray:
     """Run the exact P4EY/P4FB physical provider for one logical core."""
 
     fixture=contract["fixture"];full,width,cloud_halo=fixture["full_height"],fixture["width"],fixture["cloud_halo"]
-    if scene_full.shape!=(full,width,3) or start<0 or height<=0 or start+height>full:
+    if start<0 or height<=0 or start+height>full:
         raise ValueError("P4FB physical provider geometry drift")
+    if isinstance(scene_full,np.ndarray) and scene_full.shape!=(full,width,3):
+        raise ValueError("P4FB physical provider source shape drift")
     domains,adjacency_blur,adjacency,diffusion,scanner=_profiles(contract)
     cp=_CountProfile(ctypes.sizeof(_CountProfile),3,(ctypes.c_double*3)(192.,288.,240.),32.,
         (ctypes.c_double*3)(32.,16.,24.),fixture["seed"],1009)
@@ -235,7 +238,15 @@ def render_physical_partition(
         raise RuntimeError("P4FB post halo failed")
     ext_start=max(0,start-post_halo.value);ext_end=min(full,start+height+post_halo.value);ext_height=ext_end-ext_start
     first=(ext_start+full-cloud_halo)%full;logical=np.arange(first,first+ext_height+2*cloud_halo)%full
-    scene=np.ascontiguousarray(scene_full[logical],np.float32)
+    if isinstance(scene_full,np.ndarray):
+        scene=np.ascontiguousarray(scene_full[logical],np.float32)
+    else:
+        logical_count=ext_height+2*cloud_halo
+        first_count=min(logical_count,full-first)
+        pieces=[scene_full(first,first_count)]
+        if first_count<logical_count:pieces.append(scene_full(0,logical_count-first_count))
+        scene=np.ascontiguousarray(np.concatenate(pieces,axis=0),np.float32)
+        if scene.shape!=(logical_count,width,3):raise ValueError("P4FB windowed source shape drift")
     size=ctypes.c_size_t;cn=size();dn=size();fn=size()
     if lib.nf_conditioned_cloud_row_chain_f32_workspace_v1(ext_height,width,cloud_halo,ctypes.byref(cn),ctypes.byref(dn),ctypes.byref(fn))!=0:
         raise RuntimeError("P4FB provider workspace failed")
