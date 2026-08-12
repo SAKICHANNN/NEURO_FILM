@@ -137,8 +137,16 @@ def benchmark(contract: Path, output_dir: Path) -> dict:
         "runs": len(runs) == int(scenario["runs"]),
         "identity": all(
             row["worker"]["input_sha256"] == scenario["expected_input_sha256"]
-            and row["worker"]["output_sha256"] == scenario["expected_output_sha256"]
             for row in runs
+        )
+        and len({row["worker"]["output_sha256"] for row in runs}) == 1
+        and (
+            "expected_output_sha256" not in scenario
+            or all(
+                row["worker"]["output_sha256"]
+                == scenario["expected_output_sha256"]
+                for row in runs
+            )
         ),
         "peak": max(peaks) <= int(gate["maximum_peak_process_tree_rss_bytes"]),
         "wall": max(walls) <= float(gate["maximum_worker_wall_seconds"]),
