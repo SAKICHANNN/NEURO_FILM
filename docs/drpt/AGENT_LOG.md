@@ -11961,3 +11961,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   correlation drift 2.78e-17; kernels, roundtrip and product-disabled pass.
 - Next execute the typed exposure -> developed density -> cloud ->
   transmittance chain under explicit interpretation-route identities.
+
+# 2026-08-12 - U6.P4DJ closes the typed colour-emulsion chain
+
+- Color-negative neutral-scan and slide direct-scan identities produce the
+  same exact U2.2 density, shared-cloud density and transmittance bytes; full,
+  127-row and replay execution agree.
+- B&W is rejected from this three-layer dye path. Next bind it separately to
+  the existing metallic-silver Boolean structure.

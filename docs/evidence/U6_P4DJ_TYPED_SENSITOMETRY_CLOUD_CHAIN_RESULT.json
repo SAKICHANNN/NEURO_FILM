@@ -1,0 +1,14 @@
+{
+  "schema": "neuro_film.u6_p4dj_typed_sensitometry_cloud_chain_evidence.v1",
+  "node": "U6.P4DJ",
+  "date": "2026-08-12",
+  "implementation_commit": "c26424f9",
+  "contract_sha256": "f04a77b2a776abc0aa28a60a6c2e7a37bae6d57dc01268be9120ed4a8094113c",
+  "formal_report_sha256": "3617502bb3e67509896c6414c2d1dcfa3a18cfd2e1b37edeee6192d7890edcf0",
+  "stable_evidence_id": "ef02a932f60109f3a35761445543389f7792f328f5b391c5bb2e0869f11342c9",
+  "exact_replays": 2,
+  "automatic_pass": true,
+  "cloud_profile_identity": "9d9d86e1f2fc695d431810cbe06cbe9749be601838d4fc4cdfed18b63f13879a",
+  "decision": "retain_typed_colour_sensitometry_cloud_chain",
+  "claim_ceiling": "Generic typed synthetic colour-emulsion chain only; not calibrated negative/slide behavior, B&W structure, scanner interpretation or product evidence."
+}
