@@ -1,0 +1,29 @@
+{
+  "schema": "neuro_film.u6_p8dd_native_thomas_fft_spatial_scale_evidence.v1",
+  "experiment_id": "u6.p8dd-native-thomas-fft-spatial-scale-v1",
+  "status": "pass-retain-fft-backing-spatial-exposure-to-native-thomas-12mp-runtime",
+  "implementation_commit": "1cb60b31",
+  "formal_replay": {
+    "report_path": "D:/nf-019f4b76-p8dd-report.json",
+    "report_sha256": "bcdb0f582b5e86b629457671568ba1f297acfc3bd9effdf50e6ffa2e6f2c60c1",
+    "stable_evidence_id": "91f2b11ae1af773abb02afa5a5eab062f141dc5213449730dbe0c1e9c6d12a84",
+    "direct_output_sha256": "83656d386e6e7d798ac78d7f19ce88f1167c8caefb1c33723cdc40497ccab3c7",
+    "fft_output_sha256": "7a5ae255143c5f2f61235f210cc766c077d8765fa3120435fe3c9c7554dc50d8",
+    "direct_decoded_rgb16_sha256": "69d3a45f9b5ec4fd3af7e56062ebc74bb7e3684e8b45dc9681e6640ecb067b74",
+    "fft_decoded_rgb16_sha256": "8b5ffda7d2129203c1044aca0d773ef8e700bcc33a36e7a26a9b50547c3abd52",
+    "icc_sha256": "217fe48ec958c667f8eef725aa27198f465df95d7662593b90d0a1cc30114356",
+    "direct_wall_seconds": 29.097414000003482,
+    "maximum_fft_wall_seconds": 14.261534599994775,
+    "wall_speedup_over_direct": 2.0402723000099963,
+    "maximum_fft_process_tree_rss_bytes": 913494016,
+    "maximum_relative_exposure_error": 3.68825707815721e-7,
+    "p99_exposure_ulp_error": 1.0,
+    "maximum_exposure_ulp_error": 5.0,
+    "maximum_decoded_code_error": 1,
+    "maximum_changed_decoded_fraction": 0.0000701388888888889,
+    "all_gates_pass": true
+  },
+  "mechanism_conclusion": "The retained FFT backing-return implementation materially reduces 12MP wall time while preserving deterministic replay and tightly bounded scale-aware exposure and final RGB16 differences from the direct separable reference.",
+  "decision": "retain_fft_backing_spatial_exposure_to_native_thomas_12mp_runtime",
+  "claim_ceiling": "Generic synthetic 12MP host performance and bounded-numerical comparison only; not measured halation, calibrated stock response, scene-to-layer estimation or product promotion."
+}

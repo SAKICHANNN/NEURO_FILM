@@ -11780,3 +11780,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   and 29.0s maximum wall. The physical order is unchanged.
 - This isolates P8DB's failure to halo recomputation; no measured-halation,
   stock-calibration or product claim opens.
+
+# 2026-08-12 - U6.P8DD FFT backing integration passes
+
+- The frozen 12MP FFT candidate cuts the same physical chain from 29.10s to
+  14.26s (`2.04x`) at 913.5MB peak RSS; both FFT runs replay exactly.
+- Versus the direct reference, 0.007014% of RGB16 channel codes differ by at
+  most one code; the fixed exposure probe is p99 one ULP and maximum five ULP.
