@@ -11936,3 +11936,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Display-RGB additive noise places 80.3% of difference power in the high band,
   versus 9.0-9.8% for cloud structure. Proceed to an image-domain artifact
   test; this is mechanism evidence, not visual preference or calibration.
+
+# 2026-08-12 - U6.P4DG passes the synthetic chart artifact gate
+
+- Shared clouds reduce neutral chroma p99 to 88.76% of the independent-layer
+  control; patch mean chroma is 0.00044, edge overshoot/undershoot are
+  0.00196/0.00035 and no new boundary sample appears.
+- Retain for typed sensitometry integration. The current compiled profile only
+  spans about 0.24-0.33 density while U2.2 reaches about 1.83-1.98, so capacity
+  must be compiled explicitly rather than silently normalizing density.

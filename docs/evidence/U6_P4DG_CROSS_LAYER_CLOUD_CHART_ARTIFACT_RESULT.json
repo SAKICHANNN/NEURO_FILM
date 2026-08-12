@@ -1,0 +1,19 @@
+{
+  "schema": "neuro_film.u6_p4dg_cross_layer_cloud_chart_artifact_evidence.v1",
+  "node": "U6.P4DG",
+  "date": "2026-08-12",
+  "implementation_commit": "ede27db",
+  "contract_sha256": "7cd970ccb6e91908a77b21f180138fb544da3f5070fb2733d20eb68aa0afaa83",
+  "formal_report_sha256": "a1f5f9bad8c3a27914d375f78b38f65507ff67b0b6c0964d4b82f03b9e6eeb0b",
+  "stable_evidence_id": "f0affffa772c0e8af1c40e5463bc4c25e5d5d6aca1c71ea0bc4f2364fa96eb8c",
+  "exact_replays": 2,
+  "automatic_pass": true,
+  "shared_neutral_chroma_p99": 0.03056016290866564,
+  "shared_to_independent_neutral_chroma_p99_ratio": 0.8875575645124286,
+  "shared_maximum_neutral_patch_mean_chroma": 0.00044002421272582026,
+  "shared_edge_overshoot": 0.0019632860165184063,
+  "shared_edge_undershoot": 0.00034997612064555095,
+  "shared_new_boundary_fraction": 0.0,
+  "decision": "retain_shared_cloud_chart_artifact_candidate",
+  "claim_ceiling": "Synthetic chart artifact evidence only; not human visual preference, real film, stock calibration or product promotion."
+}
