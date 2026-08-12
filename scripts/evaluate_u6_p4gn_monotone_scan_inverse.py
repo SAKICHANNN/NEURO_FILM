@@ -46,7 +46,12 @@ def _sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def evaluate(contract_path: Path, visual: Path | None = None) -> dict:
+def evaluate(
+    contract_path: Path,
+    visual: Path | None = None,
+    *,
+    scan_domain_anchors: bool = False,
+) -> dict:
     contract = json.loads(contract_path.read_text(encoding="utf-8"))
     for parent in contract["parents"].values():
         path = ROOT / parent["path"]
@@ -65,9 +70,16 @@ def evaluate(contract_path: Path, visual: Path | None = None) -> dict:
     ]
     confirmation_rows = [row for row in response_rows if row not in build_rows]
     source_knots = tuple(float(row["source_level"]) for row in build_rows)
-    scan_knots = tuple(
-        tuple(float(row["scan_median_rgb"][channel]) for row in build_rows)
+    scan_knots_values = [
+        [float(row["scan_median_rgb"][channel]) for row in build_rows]
         for channel in range(3)
+    ]
+    if scan_domain_anchors:
+        for row in scan_knots_values:
+            row[0] = 0.0
+            row[-1] = 1.0
+    scan_knots = tuple(
+        tuple(row) for row in scan_knots_values
     )
     inverse = MonotoneScanInverseV1(scan_knots, source_knots)
     confirmation_errors = []
