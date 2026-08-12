@@ -11945,3 +11945,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain for typed sensitometry integration. The current compiled profile only
   spans about 0.24-0.33 density while U2.2 reaches about 1.83-1.98, so capacity
   must be compiled explicitly rather than silently normalizing density.
+
+# 2026-08-12 - U6.P4DH exact capacity compiler closes
+
+- A common rate multiplier of 8.68384 covers the full generic U2.2 density
+  range and preserves kernels/roundtrip, but the frozen bit-identity correlation
+  gate fails by 2.78e-17 after float scaling.
+- Do not relabel this PASS. A successor may version the inherited correlation
+  identity explicitly and separately gate recomputed numeric drift.

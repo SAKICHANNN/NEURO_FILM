@@ -1,0 +1,16 @@
+{
+  "schema": "neuro_film.u6_p4dh_sensitometry_cloud_capacity_evidence.v1",
+  "node": "U6.P4DH",
+  "date": "2026-08-12",
+  "implementation_commit": "3c33627a",
+  "contract_sha256": "ba499b8bc0c7677cec567504f016213ca4d5d4b85376918972a58c40b9a9cf36",
+  "formal_report_sha256": "ef12db37a3b2c5212b71d77bd8b01f131a70c1c6af00146cb418256150b50c6c",
+  "stable_evidence_id": "2bd0485aaa2ef1847435b030f38635de13d5696a22af9409ab2b94923baee74e",
+  "exact_replays": 2,
+  "automatic_pass": false,
+  "common_rate_multiplier": 8.683839422436353,
+  "maximum_correlation_absolute_drift": 2.7755575615628914e-17,
+  "failed_gate": "correlation_identity",
+  "decision": "close_sensitometry_cloud_capacity_compiler",
+  "claim_ceiling": "Generic U2.2 numerical capacity binding only; not stock-calibrated density, measured granularity or product authorization."
+}
