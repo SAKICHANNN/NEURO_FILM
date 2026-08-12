@@ -168,6 +168,43 @@ def iter_density_conditioned_cross_layer_cloud_rows(
         yield y0, DensityConditionedStructureResult(density, transmittance)
 
 
+def iter_target_density_cross_layer_cloud_rows(
+    profile: CrossLayerCloudReferenceProfile,
+    target_density_cmy: np.ndarray,
+    *,
+    maximum_developed_density_cmy: tuple[float, float, float],
+    seed: int,
+    row_tile_height: int,
+) -> Iterator[tuple[int, DensityConditionedStructureResult]]:
+    """Map typed developed optical density to bounded cloud occurrence rates."""
+
+    target = np.asarray(target_density_cmy, dtype=np.float64)
+    maximum = np.asarray(maximum_developed_density_cmy, dtype=np.float64)
+    expected_maximum = np.asarray(
+        profile.count_profile.marginal_rates_cmy
+    ) * np.asarray(profile.count_profile.mark_optical_density_cmy)
+    if (
+        target.ndim != 3
+        or target.shape[-1] != 3
+        or maximum.shape != (3,)
+        or not np.all(np.isfinite(target))
+        or not np.all(np.isfinite(maximum))
+        or np.any(target < 0.0)
+        or np.any(maximum <= 0.0)
+        or not np.array_equal(maximum, expected_maximum)
+        or np.any(target > maximum)
+    ):
+        raise ValueError(
+            "target developed density is outside the compiled profile domain"
+        )
+    yield from iter_density_conditioned_cross_layer_cloud_rows(
+        profile,
+        target / maximum,
+        seed=seed,
+        row_tile_height=row_tile_height,
+    )
+
+
 def estimate_cross_layer_cloud_row_stream_live_bytes(
     profile: CrossLayerCloudReferenceProfile,
     *,
@@ -208,4 +245,5 @@ __all__ = [
     "estimate_cross_layer_cloud_row_stream_live_bytes",
     "iter_cross_layer_cloud_profile_rows",
     "iter_density_conditioned_cross_layer_cloud_rows",
+    "iter_target_density_cross_layer_cloud_rows",
 ]
