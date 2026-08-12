@@ -30,6 +30,7 @@ SOURCES = tuple(
         "nf_sensitometry_cloud_bridge_f32_v1.c",
         "nf_physical_domains_f32_v1.c",
         "nf_gaussian_rgb_f32_v1.c",
+        "nf_gaussian_row_window_f32_v1.c",
         "nf_bounded_adjacency_f32_v1.c",
         "nf_conditioned_cloud_row_chain_f32_v1.c",
         "nf_conditioned_cloud_row_chain_f32_v2.c",

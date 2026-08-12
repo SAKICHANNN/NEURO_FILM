@@ -28,8 +28,8 @@ def _configure(path:Path):
     lib=_load_gaussian(path);fp=ctypes.POINTER(ctypes.c_float);size=ctypes.c_size_t
     lib.nf_gaussian_f32_required_halo_v1.argtypes=[ctypes.POINTER(NativeGaussianProfileV1),ctypes.POINTER(ctypes.c_uint32)]
     lib.nf_gaussian_f32_required_halo_v1.restype=ctypes.c_int
-    lib.nf_gaussian_f32_apply_window_v2.argtypes=[ctypes.POINTER(NativeGaussianProfileV1),size,size,size,size,fp,size,size,fp,size,fp,size,fp,size]
-    lib.nf_gaussian_f32_apply_window_v2.restype=ctypes.c_int
+    lib.nf_gaussian_row_window_f32_apply_v1.argtypes=[ctypes.POINTER(NativeGaussianProfileV1),size,size,size,size,fp,size,size,fp,size,fp,size,fp,size]
+    lib.nf_gaussian_row_window_f32_apply_v1.restype=ctypes.c_int
     return lib
 
 
@@ -45,7 +45,7 @@ def _execute(lib,contract:dict)->dict:
         for start,end in rows:
             input_start=max(0,start-halo.value);input_end=min(height,end+halo.value)
             window=np.ascontiguousarray(source[input_start:input_end]);work=np.empty_like(window);rendered=np.empty_like(window);core=np.full((end-start,width,3),-77,np.float32)
-            status=lib.nf_gaussian_f32_apply_window_v2(ctypes.byref(profile),height,width,input_start,window.shape[0],_pointer(window),start,end-start,
+            status=lib.nf_gaussian_row_window_f32_apply_v1(ctypes.byref(profile),height,width,input_start,window.shape[0],_pointer(window),start,end-start,
                 _pointer(work),work.size,_pointer(rendered),rendered.size,_pointer(core),core.size)
             if status:raise RuntimeError(f"P4FE window failed: {status}")
             output.append(core);maximum=max(maximum,window.nbytes+work.nbytes+rendered.nbytes+core.nbytes)
@@ -53,7 +53,7 @@ def _execute(lib,contract:dict)->dict:
     primary,primary_bytes=partition(fixture["partitions"]);alternate,alternate_bytes=partition(fixture["alternate_partitions"])
     start,end=fixture["partitions"][1];input_start=start-halo.value+1;input_end=end+halo.value
     window=np.ascontiguousarray(source[input_start:input_end]);work=np.empty_like(window);rendered=np.empty_like(window);core=np.full((end-start,width,3),-77,np.float32)
-    bad=lib.nf_gaussian_f32_apply_window_v2(ctypes.byref(profile),height,width,input_start,window.shape[0],_pointer(window),start,end-start,
+    bad=lib.nf_gaussian_row_window_f32_apply_v1(ctypes.byref(profile),height,width,input_start,window.shape[0],_pointer(window),start,end-start,
         _pointer(work),work.size,_pointer(rendered),rendered.size,_pointer(core),core.size)
     return {"scan":reference,"primary":bool(np.array_equal(reference,primary)),"alternate":bool(np.array_equal(reference,alternate)),
         "atomic":bool(bad!=0 and np.all(core==-77)),"halo":halo.value,"maximum_window_bytes":max(primary_bytes,alternate_bytes),
@@ -73,8 +73,8 @@ def evaluate(root:Path,contract_path:Path,output:Path,llvm:Path)->dict:
             "repeat":bool(np.array_equal(first["scan"],repeat["scan"]))}
     gates={"primary":all(r["primary"] for r in rows.values()),"alternate":all(r["alternate"] for r in rows.values()),"compiler":rows["msvc"]["sha256"]==rows["llvm"]["sha256"],
         "repeat":all(r["repeat"] for r in rows.values()),"atomic":all(r["atomic"] for r in rows.values()),"workspace":all(r["maximum_window_bytes"]<r["full_workspace_bytes"] for r in rows.values())}
-    stable={"contract_sha256":sha256_file(contract_path),"source_sha256":sha256_file(root/"native/film_physics/nf_gaussian_rgb_f32_v1.c"),
-        "header_sha256":sha256_file(root/"native/film_physics/nf_gaussian_rgb_f32_v1.h"),"results":rows,"gates":gates,
+    stable={"contract_sha256":sha256_file(contract_path),"source_sha256":sha256_file(root/"native/film_physics/nf_gaussian_row_window_f32_v1.c"),
+        "header_sha256":sha256_file(root/"native/film_physics/nf_gaussian_row_window_f32_v1.h"),"results":rows,"gates":gates,
         "decision":contract["decision_if_pass"] if all(gates.values()) else contract["decision_if_fail"],"claim_ceiling":contract["claim_ceiling"]}
     return {"schema":"neuro_film.u6_p4fe_gaussian_row_window.v1","automatic_pass":all(gates.values()),"stable":stable,
         "stable_evidence_id":hashlib.sha256(json.dumps(stable,sort_keys=True,separators=(",",":")).encode()).hexdigest()}

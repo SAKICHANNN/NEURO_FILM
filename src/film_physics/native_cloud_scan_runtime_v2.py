@@ -28,8 +28,8 @@ class WindowedNativeCloudScanRuntime:
         self._gaussian.nf_gaussian_f32_required_halo_v1.argtypes=[ctypes.POINTER(NativeGaussianProfileV1),ctypes.POINTER(ctypes.c_uint32)]
         self._gaussian.nf_gaussian_f32_required_halo_v1.restype=ctypes.c_int
         fp=ctypes.POINTER(ctypes.c_float);size=ctypes.c_size_t
-        self._gaussian.nf_gaussian_f32_apply_window_v2.argtypes=[ctypes.POINTER(NativeGaussianProfileV1),size,size,size,size,fp,size,size,fp,size,fp,size,fp,size]
-        self._gaussian.nf_gaussian_f32_apply_window_v2.restype=ctypes.c_int
+        self._gaussian.nf_gaussian_row_window_f32_apply_v1.argtypes=[ctypes.POINTER(NativeGaussianProfileV1),size,size,size,size,fp,size,size,fp,size,fp,size,fp,size]
+        self._gaussian.nf_gaussian_row_window_f32_apply_v1.restype=ctypes.c_int
 
     def render_to_sink(self,scene_linear:np.ndarray,*,output_sink:OutputSink)->dict:
         source=np.asarray(scene_linear)
@@ -45,7 +45,7 @@ class WindowedNativeCloudScanRuntime:
                 input_start=max(0,start-halo.value);input_end=min(height,start+count+halo.value)
                 window=np.ascontiguousarray(source[input_start:input_end]);work=np.empty_like(window);rendered=np.empty_like(window);core=np.empty((count,width,3),np.float32)
                 maximum_forward_values=max(maximum_forward_values,window.size+work.size+rendered.size+core.size)
-                status=self._gaussian.nf_gaussian_f32_apply_window_v2(ctypes.byref(self._forward),height,width,input_start,window.shape[0],_pointer(window),start,count,
+                status=self._gaussian.nf_gaussian_row_window_f32_apply_v1(ctypes.byref(self._forward),height,width,input_start,window.shape[0],_pointer(window),start,count,
                     _pointer(work),work.size,_pointer(rendered),rendered.size,_pointer(core),core.size)
                 if status!=0:raise NativeCloudScanRuntimeError(f"forward window failed: {status}")
                 return core

@@ -63,28 +63,6 @@ nf_gaussian_f32_apply_v1(
     size_t workspace_floats,
     float* output_rgb);
 
-/*
- * Versioned row-window companion. The input contains a contiguous physical
- * window from one full image. Logical coordinates prove exact top/bottom
- * boundary semantics; output contains only the requested core rows.
- */
-NF_GAUSSIAN_F32_API nf_gaussian_f32_status_v1
-nf_gaussian_f32_apply_window_v2(
-    const nf_gaussian_f32_profile_v1* profile,
-    size_t full_height,
-    size_t full_width,
-    size_t input_logical_start,
-    size_t input_height,
-    const float* input_rgb,
-    size_t core_logical_start,
-    size_t core_height,
-    float* workspace_rgb,
-    size_t workspace_floats,
-    float* window_output_rgb,
-    size_t window_output_floats,
-    float* core_output_rgb,
-    size_t core_output_floats);
-
 #ifdef __cplusplus
 }
 #endif
