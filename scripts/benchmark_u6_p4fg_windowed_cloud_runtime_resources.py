@@ -31,15 +31,22 @@ from src.film_physics.native_cloud_scan_runtime_v2 import (
 from tests.test_u6_p4fc_opt_in_cloud_scan_runtime_v1 import _profile
 
 
-def source_rows(height:int,width:int)->np.ndarray:
-    y=np.arange(height,dtype=np.uint64)[:,None,None];x=np.arange(width,dtype=np.uint64)[None,:,None];c=np.arange(3,dtype=np.uint64)[None,None,:]
-    return np.ascontiguousarray(((y*17+x*31+c*101+3)%997)/996.,np.float32)
+def source_rows(height:int,width:int,block_rows:int|None=None)->np.ndarray:
+    if block_rows is None:
+        y=np.arange(height,dtype=np.uint64)[:,None,None];x=np.arange(width,dtype=np.uint64)[None,:,None];c=np.arange(3,dtype=np.uint64)[None,None,:]
+        return np.ascontiguousarray(((y*17+x*31+c*101+3)%997)/996.,np.float32)
+    result=np.empty((height,width,3),np.float32);x=np.arange(width,dtype=np.uint64)[None,:,None];c=np.arange(3,dtype=np.uint64)[None,None,:]
+    for y0 in range(0,height,block_rows):
+        y1=min(height,y0+block_rows);y=np.arange(y0,y1,dtype=np.uint64)[:,None,None]
+        result[y0:y1]=((y*17+x*31+c*101+3)%997)/996.
+    return result
 
 
-def worker(*,variant:str,dll:Path,height:int,width:int,tile_rows:int,output:Path)->None:
+def worker(*,variant:str,dll:Path,height:int,width:int,tile_rows:int,output:Path,source_block_rows:int|None=None)->None:
     lib=_configure(dll);p4fb=json.loads((ROOT/"configs/u6_p4fb_native_cloud_spatial_partition_v1.json").read_text())
     p4fb["fixture"]["full_height"]=height;p4fb["fixture"]["width"]=width
-    source=source_rows(height,width);profile=_profile();component=sha256_file(ROOT/"native/film_physics/nf_cloud_post_spatial_f32_v1.c")
+    source=source_rows(height,width,source_block_rows);profile=_profile();component=sha256_file(ROOT/"native/film_physics/nf_cloud_post_spatial_f32_v1.c")
+    render_entry_rss_bytes=psutil.Process().memory_info().rss
     started=time.perf_counter()
     if variant=="full":
         def provider(values:np.ndarray,y0:int,count:int)->np.ndarray:return render_physical_partition(lib,p4fb,values,y0,count)
@@ -51,7 +58,7 @@ def worker(*,variant:str,dll:Path,height:int,width:int,tile_rows:int,output:Path
     receipt=runtime.render_to_sink(source,output_sink=lambda y0,y1,rows:None)
     result={"variant":variant,"height":height,"width":width,"tile_rows":tile_rows,"wall_seconds":time.perf_counter()-started,
         "output_sha256":receipt["output_sha256"],"input_sha256":receipt["input_sha256"],"full_forward_frame_retained":bool(receipt.get("full_forward_frame_retained",True)),
-        "maximum_forward_workspace_values":int(receipt.get("maximum_forward_workspace_values",height*width*3))}
+        "maximum_forward_workspace_values":int(receipt.get("maximum_forward_workspace_values",height*width*3)),"render_entry_rss_bytes":render_entry_rss_bytes}
     output.parent.mkdir(parents=True,exist_ok=True);output.write_text(json.dumps(result,sort_keys=True,separators=(",",":")))
 
 
@@ -83,6 +90,7 @@ def benchmark(contract_path:Path,output_dir:Path)->dict:
     for index,variant in enumerate(scenario["run_order"]):
         worker_output=output_dir/f"worker-{index+1}-{variant}.json"
         command=[sys.executable,str(Path(__file__).resolve()),"--worker","--variant",variant,"--dll",str(dll),"--height",str(scenario["height"]),"--width",str(scenario["width"]),"--tile-rows",str(scenario["tile_rows"]),"--output",str(worker_output)]
+        if "source_construction_rows" in scenario:command.extend(["--source-block-rows",str(scenario["source_construction_rows"])])
         runs.append(monitor(command,worker_output,scenario["timeout_seconds"],scenario["sample_interval_seconds"]))
     by_variant={name:[r for r in runs if r["worker"]["variant"]==name] for name in ("full","windowed")}
     median=lambda values:float(np.median(np.asarray(values,dtype=np.float64)))
@@ -99,8 +107,8 @@ def benchmark(contract_path:Path,output_dir:Path)->dict:
 
 
 def main()->None:
-    parser=argparse.ArgumentParser();parser.add_argument("--worker",action="store_true");parser.add_argument("--variant");parser.add_argument("--dll",type=Path);parser.add_argument("--height",type=int);parser.add_argument("--width",type=int);parser.add_argument("--tile-rows",type=int);parser.add_argument("--output",type=Path);parser.add_argument("--contract",type=Path);parser.add_argument("--output-dir",type=Path);args=parser.parse_args()
-    if args.worker:worker(variant=args.variant,dll=args.dll,height=args.height,width=args.width,tile_rows=args.tile_rows,output=args.output)
+    parser=argparse.ArgumentParser();parser.add_argument("--worker",action="store_true");parser.add_argument("--variant");parser.add_argument("--dll",type=Path);parser.add_argument("--height",type=int);parser.add_argument("--width",type=int);parser.add_argument("--tile-rows",type=int);parser.add_argument("--output",type=Path);parser.add_argument("--source-block-rows",type=int);parser.add_argument("--contract",type=Path);parser.add_argument("--output-dir",type=Path);args=parser.parse_args()
+    if args.worker:worker(variant=args.variant,dll=args.dll,height=args.height,width=args.width,tile_rows=args.tile_rows,output=args.output,source_block_rows=args.source_block_rows)
     else:print(json.dumps(benchmark(args.contract,args.output_dir),sort_keys=True,separators=(",",":")))
 
 
