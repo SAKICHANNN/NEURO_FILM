@@ -12334,3 +12334,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   PNG16, restart-verify it and remove every transaction artifact.
 - Peak RSS is 918.4-979.3MB and wall time 56.6-56.9s; all frozen gates pass.
   Severe-artifact chart evidence remains required before broader retention.
+
+# 2026-08-12 - U6.P4GH freezes retained-chain chart veto
+
+- The retained full chain now faces the existing P4DG neutral-patch, hard-edge
+  and boundary ceilings unchanged, plus incremental residual-versus-physics
+  chroma and edge-halo gates. Partition and repeat identity remain mandatory.
