@@ -1,0 +1,37 @@
+{
+  "schema": "neuro_film.u6_p4dx_compiled_cloud_attenuation_row_runtime_contract.v1",
+  "experiment_id": "u6.p4dx-compiled-cloud-attenuation-row-runtime-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4DX",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {
+    "path": "docs/evidence/U6_P4DW_NPS_PRESERVING_CLOUD_RESIDUAL_ATTENUATION_V6_RESULT.json",
+    "sha256": "c7659b1eda422e177aad48d6c10aeb1404b3369ac2d53b2c500d37a37919bd6f",
+    "required_decision": "retain_nps_preserving_target_resolution_cloud_residual_attenuation_v6"
+  },
+  "compiled_profile": {
+    "aperture_factor": 4,
+    "base_rate_multiplier": 16,
+    "channel_residual_gain": [0.7874638824806821, 0.7008792161934756, 0.6589818299954651],
+    "product_enabled": false
+  },
+  "fixture": {
+    "height": 193,
+    "width": 257,
+    "seed": 58207,
+    "full_partition_height": 193,
+    "candidate_partition_heights": [1, 31, 64, 127]
+  },
+  "gates": {
+    "require_full_partition_exact": true,
+    "require_repeat_identity": true,
+    "require_strict_open_unit_transmittance": true,
+    "require_density_transmittance_roundtrip_exact": true,
+    "maximum_estimated_live_bytes": 5000000,
+    "require_invalid_request_rejected_before_first_yield": true,
+    "require_product_disabled": true
+  },
+  "decision_if_pass": "retain_compiled_cloud_attenuation_row_runtime_v1",
+  "decision_if_fail": "close_compiled_cloud_attenuation_row_runtime_v1",
+  "claim_ceiling": "Deterministic synthetic row runtime only; not calibrated film grain, scanner NPS, native backend or product authorization."
+}
