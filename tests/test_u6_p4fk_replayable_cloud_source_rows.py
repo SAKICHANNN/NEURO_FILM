@@ -66,7 +66,7 @@ def test_replayable_rows_match_array_ingress_and_fail_before_output(tmp_path: Pa
     assert np.array_equal(np.concatenate(array_rows), np.concatenate(replay_rows))
     assert replay_receipt["output_sha256"] == array_receipt["output_sha256"]
     assert replay_receipt["full_source_frame_retained"] is False
-    assert replay_receipt["source_passes"] == 2
+    assert replay_receipt["source_passes"] == 3
     assert len(calls) > replay_receipt["submitted_tiles"]
 
     output_calls = 0
@@ -84,3 +84,22 @@ def test_replayable_rows_match_array_ingress_and_fail_before_output(tmp_path: Pa
             output_sink=count_output,
         )
     assert output_calls == 0
+
+    calls = 0
+
+    def drifting_replay(start: int, count: int) -> np.ndarray:
+        nonlocal calls
+        calls += 1
+        rows = np.ascontiguousarray(source[start : start + count])
+        if calls > 16:
+            rows[0, 0, 0] = np.nextafter(rows[0, 0, 0], np.float32(1.0))
+        return rows
+
+    with pytest.raises(NativeCloudScanRuntimeError, match="source replay drift"):
+        runtime.render_rows_to_sink(
+            height=source.shape[0],
+            width=source.shape[1],
+            source_rows=drifting_replay,
+            expected_input_sha256=source_sha,
+            output_sink=lambda _y0, _y1, _rows: None,
+        )

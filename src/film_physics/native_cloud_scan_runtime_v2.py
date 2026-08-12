@@ -185,6 +185,12 @@ class WindowedNativeCloudScanRuntime:
             tiles += 1
         if consumed != height:
             raise NativeCloudScanRuntimeError("windowed cloud output incomplete")
+        replay_digest = hashlib.sha256()
+        for y0 in range(0, height, self.tile_rows):
+            y1 = min(height, y0 + self.tile_rows)
+            replay_digest.update(memoryview(read_rows(y0, y1 - y0)).cast("B"))
+        if replay_digest.hexdigest() != source_sha:
+            raise NativeCloudScanRuntimeError("windowed cloud source replay drift")
         return {
             "input_sha256": source_sha,
             "output_sha256": output_digest.hexdigest(),
@@ -194,7 +200,7 @@ class WindowedNativeCloudScanRuntime:
             "maximum_forward_workspace_values": maximum_forward_values,
             "full_forward_frame_retained": False,
             "full_source_frame_retained": False,
-            "source_passes": 2,
+            "source_passes": 3,
             "physical_component_sha256": self.physical_component_sha256,
             "production_default_changed": False,
         }
