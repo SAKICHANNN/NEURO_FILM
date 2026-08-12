@@ -1,0 +1,22 @@
+{
+  "schema": "neuro_film.u6_p4eu_native_cloud_developed_window_v4.v1",
+  "experiment_id": "u6.p4eu-native-cloud-developed-window-v4",
+  "date_executed": "2026-08-12",
+  "implementation_commit": "e4fb77ad",
+  "automatic_pass": false,
+  "stable_evidence_id": "a10b74354098ebe1f817fd8fa3c486615950a006cff7471288428f7d97060295",
+  "contract_sha256": "1a1bc9bf1bb352b2c3f79b90331cc7ee079a32b879b50e29c37ed59f76faea55",
+  "results": {
+    "output_sha256": "b450b96e0126aebf2c70c84a2b1ed24da746efeb623656c576b9df49f2f57af3",
+    "p4et_output_sha256": "a287a4893f6d855705b489b242c478df4a67770b19259091f9ad82bbf8ab44a7",
+    "p4et_output_identity": false,
+    "repeat_output_exact": true,
+    "developed_window_bytes": 10512000,
+    "p4et_scale_window_bytes": 21024000,
+    "maximum_wall_seconds": 26.656145899993135,
+    "maximum_wall_ratio_vs_p4et": 1.0587238823193736
+  },
+  "diagnosis": "Float32 developed-density quantization changes the double Poisson scale and therefore the stochastic structure identity. The exact-output gate is not relaxed for the 10.5MB saving.",
+  "decision": "close_native_cloud_developed_window_v4",
+  "claim_ceiling": "Local Windows x64 CPU synthetic 24MP bounded developed-density window negative; not complete sensitometry ingress, image quality, calibrated stock or product authorization."
+}
