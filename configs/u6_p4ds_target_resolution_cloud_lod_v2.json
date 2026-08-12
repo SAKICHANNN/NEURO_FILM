@@ -1,0 +1,42 @@
+{
+  "schema": "neuro_film.u6_p4ds_target_resolution_cloud_lod_contract.v2",
+  "experiment_id": "u6.p4ds-target-resolution-cloud-lod-v2",
+  "node": "ULT > U6 > U6.P4 > U6.P4DS",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {
+    "path": "docs/evidence/U6_P4DR_OPTICAL_DENSITY_CLOUD_APERTURE_LOD_V2_RESULT.json",
+    "sha256": "9edf683eb68f3f56bbdd7c492c055b5663d1845e32da1698ac276308eb579507",
+    "required_decision": "retain_minimum_safe_optical_density_cloud_aperture_lod_v2",
+    "required_factor": 4
+  },
+  "fixture": {
+    "output_height": 192,
+    "output_width": 256,
+    "seed": 54181,
+    "aperture_factor": 4,
+    "flat_density_fraction": 0.55,
+    "confirmation_seeds": [54187, 54193, 54203]
+  },
+  "candidate": {
+    "marginal_and_shared_rate_multiplier": 16,
+    "mark_optical_density_divisor": 16,
+    "gaussian_sigma_divisor": 4,
+    "shared_component_proportions_unchanged": true,
+    "target_resolution_only": true
+  },
+  "gates": {
+    "maximum_mean_transmittance_absolute_error": 0.002,
+    "maximum_marginal_noise_rms_relative_error": 0.15,
+    "maximum_cross_channel_correlation_absolute_error": 0.05,
+    "maximum_radial_nps_shape_rmse": 0.08,
+    "maximum_edge_overshoot_absolute_difference": 0.01,
+    "maximum_edge_undershoot_absolute_difference": 0.01,
+    "maximum_new_boundary_fraction": 0.0005,
+    "require_repeat_identity": true,
+    "require_product_disabled": true
+  },
+  "decision_if_pass": "retain_target_resolution_compound_poisson_cloud_lod_v2",
+  "decision_if_fail": "close_target_resolution_compound_poisson_cloud_lod_v2",
+  "claim_ceiling": "Synthetic target-resolution approximation evidence only; not measured NPS, film granularity, scanner aperture, calibrated stock or product authorization."
+}
