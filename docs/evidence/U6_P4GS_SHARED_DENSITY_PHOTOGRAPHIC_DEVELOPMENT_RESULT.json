@@ -1,0 +1,53 @@
+{
+  "schema": "neuro-film.u6-p4gs-shared-density-photographic-development-evidence.v1",
+  "node": "U6.P4GS",
+  "date": "2026-08-12",
+  "implementation_commit": "a0e2061f",
+  "contract_commit": "a996b8e3",
+  "formal_processes": 2,
+  "formal_report_sha256": "57c2444b453a158e47f8db7a1874b3dfb704f3ad0f45483c4055ca8ed5af9495",
+  "reports_byte_exact": true,
+  "contact_sheet_sha256": "d55bf904dfa35dd51d81f3ce0628c68abcaef110fc5d57c3fcbfb5a408b8c9ce",
+  "contact_sheets_byte_exact": true,
+  "stable_evidence_id": "5e3d86ecae81e1dc2c05bf30f9b20c997b26be46319aacb6c0b23757d080eacf",
+  "compiled_profile_identity": "9d9d86e1f2fc695d431810cbe06cbe9749be601838d4fc4cdfed18b63f13879a",
+  "source_cohort": {
+    "rows": 9,
+    "camera_makes": 9,
+    "rights_scope": "CC0_public_domain_internal_evaluation",
+    "input_domain": "relative-display-sRGB-derived pseudo-exposure",
+    "manifest_sha256": "edb1b45552f9bf5712c922ed816b6f9a70f5f0bee2b72a024144cde0087dd521",
+    "cohort_status": "consumed-development-only"
+  },
+  "observations": {
+    "minimum_physical_residual_rms": 0.0011563416591203253,
+    "maximum_limited_fraction": 0.14413385826771655,
+    "population_p95_combined_vs_ao6_abs": 0.004039830807596445,
+    "population_p99_combined_vs_ao6_abs": 0.015439484938979148,
+    "maximum_flat_region_p99_abs": 0.418292760848999,
+    "total_isolated_excursion_count": 56,
+    "maximum_new_boundary_fraction_vs_ao6": 0.0009288847117794486,
+    "all_rows_partition_exact": true,
+    "all_outputs_finite": true,
+    "hard_clipping_used": false
+  },
+  "failed_automatic_gates": [
+    "flat_regions",
+    "isolated_excursions",
+    "limited_fraction",
+    "new_boundaries"
+  ],
+  "autonomous_visual_review": {
+    "pass": false,
+    "confirmed_severe_artifact_count": 1,
+    "failure_families": [
+      "large high-contrast density islands and saturated highlight patches on the Nikon packaging row"
+    ],
+    "notes": "The shared-density projection materially removes the widespread coloured salt texture seen in P4GR and keeps most rows close to AO6. It nevertheless produces conspicuous yellow/white patch islands on the Nikon row, while the Blackmagic row also requires excessive analytical limiting. The failure is localized rather than population-wide, but remains a severe-artifact veto."
+  },
+  "automatic_pass": false,
+  "decision": "close_shared_density_residual_v1_without_rescue",
+  "scientific_conclusion": "A single common optical-density residual is a useful chroma-correlation mechanism: it reduces population p95 absolute deviation from 0.05868 in P4GR to 0.00404 and removes the broad chromatic-speckle failure. It is still not safe because high-contrast density islands survive on one photographic row and one other row requires 14.41% limiting. The next mechanism must make stochastic structure density- and scale-aware before projection, rather than tune this residual or its gates.",
+  "next_leaf": "Develop a density-conditioned subpixel LOD field that suppresses unresolved particle excursions before common-density projection, then test on this consumed cohort before any fresh confirmation.",
+  "claim_ceiling": "Consumed nine-camera CC0 relative-display photographic mechanism development only; not independent confirmation, scene exposure, calibrated film, stock response, human preference or product promotion."
+}

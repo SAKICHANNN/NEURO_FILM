@@ -12496,3 +12496,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Ran the unchanged P4GQ neutral-base physical residual on the frozen nine-camera CC0 P8BP cohort in two exact processes. Both reports and contact sheets were byte-identical.
 - The candidate remained finite, clipping-free and partition-exact, but failed flat-region, isolated-excursion, safety-scale, boundary and population-tail gates. Autonomous inspection confirmed dense coloured salt-like texture, especially in dark foliage, sky and water.
 - Closed this material field before 24MP/resource or product work. The next physical leaf must change the density-conditioned chroma/LOD mechanism; the neutral-base composition itself is not relabelled as the cause.
+
+### 2026-08-12 - U6.P4GS closes shared-density residual v1
+
+- Projecting the physical cloud residual to one common optical-density field
+  removes the broad chromatic salt texture: population p95 absolute deviation
+  falls from 0.05868 in P4GR to 0.00404, with exact two-process replay.
+- The unchanged severe gates still fail. One Nikon row develops conspicuous
+  high-contrast density islands and a 0.000929 new-boundary fraction; the
+  Blackmagic row requires 14.41% analytical limiting. The exact mechanism is
+  closed without threshold or strength rescue.
+- The next leaf changes the material execution itself: density-conditioned
+  subpixel LOD must suppress unresolved excursions before common-density
+  projection. This consumed cohort remains development-only.
