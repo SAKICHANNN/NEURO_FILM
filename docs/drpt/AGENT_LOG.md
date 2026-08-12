@@ -11761,3 +11761,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   transfer avoided an initial full-frame-copy RSS regression.
 - The final 12MP replay preserves the P8CY input/output/decoded/ICC hashes and
   passes at 481.6MB peak RSS and 7.38s maximum wall time.
+
+# 2026-08-12 - U6.P8DA connects linear layer exposure
+
+- Explicit positive `PhysicalDomainArray` layer exposure now converts through
+  log10 into the typed package ingress; scene/display RGB still cannot enter.
+- The exact P8CY 12MP output replays at 769.7MB peak and 4.98s maximum wall.

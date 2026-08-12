@@ -1,0 +1,24 @@
+{
+  "schema": "neuro_film.u6_p8da_linear_layer_exposure_atomic_scale_evidence.v1",
+  "experiment_id": "u6.p8da-linear-layer-exposure-atomic-scale-v1",
+  "status": "pass-retain-linear-layer-exposure-to-packaged-native-thomas-runtime",
+  "implementation_commit": "339a3318",
+  "contract_sha256": "74ba85da63eee5bc15756c61a4adbc74325db81fff5f53cb0be6031275f7e040",
+  "formal_replay": {
+    "report_path": "D:/nf-019f4b76-p8da-report-v6.json",
+    "report_sha256": "a4847faa53fe30d4b28d3c1f635cbee5833016e845291853de3bc80bb1f0ad95",
+    "stable_evidence_id": "a5b3fff739baba5ab216e711ddf93d2b08e10f52d00fc892be3340351196e518",
+    "input_sha256": "81a91bcdafe07f48701ae8a8e4339fa74af3be25326b422a9f6ccaa5c431fc3b",
+    "output_sha256": "e7b2c3d8ea6ee9cb143f48a680bb2a6a8a59666f3b63f4d1b621a03869ce5909",
+    "decoded_rgb16_sha256": "5a0f531fe9b28183dba4634b0c1d739f71c2677e2f9ba74dd16c33c2fa6530fd",
+    "icc_sha256": "217fe48ec958c667f8eef725aa27198f465df95d7662593b90d0a1cc30114356",
+    "maximum_wall_seconds": 4.984237700002268,
+    "maximum_peak_process_tree_rss_bytes": 769658880,
+    "wall_repeat_ratio": 1.017091464058939,
+    "rss_repeat_ratio": 1.0002395400830406,
+    "all_gates_pass": true
+  },
+  "implementation_fact": "PhysicalDomainArray.adopt preserves default copy semantics while allowing explicit owned-buffer transfer; per-channel log10 writes directly to final float32 CHW storage.",
+  "decision": "retain_linear_layer_exposure_to_packaged_native_thomas_runtime",
+  "claim_ceiling": "Explicit positive linear film-layer exposure to generic native Thomas export only; no scene-to-layer estimation, calibrated stock response, arbitrary media or product promotion."
+}
