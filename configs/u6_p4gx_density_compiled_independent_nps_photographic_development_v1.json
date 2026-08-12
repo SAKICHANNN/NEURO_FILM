@@ -1,0 +1,87 @@
+{
+  "schema": "neuro-film.u6-p4gx-density-compiled-independent-nps-photographic-development-contract.v1",
+  "experiment_id": "u6.p4gx-density-compiled-independent-nps-photographic-development-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4GX",
+  "date_frozen": "2026-08-12",
+  "status": "contract-frozen-implementation-ready",
+  "question": "Does the retained 48-micrometre Kodak-250D-compatible Sigma-D envelope make the independent zero-DC P4GW topology pass unchanged photographic artifact gates without cohort fitting or amplitude scaling?",
+  "parents": {
+    "p4gw_result": {
+      "path": "docs/evidence/U6_P4GW_INDEPENDENT_DENSITY_NPS_PHOTOGRAPHIC_DEVELOPMENT_RESULT.json",
+      "sha256": "0a5fd5878827da58ef08ddf3b6a6cf53b4e4225ca259cc5fc191ef6f524b082b",
+      "required_decision": "close_independent_density_nps_v1_without_rescue"
+    },
+    "p4bw_decision": {
+      "path": "configs/u6_p4bw_density_conditioned_thomas_profile_decision_v1.json",
+      "sha256": "c198397b1534615a381362a030cc64a5ef30403fb0790ebf62b7d1f228f1dc1e",
+      "required_decision": "retain_density_conditioned_thomas_hybrid_profile"
+    },
+    "p4bw_bundle": {
+      "path": "outputs/experiments/u6_p4bw_density_conditioned_thomas_profile_v1/run_a/bundle.json",
+      "sha256": "4edf4eaaeae163a2f579584c7d9533134a7d6177d5cc78ed517cb15865e585bf",
+      "required_profile_id": "199c59fe7d046943bcd763de8cab0ab52e7156aba6d94fcd9f1ec64da4d5d6ff"
+    },
+    "p4bx_decision": {
+      "path": "configs/u6_p4bx_nonstationary_thomas_density_decision_v1.json",
+      "sha256": "68de758e59d9b5170364068870248e29fa529ab32e41fe59dcf47fbc806eb20b",
+      "required_decision": "retain_nonstationary_thomas_density_transmittance_execution"
+    },
+    "p2q_bundle": {
+      "path": "outputs/u6_p2q_kodak_250d_characteristic_prior/bundle_run1.json",
+      "sha256": "087e67544f737401fa697b21f06215a31827189e0648b8d60da666b92113caaa",
+      "required_prior_id": "04d94af2e1fcad99fbb8c9abb57179f2b63f329c263b3bf2335c4117a670aacb"
+    }
+  },
+  "source": {
+    "manifest": "outputs/u6_p8bp_fresh_native_standard_confirmation_v1/manifest.json",
+    "manifest_sha256": "edb1b45552f9bf5712c922ed816b6f9a70f5f0bee2b72a024144cde0087dd521",
+    "expected_rows": 9,
+    "expected_camera_makes": 9,
+    "required_allowed_use": "internal_independent_digital_ood_confirmation",
+    "required_rights_scope": "CC0_public_domain_internal_evaluation",
+    "required_color_state": "relative_display_srgb_approximation",
+    "freshness": "consumed P4GR-P4GW development cohort; never confirmation evidence for P4GX"
+  },
+  "candidate": {
+    "base": "exact-input-relative-linear-srgb",
+    "field": "unchanged P4GW counter-seeded Gaussian minus fixed five-tap pixel-aperture lowpass",
+    "field_seed": 320260812,
+    "field_seed_stride": 1009,
+    "field_zero_dc": "subtract exact full-frame float64 mean",
+    "field_unit_variance": "divide exact full-frame float64 standard deviation",
+    "finite_tail_transform": "3*tanh(field/3)",
+    "relative_exposure_coordinate": "for each colour layer, curve_domain_low + relative_linear_luminance*(curve_domain_high-curve_domain_low)",
+    "shared_density_sigma_projection": "minimum of red, green and blue retained P4BW 48-micrometre Sigma-D at the mapped relative exposure",
+    "projection_rationale": "a shared achromatic density component cannot exceed any individual layer's total measured Sigma-D; the minimum is the conservative no-fit upper bound",
+    "amplitude_multiplier": 1.0,
+    "density_visibility_envelope": "unchanged 4*relative-linear-luminance*(1-relative-linear-luminance)",
+    "execution": "one shared density factor for RGB with unchanged analytical bright-end guard",
+    "look": "existing-ao6-linear-residual-only",
+    "hard_clipping_allowed": false,
+    "cohort_fitting_allowed": false
+  },
+  "automatic_gates": {
+    "minimum_per_row_physical_residual_rms": 0.0001,
+    "maximum_per_row_limited_fraction": 0.05,
+    "minimum_population_p95_combined_vs_ao6_abs": 0.0001,
+    "maximum_population_p99_combined_vs_ao6_abs": 0.05,
+    "maximum_flat_region_p99_combined_vs_ao6_abs": 0.04,
+    "isolated_excursion_threshold": 0.05,
+    "isolated_support_radius_pixels": 2,
+    "minimum_isolated_support_count": 3,
+    "maximum_isolated_excursion_count": 0,
+    "maximum_new_boundary_fraction_vs_ao6": 0.0005,
+    "maximum_field_mean_absolute": 1e-12,
+    "maximum_field_std_absolute_error": 1e-12,
+    "require_all_inputs_and_outputs_finite": true,
+    "require_no_hard_clipping": true
+  },
+  "execution": {
+    "formal_processes": 2,
+    "post_result_retuning_allowed": false,
+    "same_cohort_rescue_allowed": false
+  },
+  "decision_if_pass": "retain_density_compiled_independent_nps_v1_for_fresh_photographic_confirmation",
+  "decision_if_fail": "close_density_compiled_independent_nps_v1_without_rescue",
+  "claim_ceiling": "Consumed nine-camera CC0 relative-display photographic mechanism development only; conservative shared projection of a Kodak-250D-compatible 48-micrometre Sigma-D amplitude onto a generic independent NPS field, not scene exposure, calibrated film, stock response, measured film NPS, independent confirmation, human preference or product promotion."
+}
