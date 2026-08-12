@@ -31,19 +31,21 @@ class _SpatialProfile(ctypes.Structure):
     _fields_ = [("struct_size", ctypes.c_uint32), ("abi_version", ctypes.c_uint32), ("sigma", ctypes.c_double * 3), ("mark", ctypes.c_double * 3), ("truncate", ctypes.c_double)]
 
 
-def _load(count_path: Path, spatial_path: Path):
+def _load(count_path: Path, spatial_path: Path, count_abi=2):
     count = ctypes.CDLL(str(count_path)); spatial = ctypes.CDLL(str(spatial_path))
-    count.nf_density_conditioned_poisson_u16_sample_region_v2.argtypes = [ctypes.POINTER(_CountProfile), *([ctypes.c_size_t] * 6), ctypes.POINTER(ctypes.c_float), ctypes.c_size_t, ctypes.POINTER(ctypes.c_uint16), ctypes.c_size_t]
-    count.nf_density_conditioned_poisson_u16_sample_region_v2.restype = ctypes.c_int
+    function=getattr(count,f"nf_density_conditioned_poisson_u16_sample_region_v{count_abi}")
+    scale_pointer = ctypes.POINTER(ctypes.c_double if count_abi == 3 else ctypes.c_float)
+    function.argtypes = [ctypes.POINTER(_CountProfile), *([ctypes.c_size_t] * 6), scale_pointer, ctypes.c_size_t, ctypes.POINTER(ctypes.c_uint16), ctypes.c_size_t]
+    function.restype = ctypes.c_int
     spatial.nf_cloud_spatial_response_f32_apply_v2.argtypes = [ctypes.POINTER(_SpatialProfile), ctypes.POINTER(ctypes.c_uint16), ctypes.c_size_t, ctypes.c_size_t, ctypes.c_size_t, ctypes.POINTER(ctypes.c_double), ctypes.c_size_t, ctypes.POINTER(ctypes.c_float), ctypes.POINTER(ctypes.c_float), ctypes.c_size_t]
     spatial.nf_cloud_spatial_response_f32_apply_v2.restype = ctypes.c_int
     return count, spatial
 
 
-def _native_render(profile, scale, row_height, count_lib, spatial_lib):
+def _native_render(profile, scale, row_height, count_lib, spatial_lib, count_abi=2):
     height, width = scale.shape[:2]; count = profile.count_profile
     halo = max(int(profile.gaussian_truncate * s + 0.5) for s in profile.gaussian_sigma_pixels_cmy)
-    cp = _CountProfile(ctypes.sizeof(_CountProfile), 2, (ctypes.c_double * 3)(*count.marginal_rates_cmy), count.shared_all_rate, (ctypes.c_double * 3)(*count.shared_pair_rates_cm_cy_my), count.seed, count.component_seed_stride)
+    cp = _CountProfile(ctypes.sizeof(_CountProfile), count_abi, (ctypes.c_double * 3)(*count.marginal_rates_cmy), count.shared_all_rate, (ctypes.c_double * 3)(*count.shared_pair_rates_cm_cy_my), count.seed, count.component_seed_stride)
     sp = _SpatialProfile(ctypes.sizeof(_SpatialProfile), 2, (ctypes.c_double * 3)(*profile.gaussian_sigma_pixels_cmy), (ctypes.c_double * 3)(*count.mark_optical_density_cmy), profile.gaussian_truncate)
     density_rows=[]; transmittance_rows=[]
     for y0 in range(0,height,row_height):

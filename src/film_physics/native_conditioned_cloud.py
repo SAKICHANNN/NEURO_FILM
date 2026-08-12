@@ -49,11 +49,22 @@ def load_native_conditioned_cloud(count_library: Path, spatial_library: Path):
 
 
 def _sample_counts(library, profile, scale, full_shape, origin_y):
-    values = np.ascontiguousarray(scale, dtype=np.float32)
+    values = np.ascontiguousarray(
+        scale, dtype=np.float64 if profile.abi_version == 3 else np.float32
+    )
     output = np.empty(values.shape, dtype=np.uint16)
-    status = library.nf_density_conditioned_poisson_u16_sample_region_v2(
+    function = (
+        library.nf_density_conditioned_poisson_u16_sample_region_v3
+        if profile.abi_version == 3
+        else library.nf_density_conditioned_poisson_u16_sample_region_v2
+    )
+    status = function(
         ctypes.byref(profile), *full_shape, origin_y, 0, *values.shape[:2],
-        values.ctypes.data_as(ctypes.POINTER(ctypes.c_float)), values.size,
+        values.ctypes.data_as(
+            ctypes.POINTER(
+                ctypes.c_double if profile.abi_version == 3 else ctypes.c_float
+            )
+        ), values.size,
         output.ctypes.data_as(ctypes.POINTER(ctypes.c_uint16)), output.size,
     )
     if status != 0:
