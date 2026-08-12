@@ -1,0 +1,46 @@
+{
+  "schema": "neuro_film.u6_p4du_target_resolution_cloud_two_moment_compiler_contract.v4",
+  "experiment_id": "u6.p4du-target-resolution-cloud-two-moment-compiler-v4",
+  "node": "ULT > U6 > U6.P4 > U6.P4DU",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {
+    "path": "docs/evidence/U6_P4DT_TARGET_RESOLUTION_CLOUD_MOMENT_COMPILER_V3_RESULT.json",
+    "sha256": "547bf7f4ce74ef735ea219f2e15b12a5fd8f2e7194f398b98a415fe05d6533ad",
+    "required_decision": "close_moment_compiled_target_resolution_cloud_lod_v3"
+  },
+  "fixture": {
+    "output_height": 192,
+    "output_width": 256,
+    "aperture_factor": 4,
+    "flat_density_fraction": 0.55,
+    "development_seeds": [56181, 56187, 56193],
+    "confirmation_seeds": [54187, 54193, 54203]
+  },
+  "compiler": {
+    "rate_multiplier_bounds": [8.0, 16.0],
+    "single_shared_rate_multiplier": true,
+    "mark_divisor_equals_rate_multiplier": true,
+    "gaussian_sigma_divisor": 4,
+    "objective": "median_across_development_seeds_of_mean_squared_log_candidate_to_reference_channel_rms",
+    "optimizer": "scipy_minimize_scalar_bounded",
+    "xatol": 0.0001,
+    "maximum_iterations": 64,
+    "confirmation_reselection_forbidden": true
+  },
+  "gates": {
+    "maximum_development_marginal_noise_rms_relative_error": 0.15,
+    "maximum_confirmation_mean_transmittance_absolute_error": 0.002,
+    "maximum_confirmation_marginal_noise_rms_relative_error": 0.15,
+    "maximum_confirmation_cross_channel_correlation_absolute_error": 0.05,
+    "maximum_confirmation_radial_nps_shape_rmse": 0.08,
+    "maximum_confirmation_edge_overshoot_absolute_difference": 0.01,
+    "maximum_confirmation_edge_undershoot_absolute_difference": 0.01,
+    "maximum_new_boundary_fraction": 0.0005,
+    "require_repeat_identity": true,
+    "require_product_disabled": true
+  },
+  "decision_if_pass": "retain_two_moment_target_resolution_cloud_lod_v4",
+  "decision_if_fail": "close_two_moment_target_resolution_cloud_lod_v4",
+  "claim_ceiling": "Synthetic two-moment target-resolution approximation only; not measured NPS, film granularity, scanner aperture, stock calibration or product authorization."
+}
