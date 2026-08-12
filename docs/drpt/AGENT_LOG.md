@@ -12710,3 +12710,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   fail closed before execution.
 - Next add a caller-held-hash CPU consumer and receipt. This is still a generic
   relative-display research profile, not film/scanner calibration or product.
+
+### 2026-08-13 - U6.P4HL retains canonical CPU consumer
+
+- Caller-held bundle ID `8d20ce28...e75df` loads once and drives deterministic
+  indexed rendering. The canonical receipt binds bundle/profile/prior, source
+  index, derived seeds and input/physical/scanner hashes.
+- Two reports are byte exact (`52043718...e29`); repeat and reload pixels match
+  P4HK, input remains unchanged, and wrong identity/source/index fail before
+  output. Receipt ID is `17b43ec9...17d2`.
+- Use this as the native oracle. Media integration, calibrated identity and
+  product promotion remain closed.

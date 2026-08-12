@@ -1,0 +1,31 @@
+{
+  "schema": "neuro-film.u6-p4hl-bounded-photographic-cpu-consumer-evidence.v1",
+  "node": "U6.P4HL",
+  "date": "2026-08-13",
+  "contract_commit": "1c15859f",
+  "implementation_commit": "f0770c05",
+  "contract_file_sha256": "1172122dca2dad79e6f674c2ce0bc5a60fc6552a5deda36fd25606f01e46a5c4",
+  "runtime_sha256": "e241e7aff851090dd62888ed30e908c6c7c7e749b724218892357c4a62913bb5",
+  "evaluator_sha256": "9cf861013276ae37eb27241df0a76d91d5ee6840fc42937c8baeddd0a023d7cf",
+  "runner_sha256": "b1be590df335630c1ae66a673b936be49919368ba614a2144474dd898046abdc",
+  "formal_report_sha256": "5204371817a522366339049721f7b122838152f70516910cd18252e7da33fe29",
+  "stable_evidence_id": "f8fe6f6b141c61ee3ae05b37156e6f78b0291a56e92210de04ff4c100f88fee1",
+  "bundle_sha256": "8d20ce2874036befe78657b059ffafeb24e43d2e5bc1000512092a753e1e75df",
+  "receipt_id": "17b43ec9633bfbc90cac672ccb1ce54a2366baebdbf2866b7498e5b6b30717d2",
+  "observations": {
+    "reports_byte_exact": true,
+    "expected_physical_output_exact": true,
+    "expected_scanner_output_exact": true,
+    "repeat_and_reload_output_exact": true,
+    "receipt_repeat_exact": true,
+    "receipt_binds_input_output_profile_index_and_seeds": true,
+    "input_unchanged": true,
+    "wrong_bundle_invalid_source_and_invalid_index_rejected": true,
+    "output_not_alias_of_input": true
+  },
+  "automatic_pass": true,
+  "decision": "retain_bounded_photographic_cpu_consumer_for_native_reference",
+  "scientific_conclusion": "A caller-held bundle identity now reconstructs the exact generic bounded runtime, deterministically applies one indexed source and returns a canonical receipt binding bundle, profile, prior, source index, seeds, input, physical output and scanner output. Two full audits are byte exact.",
+  "next_leaf": "Decompose and compile the exact bounded histogram/copula core as a freestanding caller-workspace native reference, retaining the Python CPU consumer as the oracle and preserving the canonical bundle identity.",
+  "claim_ceiling": "Canonical CPU reference consumer for one generic relative-display physical-inspired bundle; not calibrated film/scanner identity, media integration, native/mobile runtime or product promotion."
+}
