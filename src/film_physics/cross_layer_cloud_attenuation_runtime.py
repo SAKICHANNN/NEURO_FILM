@@ -17,6 +17,7 @@ from .cross_layer_cloud_runtime import (
     iter_optical_density_cross_layer_cloud_rows_v2,
 )
 from .density_conditioned_structure import DensityConditionedStructureResult
+from .native_cloud_attenuation import apply_native_cloud_attenuation
 
 
 @dataclass(frozen=True)
@@ -61,7 +62,9 @@ class CompiledCloudAttenuationProfile:
         return hashlib.sha256(encoded).hexdigest()
 
     @classmethod
-    def from_payload(cls, payload: dict[str, object]) -> CompiledCloudAttenuationProfile:
+    def from_payload(
+        cls, payload: dict[str, object]
+    ) -> CompiledCloudAttenuationProfile:
         expected = {
             "schema",
             "base_profile",
@@ -139,12 +142,38 @@ def iter_compiled_cloud_attenuation_rows(
     for y0, base in base_rows:
         expected = np.power(10.0, -target[y0 : y0 + base.density.shape[0]])
         candidate = expected + gain * (base.transmittance.astype(np.float64) - expected)
-        if not np.all(np.isfinite(candidate)) or np.any(candidate <= 0.0) or np.any(
-            candidate >= 1.0
+        if (
+            not np.all(np.isfinite(candidate))
+            or np.any(candidate <= 0.0)
+            or np.any(candidate >= 1.0)
         ):
             raise ValueError("compiled cloud attenuation left its open-unit domain")
         density = (-np.log10(candidate)).astype(np.float32)
         transmittance = np.power(10.0, -density.astype(np.float64)).astype(np.float32)
+        yield y0, DensityConditionedStructureResult(density, transmittance)
+
+
+def iter_native_compiled_cloud_attenuation_rows(
+    profile: CompiledCloudAttenuationProfile,
+    target_optical_density_cmy: np.ndarray,
+    *,
+    seed: int,
+    row_tile_height: int,
+    library: object,
+) -> Iterator[tuple[int, DensityConditionedStructureResult]]:
+    target = np.asarray(target_optical_density_cmy, dtype=np.float64)
+    if target.ndim != 3 or target.shape[-1] != 3 or not np.all(np.isfinite(target)):
+        raise ValueError("invalid native compiled cloud attenuation request")
+    base_rows = iter_optical_density_cross_layer_cloud_rows_v2(
+        profile.base_profile, target, seed=seed, row_tile_height=row_tile_height
+    )
+    for y0, base in base_rows:
+        expected = np.power(10.0, -target[y0 : y0 + base.density.shape[0]]).astype(
+            np.float32
+        )
+        density, transmittance = apply_native_cloud_attenuation(
+            library, expected, base.transmittance, profile.channel_residual_gain
+        )
         yield y0, DensityConditionedStructureResult(density, transmittance)
 
 
@@ -169,4 +198,5 @@ __all__ = [
     "compile_cloud_attenuation_profile",
     "estimate_compiled_cloud_attenuation_live_bytes",
     "iter_compiled_cloud_attenuation_rows",
+    "iter_native_compiled_cloud_attenuation_rows",
 ]
