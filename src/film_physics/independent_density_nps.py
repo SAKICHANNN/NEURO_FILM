@@ -224,6 +224,37 @@ def _exact_empirical_midranks(values: np.ndarray) -> np.ndarray:
     return np.ascontiguousarray(result.reshape(values.shape), dtype=np.float64)
 
 
+def _quantized_histogram_midranks(
+    values: np.ndarray, *, rank_bins: int
+) -> np.ndarray:
+    """Approximate global ranks with a streamable fixed-size histogram."""
+    array = np.asarray(values, dtype=np.float64)
+    if (
+        array.size == 0
+        or not np.all(np.isfinite(array))
+        or isinstance(rank_bins, bool)
+        or not isinstance(rank_bins, int)
+        or rank_bins < 2
+        or rank_bins > 65536
+    ):
+        raise ValueError("invalid quantized histogram rank request")
+    minimum = float(np.min(array))
+    maximum = float(np.max(array))
+    if maximum == minimum:
+        return np.full(array.shape, 0.5, dtype=np.float64)
+    scale = float(rank_bins - 1) / (maximum - minimum)
+    quantized = np.rint((array - minimum) * scale).astype(np.uint16)
+    counts = np.bincount(quantized.reshape(-1), minlength=rank_bins).astype(
+        np.uint64
+    )
+    cumulative = np.cumsum(counts, dtype=np.uint64)
+    before = cumulative - counts
+    midpoints = (
+        before.astype(np.float64) + 0.5 * counts.astype(np.float64)
+    ) / float(array.size)
+    return np.ascontiguousarray(midpoints[quantized], dtype=np.float64)
+
+
 def apply_support_matched_gamma_density(
     neutral_base: np.ndarray,
     *,
@@ -358,7 +389,7 @@ def apply_layer_support_matched_gamma_density(
     if not np.all(np.isfinite(output)) or np.any(output < 0.0) or np.any(output > 1.0):
         raise RuntimeError("layer support-matched Gamma escaped the unit cube")
     residual = output.astype(np.float64) - base
-    return output, {
+    diagnostics: dict[str, object] = {
         "minimum_target_sigma_d": float(np.min(target_sigma)),
         "maximum_target_sigma_d": float(np.max(target_sigma)),
         "support_degenerate_fraction": float(np.mean(degenerate)),
@@ -383,6 +414,7 @@ def apply_layer_support_matched_gamma_density(
         "limited_fraction": 0.0,
         "hard_clipping_used": 0.0,
     }
+    return output, diagnostics
 
 
 def apply_layer_support_matched_thomas_gamma_density(
@@ -463,7 +495,7 @@ def apply_layer_support_matched_thomas_gamma_density(
     if not np.all(np.isfinite(output)) or np.any(output < 0.0) or np.any(output > 1.0):
         raise RuntimeError("layer Thomas Gamma escaped the unit cube")
     residual = output.astype(np.float64) - base
-    return output, {
+    diagnostics = {
         "receipt_ids": receipt_ids,
         "minimum_target_sigma_d": float(np.min(target_sigma)),
         "maximum_target_sigma_d": float(np.max(target_sigma)),
@@ -485,6 +517,7 @@ def apply_layer_support_matched_thomas_gamma_density(
         "limited_fraction": 0.0,
         "hard_clipping_used": 0.0,
     }
+    return output, diagnostics
 
 
 def _neighbor_correlation(field: np.ndarray) -> float:
@@ -506,6 +539,7 @@ def apply_cross_layer_thomas_gamma_copula(
     layer_seeds: tuple[int, int, int],
     correlation_matrix: np.ndarray,
     canonical_receipt_row_block_height: int,
+    rank_bins: int | None = None,
 ) -> tuple[np.ndarray, dict[str, object]]:
     """Apply fixed cross-layer correlation to exact Thomas/Gamma marginals."""
 
@@ -520,6 +554,15 @@ def apply_cross_layer_thomas_gamma_copula(
         or correlation.shape != (3, 3)
         or not np.array_equal(correlation, correlation.T)
         or not np.array_equal(np.diag(correlation), np.ones(3))
+        or (
+            rank_bins is not None
+            and (
+                isinstance(rank_bins, bool)
+                or not isinstance(rank_bins, int)
+                or rank_bins < 2
+                or rank_bins > 65536
+            )
+        )
     ):
         raise ValueError("invalid cross-layer Thomas Gamma request")
     try:
@@ -545,7 +588,12 @@ def apply_cross_layer_thomas_gamma_copula(
         field = render_dc_projected_thomas_region(
             receipt, origin_yx=(0, 0), shape=base.shape[:2]
         )
-        normal_fields.append(norm.ppf(_exact_empirical_midranks(field)))
+        uniforms = (
+            _exact_empirical_midranks(field)
+            if rank_bins is None
+            else _quantized_histogram_midranks(field, rank_bins=rank_bins)
+        )
+        normal_fields.append(norm.ppf(uniforms))
     independent = np.stack(normal_fields, axis=-1)
     flattened = independent.reshape(-1, 3)
     centered = flattened - np.mean(flattened, axis=0, keepdims=True)
@@ -557,7 +605,14 @@ def apply_cross_layer_thomas_gamma_copula(
     whitened = (centered @ whitening).reshape(independent.shape)
     correlated = np.einsum("ij,...j->...i", cholesky, whitened)
     uniforms = np.stack(
-        [_exact_empirical_midranks(correlated[..., index]) for index in range(3)],
+        [
+            _exact_empirical_midranks(correlated[..., index])
+            if rank_bins is None
+            else _quantized_histogram_midranks(
+                correlated[..., index], rank_bins=rank_bins
+            )
+            for index in range(3)
+        ],
         axis=-1,
     )
     copula_normal = norm.ppf(uniforms)
@@ -601,7 +656,7 @@ def apply_cross_layer_thomas_gamma_copula(
     if not np.all(np.isfinite(output)) or np.any(output < 0.0) or np.any(output > 1.0):
         raise RuntimeError("cross-layer Thomas Gamma escaped the unit cube")
     residual = output.astype(np.float64) - base
-    return output, {
+    diagnostics = {
         "receipt_ids": receipt_ids,
         "empirical_input_correlation": empirical_input_correlation.tolist(),
         "empirical_copula_correlation": empirical_correlation.tolist(),
@@ -627,6 +682,9 @@ def apply_cross_layer_thomas_gamma_copula(
         "limited_fraction": 0.0,
         "hard_clipping_used": 0.0,
     }
+    if rank_bins is not None:
+        diagnostics["rank_bins"] = rank_bins
+    return output, diagnostics
 
 
 __all__ = [
