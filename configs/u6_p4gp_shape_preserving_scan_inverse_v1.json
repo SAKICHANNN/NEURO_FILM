@@ -1,0 +1,45 @@
+{
+  "schema": "neuro-film.u6-p4gp-shape-preserving-scan-inverse-contract.v1",
+  "experiment_id": "u6.p4gp-shape-preserving-scan-inverse-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4GP",
+  "date_frozen": "2026-08-12",
+  "status": "contract-frozen-implementation-ready",
+  "parent": {
+    "path": "docs/evidence/U6_P4GO_SCAN_DOMAIN_ANCHORED_INVERSE_RESULT.json",
+    "sha256": "455a45c3dac7c81e1d2058645eff16713a3587b9e4cea360b185f8f05a661895",
+    "required_decision": "close_scan_domain_anchored_inverse_v1"
+  },
+  "candidate": {
+    "build_levels": 33,
+    "operator": "per-channel-fritsch-carlson-shape-preserving-cubic-scan-to-source",
+    "scan_domain_endpoints": [[0.0, 0.0], [1.0, 1.0]],
+    "interior_knots": "exact-p4gn-build-medians",
+    "fresh_confirmation_offsets_per_interval": [0.25, 0.75],
+    "fresh_confirmation_levels": 64,
+    "chart_pixels_used_for_fit": false,
+    "extrapolation_allowed": false,
+    "hard_clipping_allowed": false
+  },
+  "gates": {
+    "maximum_confirmation_median_absolute_error": 0.01,
+    "maximum_confirmation_p95_absolute_error": 0.005,
+    "require_strict_monotonic_knots": true,
+    "require_chart_inside_calibration_domain": true,
+    "maximum_neutral_chroma_p99": 0.09,
+    "maximum_neutral_patch_mean_chroma": 0.012,
+    "maximum_edge_overshoot": 0.025,
+    "maximum_edge_undershoot": 0.025,
+    "maximum_new_boundary_fraction": 0.0005,
+    "require_partition_and_process_exact": true,
+    "require_no_extrapolation_or_clipping": true,
+    "require_visual_severe_artifact_pass": true
+  },
+  "execution": {
+    "formal_processes": 2,
+    "stop_before_chart_on_calibration_failure": true,
+    "post_result_retuning_allowed": false
+  },
+  "decision_if_pass": "retain_shape_preserving_scan_inverse_v1_for_photographic_confirmation",
+  "decision_if_fail": "close_shape_preserving_scan_inverse_v1",
+  "claim_ceiling": "Synthetic profile-bound neutral response and chart evidence only; not calibrated film, measured scanner response, human preference or product promotion."
+}
