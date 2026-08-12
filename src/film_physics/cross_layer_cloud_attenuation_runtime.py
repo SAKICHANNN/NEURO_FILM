@@ -60,6 +60,37 @@ class CompiledCloudAttenuationProfile:
         ).encode()
         return hashlib.sha256(encoded).hexdigest()
 
+    @classmethod
+    def from_payload(cls, payload: dict[str, object]) -> CompiledCloudAttenuationProfile:
+        expected = {
+            "schema",
+            "base_profile",
+            "channel_residual_gain",
+            "aperture_factor",
+            "base_rate_multiplier",
+            "product_enabled",
+        }
+        if (
+            set(payload) != expected
+            or payload.get("schema")
+            != "neuro_film.compiled_cloud_attenuation_profile.v1"
+            or payload.get("product_enabled") is not False
+            or not isinstance(payload.get("base_profile"), dict)
+        ):
+            raise ValueError("unsupported compiled cloud attenuation profile")
+        result = cls(
+            base_profile=CrossLayerCloudReferenceProfile.from_payload(
+                payload["base_profile"]  # type: ignore[arg-type]
+            ),
+            channel_residual_gain=tuple(payload["channel_residual_gain"]),  # type: ignore[arg-type]
+            aperture_factor=payload["aperture_factor"],  # type: ignore[arg-type]
+            base_rate_multiplier=payload["base_rate_multiplier"],  # type: ignore[arg-type]
+            product_enabled=False,
+        )
+        if result.to_payload() != payload:
+            raise ValueError("compiled cloud attenuation derived identity drift")
+        return result
+
 
 def compile_cloud_attenuation_profile(
     reference: CrossLayerCloudReferenceProfile,
