@@ -11767,3 +11767,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Explicit positive `PhysicalDomainArray` layer exposure now converts through
   log10 into the typed package ingress; scene/display RGB still cannot enter.
 - The exact P8CY 12MP output replays at 769.7MB peak and 4.98s maximum wall.
+
+# 2026-08-12 - U6.P8DB row-tiled spatial integration closes
+
+- The exact 128-row chain exceeded its 60s watchdog before publication because
+  the 180px backing halo repeats too much convolution. No output or worker
+  report was published; next compare the existing full-frame mechanism.

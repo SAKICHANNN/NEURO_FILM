@@ -1,0 +1,17 @@
+{
+  "schema": "neuro_film.u6_p8db_native_thomas_spatial_scale_evidence.v1",
+  "experiment_id": "u6.p8db-native-thomas-spatial-scale-v1",
+  "status": "fail-close-row-tiled-spatial-chain-timeout",
+  "implementation_commit": "cec8e02b",
+  "execution": {
+    "first_worker_watchdog_seconds": 60.0,
+    "frozen_maximum_wall_seconds": 45.0,
+    "output_published": false,
+    "worker_report_published": false,
+    "surviving_python_processes": 0
+  },
+  "diagnosis": "The 180-pixel backing-return halo causes extensive repeated convolution when executed in 128-row windows; the first 12MP worker exceeded both the frozen wall gate and the external watchdog before publication.",
+  "decision": "retain_p8da_without_row_tiled_spatial_runtime_integration",
+  "next_leaf": "Measure the existing full-frame separable spatial mechanism under the unchanged profile and 12MP fixture; do not change tile size, profile or P8DB gate.",
+  "claim_ceiling": "Resource failure of this exact 128-row tiled host composition only; no judgment of the retained physical operators or full-frame mechanism."
+}
