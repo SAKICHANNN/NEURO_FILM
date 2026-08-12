@@ -1,0 +1,70 @@
+{
+  "schema": "neuro-film.u6-p4gw-independent-density-nps-photographic-development-contract.v1",
+  "experiment_id": "u6.p4gw-independent-density-nps-photographic-development-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4GW",
+  "date_frozen": "2026-08-12",
+  "status": "contract-frozen-implementation-ready",
+  "parents": {
+    "cloud_family": {
+      "path": "docs/evidence/U6_P4GV_NPS_COMPILED_DENSITY_PHOTOGRAPHIC_DEVELOPMENT_RESULT.json",
+      "sha256": "f9e03c48fb37093670eaef8cb860b55f8776d6e4174903667ecf7124dcc12507",
+      "required_decision": "close_nps_compiled_density_v1_without_rescue"
+    },
+    "safe_density_primitive": {
+      "path": "configs/u5_r2bc1_ao6_density_grain_value_decision_v1.json",
+      "sha256": "02952afd591ed54a43ca9baf9b1999fa4b1bbf9c2168bcd6d6468cfa079a231f",
+      "required_automatic_pass": true,
+      "required_severe_artifact_pass": true,
+      "required_visual_value_pass": false
+    }
+  },
+  "source": {
+    "manifest": "outputs/u6_p8bp_fresh_native_standard_confirmation_v1/manifest.json",
+    "manifest_sha256": "edb1b45552f9bf5712c922ed816b6f9a70f5f0bee2b72a024144cde0087dd521",
+    "expected_rows": 9,
+    "expected_camera_makes": 9,
+    "required_allowed_use": "internal_independent_digital_ood_confirmation",
+    "required_rights_scope": "CC0_public_domain_internal_evaluation",
+    "required_color_state": "relative_display_srgb_approximation",
+    "freshness": "consumed P4GR-P4GV development cohort; never confirmation evidence for P4GW"
+  },
+  "candidate": {
+    "base": "exact-input-relative-linear-srgb",
+    "field": "counter-seeded Gaussian minus fixed five-tap pixel-aperture lowpass",
+    "field_seed": 320260812,
+    "field_seed_stride": 1009,
+    "field_zero_dc": "subtract exact full-frame float64 mean",
+    "field_unit_variance": "divide exact full-frame float64 standard deviation",
+    "finite_tail_transform": "3*tanh(field/3)",
+    "density_sigma": 0.0225,
+    "density_sigma_provenance": "unchanged mechanically safe U5.R2BC1 density primitive; not fit on P4GR-P4GV",
+    "density_visibility_envelope": "4*relative-linear-luminance*(1-relative-linear-luminance)",
+    "execution": "one shared density factor for RGB with analytical bright-end guard",
+    "look": "existing-ao6-linear-residual-only",
+    "hard_clipping_allowed": false
+  },
+  "automatic_gates": {
+    "minimum_per_row_physical_residual_rms": 0.0001,
+    "maximum_per_row_limited_fraction": 0.05,
+    "minimum_population_p95_combined_vs_ao6_abs": 0.0001,
+    "maximum_population_p99_combined_vs_ao6_abs": 0.05,
+    "maximum_flat_region_p99_combined_vs_ao6_abs": 0.04,
+    "isolated_excursion_threshold": 0.05,
+    "isolated_support_radius_pixels": 2,
+    "minimum_isolated_support_count": 3,
+    "maximum_isolated_excursion_count": 0,
+    "maximum_new_boundary_fraction_vs_ao6": 0.0005,
+    "maximum_field_mean_absolute": 1e-12,
+    "maximum_field_std_absolute_error": 1e-12,
+    "require_all_inputs_and_outputs_finite": true,
+    "require_no_hard_clipping": true
+  },
+  "execution": {
+    "formal_processes": 2,
+    "post_result_retuning_allowed": false,
+    "same_cohort_rescue_allowed": false
+  },
+  "decision_if_pass": "retain_independent_density_nps_v1_for_fresh_photographic_confirmation",
+  "decision_if_fail": "close_independent_density_nps_v1_without_rescue",
+  "claim_ceiling": "Consumed nine-camera CC0 relative-display photographic mechanism development only; generic physical-inspired NPS texture, not measured film NPS, independent confirmation, calibrated film, stock response, human preference or product promotion."
+}
