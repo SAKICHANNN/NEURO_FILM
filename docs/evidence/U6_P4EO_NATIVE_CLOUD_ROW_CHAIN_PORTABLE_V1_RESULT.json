@@ -9,11 +9,11 @@
     "report_sha256": "14ac2d5ce8dfff6f4856a9df4bf01d724fb753777ee4324288aaa5623b67194b",
     "byte_exact": true
   },
-  "stable_evidence_id": "90a920b1eaa2f8d0e422f0284136a524e204c61fdda74bc1e7fa71ea3d884029",
-  "contract_sha256": "e437ff56543ff9ba113c53e4f7cc4b4597a80d0dcb39433ab5b3b19cfe76369f",
+  "stable_evidence_id": "512a04a13153208df5ce621dc133e9167c7be30a6969b78766328b26f1bafeb7",
+  "contract_sha256": "70da29e6108a0177b4a120b00f9aae98961ee106d69423bf6cd6d50fadf3862d",
   "android": {
-    "arm64-v8a": {"bytes": 12504, "sha256": "a1e7f8b38f7378a1de852d3978ac3a2e89100973bb87b4189a1e10de4a5c8707"},
-    "x86_64": {"bytes": 14208, "sha256": "d395ca62b6ccc03bb00bf3ea606939a61dc354afd01671bb16182866da40c784"},
+    "arm64-v8a": {"bytes": 12488, "sha256": "2e42bf893045f1469debe561061d020ab9169ff3c01ea437a63cf306f586c12c"},
+    "x86_64": {"bytes": 14208, "sha256": "de4b9da6dae65ebc0ec3b9c94449c2a3c8f73f0ddd510979d2468822860dea9a"},
     "required_exports_exact": true
   },
   "apple": {

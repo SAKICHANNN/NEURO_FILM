@@ -54,8 +54,10 @@ def evaluate(root: Path, contract_path: Path, ndk: Path, host_clang: Path, sdk: 
             _finish_owned_emulator_processes(emulator,c["runtime"]["avd_name"],port)
             if not _cleanup_owned_launchers(emulator,c["runtime"]["avd_name"],port):raise RuntimeError("owned emulator survived cleanup")
     rows=[r for b in boots for r in b["runs"]]; hd=np.fromfile(host_paths[0],dtype='<f4'); ht=np.fromfile(host_paths[1],dtype='<f4'); ds=[np.fromfile(r["paths"][0],dtype='<f4') for r in rows]; ts=[np.fromfile(r["paths"][1],dtype='<f4') for r in rows]
+    max_density=max(float(np.max(np.abs(x.astype(np.float64)-hd.astype(np.float64)))) for x in ds)
+    density_differing=max(int(np.count_nonzero(x!=hd)) for x in ds)
     gates={"density":all(np.array_equal(x,hd) for x in ds),"transmittance":all(np.array_equal(x,ht) for x in ts),"repeat":all(np.array_equal(x,ds[0]) for x in ds) and all(np.array_equal(x,ts[0]) for x in ts),"workspace":all("counts=6909 convolution=2303 core=4371" in r["stdout"] for r in rows),"atomic":all("invalid=2" in r["stdout"] for r in rows),"abi":all(b["abi"]=="x86_64" for b in boots),"cleanup":_cleanup_owned_launchers(emulator,c["runtime"]["avd_name"],port)}
-    stable={"contract_sha256":_sha(contract_path),"host_density_sha256":_sha(host_paths[0]),"host_transmittance_sha256":_sha(host_paths[1]),"gates":gates,"decision":c["decision_if_pass"] if all(gates.values()) else c["decision_if_fail"],"claim_ceiling":c["claim_ceiling"]}
+    stable={"contract_sha256":_sha(contract_path),"host_density_sha256":_sha(host_paths[0]),"host_transmittance_sha256":_sha(host_paths[1]),"maximum_density_absolute_error":max_density,"density_differing_values":density_differing,"gates":gates,"decision":c["decision_if_pass"] if all(gates.values()) else c["decision_if_fail"],"claim_ceiling":c["claim_ceiling"]}
     return {"schema":"neuro_film.u6_p4ep_native_cloud_row_chain_android_runtime.v1","automatic_pass":all(gates.values()),"stable":stable,"stable_evidence_id":hashlib.sha256(json.dumps(stable,sort_keys=True,separators=(",",":")).encode()).hexdigest(),"host_stdout":host_stdout}
 
 

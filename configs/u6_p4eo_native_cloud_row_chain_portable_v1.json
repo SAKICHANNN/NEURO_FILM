@@ -6,7 +6,7 @@
   "status": "contract_frozen_implementation_ready",
   "parent": {
     "path": "docs/evidence/U6_P4EN_NATIVE_CLOUD_ROW_CHAIN_ABI_V1_RESULT.json",
-    "sha256": "c8872fb086989788c94824d4019c1cb8323e5dbfdb532fc011b509d7a163c9f7",
+    "sha256": "bf5536957828faefc5a592c361f93181c16ef0f3ae43e7de108874f28df481a4",
     "required_decision": "retain_native_cloud_row_chain_abi_v1"
   },
   "targets": {

@@ -6,7 +6,7 @@
   "status": "contract_frozen_implementation_ready",
   "parent": {
     "path": "docs/evidence/U6_P4EO_NATIVE_CLOUD_ROW_CHAIN_PORTABLE_V1_RESULT.json",
-    "sha256": "17e93dcc4738dc26759e9d3938591553d13b3479789226b78740cf5d18efff16",
+    "sha256": "0d83fe48f58e8cbced120f94e43ec3ffb1b5c82b25c173d5379ab240008b56d1",
     "required_decision": "retain_native_cloud_row_chain_portable_v1"
   },
   "fixture": {"full_height": 73, "core_height": 31, "width": 47, "origin_y": 61, "halo": 9, "seed": 78277},
