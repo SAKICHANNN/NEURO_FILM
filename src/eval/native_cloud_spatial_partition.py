@@ -281,6 +281,7 @@ def render_physical_partition(
     exact_sensitometry_endpoints: bool = False,
     density_envelope_diagnostics: list[dict[str, float]] | None = None,
     cloud_profile: CrossLayerCloudReferenceProfile | None = None,
+    physical_baseline_outputs: list[np.ndarray] | None = None,
 ) -> np.ndarray:
     """Run the exact P4EY/P4FB physical provider for one logical core."""
 
@@ -389,7 +390,9 @@ def render_physical_partition(
         *[item.ctypes.data_as(fp) for item in work],flat.size,output.ctypes.data_as(fp),output.size)
     if status: raise RuntimeError(f"P4FB physical provider post failed: {status}")
     result = output.reshape(height,width,3)
-    if envelope_diagnostics is not None and density_envelope_diagnostics is not None:
+    if envelope_diagnostics is not None and (
+        density_envelope_diagnostics is not None or physical_baseline_outputs is not None
+    ):
         assert base_density_for_boundary is not None
         baseline_flat=np.ascontiguousarray(base_density_for_boundary.reshape(-1),np.float32)
         baseline_work=[np.empty_like(baseline_flat) for _ in range(6)]
@@ -404,12 +407,15 @@ def render_physical_partition(
         if status:
             raise RuntimeError(f"P4FB physical provider baseline post failed: {status}")
         baseline_result=baseline_output.reshape(height,width,3)
-        candidate_boundary=(result<=0.0)|(result>=1.0)
-        baseline_boundary=(baseline_result<=0.0)|(baseline_result>=1.0)
-        envelope_diagnostics["new_boundary_fraction"] = float(
-            np.mean(candidate_boundary & ~baseline_boundary)
-        )
-        density_envelope_diagnostics.append(envelope_diagnostics)
+        if physical_baseline_outputs is not None:
+            physical_baseline_outputs.append(baseline_result.copy())
+        if density_envelope_diagnostics is not None:
+            candidate_boundary=(result<=0.0)|(result>=1.0)
+            baseline_boundary=(baseline_result<=0.0)|(baseline_result>=1.0)
+            envelope_diagnostics["new_boundary_fraction"] = float(
+                np.mean(candidate_boundary & ~baseline_boundary)
+            )
+            density_envelope_diagnostics.append(envelope_diagnostics)
     return result
 
 
