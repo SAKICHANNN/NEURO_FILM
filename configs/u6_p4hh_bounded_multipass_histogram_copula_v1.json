@@ -1,0 +1,44 @@
+{
+  "schema": "neuro-film.u6-p4hh-bounded-multipass-histogram-copula-contract.v1",
+  "experiment_id": "u6.p4hh-bounded-multipass-histogram-copula-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4HH",
+  "date_frozen": "2026-08-13",
+  "status": "contract-frozen-implementation-ready",
+  "question": "Can receipt-replayed canonical row passes reproduce P4HG without any full-frame field, rank or copula intermediate?",
+  "parents": {
+    "p4hg_result": {
+      "path": "docs/evidence/U6_P4HG_QUANTIZED_HISTOGRAM_RANK_APPROXIMATION_RESULT.json",
+      "sha256": "059a39b61e6770baf135fb031eea0989814282e21a9ada5a25ed9ce2870bf883",
+      "required_decision": "retain_uint16_histogram_rank_core_for_bounded_multipass_implementation"
+    },
+    "p4hg_contract": {
+      "path": "configs/u6_p4hg_quantized_histogram_rank_approximation_v1.json",
+      "sha256": "14a34edb60f1b90825be44556235e8ad1eef4989783c8f70b8d0921bbd6d6987"
+    }
+  },
+  "candidate": {
+    "canonical_row_block_height": 128,
+    "rank_bins": 65536,
+    "passes": ["raw-minmax", "raw-histogram", "normal-covariance", "correlated-minmax", "correlated-histogram", "output"],
+    "full_frame_intermediates_allowed": ["input", "output"],
+    "forbidden_full_frame_intermediates": ["thomas-field", "uniform-rank", "normal-field", "whitened-field", "correlated-field", "delta-density"],
+    "post_result_pass_or_gate_tuning_allowed": false
+  },
+  "automatic_gates": {
+    "maximum_output_rmse_vs_p4hg": 0.000005,
+    "maximum_output_p999_absolute_vs_p4hg": 0.00005,
+    "maximum_output_absolute_vs_p4hg": 0.0005,
+    "maximum_peak_live_temporary_bytes": 16777216,
+    "require_repeat_identity": true,
+    "require_finite_unit_output": true,
+    "require_no_full_frame_intermediate": true
+  },
+  "execution": {
+    "formal_processes": 2,
+    "post_result_retuning_allowed": false,
+    "same_fixture_rescue_allowed": false
+  },
+  "decision_if_pass": "retain_bounded_multipass_histogram_copula_for_photographic_runtime",
+  "decision_if_fail": "close_bounded_multipass_histogram_copula_without_rescue",
+  "claim_ceiling": "Synthetic bounded-intermediate CPU reference for one confirmed generic structure profile; not yet full photographic runtime, measured memory RSS, native/mobile implementation, calibrated film/scanner response or product promotion."
+}
