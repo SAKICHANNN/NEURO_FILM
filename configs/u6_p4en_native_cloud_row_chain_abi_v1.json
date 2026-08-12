@@ -1,0 +1,29 @@
+{
+  "schema": "neuro_film.u6_p4en_native_cloud_row_chain_abi_contract.v1",
+  "experiment_id": "u6.p4en-native-cloud-row-chain-abi-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4EN",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {
+    "path": "docs/evidence/U6_P4EM_NATIVE_CLOUD_FULL_TYPED_CHAIN_V1_RESULT.json",
+    "sha256": "2344b04fdee59fb93a4bf561b8de9fa34c8a9cd119113dbc4e00a8f3dfb8e542",
+    "required_decision": "retain_native_cloud_full_typed_chain_v1"
+  },
+  "fixture": {
+    "height": 257,
+    "width": 385,
+    "seed": 78277,
+    "pixel_pitch_um": 6.35,
+    "partition_heights": [31, 64, 127]
+  },
+  "gates": {
+    "require_exact_reference_row_chain_output": true,
+    "require_exact_partition_identity": true,
+    "require_output_unchanged_on_failure": true,
+    "require_workspace_query_exact": true,
+    "maximum_workspace_bytes_per_extended_pixel": 14
+  },
+  "decision_if_pass": "retain_native_cloud_row_chain_abi_v1",
+  "decision_if_fail": "close_native_cloud_row_chain_abi_v1",
+  "claim_ceiling": "Synthetic native cloud row-chain arithmetic and bounded workspace only; not calibrated stock, complete native renderer, target-device runtime or product authorization."
+}
