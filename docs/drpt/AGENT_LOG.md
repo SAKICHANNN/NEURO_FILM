@@ -12766,3 +12766,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   atomicity all pass without changing the P4HO thresholds.
 - Advance to profile-bound composition with P4HN uniforms. Spatial generation,
   photographic parity and product integration remain open.
+
+### 2026-08-13 - U6.P4HQ retains profile-bound native density composition
+
+- The exact bundle produces shape values from `105.0` to `2.55e12`, exercising
+  98,653 direct and 33,140 asymptotic Gamma inversions after calibrated copula
+  transport.
+- Maximum developed-density error is `6.71e-10`, float32 transmittance error is
+  `2.99e-8`, and MSVC/LLVM final pixels are byte exact. Repeat, input lifetime,
+  active support and unit-cube gates all pass.
+- Next integrate exact bounded Thomas receipt fields and rerun the frozen P4HJ
+  photographic/scanner gates; calibration and product claims remain closed.

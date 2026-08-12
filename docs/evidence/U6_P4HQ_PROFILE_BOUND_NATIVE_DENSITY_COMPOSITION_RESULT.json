@@ -1,0 +1,33 @@
+{
+  "schema": "neuro-film.u6-p4hq-profile-bound-native-density-composition-evidence.v1",
+  "node": "U6.P4HQ",
+  "date": "2026-08-13",
+  "contract_commit": "14c0f30f",
+  "implementation_commit": "2dc33db3",
+  "contract_file_sha256": "8bd0d55802bc85945a9b19d7d1418bcaa4b2554fd5a2d113ad2d633581c9929e",
+  "runtime_sha256": "b73d7664346eb810742f56bce1641b5a47c7455b8a4070d17c8d9a647281a4c5",
+  "evaluator_sha256": "2ba194f83fed9da894d1433e3a280e33fa4d0ec03bf8d483e8c7e5f49b5f745e",
+  "runner_sha256": "25499cebdb3ab5256557c491dd5e0ec241127e767175dc3ebdd91f1becc226af",
+  "formal_report_sha256": "3fd4bdca5abc87a4743133fb466525dde80deaf7667d0b5940f51a1006429444",
+  "stable_evidence_id": "2bf1f847169aa72bacc1187ab5a1d10a4a26176f9474ca379ba9ae8d0cfddfdc",
+  "profile_bundle_sha256": "8d20ce2874036befe78657b059ffafeb24e43d2e5bc1000512092a753e1e75df",
+  "observations": {
+    "sample_count": 131793,
+    "direct_branch_count": 98653,
+    "asymptotic_branch_count": 33140,
+    "minimum_shape": 105.00601026398664,
+    "maximum_shape": 2550291067379.525,
+    "maximum_developed_density_error": 6.702853827533772e-10,
+    "maximum_transmittance_absolute_error": 2.9802322387695312e-8,
+    "maximum_cross_compiler_absolute_error": 0.0,
+    "final_uniform_correlation_error": 5.40424454853472e-7,
+    "active_fraction": 1.0,
+    "input_unchanged": true,
+    "repeat_exact": true
+  },
+  "automatic_pass": true,
+  "decision": "retain_profile_bound_native_density_composition_for_spatial_runtime_integration",
+  "scientific_conclusion": "The exact generic profile's characteristic and amplitude mappings exercise both retained native numerical branches over more than ten orders of shape. The composed developed-density and transmittance outputs agree with the SciPy reference within 6.71e-10 and 2.99e-8, and final float32 pixels are byte-exact across MSVC and LLVM-MinGW.",
+  "next_leaf": "Feed exact bounded Thomas receipt fields into the composed native density path and compare against P4HJ on the frozen photographic cohort, including all physical, paired-scanner, RSS and runtime gates.",
+  "claim_ceiling": "Profile-bound host composition of native statistical primitives on a disjoint synthetic image; not native spatial field generation, photographic parity, calibrated film response, media integration or product promotion."
+}
