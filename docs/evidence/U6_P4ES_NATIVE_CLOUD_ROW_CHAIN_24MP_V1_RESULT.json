@@ -1,0 +1,25 @@
+{
+  "schema": "neuro_film.u6_p4es_native_cloud_row_chain_24mp.v1",
+  "experiment_id": "u6.p4es-native-cloud-row-chain-24mp-v1",
+  "date_executed": "2026-08-12",
+  "implementation_commit": "88ea8262",
+  "automatic_pass": true,
+  "formal_runs": [
+    {"seconds": [27.791819799982477, 27.91891060001217], "stable_evidence_id": "f45eb87aa8778b8f6cf82f916706ecc484e3ad52111df5f694761eaf0a8cbe70"},
+    {"seconds": [27.51397159998305, 27.15415970000322], "stable_evidence_id": "f45eb87aa8778b8f6cf82f916706ecc484e3ad52111df5f694761eaf0a8cbe70"}
+  ],
+  "contract_sha256": "415ed6540a261f46cc318ffcb7903e2574e3f1ab75771e1440643869a0c1915f",
+  "output_sha256": "a287a4893f6d855705b489b242c478df4a67770b19259091f9ad82bbf8ab44a7",
+  "results": {
+    "pixels": 24000000,
+    "row_tile_height": 128,
+    "caller_scratch_bytes": 30696000,
+    "full_scale_bytes": 576000000,
+    "maximum_wall_seconds": 27.91891060001217,
+    "repeat_output_exact": true,
+    "new_boundary_values": 0
+  },
+  "decision": "retain_native_cloud_row_chain_24mp_v1",
+  "next_bottleneck": "Replace the full-frame double scale field with bounded row-provider input while preserving exact output.",
+  "claim_ceiling": "Local Windows x64 CPU synthetic 24MP row-chain timing and caller scratch only; not complete renderer, image quality, calibrated stock or product authorization."
+}
