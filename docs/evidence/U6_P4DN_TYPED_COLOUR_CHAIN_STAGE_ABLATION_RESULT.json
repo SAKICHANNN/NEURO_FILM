@@ -1,0 +1,20 @@
+{
+  "schema": "neuro_film.u6_p4dn_typed_colour_chain_stage_ablation_evidence.v1",
+  "node": "U6.P4DN",
+  "date": "2026-08-12",
+  "implementation_commit": "54ae351d",
+  "contract_sha256": "a38691afa2a1759a0eda2b6febfa6129f9ec92d471216628998cb0bcd59edcae",
+  "formal_report_sha256": "5281afeb893767048c3249848310b66d3f59cd5ef2c4e78d56f0fb568386da0c",
+  "stable_evidence_id": "aa83799aa51dc461cd5fcef69ea34c0d0ed6d7e9f1a7bc324628410a56532ba2",
+  "exact_replays": 2,
+  "automatic_pass": true,
+  "cloud_stage_rms": 0.011298474155171696,
+  "scanner_stage_rms": 0.01782578385270598,
+  "combined_vs_cloud_only_rms": 0.017949051238521637,
+  "combined_vs_scanner_only_rms": 0.009709013771841468,
+  "wrong_scanner_residual_ratio": 2.0080796583590326,
+  "neutral_cloud_residual_chroma_p99": 0.027721208360416524,
+  "combined_new_boundary_fraction": 0.0,
+  "decision": "retain_typed_colour_cloud_scanner_chain_with_separate_stage_identities",
+  "claim_ceiling": "Generic synthetic typed colour-chain ablation only; not calibrated stock, process, scanner, visual preference or product evidence."
+}

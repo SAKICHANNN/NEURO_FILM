@@ -11993,3 +11993,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   nuisance; scanner B raises the residual to 1.588x the correct-scanner value.
 - No new boundary sample appears and two reports are byte-identical. Proceed
   to a complete typed-chain ablation; this is not calibration or preference.
+
+# 2026-08-12 - U6.P4DN closes the typed colour-chain ablation
+
+- The complete exposure/density/cloud/scanner chain preserves separate cloud
+  and scanner contributions; wrong-scanner residual is 2.008x correct and the
+  combined output creates no new boundary sample.
+- Negative and slide interpretation IDs leave material bytes identical, and
+  full/127-row/replay execution agrees. Continue to density-dependent spatial
+  response rather than adding further scanner/cloud ablations.
