@@ -309,9 +309,107 @@ def apply_support_matched_gamma_density(
     return output, diagnostics
 
 
+def apply_layer_support_matched_gamma_density(
+    neutral_base: np.ndarray,
+    *,
+    profile: DensityConditionedThomasProfile,
+    prior: ManufacturerCharacteristicPrior,
+    layer_seeds: tuple[int, int, int],
+) -> tuple[np.ndarray, dict[str, float]]:
+    """Apply independent support- and moment-matched RGB layer densities."""
+
+    base = np.asarray(neutral_base, dtype=np.float64)
+    if (
+        base.ndim != 3
+        or base.shape[-1] != 3
+        or not np.all(np.isfinite(base))
+        or np.any(base < 0.0)
+        or np.any(base > 1.0)
+        or not isinstance(profile, DensityConditionedThomasProfile)
+        or not isinstance(prior, ManufacturerCharacteristicPrior)
+        or len(layer_seeds) != 3
+        or any(
+            not isinstance(seed, int) or seed < 0 or seed >= 2**64
+            for seed in layer_seeds
+        )
+    ):
+        raise ValueError("invalid layer support-matched Gamma request")
+
+    delta_density = np.zeros_like(base, dtype=np.float64)
+    target_sigma = np.zeros_like(base, dtype=np.float64)
+    degenerate = np.zeros_like(base, dtype=bool)
+    field_means: list[float] = []
+    field_stds: list[float] = []
+    for index, channel in enumerate(("red", "green", "blue")):
+        values = base[..., index]
+        lower, upper = prior.curves[index].domain
+        exposure = lower + values * (upper - lower)
+        sigma_d = profile.amplitude_profile.evaluate_channel(
+            prior, channel, exposure
+        )
+        sigma = sigma_d * (4.0 * values * (1.0 - values))
+        target_sigma[..., index] = sigma
+        available = np.full(values.shape, np.inf, dtype=np.float64)
+        positive = values > 0.0
+        available[positive] = -np.log10(values[positive])
+        active = (available > np.finfo(np.float64).eps) & (
+            sigma > np.finfo(np.float64).tiny
+        )
+        degenerate[..., index] = ~active
+        field, field_diagnostics = synthesize_independent_density_nps(
+            values.shape, seed=layer_seeds[index]
+        )
+        field_means.append(field_diagnostics["field_mean"])
+        field_stds.append(field_diagnostics["field_std"])
+        uniform = _exact_empirical_midranks(field)
+        if np.any(active):
+            selected_density = available[active]
+            selected_sigma = sigma[active]
+            shape = np.square(selected_density / selected_sigma)
+            scale = np.square(selected_sigma) / selected_density
+            quantiles = gamma.ppf(
+                uniform[active], a=shape, scale=scale
+            )
+            delta_density[..., index][active] = quantiles - selected_density
+        if np.any(delta_density[..., index][active] < -available[active]):
+            raise RuntimeError("layer Gamma density left its physical support")
+
+    output64 = base * np.power(10.0, -delta_density)
+    output = np.ascontiguousarray(output64, dtype=np.float32)
+    if not np.all(np.isfinite(output)) or np.any(output < 0.0) or np.any(output > 1.0):
+        raise RuntimeError("layer support-matched Gamma escaped the unit cube")
+    residual = output.astype(np.float64) - base
+    return output, {
+        "minimum_target_sigma_d": float(np.min(target_sigma)),
+        "maximum_target_sigma_d": float(np.max(target_sigma)),
+        "support_degenerate_fraction": float(np.mean(degenerate)),
+        "support_degenerate_residual_absolute": float(
+            np.max(np.abs(delta_density[degenerate]), initial=0.0)
+        ),
+        "minimum_developed_density": float(
+            np.min(
+                np.where(
+                    base > 0.0,
+                    -np.log10(np.maximum(base, np.finfo(np.float64).tiny))
+                    + delta_density,
+                    np.inf,
+                )
+            )
+        ),
+        "bounded_residual_rms": float(np.sqrt(np.mean(residual * residual))),
+        "maximum_field_mean_absolute": max(abs(value) for value in field_means),
+        "maximum_field_std_absolute_error": max(
+            abs(value - 1.0) for value in field_stds
+        ),
+        "limited_fraction": 0.0,
+        "hard_clipping_used": 0.0,
+    }
+
+
 __all__ = [
     "apply_density_compiled_independent_nps",
     "apply_independent_density_nps",
+    "apply_layer_support_matched_gamma_density",
     "apply_support_matched_gamma_density",
     "compile_conservative_shared_sigma_d",
     "synthesize_independent_density_nps",
