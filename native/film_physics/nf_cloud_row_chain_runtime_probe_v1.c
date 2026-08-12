@@ -1,4 +1,4 @@
-#include "nf_conditioned_cloud_row_chain_f32_v1.h"
+#include "nf_conditioned_cloud_row_chain_f32_v2.h"
 #include "nf_deterministic_log10_f32_v1.h"
 
 #include <stdio.h>
@@ -18,15 +18,13 @@ int main(int argc, char** argv) {
     if(!scale||!expected||!counts||!conv||!sd||!st||!density||!trans)return 3;
     for(i=0u;i<scale_n;i++)scale[i]=(double)((i*37u+11u)%1001u)/1000.;
     for(i=0u;i<output_n;i++)expected[i]=.2f+(float)((i*19u+7u)%601u)/1000.f;
-    status=nf_conditioned_cloud_row_chain_f32_apply_v1(&cp,&sp,full,width,origin,core,halo,scale,scale_n,expected,output_n,gain,counts,count_n,conv,conv_n,sd,st,scratch_n,density,trans,output_n);
-    if(status==0)status=nf_deterministic_neg_log10_f32_apply_v1(trans,output_n,density);
+    status=nf_conditioned_cloud_row_chain_f32_apply_v2(&cp,&sp,full,width,origin,core,halo,scale,scale_n,expected,output_n,gain,counts,count_n,conv,conv_n,sd,st,scratch_n,density,trans,output_n);
     for(i=0u;i<output_n;i++){density[i]=-77.f;trans[i]=-77.f;}
     scale[origin*width*3u]=0./0.;
-    bad=nf_conditioned_cloud_row_chain_f32_apply_v1(&cp,&sp,full,width,origin,core,halo,scale,scale_n,expected,output_n,gain,counts,count_n,conv,conv_n,sd,st,scratch_n,density,trans,output_n);
+    bad=nf_conditioned_cloud_row_chain_f32_apply_v2(&cp,&sp,full,width,origin,core,halo,scale,scale_n,expected,output_n,gain,counts,count_n,conv,conv_n,sd,st,scratch_n,density,trans,output_n);
     for(i=0u;i<output_n;i++)if(density[i]!=-77.f||trans[i]!=-77.f)return 4;
     scale[origin*width*3u]=0.;
-    status=nf_conditioned_cloud_row_chain_f32_apply_v1(&cp,&sp,full,width,origin,core,halo,scale,scale_n,expected,output_n,gain,counts,count_n,conv,conv_n,sd,st,scratch_n,density,trans,output_n);
-    if(status==0)status=nf_deterministic_neg_log10_f32_apply_v1(trans,output_n,density);
+    status=nf_conditioned_cloud_row_chain_f32_apply_v2(&cp,&sp,full,width,origin,core,halo,scale,scale_n,expected,output_n,gain,counts,count_n,conv,conv_n,sd,st,scratch_n,density,trans,output_n);
     a=fopen(argv[1],"wb");b=fopen(argv[2],"wb");if(!a||!b||fwrite(density,sizeof(float),output_n,a)!=output_n||fwrite(trans,sizeof(float),output_n,b)!=output_n)return 5;fclose(a);fclose(b);
     printf("status=%d invalid=%d counts=%zu convolution=%zu core=%zu\n",status,bad,count_n,conv_n,scratch_n);
     free(scale);free(expected);free(counts);free(conv);free(sd);free(st);free(density);free(trans);
