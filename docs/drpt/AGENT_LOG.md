@@ -12231,3 +12231,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   rows in two fresh workers, with exact file/pixel identities and full cleanup.
 - Peak RSS is 900.0-937.3MB and wall 39.9-41.0s. All frozen gates pass; this
   validates an intermediate scene-linear file path, not camera or EXR decode.
+
+# 2026-08-12 - U6.P4FY composes correct-domain cloud with Standard display
+
+- Correct-domain cloud scan-linear rows now feed the frozen neutral gauge,
+  sRGB OETF and AO6 display in that order while AO6 context remains owned by
+  the original source. Two partitions and two repeats are byte exact.
+- The row result exactly matches independent full-frame composition and has a
+  nonzero display effect. This is synthetic composition evidence, not stock
+  calibration, visual preference or product promotion.

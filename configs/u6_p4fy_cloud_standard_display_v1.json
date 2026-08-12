@@ -1,0 +1,43 @@
+{
+  "schema": "neuro-film.u6-p4fy-cloud-standard-display.v1",
+  "status": "research-only",
+  "input": {
+    "domain": "scene-linear-relative-exposure",
+    "primaries": "linear-srgb-d65",
+    "source_is_replayable": true
+  },
+  "order": [
+    "scene-linear-relative-exposure",
+    "forward-scatter",
+    "sensitometry",
+    "developed-dye-cloud-density",
+    "bounded-development-adjacency",
+    "dye-diffusion",
+    "density-interpretation",
+    "scanner-mtf",
+    "scan-linear",
+    "neutral-gauge",
+    "srgb-oetf",
+    "ao6-display"
+  ],
+  "fixture": {
+    "height": 64,
+    "width": 96,
+    "tile_rows": [8, 13]
+  },
+  "gates": {
+    "partition_exact": true,
+    "repeat_exact": true,
+    "manual_composition_exact": true,
+    "finite_unit_output": true,
+    "display_effect_nonzero": true,
+    "source_passes": 4
+  },
+  "result": {
+    "input_sha256": "032ba450fbe09b73a0c82d166b5b050fe3edd92f6ded4e5cf749b21a91f12a69",
+    "scan_linear_sha256": "665597746098883ca4e4c0b524a65da83f1088e2ae09a1e70f748c831e9a648e",
+    "display_output_sha256": "feb80a9272dbe1e0aaaf4ee0360d415e700626b14376d5e449f59e896da2f43a",
+    "decision": "pass-synthetic-composition"
+  },
+  "claim_ceiling": "synthetic-correct-domain-cloud-plus-frozen-ao6-composition-not-calibrated-not-promoted"
+}
