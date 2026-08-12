@@ -1,0 +1,45 @@
+{
+  "schema": "neuro_film.u6_p4do_cloud_spatial_order_ablation_contract.v1",
+  "experiment_id": "u6.p4do-cloud-spatial-order-ablation-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4DO",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parents": [
+    {
+      "path": "docs/evidence/U6_P4DN_TYPED_COLOUR_CHAIN_STAGE_ABLATION_RESULT.json",
+      "sha256": "4706ae92b487fc285fbae8aca182c4218f2b35e732c3d3591715f676a50979b5",
+      "required_decision": "retain_typed_colour_cloud_scanner_chain_with_separate_stage_identities"
+    },
+    {
+      "path": "configs/u6_p5c_bounded_adjacency_decision_v1.json",
+      "sha256": "9556561899eea5757b60936509b6f95831be4b13566a3c4b668de00303c88dc4",
+      "required_status": "automatic-and-autonomous-visual-pass-development-only"
+    }
+  ],
+  "fixture": {
+    "height": 513,
+    "width": 769,
+    "seed": 50181,
+    "pixel_pitch_um": 1.0,
+    "row_partition_height": 127,
+    "measurement_margin": 24
+  },
+  "arms": [
+    "adjacency-and-diffusion-before-cloud-sampling",
+    "cloud-sampling-before-adjacency-and-diffusion",
+    "diffusion-before-cloud-without-adjacency"
+  ],
+  "gates": {
+    "maximum_mean_transmittance_error": 0.005,
+    "maximum_noise_rms_amplification_after_cloud": 1.15,
+    "maximum_edge_overshoot": 0.02,
+    "maximum_edge_undershoot": 0.02,
+    "maximum_new_boundary_fraction": 0.0005,
+    "minimum_adjacency_stage_rms_before_cloud": 0.0001,
+    "require_partition_identity_for_precloud_arm": true,
+    "require_repeat_identity": true
+  },
+  "decision_if_pass": "retain_spatial_mean_processing_before_density_conditioned_cloud_sampling",
+  "decision_if_fail": "close_or_revise_cloud_spatial_order_combination",
+  "claim_ceiling": "Generic synthetic ordering evidence only; not measured development, dye diffusion, film MTF, stock calibration, visual preference or product evidence."
+}
