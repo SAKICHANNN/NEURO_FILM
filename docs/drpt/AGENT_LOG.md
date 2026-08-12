@@ -12290,3 +12290,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - P4GD freezes a two-cloud-pass composition: pass one builds context from the
   exact gauged physical rows; pass two applies AO6. Six fresh scenes and the
   original-source-context negative control are fixed before formal execution.
+
+# 2026-08-12 - U6.P4GD closes double-tone AO6 base composition
+
+- Two formal processes are byte exact. Physical-output context removes the
+  constant-image failure, preserves six distinct outputs and adds no boundary,
+  but retains only 26.6-30.3% of AO6-only range and 27.5-28.2% of its variance.
+- All 6/6 fail the frozen 50% gates. The exact AO6 base pairing closes; the
+  next candidate may test only its downstream residual after the physical
+  tone chain, avoiding a second density/statistics transform.
