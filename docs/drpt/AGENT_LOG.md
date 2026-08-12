@@ -12256,3 +12256,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   transaction, and restart-verifies the committed image.
 - This is a functional synthetic transaction. Large-image encoded resource
   evidence and visual preference remain unclaimed.
+
+# 2026-08-12 - U6.P4GB passes the 24MP verified PNG transaction
+
+- Two fresh workers produce the same 150,793-byte PNG and exact raw float
+  output, restart-verify both commits and remove every owned transaction file.
+- Peak process-tree RSS is 965.6-981.1MB and wall time 69.3-71.2s, passing the
+  frozen 1GiB/240s/repeat gates. Scientific ablation remains required before
+  treating the combined physical/display chain as useful.

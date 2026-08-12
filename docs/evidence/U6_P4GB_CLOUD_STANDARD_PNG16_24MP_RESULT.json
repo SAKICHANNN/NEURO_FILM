@@ -1,0 +1,27 @@
+{
+  "schema": "neuro-film.u6-p4gb-cloud-standard-png16-24mp-result.v1",
+  "status": "PASS",
+  "contract_sha256": "35a857b497bdf0e26821126a37c7a53e23009b347e3cea0c1ea55b25ee490b81",
+  "stable_evidence_id": "87c8e581a2ba71ca7bfeae1b2d3e7e4eaf0d363943938edb1f1870c23e9795b0",
+  "identities": {
+    "input_sha256": "427c526f137ff80780236646a7d91ecf8d7a588c43424adea22c2ef7c77312c0",
+    "raw_output_sha256": "d05a60d90297c87cbffbfcecd00d50e4929c7627833a46efde33ee5a12cb84c0",
+    "png_output_sha256": "1d6eba1b421d155b2b2613f5d121aa161e4250102fef83462da6a0bee1754733",
+    "png_bytes": 150793
+  },
+  "metrics": {
+    "peak_process_tree_rss_bytes": [981065728, 965566464],
+    "worker_wall_seconds": [69.25546540002688, 71.16492499999003],
+    "peak_repeat_ratio": 1.0160519908031935
+  },
+  "gates": {
+    "exact_png_repeat": true,
+    "peak_under_1_gib": true,
+    "wall_under_240_seconds": true,
+    "repeat_ratio_at_most_1_10": true,
+    "restart_verified": true,
+    "cleanup": true,
+    "all_pass": true
+  },
+  "claim_ceiling": "Local Windows x64 synthetic 24MP correct-domain cloud plus frozen Standard display to restart-verified sRGB16 ICC PNG; not file decode, mobile runtime, calibrated film, visual preference or product promotion."
+}
