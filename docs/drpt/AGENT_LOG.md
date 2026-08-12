@@ -12463,3 +12463,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   median endpoint knots; strict no-extrapolation correctly stops rendering.
 - A next leaf may test only the physical scan-domain anchors `(0,0)` and
   `(1,1)`. It may not derive support from chart pixels or clip the tail.
+
+# 2026-08-12 - U6.P4GO closes endpoint-anchored linear inverse
+
+- Exact scan-domain anchors remove the support defect, but the unchanged
+  midpoint confirmation stops before chart read: max inverse error 0.00945
+  passes while p95 0.005256 exceeds the frozen 0.005 gate.
+- No threshold change or chart rescue is allowed. A distinct shape-preserving
+  cubic candidate must use fresh confirmation positions.

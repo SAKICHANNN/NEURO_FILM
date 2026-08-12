@@ -1,0 +1,18 @@
+{
+  "schema": "neuro-film.u6-p4go-scan-domain-anchored-inverse-evidence.v1",
+  "node": "U6.P4GO",
+  "date": "2026-08-12",
+  "implementation_commit": "cbc20a95",
+  "formal_report_sha256": "a48d715b058acd121e05239a988faf573322b18d0a782c7ce6c16099cc9ad8a2",
+  "stable_evidence_id": "bfaeacaa29f520f78e39c7f6cdf0e4e98a1198980ea26634bae317397e997661",
+  "exact_replays": 2,
+  "maximum_confirmation_median_absolute_error": 0.009447038173675537,
+  "confirmation_p95_absolute_error": 0.005256295204162598,
+  "maximum_error_gate_pass": true,
+  "p95_error_gate_pass": false,
+  "chart_pixels_read": false,
+  "automatic_pass": false,
+  "decision": "close_scan_domain_anchored_inverse_v1",
+  "next_leaf": "use a separately frozen shape-preserving cubic inverse with fresh quarter-offset confirmation levels",
+  "claim_ceiling": "Synthetic profile-bound neutral response failure evidence only; not calibrated film, measured scanner response, human preference or product promotion."
+}
