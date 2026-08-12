@@ -1,0 +1,16 @@
+{
+  "schema": "neuro_film.u6_p4dc_density_conditioned_cross_layer_counts_evidence.v1",
+  "node": "U6.P4DC",
+  "date": "2026-08-12",
+  "implementation_commit": "a61595bd",
+  "contract_sha256": "5bbbd631876499b416664d085ab0652768f4c8afdcf8948a4d5d0302af0b7ab6",
+  "formal_report_sha256": "ea21402f68c3371600f2c29457128e16169effb9a5b96633e350922a99070824",
+  "stable_evidence_id": "0b492f86856537de45fe990c1d2ec7521c9234b47cead6c89ff151983c97ee82",
+  "exact_replays": 2,
+  "automatic_pass": true,
+  "maximum_marginal_mean_relative_error": 0.002208709716796875,
+  "maximum_covariance_relative_error": 0.04408239456824958,
+  "maximum_correlation_absolute_error": 0.0072473728586093245,
+  "decision": "retain_density_conditioned_cross_layer_shared_count_primitive",
+  "claim_ceiling": "Synthetic developed-density-conditioned count evidence only; not measured dye-cloud chemistry, stock calibration or product evidence."
+}

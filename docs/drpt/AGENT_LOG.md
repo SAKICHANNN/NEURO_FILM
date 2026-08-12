@@ -11905,3 +11905,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Modeled live arrays are 2.07MB and 7.68MB (4.39% and 16.30% of full-frame).
   Retain the Python reference executor; next test density-conditioned shared
   event rates rather than further runtime plumbing.
+
+# 2026-08-12 - U6.P4DC conditions shared counts on developed density
+
+- Min-coupled shared rates plus per-layer independent residuals preserve
+  nonnegative seven-component rates under unequal C/M/Y density scales.
+- Four 512x512 states pass local means/covariance/correlation and 127-row exact
+  partitioning; worst errors are 0.221%, 4.41% and 0.00725 respectively.
