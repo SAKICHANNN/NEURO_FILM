@@ -11912,3 +11912,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   nonnegative seven-component rates under unequal C/M/Y density scales.
 - Four 512x512 states pass local means/covariance/correlation and 127-row exact
   partitioning; worst errors are 0.221%, 4.41% and 0.00725 respectively.
+
+# 2026-08-12 - U6.P4DD preserves conditioned coupling through clouds
+
+- Unequal layer-state rates survive distinct Gaussian cloud footprints with
+  worst mean/variance/correlation errors of 0.225%, 2.20% and 0.0178.
+- Full and 127-row density/transmittance are bit-exact. Next map typed target
+  developed density to these rates and verify density recovery.

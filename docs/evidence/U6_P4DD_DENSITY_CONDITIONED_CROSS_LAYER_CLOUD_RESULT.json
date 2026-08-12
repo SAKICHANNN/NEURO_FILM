@@ -1,0 +1,16 @@
+{
+  "schema": "neuro_film.u6_p4dd_density_conditioned_cross_layer_cloud_evidence.v1",
+  "node": "U6.P4DD",
+  "date": "2026-08-12",
+  "implementation_commit": "b4370994",
+  "contract_sha256": "5793f3cd793e0d94fa9b51436d3be4e6e0f8d61c1f4a4d15d0b23944fd9eb390",
+  "formal_report_sha256": "63eed907a3726c6710c3ae7f964b9697d528f2c975ca531fed064960ac883fb0",
+  "stable_evidence_id": "b18dfd77553135f22e1a1853e2d20e247d80f30d82b83d2f3b590905768d1e04",
+  "exact_replays": 2,
+  "automatic_pass": true,
+  "maximum_density_mean_relative_error": 0.00224601493498896,
+  "maximum_density_variance_relative_error": 0.02200137542611562,
+  "maximum_density_correlation_absolute_error": 0.01779901704978576,
+  "decision": "retain_density_conditioned_cross_layer_gaussian_cloud_reference",
+  "claim_ceiling": "Synthetic density-conditioned Gaussian dye-cloud reference evidence only; not measured film, stock calibration or product evidence."
+}
