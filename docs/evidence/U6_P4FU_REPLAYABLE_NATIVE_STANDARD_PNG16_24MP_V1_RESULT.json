@@ -1,0 +1,21 @@
+{
+  "schema": "neuro_film.u6_p4fu_replayable_native_standard_png16_24mp_result.v1",
+  "node": "U6.P4FU",
+  "contract_sha256": "2c281ed94a2e31910c4ace7c67c0fac79a50d874355bdf3580b4092428cfda25",
+  "stable_evidence_id": "827c4e5101fb00d28753c1d90bd82594407f65c562b1d93576ec5af60773e423",
+  "result": {
+    "status": "pass",
+    "input_sha256": "427c526f137ff80780236646a7d91ecf8d7a588c43424adea22c2ef7c77312c0",
+    "raw_output_sha256": "702e92fb82c4a0dfc4a19d79a6af67103b9dfffe3617790a01d587ecb336e1c6",
+    "png_output_sha256": "5482759a9014e30bb8d27df1396df9c1abc49f5d1a7f90b99f456ca20db07565",
+    "png_bytes": 13182116,
+    "peak_process_tree_rss_bytes": [970514432, 893960192],
+    "worker_wall_seconds": [45.07886249999865, 42.36518829999841],
+    "peak_repeat_ratio": 1.0856349540897678,
+    "restart_verified": true,
+    "cleanup_pass": true,
+    "all_frozen_gates_pass": true
+  },
+  "decision": "retain_replayable_native_standard_png16_24mp_v1",
+  "claim_ceiling": "Local Windows x64 synthetic 24MP replayable rows through exact Native Standard to restart-verified sRGB16 ICC PNG; not file decode, mobile runtime, calibrated film or product promotion."
+}

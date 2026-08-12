@@ -12210,3 +12210,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   single-quantization sRGB16 PNG commit and restart verifier.
 - This closes the synthetic functional row-source-to-image transaction. Actual
   decoder row providers and large-image transaction resources remain next.
+
+# 2026-08-12 - U6.P4FU passes the 24MP verified PNG transaction
+
+- Two fresh workers produce the same 13,182,116-byte PNG and exact raw output,
+  restart-verify both transactions, and remove all owned transaction files.
+- Peak process-tree RSS is 894.0-970.5MB and wall time 42.4-45.1s, passing the
+  frozen 1GiB/180s/repeat gates. Encoding now dominates the observed peak.
