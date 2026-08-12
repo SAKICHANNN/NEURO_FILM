@@ -211,6 +211,51 @@ def _execute(lib: ctypes.CDLL, contract: dict) -> dict:
     }
 
 
+def render_physical_partition(
+    lib: ctypes.CDLL,
+    contract: dict,
+    scene_full: np.ndarray,
+    start: int,
+    height: int,
+) -> np.ndarray:
+    """Run the exact P4EY/P4FB physical provider for one logical core."""
+
+    fixture=contract["fixture"];full,width,cloud_halo=fixture["full_height"],fixture["width"],fixture["cloud_halo"]
+    if scene_full.shape!=(full,width,3) or start<0 or height<=0 or start+height>full:
+        raise ValueError("P4FB physical provider geometry drift")
+    domains,adjacency_blur,adjacency,diffusion,scanner=_profiles(contract)
+    cp=_CountProfile(ctypes.sizeof(_CountProfile),3,(ctypes.c_double*3)(192.,288.,240.),32.,
+        (ctypes.c_double*3)(32.,16.,24.),fixture["seed"],1009)
+    sp=_SpatialProfile(ctypes.sizeof(_SpatialProfile),2,(ctypes.c_double*3)(1.3,1.7,2.1),
+        (ctypes.c_double*3)(.00125,.001125,.001375),4.)
+    fp=ctypes.POINTER(ctypes.c_float);dp=ctypes.POINTER(ctypes.c_double)
+    capacity=np.asarray(contract["density_capacity_cmy"],np.float64);gain=np.asarray((.3,.35,.25),np.float32)
+    post_halo=ctypes.c_uint32()
+    if lib.nf_cloud_post_spatial_f32_required_halo_v1(ctypes.byref(adjacency_blur),ctypes.byref(diffusion),ctypes.byref(scanner),ctypes.byref(post_halo))!=0:
+        raise RuntimeError("P4FB post halo failed")
+    ext_start=max(0,start-post_halo.value);ext_end=min(full,start+height+post_halo.value);ext_height=ext_end-ext_start
+    first=(ext_start+full-cloud_halo)%full;logical=np.arange(first,first+ext_height+2*cloud_halo)%full
+    scene=np.ascontiguousarray(scene_full[logical],np.float32)
+    size=ctypes.c_size_t;cn=size();dn=size();fn=size()
+    if lib.nf_conditioned_cloud_row_chain_f32_workspace_v1(ext_height,width,cloud_halo,ctypes.byref(cn),ctypes.byref(dn),ctypes.byref(fn))!=0:
+        raise RuntimeError("P4FB provider workspace failed")
+    expected=np.full((ext_height,width,3),.6,np.float32);counts=np.empty(cn.value,np.uint16)
+    conv=np.empty(dn.value,np.float64);scale=np.empty(cn.value,np.float64)
+    sd=np.empty(fn.value,np.float32);st=np.empty(fn.value,np.float32);density=np.empty(fn.value,np.float32);trans=np.empty(fn.value,np.float32)
+    status=lib.nf_sensitometry_cloud_bridge_f32_apply_window_v1(ctypes.byref(domains),ctypes.byref(cp),ctypes.byref(sp),full,width,first,
+        ext_height,cloud_halo,scene.ctypes.data_as(fp),scene.size,capacity.ctypes.data_as(dp),scale.ctypes.data_as(dp),scale.size,
+        expected.ctypes.data_as(fp),expected.size,gain.ctypes.data_as(fp),counts.ctypes.data_as(ctypes.POINTER(ctypes.c_uint16)),counts.size,
+        conv.ctypes.data_as(dp),conv.size,sd.ctypes.data_as(fp),st.ctypes.data_as(fp),st.size,density.ctypes.data_as(fp),trans.ctypes.data_as(fp),density.size)
+    if status: raise RuntimeError(f"P4FB physical provider cloud failed: {status}")
+    cloud=density.reshape(ext_height,width,3);flat=np.ascontiguousarray(cloud.reshape(-1),np.float32)
+    work=[np.empty_like(flat) for _ in range(6)];output=np.empty(height*width*3,np.float32)
+    status=lib.nf_cloud_post_spatial_f32_apply_core_v1(ctypes.byref(domains),ctypes.byref(adjacency_blur),ctypes.byref(adjacency),
+        ctypes.byref(diffusion),ctypes.byref(scanner),flat.ctypes.data_as(fp),ext_height,width,full,start,start-ext_start,height,
+        *[item.ctypes.data_as(fp) for item in work],flat.size,output.ctypes.data_as(fp),output.size)
+    if status: raise RuntimeError(f"P4FB physical provider post failed: {status}")
+    return output.reshape(height,width,3)
+
+
 def evaluate(root: Path, contract_path: Path, output: Path, llvm: Path) -> dict:
     contract=json.loads(contract_path.read_text());parent=root/contract["parent"]["path"]
     if sha256_file(parent)!=contract["parent"]["sha256"] or json.loads(parent.read_text())["decision"]!=contract["parent"]["required_decision"]:
@@ -234,4 +279,4 @@ def evaluate(root: Path, contract_path: Path, output: Path, llvm: Path) -> dict:
         "stable_evidence_id":hashlib.sha256(json.dumps(stable,sort_keys=True,separators=(",",":")).encode()).hexdigest()}
 
 
-__all__=["evaluate"]
+__all__=["evaluate","render_physical_partition"]
