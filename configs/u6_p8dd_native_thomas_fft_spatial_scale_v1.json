@@ -1,0 +1,71 @@
+{
+  "schema": "neuro_film.u6_p8dd_native_thomas_fft_spatial_scale_contract.v1",
+  "experiment_id": "u6.p8dd-native-thomas-fft-spatial-scale-v1",
+  "node": "ULT > U6 > U6.P8 > U6.P8DD",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can the retained P3H FFT backing-return challenger materially accelerate the exact P8DC physical order at 12MP while preserving strict scale-aware exposure and final RGB16 tolerances?",
+  "parents": {
+    "p8dc_evidence": {
+      "path": "docs/evidence/U6_P8DC_NATIVE_THOMAS_FULLFRAME_SPATIAL_SCALE_RESULT.json",
+      "sha256": "70adbc2214f283c496bdd54ae431e8380b9699a53a340af0a84a72f86a8f6afd",
+      "required_decision": "retain_fullframe_spatial_exposure_to_native_thomas_12mp_runtime",
+      "expected_output_sha256": "83656d386e6e7d798ac78d7f19ce88f1167c8caefb1c33723cdc40497ccab3c7",
+      "expected_decoded_rgb16_sha256": "69d3a45f9b5ec4fd3af7e56062ebc74bb7e3684e8b45dc9681e6640ecb067b74"
+    },
+    "p3h_contract": {
+      "path": "configs/u6_p3h_fft_backing_return_compiler_v1.json",
+      "sha256": "0b305a8ffdb669795bccba7fe2789a918ba9e69e2891189c145501e888dbddf1"
+    },
+    "p3h_decision": {
+      "path": "configs/u6_p3h_fft_backing_return_compiler_decision_v1.json",
+      "sha256": "97660eeb4c44ad4be5371b43cee58ab6315eaa89b375c18eacd1f274678be129",
+      "required_automatic_pass": true
+    },
+    "p1_contract": {
+      "path": "configs/u6_p1_reference_scatter_simulator_v1.json",
+      "sha256": "3f673a537205e95181a4342aec5bd77cedfbe43cf84ea83ea079d5623b31a22b"
+    },
+    "p3d_contract": {
+      "path": "configs/u6_p3d_backing_return_reference_v1.json",
+      "sha256": "2b27173834345bf7d0492c213dea6b1d5ef8020d604046347f6915898ef6cc12"
+    },
+    "package": {
+      "path": "configs/native_thomas_export_package_win_x64_v1.json",
+      "sha256": "b95c30c5fdd0d04c1dabbc22f889042ed690c7f55eec3650e6c4bf8b6c7330fb",
+      "profile_path": "configs/render_profiles/generic_physical_thomas_p8cr_v1.json"
+    }
+  },
+  "fixture": {
+    "height": 3000,
+    "width": 4000,
+    "pixel_pitch_um": 8.0,
+    "fft_runs": 2,
+    "direct_reference_runs": 1,
+    "numerical_probe_height": 1000,
+    "numerical_probe_width": 1000,
+    "log_domain_fraction_low": 0.2,
+    "log_domain_fraction_high": 0.6
+  },
+  "gates": {
+    "maximum_relative_exposure_error": 1e-6,
+    "maximum_p99_exposure_ulp_error": 1.0,
+    "maximum_exposure_ulp_error": 8.0,
+    "maximum_decoded_code_error": 1,
+    "maximum_changed_decoded_fraction": 0.001,
+    "minimum_wall_speedup_over_direct": 1.5,
+    "maximum_fft_wall_seconds": 20.0,
+    "maximum_process_tree_rss_bytes": 1000000000,
+    "maximum_repeat_wall_ratio": 1.25,
+    "maximum_repeat_rss_ratio": 1.10,
+    "require_exact_fft_output_replay": true,
+    "require_exact_fft_decoded_replay": true,
+    "require_exact_icc": true,
+    "require_direct_parent_identity": true,
+    "require_zero_stage_residue": true,
+    "require_zero_surviving_processes": true
+  },
+  "decision_if_pass": "retain_fft_backing_spatial_exposure_to_native_thomas_12mp_runtime",
+  "decision_if_fail": "retain_p8dc_direct_fullframe_spatial_runtime",
+  "claim_ceiling": "Generic synthetic 12MP host performance and bounded-numerical comparison of retained forward scatter plus FFT backing return before the exact native Thomas package; not measured halation, calibrated stock response, scene-to-layer estimation or product promotion."
+}

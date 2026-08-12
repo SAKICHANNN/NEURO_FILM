@@ -24,6 +24,7 @@ from .native_thomas_package import (
 from .native_thomas_spatial_chain import (
     NativeThomasSpatialChain,
     apply_native_thomas_spatial_chain,
+    apply_native_thomas_spatial_chain_fft,
     apply_native_thomas_spatial_chain_row_tiled,
 )
 
@@ -147,6 +148,17 @@ class NativeThomasExportRuntime:
                 exposure, spatial_chain, tile_rows=tile_rows
             )
         )
+        return self.publish_layer_exposure(spatial, destination=destination)
+
+    def publish_fft_spatial_layer_exposure(
+        self,
+        exposure: PhysicalDomainArray,
+        spatial_chain: NativeThomasSpatialChain,
+        *,
+        destination: Path,
+    ) -> dict[str, Any]:
+        """Apply forward scatter plus FFT backing before native publication."""
+        spatial = apply_native_thomas_spatial_chain_fft(exposure, spatial_chain)
         return self.publish_layer_exposure(spatial, destination=destination)
 
 

@@ -16,6 +16,7 @@ from src.film_physics.native_thomas_package import resolve_native_thomas_package
 from src.film_physics.native_thomas_runtime import NativeThomasExportRuntime
 from src.film_physics.native_thomas_spatial_chain import (
     apply_native_thomas_spatial_chain,
+    apply_native_thomas_spatial_chain_fft,
     apply_native_thomas_spatial_chain_row_tiled,
     compile_native_thomas_spatial_chain,
 )
@@ -88,6 +89,32 @@ def test_native_thomas_spatial_chain_rejects_semantic_or_scale_drift() -> None:
         raise AssertionError("wrong physical scale was accepted")
 
 
+def test_native_thomas_fft_spatial_chain_is_repeatable_and_numerically_close() -> None:
+    chain = compile_native_thomas_spatial_chain(
+        _json("configs/u6_p1_reference_scatter_simulator_v1.json"),
+        _json("configs/u6_p3d_backing_return_reference_v1.json"),
+    )
+    rng = np.random.default_rng(20260813)
+    exposure = PhysicalDomainArray(
+        rng.uniform(1.5, 12.0, size=(257, 263, 3)).astype(np.float32),
+        PhysicalDomain.LAYER_EXPOSURE,
+        PhysicalUnit.RELATIVE_LAYER_EXPOSURE,
+        ("red-sensitive", "green-sensitive", "blue-sensitive"),
+        PhysicalScale(8.0),
+    )
+    direct = apply_native_thomas_spatial_chain(exposure, chain).values
+    first = apply_native_thomas_spatial_chain_fft(exposure, chain).values
+    second = apply_native_thomas_spatial_chain_fft(exposure, chain).values
+    error = np.abs(direct.astype(np.float64) - first.astype(np.float64))
+    relative = error / np.maximum(np.abs(direct.astype(np.float64)), 1e-30)
+    spacing = np.spacing(direct).astype(np.float64)
+    ulp = np.divide(error, spacing, out=np.zeros_like(error), where=spacing != 0)
+    assert first.tobytes() == second.tobytes()
+    assert float(np.max(relative)) <= 1e-6
+    assert float(np.quantile(ulp, 0.99)) <= 1.0
+    assert float(np.max(ulp)) <= 8.0
+
+
 def test_native_thomas_runtime_spatial_entry_matches_explicit_composition(
     tmp_path: Path,
 ) -> None:
@@ -128,3 +155,39 @@ def test_native_thomas_runtime_spatial_entry_matches_explicit_composition(
     assert (tmp_path / "explicit.png").read_bytes() == (
         tmp_path / "composed.png"
     ).read_bytes()
+
+
+def test_native_thomas_runtime_fft_entry_matches_explicit_fft_composition(
+    tmp_path: Path,
+) -> None:
+    chain = compile_native_thomas_spatial_chain(
+        _json("configs/u6_p1_reference_scatter_simulator_v1.json"),
+        _json("configs/u6_p3d_backing_return_reference_v1.json"),
+    )
+    package = _json("configs/native_thomas_export_package_win_x64_v1.json")
+    build = build_msvc(ROOT, tmp_path / "build")
+    resolved = resolve_native_thomas_package(
+        package,
+        profile_path=ROOT
+        / "configs/render_profiles/generic_physical_thomas_p8cr_v1.json",
+        library_path=Path(build["dll_path"]),
+    )
+    runtime = NativeThomasExportRuntime(package=package, resolved=resolved)
+    rng = np.random.default_rng(20260813)
+    exposure = PhysicalDomainArray(
+        rng.uniform(1.5, 8.0, size=(129, 67, 3)).astype(np.float32),
+        PhysicalDomain.LAYER_EXPOSURE,
+        PhysicalUnit.RELATIVE_LAYER_EXPOSURE,
+        ("red-sensitive", "green-sensitive", "blue-sensitive"),
+        PhysicalScale(8.0),
+    )
+    explicit = apply_native_thomas_spatial_chain_fft(exposure, chain)
+    explicit_receipt = runtime.publish_layer_exposure(
+        explicit, destination=tmp_path / "explicit_fft.png"
+    )
+    composed_receipt = runtime.publish_fft_spatial_layer_exposure(
+        exposure, chain, destination=tmp_path / "composed_fft.png"
+    )
+    assert explicit_receipt["output"]["sha256"] == composed_receipt["output"][
+        "sha256"
+    ]

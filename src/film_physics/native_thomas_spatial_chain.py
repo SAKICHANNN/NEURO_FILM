@@ -20,6 +20,7 @@ from .compiled_scatter import (
     compile_scatter_profile,
 )
 from .contracts import PhysicalDomain, PhysicalDomainArray
+from .fft_backing_return import apply_fft_backing_return
 from .reference_scatter import profile_from_contract
 
 
@@ -73,6 +74,21 @@ def apply_native_thomas_spatial_chain(
     return apply_compiled_backing_return(forward, chain.backing_return)
 
 
+def apply_native_thomas_spatial_chain_fft(
+    exposure: PhysicalDomainArray, chain: NativeThomasSpatialChain
+) -> PhysicalDomainArray:
+    """Apply the same physical order with the retained FFT backing challenger."""
+    exposure.require(PhysicalDomain.LAYER_EXPOSURE)
+    if exposure.channels != (
+        "red-sensitive",
+        "green-sensitive",
+        "blue-sensitive",
+    ):
+        raise ValueError("native Thomas spatial chain requires sensitive-layer order")
+    forward = apply_compiled_scatter(exposure, chain.forward_scatter)
+    return apply_fft_backing_return(forward, chain.backing_return)
+
+
 def apply_native_thomas_spatial_chain_row_tiled(
     exposure: PhysicalDomainArray,
     chain: NativeThomasSpatialChain,
@@ -98,6 +114,7 @@ def apply_native_thomas_spatial_chain_row_tiled(
 __all__ = [
     "NativeThomasSpatialChain",
     "apply_native_thomas_spatial_chain",
+    "apply_native_thomas_spatial_chain_fft",
     "apply_native_thomas_spatial_chain_row_tiled",
     "compile_native_thomas_spatial_chain",
 ]
