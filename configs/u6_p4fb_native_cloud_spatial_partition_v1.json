@@ -17,6 +17,16 @@
     "alternate_partitions": [[0, 1], [1, 32], [32, 33], [33, 72], [72, 73]],
     "seed": 78277
   },
+  "density_capacity_cmy": [1.5, 1.5, 1.5],
+  "spatial_profiles": {
+    "development_adjacency_sigma_pixels_rgb": [0.8, 1.0, 1.2],
+    "development_adjacency_gain_rgb": [0.08, 0.1, 0.12],
+    "dye_diffusion_sigma_pixels_rgb": [0.6, 0.8, 1.0],
+    "scanner_mtf_sigma_pixels_rgb": [0.7, 0.7, 0.7],
+    "gaussian_truncate": 3.0,
+    "maximum_absolute_transmittance_delta": 0.02,
+    "maximum_absolute_density_delta": 0.04
+  },
   "gates": {
     "require_full_partition_bit_identity": true,
     "require_alternate_partition_bit_identity": true,
