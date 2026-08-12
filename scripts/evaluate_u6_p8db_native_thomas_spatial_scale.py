@@ -38,7 +38,10 @@ from src.film_physics.native_thomas_spatial_chain import (
 )
 from src.preprocess.output_encode import srgb_icc_profile
 
-SCHEMA = "neuro_film.u6_p8db_native_thomas_spatial_scale_contract.v1"
+SCHEMAS = {
+    "neuro_film.u6_p8db_native_thomas_spatial_scale_contract.v1",
+    "neuro_film.u6_p8dc_native_thomas_fullframe_spatial_scale_contract.v1",
+}
 
 
 def _json(path: Path) -> dict[str, Any]:
@@ -56,21 +59,27 @@ def _validate(contract_path: Path) -> tuple[dict[str, Any], dict[str, Any], dict
     contract = _json(contract_path)
     fixture = contract.get("fixture", {})
     if (
-        contract.get("schema") != SCHEMA
+        contract.get("schema") not in SCHEMAS
         or contract.get("status") != "contract_frozen_implementation_ready"
         or fixture.get("height") != 3000
         or fixture.get("width") != 4000
         or fixture.get("pixel_pitch_um") != 8.0
-        or fixture.get("tile_rows") != 128
         or fixture.get("runs") != 2
         or fixture.get("log_domain_fraction_low") != 0.2
         or fixture.get("log_domain_fraction_high") != 0.6
     ):
         raise ValueError("P8DB contract drift")
+    expected_tile_rows = 128 if "p8db_" in contract["schema"] else None
+    if fixture.get("tile_rows") != expected_tile_rows:
+        raise ValueError("P8DB spatial execution drift")
     parents = contract["parents"]
     p8da = _load_exact(parents["p8da_evidence"])
     if p8da.get("decision") != parents["p8da_evidence"]["required_decision"]:
         raise ValueError("P8DB P8DA decision drift")
+    if "p8db_evidence" in parents:
+        p8db = _load_exact(parents["p8db_evidence"])
+        if p8db.get("decision") != parents["p8db_evidence"]["required_decision"]:
+            raise ValueError("P8DC P8DB decision drift")
     p1 = _load_exact(parents["p1_contract"])
     p3d = _load_exact(parents["p3d_contract"])
     package = _load_exact(parents["package"])
@@ -154,7 +163,9 @@ def evaluate(contract_path: Path, output_dir: Path) -> dict[str, Any]:
         if decoded is None or decoded.dtype != np.uint16 or decoded.shape != (3000, 4000, 3):
             raise RuntimeError("P8DB decoded PNG drift")
         decoded_hashes.append(hashlib.sha256(decoded[..., ::-1].tobytes()).hexdigest())
-        icc_hashes.append(hashlib.sha256(_icc_payload(destination)).hexdigest())
+        icc_hashes.append(
+            hashlib.sha256(_icc_payload(destination.read_bytes())).hexdigest()
+        )
         runs.append(monitored)
     workers = [row["worker"] for row in runs]
     walls = [row["wall_seconds"] for row in workers]
@@ -184,7 +195,7 @@ def evaluate(contract_path: Path, output_dir: Path) -> dict[str, Any]:
         "claim_ceiling": contract["claim_ceiling"],
     }
     return {
-        "schema": "neuro_film.u6_p8db_native_thomas_spatial_scale_report.v1",
+        "schema": contract["schema"].replace("_contract", "_report"),
         "automatic_pass": passed,
         "stable_evidence_id": hashlib.sha256(canonical_bytes(stable)).hexdigest(),
         "stable": stable,

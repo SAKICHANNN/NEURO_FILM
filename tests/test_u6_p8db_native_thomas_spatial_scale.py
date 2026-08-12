@@ -10,6 +10,9 @@ from src.film_physics.native_thomas_input import RelativeLayerLogExposure
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u6_p8db_native_thomas_spatial_scale_v1.json"
+FULLFRAME_CONTRACT = (
+    ROOT / "configs/u6_p8dc_native_thomas_fullframe_spatial_scale_v1.json"
+)
 
 
 def test_p8db_contract_and_fixture_are_domain_valid() -> None:
@@ -23,3 +26,9 @@ def test_p8db_contract_and_fixture_are_domain_valid() -> None:
         assert float(log_exposure[channel].min()) >= lower
         assert float(log_exposure[channel].max()) <= upper
     assert json.loads(CONTRACT.read_text(encoding="utf-8"))["decision_if_fail"] == "retain_p8da_without_spatial_runtime_integration"
+
+
+def test_p8dc_contract_selects_fullframe_mechanism() -> None:
+    contract, _p1, _p3d, _package = _validate(FULLFRAME_CONTRACT)
+    assert contract["fixture"]["tile_rows"] is None
+    assert contract["gates"]["maximum_wall_seconds"] == 45.0
