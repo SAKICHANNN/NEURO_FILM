@@ -12734,3 +12734,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   finite-sample calibration into bundle compilation and tests it on a disjoint
   confirmation fixture; native density shaping and product integration remain
   closed.
+
+### 2026-08-13 - U6.P4HN retains source-observable native calibration
+
+- A fixed three-call correction uses only current-source rank diagnostics and
+  the immutable profile correlation. It does not read reference or target
+  pixels and leaves the P4HM C11 source unchanged.
+- On two disjoint seed/shape fixtures, maximum correlation error falls from
+  `0.005999/0.002762` to `2.75e-7/8.07e-8`. MSVC and LLVM-MinGW outputs are
+  exact, maximum correction is `0.006253`, and workspace stays below 5.25 MB.
+- Advance to the profile-bound inverse gamma-density stage. Photographic parity,
+  native media integration and product promotion remain separate gates.

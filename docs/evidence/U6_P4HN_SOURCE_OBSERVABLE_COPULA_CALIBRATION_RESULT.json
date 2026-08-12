@@ -1,0 +1,32 @@
+{
+  "schema": "neuro-film.u6-p4hn-source-observable-copula-calibration-evidence.v1",
+  "node": "U6.P4HN",
+  "date": "2026-08-13",
+  "contract_commit": "43c2b5a3",
+  "implementation_commit": "3be28bd0",
+  "entrypoint_fix_commit": "472f43be",
+  "contract_file_sha256": "2ac3c303b5759005867e9b27c6b9f1bd835ed49feedb628858fcb2376870ad42",
+  "calibration_runtime_sha256": "eaab2e36a6debbca3969a01039dc56ad2fcbf60fceec005ea569ebca7b7644e6",
+  "evaluator_sha256": "d62c8e7346717a3f272267717d2a0ec9ebcdb62a3fdac3ae6fddd4c60e59bd0d",
+  "runner_sha256": "cc7fa5b22dcc790e71a695c8325d1e85f8ada96b7ded77ef84c246470aa161ba",
+  "formal_report_sha256": "786a72d26fe3cab97acb3f4615cdde0a101eced5a32cd580c01676bd80f541f7",
+  "stable_evidence_id": "e872a10934ad2e32a0f486af638ed16f0f02aad9a79aaadef18efbf13e81cda2",
+  "profile_bundle_sha256": "8d20ce2874036befe78657b059ffafeb24e43d2e5bc1000512092a753e1e75df",
+  "observations": {
+    "confirmation_fixture_count": 2,
+    "native_calls_per_render": 3,
+    "maximum_initial_target_correlation_error": 0.00599899112343627,
+    "maximum_final_target_correlation_error": 2.744784029229397e-7,
+    "maximum_cross_compiler_absolute_error": 0.0,
+    "maximum_absolute_latent_correction": 0.00625200528546499,
+    "minimum_final_latent_eigenvalue": 0.7294503762559239,
+    "maximum_workspace_bytes": 5245768,
+    "reference_or_target_pixel_reads": 0,
+    "repeat_exact": true
+  },
+  "automatic_pass": true,
+  "decision": "retain_source_observable_calibrated_native_transport_for_gamma_density_stage",
+  "scientific_conclusion": "A fixed three-call correction using only current-source rank diagnostics reduces disjoint finite-sample target-correlation error by four orders of magnitude while preserving exact MSVC/LLVM parity, bounded correction, positive definiteness and bounded workspace. This resolves P4HM's stochastic rank-correlation miss without changing the native core or reading reference/target pixels.",
+  "next_leaf": "Implement and test the profile-bound inverse gamma-density mapping after calibrated uniforms, preserving failure atomicity and dual-compiler determinism before composing the complete density structure primitive.",
+  "claim_ceiling": "Host-orchestrated native statistical transport on disjoint synthetic fields; not standalone native density shaping, photographic parity, calibrated film response, media integration or product promotion."
+}
