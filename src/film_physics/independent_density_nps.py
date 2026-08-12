@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import numpy as np
-from scipy.stats import gamma
+from scipy.stats import gamma, norm
 
 from src.film_physics.density_conditioned_thomas import (
     DensityConditionedThomasProfile,
@@ -487,7 +487,150 @@ def apply_layer_support_matched_thomas_gamma_density(
     }
 
 
+def _neighbor_correlation(field: np.ndarray) -> float:
+    values = np.asarray(field, dtype=np.float64)
+    horizontal = float(
+        np.corrcoef(values[:, :-1].reshape(-1), values[:, 1:].reshape(-1))[0, 1]
+    )
+    vertical = float(
+        np.corrcoef(values[:-1, :].reshape(-1), values[1:, :].reshape(-1))[0, 1]
+    )
+    return 0.5 * (horizontal + vertical)
+
+
+def apply_cross_layer_thomas_gamma_copula(
+    neutral_base: np.ndarray,
+    *,
+    profile: DensityConditionedThomasProfile,
+    prior: ManufacturerCharacteristicPrior,
+    layer_seeds: tuple[int, int, int],
+    correlation_matrix: np.ndarray,
+    canonical_receipt_row_block_height: int,
+) -> tuple[np.ndarray, dict[str, object]]:
+    """Apply fixed cross-layer correlation to exact Thomas/Gamma marginals."""
+
+    base = np.asarray(neutral_base, dtype=np.float64)
+    correlation = np.asarray(correlation_matrix, dtype=np.float64)
+    if (
+        base.ndim != 3
+        or base.shape[-1] != 3
+        or not np.all(np.isfinite(base))
+        or np.any(base < 0.0)
+        or np.any(base > 1.0)
+        or correlation.shape != (3, 3)
+        or not np.array_equal(correlation, correlation.T)
+        or not np.array_equal(np.diag(correlation), np.ones(3))
+    ):
+        raise ValueError("invalid cross-layer Thomas Gamma request")
+    try:
+        cholesky = np.linalg.cholesky(correlation)
+    except np.linalg.LinAlgError as error:
+        raise ValueError("cross-layer correlation must be positive definite") from error
+
+    normal_fields: list[np.ndarray] = []
+    receipt_ids: list[str] = []
+    for seed in layer_seeds:
+        receipt = build_thomas_dc_receipt(
+            base.shape[:2],
+            profile_id=profile.spatial_profile_id,
+            particle_sigma_pixels=profile.particle_sigma_samples,
+            cluster_sigma_pixels=profile.cluster_sigma_samples,
+            mean_offspring=profile.mean_offspring,
+            component_seeds=profile.component_seeds,
+            realization_seed=seed,
+            truncate=profile.truncate,
+            canonical_row_block_height=canonical_receipt_row_block_height,
+        )
+        receipt_ids.append(receipt.receipt_id)
+        field = render_dc_projected_thomas_region(
+            receipt, origin_yx=(0, 0), shape=base.shape[:2]
+        )
+        normal_fields.append(norm.ppf(_exact_empirical_midranks(field)))
+    independent = np.stack(normal_fields, axis=-1)
+    flattened = independent.reshape(-1, 3)
+    centered = flattened - np.mean(flattened, axis=0, keepdims=True)
+    empirical_input_correlation = np.corrcoef(centered, rowvar=False)
+    eigenvalues, eigenvectors = np.linalg.eigh(empirical_input_correlation)
+    if np.min(eigenvalues) <= np.finfo(np.float64).eps:
+        raise RuntimeError("Thomas copula inputs are empirically degenerate")
+    whitening = eigenvectors @ np.diag(1.0 / np.sqrt(eigenvalues)) @ eigenvectors.T
+    whitened = (centered @ whitening).reshape(independent.shape)
+    correlated = np.einsum("ij,...j->...i", cholesky, whitened)
+    uniforms = np.stack(
+        [_exact_empirical_midranks(correlated[..., index]) for index in range(3)],
+        axis=-1,
+    )
+    copula_normal = norm.ppf(uniforms)
+    empirical_correlation = np.corrcoef(copula_normal.reshape(-1, 3), rowvar=False)
+    independent_neighbors = [
+        _neighbor_correlation(independent[..., index]) for index in range(3)
+    ]
+    correlated_neighbors = [
+        _neighbor_correlation(copula_normal[..., index]) for index in range(3)
+    ]
+
+    delta_density = np.zeros_like(base, dtype=np.float64)
+    target_sigma = np.zeros_like(base, dtype=np.float64)
+    degenerate = np.zeros_like(base, dtype=bool)
+    for index, channel in enumerate(("red", "green", "blue")):
+        values = base[..., index]
+        lower, upper = prior.curves[index].domain
+        exposure = lower + values * (upper - lower)
+        sigma_d = profile.amplitude_profile.evaluate_channel(prior, channel, exposure)
+        sigma = sigma_d * (4.0 * values * (1.0 - values))
+        target_sigma[..., index] = sigma
+        available = np.full(values.shape, np.inf, dtype=np.float64)
+        positive = values > 0.0
+        available[positive] = -np.log10(values[positive])
+        active = (available > np.finfo(np.float64).eps) & (
+            sigma > np.finfo(np.float64).tiny
+        )
+        degenerate[..., index] = ~active
+        if np.any(active):
+            selected_density = available[active]
+            selected_sigma = sigma[active]
+            shape = np.square(selected_density / selected_sigma)
+            scale = np.square(selected_sigma) / selected_density
+            quantiles = gamma.ppf(uniforms[..., index][active], a=shape, scale=scale)
+            delta_density[..., index][active] = quantiles - selected_density
+        if np.any(delta_density[..., index][active] < -available[active]):
+            raise RuntimeError("cross-layer Gamma density left physical support")
+
+    output64 = base * np.power(10.0, -delta_density)
+    output = np.ascontiguousarray(output64, dtype=np.float32)
+    if not np.all(np.isfinite(output)) or np.any(output < 0.0) or np.any(output > 1.0):
+        raise RuntimeError("cross-layer Thomas Gamma escaped the unit cube")
+    residual = output.astype(np.float64) - base
+    return output, {
+        "receipt_ids": receipt_ids,
+        "empirical_input_correlation": empirical_input_correlation.tolist(),
+        "empirical_copula_correlation": empirical_correlation.tolist(),
+        "independent_neighbor_correlation": independent_neighbors,
+        "correlated_neighbor_correlation": correlated_neighbors,
+        "minimum_target_sigma_d": float(np.min(target_sigma)),
+        "maximum_target_sigma_d": float(np.max(target_sigma)),
+        "support_degenerate_fraction": float(np.mean(degenerate)),
+        "support_degenerate_residual_absolute": float(
+            np.max(np.abs(delta_density[degenerate]), initial=0.0)
+        ),
+        "minimum_developed_density": float(
+            np.min(
+                np.where(
+                    base > 0.0,
+                    -np.log10(np.maximum(base, np.finfo(np.float64).tiny))
+                    + delta_density,
+                    np.inf,
+                )
+            )
+        ),
+        "bounded_residual_rms": float(np.sqrt(np.mean(residual * residual))),
+        "limited_fraction": 0.0,
+        "hard_clipping_used": 0.0,
+    }
+
+
 __all__ = [
+    "apply_cross_layer_thomas_gamma_copula",
     "apply_density_compiled_independent_nps",
     "apply_independent_density_nps",
     "apply_layer_support_matched_gamma_density",
