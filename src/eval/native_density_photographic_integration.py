@@ -14,6 +14,9 @@ from src.eval.paired_scanner_mtf_photographic_development import _evaluate_paire
 from src.film_physics.bounded_photographic_profile import (
     reconstruct_bounded_photographic_profile,
 )
+from src.film_physics.native_fast_gamma_density import (
+    load_native_fast_gamma_density_library,
+)
 from src.film_physics.native_histogram_copula import (
     load_native_histogram_copula_library,
 )
@@ -29,11 +32,14 @@ from src.film_physics.thomas_dc_projection import (
 )
 
 SCHEMA = "neuro-film.u6-p4hr-native-density-photographic-integration-contract.v1"
+FAST_SCHEMA = (
+    "neuro-film.u6-p4ht-fast-native-density-photographic-integration-contract.v1"
+)
 
 
 def load_contract(path: Path) -> dict[str, Any]:
     payload = json.loads(path.read_text("utf-8"))
-    if payload.get("schema") != SCHEMA:
+    if payload.get("schema") not in (SCHEMA, FAST_SCHEMA):
         raise ValueError("unsupported P4HR contract")
     return payload
 
@@ -45,6 +51,15 @@ def _load_bound(root: Path, binding: dict[str, Any]) -> dict[str, Any]:
     return json.loads(path.read_text("utf-8"))
 
 
+def _stable_toolchain(build: dict[str, Any]) -> dict[str, Any]:
+    """Remove run-location diagnostics from the scientific result."""
+    return {
+        key: value
+        for key, value in build.items()
+        if key not in {"compiler_output", "dll_path"}
+    }
+
+
 def evaluate(
     contract: dict[str, Any],
     *,
@@ -53,6 +68,14 @@ def evaluate(
     contact_sheet_path: Path,
 ) -> dict[str, Any]:
     parents = contract["parents"]
+    if contract["schema"] == FAST_SCHEMA:
+        p4hs = _load_bound(root, parents["p4hs_evidence"])
+        p4hr = _load_bound(root, parents["p4hr_evidence"])
+        if (
+            p4hs.get("decision") != parents["p4hs_evidence"]["required_decision"]
+            or p4hr.get("decision") != parents["p4hr_evidence"]["required_decision"]
+        ):
+            raise ValueError("P4HT parent decision drift")
     p4hq = _load_bound(root, parents["p4hq_evidence"])
     p4he_contract = _load_bound(root, parents["p4he_contract"])
     p4he_evidence = _load_bound(root, parents["p4he_evidence"])
@@ -75,20 +98,35 @@ def evaluate(
         header_relative="native/film_physics/nf_histogram_copula_f32_v1.h",
         basename="nf_histogram_copula_f32_msvc_v1",
     )
+    candidate = contract["candidate"]
+    fast_gamma = candidate.get("gamma_backend") == "fast-hybrid-v1"
     gamma_build = build_msvc_c11_dll(
         root=root,
         output_dir=build_dir / "gamma",
-        source_relative="native/film_physics/nf_gamma_density_hybrid_f64_v1.c",
-        header_relative="native/film_physics/nf_gamma_density_hybrid_f64_v1.h",
-        basename="nf_gamma_density_hybrid_f64_msvc_v1",
+        source_relative=(
+            "native/film_physics/nf_gamma_density_fast_f64_v1.c"
+            if fast_gamma
+            else "native/film_physics/nf_gamma_density_hybrid_f64_v1.c"
+        ),
+        header_relative=(
+            "native/film_physics/nf_gamma_density_fast_f64_v1.h"
+            if fast_gamma
+            else "native/film_physics/nf_gamma_density_hybrid_f64_v1.h"
+        ),
+        basename=(
+            "nf_gamma_density_fast_f64_msvc_v1"
+            if fast_gamma
+            else "nf_gamma_density_hybrid_f64_msvc_v1"
+        ),
     )
     copula_library = load_native_histogram_copula_library(
         Path(copula_build["dll_path"])
     )
-    gamma_library = load_native_hybrid_gamma_density_library(
-        Path(gamma_build["dll_path"])
+    gamma_library = (
+        load_native_fast_gamma_density_library(Path(gamma_build["dll_path"]))
+        if fast_gamma
+        else load_native_hybrid_gamma_density_library(Path(gamma_build["dll_path"]))
     )
-    candidate = contract["candidate"]
 
     def apply_physical(
         source: np.ndarray,
@@ -134,6 +172,12 @@ def evaluate(
             copula_iterations=int(candidate["copula_iterations"]),
             gamma_inverse_iterations=int(candidate["gamma_inverse_iterations"]),
             high_shape_threshold=float(candidate["high_shape_threshold"]),
+            fast_newton_iterations=(
+                int(candidate["gamma_newton_iterations"]) if fast_gamma else None
+            ),
+            fast_direct_shape_upper=(
+                float(candidate["gamma_direct_shape_upper"]) if fast_gamma else None
+            ),
         )
         difference = physical.astype(np.float64) - source.astype(np.float64)
         minimum_sigma = math.inf
@@ -191,7 +235,10 @@ def evaluate(
         "pixel_identity_required": False,
     }
     stable["profile_bundle_sha256"] = profile_payload["bundle_sha256"]
-    stable["native_toolchains"] = {"copula": copula_build, "gamma": gamma_build}
+    stable["native_toolchains"] = {
+        "copula": _stable_toolchain(copula_build),
+        "gamma": _stable_toolchain(gamma_build),
+    }
     stable["claim_ceiling"] = contract["claim_ceiling"]
     result["schema"] = contract["schema"].replace("contract", "worker-result")
     return result

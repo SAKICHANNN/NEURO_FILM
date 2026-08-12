@@ -13,6 +13,7 @@ from src.film_physics.bounded_photographic_profile import (
 from src.film_physics.calibrated_native_histogram_copula import (
     apply_source_observable_calibrated_copula,
 )
+from src.film_physics.native_fast_gamma_density import apply_native_fast_gamma_density
 from src.film_physics.native_hybrid_gamma_density import (
     apply_native_hybrid_gamma_density,
 )
@@ -28,6 +29,8 @@ def apply_profile_bound_native_density(
     copula_iterations: int,
     gamma_inverse_iterations: int,
     high_shape_threshold: float,
+    fast_newton_iterations: int | None = None,
+    fast_direct_shape_upper: float | None = None,
 ) -> tuple[np.ndarray, np.ndarray, dict[str, Any]]:
     image = np.asarray(base, dtype=np.float64)
     fields = np.asarray(raw_fields, dtype=np.float32)
@@ -63,14 +66,29 @@ def apply_profile_bound_native_density(
     active = (density > np.finfo(np.float64).eps) & (sigma > np.finfo(np.float64).tiny)
     shape = np.square(density[active] / sigma[active])
     scale = np.square(sigma[active]) / density[active]
-    developed, gamma_receipt = apply_native_hybrid_gamma_density(
-        gamma_library,
-        uniforms.reshape(-1)[active.reshape(-1)],
-        shape,
-        scale,
-        inverse_iterations=gamma_inverse_iterations,
-        high_shape_threshold=high_shape_threshold,
-    )
+    active_uniforms = uniforms.reshape(-1)[active.reshape(-1)]
+    if fast_newton_iterations is None and fast_direct_shape_upper is None:
+        developed, gamma_receipt = apply_native_hybrid_gamma_density(
+            gamma_library,
+            active_uniforms,
+            shape,
+            scale,
+            inverse_iterations=gamma_inverse_iterations,
+            high_shape_threshold=high_shape_threshold,
+        )
+    elif fast_newton_iterations is not None and fast_direct_shape_upper is not None:
+        developed, gamma_receipt = apply_native_fast_gamma_density(
+            gamma_library,
+            active_uniforms,
+            shape,
+            scale,
+            direct_iterations=gamma_inverse_iterations,
+            newton_iterations=fast_newton_iterations,
+            direct_shape_upper=fast_direct_shape_upper,
+            newton_shape_upper=high_shape_threshold,
+        )
+    else:
+        raise ValueError("incomplete fast Gamma configuration")
     delta = np.zeros_like(flat_base)
     delta[active] = developed - density[active]
     developed_density = density.copy()
