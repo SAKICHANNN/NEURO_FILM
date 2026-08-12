@@ -1,0 +1,20 @@
+{
+  "schema": "neuro_film.u6_p4eg_native_density_conditioned_poisson_evidence.v2",
+  "node": "U6.P4EG",
+  "date": "2026-08-12",
+  "implementation_commit": "c43136be",
+  "contract_sha256": "23a2d07eda1ac8735707727927507e7ea81b63d230638321d868f67256d4d041",
+  "formal_report_sha256": "23f23ef4bc5ec770faffebb9081ee934b78389326060ebc46683e44cf08b01ee",
+  "stable_evidence_id": "63bd86c17215a75de368e33a5792faf59210271aca2c5df499e5f0ebaaf0804f",
+  "exact_replays": 2,
+  "automatic_pass": true,
+  "scale_sha256": "fde08a80daa1c089681359490a1d575c6479221e09e5179848224d26e32cce53",
+  "reference_count_sha256": "0773eb6bc2e59cf388b9d24b07bb9c6bd4b1d833f2c017db2454708a84650615",
+  "python_count_identity": true,
+  "cross_compiler_identity": true,
+  "partition_heights_exact": [1, 37, 128],
+  "zero_scale_zero_counts": true,
+  "failure_atomicity": true,
+  "decision": "retain_native_density_conditioned_poisson_v2",
+  "claim_ceiling": "Windows x64 C11 density-conditioned shared-count generation only; not native cloud filtering, measured emulsion calibration, mobile runtime or product authorization."
+}
