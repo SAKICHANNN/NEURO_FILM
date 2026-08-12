@@ -11796,3 +11796,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Both fresh streamed runs miss the frozen latency gates (17.79/19.30s;
   worst 1.353x the pinned P8DD wall). Retain P8DD full FFT and do not extend
   this exact streamed mechanism to 24MP.
+
+# 2026-08-12 - U6.P4CR identifies the scanner-mixing confound
+
+- Two byte-exact simulator runs recover confirmation layer correlation at
+  `0.00156` RMSE after the exact scanner inverse, versus `0.28303` in scanner
+  RGB and `0.08496` under a wrong inverse; every frozen gate passes.
+- Treat independently bound scanner response as mandatory before interpreting
+  cross-channel scan residuals as dye-layer coupling. Next quantify the matrix
+  error envelope; no archival, stock, calibration or product claim opens.

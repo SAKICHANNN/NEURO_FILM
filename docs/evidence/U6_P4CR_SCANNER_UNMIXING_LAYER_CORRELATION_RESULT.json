@@ -1,0 +1,30 @@
+{
+  "schema": "neuro_film.u6_p4cr_scanner_unmixing_layer_correlation_result.v1",
+  "experiment_id": "u6.p4cr-scanner-unmixing-layer-correlation-v1",
+  "date": "2026-08-12",
+  "implementation_commit": "1afa3176",
+  "contract_sha256": "bb4496a7306d70e54ceffdc501737590016767dc55d96d2550c57f162986aeca",
+  "report_sha256": "91a567dfdf50db745b40763df4955720a672b0cdf8800ec49528fc74cdbf2985",
+  "stable_evidence_id": "eafd545bb269770eb50bfb9785d95397215a71fe9c8d6bf29903cded19249025",
+  "two_full_runs_byte_identical": true,
+  "development_median_errors": {
+    "layer_density": 0.002277978577681017,
+    "scanner_rgb": 0.2829176294664117,
+    "correct_inverse_density": 0.0022779785776810522,
+    "wrong_inverse_density": 0.08401337451992769
+  },
+  "confirmation_median_errors": {
+    "layer_density": 0.0015647266524061686,
+    "scanner_rgb": 0.28302812661027965,
+    "correct_inverse_density": 0.0015647266524061632,
+    "wrong_inverse_density": 0.08495839575015376
+  },
+  "all_frozen_gates_pass": true,
+  "decision": "retain_scanner_unmixing_as_required_layer_correlation_identifiability_control",
+  "interpretation": [
+    "The exact known scanner inverse recovers the simulated layer-density correlation to sampling error, while direct scanner RGB is strongly confounded and a plausible wrong scanner inverse remains materially wrong.",
+    "P4CQ archival RGB correlation cannot identify dye-layer coupling without an independently bound scanner response. Future real correlation work must first prove scanner profile identity and sufficient calibration accuracy."
+  ],
+  "next_action": "Prospectively quantify the scanner-matrix error envelope under the unchanged simulator before defining any real calibration admission threshold.",
+  "claim_ceiling": "Controlled float64 simulator evidence about correlation-domain identifiability under a known invertible scanner matrix; not measured dye-layer correlation, scanner calibration, photographic quality or product evidence."
+}
