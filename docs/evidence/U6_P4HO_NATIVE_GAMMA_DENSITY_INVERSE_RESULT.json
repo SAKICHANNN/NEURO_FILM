@@ -1,0 +1,31 @@
+{
+  "schema": "neuro-film.u6-p4ho-native-gamma-density-inverse-evidence.v1",
+  "node": "U6.P4HO",
+  "date": "2026-08-13",
+  "contract_commit": "852b4efb",
+  "implementation_commit": "4ddaf01e",
+  "contract_file_sha256": "cded10c7330bbbedc1c7f4ac1b6f2d12b4a6156a368b011d1e5785e14b7a61a9",
+  "native_header_sha256": "e683f1d35d9c829da404598f88ff4083f094c0e28c1926ad467728c3b98a6852",
+  "native_source_sha256": "3d6dca25107f8aee40116dba6faa443b19690fd4e3208501878f067397f34af4",
+  "python_wrapper_sha256": "b38d07875709925dbaa0d5321b601f91ec3670fd5727b3871b916d5ec3eb8a05",
+  "evaluator_sha256": "f86878da090f217d4a8c7ce7393941f7167e565aee7549722b493de728d024c8",
+  "runner_sha256": "69bd4fdcda4ebcd43ddbc935ccba2b664ac3df48d72dbd9d088bf4b789a1cad7",
+  "formal_report_sha256": "0e59aab39d89c0940da181e7fa2804310dbd6e0f72db939c3a794ccbfaa65b59",
+  "stable_evidence_id": "7d0fb73ed262153e66cc1eebf0ce1586a2c81992c12b4823c88471ae8d5e03e7",
+  "observations": {
+    "sample_count": 13878,
+    "maximum_cross_compiler_absolute_error": 5.10702591327572e-14,
+    "maximum_absolute_developed_density_error": 0.0016675627578837116,
+    "maximum_relative_developed_density_error": 0.00041706038745960636,
+    "worst_shape": 100000.0,
+    "worst_probability": 0.4492195248603821,
+    "nonmonotone_groups": 6,
+    "repeat_exact": true,
+    "failure_atomic": true
+  },
+  "automatic_pass": false,
+  "decision": "retain_python_bounded_consumer_without_native_density_inverse",
+  "scientific_conclusion": "The direct series/continued-fraction CDF plus bisection inverse is deterministic, failure-atomic and nearly cross-compiler exact, but it loses sufficient probability resolution around shape 100000. This produces a 0.001668 density error and repeated quantiles in all six high-shape groups, failing accuracy and strict monotonicity. More bisection iterations cannot recover information absent from the CDF evaluation.",
+  "next_leaf": "Use a separately frozen high-shape asymptotic quantile branch while retaining the direct CDF inverse for low and moderate shape; evaluate the same full parameter grid without changing P4HO gates.",
+  "claim_ceiling": "Negative portable inverse-Gamma density arithmetic result on synthetic parameter coverage; not complete grain structure, photographic parity, calibrated emulsion response, media integration or product promotion."
+}

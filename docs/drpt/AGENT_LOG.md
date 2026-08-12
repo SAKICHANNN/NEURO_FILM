@@ -12745,3 +12745,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   exact, maximum correction is `0.006253`, and workspace stays below 5.25 MB.
 - Advance to the profile-bound inverse gamma-density stage. Photographic parity,
   native media integration and product promotion remain separate gates.
+
+### 2026-08-13 - U6.P4HO closes direct native Gamma inversion
+
+- Across 13,878 frozen shape/mean/probability points, the direct CDF plus
+  bisection inverse is repeat-exact, failure-atomic and agrees between compilers
+  within `5.11e-14`.
+- At shape `100,000`, CDF probability resolution is insufficient: maximum
+  density error reaches `0.001668`, relative error `4.17e-4`, and six groups
+  contain repeated quantiles. Accuracy and monotonicity therefore fail.
+- Do not add bisection iterations. The next distinct mechanism adds a frozen
+  high-shape asymptotic branch while retaining direct inversion below it.
