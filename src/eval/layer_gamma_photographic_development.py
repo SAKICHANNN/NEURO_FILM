@@ -71,12 +71,21 @@ def _evaluate_photographic(
         ],
         tuple[np.ndarray, dict[str, Any]],
     ],
+    result_parent_name: str | None = None,
+    finalize_pair: Callable[
+        [np.ndarray, np.ndarray],
+        tuple[np.ndarray, np.ndarray, dict[str, Any]],
+    ]
+    | None = None,
 ) -> dict[str, Any]:
     parents = contract["parents"]
     result_names = [name for name in parents if name.endswith("_result")]
-    if len(result_names) != 1:
+    if result_parent_name is None and len(result_names) != 1:
         raise ValueError("P4HA/P4HB requires one result parent")
-    result_binding = parents[result_names[0]]
+    selected_result_name = result_names[0] if result_parent_name is None else result_parent_name
+    if selected_result_name not in result_names:
+        raise ValueError("photographic result parent is not bound")
+    result_binding = parents[selected_result_name]
     result = _load_bound_json(root, result_binding)
     profile_payload = _load_bound_json(root, parents["p4bw_bundle"])
     prior_payload = _load_bound_json(root, parents["p2q_bundle"])
@@ -128,10 +137,29 @@ def _evaluate_photographic(
             source_encoded, source = _load_source(source_row, root)
             seeds = tuple(value + index * stride for value in base_seeds)
             physical, diagnostics = apply_physical(source, profile, prior, seeds)
-            ao6_linear = _apply_residual(standard, source)
-            combined_linear = _apply_residual(standard, physical)
+            comparison_baseline = source
+            comparison_candidate = physical
+            pair_diagnostics: dict[str, Any] = {}
+            if finalize_pair is not None:
+                comparison_baseline, comparison_candidate, pair_diagnostics = (
+                    finalize_pair(source, physical)
+                )
+                if (
+                    comparison_baseline.shape != source.shape
+                    or comparison_candidate.shape != source.shape
+                    or not np.all(np.isfinite(comparison_baseline))
+                    or not np.all(np.isfinite(comparison_candidate))
+                    or np.any(comparison_baseline < 0.0)
+                    or np.any(comparison_baseline > 1.0)
+                    or np.any(comparison_candidate < 0.0)
+                    or np.any(comparison_candidate > 1.0)
+                ):
+                    raise RuntimeError("paired downstream stage escaped the unit cube")
+            ao6_linear = _apply_residual(standard, comparison_baseline)
+            combined_linear = _apply_residual(standard, comparison_candidate)
             physical_encoded = np.ascontiguousarray(
-                linear_srgb_to_encoded(physical.astype(np.float64)), np.float32
+                linear_srgb_to_encoded(comparison_candidate.astype(np.float64)),
+                np.float32,
             )
             ao6_encoded = np.ascontiguousarray(
                 linear_srgb_to_encoded(ao6_linear.astype(np.float64)), np.float32
@@ -166,6 +194,7 @@ def _evaluate_photographic(
                 "minimum_developed_density": diagnostics["minimum_developed_density"],
                 "limited_fraction": diagnostics["limited_fraction"],
                 "hard_clipping_used": diagnostics["hard_clipping_used"] != 0.0,
+                **pair_diagnostics,
                 "combined_vs_ao6_p95_abs": float(np.quantile(absolute, 0.95)),
                 "combined_vs_ao6_p99_abs": float(np.quantile(absolute, 0.99)),
                 "flat_region_p99_abs": _flat_region_p99(source, difference),
