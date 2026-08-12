@@ -1,0 +1,42 @@
+{
+  "schema": "neuro-film.u6-p4hl-bounded-photographic-cpu-consumer-contract.v1",
+  "experiment_id": "u6.p4hl-bounded-photographic-cpu-consumer-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4HL",
+  "date_frozen": "2026-08-13",
+  "status": "contract-frozen-implementation-ready",
+  "question": "Can a caller-held bundle identity drive one deterministic indexed CPU render and return a canonical input/output/profile-bound receipt without exposing compiler internals?",
+  "parents": {
+    "p4hk_evidence": {
+      "path": "docs/evidence/U6_P4HK_BOUNDED_PHOTOGRAPHIC_PROFILE_BUNDLE_RESULT.json",
+      "sha256": "133d8942973d98a1ce4dbd165cb9a600b8c9271bb0c6b5fd7bf5accdcf2ba74c",
+      "required_decision": "retain_canonical_bounded_photographic_profile_bundle"
+    },
+    "profile": {
+      "path": "outputs/experiments/u6_p4hk_bounded_photographic_profile_bundle_v1/run_a/profile.json",
+      "sha256": "539fef07a7c659db035928ee4d9c7e6405da5e0baa07852f4f9a4b50fa1247b8",
+      "bundle_sha256": "8d20ce2874036befe78657b059ffafeb24e43d2e5bc1000512092a753e1e75df"
+    }
+  },
+  "fixture": {
+    "height": 257,
+    "width": 263,
+    "source_seed": 2026081307,
+    "source_index": 4,
+    "expected_physical_output_sha256": "c7c749c95032b7ded2407962d3f1be41ea362f267d704bb0c984ead98badfe92",
+    "expected_scanner_output_sha256": "cb35bc468253891c5a0758e423cfb1d68c1eed57e91fb88f687de72964a2353b"
+  },
+  "automatic_gates": {
+    "expected_fixture_output_exact": true,
+    "repeat_apply_exact": true,
+    "reload_apply_exact": true,
+    "receipt_repeat_exact": true,
+    "receipt_binds_input_output_profile_index_and_seeds": true,
+    "input_unchanged": true,
+    "wrong_bundle_identity_rejected_before_render": true,
+    "invalid_source_or_index_rejected_before_render": true,
+    "caller_output_not_required": true
+  },
+  "decision_if_pass": "retain_bounded_photographic_cpu_consumer_for_native_reference",
+  "decision_if_fail": "retain_p4hk_profile_compiler_without_cpu_consumer",
+  "claim_ceiling": "Canonical CPU reference consumer for one generic relative-display physical-inspired bundle; not calibrated film/scanner identity, media integration, native/mobile runtime or product promotion."
+}
