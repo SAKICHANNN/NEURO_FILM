@@ -32,3 +32,23 @@ def test_p4gq_scales_physical_residual_without_clipping():
     assert output[0, 0, 2] == 1.0
     assert diagnostics["limited_fraction"] == 2.0 / 3.0
     assert diagnostics["hard_clipping_used"] == 0.0
+
+
+def test_p4gq_formal_result_retains_tone_and_passes_severe_veto():
+    evidence = json.loads(
+        (
+            ROOT
+            / "docs/evidence/U6_P4GQ_NEUTRAL_BASE_PHYSICAL_RESIDUAL_RESULT.json"
+        ).read_text(encoding="utf-8")
+    )
+    assert evidence["exact_replays"] == 2
+    assert evidence["automatic_pass"] is True
+    assert evidence["visual_severe_artifact_pass"] is True
+    assert evidence["physical_residual_rms_minimum"] >= 0.0001
+    assert evidence["physical_residual_limited_fraction_maximum"] <= 0.05
+    assert evidence["hard_clipping_used"] is False
+    assert evidence["new_boundary_fraction"] == 0.0
+    assert evidence["physics_neutral_patch_encoded_u8_medians"] == [
+        97, 129, 153, 174, 191, 207, 221, 234
+    ]
+    assert evidence["decision"].startswith("retain_neutral_base")

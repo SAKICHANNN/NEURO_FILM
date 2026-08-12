@@ -12480,3 +12480,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Linear and cubic empirical inverse families are closed. The next mechanism
   keeps source tone as a neutral base and applies only the bounded physical
   cloud-versus-cloud-free scan residual before AO6.
+
+# 2026-08-12 - U6.P4GQ retains neutral-base physical residual
+
+- Two exact chart runs compute full forward-scatter/cloud scan minus the same
+  source's unscattered cloud-free scan, then analytically apply that residual
+  over the source neutral base before AO6. All frozen numeric and visual
+  severe-artifact gates pass with zero clipping or limited pixels.
+- Neutral patch medians remain essentially source-identical before AO6
+  (97/129/153/174/191/207/221/234). The physical residual is nonzero and fine
+  grained; no gray collapse, colour blocks, edge explosion or salt speckles
+  are observed. Fresh natural-photo confirmation is now the ready leaf.
