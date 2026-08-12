@@ -68,10 +68,10 @@ class RelativeLayerLogExposure:
             raise ValueError("layer exposure requires red/green/blue order")
         if np.any(exposure.values <= 0.0):
             raise ValueError("layer exposure must be strictly positive before log10")
-        values_hwc = np.log10(exposure.values.astype(np.float64))
-        values_chw = np.ascontiguousarray(
-            np.transpose(values_hwc, (2, 0, 1)), dtype=np.float32
-        )
+        height, width, _ = exposure.values.shape
+        values_chw = np.empty((3, height, width), dtype=np.float32)
+        for channel in range(3):
+            np.log10(exposure.values[..., channel], out=values_chw[channel])
         return cls.adopt_chw(values_chw)
 
     def descriptor(self) -> dict[str, Any]:

@@ -7,19 +7,19 @@ domain; callers cannot silently relabel display RGB as exposure or density.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from enum import Enum
 import hashlib
 import json
 import math
 import re
 import struct
-from typing import Any, Iterable
+from collections.abc import Iterable
+from dataclasses import InitVar, dataclass
+from enum import Enum
+from typing import Any
 
 import numpy as np
 
 from src.preprocess.types import WorkingImage
-
 
 PROFILE_BUNDLE_SCHEMA = "neuro_film.physical_film_profile_bundle.v1"
 DOMAIN_ARRAY_SCHEMA = "neuro_film.physical_domain_array.v1"
@@ -125,8 +125,9 @@ class PhysicalDomainArray:
     unit: PhysicalUnit
     channels: tuple[str, str, str]
     scale: PhysicalScale | None = None
+    _copy: InitVar[bool] = True
 
-    def __post_init__(self) -> None:
+    def __post_init__(self, _copy: bool) -> None:
         try:
             domain = PhysicalDomain(self.domain)
             unit = PhysicalUnit(self.unit)
@@ -157,14 +158,28 @@ class PhysicalDomainArray:
             np.any(array <= 0.0) or np.any(array > 1.0)
         ):
             raise ValueError("transmittance samples must be in (0, 1]")
-        owned = np.array(array, copy=True, order="C")
+        if not _copy and (not array.flags.c_contiguous or not array.flags.owndata):
+            raise ValueError("adopted physical samples must own contiguous data")
+        owned = np.array(array, copy=True, order="C") if _copy else array
         owned.setflags(write=False)
         object.__setattr__(self, "values", owned)
         object.__setattr__(self, "domain", domain)
         object.__setattr__(self, "unit", unit)
         object.__setattr__(self, "channels", channels)
 
-    def require(self, domain: PhysicalDomain) -> "PhysicalDomainArray":
+    @classmethod
+    def adopt(
+        cls,
+        values: np.ndarray,
+        domain: PhysicalDomain,
+        unit: PhysicalUnit,
+        channels: tuple[str, str, str],
+        scale: PhysicalScale | None = None,
+    ) -> PhysicalDomainArray:
+        """Transfer one owned contiguous array into the immutable contract."""
+        return cls(values, domain, unit, channels, scale, _copy=False)
+
+    def require(self, domain: PhysicalDomain) -> PhysicalDomainArray:
         expected = PhysicalDomain(domain)
         if self.domain is not expected:
             raise ValueError(
@@ -348,7 +363,7 @@ class FilmProfileBundle:
         return hashlib.sha256(payload).hexdigest()
 
     @classmethod
-    def from_dict(cls, payload: dict[str, Any]) -> "FilmProfileBundle":
+    def from_dict(cls, payload: dict[str, Any]) -> FilmProfileBundle:
         if set(payload) != {
             "schema",
             "profile_id",

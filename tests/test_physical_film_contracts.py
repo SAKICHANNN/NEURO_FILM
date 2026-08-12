@@ -22,7 +22,6 @@ from src.film_physics import (
 )
 from src.preprocess.types import SourceProfile, WorkingImage
 
-
 SHA_A = "1" * 64
 SHA_B = "2" * 64
 
@@ -77,6 +76,25 @@ def test_domain_array_is_owned_immutable_and_unit_locked() -> None:
             source,
             PhysicalDomain.DEVELOPED_DENSITY,
             PhysicalUnit.RELATIVE_DISPLAY_LIGHT,
+        )
+
+
+def test_domain_array_explicit_adoption_transfers_owned_storage() -> None:
+    source = np.full((2, 3, 3), 0.25, dtype=np.float32)
+    state = PhysicalDomainArray.adopt(
+        source,
+        PhysicalDomain.DEVELOPED_DENSITY,
+        PhysicalUnit.OPTICAL_DENSITY,
+        ("cyan", "magenta", "yellow"),
+    )
+    assert state.values is source
+    assert not source.flags.writeable
+    with pytest.raises(ValueError, match="own contiguous data"):
+        PhysicalDomainArray.adopt(
+            np.zeros((3, 2, 3), dtype=np.float32)[::2],
+            PhysicalDomain.DEVELOPED_DENSITY,
+            PhysicalUnit.OPTICAL_DENSITY,
+            ("cyan", "magenta", "yellow"),
         )
 
 

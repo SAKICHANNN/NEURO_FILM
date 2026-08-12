@@ -37,6 +37,7 @@ from src.film_physics.atomic_native_output import (
     publish_native_thomas_profile_rgb16_png,
     publish_native_thomas_rgb16_png,
 )
+from src.film_physics.contracts import PhysicalDomain, PhysicalDomainArray, PhysicalUnit
 from src.film_physics.native_thomas_input import RelativeLayerLogExposure
 from src.film_physics.native_thomas_package import resolve_native_thomas_package
 from src.film_physics.native_thomas_runtime import NativeThomasExportRuntime
@@ -58,6 +59,7 @@ def _validate_contract(contract_path: Path) -> dict[str, Any]:
             "neuro_film.u6_p8cu_thomas_atomic_domain_scale_contract.v1",
             "neuro_film.u6_p8cv_canonical_profile_atomic_scale_contract.v1",
             "neuro_film.u6_p8cy_packaged_thomas_atomic_scale_contract.v1",
+            "neuro_film.u6_p8da_linear_layer_exposure_atomic_scale_contract.v1",
         }
         or contract.get("status") != "contract_frozen_implementation_ready"
         or fixture.get("height") != 3000
@@ -72,7 +74,10 @@ def _validate_contract(contract_path: Path) -> dict[str, Any]:
     if schema.endswith("p8ct_thomas_atomic_publication_scale_contract.v1"):
         if "exposure_formula" not in fixture:
             raise NativeThomasAtomicScaleError("P8CT exposure fixture drift")
-    elif fixture.get("exposure_fixture") != "p8bw-domain-linear-gradient-v1":
+    elif fixture.get("exposure_fixture") not in {
+        "p8bw-domain-linear-gradient-v1",
+        "p8bw-linear-layer-exposure-roundtrip-v1",
+    }:
         raise NativeThomasAtomicScaleError("P8CU exposure fixture drift")
     parent = contract["parent"]
     parent_path = ROOT / parent["path"]
@@ -104,14 +109,40 @@ def _exposure_fixture(height: int, width: int) -> np.ndarray:
     return exposure
 
 
+def _linear_layer_exposure_fixture(
+    relative_log_exposure_chw: np.ndarray,
+) -> PhysicalDomainArray:
+    """Build exact positive float64 layer exposure with one owned HWC buffer."""
+    exposure = np.asarray(relative_log_exposure_chw)
+    if exposure.dtype != np.float32 or exposure.ndim != 3 or exposure.shape[0] != 3:
+        raise ValueError("P8DA source fixture must be float32 CHW")
+    _, height, width = exposure.shape
+    linear_hwc = np.empty((height, width, 3), dtype=np.float64)
+    for channel in range(3):
+        np.power(
+            10.0,
+            exposure[channel],
+            out=linear_hwc[..., channel],
+            dtype=np.float64,
+        )
+    return PhysicalDomainArray.adopt(
+        linear_hwc,
+        PhysicalDomain.LAYER_EXPOSURE,
+        PhysicalUnit.RELATIVE_LAYER_EXPOSURE,
+        ("red", "green", "blue"),
+    )
+
+
 def _worker(
     contract_path: Path, dll_path: Path, destination: Path, result_path: Path
 ) -> None:
     contract = _validate_contract(contract_path)
     fixture = contract["fixture"]
-    is_packaged = "p8cy_" in contract["schema"]
+    is_linear_layer = "p8da_" in contract["schema"]
+    is_packaged = any(marker in contract["schema"] for marker in ("p8cy_", "p8da_"))
     is_domain_valid = any(
-        marker in contract["schema"] for marker in ("p8cu_", "p8cv_", "p8cy_")
+        marker in contract["schema"]
+        for marker in ("p8cu_", "p8cv_", "p8cy_", "p8da_")
     )
     if is_packaged:
         prior, _profile = _compile_profile_payload(ROOT, contract)
@@ -129,6 +160,12 @@ def _worker(
     else:
         exposure = _exposure_fixture(int(fixture["height"]), int(fixture["width"]))
     input_sha256 = hashlib.sha256(exposure.tobytes()).hexdigest()
+    layer_exposure = None
+    layer_input_sha256 = None
+    if is_linear_layer:
+        layer_exposure = _linear_layer_exposure_fixture(exposure)
+        del exposure
+        layer_input_sha256 = hashlib.sha256(layer_exposure.values.tobytes()).hexdigest()
     library = load_library(dll_path)
     _configure_parallel(library)
     started = time.perf_counter()
@@ -140,11 +177,15 @@ def _worker(
             profile_path=ROOT / contract["package"]["profile_path"],
             library_path=dll_path,
         )
-        receipt = NativeThomasExportRuntime(
-            package=package, resolved=resolved
-        ).publish(
-            RelativeLayerLogExposure.adopt_chw(exposure), destination=destination
-        )
+        runtime = NativeThomasExportRuntime(package=package, resolved=resolved)
+        if layer_exposure is not None:
+            receipt = runtime.publish_layer_exposure(
+                layer_exposure, destination=destination
+            )
+        else:
+            receipt = runtime.publish(
+                RelativeLayerLogExposure.adopt_chw(exposure), destination=destination
+            )
         published = receipt["output"]
     elif profile is not None:
         published = publish_native_thomas_profile_rgb16_png(
@@ -168,7 +209,10 @@ def _worker(
             maximum_output_bytes=int(fixture["maximum_output_bytes"]),
         )
     wall_seconds = time.perf_counter() - started
-    if hashlib.sha256(exposure.tobytes()).hexdigest() != input_sha256:
+    if layer_exposure is not None:
+        if hashlib.sha256(layer_exposure.values.tobytes()).hexdigest() != layer_input_sha256:
+            raise NativeThomasAtomicScaleError("P8DA layer exposure input mutated")
+    elif hashlib.sha256(exposure.tobytes()).hexdigest() != input_sha256:
         raise NativeThomasAtomicScaleError("P8CT input mutated")
     result_path.write_bytes(
         canonical_bytes(
