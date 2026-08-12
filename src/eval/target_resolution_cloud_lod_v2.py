@@ -42,11 +42,16 @@ def load_contract(root: Path, path: Path) -> dict[str, Any]:
 
 
 def compile_target_resolution_profile(
-    profile: CrossLayerCloudReferenceProfile, factor: int
+    profile: CrossLayerCloudReferenceProfile,
+    factor: int,
+    *,
+    rate_multiplier: int | None = None,
 ) -> CrossLayerCloudReferenceProfile:
     """Compile area-summed rates and area-averaged marks at target resolution."""
 
-    area = factor * factor
+    area = factor * factor if rate_multiplier is None else rate_multiplier
+    if not isinstance(area, int) or area < 1:
+        raise ValueError("rate_multiplier must be a positive integer")
     count = profile.count_profile
     compiled_count = replace(
         count,
