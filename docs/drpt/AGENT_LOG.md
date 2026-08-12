@@ -11805,3 +11805,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Treat independently bound scanner response as mandatory before interpreting
   cross-channel scan residuals as dye-layer coupling. Next quantify the matrix
   error envelope; no archival, stock, calibration or product claim opens.
+
+# 2026-08-12 - U6.P4CS freezes the scanner-matrix tolerance
+
+- Development and untouched confirmation both select `0.5%` relative
+  Frobenius matrix error: confirmation worst correlation RMSE is `0.00726`;
+  the next `1%` level reaches `0.01275` and discriminates.
+- Retain this only as a synthetic admission tolerance. Real scanner response
+  still needs independent measurement; next isolate additive scanner flare.

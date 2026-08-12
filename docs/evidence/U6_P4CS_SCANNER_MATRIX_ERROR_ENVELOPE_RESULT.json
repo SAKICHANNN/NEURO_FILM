@@ -1,0 +1,19 @@
+{
+  "schema": "neuro_film.u6_p4cs_scanner_matrix_error_envelope_evidence.v1",
+  "node": "U6.P4CS",
+  "date": "2026-08-12",
+  "implementation_commit": "f129c181",
+  "contract_sha256": "1e7f0fd8d6dda0763cc37971f16310b40ac6bce5515660b7c2c3fcfe74fec3d2",
+  "formal_report_sha256": "11a82a59eba162c3088368e9871bad3c0391ef5d6e7f3d5a640dffd7c39e1230",
+  "stable_evidence_id": "a584b42dc15fec0b9ce4f04380f1f7f586567cc7965bd5325256793cc02599c5",
+  "exact_replays": 2,
+  "automatic_pass": true,
+  "development_selected_relative_frobenius_error": 0.005,
+  "confirmation_largest_passing_relative_frobenius_error": 0.005,
+  "confirmation_selected_median_correlation_rmse": 0.004595072320420816,
+  "confirmation_selected_worst_correlation_rmse": 0.007261235519427691,
+  "confirmation_next_level_relative_frobenius_error": 0.01,
+  "confirmation_next_level_worst_correlation_rmse": 0.012749083156331768,
+  "decision": "retain_frozen_scanner_matrix_error_envelope_as_layer_correlation_admission_control",
+  "claim_ceiling": "Controlled float64 sensitivity evidence for P4CR layer-correlation recovery under frozen scanner-matrix perturbations; not real scanner calibration, dye-layer measurement, stock truth or product evidence."
+}
