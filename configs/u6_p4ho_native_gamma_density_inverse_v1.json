@@ -1,0 +1,45 @@
+{
+  "schema": "neuro-film.u6-p4ho-native-gamma-density-inverse-contract.v1",
+  "experiment_id": "u6.p4ho-native-gamma-density-inverse-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4HO",
+  "date_frozen": "2026-08-13",
+  "status": "contract-frozen-implementation-ready",
+  "question": "Can a freestanding C11 inverse regularized-gamma primitive reproduce the profile's density-domain Gamma marginal across its relevant numerical regimes with bounded error and atomic failure?",
+  "parents": {
+    "p4hn_evidence": {
+      "path": "docs/evidence/U6_P4HN_SOURCE_OBSERVABLE_COPULA_CALIBRATION_RESULT.json",
+      "sha256": "d6aca8aa2064835d10c4730b6830615e3c46eb2b3fcd3b399083c13060be73ec",
+      "required_decision": "retain_source_observable_calibrated_native_transport_for_gamma_density_stage"
+    },
+    "profile": {
+      "path": "outputs/experiments/u6_p4hk_bounded_photographic_profile_bundle_v1/run_a/profile.json",
+      "sha256": "539fef07a7c659db035928ee4d9c7e6405da5e0baa07852f4f9a4b50fa1247b8",
+      "bundle_sha256": "8d20ce2874036befe78657b059ffafeb24e43d2e5bc1000512092a753e1e75df"
+    }
+  },
+  "candidate": {
+    "cdf_lower_region": "regularized-gamma power series",
+    "cdf_upper_region": "regularized-gamma Lentz continued fraction",
+    "inverse": "bracketed fixed-iteration bisection",
+    "inverse_iterations": 80,
+    "shape_values": [0.25, 0.5, 1.0, 2.0, 5.0, 20.0, 100.0, 1000.0, 100000.0],
+    "mean_density_values": [0.004, 0.05, 0.3, 1.0, 2.0, 4.0],
+    "uniform_grid_count": 257,
+    "uniform_tail_denominator": 131072,
+    "scipy_gamma_ppf_is_oracle_only": true,
+    "allocation": "caller output only",
+    "parameter_refit_allowed": false
+  },
+  "automatic_gates": {
+    "maximum_absolute_developed_density_error": 0.00000002,
+    "maximum_relative_developed_density_error": 0.000002,
+    "maximum_cross_compiler_absolute_error": 0.00000002,
+    "require_backend_repeat_exact": true,
+    "require_positive_finite_output": true,
+    "require_monotone_output_per_shape_and_mean": true,
+    "require_failure_atomic_output_and_diagnostics": true
+  },
+  "decision_if_pass": "retain_native_gamma_density_inverse_for_composed_density_structure",
+  "decision_if_fail": "retain_python_bounded_consumer_without_native_density_inverse",
+  "claim_ceiling": "Portable native inverse-Gamma density arithmetic on synthetic parameter coverage; not complete grain structure, photographic parity, calibrated emulsion response, media integration or product promotion."
+}
