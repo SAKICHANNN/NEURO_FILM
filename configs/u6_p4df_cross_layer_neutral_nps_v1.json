@@ -1,0 +1,14 @@
+{
+  "schema": "neuro_film.u6_p4df_cross_layer_neutral_nps_contract.v1",
+  "experiment_id": "u6.p4df-cross-layer-neutral-nps-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4DF",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {"path": "docs/evidence/U6_P4DE_TARGET_DENSITY_CROSS_LAYER_CLOUD_RESULT.json", "sha256": "3d6f7e6b1a7b2a7fe9847cb5e9081e8b3417eafce9da0bdbf7ff4ad5a3b80346", "required_decision": "retain_typed_target_density_cross_layer_cloud_reference"},
+  "fixture": {"height": 1024, "width": 1024, "seed": 32181, "neutral_scale": 0.55, "analysis_margin": 24},
+  "controls": ["shared-cross-layer-cloud", "independent-dye-layer-cloud", "display-rgb-additive-noise"],
+  "gates": {"maximum_shared_to_independent_chroma_noise_power_ratio": 0.85, "minimum_shared_to_independent_luminance_noise_power_ratio": 0.9, "maximum_shared_to_independent_luminance_noise_power_ratio": 1.1, "maximum_marginal_variance_relative_difference": 0.05, "require_repeat_identity": true, "require_finite_bounded_transmittance": true},
+  "decision_if_pass": "retain_shared_cross_layer_cloud_for_neutral_stability",
+  "decision_if_fail": "prefer_independent_dye_layer_cloud_or_simpler_control",
+  "claim_ceiling": "Synthetic neutral-field NPS mechanism evidence only; not visual preference, measured film grain, stock calibration or product evidence."
+}
