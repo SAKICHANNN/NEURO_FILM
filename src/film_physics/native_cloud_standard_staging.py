@@ -7,6 +7,7 @@ import os
 import sys
 import uuid
 from pathlib import Path
+from collections.abc import Callable
 from typing import Any
 
 from src.eval.native_cloud_standard_display import (
@@ -23,10 +24,12 @@ from .native_standard_staging import (
 )
 
 
-def stage_cloud_scan_with_standard_display(
+def _stage_cloud_display_rows(
     standard: NativeStandardRuntime,
     cloud: WindowedNativeCloudScanRuntime,
     *,
+    renderer: Callable[..., dict[str, Any]],
+    receipt_schema: str,
     height: int,
     width: int,
     source_rows: Any,
@@ -67,7 +70,7 @@ def stage_cloud_scan_with_standard_display(
                     raise OSError("short cloud Standard staging write")
                 staged_bytes += written
 
-            receipt = render_cloud_scan_with_standard_display(
+            receipt = renderer(
                 standard,
                 cloud,
                 height=height,
@@ -82,7 +85,7 @@ def stage_cloud_scan_with_standard_display(
         if output_sha != receipt["output_sha256"] or staged_bytes != height * width * 12:
             raise RuntimeError("cloud Standard staged output drift")
         working_receipt = {
-            "schema": "neuro_film.cloud_standard_display_receipt.v1",
+            "schema": receipt_schema,
             "package_sha256": receipt["standard_package_sha256"],
             "artifact_sha256": receipt["standard_artifact_sha256"],
             "physical_component_sha256": receipt["cloud_receipt"][
@@ -148,6 +151,33 @@ def stage_cloud_scan_with_standard_display(
         report_temp.unlink(missing_ok=True)
         if output_committed and not report.exists() and output.exists():
             output.unlink()
+
+
+def stage_cloud_scan_with_standard_display(
+    standard: NativeStandardRuntime,
+    cloud: WindowedNativeCloudScanRuntime,
+    *,
+    height: int,
+    width: int,
+    source_rows: Any,
+    expected_input_sha256: str,
+    output_path: Path,
+    report_path: Path,
+) -> dict[str, Any]:
+    """Stage the historical full-AO6 composition for exact replay only."""
+
+    return _stage_cloud_display_rows(
+        standard,
+        cloud,
+        renderer=render_cloud_scan_with_standard_display,
+        receipt_schema="neuro_film.cloud_standard_display_receipt.v1",
+        height=height,
+        width=width,
+        source_rows=source_rows,
+        expected_input_sha256=expected_input_sha256,
+        output_path=output_path,
+        report_path=report_path,
+    )
 
 
 __all__ = ["stage_cloud_scan_with_standard_display"]

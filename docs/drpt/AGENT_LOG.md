@@ -12314,3 +12314,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   boundary pixels and remain partition/replay exact with distinct outputs.
 - This is the retained downstream composition mechanism. P4FY/P4GD full AO6
   base compositions remain closed and must not be treated as active paths.
+
+# 2026-08-12 - U6.P4GF commits the retained residual path
+
+- One shared private staging primitive now serves both historical replay and
+  the retained residual-only renderer without duplicating transaction logic.
+- The retained path reaches the existing single-quantization PNG16 commit and
+  restart verifier with an explicit residual-only working receipt.
