@@ -200,8 +200,12 @@ Local Windows storage binding, 2026-07-31: the canonical repository path
 `C:\Users\hhvrf\Documents\neuro_film\data` is an NTFS junction to the
 project-owned physical root `P:\neuro_film_storage\data`. Keep configs and
 scripts repo-relative under `data/...`; do not bypass the junction with a
-machine-specific `P:` path. If `P:` is unavailable, data-dependent work must
-fail closed rather than recreate a partial `data` tree on `C:`. The full
+machine-specific `P:` path. `P:` is the sole durable data location. If it is
+temporarily unavailable, continue data-dependent work through a project-owned
+isolated `D:` fallback behind the same repo-relative entry instead of writing a
+partial tree on `C:`. When `P:` returns, freeze writers, copy the fallback back
+to `P:`, verify every transferred file, restore the canonical junction, and
+only then remove the verified fallback. The full
 29,346-file / 131,193,580,154-byte physical storage root was copied,
 block-compared and verified by a byte-identical per-file SHA-256 manifest
 before the old O-drive root was cleared. Local migration evidence is retained
