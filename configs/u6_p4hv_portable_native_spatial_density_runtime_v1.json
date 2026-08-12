@@ -1,0 +1,42 @@
+{
+  "schema": "neuro-film.u6-p4hv-portable-native-spatial-density-runtime-contract.v1",
+  "experiment_id": "u6.p4hv-portable-native-spatial-density-runtime-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4HV",
+  "date_frozen": "2026-08-13",
+  "status": "contract-frozen-implementation-ready",
+  "question": "Do the unchanged P4HU field, copula and fast-density C11 kernels compose deterministically on host and Android 14 x86_64 while also compiling for Android arm64 and Apple arm64 targets?",
+  "parents": {
+    "p4hu_evidence": {"path": "docs/evidence/U6_P4HU_NATIVE_SPATIAL_DENSITY_PHOTOGRAPHIC_INTEGRATION_RESULT.json", "sha256": "bea51a9bc46199a76271dd9567a4c7016254054e877eb814e9124c1f576581ed", "required_decision": "retain_native_spatial_density_photographic_integration_for_portable_runtime"},
+    "p8cm_evidence": {"path": "docs/evidence/U6_P8CM_ANDROID_THOMAS_RGB16_PNG_RUNTIME_RESULT.json", "sha256": "3198585b6700c4ea5dce4d86bf5e65408a044c80a94edb87ff0f04dfa5e21839", "required_decision": "retain_android_virtual_runtime_for_p8ck"}
+  },
+  "fixture": {
+    "height": 47,
+    "width": 53,
+    "rank_bins": 2048,
+    "profile_bundle_sha256": "8d20ce2874036befe78657b059ffafeb24e43d2e5bc1000512092a753e1e75df",
+    "particle_sigma_pixels": 1.3253699417769098,
+    "cluster_sigma_pixels": 1.1268619873805532,
+    "mean_offspring": 27.765942352935905,
+    "truncate": 4.0,
+    "component_seeds": [2611923443488327891, 11400714819323198485],
+    "realization_seeds": [2608024301, 11400714821016565496, 15111065704576690158],
+    "correlation_matrix": [[1.0, 0.2721655269759087, 0.22360679774997896], [0.2721655269759087, 1.0, 0.21300321680756462], [0.22360679774997896, 0.21300321680756462, 1.0]],
+    "gamma_shapes": [20.0, 100.0, 100000.0],
+    "gamma_scale_formula": "0.000001 + ((sample_index * 17) mod 1000) * 0.000001"
+  },
+  "runtime": {
+    "android_api": 34,
+    "android_abi": "x86_64",
+    "wipe_data_cold_boots": 2,
+    "fresh_processes_per_boot": 2,
+    "require_host_android_stdout_exact": true,
+    "require_android_arm64_compile_link": true,
+    "require_macos_arm64_object_compile": true,
+    "require_ios_arm64_object_compile": true,
+    "require_failure_atomic": true,
+    "require_owned_process_cleanup": true
+  },
+  "decision_if_pass": "retain_portable_native_spatial_density_runtime_for_profile_compiler_integration",
+  "decision_if_fail": "retain_p4hu_windows_host_only_without_target_runtime_claim",
+  "claim_ceiling": "Private fixed-fixture C11 arithmetic on Windows and Android 14 x86_64 virtual device plus compile-only Android arm64 and Apple arm64 evidence; not physical-device, JNI/app/media, calibrated film/scanner response or product promotion."
+}
