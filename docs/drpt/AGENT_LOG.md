@@ -12240,3 +12240,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The row result exactly matches independent full-frame composition and has a
   nonzero display effect. This is synthetic composition evidence, not stock
   calibration, visual preference or product promotion.
+
+# 2026-08-12 - U6.P4FZ passes 24MP cloud plus Standard display
+
+- Two fresh workers produce exact 24MP output through four replayable-source
+  passes. Peak process-tree RSS is 333.7-335.1MB and wall time 74.5-79.4s;
+  every frozen identity, streaming, resource and repeat gate passes.
+- This closes local synthetic float execution only. Image publication and
+  restart verification remain a distinct transaction leaf.

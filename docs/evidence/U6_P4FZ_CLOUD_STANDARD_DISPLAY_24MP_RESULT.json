@@ -1,0 +1,32 @@
+{
+  "schema": "neuro-film.u6-p4fz-cloud-standard-display-24mp-result.v1",
+  "status": "PASS",
+  "contract_sha256": "c656eccbd298a1bdb393e328fd5155c9cc605aa48ef15f2b1927e47a0d8005d3",
+  "stable_evidence_id": "8cb054179d1d593c886c934cf57c3b33ada6c6983f65d2b4451ce1713e777662",
+  "scenario": {
+    "height": 4000,
+    "width": 6000,
+    "tile_rows": 128,
+    "runs": 2
+  },
+  "identities": {
+    "input_sha256": "427c526f137ff80780236646a7d91ecf8d7a588c43424adea22c2ef7c77312c0",
+    "scan_linear_sha256": "6edd6f739ab6b50e8f48b6cb1fe2590819e6d4dcb19ead4f38765f4469b387bd",
+    "display_output_sha256": "d05a60d90297c87cbffbfcecd00d50e4929c7627833a46efde33ee5a12cb84c0"
+  },
+  "metrics": {
+    "peak_process_tree_rss_bytes": [333733888, 335122432],
+    "worker_wall_seconds": [79.41070929999114, 74.48697350002476],
+    "peak_repeat_ratio": 1.0041606323179264,
+    "source_passes": 4
+  },
+  "gates": {
+    "identity": true,
+    "peak_under_1_gib": true,
+    "wall_under_180_seconds": true,
+    "repeat_ratio_at_most_1_10": true,
+    "streamed": true,
+    "all_pass": true
+  },
+  "claim_ceiling": "Local Windows x64 synthetic 24MP correct-domain cloud plus frozen Standard display execution; not file decode, image encode, calibrated film, visual preference or product promotion."
+}
