@@ -12588,3 +12588,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   positive and transmittance stays within `[0,1]`.
 - Advance this exact mechanism to consumed photographic development with an
   explicit chroma-tail gate. This is not measured dye-cloud or stock evidence.
+
+### 2026-08-12 - U6.P4HA closes independent layer fields on photographs
+
+- Two photographic reports and contact sheets are byte exact. Density support,
+  flat-region, isolated-excursion, total-tail and boundary gates all pass with
+  no clipping or limiting.
+- Independent RGB fields fail the frozen high-frequency chroma gate at
+  `0.01671` versus `0.004`; the contact sheet is consistent with coloured fine
+  texture. Close this exact candidate without amplitude or same-cohort rescue.
+- Next replace the ad hoc high-pass field spectrum with the already retained
+  P4BW same-scanner Thomas spectrum while preserving P4GZ marginals.

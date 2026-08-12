@@ -1,0 +1,31 @@
+{
+  "schema": "neuro-film.u6-p4ha-layer-gamma-photographic-development-evidence.v1",
+  "node": "U6.P4HA",
+  "date": "2026-08-12",
+  "contract_commit": "7695476d",
+  "implementation_commit": "ba2e9938",
+  "contract_sha256": "52a99aa04b44cebb42b31400ccfc5560485f246088124ee9735c2b8b13151a57",
+  "implementation_sha256": "791b2620908e8d57a7c67b042aa099cb3012e8f60d4ba91069d04f704ea90c76",
+  "evaluator_sha256": "a9a726ddc91ce07ade1c45190d2ebd89473a662d7baa06be4e7d98808e1ea3aa",
+  "formal_processes": 2,
+  "formal_report_sha256": "2f0a1a7f7430767eaf36c5bab7b1a67dbe6770259732f4199bc7c4f023213d41",
+  "formal_contact_sheet_sha256": "592b7eb11c706093c27585385f6a18c566da62811716eb25a01f141b395266d3",
+  "reports_and_contact_sheets_byte_exact": true,
+  "stable_evidence_id": "d583d44e00132536923c971a29610777acc4af7d7d58b04699387b057d1d5eb0",
+  "observations": {
+    "population_p95_combined_vs_ao6_abs": 0.009133863449096679,
+    "population_p99_combined_vs_ao6_abs": 0.014799137115478516,
+    "worst_high_frequency_chroma_p999": 0.01671486720442772,
+    "maximum_flat_region_p99_abs": 0.0180940646678209,
+    "isolated_excursion_count": 0,
+    "maximum_new_boundary_fraction_vs_ao6": 0.0000152905198776758,
+    "minimum_physical_residual_rms": 0.00215799276912127,
+    "hard_clipping_or_posthoc_limiting_used": false
+  },
+  "failed_gates": ["high_frequency_chroma"],
+  "automatic_pass": false,
+  "decision": "close_layer_gamma_photographic_v1_without_rescue",
+  "scientific_conclusion": "Per-layer support-matched Gamma marginals preserve density support and remove the earlier clipping and isolated-island failures, but independent RGB high-frequency fields produce a 0.01671 display-code chroma p99.9 tail, 4.18 times the frozen procedural-effect limit. The failure is spatial and cross-layer, not an amplitude-support failure.",
+  "next_leaf": "Replace the ad hoc P4GW high-pass field with the already retained P4BW same-scanner Thomas spectrum before considering any new cross-layer parameter. Keep the exact P4GZ marginals and amplitude, and do not tune on this photographic cohort.",
+  "claim_ceiling": "Consumed nine-camera CC0 relative-display photographic mechanism development only; no measured dye-cloud structure, calibrated film, stock response, independent confirmation, preference or product promotion."
+}
