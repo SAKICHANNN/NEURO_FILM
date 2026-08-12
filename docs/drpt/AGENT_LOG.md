@@ -12224,3 +12224,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   by row with exact file/pixel identities, finite/range checks and no pickle.
 - The exact source reaches the frozen Standard package and restart-verified
   PNG16 transaction. This is an explicit intermediate, not a RAW/EXR decoder.
+
+# 2026-08-12 - U6.P4FX passes 24MP file-backed ingress
+
+- A 288,000,128-byte mmap NPY source produces the same frozen PNG as procedural
+  rows in two fresh workers, with exact file/pixel identities and full cleanup.
+- Peak RSS is 900.0-937.3MB and wall 39.9-41.0s. All frozen gates pass; this
+  validates an intermediate scene-linear file path, not camera or EXR decode.

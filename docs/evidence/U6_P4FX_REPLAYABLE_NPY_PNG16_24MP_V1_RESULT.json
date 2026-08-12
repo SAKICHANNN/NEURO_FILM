@@ -1,0 +1,21 @@
+{
+  "schema": "neuro_film.u6_p4fx_replayable_npy_png16_24mp_result.v1",
+  "node": "U6.P4FX",
+  "contract_sha256": "b5f7a3c889edef7ba2f3faebef37d51eb0523fcc8c6327457557392ed03adec4",
+  "stable_evidence_id": "629e6fb656043538d44846fa56fc3fe53c31270e39d692cded55ed05fb124f73",
+  "result": {
+    "status": "pass",
+    "input_file_bytes": 288000128,
+    "input_file_sha256": "a2f40e717146ac957400f99a7afd2c217225c5d34a1f3fda96ea0d358182dc33",
+    "input_pixel_sha256": "427c526f137ff80780236646a7d91ecf8d7a588c43424adea22c2ef7c77312c0",
+    "png_output_sha256": "5482759a9014e30bb8d27df1396df9c1abc49f5d1a7f90b99f456ca20db07565",
+    "peak_process_tree_rss_bytes": [937259008, 899973120],
+    "worker_wall_seconds": [40.98414919999777, 39.88234530002228],
+    "peak_repeat_ratio": 1.0414300018204987,
+    "restart_verified": true,
+    "input_and_transaction_cleanup_pass": true,
+    "all_frozen_gates_pass": true
+  },
+  "decision": "retain_replayable_npy_png16_24mp_v1",
+  "claim_ceiling": "Local Windows x64 24MP explicit scene-linear NPY mmap through exact Native Standard to restart-verified sRGB16 ICC PNG; not RAW/EXR decode, mobile runtime, calibrated film or product promotion."
+}
