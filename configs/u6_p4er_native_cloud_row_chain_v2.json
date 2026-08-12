@@ -1,0 +1,24 @@
+{
+  "schema": "neuro_film.u6_p4er_native_cloud_row_chain_v2_contract.v1",
+  "experiment_id": "u6.p4er-native-cloud-row-chain-v2",
+  "node": "ULT > U6 > U6.P4 > U6.P4ER",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {
+    "path": "docs/evidence/U6_P4EQ_DETERMINISTIC_LOG10F_V1_RESULT.json",
+    "sha256": "386879cc88818ee960c5a635dc6aab508095cfce1ae430f1f1db3bbafe83e52e",
+    "required_decision": "retain_deterministic_log10f_v1"
+  },
+  "fixture": {"full_height": 73, "core_height": 31, "width": 47, "origin_y": 61, "halo": 9, "seed": 78277},
+  "runtime": {"api_level": 34, "abi": "x86_64", "avd_name": "nf-019f4b76-p8cm-api34-x86", "cold_boots": 2, "fresh_processes_per_boot": 2},
+  "gates": {
+    "require_v1_transmittance_identity": true,
+    "require_deterministic_density_identity": true,
+    "require_windows_android_bit_identity": true,
+    "require_failure_atomicity": true,
+    "require_zero_surviving_owned_processes": true
+  },
+  "decision_if_pass": "retain_native_cloud_row_chain_v2",
+  "decision_if_fail": "close_native_cloud_row_chain_v2",
+  "claim_ceiling": "Private Android 14 x86_64 virtual-device synthetic single-call row-chain arithmetic; not physical arm64, JNI/app, calibrated emulsion or product runtime."
+}
