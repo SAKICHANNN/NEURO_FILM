@@ -99,7 +99,7 @@ def evaluate(contract: dict[str, Any], *, root: Path) -> dict[str, Any]:
             available_density = (
                 -np.log10(maximum_channel) if maximum_channel > 0.0 else np.inf
             )
-            nondegenerate = (
+            nondegenerate = bool(
                 available_density > np.finfo(np.float64).eps
                 and target_sigma > np.finfo(np.float64).tiny
             )
