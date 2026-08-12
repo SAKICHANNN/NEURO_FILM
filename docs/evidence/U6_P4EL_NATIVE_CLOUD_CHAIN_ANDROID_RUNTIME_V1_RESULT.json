@@ -1,0 +1,21 @@
+{
+  "schema": "neuro_film.u6_p4el_native_cloud_chain_android_runtime_evidence.v1",
+  "node": "U6.P4EL",
+  "date": "2026-08-12",
+  "implementation_commits": ["bee45ab5", "3da20ac3"],
+  "contract_sha256": "ccbfd10b44892dcce78b832c83b677b5d34b3da43cfcfbf68b545f63a6f95686",
+  "formal_report_sha256": "8329675fb071daa986f555613c374ecde264a3a669e5215b89a2547a11a6204b",
+  "stable_evidence_id": "c6d70a87ebfcb6578ca609cce1598f70f628f43ec3bdb7c5b0f99ea6eced06ec",
+  "exact_outer_replays": 2,
+  "cold_boots_per_replay": 2,
+  "fresh_processes_per_boot": 2,
+  "automatic_pass": true,
+  "host_count_sha256": "06cd28e786a8645b1351e51d9fa25ebd8f6abbcbfdde3d0e2f1218091b048f10",
+  "host_density_sha256": "66f1c5a0c845cdd3225e92424c00fe792dc8b5b3e6038caf938dac890213ec29",
+  "host_transmittance_sha256": "6aa11b028890dbd6f0d7e22459bac58c0235d02d8b3f26a6c91c617ddd3069c5",
+  "maximum_host_android_density_absolute_error": 0.0,
+  "maximum_host_android_transmittance_absolute_error": 0.0,
+  "owned_process_cleanup": true,
+  "decision": "retain_android_virtual_runtime_for_native_cloud_chain_v1",
+  "claim_ceiling": "Private Android 14 x86_64 virtual-device synthetic cloud-chain arithmetic; not physical arm64, JNI/app, calibrated emulsion or product runtime."
+}
