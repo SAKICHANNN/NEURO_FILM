@@ -12151,3 +12151,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Gaussian v1 source/header and MSVC DLL return to their exact retained hashes.
 - P4FE/P4FF/P4FI conformance remains exact. Continue with streamed source
   ingress rather than changing an already packaged Standard component.
+
+# 2026-08-12 - U6.P4FL passes replayable 24MP source ingress
+
+- Two fresh workers reproduce the exact P4FI input/output hashes without a
+  retained full source or forward frame. Peak RSS is 206.1-206.5MB and wall
+  time is 73.0-75.4s, versus the prior roughly 493-495MB windowed runtime.
+- Retain the two-pass row-source ingress and advance unchanged to 100MP tiled
+  feasibility; file decoding and Standard/AO6 integration remain separate.

@@ -1,0 +1,34 @@
+{
+  "schema": "neuro_film.u6_p4fl_replayable_cloud_source_24mp.v1",
+  "experiment_id": "u6.p4fl-replayable-cloud-source-24mp-v1",
+  "date_executed": "2026-08-12",
+  "implementation_commit": "17e6da38",
+  "contract_commit": "dee6f853",
+  "automatic_pass": true,
+  "stable_evidence_id": "d9a4183319d09dfed9c4b5c87e909012a3184957545b4f6b16710244912fc72a",
+  "contract_sha256": "5eede07aa42f22c831984f26b2c813f99f1d2736ab39e50e3e99fdd4d00a8a80",
+  "input_sha256": "04c8a193926014a5b3012085372c6150948d6c177537623c48415880fcca924d",
+  "output_sha256": "8be7d9ce0d9e96a5f4e72809359ce440eae07058941f09e04e9ecdfe108fe412",
+  "runs": [
+    {
+      "peak_process_tree_rss_bytes": 206503936,
+      "worker_wall_seconds": 75.44656820001546
+    },
+    {
+      "peak_process_tree_rss_bytes": 206077952,
+      "worker_wall_seconds": 73.00973469999735
+    }
+  ],
+  "peak_repeat_ratio": 1.0020671012879632,
+  "maximum_forward_workspace_values": 5220000,
+  "full_source_frame_retained": false,
+  "full_forward_frame_retained": false,
+  "source_passes": 2,
+  "decision": "retain_replayable_cloud_source_24mp_v1",
+  "execution_notes": [
+    "The first attempt stopped before worker launch because the frozen parent file hash was mistyped.",
+    "The second attempt stopped during the input verification pass because abbreviated hashes had been copied instead of the exact P4FI pixel identities.",
+    "Both defects were corrected from tracked evidence without changing pixels, runtime, metrics or gates; the formal run then executed twice."
+  ],
+  "claim_ceiling": "Local Windows x64 synthetic-profile 24MP replayable row-source to scan-linear resource evidence; not file decoding, Standard/AO6 integration, calibrated image quality, mobile runtime or product promotion."
+}
