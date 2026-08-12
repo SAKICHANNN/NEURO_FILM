@@ -1,0 +1,22 @@
+{
+  "schema": "neuro_film.u6_p4ex_native_sensitometry_f64.v1",
+  "experiment_id": "u6.p4ex-native-sensitometry-f64-v2",
+  "date_executed": "2026-08-12",
+  "implementation_commit": "3146722",
+  "automatic_pass": true,
+  "formal_replays": {"count": 2, "byte_exact": true},
+  "stable_evidence_id": "0346716e85477a2f4e8e8b7d3597f3821765e7e68f3c76629aa78665473b001a",
+  "contract_sha256": "abcc5b1e2da4880ed7f03c3e642da239666292e1c734425a606f75953e95108f",
+  "source_sha256": "35ccaa01ea9fb097460c75f8e7403ebf9a1412f9c1eb20496b41d455b860e70c",
+  "header_sha256": "17834525c5afa45ac8b7f88a253e11265187f07df85e52b5cb7dae40f2b19f2f",
+  "results": {
+    "f64_to_legacy_f32_rounding_bit_exact": true,
+    "msvc_llvm_f64_bit_exact": true,
+    "repeat_bit_exact": true,
+    "invalid_input_output_unchanged": true,
+    "maximum_cross_compiler_absolute_error": 0.0,
+    "f64_sha256": "153a7b4e93765b9525838d2efede2d15882f6a6beb2d453131b2fea20387ac0f"
+  },
+  "decision": "retain_native_sensitometry_f64_v2_for_exact_cloud_scale",
+  "claim_ceiling": "Local Windows x64 synthetic-profile double developed-density sensitometry arithmetic for an opt-in physical structure path; not the historical profile, calibrated sensitometry, image quality, mobile runtime or product authorization."
+}
