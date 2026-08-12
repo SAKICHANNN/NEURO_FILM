@@ -1,0 +1,46 @@
+{
+  "schema": "neuro_film.u6_p4dr_optical_density_cloud_aperture_lod_contract.v2",
+  "experiment_id": "u6.p4dr-optical-density-cloud-aperture-lod-v2",
+  "node": "ULT > U6 > U6.P4 > U6.P4DR",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parents": [
+    {
+      "path": "docs/evidence/U6_P4DQ_OPTICAL_DENSITY_CLOUD_SPATIAL_ORDER_V2_RESULT.json",
+      "sha256": "aa4db663032b6dece52f1e2ee9025dc13b55d43e67df8e488e59dc5f225df6fc",
+      "required_decision": "close_optical_density_cloud_spatial_order_v2"
+    },
+    {
+      "path": "docs/evidence/U6_P4DB_CROSS_LAYER_APERTURE_LOD_RESULT.json",
+      "sha256": "458ecfe98c67b3b57b2ab850041abfe97ac9c8d39499912703a73dfd251e145f",
+      "required_decision": "retain_cross_layer_aperture_lod_reference"
+    }
+  ],
+  "fixture": {
+    "height": 640,
+    "width": 896,
+    "seed": 53181,
+    "slant_degrees": 4.0,
+    "low_high_exposure": [0.08, 2.5],
+    "measurement_margin": 32,
+    "candidate_aperture_factors": [2, 4, 8]
+  },
+  "compiler": {
+    "selection": "first_factor_in_ascending_order_passing_all_candidate_gates",
+    "aperture_operation": "exact_nonoverlapping_block_mean_in_transmittance_domain",
+    "post_selection_tuning_allowed": false
+  },
+  "gates": {
+    "maximum_mean_transmittance_error": 0.002,
+    "maximum_edge_overshoot": 0.02,
+    "maximum_edge_undershoot": 0.02,
+    "maximum_new_boundary_fraction": 0.0005,
+    "minimum_noise_rms_retention_ratio": 0.2,
+    "maximum_noise_rms_retention_ratio": 0.9,
+    "require_repeat_identity": true,
+    "require_p4dq_remains_failed": true
+  },
+  "decision_if_pass": "retain_minimum_safe_optical_density_cloud_aperture_lod_v2",
+  "decision_if_fail": "close_optical_density_cloud_aperture_lod_v2",
+  "claim_ceiling": "Fresh synthetic aperture-LOD evidence only; not measured film granularity, scanner aperture, visual preference, stock calibration or product evidence."
+}
