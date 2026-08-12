@@ -1,0 +1,30 @@
+{
+  "schema": "neuro_film.u6_p4ed_native_cloud_row_integration_contract.v1",
+  "experiment_id": "u6.p4ed-native-cloud-row-integration-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4ED",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {
+    "path": "docs/evidence/U6_P4EC_NATIVE_CLOUD_ATTENUATION_ANDROID_TOLERANCE_V2_RESULT.json",
+    "sha256": "a3b4ab718e524dc0a8656caa541b7dc246bfcea6020a2eb8b262b366554cfbfb",
+    "required_decision": "retain_android_virtual_runtime_for_native_cloud_attenuation_v2"
+  },
+  "fixture": {
+    "height": 257,
+    "width": 389,
+    "seed": 61211,
+    "partition_heights": [17, 64, 129],
+    "timed_replays": 5
+  },
+  "gates": {
+    "maximum_native_python_transmittance_absolute_error": 0.00000012,
+    "maximum_native_python_density_absolute_error": 0.00000024,
+    "require_native_partition_identity": true,
+    "require_native_repeat_identity": true,
+    "maximum_native_to_python_wall_ratio": 1.25,
+    "require_failure_atomicity": true
+  },
+  "decision_if_pass": "retain_native_cloud_row_integration_v1",
+  "decision_if_fail": "close_native_cloud_row_integration_v1",
+  "claim_ceiling": "Windows Python/native hybrid row execution only; not complete native stochastic runtime, calibration or product authorization."
+}
