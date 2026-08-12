@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import numpy as np
+from scipy.stats import gamma
 
 from src.film_physics.density_conditioned_thomas import (
     DensityConditionedThomasProfile,
@@ -224,9 +225,94 @@ def apply_density_compiled_independent_nps(
     return output, diagnostics
 
 
+def _exact_empirical_midranks(values: np.ndarray) -> np.ndarray:
+    flat = np.asarray(values, dtype=np.float64).reshape(-1)
+    order = np.argsort(flat, kind="stable")
+    ranks = np.empty(len(flat), dtype=np.int64)
+    ranks[order] = np.arange(len(flat), dtype=np.int64)
+    result = (ranks.astype(np.float64) + 0.5) / float(len(flat))
+    return np.ascontiguousarray(result.reshape(values.shape), dtype=np.float64)
+
+
+def apply_support_matched_gamma_density(
+    neutral_base: np.ndarray,
+    *,
+    profile: DensityConditionedThomasProfile,
+    prior: ManufacturerCharacteristicPrior,
+    seed: int,
+) -> tuple[np.ndarray, dict[str, float]]:
+    """Apply a moment-matched shared density variable with physical support.
+
+    The shifted Gamma marginal has mean zero, target variance and a lower bound
+    equal to the negative available optical density.  Exact-white/support-
+    degenerate pixels remain identity because no nonzero zero-mean perturbation
+    can satisfy that one-sided support.
+    """
+
+    base = np.asarray(neutral_base, dtype=np.float64)
+    sigma_d, amplitude_diagnostics = compile_conservative_shared_sigma_d(
+        base, profile=profile, prior=prior
+    )
+    field, field_diagnostics = synthesize_independent_density_nps(
+        base.shape[:2], seed=seed
+    )
+    # Preserve the field ordering/correlation while eliminating marginal
+    # sampling error before the inverse Gamma transform.
+    uniform = _exact_empirical_midranks(field)
+    luminance = (
+        0.2126 * base[..., 0]
+        + 0.7152 * base[..., 1]
+        + 0.0722 * base[..., 2]
+    )
+    target_sigma = sigma_d * (4.0 * luminance * (1.0 - luminance))
+    maximum_channel = np.max(base, axis=-1)
+    available_density = np.full(base.shape[:2], np.inf, dtype=np.float64)
+    positive = maximum_channel > 0.0
+    available_density[positive] = -np.log10(maximum_channel[positive])
+    nondegenerate = (
+        available_density > np.finfo(np.float64).eps
+    ) & (target_sigma > np.finfo(np.float64).tiny)
+    delta_density = np.zeros(base.shape[:2], dtype=np.float64)
+    if np.any(nondegenerate):
+        density = available_density[nondegenerate]
+        sigma = target_sigma[nondegenerate]
+        shape = np.square(density / sigma)
+        scale = np.square(sigma) / density
+        quantiles = gamma.ppf(
+            uniform[nondegenerate], a=shape, scale=scale
+        )
+        delta_density[nondegenerate] = quantiles - density
+    if (
+        not np.all(np.isfinite(delta_density))
+        or np.any(delta_density[nondegenerate] < -available_density[nondegenerate])
+    ):
+        raise RuntimeError("support-matched Gamma density is invalid")
+    output64 = base * np.power(10.0, -delta_density)[..., None]
+    output = np.ascontiguousarray(output64, dtype=np.float32)
+    if not np.all(np.isfinite(output)) or np.any(output < 0.0) or np.any(output > 1.0):
+        raise RuntimeError("support-matched Gamma density escaped the unit cube")
+    residual = output.astype(np.float64) - base
+    diagnostics = {
+        **field_diagnostics,
+        **amplitude_diagnostics,
+        "minimum_available_density": float(np.min(available_density)),
+        "minimum_delta_density": float(np.min(delta_density)),
+        "maximum_delta_density": float(np.max(delta_density)),
+        "support_degenerate_fraction": float(np.mean(~nondegenerate)),
+        "support_degenerate_residual_absolute": float(
+            np.max(np.abs(delta_density[~nondegenerate]), initial=0.0)
+        ),
+        "bounded_residual_rms": float(np.sqrt(np.mean(residual * residual))),
+        "limited_fraction": 0.0,
+        "hard_clipping_used": 0.0,
+    }
+    return output, diagnostics
+
+
 __all__ = [
     "apply_density_compiled_independent_nps",
     "apply_independent_density_nps",
+    "apply_support_matched_gamma_density",
     "compile_conservative_shared_sigma_d",
     "synthesize_independent_density_nps",
 ]
