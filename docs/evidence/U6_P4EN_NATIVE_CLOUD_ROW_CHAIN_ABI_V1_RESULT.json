@@ -1,0 +1,30 @@
+{
+  "schema": "neuro_film.u6_p4en_native_cloud_row_chain_abi.v1",
+  "experiment_id": "u6.p4en-native-cloud-row-chain-abi-v1",
+  "date_executed": "2026-08-12",
+  "implementation_commit": "b9225cc9",
+  "automatic_pass": true,
+  "formal_replays": {
+    "count": 2,
+    "report_sha256": "1b52b29ee3c535652d75232737c4ae3d73261585d3ed51e8db25a57acd824ecf",
+    "byte_exact": true
+  },
+  "stable_evidence_id": "f082c58da34a16b3162061848777d2f1539faa021509807162d1313e085a7ad3",
+  "contract_sha256": "fec3951ef1e880d4df259317e20b137f9c6184568e5fed2b87c829deb8f6903a",
+  "source_sha256": "f7f00b20a4d977fe5b6a572595a24bfdd955ca3fa1cd28424cd224a8c6fd5efb",
+  "header_sha256": "a2d05779e44c7a3d15d27b38742a022342c9b2b4cb6a30b10a5cfd392889e59e",
+  "scale_sha256": "0c482e5a95090296771f9fe92d9a25a898aa287eac6b3b29645755338830d636",
+  "output_sha256": "342247489d1e8e530a809cfaccfe9b4a321d17c0d1b06fc0cca086cf8584d853",
+  "results": {
+    "msvc_reference_exact": true,
+    "llvm_mingw_reference_exact": true,
+    "cross_compiler_exact": true,
+    "partition_heights": [31, 64, 127],
+    "partition_exact": true,
+    "failure_output_unchanged": true,
+    "workspace_bytes_per_extended_pixel": 14.0,
+    "maximum_core_stage_scratch_bytes": 1173480
+  },
+  "decision": "retain_native_cloud_row_chain_abi_v1",
+  "claim_ceiling": "Synthetic native cloud row-chain arithmetic and bounded workspace only; not calibrated stock, complete native renderer, target-device runtime or product authorization."
+}
