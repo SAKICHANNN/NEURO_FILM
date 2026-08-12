@@ -1,0 +1,30 @@
+{
+  "schema": "neuro-film.u6-p4hh-bounded-multipass-histogram-copula-evidence.v1",
+  "node": "U6.P4HH",
+  "date": "2026-08-13",
+  "contract_commit": "251ec87d",
+  "implementation_commit": "72570a0d",
+  "contract_sha256": "9b17e54d5f66f56aac963b163306cd81a625c819d3177561c182a66d2aef0b15",
+  "core_sha256": "5374b3096a2563ee548262e86f9f46544a6c627ae8a9465b12f5dd346bfffbde",
+  "evaluator_sha256": "9e831b210b46a7744bf1e42d21a369f3eb904d47fc75b33939e0199ff6255d3e",
+  "formal_processes": 2,
+  "formal_report_sha256": "a5ae9d6822733c7be59dad57024a99aecd9c557bdd6f1abdc10e7ee13a760114",
+  "reports_byte_exact": true,
+  "stable_evidence_id": "a47012face4a71aa6696d2703bf39924e7e60eb059006d901e905776ea927b03",
+  "observations": {
+    "conditions": 15,
+    "canonical_row_block_height": 128,
+    "pass_count": 6,
+    "maximum_output_rmse_vs_p4hg": 0.0,
+    "maximum_output_p999_absolute_vs_p4hg": 0.0,
+    "maximum_output_absolute_vs_p4hg": 0.0,
+    "maximum_peak_live_temporary_bytes": 7864320,
+    "full_frame_intermediate_count_excluding_input_output": 0,
+    "all_frozen_gates_pass": true
+  },
+  "automatic_pass": true,
+  "decision": "retain_bounded_multipass_histogram_copula_for_photographic_runtime",
+  "scientific_conclusion": "Six canonical receipt-replayed row passes reproduce P4HG byte exactly across all 15 conditions while retaining only input/output full frames. Fixed histograms and 3x3 statistics replace full-frame Thomas, rank, normal, whitened, correlated and density-delta intermediates.",
+  "next_leaf": "Execute the exact bounded core inside the paired scanner photographic path in fresh workers; measure process-tree RSS, runtime and unchanged P4HF gates before any runtime integration.",
+  "claim_ceiling": "Synthetic bounded-intermediate CPU reference for one confirmed generic structure profile; not yet full photographic runtime, measured memory RSS, native/mobile implementation, calibrated film/scanner response or product promotion."
+}

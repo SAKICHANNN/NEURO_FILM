@@ -12665,3 +12665,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   and numerical gate also passes.
 - Advance to receipt-replayed bounded row passes. This is a numerical core
   result only; memory reduction and photographic/runtime parity remain open.
+
+### 2026-08-13 - U6.P4HH retains bounded multipass copula execution
+
+- Six canonical 128-row receipt-replayed passes replace all full-frame field,
+  rank, normal, whitened, correlated and density-delta intermediates.
+- Across the full 15-condition matrix, output is byte exact versus P4HG in two
+  processes. Maximum modeled live temporary storage is `7,864,320` bytes and
+  only input/output remain full-frame.
+- Advance the exact core to fresh-worker photographic RSS/runtime and unchanged
+  P4HF gates; native/mobile and product integration remain closed.
