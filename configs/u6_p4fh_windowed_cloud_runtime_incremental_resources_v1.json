@@ -1,0 +1,32 @@
+{
+  "schema": "neuro_film.u6_p4fh_windowed_cloud_runtime_incremental_resources_contract.v1",
+  "experiment_id": "u6.p4fh-windowed-cloud-runtime-incremental-resources-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4FH",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {
+    "path": "docs/evidence/U6_P4FG_WINDOWED_CLOUD_RUNTIME_RESOURCES_V1_RESULT.json",
+    "sha256": "bff21065487e578dd3eba75d87aca4e6fca1cbf7119e06ae4a8275a27dfbd76a",
+    "required_decision": "close_or_optimize_windowed_cloud_runtime_resources_v1_before_24mp"
+  },
+  "scenario": {
+    "height": 2000,
+    "width": 3000,
+    "tile_rows": 32,
+    "run_order": ["full", "windowed", "windowed", "full"],
+    "timeout_seconds": 180,
+    "sample_interval_seconds": 0.01,
+    "source_construction_rows": 32
+  },
+  "gates": {
+    "require_source_sha_matches_p4fg": true,
+    "require_output_sha_matches_p4fg": true,
+    "minimum_median_render_incremental_peak_reduction_bytes": 50331648,
+    "maximum_median_render_incremental_peak_ratio": 0.70,
+    "maximum_median_worker_wall_ratio": 1.25,
+    "require_two_successful_runs_per_variant": true
+  },
+  "decision_if_pass": "retain_windowed_cloud_incremental_resources_v1_and_open_24mp",
+  "decision_if_fail": "close_windowed_cloud_incremental_resources_v1_and_profile_next_peak",
+  "claim_ceiling": "Local Windows x64 Python/native synthetic-profile 6MP render-entry and process-tree incremental RSS evidence; not 24MP, Standard/AO6 package, calibrated image quality, mobile runtime or product promotion."
+}
