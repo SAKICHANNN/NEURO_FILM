@@ -1,0 +1,67 @@
+{
+  "schema": "neuro-film.u6-p4gv-nps-compiled-density-photographic-development-contract.v1",
+  "experiment_id": "u6.p4gv-nps-compiled-density-photographic-development-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4GV",
+  "date_frozen": "2026-08-12",
+  "status": "contract-frozen-implementation-ready",
+  "parents": {
+    "photographic": {
+      "path": "docs/evidence/U6_P4GU_COMPOUND_POISSON_DENSITY_PHOTOGRAPHIC_DEVELOPMENT_RESULT.json",
+      "sha256": "2ac343674e64528d79575f7eddeee1637cfcfa3c9de257464ea8894d59e2c823",
+      "required_decision": "close_compound_poisson_density_v1_without_rescue"
+    },
+    "nps_compiler": {
+      "path": "docs/evidence/U6_P4DW_NPS_PRESERVING_CLOUD_RESIDUAL_ATTENUATION_V6_RESULT.json",
+      "sha256": "c7659b1eda422e177aad48d6c10aeb1404b3369ac2d53b2c500d37a37919bd6f",
+      "required_decision": "retain_nps_preserving_target_resolution_cloud_residual_attenuation_v6",
+      "compiled_channel_gain": [0.7874638824806821, 0.7008792161934756, 0.6589818299954651]
+    }
+  },
+  "source": {
+    "manifest": "outputs/u6_p8bp_fresh_native_standard_confirmation_v1/manifest.json",
+    "manifest_sha256": "edb1b45552f9bf5712c922ed816b6f9a70f5f0bee2b72a024144cde0087dd521",
+    "expected_rows": 9,
+    "expected_camera_makes": 9,
+    "required_allowed_use": "internal_independent_digital_ood_confirmation",
+    "required_rights_scope": "CC0_public_domain_internal_evaluation",
+    "required_color_state": "relative_display_srgb_approximation",
+    "freshness": "consumed P4GR-P4GU development cohort; never confirmation evidence for P4GV",
+    "domain_use": "display-derived relative linear-sRGB pseudo-exposure for mechanism development only"
+  },
+  "candidate": {
+    "neutral_base": "exact-input-relative-linear-srgb",
+    "physical_residual": "P4DW-gain-weighted RGB optical-density delta projected to one common field",
+    "residual_projection": "nps-compiled-compound-poisson-density-multiplicative",
+    "pixel_aperture_kernel": [0.0625, 0.25, 0.375, 0.25, 0.0625],
+    "finite_tail_transform": "3*sigma*tanh(delta/(3*sigma))",
+    "tail_sigma": 3.0,
+    "density_visibility_envelope": "4*relative-linear-luminance*(1-relative-linear-luminance)",
+    "bounded_execution": "single per-pixel log-gain scale preserving RGB ratios",
+    "look": "existing-ao6-linear-residual-only",
+    "tile_rows": [127, 193],
+    "hard_clipping_allowed": false
+  },
+  "automatic_gates": {
+    "minimum_per_row_physical_residual_rms": 0.0001,
+    "maximum_per_row_limited_fraction": 0.05,
+    "minimum_population_p95_combined_vs_ao6_abs": 0.0001,
+    "maximum_population_p99_combined_vs_ao6_abs": 0.05,
+    "maximum_flat_region_p99_combined_vs_ao6_abs": 0.04,
+    "isolated_excursion_threshold": 0.05,
+    "isolated_support_radius_pixels": 2,
+    "minimum_isolated_support_count": 3,
+    "maximum_isolated_excursion_count": 0,
+    "maximum_new_boundary_fraction_vs_ao6": 0.0005,
+    "require_partition_repeat_exact": true,
+    "require_all_inputs_and_outputs_finite": true,
+    "require_no_hard_clipping": true
+  },
+  "execution": {
+    "formal_processes": 2,
+    "post_result_retuning_allowed": false,
+    "same_cohort_rescue_allowed": false
+  },
+  "decision_if_pass": "retain_nps_compiled_density_v1_for_fresh_photographic_confirmation",
+  "decision_if_fail": "close_nps_compiled_density_v1_without_rescue",
+  "claim_ceiling": "Consumed nine-camera CC0 relative-display photographic mechanism development only; not independent confirmation, measured film NPS, scene exposure, calibrated film, stock response, human preference or product promotion."
+}
