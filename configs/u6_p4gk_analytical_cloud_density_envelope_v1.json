@@ -1,0 +1,46 @@
+{
+  "schema": "neuro-film.u6-p4gk-analytical-cloud-density-envelope-contract.v1",
+  "experiment_id": "u6.p4gk-analytical-cloud-density-envelope-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4GK",
+  "date_frozen": "2026-08-12",
+  "status": "contract-frozen-implementation-ready",
+  "parent": {
+    "path": "docs/evidence/U6_P4GJ_CLOUD_SOURCE_DERIVED_TRANSMITTANCE_RESULT.json",
+    "sha256": "c89624e4e492558c4ef5a2263a929d17907585f1f3b6e620b961fd5552b8e644",
+    "required_decision": "close_source_derived_cloud_transmittance_v2"
+  },
+  "candidate": {
+    "base": "source-derived-developed-density-and-transmittance-v2",
+    "residual": "unbounded-cloud-density-minus-source-developed-density",
+    "execution": "per-pixel-per-channel-analytical-maximum-safe-density-scale",
+    "bounds": "exact-profile-black-and-white-reference-density",
+    "hard_clipping_allowed": false,
+    "post_spatial_chain": "unchanged-p4fb"
+  },
+  "fixture": {
+    "height": 129,
+    "width": 131,
+    "build_levels": 65,
+    "confirmation_midpoints": 64,
+    "layout": "independent-uniform-neutral-fields-shared-geometry-and-seed",
+    "tile_rows": [17, 64]
+  },
+  "gates": {
+    "minimum_channel_scan_response_span": 0.5,
+    "maximum_nonpositive_scan_steps": 0,
+    "minimum_interior_cloud_density_residual_rms": 0.0001,
+    "maximum_density_envelope_violation": 0.0,
+    "maximum_new_boundary_fraction": 0.0005,
+    "require_endpoint_acceptance": true,
+    "require_partition_and_process_exact": true,
+    "require_no_hard_clipping": true
+  },
+  "execution": {
+    "formal_processes": 2,
+    "post_result_retuning_allowed": false,
+    "p4gh_chart_pixels_read": false
+  },
+  "decision_if_pass": "retain_analytical_cloud_density_envelope_v1_for_chart_confirmation",
+  "decision_if_fail": "close_analytical_cloud_density_envelope_v1",
+  "claim_ceiling": "Synthetic analytical density-envelope and source-response evidence only; not native ABI closure, calibrated film, scanner truth, photographic quality or product promotion."
+}

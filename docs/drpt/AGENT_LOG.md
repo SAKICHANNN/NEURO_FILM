@@ -12410,3 +12410,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   endpoint completes, while black deterministically reaches the v2 bridge and
   is rejected by post-spatial adjacency status 23. No chart is read and no
   partial candidate is retained.
+
+# 2026-08-12 - U6.P4GK freezes analytical density-envelope execution
+
+- The source-derived developed density remains the base. Only the stochastic
+  cloud density residual is scaled, per pixel and channel, by the maximum
+  factor that stays inside the exact profile black/white density interval.
+- Hard clipping is forbidden. Sixty-five independent uniform fields gate
+  endpoint acceptance, monotone scan span, retained interior structure,
+  boundary safety and partition/process identity before chart reuse.
