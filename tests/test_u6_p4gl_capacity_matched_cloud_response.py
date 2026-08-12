@@ -34,3 +34,19 @@ def test_p4gl_exact_profile_capacity_covers_sensitometry_density():
         "capacity_profile"
     ]["required_profile_identity"]
     assert np.all(capacity >= maximum)
+
+
+def test_p4gl_formal_evidence_passes_without_profile_rescue():
+    evidence = json.loads(
+        (
+            ROOT
+            / "docs/evidence/U6_P4GL_CAPACITY_MATCHED_CLOUD_RESPONSE_RESULT.json"
+        ).read_text(encoding="utf-8")
+    )
+    assert evidence["automatic_pass"] is True
+    assert evidence["exact_replays"] == 2
+    assert evidence["nonpositive_scan_steps"] == 0
+    assert min(evidence["scan_response_span_rgb"]) >= 0.5
+    assert evidence["maximum_absolute_mean_bounded_transmittance_bias"] <= 0.02
+    assert evidence["hard_clipping_used"] is False
+    assert evidence["decision"].startswith("retain_capacity_matched")

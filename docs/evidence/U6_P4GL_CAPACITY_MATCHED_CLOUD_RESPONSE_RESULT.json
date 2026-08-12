@@ -1,0 +1,23 @@
+{
+  "schema": "neuro-film.u6-p4gl-capacity-matched-cloud-response-evidence.v1",
+  "node": "U6.P4GL",
+  "date": "2026-08-12",
+  "implementation_commit": "369af578",
+  "formal_report_sha256": "e3bb23f96db785f2bd3c0fa57d4b7bea1e5bfc165267e69cc47f0fe61b661de4",
+  "stable_evidence_id": "249bceb1eaf66785e844bd6e0c9c83dabd0ae7d71dfb7c90d80bb3a54dfcb17a",
+  "exact_replays": 2,
+  "automatic_pass": true,
+  "compiled_profile_identity": "9d9d86e1f2fc695d431810cbe06cbe9749be601838d4fc4cdfed18b63f13879a",
+  "scan_response_span_rgb": [0.9969817856617738, 0.9978443159343442, 0.9987917665857822],
+  "nonpositive_scan_steps": 0,
+  "minimum_scan_step": 0.0007721185684204102,
+  "minimum_interior_bounded_density_residual_rms": 0.009285006540746281,
+  "maximum_absolute_mean_unbounded_transmittance_bias": 0.00020434918090991012,
+  "maximum_absolute_mean_bounded_transmittance_bias": 0.0027612630525070073,
+  "maximum_new_boundary_fraction": 0.00015780026431544273,
+  "density_envelope_violation": 0.0,
+  "hard_clipping_used": false,
+  "partition_exact": true,
+  "decision": "retain_capacity_matched_cloud_response_v1_for_chart_confirmation",
+  "claim_ceiling": "Synthetic capacity-matched uniform-field response evidence only; not calibrated film, measured granularity, photographic quality, native product runtime or promotion."
+}

@@ -12435,3 +12435,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   is not mean matched to its 1.5 density normalization and swallows base tone.
   Remaining fields and chart are not run; this synthetic fixture is closed as
   a display profile rather than receiving further gauge or threshold rescue.
+
+# 2026-08-12 - U6.P4GL restores a physical response with P4DI capacity
+
+- Replacing only the invalid P4FB count/capacity fixture with the exact P4DI
+  correlation-preserving compiled profile yields two byte-exact 65-level runs.
+  All channels span 0.99698--0.99879 with 64/64 positive steps; the bounded
+  cloud residual remains nonzero, mean transmittance bias is 0.00277, new
+  boundary fraction is 0.000158, partitioning is exact and clipping is zero.
+- This passes the frozen uniform-field gate and opens one chart confirmation.
+  It does not rescue P4FB itself or establish calibrated grain/film quality.
