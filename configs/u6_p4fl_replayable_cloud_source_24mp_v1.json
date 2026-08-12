@@ -1,0 +1,31 @@
+{
+  "schema": "neuro_film.u6_p4fl_replayable_cloud_source_24mp_contract.v1",
+  "experiment_id": "u6.p4fl-replayable-cloud-source-24mp-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4FL",
+  "date_frozen": "2026-08-12",
+  "parent": {
+    "path": "docs/evidence/U6_P4FI_WINDOWED_CLOUD_RUNTIME_24MP_V1_RESULT.json",
+    "sha256": "98471b4a8739a2071293cc8965981104157d68382410b379f28da4a8a218ebac",
+    "required_decision": "retain_windowed_cloud_runtime_24mp_v1"
+  },
+  "scenario": {
+    "height": 4000,
+    "width": 6000,
+    "tile_rows": 32,
+    "runs": 2,
+    "timeout_seconds": 120,
+    "sample_interval_seconds": 0.02,
+    "expected_input_sha256": "04c8a193643376a46f7bfe97cfb880bbd19a45e362ab6ef7e7702b057458924d",
+    "expected_output_sha256": "8be7d9ceff9530d42ce68f16ba9603ddd92eaf794cf2455a666736235b9be412"
+  },
+  "gates": {
+    "maximum_peak_process_tree_rss_bytes": 536870912,
+    "maximum_worker_wall_seconds": 120,
+    "maximum_peak_repeat_ratio": 1.10,
+    "require_exact_input_output_identity": true,
+    "require_no_full_source_or_forward_frame": true
+  },
+  "decision_if_pass": "retain_replayable_cloud_source_24mp_v1",
+  "decision_if_fail": "close_or_optimize_replayable_cloud_source_24mp_v1",
+  "claim_ceiling": "Local Windows x64 synthetic-profile 24MP replayable row-source to scan-linear resource evidence; not file decoding, Standard/AO6 integration, calibrated image quality, mobile runtime or product promotion."
+}
