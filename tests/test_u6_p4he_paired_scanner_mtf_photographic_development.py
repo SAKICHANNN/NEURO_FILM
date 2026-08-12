@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+import subprocess
+import sys
 
 import numpy as np
 
@@ -51,3 +53,21 @@ def test_paired_scanner_stage_is_common_and_nonidentity() -> None:
     assert np.max(np.abs(candidate_output - baseline_output)) > 0.0
     assert np.all((baseline_output >= 0.0) & (baseline_output <= 1.0))
     assert np.all((candidate_output >= 0.0) & (candidate_output <= 1.0))
+
+
+def test_cli_entrypoint_imports_repository_package() -> None:
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(
+                ROOT
+                / "scripts/evaluate_u6_p4he_paired_scanner_mtf_photographic_development.py"
+            ),
+            "--help",
+        ],
+        cwd=ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert completed.returncode == 0, completed.stderr

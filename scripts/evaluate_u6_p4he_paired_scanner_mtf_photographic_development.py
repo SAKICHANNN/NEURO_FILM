@@ -4,7 +4,12 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from src.eval.paired_scanner_mtf_photographic_development import (
     evaluate,
@@ -24,15 +29,16 @@ def main() -> int:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--contact-sheet", type=Path, required=True)
     args = parser.parse_args()
-    root = Path(__file__).resolve().parents[1]
     report = evaluate(
-        load_contract(root / args.contract),
-        root=root,
-        contact_sheet_path=root / args.contact_sheet,
+        load_contract(ROOT / args.contract),
+        root=ROOT,
+        contact_sheet_path=ROOT / args.contact_sheet,
     )
-    output = root / args.output
+    output = ROOT / args.output
     output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    output.write_text(
+        json.dumps(report, sort_keys=True, separators=(",", ":")), encoding="utf-8"
+    )
     return 0
 
 
