@@ -12119,3 +12119,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Windows and Android `log10f` density hashes differ, so the frozen whole-line
   bit-exact gate fails. P4EB remains closed. Next compare density under a frozen
   numerical tolerance while retaining exact transmittance and repeat identity.
+
+# 2026-08-12 - U6.P4EC retains Android virtual attenuation runtime
+
+- Across two complete executions, each with two wipe-data boots and two fresh
+  processes, Android arrays repeat bit-exactly and transmittance matches Windows
+  bit-for-bit. Density differs by at most one float32 ULP (5.96e-8), below the
+  frozen 2e-7 bound; atomic failure and owned-process cleanup pass.
+- This qualifies only the attenuation arithmetic on Android x86_64 virtual
+  hardware. Next integrate the native kernel into the Python row reference.

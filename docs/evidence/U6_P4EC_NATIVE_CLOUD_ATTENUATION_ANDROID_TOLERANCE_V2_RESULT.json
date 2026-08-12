@@ -1,0 +1,19 @@
+{
+  "schema": "neuro_film.u6_p4ec_native_cloud_attenuation_android_tolerance_evidence.v2",
+  "node": "U6.P4EC",
+  "date": "2026-08-12",
+  "implementation_commit": "c23f0f0b",
+  "contract_sha256": "543790138241749fe0f55f607076b6a15879146c4ee01f33b7a9127f12bbd591",
+  "formal_report_sha256": "a912be7bd41358792046c262c0478e959f3e607b6e94005956634cee9f572491",
+  "automatic_pass": true,
+  "full_runtime_replays": 2,
+  "cold_boots_per_replay": 2,
+  "fresh_processes_per_boot": 2,
+  "maximum_host_android_density_absolute_error": 0.000000059604644775390625,
+  "host_android_transmittance_bit_exact": true,
+  "android_repeat_bit_exact": true,
+  "failure_atomicity": true,
+  "zero_surviving_owned_processes": true,
+  "decision": "retain_android_virtual_runtime_for_native_cloud_attenuation_v2",
+  "claim_ceiling": "Private Android 14 x86_64 virtual-device arithmetic under explicit density tolerance; not physical arm64, JNI/app, stochastic field, calibration or product runtime."
+}
