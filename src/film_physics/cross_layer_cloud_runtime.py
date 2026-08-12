@@ -10,7 +10,10 @@ import numpy as np
 from scipy.ndimage import gaussian_filter
 
 from .cross_layer_cloud_profile import CrossLayerCloudReferenceProfile
-from .cross_layer_compound_poisson import sample_cross_layer_poisson_region
+from .cross_layer_compound_poisson import (
+    sample_cross_layer_poisson_region,
+    sample_density_conditioned_cross_layer_poisson_region,
+)
 from .density_conditioned_structure import DensityConditionedStructureResult
 
 
@@ -98,6 +101,73 @@ def iter_cross_layer_cloud_profile_rows(
         yield y0, DensityConditionedStructureResult(density, transmittance)
 
 
+def iter_density_conditioned_cross_layer_cloud_rows(
+    profile: CrossLayerCloudReferenceProfile,
+    scale_cmy: np.ndarray,
+    *,
+    seed: int,
+    row_tile_height: int,
+) -> Iterator[tuple[int, DensityConditionedStructureResult]]:
+    """Yield exact rows for a spatial developed-density scale field."""
+
+    scale = np.asarray(scale_cmy, dtype=np.float64)
+    if (
+        scale.ndim != 3
+        or scale.shape[-1] != 3
+        or not np.all(np.isfinite(scale))
+        or np.any(scale < 0.0)
+        or np.any(scale > 1.0)
+        or not isinstance(row_tile_height, int)
+        or row_tile_height < 1
+    ):
+        raise ValueError("invalid conditioned cross-layer cloud request")
+    count_profile = _validated_runtime_profile(profile, seed)
+    height, width = scale.shape[:2]
+    halo = max(
+        int(profile.gaussian_truncate * sigma + 0.5)
+        for sigma in profile.gaussian_sigma_pixels_cmy
+    )
+    if height <= 2 * halo:
+        raise ValueError("conditioned field height must exceed twice the halo")
+    for y0 in range(0, height, row_tile_height):
+        rows = min(row_tile_height, height - y0)
+        logical = np.arange(y0 - halo, y0 + rows + halo) % height
+        counts_parts = []
+        cursor = 0
+        while cursor < logical.size:
+            start = int(logical[cursor])
+            run = min(logical.size - cursor, height - start)
+            counts_parts.append(
+                sample_density_conditioned_cross_layer_poisson_region(
+                    count_profile,
+                    scale[start : start + run],
+                    (height, width),
+                    origin_yx=(start, 0),
+                )
+            )
+            cursor += run
+        counts = (
+            np.concatenate(counts_parts, axis=0)
+            if len(counts_parts) > 1
+            else counts_parts[0]
+        )
+        layers = []
+        for channel, sigma in enumerate(profile.gaussian_sigma_pixels_cmy):
+            filtered = gaussian_filter(
+                counts[..., channel].astype(np.float64),
+                sigma=sigma,
+                mode=("nearest", "wrap"),
+                truncate=profile.gaussian_truncate,
+            )
+            layers.append(
+                filtered[halo : halo + rows]
+                * profile.count_profile.mark_optical_density_cmy[channel]
+            )
+        density = np.stack(layers, axis=-1).astype(np.float32)
+        transmittance = np.exp(-density.astype(np.float64)).astype(np.float32)
+        yield y0, DensityConditionedStructureResult(density, transmittance)
+
+
 def estimate_cross_layer_cloud_row_stream_live_bytes(
     profile: CrossLayerCloudReferenceProfile,
     *,
@@ -137,4 +207,5 @@ __all__ = [
     "estimate_cross_layer_cloud_full_live_bytes",
     "estimate_cross_layer_cloud_row_stream_live_bytes",
     "iter_cross_layer_cloud_profile_rows",
+    "iter_density_conditioned_cross_layer_cloud_rows",
 ]
