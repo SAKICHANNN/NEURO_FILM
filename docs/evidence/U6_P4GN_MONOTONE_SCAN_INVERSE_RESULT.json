@@ -1,0 +1,20 @@
+{
+  "schema": "neuro-film.u6-p4gn-monotone-scan-inverse-evidence.v1",
+  "node": "U6.P4GN",
+  "date": "2026-08-12",
+  "implementation_commit": "115e12c4",
+  "formal_report_sha256": "2882fcf315f5bf51e3cd0749285b69f6738916ea5c2df8614d8f3dece03c04de",
+  "stable_evidence_id": "01f7360156d6556927c5c22fbc2a891c21397b1c2af68610cefd72575619cab1",
+  "exact_replays": 2,
+  "calibration_pass": true,
+  "maximum_confirmation_median_absolute_error": 0.008939133957028389,
+  "confirmation_p95_absolute_error": 0.002070983871817589,
+  "chart_domain_pass": false,
+  "chart_above_domain_fraction_rgb": [0.00007120768229166667, 0.000013987223307291666, 0.0],
+  "chart_below_domain_fraction_rgb": [0.0, 0.0, 0.0],
+  "automatic_pass": false,
+  "failure": "A small stochastic upper tail exceeds the uniform-field median endpoint knots and would require forbidden extrapolation.",
+  "decision": "close_monotone_scan_inverse_v1",
+  "next_leaf": "test exact scan-domain endpoint anchors 0-to-0 and 1-to-1 without chart-derived fitting or clipping",
+  "claim_ceiling": "Synthetic profile-bound neutral response and chart-domain failure evidence only; not calibrated film, measured scanner response, human preference or product promotion."
+}

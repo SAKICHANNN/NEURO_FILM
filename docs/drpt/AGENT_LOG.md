@@ -12454,3 +12454,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   217--253, collapsing dark and midtone separation; AO6 cannot restore it.
 - The next leaf uses only P4GL uniform fields to compile a monotone inverse
   neutral response. P4GM chart pixels are confirmation-only, never fit data.
+
+# 2026-08-12 - U6.P4GN closes median-endpoint inverse support
+
+- The 33-knot piecewise-linear inverse passes 32 independent midpoint checks
+  (max 0.00894, p95 0.00208) and is strictly monotone. On the untouched chart,
+  however, 0.00712% red and 0.00140% green samples exceed the uniform-field
+  median endpoint knots; strict no-extrapolation correctly stops rendering.
+- A next leaf may test only the physical scan-domain anchors `(0,0)` and
+  `(1,1)`. It may not derive support from chart pixels or clip the tail.

@@ -39,3 +39,18 @@ def test_p4gn_monotone_inverse_rejects_extrapolation():
     )
     with pytest.raises(ValueError, match="forbidden extrapolation"):
         profile.apply(np.array([[[0.09, 0.5, 0.5]]], dtype=np.float32))
+
+
+def test_p4gn_formal_result_preserves_domain_failure():
+    evidence = json.loads(
+        (ROOT / "docs/evidence/U6_P4GN_MONOTONE_SCAN_INVERSE_RESULT.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    assert evidence["calibration_pass"] is True
+    assert evidence["maximum_confirmation_median_absolute_error"] <= 0.01
+    assert evidence["confirmation_p95_absolute_error"] <= 0.005
+    assert evidence["chart_domain_pass"] is False
+    assert max(evidence["chart_above_domain_fraction_rgb"]) > 0.0
+    assert evidence["automatic_pass"] is False
+    assert evidence["decision"] == "close_monotone_scan_inverse_v1"
