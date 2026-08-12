@@ -12281,3 +12281,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Pass rate is 0/6 and the exact pairing closes without tuning. Future work
   requires a profile-bound display mapping or explicit normalization contract,
   not reuse of the frozen AO6 context outside its fitted input distribution.
+
+# 2026-08-12 - U6.P4GD freezes profile-bound AO6 context
+
+- Source inspection shows AO6 context statistics belong to the pixels entering
+  AO6 base. P4FY instead supplied original scene statistics after an unrelated
+  cloud/gauge transform, explaining the P4GC constant-output failure.
+- P4GD freezes a two-cloud-pass composition: pass one builds context from the
+  exact gauged physical rows; pass two applies AO6. Six fresh scenes and the
+  original-source-context negative control are fixed before formal execution.
