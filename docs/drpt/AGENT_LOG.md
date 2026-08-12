@@ -12557,3 +12557,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Keep the independent NPS topology, but derive the next amplitude from the
   retained granularity-versus-density source and explicit aperture semantics;
   do not tune sigma on this cohort.
+
+### 2026-08-12 - U6.P4GX isolates density support after fixing amplitude
+
+- P4BW's retained 48-micrometre Sigma-D envelope replaces P4GW's fixed 0.0225
+  without fitting or scaling. Two reports and contact sheets are byte exact.
+- Flat-region, isolated-excursion, tail and boundary gates now pass; isolated
+  excursions fall from 3,547 to zero and no severe visual defect is confirmed.
+- The exact symmetric additive-density execution still fails because the
+  Blackmagic row requires 9.91% bright-end limiting versus the frozen 5% cap.
+  Close this projection without amplitude rescue. Next test an intrinsically
+  nonnegative density distribution on synthetic fields before fresh photos.

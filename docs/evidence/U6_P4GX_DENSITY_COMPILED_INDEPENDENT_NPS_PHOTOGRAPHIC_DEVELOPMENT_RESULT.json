@@ -1,0 +1,47 @@
+{
+  "schema": "neuro-film.u6-p4gx-density-compiled-independent-nps-photographic-development-evidence.v1",
+  "node": "U6.P4GX",
+  "date": "2026-08-12",
+  "contract_commit": "9c7c72ea",
+  "implementation_commit": "d5502ade",
+  "contract_sha256": "6089114d29ef982ff9cc7bb3ddf76caa07e32becbe3f7d30cc245c195c33b14c",
+  "implementation_sha256": "55f4b3657ead00a407fae31576b0d083d6aff49dd28a231fb2b8109fb5ed0ef1",
+  "evaluator_sha256": "85cfb7ce24b85607b9d6b2d13732b78d5c0ae609b35bc3e82b4ba9b02c542e01",
+  "formal_processes": 2,
+  "formal_report_sha256": "b34efec6bf163775855a41f91f19a6f72acf2e1c39c73c787bb82f36bfcc9c53",
+  "reports_byte_exact": true,
+  "contact_sheet_sha256": "a7f234b7c50ed8f84b9a35760ea29d144779e264c1650ed74a1ed4e5034bd7d1",
+  "contact_sheets_byte_exact": true,
+  "stable_evidence_id": "70b9348f05512aa2d83e7779c189db6f807e1682f6b772ae97d1b714bbe506bd",
+  "source_cohort": {
+    "rows": 9,
+    "camera_makes": 9,
+    "rights_scope": "CC0_public_domain_internal_evaluation",
+    "manifest_sha256": "edb1b45552f9bf5712c922ed816b6f9a70f5f0bee2b72a024144cde0087dd521",
+    "cohort_status": "consumed-development-only"
+  },
+  "observations": {
+    "compiled_sigma_d_range": [0.004492564978830401, 0.007995935449400462],
+    "minimum_physical_residual_rms": 0.001370746670500691,
+    "maximum_limited_fraction": 0.0991243093922652,
+    "maximum_limited_row": "blackmagic_micro_cinema",
+    "population_p95_combined_vs_ao6_abs": 0.006083352211862803,
+    "population_p99_combined_vs_ao6_abs": 0.00849870927631855,
+    "maximum_flat_region_p99_abs": 0.010419487953186035,
+    "total_isolated_excursion_count": 0,
+    "maximum_new_boundary_fraction_vs_ao6": 0.000016868391764051198,
+    "all_outputs_finite": true,
+    "hard_clipping_used": false
+  },
+  "failed_automatic_gates": ["limited_fraction"],
+  "autonomous_visual_review": {
+    "pass": true,
+    "confirmed_severe_artifact_count": 0,
+    "notes": "The retained Sigma-D envelope removes the P4GW flat-region excess and all isolated excursion failures without restoring the inherited Nikon density island. The contact sheet shows no confirmed colour speckle, geometry corruption, banding, clipping or island artifact. Visual cleanliness cannot override the frozen analytical-intervention gate."
+  },
+  "automatic_pass": false,
+  "decision": "close_density_compiled_independent_nps_v1_without_rescue",
+  "scientific_conclusion": "The independently retained 48-micrometre Sigma-D magnitude resolves the visible and automatic high-frequency artifact failures of the P4GW topology. The exact symmetric additive-density execution still conflicts with near-white physical headroom on one camera, forcing analytical limiting on 9.91% of its pixels. This is a domain-support failure rather than an amplitude-estimation failure; the exact projection closes without same-cohort scaling or threshold rescue.",
+  "next_leaf": "Develop an intrinsically nonnegative density-distribution primitive whose support respects local optical-density headroom while retaining the compiled Sigma-D variance; validate it on synthetic density/transmittance fields before any fresh photographic confirmation.",
+  "claim_ceiling": "Consumed nine-camera CC0 relative-display photographic mechanism development only; conservative shared projection of a Kodak-250D-compatible 48-micrometre Sigma-D amplitude onto a generic independent NPS field, not scene exposure, calibrated film, stock response, measured film NPS, independent confirmation, human preference or product promotion."
+}
