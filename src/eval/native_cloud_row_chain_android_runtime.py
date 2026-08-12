@@ -17,7 +17,7 @@ from src.eval.native_thomas_rgb16_png_android_runtime import (
     _wait_for_boot,
 )
 
-SOURCES=["native/film_physics/nf_conditioned_cloud_row_chain_f32_v1.c","native/film_physics/nf_density_conditioned_poisson_u16_v3.c","native/film_physics/nf_cloud_spatial_response_f32_v2.c","native/film_physics/nf_cloud_attenuation_f32_v1.c","native/film_physics/nf_cloud_row_chain_runtime_probe_v1.c"]
+SOURCES=["native/film_physics/nf_conditioned_cloud_row_chain_f32_v1.c","native/film_physics/nf_density_conditioned_poisson_u16_v3.c","native/film_physics/nf_cloud_spatial_response_f32_v2.c","native/film_physics/nf_cloud_attenuation_f32_v1.c","native/film_physics/nf_deterministic_log10_f32_v1.c","native/film_physics/nf_cloud_row_chain_runtime_probe_v1.c"]
 
 
 def _sha(path: Path) -> str: return hashlib.sha256(path.read_bytes()).hexdigest()

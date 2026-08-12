@@ -15,6 +15,7 @@
     "random_values": 1000000,
     "seed": 78491
   },
+  "runtime": {"api_level": 34, "abi": "x86_64", "avd_name": "nf-019f4b76-p8cm-api34-x86", "cold_boots": 2, "fresh_processes_per_boot": 2},
   "gates": {
     "maximum_density_absolute_error": 0.0000005,
     "require_windows_cross_compiler_bit_identity": true,
