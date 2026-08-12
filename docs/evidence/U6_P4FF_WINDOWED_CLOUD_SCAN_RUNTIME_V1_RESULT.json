@@ -1,0 +1,34 @@
+{
+  "schema": "neuro_film.u6_p4ff_windowed_cloud_scan_runtime.v1",
+  "experiment_id": "u6.p4ff-windowed-cloud-scan-runtime-v1",
+  "date_executed": "2026-08-12",
+  "implementation_commit": "36be5702",
+  "automatic_pass": true,
+  "execution_amendment": "The first run passed every identity gate but an extra non-contract micro-fixture assertion incorrectly compared four live window arrays with one full-frame forward array. It was removed; the frozen no-full-forward-frame gate and all scientific/numerical gates were unchanged, then the formal run restarted.",
+  "formal_replays": {
+    "outer_processes": 2,
+    "tile_policies": [11, 32],
+    "replays_per_policy": 2,
+    "byte_exact": true
+  },
+  "contract_sha256": "6d24dc0f7d68bfd837d6fc18cc514c5c55c6c2c3693247c080e2db5faff66f36",
+  "runtime_sha256": "68abac7494c275cc5b15631a4b14d61f5ae76e0fe489107749979641d056a78c",
+  "provider_sha256": "001832680f1a25750917220b93815132100cd8d7054399df28c33e9796a8dde4",
+  "results": {
+    "p4fd_output_bit_exact": true,
+    "tile_policy_bit_exact": true,
+    "repeat_bit_exact": true,
+    "full_forward_frame_retained": false,
+    "input_immutable": true,
+    "sink_failure_propagated": true,
+    "output_sha256": "a0ca31effbe1535c4f142c6ce35f185c2cacc10a1f481826f938f294e928f951",
+    "fixture_tile11_maximum_forward_values": 29046,
+    "fixture_tile32_maximum_forward_values": 34545,
+    "modeled_24mp_full_forward_bytes": 288000000,
+    "modeled_24mp_tile32_forward_window_bytes": 20880000,
+    "modeled_24mp_forward_window_ratio": 0.0725,
+    "measured_process_rss": false
+  },
+  "decision": "retain_windowed_cloud_scan_runtime_v1",
+  "claim_ceiling": "Opt-in local Windows x64 synthetic-profile end-to-end scan-linear runtime with exact row-window forward scatter and no full-frame forward intermediate; not measured large-image RSS, frozen Standard/AO6 package, calibrated film/scanner response, mobile runtime or product promotion."
+}
