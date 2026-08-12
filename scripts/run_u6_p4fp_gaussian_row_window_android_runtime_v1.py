@@ -4,7 +4,12 @@ import argparse
 import hashlib
 import json
 import subprocess
+import sys
 from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from src.eval.native_cloud_attenuation_android_runtime import _cleanup_owned_launchers
 from src.eval.native_thomas_rgb16_png_android_runtime import (
@@ -14,7 +19,6 @@ from src.eval.native_thomas_rgb16_png_android_runtime import (
     _wait_for_boot,
 )
 
-ROOT = Path(__file__).resolve().parents[1]
 SOURCES = [
     ROOT / "native/film_physics/nf_gaussian_rgb_f32_v1.c",
     ROOT / "native/film_physics/nf_gaussian_row_window_f32_v1.c",
