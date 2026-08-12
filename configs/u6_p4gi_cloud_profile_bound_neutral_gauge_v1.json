@@ -1,0 +1,54 @@
+{
+  "schema": "neuro-film.u6-p4gi-cloud-profile-bound-neutral-gauge-contract.v1",
+  "experiment_id": "u6.p4gi-cloud-profile-bound-neutral-gauge-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4GI",
+  "date_frozen": "2026-08-12",
+  "status": "contract-frozen-implementation-ready",
+  "parent": {
+    "path": "docs/evidence/U6_P4GH_CLOUD_RESIDUAL_CHART_ARTIFACT_RESULT.json",
+    "sha256": "37b33ea9af6549411044ae6709769b5be04a0c63fbe069418f6eb51ff8a1cd12",
+    "required_decision": "close_cloud_residual_after_chart_artifact_gate"
+  },
+  "physical_profile": {
+    "contract_path": "configs/u6_p4fb_native_cloud_spatial_partition_v1.json",
+    "contract_sha256": "c339451bbbac116e8082ddb48e239368b075c910f3f8056aa31a8dab95fe879b",
+    "component_path": "native/film_physics/nf_cloud_post_spatial_f32_v1.c",
+    "component_sha256": "3ea4d3692ed1affed96b33bef529978de3f6a9855a6e7ff466b02a7384a3b299"
+  },
+  "calibration": {
+    "height": 257,
+    "width": 257,
+    "level_count": 257,
+    "layout": "vertical-neutral-levels",
+    "aggregation": "per-level-channel-median",
+    "spline": "strict-monotone-rational-quadratic-inverse",
+    "endpoint_policy": "identity-endpoints-with-interior-response-knots"
+  },
+  "confirmation": {
+    "height": 257,
+    "width": 257,
+    "level_count": 256,
+    "layout": "horizontal-neutral-midpoints",
+    "aggregation": "per-level-channel-median"
+  },
+  "gates": {
+    "minimum_channel_response_span": 0.01,
+    "maximum_inverse_secant_slope": 128.0,
+    "maximum_confirmation_level_absolute_error": 0.04,
+    "maximum_confirmation_encoded_channel_spread": 0.01,
+    "maximum_confirmation_neutral_chroma_p99": 0.09,
+    "minimum_confirmation_lstar_step": -0.02,
+    "maximum_new_boundary_fraction": 0.0005,
+    "require_build_response_strictly_increasing": true,
+    "require_partition_and_process_exact": true
+  },
+  "execution": {
+    "formal_processes": 2,
+    "tile_rows": [17, 64],
+    "post_result_retuning_allowed": false,
+    "chart_pixels_used_for_fit": false
+  },
+  "decision_if_pass": "retain_cloud_profile_bound_neutral_gauge_v1_for_chart_confirmation",
+  "decision_if_fail": "close_cloud_profile_bound_neutral_gauge_v1",
+  "claim_ceiling": "Synthetic exact-profile neutral-response compiler evidence only; not calibrated film, scanner truth, real-photo quality or product promotion."
+}

@@ -12351,3 +12351,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   is assigned to the current cloud-profile display interpretation, not to the
   bounded residual mechanism; the next leaf compiles a profile-bound neutral
   response rather than reusing the unrelated Standard gauge.
+
+# 2026-08-12 - U6.P4GI freezes a profile-bound neutral compiler
+
+- The exact P4FB cloud profile receives a canonical vertical neutral-ramp
+  calibration and a disjoint horizontal midpoint confirmation. The failed
+  P4GH chart contributes no fit pixels or thresholds.
+- Strict response monotonicity, inverse slope, neutral chroma, confirmation
+  error, boundary and exact-replay gates are frozen. Failure closes this
+  compiler without changing the physical profile or relaxing chart gates.
