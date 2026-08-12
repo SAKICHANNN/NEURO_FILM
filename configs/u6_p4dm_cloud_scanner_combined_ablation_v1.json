@@ -1,0 +1,13 @@
+{
+  "schema": "neuro_film.u6_p4dm_cloud_scanner_combined_ablation_contract.v1",
+  "experiment_id": "u6.p4dm-cloud-scanner-combined-ablation-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4DM",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {"path": "docs/evidence/U6_P4DL_MATERIAL_SCANNER_NUISANCE_RESULT.json", "sha256": "d9a23644a82b53a4e02162c87ee25e8876fb1150f80af0e1339fab9e858bcf20", "required_decision": "retain_material_separated_scanner_nuisance_chain"},
+  "fixture": {"height": 513, "width": 769, "seed": 48181, "pixel_pitch_um": 6.35, "neutral_margin": 24},
+  "gates": {"minimum_cloud_residual_rms_after_scanner": 0.001, "minimum_scanner_nuisance_rms_without_cloud": 0.001, "maximum_cloud_residual_attenuation_ratio": 1.0, "minimum_wrong_scanner_residual_ratio": 1.1, "maximum_combined_new_boundary_fraction": 0.0005, "require_repeat_identity": true},
+  "decision_if_pass": "retain_cloud_and_scanner_as_separate_combined_stages",
+  "decision_if_fail": "close_or_revise_cloud_scanner_combination",
+  "claim_ceiling": "Synthetic colour-cloud/scanner ablation only; not visual preference, calibrated scanner/film, stock identity or product evidence."
+}
