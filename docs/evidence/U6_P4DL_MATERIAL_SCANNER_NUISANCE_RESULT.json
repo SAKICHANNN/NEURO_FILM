@@ -1,0 +1,16 @@
+{
+  "schema": "neuro_film.u6_p4dl_material_scanner_nuisance_evidence.v1",
+  "node": "U6.P4DL",
+  "date": "2026-08-12",
+  "implementation_commit": "743acb40",
+  "contract_sha256": "1e97978589f6340aecdeaf2a22fdfb791a49a6011c34c1d43ea2ec6a42d63670",
+  "formal_report_sha256": "d8d49b6a6a65a6501575e140675f050f3f031442d9f839483bb92a55faeff713",
+  "stable_evidence_id": "01ad3ad10170801fb6d2c70f338b789d4042313f77e9c8347497d93362331e59",
+  "exact_replays": 2,
+  "automatic_pass": true,
+  "colour_scanner_a_vs_b_max_abs": 0.07241063465590136,
+  "bw_scanner_a_vs_b_max_abs": 0.04298656723565092,
+  "same_scanner_material_separation_max_abs": 0.4307353917927421,
+  "decision": "retain_material_separated_scanner_nuisance_chain",
+  "claim_ceiling": "Generic synthetic material/scanner nuisance separation only; not measured scanner, stock identity, calibrated interpretation or product evidence."
+}

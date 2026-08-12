@@ -11977,3 +11977,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   replay execution are exact.
 - Colour interpretations are rejected. Next apply existing scanner profiles as
   nuisance/output transforms to both media without changing material identity.
+
+# 2026-08-12 - U6.P4DL keeps scanner nuisance separate from material
+
+- Identity scanning is exact for dye and silver. Generic scanner A/B differ by
+  0.0724/0.0430 on the two media, while the same scanner retains 0.4307 material
+  separation; scanner profiles carry no stock or mode identity.
+- Next run a colour-chain ablation to test whether cloud structure remains
+  measurable after scanner nuisance rather than being swallowed by it.
