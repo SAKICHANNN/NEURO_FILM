@@ -12578,3 +12578,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   material. Variance error reaches 9.98% and p99.9 reaches 6.20 sigma.
 - Close the shared-factor family. The next mechanism uses separate layer
   density support and amplitude, matching colour-film dye-layer semantics.
+
+### 2026-08-12 - U6.P4GZ retains per-layer support-matched density
+
+- Three independent layer-density Gamma marginals pass two byte-exact
+  synthetic reports without clipping or post-hoc limiting.
+- Maximum mean error is `9.23e-7` target sigma, variance error `0.0247%`, p99.9
+  `3.3915` sigma and cross-layer correlation `0.00158`; developed density stays
+  positive and transmittance stays within `[0,1]`.
+- Advance this exact mechanism to consumed photographic development with an
+  explicit chroma-tail gate. This is not measured dye-cloud or stock evidence.

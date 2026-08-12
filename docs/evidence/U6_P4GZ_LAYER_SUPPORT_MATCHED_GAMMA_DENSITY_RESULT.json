@@ -1,0 +1,28 @@
+{
+  "schema": "neuro-film.u6-p4gz-layer-support-matched-gamma-density-evidence.v1",
+  "node": "U6.P4GZ",
+  "date": "2026-08-12",
+  "contract_commit": "bc2d8f94",
+  "implementation_commit": "7bee97e4",
+  "contract_sha256": "45604929841cdf081cfbef52609a061bcdfa4897a50fb50ef7a9a4c56d20e1e8",
+  "implementation_sha256": "791b2620908e8d57a7c67b042aa099cb3012e8f60d4ba91069d04f704ea90c76",
+  "evaluator_sha256": "15ad5442fab90e3aa6ff1ee05890ce186f376a3003354cee77e196fd78a57b93",
+  "formal_processes": 2,
+  "formal_report_sha256": "37e3576d12e7b8a954fe8058ef3170442d316b1d6db104742acc04c52acb57cf",
+  "reports_byte_exact": true,
+  "stable_evidence_id": "8e2c827c774b4d6323c3fbe6305692bbfe5a66e82a4c2517d6c11b1213f38663",
+  "observations": {
+    "maximum_mean_absolute_in_target_sigma": 9.227518281094087e-7,
+    "maximum_variance_relative_error": 0.000247387033625035,
+    "maximum_p999_absolute_in_target_sigma": 3.39149335154141,
+    "maximum_cross_layer_density_correlation_absolute": 0.0015841486395482924,
+    "minimum_developed_density": 0.000026559815630746984,
+    "maximum_transmittance": 1.0,
+    "hard_clipping_or_posthoc_limiting_used": false
+  },
+  "automatic_pass": true,
+  "decision": "retain_layer_support_matched_gamma_density_for_photographic_development",
+  "scientific_conclusion": "Separating red, green and blue layer density support removes the chromatic near-white singularity of a shared RGB factor. The clean-room shifted-Gamma marginals preserve retained per-layer Sigma-D moments, finite tails, independent layer realizations and physical transmittance without clipping or post-hoc limiting on the frozen synthetic grid.",
+  "next_leaf": "Apply this exact per-layer distribution to the consumed nine-camera photographic development cohort with unchanged severe, tail and boundary gates plus an explicit chroma-tail gate; do not refit or rescale.",
+  "claim_ceiling": "Synthetic relative-display per-layer dye-density mechanics only; independent colour layers follow physical colour-film ontology, but the Gamma marginals and display-code exposure coordinates remain clean-room generic hypotheses, not measured dye-cloud distributions, calibrated scene exposure, stock response or product evidence."
+}
