@@ -1,0 +1,25 @@
+{
+  "schema": "neuro_film.u6_p4ew_native_cloud_scale_window_portable_contract.v1",
+  "experiment_id": "u6.p4ew-native-cloud-scale-window-portable-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4EW",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {
+    "path": "docs/evidence/U6_P4EV_NATIVE_CLOUD_SCALE_WINDOW_ANDROID_RUNTIME_V1_RESULT.json",
+    "sha256": "d90314a0cb9b3234838c84e146650f546db1ec4c482eaddaf12421e83bb75c5f",
+    "required_decision": "retain_android_virtual_runtime_for_native_cloud_scale_window_v3"
+  },
+  "targets": {
+    "android": {"arm64-v8a": "aarch64-linux-android34", "x86_64": "x86_64-linux-android34"},
+    "apple_object_only": {"macos-arm64": "arm64-apple-macos13", "ios-arm64": "arm64-apple-ios15"}
+  },
+  "required_exports": [
+    "nf_conditioned_cloud_row_chain_f32_abi_version_v2",
+    "nf_conditioned_cloud_row_chain_f32_workspace_v1",
+    "nf_conditioned_cloud_row_chain_f32_apply_v2",
+    "nf_conditioned_cloud_row_chain_f32_apply_window_v3"
+  ],
+  "decision_if_pass": "retain_native_cloud_scale_window_portable_v1",
+  "decision_if_fail": "close_native_cloud_scale_window_portable_v1",
+  "claim_ceiling": "Android shared-library link and Apple Mach-O arm64 object compile for the exact bounded scale-window kernel; not Apple SDK link/runtime, physical Android arm64 runtime, image quality or product authorization."
+}
