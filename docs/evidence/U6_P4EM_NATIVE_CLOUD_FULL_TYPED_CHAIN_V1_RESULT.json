@@ -1,0 +1,18 @@
+{
+  "schema": "neuro_film.u6_p4em_native_cloud_full_typed_chain_evidence.v1",
+  "node": "U6.P4EM",
+  "date": "2026-08-12",
+  "implementation_commit": "ae64b333",
+  "contract_sha256": "f12d67ad6da25046404b09039da51e459a188a89f1d9852e313024880fba1b98",
+  "stable_evidence_id": "f4d791fc84729051fc021c0457ac0ecc5e1bf48f3b4c10fc5b9aa5c69d204e7f",
+  "exact_scientific_replays": 2,
+  "automatic_pass": true,
+  "maximum_final_scan_absolute_error": 0.000000027802645741203946,
+  "final_scan_rmse": 0.000000004061724259264402,
+  "native_python_cloud_wall_ratio": [0.21827651871296141, 0.24545496198624212],
+  "cloud_stage_rms": 0.003474810883976849,
+  "new_boundary_fraction": 0.0,
+  "partition_heights_exact": [31, 64, 127],
+  "decision": "retain_native_cloud_full_typed_chain_v1",
+  "claim_ceiling": "Synthetic sensitometry-to-cloud-to-scanner hybrid parity and local timing only; not calibrated stock, complete native renderer or product authorization."
+}
