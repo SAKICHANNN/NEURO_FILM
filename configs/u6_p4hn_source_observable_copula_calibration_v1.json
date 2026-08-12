@@ -1,0 +1,51 @@
+{
+  "schema": "neuro-film.u6-p4hn-source-observable-copula-calibration-contract.v1",
+  "experiment_id": "u6.p4hn-source-observable-copula-calibration-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4HN",
+  "date_frozen": "2026-08-13",
+  "status": "contract-frozen-implementation-ready",
+  "question": "Can a fixed source-observable finite-sample correction around the unchanged P4HM C11 primitive meet the original target-correlation requirement on disjoint fixtures without reference or output-truth access?",
+  "parents": {
+    "p4hm_evidence": {
+      "path": "docs/evidence/U6_P4HM_NATIVE_HISTOGRAM_COPULA_TRANSPORT_RESULT.json",
+      "sha256": "6c125539f4fd9d93afbedb1984d752d370223c1286380e1d32a56187c78a36ee",
+      "required_decision": "retain_python_bounded_consumer_without_native_transport"
+    },
+    "profile": {
+      "path": "outputs/experiments/u6_p4hk_bounded_photographic_profile_bundle_v1/run_a/profile.json",
+      "sha256": "539fef07a7c659db035928ee4d9c7e6405da5e0baa07852f4f9a4b50fa1247b8",
+      "bundle_sha256": "8d20ce2874036befe78657b059ffafeb24e43d2e5bc1000512092a753e1e75df"
+    },
+    "native_header_sha256": "b5783659e084527d195681493dd1889be5ce9d95510a29a55152da82420dd64b",
+    "native_source_sha256": "eb78c8c67ad69cf66057b7fae5786333b311c64da0bebe617922f24aa473de0c"
+  },
+  "candidate": {
+    "iterations": 3,
+    "rank_bins": 65536,
+    "desired_uniform_correlation": "spearman_of_profile_gaussian_correlation",
+    "correction": "latent += inverse_spearman(desired_uniform) - inverse_spearman(observed_uniform)",
+    "correction_observation": "current source fields and native diagnostics only",
+    "reference_or_target_pixel_reads": 0,
+    "profile_refit_allowed": false,
+    "native_source_change_allowed": false
+  },
+  "confirmation_fixtures": [
+    {"height": 197, "width": 223, "field_seed": 2026081321},
+    {"height": 181, "width": 227, "field_seed": 2026081322}
+  ],
+  "automatic_gates": {
+    "maximum_target_correlation_error": 0.00005,
+    "maximum_uniform_mean_error": 0.00001,
+    "maximum_cross_compiler_absolute_error": 0.000003,
+    "maximum_workspace_bytes": 8388608,
+    "minimum_latent_correlation_eigenvalue": 0.05,
+    "maximum_absolute_latent_correction": 0.03,
+    "require_strict_error_reduction_each_iteration": true,
+    "require_backend_repeat_exact": true,
+    "require_output_finite_unit_interval": true,
+    "require_three_native_calls_exact": true
+  },
+  "decision_if_pass": "retain_source_observable_calibrated_native_transport_for_gamma_density_stage",
+  "decision_if_fail": "retain_python_bounded_consumer_without_native_transport",
+  "claim_ceiling": "Host-orchestrated native statistical transport on disjoint synthetic fields; not standalone native density shaping, photographic parity, calibrated film response, media integration or product promotion."
+}
