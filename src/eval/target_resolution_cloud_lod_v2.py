@@ -45,13 +45,13 @@ def compile_target_resolution_profile(
     profile: CrossLayerCloudReferenceProfile,
     factor: int,
     *,
-    rate_multiplier: int | None = None,
+    rate_multiplier: float | None = None,
 ) -> CrossLayerCloudReferenceProfile:
     """Compile area-summed rates and area-averaged marks at target resolution."""
 
     area = factor * factor if rate_multiplier is None else rate_multiplier
-    if not isinstance(area, int) or area < 1:
-        raise ValueError("rate_multiplier must be a positive integer")
+    if not np.isfinite(area) or area < 1:
+        raise ValueError("rate_multiplier must be finite and at least one")
     count = profile.count_profile
     compiled_count = replace(
         count,
