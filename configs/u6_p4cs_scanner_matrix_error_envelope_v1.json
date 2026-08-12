@@ -1,0 +1,53 @@
+{
+  "schema": "neuro_film.u6_p4cs_scanner_matrix_error_envelope_contract.v1",
+  "experiment_id": "u6.p4cs-scanner-matrix-error-envelope-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4CS",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "question": "How much independently measured scanner-matrix error can the P4CR physical inverse tolerate before recovered dye-layer correlation is no longer reliable?",
+  "parents": {
+    "p4cr_evidence": {
+      "path": "docs/evidence/U6_P4CR_SCANNER_UNMIXING_LAYER_CORRELATION_RESULT.json",
+      "sha256": "83b4c64ba6fe65c9cc9e3c269c1d03af7e19b6804d943e064a1749d81a5c2d61",
+      "required_decision": "retain_scanner_unmixing_as_required_layer_correlation_identifiability_control"
+    }
+  },
+  "simulation": {
+    "shape": [384, 512],
+    "development_seeds": [2026081201, 2026081202, 2026081203, 2026081204],
+    "confirmation_seeds": [2026081211, 2026081212, 2026081213, 2026081214],
+    "layer_correlation": [[1.0, 0.42, 0.18], [0.42, 1.0, 0.31], [0.18, 0.31, 1.0]],
+    "mean_density_rgb": [0.65, 0.82, 0.74],
+    "density_sigma": 0.035,
+    "true_scanner_matrix": [[0.78, 0.17, 0.05], [0.12, 0.76, 0.12], [0.04, 0.22, 0.74]],
+    "relative_frobenius_error_levels": [0.0, 0.0025, 0.005, 0.01, 0.02, 0.04, 0.08, 0.16],
+    "zero_row_sum_perturbation_directions": [
+      [[0.6, -0.4, -0.2], [-0.3, 0.7, -0.4], [-0.2, -0.3, 0.5]],
+      [[-0.5, 0.2, 0.3], [0.4, -0.6, 0.2], [0.3, 0.1, -0.4]],
+      [[0.2, 0.5, -0.7], [-0.6, 0.1, 0.5], [0.4, -0.5, 0.1]]
+    ],
+    "order": "correlated developed density -> transmittance -> true scanner matrix -> inverse of independently perturbed scanner matrix -> recovered density correlation"
+  },
+  "selection": {
+    "development_rule": "largest frozen error level whose worst seed-direction correlation RMSE is at most 0.01",
+    "confirmation_is_unread_until_selected": true
+  },
+  "metrics": {
+    "maximum_development_selected_worst_rmse": 0.01,
+    "maximum_confirmation_selected_median_rmse": 0.01,
+    "maximum_confirmation_selected_worst_rmse": 0.012,
+    "maximum_selected_level_index_gap": 1,
+    "require_next_level_failure_when_available": true,
+    "require_positive_invertible_perturbed_matrices": true,
+    "require_exact_repeat": true
+  },
+  "decision_if_pass": "retain_frozen_scanner_matrix_error_envelope_as_layer_correlation_admission_control",
+  "decision_if_fail": "close_current_scanner_matrix_error_envelope_without_tuning",
+  "forbidden": [
+    "change levels, directions, seeds or thresholds after development or confirmation",
+    "fit scanner perturbations to simulated layer truth",
+    "interpret the selected synthetic tolerance as a measured scanner calibration uncertainty",
+    "map this result to a stock, scanner profile, renderer default or product state"
+  ],
+  "claim_ceiling": "Controlled float64 sensitivity evidence for P4CR layer-correlation recovery under frozen scanner-matrix perturbations; not real scanner calibration, dye-layer measurement, stock truth or product evidence."
+}
