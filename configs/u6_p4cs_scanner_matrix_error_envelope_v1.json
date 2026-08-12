@@ -20,7 +20,7 @@
     "mean_density_rgb": [0.65, 0.82, 0.74],
     "density_sigma": 0.035,
     "true_scanner_matrix": [[0.78, 0.17, 0.05], [0.12, 0.76, 0.12], [0.04, 0.22, 0.74]],
-    "relative_frobenius_error_levels": [0.0, 0.0025, 0.005, 0.01, 0.02, 0.04, 0.08, 0.16],
+    "relative_frobenius_error_levels": [0.0, 0.0025, 0.005, 0.01, 0.02, 0.04],
     "zero_row_sum_perturbation_directions": [
       [[0.6, -0.4, -0.2], [-0.3, 0.7, -0.4], [-0.2, -0.3, 0.5]],
       [[-0.5, 0.2, 0.3], [0.4, -0.6, 0.2], [0.3, 0.1, -0.4]],
@@ -32,6 +32,7 @@
     "development_rule": "largest frozen error level whose worst seed-direction correlation RMSE is at most 0.01",
     "confirmation_is_unread_until_selected": true
   },
+  "execution_amendment": "Before any simulated row was scored, matrix-only feasibility showed that the originally listed 0.08 and 0.16 perturbations made one scanner matrix contain negative coefficients, contradicting the frozen positive-matrix domain. Those two levels were removed; all directions, remaining levels, seeds, thresholds and selection rules are unchanged.",
   "metrics": {
     "maximum_development_selected_worst_rmse": 0.01,
     "maximum_confirmation_selected_median_rmse": 0.01,
