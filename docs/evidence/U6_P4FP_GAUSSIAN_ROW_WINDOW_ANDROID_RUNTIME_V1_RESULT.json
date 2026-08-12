@@ -1,0 +1,24 @@
+{
+  "schema": "neuro_film.u6_p4fp_gaussian_row_window_android_runtime.v1",
+  "experiment_id": "u6.p4fp-gaussian-row-window-android-runtime-v1",
+  "date_executed": "2026-08-12",
+  "implementation_commit": "bf9e8f62",
+  "contract_commit": "23feb0ad",
+  "automatic_pass": true,
+  "stable_evidence_id": "f208a6b1ec3aa797b1e5ddb394a1bdc8de99ec166c3e5be99177850cb478822a",
+  "contract_sha256": "00d229045d848d00d240ee36c355c9a97bdf1de379939dc3a72c859f3e175a89",
+  "host_output_sha256": "599d9695037eed938b47b7a88f223f93c74a7756776bf0c4cd58a2c32546e460",
+  "android_output_sha256": "599d9695037eed938b47b7a88f223f93c74a7756776bf0c4cd58a2c32546e460",
+  "cold_boots": 2,
+  "fresh_processes_per_boot": 2,
+  "all_four_android_runs_exact": true,
+  "failure_atomicity": true,
+  "owned_process_cleanup": true,
+  "decision": "retain_gaussian_row_window_android_virtual_runtime_v1",
+  "execution_notes": [
+    "The first attempt stopped before compilation because the script omitted repository sys.path initialization.",
+    "The second attempt compiled host and Android probes but the configured AVD alias did not exist; the emulator exited before boot and cleanup left no owned process.",
+    "The formal run used the exact owned prefixed AVD and restarted from wipe-data for both cold boots."
+  ],
+  "claim_ceiling": "Private Android 14 x86_64 virtual-device arithmetic for the Gaussian row-window companion; no physical arm64, JNI/app/media, Standard package, product or calibrated-film claim."
+}

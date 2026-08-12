@@ -12167,3 +12167,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   is retained. Every frozen 512MiB/360s/repeat/identity gate passes.
 - This closes synthetic host scaling for this runtime. The next useful leaf is
   actual file-row ingress or Standard composition, not another larger fixture.
+
+# 2026-08-12 - U6.P4FO/P4FP close portable companion execution
+
+- The separate row-window ABI builds reproducibly for Android arm64/x86_64 and
+  as macOS/iOS arm64 objects without changing the frozen Gaussian package.
+- Four Android 14 x86_64 processes across two wipe-data boots exactly match the
+  host output hash and preserve invalid-call atomicity. This is virtual-device
+  arithmetic only; physical arm64, media and product integration remain open.
