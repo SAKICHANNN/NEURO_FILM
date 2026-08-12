@@ -1,0 +1,17 @@
+{
+  "schema": "neuro_film.u6_p4dy_compiled_cloud_profile_restart_evidence.v1",
+  "node": "U6.P4DY",
+  "date": "2026-08-12",
+  "implementation_commit": "18c65491",
+  "contract_sha256": "5aab339f4d7745420c3445db21c61b6d855bf814d6385edc2322527cd9876951",
+  "formal_report_sha256": "c543c524f5480532ac582644f984358e629cdcc1978f1a1252687f00b61c58ea",
+  "stable_evidence_id": "9a205ccdb83ace44c5ed814db8f7aa5fe418748d2f0bdcd4539d387871e6b060",
+  "exact_replays": 2,
+  "automatic_pass": true,
+  "profile_identity": "24c0048c2545ea0fb45b5a438081783a0c649e59532305ac40efc47366d1ab02",
+  "canonical_payload_sha256": "df3ea2255dac790b9ce9b5d14290ff39579ada37b2f00bf5facc8991af356281",
+  "restart_pixels_exact": true,
+  "strict_drift_rejections": true,
+  "decision": "retain_compiled_cloud_profile_restart_v1",
+  "claim_ceiling": "Synthetic restart-safe compiled profile only; not stock calibration, native backend or product authorization."
+}

@@ -12085,3 +12085,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Estimated live arrays peak at 3,597,486 bytes; invalid requests fail before
   first yield, transmittance stays strictly interior and 10^-density roundtrips
   exactly. Next bind strict profile persistence/restart reconstruction.
+
+# 2026-08-12 - U6.P4DY retains restart-safe compiled profiles
+
+- Canonical payload hash `df3ea225...` reconstructs profile identity
+  `24c0048c...` and exact row-runtime pixels after restart in two byte-identical
+  reports. Unknown fields, derived base drift and product enable fail closed;
+  gain drift changes identity.
+- The Python reference chain is now executable end to end. Move to a small C
+  reference kernel for attenuation/density conversion, not more protocol work.
