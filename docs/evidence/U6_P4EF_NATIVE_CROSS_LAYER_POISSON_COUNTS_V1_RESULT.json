@@ -1,0 +1,18 @@
+{
+  "schema": "neuro_film.u6_p4ef_native_cross_layer_poisson_counts_evidence.v1",
+  "node": "U6.P4EF",
+  "date": "2026-08-12",
+  "implementation_commit": "fb33cc61",
+  "contract_sha256": "38eb4d71e08e1bb4a7401c9ea157832b21d931274a34d393d211aeaa6207d4d7",
+  "formal_report_sha256": "0707269f5187290bea1cb9ea2d44f9a16c7c61af37b15735d27b16be822122b4",
+  "stable_evidence_id": "266e46bd4468b3fe81934eb356e51b79dae4a0e4a02f05dafcc1fb23c75ebf67",
+  "exact_replays": 2,
+  "automatic_pass": true,
+  "reference_count_sha256": "3fb6e430887eab6c934467ab2c9e69a18d13c24cad32a93662528a259f07a5b6",
+  "python_count_identity": true,
+  "cross_compiler_identity": true,
+  "partition_heights_exact": [1, 31, 64, 127],
+  "failure_atomicity": true,
+  "decision": "retain_native_cross_layer_poisson_counts_v1",
+  "claim_ceiling": "Windows x64 C11 seven-component count generation only; not native cloud filtering, calibrated emulsion, mobile runtime or product authorization."
+}
