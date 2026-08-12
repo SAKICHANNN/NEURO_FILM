@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import gc
 import hashlib
 import json
 import sys
@@ -32,6 +33,10 @@ from src.film_physics.native_thomas_spatial_chain import (
     apply_native_thomas_spatial_chain,
     apply_native_thomas_spatial_chain_fft,
     compile_native_thomas_spatial_chain,
+)
+from src.film_physics.native_thomas_streaming_input import (
+    map_streamed_log_exposure,
+    stream_fft_spatial_log_exposure_chw,
 )
 from src.preprocess.output_encode import srgb_icc_profile
 
@@ -96,6 +101,7 @@ def _worker(
         library_path=dll_path,
     )
     runtime = NativeThomasExportRuntime(package=package, resolved=resolved)
+    streamed_input_sha256 = None
     started = time.perf_counter()
     if mode == "direct":
         receipt = runtime.publish_spatial_layer_exposure(
@@ -105,16 +111,37 @@ def _worker(
         receipt = runtime.publish_fft_spatial_layer_exposure(
             exposure, chain, destination=destination
         )
+    elif mode == "streamed":
+        mapped_path = result_path.with_suffix(".f32")
+        mapped_receipt = stream_fft_spatial_log_exposure_chw(
+            exposure,
+            chain,
+            destination=mapped_path,
+            tile_rows=512,
+        )
+        streamed_input_sha256 = mapped_receipt["sha256"]
+        if hashlib.sha256(exposure.values.tobytes()).hexdigest() != input_sha256:
+            raise RuntimeError("P8DD input mutated during streaming")
+        del exposure
+        gc.collect()
+        prepared = map_streamed_log_exposure(mapped_receipt)
+        try:
+            receipt = runtime.publish(prepared, destination=destination)
+        finally:
+            del prepared
+            gc.collect()
+            mapped_path.unlink(missing_ok=True)
     else:
         raise ValueError("P8DD worker mode drift")
     wall = time.perf_counter() - started
-    if hashlib.sha256(exposure.values.tobytes()).hexdigest() != input_sha256:
+    if mode != "streamed" and hashlib.sha256(exposure.values.tobytes()).hexdigest() != input_sha256:
         raise RuntimeError("P8DD input mutated")
     result_path.write_bytes(
         canonical_bytes(
             {
                 "mode": mode,
                 "input_sha256": input_sha256,
+                "streamed_input_sha256": streamed_input_sha256,
                 "output_sha256": receipt["output"]["sha256"],
                 "output_bytes": receipt["output"]["bytes"],
                 "wall_seconds": wall,
@@ -263,7 +290,7 @@ def main() -> None:
     parser.add_argument("--output-dir", type=Path, default=ROOT / "outputs/eval/u6_p8dd_native_thomas_fft_spatial_scale_v1")
     parser.add_argument("--report", type=Path)
     parser.add_argument("--worker", action="store_true")
-    parser.add_argument("--mode", choices=("direct", "fft"))
+    parser.add_argument("--mode", choices=("direct", "fft", "streamed"))
     parser.add_argument("--dll", type=Path)
     parser.add_argument("--destination", type=Path)
     parser.add_argument("--result", type=Path)

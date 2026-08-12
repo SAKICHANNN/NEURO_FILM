@@ -1,0 +1,58 @@
+{
+  "schema": "neuro_film.u6_p8de_streamed_native_thomas_scale_contract.v1",
+  "experiment_id": "u6.p8de-streamed-native-thomas-scale-v1",
+  "node": "ULT > U6 > U6.P8 > U6.P8DE",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can combined-halo FFT row streaming into a hash-bound mapped CHW input reduce 12MP peak memory materially without weakening the exact native Thomas package or the P8DD output tolerance?",
+  "parents": {
+    "p8dd_contract": {
+      "path": "configs/u6_p8dd_native_thomas_fft_spatial_scale_v1.json",
+      "sha256": "15cb18e467dfe3275170eb8e7e1e5a742e21fbf26fcfac44f3903c230e5f3a52"
+    },
+    "p8dd_evidence": {
+      "path": "docs/evidence/U6_P8DD_NATIVE_THOMAS_FFT_SPATIAL_SCALE_RESULT.json",
+      "sha256": "c59c913ed3fba8b0153249a438b80c8220dca012955e8a2a00f7d88f2a399213",
+      "required_decision": "retain_fft_backing_spatial_exposure_to_native_thomas_12mp_runtime",
+      "expected_fft_output_sha256": "7a5ae255143c5f2f61235f210cc766c077d8765fa3120435fe3c9c7554dc50d8",
+      "expected_fft_decoded_rgb16_sha256": "8b5ffda7d2129203c1044aca0d773ef8e700bcc33a36e7a26a9b50547c3abd52",
+      "baseline_maximum_wall_seconds": 14.261534599994775,
+      "baseline_maximum_process_tree_rss_bytes": 913494016
+    },
+    "p3k_decision": {
+      "path": "configs/u6_p3k_streamed_fft_backing_return_benchmark_decision_v1.json",
+      "sha256": "f9684c22536605417b9181780a9859b76724956cb5dce8c8bc3509dbe60530e3",
+      "required_decision": "retain_streamed_fft_as_isolated_standard_cpu_compiler"
+    },
+    "combined_streaming_implementation_commit": "636d12b095914055b69c2ba4a3fb719aeccbfa2c",
+    "mapped_input_implementation_commit": "a5de4f0a6f6a2ac2ec97a601b225e8aef24afe70"
+  },
+  "fixture": {
+    "height": 3000,
+    "width": 4000,
+    "tile_rows": 512,
+    "baseline_runs": 1,
+    "streamed_runs": 2
+  },
+  "gates": {
+    "minimum_rss_reduction_bytes": 134217728,
+    "maximum_rss_ratio_to_p8dd": 0.86,
+    "maximum_wall_ratio_to_p8dd": 1.15,
+    "maximum_streamed_wall_seconds": 18.0,
+    "maximum_repeat_wall_ratio": 1.20,
+    "maximum_repeat_rss_ratio": 1.10,
+    "maximum_decoded_code_error": 1,
+    "maximum_changed_decoded_fraction": 0.001,
+    "require_exact_streamed_input_replay": true,
+    "require_exact_streamed_output_replay": true,
+    "require_exact_streamed_decoded_replay": true,
+    "require_exact_icc": true,
+    "require_p8dd_baseline_identity": true,
+    "require_zero_mapped_input_residue": true,
+    "require_zero_stage_residue": true,
+    "require_zero_surviving_processes": true
+  },
+  "decision_if_pass": "retain_streamed_fft_spatial_native_thomas_12mp_runtime",
+  "decision_if_fail": "retain_p8dd_full_fft_spatial_native_thomas_runtime",
+  "claim_ceiling": "Generic synthetic 12MP Windows host memory, latency and bounded final-RGB comparison for streamed physical spatial execution into the exact native Thomas package; not measured film physics, calibrated stock response, scene-to-layer estimation, device evidence or product promotion."
+}
