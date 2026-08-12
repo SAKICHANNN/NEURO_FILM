@@ -4,6 +4,12 @@ from __future__ import annotations
 
 import numpy as np
 
+from src.film_physics.density_conditioned_thomas import (
+    DensityConditionedThomasProfile,
+)
+from src.film_physics.manufacturer_characteristic import (
+    ManufacturerCharacteristicPrior,
+)
 from src.film_physics.structure_compiler import counter_normal_region
 
 _KERNEL = np.asarray([0.0625, 0.25, 0.375, 0.25, 0.0625], dtype=np.float64)
@@ -105,4 +111,122 @@ def apply_independent_density_nps(
     return output, diagnostics
 
 
-__all__ = ["apply_independent_density_nps", "synthesize_independent_density_nps"]
+def compile_conservative_shared_sigma_d(
+    neutral_base: np.ndarray,
+    *,
+    profile: DensityConditionedThomasProfile,
+    prior: ManufacturerCharacteristicPrior,
+) -> tuple[np.ndarray, dict[str, float]]:
+    """Project retained layer Sigma-D onto one conservative achromatic field.
+
+    Relative display luminance is only a normalized coordinate across each
+    retained layer curve's observed exposure domain.  It is not interpreted as
+    calibrated scene exposure.  A shared density component cannot exceed any
+    layer's total Sigma-D, so the layer minimum is the no-fit upper bound.
+    """
+
+    base = np.asarray(neutral_base, dtype=np.float64)
+    if (
+        base.ndim != 3
+        or base.shape[-1] != 3
+        or not np.all(np.isfinite(base))
+        or np.any(base < 0.0)
+        or np.any(base > 1.0)
+        or not isinstance(profile, DensityConditionedThomasProfile)
+        or not isinstance(prior, ManufacturerCharacteristicPrior)
+    ):
+        raise ValueError("invalid density-compiled independent NPS input")
+    luminance = (
+        0.2126 * base[..., 0]
+        + 0.7152 * base[..., 1]
+        + 0.0722 * base[..., 2]
+    )
+    layer_sigma: list[np.ndarray] = []
+    for index, channel in enumerate(("red", "green", "blue")):
+        lower, upper = prior.curves[index].domain
+        exposure = lower + luminance * (upper - lower)
+        layer_sigma.append(
+            profile.amplitude_profile.evaluate_channel(
+                prior, channel, exposure
+            )
+        )
+    stacked = np.stack(layer_sigma, axis=-1)
+    shared = np.ascontiguousarray(np.min(stacked, axis=-1), dtype=np.float64)
+    if not np.all(np.isfinite(shared)) or np.any(shared <= 0.0):
+        raise RuntimeError("compiled shared Sigma-D is invalid")
+    return shared, {
+        "minimum_compiled_sigma_d": float(np.min(shared)),
+        "maximum_compiled_sigma_d": float(np.max(shared)),
+        "mean_compiled_sigma_d": float(np.mean(shared, dtype=np.float64)),
+        "amplitude_multiplier": 1.0,
+    }
+
+
+def apply_density_compiled_independent_nps(
+    neutral_base: np.ndarray,
+    *,
+    profile: DensityConditionedThomasProfile,
+    prior: ManufacturerCharacteristicPrior,
+    seed: int,
+) -> tuple[np.ndarray, dict[str, float]]:
+    """Apply P4GW topology with the retained conservative Sigma-D envelope."""
+
+    base = np.asarray(neutral_base, dtype=np.float64)
+    sigma_d, amplitude_diagnostics = compile_conservative_shared_sigma_d(
+        base, profile=profile, prior=prior
+    )
+    field, diagnostics = synthesize_independent_density_nps(
+        base.shape[:2], seed=seed
+    )
+    finite_tail = 3.0 * np.tanh(field / 3.0)
+    luminance = (
+        0.2126 * base[..., 0]
+        + 0.7152 * base[..., 1]
+        + 0.0722 * base[..., 2]
+    )
+    visibility = 4.0 * luminance * (1.0 - luminance)
+    requested_density = sigma_d * visibility * finite_tail
+
+    scale = np.ones_like(requested_density)
+    brightening = requested_density < 0.0
+    if np.any(brightening):
+        positive_base = base > 0.0
+        allowed = np.full_like(base, np.inf)
+        allowed[positive_base] = np.log10(
+            (1.0 - 16.0 * np.finfo(np.float64).eps) / base[positive_base]
+        )
+        allowed_brightening = np.min(allowed, axis=-1)
+        scale[brightening] = np.minimum(
+            1.0,
+            allowed_brightening[brightening]
+            / np.maximum(
+                -requested_density[brightening], np.finfo(np.float64).tiny
+            ),
+        )
+    scale = np.clip(scale, 0.0, 1.0)
+    output64 = base * np.power(10.0, -(requested_density * scale))[..., None]
+    output = np.ascontiguousarray(output64, dtype=np.float32)
+    if not np.all(np.isfinite(output)) or np.any(output < 0.0) or np.any(output > 1.0):
+        raise RuntimeError("density-compiled independent NPS escaped its output domain")
+    residual = output.astype(np.float64) - base
+    diagnostics.update(amplitude_diagnostics)
+    diagnostics.update(
+        {
+            "finite_tail_mean": float(np.mean(finite_tail, dtype=np.float64)),
+            "finite_tail_std": float(np.std(finite_tail, dtype=np.float64)),
+            "mean_density_visibility": float(np.mean(visibility, dtype=np.float64)),
+            "bounded_residual_rms": float(np.sqrt(np.mean(residual * residual))),
+            "minimum_residual_scale": float(np.min(scale)),
+            "limited_fraction": float(np.mean(scale < 1.0)),
+            "hard_clipping_used": 0.0,
+        }
+    )
+    return output, diagnostics
+
+
+__all__ = [
+    "apply_density_compiled_independent_nps",
+    "apply_independent_density_nps",
+    "compile_conservative_shared_sigma_d",
+    "synthesize_independent_density_nps",
+]
