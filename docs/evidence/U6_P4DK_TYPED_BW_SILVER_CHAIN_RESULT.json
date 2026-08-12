@@ -1,0 +1,16 @@
+{
+  "schema": "neuro_film.u6_p4dk_typed_bw_silver_chain_evidence.v1",
+  "node": "U6.P4DK",
+  "date": "2026-08-12",
+  "implementation_commit": "889cdfaf",
+  "contract_sha256": "ce048703712e9a34c2247553968101beb5ace1da4004c6a5d958d209dd78bb08",
+  "formal_report_sha256": "d58e1a3f38f3c2f5440107cc9581a7b085bf2aa4701001b685a9cbeb8635786c",
+  "stable_evidence_id": "42ebcba91d88995a421e3d62b3beca03e658ea11d8430d5c24fbc6b0440e9a4b",
+  "exact_replays": 2,
+  "automatic_pass": true,
+  "grain_count": 222575,
+  "mean_transmittance_absolute_error": 0.00002377995139603295,
+  "interior_variance": 0.012236760561070283,
+  "decision": "retain_typed_bw_metallic_silver_chain",
+  "claim_ceiling": "Generic synthetic B&W metallic-silver structure only; not developer-calibrated, stock-specific, scanner-calibrated or product evidence."
+}

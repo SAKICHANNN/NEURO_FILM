@@ -11969,3 +11969,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   127-row and replay execution agree.
 - B&W is rejected from this three-layer dye path. Next bind it separately to
   the existing metallic-silver Boolean structure.
+
+# 2026-08-12 - U6.P4DK closes the typed B&W silver branch
+
+- The separate B&W path materializes 222,575 metallic-silver grains and
+  recovers mean transmittance within 2.38e-5 with nonzero variance; region and
+  replay execution are exact.
+- Colour interpretations are rejected. Next apply existing scanner profiles as
+  nuisance/output transforms to both media without changing material identity.
