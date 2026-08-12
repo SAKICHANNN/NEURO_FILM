@@ -61,7 +61,11 @@ def monitor(command:list[str],output:Path,timeout:float,interval:float)->dict:
         while process.poll() is None:
             if time.perf_counter()-started>timeout:raise TimeoutError("P4FG worker timeout")
             total=0
-            for item in [root,*root.children(recursive=True)]:
+            try:
+                observed=[root,*root.children(recursive=True)]
+            except psutil.NoSuchProcess:
+                observed=[]
+            for item in observed:
                 try:total+=item.memory_info().rss
                 except (psutil.NoSuchProcess,psutil.AccessDenied):pass
             peak=max(peak,total);time.sleep(interval)
