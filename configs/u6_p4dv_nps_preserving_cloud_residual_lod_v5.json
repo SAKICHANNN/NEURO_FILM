@@ -1,0 +1,46 @@
+{
+  "schema": "neuro_film.u6_p4dv_nps_preserving_cloud_residual_lod_contract.v5",
+  "experiment_id": "u6.p4dv-nps-preserving-cloud-residual-lod-v5",
+  "node": "ULT > U6 > U6.P4 > U6.P4DV",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {
+    "path": "docs/evidence/U6_P4DU_TARGET_RESOLUTION_CLOUD_TWO_MOMENT_COMPILER_V4_RESULT.json",
+    "sha256": "eee641d2b9e8eb7048c608b1023497c70034646ec46c5348d347eb7b7660245b",
+    "required_decision": "close_two_moment_target_resolution_cloud_lod_v4"
+  },
+  "fixture": {
+    "output_height": 192,
+    "output_width": 256,
+    "aperture_factor": 4,
+    "base_rate_multiplier": 16,
+    "flat_density_fraction": 0.55,
+    "development_seeds": [57181, 57187, 57193],
+    "confirmation_seeds": [54187, 54193, 54203]
+  },
+  "compiler": {
+    "gain_per_channel": "median_over_development_seeds_of_reference_rms_divided_by_base_rms",
+    "residual": "T_expected + gain_c * (T_base - T_expected)",
+    "gain_must_be_finite_positive": true,
+    "hard_clip_forbidden": true,
+    "out_of_domain_fails_closed": true,
+    "confirmation_reselection_forbidden": true
+  },
+  "gates": {
+    "minimum_gain": 1.0,
+    "maximum_gain": 3.0,
+    "maximum_development_marginal_noise_rms_relative_error": 0.08,
+    "maximum_confirmation_mean_transmittance_absolute_error": 0.002,
+    "maximum_confirmation_marginal_noise_rms_relative_error": 0.08,
+    "maximum_confirmation_cross_channel_correlation_absolute_error": 0.05,
+    "maximum_confirmation_radial_nps_shape_rmse": 0.08,
+    "maximum_confirmation_edge_overshoot_absolute_difference": 0.01,
+    "maximum_confirmation_edge_undershoot_absolute_difference": 0.01,
+    "maximum_new_boundary_fraction": 0.0,
+    "require_repeat_identity": true,
+    "require_product_disabled": true
+  },
+  "decision_if_pass": "retain_nps_preserving_target_resolution_cloud_residual_lod_v5",
+  "decision_if_fail": "close_nps_preserving_target_resolution_cloud_residual_lod_v5",
+  "claim_ceiling": "Synthetic NPS-preserving target-resolution approximation only; not measured film granularity, scanner aperture, calibrated stock or product authorization."
+}
