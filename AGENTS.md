@@ -200,7 +200,11 @@ Local Windows storage binding, 2026-07-31: the canonical repository path
 `C:\Users\hhvrf\Documents\neuro_film\data` is an NTFS junction to the
 project-owned physical root `P:\neuro_film_storage\data`. Keep configs and
 scripts repo-relative under `data/...`; do not bypass the junction with a
-machine-specific `P:` path. `P:` is the sole durable data location. If it is
+machine-specific `P:` path. As of 2026-08-13, the repository-relative
+`outputs`, `checkpoints`, `loras`, `tmp`, `.cache`, `logs` and `.ruff_cache`
+entries are likewise junctions to their namespaced roots under
+`P:\neuro_film_storage`; keep using logical repository paths. `P:` is the sole
+durable data and generated-artifact location. If it is
 temporarily unavailable, continue data-dependent work through a project-owned
 isolated `D:` fallback behind the same repo-relative entry instead of writing a
 partial tree on `C:`. When `P:` returns, freeze writers, copy the fallback back
