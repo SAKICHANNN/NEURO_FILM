@@ -12217,3 +12217,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   restart-verify both transactions, and remove all owned transaction files.
 - Peak process-tree RSS is 894.0-970.5MB and wall time 42.4-45.1s, passing the
   frozen 1GiB/180s/repeat gates. Encoding now dominates the observed peak.
+
+# 2026-08-12 - U6.P4FV/P4FW add explicit file-backed scene ingress
+
+- A little-endian float32 scene-linear NPY can now be mmap-backed and replayed
+  by row with exact file/pixel identities, finite/range checks and no pickle.
+- The exact source reaches the frozen Standard package and restart-verified
+  PNG16 transaction. This is an explicit intermediate, not a RAW/EXR decoder.
