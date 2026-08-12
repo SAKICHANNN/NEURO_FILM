@@ -1,0 +1,18 @@
+{
+  "schema": "neuro_film.u6_p4ed_native_cloud_row_integration_evidence.v1",
+  "node": "U6.P4ED",
+  "date": "2026-08-12",
+  "implementation_commit": "f3aa66e3",
+  "contract_sha256": "92d1a6e0dc754dd35e632caa91e12308049e77c9cd010d42774f5f3307a2eb76",
+  "formal_report_sha256": "80cb86e029e9e86f459f184e6e07a6fb4bd3ccadcc5aa73b91c84aacec6f8db2",
+  "stable_evidence_id": "9461a7f9268dbb7f9b69d2613d66f4d4bbfee25f2252afebf8725178c943eef6",
+  "automatic_pass": true,
+  "maximum_native_python_density_absolute_error": 0.0000002384185791015625,
+  "maximum_native_python_transmittance_absolute_error": 0.0000000298023223876953125,
+  "native_to_python_wall_ratio": 1.0267487241010895,
+  "partition_identity": true,
+  "repeat_identity": true,
+  "failure_atomicity": true,
+  "decision": "retain_native_cloud_row_integration_v1",
+  "claim_ceiling": "Windows Python/native hybrid row execution only; not complete native stochastic runtime, calibration or product authorization."
+}

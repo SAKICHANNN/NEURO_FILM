@@ -12128,3 +12128,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   frozen 2e-7 bound; atomic failure and owned-process cleanup pass.
 - This qualifies only the attenuation arithmetic on Android x86_64 virtual
   hardware. Next integrate the native kernel into the Python row reference.
+
+# 2026-08-12 - U6.P4ED retains native/Python row integration
+
+- Native attenuation embedded in the compiled cloud row stream matches Python
+  within 2.39e-7 density and 2.99e-8 transmittance, with exact 17/64/129-row
+  partition hashes, repeat identity and pre-yield invalid rejection.
+- Median wall ratio is 1.027 versus Python-only, within the frozen 1.25 limit.
+  Timing is excluded from scientific identity while its pass/fail gate remains.
