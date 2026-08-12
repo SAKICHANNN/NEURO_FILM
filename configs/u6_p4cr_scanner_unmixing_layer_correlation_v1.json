@@ -1,0 +1,74 @@
+{
+  "schema": "neuro_film.u6_p4cr_scanner_unmixing_layer_correlation_contract.v1",
+  "experiment_id": "u6.p4cr-scanner-unmixing-layer-correlation-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4CR",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "question": "When a typed simulator supplies known dye-layer density and scanner mixing, does inversion in the correct physical order recover cross-layer correlation while scanner-RGB residual correlation remains confounded?",
+  "parents": {
+    "p4cq_evidence": {
+      "path": "docs/evidence/U6_P4CQ_CROSS_COMPONENT_GRAIN_CORRELATION_RESULT.json",
+      "sha256": "d845346be66e237e07147f3c8966fe63bb1d831e5ab06e6f9af495acdb8af9a0",
+      "required_decision": "FAIL_CLOSED_BEFORE_CONFIRMATION_MATRIX_ENVELOPE"
+    }
+  },
+  "primary_basis": [
+    {
+      "title": "Emulating Emulsion: A Compact Physically-Based Model for Film Colour",
+      "venue": "SIGGRAPH Posters 2025",
+      "url": "https://doi.org/10.1145/3721250.3743014",
+      "relevance": "Separates film-layer response from a later scanner matrix, motivating layer-domain inference before scanner-domain interpretation."
+    },
+    {
+      "title": "FGA-NN: Film Grain Analysis Neural Network",
+      "date": "2025-06-17",
+      "url": "https://arxiv.org/abs/2506.14350",
+      "relevance": "Latest directly relevant grain-analysis work retains explicit component-specific conventional synthesis parameters rather than an unconstrained RGB image generator."
+    }
+  ],
+  "simulation": {
+    "shape": [384, 512],
+    "development_seeds": [2026081201, 2026081202, 2026081203, 2026081204],
+    "confirmation_seeds": [2026081211, 2026081212, 2026081213, 2026081214],
+    "layer_correlation": [
+      [1.0, 0.42, 0.18],
+      [0.42, 1.0, 0.31],
+      [0.18, 0.31, 1.0]
+    ],
+    "mean_density_rgb": [0.65, 0.82, 0.74],
+    "density_sigma": 0.035,
+    "scanner_matrix": [
+      [0.78, 0.17, 0.05],
+      [0.12, 0.76, 0.12],
+      [0.04, 0.22, 0.74]
+    ],
+    "wrong_scanner_matrix": [
+      [0.74, 0.22, 0.04],
+      [0.05, 0.78, 0.17],
+      [0.12, 0.12, 0.76]
+    ],
+    "order": "correlated developed-density residual -> transmittance -> scanner matrix -> correct or wrong inverse -> optical density residual"
+  },
+  "metrics": {
+    "correlation_error": "off-diagonal Frobenius RMSE against the frozen layer correlation",
+    "maximum_correct_inverse_rmse": 0.01,
+    "minimum_direct_scanner_rmse": 0.08,
+    "minimum_wrong_inverse_rmse": 0.04,
+    "minimum_correct_improvement_over_direct": 0.9,
+    "minimum_correct_improvement_over_wrong": 0.8,
+    "maximum_development_confirmation_rmse_gap": 0.005,
+    "minimum_scanner_condition_number": 1.1,
+    "maximum_scanner_condition_number": 4.0,
+    "require_exact_repeat": true,
+    "require_finite_strict_transmittance": true
+  },
+  "decision_if_pass": "retain_scanner_unmixing_as_required_layer_correlation_identifiability_control",
+  "decision_if_fail": "retain_independent_layer_structure_and_close_current_scanner_unmixing_control",
+  "forbidden": [
+    "fit or alter either scanner matrix after observing confirmation",
+    "repair, clip or shrink correlation matrices",
+    "infer calibrated dye-layer coupling from archival scanner RGB",
+    "map the synthetic result to a stock, scanner profile, renderer default or product state"
+  ],
+  "claim_ceiling": "Controlled float64 simulator evidence about correlation-domain identifiability under a known invertible scanner matrix; not measured dye-layer correlation, scanner calibration, photographic quality or product evidence."
+}
