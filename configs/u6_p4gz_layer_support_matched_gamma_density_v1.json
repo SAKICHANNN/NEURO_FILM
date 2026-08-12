@@ -1,0 +1,60 @@
+{
+  "schema": "neuro-film.u6-p4gz-layer-support-matched-gamma-density-contract.v1",
+  "experiment_id": "u6.p4gz-layer-support-matched-gamma-density-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4GZ",
+  "date_frozen": "2026-08-12",
+  "status": "contract-frozen-implementation-ready",
+  "question": "Do independent per-layer support-matched Gamma density variables preserve each retained layer's Sigma-D moments and physical support without the chromatic near-white singularity of a shared RGB factor?",
+  "parents": {
+    "p4gy_result": {
+      "path": "docs/evidence/U6_P4GY_SUPPORT_MATCHED_GAMMA_DENSITY_RESULT.json",
+      "sha256": "18769ef8a3a7700f50c3499f820103fa94200b823402e55ea5079900deaa5572",
+      "required_decision": "close_support_matched_gamma_density_without_rescue"
+    },
+    "p4bw_bundle": {
+      "path": "outputs/experiments/u6_p4bw_density_conditioned_thomas_profile_v1/run_a/bundle.json",
+      "sha256": "4edf4eaaeae163a2f579584c7d9533134a7d6177d5cc78ed517cb15865e585bf",
+      "required_profile_id": "199c59fe7d046943bcd763de8cab0ab52e7156aba6d94fcd9f1ec64da4d5d6ff"
+    },
+    "p2q_bundle": {
+      "path": "outputs/u6_p2q_kodak_250d_characteristic_prior/bundle_run1.json",
+      "sha256": "087e67544f737401fa697b21f06215a31827189e0648b8d60da666b92113caaa",
+      "required_prior_id": "04d94af2e1fcad99fbb8c9abb57179f2b63f329c263b3bf2335c4117a670aacb"
+    }
+  },
+  "candidate": {
+    "field_shape": [512, 513],
+    "layer_field_seeds": [320260812, 320261821, 320262830],
+    "field": "three independent P4GW aperture-highpass fields transformed to exact empirical midranks",
+    "channel_levels": [0.0001, 0.01, 0.1, 0.5, 0.9, 0.99, 0.9999, 1.0],
+    "rgb_ratios": [[1.0, 1.0, 1.0], [1.0, 0.5, 0.25], [0.25, 0.5, 1.0]],
+    "per_layer_available_density": "-log10(relative_linear_channel)",
+    "per_layer_exposure_coordinate": "curve_domain_low + relative_linear_channel*(curve_domain_high-curve_domain_low)",
+    "per_layer_target_sigma": "retained layer Sigma-D times 4*channel*(1-channel)",
+    "distribution": "per layer delta_D = Gamma(shape=(D/sigma)^2, scale=sigma^2/D, quantile=u)-D",
+    "support_degenerate_rule": "if D<=float64_epsilon or sigma<=float64_tiny, that layer delta_D=0",
+    "amplitude_multiplier": 1.0,
+    "realized_variance_normalization_allowed": false,
+    "clipping_allowed": false
+  },
+  "automatic_gates": {
+    "maximum_non_degenerate_mean_absolute_in_target_sigma": 0.02,
+    "maximum_non_degenerate_variance_relative_error": 0.03,
+    "maximum_non_degenerate_p999_absolute_in_target_sigma": 4.5,
+    "maximum_cross_layer_density_correlation_absolute": 0.01,
+    "minimum_developed_density": -1e-14,
+    "minimum_transmittance": 0.0,
+    "maximum_transmittance": 1.0,
+    "maximum_support_degenerate_residual_absolute": 0.0,
+    "require_exact_repeat": true,
+    "require_all_finite": true,
+    "require_no_clipping_or_posthoc_limiting": true
+  },
+  "execution": {
+    "formal_processes": 2,
+    "post_result_retuning_allowed": false
+  },
+  "decision_if_pass": "retain_layer_support_matched_gamma_density_for_photographic_development",
+  "decision_if_fail": "close_layer_support_matched_gamma_density_without_rescue",
+  "claim_ceiling": "Synthetic relative-display per-layer dye-density mechanics only; independent colour layers follow physical colour-film ontology, but the Gamma marginals and display-code exposure coordinates remain clean-room generic hypotheses, not measured dye-cloud distributions, calibrated scene exposure, stock response or product evidence."
+}
