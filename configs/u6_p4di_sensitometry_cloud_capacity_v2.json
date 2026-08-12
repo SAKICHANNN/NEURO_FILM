@@ -1,0 +1,16 @@
+{
+  "schema": "neuro_film.u6_p4di_sensitometry_cloud_capacity_contract.v2",
+  "experiment_id": "u6.p4di-sensitometry-cloud-capacity-v2",
+  "node": "ULT > U6 > U6.P4 > U6.P4DI",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parents": {
+    "p4dh": {"path": "docs/evidence/U6_P4DH_SENSITOMETRY_CLOUD_CAPACITY_RESULT.json", "sha256": "8f859fc6b0fa0ab4297bee12d50404aad86221f55815232dffa5a95c54f21e24", "required_decision": "close_sensitometry_cloud_capacity_compiler", "required_failed_gate": "correlation_identity"},
+    "sensitometry": {"path": "configs/u2_2a_sensitometry_primitive_v1.json", "sha256": "8f43edcbc7e168af830081dce16ecb5f268a294d2f0cd777b942aec4b95c8af2", "required_experiment_id": "u2.2a-sensitometry-primitive-v1"}
+  },
+  "compiler": {"linear_exposure_minimum": 0.0, "linear_exposure_maximum": 16.0, "samples": 65537, "headroom_ratio": 1.05, "maximum_common_rate_multiplier": 16.0, "maximum_recomputed_correlation_absolute_drift": 1e-15},
+  "gates": {"require_capacity_all_channels": true, "require_inherited_correlation_identity": true, "require_recomputed_correlation_within_tolerance": true, "require_cloud_kernel_identity": true, "require_profile_roundtrip": true, "require_product_disabled": true},
+  "decision_if_pass": "retain_sensitometry_capacity_compiled_cloud_profile_v2",
+  "decision_if_fail": "close_sensitometry_cloud_capacity_compiler_v2",
+  "claim_ceiling": "Generic U2.2 numerical capacity binding only; not stock-calibrated density, measured granularity or product authorization."
+}
