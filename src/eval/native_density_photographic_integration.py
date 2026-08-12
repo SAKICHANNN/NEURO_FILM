@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import math
 from pathlib import Path
@@ -23,6 +24,11 @@ from src.film_physics.native_histogram_copula import (
 from src.film_physics.native_hybrid_gamma_density import (
     load_native_hybrid_gamma_density_library,
 )
+from src.film_physics.native_thomas_field import (
+    NativeThomasFieldProfile,
+    load_native_thomas_field_library,
+    render_native_thomas_field,
+)
 from src.film_physics.profile_bound_native_density import (
     apply_profile_bound_native_density,
 )
@@ -35,11 +41,14 @@ SCHEMA = "neuro-film.u6-p4hr-native-density-photographic-integration-contract.v1
 FAST_SCHEMA = (
     "neuro-film.u6-p4ht-fast-native-density-photographic-integration-contract.v1"
 )
+NATIVE_SPATIAL_SCHEMA = (
+    "neuro-film.u6-p4hu-native-spatial-density-photographic-integration-contract.v1"
+)
 
 
 def load_contract(path: Path) -> dict[str, Any]:
     payload = json.loads(path.read_text("utf-8"))
-    if payload.get("schema") not in (SCHEMA, FAST_SCHEMA):
+    if payload.get("schema") not in (SCHEMA, FAST_SCHEMA, NATIVE_SPATIAL_SCHEMA):
         raise ValueError("unsupported P4HR contract")
     return payload
 
@@ -68,7 +77,7 @@ def evaluate(
     contact_sheet_path: Path,
 ) -> dict[str, Any]:
     parents = contract["parents"]
-    if contract["schema"] == FAST_SCHEMA:
+    if contract["schema"] in (FAST_SCHEMA, NATIVE_SPATIAL_SCHEMA):
         p4hs = _load_bound(root, parents["p4hs_evidence"])
         p4hr = _load_bound(root, parents["p4hr_evidence"])
         if (
@@ -76,6 +85,14 @@ def evaluate(
             or p4hr.get("decision") != parents["p4hr_evidence"]["required_decision"]
         ):
             raise ValueError("P4HT parent decision drift")
+    if contract["schema"] == NATIVE_SPATIAL_SCHEMA:
+        p4ht = _load_bound(root, parents["p4ht_evidence"])
+        p8bs = _load_bound(root, parents["p8bs_evidence"])
+        if (
+            p4ht.get("decision") != parents["p4ht_evidence"]["required_decision"]
+            or p8bs.get("decision") != parents["p8bs_evidence"]["required_decision"]
+        ):
+            raise ValueError("P4HU parent decision drift")
     p4hq = _load_bound(root, parents["p4hq_evidence"])
     p4he_contract = _load_bound(root, parents["p4he_contract"])
     p4he_evidence = _load_bound(root, parents["p4he_evidence"])
@@ -127,6 +144,18 @@ def evaluate(
         if fast_gamma
         else load_native_hybrid_gamma_density_library(Path(gamma_build["dll_path"]))
     )
+    native_spatial = candidate.get("spatial_backend") == "native-thomas-field-f32-v1"
+    field_build = None
+    field_library = None
+    if native_spatial:
+        field_build = build_msvc_c11_dll(
+            root=root,
+            output_dir=build_dir / "field",
+            source_relative="native/film_physics/nf_thomas_field_f32_v1.c",
+            header_relative="native/film_physics/nf_thomas_field_f32_v1.h",
+            basename="nf_thomas_field_f32_msvc_v1",
+        )
+        field_library = load_native_thomas_field_library(Path(field_build["dll_path"]))
 
     def apply_physical(
         source: np.ndarray,
@@ -140,29 +169,52 @@ def evaluate(
         ):
             raise ValueError("P4HR photographic component identity drift")
         height, width = source.shape[:2]
-        receipts = tuple(
-            build_thomas_dc_receipt(
-                (height, width),
-                profile_id=profile.spatial_profile_id,
-                particle_sigma_pixels=profile.particle_sigma_samples,
-                cluster_sigma_pixels=profile.cluster_sigma_samples,
-                mean_offspring=profile.mean_offspring,
-                component_seeds=profile.component_seeds,
-                realization_seed=seed,
-                truncate=profile.truncate,
-                canonical_row_block_height=components.canonical_row_block_height,
-            )
-            for seed in seeds
-        )
-        fields = np.stack(
-            [
-                render_dc_projected_thomas_region(
-                    receipt, origin_yx=(0, 0), shape=(height, width)
+        if native_spatial:
+            assert field_library is not None
+            rendered = [
+                render_native_thomas_field(
+                    field_library,
+                    NativeThomasFieldProfile(
+                        particle_sigma_pixels=profile.particle_sigma_samples,
+                        cluster_sigma_pixels=profile.cluster_sigma_samples,
+                        mean_offspring=profile.mean_offspring,
+                        truncate=profile.truncate,
+                        component_seeds=profile.component_seeds,
+                        realization_seed=seed,
+                    ),
+                    (height, width),
+                )[0]
+                for seed in seeds
+            ]
+            fields = np.stack(rendered, axis=-1)
+            receipt_ids = [
+                hashlib.sha256(field.tobytes()).hexdigest() for field in rendered
+            ]
+        else:
+            receipts = tuple(
+                build_thomas_dc_receipt(
+                    (height, width),
+                    profile_id=profile.spatial_profile_id,
+                    particle_sigma_pixels=profile.particle_sigma_samples,
+                    cluster_sigma_pixels=profile.cluster_sigma_samples,
+                    mean_offspring=profile.mean_offspring,
+                    component_seeds=profile.component_seeds,
+                    realization_seed=seed,
+                    truncate=profile.truncate,
+                    canonical_row_block_height=components.canonical_row_block_height,
                 )
-                for receipt in receipts
-            ],
-            axis=-1,
-        ).astype(np.float32)
+                for seed in seeds
+            )
+            fields = np.stack(
+                [
+                    render_dc_projected_thomas_region(
+                        receipt, origin_yx=(0, 0), shape=(height, width)
+                    )
+                    for receipt in receipts
+                ],
+                axis=-1,
+            ).astype(np.float32)
+            receipt_ids = [receipt.receipt_id for receipt in receipts]
         physical, developed, native = apply_profile_bound_native_density(
             copula_library,
             gamma_library,
@@ -193,7 +245,7 @@ def evaluate(
             minimum_sigma = min(minimum_sigma, float(np.min(sigma)))
             maximum_sigma = max(maximum_sigma, float(np.max(sigma)))
         return physical, {
-            "receipt_ids": [receipt.receipt_id for receipt in receipts],
+            "receipt_ids": receipt_ids,
             "bounded_residual_rms": float(
                 np.sqrt(np.mean(difference * difference, dtype=np.float64))
             ),
@@ -239,6 +291,8 @@ def evaluate(
         "copula": _stable_toolchain(copula_build),
         "gamma": _stable_toolchain(gamma_build),
     }
+    if field_build is not None:
+        stable["native_toolchains"]["field"] = _stable_toolchain(field_build)
     stable["claim_ceiling"] = contract["claim_ceiling"]
     result["schema"] = contract["schema"].replace("contract", "worker-result")
     return result
