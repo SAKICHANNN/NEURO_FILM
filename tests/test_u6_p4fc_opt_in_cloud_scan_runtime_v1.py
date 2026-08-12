@@ -30,6 +30,10 @@ def _source(height:int,width:int)->np.ndarray:
     return np.ascontiguousarray(((y*17+x*31+c*101+3)%997)/996.,np.float32)
 
 
+def _capture(target:list[tuple[int,int,np.ndarray]],y0:int,y1:int,rows:np.ndarray)->None:
+    target.append((y0,y1,rows.copy()))
+
+
 def test_p4fc_runtime_boundary(tmp_path:Path)->None:
     contract=json.loads(CONTRACT.read_text());parent=ROOT/contract["parent"]["path"]
     assert sha256_file(parent)==contract["parent"]["sha256"]
@@ -47,8 +51,8 @@ def test_p4fc_runtime_boundary(tmp_path:Path)->None:
         runtime=NativeCloudScanRuntime(gaussian_library=dll,forward_scatter_profile=profile,
             physical_rows=provider,physical_component_sha256=component,tile_rows=tile_rows)
         sink_rows=[]
-        def sink(y0:int,y1:int,rows:np.ndarray)->None:
-            sink_rows.append((y0,y1,rows.copy()))
+        def sink(y0:int,y1:int,rows:np.ndarray,target=sink_rows)->None:
+            _capture(target,y0,y1,rows)
         receipt=runtime.render_to_sink(source,output_sink=sink)
         assembled=np.concatenate([row[2] for row in sink_rows],axis=0)
         assert np.array_equal(assembled,reference)
