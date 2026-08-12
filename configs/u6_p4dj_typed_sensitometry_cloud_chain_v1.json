@@ -1,0 +1,14 @@
+{
+  "schema": "neuro_film.u6_p4dj_typed_sensitometry_cloud_chain_contract.v1",
+  "experiment_id": "u6.p4dj-typed-sensitometry-cloud-chain-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4DJ",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {"path": "docs/evidence/U6_P4DI_SENSITOMETRY_CLOUD_CAPACITY_V2_RESULT.json", "sha256": "b5c65ec6e0343b94f4c02640e190b2b06863b5fa021d578e4c5d0794c0e770c4", "required_decision": "retain_sensitometry_capacity_compiled_cloud_profile_v2", "compiled_profile_identity": "9d9d86e1f2fc695d431810cbe06cbe9749be601838d4fc4cdfed18b63f13879a"},
+  "fixture": {"height": 769, "width": 1025, "seed": 40181, "pixel_pitch_um": 6.35, "row_partition_height": 127},
+  "routes": [{"family": "color_negative", "route": "color_negative_neutral_scan"}, {"family": "slide", "route": "slide_direct_scan"}],
+  "gates": {"require_developed_density_exact_u2_2": true, "require_cloud_density_and_transmittance_route_identity": true, "require_full_partition_bit_identity": true, "require_repeat_identity": true, "require_black_and_white_rejection": true, "require_finite_physical_domains": true},
+  "decision_if_pass": "retain_typed_colour_sensitometry_cloud_chain",
+  "decision_if_fail": "close_typed_colour_sensitometry_cloud_chain",
+  "claim_ceiling": "Generic typed synthetic colour-emulsion chain only; not calibrated negative/slide behavior, B&W structure, scanner interpretation or product evidence."
+}
