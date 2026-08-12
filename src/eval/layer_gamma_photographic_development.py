@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 
@@ -56,17 +57,33 @@ def _high_frequency_chroma_p999(residual: np.ndarray) -> float:
     return float(np.quantile(np.max(np.abs(high_frequency), axis=2), 0.999))
 
 
-def evaluate(
-    contract: dict[str, Any], *, root: Path, contact_sheet_path: Path
+def _evaluate_photographic(
+    contract: dict[str, Any],
+    *,
+    root: Path,
+    contact_sheet_path: Path,
+    apply_physical: Callable[
+        [
+            np.ndarray,
+            DensityConditionedThomasProfile,
+            ManufacturerCharacteristicPrior,
+            tuple[int, int, int],
+        ],
+        tuple[np.ndarray, dict[str, Any]],
+    ],
 ) -> dict[str, Any]:
     parents = contract["parents"]
-    result = _load_bound_json(root, parents["p4gz_result"])
+    result_names = [name for name in parents if name.endswith("_result")]
+    if len(result_names) != 1:
+        raise ValueError("P4HA/P4HB requires one result parent")
+    result_binding = parents[result_names[0]]
+    result = _load_bound_json(root, result_binding)
     profile_payload = _load_bound_json(root, parents["p4bw_bundle"])
     prior_payload = _load_bound_json(root, parents["p2q_bundle"])
     profile = DensityConditionedThomasProfile.from_dict(profile_payload)
     prior = ManufacturerCharacteristicPrior.from_dict(prior_payload["prior"])
     if (
-        result.get("decision") != parents["p4gz_result"]["required_decision"]
+        result.get("decision") != result_binding["required_decision"]
         or profile.identity() != parents["p4bw_bundle"]["required_profile_id"]
         or prior.identity() != parents["p2q_bundle"]["required_prior_id"]
     ):
@@ -110,9 +127,7 @@ def evaluate(
         for index, source_row in enumerate(manifest):
             source_encoded, source = _load_source(source_row, root)
             seeds = tuple(value + index * stride for value in base_seeds)
-            physical, diagnostics = apply_layer_support_matched_gamma_density(
-                source, profile=profile, prior=prior, layer_seeds=seeds
-            )
+            physical, diagnostics = apply_physical(source, profile, prior, seeds)
             ao6_linear = _apply_residual(standard, source)
             combined_linear = _apply_residual(standard, physical)
             physical_encoded = np.ascontiguousarray(
@@ -165,6 +180,8 @@ def evaluate(
                     ao6_encoded, combined_encoded
                 ),
             }
+            if "receipt_ids" in diagnostics:
+                row["receipt_ids"] = diagnostics["receipt_ids"]
             rows.append(row)
             visual_rows.append(
                 {
@@ -234,4 +251,25 @@ def evaluate(
     }
 
 
-__all__ = ["evaluate", "load_contract"]
+def evaluate(
+    contract: dict[str, Any], *, root: Path, contact_sheet_path: Path
+) -> dict[str, Any]:
+    def apply_physical(
+        source: np.ndarray,
+        profile: DensityConditionedThomasProfile,
+        prior: ManufacturerCharacteristicPrior,
+        seeds: tuple[int, int, int],
+    ) -> tuple[np.ndarray, dict[str, Any]]:
+        return apply_layer_support_matched_gamma_density(
+            source, profile=profile, prior=prior, layer_seeds=seeds
+        )
+
+    return _evaluate_photographic(
+        contract,
+        root=root,
+        contact_sheet_path=contact_sheet_path,
+        apply_physical=apply_physical,
+    )
+
+
+__all__ = ["_evaluate_photographic", "evaluate", "load_contract"]

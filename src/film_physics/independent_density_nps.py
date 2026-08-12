@@ -12,6 +12,10 @@ from src.film_physics.manufacturer_characteristic import (
     ManufacturerCharacteristicPrior,
 )
 from src.film_physics.structure_compiler import counter_normal_region
+from src.film_physics.thomas_dc_projection import (
+    build_thomas_dc_receipt,
+    render_dc_projected_thomas_region,
+)
 
 _KERNEL = np.asarray([0.0625, 0.25, 0.375, 0.25, 0.0625], dtype=np.float64)
 
@@ -137,19 +141,13 @@ def compile_conservative_shared_sigma_d(
         or not isinstance(prior, ManufacturerCharacteristicPrior)
     ):
         raise ValueError("invalid density-compiled independent NPS input")
-    luminance = (
-        0.2126 * base[..., 0]
-        + 0.7152 * base[..., 1]
-        + 0.0722 * base[..., 2]
-    )
+    luminance = 0.2126 * base[..., 0] + 0.7152 * base[..., 1] + 0.0722 * base[..., 2]
     layer_sigma: list[np.ndarray] = []
     for index, channel in enumerate(("red", "green", "blue")):
         lower, upper = prior.curves[index].domain
         exposure = lower + luminance * (upper - lower)
         layer_sigma.append(
-            profile.amplitude_profile.evaluate_channel(
-                prior, channel, exposure
-            )
+            profile.amplitude_profile.evaluate_channel(prior, channel, exposure)
         )
     stacked = np.stack(layer_sigma, axis=-1)
     shared = np.ascontiguousarray(np.min(stacked, axis=-1), dtype=np.float64)
@@ -176,15 +174,9 @@ def apply_density_compiled_independent_nps(
     sigma_d, amplitude_diagnostics = compile_conservative_shared_sigma_d(
         base, profile=profile, prior=prior
     )
-    field, diagnostics = synthesize_independent_density_nps(
-        base.shape[:2], seed=seed
-    )
+    field, diagnostics = synthesize_independent_density_nps(base.shape[:2], seed=seed)
     finite_tail = 3.0 * np.tanh(field / 3.0)
-    luminance = (
-        0.2126 * base[..., 0]
-        + 0.7152 * base[..., 1]
-        + 0.0722 * base[..., 2]
-    )
+    luminance = 0.2126 * base[..., 0] + 0.7152 * base[..., 1] + 0.0722 * base[..., 2]
     visibility = 4.0 * luminance * (1.0 - luminance)
     requested_density = sigma_d * visibility * finite_tail
 
@@ -200,9 +192,7 @@ def apply_density_compiled_independent_nps(
         scale[brightening] = np.minimum(
             1.0,
             allowed_brightening[brightening]
-            / np.maximum(
-                -requested_density[brightening], np.finfo(np.float64).tiny
-            ),
+            / np.maximum(-requested_density[brightening], np.finfo(np.float64).tiny),
         )
     scale = np.clip(scale, 0.0, 1.0)
     output64 = base * np.power(10.0, -(requested_density * scale))[..., None]
@@ -259,32 +249,25 @@ def apply_support_matched_gamma_density(
     # Preserve the field ordering/correlation while eliminating marginal
     # sampling error before the inverse Gamma transform.
     uniform = _exact_empirical_midranks(field)
-    luminance = (
-        0.2126 * base[..., 0]
-        + 0.7152 * base[..., 1]
-        + 0.0722 * base[..., 2]
-    )
+    luminance = 0.2126 * base[..., 0] + 0.7152 * base[..., 1] + 0.0722 * base[..., 2]
     target_sigma = sigma_d * (4.0 * luminance * (1.0 - luminance))
     maximum_channel = np.max(base, axis=-1)
     available_density = np.full(base.shape[:2], np.inf, dtype=np.float64)
     positive = maximum_channel > 0.0
     available_density[positive] = -np.log10(maximum_channel[positive])
-    nondegenerate = (
-        available_density > np.finfo(np.float64).eps
-    ) & (target_sigma > np.finfo(np.float64).tiny)
+    nondegenerate = (available_density > np.finfo(np.float64).eps) & (
+        target_sigma > np.finfo(np.float64).tiny
+    )
     delta_density = np.zeros(base.shape[:2], dtype=np.float64)
     if np.any(nondegenerate):
         density = available_density[nondegenerate]
         sigma = target_sigma[nondegenerate]
         shape = np.square(density / sigma)
         scale = np.square(sigma) / density
-        quantiles = gamma.ppf(
-            uniform[nondegenerate], a=shape, scale=scale
-        )
+        quantiles = gamma.ppf(uniform[nondegenerate], a=shape, scale=scale)
         delta_density[nondegenerate] = quantiles - density
-    if (
-        not np.all(np.isfinite(delta_density))
-        or np.any(delta_density[nondegenerate] < -available_density[nondegenerate])
+    if not np.all(np.isfinite(delta_density)) or np.any(
+        delta_density[nondegenerate] < -available_density[nondegenerate]
     ):
         raise RuntimeError("support-matched Gamma density is invalid")
     output64 = base * np.power(10.0, -delta_density)[..., None]
@@ -344,9 +327,7 @@ def apply_layer_support_matched_gamma_density(
         values = base[..., index]
         lower, upper = prior.curves[index].domain
         exposure = lower + values * (upper - lower)
-        sigma_d = profile.amplitude_profile.evaluate_channel(
-            prior, channel, exposure
-        )
+        sigma_d = profile.amplitude_profile.evaluate_channel(prior, channel, exposure)
         sigma = sigma_d * (4.0 * values * (1.0 - values))
         target_sigma[..., index] = sigma
         available = np.full(values.shape, np.inf, dtype=np.float64)
@@ -367,9 +348,7 @@ def apply_layer_support_matched_gamma_density(
             selected_sigma = sigma[active]
             shape = np.square(selected_density / selected_sigma)
             scale = np.square(selected_sigma) / selected_density
-            quantiles = gamma.ppf(
-                uniform[active], a=shape, scale=scale
-            )
+            quantiles = gamma.ppf(uniform[active], a=shape, scale=scale)
             delta_density[..., index][active] = quantiles - selected_density
         if np.any(delta_density[..., index][active] < -available[active]):
             raise RuntimeError("layer Gamma density left its physical support")
@@ -406,10 +385,113 @@ def apply_layer_support_matched_gamma_density(
     }
 
 
+def apply_layer_support_matched_thomas_gamma_density(
+    neutral_base: np.ndarray,
+    *,
+    profile: DensityConditionedThomasProfile,
+    prior: ManufacturerCharacteristicPrior,
+    layer_seeds: tuple[int, int, int],
+    canonical_receipt_row_block_height: int,
+) -> tuple[np.ndarray, dict[str, object]]:
+    """Apply P4GZ marginals using the retained P4BW Thomas spatial spectrum."""
+
+    base = np.asarray(neutral_base, dtype=np.float64)
+    if (
+        base.ndim != 3
+        or base.shape[-1] != 3
+        or not np.all(np.isfinite(base))
+        or np.any(base < 0.0)
+        or np.any(base > 1.0)
+        or not isinstance(profile, DensityConditionedThomasProfile)
+        or not isinstance(prior, ManufacturerCharacteristicPrior)
+        or len(layer_seeds) != 3
+        or any(
+            not isinstance(seed, int) or seed < 0 or seed >= 2**64
+            for seed in layer_seeds
+        )
+        or not isinstance(canonical_receipt_row_block_height, int)
+        or canonical_receipt_row_block_height <= 0
+    ):
+        raise ValueError("invalid layer support-matched Thomas Gamma request")
+
+    delta_density = np.zeros_like(base, dtype=np.float64)
+    target_sigma = np.zeros_like(base, dtype=np.float64)
+    degenerate = np.zeros_like(base, dtype=bool)
+    receipt_ids: list[str] = []
+    for index, channel in enumerate(("red", "green", "blue")):
+        values = base[..., index]
+        lower, upper = prior.curves[index].domain
+        exposure = lower + values * (upper - lower)
+        sigma_d = profile.amplitude_profile.evaluate_channel(prior, channel, exposure)
+        sigma = sigma_d * (4.0 * values * (1.0 - values))
+        target_sigma[..., index] = sigma
+        available = np.full(values.shape, np.inf, dtype=np.float64)
+        positive = values > 0.0
+        available[positive] = -np.log10(values[positive])
+        active = (available > np.finfo(np.float64).eps) & (
+            sigma > np.finfo(np.float64).tiny
+        )
+        degenerate[..., index] = ~active
+        receipt = build_thomas_dc_receipt(
+            values.shape,
+            profile_id=profile.spatial_profile_id,
+            particle_sigma_pixels=profile.particle_sigma_samples,
+            cluster_sigma_pixels=profile.cluster_sigma_samples,
+            mean_offspring=profile.mean_offspring,
+            component_seeds=profile.component_seeds,
+            realization_seed=layer_seeds[index],
+            truncate=profile.truncate,
+            canonical_row_block_height=canonical_receipt_row_block_height,
+        )
+        receipt_ids.append(receipt.receipt_id)
+        field = render_dc_projected_thomas_region(
+            receipt, origin_yx=(0, 0), shape=values.shape
+        )
+        uniform = _exact_empirical_midranks(field)
+        if np.any(active):
+            selected_density = available[active]
+            selected_sigma = sigma[active]
+            shape = np.square(selected_density / selected_sigma)
+            scale = np.square(selected_sigma) / selected_density
+            quantiles = gamma.ppf(uniform[active], a=shape, scale=scale)
+            delta_density[..., index][active] = quantiles - selected_density
+        if np.any(delta_density[..., index][active] < -available[active]):
+            raise RuntimeError("layer Thomas Gamma density left physical support")
+
+    output64 = base * np.power(10.0, -delta_density)
+    output = np.ascontiguousarray(output64, dtype=np.float32)
+    if not np.all(np.isfinite(output)) or np.any(output < 0.0) or np.any(output > 1.0):
+        raise RuntimeError("layer Thomas Gamma escaped the unit cube")
+    residual = output.astype(np.float64) - base
+    return output, {
+        "receipt_ids": receipt_ids,
+        "minimum_target_sigma_d": float(np.min(target_sigma)),
+        "maximum_target_sigma_d": float(np.max(target_sigma)),
+        "support_degenerate_fraction": float(np.mean(degenerate)),
+        "support_degenerate_residual_absolute": float(
+            np.max(np.abs(delta_density[degenerate]), initial=0.0)
+        ),
+        "minimum_developed_density": float(
+            np.min(
+                np.where(
+                    base > 0.0,
+                    -np.log10(np.maximum(base, np.finfo(np.float64).tiny))
+                    + delta_density,
+                    np.inf,
+                )
+            )
+        ),
+        "bounded_residual_rms": float(np.sqrt(np.mean(residual * residual))),
+        "limited_fraction": 0.0,
+        "hard_clipping_used": 0.0,
+    }
+
+
 __all__ = [
     "apply_density_compiled_independent_nps",
     "apply_independent_density_nps",
     "apply_layer_support_matched_gamma_density",
+    "apply_layer_support_matched_thomas_gamma_density",
     "apply_support_matched_gamma_density",
     "compile_conservative_shared_sigma_d",
     "synthesize_independent_density_nps",
