@@ -12599,3 +12599,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   texture. Close this exact candidate without amplitude or same-cohort rescue.
 - Next replace the ad hoc high-pass field spectrum with the already retained
   P4BW same-scanner Thomas spectrum while preserving P4GZ marginals.
+
+### 2026-08-13 - U6.P4HB closes independent Thomas layer fields
+
+- Two reports and contact sheets are byte exact. Replacing the ad hoc high-pass
+  field with P4BW's retained Thomas spectrum reduces the worst high-frequency
+  chroma tail from `0.01671` to `0.00691` while every other gate passes.
+- The frozen chroma limit remains `0.004`, so the candidate closes without
+  Thomas-scale or amplitude tuning. Spatial correlation is useful but does not
+  make independent colour layers safe enough.
+- Next test the already retained P4DF cross-layer shared-cloud correlation as a
+  fixed copula; do not fit correlation on this consumed cohort.

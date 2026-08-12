@@ -1,0 +1,32 @@
+{
+  "schema": "neuro-film.u6-p4hb-thomas-gamma-photographic-development-evidence.v1",
+  "node": "U6.P4HB",
+  "date": "2026-08-13",
+  "contract_commit": "1da723bc",
+  "implementation_commit": "73fcd8cf",
+  "contract_sha256": "dd2e191a19ec8285c894b372411de0b52ee18b51779072ffdda8bed92d8b5de4",
+  "implementation_sha256": "8fc2535775aefb5c2b82eead1528dd4b1467fd42472a2c86fc928d80d0604e34",
+  "evaluator_sha256": "520840ee1013375332498167425804f7bf5d0d2bbbb3b988dddf10d6ed89c886",
+  "formal_processes": 2,
+  "formal_report_sha256": "6fcb452b066aa12e0daea76797194421e51a73cde008f733c8f0cc0302be7d6a",
+  "formal_contact_sheet_sha256": "6547105fdc4ce9af8363c6a3fe4b33286ccb10e7f1bbfd5c53663519d316c6c0",
+  "reports_and_contact_sheets_byte_exact": true,
+  "stable_evidence_id": "b2d189c470e25f031290c4aa93adc4b03085402ae7313278eccc07463c1ec776",
+  "observations": {
+    "population_p95_combined_vs_ao6_abs": 0.009132516384124755,
+    "population_p99_combined_vs_ao6_abs": 0.014749849699437618,
+    "worst_high_frequency_chroma_p999": 0.006907242350280285,
+    "p4ha_to_p4hb_high_frequency_chroma_ratio": 0.4132406436365455,
+    "maximum_flat_region_p99_abs": 0.0180139560252428,
+    "isolated_excursion_count": 0,
+    "maximum_new_boundary_fraction_vs_ao6": 0.0000151673640167364,
+    "minimum_physical_residual_rms": 0.00216591375008038,
+    "hard_clipping_or_posthoc_limiting_used": false
+  },
+  "failed_gates": ["high_frequency_chroma"],
+  "automatic_pass": false,
+  "decision": "close_thomas_gamma_photographic_v1_without_rescue",
+  "scientific_conclusion": "Replacing the ad hoc high-pass field with the retained same-scanner Thomas spectrum cuts the worst high-frequency chroma tail by 58.7% while preserving all other gates. The remaining 0.00691 tail still exceeds the frozen 0.004 limit, so spatial correlation alone is insufficient for independent colour layers.",
+  "next_leaf": "Test the already retained P4DF shared cross-layer cloud correlation as a fixed copula over the unchanged P4HB Thomas spatial fields and exact P4GZ Gamma marginals. Do not tune correlation, scale or amplitude on this cohort.",
+  "claim_ceiling": "Consumed nine-camera relative-display development of a generic same-scanner Thomas spectrum with clean-room Gamma layer marginals; no measured dye-cloud distribution, calibrated film, stock response, independent confirmation, preference or product promotion."
+}
