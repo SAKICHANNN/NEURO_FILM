@@ -1,0 +1,32 @@
+{
+  "schema": "neuro-film.u6-p4hd-cross-layer-thomas-gamma-photographic-development-evidence.v1",
+  "node": "U6.P4HD",
+  "date": "2026-08-13",
+  "contract_commit": "eb97ea02",
+  "implementation_commit": "86150a84",
+  "contract_sha256": "de3e28d226f46a32a87d68cbecfafbd5b6d880abaf4c11b44822ff4ceef77f51",
+  "implementation_sha256": "2006084b8e2b2778393f7dd4df76c1376bc9c7a020a37b8404ab85ff98ebf20a",
+  "evaluator_sha256": "8a81d0e0cc7dd21ad0d9eafc6f2338bc85833e1e89e9efae41b3740bdd8e46b9",
+  "formal_processes": 2,
+  "formal_report_sha256": "daa40d8ac7de81ae28f011dc8b425b44aa098a6c4432811fa7a2e0f1d24eae5d",
+  "contact_sheet_sha256": "d74e55c97dc179beec385ea38aafe2db981ca3b0bfcfb64d9d67801f74c03542",
+  "reports_and_contact_sheets_byte_exact": true,
+  "stable_evidence_id": "444e1f471981ac2fb7e47153955e7fdd8f38e5fba1708bbb899b514de2b09613",
+  "observations": {
+    "high_frequency_chroma_gate": 0.004,
+    "passing_rows": 1,
+    "total_rows": 9,
+    "minimum_high_frequency_chroma_p999": 0.003441227599978447,
+    "median_high_frequency_chroma_p999": 0.00435520289465785,
+    "maximum_high_frequency_chroma_p999": 0.00646894471719861,
+    "population_p95_combined_vs_ao6_abs": 0.009217693097889423,
+    "population_p99_combined_vs_ao6_abs": 0.014868746735155583,
+    "all_other_frozen_gates_pass": true,
+    "hard_clipping_or_posthoc_limiting_used": false
+  },
+  "automatic_pass": false,
+  "decision": "close_cross_layer_thomas_gamma_photographic_v1_without_rescue",
+  "scientific_conclusion": "The fixed generic cross-layer copula further suppresses coloured fine texture while preserving density support and all non-chroma gates, but it is insufficient on eight of nine consumed photographs. Cross-layer correlation alone does not close photographic high-frequency colour safety.",
+  "next_leaf": "Apply an independently retained density/process/film-or-scanner spatial response after developed structure. Do not strengthen the copula or tune its correlation, amplitude, Thomas profile or chroma gate on this cohort.",
+  "claim_ceiling": "Consumed nine-camera relative-display development with fixed generic cross-layer correlation; not measured dye-cloud coupling, calibrated film, stock response, independent confirmation, preference or product promotion."
+}

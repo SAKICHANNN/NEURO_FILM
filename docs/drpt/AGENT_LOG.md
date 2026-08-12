@@ -12618,3 +12618,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   correlation drifts only `3.76e-4`, and Gamma variance error is `5.99e-6`.
 - All density-support, finite-tail, repeat and no-clipping gates pass. Advance
   the exact fixed copula to the consumed photographic development cohort.
+
+### 2026-08-13 - U6.P4HD closes fixed cross-layer correlation on photographs
+
+- Two full photographic reports and contact sheets are byte exact. Density
+  support, total tails, flat regions, isolated excursions, new boundaries and
+  no-clipping gates pass.
+- Only one of nine rows meets the frozen `0.004` high-frequency chroma gate;
+  the median is `0.00436` and the worst is `0.00647`. The generic P4DF
+  correlation is helpful but insufficient, so it closes without tuning.
+- Continue at the next physical stage: apply a previously retained
+  density/process/film-or-scanner spatial response after developed structure,
+  rather than strengthening the same-cohort copula.
