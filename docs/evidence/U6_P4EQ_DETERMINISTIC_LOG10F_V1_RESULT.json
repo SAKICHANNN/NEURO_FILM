@@ -1,0 +1,32 @@
+{
+  "schema": "neuro_film.u6_p4eq_deterministic_log10f.v1",
+  "experiment_id": "u6.p4eq-deterministic-log10f-v1",
+  "date_executed": "2026-08-12",
+  "implementation_commit": "c1a3bfb7",
+  "automatic_pass": true,
+  "formal_replays": {
+    "count": 2,
+    "android_cold_boots_per_replay": 2,
+    "android_fresh_processes_per_boot": 2,
+    "report_sha256": "3168139e8307b954439bb549173bd24f1c14d4e56d488b8c5ffc513ac47050b7",
+    "byte_exact": true
+  },
+  "stable_evidence_id": "93eafe2c2a3129a5da872b9d449d6529a1718c183c7be831f4385dbb8c2041c7",
+  "android_stable_evidence_id": "925924de08d513c85f31b3ae728018e63af9879fce860fa30d033b2ae45a1f90",
+  "contract_sha256": "1e8a6a95f96ca6fc8f09c3a887a5004f5603c8d98ed29222bf5f0262f5b9b651",
+  "source_sha256": "d314075a3ea758f5b6817d6672fef1e96777478f0f9502537bf40db5981bec6a",
+  "input_sha256": "5683b05d9d2442bfefb24d6584e2e7714e98e0e3535a43ca8312c81a776fff8e",
+  "output_sha256": "bc07c99f23856a45c9ff182ea83ff2ca659ffb10019a47d250f5054eaa4d8ade",
+  "results": {
+    "random_values": 1000000,
+    "maximum_density_absolute_error": 0.00000023836168860924545,
+    "maximum_allowed_error": 0.0000005,
+    "windows_msvc_llvm_bit_exact": true,
+    "windows_android_bit_exact": true,
+    "android_repeat_exact": true,
+    "failure_output_unchanged": true,
+    "owned_process_cleanup": true
+  },
+  "decision": "retain_deterministic_log10f_v1",
+  "claim_ceiling": "Portable binary32 negative-log10 arithmetic only; not calibrated density, complete cloud runtime or product authorization."
+}
