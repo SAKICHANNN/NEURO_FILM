@@ -11856,3 +11856,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Full and 31/127-row partitions are bit exact and Beer-Lambert output remains
   bounded. Retain as a research primitive; next bind shared events to explicit
   continuous dye-cloud geometry before any renderer integration.
+
+# 2026-08-12 - U6.P4CY closes finite-area Poisson cloud confirmation
+
+- Shared continuous centers are repeat-identical and the legacy reference
+  renderer is full/tiled bit exact, but finite-area component-rate deviation
+  reaches `4.1016%` and misses the frozen `3%` gate.
+- Do not enlarge the same sample. Test a separately versioned Poisson process
+  conditioned on exact total count as a simulator variance-reduction control.

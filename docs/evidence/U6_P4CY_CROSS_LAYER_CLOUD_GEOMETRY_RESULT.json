@@ -1,0 +1,16 @@
+{
+  "schema": "neuro_film.u6_p4cy_cross_layer_cloud_geometry_evidence.v1",
+  "node": "U6.P4CY",
+  "date": "2026-08-12",
+  "implementation_commit": "23b98972",
+  "contract_sha256": "fdaa45d51b6bc0b9f9fc5e042db2d66afe5bcdf0f8f14d52c208b069b03490da",
+  "formal_report_sha256": "f12e5bfd2f2ee0221e6e16c018913c89a00c19987bc93691b60420599eedc4e4",
+  "stable_evidence_id": "3ddaa67400c4f0204a9d4f29ca87ad343863d234cea7db3a0fe6fa523e4b19be",
+  "exact_replays": 2,
+  "automatic_pass": false,
+  "maximum_component_rate_relative_error": 0.041015625,
+  "passed_gates": ["repeat", "tiled", "nonnegative"],
+  "failed_gates": ["rates"],
+  "decision": "close_cross_layer_cloud_geometry_without_rescue",
+  "claim_ceiling": "Synthetic continuous shared-event geometry negative at the frozen finite-area rate gate; no film, scanner or product evidence."
+}
