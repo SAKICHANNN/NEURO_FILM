@@ -12068,3 +12068,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - All unchanged confirmation metrics pass, including 0.21% RMS error, 0.0366
   NPS-shape RMSE, edge parity and zero new boundaries. Open a separately frozen
   attenuation leaf; do not rewrite P4DV or claim measured film/scanner NPS.
+
+# 2026-08-12 - U6.P4DW retains target-resolution residual attenuation
+
+- Fresh development seeds compile gains 0.7875/0.7009/0.6590. Three sealed
+  confirmation seeds hold marginal RMS error to 0.211%, NPS-shape error to
+  0.0367, edge differences below 0.0011 and new-boundary fraction at zero.
+- Two reports are byte-identical. Retain this synthetic compiler and next test
+  a bounded row/tile runtime; calibrated film/scanner or product claims remain
+  closed.

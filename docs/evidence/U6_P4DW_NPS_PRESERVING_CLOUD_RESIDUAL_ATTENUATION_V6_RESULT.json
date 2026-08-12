@@ -1,0 +1,27 @@
+{
+  "schema": "neuro_film.u6_p4dw_nps_preserving_cloud_residual_attenuation_evidence.v6",
+  "node": "U6.P4DW",
+  "date": "2026-08-12",
+  "implementation_commit": "f5569954",
+  "contract_sha256": "9c0c6e5554114da51a3a5f889ecc078e1cb666e381fddd4180dd9b4d40296e37",
+  "formal_report_sha256": "6f12f63456ba4cd204f95d4d566f681018e62494dca50f5d26b088fa298c04b1",
+  "stable_evidence_id": "31407cd55da41e9e1760888d44ac65fa749151fb7c5038d9b68a7f7751d9a011",
+  "exact_replays": 2,
+  "automatic_pass": true,
+  "compiled_channel_gain": [
+    0.7874638824806821,
+    0.7008792161934756,
+    0.6589818299954651
+  ],
+  "development_marginal_noise_rms_relative_error": 0.001158340796601072,
+  "confirmation_mean_transmittance_absolute_error": 0.00011107678224521467,
+  "confirmation_marginal_noise_rms_relative_error": 0.0021052479936812586,
+  "confirmation_cross_channel_correlation_absolute_error": 0.01952649137461368,
+  "confirmation_radial_nps_shape_rmse": 0.036654848789176055,
+  "confirmation_edge_overshoot_absolute_difference": 0.0010278336008457938,
+  "confirmation_edge_undershoot_absolute_difference": 0.0002990199325175072,
+  "new_boundary_fraction": 0.0,
+  "failed_gates": [],
+  "decision": "retain_nps_preserving_target_resolution_cloud_residual_attenuation_v6",
+  "claim_ceiling": "Synthetic target-resolution residual attenuation only; not measured film granularity, scanner aperture, calibrated stock or product authorization."
+}
