@@ -1,0 +1,18 @@
+{
+  "schema": "neuro_film.u6_p4cv_signal_dependent_scanner_flare_evidence.v1",
+  "node": "U6.P4CV",
+  "date": "2026-08-12",
+  "implementation_commit": "ea3f3f96",
+  "contract_sha256": "185fd19fefd6a8c9fef54df07b8a921dcac7868d3fd27b6c1e9ba15726566e4a",
+  "formal_report_sha256": "647b5ce67c067a9600e772246ce52922f01b31081e4baaeee0cf735e511bdf4e",
+  "stable_evidence_id": "2a1a2fd14f22e2f371b8fc7a05ab0a14465b917e1492edca74d430a74f49b610",
+  "exact_replays": 2,
+  "automatic_pass": false,
+  "confirmation_correct_psf_rmse": 0.002448424997126399,
+  "confirmation_uncorrected_psf_rmse": 0.002454357676245684,
+  "confirmation_wrong_psf_rmse": 0.002444917211141286,
+  "failed_gates": ["uncorrected_is_confounded", "wrong_psf_is_confounded", "corrected_beats_uncorrected"],
+  "interpretation": "The broad convolution of an iid narrow-density field is nearly constant, so even signal-dependent flare is removed by centering; structured scene density is required for a discriminating glare test.",
+  "decision": "close_current_signal_dependent_scanner_flare_control_without_tuning",
+  "claim_ceiling": "Controlled float64 negative evidence for an iid density field and one broad-PSF flare; not a general scanner or real calibration result."
+}

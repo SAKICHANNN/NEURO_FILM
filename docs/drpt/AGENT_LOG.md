@@ -11830,3 +11830,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   gate. Keep the negative without changing field strength.
 - A fixed exogenous field is not enough. Next test signal-dependent broad-PSF
   scanner flare, where bright image structure drives the shared covariance.
+
+# 2026-08-12 - U6.P4CV exposes the missing scene structure
+
+- Broad-PSF signal-dependent flare remains non-discriminating on the iid
+  density field: correct/wrong/uncorrected confirmation RMSE all stay near
+  `0.00245`; the frozen confound gates fail exactly on replay.
+- Do not tune the PSF. Add a frozen low-frequency scene-density baseline and
+  measure grain residual after subtracting that known baseline.
