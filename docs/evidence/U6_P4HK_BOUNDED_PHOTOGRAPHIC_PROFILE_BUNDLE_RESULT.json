@@ -1,0 +1,32 @@
+{
+  "schema": "neuro-film.u6-p4hk-bounded-photographic-profile-bundle-evidence.v1",
+  "node": "U6.P4HK",
+  "date": "2026-08-13",
+  "contract_commit": "23dc68bb",
+  "implementation_commit": "c8f99f6a",
+  "contract_file_sha256": "04961026018714545bbe105e01426e73328e32f33c26eab3e2261b33b3213e68",
+  "compiler_sha256": "e5c20abc6d2b10c88ec792bec79ac68e80025a015c4bf221e9a1f348326306e6",
+  "evaluator_sha256": "e2150c7d455e258bdcb333ed645f8d8c6023017f7cec643f9faeb7be473035f0",
+  "runner_sha256": "7ab50d5f14a5e59a5f6cc3a02f69732157798579c868c166c4d4998c623c87b9",
+  "formal_report_sha256": "3dc435c8d2161611309baae606bded3947c10182cc35d8c2c1ac1dacd60b7372",
+  "profile_file_sha256": "539fef07a7c659db035928ee4d9c7e6405da5e0baa07852f4f9a4b50fa1247b8",
+  "bundle_sha256": "8d20ce2874036befe78657b059ffafeb24e43d2e5bc1000512092a753e1e75df",
+  "stable_evidence_id": "0ac4ed1264fe5bb3372cde7b68c33e7bb2485a174b3b32ee56f1e89c355cf0d6",
+  "observations": {
+    "bundle_bytes": 5484,
+    "reports_byte_exact": true,
+    "bundles_byte_exact": true,
+    "profile_identity_roundtrip_exact": true,
+    "prior_identity_roundtrip_exact": true,
+    "physical_output_sha256": "c7c749c95032b7ded2407962d3f1be41ea362f267d704bb0c984ead98badfe92",
+    "scanner_output_sha256": "cb35bc468253891c5a0758e423cfb1d68c1eed57e91fb88f687de72964a2353b",
+    "physical_and_scanner_output_exact": true,
+    "diagnostics_exact": true,
+    "tampered_noncanonical_unknown_rejected": true
+  },
+  "automatic_pass": true,
+  "decision": "retain_canonical_bounded_photographic_profile_bundle",
+  "scientific_conclusion": "One 5,484-byte canonical bundle reconstructs the confirmed generic density profile, manufacturer prior, cross-layer copula, seed schedule, bounded execution policy and paired scanner MTF without changing fixture physical or scanner pixels. Identity and malformed-profile gates pass in two byte-exact runs.",
+  "next_leaf": "Expose a caller-held-hash CPU consumer that loads this exact bundle once, applies one indexed source deterministically and returns an input/output/profile-bound receipt before native compilation.",
+  "claim_ceiling": "Canonical generic physical-inspired relative-display profile bundle reconstructed on a synthetic fixture; not calibrated stock/scanner identity, photographic reconfirmation, native/mobile runtime or product promotion."
+}

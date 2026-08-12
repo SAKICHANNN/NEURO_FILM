@@ -12699,3 +12699,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain for canonical generic-profile compilation. Do not repeat the already
   confirmed 18-photo science cohort; native/mobile, calibration and product
   integration remain separate gates.
+
+### 2026-08-13 - U6.P4HK retains canonical bounded profile bundle
+
+- Two independent runs compile the exact generic profile, prior, copula, seed
+  schedule, bounded execution and paired scanner MTF into identical 5,484-byte
+  bundles (`8d20ce28...e75df`).
+- Deserialize/reconstruct preserves component identities, diagnostics and exact
+  physical/scanner fixture pixels. Tamper, unknown fields and noncanonical JSON
+  fail closed before execution.
+- Next add a caller-held-hash CPU consumer and receipt. This is still a generic
+  relative-display research profile, not film/scanner calibration or product.
