@@ -1,0 +1,17 @@
+{
+  "schema": "neuro_film.u6_p8df_cross_layer_cloud_profile_compiler_contract.v1",
+  "experiment_id": "u6.p8df-cross-layer-cloud-profile-compiler-v1",
+  "node": "ULT > U6 > U6.P8 > U6.P8DF",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parents": {
+    "p4cx": {"path": "docs/evidence/U6_P4CX_CROSS_LAYER_COMPOUND_POISSON_RESULT.json", "sha256": "3ffbcd8c3c94477b64afc846ccaedd930600df866243de3d4b3c89de3dbf9301", "required_decision": "retain_shared_component_poisson_as_explicit_cross_layer_reference_primitive"},
+    "p4da": {"path": "docs/evidence/U6_P4DA_CROSS_LAYER_GAUSSIAN_CLOUD_LOD_RESULT.json", "sha256": "2567e967699b4a334f620c67ac25c7bd101afef924def17c0189de52c4292879", "required_decision": "retain_cross_layer_gaussian_cloud_lod_reference"},
+    "p4db": {"path": "docs/evidence/U6_P4DB_CROSS_LAYER_APERTURE_LOD_RESULT.json", "sha256": "458ecfe98c67b3b57b2ab850041abfe97ac9c8d39499912703a73dfd251e145f", "required_decision": "retain_cross_layer_aperture_lod_reference"}
+  },
+  "profile": {"marginal_count_rates_cmy": [12.0, 18.0, 15.0], "shared_all_rate": 2.0, "shared_pair_rates_cm_cy_my": [2.0, 1.0, 1.5], "mark_optical_density_cmy": [0.02, 0.018, 0.022], "gaussian_sigma_pixels_cmy": [0.8, 1.1, 1.4], "gaussian_truncate": 4.0, "aperture_factors": [2, 4, 8], "component_seed_stride": 1009},
+  "gates": {"require_canonical_roundtrip": true, "require_parent_hashes_embedded": true, "require_analytic_correlation_recomputed": true, "require_aperture_kernel_identities_recomputed": true, "require_product_enabled_false": true},
+  "decision_if_pass": "retain_versioned_cross_layer_cloud_reference_profile",
+  "decision_if_fail": "close_cross_layer_cloud_profile_compiler",
+  "claim_ceiling": "Versioned synthetic research-profile compiler only; not stock calibration, production rendering authorization or product evidence."
+}
