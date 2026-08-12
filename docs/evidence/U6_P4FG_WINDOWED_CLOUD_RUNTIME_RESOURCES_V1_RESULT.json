@@ -1,0 +1,31 @@
+{
+  "schema": "neuro_film.u6_p4fg_windowed_cloud_runtime_resources.v1",
+  "experiment_id": "u6.p4fg-windowed-cloud-runtime-resources-v1",
+  "date_executed": "2026-08-12",
+  "implementation_commits": ["eaf131af", "f9ea55b5"],
+  "automatic_pass": false,
+  "excluded_attempts": [
+    "A short caller timeout terminated the first parent after one completed full worker; the entire attempt was excluded.",
+    "A fresh attempt encountered a psutil root-exit sampling race after a worker completed; it was excluded, the monitor was fixed without changing the worker or gates, and the formal run restarted in a new directory."
+  ],
+  "results": {
+    "output_bit_identity": true,
+    "two_successful_runs_per_variant": true,
+    "no_surviving_worker_process": true,
+    "windowed_no_full_forward_frame": true,
+    "full_median_peak_rss_bytes": 399476736,
+    "windowed_median_peak_rss_bytes": 383451136,
+    "median_peak_rss_reduction_bytes": 16025600,
+    "median_peak_rss_ratio": 0.9598835212,
+    "full_median_wall_seconds": 17.5307972,
+    "windowed_median_wall_seconds": 18.68210355,
+    "median_wall_ratio": 1.06567336,
+    "output_sha256": "a3eb79bfe0aeada767721ab321df8aed68c97649154f1278b4cdf95e98943ee4",
+    "rss_reduction_gate_pass": false,
+    "rss_ratio_gate_pass": false,
+    "wall_gate_pass": true
+  },
+  "diagnosis": "The common uint64 broadcast source generator creates large pre-render temporaries, and process RSS high-water persists. This formal test therefore fails its process-peak resource gates and cannot open 24MP. A new measurement leaf may preserve exact source bytes while using bounded row construction and explicitly record render-entry RSS; thresholds remain unchanged.",
+  "decision": "close_or_optimize_windowed_cloud_runtime_resources_v1_before_24mp",
+  "claim_ceiling": "Local Windows x64 Python/native synthetic-profile 6MP process-tree RSS and wall evidence for exact P4FD versus P4FF scan-linear runtime; not 24MP, Standard/AO6 package, calibrated image quality, mobile runtime or product promotion."
+}
