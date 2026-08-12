@@ -11838,3 +11838,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `0.00245`; the frozen confound gates fail exactly on replay.
 - Do not tune the PSF. Add a frozen low-frequency scene-density baseline and
   measure grain residual after subtracting that known baseline.
+
+# 2026-08-12 - U6.P4CW closes the scanner-flare subfamily
+
+- With structured density and exact baseline subtraction, correct, wrong and
+  uncorrected PSF branches remain near `0.00142-0.00151` RMSE. The frozen
+  confound gates fail in two exact runs.
+- Stop spending on scanner flare under this statistic. Return to the P4
+  dye-cloud/marked-Poisson structure and its LOD approximation evidence.

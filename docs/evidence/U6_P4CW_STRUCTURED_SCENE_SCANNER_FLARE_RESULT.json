@@ -1,0 +1,17 @@
+{
+  "schema": "neuro_film.u6_p4cw_structured_scene_scanner_flare_evidence.v1",
+  "node": "U6.P4CW",
+  "date": "2026-08-12",
+  "implementation_commit": "df7bdb8c",
+  "contract_sha256": "a789fa64487ddd73217f7a80ae67e9699e547ebcd49539f7925806b7a8217653",
+  "formal_report_sha256": "4f5ae42b2885018365d871f974f05828f9170f7d4aaa5e043593748f8d157346",
+  "stable_evidence_id": "73094dff5c258bdb88ba78f157ab970d6a0b97d19861b9ca675018838124498e",
+  "exact_replays": 2,
+  "automatic_pass": false,
+  "confirmation_correct_psf_rmse": 0.0014224562128315936,
+  "confirmation_uncorrected_psf_rmse": 0.0015116528599219909,
+  "confirmation_wrong_psf_rmse": 0.0014506251293979915,
+  "failed_gates": ["uncorrected_is_confounded", "wrong_psf_is_confounded", "corrected_beats_uncorrected"],
+  "decision": "close_current_structured_scene_scanner_flare_control_without_tuning",
+  "claim_ceiling": "Controlled float64 negative evidence for one structured-scene broad-PSF flare configuration; not real scanner, stock or product calibration."
+}
