@@ -8,6 +8,7 @@ from dataclasses import dataclass
 import numpy as np
 
 from .density_conditioned_structure import counter_poisson_rate_field
+from .developed_structure import DevelopedStructureContext
 
 
 @dataclass(frozen=True)
@@ -124,8 +125,121 @@ def cross_layer_counts_to_density(
     return density
 
 
+@dataclass(frozen=True)
+class CrossLayerCloudGeometry:
+    """Developed context plus exact component centers for audit."""
+
+    context: DevelopedStructureContext
+    component_centers: tuple[np.ndarray, ...]
+
+    def __post_init__(self) -> None:
+        if len(self.component_centers) != 7:
+            raise ValueError("cross-layer geometry requires seven components")
+        owned = []
+        for centers in self.component_centers:
+            values = np.asarray(centers, dtype=np.float64)
+            if (
+                values.ndim != 2
+                or values.shape[1:] != (2,)
+                or not np.all(np.isfinite(values))
+            ):
+                raise ValueError("invalid cross-layer component centers")
+            copied = np.array(values, copy=True)
+            copied.setflags(write=False)
+            owned.append(copied)
+        object.__setattr__(self, "component_centers", tuple(owned))
+
+
+def _centers_from_counts(counts: np.ndarray, seed: int) -> np.ndarray:
+    rng = np.random.default_rng(seed)
+    total = int(np.sum(counts, dtype=np.int64))
+    centers = np.empty((total, 2), dtype=np.float64)
+    cursor = 0
+    for row in range(counts.shape[0]):
+        for column in range(counts.shape[1]):
+            count = int(counts[row, column])
+            if count:
+                centers[cursor : cursor + count, 0] = row + rng.random(count)
+                centers[cursor : cursor + count, 1] = column + rng.random(count)
+                cursor += count
+    return centers
+
+
+def build_cross_layer_cloud_geometry(
+    profile: CrossLayerPoissonProfile,
+    input_shape: tuple[int, int],
+    *,
+    radius_um_cmy: tuple[float, float, float],
+    output_zoom: int,
+    output_pixel_pitch_um: float,
+    monte_carlo_samples: int,
+) -> CrossLayerCloudGeometry:
+    """Materialize shared Poisson components as exact shared cloud centers."""
+
+    if any(not isinstance(value, int) or value <= 0 for value in input_shape):
+        raise ValueError("input shape must be positive")
+    all_rate = profile.shared_all_rate
+    cm, cy, my = profile.shared_pair_rates_cm_cy_my
+    ic, im, iy = profile.independent_rates_cmy
+    rates = (all_rate, cm, cy, my, ic, im, iy)
+    components = []
+    for index, rate in enumerate(rates):
+        count_seed = (profile.seed + index * profile.component_seed_stride) % (2**64)
+        counts = counter_poisson_rate_field(
+            np.full(input_shape, rate, dtype=np.float64),
+            input_shape,
+            origin_yx=(0, 0),
+            seed=count_seed,
+            maximum_rate=rate,
+        )
+        coordinate_seed = (count_seed ^ 0xD2B74407B1CE6E93) % (2**64)
+        components.append(_centers_from_counts(counts, coordinate_seed))
+    (
+        shared_all,
+        pair_cm,
+        pair_cy,
+        pair_my,
+        independent_c,
+        independent_m,
+        independent_y,
+    ) = components
+    layers = (
+        np.concatenate((shared_all, pair_cm, pair_cy, independent_c)),
+        np.concatenate((shared_all, pair_cm, pair_my, independent_m)),
+        np.concatenate((shared_all, pair_cy, pair_my, independent_y)),
+    )
+    if (
+        not isinstance(output_zoom, int)
+        or output_zoom <= 0
+        or not isinstance(monte_carlo_samples, int)
+        or monte_carlo_samples <= 0
+        or not math.isfinite(output_pixel_pitch_um)
+        or output_pixel_pitch_um <= 0.0
+        or any(not math.isfinite(value) or value <= 0.0 for value in radius_um_cmy)
+    ):
+        raise ValueError("invalid cross-layer cloud render geometry")
+    input_pitch_um = output_zoom * output_pixel_pitch_um
+    radii_input = tuple(float(value) / input_pitch_um for value in radius_um_cmy)
+    offset_rng = np.random.default_rng((profile.seed ^ 0xA24BAED4963EE407) % (2**64))
+    offsets = offset_rng.uniform(-0.5, 0.5, size=(monte_carlo_samples, 2))
+    context = DevelopedStructureContext(
+        "colour-dye-cloud",
+        input_shape,
+        output_zoom,
+        output_pixel_pitch_um,
+        layers,
+        radii_input,
+        profile.mark_optical_density_cmy,
+        offsets,
+        profile.seed,
+    )
+    return CrossLayerCloudGeometry(context, tuple(components))
+
+
 __all__ = [
+    "CrossLayerCloudGeometry",
     "CrossLayerPoissonProfile",
+    "build_cross_layer_cloud_geometry",
     "cross_layer_counts_to_density",
     "sample_cross_layer_poisson_region",
 ]
