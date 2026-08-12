@@ -1,0 +1,46 @@
+{
+  "schema": "neuro_film.u6_p4dw_nps_preserving_cloud_residual_attenuation_contract.v6",
+  "experiment_id": "u6.p4dw-nps-preserving-cloud-residual-attenuation-v6",
+  "node": "ULT > U6 > U6.P4 > U6.P4DW",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {
+    "path": "docs/evidence/U6_P4DV_NPS_PRESERVING_CLOUD_RESIDUAL_LOD_V5_RESULT.json",
+    "sha256": "2663fe809675514c7a882f452c3ea289121ac00280f60bd3102d016fa3be73f2",
+    "required_decision": "close_nps_preserving_target_resolution_cloud_residual_lod_v5"
+  },
+  "fixture": {
+    "output_height": 192,
+    "output_width": 256,
+    "aperture_factor": 4,
+    "base_rate_multiplier": 16,
+    "flat_density_fraction": 0.55,
+    "development_seeds": [57203, 57221, 57223],
+    "confirmation_seeds": [54217, 54227, 54251]
+  },
+  "compiler": {
+    "gain_per_channel": "median_over_development_seeds_of_reference_rms_divided_by_base_rms",
+    "residual": "T_expected + gain_c * (T_base - T_expected)",
+    "gain_must_be_finite_positive": true,
+    "hard_clip_forbidden": true,
+    "out_of_domain_fails_closed": true,
+    "confirmation_reselection_forbidden": true
+  },
+  "gates": {
+    "minimum_gain": 0.5,
+    "maximum_gain": 1.0,
+    "maximum_development_marginal_noise_rms_relative_error": 0.08,
+    "maximum_confirmation_mean_transmittance_absolute_error": 0.002,
+    "maximum_confirmation_marginal_noise_rms_relative_error": 0.08,
+    "maximum_confirmation_cross_channel_correlation_absolute_error": 0.05,
+    "maximum_confirmation_radial_nps_shape_rmse": 0.08,
+    "maximum_confirmation_edge_overshoot_absolute_difference": 0.01,
+    "maximum_confirmation_edge_undershoot_absolute_difference": 0.01,
+    "maximum_new_boundary_fraction": 0.0,
+    "require_repeat_identity": true,
+    "require_product_disabled": true
+  },
+  "decision_if_pass": "retain_nps_preserving_target_resolution_cloud_residual_attenuation_v6",
+  "decision_if_fail": "close_nps_preserving_target_resolution_cloud_residual_attenuation_v6",
+  "claim_ceiling": "Synthetic target-resolution residual attenuation only; not measured film granularity, scanner aperture, calibrated stock or product authorization."
+}
