@@ -12182,3 +12182,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   provider cannot change bytes between admission and rendering undetected.
 - Two fresh 24MP runs keep exact P4FI output at 204.0MB peak and 74.6-76.0s.
   Transactional sink staging remains required because post-verify is final.
+
+# 2026-08-12 - U6.P4FN streams the frozen Native Standard chain
+
+- A replayable row provider now drives the exact packaged Standard/AO6 context,
+  physical, neutral-gauge and display chain without retaining the source frame.
+- Exact frozen binaries reproduce the array-runtime output; a final source
+  replay detects post-render drift. Durable consumers must stage until receipt.
