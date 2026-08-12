@@ -112,6 +112,90 @@ def sample_cross_layer_poisson_region(
     return output
 
 
+def density_conditioned_component_rates(
+    profile: CrossLayerPoissonProfile, scale_cmy: np.ndarray
+) -> np.ndarray:
+    """Return seven nonnegative component rates for per-layer density scales."""
+
+    scale = np.asarray(scale_cmy, dtype=np.float64)
+    if (
+        scale.ndim != 3
+        or scale.shape[-1] != 3
+        or not np.all(np.isfinite(scale))
+        or np.any(scale < 0.0)
+        or np.any(scale > 1.0)
+    ):
+        raise ValueError("density scales must be finite HxWx3 values in [0, 1]")
+    c, m, y = np.moveaxis(scale, -1, 0)
+    all_rate = profile.shared_all_rate * np.minimum(np.minimum(c, m), y)
+    cm = profile.shared_pair_rates_cm_cy_my[0] * np.minimum(c, m)
+    cy = profile.shared_pair_rates_cm_cy_my[1] * np.minimum(c, y)
+    my = profile.shared_pair_rates_cm_cy_my[2] * np.minimum(m, y)
+    marginal_c = profile.marginal_rates_cmy[0] * c
+    marginal_m = profile.marginal_rates_cmy[1] * m
+    marginal_y = profile.marginal_rates_cmy[2] * y
+    rates = np.stack(
+        (
+            all_rate,
+            cm,
+            cy,
+            my,
+            marginal_c - all_rate - cm - cy,
+            marginal_m - all_rate - cm - my,
+            marginal_y - all_rate - cy - my,
+        ),
+        axis=-1,
+    )
+    if np.any(rates < -1e-12):
+        raise RuntimeError("conditioned shared rates exceed a marginal rate")
+    rates = np.maximum(rates, 0.0)
+    rates.setflags(write=False)
+    return rates
+
+
+def sample_density_conditioned_cross_layer_poisson_region(
+    profile: CrossLayerPoissonProfile,
+    scale_cmy: np.ndarray,
+    full_shape: tuple[int, int],
+    *,
+    origin_yx: tuple[int, int],
+) -> np.ndarray:
+    """Sample coordinate-stable shared counts from per-layer density scales."""
+
+    rates = density_conditioned_component_rates(profile, scale_cmy)
+    maxima = (
+        profile.shared_all_rate,
+        *profile.shared_pair_rates_cm_cy_my,
+        *profile.marginal_rates_cmy,
+    )
+    components = []
+    for index, maximum in enumerate(maxima):
+        seed = (profile.seed + index * profile.component_seed_stride) % (2**64)
+        components.append(
+            counter_poisson_rate_field(
+                rates[..., index],
+                full_shape,
+                origin_yx=origin_yx,
+                seed=seed,
+                maximum_rate=maximum,
+            ).astype(np.uint32)
+        )
+    shared_all, cm, cy, my, ic, im, iy = components
+    counts = np.stack(
+        (
+            shared_all + cm + cy + ic,
+            shared_all + cm + my + im,
+            shared_all + cy + my + iy,
+        ),
+        axis=-1,
+    )
+    if np.any(counts > np.iinfo(np.uint16).max):
+        raise RuntimeError("conditioned cross-layer Poisson count overflow")
+    output = counts.astype(np.uint16)
+    output.setflags(write=False)
+    return output
+
+
 def cross_layer_counts_to_density(
     profile: CrossLayerPoissonProfile, counts: np.ndarray
 ) -> np.ndarray:
@@ -313,5 +397,7 @@ __all__ = [
     "build_conditioned_total_cloud_geometry",
     "build_cross_layer_cloud_geometry",
     "cross_layer_counts_to_density",
+    "density_conditioned_component_rates",
     "sample_cross_layer_poisson_region",
+    "sample_density_conditioned_cross_layer_poisson_region",
 ]
