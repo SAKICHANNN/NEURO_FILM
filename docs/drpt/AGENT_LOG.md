@@ -12136,3 +12136,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   partition hashes, repeat identity and pre-yield invalid rejection.
 - Median wall ratio is 1.027 versus Python-only, within the frozen 1.25 limit.
   Timing is excluded from scientific identity while its pass/fail gate remains.
+
+# 2026-08-12 - U6.P4EE retains typed-chain native parity
+
+- Through sensitometry, compiled cloud attenuation and scanner response, the
+  native hybrid differs from Python by at most 2.79e-8 scan-linear and RMSE
+  4.05e-9; the cloud contribution remains 0.00346 RMS with zero new boundary.
+- Two reports are byte-identical. The next high-value leaf is native stochastic
+  cloud generation; further attenuation-wrapper parity is closed.

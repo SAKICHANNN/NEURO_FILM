@@ -1,0 +1,17 @@
+{
+  "schema": "neuro_film.u6_p4ee_native_cloud_typed_chain_parity_evidence.v1",
+  "node": "U6.P4EE",
+  "date": "2026-08-12",
+  "implementation_commit": "88611e44",
+  "contract_sha256": "20b9cb2d82263f38a5cc862f8a1bea8b45cf5a790958f5eb1b16acba363858a9",
+  "formal_report_sha256": "f087780c160b28a31a6c27cde8842dbb32ada1c61680a7124e25e8a6e09c7dcb",
+  "stable_evidence_id": "4c1f5c487515c0d6179d7166d0f9d34e0e729ae737c9b53cf9206304d16f290a",
+  "exact_replays": 2,
+  "automatic_pass": true,
+  "maximum_final_scan_absolute_error": 0.0000000278600491288028,
+  "final_scan_rmse": 0.000000004047080306228915,
+  "cloud_stage_rms": 0.0034571447505844684,
+  "new_boundary_fraction": 0.0,
+  "decision": "retain_native_cloud_typed_chain_parity_v1",
+  "claim_ceiling": "Synthetic typed-chain Python/native parity only; not calibrated stock, scanner, complete native renderer or product authorization."
+}
