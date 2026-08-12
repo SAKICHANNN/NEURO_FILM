@@ -1,0 +1,32 @@
+{
+  "schema": "neuro_film.u6_p4ff_windowed_cloud_scan_runtime_contract.v1",
+  "experiment_id": "u6.p4ff-windowed-cloud-scan-runtime-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4FF",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {
+    "path": "docs/evidence/U6_P4FE_GAUSSIAN_ROW_WINDOW_V1_RESULT.json",
+    "sha256": "ccbb0838f907785ef223635c7228b1a8ec91a568af76796752cba5ff8f3cf5e9",
+    "required_decision": "retain_gaussian_row_window_v1"
+  },
+  "fixture": {
+    "height": 73,
+    "width": 47,
+    "tile_rows": 11,
+    "alternate_tile_rows": 32,
+    "cloud_halo": 9,
+    "seed": 78277,
+    "p4fd_reference_sha256": "a0ca31effbe1535c4f142c6ce35f185c2cacc10a1f481826f938f294e928f951"
+  },
+  "gates": {
+    "require_p4fd_output_bit_identity": true,
+    "require_tile_policy_bit_identity": true,
+    "require_repeat_bit_identity": true,
+    "require_no_full_forward_frame": true,
+    "require_input_immutable": true,
+    "require_sink_failure_propagation": true
+  },
+  "decision_if_pass": "retain_windowed_cloud_scan_runtime_v1",
+  "decision_if_fail": "close_windowed_cloud_scan_runtime_v1",
+  "claim_ceiling": "Opt-in local Windows x64 synthetic-profile end-to-end scan-linear runtime with exact row-window forward scatter and no full-frame forward intermediate; not measured large-image RSS, frozen Standard/AO6 package, calibrated film/scanner response, mobile runtime or product promotion."
+}
