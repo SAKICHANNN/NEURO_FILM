@@ -1,0 +1,32 @@
+{
+  "schema": "neuro_film.u6_p4ef_native_cross_layer_poisson_counts_contract.v1",
+  "experiment_id": "u6.p4ef-native-cross-layer-poisson-counts-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4EF",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {
+    "path": "docs/evidence/U6_P4EE_NATIVE_CLOUD_TYPED_CHAIN_PARITY_V1_RESULT.json",
+    "sha256": "1dc374555e01520ec35e05886964d5b2a5a87779e2dc87c0a83d1c86deff27fe",
+    "required_decision": "retain_native_cloud_typed_chain_parity_v1"
+  },
+  "fixture": {
+    "height": 257,
+    "width": 389,
+    "seed": 66217,
+    "partition_heights": [1, 31, 64, 127],
+    "marginal_rates_cmy": [12.0, 18.0, 15.0],
+    "shared_all_rate": 2.0,
+    "shared_pair_rates_cm_cy_my": [2.0, 1.0, 1.5],
+    "component_seed_stride": 1009
+  },
+  "gates": {
+    "require_python_count_identity": true,
+    "require_cross_compiler_identity": true,
+    "require_partition_identity": true,
+    "require_repeat_identity": true,
+    "require_failure_atomicity": true
+  },
+  "decision_if_pass": "retain_native_cross_layer_poisson_counts_v1",
+  "decision_if_fail": "close_native_cross_layer_poisson_counts_v1",
+  "claim_ceiling": "Windows x64 C11 seven-component count generation only; not native cloud filtering, calibrated emulsion, mobile runtime or product authorization."
+}
