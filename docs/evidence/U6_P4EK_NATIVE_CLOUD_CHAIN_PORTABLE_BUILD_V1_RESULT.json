@@ -1,0 +1,15 @@
+{
+  "schema": "neuro_film.u6_p4ek_native_cloud_chain_portable_build_evidence.v1",
+  "node": "U6.P4EK",
+  "date": "2026-08-12",
+  "implementation_commit": "18091272",
+  "contract_sha256": "b5a3cf490ef7fce1af440fff20265a20fd239a64a83b4008134fd2169955df33",
+  "formal_report_sha256": "000b31645732787c2330066aaee556795d381d8a47a1652d8064ba40bd86add7",
+  "stable_evidence_id": "6dd306a735e8f5d54dadb467b84401be3fe2d83d1efdbec17f7228990e930660",
+  "exact_build_replays": 2,
+  "automatic_pass": true,
+  "android_shared_link": ["arm64-v8a", "x86_64"],
+  "apple_object_compile_only": ["macos-arm64", "ios-arm64"],
+  "decision": "retain_native_cloud_chain_portable_build_v1",
+  "claim_ceiling": "Android shared-library link and Apple Mach-O object compile only; not device runtime, SDK link, measured emulsion or product authorization."
+}
