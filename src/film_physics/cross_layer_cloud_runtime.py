@@ -205,6 +205,64 @@ def iter_target_density_cross_layer_cloud_rows(
     )
 
 
+def optical_density_capacity_cmy(
+    profile: CrossLayerCloudReferenceProfile,
+) -> tuple[float, float, float]:
+    """Return exact homogeneous log10-density capacity of the cloud kernels."""
+
+    capacities = []
+    log_ten = math.log(10.0)
+    for rate, mark, sigma in zip(
+        profile.count_profile.marginal_rates_cmy,
+        profile.count_profile.mark_optical_density_cmy,
+        profile.gaussian_sigma_pixels_cmy,
+        strict=True,
+    ):
+        radius = int(profile.gaussian_truncate * sigma + 0.5)
+        impulse = np.zeros((2 * radius + 1, 2 * radius + 1), dtype=np.float64)
+        impulse[radius, radius] = 1.0
+        kernel = gaussian_filter(
+            impulse,
+            sigma=sigma,
+            mode="constant",
+            cval=0.0,
+            truncate=profile.gaussian_truncate,
+        )
+        log_expectation = rate * float(np.sum(np.expm1(-log_ten * mark * kernel)))
+        capacities.append(-log_expectation / log_ten)
+    return tuple(capacities)
+
+
+def iter_optical_density_cross_layer_cloud_rows_v2(
+    profile: CrossLayerCloudReferenceProfile,
+    target_optical_density_cmy: np.ndarray,
+    *,
+    seed: int,
+    row_tile_height: int,
+) -> Iterator[tuple[int, DensityConditionedStructureResult]]:
+    """Yield optical-density clouds with PGF-calibrated mean transmittance."""
+
+    target = np.asarray(target_optical_density_cmy, dtype=np.float64)
+    capacity = np.asarray(optical_density_capacity_cmy(profile), dtype=np.float64)
+    if (
+        target.ndim != 3
+        or target.shape[-1] != 3
+        or not np.all(np.isfinite(target))
+        or np.any(target < 0.0)
+        or np.any(target > capacity)
+    ):
+        raise ValueError("target optical density is outside the v2 cloud capacity")
+    for y0, legacy in iter_density_conditioned_cross_layer_cloud_rows(
+        profile,
+        target / capacity,
+        seed=seed,
+        row_tile_height=row_tile_height,
+    ):
+        density = legacy.density
+        transmittance = np.power(10.0, -density.astype(np.float64)).astype(np.float32)
+        yield y0, DensityConditionedStructureResult(density, transmittance)
+
+
 def estimate_cross_layer_cloud_row_stream_live_bytes(
     profile: CrossLayerCloudReferenceProfile,
     *,
