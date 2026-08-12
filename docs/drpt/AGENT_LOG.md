@@ -11864,3 +11864,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   reaches `4.1016%` and misses the frozen `3%` gate.
 - Do not enlarge the same sample. Test a separately versioned Poisson process
   conditioned on exact total count as a simulator variance-reduction control.
+
+# 2026-08-12 - U6.P4CZ rejects exact-total variance reduction
+
+- Exact totals and shared center identity pass, but 8x8-cell variance error
+  reaches `24.04%` and adjacent-cell correlation `0.1388`; the conditioned
+  finite-window process does not preserve the frozen local Poisson behavior.
+- Close it. Continue from P4CX's valid unconditional shared counts and measure
+  their correlation after explicit layer-specific cloud kernels.

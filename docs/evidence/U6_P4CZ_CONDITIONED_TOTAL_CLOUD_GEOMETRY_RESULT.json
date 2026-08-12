@@ -1,0 +1,17 @@
+{
+  "schema": "neuro_film.u6_p4cz_conditioned_total_cloud_geometry_evidence.v1",
+  "node": "U6.P4CZ",
+  "date": "2026-08-12",
+  "implementation_commit": "11767f6b",
+  "contract_sha256": "98b0a1173038e6ded9f4c262317a6dd0c2cb1637b2c06214c58a10993abe3f24",
+  "formal_report_sha256": "d1061aca4cbb690df6adfd4d46ba59067b167876839a170ee6401498e138c789",
+  "stable_evidence_id": "2ad85f296b7930f0e1ad4d127d6046003f2b114e42d55e6b80894133086bd1d0",
+  "exact_replays": 2,
+  "automatic_pass": false,
+  "maximum_component_rate_relative_error": 0.0,
+  "maximum_cell_variance_relative_error": 0.24042866492146595,
+  "maximum_absolute_nonoverlap_cell_correlation": 0.13883521185518408,
+  "failed_gates": ["cell_variance", "cell_correlation"],
+  "decision": "close_conditioned_total_cloud_geometry_without_rescue",
+  "claim_ceiling": "Synthetic finite-window binomial point-process negative; not unconditional Poisson, measured film or product evidence."
+}
