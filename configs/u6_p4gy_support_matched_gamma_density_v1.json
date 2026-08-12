@@ -1,0 +1,59 @@
+{
+  "schema": "neuro-film.u6-p4gy-support-matched-gamma-density-contract.v1",
+  "experiment_id": "u6.p4gy-support-matched-gamma-density-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4GY",
+  "date_frozen": "2026-08-12",
+  "status": "contract-frozen-implementation-ready",
+  "question": "Can a support-matched Gamma optical-density distribution preserve the retained Sigma-D first two moments while guaranteeing nonnegative shared density and unclipped unit-cube transmittance?",
+  "parents": {
+    "p4gx_result": {
+      "path": "docs/evidence/U6_P4GX_DENSITY_COMPILED_INDEPENDENT_NPS_PHOTOGRAPHIC_DEVELOPMENT_RESULT.json",
+      "sha256": "dd3ea7a00848bffce268b6e436617a27ab2adbb770c9d4c23affbd8ad06e4db7",
+      "required_decision": "close_density_compiled_independent_nps_v1_without_rescue"
+    },
+    "p4bw_bundle": {
+      "path": "outputs/experiments/u6_p4bw_density_conditioned_thomas_profile_v1/run_a/bundle.json",
+      "sha256": "4edf4eaaeae163a2f579584c7d9533134a7d6177d5cc78ed517cb15865e585bf",
+      "required_profile_id": "199c59fe7d046943bcd763de8cab0ab52e7156aba6d94fcd9f1ec64da4d5d6ff"
+    },
+    "p2q_bundle": {
+      "path": "outputs/u6_p2q_kodak_250d_characteristic_prior/bundle_run1.json",
+      "sha256": "087e67544f737401fa697b21f06215a31827189e0648b8d60da666b92113caaa",
+      "required_prior_id": "04d94af2e1fcad99fbb8c9abb57179f2b63f329c263b3bf2335c4117a670aacb"
+    }
+  },
+  "candidate": {
+    "field_shape": [512, 513],
+    "field_seed": 320260812,
+    "field": "P4GW independent aperture-highpass normal field transformed to exact empirical midranks",
+    "luminance_levels": [0.0001, 0.01, 0.1, 0.5, 0.9, 0.99, 0.9999, 1.0],
+    "rgb_ratios": [[1.0, 1.0, 1.0], [1.0, 0.5, 0.25], [0.25, 0.5, 1.0]],
+    "available_shared_density": "-log10(max(relative_linear_rgb))",
+    "target_sigma": "retained conservative shared Sigma-D times 4*Y*(1-Y)",
+    "distribution": "delta_D = Gamma(shape=(D/sigma)^2, scale=sigma^2/D, quantile=u)-D",
+    "theoretical_moments": "E[delta_D]=0; Var[delta_D]=sigma^2; delta_D>=-D",
+    "support_degenerate_rule": "if D<=float64_epsilon or sigma<=float64_tiny, delta_D=0",
+    "amplitude_multiplier": 1.0,
+    "realized_variance_normalization_allowed": false,
+    "clipping_allowed": false
+  },
+  "automatic_gates": {
+    "maximum_non_degenerate_mean_absolute_in_target_sigma": 0.02,
+    "maximum_non_degenerate_variance_relative_error": 0.03,
+    "maximum_non_degenerate_p999_absolute_in_target_sigma": 4.5,
+    "maximum_negative_developed_density": 0.0,
+    "minimum_transmittance": 0.0,
+    "maximum_transmittance": 1.0,
+    "maximum_support_degenerate_residual_absolute": 0.0,
+    "require_exact_repeat": true,
+    "require_all_finite": true,
+    "require_no_clipping_or_posthoc_limiting": true
+  },
+  "execution": {
+    "formal_processes": 2,
+    "post_result_retuning_allowed": false
+  },
+  "decision_if_pass": "retain_support_matched_gamma_density_for_photographic_development",
+  "decision_if_fail": "close_support_matched_gamma_density_without_rescue",
+  "claim_ceiling": "Synthetic relative-display optical-density distribution mechanics only; the latest film-grain literature motivates non-Gaussian support-aware stochastic geometry, but this Gamma marginal is a clean-room analytic hypothesis, not a reproduced paper method, measured emulsion distribution, calibrated stock response or product evidence."
+}
