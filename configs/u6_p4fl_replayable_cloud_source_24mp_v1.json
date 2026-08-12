@@ -5,7 +5,7 @@
   "date_frozen": "2026-08-12",
   "parent": {
     "path": "docs/evidence/U6_P4FI_WINDOWED_CLOUD_RUNTIME_24MP_V1_RESULT.json",
-    "sha256": "98471b4a8739a2071293cc8965981104157d68382410b379f28da4a8a218ebac",
+    "sha256": "682f54eb5a3582eca1d81977ee3fd176a2348defd9bf56cfaa641733d64ad265",
     "required_decision": "retain_windowed_cloud_runtime_24mp_v1"
   },
   "scenario": {
