@@ -12203,3 +12203,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   report last; post-render source drift leaves neither durable file.
 - The extension is a companion module. Frozen P8BF staging source identity and
   its existing restart verifier remain byte-exact and are reused unchanged.
+
+# 2026-08-12 - U6.P4FT reaches verified PNG16 from replayable rows
+
+- The companion staging receipt is accepted unchanged by the existing P8BG
+  single-quantization sRGB16 PNG commit and restart verifier.
+- This closes the synthetic functional row-source-to-image transaction. Actual
+  decoder row providers and large-image transaction resources remain next.
