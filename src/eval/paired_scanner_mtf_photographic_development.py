@@ -42,6 +42,21 @@ def load_contract(path: Path) -> dict[str, Any]:
 def evaluate(
     contract: dict[str, Any], *, root: Path, contact_sheet_path: Path
 ) -> dict[str, Any]:
+    return _evaluate_paired(
+        contract,
+        root=root,
+        contact_sheet_path=contact_sheet_path,
+        result_parent_name="p4hd_result",
+    )
+
+
+def _evaluate_paired(
+    contract: dict[str, Any],
+    *,
+    root: Path,
+    contact_sheet_path: Path,
+    result_parent_name: str,
+) -> dict[str, Any]:
     parents = contract["parents"]
     p4fa_result = parents["p4fa_result"]
     p4fa_contract_binding = parents["p4fa_contract"]
@@ -126,9 +141,9 @@ def evaluate(
         root=root,
         contact_sheet_path=contact_sheet_path,
         apply_physical=apply_physical,
-        result_parent_name="p4hd_result",
+        result_parent_name=result_parent_name,
         finalize_pair=finalize_pair,
     )
 
 
-__all__ = ["evaluate", "load_contract"]
+__all__ = ["_evaluate_paired", "evaluate", "load_contract"]
