@@ -1,0 +1,44 @@
+{
+  "schema": "neuro_film.u6_p4dt_target_resolution_cloud_moment_compiler_contract.v3",
+  "experiment_id": "u6.p4dt-target-resolution-cloud-moment-compiler-v3",
+  "node": "ULT > U6 > U6.P4 > U6.P4DT",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {
+    "path": "docs/evidence/U6_P4DS_TARGET_RESOLUTION_CLOUD_LOD_V2_RESULT.json",
+    "sha256": "08b58de5bdb6fe773030259d67524bd02f9360880c150c70aefdf226d677188d",
+    "required_decision": "close_target_resolution_compound_poisson_cloud_lod_v2",
+    "required_failed_gate": "marginal_noise_rms_relative_error"
+  },
+  "fixture": {
+    "output_height": 192,
+    "output_width": 256,
+    "aperture_factor": 4,
+    "flat_density_fraction": 0.55,
+    "development_seeds": [55181, 55187],
+    "confirmation_seeds": [54187, 54193, 54203]
+  },
+  "compiler": {
+    "candidate_rate_multipliers": [2, 4, 8, 16],
+    "mark_divisor_equals_rate_multiplier": true,
+    "gaussian_sigma_divisor": 4,
+    "objective": "minimum_development_median_max_channel_noise_rms_relative_error",
+    "tie_break": "smaller_rate_multiplier",
+    "confirmation_reselection_forbidden": true
+  },
+  "gates": {
+    "maximum_development_noise_rms_relative_error": 0.15,
+    "maximum_confirmation_mean_transmittance_absolute_error": 0.002,
+    "maximum_confirmation_marginal_noise_rms_relative_error": 0.15,
+    "maximum_confirmation_cross_channel_correlation_absolute_error": 0.05,
+    "maximum_confirmation_radial_nps_shape_rmse": 0.08,
+    "maximum_confirmation_edge_overshoot_absolute_difference": 0.01,
+    "maximum_confirmation_edge_undershoot_absolute_difference": 0.01,
+    "maximum_new_boundary_fraction": 0.0005,
+    "require_repeat_identity": true,
+    "require_product_disabled": true
+  },
+  "decision_if_pass": "retain_moment_compiled_target_resolution_cloud_lod_v3",
+  "decision_if_fail": "close_moment_compiled_target_resolution_cloud_lod_v3",
+  "claim_ceiling": "Synthetic moment-compiled target-resolution approximation only; not measured NPS, film granularity, scanner aperture, stock calibration or product authorization."
+}
