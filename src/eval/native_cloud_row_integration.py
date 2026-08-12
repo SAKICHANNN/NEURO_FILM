@@ -151,12 +151,14 @@ def evaluate(root: Path, contract_path: Path, build_dir: Path) -> dict:
         else contract["decision_if_fail"],
         "claim_ceiling": contract["claim_ceiling"],
     }
+    identity = dict(stable)
+    identity.pop("native_to_python_wall_ratio")
     return {
         "schema": "neuro_film.u6_p4ed_native_cloud_row_integration.v1",
         "automatic_pass": all(decisions.values()),
         "stable": stable,
         "stable_evidence_id": hashlib.sha256(
-            json.dumps(stable, sort_keys=True, separators=(",", ":")).encode()
+            json.dumps(identity, sort_keys=True, separators=(",", ":")).encode()
         ).hexdigest(),
     }
 
