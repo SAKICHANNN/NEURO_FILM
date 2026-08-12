@@ -1,0 +1,21 @@
+{
+  "schema": "neuro_film.u6_p4fr_native_standard_replayable_24mp_contract.v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4FR",
+  "scenario": {
+    "height": 4000,
+    "width": 6000,
+    "runs": 2,
+    "timeout_seconds": 120,
+    "sample_interval_seconds": 0.02
+  },
+  "gates": {
+    "maximum_peak_process_tree_rss_bytes": 1073741824,
+    "maximum_worker_wall_seconds": 120,
+    "maximum_peak_repeat_ratio": 1.10,
+    "require_exact_repeat": true,
+    "require_no_full_source_frame": true
+  },
+  "decision_if_pass": "retain_native_standard_replayable_24mp_v1",
+  "decision_if_fail": "close_or_optimize_native_standard_replayable_24mp_v1",
+  "claim_ceiling": "Local Windows x64 synthetic 24MP replayable-row execution through the exact frozen Native Standard package; not file decode, durable encode, mobile runtime, calibrated film or product promotion."
+}

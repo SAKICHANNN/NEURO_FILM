@@ -12189,3 +12189,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   physical, neutral-gauge and display chain without retaining the source frame.
 - Exact frozen binaries reproduce the array-runtime output; a final source
   replay detects post-render drift. Durable consumers must stage until receipt.
+
+# 2026-08-12 - U6.P4FR passes 24MP packaged Standard resources
+
+- Two fresh 24MP workers reproduce exact input/output identities through the
+  frozen Standard/AO6 package at 207.42-207.45MB peak and 35.4-41.0s.
+- All frozen 1GiB/120s/repeat/streaming gates pass. This is row-runtime evidence,
+  not decoder, encoder, mobile, calibration or product promotion evidence.

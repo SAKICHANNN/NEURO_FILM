@@ -1,0 +1,19 @@
+{
+  "schema": "neuro_film.u6_p4fr_native_standard_replayable_24mp_result.v1",
+  "node": "U6.P4FR",
+  "contract_sha256": "832c558ac5238d77d15fb265296e8cc7db46deda7d3301e93918e37245d46251",
+  "stable_evidence_id": "72206a1c423e8453501dd238584f56886cec62d8b49fbc10ad7cffc2954c7fdc",
+  "result": {
+    "status": "pass",
+    "input_sha256": "427c526f137ff80780236646a7d91ecf8d7a588c43424adea22c2ef7c77312c0",
+    "output_sha256": "702e92fb82c4a0dfc4a19d79a6af67103b9dfffe3617790a01d587ecb336e1c6",
+    "peak_process_tree_rss_bytes": [207417344, 207450112],
+    "worker_wall_seconds": [40.96887280000374, 35.38414880001801],
+    "peak_repeat_ratio": 1.0001579810027845,
+    "source_passes": 3,
+    "full_source_frame_retained": false,
+    "all_frozen_gates_pass": true
+  },
+  "decision": "retain_native_standard_replayable_24mp_v1",
+  "claim_ceiling": "Local Windows x64 synthetic 24MP replayable-row execution through the exact frozen Native Standard package; not file decode, durable encode, mobile runtime, calibrated film or product promotion."
+}
