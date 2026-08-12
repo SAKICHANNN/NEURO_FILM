@@ -9,6 +9,7 @@ import json
 import math
 import subprocess
 from collections.abc import Callable
+from dataclasses import replace
 from pathlib import Path
 
 import numpy as np
@@ -26,6 +27,8 @@ from src.film_physics.native_conditioned_cloud import _CountProfile
 from src.film_physics.bounded_cloud_density import (
     apply_bounded_cloud_density_residual,
 )
+from src.film_physics.cross_layer_cloud_profile import CrossLayerCloudReferenceProfile
+from src.film_physics.cross_layer_cloud_runtime import optical_density_capacity_cmy
 
 SOURCES = tuple(
     "native/film_physics/" + name
@@ -277,6 +280,7 @@ def render_physical_partition(
     enforce_density_envelope: bool = False,
     exact_sensitometry_endpoints: bool = False,
     density_envelope_diagnostics: list[dict[str, float]] | None = None,
+    cloud_profile: CrossLayerCloudReferenceProfile | None = None,
 ) -> np.ndarray:
     """Run the exact P4EY/P4FB physical provider for one logical core."""
 
@@ -292,12 +296,33 @@ def render_physical_partition(
         for channel in range(3):
             domains.x_knots[channel][0]=exact_black
             domains.x_knots[channel][domains.knot_count[channel]-1]=exact_white
-    cp=_CountProfile(ctypes.sizeof(_CountProfile),3,(ctypes.c_double*3)(192.,288.,240.),32.,
-        (ctypes.c_double*3)(32.,16.,24.),fixture["seed"],1009)
-    sp=_SpatialProfile(ctypes.sizeof(_SpatialProfile),2,(ctypes.c_double*3)(1.3,1.7,2.1),
-        (ctypes.c_double*3)(.00125,.001125,.001375),4.)
+    if cloud_profile is None:
+        cp=_CountProfile(ctypes.sizeof(_CountProfile),3,(ctypes.c_double*3)(192.,288.,240.),32.,
+            (ctypes.c_double*3)(32.,16.,24.),fixture["seed"],1009)
+        sp=_SpatialProfile(ctypes.sizeof(_SpatialProfile),2,(ctypes.c_double*3)(1.3,1.7,2.1),
+            (ctypes.c_double*3)(.00125,.001125,.001375),4.)
+        capacity=np.asarray(contract["density_capacity_cmy"],np.float64)
+    else:
+        seeded = replace(
+            cloud_profile,
+            count_profile=replace(cloud_profile.count_profile, seed=fixture["seed"]),
+        )
+        count = seeded.count_profile
+        cp=_CountProfile(
+            ctypes.sizeof(_CountProfile),3,
+            (ctypes.c_double*3)(*count.marginal_rates_cmy),count.shared_all_rate,
+            (ctypes.c_double*3)(*count.shared_pair_rates_cm_cy_my),count.seed,
+            count.component_seed_stride,
+        )
+        sp=_SpatialProfile(
+            ctypes.sizeof(_SpatialProfile),2,
+            (ctypes.c_double*3)(*seeded.gaussian_sigma_pixels_cmy),
+            (ctypes.c_double*3)(*count.mark_optical_density_cmy),
+            seeded.gaussian_truncate,
+        )
+        capacity=np.asarray(optical_density_capacity_cmy(seeded),np.float64)
     fp=ctypes.POINTER(ctypes.c_float);dp=ctypes.POINTER(ctypes.c_double)
-    capacity=np.asarray(contract["density_capacity_cmy"],np.float64);gain=np.asarray((.3,.35,.25),np.float32)
+    gain=np.asarray((.3,.35,.25),np.float32)
     post_halo=ctypes.c_uint32()
     if lib.nf_cloud_post_spatial_f32_required_halo_v1(ctypes.byref(adjacency_blur),ctypes.byref(diffusion),ctypes.byref(scanner),ctypes.byref(post_halo))!=0:
         raise RuntimeError("P4FB post halo failed")
@@ -331,6 +356,8 @@ def render_physical_partition(
             conv.ctypes.data_as(dp),conv.size,sd.ctypes.data_as(fp),st.ctypes.data_as(fp),st.size,density.ctypes.data_as(fp),trans.ctypes.data_as(fp),density.size)
     if status: raise RuntimeError(f"P4FB physical provider cloud failed: {status}")
     cloud=density.reshape(ext_height,width,3)
+    envelope_diagnostics: dict[str, float] | None = None
+    base_density_for_boundary: np.ndarray | None = None
     if enforce_density_envelope:
         if not source_derived_expected:
             raise ValueError("density envelope requires source-derived expected density")
@@ -340,20 +367,50 @@ def render_physical_partition(
             * capacity.reshape(1,1,3),
             dtype=np.float64,
         )
-        cloud,diagnostics=apply_bounded_cloud_density_residual(
+        base_density_for_boundary = base
+        unbounded_transmittance = np.power(10.0, -cloud.astype(np.float64))
+        expected_transmittance = np.power(10.0, -base)
+        cloud,envelope_diagnostics=apply_bounded_cloud_density_residual(
             base,cloud,
             black_reference_density=np.asarray(domains.black_reference_density),
             white_reference_density=np.asarray(domains.white_reference_density),
         )
-        if density_envelope_diagnostics is not None:
-            density_envelope_diagnostics.append(diagnostics)
+        bounded_transmittance = np.power(10.0, -cloud.astype(np.float64))
+        envelope_diagnostics["maximum_absolute_mean_unbounded_transmittance_bias"] = float(
+            np.max(np.abs(np.mean(unbounded_transmittance - expected_transmittance, axis=(0, 1))))
+        )
+        envelope_diagnostics["maximum_absolute_mean_bounded_transmittance_bias"] = float(
+            np.max(np.abs(np.mean(bounded_transmittance - expected_transmittance, axis=(0, 1))))
+        )
     flat=np.ascontiguousarray(cloud.reshape(-1),np.float32)
     work=[np.empty_like(flat) for _ in range(6)];output=np.empty(height*width*3,np.float32)
     status=lib.nf_cloud_post_spatial_f32_apply_core_v1(ctypes.byref(domains),ctypes.byref(adjacency_blur),ctypes.byref(adjacency),
         ctypes.byref(diffusion),ctypes.byref(scanner),flat.ctypes.data_as(fp),ext_height,width,full,start,start-ext_start,height,
         *[item.ctypes.data_as(fp) for item in work],flat.size,output.ctypes.data_as(fp),output.size)
     if status: raise RuntimeError(f"P4FB physical provider post failed: {status}")
-    return output.reshape(height,width,3)
+    result = output.reshape(height,width,3)
+    if envelope_diagnostics is not None and density_envelope_diagnostics is not None:
+        assert base_density_for_boundary is not None
+        baseline_flat=np.ascontiguousarray(base_density_for_boundary.reshape(-1),np.float32)
+        baseline_work=[np.empty_like(baseline_flat) for _ in range(6)]
+        baseline_output=np.empty(height*width*3,np.float32)
+        status=lib.nf_cloud_post_spatial_f32_apply_core_v1(
+            ctypes.byref(domains),ctypes.byref(adjacency_blur),ctypes.byref(adjacency),
+            ctypes.byref(diffusion),ctypes.byref(scanner),baseline_flat.ctypes.data_as(fp),
+            ext_height,width,full,start,start-ext_start,height,
+            *[item.ctypes.data_as(fp) for item in baseline_work],baseline_flat.size,
+            baseline_output.ctypes.data_as(fp),baseline_output.size,
+        )
+        if status:
+            raise RuntimeError(f"P4FB physical provider baseline post failed: {status}")
+        baseline_result=baseline_output.reshape(height,width,3)
+        candidate_boundary=(result<=0.0)|(result>=1.0)
+        baseline_boundary=(baseline_result<=0.0)|(baseline_result>=1.0)
+        envelope_diagnostics["new_boundary_fraction"] = float(
+            np.mean(candidate_boundary & ~baseline_boundary)
+        )
+        density_envelope_diagnostics.append(envelope_diagnostics)
+    return result
 
 
 def evaluate(root: Path, contract_path: Path, output: Path, llvm: Path) -> dict:
