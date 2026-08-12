@@ -1,0 +1,28 @@
+{
+  "schema": "neuro_film.u6_p4fc_opt_in_cloud_scan_runtime.v1",
+  "experiment_id": "u6.p4fc-opt-in-cloud-scan-runtime-v1",
+  "date_executed": "2026-08-12",
+  "implementation_commits": ["82d892d4", "6ef97093", "3bd59e90"],
+  "automatic_pass": true,
+  "execution_amendment": "The first test assembly selected an existing f64 Gaussian helper by name and stopped before rendering when the f32 ABI symbol was absent. The test was corrected to use the existing f32 physical component builder; runtime inputs, provider, tile policies and gates were unchanged.",
+  "formal_replays": {
+    "outer_processes": 2,
+    "tile_policies": [11, 32],
+    "output_exact": true
+  },
+  "results": {
+    "runtime_full_reference_bit_exact": true,
+    "tile_policy_bit_exact": true,
+    "ordered_sink_rows": true,
+    "input_immutable": true,
+    "sink_failure_propagated": true,
+    "repeat_bit_exact": true,
+    "input_sha256": "64de5af03970730d265ee2a5c117f8471420d3fd065a710ce44a92cdad837919",
+    "output_sha256": "dac3b9e835f16884f39d5d89504e323fc964684d31c15398de078a40bc8c0de4",
+    "tile_11_submitted": 7,
+    "tile_32_submitted": 3,
+    "physical_provider_source_sha256": "3ea4d3692ed1affed96b33bef529978de3f6a9855a6e7ff466b02a7384a3b299"
+  },
+  "decision": "retain_opt_in_cloud_scan_runtime_v1",
+  "claim_ceiling": "Opt-in local Windows x64 scan-linear row runtime boundary using one full-frame forward-scatter intermediate and a hash-bound exact P4FB physical-row provider; this leaf validates the runtime boundary with a deterministic probe provider, not an end-to-end P4FB provider, frozen Standard profile package, AO6 display integration, production memory closure, calibration, mobile runtime or product promotion."
+}
