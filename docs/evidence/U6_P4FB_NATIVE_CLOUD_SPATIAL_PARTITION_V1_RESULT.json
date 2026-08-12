@@ -1,0 +1,32 @@
+{
+  "schema": "neuro_film.u6_p4fb_native_cloud_spatial_partition.v1",
+  "experiment_id": "u6.p4fb-native-cloud-spatial-partition-v1",
+  "date_executed": "2026-08-12",
+  "implementation_commit": "a4dd3122",
+  "automatic_pass": true,
+  "execution_amendments": [
+    "Before pixel execution, the frozen contract was completed with the exact P4FA spatial-profile values omitted from its first file revision.",
+    "The first pixel execution exposed that edge partitions require logical full-image coordinates to distinguish valid physical boundaries from missing internal halo. The API added full_height and core_logical_start without changing inputs, partitions, profiles or gates, then restarted the formal run."
+  ],
+  "formal_replays": {
+    "outer_processes": 2,
+    "compiler_count": 2,
+    "executions_per_compiler": 2,
+    "byte_exact": true
+  },
+  "stable_evidence_id": "034eb4f64480791da89d1383c565077fe4fb5cfb00f4c5cb6d882dafacd62f74",
+  "contract_sha256": "c339451bbbac116e8082ddb48e239368b075c910f3f8056aa31a8dab95fe879b",
+  "source_sha256": "3ea4d3692ed1affed96b33bef529978de3f6a9855a6e7ff466b02a7384a3b299",
+  "header_sha256": "81a99c93d863a0be7ec948f4e0d6b0debdd582d0531726e2f8626c485dd58788",
+  "results": {
+    "full_vs_primary_partition_bit_exact": true,
+    "full_vs_alternate_partition_bit_exact": true,
+    "msvc_llvm_scan_bit_exact": true,
+    "repeat_bit_exact": true,
+    "insufficient_internal_halo_output_unchanged": true,
+    "exact_downstream_halo_rows": 9,
+    "scan_sha256": "7520096b13f2524e4983158de6fc9114f4eec24f9dee7bb69c5bc747bc45cab8"
+  },
+  "decision": "retain_native_cloud_spatial_partition_v1",
+  "claim_ceiling": "Local Windows x64 synthetic-profile exact row-partition arithmetic for the correct-domain stochastic cloud and downstream spatial chain; not Standard runtime integration, production memory evidence, calibrated film/scanner response, mobile runtime or product authorization."
+}
