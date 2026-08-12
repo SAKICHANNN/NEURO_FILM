@@ -1,0 +1,17 @@
+{
+  "schema": "neuro_film.u6_p4da_cross_layer_gaussian_cloud_lod_evidence.v1",
+  "node": "U6.P4DA",
+  "date": "2026-08-12",
+  "implementation_commit": "4f1e4306",
+  "contract_sha256": "770c7864593d69a154711447f13dce655ea4d0fff8d73d33c249eede6d15bb2d",
+  "formal_report_sha256": "f7e0b5c361a1ad22ee4b8e734eb2efa0ca1237e33ffa5e5614b18dadbfb191cd",
+  "stable_evidence_id": "8e6d1c294eb0c9570c09cfdb730c179e81e8508b9bee10b73bfbda6e1ca16421",
+  "exact_replays": 2,
+  "automatic_pass": true,
+  "confirmation_maximum_absolute_correlation_error": 0.006734925679681647,
+  "confirmation_maximum_marginal_variance_relative_error": 0.0069809279432275564,
+  "confirmation_minimum_empirical_shared_correlation": 0.1910159920628238,
+  "confirmation_maximum_independent_control_absolute_correlation": 0.0026888979171147374,
+  "decision": "retain_cross_layer_gaussian_cloud_lod_reference",
+  "claim_ceiling": "Controlled synthetic Gaussian-cloud LOD evidence for shared-event coupling; not measured film, scanner or product evidence."
+}

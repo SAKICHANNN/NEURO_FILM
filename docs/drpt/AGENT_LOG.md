@@ -11872,3 +11872,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   finite-window process does not preserve the frozen local Poisson behavior.
 - Close it. Continue from P4CX's valid unconditional shared counts and measure
   their correlation after explicit layer-specific cloud kernels.
+
+# 2026-08-12 - U6.P4DA preserves coupling through cloud footprints
+
+- P4CX shared counts convolved with distinct C/M/Y Gaussian cloud kernels pass
+  analytic covariance: confirmation correlation error `0.006735`, variance
+  error `0.006981`, minimum shared correlation `0.1910`; independent control
+  stays below `0.002689`.
+- Retain the synthetic cloud LOD reference. Next test block-aperture/downsample
+  scaling before any renderer or stock-profile integration.
