@@ -1,0 +1,19 @@
+{
+  "schema": "neuro_film.u6_p4db_cross_layer_aperture_lod_evidence.v1",
+  "node": "U6.P4DB",
+  "date": "2026-08-12",
+  "implementation_commit": "a0e26728",
+  "contract_sha256": "edddcfb73603e5cb1f2d77b7fbc141d3a5f5e60983d0c78f972bcbc1e29dd3bb",
+  "formal_report_sha256": "988fa08b2132e11a0721cee26a5574cca02214efa3df49dc64b116e338093cb0",
+  "stable_evidence_id": "89632c324176e6f67706c04e57f450e97331ef235c33205d0dc6b82f3b61c667",
+  "exact_replays": 2,
+  "automatic_pass": true,
+  "aperture_factors": [2, 4, 8],
+  "confirmation_maximum_absolute_correlation_error": 0.018379192538217515,
+  "confirmation_maximum_marginal_variance_relative_error": 0.020958167218890655,
+  "confirmation_minimum_shared_correlation": 0.202225830685447,
+  "confirmation_maximum_independent_control_absolute_correlation": 0.008415362918379804,
+  "variance_nonincreasing_with_aperture": true,
+  "decision": "retain_cross_layer_aperture_lod_reference",
+  "claim_ceiling": "Controlled synthetic block-aperture LOD evidence for shared-event coupling; not measured film, scanner or product evidence."
+}

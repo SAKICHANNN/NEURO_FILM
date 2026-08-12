@@ -11881,3 +11881,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   stays below `0.002689`.
 - Retain the synthetic cloud LOD reference. Next test block-aperture/downsample
   scaling before any renderer or stock-profile integration.
+
+# 2026-08-12 - U6.P4DB closes multi-aperture covariance
+
+- Across 2x/4x/8x apertures, analytic and empirical shared-layer covariance
+  pass: worst correlation error `0.01838`, variance error `0.02096`, minimum
+  shared correlation `0.2022`; variance decreases monotonically with aperture.
+- Retain as a synthetic multi-scale reference. Next compile the fixed primitive
+  into a hash/versioned offline profile payload without enabling production.
