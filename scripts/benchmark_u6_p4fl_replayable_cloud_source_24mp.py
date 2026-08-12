@@ -107,6 +107,8 @@ def monitor(command: list[str], output: Path, timeout: float, interval: float) -
 
 
 def benchmark(contract: Path, output_dir: Path) -> dict:
+    contract = contract.resolve()
+    output_dir = output_dir.resolve()
     frozen = json.loads(contract.read_text())
     parent = ROOT / frozen["parent"]["path"]
     parent_payload = json.loads(parent.read_text())
