@@ -1,0 +1,18 @@
+{
+  "schema": "neuro_film.u6_p4cu_spatial_scanner_glare_correlation_evidence.v1",
+  "node": "U6.P4CU",
+  "date": "2026-08-12",
+  "implementation_commit": "ece217a3",
+  "contract_sha256": "207d8ea69819a233ca421b7f799e6b17b7339f6888fdbcd298a429e956171e63",
+  "formal_report_sha256": "0b80f2d5b76f110d97850c976183fd70160993818050ed83abf3f0e0188b5542",
+  "stable_evidence_id": "f1f75ace77c06f69fb947889fde78346034bc311c22e235c3ff2c2da355d9c76",
+  "exact_replays": 2,
+  "automatic_pass": false,
+  "confirmation_correct_field_rmse": 0.0011600333272184064,
+  "confirmation_uncorrected_field_rmse": 0.012164594790688665,
+  "confirmation_wrong_field_rmse": 0.03851955189896911,
+  "failed_gates": ["uncorrected_is_confounded"],
+  "interpretation": "The independently known field restores correlation and a misregistered field is strongly harmful, but this fixed exogenous field does not reach the frozen uncorrected-confound magnitude.",
+  "decision": "close_current_spatial_scanner_glare_control_without_tuning",
+  "claim_ceiling": "Controlled float64 negative evidence for one fixed exogenous low-frequency glare field; not a general scanner-glare or real calibration result."
+}

@@ -11822,3 +11822,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Constant offsets are largely removed by centering here. Move to a separately
   frozen spatial glare field, which can add shared covariance rather than only
   shifting channel means.
+
+# 2026-08-12 - U6.P4CU closes the fixed spatial-field control
+
+- Exact replay shows correct-field RMSE `0.00116` and wrong-field RMSE
+  `0.03852`, but uncorrected RMSE `0.01216` misses the frozen `0.02` confound
+  gate. Keep the negative without changing field strength.
+- A fixed exogenous field is not enough. Next test signal-dependent broad-PSF
+  scanner flare, where bright image structure drives the shared covariance.
