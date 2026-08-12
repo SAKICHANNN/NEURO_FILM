@@ -1,0 +1,39 @@
+{
+  "schema": "neuro_film.u6_p4dp_optical_density_cloud_transmittance_contract.v2",
+  "experiment_id": "u6.p4dp-optical-density-cloud-transmittance-v2",
+  "node": "ULT > U6 > U6.P4 > U6.P4DP",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {
+    "path": "docs/evidence/U6_P4DO_CLOUD_SPATIAL_ORDER_ABLATION_RESULT.json",
+    "sha256": "f99a57a7e809af3b0ba3e991aecc36130b1ace73d5338b8ec2ce67546901c053",
+    "required_decision": "close_or_revise_cloud_spatial_order_combination"
+  },
+  "diagnosis": {
+    "legacy_v1_transmittance": "exp(-D_cloud)",
+    "typed_optical_density_transmittance": "10^(-D_cloud)",
+    "required_mean_calibration": "Poisson probability-generating function of the exact discrete Gaussian cloud kernel",
+    "legacy_v1_bytes_must_remain_unchanged": true
+  },
+  "fixture": {
+    "height": 1025,
+    "width": 1537,
+    "seed": 51181,
+    "row_partition_height": 127,
+    "flat_density_fractions": [0.1, 0.3, 0.6, 0.9],
+    "measurement_margin": 24
+  },
+  "gates": {
+    "maximum_analytic_target_transmittance_error": 1e-12,
+    "maximum_monte_carlo_mean_transmittance_error": 0.002,
+    "maximum_capacity_loss_fraction": 0.005,
+    "require_u2_2_capacity_coverage": true,
+    "require_transmittance_equals_ten_to_minus_density": true,
+    "require_partition_identity": true,
+    "require_repeat_identity": true,
+    "require_legacy_v1_identity_unchanged": true
+  },
+  "decision_if_pass": "retain_optical_density_cross_layer_cloud_runtime_v2",
+  "decision_if_fail": "close_optical_density_cross_layer_cloud_runtime_v2",
+  "claim_ceiling": "Synthetic optical-density/transmittance semantics only; not measured emulsion structure, stock calibration, visual preference or product evidence."
+}
