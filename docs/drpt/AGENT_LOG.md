@@ -12521,3 +12521,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   independent severe and boundary gates already close the candidate.
 - The next material hypothesis is finite-tail compound-Poisson density
   execution, not more blur or a weaker threshold.
+
+### 2026-08-12 - U6.P4GU closes compound-Poisson density v1
+
+- A profile-derived three-sigma smooth finite-tail transform turns the P4GT
+  flat-region and boundary failures into passes: p99 falls to 0.00759,
+  flat-region p99 to 0.02631 and new boundary to 3.48e-7. Replay is exact.
+- Three isolated excursions, 11.49% near-white headroom limiting and a visible
+  Nikon yellow density island remain. The frozen candidate closes without
+  sigma tuning.
+- Direct full-amplitude particle scan residuals are now closed for this
+  display-scale path. The next leaf separates stable physical tone from a
+  zero-mean density-conditioned NPS/MTF texture.
