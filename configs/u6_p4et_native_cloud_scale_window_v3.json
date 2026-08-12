@@ -1,0 +1,13 @@
+{
+  "schema": "neuro_film.u6_p4et_native_cloud_scale_window_v3_contract.v1",
+  "experiment_id": "u6.p4et-native-cloud-scale-window-v3",
+  "node": "ULT > U6 > U6.P4 > U6.P4ET",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {"path": "docs/evidence/U6_P4ES_NATIVE_CLOUD_ROW_CHAIN_24MP_V1_RESULT.json", "sha256": "654158774ab37892e89dadbf1e4971d646bb1083c13130459e0ae32589558b18", "required_decision": "retain_native_cloud_row_chain_24mp_v1"},
+  "fixture": {"height": 4000, "width": 6000, "row_tile_height": 128, "halo": 9, "seed": 78277},
+  "gates": {"require_p4es_output_hash_identity": true, "maximum_scale_window_bytes": 25165824, "maximum_wall_ratio_vs_p4es": 1.10, "require_two_replay_hash_identity": true},
+  "decision_if_pass": "retain_native_cloud_scale_window_v3",
+  "decision_if_fail": "close_native_cloud_scale_window_v3",
+  "claim_ceiling": "Local Windows x64 CPU synthetic 24MP bounded scale-window execution only; not complete renderer, image quality, calibrated stock or product authorization."
+}
