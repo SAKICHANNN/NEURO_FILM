@@ -32,6 +32,7 @@ from src.film_physics.bounded_common_density_residual import (
 )
 from src.film_physics.bounded_linear_residual import apply_bounded_linear_residual
 from src.film_physics.cross_layer_cloud_profile import CrossLayerCloudReferenceProfile
+from src.film_physics.density_lod_residual import apply_density_lod_residual
 from src.film_physics.native_cloud_scan_runtime_v2 import WindowedNativeCloudScanRuntime
 from tests.test_u6_p4fc_opt_in_cloud_scan_runtime_v1 import _profile as scatter_profile
 from tests.test_u6_p4fn_native_standard_replayable_rows import _runtime
@@ -40,6 +41,7 @@ SCHEMA = "neuro-film.u6-p4gr-neutral-base-photographic-ablation-contract.v1"
 SHARED_DENSITY_SCHEMA = (
     "neuro-film.u6-p4gs-shared-density-photographic-development-contract.v1"
 )
+DENSITY_LOD_SCHEMA = "neuro-film.u6-p4gt-density-lod-photographic-development-contract.v1"
 P4FB = Path("configs/u6_p4fb_native_cloud_spatial_partition_v1.json")
 CAPACITY = Path("configs/u6_p4di_sensitometry_cloud_capacity_v2.json")
 
@@ -50,7 +52,7 @@ def sha256_file(path: Path) -> str:
 
 def load_contract(path: Path) -> dict[str, Any]:
     payload = json.loads(path.read_text(encoding="utf-8"))
-    if payload.get("schema") not in {SCHEMA, SHARED_DENSITY_SCHEMA}:
+    if payload.get("schema") not in {SCHEMA, SHARED_DENSITY_SCHEMA, DENSITY_LOD_SCHEMA}:
         raise ValueError("unsupported photographic physical-residual contract")
     return payload
 
@@ -149,9 +151,14 @@ def evaluate(
     gates = contract["automatic_gates"]
     metric_rows: list[dict[str, Any]] = []
     visual_rows: list[dict[str, Any]] = []
+    component_sources = [
+        root / "src/film_physics/bounded_linear_residual.py",
+        root / "native/film_physics/nf_cloud_post_spatial_f32_v1.c",
+    ]
+    if contract["candidate"].get("residual_projection") == "density-lod-multiplicative":
+        component_sources.append(root / "src/film_physics/density_lod_residual.py")
     component_sha = hashlib.sha256(
-        (root / "src/film_physics/bounded_linear_residual.py").read_bytes()
-        + (root / "native/film_physics/nf_cloud_post_spatial_f32_v1.c").read_bytes()
+        b"".join(path.read_bytes() for path in component_sources)
     ).hexdigest()
 
     with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as directory:
@@ -174,6 +181,10 @@ def evaluate(
                 source_sha = hashlib.sha256(memoryview(source).cast("B")).hexdigest()
                 physical_outputs: list[np.ndarray] = []
                 all_diagnostics: list[dict[str, float]] = []
+                density_lod = (
+                    contract["candidate"].get("residual_projection")
+                    == "density-lod-multiplicative"
+                )
                 for tile_rows in contract["candidate"]["tile_rows"]:
                     diagnostics: list[dict[str, float]] = []
 
@@ -185,21 +196,41 @@ def evaluate(
                         _physical_contract: dict[str, Any] = physical_contract,
                         _source: np.ndarray = source,
                         _diagnostics: list[dict[str, float]] = diagnostics,
+                        _density_lod: bool = density_lod,
+                        _height: int = height,
                     ) -> np.ndarray:
+                        render_y0 = max(0, y0 - 2) if _density_lod else y0
+                        render_y1 = (
+                            min(_height, y0 + count + 2)
+                            if _density_lod
+                            else y0 + count
+                        )
+                        render_count = render_y1 - render_y0
+                        render_forward_rows = (
+                            lambda start, requested: forward_rows(start, requested)
+                        )
                         baseline: list[np.ndarray] = []
                         cloud_scan = render_physical_partition(
                             library,
                             _physical_contract,
-                            forward_rows,
-                            y0,
-                            count,
+                            render_forward_rows,
+                            render_y0,
+                            render_count,
                             source_derived_expected=True,
                             enforce_density_envelope=True,
                             exact_sensitometry_endpoints=True,
                             cloud_profile=cloud_profile,
                             physical_baseline_outputs=baseline,
                         )
-                        if (
+                        if _density_lod:
+                            full_result, row_diagnostics = apply_density_lod_residual(
+                                _source[render_y0:render_y1], cloud_scan, baseline[0]
+                            )
+                            crop_start = y0 - render_y0
+                            result = np.ascontiguousarray(
+                                full_result[crop_start : crop_start + count]
+                            )
+                        elif (
                             contract["candidate"].get("residual_projection")
                             == "shared-density-multiplicative"
                         ):
@@ -288,6 +319,16 @@ def evaluate(
                         ao6_encoded, combined_encoded
                     ),
                 }
+                if density_lod:
+                    positive = np.all(source > 1.0e-6, axis=-1)
+                    if np.any(positive):
+                        source_ratios = source[positive, :2] / source[positive, 1:]
+                        output_ratios = physical[positive, :2] / physical[positive, 1:]
+                        row["maximum_rgb_ratio_error"] = float(
+                            np.max(np.abs(output_ratios - source_ratios))
+                        )
+                    else:
+                        row["maximum_rgb_ratio_error"] = 0.0
                 metric_rows.append(row)
                 visual_rows.append(
                     {
@@ -331,6 +372,10 @@ def evaluate(
         "finite": all(row["finite"] for row in metric_rows),
         "no_hard_clipping": not any(row["hard_clipping_used"] for row in metric_rows),
     }
+    if "maximum_rgb_ratio_error" in gates:
+        checks["rgb_ratio_preservation"] = max(
+            row["maximum_rgb_ratio_error"] for row in metric_rows
+        ) <= float(gates["maximum_rgb_ratio_error"])
     sheet_sha = _contact_sheet(visual_rows, contact_sheet_path)
     automatic_pass = all(checks.values())
     stable = {
