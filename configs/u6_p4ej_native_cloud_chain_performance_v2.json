@@ -1,0 +1,30 @@
+{
+  "schema": "neuro_film.u6_p4ej_native_cloud_chain_performance_contract.v2",
+  "experiment_id": "u6.p4ej-native-cloud-chain-performance-v2",
+  "node": "ULT > U6 > U6.P4 > U6.P4EJ",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {
+    "path": "docs/evidence/U6_P4EI_NATIVE_CONDITIONED_CLOUD_ROW_CHAIN_V1_RESULT.json",
+    "sha256": "fab16f4f702457e90d3dda88b9040d739aa3a930b8920b84cdfdeee1cefecf05",
+    "required_decision": "retain_native_conditioned_cloud_row_chain_v1"
+  },
+  "fixture": {
+    "height": 768,
+    "width": 1024,
+    "row_tile_height": 128,
+    "seed": 74611,
+    "warmups": 1,
+    "timed_replays": 5
+  },
+  "gates": {
+    "maximum_native_python_wall_ratio": 0.7,
+    "maximum_native_workspace_ratio_vs_v1": 0.55,
+    "maximum_density_absolute_error": 0.0000005,
+    "maximum_transmittance_absolute_error": 0.00000012,
+    "require_repeat_identity": true
+  },
+  "decision_if_pass": "retain_native_cloud_chain_performance_v2",
+  "decision_if_fail": "close_native_cloud_chain_performance_v2",
+  "claim_ceiling": "Local Windows synthetic throughput and modeled native workspace only; not end-to-end renderer latency, measured emulsion, mobile runtime or product authorization."
+}
