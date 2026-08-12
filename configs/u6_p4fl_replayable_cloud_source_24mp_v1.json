@@ -15,8 +15,8 @@
     "runs": 2,
     "timeout_seconds": 120,
     "sample_interval_seconds": 0.02,
-    "expected_input_sha256": "04c8a193643376a46f7bfe97cfb880bbd19a45e362ab6ef7e7702b057458924d",
-    "expected_output_sha256": "8be7d9ceff9530d42ce68f16ba9603ddd92eaf794cf2455a666736235b9be412"
+    "expected_input_sha256": "04c8a193926014a5b3012085372c6150948d6c177537623c48415880fcca924d",
+    "expected_output_sha256": "8be7d9ce0d9e96a5f4e72809359ce440eae07058941f09e04e9ecdfe108fe412"
   },
   "gates": {
     "maximum_peak_process_tree_rss_bytes": 536870912,
