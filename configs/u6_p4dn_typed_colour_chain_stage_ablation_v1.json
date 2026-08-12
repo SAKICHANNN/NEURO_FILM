@@ -1,0 +1,35 @@
+{
+  "schema": "neuro_film.u6_p4dn_typed_colour_chain_stage_ablation_contract.v1",
+  "experiment_id": "u6.p4dn-typed-colour-chain-stage-ablation-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4DN",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {
+    "path": "docs/evidence/U6_P4DM_CLOUD_SCANNER_COMBINED_ABLATION_RESULT.json",
+    "sha256": "f187283ecbe9334c7ecef0c74524e7f589ac3f560acf1403f5cbaa2596e102f4",
+    "required_decision": "retain_cloud_and_scanner_as_separate_combined_stages"
+  },
+  "fixture": {
+    "height": 513,
+    "width": 769,
+    "seed": 49181,
+    "pixel_pitch_um": 6.35,
+    "row_partition_height": 127,
+    "measurement_margin": 24
+  },
+  "gates": {
+    "minimum_cloud_stage_rms": 0.001,
+    "minimum_scanner_stage_rms": 0.001,
+    "minimum_combined_vs_cloud_only_rms": 0.001,
+    "minimum_combined_vs_scanner_only_rms": 0.001,
+    "minimum_wrong_scanner_residual_ratio": 1.1,
+    "maximum_combined_new_boundary_fraction": 0.0005,
+    "maximum_neutral_chroma_p99": 0.05,
+    "require_interpretation_route_material_identity": true,
+    "require_partition_identity": true,
+    "require_repeat_identity": true
+  },
+  "decision_if_pass": "retain_typed_colour_cloud_scanner_chain_with_separate_stage_identities",
+  "decision_if_fail": "close_or_revise_typed_colour_cloud_scanner_chain",
+  "claim_ceiling": "Generic synthetic typed colour-chain ablation only; not calibrated stock, process, scanner, visual preference or product evidence."
+}
