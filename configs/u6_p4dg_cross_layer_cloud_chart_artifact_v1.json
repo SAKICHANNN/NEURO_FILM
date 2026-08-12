@@ -1,0 +1,13 @@
+{
+  "schema": "neuro_film.u6_p4dg_cross_layer_cloud_chart_artifact_contract.v1",
+  "experiment_id": "u6.p4dg-cross-layer-cloud-chart-artifact-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4DG",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {"path": "docs/evidence/U6_P4DF_CROSS_LAYER_NEUTRAL_NPS_RESULT.json", "sha256": "f8fdf579b7552c85e616f9c75447ee10081f66f6135c09054dbcb4b0f92d2fa9", "required_decision": "retain_shared_cross_layer_cloud_for_neutral_stability"},
+  "fixture": {"height": 768, "width": 1024, "seed": 36181, "neutral_patch_margin": 24, "edge_exclusion": 24},
+  "gates": {"maximum_neutral_chroma_p99": 0.09, "maximum_neutral_patch_mean_chroma": 0.012, "maximum_edge_overshoot": 0.025, "maximum_edge_undershoot": 0.025, "maximum_new_boundary_fraction": 0.0005, "maximum_shared_to_independent_neutral_chroma_p99_ratio": 0.9, "require_repeat_identity": true},
+  "decision_if_pass": "retain_shared_cloud_chart_artifact_candidate",
+  "decision_if_fail": "close_or_revise_shared_cloud_image_domain_candidate",
+  "claim_ceiling": "Synthetic chart artifact evidence only; not human visual preference, real film, stock calibration or product promotion."
+}
