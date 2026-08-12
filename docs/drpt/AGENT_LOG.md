@@ -12159,3 +12159,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   time is 73.0-75.4s, versus the prior roughly 493-495MB windowed runtime.
 - Retain the two-pass row-source ingress and advance unchanged to 100MP tiled
   feasibility; file decoding and Standard/AO6 integration remain separate.
+
+# 2026-08-12 - U6.P4FM passes 100MP replayable source execution
+
+- Two 10000x10000 workers are output-byte-exact at 306.3-308.6s and only
+  252.16-252.22MB peak process-tree RSS; neither source nor forward full frame
+  is retained. Every frozen 512MiB/360s/repeat/identity gate passes.
+- This closes synthetic host scaling for this runtime. The next useful leaf is
+  actual file-row ingress or Standard composition, not another larger fixture.

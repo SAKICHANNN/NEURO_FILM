@@ -170,7 +170,7 @@ def benchmark(contract: Path, output_dir: Path) -> dict:
         "claim_ceiling": frozen["claim_ceiling"],
     }
     return {
-        "schema": "neuro_film.u6_p4fl_replayable_cloud_source_24mp.v1",
+        "schema": frozen["schema"].replace("_contract", ""),
         "automatic_pass": all(checks.values()),
         "stable": stable,
         "stable_evidence_id": hashlib.sha256(

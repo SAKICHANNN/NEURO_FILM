@@ -1,0 +1,29 @@
+{
+  "schema": "neuro_film.u6_p4fm_replayable_cloud_source_100mp.v1",
+  "experiment_id": "u6.p4fm-replayable-cloud-source-100mp-v1",
+  "date_executed": "2026-08-12",
+  "implementation_commit": "17e6da38",
+  "contract_commit": "b6fd9d72",
+  "automatic_pass": true,
+  "stable_evidence_id": "df19d55bf7f038a4f4680adc6641a663c0bcac0b7327fffc3eb732713c533d5a",
+  "contract_sha256": "460f3279f33c7d4998e3d26fdc142d58e83df3098e4634beed2a45c8b0702bab",
+  "input_sha256": "0cdd969fe060f2b19bf4f0b1e1ee3914950dbc2e4e633d0171c837b015dbb09f",
+  "output_sha256": "de35d41c52bf7a918968ced78faf9dea5827c06940f0a888e9ba636d71d05deb",
+  "runs": [
+    {
+      "peak_process_tree_rss_bytes": 252162048,
+      "worker_wall_seconds": 308.61672240000917
+    },
+    {
+      "peak_process_tree_rss_bytes": 252223488,
+      "worker_wall_seconds": 306.3205426999775
+    }
+  ],
+  "peak_repeat_ratio": 1.0002436528434286,
+  "maximum_forward_workspace_values": 8700000,
+  "full_source_frame_retained": false,
+  "full_forward_frame_retained": false,
+  "source_passes": 2,
+  "decision": "retain_replayable_cloud_source_100mp_v1",
+  "claim_ceiling": "Local Windows x64 synthetic-profile 100MP replayable row-source to scan-linear resource evidence; not file decoding, Standard/AO6 integration, calibrated image quality, mobile runtime or product promotion."
+}
