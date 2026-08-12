@@ -1,0 +1,29 @@
+{
+  "schema": "neuro-film.u6-p4hg-quantized-histogram-rank-approximation-evidence.v1",
+  "node": "U6.P4HG",
+  "date": "2026-08-13",
+  "contract_commit": "585ebb65",
+  "implementation_commit": "da45f3e8",
+  "contract_sha256": "14a34edb60f1b90825be44556235e8ad1eef4989783c8f70b8d0921bbd6d6987",
+  "core_sha256": "3cd58b3f803d16a1b634199c543f6676225016342f7dd3f7440b0c19775e42b5",
+  "evaluator_sha256": "53bf9444aa2dbd12be5febc6cde4c879cb93d5774861ac7e1310b85cc899b5fd",
+  "formal_processes": 2,
+  "formal_report_sha256": "b503af7d0734716d0e2903ea7f18755548d205c25af6c276475e0b13250355bf",
+  "reports_byte_exact": true,
+  "stable_evidence_id": "54f9aa213de7d3b29b04d256045189a30df0a41fde369f34fc04a7a6fe10bfbc",
+  "observations": {
+    "rank_bins": 65536,
+    "maximum_output_rmse_vs_exact": 7.120859290595255e-7,
+    "maximum_output_p999_absolute_vs_exact": 4.4405460357666016e-6,
+    "maximum_output_absolute_vs_exact": 0.00007718801498413086,
+    "maximum_mean_absolute_in_target_sigma": 1.8151958003362365e-7,
+    "maximum_variance_relative_error": 6.196556381565799e-6,
+    "maximum_p999_absolute_in_target_sigma": 3.3782094336882063,
+    "all_frozen_numerical_and_physical_gates_pass": true
+  },
+  "automatic_pass": true,
+  "decision": "retain_uint16_histogram_rank_core_for_bounded_multipass_implementation",
+  "scientific_conclusion": "A fixed 65,536-bin histogram-midrank transform closely approximates P4HC's exact global sorts across all 15 synthetic conditions while preserving correlation, topology, density support and marginal moments. This removes the need for an O(N log N) full-frame sort from the next runtime design.",
+  "next_leaf": "Implement receipt-replayed bounded row passes for field min/max, histograms, covariance/whitening, correlated histograms and output emission; compare against this in-memory histogram reference and measure peak live arrays.",
+  "claim_ceiling": "Synthetic numerical approximation of a confirmed generic structure profile; not yet bounded-memory execution, photographic confirmation, measured film/scanner calibration or product runtime."
+}

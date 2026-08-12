@@ -12654,3 +12654,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain as a confirmed generic profile and move to canonical CPU/tiled runtime
   compilation. This remains relative-display evidence, not calibrated film,
   scanner, stock, preference or product promotion.
+
+### 2026-08-13 - U6.P4HG retains fixed histogram ranks
+
+- A fixed `65,536`-bin histogram-midrank transform replaces both global exact
+  sorts in the P4HC copula on the 15-condition synthetic matrix. Two reports
+  are byte exact.
+- Worst output RMSE versus exact is `7.12e-7`, p99.9 absolute error is
+  `4.44e-6`, and maximum absolute error is `7.72e-5`; every original physical
+  and numerical gate also passes.
+- Advance to receipt-replayed bounded row passes. This is a numerical core
+  result only; memory reduction and photographic/runtime parity remain open.
