@@ -145,26 +145,32 @@ def apply_bounded_multipass_histogram_copula(
         raise RuntimeError("bounded histogram copula inputs are degenerate")
     whitening = eigenvectors @ np.diag(1.0 / np.sqrt(eigenvalues)) @ eigenvectors.T
 
-    def correlated_block(y0: int, y1: int) -> np.ndarray:
+    def correlated_block(y0: int, y1: int) -> tuple[np.ndarray, int]:
         normal = np.empty((y1 - y0, width, 3), dtype=np.float64)
         for index, receipt in enumerate(receipts):
             field = _render_block(receipt, y0, y1, width)
             quantized = _quantize(field, raw_min[index], raw_max[index], rank_bins)
             normal[..., index] = norm.ppf(raw_tables[index][quantized])
-        whitened = np.einsum("...j,jk->...k", normal - normal_mean, whitening)
-        return np.einsum("ij,...j->...i", cholesky, whitened)
+        normal -= normal_mean
+        whitened = np.einsum("...j,jk->...k", normal, whitening)
+        block_peak = normal.nbytes + whitened.nbytes
+        del normal
+        correlated = np.einsum("ij,...j->...i", cholesky, whitened)
+        block_peak = max(block_peak, whitened.nbytes + correlated.nbytes)
+        del whitened
+        return correlated, block_peak
 
     correlated_min = np.full(3, np.inf, dtype=np.float64)
     correlated_max = np.full(3, -np.inf, dtype=np.float64)
     for y0, y1 in blocks:
-        correlated = correlated_block(y0, y1)
+        correlated, block_peak = correlated_block(y0, y1)
         correlated_min = np.minimum(correlated_min, np.min(correlated, axis=(0, 1)))
         correlated_max = np.maximum(correlated_max, np.max(correlated, axis=(0, 1)))
-        peak_temporary_bytes = max(peak_temporary_bytes, correlated.nbytes * 3)
+        peak_temporary_bytes = max(peak_temporary_bytes, block_peak)
 
     correlated_counts = np.zeros((3, rank_bins), dtype=np.uint64)
     for y0, y1 in blocks:
-        correlated = correlated_block(y0, y1)
+        correlated, block_peak = correlated_block(y0, y1)
         for index in range(3):
             quantized = _quantize(
                 correlated[..., index],
@@ -175,7 +181,7 @@ def apply_bounded_multipass_histogram_copula(
             correlated_counts[index] += np.bincount(
                 quantized.reshape(-1), minlength=rank_bins
             ).astype(np.uint64)
-        peak_temporary_bytes = max(peak_temporary_bytes, correlated.nbytes * 3)
+        peak_temporary_bytes = max(peak_temporary_bytes, block_peak)
     correlated_tables = np.stack(
         [
             _midpoint_table(correlated_counts[index], sample_count)
@@ -191,8 +197,11 @@ def apply_bounded_multipass_histogram_copula(
     residual_square_sum = 0.0
     for y0, y1 in blocks:
         base_block = base[y0:y1]
-        correlated = correlated_block(y0, y1)
+        correlated, block_peak = correlated_block(y0, y1)
         block_output = np.empty(base_block.shape, dtype=np.float64)
+        peak_temporary_bytes = max(
+            peak_temporary_bytes, block_peak, correlated.nbytes + block_output.nbytes
+        )
         for index, channel in enumerate(("red", "green", "blue")):
             values = base_block[..., index]
             lower, upper = prior.curves[index].domain
@@ -230,12 +239,10 @@ def apply_bounded_multipass_histogram_copula(
             maximum_sigma = max(maximum_sigma, float(np.max(sigma)))
             degenerate_count += int(np.count_nonzero(~active))
         output[y0:y1] = block_output.astype(np.float32)
+        del correlated, block_output
         difference = output[y0:y1].astype(np.float64) - base_block
         residual_square_sum += float(np.sum(difference * difference, dtype=np.float64))
-        peak_temporary_bytes = max(
-            peak_temporary_bytes,
-            correlated.nbytes * 3 + block_output.nbytes + difference.nbytes,
-        )
+        peak_temporary_bytes = max(peak_temporary_bytes, difference.nbytes)
     if not np.all(np.isfinite(output)) or np.any(output < 0.0) or np.any(output > 1.0):
         raise RuntimeError("bounded histogram copula escaped the unit cube")
     return output, {

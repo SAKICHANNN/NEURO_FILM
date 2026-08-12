@@ -10,6 +10,9 @@ from src.eval.layer_gamma_photographic_development import _compact_contact_panel
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u6_p4hi_bounded_paired_scanner_photographic_runtime_v1.json"
+LIFETIME_CONTRACT = (
+    ROOT / "configs/u6_p4hj_lifetime_scheduled_bounded_photographic_runtime_v1.json"
+)
 
 
 def test_p4hi_contract_freezes_bounded_runtime_and_resource_gates() -> None:
@@ -43,3 +46,14 @@ def test_p4hi_contract_parents_are_hash_bound() -> None:
         "p4hh_contract",
     }
     assert all(len(binding["sha256"]) == 64 for binding in payload["parents"].values())
+
+
+def test_p4hj_contract_preserves_p4hi_pixels_and_budget() -> None:
+    payload = load_contract(LIFETIME_CONTRACT)
+    assert payload["candidate"][
+        "require_exact_p4hi_physical_and_combined_output_sha256"
+    ]
+    assert payload["automatic_gates"]["maximum_peak_live_temporary_bytes"] == 2**24
+    assert payload["parents"]["p4hi_report"]["sha256"] == (
+        "ce9b6e5f61aee9aa3d2092ea061b3e616303e2f1e84ccb0980229d0c51166d05"
+    )

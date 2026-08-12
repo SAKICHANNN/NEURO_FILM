@@ -138,6 +138,10 @@ def run(contract_path: Path, output_dir: Path) -> dict[str, Any]:
         ]
         is False,
     }
+    if "p4hi_reference_identity" in scientific["stable"]:
+        checks["p4hi_pixel_identity"] = all(
+            scientific["stable"]["p4hi_reference_identity"].values()
+        )
     stable = {
         "contract_sha256": hashlib.sha256(_json_bytes(contract)).hexdigest(),
         "scientific_result": scientific,

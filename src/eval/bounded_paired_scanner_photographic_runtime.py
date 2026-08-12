@@ -21,13 +21,16 @@ from src.film_physics.manufacturer_characteristic import (
     ManufacturerCharacteristicPrior,
 )
 
-SCHEMA = "neuro-film.u6-p4hi-bounded-paired-scanner-photographic-runtime-contract.v1"
+SCHEMAS = {
+    "neuro-film.u6-p4hi-bounded-paired-scanner-photographic-runtime-contract.v1",
+    "neuro-film.u6-p4hj-lifetime-scheduled-bounded-photographic-runtime-contract.v1",
+}
 
 
 def load_contract(path: Path) -> dict[str, Any]:
     payload = json.loads(path.read_text(encoding="utf-8"))
-    if payload.get("schema") != SCHEMA:
-        raise ValueError("unsupported P4HI contract")
+    if payload.get("schema") not in SCHEMAS:
+        raise ValueError("unsupported P4HI/P4HJ contract")
     return payload
 
 
@@ -53,6 +56,18 @@ def evaluate(
         != parents["p4hh_result"]["required_decision"]
     ):
         raise ValueError("P4HI parent decision drift")
+    p4hi_reference: dict[str, Any] | None = None
+    if "p4hi_evidence" in parents or "p4hi_report" in parents:
+        if "p4hi_evidence" not in parents or "p4hi_report" not in parents:
+            raise ValueError("incomplete P4HJ reference binding")
+        p4hi_evidence = _load_bound(root, parents["p4hi_evidence"])
+        p4hi_report = _load_bound(root, parents["p4hi_report"])
+        if (
+            p4hi_evidence.get("decision")
+            != parents["p4hi_evidence"]["required_decision"]
+        ):
+            raise ValueError("P4HJ P4HI decision drift")
+        p4hi_reference = p4hi_report["stable"]["scientific_result"]
     candidate = contract["candidate"]
     if (
         candidate["rank_bins"] != p4hh_contract["candidate"]["rank_bins"]
@@ -108,6 +123,29 @@ def evaluate(
         ),
         "full_frame_visual_rows_retained": False,
     }
+    if p4hi_reference is not None:
+        reference_rows = {
+            row["id"]: row for row in p4hi_reference["stable"]["rows"]
+        }
+        pixel_identity = len(reference_rows) == len(stable["rows"]) and all(
+            row["id"] in reference_rows
+            and row["physical_output_sha256"]
+            == reference_rows[row["id"]]["physical_output_sha256"]
+            and row["combined_output_sha256"]
+            == reference_rows[row["id"]]["combined_output_sha256"]
+            for row in stable["rows"]
+        )
+        contact_identity = (
+            stable["contact_sheet_sha256"]
+            == p4hi_reference["stable"]["contact_sheet_sha256"]
+        )
+        stable["p4hi_reference_identity"] = {
+            "physical_and_combined_output_sha256_exact": pixel_identity,
+            "contact_sheet_sha256_exact": contact_identity,
+        }
+        stable["automatic_pass"] = bool(
+            stable["automatic_pass"] and pixel_identity and contact_identity
+        )
     stable["claim_ceiling"] = contract["claim_ceiling"]
     result["schema"] = contract["schema"].replace("contract", "result")
     result["stable_evidence_id"] = hashlib.sha256(
