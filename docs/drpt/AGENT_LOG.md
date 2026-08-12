@@ -12445,3 +12445,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   boundary fraction is 0.000158, partitioning is exact and clipping is zero.
 - This passes the frozen uniform-field gate and opens one chart confirmation.
   It does not rescue P4FB itself or establish calibrated grain/film quality.
+
+# 2026-08-12 - U6.P4GM closes direct scan-linear display
+
+- Two chart runs are byte exact and pass every frozen numerical chroma, edge,
+  boundary and partition gate. Visual severe-artifact review nevertheless
+  fails: neutral encoded patch medians shift from source 97--234 to physics
+  217--253, collapsing dark and midtone separation; AO6 cannot restore it.
+- The next leaf uses only P4GL uniform fields to compile a monotone inverse
+  neutral response. P4GM chart pixels are confirmation-only, never fit data.

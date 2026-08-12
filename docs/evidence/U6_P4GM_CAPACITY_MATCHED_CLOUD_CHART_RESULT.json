@@ -1,0 +1,31 @@
+{
+  "schema": "neuro-film.u6-p4gm-capacity-matched-cloud-chart-evidence.v1",
+  "node": "U6.P4GM",
+  "date": "2026-08-12",
+  "implementation_commit": "acec24a6",
+  "formal_report_sha256": "947c73ffed34195ef9a46e5207e921d4ae3b45eaff8ea142c30065af4a51f3d1",
+  "stable_evidence_id": "aa11ee219db04cda0c6a002732e6b97fc29c9e88f862d2f860a963bd8998920b",
+  "exact_replays": 2,
+  "numeric_automatic_pass": true,
+  "visual_severe_artifact_pass": false,
+  "automatic_pass": false,
+  "physics_neutral_patch_encoded_u8_medians": [217, 231, 239, 243, 247, 249, 251, 253],
+  "source_neutral_patch_encoded_u8_medians": [97, 129, 153, 173, 191, 206, 221, 234],
+  "residual_neutral_patch_encoded_u8_medians": [214, 229, 237, 243, 246, 249, 251, 253],
+  "numeric_gates": {
+    "neutral_chroma": true,
+    "patch_chroma": true,
+    "overshoot": true,
+    "undershoot": true,
+    "boundary": true,
+    "residual_neutral_increment": true,
+    "residual_overshoot_increment": true,
+    "residual_undershoot_increment": true,
+    "partition_repeat_exact": true
+  },
+  "failure": "severe global dark-and-midtone separation collapse before and after AO6 residual",
+  "mechanism_diagnosis": "Capacity repair makes the P4DI cloud response observable and monotone, but direct scan-linear display lacks the independently compiled inverse neutral response required to preserve tone.",
+  "decision": "close_capacity_matched_cloud_chart_v1",
+  "next_leaf": "compile a monotone inverse neutral response from P4GL uniform fields without reading chart pixels",
+  "claim_ceiling": "Synthetic chart severe-artifact failure evidence only; not calibrated film, measured stock response, human preference or product promotion."
+}
