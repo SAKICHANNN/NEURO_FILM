@@ -12630,3 +12630,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Continue at the next physical stage: apply a previously retained
   density/process/film-or-scanner spatial response after developed structure,
   rather than strengthening the same-cohort copula.
+
+### 2026-08-13 - U6.P4HE retains paired downstream scanner MTF
+
+- P4HD's exact structure and a no-structure baseline both traverse P4FA's
+  independently frozen neutral `0.7 px` scanner MTF before the unchanged AO6
+  residual and evaluation. No candidate-only smoothing or cohort fit occurs.
+- Two full reports/contact sheets are byte exact. All nine rows pass the
+  `0.004` chroma gate (median `0.00332`, worst `0.00346`) and every other
+  frozen automatic gate passes; no severe contact-sheet failure is confirmed.
+- Retain this exact ordered bundle for source-disjoint confirmation. It is a
+  generic relative-display development result, not measured film/scanner MTF,
+  calibrated stock response or product promotion.
