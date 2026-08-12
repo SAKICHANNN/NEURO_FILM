@@ -129,7 +129,7 @@ def _linear_layer_exposure_fixture(
         linear_hwc,
         PhysicalDomain.LAYER_EXPOSURE,
         PhysicalUnit.RELATIVE_LAYER_EXPOSURE,
-        ("red", "green", "blue"),
+        ("red-sensitive", "green-sensitive", "blue-sensitive"),
     )
 
 

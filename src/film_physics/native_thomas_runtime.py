@@ -21,6 +21,10 @@ from .native_thomas_package import (
     native_thomas_package_sha256,
     validate_native_thomas_package,
 )
+from .native_thomas_spatial_chain import (
+    NativeThomasSpatialChain,
+    apply_native_thomas_spatial_chain,
+)
 
 
 class NativeThomasRuntimeError(RuntimeError):
@@ -125,6 +129,17 @@ class NativeThomasExportRuntime:
             RelativeLayerLogExposure.from_layer_exposure(exposure),
             destination=destination,
         )
+
+    def publish_spatial_layer_exposure(
+        self,
+        exposure: PhysicalDomainArray,
+        spatial_chain: NativeThomasSpatialChain,
+        *,
+        destination: Path,
+    ) -> dict[str, Any]:
+        """Apply retained exposure-domain spatial physics before publication."""
+        spatial = apply_native_thomas_spatial_chain(exposure, spatial_chain)
+        return self.publish_layer_exposure(spatial, destination=destination)
 
 
 __all__ = ["NativeThomasExportRuntime", "NativeThomasRuntimeError"]

@@ -64,8 +64,12 @@ class RelativeLayerLogExposure:
         if not isinstance(exposure, PhysicalDomainArray):
             raise TypeError("exposure must be a PhysicalDomainArray")
         exposure.require(PhysicalDomain.LAYER_EXPOSURE)
-        if exposure.channels != ("red", "green", "blue"):
-            raise ValueError("layer exposure requires red/green/blue order")
+        if exposure.channels != (
+            "red-sensitive",
+            "green-sensitive",
+            "blue-sensitive",
+        ):
+            raise ValueError("layer exposure requires red/green/blue-sensitive order")
         if np.any(exposure.values <= 0.0):
             raise ValueError("layer exposure must be strictly positive before log10")
         height, width, _ = exposure.values.shape

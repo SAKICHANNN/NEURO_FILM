@@ -116,7 +116,7 @@ def test_native_thomas_runtime_accepts_only_typed_linear_layer_exposure(
         linear_hwc,
         PhysicalDomain.LAYER_EXPOSURE,
         PhysicalUnit.RELATIVE_LAYER_EXPOSURE,
-        ("red", "green", "blue"),
+        ("red-sensitive", "green-sensitive", "blue-sensitive"),
     )
     typed = RelativeLayerLogExposure.from_layer_exposure(layer_exposure)
     np.testing.assert_array_equal(typed.values_chw, log_exposure)
@@ -143,7 +143,7 @@ def test_native_thomas_runtime_accepts_only_typed_linear_layer_exposure(
         np.zeros((2, 2, 3), dtype=np.float32),
         PhysicalDomain.LAYER_EXPOSURE,
         PhysicalUnit.RELATIVE_LAYER_EXPOSURE,
-        ("red", "green", "blue"),
+        ("red-sensitive", "green-sensitive", "blue-sensitive"),
     )
     try:
         runtime.publish_layer_exposure(zero, destination=tmp_path / "zero.png")
