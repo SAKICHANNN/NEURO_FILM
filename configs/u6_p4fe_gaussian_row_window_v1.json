@@ -1,0 +1,31 @@
+{
+  "schema": "neuro_film.u6_p4fe_gaussian_row_window_contract.v1",
+  "experiment_id": "u6.p4fe-gaussian-row-window-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4FE",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {
+    "path": "docs/evidence/U6_P4FD_END_TO_END_CLOUD_SCAN_RUNTIME_V1_RESULT.json",
+    "sha256": "a8f4d71a2aaa6631be2d0d7c02cae9f8ebb2ca5bbae5f3c3c92e15b281ae980a",
+    "required_decision": "retain_end_to_end_cloud_scan_runtime_v1"
+  },
+  "fixture": {
+    "height": 73,
+    "width": 47,
+    "partitions": [[0, 11], [11, 37], [37, 73]],
+    "alternate_partitions": [[0, 1], [1, 32], [32, 33], [33, 72], [72, 73]],
+    "sigma_pixels_rgb": [1.1, 0.9, 0.7],
+    "truncate": 3.0
+  },
+  "gates": {
+    "require_full_partition_bit_identity": true,
+    "require_alternate_partition_bit_identity": true,
+    "require_msvc_llvm_bit_identity": true,
+    "require_repeat_bit_identity": true,
+    "require_insufficient_halo_output_unchanged": true,
+    "require_workspace_reduction_vs_full_frame": true
+  },
+  "decision_if_pass": "retain_gaussian_row_window_v1",
+  "decision_if_fail": "close_gaussian_row_window_v1",
+  "claim_ceiling": "Local Windows x64 synthetic exact Gaussian row-window arithmetic and modeled workspace reduction; not yet wired into P4FD, measured process RSS, calibrated optics, mobile runtime or product promotion."
+}
