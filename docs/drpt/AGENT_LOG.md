@@ -12789,3 +12789,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Replace the fixed 80-step per-sample inverse with an analytic initial estimate
   plus safeguarded Newton refinement, reprove the unchanged numerical grid, then
   rerun this photographic gate.
+
+### 2026-08-13 - U6.P4HS retains fast hybrid native Gamma inversion
+
+- The frozen direct/Newton/asymptotic implementation passes all accuracy,
+  monotonicity, repeat, cross-compiler and failure-atomic gates on 20,046 points.
+- The representative 131,793-sample kernel completes in 0.113-0.163 seconds;
+  the two formal runs have exact stable evidence ID `97af3115...f0aed`.
+- Rerun the unchanged photographic/scanner hypothesis with this exact kernel.
+  No photographic, calibration, device-runtime or product claim opens yet.
