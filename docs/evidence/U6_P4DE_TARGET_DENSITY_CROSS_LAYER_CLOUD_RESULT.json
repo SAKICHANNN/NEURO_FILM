@@ -1,0 +1,16 @@
+{
+  "schema": "neuro_film.u6_p4de_target_density_cross_layer_cloud_evidence.v1",
+  "node": "U6.P4DE",
+  "date": "2026-08-12",
+  "implementation_commit": "fdb2cd7b",
+  "contract_sha256": "8f77200b91856987e473f8b33bf79c8d03bd03cd9dbea5859bab04fc06b5a36f",
+  "formal_report_sha256": "f1e9c57ecaf832917f2784904134739ec34464bf154e4ddab12480317faec316",
+  "stable_evidence_id": "34f88a83656a548c27ec256f6431e2579635fafcb09706e03dc3b89069384f3b",
+  "exact_replays": 2,
+  "automatic_pass": true,
+  "maximum_interior_mean_relative_error": 0.0007079214243546619,
+  "interior_local_mean_rmse": 0.0010081835788078052,
+  "maximum_transmittance_identity_error": 0.0,
+  "decision": "retain_typed_target_density_cross_layer_cloud_reference",
+  "claim_ceiling": "Synthetic target-developed-density cloud evidence only; not sensitometric calibration, stock response or product evidence."
+}

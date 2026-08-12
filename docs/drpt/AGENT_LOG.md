@@ -11919,3 +11919,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   worst mean/variance/correlation errors of 0.225%, 2.20% and 0.0178.
 - Full and 127-row density/transmittance are bit-exact. Next map typed target
   developed density to these rates and verify density recovery.
+
+# 2026-08-12 - U6.P4DE maps typed density to cloud structure
+
+- A smooth spatial target developed-density field recovers with 0.0708% worst
+  interior mean error and 0.00101 local-mean RMSE; `T=exp(-D)` and 127-row
+  partitioning are exact, and targets beyond the compiled domain are rejected.
+- Next compare perceptually relevant neutral/NPS behavior against independent
+  dye-layer and display-RGB noise controls.
