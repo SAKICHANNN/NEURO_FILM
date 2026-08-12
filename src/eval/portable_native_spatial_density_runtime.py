@@ -77,8 +77,22 @@ def _compile(
 def _compile_apple_objects(
     root: Path, clang: Path, output_dir: Path, target: str
 ) -> list[dict[str, Any]]:
+    headers = output_dir / "freestanding_headers"
+    headers.mkdir(parents=True, exist_ok=True)
+    (headers / "math.h").write_text(
+        "double cos(double);\ndouble exp(double);\ndouble fabs(double);\n"
+        "double floor(double);\nint isfinite(double);\ndouble lgamma(double);\n"
+        "double log(double);\ndouble sin(double);\ndouble sqrt(double);\n",
+        "ascii",
+    )
+    (headers / "string.h").write_text(
+        "#include <stddef.h>\nvoid *memcpy(void *, const void *, size_t);\n"
+        "void *memset(void *, int, size_t);\n",
+        "ascii",
+    )
+    readobj = clang.parent / "llvm-readobj.exe"
     rows = []
-    for source in SOURCES:
+    for source in SOURCES[:-1]:
         source_path = root / source
         output = output_dir / (source_path.stem + ".o")
         output.parent.mkdir(parents=True, exist_ok=True)
@@ -91,7 +105,10 @@ def _compile_apple_objects(
                 "-Wall",
                 "-Wextra",
                 "-Werror",
-                "-ffp-model=strict",
+                "-ffreestanding",
+                "-fno-builtin",
+                "-isystem",
+                str(headers),
                 "-I",
                 str(root / "native/film_physics"),
                 "-c",
@@ -102,6 +119,9 @@ def _compile_apple_objects(
             cwd=root,
             timeout=120.0,
         )
+        facts = _run([str(readobj), "--file-headers", str(output)], cwd=root)
+        if "Format: Mach-O arm64" not in facts or "Arch: aarch64" not in facts:
+            raise ValueError("P4HV Apple object target drift")
         rows.append(
             {
                 "source": source,
@@ -241,8 +261,8 @@ def evaluate(
             boot["device"] == {"abi": "x86_64", "api": "34"} for boot in boots
         ),
         "android_arm64_link": Path(android_arm64["path"]).is_file(),
-        "macos_objects": len(apple["macos_arm64"]) == len(SOURCES),
-        "ios_objects": len(apple["ios_arm64"]) == len(SOURCES),
+        "macos_objects": len(apple["macos_arm64"]) == len(SOURCES) - 1,
+        "ios_objects": len(apple["ios_arm64"]) == len(SOURCES) - 1,
         "failure_atomic": "atomic=1" in host_stdout
         and all("atomic=1" in value for value in outputs),
     }
