@@ -1,0 +1,31 @@
+{
+  "schema": "neuro_film.u6_p4fd_end_to_end_cloud_scan_runtime_contract.v1",
+  "experiment_id": "u6.p4fd-end-to-end-cloud-scan-runtime-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4FD",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {
+    "path": "docs/evidence/U6_P4FC_OPT_IN_CLOUD_SCAN_RUNTIME_V1_RESULT.json",
+    "sha256": "d48c1e5fb27c797fb28d32e12c6aef49ae2df39c147ff66be996c504a4a4956e",
+    "required_decision": "retain_opt_in_cloud_scan_runtime_v1"
+  },
+  "fixture": {
+    "height": 73,
+    "width": 47,
+    "tile_rows": 11,
+    "alternate_tile_rows": 32,
+    "cloud_halo": 9,
+    "seed": 78277
+  },
+  "gates": {
+    "require_end_to_end_full_reference_bit_identity": true,
+    "require_tile_policy_bit_identity": true,
+    "require_repeat_bit_identity": true,
+    "require_input_immutable": true,
+    "require_sink_failure_propagation": true,
+    "require_scan_closed_unit_domain": true
+  },
+  "decision_if_pass": "retain_end_to_end_cloud_scan_runtime_v1",
+  "decision_if_fail": "close_end_to_end_cloud_scan_runtime_v1",
+  "claim_ceiling": "Opt-in local Windows x64 synthetic-profile end-to-end scene-linear through forward scatter, stochastic developed density, post-cloud spatial response and scan-linear row runtime; not frozen Standard package/AO6 display, production memory closure, calibrated film/scanner response, mobile runtime or product promotion."
+}
