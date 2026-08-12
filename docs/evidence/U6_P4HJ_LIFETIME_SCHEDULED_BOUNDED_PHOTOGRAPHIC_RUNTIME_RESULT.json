@@ -1,0 +1,33 @@
+{
+  "schema": "neuro-film.u6-p4hj-lifetime-scheduled-bounded-photographic-runtime-evidence.v1",
+  "node": "U6.P4HJ",
+  "date": "2026-08-13",
+  "contract_commit": "966514e4",
+  "implementation_commit": "16d8486a",
+  "contract_file_sha256": "c76b6b32b2c68a8017cdb5083695588ff85f96db67b59418fd94b38db3edb5f4",
+  "core_sha256": "ec47d7ecd9984dfaa4993cd0a8536226b8cd8171052e544ad71d55d03abb1b46",
+  "evaluator_sha256": "43c190a077c30b5849fe3cbc0c25fe50e007d642c024709d6c401c9e8b0a179b",
+  "runner_sha256": "f4b498291fa860f1db424dab3d97bb82a8bfccc402bf51da916177853719425c",
+  "formal_report_sha256": "7d72024dec873d7d238e0eb43c4f19873e34a6c02e98d214072ad6c0f3582be7",
+  "stable_evidence_id": "192940e44b3ac0bb4192556222d398d79101ad13f56af33f8a9f9d618006eec0",
+  "scientific_result_id": "1948a68204eea7f59c4fb6446b349db7bc42c020fa53ef98d7262ec74b13d938",
+  "contact_sheet_sha256": "3d9cae0ca080cbb9bb89d739a26d54a8e72df87ac5a927b8e0991702cdd299aa",
+  "observations": {
+    "rows": 9,
+    "all_p4he_photographic_gates_pass": true,
+    "p4hi_physical_and_combined_output_sha256_exact": true,
+    "p4hi_contact_sheet_sha256_exact": true,
+    "scientific_results_exact": true,
+    "peak_process_tree_rss_bytes": [644972544, 636964864],
+    "worker_wall_seconds": [154.4084620999929, 252.21122930001002],
+    "maximum_peak_live_temporary_bytes": 9830400,
+    "temporary_budget_bytes": 16777216,
+    "full_frame_intermediate_count_excluding_input_output": 0,
+    "full_frame_visual_rows_retained": false
+  },
+  "automatic_pass": true,
+  "decision": "retain_lifetime_scheduled_bounded_photographic_runtime_for_profile_compilation",
+  "scientific_conclusion": "Explicitly releasing centered-normal and whitened row arrays before later phases preserves every P4HI physical and combined output hash while reducing modeled live row storage from 24,576,000 to 9,830,400 bytes. All photographic, repeat, RSS, wall and 16 MiB temporary gates pass.",
+  "next_leaf": "Compile the confirmed generic profile, correlation, histogram and paired scanner parameters into one canonical hash-bound bundle and prove reconstruction of the exact P4HJ runtime before any native or product integration.",
+  "claim_ceiling": "Byte-exact lifetime-scheduled Windows Python runtime on the consumed nine-camera relative-display cohort; not native/mobile runtime, calibrated film/scanner response, preference or product promotion."
+}

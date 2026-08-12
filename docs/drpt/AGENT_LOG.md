@@ -12687,3 +12687,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Next freeze a byte-exact lifetime schedule that accumulates residual statistics
   without retaining the extra difference array; all P4HI pixels and gates remain
   fixed. Native/mobile, calibration and product integration remain closed.
+
+### 2026-08-13 - U6.P4HJ retains byte-exact bounded photographic runtime
+
+- Explicit normal/whitened/correlated/output/residual lifetimes preserve every
+  P4HI physical and combined output hash plus the exact contact sheet. All nine
+  paired-scanner photographic gates pass in both fresh workers.
+- Maximum modeled live row workspace falls from `24,576,000` to `9,830,400`
+  bytes under the unchanged 16 MiB gate. Process-tree RSS is
+  `644,972,544/636,964,864` bytes and wall time `154.41/252.21s`.
+- Retain for canonical generic-profile compilation. Do not repeat the already
+  confirmed 18-photo science cohort; native/mobile, calibration and product
+  integration remain separate gates.
