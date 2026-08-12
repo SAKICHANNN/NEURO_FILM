@@ -25,6 +25,38 @@ def _canonical_sha256(value: Any) -> str:
     ).hexdigest()
 
 
+def analyze_profile_bound_neutral_response(
+    levels: np.ndarray, response_rgb: np.ndarray
+) -> dict[str, Any]:
+    """Report response observability without repairing or fitting it."""
+
+    source = np.asarray(levels, dtype=np.float64)
+    response = np.asarray(response_rgb, dtype=np.float64)
+    if (
+        source.ndim != 1
+        or source.size < 3
+        or response.shape != (source.size, 3)
+        or not np.all(np.isfinite(source))
+        or not np.all(np.isfinite(response))
+        or source[0] != 0.0
+        or source[-1] != 1.0
+        or np.any(np.diff(source) <= 0.0)
+    ):
+        raise ValueError("invalid profile-bound neutral response")
+    channels = []
+    for channel in range(3):
+        differences = np.diff(response[:, channel])
+        channels.append(
+            {
+                "strictly_increasing": bool(np.all(differences > 0.0)),
+                "response_span": float(response[-1, channel] - response[0, channel]),
+                "minimum_response_step": float(np.min(differences)),
+                "nonpositive_step_count": int(np.count_nonzero(differences <= 0.0)),
+            }
+        )
+    return {"channels": channels}
+
+
 def compile_profile_bound_neutral_gauge(
     levels: np.ndarray,
     response_rgb: np.ndarray,
@@ -49,12 +81,14 @@ def compile_profile_bound_neutral_gauge(
     ):
         raise ValueError("invalid profile-bound neutral response")
 
+    analysis = analyze_profile_bound_neutral_response(source, response)
     splines: list[dict[str, Any]] = []
-    channel_metrics: list[dict[str, float | bool]] = []
+    channel_metrics: list[dict[str, float | bool | int]] = []
     for channel in range(3):
         values = response[:, channel]
         differences = np.diff(values)
-        strictly_increasing = bool(np.all(differences > 0.0))
+        channel_analysis = analysis["channels"][channel]
+        strictly_increasing = bool(channel_analysis["strictly_increasing"])
         x = np.concatenate(([0.0], values[1:-1], [1.0]))
         y = source.copy()
         full_strict = bool(np.all(np.diff(x) > 0.0))
@@ -64,12 +98,7 @@ def compile_profile_bound_neutral_gauge(
         inverse_secants = np.diff(y) / np.diff(x)
         splines.append(spline.to_dict())
         channel_metrics.append(
-            {
-                "strictly_increasing": strictly_increasing,
-                "response_span": float(values[-1] - values[0]),
-                "minimum_response_step": float(np.min(differences)),
-                "maximum_inverse_secant_slope": float(np.max(inverse_secants)),
-            }
+            {**channel_analysis, "maximum_inverse_secant_slope": float(np.max(inverse_secants))}
         )
     payload = {
         "schema": GAUGE_PAYLOAD_SCHEMA,
@@ -113,6 +142,7 @@ def apply_profile_bound_neutral_gauge(
 
 
 __all__ = [
+    "analyze_profile_bound_neutral_response",
     "apply_profile_bound_neutral_gauge",
     "compile_profile_bound_neutral_gauge",
 ]

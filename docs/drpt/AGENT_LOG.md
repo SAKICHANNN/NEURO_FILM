@@ -12369,3 +12369,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - A Latin-balanced layout now places every level once in every row and column;
   confirmation uses a separate 256-level Latin midpoint grid. Levels, profile,
   fit family, thresholds and stop rules are unchanged.
+
+# 2026-08-12 - U6.P4GI closes inverse-gauge rescue
+
+- Two final formal processes are byte exact. After Latin spatial balancing,
+  neutral source 0-to-1 changes the three scan channels by only 0.000198-
+  0.000318, with 73/73/78 nonpositive steps across 256 intervals.
+- The response is neither observable nor monotone enough for a safe inverse;
+  no spline is fit and confirmation remains unread. The root cause moves
+  upstream to scene-exposure/developed-density coupling in the P4FB provider.

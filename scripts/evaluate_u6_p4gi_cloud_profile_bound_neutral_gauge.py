@@ -22,6 +22,7 @@ from src.color_engine.srgb_transfer import linear_srgb_to_encoded
 from src.eval.native_cloud_spatial_partition import _build, _configure, render_physical_partition
 from src.film_physics.native_cloud_scan_runtime_v2 import WindowedNativeCloudScanRuntime
 from src.film_physics.profile_bound_neutral_gauge import (
+    analyze_profile_bound_neutral_response,
     apply_profile_bound_neutral_gauge,
     compile_profile_bound_neutral_gauge,
 )
@@ -131,7 +132,9 @@ def evaluate(contract_path: Path) -> dict[str, Any]:
         response = _group_medians(build_rows[0], build_labels, levels.size)
         compile_error = None
         payload = None
-        compile_metrics = None
+        compile_metrics = analyze_profile_bound_neutral_response(
+            levels.astype(np.float64), response
+        )
         try:
             payload, compile_metrics = compile_profile_bound_neutral_gauge(
                 levels.astype(np.float64),
@@ -187,14 +190,14 @@ def evaluate(contract_path: Path) -> dict[str, Any]:
             }
 
     gates = contract["gates"]
-    channels = [] if compile_metrics is None else compile_metrics["channels"]
+    channels = compile_metrics["channels"]
     checks = {
         "build_response_strict": bool(channels)
         and all(bool(row["strictly_increasing"]) for row in channels),
         "response_span": bool(channels)
         and min(float(row["response_span"]) for row in channels)
         >= gates["minimum_channel_response_span"],
-        "inverse_slope": bool(channels)
+        "inverse_slope": payload is not None
         and max(float(row["maximum_inverse_secant_slope"]) for row in channels)
         <= gates["maximum_inverse_secant_slope"],
         "confirmation_error": confirmation_metrics is not None

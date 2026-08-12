@@ -5,6 +5,7 @@ import numpy as np
 import pytest
 
 from src.film_physics.profile_bound_neutral_gauge import (
+    analyze_profile_bound_neutral_response,
     apply_profile_bound_neutral_gauge,
     compile_profile_bound_neutral_gauge,
 )
@@ -45,9 +46,27 @@ def test_p4gi_compiler_does_not_repair_nonmonotone_response():
     levels = np.linspace(0.0, 1.0, 5)
     response = np.repeat(levels[:, None], 3, axis=1)
     response[3, 1] = response[2, 1] - 0.01
+    analysis = analyze_profile_bound_neutral_response(levels, response)
+    assert analysis["channels"][1]["nonpositive_step_count"] == 1
     with pytest.raises(ValueError, match="not strictly increasing"):
         compile_profile_bound_neutral_gauge(
             levels,
             response,
             base_component_sha256="b" * 64,
         )
+
+
+def test_p4gi_formal_result_closes_before_inverse_fit():
+    result = json.loads(
+        (ROOT / "docs/evidence/U6_P4GI_CLOUD_PROFILE_BOUND_NEUTRAL_GAUGE_RESULT.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    assert result["automatic_pass"] is False
+    assert result["stable"]["compiled_gauge"] is None
+    assert result["stable"]["confirmation_metrics"] is None
+    assert result["stable"]["decision"] == "close_cloud_profile_bound_neutral_gauge_v1"
+    channels = result["stable"]["compile_metrics"]["channels"]
+    assert max(row["response_span"] for row in channels) < 0.00032
+    assert min(row["nonpositive_step_count"] for row in channels) >= 73
+    assert result["stable_evidence_id"] == "0936371e1b8cfd0082470e3a436fd3c59cff531ea14048bbceb5e01251543733"
