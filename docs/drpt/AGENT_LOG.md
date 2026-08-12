@@ -12721,3 +12721,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   output. Receipt ID is `17b43ec9...17d2`.
 - Use this as the native oracle. Media integration, calibrated identity and
   product promotion remain closed.
+
+### 2026-08-13 - U6.P4HM closes uncalibrated native copula transport
+
+- The freestanding C11 core is byte-exact across MSVC and LLVM-MinGW and exact
+  against its Python implementation. Repeatability, finite output, failure
+  atomicity, uniform means and the 8 MiB workspace gate pass.
+- The frozen finite-sample target-correlation gate fails: maximum error is
+  `0.00379482` versus the preregistered `0.003` limit. Do not relax the gate or
+  tune this fixture.
+- Retain P4HL as the CPU reference. The next mechanism moves source-independent
+  finite-sample calibration into bundle compilation and tests it on a disjoint
+  confirmation fixture; native density shaping and product integration remain
+  closed.

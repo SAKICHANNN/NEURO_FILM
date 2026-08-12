@@ -1,0 +1,32 @@
+{
+  "schema": "neuro-film.u6-p4hm-native-histogram-copula-transport-evidence.v1",
+  "node": "U6.P4HM",
+  "date": "2026-08-13",
+  "contract_commit": "9df14ead",
+  "implementation_commit": "f4128206",
+  "contract_file_sha256": "057c7c359a1c7b91fc9cf82bad194626cebfb434469d037c87fb06cf93766639",
+  "native_header_sha256": "b5783659e084527d195681493dd1889be5ce9d95510a29a55152da82420dd64b",
+  "native_source_sha256": "eb78c8c67ad69cf66057b7fae5786333b311c64da0bebe617922f24aa473de0c",
+  "python_wrapper_sha256": "b8234d3b160557d338416d13b415e03d0297c81b083846c5d31b078b291a2ac7",
+  "evaluator_sha256": "0a2d5cba7e2a6a8a54b366211faea756dbd992b5c65655054c581459392202c8",
+  "runner_sha256": "c0364b9f725af55e2cc64048478423781e063aa822ac0f37b7c6638a1c8cc9aa",
+  "formal_report_sha256": "f5401d822d079237c973c9bf9c7adb563fd328c213886e90dbf53731597720c9",
+  "stable_evidence_id": "85074b94916a4c1889d88e87174bd114f18dee626306fc930f98cc19adf7bf11",
+  "profile_bundle_sha256": "8d20ce2874036befe78657b059ffafeb24e43d2e5bc1000512092a753e1e75df",
+  "observations": {
+    "msvc_llvm_output_byte_exact": true,
+    "native_python_same_algorithm_exact": true,
+    "repeat_exact": true,
+    "finite_unit_output": true,
+    "failure_atomic": true,
+    "workspace_bytes": 5207272,
+    "maximum_uniform_mean_error": 2.130717824400108e-11,
+    "maximum_expected_uniform_correlation_error": 0.003794818211077078,
+    "frozen_maximum_expected_uniform_correlation_error": 0.003
+  },
+  "automatic_pass": false,
+  "decision": "retain_python_bounded_consumer_without_native_transport",
+  "scientific_conclusion": "The freestanding C11 rank-normal-copula transport is deterministic, cross-compiler exact, identical to its Python implementation, bounded-memory and failure-atomic. It nevertheless misses the frozen finite-sample target-correlation gate by 0.0007948182, so this exact uncalibrated Cholesky mechanism is closed without relaxing the threshold.",
+  "next_leaf": "Move finite-sample correlation calibration to bundle compilation: solve a deterministic source-independent latent correlation matrix against the frozen synthetic calibration cohort, then evaluate the unchanged native transport on a disjoint confirmation fixture.",
+  "claim_ceiling": "Negative portable native statistical-transport result on synthetic fields only; not density shaping, photographic parity, calibrated film response, media integration or product promotion."
+}
