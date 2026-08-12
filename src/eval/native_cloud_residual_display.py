@@ -30,4 +30,31 @@ def render_cloud_with_ao6_residual(standard:NativeStandardRuntime,cloud:Windowed
  if consumed!=height:raise NativeStandardRuntimeError('cloud residual output incomplete')
  return {'input_sha256':expected_input_sha256,'physical_output_sha256':receipt['output_sha256'],'output_sha256':digest.hexdigest(),'shape':[height,width,3],'source_passes':receipt['source_passes'],'residual_linear_rms':float(np.sqrt(residual_energy/values)),'full_source_frame_retained':False,'physical_order':['scene-linear-relative-exposure','forward-scatter','sensitometry','developed-dye-cloud-density','bounded-development-adjacency','dye-diffusion','density-interpretation','scanner-mtf','scan-linear','neutral-gauge','ao6-linear-residual-only','srgb-oetf'],'cloud_receipt':receipt,'standard_package_sha256':standard.package_sha256,'standard_artifact_sha256':standard.artifact_sha256,'production_default_changed':False,'claim_ceiling':'synthetic-cloud-residual-only-not-calibrated-not-promoted'}
 
-__all__=['render_cloud_with_ao6_residual']
+def render_scan_linear_cloud_with_ao6_residual(
+    standard: NativeStandardRuntime,
+    cloud: WindowedNativeCloudScanRuntime,
+    *,
+    height: int,
+    width: int,
+    source_rows: SourceRows,
+    expected_input_sha256: str,
+    output_sink: OutputSink,
+) -> dict:
+    """Apply AO6 residual directly to a profile-interpreted scan-linear cloud."""
+
+    if height<=0 or width<=0 or not callable(source_rows) or not callable(output_sink) or len(expected_input_sha256)!=64:
+        raise ValueError('invalid scan-linear cloud residual source')
+    digest=hashlib.sha256();consumed=0;residual_energy=0.;values=0
+    def consume(y0:int,y1:int,scan:np.ndarray)->None:
+        nonlocal consumed,residual_energy,values
+        if y0!=consumed:raise NativeStandardRuntimeError('scan-linear cloud residual output order drift')
+        residual=_apply_residual(standard,scan);delta=residual.astype(np.float64)-scan.astype(np.float64);residual_energy+=float(np.sum(delta*delta));values+=delta.size
+        encoded=np.ascontiguousarray(linear_srgb_to_encoded(residual.astype(np.float64)),np.float32)
+        if not np.all(np.isfinite(encoded)) or np.any(encoded<0) or np.any(encoded>1):raise NativeStandardRuntimeError('scan-linear cloud residual output invalid')
+        encoded.flags.writeable=False;output_sink(y0,y1,encoded);digest.update(memoryview(encoded).cast('B'));consumed=y1
+    receipt=cloud.render_rows_to_sink(height=height,width=width,source_rows=source_rows,expected_input_sha256=expected_input_sha256,output_sink=consume)
+    if consumed!=height:raise NativeStandardRuntimeError('scan-linear cloud residual output incomplete')
+    return {'input_sha256':expected_input_sha256,'physical_output_sha256':receipt['output_sha256'],'output_sha256':digest.hexdigest(),'shape':[height,width,3],'source_passes':receipt['source_passes'],'residual_linear_rms':float(np.sqrt(residual_energy/values)),'full_source_frame_retained':False,'physical_order':['scene-linear-relative-exposure','forward-scatter','sensitometry','developed-dye-cloud-density','bounded-development-adjacency','dye-diffusion','density-interpretation','scanner-mtf','scan-linear','ao6-linear-residual-only','srgb-oetf'],'cloud_receipt':receipt,'standard_package_sha256':standard.package_sha256,'standard_artifact_sha256':standard.artifact_sha256,'production_default_changed':False,'claim_ceiling':'synthetic-capacity-matched-cloud-residual-only-not-calibrated-not-promoted'}
+
+
+__all__=['render_cloud_with_ao6_residual','render_scan_linear_cloud_with_ao6_residual']
