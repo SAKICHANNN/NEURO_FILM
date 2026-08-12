@@ -1,0 +1,15 @@
+{
+  "schema": "neuro_film.u6_p8df_cross_layer_cloud_profile_compiler_evidence.v1",
+  "node": "U6.P8DF",
+  "date": "2026-08-12",
+  "implementation_commit": "c7a28a98",
+  "contract_sha256": "151c957749105262da020e19df0a6e4088d36221c5410f860de40d44965ebf89",
+  "formal_report_sha256": "e7bc7d98b5057596254f170dcc4eb33cb966393ac5240fd30accfc2778963b49",
+  "stable_evidence_id": "9f461f172b75b206157936325deac204dbdda8bbda720dc358e255627971e7d8",
+  "exact_replays": 2,
+  "automatic_pass": true,
+  "profile_identity": "2993d09a7876f4188670aa123f26ce908054bdaa5d704e40646091edba0a06bf",
+  "profile_payload_sha256": "83cf1dce834a9ffd93bc38aa6a700987c69cbd12a0869969cd939ec91adfd8ac",
+  "decision": "retain_versioned_cross_layer_cloud_reference_profile",
+  "claim_ceiling": "Versioned synthetic research-profile compiler only; not stock calibration, production rendering authorization or product evidence."
+}

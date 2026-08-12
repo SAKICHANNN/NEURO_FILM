@@ -11889,3 +11889,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   shared correlation `0.2022`; variance decreases monotonically with aperture.
 - Retain as a synthetic multi-scale reference. Next compile the fixed primitive
   into a hash/versioned offline profile payload without enabling production.
+
+# 2026-08-12 - U6.P8DF compiles the cloud reference profile
+
+- The fixed P4CX/P4DA/P4DB primitive compiles to profile identity
+  `2993d09a...06bf`; two reports are byte-identical and independently
+  recompute correlation and aperture-kernel identities.
+- The payload remains synthetic, research-only and product-disabled. Next
+  implement a bounded row-stream reference executor against this exact profile.
