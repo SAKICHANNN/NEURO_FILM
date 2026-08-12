@@ -12010,3 +12010,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Do not tune the cohort or gate. Audit the optical-density conversion first:
   the new cloud runtime uses exp(-D), while the established physical chain
   defines optical-density transmittance as 10^-D.
+
+# 2026-08-12 - U6.P4DP repairs optical-density cloud semantics in v2
+
+- A separately versioned runtime uses the exact discrete-kernel Poisson PGF to
+  map target log10 optical density to occurrence rate, then emits 10^-D for
+  every realized cloud sample. Legacy v1 identities remain exact.
+- Analytic mean error is zero, observed flat-field error is 0.000386 and the
+  0.288% capacity correction still covers U2.2. Re-evaluate spatial ordering
+  only in a fresh v2-bound leaf; P4DO remains failed.

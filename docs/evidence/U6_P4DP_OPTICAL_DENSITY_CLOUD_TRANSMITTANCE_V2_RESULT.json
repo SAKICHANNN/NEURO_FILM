@@ -1,0 +1,21 @@
+{
+  "schema": "neuro_film.u6_p4dp_optical_density_cloud_transmittance_evidence.v2",
+  "node": "U6.P4DP",
+  "date": "2026-08-12",
+  "implementation_commit": "9e6b1b32",
+  "contract_sha256": "d37e19d515f3bb281a4cfe8a56e23f63d04396bc7e4d2ea718bb4246a0c2d403",
+  "formal_report_sha256": "1449300c1683f13780471752a71a3bbe7396d866b89aca551126f6e38f8b0d75",
+  "stable_evidence_id": "68e3e7dd500e9076eb8e69eda6c022605dc98ec222e3301ff579eacade7e0595",
+  "exact_replays": 2,
+  "automatic_pass": true,
+  "optical_density_capacity_cmy": [
+    2.078127501285782,
+    2.8097335567719792,
+    2.8627227567561473
+  ],
+  "maximum_capacity_loss_fraction": 0.0028760128476198413,
+  "maximum_monte_carlo_mean_transmittance_error": 0.0003861446715500705,
+  "legacy_v1_identity_unchanged": true,
+  "decision": "retain_optical_density_cross_layer_cloud_runtime_v2",
+  "claim_ceiling": "Synthetic optical-density/transmittance semantics only; not measured emulsion structure, stock calibration, visual preference or product evidence."
+}
