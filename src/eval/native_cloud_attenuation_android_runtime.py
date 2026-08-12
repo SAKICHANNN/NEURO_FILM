@@ -3,10 +3,12 @@
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 from pathlib import Path
 
 import numpy as np
+import psutil
 
 from src.eval.native_thomas_rgb16_png_android_runtime import (
     _android_env,
@@ -14,6 +16,31 @@ from src.eval.native_thomas_rgb16_png_android_runtime import (
     _run,
     _wait_for_boot,
 )
+
+
+def _cleanup_owned_launchers(emulator_exe: Path, avd_name: str, port: int) -> bool:
+    expected = os.path.normcase(str(emulator_exe.resolve()))
+    matches = []
+    for process in psutil.process_iter(["exe", "cmdline"]):
+        try:
+            executable = process.info["exe"]
+            command = " ".join(process.info["cmdline"] or [])
+            if (
+                executable
+                and os.path.normcase(str(Path(executable).resolve())) == expected
+                and avd_name in command
+                and str(port) in command
+            ):
+                matches.append(process)
+        except (OSError, psutil.Error):
+            continue
+    for process in matches:
+        process.terminate()
+    _, alive = psutil.wait_procs(matches, timeout=5.0)
+    for process in alive:
+        process.kill()
+    psutil.wait_procs(alive, timeout=5.0)
+    return not any(process.is_running() for process in matches)
 
 
 def build(
@@ -195,6 +222,10 @@ def evaluate(
             _finish_owned_emulator_processes(
                 emulator_exe, contract["runtime"]["avd_name"], port
             )
+            if not _cleanup_owned_launchers(
+                emulator_exe, contract["runtime"]["avd_name"], port
+            ):
+                raise RuntimeError("owned emulator launcher survived cleanup")
     all_rows = [row for boot in boots for row in boot["runs"]]
     host_d = np.fromfile(host_density, dtype="<f4")
     host_t = np.fromfile(host_transmittance, dtype="<f4")
@@ -213,6 +244,9 @@ def evaluate(
             "invalid_status=2 unchanged=1" in row["stdout"] for row in all_rows
         ),
         "abi": all(b["abi"] == "x86_64" for b in boots),
+        "cleanup": _cleanup_owned_launchers(
+            emulator_exe, contract["runtime"]["avd_name"], port
+        ),
     }
     return {
         "schema": "neuro_film.u6_p4ec_native_cloud_attenuation_android_tolerance.v2",
