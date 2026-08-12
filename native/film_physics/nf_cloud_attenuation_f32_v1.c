@@ -1,8 +1,14 @@
 #define NF_CLOUD_ATTENUATION_F32_BUILD
 #include "nf_cloud_attenuation_f32_v1.h"
 
-#include <math.h>
 #include <stdint.h>
+
+extern float log10f(float value);
+
+static int nf_isfinite_f32(float value) {
+    return value == value && value <= 3.402823466e+38F &&
+        value >= -3.402823466e+38F;
+}
 
 static int nf_ranges_overlap(
     const float* first, size_t first_count,
@@ -52,7 +58,7 @@ nf_cloud_attenuation_f32_status_v1 nf_cloud_attenuation_f32_apply_v1(
         return NF_CLOUD_ATTENUATION_F32_INVALID_ARGUMENT_V1;
     }
     for (index = 0u; index < 3u; ++index) {
-        if (!isfinite(channel_gain_rgb[index]) ||
+        if (!nf_isfinite_f32(channel_gain_rgb[index]) ||
             channel_gain_rgb[index] <= 0.0f || channel_gain_rgb[index] > 1.0f) {
             return NF_CLOUD_ATTENUATION_F32_DOMAIN_ERROR_V1;
         }
@@ -63,10 +69,10 @@ nf_cloud_attenuation_f32_status_v1 nf_cloud_attenuation_f32_apply_v1(
         const float base = base_transmittance_rgb[index];
         const float gain = channel_gain_rgb[index % 3u];
         const float candidate = expected + gain * (base - expected);
-        if (!isfinite(expected) || !isfinite(base) ||
+        if (!nf_isfinite_f32(expected) || !nf_isfinite_f32(base) ||
             expected <= 0.0f || expected >= 1.0f ||
             base <= 0.0f || base >= 1.0f ||
-            !isfinite(candidate) || candidate <= 0.0f || candidate >= 1.0f) {
+            !nf_isfinite_f32(candidate) || candidate <= 0.0f || candidate >= 1.0f) {
             return NF_CLOUD_ATTENUATION_F32_DOMAIN_ERROR_V1;
         }
     }
