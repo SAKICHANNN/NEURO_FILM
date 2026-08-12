@@ -1,0 +1,29 @@
+{
+  "schema": "neuro_film.u6_p4er_native_cloud_row_chain_v2.v1",
+  "experiment_id": "u6.p4er-native-cloud-row-chain-v2",
+  "date_executed": "2026-08-12",
+  "implementation_commit": "0c8f5ffc",
+  "automatic_pass": true,
+  "formal_replays": {
+    "count": 2,
+    "android_cold_boots_per_replay": 2,
+    "android_fresh_processes_per_boot": 2,
+    "report_sha256": "e484a190a02b3c4b20f6009061f9a580517a13b45ab5a0ce0bc678bca93c5d02",
+    "byte_exact": true
+  },
+  "stable_evidence_id": "b5061ef3f3fbe44eb5a6a3b67e8e7e796c515a98c19e09df578f8fe189f21f0a",
+  "contract_sha256": "401a307b1dc4053d0a65278b072d3fcb5ebd18106deb97983a7cfd3319df2cb6",
+  "source_sha256": "80b68169a1af6e1be0f80b0cef8c6dfea374c80eb00f0b8ba723fa66d296f8e3",
+  "header_sha256": "079c1def6ab8c5988a834c353f0b9564591b92e4fa9e77fd3e27e561759f93a5",
+  "results": {
+    "v1_transmittance_identity": true,
+    "deterministic_density_maximum_error": 0.00000023836168860924545,
+    "windows_android_density_bit_exact": true,
+    "windows_android_transmittance_bit_exact": true,
+    "android_repeat_exact": true,
+    "failure_output_unchanged": true,
+    "owned_process_cleanup": true
+  },
+  "decision": "retain_native_cloud_row_chain_v2",
+  "claim_ceiling": "Private Android 14 x86_64 virtual-device synthetic single-call row-chain arithmetic; not physical arm64, JNI/app, calibrated emulsion or product runtime."
+}
