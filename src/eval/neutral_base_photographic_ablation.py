@@ -93,9 +93,13 @@ def _new_boundary_fraction(reference: np.ndarray, candidate: np.ndarray) -> floa
 
 
 def _preview(values: np.ndarray, size: tuple[int, int]) -> Image.Image:
-    image = Image.fromarray(
-        np.rint(np.clip(values, 0.0, 1.0) * 255.0).astype(np.uint8), "RGB"
-    )
+    array = np.asarray(values)
+    if array.dtype == np.uint8:
+        image = Image.fromarray(array, "RGB")
+    else:
+        image = Image.fromarray(
+            np.rint(np.clip(array, 0.0, 1.0) * 255.0).astype(np.uint8), "RGB"
+        )
     return ImageOps.contain(image, size, method=Image.Resampling.LANCZOS)
 
 
@@ -108,12 +112,28 @@ def _contact_sheet(rows: list[dict[str, Any]], path: Path) -> str:
     for row_index, row in enumerate(rows):
         y = row_index * (tile_height + header)
         draw.text((4, y + 4), f"{row['id']} / {row['make']}", fill=(235, 235, 235))
+        if row["combined"].dtype == np.uint8:
+            difference_panel = np.clip(
+                0.5
+                + 8.0
+                * (
+                    row["combined"].astype(np.float32)
+                    - row["ao6"].astype(np.float32)
+                )
+                / 255.0,
+                0.0,
+                1.0,
+            )
+        else:
+            difference_panel = np.clip(
+                0.5 + 8.0 * (row["combined"] - row["ao6"]), 0.0, 1.0
+            )
         values = (
             row["source"],
             row["ao6"],
             row["physical"],
             row["combined"],
-            np.clip(0.5 + 8.0 * (row["combined"] - row["ao6"]), 0.0, 1.0),
+            difference_panel,
         )
         for column, panel in enumerate(values):
             image = _preview(panel, (tile_width, tile_height))

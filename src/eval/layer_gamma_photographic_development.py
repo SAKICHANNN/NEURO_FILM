@@ -57,6 +57,13 @@ def _high_frequency_chroma_p999(residual: np.ndarray) -> float:
     return float(np.quantile(np.max(np.abs(high_frequency), axis=2), 0.999))
 
 
+def _compact_contact_panel(values: np.ndarray) -> np.ndarray:
+    """Quantize one contact panel early so full photographic rows can die."""
+    from src.eval.neutral_base_photographic_ablation import _preview
+
+    return np.asarray(_preview(values, (256, 180)), dtype=np.uint8)
+
+
 def _evaluate_photographic(
     contract: dict[str, Any],
     *,
@@ -77,6 +84,7 @@ def _evaluate_photographic(
         tuple[np.ndarray, np.ndarray, dict[str, Any]],
     ]
     | None = None,
+    compact_visual_rows: bool = False,
 ) -> dict[str, Any]:
     parents = contract["parents"]
     result_names = [name for name in parents if name.endswith("_result")]
@@ -211,15 +219,27 @@ def _evaluate_photographic(
             }
             if "receipt_ids" in diagnostics:
                 row["receipt_ids"] = diagnostics["receipt_ids"]
+            for diagnostic_name in (
+                "rank_bins",
+                "pass_count",
+                "canonical_row_block_height",
+                "peak_live_temporary_bytes",
+                "full_frame_intermediate_count_excluding_input_output",
+            ):
+                if diagnostic_name in diagnostics:
+                    row[diagnostic_name] = diagnostics[diagnostic_name]
             rows.append(row)
+            panels = (source_encoded, ao6_encoded, physical_encoded, combined_encoded)
+            if compact_visual_rows:
+                panels = tuple(_compact_contact_panel(panel) for panel in panels)
             visual_rows.append(
                 {
                     "id": row["id"],
                     "make": row["make"],
-                    "source": source_encoded,
-                    "ao6": ao6_encoded,
-                    "physical": physical_encoded,
-                    "combined": combined_encoded,
+                    "source": panels[0],
+                    "ao6": panels[1],
+                    "physical": panels[2],
+                    "combined": panels[3],
                 }
             )
 

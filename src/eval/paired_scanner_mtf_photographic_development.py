@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 
@@ -56,6 +57,17 @@ def _evaluate_paired(
     root: Path,
     contact_sheet_path: Path,
     result_parent_name: str,
+    apply_physical_override: Callable[
+        [
+            np.ndarray,
+            DensityConditionedThomasProfile,
+            ManufacturerCharacteristicPrior,
+            tuple[int, int, int],
+        ],
+        tuple[np.ndarray, dict[str, Any]],
+    ]
+    | None = None,
+    compact_visual_rows: bool = False,
 ) -> dict[str, Any]:
     parents = contract["parents"]
     p4fa_result = parents["p4fa_result"]
@@ -106,6 +118,8 @@ def _evaluate_paired(
         prior: ManufacturerCharacteristicPrior,
         seeds: tuple[int, int, int],
     ) -> tuple[np.ndarray, dict[str, Any]]:
+        if apply_physical_override is not None:
+            return apply_physical_override(source, profile, prior, seeds)
         return apply_cross_layer_thomas_gamma_copula(
             source,
             profile=profile,
@@ -143,6 +157,7 @@ def _evaluate_paired(
         apply_physical=apply_physical,
         result_parent_name=result_parent_name,
         finalize_pair=finalize_pair,
+        compact_visual_rows=compact_visual_rows,
     )
 
 
