@@ -1,0 +1,44 @@
+{
+  "schema": "neuro_film.u6_p4dq_optical_density_cloud_spatial_order_contract.v2",
+  "experiment_id": "u6.p4dq-optical-density-cloud-spatial-order-v2",
+  "node": "ULT > U6 > U6.P4 > U6.P4DQ",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parents": [
+    {
+      "path": "docs/evidence/U6_P4DP_OPTICAL_DENSITY_CLOUD_TRANSMITTANCE_V2_RESULT.json",
+      "sha256": "c982a09e86258ab3bd34b3184d3fcf22dab376c31a6ec903f0d1592b5c88d884",
+      "required_decision": "retain_optical_density_cross_layer_cloud_runtime_v2"
+    },
+    {
+      "path": "configs/u6_p5c_bounded_adjacency_decision_v1.json",
+      "sha256": "9556561899eea5757b60936509b6f95831be4b13566a3c4b668de00303c88dc4",
+      "required_status": "automatic-and-autonomous-visual-pass-development-only"
+    }
+  ],
+  "fixture": {
+    "height": 641,
+    "width": 881,
+    "seed": 52181,
+    "pixel_pitch_um": 1.0,
+    "row_partition_height": 127,
+    "measurement_margin": 32,
+    "slant_degrees": 4.0,
+    "low_high_exposure": [0.08, 2.5]
+  },
+  "gates": {
+    "maximum_precloud_mean_transmittance_error": 0.002,
+    "maximum_postcloud_to_precloud_noise_ratio": 1.15,
+    "maximum_precloud_edge_overshoot": 0.02,
+    "maximum_precloud_edge_undershoot": 0.02,
+    "maximum_postcloud_edge_excursion_increase": 0.005,
+    "maximum_new_boundary_fraction": 0.0005,
+    "minimum_adjacency_stage_rms_before_cloud": 0.0001,
+    "require_partition_identity": true,
+    "require_repeat_identity": true,
+    "require_p4do_remains_failed": true
+  },
+  "decision_if_pass": "retain_spatial_mean_processing_before_optical_density_cloud_sampling_v2",
+  "decision_if_fail": "close_optical_density_cloud_spatial_order_v2",
+  "claim_ceiling": "Fresh synthetic optical-density ordering evidence only; not measured development, dye diffusion, film MTF, stock calibration, visual preference or product evidence."
+}
