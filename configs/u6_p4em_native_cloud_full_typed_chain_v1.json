@@ -1,0 +1,30 @@
+{
+  "schema": "neuro_film.u6_p4em_native_cloud_full_typed_chain_contract.v1",
+  "experiment_id": "u6.p4em-native-cloud-full-typed-chain-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4EM",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {
+    "path": "docs/evidence/U6_P4EL_NATIVE_CLOUD_CHAIN_ANDROID_RUNTIME_V1_RESULT.json",
+    "sha256": "35a7af2dc35e806123e5c8b58454b89bde12686e4ca76d7d8d514063e7c8e8d0",
+    "required_decision": "retain_android_virtual_runtime_for_native_cloud_chain_v1"
+  },
+  "fixture": {
+    "height": 257,
+    "width": 385,
+    "seed": 78277,
+    "pixel_pitch_um": 6.35,
+    "partition_heights": [31, 64, 127]
+  },
+  "gates": {
+    "maximum_final_scan_absolute_error": 0.000001,
+    "maximum_final_scan_rmse": 0.0000002,
+    "maximum_native_python_cloud_wall_ratio": 0.7,
+    "require_native_partition_identity": true,
+    "require_stage_contribution_nonzero": true,
+    "require_zero_new_boundary": true
+  },
+  "decision_if_pass": "retain_native_cloud_full_typed_chain_v1",
+  "decision_if_fail": "close_native_cloud_full_typed_chain_v1",
+  "claim_ceiling": "Synthetic sensitometry-to-cloud-to-scanner hybrid parity and local timing only; not calibrated stock, complete native renderer or product authorization."
+}
