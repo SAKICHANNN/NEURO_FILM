@@ -1,0 +1,10 @@
+{
+  "schema": "neuro-film.u6-p4gg-cloud-residual-png16-24mp-result.v1",
+  "status": "PASS",
+  "contract_sha256": "4e8fe464bd42823f66b10351b1902ff5f36fc1e6217e1f2028ecadf93f8fd3d2",
+  "stable_evidence_id": "663e2f78a22f0b205807c80eef4fa333557e3c169de62bc4a869fb9a85844b60",
+  "identities": {"input_sha256": "427c526f137ff80780236646a7d91ecf8d7a588c43424adea22c2ef7c77312c0", "raw_output_sha256": "955682ec37c9c93769fa3a6daad9f4ff0d9365fb9aeb3a1021cb29d695298772", "png_output_sha256": "d01790b1a5e87127b45b565bace77f2d93a0ed5bdf1675d4c294a1878d6f2642", "png_bytes": 65011098},
+  "metrics": {"peak_process_tree_rss_bytes": [918441984, 979329024], "worker_wall_seconds": [56.604535000020405, 56.936280299996724], "peak_repeat_ratio": 1.0662938335362508, "source_passes": 3},
+  "gates": {"exact_raw_png_repeat": true, "retained_mechanism": true, "peak_under_1_gib": true, "wall_under_240_seconds": true, "repeat_ratio_at_most_1_10": true, "restart_verified": true, "cleanup": true, "all_pass": true},
+  "claim_ceiling": "Local Windows x64 synthetic 24MP correct-domain cloud plus retained AO6 residual-only display to restart-verified sRGB16 ICC PNG; not file decode, mobile runtime, calibrated film, visual preference or product promotion."
+}

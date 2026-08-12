@@ -12327,3 +12327,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The retained residual-only composition will run twice at 24MP through raw
   staging, PNG16 commit, restart verification and cleanup under the existing
   1GiB/240s/repeat resource gates. PNG size is diagnostic, not a post-hoc gate.
+
+# 2026-08-12 - U6.P4GG passes retained 24MP PNG transaction
+
+- Two fresh workers produce exact raw output and the same 65,011,098-byte
+  PNG16, restart-verify it and remove every transaction artifact.
+- Peak RSS is 918.4-979.3MB and wall time 56.6-56.9s; all frozen gates pass.
+  Severe-artifact chart evidence remains required before broader retention.
