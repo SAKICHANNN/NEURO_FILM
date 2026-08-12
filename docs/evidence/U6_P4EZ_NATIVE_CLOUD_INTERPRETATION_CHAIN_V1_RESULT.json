@@ -1,0 +1,25 @@
+{
+  "schema": "neuro_film.u6_p4ez_native_cloud_interpretation_chain.v1",
+  "experiment_id": "u6.p4ez-native-cloud-interpretation-chain-v1",
+  "date_executed": "2026-08-12",
+  "implementation_commit": "978060fa",
+  "automatic_pass": true,
+  "formal_replays": {"count": 2, "compiler_count": 2, "replays_per_compiler": 2, "byte_exact": true},
+  "stable_evidence_id": "b0418d7fd63a97a0ab89cdfb44b945c6cf243961af2b6b4d6d43c7237c046a1b",
+  "contract_sha256": "6dbdbb8c7113ad79bb03e6b8f02b7ca69f29b684b92ad4d4607f056e3f8a0762",
+  "source_sha256": "5a42d732e252473b6924c2eb33772171380011c30f0df8118357e865eedae06e",
+  "header_sha256": "b9d33b9774e952c89d6ba88e3f42936404d51d386c9bf0027800d2ac1b35d718",
+  "results": {
+    "composed_manual_scan_bit_exact": true,
+    "msvc_llvm_scan_bit_exact": true,
+    "repeat_bit_exact": true,
+    "invalid_input_output_unchanged": true,
+    "scan_closed_unit_domain": true,
+    "cloud_contribution_nonzero": true,
+    "scan_minimum": 0.034899480640888214,
+    "scan_maximum": 0.04772414639592171,
+    "scan_sha256": "77927114cdf638c0c2684badc304491dbb9133eb44dc166812435ce5360a760f"
+  },
+  "decision": "retain_native_cloud_interpretation_chain_v1",
+  "claim_ceiling": "Local Windows x64 synthetic-profile scene-linear through developed stochastic density to scan-linear arithmetic; not the historical profile, calibrated emulsion/scanner, photographic quality, mobile runtime or product authorization."
+}
