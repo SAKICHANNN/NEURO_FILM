@@ -12102,3 +12102,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   repeat identity and failure atomicity pass in two byte-identical reports.
 - This ports only the compiled residual/density arithmetic. Next prove mobile
   builds and Android virtual runtime; stochastic field generation stays Python.
+
+# 2026-08-12 - U6.P4EA retains portable native builds
+
+- Exact Android arm64/x86_64 shared-library links and macOS/iOS arm64 Mach-O
+  objects reproduce in two builds with the expected public symbols.
+- A first Apple compile exposed an accidental `math.h` SDK dependency; the C11
+  kernel now uses a self-contained finite check and explicit `log10f` symbol.
+  No Apple runtime or Android device claim follows; Android virtual execution is next.

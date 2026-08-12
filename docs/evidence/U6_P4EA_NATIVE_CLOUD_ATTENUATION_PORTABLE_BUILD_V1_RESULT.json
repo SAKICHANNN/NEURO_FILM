@@ -1,0 +1,16 @@
+{
+  "schema": "neuro_film.u6_p4ea_native_cloud_attenuation_portable_build_evidence.v1",
+  "node": "U6.P4EA",
+  "date": "2026-08-12",
+  "implementation_commit": "ed963994",
+  "contract_sha256": "068d453d3d99d65161f31c80145fd109ea31cca6ab28bb1619e03951cebadeff",
+  "formal_report_sha256": "e5f41dc5893d15094bc4f31a3317185303933de91a18a68a78a5eba46611dd29",
+  "exact_replays": 2,
+  "automatic_pass": true,
+  "android_arm64_sha256": "1456691c200b660fd31c141c91ee732034894a0b6e3357f79bcf892d410c15a2",
+  "android_x86_64_sha256": "75735a2850c6e5a86e8b2ee55281da1aec0b65de838d926f5424b383f2761179",
+  "macos_arm64_object_sha256": "9d5e0da1149245d87a3836fc829339daaf94d19d2350f21e7fcbc34fe5fa5091",
+  "ios_arm64_object_sha256": "ac277a944494c3764d0d13dc671a3ba56c8a429d129d1b27781b48c5874b7d9e",
+  "decision": "retain_native_cloud_attenuation_portable_build_v1",
+  "claim_ceiling": "Android cross-link and Apple object compilation only; not device, simulator, SDK, application or product runtime."
+}
