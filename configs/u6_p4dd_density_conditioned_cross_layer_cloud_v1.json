@@ -1,0 +1,16 @@
+{
+  "schema": "neuro_film.u6_p4dd_density_conditioned_cross_layer_cloud_contract.v1",
+  "experiment_id": "u6.p4dd-density-conditioned-cross-layer-cloud-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4DD",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parents": {
+    "p4dc": {"path": "docs/evidence/U6_P4DC_DENSITY_CONDITIONED_CROSS_LAYER_COUNTS_RESULT.json", "sha256": "02084631f9a7195b3d3ce79b2c1a86c576e88980a2ca6a5614f3a4997af13c33", "required_decision": "retain_density_conditioned_cross_layer_shared_count_primitive"},
+    "p8dg": {"path": "docs/evidence/U6_P8DG_CROSS_LAYER_CLOUD_ROW_STREAM_RESULT.json", "sha256": "af7e1dbb90bfff24caf4754af60579f0ea9d4ffd0eccf457ce1b5e2a9b33ee5c", "required_decision": "retain_exact_bounded_cross_layer_cloud_row_stream"}
+  },
+  "fixture": {"quadrant_height": 512, "quadrant_width": 512, "seed": 24181, "scale_cmy_by_quadrant": [[0.25, 0.25, 0.25], [0.5, 0.75, 1.0], [1.0, 0.5, 0.75], [0.75, 1.0, 0.5]], "interior_margin": 24, "row_partition_height": 127},
+  "gates": {"maximum_density_mean_relative_error": 0.015, "maximum_density_variance_relative_error": 0.05, "maximum_density_correlation_absolute_error": 0.025, "require_density_and_transmittance_partition_bit_identity": true, "require_repeat_identity": true},
+  "decision_if_pass": "retain_density_conditioned_cross_layer_gaussian_cloud_reference",
+  "decision_if_fail": "close_density_conditioned_cross_layer_gaussian_cloud_reference",
+  "claim_ceiling": "Synthetic density-conditioned Gaussian dye-cloud reference evidence only; not measured film, stock calibration or product evidence."
+}
