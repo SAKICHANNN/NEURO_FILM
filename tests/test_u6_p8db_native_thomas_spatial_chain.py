@@ -19,6 +19,7 @@ from src.film_physics.native_thomas_spatial_chain import (
     apply_native_thomas_spatial_chain_fft,
     apply_native_thomas_spatial_chain_row_tiled,
     compile_native_thomas_spatial_chain,
+    iter_native_thomas_spatial_fft_row_cores,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -113,6 +114,37 @@ def test_native_thomas_fft_spatial_chain_is_repeatable_and_numerically_close() -
     assert float(np.max(relative)) <= 1e-6
     assert float(np.quantile(ulp, 0.99)) <= 1.0
     assert float(np.max(ulp)) <= 8.0
+
+
+def test_native_thomas_combined_fft_row_cores_match_full_chain() -> None:
+    chain = compile_native_thomas_spatial_chain(
+        _json("configs/u6_p1_reference_scatter_simulator_v1.json"),
+        _json("configs/u6_p3d_backing_return_reference_v1.json"),
+    )
+    rng = np.random.default_rng(20260813)
+    exposure = PhysicalDomainArray(
+        rng.uniform(1.5, 12.0, size=(521, 547, 3)).astype(np.float32),
+        PhysicalDomain.LAYER_EXPOSURE,
+        PhysicalUnit.RELATIVE_LAYER_EXPOSURE,
+        ("red-sensitive", "green-sensitive", "blue-sensitive"),
+        PhysicalScale(8.0),
+    )
+    full = apply_native_thomas_spatial_chain_fft(exposure, chain).values
+    rows = {}
+    for order in ("forward", "reverse"):
+        output = np.empty_like(full)
+        coverage = np.zeros(full.shape[0], dtype=np.uint8)
+        for y0, y1, core in iter_native_thomas_spatial_fft_row_cores(
+            exposure, chain, tile_rows=257, order=order
+        ):
+            output[y0:y1] = core
+            coverage[y0:y1] += 1
+        assert np.all(coverage == 1)
+        rows[order] = output
+    error = np.abs(full.astype(np.float64) - rows["forward"].astype(np.float64))
+    relative = error / np.maximum(np.abs(full.astype(np.float64)), 1e-30)
+    assert rows["forward"].tobytes() == rows["reverse"].tobytes()
+    assert float(np.max(relative)) <= 1e-6
 
 
 def test_native_thomas_runtime_spatial_entry_matches_explicit_composition(
