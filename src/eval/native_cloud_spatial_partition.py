@@ -6,6 +6,7 @@ import _ctypes
 import ctypes
 import hashlib
 import json
+import math
 import subprocess
 from collections.abc import Callable
 from pathlib import Path
@@ -22,6 +23,9 @@ from src.film_physics.native_abi_layouts import (
     NativePrintProfileV1,
 )
 from src.film_physics.native_conditioned_cloud import _CountProfile
+from src.film_physics.bounded_cloud_density import (
+    apply_bounded_cloud_density_residual,
+)
 
 SOURCES = tuple(
     "native/film_physics/" + name
@@ -270,6 +274,9 @@ def render_physical_partition(
     height: int,
     *,
     source_derived_expected: bool = False,
+    enforce_density_envelope: bool = False,
+    exact_sensitometry_endpoints: bool = False,
+    density_envelope_diagnostics: list[dict[str, float]] | None = None,
 ) -> np.ndarray:
     """Run the exact P4EY/P4FB physical provider for one logical core."""
 
@@ -279,6 +286,12 @@ def render_physical_partition(
     if isinstance(scene_full,np.ndarray) and scene_full.shape!=(full,width,3):
         raise ValueError("P4FB physical provider source shape drift")
     domains,adjacency_blur,adjacency,diffusion,scanner=_profiles(contract)
+    if exact_sensitometry_endpoints:
+        exact_black=math.log10(domains.black_offset/(domains.reference_linear+domains.black_offset))
+        exact_white=math.log10((1.0+domains.black_offset)/(domains.reference_linear+domains.black_offset))
+        for channel in range(3):
+            domains.x_knots[channel][0]=exact_black
+            domains.x_knots[channel][domains.knot_count[channel]-1]=exact_white
     cp=_CountProfile(ctypes.sizeof(_CountProfile),3,(ctypes.c_double*3)(192.,288.,240.),32.,
         (ctypes.c_double*3)(32.,16.,24.),fixture["seed"],1009)
     sp=_SpatialProfile(ctypes.sizeof(_SpatialProfile),2,(ctypes.c_double*3)(1.3,1.7,2.1),
@@ -317,7 +330,24 @@ def render_physical_partition(
             expected.ctypes.data_as(fp),expected.size,gain.ctypes.data_as(fp),counts.ctypes.data_as(ctypes.POINTER(ctypes.c_uint16)),counts.size,
             conv.ctypes.data_as(dp),conv.size,sd.ctypes.data_as(fp),st.ctypes.data_as(fp),st.size,density.ctypes.data_as(fp),trans.ctypes.data_as(fp),density.size)
     if status: raise RuntimeError(f"P4FB physical provider cloud failed: {status}")
-    cloud=density.reshape(ext_height,width,3);flat=np.ascontiguousarray(cloud.reshape(-1),np.float32)
+    cloud=density.reshape(ext_height,width,3)
+    if enforce_density_envelope:
+        if not source_derived_expected:
+            raise ValueError("density envelope requires source-derived expected density")
+        normalized=scale.reshape(ext_height+2*cloud_halo,width,3)
+        base=np.ascontiguousarray(
+            normalized[cloud_halo:cloud_halo+ext_height]
+            * capacity.reshape(1,1,3),
+            dtype=np.float64,
+        )
+        cloud,diagnostics=apply_bounded_cloud_density_residual(
+            base,cloud,
+            black_reference_density=np.asarray(domains.black_reference_density),
+            white_reference_density=np.asarray(domains.white_reference_density),
+        )
+        if density_envelope_diagnostics is not None:
+            density_envelope_diagnostics.append(diagnostics)
+    flat=np.ascontiguousarray(cloud.reshape(-1),np.float32)
     work=[np.empty_like(flat) for _ in range(6)];output=np.empty(height*width*3,np.float32)
     status=lib.nf_cloud_post_spatial_f32_apply_core_v1(ctypes.byref(domains),ctypes.byref(adjacency_blur),ctypes.byref(adjacency),
         ctypes.byref(diffusion),ctypes.byref(scanner),flat.ctypes.data_as(fp),ext_height,width,full,start,start-ext_start,height,

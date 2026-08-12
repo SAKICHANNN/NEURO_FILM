@@ -15,7 +15,8 @@
     "execution": "per-pixel-per-channel-analytical-maximum-safe-density-scale",
     "bounds": "exact-profile-black-and-white-reference-density",
     "hard_clipping_allowed": false,
-    "post_spatial_chain": "unchanged-p4fb"
+    "post_spatial_chain": "unchanged-p4fb",
+    "sensitometry_endpoint_policy": "derive-exact-log10-endpoints-from-reference-linear-and-black-offset"
   },
   "fixture": {
     "height": 129,
@@ -38,7 +39,8 @@
   "execution": {
     "formal_processes": 2,
     "post_result_retuning_allowed": false,
-    "p4gh_chart_pixels_read": false
+    "p4gh_chart_pixels_read": false,
+    "operational_amendment": "A pre-formal black-field smoke exposed rounded P4FB x endpoints that map source zero to density 0.04998854 below the declared 0.05 bound. P4GK derives only the two x endpoints from the frozen encoder formula; y knots, derivatives, profile, candidate and gates are unchanged."
   },
   "decision_if_pass": "retain_analytical_cloud_density_envelope_v1_for_chart_confirmation",
   "decision_if_fail": "close_analytical_cloud_density_envelope_v1",

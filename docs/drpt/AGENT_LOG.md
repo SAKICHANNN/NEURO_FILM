@@ -12419,3 +12419,19 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Hard clipping is forbidden. Sixty-five independent uniform fields gate
   endpoint acceptance, monotone scan span, retained interior structure,
   boundary safety and partition/process identity before chart reuse.
+
+- A pre-formal black-field smoke found the frozen fixture's rounded exposure
+  endpoints map source zero to density 0.04998854 below its declared 0.05
+  bound. P4GK now derives only the two x endpoints from the exact encoder
+  formula; y knots, derivatives, mechanism and gates are unchanged.
+
+# 2026-08-12 - U6.P4GK closes the P4FB cloud profile
+
+- Two endpoint preflight processes are byte exact. Analytical scaling accepts
+  both endpoints with zero envelope violation and no clipping, but scan spans
+  are only 0.3609/0.3702/0.5029; two channels fail the frozen 0.5 gate.
+- At black the outward cloud residual is correctly scaled to zero. At white
+  the unbounded residual RMS is 0.5701, exposing that P4FB particle capacity
+  is not mean matched to its 1.5 density normalization and swallows base tone.
+  Remaining fields and chart are not run; this synthetic fixture is closed as
+  a display profile rather than receiving further gauge or threshold rescue.
