@@ -1,0 +1,32 @@
+{
+  "schema": "neuro-film.u6-p4ht-fast-native-density-photographic-integration-evidence.v1",
+  "node": "U6.P4HT",
+  "date": "2026-08-13",
+  "contract_commit": "de7300c9",
+  "implementation_commit": "61bd491d",
+  "contract_file_sha256": "316b8e7b782ff56fda20e4347242191ceb69bb28e84a46025ec03757704a8e0d",
+  "evaluator_sha256": "1abd491fe7761336863a447ff8d6f0e04b5c9421795d94e12a3777fb27de8a04",
+  "composition_sha256": "022b357373084d2bffdaf1a9a7dee979de0ddbbda20c70961a9340682ff75f75",
+  "test_sha256": "ff1c4a40044d9943af242c3917f7decbfd7aee7de2574a8b7c7b17638337ff7d",
+  "formal_report_sha256": "38ed87aaccbcb5bd45718076ee95298f3804fbba0ab88d0c55fecc835b07029b",
+  "stable_evidence_id": "3d0243c424d591606e9387a6bc3eee961d049544035ffefec3b856701c753617",
+  "observations": {
+    "rows": 9,
+    "scientific_repeat_exact": true,
+    "contact_sheet_repeat_exact": true,
+    "contact_sheet_sha256": "bb95ecb0bafdf276ee18d0ef461901743d6e88c849b3f12d49e9bbe02ff7b67d",
+    "peak_process_tree_rss_bytes": [958443520, 955068416],
+    "worker_wall_seconds": [184.71705720000318, 168.71602130000247],
+    "maximum_new_boundary_fraction_vs_ao6": 1.1157601115760111e-5,
+    "maximum_flat_region_p99_abs": 0.016926234588027,
+    "maximum_high_frequency_chroma_p999": 0.003460819134488702,
+    "maximum_modeled_live_temporary_bytes": 92544000,
+    "hard_clipping_or_limiting": false,
+    "all_p4he_photographic_gates": true
+  },
+  "automatic_pass": true,
+  "decision": "retain_fast_native_density_photographic_integration_for_bounded_spatial_compilation",
+  "scientific_conclusion": "The exact P4HS kernel completes both nine-camera fresh workers within the frozen runtime and memory gates while preserving every P4HE photographic/scanner gate, profile identity, contact sheet, finite output and no-clipping condition. A pre-evidence run exposed only volatile build paths in the scientific result; those fields were removed without changing pixels, inputs, metrics or gates before the two formal reruns.",
+  "next_leaf": "Compile the exact receipt-bound Thomas spatial field generation into a bounded native row kernel and prove canonical CPU parity before any device or product integration.",
+  "claim_ceiling": "Windows MSVC host integration of native density arithmetic on the consumed nine-camera relative-display cohort; not bounded native spatial generation, independent confirmation, calibrated film/scanner response, device runtime or product promotion."
+}

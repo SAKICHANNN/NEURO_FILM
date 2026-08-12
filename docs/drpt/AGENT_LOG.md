@@ -12798,3 +12798,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   the two formal runs have exact stable evidence ID `97af3115...f0aed`.
 - Rerun the unchanged photographic/scanner hypothesis with this exact kernel.
   No photographic, calibration, device-runtime or product claim opens yet.
+
+### 2026-08-13 - U6.P4HT retains fast native photographic integration
+
+- Two fresh nine-camera workers are scientifically exact and preserve the same
+  contact sheet (`bb95ecb...b67d`) plus every frozen P4HE photographic/scanner
+  gate. No hard clipping or limiting occurs.
+- Worker wall is 168.7-184.8 seconds and peak process-tree RSS is
+  955.1-958.5 MB, both below the unchanged limits. Stable evidence ID is
+  `3d0243c4...3617`.
+- A first completed run exposed only build-directory strings inside the
+  scientific payload; a regression now excludes those non-scientific fields.
+  Advance to bounded native spatial generation, not calibration or product use.
