@@ -1,0 +1,29 @@
+{
+  "schema": "neuro_film.u6_p4dy_compiled_cloud_profile_restart_contract.v1",
+  "experiment_id": "u6.p4dy-compiled-cloud-profile-restart-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4DY",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {
+    "path": "docs/evidence/U6_P4DX_COMPILED_CLOUD_ATTENUATION_ROW_RUNTIME_V1_RESULT.json",
+    "sha256": "153dc5d0262111ff6eeffda3f7ddef3f77052e85023859791248781a851e9582",
+    "required_decision": "retain_compiled_cloud_attenuation_row_runtime_v1"
+  },
+  "fixture": {
+    "height": 129,
+    "width": 193,
+    "seed": 59209,
+    "row_partition_height": 37
+  },
+  "gates": {
+    "require_canonical_payload_identity": true,
+    "require_restart_pixel_identity": true,
+    "require_unknown_field_rejection": true,
+    "require_base_profile_drift_rejection": true,
+    "require_gain_drift_identity_change": true,
+    "require_product_enable_rejection": true
+  },
+  "decision_if_pass": "retain_compiled_cloud_profile_restart_v1",
+  "decision_if_fail": "close_compiled_cloud_profile_restart_v1",
+  "claim_ceiling": "Synthetic restart-safe compiled profile only; not stock calibration, native backend or product authorization."
+}
