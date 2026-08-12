@@ -12175,3 +12175,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Four Android 14 x86_64 processes across two wipe-data boots exactly match the
   host output hash and preserve invalid-call atomicity. This is virtual-device
   arithmetic only; physical arm64, media and product integration remain open.
+
+# 2026-08-12 - U6.P4FQ verifies replay identity after rendering
+
+- The replayable source now hashes a third pass after all row callbacks, so a
+  provider cannot change bytes between admission and rendering undetected.
+- Two fresh 24MP runs keep exact P4FI output at 204.0MB peak and 74.6-76.0s.
+  Transactional sink staging remains required because post-verify is final.

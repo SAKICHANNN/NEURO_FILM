@@ -1,0 +1,24 @@
+{
+  "schema": "neuro_film.u6_p4fq_replayable_source_postverify_24mp.v1",
+  "experiment_id": "u6.p4fq-replayable-source-postverify-24mp-v1",
+  "date_executed": "2026-08-12",
+  "implementation_commit": "e594d342",
+  "automatic_pass": true,
+  "stable_evidence_id": "602ce481aa6ec7ed2cd9b42b8efce58c4e33e15d122b4051a77617c6a15adb29",
+  "input_sha256": "04c8a193926014a5b3012085372c6150948d6c177537623c48415880fcca924d",
+  "output_sha256": "8be7d9ce0d9e96a5f4e72809359ce440eae07058941f09e04e9ecdfe108fe412",
+  "source_passes": 3,
+  "runs": [
+    {
+      "peak_process_tree_rss_bytes": 204079104,
+      "worker_wall_seconds": 74.64519069998641
+    },
+    {
+      "peak_process_tree_rss_bytes": 203984896,
+      "worker_wall_seconds": 76.02356489998056
+    }
+  ],
+  "peak_repeat_ratio": 1.0004618381157004,
+  "decision": "retain_replayable_source_postverify_24mp_v1",
+  "claim_ceiling": "Local Windows x64 synthetic-profile 24MP replayable row-source with post-render source identity verification; sink staging must remain transactional because drift is detected after row callbacks."
+}
