@@ -1,0 +1,48 @@
+{
+  "schema": "neuro-film.u6-p4hu-native-spatial-density-photographic-integration-contract.v1",
+  "experiment_id": "u6.p4hu-native-spatial-density-photographic-integration-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4HU",
+  "date_frozen": "2026-08-13",
+  "status": "contract-frozen-implementation-ready",
+  "question": "Does the already-retained portable native Thomas field preserve the P4HT photographic/scanner result when composed with the exact P4HN/P4HS density path?",
+  "parents": {
+    "p4ht_evidence": {"path": "docs/evidence/U6_P4HT_FAST_NATIVE_DENSITY_PHOTOGRAPHIC_INTEGRATION_RESULT.json", "sha256": "97e8830164ba3cb11def936edb137c6b20e46763d50d56c8d01e15e77ac594b4", "required_decision": "retain_fast_native_density_photographic_integration_for_bounded_spatial_compilation"},
+    "p8bs_evidence": {"path": "docs/evidence/U6_P8BS_NATIVE_THOMAS_FIELD_RESULT.json", "sha256": "9c47b4af89f43dc683520271cbe5dcc0017cee4938c64575a8c998eaf527ed35", "required_decision": "retain_native_generic_thomas_field_primitive"},
+    "p4hs_evidence": {"path": "docs/evidence/U6_P4HS_FAST_HYBRID_NATIVE_GAMMA_INVERSE_RESULT.json", "sha256": "1a69d38028a40ea5a6ebb8cce1b916054789dcb754609af27bd5d758a5d62bfc", "required_decision": "retain_fast_hybrid_native_gamma_inverse_for_photographic_rerun"},
+    "p4hr_evidence": {"path": "docs/evidence/U6_P4HR_NATIVE_DENSITY_PHOTOGRAPHIC_INTEGRATION_RESULT.json", "sha256": "712c5bdce936bded555606d9d6ae20f5e69cf8c09c08ed9b1852f8a9c40d6389", "required_decision": "close_native_density_photographic_integration_without_rescue"},
+    "p4hq_evidence": {"path": "docs/evidence/U6_P4HQ_PROFILE_BOUND_NATIVE_DENSITY_COMPOSITION_RESULT.json", "sha256": "53f536c1a760f94464bb9340d34384f2ac20a2218a37ed8d17a86ef1412095a8", "required_decision": "retain_profile_bound_native_density_composition_for_spatial_runtime_integration"},
+    "p4he_contract": {"path": "configs/u6_p4he_paired_scanner_mtf_photographic_development_v1.json", "sha256": "c8d59ceba9be7d9c427021de70731038f0feab173992c1e99cd1439e69736d69"},
+    "p4he_evidence": {"path": "docs/evidence/U6_P4HE_PAIRED_SCANNER_MTF_PHOTOGRAPHIC_DEVELOPMENT_RESULT.json", "sha256": "a3a24ab3478a97c053a47c561ed0c3453aed8dc2e2a54390f830573ffa57d03e", "required_decision": "retain_paired_scanner_mtf_developed_structure_for_fresh_confirmation"},
+    "p4hj_evidence": {"path": "docs/evidence/U6_P4HJ_LIFETIME_SCHEDULED_BOUNDED_PHOTOGRAPHIC_RUNTIME_RESULT.json", "sha256": "b2b3b0908c4a9820d8f493c79a387e2b42542173701f8c60f2d375462e5d89f8"},
+    "p4hj_report": {"path": "outputs/experiments/u6_p4hj_lifetime_scheduled_bounded_photographic_runtime_v1/report.json", "sha256": "7d72024dec873d7d238e0eb43c4f19873e34a6c02e98d214072ad6c0f3582be7"},
+    "profile": {"path": "outputs/experiments/u6_p4hk_bounded_photographic_profile_bundle_v1/run_a/profile.json", "sha256": "539fef07a7c659db035928ee4d9c7e6405da5e0baa07852f4f9a4b50fa1247b8", "bundle_sha256": "8d20ce2874036befe78657b059ffafeb24e43d2e5bc1000512092a753e1e75df"}
+  },
+  "candidate": {
+    "native_backend": "msvc-x64-c11",
+    "spatial_backend": "native-thomas-field-f32-v1",
+    "gamma_backend": "fast-hybrid-v1",
+    "copula_iterations": 3,
+    "rank_bins": 65536,
+    "gamma_inverse_iterations": 80,
+    "gamma_newton_iterations": 6,
+    "gamma_direct_shape_upper": 50.0,
+    "high_shape_threshold": 10000.0,
+    "paired_scanner_stage": "unchanged P4HE",
+    "hard_clipping_allowed": false,
+    "cohort_refit_allowed": false,
+    "p4hj_pixel_identity_required": false
+  },
+  "automatic_gates": {
+    "require_all_p4he_photographic_gates": true,
+    "require_repeat_exact_scientific_result": true,
+    "require_repeat_exact_contact_sheet": true,
+    "maximum_peak_process_tree_rss_bytes": 1610612736,
+    "maximum_worker_wall_seconds": 600.0,
+    "require_no_hard_clipping_or_limiting": true,
+    "require_profile_bundle_identity": true
+  },
+  "measurement": {"formal_processes": 2, "sample_interval_seconds": 0.01, "worker_timeout_seconds": 900.0, "rss_and_wall_excluded_from_scientific_identity": true, "post_result_retuning_allowed": false},
+  "decision_if_pass": "retain_native_spatial_density_photographic_integration_for_portable_runtime",
+  "decision_if_fail": "close_native_spatial_density_photographic_integration_without_rescue",
+  "claim_ceiling": "Windows MSVC host integration of portable native spatial and density arithmetic on the consumed nine-camera relative-display cohort; not independent confirmation, calibrated film/scanner response, device runtime or product promotion."
+}
