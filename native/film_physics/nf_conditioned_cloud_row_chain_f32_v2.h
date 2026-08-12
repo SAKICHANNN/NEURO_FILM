@@ -38,4 +38,21 @@ nf_conditioned_cloud_row_chain_f32_apply_window_v3(
     size_t spatial_workspace_values, float* output_density_cmy,
     float* output_transmittance_cmy, size_t output_values);
 
+NF_CONDITIONED_CLOUD_ROW_CHAIN_F32_API
+nf_conditioned_cloud_row_chain_f32_status_v1
+nf_conditioned_cloud_row_chain_f32_apply_developed_window_v4(
+    const nf_density_conditioned_poisson_u16_profile_v3* count_profile,
+    const nf_cloud_spatial_response_f32_profile_v2* spatial_profile,
+    size_t full_height, size_t width, size_t first_logical_y,
+    size_t core_height, size_t halo, const float* developed_density_cmy,
+    size_t developed_values, const double capacity_cmy[3],
+    double* scale_workspace_cmy, size_t scale_workspace_values,
+    const float* expected_transmittance_cmy, size_t expected_values,
+    const float channel_gain_cmy[3], uint16_t* count_workspace,
+    size_t count_workspace_values, double* convolution_workspace,
+    size_t convolution_workspace_doubles, float* spatial_density_workspace,
+    float* spatial_transmittance_workspace, size_t spatial_workspace_values,
+    float* output_density_cmy, float* output_transmittance_cmy,
+    size_t output_values);
+
 #endif
