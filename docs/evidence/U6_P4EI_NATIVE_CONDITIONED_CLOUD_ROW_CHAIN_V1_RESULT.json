@@ -1,0 +1,20 @@
+{
+  "schema": "neuro_film.u6_p4ei_native_conditioned_cloud_row_chain_evidence.v1",
+  "node": "U6.P4EI",
+  "date": "2026-08-12",
+  "implementation_commit": "23a3e563",
+  "contract_sha256": "f389b96da4a4c4e61a22e887ad1be7ec02a0dec4ba633cbb03f67d4dea249f41",
+  "formal_report_sha256": "a897a91df1b47fe20d6dfe2eb563aa805c9ec577dba119d48fea031f3851ec40",
+  "stable_evidence_id": "abef9fd4ea1e3f43ee852a169cb44b5142d535ddcdb38ba9b48b83ec1773d2f2",
+  "exact_replays": 2,
+  "automatic_pass": true,
+  "density_sha256": "5297cfba40bd71e37a6f712d8d879d0587b72ff3da2b7bc6dafc2b9d3536913e",
+  "transmittance_sha256": "2517fd6d888137ecd3e49ecbdd2d55006717f90253bff6232ee85dbb1554dd5f",
+  "maximum_density_absolute_error": 0.0,
+  "maximum_transmittance_absolute_error": 0.00000005960464477539063,
+  "partition_heights_exact": [17, 64, 129],
+  "repeat_exact": true,
+  "invalid_input_before_first_yield": true,
+  "decision": "retain_native_conditioned_cloud_row_chain_v1",
+  "claim_ceiling": "Windows Python/native hybrid density-conditioned cloud row chain only; not complete native renderer, calibrated emulsion, mobile runtime or product authorization."
+}
