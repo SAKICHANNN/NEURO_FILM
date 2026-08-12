@@ -1,0 +1,40 @@
+{
+  "schema": "neuro_film.u6_p4fa_native_cloud_spatial_interpretation_chain.v1",
+  "experiment_id": "u6.p4fa-native-cloud-spatial-interpretation-chain-v1",
+  "date_executed": "2026-08-12",
+  "implementation_commit": "9ef4f512",
+  "automatic_pass": true,
+  "formal_replays": {
+    "outer_processes": 2,
+    "compiler_count": 2,
+    "replays_per_compiler": 2,
+    "byte_exact": true
+  },
+  "stable_evidence_id": "1b07552c832a8d978c511cf9c45df0444fb54a3e74f1fb1cccf083d9db8d8b19",
+  "contract_sha256": "3ed0348ea1be4f6d403baafd0bc64cd84aa6fce8e3cbd3449e0388fa18fc1267",
+  "source_sha256": "c76da7edd640443cff87348a462fd2006b02613e8951eb071203708b870d1b4f",
+  "header_sha256": "3f51ddda642f40577046c24fe5c3d833d493e5c2b42d67f852da738e4cd65ff8",
+  "results": {
+    "manual_stage_composition_bit_exact": true,
+    "msvc_llvm_scan_bit_exact": true,
+    "repeat_bit_exact": true,
+    "invalid_input_output_unchanged": true,
+    "scan_closed_unit_domain": true,
+    "each_post_cloud_stage_nonzero": true,
+    "scan_minimum": 0.035338327288627625,
+    "scan_maximum": 0.04741448536515236,
+    "scan_sha256": "cb900dfcde104070eed16c719c981b0f6125008bd8ee14dac442d2e152184bd4"
+  },
+  "physical_order": [
+    "scene-linear-after-forward-scatter",
+    "float64-sensitometry",
+    "developed-dye-cloud-density",
+    "bounded-development-adjacency",
+    "dye-diffusion",
+    "density-interpretation",
+    "scanner-mtf",
+    "scan-linear"
+  ],
+  "decision": "retain_native_cloud_spatial_interpretation_chain_v1",
+  "claim_ceiling": "Local Windows x64 synthetic-profile correct-domain stochastic cloud, adjacency, dye diffusion, interpretation and scanner arithmetic; not tiled production integration, historical or calibrated film/scanner response, photographic quality, mobile runtime or product authorization."
+}
