@@ -1,0 +1,68 @@
+{
+  "schema": "neuro-film.u6-p4ha-layer-gamma-photographic-development-contract.v1",
+  "experiment_id": "u6.p4ha-layer-gamma-photographic-development-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4HA",
+  "date_frozen": "2026-08-12",
+  "status": "contract-frozen-implementation-ready",
+  "question": "Does the exact P4GZ per-layer support-matched density mechanism remain artifact-safe after AO6 on the consumed nine-camera photographic development cohort?",
+  "parents": {
+    "p4gz_result": {
+      "path": "docs/evidence/U6_P4GZ_LAYER_SUPPORT_MATCHED_GAMMA_DENSITY_RESULT.json",
+      "sha256": "6013921e822b680f21be1dc9b5e9daf97c3a90d2fc04e9ff2805d8954de3f9b2",
+      "required_decision": "retain_layer_support_matched_gamma_density_for_photographic_development"
+    },
+    "p4bw_bundle": {
+      "path": "outputs/experiments/u6_p4bw_density_conditioned_thomas_profile_v1/run_a/bundle.json",
+      "sha256": "4edf4eaaeae163a2f579584c7d9533134a7d6177d5cc78ed517cb15865e585bf",
+      "required_profile_id": "199c59fe7d046943bcd763de8cab0ab52e7156aba6d94fcd9f1ec64da4d5d6ff"
+    },
+    "p2q_bundle": {
+      "path": "outputs/u6_p2q_kodak_250d_characteristic_prior/bundle_run1.json",
+      "sha256": "087e67544f737401fa697b21f06215a31827189e0648b8d60da666b92113caaa",
+      "required_prior_id": "04d94af2e1fcad99fbb8c9abb57179f2b63f329c263b3bf2335c4117a670aacb"
+    }
+  },
+  "source": {
+    "manifest": "outputs/u6_p8bp_fresh_native_standard_confirmation_v1/manifest.json",
+    "manifest_sha256": "edb1b45552f9bf5712c922ed816b6f9a70f5f0bee2b72a024144cde0087dd521",
+    "expected_rows": 9,
+    "expected_camera_makes": 9,
+    "required_allowed_use": "internal_independent_digital_ood_confirmation",
+    "required_rights_scope": "CC0_public_domain_internal_evaluation",
+    "required_color_state": "relative_display_srgb_approximation",
+    "freshness": "consumed P4GR-P4GX development cohort; never confirmation evidence for P4HA"
+  },
+  "candidate": {
+    "base": "exact-input-relative-linear-srgb",
+    "layer_field_seeds": [320260812, 320261821, 320262830],
+    "field_seed_stride_per_source": 1009,
+    "distribution": "exact P4GZ independent per-layer support-matched Gamma density",
+    "amplitude_multiplier": 1.0,
+    "look": "existing-ao6-linear-residual-only",
+    "hard_clipping_allowed": false,
+    "posthoc_limiting_allowed": false,
+    "cohort_fitting_allowed": false
+  },
+  "automatic_gates": {
+    "minimum_per_row_physical_residual_rms": 0.0001,
+    "minimum_population_p95_combined_vs_ao6_abs": 0.0001,
+    "maximum_population_p99_combined_vs_ao6_abs": 0.05,
+    "maximum_flat_region_p99_combined_vs_ao6_abs": 0.04,
+    "maximum_high_frequency_chroma_p999": 0.004,
+    "isolated_excursion_threshold": 0.05,
+    "isolated_support_radius_pixels": 2,
+    "minimum_isolated_support_count": 3,
+    "maximum_isolated_excursion_count": 0,
+    "maximum_new_boundary_fraction_vs_ao6": 0.0005,
+    "require_all_inputs_and_outputs_finite": true,
+    "require_no_hard_clipping_or_posthoc_limiting": true
+  },
+  "execution": {
+    "formal_processes": 2,
+    "post_result_retuning_allowed": false,
+    "same_cohort_rescue_allowed": false
+  },
+  "decision_if_pass": "retain_layer_gamma_photographic_v1_for_fresh_confirmation",
+  "decision_if_fail": "close_layer_gamma_photographic_v1_without_rescue",
+  "claim_ceiling": "Consumed nine-camera CC0 relative-display photographic mechanism development only; generic independent layer-density texture, not measured dye-cloud structure, scene exposure, calibrated film, stock response, independent confirmation, human preference or product promotion."
+}
