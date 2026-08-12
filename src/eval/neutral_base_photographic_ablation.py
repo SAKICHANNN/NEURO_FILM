@@ -27,6 +27,9 @@ from src.eval.physical_spatial_photographic_stress import (
     _isolated_excursions,
 )
 from src.eval.sensitometry_cloud_capacity_v2 import evaluate as evaluate_capacity
+from src.film_physics.bounded_common_density_residual import (
+    apply_bounded_common_density_residual,
+)
 from src.film_physics.bounded_linear_residual import apply_bounded_linear_residual
 from src.film_physics.cross_layer_cloud_profile import CrossLayerCloudReferenceProfile
 from src.film_physics.native_cloud_scan_runtime_v2 import WindowedNativeCloudScanRuntime
@@ -34,6 +37,9 @@ from tests.test_u6_p4fc_opt_in_cloud_scan_runtime_v1 import _profile as scatter_
 from tests.test_u6_p4fn_native_standard_replayable_rows import _runtime
 
 SCHEMA = "neuro-film.u6-p4gr-neutral-base-photographic-ablation-contract.v1"
+SHARED_DENSITY_SCHEMA = (
+    "neuro-film.u6-p4gs-shared-density-photographic-development-contract.v1"
+)
 P4FB = Path("configs/u6_p4fb_native_cloud_spatial_partition_v1.json")
 CAPACITY = Path("configs/u6_p4di_sensitometry_cloud_capacity_v2.json")
 
@@ -44,8 +50,8 @@ def sha256_file(path: Path) -> str:
 
 def load_contract(path: Path) -> dict[str, Any]:
     payload = json.loads(path.read_text(encoding="utf-8"))
-    if payload.get("schema") != SCHEMA:
-        raise ValueError("unsupported P4GR contract")
+    if payload.get("schema") not in {SCHEMA, SHARED_DENSITY_SCHEMA}:
+        raise ValueError("unsupported photographic physical-residual contract")
     return payload
 
 
@@ -193,9 +199,19 @@ def evaluate(
                             cloud_profile=cloud_profile,
                             physical_baseline_outputs=baseline,
                         )
-                        result, row_diagnostics = apply_bounded_linear_residual(
-                            _source[y0 : y0 + count], cloud_scan, baseline[0]
-                        )
+                        if (
+                            contract["candidate"].get("residual_projection")
+                            == "shared-density-multiplicative"
+                        ):
+                            result, row_diagnostics = (
+                                apply_bounded_common_density_residual(
+                                    _source[y0 : y0 + count], cloud_scan, baseline[0]
+                                )
+                            )
+                        else:
+                            result, row_diagnostics = apply_bounded_linear_residual(
+                                _source[y0 : y0 + count], cloud_scan, baseline[0]
+                            )
                         _diagnostics.append(row_diagnostics)
                         return result
 
@@ -335,7 +351,7 @@ def evaluate(
         "claim_ceiling": contract["claim_ceiling"],
     }
     return {
-        "schema": SCHEMA.replace("contract", "result"),
+        "schema": contract["schema"].replace("contract", "result"),
         "stable": stable,
         "stable_evidence_id": hashlib.sha256(
             json.dumps(stable, sort_keys=True, separators=(",", ":")).encode("ascii")
@@ -343,4 +359,10 @@ def evaluate(
     }
 
 
-__all__ = ["SCHEMA", "evaluate", "load_contract", "sha256_file"]
+__all__ = [
+    "SCHEMA",
+    "SHARED_DENSITY_SCHEMA",
+    "evaluate",
+    "load_contract",
+    "sha256_file",
+]
