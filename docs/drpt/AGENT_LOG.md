@@ -12299,3 +12299,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - All 6/6 fail the frozen 50% gates. The exact AO6 base pairing closes; the
   next candidate may test only its downstream residual after the physical
   tone chain, avoiding a second density/statistics transform.
+
+# 2026-08-12 - U6.P4GE freezes AO6 residual-only composition
+
+- The frozen AO6 residual is an explicit bounded linear-RGB tone/chroma
+  residual with analytical safe scaling and no source-context or density base.
+- Six fresh scenes now gate nonzero effect, physics dynamic-range retention,
+  boundary safety, exact replay and partition invariance before any formal run.
