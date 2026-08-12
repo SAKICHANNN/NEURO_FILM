@@ -1,0 +1,61 @@
+{
+  "schema": "neuro-film.u6-p4gn-monotone-scan-inverse-contract.v1",
+  "experiment_id": "u6.p4gn-monotone-scan-inverse-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4GN",
+  "date_frozen": "2026-08-12",
+  "status": "contract-frozen-implementation-ready",
+  "parents": {
+    "response": {
+      "path": "docs/evidence/U6_P4GL_CAPACITY_MATCHED_CLOUD_RESPONSE_RESULT.json",
+      "sha256": "f5f6151be1e359f315da52a4e8cec26819c94e13ddf07512b56b98be599d584c",
+      "required_decision": "retain_capacity_matched_cloud_response_v1_for_chart_confirmation"
+    },
+    "chart_failure": {
+      "path": "docs/evidence/U6_P4GM_CAPACITY_MATCHED_CLOUD_CHART_RESULT.json",
+      "sha256": "5f86ad8f331848b6ecb11b6e180474082c8cd476def7ebbd14538925182f4853",
+      "required_decision": "close_capacity_matched_cloud_chart_v1"
+    }
+  },
+  "compiler": {
+    "build_levels": 33,
+    "confirmation_midpoints": 32,
+    "operator": "per-channel-monotone-piecewise-linear-scan-to-source",
+    "extrapolation_allowed": false,
+    "hard_clipping_allowed": false,
+    "chart_pixels_used_for_fit": false
+  },
+  "calibration_fixture": {
+    "height": 129,
+    "width": 131,
+    "shared_geometry_and_seed": true
+  },
+  "chart_fixture": {
+    "height": 768,
+    "width": 1024,
+    "tile_rows": [127, 193],
+    "neutral_patch_margin": 24,
+    "edge_exclusion": 24
+  },
+  "gates": {
+    "maximum_confirmation_median_absolute_error": 0.01,
+    "maximum_confirmation_p95_absolute_error": 0.005,
+    "require_strict_monotonic_knots": true,
+    "require_chart_inside_calibration_domain": true,
+    "maximum_neutral_chroma_p99": 0.09,
+    "maximum_neutral_patch_mean_chroma": 0.012,
+    "maximum_edge_overshoot": 0.025,
+    "maximum_edge_undershoot": 0.025,
+    "maximum_new_boundary_fraction": 0.0005,
+    "require_partition_and_process_exact": true,
+    "require_no_extrapolation_or_clipping": true,
+    "require_visual_severe_artifact_pass": true
+  },
+  "execution": {
+    "formal_processes": 2,
+    "stop_before_chart_on_calibration_failure": true,
+    "post_result_retuning_allowed": false
+  },
+  "decision_if_pass": "retain_monotone_scan_inverse_v1_for_photographic_confirmation",
+  "decision_if_fail": "close_monotone_scan_inverse_v1",
+  "claim_ceiling": "Synthetic profile-bound neutral response and chart evidence only; not calibrated film, measured scanner response, human preference or product promotion."
+}
