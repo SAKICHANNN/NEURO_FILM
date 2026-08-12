@@ -61,7 +61,7 @@ def evaluate(root: Path, contract_path: Path, ndk: Path, host_clang: Path, sdk: 
             boots.append({"abi":_run([str(adb),"-s",serial,"shell","getprop","ro.product.cpu.abi"],cwd=output,env=env),"runs":rows})
         finally:
             try: _run([str(adb),"-s",serial,"emu","kill"],cwd=output,env=env,timeout=15)
-            except Exception: process.terminate()
+            except (RuntimeError, subprocess.SubprocessError): process.terminate()
             try: process.wait(timeout=30)
             except subprocess.TimeoutExpired: process.kill(); process.wait()
             _finish_owned_emulator_processes(emulator,contract["runtime"]["avd_name"],port)
