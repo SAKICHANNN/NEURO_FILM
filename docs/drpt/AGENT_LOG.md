@@ -12675,3 +12675,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   only input/output remain full-frame.
 - Advance the exact core to fresh-worker photographic RSS/runtime and unchanged
   P4HF gates; native/mobile and product integration remain closed.
+
+### 2026-08-13 - U6.P4HI closes on row-workspace lifetime
+
+- Two fresh workers preserve all nine P4HE photographic gates, exact scientific
+  results and contact bytes. Peak process-tree RSS is `634,982,400` and
+  `634,949,632` bytes; wall time is `172.76/162.78s`.
+- The frozen 16 MiB live-row-workspace gate fails at `24,576,000` bytes because
+  correlated, block-output and residual-difference arrays overlap in the output
+  pass. This single failure closes P4HI without changing the budget or cohort.
+- Next freeze a byte-exact lifetime schedule that accumulates residual statistics
+  without retaining the extra difference array; all P4HI pixels and gates remain
+  fixed. Native/mobile, calibration and product integration remain closed.
