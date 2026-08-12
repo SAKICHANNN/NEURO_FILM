@@ -1,0 +1,27 @@
+{
+  "schema": "neuro_film.u6_p4eq_deterministic_log10f_contract.v1",
+  "experiment_id": "u6.p4eq-deterministic-log10f-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4EQ",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {
+    "path": "docs/evidence/U6_P4EP_NATIVE_CLOUD_ROW_CHAIN_ANDROID_RUNTIME_V1_RESULT.json",
+    "sha256": "c51c4bee7be8833760188d9f232709bf57e86c77412d36a7916834f5bd64ee49",
+    "required_decision": "retain_portable_build_without_android_row_chain_runtime_claim"
+  },
+  "fixture": {
+    "minimum_transmittance": 0.000001,
+    "maximum_transmittance": 0.999999,
+    "random_values": 1000000,
+    "seed": 78491
+  },
+  "gates": {
+    "maximum_density_absolute_error": 0.0000005,
+    "require_windows_cross_compiler_bit_identity": true,
+    "require_android_host_bit_identity": true,
+    "require_failure_atomicity": true
+  },
+  "decision_if_pass": "retain_deterministic_log10f_v1",
+  "decision_if_fail": "close_deterministic_log10f_v1",
+  "claim_ceiling": "Portable binary32 negative-log10 arithmetic only; not calibrated density, complete cloud runtime or product authorization."
+}
