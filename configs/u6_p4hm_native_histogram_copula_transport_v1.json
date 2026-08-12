@@ -1,0 +1,52 @@
+{
+  "schema": "neuro-film.u6-p4hm-native-histogram-copula-transport-contract.v1",
+  "experiment_id": "u6.p4hm-native-histogram-copula-transport-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4HM",
+  "date_frozen": "2026-08-13",
+  "status": "contract-frozen-implementation-ready",
+  "question": "Can the fixed double-histogram whitening/coloring transport be executed by a freestanding caller-workspace C11 ABI with bounded error and repeatable dual-compiler behavior?",
+  "parents": {
+    "p4hl_evidence": {
+      "path": "docs/evidence/U6_P4HL_BOUNDED_PHOTOGRAPHIC_CPU_CONSUMER_RESULT.json",
+      "sha256": "aa06625f48fe6849adcacc6bb7694c42d9f33be28ee2ccb22947c7d7ce256eda",
+      "required_decision": "retain_bounded_photographic_cpu_consumer_for_native_reference"
+    },
+    "profile": {
+      "path": "outputs/experiments/u6_p4hk_bounded_photographic_profile_bundle_v1/run_a/profile.json",
+      "sha256": "539fef07a7c659db035928ee4d9c7e6405da5e0baa07852f4f9a4b50fa1247b8",
+      "bundle_sha256": "8d20ce2874036befe78657b059ffafeb24e43d2e5bc1000512092a753e1e75df"
+    }
+  },
+  "candidate": {
+    "input": "three caller-supplied finite float32 raw fields",
+    "output": "three float32 correlated histogram-midrank uniforms",
+    "rank_bins": 65536,
+    "inverse_normal": "fixed Acklam rational approximation",
+    "whitening": "deterministic 3x3 lower-Cholesky solve",
+    "coloring": "fixed target-correlation lower Cholesky",
+    "allocation": "caller workspace only",
+    "gamma_density_inverse_in_scope": false,
+    "thomas_field_generation_in_scope": false,
+    "parameter_refit_allowed": false
+  },
+  "fixture": {
+    "height": 193,
+    "width": 211,
+    "field_seed": 2026081311,
+    "runs_per_compiler": 2
+  },
+  "automatic_gates": {
+    "maximum_absolute_error_vs_python_same_algorithm": 0.000003,
+    "maximum_rmse_vs_python_same_algorithm": 0.0000005,
+    "maximum_cross_compiler_absolute_error": 0.000003,
+    "maximum_target_correlation_error": 0.003,
+    "maximum_uniform_mean_error": 0.00001,
+    "maximum_workspace_bytes": 8388608,
+    "require_backend_repeat_exact": true,
+    "require_output_finite_unit_interval": true,
+    "require_failure_atomic_output_and_diagnostics": true
+  },
+  "decision_if_pass": "retain_native_histogram_copula_transport_for_gamma_density_stage",
+  "decision_if_fail": "retain_python_bounded_consumer_without_native_transport",
+  "claim_ceiling": "Portable native statistical-transport primitive on synthetic fields only; not full density shaping, scanner runtime, photographic parity, calibrated film response or product integration."
+}
