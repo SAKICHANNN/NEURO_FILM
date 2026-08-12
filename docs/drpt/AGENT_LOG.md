@@ -12321,3 +12321,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   the retained residual-only renderer without duplicating transaction logic.
 - The retained path reaches the existing single-quantization PNG16 commit and
   restart verifier with an explicit residual-only working receipt.
+
+# 2026-08-12 - U6.P4GG freezes retained 24MP PNG transaction
+
+- The retained residual-only composition will run twice at 24MP through raw
+  staging, PNG16 commit, restart verification and cleanup under the existing
+  1GiB/240s/repeat resource gates. PNG size is diagnostic, not a post-hoc gate.
