@@ -1,0 +1,46 @@
+{
+  "schema": "neuro-film.u6-p4gq-neutral-base-physical-residual-contract.v1",
+  "experiment_id": "u6.p4gq-neutral-base-physical-residual-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4GQ",
+  "date_frozen": "2026-08-12",
+  "status": "contract-frozen-implementation-ready",
+  "parent": {
+    "path": "docs/evidence/U6_P4GP_SHAPE_PRESERVING_SCAN_INVERSE_RESULT.json",
+    "sha256": "80f39d635da434a7f41e2aaf688d7820c6daaa53c9606b2a084420d24728f3ba",
+    "required_decision": "close_shape_preserving_scan_inverse_v1"
+  },
+  "candidate": {
+    "neutral_base": "exact-input-scene-linear",
+    "physical_residual": "full-forward-scatter-cloud-scan-minus-unscattered-cloud-free-scan",
+    "composition": "per-pixel-per-channel-maximum-safe-additive-residual-scale",
+    "look": "existing-ao6-linear-residual-only-after-physical-residual",
+    "hard_clipping_allowed": false,
+    "empirical_scan_inverse_used": false
+  },
+  "fixture": {
+    "height": 768,
+    "width": 1024,
+    "tile_rows": [127, 193],
+    "neutral_patch_margin": 24,
+    "edge_exclusion": 24
+  },
+  "gates": {
+    "minimum_physical_residual_rms": 0.0001,
+    "maximum_limited_fraction": 0.05,
+    "maximum_neutral_chroma_p99": 0.09,
+    "maximum_neutral_patch_mean_chroma": 0.012,
+    "maximum_edge_overshoot": 0.025,
+    "maximum_edge_undershoot": 0.025,
+    "maximum_new_boundary_fraction": 0.0005,
+    "require_partition_and_process_exact": true,
+    "require_no_hard_clipping": true,
+    "require_visual_severe_artifact_pass": true
+  },
+  "execution": {
+    "formal_processes": 2,
+    "post_result_retuning_allowed": false
+  },
+  "decision_if_pass": "retain_neutral_base_physical_residual_v1_for_photographic_confirmation",
+  "decision_if_fail": "close_neutral_base_physical_residual_v1",
+  "claim_ceiling": "Synthetic neutral-base physical-structure residual and chart evidence only; not calibrated film, measured scanner response, human preference or product promotion."
+}
