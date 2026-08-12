@@ -1,0 +1,83 @@
+{
+  "schema": "neuro-film.u6-p4hf-paired-scanner-mtf-source-disjoint-confirmation-contract.v1",
+  "experiment_id": "u6.p4hf-paired-scanner-mtf-source-disjoint-confirmation-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4HF",
+  "date_frozen": "2026-08-13",
+  "status": "contract-frozen-implementation-ready",
+  "question": "Does the exact P4HE paired scanner-MTF bundle pass unchanged gates on 18 source identities disjoint from P4HA-P4HE?",
+  "parents": {
+    "p4he_result": {
+      "path": "docs/evidence/U6_P4HE_PAIRED_SCANNER_MTF_PHOTOGRAPHIC_DEVELOPMENT_RESULT.json",
+      "sha256": "a3a24ab3478a97c053a47c561ed0c3453aed8dc2e2a54390f830573ffa57d03e",
+      "required_decision": "retain_paired_scanner_mtf_developed_structure_for_fresh_confirmation"
+    },
+    "p4fa_result": {
+      "path": "docs/evidence/U6_P4FA_NATIVE_CLOUD_SPATIAL_INTERPRETATION_CHAIN_V1_RESULT.json",
+      "sha256": "efbea3ce62a5c04629abd60e18a9d1e603a7ba8beb00319de9bd4c5b1ad40361",
+      "required_decision": "retain_native_cloud_spatial_interpretation_chain_v1"
+    },
+    "p4fa_contract": {
+      "path": "configs/u6_p4fa_native_cloud_spatial_interpretation_chain_v1.json",
+      "sha256": "3ed0348ea1be4f6d403baafd0bc64cd84aa6fce8e3cbd3449e0388fa18fc1267"
+    },
+    "p4bw_bundle": {
+      "path": "outputs/experiments/u6_p4bw_density_conditioned_thomas_profile_v1/run_a/bundle.json",
+      "sha256": "4edf4eaaeae163a2f579584c7d9533134a7d6177d5cc78ed517cb15865e585bf",
+      "required_profile_id": "199c59fe7d046943bcd763de8cab0ab52e7156aba6d94fcd9f1ec64da4d5d6ff"
+    },
+    "p2q_bundle": {
+      "path": "outputs/u6_p2q_kodak_250d_characteristic_prior/bundle_run1.json",
+      "sha256": "087e67544f737401fa697b21f06215a31827189e0648b8d60da666b92113caaa",
+      "required_prior_id": "04d94af2e1fcad99fbb8c9abb57179f2b63f329c263b3bf2335c4117a670aacb"
+    }
+  },
+  "source": {
+    "manifest": "outputs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1/manifest.json",
+    "manifest_sha256": "8ac0fa47b8ad3058c7bd3f9a398dfebe657b681cbd4a154152f0dbb255c4ecf1",
+    "expected_rows": 18,
+    "expected_camera_makes": 9,
+    "required_allowed_use": "internal_independent_digital_ood_confirmation",
+    "required_rights_scope": "CC0_public_domain_internal_evaluation",
+    "required_color_state": "relative_display_srgb_approximation",
+    "required_identity_overlap_with_p4he": 0,
+    "freshness": "source-disjoint from P4HA-P4HE but previously consumed elsewhere in project"
+  },
+  "candidate": {
+    "developed_structure": "exact P4HD fixed cross-layer Thomas/Gamma copula",
+    "layer_field_seeds": [320260812, 320261821, 320262830],
+    "field_seed_stride_per_source": 1009,
+    "canonical_receipt_row_block_height": 128,
+    "correlation_profile_id": "2993d09a7876f4188670aa123f26ce908054bdaa5d704e40646091edba0a06bf",
+    "correlation_matrix": [[1.0, 0.2721655269759087, 0.22360679774997896], [0.2721655269759087, 1.0, 0.21300321680756462], [0.22360679774997896, 0.21300321680756462, 1.0]],
+    "paired_downstream_stage": "P4FA scanner MTF only",
+    "scanner_mtf_sigma_pixels_rgb": [0.7, 0.7, 0.7],
+    "gaussian_truncate": 3.0,
+    "baseline_and_candidate_share_downstream_stage": true,
+    "amplitude_multiplier": 1.0,
+    "hard_clipping_allowed": false,
+    "posthoc_limiting_allowed": false,
+    "cohort_fitting_allowed": false
+  },
+  "automatic_gates": {
+    "minimum_per_row_physical_residual_rms": 0.0001,
+    "minimum_population_p95_combined_vs_ao6_abs": 0.0001,
+    "maximum_population_p99_combined_vs_ao6_abs": 0.05,
+    "maximum_flat_region_p99_combined_vs_ao6_abs": 0.04,
+    "maximum_high_frequency_chroma_p999": 0.004,
+    "isolated_excursion_threshold": 0.05,
+    "isolated_support_radius_pixels": 2,
+    "minimum_isolated_support_count": 3,
+    "maximum_isolated_excursion_count": 0,
+    "maximum_new_boundary_fraction_vs_ao6": 0.0005,
+    "require_all_inputs_and_outputs_finite": true,
+    "require_no_hard_clipping_or_posthoc_limiting": true
+  },
+  "execution": {
+    "formal_processes": 2,
+    "post_result_retuning_allowed": false,
+    "same_cohort_rescue_allowed": false
+  },
+  "decision_if_pass": "retain_paired_scanner_mtf_developed_structure_as_confirmed_generic_profile",
+  "decision_if_fail": "close_paired_scanner_mtf_source_disjoint_confirmation_without_rescue",
+  "claim_ceiling": "Source-disjoint 18-photo relative-display confirmation of one fixed generic developed-structure/scanner bundle; not project-wide fresh data, measured film/scanner calibration, stock response, preference or product promotion."
+}
