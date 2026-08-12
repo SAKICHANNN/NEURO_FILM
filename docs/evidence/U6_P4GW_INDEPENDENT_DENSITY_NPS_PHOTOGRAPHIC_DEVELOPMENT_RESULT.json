@@ -1,0 +1,44 @@
+{
+  "schema": "neuro-film.u6-p4gw-independent-density-nps-photographic-development-evidence.v1",
+  "node": "U6.P4GW",
+  "date": "2026-08-12",
+  "implementation_commit": "15765b4e",
+  "contract_commit": "b37d8958",
+  "formal_processes": 2,
+  "formal_report_sha256": "e318a5cfd483d926bb0253523ad83b0d2cb2054e7d05512fa9699fd313d416f3",
+  "reports_byte_exact": true,
+  "contact_sheet_sha256": "fe6fc917c5f3c460cd3beb8b74a2a6015ace12f428e86910ee155596fb7ab5ab",
+  "contact_sheets_byte_exact": true,
+  "stable_evidence_id": "d3e3a47805c9788adcab197e39dfabe470add6f7b4cf2d9037a6e397682c2558",
+  "source_cohort": {
+    "rows": 9,
+    "camera_makes": 9,
+    "rights_scope": "CC0_public_domain_internal_evaluation",
+    "manifest_sha256": "edb1b45552f9bf5712c922ed816b6f9a70f5f0bee2b72a024144cde0087dd521",
+    "cohort_status": "consumed-development-only"
+  },
+  "observations": {
+    "minimum_physical_residual_rms": 0.005526643329089602,
+    "maximum_limited_fraction": 0.1067486187845304,
+    "population_p95_combined_vs_ao6_abs": 0.02614021673798561,
+    "population_p99_combined_vs_ao6_abs": 0.035795774459838864,
+    "maximum_flat_region_p99_abs": 0.043934427201747894,
+    "total_isolated_excursion_count": 3547,
+    "maximum_new_boundary_fraction_vs_ao6": 0.00020641562064156209,
+    "maximum_field_mean_absolute": 3.58206801750636e-17,
+    "maximum_field_std_absolute_error": 1e-16,
+    "all_outputs_finite": true,
+    "hard_clipping_used": false
+  },
+  "failed_automatic_gates": ["flat_regions", "isolated_excursions", "limited_fraction"],
+  "autonomous_visual_review": {
+    "pass": true,
+    "confirmed_severe_artifact_count": 0,
+    "notes": "The independent shared NPS field removes the inherited Nikon cloud islands and shows no obvious colour speckle, geometry corruption, banding or clipping in the contact sheet. Automatic severe gates still close it because the reused BC1 amplitude creates excessive flat-region and isolated high-frequency deviations on this population."
+  },
+  "automatic_pass": false,
+  "decision": "close_independent_density_nps_v1_without_rescue",
+  "scientific_conclusion": "Replacing inherited cloud pixels with an independent zero-DC NPS field solves the spatial-topology artifact, but the mechanically safe BC1 density sigma does not transfer under the current physical visibility envelope. This exact amplitude is closed without tuning. The next amplitude must be compiled from an observed granularity-versus-density source and explicit aperture conversion, not selected from this cohort.",
+  "next_leaf": "Compile a generic density-amplitude envelope from the retained Kodak granularity trace and its 48 micrometre aperture, keeping the independent field and all photographic gates unchanged.",
+  "claim_ceiling": "Consumed nine-camera CC0 relative-display photographic mechanism development only; generic physical-inspired NPS texture, not measured film NPS, independent confirmation, calibrated film, stock response, human preference or product promotion."
+}

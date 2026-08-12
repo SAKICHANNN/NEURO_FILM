@@ -12545,3 +12545,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - P4GR-P4GV therefore close further post-processing of these full-amplitude
   cloud residual pixels. Continue with an independent bounded zero-mean NPS
   field around the stable density response.
+
+### 2026-08-12 - U6.P4GW closes the inherited BC1 density amplitude
+
+- An independent counter-seeded, exact-zero-DC NPS field removes the inherited
+  Nikon cloud islands and has no confirmed severe visual defect. Two complete
+  reports and sheets are byte exact.
+- Reusing BC1's fixed 0.0225 density sigma fails this population: flat-region
+  p99 is 0.04393, isolated excursions total 3,547 and limiting reaches 10.67%.
+  Visual cleanliness cannot override the frozen automatic gates.
+- Keep the independent NPS topology, but derive the next amplitude from the
+  retained granularity-versus-density source and explicit aperture semantics;
+  do not tune sigma on this cohort.
