@@ -1,0 +1,37 @@
+{
+  "schema": "neuro_film.u6_p4cx_cross_layer_compound_poisson_contract.v1",
+  "experiment_id": "u6.p4cx-cross-layer-compound-poisson-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4CX",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can a coordinate-stable shared-component Poisson construction express explicit positive cross-layer dye-cloud coupling while preserving analytic marginals, partition identity and Beer-Lambert bounds?",
+  "parents": {
+    "p4cr_evidence": {"path": "docs/evidence/U6_P4CR_SCANNER_UNMIXING_LAYER_CORRELATION_RESULT.json", "sha256": "83b4c64ba6fe65c9cc9e3c269c1d03af7e19b6804d943e064a1749d81a5c2d61", "required_decision": "retain_scanner_unmixing_as_required_layer_correlation_identifiability_control"},
+    "p4cw_evidence": {"path": "docs/evidence/U6_P4CW_STRUCTURED_SCENE_SCANNER_FLARE_RESULT.json", "sha256": "c1dadcff79300cec20052747297664951f5dead6fa69828b4eb68bbfbd846e93", "required_decision": "close_current_structured_scene_scanner_flare_control_without_tuning"}
+  },
+  "field": {
+    "shape": [512, 768],
+    "development_seeds": [2026081301, 2026081302],
+    "confirmation_seeds": [2026081311, 2026081312],
+    "marginal_count_rates_cmy": [12.0, 18.0, 15.0],
+    "shared_all_rate": 2.0,
+    "shared_pair_rates_cm_cy_my": [2.0, 1.0, 1.5],
+    "mark_optical_density_cmy": [0.02, 0.018, 0.022],
+    "row_partitions": [31, 127],
+    "component_seed_stride": 1009
+  },
+  "metrics": {
+    "maximum_absolute_correlation_error": 0.015,
+    "maximum_marginal_mean_relative_error": 0.01,
+    "maximum_marginal_variance_relative_error": 0.02,
+    "maximum_independent_control_absolute_correlation": 0.01,
+    "require_full_partition_bit_exact": true,
+    "require_repeat_bit_exact": true,
+    "require_density_nonnegative": true,
+    "require_transmittance_in_zero_one": true
+  },
+  "decision_if_pass": "retain_shared_component_poisson_as_explicit_cross_layer_reference_primitive",
+  "decision_if_fail": "close_shared_component_poisson_without_parameter_rescue",
+  "forbidden": ["fit component rates after empirical sampling", "alter seeds, shape or gates after scoring", "claim measured dye-cloud coupling or stock calibration", "map directly to product rendering"],
+  "claim_ceiling": "Controlled synthetic count/density-domain reference primitive for positive cross-layer coupling; not measured film, scanner or product evidence."
+}
