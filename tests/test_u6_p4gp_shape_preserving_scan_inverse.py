@@ -32,3 +32,19 @@ def test_p4gp_shape_preserving_inverse_is_monotone_and_bounded():
     assert np.min(values) == 0.0
     assert np.max(values) == 1.0
     assert profile.to_payload()["interpolation"] == "fritsch-carlson-pchip"
+
+
+def test_p4gp_formal_result_stops_before_chart():
+    evidence = json.loads(
+        (
+            ROOT
+            / "docs/evidence/U6_P4GP_SHAPE_PRESERVING_SCAN_INVERSE_RESULT.json"
+        ).read_text(encoding="utf-8")
+    )
+    assert evidence["exact_replays"] == 2
+    assert evidence["fresh_confirmation_levels"] == 64
+    assert evidence["maximum_error_gate_pass"] is False
+    assert evidence["p95_error_gate_pass"] is True
+    assert evidence["chart_pixels_read"] is False
+    assert evidence["automatic_pass"] is False
+    assert evidence["decision"] == "close_shape_preserving_scan_inverse_v1"

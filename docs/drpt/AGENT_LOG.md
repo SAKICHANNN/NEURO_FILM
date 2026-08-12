@@ -12471,3 +12471,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   passes while p95 0.005256 exceeds the frozen 0.005 gate.
 - No threshold change or chart rescue is allowed. A distinct shape-preserving
   cubic candidate must use fresh confirmation positions.
+
+# 2026-08-12 - U6.P4GP closes empirical neutral inverses
+
+- Shape-preserving cubic interpolation uses 64 fresh quarter-offset fields and
+  repeats exactly. Its p95 inverse error passes at 0.00265, but the frozen
+  maximum error fails at 0.01140; chart pixels remain unread.
+- Linear and cubic empirical inverse families are closed. The next mechanism
+  keeps source tone as a neutral base and applies only the bounded physical
+  cloud-versus-cloud-free scan residual before AO6.

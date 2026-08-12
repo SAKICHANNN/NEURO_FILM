@@ -1,0 +1,19 @@
+{
+  "schema": "neuro-film.u6-p4gp-shape-preserving-scan-inverse-evidence.v1",
+  "node": "U6.P4GP",
+  "date": "2026-08-12",
+  "implementation_commit": "7eb91887",
+  "formal_report_sha256": "37b191f422b7b24b2928424ea039eec2234b7215d41f1817be97518234502823",
+  "stable_evidence_id": "287c58c67d6cd4ebf1263cb928b5d495afe0e7374ffd03c324f09b89d0040498",
+  "exact_replays": 2,
+  "fresh_confirmation_levels": 64,
+  "maximum_confirmation_median_absolute_error": 0.011404812335968018,
+  "confirmation_p95_absolute_error": 0.002653654385358095,
+  "maximum_error_gate_pass": false,
+  "p95_error_gate_pass": true,
+  "chart_pixels_read": false,
+  "automatic_pass": false,
+  "decision": "close_shape_preserving_scan_inverse_v1",
+  "next_leaf": "factor physical structure as a bounded scan residual over the source neutral base instead of treating generic sensitometry as display tone truth",
+  "claim_ceiling": "Synthetic profile-bound neutral response failure evidence only; not calibrated film, measured scanner response, human preference or product promotion."
+}
