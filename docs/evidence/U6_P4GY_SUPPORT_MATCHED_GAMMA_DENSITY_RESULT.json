@@ -1,0 +1,35 @@
+{
+  "schema": "neuro-film.u6-p4gy-support-matched-gamma-density-evidence.v1",
+  "node": "U6.P4GY",
+  "date": "2026-08-12",
+  "contract_commit": "91a6038e",
+  "implementation_commit": "8ed019fc",
+  "canonical_report_fix_commit": "45f74b03",
+  "contract_sha256": "26f9e7ebb1c8175afab8a8255fa177e8bfb0853c37918ef1945fea904b692f8a",
+  "implementation_sha256": "3edd4167bffcc9df0868bc13fbc577d41f2fede9fe487e42443957c26ac77496",
+  "evaluator_sha256": "2fbae796e17b7abc555c71f6b6cfb0a83ccc1c2143ca6920db3fa472b2147ab0",
+  "formal_processes": 2,
+  "formal_report_sha256": "1537e9b05652706c8fa1ea07a5eb0e822caf052b0b8853ba89942da4755f505d",
+  "reports_byte_exact": true,
+  "stable_evidence_id": "e8a21adf43af9a0ea7cab580c9502428d9c428e052d6018aeb239be4e84f757f",
+  "pre_report_attempt": {
+    "formal_report_written": false,
+    "failure": "NumPy boolean reached canonical JSON serialization after numerical evaluation",
+    "repair": "convert the report-only nondegenerate flag to a native boolean",
+    "scientific_inputs_pixels_metrics_and_gates_changed": false
+  },
+  "observations": {
+    "maximum_mean_absolute_in_target_sigma": 0.00011975686691528218,
+    "maximum_variance_relative_error": 0.09982294593293639,
+    "maximum_p999_absolute_in_target_sigma": 6.1984883590456725,
+    "minimum_developed_density": -2.42861286636753e-17,
+    "maximum_transmittance": 1.0,
+    "hard_clipping_or_posthoc_limiting_used": false
+  },
+  "failed_automatic_gates": ["variance", "finite_tail", "nonnegative_density"],
+  "automatic_pass": false,
+  "decision": "close_support_matched_gamma_density_without_rescue",
+  "scientific_conclusion": "The shifted Gamma construction intrinsically respects shared density support and matches its mean, but a shared RGB factor is structurally ill-conditioned for chromatic near-white pixels: max-channel density approaches zero while luminance-conditioned target variance remains material. The resulting marginal requires an extreme rare positive tail, so finite deterministic sampling misses the target variance and violates the frozen tail gate. The tiny negative developed-density minimum is floating-point roundoff at the analytic boundary and is retained as a failed exact-zero gate; independent variance/tail failures already close the candidate.",
+  "next_leaf": "Use separate red, green and blue layer density variables, each with its own channel density support and retained layer Sigma-D, then test cross-layer chroma tails before photographs.",
+  "claim_ceiling": "Synthetic relative-display optical-density distribution mechanics only; the Gamma marginal is a clean-room analytic hypothesis, not a reproduced paper method, measured emulsion distribution, calibrated stock response or product evidence."
+}

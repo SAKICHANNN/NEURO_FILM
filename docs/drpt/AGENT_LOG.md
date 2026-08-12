@@ -12568,3 +12568,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Blackmagic row requires 9.91% bright-end limiting versus the frozen 5% cap.
   Close this projection without amplitude rescue. Next test an intrinsically
   nonnegative density distribution on synthetic fields before fresh photos.
+
+### 2026-08-12 - U6.P4GY closes shared support-matched density
+
+- A shifted Gamma marginal analytically binds the negative tail to available
+  optical density and uses no clipping. Two synthetic reports are byte exact.
+- Shared RGB density is ill-conditioned at chromatic near-white: max-channel
+  headroom approaches zero while luminance-conditioned target variance remains
+  material. Variance error reaches 9.98% and p99.9 reaches 6.20 sigma.
+- Close the shared-factor family. The next mechanism uses separate layer
+  density support and amplitude, matching colour-film dye-layer semantics.
