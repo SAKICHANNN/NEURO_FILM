@@ -1,0 +1,18 @@
+{
+  "schema": "neuro_film.u6_p4dx_compiled_cloud_attenuation_row_runtime_evidence.v1",
+  "node": "U6.P4DX",
+  "date": "2026-08-12",
+  "implementation_commit": "3d8033cf",
+  "contract_sha256": "21a39d0877e4a55c2b7a9834dc9f35a6fc7f914df90a8c6f40637757197e13d9",
+  "formal_report_sha256": "bf10bb25558b51a5502f87a37bbb1606ca55bbf7dc16aec18ec5abfdbb1049fe",
+  "stable_evidence_id": "2120991606ddddefac07307f37b5668cb90e64f71d48888cda9bdfc6877c35ba",
+  "exact_replays": 2,
+  "automatic_pass": true,
+  "partition_heights": [1, 31, 64, 127],
+  "all_partitions_exact": true,
+  "maximum_estimated_live_bytes": 3597486,
+  "invalid_requests_rejected_before_first_yield": true,
+  "density_transmittance_roundtrip_exact": true,
+  "decision": "retain_compiled_cloud_attenuation_row_runtime_v1",
+  "claim_ceiling": "Deterministic synthetic row runtime only; not calibrated film grain, scanner NPS, native backend or product authorization."
+}

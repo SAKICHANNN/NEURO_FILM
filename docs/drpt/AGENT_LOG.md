@@ -12077,3 +12077,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Two reports are byte-identical. Retain this synthetic compiler and next test
   a bounded row/tile runtime; calibrated film/scanner or product claims remain
   closed.
+
+# 2026-08-12 - U6.P4DX retains the compiled row runtime
+
+- The compiled base profile plus three attenuation gains renders 1/31/64/127
+  row partitions bit-exact to the full-height reference and repeats exactly.
+- Estimated live arrays peak at 3,597,486 bytes; invalid requests fail before
+  first yield, transmittance stays strictly interior and 10^-density roundtrips
+  exactly. Next bind strict profile persistence/restart reconstruction.
