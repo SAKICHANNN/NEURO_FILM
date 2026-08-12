@@ -1,0 +1,56 @@
+{
+  "schema": "neuro-film.u6-p4hq-profile-bound-native-density-composition-contract.v1",
+  "experiment_id": "u6.p4hq-profile-bound-native-density-composition-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4HQ",
+  "date_frozen": "2026-08-13",
+  "status": "contract-frozen-implementation-ready",
+  "question": "Can retained P4HN uniforms and P4HP inverse-Gamma arithmetic reproduce the exact bundle's developed-density perturbation and transmittance mapping on a disjoint profile-bound fixture?",
+  "parents": {
+    "p4hn_evidence": {
+      "path": "docs/evidence/U6_P4HN_SOURCE_OBSERVABLE_COPULA_CALIBRATION_RESULT.json",
+      "sha256": "d6aca8aa2064835d10c4730b6830615e3c46eb2b3fcd3b399083c13060be73ec",
+      "required_decision": "retain_source_observable_calibrated_native_transport_for_gamma_density_stage"
+    },
+    "p4hp_evidence": {
+      "path": "docs/evidence/U6_P4HP_HYBRID_NATIVE_GAMMA_DENSITY_INVERSE_RESULT.json",
+      "sha256": "5aa722eb9e6d4cf77e0aa33822cfe366f9876503aafb89268483c9ac3bd9a732",
+      "required_decision": "retain_hybrid_native_gamma_density_inverse_for_composed_density_structure"
+    },
+    "profile": {
+      "path": "outputs/experiments/u6_p4hk_bounded_photographic_profile_bundle_v1/run_a/profile.json",
+      "sha256": "539fef07a7c659db035928ee4d9c7e6405da5e0baa07852f4f9a4b50fa1247b8",
+      "bundle_sha256": "8d20ce2874036befe78657b059ffafeb24e43d2e5bc1000512092a753e1e75df"
+    }
+  },
+  "fixture": {
+    "height": 197,
+    "width": 223,
+    "base_seed": 2026081331,
+    "field_seed": 2026081332,
+    "minimum_base_value": 0.0001,
+    "maximum_base_value": 0.9999
+  },
+  "candidate": {
+    "copula_iterations": 3,
+    "rank_bins": 65536,
+    "gamma_inverse_iterations": 80,
+    "high_shape_threshold": 10000.0,
+    "density_mapping": "available=-log10(base); shape=(available/sigma)^2; scale=sigma^2/available; output=base*10^(-(gamma_ppf-available))",
+    "hard_clipping_allowed": false,
+    "profile_refit_allowed": false
+  },
+  "automatic_gates": {
+    "maximum_developed_density_error": 0.00000002,
+    "maximum_transmittance_absolute_error": 0.0000002,
+    "maximum_cross_compiler_absolute_error": 0.000003,
+    "maximum_final_uniform_correlation_error": 0.00005,
+    "minimum_active_fraction": 0.999,
+    "require_both_gamma_branches_exercised": true,
+    "require_repeat_exact": true,
+    "require_input_unchanged": true,
+    "require_finite_unit_output": true
+  },
+  "decision_if_pass": "retain_profile_bound_native_density_composition_for_spatial_runtime_integration",
+  "decision_if_fail": "retain_python_bounded_consumer_without_composed_native_density",
+  "claim_ceiling": "Profile-bound host composition of native statistical primitives on a disjoint synthetic image; not native spatial field generation, photographic parity, calibrated film response, media integration or product promotion."
+}
