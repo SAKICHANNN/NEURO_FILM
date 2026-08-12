@@ -1,0 +1,35 @@
+{
+  "schema": "neuro_film.u6_p4ei_native_conditioned_cloud_row_chain_contract.v1",
+  "experiment_id": "u6.p4ei-native-conditioned-cloud-row-chain-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4EI",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "parent": {
+    "path": "docs/evidence/U6_P4EH_NATIVE_CLOUD_SPATIAL_RESPONSE_V1_RESULT.json",
+    "sha256": "99cb8aa6186345ebd11d7e89dd2a7ac95f692899df774fbadc6331ca00650291",
+    "required_decision": "retain_native_cloud_spatial_response_v1"
+  },
+  "fixture": {
+    "height": 257,
+    "width": 389,
+    "profile_seed": 72547,
+    "scale_seed": 72559,
+    "partition_heights": [17, 64, 129],
+    "marginal_rates_cmy": [12.0, 18.0, 15.0],
+    "shared_all_rate": 2.0,
+    "shared_pair_rates_cm_cy_my": [2.0, 1.0, 1.5],
+    "mark_optical_density_cmy": [0.02, 0.018, 0.022],
+    "sigma_pixels_cmy": [1.3, 1.7, 2.1],
+    "truncate": 4.0
+  },
+  "gates": {
+    "maximum_density_absolute_error": 0.0000005,
+    "maximum_transmittance_absolute_error": 0.00000012,
+    "require_partition_identity_within_native": true,
+    "require_repeat_identity": true,
+    "require_invalid_input_before_first_yield": true
+  },
+  "decision_if_pass": "retain_native_conditioned_cloud_row_chain_v1",
+  "decision_if_fail": "close_native_conditioned_cloud_row_chain_v1",
+  "claim_ceiling": "Windows Python/native hybrid density-conditioned cloud row chain only; not complete native renderer, calibrated emulsion, mobile runtime or product authorization."
+}
