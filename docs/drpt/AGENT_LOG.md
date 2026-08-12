@@ -12196,3 +12196,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   frozen Standard/AO6 package at 207.42-207.45MB peak and 35.4-41.0s.
 - All frozen 1GiB/120s/repeat/streaming gates pass. This is row-runtime evidence,
   not decoder, encoder, mobile, calibration or product promotion evidence.
+
+# 2026-08-12 - U6.P4FS stages replayable Standard output atomically
+
+- The replayable-row path now writes raw float32 staging and commits its strict
+  report last; post-render source drift leaves neither durable file.
+- The extension is a companion module. Frozen P8BF staging source identity and
+  its existing restart verifier remain byte-exact and are reused unchanged.
