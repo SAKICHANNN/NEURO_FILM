@@ -1,0 +1,31 @@
+{
+  "schema": "neuro_film.u6_p4fe_gaussian_row_window.v1",
+  "experiment_id": "u6.p4fe-gaussian-row-window-v1",
+  "date_executed": "2026-08-12",
+  "implementation_commit": "a6a713d3",
+  "automatic_pass": true,
+  "formal_replays": {
+    "outer_processes": 2,
+    "compiler_count": 2,
+    "executions_per_compiler": 2,
+    "byte_exact": true
+  },
+  "stable_evidence_id": "2b5d16969471950dd56ebb7bf8588aa0ad8cccbba40c198d7d97fb8448e174e0",
+  "contract_sha256": "5aafbef79d3b82a778b1ab51540c03299e622fdd8de803d0c2678573a3e2d253",
+  "source_sha256": "9af02635bfef083dbdf68a6bf6971e44f7677ea66130516088c99a5ec0ab98e7",
+  "header_sha256": "2da8e4c899d1f96ebe8d7aa251cf1f55795e6399acf2afb65b5ca9ef4774d8eb",
+  "results": {
+    "full_vs_primary_partition_bit_exact": true,
+    "full_vs_alternate_partition_bit_exact": true,
+    "msvc_llvm_bit_exact": true,
+    "repeat_bit_exact": true,
+    "insufficient_internal_halo_output_unchanged": true,
+    "required_halo_rows": 3,
+    "maximum_window_workspace_bytes": 94752,
+    "full_workspace_bytes": 123516,
+    "fixture_workspace_ratio": 0.767116810,
+    "scan_sha256": "373ebc0c073ede07ecb6f9aab382867bb433c7770e9cb470917298787e65d4d6"
+  },
+  "decision": "retain_gaussian_row_window_v1",
+  "claim_ceiling": "Local Windows x64 synthetic exact Gaussian row-window arithmetic and modeled workspace reduction; not yet wired into P4FD, measured process RSS, calibrated optics, mobile runtime or product promotion."
+}
