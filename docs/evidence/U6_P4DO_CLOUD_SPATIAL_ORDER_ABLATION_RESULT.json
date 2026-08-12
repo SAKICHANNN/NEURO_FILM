@@ -1,0 +1,18 @@
+{
+  "schema": "neuro_film.u6_p4do_cloud_spatial_order_ablation_evidence.v1",
+  "node": "U6.P4DO",
+  "date": "2026-08-12",
+  "implementation_commit": "1f99d524",
+  "contract_sha256": "c441f3ba5b1a164cce4e8f6c0a2630ffa38a6e6b50b425a40e0d8e913a829018",
+  "formal_report_sha256": "ce8a3d51bed01b56e8961d04b62fe90f209173cc06826f8b87dfa14c40051927",
+  "stable_evidence_id": "7e1a31ce61c9847f59afa2eed03772c2d843d63496bbfefa22858df6ba9a1b43",
+  "exact_replays": 2,
+  "automatic_pass": false,
+  "mean_transmittance_error": 0.10408297885270634,
+  "postcloud_to_precloud_noise_ratio": 0.7259536166972631,
+  "precloud_edge_overshoot": 0.016757940925748522,
+  "precloud_edge_undershoot": 0.00937243185020299,
+  "precloud_new_boundary_fraction": 0.0,
+  "decision": "close_or_revise_cloud_spatial_order_combination",
+  "claim_ceiling": "Generic synthetic ordering evidence only; not measured development, dye diffusion, film MTF, stock calibration, visual preference or product evidence."
+}

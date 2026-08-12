@@ -12002,3 +12002,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Negative and slide interpretation IDs leave material bytes identical, and
   full/127-row/replay execution agrees. Continue to density-dependent spatial
   response rather than adding further scanner/cloud ablations.
+
+# 2026-08-12 - U6.P4DO closes the first cloud/spatial composition
+
+- Halo, noise-amplification, boundary and partition gates pass, but mean
+  transmittance error is 0.10408 versus the frozen 0.005 ceiling.
+- Do not tune the cohort or gate. Audit the optical-density conversion first:
+  the new cloud runtime uses exp(-D), while the established physical chain
+  defines optical-density transmittance as 10^-D.
