@@ -1,0 +1,28 @@
+{
+  "schema": "neuro_film.u6_p4cy_cross_layer_cloud_geometry_contract.v1",
+  "experiment_id": "u6.p4cy-cross-layer-cloud-geometry-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4CY",
+  "date_frozen": "2026-08-12",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Can P4CX shared Poisson events be materialized as exact shared continuous dye-cloud centers while preserving marginal/shared rates and existing full-versus-tiled renderer identity?",
+  "parent": {"path": "docs/evidence/U6_P4CX_CROSS_LAYER_COMPOUND_POISSON_RESULT.json", "sha256": "3ffbcd8c3c94477b64afc846ccaedd930600df866243de3d4b3c89de3dbf9301", "required_decision": "retain_shared_component_poisson_as_explicit_cross_layer_reference_primitive"},
+  "geometry": {
+    "input_shape": [48, 64],
+    "seeds": [2026081321, 2026081322, 2026081323, 2026081324],
+    "marginal_count_rates_cmy": [12.0, 18.0, 15.0],
+    "shared_all_rate": 2.0,
+    "shared_pair_rates_cm_cy_my": [2.0, 1.0, 1.5],
+    "mark_optical_density_cmy": [0.02, 0.018, 0.022],
+    "radius_um_cmy": [4.0, 4.5, 5.0],
+    "output_zoom": 2,
+    "output_pixel_pitch_um": 4.0,
+    "monte_carlo_samples": 4,
+    "component_seed_stride": 1009,
+    "render_row_partition": 31
+  },
+  "metrics": {"maximum_marginal_rate_relative_error": 0.015, "maximum_shared_rate_relative_error": 0.03, "require_repeat_center_fingerprint_exact": true, "require_full_tiled_render_bit_exact": true, "require_nonnegative_density": true},
+  "decision_if_pass": "retain_exact_shared_continuous_cloud_geometry_reference",
+  "decision_if_fail": "close_cross_layer_cloud_geometry_without_rescue",
+  "forbidden": ["fit rates or geometry after sampling", "alter seeds or gates after scoring", "claim measured dye-cloud geometry or stock calibration", "enable product rendering"],
+  "claim_ceiling": "Synthetic continuous shared-event dye-cloud geometry reference only; not measured film, scanner or product evidence."
+}
