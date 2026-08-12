@@ -11953,3 +11953,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   gate fails by 2.78e-17 after float scaling.
 - Do not relabel this PASS. A successor may version the inherited correlation
   identity explicitly and separately gate recomputed numeric drift.
+
+# 2026-08-12 - U6.P4DI compiles sensitometry capacity with explicit identity
+
+- V2 inherits the base correlation identity and gates numeric recomputation
+  separately. The unchanged 8.68384x rate multiplier covers U2.2, with maximum
+  correlation drift 2.78e-17; kernels, roundtrip and product-disabled pass.
+- Next execute the typed exposure -> developed density -> cloud ->
+  transmittance chain under explicit interpretation-route identities.
