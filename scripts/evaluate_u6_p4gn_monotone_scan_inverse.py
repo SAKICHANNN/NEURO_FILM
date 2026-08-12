@@ -33,7 +33,10 @@ from src.eval.native_cloud_spatial_partition import (
 )
 from src.eval.sensitometry_cloud_capacity_v2 import evaluate as evaluate_capacity
 from src.film_physics.cross_layer_cloud_profile import CrossLayerCloudReferenceProfile
-from src.film_physics.monotone_scan_inverse import MonotoneScanInverseV1
+from src.film_physics.monotone_scan_inverse import (
+    MonotoneScanInverseV1,
+    ShapePreservingScanInverseV1,
+)
 from src.film_physics.native_cloud_scan_runtime_v2 import WindowedNativeCloudScanRuntime
 from tests.test_u6_p4fc_opt_in_cloud_scan_runtime_v1 import _profile as scatter_profile
 from tests.test_u6_p4fn_native_standard_replayable_rows import _runtime
@@ -51,6 +54,8 @@ def evaluate(
     visual: Path | None = None,
     *,
     scan_domain_anchors: bool = False,
+    inverse_kind: str = "linear",
+    fresh_confirmation_offsets: tuple[float, ...] | None = None,
 ) -> dict:
     contract = json.loads(contract_path.read_text(encoding="utf-8"))
     for parent in contract["parents"].values():
@@ -81,7 +86,24 @@ def evaluate(
     scan_knots = tuple(
         tuple(row) for row in scan_knots_values
     )
-    inverse = MonotoneScanInverseV1(scan_knots, source_knots)
+    inverse_type = (
+        ShapePreservingScanInverseV1
+        if inverse_kind == "shape-preserving-cubic"
+        else MonotoneScanInverseV1
+    )
+    if inverse_kind not in {"linear", "shape-preserving-cubic"}:
+        raise ValueError("unsupported scan inverse kind")
+    inverse = inverse_type(scan_knots, source_knots)
+    if fresh_confirmation_offsets is not None:
+        levels = np.asarray(
+            [
+                (interval + offset) / 32.0
+                for interval in range(32)
+                for offset in fresh_confirmation_offsets
+            ],
+            dtype=np.float64,
+        )
+        confirmation_rows = _render_uniform_medians(levels)
     confirmation_errors = []
     for row in confirmation_rows:
         scan = np.asarray(row["scan_median_rgb"], dtype=np.float32).reshape(1, 1, 3)
@@ -253,6 +275,49 @@ def evaluate(
         "claim_ceiling": contract["claim_ceiling"],
     }
     return _result(contract, stable, bool(stable["numeric_pass"]))
+
+
+def _render_uniform_medians(levels: np.ndarray) -> list[dict]:
+    height, width = 129, 131
+    physical_contract = json.loads(P4FB.read_text(encoding="utf-8"))
+    physical_contract["fixture"]["full_height"] = height
+    physical_contract["fixture"]["width"] = width
+    capacity = evaluate_capacity(
+        ROOT, ROOT / "configs/u6_p4di_sensitometry_cloud_capacity_v2.json"
+    )
+    cloud_profile = CrossLayerCloudReferenceProfile.from_payload(capacity["compiled_profile"])
+    rows = []
+    with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as directory:
+        dll = _build(
+            ROOT,
+            Path(directory) / "native",
+            None,
+            bridge_source="nf_sensitometry_cloud_bridge_f32_v2.c",
+        )
+        library = _configure_source_derived(dll)
+        try:
+            for level in levels:
+                source = np.full((height, width, 3), level, dtype=np.float32)
+                output = render_physical_partition(
+                    library,
+                    physical_contract,
+                    source,
+                    0,
+                    height,
+                    source_derived_expected=True,
+                    enforce_density_envelope=True,
+                    exact_sensitometry_endpoints=True,
+                    cloud_profile=cloud_profile,
+                )
+                rows.append(
+                    {
+                        "source_level": float(level),
+                        "scan_median_rgb": np.median(output, axis=(0, 1)).tolist(),
+                    }
+                )
+        finally:
+            _ctypes.FreeLibrary(library._handle)
+    return rows
 
 
 def _result(contract: dict, stable: dict, passed: bool) -> dict:

@@ -7,6 +7,7 @@ import json
 from dataclasses import dataclass
 
 import numpy as np
+from scipy.interpolate import PchipInterpolator
 
 
 @dataclass(frozen=True)
@@ -68,4 +69,41 @@ class MonotoneScanInverseV1:
         return result
 
 
-__all__ = ["MonotoneScanInverseV1"]
+@dataclass(frozen=True)
+class ShapePreservingScanInverseV1(MonotoneScanInverseV1):
+    """Fritsch-Carlson monotone cubic inverse over the same explicit knots."""
+
+    def to_payload(self) -> dict[str, object]:
+        payload = super().to_payload()
+        payload["schema"] = "neuro-film.shape-preserving-scan-inverse.v1"
+        payload["interpolation"] = "fritsch-carlson-pchip"
+        return payload
+
+    def apply(self, scan_linear_rgb: np.ndarray) -> np.ndarray:
+        values = np.asarray(scan_linear_rgb, dtype=np.float64)
+        if (
+            values.ndim < 1
+            or values.shape[-1] != 3
+            or not np.all(np.isfinite(values))
+        ):
+            raise ValueError("invalid scan-linear inverse input")
+        output = np.empty_like(values)
+        for channel, knots in enumerate(self.scan_knots_rgb):
+            x = np.asarray(knots, dtype=np.float64)
+            samples = values[..., channel]
+            if np.any(samples < x[0]) or np.any(samples > x[-1]):
+                raise ValueError("scan-linear input requires forbidden extrapolation")
+            output[..., channel] = PchipInterpolator(
+                x, self.source_knots, extrapolate=False
+            )(samples)
+        result = np.ascontiguousarray(output, dtype=np.float32)
+        if (
+            not np.all(np.isfinite(result))
+            or np.any(result < 0.0)
+            or np.any(result > 1.0)
+        ):
+            raise RuntimeError("shape-preserving scan inverse escaped its output domain")
+        return result
+
+
+__all__ = ["MonotoneScanInverseV1", "ShapePreservingScanInverseV1"]
