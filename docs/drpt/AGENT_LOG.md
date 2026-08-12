@@ -12533,3 +12533,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Direct full-amplitude particle scan residuals are now closed for this
   display-scale path. The next leaf separates stable physical tone from a
   zero-mean density-conditioned NPS/MTF texture.
+
+### 2026-08-12 - U6.P4GV closes post-processing of the cloud residual
+
+- Reusing the independently retained P4DW target-resolution channel gains
+  lowers p95/p99 to 0.00198/0.00541, flat p99 to 0.01859 and new boundary to
+  zero. Two full reports and sheets are byte exact.
+- Six isolated excursions, 10.95% headroom limiting and the same Nikon yellow
+  density island remain. Channel attenuation changes energy but not the bad
+  spatial topology.
+- P4GR-P4GV therefore close further post-processing of these full-amplitude
+  cloud residual pixels. Continue with an independent bounded zero-mean NPS
+  field around the stable density response.
