@@ -12144,3 +12144,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   4.05e-9; the cloud contribution remains 0.00346 RMS with zero new boundary.
 - Two reports are byte-identical. The next high-value leaf is native stochastic
   cloud generation; further attenuation-wrapper parity is closed.
+
+# 2026-08-12 - U6.P4FJ preserves the frozen Gaussian component
+
+- The row-window entry point now lives in a separate companion ABI; the frozen
+  Gaussian v1 source/header and MSVC DLL return to their exact retained hashes.
+- P4FE/P4FF/P4FI conformance remains exact. Continue with streamed source
+  ingress rather than changing an already packaged Standard component.
