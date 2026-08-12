@@ -1,0 +1,64 @@
+{
+  "schema": "neuro-film.u6-p4hc-cross-layer-thomas-gamma-copula-contract.v1",
+  "experiment_id": "u6.p4hc-cross-layer-thomas-gamma-copula-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4HC",
+  "date_frozen": "2026-08-13",
+  "status": "contract-frozen-implementation-ready",
+  "question": "Can the already retained P4DF shared-cloud correlation couple exact P4HB Thomas spatial fields while preserving P4GZ Gamma marginals and physical density support?",
+  "parents": {
+    "p4hb_result": {
+      "path": "docs/evidence/U6_P4HB_THOMAS_GAMMA_PHOTOGRAPHIC_DEVELOPMENT_RESULT.json",
+      "sha256": "c29ad888b953eb4b740e01d08db595820733c1603361936f9797af2c100a629d",
+      "required_decision": "close_thomas_gamma_photographic_v1_without_rescue"
+    },
+    "p4df_result": {
+      "path": "docs/evidence/U6_P4DF_CROSS_LAYER_NEUTRAL_NPS_RESULT.json",
+      "sha256": "f8fdf579b7552c85e616f9c75447ee10081f66f6135c09054dbcb4b0f92d2fa9",
+      "required_decision": "retain_shared_cross_layer_cloud_for_neutral_stability"
+    },
+    "p4bw_bundle": {
+      "path": "outputs/experiments/u6_p4bw_density_conditioned_thomas_profile_v1/run_a/bundle.json",
+      "sha256": "4edf4eaaeae163a2f579584c7d9533134a7d6177d5cc78ed517cb15865e585bf",
+      "required_profile_id": "199c59fe7d046943bcd763de8cab0ab52e7156aba6d94fcd9f1ec64da4d5d6ff"
+    },
+    "p2q_bundle": {
+      "path": "outputs/u6_p2q_kodak_250d_characteristic_prior/bundle_run1.json",
+      "sha256": "087e67544f737401fa697b21f06215a31827189e0648b8d60da666b92113caaa",
+      "required_prior_id": "04d94af2e1fcad99fbb8c9abb57179f2b63f329c263b3bf2335c4117a670aacb"
+    }
+  },
+  "candidate": {
+    "field_shape": [512, 512],
+    "channel_levels": [0.05, 0.2, 0.5, 0.8, 0.95],
+    "rgb_ratios": [[1.0, 1.0, 1.0], [0.35, 0.7, 1.0], [1.0, 0.7, 0.35]],
+    "layer_field_seeds": [420260813, 420261822, 420262831],
+    "canonical_receipt_row_block_height": 128,
+    "copula": "Gaussian copula over exact empirical Thomas ranks",
+    "correlation_profile_id": "2993d09a7876f4188670aa123f26ce908054bdaa5d704e40646091edba0a06bf",
+    "correlation_matrix": [[1.0, 0.2721655269759087, 0.22360679774997896], [0.2721655269759087, 1.0, 0.21300321680756462], [0.22360679774997896, 0.21300321680756462, 1.0]],
+    "amplitude_multiplier": 1.0,
+    "fitting_allowed": false,
+    "posthoc_limiting_allowed": false
+  },
+  "automatic_gates": {
+    "maximum_non_degenerate_mean_absolute_in_target_sigma": 0.01,
+    "maximum_non_degenerate_variance_relative_error": 0.03,
+    "maximum_non_degenerate_p999_absolute_in_target_sigma": 5.0,
+    "maximum_copula_correlation_absolute_error": 0.02,
+    "maximum_marginal_neighbor_correlation_absolute_drift": 0.02,
+    "minimum_developed_density": -1e-12,
+    "minimum_transmittance": 0.0,
+    "maximum_transmittance": 1.0,
+    "maximum_support_degenerate_residual_absolute": 0.0,
+    "require_repeat_identity": true,
+    "require_finite_without_clipping_or_limiting": true
+  },
+  "execution": {
+    "formal_processes": 2,
+    "post_result_retuning_allowed": false,
+    "same_fixture_rescue_allowed": false
+  },
+  "decision_if_pass": "retain_fixed_cross_layer_thomas_gamma_copula_for_photographic_development",
+  "decision_if_fail": "close_fixed_cross_layer_thomas_gamma_copula_without_rescue",
+  "claim_ceiling": "Synthetic fixed-correlation dye-layer mechanism only; P4DF correlation is a controlled generic simulator primitive, not measured real-film layer coupling, stock calibration, photographic safety or product evidence."
+}
