@@ -1,0 +1,26 @@
+{
+  "schema": "neuro_film.u6_p4et_native_cloud_scale_window_v3.v1",
+  "experiment_id": "u6.p4et-native-cloud-scale-window-v3",
+  "date_executed": "2026-08-12",
+  "implementation_commit": "94f836dd",
+  "automatic_pass": true,
+  "formal_runs": [
+    {"seconds": [25.143292499997187, 25.135184000013396], "stable_evidence_id": "2833813832b20ad4120e7c5b8841803c2e9d2eade934716f71e0696b7724c85c"},
+    {"seconds": [24.495576199988136, 25.177618399990024], "stable_evidence_id": "2833813832b20ad4120e7c5b8841803c2e9d2eade934716f71e0696b7724c85c"}
+  ],
+  "contract_sha256": "181443ddbcd23bc333c93650750392c98f34076a5e401aaacbe5ef1f400863a9",
+  "source_sha256": "d94aedcb9eb97d8e4b3596408f86a7c39813c2f3676c36a9f7c298625b5abac5",
+  "header_sha256": "2796c62ae935f97ba7028e78b4fc37d74fa7a9f38b782206f7865967f088c2a3",
+  "output_sha256": "a287a4893f6d855705b489b242c478df4a67770b19259091f9ad82bbf8ab44a7",
+  "results": {
+    "p4es_output_identity": true,
+    "scale_window_bytes": 21024000,
+    "p4es_full_scale_bytes": 576000000,
+    "scale_storage_reduction_fraction": 0.9635,
+    "maximum_wall_seconds": 25.177618399990024,
+    "maximum_wall_ratio_vs_p4es": 0.9018123508006451,
+    "repeat_output_exact": true
+  },
+  "decision": "retain_native_cloud_scale_window_v3",
+  "claim_ceiling": "Local Windows x64 CPU synthetic 24MP bounded scale-window execution only; not complete renderer, image quality, calibrated stock or product authorization."
+}
