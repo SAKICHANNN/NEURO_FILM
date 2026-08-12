@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 from dataclasses import InitVar, dataclass
+from pathlib import Path
 from typing import Any
 
 import numpy as np
@@ -27,7 +28,8 @@ class RelativeLayerLogExposure:
     _copy: InitVar[bool] = True
 
     def __post_init__(self, _copy: bool) -> None:
-        values = np.asarray(self.values_chw)
+        source = self.values_chw
+        values = np.asarray(source)
         if values.dtype != np.float32:
             raise TypeError("relative layer log exposure must be float32")
         if values.ndim != 3 or values.shape[0] != 3 or values.size == 0:
@@ -36,12 +38,16 @@ class RelativeLayerLogExposure:
             raise ValueError("relative layer log exposure requires red/green/blue order")
         if not np.all(np.isfinite(values)):
             raise ValueError("relative layer log exposure must be finite")
-        if not _copy and (not values.flags.c_contiguous or not values.flags.owndata):
+        mapped = isinstance(source, np.memmap)
+        if not _copy and (
+            not values.flags.c_contiguous
+            or (not values.flags.owndata and not mapped)
+        ):
             raise ValueError("adopted relative layer log exposure must own contiguous data")
         owned = (
             np.array(values, dtype=np.float32, copy=True, order="C")
             if _copy
-            else values
+            else source
         )
         owned.setflags(write=False)
         object.__setattr__(self, "values_chw", owned)
@@ -55,6 +61,35 @@ class RelativeLayerLogExposure:
     def adopt_chw(cls, values_chw: np.ndarray) -> RelativeLayerLogExposure:
         """Transfer ownership of one contiguous CHW array without a full-frame copy."""
         return cls(values_chw, _copy=False)
+
+    @classmethod
+    def map_chw(
+        cls,
+        path: Path,
+        *,
+        height: int,
+        width: int,
+        expected_sha256: str,
+    ) -> RelativeLayerLogExposure:
+        """Map one exact little-endian float32 CHW file without copying it."""
+        source = Path(path)
+        expected_bytes = 3 * height * width * np.dtype("<f4").itemsize
+        if height <= 0 or width <= 0 or source.stat().st_size != expected_bytes:
+            raise ValueError("mapped relative layer log exposure size drift")
+        digest = hashlib.sha256()
+        with source.open("rb") as handle:
+            for chunk in iter(lambda: handle.read(1048576), b""):
+                digest.update(chunk)
+        if digest.hexdigest() != expected_sha256:
+            raise ValueError("mapped relative layer log exposure hash drift")
+        mapped = np.memmap(
+            source,
+            dtype="<f4",
+            mode="r",
+            shape=(3, height, width),
+            order="C",
+        )
+        return cls(mapped, _copy=False)
 
     @classmethod
     def from_layer_exposure(
