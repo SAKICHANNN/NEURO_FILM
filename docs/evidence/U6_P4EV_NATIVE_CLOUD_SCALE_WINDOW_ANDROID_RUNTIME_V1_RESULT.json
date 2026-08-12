@@ -1,0 +1,30 @@
+{
+  "schema": "neuro_film.u6_p4ev_native_cloud_scale_window_android_runtime.v1",
+  "experiment_id": "u6.p4ev-native-cloud-scale-window-android-runtime-v1",
+  "date_executed": "2026-08-12",
+  "implementation_commit": "9a5dcbe5",
+  "automatic_pass": true,
+  "formal_replays": {
+    "count": 2,
+    "android_cold_boots_per_replay": 2,
+    "android_fresh_processes_per_boot": 2,
+    "byte_exact": true
+  },
+  "stable_evidence_id": "2d7bb4ec6823bb52f4c994264de4efc32b1bb9ed0520ebbcf1518934a2ab6810",
+  "contract_sha256": "16688c86b3c6ad1cfd5cd0acdfb7d9f3a0e29e5934e6214eeabf153bec432b45",
+  "source_sha256": "eddbf92d17b413f3b1bd146b8b6d84aba994a4c01dc84b9162c19c800aa403a8",
+  "header_sha256": "b553f3dbdc8cecaff24ca13217bf66b36ada242d4ee94a7df3d695e46bf32b87",
+  "probe_sha256": "549f9db961fd143433a7059accbbd0d479395920dedccb07f6be11767ecdb6fd",
+  "results": {
+    "full_input_window_output_bit_exact": true,
+    "windows_android_density_bit_exact": true,
+    "windows_android_transmittance_bit_exact": true,
+    "android_repeat_exact": true,
+    "failure_output_unchanged": true,
+    "owned_process_cleanup": true,
+    "density_sha256": "de05b281f7601beccb993e2c4fbe2ebc65b05eaf1ee9f0df1a0ababca5b3a57a",
+    "transmittance_sha256": "6bb370a8b1792bc1e5ae67a060617c0311b76a5674234c464f4bde8c22409ef2"
+  },
+  "decision": "retain_android_virtual_runtime_for_native_cloud_scale_window_v3",
+  "claim_ceiling": "Private Android 14 x86_64 virtual-device synthetic bounded scale-window arithmetic; not physical arm64, JNI/app, calibrated emulsion or product runtime."
+}
