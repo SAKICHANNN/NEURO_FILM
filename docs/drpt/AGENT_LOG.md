@@ -12264,3 +12264,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Peak process-tree RSS is 965.6-981.1MB and wall time 69.3-71.2s, passing the
   frozen 1GiB/240s/repeat gates. Scientific ablation remains required before
   treating the combined physical/display chain as useful.
+
+# 2026-08-12 - U6.P4GC freezes cloud/display compatibility ablation
+
+- A non-formal development probe found near-constant combined output despite
+  a healthy AO6-only comparator. Six new procedural scenes and fixed dynamic
+  range, variance, boundary and replay gates are frozen before formal runs.
+- Failure closes this exact cloud-profile plus frozen gauge/display pairing;
+  the cohort cannot be rescued by tuning either profile or the gates.
