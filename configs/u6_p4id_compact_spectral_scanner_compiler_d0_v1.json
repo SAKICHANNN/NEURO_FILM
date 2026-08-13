@@ -1,0 +1,47 @@
+{
+  "schema": "neuro-film.u6-p4id-compact-spectral-scanner-compiler-d0-contract.v1",
+  "experiment_id": "u6-p4id-compact-spectral-scanner-compiler-d0-v1",
+  "question": "Can a compact three-channel compiler preserve a fixed spectral dye-to-scanner integral on held-out mixed-dye wedges, and does a Beer-Lambert log-domain compiler materially outperform the literal linear-density matrix abstraction?",
+  "parents": {
+    "curve_data": {
+      "path": "configs/data/kodak_250d_2383_curve_pixels_v1.json",
+      "sha256": "62e463c8e0f0784da1980b66b0b338a1a2a3f6ece5ffe34268d2bc1987c2187d"
+    },
+    "aa1_decision": {
+      "path": "configs/u5_r2aa1_kodak_negative_print_nuisance_decision_v1.json",
+      "sha256": "b783ec9b9208d08ee8749bd9576df54a76f59ccd05a67ba4544e3717244b9de5",
+      "required_decision": "nuisance_unidentified"
+    }
+  },
+  "source_model": {
+    "dye_family": "250d_dye_density",
+    "dye_order": ["yellow", "magenta", "cyan"],
+    "wavelength_nm": {"start": 400.0, "stop": 800.0, "step": 5.0},
+    "curve_normalization": "independent-peak-normalized",
+    "scanner_profile": {
+      "profile_id": "synthetic-broadband-three-channel-scanner-v1",
+      "illuminant_components": [
+        {"weight": 1.0, "center_nm": 560.0, "sigma_nm": 95.0}
+      ],
+      "sensor_center_nm_rgb": [610.0, 540.0, 460.0],
+      "sensor_sigma_nm_rgb": [55.0, 50.0, 45.0]
+    }
+  },
+  "population": {
+    "fit_dye_amounts": [0.0, 0.25, 0.5, 0.75, 1.0],
+    "confirmation_dye_amounts": [0.125, 0.375, 0.625, 0.875],
+    "models": ["linear-density-affine", "beer-lambert-log-response-affine"]
+  },
+  "gates": {
+    "maximum_confirmation_p95_absolute_error": 0.05,
+    "maximum_confirmation_maximum_absolute_error": 0.08,
+    "minimum_log_domain_p95_relative_improvement": 0.35,
+    "maximum_clear_response_absolute_error": 1e-12,
+    "maximum_neutral_channel_spread": 1e-12,
+    "maximum_monotonicity_positive_step": 1e-12,
+    "require_literal_linear_density_control_to_fail_p95": true
+  },
+  "decision_if_pass": "retain_log_domain_compact_scanner_compiler_as_synthetic_mechanism_d0",
+  "decision_if_fail": "close_exact_compact_scanner_compiler_family",
+  "claim_ceiling": "Synthetic mechanism-only comparison using digitized VISION3 250D peak-normalized dye curves and an explicitly synthetic broadband scanner. Not a 200T or 250D calibration, measured scanner, film-to-scan fit, photo render, profile compiler admission, product operator or Emulating Emulsion reproduction."
+}

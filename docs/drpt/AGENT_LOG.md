@@ -12927,3 +12927,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Two direct formal runs are byte exact (`d70dc6d...b00c1`, stable `5b89953b...96f26`). All 80 cases classify exactly: four-stock and every missing-channel subset accuracy 1.0, worst normalized margin 0.56943, cyclic control 0; all legacy 60 cases remain correct.
 - Result: robust four-stock non-renderable manufacturer source-profile bank retained. Same-source classification is now closed; next evidence must be independent processed-film/scanner observation, not more trace/classifier tuning.
 - P-backed pytest/cache paths remained unresponsive, so focused pytest timed out as infrastructure. Ruff without cache and two direct evaluator replays pass; no D path is embedded in production config or code, and tests accept `NF_BU10_DATA_ROOT` only for fallback execution.
+## 2026-08-13 — U6.P4ID compact spectral scanner compiler D0
+
+- Mainline question: replace P4IC's invalid direct dye-layer-to-display interpretation with the smallest explicit scanner mechanism worth compiling.
+- Latest primary basis: SIGGRAPH 2025 *Emulating Emulsion* uses a compact film-to-scanner 3x3 stage fitted from paired RAW patches; Kodak's March 2026 200T sheet explicitly identifies spectral dye-density curves as scanner/printing aids. Existing AA1 nuisance failure was preserved and not rescued.
+- Implemented a fixed synthetic spectral truth from first-party 250D peak-normalized dye curves and one explicitly synthetic broadband RGB scanner. Fit-only 125 mixed-dye wedges and disjoint 64 confirmation wedges compare literal density-affine against Beer-Lambert log-response-affine.
+- Result: two byte-identical reports, SHA `336ab876...31e2`, stable `54bb6248...59f4`. Literal p95 absolute error `.070529` fails; log-domain `.036153` passes and improves p95 by `48.74%`; all clear/neutral/monotonicity/max-error controls pass.
+- Decision: retain only the log-domain compact compiler as synthetic mechanism D0. No measured scanner, stock calibration, photo, product or Emulating Emulsion reproduction claim.
+- Verification: direct deterministic assertions, Ruff and py_compile pass. Isolated pytest produced no output before timeout while canonical P-backed paths remained unresponsive; this is recorded as infrastructure, not science. Formal outputs remain in the owned D fallback pending verified P recovery.
+- Next: typed float32 density-to-scan compiler conformance on analytical wedges, then only if exact/safe consider a photographic development leaf.

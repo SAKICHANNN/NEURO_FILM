@@ -1,0 +1,54 @@
+{
+  "schema": "neuro-film.u6-p4id-compact-spectral-scanner-compiler-d0-evidence.v1",
+  "experiment_id": "u6-p4id-compact-spectral-scanner-compiler-d0-v1",
+  "date": "2026-08-13",
+  "implementation": {
+    "config_sha256": "3ab35afab6e1082b5bd45dd26fd27879c496001cf3589623835d09c1a988d210",
+    "evaluator_sha256": "eebaccb716c73f88bd9f9ad554967946edf9e401182d62a6a35f31563cc9f990",
+    "runner_sha256": "514e666ec5bd3467886629be484c8ca78104033aa8f4e09641207d8d038db7d7",
+    "test_sha256": "69f4715c10d6181aadfc5f2df3f7252acd511091d7de0f916f1ffc2906954242"
+  },
+  "formal_runs": {
+    "count": 2,
+    "report_sha256": "336ab8767073085e1cf204c10776167c4fcc5f67bc99307206b20d03184431e2",
+    "repeat_report_sha256_exact": true,
+    "stable_evidence_id": "54bb6248f9c1c6fc9322f2fc2146af125ed7c71c199e9e3ec0b23668793459f4",
+    "temporary_output_root": "D:/nf-019f4b76-p4id-fallback/p4id",
+    "temporary_output_reason": "The canonical P drive was mounted but directory IO remained unresponsive. Only formal reports were written to the project-owned D fallback; no C data tree or junction was created."
+  },
+  "population": {
+    "fit_mixed_dye_wedges": 125,
+    "confirmation_mixed_dye_wedges": 64,
+    "source_curve": "VISION3 250D first-party peak-normalized spectral dye-density trace",
+    "scanner": "explicitly synthetic broadband three-channel scanner"
+  },
+  "metrics": {
+    "literal_linear_density_affine": {
+      "median_absolute_error": 0.02974895596106711,
+      "p95_absolute_error": 0.07052857764677316,
+      "maximum_absolute_error": 0.08084835350679398,
+      "rmse": 0.040628032025417246
+    },
+    "beer_lambert_log_response_affine": {
+      "median_absolute_error": 0.015040770997201441,
+      "p95_absolute_error": 0.03615261812394344,
+      "maximum_absolute_error": 0.059544840269399324,
+      "rmse": 0.02064039776090203
+    },
+    "log_domain_p95_relative_improvement": 0.48740468998246544,
+    "clear_response_max_abs_error": 0.0,
+    "neutral_channel_spread_max": 1.1102230246251565e-16,
+    "spectral_truth_maximum_positive_step": -0.007103447921760987
+  },
+  "decision": "retain_log_domain_compact_scanner_compiler_as_synthetic_mechanism_d0",
+  "interpretation": "On held-out mixtures of the exact three peak-normalized dye curves, retaining Beer-Lambert structure in log scanner response materially improves the compact affine compiler and passes the frozen synthetic approximation gates. The literal density-to-scanner affine control fails its p95 gate. This identifies an implementation mechanism, not a real scanner or stock response.",
+  "verification": {
+    "direct_evaluator_determinism": "PASS",
+    "ruff_no_cache": "PASS",
+    "py_compile_d_cache": "PASS",
+    "pytest": "INFRASTRUCTURE_TIMEOUT_NO_OUTPUT_WHILE_P_DRIVE_UNRESPONSIVE",
+    "focused_assertions_executed_directly": "PASS"
+  },
+  "claim_ceiling": "Synthetic mechanism-only evidence using digitized VISION3 250D peak-normalized dye curves and an explicitly synthetic broadband scanner. Not 200T or 250D calibration, measured scanner, film-to-scan fit, photo render, profile compiler admission, product operator or Emulating Emulsion reproduction.",
+  "next_leaf": "Compile the retained log-domain matrix into the typed density-to-scan reference path and test neutral/single-dye/mixed-wedge roundtrip and float32 execution before any photographic integration."
+}
