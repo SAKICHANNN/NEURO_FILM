@@ -1,0 +1,22 @@
+{
+  "schema": "neuro-film.u5-r2cham0-region-correspondence-lut-d0-contract.v1",
+  "experiment_id": "U5.R2CHAM0",
+  "question": "Can region-summary correspondences recover a bounded explicit color operator more reliably than index-aligned pixels under frozen FoV/PoV-like permutations?",
+  "inspiration": {
+    "paper": "ChameleonTuner: Automatic ISP Color Tuning in Subjective Scenarios",
+    "venue": "WACV 2026",
+    "official_url": "https://openaccess.thecvf.com/content/WACV2026/html/Tan_ChameleonTuner_Automatic_ISP_Color_Tuning_in_Subjective_Scenarios_WACV_2026_paper.html",
+    "paper_code_or_data_used": false
+  },
+  "population": {"scenes": 24, "regions_per_scene": 12, "pixels_per_region": 96, "seed": 20260813},
+  "operator": {"ridge": 0.0001, "output_bound": 1.0},
+  "gates": {
+    "minimum_region_win_rate": 0.9,
+    "minimum_median_improvement_over_index_pixels": 0.5,
+    "maximum_region_operator_rmse": 0.025,
+    "maximum_new_boundary_fraction": 0.0
+  },
+  "decision_if_pass": "retain_region_correspondence_as_misalignment_robust_explicit_operator_baseline",
+  "decision_if_fail": "close_exact_region_summary_correspondence_family_without_rescue",
+  "claim_ceiling": "Procedural clean-room D0 under synthetic region permutations; not ChameleonTuner reproduction, photographic fit, real FoV/PoV registration, film response, product or preference evidence."
+}

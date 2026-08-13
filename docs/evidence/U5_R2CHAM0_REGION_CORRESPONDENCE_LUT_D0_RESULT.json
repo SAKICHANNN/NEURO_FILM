@@ -1,0 +1,192 @@
+{
+  "automatic_pass": true,
+  "checks": {
+    "accuracy": true,
+    "boundary": true,
+    "improvement": true,
+    "wins": true
+  },
+  "claim_ceiling": "Procedural clean-room D0 under synthetic region permutations; not ChameleonTuner reproduction, photographic fit, real FoV/PoV registration, film response, product or preference evidence.",
+  "config_sha256": "f67fde0badfac25ac7a5d8b1d32bd8b4aadb218c76158a8f0134260ad8665ef2",
+  "decision": "retain_region_correspondence_as_misalignment_robust_explicit_operator_baseline",
+  "experiment_id": "U5.R2CHAM0",
+  "metrics": {
+    "maximum_new_boundary_fraction": 0.0,
+    "maximum_region_operator_rmse": 0.016083065683890545,
+    "median_improvement_over_index_pixels": 0.8099727451794221,
+    "region_win_rate": 1.0,
+    "row_count": 24
+  },
+  "rows": [
+    {
+      "improvement": 0.7800372482148041,
+      "index_pixel_rmse": 0.04399383224746197,
+      "new_boundary_fraction": 0.0,
+      "region_correspondence_rmse": 0.009677004402728022,
+      "scene": 0
+    },
+    {
+      "improvement": 0.8903553556747921,
+      "index_pixel_rmse": 0.028624880446321617,
+      "new_boundary_fraction": 0.0,
+      "region_correspondence_rmse": 0.0031385648353885335,
+      "scene": 1
+    },
+    {
+      "improvement": 0.7523096677812597,
+      "index_pixel_rmse": 0.013252747788731083,
+      "new_boundary_fraction": 0.0,
+      "region_correspondence_rmse": 0.003282577502601977,
+      "scene": 2
+    },
+    {
+      "improvement": 0.6607538944393263,
+      "index_pixel_rmse": 0.02745096563197451,
+      "new_boundary_fraction": 0.0,
+      "region_correspondence_rmse": 0.00931263318452725,
+      "scene": 3
+    },
+    {
+      "improvement": 0.8541543735510306,
+      "index_pixel_rmse": 0.014623600499566916,
+      "new_boundary_fraction": 0.0,
+      "region_correspondence_rmse": 0.0021327881757987983,
+      "scene": 4
+    },
+    {
+      "improvement": 0.906766789932747,
+      "index_pixel_rmse": 0.015239864222054025,
+      "new_boundary_fraction": 0.0,
+      "region_correspondence_rmse": 0.0014208614624111762,
+      "scene": 5
+    },
+    {
+      "improvement": 0.7882173545560387,
+      "index_pixel_rmse": 0.05827564009970938,
+      "new_boundary_fraction": 0.0,
+      "region_correspondence_rmse": 0.012341769225256646,
+      "scene": 6
+    },
+    {
+      "improvement": 0.8519907900110189,
+      "index_pixel_rmse": 0.07718956497254774,
+      "new_boundary_fraction": 0.0,
+      "region_correspondence_rmse": 0.011424766530979923,
+      "scene": 7
+    },
+    {
+      "improvement": 0.6425140354926289,
+      "index_pixel_rmse": 0.022633590408090234,
+      "new_boundary_fraction": 0.0,
+      "region_correspondence_rmse": 0.008091190897300923,
+      "scene": 8
+    },
+    {
+      "improvement": 0.8760776049930337,
+      "index_pixel_rmse": 0.026849404480320114,
+      "new_boundary_fraction": 0.0,
+      "region_correspondence_rmse": 0.003327242507712041,
+      "scene": 9
+    },
+    {
+      "improvement": 0.8438146485852884,
+      "index_pixel_rmse": 0.02204212308022194,
+      "new_boundary_fraction": 0.0,
+      "region_correspondence_rmse": 0.00344265673921079,
+      "scene": 10
+    },
+    {
+      "improvement": 0.5025928985269026,
+      "index_pixel_rmse": 0.011012204111003086,
+      "new_boundary_fraction": 0.0,
+      "region_correspondence_rmse": 0.005477548527684173,
+      "scene": 11
+    },
+    {
+      "improvement": 0.8313074692544598,
+      "index_pixel_rmse": 0.016373387167336242,
+      "new_boundary_fraction": 0.0,
+      "region_correspondence_rmse": 0.002762068118134502,
+      "scene": 12
+    },
+    {
+      "improvement": 0.8407235961457897,
+      "index_pixel_rmse": 0.0633820834565465,
+      "new_boundary_fraction": 0.0,
+      "region_correspondence_rmse": 0.010095270321746156,
+      "scene": 13
+    },
+    {
+      "improvement": 0.7394305698405335,
+      "index_pixel_rmse": 0.007570436840506684,
+      "new_boundary_fraction": 0.0,
+      "region_correspondence_rmse": 0.001972624413589059,
+      "scene": 14
+    },
+    {
+      "improvement": 0.8069245276597232,
+      "index_pixel_rmse": 0.024959818006281453,
+      "new_boundary_fraction": 0.0,
+      "region_correspondence_rmse": 0.0048191286510901364,
+      "scene": 15
+    },
+    {
+      "improvement": 0.695917035794748,
+      "index_pixel_rmse": 0.04519890009763041,
+      "new_boundary_fraction": 0.0,
+      "region_correspondence_rmse": 0.013744215520504508,
+      "scene": 16
+    },
+    {
+      "improvement": 0.8873481149561202,
+      "index_pixel_rmse": 0.08332124014649409,
+      "new_boundary_fraction": 0.0,
+      "region_correspondence_rmse": 0.009386294766696357,
+      "scene": 17
+    },
+    {
+      "improvement": 0.8674767770359109,
+      "index_pixel_rmse": 0.0175082435451905,
+      "new_boundary_fraction": 0.0,
+      "region_correspondence_rmse": 0.002320248863048855,
+      "scene": 18
+    },
+    {
+      "improvement": 0.657244473334665,
+      "index_pixel_rmse": 0.03884068317441666,
+      "new_boundary_fraction": 0.0,
+      "region_correspondence_rmse": 0.013312858817488603,
+      "scene": 19
+    },
+    {
+      "improvement": 0.7836930672038904,
+      "index_pixel_rmse": 0.04590454147811074,
+      "new_boundary_fraction": 0.0,
+      "region_correspondence_rmse": 0.009929470568541925,
+      "scene": 20
+    },
+    {
+      "improvement": 0.8076889142954016,
+      "index_pixel_rmse": 0.08363046584113783,
+      "new_boundary_fraction": 0.0,
+      "region_correspondence_rmse": 0.016083065683890545,
+      "scene": 21
+    },
+    {
+      "improvement": 0.8122565760634427,
+      "index_pixel_rmse": 0.01740450633190295,
+      "new_boundary_fraction": 0.0,
+      "region_correspondence_rmse": 0.003267581610676951,
+      "scene": 22
+    },
+    {
+      "improvement": 0.8510215184083542,
+      "index_pixel_rmse": 0.013623378359190584,
+      "new_boundary_fraction": 0.0,
+      "region_correspondence_rmse": 0.002029590222100701,
+      "scene": 23
+    }
+  ],
+  "schema": "neuro-film.u5-r2cham0-region-correspondence-lut-d0-result.v1",
+  "stable_evidence_id": "23f87c7e41d7bfa53d9ff3120966e96e664d6e4d83876f64456f772791d0466d"
+}
