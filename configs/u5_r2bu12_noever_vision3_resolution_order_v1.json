@@ -1,0 +1,51 @@
+{
+  "schema": "neuro_film.u5-r2bu12-noever-vision3-resolution-order-contract.v1",
+  "experiment_id": "U5.R2BU12",
+  "date_frozen": "2026-08-14",
+  "question": "Does the independently processed and scanned Noever resolution table preserve the coarse manufacturer-prior ordering that 50D and 200T are never below 500T after conditioning on format and scan resolution?",
+  "parents": {
+    "bu10_evidence": {"path": "docs/evidence/U5_R2BU10_VISION3_200T_PROFILE_BANK_ROBUSTNESS_RESULT.json", "sha256": "3f6e3796288a88e912a9a5f1fdb16ca6330d94a028922212317917bb04fc2287"},
+    "bu11_evidence": {"path": "docs/evidence/U5_R2BU11_NOEVER_VISION3_RESOLUTION_SOURCE_RESULT.json", "sha256": "40c1117007973c204ff875f9924dfa80d4305e982411fb0e227e859931587da5"}
+  },
+  "source": {
+    "study_url": "https://florian-noever.com/filmresolutiontest/",
+    "table_image_url": "https://florian-noever.com/wp-content/uploads/2025/02/Bildschirmfoto-2025-02-25-um-23.05.28.png",
+    "table_image_path": "data/film_stock/noever_vision3_resolution_2025/table3_resolution_limits.png",
+    "table_image_sha256": "374ec932d3ccfc8834d00f30d2d0f24f027ea5a9ee5a28269855080bc1e56906",
+    "license": "CC BY-NC 4.0",
+    "rights_scope": "internal_noncommercial_research_only",
+    "author_interpretation": "50D and 200T have similar maximum resolution while 500T falls significantly behind",
+    "values_lp_per_mm": {
+      "50D": {"super16": {"2k": 42, "4k": 53, "6k": 67}, "super35": {"2k": 42, "4k": 84, "6k": 84}},
+      "200T": {"super16": {"2k": 42, "4k": 53, "6k": 53}, "super35": {"2k": 42, "4k": 84, "6k": 84}},
+      "500T": {"super16": {"2k": 42, "4k": 42, "6k": 53}, "super35": {"2k": 42, "4k": 67, "6k": 84}}
+    },
+    "aliasing_flags": {
+      "50D": {"super16": {"2k": "aliasing", "4k": "none", "6k": "none"}, "super35": {"2k": "aliasing", "4k": "aliasing", "6k": "none"}},
+      "200T": {"super16": {"2k": "aliasing", "4k": "slight_aliasing", "6k": "none"}, "super35": {"2k": "aliasing", "4k": "aliasing", "6k": "none"}},
+      "500T": {"super16": {"2k": "aliasing", "4k": "none", "6k": "none"}, "super35": {"2k": "aliasing", "4k": "slight_aliasing", "6k": "none"}}
+    }
+  },
+  "comparison": {
+    "fast_stocks": ["50D", "200T"],
+    "slow_stock": "500T",
+    "formats": ["super16", "super35"],
+    "scan_resolutions": ["2k", "4k", "6k"],
+    "primary_statistic": "within-stratum noninferiority and strict-win counts versus 500T",
+    "negative_controls": "all assignments of the three observed stock rows to the fast-fast-slow roles"
+  },
+  "gates": {
+    "required_strata": 6,
+    "minimum_fast_stock_noninferiority_rate": 1.0,
+    "minimum_each_fast_stock_strict_wins": 2,
+    "minimum_total_strict_wins": 5,
+    "minimum_assignment_score_margin": 1,
+    "require_aliasing_flags_reported_not_discarded": true,
+    "no_pixel_fit_or_render_authority": true
+  },
+  "branch_rule": {
+    "pass": "retain_independent_processed_film_coarse_speed_tier_resolution_support",
+    "fail": "close_noever_resolution_order_without_table_or_threshold_rescue"
+  },
+  "claim_ceiling": "Independent single-study ordinal processed-film-plus-scanner support that 50D/200T resolution is not below 500T across six disclosed format/scan strata; not 50D-versus-200T separation, absolute MTF calibration, scanner-independent material truth, colour response, rendering or product evidence."
+}
