@@ -31,6 +31,9 @@ from src.film_physics.bounded_photographic_profile import (
 from src.film_physics.independent_density_nps import (
     apply_cross_layer_thomas_gamma_copula,
 )
+from src.film_physics.relative_display_characteristic_ingress import (
+    relative_display_to_finite_density_transmittance,
+)
 
 CONTRACT_SCHEMA = (
     "neuro-film.u6-p4hz-opponent-diffusion-photographic-confirmation-contract.v1"
@@ -161,6 +164,26 @@ class AnalyticalOpponentDiffusionRuntime(OpponentDiffusionRuntime):
                 ],
             }
         )
+        return output, diagnostics
+
+
+@dataclass
+class CharacteristicIngressAnalyticalRuntime(AnalyticalOpponentDiffusionRuntime):
+    """P4IC finite characteristic ingress followed by P4IA structure."""
+
+    def apply_source(
+        self, source: np.ndarray, *, seeds: tuple[int, int, int]
+    ) -> tuple[np.ndarray, dict[str, Any]]:
+        _, transmittance, ingress = relative_display_to_finite_density_transmittance(
+            source, self.components.prior
+        )
+        output, diagnostics = super().apply_source(transmittance, seeds=seeds)
+        diagnostics["ingress_zero_input_transmittance_minimum"] = ingress[
+            "zero_input_transmittance_minimum"
+        ]
+        diagnostics["ingress_one_input_transmittance_minimum"] = ingress[
+            "one_input_transmittance_minimum"
+        ]
         return output, diagnostics
 
 
