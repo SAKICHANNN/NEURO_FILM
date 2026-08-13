@@ -1,0 +1,12 @@
+{
+  "schema": "neuro-film.u5-r2bx3-c2lut-chromaticity-conditioned-relighting-d0-contract.v1",
+  "experiment_id": "U5.R2BX3",
+  "question": "Does camera-white rg conditioning improve explicit RAW-to-D65 XYZ correction on held-out complex illuminants after diagonal white balance?",
+  "paper_binding": {"arxiv": "2607.11681v2", "pdf_sha256": "366571627c286bfc2bd3bde00b556c572ca96e4ad861acb3eeb17116941551f5", "official_repo_commit": "454662890b3a4f918334528f39cc88081866257b", "official_repo_has_code": false},
+  "population": {"train_illuminants": 24, "test_illuminants": 12, "reflectances": 420, "development_reflectances": 320, "seed": 20260818},
+  "candidate": {"nearest_rg_train_illuminants": 4, "ridge": 0.0001},
+  "gates": {"minimum_candidate_win_rate_vs_shared_quadratic": 0.9, "minimum_median_improvement_vs_shared_quadratic": 0.1, "minimum_worst_improvement_vs_shared_quadratic": 0.0, "maximum_candidate_to_oracle_rmse_ratio": 1.5, "maximum_candidate_xyz_rmse": 0.025},
+  "decision_if_pass": "retain_rg_conditioned_explicit_operator_for_measured_spd_confirmation",
+  "decision_if_fail": "close_exact_procedural_rg_conditioning_family_without_rescue",
+  "claim_ceiling": "Clean-room procedural Eq.1-5 mechanism D0 with analytic spectra; not official C2LUT execution, measured camera/illuminant calibration, photographic quality, film response or product evidence."
+}

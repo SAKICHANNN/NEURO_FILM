@@ -1,0 +1,189 @@
+{
+  "automatic_pass": false,
+  "checks": {
+    "accuracy": true,
+    "median": false,
+    "oracle_gap": true,
+    "tail": false,
+    "wins": false
+  },
+  "claim_ceiling": "Clean-room procedural Eq.1-5 mechanism D0 with analytic spectra; not official C2LUT execution, measured camera/illuminant calibration, photographic quality, film response or product evidence.",
+  "config_sha256": "e60e55658d61c94a4f1edb6567da148dc275780bffdf2a5580f73d7ff9d5cb07",
+  "decision": "close_exact_procedural_rg_conditioning_family_without_rescue",
+  "experiment_id": "U5.R2BX3",
+  "metrics": {
+    "candidate_win_rate_vs_shared_quadratic": 0.6666666666666666,
+    "maximum_candidate_to_oracle_rmse_ratio": 1.1291676721472734,
+    "maximum_candidate_xyz_rmse": 0.018406513367925446,
+    "median_improvement_shared_quadratic_vs_ccm": -0.013813909487566556,
+    "median_improvement_vs_shared_quadratic": 0.05273954463440228,
+    "row_count": 12,
+    "worst_improvement_vs_shared_quadratic": -0.015827060743488275
+  },
+  "paper_binding": {
+    "arxiv": "2607.11681v2",
+    "official_repo_commit": "454662890b3a4f918334528f39cc88081866257b",
+    "official_repo_has_code": false,
+    "pdf_sha256": "366571627c286bfc2bd3bde00b556c572ca96e4ad861acb3eeb17116941551f5"
+  },
+  "rows": [
+    {
+      "candidate_to_oracle_rmse_ratio": 1.0184053490634035,
+      "conditioned_rmse": 0.011797016115412404,
+      "improvement_vs_shared_quadratic": 0.2987438449679831,
+      "index": 24,
+      "oracle_rmse": 0.011583812011849468,
+      "rg": [
+        0.4491159783884801,
+        0.295678636832318
+      ],
+      "shared_ccm_rmse": 0.017048944324002734,
+      "shared_quadratic_rmse": 0.016822691723645256
+    },
+    {
+      "candidate_to_oracle_rmse_ratio": 0.9928643118391232,
+      "conditioned_rmse": 0.01793539667050536,
+      "improvement_vs_shared_quadratic": -0.009239015145117602,
+      "index": 25,
+      "oracle_rmse": 0.018064297866928956,
+      "rg": [
+        0.25352738712583456,
+        0.34571751070511564
+      ],
+      "shared_ccm_rmse": 0.017478819814266033,
+      "shared_quadratic_rmse": 0.017771208208717974
+    },
+    {
+      "candidate_to_oracle_rmse_ratio": 1.124493694731362,
+      "conditioned_rmse": 0.01584824963196834,
+      "improvement_vs_shared_quadratic": 0.09733986690821794,
+      "index": 26,
+      "oracle_rmse": 0.014093675852717376,
+      "rg": [
+        0.2468340948001681,
+        0.4385015624430973
+      ],
+      "shared_ccm_rmse": 0.01754684619417068,
+      "shared_quadratic_rmse": 0.017557272168080673
+    },
+    {
+      "candidate_to_oracle_rmse_ratio": 0.9894350760932317,
+      "conditioned_rmse": 0.01754331977462639,
+      "improvement_vs_shared_quadratic": -0.004471125048113311,
+      "index": 27,
+      "oracle_rmse": 0.017730642665202353,
+      "rg": [
+        0.28874626524966396,
+        0.3474733297757606
+      ],
+      "shared_ccm_rmse": 0.017179045221517423,
+      "shared_quadratic_rmse": 0.017465230544866164
+    },
+    {
+      "candidate_to_oracle_rmse_ratio": 1.0813378582752309,
+      "conditioned_rmse": 0.008492288794197599,
+      "improvement_vs_shared_quadratic": 0.1145060547091693,
+      "index": 28,
+      "oracle_rmse": 0.007853501779492929,
+      "rg": [
+        0.38288274547077633,
+        0.33659974006138227
+      ],
+      "shared_ccm_rmse": 0.009656089913626365,
+      "shared_quadratic_rmse": 0.009590453824513052
+    },
+    {
+      "candidate_to_oracle_rmse_ratio": 1.1031315203134648,
+      "conditioned_rmse": 0.014197761225835428,
+      "improvement_vs_shared_quadratic": -0.008837074118614119,
+      "index": 29,
+      "oracle_rmse": 0.012870415688784784,
+      "rg": [
+        0.3151895698763169,
+        0.43996927924808826
+      ],
+      "shared_ccm_rmse": 0.013920699652133465,
+      "shared_quadratic_rmse": 0.014073393603461212
+    },
+    {
+      "candidate_to_oracle_rmse_ratio": 1.023696257155381,
+      "conditioned_rmse": 0.005244908707363037,
+      "improvement_vs_shared_quadratic": 0.10899082140395111,
+      "index": 30,
+      "oracle_rmse": 0.005123500912211446,
+      "rg": [
+        0.340403176346708,
+        0.3627250808524358
+      ],
+      "shared_ccm_rmse": 0.005602510942954896,
+      "shared_quadratic_rmse": 0.0058864811197875296
+    },
+    {
+      "candidate_to_oracle_rmse_ratio": 0.9992073581855027,
+      "conditioned_rmse": 0.01214631215797317,
+      "improvement_vs_shared_quadratic": 0.032912392647322486,
+      "index": 31,
+      "oracle_rmse": 0.01215594747023291,
+      "rg": [
+        0.3309830383349535,
+        0.4071004142180013
+      ],
+      "shared_ccm_rmse": 0.012338564461906471,
+      "shared_quadratic_rmse": 0.012559681321139764
+    },
+    {
+      "candidate_to_oracle_rmse_ratio": 1.0110422864316015,
+      "conditioned_rmse": 0.018406513367925446,
+      "improvement_vs_shared_quadratic": -0.015827060743488275,
+      "index": 32,
+      "oracle_rmse": 0.01820548320772009,
+      "rg": [
+        0.27107827647885424,
+        0.39311754034835716
+      ],
+      "shared_ccm_rmse": 0.017956229359172654,
+      "shared_quadratic_rmse": 0.018119731280296508
+    },
+    {
+      "candidate_to_oracle_rmse_ratio": 1.0694590531737196,
+      "conditioned_rmse": 0.01434363190926833,
+      "improvement_vs_shared_quadratic": 0.07256669662148207,
+      "index": 33,
+      "oracle_rmse": 0.013412044029831963,
+      "rg": [
+        0.31933442213137436,
+        0.26473757619086286
+      ],
+      "shared_ccm_rmse": 0.015391942250766153,
+      "shared_quadratic_rmse": 0.015465944404860554
+    },
+    {
+      "candidate_to_oracle_rmse_ratio": 1.1291676721472734,
+      "conditioned_rmse": 0.009242914925483965,
+      "improvement_vs_shared_quadratic": 0.00789427238382534,
+      "index": 34,
+      "oracle_rmse": 0.008185600025111633,
+      "rg": [
+        0.28067267004722674,
+        0.3114955208936797
+      ],
+      "shared_ccm_rmse": 0.009159651304612493,
+      "shared_quadratic_rmse": 0.009316461611095405
+    },
+    {
+      "candidate_to_oracle_rmse_ratio": 1.103029949462902,
+      "conditioned_rmse": 0.007260727097271431,
+      "improvement_vs_shared_quadratic": 0.19829482751177407,
+      "index": 35,
+      "oracle_rmse": 0.006582529423436684,
+      "rg": [
+        0.2736293599174058,
+        0.4234026308602525
+      ],
+      "shared_ccm_rmse": 0.008786754710379614,
+      "shared_quadratic_rmse": 0.009056605029423162
+    }
+  ],
+  "schema": "neuro-film.u5-r2bx3-c2lut-chromaticity-conditioned-relighting-d0-result.v1",
+  "stable_evidence_id": "2d7eb66ff0f0730e40e2023dd09afd7457d41092adde0ccdbacfadd122aa3cab"
+}
