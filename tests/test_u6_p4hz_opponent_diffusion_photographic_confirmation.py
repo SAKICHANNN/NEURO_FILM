@@ -5,7 +5,10 @@ from pathlib import Path
 
 import pytest
 
-from src.eval.opponent_diffusion_photographic_confirmation import load_contract
+from src.eval.opponent_diffusion_photographic_confirmation import (
+    OpponentDiffusionRuntime,
+    load_contract,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = (
@@ -28,3 +31,7 @@ def test_p4hz_rejects_schema_drift(tmp_path: Path) -> None:
     path.write_text(json.dumps(payload), encoding="utf-8")
     with pytest.raises(ValueError, match="unsupported"):
         load_contract(path)
+
+
+def test_p4hz_runtime_surface_is_explicit() -> None:
+    assert OpponentDiffusionRuntime.__doc__

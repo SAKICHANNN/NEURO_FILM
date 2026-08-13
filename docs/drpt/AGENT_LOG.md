@@ -12866,3 +12866,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   density error is `3.47e-18` with zero new boundaries. Every frozen gate passes.
 - Open one wholly fresh photographic automatic confirmation only. Do not tune
   scales or claim measured film, preference, runtime or product readiness.
+
+### 2026-08-13 - U6.P4HZ closes opponent diffusion on fresh photographs
+
+- Eleven fresh CC0 camera rows were frozen before the fixed P4HX mechanism ran.
+  Two independent processes replay the same report byte-for-byte.
+- The first Canon source produces an unclipped opponent-density candidate
+  outside the unit cube. No PNG is published, and visual or blind review stays
+  closed. The failure is not repaired with clipping, limiting or scale tuning.
+- Retain fixed AO6 and close this exact photographic mechanism. The procedural
+  P4HX capacity result remains valid but does not establish photographic value.

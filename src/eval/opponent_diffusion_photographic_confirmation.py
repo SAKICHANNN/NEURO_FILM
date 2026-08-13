@@ -152,13 +152,14 @@ def evaluate(
     ao6 = _load_ao6(root, parents["ao6_artifact"])
     output_dir.mkdir(parents=True, exist_ok=False)
     evaluated: list[dict[str, Any]] = []
+    execution_failures: list[dict[str, str]] = []
     for index, row in enumerate(rows):
         seeds = tuple(
             int(seed) + index * int(candidate["field_seed_stride_per_source"])
             for seed in candidate["layer_field_seeds"]
         )
-        evaluated.append(
-            evaluate_source_arms(
+        try:
+            result = evaluate_source_arms(
                 root=root,
                 output_dir=output_dir,
                 row=row,
@@ -170,7 +171,37 @@ def evaluate(
                 gates=contract["automatic_gates"],
                 arm_ids=arms,
             )
-        )
+        except RuntimeError as error:
+            execution_failures.append(
+                {"source_id": row["id"], "error": str(error)}
+            )
+            break
+        evaluated.append(result)
+    if execution_failures:
+        core = {
+            "schema": RESULT_SCHEMA,
+            "experiment_id": contract["experiment_id"],
+            "config_sha256": _canonical_sha256(contract),
+            "manifest_sha256": manifest_sha,
+            "source_count": len(rows),
+            "evaluated_source_count": len(evaluated),
+            "arm_ids": list(arms),
+            "profile_bundle_sha256": profile["bundle_sha256"],
+            "runtime_identity": runtime.native_toolchains,
+            "rows": evaluated,
+            "execution_failures": execution_failures,
+            "gates": {
+                "complete_inventory": False,
+                "finite_and_bounded": False,
+            },
+            "automatic_pass": False,
+            "severe_visual_review_allowed": False,
+            "blind_review_allowed": False,
+            "decision": contract["decision_if_fail"],
+            "production_default_changed": False,
+            "claim_ceiling": contract["claim_ceiling"],
+        }
+        return {**core, "stable_evidence_id": _canonical_sha256(core)}
     aggregates = aggregate_arm_rows(evaluated)
     checks = automatic_arm_checks(
         aggregates,

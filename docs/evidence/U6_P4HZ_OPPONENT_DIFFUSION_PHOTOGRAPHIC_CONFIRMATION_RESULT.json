@@ -1,0 +1,31 @@
+{
+  "schema": "neuro-film.u6-p4hz-opponent-diffusion-photographic-confirmation-evidence.v1",
+  "experiment_id": "u6-p4hz-opponent-diffusion-photographic-confirmation-v1",
+  "implementation_commit": "aeccc57bd57383d20445494b2fd2e69ed1663ca9",
+  "contract": {
+    "path": "configs/u6_p4hz_opponent_diffusion_photographic_confirmation_v1.json",
+    "sha256": "7b3cd5057165b04b79c67a64480d45ca7d1861cfff09f030fe193956d1e1f06f"
+  },
+  "formal_reports": {
+    "paths": [
+      "outputs/u6_p4hz_opponent_diffusion_photographic_confirmation_v1/run_a/report.json",
+      "outputs/u6_p4hz_opponent_diffusion_photographic_confirmation_v1/run_b/report.json"
+    ],
+    "sha256": "1058af122ded7a3f2261e131edb3e23827db28d700318619cb57c7928546edc7",
+    "byte_exact": true,
+    "stable_evidence_id": "604165d0c78f6ba3180faa15247d1fbc1848098ea450752c101d3be2937d2adb"
+  },
+  "observations": {
+    "fresh_manifest_rows": 11,
+    "failure_source_id": "canon_eos_r10",
+    "evaluated_source_count": 0,
+    "published_output_count": 0,
+    "failure": "P4HX candidate escaped the unit cube",
+    "same_cohort_rescue_performed": false
+  },
+  "automatic_pass": false,
+  "severe_visual_review_allowed": false,
+  "blind_review_allowed": false,
+  "decision": "retain_current_ao6_and_close_exact_p4hx_photographic_confirmation",
+  "claim_ceiling": "Fixed Python-reference P4HX opponent-density diffusion on eleven fresh relative-display CC0 digital photographs; automatic severe-artifact eligibility only, not film-stock calibration, preference, portable runtime or product promotion"
+}
