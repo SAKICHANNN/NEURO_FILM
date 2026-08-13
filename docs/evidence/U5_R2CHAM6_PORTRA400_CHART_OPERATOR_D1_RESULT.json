@@ -1,0 +1,38 @@
+{
+  "schema": "neuro-film.u5-r2cham6-portra400-chart-operator-d1-evidence.v1",
+  "experiment_id": "U5.R2CHAM6",
+  "implementation_commit": "a303dc434c57e7ddc97ea07587c471dc7940c601",
+  "bindings": {
+    "config_sha256": "c2aae6444eca2da6e8a580cfc01c614173252d1036a967ec4c4f2cf03799e373",
+    "evaluator_sha256": "9e738616e138ea7f9feede92953f4336f870f74e99b85e551ceea4371ff48a48",
+    "runner_sha256": "f81ddd2497400998648ff7c04e692453a341d7801f9b31ac2a6a2c8d26d259ff",
+    "test_sha256": "3a69e09d9357ea22fcc07ae6cc834b0c9de4f17c59020adf525639e48b85a75f",
+    "formal_a_report_sha256": "cc4d4f97dffb493a7218d9ae8bd998c57806683083acb0da86b1d56caa4c8738",
+    "formal_b_report_sha256": "cc4d4f97dffb493a7218d9ae8bd998c57806683083acb0da86b1d56caa4c8738"
+  },
+  "stable_evidence_id": "a71f304ae56895200e4a3730885eed8f3b2f07a7ad1c43d91b71a2b0bf0cdf69",
+  "observations": {
+    "formal_reports_byte_exact": true,
+    "linear_srgb_sample_count": 3072,
+    "minimum_eligible_samples_per_spatial_block": 66,
+    "identity_rmse": 0.19505185178298798,
+    "full_affine_rmse": 0.18712153190160785,
+    "candidate_rmse": 0.15330791781591743,
+    "candidate_improvement_over_full_affine_fraction": 0.1807040255713077,
+    "candidate_fold_wins_over_full_affine": "4/4",
+    "candidate_worst_fold_improvement_fraction": 0.07608358619613964,
+    "candidate_improvement_over_shuffled_correspondence_fraction": 0.0869569487476034,
+    "candidate_raw_out_of_cube_fraction": 0.09461805555555555,
+    "candidate_minimum_sampled_cube_jacobian_determinant": -0.015213569854997493,
+    "candidate_repeat_error": 0.0
+  },
+  "failed_gates": [
+    "candidate_rmse_above_0.08",
+    "raw_out_of_cube_fraction_above_0.005",
+    "minimum_sampled_cube_jacobian_not_positive"
+  ],
+  "decision": "close_equation_family_on_this_chart_and_retain_simpler_affine_control",
+  "interpretation": "The 30-parameter equation has real same-chart held-spatial-block capacity and beats both the affine and shuffled-correspondence controls, but it achieves that gain with material range escape and local orientation reversal while absolute error remains high. The failure is therefore structural and accuracy-limited, not evidence that the chart contains no recoverable mapping.",
+  "next_leaf": "Test the already-published cube-preserving trilinear log-odds residual over a positive global film-response base on the same development observations, with explicit post-result disclosure and no independent-confirmation claim.",
+  "claim_ceiling": "One-session registered-chart development failure using an unlicensed public package; not natural-scene transfer, Portra 400 calibration, process, paper, scanner, product, redistribution or commercial-use evidence."
+}

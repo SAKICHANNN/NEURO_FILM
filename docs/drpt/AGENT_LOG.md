@@ -12993,3 +12993,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   pose/viewpoint differ, and are not pixel pairs or current fit targets.
 - Open one held-patch explicit-operator discriminant on the chart only. This
   cannot establish calibrated stock, process, paper, scanner or product truth.
+
+### 2026-08-14 - U5.R2CHAM6 closes the unbounded 30-parameter chart equation
+
+- Two formal reports are byte exact (`cc4d4f97...c8738`, stable
+  `a71f304a...cdf69`) on 3,072 linear-sRGB samples across 64 held spatial
+  blocks. The equation beats the affine control by 18.07%, wins all four
+  folds and beats shuffled correspondence by 8.70%, so the chart contains a
+  recoverable nonlinear mapping.
+- Formal FAIL: RMSE is `.15331`, 9.46% of predicted channels leave the RGB
+  cube and minimum sampled Jacobian determinant is `-.01521`. Close this
+  exact equation without clipping or threshold rescue. The next development
+  test changes the mechanism to an intrinsically bounded positive-base plus
+  trilinear log-odds residual; it is not independent confirmation.
