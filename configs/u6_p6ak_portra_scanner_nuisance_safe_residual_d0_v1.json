@@ -1,0 +1,41 @@
+{
+  "schema": "neuro-film.u6-p6ak-portra-scanner-nuisance-safe-residual-d0-contract.v1",
+  "experiment_id": "U6.P6AK",
+  "question": "Does the frozen P6AJ scanner-plus-print affine retain useful pairing-specific signal when every held prediction is analytically scaled along its actual residual direction to the maximum display-cube-safe value without clipping?",
+  "parents": {
+    "p6aj_contract": {
+      "path": "configs/u6_p6aj_portra_natural_scanner_nuisance_d0_v1.json",
+      "sha256": "a6deb6f8420065fadc396bf55395c17cdd37af8d5950d142dda1ab649b24e6b3"
+    },
+    "p6aj_evidence": {
+      "path": "docs/evidence/U6_P6AJ_PORTRA_NATURAL_SCANNER_NUISANCE_D0_RESULT.json",
+      "sha256": "d4459d3ce2b57e36841721b2cfdf78903d5b6b23c960a0f4ff89d0f988127923",
+      "required_decision": "close_global_affine_scanner_print_nuisance_on_this_observation",
+      "required_stable_evidence_id": "b0f1915e93fff62ebd50000470739ec3a25d8892857683a3f3dc0eb4e334a82d"
+    }
+  },
+  "execution": {
+    "fit": "exact_p6aj_four_fold_affine_no_refit_change",
+    "operator": "per-sample-maximum-safe-scale-along-affine-residual",
+    "hard_clipping_allowed": false,
+    "posthoc_limiting_allowed": false,
+    "residual_direction_change_allowed": false
+  },
+  "gates": {
+    "required_eligible_correspondences": 697,
+    "required_spatial_folds": 4,
+    "minimum_improvement_over_identity_fraction": 0.5,
+    "minimum_improvement_over_wrong_pairing_fraction": 0.25,
+    "minimum_spatial_fold_win_fraction": 0.75,
+    "minimum_worst_spatial_fold_improvement_fraction": 0.25,
+    "maximum_rmse": 0.09,
+    "maximum_out_of_cube_fraction": 0.0,
+    "maximum_limited_sample_fraction": 0.2,
+    "minimum_median_safe_scale": 0.9,
+    "maximum_residual_direction_error": 1e-12,
+    "maximum_repeat_error": 0.0
+  },
+  "decision_if_pass": "retain_bounded_scanner_print_nuisance_development_mechanism_d0",
+  "decision_if_fail": "close_safe_residual_scanner_print_nuisance_on_this_observation",
+  "claim_ceiling": "Analytical bounded execution of one frozen scanner-plus-print nuisance fit on the same consumed, unlicensed observation; development mechanism only, not fresh confirmation, same-negative calibration, stock response, population transfer, product, redistribution or commercial-use evidence."
+}
