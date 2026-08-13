@@ -80,8 +80,10 @@ def _compile_apple_objects(
     headers = output_dir / "freestanding_headers"
     headers.mkdir(parents=True, exist_ok=True)
     (headers / "math.h").write_text(
+        "#define NAN __builtin_nanf(\"\")\n"
         "double cos(double);\ndouble exp(double);\ndouble fabs(double);\n"
-        "double floor(double);\nint isfinite(double);\ndouble lgamma(double);\n"
+        "double floor(double);\ndouble hypot(double, double);\n"
+        "int isfinite(double);\ndouble lgamma(double);\n"
         "double log(double);\ndouble sin(double);\ndouble sqrt(double);\n",
         "ascii",
     )
