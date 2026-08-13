@@ -1,0 +1,70 @@
+{
+  "schema": "neuro_film.u6_p2ad_trix_developer_contrast_source_contract.v1",
+  "node": "U6.P2AD",
+  "question": "Do Kodak's first-party TRI-X 400 contrast-index curves contain developer-specific process shape that cannot be reduced to one common contrast response plus a scalar development-time shift?",
+  "source": {
+    "title": "KODAK PROFESSIONAL TRI-X 320 and 400 Films",
+    "publication": "F-4017",
+    "publisher": "Kodak Alaris Inc.",
+    "url": "https://kodakprofessional.com/sites/default/files/wysiwyg/film/f4017_trix_320400.pdf",
+    "local_research_copy": "outputs/source_recon/u6_p2ad_bw_developer_contrast/kodak_f4017_trix_320_400.pdf",
+    "bytes": 788169,
+    "sha256": "1d86b030cf7a8502e6f1414c630fa2cda30b68df53f49bccccce73c9c6562078",
+    "page": 9,
+    "film": "KODAK PROFESSIONAL TRI-X 400 Film / 400TX, 35 mm and 120-size",
+    "process": "Small Tank at 20 C (68 F)",
+    "densitometry": "Diffuse visual",
+    "vector_extraction": {
+      "renderer": "pdftocairo SVG",
+      "svg_sha256": "0e7fd72bdccf398de542e5ee191a95e146013fe7fac7cc2ae0de572381a97489",
+      "plot_axis_pdf_points": {
+        "left": 365.921875,
+        "right": 550.308594,
+        "bottom": 533.519531,
+        "top": 718.019531
+      },
+      "axis_values": {
+        "development_time_minutes": [0.0, 30.0],
+        "contrast_index": [0.0, 1.2]
+      },
+      "maximum_source_pixel_error": 3.0,
+      "paths": {
+        "hc110_b": {"element_index": 1627, "path_sha256": "c0342f1f3758c51200c265e4e780df2c6e750a94a8a2c9499aae24c677678115"},
+        "tmax_rs": {"element_index": 1628, "path_sha256": "359a8c87ae4e589a602045c26a5d4ef83e291a063bf2b7ffc41e5ae1afa14b2b"},
+        "tmax": {"element_index": 1629, "path_sha256": "e2230950405433b2f0ade395db16e4d394cfd28133afb07f085042d646f51a9e"},
+        "d76": {"element_index": 1630, "path_sha256": "9766e31cd296bd1ea0b6c558a1846cb6e2652772550934b6834ee2e812f2520e"},
+        "xtol": {"element_index": 1631, "path_sha256": "0162a57a2adac8e63183658aa9cdc379ecd3385696cdc92e2b028cc62cfd2a80"},
+        "xtol_1_1": {"element_index": 1632, "path_sha256": "8e4025fab5047f59850d8f1ca5c9e52b09c5c14757d01be54b19707a13915c90"},
+        "d76_1_1": {"element_index": 1633, "path_sha256": "31271f8411db9b32526b7e8b8397c357df29ade1a169050fc2dbbe286610bb10"}
+      }
+    }
+  },
+  "analysis": {
+    "shared_contrast_indices": [0.55, 0.65, 0.75, 0.85],
+    "interpolation": "piecewise-linear in source vector coordinates",
+    "common_time_shift_control": "subtract each developer's mean log development time over the four shared contrast indices",
+    "uncertainty": "recompute every signature under all axis-aligned plus/minus maximum-source-pixel-error perturbations of each path; compare observed separation to the resulting worst-case envelope",
+    "developer_curve_fit_or_render_count": 0
+  },
+  "automatic_gates": {
+    "source_path_count": 7,
+    "all_paths_monotone": true,
+    "all_shared_contrast_indices_covered": true,
+    "minimum_developer_pairs_beyond_digitization_envelope": 3,
+    "minimum_maximum_normalized_log_time_separation": 0.03,
+    "repeat_byte_exact": true,
+    "rgb_image_transform_count_zero": true
+  },
+  "forbidden": [
+    "treat development time recommendations as calibrated photographic appearance",
+    "infer HP5 Plus versus TRI-X stock differences from asymmetric source curves",
+    "fit a photographic renderer, grain, MTF, scanner or print profile",
+    "change AO6 or any product default",
+    "move trace points, change shared contrast indices or relax gates after scoring"
+  ],
+  "branch_rule": {
+    "pass": "retain developer identity as an explicit required B&W FilmProfileBundle dimension and next test only a typed monotone process-response representation",
+    "fail": "retain developer/process as unknown metadata but do not compile distinct response profiles from this source"
+  },
+  "claim_ceiling": "First-party TRI-X 400 diffuse-visual contrast-index source evidence about developer/process separability; not a scanned-image look, stock comparison, roll calibration, grain/MTF/scanner evidence or product profile."
+}
