@@ -13071,3 +13071,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Formal FAIL: `11.76%` of predicted channel values leave the display cube.
   The fit is frozen and hard clipping is forbidden. A new P6AK leaf may test
   only analytical maximum-safe scaling along the already fitted residual.
+
+### 2026-08-14 - U6.P6AK retains bounded scanner nuisance development
+
+- The frozen P6AJ affine was not refit. Each held sample instead uses the
+  analytical maximum safe scale along its actual affine residual; clipping and
+  post-hoc limiting remain forbidden.
+- Two formal reports are byte exact (`ef9baa09...e2354`). Cube violations fall
+  from `11.76%` to zero while improvement rises to `81.43%`; all four spatial
+  folds win and the worst fold improves `77.83%`.
+- `17.07%` of samples are limited, the median scale remains `1.0`, and maximum
+  residual-direction error is `1.74e-18`. Retain only as a development
+  scanner-plus-print mechanism; require a fresh same-negative multi-output
+  observation before any generalization.

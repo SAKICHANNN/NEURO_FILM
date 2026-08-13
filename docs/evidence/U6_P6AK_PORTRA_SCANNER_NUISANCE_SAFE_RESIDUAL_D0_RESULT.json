@@ -1,0 +1,32 @@
+{
+  "schema": "neuro-film.u6-p6ak-portra-scanner-nuisance-safe-residual-d0-evidence.v1",
+  "experiment_id": "U6.P6AK",
+  "implementation_commit": "fceaff97a2c94a39694c057d9b398d4e89b64d2f",
+  "bindings": {
+    "config_sha256": "7cbb5a1250879022e846da0ae2ece6f1205f9a7446aa7cd0d26cc92638250dd0",
+    "evaluator_sha256": "d6ba4fcee5283719ad133e53a704b62f047edab96491c0464c4b655cea8cfb80",
+    "runner_sha256": "4d27c9c7b17d4578a3009759bcb89c9d5aa2c87700c115dfe43e7d1b273de50a",
+    "test_sha256": "d8a653cdc72aed17d7c51e8b8e821887c27dd8f5284b0bade81d6b680b49086f",
+    "formal_a_report_sha256": "ef9baa0974b9afc87190ff6aad96787649844d4cd71f10a95af90b3b345e2354",
+    "formal_b_report_sha256": "ef9baa0974b9afc87190ff6aad96787649844d4cd71f10a95af90b3b345e2354"
+  },
+  "stable_evidence_id": "08b1e235e5dd436813827e84b77209dbf2667ac3b8170891e8e1954a76bcdf08",
+  "observations": {
+    "formal_reports_byte_exact": true,
+    "eligible_correspondences": 697,
+    "candidate_rmse": 0.03395113210315194,
+    "improvement_over_identity_fraction": 0.8142987187089235,
+    "improvement_over_wrong_pairing_fraction": 0.7181972368977201,
+    "spatial_fold_win_fraction": 1.0,
+    "worst_spatial_fold_improvement_fraction": 0.778270961382479,
+    "out_of_cube_fraction": 0.0,
+    "limited_sample_fraction": 0.17073170731707318,
+    "median_safe_scale": 1.0,
+    "minimum_safe_scale": 0.13416436343148944,
+    "maximum_residual_direction_error": 1.734723475976807e-18
+  },
+  "decision": "retain_bounded_scanner_print_nuisance_development_mechanism_d0",
+  "interpretation": "Without changing any P6AJ fit, per-sample analytical maximum-safe scaling along the actual affine residual removes every cube violation and slightly improves held-local accuracy. Most samples remain unscaled, all four held regions win, and pairing-specific signal remains strong. This supports analytical gamut-safe execution as a bounded scanner-plus-print nuisance mechanism, but the observation is consumed development evidence and cannot establish generality or calibration.",
+  "next_leaf": "Seek an independently controlled same-negative multi-scanner or scan-versus-print observation and freeze a no-refit confirmation before reading target pixels.",
+  "claim_ceiling": "Analytical bounded execution of one frozen scanner-plus-print nuisance fit on the same consumed, unlicensed observation; development mechanism only, not fresh confirmation, same-negative calibration, stock response, population transfer, product, redistribution or commercial-use evidence."
+}
