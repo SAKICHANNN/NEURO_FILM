@@ -12886,3 +12886,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   direction-scale error is `1.11e-16`, and every output stays bounded.
 - Open only a wholly fresh photographic automatic confirmation. This does not
   rescue P4HZ or establish preference, measured film, runtime or product value.
+
+### 2026-08-13 - U6.P4IB-D closes the photographic P4IA route
+
+- A development-only reuse of the P4HZ photographs confirms the intended first-
+  row effect: high-frequency chroma is `.00308`, physical-only boundary pixels
+  are `.0277%`, and no new boundary appears.
+- The second source contains exact zero display codes, so the upstream
+  `log(control/base)` optical-density definition rejects it. Two processes stop
+  at the same source with byte-identical reports; no epsilon or same-cohort
+  rescue is allowed.
+- Close this photographic route. A future mechanism must start from a typed,
+  strictly positive exposure/transmittance domain rather than reinterpret a
+  display-code zero as finite film density.

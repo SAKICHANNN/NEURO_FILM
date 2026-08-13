@@ -1,0 +1,32 @@
+{
+  "schema": "neuro-film.u6-p4ibd-analytical-opponent-development-probe-evidence.v1",
+  "experiment_id": "u6-p4ibd-analytical-opponent-development-probe-v1",
+  "implementation_commit": "356de9a427ba7688b9b23f056e89a1d4354257b4",
+  "contract": {
+    "path": "configs/u6_p4ibd_analytical_opponent_development_probe_v1.json",
+    "sha256": "b92d33bd840ad54b58451df7d2a3f75e2631d29afe17686685ab4466e1a3e924"
+  },
+  "formal_reports": {
+    "paths": [
+      "outputs/u6_p4ibd_analytical_opponent_development_probe_v1/run_a/report.json",
+      "outputs/u6_p4ibd_analytical_opponent_development_probe_v1/run_b/report.json"
+    ],
+    "sha256": "ed4a9939c1a518d6f37fee9b9db3bf6803e4f48fe0e72501355ab40ad7dee609",
+    "byte_exact": true,
+    "stable_evidence_id": "9668e33bd1c1f22f655c4c0a416c791fce108c22c355701e36b644468f778dea"
+  },
+  "observations": {
+    "development_rows": 11,
+    "evaluated_rows_before_failure": 1,
+    "failure_source_id": "sony_zv_e10m2",
+    "failure": "P4HX requires strictly positive transmittance",
+    "first_row_high_frequency_chroma_p999": 0.003076772904023528,
+    "first_row_physical_only_output_boundary_fraction": 0.0002770618556701031,
+    "first_row_new_boundary_fraction": 0.0,
+    "first_row_limited_fraction": 0.004030576382380506,
+    "same_cohort_rescue_performed": false
+  },
+  "automatic_pass": false,
+  "decision": "close_p4ia_photographic_route_without_fresh_confirmation",
+  "claim_ceiling": "Development-only reuse of eleven P4HZ-consumed relative-display CC0 photographs to test P4IA automatic safety; never confirmation, preference, film calibration, runtime or product promotion"
+}
