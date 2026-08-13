@@ -13199,3 +13199,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   evidence; the boundary failures were preserved.
 - Next apply the already frozen source-inclusive analytical rail to the
   base-to-structure step. Do not clip, tune amplitude or relax gates.
+
+### 2026-08-14 - U6.P4IS closes the neutral sinusoidal structure family
+
+- Two reports replay byte exactly (`ae3c3c5e...69d84d`). The existing
+  source-inclusive analytical rail removes all new boundary pixels and keeps
+  chroma p999 passing at `.003028`, with no clipping or limiting.
+- Two isolated excursions remain on `hubble_deep_field`, so the zero-isolated
+  gate fails. Close the exact amplitude/frequency/order/rail family without
+  rescue and retain fixed AO6.
+- Return to a materially distinct stochastic field mechanism. Reuse the fixed
+  P4HX opponent-diffusion structure with the P4IQ base-first ordering on its
+  already frozen 11-camera natural cohort; do not refit P4HX or reuse five-map
+  sinusoidal parameters.

@@ -1,0 +1,25 @@
+{
+  "schema": "neuro-film.u6-p4is-rail-guarded-neutral-structure-ao6-d0-evidence.v1",
+  "experiment_id": "u6-p4is-rail-guarded-neutral-structure-ao6-d0-v1",
+  "implementation_commit": "54484e53",
+  "formal_report_sha256": "ae3c3c5e7ee4f399378be4a57efa987d5acc3f2b10af284b6f0961713069d84d",
+  "stable_evidence_id": "d9be16030392bda1996b2bb4e19615316feb679793d4af36ba1a60eabc931dc4",
+  "formal_processes": 2,
+  "byte_exact_replay": true,
+  "automatic_pass": false,
+  "fresh_confirmation_allowed": false,
+  "metrics": {
+    "population_p95_combined_vs_matched_abs": 0.01173883497714996,
+    "population_p99_combined_vs_matched_abs": 0.015171622252464292,
+    "maximum_flat_region_p99_combined_vs_matched_abs": 0.016391255855560304,
+    "maximum_high_frequency_chroma_p999": 0.003027992583694908,
+    "total_isolated_excursions": 2,
+    "maximum_new_boundary_fraction_vs_matched": 0.0,
+    "maximum_arm_output_code_boundary_fraction": 0.0,
+    "maximum_repeat_error": 0.0
+  },
+  "failed_gates": ["maximum_isolated_excursions"],
+  "decision": "close_neutral_structure_family_and_retain_fixed_ao6",
+  "interpretation": "The frozen source-inclusive rail eliminates every new boundary pixel and retains the P4IR chroma pass, but two isolated excursions remain on hubble_deep_field. The exact neutral sinusoidal structure family is closed without amplitude, frequency, rail or threshold tuning.",
+  "claim_ceiling": "Automatic analytical-execution mechanism D0 on five bundled natural photographs; not physical-order truth, preference, calibration or product promotion."
+}
