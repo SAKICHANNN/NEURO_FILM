@@ -96,6 +96,7 @@ def evaluate(
         [np.ndarray, np.ndarray, int, float], np.ndarray
     ]
     | None = None,
+    stage_observer: Callable[[str, Mapping[str, np.ndarray]], None] | None = None,
 ) -> dict[str, Any]:
     parent_path = root / str(contract["parent"]["path"])
     if _sha(parent_path) != contract["parent"]["sha256"]:
@@ -197,10 +198,25 @@ def evaluate(
         ) -> np.ndarray:
             return np.ascontiguousarray(residual(base(value)), dtype=np.float32)
 
-        current = ao6(original)
-        matched = ao6(baseline_encoded)
-        combined = ao6(physical_encoded)
+        current_base = apply_base(original)
+        matched_base = apply_base(baseline_encoded)
+        physical_base = apply_base(physical_encoded)
+        current = np.ascontiguousarray(apply_residual(current_base), dtype=np.float32)
+        matched = np.ascontiguousarray(apply_residual(matched_base), dtype=np.float32)
+        combined = np.ascontiguousarray(apply_residual(physical_base), dtype=np.float32)
         replay = ao6(physical_encoded)
+        if stage_observer is not None:
+            stage_observer(
+                source_id,
+                {
+                    "baseline_encoded": baseline_encoded,
+                    "physical_encoded": physical_encoded,
+                    "matched_base": matched_base,
+                    "physical_base": physical_base,
+                    "matched_output": matched,
+                    "physical_output": combined,
+                },
+            )
         arms = (original, current, matched, physical_encoded, combined)
         if any(not np.all(np.isfinite(arm)) or np.any(arm < 0.0) or np.any(arm > 1.0) for arm in arms):
             raise ValueError(f"P4IM arm left bounded display RGB: {source_id}")

@@ -1,0 +1,25 @@
+{
+  "schema": "neuro-film.u6-p4iq-ao6-stage-attribution-contract.v1",
+  "experiment_id": "u6-p4iq-ao6-stage-attribution-v1",
+  "question": "At which fixed stage does the P4IP neutral scan-linear structure acquire the chroma-tail and isolated-excursion failures: encoded scanner ingress, AO6 source-context base, or AO6 t15/c35 residual?",
+  "parents": {
+    "p4ip_evidence": {
+      "path": "docs/evidence/U6_P4IP_NEUTRAL_TRANSMITTANCE_STRUCTURE_AO6_D0_RESULT.json",
+      "sha256": "fb53a2b81a7aacd74e9aa4e88f953b6fb772501e09f339baab0488c34a582b8d",
+      "required_decision": "close_neutral_transmittance_structure_and_retain_fixed_ao6"
+    },
+    "base_contract": {
+      "path": "configs/u6_p4im_sigmoid_scanner_ao6_value_d1_v1.json",
+      "sha256": "041818a85e38861426b61a052f43748d4119cc6b18fdec7eedc0ffe48cf807ce"
+    }
+  },
+  "stages": ["scanner_encoded", "ao6_base", "ao6_residual"],
+  "diagnostic_thresholds": {
+    "high_frequency_chroma_p999": 0.004,
+    "isolated_excursion_threshold": 0.05,
+    "isolated_support_radius_pixels": 2,
+    "minimum_isolated_support_count": 3
+  },
+  "decision": "attribute_failure_stage_without_candidate_promotion",
+  "claim_ceiling": "Mechanism attribution on the five bundled P4IM natural photographs; diagnostic only, not candidate safety, preference, calibration or product evidence."
+}
