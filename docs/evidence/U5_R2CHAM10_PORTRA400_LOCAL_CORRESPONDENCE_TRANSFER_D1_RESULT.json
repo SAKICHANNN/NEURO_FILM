@@ -1,0 +1,31 @@
+{
+  "schema": "neuro-film.u5-r2cham10-portra400-local-correspondence-transfer-d1-evidence.v1",
+  "experiment_id": "U5.R2CHAM10",
+  "implementation_commit": "9a4228ca58907c0fd62e44edecf5d63347884cc2",
+  "bindings": {
+    "config_sha256": "85eaee424fe9041ef146a84b17baf43847c8e1ea9b4bd742f8779ca37d357b38",
+    "evaluator_sha256": "42da625d4a790ae28f2e57942b5d859507a3f7ceacb75f390c61f78160fa58ff",
+    "runner_sha256": "0b13405ce40abcb1daa852f1b14a9504fd329913aab0c65c73830ce7f314ffae",
+    "test_sha256": "1d8ecf8ce1cf8d6b68c2aed731df7715a1fc753bc6001b068e12437ff188e4ea",
+    "formal_a_report_sha256": "dfd23853e780c2d9c1b7842c91298af26f573354c42e715610e8610a48865c11",
+    "formal_b_report_sha256": "dfd23853e780c2d9c1b7842c91298af26f573354c42e715610e8610a48865c11"
+  },
+  "stable_evidence_id": "662272733a24855a651fa1ec16ed7fa26f2e0f678cb6c18b0b75d9681735f84f",
+  "observations": {
+    "formal_reports_byte_exact": true,
+    "ra4_epson_eligible_correspondences": 109,
+    "ra4_epson_identity_rmse": 0.04025587512211634,
+    "ra4_epson_chart_affine_rmse": 0.07007415950792023,
+    "ra4_epson_improvement_fraction": -0.7407188216713714,
+    "ra4_epson_wrong_pairing_gain_fraction": 0.2356163827127281,
+    "ra4_epson_spatial_fold_win_fraction": 0.0,
+    "ra4_epson_worst_spatial_fold_improvement_fraction": -0.8856240620643967,
+    "noritsu_eligible_correspondences": 43,
+    "noritsu_chart_affine_improvement_fraction": 0.02720539556466839,
+    "out_of_cube_fraction": 0.0
+  },
+  "decision": "close_chart_affine_natural_local_transfer_without_rescue",
+  "interpretation": "The fixed chart affine is bounded and pairing-specific, but it strongly regresses the same-session RA4/Epson natural observation while only weakly improving the Noritsu observation. The discrepancy is evidence that print/scanner interpretation is a material nuisance and that one chart cannot identify a transferable Portra operator. No capacity, threshold or same-package rescue is allowed.",
+  "next_leaf": "Require independently controlled same-negative repeat scans or a new calibrated film/scanner observation; do not mix Noritsu and RA4/Epson outputs into stock truth.",
+  "claim_ceiling": "Development-only local-correspondence transfer on one unlicensed same-session Portra 400 package; not exact pixel pairing, stock calibration, scanner/process separation, population transfer, product, redistribution or commercial-use evidence."
+}

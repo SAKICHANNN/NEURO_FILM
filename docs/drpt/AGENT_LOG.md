@@ -13046,3 +13046,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain SpektraFilm as a mature cited baseline; close this parameter file as a
   predictive chart operator without tuning. The next useful leaf requires a
   genuinely new calibrated/repeated observation, not more one-chart fitting.
+
+### 2026-08-14 - U5.R2CHAM10 closes chart-affine natural transfer
+
+- Candidate-independent SIFT/RANSAC local correspondences retained 109
+  low-variation RA4/Epson samples and 43 Noritsu samples from the same public
+  session. Two complete reports are byte-exact (`dfd23853...65c11`).
+- The chart-frozen affine is bounded and beats the shifted-pairing control, but
+  worsens RA4/Epson RMSE from `.04026` to `.07007` (`-74.07%`) and loses every
+  occupied spatial fold. It improves Noritsu by only `2.72%`.
+- Close one-chart natural transfer without capacity or gate rescue. The
+  divergent scanner/print outcomes reinforce scanner interpretation as a
+  nuisance; new progress requires repeat scans or independently calibrated
+  film/scanner observations.
