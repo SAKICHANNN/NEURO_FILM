@@ -1,0 +1,26 @@
+{
+  "schema": "neuro-film.u6-p6an-scanner-safe-residual-profile-contract.v1",
+  "experiment_id": "U6.P6AN",
+  "parent": {
+    "path": "docs/evidence/U6_P6AM_SCANNER_SAFE_RESIDUAL_RUNTIME_RESULT.json",
+    "sha256": "5663d65e344ec6481d3d1b7f6bbc587b3c05a1ef1357dd7514051255e729f224",
+    "required_decision": "retain_optional_canonical_scanner_safe_residual_runtime_v1"
+  },
+  "profile": {
+    "schema": "neuro-film.scanner-safe-residual-profile.v1",
+    "runtime_id": "neuro-film.scanner-safe-residual.v1",
+    "required_fields": ["profile_id", "matrix", "bias", "evidence_sha256"],
+    "automatic_profile_selection_allowed": false,
+    "default_activation_allowed": false
+  },
+  "gates": {
+    "require_canonical_roundtrip": true,
+    "require_profile_hash_identity": true,
+    "require_identity_profile_exact": true,
+    "require_tamper_rejection": true,
+    "require_runtime_bounded": true
+  },
+  "decision_if_pass": "retain_hash_versioned_scanner_safe_residual_profile_v1",
+  "decision_if_fail": "close_scanner_safe_residual_profile_without_rescue",
+  "claim_ceiling": "Hash-versioned optional scanner residual profile representation and canonical CPU execution only; no fitted public profile, automatic selection, default activation, calibration or product promotion."
+}
