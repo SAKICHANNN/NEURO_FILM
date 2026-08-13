@@ -185,8 +185,13 @@ def _runtime(
     )
 
 
-def evaluate(
-    contract: dict[str, Any], *, root: Path, output_dir: Path
+def evaluate_with_runtime(
+    contract: dict[str, Any],
+    *,
+    root: Path,
+    output_dir: Path,
+    runtime_class: type[OpponentDiffusionRuntime] = OpponentDiffusionRuntime,
+    result_schema: str = RESULT_SCHEMA,
 ) -> dict[str, Any]:
     parents = contract["parents"]
     evidence = _load_bound_json(root, parents["p4hx_evidence"], "P4HX evidence")
@@ -206,7 +211,13 @@ def evaluate(
     arms = tuple(contract["comparison"]["arms"])
     if len(arms) != 4 or len(set(arms)) != 4:
         raise ValueError("P4HZ requires four unique ordered arms")
-    runtime = _runtime(profile, candidate)
+    base_runtime = _runtime(profile, candidate)
+    runtime = runtime_class(
+        components=base_runtime.components,
+        correlation=base_runtime.correlation,
+        candidate=base_runtime.candidate,
+        native_toolchains={"backend": runtime_class.__name__},
+    )
     scanner = _scanner_profile(candidate)
     ao6 = _load_ao6(root, parents["ao6_artifact"])
     output_dir.mkdir(parents=True, exist_ok=False)
@@ -236,7 +247,7 @@ def evaluate(
         evaluated.append(result)
     if execution_failures:
         core = {
-            "schema": RESULT_SCHEMA,
+            "schema": result_schema,
             "experiment_id": contract["experiment_id"],
             "config_sha256": _canonical_sha256(contract),
             "manifest_sha256": manifest_sha,
@@ -268,7 +279,7 @@ def evaluate(
     )
     passed = all(checks.values())
     core = {
-        "schema": RESULT_SCHEMA,
+        "schema": result_schema,
         "experiment_id": contract["experiment_id"],
         "config_sha256": _canonical_sha256(contract),
         "manifest_sha256": manifest_sha,
@@ -289,6 +300,12 @@ def evaluate(
         "claim_ceiling": contract["claim_ceiling"],
     }
     return {**core, "stable_evidence_id": _canonical_sha256(core)}
+
+
+def evaluate(
+    contract: dict[str, Any], *, root: Path, output_dir: Path
+) -> dict[str, Any]:
+    return evaluate_with_runtime(contract, root=root, output_dir=output_dir)
 
 
 __all__ = ["CONTRACT_SCHEMA", "RESULT_SCHEMA", "evaluate", "load_contract"]
