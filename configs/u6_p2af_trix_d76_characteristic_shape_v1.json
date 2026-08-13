@@ -13,8 +13,8 @@
     "developer": "KODAK PROFESSIONAL D-76 Developer",
     "process": "Large Tank; agitation at 1 minute intervals; 20 C",
     "densitometry": "Diffuse visual",
-    "plot_axis_pdf_points": {"left": 113.691406, "right": 253.863281, "bottom": 555.964844, "top": 667.773438},
-    "axis_values": {"log_exposure_left": -3.5, "log_exposure_right": 0.5, "density_bottom": 0.0, "density_top": 4.0},
+    "plot_axis_pdf_points": {"left": 93.40625, "right": 277.84375, "bottom": 541.019531, "top": 725.519531},
+    "axis_values": {"log_exposure_left": -4.0, "log_exposure_right": 1.0, "density_bottom": 0.0, "density_top": 4.0},
     "raster_reference_dpi": 300,
     "maximum_source_pixel_error": 3.0,
     "paths": {
