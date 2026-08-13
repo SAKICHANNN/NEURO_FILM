@@ -76,7 +76,13 @@ def _write_contact(rows: list[dict[str, Any]], images: list[list[np.ndarray]], p
     return _sha(path)
 
 
-def evaluate(contract: Mapping[str, Any], root: Path, *, contact_path: Path | None = None) -> dict[str, Any]:
+def evaluate(
+    contract: Mapping[str, Any],
+    root: Path,
+    *,
+    contact_path: Path | None = None,
+    structure_direction: tuple[float, float, float] | None = None,
+) -> dict[str, Any]:
     parent_path = root / str(contract["parent"]["path"])
     if _sha(parent_path) != contract["parent"]["sha256"]:
         raise ValueError("P4IM parent identity drift")
@@ -105,7 +111,28 @@ def evaluate(contract: Mapping[str, Any], root: Path, *, contact_path: Path | No
         density = np.stack([curve.apply_normalized(linear[..., c]) for c, curve in enumerate(curves)], axis=-1)
         base_t = np.ascontiguousarray(np.power(10.0, -density), dtype=np.float32)
         baseline, _ = render_sigmoid_scanner_positive(linear, base_t, curves=curves, compiler=compiler)
-        structured = _structured_transmittance(base_t, index, float(mechanism["structure_amplitude"]))
+        if structure_direction is None:
+            structured = _structured_transmittance(
+                base_t, index, float(mechanism["structure_amplitude"])
+            )
+        else:
+            height, width = base_t.shape[:2]
+            y, x = np.mgrid[0:height, 0:width].astype(np.float64)
+            field = np.sin((x + 11 * index) / 23.0) * np.cos(
+                (y - 7 * index) / 19.0
+            )
+            direction = np.asarray(structure_direction, dtype=np.float64)
+            if direction.shape != (3,) or not np.all(np.isfinite(direction)):
+                raise ValueError("invalid P4IM structure direction")
+            residual = (
+                float(mechanism["structure_amplitude"])
+                * field[..., None]
+                * direction
+            )
+            structured = np.ascontiguousarray(
+                base_t.astype(np.float64) * np.power(10.0, -residual),
+                dtype=np.float32,
+            )
         physical, _ = render_sigmoid_scanner_positive(linear, structured, curves=curves, compiler=compiler)
         baseline = apply_scanner_mtf(baseline, spatial).astype(np.float32)
         physical = apply_scanner_mtf(physical, spatial).astype(np.float32)
@@ -191,4 +218,3 @@ def write_report(report: Mapping[str, Any], path: Path) -> str:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_bytes(payload)
     return hashlib.sha256(payload).hexdigest()
-

@@ -1,0 +1,24 @@
+{
+  "schema": "neuro-film.u6-p4in-equal-density-structure-ao6-ablation-contract.v1",
+  "experiment_id": "u6-p4in-equal-density-structure-ao6-ablation-v1",
+  "question": "At exactly matched log-density residual energy, does equal-channel common-mode structure avoid the P4IM chroma and isolated-excursion failures after AO6?",
+  "parent": {
+    "path": "docs/evidence/U6_P4IM_SIGMOID_SCANNER_AO6_VALUE_D1_RESULT.json",
+    "sha256": "a86da5343a66b8385dd19b3327b3d36a686b90c9722dcafca6856c0bdab8e528",
+    "required_decision": "retain_fixed_ao6_and_close_exact_p4il_ao6_value_candidate"
+  },
+  "base_contract": {
+    "path": "configs/u6_p4im_sigmoid_scanner_ao6_value_d1_v1.json",
+    "sha256": "041818a85e38861426b61a052f43748d4119cc6b18fdec7eedc0ffe48cf807ce"
+  },
+  "structure": {
+    "original_direction": [0.8, -0.55, 0.35],
+    "candidate_equal_channel_direction": [0.5958187643906493, 0.5958187643906493, 0.5958187643906493],
+    "require_exact_l2_energy_match": true,
+    "amplitude_changed": false,
+    "spatial_field_changed": false
+  },
+  "decision_if_pass": "retain_equal_density_structure_for_domain_separated_ao6_blind_value_review",
+  "decision_if_fail": "close_equal_density_structure_and_retain_fixed_ao6",
+  "claim_ceiling": "Automatic mechanism ablation on bundled natural photographs; equal-channel density structure is a generic physical-inspired diagnostic, not colour-film dye-cloud calibration, preference or product promotion."
+}

@@ -1,0 +1,144 @@
+{
+  "automatic_pass": false,
+  "base_ao6_bundle_sha256": "3a14cb3c9257cf1a7dade92a03b15f1af2f74ba74c06233f0e9732fe536237af",
+  "blind_review_allowed": false,
+  "checks": {
+    "chroma": false,
+    "flat": true,
+    "isolated": false,
+    "material_increment": true,
+    "new_boundary": true,
+    "output_boundary": true,
+    "product_separation": true,
+    "repeat": true,
+    "tail": true
+  },
+  "claim_ceiling": "Automatic mechanism ablation on bundled natural photographs; equal-channel density structure is a generic physical-inspired diagnostic, not colour-film dye-cloud calibration, preference or product promotion.",
+  "config_sha256": "141b824397d986ac4f11b229a6703b8c99aa5c00706892f2fd560553b615963d",
+  "contact_sheet_sha256": "efcecd54b37ead4b616f58e889185fc179a3b9ddc8ffadf4e2d1e71f85d27c5e",
+  "decision": "close_equal_density_structure_and_retain_fixed_ao6",
+  "direction_l2_energy": 1.0650000000000002,
+  "experiment_id": "u6-p4in-equal-density-structure-ao6-ablation-v1",
+  "metrics": {
+    "maximum_arm_output_code_boundary_fraction": 0.0,
+    "maximum_flat_region_p99_combined_vs_matched_abs": 0.031743166446685796,
+    "maximum_high_frequency_chroma_p999": 0.017716734775225743,
+    "maximum_new_boundary_fraction_vs_matched": 0.0,
+    "maximum_repeat_error": 0.0,
+    "population_p95_combined_vs_current_abs": 0.4048164385557174,
+    "population_p95_combined_vs_matched_abs": 0.01709421694278717,
+    "population_p99_combined_vs_matched_abs": 0.025195582687854778,
+    "row_count": 5,
+    "total_isolated_excursions": 186
+  },
+  "parent_stable_evidence_id": "df13ae003e03731089db36763565d82b36639da479d569b76671e0f964678ade",
+  "rows": [
+    {
+      "arm_sha256": {
+        "fixed_ao6_colour_only_t15_c35": "bee1f1a963cae393e05fef4222833738e131900556da1e7f8b2d35803de8bb12",
+        "matched_sigmoid_scanner_ao6_t15_c35": "d91dc71be1c59a891efa2fd9aca948b1d0582e572b46986559d9223aed107b1c",
+        "sigmoid_scanner_physical_only_diagnostic": "cff31cbb0db6fb439c21df6717afbb3d543708845af2c256c42727bc23d17f55",
+        "sigmoid_scanner_then_fixed_ao6_t15_c35": "43a0b4d476dd3839383b290a78cd7408064d7c9e6ecaaa1de2a71a8db4542d64",
+        "source_reference": "97c5216381c80dc3439e38440dea2adea4c6264bd065a3e3727c2dd0dd7112d1"
+      },
+      "flat_region_p99_combined_vs_matched_abs": 0.012909479290246963,
+      "high_frequency_chroma_p999": 0.005877364332554809,
+      "id": "astronaut",
+      "isolated_excursions": 0,
+      "maximum_arm_output_code_boundary_fraction": 0.0,
+      "new_boundary_fraction_vs_matched": 0.0,
+      "p95_combined_vs_current_abs": 0.2629207115620374,
+      "p95_combined_vs_matched_abs": 0.01073630005121231,
+      "p99_combined_vs_matched_abs": 0.014807604551315301,
+      "repeat_error": 0.0,
+      "source_sha256": "a8c429c18afa7b0fd5673e598d73a21225d94c864a71bbb3885126fdecb41071"
+    },
+    {
+      "arm_sha256": {
+        "fixed_ao6_colour_only_t15_c35": "41e4308fd103fd8aaf93d3809d41dc3a97bb5c5b38b78796bcd08f85cb11adea",
+        "matched_sigmoid_scanner_ao6_t15_c35": "702c0ef1ed614b47eb221221036859f9982ba2ba5cebf90b585996a5dd417e46",
+        "sigmoid_scanner_physical_only_diagnostic": "643eef3cf816fd7fedbc5a5ac4777f9a51ceaadb7a01b9d4b62dc5dd6fd9d9bb",
+        "sigmoid_scanner_then_fixed_ao6_t15_c35": "664045504d53dc1828bfa31a69302b35106b3df57738d6308c566429c9a199bf",
+        "source_reference": "318c0b079a77c93557f9a8238989d63abcbf1f0bbb0597b11585b9b7eabd868e"
+      },
+      "flat_region_p99_combined_vs_matched_abs": 0.018184650242328643,
+      "high_frequency_chroma_p999": 0.005549750823372321,
+      "id": "coffee",
+      "isolated_excursions": 0,
+      "maximum_arm_output_code_boundary_fraction": 0.0,
+      "new_boundary_fraction_vs_matched": 0.0,
+      "p95_combined_vs_current_abs": 0.23154294490814192,
+      "p95_combined_vs_matched_abs": 0.013418591022491447,
+      "p99_combined_vs_matched_abs": 0.017322066426277163,
+      "repeat_error": 0.0,
+      "source_sha256": "0ce2b51640b9c95f19617f03eabf40c3f0368589cc1ee1190b70966165ac184f"
+    },
+    {
+      "arm_sha256": {
+        "fixed_ao6_colour_only_t15_c35": "7a7f5b42c7a91dee8a865cb4d3c448af4f2e4d3613ff772ad018ee13cd7f36f5",
+        "matched_sigmoid_scanner_ao6_t15_c35": "540cac29de4b0ea4dbfcac287d71b55060d2854fbd1b20593c09ac0ffe6ad42e",
+        "sigmoid_scanner_physical_only_diagnostic": "b325f37293d398256ac4b2b57fef4cbf2d3a3842d3ed5c6881f7ddd8bb1a625a",
+        "sigmoid_scanner_then_fixed_ao6_t15_c35": "06eb2a10318351fa21c2a1726a04d896d8b9fdc977e88f4ceaf84399a8af909c",
+        "source_reference": "e92a462d715cecb327b6a11c2e837582076539db01bca6b8c3d1d8822c35a2e3"
+      },
+      "flat_region_p99_combined_vs_matched_abs": 0.031743166446685796,
+      "high_frequency_chroma_p999": 0.007714029463279696,
+      "id": "chelsea",
+      "isolated_excursions": 0,
+      "maximum_arm_output_code_boundary_fraction": 0.0,
+      "new_boundary_fraction_vs_matched": 0.0,
+      "p95_combined_vs_current_abs": 0.4214395612478256,
+      "p95_combined_vs_matched_abs": 0.016603937745094298,
+      "p99_combined_vs_matched_abs": 0.0253995354473591,
+      "repeat_error": 0.0,
+      "source_sha256": "416b729128bfb2c3d1eb69bf9b1734a796293abc17939267b2dc94f8a5784031"
+    },
+    {
+      "arm_sha256": {
+        "fixed_ao6_colour_only_t15_c35": "c1c0120f1874e212b4746207a45061414271e5d65fd495eeef2dd29cee2c3520",
+        "matched_sigmoid_scanner_ao6_t15_c35": "d3356e56f8016e87914f79ed5f384af5adff48f761350e2de56b4866255248d5",
+        "sigmoid_scanner_physical_only_diagnostic": "47a3578a87f17759104b00b499d8813b7c5e3dd5f831ea2fdef13031d33fecd3",
+        "sigmoid_scanner_then_fixed_ao6_t15_c35": "0d8d3a7d46e6da676fc9192afcad2d7e1732cb9fcab454a4a9eb4e43eb5dc22c",
+        "source_reference": "1ac9ca31864882cba940e89570c9daab248facde232bce4702e5f4c10a9d7da4"
+      },
+      "flat_region_p99_combined_vs_matched_abs": 0.016659287437796603,
+      "high_frequency_chroma_p999": 0.008691185062906451,
+      "id": "rocket",
+      "isolated_excursions": 0,
+      "maximum_arm_output_code_boundary_fraction": 0.0,
+      "new_boundary_fraction_vs_matched": 0.0,
+      "p95_combined_vs_current_abs": 0.33832394778728475,
+      "p95_combined_vs_matched_abs": 0.014146030694246291,
+      "p99_combined_vs_matched_abs": 0.015975509881973264,
+      "repeat_error": 0.0,
+      "source_sha256": "3d4435cc745752b7f9724df88c6e18817de3ce7e3d2d71c55f85f7831e68f197"
+    },
+    {
+      "arm_sha256": {
+        "fixed_ao6_colour_only_t15_c35": "3eeb98ebae2539c879bdf542fdebf30ea48806782f4d2b875d350537d65428b1",
+        "matched_sigmoid_scanner_ao6_t15_c35": "df764b44c3d30ff57e9f75ecafe698a628564c543a15d9fbe50380d493621507",
+        "sigmoid_scanner_physical_only_diagnostic": "0bf926ff28ee35620793b821796eff8acce345eb2e28e88e4b485ecb8f247776",
+        "sigmoid_scanner_then_fixed_ao6_t15_c35": "ec735c064f7b7499132a87bc5ffd06ca39fa8ebbe49b38508ee943994d4a6ccd",
+        "source_reference": "4cf78fa865a7ae0192da718cc6278ab41d388badea5195e398f376e289ecf7d4"
+      },
+      "flat_region_p99_combined_vs_matched_abs": 0.021091695576906204,
+      "high_frequency_chroma_p999": 0.017716734775225743,
+      "id": "hubble_deep_field",
+      "isolated_excursions": 186,
+      "maximum_arm_output_code_boundary_fraction": 0.0,
+      "new_boundary_fraction_vs_matched": 0.0,
+      "p95_combined_vs_current_abs": 0.15164404548704621,
+      "p95_combined_vs_matched_abs": 0.017216786742210388,
+      "p99_combined_vs_matched_abs": 0.020300716459751122,
+      "repeat_error": 0.0,
+      "source_sha256": "9a3ea9548188f81e63435188456e74de45a981ebeb791e265abe79a26d3b528b"
+    }
+  ],
+  "schema": "neuro-film.u6-p4in-equal-density-structure-ao6-ablation-result.v1",
+  "stable_evidence_id": "cbe8c2174a91468fd30a57b25e1f084522bcc8d392a81b2fb189864522cdfe87",
+  "structure_direction": [
+    0.5958187643906493,
+    0.5958187643906493,
+    0.5958187643906493
+  ]
+}
