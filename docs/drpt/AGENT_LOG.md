@@ -12820,3 +12820,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Stable evidence ID is `9fcb1ad4...f5b1e`.
 - Native field hashes are deliberately distinct from P4HJ float64 receipts.
   Next prove target builds/runtime; no calibrated-film or product claim opens.
+
+### 2026-08-13 - U6.P4HV closes exact cross-platform density runtime
+
+- Four fresh Android 14 x86_64 probes across two wipe-data cold boots replay
+  exactly. The Thomas-field and copula-uniform hashes plus all three branch
+  counts match the Windows host; Android arm64 links and six Apple arm64
+  Mach-O objects compile.
+- The final density hash differs (`2705659d...f24c` host versus
+  `9eee3839...22cd` Android), so the frozen byte-identity gate fails. The
+  difference is localized to the fast-Gamma stage; a libm cause is plausible
+  but not proved. No tolerance or repeat-run rescue is allowed.
+- Retain P4HU as Windows-host evidence only. Before more runtime/compiler work,
+  test whether this fixed developed structure adds held-out value over AO6.

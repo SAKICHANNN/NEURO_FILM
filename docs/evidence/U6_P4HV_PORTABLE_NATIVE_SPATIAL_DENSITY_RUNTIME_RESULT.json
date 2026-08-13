@@ -1,0 +1,54 @@
+{
+  "schema": "neuro-film.u6-p4hv-portable-native-spatial-density-runtime-evidence.v1",
+  "node": "U6.P4HV",
+  "date": "2026-08-13",
+  "contract_commit": "a9c5ce47",
+  "implementation_commits": [
+    "e9c44ce1",
+    "be3f89b3",
+    "3f48843d",
+    "1c31c4b3"
+  ],
+  "contract_file_sha256": "a9fe132ab8310dddfd674763e62df02389f533a2d0e0fdf85f013347dfa6a1ed",
+  "evaluator_sha256": "af494ba848c21bf5109dcf1aecce770048c128e84816c575c8b2eda2dea0a2e3",
+  "probe_sha256": "e7dc1c038527d849e9e7f3133e8733f04b19422b5665384e784a6df641d5e743",
+  "runner_sha256": "6747c612ab3a15eb9be8c9074bb07c445e5a8be05740527d1d888483d5e9cddb",
+  "test_sha256": "3b8ac07b075bdb223a1b4c76d2c3b96c1a8c0f9e8d9ebd1c87c1eb85fac33001",
+  "formal_report_path": "outputs/experiments/u6_p4hv_portable_native_spatial_density_runtime_v1/report_run1.json",
+  "formal_report_sha256": "3913e6765931a2257c8003a756c8ea3e80cb4664d1746d0830515184fe3946d4",
+  "stable_evidence_id": "6f3ef7c60c383bed4ef4d323ce2bbc2948fd1d5d4c0a7d9146763e61c0cb7bd8",
+  "runtime_scope": {
+    "android_api": 34,
+    "android_abi": "x86_64",
+    "wipe_data_cold_boots": 2,
+    "fresh_probe_processes_per_boot": 2,
+    "fresh_probe_processes_total": 4,
+    "android_environment_reference": {
+      "evidence_path": "docs/evidence/U6_P8CM_ANDROID_THOMAS_RGB16_PNG_RUNTIME_RESULT.json",
+      "evidence_sha256": "3198585b6700c4ea5dce4d86bf5e65408a044c80a94edb87ff0f04dfa5e21839",
+      "system_image_source_properties_sha256": "bd7597e0dfa855335194fbafaf63bde93aa86bc3b56cea73cd54635715e77abc",
+      "emulator_sha256": "7f101ca769c15e8b6311801c1487f28583ce643fa87d19a9e0da4cc230be7653",
+      "adb_sha256": "957e46b8615f7af5b7292a2ddabe98d2e61940c3fb2b0545756507f080613e71"
+    },
+    "owned_emulator_or_probe_processes_after_evaluator": 0
+  },
+  "observations": {
+    "android_outputs_exact_across_four_fresh_processes": true,
+    "thomas_field_hash_host_android_exact": true,
+    "copula_uniform_hash_host_android_exact": true,
+    "gamma_branch_counts_host_android_exact": true,
+    "gamma_branch_counts": [2491, 2491, 2491],
+    "gamma_invalid_input_output_atomic_host_android": true,
+    "host_density_hash": "2705659dc4fcf24c",
+    "android_density_hash": "9eee3839837e22cd",
+    "host_android_density_byte_exact": false,
+    "android_arm64_link": true,
+    "macos_arm64_macho_objects": 3,
+    "ios_arm64_macho_objects": 3
+  },
+  "automatic_pass": false,
+  "decision": "retain_p4hu_windows_host_only_without_target_runtime_claim",
+  "scientific_conclusion": "The fixed Thomas field and calibrated copula are byte-exact between the Windows host and four fresh Android 14 x86_64 processes across two wipe-data cold boots, but the fast Gamma density bytes differ while branch counts remain exact. The mismatch is localized to the density stage; platform libm behavior is a plausible unproven cause. The frozen portable-runtime contract therefore fails without tolerance rescue or a second evaluator.",
+  "next_leaf": "Evaluate whether the fixed P4HU developed structure adds held-out visual value over AO6 before investing in a new canonical cross-platform Gamma mechanism or profile-compiler bridge.",
+  "claim_ceiling": "Private fixed-fixture Windows and Android 14 x86_64 arithmetic evidence plus Android arm64 link and Apple arm64 object compilation. Android density runtime, Android arm64 runtime, Apple link/runtime, media integration, calibrated film/scanner response and product promotion remain unproved. Failure atomicity covers only the Gamma invalid-input fixture."
+}
