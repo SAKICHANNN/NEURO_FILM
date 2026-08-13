@@ -1,0 +1,89 @@
+{
+  "schema": "neuro-film.u5-r2cham3-filmset-spatial-operator-d1-contract.v1",
+  "experiment_id": "U5.R2CHAM3",
+  "question": "Does a fixed 4x4 bank of bounded explicit colour operators fitted on 24 FilmSet ClassNeg scenes generalize to 16 held-out scenes better than one shared operator?",
+  "parents": {
+    "structural_correspondence": {
+      "path": "docs/evidence/U5_R2CHAM2_NATURAL_PATCH_CORRESPONDENCE_D1_RESULT.json",
+      "sha256": "b777cd0277aa10a4316a777b7e5c959623fcf90593592a2d8c07f09c1d41ae7c",
+      "required_decision": "retain_structural_patch_correspondence_for_fresh_photographic_fit"
+    },
+    "filmset_case_bank": {
+      "path": "configs/u5_r2z0_filmset_case_retrieval_decision_v1.json",
+      "sha256": "d7c75d12a1952d810528ef9131b9cc8523cf771b9a842b27c7bf647256a3504e",
+      "required_branch": "classneg_oracle_only_velvia_no_oracle"
+    }
+  },
+  "activation_gate": {
+    "w2f_preflight_report_a_path": "outputs/u5_r2w2f_filmset_reference_preflight_v1/report_a.json",
+    "w2f_preflight_report_b_path": "outputs/u5_r2w2f_filmset_reference_preflight_v1/report_b.json",
+    "required_w2f_preflight_report_sha256": "ab435e2433373d9fb001c13d20af7b408f0346d1d1f2cf2f989db080c86103c3"
+  },
+  "dataset": {
+    "dataset_id": "xuhangc/filmset",
+    "root": "data/raw/filmset/FilmSet",
+    "evidence_dir": "outputs/roll2film/filmset_evidence",
+    "internal_dev_manifest": "internal_dev_lockbox.jsonl",
+    "internal_dev_manifest_sha256": "fc78bb22e9a36972c405f52fd22d7b505fd179155af294c3718a5b693b61b0a2",
+    "forbidden_final_manifest": "final_628_lockbox.jsonl",
+    "forbidden_final_manifest_sha256": "7bba03a6f9ae4a70c4f0f128bf12b14116918ac7898dc656f324113110d9b0b2",
+    "domain": "classneg",
+    "domains": ["classneg"],
+    "allowed_use": "internal_research_only"
+  },
+  "partition": {
+    "algorithm": "sha256_seed_pool_content_id_ascending",
+    "seed": 2026072701,
+    "preflight_internal_development_identities": 256,
+    "preflight_internal_confirmatory_identities": 128,
+    "preflight_internal_stress_identities": 81,
+    "development_identities_used": 24,
+    "confirmatory_identities_used": 16
+  },
+  "sampling": {
+    "grid_rows": 4,
+    "grid_columns": 4,
+    "pixels_per_cell_fit": 32,
+    "pixels_per_cell_evaluation": 32,
+    "fit_seed": 28600,
+    "evaluation_seed": 28601
+  },
+  "operator": {
+    "axis_size": 4,
+    "integration_steps": 16,
+    "coefficient_vector_norm_cap": 2.0,
+    "steps": 80,
+    "learning_rate": 0.03,
+    "coefficient_l2": 0.0001,
+    "velocity_smoothness_l2": 0.001,
+    "gradient_clip_norm": 5.0,
+    "device": "cuda_if_available_else_cpu",
+    "optimization_dtype": "float32",
+    "deterministic_algorithms": true,
+    "shared_seed": 34100,
+    "cell_seed_base": 34200
+  },
+  "controls": {
+    "cyclic_wrong_cell_offset": 5,
+    "identity": true,
+    "shared_operator": true
+  },
+  "gates": {
+    "minimum_improvement_over_shared_fraction": 0.05,
+    "minimum_win_fraction_over_shared": 0.75,
+    "minimum_worst_improvement_over_shared_fraction": -0.1,
+    "minimum_improvement_over_cyclic_wrong_cell_fraction": 0.05,
+    "maximum_mean_rmse": 0.02,
+    "minimum_output": 0.0,
+    "maximum_output": 1.0,
+    "minimum_jacobian_determinant_exclusive": 0.005,
+    "maximum_jacobian_spectral_norm": 8.0,
+    "maximum_inverse_error": 0.00001,
+    "maximum_replay_error": 0.0,
+    "maximum_coefficient_vector_norm": 2.0,
+    "repeat_report_sha256_equal": true
+  },
+  "decision_if_pass": "retain_fixed_spatial_explicit_operator_for_fresh_recipe_confirmation",
+  "decision_if_fail": "close_fixed_spatial_explicit_operator_keep_shared_global_fallback",
+  "claim_ceiling": "Internal paired FilmSet Capture One ClassNeg control evidence for a fixed spatial bank of bounded explicit colour operators; not film, stock, calibration, output-only reference recovery, product or preference evidence."
+}
