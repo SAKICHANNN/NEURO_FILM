@@ -1,0 +1,33 @@
+{
+  "schema": "neuro-film.u6-p4ia-analytical-opponent-density-envelope-d0-evidence.v1",
+  "experiment_id": "u6-p4ia-analytical-opponent-density-envelope-d0-v1",
+  "implementation_commit": "48bcbb16ee041be771ade6739013cc8f41bb33f2",
+  "contract": {
+    "path": "configs/u6_p4ia_analytical_opponent_density_envelope_d0_v1.json",
+    "sha256": "424f07105da68528d2635e0f14f1ae6a6fbf42bac4ad84a1f73d2954d95f8112"
+  },
+  "formal_reports": {
+    "paths": [
+      "outputs/experiments/u6_p4ia_analytical_opponent_density_envelope_d0_v1/run_a.json",
+      "outputs/experiments/u6_p4ia_analytical_opponent_density_envelope_d0_v1/run_b.json"
+    ],
+    "sha256": "d2ad241609f1ce9a85ebd5331f23a8f9bac76938e3403d772ccec73bc2782e1a",
+    "byte_exact": true,
+    "stable_evidence_id": "6fc7823333c0338e5004f5714dba811cd389761e623c1a59fb5abf1822536be8"
+  },
+  "observations": {
+    "procedural_rows": 12,
+    "minimum_residual_rms": 0.0041958366405750475,
+    "limited_fraction_range": [
+      0.0015977276761938576,
+      0.004260607136516954
+    ],
+    "maximum_density_direction_scale_error": 1.1102230246251565e-16,
+    "maximum_output_transmittance": 1.0,
+    "maximum_new_boundary_fraction": 0.0,
+    "all_finite_and_bounded": true
+  },
+  "automatic_pass": true,
+  "decision": "retain_analytical_density_direction_capacity_and_open_fresh_photographic_confirmation",
+  "claim_ceiling": "Procedural adversarial-highlight domain evidence for one complete-CMY developed-density direction envelope; not photographic value, measured emulsion, stock calibration, runtime or product promotion"
+}

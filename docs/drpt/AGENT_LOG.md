@@ -12876,3 +12876,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   closed. The failure is not repaired with clipping, limiting or scale tuning.
 - Retain fixed AO6 and close this exact photographic mechanism. The procedural
   P4HX capacity result remains valid but does not establish photographic value.
+
+### 2026-08-13 - U6.P4IA retains analytical density-direction capacity
+
+- A materially new common-scalar envelope applies the full CMY developed-
+  density direction without per-channel clipping or post-hoc limiting.
+- Twelve adversarial highlight fixtures replay byte-exactly. The limiter is
+  exercised on `.160-.426%` of pixels, minimum residual RMS is `.00420`, the
+  direction-scale error is `1.11e-16`, and every output stays bounded.
+- Open only a wholly fresh photographic automatic confirmation. This does not
+  rescue P4HZ or establish preference, measured film, runtime or product value.
