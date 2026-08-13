@@ -1,0 +1,108 @@
+{
+    "schema":  "neuro_film.u6_p2ae_bw_process_response_profile_evidence.v1",
+    "node":  "U6.P2AE",
+    "implementation_commit":  "2534e003f5f6c10eb3b7c89ec1c0f5568712017b",
+    "parent_evidence_sha256":  "4b01cc9730bda2dab8324ccf689ca37f57d59c81afe377960d2cd83547647eb8",
+    "report_sha256":  "f7b56ea9b3ad224cf2eaef0c5fbe609fa6ff5b5164ed7701fc17297477dc22bf",
+    "stable_evidence_id":  "451ec39f3fa746c8b8b3e00fb53a9ac5abab0769229e750b6e1329f5c8aee72b",
+    "automatic_pass":  true,
+    "measurements":  {
+                         "input_unchanged_on_failure":  true,
+                         "maximum_forward_inverse_time_error_minutes":  3.5527136788005009E-15,
+                         "maximum_inverse_forward_contrast_error":  1.1102230246251565E-16,
+                         "outside_domain_rejected":  true,
+                         "partition_exact":  true,
+                         "profile_count":  7,
+                         "rgb_image_transform_count_zero":  true,
+                         "serialization_byte_exact":  true,
+                         "unique_profile_identity_count":  7
+                     },
+    "profile_identities":  [
+                               {
+                                   "contrast_bounds":  [
+                                                           0.4760162601626016,
+                                                           0.8160060991869916
+                                                       ],
+                                   "developer_id":  "d76",
+                                   "domain_minutes":  [
+                                                          5.419994484526839,
+                                                          10.82982012386695
+                                                      ],
+                                   "profile_identity":  "a3bd6f37c73aed1db33d47840c14299b81d7b7a2aff8e244d8363dbc04060613"
+                               },
+                               {
+                                   "contrast_bounds":  [
+                                                           0.3699949203252031,
+                                                           0.8999999999999999
+                                                       ],
+                                   "developer_id":  "d76_1_1",
+                                   "domain_minutes":  [
+                                                          5.419994484526839,
+                                                          18.41959186876144
+                                                      ],
+                                   "profile_identity":  "ccb5465d59ae2adfcf2add1fe319f4be2f8e3a2ea5cb5a9ec00a9fb8cf257dee"
+                               },
+                               {
+                                   "contrast_bounds":  [
+                                                           0.529979674796748,
+                                                           1.05998476097561
+                                                       ],
+                                   "developer_id":  "hc110_b",
+                                   "domain_minutes":  [
+                                                          3.24958154930887,
+                                                          11.919793257994906
+                                                      ],
+                                   "profile_identity":  "cb27a4c9c46d1d2a34c97f4a0d91628ea8ec0ddc50fb1fbd77aef63a12cce3c0"
+                               },
+                               {
+                                   "contrast_bounds":  [
+                                                           0.5199949203252031,
+                                                           0.8559959349593496
+                                                       ],
+                                   "developer_id":  "tmax",
+                                   "domain_minutes":  [
+                                                          5.419994484526839,
+                                                          10.82982012386695
+                                                      ],
+                                   "profile_identity":  "94c643333cbd4f093975ea9078ddc03b4fe7763d8eb061f5f9d8a58b4f6f20dd"
+                               },
+                               {
+                                   "contrast_bounds":  [
+                                                           0.5100101658536581,
+                                                           0.9899898406504061
+                                                       ],
+                                   "developer_id":  "tmax_rs",
+                                   "domain_minutes":  [
+                                                          3.24958154930887,
+                                                          12.999597384234601
+                                                      ],
+                                   "profile_identity":  "9994ed6b0a7f217e0db50e9e6ea43f106b2eab8dd2863cfdd7c5d230be547360"
+                               },
+                               {
+                                   "contrast_bounds":  [
+                                                           0.3399898406504061,
+                                                           0.9799796747967479
+                                                       ],
+                                   "developer_id":  "xtol",
+                                   "domain_minutes":  [
+                                                          3.24958154930887,
+                                                          14.080037348026137
+                                                      ],
+                                   "profile_identity":  "af0494dae6f3351f57085e58c555be9e5031072582a132b2cf8f4a61fe1c0486"
+                               },
+                               {
+                                   "contrast_bounds":  [
+                                                           0.3699949203252031,
+                                                           0.8999999999999999
+                                                       ],
+                                   "developer_id":  "xtol_1_1",
+                                   "domain_minutes":  [
+                                                          4.330021350398883,
+                                                          17.329618897335013
+                                                      ],
+                                   "profile_identity":  "70af1ce9ee0fc8c9a2207440cc92af901133244ed3fda70dd155d3bc36de6156"
+                               }
+                           ],
+    "decision":  "retain a research-only typed B\u0026W process-response profile primitive; a future photographic leaf still requires measured characteristic curves and scanner/print interpretation",
+    "claim_ceiling":  "Research-only typed interpolation of first-party TRI-X 400 developer contrast-index paths; not calibrated sensitometry, a photographic tone operator, process emulation or product profile."
+}

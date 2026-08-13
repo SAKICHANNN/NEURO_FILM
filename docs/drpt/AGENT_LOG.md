@@ -13248,3 +13248,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain developer/process as an explicit B&W profile dimension. This is source
   evidence, not a calibrated tone, grain, MTF, scanner or photographic look.
   The next algorithm leaf is a typed monotone process-response representation.
+### 2026-08-14 - U6.P2AE compiles typed B&W process response
+
+- The seven retained P2AD vector paths compile into strict developer-bound
+  `development_time_minutes <-> diffuse_visual_contrast_index` profiles.
+- Two reports are byte exact (`f7b56ea9...c22bf`, stable
+  `451ec39f...ee72b`). All seven identities are unique; maximum time and CI
+  roundtrip errors are `3.55e-15` minutes and `1.11e-16`; serialization,
+  partition execution, domain rejection and failure atomicity pass.
+- Retain this research primitive only. CI is not a complete characteristic
+  curve, so photographic tone, grain, MTF, scan and product mapping stay closed.
