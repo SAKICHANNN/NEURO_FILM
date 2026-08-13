@@ -1,0 +1,30 @@
+{
+  "schema": "neuro-film.u6-p6am-scanner-safe-residual-runtime-contract.v1",
+  "experiment_id": "U6.P6AM",
+  "parent": {
+    "path": "docs/evidence/U6_P6AL_SAFE_RESIDUAL_SCANNER_REPLICATION_D1_RESULT.json",
+    "sha256": "8269018e166b78365ba71c12733aacd5d2ada6c921612897bc426b0f49adaa43",
+    "required_decision": "retain_analytical_safe_residual_as_cross_source_scanner_nuisance_mechanism_d1"
+  },
+  "runtime": {
+    "id": "neuro-film.scanner-safe-residual.v1",
+    "domain": "bounded-relative-scan-linear-rgb",
+    "arithmetic": "canonical-float64",
+    "granularity": "per-pixel-shared-rgb-scale",
+    "hard_clipping_allowed": false,
+    "posthoc_limiting_allowed": false,
+    "in_place_allowed": false
+  },
+  "gates": {
+    "require_identity_exact": true,
+    "require_output_bounded": true,
+    "require_residual_collinearity": true,
+    "maximum_collinearity_error": 1e-12,
+    "require_input_unchanged_on_success": true,
+    "require_invalid_input_rejected_before_output": true,
+    "require_partition_exact": true
+  },
+  "decision_if_pass": "retain_optional_canonical_scanner_safe_residual_runtime_v1",
+  "decision_if_fail": "close_scanner_safe_residual_runtime_without_rescue",
+  "claim_ceiling": "Optional canonical CPU scanner-domain execution primitive only; no default change, fitted profile, scanner calibration, stock response, native/mobile runtime or product promotion."
+}
