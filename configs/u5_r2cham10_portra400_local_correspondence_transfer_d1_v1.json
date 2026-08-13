@@ -1,0 +1,67 @@
+{
+  "schema": "neuro-film.u5-r2cham10-portra400-local-correspondence-transfer-d1-contract.v1",
+  "experiment_id": "U5.R2CHAM10",
+  "question": "Does the chart-frozen global affine transfer to candidate-independent local correspondences in the same-session Portra 400 to Fuji DPii RA4/Epson natural observation?",
+  "parents": {
+    "cham5_evidence": {
+      "path": "docs/evidence/U5_R2CHAM5_PORTRA400_REGISTRATION_D0_RESULT.json",
+      "sha256": "4ba592ab35d54d47802323f57da89bca674d631f17fa7add600fd7b8acb34ef5",
+      "required_decision": "retain_chart_pair_for_separately_frozen_development_only_operator_discriminant"
+    },
+    "cham6_contract": {
+      "path": "configs/u5_r2cham6_portra400_chart_operator_d1_v1.json",
+      "sha256": "c2aae6444eca2da6e8a580cfc01c614173252d1036a967ec4c4f2cf03799e373"
+    },
+    "cham9_evidence": {
+      "path": "docs/evidence/U5_R2CHAM9_SPEKTRAFILM_AUTHOR_BASELINE_D1_RESULT.json",
+      "sha256": "642086e73a828d9d0ab3f78c4d6444968a676adff89757b3abde759a18ce35fc",
+      "required_decision": "close_author_spektrafilm_parameters_as_predictive_chart_baseline"
+    }
+  },
+  "natural_pairs": [
+    {
+      "id": "ra4_epson_primary",
+      "digital_role": "same_scene_lumix_s5ii_raw",
+      "target_role": "same_scene_portra400_fuji_dpii_ra4_epson_scan",
+      "primary": true
+    },
+    {
+      "id": "noritsu_scanner_nuisance",
+      "digital_role": "same_scene_lumix_s5ii_raw",
+      "target_role": "same_scene_portra400_noritsu_scan",
+      "primary": false
+    }
+  ],
+  "correspondence": {
+    "clahe_clip_limit": 2.0,
+    "clahe_tile_grid": [8, 8],
+    "maximum_features": 6000,
+    "ratio_threshold": 0.75,
+    "ransac_reprojection_threshold_pixels": 4.0,
+    "minimum_mutual_good_matches": 20,
+    "minimum_inliers": 12,
+    "minimum_inlier_fraction": 0.0,
+    "maximum_median_inlier_reprojection_error_pixels": 4.0,
+    "maximum_p95_inlier_reprojection_error_pixels": 8.0,
+    "minimum_target_overlap_fraction": 0.0,
+    "patch_radius_pixels": 5,
+    "maximum_patch_channel_mad": 0.08,
+    "minimum_code": 0.02,
+    "maximum_code": 0.98,
+    "wrong_target_roll": 17,
+    "spatial_fold_count": 4
+  },
+  "gates": {
+    "minimum_primary_eligible_correspondences": 32,
+    "minimum_primary_improvement_over_identity_fraction": 0.05,
+    "minimum_primary_improvement_over_wrong_pairing_fraction": 0.05,
+    "minimum_primary_spatial_fold_win_fraction": 0.75,
+    "minimum_primary_worst_spatial_fold_improvement_fraction": -0.1,
+    "maximum_primary_rmse": 0.15,
+    "maximum_out_of_cube_fraction": 0.005,
+    "maximum_repeat_error": 0.0
+  },
+  "decision_if_pass": "retain_chart_affine_as_same_session_ra4_local_transfer_signal_only",
+  "decision_if_fail": "close_chart_affine_natural_local_transfer_without_rescue",
+  "claim_ceiling": "Development-only local-correspondence transfer on one unlicensed same-session Portra 400 package; not exact pixel pairing, stock calibration, scanner/process separation, population transfer, product, redistribution or commercial-use evidence."
+}
