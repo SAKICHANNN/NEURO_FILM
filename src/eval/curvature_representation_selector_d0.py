@@ -75,6 +75,37 @@ def _observations(contract: Mapping[str, Any], root: Path) -> list[dict[str, flo
     return rows
 
 
+def _fit_selector(rows: list[dict[str, float | str]]) -> dict[str, float | str]:
+    candidates = sorted(float(row["curvature"]) for row in rows)
+    thresholds = [0.0] + [
+        (a + b) / 2.0 for a, b in zip(candidates[:-1], candidates[1:], strict=True)
+    ] + [float("inf")]
+    best: tuple[int, float, str, float] | None = None
+    for threshold in thresholds:
+        for high in ("gaussian", "lattice"):
+            low = "lattice" if high == "gaussian" else "gaussian"
+            correct = sum(
+                (high if float(row["curvature"]) >= threshold else low) == row["winner"]
+                for row in rows
+            )
+            candidate = (
+                correct,
+                -threshold if np.isfinite(threshold) else -1e300,
+                high,
+                threshold,
+            )
+            if best is None or candidate > best:
+                best = candidate
+    assert best is not None
+    correct, _, high, threshold = best
+    return {
+        "training_accuracy": correct / len(rows),
+        "curvature_threshold": threshold,
+        "high_curvature_representation": high,
+        "low_curvature_representation": "lattice" if high == "gaussian" else "gaussian",
+    }
+
+
 def evaluate(contract: Mapping[str, Any], root: Path) -> dict[str, Any]:
     rows = _observations(contract, root)
     predictions = []
@@ -82,19 +113,10 @@ def evaluate(contract: Mapping[str, Any], root: Path) -> dict[str, Any]:
     for fold in range(folds):
         test = [row for i, row in enumerate(rows) if i % folds == fold]
         train = [row for i, row in enumerate(rows) if i % folds != fold]
-        candidates = sorted({row["curvature"] for row in train})
-        thresholds = [0.0] + [(a + b) / 2.0 for a, b in zip(candidates[:-1], candidates[1:], strict=True)] + [float("inf")]
-        best = None
-        for threshold in thresholds:
-            for high in ("gaussian", "lattice"):
-                low = "lattice" if high == "gaussian" else "gaussian"
-                correct = sum((high if row["curvature"] >= threshold else low) == row["winner"] for row in train)
-                candidate = (correct, -threshold if np.isfinite(threshold) else -1e300, high, threshold)
-                if best is None or candidate > best:
-                    best = candidate
-        assert best is not None
-        _, _, high, threshold = best
-        low = "lattice" if high == "gaussian" else "gaussian"
+        selector = _fit_selector(train)
+        high = str(selector["high_curvature_representation"])
+        low = str(selector["low_curvature_representation"])
+        threshold = float(selector["curvature_threshold"])
         for row in test:
             selected = high if row["curvature"] >= threshold else low
             predictions.append({**row, "selected": selected})
@@ -110,7 +132,7 @@ def evaluate(contract: Mapping[str, Any], root: Path) -> dict[str, Any]:
     g = contract["gates"]
     checks = {"accuracy": accuracy >= g["minimum_selector_accuracy"], "lattice_regret": metrics["oracle_regret_reduction_vs_always_lattice"] >= g["minimum_oracle_regret_reduction_vs_always_lattice"], "gaussian_regret": metrics["oracle_regret_reduction_vs_always_gaussian"] >= g["minimum_oracle_regret_reduction_vs_always_gaussian"], "tail": metrics["worst_selected_vs_best_rmse_ratio"] <= g["maximum_worst_selected_vs_best_rmse_ratio"]}
     passed = all(checks.values())
-    core = {"schema": REPORT_SCHEMA, "experiment_id": contract["experiment_id"], "config_sha256": hashlib.sha256(_canonical(contract)).hexdigest(), "metrics": metrics, "checks": checks, "automatic_pass": passed, "decision": contract["decision_if_pass"] if passed else contract["decision_if_fail"], "claim_ceiling": contract["claim_ceiling"]}
+    core = {"schema": REPORT_SCHEMA, "experiment_id": contract["experiment_id"], "config_sha256": hashlib.sha256(_canonical(contract)).hexdigest(), "frozen_selector": _fit_selector(rows), "metrics": metrics, "checks": checks, "automatic_pass": passed, "decision": contract["decision_if_pass"] if passed else contract["decision_if_fail"], "claim_ceiling": contract["claim_ceiling"]}
     return {**core, "stable_evidence_id": hashlib.sha256(_canonical(core)).hexdigest()}
 
 
