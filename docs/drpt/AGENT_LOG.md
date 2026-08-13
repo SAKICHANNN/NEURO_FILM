@@ -12972,3 +12972,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Two full reports are byte exact (`fece6c20...ca4ad`, stable `57dd418a...e7424`). Layer fit RMSE is `.0232/.0359/.0341`, minimum source-headroom at code `.03` is `.03063`, and the unchanged structure yields p95/p99 differences `.00783/.00940`.
 - All frozen gates pass: zero new boundaries, minimum shared scale 1, and zero partition/replay error. This isolates P4II's failure to the plateau mechanism rather than the scanner or structure amplitude.
 - Decision: retain for one bound photo development test when P is responsive. No stock/scanner calibration or product claim opens.
+### 2026-08-14 - U5.R2CHAM3 closes fixed spatial operator transfer
+
+- Two committed-head CUDA runs are byte exact (`3c766fb7...1597`, stable
+  `0c175098...aad2`). All 17 explicit flows are bounded, invertible and
+  structurally safe, but the 4x4 bank is 7.56% worse than one shared operator,
+  wins only 2/16 held-out scenes and is 1.03% worse than cyclic wrong-cell use.
+- Close fixed coordinate-conditioned fitting without grid or same-cohort
+  rescue. CHAM2 remains synthetic correspondence capacity; a successor needs
+  an independently identifying region match or calibrated film/scanner pair.
+  Shared global explicit operators remain the simpler fallback.

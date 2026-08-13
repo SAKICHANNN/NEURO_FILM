@@ -1,0 +1,58 @@
+{
+  "automatic_pass": false,
+  "checks": {
+    "accuracy": true,
+    "mean_improvement": false,
+    "repeat_report": true,
+    "structure": true,
+    "tail": false,
+    "wins": false,
+    "wrong_cell": false
+  },
+  "claim_ceiling": "Internal paired FilmSet Capture One ClassNeg control evidence for a fixed spatial bank of bounded explicit colour operators; not film, stock, calibration, output-only reference recovery, product or preference evidence.",
+  "config_sha256": "cc7be7e89c60f9c4564925c91153100b4c6021617ebb04699ac8dcef714881c5",
+  "decision": "close_fixed_spatial_explicit_operator_keep_shared_global_fallback",
+  "experiment_id": "U5.R2CHAM3",
+  "implementation_commit": "75d89c5d37bde3e2effcad23fd31583a0c2f8d48",
+  "metrics": {
+    "candidate_rmse_mean": 0.01652368620252868,
+    "cyclic_wrong_cell_rmse_mean": 0.016355198001958587,
+    "identity_rmse_mean": 0.06041751996436884,
+    "improvement_over_cyclic_wrong_cell_fraction": -0.010301813561041318,
+    "improvement_over_shared_fraction": -0.07557204631884273,
+    "median_row_improvement_over_shared_fraction": -0.04145826964640853,
+    "row_count": 16,
+    "shared_rmse_mean": 0.015362695840860852,
+    "win_fraction_over_shared": 0.125,
+    "worst_improvement_over_shared_fraction": -0.4483463602997171
+  },
+  "observations": [
+    "The 16 bounded cell operators and shared control are structurally valid: minimum sampled Jacobian determinant 0.21356090815528012, maximum spectral norm 1.8929686510570076, maximum inverse error 4.016816468332962e-08 and exact replay.",
+    "On 16 held-out scenes the fixed spatial bank is 7.557204631884273% worse in mean RMSE than one shared global operator and wins only 2/16 rows.",
+    "The candidate is also 1.0301813561041318% worse in mean RMSE than the cyclic wrong-cell control. Fixed image coordinates therefore do not identify a transferable local colour mechanism on this paired software-recipe cohort.",
+    "CHAM2 remains valid only as synthetic patch-correspondence capacity. This result closes fixed coordinate-cell fitting on the consumed FilmSet cohort without changing the shared global fallback."
+  ],
+  "parent_ids": {
+    "filmset_case_bank": "d7c75d12a1952d810528ef9131b9cc8523cf771b9a842b27c7bf647256a3504e",
+    "structural_correspondence": "703e74d748033c7fb036c1ce1500346488af5a27e81952b1f4dd7267ff65a57b"
+  },
+  "replay": {
+    "formal_processes": 2,
+    "report_byte_exact": true,
+    "report_sha256": "3c766fb73527c67356bd82027707e96f396f27f1d3ab081188f6500ed9421597",
+    "stable_evidence_id": "0c17509846fc3a845f59c234bccef08e9a99a6d105789006934dd5132a4daad2",
+    "stderr_empty": true
+  },
+  "schema": "neuro-film.u5-r2cham3-filmset-spatial-operator-d1-evidence.v1",
+  "scientific_conclusion": "A fixed 4x4 spatial bank adds capacity but not transferable information: it is safe and invertible yet generalizes materially worse than the simpler shared explicit operator. Close this exact coordinate-conditioned family without grid, regularization, threshold or same-cohort rescue. A successor requires an identifying observation such as independently matched regions or calibrated paired film/scanner data, not more spatial capacity.",
+  "structure": {
+    "maximum_coefficient_vector_norm": 1.0935255477446721,
+    "maximum_inverse_error": 4.016816468332962e-08,
+    "maximum_jacobian_spectral_norm": 1.8929686510570076,
+    "maximum_output": 0.9631416320784956,
+    "maximum_replay_error": 0.0,
+    "minimum_jacobian_determinant": 0.21356090815528012,
+    "minimum_output": 0.061551715020560206,
+    "sampled_operator_count": 17
+  }
+}
