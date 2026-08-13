@@ -1,0 +1,22 @@
+{
+  "schema": "neuro-film.u5-r2cham2-natural-patch-correspondence-d1-contract.v1",
+  "experiment_id": "U5.R2CHAM2",
+  "question": "Does candidate-independent gradient structure recover hidden patch correspondence and improve bounded explicit operator fitting on fixed natural photographs?",
+  "parent": {"path": "docs/evidence/U5_R2CHAM1_STRUCTURAL_REGION_MATCHING_D0_RESULT.json", "sha256": "6c1c93de56564407068aa86a7a46295e00d5ce5d36613697d1fcfc1c2d59ee1e", "required_decision": "retain_structural_region_matching_for_photographic_correspondence_baseline"},
+  "source": {
+    "library": "scikit-image",
+    "version": "0.26.0",
+    "rows": [
+      {"id": "astronaut", "sha256": "a8c429c18afa7b0fd5673e598d73a21225d94c864a71bbb3885126fdecb41071"},
+      {"id": "coffee", "sha256": "0ce2b51640b9c95f19617f03eabf40c3f0368589cc1ee1190b70966165ac184f"},
+      {"id": "chelsea", "sha256": "416b729128bfb2c3d1eb69bf9b1734a796293abc17939267b2dc94f8a5784031"},
+      {"id": "rocket", "sha256": "3d4435cc745752b7f9724df88c6e18817de3ce7e3d2d71c55f85f7831e68f197"},
+      {"id": "hubble_deep_field", "sha256": "9a3ea9548188f81e63435188456e74de45a981ebeb791e265abe79a26d3b528b"}
+    ]
+  },
+  "evaluation": {"patch_side": 32, "patches_per_image": 16, "probe_pixels_per_image": 8192, "seed": 20260815},
+  "gates": {"minimum_exact_patch_match_rate": 0.9, "minimum_operator_win_rate": 0.8, "minimum_median_improvement_over_unmatched": 0.5, "maximum_matched_operator_rmse": 0.03, "maximum_new_boundary_fraction": 0.0},
+  "decision_if_pass": "retain_structural_patch_correspondence_for_fresh_photographic_fit",
+  "decision_if_fail": "close_exact_natural_patch_correspondence_family_without_rescue",
+  "claim_ceiling": "Bundled natural-image D1 with synthetic patch permutation and synthetic bounded targets; not real FoV/PoV paired capture, film response, stock calibration, product or preference evidence."
+}

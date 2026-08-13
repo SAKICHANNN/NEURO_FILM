@@ -1,0 +1,67 @@
+{
+  "automatic_pass": true,
+  "checks": {
+    "accuracy": true,
+    "boundary": true,
+    "improvement": true,
+    "matching": true,
+    "wins": true
+  },
+  "claim_ceiling": "Bundled natural-image D1 with synthetic patch permutation and synthetic bounded targets; not real FoV/PoV paired capture, film response, stock calibration, product or preference evidence.",
+  "config_sha256": "a29f49ce6620f444e1379e7d1f315c18d92a6e8a75e372cfc6397b596d6eb26c",
+  "decision": "retain_structural_patch_correspondence_for_fresh_photographic_fit",
+  "experiment_id": "U5.R2CHAM2",
+  "metrics": {
+    "exact_patch_match_rate": 1.0,
+    "maximum_matched_operator_rmse": 0.009875181341267428,
+    "maximum_new_boundary_fraction": 0.0,
+    "median_improvement_over_unmatched": 0.9895664338613649,
+    "operator_win_rate": 1.0,
+    "row_count": 5
+  },
+  "parent_stable_evidence_id": "ed8d1585859ac0d13ee0603d1d10fbf60469fc4edce24273083e5be49e358c28",
+  "rows": [
+    {
+      "exact_patch_match_rate": 1.0,
+      "id": "astronaut",
+      "improvement": 0.9917429037031253,
+      "matched_rmse": 0.002507517431069598,
+      "new_boundary_fraction": 0.0,
+      "unmatched_rmse": 0.3036802940058607
+    },
+    {
+      "exact_patch_match_rate": 1.0,
+      "id": "coffee",
+      "improvement": 0.9915366739746092,
+      "matched_rmse": 0.0029869443360514432,
+      "new_boundary_fraction": 0.0,
+      "unmatched_rmse": 0.35292795374895564
+    },
+    {
+      "exact_patch_match_rate": 1.0,
+      "id": "chelsea",
+      "improvement": 0.9895664338613649,
+      "matched_rmse": 0.0015614951609357552,
+      "new_boundary_fraction": 0.0,
+      "unmatched_rmse": 0.14966073346232045
+    },
+    {
+      "exact_patch_match_rate": 1.0,
+      "id": "rocket",
+      "improvement": 0.9746053014994727,
+      "matched_rmse": 0.003798464532606607,
+      "new_boundary_fraction": 0.0,
+      "unmatched_rmse": 0.14957706753351388
+    },
+    {
+      "exact_patch_match_rate": 1.0,
+      "id": "hubble_deep_field",
+      "improvement": 0.8834114301643412,
+      "matched_rmse": 0.009875181341267428,
+      "new_boundary_fraction": 0.0,
+      "unmatched_rmse": 0.08470111053928625
+    }
+  ],
+  "schema": "neuro-film.u5-r2cham2-natural-patch-correspondence-d1-result.v1",
+  "stable_evidence_id": "703e74d748033c7fb036c1ce1500346488af5a27e81952b1f4dd7267ff65a57b"
+}
