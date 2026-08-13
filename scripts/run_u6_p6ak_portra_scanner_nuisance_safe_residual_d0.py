@@ -15,6 +15,7 @@ from src.eval.portra_scanner_nuisance_safe_residual_d0 import (
     write_report,
 )
 
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run P6AK analytical safe residual diagnostic.")
     parser.add_argument(
