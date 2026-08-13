@@ -1,0 +1,67 @@
+{
+  "schema": "neuro-film.u5-r2cham6-portra400-chart-operator-d1-contract.v1",
+  "experiment_id": "U5.R2CHAM6",
+  "question": "On the one exact registered Lumix-S5II-to-Portra400/Fuji-DPii chart pair, does the clean-room 30-parameter two-matrix/three-sigmoid equation generalize across held spatial blocks better than a shared affine mapping and correspondence-shuffled control?",
+  "parents": {
+    "registration_evidence": {
+      "path": "docs/evidence/U5_R2CHAM5_PORTRA400_REGISTRATION_D0_RESULT.json",
+      "sha256": "4ba592ab35d54d47802323f57da89bca674d631f17fa7add600fd7b8acb34ef5",
+      "required_decision": "retain_chart_pair_for_separately_frozen_development_only_operator_discriminant"
+    },
+    "registration_report": {
+      "path": "outputs/u5_r2cham5_portra400_registration_d0_v1/formal_a.json",
+      "sha256": "c65088c2959fa92f6a61e9dac0f8bb5d4fabc724f1f601d8e6b1c6e43e160b63",
+      "required_stable_evidence_id": "4e5168d81a7161ffa49bfda0f33e3f1faab718fe576d29325f759dfdf8020112"
+    }
+  },
+  "sampling": {
+    "target_downsample_divisor": 4,
+    "normalized_roi_xyxy": [0.48, 0.32, 0.88, 0.9],
+    "grid_rows": 8,
+    "grid_columns": 8,
+    "samples_per_block": 48,
+    "gradient_quantile": 0.65,
+    "minimum_code": 0.01,
+    "maximum_code": 0.99,
+    "seed": 31460,
+    "fold_count": 4,
+    "fold_assignment": "spatial_block_index_modulo_4"
+  },
+  "models": {
+    "fit_domain": "linear_srgb_from_exact_srgb_decodes",
+    "controls": ["identity", "full_affine", "correspondence_shuffled_candidate"],
+    "candidate": "clean_room_emulating_emulsion_30_parameter_equation",
+    "candidate_parameterization": {
+      "capture_matrix_entry_bounds": [-2.0, 2.0],
+      "scan_matrix_entry_bounds": [-2.0, 2.0],
+      "response_amplitude_bounds": [0.01, 2.0],
+      "response_slope_bounds": [0.05, 10.0],
+      "response_midpoint_bounds": [-2.0, 2.0],
+      "response_offset_bounds": [-1.0, 1.0],
+      "hard_output_clipping": false
+    },
+    "fit": {
+      "restart_count": 3,
+      "maximum_function_evaluations": 3000,
+      "function_tolerance": 1e-10,
+      "parameter_tolerance": 1e-10,
+      "gradient_tolerance": 1e-10,
+      "seed": 31461,
+      "wrong_target_roll": 137
+    }
+  },
+  "gates": {
+    "minimum_samples_per_block": 48,
+    "minimum_improvement_over_full_affine_fraction": 0.05,
+    "minimum_fold_win_fraction_over_full_affine": 0.75,
+    "minimum_worst_fold_improvement_over_full_affine_fraction": -0.1,
+    "minimum_improvement_over_correspondence_shuffled_fraction": 0.05,
+    "maximum_candidate_rmse": 0.08,
+    "maximum_raw_out_of_cube_fraction": 0.005,
+    "minimum_cube_jacobian_determinant_exclusive": 0.0,
+    "maximum_repeat_error": 0.0
+  },
+  "decision_if_pass": "retain_equation_family_as_one_session_chart_development_candidate_only",
+  "decision_if_fail": "close_equation_family_on_this_chart_and_retain_simpler_affine_control",
+  "claim_ceiling": "One-session registered chart development evidence using an unlicensed public package; not natural-scene transfer, Portra 400 calibration, process, print-paper, scanner, product, redistribution or commercial-use evidence."
+}
