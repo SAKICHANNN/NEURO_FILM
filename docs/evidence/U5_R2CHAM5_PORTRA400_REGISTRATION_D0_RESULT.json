@@ -1,0 +1,48 @@
+{
+  "automatic_pass": true,
+  "claim_ceiling": "Internal registration and source-integrity evidence on one publicly shared unlicensed session; no calibrated Portra 400, print paper, scanner, process, natural-scene transfer, product, redistribution or commercial-use claim.",
+  "decision": "retain_chart_pair_for_separately_frozen_development_only_operator_discriminant",
+  "experiment_id": "U5.R2CHAM5",
+  "implementation_commit": "6c90c06908854a933604814e33c83fc77992ac0d",
+  "observations": [
+    "Six exact payloads total 183875041 bytes and decode deterministically; the download manifest SHA is eabfd1d191d62a05bc565db806deb5609387be802d3ffa810cfaffd466eede66.",
+    "The digital-chart RAW to Portra-400/Fuji-DPii chart TIFF pair passes every frozen homography gate with 303 mutual matches, 116 inliers, 0.38283828382838286 inlier fraction, 1.5835336446762085-pixel median reprojection error, 3.7027223110198975-pixel p95 error and 0.8567670936380724 target overlap.",
+    "The natural RAW and Noritsu/RA4 images are same-session scenes but visibly differ in pose and viewpoint. Their inlier fractions 0.2777777777777778 and 0.24604966139954854 fail the unchanged 0.35 gate, so they are not treated as pixel pairs or current operator targets.",
+    "The chart TIFF has one RGB8 page and an embedded ICC profile. The natural JPEGs are single-frame RGB without embedded ICC. No colour-state or scanner calibration is inferred from container presence."
+  ],
+  "operator_fit_allowed": false,
+  "parents": {
+    "config_sha256": "1416eb1498892861b696eb08a9849cc360e558bbbd257cb19205e57249298463",
+    "download_manifest_sha256": "eabfd1d191d62a05bc565db806deb5609387be802d3ffa810cfaffd466eede66"
+  },
+  "registration": {
+    "chart": {
+      "inlier_fraction": 0.38283828382838286,
+      "inliers": 116,
+      "median_inlier_reprojection_error_pixels": 1.5835336446762085,
+      "mutual_good_matches": 303,
+      "p95_inlier_reprojection_error_pixels": 3.7027223110198975,
+      "passed": true,
+      "target_overlap_fraction": 0.8567670936380724
+    },
+    "natural_noritsu": {
+      "inlier_fraction": 0.2777777777777778,
+      "mutual_good_matches": 270,
+      "passed": false
+    },
+    "natural_ra4_epson": {
+      "inlier_fraction": 0.24604966139954854,
+      "mutual_good_matches": 443,
+      "passed": false
+    }
+  },
+  "replay": {
+    "formal_processes": 2,
+    "report_byte_exact": true,
+    "report_sha256": "c65088c2959fa92f6a61e9dac0f8bb5d4fabc724f1f601d8e6b1c6e43e160b63",
+    "stable_evidence_id": "4e5168d81a7161ffa49bfda0f33e3f1faab718fe576d29325f759dfdf8020112",
+    "stderr_empty": true
+  },
+  "schema": "neuro-film.u5-r2cham5-portra400-registration-d0-evidence.v1",
+  "scientific_conclusion": "This package supplies one exact, strongly registered colour-chart observation spanning a Lumix S5II RAW capture and a Portra 400 to Fuji DPii print scan. It is adequate only for a development-only explicit-operator discriminant with held patches and wrong-pair controls. One session, one roll, unknown processing and an uncalibrated scanner/print chain cannot identify a stock response; the natural images remain independent future confirmation candidates rather than training targets."
+}

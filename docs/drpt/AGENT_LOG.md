@@ -12982,3 +12982,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   rescue. CHAM2 remains synthetic correspondence capacity; a successor needs
   an independently identifying region match or calibrated film/scanner pair.
   Shared global explicit operators remain the simpler fallback.
+### 2026-08-14 - U5.R2CHAM4/5 opens one Portra chart discriminant
+
+- A newly public May-2026 package was frozen before download: six files,
+  183,875,041 bytes (`eabfd1d1...e66`), internal non-redistributed research
+  only because no explicit reuse licence was found.
+- Two exact registration audits pass the Lumix S5II chart RAW to Portra 400 / 
+  Fuji DPii chart scan at 303 mutual matches, 116 inliers and 85.68% overlap.
+  The two natural-scene targets fail the fixed inlier-fraction gate because
+  pose/viewpoint differ, and are not pixel pairs or current fit targets.
+- Open one held-patch explicit-operator discriminant on the chart only. This
+  cannot establish calibrated stock, process, paper, scanner or product truth.
