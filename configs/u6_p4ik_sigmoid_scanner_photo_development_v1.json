@@ -1,0 +1,141 @@
+{
+  "schema": "neuro-film.u6-p4ik-sigmoid-scanner-photo-development-contract.v1",
+  "experiment_id": "u6-p4ik-sigmoid-scanner-photo-development-v1",
+  "parents": {
+    "p4hx_evidence": {
+      "path": "docs/evidence/U6_P4IBD_ANALYTICAL_OPPONENT_DEVELOPMENT_PROBE_RESULT.json",
+      "sha256": "1b8eb50520f75ba604f2391980401f4c0a17adccbfca8d205793eee904a9f7a8",
+      "required_decision": "close_p4ia_photographic_route_without_fresh_confirmation"
+    },
+    "p4ij_evidence": {
+      "path": "docs/evidence/U6_P4IJ_SIGMOID_CHARACTERISTIC_SPATIAL_D0_RESULT.json",
+      "sha256": "ad317f2a821a6faf20d91fcbeaa5b233633f6c64c3c960974e0093232d760fe6",
+      "required_decision": "retain_sigmoid_characteristic_chain_for_bound_photo_development",
+      "required_stable_evidence_id": "57dd418ae3f9b83ad44193060eac72d14f9c152d4a2f69224b4b3a18153e7424"
+    },
+    "profile": {
+      "path": "outputs/experiments/u6_p4hk_bounded_photographic_profile_bundle_v1/run_a/profile.json",
+      "sha256": "539fef07a7c659db035928ee4d9c7e6405da5e0baa07852f4f9a4b50fa1247b8",
+      "bundle_sha256": "8d20ce2874036befe78657b059ffafeb24e43d2e5bc1000512092a753e1e75df"
+    },
+    "p4hy_report": {
+      "path": "outputs/u6_p4hy_opponent_diffusion_fresh_source_preflight_v1/run_b/automatic_report.json",
+      "sha256": "f8fb8c5539f3c80332a29c65924ba12f8f524fec2f8eb1020d925d41499e16aa",
+      "required_automatic_pass": true
+    },
+    "ao6_artifact": {
+      "path": "outputs/u6_p8b_artifact_only_cpu_consumer_v1/run_a/report.json",
+      "sha256": "454f31cfec49ed2ef9e2c2de6d9801a113ae0ba8004cb77cf085b84537f3b732",
+      "required_bundle_sha256": "3a14cb3c9257cf1a7dade92a03b15f1af2f74ba74c06233f0e9732fe536237af"
+    }
+  },
+  "source": {
+    "manifest": "outputs/u6_p4hy_opponent_diffusion_fresh_source_preflight_v1/run_b/manifest.json",
+    "manifest_sha256": "52da6f22c8d093bff309f162b77c5e9f040272c8d7e29e164a38e09d5d1ceb62",
+    "expected_manifest_rows": 11,
+    "included_ids": [
+      "canon_eos_r10",
+      "sony_zv_e10m2",
+      "panasonic_dc_s9",
+      "samsung_galaxy_s22_ultra",
+      "om_system_om_5",
+      "pentax_k3_mark_iii",
+      "olympus_e_p1",
+      "xiaomi_hm_note_1lte",
+      "leica_v_lux_5",
+      "dji_osmo_action",
+      "hasselblad_l1d_20c"
+    ],
+    "expected_evaluation_rows": 11,
+    "expected_camera_makes": 11,
+    "required_allowed_use": "internal_independent_digital_ood_confirmation",
+    "required_rights_scope": "CC0_public_domain_internal_evaluation",
+    "required_color_state": "relative_display_srgb_approximation",
+    "transforms": {}
+  },
+  "sigmoid": {
+    "fit_samples": 4097,
+    "initial_slope": 8,
+    "maximum_iterations": 20000,
+    "maximum_curve_fit_rmse": 0.04
+  },
+  "compiler": {
+    "compiler_id": "u6-p4id-synthetic-log-scanner-v1",
+    "matrix_density_to_log10_rgb": [
+      [
+        -0.01914318034784818,
+        -0.12430920920289017,
+        -0.5426234628121562
+      ],
+      [
+        -0.34150689554450087,
+        -0.5473259673318212,
+        -0.323929450559223
+      ],
+      [
+        -0.348671066082305,
+        -0.142761433560209,
+        -0.03650384363698002
+      ]
+    ],
+    "bias_log10_rgb": [
+      0.012682750789860522,
+      0.01518857683993641,
+      0.03158356724978537
+    ]
+  },
+  "candidate": {
+    "mechanism_id": "sigmoid-characteristic-p4ia-structure-compact-scanner-v1",
+    "layer_field_seeds": [
+      320260812,
+      320261821,
+      320262830
+    ],
+    "field_seed_stride_per_source": 1009,
+    "rank_bins": 65536,
+    "canonical_row_block_height": 128,
+    "dye_diffusion_sigma_pixels_cmy": [
+      0.72,
+      1.08,
+      1.52
+    ],
+    "dye_diffusion_truncate": 4,
+    "scanner_mtf_sigma_pixels_rgb": [
+      0.7,
+      0.7,
+      0.7
+    ],
+    "gaussian_truncate": 3,
+    "cohort_fitting_allowed": false,
+    "hard_clipping_allowed": false,
+    "posthoc_limiting_allowed": false,
+    "ao6_source_context": "original-encoded-source-only",
+    "physical_only_promotion_eligible": false
+  },
+  "comparison": {
+    "arms": [
+      "fixed_ao6_colour_only_t15_c35",
+      "matched_scanner_only_ao6_t15_c35",
+      "p4ik_sigmoid_scanner_physical_only_diagnostic",
+      "p4ik_sigmoid_scanner_then_fixed_ao6_t15_c35"
+    ]
+  },
+  "automatic_gates": {
+    "require_all_inputs_and_outputs_finite": true,
+    "require_no_hard_clipping_or_posthoc_limiting": true,
+    "minimum_per_row_physical_residual_rms": 0.0001,
+    "minimum_population_p95_combined_vs_matched_scanner_ao6_abs": 0.0001,
+    "maximum_population_p99_combined_vs_matched_scanner_ao6_abs": 0.05,
+    "maximum_flat_region_p99_combined_vs_matched_scanner_ao6_abs": 0.04,
+    "maximum_high_frequency_chroma_p999": 0.004,
+    "isolated_excursion_threshold": 0.05,
+    "isolated_support_radius_pixels": 2,
+    "minimum_isolated_support_count": 3,
+    "maximum_isolated_excursion_count": 0,
+    "maximum_new_boundary_fraction_vs_matched_scanner_ao6": 0.0005,
+    "maximum_output_code_boundary_fraction": 0.005
+  },
+  "decision_if_pass": "retain_p4ik_development_signal_and_open_wholly_fresh_confirmation",
+  "decision_if_fail": "close_exact_p4ik_sigmoid_scanner_photo_chain",
+  "claim_ceiling": "Development-only sigmoid characteristic plus fixed P4IA structure and synthetic scanner on eleven previously consumed CC0 photographs; not confirmation, calibrated exposure, preference, film stock, runtime or product promotion."
+}

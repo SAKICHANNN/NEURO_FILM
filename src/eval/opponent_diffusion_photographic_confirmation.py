@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -268,6 +269,8 @@ def evaluate_with_runtime(
     root: Path,
     output_dir: Path,
     runtime_class: type[OpponentDiffusionRuntime] = OpponentDiffusionRuntime,
+    runtime_builder: Callable[[OpponentDiffusionRuntime], OpponentDiffusionRuntime]
+    | None = None,
     result_schema: str = RESULT_SCHEMA,
 ) -> dict[str, Any]:
     parents = contract["parents"]
@@ -289,11 +292,15 @@ def evaluate_with_runtime(
     if len(arms) != 4 or len(set(arms)) != 4:
         raise ValueError("P4HZ requires four unique ordered arms")
     base_runtime = _runtime(profile, candidate)
-    runtime = runtime_class(
-        components=base_runtime.components,
-        correlation=base_runtime.correlation,
-        candidate=base_runtime.candidate,
-        native_toolchains={"backend": runtime_class.__name__},
+    runtime = (
+        runtime_builder(base_runtime)
+        if runtime_builder is not None
+        else runtime_class(
+            components=base_runtime.components,
+            correlation=base_runtime.correlation,
+            candidate=base_runtime.candidate,
+            native_toolchains={"backend": runtime_class.__name__},
+        )
     )
     scanner = _scanner_profile(candidate)
     ao6 = _load_ao6(root, parents["ao6_artifact"])
