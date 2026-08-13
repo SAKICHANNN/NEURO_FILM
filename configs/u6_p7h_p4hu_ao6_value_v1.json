@@ -1,0 +1,95 @@
+{
+  "schema": "neuro-film.u6-p7h-p4hu-ao6-value-contract.v1",
+  "experiment_id": "u6-p7h-p4hu-ao6-value-v1",
+  "parents": {
+    "p4hu_contract": {
+      "path": "configs/u6_p4hu_native_spatial_density_photographic_integration_v1.json",
+      "sha256": "5b6259e386404c022542372bcd15fc333fde8e6398a87f01fd7cc311ed8880ce"
+    },
+    "p4hu_evidence": {
+      "path": "docs/evidence/U6_P4HU_NATIVE_SPATIAL_DENSITY_PHOTOGRAPHIC_INTEGRATION_RESULT.json",
+      "sha256": "bea51a9bc46199a76271dd9567a4c7016254054e877eb814e9124c1f576581ed",
+      "required_decision": "retain_native_spatial_density_photographic_integration_for_portable_runtime"
+    },
+    "p4hv_evidence": {
+      "path": "docs/evidence/U6_P4HV_PORTABLE_NATIVE_SPATIAL_DENSITY_RUNTIME_RESULT.json",
+      "sha256": "1ad4d8237a76cf2cde79829d6d3379889fa401c297ed48a6e9858528acd50c73",
+      "required_decision": "retain_p4hu_windows_host_only_without_target_runtime_claim"
+    },
+    "ao6_artifact": {
+      "path": "outputs/u6_p8b_artifact_only_cpu_consumer_v1/run_a/report.json",
+      "sha256": "454f31cfec49ed2ef9e2c2de6d9801a113ae0ba8004cb77cf085b84537f3b732",
+      "required_bundle_sha256": "3a14cb3c9257cf1a7dade92a03b15f1af2f74ba74c06233f0e9732fe536237af"
+    }
+  },
+  "source": {
+    "manifest": "outputs/u6_p7h0_native_structure_value_source_preflight_v1/run_d/manifest.json",
+    "manifest_sha256": "3c698d8df93a7b48b87dff81ad6ddbaeb11d7c8478138ddef9545d57e336fcd7",
+    "expected_manifest_rows": 9,
+    "included_ids": [
+      "canon_eos_r50_v",
+      "panasonic_dc_s5m2",
+      "om_system_tg_7",
+      "samsung_galaxy_s21_ultra",
+      "pentax_kf",
+      "phase_one_iq180",
+      "dji_fc350",
+      "xiaomi_redmi_note_8t",
+      "lg_lg_h910"
+    ],
+    "expected_evaluation_rows": 9,
+    "expected_camera_makes": 9,
+    "required_allowed_use": "internal_independent_digital_ood_confirmation",
+    "required_rights_scope": "CC0_public_domain_internal_evaluation",
+    "required_color_state": "relative_display_srgb_approximation",
+    "transforms": {}
+  },
+  "candidate": {
+    "layer_field_seeds": [320260812, 320261821, 320262830],
+    "field_seed_stride_per_source": 1009,
+    "scanner_mtf_sigma_pixels_rgb": [0.7, 0.7, 0.7],
+    "gaussian_truncate": 3.0,
+    "cohort_fitting_allowed": false,
+    "hard_clipping_allowed": false,
+    "posthoc_limiting_allowed": false,
+    "ao6_source_context": "original-encoded-source-only",
+    "physical_only_promotion_eligible": false
+  },
+  "comparison": {
+    "arms": [
+      "fixed_ao6_colour_only_t15_c35",
+      "matched_scanner_only_ao6_t15_c35",
+      "p4hu_scanner_physical_only_diagnostic",
+      "p4hu_scanner_then_fixed_ao6_t15_c35"
+    ]
+  },
+  "automatic_gates": {
+    "require_all_inputs_and_outputs_finite": true,
+    "require_no_hard_clipping_or_posthoc_limiting": true,
+    "minimum_per_row_physical_residual_rms": 0.0001,
+    "minimum_population_p95_combined_vs_matched_scanner_ao6_abs": 0.0001,
+    "maximum_population_p99_combined_vs_matched_scanner_ao6_abs": 0.05,
+    "maximum_flat_region_p99_combined_vs_matched_scanner_ao6_abs": 0.04,
+    "maximum_high_frequency_chroma_p999": 0.004,
+    "isolated_excursion_threshold": 0.05,
+    "isolated_support_radius_pixels": 2,
+    "minimum_isolated_support_count": 3,
+    "maximum_isolated_excursion_count": 0,
+    "maximum_new_boundary_fraction_vs_matched_scanner_ao6": 0.0005,
+    "maximum_output_code_boundary_fraction": 0.005
+  },
+  "measurement": {
+    "formal_processes": 2,
+    "sample_interval_seconds": 0.01,
+    "worker_timeout_seconds": 900,
+    "rss_and_wall_excluded_from_scientific_identity": true
+  },
+  "resource_gates": {
+    "maximum_peak_process_tree_rss_bytes": 1610612736,
+    "maximum_worker_wall_seconds": 600
+  },
+  "decision_if_pass": "open_domain_separated_ao6_vs_combined_blind_review_only",
+  "decision_if_fail": "retain_current_ao6_without_p4hu_value_promotion",
+  "decision_if_infrastructure_invalid": "invalidate_p7h_execution_without_scientific_decision",
+  "claim_ceiling": "Windows-MSV C host fixed P4HU arithmetic on nine fresh relative-display CC0 digital sources; automatic safety/value eligibility only, not film-stock calibration, product promotion, portable density runtime, or preference evidence"
+}
