@@ -1,0 +1,37 @@
+{
+  "schema": "neuro-film.u5-r2glut0-gaussian-lut-representation-d0-evidence.v1",
+  "experiment_id": "U5.R2GLUT0",
+  "date": "2026-08-13",
+  "paper": {
+    "title": "GLUT: 3D Gaussian Lookup Table for Continuous Color Transformation",
+    "url": "https://arxiv.org/abs/2605.19889",
+    "observed_date": "2026-08-13",
+    "usage": "clean-room continuous explicit representation abstraction; no paper code, weights or data"
+  },
+  "execution_amendment": {
+    "timing": "before evidence publication",
+    "reason": "the first implementation accidentally divided the intended monotone logistic projection twice, making the procedural oracle non-monotone",
+    "action": "replace it with endpoint-normalized monotone logistic projection and discard both pre-amendment reports",
+    "scientific_contract_changed": false
+  },
+  "formal_report_paths": [
+    "D:/nf-019f4b76-p4id-fallback/glut0_c.json",
+    "D:/nf-019f4b76-p4id-fallback/glut0_d.json"
+  ],
+  "formal_report_sha256": "2cb7bf6045ddb0d1e88767c35cd5a4a803b03c58d82454a64585afe29e2712a7",
+  "stable_evidence_id": "c2888d703411fd3259c6366f777fdcf3a8e63c4dbdd926cf41c854450f5b327e",
+  "two_formal_reports_byte_exact": true,
+  "metrics": {
+    "target_count": 12,
+    "targets_beating_lattice": 12,
+    "median_rmse_improvement_percent": 90.57841966092244,
+    "worst_rmse_improvement_percent": 88.6918291517238,
+    "maximum_gaussian_rmse": 0.0017245300379169664,
+    "minimum_jacobian_determinant": 0.029234930998297003,
+    "maximum_new_boundary_fraction": 0.0
+  },
+  "failed_gates": [],
+  "decision": "retain_continuous_gaussian_lut_representation_for_photographic_baseline",
+  "scientific_conclusion": "At the frozen equal compact basis budget, the continuous Gaussian representation materially outperforms the regular lattice on all twelve procedural bounded operators while retaining positive sampled Jacobians and zero new cube-boundary pixels. This opens only a separately frozen photographic baseline against current explicit operators.",
+  "claim_ceiling": "Procedural D0 representation evidence for a continuous explicit Gaussian colour basis; not photographic preference, film, stock, calibration, product integration or a reproduction of the paper model."
+}

@@ -1,0 +1,30 @@
+{
+  "schema": "neuro-film.u5-r2glut0-gaussian-lut-representation-d0-contract.v1",
+  "experiment_id": "U5.R2GLUT0",
+  "paper": {
+    "title": "GLUT: 3D Gaussian Lookup Table for Continuous Color Transformation",
+    "url": "https://arxiv.org/abs/2605.19889",
+    "observed_date": "2026-08-13",
+    "use": "clean-room continuous explicit representation abstraction only"
+  },
+  "question": "At equal compact parameter budget, does a continuous explicit Gaussian colour basis improve held-out operator approximation over a regular lattice while preserving cube and Jacobian safety?",
+  "population": {
+    "grid_side": 17,
+    "train_stride": 2,
+    "gaussian_side": 4,
+    "gaussian_sigma": 0.23,
+    "ridge": 0.0001,
+    "target_count": 12
+  },
+  "gates": {
+    "minimum_targets_beating_lattice": 9,
+    "minimum_median_rmse_improvement_percent": 10.0,
+    "minimum_worst_rmse_improvement_percent": -5.0,
+    "maximum_gaussian_rmse": 0.02,
+    "maximum_new_boundary_fraction": 0.0005,
+    "minimum_jacobian_determinant": 0.0
+  },
+  "decision_if_pass": "retain_continuous_gaussian_lut_representation_for_photographic_baseline",
+  "decision_if_fail": "close_exact_gaussian_basis_without_same_cohort_capacity_or_sigma_rescue",
+  "claim_ceiling": "Procedural D0 representation evidence for a continuous explicit Gaussian colour basis; not photographic preference, film, stock, calibration, product integration or a reproduction of the paper model."
+}
