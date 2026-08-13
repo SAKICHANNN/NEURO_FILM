@@ -1,0 +1,22 @@
+{
+  "automatic_pass": true,
+  "checks": {
+    "accuracy": true,
+    "gaussian_regret": true,
+    "lattice_regret": true,
+    "tail": true
+  },
+  "claim_ceiling": "Procedural and manufacturer-source-derived D0 representation-selection evidence; not photographic, film response, stock calibration, product routing or preference evidence.",
+  "config_sha256": "52737a38bbd9929c756b7dfdb7f454ba14c9d8bc1ca66b34c38ff06c8d1db1ca",
+  "decision": "retain_curvature_gated_explicit_representation_selector_for_photographic_baseline",
+  "experiment_id": "U5.R2GLUT2",
+  "metrics": {
+    "oracle_regret_reduction_vs_always_gaussian": 1.0,
+    "oracle_regret_reduction_vs_always_lattice": 1.0,
+    "row_count": 18,
+    "selector_accuracy": 1.0,
+    "worst_selected_vs_best_rmse_ratio": 1.0
+  },
+  "schema": "neuro-film.u5-r2glut2-curvature-representation-selector-d0-result.v1",
+  "stable_evidence_id": "ec8810f1f01f7fec6f7c913a329223fd9b4381d5c10024cfb1f3f77f76eb2776"
+}

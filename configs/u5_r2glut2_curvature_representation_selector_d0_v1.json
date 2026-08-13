@@ -1,0 +1,24 @@
+{
+  "schema": "neuro-film.u5-r2glut2-curvature-representation-selector-d0-contract.v1",
+  "experiment_id": "U5.R2GLUT2",
+  "question": "Can candidate-independent training-grid curvature choose Gaussian versus lattice representation across held-out explicit operators spanning two operator families?",
+  "population": {
+    "procedural_operator_count": 12,
+    "cross_validation_folds": 3,
+    "grid_side": 17,
+    "fit_stride": 2,
+    "gaussian_side": 4,
+    "gaussian_sigma": 0.23,
+    "lattice_side": 4,
+    "ridge": 0.0001
+  },
+  "gates": {
+    "minimum_selector_accuracy": 0.8,
+    "minimum_oracle_regret_reduction_vs_always_lattice": 0.5,
+    "minimum_oracle_regret_reduction_vs_always_gaussian": 0.5,
+    "maximum_worst_selected_vs_best_rmse_ratio": 1.5
+  },
+  "decision_if_pass": "retain_curvature_gated_explicit_representation_selector_for_photographic_baseline",
+  "decision_if_fail": "close_curvature_selector_keep_lattice_default_and_gaussian_baseline_only",
+  "claim_ceiling": "Procedural and manufacturer-source-derived D0 representation-selection evidence; not photographic, film response, stock calibration, product routing or preference evidence."
+}
