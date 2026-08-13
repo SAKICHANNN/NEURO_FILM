@@ -1,0 +1,11 @@
+{
+  "schema": "neuro-film.u5-r2bx1-c2lut-spectral-metamer-identifiability-d0-contract.v1",
+  "experiment_id": "U5.R2BX1",
+  "question": "Do same-chromaticity but spectrally distinct illuminants require different camera-RGB to observer-XYZ operators under physical spectral integration?",
+  "parent": {"path": "configs/u5_r2bx0_c2lut_chromaticity_identifiability_decision_v1.json", "sha256": "3ea0bf11d69379ef8377d814878daad2cb917df5b1b57c95be68d3f095456ca9", "required_decision": "retain_capacity_close_underpowered_metamer_fixture"},
+  "population": {"wavelength_start_nm": 400, "wavelength_end_nm": 700, "wavelength_step_nm": 10, "illuminant_pairs": 8, "reflectances": 320, "development_reflectances": 240, "seed": 20260816},
+  "gates": {"maximum_same_chromaticity_xyz_error": 1e-10, "minimum_camera_white_rgb_separation": 0.01, "minimum_oracle_win_rate": 0.9, "minimum_median_oracle_improvement_over_shared": 0.25, "minimum_worst_oracle_improvement_over_shared": 0.05, "maximum_oracle_xyz_rmse": 0.02},
+  "decision_if_pass": "establish_same_chromaticity_spd_as_required_c2lut_identifying_observation",
+  "decision_if_fail": "close_exact_procedural_spectral_metamer_fixture_without_rescue",
+  "claim_ceiling": "Procedural physical spectral-integration D0 using analytic observer, camera and reflectance functions; not measured camera calibration, C2LUT reproduction, photographic quality, film response or product evidence."
+}

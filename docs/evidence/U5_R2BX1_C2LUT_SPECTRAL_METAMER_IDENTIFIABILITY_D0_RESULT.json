@@ -1,0 +1,173 @@
+{
+  "automatic_pass": false,
+  "checks": {
+    "accuracy": true,
+    "camera_observation": false,
+    "chromaticity": true,
+    "median": false,
+    "tail": false,
+    "wins": false
+  },
+  "claim_ceiling": "Procedural physical spectral-integration D0 using analytic observer, camera and reflectance functions; not measured camera calibration, C2LUT reproduction, photographic quality, film response or product evidence.",
+  "config_sha256": "f5340bcd80581ec5585ead70c1a9b84af13e945802b1bdfd6458bf1843ddb6f7",
+  "decision": "close_exact_procedural_spectral_metamer_fixture_without_rescue",
+  "experiment_id": "U5.R2BX1",
+  "metrics": {
+    "maximum_oracle_xyz_rmse": 0.007149969077731423,
+    "maximum_same_chromaticity_xyz_error": 3.552713678800501e-15,
+    "median_oracle_improvement_over_shared": 0.002985937538606598,
+    "minimum_camera_white_rgb_separation": 0.0005383467781212152,
+    "oracle_win_rate": 0.875,
+    "row_count": 16,
+    "worst_oracle_improvement_over_shared": -0.0033423622080239745
+  },
+  "parent_stable_evidence_id": "acd030149c4466e7ff7582413b816a7be40e42c2dfcf35ecfe42b767888f7571",
+  "rows": [
+    {
+      "camera_white_rgb_separation": 0.0011339471799033706,
+      "hidden_spd": 0,
+      "oracle_improvement": 0.004325622452095779,
+      "oracle_xyz_rmse": 0.007149969077731423,
+      "pair": 0,
+      "same_chromaticity_xyz_error": 1.7763568394002505e-15,
+      "shared_xyz_rmse": 0.007181031508855335
+    },
+    {
+      "camera_white_rgb_separation": 0.0011339471799033706,
+      "hidden_spd": 1,
+      "oracle_improvement": 0.0008200772770574627,
+      "oracle_xyz_rmse": 0.007125105712303906,
+      "pair": 0,
+      "same_chromaticity_xyz_error": 1.7763568394002505e-15,
+      "shared_xyz_rmse": 0.007130953645352209
+    },
+    {
+      "camera_white_rgb_separation": 0.0005383467781212152,
+      "hidden_spd": 0,
+      "oracle_improvement": 0.000248212779990431,
+      "oracle_xyz_rmse": 0.006921711584132965,
+      "pair": 1,
+      "same_chromaticity_xyz_error": 0.0,
+      "shared_xyz_rmse": 0.006923430067957202
+    },
+    {
+      "camera_white_rgb_separation": 0.0005383467781212152,
+      "hidden_spd": 1,
+      "oracle_improvement": 0.015402209068227757,
+      "oracle_xyz_rmse": 0.0068576842103748,
+      "pair": 1,
+      "same_chromaticity_xyz_error": 0.0,
+      "shared_xyz_rmse": 0.006964959980140768
+    },
+    {
+      "camera_white_rgb_separation": 0.0018131118247422503,
+      "hidden_spd": 0,
+      "oracle_improvement": 0.003040632487876338,
+      "oracle_xyz_rmse": 0.006743234106083394,
+      "pair": 2,
+      "same_chromaticity_xyz_error": 3.552713678800501e-15,
+      "shared_xyz_rmse": 0.00676380033712998
+    },
+    {
+      "camera_white_rgb_separation": 0.0018131118247422503,
+      "hidden_spd": 1,
+      "oracle_improvement": 0.002250597555850553,
+      "oracle_xyz_rmse": 0.0067617245948707145,
+      "pair": 2,
+      "same_chromaticity_xyz_error": 3.552713678800501e-15,
+      "shared_xyz_rmse": 0.006776976842388249
+    },
+    {
+      "camera_white_rgb_separation": 0.00319626844597395,
+      "hidden_spd": 0,
+      "oracle_improvement": 0.010215356217646576,
+      "oracle_xyz_rmse": 0.006605944923028138,
+      "pair": 3,
+      "same_chromaticity_xyz_error": 3.552713678800501e-15,
+      "shared_xyz_rmse": 0.006674123471732441
+    },
+    {
+      "camera_white_rgb_separation": 0.00319626844597395,
+      "hidden_spd": 1,
+      "oracle_improvement": 0.017046355673197122,
+      "oracle_xyz_rmse": 0.006668240673491902,
+      "pair": 3,
+      "same_chromaticity_xyz_error": 3.552713678800501e-15,
+      "shared_xyz_rmse": 0.006783881123975883
+    },
+    {
+      "camera_white_rgb_separation": 0.0012191367007445989,
+      "hidden_spd": 0,
+      "oracle_improvement": -0.00028306955829981995,
+      "oracle_xyz_rmse": 0.006478125046980953,
+      "pair": 4,
+      "same_chromaticity_xyz_error": 1.7763568394002505e-15,
+      "shared_xyz_rmse": 0.006476291805920031
+    },
+    {
+      "camera_white_rgb_separation": 0.0012191367007445989,
+      "hidden_spd": 1,
+      "oracle_improvement": 0.0019639233186844463,
+      "oracle_xyz_rmse": 0.006486597519832274,
+      "pair": 4,
+      "same_chromaticity_xyz_error": 1.7763568394002505e-15,
+      "shared_xyz_rmse": 0.006499361767964946
+    },
+    {
+      "camera_white_rgb_separation": 0.0017498710594476706,
+      "hidden_spd": 0,
+      "oracle_improvement": 0.010382315895020033,
+      "oracle_xyz_rmse": 0.006352038135758067,
+      "pair": 5,
+      "same_chromaticity_xyz_error": 8.881784197001252e-16,
+      "shared_xyz_rmse": 0.006418678887597803
+    },
+    {
+      "camera_white_rgb_separation": 0.0017498710594476706,
+      "hidden_spd": 1,
+      "oracle_improvement": 0.0005217098484743277,
+      "oracle_xyz_rmse": 0.006144077100908675,
+      "pair": 5,
+      "same_chromaticity_xyz_error": 8.881784197001252e-16,
+      "shared_xyz_rmse": 0.0061472841996169855
+    },
+    {
+      "camera_white_rgb_separation": 0.0026452077921625752,
+      "hidden_spd": 0,
+      "oracle_improvement": 0.00612240181477397,
+      "oracle_xyz_rmse": 0.006242758203592021,
+      "pair": 6,
+      "same_chromaticity_xyz_error": 1.7763568394002505e-15,
+      "shared_xyz_rmse": 0.006281214321553283
+    },
+    {
+      "camera_white_rgb_separation": 0.0026452077921625752,
+      "hidden_spd": 1,
+      "oracle_improvement": 0.0029312425893368577,
+      "oracle_xyz_rmse": 0.0063409913291353846,
+      "pair": 6,
+      "same_chromaticity_xyz_error": 1.7763568394002505e-15,
+      "shared_xyz_rmse": 0.006359632956108881
+    },
+    {
+      "camera_white_rgb_separation": 0.002115863989441028,
+      "hidden_spd": 0,
+      "oracle_improvement": -0.0033423622080239745,
+      "oracle_xyz_rmse": 0.006169901500811754,
+      "pair": 7,
+      "same_chromaticity_xyz_error": 4.440892098500626e-16,
+      "shared_xyz_rmse": 0.006149348151944713
+    },
+    {
+      "camera_white_rgb_separation": 0.002115863989441028,
+      "hidden_spd": 1,
+      "oracle_improvement": 0.012328155142686703,
+      "oracle_xyz_rmse": 0.006330201616033719,
+      "pair": 7,
+      "same_chromaticity_xyz_error": 4.440892098500626e-16,
+      "shared_xyz_rmse": 0.006409215418050344
+    }
+  ],
+  "schema": "neuro-film.u5-r2bx1-c2lut-spectral-metamer-identifiability-d0-result.v1",
+  "stable_evidence_id": "9307d68fe6dfae5ffc824b88893842b8b44a2a103fa5980a8dbf9d94f7b1d5ca"
+}
