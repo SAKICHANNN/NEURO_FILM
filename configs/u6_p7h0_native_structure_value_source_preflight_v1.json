@@ -56,8 +56,6 @@
       {"path":"outputs/u6_p8bn_fresh_strength_population_v1/manifest.json","sha256":"f773411c2ca8764d5ac27b9b400698f50a5588abeb0a83d02d1c0b234dceb85c","format":"rawpixls_manifest"},
       {"path":"outputs/u6_p8bp_fresh_native_standard_confirmation_v1/manifest.json","sha256":"edb1b45552f9bf5712c922ed816b6f9a70f5f0bee2b72a024144cde0087dd521","format":"rawpixls_manifest"},
       {"path":"outputs/color_baseline/velvia50_rawpixls20_s0p58_gamutsafe/manifest.json","sha256":"5d9ee83f68a0a852f74bf1e2de0cc3ca981283a19a3f75671ba47203c555c8bc","format":"legacy_rawpixls_render_manifest"},
-      {"path":"outputs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1/run_a/manifest.json","sha256":"040c86d3134f6d75189a63234c01a4634ae40fd5bdd86805e1b82639ba6c0659","format":"rawpixls_manifest"},
-      {"path":"outputs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1/run_b/manifest.json","sha256":"dcb66807f5dc7dda65536f53dd4fd6955b77bb101940407e1b520ce196fbd4f5","format":"rawpixls_manifest"},
       {"path":"outputs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1/run_c/manifest.json","sha256":"048992242c82a2cd9efd193c6766065c7148ad0607a5505b88185d0ab781b101","format":"rawpixls_manifest"},
       {"path":"outputs/u5_r2bk11s_orthogonal_residual_fresh_source_v1/run_b/manifest.json","sha256":"708eea624edd8b9370519b30e4962b6d4fff8f577b014b684b017810b0d83a82","format":"rawpixls_manifest"},
       {"path":"outputs/u5_r2bk13s_orthogonal_residual_replacement_v2_source_v1/run_a/manifest.json","sha256":"3848037efc361ba36fede7edc50df9732db7b8d37d18621b04c5e3aca01ab415","format":"rawpixls_manifest"},
