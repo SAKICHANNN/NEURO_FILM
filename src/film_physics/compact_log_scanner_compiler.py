@@ -110,7 +110,8 @@ def invert_compact_log_scanner(
     if not np.isfinite(condition) or condition > 1000.0:
         raise ValueError("compact scanner compiler is not safely invertible")
     log_response = np.log10(values.astype(np.float64)) - bias
-    density = np.linalg.solve(matrix.T, log_response.T).T
+    flat = log_response.reshape(-1, 3)
+    density = np.linalg.solve(matrix.T, flat.T).T.reshape(values.shape)
     output = np.ascontiguousarray(density, dtype=np.float32)
     tolerance = np.float32(4e-6)
     if not np.all(np.isfinite(output)) or np.any(output < -tolerance):

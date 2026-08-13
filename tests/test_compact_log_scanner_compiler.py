@@ -97,6 +97,15 @@ def test_compact_scanner_inverse_recovers_mixed_dye_amounts() -> None:
     assert np.max(np.abs(recovered - density)) <= 4e-6
 
 
+def test_compact_scanner_inverse_preserves_image_shape() -> None:
+    density = np.linspace(0.0, 1.0, 99, dtype=np.float32).reshape(3, 11, 3)
+    recovered = invert_compact_log_scanner(
+        apply_compact_log_scanner(density, COMPILER), COMPILER
+    )
+    assert recovered.shape == density.shape
+    assert np.max(np.abs(recovered - density)) <= 4e-6
+
+
 def test_compact_scanner_inverse_rejects_nonpositive_values() -> None:
     with pytest.raises(ValueError, match="positive"):
         invert_compact_log_scanner(np.zeros((1, 3), dtype=np.float32), COMPILER)
