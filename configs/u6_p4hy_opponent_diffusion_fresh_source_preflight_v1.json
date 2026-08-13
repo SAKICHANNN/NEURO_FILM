@@ -3,7 +3,7 @@
   "schema_version": 1,
   "experiment_id": "u6.p4hy-opponent-diffusion-fresh-source-preflight-v1",
   "node": "ULT > U6 > U6.P4 > U6.P4HY",
-  "status": "source_contract_frozen_before_pixel_access",
+  "status": "source_integrity_amended_before_algorithm_evaluation",
   "parent_decision": {
     "path": "docs/evidence/U6_P4HX_OPPONENT_DYE_CLOUD_DIFFUSION_D0_RESULT.json",
     "sha256": "acd4505131abbd397c19f92e84cba8ef042783ccb286271283d1cec1b83d3242",
@@ -84,6 +84,36 @@
     "zero_hash_mismatch": true,
     "zero_exact_or_dhash_leakage_to_prior_pools": true,
     "zero_confirmed_severe_source_artifact": true
+  },
+  "source_integrity_amendment": {
+    "timing": "after source-only preflight and before any P4HX photographic evaluation",
+    "reason": "required full-resolution autonomous ordinary-photo and severe-source audit",
+    "algorithm_outputs_observed": 0,
+    "visual_review_completed": true,
+    "uniform_orientation_policy": "libraw_metadata_orientation",
+    "included_ids_in_order": [
+      "canon_eos_r10",
+      "sony_zv_e10m2",
+      "panasonic_dc_s9",
+      "samsung_galaxy_s22_ultra",
+      "om_system_om_5",
+      "pentax_k3_mark_iii",
+      "olympus_e_p1",
+      "xiaomi_hm_note_1lte",
+      "leica_v_lux_5",
+      "dji_osmo_action",
+      "hasselblad_l1d_20c"
+    ],
+    "excluded": [
+      {
+        "id": "gopro_hero10_black",
+        "reason": "LibRaw technical decode failure; no replacement"
+      }
+    ],
+    "stress_notes": {
+      "leica_v_lux_5": "valid near-empty high-contrast moon scene retained as source stress",
+      "olympus_e_p1": "bookshelf text scene retained for content-safety stress"
+    }
   },
   "training_allowed": false,
   "operator_fitting_allowed": false,

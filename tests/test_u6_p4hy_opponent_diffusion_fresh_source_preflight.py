@@ -24,6 +24,8 @@ def test_p4hy_source_contract_is_valid_and_fresh_against_p7h() -> None:
         {row["repository_id"] for row in contract["candidates"]}
         & {int(row["source_url"].split("getfile.php/")[1].split("/")[0]) for row in p7h}
     )
+    assert contract["source_integrity_amendment"]["algorithm_outputs_observed"] == 0
+    assert len(contract["source_integrity_amendment"]["included_ids_in_order"]) == 11
     assert not (
         {row["sha256"] for row in contract["candidates"]}
         & {row["raw_sha256"] for row in p7h}

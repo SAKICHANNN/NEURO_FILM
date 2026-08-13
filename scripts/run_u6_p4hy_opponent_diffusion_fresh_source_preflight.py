@@ -14,6 +14,9 @@ from src.eval.rawpixls_confirmation_preflight import run_preflight
 
 
 def main() -> None:
+    output_name = sys.argv[1] if len(sys.argv) > 1 else "run_a"
+    if not output_name.replace("_", "").isalnum():
+        raise SystemExit("invalid output run name")
     config_path = (
         ROOT / "configs/u6_p4hy_opponent_diffusion_fresh_source_preflight_v1.json"
     )
@@ -22,7 +25,8 @@ def main() -> None:
         config=json.loads(config_path.read_text(encoding="utf-8")),
         config_path=config_path,
         output_dir=ROOT
-        / "outputs/u6_p4hy_opponent_diffusion_fresh_source_preflight_v1/run_a",
+        / "outputs/u6_p4hy_opponent_diffusion_fresh_source_preflight_v1"
+        / output_name,
         software_commit=subprocess.check_output(
             ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
         ).strip(),
