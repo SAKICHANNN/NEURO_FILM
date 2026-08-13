@@ -1,0 +1,119 @@
+{
+  "automatic_pass": true,
+  "checks": {
+    "accuracy": true,
+    "regret": true,
+    "tail": true
+  },
+  "claim_ceiling": "Third-family synthetic external D0 representation-selection evidence; not photographic, film response, stock calibration, product routing or preference evidence.",
+  "config_sha256": "f327a1b96df98a0d3c0b1c47ff11021bfe73cf88da1835dcbb129e1f078d24c1",
+  "decision": "retain_curvature_selector_as_external_d0_compiler_baseline",
+  "experiment_id": "U5.R2GLUT3",
+  "metrics": {
+    "regret_reduction_vs_worse_fixed_representation": 1.0,
+    "row_count": 8,
+    "selector_accuracy": 1.0,
+    "worst_selected_vs_best_rmse_ratio": 1.0
+  },
+  "parent_stable_evidence_id": "aec4f9d0a329d088e4bdff993a6551212d1dbbe5ec2ee445d8c3993f43efa1ec",
+  "rows": [
+    {
+      "curvature": 0.001677127151144998,
+      "descriptor": [
+        0.285,
+        0.285
+      ],
+      "gaussian_rmse": 0.001115662247433324,
+      "hidden": -1.0,
+      "lattice_rmse": 0.0008133549331798002,
+      "selected": "lattice",
+      "winner": "lattice"
+    },
+    {
+      "curvature": 0.00033379761187142743,
+      "descriptor": [
+        0.285,
+        0.285
+      ],
+      "gaussian_rmse": 0.00022294413529881725,
+      "hidden": 1.0,
+      "lattice_rmse": 0.0001616958456746882,
+      "selected": "lattice",
+      "winner": "lattice"
+    },
+    {
+      "curvature": 0.0011963805601268361,
+      "descriptor": [
+        0.285,
+        0.375
+      ],
+      "gaussian_rmse": 0.000795983417327072,
+      "hidden": -1.0,
+      "lattice_rmse": 0.0005801817630958408,
+      "selected": "lattice",
+      "winner": "lattice"
+    },
+    {
+      "curvature": 0.0012218223611267728,
+      "descriptor": [
+        0.285,
+        0.375
+      ],
+      "gaussian_rmse": 0.0008129009924679222,
+      "hidden": 1.0,
+      "lattice_rmse": 0.0005925216136564382,
+      "selected": "lattice",
+      "winner": "lattice"
+    },
+    {
+      "curvature": 0.0012218223611267735,
+      "descriptor": [
+        0.375,
+        0.285
+      ],
+      "gaussian_rmse": 0.0008129018658557251,
+      "hidden": -1.0,
+      "lattice_rmse": 0.000592521399758921,
+      "selected": "lattice",
+      "winner": "lattice"
+    },
+    {
+      "curvature": 0.0011963805601268357,
+      "descriptor": [
+        0.375,
+        0.285
+      ],
+      "gaussian_rmse": 0.0007959870948573443,
+      "hidden": 1.0,
+      "lattice_rmse": 0.000580180862432176,
+      "selected": "lattice",
+      "winner": "lattice"
+    },
+    {
+      "curvature": 0.000333797611871428,
+      "descriptor": [
+        0.375,
+        0.375
+      ],
+      "gaussian_rmse": 0.0002229398657408316,
+      "hidden": -1.0,
+      "lattice_rmse": 0.00016169689652150798,
+      "selected": "lattice",
+      "winner": "lattice"
+    },
+    {
+      "curvature": 0.0016771271511449974,
+      "descriptor": [
+        0.375,
+        0.375
+      ],
+      "gaussian_rmse": 0.001115663381663643,
+      "hidden": 1.0,
+      "lattice_rmse": 0.0008133546554521233,
+      "selected": "lattice",
+      "winner": "lattice"
+    }
+  ],
+  "schema": "neuro-film.u5-r2glut3-curvature-selector-external-confirmation-result.v1",
+  "stable_evidence_id": "4690854e8c48a7c75fbb44512e9ae8fefda4e207b5fe203e896ce359407b6747"
+}

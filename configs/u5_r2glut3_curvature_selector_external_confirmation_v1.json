@@ -1,0 +1,24 @@
+{
+  "schema": "neuro-film.u5-r2glut3-curvature-selector-external-confirmation-contract.v1",
+  "experiment_id": "U5.R2GLUT3",
+  "question": "Does the frozen GLUT2 curvature selector generalize to an operator family excluded from threshold learning?",
+  "parent": {
+    "path": "docs/evidence/U5_R2GLUT2_CURVATURE_REPRESENTATION_SELECTOR_D0_RESULT.json",
+    "sha256": "8077ab3035cba28b9f3aaf90a38b71b602569302ae3d81a792a210c3ed41d7c1",
+    "required_decision": "retain_curvature_gated_explicit_representation_selector_for_photographic_baseline"
+  },
+  "source_family": {
+    "path": "configs/u5_r2bx0_c2lut_chromaticity_identifiability_v1.json",
+    "sha256": "a8115cc13ff3e3a5d4c0610fece2bed478e8bf4dab3a451d1aabfda91603251f",
+    "descriptors": [[0.285, 0.285], [0.285, 0.375], [0.375, 0.285], [0.375, 0.375]],
+    "hidden_coordinates": [-1.0, 1.0]
+  },
+  "gates": {
+    "minimum_selector_accuracy": 0.75,
+    "minimum_regret_reduction_vs_worse_fixed_representation": 0.5,
+    "maximum_worst_selected_vs_best_rmse_ratio": 1.5
+  },
+  "decision_if_pass": "retain_curvature_selector_as_external_d0_compiler_baseline",
+  "decision_if_fail": "close_curvature_selector_as_two-family_separation_only",
+  "claim_ceiling": "Third-family synthetic external D0 representation-selection evidence; not photographic, film response, stock calibration, product routing or preference evidence."
+}
