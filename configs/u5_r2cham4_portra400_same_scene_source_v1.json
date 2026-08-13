@@ -1,0 +1,78 @@
+{
+  "schema": "neuro-film.u5-r2cham4-portra400-same-scene-source-contract.v1",
+  "experiment_id": "U5.R2CHAM4",
+  "question": "Does the public May-2026 SpektraFilm forum package provide exact, decodable same-scene digital-RAW, Portra-400 film-scan and Portra-400-to-RA4 observations sufficient to open a separately frozen registration/operator experiment?",
+  "source": {
+    "forum_url": "https://discuss.pixls.us/t/spectral-film-simulations-from-scratch/48209/605",
+    "folder_url": "https://drive.google.com/drive/folders/1ryifCcPHbDQoFiofn46u1Wiymi4RoxdE?usp=sharing",
+    "folder_id": "1ryifCcPHbDQoFiofn46u1Wiymi4RoxdE",
+    "publisher": "Anthony Gansauer",
+    "published_date": "2026-05-04",
+    "public_statement": "heres a google drive so you guys can match and play with it yourself",
+    "explicit_reuse_licence_observed": false,
+    "allowed_use": "internal_nonredistributed_research_only",
+    "forbidden_use": [
+      "redistribute source pixels",
+      "publish source-derived fitted assets or weights",
+      "commercial training or product integration",
+      "claim calibrated Portra 400, Fuji DPii, Noritsu or Epson response",
+      "infer unreported exposure, process, scanner or colour-state facts"
+    ]
+  },
+  "acquisition": {
+    "root": "data/quarantine/spektrafilm_portra400_same_scene_v1",
+    "manifest": "outputs/external_controls/spektrafilm_portra400_same_scene_v1/download_manifest.json",
+    "maximum_total_bytes": 190000000,
+    "expected_total_bytes": 183875041,
+    "expected_files": [
+      {
+        "file_id": "1tNzosLlR52Rx-xJ3q08w67WEBXItsIWP",
+        "name": "Anthony Gansauer Portra 400 + Fuji DPii GUI Parameters file.json",
+        "bytes": 4486,
+        "role": "author_parameter_context"
+      },
+      {
+        "file_id": "1qeat820Nc7jR63hQHAKOZTIInaC2qWDu",
+        "name": "Digital Lumix S5ii Color Chart.RW2",
+        "bytes": 27968512,
+        "role": "digital_chart_raw"
+      },
+      {
+        "file_id": "1Ix_HEy4Z7gzyJkEOnuTUSNc2az5cIgS2",
+        "name": "Film Scan.jpg",
+        "bytes": 33395392,
+        "role": "same_scene_portra400_noritsu_scan"
+      },
+      {
+        "file_id": "1edx4QVi38qYICQTOX0WjQtOhWVLCcdp1",
+        "name": "Portra 400 + Fuji DPii Color Chart.tif",
+        "bytes": 83729634,
+        "role": "portra400_fuji_dpii_chart_scan"
+      },
+      {
+        "file_id": "10UgKNvaypeJAizqtx127ZrDLHUzO6Aye",
+        "name": "RA4 Print.jpg",
+        "bytes": 12194489,
+        "role": "same_scene_portra400_fuji_dpii_ra4_epson_scan"
+      },
+      {
+        "file_id": "1OxO_MRMYnk8146nCJB3rfzf-L8pBUkga",
+        "name": "RAW.RW2",
+        "bytes": 26582528,
+        "role": "same_scene_lumix_s5ii_raw"
+      }
+    ]
+  },
+  "gates": {
+    "exact_inventory_before_download": true,
+    "exact_size_and_sha256_after_download": true,
+    "decode_and_metadata_before_registration": true,
+    "registration_before_operator_fit": true,
+    "operator_fit_allowed": false,
+    "training_allowed": false,
+    "product_integration_allowed": false
+  },
+  "decision_if_pass": "open_separately_frozen_internal_registration_and_operator_discriminant",
+  "decision_if_fail": "close_source_before_registration_or_fit",
+  "claim_ceiling": "Publicly shared, unlicensed same-scene source candidate for isolated internal research; no calibrated stock, process, scanner, print-paper, product, redistribution or commercial-use claim."
+}
