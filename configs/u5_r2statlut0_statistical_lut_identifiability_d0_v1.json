@@ -1,0 +1,34 @@
+{
+  "schema": "neuro-film.u5-r2statlut0-statistical-lut-identifiability-d0-contract.v1",
+  "experiment_id": "U5.R2STATLUT0",
+  "paper": {
+    "title": "Multimodal 3D LUT Generation via StatLUT with Statistical Features for Photorealistic Style Transfer",
+    "url": "https://arxiv.org/abs/2607.08227",
+    "observed_date": "2026-08-13",
+    "use": "clean-room mechanism abstraction only; no paper code, weights or data"
+  },
+  "question": "Can spatially agnostic colour statistics identify a fixed bounded explicit operator across unseen scene distributions without semantic leakage?",
+  "population": {
+    "scene_count": 24,
+    "development_scene_count": 12,
+    "effect_count": 12,
+    "height": 96,
+    "width": 128,
+    "histogram_bins": 32,
+    "patch_grid": 4,
+    "seed": 20260813
+  },
+  "gates": {
+    "minimum_top1_accuracy": 0.75,
+    "minimum_top3_accuracy": 0.95,
+    "minimum_cross_source_improvement_rate": 0.80,
+    "minimum_cross_source_median_improvement_percent": 20.0,
+    "minimum_cross_source_worst_improvement_percent": -10.0,
+    "maximum_patch_shuffle_descriptor_error": 1e-12,
+    "maximum_label_permutation_top1_accuracy": 0.20,
+    "maximum_new_boundary_fraction": 0.0
+  },
+  "decision_if_pass": "retain_statistical_reference_descriptor_for_fresh_photographic_baseline",
+  "decision_if_fail": "close_exact_statistical_descriptor_bank_without_capacity_or_threshold_rescue",
+  "claim_ceiling": "Procedural D0 evidence for or against spatially agnostic statistical identification of a bounded explicit colour operator; not real-film, stock, reference-match, calibration, preference, package, capability or product evidence."
+}

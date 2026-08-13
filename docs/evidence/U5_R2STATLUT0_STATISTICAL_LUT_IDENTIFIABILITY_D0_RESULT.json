@@ -1,0 +1,35 @@
+{
+  "schema": "neuro-film.u5-r2statlut0-statistical-lut-identifiability-d0-evidence.v1",
+  "experiment_id": "U5.R2STATLUT0",
+  "date": "2026-08-13",
+  "paper": {
+    "title": "Multimodal 3D LUT Generation via StatLUT with Statistical Features for Photorealistic Style Transfer",
+    "url": "https://arxiv.org/abs/2607.08227",
+    "observed_date": "2026-08-13",
+    "usage": "clean-room spatially agnostic statistics abstraction; no paper code, weights or data"
+  },
+  "formal_report_paths": [
+    "D:/nf-019f4b76-p4id-fallback/statlut0_a.json",
+    "D:/nf-019f4b76-p4id-fallback/statlut0_b.json"
+  ],
+  "formal_report_sha256": "a48012e63bce8304156543fb3e1c8dac8f127c053eadf23858e9d43f7c7f7f87",
+  "stable_evidence_id": "8efbf27422a5db0ab503b3b88ae183a18299c07890db7b500b992a8e8a0de665",
+  "two_formal_reports_byte_exact": true,
+  "metrics": {
+    "rows": 144,
+    "top1_accuracy": 0.6180555555555556,
+    "top3_accuracy": 0.9930555555555556,
+    "cross_source_improvement_rate": 1.0,
+    "cross_source_median_improvement_percent": 100.0,
+    "cross_source_worst_improvement_percent": 97.45127187767487,
+    "patch_shuffle_descriptor_max_error": 0.0,
+    "label_permutation_top1_accuracy": 0.0,
+    "maximum_new_boundary_fraction": 0.0
+  },
+  "failed_gates": [
+    "minimum_top1_accuracy"
+  ],
+  "decision": "close_exact_statistical_descriptor_bank_without_capacity_or_threshold_rescue",
+  "scientific_conclusion": "Spatially agnostic colour statistics are exactly invariant to patch shuffling and nearly recover the correct bounded operator in the top three, but they do not identify a unique operator reliably enough under the frozen Top-1 gate. Retain this mechanism only as a future Top-k baseline or auxiliary descriptor, not an authorizing router.",
+  "claim_ceiling": "Procedural D0 evidence for spatially agnostic statistical identification of bounded explicit colour operators; not real-film, stock, reference-match, calibration, preference, package, capability or product evidence."
+}
