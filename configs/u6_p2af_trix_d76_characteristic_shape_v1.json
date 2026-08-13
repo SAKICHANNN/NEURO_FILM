@@ -27,7 +27,7 @@
   "analysis": {
     "normalized_density_levels": [0.15, 0.25, 0.4, 0.5, 0.6, 0.75, 0.85],
     "normalization": "per-curve observed density endpoints to zero-one; invert normalized density to log exposure; subtract each signature mean",
-    "uncertainty": "coherent plus/minus 3px translations of each full vector path; coordinate-registration only"
+    "uncertainty": "independent plus/minus 3px uncertainty at every inverse-density query; horizontal error plus a conservative normalized-density error covering the query and both endpoint measurements, converted through the worst local inverse slope"
   },
   "automatic_gates": {
     "curve_count": 4,
@@ -39,6 +39,6 @@
     "rgb_image_transform_count_zero": true
   },
   "forbidden": ["interpret graph traces as roll calibration", "fit or render photographs", "change density levels, path identities or gates after scoring", "claim P2AE CI-only profiles are complete if shape difference passes"],
-  "branch_rule": {"pass": "mark CI-only process profiles incomplete and require time-conditioned characteristic shape in any future B&W profile", "fail": "retain CI-only process profile sufficiency for this source graph only"},
+  "branch_rule": {"pass": "mark CI-only process profiles incomplete and require time-conditioned characteristic shape in any future B&W profile", "fail": "do not establish time-conditioned toe or shoulder shape from this graph; retain P2AE only as a limited CI interpolation, not a complete process model"},
   "claim_ceiling": "First-party TRI-X 400 / D-76 characteristic-shape source evidence after nuisance normalization; not roll calibration, developer chemistry model, grain/MTF/scanner or photographic appearance."
 }
