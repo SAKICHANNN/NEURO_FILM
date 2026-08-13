@@ -1,5 +1,12 @@
 from __future__ import annotations
 
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
 from scripts import run_u6_p7h_p4hu_ao6_value as runner
 from src.eval.scanner_safe_p4hu_ao6_value import evaluate, load_contract
 
