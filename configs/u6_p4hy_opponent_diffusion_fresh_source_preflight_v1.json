@@ -1,0 +1,92 @@
+{
+  "schema": "neuro-film.u6-p4hy-opponent-diffusion-fresh-source-preflight.v1",
+  "schema_version": 1,
+  "experiment_id": "u6.p4hy-opponent-diffusion-fresh-source-preflight-v1",
+  "node": "ULT > U6 > U6.P4 > U6.P4HY",
+  "status": "source_contract_frozen_before_pixel_access",
+  "parent_decision": {
+    "path": "docs/evidence/U6_P4HX_OPPONENT_DYE_CLOUD_DIFFUSION_D0_RESULT.json",
+    "sha256": "acd4505131abbd397c19f92e84cba8ef042783ccb286271283d1cec1b83d3242",
+    "required_decision": "retain_opponent_dye_cloud_diffusion_capacity_and_open_fresh_photographic_confirmation"
+  },
+  "source": {
+    "name": "raw.pixls.us",
+    "repository_url": "https://raw.pixls.us/",
+    "api_url": "https://raw.pixls.us/json/getrepository.php",
+    "api_observed_date": "2026-08-13",
+    "api_snapshot_sha256": "8dc5f5c74e20cc3a38f4548d53bba4bb516835e2a859e80bf86e7ac6283b3aa3",
+    "declared_license": "CC0/Public Domain per each exact repository row",
+    "purpose": "wholly new digital-photo population for fixed P4HX photographic automatic confirmation",
+    "not_film_truth": true
+  },
+  "selection": {
+    "rule": "metadata-only exact freeze before pixel access: highest eligible repository ID per canonical make after excluding every repository ID, raw hash and normalized make-model present in retained pools; twelve CC0 rows, twelve makes, 4-40MB, ordinary-photo terms only; no appearance used",
+    "candidate_count": 12,
+    "expected_makes": 12,
+    "maximum_rows_per_make": 1,
+    "expected_download_bytes_upper_bound": 330000000,
+    "download_root": "data/external/rawpixls_p4hy_v1/raw",
+    "decoded_root": "outputs/u6_p4hy_opponent_diffusion_fresh_source_preflight_v1/inputs",
+    "maximum_decoded_side": 1600,
+    "orientation_policy": "libraw_metadata_orientation"
+  },
+  "candidates": [
+    {"id":"canon_eos_r10","repository_id":8185,"make":"Canon","model":"EOS R10","mode":"RAW (3:2)","date":"2025-06-29","megapixels":24.0,"bytes_reported_mb":33.06,"filename":"Canon - EOS R10 - RAW (3:2).CR3","path":"data/external/rawpixls_p4hy_v1/raw/canon_eos_r10.cr3","sha256":"2dc0bbdf04c93ca62c914604f644c735286037912d6fba609d0cb78d00acd097","url":"https://raw.pixls.us/getfile.php/8185/nice/Canon%20-%20EOS%20R10%20-%20RAW%20%283%3A2%29.CR3"},
+    {"id":"sony_zv_e10m2","repository_id":8022,"make":"Sony","model":"ZV-E10M2","mode":"12bit (3:2)","date":"2025-05-27","megapixels":26.14,"bytes_reported_mb":27.05,"filename":"Sony - ZV-E10M2 - 12bit (3:2).ARW","path":"data/external/rawpixls_p4hy_v1/raw/sony_zv_e10m2.arw","sha256":"3d61e7f685460e6e77a52355d88bc960d51332f3470468a06c4490a406e6b715","url":"https://raw.pixls.us/getfile.php/8022/nice/Sony%20-%20ZV-E10M2%20-%2012bit%20%283%3A2%29.ARW"},
+    {"id":"panasonic_dc_s9","repository_id":7702,"make":"Panasonic","model":"DC-S9","mode":"3:2","date":"2025-04-27","megapixels":24.08,"bytes_reported_mb":26.4,"filename":"Panasonic - DC-S9 - 3:2.RW2","path":"data/external/rawpixls_p4hy_v1/raw/panasonic_dc_s9.rw2","sha256":"290ad5b4e396cb241a59459b2613d2b0659a03ff654e5d5368b3376d35812e50","url":"https://raw.pixls.us/getfile.php/7702/nice/Panasonic%20-%20DC-S9%20-%203%3A2.RW2"},
+    {"id":"samsung_galaxy_s22_ultra","repository_id":6625,"make":"Samsung","model":"Galaxy S22 Ultra","mode":"4:3","date":"2023-06-07","megapixels":9.98,"bytes_reported_mb":25.56,"filename":"Samsung - Galaxy S22 Ultra - 4:3.dng","path":"data/external/rawpixls_p4hy_v1/raw/samsung_galaxy_s22_ultra.dng","sha256":"13ddd4b117299d16d47b6404ad1981258a00b6bce60382524a51cab15a41334d","url":"https://raw.pixls.us/getfile.php/6625/nice/Samsung%20-%20Galaxy%20S22%20Ultra%20-%204%3A3.dng"},
+    {"id":"om_system_om_5","repository_id":6347,"make":"OM System","model":"OM-5","mode":"16bit (4:3)","date":"2023-01-29","megapixels":20.5,"bytes_reported_mb":18.98,"filename":"OM System - OM-5 - 16bit (4:3).ORI","path":"data/external/rawpixls_p4hy_v1/raw/om_system_om_5.ori","sha256":"062c4934ae9ab7595a45b56e2ad36a5ca05d75a8bed64f6d18cc88f9006ac9a9","url":"https://raw.pixls.us/getfile.php/6347/nice/OM%20System%20-%20OM-5%20-%2016bit%20%284%3A3%29.ORI"},
+    {"id":"pentax_k3_mark_iii","repository_id":5832,"make":"Pentax","model":"K-3 Mark III","mode":"14bit (3:2)","date":"2022-08-04","megapixels":26.63,"bytes_reported_mb":30.77,"filename":"Pentax - K-3 Mark III - 14bit (3:2).PEF","path":"data/external/rawpixls_p4hy_v1/raw/pentax_k3_mark_iii.pef","sha256":"29714bc4cc754a81d2ab154a4ecf1eb5fa125d3901b10f3bd88d731c674f69c4","url":"https://raw.pixls.us/getfile.php/5832/nice/Pentax%20-%20K-3%20Mark%20III%20-%2014bit%20%283%3A2%29.PEF"},
+    {"id":"olympus_e_p1","repository_id":5099,"make":"Olympus","model":"E-P1","mode":"16bit (4:3)","date":"2022-01-08","megapixels":12.64,"bytes_reported_mb":12.26,"filename":"Olympus - E-P1 - 16bit (4:3).ORF","path":"data/external/rawpixls_p4hy_v1/raw/olympus_e_p1.orf","sha256":"862b9d409279af0528810aa02eb5b4140d7854f9d637d4188b82ebaf4bf0d4cf","url":"https://raw.pixls.us/getfile.php/5099/nice/Olympus%20-%20E-P1%20-%2016bit%20%284%3A3%29.ORF"},
+    {"id":"gopro_hero10_black","repository_id":4894,"make":"GoPro","model":"HERO10 Black","mode":"16bit (4:3)","date":"2021-09-28","megapixels":23.25,"bytes_reported_mb":8.3,"filename":"GoPro - HERO10 Black - 16bit (4:3).GPR","path":"data/external/rawpixls_p4hy_v1/raw/gopro_hero10_black.gpr","sha256":"92a47ef8a30b9e22440b0eb71c519e271e66e64c51765415b9de644c902b358f","url":"https://raw.pixls.us/getfile.php/4894/nice/GoPro%20-%20HERO10%20Black%20-%2016bit%20%284%3A3%29.GPR"},
+    {"id":"xiaomi_hm_note_1lte","repository_id":3974,"make":"Xiaomi","model":"HM NOTE 1LTE","mode":"10bit (4:3)","date":"2020-06-16","megapixels":13.13,"bytes_reported_mb":15.65,"filename":"Xiaomi - HM NOTE 1LTE - 10bit (4:3).dng","path":"data/external/rawpixls_p4hy_v1/raw/xiaomi_hm_note_1lte.dng","sha256":"44e0aa0d12dab142e94f5121950ed153649e45cb5e4fb8ac5a0d94fd8ffbe338","url":"https://raw.pixls.us/getfile.php/3974/nice/Xiaomi%20-%20HM%20NOTE%201LTE%20-%2010bit%20%284%3A3%29.dng"},
+    {"id":"leica_v_lux_5","repository_id":3344,"make":"Leica","model":"V-Lux 5","mode":"3:2","date":"2019-08-18","megapixels":20.03,"bytes_reported_mb":22.04,"filename":"Leica - V-Lux 5 - 3:2.RWL","path":"data/external/rawpixls_p4hy_v1/raw/leica_v_lux_5.rwl","sha256":"6540d067665a842d903d2c44ec101e6f95f65759d4754a94f38817d7a2fd72f4","url":"https://raw.pixls.us/getfile.php/3344/nice/Leica%20-%20V-Lux%205%20-%203%3A2.RWL"},
+    {"id":"dji_osmo_action","repository_id":3214,"make":"DJI","model":"DJI Osmo Action","mode":"16bit (4:3)","date":"2019-06-11","megapixels":12.0,"bytes_reported_mb":23.55,"filename":"DJI - DJI Osmo Action - 16bit (4:3).DNG","path":"data/external/rawpixls_p4hy_v1/raw/dji_osmo_action.dng","sha256":"c05a4b112936c9ac110af241ca9e1bda089f7456b647f8a13595b604cbdf944c","url":"https://raw.pixls.us/getfile.php/3214/nice/DJI%20-%20DJI%20Osmo%20Action%20-%2016bit%20%284%3A3%29.DNG"},
+    {"id":"hasselblad_l1d_20c","repository_id":3009,"make":"Hasselblad","model":"L1D-20c","mode":"16bit (3:2)","date":"2019-03-04","megapixels":20.31,"bytes_reported_mb":39.45,"filename":"Hasselblad - L1D-20c - 16bit (3:2).DNG","path":"data/external/rawpixls_p4hy_v1/raw/hasselblad_l1d_20c.dng","sha256":"7afecae0db80d832941eeeb3c0eb2dc03f5696637b6e78b3c592e8c002dce4ec","url":"https://raw.pixls.us/getfile.php/3009/nice/Hasselblad%20-%20L1D-20c%20-%2016bit%20%283%3A2%29.DNG"}
+  ],
+  "maximum_download_bytes": 402653184,
+  "preflight": {
+    "development_manifest": "outputs/u6_p7h0_native_structure_value_source_preflight_v1/run_d/manifest.json",
+    "development_manifest_sha256": "3c698d8df93a7b48b87dff81ad6ddbaeb11d7c8478138ddef9545d57e336fcd7",
+    "comparison_manifests": [
+      {"path":"outputs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1/manifest.json","sha256":"8ac0fa47b8ad3058c7bd3f9a398dfebe657b681cbd4a154152f0dbb255c4ecf1","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1/run_c/manifest.json","sha256":"048992242c82a2cd9efd193c6766065c7148ad0607a5505b88185d0ab781b101","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bh0s_fixed_bank_oracle_source_preflight_v1/manifest.json","sha256":"e7dc8c861871de83a0aa3f92a717e23fd024bed15b8a19b739516c48f1f58e0e","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bh1s_global_policy_source_preflight_v1/manifest.json","sha256":"75a5139defa6a1f054eef5e3f5f6062483f4cc72e18416ece1cae3b10f4672fc","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bk1s_log_chroma_fresh_source_v1/manifest.json","sha256":"f2e97c750f04c19a0e59b1636c7a5cdd4015d29e4dc3d916d4efed72e9544720","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bk3s_encoded_log_chroma_fresh_source_v1/manifest.json","sha256":"a6f23a8507b0ef28c9ff76eb6d44e57b8e72bda8ae7249fa4730caa0b7a01761","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bk6s_bounded_opponent_fresh_source_v1/run_b/manifest.json","sha256":"444f162f22e6bc40940eb82557a11ed2b1fa67e6736efb1362df7ef1069d5978","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bk8s_smooth_perceptual_fresh_source_v1/run_b/manifest.json","sha256":"8326272dd127040f82cce1cd65875dc470ddc5e1d6d753b6125c0af5c1387ed8","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bk11s_orthogonal_residual_fresh_source_v1/run_b/manifest.json","sha256":"708eea624edd8b9370519b30e4962b6d4fff8f577b014b684b017810b0d83a82","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bk12s_orthogonal_residual_replacement_source_v1/run_a/manifest.json","sha256":"0f3915ba6e3480060c70d4e6753556f1bfff500168ea3767e1763eba5eca238f","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bk13s_orthogonal_residual_replacement_v2_source_v1/run_a/manifest.json","sha256":"3848037efc361ba36fede7edc50df9732db7b8d37d18621b04c5e3aca01ab415","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bk17s_factorized_ao6_sixth_fresh_source_v1/run_b/manifest.json","sha256":"a1a77d472037289bc31fccaae38d565a92d5ec843f27d35c4490962c860eccad","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bl7s_filmmatch_fresh_source_preflight_v1/run_a/manifest.json","sha256":"1f14bc525cbea0e32cede50afb588d062503da2eae827ec3585163054e055bd1","format":"rawpixls_manifest"},
+      {"path":"outputs/u5_r2bl8s_filmmatch_replacement_source_preflight_v1/run_c/manifest.json","sha256":"633e07202a92c2f8d60e4476f0b7768a7c5b9ed123c90c5757cbe541c4248733","format":"rawpixls_manifest"},
+      {"path":"outputs/u6_p8bn_fresh_strength_population_v1/manifest.json","sha256":"f773411c2ca8764d5ac27b9b400698f50a5588abeb0a83d02d1c0b234dceb85c","format":"rawpixls_manifest"},
+      {"path":"outputs/u6_p8bp_fresh_native_standard_confirmation_v1/manifest.json","sha256":"edb1b45552f9bf5712c922ed816b6f9a70f5f0bee2b72a024144cde0087dd521","format":"rawpixls_manifest"},
+      {"path":"outputs/color_baseline/velvia50_rawpixls20_s0p58_gamutsafe/manifest.json","sha256":"5d9ee83f68a0a852f74bf1e2de0cc3ca981283a19a3f75671ba47203c555c8bc","format":"legacy_rawpixls_render_manifest"},
+      {"path":"outputs/u6_p7h0_native_structure_value_source_preflight_v1/run_d/manifest.json","sha256":"3c698d8df93a7b48b87dff81ad6ddbaeb11d7c8478138ddef9545d57e336fcd7","format":"rawpixls_manifest"}
+    ],
+    "minimum_hash_clean_decoded_rows": 9,
+    "minimum_camera_makes": 9,
+    "maximum_largest_make_fraction": 0.1111111111111111,
+    "maximum_exact_within_pool_pairs": 0,
+    "maximum_dhash_within_pool_pairs_le_4": 0,
+    "maximum_exact_cross_pool_pairs": 0,
+    "maximum_dhash_cross_pool_pairs_le_4": 0,
+    "maximum_near_empty_or_monochrome_rows": 2,
+    "require_autonomous_visual_content_and_severe_audit": true
+  },
+  "preflight_gate": {
+    "minimum_decoded_rows": 9,
+    "minimum_camera_makes": 9,
+    "zero_hash_mismatch": true,
+    "zero_exact_or_dhash_leakage_to_prior_pools": true,
+    "zero_confirmed_severe_source_artifact": true
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "production_default_changed": false,
+  "claim_ceiling": "wholly new CC0 RAW source eligibility for fixed P4HX photographic automatic confirmation; not population preference, film truth, stock response, calibration, runtime or product promotion"
+}
