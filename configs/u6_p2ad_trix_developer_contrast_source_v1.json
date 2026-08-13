@@ -44,7 +44,7 @@
     "shared_contrast_indices": [0.55, 0.62, 0.7, 0.78],
     "interpolation": "piecewise-linear in source vector coordinates",
     "common_time_shift_control": "subtract each developer's mean log development time over the four shared contrast indices",
-    "uncertainty": "recompute every signature under all axis-aligned plus/minus maximum-source-pixel-error perturbations of each path; compare observed separation to the resulting worst-case envelope",
+    "uncertainty": "recompute every signature under all coherent axis-aligned plus/minus maximum-source-pixel-error translations of each complete vector path; compare observed separation to the resulting worst-case coordinate-registration envelope; this does not bound manufacturer measurement error",
     "developer_curve_fit_or_render_count": 0
   },
   "automatic_gates": {
