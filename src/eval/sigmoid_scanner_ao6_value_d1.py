@@ -96,6 +96,10 @@ def evaluate(
         [np.ndarray, np.ndarray, int, float], np.ndarray
     ]
     | None = None,
+    post_base_structure_builder: Callable[
+        [np.ndarray, np.ndarray, int, float], np.ndarray
+    ]
+    | None = None,
     stage_observer: Callable[[str, Mapping[str, np.ndarray]], None] | None = None,
 ) -> dict[str, Any]:
     parent_path = root / str(contract["parent"]["path"])
@@ -126,7 +130,14 @@ def evaluate(
         density = np.stack([curve.apply_normalized(linear[..., c]) for c, curve in enumerate(curves)], axis=-1)
         base_t = np.ascontiguousarray(np.power(10.0, -density), dtype=np.float32)
         baseline, _ = render_sigmoid_scanner_positive(linear, base_t, curves=curves, compiler=compiler)
-        if structure_builder is not None and scan_structure_builder is not None:
+        if sum(
+            builder is not None
+            for builder in (
+                structure_builder,
+                scan_structure_builder,
+                post_base_structure_builder,
+            )
+        ) > 1:
             raise ValueError("P4IM structure builders are mutually exclusive")
         if structure_builder is not None:
             structured = structure_builder(
@@ -200,7 +211,25 @@ def evaluate(
 
         current_base = apply_base(original)
         matched_base = apply_base(baseline_encoded)
-        physical_base = apply_base(physical_encoded)
+        if post_base_structure_builder is None:
+            physical_base = apply_base(physical_encoded)
+            physical_arm = physical_encoded
+        else:
+            physical_base = post_base_structure_builder(
+                matched_base,
+                linear,
+                index,
+                float(mechanism["structure_amplitude"]),
+            )
+            if (
+                physical_base.shape != matched_base.shape
+                or physical_base.dtype != np.float32
+                or not np.all(np.isfinite(physical_base))
+                or np.any(physical_base < 0.0)
+                or np.any(physical_base > 1.0)
+            ):
+                raise ValueError("invalid P4IM post-base structure")
+            physical_arm = physical_base
         current = np.ascontiguousarray(apply_residual(current_base), dtype=np.float32)
         matched = np.ascontiguousarray(apply_residual(matched_base), dtype=np.float32)
         combined = np.ascontiguousarray(apply_residual(physical_base), dtype=np.float32)
@@ -217,7 +246,7 @@ def evaluate(
                     "physical_output": combined,
                 },
             )
-        arms = (original, current, matched, physical_encoded, combined)
+        arms = (original, current, matched, physical_arm, combined)
         if any(not np.all(np.isfinite(arm)) or np.any(arm < 0.0) or np.any(arm > 1.0) for arm in arms):
             raise ValueError(f"P4IM arm left bounded display RGB: {source_id}")
         delta = combined.astype(np.float64) - matched.astype(np.float64)

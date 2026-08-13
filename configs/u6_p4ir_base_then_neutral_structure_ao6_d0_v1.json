@@ -1,0 +1,27 @@
+{
+  "schema": "neuro-film.u6-p4ir-base-then-neutral-structure-ao6-d0-contract.v1",
+  "experiment_id": "u6-p4ir-base-then-neutral-structure-ao6-d0-v1",
+  "question": "Does placing the unchanged AO6 source-context base before the fixed neutral structure, while retaining only the t15/c35 residual downstream, close the P4IP artifact gates without erasing material structure?",
+  "parents": {
+    "p4iq_evidence": {
+      "path": "docs/evidence/U6_P4IQ_AO6_STAGE_ATTRIBUTION_RESULT.json",
+      "sha256": "aa8ee710aff23e67d41046a63c34943ce723e06ee752c3598e04257a17f4f141",
+      "required_decision": "attribute_failure_stage_without_candidate_promotion"
+    },
+    "base_contract": {
+      "path": "configs/u6_p4im_sigmoid_scanner_ao6_value_d1_v1.json",
+      "sha256": "041818a85e38861426b61a052f43748d4119cc6b18fdec7eedc0ffe48cf807ce"
+    }
+  },
+  "mechanism": {
+    "order": "sigmoid-scanner-baseline_then_fixed-ao6-base_then_neutral-linear-transmittance-structure_then-fixed-ao6-residual",
+    "source_context": "original-encoded-source-only",
+    "structure_amplitude": "unchanged-from-P4IM",
+    "hard_clipping_allowed": false,
+    "posthoc_limiting_allowed": false,
+    "cohort_fit_allowed": false
+  },
+  "decision_if_pass": "retain_ordered_neutral_structure_for_fresh_photographic_confirmation",
+  "decision_if_fail": "close_ordered_neutral_structure_and_retain_fixed_ao6",
+  "claim_ceiling": "Automatic double-counting mechanism D0 on five bundled natural photographs; not physical-order truth, preference, calibration or product promotion."
+}
