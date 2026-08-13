@@ -1,0 +1,54 @@
+{
+  "schema": "neuro-film.u5-r2cham8-portra400-chart-texture-d0-contract.v1",
+  "experiment_id": "U5.R2CHAM8",
+  "question": "After the fixed CHAM5 registration, does the Portra400/Fuji-DPii chart TIFF contain a repeatable low-gradient high-frequency display-chain residual beyond the Lumix digital RAW that is stronger under correct than shifted alignment?",
+  "parents": {
+    "registration_evidence": {
+      "path": "docs/evidence/U5_R2CHAM5_PORTRA400_REGISTRATION_D0_RESULT.json",
+      "sha256": "4ba592ab35d54d47802323f57da89bca674d631f17fa7add600fd7b8acb34ef5",
+      "required_decision": "retain_chart_pair_for_separately_frozen_development_only_operator_discriminant"
+    },
+    "registration_report": {
+      "path": "outputs/u5_r2cham5_portra400_registration_d0_v1/formal_a.json",
+      "sha256": "c65088c2959fa92f6a61e9dac0f8bb5d4fabc724f1f601d8e6b1c6e43e160b63",
+      "required_stable_evidence_id": "4e5168d81a7161ffa49bfda0f33e3f1faab718fe576d29325f759dfdf8020112"
+    },
+    "source_manifest": {
+      "path": "outputs/external_controls/spektrafilm_portra400_same_scene_v1/download_manifest.json",
+      "sha256": "eabfd1d191d62a05bc565db806deb5609387be802d3ffa810cfaffd466eede66"
+    }
+  },
+  "source": {
+    "digital_raw_name": "Digital Lumix S5ii Color Chart.RW2",
+    "digital_raw_sha256": "c581599834576db2acd288792c25260099eb4db98bb48b9388bf9872e305fdd8",
+    "film_tiff_name": "Portra 400 + Fuji DPii Color Chart.tif",
+    "film_tiff_sha256": "7a1cb39761a28fa482e2de07ce6251278d15732ad31879834bf06f8de4d8a807",
+    "data_root": "data/quarantine/spektrafilm_portra400_same_scene_v1"
+  },
+  "analysis": {
+    "valid_mask_erosion_pixels": 9,
+    "encoded_boundary_code_minimum": 3,
+    "encoded_boundary_code_maximum": 252,
+    "log_floor": 0.000001,
+    "prefilter_sigma_pixels": 0.6,
+    "highpass_sigma_pixels": 2.0,
+    "patch_size_pixels": 96,
+    "patch_stride_pixels": 48,
+    "minimum_patches_per_scene": 24,
+    "maximum_patches_per_scene": 64,
+    "maximum_patch_gradient_quantile": 0.4,
+    "shift_control_pixels": 17,
+    "radial_frequency_edges_nyquist": [0.05, 0.1, 0.2, 0.35, 0.5, 0.7, 0.9]
+  },
+  "gates": {
+    "minimum_selected_patches": 24,
+    "minimum_film_to_digital_luma_highpass_energy_ratio": 1.1,
+    "maximum_correct_to_shifted_residual_rms_ratio": 0.9,
+    "minimum_positive_delta_psd_bin_fraction": 0.6,
+    "maximum_residual_edge_correlation": 0.35,
+    "maximum_film_block_ratio": 1.2
+  },
+  "decision_if_pass": "retain_one_pair_film_scanner_display_chain_texture_signal_for_independent_measured_data_design",
+  "decision_if_fail": "close_one_pair_texture_signal_without_structure_fitting",
+  "claim_ceiling": "One registered 8-bit TIFF versus camera-processed RAW display-chain texture diagnostic; cannot separate emulsion, process, scanner MTF/noise/sharpening, TIFF quantization or residual registration, and is not stock calibration, grain identification, product or redistribution evidence."
+}
