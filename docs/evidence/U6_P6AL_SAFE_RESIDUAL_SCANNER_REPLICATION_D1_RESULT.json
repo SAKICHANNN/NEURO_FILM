@@ -1,0 +1,33 @@
+{
+  "schema": "neuro-film.u6-p6al-safe-residual-scanner-replication-d1-evidence.v1",
+  "experiment_id": "U6.P6AL",
+  "implementation_commit": "a5d33d99f1a7dc20566f47f5cc5cc4809d6d32f4",
+  "bindings": {
+    "config_sha256": "465532b26207eeced37f8608ec6b90c056ce79b0a155603d22f70a45a9cafd49",
+    "evaluator_sha256": "9d4fd0c976bc0ee657fbeb17b6c79d6f81aa991a113a436a91b9b31058968f76",
+    "runner_sha256": "b0195b99bcafa437c31d2551f0c4c55b692ed3c86ea02d5bd8cb06cab860ab11",
+    "test_sha256": "0f8185fd4429e95259737e7bf326398cf9cc02727cf0a5be3ff1da097e114471",
+    "formal_a_report_sha256": "b1225ee1420a9c17f6a281f7fe290fe1e970b4a71c9ab4fbf0d86759f0a89c89",
+    "formal_b_report_sha256": "b1225ee1420a9c17f6a281f7fe290fe1e970b4a71c9ab4fbf0d86759f0a89c89"
+  },
+  "stable_evidence_id": "ce787381c63c0dabf2b6231b1276622f7ab9aa494adea751840030ad91f8e709",
+  "observations": {
+    "formal_reports_byte_exact": true,
+    "scanner_software_pipelines": 4,
+    "directed_folds": 60,
+    "patch_predictions": 15840,
+    "candidate_median_l2": 0.014462732544002719,
+    "candidate_p90_l2": 0.061981947459951975,
+    "aggregate_median_improvement_over_identity_fraction": 0.761140677219296,
+    "aggregate_median_improvement_over_p6g_safe_matrix_fraction": 0.5679688583419193,
+    "maximum_directed_pair_median_l2": 0.037171580851538114,
+    "limited_patch_fraction": 0.007512626262626262,
+    "median_safe_scale": 1.0,
+    "out_of_cube_fraction": 0.0,
+    "maximum_residual_direction_error": 5.551115123125783e-17
+  },
+  "decision": "retain_analytical_safe_residual_as_cross_source_scanner_nuisance_mechanism_d1",
+  "interpretation": "The no-refit P6AK execution rule transfers from the Portra scanner-versus-print development observation to the independent P6G same-slide real scanner/software target set. It preserves the legacy affine median, removes every cube violation without clipping, beats the prior nonnegative safe matrix by 56.80%, and passes the p90 and every directed-pair tail gate. This supports a bounded explicit scanner-nuisance execution primitive, not a scanner calibration or stock operator.",
+  "next_leaf": "Integrate the analytical safe residual as a versioned optional scanner-profile execution primitive and verify identity/failure atomicity; do not fit more capacity on this target set.",
+  "claim_ceiling": "Independent-source same-slide scanner/software nuisance replication of one analytical execution rule on a previously consumed internal-research target set; not scanner calibration, stock response, independent material/process population evidence, product, redistribution or commercial-use evidence."
+}

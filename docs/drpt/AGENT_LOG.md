@@ -13084,3 +13084,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   residual-direction error is `1.74e-18`. Retain only as a development
   scanner-plus-print mechanism; require a fresh same-negative multi-output
   observation before any generalization.
+
+### 2026-08-14 - U6.P6AL replicates analytical scanner execution
+
+- The P6AK execution rule was applied without refitting to the existing P6G
+  same-slide target set: four scanner/software pipelines, 60 directed held
+  folds and 15,840 patch predictions. Two reports are byte exact
+  (`b1225ee1...89c89`).
+- Median error is `.01446` and p90 `.06198`; the candidate improves identity by
+  `76.11%` and the prior nonnegative safe matrix by `56.80%`. Every directed
+  pair median is at most `.03718`.
+- Only `.751%` of patches are scaled, median scale is `1.0`, cube violations
+  are zero and direction error is `5.55e-17`. Retain this as a bounded explicit
+  scanner-nuisance execution primitive; it is not scanner calibration or a
+  stock operator.
