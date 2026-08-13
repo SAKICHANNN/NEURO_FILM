@@ -13153,3 +13153,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   scan saturation remain nuisance facts; no absolute MTF, PSF, colour,
   calibration, rendering or product authority opens. A second independent
   observation is required before any executable VISION3 spatial profile.
+
+### 2026-08-14 - U5.R2BU13 rejects source-MTF to processed-resolution transfer
+
+- The unchanged Kodak source-domain layer MTF curves were summarized at the
+  common 42/53 cycles/mm frequencies before comparison with Noever Table 3.
+  Two reports are byte exact (`d388b9ae...55ec63`).
+- Neither the weakest-layer response nor the three-layer geometric mean
+  predicts the independent fast-fast-slow tier: 200T is noninferior to 500T in
+  0/4 comparisons and 50D in only 1/4; the assignment margin is `-12`.
+- Keep source MTF and processed-film resolution as separate evidence under
+  process/format/lens/aliasing/scanner nuisance. Do not compile a VISION3
+  stock PSF from BU0/BU10/BU12; continue a different identifying mechanism.
