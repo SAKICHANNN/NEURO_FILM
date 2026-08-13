@@ -1,0 +1,30 @@
+{
+  "schema": "neuro-film.u6-p4is-rail-guarded-neutral-structure-ao6-d0-contract.v1",
+  "experiment_id": "u6-p4is-rail-guarded-neutral-structure-ao6-d0-v1",
+  "question": "Does the existing AO6 source-inclusive analytical rail close the remaining P4IR boundary and isolated-excursion failures while preserving material neutral structure?",
+  "parents": {
+    "p4ir_evidence": {
+      "path": "docs/evidence/U6_P4IR_BASE_THEN_NEUTRAL_STRUCTURE_AO6_D0_RESULT.json",
+      "sha256": "5d76c247dde36b98449982de9fa0b371547412e34f36145a48f59fee370b516b",
+      "required_decision": "close_ordered_neutral_structure_and_retain_fixed_ao6"
+    },
+    "base_contract": {
+      "path": "configs/u6_p4im_sigmoid_scanner_ao6_value_d1_v1.json",
+      "sha256": "041818a85e38861426b61a052f43748d4119cc6b18fdec7eedc0ffe48cf807ce"
+    }
+  },
+  "mechanism": {
+    "order": "sigmoid-scanner-baseline_then-fixed-ao6-base_then-rail-guarded-neutral-structure_then-fixed-ao6-residual",
+    "source_context": "original-encoded-source-only",
+    "structure_amplitude": "unchanged-from-P4IM",
+    "rail": "source-inclusive-analytical-residual-scale",
+    "hard_boundary_epsilon_encoded_srgb": 0.00196078431372549,
+    "guard_boundary_epsilon_encoded_srgb": 0.00392156862745098,
+    "hard_clipping_allowed": false,
+    "posthoc_limiting_allowed": false,
+    "cohort_fit_allowed": false
+  },
+  "decision_if_pass": "retain_rail_guarded_neutral_structure_for_fresh_photographic_confirmation",
+  "decision_if_fail": "close_neutral_structure_family_and_retain_fixed_ao6",
+  "claim_ceiling": "Automatic analytical-execution mechanism D0 on five bundled natural photographs; not physical-order truth, preference, calibration or product promotion."
+}
