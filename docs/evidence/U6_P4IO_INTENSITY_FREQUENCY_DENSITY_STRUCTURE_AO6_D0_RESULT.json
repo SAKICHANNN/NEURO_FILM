@@ -1,0 +1,152 @@
+{
+  "automatic_pass": false,
+  "blind_review_allowed": false,
+  "checks": {
+    "chroma": false,
+    "flat": true,
+    "isolated": false,
+    "material_increment": true,
+    "new_boundary": true,
+    "output_boundary": true,
+    "product_separation": true,
+    "repeat": true,
+    "tail": true
+  },
+  "claim_ceiling": "Clean-room conventional-parameter mechanism D0 on bundled natural photos; inspired by FGC-SEI/FGA-NN parameterization but not source-code conformance, measured grain, preference, stock calibration or product promotion.",
+  "config_sha256": "0ab206afc5836f640b1bdadb4418c3581f1d599c958b030458498c17b7606dd1",
+  "contact_sheet_sha256": "b3a17f119d07cfcbd03823792c10eb2a2abc5eca071189dec1e4681858ca1c9e",
+  "decision": "close_explicit_intensity_frequency_density_structure_without_rescue",
+  "experiment_id": "u6-p4io-intensity-frequency-density-structure-ao6-d0-v1",
+  "mechanism": {
+    "family": "explicit-intensity-conditioned-frequency-shaped-common-density",
+    "frequency_cutoff_cycles_per_pixel": 0.125,
+    "frequency_cutoff_index": 8,
+    "frequency_cutoff_index_range": [
+      2,
+      14
+    ],
+    "hard_clipping_allowed": false,
+    "intensity_intervals": 16,
+    "intensity_scaling": "four-luma-times-one-minus-luma",
+    "per_image_log_density_rms": "exactly-match-P4IN-common-mode-field",
+    "post_result_retuning_allowed": false,
+    "random_seed": 420260814
+  },
+  "metrics": {
+    "maximum_arm_output_code_boundary_fraction": 0.0,
+    "maximum_flat_region_p99_combined_vs_matched_abs": 0.027350914478302023,
+    "maximum_high_frequency_chroma_p999": 0.048150951677235036,
+    "maximum_new_boundary_fraction_vs_matched": 0.0,
+    "maximum_repeat_error": 0.0,
+    "population_p95_combined_vs_current_abs": 0.40368112280964846,
+    "population_p95_combined_vs_matched_abs": 0.013908335119485847,
+    "population_p99_combined_vs_matched_abs": 0.02390536538362503,
+    "row_count": 5,
+    "total_isolated_excursions": 961
+  },
+  "parent_stable_evidence_id": "cbe8c2174a91468fd30a57b25e1f084522bcc8d392a81b2fb189864522cdfe87",
+  "rows": [
+    {
+      "arm_sha256": {
+        "fixed_ao6_colour_only_t15_c35": "bee1f1a963cae393e05fef4222833738e131900556da1e7f8b2d35803de8bb12",
+        "matched_sigmoid_scanner_ao6_t15_c35": "d91dc71be1c59a891efa2fd9aca948b1d0582e572b46986559d9223aed107b1c",
+        "sigmoid_scanner_physical_only_diagnostic": "80234ab5b7efeddb30029925bb332e95582fc71b0c8e30ac38abc6cabc50020c",
+        "sigmoid_scanner_then_fixed_ao6_t15_c35": "271793778ca401ffb9f532d57d99cab6690b665bb909ad9cbcd0e93fde964aba",
+        "source_reference": "97c5216381c80dc3439e38440dea2adea4c6264bd065a3e3727c2dd0dd7112d1"
+      },
+      "flat_region_p99_combined_vs_matched_abs": 0.01232594132423401,
+      "high_frequency_chroma_p999": 0.004984090075595302,
+      "id": "astronaut",
+      "isolated_excursions": 1,
+      "maximum_arm_output_code_boundary_fraction": 0.0,
+      "new_boundary_fraction_vs_matched": 0.0,
+      "p95_combined_vs_current_abs": 0.26356174945831295,
+      "p95_combined_vs_matched_abs": 0.008036103844642636,
+      "p99_combined_vs_matched_abs": 0.013364186584949492,
+      "repeat_error": 0.0,
+      "source_sha256": "a8c429c18afa7b0fd5673e598d73a21225d94c864a71bbb3885126fdecb41071"
+    },
+    {
+      "arm_sha256": {
+        "fixed_ao6_colour_only_t15_c35": "41e4308fd103fd8aaf93d3809d41dc3a97bb5c5b38b78796bcd08f85cb11adea",
+        "matched_sigmoid_scanner_ao6_t15_c35": "702c0ef1ed614b47eb221221036859f9982ba2ba5cebf90b585996a5dd417e46",
+        "sigmoid_scanner_physical_only_diagnostic": "a9a2a5fccd6b7eab31c2d6fac49ee6762958e7cdeb4bd3077e3ec81d3b15d429",
+        "sigmoid_scanner_then_fixed_ao6_t15_c35": "ad9ecb23e814b7729106401d5a72b83b42cf900a3e7d32a5d9295c8420d3ce55",
+        "source_reference": "318c0b079a77c93557f9a8238989d63abcbf1f0bbb0597b11585b9b7eabd868e"
+      },
+      "flat_region_p99_combined_vs_matched_abs": 0.01903611898422244,
+      "high_frequency_chroma_p999": 0.006710978560576519,
+      "id": "coffee",
+      "isolated_excursions": 3,
+      "maximum_arm_output_code_boundary_fraction": 0.0,
+      "new_boundary_fraction_vs_matched": 0.0,
+      "p95_combined_vs_current_abs": 0.2316618248820304,
+      "p95_combined_vs_matched_abs": 0.010923209786415096,
+      "p99_combined_vs_matched_abs": 0.016736991405487067,
+      "repeat_error": 0.0,
+      "source_sha256": "0ce2b51640b9c95f19617f03eabf40c3f0368589cc1ee1190b70966165ac184f"
+    },
+    {
+      "arm_sha256": {
+        "fixed_ao6_colour_only_t15_c35": "7a7f5b42c7a91dee8a865cb4d3c448af4f2e4d3613ff772ad018ee13cd7f36f5",
+        "matched_sigmoid_scanner_ao6_t15_c35": "540cac29de4b0ea4dbfcac287d71b55060d2854fbd1b20593c09ac0ffe6ad42e",
+        "sigmoid_scanner_physical_only_diagnostic": "53671ce2b6d665ff8706dcb0ce291ebf6f902da89501978b095e62448b18094d",
+        "sigmoid_scanner_then_fixed_ao6_t15_c35": "54457a082ca82370ea9f8e0dbeef491ec266b869aa5a222743a9ba51155b3bbf",
+        "source_reference": "e92a462d715cecb327b6a11c2e837582076539db01bca6b8c3d1d8822c35a2e3"
+      },
+      "flat_region_p99_combined_vs_matched_abs": 0.027350914478302023,
+      "high_frequency_chroma_p999": 0.006008905598583325,
+      "id": "chelsea",
+      "isolated_excursions": 1,
+      "maximum_arm_output_code_boundary_fraction": 0.0,
+      "new_boundary_fraction_vs_matched": 0.0,
+      "p95_combined_vs_current_abs": 0.41957663744688034,
+      "p95_combined_vs_matched_abs": 0.01427540332078933,
+      "p99_combined_vs_matched_abs": 0.021436733305454266,
+      "repeat_error": 0.0,
+      "source_sha256": "416b729128bfb2c3d1eb69bf9b1734a796293abc17939267b2dc94f8a5784031"
+    },
+    {
+      "arm_sha256": {
+        "fixed_ao6_colour_only_t15_c35": "c1c0120f1874e212b4746207a45061414271e5d65fd495eeef2dd29cee2c3520",
+        "matched_sigmoid_scanner_ao6_t15_c35": "d3356e56f8016e87914f79ed5f384af5adff48f761350e2de56b4866255248d5",
+        "sigmoid_scanner_physical_only_diagnostic": "6cf21d6d05e6824d593a734bdbfaaa60bdd82b45070164ae6a11c9154dfe37fd",
+        "sigmoid_scanner_then_fixed_ao6_t15_c35": "2dfa5964b21ae69bc11ab42daedbf4ddd171c295e94f23ceda44c07e2df963c6",
+        "source_reference": "1ac9ca31864882cba940e89570c9daab248facde232bce4702e5f4c10a9d7da4"
+      },
+      "flat_region_p99_combined_vs_matched_abs": 0.02118365213274958,
+      "high_frequency_chroma_p999": 0.019277863427531686,
+      "id": "rocket",
+      "isolated_excursions": 154,
+      "maximum_arm_output_code_boundary_fraction": 0.0,
+      "new_boundary_fraction_vs_matched": 0.0,
+      "p95_combined_vs_current_abs": 0.340099064260721,
+      "p95_combined_vs_matched_abs": 0.012440062314271918,
+      "p99_combined_vs_matched_abs": 0.024008225053548812,
+      "repeat_error": 0.0,
+      "source_sha256": "3d4435cc745752b7f9724df88c6e18817de3ce7e3d2d71c55f85f7831e68f197"
+    },
+    {
+      "arm_sha256": {
+        "fixed_ao6_colour_only_t15_c35": "3eeb98ebae2539c879bdf542fdebf30ea48806782f4d2b875d350537d65428b1",
+        "matched_sigmoid_scanner_ao6_t15_c35": "df764b44c3d30ff57e9f75ecafe698a628564c543a15d9fbe50380d493621507",
+        "sigmoid_scanner_physical_only_diagnostic": "16ff12a3cfa1122a7a0ae10f96a8204d5ddadd81dcce1a8e80b74134c54e7ca8",
+        "sigmoid_scanner_then_fixed_ao6_t15_c35": "f5fd8f3bd41a8de097c07a26c39cb41c52f1e329e35cf328cbc67a4cd4d8e501",
+        "source_reference": "4cf78fa865a7ae0192da718cc6278ab41d388badea5195e398f376e289ecf7d4"
+      },
+      "flat_region_p99_combined_vs_matched_abs": 0.01642230123281479,
+      "high_frequency_chroma_p999": 0.048150951677235036,
+      "id": "hubble_deep_field",
+      "isolated_excursions": 802,
+      "maximum_arm_output_code_boundary_fraction": 0.0,
+      "new_boundary_fraction_vs_matched": 0.0,
+      "p95_combined_vs_current_abs": 0.14839934185147285,
+      "p95_combined_vs_matched_abs": 0.011407660692930213,
+      "p99_combined_vs_matched_abs": 0.019558121412992374,
+      "repeat_error": 0.0,
+      "source_sha256": "9a3ea9548188f81e63435188456e74de45a981ebeb791e265abe79a26d3b528b"
+    }
+  ],
+  "schema": "neuro-film.u6-p4io-intensity-frequency-density-structure-ao6-d0-result.v1",
+  "stable_evidence_id": "58c88f1aa41b4aa49657691da489965451e1afb6ccada7967f04f457597ddefc"
+}

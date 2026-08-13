@@ -6,7 +6,7 @@ import hashlib
 import json
 from collections.abc import Mapping
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 import numpy as np
 from PIL import Image, ImageDraw
@@ -82,6 +82,10 @@ def evaluate(
     *,
     contact_path: Path | None = None,
     structure_direction: tuple[float, float, float] | None = None,
+    structure_builder: Callable[
+        [np.ndarray, np.ndarray, int, float], np.ndarray
+    ]
+    | None = None,
 ) -> dict[str, Any]:
     parent_path = root / str(contract["parent"]["path"])
     if _sha(parent_path) != contract["parent"]["sha256"]:
@@ -111,7 +115,22 @@ def evaluate(
         density = np.stack([curve.apply_normalized(linear[..., c]) for c, curve in enumerate(curves)], axis=-1)
         base_t = np.ascontiguousarray(np.power(10.0, -density), dtype=np.float32)
         baseline, _ = render_sigmoid_scanner_positive(linear, base_t, curves=curves, compiler=compiler)
-        if structure_direction is None:
+        if structure_builder is not None:
+            structured = structure_builder(
+                base_t,
+                linear,
+                index,
+                float(mechanism["structure_amplitude"]),
+            )
+            if (
+                structured.shape != base_t.shape
+                or structured.dtype != np.float32
+                or not np.all(np.isfinite(structured))
+                or np.any(structured <= 0.0)
+                or np.any(structured > 1.0)
+            ):
+                raise ValueError("invalid P4IM structured transmittance")
+        elif structure_direction is None:
             structured = _structured_transmittance(
                 base_t, index, float(mechanism["structure_amplitude"])
             )
