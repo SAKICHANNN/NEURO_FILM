@@ -1,0 +1,30 @@
+{
+  "schema": "neuro-film.u6-p6aj-portra-natural-scanner-nuisance-d0-evidence.v1",
+  "experiment_id": "U6.P6AJ",
+  "implementation_commit": "9f1010a7d47f36b77e19c5e24cb65fa85b53d56d",
+  "bindings": {
+    "config_sha256": "a6deb6f8420065fadc396bf55395c17cdd37af8d5950d142dda1ab649b24e6b3",
+    "evaluator_sha256": "23c5fdaaa78dd8344c50637540156b324e90aac69a2284fd06bce622ae9a5307",
+    "runner_sha256": "74eaf9bb76167200c2bad421e72e4a4d64883f5ab88255b80e8e2c88805a75e4",
+    "test_sha256": "0506cb5282111a86f6fc9d64c9e243e61bc7f1da83e9a55bbeedf1ff81b3a203",
+    "formal_a_report_sha256": "e2d661b058edc9d8e707307bf5ecd61583669ec989d0ac1cf0ade8788e34d6a6",
+    "formal_b_report_sha256": "e2d661b058edc9d8e707307bf5ecd61583669ec989d0ac1cf0ade8788e34d6a6"
+  },
+  "stable_evidence_id": "b0f1915e93fff62ebd50000470739ec3a25d8892857683a3f3dc0eb4e334a82d",
+  "observations": {
+    "formal_reports_byte_exact": true,
+    "eligible_correspondences": 697,
+    "identity_rmse": 0.1828265904635058,
+    "candidate_rmse": 0.03440214036459416,
+    "wrong_pairing_rmse": 0.12047835063572253,
+    "improvement_over_identity_fraction": 0.8118318551071968,
+    "improvement_over_wrong_pairing_fraction": 0.7144537571848719,
+    "spatial_fold_win_fraction": 1.0,
+    "worst_spatial_fold_improvement_fraction": 0.7777606078186278,
+    "out_of_cube_fraction": 0.11764705882352941
+  },
+  "decision": "close_global_affine_scanner_print_nuisance_on_this_observation",
+  "interpretation": "The same-session Noritsu-to-RA4/Epson natural observation contains a strong, pairing-specific global affine signal, but the unconstrained execution sends 11.76% of predicted channel values outside the display cube. This identifies scanner-plus-print nuisance as material while rejecting the unsafe operator. The affine fit is frozen; only a separately preregistered analytical residual-direction gamut execution may test whether the signal survives without clipping.",
+  "next_leaf": "Freeze the P6AK no-refit analytical maximum-safe residual scaling experiment before executing it.",
+  "claim_ceiling": "One unlicensed same-session natural observation of a Noritsu film scan versus Fuji DPii RA4/Epson output; scanner-plus-print nuisance mechanism D0 only, not same-negative calibration, stock response, population transfer, product, redistribution or commercial-use evidence."
+}

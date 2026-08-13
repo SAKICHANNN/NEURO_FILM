@@ -13059,3 +13059,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   divergent scanner/print outcomes reinforce scanner interpretation as a
   nuisance; new progress requires repeat scans or independently calibrated
   film/scanner observations.
+
+### 2026-08-14 - U6.P6AJ isolates a strong but unsafe scanner nuisance
+
+- Candidate-independent local correspondences retain 697 natural samples from
+  the same-session Noritsu scan and Fuji DPii RA4/Epson output. Two formal
+  reports are byte exact (`e2d661b0...4d6a6`).
+- A held-region global affine reduces RMSE from `.18283` to `.03440`, beats the
+  shifted-pairing control by `71.45%`, and wins all four spatial folds with a
+  worst improvement of `77.78%`.
+- Formal FAIL: `11.76%` of predicted channel values leave the display cube.
+  The fit is frozen and hard clipping is forbidden. A new P6AK leaf may test
+  only analytical maximum-safe scaling along the already fitted residual.
