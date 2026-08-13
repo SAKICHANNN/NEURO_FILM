@@ -1,0 +1,43 @@
+{
+  "schema": "neuro-film.u6-p4ij-sigmoid-characteristic-spatial-d0-evidence.v1",
+  "experiment_id": "u6-p4ij-sigmoid-characteristic-spatial-d0-v1",
+  "date": "2026-08-13",
+  "implementation": {
+    "config_sha256": "e4295ae1075b0f1bfd2eee42c263137d029bfd0e854528a473c098c134335838",
+    "core_sha256": "4bf5702eba81a595f7722e98772a787247034ba15c7286077710534af0fbea61",
+    "evaluator_sha256": "bf5c10a59447582bf1cb6b2ebad9619352865074d4adfe1fae5443dd989be5d1",
+    "runner_sha256": "e20f3d7d67bddfe447ac329908c105496de2e9e07057e6fe944d3e1f4c573dba",
+    "test_sha256": "e626121c4c5ae6e70c527bfee4148119a6667c7d942740e8498a93e2d84300a9"
+  },
+  "formal_runs": {
+    "count": 2,
+    "report_sha256": "fece6c20ad25f10d68d206e9c0d796f83c6f31b988bfd4a60795c7d7820ca4ad",
+    "repeat_report_sha256_exact": true,
+    "stable_evidence_id": "57dd418ae3f9b83ad44193060eac72d14f9c152d4a2f69224b4b3a18153e7424",
+    "temporary_output_root": "D:/nf-019f4b76-p4id-fallback/p4ij"
+  },
+  "metrics": {
+    "curve_fit_rmse_red_green_blue": [
+      0.023234621412287118,
+      0.035921976987863105,
+      0.03409519930278858
+    ],
+    "minimum_input_003_headroom": 0.03063091008293701,
+    "population_p95_abs_difference": 0.007827215036377311,
+    "population_p99_abs_difference": 0.009400659799575805,
+    "maximum_new_boundary_fraction": 0.0,
+    "maximum_partition_error": 0.0,
+    "maximum_repeat_error": 0.0,
+    "minimum_shared_scale": 1.0
+  },
+  "decision": "retain_sigmoid_characteristic_chain_for_bound_photo_development",
+  "interpretation": "A three-layer four-parameter logistic family fitted only to the frozen 250D manufacturer graph removes the exact toe plateaus that caused P4II's boundary failure. At the unchanged structure amplitude it preserves materiality, tail safety, nonzero headroom, full residual direction and exact partition/replay behavior.",
+  "verification": {
+    "two_formal_runs_exact": "PASS",
+    "ruff_no_cache": "PASS",
+    "py_compile": "PASS",
+    "diff_check": "PASS"
+  },
+  "claim_ceiling": "Synthetic development evidence for a fitted explicit sigmoid characteristic family composed with the fixed scanner chain. Not a reproduction of Emulating Emulsion, stock calibration, photographic evidence, scanner calibration, preference or product promotion.",
+  "next_leaf": "Run unchanged sigmoid parameters and structure amplitude on the fixed already-consumed photographic cohort once canonical P storage is responsive; otherwise switch to an independent mainline leaf without tuning this mechanism."
+}

@@ -1,0 +1,31 @@
+{
+  "schema": "neuro-film.u6-p4ij-sigmoid-characteristic-spatial-d0-contract.v1",
+  "experiment_id": "u6-p4ij-sigmoid-characteristic-spatial-d0-v1",
+  "mechanism": {
+    "family": "four-parameter-logistic-per-layer",
+    "fit_samples_per_layer": 4097,
+    "initial_slope": 8.0,
+    "maximum_iterations": 20000,
+    "photographic_pixels_read": false,
+    "structure_amplitude_unchanged_from_p4ii": 0.025
+  },
+  "population": {
+    "images": 12,
+    "height": 192,
+    "width": 288,
+    "row_partitions": [1, 7, 31, 127]
+  },
+  "gates": {
+    "maximum_curve_fit_rmse": 0.04,
+    "minimum_input_003_headroom": 0.0001,
+    "minimum_population_p95_abs_difference": 0.005,
+    "maximum_population_p99_abs_difference": 0.05,
+    "maximum_new_boundary_fraction": 0.0005,
+    "maximum_partition_error": 1e-6,
+    "maximum_repeat_error": 0.0,
+    "minimum_shared_scale": 0.05
+  },
+  "decision_if_pass": "retain_sigmoid_characteristic_chain_for_bound_photo_development",
+  "decision_if_fail": "close_sigmoid_characteristic_scanner_family",
+  "claim_ceiling": "Synthetic development evidence for a fitted explicit sigmoid characteristic family composed with the fixed scanner chain. Not a reproduction of Emulating Emulsion, stock calibration, photographic evidence, scanner calibration, preference or product promotion."
+}

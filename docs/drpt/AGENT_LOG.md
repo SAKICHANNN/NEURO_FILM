@@ -12966,3 +12966,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Two 12-image procedural spatial reports are byte exact (`a0fd8897...9e0c`, stable `95d48f66...2a95`). Partition and replay error are zero; p95/p99 structure differences are `.00881/.01076`.
 - Formal FAIL: the full manufacturer curve includes exact normalized density boundaries. Outward structure therefore reaches shared scale zero and creates `1.1363%` new boundary samples versus the `.05%` ceiling. The bounded tail otherwise passes.
 - Close this exact full-range characteristic-plus-structure route without gate relaxation, clipping or strength rescue. Retain the compact scanner compiler as a mechanism primitive, but require a materially different characteristic/interpretation mechanism before photographs.
+## 2026-08-13 — U6.P4IJ explicit sigmoid characteristic D0 passes
+
+- Changed the failed mechanism rather than its strength or gates: fit three independent four-parameter logistic curves to the frozen 250D manufacturer graph, following the explicit sigmoid characteristic family used by current analytic film-emulation research without copying its code, weights or data.
+- Two full reports are byte exact (`fece6c20...ca4ad`, stable `57dd418a...e7424`). Layer fit RMSE is `.0232/.0359/.0341`, minimum source-headroom at code `.03` is `.03063`, and the unchanged structure yields p95/p99 differences `.00783/.00940`.
+- All frozen gates pass: zero new boundaries, minimum shared scale 1, and zero partition/replay error. This isolates P4II's failure to the plateau mechanism rather than the scanner or structure amplitude.
+- Decision: retain for one bound photo development test when P is responsive. No stock/scanner calibration or product claim opens.
