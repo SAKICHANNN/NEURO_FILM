@@ -13119,3 +13119,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   coefficient/payload tamper rejection pass with the P6AM runtime (`11 passed`).
 - This is an opt-in representation and execution boundary, not a public fitted
   scanner profile, calibration claim or product integration.
+
+### 2026-08-14 - U6.P6AO closes scanner-normalized NPS identification
+
+- Leave-one-slide-out normalization across four real scanner/software
+  pipelines improves 82.47% of 3,960 normalized patch spectra, but median
+  improvement is only 12.29% against the frozen 15% gate.
+- The median wrong/correct slide distance ratio is 1.383, while patchwise
+  wrong-slide separation is only 72.78% against the frozen 75% gate. Two
+  complete reports are byte exact (`779eb2d4...c15de`).
+- Close this exact target set without changing bands, patches, scanners or
+  thresholds. Scanner normalization is useful, but material-specific NPS is
+  not identified; a new leaf needs an independent calibrated observation.

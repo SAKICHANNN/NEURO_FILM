@@ -1,0 +1,39 @@
+{
+  "schema": "neuro-film.u6-p6ao-scanner-normalized-nps-identifiability-d1-evidence.v1",
+  "experiment_id": "U6.P6AO",
+  "implementation_commit": "e31371c8",
+  "bindings": {
+    "contract_file_sha256": "5305f00dff219bb1d5bb8034fbf014a9ec71d7467500bf61d8f604ba3ede0b3a",
+    "contract_canonical_sha256": "78ca14c7e8e5e61d1f0d39062feaeec32491034edd74e215a2d1c64d57c98c11",
+    "evaluator_sha256": "4a4a7ba84c734a0475a04a9937a104d454889f97852942771c7d8f7d04e6218e",
+    "runner_sha256": "4d3c49d24d396f6e06fce36253e4c9b2f4f28d8ef2cb6483bc8a46f775781bcf",
+    "test_sha256": "15137252033bfacfb946f5d058a745c63b846793e5f5280e18f90bedb318f969",
+    "formal_a_report_sha256": "779eb2d46cade221d85ffb1decce075b5b9154dffc2bf53eb5684aca0e1c15de",
+    "formal_b_report_sha256": "779eb2d46cade221d85ffb1decce075b5b9154dffc2bf53eb5684aca0e1c15de"
+  },
+  "stable_evidence_id": "c39a981b6af6777a9568331e3b05e6c6e86479453f193f1c2ac49e27a6f260f2",
+  "observations": {
+    "formal_reports_byte_exact": true,
+    "folds": 15,
+    "valid_patch_spectra": 3960,
+    "normalized_improvement_rate": 0.8247474747474748,
+    "median_improvement_over_raw_fraction": 0.12293282832616115,
+    "raw_median_log_nps_distance": 0.3427385443900753,
+    "normalized_median_log_nps_distance": 0.3006047257518118,
+    "wrong_slide_separation_rate": 0.7277777777777777,
+    "wrong_slide_median_log_nps_distance": 0.4156445866176538,
+    "median_wrong_slide_distance_ratio": 1.3826947849144007,
+    "minimum_common_non_dc_energy": 0.00030101305551637176,
+    "limited_pixel_fraction": 0.00005091521269790939,
+    "out_of_cube_fraction": 0.0,
+    "maximum_repeat_error": 0.0
+  },
+  "failed_gates": [
+    "minimum_median_improvement_over_raw_fraction",
+    "minimum_wrong_slide_separation_rate"
+  ],
+  "decision": "close_scanner_normalized_nps_identifiability_on_this_target_set",
+  "interpretation": "Leave-one-slide-out scanner normalization materially reduces normalized-patch NPS distance on this same-slide set, and the population-level wrong/correct distance ratio passes. It does not meet the frozen median-improvement or patchwise wrong-slide-separation gates, so scanner-normalized material structure is not identified. No threshold, frequency-band, patch, scanner or cohort rescue is allowed.",
+  "next_leaf": "Require an independently calibrated material observation or repeated physical scan acquisition that separates scanner response from material structure; do not fit another NPS variant on this target set.",
+  "claim_ceiling": "One Velvia 100F ColorReference target set across four real scanner/software pipelines; normalized-patch scanner/NPS failure analysis only, not microscopic grain, stock calibration, independent-roll population, product or redistribution evidence."
+}
