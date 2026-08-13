@@ -1,0 +1,64 @@
+{
+  "schema": "neuro-film.u5-r2cham7-portra400-bounded-operator-d1-contract.v1",
+  "experiment_id": "U5.R2CHAM7",
+  "question": "On the unchanged registered Portra chart observations, does the already-published cube-preserving 24-parameter trilinear log-odds residual over a positive global film-response base outperform that base and shuffled correspondence without the CHAM6 range and Jacobian failures?",
+  "disclosure": {
+    "cham6_result_seen_before_freeze": true,
+    "same_chart_observations_reused": true,
+    "independent_confirmation_claim_allowed": false,
+    "purpose": "development mechanism comparison after CHAM6 showed useful fit but unsafe range and orientation"
+  },
+  "parents": {
+    "cham6_contract": {
+      "path": "configs/u5_r2cham6_portra400_chart_operator_d1_v1.json",
+      "sha256": "c2aae6444eca2da6e8a580cfc01c614173252d1036a967ec4c4f2cf03799e373"
+    },
+    "cham6_report": {
+      "path": "outputs/u5_r2cham6_portra400_chart_operator_d1_v1/formal_a.json",
+      "sha256": "cc4d4f97dffb493a7218d9ae8bd998c57806683083acb0da86b1d56caa4c8738",
+      "required_decision": "close_equation_family_on_this_chart_and_retain_simpler_affine_control",
+      "required_stable_evidence_id": "a71f304ae56895200e4a3730885eed8f3b2f07a7ad1c43d91b71a2b0bf0cdf69"
+    },
+    "representation_decision": {
+      "path": "configs/u5_r2as1_gaussian_trilinear_equal_parameter_decision_v1.json",
+      "sha256": "f20b008fc7fcae44784bd9c1aa7b2fc798125e40a5323becc84133e9cd1d2d18",
+      "required_decision": "prefer_the_simpler_equal_parameter_trilinear_log_odds_baseline_and_close_gaussian_specific_priority"
+    }
+  },
+  "sampling": "reuse_exact_cham6_linear_srgb_samples_blocks_and_folds",
+  "models": {
+    "base": {
+      "family": "positive_film_response_one_matrix",
+      "identity_mixture": 0.25,
+      "restart_count": 3,
+      "maximum_function_evaluations": 2500,
+      "seed": 31710
+    },
+    "candidate": {
+      "family": "fixed_neutral_trilinear_log_odds",
+      "fitted_scalar_count": 24,
+      "ridge": 1.0,
+      "fit_epsilon": 0.000001
+    },
+    "wrong_target_roll": 137
+  },
+  "audit": {
+    "jacobian_cube_size": 5,
+    "jacobian_step": 0.0001,
+    "neutral_axis_rows": 257
+  },
+  "gates": {
+    "minimum_improvement_over_base_fraction": 0.05,
+    "minimum_fold_win_fraction_over_base": 0.75,
+    "minimum_worst_fold_improvement_over_base_fraction": -0.1,
+    "minimum_improvement_over_correspondence_shuffled_fraction": 0.05,
+    "maximum_candidate_rmse": 0.08,
+    "minimum_jacobian_determinant_exclusive": 0.0,
+    "maximum_jacobian_spectral_norm": 4.0,
+    "maximum_neutral_axis_residual": 1e-12,
+    "maximum_repeat_error": 0.0
+  },
+  "decision_if_pass": "retain_bounded_trilinear_family_as_one_session_chart_development_candidate_only",
+  "decision_if_fail": "close_bounded_trilinear_family_on_this_chart_and_retain_simpler_global_control",
+  "claim_ceiling": "Post-CHAM6 same-chart development mechanism comparison only; not independent confirmation, natural-scene transfer, Portra 400 calibration, process, paper, scanner, product, redistribution or commercial-use evidence."
+}
