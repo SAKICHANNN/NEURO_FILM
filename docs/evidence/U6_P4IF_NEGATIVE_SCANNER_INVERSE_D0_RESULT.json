@@ -1,0 +1,39 @@
+{
+  "schema": "neuro-film.u6-p4if-negative-scanner-inverse-d0-evidence.v1",
+  "experiment_id": "u6-p4if-negative-scanner-inverse-d0-v1",
+  "date": "2026-08-13",
+  "implementation": {
+    "config_sha256": "95e9734f228823b0fa8f4d345354596d2f7250bc3c961337fe46990111e12056",
+    "core_sha256": "b20103a61c3d30ee69f043b9ddfa92195f58f37be4041623eb88414a398bd84d",
+    "evaluator_sha256": "b15e442812806c8a6afa4a60cd7af224bacfe9452d1a60aeec48b9e55b565a12",
+    "runner_sha256": "452aa3ac9f39606951b33eee2e0271a20b63016a919c14b7e9aa4f75ba2e2022",
+    "core_test_sha256": "ae184d9de29855f5a1c5f797fdd9f819aa9b40867200d0ecf8eb2aac2b7c60fa",
+    "evaluator_test_sha256": "d820787a2e0319deb30aecf062cf63eabd334840ffa624803b96991c3d117bad"
+  },
+  "formal_runs": {
+    "count": 2,
+    "report_sha256": "c55d09e07f3ae8c2d51803167309a22ec1c1e5b1e4762ada980422704650ff54",
+    "repeat_report_sha256_exact": true,
+    "stable_evidence_id": "163af22b4b13f53cc47b3c34542fbad057b770e780d4e08b44f2f2d18746a7c0",
+    "temporary_output_root": "D:/nf-019f4b76-p4id-fallback/p4if"
+  },
+  "metrics": {
+    "sample_count": 274625,
+    "inverse_density_max_abs": 5.960464477539062e-7,
+    "positive_rgb_max_abs": 5.960464477539062e-7,
+    "neutral_rgb_spread_max": 4.172325134277344e-7,
+    "primary_channel_order_max_abs": 1.1920928955078125e-7,
+    "endpoint_only_control_median_abs": 0.18132412433624268,
+    "endpoint_only_control_p95_abs": 0.48466798663139343,
+    "endpoint_only_control_max_abs": 0.7010434865951538
+  },
+  "decision": "retain_explicit_negative_scanner_inverse_for_photographic_development",
+  "interpretation": "A full inverse of the frozen log scanner compiler recovers the analytical CMY amounts and their complementary positive RGB interpretation. Independent per-channel endpoint inversion fails badly because it cannot remove scanner/dye spectral cross-talk; that failure explains why a direct layer-transmittance interpretation cannot repair P4IC.",
+  "verification": {
+    "two_formal_runs_exact": "PASS",
+    "ruff_no_cache": "PASS",
+    "py_compile_d_cache": "PASS"
+  },
+  "claim_ceiling": "Synthetic analytical validation of an explicitly invertible log scanner compiler and CMY-to-positive interpretation. Not a measured scanner inverse, stock calibration, photo evidence, product operator or claim that real scanner pipelines are exactly invertible.",
+  "next_leaf": "Map manufacturer characteristic layer densities into normalized CMY dye amounts, pass them through the fixed scanner compiler/inverse interpretation, and test whether the resulting photo chain closes the P4IC cast/tone failure without fitting the photo cohort."
+}

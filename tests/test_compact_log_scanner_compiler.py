@@ -4,6 +4,8 @@ import pytest
 from src.film_physics.compact_log_scanner_compiler import (
     CompactLogScannerCompiler,
     apply_compact_log_scanner,
+    interpret_negative_scan_relative,
+    invert_compact_log_scanner,
 )
 
 COMPILER = CompactLogScannerCompiler(
@@ -56,3 +58,45 @@ def test_dtype_and_shape_fail_closed() -> None:
         apply_compact_log_scanner(np.zeros((2, 3), dtype=np.float64), COMPILER)
     with pytest.raises(ValueError):
         apply_compact_log_scanner(np.zeros((2, 2), dtype=np.float32), COMPILER)
+
+
+def test_negative_interpretation_binds_clear_and_maximum_density_endpoints() -> None:
+    endpoints = apply_compact_log_scanner(
+        np.asarray(((0.0, 0.0, 0.0), (1.0, 1.0, 1.0)), dtype=np.float32),
+        COMPILER,
+    )
+    values = interpret_negative_scan_relative(
+        endpoints,
+        clear_scan_rgb=endpoints[0],
+        maximum_density_scan_rgb=endpoints[1],
+    )
+    assert np.max(np.abs(values[0] - 1.0)) <= 2e-7
+    assert np.max(np.abs(values[1])) <= 2e-7
+
+
+def test_negative_interpretation_rejects_outside_endpoint_values() -> None:
+    clear = np.ones(3, dtype=np.float32)
+    maximum = np.full(3, 0.2, dtype=np.float32)
+    with pytest.raises(ValueError, match="outside"):
+        interpret_negative_scan_relative(
+            np.full((1, 3), 1.1, dtype=np.float32),
+            clear_scan_rgb=clear,
+            maximum_density_scan_rgb=maximum,
+        )
+
+
+def test_compact_scanner_inverse_recovers_mixed_dye_amounts() -> None:
+    levels = np.linspace(0.0, 1.0, 17, dtype=np.float32)
+    density = np.asarray(
+        [(a, b, c) for a in levels for b in levels for c in levels],
+        dtype=np.float32,
+    )
+    recovered = invert_compact_log_scanner(
+        apply_compact_log_scanner(density, COMPILER), COMPILER
+    )
+    assert np.max(np.abs(recovered - density)) <= 4e-6
+
+
+def test_compact_scanner_inverse_rejects_nonpositive_values() -> None:
+    with pytest.raises(ValueError, match="positive"):
+        invert_compact_log_scanner(np.zeros((1, 3), dtype=np.float32), COMPILER)

@@ -12942,3 +12942,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Two exact formal runs over 274,625 cube samples plus 4,097 samples per dye axis: report SHA `99e7f442...d7707`, stable `32be7b5e...079fa`; float32-vs-float64 max error `9.37e-8`, repeat error zero, strict nonincreasing dye axes, all invalid inputs rejected.
 - Decision: retain for analytical-chain development only. P-backed pytest remained unresponsive; direct full-population assertions and Ruff passed via owned D cache.
 - Next: explicit negative scanner inversion/neutral interpretation on analytical wedges; no photographs until that domain boundary passes.
+## 2026-08-13 — U6.P4IF explicit negative scanner inverse
+
+- Added a condition-bounded inverse of the P4ID log scanner compiler plus explicit CMY-to-complementary-positive interpretation.
+- Two exact 274,625-sample runs: report SHA `c55d09e0...0ff54`, stable `163af22b...a7c0`; density/positive recovery max `5.96e-7`, neutral spread `4.17e-7`, channel order error `1.19e-7`.
+- Decisive control: independent scanner-channel endpoint inversion remains highly wrong (median/p95/max `.181/.485/.701`) because it leaves spectral cross-talk mixed.
+- Decision: retain the full inverse for cohort-free photographic development; no measured scanner or calibration claim.
