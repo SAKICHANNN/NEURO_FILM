@@ -13187,3 +13187,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Test one ordered mechanism next: AO6 base as upstream neutral base, then the
   neutral physical structure, then downstream residual. This is a double-count
   ablation, not a threshold, amplitude or cohort-fit rescue.
+
+### 2026-08-14 - U6.P4IR confirms ordering but still fails boundaries
+
+- Two corrected reports replay byte exactly (`738c2079...5c18ca`). Moving AO6
+  base upstream closes the chroma gate at `.003066`, supporting P4IQ's causal
+  attribution; all materiality, tail, flat and repeat gates also pass.
+- Three isolated excursions and `.2102%` new boundary pixels remain, so fresh
+  confirmation stays closed. The initial report's repeat failure was an
+  implementation-only old-order replay check and was corrected before formal
+  evidence; the boundary failures were preserved.
+- Next apply the already frozen source-inclusive analytical rail to the
+  base-to-structure step. Do not clip, tune amplitude or relax gates.

@@ -1,0 +1,25 @@
+{
+  "schema": "neuro-film.u6-p4ir-base-then-neutral-structure-ao6-d0-evidence.v1",
+  "experiment_id": "u6-p4ir-base-then-neutral-structure-ao6-d0-v1",
+  "implementation_commits": ["60d786fc", "959ddb43"],
+  "formal_report_sha256": "738c2079cf8e6db7b985ec66d36288bcee597f78798e5984454805a13c5c18ca",
+  "stable_evidence_id": "81d002ee4dfaac0ccd761ae1cdd49aef9c29cfce21b7311224140c71eb74c049",
+  "formal_processes": 2,
+  "byte_exact_replay": true,
+  "automatic_pass": false,
+  "fresh_confirmation_allowed": false,
+  "metrics": {
+    "population_p95_combined_vs_matched_abs": 0.011918312907218924,
+    "population_p99_combined_vs_matched_abs": 0.015279648971557605,
+    "maximum_flat_region_p99_combined_vs_matched_abs": 0.016391255855560304,
+    "maximum_high_frequency_chroma_p999": 0.003065996403417952,
+    "total_isolated_excursions": 3,
+    "maximum_new_boundary_fraction_vs_matched": 0.002101898193359375,
+    "maximum_arm_output_code_boundary_fraction": 0.002101898193359375,
+    "maximum_repeat_error": 0.0
+  },
+  "failed_gates": ["maximum_isolated_excursions", "maximum_new_boundary_fraction_vs_matched"],
+  "decision": "close_ordered_neutral_structure_and_retain_fixed_ao6",
+  "interpretation": "Moving the fixed AO6 base before neutral structure closes the chroma gate without retuning, confirming the P4IQ double-count attribution. The exact mechanism still creates three isolated excursions and new code-boundary pixels because its base-to-structure step is bounded only by the unit cube, not the frozen source-inclusive output rails.",
+  "claim_ceiling": "Automatic double-counting mechanism D0 on five bundled natural photographs; not physical-order truth, preference, calibration or product promotion."
+}
