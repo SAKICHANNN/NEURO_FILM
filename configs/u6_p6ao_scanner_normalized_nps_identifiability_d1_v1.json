@@ -1,0 +1,53 @@
+{
+  "schema": "neuro-film.u6-p6ao-scanner-normalized-nps-identifiability-d1-contract.v1",
+  "experiment_id": "U6.P6AO",
+  "question": "Does leave-one-slide-out analytical scanner-nuisance normalization make same-slide high-frequency NPS more consistent across real scanner/software pipelines than raw device RGB and cyclic wrong-slide controls?",
+  "parents": {
+    "p6al_evidence": {
+      "path": "docs/evidence/U6_P6AL_SAFE_RESIDUAL_SCANNER_REPLICATION_D1_RESULT.json",
+      "sha256": "8269018e166b78365ba71c12733aacd5d2ada6c921612897bc426b0f49adaa43",
+      "required_decision": "retain_analytical_safe_residual_as_cross_source_scanner_nuisance_mechanism_d1"
+    },
+    "scanner_contract": {
+      "path": "configs/sf2_7a_scanner_nuisance_quantification_v1.json",
+      "sha256": "0f8a3a701fd03e0ac811eb28a6b254e176a87fcf0f4accf3c5d0c4e70e90a5ad"
+    },
+    "source_audit": {
+      "path": "outputs/sf2_7r_colorreference_scanner_nuisance_v1/audit_pass1.json",
+      "sha256": "b88da41c129b58087c68194f21545c1f7b708be91ba7d1b868ce50579d410fb6",
+      "required_all_checks_passed": true
+    }
+  },
+  "execution": {
+    "reference_pipeline": "nikon_ls9000_nikonscan",
+    "candidate_pipelines": [
+      "nikon_ls50_nikonscan",
+      "nikon_ls50_vuescan",
+      "nikon_ls50_second_device"
+    ],
+    "split": "leave-one-slide-out",
+    "normalizer": "p6ak-per-sample-maximum-safe-scale-along-p6g-affine-residual",
+    "inner_patch_fraction": 0.5,
+    "radial_frequency_edges_cycles_per_pixel": [0.0, 0.03125, 0.0625, 0.09375, 0.125, 0.1875, 0.25, 0.3535533905932738, 0.5],
+    "detrend": "subtract-channel-mean-then-hann-window",
+    "wrong_slide_roll": 1,
+    "fit_on_held_slide_forbidden": true,
+    "hard_clipping_allowed": false,
+    "posthoc_nps_fit_allowed": false
+  },
+  "gates": {
+    "required_folds": 15,
+    "minimum_valid_patch_spectra": 3000,
+    "minimum_normalized_improvement_rate": 0.75,
+    "minimum_median_improvement_over_raw_fraction": 0.15,
+    "minimum_wrong_slide_separation_rate": 0.75,
+    "minimum_median_wrong_slide_distance_ratio": 1.1,
+    "maximum_normalized_median_log_nps_distance": 0.5,
+    "minimum_common_non_dc_energy": 1e-8,
+    "maximum_out_of_cube_fraction": 0.0,
+    "maximum_repeat_error": 0.0
+  },
+  "decision_if_pass": "retain_scanner_normalized_same_slide_nps_as_material_structure_identifiability_d1",
+  "decision_if_fail": "close_scanner_normalized_nps_identifiability_on_this_target_set",
+  "claim_ceiling": "One Velvia 100F ColorReference target set across four real scanner/software pipelines; scanner-normalized same-slide NPS identifiability only, not microscopic grain, stock calibration, independent-roll population, product or redistribution evidence."
+}
