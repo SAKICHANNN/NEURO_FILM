@@ -27,6 +27,7 @@
         "development_time_minutes": [0.0, 30.0],
         "contrast_index": [0.0, 1.2]
       },
+      "raster_reference_dpi": 300,
       "maximum_source_pixel_error": 3.0,
       "paths": {
         "hc110_b": {"element_index": 1627, "path_sha256": "c0342f1f3758c51200c265e4e780df2c6e750a94a8a2c9499aae24c677678115"},
@@ -40,7 +41,7 @@
     }
   },
   "analysis": {
-    "shared_contrast_indices": [0.55, 0.65, 0.75, 0.85],
+    "shared_contrast_indices": [0.55, 0.62, 0.7, 0.78],
     "interpolation": "piecewise-linear in source vector coordinates",
     "common_time_shift_control": "subtract each developer's mean log development time over the four shared contrast indices",
     "uncertainty": "recompute every signature under all axis-aligned plus/minus maximum-source-pixel-error perturbations of each path; compare observed separation to the resulting worst-case envelope",
