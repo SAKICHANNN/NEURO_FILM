@@ -13033,3 +13033,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Stop one-pair texture fitting. Repeat scans or multiple independently
   exposed same-density film patches are required before a spatial profile can
   be identified.
+
+### 2026-08-14 - U5.R2CHAM9 closes publisher SpektraFilm chart baseline
+
+- The publisher-supplied Portra 400 + Fuji DPii parameters were executed with
+  the fixed external SpektraFilm source while spatial and stochastic effects
+  stayed disabled. Two full RAW-decode/render reports are byte exact
+  (`0b52cb10...72af`, stable `2b28c6c3...c304`).
+- The candidate is bounded but only improves the held-block affine control by
+  `.6065%`, wins one of four folds, has RMSE `.18599` and regresses the worst
+  fold by `12.18%`. All value/accuracy/stability gates fail.
+- Retain SpektraFilm as a mature cited baseline; close this parameter file as a
+  predictive chart operator without tuning. The next useful leaf requires a
+  genuinely new calibrated/repeated observation, not more one-chart fitting.

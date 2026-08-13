@@ -1,0 +1,28 @@
+{
+  "schema": "neuro-film.u5-r2cham9-spektrafilm-author-baseline-d1-evidence.v1",
+  "experiment_id": "U5.R2CHAM9",
+  "implementation_commit": "ea7a85093d5ba6976fb847cae1010747e68677c9",
+  "bindings": {
+    "config_sha256": "2430a8629a915aa5139a3e1d705329e35a985b12bfd7b9ccc6e57a938aa1ff95",
+    "evaluator_sha256": "56c08305d98798632d339cdf423c6845f30fe7a23f115cd1a56578ca6a11aec2",
+    "runner_sha256": "07b04914801e68d315cbb56364daff46b836ee3bd2c3bc7fd4b9ede3d011650e",
+    "test_sha256": "acb290ba1d7216813f8db0f75ef076ea6a6f9f9ca6d77169d8b46c9ffa5b2b50",
+    "external_source_commit": "6cd00c8d4f30b5b550f50f4bbd3753c9f2a48507",
+    "formal_a_report_sha256": "0b52cb100deef3184869f98c9f921327762ddcb19c35c87721701c5d1f5272af",
+    "formal_b_report_sha256": "0b52cb100deef3184869f98c9f921327762ddcb19c35c87721701c5d1f5272af"
+  },
+  "stable_evidence_id": "2b28c6c32c1d702cd66c5ae7dadfb14c282efa9d2cbbead59ba2223e89b5c304",
+  "observations": {
+    "formal_reports_byte_exact": true,
+    "held_block_affine_rmse": 0.18712153190160785,
+    "author_candidate_rmse": 0.1859865592933911,
+    "improvement_over_held_block_affine_fraction": 0.006065430293791807,
+    "fold_win_fraction": 0.25,
+    "worst_fold_improvement_fraction": -0.12183195437637506,
+    "out_of_cube_fraction": 0.0
+  },
+  "decision": "close_author_spektrafilm_parameters_as_predictive_chart_baseline",
+  "interpretation": "The exact publisher parameter file and fixed external renderer are finite, bounded and reproducible, but they improve the held-block affine control by only 0.61%, win one of four folds and regress the worst fold by 12.18%. Mature physical/spectral components are therefore retained as a cited baseline, not as a predictive Portra calibration or a reason to tune this one chart.",
+  "next_leaf": "Acquire a genuinely new identifying observation: independently exposed or repeated calibrated film/scanner measurements. Do not rescue the same chart or refit the publisher parameters.",
+  "claim_ceiling": "One unlicensed publisher-shared chart and one external GPL/CC-BY-SA research renderer baseline; not Portra 400 calibration, natural-scene transfer, scanner/process separation, product, redistribution or commercial-use evidence."
+}
