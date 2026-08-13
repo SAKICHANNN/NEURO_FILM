@@ -1,0 +1,107 @@
+{
+  "schema": "neuro_film.u5-r2bu9-kodak-vision3-200t-raster-signature-contract.v1",
+  "experiment_id": "U5.R2BU9",
+  "node": "ULT > U5 > U5.R2 > U5.R2BU9",
+  "date_frozen": "2026-08-13",
+  "question": "Does Kodak's first-party March 2026 VISION3 200T datasheet add a reproducible multi-domain source signature beyond the frozen VISION3 50D, 250D and 500T observed profiles?",
+  "source": {
+    "title": "KODAK VISION3 200T Color Negative Film 5213 / 7213 Technical Data",
+    "url": "https://www.kodak.com/content/pdfs/motion/KODAK-VISION3-200T-5213-7213-technical-information.pdf",
+    "path": "data/physics/kodak_vision3_200t_2026/KODAK_VISION3_200T_5213_7213_technical_information.pdf",
+    "expected_bytes": 705407,
+    "sha256": "6208b3938416434bb74fc628d102b59cd60cb1704510202496b46197796ec624",
+    "publisher": "Eastman Kodak Company",
+    "publication": "H-1-5213 Revised 3-26",
+    "stock_id": "kodak_vision3_200t_5213_7213",
+    "measurement_context": {
+      "nominal_balance": "3200 K tungsten",
+      "process": "ECN-2",
+      "densitometry": "Status M",
+      "granularity_aperture_micrometres": 48.0,
+      "manufacturer_curve_scope": "representative production coatings, not a standard or a particular roll"
+    }
+  },
+  "raster_source": {
+    "page_zero_based": 2,
+    "characteristic": {
+      "embedded_image_index": 1,
+      "png_sha256": "03ccf5befa2c9578c51d4944edc51e9d82b099a8813f172228c70a6574fa4b45",
+      "dimensions": [716, 737],
+      "x_axis": {"scale": "linear", "anchors": [[0.0, 108.0], [5.0, 675.0]]},
+      "y_axis": {"scale": "linear", "anchors": [[0.0, 665.0], [3.0, 97.0]]},
+      "trace_y_bounds": [100, 650],
+      "endpoint_y": {"blue": 154, "green": 192, "red": 321},
+      "maximum_step": 5,
+      "continuity_penalty": 0.2
+    },
+    "mtf": {
+      "embedded_image_index": 2,
+      "png_sha256": "65c0347d63a2413834ddfd7ec8e41f49c42d0f945cd2483c28833db501e1a983",
+      "dimensions": [757, 642],
+      "x_axis": {"scale": "log10", "anchors": [[1.0, 111.0], [600.0, 733.0]]},
+      "y_axis": {"scale": "log10", "anchors": [[1.0, 563.0], [200.0, 90.0]]},
+      "trace_y_bounds": [90, 365],
+      "endpoint_y": {"blue": 211, "green": 225, "red": 315},
+      "maximum_step": 5,
+      "continuity_penalty": 0.2
+    },
+    "granularity": {
+      "embedded_image_index": 0,
+      "png_sha256": "90fdc665c8047e39893318bc2aee987bb2d53881726ca924ad9dc2c0e527e42a",
+      "dimensions": [587, 538],
+      "x_axis": {"scale": "linear", "anchors": [[0.0, 70.0], [5.0, 505.0]]},
+      "y_axis": {"scale": "log10", "anchors": [[0.001, 477.0], [0.1, 201.0]]},
+      "trace_y_bounds": [250, 455],
+      "endpoint_y": {"blue": 370, "green": 403, "red": 414},
+      "maximum_step": 5,
+      "continuity_penalty": 0.2
+    }
+  },
+  "required_text_anchors": [
+    "MARCH 2026 H-1-5213",
+    "Anti-halation undercoat",
+    "Sensitometric curves determine the change in density",
+    "48-micrometre aperture",
+    "representative of production coatings",
+    "do not apply directly to a particular box or roll"
+  ],
+  "vision3_evidence": {
+    "characteristic_trace": {"path": "configs/data/kodak_vision3_characteristic_curve_pixels_v1.json", "sha256": "e7d9d45cd56066d1cc770c3a506117fcddc4ae52417c6d69d4088e8d0da61dfb"},
+    "characteristic_decision": {"path": "configs/u6_p2t_kodak_vision3_characteristic_diversity_decision_v1.json", "sha256": "9cd529029ad2495382750c6b61d3c0c167cdbb559ddc0cdecb0671411a14e6db", "required_decision": "retain_one_shared_manufacturer_shape_prior_and_close_stock_specific_shape_bank"},
+    "mtf_trace": {"path": "configs/data/kodak_vision3_mtf_curve_pixels_v1.json", "sha256": "d88c0e698c0e0969696224df50f1573ed78a6de0a894075f6502d9b3f658a794"},
+    "mtf_decision": {"path": "configs/u5_r2bu0_kodak_vision3_mtf_diversity_decision_v1.json", "sha256": "eae84870c4c3706228fecbe5696825c7d500020558dab94d8b6177baabe1848e", "required_decision": "retain_source_domain_mtf_signature_and_open_joint_physical_prior"},
+    "granularity_trace": {"path": "configs/data/kodak_vision3_granularity_curve_pixels_v1.json", "sha256": "00b3436c9619a477bf13dcae0ab90df6fd9470bc1976e77484983a4a0029f145"},
+    "granularity_decision": {"path": "configs/u5_r2bu2_kodak_vision3_granularity_diversity_decision_v1.json", "sha256": "d9d55f2d04107fa52c82c5edec219fe9e04cb5634c1ccf6f5ab27e5cc4ebace1", "required_decision": "retain_source_domain_granularity_signature"},
+    "observed_profile_decision": {"path": "configs/u5_r2bu3_vision3_observed_source_profile_decision_v1.json", "sha256": "d4c318a857f788b3ea5fdef292ba44f24f2d4386a03cb02928c77a24424c95a9", "required_decision": "retain_non_renderable_observed_source_profile"}
+  },
+  "comparison": {
+    "vision3_stocks": ["kodak_vision3_50d_5203_7203", "kodak_vision3_250d_5207_7207", "kodak_vision3_500t_5219_7219"],
+    "channels": ["blue", "green", "red"],
+    "characteristic": {"sample_log_relative_exposures": [0.0,0.25,0.5,0.75,1.0,1.25,1.5,1.75,2.0,2.25,2.5,2.75,3.0,3.25,3.5,3.75,4.0,4.25,4.5,4.75,5.0], "normalization": "cumulative-maximum density; subtract first density and divide by span; map 10 and 90 percent crossings to zero and one", "comparison_grid": [-0.1,1.1,257], "metric": "RMSE of gauge-normalized characteristic shape on the intersected normalized-exposure domain", "material_threshold": 0.02},
+    "mtf": {"common_frequencies_cycles_per_mm": [25.0,30.0,35.0,40.0,45.0,55.0,60.0,65.0], "normalization": "subtract per-channel natural-log response at 25 cycles/mm", "metric": "RMSE of normalized natural-log MTF response", "material_threshold": 0.08},
+    "granularity": {"common_log_relative_exposures": [0.25,0.5,0.75,1.0,1.25,1.5,1.75,2.0,2.25,2.5,2.75,3.0,3.25,3.5,3.75,4.0,4.25], "normalization": "subtract per-channel mean natural-log diffuse-rms Sigma-D", "metric": "RMSE of mean-centred natural-log diffuse-rms Sigma-D", "material_threshold": 0.08}
+  },
+  "gates": {
+    "required_source_pages": 4,
+    "required_raster_domains": 3,
+    "required_channels_per_domain": 3,
+    "minimum_material_channels_per_domain_pair": 2,
+    "minimum_material_domains_per_vision3_pair": 2,
+    "minimum_material_vision3_pairs": 3,
+    "maximum_characteristic_monotonic_reversal_density": 0.015,
+    "minimum_characteristic_density_span": 1.5,
+    "minimum_characteristic_10_to_90_exposure_span": 2.0,
+    "minimum_mtf_response_percent": 1.0,
+    "maximum_mtf_response_percent": 110.0,
+    "maximum_mtf_monotonic_increase_percent": 3.0,
+    "minimum_granularity_sigma_d": 0.001,
+    "maximum_granularity_sigma_d": 0.05,
+    "two_byte_identical_audits": true,
+    "visual_overlay_required": true
+  },
+  "branch_rule": {
+    "pass": "retain_vision3_200t_as_fourth_non_renderable_first_party_observed_source_profile",
+    "fail": "retain_exact_2026_source_audit_and_close_200t_profile_bank_expansion_without_rescue"
+  },
+  "claim_ceiling": "First-party March 2026 manufacturer-raster-graph multi-domain source signature for VISION3 200T versus VISION3 50D/250D/500T; not a particular-roll measurement, scanner response, digital-to-film mapping, calibrated appearance or product operator."
+}

@@ -1,0 +1,52 @@
+{
+  "schema": "neuro_film.u5-r2bu9-kodak-vision3-200t-raster-signature-evidence.v1",
+  "experiment_id": "U5.R2BU9",
+  "date": "2026-08-13",
+  "status": "PASS_NON_RENDERABLE_SOURCE_PROFILE",
+  "decision": "retain_vision3_200t_as_fourth_non_renderable_first_party_observed_source_profile",
+  "source": {
+    "url": "https://www.kodak.com/content/pdfs/motion/KODAK-VISION3-200T-5213-7213-technical-information.pdf",
+    "bytes": 705407,
+    "sha256": "6208b3938416434bb74fc628d102b59cd60cb1704510202496b46197796ec624",
+    "publication": "H-1-5213 Revised 3-26"
+  },
+  "implementation": {
+    "contract_sha256": "b717d913b43af36fde3e224e3e918878bd18f6bc72a28775d83cc3887b3c8027",
+    "evaluator_sha256": "cebc3bf5592508036f3c5a7b8b32581c6e14d242e2202ffff6c2c67bafe65e3a",
+    "runner_sha256": "cd4f4917e97a20ed22038a1eaebb1e313ee232d21bdbdaee45199a3e3dafbde9",
+    "test_sha256": "87087151f8baef4c10d7a04aa27c631f6d91ca44674d9f5b67656bca9f36773c"
+  },
+  "formal_runs": {
+    "count": 2,
+    "report_sha256": "6009215cb9cc1f96e321aada8b31e625f00b2714e4e1a68ca7769398cdbb91c1",
+    "overlay_sha256": "496bcd0665b39bf0dcef782e1497343a8a8d26e603031e539d06acc8915a968e",
+    "stable_evidence_id": "f66a00cad51cb65ea9c79255751c56a69d54be0d01d9db80bde8c6bce2c67757",
+    "byte_exact": true,
+    "fallback_root": "D:/nf-019f4b76-p4id-fallback",
+    "fallback_reason": "Canonical P drive remained mounted but directory IO stopped responding; exact official source and seven tracked parent files were hash-bound into the owned D fallback. No C data copy or junction change occurred."
+  },
+  "observations": {
+    "embedded_graphs": {
+      "characteristic": "03ccf5befa2c9578c51d4944edc51e9d82b099a8813f172228c70a6574fa4b45",
+      "mtf": "65c0347d63a2413834ddfd7ec8e41f49c42d0f945cd2483c28833db501e1a983",
+      "granularity": "90fdc665c8047e39893318bc2aee987bb2d53881726ca924ad9dc2c0e527e42a"
+    },
+    "characteristic_density_spans_blue_green_red": [1.8433098591549295, 1.9119718309859155, 1.632042253521127],
+    "characteristic_10_to_90_spans_blue_green_red": [2.9755639097744364, 2.949043062200957, 2.9570833333333333],
+    "material_stock_pairs": [
+      "kodak_vision3_200t_5213_7213__vs__kodak_vision3_50d_5203_7203",
+      "kodak_vision3_200t_5213_7213__vs__kodak_vision3_250d_5207_7207",
+      "kodak_vision3_200t_5213_7213__vs__kodak_vision3_500t_5219_7219"
+    ],
+    "all_frozen_gates_pass": true
+  },
+  "verification": {
+    "focused_and_adjacent_pytest_before_final_endpoint_fix": "8 passed",
+    "ruff_no_cache": "PASS",
+    "py_compile_with_d_cache": "PASS",
+    "git_diff_check": "PASS",
+    "final_result_replay": "two byte-identical reports and overlays"
+  },
+  "claim_ceiling": "First-party March 2026 manufacturer-raster-graph multi-domain source signature for VISION3 200T versus VISION3 50D/250D/500T. This is not a particular-roll measurement, scanner response, digital-to-film mapping, calibrated appearance, render profile or product operator.",
+  "next_leaf": "Run source-only profile-bank robustness with 200T as a fourth observed stock; do not route P4IC or any photographic renderer from this result."
+}

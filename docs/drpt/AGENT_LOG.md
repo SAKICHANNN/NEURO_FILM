@@ -12913,3 +12913,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   neutral-gauge rescue. P7E/P7F already tested that interpretation family and
   P8BP rejected its product value. Retain fixed AO6 and return to independent
   real material/scanner evidence or a mechanism-distinct stock operator.
+## 2026-08-13 — U5.R2BU9 Kodak VISION3 200T first-party source signature
+
+- Node: `ULT > U5 > U5.R2 > U5.R2BU9`; mainline source-domain evidence after U6.P4IC correctly closed direct Status-M transmittance rendering.
+- Latest official Kodak March 2026 VISION3 200T H-1-5213 PDF was hash-bound. Its page-3 graphs are embedded rasters, not PDF vector paths, so a deterministic endpoint-seeded dark-curve tracer was frozen before comparison and the older BU8 vector evaluator was left unchanged.
+- Two corrected formal runs are byte exact: report `6009215c...b91c1`, overlay `496bcd06...a968e`, stable ID `f66a00ca...67757`. All frozen integrity/range/materiality gates pass; 200T is material in at least two of characteristic/MTF/granularity against each of 50D, 250D and 500T.
+- Result: retain 200T only as a fourth non-renderable first-party observed source profile. No scanner/display interpretation, photograph render, stock appearance, calibration or product mapping opens.
+- Infrastructure: canonical P remained mounted but its directory I/O became unresponsive. Exact source plus seven tracked parent files were re-hashed into owned `D:/nf-019f4b76-p4id-fallback`; no C data copy or junction mutation occurred. When P is responsive, copy/verify the new source/report/overlay back through repo-relative paths, then remove the verified fallback.
+- Verification: pre-fix focused+adjacent `8 passed`; corrected formal replay exact; Ruff `--no-cache`, `py_compile` with D cache, and `git diff --check` pass. Next leaf is source-only four-stock profile robustness, not renderer rescue.
