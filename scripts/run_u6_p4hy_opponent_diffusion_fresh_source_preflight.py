@@ -2,15 +2,15 @@
 from __future__ import annotations
 
 import json
-from pathlib import Path
 import subprocess
 import sys
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.eval.rawpixls_confirmation_preflight import run_preflight  # noqa: E402
+from src.eval.rawpixls_confirmation_preflight import run_preflight
 
 
 def main() -> None:
