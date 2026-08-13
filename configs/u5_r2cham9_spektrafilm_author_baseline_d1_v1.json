@@ -1,0 +1,40 @@
+{
+  "schema": "neuro-film.u5-r2cham9-spektrafilm-author-baseline-d1-contract.v1",
+  "experiment_id": "U5.R2CHAM9",
+  "question": "Does the publisher-supplied Portra 400 plus Fuji DPii SpektraFilm parameter set predict the registered chart materially better than the CHAM6 held-block affine control without fitting this chart?",
+  "parents": {
+    "cham6_contract": {
+      "path": "configs/u5_r2cham6_portra400_chart_operator_d1_v1.json",
+      "sha256": "c2aae6444eca2da6e8a580cfc01c614173252d1036a967ec4c4f2cf03799e373"
+    },
+    "cham8_evidence": {
+      "path": "docs/evidence/U5_R2CHAM8_PORTRA400_CHART_TEXTURE_D0_RESULT.json",
+      "sha256": "8bdd0c4cd486aeee9dce31ae1a5189e15aa916abfc55b22fe81778f28e1a115a",
+      "required_decision": "close_one_pair_texture_signal_without_structure_fitting"
+    },
+    "publisher_parameters": {
+      "path": "data/quarantine/spektrafilm_portra400_same_scene_v1/Anthony Gansauer Portra 400 + Fuji DPii GUI Parameters file.json",
+      "sha256": "0c1b11b42642933570f296298429c7fbf4780cfacfe3e599e74cf6f3063d2bf8"
+    }
+  },
+  "external_runtime": {
+    "source_root": "data/physical_reference/spektrafilm_dev_2026_v1",
+    "source_commit": "6cd00c8d4f30b5b550f50f4bbd3753c9f2a48507",
+    "python": "data/physical_reference/spektrafilm_dev_runtime_py31314/embed/python/python.exe",
+    "input_decode": "SpektraFilm as-shot RAW to linear ProPhoto RGB, uniformly area-resized to the CHAM6 half-size geometry",
+    "spatial_effects": false,
+    "stochastic_effects": false,
+    "chart_fitting_allowed": false
+  },
+  "gates": {
+    "minimum_improvement_over_held_block_affine_fraction": 0.05,
+    "minimum_fold_win_fraction": 0.75,
+    "minimum_worst_fold_improvement_fraction": -0.1,
+    "maximum_candidate_rmse": 0.08,
+    "maximum_out_of_cube_fraction": 0.005,
+    "maximum_repeat_error": 0.0
+  },
+  "decision_if_pass": "retain_author_spektrafilm_parameters_as_internal_portra_chart_baseline_only",
+  "decision_if_fail": "close_author_spektrafilm_parameters_as_predictive_chart_baseline",
+  "claim_ceiling": "One unlicensed publisher-shared chart and one external GPL/CC-BY-SA research renderer baseline; not Portra 400 calibration, natural-scene transfer, scanner/process separation, product, redistribution or commercial-use evidence."
+}
