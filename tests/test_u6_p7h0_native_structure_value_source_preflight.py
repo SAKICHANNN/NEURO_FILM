@@ -54,6 +54,16 @@ def test_p7h0_contract_is_bound_and_program_wide_fresh() -> None:
 
 def test_p7h0_opens_only_the_fixed_four_arm_value_ablation() -> None:
     config = _config()
+    assert config["selection"]["orientation_policy"] == "libraw_metadata_orientation"
+    amendment = config["source_integrity_amendment"]
+    assert amendment["algorithm_outputs_observed"] == 0
+    assert amendment["visual_review_completed"] is True
+    assert len(amendment["included_ids_in_order"]) == 9
+    assert {row["id"] for row in amendment["excluded"]} == {
+        "sony_dsc_rx1rm3",
+        "nikon_z50_2",
+        "huawei_sne_lx1",
+    }
     assert config["training_allowed"] is False
     assert config["operator_fitting_allowed"] is False
     assert config["next_leaf"]["source_context_built_from_original_only"] is True

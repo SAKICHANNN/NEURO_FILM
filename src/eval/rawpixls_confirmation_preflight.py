@@ -119,6 +119,21 @@ def validate_contract(root: Path, config: dict[str, Any]) -> None:
             raise ConfirmationSourceError("comparison manifest drift")
     if config.get("training_allowed") or config.get("operator_fitting_allowed"):
         raise ConfirmationSourceError("preflight must forbid learning/fitting")
+    amendment = config.get("source_integrity_amendment")
+    if amendment is not None:
+        included = [str(value) for value in amendment["included_ids_in_order"]]
+        excluded = [str(row["id"]) for row in amendment["excluded"]]
+        candidate_ids = {str(row["id"]) for row in rows}
+        if len(included) != len(set(included)) or len(excluded) != len(set(excluded)):
+            raise ConfirmationSourceError("source-integrity IDs must be unique")
+        if set(included) & set(excluded):
+            raise ConfirmationSourceError("included and excluded source IDs overlap")
+        if set(included) | set(excluded) != candidate_ids:
+            raise ConfirmationSourceError(
+                "source-integrity decision must partition every frozen candidate"
+            )
+        if not amendment.get("visual_review_completed"):
+            raise ConfirmationSourceError("source-integrity visual review is incomplete")
 
 
 def _download_exact(
@@ -168,14 +183,29 @@ def _download_exact(
     return destination.stat().st_size, digest
 
 
-def _render_raw(raw_path: Path, output_path: Path, max_side: int) -> Image.Image:
+def _render_raw(
+    raw_path: Path,
+    output_path: Path,
+    max_side: int,
+    *,
+    orientation_policy: str = "fixed_user_flip_0",
+) -> Image.Image:
+    if orientation_policy not in {
+        "fixed_user_flip_0",
+        "libraw_metadata_orientation",
+    }:
+        raise ConfirmationSourceError("unsupported RAW orientation policy")
     with rawpy.imread(str(raw_path)) as raw:
         rgb = raw.postprocess(
             use_camera_wb=True,
             no_auto_bright=False,
             output_bps=8,
             gamma=(2.222, 4.5),
-            user_flip=0,
+            user_flip=(
+                None
+                if orientation_policy == "libraw_metadata_orientation"
+                else 0
+            ),
         )
     image = ImageOps.exif_transpose(Image.fromarray(rgb, mode="RGB"))
     image.thumbnail((max_side, max_side), Image.Resampling.LANCZOS)
@@ -429,6 +459,9 @@ def run_preflight(
     raw_root = root / config["selection"]["download_root"]
     decoded_root = root / config["selection"]["decoded_root"]
     max_side = int(config["selection"]["maximum_decoded_side"])
+    orientation_policy = str(
+        config["selection"].get("orientation_policy", "fixed_user_flip_0")
+    )
     per_file_cap = max(
         int(config["maximum_download_bytes"]) // len(config["candidates"]) * 2,
         32 * 1024 * 1024,
@@ -451,7 +484,12 @@ def run_preflight(
             downloaded_bytes += size
             if downloaded_bytes > int(config["maximum_download_bytes"]):
                 raise ConfirmationSourceError("aggregate download exceeds cap")
-            image = _render_raw(raw_path, decoded_path, max_side)
+            image = _render_raw(
+                raw_path,
+                decoded_path,
+                max_side,
+                orientation_policy=orientation_policy,
+            )
             diagnostics = image_diagnostics(image)
             row = {
                 "manifest_schema_version": 1,
@@ -492,7 +530,7 @@ def run_preflight(
                     "auto_bright_disabled": False,
                     "gamma": [2.222, 4.5],
                     "output_bits": 8,
-                    "orientation": "fixed_user_flip_0_then_exif_transpose",
+                    "orientation": orientation_policy,
                     "maximum_side": max_side,
                     "resampler": "Pillow_LANCZOS",
                     "encoding": "RGB8_PNG_compress_level_6",
@@ -501,8 +539,24 @@ def run_preflight(
             }
             validate_manifest_row(row)
             rows.append(row)
-        except Exception as exc:  # preserve all frozen-row failures
+        except Exception as exc:  # noqa: BLE001 - preserve frozen-row failures
             failures.append({"id": str(source["id"]), "error": repr(exc)})
+
+    acquired_decoded_rows = list(rows)
+    amendment = config.get("source_integrity_amendment")
+    visual_exclusions: list[dict[str, str]] = []
+    if amendment is not None:
+        rows_by_id = {str(row["id"]): row for row in rows}
+        rows = [
+            rows_by_id[source_id]
+            for source_id in amendment["included_ids_in_order"]
+            if source_id in rows_by_id
+        ]
+        visual_exclusions = [
+            {"id": str(row["id"]), "reason": str(row["reason"])}
+            for row in amendment["excluded"]
+            if str(row["id"]) in rows_by_id
+        ]
 
     within_exact, within_near = duplicate_pairs(rows, threshold=4)
     development = _comparison_rows(root, config)
@@ -536,6 +590,7 @@ def run_preflight(
         "software_commit": software_commit,
         "config_sha256": sha256_file(config_path),
         "candidate_count": len(config["candidates"]),
+        "acquired_decoded_row_count": len(acquired_decoded_rows),
         "decoded_row_count": len(rows),
         "failure_count": len(failures),
         "downloaded_bytes": downloaded_bytes,
@@ -550,7 +605,12 @@ def run_preflight(
         "automatic_gates": automatic_gates,
         "automatic_pass": automatic_pass,
         "visual_review_required": automatic_pass
-        and bool(gates["require_autonomous_visual_content_and_severe_audit"]),
+        and bool(gates["require_autonomous_visual_content_and_severe_audit"])
+        and amendment is None,
+        "visual_review_completed": bool(
+            amendment is not None and amendment["visual_review_completed"]
+        ),
+        "visual_exclusions": visual_exclusions,
         "operator_applied": False,
         "rows": rows,
         "failures": failures,

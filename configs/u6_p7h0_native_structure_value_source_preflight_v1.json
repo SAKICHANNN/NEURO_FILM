@@ -3,7 +3,7 @@
   "schema_version": 1,
   "experiment_id": "u6.p7h0-native-structure-value-source-preflight-v1",
   "node": "ULT > U6 > U6.P7 > U6.P7H0",
-  "status": "contract-frozen-acquisition-ready",
+  "status": "source-integrity-amended-before-algorithm-evaluation",
   "parent_decision": {
     "path": "docs/evidence/U6_P4HV_PORTABLE_NATIVE_SPATIAL_DENSITY_RUNTIME_RESULT.json",
     "sha256": "1ad4d8237a76cf2cde79829d6d3379889fa401c297ed48a6e9858528acd50c73",
@@ -27,7 +27,8 @@
     "expected_download_bytes_upper_bound": 360000000,
     "download_root": "data/external/rawpixls_p7h_v1/raw",
     "decoded_root": "outputs/u6_p7h0_native_structure_value_source_preflight_v1/inputs",
-    "maximum_decoded_side": 1600
+    "maximum_decoded_side": 1600,
+    "orientation_policy": "libraw_metadata_orientation"
   },
   "candidates": [
     {"id":"sony_dsc_rx1rm3","repository_id":8547,"make":"Sony","model":"DSC-RX1RM3","mode":"4:3","date":"2025-09-05","megapixels":18.35,"bytes_reported_mb":34.63,"filename":"Sony - DSC-RX1RM3 - 4:3.ARW","path":"data/external/rawpixls_p7h_v1/raw/sony_dsc_rx1rm3.arw","sha256":"0fbbc32e4e24faa3626027987bc1591faf5aec76b47c8f857464ee97be9c224a","url":"https://raw.pixls.us/getfile.php/8547/nice/Sony%20-%20DSC-RX1RM3%20-%204%3A3.ARW"},
@@ -83,6 +84,36 @@
     "zero_hash_mismatch": true,
     "zero_exact_or_dhash_leakage_to_prior_pools": true,
     "zero_confirmed_severe_source_artifact": true
+  },
+  "source_integrity_amendment": {
+    "timing": "after source-only preflight and before any P4HU/AO6 evaluation",
+    "reason": "the initial fixed user_flip=0 source view exposed one metadata-orientation error and the required full-resolution visual eligibility screen",
+    "algorithm_outputs_observed": 0,
+    "visual_review_completed": true,
+    "uniform_orientation_policy": "libraw_metadata_orientation",
+    "initial_exact_replay": {
+      "run_b_manifest_sha256": "7d3a77f51f74aad7bfdc157d451020187c78858d7272f5de5880e655b1b2756e",
+      "run_b_report_sha256": "3bea269a6cb2702e824a6f11f155c6f47f68394835d1765844a1f7c37d279c8d",
+      "run_b_contact_sheet_sha256": "384978d75c8b47e77fa6943268467af573b1e055336c70297401b38fb2da761c",
+      "run_c_exact": true
+    },
+    "included_ids_in_order": [
+      "canon_eos_r50_v",
+      "panasonic_dc_s5m2",
+      "om_system_tg_7",
+      "samsung_galaxy_s21_ultra",
+      "pentax_kf",
+      "phase_one_iq180",
+      "dji_fc350",
+      "xiaomi_redmi_note_8t",
+      "lg_lg_h910"
+    ],
+    "excluded": [
+      {"id":"sony_dsc_rx1rm3","reason":"confirmed severe decode artifact: pure green right and bottom borders"},
+      {"id":"nikon_z50_2","reason":"LibRaw technical decode failure; no replacement"},
+      {"id":"huawei_sne_lx1","reason":"RAL colour chart violates ordinary-photograph source intent"}
+    ],
+    "lg_source_noise_note": "accepted ordinary indoor stress image with extreme source high-ISO chroma noise; source noise must not be attributed to an output arm"
   },
   "training_allowed": false,
   "operator_fitting_allowed": false,
