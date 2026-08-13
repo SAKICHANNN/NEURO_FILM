@@ -28,11 +28,16 @@ from src.film_physics.analytical_density_direction import (
 from src.film_physics.bounded_photographic_profile import (
     reconstruct_bounded_photographic_profile,
 )
+from src.film_physics.compact_log_scanner_compiler import CompactLogScannerCompiler
 from src.film_physics.independent_density_nps import (
     apply_cross_layer_thomas_gamma_copula,
 )
 from src.film_physics.relative_display_characteristic_ingress import (
     relative_display_to_finite_density_transmittance,
+)
+from src.film_physics.sigmoid_characteristic import (
+    fit_sigmoid_characteristic,
+    render_sigmoid_scanner_positive,
 )
 
 CONTRACT_SCHEMA = (
@@ -184,6 +189,55 @@ class CharacteristicIngressAnalyticalRuntime(AnalyticalOpponentDiffusionRuntime)
         diagnostics["ingress_one_input_transmittance_minimum"] = ingress[
             "one_input_transmittance_minimum"
         ]
+        return output, diagnostics
+
+
+@dataclass
+class SigmoidCharacteristicScannerRuntime(AnalyticalOpponentDiffusionRuntime):
+    """Sigmoid characteristic ingress, P4IA structure and compact scanner."""
+
+    compiler: CompactLogScannerCompiler
+    fit_samples: int = 4097
+    initial_slope: float = 8.0
+    maximum_iterations: int = 20000
+
+    def apply_source(
+        self, source: np.ndarray, *, seeds: tuple[int, int, int]
+    ) -> tuple[np.ndarray, dict[str, Any]]:
+        curves, fit_rmse = fit_sigmoid_characteristic(
+            self.components.prior,
+            samples=self.fit_samples,
+            initial_slope=self.initial_slope,
+            maximum_iterations=self.maximum_iterations,
+        )
+        density = np.stack(
+            [curve.apply_normalized(source[..., channel]) for channel, curve in enumerate(curves)],
+            axis=-1,
+        )
+        base_transmittance = np.ascontiguousarray(
+            np.power(10.0, -density), dtype=np.float32
+        )
+        structured_transmittance, diagnostics = super().apply_source(
+            base_transmittance, seeds=seeds
+        )
+        output, scanner = render_sigmoid_scanner_positive(
+            source,
+            structured_transmittance,
+            curves=curves,
+            compiler=self.compiler,
+        )
+        residual = output.astype(np.float64) - source.astype(np.float64)
+        diagnostics.update(
+            {
+                "bounded_residual_rms": float(np.sqrt(np.mean(residual * residual))),
+                "sigmoid_curve_fit_rmse_maximum": max(fit_rmse),
+                "scanner_minimum_shared_scale": scanner["minimum_shared_scale"],
+                "scanner_limited_fraction": scanner["limited_fraction"],
+                "scanner_maximum_shared_direction_error": scanner[
+                    "maximum_shared_direction_error"
+                ],
+            }
+        )
         return output, diagnostics
 
 
