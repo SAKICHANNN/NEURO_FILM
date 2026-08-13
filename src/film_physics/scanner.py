@@ -2,19 +2,28 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 import hashlib
 import json
 import math
-from typing import Iterable
+from collections.abc import Iterable
+from dataclasses import dataclass
 
 import numpy as np
 from scipy.ndimage import gaussian_filter
 
 from .structure_compiler import counter_normal_region
 
-
 SCANNER_STAGES = ("spectral", "flare", "dmax", "mtf", "noise")
+SCANNER_SAFE_RESIDUAL_RUNTIME_ID = "neuro-film.scanner-safe-residual.v1"
+
+
+@dataclass(frozen=True)
+class ScannerSafeResidualReceipt:
+    runtime_id: str
+    limited_pixel_fraction: float
+    median_scale: float
+    minimum_scale: float
+    maximum_collinearity_error: float
 
 
 @dataclass(frozen=True)
@@ -75,6 +84,58 @@ class ScannerProfile:
             raise ValueError("scanner noise variances must be finite and nonnegative")
         if not isinstance(self.seed, int) or not 0 <= self.seed < 2**64 - 3:
             raise ValueError("scanner seed must leave room for three channels")
+
+
+def apply_scanner_safe_residual(
+    source: np.ndarray,
+    candidate: np.ndarray,
+) -> tuple[np.ndarray, ScannerSafeResidualReceipt]:
+    """Apply the largest per-pixel scanner residual that stays in the RGB cube.
+
+    This is a canonical optional execution primitive. It never clips, mutates
+    its inputs, or fits a scanner profile.
+    """
+
+    source_rgb = np.asarray(source)
+    candidate_rgb = np.asarray(candidate)
+    if (
+        source_rgb.dtype != np.float64
+        or candidate_rgb.dtype != np.float64
+        or source_rgb.shape != candidate_rgb.shape
+        or source_rgb.ndim < 2
+        or source_rgb.shape[-1] != 3
+        or not np.all(np.isfinite(source_rgb))
+        or not np.all(np.isfinite(candidate_rgb))
+        or np.any(source_rgb < 0.0)
+        or np.any(source_rgb > 1.0)
+    ):
+        raise ValueError("scanner safe residual requires matching finite float64 RGB with bounded source")
+    flat_source = source_rgb.reshape(-1, 3)
+    flat_candidate = candidate_rgb.reshape(-1, 3)
+    delta = flat_candidate - flat_source
+    limits = np.full(delta.shape, np.inf, dtype=np.float64)
+    positive = delta > 0.0
+    negative = delta < 0.0
+    limits[positive] = (1.0 - flat_source[positive]) / delta[positive]
+    limits[negative] = -flat_source[negative] / delta[negative]
+    scale = np.minimum(1.0, np.min(limits, axis=1))
+    limited = scale < 1.0
+    scale[limited] = np.nextafter(scale[limited], 0.0)
+    flat_output = flat_source + scale[:, None] * delta
+    if np.any(flat_output < 0.0) or np.any(flat_output > 1.0):
+        raise RuntimeError("scanner safe residual left bounded domain")
+    output = flat_output.reshape(source_rgb.shape)
+    collinearity_error = float(
+        np.max(np.abs((flat_output - flat_source) - scale[:, None] * delta))
+    )
+    receipt = ScannerSafeResidualReceipt(
+        runtime_id=SCANNER_SAFE_RESIDUAL_RUNTIME_ID,
+        limited_pixel_fraction=float(np.mean(limited)),
+        median_scale=float(np.median(scale)),
+        minimum_scale=float(np.min(scale)),
+        maximum_collinearity_error=collinearity_error,
+    )
+    return output, receipt
 
 
 @dataclass(frozen=True)
