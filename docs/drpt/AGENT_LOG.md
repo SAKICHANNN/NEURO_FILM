@@ -13237,3 +13237,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Four real same-hardware software pairs (Epson 3170, PrimeFilm 3600, Minolta 5400 and Nikon LS4000) were evaluated by leave-one-hardware-out shared power-plus-affine residual fitting, followed by the existing analytical cube-safe executor.
 - Two reports are byte exact (`07644076...35463`, stable `dd4e1c13...c33e4`). The shared VueScan residual regresses all four held hardware models versus identity; aggregate median error changes from `.10261` to `.11580` (negative improvement `-12.86%`). It wins only 2/4 cyclic-wrong controls and safely limits `11.53%` of patches.
 - Close hardware-independent scanner-software profiles. Preserve the P6AP fixed-condition repeat acquisition requirement for noise separation and bind future scanner nuisance profiles to at least device plus software. No threshold/capacity rescue, calibration or product mapping opens.
+### 2026-08-14 - U6.P2AD identifies TRI-X developer/process response
+
+- Kodak F-4017's seven official TRI-X 400 contrast-index vector paths were
+  recovered directly from the PDF and evaluated at four shared CI levels.
+- Two reports are byte exact (`4980abf0...d8ad8`, stable
+  `784d4b0b...76d11`). After removing each developer's scalar log-time offset,
+  20/21 pairs remain separated beyond the conservative coherent +/-3px
+  coordinate-registration envelope; maximum normalized separation is `.19421`.
+- Retain developer/process as an explicit B&W profile dimension. This is source
+  evidence, not a calibrated tone, grain, MTF, scanner or photographic look.
+  The next algorithm leaf is a typed monotone process-response representation.

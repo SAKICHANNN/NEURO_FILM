@@ -1,0 +1,26 @@
+{
+    "schema":  "neuro_film.u6_p2ad_trix_developer_contrast_source_evidence.v1",
+    "node":  "U6.P2AD",
+    "implementation_commit":  "c3089939e27a3fd9c65a0e1d08743a2b27fb647a",
+    "source_sha256":  "1d86b030cf7a8502e6f1414c630fa2cda30b68df53f49bccccce73c9c6562078",
+    "contract_sha256":  "8b18d15d42ebee717feb906ffeb09e44cf321b7ca506f1cbf5e5de7d9e4823b0",
+    "report_sha256":  "4980abf0e81c8aadb906b96be9fc1b52911334eac469279f666fc71b4b7d8ad8",
+    "stable_evidence_id":  "784d4b0b92d3dbb5b3ff935aaa6c61493289adb42a06feb4525a681771176d11",
+    "automatic_pass":  true,
+    "measurements":  {
+                         "all_paths_monotone":  true,
+                         "all_shared_contrast_indices_covered":  true,
+                         "developer_pairs_beyond_digitization_envelope":  20,
+                         "maximum_normalized_log_time_separation":  0.19421371754051675,
+                         "repeat_byte_exact":  true,
+                         "rgb_image_transform_count_zero":  true,
+                         "source_path_count":  7
+                     },
+    "decision":  "retain developer identity as an explicit required B\u0026W FilmProfileBundle dimension and next test only a typed monotone process-response representation",
+    "claim_ceiling":  "First-party TRI-X 400 diffuse-visual contrast-index source evidence about developer/process separability; not a scanned-image look, stock comparison, roll calibration, grain/MTF/scanner evidence or product profile.",
+    "observations":  [
+                         "The official PDF preserves seven vector contrast-index paths for TRI-X 400 under one small-tank/diffuse-visual condition.",
+                         "After removing one scalar log-development-time offset per developer, 20 of 21 developer pairs remain separated beyond the coherent plus/minus 3-pixel coordinate-registration envelope.",
+                         "This establishes developer/process as an explicit profile dimension for this source; it does not supply a calibrated tone curve, grain, MTF, scan or photographic look."
+                     ]
+}
