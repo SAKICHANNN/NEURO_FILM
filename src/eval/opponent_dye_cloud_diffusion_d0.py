@@ -90,7 +90,7 @@ def _validate(contract: dict[str, Any]) -> None:
         raise ValueError("U6.P4HX frozen mechanism drift")
 
 
-def _diffuse_opponent_density(
+def _diffused_opponent_density_residual(
     base: np.ndarray,
     control: np.ndarray,
     *,
@@ -119,6 +119,20 @@ def _diffuse_opponent_density(
         np.max(
             np.abs(np.mean(candidate_density_residual, axis=2, keepdims=True) - common)
         )
+    )
+    return candidate_density_residual, common_error
+
+
+def _diffuse_opponent_density(
+    base: np.ndarray,
+    control: np.ndarray,
+    *,
+    sigmas: list[float],
+    truncate: float,
+) -> tuple[np.ndarray, float]:
+    base64 = np.asarray(base, dtype=np.float64)
+    candidate_density_residual, common_error = _diffused_opponent_density_residual(
+        base, control, sigmas=sigmas, truncate=truncate
     )
     candidate64 = base64 * np.power(10.0, -candidate_density_residual)
     if (

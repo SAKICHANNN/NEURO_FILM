@@ -1,0 +1,48 @@
+{
+  "schema": "neuro-film.u6-p4ia-analytical-opponent-density-envelope-d0-contract.v1",
+  "experiment_id": "u6-p4ia-analytical-opponent-density-envelope-d0-v1",
+  "question": "Can one per-pixel analytical scalar preserve the full P4HX CMY density direction while keeping adversarial highlight transmittance strictly bounded and retaining nontrivial structure?",
+  "parents": {
+    "p4hz_evidence": {
+      "path": "docs/evidence/U6_P4HZ_OPPONENT_DIFFUSION_PHOTOGRAPHIC_CONFIRMATION_RESULT.json",
+      "sha256": "c1aabe8ba79f35aea83da9e5513ea2c7ad1d389732ac50e20b9d63a975f8e417",
+      "required_decision": "retain_current_ao6_and_close_exact_p4hx_photographic_confirmation"
+    },
+    "profile": {
+      "path": "outputs/experiments/u6_p4hk_bounded_photographic_profile_bundle_v1/run_a/profile.json",
+      "sha256": "539fef07a7c659db035928ee4d9c7e6405da5e0baa07852f4f9a4b50fa1247b8",
+      "bundle_sha256": "8d20ce2874036befe78657b059ffafeb24e43d2e5bc1000512092a753e1e75df"
+    }
+  },
+  "development": {
+    "procedural_rows": 12,
+    "shape": [129, 131],
+    "base_seed": 417701,
+    "layer_field_seeds": [320260812, 320261821, 320262830],
+    "field_seed_stride_per_row": 1009,
+    "rank_bins": 65536,
+    "canonical_row_block_height": 128,
+    "highlight_floor": 0.84,
+    "highlight_span": 0.16,
+    "cohort_fitting_allowed": false
+  },
+  "mechanism": {
+    "id": "analytical-common-scalar-complete-cmy-density-direction-v1",
+    "dye_diffusion_sigma_pixels_cmy": [0.72, 1.08, 1.52],
+    "gaussian_truncate": 4.0,
+    "hard_clipping_allowed": false,
+    "posthoc_limiting_allowed": false
+  },
+  "gates": {
+    "require_all_rows_finite_and_bounded": true,
+    "maximum_density_direction_scale_error": 1e-12,
+    "minimum_population_residual_rms": 0.0001,
+    "minimum_limited_fraction": 0.0001,
+    "maximum_limited_fraction": 0.75,
+    "maximum_new_boundary_fraction": 0.0,
+    "require_two_exact_process_replays": true
+  },
+  "decision_if_pass": "retain_analytical_density_direction_capacity_and_open_fresh_photographic_confirmation",
+  "decision_if_fail": "close_exact_analytical_density_direction_without_rescue",
+  "claim_ceiling": "Procedural adversarial-highlight domain evidence for one complete-CMY developed-density direction envelope; not photographic value, measured emulsion, stock calibration, runtime or product promotion"
+}
