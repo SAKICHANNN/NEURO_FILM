@@ -7,7 +7,6 @@ import json
 import sys
 from pathlib import Path
 
-import cv2
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -98,9 +97,11 @@ def _worker(config_path: Path, output: Path) -> None:
         output_colorspace=input_image["input_color_space"],
         output_cctf_encoding=bool(input_image["apply_cctf_decoding"]),
     )
-    image = cv2.resize(
-        image, (image.shape[1] // 2, image.shape[0] // 2), interpolation=cv2.INTER_AREA
-    )
+    if image.shape[0] % 2 or image.shape[1] % 2:
+        raise RuntimeError("CHAM9 RAW geometry must support exact 2x2 area reduction")
+    image = image.reshape(
+        image.shape[0] // 2, 2, image.shape[1] // 2, 2, 3
+    ).mean(axis=(1, 3))
     result = np.asarray(
         simulate(image, digest_params(params), digest_params_first=False),
         dtype=np.float64,
@@ -150,4 +151,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
