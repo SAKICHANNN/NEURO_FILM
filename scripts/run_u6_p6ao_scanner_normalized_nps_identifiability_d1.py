@@ -15,6 +15,7 @@ from src.eval.scanner_normalized_nps_identifiability_d1 import (
     write_report,
 )
 
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", required=True)
