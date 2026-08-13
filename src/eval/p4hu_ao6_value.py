@@ -514,7 +514,9 @@ def _evaluate_source(
     ao6_payload: dict[str, Any],
     scanner: SpatialResponseProfile,
     gates: dict[str, Any],
+    arm_ids: tuple[str, str, str, str] = ARMS,
 ) -> dict[str, Any]:
+    current_ao6, matched_ao6, physical_only, combined = arm_ids
     encoded, source_receipt = _load_rgb8_source(root, row, transform)
     linear = np.ascontiguousarray(
         encoded_srgb_to_linear(encoded.astype(np.float64)), dtype=np.float32
@@ -550,10 +552,10 @@ def _evaluate_source(
         )
 
     arms = {
-        CURRENT_AO6: apply_ao6(encoded, CURRENT_AO6),
-        MATCHED_AO6: apply_ao6(encoded_scanner_source, MATCHED_AO6),
-        PHYSICAL_ONLY: encoded_scanner_physical,
-        COMBINED: apply_ao6(encoded_scanner_physical, COMBINED),
+        current_ao6: apply_ao6(encoded, current_ao6),
+        matched_ao6: apply_ao6(encoded_scanner_source, matched_ao6),
+        physical_only: encoded_scanner_physical,
+        combined: apply_ao6(encoded_scanner_physical, combined),
     }
     outputs = [
         _write_verified_png16(
@@ -562,11 +564,11 @@ def _evaluate_source(
             arm_id=arm_id,
             source_id=row["id"],
         )
-        for arm_id in ARMS
+        for arm_id in arm_ids
     ]
-    incremental = arms[COMBINED] - arms[MATCHED_AO6]
-    product_delta = arms[COMBINED] - arms[CURRENT_AO6]
-    scanner_control_delta = arms[MATCHED_AO6] - arms[CURRENT_AO6]
+    incremental = arms[combined] - arms[matched_ao6]
+    product_delta = arms[combined] - arms[current_ao6]
+    scanner_control_delta = arms[matched_ao6] - arms[current_ao6]
     stable_diagnostics = _stable_diagnostics(diagnostics)
     return {
         "source_id": row["id"],
@@ -600,7 +602,7 @@ def _evaluate_source(
             minimum_support=int(gates["minimum_isolated_support_count"]),
         ),
         "new_boundary_fraction_vs_matched_scanner_ao6": (
-            _new_boundary_fraction(arms[MATCHED_AO6], arms[COMBINED])
+            _new_boundary_fraction(arms[matched_ao6], arms[combined])
         ),
         "combined_vs_current_ao6_p95_abs": float(
             np.quantile(np.abs(product_delta), 0.95)
@@ -609,7 +611,7 @@ def _evaluate_source(
             np.quantile(np.abs(product_delta), 0.99)
         ),
         "new_boundary_fraction_vs_current_ao6": _new_boundary_fraction(
-            arms[CURRENT_AO6], arms[COMBINED]
+            arms[current_ao6], arms[combined]
         ),
         "matched_scanner_vs_current_ao6_p95_abs": float(
             np.quantile(np.abs(scanner_control_delta), 0.95)
@@ -632,6 +634,7 @@ def evaluate_source_arms(
     ao6_payload: dict[str, Any],
     scanner: SpatialResponseProfile,
     gates: dict[str, Any],
+    arm_ids: tuple[str, str, str, str] = ARMS,
 ) -> dict[str, Any]:
     """Evaluate the frozen P7H four-arm surface for one bound structure runtime."""
 
@@ -645,6 +648,30 @@ def evaluate_source_arms(
         ao6_payload=ao6_payload,
         scanner=scanner,
         gates=gates,
+        arm_ids=arm_ids,
+    )
+
+
+def aggregate_arm_rows(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    """Aggregate rows produced by :func:`evaluate_source_arms`."""
+
+    return _aggregate(rows)
+
+
+def automatic_arm_checks(
+    aggregates: dict[str, Any],
+    gates: dict[str, Any],
+    *,
+    expected_rows: int,
+    expected_arm_count: int = len(ARMS),
+) -> dict[str, bool]:
+    """Apply the frozen P7H automatic gates to a compatible four-arm result."""
+
+    return _automatic_checks(
+        aggregates,
+        gates,
+        expected_rows=expected_rows,
+        expected_arm_count=expected_arm_count,
     )
 
 
@@ -734,11 +761,12 @@ def _automatic_checks(
     gates: dict[str, Any],
     *,
     expected_rows: int,
+    expected_arm_count: int = len(ARMS),
 ) -> dict[str, bool]:
     return {
         "complete_inventory": (
             aggregates["source_count"] == expected_rows
-            and aggregates["output_count"] == expected_rows * len(ARMS)
+            and aggregates["output_count"] == expected_rows * expected_arm_count
         ),
         "physical_residual": aggregates["minimum_physical_residual_rms"]
         >= float(gates["minimum_per_row_physical_residual_rms"]),
@@ -901,6 +929,8 @@ __all__ = [
     "MATCHED_AO6",
     "PHYSICAL_ONLY",
     "RESULT_SCHEMA",
+    "aggregate_arm_rows",
+    "automatic_arm_checks",
     "evaluate",
     "evaluate_source_arms",
     "load_contract",
