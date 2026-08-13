@@ -10,7 +10,10 @@ from typing import Any
 
 import numpy as np
 
-from src.eval.opponent_dye_cloud_diffusion_d0 import _diffuse_opponent_density
+from src.eval.opponent_dye_cloud_diffusion_d0 import (
+    _diffuse_opponent_density,
+    _diffused_opponent_density_residual,
+)
 from src.eval.p4hu_ao6_value import (
     _load_bound_json,
     _load_manifest,
@@ -18,6 +21,9 @@ from src.eval.p4hu_ao6_value import (
     aggregate_arm_rows,
     automatic_arm_checks,
     evaluate_source_arms,
+)
+from src.film_physics.analytical_density_direction import (
+    apply_analytical_density_direction,
 )
 from src.film_physics.bounded_photographic_profile import (
     reconstruct_bounded_photographic_profile,
@@ -105,6 +111,59 @@ class OpponentDiffusionRuntime:
         return output, diagnostics
 
 
+@dataclass
+class AnalyticalOpponentDiffusionRuntime(OpponentDiffusionRuntime):
+    """P4IA direction-preserving envelope around fixed P4HX structure."""
+
+    def apply_source(
+        self, source: np.ndarray, *, seeds: tuple[int, int, int]
+    ) -> tuple[np.ndarray, dict[str, Any]]:
+        control, diagnostics = apply_cross_layer_thomas_gamma_copula(
+            source,
+            profile=self.components.profile,
+            prior=self.components.prior,
+            layer_seeds=seeds,
+            correlation_matrix=self.correlation,
+            canonical_receipt_row_block_height=int(
+                self.candidate["canonical_row_block_height"]
+            ),
+            rank_bins=int(self.candidate["rank_bins"]),
+        )
+        density, common_error = _diffused_opponent_density_residual(
+            source,
+            control,
+            sigmas=self.candidate["dye_diffusion_sigma_pixels_cmy"],
+            truncate=float(self.candidate["dye_diffusion_truncate"]),
+        )
+        output, envelope = apply_analytical_density_direction(source, density)
+        residual = output.astype(np.float64) - source.astype(np.float64)
+        diagnostics.update(
+            {
+                "bounded_residual_rms": float(np.sqrt(np.mean(residual * residual))),
+                "minimum_developed_density": float(
+                    np.min(-np.log10(np.maximum(output, np.finfo(np.float32).tiny)))
+                ),
+                "limited_fraction": envelope["limited_fraction"],
+                "hard_clipping_used": 0.0,
+                "rank_bins": int(self.candidate["rank_bins"]),
+                "pass_count": 4,
+                "canonical_row_block_height": int(
+                    self.candidate["canonical_row_block_height"]
+                ),
+                "peak_live_temporary_bytes": int(source.nbytes * 6),
+                "full_frame_intermediate_count_excluding_input_output": 4,
+                "opponent_common_density_error": common_error,
+                "minimum_density_direction_scale": envelope[
+                    "minimum_density_direction_scale"
+                ],
+                "maximum_density_direction_scale_error": envelope[
+                    "maximum_density_direction_scale_error"
+                ],
+            }
+        )
+        return output, diagnostics
+
+
 def _runtime(
     profile: dict[str, Any], candidate: dict[str, Any]
 ) -> OpponentDiffusionRuntime:
@@ -172,9 +231,7 @@ def evaluate(
                 arm_ids=arms,
             )
         except RuntimeError as error:
-            execution_failures.append(
-                {"source_id": row["id"], "error": str(error)}
-            )
+            execution_failures.append({"source_id": row["id"], "error": str(error)})
             break
         evaluated.append(result)
     if execution_failures:
