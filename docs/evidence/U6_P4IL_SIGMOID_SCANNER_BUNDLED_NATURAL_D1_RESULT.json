@@ -1,0 +1,89 @@
+{
+  "automatic_pass": true,
+  "checks": {
+    "boundary": true,
+    "chroma": true,
+    "material": true,
+    "repeat": true,
+    "retained_direction": true,
+    "tail": true
+  },
+  "claim_ceiling": "Bundled natural-photo mechanism D1 for generic physical-inspired relative-display structure; not film stock/scanner calibration, AO6 value, preference, native runtime or product evidence.",
+  "config_sha256": "703fa2b70249603d855715a11f9c93f14d90126ebb280c07d3792f87b69550f3",
+  "decision": "retain_sigmoid_scanner_natural_d1_for_ao6_value_comparison",
+  "experiment_id": "u6-p4il-sigmoid-scanner-bundled-natural-d1-v1",
+  "metrics": {
+    "curve_fit_rmse": [
+      0.023234621412287118,
+      0.035921976987863105,
+      0.03409519930278858
+    ],
+    "maximum_high_frequency_chroma_p999": 0.00019248499969641352,
+    "maximum_new_boundary_fraction": 0.0,
+    "maximum_repeat_error": 0.0,
+    "minimum_shared_scale": 1.0,
+    "population_p95_abs_difference": 0.005532906185835599,
+    "population_p99_abs_difference": 0.006718597865104677,
+    "row_count": 5
+  },
+  "parent_stable_evidence_id": "57dd418ae3f9b83ad44193060eac72d14f9c152d4a2f69224b4b3a18153e7424",
+  "rows": [
+    {
+      "candidate_sha256": "e8ed09efad2b421afc1530f559a5ef0233d4a5d7ac28eb5ff8523b12563f0a43",
+      "high_frequency_chroma_p999": 0.00019248499969641352,
+      "id": "astronaut",
+      "minimum_shared_scale": 1.0,
+      "new_boundary_fraction": 0.0,
+      "p95_abs_difference": 0.005437738448381423,
+      "p99_abs_difference": 0.006691098213195801,
+      "repeat_error": 0.0,
+      "source_sha256": "a8c429c18afa7b0fd5673e598d73a21225d94c864a71bbb3885126fdecb41071"
+    },
+    {
+      "candidate_sha256": "40e36e6d120a71d8ab1c0e029aeacc9ae615be8a800671f7136f11bfb4c3c0c6",
+      "high_frequency_chroma_p999": 0.0001897793022605183,
+      "id": "coffee",
+      "minimum_shared_scale": 1.0,
+      "new_boundary_fraction": 0.0,
+      "p95_abs_difference": 0.0055044150911271565,
+      "p99_abs_difference": 0.0067053139209747314,
+      "repeat_error": 0.0,
+      "source_sha256": "0ce2b51640b9c95f19617f03eabf40c3f0368589cc1ee1190b70966165ac184f"
+    },
+    {
+      "candidate_sha256": "caf796071fdf42ea0257fd92a2241b170864d6653e8a87f2342bd0c64be1e9b6",
+      "high_frequency_chroma_p999": 0.0001525182387170691,
+      "id": "chelsea",
+      "minimum_shared_scale": 1.0,
+      "new_boundary_fraction": 0.0,
+      "p95_abs_difference": 0.00554002895951271,
+      "p99_abs_difference": 0.006719151362776758,
+      "repeat_error": 0.0,
+      "source_sha256": "416b729128bfb2c3d1eb69bf9b1734a796293abc17939267b2dc94f8a5784031"
+    },
+    {
+      "candidate_sha256": "18dc804ab8855c4ebe58d0442d563edda7946046dcd24b8a1282f2df5ad76174",
+      "high_frequency_chroma_p999": 0.000162719807742785,
+      "id": "rocket",
+      "minimum_shared_scale": 1.0,
+      "new_boundary_fraction": 0.0,
+      "p95_abs_difference": 0.005401751399040222,
+      "p99_abs_difference": 0.006686881184577942,
+      "repeat_error": 0.0,
+      "source_sha256": "3d4435cc745752b7f9724df88c6e18817de3ce7e3d2d71c55f85f7831e68f197"
+    },
+    {
+      "candidate_sha256": "a6b342ea6392dbbf6a33cf89ac5f2b280a16bb8585022a620d083d67cae081b7",
+      "high_frequency_chroma_p999": 8.352861710591284e-05,
+      "id": "hubble_deep_field",
+      "minimum_shared_scale": 1.0,
+      "new_boundary_fraction": 0.0,
+      "p95_abs_difference": 0.005457288678735491,
+      "p99_abs_difference": 0.006687795743346214,
+      "repeat_error": 0.0,
+      "source_sha256": "9a3ea9548188f81e63435188456e74de45a981ebeb791e265abe79a26d3b528b"
+    }
+  ],
+  "schema": "neuro-film.u6-p4il-sigmoid-scanner-bundled-natural-d1-result.v1",
+  "stable_evidence_id": "6ad5b91609ba1ee257c2a2fc9ce1b186569e09218ae80ad7d805efcb0d71f315"
+}

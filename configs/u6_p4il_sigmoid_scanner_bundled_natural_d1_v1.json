@@ -1,0 +1,12 @@
+{
+  "schema": "neuro-film.u6-p4il-sigmoid-scanner-bundled-natural-d1-contract.v1",
+  "experiment_id": "u6-p4il-sigmoid-scanner-bundled-natural-d1-v1",
+  "question": "Does the fixed P4IJ sigmoid characteristic plus structured density and scanner MTF remain material, bounded and artifact-light on hash-fixed natural photographs?",
+  "parent": {"path": "docs/evidence/U6_P4IJ_SIGMOID_CHARACTERISTIC_SPATIAL_D0_RESULT.json", "sha256": "ad317f2a821a6faf20d91fcbeaa5b233633f6c64c3c960974e0093232d760fe6", "required_decision": "retain_sigmoid_characteristic_chain_for_bound_photo_development"},
+  "source": {"library": "scikit-image", "version": "0.26.0", "ids": ["astronaut", "coffee", "chelsea", "rocket", "hubble_deep_field"]},
+  "mechanism": {"structure_amplitude": 0.018, "scanner_mtf_sigma_pixels_rgb": [0.7, 0.7, 0.7], "gaussian_truncate": 3.0},
+  "gates": {"minimum_population_p95_abs_difference": 0.0001, "maximum_population_p99_abs_difference": 0.05, "maximum_high_frequency_chroma_p999": 0.004, "maximum_new_boundary_fraction": 0.0005, "maximum_repeat_error": 0.0, "minimum_shared_scale": 0.5},
+  "decision_if_pass": "retain_sigmoid_scanner_natural_d1_for_ao6_value_comparison",
+  "decision_if_fail": "close_exact_sigmoid_scanner_natural_d1_without_rescue",
+  "claim_ceiling": "Bundled natural-photo mechanism D1 for generic physical-inspired relative-display structure; not film stock/scanner calibration, AO6 value, preference, native runtime or product evidence."
+}
