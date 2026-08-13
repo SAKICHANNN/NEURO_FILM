@@ -1,0 +1,325 @@
+{
+  "candidates": [
+    {
+      "bytes_reported_mb": 14.99,
+      "date": "2025-05-16",
+      "filename": "Canon - EOS R100 - CRAW (3:2).CR3",
+      "id": "canon_eos_r100",
+      "make": "Canon",
+      "megapixels": 24,
+      "mode": "CRAW (3:2)",
+      "model": "EOS R100",
+      "path": "data/external/rawpixls_p4ib_v1/raw/canon_eos_r100.cr3",
+      "repository_id": 7897,
+      "sha256": "0b66842b2fe00329ebc05fe8ab9357ddbbe1a0a2d2e69a2893102de7fdf5c942",
+      "url": "https://raw.pixls.us/getfile.php/7897/nice/Canon%20-%20EOS%20R100%20-%20CRAW%20%283%3A2%29.CR3"
+    },
+    {
+      "bytes_reported_mb": 24.25,
+      "date": "2025-05-16",
+      "filename": "Sony - ILCE-6400A - 14bit (3:2).ARW",
+      "id": "sony_ilce_6400a",
+      "make": "Sony",
+      "megapixels": 24.34,
+      "mode": "14bit (3:2)",
+      "model": "ILCE-6400A",
+      "path": "data/external/rawpixls_p4ib_v1/raw/sony_ilce_6400a.arw",
+      "repository_id": 7895,
+      "sha256": "0bd1d7f0e5666d1d0a72830e03f95fe173fd7b4c854b30f5e79585c9d86a6107",
+      "url": "https://raw.pixls.us/getfile.php/7895/nice/Sony%20-%20ILCE-6400A%20-%2014bit%20%283%3A2%29.ARW"
+    },
+    {
+      "bytes_reported_mb": 28.28,
+      "date": "2025-05-05",
+      "filename": "Fujifilm - X-T50 - 14bit compressed (3:2).RAF",
+      "id": "fujifilm_x_t50",
+      "make": "Fujifilm",
+      "megapixels": 40.9,
+      "mode": "14bit compressed (3:2)",
+      "model": "X-T50",
+      "path": "data/external/rawpixls_p4ib_v1/raw/fujifilm_x_t50.raf",
+      "repository_id": 7807,
+      "sha256": "3a8a9ac6d92274969aaa1f55ea669191b98bb8f588d00ec8ec17afd8b3963dea",
+      "url": "https://raw.pixls.us/getfile.php/7807/nice/Fujifilm%20-%20X-T50%20-%2014bit%20compressed%20%283%3A2%29.RAF"
+    },
+    {
+      "bytes_reported_mb": 12.69,
+      "date": "2024-04-07",
+      "filename": "Panasonic - DMC-FX150 - 16:9.RW2",
+      "id": "panasonic_dmc_fx150",
+      "make": "Panasonic",
+      "megapixels": 11,
+      "mode": "16:9",
+      "model": "DMC-FX150",
+      "path": "data/external/rawpixls_p4ib_v1/raw/panasonic_dmc_fx150.rw2",
+      "repository_id": 7412,
+      "sha256": "6d58a5067e681f98293436e05e440e0fe79c54e7107afaeeca51c7dc13f6cc32",
+      "url": "https://raw.pixls.us/getfile.php/7412/nice/Panasonic%20-%20DMC-FX150%20-%2016%3A9.RW2"
+    },
+    {
+      "bytes_reported_mb": 8.06,
+      "date": "2024-02-29",
+      "filename": "Sigma - fp - 8bit (16:9).DNG",
+      "id": "sigma_fp",
+      "make": "Sigma",
+      "megapixels": 8.37,
+      "mode": "8bit (16:9)",
+      "model": "fp",
+      "path": "data/external/rawpixls_p4ib_v1/raw/sigma_fp.dng",
+      "repository_id": 7283,
+      "sha256": "b7e44ca41c5c5a01324967b2bd86175c7534f3df98cc3724d02edd29adb1942b",
+      "url": "https://raw.pixls.us/getfile.php/7283/nice/Sigma%20-%20fp%20-%208bit%20%2816%3A9%29.DNG"
+    },
+    {
+      "bytes_reported_mb": 20.08,
+      "date": "2022-03-05",
+      "filename": "OM System - OM-1 - 16bit (4:3).ORI",
+      "id": "om_system_om_1",
+      "make": "OM System",
+      "megapixels": 20.42,
+      "mode": "16bit (4:3)",
+      "model": "OM-1",
+      "path": "data/external/rawpixls_p4ib_v1/raw/om_system_om_1.ori",
+      "repository_id": 5287,
+      "sha256": "dcbc06ba28c641197b65d931c203c5dd697fd34ae79b649a9a6d9cfc84e4bca2",
+      "url": "https://raw.pixls.us/getfile.php/5287/nice/OM%20System%20-%20OM-1%20-%2016bit%20%284%3A3%29.ORI"
+    },
+    {
+      "bytes_reported_mb": 15.83,
+      "date": "2021-10-26",
+      "filename": "Olympus - E-M10 Mark IIIs - 16bit (4:3).ORF",
+      "id": "olympus_e_m10_iiis",
+      "make": "Olympus",
+      "megapixels": 16.11,
+      "mode": "16bit (4:3)",
+      "model": "E-M10 Mark IIIs",
+      "path": "data/external/rawpixls_p4ib_v1/raw/olympus_e_m10_iiis.orf",
+      "repository_id": 4927,
+      "sha256": "8bc0009eaacdbeacc72606581665702a1242bc6d4b405d1f0b3f149fe6c85e55",
+      "url": "https://raw.pixls.us/getfile.php/4927/nice/Olympus%20-%20E-M10%20Mark%20IIIs%20-%2016bit%20%284%3A3%29.ORF"
+    },
+    {
+      "bytes_reported_mb": 9.81,
+      "date": "2021-02-21",
+      "filename": "Pentax - *ist DS - 12bit 12bit uncompressed (3:2).pef",
+      "id": "pentax_ist_ds",
+      "make": "Pentax",
+      "megapixels": 6.15,
+      "mode": "12bit 12bit uncompressed (3:2)",
+      "model": "*ist DS",
+      "path": "data/external/rawpixls_p4ib_v1/raw/pentax_ist_ds.pef",
+      "repository_id": 4392,
+      "sha256": "27809a7d252d515685ed4e6091b70ab25348502baeb75db03ce7b4f1d9549b76",
+      "url": "https://raw.pixls.us/getfile.php/4392/nice/Pentax%20-%20%2Aist%20DS%20-%2012bit%2012bit%20uncompressed%20%283%3A2%29.pef"
+    },
+    {
+      "bytes_reported_mb": 19.52,
+      "date": "2020-06-16",
+      "filename": "Xiaomi - MI MAX - 10bit (4:3).dng",
+      "id": "xiaomi_mi_max",
+      "make": "Xiaomi",
+      "megapixels": 16.37,
+      "mode": "10bit (4:3)",
+      "model": "MI MAX",
+      "path": "data/external/rawpixls_p4ib_v1/raw/xiaomi_mi_max.dng",
+      "repository_id": 3973,
+      "sha256": "f19827776d09b81aa4c562e8c2f8af2ff5a6d5344b2554a3b328cdde10724adb",
+      "url": "https://raw.pixls.us/getfile.php/3973/nice/Xiaomi%20-%20MI%20MAX%20-%2010bit%20%284%3A3%29.dng"
+    },
+    {
+      "bytes_reported_mb": 8.78,
+      "date": "2019-09-02",
+      "filename": "Minolta - Maxxum 7D - 3:2.MRW",
+      "id": "minolta_maxxum_7d",
+      "make": "Minolta",
+      "megapixels": 6.02,
+      "mode": "3:2",
+      "model": "Maxxum 7D",
+      "path": "data/external/rawpixls_p4ib_v1/raw/minolta_maxxum_7d.mrw",
+      "repository_id": 3365,
+      "sha256": "ff57d7c632507e908e2f556fb1632d10c008f9d237d4001e583a2aedbacb585f",
+      "url": "https://raw.pixls.us/getfile.php/3365/nice/Minolta%20-%20Maxxum%207D%20-%203%3A2.MRW"
+    },
+    {
+      "bytes_reported_mb": 14.59,
+      "date": "2018-09-14",
+      "filename": "Ricoh - GXR - 12bit (4:3).DNG",
+      "id": "ricoh_gxr",
+      "make": "Ricoh",
+      "megapixels": 10.09,
+      "mode": "12bit (4:3)",
+      "model": "GXR",
+      "path": "data/external/rawpixls_p4ib_v1/raw/ricoh_gxr.dng",
+      "repository_id": 2756,
+      "sha256": "219a062f3d1eb8d66c9dd6088eecf495be082cf5c81f88622eb0dd28cc893cec",
+      "url": "https://raw.pixls.us/getfile.php/2756/nice/Ricoh%20-%20GXR%20-%2012bit%20%284%3A3%29.DNG"
+    },
+    {
+      "bytes_reported_mb": 23.35,
+      "date": "2018-01-09",
+      "filename": "Google - Pixel 2 XL - 16bit (4:3).dng",
+      "id": "google_pixel_2_xl",
+      "make": "Google",
+      "megapixels": 12.23,
+      "mode": "16bit (4:3)",
+      "model": "Pixel 2 XL",
+      "path": "data/external/rawpixls_p4ib_v1/raw/google_pixel_2_xl.dng",
+      "repository_id": 2206,
+      "sha256": "5541093a369f0487fef92bcd1f5fef1be6e4e3cec2aa4d52ad38d2211f3309d7",
+      "url": "https://raw.pixls.us/getfile.php/2206/nice/Google%20-%20Pixel%202%20XL%20-%2016bit%20%284%3A3%29.dng"
+    }
+  ],
+  "claim_ceiling": "wholly new CC0 RAW source eligibility for fixed P4IA photographic automatic confirmation; not preference, film truth, calibration, runtime or product promotion",
+  "experiment_id": "u6.p4ib-analytical-density-fresh-source-preflight-v1",
+  "maximum_download_bytes": 402653184,
+  "node": "ULT > U6 > U6.P4 > U6.P4IB",
+  "operator_fitting_allowed": false,
+  "parent_decision": {
+    "path": "docs/evidence/U6_P4IA_ANALYTICAL_OPPONENT_DENSITY_ENVELOPE_D0_RESULT.json",
+    "required_decision": "retain_analytical_density_direction_capacity_and_open_fresh_photographic_confirmation",
+      "sha256": "ffafdb69a6d5bbe0abc3e4c633afaa67a2fee67ce353a75130a3318cce7c3849"
+  },
+  "preflight": {
+    "comparison_manifests": [
+      {
+        "format": "rawpixls_manifest",
+        "path": "outputs/u5_r2ai1s_rawpixls_confirmation_source_preflight_v1/manifest.json",
+        "sha256": "8ac0fa47b8ad3058c7bd3f9a398dfebe657b681cbd4a154152f0dbb255c4ecf1"
+      },
+      {
+        "format": "rawpixls_manifest",
+        "path": "outputs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1/run_c/manifest.json",
+        "sha256": "048992242c82a2cd9efd193c6766065c7148ad0607a5505b88185d0ab781b101"
+      },
+      {
+        "format": "rawpixls_manifest",
+        "path": "outputs/u5_r2bh0s_fixed_bank_oracle_source_preflight_v1/manifest.json",
+        "sha256": "e7dc8c861871de83a0aa3f92a717e23fd024bed15b8a19b739516c48f1f58e0e"
+      },
+      {
+        "format": "rawpixls_manifest",
+        "path": "outputs/u5_r2bh1s_global_policy_source_preflight_v1/manifest.json",
+        "sha256": "75a5139defa6a1f054eef5e3f5f6062483f4cc72e18416ece1cae3b10f4672fc"
+      },
+      {
+        "format": "rawpixls_manifest",
+        "path": "outputs/u5_r2bk1s_log_chroma_fresh_source_v1/manifest.json",
+        "sha256": "f2e97c750f04c19a0e59b1636c7a5cdd4015d29e4dc3d916d4efed72e9544720"
+      },
+      {
+        "format": "rawpixls_manifest",
+        "path": "outputs/u5_r2bk3s_encoded_log_chroma_fresh_source_v1/manifest.json",
+        "sha256": "a6f23a8507b0ef28c9ff76eb6d44e57b8e72bda8ae7249fa4730caa0b7a01761"
+      },
+      {
+        "format": "rawpixls_manifest",
+        "path": "outputs/u5_r2bk6s_bounded_opponent_fresh_source_v1/run_b/manifest.json",
+        "sha256": "444f162f22e6bc40940eb82557a11ed2b1fa67e6736efb1362df7ef1069d5978"
+      },
+      {
+        "format": "rawpixls_manifest",
+        "path": "outputs/u5_r2bk8s_smooth_perceptual_fresh_source_v1/run_b/manifest.json",
+        "sha256": "8326272dd127040f82cce1cd65875dc470ddc5e1d6d753b6125c0af5c1387ed8"
+      },
+      {
+        "format": "rawpixls_manifest",
+        "path": "outputs/u5_r2bk11s_orthogonal_residual_fresh_source_v1/run_b/manifest.json",
+        "sha256": "708eea624edd8b9370519b30e4962b6d4fff8f577b014b684b017810b0d83a82"
+      },
+      {
+        "format": "rawpixls_manifest",
+        "path": "outputs/u5_r2bk12s_orthogonal_residual_replacement_source_v1/run_a/manifest.json",
+        "sha256": "0f3915ba6e3480060c70d4e6753556f1bfff500168ea3767e1763eba5eca238f"
+      },
+      {
+        "format": "rawpixls_manifest",
+        "path": "outputs/u5_r2bk13s_orthogonal_residual_replacement_v2_source_v1/run_a/manifest.json",
+        "sha256": "3848037efc361ba36fede7edc50df9732db7b8d37d18621b04c5e3aca01ab415"
+      },
+      {
+        "format": "rawpixls_manifest",
+        "path": "outputs/u5_r2bk17s_factorized_ao6_sixth_fresh_source_v1/run_b/manifest.json",
+        "sha256": "a1a77d472037289bc31fccaae38d565a92d5ec843f27d35c4490962c860eccad"
+      },
+      {
+        "format": "rawpixls_manifest",
+        "path": "outputs/u5_r2bl7s_filmmatch_fresh_source_preflight_v1/run_a/manifest.json",
+        "sha256": "1f14bc525cbea0e32cede50afb588d062503da2eae827ec3585163054e055bd1"
+      },
+      {
+        "format": "rawpixls_manifest",
+        "path": "outputs/u5_r2bl8s_filmmatch_replacement_source_preflight_v1/run_c/manifest.json",
+        "sha256": "633e07202a92c2f8d60e4476f0b7768a7c5b9ed123c90c5757cbe541c4248733"
+      },
+      {
+        "format": "rawpixls_manifest",
+        "path": "outputs/u6_p8bn_fresh_strength_population_v1/manifest.json",
+        "sha256": "f773411c2ca8764d5ac27b9b400698f50a5588abeb0a83d02d1c0b234dceb85c"
+      },
+      {
+        "format": "rawpixls_manifest",
+        "path": "outputs/u6_p8bp_fresh_native_standard_confirmation_v1/manifest.json",
+        "sha256": "edb1b45552f9bf5712c922ed816b6f9a70f5f0bee2b72a024144cde0087dd521"
+      },
+      {
+        "format": "legacy_rawpixls_render_manifest",
+        "path": "outputs/color_baseline/velvia50_rawpixls20_s0p58_gamutsafe/manifest.json",
+        "sha256": "5d9ee83f68a0a852f74bf1e2de0cc3ca981283a19a3f75671ba47203c555c8bc"
+      },
+      {
+        "format": "rawpixls_manifest",
+        "path": "outputs/u6_p7h0_native_structure_value_source_preflight_v1/run_d/manifest.json",
+        "sha256": "3c698d8df93a7b48b87dff81ad6ddbaeb11d7c8478138ddef9545d57e336fcd7"
+      },
+      {
+        "format": "rawpixls_manifest",
+        "path": "outputs/u6_p4hy_opponent_diffusion_fresh_source_preflight_v1/run_b/manifest.json",
+        "sha256": "52da6f22c8d093bff309f162b77c5e9f040272c8d7e29e164a38e09d5d1ceb62"
+      }
+    ],
+    "development_manifest": "outputs/u6_p7h0_native_structure_value_source_preflight_v1/run_d/manifest.json",
+    "development_manifest_sha256": "3c698d8df93a7b48b87dff81ad6ddbaeb11d7c8478138ddef9545d57e336fcd7",
+    "maximum_dhash_cross_pool_pairs_le_4": 0,
+    "maximum_dhash_within_pool_pairs_le_4": 0,
+    "maximum_exact_cross_pool_pairs": 0,
+    "maximum_exact_within_pool_pairs": 0,
+    "maximum_largest_make_fraction": 0.1111111111111111,
+    "maximum_near_empty_or_monochrome_rows": 2,
+    "minimum_camera_makes": 9,
+    "minimum_hash_clean_decoded_rows": 9,
+    "require_autonomous_visual_content_and_severe_audit": true
+  },
+  "preflight_gate": {
+    "minimum_camera_makes": 9,
+    "minimum_decoded_rows": 9,
+    "zero_confirmed_severe_source_artifact": true,
+    "zero_exact_or_dhash_leakage_to_prior_pools": true,
+    "zero_hash_mismatch": true
+  },
+  "production_default_changed": false,
+  "schema": "neuro-film.u6-p4ib-analytical-density-fresh-source-preflight.v1",
+  "schema_version": 1,
+  "selection": {
+    "candidate_count": 12,
+    "decoded_root": "outputs/u6_p4ib_analytical_density_fresh_source_preflight_v1/inputs",
+    "download_root": "data/external/rawpixls_p4ib_v1/raw",
+    "expected_download_bytes_upper_bound": 330000000,
+    "expected_makes": 12,
+    "maximum_decoded_side": 1600,
+    "maximum_rows_per_make": 1,
+    "orientation_policy": "libraw_metadata_orientation",
+    "rule": "metadata-only exact freeze before pixel access: highest eligible repository ID per canonical make after excluding every repository ID, raw hash and normalized make-model present in retained pools; twelve CC0 rows, twelve makes, 4-40MB, ordinary-photo terms only; no appearance used"
+  },
+  "source": {
+    "api_observed_date": "2026-08-13",
+    "api_snapshot_sha256": "8dc5f5c74e20cc3a38f4548d53bba4bb516835e2a859e80bf86e7ac6283b3aa3",
+    "api_url": "https://raw.pixls.us/json/getrepository.php",
+    "declared_license": "CC0/Public Domain per each exact repository row",
+    "name": "raw.pixls.us",
+    "not_film_truth": true,
+    "purpose": "wholly new digital-photo population for fixed P4IA photographic automatic confirmation",
+    "repository_url": "https://raw.pixls.us/"
+  },
+  "status": "preregistered_before_pixel_access",
+  "training_allowed": false
+}
