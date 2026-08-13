@@ -621,6 +621,33 @@ def _evaluate_source(
     }
 
 
+def evaluate_source_arms(
+    *,
+    root: Path,
+    output_dir: Path,
+    row: dict[str, Any],
+    transform: str | None,
+    seeds: tuple[int, int, int],
+    runtime: DensityStageRuntime,
+    ao6_payload: dict[str, Any],
+    scanner: SpatialResponseProfile,
+    gates: dict[str, Any],
+) -> dict[str, Any]:
+    """Evaluate the frozen P7H four-arm surface for one bound structure runtime."""
+
+    return _evaluate_source(
+        root=root,
+        output_dir=output_dir,
+        row=row,
+        transform=transform,
+        seeds=seeds,
+        runtime=runtime,
+        ao6_payload=ao6_payload,
+        scanner=scanner,
+        gates=gates,
+    )
+
+
 def _aggregate(rows: list[dict[str, Any]]) -> dict[str, Any]:
     output_rows = [output for row in rows for output in row["outputs"]]
     return {
@@ -875,5 +902,6 @@ __all__ = [
     "PHYSICAL_ONLY",
     "RESULT_SCHEMA",
     "evaluate",
+    "evaluate_source_arms",
     "load_contract",
 ]
