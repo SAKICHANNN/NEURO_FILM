@@ -1,0 +1,55 @@
+{
+  "schema": "neuro-film.u6-p6aj-portra-natural-scanner-nuisance-d0-contract.v1",
+  "experiment_id": "U6.P6AJ",
+  "question": "Can one held-local global affine explain the same-session Portra natural-output difference between the Noritsu scan and the Fuji DPii RA4/Epson scan?",
+  "parents": {
+    "cham4_contract": {
+      "path": "configs/u5_r2cham4_portra400_same_scene_source_v1.json",
+      "sha256": "82953d943c698f57b9ebbf7d02a2f9622f67cc828ad6d9416a2e987983ae81c2"
+    },
+    "cham10_evidence": {
+      "path": "docs/evidence/U5_R2CHAM10_PORTRA400_LOCAL_CORRESPONDENCE_TRANSFER_D1_RESULT.json",
+      "sha256": "1c9e8c1e70058dd5f898f9d7dc2282197674f551d2272f1738241e0bdcf42781",
+      "required_decision": "close_chart_affine_natural_local_transfer_without_rescue"
+    }
+  },
+  "inputs": {
+    "source": "Film Scan.jpg",
+    "target": "RA4 Print.jpg",
+    "source_role": "same_scene_portra400_noritsu_scan",
+    "target_role": "same_scene_portra400_fuji_dpii_ra4_epson_scan",
+    "fit_domain": "linear_srgb_from_unprofiled_rgb8_display_proxies"
+  },
+  "correspondence": {
+    "clahe_clip_limit": 2.0,
+    "clahe_tile_grid": [8, 8],
+    "maximum_features": 6000,
+    "ratio_threshold": 0.75,
+    "ransac_reprojection_threshold_pixels": 4.0,
+    "minimum_mutual_good_matches": 20,
+    "minimum_inliers": 12,
+    "minimum_inlier_fraction": 0.0,
+    "maximum_median_inlier_reprojection_error_pixels": 4.0,
+    "maximum_p95_inlier_reprojection_error_pixels": 8.0,
+    "minimum_target_overlap_fraction": 0.0,
+    "patch_radius_pixels": 5,
+    "maximum_patch_channel_mad": 0.08,
+    "minimum_code": 0.02,
+    "maximum_code": 0.98,
+    "wrong_target_roll": 17,
+    "spatial_fold_count": 4
+  },
+  "gates": {
+    "minimum_eligible_correspondences": 32,
+    "minimum_improvement_over_identity_fraction": 0.1,
+    "minimum_improvement_over_wrong_pairing_fraction": 0.1,
+    "minimum_spatial_fold_win_fraction": 0.75,
+    "minimum_worst_spatial_fold_improvement_fraction": -0.1,
+    "maximum_rmse": 0.12,
+    "maximum_out_of_cube_fraction": 0.005,
+    "maximum_repeat_error": 0.0
+  },
+  "decision_if_pass": "retain_one_natural_global_scanner_print_nuisance_mechanism_d0",
+  "decision_if_fail": "close_global_affine_scanner_print_nuisance_on_this_observation",
+  "claim_ceiling": "One unlicensed same-session natural observation of a Noritsu film scan versus Fuji DPii RA4/Epson output; scanner-plus-print nuisance mechanism D0 only, not same-negative calibration, stock response, population transfer, product, redistribution or commercial-use evidence."
+}
