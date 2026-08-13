@@ -1,0 +1,38 @@
+{
+  "schema": "neuro-film.u6-p4hx-opponent-dye-cloud-diffusion-d0-evidence.v1",
+  "experiment_id": "u6-p4hx-opponent-dye-cloud-diffusion-d0-v1",
+  "implementation_commit": "58be229156c2964ef620412f47595c2e17e2dd57",
+  "contract": {
+    "path": "configs/u6_p4hx_opponent_dye_cloud_diffusion_d0_v1.json",
+    "sha256": "dfa7057050b780e794c1f19ee3100d888797f3dee0fd9fbcf1b26c4618988fc9"
+  },
+  "formal_reports": {
+    "paths": [
+      "outputs/experiments/u6_p4hx_opponent_dye_cloud_diffusion_d0_v1/run_a.json",
+      "outputs/experiments/u6_p4hx_opponent_dye_cloud_diffusion_d0_v1/run_b.json"
+    ],
+    "sha256": "75bef0b75114585b6a536b51e3febacb5125c98dc4ed6b0d20bb77361595cd89",
+    "byte_exact": true,
+    "stable_evidence_id": "dbf2a780c90754a0102f1424676b9a31fe89ad1046bd883d8c6bf2e3a92f2e9f"
+  },
+  "observations": {
+    "procedural_rows": 12,
+    "photographic_pixels_read": 0,
+    "maximum_candidate_to_control_high_frequency_chroma_p999_ratio": 0.6141353723672768,
+    "candidate_to_control_luma_high_frequency_rms_ratio_range": [
+      0.967466777288671,
+      0.9979790093698708
+    ],
+    "candidate_to_control_total_residual_rms_ratio_range": [
+      0.8959785414358052,
+      0.9103035845281817
+    ],
+    "maximum_common_density_residual_absolute_error": 3.469446951953614e-18,
+    "maximum_new_boundary_fraction": 0.0,
+    "all_finite_and_bounded": true
+  },
+  "automatic_pass": true,
+  "decision": "retain_opponent_dye_cloud_diffusion_capacity_and_open_fresh_photographic_confirmation",
+  "next_leaf": "Freeze a wholly fresh photographic automatic confirmation of this exact mechanism against the unchanged P7H matched-scanner safety reference and current AO6 incumbent; do not tune diffusion scales or gates.",
+  "claim_ceiling": "Procedural developed-density capacity evidence for one fixed opponent dye-cloud diffusion mechanism only; not microscopy, measured MTF/NPS, stock/process/scanner calibration, photographic value, runtime or product promotion"
+}

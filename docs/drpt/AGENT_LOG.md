@@ -12855,3 +12855,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `1.25x` ceiling. Close this exact correlation-only mechanism without tuning.
 - Continue with a materially different spatial formation mechanism; no
   photographic confirmation, runtime work or product claim opens.
+
+### 2026-08-13 - U6.P4HX retains opponent dye-cloud diffusion capacity
+
+- Fixed P4AS layer scales diffuse only zero-sum opponent density while the
+  per-pixel common density is projected back exactly. Twelve procedural rows
+  replay byte-exactly in two independent processes.
+- Worst high-frequency chroma falls to `.61414x`; luminance high-frequency
+  stays `.96747-.99798x`, total residual stays `.89598-.91030x`, and common
+  density error is `3.47e-18` with zero new boundaries. Every frozen gate passes.
+- Open one wholly fresh photographic automatic confirmation only. Do not tune
+  scales or claim measured film, preference, runtime or product readiness.
