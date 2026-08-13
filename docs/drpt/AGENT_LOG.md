@@ -12948,3 +12948,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Corrected v2 maps clear negative to display black, maximum-density negative to white, and recovered Y/M/C amounts to positive B/G/R. Two exact 274,625-sample runs: report SHA `5909e550...c26a7`, stable `70dcd549...1ef3e`; density/positive recovery max `5.96e-7`, neutral spread `4.17e-7`, channel-order error `1.21e-7`.
 - Decisive control: independent scanner-channel endpoint inversion remains highly wrong (median/p95/max `.181/.485/.701`) because it leaves spectral cross-talk mixed.
 - Decision: retain only corrected v2 for cohort-free analytical development; no measured scanner, calibration or photo claim.
+## 2026-08-13 — U6.P4IG characteristic-density scanner chain D0
+
+- Composed the tracked 250D Status-M characteristic prior with the corrected P4IF polarity and the fixed P4ID compact scanner. Per-layer density is normalized only within the observed graph bounds, red/green/blue layer amounts are reordered to yellow/magenta/cyan, and the inverse returns positive red/green/blue without clipping.
+- Two 274,625-sample reports are byte exact (`1375d407...62f6`, stable `428b386e...2181`). Chain error is `5.96e-7`, every axis is monotone and the bounded endpoint tolerance passes.
+- The characteristic response is material versus the normalized input (p95 `.21834`), while the old direct-transmittance interpretation remains decisively wrong (p95 `.45490`).
+- Decision: retain the typed analytical chain for a fixed photo development test. This remains synthetic scanner D0 plus manufacturer graph prior, not measured stock/scanner appearance or product evidence.

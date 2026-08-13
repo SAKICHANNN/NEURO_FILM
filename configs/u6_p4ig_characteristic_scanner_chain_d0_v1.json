@@ -1,0 +1,42 @@
+{
+  "schema": "neuro-film.u6-p4ig-characteristic-scanner-chain-d0-contract.v1",
+  "experiment_id": "u6-p4ig-characteristic-scanner-chain-d0-v1",
+  "parents": {
+    "p4if_evidence": {
+      "path": "docs/evidence/U6_P4IF_NEGATIVE_SCANNER_INVERSE_D0_V2_RESULT.json",
+      "sha256": "ccadccfc1adebfb3f0d80767db3922e735a4e0745e838b544a9b1efc70fc7218",
+      "required_decision": "retain_explicit_negative_scanner_inverse_for_photographic_development",
+      "required_stable_evidence_id": "70dcd549f3422da6fe1581abc975d11bfc2b68d799426853b7d16b06d0c1ef3e"
+    },
+    "characteristic_trace": {
+      "path": "configs/data/kodak_250d_characteristic_curve_pixels_v1.json",
+      "sha256": "0157c8235160a47c231f091aa8fd42dae8a50a8af3c949cb17424a55b45394a9"
+    }
+  },
+  "compiler": {
+    "compiler_id": "u6-p4id-synthetic-log-scanner-v1",
+    "matrix_density_to_log10_rgb": [
+      [-0.01914318034784818, -0.12430920920289017, -0.5426234628121562],
+      [-0.34150689554450087, -0.5473259673318212, -0.323929450559223],
+      [-0.348671066082305, -0.142761433560209, -0.03650384363698002]
+    ],
+    "bias_log10_rgb": [0.012682750789860522, 0.01518857683993641, 0.03158356724978537]
+  },
+  "population": {
+    "levels": 65,
+    "input_coordinate": "per-layer-normalized-observed-log-exposure",
+    "density_normalization": "per-layer-observed-min-max",
+    "scanner_dye_order": ["yellow", "magenta", "cyan"],
+    "positive_output_order": ["cyan", "magenta", "yellow"]
+  },
+  "gates": {
+    "maximum_chain_absolute_error": 4e-6,
+    "maximum_monotonic_positive_step": 1e-12,
+    "maximum_output_boundary_error": 4e-6,
+    "minimum_direct_transmittance_control_p95_error": 0.25,
+    "minimum_characteristic_materiality_p95": 0.1
+  },
+  "decision_if_pass": "retain_typed_characteristic_scanner_chain_for_photo_development",
+  "decision_if_fail": "close_exact_characteristic_scanner_chain",
+  "claim_ceiling": "Synthetic analytical composition of the observed Kodak 250D Status-M characteristic graph with a synthetic compact scanner and exact inverse. It validates domains, polarity and channel order only; it is not stock appearance, calibrated exposure, a measured scanner, a photograph result or product promotion."
+}

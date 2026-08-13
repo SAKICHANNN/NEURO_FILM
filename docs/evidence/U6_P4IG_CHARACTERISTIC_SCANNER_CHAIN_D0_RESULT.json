@@ -1,0 +1,41 @@
+{
+  "schema": "neuro-film.u6-p4ig-characteristic-scanner-chain-d0-evidence.v1",
+  "experiment_id": "u6-p4ig-characteristic-scanner-chain-d0-v1",
+  "date": "2026-08-13",
+  "implementation": {
+    "config_sha256": "83cec1c609ec66734f85b518600530c46ba134437f71291cb5269220178cdd9e",
+    "evaluator_sha256": "9693b8012d5f86eb66035f2337fc4bbbd8da7dc7be101dcf6db4d953b6c3e8f3",
+    "runner_sha256": "66584f7bfbfe53a6d8b7dade5d65777a4da9efc071c193620e32b924ccc4281d",
+    "test_sha256": "c5a464b854df0804b22b3504d32f041cc52573eca04da7ec9e7af1fbc1be7652"
+  },
+  "formal_runs": {
+    "count": 2,
+    "report_sha256": "1375d407cf3150b79e9509ffe772efea196ff5d4f20c145f54f1018940ff62f6",
+    "repeat_report_sha256_exact": true,
+    "stable_evidence_id": "428b386efc04582857f3c260e3b08529a6aad9a6d4104f104366d61954862181",
+    "temporary_output_root": "D:/nf-019f4b76-p4id-fallback/p4ig"
+  },
+  "metrics": {
+    "sample_count": 274625,
+    "chain_max_abs_error": 5.960464477539062e-7,
+    "monotonic_max_positive_violation": 0.0,
+    "output_minimum": -2.8453649747461895e-7,
+    "output_maximum": 1.0000005960464478,
+    "direct_transmittance_control_median_abs_error": 0.1897894543032076,
+    "direct_transmittance_control_p95_abs_error": 0.45489903857462444,
+    "direct_transmittance_control_max_abs_error": 0.47011177363791257,
+    "characteristic_materiality_median_abs": 0.08755967020988464,
+    "characteristic_materiality_p95_abs": 0.21834415197372437,
+    "characteristic_materiality_max_abs": 0.23227040469646454
+  },
+  "decision": "retain_typed_characteristic_scanner_chain_for_photo_development",
+  "interpretation": "Normalize each observed Status-M layer density within its own manufacturer-graph range, reorder red/green/blue layer response to yellow/magenta/cyan dye amounts, run the fixed compact scanner and invert back to positive cyan/magenta/yellow as red/green/blue. The complete typed chain is monotone and exact to float32 tolerance; direct layer transmittance remains a decisive negative control.",
+  "verification": {
+    "two_formal_runs_exact": "PASS",
+    "ruff_no_cache": "PASS",
+    "py_compile": "PASS",
+    "diff_check": "PASS"
+  },
+  "claim_ceiling": "Synthetic analytical composition of the observed Kodak 250D Status-M characteristic graph with a synthetic compact scanner and exact inverse. It validates domains, polarity and channel order only; it is not stock appearance, calibrated exposure, a measured scanner, a photograph result or product promotion.",
+  "next_leaf": "Apply the same typed chain to a fixed already-consumed photographic development cohort with no clipping or output limiting; retain AO6 if severe-artifact gates fail."
+}
