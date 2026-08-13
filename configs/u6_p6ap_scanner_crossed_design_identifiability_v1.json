@@ -1,0 +1,125 @@
+{
+  "schema": "neuro-film.u6-p6ap-scanner-crossed-design-identifiability-contract.v1",
+  "experiment_id": "U6.P6AP",
+  "question": "Which scanner, device, software, operator, and sampling effects are estimable from the existing four-pipeline same-slide ColorReference design, and what smallest new acquisition would identify random scanner repeat noise?",
+  "parents": {
+    "source_contract": {
+      "path": "configs/sf2_7r_colorreference_scanner_nuisance_v1.json",
+      "sha256": "ed44375415b7471aa1b0256d87e086a66c83f55c0cab3d2a25ec33a90e037fa0"
+    },
+    "source_audit": {
+      "path": "outputs/sf2_7r_colorreference_scanner_nuisance_v1/audit_pass1.json",
+      "sha256": "b88da41c129b58087c68194f21545c1f7b708be91ba7d1b868ce50579d410fb6",
+      "required_all_checks_passed": true
+    },
+    "p6ao_evidence": {
+      "path": "docs/evidence/U6_P6AO_SCANNER_NORMALIZED_NPS_IDENTIFIABILITY_D1_RESULT.json",
+      "sha256": "c3f1bbd6197f9011703fb96973daeb7bf2da3db6d86f1543ee64cac08b194a7d",
+      "required_decision": "close_scanner_normalized_nps_identifiability_on_this_target_set"
+    }
+  },
+  "pipelines": [
+    {
+      "id": "nikon_ls50_nikonscan",
+      "scanner_model": "Nikon LS 50 ED",
+      "device_instance": "ls50_device_a",
+      "software": "NikonScan 4.02",
+      "operator": "Christophe Han",
+      "sampling_dpi": 4000,
+      "output_encoding": "14_bit_device_rgb"
+    },
+    {
+      "id": "nikon_ls50_vuescan",
+      "scanner_model": "Nikon LS 50 ED",
+      "device_instance": "ls50_device_a",
+      "software": "VueScan 8.301",
+      "operator": "Christophe Han",
+      "sampling_dpi": 4000,
+      "output_encoding": "14_bit_device_rgb"
+    },
+    {
+      "id": "nikon_ls50_second_device",
+      "scanner_model": "Nikon LS 50 ED",
+      "device_instance": "ls50_device_b",
+      "software": "NikonScan 4.02",
+      "operator": "Olivier Desmaison",
+      "sampling_dpi": 2800,
+      "output_encoding": "14_bit_device_rgb"
+    },
+    {
+      "id": "nikon_ls9000_nikonscan",
+      "scanner_model": "Nikon LS 9000",
+      "device_instance": "ls9000_device_a",
+      "software": "NikonScan 4.0.2",
+      "operator": "Harald Lampe",
+      "sampling_dpi": 4000,
+      "output_encoding": "48_bit_adobe_rgb_label"
+    }
+  ],
+  "candidate_effects": [
+    "intercept",
+    "scanner_model_ls9000",
+    "software_vuescan",
+    "device_ls50_b",
+    "operator_olivier",
+    "operator_harald",
+    "sampling_2800dpi",
+    "output_adobe_rgb_label"
+  ],
+  "frozen_contrasts": [
+    {
+      "id": "software_on_same_ls50_device_operator_sampling",
+      "left": "nikon_ls50_vuescan",
+      "right": "nikon_ls50_nikonscan",
+      "expected_estimable": true
+    },
+    {
+      "id": "second_ls50_device_only",
+      "left": "nikon_ls50_second_device",
+      "right": "nikon_ls50_nikonscan",
+      "expected_estimable": false
+    },
+    {
+      "id": "ls9000_model_only",
+      "left": "nikon_ls9000_nikonscan",
+      "right": "nikon_ls50_nikonscan",
+      "expected_estimable": false
+    }
+  ],
+  "repeat_noise_requirement": {
+    "minimum_same_physical_slide_scans": 3,
+    "fixed_fields": [
+      "scanner_model",
+      "device_instance",
+      "software",
+      "operator",
+      "sampling_dpi",
+      "output_encoding",
+      "exposure_and_gain",
+      "focus_policy",
+      "colour_management",
+      "warmup_state"
+    ],
+    "required_controls": [
+      "scanner_dark_frame",
+      "scanner_flat_or_uniform_density_frame",
+      "subpixel_registration",
+      "fixed_crop_and_orientation"
+    ]
+  },
+  "primary_sources": [
+    {
+      "title": "FIAF Digital Statement Part II: Scanning for Preservation",
+      "url": "https://www.fiafnet.org/is/2/E-Resources/Digital-Statement-part-II.html",
+      "relevance": "scanner optics, illumination, sensor, processing and aliasing are distinct contributors"
+    },
+    {
+      "title": "Tonal distribution and glare assessment in cinematographic film scanners",
+      "url": "https://doi.org/10.1007/s11760-025-04569-8",
+      "relevance": "2026 multi-scanner evidence that scanner context, noise and glare remain explicit nuisance variables"
+    }
+  ],
+  "decision_if_identified": "open_only_the_estimable_same_device_software_contrast",
+  "decision_if_underidentified": "require_new_fixed_condition_repeat_scans_before_random_scanner_noise_or_material_nps_identification",
+  "claim_ceiling": "Design-rank and acquisition-requirement evidence for one five-slide ColorReference target set; not scanner-noise estimation, material NPS identification, film-stock calibration, product profile, or population transfer."
+}
