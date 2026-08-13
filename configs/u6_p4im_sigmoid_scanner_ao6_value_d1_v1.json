@@ -1,0 +1,37 @@
+{
+  "schema": "neuro-film.u6-p4im-sigmoid-scanner-ao6-value-d1-contract.v1",
+  "experiment_id": "u6-p4im-sigmoid-scanner-ao6-value-d1-v1",
+  "question": "Does the fixed P4IL developed-structure signal remain material and artifact-light after the complete fixed AO6 t15/c35 display look?",
+  "parent": {
+    "path": "docs/evidence/U6_P4IL_SIGMOID_SCANNER_BUNDLED_NATURAL_D1_RESULT.json",
+    "sha256": "6e8f3758ad980109367bff82b96e2d5f62b537b6ddfbac37b31a5e51d9640547",
+    "required_decision": "retain_sigmoid_scanner_natural_d1_for_ao6_value_comparison"
+  },
+  "ao6": {
+    "config_path": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json",
+    "config_sha256": "0d238a4970ae4c131d0cf39d00d30638e53e2baa63a3eccf56353c93a1ff16c4",
+    "required_bundle_sha256": "3a14cb3c9257cf1a7dade92a03b15f1af2f74ba74c06233f0e9732fe536237af",
+    "source_context_policy": "build-once-from-original-encoded-source"
+  },
+  "arms": [
+    "source_reference",
+    "fixed_ao6_colour_only_t15_c35",
+    "matched_sigmoid_scanner_ao6_t15_c35",
+    "sigmoid_scanner_physical_only_diagnostic",
+    "sigmoid_scanner_then_fixed_ao6_t15_c35"
+  ],
+  "gates": {
+    "minimum_population_p95_combined_vs_matched_abs": 0.0001,
+    "maximum_population_p99_combined_vs_matched_abs": 0.05,
+    "maximum_flat_region_p99_combined_vs_matched_abs": 0.04,
+    "maximum_high_frequency_chroma_p999": 0.004,
+    "maximum_isolated_excursions": 0,
+    "maximum_new_boundary_fraction_vs_matched": 0.0005,
+    "maximum_output_code_boundary_fraction": 0.005,
+    "minimum_population_p95_combined_vs_current_abs": 0.0001,
+    "maximum_repeat_error": 0.0
+  },
+  "decision_if_pass": "open_domain_separated_ao6_vs_combined_blind_value_review",
+  "decision_if_fail": "retain_fixed_ao6_and_close_exact_p4il_ao6_value_candidate",
+  "claim_ceiling": "Automatic natural-photo D1 comparison of a fixed generic physical-inspired sigmoid/scanner structure followed by fixed AO6; not preference, stock/scanner calibration, native runtime or product promotion."
+}

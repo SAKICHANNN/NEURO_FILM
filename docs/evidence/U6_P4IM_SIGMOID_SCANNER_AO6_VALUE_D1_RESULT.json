@@ -1,0 +1,138 @@
+{
+  "ao6_bundle_sha256": "3a14cb3c9257cf1a7dade92a03b15f1af2f74ba74c06233f0e9732fe536237af",
+  "automatic_pass": false,
+  "blind_review_allowed": false,
+  "checks": {
+    "chroma": false,
+    "flat": true,
+    "isolated": false,
+    "material_increment": true,
+    "new_boundary": true,
+    "output_boundary": true,
+    "product_separation": true,
+    "repeat": true,
+    "tail": true
+  },
+  "claim_ceiling": "Automatic natural-photo D1 comparison of a fixed generic physical-inspired sigmoid/scanner structure followed by fixed AO6; not preference, stock/scanner calibration, native runtime or product promotion.",
+  "config_sha256": "af6ff3d4ce66a2693a3f0a40c84e1355a3b0d7d12c26545679827630061dcedc",
+  "contact_sheet_sha256": "f67631956dfd1facc6b2c92324a8694afd03464f5b213a1f6d283c287fcad8ab",
+  "decision": "retain_fixed_ao6_and_close_exact_p4il_ao6_value_candidate",
+  "experiment_id": "u6-p4im-sigmoid-scanner-ao6-value-d1-v1",
+  "metrics": {
+    "maximum_arm_output_code_boundary_fraction": 0.0,
+    "maximum_flat_region_p99_combined_vs_matched_abs": 0.036322613358497624,
+    "maximum_high_frequency_chroma_p999": 0.017611089803278492,
+    "maximum_new_boundary_fraction_vs_matched": 0.0,
+    "maximum_repeat_error": 0.0,
+    "population_p95_combined_vs_current_abs": 0.4043536625802516,
+    "population_p95_combined_vs_matched_abs": 0.026175412535667415,
+    "population_p99_combined_vs_matched_abs": 0.03330481992959975,
+    "row_count": 5,
+    "total_isolated_excursions": 198
+  },
+  "parent_stable_evidence_id": "6ad5b91609ba1ee257c2a2fc9ce1b186569e09218ae80ad7d805efcb0d71f315",
+  "rows": [
+    {
+      "arm_sha256": {
+        "fixed_ao6_colour_only_t15_c35": "bee1f1a963cae393e05fef4222833738e131900556da1e7f8b2d35803de8bb12",
+        "matched_sigmoid_scanner_ao6_t15_c35": "d91dc71be1c59a891efa2fd9aca948b1d0582e572b46986559d9223aed107b1c",
+        "sigmoid_scanner_physical_only_diagnostic": "b495f2e474a1fb5233fef627edb3f89b8377ba16618dc8815e80f6941089500e",
+        "sigmoid_scanner_then_fixed_ao6_t15_c35": "417a03aab206a8786eb8a4f620c423c40d2c4a4bee2cd7e7c2d6403c606f66d8",
+        "source_reference": "97c5216381c80dc3439e38440dea2adea4c6264bd065a3e3727c2dd0dd7112d1"
+      },
+      "flat_region_p99_combined_vs_matched_abs": 0.013131913095712662,
+      "high_frequency_chroma_p999": 0.006581853200991939,
+      "id": "astronaut",
+      "isolated_excursions": 0,
+      "maximum_arm_output_code_boundary_fraction": 0.0,
+      "new_boundary_fraction_vs_matched": 0.0,
+      "p95_combined_vs_current_abs": 0.2634590864181518,
+      "p95_combined_vs_matched_abs": 0.006961184740066517,
+      "p99_combined_vs_matched_abs": 0.012403580695390694,
+      "repeat_error": 0.0,
+      "source_sha256": "a8c429c18afa7b0fd5673e598d73a21225d94c864a71bbb3885126fdecb41071"
+    },
+    {
+      "arm_sha256": {
+        "fixed_ao6_colour_only_t15_c35": "41e4308fd103fd8aaf93d3809d41dc3a97bb5c5b38b78796bcd08f85cb11adea",
+        "matched_sigmoid_scanner_ao6_t15_c35": "702c0ef1ed614b47eb221221036859f9982ba2ba5cebf90b585996a5dd417e46",
+        "sigmoid_scanner_physical_only_diagnostic": "2b273f32eadab4699d848f7af565682456b68c31c2f810532c8ab87aef42836e",
+        "sigmoid_scanner_then_fixed_ao6_t15_c35": "c54fb88900d55ea5a014931d015e15401990b3362df5add7a34f60754b031df2",
+        "source_reference": "318c0b079a77c93557f9a8238989d63abcbf1f0bbb0597b11585b9b7eabd868e"
+      },
+      "flat_region_p99_combined_vs_matched_abs": 0.011140389442443855,
+      "high_frequency_chroma_p999": 0.006449480873377347,
+      "id": "coffee",
+      "isolated_excursions": 0,
+      "maximum_arm_output_code_boundary_fraction": 0.0,
+      "new_boundary_fraction_vs_matched": 0.0,
+      "p95_combined_vs_current_abs": 0.23092969059944152,
+      "p95_combined_vs_matched_abs": 0.005253352224826802,
+      "p99_combined_vs_matched_abs": 0.007997672706842433,
+      "repeat_error": 0.0,
+      "source_sha256": "0ce2b51640b9c95f19617f03eabf40c3f0368589cc1ee1190b70966165ac184f"
+    },
+    {
+      "arm_sha256": {
+        "fixed_ao6_colour_only_t15_c35": "7a7f5b42c7a91dee8a865cb4d3c448af4f2e4d3613ff772ad018ee13cd7f36f5",
+        "matched_sigmoid_scanner_ao6_t15_c35": "540cac29de4b0ea4dbfcac287d71b55060d2854fbd1b20593c09ac0ffe6ad42e",
+        "sigmoid_scanner_physical_only_diagnostic": "595018257658c1127efde264e6b5b5312220beb3d818d986d7c59a6f6c36e3b3",
+        "sigmoid_scanner_then_fixed_ao6_t15_c35": "d71d462202b2045b7bb8f7423a1ebf234d13490ab07508106a2937e3aa0ed1de",
+        "source_reference": "e92a462d715cecb327b6a11c2e837582076539db01bca6b8c3d1d8822c35a2e3"
+      },
+      "flat_region_p99_combined_vs_matched_abs": 0.031159952282905686,
+      "high_frequency_chroma_p999": 0.011080078919883836,
+      "id": "chelsea",
+      "isolated_excursions": 0,
+      "maximum_arm_output_code_boundary_fraction": 0.0,
+      "new_boundary_fraction_vs_matched": 0.0,
+      "p95_combined_vs_current_abs": 0.4207911491394043,
+      "p95_combined_vs_matched_abs": 0.011496613919734952,
+      "p99_combined_vs_matched_abs": 0.02194957092404368,
+      "repeat_error": 0.0,
+      "source_sha256": "416b729128bfb2c3d1eb69bf9b1734a796293abc17939267b2dc94f8a5784031"
+    },
+    {
+      "arm_sha256": {
+        "fixed_ao6_colour_only_t15_c35": "c1c0120f1874e212b4746207a45061414271e5d65fd495eeef2dd29cee2c3520",
+        "matched_sigmoid_scanner_ao6_t15_c35": "d3356e56f8016e87914f79ed5f384af5adff48f761350e2de56b4866255248d5",
+        "sigmoid_scanner_physical_only_diagnostic": "54bf8636e64aea54ac70d2f1af2663695a78c12e10ce57b24728de16ea044769",
+        "sigmoid_scanner_then_fixed_ao6_t15_c35": "58b09aebc59c6812ea50efdc9b6410dedd5a2ca6285a62b6e82575f676e1a54b",
+        "source_reference": "1ac9ca31864882cba940e89570c9daab248facde232bce4702e5f4c10a9d7da4"
+      },
+      "flat_region_p99_combined_vs_matched_abs": 0.036322613358497624,
+      "high_frequency_chroma_p999": 0.008362884262887515,
+      "id": "rocket",
+      "isolated_excursions": 0,
+      "maximum_arm_output_code_boundary_fraction": 0.0,
+      "new_boundary_fraction_vs_matched": 0.0,
+      "p95_combined_vs_current_abs": 0.33860371634364106,
+      "p95_combined_vs_matched_abs": 0.026557330042123788,
+      "p99_combined_vs_matched_abs": 0.03353347986936568,
+      "repeat_error": 0.0,
+      "source_sha256": "3d4435cc745752b7f9724df88c6e18817de3ce7e3d2d71c55f85f7831e68f197"
+    },
+    {
+      "arm_sha256": {
+        "fixed_ao6_colour_only_t15_c35": "3eeb98ebae2539c879bdf542fdebf30ea48806782f4d2b875d350537d65428b1",
+        "matched_sigmoid_scanner_ao6_t15_c35": "df764b44c3d30ff57e9f75ecafe698a628564c543a15d9fbe50380d493621507",
+        "sigmoid_scanner_physical_only_diagnostic": "458eece01079765d26274e4e16096a539817377e11b6be8a38dc5ebeabe8c7f6",
+        "sigmoid_scanner_then_fixed_ao6_t15_c35": "34ac397a0e24be7564e31938d6973a38992697dd35803e592d1635199a130deb",
+        "source_reference": "4cf78fa865a7ae0192da718cc6278ab41d388badea5195e398f376e289ecf7d4"
+      },
+      "flat_region_p99_combined_vs_matched_abs": 0.028687400817871092,
+      "high_frequency_chroma_p999": 0.017611089803278492,
+      "id": "hubble_deep_field",
+      "isolated_excursions": 198,
+      "maximum_arm_output_code_boundary_fraction": 0.0,
+      "new_boundary_fraction_vs_matched": 0.0,
+      "p95_combined_vs_current_abs": 0.15030959993600843,
+      "p95_combined_vs_matched_abs": 0.02464774250984192,
+      "p99_combined_vs_matched_abs": 0.02781698137521743,
+      "repeat_error": 0.0,
+      "source_sha256": "9a3ea9548188f81e63435188456e74de45a981ebeb791e265abe79a26d3b528b"
+    }
+  ],
+  "schema": "neuro-film.u6-p4im-sigmoid-scanner-ao6-value-d1-result.v1",
+  "stable_evidence_id": "df13ae003e03731089db36763565d82b36639da479d569b76671e0f964678ade"
+}
