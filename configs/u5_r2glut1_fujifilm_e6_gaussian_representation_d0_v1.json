@@ -1,0 +1,33 @@
+{
+  "schema": "neuro-film.u5-r2glut1-fujifilm-e6-gaussian-representation-d0-contract.v1",
+  "experiment_id": "U5.R2GLUT1",
+  "parents": {
+    "glut0_evidence": {
+      "path": "docs/evidence/U5_R2GLUT0_GAUSSIAN_LUT_REPRESENTATION_D0_RESULT.json",
+      "sha256": "03f8ed54506909b08e85a6bd7a3358beadb2ba824df167d8ab4492c92f42cd86",
+      "required_decision": "retain_continuous_gaussian_lut_representation_for_photographic_baseline"
+    },
+    "fujifilm_operator_contract": {
+      "path": "configs/u5_r2cb2_fujifilm_e6_bounded_dye_operator_v1.json",
+      "sha256": "5663d54698b3e6f4efed1bc64cdd526fbac0f46ec36fa05d749e793bf7f12985"
+    }
+  },
+  "representation": {
+    "gaussian_side": 4,
+    "gaussian_sigma": 0.23,
+    "lattice_side": 4,
+    "ridge": 0.0001,
+    "fit_stride": 2
+  },
+  "gates": {
+    "minimum_outputs_beating_lattice": 5,
+    "minimum_median_rmse_improvement_percent": 10,
+    "minimum_worst_rmse_improvement_percent": -5,
+    "maximum_gaussian_rmse": 0.02,
+    "maximum_new_boundary_fraction": 0.0005,
+    "minimum_sampled_jacobian_determinant": 0
+  },
+  "decision_if_pass": "retain_gaussian_representation_for_fixed_e6_operator_photographic_baseline",
+  "decision_if_fail": "close_fixed_e6_gaussian_representation_without_capacity_sigma_or_gate_rescue",
+  "claim_ceiling": "Representation evidence derived from first-party Fujifilm technical-source curves and a previously retained film-inspired operator; not real-film response, photographic appearance, stock calibration, preference or product evidence."
+}

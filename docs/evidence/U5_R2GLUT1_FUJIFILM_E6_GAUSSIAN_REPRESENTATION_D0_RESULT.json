@@ -1,0 +1,29 @@
+{
+  "schema": "neuro-film.u5-r2glut1-fujifilm-e6-gaussian-representation-d0-evidence.v1",
+  "experiment_id": "U5.R2GLUT1",
+  "date": "2026-08-13",
+  "formal_report_paths": [
+    "D:/nf-019f4b76-p4id-fallback/glut1_a.json",
+    "D:/nf-019f4b76-p4id-fallback/glut1_b.json"
+  ],
+  "formal_report_sha256": "8697a847f74798898a7ea7cfcea1e287d55fa86721b6e8b1eb474519dadafaf5",
+  "stable_evidence_id": "1e2358690e63de2dd4f2561137a82c8c9729c2eee5384f96de9608524b81927c",
+  "two_formal_reports_byte_exact": true,
+  "metrics": {
+    "output_count": 6,
+    "outputs_beating_lattice": 0,
+    "median_rmse_improvement_percent": -39.73799365566994,
+    "worst_rmse_improvement_percent": -40.0902458882106,
+    "maximum_gaussian_rmse": 0.0013646998915920906,
+    "minimum_sampled_jacobian_determinant": 0.19535056220389585,
+    "maximum_new_boundary_fraction": 0.0
+  },
+  "failed_gates": [
+    "minimum_outputs_beating_lattice",
+    "minimum_median_rmse_improvement_percent",
+    "minimum_worst_rmse_improvement_percent"
+  ],
+  "decision": "close_fixed_e6_gaussian_representation_without_capacity_sigma_or_gate_rescue",
+  "scientific_conclusion": "The continuous Gaussian basis remains accurate, monotone on the sampled cube and boundary-clean, but it loses to the equal-budget regular lattice for every retained Fujifilm E-6 technical-source-derived operator. The GLUT0 advantage is therefore operator-family dependent rather than a universal compact-representation gain.",
+  "claim_ceiling": "Representation evidence derived from first-party Fujifilm technical-source curves and a previously retained film-inspired operator; not real-film response, photographic appearance, stock calibration, preference or product evidence."
+}
