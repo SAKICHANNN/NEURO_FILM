@@ -1,0 +1,46 @@
+{
+  "schema": "neuro-film.u6-p4hw-shared-dye-cloud-occupancy-d0-evidence.v1",
+  "experiment_id": "u6-p4hw-shared-dye-cloud-occupancy-d0-v1",
+  "implementation_commits": [
+    "2be116b1",
+    "e6e5708e"
+  ],
+  "contract": {
+    "path": "configs/u6_p4hw_shared_dye_cloud_occupancy_d0_v1.json",
+    "sha256": "d50b591805e08787007177b1ba42573e9e489498ae8f1713f848bb1b89772911"
+  },
+  "formal_reports": {
+    "paths": [
+      "outputs/experiments/u6_p4hw_shared_dye_cloud_occupancy_d0_v1/run_a.json",
+      "outputs/experiments/u6_p4hw_shared_dye_cloud_occupancy_d0_v1/run_b.json"
+    ],
+    "sha256": "d5bddd572613f163bc002a9fb46d5023f32d6a892300db93a2eda25c3500072b",
+    "byte_exact": true,
+    "stable_evidence_id": "99c2cf38d5de4c45904b3dbc113756d6f2609b6357d55d0b61c06d355bbd0e8d"
+  },
+  "observations": {
+    "procedural_rows": 12,
+    "photographic_pixels_read": 0,
+    "candidate_to_control_high_frequency_chroma_p999_ratio_minimum": 0.62535257008667,
+    "candidate_to_control_high_frequency_chroma_p999_ratio_maximum": 0.8249784237488382,
+    "candidate_to_control_luma_high_frequency_rms_ratio_minimum": 1.2650374101929212,
+    "candidate_to_control_luma_high_frequency_rms_ratio_maximum": 1.3320430003386636,
+    "maximum_per_channel_residual_rms_relative_error": 0.018731700423203972,
+    "minimum_empirical_cross_layer_correlation_gain": 0.6136526092522344,
+    "maximum_new_boundary_fraction": 0.0,
+    "all_finite_and_bounded": true
+  },
+  "failed_frozen_gates": {
+    "chroma_reduction": {
+      "maximum_ratio": 0.8,
+      "observed_worst_ratio": 0.8249784237488382
+    },
+    "luma_preservation": {
+      "maximum_ratio": 1.25,
+      "observed_worst_ratio": 1.3320430003386636
+    }
+  },
+  "decision": "close_exact_shared_dye_cloud_occupancy_capacity_without_rescue",
+  "next_direction": "change spatial formation mechanism rather than tune cross-layer correlation",
+  "claim_ceiling": "Procedural relative-display capacity evidence for one fixed shared dye-cloud occupancy correlation only; not microscopy, stock/process/scanner calibration, photographic value, portable runtime or product promotion"
+}

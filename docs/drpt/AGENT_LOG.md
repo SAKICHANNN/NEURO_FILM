@@ -12844,3 +12844,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   blind review opens and no threshold or same-cohort rescue is allowed.
 - Retain fixed AO6. Stop P4HU product/runtime work and return to a materially
   different identifying physical mechanism or better calibrated evidence.
+
+### 2026-08-13 - U6.P4HW closes fixed shared dye-cloud occupancy
+
+- Twelve procedural rows and two independent processes replay byte-exactly.
+  Raising cross-layer correlation to rho=.85 reduces high-frequency chroma,
+  preserves marginal/total energy and adds no boundary pixels.
+- The worst chroma ratio is `.82498` against the frozen `.80` ceiling, while
+  luminance high-frequency energy rises to `1.265-1.332x` and exceeds the
+  `1.25x` ceiling. Close this exact correlation-only mechanism without tuning.
+- Continue with a materially different spatial formation mechanism; no
+  photographic confirmation, runtime work or product claim opens.
