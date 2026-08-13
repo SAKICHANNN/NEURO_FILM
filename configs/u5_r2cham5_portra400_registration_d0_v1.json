@@ -1,0 +1,66 @@
+{
+  "schema": "neuro-film.u5-r2cham5-portra400-registration-d0-contract.v1",
+  "experiment_id": "U5.R2CHAM5",
+  "parents": {
+    "source_contract": {
+      "path": "configs/u5_r2cham4_portra400_same_scene_source_v1.json",
+      "sha256": "82953d943c698f57b9ebbf7d02a2f9622f67cc828ad6d9416a2e987983ae81c2"
+    },
+    "download_manifest": {
+      "path": "outputs/external_controls/spektrafilm_portra400_same_scene_v1/download_manifest.json",
+      "sha256": "eabfd1d191d62a05bc565db806deb5609387be802d3ffa810cfaffd466eede66"
+    }
+  },
+  "decode": {
+    "raw": "rawpy-camera-wb-auto-bright-srgb8-half-size-metadata-orientation",
+    "raw_use_camera_wb": true,
+    "raw_no_auto_bright": false,
+    "raw_half_size": true,
+    "raster": "Pillow-exif-transpose-RGB8",
+    "repeat_decode_exact": true
+  },
+  "registration": {
+    "direction": "digital_to_film_or_print",
+    "grayscale": "opencv_rgb_to_gray_then_CLAHE",
+    "clahe_clip_limit": 2.0,
+    "clahe_tile_grid": [8, 8],
+    "detector": "OpenCV SIFT",
+    "maximum_features": 6000,
+    "matcher": "mutual_L2_two_nearest_neighbor",
+    "ratio_threshold": 0.75,
+    "model": "homography",
+    "ransac_reprojection_threshold_pixels": 4.0,
+    "minimum_mutual_good_matches": 20,
+    "minimum_inliers": 12,
+    "minimum_inlier_fraction": 0.35,
+    "maximum_median_inlier_reprojection_error_pixels": 2.0,
+    "maximum_p95_inlier_reprojection_error_pixels": 5.0,
+    "minimum_target_overlap_fraction": 0.3
+  },
+  "pairs": [
+    {
+      "id": "chart_portra400_fuji_dpii",
+      "digital_role": "digital_chart_raw",
+      "target_role": "portra400_fuji_dpii_chart_scan",
+      "registration_required": true,
+      "operator_fit_allowed": false
+    },
+    {
+      "id": "scene_portra400_noritsu",
+      "digital_role": "same_scene_lumix_s5ii_raw",
+      "target_role": "same_scene_portra400_noritsu_scan",
+      "registration_required": false,
+      "operator_fit_allowed": false
+    },
+    {
+      "id": "scene_portra400_fuji_dpii_ra4_epson",
+      "digital_role": "same_scene_lumix_s5ii_raw",
+      "target_role": "same_scene_portra400_fuji_dpii_ra4_epson_scan",
+      "registration_required": false,
+      "operator_fit_allowed": false
+    }
+  ],
+  "decision_if_pass": "retain_chart_pair_for_separately_frozen_development_only_operator_discriminant",
+  "decision_if_fail": "close_source_before_operator_fit",
+  "claim_ceiling": "Internal registration and source-integrity evidence on one publicly shared unlicensed session; no calibrated Portra 400, print paper, scanner, process, natural-scene transfer, product, redistribution or commercial-use claim."
+}
