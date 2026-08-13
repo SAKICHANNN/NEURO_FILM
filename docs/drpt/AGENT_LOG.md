@@ -13019,3 +13019,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   same-chart residual rescue without ridge/capacity tuning. Retain the chart
   as a useful data-gap result and return effort to independent physical-value
   evidence or genuinely new controlled pairs.
+
+### 2026-08-14 - U5.R2CHAM8 observes but cannot identify chart texture
+
+- Two exact reports (`a804b4c3...40129`, stable `6648d070...539d`) analyze 64
+  low-gradient chart patches. Film-TIFF luma high-frequency energy is `4.786x`
+  the camera-RAW side; all radial bands increase, edge correlation is `.0445`
+  and the TIFF block diagnostic is safe at `1.0276`.
+- Formal FAIL: the nonnegative predictive high-pass scale is zero, so correct
+  alignment and a 17-pixel shifted control have identical residual RMS. The
+  display-chain texture is observable but cannot be separated into emulsion,
+  process, scanner, sharpening or quantization from this one 8-bit TIFF.
+- Stop one-pair texture fitting. Repeat scans or multiple independently
+  exposed same-density film patches are required before a spatial profile can
+  be identified.

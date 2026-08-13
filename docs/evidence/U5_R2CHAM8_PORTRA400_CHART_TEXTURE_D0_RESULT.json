@@ -1,0 +1,28 @@
+{
+  "schema": "neuro-film.u5-r2cham8-portra400-chart-texture-d0-evidence.v1",
+  "experiment_id": "U5.R2CHAM8",
+  "implementation_commit": "9d7f56f6fc26bf5ad04e52169dc844d58c06874a",
+  "bindings": {
+    "config_sha256": "587db8d1dc845781f383130ca2c3a7e43872ffc337411607de3551411c23b494",
+    "evaluator_sha256": "391540f0dcbc8dfc025f63b9d2dee009d3cc4e9b119faeaa6a276ef0de20b098",
+    "runner_sha256": "c85337ac75e9487e4f9c216c4171f30c0c56b528580bff4022b645f1f198fd73",
+    "test_sha256": "9ec6afe50934522647147c42db4543db00c2d2bd0139db69c1b2d3cbe596af21",
+    "formal_a_report_sha256": "a804b4c31f74ef7d85ffa884d7a59e3e34f1900699bec0a8c5a44cfb54240129",
+    "formal_b_report_sha256": "a804b4c31f74ef7d85ffa884d7a59e3e34f1900699bec0a8c5a44cfb54240129"
+  },
+  "stable_evidence_id": "6648d070ae1ede285bc6fa2c20bbc6351493bd47091f1bf88314bef07a99539d",
+  "observations": {
+    "formal_reports_byte_exact": true,
+    "selected_flat_patches": 64,
+    "film_to_digital_luma_highpass_energy_ratio": 4.785815313532763,
+    "positive_film_minus_digital_radial_psd_bin_fraction": 1.0,
+    "residual_edge_correlation": 0.04446894640405741,
+    "film_block_ratio": 1.0275514524911764,
+    "correct_to_shifted_residual_rms_ratio": 1.0,
+    "predictive_scale_log_luma_rg_bg": [0.0, 0.0, 0.0]
+  },
+  "decision": "close_one_pair_texture_signal_without_structure_fitting",
+  "interpretation": "The film TIFF carries a strong, broad-band, low-edge-correlated high-frequency display-chain signature beyond the camera RAW, but correct registration provides no predictive advantage over a shifted control because the nonnegative digital-to-film high-pass fit collapses to zero. The signal is therefore observable but not identified as transferable emulsion structure; scanner noise, sharpening, quantization and process remain inseparable.",
+  "next_leaf": "Require repeat scans or multiple independently exposed same-density film patches before fitting spatial structure; stop this one-pair route.",
+  "claim_ceiling": "One registered 8-bit TIFF versus camera-processed RAW display-chain texture negative; not emulsion grain, stock calibration, product, redistribution or commercial-use evidence."
+}
