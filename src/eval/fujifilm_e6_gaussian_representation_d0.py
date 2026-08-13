@@ -91,4 +91,3 @@ def write_report(report: Mapping[str, Any], path: Path) -> str:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_bytes(payload)
     return hashlib.sha256(payload).hexdigest()
-
