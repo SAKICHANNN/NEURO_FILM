@@ -1,0 +1,22 @@
+{
+  "schema": "neuro-film.u6-p7i-scanner-safe-p4hu-structural-closure.v1",
+  "experiment_id": "u6-p7i-scanner-safe-p4hu-ao6-value-v1",
+  "date": "2026-08-14",
+  "contract_commit": "8e4ecca20711f6653d62fe6b7f79100405c37096",
+  "implementation_commit": "7df611c8fa2c46d2a9b4e7151ffb78d05e80e0bc",
+  "execution": {
+    "formal_reports_created": 0,
+    "scientific_rows_completed": 0,
+    "partial_artifacts_removed": true,
+    "owned_processes_after_stop": 0
+  },
+  "proof": {
+    "p7h_scanner_physical_is_finite_and_bounded_before_proposed_wrapper": true,
+    "scanner_safe_residual_scale_for_bounded_candidate_is_identically_one": true,
+    "proposed_wrapper_would_change_any_pixel": false,
+    "continuing_two_formal_workers_would_add_scientific_information": false
+  },
+  "decision": "close_p7i_before_formal_execution_as_structural_identity",
+  "interpretation": "P7H validates the scanner-physical candidate in [0,1] before the proposed P6AM wrapper. P6AM only scales a residual when its candidate would leave that cube, so every P7I scale is exactly one and every output would reproduce P7H. The run was stopped before a scientific report rather than spending two workers on a deterministic no-op.",
+  "claim_ceiling": "Execution-order structural proof only; no new photographic, scanner, density, preference, calibration, runtime or product evidence."
+}
