@@ -13258,3 +13258,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   partition execution, domain rejection and failure atomicity pass.
 - Retain this research primitive only. CI is not a complete characteristic
   curve, so photographic tone, grain, MTF, scan and product mapping stay closed.
+
+### 2026-08-14 - U6.P2AF does not resolve D-76 curve-shape change
+
+- Four official TRI-X 400 / D-76 characteristic curves at 6, 8, 10 and 12
+  minutes were compared after endpoint-density normalization and removal of
+  global exposure shift.
+- Two reports are byte exact (`902fe9a0...9477ad`, stable
+  `de941ddc...5b64cf`). The observed maximum shape separation is `.112922`
+  log exposure, but 0/6 pairs exceed the conservative independent +/-3px
+  inverse-density read envelope.
+- Do not infer time-varying toe or shoulder shape from this graph. P2AE remains
+  a limited CI interpolation rather than a complete process model; no tone,
+  grain, scanner, calibration or product mapping opens.

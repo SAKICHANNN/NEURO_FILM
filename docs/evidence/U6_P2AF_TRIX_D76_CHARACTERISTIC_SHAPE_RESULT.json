@@ -1,0 +1,26 @@
+{
+  "schema": "neuro_film.u6_p2af_trix_d76_characteristic_shape_evidence.v1",
+  "node": "U6.P2AF",
+  "implementation_commit": "243e916098cd119376c71ec2ad236184d56f8c40",
+  "contract_sha256": "9173707cde98130211577cdd4b88031e922f842a1583a4f92dc84908ea662633",
+  "parent_evidence_sha256": "0d32573019889f325992eeb8f0446f96a9e4f91b117bc96a6c095361e55d5a0e",
+  "report_sha256": "902fe9a005a54d889a6ec5b308e3ead5171dff590314635b66a04fc8489477ad",
+  "stable_evidence_id": "de941ddc5f92841e0114d3c74b8efe2542ae73f62613d8c46ea37a599d5b64cf",
+  "formal_run_count": 2,
+  "formal_reports_byte_exact": true,
+  "automatic_pass": false,
+  "measurements": {
+    "curve_count": 4,
+    "pairs_beyond_coordinate_envelope": 0,
+    "maximum_shape_separation_log_exposure": 0.11292201787488065,
+    "coordinate_uncertainty_by_curve": {
+      "6_minutes": 0.14315808368229974,
+      "8_minutes": 0.10881560049636349,
+      "10_minutes": 0.10285945910233285,
+      "12_minutes": 0.09555018096422671
+    },
+    "rgb_image_transform_count_zero": true
+  },
+  "decision": "Do not establish time-conditioned toe or shoulder shape from this graph. Retain P2AE only as a limited contrast-index interpolation, not a complete process model.",
+  "claim_ceiling": "First-party TRI-X 400 / D-76 characteristic-shape source evidence after nuisance normalization; not roll calibration, developer chemistry model, grain/MTF/scanner or photographic appearance."
+}
