@@ -1,0 +1,44 @@
+{
+  "schema": "neuro-film.u6-p6al-safe-residual-scanner-replication-d1-contract.v1",
+  "experiment_id": "U6.P6AL",
+  "question": "Does the P6AK analytical residual-direction gamut execution improve the frozen P6G legacy affine on independent same-slide real scanner/software pipelines without changing any P6G fit?",
+  "parents": {
+    "p6ak_evidence": {
+      "path": "docs/evidence/U6_P6AK_PORTRA_SCANNER_NUISANCE_SAFE_RESIDUAL_D0_RESULT.json",
+      "sha256": "78b0692da7149ec31cfd96a1c1974ac701af163ac3aada4ccae0a21c732a8ae8",
+      "required_decision": "retain_bounded_scanner_print_nuisance_development_mechanism_d0"
+    },
+    "p6g_contract": {
+      "path": "configs/u6_p6g_measured_scanner_nuisance_operator_v1.json",
+      "sha256": "a2d8ddb9a60c317738e3e0d800e0457ea9e0dd0f8213b45963f6950e06f8b9d3"
+    },
+    "p6g_decision": {
+      "path": "configs/u6_p6g_measured_scanner_nuisance_operator_decision_v1.json",
+      "sha256": "744e63bb61c898541e03e3972d25739781c5c931c9fd8a40f46e7994baf47d5f",
+      "required_decision": "close_safe_rgb_canonicalizer_on_tail_gate_retain_real_scanner_nuisance_evidence"
+    }
+  },
+  "execution": {
+    "fit": "exact_p6g_leave_one-slide-out_legacy_affine_no_change",
+    "operator": "p6ak-per-sample-maximum-safe-scale-along-affine-residual",
+    "hard_clipping_allowed": false,
+    "posthoc_limiting_allowed": false,
+    "fit_or_fold_change_allowed": false
+  },
+  "gates": {
+    "required_patch_predictions": 15840,
+    "required_directed_folds": 60,
+    "minimum_aggregate_median_improvement_over_identity_fraction": 0.5,
+    "minimum_aggregate_median_improvement_over_p6g_safe_matrix_fraction": 0.25,
+    "maximum_aggregate_p90_l2": 0.12,
+    "maximum_each_directed_pair_median_l2": 0.08,
+    "maximum_out_of_cube_fraction": 0.0,
+    "maximum_limited_patch_fraction": 0.02,
+    "minimum_median_safe_scale": 0.99,
+    "maximum_residual_direction_error": 1e-12,
+    "maximum_repeat_error": 0.0
+  },
+  "decision_if_pass": "retain_analytical_safe_residual_as_cross_source_scanner_nuisance_mechanism_d1",
+  "decision_if_fail": "close_analytical_safe_residual_scanner_replication_without_rescue",
+  "claim_ceiling": "Independent-source same-slide scanner/software nuisance replication of one analytical execution rule on a previously consumed internal-research target set; not scanner calibration, stock response, independent material/process population evidence, product, redistribution or commercial-use evidence."
+}
