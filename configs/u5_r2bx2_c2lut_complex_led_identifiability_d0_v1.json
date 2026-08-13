@@ -1,0 +1,11 @@
+{
+  "schema": "neuro-film.u5-r2bx2-c2lut-complex-led-identifiability-d0-contract.v1",
+  "experiment_id": "U5.R2BX2",
+  "question": "Can observer-metameric multi-peak LED spectra create a material camera-observable difference that makes illuminant-conditioned explicit operators necessary?",
+  "parent": {"path": "docs/evidence/U5_R2BX1_C2LUT_SPECTRAL_METAMER_IDENTIFIABILITY_D0_RESULT.json", "sha256": "6ffa0d26265cd74c290b24f5541c9f787b10d43f5378d7a0b57f35b88d36126a", "required_decision": "close_exact_procedural_spectral_metamer_fixture_without_rescue"},
+  "population": {"illuminant_pairs": 12, "reflectances": 400, "development_reflectances": 300, "seed": 20260817},
+  "gates": {"maximum_same_chromaticity_xyz_error": 1e-9, "minimum_camera_white_rgb_separation": 0.01, "minimum_oracle_win_rate": 0.9, "minimum_median_oracle_improvement_over_shared": 0.2, "minimum_worst_oracle_improvement_over_shared": 0.02, "maximum_oracle_xyz_rmse": 0.025},
+  "decision_if_pass": "establish_complex_led_spd_as_required_c2lut_identifying_observation",
+  "decision_if_fail": "close_exact_complex_led_metamer_fixture_without_rescue",
+  "claim_ceiling": "Procedural multi-peak LED spectral-integration D0; not measured illuminants/cameras, C2LUT reproduction, photographic quality, film response or product evidence."
+}
