@@ -64,17 +64,17 @@ def _external_render(contract: Mapping[str, Any], root: Path, output: Path) -> N
 def _held_affine_predictions(
     source: np.ndarray, target: np.ndarray, blocks: np.ndarray, folds: int
 ) -> tuple[np.ndarray, list[np.ndarray], list[np.ndarray]]:
-    all_predictions: list[np.ndarray] = []
+    all_predictions = np.empty_like(target)
     fold_predictions: list[np.ndarray] = []
     fold_targets: list[np.ndarray] = []
     for fold in range(folds):
         held = blocks % folds == fold
         _, fit = _fit_affine(source[~held], target[~held], per_channel=False)
         prediction = _affine_apply(fit, source[held])
-        all_predictions.append(prediction)
+        all_predictions[held] = prediction
         fold_predictions.append(prediction)
         fold_targets.append(target[held])
-    return np.concatenate(all_predictions), fold_predictions, fold_targets
+    return all_predictions, fold_predictions, fold_targets
 
 
 def evaluate(contract: Mapping[str, Any], root: Path, external_output: Path) -> dict[str, Any]:
@@ -219,7 +219,11 @@ def _registered_candidate_samples(
             indexes = np.flatnonzero(keep)
             chosen = np.sort(rng.choice(indexes, int(sampling["samples_per_block"]), replace=False))
             encoded = candidate_warped[ya:yb, xa:xb].reshape(-1, 3)[chosen]
-            values.append(np.asarray(encoded_srgb_to_linear(encoded), dtype=np.float64))
+            values.append(
+                np.asarray(
+                    encoded_srgb_to_linear(encoded[:, None, :]), dtype=np.float64
+                )[:, 0, :]
+            )
     return np.concatenate(values)
 
 
