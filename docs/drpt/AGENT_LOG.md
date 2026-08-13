@@ -13231,3 +13231,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Result: four observations for eight candidate effects give rank 4/nullity 4. Only NikonScan versus VueScan on the same LS50, operator and 4000-dpi setup is a clean named contrast. The second LS50 also changes operator and 2800-dpi sampling; LS9000 also changes operator and output encoding. Every fixed-condition cell has one scan, below the frozen three-repeat minimum.
 - Decision: require new same-physical-slide, fixed-condition repeat scans with dark/flat controls and subpixel registration; prohibit another same-cohort NPS rescue. This is an acquisition-identifiability result, not scanner noise, material NPS, stock calibration or product evidence.
 - Evidence: `docs/evidence/U6_P6AP_SCANNER_CROSSED_DESIGN_IDENTIFIABILITY_RESULT.json`; implementation `305722da`; 3 focused tests, Ruff, `py_compile`, `diff-check` pass.
+
+### 2026-08-14 - U6.P6AQ closes cross-hardware scanner-software transfer
+
+- Four real same-hardware software pairs (Epson 3170, PrimeFilm 3600, Minolta 5400 and Nikon LS4000) were evaluated by leave-one-hardware-out shared power-plus-affine residual fitting, followed by the existing analytical cube-safe executor.
+- Two reports are byte exact (`07644076...35463`, stable `dd4e1c13...c33e4`). The shared VueScan residual regresses all four held hardware models versus identity; aggregate median error changes from `.10261` to `.11580` (negative improvement `-12.86%`). It wins only 2/4 cyclic-wrong controls and safely limits `11.53%` of patches.
+- Close hardware-independent scanner-software profiles. Preserve the P6AP fixed-condition repeat acquisition requirement for noise separation and bind future scanner nuisance profiles to at least device plus software. No threshold/capacity rescue, calibration or product mapping opens.

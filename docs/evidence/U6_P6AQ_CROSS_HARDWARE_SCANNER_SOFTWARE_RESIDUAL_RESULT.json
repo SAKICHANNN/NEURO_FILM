@@ -1,0 +1,32 @@
+{
+  "schema": "neuro-film.u6-p6aq-cross-hardware-scanner-software-residual-evidence.v1",
+  "experiment_id": "U6.P6AQ",
+  "implementation_commit": "364d763f7f3d8ef77cd9e48df198fea9698d7035",
+  "bindings": {
+    "contract_sha256": "cc3244053bbe4194916988254dd467b52cdb94c09178aa6a8c309bb4d8cee8cd",
+    "evaluator_sha256": "026ec5710b1641ebe5069a519dc9cf4f6198e105036f6dfafc89d468977e7f06",
+    "runner_sha256": "87b650dc556299ece56a5bb59f36d77946fa99dae11e128744d895db36956873",
+    "test_sha256": "5cce49bc055ec999ee229cc3ef597eb81719c9d095cb857220ccf51b48b5d794",
+    "formal_a_report_sha256": "07644076a679e7614060ff1bda31f992d49e0f03708cce679b65ce3782935463",
+    "formal_b_report_sha256": "07644076a679e7614060ff1bda31f992d49e0f03708cce679b65ce3782935463"
+  },
+  "stable_evidence_id": "dd4e1c132a45cc7e24f3daba8373dbb00f55aa059e2bb0bac8cb50e925ec33e4",
+  "observations": {
+    "formal_reports_byte_exact": true,
+    "held_hardware_folds": 4,
+    "patch_predictions": 5280,
+    "identity_median_l2": 0.10261104094814996,
+    "shared_residual_median_l2": 0.11580246085191866,
+    "aggregate_improvement_over_identity_fraction": -0.1285575098145082,
+    "hardware_improving_over_identity": 0,
+    "hardware_wins_over_cyclic_wrong_operator": 2,
+    "aggregate_improvement_over_cyclic_wrong_fraction": 0.31509383851291317,
+    "limited_patch_fraction": 0.11534090909090909,
+    "out_of_cube_fraction": 0.0,
+    "maximum_residual_direction_error": 5.204170427930421e-17
+  },
+  "decision": "close_shared_scanner_software_residual_and_require_device_conditioning_or_new_data",
+  "interpretation": "A source-free VueScan residual trained on three hardware models regresses every held fourth model relative to identity, despite remaining analytically bounded. Software is therefore not an independently transferable scanner-profile axis on this cohort; scanner nuisance must at least bind device and software together unless new crossed data prove otherwise.",
+  "next_leaf": "Do not add capacity or tune this cohort. P6 random scanner-noise identification still requires fixed-condition repeats; future scanner profiles must bind device plus software and obtain independent measured-target validation.",
+  "claim_ceiling": "Four-hardware same-target-set scaled ColorReference patch evidence for failure of one shared VueScan nuisance residual; not repeat-noise, scanner calibration, independent-target transfer, film-stock response, full-resolution output, redistribution, or product evidence."
+}
