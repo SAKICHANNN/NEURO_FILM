@@ -2,16 +2,18 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from src.eval.portra_scanner_nuisance_safe_residual_d0 import (
     evaluate,
     load_contract,
     write_report,
 )
-
-ROOT = Path(__file__).resolve().parents[1]
-
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run P6AK analytical safe residual diagnostic.")
