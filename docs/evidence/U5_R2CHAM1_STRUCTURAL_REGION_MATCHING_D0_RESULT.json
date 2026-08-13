@@ -1,0 +1,219 @@
+{
+  "automatic_pass": true,
+  "checks": {
+    "accuracy": true,
+    "boundary": true,
+    "improvement": true,
+    "matching": true,
+    "wins": true
+  },
+  "claim_ceiling": "Procedural clean-room D0 structural region-matching evidence; not ChameleonTuner reproduction, real registration, photographic fit, film response, product or preference evidence.",
+  "config_sha256": "53ea29e5feb92ae62bb5a6391d29feb6d57d2e66bf411cabc730dc703e9e6cad",
+  "decision": "retain_structural_region_matching_for_photographic_correspondence_baseline",
+  "experiment_id": "U5.R2CHAM1",
+  "metrics": {
+    "exact_region_match_rate": 1.0,
+    "maximum_matched_operator_rmse": 0.019751802615059155,
+    "maximum_new_boundary_fraction": 0.0,
+    "median_improvement_over_unmatched": 0.9830519692512425,
+    "operator_win_rate": 1.0,
+    "row_count": 24
+  },
+  "parent_stable_evidence_id": "23f87c7e41d7bfa53d9ff3120966e96e664d6e4d83876f64456f772791d0466d",
+  "rows": [
+    {
+      "exact_region_match_rate": 1.0,
+      "improvement": 0.9770798993489739,
+      "matched_rmse": 0.0072088883283857735,
+      "new_boundary_fraction": 0.0,
+      "scene": 0,
+      "unmatched_rmse": 0.3145225423808525
+    },
+    {
+      "exact_region_match_rate": 1.0,
+      "improvement": 0.9927276362259893,
+      "matched_rmse": 0.002591447128561965,
+      "new_boundary_fraction": 0.0,
+      "scene": 1,
+      "unmatched_rmse": 0.35634179052249926
+    },
+    {
+      "exact_region_match_rate": 1.0,
+      "improvement": 0.9594082022621659,
+      "matched_rmse": 0.014933308807917364,
+      "new_boundary_fraction": 0.0,
+      "scene": 2,
+      "unmatched_rmse": 0.36788981124624065
+    },
+    {
+      "exact_region_match_rate": 1.0,
+      "improvement": 0.9847835208393672,
+      "matched_rmse": 0.005056131313989557,
+      "new_boundary_fraction": 0.0,
+      "scene": 3,
+      "unmatched_rmse": 0.3322799749281334
+    },
+    {
+      "exact_region_match_rate": 1.0,
+      "improvement": 0.994646237650978,
+      "matched_rmse": 0.002090416774728721,
+      "new_boundary_fraction": 0.0,
+      "scene": 4,
+      "unmatched_rmse": 0.3904575209825288
+    },
+    {
+      "exact_region_match_rate": 1.0,
+      "improvement": 0.9914692699797482,
+      "matched_rmse": 0.0031706492538040127,
+      "new_boundary_fraction": 0.0,
+      "scene": 5,
+      "unmatched_rmse": 0.371673848108771
+    },
+    {
+      "exact_region_match_rate": 1.0,
+      "improvement": 0.9895160497283901,
+      "matched_rmse": 0.003989949161709821,
+      "new_boundary_fraction": 0.0,
+      "scene": 6,
+      "unmatched_rmse": 0.3805768873698733
+    },
+    {
+      "exact_region_match_rate": 1.0,
+      "improvement": 0.9721595881987918,
+      "matched_rmse": 0.01026782079919985,
+      "new_boundary_fraction": 0.0,
+      "scene": 7,
+      "unmatched_rmse": 0.36880994694030483
+    },
+    {
+      "exact_region_match_rate": 1.0,
+      "improvement": 0.9943675691418241,
+      "matched_rmse": 0.0018172511977920208,
+      "new_boundary_fraction": 0.0,
+      "scene": 8,
+      "unmatched_rmse": 0.32264065792377233
+    },
+    {
+      "exact_region_match_rate": 1.0,
+      "improvement": 0.9555271146594894,
+      "matched_rmse": 0.0156571362473605,
+      "new_boundary_fraction": 0.0,
+      "scene": 9,
+      "unmatched_rmse": 0.3520602750975165
+    },
+    {
+      "exact_region_match_rate": 1.0,
+      "improvement": 0.9867985152240383,
+      "matched_rmse": 0.0053746928010716035,
+      "new_boundary_fraction": 0.0,
+      "scene": 10,
+      "unmatched_rmse": 0.4071279020719143
+    },
+    {
+      "exact_region_match_rate": 1.0,
+      "improvement": 0.9528121588968266,
+      "matched_rmse": 0.015813242337179133,
+      "new_boundary_fraction": 0.0,
+      "scene": 11,
+      "unmatched_rmse": 0.3351126469762503
+    },
+    {
+      "exact_region_match_rate": 1.0,
+      "improvement": 0.9808471496005629,
+      "matched_rmse": 0.006161962497500622,
+      "new_boundary_fraction": 0.0,
+      "scene": 12,
+      "unmatched_rmse": 0.321725611018279
+    },
+    {
+      "exact_region_match_rate": 1.0,
+      "improvement": 0.9853379909161691,
+      "matched_rmse": 0.00542690503094608,
+      "new_boundary_fraction": 0.0,
+      "scene": 13,
+      "unmatched_rmse": 0.3701337927099521
+    },
+    {
+      "exact_region_match_rate": 1.0,
+      "improvement": 0.966208700749975,
+      "matched_rmse": 0.010475653749977023,
+      "new_boundary_fraction": 0.0,
+      "scene": 14,
+      "unmatched_rmse": 0.31001038677047243
+    },
+    {
+      "exact_region_match_rate": 1.0,
+      "improvement": 0.9874998268345649,
+      "matched_rmse": 0.0049387744642264185,
+      "new_boundary_fraction": 0.0,
+      "scene": 15,
+      "unmatched_rmse": 0.3950964837737519
+    },
+    {
+      "exact_region_match_rate": 1.0,
+      "improvement": 0.959800905860594,
+      "matched_rmse": 0.014991440157594588,
+      "new_boundary_fraction": 0.0,
+      "scene": 16,
+      "unmatched_rmse": 0.37292980049764124
+    },
+    {
+      "exact_region_match_rate": 1.0,
+      "improvement": 0.981320417663118,
+      "matched_rmse": 0.006396881478312258,
+      "new_boundary_fraction": 0.0,
+      "scene": 17,
+      "unmatched_rmse": 0.3424531321389274
+    },
+    {
+      "exact_region_match_rate": 1.0,
+      "improvement": 0.9812941228843532,
+      "matched_rmse": 0.0078045089785481634,
+      "new_boundary_fraction": 0.0,
+      "scene": 18,
+      "unmatched_rmse": 0.4172222949128642
+    },
+    {
+      "exact_region_match_rate": 1.0,
+      "improvement": 0.9777192465260063,
+      "matched_rmse": 0.007411209496686823,
+      "new_boundary_fraction": 0.0,
+      "scene": 19,
+      "unmatched_rmse": 0.33262831552520133
+    },
+    {
+      "exact_region_match_rate": 1.0,
+      "improvement": 0.989297316534926,
+      "matched_rmse": 0.003550131769609072,
+      "new_boundary_fraction": 0.0,
+      "scene": 20,
+      "unmatched_rmse": 0.33170482722339883
+    },
+    {
+      "exact_region_match_rate": 1.0,
+      "improvement": 0.9901247614657184,
+      "matched_rmse": 0.0033174973289090345,
+      "new_boundary_fraction": 0.0,
+      "scene": 21,
+      "unmatched_rmse": 0.3359409818195719
+    },
+    {
+      "exact_region_match_rate": 1.0,
+      "improvement": 0.9484754897481931,
+      "matched_rmse": 0.019751802615059155,
+      "new_boundary_fraction": 0.0,
+      "scene": 22,
+      "unmatched_rmse": 0.3833477022591683
+    },
+    {
+      "exact_region_match_rate": 1.0,
+      "improvement": 0.990896836420987,
+      "matched_rmse": 0.002927675120786285,
+      "new_boundary_fraction": 0.0,
+      "scene": 23,
+      "unmatched_rmse": 0.3216107340459008
+    }
+  ],
+  "schema": "neuro-film.u5-r2cham1-structural-region-matching-d0-result.v1",
+  "stable_evidence_id": "ed8d1585859ac0d13ee0603d1d10fbf60469fc4edce24273083e5be49e358c28"
+}

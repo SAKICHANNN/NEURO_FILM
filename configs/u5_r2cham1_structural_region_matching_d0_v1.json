@@ -1,0 +1,11 @@
+{
+  "schema": "neuro-film.u5-r2cham1-structural-region-matching-d0-contract.v1",
+  "experiment_id": "U5.R2CHAM1",
+  "question": "Can candidate-independent structural signatures recover region correspondence before bounded explicit operator fitting when region order is hidden?",
+  "parent": {"path": "docs/evidence/U5_R2CHAM0_REGION_CORRESPONDENCE_LUT_D0_RESULT.json", "sha256": "cebacb974d5edd7a1db39cf3c4363f1fbb7935ab7904ebea45e433b42f971381", "required_decision": "retain_region_correspondence_as_misalignment_robust_explicit_operator_baseline"},
+  "population": {"scenes": 24, "regions_per_scene": 12, "samples_per_region": 96, "seed": 20260814},
+  "gates": {"minimum_exact_region_match_rate": 0.9, "minimum_operator_win_rate": 0.9, "minimum_median_improvement_over_unmatched": 0.5, "maximum_matched_operator_rmse": 0.025, "maximum_new_boundary_fraction": 0.0},
+  "decision_if_pass": "retain_structural_region_matching_for_photographic_correspondence_baseline",
+  "decision_if_fail": "close_exact_structural_region_matching_family_without_rescue",
+  "claim_ceiling": "Procedural clean-room D0 structural region-matching evidence; not ChameleonTuner reproduction, real registration, photographic fit, film response, product or preference evidence."
+}
