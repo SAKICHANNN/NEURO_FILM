@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-from src.eval.shared_dye_cloud_occupancy_d0 import _validate, load_contract
+from src.eval.shared_dye_cloud_occupancy_d0 import _validate, evaluate, load_contract
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/u6_p4hw_shared_dye_cloud_occupancy_d0_v1.json"
@@ -18,6 +18,11 @@ def test_contract_is_frozen_and_parent_bound() -> None:
     for binding in contract["parents"].values():
         if isinstance(binding, dict) and "path" in binding:
             assert (ROOT / binding["path"]).is_file()
+
+
+def test_bound_profile_execution_identity_is_accepted() -> None:
+    result = evaluate(load_contract(CONFIG), root=ROOT)
+    assert len(result["rows"]) == 12
 
 
 def test_mechanism_and_gate_drift_reject() -> None:

@@ -140,7 +140,7 @@ def evaluate(contract: dict[str, Any], *, root: Path) -> dict[str, Any]:
             ("layer_field_seeds", "layer_field_seeds"),
             ("field_seed_stride_per_source", "field_seed_stride_per_row"),
             ("rank_bins", "rank_bins"),
-            ("canonical_receipt_row_block_height", "canonical_row_block_height"),
+            ("canonical_row_block_height", "canonical_row_block_height"),
         )
     ):
         raise ValueError("P4HK execution identity drift")
