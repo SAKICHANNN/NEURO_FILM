@@ -233,7 +233,13 @@ def evaluate(
         current = np.ascontiguousarray(apply_residual(current_base), dtype=np.float32)
         matched = np.ascontiguousarray(apply_residual(matched_base), dtype=np.float32)
         combined = np.ascontiguousarray(apply_residual(physical_base), dtype=np.float32)
-        replay = ao6(physical_encoded)
+        replay = (
+            ao6(physical_encoded)
+            if post_base_structure_builder is None
+            else np.ascontiguousarray(
+                apply_residual(physical_base), dtype=np.float32
+            )
+        )
         if stage_observer is not None:
             stage_observer(
                 source_id,
