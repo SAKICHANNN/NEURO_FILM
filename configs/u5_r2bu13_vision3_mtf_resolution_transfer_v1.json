@@ -1,0 +1,36 @@
+{
+  "schema": "neuro_film.u5-r2bu13-vision3-mtf-resolution-transfer-contract.v1",
+  "experiment_id": "U5.R2BU13",
+  "question": "Do the unchanged Kodak source-domain MTF curves predict the independently observed Noever processed-film coarse ordering without fitting a PSF or using the Noever pixels?",
+  "parents": {
+    "bu0_decision": {"path": "configs/u5_r2bu0_kodak_vision3_mtf_diversity_decision_v1.json", "sha256": "eae84870c4c3706228fecbe5696825c7d500020558dab94d8b6177baabe1848e", "required_decision": "retain_source_domain_mtf_signature_and_open_joint_physical_prior"},
+    "bu10_evidence": {"path": "docs/evidence/U5_R2BU10_VISION3_200T_PROFILE_BANK_ROBUSTNESS_RESULT.json", "sha256": "3f6e3796288a88e912a9a5f1fdb16ca6330d94a028922212317917bb04fc2287", "required_decision": "retain_robust_four_stock_non_renderable_manufacturer_source_profile_bank"},
+    "bu12_evidence": {"path": "docs/evidence/U5_R2BU12_NOEVER_VISION3_RESOLUTION_ORDER_RESULT.json", "sha256": "d65e1a5e08cc73979fede4260c8773dfbf1eedb3a7ecf6d8c22a33df359e0780", "required_decision": "retain_independent_processed_film_coarse_speed_tier_resolution_support"},
+    "legacy_mtf_trace": {"path": "configs/data/kodak_vision3_mtf_curve_pixels_v1.json", "sha256": "d88c0e698c0e0969696224df50f1573ed78a6de0a894075f6502d9b3f658a794"},
+    "source_200t_contract": {"path": "configs/u5_r2bu9_kodak_vision3_200t_raster_signature_v1.json", "sha256": "b717d913b43af36fde3e224e3e918878bd18f6bc72a28775d83cc3887b3c8027"}
+  },
+  "comparison": {
+    "stocks": ["50D", "200T", "500T"],
+    "channels": ["blue", "green", "red"],
+    "frequencies_cycles_per_mm": [42.0, 53.0],
+    "summaries": ["minimum_channel_response", "geometric_mean_channel_response"],
+    "interpolation": "linear in log-frequency and log-response; no extrapolation",
+    "independent_order": {"fast_stocks": ["50D", "200T"], "slow_stock": "500T"},
+    "pixel_fit_allowed": false,
+    "render_allowed": false
+  },
+  "gates": {
+    "required_frequency_count": 2,
+    "required_summary_count": 2,
+    "minimum_fast_noninferiority_rate": 1.0,
+    "minimum_each_fast_strict_wins": 1,
+    "minimum_assignment_margin": 1,
+    "require_all_queries_inside_trace_support": true,
+    "require_no_pixel_fit_or_render": true
+  },
+  "branch_rule": {
+    "pass": "open_one_separately_frozen_noncalibrated_spatial_amplitude_compiler",
+    "fail": "retain_source_and_processed_resolution_evidence_separately_and_forbid_stock_psf_compilation"
+  },
+  "claim_ceiling": "Cross-source ordinal compatibility between Kodak manufacturer source-domain MTF curves and one independent processed-film-plus-scanner resolution table; not absolute MTF, PSF, calibration, scanner separation, rendering or product evidence."
+}
