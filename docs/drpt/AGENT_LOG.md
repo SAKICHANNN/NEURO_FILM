@@ -13212,3 +13212,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   P4HX opponent-diffusion structure with the P4IQ base-first ordering on its
   already frozen 11-camera natural cohort; do not refit P4HX or reuse five-map
   sinusoidal parameters.
+
+### 2026-08-14 - U6.P4IT closes base-first opponent diffusion
+
+- Two independent 11-camera runs and all 44 RGB16 outputs replay byte exactly
+  (`59c24e23...32ae67`). Every output is finite, exact-readback and bounded;
+  P4IA uses no clipping or limiting and creates no new boundary pixels.
+- The natural-photo result is decisively unsafe: p99 `.11781`, flat p99
+  `.14618`, chroma p999 `.09145` and `33,856` isolated excursions. Automatic,
+  severe-visual and blind review all remain closed.
+- Stop synthetic-structure product work. Return to P6AO's identifiability gap:
+  require a repeated physical scan or equivalent independent observation that
+  separates material NPS from scanner response before another renderer leaf.

@@ -1,0 +1,30 @@
+{
+  "schema": "neuro-film.u6-p4it-base-first-opponent-diffusion-photo-evidence.v1",
+  "experiment_id": "u6-p4it-base-first-opponent-diffusion-photo-v1",
+  "implementation_commit": "fdfdc47c",
+  "formal_report_sha256": "59c24e23b5921b3b49d32ef576241d69baf32736f53fd5fe07f5a3f90f32ae67",
+  "stable_evidence_id": "44550a2905c1b22a8ccf5e883e9735a9c470d045faea2ece4710aebfccf5609b",
+  "formal_processes": 2,
+  "byte_exact_replay": true,
+  "source_count": 11,
+  "output_count": 44,
+  "all_png16_exact_readback": true,
+  "automatic_pass": false,
+  "severe_visual_review_allowed": false,
+  "metrics": {
+    "minimum_physical_residual_rms": 0.00046695793742910585,
+    "population_p95_combined_vs_matched_scanner_ao6_abs": 0.060635557398200035,
+    "population_p99_combined_vs_matched_scanner_ao6_abs": 0.11780550256371498,
+    "maximum_flat_region_p99_combined_vs_matched_scanner_ao6_abs": 0.14617584645748138,
+    "maximum_high_frequency_chroma_p999": 0.09145218878984451,
+    "total_isolated_excursion_count": 33856,
+    "maximum_new_boundary_fraction_vs_matched_scanner_ao6": 0.0,
+    "maximum_output_code_boundary_fraction": 0.0,
+    "maximum_limited_fraction": 0.0,
+    "hard_clipping_used": false
+  },
+  "failed_gates": ["population_tail", "flat_regions", "high_frequency_chroma", "isolated_excursions"],
+  "decision": "retain_current_ao6_and_close_base_first_opponent_diffusion",
+  "interpretation": "P4IQ's ordering correction does not rescue the materially distinct P4HX stochastic opponent field. The P4IA envelope keeps every output finite and bounded with no clipping or new boundary, but the full-resolution natural-photo tails are decisively unsafe. Stop this synthetic-structure family and require independently identifiable material/scanner evidence before another photographic structure candidate.",
+  "claim_ceiling": "Fixed P4HX/P4IA Python-reference structure after AO6 base on eleven frozen relative-display CC0 digital photographs; automatic severe-artifact evidence only, not film-stock calibration, preference, runtime or product promotion."
+}
