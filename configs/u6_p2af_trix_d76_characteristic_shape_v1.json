@@ -1,0 +1,44 @@
+{
+  "schema": "neuro_film.u6_p2af_trix_d76_characteristic_shape_contract.v1",
+  "node": "U6.P2AF",
+  "question": "After removing density range, contrast magnitude and global exposure shift, do Kodak's TRI-X 400 D-76 curves at 6, 8, 10 and 12 minutes retain material toe/shoulder shape differences that a contrast-index-only process profile cannot represent?",
+  "parent": {
+    "source_contract": "configs/u6_p2ad_trix_developer_contrast_source_v1.json",
+    "process_profile_evidence": "docs/evidence/U6_P2AE_BW_PROCESS_RESPONSE_PROFILE_RESULT.json",
+    "process_profile_evidence_sha256": "0d32573019889f325992eeb8f0446f96a9e4f91b117bc96a6c095361e55d5a0e"
+  },
+  "source_graph": {
+    "page": 9,
+    "film": "KODAK PROFESSIONAL TRI-X 400 Film / 400TX, 35 mm",
+    "developer": "KODAK PROFESSIONAL D-76 Developer",
+    "process": "Large Tank; agitation at 1 minute intervals; 20 C",
+    "densitometry": "Diffuse visual",
+    "plot_axis_pdf_points": {"left": 113.691406, "right": 253.863281, "bottom": 555.964844, "top": 667.773438},
+    "axis_values": {"log_exposure_left": -3.5, "log_exposure_right": 0.5, "density_bottom": 0.0, "density_top": 4.0},
+    "raster_reference_dpi": 300,
+    "maximum_source_pixel_error": 3.0,
+    "paths": {
+      "6_minutes": {"element_index": 995, "path_sha256": "ba9a55d5c8907422062fdc18cb76d78822b4e5845e57890f5011f40584ffbcbd"},
+      "8_minutes": {"element_index": 996, "path_sha256": "ed08857c9e47217ea0cc21e1277536c4f70cd6e5984b512c5cbb19ef00a544f1"},
+      "10_minutes": {"element_index": 997, "path_sha256": "6d0b65b5cca4177b96fcd80149423bbd36d0ce363753e2691f922265699833a8"},
+      "12_minutes": {"element_index": 994, "path_sha256": "83655ba872e4c242366f3fe909f91cded09e52173c13c2f653dc98745902dc59"}
+    }
+  },
+  "analysis": {
+    "normalized_density_levels": [0.15, 0.25, 0.4, 0.5, 0.6, 0.75, 0.85],
+    "normalization": "per-curve observed density endpoints to zero-one; invert normalized density to log exposure; subtract each signature mean",
+    "uncertainty": "coherent plus/minus 3px translations of each full vector path; coordinate-registration only"
+  },
+  "automatic_gates": {
+    "curve_count": 4,
+    "all_curves_monotone": true,
+    "all_levels_covered": true,
+    "minimum_pairs_beyond_coordinate_envelope": 2,
+    "minimum_maximum_shape_separation_log_exposure": 0.03,
+    "repeat_byte_exact": true,
+    "rgb_image_transform_count_zero": true
+  },
+  "forbidden": ["interpret graph traces as roll calibration", "fit or render photographs", "change density levels, path identities or gates after scoring", "claim P2AE CI-only profiles are complete if shape difference passes"],
+  "branch_rule": {"pass": "mark CI-only process profiles incomplete and require time-conditioned characteristic shape in any future B&W profile", "fail": "retain CI-only process profile sufficiency for this source graph only"},
+  "claim_ceiling": "First-party TRI-X 400 / D-76 characteristic-shape source evidence after nuisance normalization; not roll calibration, developer chemistry model, grain/MTF/scanner or photographic appearance."
+}
