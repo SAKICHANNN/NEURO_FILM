@@ -13224,3 +13224,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Stop synthetic-structure product work. Return to P6AO's identifiability gap:
   require a repeated physical scan or equivalent independent observation that
   separates material NPS from scanner response before another renderer leaf.
+### 2026-08-14 - U6.P6AP closes current scanner-NPS identification design
+
+- Parent: `ULT > U6 > U6.P6`; primary workflow `dev-research-reliability`, with scientific-research and structure/governance review kept read-only and minimal.
+- Implemented and twice replayed a design-rank audit for the four ColorReference scan pipelines after P6AO. Reports are byte-exact (`d4be8237...50894`; stable `4766cb96...d9fe2`).
+- Result: four observations for eight candidate effects give rank 4/nullity 4. Only NikonScan versus VueScan on the same LS50, operator and 4000-dpi setup is a clean named contrast. The second LS50 also changes operator and 2800-dpi sampling; LS9000 also changes operator and output encoding. Every fixed-condition cell has one scan, below the frozen three-repeat minimum.
+- Decision: require new same-physical-slide, fixed-condition repeat scans with dark/flat controls and subpixel registration; prohibit another same-cohort NPS rescue. This is an acquisition-identifiability result, not scanner noise, material NPS, stock calibration or product evidence.
+- Evidence: `docs/evidence/U6_P6AP_SCANNER_CROSSED_DESIGN_IDENTIFIABILITY_RESULT.json`; implementation `305722da`; 3 focused tests, Ruff, `py_compile`, `diff-check` pass.

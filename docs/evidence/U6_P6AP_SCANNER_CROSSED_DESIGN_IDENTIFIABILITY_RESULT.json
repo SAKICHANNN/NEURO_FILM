@@ -1,0 +1,44 @@
+{
+  "schema": "neuro-film.u6-p6ap-scanner-crossed-design-identifiability-evidence.v1",
+  "experiment_id": "U6.P6AP",
+  "implementation_commit": "305722da",
+  "bindings": {
+    "contract_file_sha256": "0b3ba97edb00999e1ca85eefb6a90c1798fed51dcc2b278ac534fe98506aa309",
+    "evaluator_sha256": "255d3ae0f6c722e48ea1360d7b4f15fa703ac1086636e8c557be00c7efd114aa",
+    "runner_sha256": "eeed89c34b4abd3534ff1524f25c05de57d245ec8b05f533fb35b4700d0142d2",
+    "test_sha256": "c2ae5e91d156a9edbe6dd3e7f1696c5e6c59ddd985617c41accfa7509fedda58",
+    "formal_a_report_sha256": "d4be8237519e3851a89285a122d747ba95301790f7252aaa63dae32585a50894",
+    "formal_b_report_sha256": "d4be8237519e3851a89285a122d747ba95301790f7252aaa63dae32585a50894"
+  },
+  "stable_evidence_id": "4766cb96c0e308f2dcc8ec91f64505d2ca846709957fdb1e3aa2a4b7b25d9fe2",
+  "observations": {
+    "formal_reports_byte_exact": true,
+    "observations": 4,
+    "candidate_effects": 8,
+    "design_rank": 4,
+    "design_nullity": 4,
+    "pure_named_effects_identified": [
+      "software_on_same_ls50_device_operator_sampling"
+    ],
+    "second_ls50_changed_effects": [
+      "device_ls50_b",
+      "operator_olivier",
+      "sampling_2800dpi"
+    ],
+    "ls9000_changed_effects": [
+      "scanner_model_ls9000",
+      "operator_harald",
+      "output_adobe_rgb_label"
+    ],
+    "maximum_fixed_condition_repeats": 1,
+    "minimum_required_fixed_condition_repeats": 3
+  },
+  "decision": "require_new_fixed_condition_repeat_scans_before_random_scanner_noise_or_material_nps_identification",
+  "interpretation": "The four real pipelines identify one clean same-device software contrast. Device-instance, operator and sampling changes are confounded in the second LS50 observation; scanner model, operator and output encoding are confounded in the LS9000 observation. No pipeline cell is repeated, so random scanner noise and fixed material structure cannot be separated.",
+  "next_leaf": "Acquire or locate at least three scans of the same physical slide under identical scanner, device, software, operator, sampling, output, gain, focus, colour-management and warm-up conditions, plus dark/flat controls and subpixel registration. Do not fit another NPS model on the current ColorReference cohort.",
+  "primary_sources": [
+    "https://www.fiafnet.org/is/2/E-Resources/Digital-Statement-part-II.html",
+    "https://doi.org/10.1007/s11760-025-04569-8"
+  ],
+  "claim_ceiling": "Design-rank and acquisition-requirement evidence for one five-slide ColorReference target set; not scanner-noise estimation, material NPS identification, film-stock calibration, product profile, or population transfer."
+}
