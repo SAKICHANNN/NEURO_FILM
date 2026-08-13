@@ -13131,3 +13131,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close this exact target set without changing bands, patches, scanners or
   thresholds. Scanner normalization is useful, but material-specific NPS is
   not identified; a new leaf needs an independent calibrated observation.
+
+### 2026-08-14 - U5.R2BU11 closes the Noever resolution source before scoring
+
+- A 2025 controlled 50D/200T/500T study exposes 225 ZIP entries under CC
+  BY-NC 4.0. Eighteen T4 resolution-card members were frozen across two film
+  formats and 2K/4K/6K scan resolutions using the exact central directory.
+- The first exact range-acquired member passes filename, size and CRC, but its
+  TIFF payload is Adobe-processed RGB8 rather than the frozen RGB16 source
+  requirement. The remaining 17 members and all MTF scoring stay unread.
+- Close without dtype/decoder/member replacement rescue. Retain the study as a
+  qualitative controlled reference, not a quantitative stock profile.

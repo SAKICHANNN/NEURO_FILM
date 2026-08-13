@@ -1,0 +1,46 @@
+{
+  "schema": "neuro_film.u5-r2bu11-noever-vision3-resolution-source-evidence.v1",
+  "experiment_id": "U5.R2BU11",
+  "date": "2026-08-14",
+  "status": "FAIL_CLOSED_BEFORE_MTF_SCORING",
+  "decision": "close_noever_resolution_source_without_replacement_or_rescue",
+  "contract": {
+    "path": "configs/u5_r2bu11_noever_vision3_resolution_source_v1.json",
+    "sha256": "484325326ddbada3b658d295cca26fd6976923e4ecb27d4f111fc25b12a65166"
+  },
+  "source": {
+    "study_url": "https://florian-noever.com/filmresolutiontest/",
+    "archive_content_length": 1678009339,
+    "central_directory_sha256": "fdd34d361936287ea26e3ce03a46061904b2e5461aaa042d4838d473d4135637",
+    "central_directory_entries": 225,
+    "frozen_selected_members": 18,
+    "frozen_selected_compressed_bytes": 319810605,
+    "license": "CC BY-NC 4.0",
+    "rights_scope": "internal_noncommercial_research_only"
+  },
+  "stop_observation": {
+    "first_member": "data/film_stock/noever_vision3_resolution_2025/Super 16/50D/Scans 2K/Super_16_50D_RC_25mm_T4_2K.tif",
+    "file_size": 3634672,
+    "file_sha256": "c562398ef09bfae7fd0b86201d54f7a9be480ef61b84e069239ba814abeabeea",
+    "zip_crc32": "92e39158",
+    "decoded_shape": [1080, 1998, 3],
+    "decoded_dtype": "uint8",
+    "decoded_pixel_sha256": "cb63d74637f83e571605557111f9a50ddf0ed9f861ac3849cb9b78c5f573729a",
+    "embedded_icc_sha256": "3f6d674174f3804eb0dabdac90ae17486e898c5063a66f861c116ea033da8301",
+    "tiff_compression": "LZW",
+    "software": "Adobe Photoshop 25.4 (Macintosh)",
+    "required_dtype": "uint16",
+    "dtype_gate_pass": false
+  },
+  "execution": {
+    "selected_members_downloaded": 1,
+    "selected_members_not_downloaded_after_stop": 17,
+    "mtf_pixel_reads": 0,
+    "mtf_fit_count": 0,
+    "mtf_score_count": 0,
+    "replacement_rows": 0,
+    "threshold_or_decoder_rescue": false
+  },
+  "interpretation": "The 2025 study is a useful controlled qualitative and resolution reference, but its distributed TIFF path is an Adobe-processed 8-bit display artifact rather than the preregistered high-bit-depth measurement surface. Retain the source citation and close this exact BU11 quantitative MTF route before scoring.",
+  "claim_ceiling": "Negative source-integrity evidence for one internal noncommercial processed-film resolution dataset; not a statement about the study's qualitative conclusions, film-stock MTF, calibration, rendering or product behavior."
+}
