@@ -1,0 +1,30 @@
+{
+  "schema": "neuro-film.u6-p4ip-neutral-transmittance-structure-ao6-d0-evidence.v1",
+  "experiment_id": "u6-p4ip-neutral-transmittance-structure-ao6-d0-v1",
+  "implementation_commit": "9eea8ad8",
+  "formal_report_sha256": "09d17d2b3e9532f86e9faee83f2124d97ccb3561f9001fb2dc418a8dc01f8d26",
+  "contact_sheet_sha256": "5ec4a1fdb91f6134d80ba51f9687acbaa0077cd129f2b794a04acb0275f023fe",
+  "stable_evidence_id": "2e457f8b98a390a5a7f47b5b355fc9c81c148a6099df6de11c3fb0aa79c0dbce",
+  "formal_processes": 2,
+  "byte_exact_replay": true,
+  "automatic_pass": false,
+  "blind_review_allowed": false,
+  "metrics": {
+    "population_p95_combined_vs_matched_abs": 0.014265362322330473,
+    "population_p99_combined_vs_matched_abs": 0.02066791112422943,
+    "maximum_flat_region_p99_combined_vs_matched_abs": 0.02417636036872865,
+    "maximum_high_frequency_chroma_p999": 0.014960343022675609,
+    "total_isolated_excursions": 132,
+    "maximum_new_boundary_fraction_vs_matched": 0.0,
+    "maximum_arm_output_code_boundary_fraction": 0.0,
+    "population_p95_combined_vs_current_abs": 0.4027037122845649,
+    "maximum_repeat_error": 0.0
+  },
+  "failed_gates": [
+    "maximum_high_frequency_chroma_p999",
+    "maximum_isolated_excursions"
+  ],
+  "decision": "close_neutral_transmittance_structure_and_retain_fixed_ao6",
+  "interpretation": "Moving one ratio-preserving scalar structure after dye/scanner colour mixing reduces but does not close the chroma and isolated-excursion failures. Execution-domain correction alone is insufficient; the next candidate must use a separately frozen source-observable uncertainty mechanism rather than retuning amplitude or gates.",
+  "claim_ceiling": "Automatic mechanism D0 on five bundled natural photographs for one generic achromatic scan-linear transmittance structure; not measured grain, dye clouds, stock/scanner calibration, preference or product promotion."
+}

@@ -13165,3 +13165,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Keep source MTF and processed-film resolution as separate evidence under
   process/format/lens/aliasing/scanner nuisance. Do not compile a VISION3
   stock PSF from BU0/BU10/BU12; continue a different identifying mechanism.
+
+### 2026-08-14 - U6.P4IP closes neutral scan-linear structure
+
+- Two formal runs and contact sheets are byte exact (`09d17d2b...1f8d26`).
+  Applying one analytically bounded scalar after scanner colour mixing reduces
+  the P4IN chroma tail from `.01772` to `.01496` and isolated excursions from
+  `186` to `132`, while all finite, tail, flat and boundary gates pass.
+- The unchanged `.004` chroma and zero-isolated gates still fail, so no blind
+  review opens and fixed AO6 remains incumbent. Do not tune amplitude or gates.
+- Continue with a materially new source-observable uncertainty mechanism that
+  shrinks structure toward identity where colour purity makes it unsafe.
