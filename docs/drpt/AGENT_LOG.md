@@ -12987,7 +12987,7 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - A newly public May-2026 package was frozen before download: six files,
   183,875,041 bytes (`eabfd1d1...e66`), internal non-redistributed research
   only because no explicit reuse licence was found.
-- Two exact registration audits pass the Lumix S5II chart RAW to Portra 400 / 
+- Two exact registration audits pass the Lumix S5II chart RAW to Portra 400 /
   Fuji DPii chart scan at 303 mutual matches, 116 inliers and 85.68% overlap.
   The two natural-scene targets fail the fixed inlier-fraction gate because
   pose/viewpoint differ, and are not pixel pairs or current fit targets.
