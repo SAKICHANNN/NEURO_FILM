@@ -1,0 +1,26 @@
+{
+  "schema": "neuro-film.u6-p4iq-ao6-stage-attribution-evidence.v1",
+  "experiment_id": "u6-p4iq-ao6-stage-attribution-v1",
+  "implementation_commit": "cfa559df",
+  "formal_report_sha256": "992a6b84fb864db2b85fa588195d320014077892d9fa878b68369385d8e8069d",
+  "stable_evidence_id": "019efbbffe64c5c0810bd9df8001fdc88b5cc1c5c91df5a134703dae35fb9ae5",
+  "formal_processes": 2,
+  "byte_exact_replay": true,
+  "aggregate": {
+    "scanner_encoded": {
+      "maximum_high_frequency_chroma_p999": 0.0009482227821523976,
+      "total_isolated_excursions": 0
+    },
+    "ao6_base": {
+      "maximum_high_frequency_chroma_p999": 0.018714818017091732,
+      "total_isolated_excursions": 371
+    },
+    "ao6_residual": {
+      "maximum_high_frequency_chroma_p999": 0.014960343022675609,
+      "total_isolated_excursions": 132
+    }
+  },
+  "decision": "attribute_failure_stage_without_candidate_promotion",
+  "interpretation": "The ratio-preserving scanner signal passes the diagnostic thresholds before AO6. The fixed source-context base creates the chroma and isolated-excursion failures; the t15/c35 residual reduces but does not eliminate them. The next mechanism test must move the fixed AO6 base before physical structure and leave only the residual downstream, rather than attenuating the physical signal or changing gates.",
+  "claim_ceiling": "Mechanism attribution on the five bundled P4IM natural photographs; diagnostic only, not candidate safety, preference, calibration or product evidence."
+}

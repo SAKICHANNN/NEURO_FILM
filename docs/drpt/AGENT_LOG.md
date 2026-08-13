@@ -13176,3 +13176,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   review opens and fixed AO6 remains incumbent. Do not tune amplitude or gates.
 - Continue with a materially new source-observable uncertainty mechanism that
   shrinks structure toward identity where colour purity makes it unsafe.
+
+### 2026-08-14 - U6.P4IQ localizes the P4IP failure to AO6 base
+
+- Two reports replay byte exactly (`992a6b84...e8069d`). At scanner output the
+  neutral structure has chroma p999 `.000948` and zero isolated excursions.
+- The fixed AO6 source-context base amplifies these to `.01871` and `371`; the
+  t15/c35 residual then reduces them to `.01496` and `132` but cannot close the
+  gates. The physical signal itself is not the failing stage.
+- Test one ordered mechanism next: AO6 base as upstream neutral base, then the
+  neutral physical structure, then downstream residual. This is a double-count
+  ablation, not a threshold, amplitude or cohort-fit rescue.
