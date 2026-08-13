@@ -1,0 +1,40 @@
+{
+  "schema": "neuro-film.u6-p4ih-bounded-dye-amount-direction-d0-evidence.v1",
+  "experiment_id": "u6-p4ih-bounded-dye-amount-direction-d0-v1",
+  "date": "2026-08-13",
+  "implementation": {
+    "config_sha256": "097027b69c4f10c981a4f522fe98c9d226df364fb2fd118828349b9cc9a0f161",
+    "core_sha256": "0c530a5ae718962efc567fa78460530cca8df8334e479f37de80dd6ca30da55b",
+    "evaluator_sha256": "2b9e2a46c2222d24f3778d98105293a65ef200f51f3f02ea24a186eca4db1fc8",
+    "runner_sha256": "b79e9b3ee7fa89f9bcdc2e07e3d98861e78840143ccec1478709a5b350cc6032",
+    "core_test_sha256": "c9faec24819ecbcf6128e4772a0024fa4e377056dd61a3d5203295aa2944f23f",
+    "evaluator_test_sha256": "7b8b19071d0041ba279ca0fe815b94a5d8abf6e709891734e24663c1daa3b6a6"
+  },
+  "formal_runs": {
+    "count": 2,
+    "report_sha256": "d2b9b865f010b46c3f6355a9736314cedb2306a4751b2aba6d7b972d2859574f",
+    "repeat_report_sha256_exact": true,
+    "stable_evidence_id": "ba7f20201d34d6f05aa627206114d232da3a076311b7dfa5f994241ad35d9c7b",
+    "temporary_output_root": "D:/nf-019f4b76-p4id-fallback/p4ih"
+  },
+  "metrics": {
+    "base_sample_count": 35937,
+    "case_count": 12,
+    "maximum_shared_direction_error": 0.000001021793913147384,
+    "minimum_output": 0.0,
+    "maximum_output": 1.0,
+    "minimum_limited_fraction": 0.08818209644655926,
+    "maximum_limited_fraction": 0.864345938726104,
+    "minimum_bounded_residual_rms": 0.02062800628134609
+  },
+  "decision": "retain_shared_direction_dye_amount_envelope_for_photo_chain",
+  "interpretation": "One per-pixel scalar bounds all three normalized dye-amount channels while preserving the candidate residual direction. The frozen population contains both lightly and heavily limited cases, yet remains finite, bounded and materially nonzero without channel-wise clipping or hue rotation.",
+  "verification": {
+    "two_formal_runs_exact": "PASS",
+    "ruff_no_cache": "PASS",
+    "py_compile": "PASS",
+    "diff_check": "PASS"
+  },
+  "claim_ceiling": "Analytical normalized-dye-amount envelope validation only. It does not establish photographic value, stock calibration, scanner calibration, structure realism or product promotion.",
+  "next_leaf": "Use this envelope to bind the P4IA developed-density residual inside the P4IG normalized dye domain on the already-consumed photo cohort when canonical P storage is responsive."
+}

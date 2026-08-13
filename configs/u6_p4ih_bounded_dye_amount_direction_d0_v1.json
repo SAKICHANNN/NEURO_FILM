@@ -1,0 +1,50 @@
+{
+  "schema": "neuro-film.u6-p4ih-bounded-dye-amount-direction-d0-contract.v1",
+  "experiment_id": "u6-p4ih-bounded-dye-amount-direction-d0-v1",
+  "parent": {
+    "path": "docs/evidence/U6_P4IG_CHARACTERISTIC_SCANNER_CHAIN_D0_RESULT.json",
+    "sha256": "e722dee1a7d45249c5b3166b4a60e39d6478681aa34d7427f6a69d05b3af4c7d",
+    "required_decision": "retain_typed_characteristic_scanner_chain_for_photo_development",
+    "required_stable_evidence_id": "428b386efc04582857f3c260e3b08529a6aad9a6d4104f104366d61954862181"
+  },
+  "population": {
+    "levels": 33,
+    "residual_directions": [
+      [
+        0.3,
+        -0.2,
+        0.1
+      ],
+      [
+        -0.15,
+        0.35,
+        -0.25
+      ],
+      [
+        0.4,
+        0.4,
+        -0.4
+      ],
+      [
+        -0.5,
+        0.2,
+        0.45
+      ]
+    ],
+    "residual_amplitudes": [
+      0.1,
+      0.4,
+      1.2
+    ]
+  },
+  "gates": {
+    "maximum_shared_direction_error": 0.000002,
+    "maximum_output_boundary_error": 3e-7,
+    "minimum_limited_fraction": 0.05,
+    "minimum_unlimited_fraction": 0.05,
+    "minimum_bounded_residual_rms": 0.01
+  },
+  "decision_if_pass": "retain_shared_direction_dye_amount_envelope_for_photo_chain",
+  "decision_if_fail": "close_exact_shared_direction_dye_amount_envelope",
+  "claim_ceiling": "Analytical normalized-dye-amount envelope validation only. It does not establish photographic value, stock calibration, scanner calibration, structure realism or product promotion."
+}

@@ -12954,3 +12954,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Two 274,625-sample reports are byte exact (`1375d407...62f6`, stable `428b386e...2181`). Chain error is `5.96e-7`, every axis is monotone and the bounded endpoint tolerance passes.
 - The characteristic response is material versus the normalized input (p95 `.21834`), while the old direct-transmittance interpretation remains decisively wrong (p95 `.45490`).
 - Decision: retain the typed analytical chain for a fixed photo development test. This remains synthetic scanner D0 plus manufacturer graph prior, not measured stock/scanner appearance or product evidence.
+## 2026-08-13 — U6.P4IH shared-direction dye-amount envelope
+
+- Canonical P-backed photo assets remained unresponsive, so the blocked render was bypassed by implementing its missing density-domain safety primitive rather than waiting.
+- The primitive applies one per-pixel scalar across all three normalized dye amounts. It therefore preserves the actual residual direction and cannot silently convert gamut protection into channel-wise recolouring.
+- Two exact analytical reports over 35,937 bases × 12 direction/amplitude cases pass (`d2b9b865...9574f`, stable `ba7f2020...d9c7b`). Maximum shared-direction error is `1.02e-6`; limited fractions span `.0882` to `.8643`; minimum bounded residual RMS is `.02063`; outputs remain exactly within `[0,1]` without clipping.
+- Decision: retain for the next fixed photo chain. This is an execution primitive, not photo value or product evidence.
