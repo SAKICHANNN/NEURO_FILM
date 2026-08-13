@@ -1,5 +1,5 @@
 {
-  "schema": "neuro-film.u6-p4if-negative-scanner-inverse-d0-evidence.v1",
+  "schema": "neuro-film.u6-p4if-negative-scanner-inverse-d0-evidence.v1-superseded",
   "experiment_id": "u6-p4if-negative-scanner-inverse-d0-v1",
   "date": "2026-08-13",
   "implementation": {
@@ -27,7 +27,7 @@
     "endpoint_only_control_p95_abs": 0.48466798663139343,
     "endpoint_only_control_max_abs": 0.7010434865951538
   },
-  "decision": "retain_explicit_negative_scanner_inverse_for_photographic_development",
+  "decision": "SUPERSEDED_BY_P4IF_V2_NEGATIVE_POLARITY_CORRECTION",
   "interpretation": "A full inverse of the frozen log scanner compiler recovers the analytical CMY amounts and their complementary positive RGB interpretation. Independent per-channel endpoint inversion fails badly because it cannot remove scanner/dye spectral cross-talk; that failure explains why a direct layer-transmittance interpretation cannot repair P4IC.",
   "verification": {
     "two_formal_runs_exact": "PASS",
@@ -35,5 +35,5 @@
     "py_compile_d_cache": "PASS"
   },
   "claim_ceiling": "Synthetic analytical validation of an explicitly invertible log scanner compiler and CMY-to-positive interpretation. Not a measured scanner inverse, stock calibration, photo evidence, product operator or claim that real scanner pipelines are exactly invertible.",
-  "next_leaf": "Map manufacturer characteristic layer densities into normalized CMY dye amounts, pass them through the fixed scanner compiler/inverse interpretation, and test whether the resulting photo chain closes the P4IC cast/tone failure without fitting the photo cohort."
+  "next_leaf": "Do not consume this v1 evidence. Re-run v2 with clear-negative-to-black, maximum-density-to-white and recovered YMC-to-positive RGB as C/M/Y amounts."
 }

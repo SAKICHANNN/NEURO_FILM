@@ -17,8 +17,8 @@ from src.film_physics.compact_log_scanner_compiler import (
     invert_compact_log_scanner,
 )
 
-SCHEMA = "neuro-film.u6-p4if-negative-scanner-inverse-d0-contract.v1"
-REPORT_SCHEMA = "neuro-film.u6-p4if-negative-scanner-inverse-d0-result.v1"
+SCHEMA = "neuro-film.u6-p4if-negative-scanner-inverse-d0-contract.v2"
+REPORT_SCHEMA = "neuro-film.u6-p4if-negative-scanner-inverse-d0-result.v2"
 
 
 def _canonical(value: Any) -> bytes:
@@ -74,8 +74,8 @@ def evaluate(config: Mapping[str, Any], root: Path) -> dict[str, Any]:
     )
     scan = apply_compact_log_scanner(density, compiler)
     recovered = invert_compact_log_scanner(scan, compiler)
-    positive_truth = np.ascontiguousarray(1.0 - density[:, [2, 1, 0]])
-    positive = np.ascontiguousarray(1.0 - recovered[:, [2, 1, 0]])
+    positive_truth = np.ascontiguousarray(density[:, [2, 1, 0]])
+    positive = np.ascontiguousarray(recovered[:, [2, 1, 0]])
 
     clear = apply_compact_log_scanner(np.zeros((1, 3), dtype=np.float32), compiler)[0]
     maximum = apply_compact_log_scanner(np.ones((1, 3), dtype=np.float32), compiler)[0]
@@ -87,16 +87,16 @@ def evaluate(config: Mapping[str, Any], root: Path) -> dict[str, Any]:
     control_error = np.abs(endpoint_control - positive_truth)
 
     neutral = np.asarray([(level, level, level) for level in levels], dtype=np.float32)
-    neutral_positive = 1.0 - invert_compact_log_scanner(
+    neutral_positive = invert_compact_log_scanner(
         apply_compact_log_scanner(neutral, compiler), compiler
     )[:, [2, 1, 0]]
     primaries = np.eye(3, dtype=np.float32)
-    primary_positive = 1.0 - invert_compact_log_scanner(
+    primary_positive = invert_compact_log_scanner(
         apply_compact_log_scanner(primaries[:, [2, 1, 0]], compiler), compiler
     )[:, [2, 1, 0]]
-    expected_primary = 1.0 - primaries
-    # A unit dye amount suppresses its complementary positive channel.  This
-    # verifies channel ordering rather than asserting a photographic primary.
+    expected_primary = primaries
+    # A unit cyan/magenta/yellow dye amount records red/green/blue exposure.
+    # Inverting a negative therefore maps C/M/Y amounts to positive R/G/B.
     primary_error = float(np.max(np.abs(primary_positive - expected_primary)))
 
     gates = config["gates"]

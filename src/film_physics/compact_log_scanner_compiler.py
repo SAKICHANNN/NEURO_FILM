@@ -64,8 +64,8 @@ def interpret_negative_scan_relative(
 ) -> np.ndarray:
     """Invert a scanner-RAW negative between two explicitly bound endpoints.
 
-    Clear film maps to display white and the frozen maximum-density endpoint
-    maps to display black.  No clipping is performed; values outside the
+    Clear negative maps to display black and the frozen maximum-density endpoint
+    maps to display white.  No clipping is performed; values outside the
     endpoint interval are rejected.
     """
 
@@ -84,7 +84,7 @@ def interpret_negative_scan_relative(
     epsilon = np.float32(16.0 * np.finfo(np.float32).eps)
     if np.any(values > clear + epsilon) or np.any(values < maximum - epsilon):
         raise ValueError("negative scan value is outside bound endpoints")
-    output = (values - maximum) / span
+    output = (clear - values) / span
     output = np.ascontiguousarray(output, dtype=np.float32)
     if not np.all(np.isfinite(output)) or np.any(output < -epsilon) or np.any(output > 1.0 + epsilon):
         raise RuntimeError("negative scan interpretation left relative display domain")

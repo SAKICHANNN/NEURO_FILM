@@ -12944,7 +12944,7 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Next: explicit negative scanner inversion/neutral interpretation on analytical wedges; no photographs until that domain boundary passes.
 ## 2026-08-13 — U6.P4IF explicit negative scanner inverse
 
-- Added a condition-bounded inverse of the P4ID log scanner compiler plus explicit CMY-to-complementary-positive interpretation.
-- Two exact 274,625-sample runs: report SHA `c55d09e0...0ff54`, stable `163af22b...a7c0`; density/positive recovery max `5.96e-7`, neutral spread `4.17e-7`, channel order error `1.19e-7`.
+- The first committed interpretation was physically reversed (clear negative was treated as white and recovered dye amounts were complemented). Its v1 evidence is explicitly superseded and must not be consumed.
+- Corrected v2 maps clear negative to display black, maximum-density negative to white, and recovered Y/M/C amounts to positive B/G/R. Two exact 274,625-sample runs: report SHA `5909e550...c26a7`, stable `70dcd549...1ef3e`; density/positive recovery max `5.96e-7`, neutral spread `4.17e-7`, channel-order error `1.21e-7`.
 - Decisive control: independent scanner-channel endpoint inversion remains highly wrong (median/p95/max `.181/.485/.701`) because it leaves spectral cross-talk mixed.
-- Decision: retain the full inverse for cohort-free photographic development; no measured scanner or calibration claim.
+- Decision: retain only corrected v2 for cohort-free analytical development; no measured scanner, calibration or photo claim.

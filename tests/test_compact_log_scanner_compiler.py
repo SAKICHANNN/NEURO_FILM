@@ -70,8 +70,8 @@ def test_negative_interpretation_binds_clear_and_maximum_density_endpoints() -> 
         clear_scan_rgb=endpoints[0],
         maximum_density_scan_rgb=endpoints[1],
     )
-    assert np.max(np.abs(values[0] - 1.0)) <= 2e-7
-    assert np.max(np.abs(values[1])) <= 2e-7
+    assert np.max(np.abs(values[0])) <= 2e-7
+    assert np.max(np.abs(values[1] - 1.0)) <= 2e-7
 
 
 def test_negative_interpretation_rejects_outside_endpoint_values() -> None:

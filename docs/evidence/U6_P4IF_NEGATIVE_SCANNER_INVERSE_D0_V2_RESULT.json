@@ -1,0 +1,41 @@
+{
+  "schema": "neuro-film.u6-p4if-negative-scanner-inverse-d0-evidence.v2",
+  "experiment_id": "u6-p4if-negative-scanner-inverse-d0-v2",
+  "date": "2026-08-13",
+  "implementation": {
+    "config_sha256": "6e7b77892f1cf774495a591c0b26fb92b2aeb1b967be8ec700df2e4fd18c372b",
+    "core_sha256": "8f02779435ac1ca5343e70e1ea288f7ac826a07bf8518fdd1239ac296d2be4dd",
+    "evaluator_sha256": "15029c11d9f2dd5fe47bc2837ff58b7a80d36156a8187eedbab856f571efe442",
+    "runner_sha256": "452aa3ac9f39606951b33eee2e0271a20b63016a919c14b7e9aa4f75ba2e2022",
+    "core_test_sha256": "0d54463a39fbca6588ae995d4263dea6e480a94b840ca28f284165dea37dfa7a",
+    "evaluator_test_sha256": "98ea11dc1e281d7c93a72f30407350b6ce017363ff8e93d50d4a8f471be75b8f"
+  },
+  "formal_runs": {
+    "count": 2,
+    "report_sha256": "5909e550234e6baa1d92c80c4f64c7eaaeb50b55683ae4415cfc196ae02c26a7",
+    "repeat_report_sha256_exact": true,
+    "stable_evidence_id": "70dcd549f3422da6fe1581abc975d11bfc2b68d799426853b7d16b06d0c1ef3e",
+    "temporary_output_root": "D:/nf-019f4b76-p4id-fallback/p4if-v2"
+  },
+  "metrics": {
+    "sample_count": 274625,
+    "inverse_density_max_abs": 5.960464477539062e-7,
+    "positive_rgb_max_abs": 5.960464477539062e-7,
+    "neutral_rgb_spread_max": 4.172325134277344e-7,
+    "primary_channel_order_max_abs": 1.2137188321048598e-7,
+    "endpoint_only_control_median_abs": 0.18132412433624268,
+    "endpoint_only_control_p95_abs": 0.48466798663139343,
+    "endpoint_only_control_max_abs": 0.7010434865951538,
+    "positive_rgb_minimum": -3.144937466004194e-7,
+    "positive_rgb_maximum": 1.0000005960464478
+  },
+  "decision": "retain_explicit_negative_scanner_inverse_for_photographic_development",
+  "interpretation": "Clear negative maps to display black, the frozen maximum-density endpoint maps to display white, and recovered yellow/magenta/cyan amounts map to positive blue/green/red respectively. The v1 complementary interpretation was physically reversed and is superseded. Independent scanner-channel endpoint inversion remains inadequate because it does not remove spectral cross-talk.",
+  "verification": {
+    "two_formal_runs_exact": "PASS",
+    "ruff_no_cache": "PASS",
+    "py_compile_d_cache": "PASS"
+  },
+  "claim_ceiling": "Synthetic analytical validation of an explicitly invertible log scanner compiler and correctly polarized CMY-to-positive interpretation. Not a measured scanner inverse, stock calibration, photo evidence, product operator or claim that real scanner pipelines are exactly invertible.",
+  "next_leaf": "Compose the tracked manufacturer characteristic-density prior with the fixed scanner compiler and inverse on analytical wedges before any photo claim."
+}

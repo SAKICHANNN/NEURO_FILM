@@ -6,7 +6,7 @@ import pytest
 from src.eval.negative_scanner_inverse_d0 import evaluate, load_contract
 
 ROOT = Path(__file__).resolve().parents[1]
-CONFIG = ROOT / "configs/u6_p4if_negative_scanner_inverse_d0_v1.json"
+CONFIG = ROOT / "configs/u6_p4if_negative_scanner_inverse_d0_v2.json"
 
 
 def test_formal_inverse_passes_and_endpoint_control_fails() -> None:
