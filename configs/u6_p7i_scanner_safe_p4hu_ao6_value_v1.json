@@ -1,0 +1,51 @@
+{
+  "schema": "neuro-film.u6-p7i-scanner-safe-p4hu-ao6-value-contract.v1",
+  "experiment_id": "u6-p7i-scanner-safe-p4hu-ao6-value-v1",
+  "parents": {
+    "p7h_contract": {
+      "path": "configs/u6_p7h_p4hu_ao6_value_v1.json",
+      "sha256": "98a0ff87a46d7fc5d5b2b6ada76b2e09409794b20ef82a1189d4928c3d97354d"
+    },
+    "p7h_evidence": {
+      "path": "docs/evidence/U6_P7H_P4HU_AO6_VALUE_RESULT.json",
+      "sha256": "35c168b16b5514da9875e1abc09bac197f97f658e4603f73a462caebe125b2d7",
+      "required_decision": "retain_current_ao6_without_p4hu_value_promotion"
+    },
+    "p6am_evidence": {
+      "path": "docs/evidence/U6_P6AM_SCANNER_SAFE_RESIDUAL_RUNTIME_RESULT.json",
+      "sha256": "5663d65e344ec6481d3d1b7f6bbc587b3c05a1ef1357dd7514051255e729f224",
+      "required_decision": "retain_optional_canonical_scanner_safe_residual_runtime_v1"
+    },
+    "p6al_evidence": {
+      "path": "docs/evidence/U6_P6AL_SAFE_RESIDUAL_SCANNER_REPLICATION_D1_RESULT.json",
+      "sha256": "8269018e166b78365ba71c12733aacd5d2ada6c921612897bc426b0f49adaa43",
+      "required_decision": "retain_analytical_safe_residual_as_cross_source_scanner_nuisance_mechanism_d1"
+    }
+  },
+  "candidate": {
+    "scanner_safe_residual_runtime_id": "scanner-safe-residual-analytic-v1",
+    "application_domain": "post-scanner-linear-before-encode-and-ao6",
+    "reference_arm_domain": "matched-scanner-source-linear",
+    "direction_change_allowed": false,
+    "p4hu_or_ao6_refit_allowed": false
+  },
+  "additional_gates": {
+    "maximum_limited_pixel_fraction": 0.1,
+    "minimum_median_scale": 0.95,
+    "maximum_collinearity_error": 1e-12
+  },
+  "measurement": {
+    "formal_processes": 2,
+    "sample_interval_seconds": 0.01,
+    "worker_timeout_seconds": 900,
+    "rss_and_wall_excluded_from_scientific_identity": true
+  },
+  "resource_gates": {
+    "maximum_peak_process_tree_rss_bytes": 1610612736,
+    "maximum_worker_wall_seconds": 600
+  },
+  "decision_if_pass": "open_domain_separated_current_ao6_vs_scanner_safe_combined_blind_review_only",
+  "decision_if_fail": "retain_current_ao6_and_close_exact_scanner_safe_p4hu_combination",
+  "decision_if_infrastructure_invalid": "invalidate_p7i_execution_without_scientific_decision",
+  "claim_ceiling": "Windows-host nine-source automatic safety/value eligibility for the exact P7H P4HU chain with the independently validated analytical scanner-safe residual; not film-stock calibration, preference, portable density runtime or product promotion"
+}
