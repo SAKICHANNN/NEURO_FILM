@@ -1,0 +1,61 @@
+{
+  "schema": "neuro-film.u6-p4hw-shared-dye-cloud-occupancy-d0-contract.v1",
+  "experiment_id": "u6-p4hw-shared-dye-cloud-occupancy-d0-v1",
+  "question": "Can one shared dye-cloud occupancy factor with layer-specific residual structure reduce the frozen P7H high-frequency chroma failure while preserving density marginals and luminance structure?",
+  "parents": {
+    "p7h_evidence": {
+      "path": "docs/evidence/U6_P7H_P4HU_AO6_VALUE_RESULT.json",
+      "sha256": "11400e11d61ae436babe5be4298a17d7eadcc52e5820a15b581654ce0c0b7ef8",
+      "required_decision": "retain_current_ao6_without_p4hu_value_promotion"
+    },
+    "profile": {
+      "path": "outputs/experiments/u6_p4hk_bounded_photographic_profile_bundle_v1/run_a/profile.json",
+      "sha256": "539fef07a7c659db035928ee4d9c7e6405da5e0baa07852f4f9a4b50fa1247b8",
+      "bundle_sha256": "8d20ce2874036befe78657b059ffafeb24e43d2e5bc1000512092a753e1e75df"
+    },
+    "itu_h_supplement_21_2025": "https://www.itu.int/rec/T-REC-H.Sup21-202501-I/en"
+  },
+  "mechanisms": {
+    "control": {
+      "id": "p4hu-low-cross-layer-correlation",
+      "correlation_matrix": [[1.0, 0.2721655269759087, 0.22360679774997896], [0.2721655269759087, 1.0, 0.21300321680756462], [0.22360679774997896, 0.21300321680756462, 1.0]]
+    },
+    "candidate": {
+      "id": "shared-cloud-occupancy-rho085",
+      "shared_factor_fraction": 0.85,
+      "correlation_matrix": [[1.0, 0.85, 0.85], [0.85, 1.0, 0.85], [0.85, 0.85, 1.0]],
+      "interpretation": "one shared latent cloud-site factor plus layer-specific residuals; same per-layer Gamma density marginals"
+    }
+  },
+  "development": {
+    "procedural_rows": 12,
+    "shape": [129, 131],
+    "base_seed": 74021,
+    "layer_field_seeds": [320260812, 320261821, 320262830],
+    "field_seed_stride_per_row": 1009,
+    "rank_bins": 65536,
+    "canonical_row_block_height": 128,
+    "photographic_pixels_allowed": false,
+    "cohort_fitting_allowed": false
+  },
+  "gates": {
+    "maximum_candidate_to_control_high_frequency_chroma_p999_ratio": 0.8,
+    "minimum_candidate_to_control_luma_high_frequency_rms_ratio": 0.75,
+    "maximum_candidate_to_control_luma_high_frequency_rms_ratio": 1.25,
+    "minimum_candidate_to_control_total_residual_rms_ratio": 0.9,
+    "maximum_candidate_to_control_total_residual_rms_ratio": 1.1,
+    "maximum_per_channel_residual_rms_relative_error": 0.03,
+    "minimum_empirical_cross_layer_correlation_gain": 0.3,
+    "maximum_new_boundary_fraction": 0.0,
+    "require_all_rows_finite_and_bounded": true,
+    "require_two_exact_process_replays": true
+  },
+  "stop_rules": [
+    "Do not tune the shared fraction, source generator, marginal amplitudes, seeds or gates after any score.",
+    "Failure closes this exact shared-occupancy capacity test without same-cohort rescue.",
+    "Pass opens only one fresh photographic automatic confirmation; it is not preference, product or film-stock calibration."
+  ],
+  "decision_if_pass": "retain_shared_dye_cloud_occupancy_capacity_and_open_fresh_photographic_confirmation",
+  "decision_if_fail": "close_exact_shared_dye_cloud_occupancy_capacity_without_rescue",
+  "claim_ceiling": "Procedural relative-display capacity evidence for a colour-film-inspired shared dye-cloud occupancy constraint only; not microscopy, stock/process/scanner calibration, photographic value, portable runtime or product promotion"
+}
