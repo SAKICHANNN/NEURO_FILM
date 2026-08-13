@@ -1,0 +1,63 @@
+{
+  "schema": "neuro-film.u6-p4hx-opponent-dye-cloud-diffusion-d0-contract.v1",
+  "experiment_id": "u6-p4hx-opponent-dye-cloud-diffusion-d0-v1",
+  "question": "Can fixed layer-specific dye-cloud diffusion act only on zero-sum developed-density opponent structure, reducing high-frequency chroma without amplifying common-density luminance structure?",
+  "parents": {
+    "p4hw_evidence": {
+      "path": "docs/evidence/U6_P4HW_SHARED_DYE_CLOUD_OCCUPANCY_D0_RESULT.json",
+      "sha256": "5ed617398cd4961a1de556720206afbec92b048c363f50d3e3359447cc7df7db",
+      "required_decision": "close_exact_shared_dye_cloud_occupancy_capacity_without_rescue"
+    },
+    "p4as_decision": {
+      "path": "configs/u6_p4as_joint_dye_cloud_mtf_nps_decision_v1.json",
+      "sha256": "728e0b861aa817b4aabb6ac965d8731cf49999b483eb713a7887c386d41f4130",
+      "required_decision": "retain_shared_dye_cloud_scale_synthetic_mechanism",
+      "required_bundle_id": "1b1346bacace0b3d091a9f94b7a5eecc515b4c7a7e512a2d20043984b89834ab"
+    },
+    "profile": {
+      "path": "outputs/experiments/u6_p4hk_bounded_photographic_profile_bundle_v1/run_a/profile.json",
+      "sha256": "539fef07a7c659db035928ee4d9c7e6405da5e0baa07852f4f9a4b50fa1247b8",
+      "bundle_sha256": "8d20ce2874036befe78657b059ffafeb24e43d2e5bc1000512092a753e1e75df"
+    }
+  },
+  "mechanism": {
+    "id": "developed-density-common-plus-diffused-zero-sum-opponent-v1",
+    "dye_diffusion_sigma_pixels_cmy": [0.72, 1.08, 1.52],
+    "gaussian_truncate": 4.0,
+    "common_density_definition": "per-pixel arithmetic mean of three developed-density residual layers",
+    "opponent_definition": "developed-density residual minus common density",
+    "post_diffusion_projection": "subtract per-pixel mean from the three independently diffused opponent layers",
+    "hard_clipping_allowed": false,
+    "posthoc_limiting_allowed": false
+  },
+  "development": {
+    "procedural_rows": 12,
+    "shape": [129, 131],
+    "base_seed": 94117,
+    "layer_field_seeds": [320260812, 320261821, 320262830],
+    "field_seed_stride_per_row": 1009,
+    "rank_bins": 65536,
+    "canonical_row_block_height": 128,
+    "photographic_pixels_allowed": false,
+    "cohort_fitting_allowed": false
+  },
+  "gates": {
+    "maximum_candidate_to_control_high_frequency_chroma_p999_ratio": 0.8,
+    "minimum_candidate_to_control_luma_high_frequency_rms_ratio": 0.9,
+    "maximum_candidate_to_control_luma_high_frequency_rms_ratio": 1.1,
+    "minimum_candidate_to_control_total_residual_rms_ratio": 0.75,
+    "maximum_candidate_to_control_total_residual_rms_ratio": 1.05,
+    "maximum_common_density_residual_absolute_error": 1e-12,
+    "maximum_new_boundary_fraction": 0.0,
+    "require_all_rows_finite_and_bounded": true,
+    "require_two_exact_process_replays": true
+  },
+  "stop_rules": [
+    "Do not tune diffusion scales, projection, source generator, marginal amplitudes, seeds or gates after any score.",
+    "Failure closes this exact opponent-diffusion mechanism without same-cohort rescue.",
+    "Pass opens only one wholly fresh photographic automatic confirmation; it is not preference, product or film-stock calibration."
+  ],
+  "decision_if_pass": "retain_opponent_dye_cloud_diffusion_capacity_and_open_fresh_photographic_confirmation",
+  "decision_if_fail": "close_exact_opponent_dye_cloud_diffusion_capacity_without_rescue",
+  "claim_ceiling": "Procedural developed-density capacity evidence for one fixed opponent dye-cloud diffusion mechanism only; not microscopy, measured MTF/NPS, stock/process/scanner calibration, photographic value, runtime or product promotion"
+}
