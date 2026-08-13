@@ -4,18 +4,24 @@ from __future__ import annotations
 
 import hashlib
 import json
-from collections.abc import Mapping
+from collections.abc import Callable, Mapping
 from pathlib import Path
-from typing import Any, Callable
+from typing import Any
 
 import numpy as np
 from PIL import Image, ImageDraw
 from skimage import data
 
-from src.color_engine.srgb_transfer import encoded_srgb_to_linear, linear_srgb_to_encoded
+from src.color_engine.srgb_transfer import (
+    encoded_srgb_to_linear,
+    linear_srgb_to_encoded,
+)
 from src.eval.characteristic_scanner_spatial_smoke import _structured_transmittance
 from src.eval.layer_gamma_photographic_development import _high_frequency_chroma_p999
-from src.eval.physical_spatial_photographic_stress import _flat_region_p99, _isolated_excursions
+from src.eval.physical_spatial_photographic_stress import (
+    _flat_region_p99,
+    _isolated_excursions,
+)
 from src.eval.sigmoid_characteristic_spatial_d0 import _runtime
 from src.film_physics.display_look import build_source_context_display_look_stages
 from src.film_physics.profile_consumer import compile_standalone_profile_artifact
@@ -86,6 +92,10 @@ def evaluate(
         [np.ndarray, np.ndarray, int, float], np.ndarray
     ]
     | None = None,
+    scan_structure_builder: Callable[
+        [np.ndarray, np.ndarray, int, float], np.ndarray
+    ]
+    | None = None,
 ) -> dict[str, Any]:
     parent_path = root / str(contract["parent"]["path"])
     if _sha(parent_path) != contract["parent"]["sha256"]:
@@ -115,6 +125,8 @@ def evaluate(
         density = np.stack([curve.apply_normalized(linear[..., c]) for c, curve in enumerate(curves)], axis=-1)
         base_t = np.ascontiguousarray(np.power(10.0, -density), dtype=np.float32)
         baseline, _ = render_sigmoid_scanner_positive(linear, base_t, curves=curves, compiler=compiler)
+        if structure_builder is not None and scan_structure_builder is not None:
+            raise ValueError("P4IM structure builders are mutually exclusive")
         if structure_builder is not None:
             structured = structure_builder(
                 base_t,
@@ -152,15 +164,38 @@ def evaluate(
                 base_t.astype(np.float64) * np.power(10.0, -residual),
                 dtype=np.float32,
             )
-        physical, _ = render_sigmoid_scanner_positive(linear, structured, curves=curves, compiler=compiler)
         baseline = apply_scanner_mtf(baseline, spatial).astype(np.float32)
-        physical = apply_scanner_mtf(physical, spatial).astype(np.float32)
+        if scan_structure_builder is None:
+            physical, _ = render_sigmoid_scanner_positive(
+                linear, structured, curves=curves, compiler=compiler
+            )
+            physical = apply_scanner_mtf(physical, spatial).astype(np.float32)
+        else:
+            physical = scan_structure_builder(
+                baseline,
+                linear,
+                index,
+                float(mechanism["structure_amplitude"]),
+            )
+            if (
+                physical.shape != baseline.shape
+                or physical.dtype != np.float32
+                or not np.all(np.isfinite(physical))
+                or np.any(physical < 0.0)
+                or np.any(physical > 1.0)
+            ):
+                raise ValueError("invalid P4IM scan-linear structure")
         baseline_encoded = np.ascontiguousarray(linear_srgb_to_encoded(baseline.astype(np.float64)), dtype=np.float32)
         physical_encoded = np.ascontiguousarray(linear_srgb_to_encoded(physical.astype(np.float64)), dtype=np.float32)
         apply_base, apply_residual = build_source_context_display_look_stages(display_payload, original)
 
-        def ao6(value: np.ndarray) -> np.ndarray:
-            return np.ascontiguousarray(apply_residual(apply_base(value)), dtype=np.float32)
+        def ao6(
+            value: np.ndarray,
+            *,
+            base: Callable[[np.ndarray], np.ndarray] = apply_base,
+            residual: Callable[[np.ndarray], np.ndarray] = apply_residual,
+        ) -> np.ndarray:
+            return np.ascontiguousarray(residual(base(value)), dtype=np.float32)
 
         current = ao6(original)
         matched = ao6(baseline_encoded)

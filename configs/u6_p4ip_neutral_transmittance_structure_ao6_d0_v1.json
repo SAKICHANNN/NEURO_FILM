@@ -1,0 +1,21 @@
+{
+  "schema": "neuro-film.u6-p4ip-neutral-transmittance-structure-ao6-d0-contract.v1",
+  "experiment_id": "u6-p4ip-neutral-transmittance-structure-ao6-d0-v1",
+  "question": "Does a physically factorized achromatic transmittance structure, applied after dye/scanner colour mixing with one analytic per-pixel scalar, remove the P4IM/P4IN chroma and isolated-excursion failures while retaining visible structure after AO6?",
+  "parents": {
+    "p4in_evidence": {"path": "docs/evidence/U6_P4IN_EQUAL_DENSITY_STRUCTURE_AO6_ABLATION_RESULT.json", "sha256": "79edd6b6e9f55f1a91feff913edba04dc35b3698981e9d64533cce96e8b0a0f0", "required_decision": "close_equal_density_structure_and_retain_fixed_ao6"},
+    "base_contract": {"path": "configs/u6_p4im_sigmoid_scanner_ao6_value_d1_v1.json", "sha256": "041818a85e38861426b61a052f43748d4119cc6b18fdec7eedc0ffe48cf807ce"}
+  },
+  "mechanism": {
+    "coordinate": "scan-linear-achromatic-transmittance",
+    "field": "same fixed P4IM sinusoidal scalar field and amplitude",
+    "execution": "multiply all scan-linear RGB channels by one desired density scalar, analytically capped by the largest channel before multiplication",
+    "hard_clipping_allowed": false,
+    "posthoc_limiting_allowed": false,
+    "colour_ratio_change_allowed": false,
+    "cohort_fit_allowed": false
+  },
+  "decision_if_pass": "retain_neutral_transmittance_structure_for_domain_separated_ao6_blind_value_review",
+  "decision_if_fail": "close_neutral_transmittance_structure_and_retain_fixed_ao6",
+  "claim_ceiling": "Automatic mechanism D0 on bundled natural photographs for one generic achromatic scan-linear transmittance structure; not measured grain, dye clouds, stock/scanner calibration, preference or product promotion."
+}
