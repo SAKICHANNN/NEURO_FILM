@@ -246,7 +246,7 @@ def _execute_worker(
 ) -> dict[str, Any]:
     command = [
         sys.executable,
-        str(Path(__file__).resolve()),
+        str(Path(sys.argv[0]).resolve()),
         "--worker",
         "--config",
         str(config_path),

@@ -38,6 +38,7 @@ from src.film_physics.bounded_photographic_profile import (
 from src.film_physics.display_look import (
     build_source_context_display_look_stages,
 )
+from src.film_physics.scanner import apply_scanner_safe_residual
 from src.film_physics.spatial_response import (
     SpatialResponseProfile,
     apply_scanner_mtf,
@@ -515,6 +516,7 @@ def _evaluate_source(
     scanner: SpatialResponseProfile,
     gates: dict[str, Any],
     arm_ids: tuple[str, str, str, str] = ARMS,
+    scanner_safe_residual: bool = False,
 ) -> dict[str, Any]:
     current_ao6, matched_ao6, physical_only, combined = arm_ids
     encoded, source_receipt = _load_rgb8_source(root, row, transform)
@@ -529,6 +531,15 @@ def _evaluate_source(
     scanner_physical = np.ascontiguousarray(
         apply_scanner_mtf(physical, scanner), dtype=np.float32
     )
+    safe_receipt = None
+    if scanner_safe_residual:
+        scanner_physical_f64, safe_receipt = apply_scanner_safe_residual(
+            scanner_source.astype(np.float64),
+            scanner_physical.astype(np.float64),
+        )
+        scanner_physical = np.ascontiguousarray(
+            scanner_physical_f64, dtype=np.float32
+        )
     encoded_scanner_source = _display(
         linear_srgb_to_encoded(scanner_source.astype(np.float64)),
         encoded.shape,
@@ -570,7 +581,7 @@ def _evaluate_source(
     product_delta = arms[combined] - arms[current_ao6]
     scanner_control_delta = arms[matched_ao6] - arms[current_ao6]
     stable_diagnostics = _stable_diagnostics(diagnostics)
-    return {
+    result = {
         "source_id": row["id"],
         "source_manifest_id": row["source_id"],
         "make": row["make"],
@@ -621,6 +632,15 @@ def _evaluate_source(
         ),
         "outputs": outputs,
     }
+    if safe_receipt is not None:
+        result["scanner_safe_residual_receipt"] = {
+            "runtime_id": safe_receipt.runtime_id,
+            "limited_pixel_fraction": safe_receipt.limited_pixel_fraction,
+            "median_scale": safe_receipt.median_scale,
+            "minimum_scale": safe_receipt.minimum_scale,
+            "maximum_collinearity_error": safe_receipt.maximum_collinearity_error,
+        }
+    return result
 
 
 def evaluate_source_arms(
@@ -635,6 +655,7 @@ def evaluate_source_arms(
     scanner: SpatialResponseProfile,
     gates: dict[str, Any],
     arm_ids: tuple[str, str, str, str] = ARMS,
+    scanner_safe_residual: bool = False,
 ) -> dict[str, Any]:
     """Evaluate the frozen P7H four-arm surface for one bound structure runtime."""
 
@@ -649,6 +670,7 @@ def evaluate_source_arms(
         scanner=scanner,
         gates=gates,
         arm_ids=arm_ids,
+        scanner_safe_residual=scanner_safe_residual,
     )
 
 
@@ -677,7 +699,7 @@ def automatic_arm_checks(
 
 def _aggregate(rows: list[dict[str, Any]]) -> dict[str, Any]:
     output_rows = [output for row in rows for output in row["outputs"]]
-    return {
+    aggregates = {
         "source_count": len(rows),
         "output_count": len(output_rows),
         "minimum_physical_residual_rms": min(
@@ -754,6 +776,21 @@ def _aggregate(rows: list[dict[str, Any]]) -> dict[str, Any]:
             for row in rows
         ),
     }
+    receipts = [row.get("scanner_safe_residual_receipt") for row in rows]
+    if all(isinstance(receipt, dict) for receipt in receipts):
+        aggregates["scanner_safe_residual"] = {
+            "maximum_limited_pixel_fraction": max(
+                float(receipt["limited_pixel_fraction"]) for receipt in receipts
+            ),
+            "minimum_median_scale": min(
+                float(receipt["median_scale"]) for receipt in receipts
+            ),
+            "minimum_scale": min(float(receipt["minimum_scale"]) for receipt in receipts),
+            "maximum_collinearity_error": max(
+                float(receipt["maximum_collinearity_error"]) for receipt in receipts
+            ),
+        }
+    return aggregates
 
 
 def _automatic_checks(
@@ -836,6 +873,7 @@ def evaluate(
     root: Path,
     output_dir: Path,
     build_dir: Path,
+    scanner_safe_residual: bool = False,
 ) -> dict[str, Any]:
     """Render and automatically gate the four fixed P7H arms.
 
@@ -875,6 +913,7 @@ def evaluate(
                 ao6_payload=ao6_payload,
                 scanner=scanner,
                 gates=gates,
+                scanner_safe_residual=scanner_safe_residual,
             )
         )
     aggregates = _aggregate(rows)
