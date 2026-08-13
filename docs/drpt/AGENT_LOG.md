@@ -12899,3 +12899,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close this photographic route. A future mechanism must start from a typed,
   strictly positive exposure/transmittance domain rather than reinterpret a
   display-code zero as finite film density.
+### 2026-08-13 - U6.P4IC closes typed characteristic-ingress structure chain
+
+- Two complete 11-source/44-output runs are byte-identical (`9e992a43...b67`;
+  stable `beed5efc...f8b9a`) and retain finite, no-clipping, exact-PNG16,
+  boundary and isolated-excursion safety.
+- The unchanged automatic gate fails decisively: combined-versus-matched p99
+  is `.96935`, flat-region p99 `.97210` and high-frequency chroma `.15921`.
+  The finite characteristic mapping fixes the zero-transmittance domain defect,
+  but manufacturer Status-M layer transmittance is not a neutral display/scanner
+  interpretation.
+- Close this exact P4IC chain without clipping, strength, scanner-unmixing or
+  neutral-gauge rescue. P7E/P7F already tested that interpretation family and
+  P8BP rejected its product value. Retain fixed AO6 and return to independent
+  real material/scanner evidence or a mechanism-distinct stock operator.

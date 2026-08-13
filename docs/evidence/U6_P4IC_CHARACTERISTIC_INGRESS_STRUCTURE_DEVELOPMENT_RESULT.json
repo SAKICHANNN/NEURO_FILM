@@ -1,0 +1,47 @@
+{
+  "schema": "neuro-film.u6-p4ic-characteristic-ingress-structure-development-evidence.v1",
+  "experiment_id": "u6-p4ic-characteristic-ingress-structure-development-v1",
+  "implementation_commit": "118f3020",
+  "config_sha256": "7c752e952970d6fe5a6a2dc96d674686b52440f66f120979240af6927adf89be",
+  "report_paths": [
+    "outputs/u6_p4ic_characteristic_ingress_structure_development_v1/run_a/report.json",
+    "outputs/u6_p4ic_characteristic_ingress_structure_development_v1/run_b/report.json"
+  ],
+  "report_sha256": "9e992a4372b280e317ff4a0cded5ff7fdeb7f2029d979898c3ca528cca948b67",
+  "repeat_report_sha256_exact": true,
+  "stable_evidence_id": "beed5efc020de68b066e926a9ae712989bce74bde317eb495c000bb5735f8b9a",
+  "source_count": 11,
+  "output_count": 44,
+  "metrics": {
+    "minimum_physical_residual_rms": 0.0023156610873704382,
+    "population_p95_combined_vs_matched_scanner_ao6_abs": 0.9396696984767914,
+    "population_p99_combined_vs_matched_scanner_ao6_abs": 0.9693549275398254,
+    "maximum_flat_region_p99_combined_vs_matched_scanner_ao6_abs": 0.9721038341522217,
+    "maximum_high_frequency_chroma_p999": 0.15921373665332794,
+    "maximum_new_boundary_fraction_vs_matched_scanner_ao6": 0.0,
+    "maximum_output_code_boundary_fraction": 0.0,
+    "total_isolated_excursion_count": 0
+  },
+  "passed_checks": [
+    "complete_inventory",
+    "finite",
+    "isolated_excursions",
+    "new_boundaries",
+    "no_clipping_or_limiting",
+    "nontrivial_population",
+    "output_boundaries",
+    "physical_only_diagnostic",
+    "physical_residual",
+    "png16_exact_readback"
+  ],
+  "failed_checks": [
+    "flat_regions",
+    "high_frequency_chroma",
+    "population_tail"
+  ],
+  "automatic_pass": false,
+  "decision": "close_exact_p4ic_characteristic_ingress_structure_chain",
+  "interpretation": "The finite typed characteristic ingress removes the zero-transmittance domain defect, but direct manufacturer Status-M layer transmittances remain an invalid display/scanner interpretation: the resulting cast and tone displacement dominate the small opponent-density structure. This reproduces the already known P7E interpretation boundary rather than opening another scanner-unmixing or neutral-gauge rescue.",
+  "next_leaf": "Seek an independent rights-auditable real material or scanner observation, or a mechanism-distinct stock operator. Do not rescue this consumed cohort, repeat P7E/P7F neutral gauging, or continue P4HU product/runtime work.",
+  "claim_ceiling": "Development-only typed characteristic-ingress failure on eleven previously consumed CC0 photographs; not confirmation, calibrated exposure, preference, film stock, runtime or product evidence."
+}
