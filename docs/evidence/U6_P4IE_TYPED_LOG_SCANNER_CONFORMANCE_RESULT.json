@@ -1,0 +1,36 @@
+{
+  "schema": "neuro-film.u6-p4ie-typed-log-scanner-conformance-evidence.v1",
+  "experiment_id": "u6-p4ie-typed-log-scanner-conformance-v1",
+  "date": "2026-08-13",
+  "implementation": {
+    "config_sha256": "4eba1e9b6499ddb19277b842f186cb1bd40032edb2f7f11d49da7aa002d60903",
+    "evaluator_sha256": "69eb6d44e87e4b08343f91522b4f41d3d24d878b94b458a0a68add7ccfdc1bf2",
+    "runner_sha256": "f477a0815d0bbc0c9bf04d5e34eee26be9fae02839982631ab5b5ace0e62f865",
+    "test_sha256": "cee614c691d7ad1a5cd9f7e3b294fedbcd8adedbb4a495e8ea782f8f0b0255bb"
+  },
+  "formal_runs": {
+    "count": 2,
+    "report_sha256": "99e7f4429ef8c2b9325438c3fd155e47bdf3c3731b530b0f576052ab38ad7707",
+    "repeat_report_sha256_exact": true,
+    "stable_evidence_id": "32be7b5e2ee62d5a242da9a5c020170c9acf3ee9bdc7cc74163ce880e06079fa",
+    "temporary_output_root": "D:/nf-019f4b76-p4id-fallback/p4ie"
+  },
+  "observations": {
+    "cube_sample_count": 274625,
+    "axis_sample_count_per_dye": 4097,
+    "maximum_float32_vs_float64_absolute_error": 9.368556652677995e-8,
+    "maximum_repeat_absolute_error": 0.0,
+    "maximum_monotonicity_positive_step": -0.00001055002212524414,
+    "output_minimum": 0.13443946838378906,
+    "output_maximum": 1.0754334926605225,
+    "all_invalid_inputs_rejected": true
+  },
+  "decision": "retain_typed_log_scanner_compiler_for_analytical_chain_development",
+  "verification": {
+    "direct_full_population_assertions": "PASS",
+    "ruff_no_cache": "PASS",
+    "pytest": "INFRASTRUCTURE_TIMEOUT_NO_OUTPUT_WHILE_P_DRIVE_UNRESPONSIVE"
+  },
+  "claim_ceiling": "Local Windows Python/NumPy float32 execution conformance for one synthetic log-domain scanner compiler. Not cross-platform, measured-scanner, stock-calibrated, photographic, product or runtime-performance evidence.",
+  "next_leaf": "Add explicit negative scan inversion/neutral interpretation and test analytical neutral, single-dye and mixed-dye wedges before photographic integration."
+}

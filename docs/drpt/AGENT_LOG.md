@@ -12936,3 +12936,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Decision: retain only the log-domain compact compiler as synthetic mechanism D0. No measured scanner, stock calibration, photo, product or Emulating Emulsion reproduction claim.
 - Verification: direct deterministic assertions, Ruff and py_compile pass. Isolated pytest produced no output before timeout while canonical P-backed paths remained unresponsive; this is recorded as infrastructure, not science. Formal outputs remain in the owned D fallback pending verified P recovery.
 - Next: typed float32 density-to-scan compiler conformance on analytical wedges, then only if exact/safe consider a photographic development leaf.
+## 2026-08-13 — U6.P4IE typed log scanner conformance
+
+- Compiled P4ID's frozen log-response matrix into an explicit float32 density-to-scan primitive with finite/nonnegative/final-CMY checks and monotone coefficient validation.
+- Two exact formal runs over 274,625 cube samples plus 4,097 samples per dye axis: report SHA `99e7f442...d7707`, stable `32be7b5e...079fa`; float32-vs-float64 max error `9.37e-8`, repeat error zero, strict nonincreasing dye axes, all invalid inputs rejected.
+- Decision: retain for analytical-chain development only. P-backed pytest remained unresponsive; direct full-population assertions and Ruff passed via owned D cache.
+- Next: explicit negative scanner inversion/neutral interpretation on analytical wedges; no photographs until that domain boundary passes.

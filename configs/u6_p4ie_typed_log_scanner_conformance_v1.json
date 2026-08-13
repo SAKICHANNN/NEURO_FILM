@@ -1,0 +1,43 @@
+{
+  "schema": "neuro-film.u6-p4ie-typed-log-scanner-conformance-contract.v1",
+  "experiment_id": "u6-p4ie-typed-log-scanner-conformance-v1",
+  "parent": {
+    "evidence": {
+      "path": "docs/evidence/U6_P4ID_COMPACT_SPECTRAL_SCANNER_COMPILER_D0_RESULT.json",
+      "sha256": "8cbc1d665381f455f1434105ba23ebb782189730c80ea10cba17a4b173e10c31",
+      "required_decision": "retain_log_domain_compact_scanner_compiler_as_synthetic_mechanism_d0",
+      "required_stable_evidence_id": "54bb6248f9c1c6fc9322f2fc2146af125ed7c71c199e9e3ec0b23668793459f4"
+    },
+    "implementation": {
+      "path": "src/film_physics/compact_log_scanner_compiler.py",
+      "sha256": "1172ce6dfe23e8489c66c6531b2ad0d3ef15c94501c0d7cda9ac30fc0ab32191"
+    }
+  },
+  "compiler": {
+    "compiler_id": "u6-p4id-synthetic-log-scanner-v1",
+    "matrix_density_to_log10_rgb": [
+      [-0.01914318034784818, -0.12430920920289017, -0.5426234628121562],
+      [-0.34150689554450087, -0.5473259673318212, -0.323929450559223],
+      [-0.348671066082305, -0.142761433560209, -0.03650384363698002]
+    ],
+    "bias_log10_rgb": [0.012682750789860522, 0.01518857683993641, 0.03158356724978537]
+  },
+  "population": {
+    "cube_levels": 65,
+    "axis_levels": 4097,
+    "maximum_density": 1.0,
+    "chunk_rows": 8192
+  },
+  "gates": {
+    "maximum_float32_vs_float64_absolute_error": 2e-7,
+    "maximum_repeat_absolute_error": 0.0,
+    "maximum_monotonicity_positive_step": 0.0,
+    "minimum_output": 0.0,
+    "maximum_output": 1.08,
+    "require_all_values_finite": true,
+    "require_all_invalid_inputs_rejected": true
+  },
+  "decision_if_pass": "retain_typed_log_scanner_compiler_for_analytical_chain_development",
+  "decision_if_fail": "close_typed_log_scanner_compiler_execution",
+  "claim_ceiling": "Local Windows Python/NumPy float32 execution conformance for one synthetic log-domain scanner compiler. Not cross-platform, measured-scanner, stock-calibrated, photographic, product or runtime-performance evidence."
+}
