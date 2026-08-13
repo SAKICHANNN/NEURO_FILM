@@ -13142,3 +13142,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   requirement. The remaining 17 members and all MTF scoring stay unread.
 - Close without dtype/decoder/member replacement rescue. Retain the study as a
   qualitative controlled reference, not a quantitative stock profile.
+### 2026-08-14 - U5.R2BU12 retains independent coarse VISION3 resolution ordering
+
+- The CC BY-NC 4.0 Noever Table 3 was frozen independently of the BU11 TIFF
+  pixel route and evaluated across all six format/scan-resolution strata.
+- Two formal reports are byte exact (`706b23ad...c95745`). 50D and 200T are
+  each noninferior to 500T in 6/6 strata and strictly higher in 3/6 and 2/6;
+  the fast-fast-slow assignment score margin over any wrong slow stock is 8.
+- Retain only coarse processed-film-plus-scanner ordinal support. Aliasing and
+  scan saturation remain nuisance facts; no absolute MTF, PSF, colour,
+  calibration, rendering or product authority opens. A second independent
+  observation is required before any executable VISION3 spatial profile.
