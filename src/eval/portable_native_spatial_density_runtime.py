@@ -31,6 +31,13 @@ def _bytes(value: Any) -> bytes:
     return json.dumps(value, sort_keys=True, separators=(",", ":")).encode()
 
 
+def _resolve_output_dir(root: Path, output_dir: Path) -> Path:
+    """Anchor caller-relative build paths to the repository root."""
+    if not output_dir.is_absolute():
+        output_dir = root / output_dir
+    return output_dir.resolve()
+
+
 def _validate(root: Path, contract: dict[str, Any]) -> None:
     if contract.get("schema") != SCHEMA:
         raise ValueError("unsupported P4HV contract")
@@ -212,6 +219,8 @@ def evaluate(
     avd_name: str,
     port: int,
 ) -> dict[str, Any]:
+    root = root.resolve(strict=True)
+    output_dir = _resolve_output_dir(root, output_dir)
     _validate(root, contract)
     host = _compile(
         root,

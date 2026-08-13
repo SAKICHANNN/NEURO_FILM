@@ -3,7 +3,11 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from src.eval.portable_native_spatial_density_runtime import SCHEMA, SOURCES
+from src.eval.portable_native_spatial_density_runtime import (
+    SCHEMA,
+    SOURCES,
+    _resolve_output_dir,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -23,3 +27,12 @@ def test_p4hv_contract_and_probe_are_fixed() -> None:
     )
     assert len(SOURCES) == 4
     assert all((ROOT / source).is_file() for source in SOURCES)
+
+
+def test_p4hv_relative_output_is_anchored_to_repository(
+    tmp_path: Path, monkeypatch
+) -> None:
+    monkeypatch.chdir(tmp_path)
+    assert _resolve_output_dir(ROOT, Path("outputs/p4hv")) == (
+        ROOT / "outputs/p4hv"
+    ).resolve()
