@@ -515,29 +515,20 @@ def _evaluate_source(
     scanner: SpatialResponseProfile,
     gates: dict[str, Any],
     arm_ids: tuple[str, str, str, str] = ARMS,
+    physical_after_ao6_base: bool = False,
 ) -> dict[str, Any]:
     current_ao6, matched_ao6, physical_only, combined = arm_ids
     encoded, source_receipt = _load_rgb8_source(root, row, transform)
     linear = np.ascontiguousarray(
         encoded_srgb_to_linear(encoded.astype(np.float64)), dtype=np.float32
     )
-    physical, diagnostics = runtime.apply_source(linear, seeds=seeds)
-    physical = _display(physical, linear.shape, "P4HU physical source")
     scanner_source = np.ascontiguousarray(
         apply_scanner_mtf(linear, scanner), dtype=np.float32
-    )
-    scanner_physical = np.ascontiguousarray(
-        apply_scanner_mtf(physical, scanner), dtype=np.float32
     )
     encoded_scanner_source = _display(
         linear_srgb_to_encoded(scanner_source.astype(np.float64)),
         encoded.shape,
         "matched scanner source",
-    )
-    encoded_scanner_physical = _display(
-        linear_srgb_to_encoded(scanner_physical.astype(np.float64)),
-        encoded.shape,
-        "physical-only scanner output",
     )
 
     # This is deliberately the sole context build. Every AO6 arm shares the
@@ -550,13 +541,53 @@ def _evaluate_source(
         return _display(
             apply_residual(apply_base(values)), encoded.shape, label
         )
-
-    arms = {
-        current_ao6: apply_ao6(encoded, current_ao6),
-        matched_ao6: apply_ao6(encoded_scanner_source, matched_ao6),
-        physical_only: encoded_scanner_physical,
-        combined: apply_ao6(encoded_scanner_physical, combined),
-    }
+    if physical_after_ao6_base:
+        current_base = _display(apply_base(encoded), encoded.shape, "current AO6 base")
+        matched_base = _display(
+            apply_base(encoded_scanner_source), encoded.shape, "matched AO6 base"
+        )
+        physical_input = np.ascontiguousarray(
+            encoded_srgb_to_linear(matched_base.astype(np.float64)), dtype=np.float32
+        )
+        physical, diagnostics = runtime.apply_source(physical_input, seeds=seeds)
+        physical = _display(physical, linear.shape, "base-first physical source")
+        physical = np.ascontiguousarray(
+            apply_scanner_mtf(physical, scanner), dtype=np.float32
+        )
+        encoded_physical = _display(
+            linear_srgb_to_encoded(physical.astype(np.float64)),
+            encoded.shape,
+            "base-first physical output",
+        )
+        arms = {
+            current_ao6: _display(
+                apply_residual(current_base), encoded.shape, current_ao6
+            ),
+            matched_ao6: _display(
+                apply_residual(matched_base), encoded.shape, matched_ao6
+            ),
+            physical_only: encoded_physical,
+            combined: _display(
+                apply_residual(encoded_physical), encoded.shape, combined
+            ),
+        }
+    else:
+        physical, diagnostics = runtime.apply_source(linear, seeds=seeds)
+        physical = _display(physical, linear.shape, "P4HU physical source")
+        scanner_physical = np.ascontiguousarray(
+            apply_scanner_mtf(physical, scanner), dtype=np.float32
+        )
+        encoded_scanner_physical = _display(
+            linear_srgb_to_encoded(scanner_physical.astype(np.float64)),
+            encoded.shape,
+            "physical-only scanner output",
+        )
+        arms = {
+            current_ao6: apply_ao6(encoded, current_ao6),
+            matched_ao6: apply_ao6(encoded_scanner_source, matched_ao6),
+            physical_only: encoded_scanner_physical,
+            combined: apply_ao6(encoded_scanner_physical, combined),
+        }
     outputs = [
         _write_verified_png16(
             arms[arm_id],
@@ -649,6 +680,36 @@ def evaluate_source_arms(
         scanner=scanner,
         gates=gates,
         arm_ids=arm_ids,
+    )
+
+
+def evaluate_base_first_source_arms(
+    *,
+    root: Path,
+    output_dir: Path,
+    row: dict[str, Any],
+    transform: str | None,
+    seeds: tuple[int, int, int],
+    runtime: DensityStageRuntime,
+    ao6_payload: dict[str, Any],
+    scanner: SpatialResponseProfile,
+    gates: dict[str, Any],
+    arm_ids: tuple[str, str, str, str] = ARMS,
+) -> dict[str, Any]:
+    """Evaluate physical structure after the fixed AO6 base and before residual."""
+
+    return _evaluate_source(
+        root=root,
+        output_dir=output_dir,
+        row=row,
+        transform=transform,
+        seeds=seeds,
+        runtime=runtime,
+        ao6_payload=ao6_payload,
+        scanner=scanner,
+        gates=gates,
+        arm_ids=arm_ids,
+        physical_after_ao6_base=True,
     )
 
 
@@ -932,6 +993,7 @@ __all__ = [
     "aggregate_arm_rows",
     "automatic_arm_checks",
     "evaluate",
+    "evaluate_base_first_source_arms",
     "evaluate_source_arms",
     "load_contract",
 ]

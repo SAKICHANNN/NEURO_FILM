@@ -1,0 +1,25 @@
+{
+  "schema": "neuro-film.u6-p4it-base-first-opponent-diffusion-photo-contract.v1",
+  "experiment_id": "u6-p4it-base-first-opponent-diffusion-photo-v1",
+  "parent_contract": {
+    "path": "configs/u6_p4hz_opponent_diffusion_photographic_confirmation_v1.json",
+    "sha256": "7b3cd5057165b04b79c67a64480d45ca7d1861cfff09f030fe193956d1e1f06f"
+  },
+  "p4is_evidence": {
+    "path": "docs/evidence/U6_P4IS_RAIL_GUARDED_NEUTRAL_STRUCTURE_AO6_D0_RESULT.json",
+    "sha256": "d3cb3ba06d4703417fccbb8c224ceed882513e140bd12cce4a9bcd05e864761e",
+    "required_decision": "close_neutral_structure_family_and_retain_fixed_ao6"
+  },
+  "mechanism": {
+    "order": "scanner-source_then-fixed-ao6-base_then-P4HX-opponent-diffusion-with-P4IA-envelope_then-scanner-mtf_then-fixed-ao6-residual",
+    "source_context": "original-encoded-source-only",
+    "P4HX_parameters_unchanged": true,
+    "P4IA_envelope_unchanged": true,
+    "hard_clipping_allowed": false,
+    "posthoc_limiting_allowed": false,
+    "cohort_fitting_allowed": false
+  },
+  "decision_if_pass": "open_p4it_severe_visual_review_only",
+  "decision_if_fail": "retain_current_ao6_and_close_base_first_opponent_diffusion",
+  "claim_ceiling": "Fixed P4HX/P4IA Python-reference structure after AO6 base on eleven frozen relative-display CC0 digital photographs; automatic severe-artifact eligibility only, not film-stock calibration, preference, runtime or product promotion."
+}

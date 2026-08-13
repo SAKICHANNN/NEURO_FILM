@@ -272,6 +272,7 @@ def evaluate_with_runtime(
     runtime_builder: Callable[[OpponentDiffusionRuntime], OpponentDiffusionRuntime]
     | None = None,
     result_schema: str = RESULT_SCHEMA,
+    source_arm_evaluator: Callable[..., dict[str, Any]] = evaluate_source_arms,
 ) -> dict[str, Any]:
     parents = contract["parents"]
     evidence = _load_bound_json(root, parents["p4hx_evidence"], "P4HX evidence")
@@ -313,7 +314,7 @@ def evaluate_with_runtime(
             for seed in candidate["layer_field_seeds"]
         )
         try:
-            result = evaluate_source_arms(
+            result = source_arm_evaluator(
                 root=root,
                 output_dir=output_dir,
                 row=row,
