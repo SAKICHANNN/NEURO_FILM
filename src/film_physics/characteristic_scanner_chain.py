@@ -19,7 +19,10 @@ from src.film_physics.relative_display_characteristic_ingress import (
 
 
 def _normalize_density_rgb(
-    density_rgb: np.ndarray, prior: ManufacturerCharacteristicPrior
+    density_rgb: np.ndarray,
+    prior: ManufacturerCharacteristicPrior,
+    *,
+    require_observed_bounds: bool,
 ) -> np.ndarray:
     density = np.asarray(density_rgb, dtype=np.float64)
     if density.ndim < 1 or density.shape[-1] != 3 or not np.all(np.isfinite(density)):
@@ -29,13 +32,16 @@ def _normalize_density_rgb(
         lower, upper = curve.density_bounds
         normalized[..., channel] = (density[..., channel] - lower) / (upper - lower)
     tolerance = 4.0 * np.finfo(np.float32).eps
-    if np.any(normalized < -tolerance) or np.any(normalized > 1.0 + tolerance):
+    if require_observed_bounds and (
+        np.any(normalized < -tolerance) or np.any(normalized > 1.0 + tolerance)
+    ):
         raise ValueError("characteristic density is outside the observed bounds")
-    normalized = np.where(
-        np.abs(normalized) <= tolerance,
-        0.0,
-        np.where(np.abs(normalized - 1.0) <= tolerance, 1.0, normalized),
-    )
+    if require_observed_bounds:
+        normalized = np.where(
+            np.abs(normalized) <= tolerance,
+            0.0,
+            np.where(np.abs(normalized - 1.0) <= tolerance, 1.0, normalized),
+        )
     return normalized
 
 
@@ -61,8 +67,12 @@ def render_characteristic_scanner_positive(
     ):
         raise ValueError("structured transmittance must be matching positive float32 RGB")
     structured_density = -np.log10(structured.astype(np.float64))
-    base_amount = _normalize_density_rgb(base_density, prior)
-    candidate_amount = _normalize_density_rgb(structured_density, prior)
+    base_amount = _normalize_density_rgb(
+        base_density, prior, require_observed_bounds=True
+    )
+    candidate_amount = _normalize_density_rgb(
+        structured_density, prior, require_observed_bounds=False
+    )
     bounded_amount, envelope = apply_bounded_dye_amount_direction(
         base_amount, candidate_amount
     )

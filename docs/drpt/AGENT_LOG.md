@@ -12960,3 +12960,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The primitive applies one per-pixel scalar across all three normalized dye amounts. It therefore preserves the actual residual direction and cannot silently convert gamut protection into channel-wise recolouring.
 - Two exact analytical reports over 35,937 bases × 12 direction/amplitude cases pass (`d2b9b865...9574f`, stable `ba7f2020...d9c7b`). Maximum shared-direction error is `1.02e-6`; limited fractions span `.0882` to `.8643`; minimum bounded residual RMS is `.02063`; outputs remain exactly within `[0,1]` without clipping.
 - Decision: retain for the next fixed photo chain. This is an execution primitive, not photo value or product evidence.
+## 2026-08-13 — U6.P4II complete spatial characteristic-scanner chain closes
+
+- Implementing the callable image-shaped chain exposed and fixed two real execution defects before the formal run: the inverse scanner now preserves arbitrary leading image dimensions, and only ULP-scale manufacturer endpoint roundoff is canonicalized while genuine structured-density overshoot reaches the shared-direction envelope.
+- Two 12-image procedural spatial reports are byte exact (`a0fd8897...9e0c`, stable `95d48f66...2a95`). Partition and replay error are zero; p95/p99 structure differences are `.00881/.01076`.
+- Formal FAIL: the full manufacturer curve includes exact normalized density boundaries. Outward structure therefore reaches shared scale zero and creates `1.1363%` new boundary samples versus the `.05%` ceiling. The bounded tail otherwise passes.
+- Close this exact full-range characteristic-plus-structure route without gate relaxation, clipping or strength rescue. Retain the compact scanner compiler as a mechanism primitive, but require a materially different characteristic/interpretation mechanism before photographs.

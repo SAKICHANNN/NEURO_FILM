@@ -1,0 +1,41 @@
+{
+  "schema": "neuro-film.u6-p4ii-characteristic-scanner-spatial-smoke-evidence.v1",
+  "experiment_id": "u6-p4ii-characteristic-scanner-spatial-smoke-v1",
+  "date": "2026-08-13",
+  "implementation": {
+    "config_sha256": "3d4170864a5e5532333987175c3158c88b6b70fd90c1cb13662c962b5e008265",
+    "chain_sha256": "1c1241be776f7a4d5fcf2f275a7a92eed1091634c1b55daf2999548365e92509",
+    "scanner_sha256": "0aaecc7989f6faa1408b2aafe1d6483ea330a4c9675115d3d00bd6da22bd02ea",
+    "evaluator_sha256": "b4330bb5678f1cadddc877c72d959ee68f46db2e550b4342d996888afcaf87f9",
+    "runner_sha256": "9d4d055601ced6264acefdedfa2009c057cb4d6781af30b7b149ff8fb12c3d9f",
+    "chain_test_sha256": "d04f404662f30ca05a37e482cd5948ceb3fafa1aca1df929cf459672926fed18",
+    "scanner_test_sha256": "4385b84e8a8f3f685536d9a444aae5f6285f08e146d965e475600b83d171af76",
+    "evaluator_test_sha256": "429ce67623a8305e07f33ebe2c643b7bc8525e4ba82fb61119ed11a96aceac0f"
+  },
+  "formal_runs": {
+    "count": 2,
+    "report_sha256": "a0fd8897e1283a33ac8a4b5625300363a83a22901c3fd9eadab5565ec99a9e0c",
+    "repeat_report_sha256_exact": true,
+    "stable_evidence_id": "95d48f66c2a3a4a9adddcece5de204640b783d5925aac8d11f058483040a2a95",
+    "temporary_output_root": "D:/nf-019f4b76-p4id-fallback/p4ii"
+  },
+  "metrics": {
+    "row_count": 12,
+    "population_p95_abs_difference": 0.008811816154047847,
+    "population_p99_abs_difference": 0.010760314147919416,
+    "maximum_new_boundary_fraction": 0.011363088348765432,
+    "maximum_partition_error": 0.0,
+    "maximum_repeat_error": 0.0,
+    "minimum_shared_scale": 0.0
+  },
+  "decision": "close_exact_spatial_characteristic_scanner_chain",
+  "interpretation": "The callable image-shaped chain is deterministic, partition exact, materially nontrivial and has a small value tail, but the full-range manufacturer characteristic response places some source values exactly on a normalized dye boundary. An outward structural residual then has zero feasible shared scale and the final positive creates 1.136% new code-boundary samples, far above the frozen 0.05% gate.",
+  "verification": {
+    "two_formal_runs_exact": "PASS",
+    "ruff_no_cache": "PASS",
+    "py_compile": "PASS",
+    "diff_check": "PASS"
+  },
+  "claim_ceiling": "Procedural spatial execution evidence for the typed characteristic, density envelope and synthetic scanner chain. Not natural-photo evidence, stock appearance, scanner calibration, preference or product promotion.",
+  "next_leaf": "Do not lower the gate, add clipping or reduce strength on this cohort. Preserve the scanner compiler primitive, but change the characteristic interpretation mechanism before any photo run."
+}

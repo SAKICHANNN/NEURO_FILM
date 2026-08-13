@@ -1,0 +1,22 @@
+{
+  "schema": "neuro-film.u6-p4ii-characteristic-scanner-spatial-smoke-contract.v1",
+  "experiment_id": "u6-p4ii-characteristic-scanner-spatial-smoke-v1",
+  "population": {
+    "images": 12,
+    "height": 192,
+    "width": 288,
+    "row_partitions": [1, 7, 31, 127],
+    "density_residual_amplitude": 0.025
+  },
+  "gates": {
+    "minimum_population_p95_abs_difference": 0.005,
+    "maximum_population_p99_abs_difference": 0.05,
+    "maximum_new_boundary_fraction": 0.0005,
+    "maximum_partition_error": 1e-6,
+    "maximum_repeat_error": 0.0,
+    "minimum_shared_scale": 0.05
+  },
+  "decision_if_pass": "retain_complete_callable_chain_for_bound_photo_test",
+  "decision_if_fail": "close_exact_spatial_characteristic_scanner_chain",
+  "claim_ceiling": "Procedural spatial execution evidence for the typed characteristic, density envelope and synthetic scanner chain. Not natural-photo evidence, stock appearance, scanner calibration, preference or product promotion."
+}

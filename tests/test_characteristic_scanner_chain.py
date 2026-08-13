@@ -75,12 +75,13 @@ def test_zero_transmittance_fails_closed() -> None:
         )
 
 
-def test_material_density_overshoot_still_fails_closed() -> None:
+def test_material_density_overshoot_is_shared_direction_bounded() -> None:
     prior, compiler = _fixtures()
     source = np.ones((1, 1, 3), dtype=np.float32)
     _, transmittance, _ = relative_display_to_finite_density_transmittance(source, prior)
     outside = np.ascontiguousarray(transmittance * np.float32(0.9))
-    with pytest.raises(ValueError, match="observed bounds"):
-        render_characteristic_scanner_positive(
-            source, outside, prior=prior, compiler=compiler
-        )
+    output, receipt = render_characteristic_scanner_positive(
+        source, outside, prior=prior, compiler=compiler
+    )
+    assert receipt["limited_fraction"] == 1.0
+    assert np.all(output >= -4e-6) and np.all(output <= 1.0 + 4e-6)
