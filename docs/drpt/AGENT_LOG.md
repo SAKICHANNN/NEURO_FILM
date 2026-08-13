@@ -13006,3 +13006,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   exact equation without clipping or threshold rescue. The next development
   test changes the mechanism to an intrinsically bounded positive-base plus
   trilinear log-odds residual; it is not independent confirmation.
+
+### 2026-08-14 - U5.R2CHAM7 closes same-chart bounded residual rescue
+
+- The post-result, explicitly non-confirmatory bounded residual comparison is
+  byte exact (`e0ba7184...07f2`, stable `ea2b9cbd...75a7a`). The 24-parameter
+  trilinear log-odds residual regresses its positive global base by `.7045%`,
+  wins only one of four held folds and improves over shuffled correspondence
+  by only `1.66%`.
+- Exact cube and neutral-axis behavior do not imply invertibility: minimum
+  sampled determinant is `-8.1654` and maximum spectral norm `607.59`. Close
+  same-chart residual rescue without ridge/capacity tuning. Retain the chart
+  as a useful data-gap result and return effort to independent physical-value
+  evidence or genuinely new controlled pairs.

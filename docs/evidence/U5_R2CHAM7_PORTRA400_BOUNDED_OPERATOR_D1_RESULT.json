@@ -1,0 +1,31 @@
+{
+  "schema": "neuro-film.u5-r2cham7-portra400-bounded-operator-d1-evidence.v1",
+  "experiment_id": "U5.R2CHAM7",
+  "implementation_commit": "c172bf6a8739eced2438eb60c5c01e054dc68461",
+  "bindings": {
+    "config_sha256": "f103b8a623744f9f71c452791091ddba612aa4412a8a8b4cdf06c167e499d8de",
+    "evaluator_sha256": "cbce406cc69dd051b802f32f22771cec661f117b5818e50fc6427449688c68ce",
+    "runner_sha256": "99e50cc749ed2d8b59f34634aeb8f9380c2a03a78d7cb8d94c07340c6ab2650a",
+    "test_sha256": "f5a2da131d9900bbcdcd27c589444f68ed48b369f13bf7e3294e3c5a116f3cb3",
+    "formal_a_report_sha256": "e0ba718485c29baffc1e6699f8c2b560e04211badac517995c327e40fb8807f2",
+    "formal_b_report_sha256": "e0ba718485c29baffc1e6699f8c2b560e04211badac517995c327e40fb8807f2"
+  },
+  "stable_evidence_id": "ea2b9cbdce03020ba2de1f21a40774f7d9dfc241d8271b671e99af5e83875a7a",
+  "observations": {
+    "formal_reports_byte_exact": true,
+    "base_rmse": 0.19047665791532845,
+    "candidate_rmse": 0.19181856445713602,
+    "candidate_improvement_over_base_fraction": -0.007044992055688537,
+    "candidate_fold_wins_over_base": "1/4",
+    "candidate_worst_fold_improvement_fraction": -0.1613194785939991,
+    "candidate_improvement_over_shuffled_correspondence_fraction": 0.016600041107733166,
+    "candidate_minimum_sampled_jacobian_determinant": -8.165386303333928,
+    "candidate_maximum_sampled_jacobian_spectral_norm": 607.5913739965299,
+    "candidate_neutral_axis_residual": 0.0,
+    "candidate_repeat_error": 0.0
+  },
+  "decision": "close_bounded_trilinear_family_on_this_chart_and_retain_simpler_global_control",
+  "interpretation": "The cube-preserving trilinear log-odds residual does not recover CHAM6's fit advantage: it regresses the positive global base, fails three of four held folds and remains locally non-invertible despite exact cube and neutral-axis behavior. More residual capacity on this one chart is not justified.",
+  "next_leaf": "Stop same-chart operator rescue. Preserve the registered chart as data-gap evidence and return to the independently sourced physical-image-formation value test or acquire genuinely independent calibrated pairs.",
+  "claim_ceiling": "Post-CHAM6 same-chart development failure only; not independent confirmation, natural-scene transfer, Portra 400 calibration, process, paper, scanner, product, redistribution or commercial-use evidence."
+}
