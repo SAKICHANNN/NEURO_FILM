@@ -1,0 +1,37 @@
+{
+  "schema": "neuro_film.u5-r2bu10-vision3-200t-profile-bank-robustness-evidence.v1",
+  "experiment_id": "U5.R2BU10",
+  "date": "2026-08-13",
+  "status": "PASS_NON_RENDERABLE_PROFILE_BANK_ROBUSTNESS",
+  "decision": "retain_robust_four_stock_non_renderable_manufacturer_source_profile_bank",
+  "implementation": {
+    "contract_sha256": "0f35d421e585c7aee55a69af3c31e8c2409e3eedbbe4f04042a84b705a1e4e09",
+    "evaluator_sha256": "28923ac468d1647db69fd6975b7f0195f31fe1a23dd64f8223080e76ede20cd6",
+    "test_sha256": "96f0fc6c1ba38714da9240c6ed903b09ce5e9fcfe6704566c78d48013741f0fe"
+  },
+  "formal_runs": {
+    "count": 2,
+    "report_sha256": "d70dc6dbf6c9bf4c93c52e6ae1b051df8e43bb26d9b8192d03c7a32d5f6b00c1",
+    "stable_evidence_id": "5b89953bbae5f6f9b5bf251889ee273cf0948f399fd13e949aed81b5fb596f26",
+    "byte_exact": true,
+    "data_root": "D:/nf-019f4b76-p4id-fallback"
+  },
+  "metrics": {
+    "case_count": 80,
+    "joint_top1_accuracy": 1.0,
+    "recall_by_stock_minimum": 1.0,
+    "accuracy_by_missing_channel_subset_minimum": 1.0,
+    "worst_normalized_margin": 0.5694308573768775,
+    "cyclic_label_control_accuracy": 0.0,
+    "legacy_60_cases_remain_correct": true,
+    "all_frozen_gates_pass": true
+  },
+  "verification": {
+    "two_direct_formal_runs": "PASS byte exact",
+    "ruff_no_cache": "PASS",
+    "focused_pytest": "INFRASTRUCTURE_TIMEOUT because canonical P-backed pytest/cache paths were unresponsive; not treated as scientific evidence",
+    "test_data_root": "portable NF_BU10_DATA_ROOT environment binding; no D path embedded in production contract"
+  },
+  "claim_ceiling": "Same-source robustness of four first-party manufacturer graph profiles under deterministic trace perturbations and missing-channel controls. This is not independent real-film confirmation, calibration, rendering or product evidence.",
+  "next_leaf": "Seek independent measured processed-film or scanner observations for 200T; do not spend another leaf on same-source profile classification."
+}

@@ -1,0 +1,36 @@
+{
+  "schema": "neuro_film.u5-r2bu10-vision3-200t-profile-bank-robustness-contract.v1",
+  "experiment_id": "U5.R2BU10",
+  "date_frozen": "2026-08-13",
+  "question": "Does adding Kodak VISION3 200T preserve the old three-stock source signature and identify 200T under the same frozen plus-or-minus two source-pixel and missing-channel controls?",
+  "parent_bu4_decision": {"path": "configs/u5_r2bu4_vision3_source_signature_robustness_decision_v1.json", "sha256": "dc045b05439494957477096bb60e026315240b7306edf0d719b4e412ca6c2468"},
+  "parent_bu9_evidence": {"path": "docs/evidence/U5_R2BU9_KODAK_VISION3_200T_RASTER_SIGNATURE_RESULT.json", "sha256": "fcf79a0bd36349bd59eec683b1ba5ca9fcea3ebd29aa6b12cb8d30ccac83b7ce"},
+  "legacy_compiler_contract": {"path": "configs/u5_r2bu3_vision3_observed_source_profile_v1.json", "sha256": "8144dfc018839e61ba202c1f4182679624269ad33eb02e22cc4e524e53cdd3af"},
+  "source_200t_contract": {"path": "configs/u5_r2bu9_kodak_vision3_200t_raster_signature_v1.json", "sha256": "b717d913b43af36fde3e224e3e918878bd18f6bc72a28775d83cc3887b3c8027"},
+  "comparison": {
+    "stocks": ["kodak_vision3_50d_5203_7203", "kodak_vision3_250d_5207_7207", "kodak_vision3_500t_5219_7219", "kodak_vision3_200t_5213_7213"],
+    "channels": ["blue", "green", "red"],
+    "channel_subsets": [["blue","green","red"],["blue","green"],["blue","red"],["green","red"]],
+    "digitization_uncertainty_pixels": 2.0,
+    "perturbation_patterns": ["nominal", "all_y_plus", "all_y_minus", "alternating_xy", "inverse_alternating_xy"],
+    "feature": "per-domain per-channel natural-log MTF and granularity shape after subtracting first common-grid value",
+    "distance": "unweighted mean per-domain per-channel RMSE",
+    "negative_control": "cyclically relabel exact four-stock predictions without refitting"
+  },
+  "gates": {
+    "required_case_count": 80,
+    "minimum_joint_top1_accuracy": 0.95,
+    "minimum_joint_recall_per_stock": 0.9,
+    "minimum_joint_accuracy_per_channel_subset": 0.9,
+    "minimum_normalized_worst_margin": 0.02,
+    "maximum_cyclic_label_control_accuracy": 0.26,
+    "legacy_cases_must_remain_correct": true,
+    "two_byte_identical_audits": true,
+    "no_render_authority": true
+  },
+  "branch_rule": {
+    "pass": "retain_robust_four_stock_non_renderable_manufacturer_source_profile_bank",
+    "fail": "close_200t_profile_bank_expansion_without_metric_or_perturbation_rescue"
+  },
+  "claim_ceiling": "Same-source robustness of four first-party manufacturer graph profiles under deterministic trace perturbations and missing-channel controls; not independent real-film confirmation, calibration, rendering or product evidence."
+}
