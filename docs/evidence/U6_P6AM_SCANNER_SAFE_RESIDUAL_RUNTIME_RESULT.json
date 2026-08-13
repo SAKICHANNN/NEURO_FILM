@@ -1,0 +1,26 @@
+{
+  "schema": "neuro-film.u6-p6am-scanner-safe-residual-runtime-evidence.v1",
+  "experiment_id": "U6.P6AM",
+  "implementation_commit": "1cc8a6596aa2498250bc12e3dc8aa46423ea5442",
+  "bindings": {
+    "config_sha256": "ccbf74bfe38b5659e08c5fc363c3d570708a8d0ddd4de78024b4b93686300a0d",
+    "scanner_module_sha256": "43a97505b4a1071e866c54447ef02d44ebf95f6b8767a93e86ff7ab309b24fcd",
+    "test_sha256": "8edeaa651513d954bdfa85609a08269f0f4142a67559b9a8556c4e8c7a5d84d1",
+    "parent_p6al_stable_evidence_id": "ce787381c63c0dabf2b6231b1276622f7ab9aa494adea751840030ad91f8e709"
+  },
+  "verification": {
+    "scanner_adjacent_tests_passed": 17,
+    "identity_exact": true,
+    "bounded_without_clipping": true,
+    "residual_collinearity_verified": true,
+    "partition_exact": true,
+    "inputs_unchanged": true,
+    "invalid_inputs_rejected_before_output": true,
+    "ruff_pass": true,
+    "diff_check_pass": true
+  },
+  "decision": "retain_optional_canonical_scanner_safe_residual_runtime_v1",
+  "interpretation": "The cross-source P6AL analytical rule now has a deterministic canonical float64 CPU primitive with exact identity and partition behavior. It remains opt-in and profile-free; no existing scanner path or default changes.",
+  "next_leaf": "Compile a hash-versioned explicit scanner affine profile into this runtime and prove serialization, identity, bounded execution and tamper rejection.",
+  "claim_ceiling": "Optional canonical CPU scanner-domain execution primitive only; no default change, fitted profile, scanner calibration, stock response, native/mobile runtime or product promotion."
+}

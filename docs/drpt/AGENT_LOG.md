@@ -13098,3 +13098,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   are zero and direction error is `5.55e-17`. Retain this as a bounded explicit
   scanner-nuisance execution primitive; it is not scanner calibration or a
   stock operator.
+
+### 2026-08-14 - U6.P6AM adds the optional canonical runtime
+
+- Added `neuro-film.scanner-safe-residual.v1` to the scanner module. It applies
+  a shared per-pixel RGB scale along a supplied residual and never clips,
+  mutates inputs or fits a profile.
+- Identity, boundedness, collinearity, partition exactness and fail-before-
+  output input validation pass together with the existing scanner profile,
+  streaming and Standard suites (`17 passed`).
+- The primitive is opt-in and profile-free; no current scanner path or product
+  default changed. The next leaf may compile an explicit hash-bound profile.
