@@ -1,0 +1,51 @@
+{
+  "schema": "neuro-film.u6-p7h-p4hu-ao6-value-evidence.v1",
+  "experiment_id": "u6-p7h-p4hu-ao6-value-v1",
+  "implementation_commit": "434d8d700cc6cb913d231c7288e7ff0b4473064e",
+  "contract": {
+    "path": "configs/u6_p7h_p4hu_ao6_value_v1.json",
+    "sha256": "98a0ff87a46d7fc5d5b2b6ada76b2e09409794b20ef82a1189d4928c3d97354d"
+  },
+  "formal_report": {
+    "path": "outputs/experiments/u6_p7h_p4hu_ao6_value_v1/report.json",
+    "sha256": "aa164156d1947aa6e57fccae6b8c9f6339b468918a523f9cc1f2d4843e22714a",
+    "stable_evidence_id": "5dfbff380af49db7ebf208b9db03e9a530acc183f802aee396742f2a03cce6a7"
+  },
+  "observations": {
+    "fresh_source_rows": 9,
+    "fresh_camera_makes": 9,
+    "rendered_arms": 4,
+    "rendered_png16_outputs_per_worker": 36,
+    "formal_processes": 2,
+    "fresh_worker_science_and_output_inventory_exact": true,
+    "all_png16_exact_readback": true,
+    "resource_pass": true,
+    "worker_peak_process_tree_rss_bytes": [922931200, 905621504],
+    "worker_wall_seconds": [204.2965991000019, 228.7846826999994],
+    "physical_residual_rms_minimum": 0.001628907400322434,
+    "combined_vs_matched_population_p95_abs": 0.006065143272280693,
+    "combined_vs_matched_population_p99_abs": 0.01159018523991108,
+    "combined_vs_matched_maximum_flat_region_p99_abs": 0.014078022912144661,
+    "combined_vs_matched_maximum_new_boundary_fraction": 0.0,
+    "total_isolated_excursion_count": 0,
+    "hard_clipping_used": false,
+    "maximum_limited_fraction": 0.0,
+    "maximum_high_frequency_chroma_p999": 0.00502189202234149,
+    "maximum_output_code_boundary_fraction": 0.031549320524835986
+  },
+  "failed_frozen_gates": {
+    "high_frequency_chroma": {
+      "maximum": 0.004,
+      "observed": 0.00502189202234149
+    },
+    "output_boundaries": {
+      "maximum": 0.005,
+      "observed": 0.031549320524835986,
+      "largest_row_and_arm": "panasonic_dc_s5m2/p4hu_scanner_physical_only_diagnostic"
+    }
+  },
+  "decision": "retain_current_ao6_without_p4hu_value_promotion",
+  "blind_review_allowed": false,
+  "production_default_changed": false,
+  "claim_ceiling": "Windows MSVC host fixed-P4HU automatic incremental value evidence on nine fresh relative-display CC0 digital sources; not preference, product, portable density runtime, or film-stock calibration"
+}

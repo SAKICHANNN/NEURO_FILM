@@ -12833,3 +12833,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   but not proved. No tolerance or repeat-run rescue is allowed.
 - Retain P4HU as Windows-host evidence only. Before more runtime/compiler work,
   test whether this fixed developed structure adds held-out value over AO6.
+
+### 2026-08-13 - U6.P7H rejects fixed P4HU value promotion
+
+- Two fresh Windows-host workers render four exact RGB16 arms on nine new CC0
+  cameras; science and all 36-output inventories replay exactly, while resource,
+  finite, tail, flat-region, isolated-excursion and new-boundary gates pass.
+- Frozen high-frequency chroma fails (`.00502 > .004`), and the diagnostic
+  physical-only arm reaches `3.1549%` code-boundary pixels (`>.5%`). No severe
+  blind review opens and no threshold or same-cohort rescue is allowed.
+- Retain fixed AO6. Stop P4HU product/runtime work and return to a materially
+  different identifying physical mechanism or better calibrated evidence.
