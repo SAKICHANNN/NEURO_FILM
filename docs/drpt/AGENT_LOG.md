@@ -13109,3 +13109,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   streaming and Standard suites (`17 passed`).
 - The primitive is opt-in and profile-free; no current scanner path or product
   default changed. The next leaf may compile an explicit hash-bound profile.
+
+### 2026-08-14 - U6.P6AN compiles strict scanner residual profiles
+
+- Added canonical `neuro-film.scanner-safe-residual-profile.v1` payloads with
+  `3x3+bias`, runtime identity, evidence hash and self hash. Profile selection
+  and default activation remain forbidden.
+- Canonical roundtrip, exact identity, bounded nonidentity execution and
+  coefficient/payload tamper rejection pass with the P6AM runtime (`11 passed`).
+- This is an opt-in representation and execution boundary, not a public fitted
+  scanner profile, calibration claim or product integration.

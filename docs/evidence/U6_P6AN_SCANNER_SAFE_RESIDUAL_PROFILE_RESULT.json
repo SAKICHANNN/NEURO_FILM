@@ -1,0 +1,24 @@
+{
+  "schema": "neuro-film.u6-p6an-scanner-safe-residual-profile-evidence.v1",
+  "experiment_id": "U6.P6AN",
+  "implementation_commit": "002ff9d2329de8afac3ec8f5abdd842f43b5eccf",
+  "bindings": {
+    "config_sha256": "2c74d913eeb64f2eed4f835fb5d7dacb3a1d2345bf974872c3acf4cdf1f99891",
+    "profile_module_sha256": "456edac0533a4099f433379a85aa61ac691af3a49175e391c25aee34f13c5add",
+    "test_sha256": "d4f67d8f3fd8da65920d0b1df85290bcb5c94985438bb1cff4dbe4d5d83bbc14"
+  },
+  "verification": {
+    "focused_runtime_profile_tests_passed": 11,
+    "canonical_roundtrip": true,
+    "profile_hash_identity": true,
+    "identity_profile_exact": true,
+    "tamper_rejected": true,
+    "nonidentity_execution_bounded": true,
+    "automatic_selection_allowed": false,
+    "default_activation_allowed": false
+  },
+  "decision": "retain_hash_versioned_scanner_safe_residual_profile_v1",
+  "interpretation": "The bounded scanner residual primitive now accepts a strict canonical 3x3+bias profile with evidence and profile hashes. Identity is exact, coefficient or payload tampering fails closed, and nonidentity execution remains bounded without clipping. Profile selection and activation remain external and opt-in.",
+  "next_leaf": "Bind one fitted internal scanner profile only in a research artifact and replay it through the canonical runtime; keep FilmProfileBundle and production defaults unchanged until a product-value experiment exists.",
+  "claim_ceiling": "Hash-versioned optional scanner residual profile representation and canonical CPU execution only; no fitted public profile, automatic selection, default activation, calibration or product promotion."
+}
