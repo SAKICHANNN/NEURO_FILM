@@ -1,0 +1,102 @@
+{
+  "schema": "neuro-film.u1-4c11-oklab-analytical-interior-contract.v1",
+  "experiment_id": "U1.4C11",
+  "status": "frozen_after_source_only_mechanism_development_before_formal_execution",
+  "question": "Can an OOG-only analytical OKLab lightness compression followed by maximum hue-direction-preserving chroma scaling accept the real embedded-ICC ProPhoto semantic range rejected by C10 while retaining the frozen C4/C8 style-safety envelope?",
+  "primary_sources": [
+    {
+      "title": "ROMM RGB: A Reference Output Medium Metric RGB Color Encoding",
+      "publisher": "ICC",
+      "url": "https://www.color.org/chardata/rgb/ROMMRGB.pdf",
+      "use": "semantic source encoding and extended-range interpretation"
+    },
+    {
+      "title": "CSS Color Module Level 4",
+      "publisher": "W3C",
+      "url": "https://www.w3.org/TR/css-color-4/#binsearch",
+      "use": "OKLCh hue-direction chroma bisection baseline and comparison"
+    },
+    {
+      "title": "Computationally-efficient Hue-preserving Gamut Mapping in RGB and YUV",
+      "publisher": "IS&T Electronic Imaging 2025",
+      "url": "https://library.imaging.org/ei/articles/37/10/IPAS-226",
+      "use": "current primary evidence that hue-preserving analytical gamut mapping remains an active problem; its nonlinear same-basis algorithm is not copied because the C11 domain differs"
+    }
+  ],
+  "parents": {
+    "c4_contract": {
+      "path": "configs/u1_4c4_native_prophoto_rec2020_confirmation_v1.json",
+      "sha256": "6e3caf8e65a71c798e97dff26e3af21c56193409decdb1f5c48b7b794733d607"
+    },
+    "c10_evidence": {
+      "path": "docs/evidence/U1_4C10_ICC_SEMANTIC_C4_RECHECK_RESULT.json",
+      "sha256": "975417e47b41ae7e69c64fc21d6d87ec5b194f49121cf7eb9c0d0e4c41e76f03",
+      "required_decision": "retain_c4_assumption_bound_and_close_product_integration"
+    },
+    "c10_report": {
+      "path": "outputs/u1_4c10_icc_semantic_c4_recheck_formal_v1/run_a/report.json",
+      "sha256": "58d64b1f93c1f6b7c44b585c97e61de86f9a9ed84f2e204f6a0985e7a034ba5d",
+      "required_failure_count": 12
+    },
+    "product_core": {
+      "path": "src/preprocess/prophoto_icc.py",
+      "sha256": "654e5f54f4b7861b69a251cb3f8e4cdea11ee150880770fc04072d6176e1e9b6"
+    },
+    "product_ingress": {
+      "path": "src/preprocess/raster_decode.py",
+      "sha256": "88599aedbf7382655735fb51e04b65d9cf91f1f0eaec235281f7d61e0043a735"
+    },
+    "mapper_core": {
+      "path": "src/color_engine/oklab_analytical_interior.py",
+      "sha256": "bcc3fa39210544ace96d8727a666ec5d2ea9845eec4276bbf73e6a9b95f06c48"
+    },
+    "local_minde_core": {
+      "path": "src/color_engine/oklch_local_minde.py",
+      "sha256": "8cfeb198cd08578991828cfa251cd45b5894e6402193a48400b50d6f0dd3931f"
+    }
+  },
+  "source": {
+    "expected_rows": 12,
+    "expected_embedded_icc_sha256": "0a8ef7d1a6557c4488fa124395d2507e463e450e11341539479ad7187393f27c",
+    "maximum_evaluation_side": 1600,
+    "decode": "product-load-working-image-embedded-profile-semantics"
+  },
+  "mapper": {
+    "id": "oklab-oog-only-soft-interval-maximum-chroma-v1",
+    "softness": 0.015625,
+    "rgb16_margin": 0.000030518043793392844,
+    "bisection_iterations": 24,
+    "map_only_out_of_gamut_pixels": true,
+    "preserve_oklab_ab_direction": true,
+    "cohort_fitting_allowed": false,
+    "hard_component_clipping_allowed": false,
+    "posthoc_limiting_allowed": false
+  },
+  "render": {
+    "styles": ["ektar_100", "portra_800", "velvia_50", "vision3_250d"],
+    "gamut_modes": ["source", "chroma"],
+    "guard": "source-anchored-rgb16-interior-residual-v1",
+    "rgb16_output": true
+  },
+  "automatic_gates": {
+    "require_two_process_report_and_png_identity": true,
+    "require_in_gamut_input_pixels_bit_exact": true,
+    "maximum_new_rgb16_boundary_fraction_vs_semantic_source": 0.0,
+    "maximum_per_source_p99_oklab_hue_error_degrees": 0.01,
+    "minimum_per_source_median_chroma_scale": 0.5,
+    "maximum_per_source_fraction_chroma_scale_below_1e_6": 0.005,
+    "minimum_population_median_style_retention_ratio": 0.9,
+    "minimum_worst_render_style_retention_ratio": 0.75,
+    "minimum_population_median_residual_scale": 0.95,
+    "maximum_population_median_fraction_scale_below_0p5": 0.05,
+    "maximum_new_rgb16_boundary_fraction_vs_mapped_source": 0.0005,
+    "maximum_p999_gradient_ratio_vs_mapped_source": 1.35,
+    "maximum_adjacent_lstar_sign_inversion_fraction": 0.005
+  },
+  "decisions": {
+    "pass": "retain_c11_as_scoped_semantic_ingress_candidate_and_open_fresh_independent_confirmation",
+    "fail": "close_exact_c11_mechanism_without_parameter_or_same_cohort_rescue"
+  },
+  "production_default_changed": false,
+  "claim_ceiling": "Existing FiveK same-cohort embedded-ProPhoto TIFF16 semantic-ingress and style-safety evidence only; not independent data, arbitrary ICC, calibrated colour, film, stock, HDR, ACES, preference, or product promotion."
+}
