@@ -60,7 +60,11 @@ def _run_worker(
             root_process.kill()
             raise RuntimeError("P2BB worker timeout")
         rss = 0
-        for member in [root_process, *root_process.children(recursive=True)]:
+        try:
+            members = [root_process, *root_process.children(recursive=True)]
+        except psutil.NoSuchProcess:
+            members = []
+        for member in members:
             try:
                 rss += member.memory_info().rss
             except (psutil.NoSuchProcess, psutil.AccessDenied):
