@@ -1,0 +1,46 @@
+{
+  "schema": "neuro-film.u1-4c14-official-romm-rec2020-product-execution-evidence.v1",
+  "experiment_id": "U1.4C14",
+  "date": "2026-08-14",
+  "status": "PASS_STRICT_OPT_IN_PRODUCT_CAPABILITY",
+  "implementation_commit": "e0b2dcb3",
+  "bindings": {
+    "qualification_evidence": {
+      "path": "docs/evidence/U1_4C13_CC0_SYNTHETIC_ROMM_STRESS_RESULT.json",
+      "sha256": "c720bc6777c4ac3eb5b481eb98e6b9759d876b68ef720283536180930be70e5c"
+    },
+    "source_manifest": {
+      "path": "outputs/u1_4c13_cc0_synthetic_romm_source_v1/manifest.json",
+      "sha256": "f1ec5eaa845d1c7ab161e38baef65a3c96e459fbebd3f32dcd098c4d628875bd"
+    },
+    "product_core": {
+      "path": "src/preprocess/romm_rec2020_product.py",
+      "sha256": "3b615198766430319414257a546d3a35ec4bf359e901e4eb891d538745380f6d"
+    },
+    "cli": {
+      "path": "scripts/convert_official_romm_to_rec2020.py",
+      "sha256": "b80459b36a7232f4039aebf06c491a1c077a3318ca5c4121a4ac49943869f27c"
+    },
+    "test": {
+      "path": "tests/test_romm_rec2020_product.py",
+      "sha256": "a1258dade255164d429fc3592b9b905d3fb6a3f3ad79137765ab3796b58b7aa9"
+    }
+  },
+  "formal_execution": {
+    "rows_per_run": 9,
+    "files_per_run": 19,
+    "bytes_per_run": 86349615,
+    "run_a_report_sha256": "ba3b392cfc9919e6f6d5486516ef80720c0ac965e70234224da16feb9cba9c83",
+    "run_b_report_sha256": "ba3b392cfc9919e6f6d5486516ef80720c0ac965e70234224da16feb9cba9c83",
+    "reports_byte_exact": true,
+    "ordered_output_receipt_inventory_exact": true,
+    "inventory_sha256": "84894d47fa7e75a55c2b016025e020dc7e21275346e041e7c052b8f78741c78c",
+    "all_exact_sample_readback": true,
+    "all_output_cicp_exact": true,
+    "all_qualification_receipts_bound": true
+  },
+  "automatic_pass": true,
+  "decision": "retain_strict_opt_in_official_romm_to_rec2020_product_capability",
+  "interpretation": "The committed product API and CLI execute deterministically on all nine qualified official-ROMM RGB16 inputs, preserve exact output samples on readback, and publish relative Rec.2020 SDR RGB16 PNG with exact cICP metadata.",
+  "claim_ceiling": "Strict exact-official-ROMM RGB16 TIFF to bounded relative Rec.2020 SDR RGB16 PNG conversion; not a film-look render, arbitrary ICC, natural-WCG confirmation, HDR, camera colour, stock response, calibration, default change, or product promotion."
+}

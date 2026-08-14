@@ -13563,3 +13563,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   product capability. The source is synthetic wide-gamut stress, not natural
   WCG, calibration, arbitrary ICC, film or stock evidence. Evidence:
   `docs/evidence/U1_4C13_CC0_SYNTHETIC_ROMM_STRESS_RESULT.json`.
+
+### 2026-08-14 - U1.4C14 delivers strict official-ROMM to Rec.2020 conversion
+
+- A new opt-in API/CLI accepts only exact official-ROMM ICC RGB16 TIFF, maps
+  only Rec.2020-out-of-gamut pixels with the C11 analytical operator, and emits
+  relative Rec.2020 SDR RGB16 PNG with exact cICP and sample readback.
+- Two complete nine-input executions produce identical reports and all 19
+  output/receipt files per run (`ba3b392c...a9c83`; inventory
+  `84894d47...c78c`). The default renderer is unchanged.
+- This is a bounded colour-conversion capability, not a film-look render,
+  arbitrary-ICC support, natural-WCG evidence, HDR or calibration. Evidence:
+  `docs/evidence/U1_4C14_OFFICIAL_ROMM_REC2020_PRODUCT_EXECUTION_RESULT.json`.
