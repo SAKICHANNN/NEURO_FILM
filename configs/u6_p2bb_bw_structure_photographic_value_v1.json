@@ -1,0 +1,64 @@
+{
+  "schema": "neuro_film.u6_p2bb_bw_structure_photographic_value_contract.v1",
+  "node": "U6.P2BB",
+  "question": "Does the fixed P2AV positive developed-density structure add safe visible value over an otherwise identical generic neutral B&W direct scan on fresh ordinary photographs?",
+  "parents": {
+    "physical_gain_contract": {"path":"configs/u6_p2av_softplus_physical_gain_coordinate_v1.json","sha256":"86b8eee11cafa928cf2b9e5c644c8a02d6904ce47f67ae4aca57b561aa99aee1"},
+    "physical_gain_evidence": {"path":"docs/evidence/U6_P2AV_SOFTPLUS_PHYSICAL_GAIN_COORDINATE_RESULT.json","sha256":"58bd847b860d0bd403a3dee6510c8193e85df8c801f0060dd7efe654ab3f63d4","required_automatic_pass":true},
+    "uncertainty_evidence": {"path":"docs/evidence/U6_P2AX_LOCAL_DENSITY_UNCERTAINTY_RESULT.json","sha256":"e01d94a811a9769ce07310370c60b8e0605a99cd044c08f2fa808aee9acc9e34","required_automatic_pass":true},
+    "scanner_contract": {"path":"configs/u6_p2ay_typed_density_scanner_chain_v1.json","sha256":"adaa672ce08c6ec5f370a91f67e075ab1d7f5a4bbff69a79ea18b2aa67fbc77c"},
+    "bound_forward_evidence": {"path":"docs/evidence/U6_P2BA_BOUND_FORWARD_BW_SCAN_RESULT.json","sha256":"f98512f3e386e23b1baebdb46e7cf9ad4ac8cef7d00c0407ae371b27677cc433","required_automatic_pass":true},
+    "source_manifest": {"path":"outputs/u6_p2bb0_bw_structure_value_source_preflight_v1/run_c/manifest.json","sha256":"8c2d8d3414d9d44b7a517c88e51c37a8ee8388991b26c091a518a9495ae1d323","expected_rows":11,"expected_makes":11,"required_allowed_use":"internal_independent_digital_ood_confirmation","required_rights_scope":"CC0_public_domain_internal_evaluation","required_color_state":"relative_display_srgb_approximation"}
+  },
+  "mean_density_mapping": {
+    "source_transfer": "IEC_sRGB_to_linear",
+    "linear_luma_weights": [0.2126, 0.7152, 0.0722],
+    "minimum_density": 0.06,
+    "maximum_density": 1.14,
+    "per_image_normalization_allowed": false,
+    "tone_refit_allowed": false
+  },
+  "structure": {
+    "spatial_profile_id": "generic-scanner-convolved-thomas-p4bs-v1",
+    "realization_seeds": [2026081401,2026082410,2026083419,2026084428,2026085437,2026086446,2026087455,2026088464,2026089473,2026090482,2026091491],
+    "canonical_row_block_height": 31,
+    "verification_row_partition_height": 127,
+    "parameter_refit_allowed": false,
+    "realized_normalization_allowed": false,
+    "hard_clipping_allowed": false
+  },
+  "scanner": {
+    "profile_id": "generic-neutral-scanner-mtf-p2ay-v1",
+    "pixel_pitch_micrometres": 6.35,
+    "scanner_mtf_sigma_pixels_rgb": [0.7,0.7,0.7],
+    "gaussian_truncate": 3.0,
+    "spectral_matrix": "identity",
+    "flare_fraction": 0.0,
+    "noise_variance": 0.0,
+    "scanner_calibration_claimed": false
+  },
+  "arms": [
+    "generic_bw_direct_scan_without_structure",
+    "generic_bw_direct_scan_with_p2av_structure"
+  ],
+  "automatic_gates": {
+    "minimum_per_row_encoded_rms_difference": 0.0001,
+    "maximum_population_p99_encoded_absolute_difference": 0.05,
+    "maximum_flat_region_p99_encoded_absolute_difference": 0.04,
+    "maximum_new_boundary_fraction_vs_baseline": 0.0005,
+    "maximum_output_code_boundary_fraction": 0.005,
+    "isolated_excursion_threshold": 0.05,
+    "isolated_support_radius_pixels": 2,
+    "minimum_isolated_support_count": 3,
+    "maximum_isolated_excursion_count": 0,
+    "maximum_channel_spread": 0.0,
+    "minimum_developed_density_exclusive": 0.0,
+    "require_all_inputs_and_outputs_finite": true,
+    "require_partition_exact": true,
+    "require_rgb16_png_exact_readback": true
+  },
+  "measurement": {"formal_processes":2,"worker_timeout_seconds":900,"maximum_worker_wall_seconds":600,"maximum_peak_process_tree_rss_bytes":1610612736,"wall_and_rss_excluded_from_scientific_identity":true},
+  "decision_if_pass": "open a domain-separated baseline-versus-structure severe-first full-resolution blind value review",
+  "decision_if_fail": "retain the typed neutral B&W scan without promoting this fixed structure into photographic value review",
+  "claim_ceiling": "Generic B&W developed-density structure automatic safety and visible-separation evidence on eleven fresh CC0 ordinary photographs; not TRI-X or stock calibration, measured scanner truth, preference, authenticity, target-runtime evidence or product promotion."
+}
