@@ -234,7 +234,10 @@ def evaluate(config: Mapping[str, Any], root: Path, output_dir: Path) -> dict[st
         with Image.open(source_path) as image:
             image.load()
             encoded = np.asarray(image.convert("RGB"), dtype=np.float32) / np.float32(255.0)
-        source_linear_srgb = encoded_srgb_to_linear(np.asarray(encoded, dtype=np.float32))
+        source_linear_srgb = np.asarray(
+            encoded_srgb_to_linear(np.asarray(encoded, dtype=np.float32)),
+            dtype=np.float32,
+        )
         source = convert_linear_rgb(
             source_linear_srgb,
             source_space="linear_srgb",
