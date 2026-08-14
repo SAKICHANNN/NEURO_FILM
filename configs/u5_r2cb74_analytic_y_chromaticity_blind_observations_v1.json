@@ -1,0 +1,20 @@
+{
+  "schema": "neuro_film.u5_r2cb74_analytic_y_chromaticity_blind_observations.v1",
+  "experiment_id": "U5.R2CB74",
+  "report_sha256": "c4164d93fe706aa77f9382621c48073e5fd3e790e6a8044defbf973bf99fbf04",
+  "stable_evidence_id": "5edfa13c3baad289c89f56443dbbb43711bb4f6f81e2d50afda6048db1121c9a",
+  "reviewer": "autonomous_visual_review",
+  "review_protocol": "Commit A/B choices and severe-artifact findings before opening sealed mappings.",
+  "source_order": ["canon_eos_r50_v", "panasonic_dc_s5m2", "om_system_tg_7", "samsung_galaxy_s21_ultra", "pentax_kf", "phase_one_iq180", "dji_fc350", "xiaomi_redmi_note_8t", "lg_lg_h910"],
+  "rounds": [
+    {"round": 1, "sheet_sha256": "3738228a3fa3030338ef994faf4ff5ad0f6a5804f8f322dbd0fe9fee313d24d3", "choices": ["A", "B", "A", "A", "A", "A", "A", "A", "A"]},
+    {"round": 2, "sheet_sha256": "9882e6db57acfe840dedd8374524369c83a195227e5f8bbba6af755974b3d12b", "choices": ["B", "A", "B", "B", "B", "B", "A", "B", "A"]},
+    {"round": 3, "sheet_sha256": "68b20f541aaa5bff1ea79684f4616de33cb9380b35114f303ef195ce42edd13b", "choices": ["B", "A", "B", "B", "B", "B", "A", "B", "A"]}
+  ],
+  "severe_review": {
+    "confirmed_severe_artifact_count": 0,
+    "observations": "Across nine source-disjoint camera rows and both unlabeled arms, architecture, foliage, flowers, water, benches, vehicle and indoor edges remain continuous; no confirmed geometry break, text corruption, banding, posterization, block artifact, seam or unintended hard clipping. The LG source is intrinsically high-noise, but neither arm introduces a distinct structural corruption. Strong colour and tone shifts remain intended style."
+  },
+  "mapping_opened": false,
+  "claim_ceiling": "Autonomous third source-disjoint confirmation choices and severe-artifact review only; not population preference, film truth, stock response, calibration or product promotion."
+}
