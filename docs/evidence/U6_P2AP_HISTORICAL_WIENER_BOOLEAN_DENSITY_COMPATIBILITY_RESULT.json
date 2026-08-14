@@ -1,0 +1,30 @@
+{
+  "schema": "neuro_film.u6_p2ap_historical_wiener_boolean_density_compatibility_evidence.v1",
+  "node": "U6.P2AP",
+  "implementation_commit": "293e9b73",
+  "contract_commit": "78b993e8",
+  "formal_run_count": 2,
+  "formal_reports_byte_exact": true,
+  "report_sha256": "6d190f4a9da7c110879b44c4ede64fdc25b027d4cb7e505760993b66d8cca4ed",
+  "stable_evidence_id": "8a92dd5676c721782e5300965441edd17cd76e067b3090b38788e275c5803915",
+  "target_relative_wiener_amplitudes": [
+    1.0,
+    2.6566265060240966,
+    2.6566265060240966,
+    3.9457831325301203
+  ],
+  "candidate_relative_density_variances": [
+    1.0,
+    91.01572228217637,
+    400.7923431513744,
+    589.9310952093667
+  ],
+  "relative_ratio_rmse": 106.79510810633843,
+  "maximum_absolute_relative_ratio_error": 149.8651450411069,
+  "rank_correlation": 0.9486832980505139,
+  "repeat_byte_exact": true,
+  "partition_byte_exact": true,
+  "automatic_pass": false,
+  "decision": "close the unchanged Boolean density-amplitude mechanism without radius, sampling, density or gate rescue",
+  "claim_ceiling": "Relative-variance compatibility test between a generic P2AI Boolean silver mechanism and historical TRI-X 5233/SD-28 Wiener amplitudes; not current 400TX, absolute NPS, measured grain geometry, scanner response, photographic appearance or product evidence."
+}

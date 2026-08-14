@@ -13341,3 +13341,8 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   exact row partitioning passes.
 - Retain only an explicit hybrid research profile. The Thomas shape is not
   TRI-X NPS or microscopic grain, and photographic/product use remains closed.
+
+## 2026-08-14 - U6.P2AP closes unchanged Boolean density scaling
+
+- Two independent frozen audits were byte-identical (`6d190f4a...cca4ed`). The generic fixed-radius Boolean mechanism produced relative density variances `1, 91.02, 400.79, 589.93` versus historical TRI-X 5233 Wiener amplitudes `1, 2.657, 2.657, 3.946`; RMSE and worst-relative-error gates failed while replay, partition, positivity and rank gates passed.
+- Decision: no radius, sample-count, density or gate rescue. Continue with a source-bounded amplitude compiler that keeps amplitude, spatial spectrum, scanner response and current-stock claims separate.
