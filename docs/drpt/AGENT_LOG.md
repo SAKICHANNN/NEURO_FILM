@@ -13329,3 +13329,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   density/aperture mismatch and every spatial-render request reject.
 - This is a future compiler constraint only. Density dependence, NPS, particle
   geometry, scanner response and photographic rendering remain unidentified.
+
+### 2026-08-14 - U6.P2AL normalizes a hybrid Thomas field to TRI-X amplitude
+
+- The exact `.017@48um` TRI-X scalar normalizes the independently retained
+  generic same-scanner Thomas second-order shape analytically, with no spatial
+  refit or realized-variance normalization.
+- Two reports are byte exact (`9205196c...8e23d71`, stable
+  `1b673fbe...bb7a8f`). Five seeds give median/p95 aperture-sigma errors
+  `.667%/1.131%`; field mean is effectively zero, density stays positive, and
+  exact row partitioning passes.
+- Retain only an explicit hybrid research profile. The Thomas shape is not
+  TRI-X NPS or microscopic grain, and photographic/product use remains closed.

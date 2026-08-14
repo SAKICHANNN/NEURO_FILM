@@ -1,0 +1,24 @@
+{
+  "schema": "neuro_film.u6_p2al_trix_hybrid_thomas_amplitude_evidence.v1",
+  "node": "U6.P2AL",
+  "implementation_commit": "bd09a7656f9309b87fd6128b20c673c9cc96abe6",
+  "contract_sha256": "3c13526a753d20ea69de45722dfd78dcc9bc7f1e310338f9b0b5ce256582bc45",
+  "report_sha256": "9205196c2f859a0cb9edc0b9446eb9dd6ead9a579d31f27e45ab4f7848e23d71",
+  "stable_evidence_id": "1b673fbe63623379730d2bae35e84708ea577cbbd65fddf163eb474d65bb7a8f",
+  "formal_run_count": 2,
+  "formal_reports_byte_exact": true,
+  "automatic_pass": true,
+  "measurement_energy": 0.42674186556428034,
+  "point_scale": 0.02602353532767698,
+  "measurements": {
+    "analytic_aperture_sigma_error": 0.0,
+    "median_aperture_sigma_relative_error": 0.006670451082832933,
+    "p95_aperture_sigma_relative_error": 0.01130531752172339,
+    "maximum_absolute_field_mean": 4.336808689942018e-19,
+    "minimum_developed_density": 0.8632491371067987,
+    "partition_exact": true,
+    "repeat_byte_exact": true
+  },
+  "decision": "Retain an explicit TRI-X-amplitude/generic-scanner-shape hybrid research profile; still prohibit photographic rendering.",
+  "claim_ceiling": "Explicit hybrid of one TRI-X 400 scalar 48um Sigma-D amplitude and one independently retained generic same-scanner Thomas second-order shape; not TRI-X NPS, microscopic grain, scanner-independent structure, density dependence, roll calibration, photographic appearance or product evidence."
+}
