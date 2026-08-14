@@ -13550,3 +13550,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   content and not arbitrary-ICC support. Open only the fixed CC0 synthetic-WCG
   stress next. Evidence:
   `docs/evidence/U1_4C12_OFFICIAL_ROMM_CROSS_DATASET_RESULT.json`.
+
+### 2026-08-14 - U1.4C13 passes CC0 synthetic-ROMM stress
+
+- Nine rights-cleared natural-scene structures were reinterpreted with a fixed
+  code-preserving official-ROMM transform. Two 9-source/72-render runs and all
+  73 files per run are byte exact (`2c115be8...b86e0`, stable
+  `c0f1daf9...7199`).
+- Every frozen gate passes: no in-gamut source change or new RGB16 boundary,
+  maximum hue p99 `.000492` degrees, and worst style retention `.97573`.
+- This opens only the strict official-ROMM RGB16 to bounded Rec.2020 RGB16
+  product capability. The source is synthetic wide-gamut stress, not natural
+  WCG, calibration, arbitrary ICC, film or stock evidence. Evidence:
+  `docs/evidence/U1_4C13_CC0_SYNTHETIC_ROMM_STRESS_RESULT.json`.

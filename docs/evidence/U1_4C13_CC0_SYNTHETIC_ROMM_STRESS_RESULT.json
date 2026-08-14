@@ -1,0 +1,72 @@
+{
+  "schema": "neuro-film.u1-4c13-cc0-synthetic-romm-stress-evidence.v1",
+  "experiment_id": "U1.4C13",
+  "date": "2026-08-14",
+  "status": "PASS_SCOPED_CC0_SYNTHETIC_ROMM_STRESS",
+  "implementation_commits": [
+    "63fba67c",
+    "54e42da3"
+  ],
+  "bindings": {
+    "contract": {
+      "path": "configs/u1_4c13_cc0_synthetic_romm_stress_v1.json",
+      "sha256": "7eb63fd2edc482e6557d35c0e77a293f323951634b559e2050e74c5f09a9840f"
+    },
+    "source_manifest": {
+      "path": "outputs/u1_4c13_cc0_synthetic_romm_source_v1/manifest.json",
+      "sha256": "f1ec5eaa845d1c7ab161e38baef65a3c96e459fbebd3f32dcd098c4d628875bd",
+      "stable_source_id": "e9b1ea9d466ef52151a8278dfbfc1d8fd88214ec4fabe881f601ce44eea80d19"
+    },
+    "source_builder": {
+      "path": "scripts/build_u1_4c13_cc0_synthetic_romm_sources.py",
+      "sha256": "d53104ffa637d70022f89d3f47f0d87cf3fb1fe2714c8b6e7afaf317afd715e9"
+    },
+    "evaluator": {
+      "path": "src/eval/cc0_synthetic_romm_stress_confirmation.py",
+      "sha256": "223cdc25580a8a82f162bfe0186b322aa81365a694d392442e15b6360a37b455"
+    },
+    "runner": {
+      "path": "scripts/run_u1_4c13_cc0_synthetic_romm_stress.py",
+      "sha256": "9fbe6f1383ae0129c5c232a3395aeed1d10fa667adb57643f070d9010f603db5"
+    },
+    "test": {
+      "path": "tests/test_u1_4c13_cc0_synthetic_romm_stress.py",
+      "sha256": "1210b5e5b1e83b8d4f1f9f5ae5cb450ddcd800f51452ac0c410a088083c6bcbb"
+    }
+  },
+  "source_observation": {
+    "rows": 9,
+    "camera_makes": 9,
+    "rights_scope": "CC0_public_domain_internal_evaluation",
+    "synthetic_transform": "uint8-srgb-code-times-257-as-romm-rgb16-v1",
+    "synthetic_romm_is_not_natural_wide_gamut": true
+  },
+  "formal_runs": {
+    "run_a_report_sha256": "2c115be8485761a3a24eff84925e5ec1db8e9d68d7cf85cd04abb4651d8b86e0",
+    "run_b_report_sha256": "2c115be8485761a3a24eff84925e5ec1db8e9d68d7cf85cd04abb4651d8b86e0",
+    "reports_byte_exact": true,
+    "files_per_run": 73,
+    "bytes_per_run": 692661630,
+    "ordered_file_inventory_and_sha256_exact": true,
+    "inventory_sha256": "e77abcfb87017a032bbc06dd4b610056731d57eb46fdf51b05e7950d1261f7fa",
+    "stable_evidence_id": "c0f1daf9402e769f73bb7117559e0c4b8981244f3fc33044b94cf0bd0a187199"
+  },
+  "observations": {
+    "source_count": 9,
+    "render_count": 72,
+    "in_gamut_input_change_count": 0,
+    "maximum_new_rgb16_boundary_fraction_vs_semantic_source": 0.0,
+    "maximum_per_source_p99_oklab_hue_error_degrees": 0.0004917547139043362,
+    "minimum_per_source_median_chroma_scale": 0.6911057233810425,
+    "population_median_style_retention_ratio": 0.9999975199182307,
+    "worst_render_style_retention_ratio": 0.9757337566440099,
+    "maximum_new_rgb16_boundary_fraction_vs_mapped_source": 0.0,
+    "maximum_p999_gradient_ratio_vs_mapped_source": 1.0791556842479484,
+    "maximum_adjacent_lstar_sign_inversion_fraction": 0.001901637165628203,
+    "population_median_mapping_delta_e_ratio_vs_local_minde": 1.8881146370453814
+  },
+  "automatic_pass": true,
+  "decision": "retain_strict_opt_in_official_romm_rgb16_ingress_and_open_product_capability_receipt",
+  "interpretation": "The unchanged analytical mapper preserves exact in-gamut pixels, hue direction, RGB16 interior safety, and downstream style under fixed official-ROMM reinterpretation of nine CC0 natural-scene structures. This is a source-structure stress, not natural wide-gamut evidence or perceptual optimality.",
+  "claim_ceiling": "CC0 natural-scene structure under fixed code-preserving synthetic ROMM reinterpretation; not natural WCG pixels, camera colour, calibrated colour, arbitrary ICC, film, stock, HDR, ACES, preference, or product promotion."
+}
