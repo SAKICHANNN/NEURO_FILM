@@ -1,0 +1,16 @@
+{
+  "schema": "neuro_film.u6_p2ao_historical_trix_wiener_density_source_evidence.v1",
+  "node": "U6.P2AO",
+  "implementation_commit": "b44a20960f91c12405057cfd8a4e5189754bfeba",
+  "contract_sha256": "a004ea4bfb1ceed2ac1a7e22658a375bc3cb92f8c8eb463f5cc8910f70ff321c",
+  "report_sha256": "790af86b9750816cfd56b41fa1572ce9ab9a0e69be71b8daeef270ce719854cc",
+  "stable_evidence_id": "c651e1f7d0d7f40068b1a2ff01cde9348f01c90755894adfcd6fcc9bab5c23ef",
+  "profile_identity": "5138878af0a19b142d293507217bf45bb44c5f3dbf774b4134435b24fa6b111a",
+  "formal_run_count": 2,
+  "formal_reports_byte_exact": true,
+  "automatic_pass": true,
+  "densities": [0.06, 0.36, 0.74, 1.14],
+  "wiener_granularity_spectrum_cm2": [3.32e-9, 8.82e-9, 8.82e-9, 1.31e-8],
+  "decision": "Retain a historical density-dependent Wiener-amplitude source prior and open only a separately frozen generic amplitude-shape compatibility test.",
+  "claim_ceiling": "Historical primary-paper density/Wiener-amplitude observations for Eastman TRI-X type 5233 developed 6.5 minutes in SD-28; not current Kodak 400TX, D-76, modern coating, NPS shape, scanner response, roll calibration, photographic appearance or product evidence."
+}
