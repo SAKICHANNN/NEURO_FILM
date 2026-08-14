@@ -1,0 +1,74 @@
+{
+  "schema": "neuro_film.u6_p2ar_hybrid_density_amplitude_thomas_contract.v1",
+  "node": "U6.P2AR",
+  "question": "Can the current TRI-X scalar anchor, historical source-bounded density law and unchanged generic Thomas shape compose into a deterministic nonnegative generic reference field at five densities?",
+  "parents": {
+    "current_scalar": {
+      "path": "docs/evidence/U6_P2AK_TRIX_GRANULARITY_SCALAR_PROFILE_RESULT.json",
+      "sha256": "1952910da39d86caefbf628d8889d6890436cfc3be7171d358adccaf9c34d8ce",
+      "required_automatic_pass": true,
+      "required_profile_identity": "482714d55fc2591b4c748ceb61118a1db4b29fb1deba0156e97999b62e897c8b"
+    },
+    "historical_amplitude": {
+      "path": "docs/evidence/U6_P2AQ_HISTORICAL_WIENER_AMPLITUDE_COMPILER_RESULT.json",
+      "sha256": "41c9745520246509999ccb1cb6daf111d974d9779a6f82035f626be25b2b1a33",
+      "required_automatic_pass": true,
+      "required_profile_identity": "13c26b7a7d4b93bd5065ac8e213082bcb47df68ef1c466edc75738c464ff30c1"
+    },
+    "generic_spatial_shape": {
+      "path": "docs/evidence/U6_P2AL1_TRIX_HYBRID_THOMAS_IDENTITY_CORRECTION_RESULT.json",
+      "sha256": "a30e55b47381e1f0e6cbd3bb6d1e2d375c7cbf4e37bbc3783eced5e299f8f609",
+      "required_automatic_pass": true
+    }
+  },
+  "hybrid_profile": {
+    "identity": "generic_bw_cross_generation_amplitude_hypothesis",
+    "anchor_density": 1.0,
+    "anchor_density_rms": 0.017,
+    "aperture_diameter_micrometres": 48.0,
+    "densities": [0.06, 0.36, 0.74, 1.0, 1.14],
+    "expected_density_rms": [
+      0.009171656684287146,
+      0.014949030929925687,
+      0.014949030929925687,
+      0.017,
+      0.018218574618747253
+    ],
+    "current_400tx_calibration_claimed": false,
+    "historical_5233_calibration_claimed": false,
+    "scanner_response_included": false
+  },
+  "spatial_mechanism": {
+    "spatial_profile_id": "generic-scanner-convolved-thomas-p4bs-v1",
+    "particle_sigma_samples": 1.3253699417769098,
+    "cluster_sigma_samples": 1.1268619873805532,
+    "mean_offspring": 27.765942352935905,
+    "component_seeds": [2611923443488327891, 11400714819323198485],
+    "sample_pitch_micrometres": 6.35,
+    "measurement_aperture_diameter_micrometres": 48.0,
+    "truncate_sigma": 4.0,
+    "spatial_parameter_refit_allowed": false,
+    "realized_variance_normalization_allowed": false
+  },
+  "evaluation": {
+    "field_shape": [512, 512],
+    "seeds": [131071, 524287, 1048573],
+    "canonical_row_block_height": 31,
+    "row_partition_height": 127,
+    "measurement_crop_border_samples": 13,
+    "maximum_profile_node_relative_error": 1e-15,
+    "maximum_analytic_aperture_sigma_error": 1e-15,
+    "maximum_median_aperture_sigma_relative_error": 0.02,
+    "maximum_p95_aperture_sigma_relative_error": 0.04,
+    "maximum_absolute_field_mean": 1e-15,
+    "minimum_developed_density": 0.0,
+    "repeat_byte_exact": true,
+    "partition_exact": true,
+    "rgb_image_transform_count_zero": true
+  },
+  "branch_rule": {
+    "pass": "retain a generic cross-generation density-amplitude plus Thomas reference field for simulator research only",
+    "fail": "close this exact hybrid without amplitude, shape, seed or gate rescue"
+  },
+  "claim_ceiling": "Generic cross-generation B&W reference field combining one current 400TX scalar, a historical 5233/SD-28 relative density law and a separately generic scanner-convolved Thomas shape; not stock calibration, measured spatial NPS, microscopic grain, scanner truth, appearance or product evidence."
+}
