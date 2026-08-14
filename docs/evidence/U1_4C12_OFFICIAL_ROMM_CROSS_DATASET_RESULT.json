@@ -1,0 +1,93 @@
+{
+  "schema": "neuro-film.u1-4c12-official-romm-cross-dataset-evidence.v1",
+  "experiment_id": "U1.4C12",
+  "date": "2026-08-14",
+  "status": "PASS_SCOPED_OFFICIAL_ROMM_CROSS_DATASET",
+  "implementation_commits": [
+    "d434069b",
+    "a33c73ed",
+    "8353f2cb",
+    "0ec1f273"
+  ],
+  "bindings": {
+    "contract": {
+      "path": "configs/u1_4c12_official_romm_cross_dataset_v1.json",
+      "sha256": "dd434aba470f9cc7ba55ef51efd13fdbc8848d5c897b7a723f2101a9c1b86f3f"
+    },
+    "source_manifest": {
+      "path": "outputs/u1_4c12_official_romm_source_v1/manifest.json",
+      "sha256": "6c5417fe3f6f4183fbffbbb97c46941b8e9774a32cd8da1354d734d3fc9f66df",
+      "stable_source_id": "332f01e62e229e5f851aee4351a9fa43fcef43d118187d3b1b74aaaeb289d90f"
+    },
+    "official_icc": {
+      "path": "data/wide_gamut/icc_official/ISO22028-2_ROMM-RGB.icc",
+      "bytes": 864,
+      "sha256": "96b2f2987f83e2a545e607799fbfdff43ef8158fb9b215b187c574db8f145aaf"
+    },
+    "source_builder": {
+      "path": "scripts/build_u1_4c12_official_romm_sources.py",
+      "sha256": "2f5aeb77c229881bd3c832f6a6b2a9c9b914d1852dd589d13b46b613bb5d4516"
+    },
+    "shared_evaluator": {
+      "path": "src/eval/oklab_analytical_interior_confirmation.py",
+      "sha256": "6d6248faed7b421e15982d4cf6ad6c4cae2d2a9cb142b027d20e6dab9225f641"
+    },
+    "evaluator": {
+      "path": "src/eval/official_romm_cross_dataset_confirmation.py",
+      "sha256": "790feb3b9bf12c736c7c818a9f2e3d5ba7e25dd69bf5ba83bd9083be9229ded6"
+    },
+    "runner": {
+      "path": "scripts/run_u1_4c12_official_romm_cross_dataset.py",
+      "sha256": "00cccb98ab4bcafb59c2b20d0e7d5c37c03245ec25b204bdd4c7575669f9f84f"
+    },
+    "test": {
+      "path": "tests/test_u1_4c12_official_romm_cross_dataset.py",
+      "sha256": "4fb0dfd6ae994f6296089f1e3dfc461a6b3061c5f2728d26122f6d7e3be8da62"
+    }
+  },
+  "profile_conformance": {
+    "littlecms_representable_grid_samples": 4135,
+    "maximum_lab8_code_difference_per_channel": 1,
+    "product_rgb16_tiff_ingress_exact": true,
+    "legacy_matrix_shaper_tests_unchanged": true
+  },
+  "source_observation": {
+    "rows": 24,
+    "camera_labels": 8,
+    "pixel_roundtrip_exact": true,
+    "embedded_profile_exact": true,
+    "rows_with_zero_rec2020_oog_pixels": 5,
+    "source_only_amendment": "Retain zero-OOG rows as bit-exact pass-through controls rather than excluding them after observing official-profile semantics; the amendment occurred before any completed algorithm report."
+  },
+  "formal_runs": {
+    "run_a_report_sha256": "c2a124db7418f4259bb068a8fe99af235d5bcebd7c2445f427b71e2e9cf21eaa",
+    "run_b_report_sha256": "c2a124db7418f4259bb068a8fe99af235d5bcebd7c2445f427b71e2e9cf21eaa",
+    "reports_byte_exact": true,
+    "files_per_run": 193,
+    "ordered_file_inventory_and_sha256_exact": true,
+    "bytes_per_run": 258598419,
+    "stable_evidence_id": "9f6b7a2a6e582061f9f388b0f9a1e4cb98a116e879064080f96146c08246a882",
+    "owned_processes_after_run": 0
+  },
+  "observations": {
+    "source_count": 24,
+    "render_count": 192,
+    "in_gamut_input_change_count": 0,
+    "maximum_new_rgb16_boundary_fraction_vs_semantic_source": 0.0,
+    "maximum_per_source_p99_oklab_hue_error_degrees": 0.0015658588517197829,
+    "minimum_per_source_median_chroma_scale": 0.9371809959411621,
+    "maximum_per_source_fraction_chroma_scale_below_1e_6": 0.0,
+    "population_median_style_retention_ratio": 1.0,
+    "worst_render_style_retention_ratio": 0.9967018638271226,
+    "population_median_residual_scale": 1.0,
+    "maximum_new_rgb16_boundary_fraction_vs_mapped_source": 0.0,
+    "maximum_p999_gradient_ratio_vs_mapped_source": 1.151782902030516,
+    "maximum_adjacent_lstar_sign_inversion_fraction": 0.0001735612256508064,
+    "population_median_mapping_delta_e_ratio_vs_local_minde": 8.877434968188108
+  },
+  "automatic_pass": true,
+  "decision": "retain_c11_for_official_romm_cross_dataset_semantic_ingress_and_open_cc0_synthetic_wcg_stress",
+  "interpretation": "The product decoder and unchanged C11 mapper retain exact in-gamut pass-through, hue direction, RGB16 interior, and downstream style safety under the official ICC ROMM RGB v4 mAB transform on non-FiveK content. The larger mapping-distance ratio versus local-MINDE remains the same engineering trade-off and is not evidence of perceptual optimality.",
+  "next_hypothesis": "Use the nine already rights-cleared P7H photographs only as source structure, reinterpret their exact sRGB code values under the official ROMM profile to create a fixed source-only synthetic-WCG stress, and rerun the unchanged mapper and gates.",
+  "claim_ceiling": "Official ICC ROMM RGB mAB semantic-ingress and unchanged C11 style-safety evidence on previously consumed internal-research-only GamutMLP photographic content; not fresh content, arbitrary ICC, calibrated colour, redistribution, film, stock, HDR, ACES, preference, or product promotion."
+}

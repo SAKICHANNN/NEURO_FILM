@@ -13536,3 +13536,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   far smaller hue error. Open only a fresh official-ROMM-profile plus new-content
   confirmation; perceptual optimality and product ingress remain closed.
   Evidence: `docs/evidence/U1_4C11_OKLAB_ANALYTICAL_INTERIOR_RESULT.json`.
+
+### 2026-08-14 - U1.4C12 confirms C11 with the official ROMM v4 profile
+
+- Product ingress now supports the official 864-byte ICC ROMM RGB mAB profile;
+  4,135 representable grid samples agree with LittleCMS within one Lab8 code.
+- Twenty-four non-FiveK GamutMLP rows were repackaged without pixel change. Two
+  24-source/192-render runs and all 193 files per run are byte exact
+  (`c2a124db...21eaa`, stable `9f6b7a2a...6a882`). Every frozen C11 gate passes;
+  new boundary is zero, worst hue p99 is `.00157` degrees, and worst style
+  retention is `.99670`.
+- This is official-profile/cross-dataset confirmation, not fresh or releasable
+  content and not arbitrary-ICC support. Open only the fixed CC0 synthetic-WCG
+  stress next. Evidence:
+  `docs/evidence/U1_4C12_OFFICIAL_ROMM_CROSS_DATASET_RESULT.json`.
