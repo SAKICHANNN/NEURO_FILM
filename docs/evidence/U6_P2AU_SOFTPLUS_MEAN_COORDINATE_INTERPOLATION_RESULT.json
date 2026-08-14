@@ -1,0 +1,23 @@
+{
+  "schema": "neuro_film.u6_p2au_softplus_mean_coordinate_interpolation_evidence.v1",
+  "node": "U6.P2AU",
+  "implementation_commit": "f05450395b026888583162e43bd443990a3e8ff1",
+  "contract_sha256": "7dcaf7b0e2d864a9170986719ada0999339090de4200872d10e45bb2a98ded08",
+  "formal_run_count": 2,
+  "formal_reports_byte_exact": true,
+  "report_sha256": "f62476f8d80a14740f50c2f1ff4385f7a7d724ce46059101235ac51b9cfec745",
+  "stable_evidence_id": "34f8201709e3e015a42f48e69ea118391a1daf8e25dfaaead52746804943147a",
+  "profile_identity": "fd2e4b978a417492bdbcb14518833f94a6135fdde9dc331a3f10d00051255693",
+  "maximum_confirmation_relative_mean_error": 0.006406792812185401,
+  "confirmation_median_sigma_relative_error": 0.02035727137482162,
+  "confirmation_p95_sigma_relative_error": 0.41152561504066065,
+  "minimum_developed_density": 0.05916662932509795,
+  "repeat_byte_exact": true,
+  "partition_exact": true,
+  "parameter_refit_count_zero": true,
+  "realized_normalization_count_zero": true,
+  "hard_clipping_count_zero": true,
+  "automatic_pass": false,
+  "decision": "close this exact mean-coordinate interpolation without residual, knot, seed or gate rescue",
+  "claim_ceiling": "Fresh intermediate-density confirmation of a generic mean-anchored positive softplus structure profile; not current-stock calibration, measured NPS, microscopic grain, scanner truth, appearance or product evidence."
+}

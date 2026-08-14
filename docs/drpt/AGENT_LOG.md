@@ -13366,3 +13366,8 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 
 - Frozen linear-`a`/log-linear-`b` interpolation remained positive, exact and partition-stable, with median sigma error `1.85%`; however intermediate-density mean error reached `28.27%` and sigma p95 reached `5.34%`.
 - Close this interpolation without knot, transform or threshold rescue. Any successor must use a physical mean coordinate plus residual and fresh density locations.
+
+## 2026-08-14 - U6.P2AU closes mean-only parameter coordinates
+
+- Inverse-softplus mean anchoring reduced fresh-density mean error to `0.64%` and remained strictly positive, but low-density amplitude transfer failed: median sigma error was `2.04%` while p95 reached `41.15%`.
+- Close the mean-residual plus raw-log-`b` combination. A successor must express `b` relative to the local softplus derivative and target sigma, on fresh density roles.
