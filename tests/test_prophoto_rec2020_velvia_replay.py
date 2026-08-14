@@ -9,6 +9,7 @@ import numpy as np
 import pytest
 import tifffile
 
+from scripts.run_u1_4c17_prophoto_rec2020_receipt_replay import load_contract
 from src.inference.prophoto_rec2020_replay import (
     replay_supported_prophoto_velvia_rec2020,
 )
@@ -23,6 +24,7 @@ SCRIPT = ROOT / "scripts/replay_supported_prophoto_rec2020_velvia.py"
 NATURAL_SOURCE = (
     ROOT / "data/external/fivek-bq0-casebank512-v1/expert_c/a2798-kme_383.tif"
 )
+CONTRACT = ROOT / "configs/u1_4c17_prophoto_rec2020_receipt_replay_v1.json"
 
 
 def _write_supported_prophoto(path: Path) -> None:
@@ -39,6 +41,13 @@ def _write_supported_prophoto(path: Path) -> None:
         metadata=None,
         extratags=[(34675, "B", len(profile), profile, False)],
     )
+
+
+def test_u1_4c17_contract_binds_published_c16_artifacts() -> None:
+    contract, contract_sha256 = load_contract(CONTRACT)
+    assert contract_sha256
+    assert contract["source"]["expected_rows"] == 12
+    assert contract["gates"]["require_full_receipt_identity"] is True
 
 
 def test_supported_prophoto_receipt_replays_exactly(tmp_path: Path) -> None:

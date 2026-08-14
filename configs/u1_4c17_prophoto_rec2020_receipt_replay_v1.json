@@ -1,0 +1,32 @@
+{
+  "schema": "neuro-film.u1-4c17-prophoto-rec2020-receipt-replay-contract.v1",
+  "experiment_id": "U1.4C17",
+  "implementation_commit": "5cbcb22bdbdc61e371939c3d71d9d1d794a4a639",
+  "parent": {
+    "evidence": "docs/evidence/U1_4C16_NATURAL_PROPHOTO_REC2020_PRODUCT_RESULT.json",
+    "evidence_sha256": "b41b976786c84c7076ce79cda212febfc18ce71e1332f6e964856eb4c9850299",
+    "required_status": "PASS_STRICT_NATURAL_PROPHOTO_PRODUCT_INTEGRATION",
+    "run": "outputs/u1_4c16_natural_prophoto_rec2020_velvia_product_v1/run_a",
+    "report_sha256": "c6b1626d878f2fef39cdfb6e0592a9e6a1c702d92fdac5ab9b5196ac5b57274f"
+  },
+  "source": {
+    "manifest": "configs/u1_4c4_native_prophoto_source_manifest_v1.json",
+    "manifest_sha256": "4f352488fda809cce52dffe388cbe2564cbe2d5f515db1eb6e078ae92f1d27fc",
+    "expected_rows": 12
+  },
+  "product": {
+    "profile": "configs/render_profiles/prophoto_rec2020_velvia_v1.json",
+    "profile_sha256": "e0da6e630f616dc25c1bca431ade74edd55a2c0bf3a5eec5bd937c9a62447666",
+    "replay": "src/inference/prophoto_rec2020_replay.py",
+    "replay_sha256": "ab2160eb6e8a15d2fe6d346db4c917b03f1c3840b2c87eae9cb98be3b51d4078"
+  },
+  "gates": {
+    "require_all_parent_receipts_and_outputs_bound": true,
+    "require_full_receipt_identity": true,
+    "require_output_bytes_exact": true,
+    "require_two_process_report_and_file_replay": true
+  },
+  "decision_if_pass": "retain_strict_prophoto_rec2020_receipt_replay",
+  "decision_if_fail": "retain_c16_renderer_without_receipt_replay",
+  "claim_ceiling": "Exact replay of the 12 U1.4C16 natural FiveK receipts through the unchanged strict opt-in ProPhoto-to-Rec.2020 Velvia renderer; not arbitrary ICC, independent science, stock response, calibration, HDR, preference or default promotion."
+}
