@@ -19,6 +19,7 @@ def test_contract_freezes_official_profile_and_unchanged_c11_mapper() -> None:
     assert contract["experiment_id"] == "U1.4C12"
     assert contract["source"]["expected_rows"] == 24
     assert contract["source"]["expected_cameras"] == 8
+    assert contract["source"]["require_oog_per_source"] is False
     assert contract["mapper"]["softness"] == 1.0 / 64.0
     assert contract["mapper"]["rgb16_margin"] == 2.0 / 65535.0
     assert contract["mapper"]["cohort_fitting_allowed"] is False

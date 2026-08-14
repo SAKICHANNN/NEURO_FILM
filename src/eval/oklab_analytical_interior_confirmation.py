@@ -129,6 +129,21 @@ def _public_metrics(metrics: Mapping[str, Any]) -> dict[str, float]:
     }
 
 
+def _zero_mapping_metrics() -> dict[str, Any]:
+    zero = np.zeros(1, dtype=np.float64)
+    return {
+        "median_delta_e_ok": 0.0,
+        "p95_delta_e_ok": 0.0,
+        "median_hue_error_degrees": 0.0,
+        "p95_hue_error_degrees": 0.0,
+        "median_lightness_error": 0.0,
+        "p95_lightness_error": 0.0,
+        "delta_e_ok": zero,
+        "hue_error": zero,
+        "lightness_error": zero,
+    }
+
+
 def _checks(metrics: Mapping[str, Any], gates: Mapping[str, Any]) -> dict[str, bool]:
     numeric_values = [
         value
@@ -218,12 +233,23 @@ def _evaluate_prevalidated(
         )
         local_minde, _ = local_minde_rec2020(semantic)
         out_of_gamut = np.any((semantic < 0.0) | (semantic > 1.0), axis=-1)
-        if not bool(np.any(out_of_gamut)):
+        has_out_of_gamut = bool(np.any(out_of_gamut))
+        if not has_out_of_gamut and bool(
+            contract["source"].get("require_oog_per_source", True)
+        ):
             raise AnalyticalInteriorConfirmationError("C11 source lacks OOG pixels")
         in_gamut = ~out_of_gamut
         in_gamut_changes = int(np.count_nonzero(mapped[in_gamut] != semantic[in_gamut]))
-        candidate_metrics = _mapping_metrics(semantic, mapped, out_of_gamut)
-        baseline_metrics = _mapping_metrics(semantic, local_minde, out_of_gamut)
+        candidate_metrics = (
+            _mapping_metrics(semantic, mapped, out_of_gamut)
+            if has_out_of_gamut
+            else _zero_mapping_metrics()
+        )
+        baseline_metrics = (
+            _mapping_metrics(semantic, local_minde, out_of_gamut)
+            if has_out_of_gamut
+            else _zero_mapping_metrics()
+        )
         source_facts.append(
             {
                 "id": row["id"],
@@ -237,9 +263,15 @@ def _evaluate_prevalidated(
                 "new_rgb16_boundary_fraction_vs_semantic_source": _new_boundary_fraction(
                     semantic, mapped
                 ),
-                "median_chroma_scale": float(np.median(chroma_ratio[out_of_gamut])),
-                "fraction_chroma_scale_below_1e_6": float(
-                    np.mean(chroma_ratio[out_of_gamut] < 1e-6)
+                "median_chroma_scale": (
+                    float(np.median(chroma_ratio[out_of_gamut]))
+                    if has_out_of_gamut
+                    else 1.0
+                ),
+                "fraction_chroma_scale_below_1e_6": (
+                    float(np.mean(chroma_ratio[out_of_gamut] < 1e-6))
+                    if has_out_of_gamut
+                    else 0.0
                 ),
                 "p99_oklab_hue_error_degrees": float(
                     np.quantile(candidate_metrics["hue_error"], 0.99)

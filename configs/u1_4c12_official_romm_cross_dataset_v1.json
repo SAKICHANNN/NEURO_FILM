@@ -67,6 +67,7 @@
     "required_allowed_use": "internal_research_only",
     "required_rights_scope": "official_gamutmlp_dataset_without_separate_dataset_or_underlying_image_redistribution_license",
     "maximum_evaluation_side": 512,
+    "require_oog_per_source": false,
     "decode": "product-load-working-image-official-romm-mab-semantics"
   },
   "mapper": {

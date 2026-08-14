@@ -15,7 +15,7 @@ from src.eval.oklab_analytical_interior_confirmation import _evaluate_prevalidat
 SCHEMA = "neuro-film.u1-4c12-official-romm-cross-dataset-contract.v1"
 REPORT_SCHEMA = "neuro-film.u1-4c12-official-romm-cross-dataset-report.v1"
 EXPERIMENT_ID = "U1.4C12"
-CONTRACT_SHA256 = "6255e565a62ec8f8c13419cc127d169365ac6e07771ee3314cf7c25714f44854"
+CONTRACT_SHA256 = "dd434aba470f9cc7ba55ef51efd13fdbc8848d5c897b7a723f2101a9c1b86f3f"
 
 
 class OfficialROMMConfirmationError(RuntimeError):
