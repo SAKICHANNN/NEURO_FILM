@@ -1,0 +1,36 @@
+{
+  "schema": "neuro_film.u6_p2ag_bw_characteristic_surface_contract.v1",
+  "node": "U6.P2AG",
+  "question": "Can the four exact first-party TRI-X 400 / D-76 characteristic curves compile into one deterministic, monotone, no-extrapolation development-time by log-exposure density surface without claiming unresolved toe/shoulder physics?",
+  "parents": {
+    "shape_contract": {"path": "configs/u6_p2af_trix_d76_characteristic_shape_v1.json", "sha256": "9173707cde98130211577cdd4b88031e922f842a1583a4f92dc84908ea662633"},
+    "shape_evidence": {"path": "docs/evidence/U6_P2AF_TRIX_D76_CHARACTERISTIC_SHAPE_RESULT.json", "sha256": "cb6cf294c3974bcb09addc668d37bce8bdaf8b36f3761b3de4c7409d7b749b54", "required_automatic_pass": false}
+  },
+  "surface": {
+    "film_stock_id": "kodak_professional_tri_x_400_400tx_35mm",
+    "developer_id": "kodak_professional_d76_large_tank",
+    "development_times_minutes": [6.0, 8.0, 10.0, 12.0],
+    "log_exposure_knots": [-3.4, -3.284375, -3.16875, -3.053125, -2.9375, -2.821875, -2.70625, -2.590625, -2.475, -2.359375, -2.24375, -2.128125, -2.0125, -1.896875, -1.78125, -1.665625, -1.55, -1.434375, -1.31875, -1.203125, -1.0875, -0.971875, -0.85625, -0.740625, -0.625, -0.509375, -0.39375, -0.278125, -0.1625, -0.046875, 0.06875, 0.184375, 0.3],
+    "interpolation": "bilinear_piecewise_linear",
+    "outside_observed_domain": "reject",
+    "densitometry": "diffuse_visual",
+    "temperature_c": 20.0,
+    "equipment": "large_tank",
+    "agitation": "one_minute_intervals"
+  },
+  "automatic_gates": {
+    "surface_shape": [4, 33],
+    "all_exposure_rows_strictly_increasing": true,
+    "all_time_columns_strictly_increasing": true,
+    "maximum_source_reconstruction_error": 1e-12,
+    "maximum_forward_inverse_log_exposure_error": 1e-12,
+    "serialization_byte_exact": true,
+    "partition_exact": true,
+    "outside_domain_rejected": true,
+    "input_unchanged_on_failure": true,
+    "rgb_image_transform_count_zero": true
+  },
+  "forbidden": ["claim time-dependent toe or shoulder shape is established", "extrapolate development time or log exposure", "treat graph interpolation as roll calibration", "render photographs or map to product"],
+  "branch_rule": {"pass": "retain the typed table as a bounded source-derived B&W process primitive", "fail": "close this exact table compiler without changing knots, interpolation or gates"},
+  "claim_ceiling": "Research-only interpolation of four first-party TRI-X 400 / D-76 diffuse-visual curves; not developer chemistry, roll calibration, grain, MTF, scanner, photographic appearance or product profile."
+}
