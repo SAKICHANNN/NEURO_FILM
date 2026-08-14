@@ -29,6 +29,15 @@
     "direction_change_allowed": false,
     "p4hu_or_ao6_refit_allowed": false
   },
+  "comparison": {
+    "arms": [
+      "fixed_ao6_colour_only_t15_c35",
+      "matched_scanner_only_ao6_t15_c35",
+      "p4hu_scanner_safe_physical_only_diagnostic",
+      "p4hu_scanner_safe_then_fixed_ao6_t15_c35"
+    ],
+    "automatic_gates": "inherit_exact_u6_p7h"
+  },
   "additional_gates": {
     "maximum_limited_pixel_fraction": 0.1,
     "minimum_median_scale": 0.95,
