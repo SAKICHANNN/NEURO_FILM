@@ -19,6 +19,7 @@ CONTRACT = ROOT / "configs/u1_4c5_commons_prophoto_source_v1.json"
 def test_contract_freezes_rights_bytes_and_stops() -> None:
     contract = load_contract(CONTRACT)
     assert len(contract["rows"]) == 12
+    assert contract["eligibility"]["minimum_eligible_source_count"] == 9
     assert len({row["artist"] for row in contract["rows"]}) == 4
     assert sum(row["bytes"] for row in contract["rows"]) == 198661368
     assert contract["eligibility"]["minimum_native_16bit_sources"] == 2

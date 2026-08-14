@@ -29,7 +29,7 @@ from src.preprocess.color_management import convert_linear_rgb
 SCHEMA = "neuro-film.u1-4c5-commons-prophoto-source-contract.v1"
 REPORT_SCHEMA = "neuro-film.u1-4c5-commons-prophoto-source-report.v1"
 EXPERIMENT_ID = "U1.4C5S"
-CONTRACT_SHA256 = "586cba08abd0ee9a39c9c798d13c8d69b4a080502f806bd2d0cbc44bbecd7c88"
+CONTRACT_SHA256 = "0f86588a7b26206cffe7b7d34b61594dbfcd7de86a2866a6658087f5e747cf7f"
 _D50 = np.array([0.9642, 1.0, 0.8249], dtype=np.float64)
 
 
@@ -244,6 +244,7 @@ def evaluate(
 ) -> dict[str, Any]:
     source_root = root / Path(contract["storage"]["logical_root"])
     rows: list[dict[str, Any]] = []
+    rejected_rows: list[dict[str, Any]] = []
     previews: list[Image.Image] = []
     for selection_rank, expected in enumerate(contract["rows"]):
         extension = ".png" if expected["mime"] == "image/png" else ".jpg"
@@ -252,31 +253,36 @@ def evaluate(
         with Image.open(path) as image:
             size = image.size
             profile = image.info.get("icc_profile")
-        if size != (int(expected["width"]), int(expected["height"])) or not isinstance(
-            profile, bytes
-        ):
-            raise CommonsProPhotoSourceError(
-                f"dimension or ICC mismatch: {expected['id']}"
-            )
-        profile_facts = _profile_facts(profile)
-        rgb, bit_depth = _decode_rgb(path, expected["mime"])
-        preview, dhash = _preview_and_dhash(path, profile)
+        base_facts = {
+            "id": expected["id"],
+            "selection_rank": selection_rank,
+            "path": path.relative_to(root).as_posix(),
+            "sha256": hash_file(path),
+            "sha1": _sha1_file(path),
+            "bytes": path.stat().st_size,
+            "title": expected["title"],
+            "artist": expected["artist"],
+            "license": expected["license"],
+            "source_url": expected["url"],
+            "source_page": expected["page"],
+            "mime": expected["mime"],
+            "width": size[0],
+            "height": size[1],
+        }
+        try:
+            if size != (int(expected["width"]), int(expected["height"])):
+                raise CommonsProPhotoSourceError("dimension mismatch")
+            if not isinstance(profile, bytes):
+                raise CommonsProPhotoSourceError("embedded ICC is absent")
+            profile_facts = _profile_facts(profile)
+            rgb, bit_depth = _decode_rgb(path, expected["mime"])
+            preview, dhash = _preview_and_dhash(path, profile)
+        except CommonsProPhotoSourceError as exc:
+            rejected_rows.append({**base_facts, "rejection_reason": str(exc)})
+            continue
         rows.append(
             {
-                "id": expected["id"],
-                "selection_rank": selection_rank,
-                "path": path.relative_to(root).as_posix(),
-                "sha256": hash_file(path),
-                "sha1": _sha1_file(path),
-                "bytes": path.stat().st_size,
-                "title": expected["title"],
-                "artist": expected["artist"],
-                "license": expected["license"],
-                "source_url": expected["url"],
-                "source_page": expected["page"],
-                "mime": expected["mime"],
-                "width": size[0],
-                "height": size[1],
+                **base_facts,
                 "bit_depth": bit_depth,
                 "pixel_array_sha256": hashlib.sha256(rgb.tobytes()).hexdigest(),
                 "dhash64": dhash,
@@ -302,7 +308,10 @@ def evaluate(
                 near_pairs.append([left["id"], right["id"], distance])
     gates = contract["eligibility"]
     checks = {
-        "source_count": len(rows) == int(gates["required_source_count"]),
+        "attempted_source_count": len(rows) + len(rejected_rows)
+        == int(gates["required_source_count"]),
+        "eligible_source_count": len(rows)
+        >= int(gates["minimum_eligible_source_count"]),
         "artist_count": len({row["artist"] for row in rows})
         >= int(gates["minimum_distinct_artist_count"]),
         "native_16bit_count": sum(row["bit_depth"] == 16 for row in rows)
@@ -320,7 +329,9 @@ def evaluate(
         "schema": REPORT_SCHEMA,
         "experiment_id": EXPERIMENT_ID,
         "contract_sha256": CONTRACT_SHA256,
-        "source_count": len(rows),
+        "attempted_source_count": len(rows) + len(rejected_rows),
+        "eligible_source_count": len(rows),
+        "rejected_source_count": len(rejected_rows),
         "artist_count": len({row["artist"] for row in rows}),
         "native_16bit_count": sum(row["bit_depth"] == 16 for row in rows),
         "nonzero_rec2020_oog_count": sum(
@@ -329,6 +340,7 @@ def evaluate(
         "exact_pixel_duplicate_pairs": exact_pixel_duplicates,
         "near_duplicate_pairs": near_pairs,
         "rows": rows,
+        "rejected_rows": rejected_rows,
         "checks": checks,
         "automatic_pass": all(checks.values()),
         "visual_review_required": bool(
