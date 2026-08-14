@@ -1,0 +1,20 @@
+{
+  "schema": "neuro_film.u5_r2cb74_analytic_y_chromaticity_adjudication_contract.v1",
+  "report_schema": "neuro_film.u5_r2cb74_analytic_y_chromaticity_adjudication_report.v1",
+  "experiment_id": "U5.R2CB74A",
+  "pass_decision": "pass_cb74_third_source_disjoint_confirmation_retain_analytic_y_chromaticity_research_champion_over_ao6",
+  "close_decision": "close_cb74_without_rescue_retain_ao6",
+  "evidence": {
+    "report_sha256": "c4164d93fe706aa77f9382621c48073e5fd3e790e6a8044defbf973bf99fbf04",
+    "stable_evidence_id": "5edfa13c3baad289c89f56443dbbb43711bb4f6f81e2d50afda6048db1121c9a",
+    "observations_path": "configs/u5_r2cb74_analytic_y_chromaticity_blind_observations_v1.json",
+    "observations_sha256": "a5ebdc3c96eb5c1bd4570ec8bad19cdbb86163209b869b22c4ac3bc9c07f06da"
+  },
+  "gates": {
+    "maximum_confirmed_severe_artifact_count": 0,
+    "minimum_candidate_round_wins": 2,
+    "minimum_candidate_aggregate_choices": 18,
+    "minimum_candidate_source_majorities": 5
+  },
+  "claim_ceiling": "Third source-disjoint autonomous confirmation of a generic digital-photo Look Approximation mechanism; not population preference, film truth, stock response, calibration or product promotion."
+}
