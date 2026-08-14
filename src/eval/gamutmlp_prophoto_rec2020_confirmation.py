@@ -37,9 +37,7 @@ from src.eval.rec2020_source_anchored_interior import (
 from src.preprocess.color_management import convert_linear_rgb
 
 SCHEMA = "neuro-film.u1-4c6-gamutmlp-prophoto-rec2020-confirmation-contract.v1"
-REPORT_SCHEMA = (
-    "neuro-film.u1-4c6-gamutmlp-prophoto-rec2020-confirmation-report.v1"
-)
+REPORT_SCHEMA = "neuro-film.u1-4c6-gamutmlp-prophoto-rec2020-confirmation-report.v1"
 EXPERIMENT_ID = "U1.4C6"
 CONTRACT_SHA256 = "eae16a5eac0abb86a55a8409a0af834cc94f04929b9d3ef096b488ee47fea7b8"
 
@@ -78,7 +76,10 @@ def _validate_inputs(config: Mapping[str, Any], root: Path) -> list[dict[str, An
                 raise GamutMLPConfirmationError("C6 requires a passing parent")
     source = config["source"]
     manifest_path = root / _relative(source["manifest"])
-    if not manifest_path.is_file() or hash_file(manifest_path) != source["manifest_sha256"]:
+    if (
+        not manifest_path.is_file()
+        or hash_file(manifest_path) != source["manifest_sha256"]
+    ):
         raise GamutMLPConfirmationError("C6 source manifest identity drift")
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     rows = manifest.get("rows")
@@ -89,8 +90,7 @@ def _validate_inputs(config: Mapping[str, Any], root: Path) -> list[dict[str, An
         or len(rows) != int(source["expected_rows"])
         or len({(row["camera"], row["source_id"], row["style"]) for row in rows})
         != len(rows)
-        or len({row["camera"] for row in rows})
-        != int(source["expected_camera_models"])
+        or len({row["camera"] for row in rows}) != int(source["expected_camera_models"])
         or manifest.get("automatic_pass") is not True
         or manifest.get("visual_pass") is not source["required_visual_pass"]
         or int(manifest.get("eligible_rows", -1)) != len(rows)
@@ -124,7 +124,9 @@ def _load_declared_prophoto(
         source_space="linear_srgb",
         destination_space="linear_rec2020",
     )
-    weights = np.asarray(config["ingress"]["rec2020_luminance_weights"], dtype=np.float64)
+    weights = np.asarray(
+        config["ingress"]["rec2020_luminance_weights"], dtype=np.float64
+    )
     mapped, ingress_scale, out_of_gamut = luminance_axis_interior_compress(
         rec2020_extended,
         luminance_weights=weights,
@@ -160,8 +162,17 @@ def _load_declared_prophoto(
     return mapped, rec2020_extended, facts
 
 
-def evaluate(config: Mapping[str, Any], root: Path, output_dir: Path) -> dict[str, Any]:
-    source_rows = _validate_inputs(config, root)
+def evaluate_rows(
+    config: Mapping[str, Any],
+    root: Path,
+    output_dir: Path,
+    source_rows: list[dict[str, Any]],
+    *,
+    report_schema: str = REPORT_SCHEMA,
+    experiment_id: str = EXPERIMENT_ID,
+    contract_sha256: str = CONTRACT_SHA256,
+) -> dict[str, Any]:
+    """Execute unchanged C4/C3 arithmetic on an already validated source inventory."""
     if output_dir.exists():
         raise GamutMLPConfirmationError("C6 output directory must be create-only")
     output_dir.mkdir(parents=True)
@@ -169,7 +180,9 @@ def evaluate(config: Mapping[str, Any], root: Path, output_dir: Path) -> dict[st
     render_rows: list[dict[str, Any]] = []
     for source_row in source_rows:
         mapped, extended, facts = _load_declared_prophoto(source_row, config, root)
-        source_id = f"{source_row['camera']}-{source_row['source_id']}-{source_row['style']}"
+        source_id = (
+            f"{source_row['camera']}-{source_row['source_id']}-{source_row['style']}"
+        )
         facts.update(
             {
                 "id": source_id,
@@ -193,9 +206,7 @@ def evaluate(config: Mapping[str, Any], root: Path, output_dir: Path) -> dict[st
                 candidate_lab = linear_rgb_to_lab(
                     candidate, working_space="linear_rec2020"
                 )
-                guarded_lab = linear_rgb_to_lab(
-                    guarded, working_space="linear_rec2020"
-                )
+                guarded_lab = linear_rgb_to_lab(guarded, working_space="linear_rec2020")
                 baseline_style = _median_lab_delta_e76(source_lab, candidate_lab)
                 guarded_style = _median_lab_delta_e76(source_lab, guarded_lab)
                 style_retention = (
@@ -213,7 +224,9 @@ def evaluate(config: Mapping[str, Any], root: Path, output_dir: Path) -> dict[st
                         "gamut_mode": mode,
                         "source_sha256": source_row["member_sha256"],
                         "shape": list(mapped.shape),
-                        "mapped_source_array_sha256": facts["mapped_source_array_sha256"],
+                        "mapped_source_array_sha256": facts[
+                            "mapped_source_array_sha256"
+                        ],
                         "candidate_array_sha256": _array_sha256(candidate),
                         "guarded_array_sha256": _array_sha256(guarded),
                         "output_path": relative_path.as_posix(),
@@ -284,13 +297,19 @@ def evaluate(config: Mapping[str, Any], root: Path, output_dir: Path) -> dict[st
         == int(config["source"]["expected_rows"])
         * len(config["render"]["styles"])
         * len(config["render"]["gamut_modes"]),
-        "native_wide_gamut_support": metrics["minimum_native_srgb_out_of_gamut_fraction"]
+        "native_wide_gamut_support": metrics[
+            "minimum_native_srgb_out_of_gamut_fraction"
+        ]
         >= float(gates["minimum_native_srgb_out_of_gamut_fraction_per_source"]),
         "rec2020_compression_stress": metrics[
             "minimum_precompression_rec2020_out_of_gamut_fraction"
         ]
-        >= float(gates["minimum_precompression_rec2020_out_of_gamut_fraction_per_source"]),
-        "luminance_preservation": metrics["maximum_luminance_preservation_absolute_error"]
+        >= float(
+            gates["minimum_precompression_rec2020_out_of_gamut_fraction_per_source"]
+        ),
+        "luminance_preservation": metrics[
+            "maximum_luminance_preservation_absolute_error"
+        ]
         <= float(gates["maximum_luminance_preservation_absolute_error"]),
         "finite_in_gamut_outputs": bool(
             np.isfinite(metrics["output_minimum"])
@@ -317,9 +336,9 @@ def evaluate(config: Mapping[str, Any], root: Path, output_dir: Path) -> dict[st
     }
     automatic_pass = all(checks.values())
     report: dict[str, Any] = {
-        "schema": REPORT_SCHEMA,
-        "experiment_id": EXPERIMENT_ID,
-        "contract_sha256": CONTRACT_SHA256,
+        "schema": report_schema,
+        "experiment_id": experiment_id,
+        "contract_sha256": contract_sha256,
         "source_manifest_sha256": config["source"]["manifest_sha256"],
         "ingress_mapping_id": config["ingress"]["mapping_id"],
         "c3_mechanism_id": config["render"]["c3_mechanism_id"],
@@ -338,6 +357,10 @@ def evaluate(config: Mapping[str, Any], root: Path, output_dir: Path) -> dict[st
     return report
 
 
+def evaluate(config: Mapping[str, Any], root: Path, output_dir: Path) -> dict[str, Any]:
+    return evaluate_rows(config, root, output_dir, _validate_inputs(config, root))
+
+
 def write_report(report: Mapping[str, Any], output: Path) -> str:
     payload = canonical_json(report)
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -349,6 +372,7 @@ __all__ = [
     "CONTRACT_SHA256",
     "GamutMLPConfirmationError",
     "evaluate",
+    "evaluate_rows",
     "load_contract",
     "write_report",
 ]
