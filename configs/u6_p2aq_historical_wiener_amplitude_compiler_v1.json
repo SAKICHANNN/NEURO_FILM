@@ -1,0 +1,44 @@
+{
+  "schema": "neuro_film.u6_p2aq_historical_wiener_amplitude_compiler_contract.v1",
+  "node": "U6.P2AQ",
+  "question": "Can the four historical TRI-X 5233 Wiener observations be compiled into a deterministic positive relative-amplitude profile without extrapolation or spatial-spectrum claims?",
+  "parents": {
+    "historical_wiener": {
+      "path": "docs/evidence/U6_P2AO_HISTORICAL_TRIX_WIENER_DENSITY_SOURCE_RESULT.json",
+      "sha256": "1c06f4405d3209731f08f147707f26379539748feba559957ab55eb519b409e5",
+      "required_automatic_pass": true
+    },
+    "boolean_boundary": {
+      "path": "docs/evidence/U6_P2AP_HISTORICAL_WIENER_BOOLEAN_DENSITY_COMPATIBILITY_RESULT.json",
+      "sha256": "a0a6f1b7d991c931ac8922a18865f734af7276e83476bdd976c3ab7075e72a95",
+      "required_automatic_pass": false,
+      "required_decision": "close the unchanged Boolean density-amplitude mechanism without radius, sampling, density or gate rescue"
+    }
+  },
+  "compiler": {
+    "densities": [0.06, 0.36, 0.74, 1.14],
+    "wiener_granularity_spectrum_cm2": [3.32e-9, 8.82e-9, 8.82e-9, 1.31e-8],
+    "reference_density": 0.06,
+    "interpolation": "piecewise_log_linear_wiener_then_sqrt_relative_amplitude",
+    "evaluation_densities": [0.06, 0.21, 0.36, 0.55, 0.74, 0.94, 1.14],
+    "density_extrapolation_allowed": false,
+    "spatial_spectrum_claimed": false,
+    "current_400tx_claimed": false,
+    "render_allowed": false
+  },
+  "automatic_gates": {
+    "maximum_node_relative_error": 1e-15,
+    "maximum_midpoint_log_law_error": 1e-15,
+    "reference_scale_exact_one": true,
+    "all_scales_positive_finite": true,
+    "scales_monotone_nondecreasing": true,
+    "lower_extrapolation_rejected": true,
+    "upper_extrapolation_rejected": true,
+    "exact_roundtrip_identity": true
+  },
+  "branch_rule": {
+    "pass": "retain a historical source-bounded relative Wiener amplitude compiler; spatial shape and current-stock use remain separate",
+    "fail": "close this exact compiler without interpolation or interval rescue"
+  },
+  "claim_ceiling": "Historical TRI-X 5233/SD-28 relative Wiener-amplitude interpolation only; not current 400TX, absolute realized variance, spatial NPS, grain geometry, scanner response, appearance or product evidence."
+}
