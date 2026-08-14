@@ -63,7 +63,28 @@ def build_typed_neutral_density_scanner_chain(
     return BWNeutralDensityScannerResult(developed, transmittance, scan_linear)
 
 
+def interpret_bw_negative_direct_scan(
+    scan_linear: PhysicalDomainArray,
+) -> PhysicalDomainArray:
+    """Apply a neutral, endpoint-free B&W negative direct-scan polarity."""
+    state = scan_linear.require(PhysicalDomain.SCAN_LINEAR)
+    values = np.ascontiguousarray(
+        state.values.dtype.type(1.0) - state.values,
+        dtype=state.values.dtype,
+    )
+    if not np.all(np.isfinite(values)) or np.any(values < 0.0) or np.any(values > 1.0):
+        raise RuntimeError("B&W direct-scan interpretation left display-linear domain")
+    return PhysicalDomainArray.adopt(
+        values,
+        PhysicalDomain.DISPLAY_LINEAR,
+        PhysicalUnit.RELATIVE_DISPLAY_LIGHT,
+        state.channels,
+        state.scale,
+    )
+
+
 __all__ = [
     "BWNeutralDensityScannerResult",
     "build_typed_neutral_density_scanner_chain",
+    "interpret_bw_negative_direct_scan",
 ]

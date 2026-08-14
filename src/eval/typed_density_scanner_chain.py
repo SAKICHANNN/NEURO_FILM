@@ -67,7 +67,9 @@ def _high_frequency_energy(values: np.ndarray) -> float:
     )
 
 
-def run_audit(*, root: Path, contract: dict[str, Any]) -> dict[str, Any]:
+def build_typed_scanner_candidate(
+    *, root: Path, contract: dict[str, Any], realization_seed: int
+) -> tuple[Any, Any, np.ndarray]:
     _load_bound(root, contract["parents"]["local_uncertainty_evidence"])
     uncertainty_contract = _load_bound(
         root, contract["parents"]["local_uncertainty_contract"]
@@ -88,7 +90,7 @@ def run_audit(*, root: Path, contract: dict[str, Any]) -> dict[str, Any]:
         cluster_sigma_pixels=spatial["cluster_sigma_samples"],
         mean_offspring=spatial["mean_offspring"],
         component_seeds=tuple(spatial["component_seeds"]),
-        realization_seed=int(contract["fresh_realization_seed"]),
+        realization_seed=int(realization_seed),
         truncate=spatial["truncate_sigma"],
         canonical_row_block_height=wedge_contract["evaluation"][
             "canonical_row_block_height"
@@ -118,6 +120,30 @@ def run_audit(*, root: Path, contract: dict[str, Any]) -> dict[str, Any]:
         gaussian_truncate=float(scanner["gaussian_truncate"]),
     )
     result = build_typed_neutral_density_scanner_chain(density, profile)
+    return result, receipt, mean_density
+
+
+def run_audit(*, root: Path, contract: dict[str, Any]) -> dict[str, Any]:
+    result, receipt, _ = build_typed_scanner_candidate(
+        root=root,
+        contract=contract,
+        realization_seed=int(contract["fresh_realization_seed"]),
+    )
+    scanner = contract["scanner_profile"]
+    sigma_um = tuple(
+        float(value) * float(scanner["pixel_pitch_micrometres"])
+        for value in scanner["scanner_mtf_sigma_pixels_rgb"]
+    )
+    zero = (0.0, 0.0, 0.0)
+    profile = SpatialResponseProfile(
+        pixel_pitch_um=float(scanner["pixel_pitch_micrometres"]),
+        forward_scatter_sigma_um_rgb=zero,
+        development_adjacency_sigma_um_rgb=zero,
+        development_adjacency_gain_rgb=zero,
+        dye_diffusion_sigma_um_rgb=sigma_um,
+        scanner_mtf_sigma_um_rgb=sigma_um,
+        gaussian_truncate=float(scanner["gaussian_truncate"]),
+    )
     restored_density = transmittance_to_density(result.transmittance)
     wrong_density = apply_dye_diffusion(result.developed_density.values, profile)
     wrong_order = np.power(10.0, -wrong_density)
