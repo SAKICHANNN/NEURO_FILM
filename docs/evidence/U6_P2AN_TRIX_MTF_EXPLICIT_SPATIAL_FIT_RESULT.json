@@ -1,0 +1,18 @@
+{
+  "schema": "neuro_film.u6_p2an_trix_mtf_explicit_spatial_fit_evidence.v1",
+  "node": "U6.P2AN",
+  "implementation_commit": "fe464ef79f743722be3f5dff09445f8ae28f22f9",
+  "contract_sha256": "b7052ce28d6d5b29ad598e1c87e0d5717855ae9565ee1fadb7aaf4db960c75a9",
+  "report_sha256": "f81a1b1604bb341f14d8d43d28be9b3144b00f612a4dfb093687ceb334cbfe56",
+  "stable_evidence_id": "c624a37042c5929b57bed188bc5c6f99ab70b70e13e9dcbfde6c73997e353b5f",
+  "formal_run_count": 2,
+  "formal_reports_byte_exact": true,
+  "automatic_pass": false,
+  "parameters": {"combined_blur_sigma_micrometres": 4.0353057916499555, "adjacency_sigma_micrometres": 29.999999999999996, "adjacency_gain": 0.2264686735979881},
+  "development_max_absolute_error": 0.06849622682490009,
+  "confirmation_max_absolute_error": 0.047416779697821765,
+  "confirmation_rmse": 0.025750134933217976,
+  "confirmation_median_error_reduction_vs_gaussian": 0.8515449142106485,
+  "decision": "Close this exact blur-adjacency family without resplitting, expanding bounds or changing gates.",
+  "claim_ceiling": "Held-frequency compatibility test of one compact explicit mechanism against the older/preliminary TRI-X MTF source curve; the exact family failed and provides no current-400TX, image or product authority."
+}
