@@ -54,7 +54,7 @@ def _load_bound(root: Path, binding: dict[str, Any]) -> dict[str, Any]:
     return payload
 
 
-def _layout(contract: dict[str, Any]) -> np.ndarray:
+def build_fresh_layout(contract: dict[str, Any]) -> np.ndarray:
     layout = contract["fresh_layout"]
     shape = tuple(layout["shape"])
     cell_shape = tuple(layout["cell_shape"])
@@ -80,7 +80,7 @@ def run_audit(*, root: Path, contract: dict[str, Any]) -> dict[str, Any]:
     amplitude_profile, parameter_profile = load_reference_profiles(
         root=root, contract=wedge_contract
     )
-    mean_density = _layout(contract)
+    mean_density = build_fresh_layout(contract)
     layout = contract["fresh_layout"]
     shape = tuple(layout["shape"])
     cell_shape = tuple(layout["cell_shape"])
