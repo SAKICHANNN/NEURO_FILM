@@ -1,0 +1,58 @@
+{
+  "schema": "neuro_film.u6_p2aw_nonuniform_positive_density_wedge_contract.v1",
+  "node": "U6.P2AW",
+  "question": "Can the frozen P2AV positive physical-gain profile render a nonuniform two-dimensional density wedge with local amplitude fidelity and exact irregular tiled replay?",
+  "parents": {
+    "positive_parameter_evidence": {
+      "path": "docs/evidence/U6_P2AV_SOFTPLUS_PHYSICAL_GAIN_COORDINATE_RESULT.json",
+      "sha256": "58bd847b860d0bd403a3dee6510c8193e85df8c801f0060dd7efe654ab3f63d4",
+      "required_automatic_pass": true,
+      "required_profile_identity": "6eefdbd31abcd958ff4dc189da9fd6d96641f8da3141a7f11da9a1a8762faf88"
+    },
+    "positive_parameter_contract": {
+      "path": "configs/u6_p2av_softplus_physical_gain_coordinate_v1.json",
+      "sha256": "86b8eee11cafa928cf2b9e5c644c8a02d6904ce47f67ae4aca57b561aa99aee1"
+    },
+    "amplitude_contract": {
+      "path": "configs/u6_p2ar_hybrid_density_amplitude_thomas_v1.json",
+      "sha256": "2184c80cca0e220a2a13c72ec0f10ca4da18236310031cee09931e3b3b1ae708"
+    }
+  },
+  "wedge": {
+    "shape": [512, 768],
+    "ordered_plateau_densities": [0.06, 0.135, 0.285, 0.455, 0.645, 0.805, 1.0, 1.14],
+    "plateau_width_samples": 96,
+    "seeds": [8589934583, 17179869143]
+  },
+  "spatial_mechanism": {
+    "spatial_profile_id": "generic-scanner-convolved-thomas-p4bs-v1",
+    "particle_sigma_samples": 1.3253699417769098,
+    "cluster_sigma_samples": 1.1268619873805532,
+    "mean_offspring": 27.765942352935905,
+    "component_seeds": [2611923443488327891, 11400714819323198485],
+    "sample_pitch_micrometres": 6.35,
+    "measurement_aperture_diameter_micrometres": 48.0,
+    "truncate_sigma": 4.0
+  },
+  "evaluation": {
+    "canonical_row_block_height": 31,
+    "irregular_tile_shape": [73, 113],
+    "measurement_crop_border_samples": 13,
+    "plateau_measurement_inset_samples": 16,
+    "maximum_plateau_relative_mean_error": 0.02,
+    "maximum_plateau_median_sigma_relative_error": 0.03,
+    "maximum_plateau_p95_sigma_relative_error": 0.05,
+    "minimum_developed_density_exclusive": 0.0,
+    "repeat_byte_exact": true,
+    "irregular_tile_exact": true,
+    "parameter_refit_count_zero": true,
+    "realized_normalization_count_zero": true,
+    "hard_clipping_count_zero": true,
+    "rgb_image_transform_count_zero": true
+  },
+  "branch_rule": {
+    "pass": "retain the positive physical-gain profile as a typed nonuniform density reference primitive and open density-to-transmittance interpretation",
+    "fail": "close this exact nonuniform wedge integration without plateau, tile, parameter, seed or gate rescue"
+  },
+  "claim_ceiling": "A generic nonuniform positive B&W density-reference simulation using a historical relative amplitude law, current scalar anchor and generic Thomas structure; not current-stock calibration, measured density-dependent NPS, microscopic grain, scanner truth, appearance or product evidence."
+}
