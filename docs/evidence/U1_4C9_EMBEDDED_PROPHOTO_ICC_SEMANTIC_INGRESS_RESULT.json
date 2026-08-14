@@ -1,0 +1,65 @@
+{
+  "schema": "neuro-film.u1-4c9-embedded-prophoto-icc-semantic-ingress-evidence.v1",
+  "experiment_id": "U1.4C9",
+  "date": "2026-08-14",
+  "status": "PASS_SCOPED_EMBEDDED_PROPHOTO_TIFF16_SEMANTIC_INGRESS",
+  "implementation_commits": [
+    "8677c7b0",
+    "02b41dbf"
+  ],
+  "bindings": {
+    "contract": {
+      "path": "configs/u1_4c9_embedded_prophoto_icc_semantic_ingress_v1.json",
+      "sha256": "e008e56eefb54ea4c51b50602d80794e603036ce53a8bf76c6c7c772287a6b03"
+    },
+    "product_core": {
+      "path": "src/preprocess/prophoto_icc.py",
+      "sha256": "654e5f54f4b7861b69a251cb3f8e4cdea11ee150880770fc04072d6176e1e9b6"
+    },
+    "product_ingress": {
+      "path": "src/preprocess/raster_decode.py",
+      "sha256": "88599aedbf7382655735fb51e04b65d9cf91f1f0eaec235281f7d61e0043a735"
+    },
+    "evaluator": {
+      "path": "src/eval/prophoto_icc_semantic_ingress.py",
+      "sha256": "0569e53739d4b80a312e72bd57ebd9349b1c19b9d057336b16d7a497ff1b7ab3"
+    },
+    "runner": {
+      "path": "scripts/run_u1_4c9_embedded_prophoto_icc_semantic_ingress.py",
+      "sha256": "05538d1fc01a244edd550e3328d37b71c4a3615064fbec22f86a31de189323d9"
+    },
+    "focused_test": {
+      "path": "tests/test_u1_4c9_embedded_prophoto_icc_semantic_ingress.py",
+      "sha256": "e7fc96fd7ba1a413401986ce5158f370ceac7a069ee373b59c3e302d2e405c0e"
+    }
+  },
+  "formal_runs": {
+    "run_a_report_sha256": "3e48033ed2beb1feaadc43fd94e4b57e5f42670c696803b165c3470e269f1106",
+    "run_b_report_sha256": "ea749aa2dfb87c132eb7c832286b524eb7c4930441d535fb6e1074bd89e6fe9f",
+    "stable_evidence_id": "e176600ca3197c9fa44b786fe6bf85157fe7f28dc0c6123ce829b8a776ac2ab6",
+    "stable_identity_exact": true,
+    "only_report_difference": "run-relative output_dir and its derived report_sha256"
+  },
+  "observations": {
+    "source_count": 12,
+    "scalar_count": 316818696,
+    "embedded_icc_sha256": "0a8ef7d1d958d98225b3b71d93d9e8e3cecd9c302e014973d025d2a977ecf27c",
+    "profile_gamma": 1.80078125,
+    "reference": "imagecodecs 2026.6.26 / LittleCMS 2.17 relative-colorimetric float64 XYZ D50",
+    "maximum_product_vs_littlecms_absolute_error": 2.0706635273093354e-07,
+    "mean_product_vs_littlecms_absolute_error": 1.2801240782405424e-08,
+    "maximum_product_vs_c4_romm_absolute_error": 0.0005019402517999507,
+    "mean_product_vs_c4_romm_absolute_error": 0.00012812181944159347,
+    "recognized_rows": true,
+    "float32_linear_rec2020": true,
+    "unclipped_execution": true
+  },
+  "decision": "retain_embedded_prophoto_tiff16_semantic_ingress_and_open_c4_semantic_recheck",
+  "interpretation": "The strict product decoder follows the actual embedded matrix-shaper ICC semantics to unclipped linear Rec.2020 with full-pixel LittleCMS agreement. The prior C4 ROMM-toe ingress remains valid only for its frozen assumed transform until the mapped/style result is rerun through this semantic ingress.",
+  "claim_ceiling": "Existing FiveK research TIFFs with the exact supported ProPhoto matrix-shaper ICC profile only; not gamut mapping, independent-source confirmation, arbitrary ICC, calibrated film, or product promotion.",
+  "official_sources": [
+    "https://registry.color.org/rgb-registry/rommrgb",
+    "https://www.color.org/chardata/rgb/ROMMRGB.pdf",
+    "https://www.color.org/icc_specs2.xalter"
+  ]
+}

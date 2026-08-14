@@ -13512,3 +13512,8 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 
 - The exact current CSS Color 4 local-MINDE algorithm was clean-room implemented and compared with C4 only on the 24-source C7 OOG population; two formal processes and 192 RGB16 PNGs per run are exact.
 - It improves median OOG mapping distance on 20/24 sources and retains style, but fails the frozen mapped-boundary (`7.0221%`) and hue-ratio (`2.1959x`) gates. Keep C4, close this exact baseline without JND/cohort rescue, and continue toward fresh embedded-ProPhoto evidence. Evidence: `docs/evidence/U1_4C8_W3C_OKLCH_LOCAL_MINDE_BASELINE_RESULT.json`.
+
+### 2026-08-14 - U1.4C9 passes embedded ProPhoto TIFF16 semantic ingress
+
+- A strict matrix-shaper ProPhoto ICC decoder now preserves 16-bit input and returns unclipped linear Rec.2020. Across 12 FiveK TIFFs / 316,818,696 scalar values, two processes have the same scientific identity and agree with LittleCMS float64 within `2.08e-7` maximum error.
+- The frozen C4 ROMM-toe assumption differs by up to `5.02e-4`, so C4 remains assumption-bound until a semantic-ingress rerun. This pass opens only that recheck, not gamut mapping, arbitrary ICC or product promotion. Evidence: `docs/evidence/U1_4C9_EMBEDDED_PROPHOTO_ICC_SEMANTIC_INGRESS_RESULT.json`.
