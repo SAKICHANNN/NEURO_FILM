@@ -1,0 +1,58 @@
+{
+  "schema": "neuro-film.u1-4c15-romm-rec2020-velvia-product-evidence.v1",
+  "experiment_id": "U1.4C15",
+  "date": "2026-08-14",
+  "status": "PASS_STRICT_OPT_IN_WIDE_GAMUT_LOOK",
+  "implementation_commit": "bdb6372c",
+  "bindings": {
+    "profile": {
+      "path": "configs/render_profiles/romm_rec2020_velvia_v1.json",
+      "sha256": "58b9620f15e4f8935ebacf1418fdd44373ad8707ef40977d9ce62057c83fb3ba"
+    },
+    "renderer": {
+      "path": "src/inference/romm_rec2020_velvia.py",
+      "sha256": "d6e3ff13a800fc31a40c921c6a98a0993204858ef84a180b00718ad12012f785"
+    },
+    "ingress": {
+      "path": "src/preprocess/romm_rec2020_product.py",
+      "sha256": "50e02a7d2664342a7a455ad71aaf2f87f5ef43619369fa5c06b3a5ed5dfdd9bc"
+    },
+    "cli": {
+      "path": "scripts/render_official_romm_rec2020_velvia.py",
+      "sha256": "9cbaae642e8cb0f0bb7c1f6bda81f8ee53bc7070ab5ee6896fd286242b23d802"
+    },
+    "test": {
+      "path": "tests/test_romm_rec2020_velvia_render.py",
+      "sha256": "2b141c2690f5541637961b3a865ad6a006b1304fb8d7f988bd424dfdcb929ba7"
+    },
+    "source_manifest": {
+      "path": "outputs/u1_4c13_cc0_synthetic_romm_source_v1/manifest.json",
+      "sha256": "f1ec5eaa845d1c7ab161e38baef65a3c96e459fbebd3f32dcd098c4d628875bd"
+    }
+  },
+  "formal_execution": {
+    "rows_per_run": 9,
+    "files_per_run": 19,
+    "bytes_per_run": 86695642,
+    "run_a_report_sha256": "46372b4bb1457549bf0b8c634c3f32e5d116ebf2db87cf67e9c3c604ee9a1e8a",
+    "run_b_report_sha256": "46372b4bb1457549bf0b8c634c3f32e5d116ebf2db87cf67e9c3c604ee9a1e8a",
+    "reports_byte_exact": true,
+    "ordered_output_receipt_inventory_exact": true,
+    "inventory_sha256": "4f89254f92a1e490678f374e6cc2898cb76f11c74ef5c7d373180de614fbdeb4",
+    "minimum_row_median_residual_scale": 1.0,
+    "maximum_fraction_residual_scale_below_0p5": 0.0356443298969072,
+    "all_exact_sample_readback": true,
+    "all_output_cicp_exact": true
+  },
+  "autonomous_visual_review": {
+    "artifact": "outputs/u1_4c15_romm_rec2020_velvia_product_v1/run_a/contact_srgb_diagnostic.jpg",
+    "sha256": "8cec6d00eb236b51866d115def94bbd692e45497a9ed24ff2b95f7b1bd7af068",
+    "confirmed_new_severe_artifacts": 0,
+    "source_noise_stress_rows": ["lg_lg_h910"],
+    "scope": "sRGB diagnostic contact-sheet review only; not owner preference, population preference, or full-resolution human adjudication"
+  },
+  "automatic_pass": true,
+  "decision": "retain_strict_opt_in_official_romm_rec2020_velvia_look",
+  "interpretation": "The evidence-bound wide-gamut renderer executes the validated official-ROMM ingress, Rec.2020 safe-Lab Velvia look, source-anchored RGB16 interior residual and single Rec.2020 RGB16 output quantization deterministically across nine qualified scene structures without a confirmed new severe contact-sheet artifact.",
+  "claim_ceiling": "Strict opt-in film-inspired Velvia look approximation on exact official-ROMM RGB16 input to relative Rec.2020 SDR RGB16 output; not Velvia stock response, calibration, arbitrary ICC, natural-WCG confirmation, HDR, camera colour, preference, default change, or product promotion."
+}

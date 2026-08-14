@@ -13575,3 +13575,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - This is a bounded colour-conversion capability, not a film-look render,
   arbitrary-ICC support, natural-WCG evidence, HDR or calibration. Evidence:
   `docs/evidence/U1_4C14_OFFICIAL_ROMM_REC2020_PRODUCT_EXECUTION_RESULT.json`.
+
+### 2026-08-14 - U1.4C15 passes strict ROMM/Rec.2020 Velvia look execution
+
+- The exact C13 `velvia_50/source` arm is now a versioned opt-in profile and
+  CLI: official ROMM RGB16 decode, analytical Rec.2020 ingress, wide-gamut
+  safe-Lab look, source-anchored RGB16 interior residual and one final RGB16
+  Rec.2020 PNG quantization.
+- Two nine-input executions are report/output/receipt exact
+  (`46372b4b...a1e8a`; inventory `4f89254f...deb4`). Row median residual scale
+  is 1.0 and the worst fraction below .5 is `.03564`.
+- An sRGB diagnostic contact sheet finds no confirmed new severe artifact; the
+  LG row retains its pre-existing heavy source noise. This remains an opt-in
+  film-inspired look approximation, not Velvia calibration or a default change.
+  Evidence: `docs/evidence/U1_4C15_ROMM_REC2020_VELVIA_PRODUCT_RESULT.json`.
