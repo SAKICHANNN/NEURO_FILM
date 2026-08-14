@@ -5,6 +5,8 @@
   "parents": {
     "physical_gain_contract": {"path":"configs/u6_p2av_softplus_physical_gain_coordinate_v1.json","sha256":"86b8eee11cafa928cf2b9e5c644c8a02d6904ce47f67ae4aca57b561aa99aee1"},
     "physical_gain_evidence": {"path":"docs/evidence/U6_P2AV_SOFTPLUS_PHYSICAL_GAIN_COORDINATE_RESULT.json","sha256":"58bd847b860d0bd403a3dee6510c8193e85df8c801f0060dd7efe654ab3f63d4","required_automatic_pass":true},
+    "nonuniform_wedge_contract": {"path":"configs/u6_p2aw_nonuniform_positive_density_wedge_v1.json","sha256":"5a983d8f1da1a96232c20de36de039112dc8723f8872fb41d896cd6693217831"},
+    "single_realization_boundary": {"path":"docs/evidence/U6_P2AW_NONUNIFORM_POSITIVE_DENSITY_WEDGE_RESULT.json","sha256":"f779862416bc6f7e7e33c3ac552acfa710a0490bb6415a104b3158375fc38d09","required_automatic_pass":false},
     "uncertainty_evidence": {"path":"docs/evidence/U6_P2AX_LOCAL_DENSITY_UNCERTAINTY_RESULT.json","sha256":"e01d94a811a9769ce07310370c60b8e0605a99cd044c08f2fa808aee9acc9e34","required_automatic_pass":true},
     "scanner_contract": {"path":"configs/u6_p2ay_typed_density_scanner_chain_v1.json","sha256":"adaa672ce08c6ec5f370a91f67e075ab1d7f5a4bbff69a79ea18b2aa67fbc77c"},
     "bound_forward_evidence": {"path":"docs/evidence/U6_P2BA_BOUND_FORWARD_BW_SCAN_RESULT.json","sha256":"f98512f3e386e23b1baebdb46e7cf9ad4ac8cef7d00c0407ae371b27677cc433","required_automatic_pass":true},
