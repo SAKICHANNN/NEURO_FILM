@@ -9,7 +9,10 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.eval.analytic_y_chromaticity_third_adjudication import adjudicate, load_contract
+from src.eval.analytic_y_chromaticity_third_adjudication import (
+    adjudicate,
+    load_contract,
+)
 from src.eval.safe_base_ao6_chroma_direction import write_report
 
 
