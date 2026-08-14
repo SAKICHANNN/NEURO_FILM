@@ -13431,3 +13431,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Bind scanner nuisance to at least device, software and settings. This public
   scalar evidence does not expose spatial pixels, dark/flat frames or NPS, so
   P6AP's fixed-condition repeat-scan acquisition requirement remains open.
+
+### 2026-08-14 - U6.P7I closes scanner-safe P4HU product value
+
+- The exact P6AM scanner-safe residual was inserted post-scanner and before encode/AO6 without refitting P4HU or AO6. Two fresh formal workers are science/PNG-inventory exact across nine P7H sources and pass resource limits.
+- The executor is identity on all rows (`limited=0`, scale `1`), so all 36 semantic output PNGs equal P7H. High-frequency chroma remains `.00502189 > .004` and the diagnostic output boundary remains `.0315493 > .005`.
+- Decision: retain current AO6, forbid blind review, and close this exact scanner-safe P4HU combination without rescue. Evidence: `docs/evidence/U6_P7I_SCANNER_SAFE_P4HU_AO6_VALUE_RESULT.json`.

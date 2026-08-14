@@ -1,0 +1,62 @@
+{
+  "schema": "neuro-film.u6-p7i-scanner-safe-p4hu-ao6-value-evidence.v1",
+  "experiment_id": "u6-p7i-scanner-safe-p4hu-ao6-value-v1",
+  "date": "2026-08-14",
+  "implementation_commits": [
+    "831167b3",
+    "359f80c3"
+  ],
+  "bindings": {
+    "contract_sha256": "f4b5bf2132e0656a6251e1bf0852ef854743ceec48e08482a8efd37b64af6168",
+    "evaluator_sha256": "60fe4fc658cb5b13c26d230a2f5c54f60373819f454fefbb5b1981922bfe4633",
+    "shared_evaluator_sha256": "80edd5fbe2e20f0c66f41223f7d30b5064c72276a3d735d50972d6a0986516c9",
+    "runner_sha256": "5773c10746c5520b876ff40e5627f075a0073ec45b1139f47c13b4c2db6de7fb",
+    "generic_runner_sha256": "218caf3679eca6c27c87b73c8a7d35671ca40245093c27d902d7ac815c94e7a5",
+    "test_sha256": "ff040cd85a74d0461181621385bf1d5d8d1e3ffdf82a4fffaf64661f60df8d24"
+  },
+  "formal_report": {
+    "logical_path": "outputs/u6_p7i_scanner_safe_p4hu_ao6_value_formal_v2/report.json",
+    "sha256": "cc378eb2e635b0bc740664d6c01c6019dc9200a07c10b072030e78d3dc345674",
+    "scientific_stable_evidence_id": "bce9e4be61718d0607e04145c80fab0714ee1c5881b1209c3f91712baf9a7a96",
+    "ordered_output_inventory_sha256": "cf288a2f08b48cb5435b82dfadfc0fa8440953f72589e6bbe3464d0bf0fe1cd3",
+    "png_inventory_sha256": "7f9aded6238a0dc25c7315d3e2cf6eb8c588c56e02d7cf7b705ebb615fbf6481"
+  },
+  "execution": {
+    "formal_processes": 2,
+    "fresh_worker_science_and_png_inventory_exact": true,
+    "source_count": 9,
+    "output_count_per_process": 36,
+    "peak_process_tree_rss_bytes": [930721792, 940437504],
+    "worker_wall_seconds": [321.80434269999387, 257.5515146999969],
+    "resource_pass": true,
+    "preformal_amendment": "An incomplete no-report attempt was terminated after parallel review found that the contract used a shorthand runtime ID rather than the exact P6AM constant. The exact runtime ID was corrected and committed before both formal workers. The incomplete attempt is not evidence."
+  },
+  "scanner_safe_result": {
+    "runtime_id": "neuro-film.scanner-safe-residual.v1",
+    "receipt_count": 9,
+    "maximum_limited_pixel_fraction": 0.0,
+    "minimum_median_scale": 1.0,
+    "minimum_scale": 1.0,
+    "maximum_collinearity_error": 0.0,
+    "all_additional_gates_pass": true,
+    "semantic_outputs_exact_to_parent_p7h": "36/36"
+  },
+  "automatic_result": {
+    "minimum_physical_residual_rms": 0.001628907400322434,
+    "population_p95_combined_vs_matched_scanner_ao6_abs": 0.006065143272280693,
+    "population_p99_combined_vs_matched_scanner_ao6_abs": 0.01159018523991108,
+    "maximum_flat_region_p99_combined_vs_matched_scanner_ao6_abs": 0.014078022912144661,
+    "maximum_high_frequency_chroma_p999": 0.00502189202234149,
+    "maximum_allowed_high_frequency_chroma_p999": 0.004,
+    "total_isolated_excursion_count": 0,
+    "maximum_new_boundary_fraction_vs_matched_scanner_ao6": 0.0,
+    "maximum_output_code_boundary_fraction": 0.031549320524835986,
+    "maximum_allowed_output_code_boundary_fraction": 0.005,
+    "failed_gates": ["high_frequency_chroma", "output_boundaries"],
+    "automatic_pass": false,
+    "blind_review_allowed": false
+  },
+  "decision": "retain_current_ao6_and_close_exact_scanner_safe_p4hu_combination",
+  "interpretation": "The independently retained scanner-safe residual is exactly inactive on every P7H row because the scanner-linear P4HU candidates already lie inside the RGB cube. It therefore preserves all 36 semantic output bytes and both decisive P7H failures. Gamut-safe direction scaling cannot repair this in-cube high-frequency chroma and boundary failure; no blind review or same-family rescue opens.",
+  "claim_ceiling": "Fresh nine-camera Windows-host automatic negative for the exact scanner-safe P4HU plus AO6 combination; not film-stock calibration, preference, portable density runtime or product evidence."
+}
