@@ -1,0 +1,84 @@
+{
+  "schema": "neuro_film.u6_p2au_softplus_mean_coordinate_interpolation_contract.v1",
+  "node": "U6.P2AU",
+  "question": "Does inverse-softplus mean anchoring plus interpolated node residual generalize positive density fields to wholly fresh quarter-density locations without refitting?",
+  "parents": {
+    "node_fit": {
+      "path": "docs/evidence/U6_P2AS_POSITIVE_SOFTPLUS_DENSITY_FIELD_RESULT.json",
+      "sha256": "e867cdcadeef538829dec23877aa760939eb0a4e39dcde12671ecf44dd9bed58",
+      "required_automatic_pass": true
+    },
+    "raw_parameter_interpolation_boundary": {
+      "path": "docs/evidence/U6_P2AT_SOFTPLUS_DENSITY_PARAMETER_INTERPOLATION_RESULT.json",
+      "sha256": "6fae4386dad817822a7627002f8b21a5171fda711b97bc8fa04f67d7f932468e",
+      "required_automatic_pass": false,
+      "required_decision": "close this exact parameter interpolation without knot, transform, seed or gate rescue"
+    }
+  },
+  "parameter_nodes": {
+    "densities": [0.06, 0.36, 0.74, 1.0, 1.14],
+    "a": [
+      -2.810014813972266,
+      -0.8382389773643493,
+      0.09115505216804717,
+      0.5410155514279761,
+      0.7543368940147147
+    ],
+    "b": [
+      0.23837343070083786,
+      0.07535098949374423,
+      0.043570248858604985,
+      0.040985998098616985,
+      0.04082032940893165
+    ],
+    "a_coordinate": "inverse_softplus_density_plus_piecewise_linear_node_residual",
+    "b_interpolation": "piecewise_log_linear_in_density",
+    "density_extrapolation_allowed": false,
+    "parameter_refit_allowed": false
+  },
+  "confirmation": {
+    "densities": [0.135, 0.285, 0.455, 0.645, 0.805, 0.935, 1.035, 1.105],
+    "target_aperture_sigma_d": [
+      0.010363086004282937,
+      0.013230362017202544,
+      0.014949030929925687,
+      0.014949030929925687,
+      0.015437323695063478,
+      0.016462278749133374,
+      0.017296781129517255,
+      0.017905977198853968
+    ],
+    "seeds": [134217689, 268435399, 536870909]
+  },
+  "spatial_mechanism": {
+    "spatial_profile_id": "generic-scanner-convolved-thomas-p4bs-v1",
+    "particle_sigma_samples": 1.3253699417769098,
+    "cluster_sigma_samples": 1.1268619873805532,
+    "mean_offspring": 27.765942352935905,
+    "component_seeds": [2611923443488327891, 11400714819323198485],
+    "sample_pitch_micrometres": 6.35,
+    "measurement_aperture_diameter_micrometres": 48.0,
+    "truncate_sigma": 4.0
+  },
+  "evaluation": {
+    "field_shape": [512, 512],
+    "canonical_row_block_height": 31,
+    "row_partition_height": 127,
+    "measurement_crop_border_samples": 13,
+    "maximum_confirmation_relative_mean_error": 0.02,
+    "maximum_confirmation_median_sigma_relative_error": 0.03,
+    "maximum_confirmation_p95_sigma_relative_error": 0.05,
+    "minimum_developed_density_exclusive": 0.0,
+    "repeat_byte_exact": true,
+    "partition_exact": true,
+    "parameter_refit_count_zero": true,
+    "realized_normalization_count_zero": true,
+    "hard_clipping_count_zero": true,
+    "rgb_image_transform_count_zero": true
+  },
+  "branch_rule": {
+    "pass": "retain a continuous positive mean-anchored density profile and open reference-simulator integration",
+    "fail": "close this exact mean-coordinate interpolation without residual, knot, seed or gate rescue"
+  },
+  "claim_ceiling": "Fresh intermediate-density confirmation of a generic mean-anchored positive softplus structure profile; not current-stock calibration, measured NPS, microscopic grain, scanner truth, appearance or product evidence."
+}
