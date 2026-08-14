@@ -1,0 +1,27 @@
+{
+  "schema": "neuro_film.u6_p2ag_bw_characteristic_surface_evidence.v1",
+  "node": "U6.P2AG",
+  "implementation_commit": "f244e335eb2ed31b1f67553ab6736ccb486bca79",
+  "contract_sha256": "ce2f33451076668e0183d2d64be8440b24811abec31a526dd57fac986c5398ca",
+  "parent_evidence_sha256": "cb6cf294c3974bcb09addc668d37bce8bdaf8b36f3761b3de4c7409d7b749b54",
+  "report_sha256": "6f0e773efecda7201270718c69cdc1569cdd95173326040640b74678c43e9dac",
+  "stable_evidence_id": "7dff9441fd470f06563552d8ae79b0f138c1c787e3deb5c27523d61c4bace93f",
+  "surface_identity": "8a1f1ee316e1a273d33df2a2f12ad5933dfb5ee1a52c1fe71ca594a17360967e",
+  "formal_run_count": 2,
+  "formal_reports_byte_exact": true,
+  "automatic_pass": true,
+  "measurements": {
+    "surface_shape": [4, 33],
+    "all_exposure_rows_strictly_increasing": true,
+    "all_time_columns_strictly_increasing": true,
+    "maximum_source_reconstruction_error": 0.0,
+    "maximum_forward_inverse_log_exposure_error": 0.0,
+    "serialization_byte_exact": true,
+    "partition_exact": true,
+    "outside_domain_rejected": true,
+    "input_unchanged_on_failure": true,
+    "rgb_image_transform_count_zero": true
+  },
+  "decision": "Retain the typed table as a bounded source-derived B&W process primitive.",
+  "claim_ceiling": "Research-only interpolation of four first-party TRI-X 400 / D-76 diffuse-visual curves; not developer chemistry, roll calibration, grain, MTF, scanner, photographic appearance or product profile."
+}

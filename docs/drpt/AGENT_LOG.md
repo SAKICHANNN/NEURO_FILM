@@ -13271,3 +13271,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Do not infer time-varying toe or shoulder shape from this graph. P2AE remains
   a limited CI interpolation rather than a complete process model; no tone,
   grain, scanner, calibration or product mapping opens.
+
+### 2026-08-14 - U6.P2AG compiles bounded B&W characteristic surface
+
+- The four exact first-party TRI-X 400 / D-76 curves compile to a strict
+  `development_time x log_exposure -> diffuse_visual_density` 4x33 table.
+- Two reports are byte exact (`6f0e773e...3e9dac`, stable
+  `7dff9441...ace93f`). Both axes are strictly monotone; source reconstruction,
+  forward/inverse, serialization and partition errors are zero, and domain
+  mismatches reject without changing caller state.
+- Retain as a source-derived research primitive only. P2AF's unresolved shape
+  uncertainty remains binding; interpolation to unobserved times needs a
+  leave-one-time-out test before any photographic use.
