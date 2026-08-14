@@ -8,7 +8,7 @@
     "report_sha256": "c4164d93fe706aa77f9382621c48073e5fd3e790e6a8044defbf973bf99fbf04",
     "stable_evidence_id": "5edfa13c3baad289c89f56443dbbb43711bb4f6f81e2d50afda6048db1121c9a",
     "observations_path": "configs/u5_r2cb74_analytic_y_chromaticity_blind_observations_v1.json",
-    "observations_sha256": "a5ebdc3c96eb5c1bd4570ec8bad19cdbb86163209b869b22c4ac3bc9c07f06da"
+    "observations_sha256": "8f72dd39a2fbbbeba4c157eec0c5543c945356949bea83d85e4fe2f5462e5411"
   },
   "gates": {
     "maximum_confirmed_severe_artifact_count": 0,

@@ -8,7 +8,7 @@
   "source_order": ["canon_eos_r50_v", "panasonic_dc_s5m2", "om_system_tg_7", "samsung_galaxy_s21_ultra", "pentax_kf", "phase_one_iq180", "dji_fc350", "xiaomi_redmi_note_8t", "lg_lg_h910"],
   "rounds": [
     {"round": 1, "sheet_sha256": "3738228a3fa3030338ef994faf4ff5ad0f6a5804f8f322dbd0fe9fee313d24d3", "choices": ["A", "B", "A", "A", "A", "A", "A", "A", "A"]},
-    {"round": 2, "sheet_sha256": "9882e6db57acfe840dedd8374524369c83a195227e5f8bbba6af755974b3d12b", "choices": ["B", "A", "B", "B", "B", "B", "A", "B", "A"]},
+    {"round": 2, "sheet_sha256": "9882e6db57acfe840dedd8374524369c83a195227e5f8bbba6af5cc41d1d75d3", "choices": ["B", "A", "B", "B", "B", "B", "A", "B", "A"]},
     {"round": 3, "sheet_sha256": "68b20f541aaa5bff1ea79684f4616de33cb9380b35114f303ef195ce42edd13b", "choices": ["B", "A", "B", "B", "B", "B", "A", "B", "A"]}
   ],
   "severe_review": {
@@ -16,5 +16,6 @@
     "observations": "Across nine source-disjoint camera rows and both unlabeled arms, architecture, foliage, flowers, water, benches, vehicle and indoor edges remain continuous; no confirmed geometry break, text corruption, banding, posterization, block artifact, seam or unintended hard clipping. The LG source is intrinsically high-noise, but neither arm introduces a distinct structural corruption. Strong colour and tone shifts remain intended style."
   },
   "mapping_opened": false,
+  "execution_amendment": "The first adjudication attempt rejected at the round-2 sheet binding because this observation file had mechanically mistranscribed the already-reviewed formal sheet SHA. This amendment changes only that SHA to the report-bound value; all three precommitted A/B choice arrays, severe findings and gates remain byte-for-byte unchanged. The initial attempt produced no adjudication report.",
   "claim_ceiling": "Autonomous third source-disjoint confirmation choices and severe-artifact review only; not population preference, film truth, stock response, calibration or product promotion."
 }
