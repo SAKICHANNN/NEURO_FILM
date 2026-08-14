@@ -1,0 +1,93 @@
+{
+  "schema": "neuro-film.u1-4c6-gamutmlp-prophoto-rec2020-confirmation-evidence.v1",
+  "experiment_id": "U1.4C6",
+  "date": "2026-08-14",
+  "implementation_commits": [
+    "a213e4ef",
+    "da074ae2",
+    "a62cdedf",
+    "19a637c7",
+    "0f27ae78"
+  ],
+  "bindings": {
+    "source_contract_sha256": "a3951e74cdf71b35ff4dc12692afeaaed4bb148eae1d66fb33f2a2106a1f6925",
+    "source_manifest_sha256": "b39a93f7eca9ef57c1c965fdb349877c6bb976a0b05aac0c1fa53c173ffb3e7d",
+    "source_audit_report_sha256": "0d7b1ee5af45aabc07ae48519f18b78a9d0f0faaff9743f57d4f7bbee1f71fe8",
+    "source_audit_stable_evidence_id": "a246a8100766e82708571017e68d2235c375ae9dffff9d3b244a1a6473cc5fd7",
+    "source_contact_sheet_sha256": "dbe03ddf5b13d9181e472917b400c72bd0d1d52f82b77a36d9234e2f10b61e06",
+    "contract_sha256": "eae16a5eac0abb86a55a8409a0af834cc94f04929b9d3ef096b488ee47fea7b8",
+    "evaluator_sha256": "f88205ccf186ff6407707a9cb5685e1ab4fb353b7f12068e7e798668ba9eaca7",
+    "runner_sha256": "ddbe123871ac10d51e6cb6650f8dc3a058eace4da39388bf3f1988b2a0196a9b",
+    "test_sha256": "c997c5f2f4cc1a56b2a45053653bcddb247d10f7cc47466ce29cf65dcf222337",
+    "unchanged_c4_contract_sha256": "6e3caf8e65a71c798e97dff26e3af21c56193409decdb1f5c48b7b794733d607",
+    "unchanged_c4_evaluator_sha256": "92426a23c2a17e6ff0c17bb9bdd2e8effcebdda1f36baa716d45b572fde0d803"
+  },
+  "source_admission": {
+    "official_archive_sha256": "5865c81fc8a465617b79f3ed06409d13e8cfbedb37301653e8d87fedd3fcc68a",
+    "archive_png_members": 2000,
+    "selected_rows": 24,
+    "selected_camera_models": 8,
+    "visual_eligible_rows": 24,
+    "minimum_declared_prophoto_to_srgb_out_of_gamut_fraction": 0.11803054809570312,
+    "maximum_declared_prophoto_to_srgb_out_of_gamut_fraction": 0.6097755432128906,
+    "algorithm_execution_count_during_source_audit": 0,
+    "rights_scope": "official_gamutmlp_dataset_without_separate_dataset_or_underlying_image_redistribution_license",
+    "allowed_use": "internal_research_only"
+  },
+  "formal_replay": {
+    "run_a_report": "outputs/u1_4c6_gamutmlp_prophoto_rec2020_confirmation_formal_v1/run_a/report.json",
+    "run_b_report": "outputs/u1_4c6_gamutmlp_prophoto_rec2020_confirmation_formal_v1/run_b/report.json",
+    "report_sha256": "7731cf648d042609bcf03e13b03b113911955a9cf2a43501ade43f0b3d9e5b02",
+    "stable_evidence_id": "501a034469c2b7ec491d3e8724511d0da8b50064959791be1dbfda196fc2ab40",
+    "report_byte_exact": true,
+    "rgb16_png_count_per_run": 192,
+    "ordered_png_inventory_sha256": "679d0b2ea77656ad949e623e93e58015050b94f2771e8076ea5c033d4d026146",
+    "ordered_png_inventory_byte_exact": true,
+    "stderr_empty": true
+  },
+  "population": {
+    "sources": 24,
+    "camera_models": 8,
+    "styles": 4,
+    "gamut_modes": 2,
+    "renders_per_run": 192,
+    "interpretation": "Official GamutMLP ACR-rendered 512x512 RGB16 NUS-camera photographs declared as ProPhoto by the paper/package; the PNG members contain no embedded ICC and remain internal research-only."
+  },
+  "metrics": {
+    "source_count": 24,
+    "camera_model_count": 8,
+    "render_count": 192,
+    "minimum_native_srgb_out_of_gamut_fraction": 0.11803054809570312,
+    "minimum_precompression_rec2020_out_of_gamut_fraction": 0.0,
+    "maximum_luminance_preservation_absolute_error": 2.928376197086635e-08,
+    "maximum_new_rgb16_boundary_fraction_vs_mapped_source": 0.0,
+    "population_median_style_retention_ratio": 1.0,
+    "worst_render_style_retention_ratio": 0.999466743711947,
+    "population_median_residual_scale": 1.0,
+    "population_median_fraction_scale_below_0p5": 0.00002288818359375,
+    "maximum_p999_gradient_ratio_vs_mapped_source": 1.0416770678469807,
+    "maximum_adjacent_lstar_sign_inversion_fraction": 0.00007979463585425997,
+    "output_minimum": 0.0,
+    "output_maximum": 1.0
+  },
+  "failed_checks": [
+    "rec2020_compression_stress"
+  ],
+  "failure_mechanism": {
+    "frozen_gate": "minimum_precompression_rec2020_out_of_gamut_fraction_per_source >= 0.0001",
+    "zero_stress_rows": [
+      "NikonD5200-0148-landscape",
+      "SamsungNX2000-0153-landscape"
+    ],
+    "additional_below_gate_rows": [
+      "Canon1DsMkIII-0056-standard",
+      "Canon600D-0087-standard"
+    ],
+    "interpretation": "Declared ProPhoto content can be far outside sRGB while some rows are fully inside Rec.2020. Those rows do not exercise the analytical Rec.2020 compression mechanism, so the unchanged every-source stress gate correctly prevents this cohort from confirming C4."
+  },
+  "automatic_pass": false,
+  "decision": "close_exact_c4_composition_on_gamutmlp_without_source_style_margin_or_threshold_rescue",
+  "product_ingress_opened": false,
+  "production_default_changed": false,
+  "claim_ceiling": "Internal research-only independent official GamutMLP declared-ProPhoto boundary diagnosis; not embedded-ICC attestation, arbitrary ICC support, calibrated colour, film, stock, HDR, ACES, redistribution, preference or product ingress."
+}

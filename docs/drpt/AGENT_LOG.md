@@ -13477,3 +13477,19 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   stable `7b3b13c9...c2ff44`). Search metadata is not ICC evidence; retain C4
   and seek a byte-indexed independent WCG inventory. Evidence:
   `docs/evidence/U1_4C5_COMMONS_PROPHOTO_SOURCE_RESULT.json`.
+
+### 2026-08-14 - U1.4C6 closes GamutMLP as a C4 confirmation cohort
+
+- The official GamutMLP package supplied 24 visually eligible RGB16 declared-
+  ProPhoto photographs across eight NUS camera labels. Two source audits were
+  byte exact; every row is at least 11.80% outside sRGB under the declared
+  ROMM interpretation.
+- The unchanged C4 mapping and C3 residual produced two byte-exact reports and
+  192 exact RGB16 PNGs per run (`7731cf64...e5b02`, stable
+  `501a0344...c2ab40`). Boundary, style-retention, scale, gradient and order
+  gates pass.
+- The frozen every-source Rec.2020 compression-stress gate fails: two rows are
+  fully inside Rec.2020 and two more fall below `.0001`. Close this exact cohort
+  without deleting rows or relaxing the gate; retain C4 as prior FiveK-only
+  research evidence. Evidence:
+  `docs/evidence/U1_4C6_GAMUTMLP_PROPHOTO_REC2020_CONFIRMATION_RESULT.json`.
