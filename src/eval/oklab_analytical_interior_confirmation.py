@@ -34,7 +34,7 @@ from src.preprocess import load_working_image
 SCHEMA = "neuro-film.u1-4c11-oklab-analytical-interior-contract.v1"
 REPORT_SCHEMA = "neuro-film.u1-4c11-oklab-analytical-interior-report.v1"
 EXPERIMENT_ID = "U1.4C11"
-CONTRACT_SHA256 = "18043c7449b6e7f800f609ef444911a6e883f58dee1be264f20221ac63fc9ec3"
+CONTRACT_SHA256 = "7ddb5ebc94b50c3f657e02340a11d24bef1c837c46eb39c81ec7dfbfa94a2e2c"
 
 
 class AnalyticalInteriorConfirmationError(RuntimeError):
@@ -177,8 +177,8 @@ def evaluate(
 ) -> dict[str, Any]:
     if output_dir.exists():
         raise AnalyticalInteriorConfirmationError("C11 output directory must be create-only")
-    output_dir.mkdir(parents=True)
     c4_config, source_rows = _validate_inputs(contract, root)
+    output_dir.mkdir(parents=True)
     mapper = contract["mapper"]
     source_facts: list[dict[str, Any]] = []
     render_rows: list[dict[str, Any]] = []

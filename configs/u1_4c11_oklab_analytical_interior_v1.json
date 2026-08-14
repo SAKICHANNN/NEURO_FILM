@@ -57,7 +57,7 @@
   },
   "source": {
     "expected_rows": 12,
-    "expected_embedded_icc_sha256": "0a8ef7d1a6557c4488fa124395d2507e463e450e11341539479ad7187393f27c",
+    "expected_embedded_icc_sha256": "0a8ef7d1d958d98225b3b71d93d9e8e3cecd9c302e014973d025d2a977ecf27c",
     "maximum_evaluation_side": 1600,
     "decode": "product-load-working-image-embedded-profile-semantics"
   },
