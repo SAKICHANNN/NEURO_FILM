@@ -1,0 +1,62 @@
+{
+  "schema": "neuro_film.u6_p6ar_chin_scanner_setting_transfer_contract.v1",
+  "experiment_id": "u6-p6ar-chin-scanner-setting-transfer-v1",
+  "source": {
+    "title": "Effects on Dynamic Range: An Evaluation of Multi-Exposure Features and Related Variables in Two-Dimensional Image Scanning",
+    "publisher": "Canadian Heritage Information Network",
+    "url": "https://www.canada.ca/en/heritage-information-network/services/digitization/effects-dynamic-range.html",
+    "page_modified": "2025-10-17",
+    "retrieved_utc_date": "2026-08-14",
+    "html_sha256": "e84d527b6e6854bdc8cadbff20daaa2ecf50f016de1558e4046fa59e11235fc6",
+    "method_facts": {
+      "target": "ST-53-1 35mm greyscale transparency",
+      "trial_scans_per_condition": 10,
+      "target_and_scanner_untouched_within_trials": true,
+      "bit_depth_per_rgb_channel": 16,
+      "format": "TIFF",
+      "factorial_cells": 16,
+      "spatial_pixels_available": false,
+      "dark_or_flat_frames_available": false
+    }
+  },
+  "observations": [
+    {"test": 1, "scanner": "flatbed", "software": "1", "multi_exposure": false, "infrared": false, "dynamic_range": 3.03},
+    {"test": 2, "scanner": "flatbed", "software": "1", "multi_exposure": false, "infrared": true, "dynamic_range": 3.65},
+    {"test": 3, "scanner": "flatbed", "software": "1", "multi_exposure": true, "infrared": false, "dynamic_range": 3.42},
+    {"test": 4, "scanner": "flatbed", "software": "1", "multi_exposure": true, "infrared": true, "dynamic_range": 3.88},
+    {"test": 5, "scanner": "flatbed", "software": "2", "multi_exposure": false, "infrared": false, "dynamic_range": 3.57},
+    {"test": 6, "scanner": "flatbed", "software": "2", "multi_exposure": false, "infrared": true, "dynamic_range": 3.47},
+    {"test": 7, "scanner": "flatbed", "software": "2", "multi_exposure": true, "infrared": false, "dynamic_range": 3.65},
+    {"test": 8, "scanner": "flatbed", "software": "2", "multi_exposure": true, "infrared": true, "dynamic_range": 3.65},
+    {"test": 9, "scanner": "slide", "software": "1", "multi_exposure": false, "infrared": false, "dynamic_range": 3.16},
+    {"test": 10, "scanner": "slide", "software": "1", "multi_exposure": false, "infrared": true, "dynamic_range": 3.16},
+    {"test": 11, "scanner": "slide", "software": "1", "multi_exposure": true, "infrared": false, "dynamic_range": 3.53},
+    {"test": 12, "scanner": "slide", "software": "1", "multi_exposure": true, "infrared": true, "dynamic_range": 3.74},
+    {"test": 13, "scanner": "slide", "software": "2", "multi_exposure": false, "infrared": false, "dynamic_range": 3.29},
+    {"test": 14, "scanner": "slide", "software": "2", "multi_exposure": false, "infrared": true, "dynamic_range": 3.27},
+    {"test": 15, "scanner": "slide", "software": "2", "multi_exposure": true, "infrared": false, "dynamic_range": 3.31},
+    {"test": 16, "scanner": "slide", "software": "2", "multi_exposure": true, "infrared": true, "dynamic_range": 3.58}
+  ],
+  "published_aggregate_checks": {
+    "multi_exposure_mean_gain": 0.27,
+    "infrared_mean_gain": 0.18,
+    "absolute_tolerance": 0.005
+  },
+  "candidate": {
+    "id": "scanner-independent-additive-setting-deltas-v1",
+    "fit": "mean matched contrast on one scanner across software and the other setting",
+    "confirmation": "four matched contrasts on the held scanner",
+    "directions": ["flatbed-to-slide", "slide-to-flatbed"],
+    "post_score_refit_allowed": false
+  },
+  "gates": {
+    "require_complete_2x2x2x2_factorial": true,
+    "require_all_multi_exposure_contrasts_nonnegative": true,
+    "require_all_infrared_contrasts_nonnegative": true,
+    "maximum_cross_scanner_absolute_contrast_error": 0.15,
+    "require_both_transfer_directions": true
+  },
+  "decision_if_pass": "retain fixed scanner-setting deltas only as a non-spatial research nuisance prior",
+  "decision_if_fail": "bind scanner-setting effects to scanner plus software and reject a universal additive nuisance profile",
+  "claim_ceiling": "Retrospective scalar dynamic-range setting-effect evidence from one public fixed-target factorial; not spatial NPS, dark/flat calibration, film grain, scanner model calibration, photographic quality, or product authority."
+}
