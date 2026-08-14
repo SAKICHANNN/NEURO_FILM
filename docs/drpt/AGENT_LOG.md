@@ -13319,3 +13319,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   error is `11.061x`, so both median and worst gates fail decisively.
 - Do not use the generic geometry as TRI-X structure. The scalar measurement can
   constrain aperture amplitude only; it cannot identify NPS or particle size.
+
+### 2026-08-14 - U6.P2AK compiles the measured TRI-X scalar boundary
+
+- The exact Kodak observation compiles to a typed amplitude-only profile:
+  net diffuse density `1.0`, diffuse RMS sigma-D `.017`, `48um` aperture.
+- Two reports are byte exact (`4b8671dd...de5880`, stable
+  `1e97eb21...3394fc`). Serialization, identity and exact replay pass; any
+  density/aperture mismatch and every spatial-render request reject.
+- This is a future compiler constraint only. Density dependence, NPS, particle
+  geometry, scanner response and photographic rendering remain unidentified.

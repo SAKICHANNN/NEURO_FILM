@@ -1,0 +1,23 @@
+{
+  "schema": "neuro_film.u6_p2ak_trix_granularity_scalar_profile_evidence.v1",
+  "node": "U6.P2AK",
+  "implementation_commit": "5ff2423d2277f0ceea187ab3cbb6d82d6e34b2bb",
+  "contract_sha256": "f6f31462b6fad5aedd7c74c2a9ac8946836f9fd7c48b1021327036fcd00ccf1c",
+  "report_sha256": "4b8671dd4727108ee35e277473e36a7b38c8c32a2429736120cf205867de5880",
+  "stable_evidence_id": "1e97eb2121c1035b7fe20fcc54e1c7bbecfffb5bf17a21ae90730df38a3394fc",
+  "profile_identity": "482714d55fc2591b4c748ceb61118a1db4b29fb1deba0156e97999b62e897c8b",
+  "formal_run_count": 2,
+  "formal_reports_byte_exact": true,
+  "automatic_pass": true,
+  "observation": {
+    "film_stock_id": "kodak_professional_tri_x_400_400tx",
+    "density_mean": 1.0,
+    "density_rms": 0.017,
+    "aperture_diameter_micrometres": 48.0,
+    "densitometry": "diffuse_visual"
+  },
+  "spatial_nps_status": "unidentified",
+  "render_allowed": false,
+  "decision": "Retain a TRI-X amplitude-only scalar profile as a future structure-compiler constraint.",
+  "claim_ceiling": "One first-party TRI-X 400 diffuse-rms density amplitude at net density 1.0 and a 48 micrometre aperture; not density dependence, NPS, grain size, scanner response, roll calibration, photographic appearance or product evidence."
+}
