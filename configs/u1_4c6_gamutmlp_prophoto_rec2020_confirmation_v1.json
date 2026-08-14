@@ -1,0 +1,65 @@
+{
+  "schema": "neuro-film.u1-4c6-gamutmlp-prophoto-rec2020-confirmation-contract.v1",
+  "experiment_id": "U1.4C6",
+  "status": "frozen_before_algorithm_implementation_or_candidate_render",
+  "question": "Does the unchanged C4 luminance-axis compression plus C3 residual pass the unchanged C4 automatic gates on an independent official GamutMLP NUS-camera declared-ProPhoto cohort?",
+  "parents": {
+    "c4_contract": {"path":"configs/u1_4c4_native_prophoto_rec2020_confirmation_v1.json","sha256":"6e3caf8e65a71c798e97dff26e3af21c56193409decdb1f5c48b7b794733d607"},
+    "c4_evaluator": {"path":"src/eval/rec2020_native_prophoto_confirmation.py","sha256":"92426a23c2a17e6ff0c17bb9bdd2e8effcebdda1f36baa716d45b572fde0d803"},
+    "c4_evidence": {"path":"docs/evidence/U1_4C4_NATIVE_PROPHOTO_REC2020_CONFIRMATION_RESULT.json","sha256":"33bfa293ad57fee6720ff9a8dc09957c2a3bfedff048853d936443ea6d94d218","required_automatic_pass":true},
+    "source_contract": {"path":"configs/u1_4c6_gamutmlp_nus_prophoto_source_v1.json","sha256":"a3951e74cdf71b35ff4dc12692afeaaed4bb148eae1d66fb33f2a2106a1f6925"},
+    "source_audit_report": {"path":"outputs/u1_4c6_gamutmlp_source_audit_v1/run_b/report.json","sha256":"0d7b1ee5af45aabc07ae48519f18b78a9d0f0faaff9743f57d4f7bbee1f71fe8","required_automatic_pass":true},
+    "fivek_prophoto_decoder": {"path":"scripts/build_fivek_freeze_pack.py","sha256":"1a298250f8e6fb36c7a4394673200db0a40b1117f0aebd6413ad7e6011116161"}
+  },
+  "source": {
+    "manifest": "configs/u1_4c6_gamutmlp_nus_prophoto_source_manifest_v1.json",
+    "manifest_sha256": "b39a93f7eca9ef57c1c965fdb349877c6bb976a0b05aac0c1fa53c173ffb3e7d",
+    "expected_rows": 24,
+    "expected_camera_models": 8,
+    "expected_dtype": "uint16",
+    "required_visual_pass": true,
+    "required_allowed_use": "internal_research_only",
+    "required_rights_scope": "official_gamutmlp_dataset_without_separate_dataset_or_underlying_image_redistribution_license",
+    "interpretation": "Official GamutMLP 512x512 16-bit ACR-rendered NUS-camera photographs declared by the paper/package as ProPhoto; no embedded ICC, calibration, redistribution or product-rights claim."
+  },
+  "ingress": {
+    "prophoto_transfer": "ROMM piecewise 16x toe then power 1.8",
+    "chromatic_adaptation": "Bradford D50 to D65",
+    "destination_working_space": "linear_rec2020",
+    "mapping_id": "rec2020-luminance-axis-analytical-interior-v1",
+    "rec2020_luminance_weights": [0.2627, 0.6780, 0.0593],
+    "map_only_out_of_gamut_pixels": true,
+    "neutral_axis": "repeat(source Rec.2020 luminance Y across RGB)",
+    "safe_interval": "[min(neutral,2/65535),max(neutral,1-2/65535)]",
+    "hard_clipping_allowed": false,
+    "posthoc_limiting_allowed": false,
+    "source_or_operator_fitting_allowed": false
+  },
+  "render": {
+    "styles": ["ektar_100", "portra_800", "velvia_50", "vision3_250d"],
+    "gamut_modes": ["source", "chroma"],
+    "c3_mechanism_id": "source-anchored-rgb16-interior-residual-v1",
+    "rgb16_output": true,
+    "visual_review_before_automatic_pass": false
+  },
+  "automatic_gates": {
+    "require_two_run_report_and_png_identity": true,
+    "minimum_native_srgb_out_of_gamut_fraction_per_source": 0.01,
+    "minimum_precompression_rec2020_out_of_gamut_fraction_per_source": 0.0001,
+    "maximum_luminance_preservation_absolute_error": 0.000002,
+    "require_finite_in_gamut_mapped_sources": true,
+    "maximum_new_rgb16_boundary_fraction_vs_mapped_source": 0.0005,
+    "minimum_population_median_style_retention_ratio": 0.9,
+    "minimum_worst_render_style_retention_ratio": 0.75,
+    "minimum_population_median_residual_scale": 0.95,
+    "maximum_population_median_fraction_scale_below_0p5": 0.05,
+    "maximum_p999_gradient_ratio_vs_mapped_source": 1.35,
+    "maximum_adjacent_lstar_sign_inversion_fraction": 0.005
+  },
+  "branches": {
+    "pass": "retain_c4_mechanism_as_independent_official_source_confirmation_without_product_ingress",
+    "fail": "close_exact_c4_composition_on_gamutmlp_without_source_style_margin_or_threshold_rescue"
+  },
+  "production_default_changed": false,
+  "claim_ceiling": "Internal research-only independent official GamutMLP declared-ProPhoto to Rec.2020 colour-operator evidence; not embedded-ICC attestation, arbitrary ICC support, calibrated colour, film, stock, HDR, ACES, redistribution, preference or product ingress."
+}
