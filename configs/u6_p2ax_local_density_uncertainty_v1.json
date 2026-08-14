@@ -1,0 +1,52 @@
+{
+  "schema": "neuro_film.u6_p2ax_local_density_uncertainty_contract.v1",
+  "node": "U6.P2AX",
+  "question": "Does the frozen positive physical-gain profile predict local aperture variance in expectation with calibrated finite-realization uncertainty on a fresh nonuniform density layout?",
+  "parents": {
+    "single_realization_boundary": {
+      "path": "docs/evidence/U6_P2AW_NONUNIFORM_POSITIVE_DENSITY_WEDGE_RESULT.json",
+      "sha256": "f779862416bc6f7e7e33c3ac552acfa710a0490bb6415a104b3158375fc38d09",
+      "required_automatic_pass": false,
+      "required_decision": "close this exact nonuniform wedge integration without plateau, tile, parameter, seed or gate rescue"
+    },
+    "wedge_contract": {
+      "path": "configs/u6_p2aw_nonuniform_positive_density_wedge_v1.json",
+      "sha256": "5a983d8f1da1a96232c20de36de039112dc8723f8872fb41d896cd6693217831"
+    }
+  },
+  "fresh_layout": {
+    "shape": [512, 512],
+    "cell_shape": [128, 128],
+    "ordered_cell_densities": [
+      0.4875, 0.0825, 0.9275, 0.2475,
+      1.0975, 0.6725, 0.1725, 0.8475,
+      0.3975, 1.1275, 0.5775, 0.1125,
+      0.7575, 0.3325, 1.0375, 1.0775
+    ],
+    "realization_seeds": [34359738337, 34359738421, 34359738507, 34359738591, 34359738679, 34359738763, 34359738847, 34359738939, 34359739023, 34359739111, 34359739197, 34359739281]
+  },
+  "uncertainty_model": {
+    "estimator": "sample_mean_and_student_t_interval_over_realization_level_aperture_sigma",
+    "student_t_two_sided_95_multiplier_df11": 2.200985160082949,
+    "confirmation_refit_allowed": false,
+    "realized_variance_normalization_allowed": false
+  },
+  "evaluation": {
+    "cell_measurement_inset_samples": 20,
+    "maximum_aggregate_relative_mean_error": 0.02,
+    "maximum_aggregate_median_sigma_relative_error": 0.02,
+    "maximum_aggregate_p95_sigma_relative_error": 0.03,
+    "minimum_target_interval_coverage_fraction": 0.875,
+    "minimum_developed_density_exclusive": 0.0,
+    "repeat_report_exact": true,
+    "parameter_refit_count_zero": true,
+    "realized_normalization_count_zero": true,
+    "hard_clipping_count_zero": true,
+    "rgb_image_transform_count_zero": true
+  },
+  "branch_rule": {
+    "pass": "retain a finite-realization uncertainty-aware nonuniform density reference primitive and open typed density-to-transmittance interpretation",
+    "fail": "close this exact local variance expectation and uncertainty model without realization, layout, interval or gate rescue"
+  },
+  "claim_ceiling": "Ensemble-level uncertainty validation of a generic nonuniform positive B&W density-reference simulation; not per-image realized-statistic calibration, current-stock calibration, measured density-dependent NPS, microscopic grain, scanner truth, appearance or product evidence."
+}
