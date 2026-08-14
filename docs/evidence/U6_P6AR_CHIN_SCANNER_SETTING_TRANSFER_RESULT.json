@@ -1,0 +1,43 @@
+{
+  "schema": "neuro_film.u6_p6ar_chin_scanner_setting_transfer_evidence.v1",
+  "node": "U6.P6AR",
+  "contract_commit": "d051a3fb",
+  "implementation_commit": "1383d2bf",
+  "source_url": "https://www.canada.ca/en/heritage-information-network/services/digitization/effects-dynamic-range.html",
+  "source_page_modified": "2025-10-17",
+  "source_html_sha256": "e84d527b6e6854bdc8cadbff20daaa2ecf50f016de1558e4046fa59e11235fc6",
+  "source_design": {
+    "scanner_hardware": 2,
+    "scanner_software": 2,
+    "multi_exposure_states": 2,
+    "infrared_states": 2,
+    "factorial_cells": 16,
+    "trial_scans_per_cell": 10,
+    "spatial_pixels_available": false,
+    "dark_or_flat_frames_available": false
+  },
+  "formal_runs": 2,
+  "reports_byte_exact": true,
+  "report_sha256": "597bb5a9e94760e5ff235c6e1688bb5154bbafd1540e368174a2914513567dc2",
+  "stable_evidence_id": "653f3b3d26f20b22473f6e0e4cad4b412324b93028a8a5015b6a1cb97eab2350",
+  "metrics": {
+    "published_multi_exposure_mean_gain_reproduced": 0.27,
+    "published_infrared_mean_gain_reproduced": 0.18,
+    "minimum_multi_exposure_gain": 0.02,
+    "maximum_multi_exposure_gain": 0.58,
+    "minimum_infrared_gain": -0.1,
+    "maximum_infrared_gain": 0.62,
+    "maximum_cross_scanner_absolute_contrast_error": 0.505
+  },
+  "gate_results": {
+    "complete_factorial": true,
+    "published_aggregate_replay": true,
+    "multi_exposure_direction": true,
+    "infrared_direction": false,
+    "cross_scanner_transfer": false,
+    "both_directions": true
+  },
+  "automatic_pass": false,
+  "decision": "bind scanner-setting effects to scanner plus software and reject a universal additive nuisance profile",
+  "claim_ceiling": "Retrospective scalar dynamic-range setting-effect evidence from one public fixed-target factorial; not spatial NPS, dark/flat calibration, film grain, scanner model calibration, photographic quality, or product authority."
+}

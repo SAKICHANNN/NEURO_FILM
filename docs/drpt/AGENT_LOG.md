@@ -13417,3 +13417,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   salt-like bright-speckle hard negative. Retain the typed neutral B&W scan and
   move to an unaddressed physical-imaging leaf rather than another topology
   variant.
+
+### 2026-08-14 - U6.P6AR rejects universal scanner-setting deltas
+
+- Audited the current Canadian Heritage Information Network ISO 21550-style
+  fixed-target study: two scanners, two software packages, multi-exposure and
+  infrared on/off form 16 cells with ten untouched-target repeat scans each.
+  The public table's mean dynamic-range gains replay exactly at `.27` and `.18`.
+- Two reports are byte exact (`597bb5a9...67dc2`). Matched multi-exposure gains
+  span `.02--.58`; infrared spans `-.10--.62`; reciprocal held-scanner contrast
+  transfer misses by as much as `.505`. The universal additive setting profile
+  therefore fails both direction and transfer gates.
+- Bind scanner nuisance to at least device, software and settings. This public
+  scalar evidence does not expose spatial pixels, dark/flat frames or NPS, so
+  P6AP's fixed-condition repeat-scan acquisition requirement remains open.
