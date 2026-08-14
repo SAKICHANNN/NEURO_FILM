@@ -1,0 +1,60 @@
+{
+  "schema": "neuro_film.u6_p2bb_bw_structure_photographic_value_evidence.v1",
+  "node": "U6.P2BB",
+  "source_contract_commit": "49d51c58",
+  "source_decision_commit": "d1055e25",
+  "contract_commit": "d2464a6a",
+  "implementation_commit": "633fcddc",
+  "formal_runner_commit": "288046cc",
+  "formal_runner_fix_commit": "6f1c1379",
+  "contract_sha256": "a269ce07c41be449525610d93328749286f914e1088185b37d2aab2db58a48ff",
+  "source_manifest_sha256": "8c2d8d3414d9d44b7a517c88e51c37a8ee8388991b26c091a518a9495ae1d323",
+  "source_rows": 11,
+  "formal_processes": 2,
+  "worker_reports_byte_exact": true,
+  "output_inventory_byte_exact": true,
+  "worker_report_sha256": "64df92d18db618f3deb200ac73f70cf87db8f755d9ed9376a9562533bb39f3cc",
+  "worker_stable_evidence_id": "9acf7166e498c368550d07e82794725682b95d3e8af65aab8654ba0ad35c1f51",
+  "formal_report_sha256": "bff7edc5e68cb8a4f1610fad2d36efa5b0105a0b56d8e7a27e111fde17b9c19f",
+  "formal_stable_evidence_id": "c903f6c4c63eabb03405f25243e09ab1ae507f62980cc07b553d2756d4df23e8",
+  "contact_sheet_sha256": "029b7e342bb1801cd71e744beec329469a55c6094a69f3acada4ccfe9c01d31d",
+  "metrics": {
+    "minimum_per_row_encoded_rms_difference": 0.009146644590873382,
+    "population_p99_encoded_absolute_difference": 0.0649547427892685,
+    "maximum_flat_region_p99_encoded_absolute_difference": 0.07957882910626797,
+    "total_isolated_excursion_count": 20895,
+    "maximum_new_boundary_fraction_vs_baseline": 0.0,
+    "maximum_output_code_boundary_fraction": 0.0,
+    "minimum_developed_density": 0.020092848769094222,
+    "maximum_channel_spread": 0.0
+  },
+  "gate_results": {
+    "visible_separation": true,
+    "finite": true,
+    "positive_density": true,
+    "neutral_channels": true,
+    "partition_exact": true,
+    "rgb16_readback": true,
+    "new_boundary": true,
+    "output_boundary": true,
+    "p99_tail": false,
+    "flat_tail": false,
+    "isolated_excursions": false,
+    "rss": false,
+    "wall": true
+  },
+  "peak_process_tree_rss_bytes": [
+    2194219008,
+    2213306368
+  ],
+  "worker_wall_seconds": [
+    61.18257810000068,
+    65.89205019999645
+  ],
+  "scientific_pass": false,
+  "automatic_pass": false,
+  "blind_review_allowed": false,
+  "decision": "retain the typed neutral B&W scan without promoting this fixed structure into photographic value review",
+  "family_status": "closed_without_strength_threshold_or_cohort_rescue",
+  "claim_ceiling": "Generic B&W developed-density structure automatic safety and visible-separation evidence on eleven fresh CC0 ordinary photographs; not TRI-X or stock calibration, measured scanner truth, preference, authenticity, target-runtime evidence or product promotion."
+}

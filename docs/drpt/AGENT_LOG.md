@@ -13401,3 +13401,19 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 
 - The forward neutral B&W interpretation now binds exact source-scan and display hashes. Two formal runs, partitioned execution and receipt replay were byte-exact; one-ULP source and display tamper controls were rejected, and no arithmetic inverse is claimed.
 - This resolves only replay identity and opens a fresh structural-value experiment. It does not change P2AZ's arithmetic-inverse boundary or establish stock, scanner, print, preference or product evidence.
+### 2026-08-14 - U6.P2BB closes fixed B&W density structure on photographs
+
+- Eleven fresh CC0 ordinary photographs were rendered by the frozen P2AV/P2AX
+  positive Thomas/softplus density structure and the identity-bound P2BA neutral
+  direct scan. Two fresh workers, their RGB16 outputs and contact sheets replay
+  byte exactly (`64df92d1...f3cc`; formal stable `c903f6c4...f23e8`).
+- Visible separation, finite/positive density, neutral channels, partition,
+  PNG16 readback and boundary gates pass. The structure nevertheless fails the
+  photographic safety gates: population P99 is `.06495`, flat-region P99 is
+  `.07958`, and there are `20,895` isolated excursions. Both workers also exceed
+  the 1.5 GiB RSS cap at 2.19--2.21 GB; wall time remains below 66 seconds.
+- Close this exact structure family without amplitude, threshold or cohort
+  rescue; do not open blind review. This independently reproduces the project's
+  salt-like bright-speckle hard negative. Retain the typed neutral B&W scan and
+  move to an unaddressed physical-imaging leaf rather than another topology
+  variant.
