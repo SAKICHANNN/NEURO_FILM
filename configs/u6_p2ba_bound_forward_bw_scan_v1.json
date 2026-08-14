@@ -1,0 +1,41 @@
+{
+  "schema": "neuro_film.u6_p2ba_bound_forward_bw_scan_contract.v1",
+  "node": "U6.P2BA",
+  "question": "Can the valid forward B&W negative direct-scan mapping be made exactly replayable by binding its source scan identity instead of inferring the source through a rounded arithmetic inverse?",
+  "parents": {
+    "inverse_boundary": {
+      "path": "docs/evidence/U6_P2AZ_BW_NEGATIVE_DIRECT_SCAN_RESULT.json",
+      "sha256": "bc34aed8338c20fa04b4a3d1ab799624d1579dbe7c8c5e2c2f3cff4d5bd39fbe",
+      "required_automatic_pass": false,
+      "required_decision": "close this exact direct-scan complement interpretation without endpoint, seed, mapping or gate rescue"
+    },
+    "direct_scan_contract": {
+      "path": "configs/u6_p2az_bw_negative_direct_scan_v1.json",
+      "sha256": "a5062a2841df15f1855d914378633d950ccc30add83fcadf207f43ef21598d99"
+    }
+  },
+  "fresh_realization_seed": 274877906899,
+  "receipt": {
+    "runtime_id": "neuro-film.bw-negative-direct-scan-bound-forward.v1",
+    "source_scan_sha256_required": true,
+    "display_linear_sha256_required": true,
+    "arithmetic_inverse_claimed": false
+  },
+  "evaluation": {
+    "forward_repeat_byte_exact": true,
+    "partition_exact": true,
+    "receipt_replay_exact": true,
+    "source_tamper_rejected": true,
+    "display_tamper_rejected": true,
+    "minimum_density_to_display_rank_correlation": 0.999999999,
+    "maximum_output_boundary_fraction": 0.0,
+    "endpoint_fit_count_zero": true,
+    "realized_normalization_count_zero": true,
+    "hard_clipping_count_zero": true
+  },
+  "branch_rule": {
+    "pass": "retain the identity-bound forward neutral B&W direct scan and open a fresh structural value ablation",
+    "fail": "close this exact bound-forward interpretation without receipt, seed, mapping or gate rescue"
+  },
+  "claim_ceiling": "Exact source-bound replay of a generic forward B&W negative direct-scan interpretation; not an arithmetic inverse, print interpretation, stock or scanner calibration, appearance preference, cross-platform parity or product promotion."
+}
