@@ -13443,3 +13443,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The unchanged CB50/CB51 operator passed every automatic gate on a third nine-camera source-disjoint cohort; two formal reports and all 39 non-report artifacts were byte exact (`c4164d93...fbf04`, stable `5edfa13c...21c9a`).
 - Precommitted autonomous review found zero confirmed severe artifacts, but the candidate won only one of three rounds (`4/4/7`), received `15/27` choices and four of nine source majorities. All frozen preference gates fail.
 - Retain AO6 and close this exact analytic Y/chromaticity route without tuning, additional votes or product promotion. Evidence: `docs/evidence/U5_R2CB74_ANALYTIC_Y_CHROMATICITY_THIRD_CONFIRMATION_RESULT.json`.
+
+### 2026-08-14 - U1.4C3 validates source-anchored Rec.2020 residual execution
+
+- The existing C1C safe-Lab residual was executed along its unchanged RGB direction with one analytical per-pixel scale into a source-anchored RGB16-safe interval. No style parameter, gamut mode, margin or threshold was fitted.
+- Two full nine-camera runs and all 72 RGB16 PNGs per run are byte exact (`f2122ac9...e753c`, stable `55a59a80...794de`). New boundary occupancy is zero; the worst style-retention ratio is `.999709`, maximum gradient ratio is `1.08610`, and maximum adjacent L* inversion is `.000587`.
+- Open only an independent native-wide-gamut confirmation. The current cohort is display-sRGB-derived stress evidence, so product wiring, HDR/ACES support, film claims and preference review remain closed. Evidence: `docs/evidence/U1_4C3_REC2020_SOURCE_ANCHORED_INTERIOR_RESULT.json`.

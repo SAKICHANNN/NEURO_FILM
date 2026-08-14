@@ -1,0 +1,51 @@
+{
+  "schema": "neuro-film.u1-4c3-rec2020-source-anchored-interior-evidence.v1",
+  "experiment_id": "U1.4C3",
+  "date": "2026-08-14",
+  "implementation_commits": [
+    "c011189d",
+    "8f7e1b34"
+  ],
+  "bindings": {
+    "contract_sha256": "9b4996b8aa383081775cb000c079ef35390a5f38022a9f7f685199aa5218527b",
+    "evaluator_sha256": "2b8a0c35e0a2385466b54937cd426df2e64e2a2cd976515d99809a7ee0ebdb41",
+    "runner_sha256": "729557db06222a92f883409fca6d9454b1c22bd1ee7f8cc2206bd42bf2863213",
+    "test_sha256": "71282477874684b91ac965dd46e4951b33cfb599fe91c77a18f7b2b978b3b74c",
+    "source_manifest_sha256": "3c698d8df93a7b48b87dff81ad6ddbaeb11d7c8478138ddef9545d57e336fcd7"
+  },
+  "formal_replay": {
+    "run_a_report": "outputs/u1_4c3_rec2020_source_anchored_interior_formal_v1/run_a2/report.json",
+    "run_b_report": "outputs/u1_4c3_rec2020_source_anchored_interior_formal_v1/run_b2/report.json",
+    "report_sha256": "f2122ac914c99d4e3999189b7eab6c132a81e4e36f790ca15200c0b30e9e753c",
+    "stable_evidence_id": "55a59a805cc1e3d3f587b4c97f98402002091288a2d9869e9189008d939794de",
+    "report_byte_exact": true,
+    "rgb16_png_count_per_run": 72,
+    "ordered_png_inventory_sha256": "0cd0eeef685f9e4f647f863abfff3400c82a1b68de0a732191acfd56da23696e",
+    "ordered_png_inventory_byte_exact": true,
+    "preformal_infrastructure_amendment": "The direct script launch lacked PYTHONPATH and produced no output. The next launch reached the first decoded source but failed before rendering because the sRGB transfer helper returns float64 while the working-space converter requires float32. The explicit float32 boundary was fixed, tested and committed before both formal runs; no contract, source, operator parameter or gate changed."
+  },
+  "population": {
+    "sources": 9,
+    "camera_makes": 9,
+    "styles": 4,
+    "gamut_modes": 2,
+    "renders_per_run": 72,
+    "interpretation": "CC0 ordinary digital photographs decoded as relative display-sRGB approximations and converted to display-linear Rec.2020; not native wide-gamut captures or film evidence"
+  },
+  "metrics": {
+    "maximum_new_rgb16_boundary_fraction_vs_source": 0.0,
+    "population_median_style_retention_ratio": 0.9999990954728006,
+    "worst_render_style_retention_ratio": 0.9997085611119592,
+    "population_median_residual_scale": 1.0,
+    "population_median_fraction_scale_below_0p5": 0.0,
+    "maximum_p999_gradient_ratio_vs_source": 1.0861017067761223,
+    "maximum_adjacent_lstar_sign_inversion_fraction": 0.000586971920455723,
+    "output_minimum": 0.0,
+    "output_maximum": 1.0
+  },
+  "automatic_pass": true,
+  "decision": "open_only_an_independent_wide_gamut_confirmation_before_any_adapter_integration",
+  "interpretation": "The analytical per-pixel residual scale eliminates all newly created Rec.2020 RGB16 boundary occupancy on this source-disjoint nine-camera cohort while leaving almost all existing C1C style residual unchanged. Existing source boundary codes remain allowed and explain the global output extrema. This is a positive mechanism result, not production or genuine wide-gamut confirmation.",
+  "production_default_changed": false,
+  "claim_ceiling": "Development-only intrinsic Rec.2020 boundary-safety and style-retention evidence for an isolated colour operator on display-sRGB-derived stress inputs; not film, stock, calibration, native wide-gamut capture, HDR, ACES, preference or product support."
+}
