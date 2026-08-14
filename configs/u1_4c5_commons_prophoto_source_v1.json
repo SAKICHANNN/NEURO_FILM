@@ -1,0 +1,57 @@
+{
+  "schema": "neuro-film.u1-4c5-commons-prophoto-source-contract.v1",
+  "experiment_id": "U1.4C5S",
+  "date_frozen": "2026-08-14",
+  "question": "Do twelve independently hosted, rights-explicit Wikimedia Commons photographs actually carry a decodable embedded ProPhoto RGB profile and provide a source-independent native-wide-gamut confirmation cohort?",
+  "source_discovery": {
+    "api": "https://commons.wikimedia.org/w/api.php",
+    "query": "generator=search; gsrsearch=\"ProPhoto RGB\"; gsrnamespace=6; gsrlimit=100; prop=imageinfo; iiprop=url|extmetadata|mime|size|sha1",
+    "retrieved_row_count": 36,
+    "raw_metadata_snapshot_sha256": "f806393e666a450f3b605fab3ff3fe7b7412947b06cc124de4e7eef9bccd4872",
+    "selection_rule": "ordinary photographic raster; explicit reusable licence; exclude diagrams, test patterns, deliberately misassigned profiles and near-duplicate crops; retain the frozen ordered rows without replacement"
+  },
+  "storage": {
+    "logical_root": "data/wide_gamut/commons_prophoto_u1_4c5",
+    "durable_location_policy": "repository-relative P-backed data root; D fallback only if P is unavailable",
+    "maximum_total_download_bytes": 210000000,
+    "network_requests_exact": 12
+  },
+  "eligibility": {
+    "required_source_count": 12,
+    "minimum_distinct_artist_count": 4,
+    "allowed_mime_types": ["image/jpeg", "image/png"],
+    "allowed_licenses": ["CC0", "CC BY 4.0", "CC BY-SA 4.0", "FAL"],
+    "require_exact_remote_byte_count": true,
+    "require_exact_remote_sha1": true,
+    "require_decodable_rgb_pixels": true,
+    "require_embedded_icc": true,
+    "required_embedded_profile_family": "ProPhoto RGB / ROMM RGB with D50 whitepoint and canonical RGB primaries",
+    "minimum_native_16bit_sources": 2,
+    "minimum_sources_with_nonzero_rec2020_oog_fraction": 9,
+    "maximum_exact_pixel_duplicate_pairs": 0,
+    "maximum_dhash_distance_for_cross_row_pair": 4,
+    "maximum_cross_row_pairs_at_or_below_dhash_threshold": 0,
+    "visual_review_required_before_algorithm_role": true
+  },
+  "rows": [
+    {"id":"adelaide_flagstaff","title":"File:Adelaide Flagstaff Hill-edit1.jpg","artist":"RainBoxRed","license":"FAL","mime":"image/jpeg","width":3468,"height":2589,"bytes":2293341,"sha1":"453f9a029a0db41207dc188ae26b88e615b6b48f","url":"https://upload.wikimedia.org/wikipedia/commons/9/9d/Adelaide_Flagstaff_Hill-edit1.jpg","page":"https://commons.wikimedia.org/wiki/File:Adelaide_Flagstaff_Hill-edit1.jpg"},
+    {"id":"groove_needle","title":"File:Groove and needle in close embrace from beginning to end.jpg","artist":"Franz van Duns","license":"CC BY-SA 4.0","mime":"image/jpeg","width":7952,"height":3181,"bytes":8108116,"sha1":"22fc99e6501fda0313fa0c867ba8a0023eec0e05","url":"https://upload.wikimedia.org/wikipedia/commons/4/4c/Groove_and_needle_in_close_embrace_from_beginning_to_end.jpg","page":"https://commons.wikimedia.org/wiki/File:Groove_and_needle_in_close_embrace_from_beginning_to_end.jpg"},
+    {"id":"hand_crank_generator","title":"File:2021-03-30 Hand-crank operated generator (dynamo torch) plus backup.jpg","artist":"Franz van Duns","license":"CC BY-SA 4.0","mime":"image/jpeg","width":9504,"height":6336,"bytes":14569672,"sha1":"8241a420944d8e5265fdb4edb44191101f244df8","url":"https://upload.wikimedia.org/wikipedia/commons/f/f3/2021-03-30_Hand-crank_operated_generator_%28dynamo_torch%29_plus_backup.jpg","page":"https://commons.wikimedia.org/wiki/File:2021-03-30_Hand-crank_operated_generator_(dynamo_torch)_plus_backup.jpg"},
+    {"id":"cutwork_embroidery","title":"File:Cutwork embroidery depicting a flock of birds on pillowcase made of post-war coarse fabric.jpg","artist":"Franz van Duns","license":"CC BY-SA 4.0","mime":"image/jpeg","width":9597,"height":6477,"bytes":38901820,"sha1":"ced9ccd4f9e7e70ea93695528c53b5989cc80e37","url":"https://upload.wikimedia.org/wikipedia/commons/e/e1/Cutwork_embroidery_depicting_a_flock_of_birds_on_pillowcase_made_of_post-war_coarse_fabric.jpg","page":"https://commons.wikimedia.org/wiki/File:Cutwork_embroidery_depicting_a_flock_of_birds_on_pillowcase_made_of_post-war_coarse_fabric.jpg"},
+    {"id":"cherry_leaf","title":"File:Cherry leaf (27410599201).jpg","artist":"Fermion","license":"CC0","mime":"image/jpeg","width":3260,"height":1834,"bytes":2746124,"sha1":"93a00878eb21c62decfdd2659409ce0a1d204309","url":"https://upload.wikimedia.org/wikipedia/commons/3/34/Cherry_leaf_%2827410599201%29.jpg","page":"https://commons.wikimedia.org/wiki/File:Cherry_leaf_(27410599201).jpg"},
+    {"id":"zeiss_batis","title":"File:Zeiss Batis Distagon F2.8 18mm.jpg","artist":"Franz van Duns","license":"CC BY-SA 4.0","mime":"image/jpeg","width":9504,"height":6336,"bytes":11932836,"sha1":"32e70f4d79c7919fbedd8470ad480cb92bc933de","url":"https://upload.wikimedia.org/wikipedia/commons/2/22/Zeiss_Batis_Distagon_F2.8_18mm.jpg","page":"https://commons.wikimedia.org/wiki/File:Zeiss_Batis_Distagon_F2.8_18mm.jpg"},
+    {"id":"ginkgo_leaves","title":"File:DSG7056-1 Yellow Ginkgo biloba leaves - vivid translucent illumination by autumn sunlight.jpg","artist":"Franz van Duns","license":"CC BY-SA 4.0","mime":"image/jpeg","width":3028,"height":3028,"bytes":3129292,"sha1":"c5c1aff1101d647c75080fb5eeccaeccc9f86999","url":"https://upload.wikimedia.org/wikipedia/commons/5/52/DSG7056-1_Yellow_Ginkgo_biloba_leaves_-_vivid_translucent_illumination_by_autumn_sunlight.jpg","page":"https://commons.wikimedia.org/wiki/File:DSG7056-1_Yellow_Ginkgo_biloba_leaves_-_vivid_translucent_illumination_by_autumn_sunlight.jpg"},
+    {"id":"songbird_twig","title":"File:DSG6553-1 - A lone songbird perched on the topmost twiglet.jpg","artist":"Franz van Duns","license":"CC BY-SA 4.0","mime":"image/jpeg","width":6336,"height":9504,"bytes":14414552,"sha1":"0a2f55520566bbd44206cf68301b1f39b0977f46","url":"https://upload.wikimedia.org/wikipedia/commons/0/01/DSG6553-1_-_A_lone_songbird_perched_on_the_topmost_twiglet.jpg","page":"https://commons.wikimedia.org/wiki/File:DSG6553-1_-_A_lone_songbird_perched_on_the_topmost_twiglet.jpg"},
+    {"id":"jar_opener","title":"File:Preserving jar opener - patended by Havolit - 1950s 2022-05-27 (focus stack).jpg","artist":"Franz van Duns","license":"CC BY-SA 4.0","mime":"image/jpeg","width":6500,"height":6500,"bytes":12706487,"sha1":"f08e7ba95b864dbbb9737a2206616176c1b71f7f","url":"https://upload.wikimedia.org/wikipedia/commons/b/b2/Preserving_jar_opener_-_patended_by_Havolit_-_1950s_2022-05-27_%28focus_stack%29.jpg","page":"https://commons.wikimedia.org/wiki/File:Preserving_jar_opener_-_patended_by_Havolit_-_1950s_2022-05-27_(focus_stack).jpg"},
+    {"id":"spider_detail","title":"File:Detail of spider (Dysdera crocata) with secretions between massive chelicerae - DSG1941-1 - 2022-11-08 (magnif. ratio 2.8x, HiRes).jpg","artist":"Franz van Duns","license":"CC BY-SA 4.0","mime":"image/jpeg","width":5100,"height":3400,"bytes":5268482,"sha1":"409bdd1c76099cb6dab0ed3fb4c372b839d434fa","url":"https://upload.wikimedia.org/wikipedia/commons/6/6c/Detail_of_spider_%28Dysdera_crocata%29_with_secretions_between_massive_chelicerae_-_DSG1941-1_-_2022-11-08_%28magnif._ratio_2.8x%2C_HiRes%29.jpg","page":"https://commons.wikimedia.org/wiki/File:Detail_of_spider_(Dysdera_crocata)_with_secretions_between_massive_chelicerae_-_DSG1941-1_-_2022-11-08_(magnif._ratio_2.8x,_HiRes).jpg"},
+    {"id":"achim_d300_highrise","title":"File:2025-07-12 D300-7573 Achim-Lammerts Jockgrim-Hochhaus.png","artist":"Achim Lammerts","license":"CC BY-SA 4.0","mime":"image/png","width":5636,"height":5636,"bytes":35816193,"sha1":"c08e24b48ac0f0102bccce672d5c01518c090a2f","url":"https://upload.wikimedia.org/wikipedia/commons/7/7e/2025-07-12_D300-7573_Achim-Lammerts_Jockgrim-Hochhaus.png","page":"https://commons.wikimedia.org/wiki/File:2025-07-12_D300-7573_Achim-Lammerts_Jockgrim-Hochhaus.png"},
+    {"id":"achim_g11_highrise","title":"File:2025-07-10 G11-0122 Achim-Lammerts Jockgrim-Hochhaus.png","artist":"Achim Lammerts","license":"CC BY-SA 4.0","mime":"image/png","width":3513,"height":2635,"bytes":48774453,"sha1":"92bed2b1bbdd727f749d28d0668e64ca89fd7b12","url":"https://upload.wikimedia.org/wikipedia/commons/7/75/2025-07-10_G11-0122_Achim-Lammerts_Jockgrim-Hochhaus.png","page":"https://commons.wikimedia.org/wiki/File:2025-07-10_G11-0122_Achim-Lammerts_Jockgrim-Hochhaus.png"}
+  ],
+  "stop_rules": [
+    "Any byte-count, SHA-1, licence, MIME, dimension, decode or ICC-profile mismatch invalidates the source audit before algorithm evaluation.",
+    "A row without a proven embedded ProPhoto/ROMM profile is rejected and is not replaced after pixel inspection.",
+    "Any severe source corruption, chart/test-pattern content, exact duplicate or dHash<=4 collision rejects the row without replacement.",
+    "Fewer than nine eligible rows, fewer than four artists, fewer than two native 16-bit rows or fewer than nine rows with nonzero Rec.2020 out-of-gamut content closes U1.4C5 before operator execution."
+  ],
+  "claim_ceiling": "Rights-explicit independent native-wide-gamut source eligibility only; not algorithm quality, arbitrary ICC support, HDR, film/stock evidence, calibration or product ingress."
+}
