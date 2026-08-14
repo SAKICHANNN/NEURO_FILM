@@ -1,0 +1,15 @@
+{
+  "schema": "neuro_film.u6_p2al1_trix_hybrid_thomas_identity_correction_evidence.v1",
+  "node": "U6.P2AL1",
+  "implementation_commit": "03405d2adc8cf859658f0bc2953bc17b03760392",
+  "contract_sha256": "f21d34cacac4baf1aa6654317585a190b4d7436aeca25125df2819a0e4e06f76",
+  "report_sha256": "9d310db6894a07e20bd7ecb007c2e05a51ceb527786f91fdcbef626198e1ff35",
+  "stable_evidence_id": "4d3b3482c453262be8b60f99db4f4f41b026ec885c2e2bd2d3b16102f3b18f3a",
+  "formal_run_count": 2,
+  "formal_reports_byte_exact": true,
+  "automatic_pass": true,
+  "correct_scalar_profile_identity": "482714d55fc2591b4c748ceb61118a1db4b29fb1deba0156e97999b62e897c8b",
+  "numeric_mechanism_changed": false,
+  "decision": "Retain the numerically unchanged hybrid with exact P2AK scalar profile identity; supersede P2AL provenance only.",
+  "claim_ceiling": "Identity-corrected replay of the P2AL hybrid; no new numerical, spatial, stock-NPS, photographic or product evidence."
+}
