@@ -245,8 +245,26 @@ def evaluate(
     source_root = root / Path(contract["storage"]["logical_root"])
     rows: list[dict[str, Any]] = []
     rejected_rows: list[dict[str, Any]] = []
+    unrequested_rows: list[dict[str, Any]] = []
     previews: list[Image.Image] = []
     for selection_rank, expected in enumerate(contract["rows"]):
+        remaining = len(contract["rows"]) - selection_rank
+        if len(rows) + remaining < int(
+            contract["eligibility"]["minimum_eligible_source_count"]
+        ):
+            unrequested_rows.extend(
+                {
+                    "id": row["id"],
+                    "selection_rank": index,
+                    "title": row["title"],
+                    "source_url": row["url"],
+                    "reason": "not requested after minimum eligibility became mathematically impossible",
+                }
+                for index, row in enumerate(
+                    contract["rows"][selection_rank:], start=selection_rank
+                )
+            )
+            break
         extension = ".png" if expected["mime"] == "image/png" else ".jpg"
         path = source_root / "originals" / f"{expected['id']}{extension}"
         _download_exact(expected, path)
@@ -307,9 +325,12 @@ def evaluate(
             ):
                 near_pairs.append([left["id"], right["id"], distance])
     gates = contract["eligibility"]
+    requested_count = len(rows) + len(rejected_rows)
     checks = {
-        "attempted_source_count": len(rows) + len(rejected_rows)
+        "source_inventory_accounted": requested_count + len(unrequested_rows)
         == int(gates["required_source_count"]),
+        "network_request_count": requested_count
+        == int(contract["storage"]["network_requests_exact"]),
         "eligible_source_count": len(rows)
         >= int(gates["minimum_eligible_source_count"]),
         "artist_count": len({row["artist"] for row in rows})
@@ -329,7 +350,8 @@ def evaluate(
         "schema": REPORT_SCHEMA,
         "experiment_id": EXPERIMENT_ID,
         "contract_sha256": CONTRACT_SHA256,
-        "attempted_source_count": len(rows) + len(rejected_rows),
+        "requested_source_count": requested_count,
+        "unrequested_source_count": len(unrequested_rows),
         "eligible_source_count": len(rows),
         "rejected_source_count": len(rejected_rows),
         "artist_count": len({row["artist"] for row in rows}),
@@ -341,6 +363,7 @@ def evaluate(
         "near_duplicate_pairs": near_pairs,
         "rows": rows,
         "rejected_rows": rejected_rows,
+        "unrequested_rows": unrequested_rows,
         "checks": checks,
         "automatic_pass": all(checks.values()),
         "visual_review_required": bool(
@@ -354,7 +377,7 @@ def evaluate(
     }
     stable["stable_evidence_id"] = hashlib.sha256(canonical_json(stable)).hexdigest()
     output_dir.mkdir(parents=True, exist_ok=True)
-    sheet = Image.new("RGB", (640, len(previews) * 270), "black")
+    sheet = Image.new("RGB", (640, max(1, len(previews)) * 270), "black")
     draw = ImageDraw.Draw(sheet)
     for index, (row, preview) in enumerate(zip(rows, previews, strict=True)):
         y = index * 270
