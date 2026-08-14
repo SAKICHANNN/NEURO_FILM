@@ -1,0 +1,55 @@
+{
+  "schema": "neuro_film.u6_p2an_trix_mtf_explicit_spatial_fit_contract.v1",
+  "node": "U6.P2AN",
+  "question": "Can one bounded explicit blur-adjacency-blur frequency response recover the version-limited TRI-X MTF source prior on held-out frequencies, while a positive Gaussian control cannot explain the low-frequency acutance peak?",
+  "parent": {
+    "evidence_path": "docs/evidence/U6_P2AM_TRIX_MTF_SOURCE_PRIOR_RESULT.json",
+    "evidence_sha256": "d88cebec722c2f72fde17eff622fc4cb7ca9b2e5668a2cd2e7e3ff64b7675839",
+    "required_automatic_pass": true,
+    "required_profile_identity": "c88425fc2642aa64c3bb73d5fa88022e537e3ed18611409e93b1e27ccd555d73",
+    "profile_contract_path": "configs/u6_p2am_trix_mtf_source_prior_v1.json",
+    "profile_contract_sha256": "871e1dcdbd80a64ec7094474a9edc25ee9a962b0de11e8d402a1a7ec4525febb"
+  },
+  "split": {
+    "development_frequencies_cycles_per_mm": [2.5, 10.0, 30.0, 50.0, 70.0],
+    "confirmation_frequencies_cycles_per_mm": [5.0, 20.0, 40.0, 60.0]
+  },
+  "candidate": {
+    "family": "isotropic_combined_blur_then_positive_unsharp_adjacency",
+    "response_equation": "exp(-2*pi^2*sigma_blur_mm^2*f^2)*(1+gain*(1-exp(-2*pi^2*sigma_adjacency_mm^2*f^2)))",
+    "combined_blur_sigma_micrometres_bounds": [0.0, 20.0],
+    "adjacency_sigma_micrometres_bounds": [0.1, 30.0],
+    "adjacency_gain_bounds": [0.0, 1.0],
+    "initial_grid": {
+      "combined_blur_sigma_micrometres": [1.0, 5.0, 10.0],
+      "adjacency_sigma_micrometres": [2.0, 8.0, 20.0],
+      "adjacency_gain": [0.1, 0.4, 0.8]
+    },
+    "optimizer": "scipy_least_squares_trf",
+    "xtol": 1e-14,
+    "ftol": 1e-14,
+    "gtol": 1e-14,
+    "max_nfev": 20000
+  },
+  "control": {
+    "family": "single_positive_gaussian",
+    "sigma_micrometres_bounds": [0.0, 30.0],
+    "initial_sigmas_micrometres": [0.0, 2.0, 5.0, 10.0, 20.0]
+  },
+  "automatic_gates": {
+    "maximum_development_absolute_error": 0.03,
+    "maximum_confirmation_absolute_error": 0.05,
+    "maximum_confirmation_rmse": 0.03,
+    "minimum_confirmation_median_error_reduction_vs_gaussian": 0.5,
+    "dc_response_absolute_error": 1e-12,
+    "candidate_response_finite_positive": true,
+    "parameter_bounds_satisfied": true,
+    "repeat_byte_exact": true,
+    "rgb_image_transform_count_zero": true
+  },
+  "branch_rule": {
+    "pass": "retain a version-limited explicit TRI-X MTF mechanism candidate and open only separately gated kernel realization",
+    "fail": "close this exact blur-adjacency family without resplitting, expanding bounds or changing gates"
+  },
+  "claim_ceiling": "Held-frequency compatibility of one compact explicit mechanism with the older/preliminary TRI-X MTF source curve; not unique stage identification, current-400TX calibration, density dependence, scanner response, image quality or product evidence."
+}
