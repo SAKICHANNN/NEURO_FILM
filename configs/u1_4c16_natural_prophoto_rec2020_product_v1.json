@@ -1,0 +1,31 @@
+{
+  "schema": "neuro-film.u1-4c16-natural-prophoto-rec2020-product-contract.v1",
+  "experiment_id": "U1.4C16",
+  "implementation_commit": "35c988f8ff199e9fe3633806142f03c0fdd652a5",
+  "source": {
+    "manifest": "configs/u1_4c4_native_prophoto_source_manifest_v1.json",
+    "manifest_sha256": "4f352488fda809cce52dffe388cbe2564cbe2d5f515db1eb6e078ae92f1d27fc",
+    "expected_rows": 12,
+    "required_allowed_use": "internal_research_only",
+    "required_rights_scope": "mit_adobe_fivek_research_license",
+    "required_embedded_icc_sha256": "0a8ef7d1d958d98225b3b71d93d9e8e3cecd9c302e014973d025d2a977ecf27c"
+  },
+  "product": {
+    "profile": "configs/render_profiles/prophoto_rec2020_velvia_v1.json",
+    "profile_sha256": "e0da6e630f616dc25c1bca431ade74edd55a2c0bf3a5eec5bd937c9a62447666",
+    "renderer": "src/inference/romm_rec2020_velvia.py",
+    "renderer_sha256": "26ead381b8109519a4bd276adbd63e50e7873acf549208db1f41a2e68128bc51",
+    "profile_id": "prophoto-rec2020-velvia-look-v1",
+    "output_format": "relative-rec2020-sdr-rgb16-png-cicp"
+  },
+  "gates": {
+    "require_all_sources_rendered": true,
+    "require_exact_sample_readback": true,
+    "require_median_residual_scale_one_per_source": true,
+    "maximum_fraction_residual_scale_below_0p5": 0.05,
+    "require_two_process_report_and_file_replay": true
+  },
+  "decision_if_pass": "retain_strict_natural_prophoto_rec2020_velvia_product_integration",
+  "decision_if_fail": "retain_official_romm_product_only_and_close_matrix_shaper_product_integration",
+  "claim_ceiling": "existing FiveK natural ProPhoto RGB16 cohort product execution only; internal research, not independent confirmation, arbitrary ICC, Velvia stock response, calibration, HDR, preference or default promotion"
+}

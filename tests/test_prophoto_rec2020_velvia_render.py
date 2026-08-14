@@ -10,6 +10,7 @@ import numpy as np
 import pytest
 import tifffile
 
+from scripts.run_u1_4c16_natural_prophoto_product import load_contract
 from src.inference.romm_rec2020_velvia import (
     PROPHOTO_PROFILE_ID,
     ROMMRec2020RenderError,
@@ -60,6 +61,16 @@ def test_supported_prophoto_profile_is_exactly_evidence_bound() -> None:
         FIVEK_PROPHOTO_MATRIX_SHAPER_ICC_SHA256
     ]
     assert profile["production_default_changed"] is False
+
+
+def test_natural_prophoto_product_contract_is_exactly_bound() -> None:
+    contract, contract_sha256 = load_contract(
+        ROOT / "configs/u1_4c16_natural_prophoto_rec2020_product_v1.json"
+    )
+    assert contract_sha256
+    assert contract["source"]["expected_rows"] == 12
+    assert contract["product"]["profile_id"] == PROPHOTO_PROFILE_ID
+    assert contract["gates"]["require_two_process_report_and_file_replay"] is True
 
 
 def test_supported_prophoto_renderer_is_deterministic_and_profile_strict(
