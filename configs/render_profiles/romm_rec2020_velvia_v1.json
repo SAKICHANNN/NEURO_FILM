@@ -1,0 +1,78 @@
+{
+  "schema_id": "kmcfm.romm-rec2020-render-profile.v1",
+  "profile_id": "romm-rec2020-velvia-look-v1",
+  "profile_version": "1.0.0",
+  "display_name": "Official ROMM to Rec.2020 Velvia Look v1",
+  "engine_id": "safe_lab_rec2020_c13_v1",
+  "identity": {
+    "film_stock_id": null,
+    "interpretation": "look_approximation"
+  },
+  "qualification": [
+    {
+      "experiment_id": "U1.4C13",
+      "path": "docs/evidence/U1_4C13_CC0_SYNTHETIC_ROMM_STRESS_RESULT.json",
+      "sha256": "c720bc6777c4ac3eb5b481eb98e6b9759d876b68ef720283536180930be70e5c",
+      "required_status": "PASS_SCOPED_CC0_SYNTHETIC_ROMM_STRESS"
+    },
+    {
+      "experiment_id": "U1.4C14",
+      "path": "docs/evidence/U1_4C14_OFFICIAL_ROMM_REC2020_PRODUCT_EXECUTION_RESULT.json",
+      "sha256": "40c346fad399c857ac105760db99eeeade32ee595e09869a2ef3f27753cead74",
+      "required_status": "PASS_STRICT_OPT_IN_PRODUCT_CAPABILITY"
+    }
+  ],
+  "assets": [
+    {
+      "role": "style_statistics",
+      "path": "configs/film_color_stats.json",
+      "sha256": "1a45e90765e577edd4ca1773fc8c6cf98fd09b8afbdddfa519b1f097c5dd7c04"
+    },
+    {
+      "role": "color_guardrails",
+      "path": "configs/color_guardrails.json",
+      "sha256": "6669b7bc873febcc74ba7ddcbc1c1584807e38465447a5cdbeb24073efa00aa7"
+    }
+  ],
+  "input": {
+    "embedded_icc_sha256": "96b2f2987f83e2a545e607799fbfdff43ef8158fb9b215b187c574db8f145aaf",
+    "format": "RGB16 TIFF",
+    "working_space_after_decode": "linear_rec2020",
+    "transfer_state": "display_linear"
+  },
+  "ingress_mapper": {
+    "id": "oklab-oog-only-soft-interval-maximum-chroma-v1",
+    "softness": 0.015625,
+    "rgb16_margin": 0.000030518043793392844,
+    "bisection_iterations": 24
+  },
+  "style": {
+    "id": "velvia_50",
+    "strength": 0.35,
+    "luma_strength": 0.02,
+    "gamut_mode": "source",
+    "tone_rolloff": 0.04,
+    "shadow_floor_l": 1.0,
+    "highlight_ceiling_l": 99.0,
+    "preserve_luma_detail_strength": 0.9,
+    "chroma_curve_strength": 0.45
+  },
+  "residual_execution": {
+    "id": "source-anchored-rgb16-interior-residual-v1",
+    "rgb16_margin": 0.000030518043793392844
+  },
+  "effects": {
+    "grain": false,
+    "halation": false,
+    "dust": false
+  },
+  "output": {
+    "format": "PNG",
+    "bit_depth": 16,
+    "working_space": "linear_rec2020",
+    "transfer": "BT.2020 SDR",
+    "cicp": "090f0001"
+  },
+  "production_default_changed": false,
+  "claim_ceiling": "strict opt-in film-inspired Velvia look approximation on exact official-ROMM RGB16 input to relative Rec.2020 SDR RGB16 output; not Velvia stock response, calibration, arbitrary ICC, HDR, camera colour, preference or default promotion"
+}

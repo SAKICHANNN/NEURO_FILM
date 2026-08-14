@@ -31,6 +31,7 @@ from .romm_rec2020_product import (
     ROMM_REC2020_RECEIPT_SCHEMA,
     ROMMRec2020ConversionError,
     convert_official_romm_rgb16_to_rec2020_png,
+    load_and_map_official_romm_rgb16,
 )
 from .types import (
     DecodeWarning,
@@ -59,6 +60,7 @@ __all__ = [
     "inspect_input",
     "linear_rec2020_to_rec2020",
     "linear_rgb_matrix",
+    "load_and_map_official_romm_rgb16",
     "load_working_image",
     "normalized_icc_profile_sha256",
     "rec2020_to_linear_rec2020",
