@@ -1,0 +1,64 @@
+{
+  "schema": "neuro_film.u6_p2al1_trix_hybrid_thomas_identity_correction_contract.v1",
+  "node": "U6.P2AL1",
+  "question": "Does the P2AL numeric hybrid replay unchanged when its scalar parent is reconstructed from the exact P2AK profile contract rather than from the P2AK evidence-report identity?",
+  "parents": {
+    "trix_scalar": {
+      "path": "docs/evidence/U6_P2AK_TRIX_GRANULARITY_SCALAR_PROFILE_RESULT.json",
+      "sha256": "1952910da39d86caefbf628d8889d6890436cfc3be7171d358adccaf9c34d8ce",
+      "required_automatic_pass": true
+    },
+    "hybrid_boundary": {
+      "path": "docs/evidence/U6_P2AL_TRIX_HYBRID_THOMAS_AMPLITUDE_RESULT.json",
+      "sha256": "a312a191f1877765255771efca91f38303a9dd748d0c0b839ad03a8648eea065",
+      "required_automatic_pass": true
+    },
+    "thomas_shape": {
+      "path": "configs/u6_p4bs_real_uniform_thomas_confirmation_decision_v1.json",
+      "sha256": "a0b01b0fc08b407c26169f16d5efbc87aa9a20146e42d33ea113f8200ee57ff3",
+      "required_decision": "retain_generic_scanner_convolved_thomas_mechanism_candidate"
+    },
+    "dc_projection": {
+      "path": "configs/u6_p4bv_thomas_dc_projection_decision_v1.json",
+      "sha256": "878f406c9d0128e99a92933e73d52638831b4465eb2597b52bd3b24421edad20",
+      "required_decision": "retain_two_pass_dc_projected_thomas_unit_field"
+    }
+  },
+  "profile_identity_correction": {
+    "scalar_contract_path": "configs/u6_p2ak_trix_granularity_scalar_profile_v1.json",
+    "scalar_contract_sha256": "f6f31462b6fad5aedd7c74c2a9ac8946836f9fd7c48b1021327036fcd00ccf1c",
+    "required_profile_identity": "482714d55fc2591b4c748ceb61118a1db4b29fb1deba0156e97999b62e897c8b"
+  },
+  "hybrid": {
+    "spatial_profile_id": "generic-scanner-convolved-thomas-p4bs-v1",
+    "particle_sigma_samples": 1.3253699417769098,
+    "cluster_sigma_samples": 1.1268619873805532,
+    "mean_offspring": 27.765942352935905,
+    "component_seeds": [2611923443488327891, 11400714819323198485],
+    "sample_pitch_micrometres": 6.35,
+    "measurement_aperture_diameter_micrometres": 48.0,
+    "truncate_sigma": 4.0,
+    "spatial_parameter_refit_allowed": false,
+    "realized_variance_normalization_allowed": false
+  },
+  "evaluation": {
+    "field_shape": [512, 512],
+    "seeds": [0, 1099511627776, 2199023255552, 3298534883328, 5497558138880],
+    "canonical_row_block_height": 31,
+    "row_partition_height": 127,
+    "measurement_crop_border_samples": 13,
+    "maximum_analytic_aperture_sigma_error": 1e-15,
+    "maximum_median_aperture_sigma_relative_error": 0.015,
+    "maximum_p95_aperture_sigma_relative_error": 0.03,
+    "maximum_absolute_field_mean": 1e-15,
+    "minimum_developed_density": 0.0,
+    "repeat_byte_exact": true,
+    "partition_exact": true,
+    "rgb_image_transform_count_zero": true
+  },
+  "branch_rule": {
+    "pass": "retain the numerically unchanged hybrid with exact P2AK scalar profile identity; supersede P2AL provenance only",
+    "fail": "invalidate P2AL downstream use until the exact scalar identity replays without changing numerical gates"
+  },
+  "claim_ceiling": "Identity-corrected replay of the P2AL hybrid; no new numerical, spatial, stock-NPS, photographic or product evidence."
+}

@@ -32,10 +32,10 @@ def _sha(path: Path) -> str:
 
 def load_contract(path: Path) -> dict[str, Any]:
     payload = json.loads(path.read_text(encoding="utf-8"))
-    if (
-        payload.get("schema")
-        != "neuro_film.u6_p2al_trix_hybrid_thomas_amplitude_contract.v1"
-    ):
+    if payload.get("schema") not in {
+        "neuro_film.u6_p2al_trix_hybrid_thomas_amplitude_contract.v1",
+        "neuro_film.u6_p2al1_trix_hybrid_thomas_identity_correction_contract.v1",
+    }:
         raise TrixHybridThomasAmplitudeError("unsupported P2AL contract")
     return payload
 
@@ -57,12 +57,35 @@ def run_audit(*, root: Path, contract: dict[str, Any]) -> dict[str, Any]:
         )
         if actual != required:
             raise TrixHybridThomasAmplitudeError("P2AL parent decision mismatch")
-    scalar = BWGranularityScalarProfile(
-        **{
-            **loaded["trix_scalar"]["observation"],
-            "source_evidence_id": loaded["trix_scalar"]["stable_evidence_id"],
+    correction = contract.get("profile_identity_correction")
+    if correction is None:
+        # Preserve the immutable P2AL-v1 replay, including its now-superseded
+        # provenance construction. P2AL1 binds and corrects that identity.
+        scalar = BWGranularityScalarProfile(
+            **{
+                **loaded["trix_scalar"]["observation"],
+                "source_evidence_id": loaded["trix_scalar"]["stable_evidence_id"],
+            }
+        )
+        provenance = None
+    else:
+        scalar_contract_path = root / correction["scalar_contract_path"]
+        if _sha(scalar_contract_path) != correction["scalar_contract_sha256"]:
+            raise TrixHybridThomasAmplitudeError("P2AL1 scalar contract mismatch")
+        scalar_contract = json.loads(scalar_contract_path.read_text(encoding="utf-8"))
+        scalar = BWGranularityScalarProfile(**scalar_contract["profile"])
+        if scalar.identity() != loaded["trix_scalar"]["profile_identity"]:
+            raise TrixHybridThomasAmplitudeError("P2AL1 scalar profile identity mismatch")
+        if scalar.identity() != correction["required_profile_identity"]:
+            raise TrixHybridThomasAmplitudeError("P2AL1 required profile identity mismatch")
+        provenance = {
+            "superseded_p2al_stable_evidence_id": loaded["hybrid_boundary"][
+                "stable_evidence_id"
+            ],
+            "correct_scalar_profile_identity": scalar.identity(),
+            "correct_source_evidence_id": scalar.source_evidence_id,
+            "numeric_mechanism_changed": False,
         }
-    )
     hybrid = contract["hybrid"]
     aperture = binary_circular_aperture_kernel(
         hybrid["sample_pitch_micrometres"],
@@ -169,7 +192,11 @@ def run_audit(*, root: Path, contract: dict[str, Any]) -> dict[str, Any]:
     }
     passed = all(results.values())
     stable = {
-        "schema": "neuro_film.u6_p2al_trix_hybrid_thomas_amplitude_report.v1",
+        "schema": (
+            "neuro_film.u6_p2al_trix_hybrid_thomas_amplitude_report.v1"
+            if correction is None
+            else "neuro_film.u6_p2al1_trix_hybrid_thomas_identity_correction_report.v1"
+        ),
         "scalar_profile_identity": scalar.identity(),
         "measurement_energy": energy,
         "point_scale": point_scale,
@@ -180,6 +207,8 @@ def run_audit(*, root: Path, contract: dict[str, Any]) -> dict[str, Any]:
         "decision": contract["branch_rule"]["pass" if passed else "fail"],
         "claim_ceiling": contract["claim_ceiling"],
     }
+    if provenance is not None:
+        stable["profile_identity_correction"] = provenance
     encoded = json.dumps(stable, sort_keys=True, separators=(",", ":"), allow_nan=False)
     return {
         **stable,
