@@ -1,0 +1,57 @@
+{
+  "schema": "neuro-film.u1-4c9-embedded-prophoto-icc-semantic-ingress-contract.v1",
+  "experiment_id": "U1.4C9",
+  "parents": {
+    "c4_source_manifest": {
+      "path": "configs/u1_4c4_native_prophoto_source_manifest_v1.json",
+      "sha256": "4f352488fda809cce52dffe388cbe2564cbe2d5f515db1eb6e078ae92f1d27fc"
+    },
+    "c4_result": {
+      "path": "docs/evidence/U1_4C4_NATIVE_PROPHOTO_REC2020_CONFIRMATION_RESULT.json",
+      "sha256": "33bfa293ad57fee6720ff9a8dc09957c2a3bfedff048853d936443ea6d94d218"
+    },
+    "product_core": {
+      "path": "src/preprocess/prophoto_icc.py",
+      "sha256": "654e5f54f4b7861b69a251cb3f8e4cdea11ee150880770fc04072d6176e1e9b6"
+    },
+    "product_ingress": {
+      "path": "src/preprocess/raster_decode.py",
+      "sha256": "88599aedbf7382655735fb51e04b65d9cf91f1f0eaec235281f7d61e0043a735"
+    },
+    "product_test": {
+      "path": "tests/test_preprocess_pipeline.py",
+      "sha256": "2a1070252247636099261854966599dd4f7f610910d818bb0b4b74fbc091b5f4"
+    }
+  },
+  "source": {
+    "expected_rows": 12,
+    "expected_embedded_icc_sha256": "0a8ef7d1d958d98225b3b71d93d9e8e3cecd9c302e014973d025d2a977ecf27c",
+    "required_allowed_use": "internal_research_only",
+    "required_rights_scope": "mit_adobe_fivek_research_license"
+  },
+  "reference": {
+    "engine": "imagecodecs.cms_transform-littlecms",
+    "imagecodecs_version": "2026.6.26",
+    "littlecms_version": "2.17",
+    "intent": "relative_colorimetric",
+    "output_pcs": "XYZ_D50_float64",
+    "stripe_rows": 32
+  },
+  "gates": {
+    "required_recognized_rows": 12,
+    "maximum_product_vs_littlecms_absolute_error": 0.000002,
+    "require_float32_linear_rec2020": true,
+    "require_unclipped_execution": true,
+    "require_exact_two_process_replay": true
+  },
+  "decisions": {
+    "pass": "retain_embedded_prophoto_tiff16_semantic_ingress_and_open_c4_semantic_recheck",
+    "fail": "close_product_ingress_and_retain_c4_as_assumption_bound_only"
+  },
+  "claim_ceiling": "embedded ProPhoto matrix-shaper TIFF16 to unclipped linear Rec.2020 semantic ingress on the existing FiveK research cohort; not gamut mapping, independent-source confirmation, arbitrary ICC, calibrated film, or product promotion",
+  "official_sources": [
+    "https://registry.color.org/rgb-registry/rommrgb",
+    "https://www.color.org/chardata/rgb/ROMMRGB.pdf",
+    "https://www.color.org/icc_specs2.xalter"
+  ]
+}
