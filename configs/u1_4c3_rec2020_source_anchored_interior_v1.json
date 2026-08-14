@@ -1,0 +1,71 @@
+{
+  "schema": "neuro_film.u1-4c3-rec2020-source-anchored-interior-contract.v1",
+  "experiment_id": "U1.4C3",
+  "status": "frozen_before_implementation_or_render",
+  "question": "Can one analytical source-anchored RGB residual scale keep the existing wide-gamut Lab look away from newly created RGB16 Rec.2020 boundaries while retaining material style and local continuity?",
+  "parents": {
+    "c2_result": {
+      "path": "docs/U1_4C2_REC2020_VISUAL_OOD_RESULTS.md",
+      "sha256": "a861d6c6ff9e4fa659efa030482cd2e08d412ce743e84d098b3335132544ce3c",
+      "required_status": "closed at automatic gate; visual stage not opened"
+    },
+    "c2_contract": {
+      "path": "configs/u1_4c2_rec2020_visual_ood_v1.json",
+      "sha256": "9747f1ba93fdefe1b409a3a2197ffe77a0fe6e04469e4c7b8f1c967bb726b57b"
+    },
+    "operator_files": [
+      {"path": "src/color_engine/rec2020_safe_lab.py", "sha256": "651b743bf8d31c7f03ae526e49c3d7af069766bd278f1448ce8283d10fa29dc7"},
+      {"path": "src/color_engine/gamut.py", "sha256": "ec7d365ea1b060764acd43195a768fbfc3dce3d611ac4d8f13be60016b65cb39"},
+      {"path": "src/color_engine/lab.py", "sha256": "dc894a712a882055a66e3af97e7fb1a5fa2af66d76a0014a26e68f6aadeb6e09"},
+      {"path": "src/color_engine/safe_lab.py", "sha256": "f8e270e267691107e778e668588639997577fac0f4494c11a936ef76cb1bf7bc"},
+      {"path": "configs/film_color_stats.json", "sha256": "1a45e90765e577edd4ca1773fc8c6cf98fd09b8afbdddfa519b1f097c5dd7c04"},
+      {"path": "configs/color_guardrails.json", "sha256": "6669b7bc873febcc74ba7ddcbc1c1584807e38465447a5cdbeb24073efa00aa7"}
+    ]
+  },
+  "source": {
+    "manifest": "outputs/u6_p7h0_native_structure_value_source_preflight_v1/run_d/manifest.json",
+    "manifest_sha256": "3c698d8df93a7b48b87dff81ad6ddbaeb11d7c8478138ddef9545d57e336fcd7",
+    "expected_rows": 9,
+    "expected_camera_makes": 9,
+    "required_allowed_use": "internal_independent_digital_ood_confirmation",
+    "required_rights_scope": "CC0_public_domain_internal_evaluation",
+    "required_color_state": "relative_display_srgb_approximation",
+    "interpretation": "development-only ordinary digital-photo wide-gamut stress after deterministic display-sRGB approximation; not RAW scene truth or film evidence"
+  },
+  "render": {
+    "styles": ["ektar_100", "portra_800", "velvia_50", "vision3_250d"],
+    "gamut_modes": ["source", "chroma"],
+    "working_space": "linear_rec2020",
+    "transfer_state": "display_linear",
+    "rgb16_output": true,
+    "visual_review_before_automatic_pass": false
+  },
+  "mechanism": {
+    "id": "source-anchored-rgb16-interior-residual-v1",
+    "path": "source_linear_rec2020_to_existing_c1c_candidate",
+    "rgb16_interior_margin": 0.000030518043793392843,
+    "safe_interval_per_channel": "[min(source, margin), max(source, 1-margin)]",
+    "scale": "per-pixel minimum analytical channel intersection along the unchanged residual direction",
+    "hard_clipping_allowed": false,
+    "posthoc_limiting_allowed": false,
+    "style_or_operator_refit_allowed": false,
+    "same_cohort_rescue_allowed": false
+  },
+  "automatic_gates": {
+    "require_two_run_report_and_png_identity": true,
+    "require_finite_in_gamut_outputs": true,
+    "maximum_new_rgb16_boundary_fraction_vs_source": 0.0005,
+    "minimum_population_median_style_retention_ratio": 0.9,
+    "minimum_worst_render_style_retention_ratio": 0.75,
+    "minimum_population_median_residual_scale": 0.95,
+    "maximum_population_median_fraction_scale_below_0p5": 0.05,
+    "maximum_p999_gradient_ratio_vs_source": 1.35,
+    "maximum_adjacent_lstar_sign_inversion_fraction": 0.005
+  },
+  "branches": {
+    "pass": "open_only_an_independent_wide_gamut_confirmation_before_any_adapter_integration",
+    "fail": "close_this_exact_interior_residual_without_margin_style_or_threshold_rescue"
+  },
+  "production_default_changed": false,
+  "claim_ceiling": "Development-only intrinsic Rec.2020 boundary-safety and style-retention evidence for an isolated colour operator; not film, stock, calibration, HDR, ACES, preference or product support."
+}
