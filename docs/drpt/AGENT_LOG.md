@@ -13371,3 +13371,8 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 
 - Inverse-softplus mean anchoring reduced fresh-density mean error to `0.64%` and remained strictly positive, but low-density amplitude transfer failed: median sigma error was `2.04%` while p95 reached `41.15%`.
 - Close the mean-residual plus raw-log-`b` combination. A successor must express `b` relative to the local softplus derivative and target sigma, on fresh density roles.
+
+## 2026-08-14 - U6.P2AV confirms physical gain coordinates
+
+- The derivative-normalized gain coordinate was evaluated at eight wholly fresh densities and three fresh realizations. Maximum mean error was `1.166%`, sigma median/p95 error was `0.589%/1.915%`, and minimum density remained `0.04770`; replay and partition were exact with zero refit, normalization or clipping.
+- Retain profile `6eefdbd3...faf88` as a continuous generic positive density mechanism and open only typed reference-simulator integration. Calibration, measured NPS, scanner truth and product use remain closed.

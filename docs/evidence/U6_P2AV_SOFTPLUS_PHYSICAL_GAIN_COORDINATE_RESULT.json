@@ -1,0 +1,23 @@
+{
+  "schema": "neuro_film.u6_p2av_softplus_physical_gain_coordinate_evidence.v1",
+  "node": "U6.P2AV",
+  "implementation_commit": "af7e846bb835966d0d31e8cdad178924ac1d94eb",
+  "contract_sha256": "86b8eee11cafa928cf2b9e5c644c8a02d6904ce47f67ae4aca57b561aa99aee1",
+  "formal_run_count": 2,
+  "formal_reports_byte_exact": true,
+  "report_sha256": "d41af8cccd7692e642b5519008039cdfee188cbce58e4b0f98c9869893107ac0",
+  "stable_evidence_id": "6fa7f5cc28f4c0a610df07f6b9f46e1fababc11e32c4a4809464e6382159789a",
+  "profile_identity": "6eefdbd31abcd958ff4dc189da9fd6d96641f8da3141a7f11da9a1a8762faf88",
+  "maximum_confirmation_relative_mean_error": 0.01166068641533207,
+  "confirmation_median_sigma_relative_error": 0.005893514050872689,
+  "confirmation_p95_sigma_relative_error": 0.01914703659056343,
+  "minimum_developed_density": 0.04769902839065248,
+  "repeat_byte_exact": true,
+  "partition_exact": true,
+  "parameter_refit_count_zero": true,
+  "realized_normalization_count_zero": true,
+  "hard_clipping_count_zero": true,
+  "automatic_pass": true,
+  "decision": "retain a continuous positive mean-and-amplitude profile and open reference-simulator integration",
+  "claim_ceiling": "Fresh-density confirmation of a generic mean-anchored, derivative-normalized positive softplus structure profile; not current-stock calibration, measured NPS, microscopic grain, scanner truth, appearance or product evidence."
+}
