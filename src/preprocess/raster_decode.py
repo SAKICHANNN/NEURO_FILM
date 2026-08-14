@@ -12,9 +12,15 @@ import tifffile
 from PIL import Image, ImageCms, ImageOps, UnidentifiedImageError
 
 from .color_management import REC2020_SDR_CICP, rec2020_to_linear_rec2020
-from .output_encode import normalized_icc_profile_sha256, srgb_icc_profile_fingerprint_sha256
+from .output_encode import (
+    normalized_icc_profile_sha256,
+    srgb_icc_profile_fingerprint_sha256,
+)
+from .prophoto_icc import (
+    ProPhotoICCError,
+    decode_prophoto_rgb16_to_linear_rec2020,
+)
 from .types import DecodeWarning, InputInspection, SourceProfile, WorkingImage
-
 
 _MODE_BIT_DEPTH = {
     "1": 1,
@@ -441,6 +447,28 @@ def _load_srgb16_tiff(path: Path, inspection: InputInspection) -> np.ndarray:
     return array.astype(np.float32) / 65535.0
 
 
+def _load_prophoto16_tiff(path: Path, inspection: InputInspection) -> np.ndarray:
+    with tifffile.TiffFile(path) as tif:
+        page = tif.pages[0]
+        array = page.asarray()
+        profile_tag = page.tags.get(34675)
+        profile = bytes(profile_tag.value) if profile_tag is not None else b""
+        orientation_tag = page.tags.get("Orientation")
+        orientation = int(orientation_tag.value) if orientation_tag is not None else 1
+    if array.dtype != np.uint16 or array.ndim != 3 or array.shape[2] != 3:
+        raise ValueError("high-precision TIFF ingress requires contiguous uint16 RGB")
+    if orientation != 1:
+        raise ValueError("high-precision TIFF orientation handling is not implemented")
+    if inspection.source_profile.kind != "icc" or not profile:
+        raise ValueError("TIFF ICC inspection/decode mismatch")
+    try:
+        return decode_prophoto_rgb16_to_linear_rec2020(array, profile)
+    except ProPhotoICCError as exc:
+        raise ValueError(
+            "16-bit TIFF embedded ICC conversion is not implemented for this profile"
+        ) from exc
+
+
 def _load_srgb16_png(path: Path, inspection: InputInspection) -> np.ndarray:
     import cv2
 
@@ -546,7 +574,39 @@ def load_raster_working_image(path: Path) -> WorkingImage:
             source_path=path,
             warnings=warnings,
         )
-    if inspection.format_name == "TIFF" and inspection.bit_depth == 16:
+    if (
+        inspection.format_name == "TIFF"
+        and inspection.bit_depth == 16
+        and inspection.source_profile.kind == "icc"
+    ):
+        with tifffile.TiffFile(path) as tif:
+            profile_tag = tif.pages[0].tags.get(34675)
+            profile = bytes(profile_tag.value) if profile_tag is not None else b""
+        if profile and not _is_supported_srgb_profile(profile):
+            pixels = _load_prophoto16_tiff(path, inspection)
+            warnings.append(
+                DecodeWarning(
+                    "embedded_prophoto_to_linear_rec2020",
+                    "Decoded the supported ProPhoto RGB matrix-shaper ICC profile to "
+                    "unclipped linear Rec.2020; gamut mapping was not applied.",
+                )
+            )
+            return WorkingImage(
+                pixels=pixels,
+                working_space="linear_rec2020",
+                transfer_state="display_linear",
+                source_transfer_state=inspection.transfer_state,
+                source_profile=inspection.source_profile,
+                hdr_metadata=inspection.hdr_metadata,
+                orientation_applied=True,
+                alpha_policy="absent",
+                bit_depth_in=inspection.bit_depth,
+                source_path=path,
+                warnings=warnings,
+            )
+        arr = _load_srgb16_tiff(path, inspection)
+        alpha_policy = "absent"
+    elif inspection.format_name == "TIFF" and inspection.bit_depth == 16:
         arr = _load_srgb16_tiff(path, inspection)
         alpha_policy = "absent"
     elif inspection.format_name == "PNG" and inspection.bit_depth == 16:

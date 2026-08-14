@@ -3,14 +3,21 @@ from __future__ import annotations
 from pathlib import Path
 
 import cv2
+import imagecodecs
 import numpy as np
 import pytest
 import tifffile
 from PIL import Image, features
 from PIL.PngImagePlugin import PngInfo
 
-from src.preprocess import inspect_input, load_working_image, save_srgb16_png, save_srgb16_tiff
+from src.preprocess import (
+    inspect_input,
+    load_working_image,
+    save_srgb16_png,
+    save_srgb16_tiff,
+)
 from src.preprocess.output_encode import _inject_png_icc
+from src.preprocess.prophoto_icc import decode_prophoto_rgb16_to_linear_rec2020
 from src.preprocess.raw_decode import load_raw_working_image
 
 
@@ -189,6 +196,73 @@ def test_unknown_profiled_tiff16_fails_closed(tmp_path: Path) -> None:
         load_working_image(path)
 
 
+def _generated_prophoto_profile() -> bytes:
+    return imagecodecs.cms_profile(
+        "rgb",
+        whitepoint=(0.3457, 0.3585, 1.0),
+        primaries=(0.7347, 0.2653, 0.1596, 0.8404, 0.0366, 0.0001),
+        gamma=1.8,
+    )
+
+
+def test_profiled_prophoto16_tiff_decodes_to_unclipped_linear_rec2020(
+    tmp_path: Path,
+) -> None:
+    path = tmp_path / "prophoto16.tiff"
+    encoded = np.asarray(
+        [
+            [[0, 32768, 65535], [65535, 0, 0]],
+            [[4096, 8192, 16384], [49152, 32768, 16384]],
+        ],
+        dtype=np.uint16,
+    )
+    profile = _generated_prophoto_profile()
+    tifffile.imwrite(
+        path,
+        encoded,
+        photometric="rgb",
+        metadata=None,
+        extratags=[(34675, "B", len(profile), profile, False)],
+    )
+
+    working = load_working_image(path)
+    expected = decode_prophoto_rgb16_to_linear_rec2020(encoded, profile)
+
+    assert working.working_space == "linear_rec2020"
+    assert working.transfer_state == "display_linear"
+    assert working.bit_depth_in == 16
+    assert working.source_profile.kind == "icc"
+    assert working.pixels.tobytes() == expected.tobytes()
+    assert any(
+        warning.code == "embedded_prophoto_to_linear_rec2020"
+        for warning in working.warnings
+    )
+
+
+def test_prophoto16_tiff_rejects_nonuniform_channel_trcs(tmp_path: Path) -> None:
+    path = tmp_path / "invalid_prophoto16.tiff"
+    encoded = np.zeros((2, 2, 3), dtype=np.uint16)
+    profile = bytearray(_generated_prophoto_profile())
+    count = int.from_bytes(profile[128:132], "big")
+    for index in range(count):
+        offset = 132 + 12 * index
+        if profile[offset : offset + 4] == b"gTRC":
+            payload_offset = int.from_bytes(profile[offset + 4 : offset + 8], "big")
+            profile[payload_offset + 12 : payload_offset + 16] = int(2.2 * 65536).to_bytes(
+                4, "big", signed=True
+            )
+            break
+    tifffile.imwrite(
+        path,
+        encoded,
+        photometric="rgb",
+        metadata=None,
+        extratags=[(34675, "B", len(profile), bytes(profile), False)],
+    )
+    with pytest.raises(ValueError, match="ICC conversion is not implemented"):
+        load_working_image(path)
+
+
 def test_unprofiled_tiff16_preserves_precision_with_explicit_srgb_assumption(tmp_path: Path) -> None:
     path = tmp_path / "unprofiled.tiff"
     array = np.arange(3 * 4 * 3, dtype=np.uint16).reshape(3, 4, 3) * 1733
@@ -282,6 +356,7 @@ def test_png_gain_map_metadata_fails_closed(tmp_path: Path) -> None:
 
 def test_raw_decode_requests_linear_srgb_and_preserves_scene_state(monkeypatch, tmp_path: Path) -> None:
     from types import SimpleNamespace
+
     from src.preprocess import raw_decode
 
     calls = []
