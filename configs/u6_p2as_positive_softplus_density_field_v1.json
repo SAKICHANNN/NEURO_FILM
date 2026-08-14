@@ -1,0 +1,76 @@
+{
+  "schema": "neuro_film.u6_p2as_positive_softplus_density_field_contract.v1",
+  "node": "U6.P2AS",
+  "question": "Does a density-conditioned positive softplus transform fitted once on development realizations generalize the hybrid amplitude and mean-density targets to fresh Thomas confirmations without clipping or per-realization normalization?",
+  "parents": {
+    "additive_boundary": {
+      "path": "docs/evidence/U6_P2AR_HYBRID_DENSITY_AMPLITUDE_THOMAS_RESULT.json",
+      "sha256": "b2e7576e7c0690e43cf0a05a4782d3ff8f0b602f8726a0765fd45d038737381e",
+      "required_automatic_pass": false,
+      "required_decision": "close this exact hybrid without amplitude, shape, seed or gate rescue"
+    },
+    "additive_contract": {
+      "path": "configs/u6_p2ar_hybrid_density_amplitude_thomas_v1.json",
+      "sha256": "2184c80cca0e220a2a13c72ec0f10ca4da18236310031cee09931e3b3b1ae708"
+    }
+  },
+  "positive_mechanism": {
+    "transform": "softplus(a_density + b_density * dc_projected_thomas_unit)",
+    "densities": [0.06, 0.36, 0.74, 1.0, 1.14],
+    "target_aperture_sigma_d": [
+      0.009171656684287146,
+      0.014949030929925687,
+      0.014949030929925687,
+      0.017,
+      0.018218574618747253
+    ],
+    "parameter_bounds": {
+      "a": [-20.0, 5.0],
+      "b": [0.0, 2.0]
+    },
+    "least_squares": {
+      "ftol": 1e-13,
+      "xtol": 1e-13,
+      "gtol": 1e-13,
+      "maximum_function_evaluations": 200
+    },
+    "fit_objective": "development_seed_mean_of_relative_density_mean_error_and_relative_48um_aperture_sigma_error",
+    "confirmation_parameter_refit_allowed": false,
+    "confirmation_realized_mean_normalization_allowed": false,
+    "confirmation_realized_variance_normalization_allowed": false,
+    "hard_clipping_allowed": false
+  },
+  "spatial_mechanism": {
+    "spatial_profile_id": "generic-scanner-convolved-thomas-p4bs-v1",
+    "particle_sigma_samples": 1.3253699417769098,
+    "cluster_sigma_samples": 1.1268619873805532,
+    "mean_offspring": 27.765942352935905,
+    "component_seeds": [2611923443488327891, 11400714819323198485],
+    "sample_pitch_micrometres": 6.35,
+    "measurement_aperture_diameter_micrometres": 48.0,
+    "truncate_sigma": 4.0
+  },
+  "evaluation": {
+    "field_shape": [512, 512],
+    "development_seeds": [131071, 524287, 1048573],
+    "confirmation_seeds": [2097143, 4194301, 8388593],
+    "canonical_row_block_height": 31,
+    "row_partition_height": 127,
+    "measurement_crop_border_samples": 13,
+    "maximum_development_relative_mean_error": 0.001,
+    "maximum_development_relative_sigma_error": 0.01,
+    "maximum_confirmation_relative_mean_error": 0.02,
+    "maximum_confirmation_median_sigma_relative_error": 0.03,
+    "maximum_confirmation_p95_sigma_relative_error": 0.05,
+    "minimum_parameter_bound_margin": 1e-6,
+    "minimum_developed_density_exclusive": 0.0,
+    "repeat_byte_exact": true,
+    "partition_exact": true,
+    "rgb_image_transform_count_zero": true
+  },
+  "branch_rule": {
+    "pass": "retain a generic positive density-conditioned structure candidate and open only a separately frozen scanner/reference-simulator integration",
+    "fail": "close this exact softplus family without parameter-bound, seed, target or gate rescue"
+  },
+  "claim_ceiling": "Positive generic B&W density-field mechanism using cross-generation amplitude targets and a generic Thomas unit field; not current-stock calibration, measured NPS, microscopic grain, scanner truth, appearance or product evidence."
+}
