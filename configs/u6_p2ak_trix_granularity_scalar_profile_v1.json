@@ -1,0 +1,37 @@
+{
+  "schema": "neuro_film.u6_p2ak_trix_granularity_scalar_profile_contract.v1",
+  "node": "U6.P2AK",
+  "question": "Can the exact first-party TRI-X 400 scalar granularity observation compile into a deterministic typed amplitude-only profile without inventing density dependence, NPS, grain geometry or rendering authority?",
+  "parents": {
+    "compatibility_boundary": {
+      "path": "docs/evidence/U6_P2AJ_TRIX_GRANULARITY_COMPATIBILITY_RESULT.json",
+      "sha256": "d47be09f2ddfba753f6cccbb7f5b81af1d9fcbafb7907852ea9bbc2d052f9113",
+      "required_automatic_pass": false
+    }
+  },
+  "profile": {
+    "film_stock_id": "kodak_professional_tri_x_400_400tx",
+    "density_mean": 1.0,
+    "density_rms": 0.017,
+    "aperture_diameter_micrometres": 48.0,
+    "densitometry": "diffuse_visual",
+    "source_evidence_id": "a8b5393d44067c8ec5a90a9046ce9a2d0379d3f6e825d7f75a44d7204e008b4d",
+    "spatial_nps_status": "unidentified",
+    "render_allowed": false
+  },
+  "automatic_gates": {
+    "serialization_byte_exact": true,
+    "identity_byte_exact": true,
+    "exact_observation_replay": true,
+    "density_mismatch_rejected": true,
+    "aperture_mismatch_rejected": true,
+    "spatial_render_rejected": true,
+    "input_unchanged_on_failure": true,
+    "rgb_image_transform_count_zero": true
+  },
+  "branch_rule": {
+    "pass": "retain a TRI-X amplitude-only scalar profile as a future structure-compiler constraint",
+    "fail": "close the scalar profile without adding interpolation or spatial assumptions"
+  },
+  "claim_ceiling": "One first-party TRI-X 400 diffuse-rms density amplitude at net density 1.0 and a 48 micrometre aperture; not density dependence, NPS, grain size, scanner response, roll calibration, photographic appearance or product evidence."
+}
