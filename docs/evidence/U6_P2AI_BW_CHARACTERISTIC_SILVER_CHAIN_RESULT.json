@@ -1,0 +1,27 @@
+{
+  "schema": "neuro_film.u6_p2ai_bw_characteristic_silver_chain_evidence.v1",
+  "node": "U6.P2AI",
+  "implementation_commit": "1c29c3372edd6c8bc3f20cc8010180e390f48f9b",
+  "contract_sha256": "0c7f3f8ff1056fcf0196ca29038c13034e1c1b9323abd49f83cd9d0f975a21cf",
+  "report_sha256": "9bb45e933a3af7db87a3ee0e78a0df171c4f75c4048ba5ddb9de68414f153b43",
+  "stable_evidence_id": "aa059a37e48951c59f551429c8135c27b373d633812846ad079f4b8818e5171f",
+  "surface_identity": "8a1f1ee316e1a273d33df2a2f12ad5933dfb5ee1a52c1fe71ca594a17360967e",
+  "formal_run_count": 2,
+  "formal_reports_byte_exact": true,
+  "automatic_pass": true,
+  "measurements": {
+    "maximum_density_reference_error": 0.0,
+    "maximum_interior_mean_transmittance_absolute_error": 0.0011402371783132553,
+    "mean_density_strictly_increases_with_development_time": true,
+    "mean_transmittance_strictly_decreases_with_development_time": true,
+    "repeat_byte_exact": true,
+    "partition_exact": true,
+    "domain_mismatch_rejected": true,
+    "non_neutral_exposure_rejected": true,
+    "outside_surface_domain_rejected": true,
+    "input_unchanged_on_failure": true,
+    "rgb_image_transform_count_zero": true
+  },
+  "decision": "Retain a typed source-characteristic-to-metallic-silver research chain.",
+  "claim_ceiling": "Research-only composition of first-party relative TRI-X 400 / D-76 diffuse-visual curves with a generic synthetic metallic-silver structure kernel; not calibrated exposure, grain geometry, scanner response, photographic appearance or product evidence."
+}

@@ -13295,3 +13295,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Allow interpolation only inside the observed 6--12 minute D-76 domain. P2AF's
   unresolved coordinate/shape uncertainty and all calibration, scanner,
   photographic-look and product claim ceilings remain unchanged.
+
+### 2026-08-14 - U6.P2AI connects characteristic density to B&W structure
+
+- The admitted TRI-X 400 / D-76 surface now feeds the existing deterministic
+  metallic-silver structure kernel without relabelling its relative graph axis
+  as calibrated scene or layer exposure.
+- Two reports are byte exact (`9bb45e93...f153b43`, stable
+  `aa059a37...e5171f`). Across 6/9/12 minutes, mean density strictly rises,
+  transmittance strictly falls, density reference error is zero and maximum
+  structure mean error is `.00114024`; repeat, partition and failure gates pass.
+- Retain only a typed research chain. Grain geometry, scanner response,
+  photographic appearance and product profile claims remain closed.
