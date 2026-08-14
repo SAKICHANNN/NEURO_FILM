@@ -1,0 +1,16 @@
+{
+  "schema": "neuro_film.u6_p2am_trix_mtf_source_prior_evidence.v1",
+  "node": "U6.P2AM",
+  "implementation_commit": "8d199d655c09cd9f927f620a25ce007a63ed3446",
+  "contract_sha256": "871e1dcdbd80a64ec7094474a9edc25ee9a962b0de11e8d402a1a7ec4525febb",
+  "report_sha256": "2488dbb7169019165c0cdfffe84d134aeb70bf00b3d2c9801cfeede067706f0a",
+  "stable_evidence_id": "4a6b13b40911a72dce5aedee49fa821dd0488437bd2a0698e460ad92ff8573fd",
+  "profile_identity": "c88425fc2642aa64c3bb73d5fa88022e537e3ed18611409e93b1e27ccd555d73",
+  "formal_run_count": 2,
+  "formal_reports_byte_exact": true,
+  "automatic_pass": true,
+  "sampled_response_fractions": [1.0902413398052975, 1.1199793420063255, 1.1350900930851509, 1.0610662329172997, 0.9273468835745209, 0.7376690204274542, 0.5471076425443121, 0.3762534757031054, 0.25123712007483173],
+  "digitization_relative_uncertainty": 0.012542720222121995,
+  "decision": "Retain a version-limited first-party TRI-X MTF source prior for future separately gated spatial-response comparisons.",
+  "claim_ceiling": "First-party vector extraction of an older TRI-X Pan 5063 D-76 large-tank diffuse-visual MTF curve whose applicability to newer films is preliminary; not a current-400TX measurement, density-conditioned MTF, scanner response, photographic calibration or product authority."
+}
