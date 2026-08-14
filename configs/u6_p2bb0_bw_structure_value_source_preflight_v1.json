@@ -75,6 +75,37 @@
     "zero_exact_or_dhash_leakage_to_prior_pools": true,
     "zero_confirmed_severe_source_artifact": true
   },
+  "source_integrity_amendment": {
+    "timing": "after two source-only exact preflights and before any P2BB image-formation evaluation",
+    "algorithm_outputs_observed": 0,
+    "visual_review_completed": true,
+    "uniform_orientation_policy": "libraw_metadata_orientation",
+    "initial_exact_replay": {
+      "run_a_manifest_sha256": "8c2d8d3414d9d44b7a517c88e51c37a8ee8388991b26c091a518a9495ae1d323",
+      "run_a_report_sha256": "7dba9c4de3cc08af2c6319126aaef16ba914bff671b671f7451dc746eb0ccaf2",
+      "run_a_contact_sheet_sha256": "388f6216fd7d68afd55c982302a906fe87bb776ba59b26977482b6ef92c5df93",
+      "run_b_exact": true
+    },
+    "included_ids_in_order": [
+      "canon_eos_r5_mark_ii",
+      "sony_ilce_1m2",
+      "nikon_z5_2",
+      "panasonic_dmc_fz28",
+      "samsung_galaxy_s22_ulra",
+      "phase_one_p20_plus",
+      "pentax_k_s1",
+      "olympus_e_m10_mark_iv",
+      "xiaomi_mi_9_lite",
+      "huawei_nxt_l29",
+      "leica_v_lux_typ_114"
+    ],
+    "excluded": [
+      {
+        "id": "gopro_hero9_black",
+        "reason": "LibRaw technical decode failure; retained without replacement and not a scientific failure"
+      }
+    ]
+  },
   "training_allowed": false,
   "operator_fitting_allowed": false,
   "next_leaf": {
