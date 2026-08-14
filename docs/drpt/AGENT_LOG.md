@@ -13346,3 +13346,8 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 
 - Two independent frozen audits were byte-identical (`6d190f4a...cca4ed`). The generic fixed-radius Boolean mechanism produced relative density variances `1, 91.02, 400.79, 589.93` versus historical TRI-X 5233 Wiener amplitudes `1, 2.657, 2.657, 3.946`; RMSE and worst-relative-error gates failed while replay, partition, positivity and rank gates passed.
 - Decision: no radius, sample-count, density or gate rescue. Continue with a source-bounded amplitude compiler that keeps amplitude, spatial spectrum, scanner response and current-stock claims separate.
+
+## 2026-08-14 - U6.P2AQ compiles source-bounded Wiener amplitude
+
+- The typed historical compiler exactly recovers all four source nodes, preserves the exact plateau, uses log-linear interpolation only between unequal nodes, rejects both extrapolation directions and replays byte-identically (`fecf11c8...5791d`).
+- Retain profile `13c26b7a...f30c1` only as historical TRI-X 5233/SD-28 relative standard-deviation scaling. Spatial NPS, scanner response, current 400TX and rendering remain separate.

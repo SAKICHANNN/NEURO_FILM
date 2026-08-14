@@ -1,0 +1,28 @@
+{
+  "schema": "neuro_film.u6_p2aq_historical_wiener_amplitude_compiler_evidence.v1",
+  "node": "U6.P2AQ",
+  "implementation_commit": "c185e399c6668b66c32de733eb50f9bfa77bc2a0",
+  "contract_sha256": "c36a972679c38c2352cbda630255872409c87f6f42beb0a747a208d11e0fbfb7",
+  "formal_run_count": 2,
+  "formal_reports_byte_exact": true,
+  "report_sha256": "fecf11c82d7e025985993b308a4e0cc316456489ed138c26592e57bcc175791d",
+  "stable_evidence_id": "1420601016df519fd0199181e59f193d2b91817e5c0c1b7cb029f52fc7698d14",
+  "profile_identity": "13c26b7a7d4b93bd5065ac8e213082bcb47df68ef1c466edc75738c464ff30c1",
+  "evaluation_densities": [0.06, 0.21, 0.36, 0.55, 0.74, 0.94, 1.14],
+  "relative_standard_deviation_scales": [
+    1.0,
+    1.276681676841686,
+    1.629916103983299,
+    1.629916103983299,
+    1.629916103983299,
+    1.7993511606127264,
+    1.9863995400045078
+  ],
+  "maximum_node_relative_error": 0.0,
+  "maximum_midpoint_log_law_error": 2.220446049250313e-16,
+  "lower_extrapolation_rejected": true,
+  "upper_extrapolation_rejected": true,
+  "automatic_pass": true,
+  "decision": "retain a historical source-bounded relative Wiener amplitude compiler; spatial shape and current-stock use remain separate",
+  "claim_ceiling": "Historical TRI-X 5233/SD-28 relative Wiener-amplitude interpolation only; not current 400TX, absolute realized variance, spatial NPS, grain geometry, scanner response, appearance or product evidence."
+}
