@@ -1,0 +1,62 @@
+{
+  "schema": "neuro-film.u1-4c4-native-prophoto-rec2020-confirmation-evidence.v1",
+  "experiment_id": "U1.4C4",
+  "date": "2026-08-14",
+  "implementation_commits": [
+    "6a636474",
+    "d3f4f384"
+  ],
+  "bindings": {
+    "contract_sha256": "6e3caf8e65a71c798e97dff26e3af21c56193409decdb1f5c48b7b794733d607",
+    "source_manifest_sha256": "4f352488fda809cce52dffe388cbe2564cbe2d5f515db1eb6e078ae92f1d27fc",
+    "source_acquisition_manifest_sha256": "f9a2c5ce95815fbbe1941cd03558d1f3ff1eb39b314386038626504de7c78641",
+    "embedded_prophoto_icc_sha256": "0a8ef7d1d958d98225b3b71d93d9e8e3cecd9c302e014973d025d2a977ecf27c",
+    "evaluator_sha256": "92426a23c2a17e6ff0c17bb9bdd2e8effcebdda1f36baa716d45b572fde0d803",
+    "runner_sha256": "693d1c37b3faa11d74852f3d79e854ee8024defb85ce8b046d35224e17d4a0e4",
+    "test_sha256": "f2c68656ac78ef873e5259e8d4abda7a64da3d9e253764f9d837648779aa857d"
+  },
+  "formal_replay": {
+    "run_a_report": "outputs/u1_4c4_native_prophoto_rec2020_confirmation_formal_v1/run_a/report.json",
+    "run_b_report": "outputs/u1_4c4_native_prophoto_rec2020_confirmation_formal_v1/run_b/report.json",
+    "report_sha256": "36633dda5cedb36608a2c1f60164ad35dd513efb0c261da7acfc69e437c6b8ca",
+    "stable_evidence_id": "60c5998b3bd3a0f116702a8a4b1b0bcd32a97ca8516d778dc22683051707810c",
+    "report_byte_exact": true,
+    "rgb16_png_count_per_run": 96,
+    "ordered_png_inventory_sha256": "89e4751395d26f0c1440c5c7517b8aa3776379869af77b56e3dc6637eee8f244",
+    "ordered_png_inventory_byte_exact": true,
+    "stderr_empty": true
+  },
+  "population": {
+    "sources": 12,
+    "camera_make_models": 12,
+    "styles": 4,
+    "gamut_modes": 2,
+    "renders_per_run": 96,
+    "interpretation": "Research-licensed MIT-Adobe FiveK Expert C 16-bit TIFFs with exact embedded ProPhoto ICC; source-selected without target pixels, one source per make/model. These are native wide-gamut rendered photographs, not film, stock, calibration, HDR or product-ingress evidence."
+  },
+  "mechanism": {
+    "ingress": "ROMM/ProPhoto encoded RGB to D50 XYZ, Bradford D50-to-D65 adaptation and extended linear Rec.2020",
+    "gamut_mapping": "out-of-Rec.2020 pixels only, along the source luminance-neutral RGB axis into a two-code RGB16 interior",
+    "look": "unchanged U1.4C3 source-anchored safe-Lab residual execution",
+    "fitting_or_clipping": false
+  },
+  "metrics": {
+    "minimum_native_srgb_out_of_gamut_fraction": 0.011774764150943397,
+    "minimum_precompression_rec2020_out_of_gamut_fraction": 0.004692216981132076,
+    "maximum_luminance_preservation_absolute_error": 3.9470195778434913e-08,
+    "maximum_new_rgb16_boundary_fraction_vs_mapped_source": 0.0,
+    "population_median_style_retention_ratio": 0.9999136504675314,
+    "worst_render_style_retention_ratio": 0.9290776345272138,
+    "population_median_residual_scale": 1.0,
+    "population_median_fraction_scale_below_0p5": 0.027267410571191156,
+    "maximum_p999_gradient_ratio_vs_mapped_source": 1.0732345911090162,
+    "maximum_adjacent_lstar_sign_inversion_fraction": 0.0032546928687584888,
+    "output_minimum": 0.0,
+    "output_maximum": 1.0
+  },
+  "automatic_pass": true,
+  "decision": "open_only_an_independently_sourced_native_wide_gamut_confirmation_before_product_ingress",
+  "interpretation": "The analytical luminance-axis mapping and unchanged C3 residual mechanism pass all frozen support, compression-stress, luminance, boundary, style-retention, scale, gradient and order gates on twelve native ProPhoto photographs. The result confirms the mechanism beyond display-sRGB-derived stress inputs, but the source is still FiveK and internal research-only, so independent-source confirmation remains required before product ingress.",
+  "production_default_changed": false,
+  "claim_ceiling": "Development-only native ProPhoto-to-relative-display-Rec.2020 boundary-safety and style-retention evidence; not arbitrary ICC/profile support, film, stock, calibration, HDR, ACES, preference or product ingress."
+}

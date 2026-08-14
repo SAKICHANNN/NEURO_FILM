@@ -13449,3 +13449,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The existing C1C safe-Lab residual was executed along its unchanged RGB direction with one analytical per-pixel scale into a source-anchored RGB16-safe interval. No style parameter, gamut mode, margin or threshold was fitted.
 - Two full nine-camera runs and all 72 RGB16 PNGs per run are byte exact (`f2122ac9...e753c`, stable `55a59a80...794de`). New boundary occupancy is zero; the worst style-retention ratio is `.999709`, maximum gradient ratio is `1.08610`, and maximum adjacent L* inversion is `.000587`.
 - Open only an independent native-wide-gamut confirmation. The current cohort is display-sRGB-derived stress evidence, so product wiring, HDR/ACES support, film claims and preference review remain closed. Evidence: `docs/evidence/U1_4C3_REC2020_SOURCE_ANCHORED_INTERIOR_RESULT.json`.
+
+### 2026-08-14 - U1.4C4 validates native ProPhoto execution
+
+- Twelve source-selected MIT-Adobe FiveK Expert C 16-bit ProPhoto photographs
+  were converted through explicit ROMM/D50 to linear Rec.2020, then mapped
+  analytically along the luminance-neutral RGB axis before the unchanged C3
+  residual. No source/operator fitting, hard clipping or post-hoc limiting was
+  permitted.
+- Two full runs and all 96 RGB16 PNGs per run replay byte exactly
+  (`36633dda...6b8ca`, stable `60c5998b...7810c`). All frozen gates pass: new
+  RGB16 boundary occupancy is zero, luminance error is `3.95e-8`, median style
+  retention is `.999914`, worst retention is `.929078`, and maximum gradient
+  ratio is `1.07323`.
+- Open only an independently sourced native-WCG confirmation before product
+  ingress. This is internal FiveK research evidence, not arbitrary ICC,
+  film/stock, calibration, HDR/ACES, preference or product support. Evidence:
+  `docs/evidence/U1_4C4_NATIVE_PROPHOTO_REC2020_CONFIRMATION_RESULT.json`.
