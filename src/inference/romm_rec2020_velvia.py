@@ -13,16 +13,37 @@ import numpy as np
 
 from src.color_engine.rec2020_safe_lab import apply_rec2020_safe_lab
 from src.preprocess import (
+    FIVEK_PROPHOTO_MATRIX_SHAPER_ICC_SHA256,
+    OFFICIAL_ROMM_ICC_SHA256,
     REC2020_SDR_CICP,
     linear_rec2020_to_rec2020,
     load_and_map_official_romm_rgb16,
+    load_and_map_supported_prophoto_rgb16,
     save_rec2020_16_png,
 )
-from src.preprocess.types import DecodeWarning
+from src.preprocess.types import DecodeWarning, WorkingImage
 
 PROFILE_SCHEMA = "kmcfm.romm-rec2020-render-profile.v1"
 PROFILE_ID = "romm-rec2020-velvia-look-v1"
 RECEIPT_SCHEMA = "kmcfm.romm-rec2020-render-receipt.v1"
+PROPHOTO_PROFILE_SCHEMA = "kmcfm.prophoto-rec2020-render-profile.v1"
+PROPHOTO_PROFILE_ID = "prophoto-rec2020-velvia-look-v1"
+PROPHOTO_RECEIPT_SCHEMA = "kmcfm.prophoto-rec2020-render-receipt.v1"
+
+_PROFILE_SPECS = {
+    PROFILE_ID: {
+        "schema": PROFILE_SCHEMA,
+        "input_profile_binding": {"embedded_icc_sha256": OFFICIAL_ROMM_ICC_SHA256},
+        "qualification_ids": {"U1.4C13", "U1.4C14"},
+    },
+    PROPHOTO_PROFILE_ID: {
+        "schema": PROPHOTO_PROFILE_SCHEMA,
+        "input_profile_binding": {
+            "embedded_icc_sha256s": [FIVEK_PROPHOTO_MATRIX_SHAPER_ICC_SHA256]
+        },
+        "qualification_ids": {"U1.4C9", "U1.4C11", "U1.4C15"},
+    },
+}
 
 
 class ROMMRec2020RenderError(RuntimeError):
@@ -41,11 +62,13 @@ def load_profile(path: Path, *, root: Path) -> tuple[dict[str, Any], str]:
     path = Path(path)
     profile_sha256 = _sha256(path)
     payload = json.loads(path.read_text(encoding="utf-8"))
-    if payload.get("schema_id") != PROFILE_SCHEMA or payload.get("profile_id") != PROFILE_ID:
-        raise ROMMRec2020RenderError("unsupported ROMM Rec.2020 render profile")
+    profile_id = payload.get("profile_id")
+    spec = _PROFILE_SPECS.get(profile_id)
+    if spec is None or payload.get("schema_id") != spec["schema"]:
+        raise ROMMRec2020RenderError("unsupported ProPhoto Rec.2020 render profile")
     expected = {
         "input": {
-            "embedded_icc_sha256": "96b2f2987f83e2a545e607799fbfdff43ef8158fb9b215b187c574db8f145aaf",
+            **spec["input_profile_binding"],
             "format": "RGB16 TIFF",
             "working_space_after_decode": "linear_rec2020",
             "transfer_state": "display_linear",
@@ -85,8 +108,10 @@ def load_profile(path: Path, *, root: Path) -> tuple[dict[str, Any], str]:
             raise ROMMRec2020RenderError(f"ROMM Rec.2020 profile {key} drift")
     qualification = payload.get("qualification", [])
     assets = payload.get("assets", [])
-    if {item.get("experiment_id") for item in qualification} != {"U1.4C13", "U1.4C14"}:
-        raise ROMMRec2020RenderError("ROMM Rec.2020 qualification inventory drift")
+    if {item.get("experiment_id") for item in qualification} != spec[
+        "qualification_ids"
+    ]:
+        raise ROMMRec2020RenderError("ProPhoto Rec.2020 qualification inventory drift")
     if {item.get("role") for item in assets} != {"style_statistics", "color_guardrails"}:
         raise ROMMRec2020RenderError("ROMM Rec.2020 asset inventory drift")
     for binding in [*qualification, *assets]:
@@ -160,7 +185,60 @@ def render_official_romm_velvia_rec2020(
     if output_path.exists() or output_path.suffix.casefold() != ".png":
         raise ROMMRec2020RenderError("output must be a create-only .png path")
     profile, profile_sha256 = load_profile(profile_path, root=root)
+    if profile["profile_id"] != PROFILE_ID:
+        raise ROMMRec2020RenderError("official ROMM renderer requires its exact profile")
     mapped, mapping = load_and_map_official_romm_rgb16(input_path)
+    return _render_mapped_velvia_rec2020(
+        mapped,
+        mapping,
+        output_path,
+        profile=profile,
+        profile_sha256=profile_sha256,
+        receipt_schema=RECEIPT_SCHEMA,
+        root=root,
+    )
+
+
+def render_supported_prophoto_velvia_rec2020(
+    input_path: Path,
+    output_path: Path,
+    *,
+    profile_path: Path,
+    root: Path,
+) -> dict[str, Any]:
+    """Render the exact allowlisted ProPhoto profile through the qualified look."""
+
+    output_path = Path(output_path)
+    if output_path.exists() or output_path.suffix.casefold() != ".png":
+        raise ROMMRec2020RenderError("output must be a create-only .png path")
+    profile, profile_sha256 = load_profile(profile_path, root=root)
+    if profile["profile_id"] != PROPHOTO_PROFILE_ID:
+        raise ROMMRec2020RenderError("supported ProPhoto renderer requires its exact profile")
+    mapped, mapping = load_and_map_supported_prophoto_rgb16(
+        input_path,
+        allowed_profile_sha256s=tuple(profile["input"]["embedded_icc_sha256s"]),
+    )
+    return _render_mapped_velvia_rec2020(
+        mapped,
+        mapping,
+        output_path,
+        profile=profile,
+        profile_sha256=profile_sha256,
+        receipt_schema=PROPHOTO_RECEIPT_SCHEMA,
+        root=root,
+    )
+
+
+def _render_mapped_velvia_rec2020(
+    mapped: WorkingImage,
+    mapping: dict[str, Any],
+    output_path: Path,
+    *,
+    profile: dict[str, Any],
+    profile_sha256: str,
+    receipt_schema: str,
+    root: Path,
+) -> dict[str, Any]:
     assets = {binding["role"]: root / binding["path"] for binding in profile["assets"]}
     stats = json.loads(assets["style_statistics"].read_text(encoding="utf-8"))
     guard_payload = json.loads(assets["color_guardrails"].read_text(encoding="utf-8"))
@@ -219,8 +297,8 @@ def render_official_romm_velvia_rec2020(
         output_path.unlink(missing_ok=True)
         raise
     return {
-        "schema": RECEIPT_SCHEMA,
-        "profile_id": PROFILE_ID,
+        "schema": receipt_schema,
+        "profile_id": profile["profile_id"],
         "profile_sha256": profile_sha256,
         "input": mapping["input"],
         "ingress": {
@@ -251,8 +329,12 @@ def render_official_romm_velvia_rec2020(
 __all__ = [
     "PROFILE_ID",
     "PROFILE_SCHEMA",
+    "PROPHOTO_PROFILE_ID",
+    "PROPHOTO_PROFILE_SCHEMA",
+    "PROPHOTO_RECEIPT_SCHEMA",
     "RECEIPT_SCHEMA",
     "ROMMRec2020RenderError",
     "load_profile",
     "render_official_romm_velvia_rec2020",
+    "render_supported_prophoto_velvia_rec2020",
 ]

@@ -23,6 +23,9 @@ from .types import DecodeWarning, WorkingImage
 OFFICIAL_ROMM_ICC_SHA256 = (
     "96b2f2987f83e2a545e607799fbfdff43ef8158fb9b215b187c574db8f145aaf"
 )
+FIVEK_PROPHOTO_MATRIX_SHAPER_ICC_SHA256 = (
+    "0a8ef7d1d958d98225b3b71d93d9e8e3cecd9c302e014973d025d2a977ecf27c"
+)
 ROMM_REC2020_CAPABILITY_ID = "official-romm-rgb16-to-rec2020-sdr-rgb16-png-v1"
 ROMM_REC2020_RECEIPT_SCHEMA = "neuro-film.romm-rec2020-conversion-receipt.v1"
 ROMM_REC2020_MAPPER_ID = "oklab-oog-only-soft-interval-maximum-chroma-v1"
@@ -43,7 +46,7 @@ def _sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def _official_romm_profile_sha256(path: Path) -> str:
+def _embedded_profile_sha256(path: Path) -> str:
     try:
         with tifffile.TiffFile(path) as document:
             if len(document.pages) != 1:
@@ -54,7 +57,11 @@ def _official_romm_profile_sha256(path: Path) -> str:
         raise
     except Exception as exc:
         raise ROMMRec2020ConversionError("ROMM input is not a readable TIFF") from exc
-    profile_sha256 = hashlib.sha256(profile).hexdigest()
+    return hashlib.sha256(profile).hexdigest()
+
+
+def _official_romm_profile_sha256(path: Path) -> str:
+    profile_sha256 = _embedded_profile_sha256(path)
     if profile_sha256 != OFFICIAL_ROMM_ICC_SHA256:
         raise ROMMRec2020ConversionError("input does not embed the exact official ROMM ICC")
     return profile_sha256
@@ -138,6 +145,39 @@ def load_and_map_official_romm_rgb16(
     if not input_path.is_file():
         raise ROMMRec2020ConversionError("ROMM input file is missing")
     profile_sha256 = _official_romm_profile_sha256(input_path)
+    return load_and_map_supported_prophoto_rgb16(
+        input_path,
+        allowed_profile_sha256s=(profile_sha256,),
+    )
+
+
+def load_and_map_supported_prophoto_rgb16(
+    input_path: Path,
+    *,
+    allowed_profile_sha256s: tuple[str, ...],
+) -> tuple[WorkingImage, dict[str, Any]]:
+    """Load one exact allowlisted supported-ProPhoto RGB16 TIFF and map it.
+
+    Profile semantics are still validated by the product ingress decoder.  The
+    explicit allowlist only widens the file identity boundary; it is not an
+    arbitrary-ICC escape hatch.
+    """
+
+    input_path = Path(input_path)
+    if not input_path.is_file():
+        raise ROMMRec2020ConversionError("ProPhoto input file is missing")
+    allowed = tuple(allowed_profile_sha256s)
+    if (
+        not allowed
+        or len(set(allowed)) != len(allowed)
+        or any(len(value) != 64 for value in allowed)
+    ):
+        raise ROMMRec2020ConversionError("supported ProPhoto profile allowlist is invalid")
+    profile_sha256 = _embedded_profile_sha256(input_path)
+    if profile_sha256 not in allowed:
+        raise ROMMRec2020ConversionError(
+            "input does not embed an exact allowlisted supported ProPhoto ICC"
+        )
     working = load_working_image(input_path)
     if (
         working.bit_depth_in != 16
@@ -146,7 +186,7 @@ def load_and_map_official_romm_rgb16(
         or working.transfer_state != "display_linear"
     ):
         raise ROMMRec2020ConversionError(
-            "official ROMM conversion requires RGB16 ICC display-linear Rec.2020 ingress"
+            "supported ProPhoto conversion requires RGB16 ICC display-linear Rec.2020 ingress"
         )
 
     source = working.pixels
@@ -205,6 +245,7 @@ def load_and_map_official_romm_rgb16(
 
 
 __all__ = [
+    "FIVEK_PROPHOTO_MATRIX_SHAPER_ICC_SHA256",
     "OFFICIAL_ROMM_ICC_SHA256",
     "ROMM_REC2020_CAPABILITY_ID",
     "ROMM_REC2020_QUALIFICATION_EVIDENCE_SHA256",
@@ -212,4 +253,5 @@ __all__ = [
     "ROMMRec2020ConversionError",
     "convert_official_romm_rgb16_to_rec2020_png",
     "load_and_map_official_romm_rgb16",
+    "load_and_map_supported_prophoto_rgb16",
 ]

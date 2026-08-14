@@ -1,0 +1,45 @@
+{
+  "schema_id": "kmcfm.prophoto-rec2020-render-profile.v1",
+  "profile_id": "prophoto-rec2020-velvia-look-v1",
+  "profile_version": "1.0.0",
+  "display_name": "Supported ProPhoto to Rec.2020 Velvia Look v1",
+  "engine_id": "safe_lab_rec2020_c13_v1",
+  "identity": {"film_stock_id": null, "interpretation": "look_approximation"},
+  "qualification": [
+    {
+      "experiment_id": "U1.4C9",
+      "path": "docs/evidence/U1_4C9_EMBEDDED_PROPHOTO_ICC_SEMANTIC_INGRESS_RESULT.json",
+      "sha256": "b1e2658290c2db05a673c9cd38fec9365b175b136eb2dec24d474944cf2b37b0",
+      "required_status": "PASS_SCOPED_EMBEDDED_PROPHOTO_TIFF16_SEMANTIC_INGRESS"
+    },
+    {
+      "experiment_id": "U1.4C11",
+      "path": "docs/evidence/U1_4C11_OKLAB_ANALYTICAL_INTERIOR_RESULT.json",
+      "sha256": "c748beb39aeac2c564e77e9c3dd07504b3ea5123367c03b67b84b738c558c2bd",
+      "required_status": "PASS_SCOPED_ICC_SEMANTIC_ANALYTICAL_INGRESS"
+    },
+    {
+      "experiment_id": "U1.4C15",
+      "path": "docs/evidence/U1_4C15_ROMM_REC2020_VELVIA_PRODUCT_RESULT.json",
+      "sha256": "1d0918968d6c5722c56edde23d78701fc283d6f276e498c33dd0f9d135a7ff20",
+      "required_status": "PASS_STRICT_OPT_IN_WIDE_GAMUT_LOOK"
+    }
+  ],
+  "assets": [
+    {"role": "style_statistics", "path": "configs/film_color_stats.json", "sha256": "1a45e90765e577edd4ca1773fc8c6cf98fd09b8afbdddfa519b1f097c5dd7c04"},
+    {"role": "color_guardrails", "path": "configs/color_guardrails.json", "sha256": "6669b7bc873febcc74ba7ddcbc1c1584807e38465447a5cdbeb24073efa00aa7"}
+  ],
+  "input": {
+    "embedded_icc_sha256s": ["0a8ef7d1d958d98225b3b71d93d9e8e3cecd9c302e014973d025d2a977ecf27c"],
+    "format": "RGB16 TIFF",
+    "working_space_after_decode": "linear_rec2020",
+    "transfer_state": "display_linear"
+  },
+  "ingress_mapper": {"id": "oklab-oog-only-soft-interval-maximum-chroma-v1", "softness": 0.015625, "rgb16_margin": 0.000030518043793392844, "bisection_iterations": 24},
+  "style": {"id": "velvia_50", "strength": 0.35, "luma_strength": 0.02, "gamut_mode": "source", "tone_rolloff": 0.04, "shadow_floor_l": 1.0, "highlight_ceiling_l": 99.0, "preserve_luma_detail_strength": 0.9, "chroma_curve_strength": 0.45},
+  "residual_execution": {"id": "source-anchored-rgb16-interior-residual-v1", "rgb16_margin": 0.000030518043793392844},
+  "effects": {"grain": false, "halation": false, "dust": false},
+  "output": {"format": "PNG", "bit_depth": 16, "working_space": "linear_rec2020", "transfer": "BT.2020 SDR", "cicp": "090f0001"},
+  "production_default_changed": false,
+  "claim_ceiling": "strict opt-in film-inspired Velvia look approximation on exact supported matrix-shaper ProPhoto RGB16 input to relative Rec.2020 SDR RGB16 output; internal FiveK product integration only, not independent confirmation, Velvia stock response, calibration, arbitrary ICC, HDR, camera colour, preference or default promotion"
+}

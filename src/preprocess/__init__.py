@@ -25,6 +25,7 @@ from .pipeline import inspect_input, load_working_image
 from .png_stream import StreamingSrgbPngWriter
 from .raster_decode import working_image_to_legacy_srgb8, working_image_to_srgb_float
 from .romm_rec2020_product import (
+    FIVEK_PROPHOTO_MATRIX_SHAPER_ICC_SHA256,
     OFFICIAL_ROMM_ICC_SHA256,
     ROMM_REC2020_CAPABILITY_ID,
     ROMM_REC2020_QUALIFICATION_EVIDENCE_SHA256,
@@ -32,6 +33,7 @@ from .romm_rec2020_product import (
     ROMMRec2020ConversionError,
     convert_official_romm_rgb16_to_rec2020_png,
     load_and_map_official_romm_rgb16,
+    load_and_map_supported_prophoto_rgb16,
 )
 from .types import (
     DecodeWarning,
@@ -41,6 +43,7 @@ from .types import (
 )
 
 __all__ = [
+    "FIVEK_PROPHOTO_MATRIX_SHAPER_ICC_SHA256",
     "LINEAR_RGB_TRANSFORM_VERSION",
     "OFFICIAL_ROMM_ICC_SHA256",
     "REC2020_SDR_CICP",
@@ -61,6 +64,7 @@ __all__ = [
     "linear_rec2020_to_rec2020",
     "linear_rgb_matrix",
     "load_and_map_official_romm_rgb16",
+    "load_and_map_supported_prophoto_rgb16",
     "load_working_image",
     "normalized_icc_profile_sha256",
     "rec2020_to_linear_rec2020",
