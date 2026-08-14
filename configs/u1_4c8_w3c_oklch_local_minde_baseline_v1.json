@@ -1,0 +1,100 @@
+{
+  "schema": "neuro-film.u1-4c8-w3c-oklch-local-minde-baseline-contract.v1",
+  "experiment_id": "U1.4C8",
+  "status": "frozen_before_local_minde_implementation_or_execution",
+  "question": "On the exact U1.4C7 ProPhoto-to-Rec.2020 stress cohort, does the current W3C CSS Color 4 OKLCh local-MINDE mapping provide a non-dominated explicit ingress baseline against the retained C4 luminance-axis mapper without weakening C7 safety or style-retention gates?",
+  "primary_source": {
+    "title": "CSS Color Module Level 4",
+    "publisher": "W3C",
+    "url": "https://www.w3.org/TR/css-color-4/#binsearch",
+    "accessed": "2026-08-14",
+    "normative_algorithm": "Binary Search Gamut Mapping with Local MINDE",
+    "applicability": "relative-colorimetric conversion from predefined ProPhoto RGB through D65 OKLCh into destination Rec.2020"
+  },
+  "excluded_nearby_source": {
+    "title": "Computationally-efficient Hue-preserving Gamut Mapping in RGB and YUV",
+    "doi": "10.2352/EI.2025.37.10.IPAS-226",
+    "reason": "The paper requires an unmodified hue prior in the same nonlinear RGB or YUV basis as the clipped tone-mapped value; C7 is a cross-primary linear ProPhoto-to-Rec.2020 ingress problem, so applying it would be a domain mismatch."
+  },
+  "parents": {
+    "c7_contract": {
+      "path": "configs/u1_4c7_gamutmlp_rec2020_stress_confirmation_v1.json",
+      "sha256": "ecf68184e637525dcc0ff08626153e66fa227fc532e65048476356e929a4ab84"
+    },
+    "c7_evaluator": {
+      "path": "src/eval/gamutmlp_rec2020_stress_confirmation.py",
+      "sha256": "cf0c0690aa7c8913e2018fc352e3b077d74c261ff4b494e12d6e8e42010c202a"
+    },
+    "c7_evidence": {
+      "path": "docs/evidence/U1_4C7_GAMUTMLP_REC2020_STRESS_CONFIRMATION_RESULT.json",
+      "sha256": "59540488d5986f35c16ba72220ab37e49580868fbe75e48c710c94bd8eebfef6",
+      "required_automatic_pass": true,
+      "required_stable_evidence_id": "b07cfed29742b256ea6deec4d47c2b1cbf2bb6569b8001c5082b32ee6a84405d"
+    },
+    "c7_report": {
+      "path": "outputs/u1_4c7_gamutmlp_rec2020_stress_confirmation_formal_v1/run_a/report.json",
+      "sha256": "3c80f8dd666d530155bbaa02cde32a1f6e0c8ecaba671ca8cfb752b02e50dcbb",
+      "required_automatic_pass": true
+    },
+    "source_manifest": {
+      "path": "configs/u1_4c7_gamutmlp_rec2020_stress_source_manifest_v1.json",
+      "sha256": "d8c658838d1139b79404cbdba7939d80f30aa39b878dfa0d36d029917d477485"
+    }
+  },
+  "source": {
+    "expected_rows": 24,
+    "expected_camera_models": 8,
+    "required_allowed_use": "internal_research_only",
+    "required_rights_scope": "official_gamutmlp_dataset_without_separate_dataset_or_underlying_image_redistribution_license"
+  },
+  "baseline": {
+    "id": "rec2020-luminance-axis-analytical-interior-v1",
+    "source": "exact bound U1.4C7 report rows",
+    "refitting_allowed": false
+  },
+  "challenger": {
+    "id": "w3c-css-color-4-oklch-local-minde-rec2020-v1",
+    "origin_space": "prophoto-rgb",
+    "destination_space": "rec2020",
+    "chromatic_adaptation": "Bradford D50 to D65 before OKLab",
+    "oklab_matrices": "W3C CSS Color 4 64-bit sample conversion matrices",
+    "jnd_delta_e_ok": 0.02,
+    "chroma_epsilon": 0.0001,
+    "map_only_out_of_gamut_pixels": true,
+    "relative_colorimetric": true,
+    "source_or_operator_fitting_allowed": false,
+    "hard_clipping_as_final_mapper_allowed": false,
+    "posthoc_limiting_allowed": false
+  },
+  "render": {
+    "styles": ["ektar_100", "portra_800", "velvia_50", "vision3_250d"],
+    "gamut_modes": ["source", "chroma"],
+    "c3_mechanism_id": "source-anchored-rgb16-interior-residual-v1",
+    "rgb16_output": true,
+    "visual_review_before_automatic_pass": false
+  },
+  "automatic_gates": {
+    "require_two_run_report_and_png_identity": true,
+    "require_exact_row_and_arm_alignment_with_c7": true,
+    "maximum_mapped_source_boundary_fraction": 0.005,
+    "maximum_new_rgb16_boundary_fraction_vs_mapped_source": 0.0005,
+    "minimum_population_median_style_retention_ratio": 0.9,
+    "minimum_worst_render_style_retention_ratio": 0.75,
+    "minimum_population_median_residual_scale": 0.95,
+    "maximum_population_median_fraction_scale_below_0p5": 0.05,
+    "maximum_p999_gradient_ratio_vs_mapped_source": 1.35,
+    "maximum_adjacent_lstar_sign_inversion_fraction": 0.005,
+    "maximum_population_median_oklab_mapping_delta_e_ratio_vs_c4": 1.0,
+    "minimum_sources_with_no_worse_median_oklab_mapping_delta_e": 18,
+    "maximum_population_median_oklab_hue_error_ratio_vs_c4": 1.0,
+    "maximum_population_p95_oklab_lightness_error": 0.02,
+    "minimum_style_retention_median_margin_vs_c4": -0.01,
+    "minimum_style_retention_worst_margin_vs_c4": -0.05
+  },
+  "branches": {
+    "pass": "retain_local_minde_as_non_dominated_explicit_baseline_and_open_separate_visual_or_independent_data_adjudication",
+    "fail": "retain_c4_luminance_axis_mapper_and_close_exact_local_minde_baseline_without_parameter_or_cohort_rescue"
+  },
+  "production_default_changed": false,
+  "claim_ceiling": "Internal same-cohort explicit gamut-mapping baseline against U1.4C7; not independent data, embedded-ICC or arbitrary-profile support, calibrated colour, perceptual preference, film, stock, HDR, ACES, redistribution or product ingress."
+}
