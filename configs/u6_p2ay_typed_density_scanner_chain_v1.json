@@ -1,0 +1,44 @@
+{
+  "schema": "neuro_film.u6_p2ay_typed_density_scanner_chain_contract.v1",
+  "node": "U6.P2AY",
+  "question": "Can the uncertainty-validated positive density primitive enter the typed density-to-transmittance-to-scan chain with exact domain validation and a demonstrably noncommutative scanner-MTF order?",
+  "parents": {
+    "local_uncertainty_evidence": {
+      "path": "docs/evidence/U6_P2AX_LOCAL_DENSITY_UNCERTAINTY_RESULT.json",
+      "sha256": "e01d94a811a9769ce07310370c60b8e0605a99cd044c08f2fa808aee9acc9e34",
+      "required_automatic_pass": true
+    },
+    "local_uncertainty_contract": {
+      "path": "configs/u6_p2ax_local_density_uncertainty_v1.json",
+      "sha256": "6b7fa89b5bf4385d03c871a87607ea443186afa58c5f03dc06f538bcc5f933e7"
+    }
+  },
+  "fresh_realization_seed": 68719476731,
+  "scanner_profile": {
+    "profile_id": "generic-neutral-scanner-mtf-p2ay-v1",
+    "pixel_pitch_micrometres": 6.35,
+    "scanner_mtf_sigma_pixels_rgb": [0.7, 0.7, 0.7],
+    "gaussian_truncate": 3.0,
+    "spectral_matrix": "identity",
+    "flare_fraction": 0.0,
+    "noise_variance": 0.0,
+    "scanner_calibration_claimed": false
+  },
+  "evaluation": {
+    "maximum_density_roundtrip_absolute_error": 1e-12,
+    "maximum_scanner_mean_drift": 0.0001,
+    "maximum_scanner_high_frequency_energy_ratio": 1.0,
+    "minimum_wrong_order_rms_difference": 1e-6,
+    "minimum_transmittance_exclusive": 0.0,
+    "maximum_transmittance_inclusive": 1.0,
+    "neutral_channels_exact": true,
+    "repeat_byte_exact": true,
+    "hard_clipping_count_zero": true,
+    "realized_normalization_count_zero": true
+  },
+  "branch_rule": {
+    "pass": "retain the typed generic density-to-transmittance-to-scanner order and open neutral B&W scan interpretation",
+    "fail": "close this exact typed scanner-chain integration without sigma, order, seed, boundary or gate rescue"
+  },
+  "claim_ceiling": "Typed generic B&W density/transmittance/scanner-order evidence using an uncalibrated neutral scanner-MTF control; not current-stock calibration, scanner characterization, print interpretation, appearance, platform parity or product evidence."
+}
