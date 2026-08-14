@@ -1,0 +1,88 @@
+{
+  "schema": "neuro-film.u6-p2bb0-bw-structure-value-source-preflight.v1",
+  "schema_version": 1,
+  "experiment_id": "u6.p2bb0-bw-structure-value-source-preflight-v1",
+  "node": "ULT > U6 > U6.P2 > U6.P2BB0",
+  "status": "preregistered-before-pixel-access",
+  "parent_decision": {
+    "path": "docs/evidence/U6_P2BA_BOUND_FORWARD_BW_SCAN_RESULT.json",
+    "sha256": "f98512f3e386e23b1baebdb46e7cf9ad4ac8cef7d00c0407ae371b27677cc433",
+    "required_decision": "retain the identity-bound forward neutral B&W direct scan and open a fresh structural value ablation"
+  },
+  "source": {
+    "name": "raw.pixls.us",
+    "repository_url": "https://raw.pixls.us/",
+    "api_url": "https://raw.pixls.us/json/getrepository.php",
+    "api_observed_date": "2026-08-14",
+    "api_snapshot_sha256": "8dc5f5c74e20cc3a38f4548d53bba4bb516835e2a859e80bf86e7ac6283b3aa3",
+    "declared_license": "CC0/Public Domain per each exact repository row",
+    "purpose": "fresh ordinary-photograph population for generic B&W developed-structure value ablation",
+    "not_film_truth": true
+  },
+  "selection": {
+    "rule": "metadata-only exact freeze before pixel access: select one project-history-unused CC0 row per canonical make, 4-40 MB, excluding monochrome, infrared, pixel-shift, chart, flat, dark, scanner, negative, film, HDR, sRAW, mRAW and dual-pixel terms; no image appearance is used and technical or visual failures are retained without replacement",
+    "candidate_count": 12,
+    "expected_makes": 12,
+    "maximum_rows_per_make": 1,
+    "expected_download_bytes_upper_bound": 260000000,
+    "download_root": "data/external/rawpixls_p2bb_v1/raw",
+    "decoded_root": "outputs/u6_p2bb0_bw_structure_value_source_preflight_v1/inputs",
+    "maximum_decoded_side": 1600,
+    "orientation_policy": "libraw_metadata_orientation",
+    "program_wide_metadata_audit": {
+      "tracked_config_repository_id_count": 179,
+      "tracked_config_normalized_make_model_count": 206,
+      "candidate_repository_id_overlap": 0,
+      "candidate_raw_sha256_overlap": 0,
+      "candidate_normalized_make_model_overlap": 0
+    }
+  },
+  "candidates": [
+    {"id":"canon_eos_r5_mark_ii","repository_id":7884,"make":"Canon","model":"EOS R5 Mark II","mode":"CRAW (3:2)","date":"2025-05-13","megapixels":17.26,"bytes_reported_mb":7.21,"filename":"Canon - EOS R5 Mark II - CRAW (3:2).CR3","path":"data/external/rawpixls_p2bb_v1/raw/canon_eos_r5_mark_ii.cr3","sha256":"6a597497776a6abbfab8fcf12d0086ac7a3f8afea2879d61accf6bbf48d357d7","url":"https://raw.pixls.us/getfile.php/7884/nice/Canon%20-%20EOS%20R5%20Mark%20II%20-%20CRAW%20%283%3A2%29.CR3"},
+    {"id":"sony_ilce_1m2","repository_id":7835,"make":"Sony","model":"ILCE-1M2","mode":"14bit Lossy (3:2)","date":"2025-05-08","megapixels":21.34,"bytes_reported_mb":21.7,"filename":"Sony - ILCE-1M2 - 14bit Lossy (3:2).ARW","path":"data/external/rawpixls_p2bb_v1/raw/sony_ilce_1m2.arw","sha256":"050c924e5f78afd8479aa442f17b8650e0a5ebfa5757e57368cb0dc865ca2417","url":"https://raw.pixls.us/getfile.php/7835/nice/Sony%20-%20ILCE-1M2%20-%2014bit%20Lossy%20%283%3A2%29.ARW"},
+    {"id":"nikon_z5_2","repository_id":7746,"make":"Nikon","model":"Z5_2","mode":"8bit compressed (3:2)","date":"2025-04-19","megapixels":10.69,"bytes_reported_mb":13.19,"filename":"Nikon - Z5_2 - 8bit compressed (3:2).NEF","path":"data/external/rawpixls_p2bb_v1/raw/nikon_z5_2.nef","sha256":"ba6c66ece60b18eaf6a3461ecfbccd346af785a1db311b3e651ae0284232a1c8","url":"https://raw.pixls.us/getfile.php/7746/nice/Nikon%20-%20Z5_2%20-%208bit%20compressed%20%283%3A2%29.NEF"},
+    {"id":"panasonic_dmc_fz28","repository_id":7330,"make":"Panasonic","model":"DMC-FZ28","mode":"16:9","date":"2024-08-03","megapixels":7.54,"bytes_reported_mb":8.84,"filename":"Panasonic - DMC-FZ28 - 16:9.RW2","path":"data/external/rawpixls_p2bb_v1/raw/panasonic_dmc_fz28.rw2","sha256":"b58564eb3cd148e6282aeba0b104506fa021ce905a3040f15b6ef1cbd6142fff","url":"https://raw.pixls.us/getfile.php/7330/nice/Panasonic%20-%20DMC-FZ28%20-%2016%3A9.RW2"},
+    {"id":"samsung_galaxy_s22_ulra","repository_id":6261,"make":"Samsung","model":"Galaxy S22 Ulra","mode":"4:3","date":"2022-11-20","megapixels":12.0,"bytes_reported_mb":32.81,"filename":"Samsung - Galaxy S22 Ulra - 4:3.dng","path":"data/external/rawpixls_p2bb_v1/raw/samsung_galaxy_s22_ulra.dng","sha256":"53e7f83a94c965495ba32d3ea6021ef08ed02244ce64d111d1329bbd01fd5581","url":"https://raw.pixls.us/getfile.php/6261/nice/Samsung%20-%20Galaxy%20S22%20Ulra%20-%204%3A3.dng"},
+    {"id":"gopro_hero9_black","repository_id":4483,"make":"GoPro","model":"HERO9 Black","mode":"16bit (4:3)","date":"2021-01-24","megapixels":23.25,"bytes_reported_mb":7.68,"filename":"GoPro - HERO9 Black - 16bit (4:3).GPR","path":"data/external/rawpixls_p2bb_v1/raw/gopro_hero9_black.gpr","sha256":"bf6f67d0c7096f347b864310f6d58be35237c3d0e715b47a1b30e650e9d785b1","url":"https://raw.pixls.us/getfile.php/4483/nice/GoPro%20-%20HERO9%20Black%20-%2016bit%20%284%3A3%29.GPR"},
+    {"id":"phase_one_p20_plus","repository_id":4369,"make":"Phase One","model":"P20+","mode":"IIQ S (1:1)","date":"2020-11-29","megapixels":16.77,"bytes_reported_mb":12.57,"filename":"Phase One - P20+ - IIQ S (1:1).TIF","path":"data/external/rawpixls_p2bb_v1/raw/phase_one_p20_plus.tif","sha256":"321b19aa4fe4e972dbc40b8476e8aadb71f956adc3721da09465365ddf508071","url":"https://raw.pixls.us/getfile.php/4369/nice/Phase%20One%20-%20P20%2B%20-%20IIQ%20S%20%281%3A1%29.TIF"},
+    {"id":"pentax_k_s1","repository_id":4365,"make":"Pentax","model":"K-S1","mode":"12bit (3:2)","date":"2020-11-28","megapixels":20.17,"bytes_reported_mb":20.47,"filename":"Pentax - K-S1 - 12bit (3:2).PEF","path":"data/external/rawpixls_p2bb_v1/raw/pentax_k_s1.pef","sha256":"9e6a9c88bab021719c293655aa32d9eac33a1816b9b2e54d1f9adb225ee280a1","url":"https://raw.pixls.us/getfile.php/4365/nice/Pentax%20-%20K-S1%20-%2012bit%20%283%3A2%29.PEF"},
+    {"id":"olympus_e_m10_mark_iv","repository_id":4132,"make":"Olympus","model":"E-M10 Mark IV","mode":"16bit (4:3)","date":"2020-09-13","megapixels":20.3,"bytes_reported_mb":17.12,"filename":"Olympus - E-M10 Mark IV - 16bit (4:3).ORF","path":"data/external/rawpixls_p2bb_v1/raw/olympus_e_m10_mark_iv.orf","sha256":"77b67d898f85d3d738cb16daf9740c0fcf078ce9662c381994604ac540ce36b4","url":"https://raw.pixls.us/getfile.php/4132/nice/Olympus%20-%20E-M10%20Mark%20IV%20-%2016bit%20%284%3A3%29.ORF"},
+    {"id":"xiaomi_mi_9_lite","repository_id":3816,"make":"Xiaomi","model":"Mi 9 Lite","mode":"16bit (4:3)","date":"2020-03-21","megapixels":12.0,"bytes_reported_mb":22.92,"filename":"Xiaomi - Mi 9 Lite - 16bit (4:3).dng","path":"data/external/rawpixls_p2bb_v1/raw/xiaomi_mi_9_lite.dng","sha256":"5d443fe71ec4372804587079e3fa8f46a6612f709008e7fc4ebe34be00206c4b","url":"https://raw.pixls.us/getfile.php/3816/nice/Xiaomi%20-%20Mi%209%20Lite%20-%2016bit%20%284%3A3%29.dng"},
+    {"id":"huawei_nxt_l29","repository_id":3128,"make":"HUAWEI","model":"HUAWEI NXT-L29","mode":"16bit (4:3)","date":"2019-02-10","megapixels":15.93,"bytes_reported_mb":30.4,"filename":"HUAWEI - HUAWEI NXT-L29 - 16bit (4:3).dng","path":"data/external/rawpixls_p2bb_v1/raw/huawei_nxt_l29.dng","sha256":"32df1e3085b63533ebc8adb5d45662c59bf3fd742bfa9cc0afe3fcf6ea2ab2da","url":"https://raw.pixls.us/getfile.php/3128/nice/HUAWEI%20-%20HUAWEI%20NXT-L29%20-%2016bit%20%284%3A3%29.dng"},
+    {"id":"leica_v_lux_typ_114","repository_id":3121,"make":"Leica","model":"V-LUX (Typ 114)","mode":"16:9","date":"2019-02-09","megapixels":16.92,"bytes_reported_mb":19.04,"filename":"Leica - V-LUX (Typ 114) - 16:9.RWL","path":"data/external/rawpixls_p2bb_v1/raw/leica_v_lux_typ_114.rwl","sha256":"0941464c1172d6c74bfd2488ee3750e72d36ebec094eaf5bae7194683a89d691","url":"https://raw.pixls.us/getfile.php/3121/nice/Leica%20-%20V-LUX%20%28Typ%20114%29%20-%2016%3A9.RWL"}
+  ],
+  "maximum_download_bytes": 314572800,
+  "preflight": {
+    "development_manifest": "outputs/u5_r2bl8s_filmmatch_replacement_source_preflight_v1/run_c/manifest.json",
+    "development_manifest_sha256": "633e07202a92c2f8d60e4476f0b7768a7c5b9ed123c90c5757cbe541c4248733",
+    "comparison_manifests": [
+      {"path":"outputs/u6_p7h0_native_structure_value_source_preflight_v1/run_d/manifest.json","sha256":"3c698d8df93a7b48b87dff81ad6ddbaeb11d7c8478138ddef9545d57e336fcd7","format":"rawpixls_manifest"}
+    ],
+    "minimum_hash_clean_decoded_rows": 9,
+    "minimum_camera_makes": 9,
+    "maximum_largest_make_fraction": 0.1111111111111111,
+    "maximum_exact_within_pool_pairs": 0,
+    "maximum_dhash_within_pool_pairs_le_4": 0,
+    "maximum_exact_cross_pool_pairs": 0,
+    "maximum_dhash_cross_pool_pairs_le_4": 0,
+    "maximum_near_empty_or_monochrome_rows": 2,
+    "require_autonomous_visual_content_and_severe_audit": true
+  },
+  "preflight_gate": {
+    "minimum_decoded_rows": 9,
+    "minimum_camera_makes": 9,
+    "zero_hash_mismatch": true,
+    "zero_exact_or_dhash_leakage_to_prior_pools": true,
+    "zero_confirmed_severe_source_artifact": true
+  },
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "next_leaf": {
+    "fixed_arms": ["generic_bw_direct_scan_without_structure", "generic_bw_direct_scan_with_p2av_structure"],
+    "strength_retuning_allowed": false,
+    "profile_refitting_allowed": false,
+    "blind_review_allowed_before_automatic_pass": false
+  },
+  "production_default_changed": false,
+  "claim_ceiling": "fresh CC0 ordinary-photograph eligibility for generic B&W density-structure value ablation; not film truth, TRI-X calibration, population preference, stock response, target-runtime evidence or product promotion"
+}
