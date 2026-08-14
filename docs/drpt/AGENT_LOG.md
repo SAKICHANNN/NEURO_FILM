@@ -13493,3 +13493,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   without deleting rows or relaxing the gate; retain C4 as prior FiveK-only
   research evidence. Evidence:
   `docs/evidence/U1_4C6_GAMUTMLP_PROPHOTO_REC2020_CONFIRMATION_RESULT.json`.
+
+### 2026-08-14 - U1.4C7 confirms C4 on source-qualified Rec.2020 stress
+
+- A prospective source-only rule excluded all 24 C6 rows, then selected the
+  first three untouched rows per each of eight NUS camera labels that were at
+  least 10% outside sRGB and at least `.0001` outside Rec.2020. All 24 reviewed
+  rows passed source integrity and severe-artifact admission before C4 ran.
+- The unchanged C4 mapping and C3 residual produced two byte-exact reports and
+  192 exact RGB16 PNGs per run (`3c80f8dd...0dcbb`, stable
+  `b07cfed2...4405d`). Every frozen automatic gate passes; worst style retention
+  is `.92847`, new boundary is zero, and maximum gradient ratio is `1.14982`.
+- Retain this as same-package stress confirmation only. It does not satisfy the
+  independent-dataset or embedded-ICC requirement and does not open product
+  ingress. Evidence:
+  `docs/evidence/U1_4C7_GAMUTMLP_REC2020_STRESS_CONFIRMATION_RESULT.json`.
