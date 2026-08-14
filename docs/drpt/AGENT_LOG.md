@@ -13391,3 +13391,8 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 
 - The positive reference field now traverses explicit `DEVELOPED_DENSITY -> TRANSMITTANCE -> SCAN_LINEAR` domains. Density roundtrip error was `5.55e-17`, transmittance stayed in `(0,1]`, neutral channels were exact, and the generic `0.7px` scanner MTF reduced high-frequency energy to `0.4215x` with `9.25e-9` mean drift.
 - Blurring density before exponentiation differed from the correct transmittance-domain order by RMS `0.00867`, confirming that the typed order is substantive. Retain only the generic order; scanner calibration, interpretation appearance and product use remain closed.
+
+## 2026-08-14 - U6.P2AZ closes algebraically inverted direct scan
+
+- The endpoint-free `display_linear = 1 - scan_linear` interpretation remained strictly inside `(0,1)`, neutral, partition-exact and monotone with density (rank correlation `1.0`, minimum adjacent cell-mean step `0.00368`) without normalization or clipping.
+- Its reconstructed scan differed by `5.55e-17`, failing the frozen zero-error inverse gate. Close arithmetic inversion of this exact complement mapping; any successor needing exact replay must bind the original scan identity rather than infer it from rounded display values.
