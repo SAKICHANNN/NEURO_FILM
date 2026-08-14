@@ -13376,3 +13376,8 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 
 - The derivative-normalized gain coordinate was evaluated at eight wholly fresh densities and three fresh realizations. Maximum mean error was `1.166%`, sigma median/p95 error was `0.589%/1.915%`, and minimum density remained `0.04770`; replay and partition were exact with zero refit, normalization or clipping.
 - Retain profile `6eefdbd3...faf88` as a continuous generic positive density mechanism and open only typed reference-simulator integration. Calibration, measured NPS, scanner truth and product use remain closed.
+
+## 2026-08-14 - U6.P2AW closes exact nonuniform wedge integration
+
+- The frozen P2AV profile rendered an eight-plateau two-dimensional density wedge with positive output, exact repeat and exact irregular `73x113` tiled replay. Plateau mean error stayed below `1.22%` and median aperture-sigma error was `1.84%`.
+- The frozen p95 aperture-sigma error reached `5.76%`, above the `5%` gate. Close this exact single-realization nonuniform integration without plateau, seed, tile or threshold rescue; the next leaf must model local statistical uncertainty rather than assume exact per-region realized variance.
