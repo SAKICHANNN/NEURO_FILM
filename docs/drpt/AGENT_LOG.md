@@ -13283,3 +13283,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain as a source-derived research primitive only. P2AF's unresolved shape
   uncertainty remains binding; interpolation to unobserved times needs a
   leave-one-time-out test before any photographic use.
+
+### 2026-08-14 - U6.P2AH validates bounded development-time interpolation
+
+- Adjacent-row prediction held out the official 8- and 10-minute D-76 curves;
+  two formal reports are byte exact (`1b22b4a1...0c471a9`, stable
+  `4185f177...75a1ee`).
+- Maximum normalized RMSE is `.0049653` and maximum absolute error `.0081874`;
+  both held predictions remain strictly monotone and pass the frozen `.01` and
+  `.015` gates.
+- Allow interpolation only inside the observed 6--12 minute D-76 domain. P2AF's
+  unresolved coordinate/shape uncertainty and all calibration, scanner,
+  photographic-look and product claim ceilings remain unchanged.

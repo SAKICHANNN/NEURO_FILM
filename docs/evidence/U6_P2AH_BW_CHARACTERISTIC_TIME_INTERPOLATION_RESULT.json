@@ -1,0 +1,21 @@
+{
+  "schema": "neuro_film.u6_p2ah_bw_characteristic_time_interpolation_evidence.v1",
+  "node": "U6.P2AH",
+  "implementation_commit": "f64c9848625d7825d21855c652495ede2e6204e6",
+  "contract_sha256": "da86fe5c2c571a53c56cebb163a8aa57cf010c667446eeabb82d91bb4ee34618",
+  "parent_evidence_sha256": "7ebffb81b9623d829162accc229550d41b506470c5a32444237ec827c4263d2a",
+  "report_sha256": "1b22b4a1f8d4bd2d39fcec57882ccc42922ed52aee1e5d9d328a87a420c471a9",
+  "stable_evidence_id": "4185f177d7b0dbcd03336e69123c00a00a2ebc1cafc5f338e7be7906b975a1ee",
+  "formal_run_count": 2,
+  "formal_reports_byte_exact": true,
+  "automatic_pass": true,
+  "measurements": {
+    "held_row_count": 2,
+    "maximum_normalized_rmse": 0.004965230316187345,
+    "maximum_normalized_absolute_error": 0.008187367610755234,
+    "all_predictions_strictly_increasing": true,
+    "rgb_image_transform_count_zero": true
+  },
+  "decision": "Allow bounded interpolation inside 6-12 minutes while preserving the P2AF unresolved-shape caveat.",
+  "claim_ceiling": "Leave-one-time-out source-graph interpolation evidence for TRI-X 400 / D-76; not developer chemistry, roll calibration, photographic appearance or product use."
+}
