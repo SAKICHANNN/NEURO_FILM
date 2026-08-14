@@ -43,6 +43,10 @@ def test_cb74_binds_exact_p7h_nine_camera_population() -> None:
     source_decision = json.loads(source_decision_path.read_text(encoding="utf-8"))
     assert _sha(source_decision_path) == population["decision_sha256"]
     assert source_decision["status"] == population["required_status"]
+    source_parent_path = ROOT / source_decision["source_parent_path"]
+    source_parent = json.loads(source_parent_path.read_text(encoding="utf-8"))
+    assert _sha(source_parent_path) == source_decision["source_parent_sha256"]
+    assert source_parent["status"] == source_decision["source_parent_required_status"]
     manifest_path = ROOT / population["manifest_path"]
     assert _sha(manifest_path) == population["manifest_sha256"]
     rows = json.loads(manifest_path.read_text(encoding="utf-8"))
