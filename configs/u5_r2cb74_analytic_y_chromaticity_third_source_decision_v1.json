@@ -1,0 +1,25 @@
+{
+  "schema": "neuro_film.u5_r2cb74_analytic_y_chromaticity_third_source_decision.v1",
+  "experiment_id": "U5.R2CB74S",
+  "status": "source_eligible_fixed_third_confirmation_open",
+  "parent_decision_path": "configs/u6_p7h0_native_structure_value_source_preflight_v1.json",
+  "parent_decision_sha256": "5708cb773d401e26d96628f8e58e1f158e9caac7fd687cd21a1c403437879ae3",
+  "parent_required_decision": "source-integrity-amended-before-algorithm-evaluation",
+  "manifest_path": "outputs/u6_p7h0_native_structure_value_source_preflight_v1/run_d/manifest.json",
+  "manifest_sha256": "3c698d8df93a7b48b87dff81ad6ddbaeb11d7c8478138ddef9545d57e336fcd7",
+  "included_source_ids": [
+    "canon_eos_r50_v",
+    "panasonic_dc_s5m2",
+    "om_system_tg_7",
+    "samsung_galaxy_s21_ultra",
+    "pentax_kf",
+    "phase_one_iq180",
+    "dji_fc350",
+    "xiaomi_redmi_note_8t",
+    "lg_lg_h910"
+  ],
+  "source_count_exact": 9,
+  "camera_make_count_exact": 9,
+  "operator_outputs_inspected_for_this_role": false,
+  "claim_ceiling": "Third source-disjoint natural-photo confirmation role for the unchanged CB50/CB51 analytic operator versus fixed AO6; not population preference, film, stock, calibration or product evidence."
+}
