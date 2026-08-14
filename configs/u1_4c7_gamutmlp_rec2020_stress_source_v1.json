@@ -1,0 +1,80 @@
+{
+  "schema": "neuro-film.u1-4c7-gamutmlp-rec2020-stress-source-contract.v1",
+  "experiment_id": "U1.4C7S",
+  "status": "frozen_after_nonformal_source-only_feasibility_before_formal_source_audit_or_c4_execution",
+  "question": "Can untouched official GamutMLP rows supply a byte-bound eight-camera cohort where every declared-ProPhoto source actually exercises Rec.2020 compression?",
+  "parents": {
+    "c6_reviewed_manifest": {
+      "path": "configs/u1_4c6_gamutmlp_nus_prophoto_source_manifest_v1.json",
+      "sha256": "b39a93f7eca9ef57c1c965fdb349877c6bb976a0b05aac0c1fa53c173ffb3e7d"
+    },
+    "c6_result": {
+      "path": "docs/evidence/U1_4C6_GAMUTMLP_PROPHOTO_REC2020_CONFIRMATION_RESULT.json",
+      "sha256": "33c8178920dff5494697f31aef0aeadc38d7bf9e94a20ccd331dc8f44a39984",
+      "required_decision": "close_exact_c4_composition_on_gamutmlp_without_source_style_margin_or_threshold_rescue"
+    }
+  },
+  "archive": {
+    "logical_path": "data/wide_gamut/gamutmlp_u1_4c6/downloads/train_prop_512_16b.zip",
+    "bytes": 2703445642,
+    "sha256": "5865c81fc8a465617b79f3ed06409d13e8cfbedb37301653e8d87fedd3fcc68a",
+    "expected_entries": 2001,
+    "expected_png_members": 2000,
+    "expected_uncompressed_bytes": 2703235004,
+    "expected_root": "train_prop_512_16b",
+    "expected_width": 512,
+    "expected_height": 512,
+    "expected_bit_depth": 16,
+    "expected_color_type": 2
+  },
+  "selection": {
+    "member_regex": "^(color|landscape|standard|vivid)_([A-Za-z]+[A-Za-z0-9]*)_([0-9]{4})[.]png$",
+    "camera_models": [
+      "Canon1DsMkIII",
+      "Canon600D",
+      "FujifilmXM1",
+      "NikonD5200",
+      "OlympusEPL6",
+      "PanasonicGX1",
+      "SamsungNX2000",
+      "SonyA57"
+    ],
+    "rows_per_camera": 3,
+    "expected_rows": 24,
+    "require_global_unique_source_id": true,
+    "exclude_every_camera_source_id_pair_in_c6_reviewed_manifest": true,
+    "rule": "For each sorted camera, sort untouched members by sha256(full member name UTF-8), decode in that order, and retain the first three satisfying every source-only eligibility gate; never inspect C4 output while selecting."
+  },
+  "eligibility": {
+    "minimum_declared_prophoto_to_srgb_out_of_gamut_fraction_per_row": 0.10,
+    "minimum_precompression_rec2020_out_of_gamut_fraction_per_row": 0.0001,
+    "require_finite_declared_prophoto_decode": true,
+    "require_no_exact_pixel_duplicates": true,
+    "visual_review_required_before_algorithm_role": true,
+    "minimum_visual_eligible_rows": 16,
+    "minimum_visual_eligible_camera_models": 8,
+    "hard_exclusions": [
+      "decode corruption",
+      "geometry corruption",
+      "blank or near-blank crop",
+      "non-photographic chart-only crop"
+    ]
+  },
+  "output": {
+    "logical_root": "data/wide_gamut/gamutmlp_u1_4c7/selected",
+    "reviewed_manifest": "configs/u1_4c7_gamutmlp_rec2020_stress_source_manifest_v1.json",
+    "contact_sheet": "outputs/u1_4c7_gamutmlp_source_audit_v1/contact_formal.png"
+  },
+  "rights": {
+    "allowed_use": "internal_research_only",
+    "scope": "official_gamutmlp_dataset_without_separate_dataset_or_underlying_image_redistribution_license",
+    "redistribution_allowed": false,
+    "commercial_product_use_allowed": false
+  },
+  "branches": {
+    "pass": "open_only_unchanged_c4_automatic_confirmation_on_the_exact_reviewed_rows",
+    "fail": "close_this_exact_untouched_selection_without_replacement_threshold_relaxation_or_same_package_rescue"
+  },
+  "production_default_changed": false,
+  "claim_ceiling": "Internal research-only declared-ProPhoto Rec.2020 stress-source evidence from previously unconsumed GamutMLP rows; not independent dataset evidence, embedded-ICC attestation, calibrated colour, arbitrary-profile support, film, stock, HDR, ACES, redistribution or product use."
+}
