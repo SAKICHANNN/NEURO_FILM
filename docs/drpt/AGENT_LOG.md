@@ -13508,3 +13508,7 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   independent-dataset or embedded-ICC requirement and does not open product
   ingress. Evidence:
   `docs/evidence/U1_4C7_GAMUTMLP_REC2020_STRESS_CONFIRMATION_RESULT.json`.
+### 2026-08-14 - U1.4C8 rejects W3C OKLCh local-MINDE as the C4 ingress replacement
+
+- The exact current CSS Color 4 local-MINDE algorithm was clean-room implemented and compared with C4 only on the 24-source C7 OOG population; two formal processes and 192 RGB16 PNGs per run are exact.
+- It improves median OOG mapping distance on 20/24 sources and retains style, but fails the frozen mapped-boundary (`7.0221%`) and hue-ratio (`2.1959x`) gates. Keep C4, close this exact baseline without JND/cohort rescue, and continue toward fresh embedded-ProPhoto evidence. Evidence: `docs/evidence/U1_4C8_W3C_OKLCH_LOCAL_MINDE_BASELINE_RESULT.json`.

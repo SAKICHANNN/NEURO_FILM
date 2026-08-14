@@ -1,0 +1,58 @@
+{
+  "schema": "neuro-film.u1-4c8-w3c-oklch-local-minde-baseline-evidence.v1",
+  "experiment_id": "U1.4C8",
+  "date": "2026-08-14",
+  "implementation_commits": ["bb393f6f", "f3404f79", "b5fc14bc", "f3f7af57"],
+  "primary_source": {
+    "title": "CSS Color Module Level 4",
+    "url": "https://www.w3.org/TR/css-color-4/#binsearch",
+    "algorithm": "Binary Search Gamut Mapping with Local MINDE",
+    "jnd_delta_e_ok": 0.02,
+    "chroma_epsilon": 0.0001
+  },
+  "bindings": {
+    "contract_sha256": "59ab5b3bbfec534b4f34bdbe04fd8c4c29ed659e2c2131f9dafc3ba07c9eef2a",
+    "core_sha256": "8cfeb198cd08578991828cfa251cd45b5894e6402193a48400b50d6f0dd3931f",
+    "evaluator_sha256": "f77ce6a26db82189611d8a8f8888d4d7afbaf8fabf4678b44117c0d253a97a70",
+    "runner_sha256": "8809cb337545c9bcf9d438cc73ece2c90a907a4a5effdcf57b5ce70108bf6495",
+    "core_test_sha256": "96e78e670b862280358555cc76c5795f33c93968adfb68f5dbd15907370ae023",
+    "evaluator_test_sha256": "735bf23f48122a3aac7e27ca7116f5dc5ca2f7290a9de4dae212d67042798012",
+    "c7_report_sha256": "3c80f8dd666d530155bbaa02cde32a1f6e0c8ecaba671ca8cfb752b02e50dcbb",
+    "source_manifest_sha256": "d8c658838d1139b79404cbdba7939d80f30aa39b878dfa0d36d029917d477485"
+  },
+  "formal_replay": {
+    "run_a_report": "outputs/u1_4c8_w3c_oklch_local_minde_baseline_formal_v2/run_a/report.json",
+    "run_b_report": "outputs/u1_4c8_w3c_oklch_local_minde_baseline_formal_v2/run_b/report.json",
+    "report_sha256": "a67453726b0b5acc8d95df6e1374d63198baf814c6a4d0e12d75f5c8253480c0",
+    "stable_evidence_id": "0a0b53631b348b8654e62380ff40fda19a5b45446e5f524cd81d4e1e65a3d5a8",
+    "report_byte_exact": true,
+    "rgb16_png_count_per_run": 192,
+    "ordered_png_inventory_sha256": "0b30e16130c976a35b8a383651b5006ab0a542b093ce0ddf4868063e2615141f",
+    "ordered_png_inventory_byte_exact": true,
+    "discarded_pre_fix_smoke": "outputs/u1_4c8_w3c_oklch_local_minde_baseline_formal_v1"
+  },
+  "metrics": {
+    "source_count": 24,
+    "camera_model_count": 8,
+    "render_count": 192,
+    "maximum_challenger_mapped_source_boundary_fraction": 0.070220947265625,
+    "population_median_oklab_mapping_delta_e_ratio_vs_c4": 0.8159173239683419,
+    "sources_with_no_worse_median_oklab_mapping_delta_e": 20,
+    "population_median_oklab_hue_error_ratio_vs_c4": 2.1958591316162814,
+    "population_p95_oklab_lightness_error": 0.0047745742854939655,
+    "challenger_population_median_style_retention_ratio": 1.0,
+    "challenger_worst_render_style_retention_ratio": 0.9988997487232169,
+    "style_retention_median_margin_vs_c4": 0.0,
+    "style_retention_worst_margin_vs_c4": 0.07043380039681069,
+    "maximum_new_rgb16_boundary_fraction_vs_mapped_source": 0.0,
+    "maximum_p999_gradient_ratio_vs_mapped_source": 1.149823587830625,
+    "maximum_adjacent_lstar_sign_inversion_fraction": 0.00019859518011425972
+  },
+  "failed_checks": ["mapped_source_boundary", "mapping_hue"],
+  "automatic_pass": false,
+  "decision": "retain_c4_luminance_axis_mapper_and_close_exact_local_minde_baseline_without_parameter_or_cohort_rescue",
+  "interpretation": "The current W3C local-MINDE baseline reduces median OOG mapping deltaE on 20/24 sources and retains the downstream style, but it creates a 7.02% mapped-source boundary on the worst source and more than doubles the population-median OOG hue error relative to C4. The exact JND, epsilon and cohort close without tuning.",
+  "product_ingress_opened": false,
+  "production_default_changed": false,
+  "claim_ceiling": "Internal same-cohort explicit gamut-mapping baseline against U1.4C7; not independent data, embedded-ICC or arbitrary-profile support, calibrated colour, perceptual preference, film, stock, HDR, ACES, redistribution or product ingress."
+}
