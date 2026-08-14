@@ -134,13 +134,13 @@ def local_minde_rec2020(
     chromatic = chroma > 4e-6
     unit[chromatic] = origin[chromatic, 1:3] / chroma[chromatic, None]
 
-    mapped = np.empty_like(origin)
+    mapped_rgb = np.empty_like(origin)
     resolved = np.zeros(origin.shape[0], dtype=bool)
     low = lightness <= 0.0
     high = lightness >= 1.0
-    mapped[low] = np.asarray([0.0, 0.0, 0.0])
-    mapped[high] = np.asarray([1.0, 0.0, 0.0])
-    ratio[ indexes[low | high] ] = 0.0
+    mapped_rgb[low] = np.asarray([0.0, 0.0, 0.0])
+    mapped_rgb[high] = np.asarray([1.0, 1.0, 1.0])
+    ratio[indexes[low | high]] = 0.0
     resolved |= low | high
 
     work = ~resolved
@@ -149,9 +149,7 @@ def local_minde_rec2020(
         local = initial_delta < jnd
         work_indexes = np.flatnonzero(work)
         if bool(np.any(local)):
-            mapped[work_indexes[local]] = _linear_rec2020_values_to_oklab(
-                initial_rgb[local]
-            )
+            mapped_rgb[work_indexes[local]] = initial_rgb[local]
             resolved[work_indexes[local]] = True
 
     active = np.flatnonzero(~resolved)
@@ -159,6 +157,7 @@ def local_minde_rec2020(
     maximum = chroma[active].copy()
     min_in_gamut = np.ones(active.size, dtype=bool)
     last_clipped = np.zeros((active.size, 3), dtype=np.float64)
+    has_clipped = np.zeros(active.size, dtype=bool)
     done = np.zeros(active.size, dtype=bool)
 
     # The loop count is a defensive ceiling; normal termination is epsilon.
@@ -182,12 +181,11 @@ def local_minde_rec2020(
         q = p[other]
         clipped_rgb, delta = _clip_with_delta(current[other])
         last_clipped[q] = clipped_rgb
+        has_clipped[q] = True
         below = delta < jnd
         close = below & ((jnd - delta) < epsilon)
         if bool(np.any(close)):
-            mapped[active[q[close]]] = _linear_rec2020_values_to_oklab(
-                clipped_rgb[close]
-            )
+            mapped_rgb[active[q[close]]] = clipped_rgb[close]
             done[q[close]] = True
         continue_below = below & ~close
         if bool(np.any(continue_below)):
@@ -199,17 +197,14 @@ def local_minde_rec2020(
 
     unresolved = np.flatnonzero(~done)
     if unresolved.size:
-        final_chroma = (minimum[unresolved] + maximum[unresolved]) * 0.5
-        current = np.empty((unresolved.size, 3), dtype=np.float64)
-        current[:, 0] = lightness[active[unresolved]]
-        current[:, 1:3] = unit[active[unresolved]] * final_chroma[:, None]
-        clipped_rgb, _ = _clip_with_delta(current)
-        mapped[active[unresolved]] = _linear_rec2020_values_to_oklab(clipped_rgb)
+        if not bool(np.all(has_clipped[unresolved])):
+            raise RuntimeError("local-MINDE ended without a clipped candidate")
+        mapped_rgb[active[unresolved]] = last_clipped[unresolved]
 
-    mapped_rgb = np.clip(oklab_to_linear_rec2020(mapped), 0.0, 1.0)
     output[indexes] = mapped_rgb
     nonzero = chroma > 0.0
-    mapped_chroma = np.hypot(mapped[:, 1], mapped[:, 2])
+    mapped_oklab = _linear_rec2020_values_to_oklab(mapped_rgb)
+    mapped_chroma = np.hypot(mapped_oklab[:, 1], mapped_oklab[:, 2])
     local_ratio = np.ones_like(chroma)
     local_ratio[nonzero] = mapped_chroma[nonzero] / chroma[nonzero]
     ratio[indexes] = np.clip(local_ratio, 0.0, 1.0)
