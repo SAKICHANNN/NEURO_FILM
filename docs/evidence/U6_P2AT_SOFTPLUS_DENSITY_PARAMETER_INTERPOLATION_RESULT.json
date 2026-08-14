@@ -1,0 +1,23 @@
+{
+  "schema": "neuro_film.u6_p2at_softplus_density_parameter_interpolation_evidence.v1",
+  "node": "U6.P2AT",
+  "implementation_commit": "99a24eccdec268752693832ec4ce56dcbdd88eb9",
+  "contract_sha256": "03c7da4a42440b8d3d2365c0c661632bd6a1105991d9b184765aceec0a4a8ff2",
+  "formal_run_count": 2,
+  "formal_reports_byte_exact": true,
+  "report_sha256": "735cee02acf641fe2ae4cd6b1b1d09da03d716e2a4355224f0fd10102a34f1d8",
+  "stable_evidence_id": "64521a449e9c0eab35051ad486298e7d2d72c06fd4a09efb4bb3e3ccb907389e",
+  "profile_identity": "944e940984a965db5af998b3cd0197e448d11fc54e3be847235e0b28d1540e13",
+  "maximum_confirmation_relative_mean_error": 0.28267819151335327,
+  "confirmation_median_sigma_relative_error": 0.018496207053083108,
+  "confirmation_p95_sigma_relative_error": 0.05339950182042217,
+  "minimum_developed_density": 0.08300142796899754,
+  "repeat_byte_exact": true,
+  "partition_exact": true,
+  "parameter_refit_count_zero": true,
+  "realized_normalization_count_zero": true,
+  "hard_clipping_count_zero": true,
+  "automatic_pass": false,
+  "decision": "close this exact parameter interpolation without knot, transform, seed or gate rescue",
+  "claim_ceiling": "Intermediate-density confirmation of a generic positive softplus structure profile; not current-stock calibration, measured NPS, microscopic grain, scanner truth, appearance or product evidence."
+}

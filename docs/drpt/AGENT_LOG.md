@@ -13361,3 +13361,8 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 
 - A density-conditioned `softplus(a+b*unit)` fit on three development realizations was frozen and evaluated on three fresh confirmations. Mean-density error was at most `0.0673%`, aperture-sigma median/p95 error was `1.44%/1.66%`, and minimum density remained `0.01944` without clipping or confirmation normalization.
 - Retain only as a generic positive reference-simulator candidate. Current-stock calibration, measured spatial NPS, microscopic grain, scanner truth and product use remain closed.
+
+## 2026-08-14 - U6.P2AT closes direct softplus-parameter interpolation
+
+- Frozen linear-`a`/log-linear-`b` interpolation remained positive, exact and partition-stable, with median sigma error `1.85%`; however intermediate-density mean error reached `28.27%` and sigma p95 reached `5.34%`.
+- Close this interpolation without knot, transform or threshold rescue. Any successor must use a physical mean coordinate plus residual and fresh density locations.
