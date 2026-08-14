@@ -1,0 +1,50 @@
+{
+  "schema": "neuro_film.u6_p2ap_historical_wiener_boolean_density_compatibility_contract.v1",
+  "node": "U6.P2AP",
+  "question": "Does the unchanged generic P2AI Boolean metallic-silver mechanism reproduce the historical TRI-X 5233 relative Wiener-amplitude change across density, after normalizing away the unknown absolute spectral scale?",
+  "parents": {
+    "historical_wiener": {
+      "path": "docs/evidence/U6_P2AO_HISTORICAL_TRIX_WIENER_DENSITY_SOURCE_RESULT.json",
+      "sha256": "1c06f4405d3209731f08f147707f26379539748feba559957ab55eb519b409e5",
+      "required_automatic_pass": true
+    },
+    "generic_silver_chain": {
+      "path": "docs/evidence/U6_P2AI_BW_CHARACTERISTIC_SILVER_CHAIN_RESULT.json",
+      "sha256": "c70dbbdf82ca9952cdcbbb85462871552fe6236a6edc90da4dac37edd58e082c",
+      "required_automatic_pass": true
+    }
+  },
+  "historical_observation": {
+    "densities": [0.06, 0.36, 0.74, 1.14],
+    "wiener_granularity_spectrum_cm2": [3.32e-9, 8.82e-9, 8.82e-9, 1.31e-8],
+    "comparison": "variance_ratio_relative_to_density_0_06"
+  },
+  "unchanged_generic_mechanism": {
+    "input_shape": [64, 96],
+    "radius_um": 5.0,
+    "output_zoom": 2,
+    "output_pixel_pitch_um": 8.0,
+    "monte_carlo_samples": 256,
+    "seeds": [44209, 1048583, 2097169, 4194319, 8388617],
+    "crop_margin_output_pixels": 4,
+    "row_partition_height": 37,
+    "parameter_refit_allowed": false,
+    "realized_variance_normalization_allowed": false
+  },
+  "automatic_gates": {
+    "maximum_relative_ratio_rmse": 0.25,
+    "maximum_absolute_relative_ratio_error": 0.4,
+    "minimum_rank_correlation": 0.8,
+    "zero_transmittance_count": 0,
+    "all_density_variances_positive": true,
+    "repeat_byte_exact": true,
+    "partition_byte_exact": true,
+    "parameter_refit_count_zero": true,
+    "rgb_image_transform_count_zero": true
+  },
+  "branch_rule": {
+    "pass": "retain relative density-amplitude compatibility for the generic Boolean mechanism; current-stock and absolute-NPS claims remain forbidden",
+    "fail": "close the unchanged Boolean density-amplitude mechanism without radius, sampling, density or gate rescue"
+  },
+  "claim_ceiling": "Relative-variance compatibility test between a generic P2AI Boolean silver mechanism and historical TRI-X 5233/SD-28 Wiener amplitudes; not current 400TX, absolute NPS, measured grain geometry, scanner response, photographic appearance or product evidence."
+}
