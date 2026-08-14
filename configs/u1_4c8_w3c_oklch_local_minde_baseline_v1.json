@@ -50,6 +50,7 @@
   "baseline": {
     "id": "rec2020-luminance-axis-analytical-interior-v1",
     "source": "exact bound U1.4C7 report rows",
+    "comparison_population": "pixels outside linear Rec.2020 before ingress mapping only",
     "refitting_allowed": false
   },
   "challenger": {
@@ -62,6 +63,7 @@
     "chroma_epsilon": 0.0001,
     "map_only_out_of_gamut_pixels": true,
     "relative_colorimetric": true,
+    "comparison_population": "pixels outside linear Rec.2020 before ingress mapping only",
     "source_or_operator_fitting_allowed": false,
     "hard_clipping_as_final_mapper_allowed": false,
     "posthoc_limiting_allowed": false
