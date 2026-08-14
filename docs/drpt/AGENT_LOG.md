@@ -13466,3 +13466,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   ingress. This is internal FiveK research evidence, not arbitrary ICC,
   film/stock, calibration, HDR/ACES, preference or product support. Evidence:
   `docs/evidence/U1_4C4_NATIVE_PROPHOTO_REC2020_CONFIRMATION_RESULT.json`.
+
+### 2026-08-14 - U1.4C5 rejects Commons text-search source admission
+
+- Exact Commons bytes showed the first four frozen search hits were one
+  ICC-absent file and three embedded-sRGB files. Even perfect remaining rows
+  could supply only eight of the required nine native-WCG sources, so the
+  frozen impossibility stop closed before visual or algorithm execution.
+- Two final reports and contact sheets are byte exact (`330992d2...e5838`,
+  stable `7b3b13c9...c2ff44`). Search metadata is not ICC evidence; retain C4
+  and seek a byte-indexed independent WCG inventory. Evidence:
+  `docs/evidence/U1_4C5_COMMONS_PROPHOTO_SOURCE_RESULT.json`.

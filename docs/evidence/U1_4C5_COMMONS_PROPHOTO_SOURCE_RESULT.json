@@ -1,0 +1,37 @@
+{
+  "schema": "neuro-film.u1-4c5-commons-prophoto-source-evidence.v1",
+  "experiment_id": "U1.4C5S",
+  "date": "2026-08-14",
+  "status": "FAIL_CLOSED_BEFORE_VISUAL_REVIEW_OR_ALGORITHM_EXECUTION",
+  "decision": "close_exact_commons_text_search_source_route_without_replacement",
+  "contract_sha256": "0f86588a7b26206cffe7b7d34b61594dbfcd7de86a2866a6658087f5e747cf7f",
+  "implementation_commits": ["9911081c", "726d7f5d", "6c893a0f", "aaaa2c4f", "4f747c04"],
+  "formal_runs": {
+    "count": 2,
+    "report_sha256": "330992d2349ed1b52aab859bf295f1f1a890bd8a3f85efcd85f699decfbe5838",
+    "stable_evidence_id": "7b3b13c9f3f97a13e03b5d67c4db2125492922d98ba96041100097a79fc2ff44",
+    "contact_sheet_sha256": "424f81014bd52c9835ba1003bb27a42dee349535e86049a197debc7d8b003cd8",
+    "report_and_contact_sheet_byte_exact": true
+  },
+  "metrics": {
+    "frozen_source_rows": 12,
+    "formally_requested_and_audited_rows": 4,
+    "eligible_rows": 0,
+    "embedded_icc_absent_rows": 1,
+    "embedded_srgb_not_prophoto_rows": 3,
+    "maximum_possible_eligible_rows_after_four_rejections": 8,
+    "minimum_required_eligible_rows": 9,
+    "algorithm_pixel_executions": 0,
+    "visual_review_executions": 0
+  },
+  "execution_amendments": [
+    "The first direct CLI attempt failed before network access because the runner lacked the repository root on sys.path.",
+    "The next attempt downloaded the first source and exposed that one intrinsic source rejection must be recorded rather than raised as an infrastructure exception. The already-frozen textual nine-row stop rule was then made machine-readable; no source, threshold or role changed.",
+    "A later pre-report attempt retained exact source bytes but encountered Wikimedia HTTP 429. The final evaluator instead applied the frozen impossibility stop after four intrinsic rejections, avoiding unnecessary requests.",
+    "Two additional files had been downloaded during discarded pre-report attempts. They are not counted as formally audited rows, and their presence does not alter the frozen early-stop decision."
+  ],
+  "scientific_interpretation": "Wikimedia text-search relevance is not evidence that an original file embeds ProPhoto/ROMM RGB. Exact file bytes and ICC tag structure must remain the admission authority. This exact twelve-row search-derived cohort cannot supply the independent native-WCG confirmation required after U1.4C4.",
+  "next_leaf": "Seek a byte-indexed native-WCG source whose downloadable artifact inventory exposes actual profile identities before selection; do not replace rows or relax the nine-row gate in this cohort.",
+  "production_default_changed": false,
+  "claim_ceiling": "Source-discovery failure evidence only; not a failure of U1.4C4, gamut mapping, arbitrary ICC support, HDR, film/stock evidence, calibration or product ingress."
+}
