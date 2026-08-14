@@ -1,0 +1,53 @@
+{
+  "schema": "neuro_film.u6_p2am_trix_mtf_source_prior_contract.v1",
+  "node": "U6.P2AM",
+  "question": "Can the exact first-party TRI-X MTF vector curve compile into a deterministic version-limited source prior without conflating it with the current-stock D-76 characteristic surface or scanner response?",
+  "source": {
+    "pdf_path": "outputs/source_recon/u6_p2ad_bw_developer_contrast/kodak_f4017_trix_320_400.pdf",
+    "pdf_sha256": "1d86b030cf7a8502e6f1414c630fa2cda30b68df53f49bccccce73c9c6562078",
+    "page": 8,
+    "svg_path": "outputs/eval/p2am_probe/page.svg",
+    "svg_sha256": "11e478fcce5a232d0c26564953cb9f3f7a19d553b522c737c88bae944dece34b",
+    "svg_path_index": 399,
+    "svg_path_d_sha256": "b609eff522b935f15f9abba887fe126a2aea6d1b8e427531406ff049b67a95ab",
+    "svg_transform": [1.0, 0.0, 0.0, -1.0, 100.849, 98.499],
+    "film_identity": "older_kodak_tri_x_pan_5063_preliminary_applicability_to_new_films",
+    "process": "kodak_professional_developer_d76_large_tank",
+    "densitometry": "diffuse_visual",
+    "current_stock_measurement_claim": false,
+    "scanner_response_included": false
+  },
+  "axis_calibration": {
+    "plot_left_points": 72.797,
+    "plot_right_points": 275.28125,
+    "frequency_left_cycles_per_mm": 1.0,
+    "frequency_right_cycles_per_mm": 600.0,
+    "plot_top_points": 80.96975,
+    "plot_bottom_points": 233.78075,
+    "response_top_fraction": 2.0,
+    "response_bottom_fraction": 0.01,
+    "both_axes": "base10_logarithmic"
+  },
+  "sampling": {
+    "frequencies_cycles_per_mm": [2.5, 5.0, 10.0, 20.0, 30.0, 40.0, 50.0, 60.0, 70.0],
+    "maximum_vector_stroke_digitization_relative_uncertainty": 0.013,
+    "vector_stroke_width_points": 0.719
+  },
+  "automatic_gates": {
+    "source_and_vector_identity_exact": true,
+    "sample_frequency_strictly_increasing": true,
+    "response_finite_positive": true,
+    "maximum_response_fraction": 1.25,
+    "minimum_terminal_response_fraction": 0.2,
+    "maximum_terminal_response_fraction": 0.35,
+    "maximum_digitization_relative_uncertainty": 0.013,
+    "repeat_byte_exact": true,
+    "render_allowed": false,
+    "rgb_image_transform_count_zero": true
+  },
+  "branch_rule": {
+    "pass": "retain a version-limited first-party TRI-X MTF source prior for future separately gated spatial-response comparisons",
+    "fail": "close this vector extraction without raster rescue or manual point adjustment"
+  },
+  "claim_ceiling": "First-party vector extraction of an older TRI-X Pan 5063 D-76 large-tank diffuse-visual MTF curve whose applicability to newer films is described as preliminary; not a current-400TX measurement, density-conditioned MTF, scanner response, photographic calibration or product authority."
+}
