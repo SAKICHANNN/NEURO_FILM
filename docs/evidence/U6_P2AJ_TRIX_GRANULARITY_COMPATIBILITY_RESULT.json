@@ -1,0 +1,22 @@
+{
+  "schema": "neuro_film.u6_p2aj_trix_granularity_compatibility_evidence.v1",
+  "node": "U6.P2AJ",
+  "implementation_commit": "d9512c390e14e83cc253593bc458686d7f233154",
+  "contract_sha256": "3e261b3af7f39057184239622506e0037151a26e6a1469d72753222966b3aadc",
+  "report_sha256": "f022ed8311d2ef63ae675ead790eb4aa5c151970a0fc8c9e569528477c31c23f",
+  "stable_evidence_id": "a8b5393d44067c8ec5a90a9046ce9a2d0379d3f6e825d7f75a44d7204e008b4d",
+  "formal_run_count": 2,
+  "formal_reports_byte_exact": true,
+  "automatic_pass": false,
+  "source_diffuse_rms_granularity": 17.0,
+  "candidate_diffuse_rms_granularity_range": [202.72095959997716, 205.87874567835922],
+  "measurements": {
+    "median_relative_error": 11.061075487006313,
+    "worst_relative_error": 11.11051445166819,
+    "maximum_target_mean_density_absolute_error": 0.04768068417056259,
+    "minimum_aperture_window_count_per_seed": 8100,
+    "repeat_byte_exact": true
+  },
+  "decision": "Close the unchanged generic silver geometry for TRI-X and require a measured-amplitude compiler before any photographic use.",
+  "claim_ceiling": "Fixed-kernel compatibility with one first-party TRI-X 400 scalar diffuse-rms granularity measurement; not an NPS, grain-size measurement, scanner profile, roll calibration, photographic appearance or product evidence."
+}

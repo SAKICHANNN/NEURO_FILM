@@ -13307,3 +13307,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   structure mean error is `.00114024`; repeat, partition and failure gates pass.
 - Retain only a typed research chain. Grain geometry, scanner response,
   photographic appearance and product profile claims remain closed.
+
+### 2026-08-14 - U6.P2AJ rejects generic silver geometry for TRI-X
+
+- Kodak F-4017 reports TRI-X 400 diffuse-rms granularity `17` at net diffuse
+  density `1.0`, a `48um` aperture and `12x` magnification. The unchanged P4DK
+  generic Boolean-silver kernel was measured under that exact density/aperture
+  contract across three fixed seeds.
+- Two reports are byte exact (`f022ed83...31c23f`, stable
+  `a8b5393d...008b4d`). Candidate values are `202.72--205.88`; median relative
+  error is `11.061x`, so both median and worst gates fail decisively.
+- Do not use the generic geometry as TRI-X structure. The scalar measurement can
+  constrain aperture amplitude only; it cannot identify NPS or particle size.
