@@ -1,0 +1,85 @@
+{
+  "schema": "neuro-film.u1-4c6-gamutmlp-nus-prophoto-source-contract.v1",
+  "experiment_id": "U1.4C6S",
+  "status": "frozen_before_formal_source_audit_or_algorithm_execution_after_nonformal_pixel_preflight",
+  "question": "Can the official GamutMLP archive supply a source-disjoint, byte-bound NUS-camera ProPhoto cohort for the unchanged C4 confirmation?",
+  "parents": {
+    "official_repository_commit": "5a60dca5be5c175ce16c3b52cf823c8dbad0182c",
+    "official_readme_sha256": "64f418c3d6aa549c4a53d4f15dcb9bd9a17fa92878d67526257a0786baf331fd",
+    "official_license_sha256": "c94f0e12a87ad42f415ba578f856f3e66453d0e75227a4d2d06ed9c93a95889f",
+    "paper_url": "https://openaccess.thecvf.com/content/CVPR2023/papers/Le_GamutMLP_A_Lightweight_MLP_for_Color_Loss_Recovery_CVPR_2023_paper.pdf",
+    "official_dataset_url": "https://ln5.sync.com/dl/b9fae1a30/cnfhh9a7-2r87gipm-c6b5u92t-47u8cjy7"
+  },
+  "archive": {
+    "logical_path": "data/wide_gamut/gamutmlp_u1_4c6/downloads/train_prop_512_16b.zip",
+    "bytes": 2703445642,
+    "sha256": "5865c81fc8a465617b79f3ed06409d13e8cfbedb37301653e8d87fedd3fcc68a",
+    "expected_entries": 2001,
+    "expected_png_members": 2000,
+    "expected_uncompressed_bytes": 2703235004,
+    "expected_root": "train_prop_512_16b",
+    "expected_width": 512,
+    "expected_height": 512,
+    "expected_bit_depth": 16,
+    "expected_color_type": 2,
+    "expected_style_counts": {
+      "color": 500,
+      "landscape": 500,
+      "standard": 500,
+      "vivid": 500
+    }
+  },
+  "selection": {
+    "member_regex": "^(color|landscape|standard|vivid)_([A-Za-z]+[A-Za-z0-9]*)_([0-9]{4})[.]png$",
+    "camera_models": [
+      "Canon1DsMkIII",
+      "Canon600D",
+      "FujifilmXM1",
+      "NikonD5200",
+      "OlympusEPL6",
+      "PanasonicGX1",
+      "SamsungNX2000",
+      "SonyA57"
+    ],
+    "rows_per_camera": 3,
+    "rule": "for each camera in sorted camera_models, sort candidates by sha256(full member name UTF-8), then greedily retain the first three whose four-digit source_id has not been retained for any previous camera",
+    "expected_rows": 24,
+    "require_global_unique_source_id": true,
+    "selected_rows_canonical_sha256": "535b3e53fb73ce4e4d5253148609fd25306d18785e019f298e4de42d05463e15",
+    "selected_members_canonical_sha256": "e3c75acf972b9d6818ab552bb727b632cf51ed4d1942efe1e0d82c9727a5f187",
+    "selected_member_bytes": 32953033
+  },
+  "eligibility": {
+    "required_dtype": "uint16",
+    "required_channels": 3,
+    "minimum_declared_prophoto_to_srgb_out_of_gamut_fraction_per_row": 0.10,
+    "require_finite_declared_prophoto_decode": true,
+    "require_no_exact_pixel_duplicates": true,
+    "visual_review_required_before_algorithm_role": true,
+    "minimum_visual_eligible_rows": 16,
+    "minimum_visual_eligible_camera_models": 8,
+    "hard_exclusions": [
+      "decode corruption",
+      "geometry corruption",
+      "blank or near-blank crop",
+      "non-photographic chart-only crop"
+    ]
+  },
+  "output": {
+    "logical_root": "data/wide_gamut/gamutmlp_u1_4c6/selected",
+    "manifest": "configs/u1_4c6_gamutmlp_nus_prophoto_source_manifest_v1.json",
+    "contact_sheet": "outputs/u1_4c6_gamutmlp_source_audit_v1/contact_formal.png"
+  },
+  "rights": {
+    "allowed_use": "internal_research_only",
+    "scope": "official_gamutmlp_dataset_without_separate_dataset_or_underlying_image_redistribution_license",
+    "redistribution_allowed": false,
+    "commercial_product_use_allowed": false
+  },
+  "branches": {
+    "pass": "open_only_unchanged_c4_automatic_confirmation_on_the_exact_selected_rows",
+    "fail": "close_this_exact_archive_and_selection_without_replacement_or_threshold_rescue"
+  },
+  "production_default_changed": false,
+  "claim_ceiling": "Internal research-only official GamutMLP NUS-camera ACR-rendered declared-ProPhoto source evidence; not embedded-ICC attestation, calibrated colour, arbitrary-profile support, film, stock, HDR, ACES, redistribution or product use."
+}
