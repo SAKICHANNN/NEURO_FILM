@@ -1,0 +1,68 @@
+{
+  "schema": "neuro-film.u1-4c11-oklab-analytical-interior-evidence.v1",
+  "experiment_id": "U1.4C11",
+  "date": "2026-08-14",
+  "status": "PASS_SCOPED_ICC_SEMANTIC_ANALYTICAL_INGRESS",
+  "implementation_commits": ["bf9393bf", "b1116e08", "5cb344fe", "f3f8ddde"],
+  "bindings": {
+    "contract": {
+      "path": "configs/u1_4c11_oklab_analytical_interior_v1.json",
+      "sha256": "7ddb5ebc94b50c3f657e02340a11d24bef1c837c46eb39c81ec7dfbfa94a2e2c"
+    },
+    "mapper": {
+      "path": "src/color_engine/oklab_analytical_interior.py",
+      "sha256": "bcc3fa39210544ace96d8727a666ec5d2ea9845eec4276bbf73e6a9b95f06c48"
+    },
+    "evaluator": {
+      "path": "src/eval/oklab_analytical_interior_confirmation.py",
+      "sha256": "2802edb08066a818a20464ad955dea28aebc72469800aa23b3b07346dc3e131d"
+    },
+    "runner": {
+      "path": "scripts/run_u1_4c11_oklab_analytical_interior.py",
+      "sha256": "47a865ff05ee6758ff37abca35965ae5e7d799ecbee47888d309cf4569a4a3cf"
+    },
+    "mapper_test": {
+      "path": "tests/test_oklab_analytical_interior.py",
+      "sha256": "f13b13ac2fefa5519b9cd559f2aed8f5982bfb55f1a182dced127234369aee0e"
+    },
+    "evaluation_test": {
+      "path": "tests/test_u1_4c11_oklab_analytical_interior.py",
+      "sha256": "2af73413e25e59a1c92dae4dae096ae0423bceef40b640ac900fc8d331a171d8"
+    }
+  },
+  "formal_runs": {
+    "run_a_report_sha256": "25b026c96fdf96453ac059a0a22affa71cd58d50f34be64ca5593755aae2f1a9",
+    "run_b_report_sha256": "25b026c96fdf96453ac059a0a22affa71cd58d50f34be64ca5593755aae2f1a9",
+    "reports_byte_exact": true,
+    "run_a_file_count": 97,
+    "run_b_file_count": 97,
+    "ordered_file_inventory_mismatches": 0,
+    "file_sha256_mismatches": 0,
+    "stderr_bytes": 0,
+    "owned_processes_after_run": 0,
+    "stable_evidence_id": "b2e05ee4ea1604856e66115d7601c495a65ed10addfdcd1724d9a3ecfc4adffa"
+  },
+  "observations": {
+    "source_count": 12,
+    "render_count": 96,
+    "in_gamut_input_change_count": 0,
+    "maximum_new_rgb16_boundary_fraction_vs_semantic_source": 0.0,
+    "maximum_per_source_p99_oklab_hue_error_degrees": 0.006308187449126122,
+    "minimum_per_source_median_chroma_scale": 0.5562503337860107,
+    "maximum_per_source_fraction_chroma_scale_below_1e_6": 0.00150275871398955,
+    "population_median_style_retention_ratio": 0.999867913249826,
+    "worst_render_style_retention_ratio": 0.9694621039142105,
+    "population_median_residual_scale": 1.0,
+    "population_median_fraction_scale_below_0p5": 0.01864262306128489,
+    "maximum_new_rgb16_boundary_fraction_vs_mapped_source": 0.0,
+    "maximum_p999_gradient_ratio_vs_mapped_source": 1.0702806981205664,
+    "maximum_adjacent_lstar_sign_inversion_fraction": 0.0019615959406161024,
+    "population_median_mapping_delta_e_ratio_vs_local_minde": 4.014785672495605,
+    "population_median_hue_error_ratio_vs_local_minde": 6.717247203785743e-7
+  },
+  "automatic_pass": true,
+  "decision": "retain_c11_as_scoped_semantic_ingress_candidate_and_open_fresh_independent_confirmation",
+  "interpretation": "The new mapper closes C10's real ICC-semantic luminance-domain gap without hard component clipping: it leaves every in-gamut float32 sample bit-exact, compresses only OOG OKLab lightness, and analytically scales chroma along the original (a,b) direction into the RGB16 interior. It is strongly hue-preserving and passes the existing style-safety envelope. It is not uniformly superior to local-MINDE: its median OOG OKLab mapping distance is 4.01x larger, while its median hue error is dramatically smaller. Treat the result as a non-dominated engineering trade-off that requires fresh profile/content confirmation, not as perceptual optimality.",
+  "next_hypothesis": "Bind the official ICC ISO22028-2 ROMM RGB v4 profile and wholly fresh rights-cleared photographic content, then rerun the unchanged mapper and gates without FiveK profile or pixel reuse.",
+  "claim_ceiling": "Existing FiveK same-cohort embedded-ProPhoto TIFF16 semantic-ingress and style-safety evidence only; not independent data, arbitrary ICC, calibrated colour, film, stock, HDR, ACES, preference, or product promotion."
+}

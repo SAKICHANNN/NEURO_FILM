@@ -13522,3 +13522,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 
 - Both formal reports are byte exact. All 12 sources violate C4's frozen `[0,1]` luminance-domain requirement after actual embedded-ICC decoding (`min=-0.02868`, `max=1.07444`), so execution stops before any render.
 - No clipping or gate rescue is allowed. C4 remains assumption-bound; the next candidate must change the mapping mechanism. Evidence: `docs/evidence/U1_4C10_ICC_SEMANTIC_C4_RECHECK_RESULT.json`.
+
+### 2026-08-14 - U1.4C11 passes analytical ICC-semantic ingress
+
+- A new OOG-only mapper softly compresses OKLab lightness, then preserves the
+  original `(a,b)` direction while finding the maximum RGB16-interior chroma.
+  In-gamut samples remain bit-exact; no hard component clip or fit is used.
+- Two exact 12-source/96-render runs pass every frozen structural and C4/C8
+  style-safety gate (`25b026c9...f1a9`, stable `b2e05ee4...ffa`). New boundary
+  is zero, worst hue p99 is `.00631` degrees, and worst style retention is
+  `.96946`.
+- The mapper trades 4.01x larger median OOG OKLab distance than local-MINDE for
+  far smaller hue error. Open only a fresh official-ROMM-profile plus new-content
+  confirmation; perceptual optimality and product ingress remain closed.
+  Evidence: `docs/evidence/U1_4C11_OKLAB_ANALYTICAL_INTERIOR_RESULT.json`.
