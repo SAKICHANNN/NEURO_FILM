@@ -4,11 +4,18 @@ from __future__ import annotations
 
 import hashlib
 import json
-import math
 from dataclasses import dataclass
 from typing import Any
 
 import numpy as np
+
+from src.film_physics.bw_hybrid_density_amplitude import (
+    BWHybridDensityAmplitudeProfile,
+)
+from src.film_physics.thomas_dc_projection import (
+    ThomasDcReceipt,
+    render_dc_projected_thomas_region,
+)
 
 PROFILE_SCHEMA = "neuro-film.softplus-density-parameter-profile.v1"
 
@@ -316,22 +323,77 @@ class PhysicalGainSoftplusDensityParameterProfile:
         return hashlib.sha256(encoded.encode()).hexdigest()
 
 
-def softplus_density_field(unit_field: np.ndarray, *, a: float, b: float) -> np.ndarray:
+def softplus_density_field(
+    unit_field: np.ndarray,
+    *,
+    a: np.ndarray | float,
+    b: np.ndarray | float,
+) -> np.ndarray:
     unit = np.asarray(unit_field, dtype=np.float64)
+    parameter_a = np.asarray(a, dtype=np.float64)
+    parameter_b = np.asarray(b, dtype=np.float64)
+    try:
+        parameter_a, parameter_b = np.broadcast_arrays(
+            parameter_a, parameter_b, subok=False
+        )
+        np.broadcast_shapes(unit.shape, parameter_a.shape, parameter_b.shape)
+    except ValueError as exc:
+        raise ValueError("positive density parameters do not broadcast") from exc
     if (
         unit.ndim != 2
         or not unit.size
         or not np.all(np.isfinite(unit))
-        or not math.isfinite(a)
-        or not math.isfinite(b)
-        or b < 0.0
+        or not np.all(np.isfinite(parameter_a))
+        or not np.all(np.isfinite(parameter_b))
+        or np.any(parameter_b < 0.0)
     ):
         raise ValueError("invalid positive density-field inputs")
-    result = np.ascontiguousarray(np.logaddexp(0.0, a + b * unit), dtype=np.float64)
+    result = np.ascontiguousarray(
+        np.logaddexp(0.0, parameter_a + parameter_b * unit), dtype=np.float64
+    )
     if not np.all(np.isfinite(result)) or np.any(result <= 0.0):
         raise RuntimeError("softplus density field is not finite and positive")
     result.setflags(write=False)
     return result
+
+
+def render_nonuniform_positive_density_region(
+    receipt: ThomasDcReceipt,
+    *,
+    mean_density: np.ndarray,
+    origin_yx: tuple[int, int],
+    shape: tuple[int, int],
+    amplitude_profile: BWHybridDensityAmplitudeProfile,
+    parameter_profile: PhysicalGainSoftplusDensityParameterProfile,
+) -> np.ndarray:
+    """Render one coordinate-stable region of a typed nonuniform density field."""
+    mean = np.asarray(mean_density, dtype=np.float64)
+    y0, x0 = origin_yx
+    height, width = shape
+    if (
+        mean.shape != receipt.full_shape
+        or not np.all(np.isfinite(mean))
+        or not isinstance(y0, int)
+        or not isinstance(x0, int)
+        or not isinstance(height, int)
+        or not isinstance(width, int)
+        or y0 < 0
+        or x0 < 0
+        or height <= 0
+        or width <= 0
+        or y0 + height > mean.shape[0]
+        or x0 + width > mean.shape[1]
+    ):
+        raise ValueError("invalid nonuniform positive density region")
+    selected_mean = mean[y0 : y0 + height, x0 : x0 + width]
+    target_sigma = amplitude_profile.sigma_d(selected_mean)
+    parameter_a, parameter_b = parameter_profile.parameters(
+        selected_mean, target_sigma
+    )
+    unit = render_dc_projected_thomas_region(
+        receipt, origin_yx=origin_yx, shape=shape
+    )
+    return softplus_density_field(unit, a=parameter_a, b=parameter_b)
 
 
 __all__ = [
@@ -339,5 +401,6 @@ __all__ = [
     "MeanAnchoredSoftplusDensityParameterProfile",
     "PhysicalGainSoftplusDensityParameterProfile",
     "SoftplusDensityParameterProfile",
+    "render_nonuniform_positive_density_region",
     "softplus_density_field",
 ]
