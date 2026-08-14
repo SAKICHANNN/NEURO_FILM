@@ -1,0 +1,45 @@
+{
+  "schema": "neuro_film.u6_p2az_bw_negative_direct_scan_contract.v1",
+  "node": "U6.P2AZ",
+  "question": "Can the typed generic B&W scan be interpreted as an intrinsically bounded neutral negative direct scan without fitted endpoints, clipping or realized normalization?",
+  "parents": {
+    "typed_scanner_evidence": {
+      "path": "docs/evidence/U6_P2AY_TYPED_DENSITY_SCANNER_CHAIN_RESULT.json",
+      "sha256": "5b0b34d52a546b9b18111630f27e5c188f9f58dcda88208ca03d4b8a87210d52",
+      "required_automatic_pass": true
+    },
+    "typed_scanner_contract": {
+      "path": "configs/u6_p2ay_typed_density_scanner_chain_v1.json",
+      "sha256": "adaa672ce08c6ec5f370a91f67e075ab1d7f5a4bbff69a79ea18b2aa67fbc77c"
+    }
+  },
+  "fresh_realization_seed": 137438953447,
+  "interpretation": {
+    "interpretation_id": "generic-bw-negative-direct-scan-complement-v1",
+    "mapping": "display_linear_equals_one_minus_scan_linear",
+    "endpoint_fit_allowed": false,
+    "realized_normalization_allowed": false,
+    "hard_clipping_allowed": false,
+    "calibrated": false,
+    "production_eligible": false
+  },
+  "evaluation": {
+    "maximum_scan_roundtrip_absolute_error": 0.0,
+    "minimum_density_to_display_rank_correlation": 0.999999999,
+    "minimum_adjacent_cell_mean_step": 0.0005,
+    "minimum_display_linear_exclusive": 0.0,
+    "maximum_display_linear_exclusive": 1.0,
+    "maximum_output_boundary_fraction": 0.0,
+    "neutral_channels_exact": true,
+    "partition_exact": true,
+    "repeat_byte_exact": true,
+    "endpoint_fit_count_zero": true,
+    "realized_normalization_count_zero": true,
+    "hard_clipping_count_zero": true
+  },
+  "branch_rule": {
+    "pass": "retain generic neutral B&W negative direct-scan interpretation and open a fresh structural value ablation",
+    "fail": "close this exact direct-scan complement interpretation without endpoint, seed, mapping or gate rescue"
+  },
+  "claim_ceiling": "Typed generic neutral B&W negative direct-scan interpretation evidence; not print interpretation, stock or scanner calibration, appearance preference, cross-platform parity or product promotion."
+}
