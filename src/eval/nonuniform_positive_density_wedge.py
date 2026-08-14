@@ -61,7 +61,7 @@ def _load_bound(root: Path, binding: dict[str, Any]) -> dict[str, Any]:
     return payload
 
 
-def _profiles(
+def load_reference_profiles(
     *, root: Path, contract: dict[str, Any]
 ) -> tuple[BWHybridDensityAmplitudeProfile, PhysicalGainSoftplusDensityParameterProfile]:
     _load_bound(root, contract["parents"]["positive_parameter_evidence"])
@@ -122,7 +122,9 @@ def _wedge(contract: dict[str, Any]) -> np.ndarray:
 
 
 def run_audit(*, root: Path, contract: dict[str, Any]) -> dict[str, Any]:
-    amplitude_profile, parameter_profile = _profiles(root=root, contract=contract)
+    amplitude_profile, parameter_profile = load_reference_profiles(
+        root=root, contract=contract
+    )
     mean_density = _wedge(contract)
     spatial = contract["spatial_mechanism"]
     evaluation = contract["evaluation"]
