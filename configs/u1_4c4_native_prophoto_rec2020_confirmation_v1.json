@@ -1,0 +1,67 @@
+{
+  "schema": "neuro_film.u1-4c4-native-prophoto-rec2020-confirmation-contract.v1",
+  "experiment_id": "U1.4C4",
+  "status": "frozen_before_implementation_or_candidate_render",
+  "question": "Can a deterministic luminance-axis analytical gamut compression admit native 16-bit ProPhoto photographs into Rec.2020 and preserve the unchanged U1.4C3 look residual without new RGB16 boundaries or local-order failures?",
+  "parents": {
+    "c3_result": {"path":"docs/evidence/U1_4C3_REC2020_SOURCE_ANCHORED_INTERIOR_RESULT.json","sha256":"3435f81ef424c21ad7b53f591cfb5e9e5a196189614d2307462d8b9a65275533","required_automatic_pass":true},
+    "c3_contract": {"path":"configs/u1_4c3_rec2020_source_anchored_interior_v1.json","sha256":"9b4996b8aa383081775cb000c079ef35390a5f38022a9f7f685199aa5218527b"},
+    "c3_evaluator": {"path":"src/eval/rec2020_source_anchored_interior.py","sha256":"2b8a0c35e0a2385466b54937cd426df2e64e2a2cd976515d99809a7ee0ebdb41"},
+    "fivek_prophoto_decoder": {"path":"scripts/build_fivek_freeze_pack.py","sha256":"1a298250f8e6fb36c7a4394673200db0a40b1117f0aebd6413ad7e6011116161"},
+    "license": {"path":"data/external/fivek-bq0-casebank512-v1/legal/LicenseAdobe.txt","sha256":"8121ecfcf743d850d6b6dbd0744cfb517c4cec189387aa010bf378077de84fcf"},
+    "license_inventory": {"path":"data/external/fivek-bq0-casebank512-v1/legal/filesAdobe.txt","sha256":"9f4f262b25522d93f97a5b40f48f42de357ae0b14ef7098a576c912c546e8383"}
+  },
+  "source": {
+    "manifest": "configs/u1_4c4_native_prophoto_source_manifest_v1.json",
+    "manifest_sha256": "4f352488fda809cce52dffe388cbe2564cbe2d5f515db1eb6e078ae92f1d27fc",
+    "expected_rows": 12,
+    "expected_camera_models": 12,
+    "expected_dtype": "uint16",
+    "expected_embedded_icc_sha256": "0a8ef7d1d958d98225b3b71d93d9e8e3cecd9c302e014973d025d2a977ecf27c",
+    "required_allowed_use": "internal_research_only",
+    "required_rights_scope": "mit_adobe_fivek_research_license",
+    "maximum_evaluation_side": 1600,
+    "interpretation": "official research-licensed FiveK Expert C display-referred ProPhoto photographs; previously used in unrelated FiveK operator research but not in U1.4C3 mechanism or gate fitting"
+  },
+  "ingress": {
+    "prophoto_transfer": "ROMM piecewise 16x toe then power 1.8",
+    "chromatic_adaptation": "Bradford D50 to D65",
+    "destination_working_space": "linear_rec2020",
+    "resampling": "encoded-prophoto-float32-cv2-inter-lanczos4",
+    "mapping_id": "rec2020-luminance-axis-analytical-interior-v1",
+    "rec2020_luminance_weights": [0.2627, 0.6780, 0.0593],
+    "map_only_out_of_gamut_pixels": true,
+    "neutral_axis": "repeat(source Rec.2020 luminance Y across RGB)",
+    "safe_interval": "[min(neutral,2/65535),max(neutral,1-2/65535)]",
+    "hard_clipping_allowed": false,
+    "posthoc_limiting_allowed": false,
+    "source_or_operator_fitting_allowed": false
+  },
+  "render": {
+    "styles": ["ektar_100", "portra_800", "velvia_50", "vision3_250d"],
+    "gamut_modes": ["source", "chroma"],
+    "c3_mechanism_id": "source-anchored-rgb16-interior-residual-v1",
+    "rgb16_output": true,
+    "visual_review_before_automatic_pass": false
+  },
+  "automatic_gates": {
+    "require_two_run_report_and_png_identity": true,
+    "minimum_native_srgb_out_of_gamut_fraction_per_source": 0.01,
+    "minimum_precompression_rec2020_out_of_gamut_fraction_per_source": 0.0001,
+    "maximum_luminance_preservation_absolute_error": 0.000002,
+    "require_finite_in_gamut_mapped_sources": true,
+    "maximum_new_rgb16_boundary_fraction_vs_mapped_source": 0.0005,
+    "minimum_population_median_style_retention_ratio": 0.9,
+    "minimum_worst_render_style_retention_ratio": 0.75,
+    "minimum_population_median_residual_scale": 0.95,
+    "maximum_population_median_fraction_scale_below_0p5": 0.05,
+    "maximum_p999_gradient_ratio_vs_mapped_source": 1.35,
+    "maximum_adjacent_lstar_sign_inversion_fraction": 0.005
+  },
+  "branches": {
+    "pass": "open_only_an_independently_sourced_native_wide_gamut_confirmation_before_product_ingress",
+    "fail": "close_this_exact_luminance_axis_plus_c3_composition_without_source_style_margin_or_threshold_rescue"
+  },
+  "production_default_changed": false,
+  "claim_ceiling": "Internal research-only native-ProPhoto to Rec.2020 ingress and colour-operator evidence; not arbitrary ICC support, calibrated colour, film, stock, HDR, ACES conformance, preference or product promotion."
+}
