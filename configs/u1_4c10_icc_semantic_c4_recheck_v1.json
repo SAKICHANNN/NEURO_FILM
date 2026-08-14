@@ -1,0 +1,40 @@
+{
+  "schema": "neuro-film.u1-4c10-icc-semantic-c4-recheck-contract.v1",
+  "experiment_id": "U1.4C10",
+  "parents": {
+    "c4_contract": {
+      "path": "configs/u1_4c4_native_prophoto_rec2020_confirmation_v1.json",
+      "sha256": "6e3caf8e65a71c798e97dff26e3af21c56193409decdb1f5c48b7b794733d607"
+    },
+    "c4_evaluator": {
+      "path": "src/eval/rec2020_native_prophoto_confirmation.py",
+      "sha256": "92426a23c2a17e6ff0c17bb9bdd2e8effcebdda1f36baa716d45b572fde0d803"
+    },
+    "c9_evidence": {
+      "path": "docs/evidence/U1_4C9_EMBEDDED_PROPHOTO_ICC_SEMANTIC_INGRESS_RESULT.json",
+      "sha256": "b1e2658290c2db05a673c9cd38fec9365b175b136eb2dec24d474944cf2b37b0",
+      "required_status": "PASS_SCOPED_EMBEDDED_PROPHOTO_TIFF16_SEMANTIC_INGRESS"
+    },
+    "product_core": {
+      "path": "src/preprocess/prophoto_icc.py",
+      "sha256": "654e5f54f4b7861b69a251cb3f8e4cdea11ee150880770fc04072d6176e1e9b6"
+    },
+    "product_ingress": {
+      "path": "src/preprocess/raster_decode.py",
+      "sha256": "88599aedbf7382655735fb51e04b65d9cf91f1f0eaec235281f7d61e0043a735"
+    }
+  },
+  "execution": {
+    "source_decode": "load_working_image-full-resolution-embedded-icc-semantics",
+    "evaluation_resize": "linear-rec2020-float32-lanczos4-after-icc-decode",
+    "mapping_render_and_gates": "exact-u1-4c4-evaluator",
+    "parameter_change_allowed": false,
+    "gate_change_allowed": false,
+    "require_two_process_report_and_png_identity": true
+  },
+  "decisions": {
+    "pass": "retain_c4_under_embedded_icc_semantics_and_open_fresh_independent_confirmation",
+    "fail": "retain_c4_assumption_bound_and_close_product_integration"
+  },
+  "claim_ceiling": "Existing FiveK research cohort semantic-ingress rerun of the frozen C4 map and C3 style guards; not independent data, arbitrary ICC, calibrated film, or product promotion"
+}
