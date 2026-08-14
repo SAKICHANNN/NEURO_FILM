@@ -1,0 +1,92 @@
+{
+  "schema": "neuro_film.u6_p2av_softplus_physical_gain_coordinate_contract.v1",
+  "node": "U6.P2AV",
+  "question": "Does a mean-anchored softplus profile with derivative-normalized sigma gain generalize both mean and amplitude to wholly fresh densities without refitting?",
+  "parents": {
+    "node_fit": {
+      "path": "docs/evidence/U6_P2AS_POSITIVE_SOFTPLUS_DENSITY_FIELD_RESULT.json",
+      "sha256": "e867cdcadeef538829dec23877aa760939eb0a4e39dcde12671ecf44dd9bed58",
+      "required_automatic_pass": true
+    },
+    "mean_coordinate_boundary": {
+      "path": "docs/evidence/U6_P2AU_SOFTPLUS_MEAN_COORDINATE_INTERPOLATION_RESULT.json",
+      "sha256": "9442c62477d8fc8fc3444722bea8a370b38a65113615b2812510f6340838e38d",
+      "required_automatic_pass": false,
+      "required_decision": "close this exact mean-coordinate interpolation without residual, knot, seed or gate rescue"
+    }
+  },
+  "parameter_nodes": {
+    "densities": [0.06, 0.36, 0.74, 1.0, 1.14],
+    "a": [
+      -2.810014813972266,
+      -0.8382389773643493,
+      0.09115505216804717,
+      0.5410155514279761,
+      0.7543368940147147
+    ],
+    "b": [
+      0.23837343070083786,
+      0.07535098949374423,
+      0.043570248858604985,
+      0.040985998098616985,
+      0.04082032940893165
+    ],
+    "target_aperture_sigma_d": [
+      0.009171656684287146,
+      0.014949030929925687,
+      0.014949030929925687,
+      0.017,
+      0.018218574618747253
+    ],
+    "a_coordinate": "inverse_softplus_density_plus_piecewise_linear_node_residual",
+    "gain_coordinate": "q_equals_b_times_sigmoid_a_divided_by_target_sigma",
+    "gain_interpolation": "piecewise_linear_in_density",
+    "density_extrapolation_allowed": false,
+    "parameter_refit_allowed": false
+  },
+  "confirmation": {
+    "densities": [0.0975, 0.3225, 0.4075, 0.6925, 0.7725, 0.9675, 1.0175, 1.1225],
+    "target_aperture_sigma_d": [
+      0.009749188018549257,
+      0.01406346653600296,
+      0.014949030929925687,
+      0.014949030929925687,
+      0.015191215533747752,
+      0.01672897901054535,
+      0.01714774851698592,
+      0.01806159964451955
+    ],
+    "seeds": [1073741789, 2147483629, 4294967291]
+  },
+  "spatial_mechanism": {
+    "spatial_profile_id": "generic-scanner-convolved-thomas-p4bs-v1",
+    "particle_sigma_samples": 1.3253699417769098,
+    "cluster_sigma_samples": 1.1268619873805532,
+    "mean_offspring": 27.765942352935905,
+    "component_seeds": [2611923443488327891, 11400714819323198485],
+    "sample_pitch_micrometres": 6.35,
+    "measurement_aperture_diameter_micrometres": 48.0,
+    "truncate_sigma": 4.0
+  },
+  "evaluation": {
+    "field_shape": [512, 512],
+    "canonical_row_block_height": 31,
+    "row_partition_height": 127,
+    "measurement_crop_border_samples": 13,
+    "maximum_confirmation_relative_mean_error": 0.02,
+    "maximum_confirmation_median_sigma_relative_error": 0.03,
+    "maximum_confirmation_p95_sigma_relative_error": 0.05,
+    "minimum_developed_density_exclusive": 0.0,
+    "repeat_byte_exact": true,
+    "partition_exact": true,
+    "parameter_refit_count_zero": true,
+    "realized_normalization_count_zero": true,
+    "hard_clipping_count_zero": true,
+    "rgb_image_transform_count_zero": true
+  },
+  "branch_rule": {
+    "pass": "retain a continuous positive mean-and-amplitude profile and open reference-simulator integration",
+    "fail": "close this exact physical gain coordinate without coordinate, knot, seed or gate rescue"
+  },
+  "claim_ceiling": "Fresh-density confirmation of a generic mean-anchored, derivative-normalized positive softplus structure profile; not current-stock calibration, measured NPS, microscopic grain, scanner truth, appearance or product evidence."
+}
