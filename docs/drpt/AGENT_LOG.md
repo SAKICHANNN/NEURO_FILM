@@ -13517,3 +13517,8 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 
 - A strict matrix-shaper ProPhoto ICC decoder now preserves 16-bit input and returns unclipped linear Rec.2020. Across 12 FiveK TIFFs / 316,818,696 scalar values, two processes have the same scientific identity and agree with LittleCMS float64 within `2.08e-7` maximum error.
 - The frozen C4 ROMM-toe assumption differs by up to `5.02e-4`, so C4 remains assumption-bound until a semantic-ingress rerun. This pass opens only that recheck, not gamut mapping, arbitrary ICC or product promotion. Evidence: `docs/evidence/U1_4C9_EMBEDDED_PROPHOTO_ICC_SEMANTIC_INGRESS_RESULT.json`.
+
+### 2026-08-14 - U1.4C10 closes C4 product integration on the ICC-semantic domain
+
+- Both formal reports are byte exact. All 12 sources violate C4's frozen `[0,1]` luminance-domain requirement after actual embedded-ICC decoding (`min=-0.02868`, `max=1.07444`), so execution stops before any render.
+- No clipping or gate rescue is allowed. C4 remains assumption-bound; the next candidate must change the mapping mechanism. Evidence: `docs/evidence/U1_4C10_ICC_SEMANTIC_C4_RECHECK_RESULT.json`.

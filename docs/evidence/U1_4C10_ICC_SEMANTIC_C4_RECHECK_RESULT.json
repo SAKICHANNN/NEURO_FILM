@@ -1,0 +1,45 @@
+{
+  "schema": "neuro-film.u1-4c10-icc-semantic-c4-recheck-evidence.v1",
+  "experiment_id": "U1.4C10",
+  "date": "2026-08-14",
+  "status": "FAIL_CLOSED_C4_LUMINANCE_DOMAIN_BEFORE_RENDER",
+  "implementation_commit": "8640b303",
+  "bindings": {
+    "contract": {
+      "path": "configs/u1_4c10_icc_semantic_c4_recheck_v1.json",
+      "sha256": "e2ef4852a59944ab9733f54604ae06544b741ac93be86b4715bbe8bcd4a7a6a5"
+    },
+    "evaluator": {
+      "path": "src/eval/icc_semantic_c4_recheck.py",
+      "sha256": "f6348bd46db3be50a13a7e427396a37e89d74433880f616bdaa736c6f857ff06"
+    },
+    "runner": {
+      "path": "scripts/run_u1_4c10_icc_semantic_c4_recheck.py",
+      "sha256": "a8ccef8d43752e24dfdf803acd8ce8c9ddbd013e0ce4aca21b1eb3d8f588b09d"
+    },
+    "test": {
+      "path": "tests/test_u1_4c10_icc_semantic_c4_recheck.py",
+      "sha256": "404fe20432e0d139f430e45fe283a615903131d775f476832d20e6dafba41308"
+    }
+  },
+  "formal_runs": {
+    "run_a_report_sha256": "58d64b1f93c1f6b7c44b585c97e61de86f9a9ed84f2e204f6a0985e7a034ba5d",
+    "run_b_report_sha256": "58d64b1f93c1f6b7c44b585c97e61de86f9a9ed84f2e204f6a0985e7a034ba5d",
+    "reports_byte_exact": true,
+    "stable_evidence_id": "b9db45fcf8db0a5e23034632ead85de440e497c2789759a195fcfd2895fc532a"
+  },
+  "observations": {
+    "source_count": 12,
+    "luminance_domain_failure_count": 12,
+    "minimum_luminance": -0.028684356231521813,
+    "maximum_luminance": 1.0744376747846605,
+    "maximum_fraction_luminance_below_c4_domain": 0.027221180880974697,
+    "maximum_fraction_luminance_above_c4_domain": 0.001385818438381938,
+    "render_count": 0,
+    "c4_luminance_domain": false
+  },
+  "decision": "retain_c4_assumption_bound_and_close_product_integration",
+  "interpretation": "The ICC-semantic ProPhoto transform is valid, but every existing FiveK source contains pixels outside the frozen C4 luminance domain. The exact C4 mapping therefore cannot be promoted to the semantic product ingress. No clipping, threshold relaxation or render-stage rescue was attempted.",
+  "next_hypothesis": "A separately frozen monotone smooth luminance compression followed by an analytical hue-preserving Rec.2020 interior mapping may accept the ICC-semantic domain without hard clipping.",
+  "claim_ceiling": "Existing FiveK semantic-ingress domain failure only; it does not invalidate the frozen assumption-bound C4 result or establish a replacement mapper."
+}
