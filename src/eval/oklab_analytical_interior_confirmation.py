@@ -178,13 +178,38 @@ def evaluate(
     if output_dir.exists():
         raise AnalyticalInteriorConfirmationError("C11 output directory must be create-only")
     c4_config, source_rows = _validate_inputs(contract, root)
+    return _evaluate_prevalidated(
+        contract,
+        root,
+        output_dir,
+        c4_config,
+        source_rows,
+        report_schema=REPORT_SCHEMA,
+        experiment_id=EXPERIMENT_ID,
+        contract_sha256=CONTRACT_SHA256,
+    )
+
+
+def _evaluate_prevalidated(
+    contract: Mapping[str, Any],
+    root: Path,
+    output_dir: Path,
+    source_config: Mapping[str, Any],
+    source_rows: list[dict[str, Any]],
+    *,
+    report_schema: str,
+    experiment_id: str,
+    contract_sha256: str,
+) -> dict[str, Any]:
+    if output_dir.exists():
+        raise AnalyticalInteriorConfirmationError("output directory must be create-only")
     output_dir.mkdir(parents=True)
     mapper = contract["mapper"]
     source_facts: list[dict[str, Any]] = []
     render_rows: list[dict[str, Any]] = []
 
     for row in source_rows:
-        semantic, source_path = _semantic_source(row, c4_config, root)
+        semantic, source_path = _semantic_source(row, source_config, root)
         mapped, chroma_ratio = analytical_oklab_interior_rec2020(
             semantic,
             softness=float(mapper["softness"]),
@@ -349,9 +374,9 @@ def evaluate(
     ) * len(contract["render"]["styles"]) * len(contract["render"]["gamut_modes"])
     automatic_pass = all(checks.values())
     report: dict[str, Any] = {
-        "schema": REPORT_SCHEMA,
-        "experiment_id": EXPERIMENT_ID,
-        "contract_sha256": CONTRACT_SHA256,
+        "schema": report_schema,
+        "experiment_id": experiment_id,
+        "contract_sha256": contract_sha256,
         "mapper_id": mapper["id"],
         "sources": source_facts,
         "rows": render_rows,

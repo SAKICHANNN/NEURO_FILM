@@ -1,0 +1,110 @@
+{
+  "schema": "neuro-film.u1-4c12-official-romm-cross-dataset-contract.v1",
+  "experiment_id": "U1.4C12",
+  "status": "frozen_after_official_profile_conformance_and_source_repackaging_before_algorithm_execution",
+  "question": "Does the unchanged C11 analytical OKLab interior mapper retain its hue, boundary, and style-safety gates when the product decoder consumes the official ICC ROMM RGB v4 mAB profile on non-FiveK photographic content?",
+  "primary_sources": [
+    {
+      "title": "ROMM RGB ICC profile registry",
+      "publisher": "ICC",
+      "url": "https://registry.color.org/rgb-registry/rommrgb",
+      "use": "official profile identity, encoding semantics, and unrestricted profile embedding"
+    },
+    {
+      "title": "ROMM RGB: A Reference Output Medium Metric RGB Color Encoding",
+      "publisher": "ICC",
+      "url": "https://registry.color.org/rgb-registry/files/ROMMRGB.pdf",
+      "use": "type-3 transfer, reference-medium black and white, and PCS semantics"
+    },
+    {
+      "title": "CSS Color Module Level 4",
+      "publisher": "W3C",
+      "url": "https://www.w3.org/TR/css-color-4/#binsearch",
+      "use": "hue-direction chroma bisection comparison"
+    }
+  ],
+  "parents": {
+    "c11_evidence": {
+      "path": "docs/evidence/U1_4C11_OKLAB_ANALYTICAL_INTERIOR_RESULT.json",
+      "sha256": "c748beb39aeac2c564e77e9c3dd07504b3ea5123367c03b67b84b738c558c2bd",
+      "required_status": "PASS_SCOPED_ICC_SEMANTIC_ANALYTICAL_INGRESS"
+    },
+    "c11_report": {
+      "path": "outputs/u1_4c11_oklab_analytical_interior_formal_v1/run_a/report.json",
+      "sha256": "25b026c96fdf96453ac059a0a22affa71cd58d50f34be64ca5593755aae2f1a9",
+      "required_automatic_pass": true
+    },
+    "source_manifest": {
+      "path": "outputs/u1_4c12_official_romm_source_v1/manifest.json",
+      "sha256": "6c5417fe3f6f4183fbffbbb97c46941b8e9774a32cd8da1354d734d3fc9f66df",
+      "required_stable_source_id": "332f01e62e229e5f851aee4351a9fa43fcef43d118187d3b1b74aaaeb289d90f"
+    },
+    "official_icc": {
+      "path": "data/wide_gamut/icc_official/ISO22028-2_ROMM-RGB.icc",
+      "sha256": "96b2f2987f83e2a545e607799fbfdff43ef8158fb9b215b187c574db8f145aaf"
+    },
+    "product_core": {
+      "path": "src/preprocess/prophoto_icc.py",
+      "sha256": "88b5b24ea7a6d553e70cebe8f8b3242cfef18389d7ca2e4e7339fedf29328069"
+    },
+    "product_ingress": {
+      "path": "src/preprocess/raster_decode.py",
+      "sha256": "8effdd35192d44377e2ab1a98d1f7e544ac7a203eb5ab333d6822a37de49e3e5"
+    },
+    "mapper_core": {
+      "path": "src/color_engine/oklab_analytical_interior.py",
+      "sha256": "bcc3fa39210544ace96d8727a666ec5d2ea9845eec4276bbf73e6a9b95f06c48"
+    },
+    "local_minde_core": {
+      "path": "src/color_engine/oklch_local_minde.py",
+      "sha256": "8cfeb198cd08578991828cfa251cd45b5894e6402193a48400b50d6f0dd3931f"
+    }
+  },
+  "source": {
+    "expected_rows": 24,
+    "expected_cameras": 8,
+    "expected_embedded_icc_sha256": "96b2f2987f83e2a545e607799fbfdff43ef8158fb9b215b187c574db8f145aaf",
+    "required_allowed_use": "internal_research_only",
+    "required_rights_scope": "official_gamutmlp_dataset_without_separate_dataset_or_underlying_image_redistribution_license",
+    "maximum_evaluation_side": 512,
+    "decode": "product-load-working-image-official-romm-mab-semantics"
+  },
+  "mapper": {
+    "id": "oklab-oog-only-soft-interval-maximum-chroma-v1",
+    "softness": 0.015625,
+    "rgb16_margin": 0.000030518043793392844,
+    "bisection_iterations": 24,
+    "map_only_out_of_gamut_pixels": true,
+    "preserve_oklab_ab_direction": true,
+    "cohort_fitting_allowed": false,
+    "hard_component_clipping_allowed": false,
+    "posthoc_limiting_allowed": false
+  },
+  "render": {
+    "styles": ["ektar_100", "portra_800", "velvia_50", "vision3_250d"],
+    "gamut_modes": ["source", "chroma"],
+    "guard": "source-anchored-rgb16-interior-residual-v1",
+    "rgb16_output": true
+  },
+  "automatic_gates": {
+    "require_two_process_report_and_png_identity": true,
+    "require_in_gamut_input_pixels_bit_exact": true,
+    "maximum_new_rgb16_boundary_fraction_vs_semantic_source": 0.0,
+    "maximum_per_source_p99_oklab_hue_error_degrees": 0.01,
+    "minimum_per_source_median_chroma_scale": 0.5,
+    "maximum_per_source_fraction_chroma_scale_below_1e_6": 0.005,
+    "minimum_population_median_style_retention_ratio": 0.9,
+    "minimum_worst_render_style_retention_ratio": 0.75,
+    "minimum_population_median_residual_scale": 0.95,
+    "maximum_population_median_fraction_scale_below_0p5": 0.05,
+    "maximum_new_rgb16_boundary_fraction_vs_mapped_source": 0.0005,
+    "maximum_p999_gradient_ratio_vs_mapped_source": 1.35,
+    "maximum_adjacent_lstar_sign_inversion_fraction": 0.005
+  },
+  "decisions": {
+    "pass": "retain_c11_for_official_romm_cross_dataset_semantic_ingress_and_open_cc0_synthetic_wcg_stress",
+    "fail": "close_c11_official_romm_transfer_without_parameter_or_same_cohort_rescue"
+  },
+  "production_default_changed": false,
+  "claim_ceiling": "Official ICC ROMM RGB mAB semantic-ingress and unchanged C11 style-safety evidence on previously consumed internal-research-only GamutMLP photographic content; not fresh content, arbitrary ICC, calibrated colour, redistribution, film, stock, HDR, ACES, preference, or product promotion."
+}
