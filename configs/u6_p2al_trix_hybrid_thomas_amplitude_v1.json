@@ -1,0 +1,42 @@
+{
+  "schema": "neuro_film.u6_p2al_trix_hybrid_thomas_amplitude_contract.v1",
+  "node": "U6.P2AL",
+  "question": "Can the TRI-X scalar Sigma-D observation normalize the independently retained generic scanner-convolved Thomas shape at the exact 48 micrometre aperture without refitting spatial parameters or realized fields?",
+  "parents": {
+    "trix_scalar": {"path": "docs/evidence/U6_P2AK_TRIX_GRANULARITY_SCALAR_PROFILE_RESULT.json", "sha256": "1952910da39d86caefbf628d8889d6890436cfc3be7171d358adccaf9c34d8ce", "required_automatic_pass": true},
+    "thomas_shape": {"path": "configs/u6_p4bs_real_uniform_thomas_confirmation_decision_v1.json", "sha256": "a0b01b0fc08b407c26169f16d5efbc87aa9a20146e42d33ea113f8200ee57ff3", "required_decision": "retain_generic_scanner_convolved_thomas_mechanism_candidate"},
+    "dc_projection": {"path": "configs/u6_p4bv_thomas_dc_projection_decision_v1.json", "sha256": "878f406c9d0128e99a92933e73d52638831b4465eb2597b52bd3b24421edad20", "required_decision": "retain_two_pass_dc_projected_thomas_unit_field"}
+  },
+  "hybrid": {
+    "spatial_profile_id": "generic-scanner-convolved-thomas-p4bs-v1",
+    "particle_sigma_samples": 1.3253699417769098,
+    "cluster_sigma_samples": 1.1268619873805532,
+    "mean_offspring": 27.765942352935905,
+    "component_seeds": [2611923443488327891, 11400714819323198485],
+    "sample_pitch_micrometres": 6.35,
+    "measurement_aperture_diameter_micrometres": 48.0,
+    "truncate_sigma": 4.0,
+    "spatial_parameter_refit_allowed": false,
+    "realized_variance_normalization_allowed": false
+  },
+  "evaluation": {
+    "field_shape": [512, 512],
+    "seeds": [0, 1099511627776, 2199023255552, 3298534883328, 5497558138880],
+    "canonical_row_block_height": 31,
+    "row_partition_height": 127,
+    "measurement_crop_border_samples": 13,
+    "maximum_analytic_aperture_sigma_error": 1e-15,
+    "maximum_median_aperture_sigma_relative_error": 0.015,
+    "maximum_p95_aperture_sigma_relative_error": 0.03,
+    "maximum_absolute_field_mean": 1e-15,
+    "minimum_developed_density": 0.0,
+    "repeat_byte_exact": true,
+    "partition_exact": true,
+    "rgb_image_transform_count_zero": true
+  },
+  "branch_rule": {
+    "pass": "retain an explicit TRI-X-amplitude/generic-scanner-shape hybrid research profile; still prohibit photographic rendering",
+    "fail": "close this amplitude-shape composition without changing the scalar, shape, seeds, aperture or gates"
+  },
+  "claim_ceiling": "Explicit hybrid of one TRI-X 400 scalar 48um Sigma-D amplitude and one independently retained generic same-scanner Thomas second-order shape; not TRI-X NPS, microscopic grain, scanner-independent structure, density dependence, roll calibration, photographic appearance or product evidence."
+}
