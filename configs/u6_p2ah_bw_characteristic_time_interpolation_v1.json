@@ -1,0 +1,19 @@
+{
+  "schema": "neuro_film.u6_p2ah_bw_characteristic_time_interpolation_contract.v1",
+  "node": "U6.P2AH",
+  "question": "Does linear interpolation along development time predict each held interior TRI-X 400 / D-76 characteristic row accurately enough to authorize unobserved times inside 6-12 minutes?",
+  "parent": {"evidence": "docs/evidence/U6_P2AG_BW_CHARACTERISTIC_SURFACE_RESULT.json", "evidence_sha256": "7ebffb81b9623d829162accc229550d41b506470c5a32444237ec827c4263d2a", "required_automatic_pass": true},
+  "held_times_minutes": [8.0, 10.0],
+  "predictor": "linear interpolation between adjacent observed characteristic rows without refitting",
+  "automatic_gates": {
+    "held_row_count": 2,
+    "maximum_each_normalized_rmse": 0.01,
+    "maximum_each_normalized_absolute_error": 0.015,
+    "all_predictions_strictly_increasing": true,
+    "repeat_byte_exact": true,
+    "rgb_image_transform_count_zero": true
+  },
+  "forbidden": ["change knots, rows, predictor or gates after scoring", "extrapolate outside 6-12 minutes", "claim measured chemistry or roll calibration", "render photographs or alter product profiles"],
+  "branch_rule": {"pass": "allow bounded interpolation inside 6-12 minutes while preserving the P2AF unresolved-shape caveat", "fail": "restrict P2AG execution to the four observed times only"},
+  "claim_ceiling": "Leave-one-time-out source-graph interpolation evidence for TRI-X 400 / D-76; not developer chemistry, roll calibration, photographic appearance or product use."
+}
