@@ -1,0 +1,41 @@
+{
+  "schema": "neuro_film.u6_p2ao_historical_trix_wiener_density_source_contract.v1",
+  "node": "U6.P2AO",
+  "question": "Does a first-party primary-paper table provide a reproducible historical TRI-X density-dependent Wiener-granularity amplitude observation that can constrain future generic B&W structure research without being relabeled as current 400TX?",
+  "source": {
+    "path": "outputs/source_recon/u6_p2ao_historical_trix_wiener/official_abstract.html",
+    "sha256": "5efa2682ef05788482f414db609d90f33edd132f91317c2be221732d1fb7909f",
+    "publisher": "Optica Publishing Group",
+    "title": "Information Capacity of Photographic Films",
+    "author": "R. Clark Jones",
+    "journal": "Journal of the Optical Society of America 51(11), 1159-1171",
+    "year": 1961,
+    "doi": "10.1364/JOSA.51.001159",
+    "table": "III",
+    "expected_html_table_copies": 2,
+    "film_identity": "eastman_tri_x_panchromatic_negative_film_type_5233",
+    "development": "sd_28_6_5_minutes",
+    "reported_gamma": 0.54,
+    "densities": [0.06, 0.36, 0.74, 1.14],
+    "wiener_granularity_spectrum_cm2": [3.32e-9, 8.82e-9, 8.82e-9, 1.31e-8],
+    "current_400tx_claim": false,
+    "spatial_spectrum_shape_available": false
+  },
+  "automatic_gates": {
+    "source_identity_exact": true,
+    "table_copies_exact": true,
+    "table_values_exact": true,
+    "densities_strictly_increasing": true,
+    "wiener_values_finite_positive": true,
+    "wiener_values_nondecreasing": true,
+    "plateau_observation_exact": true,
+    "render_allowed": false,
+    "rgb_image_transform_count_zero": true,
+    "repeat_byte_exact": true
+  },
+  "branch_rule": {
+    "pass": "retain a historical density-dependent Wiener-amplitude source prior and open only a separately frozen generic amplitude-shape compatibility test",
+    "fail": "close this source route without substituting secondary tables or current-stock labels"
+  },
+  "claim_ceiling": "Historical primary-paper density/Wiener-amplitude observations for Eastman TRI-X type 5233 developed 6.5 minutes in SD-28; not current Kodak 400TX, D-76, modern coating, NPS shape, scanner response, roll calibration, photographic appearance or product evidence."
+}
