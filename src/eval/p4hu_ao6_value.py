@@ -38,6 +38,7 @@ from src.film_physics.bounded_photographic_profile import (
 from src.film_physics.display_look import (
     build_source_context_display_look_stages,
 )
+from src.film_physics.scanner import apply_scanner_safe_residual
 from src.film_physics.spatial_response import (
     SpatialResponseProfile,
     apply_scanner_mtf,
@@ -516,7 +517,10 @@ def _evaluate_source(
     gates: dict[str, Any],
     arm_ids: tuple[str, str, str, str] = ARMS,
     physical_after_ao6_base: bool = False,
+    scanner_safe_residual: bool = False,
 ) -> dict[str, Any]:
+    if physical_after_ao6_base and scanner_safe_residual:
+        raise ValueError("scanner-safe residual is unsupported for base-first execution")
     current_ao6, matched_ao6, physical_only, combined = arm_ids
     encoded, source_receipt = _load_rgb8_source(root, row, transform)
     linear = np.ascontiguousarray(
@@ -541,6 +545,7 @@ def _evaluate_source(
         return _display(
             apply_residual(apply_base(values)), encoded.shape, label
         )
+    scanner_safe_receipt = None
     if physical_after_ao6_base:
         current_base = _display(apply_base(encoded), encoded.shape, "current AO6 base")
         matched_base = _display(
@@ -577,6 +582,18 @@ def _evaluate_source(
         scanner_physical = np.ascontiguousarray(
             apply_scanner_mtf(physical, scanner), dtype=np.float32
         )
+        if scanner_safe_residual:
+            scanner_physical, receipt = apply_scanner_safe_residual(
+                scanner_source.astype(np.float64),
+                scanner_physical.astype(np.float64),
+            )
+            scanner_safe_receipt = {
+                "runtime_id": receipt.runtime_id,
+                "limited_pixel_fraction": receipt.limited_pixel_fraction,
+                "median_scale": receipt.median_scale,
+                "minimum_scale": receipt.minimum_scale,
+                "maximum_collinearity_error": receipt.maximum_collinearity_error,
+            }
         encoded_scanner_physical = _display(
             linear_srgb_to_encoded(scanner_physical.astype(np.float64)),
             encoded.shape,
@@ -601,7 +618,7 @@ def _evaluate_source(
     product_delta = arms[combined] - arms[current_ao6]
     scanner_control_delta = arms[matched_ao6] - arms[current_ao6]
     stable_diagnostics = _stable_diagnostics(diagnostics)
-    return {
+    result = {
         "source_id": row["id"],
         "source_manifest_id": row["source_id"],
         "make": row["make"],
@@ -652,6 +669,9 @@ def _evaluate_source(
         ),
         "outputs": outputs,
     }
+    if scanner_safe_receipt is not None:
+        result["scanner_safe_residual"] = scanner_safe_receipt
+    return result
 
 
 def evaluate_source_arms(
@@ -680,6 +700,36 @@ def evaluate_source_arms(
         scanner=scanner,
         gates=gates,
         arm_ids=arm_ids,
+    )
+
+
+def evaluate_scanner_safe_source_arms(
+    *,
+    root: Path,
+    output_dir: Path,
+    row: dict[str, Any],
+    transform: str | None,
+    seeds: tuple[int, int, int],
+    runtime: DensityStageRuntime,
+    ao6_payload: dict[str, Any],
+    scanner: SpatialResponseProfile,
+    gates: dict[str, Any],
+    arm_ids: tuple[str, str, str, str],
+) -> dict[str, Any]:
+    """Evaluate P4HU after the canonical scanner-safe residual executor."""
+
+    return _evaluate_source(
+        root=root,
+        output_dir=output_dir,
+        row=row,
+        transform=transform,
+        seeds=seeds,
+        runtime=runtime,
+        ao6_payload=ao6_payload,
+        scanner=scanner,
+        gates=gates,
+        arm_ids=arm_ids,
+        scanner_safe_residual=True,
     )
 
 
@@ -994,6 +1044,7 @@ __all__ = [
     "automatic_arm_checks",
     "evaluate",
     "evaluate_base_first_source_arms",
+    "evaluate_scanner_safe_source_arms",
     "evaluate_source_arms",
     "load_contract",
 ]

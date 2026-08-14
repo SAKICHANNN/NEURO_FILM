@@ -17,13 +17,23 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-_evaluator = import_module("src.eval.p4hu_ao6_value")
+_evaluator = import_module(
+    os.environ.get("NEURO_FILM_P7_VALUE_EVALUATOR", "src.eval.p4hu_ao6_value")
+)
 evaluate = _evaluator.evaluate
 load_contract = _evaluator.load_contract
 
 
-WORKER_REPORT_SCHEMA = "neuro-film.u6-p7h-p4hu-ao6-value-worker-report.v1"
-FINAL_REPORT_SCHEMA = "neuro-film.u6-p7h-p4hu-ao6-value-run-report.v1"
+WORKER_REPORT_SCHEMA = getattr(
+    _evaluator,
+    "WORKER_REPORT_SCHEMA",
+    "neuro-film.u6-p7h-p4hu-ao6-value-worker-report.v1",
+)
+FINAL_REPORT_SCHEMA = getattr(
+    _evaluator,
+    "FINAL_REPORT_SCHEMA",
+    "neuro-film.u6-p7h-p4hu-ao6-value-run-report.v1",
+)
 EXPECTED_MEASUREMENT = {
     "formal_processes": 2,
     "sample_interval_seconds": 0.01,
