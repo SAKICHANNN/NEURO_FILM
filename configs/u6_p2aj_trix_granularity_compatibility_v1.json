@@ -1,0 +1,57 @@
+{
+  "schema": "neuro_film.u6_p2aj_trix_granularity_compatibility_contract.v1",
+  "node": "U6.P2AJ",
+  "question": "Is the unchanged generic metallic-silver structure kernel quantitatively compatible with Kodak's first-party TRI-X 400 diffuse-rms granularity measurement at net density 1.0 and a 48 micrometre aperture?",
+  "parents": {
+    "characteristic_silver_chain": {
+      "path": "docs/evidence/U6_P2AI_BW_CHARACTERISTIC_SILVER_CHAIN_RESULT.json",
+      "sha256": "c70dbbdf82ca9952cdcbbb85462871552fe6236a6edc90da4dac37edd58e082c",
+      "required_automatic_pass": true
+    },
+    "generic_silver_structure": {
+      "path": "docs/evidence/U6_P4DK_TYPED_BW_SILVER_CHAIN_RESULT.json",
+      "sha256": "e4d0ebaf64c1a9fbea797855e1856b8ccac8d277f32353830a9f6caa89f282c0",
+      "required_automatic_pass": true
+    }
+  },
+  "source": {
+    "publication": "Kodak F-4017",
+    "path": "outputs/source_recon/u6_p2ad_bw_developer_contrast/kodak_f4017_trix_320_400.pdf",
+    "sha256": "1d86b030cf7a8502e6f1414c630fa2cda30b68df53f49bccccce73c9c6562078",
+    "film": "KODAK PROFESSIONAL TRI-X 400 Film",
+    "net_diffuse_density": 1.0,
+    "aperture_diameter_micrometres": 48.0,
+    "magnification": 12,
+    "diffuse_rms_granularity": 17.0,
+    "definition": "1000 * standard deviation of aperture-measured diffuse density"
+  },
+  "unchanged_candidate": {
+    "radius_um": 5.0,
+    "output_zoom": 4,
+    "output_pixel_pitch_um": 8.0,
+    "monte_carlo_samples": 8,
+    "input_shape": [24, 24],
+    "seeds": [44181, 45190, 46199],
+    "fitting_allowed": false
+  },
+  "automatic_gates": {
+    "maximum_median_relative_error": 0.25,
+    "maximum_worst_relative_error": 0.35,
+    "maximum_target_mean_density_absolute_error": 0.1,
+    "all_aperture_windows_finite": true,
+    "minimum_aperture_window_count_per_seed": 4096,
+    "repeat_byte_exact": true,
+    "rgb_image_transform_count_zero": true
+  },
+  "forbidden": [
+    "fit radius, samples, seed, density or spatial filtering to the scalar target",
+    "interpret one granularity scalar as an NPS or microscopic grain size",
+    "claim developer-, scanner- or roll-calibrated structure",
+    "render photographs or change a product profile"
+  ],
+  "branch_rule": {
+    "pass": "retain only scalar-aperture compatibility and require independent NPS before rendering",
+    "fail": "close the unchanged generic silver geometry for TRI-X and require a measured-amplitude compiler before any photographic use"
+  },
+  "claim_ceiling": "Fixed-kernel compatibility with one first-party TRI-X 400 scalar diffuse-rms granularity measurement; not an NPS, grain-size measurement, scanner profile, roll calibration, photographic appearance or product evidence."
+}
