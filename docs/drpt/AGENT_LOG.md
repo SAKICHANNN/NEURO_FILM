@@ -13396,3 +13396,8 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 
 - The endpoint-free `display_linear = 1 - scan_linear` interpretation remained strictly inside `(0,1)`, neutral, partition-exact and monotone with density (rank correlation `1.0`, minimum adjacent cell-mean step `0.00368`) without normalization or clipping.
 - Its reconstructed scan differed by `5.55e-17`, failing the frozen zero-error inverse gate. Close arithmetic inversion of this exact complement mapping; any successor needing exact replay must bind the original scan identity rather than infer it from rounded display values.
+
+## 2026-08-14 - U6.P2BA retains source-bound forward direct scan
+
+- The forward neutral B&W interpretation now binds exact source-scan and display hashes. Two formal runs, partitioned execution and receipt replay were byte-exact; one-ULP source and display tamper controls were rejected, and no arithmetic inverse is claimed.
+- This resolves only replay identity and opens a fresh structural-value experiment. It does not change P2AZ's arithmetic-inverse boundary or establish stock, scanner, print, preference or product evidence.
