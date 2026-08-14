@@ -12,6 +12,10 @@ from src.eval.analytic_y_chromaticity_third_adjudication import load_contract
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u5_r2cb74_analytic_y_chromaticity_adjudication_v1.json"
+EVIDENCE = (
+    ROOT
+    / "docs/evidence/U5_R2CB74_ANALYTIC_Y_CHROMATICITY_THIRD_CONFIRMATION_RESULT.json"
+)
 
 
 def test_cb74_adjudication_contract_binds_frozen_observations() -> None:
@@ -30,3 +34,12 @@ def test_cb74_adjudication_rejects_contract_identity_drift(tmp_path: Path) -> No
     path.write_text(json.dumps(payload), encoding="utf-8")
     with pytest.raises(AnalyticYChromaticityAdjudicationError, match="contract drift"):
         load_contract(path)
+
+
+def test_cb74_decision_closes_without_rescue() -> None:
+    evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+    assert evidence["repeat_report_and_output_hashes_exact"] is True
+    assert evidence["automatic_pass"] is True
+    assert evidence["autonomous_visual_metrics"]["candidate_round_choices"] == [4, 4, 7]
+    assert evidence["decision"] == "close_cb74_without_rescue_retain_ao6"
+    assert evidence["product_default_changed"] is False

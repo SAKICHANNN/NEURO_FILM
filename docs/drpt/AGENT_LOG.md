@@ -13437,3 +13437,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The exact P6AM scanner-safe residual was inserted post-scanner and before encode/AO6 without refitting P4HU or AO6. Two fresh formal workers are science/PNG-inventory exact across nine P7H sources and pass resource limits.
 - The executor is identity on all rows (`limited=0`, scale `1`), so all 36 semantic output PNGs equal P7H. High-frequency chroma remains `.00502189 > .004` and the diagnostic output boundary remains `.0315493 > .005`.
 - Decision: retain current AO6, forbid blind review, and close this exact scanner-safe P4HU combination without rescue. Evidence: `docs/evidence/U6_P7I_SCANNER_SAFE_P4HU_AO6_VALUE_RESULT.json`.
+
+### 2026-08-14 - U5.R2CB74 closes the analytic Y/chromaticity challenger
+
+- The unchanged CB50/CB51 operator passed every automatic gate on a third nine-camera source-disjoint cohort; two formal reports and all 39 non-report artifacts were byte exact (`c4164d93...fbf04`, stable `5edfa13c...21c9a`).
+- Precommitted autonomous review found zero confirmed severe artifacts, but the candidate won only one of three rounds (`4/4/7`), received `15/27` choices and four of nine source majorities. All frozen preference gates fail.
+- Retain AO6 and close this exact analytic Y/chromaticity route without tuning, additional votes or product promotion. Evidence: `docs/evidence/U5_R2CB74_ANALYTIC_Y_CHROMATICITY_THIRD_CONFIRMATION_RESULT.json`.

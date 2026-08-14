@@ -1,0 +1,38 @@
+{
+  "schema": "neuro_film.u5-r2cb74-analytic-y-chromaticity-third-confirmation-result.v1",
+  "experiment_id": "U5.R2CB74",
+  "status": "third_source_disjoint_confirmation_failed_retain_ao6",
+  "implementation_commit": "a4e0cc32",
+  "source_binding_fix_commit": "157a918c",
+  "automatic_report_sha256": "c4164d93fe706aa77f9382621c48073e5fd3e790e6a8044defbf973bf99fbf04",
+  "automatic_stable_evidence_id": "5edfa13c3baad289c89f56443dbbb43711bb4f6f81e2d50afda6048db1121c9a",
+  "repeat_report_and_output_hashes_exact": true,
+  "automatic_pass": true,
+  "automatic_metrics": {
+    "source_count": 9,
+    "camera_make_count": 9,
+    "population_median_style_delta_e76": 9.41313849631815,
+    "population_median_delta_e76_vs_cb11": 11.320266995794459,
+    "population_median_global_dose": 1.0,
+    "population_median_gamut_scale": 1.0,
+    "maximum_p999_gradient_ratio_vs_source": 1.1830283825253383,
+    "maximum_adjacent_lstar_gradient_sign_inversion_fraction": 0.0,
+    "maximum_new_hard_boundary_fraction": 0.0,
+    "maximum_luminance_reconstruction_error": 2.9699624870538344e-08
+  },
+  "blind_observations_sha256": "8f72dd39a2fbbbeba4c157eec0c5543c945356949bea83d85e4fe2f5462e5411",
+  "blind_binding_amendment": "The first adjudication attempt produced no report and rejected on a mechanically mistranscribed round-2 sheet SHA. Only that SHA was corrected after all A/B choices had already been committed; choices and gates did not change.",
+  "adjudication_report_sha256": "25aaa4e1f0a330bd2e42dced5a480862eca19fb6d2e7a409390d9440846b6e01",
+  "adjudication_stable_evidence_id": "437fed16cf5ec5fc2a22ba8e2a92f79cef44855aa377d07d4968eec9bf434263",
+  "autonomous_visual_metrics": {
+    "confirmed_severe_artifact_count": 0,
+    "candidate_round_choices": [4, 4, 7],
+    "candidate_round_wins": 1,
+    "candidate_aggregate_choices": 15,
+    "candidate_source_majorities": 4
+  },
+  "decision": "close_cb74_without_rescue_retain_ao6",
+  "product_default_changed": false,
+  "forbidden": "same-cohort tuning, changed gates, additional votes, stock or calibration relabeling, product promotion",
+  "claim_ceiling": "Third source-disjoint autonomous comparison of a generic digital-photo Look Approximation mechanism; not population preference, film truth, stock response, calibration or product promotion."
+}
