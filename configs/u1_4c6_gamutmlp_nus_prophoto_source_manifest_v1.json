@@ -1,0 +1,259 @@
+{
+  "schema": "neuro-film.u1-4c6-gamutmlp-reviewed-source-manifest.v1",
+  "experiment_id": "U1.4C6S",
+  "contract_sha256": "a3951e74cdf71b35ff4dc12692afeaaed4bb148eae1d66fb33f2a2106a1f6925",
+  "source_audit_report_sha256": "0d7b1ee5af45aabc07ae48519f18b78a9d0f0faaff9743f57d4f7bbee1f71fe8",
+  "source_manifest_canonical_sha256": "d354a729e5596bc63b429538445789b8a912117a41f80d2eb5ac836e817e4cc0",
+  "contact_sheet_sha256": "dbe03ddf5b13d9181e472917b400c72bd0d1d52f82b77a36d9234e2f10b61e06",
+  "review_basis": "full_contact_sheet_visual_review",
+  "reviewed_rows": 24,
+  "eligible_rows": 24,
+  "eligible_camera_models": 8,
+  "automatic_pass": true,
+  "visual_pass": true,
+  "allowed_use": "internal_research_only",
+  "rights_scope": "official_gamutmlp_dataset_without_separate_dataset_or_underlying_image_redistribution_license",
+  "rows": [
+    {
+      "camera": "Canon1DsMkIII",
+      "source_id": "0056",
+      "style": "standard",
+      "path": "data/wide_gamut/gamutmlp_u1_4c6/selected/Canon1DsMkIII/standard_Canon1DsMkIII_0056.png",
+      "member_sha256": "749071d92e0f697eb509fdfdffd0ee8d612ef8d8af24dc8de940bd30795bea83",
+      "pixel_sha256": "4cadee6830694f5d3ec85b5b88d385587358883bac1ca33ab203de9121a30a85",
+      "visual_eligible": true,
+      "visual_reason": "ordinary_or_staged_photographic_content_without_confirmed_severe_source_artifact"
+    },
+    {
+      "camera": "Canon1DsMkIII",
+      "source_id": "0221",
+      "style": "vivid",
+      "path": "data/wide_gamut/gamutmlp_u1_4c6/selected/Canon1DsMkIII/vivid_Canon1DsMkIII_0221.png",
+      "member_sha256": "b33c6e5e489104eb333f8ef38432918d8d09d6dbb10ad03d8bf528f45c424eb6",
+      "pixel_sha256": "c5ce9b2690efb218842282a993d1eb7952be9ab3480d33793b1397316b4bccd1",
+      "visual_eligible": true,
+      "visual_reason": "ordinary_or_staged_photographic_content_without_confirmed_severe_source_artifact"
+    },
+    {
+      "camera": "Canon1DsMkIII",
+      "source_id": "0215",
+      "style": "standard",
+      "path": "data/wide_gamut/gamutmlp_u1_4c6/selected/Canon1DsMkIII/standard_Canon1DsMkIII_0215.png",
+      "member_sha256": "345ff03414966eb9fea6ecfb3533ea695553fc79746c517c36e48888dc0ecb2d",
+      "pixel_sha256": "abc7efcee59cf76fd062a02e521e4787eb315ffac726ffe5720713d5774580fa",
+      "visual_eligible": true,
+      "visual_reason": "ordinary_or_staged_photographic_content_without_confirmed_severe_source_artifact"
+    },
+    {
+      "camera": "Canon600D",
+      "source_id": "0144",
+      "style": "vivid",
+      "path": "data/wide_gamut/gamutmlp_u1_4c6/selected/Canon600D/vivid_Canon600D_0144.png",
+      "member_sha256": "5cf84143121365186a04be71b2ef092c810abf46871791bcdc78bd059d6dc32f",
+      "pixel_sha256": "92e938fe09c886f75680b00d84e03a8208c0affeb42cd6b8e5eb7a15c5fcd147",
+      "visual_eligible": true,
+      "visual_reason": "ordinary_or_staged_photographic_content_without_confirmed_severe_source_artifact"
+    },
+    {
+      "camera": "Canon600D",
+      "source_id": "0129",
+      "style": "vivid",
+      "path": "data/wide_gamut/gamutmlp_u1_4c6/selected/Canon600D/vivid_Canon600D_0129.png",
+      "member_sha256": "ce32f6eed93ed6f673007ae22eafb2d40eae249dca6cd9179025fb02c5f31c3e",
+      "pixel_sha256": "0415a1647e5f260ee8f214c0311fb53c75c8a5b402867657b6e3cb8e90e11943",
+      "visual_eligible": true,
+      "visual_reason": "ordinary_or_staged_photographic_content_without_confirmed_severe_source_artifact"
+    },
+    {
+      "camera": "Canon600D",
+      "source_id": "0087",
+      "style": "standard",
+      "path": "data/wide_gamut/gamutmlp_u1_4c6/selected/Canon600D/standard_Canon600D_0087.png",
+      "member_sha256": "4081f138431a95f791817523854885f38bba3631e7515595c8c1b2ccef63e548",
+      "pixel_sha256": "88e2f618765bbdb18e4a6a7649c3c1ed7487ccac11da385ba0f637f98aa15165",
+      "visual_eligible": true,
+      "visual_reason": "ordinary_or_staged_photographic_content_without_confirmed_severe_source_artifact"
+    },
+    {
+      "camera": "FujifilmXM1",
+      "source_id": "0127",
+      "style": "vivid",
+      "path": "data/wide_gamut/gamutmlp_u1_4c6/selected/FujifilmXM1/vivid_FujifilmXM1_0127.png",
+      "member_sha256": "e7dab4cad4882fae824195b138f406a0bacd3ce2037723c86361f863e81f993a",
+      "pixel_sha256": "eee51943695bc01049b65081de4e70b9675a80517e00f38f9f406c17fb2d8d5b",
+      "visual_eligible": true,
+      "visual_reason": "ordinary_or_staged_photographic_content_without_confirmed_severe_source_artifact"
+    },
+    {
+      "camera": "FujifilmXM1",
+      "source_id": "0077",
+      "style": "vivid",
+      "path": "data/wide_gamut/gamutmlp_u1_4c6/selected/FujifilmXM1/vivid_FujifilmXM1_0077.png",
+      "member_sha256": "3ff430b0cca45d6463be1fcbd61a831fe5fbea71933f2a0f1f551dd14044d41b",
+      "pixel_sha256": "76eb8ac6cb325c1eede2c9ed972627949de1e9c67f1963b6539d5dac378636f5",
+      "visual_eligible": true,
+      "visual_reason": "ordinary_or_staged_photographic_content_without_confirmed_severe_source_artifact"
+    },
+    {
+      "camera": "FujifilmXM1",
+      "source_id": "0116",
+      "style": "color",
+      "path": "data/wide_gamut/gamutmlp_u1_4c6/selected/FujifilmXM1/color_FujifilmXM1_0116.png",
+      "member_sha256": "6197ff753b8652723deadb9d0a85d54704ac08b5a8159126d0bcfd61f173fc5c",
+      "pixel_sha256": "e53b1c19469f41fcd7b3376848986a629a457155b45f21d56097e324fb9d3a9d",
+      "visual_eligible": true,
+      "visual_reason": "ordinary_or_staged_photographic_content_without_confirmed_severe_source_artifact"
+    },
+    {
+      "camera": "NikonD5200",
+      "source_id": "0148",
+      "style": "landscape",
+      "path": "data/wide_gamut/gamutmlp_u1_4c6/selected/NikonD5200/landscape_NikonD5200_0148.png",
+      "member_sha256": "cd1106675d5024c1c245e708707b5dda322d16d31265483f6817009035b3ca57",
+      "pixel_sha256": "dbafd8151bb9afdd4406cb90c6e43b72950fda6c9a9c942a3c9334b9241cab2f",
+      "visual_eligible": true,
+      "visual_reason": "ordinary_or_staged_photographic_content_without_confirmed_severe_source_artifact"
+    },
+    {
+      "camera": "NikonD5200",
+      "source_id": "0080",
+      "style": "color",
+      "path": "data/wide_gamut/gamutmlp_u1_4c6/selected/NikonD5200/color_NikonD5200_0080.png",
+      "member_sha256": "1d15bd1fef509417aacd6c803a7759388a7d864b10e62371ddfb079833d4b31a",
+      "pixel_sha256": "a3abc55cdb5244d0d67279b6446aab23318beb1f17a213a8dd75b4d991b31ecf",
+      "visual_eligible": true,
+      "visual_reason": "ordinary_or_staged_photographic_content_without_confirmed_severe_source_artifact"
+    },
+    {
+      "camera": "NikonD5200",
+      "source_id": "0051",
+      "style": "standard",
+      "path": "data/wide_gamut/gamutmlp_u1_4c6/selected/NikonD5200/standard_NikonD5200_0051.png",
+      "member_sha256": "10c7f2e43fc6fdca574212dfd579c3d8479e282711e151081d5f2e67b966c0f5",
+      "pixel_sha256": "ba754c6f8a0a1db71735ebc0414cc6e10aabff541d3de2f71f8b11c18d146f43",
+      "visual_eligible": true,
+      "visual_reason": "ordinary_or_staged_photographic_content_without_confirmed_severe_source_artifact"
+    },
+    {
+      "camera": "OlympusEPL6",
+      "source_id": "0135",
+      "style": "standard",
+      "path": "data/wide_gamut/gamutmlp_u1_4c6/selected/OlympusEPL6/standard_OlympusEPL6_0135.png",
+      "member_sha256": "9834b953f0ff459776c5c1d731c60e72fb4c3dd4b501eabffff909e668714c6c",
+      "pixel_sha256": "615bdd864e8c2005b5d63446a3ea89a8e4f55eecdceaaa891d6c1a73a4ee02d7",
+      "visual_eligible": true,
+      "visual_reason": "ordinary_or_staged_photographic_content_without_confirmed_severe_source_artifact"
+    },
+    {
+      "camera": "OlympusEPL6",
+      "source_id": "0121",
+      "style": "color",
+      "path": "data/wide_gamut/gamutmlp_u1_4c6/selected/OlympusEPL6/color_OlympusEPL6_0121.png",
+      "member_sha256": "10acdec7ac3322e9be96b8451613106a0fec0483d419915d17450c40e79f3724",
+      "pixel_sha256": "04573d7fdb4da7565af396e45356edc88e16b119023f4cb11d4f4b08580de52e",
+      "visual_eligible": true,
+      "visual_reason": "ordinary_or_staged_photographic_content_without_confirmed_severe_source_artifact"
+    },
+    {
+      "camera": "OlympusEPL6",
+      "source_id": "0146",
+      "style": "landscape",
+      "path": "data/wide_gamut/gamutmlp_u1_4c6/selected/OlympusEPL6/landscape_OlympusEPL6_0146.png",
+      "member_sha256": "274f0f8547d6d24e10589db3633ae7746be99e68407576a91787c758b46e2632",
+      "pixel_sha256": "7cd62e5bc52077c00c30a8901aa15f2b6af86f02bb3bf9e9a1ad2636f5371fa3",
+      "visual_eligible": true,
+      "visual_reason": "ordinary_or_staged_photographic_content_without_confirmed_severe_source_artifact"
+    },
+    {
+      "camera": "PanasonicGX1",
+      "source_id": "0057",
+      "style": "landscape",
+      "path": "data/wide_gamut/gamutmlp_u1_4c6/selected/PanasonicGX1/landscape_PanasonicGX1_0057.png",
+      "member_sha256": "07f7b6f35dcef1f060ab766a38ac18b8130d6c5f7e3a749c0d0d51d94bfa8e6b",
+      "pixel_sha256": "52a0772f2dd4bd4816c0ec22b164d6ae971a97b3ef0c2363b2c25451a2072a42",
+      "visual_eligible": true,
+      "visual_reason": "ordinary_or_staged_photographic_content_without_confirmed_severe_source_artifact"
+    },
+    {
+      "camera": "PanasonicGX1",
+      "source_id": "0048",
+      "style": "vivid",
+      "path": "data/wide_gamut/gamutmlp_u1_4c6/selected/PanasonicGX1/vivid_PanasonicGX1_0048.png",
+      "member_sha256": "ba5311ca6aa342a6bb46045fb4bd2b9f6c25732e3de043cea491d72064d22754",
+      "pixel_sha256": "7eab9d3522e47ad3eb29df63323f492939e58924072ff72721d9c86f1d83efa5",
+      "visual_eligible": true,
+      "visual_reason": "ordinary_or_staged_photographic_content_without_confirmed_severe_source_artifact"
+    },
+    {
+      "camera": "PanasonicGX1",
+      "source_id": "0076",
+      "style": "landscape",
+      "path": "data/wide_gamut/gamutmlp_u1_4c6/selected/PanasonicGX1/landscape_PanasonicGX1_0076.png",
+      "member_sha256": "0a8e549a8e688ea919b40e28da31ce36cf7f9cc320dcefbcf43998862e6ac423",
+      "pixel_sha256": "bdb40cc20de8c5dceab6cccd98d6236f038713e3b03c239f597811d073d9fecf",
+      "visual_eligible": true,
+      "visual_reason": "ordinary_or_staged_photographic_content_without_confirmed_severe_source_artifact"
+    },
+    {
+      "camera": "SamsungNX2000",
+      "source_id": "0153",
+      "style": "landscape",
+      "path": "data/wide_gamut/gamutmlp_u1_4c6/selected/SamsungNX2000/landscape_SamsungNX2000_0153.png",
+      "member_sha256": "31a68336162982361771eda6cf772e31dcc4a26ae9973edd39cae8586a65dff4",
+      "pixel_sha256": "fae88b86b1d18e8d9a8e82e381634dee39dd54a91793d6525ed6af14d93d77c0",
+      "visual_eligible": true,
+      "visual_reason": "ordinary_or_staged_photographic_content_without_confirmed_severe_source_artifact"
+    },
+    {
+      "camera": "SamsungNX2000",
+      "source_id": "0157",
+      "style": "color",
+      "path": "data/wide_gamut/gamutmlp_u1_4c6/selected/SamsungNX2000/color_SamsungNX2000_0157.png",
+      "member_sha256": "463e07afd6de292b30ae7f84c2f491d15ae827f061bccba2c29345b33896bf54",
+      "pixel_sha256": "76d0286fb925a50e7bf21a83e0470446dba016c74e881e430dd7b8dc32445496",
+      "visual_eligible": true,
+      "visual_reason": "ordinary_or_staged_photographic_content_without_confirmed_severe_source_artifact"
+    },
+    {
+      "camera": "SamsungNX2000",
+      "source_id": "0160",
+      "style": "vivid",
+      "path": "data/wide_gamut/gamutmlp_u1_4c6/selected/SamsungNX2000/vivid_SamsungNX2000_0160.png",
+      "member_sha256": "8245e6dec199bb37c100eea09d5c96b8c7558e9506dbfc94240a23b5c6c703c4",
+      "pixel_sha256": "19466dbd9492f0311891548ceeed73d24af95f314066d510f43b0a36ad9db977",
+      "visual_eligible": true,
+      "visual_reason": "ordinary_or_staged_photographic_content_without_confirmed_severe_source_artifact"
+    },
+    {
+      "camera": "SonyA57",
+      "source_id": "0008",
+      "style": "standard",
+      "path": "data/wide_gamut/gamutmlp_u1_4c6/selected/SonyA57/standard_SonyA57_0008.png",
+      "member_sha256": "a9da53a7d86d530f5345f126b8f07911699efb20bd676fa5a74f964e802e9c9c",
+      "pixel_sha256": "f5a66e8762147e6d5afff1f83f5aadac33eea7e063b20c92726e36ff90c11210",
+      "visual_eligible": true,
+      "visual_reason": "ordinary_or_staged_photographic_content_without_confirmed_severe_source_artifact"
+    },
+    {
+      "camera": "SonyA57",
+      "source_id": "0117",
+      "style": "color",
+      "path": "data/wide_gamut/gamutmlp_u1_4c6/selected/SonyA57/color_SonyA57_0117.png",
+      "member_sha256": "dbace0bbbb30e186e35a6eb485920bbb181a6902bba4bdb7ed05218b83b0594a",
+      "pixel_sha256": "aa0ddd4eaae8ba31bd5f3929149f7e6af88a899ffdb05daa565042ed4082172e",
+      "visual_eligible": true,
+      "visual_reason": "ordinary_or_staged_photographic_content_without_confirmed_severe_source_artifact"
+    },
+    {
+      "camera": "SonyA57",
+      "source_id": "0004",
+      "style": "vivid",
+      "path": "data/wide_gamut/gamutmlp_u1_4c6/selected/SonyA57/vivid_SonyA57_0004.png",
+      "member_sha256": "8c03367864fbde9a2cf608be5d93bc3b829aca1f35e7edd805fa606c982d21f9",
+      "pixel_sha256": "656c7b7a67f3e899e1e47f701e6c6fee989f4a7179007a8984b558e995e65f43",
+      "visual_eligible": true,
+      "visual_reason": "ordinary_or_staged_photographic_content_without_confirmed_severe_source_artifact"
+    }
+  ],
+  "claim_ceiling": "Internal research-only reviewed declared-ProPhoto source cohort; not embedded ICC, calibrated colour, film, stock, HDR, redistribution or product evidence."
+}
