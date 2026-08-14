@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import zipfile
 from pathlib import Path
 
 import pytest
@@ -9,6 +10,7 @@ import pytest
 from src.eval.gamutmlp_prophoto_source_audit import (
     GamutMLPSourceError,
     _member_is_safe,
+    _selected_rows,
     load_contract,
 )
 
@@ -54,3 +56,8 @@ def test_bound_archive_identity_when_available() -> None:
             digest.update(chunk)
     assert archive.stat().st_size == contract["archive"]["bytes"]
     assert digest.hexdigest() == contract["archive"]["sha256"]
+    with zipfile.ZipFile(archive) as document:
+        selected = _selected_rows(
+            [entry for entry in document.infolist() if not entry.is_dir()], contract
+        )
+    assert len(selected) == contract["selection"]["expected_rows"]

@@ -127,7 +127,9 @@ def _selected_rows(
     if (
         len(rows) != int(selection["expected_rows"])
         or len(used_source_ids) != len(rows)
-        or hashlib.sha256(canonical_json(rows).encode("utf-8")).hexdigest()
+        or hashlib.sha256(
+            json.dumps(rows, sort_keys=True, separators=(",", ":")).encode("utf-8")
+        ).hexdigest()
         != selection["selected_rows_canonical_sha256"]
         or hashlib.sha256(
             json.dumps(
@@ -294,7 +296,7 @@ def evaluate(
         "rights_scope": contract["rights"]["scope"],
         "rows": facts,
     }
-    manifest_sha = hashlib.sha256(canonical_json(manifest).encode("utf-8")).hexdigest()
+    manifest_sha = hashlib.sha256(canonical_json(manifest)).hexdigest()
     report = {
         "schema": REPORT_SCHEMA,
         "experiment_id": EXPERIMENT_ID,
@@ -323,10 +325,8 @@ def evaluate(
         "production_default_changed": False,
         "claim_ceiling": contract["claim_ceiling"],
     }
-    report["stable_evidence_id"] = hashlib.sha256(
-        canonical_json(report).encode("utf-8")
-    ).hexdigest()
-    report_bytes = (canonical_json(report) + "\n").encode("utf-8")
+    report["stable_evidence_id"] = hashlib.sha256(canonical_json(report)).hexdigest()
+    report_bytes = canonical_json(report) + b"\n"
     (output_dir / "report.json").write_bytes(report_bytes)
     return report
 
