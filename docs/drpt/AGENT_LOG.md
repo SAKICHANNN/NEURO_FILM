@@ -13381,3 +13381,8 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 
 - The frozen P2AV profile rendered an eight-plateau two-dimensional density wedge with positive output, exact repeat and exact irregular `73x113` tiled replay. Plateau mean error stayed below `1.22%` and median aperture-sigma error was `1.84%`.
 - The frozen p95 aperture-sigma error reached `5.76%`, above the `5%` gate. Close this exact single-realization nonuniform integration without plateau, seed, tile or threshold rescue; the next leaf must model local statistical uncertainty rather than assume exact per-region realized variance.
+
+## 2026-08-14 - U6.P2AX validates local statistical uncertainty
+
+- On a fresh `4x4` density layout and 12 fresh realizations, aggregate mean-density error stayed below `1.75%`, aperture-sigma median/p95 error was `0.99%/2.16%`, and all 16 targets lay inside the frozen Student-t intervals. Outputs remained strictly positive with no refit, realized normalization or clipping.
+- Retain only ensemble-level expectation and uncertainty semantics. P2AW's single-realization boundary remains valid; this does not calibrate any individual image, current stock, microscopic structure, scanner or product appearance.
