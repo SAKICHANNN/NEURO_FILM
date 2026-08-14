@@ -13356,3 +13356,8 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 
 - The cross-generation amplitude profile and unchanged Thomas shape replay exactly and recover the 48µm RMS target (median/p95 relative error `0.00686/0.01006`), but the lowest-density realization reaches `D=-0.00569`.
 - The nonnegative-density gate therefore closes the exact additive family. No clipping, scale reduction, seed selection or threshold rescue is allowed; the next structure mechanism must be intrinsically positive/bounded.
+
+## 2026-08-14 - U6.P2AS confirms an intrinsically positive density field
+
+- A density-conditioned `softplus(a+b*unit)` fit on three development realizations was frozen and evaluated on three fresh confirmations. Mean-density error was at most `0.0673%`, aperture-sigma median/p95 error was `1.44%/1.66%`, and minimum density remained `0.01944` without clipping or confirmation normalization.
+- Retain only as a generic positive reference-simulator candidate. Current-stock calibration, measured spatial NPS, microscopic grain, scanner truth and product use remain closed.
