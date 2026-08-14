@@ -587,7 +587,7 @@ def load_raster_working_image(path: Path) -> WorkingImage:
             warnings.append(
                 DecodeWarning(
                     "embedded_prophoto_to_linear_rec2020",
-                    "Decoded the supported ProPhoto RGB matrix-shaper ICC profile to "
+                    "Decoded the supported ProPhoto RGB ICC transform to "
                     "unclipped linear Rec.2020; gamut mapping was not applied.",
                 )
             )
