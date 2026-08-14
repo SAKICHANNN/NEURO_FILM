@@ -10,7 +10,7 @@
     },
     "c6_result": {
       "path": "docs/evidence/U1_4C6_GAMUTMLP_PROPHOTO_REC2020_CONFIRMATION_RESULT.json",
-      "sha256": "33c8178920dff5494697f31aef0aeadc38d7bf9e94a20ccd331dc8f44a39984",
+      "sha256": "33c8178920dff5494697f31aef0aeaadc38d7bf9e94a20ccd331dc8f44a39984",
       "required_decision": "close_exact_c4_composition_on_gamutmlp_without_source_style_margin_or_threshold_rescue"
     }
   },

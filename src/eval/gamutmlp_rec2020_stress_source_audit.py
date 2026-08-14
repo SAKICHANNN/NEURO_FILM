@@ -29,7 +29,7 @@ from src.preprocess.color_management import convert_linear_rgb
 SCHEMA = "neuro-film.u1-4c7-gamutmlp-rec2020-stress-source-contract.v1"
 REPORT_SCHEMA = "neuro-film.u1-4c7-gamutmlp-rec2020-stress-source-report.v1"
 EXPERIMENT_ID = "U1.4C7S"
-CONTRACT_SHA256 = "31c9ce23c1275a1ca9b180834472670d48aa96e19d053fde9dc911baeb39d019"
+CONTRACT_SHA256 = "70498550390f9fbae187683f0953ba7a50dedb14473cb8ea868790d20ba5cbd7"
 
 
 class GamutMLPStressSourceError(RuntimeError):
