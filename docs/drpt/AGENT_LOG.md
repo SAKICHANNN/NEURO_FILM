@@ -13386,3 +13386,8 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 
 - On a fresh `4x4` density layout and 12 fresh realizations, aggregate mean-density error stayed below `1.75%`, aperture-sigma median/p95 error was `0.99%/2.16%`, and all 16 targets lay inside the frozen Student-t intervals. Outputs remained strictly positive with no refit, realized normalization or clipping.
 - Retain only ensemble-level expectation and uncertainty semantics. P2AW's single-realization boundary remains valid; this does not calibrate any individual image, current stock, microscopic structure, scanner or product appearance.
+
+## 2026-08-14 - U6.P2AY validates typed density/scanner ordering
+
+- The positive reference field now traverses explicit `DEVELOPED_DENSITY -> TRANSMITTANCE -> SCAN_LINEAR` domains. Density roundtrip error was `5.55e-17`, transmittance stayed in `(0,1]`, neutral channels were exact, and the generic `0.7px` scanner MTF reduced high-frequency energy to `0.4215x` with `9.25e-9` mean drift.
+- Blurring density before exponentiation differed from the correct transmittance-domain order by RMS `0.00867`, confirming that the typed order is substantive. Retain only the generic order; scanner calibration, interpretation appearance and product use remain closed.

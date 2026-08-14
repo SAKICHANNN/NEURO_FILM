@@ -1,0 +1,23 @@
+{
+  "schema": "neuro_film.u6_p2ay_typed_density_scanner_chain_evidence.v1",
+  "node": "U6.P2AY",
+  "contract_commit": "328d8ce6",
+  "contract_sha256": "adaa672ce08c6ec5f370a91f67e075ab1d7f5a4bbff69a79ea18b2aa67fbc77c",
+  "implementation_commit": "f8864060",
+  "formal_run_count": 2,
+  "formal_reports_byte_exact": true,
+  "report_sha256": "66356f0b47f9d65cfa8c6fc6f35413a3f21adb2f9ca59c87392aed2bff97e781",
+  "stable_evidence_id": "c74219d9d633e3d7f68144993fa0ca23a9f2974ca98c73b258d13b0ce95b1075",
+  "maximum_density_roundtrip_absolute_error": 5.551115123125783e-17,
+  "minimum_transmittance": 0.06030880951636996,
+  "maximum_transmittance": 0.9028283972708518,
+  "scanner_high_frequency_energy_ratio": 0.42146113617259945,
+  "scanner_mean_drift": 9.24502557841933e-09,
+  "wrong_order_rms_difference": 0.00867440268080684,
+  "neutral_channels_exact": true,
+  "hard_clipping_count_zero": true,
+  "realized_normalization_count_zero": true,
+  "automatic_pass": true,
+  "decision": "retain the typed generic density-to-transmittance-to-scanner order and open neutral B&W scan interpretation",
+  "claim_ceiling": "Typed generic B&W density/transmittance/scanner-order evidence using an uncalibrated neutral scanner-MTF control; not current-stock calibration, scanner characterization, print interpretation, appearance, platform parity or product evidence."
+}
