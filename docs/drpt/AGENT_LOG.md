@@ -13351,3 +13351,8 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 
 - The typed historical compiler exactly recovers all four source nodes, preserves the exact plateau, uses log-linear interpolation only between unequal nodes, rejects both extrapolation directions and replays byte-identically (`fecf11c8...5791d`).
 - Retain profile `13c26b7a...f30c1` only as historical TRI-X 5233/SD-28 relative standard-deviation scaling. Spatial NPS, scanner response, current 400TX and rendering remain separate.
+
+## 2026-08-14 - U6.P2AR closes additive hybrid density structure
+
+- The cross-generation amplitude profile and unchanged Thomas shape replay exactly and recover the 48µm RMS target (median/p95 relative error `0.00686/0.01006`), but the lowest-density realization reaches `D=-0.00569`.
+- The nonnegative-density gate therefore closes the exact additive family. No clipping, scale reduction, seed selection or threshold rescue is allowed; the next structure mechanism must be intrinsically positive/bounded.

@@ -1,0 +1,21 @@
+{
+  "schema": "neuro_film.u6_p2ar_hybrid_density_amplitude_thomas_evidence.v1",
+  "node": "U6.P2AR",
+  "implementation_commit": "2e312114631b6571894541a2b14f46b4c45c9e66",
+  "contract_sha256": "2184c80cca0e220a2a13c72ec0f10ca4da18236310031cee09931e3b3b1ae708",
+  "formal_run_count": 2,
+  "formal_reports_byte_exact": true,
+  "report_sha256": "f1a81ba75288cb7fd0eaccb7efb7c55800633cd899c33f4aafb624bb6a8cdf65",
+  "stable_evidence_id": "7170b8a04587c9e9f0e18a83da107f2513134b62d63273088cc0f778b791aa32",
+  "profile_identity": "b9abe0f532e289dbe652aff177fe4124729e8943ef2569ebc3f5d57ad893f01e",
+  "profile_node_relative_error": 0.0,
+  "median_aperture_sigma_relative_error": 0.0068587731821871615,
+  "p95_aperture_sigma_relative_error": 0.010063578832850043,
+  "maximum_absolute_field_mean": 7.589415207398531e-19,
+  "minimum_developed_density": -0.005689805051318386,
+  "repeat_byte_exact": true,
+  "partition_exact": true,
+  "automatic_pass": false,
+  "decision": "close this exact hybrid without amplitude, shape, seed or gate rescue",
+  "claim_ceiling": "Generic cross-generation B&W reference field combining one current 400TX scalar, a historical 5233/SD-28 relative density law and a separately generic scanner-convolved Thomas shape; not stock calibration, measured spatial NPS, microscopic grain, scanner truth, appearance or product evidence."
+}
