@@ -1,0 +1,57 @@
+{
+  "schema": "neuro_film.u6_p2ai_bw_characteristic_silver_chain_contract.v1",
+  "node": "U6.P2AI",
+  "question": "Does the admitted TRI-X 400 / D-76 characteristic surface compose with the existing typed metallic-silver structure kernel while preserving density, transmittance, development-time order, deterministic partitioning and fail-closed domains?",
+  "parents": {
+    "time_interpolation": {
+      "path": "docs/evidence/U6_P2AH_BW_CHARACTERISTIC_TIME_INTERPOLATION_RESULT.json",
+      "sha256": "53c2e0c64e4c58a7eecbd7e781b7519b205db60ca02c918fd05f4e756fe63594",
+      "required_automatic_pass": true
+    },
+    "silver_structure": {
+      "path": "docs/evidence/U6_P4DK_TYPED_BW_SILVER_CHAIN_RESULT.json",
+      "sha256": "e4d0ebaf64c1a9fbea797855e1856b8ccac8d277f32353830a9f6caa89f282c0",
+      "required_automatic_pass": true
+    }
+  },
+  "surface": {
+    "contract": "configs/u6_p2ag_bw_characteristic_surface_v1.json",
+    "identity": "8a1f1ee316e1a273d33df2a2f12ad5933dfb5ee1a52c1fe71ca594a17360967e"
+  },
+  "fixture": {
+    "input_height": 24,
+    "input_width": 32,
+    "minimum_log_exposure": -2.8,
+    "maximum_log_exposure": -0.1,
+    "development_times_minutes": [6.0, 9.0, 12.0],
+    "output_zoom": 2,
+    "output_pixel_pitch_um": 8.0,
+    "radius_um": 5.0,
+    "monte_carlo_samples": 8,
+    "seed": 44209
+  },
+  "automatic_gates": {
+    "maximum_density_reference_error": 1e-12,
+    "maximum_interior_mean_transmittance_absolute_error": 0.05,
+    "mean_density_strictly_increases_with_development_time": true,
+    "mean_transmittance_strictly_decreases_with_development_time": true,
+    "repeat_byte_exact": true,
+    "partition_exact": true,
+    "domain_mismatch_rejected": true,
+    "non_neutral_exposure_rejected": true,
+    "outside_surface_domain_rejected": true,
+    "input_unchanged_on_failure": true,
+    "rgb_image_transform_count_zero": true
+  },
+  "forbidden": [
+    "treat relative graph exposure as calibrated scene or layer exposure",
+    "claim measured silver-grain geometry, roll calibration or photographic appearance",
+    "extrapolate beyond the observed exposure or 6-12 minute development domain",
+    "map this research primitive to a product profile"
+  ],
+  "branch_rule": {
+    "pass": "retain a typed source-characteristic-to-metallic-silver research chain",
+    "fail": "close this exact composition without changing source curves, structure kernel or gates"
+  },
+  "claim_ceiling": "Research-only composition of first-party relative TRI-X 400 / D-76 diffuse-visual curves with a generic synthetic metallic-silver structure kernel; not calibrated exposure, grain geometry, scanner response, photographic appearance or product evidence."
+}
