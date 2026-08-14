@@ -18,7 +18,10 @@ from src.inference.romm_rec2020_velvia import (
     render_official_romm_velvia_rec2020,
     render_supported_prophoto_velvia_rec2020,
 )
-from src.preprocess import FIVEK_PROPHOTO_MATRIX_SHAPER_ICC_SHA256
+from src.preprocess import (
+    FIVEK_PROPHOTO_MATRIX_SHAPER_ICC_SHA256,
+    ROMMRec2020ConversionError,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 PROFILE = ROOT / "configs/render_profiles/prophoto_rec2020_velvia_v1.json"
@@ -34,9 +37,8 @@ def _matrix_shaper_profile() -> bytes:
         return bytes(document.pages[0].tags[34675].value)
 
 
-def _write_supported_prophoto(path: Path) -> None:
-    profile = _matrix_shaper_profile()
-    assert hashlib.sha256(profile).hexdigest() == FIVEK_PROPHOTO_MATRIX_SHAPER_ICC_SHA256
+def _write_supported_prophoto(path: Path, profile: bytes | None = None) -> None:
+    profile = _matrix_shaper_profile() if profile is None else profile
     pixels = np.asarray(
         [
             [[65535, 0, 0], [0, 65535, 0], [0, 0, 65535]],
@@ -100,6 +102,22 @@ def test_supported_prophoto_renderer_is_deterministic_and_profile_strict(
             profile_path=PROFILE,
             root=ROOT,
         )
+
+
+def test_supported_prophoto_renderer_rejects_profile_byte_drift_without_output(
+    tmp_path: Path,
+) -> None:
+    profile = bytearray(_matrix_shaper_profile())
+    assert hashlib.sha256(profile).hexdigest() == FIVEK_PROPHOTO_MATRIX_SHAPER_ICC_SHA256
+    profile[-1] ^= 1
+    source = tmp_path / "source.tiff"
+    output = tmp_path / "output.png"
+    _write_supported_prophoto(source, bytes(profile))
+    with pytest.raises(ROMMRec2020ConversionError, match="allowlisted"):
+        render_supported_prophoto_velvia_rec2020(
+            source, output, profile_path=PROFILE, root=ROOT
+        )
+    assert not output.exists()
 
 
 def test_supported_prophoto_cli_writes_bound_receipt(tmp_path: Path) -> None:

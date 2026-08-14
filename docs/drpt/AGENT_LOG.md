@@ -13589,3 +13589,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   LG row retains its pre-existing heavy source noise. This remains an opt-in
   film-inspired look approximation, not Velvia calibration or a default change.
   Evidence: `docs/evidence/U1_4C15_ROMM_REC2020_VELVIA_PRODUCT_RESULT.json`.
+
+### 2026-08-14 - U1.4C16 executes the look on natural ProPhoto RGB16
+
+- The product ingress now accepts one additional exact, evidence-qualified
+  matrix-shaper ProPhoto ICC identity while retaining the official-ROMM-only
+  API unchanged. Twelve natural FiveK RGB16 TIFFs / 105,606,232 pixels render
+  through the fixed Rec.2020 Velvia profile with exact sample readback.
+- Two complete runs and all 25 files per run are byte exact
+  (`c6b1626d...7274f`, stable `65c53fdf...ba25`); a historical official-ROMM
+  output also remains byte exact. Retain this opt-in natural-WCG product path.
+  It is same-cohort integration evidence, not independent algorithm, stock,
+  calibration, arbitrary-ICC, HDR, preference or default-promotion evidence.

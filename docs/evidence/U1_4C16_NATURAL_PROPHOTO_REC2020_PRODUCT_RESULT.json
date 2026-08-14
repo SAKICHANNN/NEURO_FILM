@@ -1,0 +1,65 @@
+{
+  "schema": "neuro-film.u1-4c16-natural-prophoto-rec2020-product-evidence.v1",
+  "experiment_id": "U1.4C16",
+  "date": "2026-08-14",
+  "status": "PASS_STRICT_NATURAL_PROPHOTO_PRODUCT_INTEGRATION",
+  "implementation_commits": [
+    "35c988f8ff199e9fe3633806142f03c0fdd652a5",
+    "cd1a7874"
+  ],
+  "bindings": {
+    "contract": {
+      "path": "configs/u1_4c16_natural_prophoto_rec2020_product_v1.json",
+      "sha256": "add08d6fce4a4abd4c1810e5f5fc96601ad1e1a621af7f80dfa59f28aaa8ddfd"
+    },
+    "profile": {
+      "path": "configs/render_profiles/prophoto_rec2020_velvia_v1.json",
+      "sha256": "e0da6e630f616dc25c1bca431ade74edd55a2c0bf3a5eec5bd937c9a62447666"
+    },
+    "product_ingress": {
+      "path": "src/preprocess/romm_rec2020_product.py",
+      "sha256": "a22b5f20878196e68b431ca0029e05503c3d2a7b4257dfe9d46ccf607acc07d0"
+    },
+    "renderer": {
+      "path": "src/inference/romm_rec2020_velvia.py",
+      "sha256": "26ead381b8109519a4bd276adbd63e50e7873acf549208db1f41a2e68128bc51"
+    },
+    "runner": {
+      "path": "scripts/run_u1_4c16_natural_prophoto_product.py",
+      "sha256": "064a2cab104d965afb111bcb00f50162955b1d5697f08e34f961b015755c963f"
+    },
+    "test": {
+      "path": "tests/test_prophoto_rec2020_velvia_render.py",
+      "sha256": "95b701c34a775e77f0260c8202e45b72016fb15499373245c4902fd87258e5df"
+    }
+  },
+  "formal_runs": {
+    "run_a_report_sha256": "c6b1626d878f2fef39cdfb6e0592a9e6a1c702d92fdac5ab9b5196ac5b57274f",
+    "run_b_report_sha256": "c6b1626d878f2fef39cdfb6e0592a9e6a1c702d92fdac5ab9b5196ac5b57274f",
+    "reports_byte_exact": true,
+    "stable_evidence_id": "65c53fdfa534d4d6e55496b56673abfbd23eaababec03180d38f1a551be1ba25",
+    "files_per_run": 25,
+    "bytes_per_run": 519801774,
+    "file_sha256_mismatches": 0,
+    "stderr_bytes": 0
+  },
+  "observations": {
+    "source_count": 12,
+    "camera_count": 12,
+    "full_resolution_pixel_count": 105606232,
+    "all_inputs_exact_matrix_shaper_prophoto_icc": true,
+    "all_outputs_rec2020_sdr_rgb16_png_cicp": true,
+    "all_exact_sample_readback": true,
+    "all_median_residual_scale_one": true,
+    "maximum_fraction_residual_scale_below_0p5": 0.02826833724975586,
+    "maximum_mapped_pixel_fraction": 0.2908028553212385,
+    "minimum_chroma_scale": 0.06878125667572021,
+    "historical_official_romm_output_regression_exact": true,
+    "diagnostic_contact_sheet_sha256": "6cbbe603a7d7834c72460b384013581468f93cc41989011210f88ce732e56478",
+    "diagnostic_contact_confirmed_new_severe_artifacts": 0
+  },
+  "automatic_pass": true,
+  "decision": "retain_strict_natural_prophoto_rec2020_velvia_product_integration",
+  "interpretation": "The exact matrix-shaper ProPhoto profile already validated by U1.4C9/C11 now reaches the same bounded Rec.2020 Velvia look and one-final-quantization product boundary as U1.4C15. Two complete full-resolution executions are byte exact, and the refactor leaves one historical official-ROMM output byte exact. This closes product wiring on genuine natural wide-gamut RGB16 pixels; it does not add independent algorithm evidence because the same FiveK cohort qualified the semantic mapper.",
+  "claim_ceiling": "Exact supported matrix-shaper ProPhoto RGB16 FiveK input to opt-in relative Rec.2020 SDR RGB16 Velvia look product execution; internal research only, not arbitrary ICC, independent confirmation, Velvia stock response, calibration, HDR, preference or default promotion."
+}
