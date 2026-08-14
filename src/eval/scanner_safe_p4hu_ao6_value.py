@@ -21,7 +21,7 @@ ARMS = (
     "p4hu_scanner_safe_physical_only_diagnostic",
     "p4hu_scanner_safe_then_fixed_ao6_t15_c35",
 )
-RUNTIME_ID = "scanner-safe-residual-analytic-v1"
+RUNTIME_ID = "neuro-film.scanner-safe-residual.v1"
 
 
 def load_contract(path: Path) -> dict[str, Any]:

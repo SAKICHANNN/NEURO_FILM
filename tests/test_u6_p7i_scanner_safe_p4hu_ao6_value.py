@@ -24,7 +24,7 @@ def test_p7i_contract_loads_with_fixed_arms() -> None:
 def test_scanner_safe_checks_pass_exact_boundary() -> None:
     aggregates = {
         "receipt_count": 9,
-        "runtime_ids": ["scanner-safe-residual-analytic-v1"],
+        "runtime_ids": ["neuro-film.scanner-safe-residual.v1"],
         "maximum_limited_pixel_fraction": 0.1,
         "minimum_median_scale": 0.95,
         "minimum_scale": 0.25,
@@ -48,7 +48,7 @@ def test_scanner_safe_checks_fail_closed(
 ) -> None:
     aggregates = {
         "receipt_count": 9,
-        "runtime_ids": ["scanner-safe-residual-analytic-v1"],
+        "runtime_ids": ["neuro-film.scanner-safe-residual.v1"],
         "maximum_limited_pixel_fraction": 0.0,
         "minimum_median_scale": 1.0,
         "minimum_scale": 1.0,

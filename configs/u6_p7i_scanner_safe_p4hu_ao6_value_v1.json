@@ -23,7 +23,7 @@
     }
   },
   "candidate": {
-    "scanner_safe_residual_runtime_id": "scanner-safe-residual-analytic-v1",
+    "scanner_safe_residual_runtime_id": "neuro-film.scanner-safe-residual.v1",
     "application_domain": "post-scanner-linear-before-encode-and-ao6",
     "reference_arm_domain": "matched-scanner-source-linear",
     "direction_change_allowed": false,
