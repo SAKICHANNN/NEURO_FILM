@@ -1,0 +1,61 @@
+{
+  "schema": "neuro_film.u5_r2ppsd0_source_audit_contract.v1",
+  "experiment_id": "U5.R2PPSD0",
+  "claim_ceiling": "metadata-and-annotation-structure-source-audit-only",
+  "official_sources": {
+    "paper_page_url": "https://openaccess.thecvf.com/content/CVPR2026/html/Kim_Learning_Personalized_Photographic_Style_from_Pairwise_User_Preferences_CVPR_2026_paper.html",
+    "project_page_url": "https://hello-jinwoo.github.io/pps/",
+    "drive_folder_url": "https://drive.google.com/drive/folders/13o-nUt2QXeQxpcxNrM_w5IsnTWOAR56i?usp=share_link",
+    "drive_folder_id": "13o-nUt2QXeQxpcxNrM_w5IsnTWOAR56i",
+    "expected_project_facts": {
+      "retained_users": 767,
+      "valid_preference_judgments_minimum": 60000,
+      "unique_scenes": 1192,
+      "unique_image_style_pairs": 7972,
+      "source_categories": 5
+    },
+    "expected_drive_files": [
+      {
+        "id": "1ZlrPUh6Rn_fwIA0t8JdLAcmg1n8ihMT6",
+        "name": "img_src.zip",
+        "mime_type": "application/zip",
+        "size_bytes": 1397006401,
+        "request_allowed": false
+      },
+      {
+        "id": "1R21XEfrX7TfEcvgu2loc5hXNo4HD2h6T",
+        "name": "responses.zip",
+        "mime_type": "application/zip",
+        "size_bytes": 2728259,
+        "request_allowed": true
+      }
+    ]
+  },
+  "license_gate": {
+    "explicit_dataset_license_required_for_pixels_or_training": true,
+    "project_page_license_observed": false,
+    "top_level_license_file_observed": false,
+    "missing_license_fallback": "internal-research-metadata-and-annotation-structure-only"
+  },
+  "bounded_execution": {
+    "maximum_project_page_bytes": 1048576,
+    "maximum_drive_listing_bytes": 1048576,
+    "maximum_responses_archive_bytes": 5242880,
+    "image_archive_requests": 0,
+    "image_member_requests": 0,
+    "image_decodes": 0,
+    "operator_fits": 0,
+    "persist_raw_participant_values": false
+  },
+  "gates": {
+    "official_pages_reachable": true,
+    "project_facts_exact": true,
+    "drive_inventory_exact": true,
+    "responses_archive_within_budget": true,
+    "annotation_structure_auditable_without_persisting_participant_values": true,
+    "pixels_or_training_allowed": false
+  },
+  "decision_if_pass": "retain_ppsd_internal_annotation_structure_for_separate_source_clean_subset_design",
+  "decision_if_fail": "close_ppsd_before_image_payload_or_operator_fit",
+  "decision_if_infrastructure_invalid": "invalidate_ppsd0_without_scientific_source_decision"
+}
