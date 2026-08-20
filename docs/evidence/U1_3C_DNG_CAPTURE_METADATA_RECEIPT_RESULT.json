@@ -1,0 +1,99 @@
+{
+  "schema": "neuro_film.u1_3c_dng_capture_metadata_receipt_evidence.v1",
+  "experiment_id": "u1.3c-dng-capture-metadata-receipt-v1",
+  "node": "ULT > U1 > U1.3C",
+  "status": "PASS_PRIVATE_DNG_CAPTURE_METADATA_RECEIPT",
+  "decision": "retain private source-bound DNG metadata receipt; do not integrate into renderer or public schemas",
+  "bindings": {
+    "contract": {
+      "path": "docs/planning/U1_3C_DNG_CAPTURE_METADATA_RECEIPT_CONTRACT.md",
+      "sha256": "729208d6bd100590a83072a0b86fd9ac6377d541738e3954d6db36a1c905604f",
+      "freeze_commit": "f3874b47"
+    },
+    "implementation": {
+      "path": "src/preprocess/dng_metadata.py",
+      "sha256": "b63a741837a6e40c5c2a658b17bbe050a9ed25f58aa2057d8f0524b6ef6abb6a",
+      "commit": "6ee7bf912a48bc09a035f57ca45777979506c30f"
+    },
+    "formal_config": {
+      "path": "configs/u1_3c_dng_capture_metadata_receipt_v1.json",
+      "sha256": "8576c8c111ceb0cae42821b76551906b8df9899f2da31ee38f985752940734e7"
+    },
+    "formal_runner": {
+      "path": "scripts/audit_u1_3c_dng_capture_metadata_receipt.py",
+      "sha256": "b570e075f569f3fa3bb1368d302c4b15e890ba96b4517249d50872f879bfaddd",
+      "lock_commit": "b5c3f3cf267cc48615a8cf8b9080f74388b7c2f0"
+    },
+    "formal_report": {
+      "logical_forward_path": "outputs/eval/u1_3c_dng_capture_metadata_receipt_v1/formal_forward.json",
+      "logical_reverse_path": "outputs/eval/u1_3c_dng_capture_metadata_receipt_v1/formal_reverse.json",
+      "sha256": "7dd65d62d1ebc8cba1de52c9f4b02bf1fc3c6dadd726fd456f5cb25112124095",
+      "stable_evidence_id": "2e11b09f21bb4a03c3d25f0fef4874bea906e48200bd8652f75cc528f5d05c25",
+      "forward_reverse_byte_exact": true
+    }
+  },
+  "cohort": {
+    "source": "raw.pixls.us exact CC0/Public Domain rows already acquired and hash-bound by U5.R2BH0S/U5.R2BH1S",
+    "row_count": 4,
+    "source_ids": [
+      "apple_iphone_12_pro",
+      "dji_fc4382",
+      "google_pixel_7_pro",
+      "huawei_eml_l29"
+    ],
+    "source_bytes_total": 79967278,
+    "raw_kinds": {
+      "cfa": 3,
+      "linear_raw": 1
+    }
+  },
+  "metrics": {
+    "row_count": 4,
+    "source_hash_match_rate": 1.0,
+    "manifest_binding_rate": 1.0,
+    "receipt_digest_rate": 1.0,
+    "noise_profile_rate": 1.0,
+    "raster_decode_calls": 0,
+    "cfa_count": 3,
+    "linear_raw_count": 1
+  },
+  "receipt_body_sha256": {
+    "apple_iphone_12_pro": "0e4ac18637f4a3824306911290f48eaf41ab7e9de42299a67ebad2bf12fed3d0",
+    "dji_fc4382": "153862e57befe8023d4bdae3e1abfe9705b0fd8a0f58ac73b4befbee7a5e898a",
+    "google_pixel_7_pro": "f04ef8b804105e008c6aad3af45a480906f013fc5ce8eec5745efd7931578a75",
+    "huawei_eml_l29": "716405ec730e0bb50b5656555180d4674df137d730388542f61adf5d71943c10"
+  },
+  "gates": {
+    "row_count": true,
+    "source_hash": true,
+    "manifest_binding": true,
+    "receipt_digest": true,
+    "cfa_count": true,
+    "linear_raw_count": true,
+    "noise_profile": true,
+    "raster_decode": true,
+    "forward_reverse_exact": true,
+    "all": true
+  },
+  "execution_integrity_note": {
+    "preformal_reports_discarded": true,
+    "reason": "the first mechanical execution preceded the committed runner lock and exposed only static-check/import-order and runner-binding defects; no protocol, source, tag, gate or receipt algorithm changed",
+    "discarded_report_sha256": "d1f7721a1648ea3e3bce6d2cf348a16a0f98ffa56f1190f9fe03875b8e756e10",
+    "formal_execution_started_after_runner_and_config_commit": true
+  },
+  "claim_ceiling": {
+    "established": [
+      "private deterministic source-bound DNG capture-metadata receipt on the exact four-device cohort",
+      "metadata-only traversal across top-level and SubIFD CFA/LinearRaw layouts",
+      "exact TIFF integer, byte, rational and finite floating-value preservation"
+    ],
+    "not_established": [
+      "raster decode or vendor render parity",
+      "calibrated exposure, white balance or noise validity",
+      "arbitrary DNG support",
+      "renderer or WorkingImage integration",
+      "public recipe, receipt, package, schema or capability",
+      "film, stock, product or commercial admission"
+    ]
+  }
+}

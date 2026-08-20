@@ -15006,3 +15006,26 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Boundary:** private input-fact receipt only. No `WorkingImage`, renderer,
   recipe/public schema, calibrated exposure/noise, arbitrary-DNG, film, stock,
   capability or product claim opens from this leaf.
+
+### 2026-08-21 - U1.3C passes on four heterogeneous real DNGs
+
+- The implementation recursively traverses TIFF IFD/SubIFD metadata, requires
+  exactly one CFA or LinearRaw IFD, preserves byte/integer/exact rational/finite
+  float tag types and hashes the source plus canonical receipt body. It never
+  calls TIFF raster decode and is not exported through the preprocess public
+  surface.
+- The committed formal runner binds the contract, core and both prior
+  raw.pixls.us manifests. Forward/reverse reports are byte exact at
+  `7dd65d62...24095`, stable `2e11b09f...05c25`.
+- All four mandatory rows pass: source and manifest binding `1.0`, receipt
+  digest `1.0`, NoiseProfile presence `1.0`, three CFA and one LinearRaw,
+  raster decode calls `0`. Four malformed/replay unit tests and tracked-evidence
+  binding tests protect failure atomicity and scope.
+- One earlier mechanical pair is discarded because it preceded the committed
+  runner lock and exposed static-check/import-order plus missing runner-binding
+  defects. No protocol, source, tag, gate or receipt algorithm changed before
+  the formal from-commit rerun.
+- **Decision:** retain the private receipt as capture-time factual plumbing for
+  future paired/physical explicit operators. Do not infer vendor-render parity,
+  calibrated exposure/noise, arbitrary-DNG support, renderer integration,
+  public schema/capability, film/stock identity or product admission.
