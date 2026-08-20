@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from scripts.build_u5_r2spcp2_preference_roles import _scene_sort_key
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u5_r2spcp2_global_logit_affine_preference_d0_v1.json"
@@ -38,3 +39,9 @@ def test_spcp2_contract_freezes_discriminating_controls_and_tails() -> None:
     assert metrics["candidate_improvement_worst_min"] == -0.10
     assert metrics["reverse_direction_improvement_rate_max"] == 0.35
     assert metrics["new_exact_boundary_fraction_max"] == 0.0
+
+
+def test_spcp2_scene_sort_is_stable_and_scene_specific() -> None:
+    assert _scene_sort_key("I0001") == _scene_sort_key("I0001")
+    assert _scene_sort_key("I0001") != _scene_sort_key("I0002")
+    assert len(_scene_sort_key("I0001")) == 64

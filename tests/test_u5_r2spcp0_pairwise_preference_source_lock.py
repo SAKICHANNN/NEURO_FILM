@@ -100,6 +100,34 @@ def test_spcp0_central_directory_parser_reads_one_row() -> None:
     ]
 
 
+def test_spcp0_central_directory_parser_resolves_zip64_offset() -> None:
+    name = b"SPCP_dataset/images/I0001_01_01.png"
+    true_offset = 5_000_000_000
+    extra = struct.pack("<HHQ", 0x0001, 8, true_offset)
+    header = struct.pack(
+        "<IHHHHHHIIIHHHHHII",
+        0x02014B50,
+        45,
+        45,
+        0,
+        8,
+        0,
+        0,
+        123,
+        9,
+        11,
+        len(name),
+        len(extra),
+        0,
+        0,
+        0,
+        0,
+        0xFFFFFFFF,
+    )
+    rows = _parse_central_directory(header + name + extra)
+    assert rows[0]["local_offset"] == true_offset
+
+
 def test_spcp0_stable_id_ignores_existing_identity() -> None:
     left = {"a": 1}
     right = {"a": 1, "stable_evidence_id": "old"}

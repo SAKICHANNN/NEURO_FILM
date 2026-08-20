@@ -83,6 +83,33 @@ def _parse_central_directory(data: bytes) -> list[dict[str, Any]]:
         ) = values
         name_start = offset + 46
         name = data[name_start : name_start + name_len].decode("utf-8")
+        extra_start = name_start + name_len
+        extra = data[extra_start : extra_start + extra_len]
+        if (
+            uncompressed_size == 0xFFFFFFFF
+            or compressed_size == 0xFFFFFFFF
+            or local_offset == 0xFFFFFFFF
+        ):
+            cursor = 0
+            zip64_payload: bytes | None = None
+            while cursor < len(extra):
+                field_id, field_size = struct.unpack_from("<HH", extra, cursor)
+                field = extra[cursor + 4 : cursor + 4 + field_size]
+                if field_id == 0x0001:
+                    zip64_payload = field
+                    break
+                cursor += 4 + field_size
+            if zip64_payload is None:
+                raise ValueError(f"ZIP64 extra missing for {name}")
+            cursor = 0
+            if uncompressed_size == 0xFFFFFFFF:
+                uncompressed_size = struct.unpack_from("<Q", zip64_payload, cursor)[0]
+                cursor += 8
+            if compressed_size == 0xFFFFFFFF:
+                compressed_size = struct.unpack_from("<Q", zip64_payload, cursor)[0]
+                cursor += 8
+            if local_offset == 0xFFFFFFFF:
+                local_offset = struct.unpack_from("<Q", zip64_payload, cursor)[0]
         rows.append(
             {
                 "name": name,
@@ -93,7 +120,7 @@ def _parse_central_directory(data: bytes) -> list[dict[str, Any]]:
                 "local_offset": local_offset,
             }
         )
-        offset = name_start + name_len + extra_len + comment_len
+        offset = extra_start + extra_len + comment_len
     return rows
 
 
