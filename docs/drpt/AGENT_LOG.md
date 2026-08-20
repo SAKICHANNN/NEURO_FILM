@@ -14153,3 +14153,19 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - GLUT2/GLUT3 motivate the two compact bases but provide no result labels or
   threshold to this leaf. No clipping, projection, strength, basis, sigma,
   ridge, split, reference exclusion or checkpoint rescue is allowed.
+
+### 2026-08-20 - U5.R2REPID10 closes free local basis capacity
+
+- Forward/reversed CUDA reports are byte exact (`a567b527...b2532e`) and
+  application-source reads remain zero. Selection is not the failure: 9/9
+  references choose the same basis on selection and untouched audit, with
+  eight Gaussian and one lattice choice and 46.69% median p95 reduction over
+  the matched asinh-affine control.
+- All nine structural rows fail. Sampled determinants reach `-369.3033`, the
+  minimum singular value is zero, condition reaches `1.4191e17`, every
+  coefficient bound fails, and seven references create new exact boundaries.
+  `a0_ref_04` and `a0_ref_06` also fail the absolute p95 gate.
+- Close free Gaussian/lattice side, sigma, ridge, projection, penalty,
+  strength, split and reference-exclusion rescues. The next representation
+  must be monotone/invertible by construction; no Apply leaf opens.
+- Evidence: `docs/evidence/U5_R2REPID10_CANONCGT_BOUNDED_BASIS_SELECTOR_RESULT.json`.

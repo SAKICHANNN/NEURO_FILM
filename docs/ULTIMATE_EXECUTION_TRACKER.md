@@ -1687,3 +1687,14 @@ only the second; all scientific gates use the third. All nine references,
 Jacobian safety, matched-control gain and selection-to-audit transfer must
 pass before any application source is read. No clipping, projection, basis or
 threshold rescue is permitted.
+
+U5.R2REPID10 formally closes that compact local-basis repair. Forward and
+reversed reports are byte exact (`a567b527...b2532e`) with zero application
+reads. Selection itself transfers perfectly: all nine references choose the
+same Gaussian/lattice representation on selection and untouched audit, and
+the selected operator reduces matched-affine p95 error by a median 46.69%.
+The representation is not safe: 0/9 pass, every selected operator folds or is
+singular on the fixed cube, coefficients reach 2,151.8, and seven references
+create new exact boundaries. Close basis/sigma/ridge/Jacobian-projection and
+strength rescues. Any successor must guarantee monotonicity or invertibility
+by construction rather than add unconstrained local capacity.

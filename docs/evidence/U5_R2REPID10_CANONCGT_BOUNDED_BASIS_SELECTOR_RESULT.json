@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2repid10-canoncgt-bounded-basis-selector-v1",
+  "status": "FAIL_CLOSED_BOUNDED_BASIS_SELECTOR",
+  "preregistration_commit": "97ce6b19c1f595d0d343b649c0a3a1b7892b41c1",
+  "execution_commit": "d8decbd1c642f225aa3acac9f05035376aa72b31",
+  "frozen_inputs": {
+    "config_sha256": "baa5b7e17dd6ddb07a7ead440bd1e717a78265d9592e765295da8990c2380827",
+    "core_sha256": "a7e3674207205862d82982a182f936c261c2a086bf40ab2ed8da66fbdd6ca9cc",
+    "runner_sha256": "f6a4c1d43f3146e50e8f32be2057e5b1041d11100511d2b9e76ee9053630ea9d",
+    "test_sha256": "11a88466c2914f6e4965cfa301bf7ac7403bb6413bcefaa70f0941ded2024f5a",
+    "canoncgt_parent_contract_sha256": "58d2a2b349763f7b29d08ded37e028f394585250f1ded9452a5beb41a4693d8b",
+    "matched_logit_affine_contract_sha256": "4fcc39f273371f2f02ec76c87fde4382b5297349a92c0650e52376125e641575",
+    "glut2_context_sha256": "fe614a6c888dd221de2527bc9fb3fd59a77cf93da9da4df8f4b5593dd0c25dd2",
+    "glut3_context_sha256": "751b03d17407d5cc74ea59521d047de43f74052ee6ec4466b289ead7950e23d1"
+  },
+  "replay": {
+    "forward_report_sha256": "a567b52789b114f61fd007de9619a32be35ecb3148f2bc6f0eeceec1d6b2532e",
+    "reversed_report_sha256": "a567b52789b114f61fd007de9619a32be35ecb3148f2bc6f0eeceec1d6b2532e",
+    "full_report_byte_exact": true
+  },
+  "execution_order": {
+    "reference_count": 9,
+    "application_source_reads": 0,
+    "application_source_decodes": 0,
+    "application_outputs": 0
+  },
+  "metrics": {
+    "passing_references": 0,
+    "required_passing_references": 9,
+    "selected_gaussian_references": 8,
+    "selected_lattice_references": 1,
+    "selection_audit_agreement_references": 9,
+    "maximum_selected_to_audit_oracle_mean_error_ratio": 1.0,
+    "median_p95_error_reduction_vs_matched_affine": 0.46685690123605383,
+    "selected_audit_p95_minimum": 0.02837713804024612,
+    "selected_audit_p95_median": 0.0492074212940583,
+    "selected_audit_p95_maximum": 0.11593948229858335,
+    "audit_p95_gate_passing_references": 7,
+    "canonical_range_escape_magnitude_maximum": 0.09930454194545746,
+    "maximum_coefficient_absolute_value": 2151.799447908827,
+    "minimum_sampled_jacobian_determinant": -369.3033191040211,
+    "minimum_sampled_jacobian_singular_value": 0.0,
+    "maximum_sampled_jacobian_condition_number": 1.4191073898893637e+17,
+    "maximum_new_boundary_fraction": 0.0034637979705500876,
+    "new_boundary_gate_passing_references": 2
+  },
+  "passed_controls": [
+    "selection-to-untouched-audit agreement 9/9",
+    "selected-to-audit-oracle worst mean-error ratio 1.0",
+    "median p95 reduction versus matched affine 46.6857%",
+    "extended finite input support 9/9",
+    "fit-to-audit mean-error ratio 9/9",
+    "forward/reverse full report byte exact"
+  ],
+  "failed_gates": [
+    "required_passing_references",
+    "audit_absolute_error_all_references",
+    "jacobian_determinant_all_references",
+    "jacobian_singular_value_all_references",
+    "jacobian_condition_all_references",
+    "coefficient_bound_all_references",
+    "zero_new_boundary_all_references"
+  ],
+  "interpretation": "The reference-only selection partition identifies the lower-error compact basis perfectly on untouched audit pixels, and the selected basis reduces matched-affine p95 error materially. The unconstrained local bases nevertheless fold or become singular on every reference, require extreme coefficients, and create new exact boundaries on seven references. This closes free local Gaussian/lattice capacity as a safe repair for the self-canonical inverse; the remaining successor must guarantee monotonicity or invertibility by construction rather than add fitting freedom.",
+  "closed_rescues": [
+    "basis-side sweep",
+    "Gaussian-sigma sweep",
+    "ridge sweep",
+    "representation override",
+    "Jacobian projection or penalty",
+    "input or output clipping",
+    "strength or threshold rescue",
+    "sample-split or reference exclusion",
+    "application-source routing"
+  ],
+  "claim_ceiling": "Private consumed-reference explicit-operator structural negative; no application quality, stock, calibration, population preference, product, schema or capability claim."
+}
