@@ -1,0 +1,80 @@
+{
+  "schema": "neuro-film.u6-p6ay-barnard-fullscan-directional-confirmation-d0-contract.v1",
+  "experiment_id": "U6.P6AY",
+  "question": "Does the P6AX Barnard plate-following directional signal repeat on the separately digitized full-plate normal/perpendicular pair at unchanged analysis settings?",
+  "parents": {
+    "p6ax_evidence": {
+      "path": "docs/evidence/U6_P6AX_ROTATED_PLATE_DIRECTIONAL_ATTRIBUTION_D0_RESULT.json",
+      "sha256": "0238c8e9a73a53b27d504c3b994e0b853302428c9e7ddeed7fc410c72ae835ef",
+      "required_status": "FAIL_INCONCLUSIVE_DIRECTIONAL_ATTRIBUTION_D0",
+      "required_center_barnard_margin": 0.13003053018845076
+    },
+    "source_lock": {
+      "path": "configs/u6_p6ay_barnard_fullscan_directional_confirmation_source_v1.json",
+      "sha256": "09f98a28e40a3610db3a5cf59e2ed20f3f23b2f101ccf3bc088744e851c0e75c"
+    }
+  },
+  "target": {
+    "id": "uchicago_1905_barnard_10b161_fullscan",
+    "reference": {
+      "path": "data/physical_scanner/uchicago_1905_barnard_fullscan_p6ay_v1/10B-161_full_scan.tif",
+      "bytes": 321361201,
+      "md5": "1553117420d6b416b2f73f1c19bbb2d7",
+      "sha256": "d54858ba4175c36a74ad72eaf88d7e5780dd0fb590f376c3b44bd647564bf540",
+      "primary_samples_per_pixel": 3,
+      "luminance_conversion": "equal-rgb-rounded-nearest-u16"
+    },
+    "rotated": {
+      "path": "data/physical_scanner/uchicago_1905_barnard_fullscan_p6ay_v1/10B-161_full_scan_rotated_90.tif",
+      "bytes": 324100642,
+      "md5": "70cea6d659106d577e3020d3ec3cb7f8",
+      "sha256": "1da20ccf73c4d891f4655fc385ec78cc9c738000fe34989d10d1d3d08954c403",
+      "primary_samples_per_pixel": 3,
+      "luminance_conversion": "equal-rgb-rounded-nearest-u16"
+    }
+  },
+  "wrong_plate_control": {
+    "id": "uchicago_1903_f0009_f0010",
+    "reference": {
+      "path": "data/physical_scanner/uchicago_1903_plate_repeat_v1/f0009.tif",
+      "bytes": 29491348,
+      "md5": "88521bdf173eddf9a799a94364fd2e9d",
+      "sha256": "0a80e94fbd83cc83737e61740ce0a772975f13bac3531af58a6e970388a2623a"
+    },
+    "rotated": {
+      "path": "data/physical_scanner/uchicago_1903_plate_rotated_v1/f0010.tif",
+      "bytes": 29491348,
+      "md5": "53ed9cfb8476040c38c04dd1c3d4b1a8",
+      "sha256": "b6d80a498c89543c4c1ad0e8b443b5e9f6d8ba058fa8c82c00ac8ca097fd37fc"
+    }
+  },
+  "analysis": {
+    "registration_allowed": false,
+    "normalization": "per-image-midrank-uniform computed on the full primary image",
+    "center_crop_size": 3072,
+    "patch_size": 768,
+    "patch_grid": [4, 4],
+    "window": "separable periodic Hann",
+    "spectrum": "log1p power of mean-subtracted patch, fftshifted full FFT",
+    "radial_bins": 64,
+    "minimum_normalized_radius": 0.15,
+    "maximum_normalized_radius": 0.45,
+    "radial_mean_removal": true
+  },
+  "gates": {
+    "required_patches_per_scan": 16,
+    "minimum_valid_frequency_bins": 10000,
+    "minimum_residual_standard_deviation": 0.000001,
+    "minimum_plate_following_margin": 0.05,
+    "minimum_margin_retainment_ratio_vs_center_scan": 0.5,
+    "required_scanner_fixed_pass": false
+  },
+  "decision_if_pass": "retain_barnard_within_plate_acquisition_scale_confirmation_only",
+  "decision_if_fail": "close_barnard_fullscan_directional_confirmation_without_rescue",
+  "forbidden": [
+    "changing the P6AX crop, patch, window, radial bins, frequency band or wrong-plate control",
+    "margin, ratio, channel, source, IFD, orientation or plate exclusion rescue after score",
+    "counting this same-plate result as a third plate or population confirmation"
+  ],
+  "claim_ceiling": "same 1905 Barnard plate across a second full-scan acquisition pair; within-plate acquisition-scale confirmation only, not population material attribution, isolated NPS, scanner calibration or product evidence."
+}
