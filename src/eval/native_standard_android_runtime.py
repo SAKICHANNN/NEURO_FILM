@@ -5,13 +5,16 @@ from __future__ import annotations
 import ctypes
 import hashlib
 import json
+import os
 import shutil
 import subprocess
+import time
 from copy import deepcopy
 from pathlib import Path
 from typing import Any
 
 import numpy as np
+import psutil
 
 import scripts.benchmark_u6_p8aq_native_fastpath_resources as p8aq
 from scripts.run_u6_p8bo_portable_native_standard import _render
@@ -22,9 +25,6 @@ from src.eval.native_standard_portable import (
 )
 from src.eval.native_thomas_rgb16_png_android_runtime import (
     _android_env,
-    _finish_owned_emulator_processes,
-    _owned_emulator_processes,
-    _wait_for_boot,
 )
 from src.film_physics.native_abi_layouts import (
     native_adjacency_profile_struct,
@@ -158,6 +158,90 @@ def _run(
             + completed.stderr
         )
     return completed
+
+
+def _owned_android_processes(
+    sdk: Path, avd_name: str, port: int
+) -> list[psutil.Process]:
+    runtime_root = (sdk / "emulator").resolve()
+    matches: list[psutil.Process] = []
+    for process in psutil.process_iter(["exe", "cmdline"]):
+        try:
+            executable = process.info["exe"]
+            command = process.info["cmdline"] or []
+            if not executable:
+                continue
+            resolved = Path(executable).resolve()
+            if (
+                os.path.commonpath([str(resolved), str(runtime_root)])
+                == str(runtime_root)
+                and avd_name in command
+                and str(port) in command
+            ):
+                matches.append(process)
+        except (OSError, ValueError, psutil.Error):
+            continue
+    return matches
+
+
+def _finish_owned_android_processes(sdk: Path, avd_name: str, port: int) -> bool:
+    deadline = time.monotonic() + 20.0
+    while time.monotonic() < deadline:
+        if not _owned_android_processes(sdk, avd_name, port):
+            return False
+        time.sleep(0.25)
+    matches = _owned_android_processes(sdk, avd_name, port)
+    for process in matches:
+        process.terminate()
+    _, alive = psutil.wait_procs(matches, timeout=5.0)
+    for process in alive:
+        process.kill()
+    psutil.wait_procs(alive, timeout=5.0)
+    if _owned_android_processes(sdk, avd_name, port):
+        raise NativeStandardAndroidRuntimeError(
+            "owned Android runtime process survived exact cleanup"
+        )
+    return bool(matches)
+
+
+def _wait_for_owned_boot(
+    *,
+    adb: Path,
+    serial: str,
+    sdk: Path,
+    avd_name: str,
+    port: int,
+    env: dict[str, str],
+    timeout: float,
+) -> None:
+    started = time.monotonic()
+    deadline = started + timeout
+    while time.monotonic() < deadline:
+        if time.monotonic() - started > 5.0 and not _owned_android_processes(
+            sdk, avd_name, port
+        ):
+            raise NativeStandardAndroidRuntimeError(
+                "Android runtime exited before boot"
+            )
+        try:
+            value = _run(
+                [
+                    adb,
+                    "-s",
+                    serial,
+                    "shell",
+                    "getprop",
+                    "sys.boot_completed",
+                ],
+                env=env,
+                timeout=10,
+            ).stdout
+        except (NativeStandardAndroidRuntimeError, subprocess.TimeoutExpired):
+            value = ""
+        if value.strip() == "1":
+            return
+        time.sleep(1.0)
+    raise NativeStandardAndroidRuntimeError("Android runtime boot timed out")
 
 
 def _validate_parent(
@@ -340,6 +424,7 @@ def _boot_and_run(
     stdout_path = output_dir / f"boot{boot_index}_emulator.stdout.log"
     stderr_path = output_dir / f"boot{boot_index}_emulator.stderr.log"
     output_dir.mkdir(parents=True, exist_ok=True)
+    forced = False
     with stdout_path.open("wb") as stdout, stderr_path.open("wb") as stderr:
         emulator = subprocess.Popen(
             [
@@ -361,7 +446,15 @@ def _boot_and_run(
             env=env,
         )
         try:
-            _wait_for_boot(adb, serial, emulator, env=env, timeout=180.0)
+            _wait_for_owned_boot(
+                adb=adb,
+                serial=serial,
+                sdk=sdk,
+                avd_name=avd_name,
+                port=port,
+                env=env,
+                timeout=180.0,
+            )
             remote = "/data/local/tmp/nf_p8bo1"
             _run([adb, "-s", serial, "shell", "rm", "-rf", remote], env=env)
             _run([adb, "-s", serial, "shell", "mkdir", "-p", remote], env=env)
@@ -437,8 +530,8 @@ def _boot_and_run(
                 except subprocess.TimeoutExpired:
                     emulator.kill()
                     emulator.wait(timeout=15)
-    forced = _finish_owned_emulator_processes(emulator_exe, avd_name, port)
-    if _owned_emulator_processes(emulator_exe, avd_name, port):
+            forced = _finish_owned_android_processes(sdk, avd_name, port)
+    if _owned_android_processes(sdk, avd_name, port):
         raise NativeStandardAndroidRuntimeError("owned emulator survived cleanup")
     return {
         "rows": rows,

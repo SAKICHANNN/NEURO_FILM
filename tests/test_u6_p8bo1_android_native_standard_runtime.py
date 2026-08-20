@@ -6,6 +6,7 @@ from pathlib import Path
 from src.eval.native_standard_android_runtime import (
     P8BO_SOURCE_COMMIT,
     _git_bytes,
+    _owned_android_processes,
     _validate_parent,
 )
 
@@ -41,3 +42,10 @@ def test_probe_exercises_complete_component_chain_and_atomic_failure() -> None:
     )
     assert all(call in source for call in required_calls)
     assert "invalid_atomic" in source
+
+
+def test_owned_runtime_scan_is_empty_for_reserved_test_port() -> None:
+    contract = json.loads(CONTRACT.read_text(encoding="utf-8"))
+    assert not _owned_android_processes(
+        ROOT / "missing-android-sdk", contract["runtime"]["avd_name"], 5554
+    )
