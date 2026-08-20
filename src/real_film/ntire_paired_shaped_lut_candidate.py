@@ -466,10 +466,10 @@ def evaluate(
         cache_storage_mode = "canonical_repo_relative"
     else:
         cache_root = cache_root_override.resolve()
-        allowed = Path("D:/neuro_film_fallback").resolve()
+        allowed = logical_cache_root.resolve()
         if cache_root != allowed and allowed not in cache_root.parents:
             raise NTIREPairedCandidateError(
-                "cache override is outside the project-owned D fallback"
+                "cache override is outside the configured repo-relative fallback"
             )
         cache_root.mkdir(parents=True, exist_ok=True)
         cache_storage_mode = "project_owned_d_fallback"

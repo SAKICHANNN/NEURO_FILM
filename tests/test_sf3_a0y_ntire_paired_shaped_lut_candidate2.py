@@ -88,7 +88,9 @@ def test_aggregate_fails_tail_even_with_median_gain() -> None:
 
 def test_cache_override_rejects_nonproject_d_path(tmp_path: Path) -> None:
     contract = load_contract(CONFIG)
-    with pytest.raises(NTIREPairedCandidateError, match="project-owned D fallback"):
+    with pytest.raises(
+        NTIREPairedCandidateError, match="configured repo-relative fallback"
+    ):
         evaluate(
             contract,
             ROOT,
