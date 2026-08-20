@@ -1,0 +1,58 @@
+{
+  "schema": "neuro_film.u1_4e_working_image_aces2_adapter_evidence.v1",
+  "node": "ULT > U1 > U1.4E",
+  "status": "PASS_PRIVATE_WORKING_IMAGE_ACES2_ADAPTER",
+  "decision": "retain isolated adapter; default renderer and file output remain closed",
+  "bindings": {
+    "formal_lock_commit": "47ed3ffa2cda5816e2a8b6b8ea5ba192fa78e9fb",
+    "contract_path": "docs/planning/U1_4E_WORKING_IMAGE_ACES2_ADAPTER_CONTRACT.md",
+    "contract_sha256": "ded12ae7c692c60fb00eb2d67eed4c24d8aa7d35a372e09da69c9414a2a421c3",
+    "implementation_path": "src/preprocess/ocio_aces2_output.py",
+    "implementation_sha256": "7ffe89bb448866574d0c6374020b79920d5e9b93d72ec84a29704c45f247378d",
+    "runner_path": "scripts/audit_u1_4e_working_image_aces2_adapter.py",
+    "runner_sha256": "83c09bb03c441054d4a20ab8bab8cbf23cc198e99a858c60f6d6f0852f0da575",
+    "config_path": "configs/u1_4e_working_image_aces2_adapter_v1.json",
+    "config_sha256": "f3fa252f7452169e17de12f96930864ce75a4d4a098196e208010adced540aa5",
+    "formal_report_path": "outputs/eval/u1_4e_working_image_aces2_adapter/o1_forward.json",
+    "formal_report_sha256": "99c0ccfcb11c3a0bc79afcb7d65a007f07b189727cd4516571f9d0ea8fa1bf13",
+    "stable_evidence_id": "10a971a69ef4a46161b4706354aa0375392fd25ad25ed73139d905a1b9728339"
+  },
+  "execution": {
+    "fresh_processes": 2,
+    "orders_per_process": [
+      "canonical",
+      "reverse"
+    ],
+    "all_four_report_sha256_exact": true,
+    "fixture_rows_per_source": 986,
+    "source_working_spaces": [
+      "linear_srgb",
+      "linear_rec2020"
+    ],
+    "output_targets": [
+      "sdr_rec709",
+      "hdr_rec2020_pq"
+    ]
+  },
+  "metrics": {
+    "maximum_adapter_direct_absolute_error": 0.0,
+    "maximum_source_scalar_packed_absolute_error": 0.0,
+    "maximum_neutral_channel_spread": 4.76837158203125e-07,
+    "minimum_neutral_mean_step": 2.9206275939941406e-05,
+    "all_finite": true,
+    "input_unchanged": true,
+    "all_rejection_checks_pass": true
+  },
+  "gates": {
+    "adapter_direct": true,
+    "finite": true,
+    "input_unchanged": true,
+    "neutral_monotonic": true,
+    "neutral_spread": true,
+    "rejections": true,
+    "source_scalar_packed": true,
+    "reverse_order_exact": true,
+    "two_process_report_exact": true
+  },
+  "claim_ceiling": "private Windows CPU numerical adapter from existing scene-linear WorkingImage linear_srgb/linear_rec2020 spaces into pinned official ACES 2 transforms only; no ACES certification, camera IDT, photographic quality, HDR file encoding/metadata, display calibration, GPU/macOS parity, default renderer, public capability, film/stock or product admission"
+}

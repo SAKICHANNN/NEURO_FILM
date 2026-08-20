@@ -15119,3 +15119,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   fail-closed validation, reversed enumeration and two-process exact replay.
 - **Boundary:** no default renderer, file encoding, ACES certification, camera
   IDT, image-quality, cross-platform, public capability or product claim.
+
+### 2026-08-21 - U1.4E passes the isolated WorkingImage adapter
+
+- Two fresh processes, each in canonical and reversed order, produced the same
+  report SHA `99c0ccfc...1bf13` and stable ID `10a971a6...28339`.
+- For both existing scene-linear working spaces and both ACES 2 targets, the
+  composed adapter and an independently constructed official direct transform
+  are bit-identical. Official scalar/packed source conversions are also exact;
+  all 3,944 path-rows are finite and the maximum neutral channel spread is
+  `4.77e-7`.
+- Unsupported spaces/transfers and malformed inputs fail closed; the adapter
+  neither mutates inputs nor expands the global `WorkingImage` space contract.
+- **Decision:** retain only the private CPU adapter. Default renderer and file
+  integration remain closed pending separately frozen photographic/output
+  evidence; no certification, public capability or product claim opens.
