@@ -129,6 +129,14 @@ def _annotation_structure(archive: bytes) -> dict[str, Any]:
         inventory_identity = _sha256(
             json.dumps(inventory_rows, sort_keys=True, separators=(",", ":")).encode()
         )
+        processed_key_rows = sorted(processed_keys)
+        processed_key_identity = _sha256(
+            json.dumps(processed_key_rows, separators=(",", ":")).encode()
+        )
+        processed_collection_counts = Counter(
+            key.split("-", 1)[0] if "-" in key else "unknown" for key in processed_key_rows
+        )
+        participant_keys = set(raw_jsonl.get("participants", {}).get("top_level_keys", []))
         return {
             "archive_sha256": _sha256(archive),
             "file_count": len(files),
@@ -138,8 +146,14 @@ def _annotation_structure(archive: bytes) -> dict[str, Any]:
             "suffix_counts": dict(sorted(suffix_counts.items())),
             "processed_device_counts": dict(sorted(device_counts.items())),
             "processed_top_level_types": dict(sorted(processed_types.items())),
-            "processed_top_level_keys": sorted(processed_keys),
+            "processed_scene_key_count": len(processed_key_rows),
+            "processed_scene_key_identity_sha256": processed_key_identity,
+            "processed_collection_counts": dict(sorted(processed_collection_counts.items())),
             "raw_jsonl": raw_jsonl,
+            "participant_sensitive_fields_present": bool(
+                participant_keys
+                & {"_id", "age", "gender", "job", "region", "user_id", "device_model"}
+            ),
             "participant_identifiers_persisted": False,
         }
 
