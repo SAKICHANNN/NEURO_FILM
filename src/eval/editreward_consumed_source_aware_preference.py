@@ -13,6 +13,7 @@ import json
 import math
 import os
 import sys
+import types
 from collections.abc import Iterable
 from dataclasses import dataclass
 from pathlib import Path
@@ -274,6 +275,12 @@ class EditRewardRuntime:
             if path.stat().st_size != facts["bytes"]:
                 raise ValueError(f"processor size mismatch: {name}")
             _validate_hash(path, facts["sha256"], f"processor {name}")
+
+        official_package = official_source / "EditReward"
+        namespace = types.ModuleType("EditReward")
+        namespace.__path__ = [str(official_package)]
+        namespace.__package__ = "EditReward"
+        sys.modules["EditReward"] = namespace
 
         from EditReward.model.qwen2_5_vl_trainer import (
             Qwen2_5_VLRewardModelBT_MultiHead,
