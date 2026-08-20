@@ -19,7 +19,6 @@ from .color_management import (
 )
 from .types import WorkingImage
 
-
 _OUTPUT_FORMATS: dict[str, tuple[str, dict[str, object]]] = {
     ".png": ("PNG", {}),
     ".jpg": ("JPEG", {"quality": 95, "subsampling": 0}),
@@ -188,6 +187,23 @@ def save_rec2020_16_png(working: WorkingImage, path: Path) -> str:
         np.asarray(np.clip(working.pixels, 0.0, 1.0), dtype=np.float32)
     )
     encoded_rgb = np.rint(encoded * 65535.0).astype(np.uint16)
+    return save_rec2020_rgb16_png_samples(encoded_rgb, path)
+
+
+def save_rec2020_rgb16_png_samples(encoded_rgb: np.ndarray, path: Path) -> str:
+    """Encode already-quantized Rec.2020 RGB16 samples without changing them."""
+
+    if (
+        not isinstance(encoded_rgb, np.ndarray)
+        or encoded_rgb.dtype != np.uint16
+        or encoded_rgb.ndim != 3
+        or encoded_rgb.shape[2] != 3
+        or encoded_rgb.shape[0] <= 0
+        or encoded_rgb.shape[1] <= 0
+    ):
+        raise ValueError("Rec.2020 RGB16 samples must be non-empty HxWx3 uint16")
+    if path.suffix.casefold() != ".png":
+        raise ValueError("16-bit Rec.2020 output requires a .png extension")
     import cv2
 
     succeeded, buffer = cv2.imencode(

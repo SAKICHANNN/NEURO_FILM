@@ -14,6 +14,7 @@ from .color_state import resolve_look_approximation_claim
 from .output_encode import (
     normalized_icc_profile_sha256,
     save_rec2020_16_png,
+    save_rec2020_rgb16_png_samples,
     save_srgb8,
     save_srgb16_png,
     save_srgb16_tiff,
@@ -70,6 +71,7 @@ __all__ = [
     "rec2020_to_linear_rec2020",
     "resolve_look_approximation_claim",
     "save_rec2020_16_png",
+    "save_rec2020_rgb16_png_samples",
     "save_srgb8",
     "save_srgb16_png",
     "save_srgb16_tiff",
