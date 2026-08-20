@@ -7,6 +7,7 @@ import heapq
 import json
 import math
 import subprocess
+import time
 from collections.abc import Callable, Mapping
 from pathlib import Path
 from typing import Any
@@ -55,32 +56,43 @@ def curl_range_get(url: str, start: int, end: int, archive_size: int) -> bytes:
     """Read one exact HTTP range through curl without persisting member bytes."""
     if start < 0 or end < start or end >= archive_size:
         raise NTIREPairedCandidateError("invalid bounded archive range")
-    result = subprocess.run(
-        [
-            "curl.exe",
-            "-L",
-            "--fail",
-            "--silent",
-            "--show-error",
-            "--range",
-            f"{start}-{end}",
-            "--write-out",
-            "%{stderr}%{http_code}",
-            url,
-        ],
-        capture_output=True,
-        check=False,
-        timeout=300,
-    )
-    status = result.stderr.decode("utf-8", errors="replace").strip()
-    if result.returncode != 0 or status != "206":
-        raise NTIREPairedCandidateError(
-            f"curl exact range failed: returncode={result.returncode} status={status!r}"
-        )
     expected = end - start + 1
-    if len(result.stdout) != expected:
-        raise NTIREPairedCandidateError("curl range payload length differs")
-    return result.stdout
+    failures = []
+    for attempt in range(4):
+        try:
+            result = subprocess.run(
+                [
+                    "curl.exe",
+                    "-L",
+                    "--fail",
+                    "--silent",
+                    "--show-error",
+                    "--range",
+                    f"{start}-{end}",
+                    "--write-out",
+                    "%{stderr}%{http_code}",
+                    url,
+                ],
+                capture_output=True,
+                check=False,
+                timeout=300,
+            )
+            status = result.stderr.decode("utf-8", errors="replace").strip()
+            if (
+                result.returncode == 0
+                and status == "206"
+                and len(result.stdout) == expected
+            ):
+                return result.stdout
+            failures.append(
+                f"attempt={attempt + 1}:returncode={result.returncode}:"
+                f"status={status!r}:bytes={len(result.stdout)}"
+            )
+        except subprocess.TimeoutExpired:
+            failures.append(f"attempt={attempt + 1}:timeout")
+        if attempt < 3:
+            time.sleep(1.0)
+    raise NTIREPairedCandidateError("curl exact range failed; " + "; ".join(failures))
 
 
 def _canonical_bytes(value: Any) -> bytes:

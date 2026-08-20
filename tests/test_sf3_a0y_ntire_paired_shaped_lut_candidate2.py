@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from pathlib import Path
 
 import numpy as np
@@ -104,3 +105,19 @@ def test_cache_override_rejects_nonproject_d_path(tmp_path: Path) -> None:
 def test_curl_range_rejects_invalid_bounds_without_network() -> None:
     with pytest.raises(NTIREPairedCandidateError, match="invalid bounded"):
         curl_range_get("https://invalid.example", -1, 2, 10)
+
+
+def test_curl_range_retries_with_fresh_buffers(monkeypatch: pytest.MonkeyPatch) -> None:
+    calls = 0
+
+    def fake_run(*_args: object, **_kwargs: object) -> subprocess.CompletedProcess[bytes]:
+        nonlocal calls
+        calls += 1
+        if calls == 1:
+            return subprocess.CompletedProcess([], 22, b"partial", b"502")
+        return subprocess.CompletedProcess([], 0, b"abc", b"206")
+
+    monkeypatch.setattr(subprocess, "run", fake_run)
+    monkeypatch.setattr("src.real_film.ntire_paired_shaped_lut_candidate.time.sleep", lambda _: None)
+    assert curl_range_get("https://example.invalid/archive", 4, 6, 10) == b"abc"
+    assert calls == 2

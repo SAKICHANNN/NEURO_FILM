@@ -35,6 +35,14 @@ to disk. At amendment time only four fit cache rows existed and there were zero
 model fits/locks, calibration or sealed reads, and scientific scores. All
 scientific roles, models, controls, and gates remain unchanged.
 
+Transport reliability correction: after reaching 27 complete fit-cache rows,
+one later Range returned a non-206 response and stopped before model fitting.
+The reader now permits four independent attempts with fresh in-memory buffers
+and a fixed one-second delay. Every successful attempt still requires HTTP 206
+and exact byte length; failed/partial bytes are discarded rather than joined.
+At correction time model locks, calibration reads, sealed reads, and scores
+remain zero.
+
 All 56 IDs are fresh relative to SF3.A0V/A0X and split before acquisition into
 32 fit, 12 calibration and 12 sealed-confirmation scenes. The cache contains
 only 256x256 aligned source/target arrays under the repo-relative P-backed data

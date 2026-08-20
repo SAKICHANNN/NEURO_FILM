@@ -51,6 +51,8 @@
     "backend": "curl-8.21.0-in-memory-exact-range",
     "required_http_status": 206,
     "required_payload_length": "end-start+1",
+    "maximum_independent_attempts_per_range": 4,
+    "retry_delay_seconds": 1,
     "full_member_payload_persisted": false,
     "facts_before_amendment": {
       "complete_fit_cache_rows": 4,
