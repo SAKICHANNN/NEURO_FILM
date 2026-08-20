@@ -1,0 +1,35 @@
+{
+  "schema": "neuro-film.sf3-a0r-rgb2raw-capture-pair-source-lock-contract.v1",
+  "experiment_id": "SF3.A0R_RGB2RAW_CAPTURE_PAIR_SOURCE_LOCK_V1",
+  "source": {
+    "dataset_id": "marcosv/rgb2raw",
+    "revision": "91a105e8532f082a955b799c15dea0ada9e3caed",
+    "readme_url": "https://huggingface.co/datasets/marcosv/rgb2raw/raw/91a105e8532f082a955b799c15dea0ada9e3caed/README.md",
+    "readme_size": 3366,
+    "readme_sha256": "bdafa0ceb584e79464b2c83758aef55e7c000f95434b29cec07178a009d6c1d7",
+    "license_declaration": "mit",
+    "license_text_present": false,
+    "archive": {
+      "path": "train_rgb2raw.zip",
+      "size": 8731825651,
+      "lfs_sha256": "eaf4d2d5dd60a9d04b96f59a8f85ac1f2e55c9d8639aa4f44c6548d9278fe354",
+      "xet_hash": "4514e3cba7975efe9c806b3f67d96377853e92cf6ce0b8625959163a881207f6",
+      "central_offset": 8731177943,
+      "central_size": 647610,
+      "central_sha256": "79c22ab4d206ce85a76e342386e3f0a2e74fd774d455ad71fd6f9fcecad6f925"
+    }
+  },
+  "gates": {
+    "required_primary_camera_groups": ["iphone-x", "samsung-s9"],
+    "required_primary_pair_count": 1446,
+    "required_primary_scene_group_count": 241,
+    "required_metadata_member_count": 501,
+    "require_each_primary_pair_png_npy": true,
+    "require_metadata_for_each_selected_scene_group": true,
+    "require_safe_unencrypted_supported_members": true,
+    "require_zero_member_payload_reads": true
+  },
+  "decision_if_pass": "PASS_RANGE_ONLY_RGB2RAW_CAPTURE_PAIR_SOURCE_LOCK",
+  "decision_if_fail": "FAIL_CLOSED_RGB2RAW_SOURCE_STRUCTURE",
+  "claim_ceiling": "Publisher-declared MIT Hugging Face source structure only. No image-member read, pixel decode, operator fit, product right, preference, film, package, schema or capability claim."
+}
