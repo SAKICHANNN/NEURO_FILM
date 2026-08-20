@@ -13955,11 +13955,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   its manifest counted one decode per source. Commit `3f2fcaa4` changes loop
   order so each source is decoded once, verifies the manifest chain, and
   preserves all 81 output PNG hashes exactly.
-- Forward and fully reversed fresh processes are exact at build, apply, output
-  inventory and scientific payload (`fdfdc4a5...7986`). Their report files
-  differ only in `software_commit` because unrelated committed work advanced
-  HEAD between evaluations. Atlas-context drift p95 is `.01734-.02365` and
-  reference sensitivity is `4.457` Delta E76.
+- Final corrected forward and fully reversed fresh processes at the same
+  frozen commit are exact at build, apply, output inventory and full report
+  (`7ac27290...633fb`; scientific ID `fdfdc4a5...7986`). Atlas-context drift
+  p95 is `.01734-.02365` and reference sensitivity is `4.457` Delta E76.
 - All nine candidates fail. Median non-basic residual is only `2.124-3.677`,
   worst new clipping is `5.87-23.13%`, and worst raw range escape is
   `5.76-22.80%`; there are zero automatic survivors and no visual shortlist.

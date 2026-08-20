@@ -2,7 +2,7 @@
   "schema_version": 1,
   "experiment_id": "u5.r2repid6-canoncgt-fixed-atlas-shared-lut-v1",
   "status": "FAIL_CLOSED_FIXED_ATLAS_SHARED_LUT",
-  "execution_commit": "3f2fcaa4",
+  "execution_commit": "d0a2342c496a224f81d553106c7531f236c505fb",
   "frozen_inputs": {
     "config_sha256": "69f2b807193ecbd72565cf91521b5b51b705055c74b488c5a4e51a15d98d727a",
     "contract_sha256": "78d9ead09be99f2cac1c13bb23a0afd0a55fa00e7479c5d35285298eb7fac12d",
@@ -30,15 +30,15 @@
     "run_b_reversed_build_manifest_sha256": "f9c8f7e16ffaf97094e876f0d2bedb641239a8e6d206e17598861a5c9c7b4a18",
     "run_a_apply_manifest_sha256": "ebafd625f7f38e26dfab83959bc5baba0bbe6f59f24179695b053cd1a79b3888",
     "run_b_reversed_apply_manifest_sha256": "ebafd625f7f38e26dfab83959bc5baba0bbe6f59f24179695b053cd1a79b3888",
-    "run_a_report_sha256": "c92fbf453d03421726ab5844f6a81d8949b7937308a01edb4c4a4abc6af8a930",
-    "run_b_reversed_report_sha256": "bee1ef671a1e6964389a72d7f0969b07aecfe5abc59fcc213797d7029dd20d5f",
-    "run_a_software_commit": "2bb375a1a490228134ffca9ff20d7670cbffa6a1",
-    "run_b_software_commit": "6b95589f9254516daaf0942cb8f0d0eae576fad7",
+    "run_a_report_sha256": "7ac27290593e0ff29d2e7d701a42179fcbed69dc0bafc3760010cf5fc7f633fb",
+    "run_b_reversed_report_sha256": "7ac27290593e0ff29d2e7d701a42179fcbed69dc0bafc3760010cf5fc7f633fb",
+    "run_a_software_commit": "d0a2342c496a224f81d553106c7531f236c505fb",
+    "run_b_software_commit": "d0a2342c496a224f81d553106c7531f236c505fb",
     "scientific_id": "fdfdc4a5277db0b887c2be6342690e522f6c2a8890bf52407fa2aade1c3c7986",
     "build_apply_and_output_inventory_byte_exact": true,
     "scientific_payload_exact": true,
-    "full_report_byte_exact": false,
-    "full_report_only_difference": "software_commit"
+    "full_report_byte_exact": true,
+    "full_report_only_difference": null
   },
   "metrics": {
     "reference_sensitivity_median_pairwise_delta_e76": 4.45734322559243,
