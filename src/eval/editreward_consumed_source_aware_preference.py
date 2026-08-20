@@ -353,7 +353,6 @@ class EditRewardRuntime:
             device_map="auto",
             max_memory={0: "9GiB", "cpu": "24GiB"},
             offload_folder=str(offload_dir),
-            offload_state_dict=True,
             local_files_only=True,
             output_loading_info=True,
         )

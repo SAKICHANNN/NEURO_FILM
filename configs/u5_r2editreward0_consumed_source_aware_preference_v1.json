@@ -126,6 +126,7 @@
     "gpu_max_memory": "9GiB",
     "cpu_max_memory": "24GiB",
     "disk_offload_allowed": true,
+    "offload_state_dict_argument_omitted": "pre-forward smoke showed transformers 4.57.0 passes this unsupported keyword into the official custom reward-model constructor; omission changes no model/input/precision/device-memory/scientific fact",
     "quantization_forbidden": true,
     "weight_cast_forbidden": true,
     "batch_or_resolution_rescue_forbidden": true,
