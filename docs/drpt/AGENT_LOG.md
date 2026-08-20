@@ -14546,3 +14546,19 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Latest *Deep Analog* was audited but not implemented: procedural
   self-supervision, withheld checkpoints/data and explicit no-licence/patent
   boundaries add no eligible film observation.
+
+### 2026-08-21 - SF3.A0Y opens a bounded three-stock rights preflight
+
+- Re-centred acquisition on Velvia 50, Portra 400 and Ektar 100 rather than
+  another AO6 or after-only algorithm variant. The exact frozen YFCC100M
+  metadata report contains 240/575/780 rows and 62/89/122 authors respectively.
+- A new metadata-only compiler finds 16 Ektar--Velvia, 40 Ektar--Portra and
+  nine Velvia--Portra shared UIDs. Seven UIDs span all three stocks, and all
+  seven retain three non-empty arms after fixed process/HDR/multiple-exposure
+  exclusions. The resulting live-page matrix is bounded to 62 candidates.
+- Two P-backed reports are byte exact at SHA-256 `e54b8de2...a15b8e`;
+  18 focused/adjacent tests pass. Network requests, image downloads, pixel
+  decodes and operator fits remain zero. This opens only a bounded live-rights
+  preflight; shared author is not same scene and does not establish stock
+  signal, calibration or product readiness. Evidence:
+  `docs/evidence/SF3_A0Y_YFCC_THREE_STOCK_TRIANGLE_METADATA_RESULT.json`.

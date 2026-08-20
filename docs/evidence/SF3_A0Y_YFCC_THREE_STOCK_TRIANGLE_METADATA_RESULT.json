@@ -1,0 +1,61 @@
+{
+  "schema": "neuro-film.sf3-a0y-yfcc-three-stock-triangle-evidence.v1",
+  "experiment_id": "SF3.A0Y_YFCC_THREE_STOCK_TRIANGLE_METADATA_V1",
+  "status": "PASS_METADATA_ONLY_OPEN_BOUNDED_LIVE_RIGHTS_PREFLIGHT",
+  "contract": {
+    "path": "configs/sf3_a0y_yfcc_three_stock_triangle_metadata_v1.json",
+    "sha256": "5c23603a38fedcd03e7a23444bf1c0f8d14ddfb7b81277a6fec9811b67d5a219"
+  },
+  "input": {
+    "path": "outputs/real_film/yfcc100m_full_v1/stock_shared_author_audit_a.json",
+    "sha256": "19fd20b30b6724c1033f90ad2c3dafaabfeaf1dad528df12e2de77deaa3723c2"
+  },
+  "formal_reports": [
+    "outputs/eval/sf3_a0y_yfcc_three_stock_triangle_metadata_v1/report_a.json",
+    "outputs/eval/sf3_a0y_yfcc_three_stock_triangle_metadata_v1/report_b.json"
+  ],
+  "formal_report_sha256": "e54b8de2233bac9dcfdb70275e1f1018ca5d92e681865ae7aad3ad26a9a15b8e",
+  "formal_reports_byte_exact": true,
+  "stable_evidence_id": "a2f250934047773e6c5dc1f04a4f7cb56b7ec1d381a931c4b3085198b2cce0c1",
+  "observations": {
+    "stock_rows": {
+      "fujifilm_velvia_50": 240,
+      "kodak_portra_400": 575,
+      "kodak_ektar_100": 780
+    },
+    "stock_author_uids": {
+      "fujifilm_velvia_50": 62,
+      "kodak_portra_400": 89,
+      "kodak_ektar_100": 122
+    },
+    "pair_shared_uids": {
+      "fujifilm_velvia_50__kodak_portra_400": 9,
+      "fujifilm_velvia_50__kodak_ektar_100": 16,
+      "kodak_portra_400__kodak_ektar_100": 40
+    },
+    "triple_shared_uids": 7,
+    "eligible_triple_uids_after_metadata_filters": 7,
+    "bounded_page_candidates": 62,
+    "network_requests": 0,
+    "image_payload_downloads": 0,
+    "pixel_decodes": 0,
+    "operator_fits": 0
+  },
+  "gates": {
+    "stock_row_support": true,
+    "stock_author_support": true,
+    "pair_connectivity": true,
+    "triple_connectivity": true,
+    "eligible_triple_connectivity": true,
+    "bounded_page_candidate_count": true,
+    "every_eligible_uid_has_three_stock_arms": true
+  },
+  "decision": "OPEN_BOUNDED_THREE_STOCK_LIVE_RIGHTS_PREFLIGHT",
+  "claim_ceiling": "metadata-only same-source shared-author acquisition feasibility; the seven UIDs are not same-scene controls and do not establish stock response, calibration, fitting, training or product readiness",
+  "verification": {
+    "focused_and_adjacent_pytest": "18 passed",
+    "ruff": "pass",
+    "py_compile": "pass",
+    "git_diff_check": "pass"
+  }
+}

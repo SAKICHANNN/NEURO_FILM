@@ -1,0 +1,42 @@
+{
+  "schema": "neuro-film.sf3-a0y-yfcc-three-stock-triangle-contract.v1",
+  "experiment_id": "SF3.A0Y_YFCC_THREE_STOCK_TRIANGLE_METADATA_V1",
+  "input_report": "outputs/real_film/yfcc100m_full_v1/stock_shared_author_audit_a.json",
+  "input_report_sha256": "19fd20b30b6724c1033f90ad2c3dafaabfeaf1dad528df12e2de77deaa3723c2",
+  "stock_ids": [
+    "fujifilm_velvia_50",
+    "kodak_portra_400",
+    "kodak_ektar_100"
+  ],
+  "expected_stock_support": {
+    "fujifilm_velvia_50": {"rows": 240, "author_uids": 62},
+    "kodak_portra_400": {"rows": 575, "author_uids": 89},
+    "kodak_ektar_100": {"rows": 780, "author_uids": 122}
+  },
+  "expected_pair_shared_uids": {
+    "fujifilm_velvia_50__kodak_portra_400": 9,
+    "fujifilm_velvia_50__kodak_ektar_100": 16,
+    "kodak_portra_400__kodak_ektar_100": 40
+  },
+  "metadata_gates": {
+    "minimum_rows_per_stock": 200,
+    "minimum_author_uids_per_stock": 50,
+    "minimum_shared_uids_per_pair": 8,
+    "minimum_triple_shared_uids": 5,
+    "minimum_eligible_triple_uids": 5,
+    "maximum_candidates_per_stock_per_uid": 4,
+    "maximum_page_candidates": 84
+  },
+  "required_snapshot_license_url": "http://creativecommons.org/licenses/by/2.0/",
+  "process_contamination_exclusions": [
+    "cross[ -]?process|crossprocess|xpro|x-process|c41\\s*(?:as|in)\\s*e6",
+    "\\bhdr\\b|tone[ -]?map",
+    "multiple[ -]?exposure|double[ -]?exposure",
+    "rodinal|black[ -]?(?:and|&)\\s*white|\\bb/?w\\b"
+  ],
+  "image_payload_download_allowed": false,
+  "operator_fitting_allowed": false,
+  "decision_if_pass": "OPEN_BOUNDED_THREE_STOCK_LIVE_RIGHTS_PREFLIGHT",
+  "decision_if_fail": "CLOSE_YFCC_THREE_STOCK_TRIANGLE_BEFORE_LIVE_PAGE_OR_PIXEL_ACCESS",
+  "claim_ceiling": "metadata-only same-source shared-author acquisition feasibility for Velvia 50, Portra 400 and Ektar 100; no same-scene control, pixels, stock response, calibration, fitting, training or product claim"
+}
