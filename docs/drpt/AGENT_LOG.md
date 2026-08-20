@@ -13792,3 +13792,32 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   peak process-tree RSS is `924.0/926.8MB`; both unchanged 15-second/1GiB gates
   pass. This closes the performance leaf without changing the product default.
 - Evidence: `docs/evidence/U1_4C34_TRANSFER_LUT_STAGED_PROPHOTO_24MP_RESULT.json`.
+
+### 2026-08-20 - U5.R2SPCP2A closes on frozen member format mismatch
+
+- Resumed the exact Range acquisition without re-downloading 83 already
+  CRC-verified members. Frozen fit member `I0582_03_01.png` is byte-complete
+  and CRC-exact, but begins with JFIF JPEG rather than the required PNG
+  signature.
+- Preserved the no-replacement/no-decoder-fallback stop rule. Operator fit,
+  calibration score and sealed payload reads remain zero; the exact SPCP2
+  global-logit-affine route is closed before scientific scoring.
+- Evidence: `docs/evidence/U5_R2SPCP2A_PREFERENCE_PAIR_ACQUISITION_FAILURE.json`.
+
+### 2026-08-20 - U5.R2SPCP2 closes before fit on source payload format
+
+- Froze 96 fit, 32 calibration and 32 sealed scenes before any image member
+  acquisition, then implemented the exact shared 12-parameter logit-affine
+  operator and its identity, diagonal, cyclic-label and reverse controls.
+- The initial resumable Range acquisition retained 83 CRC-valid fit/calibration
+  members under the repository-relative P-backed data root, then failed before
+  any report because a `.png` archive member decoded to non-PNG bytes.
+- An additive deterministic signature preflight reproduced the first canonical
+  failure twice byte exactly (`240e8061...aa6d`):
+  `I0034_03_01.png` begins with JPEG/JFIF magic. The frozen contract requires
+  PNG and forbids decode fallback, so operator fit, calibration score and sealed
+  reads remain zero.
+- Close exact SPCP2 without extension-based coercion or same-role replacement.
+  A new prospective leaf may filter payload magic before assigning wholly fresh
+  scenes; this failure does not adjudicate the underlying preference signal.
+- Evidence: `docs/evidence/U5_R2SPCP2_GLOBAL_LOGIT_AFFINE_PREFERENCE_D0_RESULT.json`.

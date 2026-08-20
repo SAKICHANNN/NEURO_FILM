@@ -1508,3 +1508,19 @@ only a separately preregistered scene-disjoint winner/loser Range acquisition
 and one shared source-free bounded explicit-operator D0. It does not establish
 population preference, film/stock/scanner identity, redistribution rights or
 product admission, and does not authorize an indiscriminate 9GB download.
+
+U5.R2SPCP2A closes the exact global-logit-affine D0 before fitting. The frozen
+fit member `I0582_03_01.png` decompresses to all 145,126 declared bytes with
+the exact central-directory CRC, but its payload is JFIF JPEG rather than PNG.
+The no-replacement/no-format-fallback rule therefore stops after 83 retained
+fit/calibration members; sealed reads, operator fitting and scoring remain zero.
+
+U5.R2SPCP2 freezes a scene-disjoint 96/32/32 shared logit-affine operator D0,
+but closes before fitting. A deterministic payload-signature preflight finds
+that canonical calibration loser `I0034_03_01.png` is actually JPEG/JFIF;
+two reports are byte exact (`240e8061...aa6d`, stable `46990b8c...166c6`).
+The frozen decode contract requires PNG and forbids fallback, so operator fit,
+calibration score and sealed reads are all zero. The 83 already acquired
+CRC-valid members remain isolated on the P-backed project data root. Only a
+new prospective cohort whose payload magic is locked before scene roles may
+continue this question; SPCP2 cannot be relabeled or rescued in place.

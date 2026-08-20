@@ -1,0 +1,57 @@
+{
+  "schema": "neuro-film.u5-r2spcp2-global-logit-affine-evidence.v1",
+  "experiment_id": "U5.R2SPCP2",
+  "date": "2026-08-20",
+  "execution_commit": "552f4d2fa56219e7e647321a65f3a2bc82310ed1",
+  "contract": {
+    "path": "configs/u5_r2spcp2_global_logit_affine_preference_d0_v1.json",
+    "sha256": "8c624815934761abf20174d96bb27cc19c1666620d1fee87edc41ed4ca9cffac"
+  },
+  "roles_manifest": {
+    "path": "manifests/u5_r2spcp2_global_logit_affine_roles_v1.json",
+    "sha256": "5ed0aaa4cf3c79b33f1e9505d0df0cf103ea071d7266655d9bde480192c7b807",
+    "stable_id": "sha256:a87bf616cf327d1c5e4904b4ebfa3364aec014e854e71487fe905ec3d5cd0420"
+  },
+  "formal_report": {
+    "path": "outputs/eval/u5_r2spcp2_global_logit_affine_v1/acquisition_fail_a.json",
+    "sha256": "240e8061e94a699b94abe4d880dbb48745fdafc6328df49acea45ba9eb40aa6d",
+    "second_report_path": "outputs/eval/u5_r2spcp2_global_logit_affine_v1/acquisition_fail_b.json",
+    "second_report_sha256": "240e8061e94a699b94abe4d880dbb48745fdafc6328df49acea45ba9eb40aa6d",
+    "stable_id": "sha256:46990b8c131f9bf4bcd20c8f2e2af4922ec15ddb754de50ddf4c4a11ba2166c6",
+    "byte_exact_replay": true
+  },
+  "observed_failure": {
+    "member_name": "SPCP_dataset/images/I0034_03_01.png",
+    "role": "calibration",
+    "side": "loser",
+    "declared_extension": ".png",
+    "observed_prefix_hex": "ffd8ffe000104a46494600010101012c012c0000ffdb00430002010101010102",
+    "observed_format": "JPEG JFIF",
+    "failed_gate": "required_payload_format_png"
+  },
+  "execution_integrity": {
+    "initial_parallel_attempt_report_written": false,
+    "initial_parallel_attempt_stopped_on_payload_signature_validation": true,
+    "valid_partial_payload_files_retained": 83,
+    "valid_partial_payload_bytes_retained": 128151946,
+    "partial_payload_location": "data/preference/spcp/u5_r2spcp2_global_logit_affine_v1",
+    "partial_payload_storage": "repository-relative P-backed project namespace",
+    "deterministic_signature_preflight_added_without_changing_scientific_contract": true,
+    "operator_fit_count": 0,
+    "calibration_score_count": 0,
+    "sealed_payload_count": 0
+  },
+  "implementation": {
+    "acquisition_path": "scripts/acquire_u5_r2spcp2_selected_pairs.py",
+    "acquisition_sha256": "0b1ad8f59354c523af806e65d2a496d25c6537f8cd1c1452502140ac62d0d102",
+    "operator_runner_path": "scripts/run_u5_r2spcp2_global_logit_affine_d0.py",
+    "operator_runner_sha256": "832153dd10fb5a187702523ef6a313a5f0a87afeed0d7dfa8b054d39a8d6ad1c",
+    "operator_core_path": "src/eval/spcp_global_logit_affine.py",
+    "operator_core_sha256": "a8d26b402bb3e8ec134bba7a11da933359d53d072a2960e2acc2cd2b12e14405",
+    "operator_executed": false
+  },
+  "status": "FAIL_CLOSED_BEFORE_FIT_PAYLOAD_FORMAT_MISMATCH",
+  "decision": "close_exact_spcp2_decode_and_operator_family",
+  "next_allowed_leaf": "A separately preregistered fresh scene cohort may establish payload magic and decoder eligibility before role lock; it may not relabel SPCP2 or reuse its selected scenes for admission.",
+  "claim_ceiling": "Source mechanics failure only. This is not evidence for or against the SPCP human-preference signal, the global operator hypothesis, film, stock, scanner, arbitrary-image preference, package, capability or product quality."
+}
