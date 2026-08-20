@@ -14944,3 +14944,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Verification: 21 focused/adjacent tests, Ruff, py_compile and diff-check
   pass. Evidence:
   `docs/evidence/SF3_A3_THREE_STOCK_ADMISSION_MATRIX_RESULT.json`.
+
+### 2026-08-21 - RF3.D5 retains spectral shape as a limited three-stock prior
+
+- The exact first-party Velvia 50, Portra 400 and Ektar 100 spectral graphs,
+  common wavelength grid, peak normalization, `-1.25` floor, manual trace rule,
+  three-pixel uncertainty penalty and materiality gates were frozen before the
+  curve observations.
+- Overlay review confirms all nine traced layer curves follow the published
+  centerlines, including Kodak secondary-wavelength lobes. Two formal reports
+  are byte exact (`3473fc29...a95698`, stable `da418be5...931d3`).
+- All pairs pass conservative separation: mean lower bounds
+  `.11883/.14541/.10723`, RMSE lower bounds `.18739/.20148/.20558`, and peak
+  differences `53/17/70 nm` for Velvia--Portra, Velvia--Ektar and
+  Portra--Ektar respectively.
+- This is a non-renderable manufacturer prior only. It supplies no RGB target,
+  scanner/process truth, calibrated response or product admission and does not
+  unblock adaptive/retrieval/K>1 work. Controlled three-stock pixels remain
+  the mainline.

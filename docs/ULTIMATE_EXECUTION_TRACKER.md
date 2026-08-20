@@ -86,6 +86,18 @@ Close datasheet characteristic shape as a three-stock identity signal without
 redigitization or gate rescue. The next K=1 stock expert must be driven by
 rights-authorized, same-scene, independently grouped pixel evidence.
 
+RF3.D5 tests the remaining common manufacturer domain, layer spectral
+sensitivity, with auditable curve overlays and a conservative three-pixel
+digitization penalty. Two formal reports are byte exact
+(`3473fc29...a95698`, stable `da418be5...931d3`). All three pairs retain
+material normalized-shape separation after removing absolute speed and chart
+floors: mean-absolute lower bounds are `.10723-.14541`, RMSE lower bounds
+`.18739-.20558`, and maximum channel-peak differences are `17-70 nm`.
+Retain this only as a non-renderable K=1 manufacturer prior. It does not alter
+SF3.A3: no stock has controlled pixel targets, scanner interpretation or
+independent holdouts, so fitting and product claims remain closed. Evidence:
+`docs/evidence/RF3_D5_THREE_STOCK_SPECTRAL_SHAPE_RESULT.json`.
+
 SF3.A3 now compiles the requested executable source/evidence matrix over eight
 hash-bound results rather than relying on narrative eligibility. Two formal
 reports are byte exact (`676aec5f...74394c`, stable `4954e9b1...98f71b`).
