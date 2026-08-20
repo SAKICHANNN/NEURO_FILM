@@ -1,0 +1,80 @@
+{
+  "schema": "neuro_film.u1_3c_dng_capture_metadata_receipt_contract.v1",
+  "experiment_id": "u1.3c-dng-capture-metadata-receipt-v1",
+  "node": "ULT > U1 > U1.3C",
+  "status": "frozen_before_formal_extraction",
+  "bindings": {
+    "contract_path": "docs/planning/U1_3C_DNG_CAPTURE_METADATA_RECEIPT_CONTRACT.md",
+    "contract_sha256": "729208d6bd100590a83072a0b86fd9ac6377d541738e3954d6db36a1c905604f",
+    "implementation_path": "src/preprocess/dng_metadata.py",
+    "implementation_sha256": "b63a741837a6e40c5c2a658b17bbe050a9ed25f58aa2057d8f0524b6ef6abb6a",
+    "implementation_commit": "6ee7bf912a48bc09a035f57ca45777979506c30f",
+    "runner_path": "scripts/audit_u1_3c_dng_capture_metadata_receipt.py",
+    "runner_sha256": "b570e075f569f3fa3bb1368d302c4b15e890ba96b4517249d50872f879bfaddd",
+    "source_manifests": [
+      {
+        "path": "configs/u5_r2bh0s_fixed_bank_oracle_source_preflight_v1.json",
+        "sha256": "48c622787dba8d651db5f44eadc3223e00839b75740dfbab1d95ca45cd4d3bc6"
+      },
+      {
+        "path": "configs/u5_r2bh1s_global_policy_source_preflight_v1.json",
+        "sha256": "9ce61d3b9806447b40642db1a4d3d782923936b07901378cf9537bf32cd5911d"
+      }
+    ]
+  },
+  "source_rights_ceiling": "CC0/Public Domain per each exact raw.pixls.us repository row; private receipt validation",
+  "rows": [
+    {
+      "source_id": "dji_fc4382",
+      "logical_path": "data/external/rawpixls_bh0_v1/raw/dji_fc4382.dng",
+      "source_bytes": 14884352,
+      "source_sha256": "f33ddaf2a7fa70b395abced251faccea11100d2ab7e54ae0a6adbff043d72027",
+      "source_manifest_index": 0,
+      "expected_raw_kind": "cfa"
+    },
+    {
+      "source_id": "google_pixel_7_pro",
+      "logical_path": "data/external/rawpixls_bh0_v1/raw/google_pixel_7_pro.dng",
+      "source_bytes": 12243982,
+      "source_sha256": "6b921558944db5fdb4f1c63dc64919b6666ef700857a187e18500099c6e7c6c6",
+      "source_manifest_index": 0,
+      "expected_raw_kind": "cfa"
+    },
+    {
+      "source_id": "apple_iphone_12_pro",
+      "logical_path": "data/external/rawpixls_bh1_v1/raw/apple_iphone_12_pro.dng",
+      "source_bytes": 29195592,
+      "source_sha256": "e91e77a4533ed7cce551d83330676ea5c47dd5e55fb38adda7819366afdbdfc2",
+      "source_manifest_index": 1,
+      "expected_raw_kind": "linear_raw"
+    },
+    {
+      "source_id": "huawei_eml_l29",
+      "logical_path": "data/external/rawpixls_bh1_v1/raw/huawei_eml_l29.dng",
+      "source_bytes": 23643352,
+      "source_sha256": "77385bde838ab7e0a5b067d7f6e6b8cb3019a3c22353fae6b8689a43adda439a",
+      "source_manifest_index": 1,
+      "expected_raw_kind": "cfa"
+    }
+  ],
+  "gates": {
+    "required_row_count": 4,
+    "required_cfa_count": 3,
+    "required_linear_raw_count": 1,
+    "required_source_hash_match_rate": 1.0,
+    "required_manifest_binding_rate": 1.0,
+    "required_receipt_digest_rate": 1.0,
+    "maximum_raster_decode_calls": 0,
+    "require_all_noise_profiles": true,
+    "require_forward_reverse_exact": true
+  },
+  "claim_ceiling": {
+    "private_dng_capture_metadata_receipt": true,
+    "pixel_decode": false,
+    "vendor_render_parity": false,
+    "calibrated_exposure_or_noise": false,
+    "arbitrary_dng": false,
+    "public_schema_or_capability": false,
+    "product_or_film_stock_mapping": false
+  }
+}
