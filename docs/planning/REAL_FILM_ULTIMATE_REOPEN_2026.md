@@ -661,3 +661,22 @@ a pass is representation evidence only.
 - No capacity, metadata-field, ridge, sampling, role, row or threshold rescue
   is allowed. Contract:
   `configs/sf3_a0t_rgb2raw_metadata_explicit_isp_d0_v1.json`.
+
+### 2026-08-21 - SF3.A0T candidate 1 fails before sealed confirmation
+
+- Two complete executions persist byte-exact prescore locks before calibration
+  and reproduce byte-exact final reports at `e67854a1...25505`. Fit/calibration
+  target reads are 80/24; sealed confirmation target reads are zero.
+- Exact capture-WB conditioning loses to the equal-capacity camera-static
+  operator: only `7/24` rows improve, median gain is `-2.64%`, worst is
+  `-91.05%`, and both camera strata fail. Candidate error `.08568` is also
+  effectively equal to cyclically wrong-WB error `.08565`, so the physical
+  observation is not attributed by this representation.
+- Bounded matrix, finite, zero-new-boundary and reload gates pass. Absolute
+  p95 `.15331` and gradient-tail `15.3647` fail in addition to the material
+  control/tail gates. Do not add curves, capacity, WB normalization, routing or
+  post-result fallback on this cohort.
+- Candidate counter is now `1/3`. The next immediate leaf is mature RAW/HDR
+  portable explicit-operator engineering, not candidate 2 using the same
+  observation. Evidence:
+  `docs/evidence/SF3_A0T_RGB2RAW_METADATA_EXPLICIT_ISP_D0_RESULT.json`.

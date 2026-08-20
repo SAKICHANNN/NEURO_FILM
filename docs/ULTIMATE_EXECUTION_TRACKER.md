@@ -1982,3 +1982,18 @@ the private pointwise C ABI arithmetic result. Spatial response, neutral
 gauge, display look, full-frame renderer, other targets, package, capability,
 calibration and product promotion remain closed. Evidence:
 `docs/evidence/U6_P8X_NATIVE_PRINT_CONFORMANCE_RESULT.json`.
+
+SF3.A0T is bounded candidate 1 of 3 and closes before sealed confirmation.
+Two complete executions persist byte-exact prescore locks (`938b8e28...3c98`)
+before calibration and reproduce byte-exact final reports
+(`e67854a1...25505`). The capture-WB-conditioned fixed logit-affine operator
+improves only `7/24` calibration rows over the equal-capacity camera-static
+control, with median/worst relative gain `-2.643%/-91.046%`; its mean error
+`.085677` is also indistinguishable at the frozen attribution gate from the
+cyclic wrong-WB control `.085651`. Matrix safety, finite, zero-new-boundary and
+reload/order gates pass, while both-camera, material gain/tail, absolute error
+and gradient-tail gates fail. Fit/calibration/sealed target reads are
+`80/24/0`. Advance the final-candidate counter to `1/3`, prohibit same-source
+WB/curve/capacity/router rescue, and return the immediate mainline to mature
+RAW/HDR portable explicit-operator engineering. Evidence:
+`docs/evidence/SF3_A0T_RGB2RAW_METADATA_EXPLICIT_ISP_D0_RESULT.json`.

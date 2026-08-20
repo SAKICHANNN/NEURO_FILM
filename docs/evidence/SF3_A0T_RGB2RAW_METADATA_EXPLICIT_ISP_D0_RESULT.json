@@ -1,0 +1,108 @@
+{
+  "schema": "neuro-film.sf3-a0t-rgb2raw-metadata-explicit-isp-d0-evidence.v1",
+  "experiment_id": "SF3.A0T_RGB2RAW_METADATA_EXPLICIT_ISP_D0_V1",
+  "date": "2026-08-21",
+  "status": "FAIL_CLOSED_CANDIDATE_1_OF_3_NO_SEALED_TARGET_READ",
+  "implementation_commit": "ed5ef46a8f16ffb48df70ccae71d8a97e434eba9",
+  "contract": {
+    "path": "configs/sf3_a0t_rgb2raw_metadata_explicit_isp_d0_v1.json",
+    "sha256": "4ded81d1d48a90736483c0361d1d61dde7463f522101e125f5e806fbe806946a"
+  },
+  "parents": {
+    "source_evidence_sha256": "f5ec49719db1dccae6866d05cd86d721cc4cdc9078b3ee762d42b24b35952c12",
+    "pixel_preflight_evidence_sha256": "527ad90ab07e571963945b99bddb64ab6e55ad694cfad415869aa829d07073fc"
+  },
+  "role_lock": {
+    "sha256": "b0035a5bf6c36302c7a9a434224931a7fc5f98f0d8a99eac06e77dd9caf457c3",
+    "fit_rows": 80,
+    "calibration_rows": 24,
+    "sealed_confirmation_rows": 24,
+    "cross_role_group_overlap": 0
+  },
+  "prescore_lock": {
+    "forward": "outputs/eval/sf3_a0t_rgb2raw_metadata_explicit_isp_d0_v1/formal_forward_prescore_lock.json",
+    "reverse": "outputs/eval/sf3_a0t_rgb2raw_metadata_explicit_isp_d0_v1/formal_reverse_prescore_lock.json",
+    "file_sha256": "938b8e28056c3583ee2244f18f3fece0e1183b4d4ddf3180682c0d38b95b3c98",
+    "stable_identity": "811c7e5d7bc27390fd253d2ec669865743a69931fbde5024940e0f8d8cf62f41",
+    "byte_exact": true,
+    "fit_target_reads": 80,
+    "calibration_target_reads_at_lock": 0,
+    "sealed_target_reads_at_lock": 0
+  },
+  "formal_replay": {
+    "forward": "outputs/eval/sf3_a0t_rgb2raw_metadata_explicit_isp_d0_v1/formal_forward.json",
+    "reverse": "outputs/eval/sf3_a0t_rgb2raw_metadata_explicit_isp_d0_v1/formal_reverse.json",
+    "report_sha256": "e67854a17d29afc3c500c56125443bd66b6b73a203638c9e4d026c2558725505",
+    "stable_identity": "7d70e8655807a461759103300515402c1247790ce301cc3b0e9ab45281e87ad9",
+    "byte_exact": true,
+    "logical_network_bytes_per_run": 332562589
+  },
+  "execution_amendments": [
+    {
+      "stage": "before-prescore-lock",
+      "fact": "Two initial processes were interrupted with zero report and zero lock after audit found that the complete fitted operator had not yet been persisted before calibration reads.",
+      "scientific_change": "none; added mandatory prescore lock persistence"
+    },
+    {
+      "stage": "before-prescore-lock",
+      "fact": "The first lock-capable forward process encountered an HTTPS TLS EOF during fit acquisition; its peer was stopped. Both had zero report and zero lock.",
+      "scientific_change": "none; froze four attempts per range, fixed backoff and four workers per process"
+    }
+  ],
+  "calibration": {
+    "strongest_legitimate_control": "static",
+    "candidate_mean_oklab_error": 0.08567690188661108,
+    "static_mean_oklab_error": 0.08111557601928666,
+    "daylight_mean_oklab_error": 0.0818817685545919,
+    "gray_world_mean_oklab_error": 0.08763439895813034,
+    "permuted_metadata_mean_oklab_error": 0.08565063530392207,
+    "identity_raw_proxy_mean_oklab_error": 0.2614604532367168,
+    "candidate_median_mean_oklab_error": 0.0801207024830372,
+    "candidate_p95_mean_oklab_error": 0.1533103865793262,
+    "improvement_rate_vs_strongest_legitimate": 0.2916666666666667,
+    "median_relative_reduction_vs_strongest_legitimate": -0.026432134809990716,
+    "worst_relative_reduction_vs_strongest_legitimate": -0.910464542597087,
+    "iphone_x_improvement_rate": 0.3333333333333333,
+    "samsung_s9_improvement_rate": 0.25,
+    "improvement_rate_vs_permuted_metadata": 0.5833333333333334,
+    "median_relative_reduction_vs_permuted_metadata": 0.0020038823556232455,
+    "maximum_gradient_p999_ratio": 15.364703511865356,
+    "maximum_new_exact_boundary_fraction": 0.0,
+    "maximum_reload_error": 0.0
+  },
+  "operator_safety": {
+    "iphone_x_determinant_condition_smin": [0.24854409521464652, 3.553723289230603, 0.27429164763896885],
+    "samsung_s9_determinant_condition_smin": [0.014892475079562198, 3.131307010690648, 0.1576516353784126],
+    "matrix_gates_passed": true,
+    "finite_boundary_reload_gates_passed": true
+  },
+  "failed_gates": [
+    "improvement_rate_vs_strongest_legitimate",
+    "median_gain_vs_strongest_legitimate",
+    "worst_tail_vs_strongest_legitimate",
+    "each_camera_improvement_rate",
+    "improvement_rate_vs_permuted_metadata",
+    "median_gain_vs_permuted_metadata",
+    "median_absolute_error",
+    "p95_absolute_error",
+    "gradient_tail"
+  ],
+  "target_reads": {
+    "fit": 80,
+    "calibration": 24,
+    "sealed_confirmation": 0
+  },
+  "decision": "FAIL_CLOSED_CANDIDATE_1_OF_3_NO_SEALED_TARGET_READ",
+  "bounded_final_candidate_counter_before": 0,
+  "bounded_final_candidate_counter_after": 1,
+  "scientific_conclusion": "Capture white balance is a real physical observation, but this exact WB-preconditioned fixed logit-affine ISP does not outperform the equal-capacity camera-static operator and is indistinguishable from cyclically wrong WB at the frozen materiality level. Safe bounded matrices alone do not close fidelity or gradient tails.",
+  "closed_without_rescue": [
+    "same-cohort WB representation or normalization changes",
+    "curve, polynomial or operator-capacity increase",
+    "ridge, sample, role, row or threshold changes",
+    "post-result camera router or fallback"
+  ],
+  "next_mainline": "Do not consume candidate 2 on a same-source capacity rescue. Return to mature RAW/DNG/HDR portable explicit-operator engineering, beginning with the structured ISO 21496-1/Ultra HDR fail-closed gap unless a genuinely new rights-clear physical observation appears.",
+  "rights_ceiling": "The source card declares MIT but includes no separate license text; no product-distribution right is inferred.",
+  "claim_ceiling": "Two-camera natural RAW-to-phone-ISP candidate-1 negative only. No film, stock, preference, arbitrary camera, package, schema, receipt, capability or product claim."
+}
