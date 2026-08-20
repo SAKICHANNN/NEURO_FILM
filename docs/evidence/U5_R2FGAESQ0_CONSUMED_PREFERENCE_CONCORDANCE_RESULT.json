@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "experiment_id": "U5.R2FGAESQ0",
+  "status": "INVALID_MECHANICS_ORDER_DEPENDENT_FGAESQ_SERIES",
+  "date": "2026-08-20",
+  "preregistration_commits": [
+    "a02a7fea",
+    "aa688831",
+    "4772f81f"
+  ],
+  "score_execution_commit": "d7c64d14cbd3b93fda84b80839b837133bc6b414",
+  "mechanics_audit_commit": "52d89b4f30944f9dff83abaafe46b35e467738c7",
+  "frozen_inputs": {
+    "config_sha256": "487313946b67088bca332d780c7750c6b536e5081b8ea2bfba77856dc008c3ce",
+    "score_execution_core_git_blob": "560005492e01a38825569b9e277b7e95aea43630",
+    "mechanics_audit_core_git_blob": "9ab8610a92bfce0fb69733db419c98da0ef5c25a",
+    "mechanics_audit_core_worktree_sha256": "deea6507ecc3991e92bfd965b28ba467ae4d5d29ebaac476c0ebaf96e726169e",
+    "mechanics_audit_test_git_blob": "494e538045045ff377746bd7bbfc203ebe5da276",
+    "mechanics_audit_test_worktree_sha256": "8f697a9b9b33361f53a7ae32fc1a333f09e50071e4b90f18a56258eb8ea1b8ba",
+    "official_repository": "https://github.com/yzc-ippl/FG-IAA",
+    "official_repository_commit": "f23b8510f3f407f9ca5b997cfc9c6bfb07d44d08",
+    "official_repository_license_file_present": false,
+    "official_model_repository": "yzc002/FGAesQ",
+    "official_model_revision": "75df5481b05bf6d086df017aa2fb04be00aa39f9",
+    "official_model_bytes": 599232198,
+    "official_model_sha256": "7249cd7066aae7067258cc28d13fef1a369693e557c2fd9ac172edfaebd1af65",
+    "official_model_license_metadata_present": false,
+    "openai_clip_repository_commit": "dcba3cb2e2827b402d2701e7e1c7d9fed8a20ef1",
+    "openai_clip_vit_b16_bytes": 350837078,
+    "openai_clip_vit_b16_sha256": "5806e77cd80f8b59890b7e101eabd078d9fb84e6937f9e85e4ecb61988df416f",
+    "official_source_sha256": {
+      "README.md": "d13d5fd5116a05c1c22fa53098364454f11619db6f57b34dfcee149a96d30000",
+      "FGAesQ_Inference/inference_series.py": "1670013900a0fbd4d9a177c6db7557a27ced8c7614801ace017704141f16f195",
+      "FGAesQ_Inference/inference_single.py": "a3d3f3e18aee5dcc1564ccc9d3774ab680ad53c840a54e5e852c0c14f66270e0",
+      "FGAesQ_Inference/utils/FGAesQ.py": "3b8064f0c0279e6816c6373776b28ea07ee9ec6d3518829a984ab2b338e9e94a",
+      "FGAesQ_Inference/utils/DiffToken.py": "c2f82493c2609337df9fafa3a1805b4eb041505349fea54aafb98ed246808867",
+      "FGAesQ_Inference/utils/data_utils.py": "83591b0bc3454c1534e8502be1a239ab30e5b26b9cd8870590a6033296e73fb4"
+    },
+    "p401_public_manifest_sha256": "31b62c085ec144fa0111570a85c1be7d8ef07dd86fe278eb167465be0075cd42",
+    "p402_public_manifest_sha256": "6ebde38a9f768f98ac5488ae8be97926e928a560b1c4e79332fa1b3ebf304841"
+  },
+  "strict_load": {
+    "state_tensor_count": 459,
+    "state_scalar_count": 235222219,
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "torch_load_weights_only": true,
+    "official_dataset_decode_fallback_used": false,
+    "strict_similarity_fallback_used": false
+  },
+  "execution_order": {
+    "p401_round_one_png_assets": 24,
+    "p402_round_one_png_assets": 48,
+    "series_count": 24,
+    "private_mapping_reads": 0,
+    "direct_result_reads": 0,
+    "preference_concordance_metrics_computed": false
+  },
+  "replay": {
+    "score_lock_a_sha256": "500d0b35ac528438b8b7b34b1aae6be8ca28c8b2be76d7fc1b9a2ebcc8bce322",
+    "score_lock_b_sha256": "500d0b35ac528438b8b7b34b1aae6be8ca28c8b2be76d7fc1b9a2ebcc8bce322",
+    "score_lock_bytes": 35057,
+    "two_fresh_process_score_locks_byte_exact": true,
+    "fresh_process_score_max_abs_error": 0.0,
+    "fresh_process_rankings_exact": true,
+    "mechanics_audit_sha256": "5bafd40b6134c459223791d6a727c4540a49e400dca1e927b0863af629785659",
+    "storage": "project-isolated D fallback because P reported Full Repair Needed"
+  },
+  "metrics": {
+    "all_scores_finite": true,
+    "pair_sign_total": 84,
+    "canonical_reverse_pair_sign_match_count": 60,
+    "canonical_reverse_pair_sign_match_rate": 0.7142857142857143,
+    "all_pair_signs_exact_series_count": 6,
+    "affected_series_count": 18,
+    "maximum_canonical_reverse_same_asset_score_delta": 0.15633106231689453
+  },
+  "passed_gates": [
+    "exact 24-series / 72-PNG consumed public inventory",
+    "all model scores finite",
+    "strict checkpoint load with zero missing or unexpected keys",
+    "two fresh-process complete score locks byte exact",
+    "zero private mapping or direct-result reads"
+  ],
+  "failed_gates": [
+    "canonical_reverse_pair_signs_exact"
+  ],
+  "interpretation": "The released FGAesQ series pipeline is reproducible across fresh processes but is materially dependent on within-pair argument order on these exact same-source colour-operator series: 24 of 84 pair signs reverse and 18 of 24 series are affected. The official DiffToken path seeds each unordered pair reproducibly, then performs sequential stochastic patch selection separately for the first and second image; reversing image arguments therefore changes which deterministic random draws are assigned to each image. Under the frozen order-invariance gate, these scores are not an admissible preference observation. Private mappings and direct preference results remained sealed, so no scientific concordance metric was computed.",
+  "closed_rescues": [
+    "averaging canonical and reverse orders",
+    "changing pair identifiers or random seeds",
+    "changing patch selection, resolution, checkpoint, model or score aggregation",
+    "reading private truth and choosing the better order",
+    "using single-image mode as the primary after series mechanics failure",
+    "candidate promotion, routing or product admission"
+  ],
+  "claim_ceiling": "Private consumed-asset mechanics negative for the exact released FGAesQ series scorer; no preference concordance, owner, population, generalization, candidate promotion, product, package, schema, capability or commercial claim.",
+  "product_capability_opened": false
+}
