@@ -1695,6 +1695,15 @@ scanner-fixed structure. The two-plate decision is inconclusive. Keep the
 single positive as a mechanism signal only and require a fresh perpendicular-
 scan population without band/crop/margin rescue.
 
+U6.P6AY tests that lone Barnard positive on the separately digitized full-plate
+normal/perpendicular pair with the exact P6AX statistic. Two reports are exact
+(`c6b76888...4ffea`) and all source/support gates pass, but the result reverses:
+plate-following correlation is `-.15945`, scanner-fixed correlation is
+`.85357`, and the plate-following margin is `-1.01302`. The center signal is
+therefore acquisition-scale dependent, not material attribution. Close this
+same-plate directional family; do not rescue it with another crop, band,
+margin or IFD choice.
+
 U5.R2REPID10 is prospectively frozen after REPID9C/9D close two distinct
 reference encoders. It returns to REPID7's positive 7/9 self-canonical signal
 but changes only the explicit operator representation: fixed extended-domain

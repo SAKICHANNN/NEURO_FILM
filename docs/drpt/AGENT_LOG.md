@@ -14171,6 +14171,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   statistic. Evidence:
   `docs/evidence/U6_P6AX_ROTATED_PLATE_DIRECTIONAL_ATTRIBUTION_D0_RESULT.json`.
 
+### 2026-08-20 - U6.P6AY rejects Barnard directional transfer across acquisition scale
+
+- Locked and acquired the exact unconsumed full-plate normal/perpendicular
+  Barnard TIFFs under CC-BY-4.0. Both are one-page RGB16 and pass identity,
+  decode and unchanged P6AX support gates.
+- Two formal reports are byte exact (`c6b76888...4ffea`, stable
+  `97c5de43...98504`). Unlike the center scans, the full scans are strongly
+  scanner-coordinate fixed (`.85357`) and anti-correlated after plate rotation
+  (`-.15945`); the frozen plate margin is `-1.01302`.
+- The P6AX Barnard positive is not acquisition-scale stable. Close the
+  same-plate crop/frequency/margin family and return to independently crossed
+  scanners or source-provided physical calibration. Evidence:
+  `docs/evidence/U6_P6AY_BARNARD_FULLSCAN_DIRECTIONAL_CONFIRMATION_RESULT.json`.
+
 ### 2026-08-20 - U5.R2REPID10 freezes bounded basis selection
 
 - Direction correction: REPID9C global statistics and REPID9D CanonCGT tokens

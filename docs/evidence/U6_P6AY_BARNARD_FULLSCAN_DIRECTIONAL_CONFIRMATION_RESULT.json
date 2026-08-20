@@ -1,0 +1,51 @@
+{
+  "schema": "neuro-film.u6-p6ay-barnard-fullscan-directional-confirmation-evidence.v1",
+  "node": "U6.P6AY",
+  "date": "2026-08-20",
+  "status": "FAIL_BARNARD_FULLSCAN_DIRECTIONAL_CONFIRMATION_D0",
+  "question": "Does the P6AX Barnard plate-following directional signal repeat on the separately digitized full-plate normal/perpendicular pair at unchanged analysis settings?",
+  "implementation": {
+    "source_lock_commit": "940b6872",
+    "contract_commit": "72c818ba",
+    "implementation_commit": "737daeb6",
+    "source_lock_sha256": "09f98a28e40a3610db3a5cf59e2ed20f3f23b2f101ccf3bc088744e851c0e75c",
+    "contract_sha256": "b45484c40049635e0198fc71f185cc1e3c37697ba18713316973abd4b7544652",
+    "evaluator_sha256": "b6363e2b967e8530c956db01b819c17761f53dbdf3049e0d5f4ffe3ed8ef8893",
+    "runner_sha256": "cab367346f07bcdfb55219ed35d8bd35142ba7285e6d188ba4960e838a3452f1",
+    "test_sha256": "0515a4bfe0e5b037156fb65128768b2fa0985b14b68aab1c3c8ac284a099d181"
+  },
+  "source": {
+    "record_url": "https://knowledge.uchicago.edu/records/1cnjt-w1076",
+    "license": "CC-BY-4.0",
+    "reference_sha256": "d54858ba4175c36a74ad72eaf88d7e5780dd0fb590f376c3b44bd647564bf540",
+    "rotated_sha256": "1da20ccf73c4d891f4655fc385ec78cc9c738000fe34989d10d1d3d08954c403",
+    "reference_shape": [7336, 7301],
+    "rotated_shape": [7379, 7319],
+    "dtype": "uint16",
+    "samples_per_pixel": 3,
+    "source_gate_pass": true
+  },
+  "metrics": {
+    "center_scan_plate_following_margin": 0.13003053018845076,
+    "full_scan_plate_following_correlation": -0.15945366597296176,
+    "full_scan_scanner_fixed_correlation": 0.853570770270981,
+    "full_scan_wrong_plate_correlation": 0.061959309771284846,
+    "full_scan_plate_following_margin": -1.013024436243943,
+    "full_scan_scanner_fixed_margin": 0.7916114604996962,
+    "margin_retainment_ratio_vs_center_scan": -7.790666044165058,
+    "support_pass": true,
+    "plate_following_pass": false,
+    "scanner_fixed_pass": true
+  },
+  "formal_replay": {
+    "reports_byte_exact": true,
+    "report_a_sha256": "c6b7688868a5b7271dfc91bc61da8070163b814644d3fa15ca8e67b1ce84ffea",
+    "report_b_sha256": "c6b7688868a5b7271dfc91bc61da8070163b814644d3fa15ca8e67b1ce84ffea",
+    "stable_evidence_id": "97c5de439d84e93a23d588cd620a6279fce3cc98baa2d7960e0dd80a3e598504"
+  },
+  "automatic_pass": false,
+  "decision": "close_barnard_fullscan_directional_confirmation_without_rescue",
+  "interpretation": "The center-scan plate-following signal reverses under the separately digitized full-plate pair, which is strongly scanner-coordinate fixed. Directional structure is acquisition-scale dependent and cannot identify plate material on this source.",
+  "next_hypothesis": "Stop this same-plate directional family. Further scanner/material separation requires an independent crossed-scanner population or source-provided physical calibration, not another crop, band or margin variant.",
+  "claim_ceiling": "same 1905 Barnard plate across a second full-scan acquisition pair; acquisition-dependence negative only, not population material attribution, isolated NPS, scanner calibration or product evidence."
+}
