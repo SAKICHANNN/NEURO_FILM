@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import sys
 import tempfile
 import time
 from pathlib import Path
@@ -13,7 +14,10 @@ from typing import Any
 
 import numpy as np
 import tifffile
-from src.inference.atomic_json import atomic_write_json
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from src.color_engine.oklab_analytical_interior import (
     analytical_oklab_interior_rec2020,
@@ -23,9 +27,8 @@ from src.eval.native_rec2020_oklab_interior import (
     build_native_rec2020_interior,
     load_native_rec2020_interior,
 )
+from src.inference import atomic_write_json
 from src.preprocess.prophoto_icc import decode_prophoto_rgb16_to_linear_rec2020
-
-ROOT = Path(__file__).resolve().parents[1]
 
 
 def _sha256(path: Path) -> str:
@@ -34,6 +37,13 @@ def _sha256(path: Path) -> str:
         for chunk in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def _close_memmap(array: np.memmap) -> None:
+    array.flush()
+    mapping = getattr(array, "_mmap", None)
+    if mapping is not None:
+        mapping.close()
 
 
 def _load_contract(path: Path, *, root: Path) -> tuple[dict[str, Any], str]:
@@ -214,6 +224,11 @@ def evaluate(
             if len(scale_hashes) == 1
             else None,
         }
+        del source_tile, output_tile, scale_tile, output, scale
+        for array in (*native_outputs, *native_scales, decoded, oracle, oracle_scale):
+            _close_memmap(array)
+        native_outputs.clear()
+        native_scales.clear()
         automatic_pass = bool(
             maximum_output_error <= gates["maximum_output_absolute_error"]
             and maximum_scale_error <= gates["maximum_chroma_scale_absolute_error"]

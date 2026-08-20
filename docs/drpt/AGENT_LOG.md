@@ -13632,3 +13632,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   staging rescue; any continuation of this product path must fuse and
   parallelize native colour arithmetic and stream publication. Evidence:
   `docs/evidence/U1_4C19A_STAGED_PROPHOTO_24MP_PROFILE_RESULT.json`.
+
+### 2026-08-20 - U1.4C20 passes the native Rec.2020 ingress gate
+
+- A caller-buffer, eight-thread C11 implementation reproduces the retained
+  analytical Rec.2020 OKLab ingress on the exact 24MP C18 fixture. Two formal
+  runs are output/scale byte exact, preserve in-gamut pixels bit exactly, and
+  have maximum output error `3.64e-12`.
+- Native kernel time is `1.57--1.78s`, below the frozen five-second gate and
+  far below the profiled `26.63s` Python hotspot. This opens a separately
+  frozen fused native colour-chain leaf; the complete 15-second renderer gate
+  remains unproved. Evidence:
+  `docs/evidence/U1_4C20_NATIVE_REC2020_OKLAB_INGRESS_RESULT.json`.

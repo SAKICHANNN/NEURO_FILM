@@ -1,0 +1,48 @@
+{
+  "schema": "neuro-film.u1-4c20-native-rec2020-oklab-ingress-evidence.v1",
+  "experiment_id": "U1.4C20",
+  "status": "PASS",
+  "decision": "retain_native_rec2020_oklab_ingress_and_open_fused_native_product_chain",
+  "contract": {
+    "path": "configs/u1_4c20_native_rec2020_oklab_ingress_v1.json",
+    "sha256": "b9a1aa6a2ca81642770af1f1b688219ecb54c44a6c23358590e677ddc40c72d1"
+  },
+  "formal_report": {
+    "path": "outputs/eval/u1_4c20_native_rec2020_oklab_ingress_v1/report.json",
+    "sha256": "7cdfb23bf730c931c3ca2ca726953af9f494b4554aabb8782eccfa71ecfca509",
+    "stable_evidence_id": "47492e864a6bbe76ceeb84b3138b1afa9a12fd73e84e1c37d0618e690c588c97"
+  },
+  "input": {
+    "sha256": "91895fce65e8a32f869dd31ecd5c3ee576c9212cf028d59cd0022b0371668394",
+    "shape": [4000, 6000, 3],
+    "pixel_count": 24000000,
+    "embedded_icc_sha256": "0a8ef7d1d958d98225b3b71d93d9e8e3cecd9c302e014973d025d2a977ecf27c"
+  },
+  "implementation": {
+    "runner_sha256": "81680a89de47874ff15b48f7a550563a5f719e41fefac364cefa4dbc2dc80298",
+    "native_source_sha256": "3a3b1955e5715d474bdd96a8efa5f3c9ab6e9d9f11e1ee0324cb194e0e2363ca",
+    "native_header_sha256": "1eb5fc11763fe14d2a5f9cb086abb542cdd21ec9a044bf24ff38cf2a547e9131",
+    "native_dll_sha256": "3dc41f1e5f5ed5981d27e215af34ad4ec9d536c5f3f2fdb44f6514f85675270c",
+    "toolchain": "msvc-x64-c11",
+    "thread_count": 8
+  },
+  "observations": {
+    "formal_runs": 2,
+    "output_exact": true,
+    "output_sha256": "12fdb522ff6a19f305831971856143686e249650663c29ba6e11b119f71ef9dc",
+    "scale_exact": true,
+    "scale_sha256": "a4d0beaf854c37896f63384f24d22da927b39bd518a9de92b4835131874a3189",
+    "maximum_output_absolute_error": 3.637978807091713e-12,
+    "maximum_chroma_scale_absolute_error": 0.0,
+    "in_gamut_pixels_bit_exact": true,
+    "finite": true,
+    "native_kernel_wall_seconds": [1.5708365000027698, 1.781506500003161]
+  },
+  "execution_amendments": [
+    "Two pre-input attempts failed at Python import and contract binding before source pixel access; the runner import boundary and its exact contract hash were corrected without changing data, algorithm or gates.",
+    "One complete provisional run wrote a passing report but failed Windows temporary-memmap cleanup; it was retained under a failed-attempt directory, excluded from formal evidence, and the runner was corrected to close all memmaps explicitly before the create-only formal rerun."
+  ],
+  "interpretation": "The fixed caller-buffer C11 kernel reproduces the retained analytical Rec.2020 OKLab ingress on the exact 24MP fixture and reduces the measured 26.63-second Python ingress hotspot to under 1.8 seconds. This opens a separately frozen fused native product-chain leaf; it does not establish the complete renderer's 15-second product gate.",
+  "claim_ceiling": "Local Windows MSVC host feasibility for the exact retained Rec.2020 analytical ingress on one 24MP natural-derived ProPhoto fixture; not full renderer performance, cross-platform parity, arbitrary ICC, film-stock calibration, preference, HDR, or default promotion.",
+  "production_default_changed": false
+}
