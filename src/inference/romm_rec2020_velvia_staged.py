@@ -192,6 +192,25 @@ def render_supported_prophoto_velvia_rec2020_staged(
             residual_scale[y0:y1] = scale
         output_samples.flush()
         residual_scale.flush()
+        median_residual_scale = float(np.median(residual_scale))
+        fraction_residual_scale_below_0p5 = float(
+            np.mean(residual_scale < 0.5)
+        )
+        del (
+            source_lab,
+            styled_lab,
+            output_lab,
+            candidate,
+            output_pixels,
+            scale,
+            encoded_output,
+            mapped_tile,
+            chroma_scale,
+            decoded,
+        )
+        for staged in (mapped, lab, residual_scale):
+            staged.flush()
+            staged._mmap.close()
         save_rec2020_rgb16_png_samples(output_samples, output_path)
         stored = cv2.imread(str(output_path), cv2.IMREAD_UNCHANGED)
         if (
@@ -234,8 +253,8 @@ def render_supported_prophoto_velvia_rec2020_staged(
             "look": {
                 "style": style_id,
                 "gamut_mode": style["gamut_mode"],
-                "median_residual_scale": float(np.median(residual_scale)),
-                "fraction_residual_scale_below_0p5": float(np.mean(residual_scale < 0.5)),
+                "median_residual_scale": median_residual_scale,
+                "fraction_residual_scale_below_0p5": fraction_residual_scale_below_0p5,
             },
             "output": {
                 "sha256": _sha256(output_path),
@@ -250,22 +269,9 @@ def render_supported_prophoto_velvia_rec2020_staged(
             "production_default_changed": False,
             "claim_ceiling": profile["claim_ceiling"],
         }
-        del (
-            source_lab,
-            styled_lab,
-            output_lab,
-            candidate,
-            output_pixels,
-            scale,
-            encoded_output,
-            stored,
-            mapped_tile,
-            chroma_scale,
-            decoded,
-        )
-        for staged in (mapped, lab, output_samples, residual_scale):
-            staged.flush()
-            staged._mmap.close()
+        del stored
+        output_samples.flush()
+        output_samples._mmap.close()
         return receipt
 
 
