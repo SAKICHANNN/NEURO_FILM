@@ -1,0 +1,101 @@
+{
+  "schema": "neuro-film.u6-p6av-rotated-plate-coherence-d0-contract.v1",
+  "experiment_id": "U6.P6AW",
+  "question": "Does the unchanged P6AV registration and P6AT coherence protocol pass on a wholly different, higher-feature-count 1905 Barnard glass plate scanned in normal and perpendicular orientations?",
+  "parents": {
+    "method_evidence": {
+      "path": "docs/evidence/U6_P6AT_SCORPION_CROSS_SCANNER_COHERENCE_D0_RESULT.json",
+      "sha256": "eadad727bff65f6a208056271aee68e6adcac6b38e603c10a2e21c1bc6123ad5",
+      "required_status": "PASS_GENERIC_SHARED_STRUCTURE_METHOD_D0",
+      "required_stable_evidence_id": "dabf3c2f5cd6ac5e66138fc48e72dc86fb0e647d72abf9e1edd853c5a55bf772"
+    },
+    "p6av_evidence": {
+      "path": "docs/evidence/U6_P6AV_ROTATED_PLATE_COHERENCE_D0_RESULT.json",
+      "sha256": "562e9b337af6c7a813ebbb0f5882f411a03ac6c109e7f5028a020ad3e6acf145",
+      "required_status": "FAIL_CLOSED_BEFORE_COHERENCE_SCORE"
+    }
+  },
+  "primary_sources": [
+    {
+      "title": "SCORPION: A Multi-Scanner Whole-Slide Image Dataset for Cross-Scanner Analysis",
+      "url": "https://arxiv.org/abs/2507.20907",
+      "role": "2025 frozen cross-scanner coherence method parent"
+    },
+    {
+      "title": "Digitization, Measurement, and Analysis of a 1905 Barnard Atlas Photographic Plate",
+      "url": "https://doi.org/10.1088/1538-3873/ac87cf",
+      "role": "independent high-source-count perpendicular-scan experiment"
+    }
+  ],
+  "source": {
+    "record_url": "https://knowledge.uchicago.edu/records/1cnjt-w1076",
+    "record_api_url": "https://knowledge.uchicago.edu/api/records/1cnjt-w1076",
+    "record_id": "1cnjt-w1076",
+    "license": "CC-BY-4.0",
+    "reference": {
+      "path": "data/physical_scanner/uchicago_1905_barnard_rotated_v1/10B-161_center_scan.tif",
+      "url": "https://knowledge.uchicago.edu/api/records/1cnjt-w1076/files/10B-161%20center%20scan.tif/content",
+      "bytes": 320098314,
+      "md5": "572b9a090f2151c276e5d5e2ddbfcf68"
+    },
+    "rotated": {
+      "path": "data/physical_scanner/uchicago_1905_barnard_rotated_v1/10B-161_center_scan_rotated_90.tif",
+      "url": "https://knowledge.uchicago.edu/api/records/1cnjt-w1076/files/10B-161%20center%20scan,%20rotated%2090%C2%BA.tif/content",
+      "bytes": 320489722,
+      "md5": "e3300e64c9aae9b16fa63488fc9bb8b6",
+      "description": "same central six-inch region, plate rotated by 90 degrees"
+    },
+    "reference_shape": [7200, 7200],
+    "rotated_shape": [7199, 7200],
+    "required_dtype": "uint16",
+    "required_pages": 1
+  },
+  "registration": {
+    "input": "uint16 grayscale upper-eight-bits, area-resized to maximum side 1024",
+    "maximum_side_pixels": 1024,
+    "orientation_candidates_degrees": [90, -90],
+    "orientation_selection": "maximum SIFT-RANSAC inlier count, then inlier fraction, then +90 tie break; coherence and control scores forbidden",
+    "maximum_features": 8000,
+    "ratio_threshold": 0.7,
+    "model": "rotated-to-reference homography",
+    "ransac_reprojection_threshold_pixels": 3.0,
+    "minimum_good_matches": 500,
+    "minimum_inlier_fraction": 0.85,
+    "maximum_median_inlier_reprojection_error_pixels": 1.0,
+    "maximum_p95_inlier_reprojection_error_pixels": 3.0,
+    "mask_erosion_pixels": 32
+  },
+  "analysis": {
+    "luminance": "single-channel uint16 code",
+    "normalization": "per-image-midrank-uniform",
+    "common_center_crop_size": 3072,
+    "patch_size": 768,
+    "patch_grid": [4, 4],
+    "window_size": 128,
+    "window_stride": 128,
+    "detrend": "subtract-window-mean-hann",
+    "frequency_min_cycles_per_pixel": 0.03125,
+    "frequency_max_cycles_per_pixel": 0.25,
+    "wrong_region_control": "cyclic next patch in row-major order from rotated scan",
+    "shift_control_pixels": [64, 64]
+  },
+  "gates": {
+    "required_patches": 16,
+    "minimum_correct_vs_wrong_win_rate": 0.8,
+    "minimum_correct_vs_shifted_win_rate": 0.8,
+    "minimum_median_correct_to_wrong_ratio": 1.5,
+    "minimum_median_correct_to_shifted_ratio": 1.5,
+    "minimum_median_correct_coherence": 0.1,
+    "maximum_repeat_error": 0.0
+  },
+  "decision_if_pass": "retain_barnard_rotated_photographic_plate_shared_structure_method_d0_only",
+  "decision_if_fail": "close_barnard_rotated_plate_coherence_without_registration_or_threshold_rescue",
+  "forbidden": [
+    "change any P6AV registration, analysis or gate value after source access",
+    "use full-scan or FITS variants as a rescue",
+    "choose orientation, registration, patches, frequencies or thresholds from coherence outcomes",
+    "interpret shared structure as isolated emulsion grain or scanner-independent NPS",
+    "fit a film profile, scanner profile, colour operator or product default"
+  ],
+  "claim_ceiling": "one CC-BY-4.0 1905 glass photographic plate scanned at perpendicular orientations on one flatbed workflow; generic same-material shared-structure method evidence only, not isolated emulsion NPS, scanner calibration, modern stock transfer or product evidence."
+}
