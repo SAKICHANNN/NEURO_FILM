@@ -4,7 +4,6 @@ import hashlib
 import json
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u6_p8bo1_android_native_standard_runtime_v1.json"
 
