@@ -59,6 +59,15 @@ the frozen `5` minimum. A new K=1 stock expert requires genuinely same-scene,
 rights-authorized and independently grouped stock observations; adaptive LUT,
 retrieval and `K>1` remain downstream of that gate.
 
+RF3.D2 refreshes the physical-prior side from current first-party documents.
+Two exact audits bind Fujifilm Velvia 50 plus Kodak's January 2025 Portra 400
+and Ektar 100 publications. Only characteristic curves, spectral sensitivity
+and MTF are common measurement domains. Fuji diffuse RMS granularity is not
+Kodak Print Grain Index, and Fuji separated CMY dye density is not Kodak's
+aggregate midscale/D-min spectrum. The result is a non-renderable stock-prior
+matrix, not RGB target truth; RF3.D0 remains the first three-proxy mechanical
+baseline and no adaptive/retrieval/latent operator opens.
+
 SF3.A0P now passes a separately bounded capture-time source qualification for
 NVIDIA PPISP at exact revision `2521064...ded69`: four scenes expose 351 exact
 standard/auto JPEG name pairs plus COLMAP camera/image metadata under explicit
@@ -110,6 +119,18 @@ isolated natural pairs. Roles are 40 fit / 12 calibration / 12 sealed per
 camera; sealed targets stay unread unless every calibration gate passes. The
 counter increments to `1/3` only when calibration scoring starts. Contract:
 `configs/sf3_a0t_rgb2raw_metadata_explicit_isp_d0_v1.json`.
+
+SF3.A0T is now formally closed as candidate `1/3`. The exact prescore locks
+are byte-identical (`938b8e28...b3c98`) before 24 calibration target reads;
+sealed target reads remain zero. Two final reports are byte-identical
+(`e67854a1...25505`). Capture-WB error `.08568` is worse than the strongest
+equal-capacity camera-static control `.08112`; improvement rate is `7/24`,
+median/worst relative gain `-2.64%/-91.05%`, and cyclically wrong WB has
+nearly identical error `.08565`. Matrix, finite, boundary and reload gates
+pass, but fidelity, attribution, both-camera, worst-tail and gradient gates
+fail. No WB/curve/capacity rescue opens. Counter is `1/3`; the immediate path
+returns to RAW/DNG/HDR portable engineering. Evidence:
+`docs/evidence/SF3_A0T_RGB2RAW_METADATA_EXPLICIT_ISP_D0_RESULT.json`.
 
 **Autonomy invariant**: the active no-data Roll2Film and Style-safe work cannot
 depend on the owner supplying images, film/digital pairs, per-image labels, new

@@ -1,0 +1,63 @@
+{
+  "schema": "neuro-film.rf3-three-stock-official-source-matrix-evidence.v1",
+  "experiment_id": "RF3.D2",
+  "date": "2026-08-21",
+  "status": "PASS_NONRENDERABLE_FIRST_PARTY_PRIOR_MATRIX",
+  "decision": "retain_three_stock_first_party_physical_prior_matrix_and_open_nonrenderable_common_domain_comparison",
+  "contract": {
+    "path": "configs/rf3_d2_three_stock_official_source_matrix_v1.json",
+    "sha256": "4560812d4c43c2123d6310966a057e7f3033a416eb6b4a7641bc097ebc3742f1",
+    "final_correction_commit": "a892b99d59723435b70d2e967bf66dec5dc61300"
+  },
+  "implementation": {
+    "initial_commit": "ca7732da",
+    "final_commit": "a892b99d59723435b70d2e967bf66dec5dc61300",
+    "evaluator_sha256": "31fdbc870d7e181882d21639c4e18876515362ab79bdae5e3d3da90a0fba9f81",
+    "runner_sha256": "c11654bac2687735564f3393b8af4bc1fc9ed2c347146362ad7244493294b070",
+    "test_sha256": "8bd433a37d964b575be5b912137f60f110230e41f58f493d10bd6de8713ad2b4",
+    "correction": "The first pre-evidence run incorrectly grouped Fujifilm separated CMY spectral dye density with Kodak aggregate midscale/D-min spectral density. The contract was corrected before evidence publication; those domains and the two grain semantics are now explicitly incomparable."
+  },
+  "formal_runs": {
+    "run_a": "outputs/eval/rf3_d2_three_stock_official_source_matrix_v1/run_a/report.json",
+    "run_b": "outputs/eval/rf3_d2_three_stock_official_source_matrix_v1/run_b/report.json",
+    "report_sha256": "867bab2b303274120e2b5bd41c9d39c392625170d2cffdc7f72594e35567fe88",
+    "byte_exact": true,
+    "stable_evidence_id": "c191cb6cdb19e21ab8911fa0a805e977465b82862e67dfbcfe1f0d66a1c4274a"
+  },
+  "source_matrix": [
+    {
+      "stock_id": "fujifilm_velvia_50",
+      "official_pdf_sha256": "668844e4cf81d5d234645c90d0b3217ed81c3be925a063b4752f7a71c3954d4c",
+      "bytes": 538337,
+      "pages": 8,
+      "process_family": "E-6_slide",
+      "unique_domains": ["separated_spectral_dye_density", "diffuse_rms_granularity"]
+    },
+    {
+      "stock_id": "kodak_portra_400",
+      "official_pdf_sha256": "70b15171673c5d01505f58ace448995ad72acbe5e401d1966563a61ac0712838",
+      "bytes": 359671,
+      "pages": 4,
+      "process_family": "C-41_colour_negative",
+      "unique_domains": ["aggregate_midscale_and_dmin_spectral_density", "print_grain_index"]
+    },
+    {
+      "stock_id": "kodak_ektar_100",
+      "official_pdf_sha256": "38a41d47ad006cd563793033f83c8f9ef6cdd3c8300695c31facfc71d368f8db",
+      "bytes": 328465,
+      "pages": 4,
+      "process_family": "C-41_colour_negative",
+      "unique_domains": ["aggregate_midscale_and_dmin_spectral_density", "print_grain_index"]
+    }
+  ],
+  "common_measurement_domains": ["characteristic_curve", "mtf", "spectral_sensitivity"],
+  "common_domain_count": 3,
+  "non_equivalences": {
+    "granularity": "Fujifilm diffuse RMS granularity and Kodak Print Grain Index are different quantities and are not numerically compared.",
+    "dye_density": "Fujifilm publishes separated CMY dye-density curves; Kodak publishes aggregate midscale-neutral and D-min spectral density, so no common dye basis exists.",
+    "negative_vs_slide": "Portra/Ektar require an explicit scan or print interpretation; Velvia is a direct-slide interpretation."
+  },
+  "relationship_to_rf3_d0": "RF3.D0 remains the first runnable three-stock K=1 proxy baseline on identical digital inputs. RF3.D2 adds current first-party non-renderable physical priors but supplies no missing photographic RGB targets and therefore cannot upgrade RF3.D0's target-closeness or stock-distinguishability claims.",
+  "next_leaf": "Digitize and independently overlay-audit only the three genuinely common MTF domains as a stock-specific physical prior control; do not construct RGB from the PDFs. Continue acquisition of rights-clear same-scene independently grouped RGB targets because that remains the gate for a true three-stock operator baseline.",
+  "claim_ceiling": "Current first-party document identity and non-renderable physical-prior coverage for Velvia 50, Portra 400 and Ektar 100. No photographic RGB target, same-scene pair, roll/process/scanner calibration, fitted operator, stock distinguishability, preference or product claim."
+}

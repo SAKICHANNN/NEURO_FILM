@@ -14739,6 +14739,31 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `configs/sf3_a0t_rgb2raw_metadata_explicit_isp_d0_v1.json` and
   `docs/research/SF3_A0T_RGB2RAW_METADATA_EXPLICIT_ISP_PREREGISTRATION.md`.
 
+### 2026-08-21 - SF3.A0T candidate 1 closes before sealed confirmation
+
+- Implementation commits: `79cea6da` core, `537bd469` mandatory prescore
+  persistence, `ed5ef46a` bounded HTTP retry/concurrency amendment. The two
+  amendments changed no row, operator, feature, baseline, metric or gate.
+- Prescore locks are byte exact at SHA
+  `938b8e28056c3583ee2244f18f3fece0e1183b4d4ddf3180682c0d38b95b3c98`;
+  final reports are byte exact at
+  `e67854a17d29afc3c500c56125443bd66b6b73a203638c9e4d026c2558725505`,
+  stable `7d70e865...e87ad9`.
+- Candidate vs strongest static control: improve rate `7/24`, median/worst
+  relative gain `-2.643%/-91.046%`; candidate/static errors
+  `.085677/.081116`. Candidate vs cyclic wrong-WB median gain is only `.200%`.
+  Both cameras, absolute p95 and gradient tail also fail.
+- Matrix determinant/condition/singular-value, finite, zero-new-boundary and
+  exact reload/reverse gates pass. This is not enough to rescue scientific
+  fidelity or attribution.
+- Fit/calibration/sealed target reads are `80/24/0`; no payload is retained.
+  Counter advances from `0/3` to `1/3`. Same-source WB, curve, capacity and
+  router rescue are closed. Immediate handoff is the structured ISO 21496-1 /
+  Ultra HDR fail-closed engineering gap, unless a genuinely new rights-clear
+  physical observation appears.
+- Evidence:
+  `docs/evidence/SF3_A0T_RGB2RAW_METADATA_EXPLICIT_ISP_D0_RESULT.json`.
+
 ### 2026-08-21 - SF3.A1F closes Commons author connectivity
 
 - The existing SF3.A1C metadata was re-evaluated without network or pixel
@@ -14748,3 +14773,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The Commons pool cannot repair SF3.A1E's author/content confound. No pixel,
   fit, adaptive LUT, retrieval or latent-mode work opens on this cohort.
 - Evidence: `docs/evidence/SF3_A1F_COMMONS_THREE_STOCK_AUTHOR_CONNECTIVITY_RESULT.json`.
+
+### 2026-08-21 - RF3.D2 current official three-stock prior matrix
+
+- Froze and ran a bounded first-party PDF audit for Velvia 50, Portra 400 and
+  Ektar 100; durable sources and reports use repository-relative P-backed paths.
+- Both formal reports are byte exact at `867bab2b...7fe88`; stable ID
+  `c191cb6c...c4274a`. Common domains are characteristic curve, spectral
+  sensitivity and MTF.
+- A pre-evidence run conflated Fuji separated dye density with Kodak aggregate
+  density. Commit `a892b99d` corrected the contract before publication and
+  keeps RMS granularity distinct from Print Grain Index.
+- Decision: retain a non-renderable physical-prior matrix only. RF3.D0 remains
+  a proxy baseline; controlled RGB targets remain the stock-operator gate.
+- Verification: 5 focused tests pass; Ruff, py_compile and diff-check pass.
