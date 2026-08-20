@@ -1,0 +1,52 @@
+{
+  "schema": "neuro-film.rf3-three-stock-characteristic-shape-evidence.v1",
+  "experiment_id": "RF3.D4",
+  "date": "2026-08-21",
+  "status": "COMPLETE_FAIL_CLOSED",
+  "contract_commit": "1874782b",
+  "implementation_commit": "de74ff07",
+  "contract_sha256": "4024a59c520056f193f302336bfb9b30e158d854aab640e168b878f457c6c9d8",
+  "implementation_sha256": "48e3fec051c4417c037accfbec2578f7fe749261414cf7ab338dcf47b22e7c34",
+  "runner_sha256": "c5c4f631190e67b141bc63f58c564a6c4318b3980f5a1917de071f555581cbec",
+  "test_sha256": "b363c70332975775ca6035126d59d503101e5114d2033fc56dc4735824a031fd",
+  "formal_report_sha256": "a3e890f42fd5970b3c5280249c13e8428661e85ad21cc19c1086f486affb3c47",
+  "stable_evidence_id": "046e21ddfc73e5479b1ee02cb0b99ed629b783a20af47578b59a102a0f95f2f3",
+  "exact_replay": {
+    "independent_processes": 2,
+    "report_byte_exact": true,
+    "overlay_inventory_byte_exact": true
+  },
+  "pairwise_results": [
+    {
+      "left": "fujifilm_velvia_50",
+      "right": "kodak_portra_400",
+      "median_absolute_normalized_shape_difference": 0.07470133817720215,
+      "rmse_normalized_shape_difference": 0.06605419180630216,
+      "pass": true
+    },
+    {
+      "left": "fujifilm_velvia_50",
+      "right": "kodak_ektar_100",
+      "median_absolute_normalized_shape_difference": 0.05117912447298939,
+      "rmse_normalized_shape_difference": 0.060560219467098456,
+      "pass": true
+    },
+    {
+      "left": "kodak_portra_400",
+      "right": "kodak_ektar_100",
+      "median_absolute_normalized_shape_difference": 0.020548920938369908,
+      "rmse_normalized_shape_difference": 0.033494055841696284,
+      "pass": false
+    }
+  ],
+  "gates": {
+    "minimum_pairwise_median_absolute_normalized_shape_difference": 0.03,
+    "minimum_pairwise_rmse_normalized_shape_difference": 0.04,
+    "require_all_pairwise_gates": true,
+    "automatic_pass": false
+  },
+  "decision": "close_datasheet_characteristic_shape_as_a_three_stock_discriminator_and_require_pixel_evidence",
+  "interpretation": "Velvia's reversal-film curve shape separates from both colour-negative stocks after nuisance normalization, but Portra 400 and Ektar 100 do not separate at the frozen thresholds. Manufacturer characteristic curves remain physical priors, not sufficient three-stock identity evidence.",
+  "next_leaf": "Acquire or construct a rights-authorized same-scene, independently grouped three-stock pixel matrix and run the first K=1 stock-specific explicit-operator baseline.",
+  "claim_ceiling": "Dimensionless manufacturer-curve comparison only; no scan/render transform, target closeness, calibrated stock response, preference or product claim."
+}

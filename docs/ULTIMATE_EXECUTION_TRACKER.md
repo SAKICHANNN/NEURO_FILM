@@ -77,6 +77,15 @@ the published curves. The discriminator fails: Velvia--Portra RMSE is
 frequency, envelope or threshold rescue; MTF remains a physical prior/nuisance
 only, and controlled RGB target acquisition remains the mainline.
 
+RF3.D4 similarly removes speed, base density, curve direction and selected
+range from the published characteristic curves before comparing their
+dimensionless shapes. Two reports and all overlays are byte exact
+(`a3e890f4...fb3c47`). Velvia separates from both colour-negative stocks, but
+Portra--Ektar reaches only `.02055 < .03` median and `.03349 < .04` RMSE.
+Close datasheet characteristic shape as a three-stock identity signal without
+redigitization or gate rescue. The next K=1 stock expert must be driven by
+rights-authorized, same-scene, independently grouped pixel evidence.
+
 SF3.A2 tests one bounded current public-index refresh without changing the
 three-stock gates. The frozen anonymous Openverse route returned HTTP 401 for
 all three exact queries, despite the current consumer documentation describing

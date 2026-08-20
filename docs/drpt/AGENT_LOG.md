@@ -14877,3 +14877,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   hash. No image, thumbnail, landing-page, pixel or operator access occurred.
 - This does not close stock availability. No credential/frontend/endpoint
   rescue is attempted; controlled three-stock evidence remains the mainline.
+
+### 2026-08-21 - RF3.D4 closes datasheet characteristic shape as stock identity
+
+- Frozen before scoring at `1874782b`; implementation at `de74ff07` uses only
+  the three hash-bound first-party pages already retained by RF3.D2/D3.
+- Direction, speed, base density and selected range are removed before the
+  seven-point dimensionless shape comparison. Two formal reports and overlay
+  inventories are byte exact (`a3e890f4...fb3c47`, stable
+  `046e21dd...5f2f3`).
+- Velvia separates from Portra and Ektar, but Portra--Ektar fails both frozen
+  gates (median `.02055`, RMSE `.03349`). Close this prior without rescue and
+  proceed to same-scene, independently grouped three-stock pixel evidence.
