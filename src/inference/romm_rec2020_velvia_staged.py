@@ -47,6 +47,10 @@ def render_supported_prophoto_velvia_rec2020_staged(
     row_chunk: int = 128,
     _ingress_mapper: Callable[[np.ndarray], tuple[np.ndarray, np.ndarray]] | None = None,
     _style_mapper: Callable[..., np.ndarray] | None = None,
+    _gamut_mapper: Callable[
+        [np.ndarray, np.ndarray], tuple[np.ndarray, np.ndarray]
+    ]
+    | None = None,
 ) -> dict[str, Any]:
     """Render the qualified look with disk-staged, bounded-row intermediates."""
 
@@ -172,12 +176,17 @@ def render_supported_prophoto_velvia_rec2020_staged(
                 max_chroma_boost=guard.get("max_chroma_boost"),
                 max_chroma_absolute=guard.get("max_chroma_absolute"),
             )
-            output_lab = compress_source_to_working_gamut(
-                source_lab,
-                styled_lab,
-                working_space="linear_rec2020",
-            )
-            candidate = lab_to_linear_rgb(output_lab, working_space="linear_rec2020")
+            if _gamut_mapper is None:
+                output_lab = compress_source_to_working_gamut(
+                    source_lab,
+                    styled_lab,
+                    working_space="linear_rec2020",
+                )
+                candidate = lab_to_linear_rgb(
+                    output_lab, working_space="linear_rec2020"
+                )
+            else:
+                output_lab, candidate = _gamut_mapper(source_lab, styled_lab)
             if (
                 not np.isfinite(candidate).all()
                 or np.any(candidate < -2e-6)
