@@ -1824,3 +1824,16 @@ training, new votes, crop/layer/checkpoint rescue and preference interpretation
 are forbidden. The uploaded CSD checkpoint's official discrepancy disclaimer
 is part of the contract; even a pass opens only a fresh explicit-operator
 selection experiment, never a paper-quality, preference or product claim.
+
+U5.R2CSD0 formally closes the exact released checkpoint. After two pre-inference
+safe-loader stops, the final `weights_only=true` path allowlists only the three
+globals returned by PyTorch's static inventory plus the concrete NumPy dtype;
+strict load is 297 tensors / 304,752,640 parameters with zero missing or extra
+keys. Two fresh score locks have zero embedding error and the formal report
+replays byte exactly (`9d4234cb...c6e6`). The candidate-reference direction is
+real signal at 106/132 (80.30%) and CSD style beats the strongest combined
+control by 25/264. The symmetric identity-reference direction is only 83/132
+(62.88%), however, so combined 189/264 misses the frozen 198 gate and identity
+role/reference consistency also fails. Close crop, layer, checkpoint,
+aggregation, threshold and cohort rescue. The checkpoint can partially cluster
+one strong transform but cannot authorize single-reference operator routing.

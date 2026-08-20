@@ -14342,3 +14342,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   and dtype constructors plus `argparse.Namespace` returned by PyTorch's static
   unsafe-global inventory, keep `weights_only=true`, and rerun from zero. No
   private mapping or scientific score was read.
+
+### 2026-08-21 - U5.R2CSD0 closes exact cross-content style observation
+
+- Exact checkpoint/CLIP hashes pass. Strict safe load contains 297 tensors and
+  304,752,640 parameters with zero missing/unexpected keys. Canonical/reverse
+  fresh processes reproduce embeddings exactly; formal aggregation also
+  replays byte exactly (`9d4234cb...c6e6`).
+- Candidate-reference identification reaches 106/132 (80.30%) and style beats
+  the strongest combined control by 25/264 decisions. Identity-reference is
+  only 83/132 (62.88%); combined 189/264 misses the frozen 198 floor and the
+  identity role/per-reference gates fail.
+- Close this checkpoint/protocol without crop, layer, threshold, checkpoint or
+  cohort rescue. The partial transform cluster is not a reliable operator
+  identity and opens no fresh routing or product action. Evidence:
+  `docs/evidence/U5_R2CSD0_CROSS_CONTENT_OPERATOR_IDENTIFICATION_RESULT.json`.

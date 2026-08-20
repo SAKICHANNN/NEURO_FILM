@@ -1,0 +1,111 @@
+{
+  "schema": "neuro-film.u5-r2csd0-evidence.v1",
+  "experiment_id": "U5.R2CSD0",
+  "date": "2026-08-21",
+  "status": "FAIL_CLOSED_EXACT_CSD_OPERATOR_OBSERVATION",
+  "decision": "close exact CSD checkpoint and cross-content protocol without crop, layer, checkpoint, aggregation, threshold or cohort rescue",
+  "direction_review": {
+    "latest_primary": "StyleDoctor: Towards Specialist Reward Model for Style-centric Generation Tasks, CVPR 2026",
+    "style_doctor_release_available": false,
+    "substitute_reimplementation_used": false,
+    "runnable_baseline": "official CSD ViT-L checkpoint used by StyleDoctor as a baseline"
+  },
+  "external_asset": {
+    "repository": "https://github.com/learn2phoenix/CSD",
+    "repository_commit": "3a9df32605b869eceb704897839be80977a9f1ea",
+    "repository_license": "MIT",
+    "model_repository": "tomg-group-umd/CSD-ViT-L",
+    "model_revision": "5bc26a6fb0487f3f00a2a7313135103a005b1b67",
+    "model_card_license": "cc-by-4.0",
+    "model_sha256": "40e92fad63a361b8136100cd234c42d401ef9b34ff1748234318929ebcc7e7a1",
+    "model_size_bytes": 2438228893,
+    "openai_clip_sha256": "b8cca3fd41ae0c99ba7e8951adf17d267cdb84cd88be6f7c2e0eca1737a03836",
+    "official_weight_discrepancy_disclaimer_preserved": true,
+    "paper_quality_or_benchmark_reproduction_claim": false
+  },
+  "execution": {
+    "contract": "configs/u5_r2csd0_cross_content_operator_identification_v1.json",
+    "contract_sha256": "33817d9224707d4e346337e2fdb4e946511be147db5bd5e3c7d31c712774df4d",
+    "preregistration_commit": "f766d8ee",
+    "implementation_commit": "92d97320",
+    "safe_load_amendment_commit": "7051e8f7",
+    "checkpoint_load": "torch.load(weights_only=true)",
+    "static_unsafe_global_inventory": [
+      "numpy.core.multiarray.scalar",
+      "numpy.dtype",
+      "argparse.Namespace"
+    ],
+    "additional_concrete_dtype_required": "numpy.dtypes.Float64DType",
+    "weights_only_false_used": false,
+    "state_tensor_count": 297,
+    "state_parameter_count": 304752640,
+    "state_missing_keys": 0,
+    "state_unexpected_keys": 0,
+    "single_asset_smoke_status": "PASS_SINGLE_ASSET_MECHANICS_SMOKE",
+    "preinference_mechanics_stops": [
+      "weights-only rejected NumPy scalar metadata before allowlist",
+      "weights-only rejected argparse.Namespace before the complete static inventory was frozen"
+    ],
+    "scientific_scores_before_successful_smoke": 0,
+    "private_mapping_reads_before_score_locks": 0,
+    "direct_result_reads_before_score_locks": 0,
+    "fresh_process_count": 2,
+    "canonical_reverse_embedding_max_abs_error": 0.0,
+    "maximum_embedding_norm_abs_error": 3.3306690738754696e-16,
+    "pairwise_signs_exact": true,
+    "formal_report_replay_byte_exact": true,
+    "score_lock_canonical_sha256": "86a7b52af9f33bd1c9e97fc96570cdd4737ef4a6b4873fe039da67f55e1b528a",
+    "score_lock_reverse_sha256": "5d417fdb66aeff371d191c6247b1e1f1124063ff972979c6196b39cbf290557f",
+    "formal_report_sha256": "9d4234cb10b17a8bb8c9b1d57b5b83aab374405b7172a62f5db554462b65c6e6",
+    "stable_identity": "sha256:9d4234cb10b17a8bb8c9b1d57b5b83aab374405b7172a62f5db554462b65c6e6",
+    "formal_artifact_location": "project-isolated D fallback while P reports Full Repair Needed",
+    "durable_P_migration_performed": false
+  },
+  "consumed_inputs": {
+    "public_manifest_sha256": "31b62c085ec144fa0111570a85c1be7d8ef07dd86fe278eb167465be0075cd42",
+    "private_mapping_sha256": "77c03d007053213f5c029f2d6fb27fa41789bc4eceab5b85657fc0ad9b46f48f",
+    "scene_count": 12,
+    "anonymous_asset_count": 24,
+    "ordered_cross_content_pairs_per_direction": 132,
+    "same_scene_pairs_used": 0,
+    "new_user_votes": 0,
+    "new_candidates": 0,
+    "training_or_calibration_rows": 0
+  },
+  "primary_metrics": {
+    "candidate_reference_correct": 106,
+    "candidate_reference_total": 132,
+    "candidate_reference_rate": 0.803030303030303,
+    "candidate_reference_gate_min": 99,
+    "identity_reference_correct": 83,
+    "identity_reference_total": 132,
+    "identity_reference_rate": 0.6287878787878788,
+    "identity_reference_gate_min": 99,
+    "combined_correct": 189,
+    "combined_total": 264,
+    "combined_rate": 0.7159090909090909,
+    "combined_gate_min": 198,
+    "combined_median_margin": 0.02184024718592231,
+    "strongest_control_combined_correct": 164,
+    "csd_style_minus_strongest_control_correct": 25,
+    "control_gain_gate_min": 14
+  },
+  "control_combined_correct": {
+    "csd_content": 164,
+    "oklab_moments": 143,
+    "rgb_histogram": 161
+  },
+  "failed_gates": [
+    "identity reference absolute correct",
+    "identity reference consistency",
+    "identity target-role floor",
+    "identity reference-role floor",
+    "combined absolute correct"
+  ],
+  "interpretation": {
+    "positive_signal": "The exact CSD style embedding clusters the known transformed outputs in the candidate-reference direction and exceeds the strongest combined control by 25/264 decisions.",
+    "decisive_failure": "The symmetric identity-reference task and role/reference consistency fail, so the observation is not a reliable bidirectional cross-content operator identity.",
+    "next_direction": "Require a new released reference-conditioned style observation or authenticated edit identity; do not rescue this checkpoint with crop, layer, threshold, aggregation or cohort changes."
+  },
+  "claim_ceiling": "Consumed retrospective negative for one exact uploaded CSD checkpoint. No StyleDoctor reproduction, paper-quality, preference, owner, population, stock, calibration, fresh confirmation, operator promotion, routing, package, schema, capability, product or commercial claim."
+}
