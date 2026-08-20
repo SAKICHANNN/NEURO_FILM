@@ -9,8 +9,48 @@ import pytest
 from PIL import Image, ImageCms, features
 
 import scripts.run_u5_r2repid4_shared_logit_affine_d0 as module
+from src.eval.spcp_global_logit_affine import (
+    LogitAffineOperator,
+    apply_operator,
+    gradient_p999_ratio,
+    mean_oklab_error,
+    new_exact_boundary_fraction,
+    srgb_code_to_oklab,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def test_tiled_metrics_match_full_frame_metrics() -> None:
+    generator = np.random.default_rng(20260820)
+    source = generator.uniform(0.01, 0.99, size=(19, 23, 3)).astype(np.float32)
+    target = generator.uniform(0.01, 0.99, size=(19, 23, 3)).astype(np.float32)
+    operators = {
+        "candidate": LogitAffineOperator(np.eye(3) * 0.97, np.full(3, 0.03), 1.0),
+        "diagonal": LogitAffineOperator(np.eye(3) * 1.01, np.zeros(3), 1.0),
+        "permuted": LogitAffineOperator(np.eye(3), np.full(3, -0.02), 1.0),
+        "reverse": LogitAffineOperator(np.eye(3) * 1.02, np.full(3, 0.01), 1.0),
+    }
+    actual = module._evaluate_arrays(source, target, operators, row_block=7)
+    outputs = {name: apply_operator(source, value) for name, value in operators.items()}
+    assert actual["identity_error"] == pytest.approx(mean_oklab_error(source, target))
+    for name, output in outputs.items():
+        assert actual["errors"][name] == pytest.approx(mean_oklab_error(output, target))
+    candidate = outputs["candidate"]
+    expected_delta = float(
+        np.mean(
+            np.linalg.norm(
+                srgb_code_to_oklab(candidate) - srgb_code_to_oklab(source), axis=-1
+            )
+        )
+    )
+    assert actual["candidate_output_delta_e_oklab"] == pytest.approx(expected_delta)
+    assert actual["candidate_new_exact_boundary_fraction"] == pytest.approx(
+        new_exact_boundary_fraction(source, candidate)
+    )
+    assert actual["candidate_p999_gradient_ratio"] == pytest.approx(
+        gradient_p999_ratio(source, candidate)
+    )
 
 
 def test_formal_contract_binds_parent_and_implementation() -> None:

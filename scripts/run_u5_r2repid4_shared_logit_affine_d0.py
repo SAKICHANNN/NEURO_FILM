@@ -27,9 +27,6 @@ from src.eval.spcp_global_logit_affine import (
     LogitAffineOperator,
     apply_operator,
     fit_operator_rows,
-    gradient_p999_ratio,
-    mean_oklab_error,
-    new_exact_boundary_fraction,
     sample_indexes,
     srgb_code_to_oklab,
 )
@@ -94,19 +91,120 @@ def _sample_fit_rows(
     )
 
 
+def _retain_largest(retained: np.ndarray, values: np.ndarray, count: int) -> np.ndarray:
+    flattened = np.asarray(values, dtype=np.float64).ravel()
+    combined = (
+        flattened if retained.size == 0 else np.concatenate((retained, flattened))
+    )
+    if combined.size <= count:
+        return combined
+    return combined[np.argpartition(combined, combined.size - count)[-count:]]
+
+
+def _quantile_from_largest(
+    retained: np.ndarray, total_count: int, quantile: float
+) -> float:
+    rank = (total_count - 1) * quantile
+    lower = int(np.floor(rank))
+    upper = int(np.ceil(rank))
+    ordered = np.sort(retained)
+    offset = total_count - ordered.size
+    lower_value = ordered[lower - offset]
+    upper_value = ordered[upper - offset]
+    return float(lower_value + (rank - lower) * (upper_value - lower_value))
+
+
+def _evaluate_arrays(
+    source: np.ndarray,
+    target: np.ndarray,
+    operators: dict[str, LogitAffineOperator],
+    *,
+    row_block: int = 64,
+) -> dict[str, Any]:
+    height, width, _ = source.shape
+    pixel_count = height * width
+    gradient_count = height * (width - 1) + (height - 1) * width
+    retained_count = gradient_count - int(np.floor((gradient_count - 1) * 0.999))
+    identity_error_sum = 0.0
+    error_sums = {name: 0.0 for name in operators}
+    output_delta_sum = 0.0
+    new_boundary_count = 0
+    source_gradients = np.empty(0, dtype=np.float64)
+    candidate_gradients = np.empty(0, dtype=np.float64)
+    luma_weights = np.asarray((0.2126, 0.7152, 0.0722), dtype=np.float64)
+    for start in range(0, height, row_block):
+        end = min(start + row_block, height)
+        extended_end = min(end + 1, height)
+        source_tile = source[start:extended_end]
+        core_rows = end - start
+        source_lab = srgb_code_to_oklab(source_tile[:core_rows])
+        target_lab = srgb_code_to_oklab(target[start:end])
+        identity_error_sum += float(
+            np.sum(np.linalg.norm(source_lab - target_lab, axis=-1))
+        )
+        source_luma = np.asarray(source_tile, dtype=np.float64) @ luma_weights
+        source_gradients = _retain_largest(
+            source_gradients,
+            np.abs(np.diff(source_luma[:core_rows], axis=1)),
+            retained_count,
+        )
+        if extended_end > start + 1:
+            source_gradients = _retain_largest(
+                source_gradients,
+                np.abs(np.diff(source_luma, axis=0)),
+                retained_count,
+            )
+        for name, operator in operators.items():
+            output_tile = apply_operator(source_tile, operator)
+            output_core = output_tile[:core_rows]
+            output_lab = srgb_code_to_oklab(output_core)
+            error_sums[name] += float(
+                np.sum(np.linalg.norm(output_lab - target_lab, axis=-1))
+            )
+            if name != "candidate":
+                continue
+            output_delta_sum += float(
+                np.sum(np.linalg.norm(output_lab - source_lab, axis=-1))
+            )
+            source_boundary = (source_tile[:core_rows] <= 0.0) | (
+                source_tile[:core_rows] >= 1.0
+            )
+            output_boundary = (output_core <= 0.0) | (output_core >= 1.0)
+            new_boundary_count += int(
+                np.count_nonzero(output_boundary & ~source_boundary)
+            )
+            output_luma = np.asarray(output_tile, dtype=np.float64) @ luma_weights
+            candidate_gradients = _retain_largest(
+                candidate_gradients,
+                np.abs(np.diff(output_luma[:core_rows], axis=1)),
+                retained_count,
+            )
+            if extended_end > start + 1:
+                candidate_gradients = _retain_largest(
+                    candidate_gradients,
+                    np.abs(np.diff(output_luma, axis=0)),
+                    retained_count,
+                )
+    source_p999 = _quantile_from_largest(source_gradients, gradient_count, 0.999)
+    candidate_p999 = _quantile_from_largest(candidate_gradients, gradient_count, 0.999)
+    return {
+        "identity_error": identity_error_sum / pixel_count,
+        "errors": {name: value / pixel_count for name, value in error_sums.items()},
+        "candidate_output_delta_e_oklab": output_delta_sum / pixel_count,
+        "candidate_new_exact_boundary_fraction": new_boundary_count / source.size,
+        "candidate_p999_gradient_ratio": candidate_p999 / max(source_p999, 1.0e-12),
+    }
+
+
 def _evaluate_row(
     row: dict[str, Any],
     lookup: dict[tuple[str, str], dict[str, Any]],
     operators: dict[str, LogitAffineOperator],
 ) -> dict[str, Any]:
     source, target = _load_pair(row, lookup)
-    identity_error = mean_oklab_error(source, target)
-    outputs = {name: apply_operator(source, value) for name, value in operators.items()}
-    errors = {name: mean_oklab_error(value, target) for name, value in outputs.items()}
-    candidate = outputs["candidate"]
-    output_delta = np.linalg.norm(
-        srgb_code_to_oklab(candidate) - srgb_code_to_oklab(source), axis=-1
-    )
+    evaluated = _evaluate_arrays(source, target, operators)
+    identity_error = evaluated["identity_error"]
+    errors = evaluated["errors"]
     return {
         "scene_id": row["scene_id"],
         "directed_role_pair": f"{row['loser']}->{row['winner']}",
@@ -120,11 +218,11 @@ def _evaluate_row(
             errors["permuted"], errors["candidate"]
         ),
         "reverse_improvement": _relative_gain(identity_error, errors["reverse"]),
-        "candidate_output_delta_e_oklab": float(np.mean(output_delta)),
-        "candidate_new_exact_boundary_fraction": new_exact_boundary_fraction(
-            source, candidate
-        ),
-        "candidate_p999_gradient_ratio": gradient_p999_ratio(source, candidate),
+        "candidate_output_delta_e_oklab": evaluated["candidate_output_delta_e_oklab"],
+        "candidate_new_exact_boundary_fraction": evaluated[
+            "candidate_new_exact_boundary_fraction"
+        ],
+        "candidate_p999_gradient_ratio": evaluated["candidate_p999_gradient_ratio"],
     }
 
 
