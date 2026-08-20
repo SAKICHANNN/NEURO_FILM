@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2repid10-canoncgt-bounded-basis-selector-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2REPID10",
+  "parent_contract": {
+    "path": "configs/u5_r2f1_canoncgt_reference_condition_v1.json",
+    "sha256": "58d2a2b349763f7b29d08ded37e028f394585250f1ded9452a5beb41a4693d8b"
+  },
+  "matched_control_contract": {
+    "path": "configs/u5_r2repid7_canoncgt_self_canonical_inverse_v1.json",
+    "sha256": "4fcc39f273371f2f02ec76c87fde4382b5297349a92c0650e52376125e641575"
+  },
+  "representation_context": [
+    {
+      "path": "configs/u5_r2glut2_curvature_representation_selector_d0_v1.json",
+      "sha256": "fe614a6c888dd221de2527bc9fb3fd59a77cf93da9da4df8f4b5593dd0c25dd2"
+    },
+    {
+      "path": "configs/u5_r2glut3_curvature_selector_external_confirmation_v1.json",
+      "sha256": "751b03d17407d5cc74ea59521d047de43f74052ee6ec4466b289ead7950e23d1"
+    }
+  ],
+  "question": "Can reference-only fit/selection identify a compact Gaussian-or-lattice bounded explicit grade that repairs REPID7's two structural misses without the folds of REPID8's free quadratic basis?",
+  "build": {
+    "application_source_reads": 0,
+    "canonicalizer_input": "reference_only",
+    "operator": "asinh_affine_plus_4_cubed_gaussian_or_regular_lattice_to_logit",
+    "asinh_scale": 2.0,
+    "coordinate_input_minimum": -0.05,
+    "coordinate_input_maximum": 1.05,
+    "target_logit_epsilon": 0.00001,
+    "maximum_sample_rows": 65535,
+    "fit_partition": "uniform_sample_position_mod3_equals0",
+    "representation_selection_partition": "uniform_sample_position_mod3_equals1",
+    "untouched_audit_partition": "uniform_sample_position_mod3_equals2",
+    "representation_tie_break": "lattice",
+    "basis_side": 4,
+    "gaussian_sigma": 0.23,
+    "ridge_alpha": 0.0001,
+    "jacobian_grid_size": 7,
+    "jacobian_input_minimum": -0.05,
+    "jacobian_input_maximum": 1.05
+  },
+  "structural_gates": {
+    "maximum_canonical_range_escape_magnitude": 0.1,
+    "maximum_audit_oklab_error_median": 0.04,
+    "maximum_audit_oklab_error_p95": 0.08,
+    "maximum_audit_to_fit_mean_error_ratio": 1.2,
+    "minimum_grid_jacobian_determinant": 0.0001,
+    "minimum_grid_jacobian_singular_value": 0.01,
+    "maximum_grid_jacobian_condition_number": 25.0,
+    "maximum_coefficient_absolute_value": 50.0,
+    "minimum_median_p95_error_reduction_vs_matched_affine": 0.1,
+    "maximum_per_reference_p95_error_regression_vs_matched_affine": 0.01,
+    "minimum_selection_audit_agreement_references": 8,
+    "maximum_worst_selected_to_audit_oracle_mean_error_ratio": 1.5,
+    "required_passing_references": 9
+  },
+  "replay": {
+    "reverse_reference_order_exact": true,
+    "two_fresh_process_reports_exact": true
+  },
+  "stop_rule": "Any absolute, Jacobian, matched-control, selection-transfer or replay failure closes this exact checkpoint, pseudo-neutral observation, basis side, Gaussian sigma, lattice basis, ridge and three-way split before application-source access; no projection, clipping, representation override, strength, threshold, basis, sigma, ridge, split, reference exclusion or checkpoint rescue.",
+  "pass_ceiling": "A structural pass opens one separately frozen consumed-source shared-operator application D0 only.",
+  "claim_ceiling": "Private consumed-reference bounded explicit-representation structural preflight; no application quality, stock, calibration, population preference, product, schema or capability claim."
+}

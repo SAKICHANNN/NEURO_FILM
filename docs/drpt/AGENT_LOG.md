@@ -14129,3 +14129,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Two fail-closed reports are byte exact (`671aeaf5...ad7d`).
 - Stop before resolution analysis and do not reinterpret this post-result as an
   8-bit experiment. Evidence: `docs/evidence/U6_P6AU_VISION3_RESOLUTION_CHART_SOURCE_RESULT.json`.
+
+### 2026-08-20 - U5.R2REPID10 freezes bounded basis selection
+
+- Direction correction: REPID9C global statistics and REPID9D CanonCGT tokens
+  independently reject further reference-encoder capacity sweeps. REPID10
+  instead targets the explicit representation bottleneck localized by REPID7
+  (7/9 structural pass) and REPID8 (free quadratic folds).
+- Freeze a reference-only three-way split: fit both fixed 4-cubed Gaussian and
+  regular-lattice logit bases on partition zero, select on partition one and
+  score only untouched partition two. A same-fit asinh-affine operator is the
+  matched control; all nine references and Jacobian/transfer/control gates are
+  mandatory before application-source access.
+- GLUT2/GLUT3 motivate the two compact bases but provide no result labels or
+  threshold to this leaf. No clipping, projection, strength, basis, sigma,
+  ridge, split, reference exclusion or checkpoint rescue is allowed.

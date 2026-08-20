@@ -1668,3 +1668,15 @@ U6.P6AU freezes 18 same-negative Vision3 resolution-chart members across six
 format/stock cells, but the first exact member is RGB8 rather than the required
 RGB16. Two reports are byte exact (`671aeaf5...ad7d`); the source closes before
 resolution analysis, without row substitution or a post-result format fallback.
+
+U5.R2REPID10 is prospectively frozen after REPID9C/9D close two distinct
+reference encoders. It returns to REPID7's positive 7/9 self-canonical signal
+but changes only the explicit operator representation: fixed extended-domain
+asinh coordinates feed either a 4-cubed Gaussian or regular-lattice logit
+basis. Uniform reference samples are split three ways into fit,
+representation-selection and untouched audit pixels. Both candidates and the
+matched asinh-affine control fit only the first partition; selection may read
+only the second; all scientific gates use the third. All nine references,
+Jacobian safety, matched-control gain and selection-to-audit transfer must
+pass before any application source is read. No clipping, projection, basis or
+threshold rescue is permitted.
