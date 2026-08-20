@@ -112,3 +112,21 @@ def test_invalid_retained_vote_fails_closed(tmp_path: Path, monkeypatch) -> None
     contract["parents"]["responses_archive_sha256"] = module._sha256(drifted)
     report = module.evaluate(contract, root=tmp_path, fetch=lambda _url, _maximum: drifted)
     assert report["automatic_pass"] is False
+
+
+def test_unexpected_collection_is_reported_and_fails_closed(tmp_path: Path, monkeypatch) -> None:
+    contract, archive = _test_contract(tmp_path, monkeypatch)
+    with zipfile.ZipFile(io.BytesIO(archive)) as source:
+        output = io.BytesIO()
+        with zipfile.ZipFile(output, "w") as destination:
+            for item in source.infolist():
+                data = source.read(item)
+                if item.filename.endswith("votes_items.jsonl"):
+                    data += b'{"collection":"F1","scene_id":"F1-001","left_style":"a","right_style":"b","choice":0,"user_id":"hidden"}\n'
+                destination.writestr(item, data)
+    drifted = output.getvalue()
+    contract["parents"]["responses_archive_sha256"] = module._sha256(drifted)
+    report = module.evaluate(contract, root=tmp_path, fetch=lambda _url, _maximum: drifted)
+    assert report["automatic_pass"] is False
+    assert report["annotation_structure"]["unexpected_raw_vote_collection_counts"] == {"F1": 1}
+    assert "hidden" not in json.dumps(report)

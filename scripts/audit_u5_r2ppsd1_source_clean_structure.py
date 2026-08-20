@@ -76,6 +76,9 @@ def _audit_archive(archive: bytes, contract: dict[str, Any]) -> dict[str, Any]:
         str(row.get("collection")) for row in vote_rows if isinstance(row, dict)
     }
     known_collections = included_set | excluded_set
+    raw_vote_collection_counts = Counter(
+        str(row.get("collection")) for row in vote_rows if isinstance(row, dict)
+    )
     retained = [
         row
         for row in vote_rows
@@ -139,6 +142,10 @@ def _audit_archive(archive: bytes, contract: dict[str, Any]) -> dict[str, Any]:
             if isinstance(row, dict)
         ),
         "unexpected_raw_vote_collection_count": len(observed_vote_collections - known_collections),
+        "unexpected_raw_vote_collection_counts": {
+            key: raw_vote_collection_counts[key]
+            for key in sorted(observed_vote_collections - known_collections)
+        },
         "invalid_retained_vote_rows": invalid_rows,
         "raw_scene_or_user_ids_persisted": False,
         "raw_participant_values_persisted": False,
