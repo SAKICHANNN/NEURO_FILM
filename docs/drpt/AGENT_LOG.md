@@ -14915,8 +14915,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   repo-relative `.data_fallback` junction into the existing D project
   namespace. Full member payloads never persisted. Exact curl Range reads and
   four fresh-buffer retries were added before any model or calibration score.
-- Two complete forward/reverse reports and model locks are byte exact at
-  `46e4b34f...710c9` and `443da043...8255`. Model lock precedes all 12
+- After terminating an unintended duplicate runner, two clean sequential
+  forward/reverse reports and model locks are byte exact at
+  `46e4b34f...710c9` and `443da043...8255`. The earlier overlapping forward is
+  discarded as infrastructure-contaminated. Model lock precedes all 12
   calibration targets; sealed targets remain unread.
 - Correct pairing has real signal: 12/12 beat the equal-architecture cyclic
   target, median `+41.986%`. But safe candidate/cyclic residual strengths both
@@ -14924,9 +14926,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   only 3/12, median/worst `-0.0022%/-44.339%`; p95 OKLab `.13024` also fails.
   Jacobian, gradient, boundary and replay pass.
 - Decision: `FAIL_CLOSED_CANDIDATE_2_OF_3`. Do not rescue strength, LUT size,
-  safety, region matching, roles or thresholds. Paired observation remains
-  valid; the last candidate must add new physical/capture-time information on
-  fresh natural groups or the automatic single-reference cycle closes.
+  safety, region matching, roles or thresholds. Candidate 3 does not open;
+  automatic single-reference/capture-ISP exploration stops and the project
+  resumes the controlled three-stock evidence mainline.
   Evidence:
   `docs/evidence/SF3_A0Y_NTIRE_PAIRED_SHAPED_LUT_CANDIDATE2_RESULT.json`.
 

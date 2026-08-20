@@ -79,6 +79,6 @@
   "bounded_final_candidate_counter_before": 1,
   "bounded_final_candidate_counter_after": 2,
   "decision": "FAIL_CLOSED_CANDIDATE_2_OF_3",
-  "scientific_conclusion": "Correct paired captures strongly identify a camera-transfer shaper relative to cyclically wrong pairs, but the frozen safe residual LUT collapses to zero strength and does not improve over the strongest simple monotone or bounded-affine control. This exact global shaped-LUT family closes without strength, boundary, LUT-size, role, or threshold rescue. The paired capture observation remains valid.",
+  "scientific_conclusion": "Correct paired captures strongly identify a camera-transfer shaper relative to cyclically wrong pairs, but the frozen safe residual LUT collapses to zero strength and does not improve over the strongest simple monotone or bounded-affine control. This exact global shaped-LUT family closes without strength, boundary, LUT-size, role, or threshold rescue. Candidate 3 does not open; the project returns to controlled Velvia 50, Portra 400 and Ektar 100 evidence. The paired capture observation remains valid.",
   "claim_ceiling": "Internal two-camera night-capture paired explicit-operator evidence only. No automatic after-only matching, arbitrary-camera, film/stock, package/schema/capability, commercial, or product admission claim."
 }

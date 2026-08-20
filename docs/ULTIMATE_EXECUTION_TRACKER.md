@@ -233,11 +233,11 @@ equal-architecture cyclic-wrong target on 12/12 rows with median `+41.986%`.
 The frozen safe 9-cube residual strength nevertheless resolves to exact zero,
 so the candidate reduces to its monotone shaper and beats the strongest simple
 control on only 3/12 rows; median/worst gain is `-0.0022%/-44.339%` and p95
-OKLab error `.13024`. Jacobian, gradient, boundary and byte-exact replay pass;
-sealed reads remain zero. Do not rescue LUT strength/size/safety or region
-matching. Candidate 3 must add materially new capture-time/physical
-information and use a fresh natural group-isolated cohort; otherwise close the
-automatic single-reference product cycle. Evidence:
+OKLab error `.13024`. Jacobian, gradient, boundary and byte-exact clean replay
+pass; sealed reads remain zero. Do not rescue LUT strength/size/safety or
+region matching. Candidate 3 does not open: the bounded automatic
+single-reference/capture-ISP exploration stops, and the mainline returns to
+controlled Velvia 50 / Portra 400 / Ektar 100 evidence. Evidence:
 `docs/evidence/SF3_A0Y_NTIRE_PAIRED_SHAPED_LUT_CANDIDATE2_RESULT.json`.
 
 **Autonomy invariant**: the active no-data Roll2Film and Style-safe work cannot
