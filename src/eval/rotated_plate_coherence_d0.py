@@ -135,8 +135,9 @@ def _register_orientation(
             1 if int(degrees) == 90 else 0,
         )
         results.append((key, homography, diagnostics))
-    _, homography, selected = max(results, key=lambda item: item[0])
-    selected["candidates"] = [item[2] for item in results]
+    _, homography, selected_row = max(results, key=lambda item: item[0])
+    selected = dict(selected_row)
+    selected["candidates"] = [dict(item[2]) for item in results]
     return homography, selected
 
 

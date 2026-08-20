@@ -48,3 +48,4 @@ def test_registration_selects_supported_quarter_turn() -> None:
     assert homography is not None
     assert diagnostics["orientation_degrees"] == 90
     assert diagnostics["inliers"] > 50
+    assert diagnostics not in diagnostics["candidates"]
