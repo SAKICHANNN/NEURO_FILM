@@ -1,0 +1,52 @@
+{
+  "schema": "neuro_film.u6_p8bo1_android_native_standard_runtime_contract.v1",
+  "experiment_id": "u6.p8bo1-android-native-standard-runtime-v1",
+  "node": "ULT > U6 > U6.P8 > U6.P8BO1",
+  "date_frozen": "2026-08-21",
+  "status": "contract_frozen_before_android_execution",
+  "question": "Does the exact P8BO strength-1.0 native Standard component closure execute on an Android 14 x86_64 virtual device with bounded numerical agreement to the frozen Windows oracle, stable replay and failure atomicity?",
+  "parent": {
+    "path": "configs/u6_p8bo_portable_native_standard_decision_v1.json",
+    "sha256": "40476f6d021ea758dbc616710c622d7ba59e73effc2cb112e1cdcd69bccdb726",
+    "required_result_status": "pass",
+    "required_oracle_output_sha256": "916858fc48cce6a8214a8acdb08a044fbbeaec1392bdcae186ef388ff5350950"
+  },
+  "portable_contract": {
+    "path": "configs/u6_p8bo_portable_native_standard_v1.json",
+    "sha256": "14af3b194888d65e69925a81dfe3a48bb999d2ab6fa906d9037d7c1883849054"
+  },
+  "runtime": {
+    "api_level": 34,
+    "abi": "x86_64",
+    "system_image_source_properties_sha256": "bd7597e0dfa855335194fbafaf63bde93aa86bc3b56cea73cd54635715e77abc",
+    "emulator_sha256": "7f101ca769c15e8b6311801c1487f28583ce643fa87d19a9e0da4cc230be7653",
+    "adb_sha256": "957e46b8615f7af5b7292a2ddabe98d2e61940c3fb2b0545756507f080613e71",
+    "avd_name": "nf-019f4b76-p8cm-api34-x86",
+    "wipe_data_cold_boots": 2,
+    "fresh_processes_per_boot": 2,
+    "require_owned_process_cleanup": true
+  },
+  "fixture": {
+    "height": 64,
+    "width": 96,
+    "source_formula": "existing deterministic P8BO _source_rows fixture",
+    "strength": 1.0,
+    "maximum_absolute_error": 0.000002,
+    "maximum_rmse": 0.0000005,
+    "require_all_finite": true,
+    "require_source_unchanged": true,
+    "require_invalid_sensitometry_output_unchanged": true,
+    "require_process_and_reverse_replay_exact": true
+  },
+  "decision_if_pass": "retain_private_android_x86_64_runtime_for_exact_p8bo_component_closure",
+  "decision_if_fail": "retain_p8bo_compile_link_only_without_android_runtime_claim",
+  "forbidden_claims": [
+    "physical arm64 execution",
+    "Apple runtime",
+    "JNI or app integration",
+    "arbitrary image or media support",
+    "calibrated film-stock response",
+    "public package, capability or product admission"
+  ],
+  "claim_ceiling": "Private Android 14 x86_64 virtual-device arithmetic for one fixed P8BO strength-1.0 synthetic fixture; no physical arm64, app, media, calibration, package, capability or product claim."
+}
