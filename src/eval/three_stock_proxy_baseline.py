@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import io
 import json
-import os
 from pathlib import Path
 from typing import Any
 
@@ -159,12 +159,13 @@ def _save_png_create_only(path: Path, array: np.ndarray) -> str:
         raise ThreeStockProxyError(f"refusing to overwrite output: {path}")
     path.parent.mkdir(parents=True, exist_ok=True)
     image = Image.fromarray(array, mode="RGB")
-    temp = path.with_name(f".{path.name}.{os.getpid()}.stage")
+    encoded = io.BytesIO()
+    image.save(encoded, format="PNG", compress_level=6)
     try:
-        image.save(temp, format="PNG", compress_level=6)
-        os.link(temp, path)
-    finally:
-        temp.unlink(missing_ok=True)
+        with path.open("xb") as handle:
+            handle.write(encoded.getbuffer())
+    except FileExistsError as exc:
+        raise ThreeStockProxyError(f"refusing to overwrite output: {path}") from exc
     return _sha256(path)
 
 
