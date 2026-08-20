@@ -7,7 +7,8 @@
     "roles_builder_path": "scripts/build_u5_r2repid2_shared_operator_roles.py",
     "roles_builder_sha256": "5bee53aa8ec3697391aa747744ade369cce908e3cb55a544f27ff93199eba3c1",
     "roles_evidence_path": "docs/evidence/U5_R2REPID2_SHARED_OPERATOR_ROLES_RESULT.json",
-    "roles_evidence_sha256": "47e092819a2f717809fca9def09ab25019ac44d3689ce7b95ca1f67e86a33d42",
+    "roles_stable_evidence_id": "sha256:a4bee48f0e42cf8fd75492dbb94d433d656ed27e4340fefd9ec86d2b07e94f97",
+    "roles_formal_report_sha256": "7bac1d1c19e7209f7b84a87b2c281c568f9c7e03917b0943f5874355fdb3d5fd",
     "required_decision": "open_exact_fit_calibration_member_acquisition_for_repid_shared_operator_d0",
     "selected_identity_sha256": "6874505061a845ee0b199a0ef17be9a0adad1d5bf3797702653806eb8130cda9",
     "member_identity_sha256": "df1450c2a5c001c0e71bf30862f8aa2a039d3976066111a8b73ca5a2c763a18c"

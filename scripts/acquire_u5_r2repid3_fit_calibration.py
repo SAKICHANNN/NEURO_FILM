@@ -133,8 +133,10 @@ def run(contract_path: Path, output_path: Path) -> dict[str, Any]:
     bindings = {
         "roles_config": _sha256(roles_config_bytes) == parent["roles_config_sha256"],
         "roles_builder": _sha256(roles_builder_bytes) == parent["roles_builder_sha256"],
-        "roles_evidence": _sha256(roles_evidence_bytes)
-        == parent["roles_evidence_sha256"],
+        "roles_stable_evidence": roles_evidence["stable_evidence_id"]
+        == parent["roles_stable_evidence_id"],
+        "roles_formal_report": roles_evidence["formal_report_sha256"]
+        == parent["roles_formal_report_sha256"],
         "roles_decision": roles_evidence["decision"] == parent["required_decision"],
     }
     if not all(bindings.values()):
