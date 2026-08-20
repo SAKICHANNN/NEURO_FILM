@@ -14490,5 +14490,8 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Decision: `FAIL_CLOSED_COMPARABLE_THREE_STOCK_TARGET_EVIDENCE_UNAVAILABLE`.
   RF3 stays data-gated. A later leaf must add rights-clear paired/capture-time
   information; proxy-only algorithm capacity is not a valid rescue.
+- Storage correction: after P returned, the two exact formal reports were
+  replayed through the repository-relative P-backed `outputs/eval` entry;
+  the earlier D fallback copy is not the cited formal root.
 - Evidence:
   `docs/evidence/RF3_D1_THREE_STOCK_TARGET_EVIDENCE_EQUALIZATION_RESULT.json`.

@@ -15,8 +15,9 @@
   "formal_replay": {
     "processes": 2,
     "reports_byte_exact": true,
-    "output_root": "D:/_project_fallbacks/neuro_film_goal_019f4b76/rf3_d1",
-    "p_drive_writes": 0,
+    "output_root": "outputs/eval/rf3_d1_three_stock_target_evidence_equalization_v1",
+    "storage_binding": "repository-relative outputs junction backed by P:/neuro_film_storage/outputs",
+    "p_drive_writes": 2,
     "d_drive_root_scatter_writes": 0
   },
   "admission_results": {
@@ -37,6 +38,6 @@
     "training_rows": 0
   },
   "scientific_conclusion": "The present three-stock matrix cannot support a fair adaptive-operator comparison. Continuing with LUT capacity, retrieval, routing or latent K greater than 1 would optimize against unequal proxies rather than newly identifying film evidence. RF3 remains data-gated until a genuinely new rights-clear paired or capture-time observation supplies comparable targets and independent nuisance holdouts.",
-  "next_mainline": "Do not spend a candidate slot on another after-only or proxy-only stock algorithm. Continue the mature RAW/DNG/HDR/portable explicit-operator lane, or reopen RF3 only for a new rights-clear paired/capture-time cohort that changes at least one failed admission fact.",
+  "next_mainline": "Freeze the current three-stock data gap. The only RF3 successor is a separately authorized rights-clear controlled acquisition or a genuinely new public paired/capture-time cohort that changes at least one failed admission fact; do not spend work on proxy-only adaptive algorithms, additional Velvia tuning or unrelated mechanism expansion in place of multi-stock evidence.",
   "claim_ceiling": "Facts-only target-evidence admission closure for the current Velvia 50, Portra 400 and Ektar 100 matrix. No pixel, stock-response, calibration, package, capability or product claim."
 }
