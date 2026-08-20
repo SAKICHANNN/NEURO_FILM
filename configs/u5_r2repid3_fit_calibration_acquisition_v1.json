@@ -1,0 +1,37 @@
+{
+  "schema": "neuro_film.u5_r2repid3_fit_calibration_acquisition_contract.v1",
+  "experiment_id": "U5.R2REPID3",
+  "parent": {
+    "roles_config_path": "configs/u5_r2repid2_shared_operator_roles_v1.json",
+    "roles_config_sha256": "235fdc4230a627fbfe2b3b24e2b3b978a13512444b9442ce859743ec3d0b9674",
+    "roles_builder_path": "scripts/build_u5_r2repid2_shared_operator_roles.py",
+    "roles_builder_sha256": "5bee53aa8ec3697391aa747744ade369cce908e3cb55a544f27ff93199eba3c1",
+    "roles_evidence_path": "docs/evidence/U5_R2REPID2_SHARED_OPERATOR_ROLES_RESULT.json",
+    "roles_evidence_sha256": "47e092819a2f717809fca9def09ab25019ac44d3689ce7b95ca1f67e86a33d42",
+    "required_decision": "open_exact_fit_calibration_member_acquisition_for_repid_shared_operator_d0",
+    "selected_identity_sha256": "6874505061a845ee0b199a0ef17be9a0adad1d5bf3797702653806eb8130cda9",
+    "member_identity_sha256": "df1450c2a5c001c0e71bf30862f8aa2a039d3976066111a8b73ca5a2c763a18c"
+  },
+  "acquisition": {
+    "roles": ["fit", "calibration"],
+    "scene_count": 104,
+    "member_count": 208,
+    "exact_bytes": 1467342029,
+    "maximum_workers": 4,
+    "resolve_base": "https://huggingface.co/datasets/vsevolodpl/REPID/resolve/6a16a20a0b7122ad66d1f632af1586d45b443aa9",
+    "output_root": "data/preference/repid/u5_r2repid3_shared_operator_v1",
+    "temporary_suffix": ".part",
+    "resume_requires_full_sha256": true,
+    "sealed_member_requests": 0
+  },
+  "decode_preflight": {
+    "required_container": "JPEG",
+    "required_mode": "RGB",
+    "paired_dimensions_equal": true,
+    "minimum_dimension": 256,
+    "icc_presence_recorded_not_interpreted": true
+  },
+  "decision_if_pass": "open_repid_shared_logit_affine_development_fit_and_calibration",
+  "decision_if_fail": "invalidate_acquisition_without_scientific_operator_decision",
+  "claim_ceiling": "exact internal-research fit/calibration member acquisition and JPEG geometry preflight only; no operator, preference, package, capability or product result"
+}
