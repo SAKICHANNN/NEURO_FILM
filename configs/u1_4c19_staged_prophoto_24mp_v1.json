@@ -9,7 +9,7 @@
     },
     "staged_renderer": {
       "path": "src/inference/romm_rec2020_velvia_staged.py",
-      "sha256": "0acee683141845c0a5e7d7043f28be8db0b3f9ddf1431a4308d1d356e866b2d3"
+      "sha256": "45dd20f721caf9b2a199943c7592bcc0fd7158d91cacc681a33179a501ead0ca"
     },
     "output_encoder": {
       "path": "src/preprocess/output_encode.py",
