@@ -1,0 +1,35 @@
+{
+  "schema": "neuro-film.u5-r2spcp1-corrected-pairwise-preference-source-lock-decision.v1",
+  "experiment_id": "U5.R2SPCP1",
+  "status": "metadata_only_source_lock_pass",
+  "decision": "open_separately_preregistered_global_explicit_operator_d0",
+  "gates_passed": 20,
+  "failed_gates": [],
+  "source_facts": {
+    "canonical_images": 12000,
+    "scenes": 1000,
+    "variants_per_scene": 12,
+    "pair_rows": 45000,
+    "score_rows": 12000,
+    "subjects": 20,
+    "connected_scene_graphs": 1000,
+    "duplicate_extras_excluded": 3
+  },
+  "execution_integrity": {
+    "image_payload_bytes_read": 0,
+    "operator_fit": false,
+    "render": false,
+    "score": false,
+    "two_fresh_range_audits_byte_exact": true
+  },
+  "rights_ceiling": "The dataset card declares Apache-2.0 but includes no independent license text or per-image provenance; retain local isolated internal-research use and do not infer redistribution or product rights.",
+  "next_leaf": "Freeze scene-disjoint roles and annotation-only winner/loser selection, then Range-acquire only the selected same-scene image pairs for one global source-free bounded normalized-logit affine operator D0.",
+  "forbidden": [
+    "full 9 GB acquisition without a separately frozen pixel manifest and byte budget",
+    "per-scene or per-image routing",
+    "application-source-conditioned operator selection",
+    "direct RGB generation by a learned model",
+    "film-stock, scanner, calibrated-authenticity, population or product claims"
+  ],
+  "claim_ceiling": "Metadata-only source and preference-graph structure pass; no image pixels, explicit-operator result, preference generalization, film-stock evidence, package, capability or product authorization."
+}

@@ -17,6 +17,12 @@ EVIDENCE = ROOT / "docs/evidence/U5_R2SPCP0_PAIRWISE_PREFERENCE_SOURCE_LOCK_RESU
 CORRECTED_CONTRACT = (
     ROOT / "configs/u5_r2spcp1_corrected_pairwise_preference_source_lock_v1.json"
 )
+CORRECTED_DECISION = (
+    ROOT / "configs/u5_r2spcp1_corrected_pairwise_preference_source_lock_decision_v1.json"
+)
+CORRECTED_EVIDENCE = (
+    ROOT / "docs/evidence/U5_R2SPCP1_CORRECTED_PAIRWISE_PREFERENCE_SOURCE_LOCK_RESULT.json"
+)
 
 
 def test_spcp0_contract_freezes_metadata_only_source() -> None:
@@ -142,3 +148,14 @@ def test_spcp1_is_prospective_and_binds_spcp0_failure() -> None:
         evidence["observed_annotation_hashes"]["score_trans2.xlsx"]
     )
     assert corrected["range_protocol"]["image_member_payload_read_forbidden"] is True
+
+
+def test_spcp1_pass_opens_only_separate_explicit_operator_d0() -> None:
+    decision = json.loads(CORRECTED_DECISION.read_text(encoding="utf-8"))
+    evidence = json.loads(CORRECTED_EVIDENCE.read_text(encoding="utf-8"))
+    assert decision["status"] == "metadata_only_source_lock_pass"
+    assert decision["execution_integrity"]["image_payload_bytes_read"] == 0
+    assert "global_explicit_operator_d0" in decision["decision"]
+    assert evidence["formal_report_sha256"] == evidence["second_report_sha256"]
+    assert evidence["gates"]["failed"] == 0
+    assert evidence["execution"]["full_zip_downloaded"] is False

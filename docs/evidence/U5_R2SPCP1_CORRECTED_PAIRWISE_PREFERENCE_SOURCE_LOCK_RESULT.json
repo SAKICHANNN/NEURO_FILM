@@ -1,0 +1,59 @@
+{
+  "schema": "neuro-film.u5-r2spcp1-corrected-pairwise-preference-source-lock-evidence.v1",
+  "experiment_id": "U5.R2SPCP1",
+  "date": "2026-08-20",
+  "contract_commit": "7a7c78e4",
+  "implementation_commit": "747e95d5",
+  "execution_head": "3a10ade2a39c600953b62c75c336f5e19b201b50",
+  "contract_sha256": "1e36f4243096a155a5b6322b9926f56fcddbc8e9a8dda48cf1c5c3b8e665ff08",
+  "formal_report_path": "outputs/eval/u5_r2spcp1_corrected_pairwise_preference_source_lock_v1/formal_a.json",
+  "formal_report_sha256": "07a1f15b546ddad449dd5010d80a62d195f917069dcf28b1d8b735be3689e5b7",
+  "second_report_path": "outputs/eval/u5_r2spcp1_corrected_pairwise_preference_source_lock_v1/formal_b.json",
+  "second_report_sha256": "07a1f15b546ddad449dd5010d80a62d195f917069dcf28b1d8b735be3689e5b7",
+  "stable_evidence_id": "sha256:02137132ab1fd4eb81c854a080716653ada4ae5ad52013cb649606038469e2b7",
+  "gates": {
+    "passed": 20,
+    "failed": 0,
+    "parent_exact": true,
+    "central_directory_sha256_exact": true,
+    "annotation_hashes_exact": true,
+    "annotation_structure_exact": true,
+    "preference_graph_exact": true,
+    "range_budget_exact": true,
+    "zero_image_payload": true,
+    "replay_byte_exact": true
+  },
+  "source": {
+    "dataset_id": "zwx8981/SPCP_dataset",
+    "revision": "068af97eed82969f15278db3af4bd450176cf6f3",
+    "zip_lfs_sha256": "8643d2be6edb3391f37159476584df59f714205fd427a1d26e325a1f93791ef0",
+    "central_directory_sha256": "f3892690a8434fd42a412c4cf952e050d542740d2dea04b4cad976ad2ea1415d",
+    "pair_annotation_sha256": "8c42140ae0f90f37f32706911ab86cca9f377077bbd18ac301262d952bf5f58c",
+    "score_annotation_sha256": "ee5f0fc830ebd40cab3e25b379aa0e01ec5cc4793a55315504c2d06f6af7900d",
+    "rights_ceiling": "publisher-declared Apache-2.0 dataset card only; no independent license text or inferred per-image redistribution rights"
+  },
+  "structure": {
+    "zip_members": 12007,
+    "canonical_png_members": 12000,
+    "scenes": 1000,
+    "variants_per_scene": 12,
+    "pair_rows": 45000,
+    "score_rows": 12000,
+    "subject_columns": 20,
+    "cross_scene_pairs": 0,
+    "connected_pair_graphs": 1000,
+    "pairs_per_scene": 45,
+    "duplicate_extra_png": 3
+  },
+  "execution": {
+    "zip_bytes_read_per_run": 5238287,
+    "image_payload_bytes_read": 0,
+    "full_zip_downloaded": false,
+    "operator_fit": false,
+    "render": false,
+    "score": false
+  },
+  "status": "PASS_METADATA_ONLY_SOURCE_LOCK",
+  "decision": "open_separately_preregistered_explicit_operator_d0",
+  "claim_ceiling": "Corrected metadata-only source lock; no pixels, operator, preference generalization, film-stock evidence, package, capability or product claim."
+}

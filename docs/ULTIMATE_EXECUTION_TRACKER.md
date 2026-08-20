@@ -1500,3 +1500,11 @@ sizes and CRCs are stable. Image payload reads remain zero. Preserve SPCP0 as
 a protocol-integrity failure; only a separately numbered prospective lock may
 bind the observed complete hashes before any explicit-operator D0 or 9GB image
 acquisition.
+
+U5.R2SPCP1 prospectively binds those observed full hashes and passes the same
+metadata-only audit twice byte exactly (`07a1f15b...e5b7`; stable
+`02137132...e2b7`). All 20 gates pass with zero PNG payload bytes. This opens
+only a separately preregistered scene-disjoint winner/loser Range acquisition
+and one shared source-free bounded explicit-operator D0. It does not establish
+population preference, film/stock/scanner identity, redistribution rights or
+product admission, and does not authorize an indiscriminate 9GB download.

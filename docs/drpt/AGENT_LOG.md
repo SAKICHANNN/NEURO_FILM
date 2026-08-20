@@ -13766,3 +13766,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   exact failure and do not rewrite SPCP0. A separately numbered prospective
   metadata-only correction may bind the observed full hashes before pixels.
 - Evidence: `docs/evidence/U5_R2SPCP0_PAIRWISE_PREFERENCE_SOURCE_LOCK_RESULT.json`.
+
+### 2026-08-20 - U5.R2SPCP1 corrected metadata-only source lock passes
+
+- Prospectively bound SPCP0's preserved failure and the independently observed
+  full workbook hashes, then reran the unchanged 5,238,287-byte Range audit.
+  Both committed executions are byte exact (`07a1f15b...e5b7`, stable
+  `02137132...e2b7`) and all 20 gates pass.
+- This establishes a complete 1,000-scene/12-variant preference graph source,
+  not a preference model or explicit operator result. PNG member reads, full
+  ZIP acquisition, fitting, rendering and scoring remain zero.
+- The next leaf may freeze scene-disjoint roles and acquire only annotation-
+  selected winner/loser pairs for one global source-free bounded operator D0.
+  Rights remain local isolated research only because the HF card has no
+  independent license text or per-image provenance.
+- Evidence: `docs/evidence/U5_R2SPCP1_CORRECTED_PAIRWISE_PREFERENCE_SOURCE_LOCK_RESULT.json`.
