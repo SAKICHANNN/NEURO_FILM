@@ -11,8 +11,20 @@ from typing import Any
 
 CONTRACT_SCHEMA = "neuro-film.sf3-a0-three-stock-controlled-acquisition-contract.v1"
 MANIFEST_SCHEMA = "neuro-film.sf3-a0-three-stock-controlled-acquisition-manifest.v1"
+LEDGER_SCHEMA = "neuro-film.sf3-a0-three-stock-controlled-acquisition-ledger.v1"
 REPORT_SCHEMA = "neuro-film.sf3-a0-three-stock-controlled-acquisition-report.v1"
 _SHA256 = re.compile(r"^[0-9a-f]{64}$")
+
+_HASH_PATH_FIELDS = {
+    "digital_reference_sha256": "digital_reference_path",
+    "capture_condition_sha256": "capture_condition_record_path",
+    "process_recipe_sha256": "process_recipe_record_path",
+    "scanner_profile_sha256": "scanner_profile_record_path",
+    "scan_file_sha256": "scan_file_path",
+    "scan_sample_sha256": "scan_sample_path",
+    "alignment_evidence_sha256": "alignment_evidence_path",
+    "rights_record_sha256": "rights_record_path",
+}
 
 
 class ThreeStockAcquisitionError(ValueError):
@@ -21,6 +33,14 @@ class ThreeStockAcquisitionError(ValueError):
 
 def _sha256(raw: bytes) -> str:
     return hashlib.sha256(raw).hexdigest()
+
+
+def _sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
 
 
 def _canonical(value: Any) -> bytes:
@@ -80,6 +100,61 @@ def compile_protocol(contract_path: Path) -> dict[str, Any]:
         "claim_ceiling": contract["claim_ceiling"],
     }
     return {**core, "stable_evidence_id": _sha256(_canonical(core))}
+
+
+def _bound_data_file(root: Path, value: Any, *, field: str) -> Path:
+    if not isinstance(value, str) or not value:
+        raise ThreeStockAcquisitionError(f"SF3.A0 ledger {field} is invalid")
+    relative = Path(value)
+    if relative.is_absolute() or ".." in relative.parts:
+        raise ThreeStockAcquisitionError(
+            f"SF3.A0 ledger {field} must be repository-relative"
+        )
+    if not relative.parts or relative.parts[0].casefold() != "data":
+        raise ThreeStockAcquisitionError(
+            f"SF3.A0 ledger {field} must use the logical data root"
+        )
+    path = root.joinpath(*relative.parts)
+    if not path.is_file():
+        raise ThreeStockAcquisitionError(f"SF3.A0 ledger file is missing: {value}")
+    return path
+
+
+def compile_acquisition_ledger(
+    contract_path: Path, ledger_path: Path, *, root: Path
+) -> dict[str, Any]:
+    """Hash one controlled-capture ledger into the strict SF3.A0 manifest.
+
+    The output deliberately contains identities rather than machine-specific
+    physical paths. Pixel decoding and alignment adjudication remain SF3.A1.
+    """
+
+    _, contract = _load_contract(contract_path)
+    _, ledger = _read_object(ledger_path)
+    if set(ledger) != {"schema", "rows"}:
+        raise ThreeStockAcquisitionError("SF3.A0 acquisition ledger field drift")
+    if ledger.get("schema") != LEDGER_SCHEMA:
+        raise ThreeStockAcquisitionError("unsupported SF3.A0 acquisition ledger")
+    ledger_rows = ledger.get("rows")
+    if not isinstance(ledger_rows, list) or not ledger_rows:
+        raise ThreeStockAcquisitionError("SF3.A0 acquisition ledger rows are empty")
+    manifest_fields = set(contract["required_row_fields"])
+    ledger_fields = (manifest_fields - set(_HASH_PATH_FIELDS)) | set(
+        _HASH_PATH_FIELDS.values()
+    )
+    rows: list[dict[str, Any]] = []
+    for index, source in enumerate(ledger_rows):
+        if not isinstance(source, dict) or set(source) != ledger_fields:
+            raise ThreeStockAcquisitionError(
+                f"SF3.A0 ledger row {index} field drift"
+            )
+        row = {field: source[field] for field in manifest_fields - set(_HASH_PATH_FIELDS)}
+        for hash_field, path_field in _HASH_PATH_FIELDS.items():
+            path = _bound_data_file(root, source[path_field], field=path_field)
+            row[hash_field] = _sha256_file(path)
+        rows.append(row)
+    _row_structure(contract, rows)
+    return {"schema": MANIFEST_SCHEMA, "rows": rows}
 
 
 def _row_structure(contract: dict[str, Any], rows: list[dict[str, Any]]) -> None:
@@ -320,8 +395,10 @@ def evaluate_manifest(contract_path: Path, manifest_path: Path) -> dict[str, Any
 
 __all__ = [
     "CONTRACT_SCHEMA",
+    "LEDGER_SCHEMA",
     "MANIFEST_SCHEMA",
     "ThreeStockAcquisitionError",
+    "compile_acquisition_ledger",
     "compile_protocol",
     "evaluate_manifest",
 ]

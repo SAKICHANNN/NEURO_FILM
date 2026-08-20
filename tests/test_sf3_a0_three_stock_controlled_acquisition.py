@@ -7,8 +7,10 @@ from pathlib import Path
 import pytest
 
 from src.real_film.three_stock_acquisition import (
+    LEDGER_SCHEMA,
     MANIFEST_SCHEMA,
     ThreeStockAcquisitionError,
+    compile_acquisition_ledger,
     compile_protocol,
     evaluate_manifest,
 )
@@ -167,3 +169,54 @@ def test_duplicate_scan_identity_is_invalid(tmp_path: Path) -> None:
     ]
     with pytest.raises(ThreeStockAcquisitionError, match="duplicate identity"):
         evaluate_manifest(CONFIG, _write(tmp_path, manifest))
+
+
+def _ledger(tmp_path: Path) -> tuple[Path, Path]:
+    root = tmp_path / "repo"
+    data = root / "data" / "sf3"
+    data.mkdir(parents=True)
+    manifest = _manifest()
+    hash_fields = {
+        "digital_reference_sha256": "digital_reference_path",
+        "capture_condition_sha256": "capture_condition_record_path",
+        "process_recipe_sha256": "process_recipe_record_path",
+        "scanner_profile_sha256": "scanner_profile_record_path",
+        "scan_file_sha256": "scan_file_path",
+        "scan_sample_sha256": "scan_sample_path",
+        "alignment_evidence_sha256": "alignment_evidence_path",
+        "rights_record_sha256": "rights_record_path",
+    }
+    rows = []
+    for source in manifest["rows"]:  # type: ignore[index]
+        row = {key: value for key, value in source.items() if key not in hash_fields}
+        for hash_field, path_field in hash_fields.items():
+            token = str(source[hash_field])
+            path = data / f"{token}.bin"
+            if not path.exists():
+                path.write_bytes(token.encode("ascii"))
+            row[path_field] = path.relative_to(root).as_posix()
+        rows.append(row)
+    ledger = tmp_path / "ledger.json"
+    ledger.write_text(json.dumps({"schema": LEDGER_SCHEMA, "rows": rows}))
+    return root, ledger
+
+
+def test_acquisition_ledger_compiles_and_passes_existing_gate(tmp_path: Path) -> None:
+    root, ledger = _ledger(tmp_path)
+    manifest = compile_acquisition_ledger(CONFIG, ledger, root=root)
+    path = tmp_path / "compiled.json"
+    path.write_text(json.dumps(manifest))
+    report = evaluate_manifest(CONFIG, path)
+    assert report["row_count"] == 108
+    assert report["automatic_pass"] is True
+
+
+def test_acquisition_ledger_rejects_non_data_path(tmp_path: Path) -> None:
+    root, ledger = _ledger(tmp_path)
+    payload = json.loads(ledger.read_text())
+    outside = root / "outside.bin"
+    outside.write_bytes(b"outside")
+    payload["rows"][0]["scan_file_path"] = "outside.bin"
+    ledger.write_text(json.dumps(payload))
+    with pytest.raises(ThreeStockAcquisitionError, match="logical data root"):
+        compile_acquisition_ledger(CONFIG, ledger, root=root)

@@ -14523,3 +14523,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   package, media, stock or product claim.
 - Evidence:
   `docs/evidence/U6_P8BO1_ANDROID_NATIVE_STANDARD_RUNTIME_RESULT.json`.
+### 2026-08-21 - SF3.A0 gains a real-file intake compiler
+
+- Added a create-only CLI that converts an exact controlled-capture ledger
+  into the existing 108-row hash-only A0 manifest and immediately applies the
+  frozen topology/rights/holdout gate.
+- All eight evidence classes are streamed from repo-relative `data/...`
+  inputs, so large scans stay on the P-backed logical data root and physical
+  drive paths never enter the manifest. Ten focused and 18 adjacent tests
+  pass. No pixels were decoded and fitting remains closed until real data pass.
