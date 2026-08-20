@@ -14680,3 +14680,26 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Only a separately frozen group-disjoint member/pixel preflight opens. Final
   candidate counter remains `0/3`. Evidence:
   `docs/evidence/SF3_A0R_RGB2RAW_CAPTURE_PAIR_SOURCE_LOCK_RESULT.json`.
+
+### 2026-08-21 - SF3.A0S qualifies RGB2RAW capture-pair pixels
+
+- Parent: bounded final-cycle source admission under SF3.A0.
+- Skills: `dev-research-reliability` primary; research, AIML, DRPT, agent-log
+  and structure stewardship as read-only disciplines.
+- Frozen selection: 12 numeric-normalized unique capture groups, six each for
+  iPhone X and Samsung S9, selected before member reads.
+- Two corrected Range-only executions replay byte exactly at report SHA
+  `0ae7ac9685bcea4d37ad2babb93ee61c682870441e98ed210d377ed5efd3f2fc`,
+  stable `2d9026cfd9a865aad8698d3aca5cfb2e43e1bd978848026afbb6c3b343211baf`.
+  Every RAW/RGB shape and dtype gate passes; census minimum `.78681`, gradient
+  correlation minimum `.79810`, and minimum RAW-proxy/display difference
+  `.09053`.
+- Preserved correction provenance: the first implementation required uint16
+  RAW values to lie in `[0,1]`. The additive fix binds uint16 dtype bounds and
+  changes no row, metric or frozen scientific threshold.
+- No pickle was executed, no member payload was retained and no operator was
+  fitted or scored. This opens a capture-metadata-conditioned explicit
+  operator preregistration only; bounded final candidate counter remains
+  `0/3`.
+- Evidence:
+  `docs/evidence/SF3_A0S_RGB2RAW_CAPTURE_PAIR_PIXEL_PREFLIGHT_RESULT.json`.

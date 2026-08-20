@@ -76,6 +76,18 @@ group-disjoint member/pixel preflight with an explicit rights ceiling. Counter
 remains `0/3`. Evidence:
 `docs/evidence/SF3_A0R_RGB2RAW_CAPTURE_PAIR_SOURCE_LOCK_RESULT.json`.
 
+SF3.A0S then passes the frozen camera-balanced member/pixel preflight. Twelve
+numeric-normalized capture groups (six per camera) expose exact uint16
+`512x512x4` RAW and uint8 `1024x1024x3` phone-ISP RGB pairs. Two corrected
+41,064,544-byte Range executions are byte exact (`0ae7ac96...3f2fc`): census
+agreement is `.78681..92845`, gradient correlation `.79810..95476`, and every
+pair differs materially from the simple RAW proxy. The first execution's
+invalid `[0,1]` assumption for uint16 code values is preserved and superseded;
+no row or scientific threshold changed. No payload is retained and no
+operator is fitted. This opens one capture-metadata-conditioned explicit
+operator preregistration; final counter remains `0/3`. Evidence:
+`docs/evidence/SF3_A0S_RGB2RAW_CAPTURE_PAIR_PIXEL_PREFLIGHT_RESULT.json`.
+
 **Autonomy invariant**: the active no-data Roll2Film and Style-safe work cannot
 depend on the owner supplying images, film/digital pairs, per-image labels, new
 preference votes or manual annotation. Public online data is an allowed source

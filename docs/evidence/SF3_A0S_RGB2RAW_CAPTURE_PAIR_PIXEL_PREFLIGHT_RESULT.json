@@ -1,0 +1,62 @@
+{
+  "schema": "neuro-film.sf3-a0s-rgb2raw-capture-pair-pixel-preflight-evidence.v1",
+  "experiment_id": "SF3.A0S_RGB2RAW_CAPTURE_PAIR_PIXEL_PREFLIGHT_V1",
+  "date": "2026-08-21",
+  "status": "PASS_OPEN_CAPTURE_METADATA_EXPLICIT_OPERATOR_PREREG",
+  "implementation_commit": "fddfb8c30cf16079012747df68e7db35c42730fb",
+  "contract": {
+    "path": "configs/sf3_a0s_rgb2raw_capture_pair_pixel_preflight_v1.json",
+    "sha256": "d5ba0c8bf5c49cf7f6a1e6da55061d41818f4aca9df3acd8c796d0056d6b2600"
+  },
+  "source_lock": {
+    "evidence_sha256": "f5ec49719db1dccae6866d05cd86d721cc4cdc9078b3ee762d42b24b35952c12",
+    "source_revision": "91a105e8532f082a955b799c15dea0ada9e3caed",
+    "source_lock_stable_identity": "636af45c156a848c374f39db6032743738379d8b7e55c5b56c002a1ce86415d0"
+  },
+  "selection": {
+    "algorithm": "sha256-rank-camera-then-numeric-normalized-capture-group-v1",
+    "pair_count": 12,
+    "pairs_per_camera": 6,
+    "canonical_capture_group_count": 12,
+    "selection_manifest_sha256": "8b30460b6c5d40667df5aadaae89b82a0cf1387e3d79b05e82581cf6cdd175c1",
+    "selection_frozen_before_member_reads": true
+  },
+  "formal_replay": {
+    "report_a": "outputs/eval/sf3_a0s_rgb2raw_capture_pair_pixel_preflight_v1/formal_run_2_dtype_corrected.json",
+    "report_b": "outputs/eval/sf3_a0s_rgb2raw_capture_pair_pixel_preflight_v1/formal_run_3_dtype_corrected.json",
+    "report_sha256": "0ae7ac9685bcea4d37ad2babb93ee61c682870441e98ed210d377ed5efd3f2fc",
+    "stable_identity": "2d9026cfd9a865aad8698d3aca5cfb2e43e1bd978848026afbb6c3b343211baf",
+    "byte_exact": true,
+    "network_bytes_per_run": 41064544
+  },
+  "superseded_execution": {
+    "report": "outputs/eval/sf3_a0s_rgb2raw_capture_pair_pixel_preflight_v1/formal_run_1.json",
+    "stable_identity": "8ffc41f971b16913068a18959b9ad7f4e3160341e66f31e409bb01b498a7f787",
+    "reason": "The first implementation incorrectly required the archive's uint16 RAW code values to lie in [0,1]. The additive correction binds the documented uint16 dtype and its dtype bounds; it changes no selected row, correspondence metric, difference metric or scientific gate threshold."
+  },
+  "observations": {
+    "row_count": 12,
+    "iphone_x_rows": 6,
+    "samsung_s9_rows": 6,
+    "raw_shape_each": [512, 512, 4],
+    "rgb_shape_each": [1024, 1024, 3],
+    "raw_dtype_each": "uint16",
+    "raw_code_min_range": [0.0, 24.0],
+    "raw_code_max_range": [789.0, 4095.0],
+    "census_agreement_min_median_max": [0.7868112463307241, 0.8692352235200587, 0.9284472082925637],
+    "gradient_correlation_min_median_max": [0.7980981407732944, 0.8976549804793177, 0.9547628337742069],
+    "display_raw_proxy_mean_abs_difference_min_median_max": [0.0905325477645778, 0.22711994602636207, 0.4214864719057436],
+    "metadata_pickle_streams_statically_valid": 12,
+    "metadata_pickle_streams_executed": 0,
+    "member_payloads_persisted": 0,
+    "operator_fits": 0,
+    "renders": 0,
+    "scores": 0
+  },
+  "decision": "PASS_RGB2RAW_CAPTURE_PAIR_PIXEL_PREFLIGHT_OPEN_OPERATOR_PREREG",
+  "bounded_final_candidate_counter_before": 0,
+  "bounded_final_candidate_counter_after": 0,
+  "scientific_conclusion": "Twelve camera-balanced and numeric-group-disjoint real capture pairs have exact RAW/RGB geometry, strong candidate-independent structural correspondence and material RAW-proxy versus phone-ISP output difference. This qualifies the source for one separately preregistered capture-metadata-conditioned explicit-operator candidate; it does not itself establish operator quality.",
+  "rights_ceiling": "The Hugging Face card declares MIT but the repository contains no separate license text. Preserve this as publisher-declared permissive metadata, not a legal warranty or product-distribution admission.",
+  "claim_ceiling": "Twelve-pair pixel and structure preflight only. No fitted operator, preference, film, stock, package, schema, capability or product claim."
+}

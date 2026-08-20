@@ -625,3 +625,22 @@ synthetic reaction fields. Absolute/relative fidelity, cube, Jacobian, inverse,
 serialization, partition and two-process evidence gates are frozen. No NCT
 code/data, photograph, film pixel or reference canonicalizer is allowed; even
 a pass is representation evidence only.
+
+### 2026-08-21 - SF3.A0S qualifies RGB2RAW pixels for operator preregistration
+
+- Before any member read, selected six numeric-normalized capture groups per
+  camera by a fixed SHA rank. All 12 exact pairs have uint16 `512x512x4` RAW,
+  uint8 `1024x1024x3` phone-ISP RGB and statically valid metadata pickle
+  streams; pickle code was not executed and member payloads were not retained.
+- Two corrected complete HTTP Range runs are byte exact at
+  `0ae7ac96...3f2fc`, stable `2d9026cf...211baf`. Minimum census agreement and
+  gradient correlation are `.78681` and `.79810`; minimum display-versus-RAW
+  proxy mean absolute difference is `.09053`.
+- The first run is explicitly superseded because the executable incorrectly
+  treated uint16 RAW code values as normalized floats. The correction binds
+  uint16 dtype bounds and changes no selected row, correspondence threshold or
+  processing-difference threshold.
+- This opens only a separately frozen capture-metadata-conditioned explicit
+  operator candidate. No fit, render or score occurred, so the final bounded
+  counter remains `0/3`. Evidence:
+  `docs/evidence/SF3_A0S_RGB2RAW_CAPTURE_PAIR_PIXEL_PREFLIGHT_RESULT.json`.
