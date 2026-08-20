@@ -1,0 +1,58 @@
+{
+  "schema": "neuro-film.rf3-three-stock-layer-exposure-observability-contract.v1",
+  "experiment_id": "RF3.D6",
+  "date": "2026-08-21",
+  "status": "FROZEN_BEFORE_LAYER_EXPOSURE_SCORE",
+  "question": "After per-stock ideal-white and per-material geometric-mean normalization, do the three manufacturer spectral-sensitivity priors retain material-dependent pairwise layer-exposure separation on a public-domain measured-reflectance population?",
+  "parent": {
+    "path": "docs/evidence/RF3_D5_THREE_STOCK_SPECTRAL_SHAPE_RESULT.json",
+    "sha256": "3473fc291386f53da808916000e29dcf2a8a8d5096d1ea39055d11abb8a95698",
+    "required_decision": "retain_datasheet_spectral_shape_as_a_nonrenderable_three_stock_k1_prior"
+  },
+  "spectral_digitization": {
+    "path": "configs/rf3_d5_three_stock_spectral_digitization_v1.json",
+    "sha256": "7ff2cd18f96c90eec736209ea98f5ee6f9feb0a29a3e71861db2143f6b03e076",
+    "wavelengths_nm": [400, 410, 420, 430, 440, 450, 460, 470, 480, 490, 500, 510, 520, 530, 540, 550, 560, 570, 580, 590, 600, 610, 620, 630, 640, 650, 660, 670, 680],
+    "outside_support_log10": -1.25,
+    "interpolation": "linear_in_wavelength_and_published_log_sensitivity",
+    "normalization": "subtract_layer_peak_then_raise_10"
+  },
+  "reflectance_source": {
+    "source_decision": "configs/u5_r2h0c3_external_spectrum_source_audit_decision_v1.json",
+    "source_decision_sha256": "5c3d78a4c7377788c1c2df8c4706be2b96bd7ab913369b96cd2ad4613dc421fb",
+    "archive": "data/real_film/usgs_splib07/ASCIIdata_splib07a.zip",
+    "archive_sha256": "d232645740869a82aafcad5839448c50b1dc72965ce042d1374f29b7a798a91c",
+    "rights": "US_public_domain",
+    "measurement_type": "AREF",
+    "sample_group_regex": "^splib07a_(.*)_(?:ASD|BECK|AVIRIS|NIC4)[A-Za-z]*_(?:AREF|RREF|TRAN|RTGC)$",
+    "expected_eligible_records": 1732,
+    "expected_chapters": 7,
+    "minimum_sample_groups": 1200
+  },
+  "illuminant": {
+    "id": "CIE_D65",
+    "path": "data/calibration/cie/CIE_std_illum_D65.csv",
+    "sha256": "e76f210bffff3d552ef7113025da5f325d5dfec200dd4b878b1a2f3a507032cb"
+  },
+  "response": {
+    "integration": "trapezoidal_reflectance_times_D65_times_normalized_layer_sensitivity",
+    "white_balance": "divide_each_layer_by_ideal_unit_reflectance_layer_exposure",
+    "material_normalization": "subtract_per_material_mean_log_response_across_three_layers",
+    "epsilon": 1e-12,
+    "cohort_fitting_allowed": false,
+    "rgb_render_allowed": false
+  },
+  "gates": {
+    "minimum_pairwise_median_log_response_l2": 0.02,
+    "minimum_pairwise_p10_log_response_l2": 0.005,
+    "minimum_pairwise_material_delta_vector_rms": 0.01,
+    "minimum_pairwise_group_bootstrap_95_lcb_median_l2": 0.01,
+    "bootstrap_repeats": 1000,
+    "bootstrap_seed": 20260821,
+    "require_all_three_pairs": true,
+    "require_exact_replay": true
+  },
+  "decision_if_pass": "retain_public_reflectance_layer_exposure_observability_as_a_nonrenderable_three_stock_k1_prior",
+  "decision_if_fail": "close_datasheet_layer_exposure_observability_and_require_controlled_photographic_targets",
+  "claim_ceiling": "Public-domain reflectance plus manufacturer spectral-sensitivity prior observability only. No RGB render, characteristic/development response, negative/slide interpretation, scanner truth, target closeness, stock calibration, preference, product or multi-stock completion claim."
+}
