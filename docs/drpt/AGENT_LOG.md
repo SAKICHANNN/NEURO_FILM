@@ -14081,6 +14081,23 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   development; the 24-scene sealed role remains untouched.
 - Evidence: `docs/evidence/U5_R2REPID9C_REFERENCE_OPERATOR_PREDICTOR_RESULT.json`.
 
+### 2026-08-20 - U5.R2REPID9D closes CanonCGT grade-token prediction
+
+- Replaced only the failed raw-stat identifying observation with the fixed
+  official CanonCGT E2E normalized 64D `Embedding_Net` token. The 80/24
+  roles, ridge alpha, safe explicit operator labels and controls remained
+  unchanged; no external model training or fine-tuning occurred.
+- Forward/reverse reports are byte exact (`138a153e...e37007`), with all
+  calibration predictions frozen before original reads and sealed reads zero.
+- Candidate performance is worse: only 9/24 improve, median `-18.53%`, worst
+  `-130.42%`; it beats raw statistics on 10/24 with median `-12.15%`, global
+  on 5/24 with `-17.68%`, and cyclic labels on 9/24 with `-4.25%`.
+- Matrix, boundary, gradient and salience gates still pass. Close the exact
+  checkpoint/token layer/input/ridge/operator/roles without crop, layer or
+  capacity sweep. This does not judge CanonCGT's full source-conditioned
+  renderer; it rejects this token as a source-independent operator identifier.
+- Evidence: `docs/evidence/U5_R2REPID9D_CANONCGT_EMBEDDING_PREDICTOR_RESULT.json`.
+
 ### 2026-08-20 - U6.P6AS closes the current public repeat-scan source gate
 
 - Queried the current official APPLAUSE DR4 and HDAP TAP catalogues without

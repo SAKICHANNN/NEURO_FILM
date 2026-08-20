@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2repid9d-canoncgt-embedding-predictor-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2REPID9D",
+  "freeze_commit": "60436a9f",
+  "config_sha256": "49f89ef15b36ae8cc3d9789412a04bda26a0c6df4c1ce8500f310a3131c89b66",
+  "formal_report_sha256": "138a153eafa3fb7051c6b159afc90f0f7406c9e837f8c3f7ae22fc48dde37007",
+  "formal_reverse_report_sha256": "138a153eafa3fb7051c6b159afc90f0f7406c9e837f8c3f7ae22fc48dde37007",
+  "stable_evidence_id": "sha256:c41a980d1d296426a1e4435c323dec376344df90be45b6b3f8451cc36839a3d9",
+  "prediction_freeze_sha256": "0ea5edaab45460e0de93b86c9841a2778634d74a12a16db333bc211206a9a204",
+  "external_model": {
+    "name": "CanonCGT E2E Embedding_Net",
+    "repository_commit": "229a7d3ec24af19ea5d97bb136f0317762bb9261",
+    "checkpoint_sha256": "916f7ad5028d3fef51cf915bb51febc9508e7a378c0babe9ff3d3992b8c594f7",
+    "checkpoint_epoch": 9,
+    "parameter_count": 5056383,
+    "embedding_dimension": 64,
+    "license": "Apache-2.0",
+    "training_or_finetuning": false
+  },
+  "information_flow": {
+    "fit_scenes": 80,
+    "calibration_scenes": 24,
+    "calibration_original_reads_before_prediction_freeze": 0,
+    "application_source_reads_during_build": 0,
+    "sealed_requests": 0
+  },
+  "metrics": {
+    "candidate_improvement_rate": 0.375,
+    "candidate_improvement_median": -0.18526978950106288,
+    "candidate_improvement_worst": -1.3041972880490948,
+    "beat_raw_stat_rate": 0.4166666666666667,
+    "gain_vs_raw_stat_median": -0.12154839209526608,
+    "beat_global_rate": 0.20833333333333334,
+    "gain_vs_global_median": -0.17675011824797737,
+    "beat_permuted_rate": 0.375,
+    "gain_vs_permuted_median": -0.04251137671852151,
+    "oracle_improvement_median": 0.39749240599956204,
+    "median_output_delta_e_oklab": 0.0464040626712294,
+    "maximum_new_exact_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio": 1.29593737074713,
+    "minimum_determinant": 0.9584433657828823,
+    "maximum_condition_number": 2.269757484785794,
+    "minimum_singular_value": 0.6558668331925965
+  },
+  "passed_gates": [
+    "style_delta",
+    "new_boundary",
+    "gradient",
+    "matrix_safety",
+    "prediction_before_calibration_original",
+    "sealed_reads_zero",
+    "forward_reverse_byte_exact"
+  ],
+  "failed_gates": [
+    "candidate_improvement_rate",
+    "candidate_improvement_median",
+    "candidate_improvement_worst",
+    "beat_raw_stat_rate",
+    "gain_vs_raw_stat_median",
+    "beat_global_rate",
+    "gain_vs_global_median",
+    "beat_permuted_rate",
+    "gain_vs_permuted_median"
+  ],
+  "decision": "close_exact_canoncgt_embedding_operator_predictor",
+  "interpretation": "The official normalized CanonCGT grade token is finite, replay-exact and produces safe explicit operators, but it predicts professional original-to-winner effects worse than the already-closed raw statistics, a global mean and cyclic-label control. It therefore does not identify a reusable source-independent operator on this population. Close the exact checkpoint, embedding layer, input, ridge, operator and roles without crop, layer or capacity rescue.",
+  "next_allowed_leaf": "Change the identifying observation or data, not the closed global-stat or CanonCGT embedding predictor. The sealed REPID role remains unread.",
+  "claim_ceiling": "Private consumed-development learned-style-observation negative; not a verdict on full CanonCGT rendering quality, population preference, package, capability or product evidence."
+}
