@@ -34,14 +34,14 @@
     ],
     "zip_central_directory_offset": 9049028973,
     "zip_central_directory_size": 1433756,
-    "expected_central_directory_sha256": "f38926903050b00f79283fdd767c146990f44669068cc13af6c6be71261415d",
+    "expected_central_directory_sha256": "f3892690a8434fd42a412c4cf952e050d542740d2dea04b4cad976ad2ea1415d",
     "expected_annotation_members": {
-      "order_trans.xlsx": {
-        "uncompressed_sha256": "8c42140acb5f968de660946cd96dd4dd908e7e10fe34a7d3c2f70f05755f58c",
+      "SPCP_dataset/order_trans.xlsx": {
+        "uncompressed_sha256": "8c42140ae0f90f37f32706911ab86cca9f377077bbd18ac301262d952bf5f58c",
         "expected_pair_rows": 45000
       },
-      "score_trans2.xlsx": {
-        "uncompressed_sha256": "ee5f0fc8d71926769820c14ae267fb5de83fc3ad0977d44b71dbcbd5937900d",
+      "SPCP_dataset/score_trans2.xlsx": {
+        "uncompressed_sha256": "ee5f0fc830ebd40cab3e25b379aa0e01ec5cc4793a55315504c2d06f6af7900d",
         "expected_image_rows": 12000
       }
     }

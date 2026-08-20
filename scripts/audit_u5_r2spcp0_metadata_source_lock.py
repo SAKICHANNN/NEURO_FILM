@@ -23,16 +23,16 @@ ARCHIVE_URL = (
 )
 CENTRAL_OFFSET = 9_049_028_973
 CENTRAL_SIZE = 1_433_756
-CENTRAL_SHA256 = "f38926903050b00f79283fdd767c146990f44669068cc13af6c6be71261415d"
+CENTRAL_SHA256 = "f3892690a8434fd42a412c4cf952e050d542740d2dea04b4cad976ad2ea1415d"
 ARCHIVE_SIZE = 9_050_462_827
 EXPECTED_XLSX = {
-    "order_trans.xlsx": {
-        "sha256": "8c42140acb5f968de660946cd96dd4dd908e7e10fe34a7d3c2f70f05755f58c",
+    "SPCP_dataset/order_trans.xlsx": {
+        "sha256": "8c42140ae0f90f37f32706911ab86cca9f377077bbd18ac301262d952bf5f58c",
         "rows": 45_001,
         "columns": 21,
     },
-    "score_trans2.xlsx": {
-        "sha256": "ee5f0fc8d71926769820c14ae267fb5de83fc3ad0977d44b71dbcbd5937900d",
+    "SPCP_dataset/score_trans2.xlsx": {
+        "sha256": "ee5f0fc830ebd40cab3e25b379aa0e01ec5cc4793a55315504c2d06f6af7900d",
         "rows": 12_001,
         "columns": 21,
     },
@@ -242,7 +242,7 @@ def run(output_root: Path) -> dict[str, Any]:
         raw = extract_member(ARCHIVE_URL, member)
         if sha256_bytes(raw) != expected["sha256"]:
             raise ValueError(f"annotation SHA mismatch: {filename}")
-        path = output_root / filename
+        path = output_root / Path(filename).name
         path.write_bytes(raw)
         facts = workbook_facts(path)
         if facts["row_count"] != expected["rows"]:

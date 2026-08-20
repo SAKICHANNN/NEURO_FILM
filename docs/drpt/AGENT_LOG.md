@@ -14374,3 +14374,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   metadata but no independent license text, so image and product rights do not
   expand. Contract:
   `configs/u5_r2spcp0_metadata_source_lock_v1.json`.
+- The first formal range call stopped before central-directory parsing because
+  shortened coordination hashes had been expanded incorrectly and the archive
+  members include the `SPCP_dataset/` prefix. Exact returned range bytes fixed
+  the central-directory and workbook identities; no image payload, graph,
+  preference score or scientific result was read, so this is a mechanics-only
+  identity amendment rather than a gate or cohort change.
