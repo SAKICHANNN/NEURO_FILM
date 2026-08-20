@@ -15145,3 +15145,24 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The audit retains only hashes and scalar diagnostics and requires four exact
   process/order reports. It does not encode output images or open a default
   renderer, camera IDT, image-quality, arbitrary-DNG or product claim.
+
+### 2026-08-21 - U1.4F passes on four exact real DNGs
+
+- Two fresh processes in both row orders produced exact report SHA
+  `18b091c6...ca95` and stable ID `5faac9c4...55946`.
+- DJI, Google, Apple and Huawei source identities passed before decode. Both
+  official targets are finite, shape-preserving and distinct for every row;
+  inputs remain exact. Observed output samples stayed inside `[0,1]`.
+- Only hashes and diagnostics were retained. This is exact-cohort generic
+  LibRaw/ACES runtime evidence, not vendor parity, a camera IDT, photographic
+  quality, HDR encoding, arbitrary-DNG, default-renderer or product support.
+
+### 2026-08-21 - SF3.A0K makes three-stock physical capture executable
+
+- Built two byte-exact clean copies and one verified canonical P-backed pack:
+  eight development scenes, four disjoint confirmation scenes, plus three
+  non-counted exposure/colour/spatial diagnostics. The 12 rights-locked scene
+  PNGs are exact source-byte copies.
+- **Decision:** the Velvia 50 / Portra 400 / Ektar 100 input pack is ready for
+  controlled film exposure. No film target exists yet, so fitting, stock
+  response, calibration and multi-stock completion claims remain closed.

@@ -1,0 +1,58 @@
+{
+  "schema": "neuro_film.u1_4f_dng_aces2_photographic_smoke_evidence.v1",
+  "node": "ULT > U1 > U1.4F",
+  "status": "PASS_PRIVATE_FOUR_DNG_ACES2_PHOTOGRAPHIC_SMOKE",
+  "decision": "retain exact four-device photographic runtime evidence; file and renderer integration remain closed",
+  "bindings": {
+    "formal_lock_commit": "2531bce2949226c9e32cb876b4c9873e66a1a56e",
+    "contract_path": "docs/planning/U1_4F_DNG_ACES2_PHOTOGRAPHIC_SMOKE_CONTRACT.md",
+    "contract_sha256": "4174df541c157c1c0d9b7a300475cd49ef42547ab88df713c84e7c2745574165",
+    "adapter_path": "src/preprocess/ocio_aces2_output.py",
+    "adapter_sha256": "7ffe89bb448866574d0c6374020b79920d5e9b93d72ec84a29704c45f247378d",
+    "runner_path": "scripts/audit_u1_4f_dng_aces2_photographic_smoke.py",
+    "runner_sha256": "350355628e18c2e0e73e908bbec30d6d9aedf3e540b23560c44d4225a72cd5e5",
+    "config_path": "configs/u1_4f_dng_aces2_photographic_smoke_v1.json",
+    "config_sha256": "05113411500e683b13c036d59e44c6ba57756235aaa26eaf4c41584b1d71a7a2",
+    "formal_report_path": "outputs/eval/u1_4f_dng_aces2_photographic_smoke/o1_forward.json",
+    "formal_report_sha256": "18b091c67d704a3dadb30316cbe2d1d9439ad8e3a98331234ba3b729e5fbca95",
+    "stable_evidence_id": "5faac9c438263dc6fb300a5c612ffced6828040d58f08f4b4621dc699c455946"
+  },
+  "execution": {
+    "fresh_processes": 2,
+    "orders_per_process": [
+      "canonical",
+      "reverse"
+    ],
+    "all_four_report_sha256_exact": true,
+    "source_count": 4,
+    "target_count_per_source": 2,
+    "decoded_payloads_retained": false,
+    "output_payloads_retained": false
+  },
+  "metrics": {
+    "all_finite": true,
+    "all_input_unchanged": true,
+    "all_output_shapes_match": true,
+    "all_source_identities_match": true,
+    "all_targets_distinct": true,
+    "all_working_boundaries_exact": true,
+    "maximum_observed_outside_unit_fraction": 0.0,
+    "decoded_shapes": {
+      "apple_iphone_12_pro": [4032, 3024, 3],
+      "dji_fc4382": [3024, 4032, 3],
+      "google_pixel_7_pro": [2924, 3882, 3],
+      "huawei_eml_l29": [2976, 3968, 3]
+    }
+  },
+  "gates": {
+    "all_finite": true,
+    "all_input_unchanged": true,
+    "all_output_shapes_match": true,
+    "all_source_identities_match": true,
+    "all_targets_distinct": true,
+    "all_working_boundaries_exact": true,
+    "reverse_order_exact": true,
+    "two_process_report_exact": true
+  },
+  "claim_ceiling": "private Windows CPU photographic runtime mechanics for exact four rights-cleared DNGs under existing generic LibRaw scene-linear decode and official ACES 2 numerical outputs only; no vendor parity, calibrated camera IDT, photographic quality, HDR file/metadata, arbitrary DNG, default renderer, public capability, film/stock or product admission"
+}
