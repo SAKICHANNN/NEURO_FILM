@@ -15073,3 +15073,19 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Next direction:** do not spend another leaf on receipt compatibility. Return
   to capture observations that are explicit in-file, or to already mature
   portable RAW/HDR operator engineering.
+
+### 2026-08-21 - U1.4D freezes official ACES 2 output-runtime D0
+
+- Current official documentation confirms ACES 2 output transforms and OCIO
+  2.5's built-in ACES 2 CG config. The latest PyPI runtime is pinned at
+  `opencolorio==2.5.2`; API discovery found the exact built-in config, cache ID,
+  ACEScg source and SDR Rec.709 / HDR Rec.2020-PQ display-view names.
+- The formal fixture is source-free: one fixed extended 9-cube plus a neutral
+  ramp. Two independent official CPU APIs, reversed row order and two fresh
+  processes must agree under finite, neutral and material-transform gates.
+- This tests mature upstream colour management instead of implementing another
+  local tone curve. It remains isolated until it passes; no default renderer or
+  image path changes now.
+- **Boundary:** Windows CPU runtime feasibility only. No ACES certification,
+  camera IDT, image/HDR file quality, display calibration, GPU/macOS parity,
+  package/schema/capability, film/stock or product claim.
