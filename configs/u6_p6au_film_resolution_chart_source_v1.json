@@ -1,0 +1,61 @@
+{
+  "schema": "neuro-film.u6-p6au-film-resolution-chart-source-contract.v1",
+  "experiment_id": "U6.P6AU",
+  "question": "Does the public 2025 Vision3 film-resolution archive contain exact same-negative resolution-chart groups at 2K, 4K and 6K that can support a scanner-resolution/aliasing discriminant?",
+  "source": {
+    "page_url": "https://florian-noever.com/filmresolutiontest/",
+    "download_page_url": "https://drive.google.com/file/d/1Muw9SsuWMkqebRKHsxnL8HGfqUXPP4MJ/view?usp=drive_link",
+    "archive_url": "https://drive.usercontent.google.com/download?id=1Muw9SsuWMkqebRKHsxnL8HGfqUXPP4MJ&export=download&confirm=t",
+    "archive_filename": "FILM_RESOLUTION_TEST.zip",
+    "archive_size_bytes": 1678009339,
+    "archive_last_modified": "Sun, 23 Mar 2025 20:18:31 GMT",
+    "license": "CC-BY-NC-4.0",
+    "publication_date": "2025-05",
+    "central_directory_offset": 1677977976,
+    "central_directory_size": 31341,
+    "central_directory_sha256": "fdd34d361936287ea26e3ce03a46061904b2e5461aaa042d4838d473d4135637",
+    "expected_central_entries": 225,
+    "expected_real_tiff_members": 90
+  },
+  "selection": {
+    "rule": "retain only the T4 resolution-chart member at each 2K, 4K and 6K resolution for every Super16/Super35-3Perf x 50D/200T/500T cell",
+    "formats": ["Super 16", "Super 35 3-Perf"],
+    "stocks": ["50D", "200T", "500T"],
+    "resolutions": ["2K", "4K", "6K"],
+    "expected_groups": 6,
+    "expected_members": 18,
+    "expected_compressed_bytes": 319810605,
+    "expected_uncompressed_bytes": 322104840,
+    "members": [
+      {"name":"TIFF/Super 16/50D/Scans 2K/Super_16_50D_RC_25mm_T4_2K.tif","crc32":"92e39158","compressed_size":3584428,"uncompressed_size":3634672,"local_header_offset":159903607,"method":8,"flags":8},
+      {"name":"TIFF/Super 16/50D/Scans 4K/Super_16_50D_RC_25mm_T4_4K.tif","crc32":"d425ae00","compressed_size":13792849,"uncompressed_size":13865524,"local_header_offset":174619058,"method":8,"flags":8},
+      {"name":"TIFF/Super 16/50D/Scans 6K/Super_16_50D_RC_25mm_T4_6K.tif","crc32":"4a9e5177","compressed_size":30553895,"uncompressed_size":30651148,"local_header_offset":94866259,"method":8,"flags":8},
+      {"name":"TIFF/Super 16/200T/Scans 2K/Super_16_200T_RC_25mm_T4_2K.tif","crc32":"1315efe2","compressed_size":3870884,"uncompressed_size":3926740,"local_header_offset":438985430,"method":8,"flags":8},
+      {"name":"TIFF/Super 16/200T/Scans 4K/Super_16_200T_RC_25mm_T4_4K.tif","crc32":"9ed0f4ef","compressed_size":15576838,"uncompressed_size":15691472,"local_header_offset":480586438,"method":8,"flags":8},
+      {"name":"TIFF/Super 16/200T/Scans 6K/Super_16_200T_RC_25mm_T4_6K.tif","crc32":"0b6d3da3","compressed_size":35268958,"uncompressed_size":35467304,"local_header_offset":281174667,"method":8,"flags":8},
+      {"name":"TIFF/Super 16/500T/Scans 2K/Super_16_500T_RC_25mm_T4_2K.tif","crc32":"ef5e961a","compressed_size":4157086,"uncompressed_size":4225756,"local_header_offset":734389233,"method":8,"flags":8},
+      {"name":"TIFF/Super 16/500T/Scans 4K/Super_16_500T_RC_25mm_T4_4K.tif","crc32":"f2171096","compressed_size":17046224,"uncompressed_size":17221960,"local_header_offset":801991435,"method":8,"flags":8},
+      {"name":"TIFF/Super 16/500T/Scans 6K/Super_16_500T_RC_25mm_T4_6K.tif","crc32":"6258cd13","compressed_size":38660594,"uncompressed_size":38986300,"local_header_offset":686724697,"method":8,"flags":8},
+      {"name":"TIFF/Super 35 3-Perf/50D/Scans 2K/Super_35_50D_RC_50mm_T4_2K.tif","crc32":"2c616218","compressed_size":3355376,"uncompressed_size":3399100,"local_header_offset":1012310318,"method":8,"flags":8},
+      {"name":"TIFF/Super 35 3-Perf/50D/Scans 4K/Super_35_50D_RC_50mm_T4_4K.tif","crc32":"a3d97bc0","compressed_size":13417202,"uncompressed_size":13491832,"local_header_offset":1058812117,"method":8,"flags":8},
+      {"name":"TIFF/Super 35 3-Perf/50D/Scans 6K/Super_35_50D_RC_50mm_T4_6K.tif","crc32":"991fab4c","compressed_size":30227621,"uncompressed_size":30343664,"local_header_offset":835917810,"method":8,"flags":8},
+      {"name":"TIFF/Super 35 3-Perf/200T/Scans 2K/Super_35_200T_RC_50mm_T4_2K.tif","crc32":"d11bd69a","compressed_size":3402098,"uncompressed_size":3445044,"local_header_offset":1270034580,"method":8,"flags":8},
+      {"name":"TIFF/Super 35 3-Perf/200T/Scans 4K/Super_35_200T_RC_50mm_T4_4K.tif","crc32":"e05102c1","compressed_size":14886444,"uncompressed_size":14989904,"local_header_offset":1303286906,"method":8,"flags":8},
+      {"name":"TIFF/Super 35 3-Perf/200T/Scans 6K/Super_35_200T_RC_50mm_T4_6K.tif","crc32":"2acdefd3","compressed_size":33789206,"uncompressed_size":33972612,"local_header_offset":1127408009,"method":8,"flags":8},
+      {"name":"TIFF/Super 35 3-Perf/500T/Scans 2K/Super_35_500T_RC_50mm_T4_2K.tif","crc32":"76517927","compressed_size":3613271,"uncompressed_size":3661964,"local_header_offset":1583183745,"method":8,"flags":8},
+      {"name":"TIFF/Super 35 3-Perf/500T/Scans 4K/Super_35_500T_RC_50mm_T4_4K.tif","crc32":"987bc27c","compressed_size":16473066,"uncompressed_size":16638052,"local_header_offset":1661504554,"method":8,"flags":8},
+      {"name":"TIFF/Super 35 3-Perf/500T/Scans 6K/Super_35_500T_RC_50mm_T4_6K.tif","crc32":"0a6ebfb8","compressed_size":38134565,"uncompressed_size":38491792,"local_header_offset":1455076761,"method":8,"flags":8}
+    ]
+  },
+  "source_gates": {
+    "require_exact_local_header_name_method_and_flags": true,
+    "require_exact_crc_size_and_sha256": true,
+    "require_rgb_tiff": true,
+    "require_16_bit_samples": true,
+    "require_three_resolutions_per_group": true,
+    "pixel_analysis_before_source_pass": false
+  },
+  "decision_if_pass": "retain_exact_vision3_resolution_chart_groups_for_p6av_scanner_resolution_discriminant",
+  "decision_if_fail": "close_noever_resolution_source_without_row_substitution_or_format_fallback",
+  "claim_ceiling": "CC-BY-NC-4.0 research-only source integrity for one author-controlled 2025 Vision3 camera-scan experiment; not scanner calibration, stock response, independent laboratory replication, product data or commercial use."
+}
