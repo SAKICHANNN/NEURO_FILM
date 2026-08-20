@@ -9,6 +9,7 @@ import json
 import re
 import urllib.request
 import zipfile
+from collections import Counter
 from pathlib import Path
 from typing import Any
 
@@ -81,23 +82,65 @@ def _drive_inventory(html: str, expected: list[dict[str, Any]]) -> list[dict[str
 def _annotation_structure(archive: bytes) -> dict[str, Any]:
     with zipfile.ZipFile(io.BytesIO(archive)) as bundle:
         infos = sorted(bundle.infolist(), key=lambda item: item.filename)
-        if any(item.is_dir() for item in infos):
-            files = [item for item in infos if not item.is_dir()]
-        else:
-            files = infos
+        files = [item for item in infos if not item.is_dir()]
+        role_counts: Counter[str] = Counter()
+        suffix_counts: Counter[str] = Counter()
+        device_counts: Counter[str] = Counter()
+        processed_keys: set[str] = set()
+        processed_types: Counter[str] = Counter()
+        raw_jsonl: dict[str, dict[str, Any]] = {}
+        inventory_rows: list[dict[str, Any]] = []
+        for item in files:
+            suffix_counts[Path(item.filename).suffix.lower() or "<none>"] += 1
+            inventory_rows.append(
+                {"path": item.filename, "size_bytes": item.file_size, "crc32": f"{item.CRC:08x}"}
+            )
+            if item.filename.startswith("__MACOSX/"):
+                role_counts["macos_metadata"] += 1
+            elif item.filename.endswith(".DS_Store"):
+                role_counts["directory_metadata"] += 1
+            elif item.filename in {
+                "responses/raw/participants.jsonl",
+                "responses/raw/votes_items.jsonl",
+            }:
+                role = Path(item.filename).stem
+                role_counts[f"raw_{role}_jsonl"] += 1
+                line_count = 0
+                keys: set[str] = set()
+                for line in bundle.read(item).splitlines():
+                    if not line.strip():
+                        continue
+                    payload = json.loads(line)
+                    if not isinstance(payload, dict):
+                        raise TypeError(f"non-object row in {role} JSONL")
+                    line_count += 1
+                    keys.update(str(key) for key in payload)
+                raw_jsonl[role] = {"row_count": line_count, "top_level_keys": sorted(keys)}
+            elif item.filename.startswith("responses/processed/") and item.filename.endswith(".json"):
+                role_counts["processed_participant_json"] += 1
+                device_match = re.search(r"_(desktop|laptop|mobile|tablet)\.json$", item.filename)
+                device_counts[device_match.group(1) if device_match else "unknown"] += 1
+                payload = json.loads(bundle.read(item))
+                processed_types[type(payload).__name__] += 1
+                if isinstance(payload, dict):
+                    processed_keys.update(str(key) for key in payload)
+            else:
+                role_counts["unknown"] += 1
+        inventory_identity = _sha256(
+            json.dumps(inventory_rows, sort_keys=True, separators=(",", ":")).encode()
+        )
         return {
             "archive_sha256": _sha256(archive),
             "file_count": len(files),
             "total_uncompressed_bytes": sum(item.file_size for item in files),
-            "members": [
-                {
-                    "path": item.filename,
-                    "size_bytes": item.file_size,
-                    "crc32": f"{item.CRC:08x}",
-                    "suffix": Path(item.filename).suffix.lower(),
-                }
-                for item in files
-            ],
+            "central_directory_identity_sha256": inventory_identity,
+            "role_counts": dict(sorted(role_counts.items())),
+            "suffix_counts": dict(sorted(suffix_counts.items())),
+            "processed_device_counts": dict(sorted(device_counts.items())),
+            "processed_top_level_types": dict(sorted(processed_types.items())),
+            "processed_top_level_keys": sorted(processed_keys),
+            "raw_jsonl": raw_jsonl,
+            "participant_identifiers_persisted": False,
         }
 
 
@@ -119,12 +162,19 @@ def evaluate(contract: dict[str, Any], *, fetch=_fetch) -> dict[str, Any]:
         {key: row[key] for key in ("id", "name", "mime_type", "size_bytes")}
         for row in sources["expected_drive_files"]
     ]
+    structure_auditable = (
+        structure["role_counts"].get("unknown", 0) == 0
+        and structure["role_counts"].get("raw_participants_jsonl", 0) == 1
+        and structure["role_counts"].get("raw_votes_items_jsonl", 0) == 1
+        and structure["role_counts"].get("processed_participant_json", 0) > 0
+        and structure["participant_identifiers_persisted"] is False
+    )
     gates = {
         "official_pages_reachable": True,
         "project_facts_exact": facts == sources["expected_project_facts"],
         "drive_inventory_exact": inventory_exact,
         "responses_archive_within_budget": len(archive) <= bounded["maximum_responses_archive_bytes"],
-        "annotation_structure_auditable_without_persisting_participant_values": structure["file_count"] > 0,
+        "annotation_structure_auditable_without_persisting_participant_values": structure_auditable,
         "pixels_or_training_allowed": False,
     }
     automatic_pass = all(value for key, value in gates.items() if key != "pixels_or_training_allowed")

@@ -13,7 +13,9 @@ ROOT = Path(__file__).resolve().parents[1]
 def _archive() -> bytes:
     output = io.BytesIO()
     with zipfile.ZipFile(output, "w") as bundle:
-        bundle.writestr("responses.csv", "user,choice\nprivate,0\n")
+        bundle.writestr("responses/raw/participants.jsonl", '{"device":"private"}\n')
+        bundle.writestr("responses/raw/votes_items.jsonl", '{"choice":0}\n')
+        bundle.writestr("responses/processed/opaque_mobile.json", '{"items":[]}')
     return output.getvalue()
 
 
@@ -48,7 +50,8 @@ def test_audit_retains_only_annotation_structure() -> None:
     assert report["automatic_pass"] is True
     assert report["gates"]["pixels_or_training_allowed"] is False
     assert report["requests"]["image_archives"] == 0
-    assert report["annotation_structure"]["members"][0]["path"] == "responses.csv"
+    assert report["annotation_structure"]["role_counts"].get("unknown", 0) == 0
+    assert report["annotation_structure"]["participant_identifiers_persisted"] is False
     assert "private" not in json.dumps(report)
 
 
