@@ -42,6 +42,7 @@
     "state_missing_keys": 0,
     "state_unexpected_keys": 0,
     "single_asset_smoke_status": "PASS_SINGLE_ASSET_MECHANICS_SMOKE",
+    "single_asset_smoke_sha256": "3c53aec51e1c753b39a70ee800741b618695629afe428a069523a7479691f04c",
     "preinference_mechanics_stops": [
       "weights-only rejected NumPy scalar metadata before allowlist",
       "weights-only rejected argparse.Namespace before the complete static inventory was frozen"
@@ -58,8 +59,9 @@
     "score_lock_reverse_sha256": "5d417fdb66aeff371d191c6247b1e1f1124063ff972979c6196b39cbf290557f",
     "formal_report_sha256": "9d4234cb10b17a8bb8c9b1d57b5b83aab374405b7172a62f5db554462b65c6e6",
     "stable_identity": "sha256:9d4234cb10b17a8bb8c9b1d57b5b83aab374405b7172a62f5db554462b65c6e6",
-    "formal_artifact_location": "project-isolated D fallback while P reports Full Repair Needed",
-    "durable_P_migration_performed": false
+    "formal_artifact_location": "repo-relative outputs/eval/u5_r2csd0_cross_content_operator_identification_v1 through the verified P-backed outputs junction",
+    "earlier_D_fallback_replay_matches_P_artifacts": true,
+    "durable_P_migration_performed": true
   },
   "consumed_inputs": {
     "public_manifest_sha256": "31b62c085ec144fa0111570a85c1be7d8ef07dd86fe278eb167465be0075cd42",
