@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import struct
+from functools import lru_cache
 
 import numpy as np
 
@@ -244,6 +245,32 @@ def prophoto_matrix_shaper_facts(profile: bytes) -> dict[str, object]:
     return facts
 
 
+@lru_cache(maxsize=8)
+def _prepared_rgb16_transfer(
+    profile: bytes,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray, float]:
+    facts = prophoto_icc_facts(profile)
+    normalized = np.arange(65536, dtype=np.float64) / 65535.0
+    if facts["transfer_kind"] == "gamma":
+        transfer = np.power(normalized, float(facts["gamma"]))
+    elif facts["transfer_kind"] == "parametric-type3":
+        gamma, a, b, c, d = np.asarray(
+            facts["transfer_parameters"], dtype=np.float64
+        )
+        transfer = np.where(
+            normalized >= d,
+            np.power(a * normalized + b, gamma),
+            c * normalized,
+        )
+    else:  # pragma: no cover - facts are produced only by validated branches.
+        raise ProPhotoICCError("ICC transfer kind is unsupported")
+    matrix = np.asarray(facts["matrix"], dtype=np.float64).copy()
+    offset = np.asarray(facts["offset"], dtype=np.float64).copy()
+    for array in (transfer, matrix, offset):
+        array.flags.writeable = False
+    return transfer, matrix, offset, float(facts["pcs_xyz_scale"])
+
+
 def decode_prophoto_rgb16_to_linear_rec2020(
     encoded: np.ndarray, profile: bytes
 ) -> np.ndarray:
@@ -253,25 +280,11 @@ def decode_prophoto_rgb16_to_linear_rec2020(
         raise TypeError("encoded must be a numpy ndarray")
     if encoded.dtype != np.uint16 or encoded.ndim != 3 or encoded.shape[2] != 3:
         raise ValueError("encoded must be HxWx3 uint16 RGB")
-    facts = prophoto_icc_facts(profile)
-    normalized = encoded.astype(np.float64) / 65535.0
-    if facts["transfer_kind"] == "gamma":
-        linear_prophoto = np.power(normalized, float(facts["gamma"]))
-    elif facts["transfer_kind"] == "parametric-type3":
-        gamma, a, b, c, d = np.asarray(
-            facts["transfer_parameters"], dtype=np.float64
-        )
-        linear_prophoto = np.where(
-            normalized >= d,
-            np.power(a * normalized + b, gamma),
-            c * normalized,
-        )
-    else:  # pragma: no cover - facts are produced only by validated branches.
-        raise ProPhotoICCError("ICC transfer kind is unsupported")
+    transfer, matrix, offset, pcs_xyz_scale = _prepared_rgb16_transfer(profile)
+    linear_prophoto = transfer[encoded]
     xyz_d50 = (
-        linear_prophoto @ np.asarray(facts["matrix"], dtype=np.float64).T
-        + np.asarray(facts["offset"], dtype=np.float64)
-    ) * float(facts["pcs_xyz_scale"])
+        linear_prophoto @ matrix.T + offset
+    ) * pcs_xyz_scale
     xyz_d65 = xyz_d50 @ _D50_TO_D65_BRADFORD.T
     rec2020 = xyz_d65 @ _XYZ_D65_TO_LINEAR_REC2020.T
     if not np.isfinite(rec2020).all():

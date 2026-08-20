@@ -52,6 +52,11 @@ SUPPORTED = {
         320,
         "neuro-film.u1-4c33-streaming-readback-staged-prophoto-24mp-report.v1",
     ),
+    "U1.4C34": (
+        "neuro-film.u1-4c34-transfer-lut-staged-prophoto-24mp-contract.v1",
+        320,
+        "neuro-film.u1-4c34-transfer-lut-staged-prophoto-24mp-report.v1",
+    ),
 }
 
 
@@ -91,18 +96,22 @@ def load_contract(path: Path, *, root: Path = ROOT) -> tuple[dict[str, Any], str
         or candidate["output_staging"] != "in-memory-row-stream"
         or not candidate["exact_float32_threshold_quantization"]
         or (
-            experiment_id in {"U1.4C31", "U1.4C32", "U1.4C33"}
+            experiment_id in {"U1.4C31", "U1.4C32", "U1.4C33", "U1.4C34"}
             and (
                 candidate.get("preprocess_workers") != 2
                 or not candidate.get("direct_input_memmap_required")
                 or (
-                    experiment_id in {"U1.4C32", "U1.4C33"}
+                    experiment_id in {"U1.4C32", "U1.4C33", "U1.4C34"}
                     and not candidate.get("spill_mapped_for_context")
                 )
                 or (
-                    experiment_id == "U1.4C33"
+                    experiment_id in {"U1.4C33", "U1.4C34"}
                     and candidate.get("postpublication_sample_readback")
                     != "strict-bounded-streaming-rgb16-png"
+                )
+                or (
+                    experiment_id == "U1.4C34"
+                    and not candidate.get("prepared_rgb16_transfer_lut")
                 )
             )
         )
@@ -110,7 +119,7 @@ def load_contract(path: Path, *, root: Path = ROOT) -> tuple[dict[str, Any], str
         or not measurement["run_workers_sequentially"]
     ):
         raise ValueError("streaming staged renderer frozen execution drift")
-    if experiment_id in {"U1.4C31", "U1.4C32", "U1.4C33"}:
+    if experiment_id in {"U1.4C31", "U1.4C32", "U1.4C33", "U1.4C34"}:
         with tifffile.TiffFile(root / payload["fixture"]["path"]) as document:
             if len(document.pages) != 1 or not document.pages[0].is_memmappable:
                 raise ValueError("C31 requires one directly memmappable TIFF page")

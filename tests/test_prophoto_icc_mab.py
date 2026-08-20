@@ -11,6 +11,7 @@ import tifffile
 from PIL import Image, ImageCms
 
 from src.preprocess import load_working_image
+from src.preprocess import prophoto_icc as prophoto_module
 from src.preprocess.color_management import linear_rgb_matrix
 from src.preprocess.prophoto_icc import (
     ProPhotoICCError,
@@ -111,6 +112,33 @@ def test_official_romm_profile_is_exact_and_strictly_classified() -> None:
     assert facts["maximum_pcs_encoded_white_absolute_error"] < 0.005
     with pytest.raises(ProPhotoICCError, match="not a matrix-shaper"):
         prophoto_matrix_shaper_facts(_OFFICIAL_ROMM_PROFILE)
+
+
+def test_rgb16_transfer_lut_preserves_direct_float64_decode_exactly() -> None:
+    codes = np.arange(65536, dtype=np.uint16)
+    encoded = np.stack((codes, codes[::-1], np.bitwise_xor(codes, 0x5A5A)), axis=1)
+    encoded = encoded.reshape(1, -1, 3)
+    facts = prophoto_icc_facts(_OFFICIAL_ROMM_PROFILE)
+    normalized = encoded.astype(np.float64) / 65535.0
+    gamma, a, b, c, d = np.asarray(facts["transfer_parameters"], dtype=np.float64)
+    linear = np.where(
+        normalized >= d,
+        np.power(a * normalized + b, gamma),
+        c * normalized,
+    )
+    xyz_d50 = (
+        linear @ np.asarray(facts["matrix"], dtype=np.float64).T
+        + np.asarray(facts["offset"], dtype=np.float64)
+    ) * float(facts["pcs_xyz_scale"])
+    expected = np.asarray(
+        (xyz_d50 @ prophoto_module._D50_TO_D65_BRADFORD.T)
+        @ prophoto_module._XYZ_D65_TO_LINEAR_REC2020.T,
+        dtype=np.float32,
+    )
+    actual = decode_prophoto_rgb16_to_linear_rec2020(
+        encoded, _OFFICIAL_ROMM_PROFILE
+    )
+    assert actual.tobytes() == expected.tobytes()
 
 
 def test_product_decoder_matches_littlecms_lab_codes_on_official_profile() -> None:
