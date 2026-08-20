@@ -1796,3 +1796,15 @@ and median `+27.19%`: the case bank has value when the edit is independently
 identified, but source content cannot select it. Close source-only case routing
 without K, temperature, representation or capacity rescue; retain global K=1
 until a materially new effect-identifying observation exists.
+
+U5.R2EDITREWARD0 tests one such independent observation without changing any
+candidate: the exact released ICLR 2026 EditReward Qwen2.5-VL-7B scorer sees
+the original source, the edited candidate and one fixed colour-grading
+instruction. Two fresh score locks reproduce all 96 scores exactly. The
+source control is decisive (correct source beats the frozen cyclic wrong
+source 24/24, median margin `+1.6861`), but direct-judgment agreement fails:
+P401 is only 6/11 on decisive pairs and P402 only 3/11 on unique winners,
+below the frozen 9/11 and 7/11 gates. Close this exact scorer without prompt,
+checkpoint, threshold, aggregation or truth-calibration rescue. It is not a
+preference judge, router or product capability; return to an explicit
+effect-identifying research observation.

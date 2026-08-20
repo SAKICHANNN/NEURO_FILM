@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "experiment_id": "U5.R2EDITREWARD0",
+  "status": "FAIL_CLOSED_EXACT_EDITREWARD_SOURCE_AWARE_SCORER",
+  "date": "2026-08-21",
+  "implementation_head": "e6b26b0f63e6d444a5392b3c5c3c215d66ae1129",
+  "frozen_inputs": {
+    "contract_sha256": "d4afae411c1c0ff55a84834f6fab6de8d532b0b98a7f574b9e2c4b284c615a95",
+    "evaluator_sha256": "84ebe916005e22e68f2a5287f7431a58c0117d9e12f146c3d1d29e58040af445",
+    "test_sha256": "f55b3dcaad90d1752dbd9cd7223873464e5708b59558f96baaf52b41c2f995bc",
+    "model_repository": "TIGER-Lab/EditReward-Qwen2.5-VL-7B",
+    "model_revision": "51b92ab5246295637c4ab3bd71e54a26f0a5189d",
+    "model_sha256": "e2e49a09124b759a21cdba34ce132450a340aaca9478f2413c70bb078bb861d2",
+    "model_parameter_count": 8296688740,
+    "fixed_instruction_changed": false,
+    "consumed_p401_p402_assets_only": true
+  },
+  "mechanics": {
+    "status": "PASS_MECHANICS_READY_FOR_PRIVATE_AGGREGATION",
+    "canonical_score_lock_sha256": "6cc5c2319082325ea5e8b5327195fd1e1dbeb34e1a1f9aa0b5f3726d75626460",
+    "reverse_score_lock_sha256": "8ab4b914cb12c04341ce3ec45b7c7a1d48b361e65d8b0df304b82e27ef666c8a",
+    "mechanics_audit_sha256": "3bca92d57c6055044e7be117dfaf37a28f407bf173e4993e4815cf676a86e96a",
+    "primary_score_count": 72,
+    "wrong_source_score_count": 24,
+    "fresh_process_rankings_exact": true,
+    "maximum_fresh_process_score_error": 0.0,
+    "all_scores_finite": true,
+    "strict_state_load": true,
+    "private_mapping_reads_before_score_lock": 0,
+    "direct_result_reads_before_score_lock": 0,
+    "storage": "project-owned isolated D fallback because P reported Full Repair Needed at execution freeze"
+  },
+  "aggregation": {
+    "report_sha256": "727ef889e585bf41f5def1cda74f6b1243fcdd4190f197724890bd56126ccd91",
+    "correct_source_over_wrong_source": "24/24",
+    "correct_source_minus_wrong_source_median": 1.6861376762390137,
+    "correct_source_role_counts": {
+      "landscape_nature": "8/8",
+      "architecture_interior": "8/8",
+      "night_artificial_light": "8/8"
+    },
+    "p401_decisive_agreement": "6/11",
+    "p402_all_pair_concordance": "50/72",
+    "p402_transform_vs_identity_concordance": "26/36",
+    "p402_unique_winner_top1_agreement": "3/11",
+    "p402_content_role_concordance": {
+      "landscape_nature": "14/24",
+      "architecture_interior": "17/24",
+      "night_artificial_light": "19/24"
+    }
+  },
+  "passed_gates": [
+    "complete exact asset, model, processor and instruction bindings",
+    "strict full-state load with zero missing or unexpected keys",
+    "finite exact fresh-process scores and rankings",
+    "P402 all-pair concordance",
+    "P402 transform-versus-identity concordance",
+    "P402 each-content-role concordance",
+    "correct-source preference count, median and each-role controls"
+  ],
+  "failed_gates": [
+    "P401 decisive agreement: 6/11 below 9/11",
+    "P402 unique-winner top-1 agreement: 3/11 below 7/11"
+  ],
+  "interpretation": "The released source-aware reward model demonstrably uses the correct source image, but it does not reproduce the frozen direct judgments reliably enough to serve as the project preference discriminator. Source awareness is therefore necessary but not sufficient for this scorer on explicit colour-operator candidates.",
+  "closed_rescues": [
+    "prompt or reward-head selection",
+    "checkpoint, processor, resolution or precision substitution",
+    "threshold or aggregation changes",
+    "truth-conditioned calibration or fine-tuning",
+    "candidate promotion, routing or product admission"
+  ],
+  "claim_ceiling": "Consumed retrospective negative for the exact released EditReward source-aware scorer. No owner, population, fresh confirmation, generalization, candidate promotion, routing, product, package, schema, capability or commercial claim.",
+  "candidate_promotion_opened": false,
+  "router_or_product_capability_opened": false
+}

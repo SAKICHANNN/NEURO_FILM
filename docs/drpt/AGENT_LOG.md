@@ -14306,3 +14306,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Retain global K=1 until an authenticated paired reference, explicit edit
   identity or independently validated preference observation is available.
   Evidence: `docs/evidence/U5_R2REPID14_PAIRED_STYLE_CASE_ROUTING_RESULT.json`.
+
+### 2026-08-21 - U5.R2EDITREWARD0 closes the released source-aware scorer
+
+- The exact EditReward Qwen2.5-VL-7B checkpoint and fixed source/candidate
+  instruction produced finite, exact scores across canonical and reverse fresh
+  processes; no private mapping or direct result was read before score lock.
+- Correct source beats the frozen cyclic wrong-source control 24/24 with
+  median `+1.6861`, confirming real source dependence. Scientific agreement
+  nevertheless fails: P401 is 6/11 decisive and P402 unique-winner top-1 is
+  3/11, below the frozen 9/11 and 7/11 gates.
+- Close this checkpoint/prompt/aggregation without rescue and do not use it as
+  a project preference judge, router or product capability. Evidence:
+  `docs/evidence/U5_R2EDITREWARD0_CONSUMED_SOURCE_AWARE_PREFERENCE_RESULT.json`.
