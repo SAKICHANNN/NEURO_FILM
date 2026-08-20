@@ -24,6 +24,7 @@ from src.preprocess.raster_decode import (
     working_image_to_srgb_float,
 )
 from src.roll2film.triangular_logit_transport import (
+    TriangularLogitTransportError,
     fit_triangular_logit_transport,
     select_safe_transport,
 )
@@ -242,8 +243,11 @@ def _resize_maximum_side(rgb: np.ndarray, maximum_side: int) -> np.ndarray:
     if abs(scale - 1.0) < 1e-12:
         return rgb.copy()
     size = (max(1, round(width * scale)), max(1, round(height * scale)))
-    interpolation = cv2.INTER_AREA if scale < 1.0 else cv2.INTER_LANCZOS4
-    return cv2.resize(rgb, size, interpolation=interpolation)
+    interpolation = cv2.INTER_AREA if scale < 1.0 else cv2.INTER_LINEAR
+    resized = cv2.resize(rgb, size, interpolation=interpolation)
+    if not np.isfinite(resized).all():
+        raise C2PAPairedOperatorError("registration resize produced non-finite RGB")
+    return np.clip(resized, 0.0, 1.0)
 
 
 def _registration_signal(rgb: np.ndarray) -> np.ndarray:
@@ -680,7 +684,7 @@ def evaluate(contract_path: Path, root: Path, output_path: Path, order: str) -> 
                 row["_audit_absolute_errors"] = evaluation.pop("audit_absolute_errors")
                 row["evaluation"] = evaluation
                 row["status"] = "evaluated"
-            except C2PAPairedOperatorError as exc:
+            except (C2PAPairedOperatorError, TriangularLogitTransportError) as exc:
                 row["status"] = "fit-rejected"
                 row["fit_failure"] = str(exc)
         rows.append(row)

@@ -20,6 +20,9 @@ from src.eval.c2pa_parent_current_explicit_operator import (
 from src.eval.c2pa_parent_current_explicit_operator import (
     _aggregate as aggregate,
 )
+from src.eval.c2pa_parent_current_explicit_operator import (
+    _resize_maximum_side as resize_maximum_side,
+)
 from src.roll2film.triangular_logit_transport import TriangularLogitTransport
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -47,6 +50,14 @@ def test_canonical_sha256_is_order_independent() -> None:
     assert canonical_sha256({"b": 2, "a": 1}) == canonical_sha256(
         {"a": 1, "b": 2}
     )
+
+
+def test_registration_resize_is_finite_and_cube_bounded() -> None:
+    source = np.asarray([[[0.0, 0.5, 1.0], [1.0, 0.0, 0.5]]], dtype=np.float64)
+    resized = resize_maximum_side(source, 32)
+    assert np.isfinite(resized).all()
+    assert float(resized.min()) >= 0.0
+    assert float(resized.max()) <= 1.0
 
 
 def test_verify_contract_binds_p210_without_pixel_decode() -> None:
