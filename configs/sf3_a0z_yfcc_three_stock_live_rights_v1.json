@@ -1,0 +1,45 @@
+{
+  "schema": "neuro-film.sf3-a0z-yfcc-three-stock-live-rights-contract.v1",
+  "experiment_id": "SF3.A0Z_YFCC_THREE_STOCK_LIVE_RIGHTS_V1",
+  "input_report": "outputs/eval/sf3_a0y_yfcc_three_stock_triangle_metadata_v1/report_a.json",
+  "input_report_sha256": "e54b8de2233bac9dcfdb70275e1f1018ca5d92e681865ae7aad3ad26a9a15b8e",
+  "input_stable_evidence_id": "a2f250934047773e6c5dc1f04a4f7cb56b7ec1d381a931c4b3085198b2cce0c1",
+  "required_input_decision": "OPEN_BOUNDED_THREE_STOCK_LIVE_RIGHTS_PREFLIGHT",
+  "stock_ids": [
+    "fujifilm_velvia_50",
+    "kodak_portra_400",
+    "kodak_ektar_100"
+  ],
+  "expected_eligible_uids": [
+    "26693938@N08",
+    "29411712@N06",
+    "36521968871@N01",
+    "36602595@N03",
+    "45866629@N07",
+    "79259760@N00",
+    "9139461@N06"
+  ],
+  "expected_page_candidates": 62,
+  "selection": {
+    "algorithm": "ordered UID, then stock order, then frozen candidate order; stop each UID-stock arm at first live-rights pass",
+    "maximum_page_requests": 62
+  },
+  "live_rights": {
+    "required_page_regex": "creativecommons\\.org/licenses/by/2\\.0/",
+    "required_content_type_prefix": "text/html",
+    "maximum_html_bytes": 2097152
+  },
+  "request_limits": {
+    "timeout_seconds": 60,
+    "request_retries": 2,
+    "retry_backoff_seconds": 2.0,
+    "request_interval_seconds": 0.5
+  },
+  "user_agent": "K-MCFM-research-SF3-A0Z/1.0 (https://github.com/SAKICHANNN/NEURO_FILM; bounded page-only rights audit)",
+  "minimum_usable_three_stock_uids": 5,
+  "decision_if_pass": "OPEN_BOUNDED_THREE_STOCK_PIXEL_INTEGRITY_PILOT",
+  "decision_if_fail": "CLOSE_YFCC_THREE_STOCK_PUBLIC_EXPANSION_BEFORE_PIXEL_ACCESS",
+  "image_payload_download_allowed": false,
+  "operator_fitting_allowed": false,
+  "claim_ceiling": "point-in-time page-only CC BY 2.0 feasibility for a three-stock shared-author YFCC cohort; no same-scene control, pixels, stock response, calibration, fitting, training or product claim"
+}
