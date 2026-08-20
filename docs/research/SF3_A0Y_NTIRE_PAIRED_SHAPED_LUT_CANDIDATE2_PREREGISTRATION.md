@@ -26,6 +26,15 @@ at the D drive root. Roles, pixels, candidate, controls, gates, and stop rules
 remain unchanged; the fallback must be hash-verified back to P when durable P
 space is restored.
 
+Transport-only execution amendment: the default urllib path through the local
+proxy advanced roughly 0.59 MB in five minutes, while `curl 8.21.0` returned
+the same frozen 184,526-byte central directory in 1.67 seconds with the exact
+expected SHA-256. Formal execution therefore uses an in-memory curl Range
+reader that requires HTTP 206 and exact byte length; no full member is written
+to disk. At amendment time only four fit cache rows existed and there were zero
+model fits/locks, calibration or sealed reads, and scientific scores. All
+scientific roles, models, controls, and gates remain unchanged.
+
 All 56 IDs are fresh relative to SF3.A0V/A0X and split before acquisition into
 32 fit, 12 calibration and 12 sealed-confirmation scenes. The cache contains
 only 256x256 aligned source/target arrays under the repo-relative P-backed data

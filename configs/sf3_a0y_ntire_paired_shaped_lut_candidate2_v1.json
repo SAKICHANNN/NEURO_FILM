@@ -46,6 +46,22 @@
     "scientific_roles_models_controls_gates_unchanged": true,
     "formal_execution_restarts_from_zero": true
   },
+  "transport_execution_amendment": {
+    "reason": "The urllib reader through the local proxy advanced about 0.59 MB in five minutes, while exact in-memory curl read the frozen 184526-byte central directory in 1.67 seconds with the identical SHA-256.",
+    "backend": "curl-8.21.0-in-memory-exact-range",
+    "required_http_status": 206,
+    "required_payload_length": "end-start+1",
+    "full_member_payload_persisted": false,
+    "facts_before_amendment": {
+      "complete_fit_cache_rows": 4,
+      "model_fits": 0,
+      "model_locks": 0,
+      "calibration_target_reads": 0,
+      "sealed_target_reads": 0,
+      "scientific_scores": 0
+    },
+    "scientific_roles_models_controls_gates_unchanged": true
+  },
   "fit_sampling": {
     "pixels_per_fit_scene": 4096,
     "selection": "lowest-sha256-of-sf3-a0y-fit-pixel-v1-colon-scene-id-colon-linear-index",

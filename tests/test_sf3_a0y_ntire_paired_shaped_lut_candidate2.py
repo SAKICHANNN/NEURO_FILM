@@ -12,6 +12,7 @@ from src.real_film.ntire_paired_shaped_lut_candidate import (
     _fit_affine,
     _load_geometry,
     _sample_indices,
+    curl_range_get,
     evaluate,
     load_contract,
 )
@@ -98,3 +99,8 @@ def test_cache_override_rejects_nonproject_d_path(tmp_path: Path) -> None:
             cache_root_override=tmp_path,
             range_reader=lambda *_: b"",
         )
+
+
+def test_curl_range_rejects_invalid_bounds_without_network() -> None:
+    with pytest.raises(NTIREPairedCandidateError, match="invalid bounded"):
+        curl_range_get("https://invalid.example", -1, 2, 10)

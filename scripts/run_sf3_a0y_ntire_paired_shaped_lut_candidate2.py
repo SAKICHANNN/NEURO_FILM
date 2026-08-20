@@ -13,10 +13,12 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from src.real_film.ntire_paired_shaped_lut_candidate import (
+    curl_range_get,
     evaluate,
     load_contract,
     write_report,
 )
+from src.real_film.ppisp_capture_pair_source_lock import http_range_get
 
 
 def main() -> int:
@@ -29,6 +31,9 @@ def main() -> int:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--reverse-row-order", action="store_true")
     parser.add_argument("--cache-root-override", type=Path)
+    parser.add_argument(
+        "--range-backend", choices=("curl", "urllib"), default="curl"
+    )
     args = parser.parse_args()
     contract = load_contract(args.config)
     model_lock_path = args.output.with_suffix(".model_lock.json")
@@ -39,6 +44,9 @@ def main() -> int:
             model_lock_path=model_lock_path,
             reverse_row_order=args.reverse_row_order,
             cache_root_override=args.cache_root_override,
+            range_reader=(
+                curl_range_get if args.range_backend == "curl" else http_range_get
+            ),
         ),
         args.output,
     )

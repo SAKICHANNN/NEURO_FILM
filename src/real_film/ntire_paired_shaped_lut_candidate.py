@@ -6,6 +6,7 @@ import hashlib
 import heapq
 import json
 import math
+import subprocess
 from collections.abc import Callable, Mapping
 from pathlib import Path
 from typing import Any
@@ -48,6 +49,38 @@ RangeReader = Callable[[str, int, int, int], bytes]
 
 class NTIREPairedCandidateError(RuntimeError):
     """Raised when the frozen paired-capture experiment drifts."""
+
+
+def curl_range_get(url: str, start: int, end: int, archive_size: int) -> bytes:
+    """Read one exact HTTP range through curl without persisting member bytes."""
+    if start < 0 or end < start or end >= archive_size:
+        raise NTIREPairedCandidateError("invalid bounded archive range")
+    result = subprocess.run(
+        [
+            "curl.exe",
+            "-L",
+            "--fail",
+            "--silent",
+            "--show-error",
+            "--range",
+            f"{start}-{end}",
+            "--write-out",
+            "%{stderr}%{http_code}",
+            url,
+        ],
+        capture_output=True,
+        check=False,
+        timeout=300,
+    )
+    status = result.stderr.decode("utf-8", errors="replace").strip()
+    if result.returncode != 0 or status != "206":
+        raise NTIREPairedCandidateError(
+            f"curl exact range failed: returncode={result.returncode} status={status!r}"
+        )
+    expected = end - start + 1
+    if len(result.stdout) != expected:
+        raise NTIREPairedCandidateError("curl range payload length differs")
+    return result.stdout
 
 
 def _canonical_bytes(value: Any) -> bytes:
@@ -642,6 +675,7 @@ def evaluate(
             "full_member_payload_persisted": False,
             "cache_storage_mode": cache_storage_mode,
             "logical_cache_root": contract["cache"]["root"],
+            "range_reader": getattr(range_reader, "__name__", type(range_reader).__name__),
         },
         "calibration": {
             "rows": calibration_rows,
