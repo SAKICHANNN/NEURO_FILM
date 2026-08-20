@@ -13986,3 +13986,27 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   checkpoint rescues. The 7/9 result is identifying-mechanism evidence, not
   application quality or product authorization.
 - Evidence: `docs/evidence/U5_R2REPID7_CANONCGT_SELF_CANONICAL_INVERSE_RESULT.json`.
+
+### 2026-08-20 - D-root project storage audit and safe containment
+
+- A read-only root audit found zero ordinary files at `D:\`. The large
+  non-project roots are installed applications, games, drivers or user data and
+  were intentionally left in place to avoid breaking absolute installation
+  paths. `D:\codex_owned` contains only legacy junctions into P-backed WXOS
+  storage and consumes no payload bytes.
+- Project fallback data is correctly contained under
+  `D:\_project_fallbacks`: 48,946 files / 84,187,472,770 bytes. Of this,
+  48,572 files / 83,603,404,102 bytes are the verified pending-cleanup rollback
+  set, and 374 files / 584,068,668 bytes are active Neuro-Film Goal fallback
+  outputs.
+- The remaining root-scattered `D:\nf-019f4b76-android` contains only two
+  Android skin APKs / 21,243 bytes. Both were copied and SHA-256 verified under
+  `D:\_project_fallbacks\neuro_film_goal_019f4b76\android_runtime_hold`.
+  Removal of the root duplicate is deferred because Windows Restart Manager
+  identifies non-project `AndrowsStore.exe` PID 61320 as the active lock owner;
+  no unknown process was terminated.
+- P remains exFAT `Dirty`, reports `Warning / Full Repair Needed`, and has only
+  47,527,231,488 bytes free. Therefore no D rollback source was deleted and no
+  new bulk migration was attempted. The final destination remains the
+  namespaced `P:\neuro_film_storage\...` tree after filesystem repair and
+  per-file revalidation; repository-relative junctions remain unchanged.
