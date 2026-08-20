@@ -1,0 +1,106 @@
+{
+  "schema": "neuro-film.u5-r2spcp2-global-logit-affine-preference-d0-contract.v1",
+  "experiment_id": "U5.R2SPCP2",
+  "date": "2026-08-20",
+  "question": "Do same-scene human preference extremes identify one reusable source-free bounded global colour operator that moves held-out loser renders toward their preferred winner renders?",
+  "parent": {
+    "decision_path": "configs/u5_r2spcp1_corrected_pairwise_preference_source_lock_decision_v1.json",
+    "decision_sha256": "bb82c06a6b53b8106b7888e48b152e21b69f67d390c71793bbe66dfc1feaa37f",
+    "required_decision": "open_separately_preregistered_global_explicit_operator_d0",
+    "evidence_path": "docs/evidence/U5_R2SPCP1_CORRECTED_PAIRWISE_PREFERENCE_SOURCE_LOCK_RESULT.json",
+    "evidence_sha256": "14d48bf0ec3644e08ef247856cb112d3199efc832641aa3207b4e4ea1d99b9c6"
+  },
+  "source": {
+    "dataset_id": "zwx8981/SPCP_dataset",
+    "revision": "068af97eed82969f15278db3af4bd450176cf6f3",
+    "zip_url": "https://huggingface.co/datasets/zwx8981/SPCP_dataset/resolve/068af97eed82969f15278db3af4bd450176cf6f3/SPCP_dataset.zip",
+    "central_directory_sha256": "f3892690a8434fd42a412c4cf952e050d542740d2dea04b4cad976ad2ea1415d",
+    "pair_annotation_sha256": "8c42140ae0f90f37f32706911ab86cca9f377077bbd18ac301262d952bf5f58c",
+    "score_annotation_sha256": "ee5f0fc830ebd40cab3e25b379aa0e01ec5cc4793a55315504c2d06f6af7900d",
+    "maximum_use": "local isolated internal research",
+    "product_dependency": false
+  },
+  "selection": {
+    "label_semantics": "pair label 1 means the right endpoint wins",
+    "minimum_cross_table_concordance": 0.85,
+    "winner": "unique maximum mean of 20 score columns",
+    "loser": "unique minimum mean of 20 score columns",
+    "direct_extreme_pair_required": true,
+    "direct_pair_majority_must_agree": true,
+    "minimum_absolute_vote_margin_from_ten": 4,
+    "role_sort": "ascending sha256('u5-r2spcp2-v1|' + scene_id)",
+    "fit_scenes": 96,
+    "calibration_scenes": 32,
+    "sealed_scenes": 32,
+    "all_selected_scenes_mandatory": true,
+    "replacement_forbidden": true
+  },
+  "acquisition": {
+    "initial_roles": ["fit", "calibration"],
+    "members_per_scene": 2,
+    "initial_member_count_exact": 256,
+    "maximum_initial_compressed_bytes": 300000000,
+    "member_fetch": "exact ZIP local-header plus compressed payload Range only",
+    "full_zip_download_forbidden": true,
+    "unselected_image_payload_read_forbidden": true,
+    "sealed_image_payload_read_before_development_pass_forbidden": true,
+    "output_root": "data/preference/spcp/u5_r2spcp2_global_logit_affine_v1"
+  },
+  "decode": {
+    "required_format": "PNG",
+    "required_mode_after_decode": "RGB",
+    "pair_dimensions_must_match": true,
+    "minimum_width_height": 256,
+    "alpha_forbidden": true,
+    "embedded_non_srgb_icc_forbidden": true,
+    "integer_code_normalization": "uint8/255 or uint16/65535 according to decoded sample depth",
+    "geometry_or_colour_fallback_forbidden": true
+  },
+  "fit": {
+    "source_role": "loser",
+    "target_role": "winner",
+    "coordinate": "per-channel logit(clamp(code,1/4096,1-1/4096))",
+    "operator": "sigmoid(M logit(x) + b), one shared 3x3 M plus 3-vector b",
+    "pixels_per_scene": 4096,
+    "pixel_sampling": "ascending sha256(scene_id|flat_pixel_index), first 4096",
+    "ridge_alpha": 0.0001,
+    "dose_grid": [1.0, 0.75, 0.5, 0.25],
+    "dose_selection": "lowest fit target RMSE among candidates passing all analytic matrix gates; ties choose lower dose",
+    "matrix_gates": {
+      "determinant_min": 0.05,
+      "condition_number_max": 4.0,
+      "minimum_singular_value": 0.2
+    },
+    "output_is_intrinsically_bounded": true,
+    "application_source_used_for_fit_or_selection": false
+  },
+  "controls": [
+    "identity",
+    "per-channel diagonal logit-affine at identical ridge and sampling",
+    "cyclically label-permuted winner targets at identical capacity",
+    "reverse-direction shared logit-affine applied in the forward direction"
+  ],
+  "calibration_metrics": {
+    "primary_error": "mean OKLab Euclidean error to same-scene winner",
+    "candidate_improvement_rate_min": 0.75,
+    "candidate_improvement_median_min": 0.15,
+    "candidate_improvement_worst_min": -0.10,
+    "beat_diagonal_rate_min": 0.65,
+    "diagonal_relative_gain_median_min": 0.05,
+    "beat_label_permuted_rate_min": 0.75,
+    "label_permuted_relative_gain_median_min": 0.10,
+    "reverse_direction_improvement_rate_max": 0.35,
+    "median_output_delta_e_oklab_from_identity_min": 0.01,
+    "new_exact_boundary_fraction_max": 0.0,
+    "p999_gradient_ratio_max": 1.5,
+    "two_fresh_process_reports_byte_exact": true,
+    "reverse_scene_enumeration_exact": true
+  },
+  "stop_rules": [
+    "Any parent, annotation, selection, byte-budget, Range, decode or role-leakage failure closes before fitting.",
+    "Any fit matrix gate failure closes without ridge, dose-grid or coordinate rescue.",
+    "Any calibration gate failure closes before sealed image acquisition.",
+    "No scene replacement, threshold relaxation, per-scene routing, higher-order operator or same-cohort rescue is allowed."
+  ],
+  "claim_ceiling": "Private internal-research population-colour-prior D0 over same-scene ISP variants; not film, stock, scanner, calibrated authenticity, arbitrary-image preference, package, capability or product evidence."
+}
