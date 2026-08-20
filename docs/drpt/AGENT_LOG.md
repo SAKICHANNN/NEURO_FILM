@@ -14009,3 +14009,23 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   new bulk migration was attempted. The final destination remains the
   namespaced `P:\neuro_film_storage\...` tree after filesystem repair and
   per-file revalidation; repository-relative junctions remain unchanged.
+
+### 2026-08-20 - U5.R2REPID8 closes extended quadratic inverse
+
+- Changed the REPID7 representation rather than its gates: fixed `asinh`
+  coordinates admit finite pseudo-neutral RGB beyond `[0,1]`, ten quadratic
+  terms map to three logits, and sigmoid execution is intrinsically bounded.
+  A fixed 7-cubed analytic-Jacobian grid and the prior 12D operator are frozen
+  safety and matched-capacity controls.
+- The first invocation stopped before model/reference access because the direct
+  parent pointed to the REPID7 control rather than the F1 asset contract. The
+  correction only separated parent and matched-control bindings; final
+  forward/reverse reports are byte exact (`951678a2...d2c9b5`).
+- Formal status is `FAIL_CLOSED`: 0/9 references pass. Median p95 error
+  reduction versus the logit-affine control is `-48.41%`; sampled determinant
+  reaches `-43.87`, minimum singular value reaches zero and maximum condition
+  number reaches `1.93e16`. Application-source reads and outputs remain zero.
+- Close basis/degree/scale/ridge/Jacobian projection and threshold rescues. The
+  evidence rejects free quadratic capacity as a repair without invalidating
+  the narrower 7/9 self-canonical identification signal.
+- Evidence: `docs/evidence/U5_R2REPID8_CANONCGT_EXTENDED_QUADRATIC_INVERSE_RESULT.json`.

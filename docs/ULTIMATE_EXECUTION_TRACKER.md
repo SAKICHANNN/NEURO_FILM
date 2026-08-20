@@ -1636,3 +1636,17 @@ still fails: `a0_ref_04` has `.61417% > .5%` canonical raw range escape and
 do not exclude references, relax gates, project the canonical output or tune
 dose/ridge/splits. Retain self-canonicalization only as positive identifying
 mechanism evidence for a future materially different representation.
+
+U5.R2REPID8 changes that representation to a fixed 30-coefficient extended
+`asinh` quadratic-to-logit operator, so finite pseudo-neutral values outside
+the RGB cube require neither clipping nor projection. A pre-access parent-link
+defect produced no report and read no model/reference; the corrected F1 parent
+and separate REPID7 control bindings change no science. Final forward/reversed
+reports are byte exact (`951678a2...d2c9b5`) and application-source reads remain
+zero. The extended support gate passes all references, but 0/9 pass the full
+structure: sampled Jacobian determinants fall to `-43.87`, minimum singular
+value reaches zero, condition number reaches `1.93e16`, and median p95 error
+reduction versus the frozen 12D control is `-48.41%`. Close scale, basis,
+degree, ridge, Jacobian-projection and threshold rescues. The result rejects
+free quadratic capacity as the repair; it does not invalidate the 7/9
+self-canonical signal or open Apply.

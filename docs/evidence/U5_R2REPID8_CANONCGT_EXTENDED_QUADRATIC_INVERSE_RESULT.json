@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2repid8-canoncgt-extended-quadratic-inverse-v1",
+  "status": "FAIL_CLOSED_EXTENDED_QUADRATIC_INVERSE",
+  "execution_commit": "f79ed39da471b64abc5e4032fe4ac87785adf32b",
+  "frozen_inputs": {
+    "config_sha256": "8834e899b3056c54fc02bed9eab5c545808cae1cde4291887650f377fbedf781",
+    "contract_sha256": "6c7d6f27e70fd4c89a9a747a5c9805635c3727f669427997fe0a9f64e38291aa",
+    "core_sha256": "e2aa70a0409e54868efb273c48f72f5c6cd4ea92cc2c6f128c8708a098f8de95",
+    "runner_sha256": "0edaef17a6bf98df1dadfdbe3b61d77873136cee5860740029be12461ffbe74e",
+    "test_sha256": "8940e90de3fb1e18fe74f692090f4903c3a4502742376a4a1073c47fbdac4a91",
+    "canoncgt_parent_contract_sha256": "58d2a2b349763f7b29d08ded37e028f394585250f1ded9452a5beb41a4693d8b",
+    "matched_logit_affine_contract_sha256": "4fcc39f273371f2f02ec76c87fde4382b5297349a92c0650e52376125e641575"
+  },
+  "execution_amendment": {
+    "initial_report_created": false,
+    "initial_model_or_reference_reads": 0,
+    "cause": "The loader direct parent was mistakenly set to the REPID7 control rather than the F1 CanonCGT asset contract.",
+    "correction": "Bind F1 as parent_contract and REPID7 separately as matched_control_contract; representation, roles, parameters, metrics and gates unchanged."
+  },
+  "replay": {
+    "forward_report_sha256": "951678a2f62f264aeffd3b6facdee315660327fa319c55e64be8b820b8d2c9b5",
+    "reversed_report_sha256": "951678a2f62f264aeffd3b6facdee315660327fa319c55e64be8b820b8d2c9b5",
+    "full_report_byte_exact": true
+  },
+  "execution_order": {
+    "reference_count": 9,
+    "application_source_reads": 0,
+    "application_source_decodes": 0,
+    "application_outputs": 0
+  },
+  "metrics": {
+    "passing_references": 0,
+    "required_passing_references": 9,
+    "matched_control_gate": false,
+    "median_p95_error_reduction_vs_logit_affine": -0.484080616399423,
+    "holdout_p95_minimum": 0.06714049525494538,
+    "holdout_p95_maximum": 0.2160417714108253,
+    "canonical_range_escape_magnitude_maximum": 0.09930454194545746,
+    "maximum_coefficient_absolute_value": 103.93057062565865,
+    "minimum_sampled_jacobian_determinant": -43.86963392572263,
+    "minimum_sampled_jacobian_singular_value": 0.0,
+    "maximum_sampled_jacobian_condition_number": 19308762712662676.0,
+    "holdout_p95_gate_passing_references": 3,
+    "control_nonregression_passing_references": 0
+  },
+  "failed_gates": [
+    "required_passing_references",
+    "minimum_median_p95_error_reduction_vs_logit_affine",
+    "per_reference_control_nonregression",
+    "holdout_p95_all_references",
+    "jacobian_determinant_all_references",
+    "jacobian_singular_value_all_references",
+    "jacobian_condition_all_references",
+    "coefficient_bound_all_references"
+  ],
+  "interpretation": "The extended asinh coordinate accepts every finite pseudo-neutral input without clipping and all references remain within the frozen extended support. The unconstrained quadratic inverse nevertheless folds or becomes nearly singular throughout the fixed cube grid and generalizes worse than the 12D logit-affine control. The REPID7 failure is therefore not a simple capacity shortage that a free quadratic basis repairs.",
+  "closed_rescues": [
+    "asinh scale sweep",
+    "basis or degree sweep",
+    "ridge sweep",
+    "Jacobian projection or penalty",
+    "input clipping or projection",
+    "reference exclusion",
+    "threshold or sample-split rescue",
+    "application-source routing"
+  ],
+  "claim_ceiling": "Private consumed-reference explicit-operator structural negative; no application quality, stock, calibration, product, schema or capability claim."
+}
