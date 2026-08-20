@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# ruff: noqa: I001
 """Run the frozen SF3.A0Y paired shaped-LUT candidate."""
 
 from __future__ import annotations
