@@ -1,0 +1,98 @@
+{
+  "schema": "neuro-film.u6-p6av-rotated-plate-coherence-d0-contract.v1",
+  "experiment_id": "U6.P6AV",
+  "question": "After independently choosing the mechanically supported 90-degree orientation and registering one rotated scan back to plate coordinates, does the unchanged P6AT cross-spectral coherence discriminator identify same-plate structure over wrong-region and shifted controls?",
+  "parents": {
+    "method_evidence": {
+      "path": "docs/evidence/U6_P6AT_SCORPION_CROSS_SCANNER_COHERENCE_D0_RESULT.json",
+      "sha256": "eadad727bff65f6a208056271aee68e6adcac6b38e603c10a2e21c1bc6123ad5",
+      "required_status": "PASS_GENERIC_SHARED_STRUCTURE_METHOD_D0",
+      "required_stable_evidence_id": "dabf3c2f5cd6ac5e66138fc48e72dc86fb0e647d72abf9e1edd853c5a55bf772"
+    },
+    "repeat_source_contract": {
+      "path": "configs/u6_p6l_uchicago_repeat_scan_source_v1.json",
+      "required_source_record_id": "qw505-gq084"
+    }
+  },
+  "primary_sources": [
+    {
+      "title": "SCORPION: A Multi-Scanner Whole-Slide Image Dataset for Cross-Scanner Analysis",
+      "url": "https://arxiv.org/abs/2507.20907",
+      "role": "latest frozen cross-scanner coherence method parent"
+    },
+    {
+      "title": "Precise Photometric Measurements from a 1903 Photographic Plate Using a Commercial Scanner",
+      "url": "https://arxiv.org/abs/2101.03699",
+      "doi": "10.1088/1538-3873/abec20",
+      "role": "same-plate perpendicular-scan experiment and scanner-axis nuisance evidence"
+    }
+  ],
+  "source": {
+    "record_url": "https://knowledge.uchicago.edu/records/qw505-gq084",
+    "record_api_url": "https://knowledge.uchicago.edu/api/records/qw505-gq084",
+    "record_id": "qw505-gq084",
+    "license": "CC-BY-4.0",
+    "reference": {
+      "path": "data/physical_scanner/uchicago_1903_plate_repeat_v1/f0009.tif",
+      "bytes": 29491348,
+      "md5": "88521bdf173eddf9a799a94364fd2e9d",
+      "sha256": "0a80e94fbd83cc83737e61740ce0a772975f13bac3531af58a6e970388a2623a"
+    },
+    "rotated": {
+      "path": "data/physical_scanner/uchicago_1903_plate_rotated_v1/f0010.tif",
+      "url": "https://knowledge.uchicago.edu/api/records/qw505-gq084/files/f0010.tif/content",
+      "bytes": 29491348,
+      "md5": "53ed9cfb8476040c38c04dd1c3d4b1a8",
+      "description": "same 2.4 by 2.4 inch central area at focus +1.4, plate rotated by 90 degrees"
+    },
+    "required_shape": [3835, 3841],
+    "required_dtype": "uint16",
+    "required_pages": 1
+  },
+  "registration": {
+    "orientation_candidates_degrees": [90, -90],
+    "orientation_selection": "maximum SIFT-RANSAC inlier count, then inlier fraction, then +90 tie break; coherence and control scores forbidden",
+    "maximum_features": 8000,
+    "ratio_threshold": 0.7,
+    "model": "rotated-to-reference homography",
+    "ransac_reprojection_threshold_pixels": 3.0,
+    "minimum_good_matches": 500,
+    "minimum_inlier_fraction": 0.85,
+    "maximum_median_inlier_reprojection_error_pixels": 1.0,
+    "maximum_p95_inlier_reprojection_error_pixels": 3.0,
+    "mask_erosion_pixels": 32
+  },
+  "analysis": {
+    "luminance": "single-channel uint16 code",
+    "normalization": "per-image-midrank-uniform",
+    "common_center_crop_size": 3072,
+    "patch_size": 768,
+    "patch_grid": [4, 4],
+    "window_size": 128,
+    "window_stride": 128,
+    "detrend": "subtract-window-mean-hann",
+    "frequency_min_cycles_per_pixel": 0.03125,
+    "frequency_max_cycles_per_pixel": 0.25,
+    "wrong_region_control": "cyclic next patch in row-major order from rotated scan",
+    "shift_control_pixels": [64, 64]
+  },
+  "gates": {
+    "required_patches": 16,
+    "minimum_correct_vs_wrong_win_rate": 0.8,
+    "minimum_correct_vs_shifted_win_rate": 0.8,
+    "minimum_median_correct_to_wrong_ratio": 1.5,
+    "minimum_median_correct_to_shifted_ratio": 1.5,
+    "minimum_median_correct_coherence": 0.1,
+    "maximum_repeat_error": 0.0
+  },
+  "decision_if_pass": "retain_rotated_photographic_plate_shared_structure_method_d0_only",
+  "decision_if_fail": "close_rotated_plate_coherence_transfer_without_registration_or_threshold_rescue",
+  "forbidden": [
+    "modify or rescue the completed P6L source/correlation decision",
+    "use f0007 or f0008 pixels or select a crop from their results",
+    "choose orientation, registration, patches, frequencies or thresholds from coherence outcomes",
+    "interpret shared structure as isolated emulsion grain or scanner-independent NPS",
+    "fit a film profile, scanner profile, colour operator or product default"
+  ],
+  "claim_ceiling": "one CC-BY-4.0 1903 glass photographic plate scanned twice at perpendicular orientations on one Epson 12000XL workflow; generic same-material shared-structure method evidence only, not isolated emulsion NPS, scanner calibration, modern stock transfer or product evidence."
+}
