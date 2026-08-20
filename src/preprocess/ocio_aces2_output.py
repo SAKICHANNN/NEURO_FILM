@@ -6,6 +6,8 @@ from typing import Literal
 
 import numpy as np
 
+from .types import WorkingImage
+
 OCIO_VERSION = "2.5.2"
 CONFIG_URI = "ocio://cg-config-v4.0.0_aces-v2.0_ocio-v2.5"
 CONFIG_CACHE_ID = "351c1452fc2bde6177841947c5fce086:6001c324468d497f99aa06d3014798d8"
@@ -22,6 +24,11 @@ _TARGETS = {
         "Rec.2100-PQ - Display",
         "ACES 2.0 - HDR 1000 nits (Rec.2020)",
     ),
+}
+
+_WORKING_SOURCE_SPACES = {
+    "linear_srgb": "Linear Rec.709 (sRGB)",
+    "linear_rec2020": "Linear Rec.2020",
 }
 
 
@@ -106,6 +113,45 @@ def apply_aces2_output_packed(pixels: np.ndarray, target: OutputTarget) -> np.nd
     return output
 
 
+def convert_working_image_to_acescg(working: WorkingImage) -> np.ndarray:
+    """Convert one supported scene-linear WorkingImage to ACEScg pixels."""
+
+    if not isinstance(working, WorkingImage):
+        raise OcioAces2RuntimeError("working must be a WorkingImage")
+    if working.transfer_state != "scene_linear":
+        raise OcioAces2RuntimeError("ACES 2 adapter requires scene_linear input")
+    try:
+        source_space = _WORKING_SOURCE_SPACES[working.working_space]
+    except KeyError as exc:
+        raise OcioAces2RuntimeError(
+            "ACES 2 adapter requires linear_srgb or linear_rec2020 input"
+        ) from exc
+    source = np.ascontiguousarray(working.pixels.reshape(-1, 3).copy())
+    ocio = _ocio()
+    config = load_aces2_config()
+    try:
+        processor = config.getProcessor(source_space, SOURCE_SPACE).getDefaultCPUProcessor()
+        descriptor = ocio.PackedImageDesc(source, source.shape[0], 1, 3)
+        processor.apply(descriptor)
+    except Exception as exc:  # pragma: no cover - provider-specific exception hierarchy
+        raise OcioAces2RuntimeError(
+            f"unable to convert {working.working_space} to ACEScg: {exc}"
+        ) from exc
+    if not np.isfinite(source).all():
+        raise OcioAces2RuntimeError("official WorkingImage to ACEScg output is non-finite")
+    return source.reshape(working.pixels.shape)
+
+
+def apply_working_image_aces2_output(
+    working: WorkingImage, target: OutputTarget
+) -> np.ndarray:
+    """Apply the pinned official ACES 2 output to an existing WorkingImage."""
+
+    acescg = convert_working_image_to_acescg(working)
+    output = apply_aces2_output_packed(acescg.reshape(-1, 3), target)
+    return np.ascontiguousarray(output.reshape(working.pixels.shape))
+
+
 def target_display_view(target: OutputTarget) -> tuple[str, str]:
     """Return the exact display/view pair for receipt reporting."""
 
@@ -122,4 +168,3 @@ def _validated_pixels(pixels: np.ndarray) -> np.ndarray:
     if value.shape[0] == 0 or not np.isfinite(value).all():
         raise OcioAces2RuntimeError("ACES 2 numeric input must be finite and non-empty")
     return value
-
