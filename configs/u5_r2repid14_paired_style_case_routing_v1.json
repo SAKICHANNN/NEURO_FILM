@@ -36,7 +36,7 @@
     "fixed_global_control": "mean fit operator",
     "repid13_student_control": true,
     "cyclic_wrong_label_shift": 1,
-    "paired_latent_top3_oracle": "diagnostic only after prediction freeze",
+    "paired_latent_top3_oracle": "diagnostic only after prediction freeze; Euclidean distance in the frozen REPID13 paired-latent PCA space with the same top-3 and temperature",
     "latent_mode_claim_allowed": false,
     "application_source_read_during_build": false,
     "direct_final_rgb_prediction": false
