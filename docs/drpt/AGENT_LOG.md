@@ -15157,6 +15157,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   LibRaw/ACES runtime evidence, not vendor parity, a camera IDT, photographic
   quality, HDR encoding, arbitrary-DNG, default-renderer or product support.
 
+### 2026-08-21 - U1.4G freezes the Rec.2100 PQ PNG rail
+
+- Current primary standards were checked before implementation. PNG Third
+  Edition explicitly assigns full-range BT.2100 PQ RGB `cICP` bytes
+  `09 10 00 01` and requires the chunk before IDAT.
+- The leaf extends only the existing deterministic RGB16 PNG mechanism for
+  already encoded samples, with strict sample/metadata/CRC/replay/atomicity
+  gates and unchanged SDR regression hashes.
+- `mDCV`, `cLLI`, mastering-display and content-light values remain absent
+  because no content-specific evidence exists. No HDR10, display, renderer,
+  public capability or product claim is authorized.
+
 ### 2026-08-21 - SF3.A0K makes three-stock physical capture executable
 
 - Built two byte-exact clean copies and one verified canonical P-backed pack:
