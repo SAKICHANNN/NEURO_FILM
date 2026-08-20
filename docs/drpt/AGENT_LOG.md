@@ -14825,3 +14825,27 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   gain-map reconstruction, HDR quality, package/schema/capability and product
   admission remain closed. Evidence:
   `docs/evidence/U1_5D_STRUCTURED_MPO_ISO_GAINMAP_REJECTION_RESULT.json`.
+
+### 2026-08-21 - SF3.A0U qualifies synchronous night capture pairs
+
+- Direction correction: do not rescue SF3.A0T's WB-conditioned operator.
+  Select a new physical observation only: the official NTIRE 2025 night
+  dataset uses synchronous beam-splitter Huawei RAW and Sony professional
+  camera capture with paper-declared sensor/alignment metadata.
+- Preregistered at `384747e3`; source-lock core `7d821989`. Two runner attempts
+  stopped before network access because direct execution lacked the repository
+  import root; bootstrap-only commits then enabled complete from-zero runs
+  without changing source, rows, gates or report semantics.
+- Forward/reverse reports are byte exact at `ec88e11f...69655c`, stable
+  `b49fc4a8...52d8093`. Each reads exactly 16MiB of archive tails and no member
+  payload. The exact graph is 1,000 RAW PNG + 1,000 same-ID JSON + 1,000 same-ID
+  Sony JPEG, with zero incomplete/unexpected/unsafe members.
+- Zenodo record 15213321 is open access under CC BY 4.0. Archive structure
+  proves one JSON per RAW; the official paper supplies the black/white level,
+  noise, CFA, orientation, WB and crop-field claim because JSON contents remain
+  unread.
+- Decision: pass source qualification only; counter remains `1/3`. Freeze a
+  small group-isolated metadata/pixel/registration preflight before member
+  extraction. No operator, quality, film/stock, package/schema/capability or
+  product claim. Evidence:
+  `docs/evidence/SF3_A0U_NTIRE_NIGHT_CAPTURE_PAIR_SOURCE_LOCK_RESULT.json`.

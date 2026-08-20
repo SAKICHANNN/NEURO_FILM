@@ -141,6 +141,18 @@ fail. No WB/curve/capacity rescue opens. Counter is `1/3`; the immediate path
 returns to RAW/DNG/HDR portable engineering. Evidence:
 `docs/evidence/SF3_A0T_RGB2RAW_METADATA_EXPLICIT_ISP_D0_RESULT.json`.
 
+SF3.A0U qualifies a materially stronger capture-time source without consuming
+candidate 2. Zenodo record 15213321 is open/CC BY 4.0 and the official NTIRE
+2025 report describes synchronous beam-splitter Huawei RAW/Sony JPEG capture
+with sensor, noise, WB, orientation and target-crop facts. Two exact 16MiB
+Range-only reports (`ec88e11f...69655c`) bind 1,000 RAW PNGs, 1,000 same-ID
+metadata JSONs and 1,000 same-ID Sony JPEGs with zero missing, unexpected or
+unsafe members. Member payload, JSON contents, pixels, fit, render and score
+reads remain zero; field names are paper-declared, not JSON-verified. Open only
+a separately frozen small member/metadata/registration preflight. Counter
+remains `1/3`. Evidence:
+`docs/evidence/SF3_A0U_NTIRE_NIGHT_CAPTURE_PAIR_SOURCE_LOCK_RESULT.json`.
+
 **Autonomy invariant**: the active no-data Roll2Film and Style-safe work cannot
 depend on the owner supplying images, film/digital pairs, per-image labels, new
 preference votes or manual annotation. Public online data is an allowed source

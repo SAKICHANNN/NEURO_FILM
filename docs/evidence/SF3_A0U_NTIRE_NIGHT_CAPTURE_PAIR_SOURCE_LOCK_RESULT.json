@@ -1,0 +1,93 @@
+{
+  "schema": "neuro-film.sf3-a0u-ntire-night-capture-pair-source-lock-evidence.v1",
+  "experiment_id": "SF3.A0U_NTIRE_NIGHT_CAPTURE_PAIR_SOURCE_LOCK_V1",
+  "date": "2026-08-21",
+  "status": "PASS_SOURCE_LOCK_NOT_CANDIDATE_2",
+  "preregistration_commit": "384747e3",
+  "implementation_commit": "7d821989",
+  "runner_bootstrap_commits": [
+    "4a688ee0",
+    "8a108041",
+    "77482880"
+  ],
+  "contract": {
+    "path": "configs/sf3_a0u_ntire_night_capture_pair_source_lock_v1.json",
+    "sha256": "72372079520988c2a2eaf3bfdc3a2eef8b8b1b657407b203b6028d68fcd160be"
+  },
+  "source": {
+    "zenodo_record": 15213321,
+    "doi": "10.5281/zenodo.15213321",
+    "access_right": "open",
+    "license": "cc-by-4.0",
+    "raw_archive_bytes": 47288204304,
+    "raw_archive_md5": "bd1cf28aa10fdcc93b7f8030b954740c",
+    "target_archive_bytes": 379600345,
+    "target_archive_md5": "67171d28c7132e7b9dd376de38a65af9"
+  },
+  "formal_replay": {
+    "forward": "outputs/eval/sf3_a0u_ntire_night_capture_pair_source_lock_v1/formal_forward.json",
+    "reverse": "outputs/eval/sf3_a0u_ntire_night_capture_pair_source_lock_v1/formal_reverse.json",
+    "report_sha256": "ec88e11fe4ce18205f47b20ded8a7b44ead5a40919fe6d0a1bf8f7bedb69655c",
+    "stable_identity": "b49fc4a8708b0b3f2b1887d4c2ff0ae22ae155dfcd405a6fbe58060b252d8093",
+    "byte_exact": true,
+    "archive_range_bytes_per_run": 16777216
+  },
+  "archive_structure": {
+    "raw_central_sha256": "714643ae6ad3078a1830b1601eef32a0dcce5b686896862ac27e2acb9abaff0d",
+    "raw_central_member_count": 2001,
+    "target_central_sha256": "04e704620b2d1093e7118bbb2b1d6f8ad2ba0a6d56f1a594421d6f74987df903",
+    "target_central_member_count": 1001,
+    "raw_png_count": 1000,
+    "raw_metadata_json_count": 1000,
+    "target_jpeg_count": 1000,
+    "complete_pair_count": 1000,
+    "independent_scene_count": 1000,
+    "complete_ids_sha256": "cb88c247513aefa5aa24be76cb5df285105ff4041dc4eda601082af9cf3f075f",
+    "incomplete_id_count": 0,
+    "unexpected_member_count": 0,
+    "unsafe_member_count": 0
+  },
+  "metadata_boundary": {
+    "official_paper_declares": [
+      "black_level",
+      "white_level",
+      "noise_profile",
+      "cfa_pattern",
+      "orientation",
+      "white_balance",
+      "crop_bounds"
+    ],
+    "archive_proves_one_same_id_json_per_raw": true,
+    "metadata_member_contents_read": false,
+    "individual_field_values_verified": false
+  },
+  "execution_amendment": {
+    "fact": "The first forward and reverse script processes both stopped before network access because direct script execution lacked the repository root on sys.path.",
+    "reports_written": 0,
+    "archive_range_bytes_read": 0,
+    "scientific_change": "none; runner bootstrap only, followed by complete from-zero executions"
+  },
+  "reads": {
+    "member_payload_bytes": 0,
+    "pixel_decodes": 0,
+    "operator_fits": 0,
+    "renders": 0,
+    "scores": 0
+  },
+  "gates": {
+    "record_identity_size_checksum_license_exact": true,
+    "both_zip_central_directories_parse": true,
+    "complete_raw_metadata_processed_target_pair_graph": true,
+    "minimum_complete_group_count": true,
+    "minimum_independent_scene_count": true,
+    "safe_unencrypted_supported_members": true,
+    "bounded_archive_range_bytes": true,
+    "zero_member_payload_and_pixel_reads": true,
+    "two_complete_reports_byte_exact": true
+  },
+  "bounded_final_candidate_counter_before": 1,
+  "bounded_final_candidate_counter_after": 1,
+  "decision": "OPEN_SEPARATE_FIXED_MEMBER_PIXEL_REGISTRATION_PREFLIGHT_NOT_CANDIDATE_2",
+  "next_leaf": "Freeze a small hash-ranked, group-isolated member/metadata/registration preflight before extracting any selected member. It must verify actual JSON fields, crop semantics, decode geometry and source-target registration without fitting an operator.",
+  "claim_ceiling": "Range-only source, rights, archive and same-ID pairing qualification for a synchronous beam-splitter night RAW/professional-camera dataset. The official paper, not unread JSON contents, supplies the field-name claim. No pixel, target quality, operator, film, stock, package, schema, capability or product claim."
+}
