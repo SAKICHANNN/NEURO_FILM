@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2repid9c-reference-operator-predictor-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2REPID9C",
+  "freeze_commit": "1435efbc",
+  "execution_fix_commit": "101b7a21",
+  "config_sha256": "50bff194dc2a9d6c2405f795ad47578be709b1e5aa34948284dddf648222f6aa",
+  "formal_report_sha256": "8aa34cc8dba066842d7e7e76fc9375834b9148f008f1d5503b3ba54548827de4",
+  "formal_reverse_report_sha256": "8aa34cc8dba066842d7e7e76fc9375834b9148f008f1d5503b3ba54548827de4",
+  "stable_evidence_id": "sha256:5e5fbe600b8ddcb8f34eb8c25dc89b2c16efbf74b52a751370c683e43c5debdf",
+  "prediction_freeze_sha256": "6466820c95d041e3dfd815ee3c69f21555fd7b75f980381ad852e6a849f0eaee",
+  "information_flow": {
+    "fit_scenes": 80,
+    "calibration_scenes": 24,
+    "calibration_original_reads_before_prediction_freeze": 0,
+    "application_source_reads_during_build": 0,
+    "sealed_requests": 0
+  },
+  "metrics": {
+    "candidate_improvement_rate": 0.5,
+    "candidate_improvement_median": 0.06492877839170087,
+    "candidate_improvement_worst": -1.1110997070701636,
+    "beat_global_rate": 0.5416666666666666,
+    "gain_vs_global_median": 0.034948397707838724,
+    "beat_permuted_rate": 0.5,
+    "gain_vs_permuted_median": 0.03561839928391453,
+    "oracle_improvement_rate": 0.875,
+    "oracle_improvement_median": 0.39749240599956204,
+    "oracle_improvement_worst": -0.9591231394009305,
+    "median_output_delta_e_oklab": 0.057519317494062604,
+    "maximum_new_exact_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio": 1.3768848919083692,
+    "minimum_determinant": 0.9709921233090316,
+    "maximum_condition_number": 2.0564619604567627,
+    "minimum_singular_value": 0.7279616792013951
+  },
+  "passed_gates": [
+    "style_delta",
+    "new_boundary",
+    "gradient",
+    "matrix_safety",
+    "prediction_before_calibration_original",
+    "sealed_reads_zero",
+    "forward_reverse_byte_exact"
+  ],
+  "failed_gates": [
+    "candidate_improvement_rate",
+    "candidate_improvement_median",
+    "candidate_improvement_worst",
+    "beat_global_rate",
+    "gain_vs_global_median",
+    "beat_permuted_rate",
+    "gain_vs_permuted_median"
+  ],
+  "execution_integrity_note": {
+    "first_invocation_report_written": false,
+    "first_invocation_scope": "first permitted fit scene only",
+    "failure": "descriptor API wrapper-key mismatch",
+    "calibration_reference_reads": 0,
+    "calibration_original_reads": 0,
+    "scores": 0,
+    "sealed_reads": 0,
+    "repair_changed_scientific_values_roles_controls_or_gates": false
+  },
+  "decision": "close_exact_repid_reference_only_operator_predictor",
+  "interpretation": "Professional original-to-winner pairs contain a substantial per-scene explicit-operator ceiling, but winner-reference global colour statistics do not identify that operator across unseen content and are not materially better than a global mean or cyclic-label control. Safety is not the limiting failure. Close this exact descriptor, ridge, bounds, dose, resize and cohort without rescue.",
+  "next_allowed_leaf": "A prospectively frozen materially different learned style observation may reuse the consumed calibration rows only as development and must retain the untouched sealed role. It may not tune the closed global-stat descriptor or claim admission.",
+  "claim_ceiling": "Private internal-research professional-reference explicit-operator identification negative; not population preference, film, stock, scanner, arbitrary-source, package, capability or product evidence."
+}

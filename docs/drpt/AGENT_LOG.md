@@ -14062,6 +14062,25 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   capability or product evidence.
 - Evidence: `docs/evidence/U5_R2REPID9B_ORIGINAL_ACQUISITION_RESULT.json`.
 
+### 2026-08-20 - U5.R2REPID9C closes global-stat reference prediction
+
+- Fit 80 safe original-to-professional-winner 12D logit-affine labels, then
+  froze all 24 calibration predictions from winner-reference statistics before
+  reading any calibration original. Global-mean and scene-cyclic-label ridge
+  controls used equal capacity; sealed reads remain zero.
+- Forward/reverse reports are byte exact (`8aa34cc8...827de4`). Matrix,
+  boundary, gradient and style-salience gates pass, but candidate improvement
+  is only 12/24, median `+6.49%`, worst `-111.11%`; it beats global on 13/24
+  and permuted on 12/24, with only `+3.49%/+3.56%` median gains.
+- The evaluation-only per-scene paired oracle improves 21/24 with median
+  `+39.75%`, so paired professional data contains operator signal. The failure
+  is identification from global after-reference statistics, not operator
+  safety or total absence of a paired ceiling.
+- Close the exact descriptor/ridge/bounds/dose/resize/cohort without rescue.
+  A different learned style observation may use these rows only as consumed
+  development; the 24-scene sealed role remains untouched.
+- Evidence: `docs/evidence/U5_R2REPID9C_REFERENCE_OPERATOR_PREDICTOR_RESULT.json`.
+
 ### 2026-08-20 - U6.P6AS closes the current public repeat-scan source gate
 
 - Queried the current official APPLAUSE DR4 and HDAP TAP catalogues without
