@@ -3,6 +3,10 @@
   "experiment_id": "u5.r2repid8-canoncgt-extended-quadratic-inverse-v1",
   "node": "ULT > U5 > U5.R2 > U5.R2REPID8",
   "parent_contract": {
+    "path": "configs/u5_r2f1_canoncgt_reference_condition_v1.json",
+    "sha256": "58d2a2b349763f7b29d08ded37e028f394585250f1ded9452a5beb41a4693d8b"
+  },
+  "matched_control_contract": {
     "path": "configs/u5_r2repid7_canoncgt_self_canonical_inverse_v1.json",
     "sha256": "4fcc39f273371f2f02ec76c87fde4382b5297349a92c0650e52376125e641575"
   },

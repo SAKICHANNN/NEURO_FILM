@@ -28,3 +28,10 @@ processes must produce byte-identical reports.
 Any failure closes this exact basis, scale, ridge, split and grid without
 projection, clipping, dose, reference exclusion or checkpoint rescue. A pass
 would open only a separately frozen consumed-source application D0.
+
+Execution amendment: the first formal invocation stopped before model or
+reference access because the loader's direct parent was mistakenly set to the
+REPID7 control rather than the F1 CanonCGT asset contract. The corrected config
+binds F1 as `parent_contract` and REPID7 separately as
+`matched_control_contract`; no scientific role, representation, parameter,
+metric or gate changed, and formal execution restarts from zero.
