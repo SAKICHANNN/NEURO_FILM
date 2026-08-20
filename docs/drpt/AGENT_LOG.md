@@ -14738,3 +14738,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Files:
   `configs/sf3_a0t_rgb2raw_metadata_explicit_isp_d0_v1.json` and
   `docs/research/SF3_A0T_RGB2RAW_METADATA_EXPLICIT_ISP_PREREGISTRATION.md`.
+
+### 2026-08-21 - SF3.A1F closes Commons author connectivity
+
+- The existing SF3.A1C metadata was re-evaluated without network or pixel
+  access. Two formal reports are byte exact at `c29bd285...373a85`.
+- Pairwise shared-author counts are `4/3/4`, but only two independent authors
+  span Velvia 50, Portra 400 and Ektar 100; the frozen minimum is five.
+- The Commons pool cannot repair SF3.A1E's author/content confound. No pixel,
+  fit, adaptive LUT, retrieval or latent-mode work opens on this cohort.
+- Evidence: `docs/evidence/SF3_A1F_COMMONS_THREE_STOCK_AUTHOR_CONNECTIVITY_RESULT.json`.

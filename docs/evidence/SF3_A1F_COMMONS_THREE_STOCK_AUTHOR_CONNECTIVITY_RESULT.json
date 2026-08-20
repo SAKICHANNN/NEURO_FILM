@@ -1,0 +1,38 @@
+{
+  "schema": "neuro-film.sf3-a1f-commons-three-stock-author-connectivity-evidence.v1",
+  "experiment_id": "SF3.A1F_COMMONS_THREE_STOCK_AUTHOR_CONNECTIVITY_V1",
+  "implementation_commit": "25e267a67dcc9e83249afdd7cc6a27fe894ddf90",
+  "bindings": {
+    "contract_sha256": "36bacc2df105fa8fa258f0f213949d3f8f0da8b2b84eb31c73a210f97d83c1ab",
+    "evaluator_sha256": "0a45c626627612bd1b958811ed455d75a1b2eff93719f85bfd1133b30f1f18af",
+    "runner_sha256": "d12c72433f4253b15eb99e0f8da6ca81d81317c85a5d27e65e76fdf2108be9d0",
+    "test_sha256": "69a6465a5b9bfa9f25418aa8c4752813ff40ca5a056433e5caa7865ce3c25cbc",
+    "input_report_sha256": "c27364ef7b2cb294f29310268b80fad9aa3c384cb13694f81cbaf103fe835887",
+    "formal_report_a_sha256": "c29bd28587bb18b648d38269e8d7ca5d5b41ea65d91c6792d662e2a368373a85",
+    "formal_report_b_sha256": "c29bd28587bb18b648d38269e8d7ca5d5b41ea65d91c6792d662e2a368373a85"
+  },
+  "stable_evidence_id": "58f2fb2c989e9820362d0e2de532feaa95426366654a012d886db6d8741389af",
+  "observations": {
+    "formal_reports_byte_exact": true,
+    "pair_shared_author_counts": {
+      "fujifilm_velvia_50__kodak_portra_400": 4,
+      "fujifilm_velvia_50__kodak_ektar_100": 3,
+      "kodak_portra_400__kodak_ektar_100": 4
+    },
+    "triple_shared_author_count": 2,
+    "minimum_required_triple_shared_authors": 5,
+    "connected_rows_by_stock": {
+      "fujifilm_velvia_50": 7,
+      "kodak_portra_400": 6,
+      "kodak_ektar_100": 7
+    },
+    "network_requests": 0,
+    "image_payload_downloads": 0,
+    "pixel_decodes": 0,
+    "operator_fits": 0
+  },
+  "decision": "CLOSE_COMMONS_SHARED_AUTHOR_ROUTE_BEFORE_PIXEL_ACCESS",
+  "interpretation": "The exact-text Commons pool has real pairwise author edges, but after binding the cross-platform Brenkee identity it contains only two independent authors spanning all three stocks. This cannot repair the author/content nuisance exposed by SF3.A1E, so pixel acquisition and operator fitting remain closed.",
+  "next_leaf": "Obtain a genuinely controlled or independently connected source with at least five cross-stock author groups and same-scene or equivalent nuisance controls; do not add capacity to the current Commons cohort.",
+  "claim_ceiling": "Frozen Wikimedia Commons exact-text metadata connectivity across Velvia 50, Portra 400 and Ektar 100 author identities; no same-scene, roll, process, scanner, stock-response, pixels, calibration, fitting, training or product claim."
+}

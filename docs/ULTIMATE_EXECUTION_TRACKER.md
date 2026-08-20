@@ -53,7 +53,9 @@ and cleaned 72 author-balanced Commons images for Velvia 50, Portra 400 and
 Ektar 100, but SF3.A1E rejects all four author-held-out identifiability
 contrasts (`64` clean rows; Portra--Ektar RGB BA `.53355`, `p=.434`; Velvia
 separation is matched or exceeded by nuisance controls). This pool is closed
-for fitting. A new K=1 stock expert requires genuinely same-scene,
+for fitting. SF3.A1F then closes the exact-text Commons author-connectivity
+route before pixels: only `2` independent authors span all three stocks versus
+the frozen `5` minimum. A new K=1 stock expert requires genuinely same-scene,
 rights-authorized and independently grouped stock observations; adaptive LUT,
 retrieval and `K>1` remain downstream of that gate.
 
