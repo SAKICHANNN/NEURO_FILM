@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 import tempfile
+from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 
@@ -44,6 +45,8 @@ def render_supported_prophoto_velvia_rec2020_staged(
     root: Path,
     scratch_dir: Path,
     row_chunk: int = 128,
+    _ingress_mapper: Callable[[np.ndarray], tuple[np.ndarray, np.ndarray]] | None = None,
+    _style_mapper: Callable[..., np.ndarray] | None = None,
 ) -> dict[str, Any]:
     """Render the qualified look with disk-staged, bounded-row intermediates."""
 
@@ -54,6 +57,8 @@ def render_supported_prophoto_velvia_rec2020_staged(
         raise ROMMRec2020RenderError("output must be a create-only .png path")
     if isinstance(row_chunk, bool) or not isinstance(row_chunk, int) or row_chunk <= 0:
         raise ROMMRec2020RenderError("row_chunk must be a positive integer")
+    ingress_mapper = _ingress_mapper or analytical_oklab_interior_rec2020
+    style_mapper = _style_mapper or apply_safe_lab_transform
     profile, profile_sha256 = load_profile(profile_path, root=root)
     if profile["profile_id"] != PROPHOTO_PROFILE_ID:
         raise ROMMRec2020RenderError("staged renderer requires the supported ProPhoto profile")
@@ -108,7 +113,7 @@ def render_supported_prophoto_velvia_rec2020_staged(
                 np.asarray(encoded[y0:y1]), embedded_profile
             )
             source_in_gamut = np.all((decoded >= 0.0) & (decoded <= 1.0), axis=2)
-            mapped_tile, chroma_scale = analytical_oklab_interior_rec2020(decoded)
+            mapped_tile, chroma_scale = ingress_mapper(decoded)
             mapped[y0:y1] = mapped_tile
             lab[y0:y1] = linear_rgb_to_lab(
                 mapped_tile, working_space="linear_rec2020"
@@ -148,7 +153,7 @@ def render_supported_prophoto_velvia_rec2020_staged(
             expanded_y0 = max(0, y0 - halo)
             expanded_y1 = min(height, y1 + halo)
             source_lab = np.asarray(lab[expanded_y0:expanded_y1])
-            styled_lab = apply_safe_lab_transform(
+            styled_lab = style_mapper(
                 source_lab,
                 source_context=context,
                 destination_mean=np.asarray(stats["styles"][style_id]["mean"], dtype=np.float32),
