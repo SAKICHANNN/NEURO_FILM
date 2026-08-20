@@ -14357,3 +14357,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   cohort rescue. The partial transform cluster is not a reliable operator
   identity and opens no fresh routing or product action. Evidence:
   `docs/evidence/U5_R2CSD0_CROSS_CONTENT_OPERATOR_IDENTIFICATION_RESULT.json`.
+
+### 2026-08-21 - U5.R2SPCP0 freezes a direct-preference source gate
+
+- Do not reopen CSD through atlas or aggregation changes: its frozen stop rule
+  explicitly closes that rescue family. The next observation is instead the
+  official ACM MM 2025 SPCP release: exhaustive same-scene human preference
+  over 12 ISP colour variants for each of 1,000 scenes.
+- Freeze an annotation-only, HTTP-range source audit before any image member,
+  fit, render or scientific score. It binds the exact Hugging Face revision,
+  9.05 GB archive identity, ZIP64 central directory and the two annotation
+  workbooks, while requiring 1,000 connected 45-edge scene graphs and zero
+  cross-scene pairs.
+- A pass opens only a separately frozen private image-acquisition and shared
+  bounded explicit-operator discriminant. The repository has publisher card
+  metadata but no independent license text, so image and product rights do not
+  expand. Contract:
+  `configs/u5_r2spcp0_metadata_source_lock_v1.json`.

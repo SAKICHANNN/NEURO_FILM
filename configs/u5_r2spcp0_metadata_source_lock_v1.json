@@ -1,0 +1,83 @@
+{
+  "schema": "neuro-film.u5-r2spcp0-metadata-source-lock-contract.v1",
+  "experiment_id": "U5.R2SPCP0",
+  "date": "2026-08-21",
+  "question": "Does the official SPCP release contain a complete, scene-groupable, same-scene direct human colour-preference graph suitable for a later source-free explicit-operator experiment?",
+  "scientific_role": "metadata-only source and annotation eligibility gate",
+  "direction_change": {
+    "primary_paper": "Evaluating Perceptual Color Preferences in Smartphone Photography: Dataset and Challenges, ACM Multimedia 2025",
+    "paper_url": "https://doi.org/10.1145/3746027.3758227",
+    "new_identifying_observation": "exhaustive same-scene pairwise human preference over ISP-induced colour variants",
+    "why_not_scorer_rescue": "the observation is direct human pairwise preference data rather than another frozen aesthetic or style embedding",
+    "future_candidate_boundary": "a later leaf may fit only one shared source-free bounded explicit colour operator; it may not train a direct RGB generator or content router"
+  },
+  "source": {
+    "dataset_repository": "zwx8981/SPCP_dataset",
+    "dataset_revision": "068af97eed82969f15278db3af4bd450176cf6f3",
+    "dataset_url": "https://huggingface.co/datasets/zwx8981/SPCP_dataset",
+    "archive_filename": "SPCP_dataset.zip",
+    "archive_size_bytes": 9050462827,
+    "archive_lfs_sha256": "8643d2be6edb3391f37159476584df59f714205fd427a1d26e325a1f93791ef0",
+    "publisher_card_license": "apache-2.0",
+    "license_text_present_in_repository": false,
+    "rights_ceiling": "local isolated internal research; publisher card declaration does not establish every source-image redistribution or commercial right",
+    "product_dependency": false
+  },
+  "range_only_audit": {
+    "archive_download_forbidden": true,
+    "image_member_payload_read_forbidden": true,
+    "allowed_reads": [
+      "Hugging Face repository API/tree metadata",
+      "README and .gitattributes",
+      "ZIP64 EOCD and central directory byte ranges",
+      "compressed byte ranges containing order_trans.xlsx and score_trans2.xlsx only"
+    ],
+    "zip_central_directory_offset": 9049028973,
+    "zip_central_directory_size": 1433756,
+    "expected_central_directory_sha256": "f38926903050b00f79283fdd767c146990f44669068cc13af6c6be71261415d",
+    "expected_annotation_members": {
+      "order_trans.xlsx": {
+        "uncompressed_sha256": "8c42140acb5f968de660946cd96dd4dd908e7e10fe34a7d3c2f70f05755f58c",
+        "expected_pair_rows": 45000
+      },
+      "score_trans2.xlsx": {
+        "uncompressed_sha256": "ee5f0fc8d71926769820c14ae267fb5de83fc3ad0977d44b71dbcbd5937900d",
+        "expected_image_rows": 12000
+      }
+    }
+  },
+  "eligibility_gates": {
+    "scene_count_exact": 1000,
+    "variants_per_scene_exact": 12,
+    "canonical_image_count_exact": 12000,
+    "pair_rows_per_scene_exact": 45,
+    "pair_row_count_exact": 45000,
+    "subjects_per_row_exact": 20,
+    "preference_label_domain_exact": [
+      0,
+      1
+    ],
+    "cross_scene_pair_count_exact": 0,
+    "each_scene_pair_graph_connected": true,
+    "pair_endpoints_equal_scored_image_set": true,
+    "duplicate_or_noncanonical_png_members_reported_and_excluded": true,
+    "image_payload_bytes_read_exact": 0,
+    "operator_fit_count_exact": 0,
+    "render_count_exact": 0,
+    "scientific_score_count_exact": 0
+  },
+  "stop_rules": [
+    "Any revision, archive identity, ZIP structure, annotation hash, row-count, graph, label-domain or endpoint mismatch closes this source before image download.",
+    "Missing independent image-rights text limits the source to local isolated internal research even if every structural gate passes.",
+    "A metadata pass opens only a separately preregistered image acquisition and explicit-operator discriminant; it does not establish operator value, generalization, product rights or product capability.",
+    "No image member, operator fit, render, preference model, threshold, split or scientific score may be read or created in this leaf."
+  ],
+  "storage": {
+    "durable_policy": "repo-relative project-owned P namespace only after P health is restored and transfer is verified",
+    "current_execution": "project-isolated D fallback because P reports Full Repair Needed",
+    "fallback_namespace": "D:/_project_fallbacks/neuro_film_goal_019f4b76/u5_r2spcp0",
+    "drive_root_write_forbidden": true,
+    "machine_drive_letter_must_not_enter_runtime_contract": true
+  },
+  "claim_ceiling": "At most, the exact official release has a structurally complete same-scene human colour-preference graph suitable for a later private explicit-operator D0. No image-rights expansion, operator, model, preference generalization, package, schema, capability, product or commercial claim."
+}
