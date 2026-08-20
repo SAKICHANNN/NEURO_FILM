@@ -26,6 +26,7 @@ def _write_source(path: Path) -> None:
         profile = bytes(document.pages[0].tags[34675].value)
     rng = np.random.default_rng(1901)
     pixels = rng.integers(0, 65536, size=(47, 61, 3), dtype=np.uint16)
+    pixels[20:27, 24:37] = np.asarray([65535, 65535, 0], dtype=np.uint16)
     tifffile.imwrite(
         path,
         pixels,

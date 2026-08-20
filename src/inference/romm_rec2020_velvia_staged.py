@@ -60,7 +60,9 @@ def render_supported_prophoto_velvia_rec2020_staged(
     allowed_profiles = tuple(profile["input"]["embedded_icc_sha256s"])
 
     scratch_dir.mkdir(parents=True, exist_ok=True)
-    with tempfile.TemporaryDirectory(prefix="u1_4c19_", dir=scratch_dir) as temporary:
+    with tempfile.TemporaryDirectory(
+        prefix="u1_4c19_", dir=scratch_dir, ignore_cleanup_errors=True
+    ) as temporary:
         temporary_path = Path(temporary)
         with tifffile.TiffFile(input_path) as document:
             if len(document.pages) != 1:
@@ -171,6 +173,15 @@ def render_supported_prophoto_velvia_rec2020_staged(
                 working_space="linear_rec2020",
             )
             candidate = lab_to_linear_rgb(output_lab, working_space="linear_rec2020")
+            if (
+                not np.isfinite(candidate).all()
+                or np.any(candidate < -2e-6)
+                or np.any(candidate > 1.0 + 2e-6)
+            ):
+                raise ROMMRec2020RenderError(
+                    "staged safe-Lab candidate violates the working gamut"
+                )
+            candidate = np.asarray(np.clip(candidate, 0.0, 1.0), dtype=np.float32)
             crop0 = y0 - expanded_y0
             crop1 = crop0 + (y1 - y0)
             output_pixels, scale = _source_anchored_interior_residual(
@@ -261,4 +272,3 @@ def render_supported_prophoto_velvia_rec2020_staged(
 
 
 __all__ = ["render_supported_prophoto_velvia_rec2020_staged"]
-
