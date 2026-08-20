@@ -15029,3 +15029,19 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   future paired/physical explicit operators. Do not infer vendor-render parity,
   calibrated exposure/noise, arbitrary-DNG support, renderer integration,
   public schema/capability, film/stock identity or product admission.
+
+### 2026-08-21 - U1.3D freezes held-device DNG-to-LibRaw conformance
+
+- Four U1.3C rows are explicitly consumed development diagnostics. Five other
+  U5.R2BH1S DNG rows were selected by their prior manifest order before any
+  U1.3D TIFF/LibRaw inspection and are mandatory without replacement.
+- The fixed audit compares raw geometry, uniform white level, nearest-integer
+  black levels and reciprocal-AsShotNeutral camera WB. LibRaw visible geometry
+  is classified as exact raw or exact DefaultCropSize rather than assumed to
+  mean one of them.
+- The runner may parse metadata only: no raw sample access, postprocess or RGB
+  render. All five rows and forward/reverse replay must pass; thresholds and
+  algebra cannot be rescued after inspection.
+- A pass can open only separate opt-in inspection enrichment. Renderer,
+  arbitrary-camera/DNG, calibration, public schema/capability and product
+  claims remain closed.

@@ -1,0 +1,58 @@
+{
+  "schema": "neuro_film.u1_3d_dng_libraw_metadata_conformance_contract.v1",
+  "experiment_id": "u1.3d-dng-libraw-metadata-conformance-v1",
+  "node": "ULT > U1 > U1.3D",
+  "status": "frozen_before_confirmation_inspection",
+  "bindings": {
+    "contract_path": "docs/planning/U1_3D_DNG_LIBRAW_METADATA_CONFORMANCE_CONTRACT.md",
+    "contract_sha256": "73f03f7f64588e46568adf9f449d321ba073dca5579fa35b8fe3fedb231d21ce",
+    "u1_3c_implementation_path": "src/preprocess/dng_metadata.py",
+    "u1_3c_implementation_sha256": "b63a741837a6e40c5c2a658b17bbe050a9ed25f58aa2057d8f0524b6ef6abb6a",
+    "raw_decode_path": "src/preprocess/raw_decode.py",
+    "raw_decode_sha256": "6288a4b546b15dd28fcdd675603c65ba57ac67c3c4d42d552d9b825334cfebfe",
+    "source_manifest_path": "configs/u5_r2bh1s_global_policy_source_preflight_v1.json",
+    "source_manifest_sha256": "9ce61d3b9806447b40642db1a4d3d782923936b07901378cf9537bf32cd5911d"
+  },
+  "rows": [
+    {
+      "source_id": "motorola_moto_g_7_play",
+      "logical_path": "data/external/rawpixls_bh1_v1/raw/motorola_moto_g_7_play.dng",
+      "source_bytes": 26286800,
+      "source_sha256": "d46953b116ee7a88b99fb28edc7b2f1b631ed09d66f73391c4ccc2e2ec959575"
+    },
+    {
+      "source_id": "lg_lg_h850",
+      "logical_path": "data/external/rawpixls_bh1_v1/raw/lg_lg_h850.dng",
+      "source_bytes": 16005440,
+      "source_sha256": "be58e948626b193538217e96bc6d9ff5fdeb91a3a8a8af65624dab41ae39895f"
+    },
+    {
+      "source_id": "autel_robotics_xb015",
+      "logical_path": "data/external/rawpixls_bh1_v1/raw/autel_robotics_xb015.dng",
+      "source_bytes": 18413642,
+      "source_sha256": "4e889a718a14e9f613ff4a3429bf7b84263d4920ebc497a11d12a7d2a4076e90"
+    },
+    {
+      "source_id": "xiaomi_m2010j19cg",
+      "logical_path": "data/external/rawpixls_bh1_v1/raw/xiaomi_m2010j19cg.dng",
+      "source_bytes": 24029476,
+      "source_sha256": "e1cb49299faa6609547bbb9b2c5a6167031694a99a1d252e1e048ce18ddf214f"
+    },
+    {
+      "source_id": "blackmagic_pocket_cinema_camera_4k",
+      "logical_path": "data/external/rawpixls_bh1_v1/raw/blackmagic_pocket_cinema_camera_4k.dng",
+      "source_bytes": 4497152,
+      "source_sha256": "1491a5e5d580a9be151747bddce89faca4d0b9d352503270f516bbf8e8cdf0d9"
+    }
+  ],
+  "gates": {
+    "required_row_count": 5,
+    "maximum_black_level_error_codes": 1.0,
+    "maximum_white_level_error_codes": 0.0,
+    "maximum_camera_wb_relative_error": 0.00001,
+    "maximum_metadata_warnings": 0,
+    "maximum_pixel_or_rgb_decode_calls": 0,
+    "require_forward_reverse_exact": true
+  },
+  "claim_ceiling": "private five-device DNG-to-LibRaw metadata conformance only"
+}
