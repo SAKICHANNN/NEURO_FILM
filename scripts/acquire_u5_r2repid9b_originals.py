@@ -6,7 +6,10 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import ssl
 import sys
+import time
+import urllib.error
 import urllib.parse
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
@@ -24,6 +27,25 @@ from scripts.acquire_u5_r2repid3_fit_calibration import _download, _file_sha256
 
 def _sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
+
+
+def _download_with_retry(
+    url: str,
+    path: Path,
+    expected_size: int,
+    expected_sha256: str,
+    temporary_suffix: str,
+    retry_delays_seconds: tuple[float, ...],
+) -> None:
+    """Retry transient transport failures without retrying identity failures."""
+    for attempt in range(len(retry_delays_seconds) + 1):
+        try:
+            _download(url, path, expected_size, expected_sha256, temporary_suffix)
+            return
+        except (urllib.error.URLError, TimeoutError, ConnectionError, ssl.SSLError):
+            if attempt == len(retry_delays_seconds):
+                raise
+            time.sleep(retry_delays_seconds[attempt])
 
 
 def run(
@@ -48,6 +70,7 @@ def run(
     members = list(manifest["members"])
     if reverse:
         members.reverse()
+    retry_delays_seconds = tuple(float(value) for value in config["acquisition"]["retry_delays_seconds"])
     tasks = []
     for row in members:
         local = output_root / str(row["role"]) / "original" / str(row["scene_id"])
@@ -57,12 +80,13 @@ def run(
     with ThreadPoolExecutor(max_workers=int(config["acquisition"]["maximum_workers"])) as pool:
         futures = [
             pool.submit(
-                _download,
+                _download_with_retry,
                 url,
                 local,
                 size,
                 sha,
                 str(config["acquisition"]["temporary_suffix"]),
+                retry_delays_seconds,
             )
             for url, local, size, sha in tasks
         ]

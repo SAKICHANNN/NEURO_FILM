@@ -12,6 +12,12 @@
   "acquisition": {
     "resolve_base": "https://huggingface.co/datasets/vsevolodpl/REPID/resolve/6a16a20a0b7122ad66d1f632af1586d45b443aa9",
     "maximum_workers": 4,
+    "retry_delays_seconds": [
+      0.5,
+      1.0,
+      2.0,
+      4.0
+    ],
     "temporary_suffix": ".part",
     "output_root_cli_required": true,
     "durable_p_write": false
