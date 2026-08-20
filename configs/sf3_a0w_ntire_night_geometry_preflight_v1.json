@@ -1,0 +1,94 @@
+{
+  "schema": "neuro-film.sf3-a0w-ntire-night-geometry-preflight-contract.v1",
+  "experiment_id": "SF3.A0W_NTIRE_NIGHT_GEOMETRY_PREFLIGHT_V1",
+  "date": "2026-08-21",
+  "prospective_adoption": {
+    "parent_failed_evidence": "docs/evidence/SF3_A0V_NTIRE_NIGHT_METADATA_PREFLIGHT_RESULT.json",
+    "parent_failed_commit": "3847fa48",
+    "parent_status_preserved": "FAIL_CLOSED_METADATA_FIELD_CONTRACT",
+    "observed_exact_keys": ["as_shot_neutral", "huawei_bounds"],
+    "postread_rescue_of_parent": false
+  },
+  "official_baseline": {
+    "repository": "https://github.com/createcolor/nightimaging25",
+    "commit": "3478fbb39449f5cba29483d4cbfe019013f8261f",
+    "license": "MIT",
+    "license_sha256": "99f227ec3d4f0e1fcf4f5510d9af186125eb40d3d05563e630120007ce717cb9",
+    "pipeline_sha256": "3f9d4e50c7ed011bbec7e084d7f2cee5d68cdba1129777932b699880fabe9170",
+    "pipeline_utils_sha256": "9cccf0884b827f31b6000a1f48875163568e460a3e3b4795354629001c69a2a6",
+    "geometry": {
+      "projective_matrix": [[4.6784997, 0.00053825771, -260.50076], [0.00091054139, 4.676496, -343.87198], [0.00000053933155, 0.00000027009705, 1.0]],
+      "projective_pre_resize_factor": 4,
+      "projective_output_width": 3072,
+      "projective_output_height": 4096,
+      "horizontal_flip": true,
+      "bounds_order": ["height_start", "height_end", "width_start", "width_end"],
+      "pre_bounds_resize_width": 2654,
+      "pre_bounds_resize_height": 3538,
+      "upper_crop_start": 200,
+      "final_width": 2000,
+      "final_height": 2000
+    }
+  },
+  "archives": {
+    "raw": {
+      "url": "https://zenodo.org/api/records/15213321/files/raw.zip/content",
+      "bytes": 47288204304,
+      "central_offset": 47288019680,
+      "central_size": 184526,
+      "central_sha256": "714643ae6ad3078a1830b1601eef32a0dcce5b686896862ac27e2acb9abaff0d"
+    },
+    "target": {
+      "url": "https://zenodo.org/api/records/15213321/files/sony.zip/content",
+      "bytes": 379600345,
+      "central_offset": 379510350,
+      "central_size": 89973,
+      "central_sha256": "04e704620b2d1093e7118bbb2b1d6f8ad2ba0a6d56f1a594421d6f74987df903"
+    }
+  },
+  "rows": {
+    "role": "development-preflight-only-never-candidate-fit-or-confirmation",
+    "selected_ids": [310, 60, 819, 113, 804, 943, 466, 456],
+    "wrong_target_control": "next-selected-id-cyclic",
+    "replacement_allowed": false
+  },
+  "metadata_contract": {
+    "required_exact_keys": ["as_shot_neutral", "black_level", "cfa_pattern", "huawei_bounds", "noise_profile", "orientation", "white_level"],
+    "as_shot_neutral_shape": [3],
+    "black_level_shape": [4],
+    "cfa_pattern_shape": [4],
+    "huawei_bounds_shape": [4],
+    "orientation_allowed": [1, "Horizontal (normal)"],
+    "white_level_scalar": true,
+    "noise_profile_minimum_values": 2
+  },
+  "registration": {
+    "working_size": 512,
+    "sift_nfeatures": 4096,
+    "ratio_test": 0.75,
+    "ransac_reprojection_pixels": 3.0,
+    "minimum_good_matches": 32,
+    "minimum_inliers": 24,
+    "minimum_inlier_ratio": 0.35,
+    "minimum_correct_minus_wrong_inlier_ratio": 0.10,
+    "maximum_median_reprojection_pixels": 2.0,
+    "maximum_corner_displacement_pixels": 32.0,
+    "required_passing_rows": 8
+  },
+  "read_budget": {
+    "maximum_total_archive_bytes_per_run": 629145600,
+    "maximum_raw_png_uncompressed_bytes_per_row": 83886080,
+    "maximum_target_jpeg_uncompressed_bytes_per_row": 8388608,
+    "persistent_member_bytes": 0
+  },
+  "stop_rules": [
+    "any selected row metadata shape, decode, official geometry or registration failure closes without replacement",
+    "do not tune official geometry, SIFT, match, RANSAC or gate parameters after pixel access",
+    "do not persist member payloads or fit a colour operator",
+    "do not increment the bounded final candidate counter"
+  ],
+  "decision_if_pass": "OPEN_FRESH_GROUP_ISOLATED_PAIRED_CAPTURE_CANDIDATE_2_PREREGISTRATION",
+  "bounded_final_candidate_counter_before": 1,
+  "bounded_final_candidate_counter_after": 1,
+  "claim_ceiling": "Eight-row development-only verification that exact official geometry and capture metadata yield pair-specific natural RAW/Sony structural alignment. No target colour quality, operator, candidate 2, film, stock, package, schema, capability or product claim."
+}
