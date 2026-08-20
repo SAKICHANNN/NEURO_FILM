@@ -36,11 +36,12 @@
     "required_rows_per_camera": 6,
     "required_unique_canonical_scene_groups": 12,
     "required_npy_shape": [512, 512, 4],
+    "required_npy_dtype": "uint16",
     "required_png_shape": [1024, 1024, 3],
     "minimum_census_agreement": 0.65,
     "minimum_gradient_correlation": 0.45,
     "minimum_display_raw_proxy_difference": 0.01,
-    "require_finite_bounded_raw": true,
+    "require_finite_dtype_bounded_raw": true,
     "require_valid_nonexecuted_pickle_stream": true
   },
   "decision_if_pass": "PASS_RGB2RAW_CAPTURE_PAIR_PIXEL_PREFLIGHT_OPEN_OPERATOR_PREREG",

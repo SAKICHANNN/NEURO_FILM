@@ -142,9 +142,16 @@ def _row_metrics(
     lo = np.percentile(raw_rgb, 0.5, axis=(0, 1), keepdims=True)
     hi = np.percentile(raw_rgb, 99.5, axis=(0, 1), keepdims=True)
     raw_proxy = np.clip((raw_rgb - lo) / np.maximum(hi - lo, 1e-8), 0.0, 1.0)
+    dtype_limits = (
+        np.iinfo(raw.dtype)
+        if np.issubdtype(raw.dtype, np.integer)
+        else np.finfo(raw.dtype)
+    )
     return {
         "npy_shape": list(raw.shape),
         "npy_dtype": str(raw.dtype),
+        "npy_dtype_min": float(dtype_limits.min),
+        "npy_dtype_max": float(dtype_limits.max),
         "npy_finite": bool(np.isfinite(raw64).all()),
         "npy_min": float(raw64.min()),
         "npy_max": float(raw64.max()),
@@ -238,8 +245,14 @@ def run_pixel_preflight(
             row["png_shape"] == gates_config["required_png_shape"]
             for row in result_rows
         ),
-        "finite_bounded_raw_each": all(
-            row["npy_finite"] and row["npy_min"] >= 0.0 and row["npy_max"] <= 1.0
+        "npy_dtype_each": all(
+            row["npy_dtype"] == gates_config["required_npy_dtype"]
+            for row in result_rows
+        ),
+        "finite_dtype_bounded_raw_each": all(
+            row["npy_finite"]
+            and row["npy_min"] >= row["npy_dtype_min"]
+            and row["npy_max"] <= row["npy_dtype_max"]
             for row in result_rows
         ),
         "census_agreement_each": all(

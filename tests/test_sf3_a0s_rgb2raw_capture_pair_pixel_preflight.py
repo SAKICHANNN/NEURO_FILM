@@ -24,7 +24,7 @@ def _png() -> bytes:
 
 
 def test_row_metrics_decode_without_executing_pickle() -> None:
-    raw = np.arange(4 * 4 * 4, dtype=np.float32).reshape(4, 4, 4) / 64.0
+    raw = np.arange(4 * 4 * 4, dtype=np.uint16).reshape(4, 4, 4)
     raw_stream = io.BytesIO()
     np.save(raw_stream, raw, allow_pickle=False)
     metadata = pickle.dumps({"iso": 100, "exposure": 0.01}, protocol=4)
