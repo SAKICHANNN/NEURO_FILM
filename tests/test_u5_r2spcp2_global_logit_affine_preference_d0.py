@@ -65,3 +65,7 @@ def test_spcp2_acquisition_payload_validation_is_fail_closed() -> None:
         assert "CRC drift" in str(error)
     else:
         raise AssertionError("CRC drift was accepted")
+
+
+def test_jpeg_magic_does_not_satisfy_frozen_png_gate() -> None:
+    assert not b"\xff\xd8\xff\xe0JFIF".startswith(PNG_SIGNATURE)

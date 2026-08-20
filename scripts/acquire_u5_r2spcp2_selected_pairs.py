@@ -60,6 +60,21 @@ def _fetch_member(zip_url: str, member: dict[str, Any]) -> tuple[bytes, int]:
     return data, len(header) + len(local_record)
 
 
+def _fetch_member_prefix(zip_url: str, member: dict[str, Any]) -> bytes:
+    local_offset = int(member["local_offset"])
+    header, _ = _fetch(zip_url, (local_offset, local_offset + 29))
+    values = struct.unpack_from("<IHHHHHIIIHH", header)
+    method, name_len, extra_len = values[3], values[9], values[10]
+    if header[:4] != b"PK\x03\x04" or method != 8:
+        raise ValueError(f"local ZIP header drift: {member['name']}")
+    compressed_start = local_offset + 30 + name_len + extra_len
+    prefix_compressed, _ = _fetch(zip_url, (compressed_start, compressed_start + 65535))
+    output = zlib.decompressobj(-15).decompress(prefix_compressed, 32)
+    if len(output) < 8:
+        raise ValueError(f"could not decode payload signature: {member['name']}")
+    return output
+
+
 def _destination(root: Path, row: dict[str, Any], side: str) -> Path:
     return root / row["role"] / row["scene_id"] / f"{side}.png"
 
@@ -118,7 +133,47 @@ def run(
         raise ValueError("sealed role entered acquisition")
 
     output_root = ROOT / contract["acquisition"]["output_root"]
-    tasks = [(row, side) for row in rows for side in ("loser", "winner")]
+    tasks = sorted(
+        ((row, side) for row in rows for side in ("loser", "winner")),
+        key=lambda item: (item[0]["role"], item[0]["scene_id"], item[1]),
+    )
+    # The archive's filename extension is not trusted. Perform a deterministic
+    # signature preflight before scheduling any additional payload writes.
+    for row, side in tasks:
+        member = row[f"{side}_member"]
+        destination = _destination(output_root, row, side)
+        prefix = (
+            destination.read_bytes()[:32]
+            if destination.exists()
+            else _fetch_member_prefix(contract["source"]["zip_url"], member)
+        )
+        if not prefix.startswith(PNG_SIGNATURE):
+            report = {
+                "schema": "neuro-film.u5-r2spcp2-selected-pair-acquisition-report.v1",
+                "experiment_id": contract["experiment_id"],
+                "contract_sha256": _sha256(contract_bytes),
+                "roles_manifest_sha256": _sha256(manifest_bytes),
+                "roles_stable_manifest_id": manifest["stable_manifest_id"],
+                "failed_member": {
+                    "role": row["role"],
+                    "scene_id": row["scene_id"],
+                    "side": side,
+                    "member_name": member["name"],
+                    "declared_extension": ".png",
+                    "observed_prefix_hex": prefix[:32].hex(),
+                },
+                "sealed_payload_count": 0,
+                "operator_fit_count": 0,
+                "calibration_score_count": 0,
+                "failed_gates": ["required_payload_format_png"],
+                "status": "FAIL_CLOSED_BEFORE_FIT_PAYLOAD_FORMAT_MISMATCH",
+                "decision": "close_exact_spcp2_decode_and_operator_family",
+                "claim_ceiling": contract["claim_ceiling"],
+            }
+            report["stable_acquisition_id"] = _stable_id(report)
+            report_path.parent.mkdir(parents=True, exist_ok=True)
+            report_path.write_bytes(_canonical_bytes(report))
+            return report
     records: list[dict[str, Any]] = []
     with ThreadPoolExecutor(max_workers=workers) as executor:
         futures = {
