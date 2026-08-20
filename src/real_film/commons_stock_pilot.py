@@ -42,8 +42,10 @@ def resolve_download_url(row: Mapping[str, Any], config: Mapping[str, Any]) -> s
     if len(parts) != 3 or any(not part for part in parts):
         raise CommonsStockPilotError("unscaled Commons path drifted")
     filename = parts[-1]
-    width = min(int(cap), int(row["width"]) - 1)
-    if width < 1 or unquote(filename).casefold().endswith((".jpg", ".jpeg")) is False:
+    width = int(cap)
+    if int(row["width"]) <= width:
+        raise CommonsStockPilotError("source lacks the required standard Commons thumbnail")
+    if unquote(filename).casefold().endswith((".jpg", ".jpeg")) is False:
         raise CommonsStockPilotError("invalid bounded Commons JPEG thumbnail")
     thumbnail_path = f"{prefix}thumb/{relative}/{width}px-{filename}"
     return urlunsplit((parsed.scheme, parsed.netloc, thumbnail_path, "", ""))
