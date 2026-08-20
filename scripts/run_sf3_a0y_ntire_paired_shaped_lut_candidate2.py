@@ -28,6 +28,7 @@ def main() -> int:
     )
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--reverse-row-order", action="store_true")
+    parser.add_argument("--cache-root-override", type=Path)
     args = parser.parse_args()
     contract = load_contract(args.config)
     model_lock_path = args.output.with_suffix(".model_lock.json")
@@ -37,6 +38,7 @@ def main() -> int:
             ROOT,
             model_lock_path=model_lock_path,
             reverse_row_order=args.reverse_row_order,
+            cache_root_override=args.cache_root_override,
         ),
         args.output,
     )

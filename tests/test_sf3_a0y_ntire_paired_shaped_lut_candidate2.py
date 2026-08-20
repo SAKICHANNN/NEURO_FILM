@@ -12,6 +12,7 @@ from src.real_film.ntire_paired_shaped_lut_candidate import (
     _fit_affine,
     _load_geometry,
     _sample_indices,
+    evaluate,
     load_contract,
 )
 
@@ -83,3 +84,15 @@ def test_aggregate_fails_tail_even_with_median_gain() -> None:
     _, checks = _aggregate(rows, gates)
     assert checks["median_reduction_vs_strongest_legitimate"]
     assert not checks["worst_tail_vs_strongest_legitimate"]
+
+
+def test_cache_override_rejects_nonproject_d_path(tmp_path: Path) -> None:
+    contract = load_contract(CONFIG)
+    with pytest.raises(NTIREPairedCandidateError, match="project-owned D fallback"):
+        evaluate(
+            contract,
+            ROOT,
+            model_lock_path=tmp_path / "lock.json",
+            cache_root_override=tmp_path,
+            range_reader=lambda *_: b"",
+        )

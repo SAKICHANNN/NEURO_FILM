@@ -454,13 +454,26 @@ def evaluate(
     *,
     model_lock_path: Path,
     reverse_row_order: bool = False,
+    cache_root_override: Path | None = None,
     range_reader: RangeReader = http_range_get,
 ) -> dict[str, Any]:
     geometry = _load_geometry(contract, root)
     geometry["candidate_cache_width"] = int(contract["cache"]["width"])
     geometry["candidate_cache_height"] = int(contract["cache"]["height"])
+    logical_cache_root = root / _relative(contract["cache"]["root"])
+    if cache_root_override is None:
+        cache_root = logical_cache_root
+        cache_storage_mode = "canonical_repo_relative"
+    else:
+        cache_root = cache_root_override.resolve()
+        allowed = Path("D:/neuro_film_fallback").resolve()
+        if cache_root != allowed and allowed not in cache_root.parents:
+            raise NTIREPairedCandidateError(
+                "cache override is outside the project-owned D fallback"
+            )
+        cache_root.mkdir(parents=True, exist_ok=True)
+        cache_storage_mode = "project_owned_d_fallback"
     members = _member_map(geometry, range_reader)
-    cache_root = root / _relative(contract["cache"]["root"])
     fit_by_id: dict[int, tuple[np.ndarray, np.ndarray, dict[str, Any]]] = {}
     fit_read_order = list(contract["roles"]["fit"])
     if reverse_row_order:
@@ -627,6 +640,8 @@ def evaluate(
             "minimum_lut_jacobian_determinant": minimum_lut_jacobian_determinant,
             "model_replay_exact": calibration_gates["model_replay"],
             "full_member_payload_persisted": False,
+            "cache_storage_mode": cache_storage_mode,
+            "logical_cache_root": contract["cache"]["root"],
         },
         "calibration": {
             "rows": calibration_rows,
