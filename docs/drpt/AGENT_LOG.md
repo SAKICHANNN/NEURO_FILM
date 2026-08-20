@@ -13696,3 +13696,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `18.72s` Python hotspot. This opens a new full-chain integration only after
   the remaining native pointwise stage is made byte-compatible. Evidence:
   `docs/evidence/U1_4C26_NATIVE_REC2020_LAB_SOURCE_COMPRESS_V2_RESULT.json`.
+
+### 2026-08-20 - U1.4C27 corrects and passes native safe-Lab pointwise
+
+- A separately versioned v2 restores NumPy's float32 norm, once-quantized
+  combined luma scalar, and float64 skin-blend semantics without rewriting
+  the tolerance-bounded C22 result.
+- On the frozen 24MP state, the complete pointwise Lab output is bit exact in
+  two runs and the native kernel takes `0.63--0.76s`. C26 and C27 now open one
+  new exact full-chain integration; default and product promotion remain
+  unchanged. Evidence:
+  `docs/evidence/U1_4C27_NATIVE_SAFE_LAB_POINTWISE_V2_RESULT.json`.

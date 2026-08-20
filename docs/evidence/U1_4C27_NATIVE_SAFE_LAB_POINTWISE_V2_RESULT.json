@@ -1,0 +1,41 @@
+{
+  "schema": "neuro-film.u1-4c27-native-safe-lab-pointwise-evidence.v1",
+  "experiment_id": "U1.4C27",
+  "status": "PASS",
+  "decision": "retain_exact_v2_native_safe_lab_pointwise_and_open_exact_full_chain",
+  "contract": {
+    "path": "configs/u1_4c27_native_safe_lab_pointwise_v2.json",
+    "sha256": "0b2d96d9bda4bc36ee9784f7f628cc6249ab2be024c75b995ac28bb6d190193c"
+  },
+  "formal_report": {
+    "path": "outputs/eval/u1_4c27_native_safe_lab_pointwise_v2/report.json",
+    "sha256": "254717770508657a98856bf8819ee45c637712f4b5c37782ffe146ed9c473ebb",
+    "stable_evidence_id": "d005f1163b1aea632462c503e8072c82e1777ccc537c8dc484a1641508db0e2c"
+  },
+  "input": {
+    "sha256": "91895fce65e8a32f869dd31ecd5c3ee576c9212cf028d59cd0022b0371668394",
+    "shape": [4000, 6000, 3],
+    "pixel_count": 24000000,
+    "profile_sha256": "e0da6e630f616dc25c1bca431ade74edd55a2c0bf3a5eec5bd937c9a62447666"
+  },
+  "correction": {
+    "superseded_kernel": "U1.4C22",
+    "c22_kernel_used": false,
+    "mechanisms": [
+      "match NumPy float32 norm with sqrt(a*a+b*b) instead of hypotf",
+      "quantize the combined luma-strength scalar once after Python double multiplication",
+      "match the float64 skin-mask blend before float32 assignment"
+    ]
+  },
+  "observations": {
+    "formal_runs": 2,
+    "output_exact": true,
+    "output_sha256": "e2fdbd892fd5c89a7fe0becbc6822ae61d7c72970345596829072ea2da5394c3",
+    "maximum_lab_absolute_error": 0.0,
+    "finite": true,
+    "native_kernel_wall_seconds": [0.7619363000267185, 0.6274895999813452]
+  },
+  "interpretation": "The separately versioned v2 pointwise kernel exactly reproduces the retained 24MP NumPy state after restoring three observable arithmetic semantics. C22 remains an honest tolerance-bounded historical result. Full renderer promotion remains closed until a new chain using C26 and C27 independently reproduces the C18 PNG and receipt and passes resource gates.",
+  "claim_ceiling": "Local Windows MSVC host evidence for a separately versioned exact-semantics pointwise subset of one retained safe-Lab look on one 24MP natural-derived ProPhoto fixture; not spatial-detail or tone parity, gamut compression, complete renderer performance, cross-platform parity, calibration, preference, HDR, or default promotion.",
+  "production_default_changed": false
+}
