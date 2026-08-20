@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from scripts.acquire_u5_r2spcp2_selected_pairs import PNG_SIGNATURE, _validate_payload
 from scripts.build_u5_r2spcp2_preference_roles import _scene_sort_key
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -45,3 +46,22 @@ def test_spcp2_scene_sort_is_stable_and_scene_specific() -> None:
     assert _scene_sort_key("I0001") == _scene_sort_key("I0001")
     assert _scene_sort_key("I0001") != _scene_sort_key("I0002")
     assert len(_scene_sort_key("I0001")) == 64
+
+
+def test_spcp2_acquisition_payload_validation_is_fail_closed() -> None:
+    data = PNG_SIGNATURE + b"fixture"
+    import zlib
+
+    member = {
+        "name": "SPCP_dataset/images/I0001_01_01.png",
+        "uncompressed_size": len(data),
+        "crc32_hex": f"{zlib.crc32(data) & 0xFFFFFFFF:08x}",
+    }
+    _validate_payload(data, member)
+    member["crc32_hex"] = "00000000"
+    try:
+        _validate_payload(data, member)
+    except ValueError as error:
+        assert "CRC drift" in str(error)
+    else:
+        raise AssertionError("CRC drift was accepted")
