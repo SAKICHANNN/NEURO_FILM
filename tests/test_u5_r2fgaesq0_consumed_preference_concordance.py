@@ -11,6 +11,7 @@ from src.eval.fgaesq_consumed_preference_concordance import (
     _resolve_within,
     _sign,
     _truth_winner,
+    audit_score_lock_mechanics,
     image_statistic_controls,
     load_public_round_one,
     official_confidence_adjustment,
@@ -133,3 +134,49 @@ def test_sign_has_exact_frozen_tie_band() -> None:
     assert _sign(1.0, 0.0) == 1
     assert _sign(0.0, 1.0) == -1
     assert _sign(1.0 + 1e-6, 1.0) == 0
+
+
+def test_mechanics_audit_closes_order_dependent_scores(tmp_path: Path) -> None:
+    config = {
+        "gates": {"fresh_process_score_max_abs_error_max": 1e-6},
+    }
+    config_path = tmp_path / "config.json"
+    config_path.write_text(json.dumps(config, sort_keys=True), "utf-8")
+    import hashlib
+
+    config_sha = hashlib.sha256(config_path.read_bytes()).hexdigest()
+    rows = []
+    for dataset, labels in (("p401", ["A", "B"]), ("p402", ["A", "B", "C", "D"])):
+        for index in range(12):
+            canonical = {
+                label: float(position) for position, label in enumerate(labels)
+            }
+            reversed_scores = dict(canonical)
+            if dataset == "p401" and index == 0:
+                reversed_scores = {"A": 2.0, "B": 0.0}
+            rows.append(
+                {
+                    "dataset_id": dataset,
+                    "presentation_id": f"R1-{index + 1:02d}",
+                    "series_scores": canonical,
+                    "reversed_series_scores": reversed_scores,
+                    "single_scores": canonical,
+                }
+            )
+    lock = {
+        "config_sha256": config_sha,
+        "private_mapping_reads": 0,
+        "direct_result_reads": 0,
+        "rows": rows,
+    }
+    paths = [tmp_path / "a.json", tmp_path / "b.json"]
+    for path in paths:
+        path.write_text(json.dumps(lock, sort_keys=True), "utf-8")
+    result = audit_score_lock_mechanics(
+        config_path=config_path,
+        score_lock_paths=paths,
+    )
+    assert result["status"] == "INVALID_MECHANICS_ORDER_DEPENDENT_FGAESQ_SERIES"
+    assert result["metrics"]["pair_sign_total"] == 84
+    assert result["metrics"]["pair_sign_match_count"] == 83
+    assert result["scientific_preference_metrics_computed"] is False

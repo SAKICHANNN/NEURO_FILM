@@ -774,6 +774,122 @@ def aggregate_score_lock(
     }
 
 
+def audit_score_lock_mechanics(
+    *, config_path: Path, score_lock_paths: Sequence[Path]
+) -> dict[str, Any]:
+    config = _load_json(config_path)
+    locks = [_load_json(path) for path in score_lock_paths]
+    if len(locks) != 2:
+        raise ValueError("exactly two fresh-process score locks are required")
+    config_sha = _sha256(config_path)
+    if any(lock.get("config_sha256") != config_sha for lock in locks):
+        raise ValueError("score lock/config mismatch")
+    if any(
+        lock.get("private_mapping_reads") != 0 or lock.get("direct_result_reads") != 0
+        for lock in locks
+    ):
+        raise ValueError("score lock violated blind execution order")
+    rows = [
+        {(row["dataset_id"], row["presentation_id"]): row for row in lock["rows"]}
+        for lock in locks
+    ]
+    if rows[0].keys() != rows[1].keys() or len(rows[0]) != 24:
+        raise ValueError("fresh-process row inventory mismatch")
+    finite = True
+    replay_max = 0.0
+    replay_rank_exact = True
+    order_match = 0
+    order_total = 0
+    order_exact_rows = 0
+    affected_rows: list[str] = []
+    max_order_score_delta = 0.0
+    for key in sorted(rows[0]):
+        first = rows[0][key]
+        second = rows[1][key]
+        labels = sorted(first["series_scores"])
+        row_order_exact = True
+        for field in ("series_scores", "reversed_series_scores", "single_scores"):
+            first_values = [float(first[field][label]) for label in labels]
+            second_values = [float(second[field][label]) for label in labels]
+            finite = finite and all(math.isfinite(value) for value in first_values)
+            finite = finite and all(math.isfinite(value) for value in second_values)
+            replay_max = max(
+                replay_max,
+                max(
+                    abs(a - b) for a, b in zip(first_values, second_values, strict=True)
+                ),
+            )
+            replay_rank_exact = replay_rank_exact and sorted(
+                labels, key=lambda label: (-first[field][label], label)
+            ) == sorted(labels, key=lambda label: (-second[field][label], label))
+        for label in labels:
+            max_order_score_delta = max(
+                max_order_score_delta,
+                abs(
+                    float(first["series_scores"][label])
+                    - float(first["reversed_series_scores"][label])
+                ),
+            )
+        for left, right in itertools.combinations(labels, 2):
+            canonical_sign = _sign(
+                first["series_scores"][left], first["series_scores"][right]
+            )
+            reversed_sign = _sign(
+                first["reversed_series_scores"][left],
+                first["reversed_series_scores"][right],
+            )
+            matched = canonical_sign == reversed_sign
+            order_total += 1
+            order_match += int(matched)
+            row_order_exact = row_order_exact and matched
+        if row_order_exact:
+            order_exact_rows += 1
+        else:
+            affected_rows.append(f"{key[0]}/{key[1]}")
+    gate_results = {
+        "complete_inventory": len(rows[0]) == 24 and order_total == 84,
+        "all_scores_finite": finite,
+        "canonical_reverse_pair_signs_exact": order_match == order_total,
+        "fresh_process_score_max_abs_error": replay_max
+        <= config["gates"]["fresh_process_score_max_abs_error_max"],
+        "fresh_process_rankings_exact": replay_rank_exact,
+        "zero_private_or_direct_reads": True,
+    }
+    mechanics_pass = all(gate_results.values())
+    return {
+        "schema": "neuro-film.u5-r2fgaesq0-mechanics-audit.v1",
+        "experiment_id": "U5.R2FGAESQ0",
+        "status": (
+            "PASS_MECHANICS_READY_FOR_PRIVATE_AGGREGATION"
+            if mechanics_pass
+            else "INVALID_MECHANICS_ORDER_DEPENDENT_FGAESQ_SERIES"
+        ),
+        "config_sha256": config_sha,
+        "score_lock_sha256": [_sha256(path) for path in score_lock_paths],
+        "private_mapping_reads": 0,
+        "direct_result_reads": 0,
+        "metrics": {
+            "row_count": len(rows[0]),
+            "pair_sign_match_count": order_match,
+            "pair_sign_total": order_total,
+            "pair_sign_match_rate": order_match / order_total,
+            "all_pair_signs_exact_row_count": order_exact_rows,
+            "affected_rows": affected_rows,
+            "maximum_canonical_reverse_score_delta": max_order_score_delta,
+            "fresh_process_score_max_abs_error": replay_max,
+            "fresh_process_rankings_exact": replay_rank_exact,
+        },
+        "gate_results": gate_results,
+        "failed_gates": sorted(key for key, value in gate_results.items() if not value),
+        "scientific_preference_metrics_computed": False,
+        "claim_ceiling": (
+            "Private consumed-asset mechanics audit of exact FGAesQ series scoring only; "
+            "no preference concordance, candidate promotion, product, package, schema, "
+            "capability or commercial claim."
+        ),
+    }
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -794,6 +910,10 @@ def main(argv: Sequence[str] | None = None) -> int:
     aggregate.add_argument("--p402-mapping", type=Path, required=True)
     aggregate.add_argument("--p402-result", type=Path, required=True)
     aggregate.add_argument("--output", type=Path, required=True)
+    audit = subparsers.add_parser("audit-mechanics")
+    audit.add_argument("--config", type=Path, required=True)
+    audit.add_argument("--score-lock", type=Path, action="append", required=True)
+    audit.add_argument("--output", type=Path, required=True)
     args = parser.parse_args(argv)
     if args.command == "score":
         result = build_score_lock(
@@ -805,7 +925,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             p402_root=args.p402_root,
             device=args.device,
         )
-    else:
+    elif args.command == "aggregate":
         result = aggregate_score_lock(
             config_path=args.config,
             score_lock_paths=args.score_lock,
@@ -813,6 +933,11 @@ def main(argv: Sequence[str] | None = None) -> int:
             p401_result_path=args.p401_result,
             p402_mapping_path=args.p402_mapping,
             p402_result_path=args.p402_result,
+        )
+    else:
+        result = audit_score_lock_mechanics(
+            config_path=args.config,
+            score_lock_paths=args.score_lock,
         )
     _write_canonical_json(args.output, result)
     return 0
