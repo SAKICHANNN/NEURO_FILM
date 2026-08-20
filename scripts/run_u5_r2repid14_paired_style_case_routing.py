@@ -143,12 +143,18 @@ def run(config_path: Path, original_root: Path, original_report_path: Path, repo
     config = json.loads(config_bytes)
     parent = config["parents"]
     repid13_config = json.loads((ROOT / parent["repid13_config_path"]).read_bytes())
+    repid13_config_bytes = (ROOT / parent["repid13_config_path"]).read_bytes()
     evidence_bytes = (ROOT / parent["repid13_evidence_path"]).read_bytes()
     formal_bytes = (ROOT / parent["repid13_formal_report_path"]).read_bytes()
     if _sha256(evidence_bytes) != parent["repid13_evidence_sha256"] or json.loads(evidence_bytes)["decision"] != parent["repid13_required_decision"]:
         raise ValueError("REPID13 evidence drift")
     if _sha256(formal_bytes) != parent["repid13_formal_report_sha256"]:
         raise ValueError("REPID13 formal report drift")
+    formal = json.loads(formal_bytes)
+    if formal["config_sha256"] != _sha256(repid13_config_bytes):
+        raise ValueError("REPID13 config/formal binding drift")
+    if formal["decision"] != parent["repid13_required_decision"]:
+        raise ValueError("REPID13 formal decision drift")
 
     rendered_bytes = (ROOT / repid13_config["parents"]["rendered_acquisition_path"]).read_bytes()
     original_evidence_bytes = (ROOT / repid13_config["parents"]["original_acquisition_evidence_path"]).read_bytes()
