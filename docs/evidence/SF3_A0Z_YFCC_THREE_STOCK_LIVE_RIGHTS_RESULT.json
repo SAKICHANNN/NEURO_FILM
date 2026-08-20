@@ -1,0 +1,38 @@
+{
+  "schema": "neuro-film.sf3-a0z-yfcc-three-stock-live-rights-evidence.v1",
+  "experiment_id": "SF3.A0Z_YFCC_THREE_STOCK_LIVE_RIGHTS_V1",
+  "status": "FAIL_CLOSED_BEFORE_PIXEL_ACCESS",
+  "implementation_commit": "5dbb4e94",
+  "contract": {
+    "path": "configs/sf3_a0z_yfcc_three_stock_live_rights_v1.json",
+    "sha256": "e4b3ec2a3b0d2731854a8d75e8521be4f5f14f31b6cb88573d100a558ebcd448"
+  },
+  "input": {
+    "path": "outputs/eval/sf3_a0y_yfcc_three_stock_triangle_metadata_v1/report_a.json",
+    "sha256": "e54b8de2233bac9dcfdb70275e1f1018ca5d92e681865ae7aad3ad26a9a15b8e",
+    "stable_evidence_id": "a2f250934047773e6c5dc1f04a4f7cb56b7ec1d381a931c4b3085198b2cce0c1"
+  },
+  "formal_report": {
+    "path": "outputs/eval/sf3_a0z_yfcc_three_stock_live_rights_v1/report.json",
+    "sha256": "fb0d217479cee8efd0049c495691b4d97c98f6ac19ae48d9e70f77146d91368c",
+    "stable_evidence_id": "4ef72aeb9c5e53c93132659354fbaaa1ef76ebbca38fcf3d458ab8e3ebb8fd4a"
+  },
+  "observations": {
+    "frozen_three_stock_uids": 7,
+    "page_requests": 51,
+    "live_rights_passes": 7,
+    "live_rights_rejections": 44,
+    "usable_three_stock_uids": [
+      "36521968871@N01",
+      "79259760@N00"
+    ],
+    "usable_three_stock_uid_count": 2,
+    "minimum_required": 5,
+    "image_payload_downloads": 0,
+    "pixel_decodes": 0,
+    "operator_fits": 0
+  },
+  "decision": "CLOSE_YFCC_THREE_STOCK_PUBLIC_EXPANSION_BEFORE_PIXEL_ACCESS",
+  "same_cohort_rescue_forbidden": true,
+  "claim_ceiling": "point-in-time page-only rights failure for this frozen shared-author YFCC cohort; it does not prove absence of stock signal or invalidate separately rights-cleared data"
+}

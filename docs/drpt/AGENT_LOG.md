@@ -14562,3 +14562,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   preflight; shared author is not same scene and does not establish stock
   signal, calibration or product readiness. Evidence:
   `docs/evidence/SF3_A0Y_YFCC_THREE_STOCK_TRIANGLE_METADATA_RESULT.json`.
+
+### 2026-08-21 - SF3.A0Z closes the YFCC three-stock pixel route
+
+- Executed the committed 62-candidate page-only rights contract without image
+  requests. Fifty-one bounded Flickr pages were needed before all arms were
+  exhausted or passed; seven individual arms retained current CC BY 2.0 page
+  evidence and 44 were rejected.
+- Only two of seven shared UIDs retain current rights evidence for all three of
+  Velvia 50, Portra 400 and Ektar 100, below the frozen five-UID gate. Decision:
+  `CLOSE_YFCC_THREE_STOCK_PUBLIC_EXPANSION_BEFORE_PIXEL_ACCESS`.
+- Image downloads, pixel decodes and fits remain zero. Do not lower the gate,
+  enlarge this cohort or use its historical metadata volume as stock evidence;
+  the next data leaf requires a genuinely new controlled or explicitly
+  licensed observation. Evidence:
+  `docs/evidence/SF3_A0Z_YFCC_THREE_STOCK_LIVE_RIGHTS_RESULT.json`.
