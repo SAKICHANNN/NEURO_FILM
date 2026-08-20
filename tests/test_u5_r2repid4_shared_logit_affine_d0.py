@@ -57,8 +57,16 @@ def test_repid_d0_is_enumeration_exact_and_sealed_blind(
     acquisition_path = tmp_path / "acquisition.json"
     acquisition_path.write_text(json.dumps(acquisition), encoding="utf-8")
     acquisition_sha = hashlib.sha256(acquisition_path.read_bytes()).hexdigest()
+    implementation_path = tmp_path / "implementation.lock"
+    implementation_path.write_bytes(b"test-implementation")
     contract = {
         "experiment_id": "test",
+        "implementation": {
+            "test": {
+                "path": implementation_path.name,
+                "sha256": hashlib.sha256(implementation_path.read_bytes()).hexdigest(),
+            }
+        },
         "parent": {
             "acquisition_sha256": acquisition_sha,
             "required_decision": "open-development",

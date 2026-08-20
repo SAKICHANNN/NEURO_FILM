@@ -135,6 +135,15 @@ def run(
     acquisition_bytes = acquisition_path.read_bytes()
     contract = json.loads(contract_bytes)
     acquisition = json.loads(acquisition_bytes)
+    implementation = {
+        name: _sha256((ROOT / binding["path"]).read_bytes())
+        for name, binding in contract["implementation"].items()
+    }
+    if any(
+        implementation[name] != binding["sha256"]
+        for name, binding in contract["implementation"].items()
+    ):
+        raise ValueError("implementation identity drift")
     parent = contract["parent"]
     if _sha256(acquisition_bytes) != parent["acquisition_sha256"]:
         raise ValueError("acquisition report hash drift")
@@ -257,6 +266,7 @@ def run(
         "experiment_id": contract["experiment_id"],
         "contract_sha256": _sha256(contract_bytes),
         "acquisition_sha256": _sha256(acquisition_bytes),
+        "implementation_sha256": implementation,
         "ingress": {"icc_sha256": next(iter(observed_icc)), **observed_runtime},
         "enumeration_normalized": True,
         "fit_sample_count": int(fit_sources.shape[0]),
