@@ -6,6 +6,7 @@ import hashlib
 import json
 import tempfile
 from collections.abc import Callable
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import Any, Protocol
 
@@ -65,6 +66,7 @@ def render_supported_prophoto_velvia_rec2020_staged(
     | None = None,
     _output_writer_factory: Callable[[Path, int, int], _OutputWriter] | None = None,
     _in_memory_staging: bool = False,
+    _preprocess_workers: int = 1,
 ) -> dict[str, Any]:
     """Render the qualified look with disk-staged, bounded-row intermediates."""
 
@@ -75,6 +77,13 @@ def render_supported_prophoto_velvia_rec2020_staged(
         raise ROMMRec2020RenderError("output must be a create-only .png path")
     if isinstance(row_chunk, bool) or not isinstance(row_chunk, int) or row_chunk <= 0:
         raise ROMMRec2020RenderError("row_chunk must be a positive integer")
+    if (
+        isinstance(_preprocess_workers, bool)
+        or not isinstance(_preprocess_workers, int)
+        or _preprocess_workers <= 0
+        or _preprocess_workers > 8
+    ):
+        raise ROMMRec2020RenderError("preprocess_workers must be an integer in [1, 8]")
     ingress_mapper = _ingress_mapper or analytical_oklab_interior_rec2020
     style_mapper = _style_mapper or apply_safe_lab_transform
     profile, profile_sha256 = load_profile(profile_path, root=root)
@@ -87,6 +96,7 @@ def render_supported_prophoto_velvia_rec2020_staged(
         prefix="u1_4c19_", dir=scratch_dir, ignore_cleanup_errors=True
     ) as temporary:
         temporary_path = Path(temporary)
+        direct_encoded_memmap = False
         with tifffile.TiffFile(input_path) as document:
             if len(document.pages) != 1:
                 raise ROMMRec2020RenderError("staged input must contain one TIFF page")
@@ -101,7 +111,11 @@ def render_supported_prophoto_velvia_rec2020_staged(
             if page.dtype != np.dtype(np.uint16) or len(shape) != 3 or shape[2] != 3:
                 raise ROMMRec2020RenderError("staged input must be RGB16 TIFF")
             if _in_memory_staging:
-                encoded = page.asarray()
+                if page.is_memmappable:
+                    encoded = tifffile.memmap(input_path, page=0, mode="r")
+                    direct_encoded_memmap = True
+                else:
+                    encoded = page.asarray()
             else:
                 encoded = np.memmap(
                     temporary_path / "encoded.rgb16",
@@ -136,8 +150,13 @@ def render_supported_prophoto_velvia_rec2020_staged(
         minimum_chroma_scale = 1.0
         output_minimum = float("inf")
         output_maximum = float("-inf")
-        for y0 in range(0, height, row_chunk):
-            y1 = min(height, y0 + row_chunk)
+        ranges = [
+            (y0, min(height, y0 + row_chunk))
+            for y0 in range(0, height, row_chunk)
+        ]
+
+        def process_ingress(bounds: tuple[int, int]) -> tuple[int, float, float, float]:
+            y0, y1 = bounds
             decoded = decode_prophoto_rgb16_to_linear_rec2020(
                 np.asarray(encoded[y0:y1]), embedded_profile
             )
@@ -148,18 +167,42 @@ def render_supported_prophoto_velvia_rec2020_staged(
                 lab[y0:y1] = linear_rgb_to_lab(
                     mapped_tile, working_space="linear_rec2020"
                 )
-            mapped_count += int(np.count_nonzero(~source_in_gamut))
-            minimum_chroma_scale = min(minimum_chroma_scale, float(np.min(chroma_scale)))
-            output_minimum = min(output_minimum, float(np.min(mapped_tile)))
-            output_maximum = max(output_maximum, float(np.max(mapped_tile)))
+            return (
+                int(np.count_nonzero(~source_in_gamut)),
+                float(np.min(chroma_scale)),
+                float(np.min(mapped_tile)),
+                float(np.max(mapped_tile)),
+            )
+
+        if _preprocess_workers == 1:
+            ingress_results = map(process_ingress, ranges)
+        else:
+            with ThreadPoolExecutor(max_workers=_preprocess_workers) as executor:
+                ingress_results = tuple(executor.map(process_ingress, ranges))
+        for count, minimum_scale, minimum_value, maximum_value in ingress_results:
+            mapped_count += count
+            minimum_chroma_scale = min(minimum_chroma_scale, minimum_scale)
+            output_minimum = min(output_minimum, minimum_value)
+            output_maximum = max(output_maximum, maximum_value)
         if _in_memory_staging:
+            if direct_encoded_memmap:
+                encoded._mmap.close()
             del encoded
             lab = np.empty(shape, dtype=np.float32)
-            for y0 in range(0, height, row_chunk):
-                y1 = min(height, y0 + row_chunk)
+
+            def process_lab(bounds: tuple[int, int]) -> None:
+                y0, y1 = bounds
+                assert lab is not None
                 lab[y0:y1] = linear_rgb_to_lab(
                     mapped[y0:y1], working_space="linear_rec2020"
                 )
+
+            if _preprocess_workers == 1:
+                for bounds in ranges:
+                    process_lab(bounds)
+            else:
+                with ThreadPoolExecutor(max_workers=_preprocess_workers) as executor:
+                    tuple(executor.map(process_lab, ranges))
         else:
             mapped.flush()
             assert lab is not None
@@ -292,9 +335,6 @@ def render_supported_prophoto_velvia_rec2020_staged(
             output_pixels,
             scale,
             encoded_output,
-            mapped_tile,
-            chroma_scale,
-            decoded,
         )
         if not _in_memory_staging:
             for staged in (mapped, lab, residual_scale):

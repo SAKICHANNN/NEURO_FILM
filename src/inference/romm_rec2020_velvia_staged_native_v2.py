@@ -87,6 +87,7 @@ def render_supported_prophoto_velvia_rec2020_staged_native_v2(
     ]
     | None = None,
     _in_memory_staging: bool = False,
+    _preprocess_workers: int = 1,
 ) -> dict[str, Any]:
     """Render through the retained C20/C22 components and Python remainder."""
 
@@ -177,6 +178,7 @@ def render_supported_prophoto_velvia_rec2020_staged_native_v2(
         _output_writer_factory=_output_writer_factory,
         _postcolor_mapper=_postcolor_mapper,
         _in_memory_staging=_in_memory_staging,
+        _preprocess_workers=_preprocess_workers,
     )
 
 
