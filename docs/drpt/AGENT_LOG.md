@@ -14787,3 +14787,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Decision: retain a non-renderable physical-prior matrix only. RF3.D0 remains
   a proxy baseline; controlled RGB targets remain the stock-operator gate.
 - Verification: 5 focused tests pass; Ruff, py_compile and diff-check pass.
+
+### 2026-08-21 - RF3.D3 closes datasheet MTF stock discrimination
+
+- Question: can current first-party MTF graph shapes alone support distinct
+  Velvia 50, Portra 400 and Ektar 100 spatial priors?
+- Method: fixed 200 dpi pages, five non-grid frequencies, source-specific
+  published curve semantics and deterministic log-response envelopes. Visual
+  overlay review confirms every selected point lies on the graph curves.
+- Evidence: two reports byte exact at `7c4e2afe...46ebea`; stable ID
+  `937df2b3...ce62052`.
+- Result: Velvia--Portra fails the `.04` RMSE gate (`.03737`), and
+  Portra--Ektar fails the `.03` median gate (`.01766`).
+- Decision: no curve/frequency/threshold rescue. MTF remains a physical prior,
+  not a three-stock discriminator; return to controlled RGB target acquisition.

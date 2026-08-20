@@ -68,6 +68,15 @@ aggregate midscale/D-min spectrum. The result is a non-renderable stock-prior
 matrix, not RGB target truth; RF3.D0 remains the first three-proxy mechanical
 baseline and no adaptive/retrieval/latent operator opens.
 
+RF3.D3 then tests whether those current first-party MTF graphs alone justify
+three stock-specific spatial priors. Two reports are byte exact
+(`7c4e2afe...46ebea`) and overlay review confirms all sampled points land on
+the published curves. The discriminator fails: Velvia--Portra RMSE is
+`.03737 < .04`, while Portra--Ektar median log-response separation is
+`.01766 < .03`. Close datasheet MTF as a three-stock identity signal without
+frequency, envelope or threshold rescue; MTF remains a physical prior/nuisance
+only, and controlled RGB target acquisition remains the mainline.
+
 SF3.A0P now passes a separately bounded capture-time source qualification for
 NVIDIA PPISP at exact revision `2521064...ded69`: four scenes expose 351 exact
 standard/auto JPEG name pairs plus COLMAP camera/image metadata under explicit

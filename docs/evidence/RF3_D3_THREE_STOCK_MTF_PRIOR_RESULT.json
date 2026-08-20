@@ -1,0 +1,70 @@
+{
+  "schema": "neuro-film.rf3-three-stock-mtf-prior-evidence.v1",
+  "experiment_id": "RF3.D3",
+  "date": "2026-08-21",
+  "status": "FAIL_CLOSED_MTF_NOT_THREE_STOCK_DISCRIMINATOR",
+  "decision": "retain_shared_or_unknown_mtf_prior_and_close_datasheet_mtf_as_three_stock_discriminator",
+  "contract": {
+    "path": "configs/rf3_d3_three_stock_mtf_prior_v1.json",
+    "sha256": "bcc608456c0eb4ef591258fb81f52a466f3b843bca063f56da7ce529a5575a93",
+    "freeze_commit": "5c96b018a45a1fe2ed764e47504b59925226789c"
+  },
+  "implementation": {
+    "commit": "5c96b018a45a1fe2ed764e47504b59925226789c",
+    "evaluator_sha256": "79e0d1ed3d44e8a382ececda0a50bc63a8ad64c7298a469ba05674f96a4f9d60",
+    "runner_sha256": "f5720cd7c2aab3ddf318811faaae768993f92010bb9c6c7b08edec79973dce1f",
+    "test_sha256": "2f0d64e352686996b8768006d51ff446e5ff506476e4f124802f5b2016e169a8"
+  },
+  "formal_runs": {
+    "run_a": "outputs/eval/rf3_d3_three_stock_mtf_prior_v1/run_a/report.json",
+    "run_b": "outputs/eval/rf3_d3_three_stock_mtf_prior_v1/run_b/report.json",
+    "report_sha256": "7c4e2afe40dc3193c760c29777377014d21e1d1af3298cbb6923e018ea46ebea",
+    "byte_exact": true,
+    "stable_evidence_id": "937df2b32164bcffda55c040f602a27ce6ce50ade66a29bd1fbd12b06ce62052"
+  },
+  "method": {
+    "frequencies_cycles_per_mm": [8.0, 15.0, 30.0, 40.0, 60.0],
+    "fujifilm_semantics": "single_unspecified_composite_mtf",
+    "kodak_semantics": "rgb_channel_mtf_envelope",
+    "reduction": "midpoint in log10 response of the published envelope; Fujifilm uses its single topmost curve",
+    "rendered_page_overlays_visually_checked": true
+  },
+  "pairwise_results": [
+    {
+      "left": "fujifilm_velvia_50",
+      "right": "kodak_portra_400",
+      "median_absolute_log10_response_difference": 0.036764705882353,
+      "rmse_log10_response_difference": 0.0373694709308326,
+      "median_gate_pass": true,
+      "rmse_gate_pass": false
+    },
+    {
+      "left": "fujifilm_velvia_50",
+      "right": "kodak_ektar_100",
+      "median_absolute_log10_response_difference": 0.0515873991737164,
+      "rmse_log10_response_difference": 0.0498723330741427,
+      "median_gate_pass": true,
+      "rmse_gate_pass": true
+    },
+    {
+      "left": "kodak_portra_400",
+      "right": "kodak_ektar_100",
+      "median_absolute_log10_response_difference": 0.0176630434782608,
+      "rmse_log10_response_difference": 0.0548059118397806,
+      "median_gate_pass": false,
+      "rmse_gate_pass": true
+    }
+  ],
+  "gate_thresholds": {
+    "minimum_pairwise_median_absolute_log10_response_difference": 0.03,
+    "minimum_pairwise_rmse_log10_response_difference": 0.04
+  },
+  "overlay_sha256": {
+    "fujifilm_velvia_50": "1479da1c820594521ba18f4d21456bfeff147adc6e0b6f339593dd57f99e413a",
+    "kodak_portra_400": "306c7b76831844be5e599a8800a48b516f63ee63e383d9267ff6235ef49ed884",
+    "kodak_ektar_100": "09f5f80d962cfcb30b9256e113628436afb4e010e87bc0913392afa618f48fc2"
+  },
+  "interpretation": "All graph points were recovered reproducibly and visually land on the published curves. The published MTF shapes do not separate every stock pair under both frozen materiality gates. MTF remains a bounded physical prior or nuisance input, not a three-stock identity signal. No threshold, frequency, envelope or channel rescue is allowed on this exact source family.",
+  "next_leaf": "Return to rights-clear same-scene and independently grouped stock target acquisition. Do not add MTF curve capacity or use the failed MTF discriminator to alter RF3.D0.",
+  "claim_ceiling": "Deterministic comparison of manufacturer-published MTF graph shapes at five common frequencies. No measured roll, scanner-independent MTF, RGB colour response, grain, photographic target, fitted renderer, stock authenticity, preference or product claim."
+}
