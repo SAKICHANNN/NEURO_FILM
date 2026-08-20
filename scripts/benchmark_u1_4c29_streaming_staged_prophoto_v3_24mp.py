@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Measure the exact streaming v3 staged renderer on the frozen 24MP fixture."""
+"""Measure exact streaming staged renderers on the frozen 24MP fixture."""
 
 from __future__ import annotations
 
@@ -25,8 +25,18 @@ from src.inference.romm_rec2020_velvia_staged_streaming_v3 import (
     render_supported_prophoto_velvia_rec2020_staged_streaming_v3,
 )
 
-CONTRACT_SCHEMA = "neuro-film.u1-4c29-streaming-staged-prophoto-24mp-contract.v1"
-REPORT_SCHEMA = "neuro-film.u1-4c29-streaming-staged-prophoto-24mp-report.v1"
+SUPPORTED = {
+    "U1.4C29": (
+        "neuro-film.u1-4c29-streaming-staged-prophoto-24mp-contract.v1",
+        256,
+        "neuro-film.u1-4c29-streaming-staged-prophoto-24mp-report.v1",
+    ),
+    "U1.4C30": (
+        "neuro-film.u1-4c30-lifetime-staged-prophoto-24mp-contract.v1",
+        320,
+        "neuro-film.u1-4c30-lifetime-staged-prophoto-24mp-report.v1",
+    ),
+}
 
 
 def _sha256(path: Path) -> str:
@@ -49,8 +59,9 @@ def _bound_file(root: Path, row: dict[str, Any]) -> Path:
 
 def load_contract(path: Path, *, root: Path = ROOT) -> tuple[dict[str, Any], str]:
     payload = json.loads(Path(path).read_text(encoding="utf-8"))
-    if payload.get("schema") != CONTRACT_SCHEMA or payload.get("experiment_id") != "U1.4C29":
-        raise ValueError("unsupported U1.4C29 contract")
+    experiment_id = payload.get("experiment_id")
+    if experiment_id not in SUPPORTED or payload.get("schema") != SUPPORTED[experiment_id][0]:
+        raise ValueError("unsupported streaming staged renderer contract")
     for row in payload["parents"].values():
         _bound_file(root, row)
     _bound_file(root, payload["fixture"])
@@ -58,7 +69,7 @@ def load_contract(path: Path, *, root: Path = ROOT) -> tuple[dict[str, Any], str
     measurement = payload["measurement"]
     if (
         payload["fixture"]["pixels"] != 24_000_000
-        or candidate["row_chunk"] != 256
+        or candidate["row_chunk"] != SUPPORTED[experiment_id][1]
         or candidate["thread_count"] != 8
         or candidate["compression_level"] != 0
         or candidate["output_staging"] != "in-memory-row-stream"
@@ -66,7 +77,7 @@ def load_contract(path: Path, *, root: Path = ROOT) -> tuple[dict[str, Any], str
         or measurement["fresh_processes"] != 2
         or not measurement["run_workers_sequentially"]
     ):
-        raise ValueError("C29 frozen execution drift")
+        raise ValueError("streaming staged renderer frozen execution drift")
     return payload, _sha256(Path(path))
 
 
@@ -182,8 +193,8 @@ def benchmark(contract_path: Path, output_dir: Path, *, root: Path = ROOT) -> di
             "claim_ceiling": contract["claim_ceiling"],
         }
         report = {
-            "schema": REPORT_SCHEMA,
-            "experiment_id": "U1.4C29",
+            "schema": SUPPORTED[contract["experiment_id"]][2],
+            "experiment_id": contract["experiment_id"],
             **stable,
             "measurements": {
                 "peak_process_tree_rss_bytes": [
