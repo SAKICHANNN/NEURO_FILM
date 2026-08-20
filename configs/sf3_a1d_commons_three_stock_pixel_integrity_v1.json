@@ -1,0 +1,57 @@
+{
+  "schema": "neuro-film.sf3-a1d-commons-three-stock-pixel-integrity-contract.v1",
+  "experiment_id": "SF3.A1D_COMMONS_THREE_STOCK_PIXEL_INTEGRITY_V1",
+  "pilot_id": "sf3_a1d_commons_three_stock_pixel_integrity_v1",
+  "metadata_report": "outputs/eval/sf3_a1c_commons_three_stock_text_metadata_v1/report.json",
+  "metadata_report_sha256": "c27364ef7b2cb294f29310268b80fad9aa3c384cb13694f81cbaf103fe835887",
+  "required_metadata_stable_evidence_id": "36ca4d471fa2531e15c02f0c832c59ffa943bd8790fc06cbdf3aeefbd2118fa0",
+  "allowed_label_scope": "exact_text_weak_label",
+  "allowed_stock_ids": [
+    "fujifilm_velvia_50",
+    "kodak_portra_400",
+    "kodak_ektar_100"
+  ],
+  "rights_filter": {
+    "allowed_licenses_with_explicit_url": ["CC0", "CC BY 2.0", "CC BY 3.0", "CC BY 4.0"],
+    "allow_public_domain_with_usage_terms_and_file_page": true
+  },
+  "selection": {
+    "algorithm": "normalized-author-capped-uploader-round-robin-v1",
+    "maximum_files_per_stock": 24,
+    "maximum_files_per_normalized_author_per_stock": 1,
+    "maximum_files_per_uploader_per_stock": 4,
+    "preflight_expected_selected": {
+      "fujifilm_velvia_50": 24,
+      "kodak_portra_400": 24,
+      "kodak_ektar_100": 24
+    },
+    "maximum_files_total": 72
+  },
+  "download_limits": {
+    "maximum_bytes_total": 536870912,
+    "maximum_bytes_per_file": 33554432,
+    "temporary_suffix": ".part",
+    "request_interval_seconds": 0.2,
+    "timeout_seconds": 60,
+    "retries": 3,
+    "retry_backoff_seconds": 1.0
+  },
+  "pixel_audit": {
+    "minimum_short_dimension": 512,
+    "allowed_decoded_modes": ["RGB", "RGBA", "L", "CMYK"],
+    "near_duplicate_hamming_threshold": 4,
+    "minimum_retained_files_per_stock": 24,
+    "minimum_normalized_author_groups_for_learning": 24,
+    "maximum_largest_normalized_author_share_for_learning": 0.041666666666666664
+  },
+  "download_root": "data/real_film/sf3_a1d_commons_three_stock_pixels_v1",
+  "selection_manifest": "outputs/eval/sf3_a1d_commons_three_stock_pixel_integrity_v1/selection_manifest.json",
+  "download_checkpoint": "outputs/eval/sf3_a1d_commons_three_stock_pixel_integrity_v1/download_checkpoint.json",
+  "download_manifest": "outputs/eval/sf3_a1d_commons_three_stock_pixel_integrity_v1/download_manifest.json",
+  "audit_report": "outputs/eval/sf3_a1d_commons_three_stock_pixel_integrity_v1/report.json",
+  "contact_sheet_root": "outputs/eval/sf3_a1d_commons_three_stock_pixel_integrity_v1/contact_sheets",
+  "decision_if_integrity_pass": "OPEN_FULL_RESOLUTION_SEVERE_SOURCE_ADJUDICATION",
+  "decision_if_integrity_fail": "CLOSE_COMMONS_THREE_STOCK_PIXEL_COHORT_BEFORE_FITTING",
+  "operator_fitting_allowed": false,
+  "claim_ceiling": "author-balanced Wikimedia Commons weak exact-text film-stock pixel integrity and severe-source audit for Velvia 50, Portra 400 and Ektar 100; no same-scene, roll, process, scanner, stock-response, calibration, fitting, training or product claim"
+}
