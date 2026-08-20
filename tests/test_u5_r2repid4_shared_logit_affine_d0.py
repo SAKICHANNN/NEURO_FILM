@@ -20,13 +20,15 @@ def test_formal_contract_binds_parent_and_implementation() -> None:
     parent = ROOT / contract["parent"]["acquisition_path"]
     if not parent.exists():
         pytest.skip("formal P-backed REPID acquisition is not installed")
-    assert hashlib.sha256(parent.read_bytes()).hexdigest() == contract["parent"][
-        "acquisition_sha256"
-    ]
+    assert (
+        hashlib.sha256(parent.read_bytes()).hexdigest()
+        == contract["parent"]["acquisition_sha256"]
+    )
     for binding in contract["implementation"].values():
-        assert hashlib.sha256((ROOT / binding["path"]).read_bytes()).hexdigest() == binding[
-            "sha256"
-        ]
+        assert (
+            hashlib.sha256((ROOT / binding["path"]).read_bytes()).hexdigest()
+            == binding["sha256"]
+        )
 
 
 def _jpeg(path: Path, offset: int) -> dict[str, object]:
@@ -130,10 +132,16 @@ def test_repid_d0_is_enumeration_exact_and_sealed_blind(
     contract_path.write_text(json.dumps(contract), encoding="utf-8")
     monkeypatch.setattr(module, "ROOT", tmp_path)
     first = module.run(
-        contract_path, acquisition_path, tmp_path / "first.json", reverse_enumeration=False
+        contract_path,
+        acquisition_path,
+        tmp_path / "first.json",
+        reverse_enumeration=False,
     )
     second = module.run(
-        contract_path, acquisition_path, tmp_path / "second.json", reverse_enumeration=True
+        contract_path,
+        acquisition_path,
+        tmp_path / "second.json",
+        reverse_enumeration=True,
     )
     assert first["stable_evidence_id"] == second["stable_evidence_id"]
     assert first["sealed_member_requests"] == 0

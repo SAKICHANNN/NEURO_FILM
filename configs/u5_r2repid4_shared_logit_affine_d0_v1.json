@@ -12,7 +12,7 @@
     "icc_ingress": {"path": "src/eval/repid_shared_operator.py", "sha256": "f70e9c298eaa6ff21cabb860e9c2e271efe24d9eddbf19cfa917a19277383384"},
     "operator_core": {"path": "src/eval/spcp_global_logit_affine.py", "sha256": "a8d26b402bb3e8ec134bba7a11da933359d53d072a2960e2acc2cd2b12e14405"},
     "shared_gate_core": {"path": "scripts/run_u5_r2spcp2_global_logit_affine_d0.py", "sha256": "832153dd10fb5a187702523ef6a313a5f0a87afeed0d7dfa8b054d39a8d6ad1c"},
-    "evaluator": {"path": "scripts/run_u5_r2repid4_shared_logit_affine_d0.py", "sha256": "c1f46e4e24204775313b161c5ac6deef3e7343c104b98dda9094229a116247b3"}
+    "evaluator": {"path": "scripts/run_u5_r2repid4_shared_logit_affine_d0.py", "sha256": "93f3d30822065dfc227727b777a9e05098b8382861d3527281fa264e6991a3e8"}
   },
   "ingress": {
     "required_icc_sha256": "7d152d48cb5bfd06a356385f7571ac05522027833d0da5cf003e7d46f68da798",

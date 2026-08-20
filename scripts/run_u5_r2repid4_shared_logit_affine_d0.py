@@ -113,8 +113,12 @@ def _evaluate_row(
         "identity_error": identity_error,
         "errors": errors,
         "candidate_improvement": _relative_gain(identity_error, errors["candidate"]),
-        "diagonal_relative_gain": _relative_gain(errors["diagonal"], errors["candidate"]),
-        "permuted_relative_gain": _relative_gain(errors["permuted"], errors["candidate"]),
+        "diagonal_relative_gain": _relative_gain(
+            errors["diagonal"], errors["candidate"]
+        ),
+        "permuted_relative_gain": _relative_gain(
+            errors["permuted"], errors["candidate"]
+        ),
         "reverse_improvement": _relative_gain(identity_error, errors["reverse"]),
         "candidate_output_delta_e_oklab": float(np.mean(output_delta)),
         "candidate_new_exact_boundary_fraction": new_exact_boundary_fraction(
@@ -270,7 +274,9 @@ def run(
         "ingress": {"icc_sha256": next(iter(observed_icc)), **observed_runtime},
         "enumeration_normalized": True,
         "fit_sample_count": int(fit_sources.shape[0]),
-        "operators": {name: _operator_payload(value) for name, value in operators.items()},
+        "operators": {
+            name: _operator_payload(value) for name, value in operators.items()
+        },
         "dose_diagnostics": dose_diagnostics,
         "calibration_rows": rows,
         "metrics": metrics,
@@ -278,7 +284,9 @@ def run(
         "failed_gates": failed,
         "sealed_member_requests": acquisition["sealed_member_requests"],
         "automatic_pass": not failed,
-        "decision": contract["decision_if_pass"] if not failed else contract["decision_if_fail"],
+        "decision": contract["decision_if_pass"]
+        if not failed
+        else contract["decision_if_fail"],
         "claim_ceiling": contract["claim_ceiling"],
     }
     canonical = json.dumps(report, sort_keys=True, separators=(",", ":")).encode()
