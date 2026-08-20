@@ -1,0 +1,51 @@
+{
+  "schema": "neuro-film.u5-r2spcp4-redundant-source-touch-correction-evidence.v1",
+  "experiment_id": "U5.R2SPCP4",
+  "date": "2026-08-21",
+  "status": "CLOSED_REDUNDANT_WITH_PRIOR_SPCP3",
+  "decision": "remove_duplicate_implementation_and_return_to_new_information_or_mature_explicit_operator_engineering",
+  "execution_commit": "9d5ebb89",
+  "prior_authority": {
+    "evidence_path": "docs/evidence/U5_R2SPCP3_PNG_ELIGIBLE_PREFERENCE_ROLES_RESULT.json",
+    "evidence_sha256": "ffbc113217cd005a7fb1d1ea7d547cbfe3617ca3582f49f728ec846ed1b9f193",
+    "known_result": "Only 16 of 648 prospectively eligible scenes have PNG payloads at both selected endpoints; 876 of 1296 endpoint members are JPEG payloads under PNG names, below the frozen role minimum.",
+    "source_family_already_closed": true
+  },
+  "redundant_attempt": {
+    "cause": "The current project tracker was not inspected deeply enough before implementing a new SPCP pixel-alignment preflight, and the initial U5.R2SPCP1 then U5.R2SPCP3 identifiers collided with existing formal nodes.",
+    "role_manifest_sha256": "09473b69dd34d5c25350b0be210ee44e644183b27423b2ac1a4425223c17424d",
+    "selected_development_scene": "I0563",
+    "members_read_before_stop": 2,
+    "alignment_pair_scores": 0,
+    "preference_or_score_values_read": 0,
+    "operator_fit_count": 0,
+    "confirmation_payload_reads": 0,
+    "future_role_payload_reads": 0,
+    "offending_member": {
+      "image_id": "I0563_02_01",
+      "declared_extension": ".png",
+      "observed_format": "JPEG",
+      "payload_size": 349419,
+      "payload_sha256": "b324103d3f7e9839c15e78b329dc0ea5300b79bc91f93edd4dd2d0520d577bf7",
+      "observed_prefix_hex": "ffd8ffe000104a46494600010101012c012c0000ffdb00430002010101010102"
+    },
+    "two_reports_byte_exact": true,
+    "raw_report_sha256": "a4b153d9fcd4d93e56fe45f83bf59b0b3fcc00764e81792a7ef7f3ebd0c237e7",
+    "scientific_payload_id": "af3bd612ad3e4d3e973a63021acd4e11a1ea87acb65a15931817e6e8a84f962f"
+  },
+  "correction": {
+    "counts_against_bounded_three_candidate_program": false,
+    "reason": "This was not a materially distinct candidate or new source observation; it reconfirmed a source-mechanics fact already established by U5.R2SPCP3.",
+    "decode_fallback": false,
+    "scene_replacement": false,
+    "threshold_or_gate_change": false,
+    "duplicate_contract_manifest_runner_and_tests_removed": true,
+    "raw_bytes_retained_only_in_isolated_D_fallback": true
+  },
+  "storage": {
+    "raw_namespace": "D:/_project_fallbacks/neuro_film_goal_019f4b76/u5_r2spcp3",
+    "drive_root_write": false,
+    "P_write_attempted": false
+  },
+  "claim_ceiling": "Protocol-correction evidence only. It adds no scientific candidate result, human-preference conclusion, explicit-operator value, rights, package, schema, capability or product claim."
+}

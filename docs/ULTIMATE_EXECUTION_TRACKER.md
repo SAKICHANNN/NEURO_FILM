@@ -1849,3 +1849,14 @@ extra PNGs are exact CRC/size duplicates and are excluded. The release contains
 future claims use `connected sampled pair graph`. Image payload, fit, render and
 scientific-score reads remain zero. Only a separate scene-grouped image and
 alignment audit may now open; product and redistribution rights remain closed.
+U5.R2SPCP4 is a protocol-correction closure, not a scientific candidate. A
+new pixel-alignment preflight stopped after two exact member reads when
+`I0563_02_01.png` was JPEG/JFIF under a PNG name. Before any alignment score,
+preference read or operator fit, a deeper tracker audit found the existing
+U5.R2SPCP3 complete prefix census had already closed this exact source (876 of
+1,296 members were JPEG and only 16 scenes had PNG at both endpoints). Two
+reports are byte exact (`a4b153d9...c237e7`). Remove the duplicate
+implementation, do not count it against the bounded three-candidate program,
+and do not continue SPCP through decoder fallback, replacement or relaxed
+support. Evidence:
+`docs/evidence/U5_R2SPCP4_REDUNDANT_SOURCE_TOUCH_CORRECTION_RESULT.json`.

@@ -14395,3 +14395,22 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   then at most one shared bounded explicit-operator discriminant. It opens no
   image-rights, preference-generalization or product claim. Evidence:
   `docs/evidence/U5_R2SPCP0_METADATA_SOURCE_LOCK_RESULT.json`.
+### 2026-08-21 - U5.R2SPCP4 redundant source touch corrected and removed
+
+- Parent goal: bounded final-cycle search only when a materially new identifying
+  observation exists; SPCP had already been closed by formal U5.R2SPCP3.
+- Skills: research/ML reliability, DRPT-BI Mode A, project structure stewardship.
+- Decision: a newly written pixel-alignment preflight was stopped after two
+  exact range members because `I0563_02_01.png` was JPEG/JFIF. A deeper tracker
+  audit then found the prior U5.R2SPCP3 complete format census (876/1,296 JPEG
+  payloads and only 16 usable scenes), making the new work redundant rather
+  than candidate 1 of the bounded three-candidate program.
+- Evidence: two corrected reports are byte exact at
+  `a4b153d9...c237e7`; preference reads, alignment scores, operator fits,
+  confirmation reads and future-role reads are all zero. See
+  `docs/evidence/U5_R2SPCP4_REDUNDANT_SOURCE_TOUCH_CORRECTION_RESULT.json`.
+- Propagation: no decoder fallback, replacement, threshold rescue or SPCP
+  continuation. Remove the duplicate contract/manifest/runner/tests and return
+  to truly new paired/capture-time information or mature RAW/DNG/HDR/portable
+  explicit-operator engineering. This correction does not consume the bounded
+  three-candidate budget.
