@@ -1,0 +1,84 @@
+{
+  "schema": "neuro-film.sf3-a0y-ntire-paired-shaped-lut-candidate2-evidence.v1",
+  "experiment_id": "SF3.A0Y_NTIRE_PAIRED_SHAPED_LUT_CANDIDATE2_V1",
+  "date": "2026-08-21",
+  "status": "FAIL_CLOSED_CANDIDATE_2_OF_3",
+  "identifier_note": "The full experiment_id is authoritative because the short SF3.A0Y token was previously used by an unrelated three-stock source leaf.",
+  "commits": {
+    "preregistration": "00356d10",
+    "control_freeze": "85901f3b",
+    "implementation": "300c7b69",
+    "parent_binding_fix": "21a3d953",
+    "storage_fallback_amendment": "781da3d8",
+    "range_backend_amendment": "121b4104",
+    "range_retry_fix": "bd6d6ea3"
+  },
+  "formal_replay": {
+    "forward": "outputs/eval/sf3_a0y_ntire_paired_shaped_lut_candidate2_v1/formal_background_forward.json",
+    "reverse": "outputs/eval/sf3_a0y_ntire_paired_shaped_lut_candidate2_v1/formal_background_reverse.json",
+    "report_sha256": "46e4b34f99fef2e8b792c5ecf825c07443578c21beab40beabb74746d69710c9",
+    "report_bytes": 20654,
+    "stable_identity": "d2efc26616d31073caaed7855c5893b80a14de3e1641abfcc7d711cec7f2fbec",
+    "byte_exact": true,
+    "model_lock_sha256": "443da0430893a73c68e17e16810c0f02e7685672a2510bdf4dc719d6775a8255",
+    "model_lock_bytes": 210302,
+    "model_lock_byte_exact": true
+  },
+  "roles_and_reads": {
+    "fit_rows": 32,
+    "calibration_rows": 12,
+    "sealed_rows_read": 0,
+    "cache_files": 132,
+    "cache_bytes": 25989789,
+    "full_member_payload_persisted": false,
+    "model_lock_persisted_before_calibration_target_read": true,
+    "fallback": "repo-relative .data_fallback junction to D project namespace because canonical P exFAT reached zero free bytes",
+    "drive_root_payloads": 0
+  },
+  "models": {
+    "candidate_sha256": "eb41ba198d5539e8c80a786459966149a506d449f939a5aecc6bd7b96a909dc0",
+    "candidate_residual_strength": 0.0,
+    "cyclic_wrong_sha256": "d053e30107a87548aa958789b14eb25dfbcb0a4fa357ddfb57ce909b2293d96a",
+    "cyclic_wrong_residual_strength": 0.0,
+    "monotone_sha256": "eb623bc16c1dac32aff2dd73ed2fea31639e8a39772f6460e878d64efb51eb0f",
+    "affine_sha256": "619cdd22f16a35d5dd2b75e39770a5fa8f7e55da34ef8bed9dfefb76ea9d981c",
+    "strongest_control_counts": {
+      "monotone": 10,
+      "affine": 2,
+      "identity": 0
+    }
+  },
+  "calibration_metrics": {
+    "improvement_rate_vs_strongest_legitimate": 0.25,
+    "median_relative_reduction_vs_strongest_legitimate": -0.00002191046979814691,
+    "worst_relative_reduction_vs_strongest_legitimate": -0.4433871163928496,
+    "median_mean_oklab_error": 0.06157265428044059,
+    "p95_mean_oklab_error": 0.13024432553425425,
+    "improvement_rate_vs_cyclic_wrong_target": 1.0,
+    "median_relative_reduction_vs_cyclic_wrong_target": 0.41986096257447914,
+    "maximum_gradient_p999_ratio": 1.5640228594205692,
+    "maximum_new_exact_boundary_fraction": 0.0,
+    "minimum_lut_jacobian_determinant": 0.9999084500595643
+  },
+  "failed_gates": [
+    "improvement-rate-vs-strongest-legitimate",
+    "median-reduction-vs-strongest-legitimate",
+    "worst-tail-vs-strongest-legitimate",
+    "p95-absolute-error"
+  ],
+  "passed_gates": [
+    "median-absolute-error",
+    "improvement-rate-vs-cyclic-wrong-target",
+    "median-reduction-vs-cyclic-wrong-target",
+    "gradient",
+    "new-boundary",
+    "minimum-jacobian",
+    "model-replay",
+    "forward-reverse-byte-exact"
+  ],
+  "bounded_final_candidate_counter_before": 1,
+  "bounded_final_candidate_counter_after": 2,
+  "decision": "FAIL_CLOSED_CANDIDATE_2_OF_3",
+  "scientific_conclusion": "Correct paired captures strongly identify a camera-transfer shaper relative to cyclically wrong pairs, but the frozen safe residual LUT collapses to zero strength and does not improve over the strongest simple monotone or bounded-affine control. This exact global shaped-LUT family closes without strength, boundary, LUT-size, role, or threshold rescue. The paired capture observation remains valid.",
+  "claim_ceiling": "Internal two-camera night-capture paired explicit-operator evidence only. No automatic after-only matching, arbitrary-camera, film/stock, package/schema/capability, commercial, or product admission claim."
+}

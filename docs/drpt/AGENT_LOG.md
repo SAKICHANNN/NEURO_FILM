@@ -14905,6 +14905,31 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   operator/quality/package/schema/capability/product claim. Evidence:
   `docs/evidence/SF3_A0X_NTIRE_NIGHT_OFFICIAL_ORIENTATION_PREFLIGHT_RESULT.json`.
 
+### 2026-08-21 - NTIRE paired shaped-LUT candidate 2 closes
+
+- Full ID `SF3.A0Y_NTIRE_PAIRED_SHAPED_LUT_CANDIDATE2_V1` is authoritative;
+  the short A0Y token collides with an earlier unrelated three-stock source
+  leaf. This is bounded candidate `2/3` under SF3.A0.
+- P exFAT reached zero free bytes after four fit-cache rows. The interrupted
+  path had zero model/calibration/score facts. Execution resumed through the
+  repo-relative `.data_fallback` junction into the existing D project
+  namespace. Full member payloads never persisted. Exact curl Range reads and
+  four fresh-buffer retries were added before any model or calibration score.
+- Two complete forward/reverse reports and model locks are byte exact at
+  `46e4b34f...710c9` and `443da043...8255`. Model lock precedes all 12
+  calibration targets; sealed targets remain unread.
+- Correct pairing has real signal: 12/12 beat the equal-architecture cyclic
+  target, median `+41.986%`. But safe candidate/cyclic residual strengths both
+  become exact zero. Candidate beats the strongest monotone/affine control on
+  only 3/12, median/worst `-0.0022%/-44.339%`; p95 OKLab `.13024` also fails.
+  Jacobian, gradient, boundary and replay pass.
+- Decision: `FAIL_CLOSED_CANDIDATE_2_OF_3`. Do not rescue strength, LUT size,
+  safety, region matching, roles or thresholds. Paired observation remains
+  valid; the last candidate must add new physical/capture-time information on
+  fresh natural groups or the automatic single-reference cycle closes.
+  Evidence:
+  `docs/evidence/SF3_A0Y_NTIRE_PAIRED_SHAPED_LUT_CANDIDATE2_RESULT.json`.
+
 ### 2026-08-21 - SF3.A2 current public-index refresh is infrastructure-invalid
 
 - A bounded three-stock Openverse contract was committed before access and

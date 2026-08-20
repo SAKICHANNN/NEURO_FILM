@@ -225,6 +225,21 @@ colour-quality score/operator exists. This opens a fresh group-isolated paired
 capture candidate 2 preregistration; counter remains `1/3`. Evidence:
 `docs/evidence/SF3_A0X_NTIRE_NIGHT_OFFICIAL_ORIENTATION_PREFLIGHT_RESULT.json`.
 
+`SF3.A0Y_NTIRE_PAIRED_SHAPED_LUT_CANDIDATE2_V1` is now formally closed as
+bounded candidate `2/3` (use the full experiment ID; the short A0Y token also
+belongs to an older unrelated source leaf). On 32 fresh fit and 12 fresh
+calibration pairs, correct pairing is strongly identified: candidate beats the
+equal-architecture cyclic-wrong target on 12/12 rows with median `+41.986%`.
+The frozen safe 9-cube residual strength nevertheless resolves to exact zero,
+so the candidate reduces to its monotone shaper and beats the strongest simple
+control on only 3/12 rows; median/worst gain is `-0.0022%/-44.339%` and p95
+OKLab error `.13024`. Jacobian, gradient, boundary and byte-exact replay pass;
+sealed reads remain zero. Do not rescue LUT strength/size/safety or region
+matching. Candidate 3 must add materially new capture-time/physical
+information and use a fresh natural group-isolated cohort; otherwise close the
+automatic single-reference product cycle. Evidence:
+`docs/evidence/SF3_A0Y_NTIRE_PAIRED_SHAPED_LUT_CANDIDATE2_RESULT.json`.
+
 **Autonomy invariant**: the active no-data Roll2Film and Style-safe work cannot
 depend on the owner supplying images, film/digital pairs, per-image labels, new
 preference votes or manual annotation. Public online data is an allowed source
