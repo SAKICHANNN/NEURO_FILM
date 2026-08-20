@@ -1,0 +1,47 @@
+{
+  "schema": "neuro_film.u5_r2repid1_corrected_source_audit_evidence.v1",
+  "experiment_id": "U5.R2REPID1",
+  "repository_revision": "6a16a20a0b7122ad66d1f632af1586d45b443aa9",
+  "parent": {
+    "contract_sha256": "8cc7620c4e1922ae9a34f8913ef880e172f3921f34bd9483c447d9cb5d671a9f",
+    "evidence_sha256": "530f32dcf1bea2a43fcab72f9a5fc5729cc5cd511b5bc2306527831498ba2199",
+    "decision": "close_repid_before_image_payload_or_operator_fit"
+  },
+  "corrections": {
+    "last_modified": "2026-06-10T11:08:26.000Z",
+    "non_lfs_tree_content_sha256": null,
+    "non_lfs_downloaded_content_hashes_still_exact": true,
+    "scientific_structure_or_rights_changes": false
+  },
+  "aggregate_annotation": {
+    "file_size": 69361091,
+    "file_sha256": "a370d24c8d54c113e38c54f7fc7b4956adc64c08620ce15b94d4d598913ecab2",
+    "row_count": 74465,
+    "scene_count": 4981,
+    "unique_pair_count": 74465,
+    "render_roles": 6,
+    "complete_15_edge_scenes": 4931,
+    "partial_10_edge_scenes": 50,
+    "participant_identifier_columns_present": false
+  },
+  "rights": {
+    "annotations": "CC-BY-4.0",
+    "images": "MIT-Adobe-FiveK-research-only",
+    "product_dependency_allowed": false,
+    "redistribution_allowed_by_this_audit": false
+  },
+  "requests": {
+    "image_tree": 0,
+    "image_archive": 0,
+    "image_member": 0,
+    "image_decode": 0,
+    "operator_fit": 0
+  },
+  "all_scientific_and_integrity_gates_pass": true,
+  "automatic_pass": true,
+  "decision": "open_separately_preregistered_internal_repid_shared_operator_d0",
+  "claim_ceiling": "corrected-aggregate-annotation-and-rights-source-audit-only",
+  "two_fresh_reports_byte_exact": true,
+  "formal_report_sha256": "c511cacb23da792f6fb5e449b04d3a9707f8b12c8234a4f5a892f10938845dd9",
+  "stable_evidence_id": "sha256:867267e19c537482c67623689ae1c3bcf331edfb67c4a37c9bd97ad6ce83c6ff"
+}

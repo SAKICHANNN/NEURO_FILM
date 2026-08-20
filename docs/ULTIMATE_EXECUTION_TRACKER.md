@@ -1556,3 +1556,12 @@ Preserve REPID0 as a protocol-integrity failure. Only a separately numbered
 prospective correction may bind the observed API semantics before selecting a
 small scene-grouped internal-research shared-operator D0; the 39GB archive and
 477GB repository remain forbidden.
+
+U5.R2REPID1 prospectively binds REPID0's observed `.000Z` timestamp and the
+actual HF tree semantics while retaining downloaded content SHA-256 checks.
+Two complete reports are byte exact (`c511cacb...45dd9`; stable
+`867267e1...3c6ff`) and every source, annotation, parent, rights and zero-pixel
+gate passes. This opens only a separately preregistered internal-research D0:
+scene-grouped loser/winner pairs may identify one shared, source-free, bounded
+explicit operator. It does not open a scorer, per-image router, 39GB archive,
+population claim, package, capability or product dependency.

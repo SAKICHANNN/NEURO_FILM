@@ -13848,3 +13848,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   non-LFS rows where HF exposes Git object IDs. No pixel or operator result was
   produced. A prospective U5.R2REPID1 may bind only those observed API facts.
 - Evidence: `docs/evidence/U5_R2REPID0_SOURCE_AUDIT_RESULT.json`.
+
+### 2026-08-20 - U5.R2REPID1 corrected aggregate source lock passes
+
+- Prospectively bound only REPID0's observed millisecond timestamp and HF's
+  null SHA-256 field for non-LFS tree rows; actual downloaded small-file hashes,
+  aggregate bytes, structure, roles and rights gates were unchanged.
+- Two reports are byte exact (`c511cacb...45dd9`, stable
+  `867267e1...3c6ff`) and all gates pass with zero image/member/archive reads,
+  decodes or fits.
+- Open only a separately frozen, small, scene-grouped population-prior D0 that
+  fits one shared explicit operator. Images remain FiveK research-only and no
+  scorer, content router, full archive, product dependency or user-preference
+  claim opens.
+- Evidence: `docs/evidence/U5_R2REPID1_CORRECTED_SOURCE_AUDIT_RESULT.json`.
