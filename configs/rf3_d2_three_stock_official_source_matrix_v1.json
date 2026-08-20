@@ -1,0 +1,119 @@
+{
+  "schema": "neuro-film.rf3-three-stock-official-source-matrix-contract.v1",
+  "experiment_id": "RF3.D2",
+  "date": "2026-08-21",
+  "status": "FROZEN_BEFORE_CURRENT_OFFICIAL_SOURCE_ACQUISITION",
+  "question": "Do current first-party sources expose a reproducible, stock-specific physical-prior matrix for Velvia 50, Portra 400 and Ektar 100 without pretending that datasheet curves are photographic RGB targets?",
+  "stocks": [
+    {
+      "stock_id": "fujifilm_velvia_50",
+      "manufacturer": "Fujifilm",
+      "process_family": "E-6_slide",
+      "url": "https://asset.fujifilm.com/www/in/files/2020-07/fcc8016d9ffc8503faacbc39c9b827c4/films_velvia-50_datasheet_01.pdf",
+      "allowed_host": "asset.fujifilm.com",
+      "path": "data/real_film/rf3_d2_official_stock_sources/fujifilm_velvia_50/technical_data.pdf",
+      "maximum_bytes": 2000000,
+      "expected_pages": 8,
+      "required_text_anchors": [
+        "VELVIA 50",
+        "CHARACTERISTIC CURVES",
+        "SPECTRAL SENSITIVITY",
+        "SPECTRAL DYE DENSITY",
+        "DIFFUSE RMS GRANULARITY VALUE",
+        "MTF CURVE"
+      ],
+      "available_measurement_domains": [
+        "characteristic_curve",
+        "spectral_sensitivity",
+        "spectral_dye_density",
+        "diffuse_rms_granularity",
+        "mtf"
+      ],
+      "interpretation": "direct_slide",
+      "renderable_rgb_target": false
+    },
+    {
+      "stock_id": "kodak_portra_400",
+      "manufacturer": "Kodak",
+      "process_family": "C-41_colour_negative",
+      "url": "https://www.kodakprofessional.com/sites/default/files/2025-07/e4050.pdf",
+      "allowed_host": "www.kodakprofessional.com",
+      "path": "data/real_film/rf3_d2_official_stock_sources/kodak_portra_400/technical_data.pdf",
+      "maximum_bytes": 2000000,
+      "expected_pages": 4,
+      "required_text_anchors": [
+        "January 2025",
+        "PORTRA 400",
+        "CHARACTERISTIC CURVES",
+        "SPECTRAL-SENSITIVITY CURVES",
+        "SPECTRAL-DYE-DENSITY CURVES",
+        "Print Grain Index",
+        "Modulation Transfer Function"
+      ],
+      "available_measurement_domains": [
+        "characteristic_curve",
+        "spectral_sensitivity",
+        "spectral_dye_density",
+        "print_grain_index",
+        "mtf"
+      ],
+      "interpretation": "negative_requires_explicit_scan_or_print_chain",
+      "renderable_rgb_target": false
+    },
+    {
+      "stock_id": "kodak_ektar_100",
+      "manufacturer": "Kodak",
+      "process_family": "C-41_colour_negative",
+      "url": "https://www.kodakprofessional.com/sites/default/files/2025-07/e4046.pdf",
+      "allowed_host": "www.kodakprofessional.com",
+      "path": "data/real_film/rf3_d2_official_stock_sources/kodak_ektar_100/technical_data.pdf",
+      "maximum_bytes": 2000000,
+      "expected_pages": 4,
+      "required_text_anchors": [
+        "January 2025",
+        "EKTAR 100",
+        "CHARACTERISTIC CURVES",
+        "SPECTRAL-SENSITIVITY CURVES",
+        "SPECTRAL-DYE-DENSITY CURVES",
+        "Print Grain Index",
+        "Modulation Transfer Function"
+      ],
+      "available_measurement_domains": [
+        "characteristic_curve",
+        "spectral_sensitivity",
+        "spectral_dye_density",
+        "print_grain_index",
+        "mtf"
+      ],
+      "interpretation": "negative_requires_explicit_scan_or_print_chain",
+      "renderable_rgb_target": false
+    }
+  ],
+  "gates": {
+    "required_stock_ids": [
+      "fujifilm_velvia_50",
+      "kodak_portra_400",
+      "kodak_ektar_100"
+    ],
+    "require_https": true,
+    "require_first_party_host": true,
+    "require_pdf_header": true,
+    "require_exact_page_count": true,
+    "require_all_text_anchors": true,
+    "require_all_declared_measurement_domains": true,
+    "require_renderable_rgb_target_false": true,
+    "minimum_common_measurement_domains": 4,
+    "exact_replay_required": true
+  },
+  "decisions": {
+    "pass": "retain_three_stock_first_party_physical_prior_matrix_and_open_nonrenderable_common_domain_comparison",
+    "fail": "retain_stock_source_data_gap_without_curve_or_render_rescue"
+  },
+  "forbidden_actions": [
+    "fit_or_render_rgb_from_this_source_audit",
+    "compare_print_grain_index_numerically_to_diffuse_rms_granularity",
+    "treat_manufacturer_curves_as_same_scene_or_paired_targets",
+    "claim_calibrated_stock_response_or_multistock_completion"
+  ],
+  "claim_ceiling": "Current first-party document identity and non-renderable physical-prior coverage for Velvia 50, Portra 400 and Ektar 100. No photographic RGB target, same-scene pair, roll/process/scanner calibration, fitted operator, stock distinguishability, preference or product claim."
+}
