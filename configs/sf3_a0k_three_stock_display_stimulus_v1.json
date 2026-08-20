@@ -1,0 +1,73 @@
+{
+  "schema": "neuro-film.sf3-a0k-three-stock-display-stimulus-contract.v1",
+  "experiment_id": "SF3.A0K",
+  "question": "Can one rights-locked, role-disjoint display stimulus pack make the first controlled Velvia 50, Portra 400 and Ektar 100 physical acquisition executable without creating stock evidence before exposure?",
+  "parents": {
+    "controlled_acquisition_contract": {
+      "path": "configs/sf3_a0_three_stock_controlled_acquisition_v1.json",
+      "sha256": "69241a6c38b15a8c4c8871e513ea53e133ee1d3b5ebe06f39a33f92964eccc8b"
+    },
+    "digital_source_manifest": {
+      "path": "outputs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1/run_c/manifest.json",
+      "sha256": "048992242c82a2cd9efd193c6766065c7148ad0607a5505b88185d0ab781b101"
+    }
+  },
+  "required_source_policy": {
+    "allowed_use": "internal_independent_digital_ood_confirmation",
+    "rights_scope": "CC0_public_domain_internal_evaluation",
+    "decoded_color_state": "relative_display_srgb_approximation",
+    "copy_source_png_bytes_exact": true,
+    "unique_scene_ids": true,
+    "cross_role_scene_id_disjoint": true
+  },
+  "roles": {
+    "development": [
+      "canon_eos_kiss_f",
+      "canon_eos_1d_mark_iv",
+      "nikon_d2x",
+      "nikon_d200",
+      "sony_dslr_a290",
+      "fujifilm_finepix_s5000",
+      "olympus_sp550uz",
+      "panasonic_dmc_gf2"
+    ],
+    "confirmation": [
+      "olympus_e_p7",
+      "pentax_k100d_super",
+      "leica_d_lux_6",
+      "kodak_dcs_pro_14n"
+    ]
+  },
+  "diagnostic_stimuli": {
+    "canvas_width": 1600,
+    "canvas_height": 1200,
+    "ids": [
+      "neutral_step_wedge_17",
+      "rgb_primary_secondary_ramps",
+      "slanted_edge_line_pairs"
+    ],
+    "count_toward_scene_minima": false,
+    "encoding": "RGB8_PNG_sRGB_ICC"
+  },
+  "output": {
+    "canonical_pack_root": "data/real_film/sf3_a0k_three_stock_display_stimulus_v1",
+    "formal_run_root": "outputs/eval/sf3_a0k_three_stock_display_stimulus_v1",
+    "manifest_name": "manifest.json",
+    "report_name": "report.json",
+    "create_only": true
+  },
+  "gates": {
+    "exact_development_scene_count": 8,
+    "exact_confirmation_scene_count": 4,
+    "exact_diagnostic_count": 3,
+    "source_sha256_exact": true,
+    "copied_scene_bytes_exact": true,
+    "decoded_dimensions_exact": true,
+    "rights_and_use_exact": true,
+    "two_clean_build_inventories_exact": true,
+    "canonical_pack_inventory_exact": true
+  },
+  "decision_if_pass": "READY_FOR_PHYSICAL_THREE_STOCK_CAPTURE_INPUT_ONLY",
+  "decision_if_fail": "RETAIN_THREE_STOCK_ACQUISITION_INPUT_GAP_WITHOUT_TARGET_FABRICATION",
+  "claim_ceiling": "Rights-locked digital display stimulus input pack only. It contains no film exposure, developed frame, scan, stock target, operator fit, stock response, calibration, preference result, package, capability or product promotion."
+}
