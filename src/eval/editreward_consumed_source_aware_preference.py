@@ -523,6 +523,11 @@ def audit_score_locks(
                 "source_geometry",
                 "candidate_geometry",
             )
+            if first["source_kind"] == "cyclic-wrong":
+                identity_fields += (
+                    "wrong_source_id",
+                    "wrong_source_sha256",
+                )
             identity_exact = identity_exact and all(
                 first[field] == second[field] for field in identity_fields
             )
