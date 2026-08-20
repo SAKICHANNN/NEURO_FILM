@@ -14849,3 +14849,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   extraction. No operator, quality, film/stock, package/schema/capability or
   product claim. Evidence:
   `docs/evidence/SF3_A0U_NTIRE_NIGHT_CAPTURE_PAIR_SOURCE_LOCK_RESULT.json`.
+
+### 2026-08-21 - SF3.A2 current public-index refresh is infrastructure-invalid
+
+- A bounded three-stock Openverse contract was committed before access and
+  excluded all 941 identities from the prior Openverse snapshot.
+- The three exact metadata requests each returned HTTP 401 with the same body
+  hash. No image, thumbnail, landing-page, pixel or operator access occurred.
+- This does not close stock availability. No credential/frontend/endpoint
+  rescue is attempted; controlled three-stock evidence remains the mainline.

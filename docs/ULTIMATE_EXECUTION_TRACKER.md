@@ -77,6 +77,14 @@ the published curves. The discriminator fails: Velvia--Portra RMSE is
 frequency, envelope or threshold rescue; MTF remains a physical prior/nuisance
 only, and controlled RGB target acquisition remains the mainline.
 
+SF3.A2 tests one bounded current public-index refresh without changing the
+three-stock gates. The frozen anonymous Openverse route returned HTTP 401 for
+all three exact queries, despite the current consumer documentation describing
+anonymous access. This is infrastructure-invalid, not evidence that no new
+stock rows exist. No pixels, pages, fitting or credential rescue follows; the
+mainline remains controlled stock evidence. Evidence:
+`docs/evidence/SF3_A2_OPENVERSE_THREE_STOCK_REFRESH_RESULT.json`.
+
 SF3.A0P now passes a separately bounded capture-time source qualification for
 NVIDIA PPISP at exact revision `2521064...ded69`: four scenes expose 351 exact
 standard/auto JPEG name pairs plus COLMAP camera/image metadata under explicit
