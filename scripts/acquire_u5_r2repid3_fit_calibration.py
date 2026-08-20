@@ -9,6 +9,7 @@ import io
 import json
 import os
 import sys
+import time
 import urllib.parse
 import urllib.request
 from collections import Counter
@@ -91,6 +92,17 @@ def _selected_records(
     return selected, members
 
 
+def _replace_with_retry(source: Path, destination: Path) -> None:
+    for attempt in range(20):
+        try:
+            os.replace(source, destination)
+            return
+        except PermissionError:
+            if attempt == 19:
+                raise
+            time.sleep(0.1)
+
+
 def _download(
     url: str, destination: Path, size: int, sha256: str, temporary_suffix: str
 ) -> None:
@@ -102,6 +114,13 @@ def _download(
         return
     temporary = destination.with_name(destination.name + temporary_suffix)
     destination.parent.mkdir(parents=True, exist_ok=True)
+    if (
+        temporary.exists()
+        and temporary.stat().st_size == size
+        and _file_sha256(temporary) == sha256
+    ):
+        _replace_with_retry(temporary, destination)
+        return
     request = urllib.request.Request(
         url, headers={"User-Agent": "K-MCFM-U5-R2REPID3/1.0"}
     )
@@ -120,7 +139,7 @@ def _download(
             written += len(chunk)
     if written != size or digest.hexdigest() != sha256:
         raise ValueError(f"download identity mismatch: {destination}")
-    os.replace(temporary, destination)
+    _replace_with_retry(temporary, destination)
 
 
 def run(contract_path: Path, output_path: Path) -> dict[str, Any]:

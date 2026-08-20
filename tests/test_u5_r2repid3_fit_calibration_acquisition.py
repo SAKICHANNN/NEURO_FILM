@@ -19,3 +19,19 @@ def test_download_reuses_exact_existing_file(tmp_path: Path) -> None:
     )
     assert destination.read_bytes() == payload
     assert not destination.with_name(destination.name + ".part").exists()
+
+
+def test_download_promotes_exact_partial_without_network(tmp_path: Path) -> None:
+    payload = b"exact-partial"
+    destination = tmp_path / "member.jpeg"
+    temporary = destination.with_name(destination.name + ".part")
+    temporary.write_bytes(payload)
+    _download(
+        "https://invalid.example/never-read",
+        destination,
+        len(payload),
+        hashlib.sha256(payload).hexdigest(),
+        ".part",
+    )
+    assert destination.read_bytes() == payload
+    assert not temporary.exists()
