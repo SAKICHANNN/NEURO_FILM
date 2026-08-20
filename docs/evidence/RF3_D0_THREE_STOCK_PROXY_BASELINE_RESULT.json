@@ -1,0 +1,87 @@
+{
+  "schema": "neuro-film.rf3-three-stock-proxy-baseline-evidence.v1",
+  "experiment_id": "RF3.D0",
+  "date": "2026-08-21",
+  "status": "PASS_PROXY_BASELINE_ONLY",
+  "decision": "retain_three_stock_k1_proxy_matrix_as_baseline_only_and_open_stock_data_equalization",
+  "contract": {
+    "path": "configs/rf3_three_stock_proxy_baseline_d0_v1.json",
+    "sha256": "c6671ae81020ec3ea9e5c5c0882c952d6a0525796809b723d0abd32b91ecd44f",
+    "final_freeze_commit": "7c24bb17"
+  },
+  "implementation": {
+    "final_commit": "01a69f25d3a5507f7ee60730223a51b31fda241d",
+    "evaluator_sha256": "796ed8bc2d6bb8d4d67956d34ffde7754ecb1a1d4d70df339dbe0e466110bf88",
+    "test_sha256": "4ea85e9068d8c972adef70fee87eadaf8ec0e2ae66554c0786240255b56c6dd4",
+    "execution_amendment": "The first pre-report attempt stopped on the first PNG because the P-backed junction rejected hardlink publication. Create-only exclusive file publication replaced the unsupported hardlink without changing inputs, pixels, metrics, gates or roles; both formal runs then started from empty run directories."
+  },
+  "formal_runs": {
+    "run_a_report": "outputs/eval/rf3_three_stock_proxy_baseline_d0_v1/run_a/report.json",
+    "run_a_report_sha256": "0c65d79a8156139553c867a4cffdecdbffdc3c83d87eedb82c552a04cabf1f45",
+    "run_b_report": "outputs/eval/rf3_three_stock_proxy_baseline_d0_v1/run_b/report.json",
+    "run_b_report_sha256": "23be908d0af6b5998c29fa168114f26fc35d40f171276d0c823cea2fdab8688a",
+    "scientific_content_exact": true,
+    "ordered_png_inventory_exact": true,
+    "png_files_per_run": 64,
+    "scientific_identity": "6ab66651f1ad5a220129f9d17c64ca04cb50cd3375c65c84d86938849f388a21"
+  },
+  "source_evidence_matrix": {
+    "digital_inputs": 16,
+    "input_rights": "CC0_public_domain_internal_evaluation",
+    "fujifilm_velvia_50": "unpaired S0 plus author-rendered display-proxy Look Approximation; no controlled stock target",
+    "kodak_portra_400": "data gap plus legacy generic film-inspired proxy; metadata and unlicensed mechanics are not target truth",
+    "kodak_ektar_100": "unpaired S0 and source bridge remain source/content-confounded; no controlled stock target",
+    "same_level_paired_stock_truth_available": false,
+    "independent_roll_process_scanner_holdout_available": false,
+    "target_closeness_evaluable": false,
+    "stock_distinguishability_evaluable": false
+  },
+  "automatic_observations": {
+    "pairwise_median_of_source_pixel_medians_delta_e76": {
+      "velvia_vs_portra": 2.0990995168685913,
+      "velvia_vs_ektar": 1.426347017288208,
+      "portra_vs_ektar": 1.0244844555854797
+    },
+    "ao6_vs_legacy_velvia_median_of_source_pixel_medians_delta_e76": 10.58663272857666,
+    "maximum_new_output_boundary_fraction": 0.0,
+    "maximum_output_boundary_fraction": 0.0,
+    "all_frozen_proxy_and_boundary_gates_pass": true
+  },
+  "visual_review": {
+    "contact_sheet": "outputs/eval/rf3_three_stock_proxy_baseline_d0_v1/visual_review/contact_sheet.png",
+    "contact_sheet_sha256": "7990e994c049faa6c7c535642337fc74fc36165e9f5401f59fa5cfe305d4126b",
+    "confirmed_severe_artifacts_at_sheet_resolution": 0,
+    "full_resolution_review_executed": false,
+    "blind_preference_executed": false,
+    "interpretation": "No obvious geometry break, colour block, banding or decode corruption is visible in the labelled contact sheet. This autonomous sheet-level check is not population preference or full-resolution safety evidence."
+  },
+  "latest_primary_baseline_positioning": [
+    {
+      "work": "Emulating Emulsion: A Compact Physically-Based Model for Film Colour",
+      "year": 2025,
+      "url": "https://doi.org/10.1145/3721250.3743014",
+      "role": "strongest current paired calibrated explicit-film baseline; requires controlled digital/film capture and scanner evidence"
+    },
+    {
+      "work": "Deep Analog: Open-Set Film Emulation with Reference-Conditioned 3D LUTs",
+      "year": 2026,
+      "url": "https://arxiv.org/abs/2608.14702",
+      "role": "latest open-set adaptive-LUT control; synthetic transform inversion and expert judgment do not supply named-stock truth"
+    },
+    {
+      "work": "CanonCGT: Reference-Based Color Grading via Canonical Pivot Representation",
+      "year": 2026,
+      "url": "https://openaccess.thecvf.com/content/CVPR2026/papers/Ko_CanonCGT_Reference-Based_Color_Grading_via_Canonical_Pivot_Representation_CVPR_2026_paper.pdf",
+      "role": "future reference-conditioned grading control after stock target data gates"
+    },
+    {
+      "work": "SA-LUT: Spatial Adaptive 4D Look-Up Table for Photorealistic Style Transfer",
+      "year": 2025,
+      "url": "https://openaccess.thecvf.com/content/ICCV2025/html/Gong_SA-LUT_Spatial_Adaptive_4D_Look-Up_Table_for_Photorealistic_Style_Transfer_ICCV_2025_paper.html",
+      "role": "future image-adaptive LUT control after stock target data gates"
+    }
+  ],
+  "interpretation": "The three legacy K=1 stock-labelled proxies are deterministic, boundary-clean and mechanically separable on the same inputs, but Portra-versus-Ektar separation is weak and several per-source medians are below one Delta E76. AO6 is much farther from legacy Velvia and remains only a Velvia 50 display-proxy Look Approximation baseline. No target-film observation was scored, so the run cannot establish stock closeness or stock distinguishability.",
+  "next_leaf": "equalize rights-cleared, provenance-bound Velvia 50, Portra 400 and Ektar 100 target evidence before admitting adaptive LUT, nearest-neighbour, medoid, sparse retrieval or K greater than 1 comparisons",
+  "claim_ceiling": "Mechanics and safety evidence for three legacy stock-labelled K=1 film-inspired/display-proxy operators on identical CC0 digital inputs. No target-film closeness, stock distinguishability, calibrated response, multi-stock completion, product promotion or population preference claim."
+}
