@@ -112,7 +112,7 @@
   "decision_if_scanner_fixed": "retain_scanner_fixed_directional_structure_d0_only",
   "decision_if_inconclusive": "close_rotated_plate_directional_attribution_as_inconclusive",
   "forbidden": [
-    "point registration, crop, frequency band, radial bins, margin or plate exclusion rescue after score",
+    "point registration, crop, frequency band, radial bins, threshold, margin or plate exclusion rescue after score",
     "isolated grain NPS, emulsion calibration, scanner profile or product claim",
     "using either hypothesis result to relabel source, process, stock or scanner identity"
   ],
