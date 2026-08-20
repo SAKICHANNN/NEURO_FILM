@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2repid6-canoncgt-fixed-atlas-shared-lut-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2REPID6",
+  "split": "consumed_A0_mechanics_and_safety_only",
+  "parent_contract": {
+    "path": "configs/u5_r2f1_canoncgt_reference_condition_v1.json",
+    "sha256": "58d2a2b349763f7b29d08ded37e028f394585250f1ded9452a5beb41a4693d8b",
+    "allowed_reuse": [
+      "exact pinned CanonCGT E2E source and checkpoint",
+      "nine consumed A0 references",
+      "nine consumed gold application sources"
+    ]
+  },
+  "question": "Can a fixed model-owned canonical atlas plus one reference image build one source-independent explicit LUT that remains reference-sensitive, structurally stable and safe when replayed across unrelated application sources?",
+  "build_contract": {
+    "application_source_file_reads": 0,
+    "application_source_pixel_decodes": 0,
+    "reference_reads": 9,
+    "atlas_ids": ["rgb", "gbr", "brg"],
+    "atlas_size": 224,
+    "atlas_lattice_bins": 17,
+    "atlas_index_multiplier": 1723,
+    "aggregation": "atlas_id_sorted_float64_mean_then_float32",
+    "one_lut_per_reference": true,
+    "application_source_conditioning": false,
+    "canonicalizer_execution": false,
+    "training_or_fine_tuning": false
+  },
+  "apply_contract": {
+    "build_manifest_must_be_frozen_first": true,
+    "one_exact_lut_replayed_across_all_sources": true,
+    "per_source_parameter_changes": false,
+    "output_format": "rgb8_png",
+    "output_clamp_is_diagnostic_not_authorization": true
+  },
+  "metrics": {
+    "maximum_pixels_per_image": 65536,
+    "new_hard_clipping_epsilon": 0.00196078431372549,
+    "maximum_atlas_lut_pairwise_rmse_p95": 0.08,
+    "minimum_reference_bank_median_pairwise_output_delta_e76": 2.0,
+    "minimum_gold_median_style_delta_e76": 7.0,
+    "minimum_gold_median_non_basic_residual_delta_e76": 4.9,
+    "maximum_worst_gold_new_hard_clipping_fraction": 0.005,
+    "maximum_worst_gold_raw_final_out_of_range_fraction": 0.005,
+    "minimum_automatic_survivors": 1
+  },
+  "replay": {
+    "reverse_atlas_enumeration_must_preserve_lut_bytes": true,
+    "reverse_reference_and_source_enumeration_must_preserve_scientific_payload": true,
+    "two_fresh_process_scientific_payloads_must_match": true
+  },
+  "stop_rule": "Any failed absolute, source-independence, atlas-stability, order or replay gate closes this exact fixed-atlas shared-LUT route without atlas, checkpoint, projection, strength, threshold or cohort rescue.",
+  "pass_ceiling": "A pass opens only an autonomous full-resolution blind comparison against already-frozen comparators. It does not promote a default, product capability, stock identity, calibration, population preference or the complete CanonCGT SSL method.",
+  "claim_ceiling": "Private consumed-A0 reference-only explicit-operator D0; Apache checkpoint mechanics only; no training, product, schema, capability, stock or calibrated-reference claim."
+}
