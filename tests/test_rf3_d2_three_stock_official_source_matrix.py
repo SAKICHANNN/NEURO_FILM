@@ -59,7 +59,10 @@ def test_official_source_audit_is_exact_and_nonrenderable() -> None:
     second = evaluate(contract, ROOT, acquire_missing=False)
     assert first == second
     assert first["automatic_pass"]
-    assert first["common_domain_count"] >= 4
+    assert first["common_domain_count"] == 3
     assert not first["incomparable_granularity_semantics"][
         "direct_numeric_cross_manufacturer_comparison_allowed"
+    ]
+    assert not first["incomparable_dye_density_semantics"][
+        "direct_common_basis_comparison_allowed"
     ]

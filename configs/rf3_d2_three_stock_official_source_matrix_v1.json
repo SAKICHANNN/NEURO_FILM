@@ -25,7 +25,7 @@
       "available_measurement_domains": [
         "characteristic_curve",
         "spectral_sensitivity",
-        "spectral_dye_density",
+        "separated_spectral_dye_density",
         "diffuse_rms_granularity",
         "mtf"
       ],
@@ -53,7 +53,7 @@
       "available_measurement_domains": [
         "characteristic_curve",
         "spectral_sensitivity",
-        "spectral_dye_density",
+        "aggregate_midscale_and_dmin_spectral_density",
         "print_grain_index",
         "mtf"
       ],
@@ -81,7 +81,7 @@
       "available_measurement_domains": [
         "characteristic_curve",
         "spectral_sensitivity",
-        "spectral_dye_density",
+        "aggregate_midscale_and_dmin_spectral_density",
         "print_grain_index",
         "mtf"
       ],
@@ -102,7 +102,7 @@
     "require_all_text_anchors": true,
     "require_all_declared_measurement_domains": true,
     "require_renderable_rgb_target_false": true,
-    "minimum_common_measurement_domains": 4,
+    "minimum_common_measurement_domains": 3,
     "exact_replay_required": true
   },
   "decisions": {

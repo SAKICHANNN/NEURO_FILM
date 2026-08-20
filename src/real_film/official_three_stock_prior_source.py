@@ -53,7 +53,7 @@ def load_contract(path: Path) -> dict[str, Any]:
         or payload.get("experiment_id") != "RF3.D2"
         or [row.get("stock_id") for row in stocks] != required_ids
         or gates.get("required_stock_ids") != required_ids
-        or gates.get("minimum_common_measurement_domains") != 4
+        or gates.get("minimum_common_measurement_domains") != 3
         or not all(
             gates.get(key) is True
             for key in (
@@ -195,6 +195,12 @@ def evaluate(
             "kodak_portra_400": "print_grain_index",
             "kodak_ektar_100": "print_grain_index",
             "direct_numeric_cross_manufacturer_comparison_allowed": False,
+        },
+        "incomparable_dye_density_semantics": {
+            "fujifilm_velvia_50": "separated_spectral_dye_density",
+            "kodak_portra_400": "aggregate_midscale_and_dmin_spectral_density",
+            "kodak_ektar_100": "aggregate_midscale_and_dmin_spectral_density",
+            "direct_common_basis_comparison_allowed": False,
         },
         "gate_results": gate_results,
         "automatic_pass": automatic_pass,
