@@ -36,6 +36,17 @@ def _archive() -> bytes:
                 "user_id": "excluded-participant",
             }
         )
+        for collection in contract["source_roles"]["excluded_collections"][1:]:
+            rows.append(
+                {
+                    "collection": collection,
+                    "scene_id": f"{collection}-001",
+                    "left_style": "a",
+                    "right_style": "b",
+                    "choice": 1,
+                    "user_id": f"excluded-{collection}",
+                }
+            )
         bundle.writestr(
             "responses/raw/votes_items.jsonl",
             "".join(json.dumps(row) + "\n" for row in rows),

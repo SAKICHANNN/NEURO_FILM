@@ -72,6 +72,10 @@ def _audit_archive(archive: bytes, contract: dict[str, Any]) -> dict[str, Any]:
     processed_counts = Counter(
         key.split("-", 1)[0] if "-" in key else "unknown" for key in processed_scene_keys
     )
+    observed_vote_collections = {
+        str(row.get("collection")) for row in vote_rows if isinstance(row, dict)
+    }
+    known_collections = included_set | excluded_set
     retained = [
         row
         for row in vote_rows
@@ -129,6 +133,12 @@ def _audit_archive(archive: bytes, contract: dict[str, Any]) -> dict[str, Any]:
             sorted(structural_rows, key=lambda row: tuple(row.values()))
         ),
         "excluded_collection_vote_rows_persisted": excluded_retained,
+        "excluded_raw_vote_rows": sum(
+            str(row.get("collection")) in excluded_set
+            for row in vote_rows
+            if isinstance(row, dict)
+        ),
+        "unexpected_raw_vote_collection_count": len(observed_vote_collections - known_collections),
         "invalid_retained_vote_rows": invalid_rows,
         "raw_scene_or_user_ids_persisted": False,
         "raw_participant_values_persisted": False,
@@ -137,6 +147,7 @@ def _audit_archive(archive: bytes, contract: dict[str, Any]) -> dict[str, Any]:
             "included_scene_total_exact": sum(included_scene_counts.values())
             == roles["expected_included_scene_keys"],
             "excluded_collections_absent_from_retained_rows": excluded_retained == 0,
+            "raw_vote_collection_partition_exact": observed_vote_collections == known_collections,
             "all_included_vote_rows_structurally_valid": invalid_rows == 0 and bool(retained),
             "each_included_collection_has_votes_and_participants": all(
                 vote_counts[key] > 0 and participant_sets[key] for key in included
@@ -173,7 +184,8 @@ def evaluate(
         and checks["included_scene_total_exact"],
         "excluded_collections_absent_from_retained_rows": checks[
             "excluded_collections_absent_from_retained_rows"
-        ],
+        ]
+        and checks["raw_vote_collection_partition_exact"],
         "all_included_vote_rows_structurally_valid": checks[
             "all_included_vote_rows_structurally_valid"
         ],
