@@ -6,10 +6,15 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import sys
 from pathlib import Path
 from typing import Any
 
 from openpyxl import load_workbook
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from scripts.audit_u5_r2spcp0_metadata_source_lock import (
     ARCHIVE_URL,
