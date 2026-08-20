@@ -1,0 +1,53 @@
+{
+  "schema": "neuro-film.rf3-d1-three-stock-target-evidence-equalization-contract.v1",
+  "experiment_id": "RF3.D1",
+  "question": "Do current rights-cleared, provenance-bound observations provide comparable paired targets for Velvia 50, Portra 400 and Ektar 100 at one evidence level, sufficient to admit adaptive stock operators?",
+  "parents": [
+    {
+      "id": "rf3_d0",
+      "path": "docs/evidence/RF3_D0_THREE_STOCK_PROXY_BASELINE_RESULT.json",
+      "sha256": "314e3246b656b018c64b0dfce5bfbbf169eba69826d193de4d598422d0f60ff9"
+    },
+    {
+      "id": "sf1_0b",
+      "path": "configs/real_film_connected_stock_identifiability_decision_v1.json",
+      "sha256": "12a2c0dad47d366cf7e5233d2daacea5c818298210903b4586cad5a1cdd51dad"
+    },
+    {
+      "id": "sf1_3b",
+      "path": "configs/real_film_yfcc_shared_author_identifiability_decision_v1.json",
+      "sha256": "7bf673f3aeb1d796ded5849b12c7372cb3f53bee5feb7081b7be4982ac07497f"
+    },
+    {
+      "id": "portra_cham5",
+      "path": "docs/evidence/U5_R2CHAM5_PORTRA400_REGISTRATION_D0_RESULT.json",
+      "sha256": "4ba592ab35d54d47802323f57da89bca674d631f17fa7add600fd7b8acb34ef5"
+    },
+    {
+      "id": "velvia_p6y",
+      "path": "configs/u6_p6y_controlled_reversal_source_audit_decision_v1.json",
+      "sha256": "e9544a367cb1cd9870a97696d3aad3a29eecc116121a3e65af13a50dac75dbdd"
+    }
+  ],
+  "required_stock_ids": [
+    "fujifilm_velvia_50",
+    "kodak_portra_400",
+    "kodak_ektar_100"
+  ],
+  "admission_gates": {
+    "same_level_paired_targets_for_all_stocks": true,
+    "explicit_reuse_rights_for_all_target_pixels": true,
+    "independent_roll_process_scanner_holdout_for_all_stocks": true,
+    "zero_source_content_identifiability_failure": true
+  },
+  "forbidden_rescues": [
+    "treat unpaired stock-labelled photos as targets",
+    "treat manufacturer curves or metadata as RGB target truth",
+    "treat one unlicensed Portra session as transferable stock response",
+    "fit adaptive LUTs, retrieval, routers or K greater than 1 before admission",
+    "weaken rights, provenance, nuisance or holdout gates"
+  ],
+  "decision_if_pass": "OPEN_RF3_D2_PAIRED_STOCK_OPERATOR_COMPARISON",
+  "decision_if_fail": "FAIL_CLOSED_COMPARABLE_THREE_STOCK_TARGET_EVIDENCE_UNAVAILABLE",
+  "claim_ceiling": "Facts-only target-evidence admission decision for the current three-stock matrix. No pixel acquisition, render, fitting, training, stock-response, calibration, package, capability or product claim."
+}

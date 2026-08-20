@@ -1,0 +1,42 @@
+{
+  "schema": "neuro-film.rf3-d1-three-stock-target-evidence-equalization-evidence.v1",
+  "experiment_id": "RF3.D1",
+  "date": "2026-08-21",
+  "status": "FAIL_CLOSED",
+  "decision": "FAIL_CLOSED_COMPARABLE_THREE_STOCK_TARGET_EVIDENCE_UNAVAILABLE",
+  "bindings": {
+    "contract_sha256": "5344b6dbd77f9b276791f0bb1bec715608a6cba6b619aab883caa75a4b9c32a6",
+    "evaluator_sha256": "ab56655cfcb079289463064871f2e4a35df3e000b3179a324ec51d8f813df963",
+    "runner_sha256": "95b907d318463b3569ba7854fbe845b24801d045203a8ac15eed352718629f77",
+    "test_sha256": "1bf551201a7ec1ab385ad4cc2bc0997815cd6f21a9d2ca7dc4feecbdc99410af",
+    "formal_report_sha256": "a674df45686df80e168ee5a1f818a8ef3840b67ffaaf9b23fb313482c5e6b8f7",
+    "stable_evidence_id": "018c2aadb39656719e6902200ada875c67a85322a6111f6e0b71e5424fd0d687"
+  },
+  "formal_replay": {
+    "processes": 2,
+    "reports_byte_exact": true,
+    "output_root": "D:/_project_fallbacks/neuro_film_goal_019f4b76/rf3_d1",
+    "p_drive_writes": 0,
+    "d_drive_root_scatter_writes": 0
+  },
+  "admission_results": {
+    "same_level_paired_targets_for_all_stocks": false,
+    "explicit_reuse_rights_for_all_target_pixels": false,
+    "independent_roll_process_scanner_holdout_for_all_stocks": false,
+    "zero_source_content_identifiability_failure": false
+  },
+  "stock_findings": {
+    "fujifilm_velvia_50": "The controlled NTNU study remains papers-only: no public machine-readable film/scene pixel payload and no explicit pixel reuse rights.",
+    "kodak_portra_400": "One unlicensed same-session chart pair exists, but one roll with unknown process and scanner/print chain is not transferable stock response or an independent holdout.",
+    "kodak_ektar_100": "Current unpaired pools remain source/content-confounded; shared-author controls did not identify a stock signal and provide no paired target."
+  },
+  "execution_counts": {
+    "pixel_reads": 0,
+    "operator_fits": 0,
+    "renders": 0,
+    "training_rows": 0
+  },
+  "scientific_conclusion": "The present three-stock matrix cannot support a fair adaptive-operator comparison. Continuing with LUT capacity, retrieval, routing or latent K greater than 1 would optimize against unequal proxies rather than newly identifying film evidence. RF3 remains data-gated until a genuinely new rights-clear paired or capture-time observation supplies comparable targets and independent nuisance holdouts.",
+  "next_mainline": "Do not spend a candidate slot on another after-only or proxy-only stock algorithm. Continue the mature RAW/DNG/HDR/portable explicit-operator lane, or reopen RF3 only for a new rights-clear paired/capture-time cohort that changes at least one failed admission fact.",
+  "claim_ceiling": "Facts-only target-evidence admission closure for the current Velvia 50, Portra 400 and Ektar 100 matrix. No pixel, stock-response, calibration, package, capability or product claim."
+}

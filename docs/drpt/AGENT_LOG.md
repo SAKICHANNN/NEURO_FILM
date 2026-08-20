@@ -14474,3 +14474,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Propagation: retain the private Windows x64 pointwise ABI only. No spatial,
   full-renderer, mobile/Apple, package, public capability, calibration, stock
   or product claim opens.
+
+### 2026-08-21 - RF3.D1 closes unequal three-stock target evidence
+
+- Direction correction: before any adaptive LUT, retrieval, router or latent
+  mode work, bind the current Velvia 50, Portra 400 and Ektar 100 source facts
+  and require comparable paired targets, explicit pixel reuse rights,
+  independent nuisance holdouts and zero source/content-identifiability fail.
+- Two facts-only processes are byte exact at report SHA
+  `a674df45...e6b8f7`; pixel reads, fits, renders and training rows are all zero.
+- All four admission facts fail. Velvia remains papers-only without released
+  machine-readable controlled pixels; Portra is one unlicensed session with
+  unknown process/scan chain; Ektar remains unpaired and source/content
+  confounded.
+- Decision: `FAIL_CLOSED_COMPARABLE_THREE_STOCK_TARGET_EVIDENCE_UNAVAILABLE`.
+  RF3 stays data-gated. A later leaf must add rights-clear paired/capture-time
+  information; proxy-only algorithm capacity is not a valid rescue.
+- Evidence:
+  `docs/evidence/RF3_D1_THREE_STOCK_TARGET_EVIDENCE_EQUALIZATION_RESULT.json`.
