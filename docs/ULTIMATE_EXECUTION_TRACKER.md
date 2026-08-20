@@ -34,6 +34,17 @@ formal `K=1` branch and the separation between observed evidence and latent
 inference. No current stock has proved multiple transferable modes; unpaired
 digital-to-film operator identification remains unresolved.
 
+**Bounded final-cycle authority, 2026-08-21:** indefinite universal after-only
+single-reference shared-bundle search is closed. Only a new rights-clear
+paired/capture-time/physical observation can open a maximum three-candidate
+fresh natural cycle. All three failures close automatic single-reference
+product work while retaining paired-metadata features and the
+RAW/DNG/HDR/portable explicit-operator toolchain. SF3.A0 is protocol-ready but
+currently has no admitted rows, so the candidate counter remains `0/3`; an
+after-only architecture or procedural self-supervision paper cannot increment
+or reset it. The exact rule is in
+`docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` section 1.1.
+
 **Autonomy invariant**: the active no-data Roll2Film and Style-safe work cannot
 depend on the owner supplying images, film/digital pairs, per-image labels, new
 preference votes or manual annotation. Public online data is an allowed source

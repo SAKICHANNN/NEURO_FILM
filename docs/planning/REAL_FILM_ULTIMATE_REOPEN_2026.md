@@ -43,12 +43,40 @@ bounded strength. The complete conditional gates and observed/latent ledger
 separation live in `docs/planning/LATENT_STOCK_MODE_PROGRAM_2026.md` and
 `docs/data/LATENT_STOCK_MODE_EVIDENCE_REGISTRY.md`.
 
+### 1.1 Bounded final-cycle correction (2026-08-21)
+
+The programme no longer treats repeated search for a universal after-only,
+single-reference shared bundle as an open-ended mainline. A new scientific
+candidate is ready only when it adds a genuinely identifying observation:
+rights-clear paired measurements, independently observed capture/process/scan
+metadata, or an equivalent physical measurement unavailable to the closed
+after-only families. A newer encoder, larger LUT bank, prompt, router or
+capacity increase without such information does not qualify.
+
+After a qualifying source passes the SF3 acquisition and pixel-integrity
+gates, at most three materially different candidates may be scored on fresh
+natural group-isolated cohorts. Each must beat the strongest same-budget
+explicit baseline materially, pass full severe-artifact and tail gates, and
+retain viable rights, package, schema and runtime costs. Three failures close
+automatic single-reference product work; the retained product/research assets
+are paired-metadata features and the RAW/DNG/HDR/portable explicit-operator
+toolchain. Mature engineering conformance may continue independently, but it
+does not consume or reset this scientific budget.
+
+The August 2026 [*Deep Analog* paper](https://arxiv.org/abs/2608.14702) is
+current context, not a candidate under this rule: its reported colour training
+is procedurally self-supervised, its
+[public repository](https://github.com/EtonMu/deep-analog) withholds trained
+checkpoints and data, and the repository expressly grants no implementation or
+patent licence. It therefore adds no eligible real-film observation and does
+not reopen the after-only family.
+
 The first stock-first research milestone is at least three distinguishable,
 transferable `real-film-derived/<stock>` experts plus one independent
 historical/unknown expert. It is a milestone, not a stopping condition; the
 programme continues to add as many scientifically eligible stocks as practical.
 
-### 1.1 Primary class and nested nuisance contract
+### 1.2 Primary class and nested nuisance contract
 
 The highest-level training/product class is `film_stock_id`: manufacturer,
 product line, nominal ISO, negative/reversal/motion/B&W type and, when

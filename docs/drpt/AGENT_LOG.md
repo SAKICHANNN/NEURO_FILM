@@ -14532,3 +14532,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   inputs, so large scans stay on the P-backed logical data root and physical
   drive paths never enter the manifest. Ten focused and 18 adjacent tests
   pass. No pixels were decoded and fitting remains closed until real data pass.
+
+### 2026-08-21 - Ultimate adopts a bounded final scientific cycle
+
+- Closed indefinite universal after-only single-reference bundle search as a
+  scheduling pattern. Only new rights-clear paired, capture-time or physical
+  observations can open scientific candidates.
+- After SF3 data and integrity admission, at most three materially distinct
+  fresh-natural candidates may run; three failures close the automatic
+  single-reference product while retaining paired-metadata and explicit
+  RAW/DNG/HDR/portable tooling. Current counter is `0/3` because SF3 has no
+  admitted rows.
+- Latest *Deep Analog* was audited but not implemented: procedural
+  self-supervision, withheld checkpoints/data and explicit no-licence/patent
+  boundaries add no eligible film observation.
