@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2repid9b-original-acquisition-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2REPID9B",
+  "execution_commit": "746dbc4b",
+  "parent_manifest_sha256": "3050cafda59efaa407f6a81a1c183537b6dc569d56299d22583b8603db8b12e7",
+  "parent_member_identity_sha256": "79889a4e8b7897e6c57a31dd564b1c914f68c2be97f61e146a16929d881a96da",
+  "formal_report_sha256": "d516d9873041c05f5b7a2eccfb062fb342043cd7666c1d5daf2feadd9a976f1b",
+  "formal_report_replay_sha256": "d516d9873041c05f5b7a2eccfb062fb342043cd7666c1d5daf2feadd9a976f1b",
+  "stable_evidence_id": "sha256:bb1e953ba97074305a315a0a86ae6bbe0e9b92406ec7bd07cde20410c8e31cc1",
+  "inventory": {
+    "scene_count": 104,
+    "member_count": 104,
+    "total_bytes": 10582439,
+    "role_counts": {
+      "fit": 80,
+      "calibration": 24
+    },
+    "all_exact_lfs_sha256": true,
+    "all_jpeg_rgb_minimum_256": true,
+    "icc_identity_recorded": true
+  },
+  "information_flow": {
+    "sealed_requests": 0,
+    "operator_fits": 0,
+    "output_root_was_explicit_project_isolated_fallback": true,
+    "drive_literal_in_code_or_config": false
+  },
+  "execution_integrity_note": {
+    "initial_no_report_attempt": "transient TLS EOF after partial exact downloads",
+    "scientific_inputs_roles_hashes_or_gates_changed": false,
+    "additive_change": "bounded transport-only retries after 0.5/1/2/4 seconds",
+    "identity_or_decode_failures_retried": false,
+    "forward_reverse_reports_byte_exact": true
+  },
+  "gates": {
+    "scene_count": true,
+    "member_count": true,
+    "total_bytes": true,
+    "role_counts": true,
+    "sealed_requests_zero": true,
+    "operator_fits_zero": true,
+    "replay_exact": true
+  },
+  "decision": "open_repid_reference_only_bounded_parameter_predictor_d0",
+  "claim_ceiling": "Exact internal-research fit/calibration original-member acquisition and JPEG decode preflight only; no operator, preference model, package, capability or product result."
+}

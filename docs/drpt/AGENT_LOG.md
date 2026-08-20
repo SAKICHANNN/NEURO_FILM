@@ -14044,6 +14044,24 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   reference-only bounded-operator predictor D0.
 - Evidence: `docs/evidence/U5_R2REPID9A_ORIGINAL_MEMBER_LOCK_RESULT.json`.
 
+### 2026-08-20 - U5.R2REPID9B acquires exact fit/calibration originals
+
+- Acquired all 104 REPID9A-bound professional originals into the explicit
+  project-isolated D fallback while the P filesystem remains dirty: 80 fit,
+  24 calibration, 10,582,439 bytes. Every member matches its frozen LFS
+  SHA-256 and decodes as RGB JPEG at the required geometry.
+- The first attempt emitted no report after a transient TLS EOF. A bounded
+  execution-only retry policy was added for transport failures; identity and
+  decode failures remain immediate. No role, byte identity, scientific gate
+  or claim changed.
+- Forward and reverse resume runs are byte exact at report SHA-256
+  `d516d987...a976f1b`; stable evidence identity is
+  `bb1e953b...8e31cc1`. Sealed requests and operator fits remain zero.
+- This opens only the prospectively frozen reference-only bounded explicit
+  operator parameter predictor D0. It is not operator, preference, package,
+  capability or product evidence.
+- Evidence: `docs/evidence/U5_R2REPID9B_ORIGINAL_ACQUISITION_RESULT.json`.
+
 ### 2026-08-20 - U6.P6AS closes the current public repeat-scan source gate
 
 - Queried the current official APPLAUSE DR4 and HDAP TAP catalogues without
