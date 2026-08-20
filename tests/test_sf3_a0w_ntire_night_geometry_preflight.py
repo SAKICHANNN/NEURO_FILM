@@ -67,6 +67,26 @@ def test_structural_view_reconstructs_fixed_geometry() -> None:
     assert np.isfinite(view).all()
 
 
+def test_structural_view_accepts_official_rotated_orientation() -> None:
+    raw = np.arange(64 * 64, dtype=np.uint16).reshape(64, 64) % 900 + 64
+    metadata = _metadata()
+    metadata["orientation"] = "Rotate 90 CW"
+    geometry = {
+        "projective_pre_resize_factor": 1,
+        "projective_matrix": np.eye(3).tolist(),
+        "projective_output_width": 32,
+        "projective_output_height": 32,
+        "horizontal_flip": False,
+        "pre_bounds_resize_width": 16,
+        "pre_bounds_resize_height": 16,
+        "upper_crop_start": 0,
+        "final_width": 16,
+        "final_height": 16,
+    }
+    view = structural_view(raw, metadata, geometry)
+    assert view.shape == (16, 16, 3)
+
+
 def test_sift_identity_beats_unrelated_texture() -> None:
     rng = np.random.default_rng(20260821)
     base = (rng.random((256, 256)) * 255).astype(np.uint8)

@@ -26,6 +26,17 @@ class NTIRENightGeometryPreflightError(ValueError):
 
 RangeReader = Callable[[str, int, int, int], bytes]
 
+OFFICIAL_ORIENTATION_STR_TO_ID = {
+    "Horizontal (normal)": 1,
+    "Mirror horizontal": 2,
+    "Rotate 180": 3,
+    "Mirror vertical": 4,
+    "Mirror horizontal and rotate 270 CW": 5,
+    "Rotate 90 CW": 6,
+    "Mirror horizontal and rotate 90 CW": 7,
+    "Rotate 270 CW": 8,
+}
+
 
 def _decode(payload: bytes, flags: int) -> np.ndarray:
     image = cv2.imdecode(np.frombuffer(payload, dtype=np.uint8), flags)
@@ -99,6 +110,28 @@ def structural_view(
     if np.any(neutral <= 0):
         raise NTIRENightGeometryPreflightError("as-shot neutral is nonpositive")
     rgb = np.clip(rgb / neutral.reshape(1, 1, 3), 0.0, 1.0)
+
+    orientation = metadata["orientation"]
+    if isinstance(orientation, str):
+        orientation = OFFICIAL_ORIENTATION_STR_TO_ID.get(orientation)
+    if orientation == 2:
+        rgb = cv2.flip(rgb, 0)
+    elif orientation == 3:
+        rgb = cv2.rotate(rgb, cv2.ROTATE_180)
+    elif orientation == 4:
+        rgb = cv2.flip(rgb, 1)
+    elif orientation == 5:
+        rgb = cv2.flip(rgb, 0)
+        rgb = cv2.rotate(rgb, cv2.ROTATE_90_COUNTERCLOCKWISE)
+    elif orientation == 6:
+        rgb = cv2.rotate(rgb, cv2.ROTATE_90_CLOCKWISE)
+    elif orientation == 7:
+        rgb = cv2.flip(rgb, 0)
+        rgb = cv2.rotate(rgb, cv2.ROTATE_90_CLOCKWISE)
+    elif orientation == 8:
+        rgb = cv2.rotate(rgb, cv2.ROTATE_90_COUNTERCLOCKWISE)
+    elif orientation != 1:
+        raise NTIRENightGeometryPreflightError("orientation mapping differs")
 
     factor = int(geometry["projective_pre_resize_factor"])
     resized = cv2.resize(
@@ -250,11 +283,43 @@ def run_preflight(
     reverse_row_order: bool = False,
     range_reader: RangeReader = http_range_get,
 ) -> dict[str, Any]:
-    config_bytes = config_path.read_bytes()
-    config = json.loads(config_bytes)
-    if config.get("schema") != (
+    contract_bytes = config_path.read_bytes()
+    contract = json.loads(contract_bytes)
+    contract_schema = contract.get("schema")
+    base_contract_sha256 = None
+    if contract_schema == (
+        "neuro-film.sf3-a0x-ntire-night-official-orientation-preflight-contract.v1"
+    ):
+        base_path = config_path.parents[1] / contract["base_contract"]["path"]
+        base_bytes = base_path.read_bytes()
+        base_contract_sha256 = sha256_bytes(base_bytes)
+        if base_contract_sha256 != contract["base_contract"]["sha256"]:
+            raise NTIRENightGeometryPreflightError("base contract identity differs")
+        config = json.loads(base_bytes)
+        config["experiment_id"] = contract["experiment_id"]
+        config["metadata_contract"]["orientation_allowed"] = [
+            *contract["allowed_numeric_orientations"],
+            *contract["official_orientation_mapping"].keys(),
+        ]
+        config["decision_if_pass"] = contract["decision_if_pass"]
+        config["claim_ceiling"] = contract["claim_ceiling"]
+        config["bounded_final_candidate_counter_before"] = contract[
+            "bounded_final_candidate_counter_before"
+        ]
+        config["bounded_final_candidate_counter_after"] = contract[
+            "bounded_final_candidate_counter_after"
+        ]
+        report_schema = (
+            "neuro-film.sf3-a0x-ntire-night-official-orientation-preflight-report.v1"
+        )
+    elif contract_schema == (
         "neuro-film.sf3-a0w-ntire-night-geometry-preflight-contract.v1"
     ):
+        config = contract
+        report_schema = (
+            "neuro-film.sf3-a0w-ntire-night-geometry-preflight-report.v1"
+        )
+    else:
         raise NTIRENightGeometryPreflightError("contract schema differs")
     by_name, archive_bytes, central_hashes = _members(config, range_reader)
     selected = config["rows"]["selected_ids"]
@@ -367,9 +432,10 @@ def run_preflight(
     }
     passed = all(gates.values())
     report = {
-        "schema": "neuro-film.sf3-a0w-ntire-night-geometry-preflight-report.v1",
+        "schema": report_schema,
         "experiment_id": config["experiment_id"],
-        "contract_sha256": sha256_bytes(config_bytes),
+        "contract_sha256": sha256_bytes(contract_bytes),
+        "base_contract_sha256": base_contract_sha256,
         "official_repository": config["official_baseline"]["repository"],
         "official_commit": config["official_baseline"]["commit"],
         "central_sha256": central_hashes,
