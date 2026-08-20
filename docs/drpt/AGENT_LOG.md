@@ -14029,3 +14029,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   evidence rejects free quadratic capacity as a repair without invalidating
   the narrower 7/9 self-canonical identification signal.
 - Evidence: `docs/evidence/U5_R2REPID8_CANONCGT_EXTENDED_QUADRATIC_INVERSE_RESULT.json`.
+
+### 2026-08-20 - U6.P6AS closes the current public repeat-scan source gate
+
+- Queried the current official APPLAUSE DR4 and HDAP TAP catalogues without
+  requesting pixels. All 15,290 Epson same-plate multi-row groups are `_x/_y`
+  mosaics, and all 4,101 TPS groups are `_01.._05` mosaics; neither population
+  contains an independent repeat acquisition.
+- The published Heidelberg/Sonneberg comparison reports 61 two-scanner Bruce
+  plates. HDAP exposes 63 unique Gamma Cyg plate IDs in the matching time
+  window, but only the Heidelberg products; the exact 61-ID subset and the
+  corresponding Sonneberg products are not publicly mapped.
+- Close this source leaf before download. Do not treat mosaic pieces or HDAP
+  duplicate access aliases as repeated scans. Further scanner/material
+  separation requires an exact rights-cleared crossed-scan mapping.
+- Evidence: `docs/evidence/U6_P6AS_PUBLIC_REPEAT_SCAN_SOURCE_AUDIT_RESULT.json`.

@@ -1,0 +1,82 @@
+{
+  "schema": "neuro_film.u6_p6as_public_repeat_scan_source_audit_evidence.v1",
+  "node": "U6.P6AS",
+  "audit_date": "2026-08-20",
+  "question": "Do current public primary-source catalogues expose independently repeated scans of the same photographic plate that can separate material structure from scanner response?",
+  "primary_sources": [
+    {
+      "title": "APPLAUSE DR4 scan table",
+      "url": "https://www.plate-archive.org/metadata/applause_dr4/scan/",
+      "tap_url": "https://www.plate-archive.org/tap/sync",
+      "rights": "CC0-1.0"
+    },
+    {
+      "title": "A study of photometric errors on two different photographic plate scans",
+      "url": "https://arxiv.org/abs/2312.02529",
+      "reported_same_plate_scans": 61,
+      "reported_scanners": [
+        "Heidelberg 2540 dpi 16-bit",
+        "Sonneberg 1200 dpi 16-bit"
+      ]
+    },
+    {
+      "title": "HDAP full-plate service",
+      "url": "https://dc.zah.uni-heidelberg.de/lswscans/res/positions/fullplates/info",
+      "tap_url": "https://dc.zah.uni-heidelberg.de/tap/sync",
+      "rights": "CC0-1.0",
+      "data_updated": "2026-01-16"
+    }
+  ],
+  "applause_catalogue_audit": {
+    "pixel_requests": 0,
+    "scanners": [
+      {
+        "scanner": "Epson Expression 10000XL",
+        "scan_rows": 100652,
+        "physical_plate_groups": 85362,
+        "multi_row_groups": 15290,
+        "xy_segment_groups": 15290,
+        "independent_repeat_groups": 0
+      },
+      {
+        "scanner": "Tautenburger Plattenscanner TPS",
+        "scan_rows": 20505,
+        "physical_plate_groups": 4101,
+        "multi_row_groups": 4101,
+        "five_segment_groups": 4101,
+        "independent_repeat_groups": 0
+      }
+    ],
+    "classification_rules": {
+      "xy_segments": "exactly two rows whose filenames end _x.fits and _y.fits",
+      "five_segments": "exactly five rows whose filenames end _01.fits through _05.fits",
+      "other_multirow_pattern_count": 0
+    },
+    "interpretation": "Every apparent same-plate multi-scan group in the two relevant scanner families is a spatial mosaic, not an independent repeated acquisition."
+  },
+  "heidelberg_sonneberg_pair_audit": {
+    "pixel_requests": 0,
+    "paper_reported_pair_count": 61,
+    "hdap_query": "SELECT plateID,object,dateObs,accref,accsize,pub_did FROM lsw.plates WHERE (object='Gamma Cyg' OR object='Gammy Cyg') AND 1=ivo_nocasematch(instId,'%Bruce%') AND dateObs>=36318 AND dateObs<36408 ORDER BY dateObs,plateID,accref",
+    "hdap_csv_sha256": "02fffd93229c88ca70646e5f9b7ec3ee284df79df7f57fffcb49c97b6976d585",
+    "hdap_rows": 71,
+    "hdap_unique_plate_ids": 63,
+    "duplicate_access_alias_ids": 8,
+    "public_heidelberg_products_present": true,
+    "public_sonneberg_products_or_plate_mapping_present": false,
+    "exact_paper_61_plate_id_subset_published": false,
+    "interpretation": "The paper establishes the existence of paired scanner acquisitions, but the current public service exposes only the Heidelberg products and does not identify the exact 61-row subset or the corresponding Sonneberg files."
+  },
+  "gate_results": {
+    "public_independent_repeat_pixels": false,
+    "same_physical_plate_identity": true,
+    "two_scanner_product_identity": false,
+    "exact_pair_mapping": false,
+    "rights_clear_for_available_public_products": true,
+    "pixel_download_allowed": false
+  },
+  "automatic_pass": false,
+  "decision": "FAIL_CLOSED_NO_PUBLICLY_MAPPED_INDEPENDENT_REPEAT_SCAN_PAIR",
+  "next_hypothesis": "Require an independently mapped same-plate repeat or crossed scanner acquisition with exact product identities; do not reinterpret APPLAUSE mosaic segments or HDAP URL aliases as repeats.",
+  "claim_ceiling": "Current public-source availability audit only; not scanner calibration, film-grain separation, material NPS, photographic-film stock response, or product evidence."
+}
