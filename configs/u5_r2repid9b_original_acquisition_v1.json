@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2repid9b-original-acquisition-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2REPID9B",
+  "parent": {
+    "manifest_path": "manifests/u5_r2repid9a_original_members_v1.json",
+    "manifest_sha256": "3050cafda59efaa407f6a81a1c183537b6dc569d56299d22583b8603db8b12e7",
+    "evidence_path": "docs/evidence/U5_R2REPID9A_ORIGINAL_MEMBER_LOCK_RESULT.json",
+    "required_decision": "open_exact_repid_fit_calibration_original_acquisition",
+    "member_identity_sha256": "79889a4e8b7897e6c57a31dd564b1c914f68c2be97f61e146a16929d881a96da"
+  },
+  "acquisition": {
+    "resolve_base": "https://huggingface.co/datasets/vsevolodpl/REPID/resolve/6a16a20a0b7122ad66d1f632af1586d45b443aa9",
+    "maximum_workers": 4,
+    "temporary_suffix": ".part",
+    "output_root_cli_required": true,
+    "durable_p_write": false
+  },
+  "decode_preflight": {
+    "required_container": "JPEG",
+    "required_mode": "RGB",
+    "minimum_dimension": 256,
+    "icc_presence_recorded_not_interpreted": true
+  },
+  "gates": {
+    "required_scene_count": 104,
+    "required_member_count": 104,
+    "required_total_bytes": 10582439,
+    "sealed_requests": 0,
+    "operator_fits": 0
+  },
+  "decision_if_pass": "open_repid_reference_only_bounded_parameter_predictor_d0",
+  "claim_ceiling": "Exact internal-research fit/calibration original-member acquisition and JPEG decode preflight only; no operator, preference model, package, capability or product result."
+}
