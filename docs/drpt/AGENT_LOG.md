@@ -14509,3 +14509,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   manifest opens only file/pixel/alignment/rights integrity; fitting stays
   closed. Evidence:
   `docs/evidence/SF3_A0_THREE_STOCK_CONTROLLED_ACQUISITION_PROTOCOL_RESULT.json`.
+
+### 2026-08-21 - U6.P8BO1 closes Android runtime conformance
+
+- Finished the already-started fixed P8BO strength-1.0 Android runtime leaf
+  before returning execution priority to the three-stock data mainline.
+- Four fresh probes across two wipe-data Android 14 x86_64 cold boots are
+  internally exact; finite, RMSE, source-unchanged, invalid-input atomicity,
+  runtime-property and owned-process cleanup gates pass.
+- The frozen maximum absolute error gate fails at `7.614493e-6` versus
+  `2e-6`, despite RMSE `1.301927e-7` passing. No tolerance or rerun rescue is
+  allowed. Decision: retain compile/link-only and make no Android runtime,
+  package, media, stock or product claim.
+- Evidence:
+  `docs/evidence/U6_P8BO1_ANDROID_NATIVE_STANDARD_RUNTIME_RESULT.json`.

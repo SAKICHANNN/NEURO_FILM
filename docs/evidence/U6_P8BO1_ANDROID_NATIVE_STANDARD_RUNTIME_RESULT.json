@@ -1,0 +1,47 @@
+{
+  "schema": "neuro_film.u6_p8bo1_android_native_standard_runtime_evidence.v1",
+  "experiment_id": "u6.p8bo1-android-native-standard-runtime-v1",
+  "status": "fail-retain-compile-link-only",
+  "contract_commit": "6b5e18e1c69daf8a618510619549ec29788c7027",
+  "implementation_commits": [
+    "2e718fbdf01f40c9b17f49bd567ffddb677db69f",
+    "cb3f62920cdfcf3c74ad128a18ab7f6185af1e9f"
+  ],
+  "contract_sha256": "dad7d7b939b6d144ec5becd0e322a7047764668d0f84f06b20c8df72bebdee3e",
+  "evaluator_sha256": "3802691defbfa8296eb19bb7bb7c356a0cfe704361434241896dab2d5f23e7d8",
+  "probe_source_sha256": "0f1a2c58dfa8b53191ed5f23487feb018ca7581d5df235fedf0b175df59ccbbe",
+  "runner_sha256": "f2091cb723b9a8b7bb944b4dd7ca8676c37a10dcd8fc8a8905a6e2825b029aad",
+  "test_sha256": "99dd1b3e402fc19e5072ab78a8b4846a3b450c58d60de4d5172f6247deee0cde",
+  "contract_test_sha256": "6290932d8ddaecaf35fccc29a76c717a21bccf803ab2a35a3a47ef187a13f7cf",
+  "formal_report_path": "outputs/eval/u6_p8bo1_android_native_standard_runtime_v1/report_port5594_clean.json",
+  "formal_report_sha256": "97281ff8000adc6d9a9884d2c5a070d7396dfa08c7865d5fe6728c26cfa03aa5",
+  "stable_evidence_id": "0072654706137298050796fb59b50c962f17e648942c77b1d889097a070ad57d",
+  "runtime": {
+    "api_level": 34,
+    "abi": "x86_64",
+    "model": "sdk_gphone64_x86_64",
+    "build_fingerprint": "google/sdk_gphone64_x86_64/emu64xa:14/UE1A.230829.050/12077443:userdebug/dev-keys",
+    "wipe_data_cold_boots": 2,
+    "fresh_probe_processes": 4,
+    "owned_process_cleanup": true
+  },
+  "result": {
+    "oracle_output_sha256": "916858fc48cce6a8214a8acdb08a044fbbeaec1392bdcae186ef388ff5350950",
+    "android_output_sha256": "c1afe62bb1216428d839aae18eb1c1709a1f727af04f190bb7a9c68b58cd555e",
+    "maximum_absolute_error": 0.000007614493370056152,
+    "maximum_absolute_error_limit": 0.000002,
+    "rmse": 0.00000013019267394825888,
+    "rmse_limit": 0.0000005,
+    "replay_exact": true,
+    "all_finite": true,
+    "source_unchanged_and_invalid_atomic": true,
+    "automatic_pass": false
+  },
+  "invalid_attempts_before_formal_result": [
+    "same-AVD process collision before probe execution",
+    "concurrent exact-process-ownership implementation transition before probe execution"
+  ],
+  "decision": "retain_p8bo_compile_link_only_without_android_runtime_claim",
+  "interpretation": "Four fresh Android probe processes across two wipe-data cold boots are internally exact and pass RMSE, finite, replay, input-atomicity and cleanup gates, but the frozen maximum-absolute-error gate fails. The Android runtime claim remains closed without threshold rescue.",
+  "claim_ceiling": "Private fixed-fixture Android 14 x86_64 negative conformance evidence. No Android runtime retention, physical arm64, Apple runtime, JNI/app, arbitrary media, calibrated stock, package, capability or product claim."
+}
