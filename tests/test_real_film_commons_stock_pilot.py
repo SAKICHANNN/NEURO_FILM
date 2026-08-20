@@ -13,6 +13,7 @@ from src.real_film.commons_stock_pilot import (
     download_selected_rows,
     merge_metadata_snapshots,
     normalize_author,
+    resolve_download_url,
 )
 
 
@@ -151,3 +152,23 @@ def test_merge_metadata_snapshots_keeps_only_allowed_stocks() -> None:
     )
     assert [row["film_stock_id"] for row in merged["categories"]] == ["a", "c"]
     assert merged["image_payloads_downloaded_or_decoded"] is False
+
+
+def test_unscaled_commons_tracking_url_becomes_real_bounded_thumbnail() -> None:
+    config = _config()
+    config["download_limits"]["thumbnail_unscaled_max_width"] = 960
+    row = _row(1, "author", "user")
+    row.update(
+        {
+            "mime": "image/jpeg",
+            "width": 1058,
+            "derivative_1600_url": (
+                "https://upload.wikimedia.org/wikipedia/commons/1/14/example.jpg"
+                "?utm_source=commons.wikimedia.org&utm_content=thumbnail_unscaled"
+            ),
+        }
+    )
+    assert resolve_download_url(row, config) == (
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/example.jpg/"
+        "960px-example.jpg"
+    )

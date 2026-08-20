@@ -11,6 +11,7 @@ from collections import Counter, defaultdict
 from collections.abc import Mapping, Sequence
 from pathlib import Path
 from typing import Any
+from urllib.parse import unquote, urlsplit, urlunsplit
 
 import requests
 from PIL import Image, ImageDraw, ImageOps, ImageStat
@@ -21,6 +22,31 @@ from src.real_film.fsa_owi_pilot import dhash64, hamming64
 
 class CommonsStockPilotError(ValueError):
     """Raised when the frozen SF0.5 contract fails closed."""
+
+
+def resolve_download_url(row: Mapping[str, Any], config: Mapping[str, Any]) -> str:
+    """Replace Commons' non-thumbnail tracking URL with a real bounded JPEG thumb."""
+
+    source = str(row["derivative_1600_url"])
+    cap = config.get("download_limits", {}).get("thumbnail_unscaled_max_width")
+    if cap is None or "utm_content=thumbnail_unscaled" not in source:
+        return source
+    parsed = urlsplit(source)
+    prefix = "/wikipedia/commons/"
+    if parsed.scheme != "https" or parsed.netloc != "upload.wikimedia.org":
+        raise CommonsStockPilotError("unscaled Commons URL host drifted")
+    if not parsed.path.startswith(prefix) or str(row.get("mime")) != "image/jpeg":
+        raise CommonsStockPilotError("unsupported unscaled Commons payload")
+    relative = parsed.path[len(prefix) :]
+    parts = relative.split("/")
+    if len(parts) != 3 or any(not part for part in parts):
+        raise CommonsStockPilotError("unscaled Commons path drifted")
+    filename = parts[-1]
+    width = min(int(cap), int(row["width"]) - 1)
+    if width < 1 or unquote(filename).casefold().endswith((".jpg", ".jpeg")) is False:
+        raise CommonsStockPilotError("invalid bounded Commons JPEG thumbnail")
+    thumbnail_path = f"{prefix}thumb/{relative}/{width}px-{filename}"
+    return urlunsplit((parsed.scheme, parsed.netloc, thumbnail_path, "", ""))
 
 
 def sha256_bytes(payload: bytes) -> str:
@@ -187,7 +213,7 @@ def _verify_image_payload(
             return {"width": width, "height": height, "mode": image.mode, "format": image.format}
     except CommonsStockPilotError:
         raise
-    except Exception as exc:  # noqa: BLE001 - fail closed on any decoder failure
+    except Exception as exc:
         raise CommonsStockPilotError("downloaded derivative failed Pillow decode") from exc
 
 
@@ -232,10 +258,11 @@ def download_selected_rows(
         else:
             response = None
             error: Exception | None = None
+            effective_url = resolve_download_url(row, config)
             for attempt in range(retries):
                 try:
                     response = client.get(
-                        str(row["derivative_1600_url"]),
+                        effective_url,
                         timeout=timeout_seconds,
                         stream=True,
                     )
@@ -301,6 +328,7 @@ def download_selected_rows(
             "original_url": row["original_url"],
             "api_original_sha1_base36": row["api_sha1_base36"],
             "derivative_url": row["derivative_1600_url"],
+            "effective_download_url": resolve_download_url(row, config),
             "local_path": relative.as_posix(),
             "bytes": len(payload),
             "sha256": sha256_bytes(payload),
