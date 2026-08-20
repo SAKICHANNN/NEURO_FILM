@@ -53,6 +53,14 @@
   "controls": {
     "strongest_legitimate": ["per-channel-monotone-shaper", "bounded-logit-affine", "identity-source"],
     "identification": ["cyclic-wrong-target-same-shaped-lut"],
+    "bounded_logit_affine": {
+      "ridge_alpha": 0.01,
+      "minimum_matrix_determinant": 0.01,
+      "minimum_matrix_singular_value": 0.05,
+      "maximum_matrix_condition_number": 20.0,
+      "identity_dose_binary_search_iterations": 30
+    },
+    "cyclic_wrong_target_mapping": "next-fit-id-in-listed-order-with-wraparound",
     "no_content_router": true,
     "no_per_scene_operator": true
   },

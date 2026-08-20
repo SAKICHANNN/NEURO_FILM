@@ -8,6 +8,14 @@ pair-specific natural RAW/Sony pixels with fixed official geometry. It is not
 an after-only reference inversion, metadata-only WB rescue, content router or
 per-scene operator.
 
+Prescore amendment, still before any SF3.A0Y member or pixel read: the
+bounded-logit-affine control uses ridge `0.01`, then the largest identity-to-fit
+dose found by 30 fixed binary-search iterations subject to determinant
+`>=0.01`, minimum singular value `>=0.05`, and condition number `<=20`. The
+cyclic-wrong-target shaped-LUT control maps every fit source to the next fit ID
+in the listed role order, with wraparound. These rules are frozen with the
+other controls and are not selected from calibration results.
+
 All 56 IDs are fresh relative to SF3.A0V/A0X and split before acquisition into
 32 fit, 12 calibration and 12 sealed-confirmation scenes. The cache contains
 only 256x256 aligned source/target arrays under the repo-relative P-backed data
