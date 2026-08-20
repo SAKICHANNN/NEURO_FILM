@@ -15,7 +15,7 @@ import os
 import subprocess
 import sys
 import types
-from collections.abc import Iterable
+from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -465,8 +465,134 @@ def _row_payload(
     }
 
 
-def _common_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description=__doc__)
+def audit_score_locks(
+    contract_path: Path, score_lock_paths: Sequence[Path]
+) -> dict[str, Any]:
+    contract = _load_json(contract_path)
+    if len(score_lock_paths) != 2:
+        raise ValueError("exactly two blind score locks are required")
+    locks = [_load_json(path) for path in score_lock_paths]
+    contract_sha = sha256_file(contract_path)
+    for lock in locks:
+        if lock.get("schema") != SCORE_SCHEMA or lock.get("smoke") is not False:
+            raise ValueError("formal score lock schema/status mismatch")
+        if lock.get("status") != "BLIND_SCORE_LOCK_COMPLETE":
+            raise ValueError("incomplete blind score lock")
+        if lock.get("contract_sha256") != contract_sha:
+            raise ValueError("score lock/contract mismatch")
+        inventory = lock.get("inventory", {})
+        if (
+            inventory.get("private_mapping_reads") != 0
+            or inventory.get("direct_result_reads") != 0
+        ):
+            raise ValueError("blind execution order was violated")
+        if (
+            inventory.get("primary_count") != 72
+            or inventory.get("wrong_source_count") != 24
+        ):
+            raise ValueError("formal score lock inventory mismatch")
+    if {lock.get("order") for lock in locks} != {"canonical", "reverse"}:
+        raise ValueError("canonical and reverse enumeration locks are required")
+
+    def keyed(lock: dict[str, Any], field: str) -> dict[str, dict[str, Any]]:
+        result = {row["row_id"]: row for row in lock[field]}
+        if len(result) != len(lock[field]):
+            raise ValueError(f"duplicate {field} row")
+        return result
+
+    primary = [keyed(lock, "primary") for lock in locks]
+    wrong = [keyed(lock, "wrong_source") for lock in locks]
+    if primary[0].keys() != primary[1].keys() or wrong[0].keys() != wrong[1].keys():
+        raise ValueError("fresh-process score inventory mismatch")
+
+    maximum_error = 0.0
+    all_finite = True
+    identity_exact = True
+    for first_rows, second_rows in ((primary[0], primary[1]), (wrong[0], wrong[1])):
+        for row_id in sorted(first_rows):
+            first, second = first_rows[row_id], second_rows[row_id]
+            identity_fields = (
+                "dataset",
+                "source_id",
+                "presentation_id",
+                "role",
+                "label",
+                "source_kind",
+                "source_sha256",
+                "candidate_sha256",
+                "source_geometry",
+                "candidate_geometry",
+            )
+            identity_exact = identity_exact and all(
+                first[field] == second[field] for field in identity_fields
+            )
+            for field in ("mean", "log_sigma"):
+                first_value = float(first[field])
+                second_value = float(second[field])
+                all_finite = (
+                    all_finite
+                    and math.isfinite(first_value)
+                    and math.isfinite(second_value)
+                )
+                maximum_error = max(maximum_error, abs(first_value - second_value))
+
+    rankings_exact = True
+    grouped: dict[tuple[str, str], list[str]] = {}
+    for row_id, row in primary[0].items():
+        grouped.setdefault((row["dataset"], row["presentation_id"]), []).append(row_id)
+    for row_ids in grouped.values():
+        first_rank = sorted(
+            row_ids, key=lambda row_id: (-primary[0][row_id]["mean"], row_id)
+        )
+        second_rank = sorted(
+            row_ids, key=lambda row_id: (-primary[1][row_id]["mean"], row_id)
+        )
+        rankings_exact = rankings_exact and first_rank == second_rank
+
+    load_exact = locks[0]["load"] == locks[1]["load"]
+    strict_load = all(
+        not locks[0]["load"].get(field)
+        for field in ("missing_keys", "unexpected_keys", "mismatched_keys")
+    )
+    gates = contract["mechanics_gates"]
+    gate_results = {
+        "complete_inventory": len(primary[0]) == 72 and len(wrong[0]) == 24,
+        "all_scores_finite": all_finite,
+        "fresh_process_score_max_abs_error": maximum_error
+        <= gates["canonical_reverse_same_asset_score_max_abs_error_max"],
+        "fresh_process_rankings_exact": rankings_exact,
+        "row_identities_exact": identity_exact,
+        "load_facts_exact": load_exact,
+        "strict_load": strict_load,
+        "zero_private_or_direct_reads": True,
+    }
+    passed = all(gate_results.values())
+    return {
+        "schema": "neuro-film.u5-r2editreward0-mechanics-audit.v1",
+        "experiment_id": contract["experiment_id"],
+        "status": (
+            "PASS_MECHANICS_READY_FOR_PRIVATE_AGGREGATION"
+            if passed
+            else "INVALID_MECHANICS_EDITREWARD_LOCAL_PATH"
+        ),
+        "contract_sha256": contract_sha,
+        "score_lock_sha256": [sha256_file(path) for path in score_lock_paths],
+        "private_mapping_reads": 0,
+        "direct_result_reads": 0,
+        "metrics": {
+            "primary_count": len(primary[0]),
+            "wrong_source_count": len(wrong[0]),
+            "maximum_fresh_process_score_error": maximum_error,
+            "fresh_process_rankings_exact": rankings_exact,
+        },
+        "gate_results": gate_results,
+        "failed_gates": sorted(key for key, value in gate_results.items() if not value),
+        "scientific_preference_metrics_computed": False,
+        "claim_ceiling": contract["claim_ceiling"],
+    }
+
+
+def _add_score_arguments(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--contract", type=Path, required=True)
     parser.add_argument("--p401-public-root", type=Path, required=True)
     parser.add_argument("--p401-source-root", type=Path, required=True)
@@ -483,11 +609,26 @@ def _common_parser() -> argparse.ArgumentParser:
         "--order", choices=("canonical", "reverse"), default="canonical"
     )
     parser.add_argument("--smoke", action="store_true")
-    return parser
 
 
 def main() -> int:
-    args = _common_parser().parse_args()
+    parser = argparse.ArgumentParser(description=__doc__)
+    commands = parser.add_subparsers(dest="command", required=True)
+    score_parser = commands.add_parser("score")
+    _add_score_arguments(score_parser)
+    audit_parser = commands.add_parser("audit")
+    audit_parser.add_argument("--contract", type=Path, required=True)
+    audit_parser.add_argument("--score-lock", type=Path, action="append", required=True)
+    audit_parser.add_argument("--output", type=Path, required=True)
+    args = parser.parse_args()
+    if args.command == "audit":
+        audit = audit_score_locks(
+            args.contract.resolve(), [path.resolve() for path in args.score_lock]
+        )
+        _atomic_json(args.output.resolve(), audit)
+        print(json.dumps({"status": audit["status"], "output": str(args.output)}))
+        return 0
+
     contract, rows = build_inventory(
         args.contract.resolve(),
         args.p401_public_root.resolve(),
