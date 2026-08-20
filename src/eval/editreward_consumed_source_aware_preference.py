@@ -378,6 +378,7 @@ class EditRewardRuntime:
             "missing_keys": [],
             "unexpected_keys": [],
             "mismatched_keys": [],
+            "error_msgs": [],
             "device_map": {
                 key: str(value) for key, value in model.hf_device_map.items()
             },
