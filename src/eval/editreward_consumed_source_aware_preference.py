@@ -9,12 +9,15 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import itertools
 import json
 import math
 import os
+import statistics
 import subprocess
 import sys
 import types
+from collections import defaultdict
 from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
 from pathlib import Path
@@ -556,8 +559,29 @@ def audit_score_locks(
 
     load_exact = locks[0]["load"] == locks[1]["load"]
     strict_load = all(
-        not locks[0]["load"].get(field)
-        for field in ("missing_keys", "unexpected_keys", "mismatched_keys")
+        not lock["load"].get(field)
+        for lock in locks
+        for field in (
+            "missing_keys",
+            "unexpected_keys",
+            "mismatched_keys",
+            "error_msgs",
+        )
+    )
+    expected_instruction_sha = hashlib.sha256(
+        contract["fixed_instruction"].encode("utf-8")
+    ).hexdigest()
+    asset_binding_exact = all(
+        lock.get("model_sha256") == contract["external_asset"]["model_sha256"]
+        and lock.get("instruction_sha256") == expected_instruction_sha
+        for lock in locks
+    )
+    state_identity_exact = all(
+        lock["load"].get("state_tensor_count")
+        == contract["external_asset"]["tensor_count"]
+        and lock["load"].get("state_parameter_count")
+        == contract["external_asset"]["parameter_count"]
+        for lock in locks
     )
     gates = contract["mechanics_gates"]
     gate_results = {
@@ -567,6 +591,8 @@ def audit_score_locks(
         <= gates["canonical_reverse_same_asset_score_max_abs_error_max"],
         "fresh_process_rankings_exact": rankings_exact,
         "row_identities_exact": identity_exact,
+        "asset_and_instruction_bindings_exact": asset_binding_exact,
+        "state_identity_exact": state_identity_exact,
         "load_facts_exact": load_exact,
         "strict_load": strict_load,
         "zero_private_or_direct_reads": True,
@@ -594,6 +620,236 @@ def audit_score_locks(
         "failed_gates": sorted(key for key, value in gate_results.items() if not value),
         "scientific_preference_metrics_computed": False,
         "claim_ceiling": contract["claim_ceiling"],
+    }
+
+
+def _sign(left: float, right: float, epsilon: float = 1e-6) -> int:
+    difference = float(left) - float(right)
+    if abs(difference) <= epsilon:
+        return 0
+    return 1 if difference > 0 else -1
+
+
+def _truth_winner(row: dict[str, Any], left: str, right: str) -> str:
+    left_wins = right in row["pairwise_winners"][left]
+    right_wins = left in row["pairwise_winners"][right]
+    if left_wins == right_wins:
+        raise ValueError(f"non-binary frozen P402 truth: {left}/{right}")
+    return left if left_wins else right
+
+
+def aggregate_score_locks(
+    *,
+    contract_path: Path,
+    score_lock_paths: Sequence[Path],
+    p401_mapping_path: Path,
+    p401_result_path: Path,
+    p402_mapping_path: Path,
+    p402_review_path: Path,
+    p402_result_path: Path,
+) -> dict[str, Any]:
+    mechanics = audit_score_locks(contract_path, score_lock_paths)
+    if mechanics["status"] != "PASS_MECHANICS_READY_FOR_PRIVATE_AGGREGATION":
+        raise RuntimeError("private aggregation is forbidden before mechanics pass")
+
+    contract = _load_json(contract_path)
+    locks = [_load_json(path) for path in score_lock_paths]
+    canonical = next(lock for lock in locks if lock["order"] == "canonical")
+    primary = {row["row_id"]: row for row in canonical["primary"]}
+    wrong = {row["row_id"]: row for row in canonical["wrong_source"]}
+
+    consumed = contract["consumed_inputs"]
+    private_bindings = {
+        "p401_mapping": sha256_file(p401_mapping_path),
+        "p401_result": sha256_file(p401_result_path),
+        "p402_mapping": sha256_file(p402_mapping_path),
+        "p402_review": sha256_file(p402_review_path),
+        "p402_result": sha256_file(p402_result_path),
+    }
+    expected_bindings = {
+        "p401_mapping": consumed["p401"]["private_mapping_sha256"],
+        "p401_result": consumed["p401"]["formal_report_sha256"],
+        "p402_mapping": consumed["p402"]["private_mapping_sha256"],
+        "p402_review": consumed["p402"]["review_binding_sha256"],
+        "p402_result": consumed["p402"]["formal_result_sha256"],
+    }
+    if private_bindings != expected_bindings:
+        raise ValueError("private/direct result binding mismatch")
+
+    p401_mapping = _load_json(p401_mapping_path)
+    p401_result = _load_json(p401_result_path)
+    p402_mapping = _load_json(p402_mapping_path)
+    p402_result = _load_json(p402_result_path)
+
+    p401_map = {
+        row["source_id"]: row for row in p401_mapping["rows"] if row["round"] == 1
+    }
+    p401_agreement = 0
+    p401_decisive = 0
+    p401_tie_margins: list[float] = []
+    for truth in p401_result["source_results"]:
+        mapping = p401_map[truth["source_id"]]
+        variant_to_label = {
+            variant: label for label, variant in mapping["label_to_variant"].items()
+        }
+        candidate_row = primary[
+            f"p401:{mapping['presentation_id']}:{variant_to_label['candidate']}"
+        ]
+        identity_row = primary[
+            f"p401:{mapping['presentation_id']}:{variant_to_label['identity']}"
+        ]
+        candidate = float(candidate_row["mean"])
+        identity = float(identity_row["mean"])
+        decision = truth["preference_decision"]
+        if decision == "tie":
+            p401_tie_margins.append(abs(candidate - identity))
+            continue
+        p401_decisive += 1
+        predicted = (
+            "candidate"
+            if _sign(candidate, identity) > 0
+            else "identity"
+            if _sign(candidate, identity) < 0
+            else None
+        )
+        p401_agreement += int(predicted == decision)
+
+    p402_map = {
+        row["source_id"]: row for row in p402_mapping["rows"] if row["round"] == 1
+    }
+    direct_rows = {row["source_id"]: row for row in p402_result["rows"]}
+    p402_concordant = 0
+    transform_identity_concordant = 0
+    role_concordance: dict[str, int] = defaultdict(int)
+    unique_top1 = 0
+    unique_total = 0
+    total_pairs = 0
+    for source_id, mapping in sorted(p402_map.items()):
+        truth = direct_rows[source_id]
+        variant_to_label = {
+            variant: label for label, variant in mapping["label_to_candidate"].items()
+        }
+        variants = sorted(variant_to_label)
+        scores = {
+            variant: float(
+                primary[
+                    f"p402:{mapping['presentation_id']}:{variant_to_label[variant]}"
+                ]["mean"]
+            )
+            for variant in variants
+        }
+        for left, right in itertools.combinations(variants, 2):
+            winner = _truth_winner(truth, left, right)
+            predicted = (
+                left
+                if _sign(scores[left], scores[right]) > 0
+                else right
+                if _sign(scores[left], scores[right]) < 0
+                else None
+            )
+            p402_concordant += int(predicted == winner)
+            role_concordance[truth["role"]] += int(predicted == winner)
+            total_pairs += 1
+            if "identity" in (left, right):
+                transform_identity_concordant += int(predicted == winner)
+        if truth["unique_winner"] is not None:
+            unique_total += 1
+            ranked = sorted(variants, key=lambda variant: (-scores[variant], variant))
+            predicted_top = (
+                ranked[0]
+                if _sign(scores[ranked[0]], scores[ranked[1]]) > 0
+                else None
+            )
+            unique_top1 += int(predicted_top == truth["unique_winner"])
+
+    correct_source_deltas = []
+    correct_source_role_counts: dict[str, int] = defaultdict(int)
+    correct_source_role_totals: dict[str, int] = defaultdict(int)
+    for row_id, wrong_row in sorted(wrong.items()):
+        delta = float(primary[row_id]["mean"]) - float(wrong_row["mean"])
+        correct_source_deltas.append(delta)
+        role = primary[row_id]["role"]
+        correct_source_role_totals[role] += 1
+        correct_source_role_counts[role] += int(_sign(delta, 0.0) > 0)
+
+    if (
+        total_pairs != 72
+        or p401_decisive != 11
+        or unique_total != 11
+        or len(correct_source_deltas) != 24
+        or sorted(correct_source_role_totals.values()) != [8, 8, 8]
+    ):
+        raise ValueError("unexpected consumed-truth inventory")
+
+    gates = contract["scientific_gates"]
+    correct_source_count = sum(_sign(delta, 0.0) > 0 for delta in correct_source_deltas)
+    correct_source_median = statistics.median(correct_source_deltas)
+    gate_results = {
+        "p402_all_pair_concordance": p402_concordant
+        >= gates["p402_all_pair_concordant_min"],
+        "p402_transform_vs_identity": transform_identity_concordant
+        >= gates["p402_transform_vs_identity_concordant_min"],
+        "p402_unique_winner_top1": unique_top1
+        >= gates["p402_unique_winner_top1_agreement_min"],
+        "p402_each_content_role": len(role_concordance) == 3
+        and all(
+            count >= gates["p402_each_content_role_pairwise_concordant_min"]
+            for count in role_concordance.values()
+        ),
+        "p401_decisive_agreement": p401_agreement
+        >= gates["p401_decisive_agreement_min"],
+        "correct_source_preference_count": correct_source_count
+        >= gates["correct_source_score_over_wrong_source_count_min"],
+        "correct_source_median_delta": correct_source_median
+        > gates["correct_source_minus_wrong_source_median_min_exclusive"],
+        "correct_source_each_role": len(correct_source_role_counts) == 3
+        and all(
+            correct_source_role_counts[role]
+            >= gates["correct_source_each_role_over_wrong_min"]
+            for role in correct_source_role_counts
+        ),
+    }
+    passed = all(gate_results.values())
+    return {
+        "schema": "neuro-film.u5-r2editreward0-consumed-preference-result.v1",
+        "experiment_id": contract["experiment_id"],
+        "status": (
+            "PASS_PRIVATE_CONSUMED_RETROSPECTIVE_SOURCE_AWARE_CONCORDANCE"
+            if passed
+            else "FAIL_CLOSED_EXACT_EDITREWARD_SOURCE_AWARE_SCORER"
+        ),
+        "contract_sha256": sha256_file(contract_path),
+        "score_lock_sha256": [sha256_file(path) for path in score_lock_paths],
+        "mechanics_audit": mechanics,
+        "private_fact_bindings": private_bindings,
+        "private_mapping_reads": 2,
+        "direct_result_reads": 3,
+        "metrics": {
+            "p402_all_pair_concordant": p402_concordant,
+            "p402_all_pair_total": total_pairs,
+            "p402_transform_vs_identity_concordant": transform_identity_concordant,
+            "p402_transform_vs_identity_total": 36,
+            "p402_unique_winner_top1_agreement": unique_top1,
+            "p402_unique_winner_total": unique_total,
+            "p402_content_role_concordance": dict(sorted(role_concordance.items())),
+            "p401_decisive_agreement": p401_agreement,
+            "p401_decisive_total": p401_decisive,
+            "p401_tie_margins": p401_tie_margins,
+            "correct_source_over_wrong_count": correct_source_count,
+            "correct_source_over_wrong_total": len(correct_source_deltas),
+            "correct_source_minus_wrong_median": correct_source_median,
+            "correct_source_role_counts": dict(
+                sorted(correct_source_role_counts.items())
+            ),
+            "correct_source_role_totals": dict(
+                sorted(correct_source_role_totals.items())
+            ),
+        },
+        "gate_results": gate_results,
+        "failed_gates": sorted(key for key, value in gate_results.items() if not value),
+        "claim_ceiling": contract["claim_ceiling"],
+        "candidate_promotion_opened": False,
+        "router_or_product_capability_opened": False,
     }
 
 
@@ -625,6 +881,17 @@ def main() -> int:
     audit_parser.add_argument("--contract", type=Path, required=True)
     audit_parser.add_argument("--score-lock", type=Path, action="append", required=True)
     audit_parser.add_argument("--output", type=Path, required=True)
+    aggregate_parser = commands.add_parser("aggregate")
+    aggregate_parser.add_argument("--contract", type=Path, required=True)
+    aggregate_parser.add_argument(
+        "--score-lock", type=Path, action="append", required=True
+    )
+    aggregate_parser.add_argument("--p401-mapping", type=Path, required=True)
+    aggregate_parser.add_argument("--p401-result", type=Path, required=True)
+    aggregate_parser.add_argument("--p402-mapping", type=Path, required=True)
+    aggregate_parser.add_argument("--p402-review", type=Path, required=True)
+    aggregate_parser.add_argument("--p402-result", type=Path, required=True)
+    aggregate_parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     if args.command == "audit":
         audit = audit_score_locks(
@@ -632,6 +899,19 @@ def main() -> int:
         )
         _atomic_json(args.output.resolve(), audit)
         print(json.dumps({"status": audit["status"], "output": str(args.output)}))
+        return 0
+    if args.command == "aggregate":
+        result = aggregate_score_locks(
+            contract_path=args.contract.resolve(),
+            score_lock_paths=[path.resolve() for path in args.score_lock],
+            p401_mapping_path=args.p401_mapping.resolve(),
+            p401_result_path=args.p401_result.resolve(),
+            p402_mapping_path=args.p402_mapping.resolve(),
+            p402_review_path=args.p402_review.resolve(),
+            p402_result_path=args.p402_result.resolve(),
+        )
+        _atomic_json(args.output.resolve(), result)
+        print(json.dumps({"status": result["status"], "output": str(args.output)}))
         return 0
 
     contract, rows = build_inventory(
