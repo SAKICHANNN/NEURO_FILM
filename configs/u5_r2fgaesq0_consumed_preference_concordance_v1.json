@@ -1,0 +1,130 @@
+{
+  "schema": "neuro-film.u5-r2fgaesq0-consumed-preference-concordance-contract.v1",
+  "experiment_id": "U5.R2FGAESQ0",
+  "date": "2026-08-20",
+  "question": "Does the exact released FGAesQ series scorer retrospectively agree with frozen direct anonymous aesthetic decisions on same-source explicit colour-operator series, beyond its own single-image mode and simple image-statistic controls?",
+  "scientific_role": "consumed-retrospective nonbinding concordance diagnostic only",
+  "external_asset": {
+    "paper": "FGAesQ: Fine-Grained Aesthetic Assessment for Image Series, CVPR 2026 Oral",
+    "repository": "https://github.com/yzc-ippl/FG-IAA",
+    "repository_commit": "f23b8510f3f407f9ca5b997cfc9c6bfb07d44d08",
+    "repository_license_file_present": false,
+    "model_repository": "yzc002/FGAesQ",
+    "model_revision": "75df5481b05bf6d086df017aa2fb04be00aa39f9",
+    "model_filename": "FGAesQ.pt",
+    "model_size_bytes": 599232198,
+    "model_remote_etag": "3dd1a07fb9427aea944e1fbd0f8b06cdb086c4a7408c2a5687b85658d26be05a",
+    "model_card_sha256": "6b7ee536beb058bb2d71fa085cf6d46cb7db4a565826eb3a5dcabcbf496d63cf",
+    "model_card_license_metadata_present": false,
+    "clip_repository": "openai/CLIP",
+    "clip_commit": "dcba3cb2e2827b402d2701e7e1c7d9fed8a20ef1",
+    "clip_architecture": "ViT-B/16",
+    "maximum_use": "local isolated internal research",
+    "product_dependency": false
+  },
+  "consumed_inputs": {
+    "p401": {
+      "root": "outputs/eval/p401_identified_metadata_blind_aesthetic_v1",
+      "round": 1,
+      "source_count": 12,
+      "asset_count": 24,
+      "variants": ["candidate", "identity"],
+      "public_manifest_sha256": "31b62c085ec144fa0111570a85c1be7d8ef07dd86fe278eb167465be0075cd42",
+      "private_mapping_sha256": "77c03d007053213f5c029f2d6fb27fa41789bc4eceab5b85657fc0ad9b46f48f",
+      "formal_report_sha256": "75950c596d37600d05af9a43276ca366b00d9fd81d5541b3f26edb1300f6d207",
+      "direct_decisions": "6 candidate, 5 identity, 1 tie; all three direct rounds agree",
+      "decisive_pair_count": 11,
+      "tie_count": 1
+    },
+    "p402": {
+      "root": "outputs/eval/p402_component_preference_v1",
+      "round": 1,
+      "source_count": 12,
+      "asset_count": 48,
+      "variants": [
+        "complete-chain",
+        "fresh-curve-component",
+        "fresh-hsl-calibration-component",
+        "identity"
+      ],
+      "public_manifest_sha256": "6ebde38a9f768f98ac5488ae8be97926e928a560b1c4e79332fa1b3ebf304841",
+      "private_mapping_sha256": "7508d2c28edad1aad7aba6a5522cf6d4ee26866d0adbb667be2628428fbd8196",
+      "formal_result_sha256": "b2846bfdb5d587ce5324968ae36693fc53f70668a6fc2005a7d4bc4749446f23",
+      "review_binding_sha256": "7753d9073d4b5873f9ae8d8825dadd60e8dfd30a2e6e0c797dd0f2536810eb9f",
+      "pairwise_decision_count": 72,
+      "unique_condorcet_winner_count": 11,
+      "cycle_count": 1
+    },
+    "all_rows_mandatory": true,
+    "replacement_or_new_user_vote_forbidden": true,
+    "input_pixels_already_consumed": true,
+    "input_reencoding_or_resize_forbidden": true,
+    "only_round_1_png_assets_may_be_read": true
+  },
+  "execution_isolation": {
+    "score_lock_must_be_written_before_private_mapping_or_direct_result_read": true,
+    "scorer_process_reads_only_public_manifests_and_round_1_png_assets": true,
+    "aggregator_reads_private_mapping_and_direct_results_only_after_score_lock": true,
+    "application_source_or_new_reference_reads": 0,
+    "output_root": "outputs/eval/u5_r2fgaesq0_consumed_preference_concordance_v1",
+    "external_assets_must_use_repo_relative_or_explicit_cli_paths": true,
+    "machine_drive_letter_must_not_be_persisted": true
+  },
+  "strict_mechanics": {
+    "torch_load_weights_only": true,
+    "state_dict_missing_keys_exact": 0,
+    "state_dict_unexpected_keys_exact": 0,
+    "official_dataset_decode_fallback_forbidden": true,
+    "decode_failure_is_invalid_mechanics": true,
+    "cuda_tf32": false,
+    "deterministic_algorithms": true,
+    "python_numpy_torch_seed": 20260820,
+    "batch_size": 1,
+    "workers": 0,
+    "canonical_and_exact_reverse_label_orders": true,
+    "fresh_process_count": 2,
+    "all_scores_finite": true
+  },
+  "primary_protocol": {
+    "mode": "official series mode",
+    "p401_items_per_series": 2,
+    "p402_items_per_series": 4,
+    "pair_generation": "all unordered within-series pairs",
+    "image_score": "official mean of pair-context scores followed by official confidence adjustment",
+    "model_pair_tie": "absolute score difference <= 1e-6",
+    "tie_behavior": "does not count as a concordant win"
+  },
+  "controls": {
+    "official_single_image_mode": "three fixed seeds derived from image SHA-256 then averaged",
+    "mean_oklab_chroma": true,
+    "linear_srgb_rms_luminance_contrast": true,
+    "p402_candidate_truth_derangements": 3,
+    "derangement_definition": "three fixed cyclic permutations over the four candidate identities, applied to frozen direct pair truth only",
+    "canonical_vs_reverse_input_order": true,
+    "two_fresh_process_replay": true
+  },
+  "gates": {
+    "p402_all_pair_concordant_min": 47,
+    "p402_all_pair_total": 72,
+    "p402_transform_vs_identity_concordant_min": 24,
+    "p402_transform_vs_identity_total": 36,
+    "p402_unique_winner_top1_agreement_min": 7,
+    "p402_unique_winner_total": 11,
+    "p402_each_candidate_role_pairwise_concordant_min": 14,
+    "p402_each_candidate_role_pairwise_total": 24,
+    "p401_decisive_agreement_min": 9,
+    "p401_decisive_total": 11,
+    "p402_gain_over_strongest_legitimate_control_min": 4,
+    "p402_gain_over_best_derangement_min": 8,
+    "canonical_reverse_pair_signs_exact": true,
+    "fresh_process_score_max_abs_error_max": 0.000001,
+    "fresh_process_rankings_exact": true
+  },
+  "stop_rules": [
+    "Any asset identity, license-ceiling, strict-load, decode, inventory, ordering or replay failure is INVALID_MECHANICS and has no scientific interpretation.",
+    "Any scientific gate failure closes this exact FGAesQ series scorer without resolution, seed, checkpoint, model, aggregation or threshold rescue.",
+    "A pass cannot overwrite P401 or P402 direct decisions, promote any candidate, authorize routing or become a default preference judge.",
+    "No fresh user vote, calibration label or new preference source may be added in this leaf."
+  ],
+  "claim_ceiling": "At most, the fixed unlicensed external FGAesQ series scorer is internally concordant with already-consumed direct anonymous decisions and may serve as a nonbinding local research regression diagnostic; no population, owner, generalization, product, package, schema, capability, candidate-promotion or commercial claim."
+}
