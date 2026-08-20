@@ -1,0 +1,47 @@
+{
+  "schema": "neuro-film.sf3-a1d2-commons-three-stock-pixel-integrity-result.v1",
+  "experiment_id": "SF3.A1D2_COMMONS_THREE_STOCK_PIXEL_INTEGRITY_V1",
+  "implementation_commits": [
+    "57151921",
+    "dd5c6df2",
+    "515a2d9c",
+    "c1080231",
+    "a3c68469",
+    "06f7c57a"
+  ],
+  "contract_sha256": "3b65bd6b66fdf9a89c9830853ea82f314d659d0ff7403e933f118016cde31136",
+  "selection_manifest_sha256": "28b051756183286106114786c046d7c660405dc3cd5ca73f13371cce0f9c4515",
+  "download_manifest_sha256": "303a4ef63e855f4b1047309496829e64f5aa09ea39d94766b2d4ed090f21f876",
+  "report_sha256": "28ab2159e9cd4711f5a9efec81453a7920de7686ea93cd1b509bc5b8aa11d983",
+  "offline_replay_report_sha256": "28ab2159e9cd4711f5a9efec81453a7920de7686ea93cd1b509bc5b8aa11d983",
+  "observations": {
+    "files": 72,
+    "bytes": 53693784,
+    "files_per_stock": 24,
+    "normalized_authors_per_stock": 24,
+    "exact_duplicate_groups": 0,
+    "cross_stock_near_duplicate_pairs_dhash_le_4": 0,
+    "same_stock_near_duplicate_pairs_dhash_le_4": 1,
+    "confirmed_severe_decode_or_container_failures": 0,
+    "full_resolution_visual_rows_reviewed": 72
+  },
+  "clean_identifiability_exclusions": [
+    {"page_id": 81514891, "reason": "secondary Polaroid-transfer appearance rather than a clean stock-only observation"},
+    {"page_id": 189878478, "reason": "expired-film nuisance and same-stock near-duplicate member"},
+    {"page_id": 73804515, "reason": "expired-film nuisance and same-stock near-duplicate member"},
+    {"page_id": 17845328, "reason": "pinhole-camera nuisance"},
+    {"page_id": 86178308, "reason": "visible stock edge marking leaks the target label"},
+    {"page_id": 193262089, "reason": "visible stock edge marking leaks the target label"},
+    {"page_id": 38457702, "reason": "expired-film nuisance"},
+    {"page_id": 152243237, "reason": "physical Starcross-filter nuisance"}
+  ],
+  "clean_identifiability_rows": {
+    "fujifilm_velvia_50": 21,
+    "kodak_portra_400": 21,
+    "kodak_ektar_100": 22
+  },
+  "decision": "OPEN_AUTHOR_HELD_OUT_THREE_STOCK_IDENTIFIABILITY_ONLY",
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "claim_ceiling": "author-balanced Wikimedia Commons weak exact-text film-stock pixel integrity plus source-nuisance adjudication for Velvia 50, Portra 400 and Ektar 100; no same-scene, roll, process, scanner, stock-response, calibration, fitting, training or product claim"
+}

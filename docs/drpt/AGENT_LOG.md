@@ -14608,6 +14608,22 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   response, calibration or a multi-stock product. Evidence:
   `docs/evidence/SF3_A1C_COMMONS_THREE_STOCK_TEXT_METADATA_RESULT.json`.
 
+### 2026-08-21 - SF3.A1D2 closes pixel integrity and opens identifiability only
+
+- Downloaded and decoded the frozen author-balanced Commons pilot: 72 files /
+  53,693,784 bytes, exactly 24 files and 24 normalized authors for each of
+  Velvia 50, Portra 400 and Ektar 100. A complete offline replay reproduces
+  the report byte exactly at `28ab2159...1d983`.
+- Exact duplicate groups and cross-stock dHash<=4 pairs are zero. One
+  same-stock near-duplicate pair is recorded. Full-resolution review found no
+  severe decode corruption, but removes Polaroid transfer, expired-film,
+  pinhole, visible stock-edge and physical-filter nuisance rows from the clean
+  identifiability matrix.
+- The clean matrix has 21/21/22 rows for Velvia/Portra/Ektar. It opens only an
+  author-held-out stock-versus-content/source diagnostic; fitting and training
+  remain forbidden. Evidence:
+  `docs/evidence/SF3_A1D2_COMMONS_THREE_STOCK_PIXEL_INTEGRITY_RESULT.json`.
+
 ### 2026-08-21 - SF3.A0P qualifies PPISP capture-time pairs without pixels
 
 - Selected the latest actionable capture-time observation rather than another
