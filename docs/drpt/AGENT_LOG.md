@@ -14645,3 +14645,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - This does not evaluate PPISP NeRF quality and consumes no final candidate;
   counter remains `0/3`. Evidence:
   `docs/evidence/SF3_A0Q_PPISP_CAPTURE_PAIR_PIXEL_PREFLIGHT_RESULT.json`.
+
+### 2026-08-21 - SF3.A0R range-locks NTIRE RGB2RAW capture pairs
+
+- Exact Hugging Face revision `91a105e...` and the 8.73GB train archive were
+  audited through one 647,610-byte central-directory range per run; no member
+  payload or pixel was read. Two reports are byte exact at
+  `9be9f528...69750`, stable `03626a34...a9bc`.
+- The archive exposes 1,446 complete `.npy`/`.png` primary pairs across 241
+  capture groups, with metadata available for every selected group and no
+  unsafe, encrypted or unsupported members. This is materially different from
+  PPISP's reprocessed multi-view name relation.
+- The dataset card declares MIT but provides no standalone license text.
+  Preserve that publisher-declaration ceiling; this source pass is not a legal
+  warranty or product admission.
+- Only a separately frozen group-disjoint member/pixel preflight opens. Final
+  candidate counter remains `0/3`. Evidence:
+  `docs/evidence/SF3_A0R_RGB2RAW_CAPTURE_PAIR_SOURCE_LOCK_RESULT.json`.

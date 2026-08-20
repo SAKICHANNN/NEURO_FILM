@@ -65,6 +65,16 @@ future sources must expose explicit frame identity and geometry/alignment in
 addition to commercial rights. Counter remains `0/3`. Evidence:
 `docs/evidence/SF3_A0Q_PPISP_CAPTURE_PAIR_PIXEL_PREFLIGHT_RESULT.json`.
 
+SF3.A0R range-locks a materially different real capture source without
+downloading its 8.73GB archive. Exact NTIRE 2025 `rgb2raw` revision
+`91a105e...` contains 1,446 complete RAW/phone-ISP RGB patch pairs across 241
+metadata-covered primary capture groups; two 647,610-byte central-directory
+audits replay exactly (`9be9f528...69750`). The publisher card declares MIT
+but contains no separate license text, so this opens only a fixed,
+group-disjoint member/pixel preflight with an explicit rights ceiling. Counter
+remains `0/3`. Evidence:
+`docs/evidence/SF3_A0R_RGB2RAW_CAPTURE_PAIR_SOURCE_LOCK_RESULT.json`.
+
 **Autonomy invariant**: the active no-data Roll2Film and Style-safe work cannot
 depend on the owner supplying images, film/digital pairs, per-image labels, new
 preference votes or manual annotation. Public online data is an allowed source

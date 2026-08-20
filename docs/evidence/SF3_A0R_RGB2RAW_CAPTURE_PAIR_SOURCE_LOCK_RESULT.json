@@ -1,0 +1,48 @@
+{
+  "schema": "neuro-film.sf3-a0r-rgb2raw-capture-pair-source-lock-evidence.v1",
+  "experiment_id": "SF3.A0R_RGB2RAW_CAPTURE_PAIR_SOURCE_LOCK_V1",
+  "date": "2026-08-21",
+  "status": "PASS_RANGE_ONLY_SOURCE_STRUCTURE",
+  "implementation_commit": "e57d63ac58bc095ec64659313040653ff689d19d",
+  "source": {
+    "dataset_id": "marcosv/rgb2raw",
+    "revision": "91a105e8532f082a955b799c15dea0ada9e3caed",
+    "archive_size": 8731825651,
+    "archive_lfs_sha256": "eaf4d2d5dd60a9d04b96f59a8f85ac1f2e55c9d8639aa4f44c6548d9278fe354",
+    "readme_sha256": "bdafa0ceb584e79464b2c83758aef55e7c000f95434b29cec07178a009d6c1d7",
+    "publisher_declared_license": "mit",
+    "repository_license_text_present": false
+  },
+  "formal_replay": {
+    "report_a": "outputs/eval/sf3_a0r_rgb2raw_capture_pair_source_lock_v1/formal_run_1.json",
+    "report_b": "outputs/eval/sf3_a0r_rgb2raw_capture_pair_source_lock_v1/formal_run_2.json",
+    "report_sha256": "9be9f528cbb5c5a3d196254d399d15178913b3ca227a0722dcbf5c42eb269750",
+    "stable_identity": "03626a349f2e0b67978700815b21ff3018a77de2de62892358dd0d36a667a9bc",
+    "byte_exact": true,
+    "archive_bytes_read_per_run": 647610
+  },
+  "observations": {
+    "zip_member_count": 6411,
+    "primary_pair_count": 1446,
+    "primary_scene_group_count": 241,
+    "metadata_member_count": 501,
+    "iphone_x_pair_count": 972,
+    "iphone_x_scene_group_count": 162,
+    "samsung_s9_pair_count": 474,
+    "samsung_s9_scene_group_count": 79,
+    "unpaired_primary_member_count": 0,
+    "primary_scene_groups_without_metadata": 0,
+    "unsafe_member_count": 0,
+    "member_payload_reads": 0,
+    "pixel_decodes": 0,
+    "operator_fits": 0,
+    "renders": 0,
+    "scores": 0
+  },
+  "decision": "OPEN_FIXED_GROUP_DISJOINT_MEMBER_AND_PIXEL_PREFLIGHT_ONLY",
+  "bounded_final_candidate_counter_before": 0,
+  "bounded_final_candidate_counter_after": 0,
+  "scientific_conclusion": "The exact NTIRE 2025 training archive exposes 1,446 complete smartphone RAW-to-ISP-RGB patch pairs across 241 metadata-covered capture groups. This is a materially new paired capture observation and can be sampled by bounded HTTP Range without downloading or persisting the 8.73 GB archive.",
+  "rights_ceiling": "The Hugging Face card declares MIT but the repository contains no separate license text. Treat this as publisher-declared permissive source metadata pending any product distribution decision; do not silently expand it into a legal warranty.",
+  "claim_ceiling": "Range-only source structure. No image-member, pixel, quality, preference, operator, film, package, schema, capability or product claim."
+}
