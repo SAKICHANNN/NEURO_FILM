@@ -15089,3 +15089,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Boundary:** Windows CPU runtime feasibility only. No ACES certification,
   camera IDT, image/HDR file quality, display calibration, GPU/macOS parity,
   package/schema/capability, film/stock or product claim.
+
+### 2026-08-21 - U1.4D passes the official ACES 2 CPU runtime
+
+- Two fresh processes and canonical/reversed enumeration produce byte-exact
+  reports (`ba4f7e4e...3d4ea`, stable `dee23a15...b8466e`) for the exact OCIO
+  2.5.2 built-in ACES 2 CG config.
+- Across 986 extended ACEScg rows, scalar and packed official CPU APIs agree
+  exactly for both SDR Rec.709 and HDR Rec.2020-PQ views. All values are finite,
+  neutral maximum channel spread is `4.77e-7`, neutral ramps are monotonic and
+  the two outputs differ materially (maximum `.77893`). Inputs are unchanged.
+- The exact dependency is now pinned in Windows and macOS-ARM requirement
+  manifests. The latter is dependency availability only; macOS runtime parity
+  was not executed or claimed.
+- **Decision:** retain a private official-output callable. A separate contract
+  is required before any `WorkingImage`/file/renderer integration. This result
+  is not ACES certification, camera IDT, image quality, HDR encoding/metadata,
+  display calibration, public capability, film/stock or product support.

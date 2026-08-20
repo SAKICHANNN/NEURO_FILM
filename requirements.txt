@@ -29,6 +29,7 @@ scikit-image==0.26.0
 rawpy==0.26.1
 pillow==12.1.1
 tifffile==2026.4.11
+opencolorio==2.5.2
 
 # --- 张量操作 ---
 einops==0.8.2

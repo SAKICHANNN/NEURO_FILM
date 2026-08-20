@@ -1,0 +1,96 @@
+{
+  "schema": "neuro_film.u1_4d_ocio_aces2_output_runtime_evidence.v1",
+  "experiment_id": "u1.4d-ocio-aces2-output-runtime-v1",
+  "node": "ULT > U1 > U1.4D",
+  "status": "PASS_PRIVATE_OCIO_ACES2_OUTPUT_RUNTIME",
+  "decision": "retain the isolated official ACES 2 CPU callable and exact dependency pin; require a separate WorkingImage integration contract",
+  "bindings": {
+    "contract": {
+      "path": "docs/planning/U1_4D_OCIO_ACES2_OUTPUT_RUNTIME_CONTRACT.md",
+      "sha256": "081b25b56421f9f8497c251042418254931adfa07ac6597c47ee0486947288ba",
+      "freeze_commit": "fde3c94a"
+    },
+    "implementation": {
+      "path": "src/preprocess/ocio_aces2_output.py",
+      "sha256": "e9f82e4311e07ba150712b78feabe3c3aa20c42f731b3ff5be30c49cf16e58e3"
+    },
+    "config": {
+      "path": "configs/u1_4d_ocio_aces2_output_runtime_v1.json",
+      "sha256": "60a1bcf66fbc976a58ea25793b16e13587e0f4bd035d5027fa53154ac3b26543"
+    },
+    "runner": {
+      "path": "scripts/audit_u1_4d_ocio_aces2_output_runtime.py",
+      "sha256": "d0e17c5aa69a4feb74cd15d8c9fc5a87d379a90b018a01c55d9e236bc7943b52",
+      "lock_commit": "669683fc5a82ef7055e7a1b7ab176621fec75005"
+    },
+    "requirements_windows": {
+      "path": "requirements.txt",
+      "sha256": "6d0997946e8a151a8bcbbe43fae4860fb90f48bf511ae07d428d062e04af5690"
+    },
+    "requirements_macos_arm": {
+      "path": "requirements-macos-arm.txt",
+      "sha256": "a730d8fbb8b0d162ac03255b0f5811fde074ddf2c8b7c230631e8774210623ff"
+    },
+    "formal_report": {
+      "forward_path": "outputs/eval/u1_4d_ocio_aces2_output_runtime_v1/formal_forward.json",
+      "reverse_path": "outputs/eval/u1_4d_ocio_aces2_output_runtime_v1/formal_reverse.json",
+      "sha256": "ba4f7e4eeb02d32813f94f64695d28a2dfea90d79ecfad5ebf400c1b2763d4ea",
+      "stable_evidence_id": "dee23a152ca78c2e0101645530b3d256d779bbbf42480107b76fca10d5b8466e",
+      "byte_exact": true
+    }
+  },
+  "runtime": {
+    "package": "opencolorio==2.5.2",
+    "config_uri": "ocio://cg-config-v4.0.0_aces-v2.0_ocio-v2.5",
+    "config_cache_id": "351c1452fc2bde6177841947c5fce086:6001c324468d497f99aa06d3014798d8",
+    "source_space": "ACEScg",
+    "targets": {
+      "sdr_rec709": "sRGB - Display / ACES 2.0 - SDR 100 nits (Rec.709)",
+      "hdr_rec2020_pq": "Rec.2100-PQ - Display / ACES 2.0 - HDR 1000 nits (Rec.2020)"
+    }
+  },
+  "metrics": {
+    "fixture_rows": 986,
+    "fixture_sha256": "4ca83b505e7b310a33cdea52e1ef270d600443cd8d1670c7bb6eae41c13fe36d",
+    "maximum_sdr_hdr_absolute_difference": 0.7789318561553955,
+    "sdr_rec709": {
+      "maximum_scalar_packed_absolute_error": 0.0,
+      "maximum_neutral_channel_spread": 4.76837158203125e-07,
+      "minimum_neutral_mean_step": 2.9206275939941406e-05,
+      "output_sha256": "416132dec9e3fca541e900c24fb68ff751b9064192610adf6d90b2546378dd9a"
+    },
+    "hdr_rec2020_pq": {
+      "maximum_scalar_packed_absolute_error": 0.0,
+      "maximum_neutral_channel_spread": 1.4901161193847656e-07,
+      "minimum_neutral_mean_step": 4.166364669799805e-05,
+      "output_sha256": "c95554153a53588fccb121380afd1b34c7bd6a3f5e8171ab280592a5b30df923"
+    }
+  },
+  "gates": {
+    "config_cache_id": true,
+    "finite": true,
+    "input_unchanged": true,
+    "materially_distinct_outputs": true,
+    "neutral_monotonic": true,
+    "neutral_spread": true,
+    "scalar_packed": true,
+    "reverse_order_exact": true,
+    "two_process_report_exact": true,
+    "all": true
+  },
+  "claim_ceiling": {
+    "established": [
+      "isolated Windows CPU execution of the exact official OCIO 2.5.2 built-in ACES 2 CG config",
+      "deterministic scalar/packed agreement for two exact output transforms on the frozen numerical fixture"
+    ],
+    "not_established": [
+      "ACES conformance certification or camera IDT",
+      "photographic image quality",
+      "HDR file encoding, CICP or metadata",
+      "display calibration",
+      "GPU or macOS runtime parity",
+      "WorkingImage or default renderer integration",
+      "public schema, capability, film, stock or product support"
+    ]
+  }
+}
