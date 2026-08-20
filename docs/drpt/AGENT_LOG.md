@@ -14989,3 +14989,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   scanner/process truth, calibrated response or product admission and does not
   unblock adaptive/retrieval/K>1 work. Controlled three-stock pixels remain
   the mainline.
+
+### 2026-08-21 - U1.3C freezes a private DNG capture-metadata receipt
+
+- **Direction correction:** candidate 3 does not open after SF3.A0Y. No further
+  universal after-only/single-reference rescue is scheduled. The executable
+  mainline returns to mature RAW/DNG/HDR/portable explicit-operator work while
+  controlled three-stock pixels remain data-gated.
+- **Question:** preserve standardized capture-time DNG facts as an exact,
+  source-bound receipt without decoding raster samples or changing rendering.
+- **Fixed cohort:** four already-acquired CC0/Public Domain raw.pixls.us DNGs
+  spanning three CFA layouts and one LinearRaw RGB file, top-level/SubIFD raw
+  placement, multiple orientations and integer/rational/float TIFF values.
+- **DoD:** source hashes, unique raw IFD, mandatory facts, exact TIFF-type
+  normalization, zero raster decode and forward/reverse byte replay all pass.
+- **Boundary:** private input-fact receipt only. No `WorkingImage`, renderer,
+  recipe/public schema, calibrated exposure/noise, arbitrary-DNG, film, stock,
+  capability or product claim opens from this leaf.
