@@ -36,19 +36,27 @@
       "path": "data/physical_scanner/uchicago_1905_barnard_rotated_v1/10B-161_center_scan.tif",
       "url": "https://knowledge.uchicago.edu/api/records/1cnjt-w1076/files/10B-161%20center%20scan.tif/content",
       "bytes": 320098314,
-      "md5": "572b9a090f2151c276e5d5e2ddbfcf68"
+      "md5": "572b9a090f2151c276e5d5e2ddbfcf68",
+      "required_pages": 2,
+      "primary_page_index": 0,
+      "required_reduced_page_indices": [1]
     },
     "rotated": {
       "path": "data/physical_scanner/uchicago_1905_barnard_rotated_v1/10B-161_center_scan_rotated_90.tif",
       "url": "https://knowledge.uchicago.edu/api/records/1cnjt-w1076/files/10B-161%20center%20scan,%20rotated%2090%C2%BA.tif/content",
       "bytes": 320489722,
       "md5": "e3300e64c9aae9b16fa63488fc9bb8b6",
+      "required_pages": 2,
+      "primary_page_index": 0,
+      "required_reduced_page_indices": [1],
       "description": "same central six-inch region, plate rotated by 90 degrees"
     },
     "reference_shape": [7200, 7200],
     "rotated_shape": [7199, 7200],
     "required_dtype": "uint16",
-    "required_pages": 1
+    "required_pages": 2,
+    "primary_page_index": 0,
+    "secondary_page_requirement": "exactly one reduced-resolution thumbnail IFD"
   },
   "registration": {
     "input": "uint16 grayscale upper-eight-bits, area-resized to maximum side 1024",

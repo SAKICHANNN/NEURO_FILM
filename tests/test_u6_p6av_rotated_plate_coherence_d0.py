@@ -1,10 +1,13 @@
 from __future__ import annotations
 
+import hashlib
 from pathlib import Path
 
 import numpy as np
+import tifffile
 
 from src.eval.rotated_plate_coherence_d0 import (
+    _load_u16,
     _midrank,
     _register_orientation,
     load_contract,
@@ -31,6 +34,34 @@ def test_p6aw_keeps_p6av_protocol_values_exact() -> None:
     assert second["registration"] == first["registration"]
     assert second["analysis"] == first["analysis"]
     assert second["gates"] == first["gates"]
+    assert second["source"]["reference"]["required_pages"] == 2
+    assert second["source"]["reference"]["required_reduced_page_indices"] == [1]
+
+
+def test_p6aw_selects_full_resolution_page_from_reduced_thumbnail_tiff(
+    tmp_path: Path,
+) -> None:
+    path = tmp_path / "source.tif"
+    full = np.arange(48, dtype=np.uint16).reshape(6, 8)
+    reduced = full[::2, ::2]
+    with tifffile.TiffWriter(path) as writer:
+        writer.write(full)
+        writer.write(reduced, subfiletype=1)
+    payload = path.read_bytes()
+    values, facts = _load_u16(
+        path,
+        {
+            "path": path.name,
+            "bytes": len(payload),
+            "md5": hashlib.md5(payload).hexdigest(),
+            "required_pages": 2,
+            "primary_page_index": 0,
+            "required_reduced_page_indices": [1],
+        },
+    )
+    assert np.array_equal(values, full)
+    assert facts["pages"] == 2
+    assert facts["primary_page_index"] == 0
 
 
 def test_midrank_is_tie_stable() -> None:

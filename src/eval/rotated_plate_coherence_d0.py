@@ -40,9 +40,16 @@ def _load_u16(path: Path, source: dict[str, Any]) -> tuple[np.ndarray, dict[str,
     if hashlib.md5(payload).hexdigest() != source["md5"]:
         raise ValueError("P6AV source MD5 drift")
     with tifffile.TiffFile(path) as image:
-        if len(image.pages) != 1:
+        required_pages = int(source.get("required_pages", 1))
+        primary_page_index = int(source.get("primary_page_index", 0))
+        if len(image.pages) != required_pages:
             raise ValueError("P6AV source page count drift")
-        values = image.pages[0].asarray()
+        if not 0 <= primary_page_index < required_pages:
+            raise ValueError("P6AV primary page index drift")
+        for index in source.get("required_reduced_page_indices", []):
+            if not image.pages[int(index)].is_reduced:
+                raise ValueError("P6AV reduced page structure drift")
+        values = image.pages[primary_page_index].asarray()
     if values.dtype != np.uint16 or values.ndim != 2:
         raise ValueError("P6AV source is not grayscale uint16")
     return values, {
@@ -51,6 +58,8 @@ def _load_u16(path: Path, source: dict[str, Any]) -> tuple[np.ndarray, dict[str,
         "sha256": _sha(payload),
         "shape": [int(v) for v in values.shape],
         "dtype": str(values.dtype),
+        "pages": required_pages,
+        "primary_page_index": primary_page_index,
     }
 
 
