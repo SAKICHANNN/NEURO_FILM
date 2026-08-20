@@ -7,9 +7,13 @@ import argparse
 import hashlib
 import json
 import statistics
+import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
+
+if __package__ in (None, ""):
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from scripts.run_u5_r2spcp0_pairwise_preference_source_lock import (
     ROOT,
