@@ -146,6 +146,7 @@ def test_mechanics_audit_accepts_exact_reverse_enumeration(tmp_path: Path) -> No
             "order": order,
             "contract_sha256": contract_sha,
             "model_sha256": "model-sha",
+            "smoke_receipt_sha256": "smoke-receipt-sha",
             "instruction_sha256": hashlib.sha256(b"fixed").hexdigest(),
             "inventory": {
                 "primary_count": 72,
@@ -245,6 +246,7 @@ def test_mechanics_audit_rejects_changed_wrong_source_identity(tmp_path: Path) -
             "order": order,
             "contract_sha256": contract_sha,
             "model_sha256": "model-sha",
+            "smoke_receipt_sha256": "smoke-receipt-sha",
             "instruction_sha256": hashlib.sha256(b"fixed").hexdigest(),
             "inventory": {
                 "primary_count": 72,
@@ -434,6 +436,7 @@ def test_aggregate_score_locks_passes_perfect_consumed_truth(tmp_path: Path) -> 
             "order": order,
             "contract_sha256": contract_sha,
             "model_sha256": "model-sha",
+            "smoke_receipt_sha256": "smoke-receipt-sha",
             "instruction_sha256": hashlib.sha256(b"fixed").hexdigest(),
             "inventory": {
                 "primary_count": 72,
@@ -501,6 +504,7 @@ def test_aggregate_does_not_open_private_files_before_mechanics_pass(
             "order": order,
             "contract_sha256": contract_sha,
             "model_sha256": "model-sha",
+            "smoke_receipt_sha256": "smoke-receipt-sha",
             "instruction_sha256": hashlib.sha256(b"fixed").hexdigest(),
             "inventory": {
                 "primary_count": 72,

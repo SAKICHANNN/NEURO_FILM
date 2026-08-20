@@ -589,6 +589,10 @@ def audit_score_locks(
         == contract["external_asset"]["parameter_count"]
         for lock in locks
     )
+    smoke_receipt_binding_exact = (
+        isinstance(locks[0].get("smoke_receipt_sha256"), str)
+        and locks[0]["smoke_receipt_sha256"] == locks[1].get("smoke_receipt_sha256")
+    )
     gates = contract["mechanics_gates"]
     gate_results = {
         "complete_inventory": len(primary[0]) == 72 and len(wrong[0]) == 24,
@@ -599,6 +603,7 @@ def audit_score_locks(
         "row_identities_exact": identity_exact,
         "asset_and_instruction_bindings_exact": asset_binding_exact,
         "state_identity_exact": state_identity_exact,
+        "smoke_receipt_binding_exact": smoke_receipt_binding_exact,
         "load_facts_exact": load_exact,
         "strict_load": strict_load,
         "zero_private_or_direct_reads": True,
@@ -1020,6 +1025,11 @@ def main() -> int:
         "smoke": args.smoke,
         "instruction_sha256": hashlib.sha256(instruction.encode("utf-8")).hexdigest(),
         "model_sha256": contract["external_asset"]["model_sha256"],
+        "smoke_receipt_sha256": (
+            None
+            if args.smoke
+            else sha256_file(args.smoke_receipt.resolve())
+        ),
         "load": runtime.load_facts,
         "inventory": {
             "primary_count": len(primary),
