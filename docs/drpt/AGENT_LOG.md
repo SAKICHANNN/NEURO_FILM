@@ -13753,6 +13753,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Windows reports the volume as Warning. No new bulk P copy or unique-source
   deletion is allowed until a read-only CHKDSK diagnosis completes and an
   explicitly scheduled offline `/F` repair clears the filesystem gate.
+- Read-only `chkdsk P:` completed file/folder verification and found zero bad
+  sectors, but reported corruption in the volume bitmap and exited nonzero.
+  Windows explicitly requires `/F`; until that disruptive repair is approved,
+  the 83.60GB D quarantine is a required rollback copy and must not be deleted.
 
 ### 2026-08-20 - U5.R2DEEP0 closes Deep Analog before execution
 
