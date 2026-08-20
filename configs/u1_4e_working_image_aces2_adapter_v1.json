@@ -1,0 +1,23 @@
+{
+  "schema": "neuro_film.u1_4e_working_image_aces2_adapter_contract.v1",
+  "experiment_id": "u1.4e-working-image-aces2-adapter-v1",
+  "node": "ULT > U1 > U1.4E",
+  "status": "frozen_before_fixture_scoring",
+  "bindings": {
+    "contract_path": "docs/planning/U1_4E_WORKING_IMAGE_ACES2_ADAPTER_CONTRACT.md",
+    "contract_sha256": "ded12ae7c692c60fb00eb2d67eed4c24d8aa7d35a372e09da69c9414a2a421c3",
+    "implementation_path": "src/preprocess/ocio_aces2_output.py",
+    "implementation_sha256": "7ffe89bb448866574d0c6374020b79920d5e9b93d72ec84a29704c45f247378d",
+    "runner_path": "scripts/audit_u1_4e_working_image_aces2_adapter.py",
+    "runner_sha256": "83c09bb03c441054d4a20ab8bab8cbf23cc198e99a858c60f6d6f0852f0da575"
+  },
+  "gates": {
+    "maximum_adapter_direct_absolute_error": 0.00002,
+    "maximum_source_scalar_packed_absolute_error": 0.000002,
+    "maximum_neutral_channel_spread": 0.00002,
+    "neutral_monotonic_tolerance": 0.000001,
+    "require_reverse_order_exact": true,
+    "require_two_process_report_exact": true
+  },
+  "claim_ceiling": "private Windows CPU numerical adapter from existing scene-linear WorkingImage linear_srgb/linear_rec2020 spaces into pinned official ACES 2 transforms only; no ACES certification, camera IDT, photographic quality, HDR file encoding/metadata, display calibration, GPU/macOS parity, default renderer, public capability, film/stock or product admission"
+}
