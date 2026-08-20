@@ -6,7 +6,7 @@ import numpy as np
 import pytest
 from PIL import Image
 
-from scripts.run_u5_r2spcp1_pixel_alignment_preflight import (
+from scripts.run_u5_r2spcp3_pixel_alignment_preflight import (
     SourceMechanicsError,
     _decode_png,
     alignment_metrics,

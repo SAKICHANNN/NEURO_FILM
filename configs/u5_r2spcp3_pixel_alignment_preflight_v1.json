@@ -1,6 +1,6 @@
 {
-  "schema": "neuro-film.u5-r2spcp1-pixel-alignment-preflight-contract.v1",
-  "experiment_id": "U5.R2SPCP1",
+  "schema": "neuro-film.u5-r2spcp3-pixel-alignment-preflight-contract.v1",
+  "experiment_id": "U5.R2SPCP3",
   "date": "2026-08-21",
   "question": "Does the SPCP single-source synthetic subset preserve exact geometry and enough source-observable structural correspondence to support one later shared explicit colour-operator discriminant?",
   "scientific_role": "prospective pixel and alignment eligibility preflight only",
@@ -40,7 +40,7 @@
     "multi_phone_543_scene_family_excluded": true
   },
   "role_freeze": {
-    "selection_key": "sha256(UTF8('U5.R2SPCP1' + NUL + scene_id)); ascending",
+    "selection_key": "sha256(UTF8('U5.R2SPCP1' + NUL + scene_id)); ascending; legacy seed retained exactly after identity-only correction to U5.R2SPCP3",
     "development_scene_count": 8,
     "confirmation_scene_count": 8,
     "future_operator_fit_scene_count": 128,
@@ -90,11 +90,12 @@
     "A pass opens only the already-frozen future fit/calibration roles for one shared bounded source-free explicit operator; it does not open a content router, direct RGB model, product or rights claim."
   ],
   "storage": {
-    "execution_namespace": "D:/_project_fallbacks/neuro_film_goal_019f4b76/u5_r2spcp1",
+    "execution_namespace": "D:/_project_fallbacks/neuro_film_goal_019f4b76/u5_r2spcp3",
     "reason": "P reports Full Repair Needed",
     "drive_root_write_forbidden": true,
     "P_migration_only_after_repair_and_byte_verification": true,
     "repo_runtime_paths_must_remain_drive_agnostic": true
   },
+  "identity_correction": "The preregistration was initially committed under the already-occupied U5.R2SPCP1 name. It was renamed U5.R2SPCP3 after the first decode gate failure; the exact role manifest, legacy selection seed, selected members, gates and observed bytes were preserved without reselection.",
   "claim_ceiling": "At most, the exact SPCP single-source subset is geometrically suitable for a later private shared explicit-operator D0. No preference direction, operator value, generalization, product, package, schema, capability, rights or commercial claim."
 }

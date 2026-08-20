@@ -325,8 +325,8 @@ def run_preflight(
         "operator_fit_count_exact": True,
     }
     scientific = {
-        "schema": "neuro-film.u5-r2spcp1-pixel-alignment-preflight-report.v1",
-        "experiment_id": "U5.R2SPCP1",
+        "schema": "neuro-film.u5-r2spcp3-pixel-alignment-preflight-report.v1",
+        "experiment_id": "U5.R2SPCP3",
         "role": role,
         "contract_sha256": _sha256_file(contract_path),
         "role_manifest_sha256": _sha256_file(role_manifest_path),
@@ -380,8 +380,8 @@ def main() -> None:
         )
     except SourceMechanicsError as error:
         scientific: dict[str, Any] = {
-            "schema": "neuro-film.u5-r2spcp1-pixel-alignment-source-failure.v1",
-            "experiment_id": "U5.R2SPCP1",
+            "schema": "neuro-film.u5-r2spcp3-pixel-alignment-source-failure.v1",
+            "experiment_id": "U5.R2SPCP3",
             "role": args.role,
             "contract_sha256": _sha256_file(args.contract),
             "role_manifest_sha256": _sha256_file(args.role_manifest),
