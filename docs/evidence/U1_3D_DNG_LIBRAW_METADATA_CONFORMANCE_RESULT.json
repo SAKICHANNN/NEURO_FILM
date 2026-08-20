@@ -1,0 +1,58 @@
+{
+  "schema": "neuro_film.u1_3d_dng_libraw_metadata_conformance_evidence.v1",
+  "experiment_id": "u1.3d-dng-libraw-metadata-conformance-v1",
+  "node": "ULT > U1 > U1.3D",
+  "status": "FAIL_CLOSED_BEFORE_LIBRAW_COMPARISON_DNG_RECEIPT_SCOPE",
+  "decision": "close held-device conformance without DNG default-tag rescue; retain U1.3C only at its exact four-device claim ceiling",
+  "bindings": {
+    "contract": {
+      "path": "docs/planning/U1_3D_DNG_LIBRAW_METADATA_CONFORMANCE_CONTRACT.md",
+      "sha256": "73f03f7f64588e46568adf9f449d321ba073dca5579fa35b8fe3fedb231d21ce",
+      "freeze_commit": "5086a51b"
+    },
+    "config": {
+      "path": "configs/u1_3d_dng_libraw_metadata_conformance_v1.json",
+      "sha256": "064bf5d918f88c6524d721320db5895fa6d254d8b53ebc832af4d4eb35bb1976"
+    },
+    "comparison_core": {
+      "path": "src/preprocess/dng_libraw_conformance.py",
+      "sha256": "b9b5531ba1153515a69accca321d74dbe5f7f839a6e384e9a3b6cc498929cf6f"
+    },
+    "runner": {
+      "path": "scripts/audit_u1_3d_dng_libraw_metadata_conformance.py",
+      "sha256": "be8cbc2fe95a7488d4fdea2a23d638d9b2bc6b529e40f23b8772a2528a6df471",
+      "lock_commit": "dfe1b23f1bad89163d35e5c929c867597c7bdda8"
+    }
+  },
+  "execution": {
+    "forward_first_row": "motorola_moto_g_7_play",
+    "reverse_first_row": "blackmagic_pocket_cinema_camera_4k",
+    "forward_error": "missing required CFA facts: cfa_layout, cfa_plane_color",
+    "reverse_error": "missing required CFA facts: cfa_layout, cfa_plane_color",
+    "same_structural_error_across_opposite_ends": true,
+    "formal_report_files_written": 0,
+    "libraw_inspection_calls": 0,
+    "raw_sample_reads": 0,
+    "rgb_postprocess_calls": 0,
+    "remaining_confirmation_rows_read": 0
+  },
+  "failed_gate": {
+    "name": "u1_3c_receipt_construction",
+    "reason": "two mandatory confirmation DNGs omit CFAPlaneColor and CFALayout; U1.3C requires explicit complete CFA facts and forbids inferred DNG defaults",
+    "post_result_default_semantics_rescue": false,
+    "row_replacement": false,
+    "threshold_or_algebra_change": false
+  },
+  "interpretation": {
+    "established": [
+      "the exact U1.3C four-device receipt result remains valid",
+      "U1.3C explicit-CFA-tag completeness does not transfer to two held devices"
+    ],
+    "not_established": [
+      "DNG-to-LibRaw black, white, geometry or camera-WB conformance",
+      "arbitrary DNG receipt support",
+      "permission to infer omitted DNG default tags",
+      "renderer, public schema, capability, product, film or stock mapping"
+    ]
+  }
+}

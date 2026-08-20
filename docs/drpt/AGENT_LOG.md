@@ -15055,3 +15055,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - A pass can open only separate opt-in inspection enrichment. Renderer,
   arbitrary-camera/DNG, calibration, public schema/capability and product
   claims remain closed.
+
+### 2026-08-21 - U1.3D closes before LibRaw on omitted CFA defaults
+
+- After the contract and complete runner were committed, the forward execution
+  stopped on its first mandatory row (`motorola_moto_g_7_play`) and the reverse
+  execution stopped on its opposite-end first row
+  (`blackmagic_pocket_cinema_camera_4k`). Both independently raise the same
+  U1.3C structural error: explicit `CFAPlaneColor` and `CFALayout` are absent.
+- No formal report file was written. Receipt failure precedes `inspect_raw`, so
+  LibRaw inspection, raw-sample access and RGB postprocess counts remain zero;
+  the other three confirmation rows were not opened by U1.3D.
+- The frozen contract forbids inferring DNG defaults after seeing a held-file
+  failure. Do not modify U1.3C, add camera exceptions or replace rows. Its exact
+  four-device PASS remains valid but arbitrary-DNG and held-device conformance
+  are now explicitly closed.
+- **Next direction:** do not spend another leaf on receipt compatibility. Return
+  to capture observations that are explicit in-file, or to already mature
+  portable RAW/HDR operator engineering.
