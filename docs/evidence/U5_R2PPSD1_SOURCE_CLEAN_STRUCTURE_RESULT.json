@@ -1,0 +1,56 @@
+{
+  "schema": "neuro_film.u5_r2ppsd1_source_clean_structure_evidence.v1",
+  "experiment_id": "U5.R2PPSD1",
+  "implementation_commit": "675f5e33467f9ba5d7dddc5f8ac983a17a0004b8",
+  "contract": {
+    "path": "configs/u5_r2ppsd1_source_clean_structure_v1.json",
+    "sha256": "c4be68e3b4d952fc3de540168c0dadfea2a43a617b8e95198ec8d777beed65ec"
+  },
+  "runner": {
+    "path": "scripts/audit_u5_r2ppsd1_source_clean_structure.py",
+    "sha256": "07884c3af536c35942180bd8c4594726022ac77f11160b4409ace70dbbfba757"
+  },
+  "tests": {
+    "path": "tests/test_u5_r2ppsd1_source_clean_structure.py",
+    "sha256": "c9976c01e5104c4c3601da46d91ccef5fec067aa3094f067a45940166eb57201"
+  },
+  "formal_reports": {
+    "paths": [
+      "outputs/eval/u5_r2ppsd1_source_clean_structure_v1/run_a.json",
+      "outputs/eval/u5_r2ppsd1_source_clean_structure_v1/run_b.json"
+    ],
+    "sha256": "d190a5f11a4f78bef3b6e66885fe6195b66a69ccff46787202e4b4aae6470484",
+    "stable_evidence_id": "sha256:2942c9dccb5c195721873638b4685c4a84e56442c56cb366bcf6ac266f181c56"
+  },
+  "source_clean_structure": {
+    "included_collections": ["A1", "B1", "B2", "B3", "B4", "B5", "B6"],
+    "included_processed_scene_keys": 457,
+    "included_vote_rows": 17370,
+    "included_collection_vote_rows": {
+      "A1": 4759,
+      "B1": 2314,
+      "B2": 1564,
+      "B3": 2293,
+      "B4": 2208,
+      "B5": 1906,
+      "B6": 2326
+    },
+    "unexpected_undocumented_collection_vote_rows": {
+      "F1": 943,
+      "F2": 940
+    },
+    "raw_scene_or_user_ids_persisted": false,
+    "raw_participant_values_persisted": false
+  },
+  "execution_boundary": {
+    "annotation_archive_requests_per_run": 1,
+    "image_archive_requests": 0,
+    "image_member_requests": 0,
+    "image_decodes": 0,
+    "operator_fits": 0
+  },
+  "automatic_pass": false,
+  "decision": "close_ppsd_source_clean_structure_before_pixels_or_fit",
+  "interpretation": "The exact official annotation release contains the expected 457 A1 and B1-B6 processed scene keys and 17,370 structurally valid retained preference rows, but its raw vote table also contains undocumented F1 and F2 collections absent from the frozen paper-and-supplement collection universe. The preregistered exact partition gate therefore fails. Do not posthoc classify these rows, request the image archive, fit an operator, or treat PPSD as a rights-cleared photographic-style source. The missing explicit dataset license independently keeps pixels, training and product mapping closed.",
+  "claim_ceiling": "source-clean-nongenerative-annotation-structure-only"
+}

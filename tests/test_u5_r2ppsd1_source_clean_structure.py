@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import io
 import json
 import zipfile
@@ -8,6 +9,10 @@ from pathlib import Path
 import scripts.audit_u5_r2ppsd1_source_clean_structure as module
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def _file_sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def _archive() -> bytes:
@@ -130,3 +135,20 @@ def test_unexpected_collection_is_reported_and_fails_closed(tmp_path: Path, monk
     assert report["automatic_pass"] is False
     assert report["annotation_structure"]["unexpected_raw_vote_collection_counts"] == {"F1": 1}
     assert "hidden" not in json.dumps(report)
+
+
+def test_tracked_evidence_binds_exact_formal_negative() -> None:
+    evidence = json.loads(
+        (ROOT / "docs/evidence/U5_R2PPSD1_SOURCE_CLEAN_STRUCTURE_RESULT.json").read_text()
+    )
+    reports = [ROOT / path for path in evidence["formal_reports"]["paths"]]
+    assert len({_file_sha256(path) for path in reports}) == 1
+    assert _file_sha256(reports[0]) == evidence["formal_reports"]["sha256"]
+    report = json.loads(reports[0].read_text())
+    assert report["stable_evidence_id"] == evidence["formal_reports"]["stable_evidence_id"]
+    assert report["automatic_pass"] is False
+    assert report["decision"] == evidence["decision"]
+    assert report["annotation_structure"]["unexpected_raw_vote_collection_counts"] == {
+        "F1": 943,
+        "F2": 940,
+    }
