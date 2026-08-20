@@ -10,6 +10,10 @@
     "u1_3c_implementation_sha256": "b63a741837a6e40c5c2a658b17bbe050a9ed25f58aa2057d8f0524b6ef6abb6a",
     "raw_decode_path": "src/preprocess/raw_decode.py",
     "raw_decode_sha256": "6288a4b546b15dd28fcdd675603c65ba57ac67c3c4d42d552d9b825334cfebfe",
+    "conformance_implementation_path": "src/preprocess/dng_libraw_conformance.py",
+    "conformance_implementation_sha256": "b9b5531ba1153515a69accca321d74dbe5f7f839a6e384e9a3b6cc498929cf6f",
+    "runner_path": "scripts/audit_u1_3d_dng_libraw_metadata_conformance.py",
+    "runner_sha256": "be8cbc2fe95a7488d4fdea2a23d638d9b2bc6b529e40f23b8772a2528a6df471",
     "source_manifest_path": "configs/u5_r2bh1s_global_policy_source_preflight_v1.json",
     "source_manifest_sha256": "9ce61d3b9806447b40642db1a4d3d782923936b07901378cf9537bf32cd5911d"
   },
