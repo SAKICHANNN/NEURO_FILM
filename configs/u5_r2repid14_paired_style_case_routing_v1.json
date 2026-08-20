@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2repid14-paired-style-case-routing-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2REPID14",
+  "question": "Does transparent case retrieval identify a transferable paired-content edit latent from one after-reference better than the failed continuous REPID13 student and fixed global operator?",
+  "primary_method_basis": {
+    "paper": "InstantRetouch: Personalized Image Retouching without Test-time Fine-tuning Using an Asymmetric Auto-Encoder",
+    "venue_state": "arXiv 2602.17044, 2026",
+    "url": "https://arxiv.org/abs/2602.17044",
+    "used_idea_only": "fixed top-3 reference retrieval with temperature 0.1 over a frozen representation; no paper code, weights, architecture, dataset or thresholds beyond K and temperature are used",
+    "clean_room_difference": "retrieval blends only bounded explicit operator parameters fitted from same-content pairs and never generates final RGB"
+  },
+  "parents": {
+    "repid13_config_path": "configs/u5_r2repid13_paired_style_latent_v1.json",
+    "repid13_evidence_path": "docs/evidence/U5_R2REPID13_PAIRED_STYLE_LATENT_RESULT.json",
+    "repid13_evidence_sha256": "2c13897c39410f3dd49f364b15cc39122a3f6b54ccff9f4f97d701c3231e0535",
+    "repid13_required_decision": "close_exact_repid_paired_style_latent_predictor",
+    "repid13_formal_report_path": "outputs/eval/u5_r2repid13_paired_style_latent_v1/run_a.json",
+    "repid13_formal_report_sha256": "ed9680bd10616168af693e7d187ee4afea8eb4a030e2462c050b7eab7fbd1ed7"
+  },
+  "roles": {
+    "fit_scene_count": 80,
+    "calibration_scene_count": 24,
+    "sealed_scene_count": 24,
+    "calibration_original_reads_before_prediction_freeze": 0,
+    "sealed_reads": 0
+  },
+  "retrieval": {
+    "feature": "REPID13 after-reference global-plus-4x4 spatial descriptor",
+    "standardization": "fit-only per-coordinate mean and standard deviation with 1e-8 floor",
+    "similarity": "cosine on standardized features with zero-norm rejection",
+    "primary_top_k": 3,
+    "softmax_temperature": 0.1,
+    "ordinary_top1_control": true,
+    "hard_medoid_control": "K=1 observed paired-latent Euclidean medoid over all fit cases",
+    "fixed_global_control": "mean fit operator",
+    "repid13_student_control": true,
+    "cyclic_wrong_label_shift": 1,
+    "paired_latent_top3_oracle": "diagnostic only after prediction freeze",
+    "latent_mode_claim_allowed": false,
+    "application_source_read_during_build": false,
+    "direct_final_rgb_prediction": false
+  },
+  "calibration_gates": {
+    "candidate_improvement_rate_min": 0.75,
+    "candidate_improvement_median_min": 0.2,
+    "candidate_improvement_worst_min": -0.1,
+    "beat_global_rate_min": 0.65,
+    "gain_vs_global_median_min": 0.05,
+    "beat_top1_rate_min": 0.6,
+    "gain_vs_top1_median_min": 0.02,
+    "beat_medoid_rate_min": 0.65,
+    "gain_vs_medoid_median_min": 0.05,
+    "beat_repid13_student_rate_min": 0.65,
+    "gain_vs_repid13_student_median_min": 0.05,
+    "beat_cyclic_rate_min": 0.75,
+    "gain_vs_cyclic_median_min": 0.1,
+    "paired_latent_oracle_improvement_rate_min": 0.75,
+    "paired_latent_oracle_improvement_median_min": 0.2,
+    "median_output_delta_e_oklab_min": 0.01,
+    "new_exact_boundary_fraction_max": 0.0,
+    "p999_gradient_ratio_max": 1.5
+  },
+  "stop_rules": [
+    "Reuse the exact REPID13 roles, descriptor, paired-latent PCA and bounded operator without changing their values.",
+    "All calibration retrieval neighbors, weights and candidate/control parameters freeze before any calibration original is read.",
+    "The paired-latent top-3 oracle is computed only after prediction freeze and is diagnostic, never an input to the candidate.",
+    "Any calibration gate failure closes before sealed original or render acquisition.",
+    "No K, temperature, feature metric, medoid count, ridge, bounds, dose, role, threshold or gate rescue is allowed on this cohort.",
+    "A pass opens only a separately frozen sealed confirmation and does not prove latent modes or promote product behavior."
+  ],
+  "decision_if_pass": "open_exact_sealed_repid_paired_style_case_routing_confirmation",
+  "decision_if_fail": "close_exact_repid_paired_style_case_routing",
+  "claim_ceiling": "Private internal-research paired-supervised after-reference case routing to bounded explicit operators; not latent-mode, population preference, film, stock, scanner, arbitrary-source, package, capability or product evidence."
+}
