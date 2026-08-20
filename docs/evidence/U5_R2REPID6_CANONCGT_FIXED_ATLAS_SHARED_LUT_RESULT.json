@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2repid6-canoncgt-fixed-atlas-shared-lut-v1",
+  "status": "FAIL_CLOSED_FIXED_ATLAS_SHARED_LUT",
+  "execution_commit": "3c92dc84",
+  "frozen_inputs": {
+    "config_sha256": "69f2b807193ecbd72565cf91521b5b51b705055c74b488c5a4e51a15d98d727a",
+    "contract_sha256": "78d9ead09be99f2cac1c13bb23a0afd0a55fa00e7479c5d35285298eb7fac12d",
+    "core_sha256": "8a6ecd544ff68511f4a2318d19ff7f36e7d07d7c69c116994519b1bd1f1bd449",
+    "runner_sha256": "852ce1f23394d43103d17c65879660c03e36a1623ae4da8185b425e73b24396f",
+    "parent_contract_sha256": "58d2a2b349763f7b29d08ded37e028f394585250f1ded9452a5beb41a4693d8b",
+    "external_repository_commit": "229a7d3ec24af19ea5d97bb136f0317762bb9261",
+    "external_checkpoint_sha256": "916f7ad5028d3fef51cf915bb51febc9508e7a378c0babe9ff3d3992b8c594f7"
+  },
+  "execution_order": {
+    "build_application_source_file_reads": 0,
+    "build_application_source_pixel_decodes": 0,
+    "build_canonicalizer_executions": 0,
+    "reference_count": 9,
+    "fixed_atlas_count": 3,
+    "shared_luts_frozen_before_apply": 9,
+    "application_rows_after_freeze": 81,
+    "per_source_parameter_changes": 0
+  },
+  "replay": {
+    "run_a_build_manifest_sha256": "f9c8f7e16ffaf97094e876f0d2bedb641239a8e6d206e17598861a5c9c7b4a18",
+    "run_b_reversed_build_manifest_sha256": "f9c8f7e16ffaf97094e876f0d2bedb641239a8e6d206e17598861a5c9c7b4a18",
+    "run_a_apply_manifest_sha256": "4e5099271ff89586a3230826acc287f59a7d920ab4727455946490e99b1a7e11",
+    "run_b_reversed_apply_manifest_sha256": "4e5099271ff89586a3230826acc287f59a7d920ab4727455946490e99b1a7e11",
+    "run_a_report_sha256": "700191e2179eb850e9802fca0894a83d8b46cf835a0e6bd232687455880b56e9",
+    "run_b_reversed_report_sha256": "700191e2179eb850e9802fca0894a83d8b46cf835a0e6bd232687455880b56e9",
+    "scientific_id": "4a66c58decc84349e0081fb6955e395162f9afe220eed0e08b94aa51f4b08a10",
+    "byte_exact": true
+  },
+  "metrics": {
+    "reference_sensitivity_median_pairwise_delta_e76": 4.45734322559243,
+    "reference_sensitivity_gate": true,
+    "atlas_lut_drift_p95_minimum": 0.0173391924259702,
+    "atlas_lut_drift_p95_maximum": 0.023645751641452696,
+    "atlas_stability_gate_all_references": true,
+    "median_style_delta_e76_minimum": 4.719667542481391,
+    "median_style_delta_e76_maximum": 14.156948337492814,
+    "median_non_basic_delta_e76_minimum": 2.124254877773465,
+    "median_non_basic_delta_e76_maximum": 3.6769761373979732,
+    "worst_new_clipping_fraction_minimum": 0.05873670280449941,
+    "worst_new_clipping_fraction_maximum": 0.23131266860080418,
+    "worst_raw_out_of_range_fraction_minimum": 0.05761956672203765,
+    "worst_raw_out_of_range_fraction_maximum": 0.22804955703211519,
+    "automatic_survivor_count": 0
+  },
+  "failed_gates": [
+    "minimum_automatic_survivors",
+    "non_basic_all_references",
+    "new_clipping_all_references",
+    "raw_output_range_all_references",
+    "style_four_of_nine_references"
+  ],
+  "interpretation": "The fixed atlas produces stable and reference-sensitive grading LUTs, but deleting source-conditioned canonicalization yields basic-dominated operators with severe clipping and raw-range tails on every reference. Source context is therefore a necessary part of this checkpoint's mechanism, not a removable implementation detail.",
+  "closed_rescues": [
+    "atlas replacement or expansion",
+    "LUT projection or clipping repair",
+    "strength fitting",
+    "checkpoint or threshold sweep",
+    "same-cohort retraining",
+    "application-source routing or conditioning"
+  ],
+  "claim_ceiling": "Private consumed-A0 reference-only explicit-operator negative; no training, visual shortlist, product, schema, capability, stock or calibrated-reference claim."
+}

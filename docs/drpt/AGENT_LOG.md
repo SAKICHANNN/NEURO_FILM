@@ -13943,3 +13943,22 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close REPID's global role/preference route. No sealed image, subgroup, role
   router or larger model is authorized; product/default state is unchanged.
 - Evidence: `docs/evidence/U5_R2REPID5A_CORRECTED_GLOBAL_ROLE_UTILITY_D0_RESULT.json`.
+
+### 2026-08-20 - U5.R2REPID6 closes fixed-atlas CanonCGT shared LUT
+
+- Froze a new source-independent boundary over the already pinned Apache-2.0
+  CanonCGT E2E checkpoint. Build reads only one reference and three procedural
+  RGB lattice atlases, emits one shared LUT, and completes for all nine
+  references before any application source is hashed or decoded. Apply reuses
+  the exact LUT across nine sources with zero per-source parameter changes.
+- Forward and fully reversed fresh processes are exact at build, apply and
+  report (`700191e2...56e9`, scientific ID `4a66c58d...8a10`). Atlas-context
+  drift p95 is `.01734-.02365` and reference sensitivity is `4.457` Delta E76.
+- All nine candidates fail. Median non-basic residual is only `2.124-3.677`,
+  worst new clipping is `5.87-23.13%`, and worst raw range escape is
+  `5.76-22.80%`; there are zero automatic survivors and no visual shortlist.
+- Interpretation: the reference signal is real, but the checkpoint's
+  source-conditioned canonicalizer cannot be replaced by a fixed atlas to meet
+  the shared-operator contract. Close atlas/projection/strength/threshold and
+  application-source routing rescues; defaults and product state are unchanged.
+- Evidence: `docs/evidence/U5_R2REPID6_CANONCGT_FIXED_ATLAS_SHARED_LUT_RESULT.json`.

@@ -1,6 +1,6 @@
 # U5.R2REPID6 — CanonCGT fixed-atlas shared-LUT contract
 
-Date: 2026-08-20  
+Date: 2026-08-20
 Status: frozen before model inference
 
 ## Question

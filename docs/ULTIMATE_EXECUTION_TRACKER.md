@@ -1607,3 +1607,17 @@ Overall role-order accuracy is `64.59%`, but the `c/e` pair is `48.88%`, the
 top role loses its weakest opponent comparison, and leave-one-fold top-role
 stability is only `14/16`. Close REPID as a global role/preference operator
 source without sealed pixels, subgroup routing or model-capacity rescue.
+
+U5.R2REPID6 directly tests the missing product boundary in the already pinned
+CanonCGT checkpoint: nine references each condition three deterministic
+model-owned RGB lattice atlases, whose LUTs are aggregated once and frozen
+before any of nine application sources are read. Forward/reverse fresh runs are
+byte exact from build through report (`700191e2...56e9`; scientific ID
+`4a66c58d...8a10`). Atlas drift p95 is only `.01734-.02365` and reference-bank
+sensitivity is `4.457` Delta E76, so the construction is stable and reference
+sensitive. It nevertheless has zero survivors: every reference has only
+`2.124-3.677` median non-basic residual, while worst new clipping and raw range
+escape span `5.87-23.13%` and `5.76-22.80%`. Close the exact fixed-atlas shared
+LUT route without projection, strength, atlas or source-routing rescue. The
+result localizes CanonCGT's source-conditioned canonicalizer as necessary for
+this checkpoint; it does not open visual review or product integration.
