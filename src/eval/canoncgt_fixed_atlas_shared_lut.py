@@ -258,7 +258,22 @@ def apply_lut_bank(
         root, config, device
     )
     build = json.loads(build_manifest_path.read_text(encoding="utf-8"))
-    if build.get("phase") != "build" or build.get("application_source_file_reads") != 0:
+    expected_references = {
+        str(row["reference_id"]): str(row["sha256"])
+        for row in parent["references"]
+    }
+    build_references = {
+        str(row["reference_id"]): str(row["reference_sha256"])
+        for row in build.get("records", [])
+    }
+    if (
+        build.get("experiment_id") != config["experiment_id"]
+        or build.get("phase") != "build"
+        or build.get("application_source_file_reads") != 0
+        or build.get("application_source_pixel_decodes") != 0
+        or build.get("canonicalizer_executions") != 0
+        or build_references != expected_references
+    ):
         raise CanonCGTReferenceError("invalid build manifest")
     samples = _load_gold_samples(root, parent)
     build_rows = list(build["records"])
@@ -269,6 +284,7 @@ def apply_lut_bank(
     output_dir.mkdir(parents=True, exist_ok=True)
     records: list[dict[str, Any]] = []
     with torch.inference_mode():
+        frozen_luts: list[tuple[Mapping[str, Any], Any]] = []
         for lut_row in build_rows:
             lut_path = build_manifest_path.parent / str(lut_row["lut"])
             if sha256_file(lut_path) != str(lut_row["lut_file_sha256"]):
@@ -276,13 +292,16 @@ def apply_lut_bank(
             lut_np = np.load(lut_path, allow_pickle=False).astype(np.float32)
             if _sha256_array(lut_np) != str(lut_row["lut_array_sha256"]):
                 raise CanonCGTReferenceError("frozen LUT array mismatch")
-            lut = torch.from_numpy(lut_np).unsqueeze(0).to(device)
-            reference_id = str(lut_row["reference_id"])
-            candidate_dir = output_dir / reference_id
-            candidate_dir.mkdir(parents=True, exist_ok=True)
-            for sample_id, sample in sample_rows:
-                source_path = _resolve(root, str(sample["source_path"]))
-                source = _tensor_from_image(source_path, torch, device)
+            frozen_luts.append(
+                (lut_row, torch.from_numpy(lut_np).unsqueeze(0).to(device))
+            )
+        for sample_id, sample in sample_rows:
+            source_path = _resolve(root, str(sample["source_path"]))
+            source = _tensor_from_image(source_path, torch, device)
+            for lut_row, lut in frozen_luts:
+                reference_id = str(lut_row["reference_id"])
+                candidate_dir = output_dir / reference_id
+                candidate_dir.mkdir(parents=True, exist_ok=True)
                 raw = model.TrilinearInterpolation(source, lut)
                 raw_np = raw[0].permute(1, 2, 0).detach().cpu().numpy()
                 if not np.all(np.isfinite(raw_np)):
@@ -310,7 +329,7 @@ def apply_lut_bank(
         "phase": "apply",
         "build_manifest_sha256": sha256_file(build_manifest_path),
         "application_source_file_reads_after_build_freeze": len(samples),
-        "application_source_pixel_decodes_after_build_freeze": len(samples) * len(build_rows),
+        "application_source_pixel_decodes_after_build_freeze": len(samples),
         "per_source_parameter_changes": 0,
         "model": model_audit,
         "records": records,
@@ -353,6 +372,19 @@ def evaluate(
     references = {str(row["reference_id"]): row for row in parent["references"]}
     build = json.loads(build_manifest_path.read_text(encoding="utf-8"))
     apply = json.loads(apply_manifest_path.read_text(encoding="utf-8"))
+    if (
+        build.get("experiment_id") != config["experiment_id"]
+        or build.get("phase") != "build"
+        or apply.get("experiment_id") != config["experiment_id"]
+        or apply.get("phase") != "apply"
+        or apply.get("build_manifest_sha256") != sha256_file(build_manifest_path)
+        or apply.get("application_source_file_reads_after_build_freeze")
+        != len(samples)
+        or apply.get("application_source_pixel_decodes_after_build_freeze")
+        != len(samples)
+        or apply.get("per_source_parameter_changes") != 0
+    ):
+        raise CanonCGTReferenceError("invalid build/apply manifest chain")
     expected = {(rid, sid) for rid in references for sid in samples}
     records = {
         (str(row["reference_id"]), str(row["sample_id"])): row
