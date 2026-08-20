@@ -24,11 +24,14 @@ def _fetcher(contract: dict, *, first_size_delta: int = 0):
         b"767 users ~60,000 valid preference judgments 1,192 unique scenes "
         b"7,972 unique image style pairs across five source categories"
     )
-    drive = "".join(
-        f'[[["{row["id"]}",["folder"],"{row["name"]}","application\\/zip",'
+    drive_text = "".join(
+        f'[[["{row["id"]}",["folder"],"{row["name"]}","application/zip",'
         f'0,null,0,0,0,1,1,null,null,{row["size_bytes"] + (first_size_delta if index == 0 else 0)},'
         for index, row in enumerate(expected)
-    ).encode()
+    )
+    drive = (
+        drive_text.replace('"', r"\x22").replace("[", r"\x5b").replace("]", r"\x5d").encode()
+    )
     archive = _archive()
 
     def fetch(url: str, maximum_bytes: int) -> bytes:

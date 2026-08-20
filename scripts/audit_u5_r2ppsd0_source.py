@@ -51,14 +51,20 @@ def _project_facts(html: str) -> dict[str, int]:
 
 
 def _drive_inventory(html: str, expected: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    normalized = (
+        html.replace(r"\x22", '"')
+        .replace(r"\x5b", "[")
+        .replace(r"\x5d", "]")
+        .replace(r"\/", "/")
+    )
     rows: list[dict[str, Any]] = []
     for item in expected:
         pattern = re.compile(
             rf'\[{{1,3}}"{re.escape(item["id"])}",\["[^"]+"\],'
-            rf'"{re.escape(item["name"])}","application\\/zip",'
+            rf'"{re.escape(item["name"])}","application/zip",'
             rf'0,null,0,0,0,\d+,\d+,null,null,(\d+),'
         )
-        match = pattern.search(html)
+        match = pattern.search(normalized)
         if match is None:
             raise ValueError(f"missing exact Drive inventory row: {item['name']}")
         rows.append(
