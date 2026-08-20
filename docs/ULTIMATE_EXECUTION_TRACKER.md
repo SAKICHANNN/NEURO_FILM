@@ -203,6 +203,16 @@ EXIF orientation semantics; any further structural mismatch closes this source
 before candidate 2. Counter remains `1/3`. Evidence:
 `docs/evidence/SF3_A0W_NTIRE_NIGHT_GEOMETRY_PREFLIGHT_RESULT.json`.
 
+SF3.A0X is the single allowed prospective orientation successor. It implements
+the pinned official full EXIF mapping and changes nothing else. Two complete
+384,595,454-byte streaming reports are byte exact (`87c73133...dbf89c`). All
+8/8 development pairs pass: correct inlier ratios `.7143-.9439`, minimum
+correct-minus-cyclic-wrong margin `.3950`, maximum median reprojection `.7528`
+px and maximum corner displacement `10.9417` px. No members persist and no
+colour-quality score/operator exists. This opens a fresh group-isolated paired
+capture candidate 2 preregistration; counter remains `1/3`. Evidence:
+`docs/evidence/SF3_A0X_NTIRE_NIGHT_OFFICIAL_ORIENTATION_PREFLIGHT_RESULT.json`.
+
 **Autonomy invariant**: the active no-data Roll2Film and Style-safe work cannot
 depend on the owner supplying images, film/digital pairs, per-image labels, new
 preference votes or manual annotation. Public online data is an allowed source

@@ -1,0 +1,60 @@
+{
+  "schema": "neuro-film.sf3-a0x-ntire-night-official-orientation-preflight-evidence.v1",
+  "experiment_id": "SF3.A0X_NTIRE_NIGHT_OFFICIAL_ORIENTATION_PREFLIGHT_V1",
+  "date": "2026-08-21",
+  "status": "PASS_NATURAL_PAIR_SPECIFIC_GEOMETRY_PREFLIGHT_NOT_CANDIDATE_2",
+  "preregistration_commit": "86b30169",
+  "implementation_commit": "5777b6eb",
+  "contract": {
+    "path": "configs/sf3_a0x_ntire_night_official_orientation_preflight_v1.json",
+    "sha256": "55aef45754b9c57c36cc339dbbd6950bebfbbbf3b4c3cee2e9d24ef5542385f9",
+    "base_contract_sha256": "f0e0d1bfe49bc259e802f4493d94aabfeca4b2eb3c0df5efff1a9f7fcab54a5a"
+  },
+  "official_baseline": {
+    "repository": "https://github.com/createcolor/nightimaging25",
+    "commit": "3478fbb39449f5cba29483d4cbfe019013f8261f",
+    "license": "MIT"
+  },
+  "formal_replay": {
+    "forward": "outputs/eval/sf3_a0x_ntire_night_official_orientation_preflight_v1/formal_forward.json",
+    "reverse": "outputs/eval/sf3_a0x_ntire_night_official_orientation_preflight_v1/formal_reverse.json",
+    "report_sha256": "87c73133d6b9b279d060f79a83bd956ba45d08fc2ac9c4f3d43a317faedbf89c",
+    "stable_identity": "9a030f8fec3177f20cfdc7236d58d4d27a05822b2f636c3ab892dcd35e8e8bfc",
+    "byte_exact": true
+  },
+  "metrics": {
+    "row_count": 8,
+    "passing_row_count": 8,
+    "correct_inlier_ratio_minimum": 0.7142857142857143,
+    "correct_inlier_ratio_maximum": 0.9438914027149321,
+    "correct_minus_cyclic_wrong_inlier_ratio_minimum": 0.3950336367233874,
+    "maximum_median_reprojection_pixels": 0.7528076171875,
+    "maximum_corner_displacement_pixels": 10.94167423248291,
+    "raw_shape": [6144, 8192],
+    "raw_dtype": "uint16",
+    "target_shape": [2000, 2000, 3]
+  },
+  "reads": {
+    "archive_bytes_per_run": 384595454,
+    "persistent_member_bytes": 0,
+    "operator_fits": 0,
+    "renders": 0,
+    "target_colour_quality_scores": 0
+  },
+  "gates": {
+    "official_source_identity_frozen": true,
+    "exact_metadata_shapes": true,
+    "selected_rows_complete": true,
+    "required_registration_rows": true,
+    "pair_specific_wrong_target_separation": true,
+    "bounded_archive_reads": true,
+    "zero_persistent_member_bytes": true,
+    "zero_operator_fit_render_score": true,
+    "two_complete_reports_byte_exact": true
+  },
+  "bounded_final_candidate_counter_before": 1,
+  "bounded_final_candidate_counter_after": 1,
+  "decision": "OPEN_FRESH_GROUP_ISOLATED_PAIRED_CAPTURE_CANDIDATE_2_PREREGISTRATION",
+  "scientific_conclusion": "The pinned official metadata and geometry produce strong, near-identity, pair-specific natural RAW/Sony structural registration on all eight development rows. Cyclic wrong targets are decisively separated. This establishes a valid paired observation source but does not establish any colour operator or target-quality gain.",
+  "claim_ceiling": "Eight-row development-only verification that exact official geometry and capture metadata yield pair-specific natural RAW/Sony structural alignment. No target colour quality, operator, candidate 2, film, stock, package, schema, capability or product claim."
+}

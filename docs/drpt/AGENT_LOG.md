@@ -14887,6 +14887,24 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   another structural mismatch closes this source before candidate 2. Evidence:
   `docs/evidence/SF3_A0W_NTIRE_NIGHT_GEOMETRY_PREFLIGHT_RESULT.json`.
 
+### 2026-08-21 - SF3.A0X proves pair-specific natural geometry
+
+- The one permitted successor freezes the full already-published official
+  orientation mapping at `86b30169`; implementation `5777b6eb` changes only
+  that orientation boundary while retaining A0W's rows, geometry, SIFT/RANSAC,
+  controls and gates.
+- Two complete forward/reverse streaming reports are byte exact at
+  `87c73133...dbf89c`, stable `9a030f8f...e8e8bfc`, reading 384,595,454
+  archive bytes per run and persisting zero member bytes.
+- All 8/8 rows pass. Correct SIFT inlier ratio ranges `.7143-.9439`; minimum
+  correct-minus-cyclic-wrong margin is `.3950`; maximum median reprojection is
+  `.7528` px and maximum corner displacement `10.9417` px. RAW is exact
+  6144x8192 uint16 and Sony target exact 2000x2000 RGB.
+- Decision: natural paired geometry is qualified and a fresh group-isolated
+  candidate 2 may now be preregistered. Counter remains `1/3`; no colour
+  operator/quality/package/schema/capability/product claim. Evidence:
+  `docs/evidence/SF3_A0X_NTIRE_NIGHT_OFFICIAL_ORIENTATION_PREFLIGHT_RESULT.json`.
+
 ### 2026-08-21 - SF3.A2 current public-index refresh is infrastructure-invalid
 
 - A bounded three-stock Openverse contract was committed before access and
