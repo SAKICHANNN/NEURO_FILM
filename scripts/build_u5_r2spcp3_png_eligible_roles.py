@@ -43,8 +43,7 @@ def _probe_member(
     url: str,
     member: dict[str, Any],
     *,
-    header_bytes: int,
-    compressed_prefix_bytes: int,
+    record_prefix_bytes: int,
     required_signature: bytes,
     maximum_attempts: int,
     retry_delay_seconds: float,
@@ -60,25 +59,27 @@ def _probe_member(
         raise AssertionError("unreachable")
 
     start = int(member["local_offset"])
-    header = fetch_exact((start, start + header_bytes - 1))
-    if header[:4] != b"PK\x03\x04":
+    record = fetch_exact((start, start + record_prefix_bytes - 1))
+    if record[:4] != b"PK\x03\x04":
         raise ValueError(f"local header missing: {member['name']}")
-    values = struct.unpack_from("<IHHHHHIIIHH", header, 0)
+    values = struct.unpack_from("<IHHHHHIIIHH", record, 0)
     method, name_len, extra_len = values[3], values[9], values[10]
-    if int(member["compressed_size"]) <= compressed_prefix_bytes:
+    payload_start = 30 + name_len + extra_len
+    compressed = record[payload_start:]
+    if not compressed or int(member["compressed_size"]) <= len(compressed):
         raise ValueError(f"member too small for a non-complete prefix: {member['name']}")
-    compressed_start = start + header_bytes + name_len + extra_len
-    compressed = fetch_exact(
-        (compressed_start, compressed_start + compressed_prefix_bytes - 1)
-    )
+    encoded_name = record[30 : 30 + name_len].decode("utf-8")
+    if encoded_name != member["name"]:
+        raise ValueError(f"local member name drift: {member['name']}")
     decoder = zlib.decompressobj(-15)
     signature = decoder.decompress(compressed, len(required_signature))
     return {
         "name": member["name"],
         "method": method,
         "local_header_range_start": start,
-        "compressed_prefix_range_start": compressed_start,
-        "range_bytes": len(header) + len(compressed),
+        "compressed_prefix_range_start": start + payload_start,
+        "compressed_prefix_bytes": len(compressed),
+        "range_bytes": len(record),
         "decompressed_signature_hex": signature.hex(),
         "required_signature_exact": signature == required_signature,
     }
@@ -111,9 +112,8 @@ def build(contract_path: Path, output_path: Path) -> dict[str, Any]:
     required_signature = bytes.fromhex(
         contract["eligibility"]["required_decompressed_signature_hex"]
     )
-    header_bytes = int(contract["eligibility"]["local_header_bytes_per_member"])
-    compressed_prefix_bytes = int(
-        contract["eligibility"]["compressed_prefix_bytes_per_member"]
+    record_prefix_bytes = int(
+        contract["eligibility"]["local_record_prefix_bytes_per_member"]
     )
     jobs = [
         (str(row["scene_id"]), endpoint, row[f"{endpoint}_member"])
@@ -126,8 +126,7 @@ def build(contract_path: Path, output_path: Path) -> dict[str, Any]:
         fact = _probe_member(
             contract["source"]["zip_url"],
             member,
-            header_bytes=header_bytes,
-            compressed_prefix_bytes=compressed_prefix_bytes,
+            record_prefix_bytes=record_prefix_bytes,
             required_signature=required_signature,
             maximum_attempts=int(
                 contract["execution"]["maximum_attempts_per_exact_range"]

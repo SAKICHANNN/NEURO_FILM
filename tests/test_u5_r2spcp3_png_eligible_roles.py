@@ -24,8 +24,8 @@ def test_spcp3_contract_filters_payload_before_role_assignment() -> None:
         "89504e470d0a1a0a"
     )
     assert payload["selection"]["role_assignment_before_signature_lock_forbidden"]
-    assert payload["eligibility"]["compressed_prefix_bytes_per_member"] == 256
-    assert payload["eligibility"]["maximum_total_range_bytes"] == 370656
+    assert payload["eligibility"]["local_record_prefix_bytes_per_member"] == 1024
+    assert payload["eligibility"]["maximum_total_range_bytes"] == 1327104
     assert payload["execution"]["maximum_parallel_range_requests"] == 8
     assert payload["execution"]["maximum_attempts_per_exact_range"] == 3
     assert payload["eligibility"]["full_member_read_forbidden"]
@@ -85,15 +85,13 @@ def test_member_probe_reads_only_frozen_range_and_parses_local_header(monkeypatc
     )
     fact = _probe_member(
         "fixture",
-        {"local_offset": 1234, "name": name, "compressed_size": 1024},
-        header_bytes=30,
-        compressed_prefix_bytes=256,
+        {"local_offset": 1234, "name": name, "compressed_size": 2048},
+        record_prefix_bytes=1024,
         required_signature=bytes.fromhex("89504e470d0a1a0a"),
         maximum_attempts=3,
         retry_delay_seconds=0.0,
     )
-    compressed_start = 1234 + 30 + len(name.encode())
-    assert calls == [(1234, 1263), (compressed_start, compressed_start + 255)]
-    assert fact["range_bytes"] == 286
+    assert calls == [(1234, 2257)]
+    assert fact["range_bytes"] == 1024
     assert fact["method"] == 8
     assert fact["required_signature_exact"] is True

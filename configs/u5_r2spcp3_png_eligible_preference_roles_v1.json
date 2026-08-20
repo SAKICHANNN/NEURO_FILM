@@ -40,9 +40,8 @@
     "expected_unassigned_scene_count": 648,
     "required_member_method": 8,
     "required_decompressed_signature_hex": "89504e470d0a1a0a",
-    "local_header_bytes_per_member": 30,
-    "compressed_prefix_bytes_per_member": 256,
-    "maximum_total_range_bytes": 370656,
+    "local_record_prefix_bytes_per_member": 1024,
+    "maximum_total_range_bytes": 1327104,
     "full_member_read_forbidden": true,
     "image_decode_forbidden": true
   },
