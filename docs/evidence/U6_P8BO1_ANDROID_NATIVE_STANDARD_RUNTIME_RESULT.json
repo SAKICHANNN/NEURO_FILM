@@ -15,6 +15,9 @@
   "contract_test_sha256": "6290932d8ddaecaf35fccc29a76c717a21bccf803ab2a35a3a47ef187a13f7cf",
   "formal_report_path": "outputs/eval/u6_p8bo1_android_native_standard_runtime_v1/report_port5594_clean.json",
   "formal_report_sha256": "97281ff8000adc6d9a9884d2c5a070d7396dfa08c7865d5fe6728c26cfa03aa5",
+  "formal_replay_report_path": "outputs/eval/u6_p8bo1_android_native_standard_runtime_v1/report_replay_port5580.json",
+  "formal_replay_report_sha256": "97281ff8000adc6d9a9884d2c5a070d7396dfa08c7865d5fe6728c26cfa03aa5",
+  "formal_reports_byte_exact": true,
   "stable_evidence_id": "0072654706137298050796fb59b50c962f17e648942c77b1d889097a070ad57d",
   "runtime": {
     "api_level": 34,
@@ -24,6 +27,12 @@
     "wipe_data_cold_boots": 2,
     "fresh_probe_processes": 4,
     "owned_process_cleanup": true
+  },
+  "outer_replay": {
+    "reports": 2,
+    "total_wipe_data_cold_boots": 4,
+    "total_fresh_probe_processes": 8,
+    "normalized_reports_byte_exact": true
   },
   "result": {
     "oracle_output_sha256": "916858fc48cce6a8214a8acdb08a044fbbeaec1392bdcae186ef388ff5350950",
@@ -38,10 +47,11 @@
     "automatic_pass": false
   },
   "invalid_attempts_before_formal_result": [
-    "same-AVD process collision before probe execution",
-    "concurrent exact-process-ownership implementation transition before probe execution"
+    "migrated AVD launcher pointer still referenced its former D-root path; corrected to the existing project-namespaced P location before probe execution",
+    "unsupported port and launcher-child lifecycle exposed incomplete owned-qemu tracking; exact owned processes were cleaned and tracking was corrected before probe execution",
+    "same-AVD process collision with the already-running formal replay stopped before probe execution"
   ],
   "decision": "retain_p8bo_compile_link_only_without_android_runtime_claim",
-  "interpretation": "Four fresh Android probe processes across two wipe-data cold boots are internally exact and pass RMSE, finite, replay, input-atomicity and cleanup gates, but the frozen maximum-absolute-error gate fails. The Android runtime claim remains closed without threshold rescue.",
+  "interpretation": "Each of two byte-exact outer reports contains four fresh Android probe processes across two wipe-data cold boots. All eight probe executions pass RMSE, finite, replay, input-atomicity and cleanup gates, but the frozen maximum-absolute-error gate fails. The Android runtime claim remains closed without threshold rescue.",
   "claim_ceiling": "Private fixed-fixture Android 14 x86_64 negative conformance evidence. No Android runtime retention, physical arm64, Apple runtime, JNI/app, arbitrary media, calibrated stock, package, capability or product claim."
 }
