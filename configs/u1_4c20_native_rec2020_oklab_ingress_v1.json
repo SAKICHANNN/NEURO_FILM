@@ -1,0 +1,64 @@
+{
+  "schema": "neuro-film.u1-4c20-native-rec2020-oklab-ingress.v1",
+  "experiment_id": "U1.4C20",
+  "question": "Can one caller-buffer C11 host kernel reproduce the retained analytical Rec.2020 OKLab ingress on the exact 24MP C18 source, preserve in-gamut pixels bit-exactly, and reduce the measured ingress hotspot below five seconds without changing the mapper?",
+  "bindings": [
+    {
+      "path": "native/color_engine/nf_rec2020_oklab_interior_f32_v1.c",
+      "sha256": "3a3b1955e5715d474bdd96a8efa5f3c9ab6e9d9f11e1ee0324cb194e0e2363ca"
+    },
+    {
+      "path": "native/color_engine/nf_rec2020_oklab_interior_f32_v1.h",
+      "sha256": "1eb5fc11763fe14d2a5f9cb086abb542cdd21ec9a044bf24ff38cf2a547e9131"
+    },
+    {
+      "path": "src/eval/native_rec2020_oklab_interior.py",
+      "sha256": "55a498695fc4acd65534b6991aa1b80b29707c3abdcd206816c6ce4b53cb6e7f"
+    },
+    {
+      "path": "scripts/run_u1_4c20_native_rec2020_oklab_interior.py",
+      "sha256": "1b119bb9de85ccf2b06dee7be9ae6839558ee79ba510f196cf2477d70abd38d2"
+    },
+    {
+      "path": "docs/evidence/U1_4C19A_STAGED_PROPHOTO_24MP_PROFILE_RESULT.json",
+      "sha256": "fdf339621e7e76495ad4da514026213886048d751f794801f3f64b632843fa25"
+    },
+    {
+      "path": "docs/evidence/U1_4C19_STAGED_PROPHOTO_24MP_RESULT.json",
+      "sha256": "e26ce7b46273dddb7693e8f1b844c90f722a5329b95c931122dd662c0fea751f"
+    }
+  ],
+  "source": {
+    "path": "data/wide_gamut/u1_4c18_prophoto_24mp/a0957-IMG_0032_6000x4000.tif",
+    "sha256": "91895fce65e8a32f869dd31ecd5c3ee576c9212cf028d59cd0022b0371668394",
+    "bytes": 144001168,
+    "shape": [
+      4000,
+      6000,
+      3
+    ],
+    "embedded_icc_sha256": "0a8ef7d1d958d98225b3b71d93d9e8e3cecd9c302e014973d025d2a977ecf27c"
+  },
+  "execution": {
+    "softness": 0.015625,
+    "margin": 0.000030518043793392844,
+    "iterations": 24,
+    "thread_count": 8,
+    "formal_runs": 2,
+    "oracle_row_chunk": 128,
+    "cohort_fitting_allowed": false,
+    "hard_clipping_allowed": false,
+    "posthoc_limiting_allowed": false
+  },
+  "gates": {
+    "maximum_output_absolute_error": 2.5e-7,
+    "maximum_chroma_scale_absolute_error": 2.5e-7,
+    "require_in_gamut_pixels_bit_exact": true,
+    "require_finite_output": true,
+    "require_two_run_output_and_scale_exact": true,
+    "maximum_native_kernel_wall_seconds": 5.0
+  },
+  "decision_if_pass": "retain_native_rec2020_oklab_ingress_and_open_fused_native_product_chain",
+  "decision_if_fail": "close_exact_native_ingress_kernel_without_expanding_to_full_product_chain",
+  "claim_ceiling": "Local Windows MSVC host feasibility for the exact retained Rec.2020 analytical ingress on one 24MP natural-derived ProPhoto fixture; not full renderer performance, cross-platform parity, arbitrary ICC, film-stock calibration, preference, HDR, or default promotion."
+}
