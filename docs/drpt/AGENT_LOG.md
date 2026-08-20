@@ -13611,3 +13611,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   path and move directly to a staged/tiled exact implementation; do not relax
   the resource gates or reinterpret this as a colour-quality failure. Evidence:
   `docs/evidence/U1_4C18_PROPHOTO_24MP_PRODUCT_RESOURCES_RESULT.json`.
+
+### 2026-08-20 - U1.4C19 closes exact Python staging on resources
+
+- Two fresh 6000x4000 staged executions preserve the exact C18 RGB16 output,
+  receipt and decoded samples. Median peak process-tree RSS falls by about
+  78.5%, but the observations remain 1.1508--1.1526GB and 115.27--117.57s.
+- The unchanged 1GiB and 15s gates both fail. Retain C18 colour semantics,
+  close further Python staging rescue, and return to a materially distinct
+  scientific or native-product mechanism. Evidence:
+  `docs/evidence/U1_4C19_STAGED_PROPHOTO_24MP_RESULT.json`.

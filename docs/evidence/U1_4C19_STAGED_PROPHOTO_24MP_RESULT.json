@@ -1,0 +1,43 @@
+{
+  "schema": "neuro-film.u1-4c19-staged-prophoto-24mp-evidence.v1",
+  "experiment_id": "U1.4C19",
+  "date": "2026-08-20",
+  "status": "FAIL_RESOURCE_GATES_RETAIN_EXACT_SEMANTICS",
+  "implementation_commit": "e49052ac",
+  "bindings": {
+    "contract": {
+      "path": "configs/u1_4c19_staged_prophoto_24mp_v1.json",
+      "sha256": "c75d513c527dbd2f0267f0b24787fbeb73e199d0e25c7b4fd91446d972586455"
+    },
+    "formal_report": {
+      "path": "outputs/eval/u1_4c19_staged_prophoto_24mp_v1/report.json",
+      "sha256": "6a79c8d2776573ba7113d7982713337a52097035a45824b122c562d67999cc62"
+    },
+    "fixture": {
+      "path": "data/wide_gamut/u1_4c18_prophoto_24mp/a0957-IMG_0032_6000x4000.tif",
+      "sha256": "91895fce65e8a32f869dd31ecd5c3ee576c9212cf028d59cd0022b0371668394",
+      "pixels": 24000000
+    }
+  },
+  "formal_runs": {
+    "fresh_processes": 2,
+    "stable_evidence_id": "400f85b8696636bccad912041dfd8826cf36798eb0941d9ab8e2f756d5a412b5",
+    "output_sha256": "ff30c351261c0c9004c05f21e5a2929e448716153756407cde7e36225509bd7a",
+    "receipt_sha256": "e9a442bc89bedacb46d79dd3d63a7e5e99aa6dd6125db15735a491f5abf2b415",
+    "output_and_receipt_byte_identity": true,
+    "exact_c18_output_and_receipt": true,
+    "exact_rgb16_sample_readback": true
+  },
+  "measurements": {
+    "peak_process_tree_rss_bytes": [1152626688, 1150758912],
+    "worker_wall_seconds": [117.56569309998304, 115.26818889999413],
+    "maximum_peak_rss_gate_bytes": 1073741824,
+    "maximum_wall_gate_seconds": 15.0,
+    "median_peak_rss_reduction_vs_c18": 0.7847554744106469,
+    "median_wall_ratio_vs_c18": 1.6961026469245448
+  },
+  "automatic_pass": false,
+  "decision": "retain_c18_semantics_and_close_python_staging_resource_optimization",
+  "interpretation": "Bounded-row disk staging preserves the exact C18 RGB16 output and receipt while reducing median peak process-tree RSS by about 78.5 percent. It still exceeds the frozen 1 GiB gate by 78,884,864 bytes at the maximum observation and is about 1.70 times slower than C18, far beyond the frozen 15 second gate. This is a product-resource failure, not a colour-semantics failure; no further Python staging rescue opens from this result.",
+  "claim_ceiling": "Local Windows Python CPU resource evidence for exact staged execution of one deterministic 24MP natural-derived ProPhoto RGB16 fixture; not cross-machine performance, arbitrary ICC, film-stock calibration, preference, HDR, or default promotion."
+}
