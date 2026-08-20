@@ -1,0 +1,43 @@
+{
+  "schema": "neuro_film.u1_4g_rec2100_pq_png_rail_evidence.v1",
+  "node": "ULT > U1 > U1.4G",
+  "status": "PASS_PRIVATE_REC2100_PQ_PNG_RAIL",
+  "decision": "retain deterministic PQ PNG container rail; HDR file product integration remains closed",
+  "bindings": {
+    "formal_lock_commit": "71c82817726a54038cb40bf386d2b8da707d1df6",
+    "contract_path": "docs/planning/U1_4G_REC2100_PQ_PNG_RAIL_CONTRACT.md",
+    "contract_sha256": "efe2bfc6a84b4c7339b368cc839d2cc6fe6da65e6c374a06b1c425e08ea0b38f",
+    "implementation_path": "src/preprocess/png_stream.py",
+    "implementation_sha256": "c3d3c35a23efbc1f7b21babd4255c09872c6ff8cc7eec1423b9d1c9266cf9b97",
+    "runner_path": "scripts/audit_u1_4g_rec2100_pq_png_rail.py",
+    "runner_sha256": "5b3e5441cc5cba7638405d1dba0f63eb2306e87609c59f812aa796a7b6c291a7",
+    "config_path": "configs/u1_4g_rec2100_pq_png_rail_v1.json",
+    "config_sha256": "e8ff8ff5e7ecd19b76bc1d920607f3615f85407dbe8786d657270bdd9d116c77",
+    "formal_report_path": "outputs/eval/u1_4g_rec2100_pq_png_rail/o1_forward.json",
+    "formal_report_sha256": "2ea3d45ae9532c84610baf4f99221ae62f0803769bf6d309c965e09bf1a70242",
+    "stable_evidence_id": "3e810f70d8b070e6eb212b2c68430c38c3dd1adff3fe522721a76cb8a7622935"
+  },
+  "execution": {
+    "fresh_processes": 2,
+    "orders_per_process": ["canonical", "reverse"],
+    "all_four_report_sha256_exact": true,
+    "fixture_shape": [61, 97, 3]
+  },
+  "metrics": {
+    "pq_cicp_hex": "09100001",
+    "pq_chunk_order": ["IHDR", "cICP", "IDAT", "IEND"],
+    "pq_sample_sha256": "ad1d5c0664a1cd69b2f1e6336e1a4e2cdef61f781d4210982b46899c96ab9442",
+    "sdr_sample_sha256": "ad1d5c0664a1cd69b2f1e6336e1a4e2cdef61f781d4210982b46899c96ab9442"
+  },
+  "gates": {
+    "all_crc_valid": true,
+    "exact_pq_cicp": true,
+    "exact_sdr_cicp": true,
+    "pq_chunk_order": true,
+    "pq_sample_exact": true,
+    "sdr_sample_exact": true,
+    "reverse_order_exact": true,
+    "two_process_report_exact": true
+  },
+  "claim_ceiling": "private deterministic PNG Third Edition container rail for already PQ-encoded full-range BT.2100 RGB16 samples only; no tone-map correctness, HDR10, mastering/content-light metadata, display correctness, external/platform interoperability, default renderer, public capability or product admission"
+}

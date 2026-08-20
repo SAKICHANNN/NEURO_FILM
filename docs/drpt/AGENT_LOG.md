@@ -15169,6 +15169,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   because no content-specific evidence exists. No HDR10, display, renderer,
   public capability or product claim is authorized.
 
+### 2026-08-21 - U1.4G passes the deterministic PQ PNG rail
+
+- Four fresh process/order reports are exact at `2ea3d45a...0242`, stable
+  `3e810f70...22935`. The fixed RGB16 samples round-trip exactly through both
+  the new PQ rail and unchanged SDR rail.
+- PQ metadata is exactly `cICP=09 10 00 01`; chunk order is
+  IHDR/cICP/IDAT/IEND and every CRC validates. Malformed/incomplete writes fail
+  atomically in focused tests.
+- **Decision:** retain the private container primitive only. No mastering or
+  content-light metadata, tone-map correctness, HDR10, external display,
+  default-renderer, public capability or product claim opens.
+
 ### 2026-08-21 - SF3.A0K makes three-stock physical capture executable
 
 - Built two byte-exact clean copies and one verified canonical P-backed pack:
