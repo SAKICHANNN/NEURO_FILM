@@ -1,0 +1,37 @@
+{
+  "schema": "neuro-film.sf3-a0m-three-stock-capture-alignment-stress-evidence.v1",
+  "experiment_id": "SF3.A0M",
+  "status": "PASS_SYNTHETIC_CAPTURE_ALIGNMENT_STRESS",
+  "decision": "RETAIN_UNMARKED_SCENE_ALIGNMENT_FOR_FIRST_PHYSICAL_ACQUISITION",
+  "contract": {
+    "path": "configs/sf3_a0m_three_stock_capture_alignment_stress_v1.json",
+    "sha256": "b1818c4fa3601d7d0eb567462bf17cd4131aa4939dc4117aa0ae64c2a6e4f8dc",
+    "commit": "57de1c9b1ef9f6afa03a51968b7a46436a737e0a"
+  },
+  "implementation": {
+    "commit": "d1d9a8a231ad2174cd3db0bc09d81df7f4a3a551",
+    "evaluator_sha256": "5f4eda4e90ff120099a0c285580844b81491948d054bee5e247e37c11c337746",
+    "runner_sha256": "932d04fdc9c640ac826822bd1e76657f82582593ce56b65306a0407263fc707d",
+    "test_sha256": "d98c2d9d03d29e264827227c0460ecf0d241501939fc176d2d7e1eb5401491f1"
+  },
+  "formal_replay": {
+    "run_a_report_sha256": "675d18db80d7ae838f653bdf821c55aff017b2cc152b59a02907a76119b40843",
+    "run_b_report_sha256": "675d18db80d7ae838f653bdf821c55aff017b2cc152b59a02907a76119b40843",
+    "fresh_process_reports_exact": true,
+    "stable_evidence_id": "38dabae1a7ddabfa82ee69dc5b4596dc6781677d73aa0faf513dffdb2ddc964a"
+  },
+  "observations": {
+    "scenes": 12,
+    "stress_conditions_per_scene": 3,
+    "rows": 36,
+    "aligned_rows": 36,
+    "population_median_truth_reprojection_error_px": 0.05074306018650532,
+    "maximum_row_p95_truth_reprojection_error_px": 1.1592732667922974,
+    "maximum_row_max_truth_reprojection_error_px": 2.0949196815490723,
+    "pixel_operator_fits": 0,
+    "stock_operator_fits": 0,
+    "stressed_pixels_retained": false
+  },
+  "interpretation": "Every exact SF3.A0K scene supports deterministic unmarked SIFT-to-RANSAC registration under the frozen synthetic perspective, blur and monotone scan stresses. Explicit fiducial plates are therefore not required for the first acquisition, but any physical-film alignment failure remains fail-closed and cannot be rescued by this synthetic result.",
+  "claim_ceiling": "Synthetic geometric and monotone scan-stress validation on the exact SF3.A0K digital inputs only. It is not physical-film alignment, stock evidence, scanner calibration, target closeness, stock distinguishability, fitting, preference or product promotion."
+}

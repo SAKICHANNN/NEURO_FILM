@@ -15157,6 +15157,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   LibRaw/ACES runtime evidence, not vendor parity, a camera IDT, photographic
   quality, HDR encoding, arbitrary-DNG, default-renderer or product support.
 
+### 2026-08-21 - SF3.A0M validates first-capture geometric recovery
+
+- On all 12 SF3.A0K scenes, three fixed perspective/blur/monotone scan stresses
+  produce 36/36 successful SIFT-to-RANSAC alignments in two byte-exact fresh
+  processes. Median truth-grid error is `0.0507 px`; worst row p95 is
+  `1.1593 px` and worst point is `2.0949 px`.
+- **Decision:** the first controlled Velvia 50 / Portra 400 / Ektar 100 capture
+  can use unmarked scene alignment. Physical failures still close the row; no
+  stock target, fitting, calibration or product claim opens.
+
 ### 2026-08-21 - U1.4G freezes the Rec.2100 PQ PNG rail
 
 - Current primary standards were checked before implementation. PNG Third
