@@ -161,6 +161,16 @@ a separately frozen small member/metadata/registration preflight. Counter
 remains `1/3`. Evidence:
 `docs/evidence/SF3_A0U_NTIRE_NIGHT_CAPTURE_PAIR_SOURCE_LOCK_RESULT.json`.
 
+SF3.A0V then reads only 24 preregistered hash-ranked JSON members. Two reports
+are byte exact (`8bd78ac6...693425`), all rows contain finite black/white,
+noise-profile, CFA and orientation facts, and RAW/JPEG pixel reads remain zero.
+The exact schema names the remaining fields `as_shot_neutral` and
+`huawei_bounds`, while the frozen alias contract did not accept either exact
+name. Therefore WB and crop gates fail and SF3.A0V closes without post-read
+alias rescue. A separate prospective adoption may test those now-observed
+names and geometry semantics; candidate counter remains `1/3`. Evidence:
+`docs/evidence/SF3_A0V_NTIRE_NIGHT_METADATA_PREFLIGHT_RESULT.json`.
+
 **Autonomy invariant**: the active no-data Roll2Film and Style-safe work cannot
 depend on the owner supplying images, film/digital pairs, per-image labels, new
 preference votes or manual annotation. Public online data is an allowed source

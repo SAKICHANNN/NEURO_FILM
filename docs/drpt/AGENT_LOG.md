@@ -14850,6 +14850,25 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   product claim. Evidence:
   `docs/evidence/SF3_A0U_NTIRE_NIGHT_CAPTURE_PAIR_SOURCE_LOCK_RESULT.json`.
 
+### 2026-08-21 - SF3.A0V preserves a metadata-contract failure
+
+- Preregistered 24 exact hash-ranked IDs and normalized metadata aliases before
+  reading any member at `a36c4b61`; the last prescore alias/bounds amendment was
+  committed at `548f1999`, and the frozen implementation at `e21abf73`.
+- Forward/reverse JSON-only reports are byte exact at
+  `8bd78ac6...693425`, stable `17b6db7b...2d2ab9`. Each run reads 190,306
+  archive bytes and 11,101 uncompressed metadata bytes; RAW PNG, Sony JPEG and
+  pixel reads remain zero.
+- All 24 rows contain finite `black_level`, `white_level`, `noise_profile`,
+  `cfa_pattern` and `orientation`. The actual remaining root keys are
+  `as_shot_neutral` and `huawei_bounds`, which the frozen aliases did not
+  accept; white-balance and crop gates therefore fail.
+- Decision: preserve `FAIL_CLOSED_METADATA_FIELD_CONTRACT`; do not add aliases
+  after observing the schema. A new prospective leaf may adopt the exact names
+  and test numeric/geometry semantics. Candidate counter stays `1/3`; no
+  pixel, registration, operator, quality or product claim. Evidence:
+  `docs/evidence/SF3_A0V_NTIRE_NIGHT_METADATA_PREFLIGHT_RESULT.json`.
+
 ### 2026-08-21 - SF3.A2 current public-index refresh is infrastructure-invalid
 
 - A bounded three-stock Openverse contract was committed before access and

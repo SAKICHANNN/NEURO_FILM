@@ -1,0 +1,78 @@
+{
+  "schema": "neuro-film.sf3-a0v-ntire-night-metadata-preflight-evidence.v1",
+  "experiment_id": "SF3.A0V_NTIRE_NIGHT_METADATA_PREFLIGHT_V1",
+  "date": "2026-08-21",
+  "status": "FAIL_CLOSED_METADATA_FIELD_CONTRACT",
+  "preregistration_commit": "a36c4b61",
+  "prescore_alias_amendment_commit": "548f1999",
+  "implementation_commit": "e21abf73",
+  "contract": {
+    "path": "configs/sf3_a0v_ntire_night_metadata_preflight_v1.json",
+    "sha256": "98b6bf59a5ce8f025f6da6bb7578f8a97816d07f97a5170ddb8d31391932f400"
+  },
+  "parent": {
+    "evidence_commit": "72df4c90",
+    "report_sha256": "ec88e11fe4ce18205f47b20ded8a7b44ead5a40919fe6d0a1bf8f7bedb69655c",
+    "stable_identity": "b49fc4a8708b0b3f2b1887d4c2ff0ae22ae155dfcd405a6fbe58060b252d8093"
+  },
+  "formal_replay": {
+    "forward": "outputs/eval/sf3_a0v_ntire_night_metadata_preflight_v1/formal_forward.json",
+    "reverse": "outputs/eval/sf3_a0v_ntire_night_metadata_preflight_v1/formal_reverse.json",
+    "report_sha256": "8bd78ac6de50b9f89259cf54b18c1d57582603bb590a2696d7ff3fd200693425",
+    "stable_identity": "17b6db7b20af4fb34988a8c575fa347e660836faaae6ec89a18401cab32d2ab9",
+    "byte_exact": true
+  },
+  "selection": {
+    "method": "lowest-sha256-of-seed-colon-canonical-numeric-id",
+    "seed": "sf3-a0v-ntire-metadata-v1",
+    "row_count": 24,
+    "selected_ids_sha256": "b2445d5915d1d06d0f7668cc25a6b7df664ef88a1d21ef1de815f145962629cd"
+  },
+  "observed_schema": {
+    "common_root_keys": [
+      "as_shot_neutral",
+      "black_level",
+      "cfa_pattern",
+      "huawei_bounds",
+      "noise_profile",
+      "orientation",
+      "white_level"
+    ],
+    "rows_with_black_level": 24,
+    "rows_with_white_level": 24,
+    "rows_with_noise_profile": 24,
+    "rows_with_cfa_pattern": 24,
+    "rows_with_orientation": 24,
+    "rows_matching_frozen_white_balance_alias": 0,
+    "rows_matching_frozen_crop_alias": 0,
+    "note": "The actual schema uses as_shot_neutral and huawei_bounds. Those exact names were not accepted by the frozen alias contract, so they are observations only and cannot retroactively pass SF3.A0V."
+  },
+  "reads": {
+    "archive_bytes_per_run": 190306,
+    "metadata_uncompressed_bytes_per_run": 11101,
+    "raw_png_member_bytes": 0,
+    "sony_jpeg_member_bytes": 0,
+    "pixel_decodes": 0,
+    "operator_fits": 0,
+    "renders": 0,
+    "scores": 0
+  },
+  "gates": {
+    "parent_identity_exact": true,
+    "central_directory_exact": true,
+    "selection_derivation_exact": true,
+    "selected_metadata_members_complete": true,
+    "json_object_and_finite_numeric_values": true,
+    "all_field_families_present_per_row": false,
+    "crop_values_numeric_and_bounded": false,
+    "minimum_rows": true,
+    "bounded_reads": true,
+    "zero_pixel_member_reads": true,
+    "two_complete_reports_byte_exact": true
+  },
+  "bounded_final_candidate_counter_before": 1,
+  "bounded_final_candidate_counter_after": 1,
+  "decision": "FAIL_CLOSED_METADATA_PREFLIGHT_NO_POSTREAD_ALIAS_RESCUE",
+  "next_leaf": "A separately preregistered prospective adoption may use the now-observed exact keys as_shot_neutral and huawei_bounds, but it must establish their numeric shapes and geometry semantics before or together with any bounded pixel registration preflight. SF3.A0V itself remains failed.",
+  "claim_ceiling": "JSON-only schema observation on 24 hash-ranked synchronized capture rows. The field-name mismatch closes this exact contract. No RAW/JPEG pixel, registration, target quality, operator, film, stock, package, schema, capability or product claim."
+}
