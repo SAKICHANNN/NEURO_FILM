@@ -13951,9 +13951,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   RGB lattice atlases, emits one shared LUT, and completes for all nine
   references before any application source is hashed or decoded. Apply reuses
   the exact LUT across nine sources with zero per-source parameter changes.
-- Forward and fully reversed fresh processes are exact at build, apply and
-  report (`700191e2...56e9`, scientific ID `4a66c58d...8a10`). Atlas-context
-  drift p95 is `.01734-.02365` and reference sensitivity is `4.457` Delta E76.
+- A pre-evidence review found that apply decoded each source once per LUT while
+  its manifest counted one decode per source. Commit `3f2fcaa4` changes loop
+  order so each source is decoded once, verifies the manifest chain, and
+  preserves all 81 output PNG hashes exactly.
+- Forward and fully reversed fresh processes are exact at build, apply, output
+  inventory and scientific payload (`fdfdc4a5...7986`). Their report files
+  differ only in `software_commit` because unrelated committed work advanced
+  HEAD between evaluations. Atlas-context drift p95 is `.01734-.02365` and
+  reference sensitivity is `4.457` Delta E76.
 - All nine candidates fail. Median non-basic residual is only `2.124-3.677`,
   worst new clipping is `5.87-23.13%`, and worst raw range escape is
   `5.76-22.80%`; there are zero automatic survivors and no visual shortlist.
