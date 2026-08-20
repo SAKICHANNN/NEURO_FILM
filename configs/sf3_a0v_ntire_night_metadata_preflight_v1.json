@@ -1,0 +1,70 @@
+{
+  "schema": "neuro-film.sf3-a0v-ntire-night-metadata-preflight-contract.v1",
+  "experiment_id": "SF3.A0V_NTIRE_NIGHT_METADATA_PREFLIGHT_V1",
+  "date": "2026-08-21",
+  "parent_source_lock": {
+    "evidence": "docs/evidence/SF3_A0U_NTIRE_NIGHT_CAPTURE_PAIR_SOURCE_LOCK_RESULT.json",
+    "evidence_commit": "72df4c90",
+    "report_sha256": "ec88e11fe4ce18205f47b20ded8a7b44ead5a40919fe6d0a1bf8f7bedb69655c",
+    "stable_identity": "b49fc4a8708b0b3f2b1887d4c2ff0ae22ae155dfcd405a6fbe58060b252d8093"
+  },
+  "archive": {
+    "name": "raw.zip",
+    "url": "https://zenodo.org/api/records/15213321/files/raw.zip/content",
+    "bytes": 47288204304,
+    "central_offset": 47288019680,
+    "central_size": 184526,
+    "central_sha256": "714643ae6ad3078a1830b1601eef32a0dcce5b686896862ac27e2acb9abaff0d"
+  },
+  "selection": {
+    "method": "lowest-sha256-of-seed-colon-canonical-numeric-id",
+    "seed": "sf3-a0v-ntire-metadata-v1",
+    "population_ids": {
+      "minimum": 0,
+      "maximum": 999,
+      "count": 1000
+    },
+    "selected_count": 24,
+    "selected_ids": [310, 60, 819, 113, 804, 943, 466, 456, 205, 45, 429, 814, 95, 211, 343, 721, 76, 895, 120, 288, 450, 488, 539, 960]
+  },
+  "field_families": {
+    "black_level": ["blacklevel"],
+    "white_level": ["whitelevel"],
+    "noise_profile": ["noiseprofile", "noisemodel"],
+    "cfa_pattern": ["cfapattern", "bayerpattern"],
+    "orientation": ["orientation"],
+    "white_balance": ["whitebalance", "wbgain", "wbrgb", "asneutral"],
+    "crop_bounds": ["cropbounds", "targetcrop", "sonycrop", "croptop", "cropleft", "cropbottom", "cropright"]
+  },
+  "read_budget": {
+    "maximum_central_bytes": 184526,
+    "maximum_member_uncompressed_bytes": 1048576,
+    "maximum_total_member_uncompressed_bytes": 25165824,
+    "maximum_total_archive_bytes": 25427968,
+    "raw_png_member_bytes": 0,
+    "sony_jpeg_member_bytes": 0,
+    "pixel_decodes": 0
+  },
+  "required_gates": {
+    "parent_identity_exact": true,
+    "central_directory_exact": true,
+    "selection_derivation_exact": true,
+    "selected_metadata_members_complete": true,
+    "json_object_and_finite_numeric_values": true,
+    "all_field_families_present_per_row": true,
+    "crop_values_numeric_and_bounded": true,
+    "minimum_rows": 24,
+    "zero_pixel_member_reads": true,
+    "two_complete_reports_byte_exact": true
+  },
+  "stop_rules": [
+    "do not substitute a failed or missing selected row",
+    "do not reinterpret unknown metadata fields after reading outcomes",
+    "do not read RAW PNG or Sony JPEG member payloads",
+    "do not fit an operator, render, score or increment the bounded candidate counter"
+  ],
+  "decision_if_pass": "OPEN_SEPARATE_FIXED_PIXEL_REGISTRATION_PREFLIGHT_NOT_CANDIDATE_2",
+  "bounded_final_candidate_counter_before": 1,
+  "bounded_final_candidate_counter_after": 1,
+  "claim_ceiling": "Hash-ranked JSON-only verification of capture metadata field presence and numeric crop structure on the qualified NTIRE night source. No RAW/JPEG pixel, registration, target quality, operator, film, stock, package, schema, capability or product claim."
+}
