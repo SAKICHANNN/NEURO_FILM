@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2bt1-fivek-bilateral-affine-capacity-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2BT1",
+  "status": "contract_frozen_implementation_ready",
+  "question": "Does a bounded local 3x4 affine bilateral grid provide held-block representation capacity beyond both the parameter-matched global LUT and the closed BT0 multiplicative gain grid on paired FiveK controls?",
+  "research_basis": {
+    "primary": "Wu et al., InstantRetouch: Efficient and High-Fidelity Instruction-Guided Image Retouching with Bilateral Space, CVPR 2026",
+    "primary_url": "https://openaccess.thecvf.com/content/CVPR2026/html/Wu_InstantRetouch_Efficient_and_High-Fidelity_Instruction-Guided_Image_Retouching_with_Bilateral_Space_CVPR_2026_paper.html",
+    "historical_control": "Gharbi et al., Deep Bilateral Learning for Real-Time Image Enhancement, TOG 2017",
+    "borrowed_idea_only": "full-resolution colour is produced by slicing a low-resolution bilateral grid of local affine transforms",
+    "clean_room_difference": "no paper code, weights, data, diffusion teacher, instruction model or learned grid predictor; target-informed development capacity only"
+  },
+  "parents": {
+    "bt0_decision": {
+      "path": "configs/u5_r2bt0_fivek_bilateral_gain_capacity_decision_v1.json",
+      "sha256": "52ec199a3f1f3f70c3c59e6ccdcec5d660d6124b15ee44d2b26c770ca15206d1",
+      "required_decision": "close_spatial_luma_gain_capacity_without_predictor_or_rescue"
+    }
+  },
+  "population": {
+    "manifest": "outputs/u5_r2bq0s2_fivek_casebank_normalization_v1/run_a_formal/manifest.json",
+    "manifest_sha256": "d07ace3173198e9902ebe7c8bbf2de5ecb4342ec67f1b640aa54d9edee903a20",
+    "split": "development",
+    "row_selection": "lexicographically first pair_id within each of the exact 24 development camera_model groups",
+    "source_count_exact": 24,
+    "target_variants": ["aligned_expert", "filtered"],
+    "maximum_side": 128,
+    "confirmation_rows_allowed": false,
+    "role": "paired digital-retouch representation-capacity control; not film or stock evidence"
+  },
+  "held_block_protocol": {
+    "macro_rows": 8,
+    "macro_columns": 8,
+    "folds": [0, 1]
+  },
+  "candidate": {
+    "family": "bounded_spatial_luma_rank_local_affine_residual",
+    "grid_shape": [2, 2, 8],
+    "affine_coefficients_per_output_channel": 4,
+    "output_channels": 3,
+    "parameter_count": 384,
+    "source_guidance": "within-image stable midrank of linear-sRGB luminance",
+    "fit_target": "target_linear_rgb minus source_linear_rgb",
+    "coefficient_bound": 1.5,
+    "epsilon": 0.000244140625,
+    "ridge": 0.01,
+    "first_difference_smoothness": 0.05,
+    "application": "trilinear grid slicing followed by one analytical per-pixel dose along the local affine residual",
+    "hard_clipping_allowed": false
+  },
+  "controls": {
+    "parameter_matched_global_rgb_lut": {
+      "grid_shape": [5, 5, 5],
+      "parameter_count": 375,
+      "ridge": 0.01,
+      "first_difference_smoothness": 0.05
+    },
+    "closed_bt0_gain": {
+      "grid_shape": [4, 4, 8],
+      "parameter_count": 384,
+      "log_gain_bound": 1.5,
+      "epsilon": 0.000244140625,
+      "ridge": 0.01,
+      "first_difference_smoothness": 0.05
+    },
+    "luminance_only_affine": {"grid_shape": [1, 1, 8], "parameter_count": 96},
+    "spatial_only_affine": {"grid_shape": [2, 2, 1], "parameter_count": 48},
+    "identity": true
+  },
+  "evaluation": {
+    "primary_metric": "held-pixel encoded-sRGB RMSE",
+    "boundary_epsilon": 0.00392156862745098,
+    "automatic_gates": {
+      "source_count_exact": 24,
+      "target_variant_count_exact": 2,
+      "fold_count_exact": 2,
+      "minimum_mean_improvement_over_parameter_matched_global_lut": 0.05,
+      "minimum_win_fraction_over_parameter_matched_global_lut": 0.65,
+      "maximum_p95_error_ratio_to_parameter_matched_global_lut": 1.0,
+      "maximum_worst_error_ratio_to_parameter_matched_global_lut": 1.1,
+      "minimum_mean_improvement_over_closed_bt0_gain": 0.05,
+      "minimum_win_fraction_over_closed_bt0_gain": 0.65,
+      "minimum_mean_improvement_over_luminance_only": 0.05,
+      "minimum_mean_improvement_over_spatial_only": 0.05,
+      "minimum_median_style_retention": 0.75,
+      "maximum_p95_held_to_fit_error_ratio": 1.5,
+      "maximum_new_boundary_fraction": 0.0,
+      "maximum_out_of_cube_fraction": 0.0
+    }
+  },
+  "branch_rules": {
+    "all_gates_pass": "retain representation capacity and separately freeze a source-only bounded predictor question",
+    "any_gate_fails": "close this exact affine bilateral representation without grid, regularization, split, target, population, metric or threshold rescue",
+    "visual_review": "forbidden in this target-informed development-only capacity leaf"
+  },
+  "learned_final_rgb_allowed": false,
+  "confirmation_pixels_allowed": false,
+  "production_integration_allowed": false,
+  "film_or_stock_claim_allowed": false,
+  "claim_ceiling": "development-only held-block capacity evidence for one explicit bounded local affine bilateral grid on paired FiveK digital-retouch controls; not a deployable predictor, film response, stock identity, calibration, preference or product result"
+}
