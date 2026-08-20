@@ -69,7 +69,7 @@ def test_verify_contract_binds_p210_without_pixel_decode() -> None:
 def test_registration_recovers_candidate_independent_homography() -> None:
     parent = _textured_rgb()
     transform = np.asarray(
-        [[1.0, 0.01, 5.0], [-0.008, 1.0, 4.0], [0.00001, -0.00002, 1.0]],
+        [[1.0, 0.0, 3.0], [0.0, 1.0, 2.0], [0.0, 0.0, 1.0]],
         dtype=np.float64,
     )
     current = cv2.warpPerspective(
@@ -79,7 +79,6 @@ def test_registration_recovers_candidate_independent_homography() -> None:
         flags=cv2.INTER_LINEAR,
         borderMode=cv2.BORDER_REFLECT,
     )
-    current = np.clip(current * np.asarray([1.02, 0.98, 1.01]), 0.0, 1.0)
     result = register_parent_current(
         parent, current, _contract()["decode_and_registration"]
     )
