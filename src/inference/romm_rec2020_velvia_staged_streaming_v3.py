@@ -119,6 +119,7 @@ def render_supported_prophoto_velvia_rec2020_staged_streaming_v3(
         _postcolor_mapper=postcolor_mapper,
         _in_memory_staging=True,
         _preprocess_workers=2,
+        _spill_mapped_for_context=True,
     )
 
 

@@ -67,6 +67,7 @@ def render_supported_prophoto_velvia_rec2020_staged(
     _output_writer_factory: Callable[[Path, int, int], _OutputWriter] | None = None,
     _in_memory_staging: bool = False,
     _preprocess_workers: int = 1,
+    _spill_mapped_for_context: bool = False,
 ) -> dict[str, Any]:
     """Render the qualified look with disk-staged, bounded-row intermediates."""
 
@@ -126,11 +127,12 @@ def render_supported_prophoto_velvia_rec2020_staged(
                 page.asarray(out=encoded)
 
         height, width, _ = shape
+        mapped_path = temporary_path / "mapped.f32"
         mapped = (
             np.empty(shape, dtype=np.float32)
-            if _in_memory_staging
+            if _in_memory_staging and not _spill_mapped_for_context
             else np.memmap(
-                temporary_path / "mapped.f32",
+                mapped_path,
                 mode="w+",
                 dtype=np.float32,
                 shape=shape,
@@ -210,7 +212,16 @@ def render_supported_prophoto_velvia_rec2020_staged(
             del encoded
 
         assert lab is not None
-        context = safe_lab_context_from_lab(lab)
+        if _spill_mapped_for_context:
+            if not _in_memory_staging or not isinstance(mapped, np.memmap):
+                raise ROMMRec2020RenderError("mapped context spill requires in-memory staging")
+            mapped.flush()
+            mapped._mmap.close()
+            del mapped
+            context = safe_lab_context_from_lab(lab)
+            mapped = np.memmap(mapped_path, mode="r", dtype=np.float32, shape=shape)
+        else:
+            context = safe_lab_context_from_lab(lab)
         assets = {binding["role"]: root / binding["path"] for binding in profile["assets"]}
         stats = json.loads(assets["style_statistics"].read_text(encoding="utf-8"))
         guard_payload = json.loads(assets["color_guardrails"].read_text(encoding="utf-8"))
@@ -340,6 +351,8 @@ def render_supported_prophoto_velvia_rec2020_staged(
             for staged in (mapped, lab, residual_scale):
                 staged.flush()
                 staged._mmap.close()
+        elif _spill_mapped_for_context:
+            mapped._mmap.close()
         if output_samples is not None:
             save_rec2020_rgb16_png_samples(output_samples, output_path)
         stored = cv2.imread(str(output_path), cv2.IMREAD_UNCHANGED)
