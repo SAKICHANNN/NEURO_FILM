@@ -14423,3 +14423,23 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   to truly new paired/capture-time information or mature RAW/DNG/HDR/portable
   explicit-operator engineering. This correction does not consume the bounded
   three-candidate budget.
+
+### 2026-08-21 - U6.P4IK closes the exact sigmoid-scanner photo chain
+
+- Parent goal: finish a mature, already-frozen explicit physical-operator leaf
+  without reopening after-only reference inversion or overlapping RF3 work.
+- Skills: research/ML reliability, DRPT-BI Mode A and project structure
+  stewardship.
+- Execution: two independent processes read the 11 repository-relative,
+  P-backed CC0 inputs read-only and wrote only to
+  `D:/_project_fallbacks/neuro_film_goal_019f4b76/u6_p4ik`. Reports and all
+  44 output hashes replay exactly.
+- Decision: formal fail. Boundary, finite, PNG16, no-clipping and physical-
+  residual gates pass, but chroma, flat-region, isolated-excursion and
+  population-tail gates fail by large margins. Close the exact family without
+  parameter, threshold, limiting, clipping, order or cohort rescue.
+- Evidence:
+  `docs/evidence/U6_P4IK_SIGMOID_SCANNER_PHOTO_DEVELOPMENT_RESULT.json`.
+- Propagation: no product, package, capability, preference, calibration or
+  stock claim opens. Continue only with genuinely new paired/capture-time
+  information or a distinct mature RAW/DNG/HDR/portable explicit operator.

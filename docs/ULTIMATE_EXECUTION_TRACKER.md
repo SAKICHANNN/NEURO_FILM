@@ -1860,3 +1860,15 @@ implementation, do not count it against the bounded three-candidate program,
 and do not continue SPCP through decoder fallback, replacement or relaxed
 support. Evidence:
 `docs/evidence/U5_R2SPCP4_REDUNDANT_SOURCE_TOUCH_CORRECTION_RESULT.json`.
+
+U6.P4IK formally closes the frozen sigmoid-scanner photographic development
+leaf. Two independent 11-source runs reproduce the report and all 44 RGB16
+outputs exactly (`e4afa352...efae2b`; output inventory
+`ed9d161b...a6bc1f`). Finite execution, exact PNG16 readback, no limiting,
+no new boundary values and nontrivial physical residual all pass. The actual
+operator is unsafe: high-frequency chroma p999 reaches `.17738` (gate `.004`),
+flat-region p99 reaches `.55272` (gate `.04`), isolated excursions total
+`6,184` (gate zero), and the population p99 tail reaches `.53696` (gate
+`.05`). Close the exact curve/scanner/diffusion/AO6-order family without
+threshold, clipping, limiting or cohort rescue. Evidence:
+`docs/evidence/U6_P4IK_SIGMOID_SCANNER_PHOTO_DEVELOPMENT_RESULT.json`.

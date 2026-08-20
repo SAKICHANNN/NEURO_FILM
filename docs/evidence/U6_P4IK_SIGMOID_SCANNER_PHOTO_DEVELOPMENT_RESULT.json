@@ -1,0 +1,65 @@
+{
+  "schema": "neuro-film.u6-p4ik-sigmoid-scanner-photo-development-evidence.v1",
+  "experiment_id": "u6-p4ik-sigmoid-scanner-photo-development-v1",
+  "status": "FAIL_CLOSED",
+  "decision": "close_exact_p4ik_sigmoid_scanner_photo_chain",
+  "execution_start_git_head": "5568dede",
+  "bindings": {
+    "contract_path": "configs/u6_p4ik_sigmoid_scanner_photo_development_v1.json",
+    "contract_file_sha256": "9fcd61fc313dc4b3cee652bcbc16f4b788e268dd0dc1076585f8170b464a1de7",
+    "contract_canonical_sha256": "12542edf4046a6256694daff85c2067e8d1e34adb53647e898ff4d6307d474f9",
+    "p4ik_config_sha256": "5d334ea7a53014daac10513934191d646b28f70c45f1f8d1c5988694f607af26",
+    "runner_path": "scripts/run_u6_p4ik_sigmoid_scanner_photo_development.py",
+    "runner_sha256": "048cf184be6a8e337cea091aef4762d86e78ace113cdb0b3e5b0ad7a686a2fc2",
+    "core_path": "src/eval/sigmoid_scanner_photo_development.py",
+    "core_sha256": "ea2a57c516a08eef7632677d68b0ffeaaec9a7e0ecad985fb17c2a223085f486",
+    "source_manifest_sha256": "52da6f22c8d093bff309f162b77c5e9f040272c8d7e29e164a38e09d5d1ceb62"
+  },
+  "storage": {
+    "input_access": "repository-relative P-backed data and evidence, read-only",
+    "formal_output_root": "D:/_project_fallbacks/neuro_film_goal_019f4b76/u6_p4ik",
+    "formal_output_scope": "project-isolated temporary fallback; no D-root files and no new P writes",
+    "durable_promotion_performed": false
+  },
+  "formal_runs": {
+    "run_a_report_sha256": "e4afa352510500aa305b8bab9e390e8b27656eb3d12772a33280555342efae2b",
+    "run_b_report_sha256": "e4afa352510500aa305b8bab9e390e8b27656eb3d12772a33280555342efae2b",
+    "stable_evidence_id": "9e33eabce0e73c0cee7c604128c8f2cb1cd216742df54f733db2ffb127e2168e",
+    "output_inventory_sha256": "ed9d161b0f5162a6f286fd8d558a7e60072f83e0e57c4861e09f8b5c74a6bc1f",
+    "output_files_per_run": 44,
+    "output_bytes_per_run": 379071892,
+    "all_report_bytes_exact": true,
+    "all_output_file_hashes_exact": true,
+    "source_count": 11,
+    "output_count": 44
+  },
+  "metrics": {
+    "minimum_physical_residual_rms": 0.030940403053954856,
+    "population_p95_combined_vs_matched_scanner_ao6_abs": 0.451109379529953,
+    "population_p99_combined_vs_matched_scanner_ao6_abs": 0.5369636982679368,
+    "maximum_flat_region_p99_combined_vs_matched_scanner_ao6_abs": 0.5527233481407166,
+    "maximum_high_frequency_chroma_p999": 0.1773775964975357,
+    "total_isolated_excursion_count": 6184,
+    "maximum_new_boundary_fraction_vs_matched_scanner_ao6": 0.0,
+    "maximum_output_code_boundary_fraction": 0.0,
+    "maximum_limited_fraction": 0.0
+  },
+  "gates": {
+    "complete_inventory": true,
+    "finite": true,
+    "flat_regions": false,
+    "high_frequency_chroma": false,
+    "isolated_excursions": false,
+    "new_boundaries": true,
+    "no_clipping_or_limiting": true,
+    "nontrivial_population": true,
+    "output_boundaries": true,
+    "physical_only_diagnostic": true,
+    "physical_residual": true,
+    "png16_exact_readback": true,
+    "population_tail": false
+  },
+  "interpretation": "The fixed sigmoid characteristic plus P4IA structure and compact scanner is deterministic and boundary-clean, but its local chroma, flat-region, isolated-excursion and population-tail behavior is far outside the frozen safety gates. The failures are scientific operator failures, not replay, file-format, clipping or storage defects.",
+  "stop_rule": "No curve, scanner, diffusion, threshold, limiting, clipping, cohort or AO6-order rescue on these rows. Close the exact P4IK family.",
+  "claim_ceiling": "Development-only explicit physical-operator evidence on eleven previously consumed CC0 camera photographs; not confirmation, calibrated exposure, preference, film stock, package, capability or product promotion."
+}
