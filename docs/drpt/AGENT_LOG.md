@@ -13717,3 +13717,22 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Retain the exact chain as a research boundary and profile only the remaining
   post-colour stages; do not revisit the corrected colour arithmetic. Evidence:
   `docs/evidence/U1_4C28_NATIVE_STAGED_PROPHOTO_V2_24MP_RESULT.json`.
+
+### 2026-08-20 - D-root project artifacts move to P-backed namespaces
+
+- Moved and verified the remaining attributable D-root artifacts into
+  project-owned namespaces under `P:\neuro_film_storage`,
+  `P:\zhuise_storage`, `P:\codex_storage`, and `P:\wxos_storage`; no data was
+  placed directly in either drive root. D free space increased by
+  `95,838,601,216` bytes and its ordinary root-file count is now zero.
+- The zhuise/trace set covers 79 roots, 37,437 files, and 91,926,789,412
+  bytes with zero missing, extra, length-mismatched, or SHA-256-mismatched
+  files. Ten additional project directories cover 31,980 files and
+  6,762,684,119 bytes; the historical `film_project.zip` was independently
+  hash-verified after moving.
+- Retained only the intended `D:\_project_fallbacks` container, 35 P-backed
+  compatibility junctions under `D:\codex_owned`, and two AndrowsStore-locked
+  Android files totaling 21,243 bytes whose P copies are SHA-256 exact. The
+  authoritative summary remains outside Git at
+  `P:\neuro_film_storage\legacy_d_root_organized_20260820\_verification\d_root_organization_summary_20260820.json`
+  (`d91bfd785362cc294a8e37bc37ff6c1d8ffccce6df7f314dc70f05705d105c11`).
