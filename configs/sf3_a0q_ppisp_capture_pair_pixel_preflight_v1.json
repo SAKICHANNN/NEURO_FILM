@@ -1,0 +1,52 @@
+{
+  "schema": "neuro-film.sf3-a0q-ppisp-capture-pair-pixel-preflight-contract.v1",
+  "experiment_id": "SF3.A0Q_PPISP_CAPTURE_PAIR_PIXEL_PREFLIGHT_V1",
+  "source_lock": {
+    "evidence_path": "docs/evidence/SF3_A0P_PPISP_CAPTURE_PAIR_SOURCE_LOCK_RESULT.json",
+    "evidence_sha256": "d00e9173610f02ecbc816e2026e0dbe57efd3fce4dcb02eb6b6760249c0fb2b6",
+    "evidence_commit": "314d2b7f8c9046775b4eaa533bda8a57e2904888",
+    "formal_report_sha256": "c7ee4ace3d4eff3cd4ecf87fe2c29be32dac30e113c45b690b08117cfdd372ec",
+    "stable_identity": "030d65d815e57172fa7987061159a244aed2c033c8015541d1172d0c08262cb8"
+  },
+  "source_config_path": "configs/sf3_a0p_ppisp_capture_pair_source_lock_v1.json",
+  "selection": {
+    "algorithm": "sha256-rank-normalized-pair-key-v1",
+    "seed": "SF3.A0Q_PPISP_CAPTURE_PAIR_PIXEL_PREFLIGHT_V1",
+    "required_scenes": [
+      "huerstholz",
+      "struktur28",
+      "toro",
+      "valiant"
+    ],
+    "required_camera_groups": [
+      "nikon",
+      "oms"
+    ],
+    "pairs_per_scene_camera": 2,
+    "expected_pair_count": 16
+  },
+  "decode": {
+    "allowed_format": "JPEG",
+    "minimum_short_side": 1024,
+    "maximum_member_uncompressed_bytes": 52428800,
+    "maximum_total_network_bytes": 1073741824
+  },
+  "pair_gates": {
+    "same_dimensions": true,
+    "same_capture_exif_fields": [
+      "Make",
+      "Model",
+      "ExposureTime",
+      "FNumber",
+      "ISOSpeedRatings",
+      "FocalLength",
+      "DateTimeOriginal"
+    ],
+    "minimum_present_capture_exif_fields": 5,
+    "minimum_census_agreement": 0.9,
+    "minimum_mean_absolute_rgb_difference": 0.001
+  },
+  "decision_if_pass": "OPEN_SF3_A0R_PPISP_CAPTURE_TIME_OPERATOR_D0_NOT_FINAL_CANDIDATE",
+  "decision_if_fail": "FAIL_CLOSED_PPISP_CAPTURE_PAIR_PIXEL_PREFLIGHT",
+  "claim_ceiling": "Sixteen-pair same-file-identity, EXIF, geometry and monotone-robust registration preflight across four scenes and two camera groups. Passing opens only a non-candidate capture-time operator mechanism D0. It is not preference, film, broad generalization, product admission or a bounded-final-cycle candidate."
+}
