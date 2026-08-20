@@ -1,10 +1,12 @@
 from __future__ import annotations
 
 import json
+import struct
 import zlib
 from pathlib import Path
 
 from scripts.build_u5_r2spcp3_png_eligible_roles import (
+    _probe_member,
     _role_sort_key,
     _sorted_ids_sha256,
 )
@@ -44,3 +46,45 @@ def test_raw_deflate_prefix_can_identify_png_without_full_member() -> None:
     observed = decoder.decompress(compressed[:64], 8)
     assert observed == png[:8]
     assert observed != b"\xff\xd8\xff\xe0JFIF"
+
+
+def test_member_probe_reads_only_frozen_range_and_parses_local_header(monkeypatch) -> None:
+    name = "SPCP_dataset/images/I9999_01_01.png"
+    png = bytes.fromhex("89504e470d0a1a0a") + b"prefix-only"
+    compressor = zlib.compressobj(level=6, wbits=-15)
+    compressed = compressor.compress(png) + compressor.flush()
+    header = struct.pack(
+        "<IHHHHHIIIHH",
+        0x04034B50,
+        20,
+        0,
+        8,
+        0,
+        0,
+        0,
+        len(compressed),
+        len(png),
+        len(name.encode()),
+        0,
+    )
+    record = header + name.encode() + compressed + (b"x" * 128)
+    calls: list[tuple[int, int]] = []
+
+    def fake_fetch(_url: str, byte_range: tuple[int, int]):
+        calls.append(byte_range)
+        requested = byte_range[1] - byte_range[0] + 1
+        return (record + (b"x" * requested))[:requested], {}
+
+    monkeypatch.setattr(
+        "scripts.build_u5_r2spcp3_png_eligible_roles._fetch", fake_fetch
+    )
+    fact = _probe_member(
+        "fixture",
+        {"local_offset": 1234, "name": name},
+        probe_bytes=512,
+        required_signature=bytes.fromhex("89504e470d0a1a0a"),
+    )
+    assert calls == [(1234, 1745)]
+    assert fact["range_bytes"] == 512
+    assert fact["method"] == 8
+    assert fact["required_signature_exact"] is True
