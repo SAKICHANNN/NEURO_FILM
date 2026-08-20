@@ -1,0 +1,28 @@
+{
+  "schema": "neuro-film.u1-4c30-lifetime-staged-prophoto-24mp-evidence.v1",
+  "experiment_id": "U1.4C30",
+  "status": "FAIL_CLOSED_RESOURCE_ONLY",
+  "implementation_commit": "91aad4bc",
+  "runner_commit": "566e2b84",
+  "contract_commit": "29a9a94a",
+  "contract_sha256": "ae5397ec39863df7b562b23266b8121f23a55607edd5de4d3605e4ce05ed5f45",
+  "formal_report": {
+    "path": "outputs/eval/u1_4c30_lifetime_staged_prophoto_24mp_v1/report.json",
+    "sha256": "414d33763d74540d8296a52c66f5aa3c77496b97b7be386b86b355a958ca68cc",
+    "stable_evidence_id": "0dd23efb141b6997e774cde473778ade8e47cf19437935bab886ec9db1cafd7d"
+  },
+  "observations": {
+    "decoded_rgb16_sample_sha256": "c6069cb19dc28472a9596a47fef4199c1f872f9f01554e856622a54e95c18ebb",
+    "cross_process_science_container_receipt_and_build_exact": true,
+    "worker_wall_seconds": [16.455842800001847, 16.24136539999745],
+    "peak_process_tree_rss_bytes": [1199312896, 1198338048]
+  },
+  "gate_results": {
+    "maximum_worker_wall_seconds_15": false,
+    "maximum_peak_process_tree_rss_bytes_1073741824": false,
+    "automatic_pass": false
+  },
+  "decision": "retain_c29_exact_streaming_components_but_close_this_lifetime_staged_product_integration",
+  "next_leaf": "remove the full encoded copy through direct input mapping and parallelize only independent decode and Lab tiles; preserve every exact colour and output identity gate",
+  "claim_ceiling": "Local Windows CPU resource evidence for one exact 24MP natural-derived ProPhoto fixture and one opt-in Rec.2020 look; not arbitrary ICC, cross-platform performance, stock calibration, preference, HDR, or default promotion."
+}
