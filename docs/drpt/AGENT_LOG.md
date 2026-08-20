@@ -13621,3 +13621,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   close further Python staging rescue, and return to a materially distinct
   scientific or native-product mechanism. Evidence:
   `docs/evidence/U1_4C19_STAGED_PROPHOTO_24MP_RESULT.json`.
+
+### 2026-08-20 - U1.4C19A localizes the native rewrite boundary
+
+- A 24MP cProfile replay preserves the exact C19 output, receipt and decoded
+  samples while locating distributed costs in analytical OKLab ingress
+  (`26.63s`), Lab gamut compression (`18.72s`), safe-Lab (`13.62s`) and PNG
+  publication (`11.68s`).
+- This is diagnostic attribution, not a new performance pass. Stop Python
+  staging rescue; any continuation of this product path must fuse and
+  parallelize native colour arithmetic and stream publication. Evidence:
+  `docs/evidence/U1_4C19A_STAGED_PROPHOTO_24MP_PROFILE_RESULT.json`.

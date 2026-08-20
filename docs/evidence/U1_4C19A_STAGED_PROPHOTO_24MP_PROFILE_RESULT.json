@@ -1,0 +1,37 @@
+{
+  "schema": "neuro-film.u1-4c19a-staged-prophoto-24mp-profile-result.v1",
+  "experiment_id": "U1.4C19A",
+  "status": "PROFILED_NATIVE_REWRITE_REQUIRED",
+  "parent_contract_sha256": "c75d513c527dbd2f0267f0b24787fbeb73e199d0e25c7b4fd91446d972586455",
+  "parent_result": "docs/evidence/U1_4C19_STAGED_PROPHOTO_24MP_RESULT.json",
+  "profile_artifact": {
+    "path": "outputs/eval/u1_4c19_native_direction_profile_v1/worker.pstats",
+    "sha256": "c43d176088cb264746a6e779b686622315335dc5739ec99a55b3111bb55b1a15",
+    "bytes": 551952
+  },
+  "execution": {
+    "input_pixels": 24000000,
+    "worker_wall_seconds": 107.41093550002552,
+    "cprofile_total_seconds": 109.158,
+    "output_sha256": "ff30c351261c0c9004c05f21e5a2929e448716153756407cde7e36225509bd7a",
+    "receipt_sha256": "e9a442bc89bedacb46d79dd3d63a7e5e99aa6dd6125db15735a491f5abf2b415",
+    "exact_sample_readback": true
+  },
+  "cumulative_hotspots_seconds": {
+    "analytical_oklab_interior_rec2020": 26.634,
+    "compress_source_to_working_gamut": 18.723,
+    "apply_safe_lab_transform": 13.616,
+    "save_rec2020_rgb16_png_samples": 11.683,
+    "decode_prophoto_rgb16_to_linear_rec2020": 4.036,
+    "linear_rec2020_to_rec2020": 3.587,
+    "source_anchored_interior_residual": 3.483,
+    "linear_rgb_to_lab": 3.178
+  },
+  "interpretation": "The 24MP wall time is distributed across repeated float64/float32 colour transforms, two fixed-iteration gamut searches, safe-Lab execution, and PNG compression. No single Python parameter or I/O-only change can plausibly satisfy the unchanged 15 second product gate. Further work on this product path requires a fused parallel native arithmetic and streaming publication mechanism rather than another Python staging rescue.",
+  "limitations": [
+    "This is post-result diagnostic attribution, not a preregistered performance gate.",
+    "The absolute wall time may include ordinary host contention; the profile is used to localize work, not to claim cross-machine performance.",
+    "No native implementation or product capability is claimed."
+  ],
+  "production_default_changed": false
+}
