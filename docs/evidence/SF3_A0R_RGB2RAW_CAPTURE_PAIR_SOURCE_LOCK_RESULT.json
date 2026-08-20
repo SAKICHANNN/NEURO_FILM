@@ -3,7 +3,7 @@
   "experiment_id": "SF3.A0R_RGB2RAW_CAPTURE_PAIR_SOURCE_LOCK_V1",
   "date": "2026-08-21",
   "status": "PASS_RANGE_ONLY_SOURCE_STRUCTURE",
-  "implementation_commit": "e57d63ac58bc095ec64659313040653ff689d19d",
+  "implementation_commit": "e57d63aca6852def4c2925244b7e2344ec087312",
   "source": {
     "dataset_id": "marcosv/rgb2raw",
     "revision": "91a105e8532f082a955b799c15dea0ada9e3caed",
