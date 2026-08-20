@@ -18,11 +18,11 @@ from src.real_film.ppisp_capture_pair_source_lock import (
 def _archive(*, auto_name: str = "auto") -> bytes:
     stream = io.BytesIO()
     with zipfile.ZipFile(stream, "w", compression=zipfile.ZIP_DEFLATED) as archive:
-        for variant in ("standard", auto_name):
+        for variant in ("scene", f"scene_{auto_name}"):
             for index in range(4):
-                archive.writestr(f"scene/{variant}/images/cam0/{index:03d}.jpg", b"jpeg")
-            archive.writestr(f"scene/{variant}/sparse/0/cameras.bin", b"camera")
-            archive.writestr(f"scene/{variant}/sparse/0/images.bin", b"images")
+                archive.writestr(f"{variant}/images/cam0/{index:03d}.jpg", b"jpeg")
+            archive.writestr(f"{variant}/sparse/0/cameras.bin", b"camera")
+            archive.writestr(f"{variant}/sparse/0/images.bin", b"images")
     return stream.getvalue()
 
 

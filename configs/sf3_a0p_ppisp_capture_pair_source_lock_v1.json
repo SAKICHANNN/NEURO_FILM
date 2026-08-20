@@ -11,12 +11,12 @@
     "readme_size": 4100,
     "readme_sha256": "2f19051a5a9502b22f54cb4acb27ffb3a54b318d770714fc69995cd2ea8e8c69",
     "required_readme_phrases": [
-      "CC BY 4.0",
-      "commercial and non-commercial",
+      "license: cc-by-4.0",
+      "commercial/non-commercial",
       "Nikon Z7",
       "OM-1 Mark II",
       "iPhone 13 Pro",
-      "auto exposure and auto white balance"
+      "automatic exposure compensation and white balancing"
     ]
   },
   "archives": [

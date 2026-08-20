@@ -175,9 +175,9 @@ def _variant(name: str) -> str:
 def _normalized_pair_key(name: str) -> str:
     parts = []
     for part in PurePosixPath(name).parts:
-        cleaned = re.sub(
-            r"(?i)(?:^|[_-])(?:auto|standard)(?:$|[_-])", "_variant_", part
-        )
+        if part.lower() in ("auto", "standard"):
+            continue
+        cleaned = re.sub(r"(?i)(?:[_-](?:auto|standard))$", "", part)
         cleaned = re.sub(r"__+", "_", cleaned).strip("_")
         parts.append(cleaned.lower())
     return "/".join(parts)
