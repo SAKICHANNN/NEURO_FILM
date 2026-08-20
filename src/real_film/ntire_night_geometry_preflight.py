@@ -268,7 +268,7 @@ def run_preflight(
         names = {
             "metadata": f"raw:raw/{numeric_id}.json",
             "raw": f"raw:raw/{numeric_id}.png",
-            "target": f"target:sony/{numeric_id}.jpg",
+            "target": f"target:sony/{numeric_id}.JPG",
         }
         if any(name not in by_name for name in names.values()):
             raise NTIRENightGeometryPreflightError("selected member is missing")
