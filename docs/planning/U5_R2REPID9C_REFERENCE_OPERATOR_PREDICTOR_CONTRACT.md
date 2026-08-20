@@ -19,3 +19,9 @@ Any absolute, global-relative, permutation-relative, tail, salience or safety
 gate failure closes the exact descriptor/ridge/operator family before sealed
 member acquisition. No same-cohort feature, alpha, bound, dose, resize or gate
 rescue is allowed. A pass opens only separately frozen sealed confirmation.
+
+Execution amendment: the first invocation emitted no report while processing
+the first permitted fit scene because the reused descriptor API expected its
+unchanged values beneath a `source_descriptor` wrapper key. The one-line
+adapter changes no feature, role, pixel, parameter, control or gate. No
+calibration reference/original, score or sealed member was read before repair.

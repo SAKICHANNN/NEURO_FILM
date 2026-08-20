@@ -62,7 +62,7 @@ def reference_descriptor(
         reference = resize_srgb(
             reference, max(1, round(width * scale)), max(1, round(height * scale))
         )
-    return source_descriptor(reference.reshape(-1, 3), config)
+    return source_descriptor(reference.reshape(-1, 3), {"source_descriptor": config})
 
 
 def encode_effect(operator: LogitAffineOperator) -> np.ndarray:
