@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2repid7-canoncgt-self-canonical-inverse-v1",
+  "status": "FAIL_CLOSED_SELF_CANONICAL_INVERSE",
+  "execution_commit": "2bb375a1a490228134ffca9ff20d7670cbffa6a1",
+  "bindings": {
+    "config_sha256": "4fcc39f273371f2f02ec76c87fde4382b5297349a92c0650e52376125e641575",
+    "contract_sha256": "523f4cf757932f51c3d49257b9d9aa0ff77254ed1fc4a4b92a8c0fa62449c336",
+    "core_sha256": "32c3151d0ad3a0d8bb15cb0792dc79e1423421686ee75e78e3ae06742768d5fd",
+    "runner_sha256": "606e937a4e9f1892492cdec9cc46c9b308271d7d12b6f44a1e57299c584bc6ab",
+    "parent_contract_sha256": "58d2a2b349763f7b29d08ded37e028f394585250f1ded9452a5beb41a4693d8b",
+    "external_checkpoint_sha256": "916f7ad5028d3fef51cf915bb51febc9508e7a378c0babe9ff3d3992b8c594f7"
+  },
+  "replay": {
+    "forward_report_sha256": "64ddc7feadce103ac44fc4e67972cc2663d851bd703498cf8a61aa47602da17d",
+    "reversed_report_sha256": "64ddc7feadce103ac44fc4e67972cc2663d851bd703498cf8a61aa47602da17d",
+    "byte_exact": true
+  },
+  "execution_order": {
+    "reference_reads": 9,
+    "application_source_reads": 0,
+    "application_source_decodes": 0,
+    "application_outputs": 0
+  },
+  "summary": {
+    "passing_references": 7,
+    "required_passing_references": 9,
+    "failed_references": ["a0_ref_04", "a0_ref_07"],
+    "fit_rows_per_reference": 32768,
+    "holdout_rows_per_reference": 32768,
+    "all_matrix_diagnostics_pass": true,
+    "all_fit_holdout_gap_gates_pass": true
+  },
+  "failures": {
+    "a0_ref_04": {
+      "failed_gate": "canonical_raw_range",
+      "observed": 0.006141714672252771,
+      "maximum": 0.005,
+      "holdout_oklab_p95": 0.07559957874764575
+    },
+    "a0_ref_07": {
+      "failed_gate": "holdout_p95",
+      "observed": 0.08327511737306643,
+      "maximum": 0.08,
+      "canonical_raw_out_of_range_fraction": 0.0
+    }
+  },
+  "interpretation": "Reference self-canonicalization supplies a strong, well-conditioned same-image pseudo-neutral observation for seven of nine A0 references, but the frozen all-reference structural contract fails on one raw-range tail and one held-out representation tail. This is positive mechanism evidence only and cannot authorize application scoring.",
+  "closed_rescues": [
+    "gate relaxation",
+    "reference exclusion",
+    "canonical output projection",
+    "operator dose or ridge sweep",
+    "sample split change",
+    "checkpoint change",
+    "application-source scoring on this exact leaf"
+  ],
+  "claim_ceiling": "Private reference-only pseudo-neutral structural negative; no application quality, stock, calibration, product, schema or capability claim."
+}

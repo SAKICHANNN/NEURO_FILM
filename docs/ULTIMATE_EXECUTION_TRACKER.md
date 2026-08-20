@@ -1621,3 +1621,16 @@ escape span `5.87-23.13%` and `5.76-22.80%`. Close the exact fixed-atlas shared
 LUT route without projection, strength, atlas or source-routing rescue. The
 result localizes CanonCGT's source-conditioned canonicalizer as necessary for
 this checkpoint; it does not open visual review or product integration.
+
+U5.R2REPID7 then uses that canonicalizer as a different reference-only
+identifying observation: each reference is canonicalized once and a bounded
+12-parameter logit-affine operator is fitted from its pseudo-neutral image back
+to the observed reference on 32,768 pixels, with 32,768 disjoint held-out
+pixels. Two forward/reversed reports are byte exact (`64ddc7fe...a17d`) and
+application-source reads remain zero. Seven of nine references pass every
+structural gate with well-conditioned matrices. The frozen all-reference gate
+still fails: `a0_ref_04` has `.61417% > .5%` canonical raw range escape and
+`a0_ref_07` has `.083275 > .08` held-out p95 OKLab error. Close before Apply;
+do not exclude references, relax gates, project the canonical output or tune
+dose/ridge/splits. Retain self-canonicalization only as positive identifying
+mechanism evidence for a future materially different representation.

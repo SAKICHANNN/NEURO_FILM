@@ -13962,3 +13962,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   the shared-operator contract. Close atlas/projection/strength/threshold and
   application-source routing rescues; defaults and product state are unchanged.
 - Evidence: `docs/evidence/U5_R2REPID6_CANONCGT_FIXED_ATLAS_SHARED_LUT_RESULT.json`.
+
+### 2026-08-20 - U5.R2REPID7 stops self-canonical inverse before Apply
+
+- Changed the identifying observation rather than repairing REPID6. Each A0
+  reference is passed through the unchanged CanonCGT canonicalizer, then one
+  intrinsically bounded 12-parameter logit-affine operator maps that
+  pseudo-neutral result back to the reference. Fit/held-out partitions contain
+  32,768 deterministic pixels each and Build reads no application source.
+- Forward and reversed fresh reports are byte exact (`64ddc7fe...a17d`). Seven
+  of nine references pass all raw-range, held-out error, fit-gap and matrix
+  gates. All nine matrices are well conditioned and every fit-gap gate passes.
+- The all-reference contract fails before Apply: `a0_ref_04` canonical raw
+  escape is `.0061417 > .005`, while `a0_ref_07` held-out p95 OKLab error is
+  `.083275 > .08`. Application source reads, decodes and outputs remain zero.
+- Close reference exclusion, gate, projection, dose, ridge, split and
+  checkpoint rescues. The 7/9 result is identifying-mechanism evidence, not
+  application quality or product authorization.
+- Evidence: `docs/evidence/U5_R2REPID7_CANONCGT_SELF_CANONICAL_INVERSE_RESULT.json`.
