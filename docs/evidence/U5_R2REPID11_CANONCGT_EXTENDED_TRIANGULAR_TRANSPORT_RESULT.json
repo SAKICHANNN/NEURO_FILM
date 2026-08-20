@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2repid11-canoncgt-extended-triangular-transport-v1",
+  "status": "FAIL_CLOSED_EXTENDED_TRIANGULAR_TRANSPORT",
+  "preregistration_commit": "f167f57295e1451925980655d761c1a74e160eb2",
+  "execution_commit": "d15db808aaa56729066f0122fa6a8f51d0e1a368",
+  "frozen_inputs": {
+    "config_sha256": "51031f3c4494db52a50f88954bf58f6469c95aa710b079f265d5432aaae61a22",
+    "core_sha256": "d469b4fe99b8f2c122d7f0e31a590726e206c74282b34bd37def07416bd120d1",
+    "runner_sha256": "b295d122df347fba3e63a799dff0776e97283ee57b10f0f6131802cf1d55e433",
+    "test_sha256": "7a3f341b47113b5372c688106fea5ae237c8bec16adb724407b9e55a26c6b864",
+    "canoncgt_parent_contract_sha256": "58d2a2b349763f7b29d08ded37e028f394585250f1ded9452a5beb41a4693d8b",
+    "matched_logit_affine_contract_sha256": "4fcc39f273371f2f02ec76c87fde4382b5297349a92c0650e52376125e641575",
+    "bn4_transport_context_sha256": "de829f2bd51b9d52c8b34d0017901f8fb401c39da85ece8772677901e38d81f9",
+    "triangular_transport_core_sha256": "531c848d2668da96a3709f09abae4c2ff8626b89670963a5a5375a74982afe93"
+  },
+  "replay": {
+    "forward_report_sha256": "8a993216bdc35054e49f7b65e23a0e4775eda9fd267f5a4f58c473217cd667d8",
+    "reversed_report_sha256": "8a993216bdc35054e49f7b65e23a0e4775eda9fd267f5a4f58c473217cd667d8",
+    "full_report_byte_exact": true
+  },
+  "execution_order": {
+    "reference_count": 9,
+    "application_source_reads": 0,
+    "application_source_decodes": 0,
+    "application_outputs": 0
+  },
+  "metrics": {
+    "passing_references": 0,
+    "required_passing_references": 9,
+    "fit_convergence_references": 9,
+    "absolute_error_passing_references": 9,
+    "control_nonregression_passing_references": 8,
+    "jacobian_gate_passing_references": 0,
+    "median_p95_error_reduction_vs_logit_affine": 0.06052620225411274,
+    "holdout_p95_minimum": 0.0466453719841209,
+    "holdout_p95_median": 0.061201721898987455,
+    "holdout_p95_maximum": 0.0755367389943841,
+    "canonical_range_escape_magnitude_maximum": 0.09930454194545746,
+    "minimum_sampled_jacobian_determinant": 9.262885086890514e-07,
+    "minimum_sampled_jacobian_singular_value": 0.000361671303891111,
+    "maximum_sampled_jacobian_condition_number": 2018.1053607912459,
+    "maximum_inverse_roundtrip_error": 2.2026824808563106e-13,
+    "maximum_new_boundary_fraction": 0.0
+  },
+  "passed_controls": [
+    "fit convergence 9/9",
+    "absolute holdout median and p95 9/9",
+    "fit-to-holdout mean-error ratio 9/9",
+    "extended finite input support 9/9",
+    "parameter bounds 9/9",
+    "analytic inverse roundtrip 9/9",
+    "zero new boundary 9/9",
+    "forward/reverse full report byte exact"
+  ],
+  "failed_gates": [
+    "required_passing_references",
+    "minimum_median_p95_error_reduction_vs_logit_affine",
+    "per_reference_control_nonregression",
+    "jacobian_determinant_all_references",
+    "jacobian_singular_value_all_references",
+    "jacobian_condition_all_references"
+  ],
+  "interpretation": "The compact extended transport repairs REPID7's two absolute-error misses and is exactly bounded and invertible, but the frozen global coordinate compression makes every fitted map too ill-conditioned for shared application. Together with REPID8 and REPID10, this closes further operator-representation repair of the same self-canonical pseudo-neutral observation: free capacity folds, while the fixed invertible compression loses differential support and gives only 6.05% median p95 gain over REPID7.",
+  "closed_rescues": [
+    "extended coordinate or support-bound sweep",
+    "parameter-bound or channel-order change",
+    "identity-shrinkage or fit-budget sweep",
+    "dose or strength rescue",
+    "Jacobian threshold relaxation",
+    "clipping or projection",
+    "sample-split or reference exclusion",
+    "application-source routing",
+    "further self-canonical inverse representation capacity"
+  ],
+  "claim_ceiling": "Private consumed-reference explicit-operator structural negative; no application quality, stock, calibration, population preference, product, schema or capability claim."
+}

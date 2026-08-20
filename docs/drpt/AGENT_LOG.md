@@ -14184,3 +14184,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   matched-control gates before any application source read.
 - No dose, bounds, coordinate, channel-order, optimizer-budget, clipping,
   projection, threshold or reference-exclusion rescue is allowed.
+
+### 2026-08-20 - U5.R2REPID11 closes self-canonical representation repair
+
+- Forward/reversed CUDA reports are byte exact (`8a993216...667d8`) and read
+  zero application sources. The compact operator succeeds on fit convergence,
+  all nine absolute error rows, fit/holdout gap, extended support, parameter
+  bounds, analytic inverse and zero new boundaries.
+- Safety still fails on every row: minimum determinant `9.26e-7`, minimum
+  singular `.0003617`, maximum condition `2018.1`. Median p95 reduction over
+  the REPID7 control is only 6.05% versus the frozen 10% gate; one row also
+  misses per-reference nonregression.
+- REPID8/10/11 now jointly close further capacity or representation repair of
+  the same self-canonical pseudo-neutral observation. The next leaf must change
+  identifying information; no Apply leaf opens.
+- Evidence: `docs/evidence/U5_R2REPID11_CANONCGT_EXTENDED_TRIANGULAR_TRANSPORT_RESULT.json`.

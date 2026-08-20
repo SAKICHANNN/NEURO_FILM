@@ -1708,3 +1708,14 @@ positive triangular Jacobian; it adds no local basis or learned RGB output.
 All nine references must pass the unchanged absolute errors, matched REPID7
 gain, inverse/Jacobian/boundary and replay gates before Apply. Coordinate,
 parameter-bound, dose, channel-order and fit-budget rescue are forbidden.
+
+U5.R2REPID11 formally closes that constrained repair. Forward/reversed reports
+are byte exact (`8a993216...667d8`) with zero application reads. All nine fits
+converge and all nine pass absolute median/p95, fit-gap, support, parameter,
+inverse and zero-boundary gates; the construction repairs REPID7's two error
+misses. It still fails 0/9 Jacobian gates: minimum determinant is `9.26e-7`,
+minimum singular value `.000362`, and condition reaches `2018.1`. Median p95
+gain over REPID7 is only 6.05%, below 10%. Close further representation repair
+of this self-canonical observation: free bases fold, while the fixed invertible
+compression loses differential support. The next leaf must change the
+identifying observation before changing operator capacity.
