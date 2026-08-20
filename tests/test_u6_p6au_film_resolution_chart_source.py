@@ -6,7 +6,11 @@ import numpy as np
 import pytest
 import tifffile
 
-from src.eval.film_resolution_chart_source import _validate_tiff, load_contract
+from src.eval.film_resolution_chart_source import (
+    _fetch_member,
+    _validate_tiff,
+    load_contract,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -45,3 +49,51 @@ def test_p6au_rejects_rgb8(tmp_path: Path) -> None:
     tifffile.imwrite(path, np.zeros((4, 5, 3), dtype=np.uint8), photometric="rgb")
     with pytest.raises(ValueError, match="not RGB16"):
         _validate_tiff(path)
+
+
+def test_p6au_accepts_data_descriptor_partial_local_placeholders(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    payload_path = tmp_path / "source.tif"
+    values = np.arange(6 * 8 * 3, dtype=np.uint16).reshape(6, 8, 3)
+    tifffile.imwrite(payload_path, values, photometric="rgb")
+    payload = payload_path.read_bytes()
+    import struct
+    import zlib
+
+    packed = zlib.compress(payload)[2:-4]
+    name = b"TIFF/source.tif"
+    header = (
+        b"PK\x03\x04"
+        + struct.pack(
+            "<5H3I2H",
+            20,
+            8,
+            8,
+            0,
+            0,
+            0,
+            0,
+            len(payload),
+            len(name),
+            0,
+        )
+        + name
+        + packed
+        + bytes(4096)
+    )
+    monkeypatch.setattr(
+        "src.eval.film_resolution_chart_source._range",
+        lambda _url, _start, _end: header,
+    )
+    row = {
+        "name": name.decode(),
+        "crc32": f"{zlib.crc32(payload) & 0xFFFFFFFF:08x}",
+        "compressed_size": len(packed),
+        "uncompressed_size": len(payload),
+        "local_header_offset": 10,
+        "method": 8,
+        "flags": 8,
+    }
+    result = _fetch_member("https://invalid.test/source.zip", row, tmp_path / "out")
+    assert result["bytes"] == len(payload)

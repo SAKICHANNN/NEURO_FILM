@@ -109,21 +109,22 @@ def _fetch_member(url: str, row: dict[str, Any], destination: Path) -> dict[str,
         local_crc, local_compressed, local_uncompressed = fields[5:8]
         name_len, extra_len = fields[8:10]
         name = blob[30 : 30 + name_len].decode("utf-8")
-        placeholders = bool(flags & 0x08) and (
-            local_crc,
-            local_compressed,
-            local_uncompressed,
-        ) == (0, 0, 0)
-        sizes_match = (local_crc, local_compressed, local_uncompressed) == (
+        expected_local = (
             int(row["crc32"], 16),
             int(row["compressed_size"]),
             int(row["uncompressed_size"]),
+        )
+        observed_local = (local_crc, local_compressed, local_uncompressed)
+        sizes_match = observed_local == expected_local
+        descriptor_placeholders_match = bool(flags & 0x08) and all(
+            observed in {0, expected}
+            for observed, expected in zip(observed_local, expected_local, strict=True)
         )
         if (
             name != row["name"]
             or flags != int(row["flags"])
             or method != int(row["method"])
-            or not (placeholders or sizes_match)
+            or not (descriptor_placeholders_match or sizes_match)
         ):
             raise ValueError("P6AU central/local member drift")
         data_start = 30 + name_len + extra_len
