@@ -12,6 +12,7 @@ import hashlib
 import json
 import math
 import os
+import subprocess
 import sys
 import types
 from collections.abc import Iterable
@@ -253,6 +254,7 @@ class EditRewardRuntime:
         offload_dir: Path,
     ) -> None:
         _prepend_runtime_paths(python_deps, transformers_source, official_source)
+        os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":4096:8"
         import torch
         import transformers
         from transformers import AutoConfig, AutoProcessor
@@ -265,10 +267,44 @@ class EditRewardRuntime:
             raise RuntimeError("CUDA is required for the frozen local mechanics path")
 
         external = contract["external_asset"]
+        transformers_commit = subprocess.check_output(
+            ["git", "-C", str(transformers_source), "rev-parse", "HEAD"],
+            text=True,
+        ).strip()
+        if transformers_commit != contract["resource_execution"]["transformers_commit"]:
+            raise ValueError("transformers source commit mismatch")
+        editreward_commit = subprocess.check_output(
+            ["git", "-C", str(official_source), "rev-parse", "HEAD"],
+            text=True,
+        ).strip()
+        if editreward_commit != external["repository_commit"]:
+            raise ValueError("EditReward source commit mismatch")
+        for relative, expected in contract["official_source_sha256"].items():
+            _validate_hash(
+                official_source / relative,
+                expected,
+                f"official source {relative}",
+            )
+
+        seed = int(contract["resource_execution"]["random_seed"])
+        import numpy as np
+
+        np.random.seed(seed)
+        torch.manual_seed(seed)
+        torch.cuda.manual_seed_all(seed)
+        torch.backends.cuda.matmul.allow_tf32 = False
+        torch.backends.cudnn.allow_tf32 = False
+        torch.use_deterministic_algorithms(True)
+
         _validate_hash(
             model_dir / "model.safetensors",
             external["model_sha256"],
             "EditReward model",
+        )
+        _validate_hash(
+            model_dir / "config.json",
+            contract["base_processor"]["files"]["config.json"]["sha256"],
+            "EditReward model config",
         )
         for name, facts in contract["base_processor"]["files"].items():
             path = processor_dir / name
@@ -331,6 +367,7 @@ class EditRewardRuntime:
         self.load_facts = {
             "transformers_version": transformers.__version__,
             "torch_version": torch.__version__,
+            "processor_class": type(processor).__name__,
             "state_tensor_count": external["tensor_count"],
             "state_parameter_count": external["parameter_count"],
             "missing_keys": [],

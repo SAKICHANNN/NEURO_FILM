@@ -130,7 +130,11 @@
     "weight_cast_forbidden": true,
     "batch_or_resolution_rescue_forbidden": true,
     "single_asset_mechanics_smoke_before_full_score": true,
-    "mechanics_smoke_has_no_scientific_interpretation": true
+    "mechanics_smoke_has_no_scientific_interpretation": true,
+    "random_seed": 20260821,
+    "cuda_tf32": false,
+    "deterministic_algorithms": true,
+    "attention_implementation": "sdpa"
   },
   "execution_isolation": {
     "score_lock_must_exist_before_private_mapping_or_direct_result_read": true,
