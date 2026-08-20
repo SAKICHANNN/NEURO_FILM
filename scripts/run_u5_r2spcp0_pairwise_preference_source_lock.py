@@ -159,12 +159,30 @@ def _stable_id(payload: dict[str, Any]) -> str:
     return f"sha256:{_sha256(_canonical_bytes(stable))}"
 
 
+def _report_schema(experiment_id: str) -> str:
+    token = experiment_id.lower().replace(".", "-")
+    return f"neuro-film.{token}-pairwise-preference-source-lock-report.v1"
+
+
 def run(contract_path: Path, output_path: Path) -> dict[str, Any]:
     contract_bytes = contract_path.read_bytes()
     contract = json.loads(contract_bytes)
     source = contract["source"]
     ranges = contract["range_protocol"]
     gates = contract["frozen_gates"]
+    parent = contract.get("parent")
+    parent_facts: dict[str, Any] | None = None
+    if parent is not None:
+        decision_path = ROOT / parent["decision_path"]
+        evidence_path = ROOT / parent["evidence_path"]
+        decision_bytes = decision_path.read_bytes()
+        evidence_bytes = evidence_path.read_bytes()
+        decision_payload = json.loads(decision_bytes)
+        parent_facts = {
+            "decision_sha256": _sha256(decision_bytes),
+            "evidence_sha256": _sha256(evidence_bytes),
+            "decision": decision_payload.get("decision"),
+        }
 
     api_bytes, _ = _fetch(source["api_tree_url"])
     readme_bytes, _ = _fetch(source["readme_url"])
@@ -295,11 +313,15 @@ def run(contract_path: Path, output_path: Path) -> dict[str, Any]:
         "zip_bytes_read_total": len(tail) + len(annotations),
         "image_payload_bytes_read": 0,
     }
+    if parent_facts is not None:
+        facts["parent"] = parent_facts
     gate_results = {
         "root_file_count_exact": len(api_tree) == gates["root_file_count_exact"],
         "readme_exact": readme_bytes.decode("utf-8")
         == contract["rights"]["required_card_front_matter"],
         "zip_member_count_exact": len(members) == gates["zip_member_count_exact"],
+        "central_directory_sha256_exact": facts["central_directory_sha256"]
+        == source.get("central_directory_sha256", facts["central_directory_sha256"]),
         "canonical_image_count_exact": len(canonical_members)
         == gates["canonical_image_count_exact"],
         "scene_count_exact": len(scene_counts) == gates["scene_count_exact"],
@@ -343,9 +365,16 @@ def run(contract_path: Path, output_path: Path) -> dict[str, Any]:
         "image_payload_bytes_read_exact": facts["image_payload_bytes_read"]
         == gates["image_payload_bytes_read_exact"],
     }
+    if parent is not None:
+        gate_results["parent_exact"] = bool(
+            parent_facts
+            and parent_facts["decision_sha256"] == parent["decision_sha256"]
+            and parent_facts["evidence_sha256"] == parent["evidence_sha256"]
+            and parent_facts["decision"] == parent["required_decision"]
+        )
     failed = sorted(name for name, passed in gate_results.items() if not passed)
     report = {
-        "schema": "neuro-film.u5-r2spcp0-pairwise-preference-source-lock-report.v1",
+        "schema": _report_schema(contract["experiment_id"]),
         "experiment_id": contract["experiment_id"],
         "contract_path": contract_path.relative_to(ROOT).as_posix(),
         "contract_sha256": _sha256(contract_bytes),

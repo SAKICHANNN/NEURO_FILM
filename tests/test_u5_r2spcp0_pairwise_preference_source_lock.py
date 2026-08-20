@@ -6,6 +6,7 @@ from pathlib import Path
 
 from scripts.run_u5_r2spcp0_pairwise_preference_source_lock import (
     _parse_central_directory,
+    _report_schema,
     _stable_id,
 )
 
@@ -97,6 +98,12 @@ def test_spcp0_stable_id_ignores_existing_identity() -> None:
     left = {"a": 1}
     right = {"a": 1, "stable_evidence_id": "old"}
     assert _stable_id(left) == _stable_id(right)
+
+
+def test_spcp_report_schema_tracks_numbered_protocol() -> None:
+    assert _report_schema("U5.R2SPCP1") == (
+        "neuro-film.u5-r2spcp1-pairwise-preference-source-lock-report.v1"
+    )
 
 
 def test_spcp0_decision_preserves_hash_failure_and_zero_pixels() -> None:
