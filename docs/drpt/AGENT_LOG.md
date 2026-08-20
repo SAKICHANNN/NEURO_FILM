@@ -14336,3 +14336,8 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   StyleDoctor/CSD benchmark reproduction, preference, fresh confirmation,
   routing or product readiness. Contract:
   `configs/u5_r2csd0_cross_content_operator_identification_v1.json`.
+- The first single-asset mechanics attempt stopped before inference because
+  PyTorch's `weights_only=True` rejected NumPy scalar metadata in the official
+  checkpoint. Preserve safe loading: explicitly allow only the NumPy scalar
+  and dtype constructors named by the checkpoint, keep `weights_only=true`,
+  and rerun from zero. No private mapping or scientific score was read.
