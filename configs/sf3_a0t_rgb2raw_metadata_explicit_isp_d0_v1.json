@@ -1,0 +1,141 @@
+{
+  "schema": "neuro-film.sf3-a0t-rgb2raw-metadata-explicit-isp-d0-contract.v1",
+  "experiment_id": "SF3.A0T_RGB2RAW_METADATA_EXPLICIT_ISP_D0_V1",
+  "parent_evidence": {
+    "source_lock": "docs/evidence/SF3_A0R_RGB2RAW_CAPTURE_PAIR_SOURCE_LOCK_RESULT.json",
+    "source_lock_sha256": "f5ec49719db1dccae6866d05cd86d721cc4cdc9078b3ee762d42b24b35952c12",
+    "pixel_preflight": "docs/evidence/SF3_A0S_RGB2RAW_CAPTURE_PAIR_PIXEL_PREFLIGHT_RESULT.json",
+    "pixel_preflight_status": "PASS_OPEN_CAPTURE_METADATA_EXPLICIT_OPERATOR_PREREG"
+  },
+  "source": {
+    "dataset_id": "marcosv/rgb2raw",
+    "revision": "91a105e8532f082a955b799c15dea0ada9e3caed",
+    "archive_path": "train_rgb2raw.zip",
+    "archive_size": 8731825651,
+    "central_offset": 8731177943,
+    "central_size": 647610,
+    "central_sha256": "79c22ab4d206ce85a76e342386e3f0a2e74fd774d455ad71fd6f9fcecad6f925",
+    "publisher_declared_license": "mit",
+    "repository_license_text_present": false
+  },
+  "roles": {
+    "group_key": "camera-group plus numeric-normalized capture id",
+    "rank_preimage": "sf3-a0t-role-v1|camera_group|canonical_capture_group",
+    "pair_rank_preimage": "sf3-a0t-pair-v1|camera_group|canonical_capture_group|pair_stem",
+    "per_camera_counts": {
+      "fit": 40,
+      "calibration": 12,
+      "sealed_confirmation": 12
+    },
+    "remaining_groups": "reserve-unread",
+    "one_pair_per_group": true,
+    "cross_role_group_overlap": 0
+  },
+  "metadata_decoder": {
+    "format": "restricted-pickle-numpy-v1",
+    "allowed_globals": [
+      "numpy._core.multiarray._reconstruct",
+      "numpy.ndarray",
+      "numpy.dtype"
+    ],
+    "required_keys": [
+      "white_level",
+      "black_levels",
+      "camera_whitebalance",
+      "daylight_whitebalance",
+      "color_matrix",
+      "cfa_pattern",
+      "sizes",
+      "tone_curve"
+    ],
+    "forbidden_persistence": true
+  },
+  "input_interpretation": {
+    "raw_layout": "standardized packed RGGB",
+    "raw_code_normalization": "float64(raw_uint16)/metadata.white_level",
+    "raw_proxy_rgb": "R, arithmetic-mean(G1,G2), B",
+    "target": "lossless phone-ISP RGB PNG BOX-downsampled to 512x512",
+    "epsilon": 0.000244140625
+  },
+  "operator": {
+    "name": "capture-wb-plus-camera-logit-affine-v1",
+    "candidate_preconditioner": "diag(camera_whitebalance[R,G,B]/camera_whitebalance[G])",
+    "learned_parameters_per_camera": 12,
+    "fit_pixels_per_group": 4096,
+    "fit_pixel_rank_preimage": "sf3-a0t-fit-pixel-v1|camera_group|canonical_capture_group|flat_index",
+    "ridge_alpha": 0.001,
+    "application_source_reads": "raw pixels plus bound capture metadata only",
+    "target_reads_at_application": 0,
+    "output": "explicit bounded sigmoid(logit(rgb) @ matrix.T + bias)"
+  },
+  "controls": {
+    "legitimate_equal_capacity": [
+      "camera-static-no-whitebalance-plus-camera-logit-affine",
+      "camera-daylight-whitebalance-plus-camera-logit-affine",
+      "source-gray-world-whitebalance-plus-camera-logit-affine"
+    ],
+    "falsifiers": [
+      "within-camera-cyclic-permuted-capture-whitebalance",
+      "identity-raw-proxy"
+    ],
+    "strongest_legitimate_control": "the legitimate control with minimum calibration aggregate mean OKLab error; ties resolve by listed order"
+  },
+  "execution_order": [
+    "reconstruct and hash exact role lock from central directory",
+    "read fit role RAW, RGB and metadata",
+    "fit every candidate and control",
+    "serialize complete operators and source-only inputs",
+    "read calibration targets once and score",
+    "if and only if every calibration gate passes, read sealed confirmation targets once",
+    "run a second fresh process in reverse row order"
+  ],
+  "calibration_gates": {
+    "required_rows": 24,
+    "required_rows_per_camera": 12,
+    "minimum_improvement_rate_vs_strongest_legitimate": 0.75,
+    "minimum_median_relative_error_reduction_vs_strongest_legitimate": 0.10,
+    "minimum_worst_relative_error_reduction_vs_strongest_legitimate": -0.10,
+    "minimum_each_camera_improvement_rate_vs_strongest_legitimate": 0.6666666666666666,
+    "minimum_improvement_rate_vs_permuted_metadata": 0.75,
+    "minimum_median_relative_error_reduction_vs_permuted_metadata": 0.10,
+    "maximum_median_mean_oklab_error": 0.08,
+    "maximum_p95_mean_oklab_error": 0.12,
+    "maximum_gradient_p999_ratio": 1.5,
+    "maximum_new_exact_boundary_fraction": 0.0,
+    "minimum_operator_determinant": 0.01,
+    "maximum_operator_condition_number": 20.0,
+    "minimum_operator_singular_value": 0.05,
+    "require_all_finite": true,
+    "require_fresh_reload_exact": true,
+    "require_reverse_row_order_exact": true
+  },
+  "confirmation_gates": "identical to calibration gates on the 24 sealed-confirmation rows",
+  "stop_rules": {
+    "calibration_failure": "FAIL_CLOSED_CANDIDATE_1_OF_3_NO_SEALED_TARGET_READ",
+    "confirmation_failure": "FAIL_CLOSED_CANDIDATE_1_OF_3",
+    "pass": "PASS_PRIVATE_CAPTURE_METADATA_EXPLICIT_ISP_D0",
+    "forbidden_rescue": [
+      "role or row replacement",
+      "different metadata keys",
+      "operator capacity increase",
+      "ridge, epsilon, sampling or threshold sweep",
+      "camera-specific gate relaxation",
+      "same-cohort postprocessing or router"
+    ]
+  },
+  "bounded_final_candidate_counter_before": 0,
+  "bounded_final_candidate_counter_after_scoring": 1,
+  "paper_context": [
+    {
+      "title": "PPISP: Physically-Based Differentiable ISP for Inverse Rendering",
+      "venue": "CVPR 2026",
+      "use": "latest physical-parameter disentangling context only; its released JPEG pairing failed SF3.A0Q and is not reused"
+    },
+    {
+      "title": "ParamISP: Learned Forward and Inverse ISPs using Camera Parameters",
+      "venue": "CVPR 2024",
+      "use": "camera-parameter conditioning precedent; no code, weights or model architecture consumed"
+    }
+  ],
+  "claim_ceiling": "Candidate 1 of at most 3: private natural RAW-to-phone-ISP explicit-operator D0. No film/stock, arbitrary camera, preference, package, schema, receipt, capability or product mapping."
+}

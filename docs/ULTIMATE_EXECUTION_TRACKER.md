@@ -88,6 +88,15 @@ operator is fitted. This opens one capture-metadata-conditioned explicit
 operator preregistration; final counter remains `0/3`. Evidence:
 `docs/evidence/SF3_A0S_RGB2RAW_CAPTURE_PAIR_PIXEL_PREFLIGHT_RESULT.json`.
 
+SF3.A0T is now frozen before any new member or target read as candidate 1 of
+the bounded final cycle. It asks whether exact capture white balance plus one
+fixed 12-parameter logit-affine operator per camera beats equal-capacity
+camera-static, daylight-WB and source-only gray-world controls on numeric-group
+isolated natural pairs. Roles are 40 fit / 12 calibration / 12 sealed per
+camera; sealed targets stay unread unless every calibration gate passes. The
+counter increments to `1/3` only when calibration scoring starts. Contract:
+`configs/sf3_a0t_rgb2raw_metadata_explicit_isp_d0_v1.json`.
+
 **Autonomy invariant**: the active no-data Roll2Film and Style-safe work cannot
 depend on the owner supplying images, film/digital pairs, per-image labels, new
 preference votes or manual annotation. Public online data is an allowed source

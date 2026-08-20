@@ -644,3 +644,20 @@ a pass is representation evidence only.
   operator candidate. No fit, render or score occurred, so the final bounded
   counter remains `0/3`. Evidence:
   `docs/evidence/SF3_A0S_RGB2RAW_CAPTURE_PAIR_PIXEL_PREFLIGHT_RESULT.json`.
+
+### 2026-08-21 - SF3.A0T freezes bounded candidate 1
+
+- The first final-cycle candidate is a RAW ISP mechanism, not an after-only
+  single-reference rescue. Exact capture WB preconditions standardized RGGB;
+  a fixed 12-parameter bounded logit-affine operator per camera produces the
+  explicit RGB transform.
+- SHA-ranked numeric capture groups freeze 40 fit, 12 calibration and 12
+  sealed-confirmation rows per camera. Equal-capacity no-WB, daylight-WB and
+  source-only gray-world controls plus a cyclic wrong-WB falsifier are fixed.
+- Calibration must pass absolute error, matched-control gain, both-camera
+  support, tail, boundary, matrix and replay gates before any sealed target is
+  read. Calibration scoring, not preregistration, changes the bounded counter
+  from `0/3` to `1/3`.
+- No capacity, metadata-field, ridge, sampling, role, row or threshold rescue
+  is allowed. Contract:
+  `configs/sf3_a0t_rgb2raw_metadata_explicit_isp_d0_v1.json`.

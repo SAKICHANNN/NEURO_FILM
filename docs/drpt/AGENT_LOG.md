@@ -14703,3 +14703,24 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `0/3`.
 - Evidence:
   `docs/evidence/SF3_A0S_RGB2RAW_CAPTURE_PAIR_PIXEL_PREFLIGHT_RESULT.json`.
+
+### 2026-08-21 - SF3.A0T freezes capture-metadata candidate 1
+
+- Parent: SF3 bounded final natural cycle; candidate counter remains `0/3`
+  until calibration target scoring begins.
+- The consumed 12-row schema audit found no ISO or shutter fields. It found
+  variable capture `camera_whitebalance` plus camera-level white/black, CFA,
+  colour matrix and sizes. The protocol therefore claims WB conditioning only
+  and does not inflate the observation into a broader metadata vector.
+- Froze 40 fit / 12 calibration / 12 sealed numeric groups per camera, one
+  independently ranked pair per group. Sealed target reads are conditional on
+  every calibration gate.
+- Candidate: exact capture-WB diagonal followed by one fixed 12-parameter
+  bounded logit-affine operator per camera. Controls: equal-capacity no-WB,
+  daylight-WB, source-only gray-world and cyclic-permuted capture WB.
+- Latest PPISP supplies only physical-parameter context; its failed released
+  JPEG pairs are not reused. ParamISP supplies the narrower camera-parameter
+  precedent. No external code, weights or architecture are consumed.
+- Files:
+  `configs/sf3_a0t_rgb2raw_metadata_explicit_isp_d0_v1.json` and
+  `docs/research/SF3_A0T_RGB2RAW_METADATA_EXPLICIT_ISP_PREREGISTRATION.md`.
