@@ -39,7 +39,9 @@
       "md5": "572b9a090f2151c276e5d5e2ddbfcf68",
       "required_pages": 2,
       "primary_page_index": 0,
-      "required_reduced_page_indices": [1]
+      "required_reduced_page_indices": [1],
+      "primary_samples_per_pixel": 3,
+      "luminance_conversion": "equal-rgb-rounded-nearest-u16"
     },
     "rotated": {
       "path": "data/physical_scanner/uchicago_1905_barnard_rotated_v1/10B-161_center_scan_rotated_90.tif",
@@ -49,6 +51,8 @@
       "required_pages": 2,
       "primary_page_index": 0,
       "required_reduced_page_indices": [1],
+      "primary_samples_per_pixel": 3,
+      "luminance_conversion": "equal-rgb-rounded-nearest-u16",
       "description": "same central six-inch region, plate rotated by 90 degrees"
     },
     "reference_shape": [7200, 7200],
@@ -74,7 +78,7 @@
     "mask_erosion_pixels": 32
   },
   "analysis": {
-    "luminance": "single-channel uint16 code",
+    "luminance": "equal-weight RGB uint32 sum divided by three with nearest-integer rounding to uint16 code; frozen before registration or coherence score",
     "normalization": "per-image-midrank-uniform",
     "common_center_crop_size": 3072,
     "patch_size": 768,

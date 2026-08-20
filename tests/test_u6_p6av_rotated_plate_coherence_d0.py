@@ -32,7 +32,9 @@ def test_p6aw_keeps_p6av_protocol_values_exact() -> None:
         ROOT / "configs/u6_p6aw_barnard_rotated_plate_coherence_d0_v1.json"
     )
     assert second["registration"] == first["registration"]
-    assert second["analysis"] == first["analysis"]
+    first_analysis = {k: v for k, v in first["analysis"].items() if k != "luminance"}
+    second_analysis = {k: v for k, v in second["analysis"].items() if k != "luminance"}
+    assert second_analysis == first_analysis
     assert second["gates"] == first["gates"]
     assert second["source"]["reference"]["required_pages"] == 2
     assert second["source"]["reference"]["required_reduced_page_indices"] == [1]
@@ -62,6 +64,32 @@ def test_p6aw_selects_full_resolution_page_from_reduced_thumbnail_tiff(
     assert np.array_equal(values, full)
     assert facts["pages"] == 2
     assert facts["primary_page_index"] == 0
+
+
+def test_p6aw_converts_rgb16_primary_page_with_frozen_equal_weight_rule(
+    tmp_path: Path,
+) -> None:
+    path = tmp_path / "source_rgb.tif"
+    full = np.array([[[0, 1, 2], [10, 11, 12]]], dtype=np.uint16)
+    with tifffile.TiffWriter(path) as writer:
+        writer.write(full)
+        writer.write(full[:, ::2], subfiletype=1)
+    payload = path.read_bytes()
+    values, facts = _load_u16(
+        path,
+        {
+            "path": path.name,
+            "bytes": len(payload),
+            "md5": hashlib.md5(payload).hexdigest(),
+            "required_pages": 2,
+            "primary_page_index": 0,
+            "required_reduced_page_indices": [1],
+            "primary_samples_per_pixel": 3,
+            "luminance_conversion": "equal-rgb-rounded-nearest-u16",
+        },
+    )
+    assert np.array_equal(values, np.array([[1, 11]], dtype=np.uint16))
+    assert facts["primary_samples_per_pixel"] == 3
 
 
 def test_midrank_is_tie_stable() -> None:

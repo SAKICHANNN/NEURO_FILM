@@ -50,8 +50,27 @@ def _load_u16(path: Path, source: dict[str, Any]) -> tuple[np.ndarray, dict[str,
             if not image.pages[int(index)].is_reduced:
                 raise ValueError("P6AV reduced page structure drift")
         values = image.pages[primary_page_index].asarray()
-    if values.dtype != np.uint16 or values.ndim != 2:
-        raise ValueError("P6AV source is not grayscale uint16")
+    if values.dtype.kind != "u" or values.dtype.itemsize != 2:
+        raise ValueError("P6AV source is not uint16")
+    values = values.astype(np.uint16, copy=False)
+    source_samples = int(source.get("primary_samples_per_pixel", 1))
+    if source_samples == 1:
+        if values.ndim != 2:
+            raise ValueError("P6AV source is not grayscale uint16")
+    elif source_samples == 3:
+        if values.ndim != 3 or values.shape[2] != 3:
+            raise ValueError("P6AV source is not RGB uint16")
+        if source.get("luminance_conversion") != "equal-rgb-rounded-nearest-u16":
+            raise ValueError("P6AV RGB luminance conversion drift")
+        values = (
+            values[..., 0].astype(np.uint32)
+            + values[..., 1].astype(np.uint32)
+            + values[..., 2].astype(np.uint32)
+            + 1
+        ) // 3
+        values = values.astype(np.uint16)
+    else:
+        raise ValueError("P6AV source sample count drift")
     return values, {
         "path": source["path"],
         "bytes": len(payload),
@@ -60,6 +79,7 @@ def _load_u16(path: Path, source: dict[str, Any]) -> tuple[np.ndarray, dict[str,
         "dtype": str(values.dtype),
         "pages": required_pages,
         "primary_page_index": primary_page_index,
+        "primary_samples_per_pixel": source_samples,
     }
 
 
