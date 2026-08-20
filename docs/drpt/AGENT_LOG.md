@@ -14628,3 +14628,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   or product evidence and does not consume the bounded scientific counter,
   which remains `0/3`. Evidence:
   `docs/evidence/SF3_A0P_PPISP_CAPTURE_PAIR_SOURCE_LOCK_RESULT.json`.
+
+### 2026-08-21 - SF3.A0Q closes direct PPISP same-name pairing
+
+- Before member reads, froze 16 pairs by SHA rank: four scenes, Nikon and OM
+  System, two standard/auto names per scene-camera group. Two complete network
+  processes decode all 32 JPEGs and reproduce the report byte exactly at
+  `261c1a8b...8e960`.
+- Only 2/16 pairs share dimensions. Their maximum census agreement is `.51413`
+  and gradient correlation `.04642`; zero pairs expose the required matching
+  capture EXIF field set. Exact same-name no-registration pairing therefore
+  fails independently of any operator or quality metric.
+- No fit, render or score occurred. Do not crop/warp, replace pairs, remove the
+  EXIF gate or relax census on this cohort. The next source must bind explicit
+  frame identity and geometry/alignment together with commercial rights.
+- This does not evaluate PPISP NeRF quality and consumes no final candidate;
+  counter remains `0/3`. Evidence:
+  `docs/evidence/SF3_A0Q_PPISP_CAPTURE_PAIR_PIXEL_PREFLIGHT_RESULT.json`.

@@ -55,6 +55,16 @@ preflight; it remains below broad/product generalization and the final counter
 stays `0/3`. Evidence:
 `docs/evidence/SF3_A0P_PPISP_CAPTURE_PAIR_SOURCE_LOCK_RESULT.json`.
 
+SF3.A0Q then closes direct no-registration use of those names before any
+operator fit. A fixed 4-scene x 2-camera x 2-pair SHA-ranked sample decodes
+32 JPEGs in two byte-exact reports (`261c1a8b...8e960`): only 2/16 pairs have
+the same dimensions, their census agreement is at most `.51413` and gradient
+correlation at most `.04642`, and zero pairs expose the required matching
+capture EXIF fields. Do not add crop/warp, replace rows or relax registration;
+future sources must expose explicit frame identity and geometry/alignment in
+addition to commercial rights. Counter remains `0/3`. Evidence:
+`docs/evidence/SF3_A0Q_PPISP_CAPTURE_PAIR_PIXEL_PREFLIGHT_RESULT.json`.
+
 **Autonomy invariant**: the active no-data Roll2Film and Style-safe work cannot
 depend on the owner supplying images, film/digital pairs, per-image labels, new
 preference votes or manual annotation. Public online data is an allowed source

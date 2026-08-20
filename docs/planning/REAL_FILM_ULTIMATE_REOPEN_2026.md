@@ -71,6 +71,14 @@ generalization, so only a separately frozen member/pixel/metadata preflight may
 follow; the bounded counter remains `0/3` until a fresh natural group-isolated
 candidate is actually scored.
 
+The separately frozen SF3.A0Q pixel preflight closes this exact PPISP route:
+only 2/16 fixed same-name standard/auto samples share dimensions, neither has
+meaningful census/gradient correspondence, and the auto JPEGs do not preserve
+the required matching capture EXIF facts. No crop, warp, row replacement or
+threshold rescue is allowed. A successor source must provide explicit
+same-capture frame identity and geometry/alignment evidence as well as viable
+commercial rights before pixels open.
+
 The August 2026 [*Deep Analog* paper](https://arxiv.org/abs/2608.14702) is
 current context, not a candidate under this rule: its reported colour training
 is procedurally self-supervised, its

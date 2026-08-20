@@ -1,0 +1,70 @@
+{
+  "schema": "neuro-film.sf3-a0q-ppisp-capture-pair-pixel-preflight-evidence.v1",
+  "experiment_id": "SF3.A0Q_PPISP_CAPTURE_PAIR_PIXEL_PREFLIGHT_V1",
+  "date": "2026-08-21",
+  "status": "FAIL_CLOSED_BEFORE_OPERATOR_D0",
+  "implementation_commit": "048cac3fdb04a07ae2faa2c5dc9f0b9c216a11f7",
+  "contract": {
+    "path": "configs/sf3_a0q_ppisp_capture_pair_pixel_preflight_v1.json",
+    "sha256": "ac697a941095cdd888769b69df17fb40977d0fbbc0180176579973f106c3d429"
+  },
+  "source_lock": {
+    "evidence_sha256": "d00e9173610f02ecbc816e2026e0dbe57efd3fce4dcb02eb6b6760249c0fb2b6",
+    "source_revision": "2521064a3af6ab1c1caa2ba1b01ddde7eecded69",
+    "source_lock_stable_identity": "030d65d815e57172fa7987061159a244aed2c033c8015541d1172d0c08262cb8"
+  },
+  "selection": {
+    "algorithm": "sha256-rank-normalized-pair-key-v1",
+    "scenes": 4,
+    "camera_groups": [
+      "nikon",
+      "oms"
+    ],
+    "pairs_per_scene_camera": 2,
+    "pair_count": 16,
+    "selection_manifest_sha256": "f3ea6a08b1d8e9c4e16f2d7623f871f47c789e6c933fec2be2edf92d9db667cf",
+    "selection_frozen_before_member_reads": true
+  },
+  "formal_replay": {
+    "report_a": "outputs/eval/sf3_a0q_ppisp_capture_pair_pixel_preflight_v1/formal_run_1.json",
+    "report_b": "outputs/eval/sf3_a0q_ppisp_capture_pair_pixel_preflight_v1/formal_run_2.json",
+    "report_sha256": "261c1a8b46c854a15855310c9d0e3b37f01d134dd524be965d969ddb56b8e960",
+    "stable_identity": "9c5aa325707d7002c294d1099174ed45ffe635337eec31d05eade69f07dc81e0",
+    "byte_exact": true,
+    "network_bytes_per_run": 107940746
+  },
+  "observations": {
+    "jpeg_decode_count": 32,
+    "same_dimension_pair_count": 2,
+    "different_dimension_pair_count": 14,
+    "capture_exif_identity_pair_count": 0,
+    "census_agreement_min": 0.0,
+    "census_agreement_max": 0.514127072807359,
+    "gradient_correlation_min": 0.0,
+    "gradient_correlation_max": 0.0464155564544295,
+    "mean_absolute_rgb_difference_min": 0.0,
+    "mean_absolute_rgb_difference_max": 0.213480435788022,
+    "operator_fits": 0,
+    "renders": 0,
+    "scores": 0
+  },
+  "failed_gates": [
+    "same_dimensions_each_pair",
+    "capture_exif_support_and_identity",
+    "census_registration_each_pair",
+    "processing_difference_each_pair"
+  ],
+  "decision": "FAIL_CLOSED_PPISP_CAPTURE_PAIR_PIXEL_PREFLIGHT",
+  "same_cohort_rescue_forbidden": [
+    "crop or resize alignment",
+    "learned or pixel-selected warp",
+    "alternate member selection",
+    "EXIF requirement removal",
+    "census threshold relaxation"
+  ],
+  "bounded_final_candidate_counter_before": 0,
+  "bounded_final_candidate_counter_after": 0,
+  "scientific_conclusion": "The COLMAP release's same-name standard/auto JPEGs do not satisfy the frozen exact-geometry, capture-identity and registration contract. This closes direct no-registration paired-operator use of this exact release; it does not evaluate PPISP radiance-field quality or prove that no separately identified raw source exists.",
+  "next_source_requirement": "Explicit same-capture frame identity, independently verified geometry or alignment, capture metadata and commercially viable rights must all be present before member pixels open.",
+  "claim_ceiling": "Four-scene, sixteen-pair source preflight negative only. No preference, film, operator-quality, package, schema, capability or product claim."
+}
