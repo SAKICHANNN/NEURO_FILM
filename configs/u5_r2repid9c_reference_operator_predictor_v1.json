@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2repid9c-reference-operator-predictor-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2REPID9C",
+  "question": "Can a professional after-reference alone identify one bounded explicit original-to-preferred-render colour operator across unseen scenes?",
+  "parents": {
+    "rendered_acquisition_path": "outputs/eval/u5_r2repid3_fit_calibration_acquisition/run_a.json",
+    "rendered_acquisition_sha256": "e04a611e4c6f1889a9adc2b69520ca05b4d4a280a7b5e708eb73de28df40647c",
+    "original_acquisition_evidence_path": "docs/evidence/U5_R2REPID9B_ORIGINAL_ACQUISITION_RESULT.json",
+    "original_acquisition_evidence_sha256": "e9713ba48619475d319b2ae3e09c2710117d0e5106120cf4e70f578778f608c5",
+    "original_acquisition_sha256": "d516d9873041c05f5b7a2eccfb062fb342043cd7666c1d5daf2feadd9a976f1b",
+    "original_root_cli_required": true
+  },
+  "implementation": {
+    "predictor_core": {
+      "path": "src/eval/repid_reference_operator_predictor.py",
+      "sha256": "e4f3a9c0068b9e2cf0e394fac230d36dfbe61a0c31775d44796ed78c78c465c6"
+    },
+    "runner": {
+      "path": "scripts/run_u5_r2repid9c_reference_operator_predictor.py",
+      "sha256": "e21713d2c44d7ab186b5bba6a5f66927d3c009bd2da50640f02357f1f9c3848c"
+    },
+    "icc_ingress": {
+      "path": "src/eval/repid_shared_operator.py",
+      "sha256": "f70e9c298eaa6ff21cabb860e9c2e271efe24d9eddbf19cfa917a19277383384"
+    },
+    "operator_core": {
+      "path": "src/eval/spcp_global_logit_affine.py",
+      "sha256": "a8d26b402bb3e8ec134bba7a11da933359d53d072a2960e2acc2cd2b12e14405"
+    },
+    "ridge_descriptor_core": {
+      "path": "src/eval/filmmatch_source_conditioned_operator.py",
+      "sha256": "e3af4974991098861c852712482fc7df755b1974d3f1bb1d76942238aaca5184"
+    }
+  },
+  "roles": {
+    "fit_scene_count": 80,
+    "calibration_scene_count": 24,
+    "sealed_scene_count": 24,
+    "sealed_reads_before_calibration_pass": 0
+  },
+  "descriptor": {
+    "input": "winner after-reference only",
+    "reference_descriptor_maximum_side": 512,
+    "rgb_quantiles": [0.05, 0.25, 0.5, 0.75, 0.95],
+    "luma_quantiles": [0.05, 0.25, 0.5, 0.75, 0.95],
+    "chromaticity_quantiles": [0.1, 0.5, 0.9],
+    "chroma_quantiles": [0.1, 0.5, 0.9],
+    "epsilon": 1e-8
+  },
+  "predictor": {
+    "family": "standardized multi-output ridge",
+    "ridge_alpha": 10.0,
+    "target": "safe original-to-winner 12D logit-affine effect parameters",
+    "application_source_read_during_build": false,
+    "direct_final_rgb_prediction": false
+  },
+  "operator": {
+    "family": "bounded safe-dose 3x3-plus-bias logit-affine",
+    "pixels_per_scene": 4096,
+    "operator_ridge_alpha": 0.0001,
+    "parameter_lower_bounds": [-0.75, -0.75, -0.75, -0.75, -0.75, -0.75, -0.75, -0.75, -0.75, -2.0, -2.0, -2.0],
+    "parameter_upper_bounds": [0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 2.0, 2.0, 2.0],
+    "safe_dose_grid": [1.0, 0.75, 0.5, 0.25, 0.0],
+    "matrix_gates": {
+      "determinant_min": 0.05,
+      "condition_number_max": 4.0,
+      "minimum_singular_value": 0.2
+    },
+    "target_resize": "winner ICC-normalized sRGB resized to exact original geometry with Pillow Lanczos",
+    "output_range": "analytic sigmoid open interval"
+  },
+  "controls": {
+    "identity": true,
+    "global_mean_fit_operator": true,
+    "cyclic_parameter_permutation": true,
+    "cyclic_parameter_shift": 1,
+    "calibration_scene_oracle": "diagnostic only after prediction freeze"
+  },
+  "calibration_gates": {
+    "candidate_improvement_rate_min": 0.75,
+    "candidate_improvement_median_min": 0.20,
+    "candidate_improvement_worst_min": -0.10,
+    "beat_global_rate_min": 0.65,
+    "gain_vs_global_median_min": 0.05,
+    "beat_permuted_rate_min": 0.75,
+    "gain_vs_permuted_median_min": 0.10,
+    "median_output_delta_e_oklab_min": 0.01,
+    "new_exact_boundary_fraction_max": 0.0,
+    "p999_gradient_ratio_max": 1.5
+  },
+  "stop_rules": [
+    "All calibration predictions and their SHA-256 freeze before any calibration original is read.",
+    "Any calibration gate failure closes before sealed original or render acquisition.",
+    "No descriptor, ridge, bounds, dose, resize, role, threshold or gate rescue is allowed on this cohort.",
+    "A pass opens only a separately frozen sealed confirmation and does not promote product behavior."
+  ],
+  "decision_if_pass": "open_exact_sealed_repid_reference_operator_confirmation",
+  "decision_if_fail": "close_exact_repid_reference_only_operator_predictor",
+  "claim_ceiling": "Private internal-research professional-reference to bounded explicit-operator identification D0; not population preference, film, stock, scanner, arbitrary-source, package, capability or product evidence."
+}
