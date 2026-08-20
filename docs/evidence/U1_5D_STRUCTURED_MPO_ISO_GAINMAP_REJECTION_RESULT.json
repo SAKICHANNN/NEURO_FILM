@@ -1,0 +1,73 @@
+{
+  "schema": "neuro-film.u1-5d-structured-mpo-iso-gainmap-rejection-evidence.v1",
+  "node": "ULT > U1 > U1.5 > U1.5D",
+  "date": "2026-08-21",
+  "status": "PASS_BOUNDED_STRUCTURED_GAINMAP_REJECTION",
+  "preregistration_commit": "c6296329",
+  "implementation_commit": "cf54b241",
+  "contract": {
+    "path": "configs/u1_5d_structured_mpo_iso_gainmap_rejection_v1.json",
+    "sha256": "dcd0eea30a519705b8c503bbb7c53679670885cff38c164cfb0b90a894dd1284"
+  },
+  "official_context": {
+    "iso_standard": "ISO 21496-1:2025",
+    "iso_page": "https://www.iso.org/standard/86775.html",
+    "android_format": "Ultra HDR Image Format v1.1",
+    "android_page": "https://developer.android.com/media/platform/hdr-image-format",
+    "reference_codec": "https://github.com/google/libultrahdr"
+  },
+  "implementation": {
+    "path": "src/preprocess/raster_decode.py",
+    "sha256": "1c1fbf7f9f81da0b2281dde6f9c662063d85ffda314ea04fdee0554df61ba930",
+    "recognized_iso_namespace": "urn:iso:std:iso:ts:21496:-1",
+    "structured_formats": [
+      "JPEG",
+      "MPO",
+      "PNG"
+    ],
+    "dynamic_range_rejection_precedes_generic_multiframe_rejection": true,
+    "generic_mpf_or_mpo_implies_gainmap": false,
+    "gainmap_decode_or_application_implemented": false
+  },
+  "real_references": [
+    {
+      "path": "tests/fixtures/u1_5c_libultrahdr/apple_gainmap_old.jpg",
+      "sha256": "2e4310a0dd37a98678e057e25d936bbc4f936bb6fe17380c0ce99e58ecaa603b",
+      "format": "MPO",
+      "frame_count": 2,
+      "recognized_signal": "urn:com:apple:photo:2020:aux:hdrgainmap",
+      "rejected_before_working_pixels": true
+    },
+    {
+      "path": "tests/fixtures/u1_5c_libultrahdr/apple_gainmap_new.jpg",
+      "sha256": "492a94bd0636bcf15b3f560c68142a7783936c1597e78b0d0461d8be7fddc078",
+      "format": "MPO",
+      "frame_count": 2,
+      "recognized_signal": "urn:com:apple:photo:2020:aux:hdrgainmap",
+      "rejected_before_working_pixels": true
+    }
+  ],
+  "gates": {
+    "real_apple_mpo_structured_signal": true,
+    "real_apple_mpo_dynamic_range_rejection": true,
+    "synthetic_iso_namespace_jpeg_rejection": true,
+    "generic_mpo_without_recognized_signal_uses_multiframe_rejection": true,
+    "ordinary_sdr_jpeg_decodes": true,
+    "renderer_output_count": 0,
+    "focused_tests": {
+      "passed": 16,
+      "failed": 0
+    },
+    "expanded_raster_ingress_tests": {
+      "passed": 72,
+      "failed": 0
+    },
+    "ruff_new_and_changed_tests": "pass",
+    "ruff_critical_source_rules": "pass",
+    "compileall": "pass",
+    "diff_check": "pass"
+  },
+  "execution_note": "The first focused command used the system Python and two renderer subprocess checks stopped before ingress because pypdf was absent. The configured project virtual environment contained pypdf 6.7.4; the complete focused and expanded suites were then run there without code or gate changes.",
+  "decision": "retain_bounded_structured_gainmap_fail_closed_ingress",
+  "claim_ceiling": "Exact Apple auxiliary HDR gain-map and ISO namespace token recognition in bounded JPEG/MPO metadata with explicit fail-closed routing. No complete ISO 21496-1 validation, Ultra HDR decode, gain-map reconstruction, HDR quality, arbitrary MPF semantics, public package, schema, capability or product claim."
+}

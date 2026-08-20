@@ -14801,3 +14801,27 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Portra--Ektar fails the `.03` median gate (`.01766`).
 - Decision: no curve/frequency/threshold rescue. MTF remains a physical prior,
   not a three-stock discriminator; return to controlled RGB target acquisition.
+
+### 2026-08-21 - U1.5D structured JPEG/MPO gain-map rejection passes
+
+- Parent: mature RAW/DNG/HDR/portable explicit-operator engineering after the
+  bounded SF3.A0T candidate-1 closure. Primary workflow:
+  `dev-research-reliability`; research/ML/governance/structure skills were
+  read-only secondary reviewers.
+- Preregistered at `c6296329`; implementation `cf54b241` adds the exact ISO
+  namespace token, reuses the bounded JPEG APP scanner for Pillow `MPO`, and
+  evaluates recognized dynamic-range signals before generic multi-frame
+  rejection. MPF/MPO alone is not treated as HDR.
+- Both exact CC-BY-4.0 Apple gain-map MPO references now expose the structured
+  Apple auxiliary URI and reject before working pixels. A synthetic ISO-token
+  JPEG rejects, a token-free MPO retains generic multi-frame rejection, and an
+  ordinary SDR JPEG decodes.
+- Verification: 16 focused and 72 expanded raster-ingress tests pass in the
+  project virtual environment; new/changed-test Ruff, critical-source Ruff,
+  compileall and diff-check pass. The initial system-Python renderer checks
+  stopped before ingress because `pypdf` was absent; the configured environment
+  has `pypdf 6.7.4` and completed unchanged.
+- Retain bounded fail-closed ingress only. Full ISO metadata validation,
+  gain-map reconstruction, HDR quality, package/schema/capability and product
+  admission remain closed. Evidence:
+  `docs/evidence/U1_5D_STRUCTURED_MPO_ISO_GAINMAP_REJECTION_RESULT.json`.
