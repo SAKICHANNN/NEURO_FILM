@@ -94,7 +94,13 @@ def load_eligible_scene_rows(contract: dict[str, Any]) -> dict[str, Any]:
 
     eligible: list[dict[str, Any]] = []
     rejected = defaultdict(int)
-    minimum_margin = int(contract["selection"]["minimum_absolute_vote_margin_from_ten"])
+    minimum_margin_value = contract["selection"].get(
+        "minimum_absolute_vote_margin_from_ten",
+        contract.get("eligibility", {}).get("minimum_absolute_vote_margin_from_ten"),
+    )
+    if minimum_margin_value is None:
+        raise ValueError("minimum vote margin is not frozen")
+    minimum_margin = int(minimum_margin_value)
     for scene_id, image_ids in images_by_scene.items():
         ordered = sorted((score_mean[image_id], image_id) for image_id in image_ids)
         if ordered[0][0] == ordered[1][0] or ordered[-1][0] == ordered[-2][0]:
