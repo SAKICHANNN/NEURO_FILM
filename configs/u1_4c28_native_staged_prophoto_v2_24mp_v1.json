@@ -1,0 +1,68 @@
+{
+  "schema": "neuro-film.u1-4c28-native-staged-prophoto-24mp-contract.v1",
+  "experiment_id": "U1.4C28",
+  "question": "Does the exact-semantics C20+C27+Python-spatial-tone+C26 staged renderer preserve the frozen C18 RGB16 PNG and receipt bytes in two fresh processes while meeting the unchanged 1GiB and 15-second 24MP product gates?",
+  "parents": {
+    "profile": {
+      "path": "configs/render_profiles/prophoto_rec2020_velvia_v1.json",
+      "sha256": "e0da6e630f616dc25c1bca431ade74edd55a2c0bf3a5eec5bd937c9a62447666"
+    },
+    "c18_evidence": {
+      "path": "docs/evidence/U1_4C18_PROPHOTO_24MP_PRODUCT_RESOURCES_RESULT.json",
+      "sha256": "bf11786d93cbd0365c28c6d4cc41ac3dc5e00caa215f813b39a93fa2f0298378"
+    },
+    "c26_evidence": {
+      "path": "docs/evidence/U1_4C26_NATIVE_REC2020_LAB_SOURCE_COMPRESS_V2_RESULT.json",
+      "sha256": "363ca31e2bb40b68ce0dc5c960a4f87bc7bce9abd408eac51c9b39c23cc4a1e6"
+    },
+    "c27_evidence": {
+      "path": "docs/evidence/U1_4C27_NATIVE_SAFE_LAB_POINTWISE_V2_RESULT.json",
+      "sha256": "6af0a2a0d601f78383149484910a4367abdad997839e04be4ef9c1634024768c"
+    },
+    "native_renderer": {
+      "path": "src/inference/romm_rec2020_velvia_staged_native_v2.py",
+      "sha256": "3e91831a98b2d404c1b261bfe1bcbc33f2f46b6501e5877c350ed976f9af6251"
+    },
+    "staged_core": {
+      "path": "src/inference/romm_rec2020_velvia_staged.py",
+      "sha256": "e08de7fb3e0cc03ccadfcc91e1a6086d299d38b86993dd30434e17b87f8ca8f3"
+    },
+    "runner": {
+      "path": "scripts/benchmark_u1_4c28_native_staged_prophoto_v2_24mp.py",
+      "sha256": "e9a1971cafc9791bbfefe70852b5449a3771567ba5aced7d5261e401294358a8"
+    }
+  },
+  "fixture": {
+    "path": "data/wide_gamut/u1_4c18_prophoto_24mp/a0957-IMG_0032_6000x4000.tif",
+    "sha256": "91895fce65e8a32f869dd31ecd5c3ee576c9212cf028d59cd0022b0371668394",
+    "pixels": 24000000
+  },
+  "candidate": {
+    "row_chunk": 128,
+    "thread_count": 8,
+    "native_ingress": "U1.4C20",
+    "native_safe_lab_pointwise": "U1.4C27",
+    "python_spatial_detail_and_tone_retained": true,
+    "native_gamut_compression": "U1.4C26",
+    "c21_and_c22_kernels_allowed": false,
+    "python_rgb_residual_and_png_retained": true,
+    "hard_clipping_allowed": false,
+    "posthoc_limiting_allowed": false
+  },
+  "measurement": {
+    "fresh_processes": 2,
+    "run_workers_sequentially": true,
+    "sample_interval_seconds": 0.01,
+    "worker_timeout_seconds": 300,
+    "native_build_excluded_from_worker_wall": true
+  },
+  "gates": {
+    "required_output_sha256": "ff30c351261c0c9004c05f21e5a2929e448716153756407cde7e36225509bd7a",
+    "required_receipt_sha256": "e9a442bc89bedacb46d79dd3d63a7e5e99aa6dd6125db15735a491f5abf2b415",
+    "maximum_peak_process_tree_rss_bytes": 1073741824,
+    "maximum_worker_wall_seconds": 15.0
+  },
+  "decision_if_pass": "retain_exact_native_staged_v2_24mp_product_path",
+  "decision_if_fail": "retain_c26_c27_components_but_close_this_exact_native_staged_v2_product_integration",
+  "claim_ceiling": "Local Windows CPU product-resource evidence for one exact 24MP natural-derived ProPhoto fixture and one opt-in Rec.2020 look; not arbitrary ICC, cross-platform performance, stock calibration, preference, HDR, or default promotion."
+}
