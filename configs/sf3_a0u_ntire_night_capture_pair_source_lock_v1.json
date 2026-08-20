@@ -1,0 +1,71 @@
+{
+  "schema": "neuro-film.sf3-a0u-ntire-night-capture-pair-source-lock-contract.v1",
+  "experiment_id": "SF3.A0U_NTIRE_NIGHT_CAPTURE_PAIR_SOURCE_LOCK_V1",
+  "date": "2026-08-21",
+  "source": {
+    "zenodo_record": 15213321,
+    "doi": "10.5281/zenodo.15213321",
+    "api": "https://zenodo.org/api/records/15213321",
+    "license": "CC-BY-4.0",
+    "publication_date": "2025-04-14",
+    "raw_archive": {
+      "name": "raw.zip",
+      "bytes": 47288204304,
+      "md5": "bd1cf28aa10fdcc93b7f8030b954740c",
+      "url": "https://zenodo.org/api/records/15213321/files/raw.zip/content"
+    },
+    "target_archive": {
+      "name": "sony.zip",
+      "bytes": 379600345,
+      "md5": "67171d28c7132e7b9dd376de38a65af9",
+      "url": "https://zenodo.org/api/records/15213321/files/sony.zip/content"
+    }
+  },
+  "official_paper": {
+    "title": "NTIRE 2025 Challenge on Night Photography Rendering",
+    "url": "https://openaccess.thecvf.com/content/CVPR2025W/NTIRE/html/Ershov_NTIRE_2025_Challenge_on_Night_Photography_Rendering_CVPRW_2025_paper.html",
+    "capture_facts": [
+      "synchronous Huawei Mate 40 Pro RAW and Sony ZV-E10 JPEG capture through a non-polarizing beam-splitter cube",
+      "static scenes and supplied target crop bounds for pixel-wise alignment",
+      "RAW metadata includes black level, white level, noise profile, CFA pattern, orientation and white-balance correction"
+    ]
+  },
+  "read_budget": {
+    "api_metadata_requests": 2,
+    "maximum_tail_bytes_per_archive": 8388608,
+    "maximum_total_archive_bytes": 16777216,
+    "member_payload_bytes": 0,
+    "decoded_pixel_count": 0
+  },
+  "required_source_gates": {
+    "record_identity_size_checksum_license_exact": true,
+    "both_zip_central_directories_parse": true,
+    "no_unsafe_or_duplicate_member_names": true,
+    "complete_raw_metadata_processed_target_pair_graph": true,
+    "minimum_complete_group_count": 64,
+    "minimum_independent_scene_count": 64,
+    "explicit_crop_or_alignment_metadata_present": true,
+    "capture_metadata_fields_present": [
+      "black_level",
+      "white_level",
+      "noise_profile",
+      "cfa_pattern",
+      "orientation",
+      "white_balance",
+      "crop_bounds"
+    ],
+    "member_payload_bytes_equal_zero": true,
+    "pixel_decode_count_equal_zero": true,
+    "two_complete_reports_byte_exact": true
+  },
+  "stop_rules": [
+    "missing or ambiguous license, archive identity, pairing, scene grouping or metadata closes before member extraction",
+    "do not download either complete archive",
+    "do not replace missing rows or infer pairing from pixels",
+    "do not fit an operator or increment the bounded candidate counter"
+  ],
+  "decision_if_pass": "OPEN_SEPARATE_FIXED_MEMBER_PIXEL_REGISTRATION_PREFLIGHT_NOT_CANDIDATE_2",
+  "bounded_final_candidate_counter_before": 1,
+  "bounded_final_candidate_counter_after": 1,
+  "claim_ceiling": "Range-only source, rights, archive and pairing qualification for a synchronous beam-splitter night RAW/professional-camera dataset. No member payload, pixel, target, operator, quality, film, stock, package, schema, capability or product claim."
+}
