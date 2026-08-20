@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2repid12-canoncgt-full-chain-atlas-response-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2REPID12",
+  "split": "consumed_reference_only_structural_prescore",
+  "parent_contract": {
+    "path": "configs/u5_r2f1_canoncgt_reference_condition_v1.json",
+    "sha256": "58d2a2b349763f7b29d08ded37e028f394585250f1ded9452a5beb41a4693d8b"
+  },
+  "fixed_atlas_control": {
+    "path": "configs/u5_r2repid6_canoncgt_fixed_atlas_shared_lut_v1.json",
+    "sha256": "69f2b807193ecbd72565cf91521b5b51b705055c74b488c5a4e51a15d98d727a",
+    "core_path": "src/eval/canoncgt_fixed_atlas_shared_lut.py",
+    "core_sha256": "170ba8e632f914934261578ec57db257b4bfcee87b4e0a9a47e6a5ac5360db05"
+  },
+  "question": "Does the official full CanonCGT canonicalize-then-restyle response on the unchanged fixed lattice atlases provide a finite, intrinsically cube-bounded reference observation suitable for later distillation into one safe source-independent explicit operator?",
+  "build": {
+    "application_source_file_reads": 0,
+    "application_source_pixel_decodes": 0,
+    "reference_reads": 9,
+    "atlas_ids": ["rgb", "gbr", "brg"],
+    "atlas_size": 224,
+    "atlas_lattice_bins": 17,
+    "atlas_index_multiplier": 1723,
+    "atlas_source_condition": "embedding_of_the_same_fixed_atlas",
+    "canonicalizer_execution": true,
+    "restyler_condition": "reference_embedding_only",
+    "training_or_fine_tuning": false,
+    "clipping_projection_or_strength_adjustment": false
+  },
+  "prescore_gates": {
+    "required_reference_count": 9,
+    "required_atlas_rows_per_reference": 3,
+    "all_values_finite": true,
+    "minimum_response_value": 0.0,
+    "maximum_response_value": 1.0,
+    "maximum_response_out_of_range_fraction": 0.0,
+    "maximum_canonical_out_of_range_fraction": 0.1,
+    "minimum_reference_response_pairwise_rmse_median": 0.001
+  },
+  "replay": {
+    "reverse_atlas_and_reference_order_scientific_exact": true,
+    "two_fresh_process_reports_exact": true
+  },
+  "stop_rule": "Any asset, finite, response-bound, support, reference-sensitivity, enumeration or replay failure closes this exact full-chain fixed-atlas observation before operator fitting or application-source access. Do not clip or project responses, replace or expand atlases, tune strength, checkpoint or thresholds, exclude references, or reinterpret a failed row.",
+  "pass_ceiling": "A prescore pass opens one separately frozen low-dimensional monotone explicit-operator distillation preflight on the same response pairs only.",
+  "claim_ceiling": "Private consumed-reference CanonCGT full-chain observation audit only; no application quality, stock, calibration, preference, package, schema, capability or product claim."
+}

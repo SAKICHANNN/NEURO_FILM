@@ -1719,3 +1719,16 @@ gain over REPID7 is only 6.05%, below 10%. Close further representation repair
 of this self-canonical observation: free bases fold, while the fixed invertible
 compression loses differential support. The next leaf must change the
 identifying observation before changing operator capacity.
+
+U5.R2REPID12 is prospectively frozen as that observation change. It reuses the
+exact three REPID6 lattice atlases without replacement or expansion, but now
+runs CanonCGT's official full chain: each fixed atlas supplies its own source
+condition to the canonicalizer, and only the immutable reference conditions
+the restyler. The resulting raw atlas-input to full-chain-response pairs are a
+new identifying observation; they are not an averaged LUT, self-canonical
+inverse, clipping projection or strength repair. Before any explicit-operator
+fit or application-source read, all nine references and all three atlases must
+be finite, intrinsically cube-bounded, sufficiently supported and
+reference-sensitive with exact order/fresh-process replay. Any failure closes
+the observation immediately without clipping, projection, atlas, checkpoint,
+reference or threshold rescue.

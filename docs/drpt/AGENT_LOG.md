@@ -14199,3 +14199,19 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   the same self-canonical pseudo-neutral observation. The next leaf must change
   identifying information; no Apply leaf opens.
 - Evidence: `docs/evidence/U5_R2REPID11_CANONCGT_EXTENDED_TRIANGULAR_TRANSPORT_RESULT.json`.
+
+### 2026-08-20 - U5.R2REPID12 freezes a full-chain atlas observation
+
+- Direction correction: REPID8/10/11 jointly close further representation
+  repair of the self-canonical pseudo-neutral observation. The next leaf
+  changes identifying information instead of adding capacity or tuning gates.
+- Freeze the unchanged three REPID6 lattice atlases, but restore CanonCGT's
+  official two-stage mechanism: each fixed atlas self-conditions the
+  canonicalizer and the immutable reference alone conditions the restyler.
+  The only proposed evidence is the raw atlas-input to full-chain-response
+  relation; application-source reads remain zero.
+- First run only a prescore structural audit. All 27 reference-atlas responses
+  must be finite, intrinsically inside `[0,1]`, reference-sensitive and exact
+  under reversed enumeration and two fresh processes. No operator fit occurs
+  unless this passes. Clipping, projection, strength, atlas, checkpoint,
+  threshold and reference-exclusion rescue are forbidden.
