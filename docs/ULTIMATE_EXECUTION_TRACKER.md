@@ -1566,13 +1566,17 @@ scene-grouped loser/winner pairs may identify one shared, source-free, bounded
 explicit operator. It does not open a scorer, per-image router, 39GB archive,
 population claim, package, capability or product dependency.
 
-U5.R2REPID2 freezes the first small REPID shared-operator role set before any
-image member read. From 74,465 edges it retains 1,986 strong, unique-extreme,
-geometry-consistent and project-fresh scenes, then hash-locks 80 fit, 24
-calibration and 24 sealed scenes across 18 directed expert-role pairs. All 256
-member paths resolve to exact LFS SHA-256 identities; fit+calibration is
-1.467GB and the full sealed-inclusive set is 1.765GB. Two reports are byte
-exact (`7bac1d1c...3d5fd`; stable `a4bee48f...e94f97`), prior FiveK overlap is
-zero and image reads/decodes/fits remain zero. This opens only exact resumable
-fit+calibration acquisition under the P-backed `data/...` root; sealed members
-remain unread until development gates pass.
+U5.R2REPID2 freezes the exact small D0 roles before any image member read. Two
+reports are byte exact (`734fc54f...663d`; stable `235e8056...f065`): 1,986
+scenes pass strong direct preference, geometry and prior-FiveK exclusion, and
+128 deterministic scenes span 18 directed role pairs. The 208 fit/calibration
+members total 1,467,342,029 bytes; 48 sealed members remain unread. This opens
+only exact create-only fit/calibration acquisition under the research-only
+FiveK rights scope.
+
+U5.R2PPSD1 closes before pixels: 457 documented A/B scenes yield 17,370 valid
+votes, but undocumented F1/F2 collections with 943/940 votes violate the
+frozen exact release partition. U5.R2BT1 also closes its 384-parameter local
+affine grid: mean capacity improves, but matched-global row wins fail and new
+boundary fractions reach 36.90%/3.60% on aligned/filtered inputs. No pixel
+acquisition, predictor rescue or AO6 promotion follows either result.
