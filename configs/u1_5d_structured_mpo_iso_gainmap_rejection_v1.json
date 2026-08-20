@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "node": "ULT > U1 > U1.5 > U1.5D",
+  "title": "Structured JPEG/MPO Apple and ISO gain-map fail-closed ingress",
+  "date": "2026-08-21",
+  "official_context": {
+    "iso_standard": "ISO 21496-1:2025",
+    "iso_page": "https://www.iso.org/standard/86775.html",
+    "android_format": "Ultra HDR Image Format v1.1",
+    "android_page": "https://developer.android.com/media/platform/hdr-image-format",
+    "reference_codec": "https://github.com/google/libultrahdr"
+  },
+  "frozen_inputs": {
+    "fixture_contract": "configs/u1_5c_libultrahdr_reference_v1.json",
+    "apple_gainmap_old_sha256": "2e4310a0dd37a98678e057e25d936bbc4f936bb6fe17380c0ce99e58ecaa603b",
+    "apple_gainmap_new_sha256": "492a94bd0636bcf15b3f560c68142a7783936c1597e78b0d0461d8be7fddc078"
+  },
+  "implementation_scope": [
+    "recognize the exact ISO namespace urn:iso:std:iso:ts:21496:-1 in bounded JPEG metadata",
+    "apply the existing structured JPEG APP scan when Pillow classifies the file as MPO",
+    "recognize the already-frozen Apple auxiliary HDR gain-map URI in structured MPO metadata",
+    "reject recognized gain-map signalling before the generic multi-frame fallback"
+  ],
+  "non_goals": [
+    "treat generic MPF or MPO as proof of a gain map",
+    "parse every ISO 21496-1 field",
+    "decode or apply a gain map",
+    "claim HDR, Ultra HDR or ISO 21496-1 conformance",
+    "change SDR JPEG or ordinary multi-frame rejection semantics"
+  ],
+  "frozen_gates": {
+    "exact_real_apple_fixtures_emit_structured_gainmap_signal": true,
+    "exact_real_apple_fixtures_reject_as_unsupported_dynamic_range_before_working_pixels": true,
+    "synthetic_iso_namespace_in_jpeg_rejects": true,
+    "generic_mpo_without_recognized_gainmap_metadata_remains_generic_multiframe_rejection": true,
+    "ordinary_sdr_jpeg_regression_decodes": true,
+    "renderer_output_count": 0,
+    "focused_tests_pass": true,
+    "full_raster_ingress_tests_pass": true
+  },
+  "claim_ceiling": "bounded structured recognition of exact Apple and ISO gain-map namespace signals in JPEG/MPO with fail-closed ingress; no complete metadata validation, HDR reconstruction, ISO conformance, package, schema, capability or product claim"
+}
