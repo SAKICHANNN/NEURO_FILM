@@ -1,0 +1,186 @@
+{
+  "schema": "neuro-film.rf3-three-stock-proxy-baseline-contract.v1",
+  "experiment_id": "RF3.D0",
+  "date": "2026-08-21",
+  "status": "FROZEN_BEFORE_THREE_STOCK_PROXY_RENDER",
+  "question": "On one frozen fresh digital source population, are the three existing stock-labelled K=1 safe-Lab proxies mechanically distinct and boundary-clean, while preserving the current evidence ceiling for each stock?",
+  "direction": {
+    "primary_product_goal": "multiple independently evidenced stock-specific simulations",
+    "ao6_role": "fujifilm_velvia_50_display_proxy_look_approximation_baseline_only",
+    "minimum_named_stocks_for_multistock_completion_claim": 3,
+    "this_experiment_is_stock_completion": false
+  },
+  "evidence_bindings": {
+    "stock_registry": {
+      "path": "docs/data/REAL_FILM_STOCK_EVIDENCE_REGISTRY.md",
+      "sha256": "7b7504661fadc08a08054310a3f49f134f793e50ae0bf9bc6532b71e363e72d4"
+    },
+    "connected_identifiability_decision": {
+      "path": "configs/real_film_connected_stock_identifiability_decision_v1.json",
+      "sha256": "12a2c0dad47d366cf7e5233d2daacea5c818298210903b4586cad5a1cdd51dad",
+      "required_decision": "close_current_four_cell_pools_for_stock_learning_and_open_metadata_only_full_yfcc_shared_author_gate"
+    },
+    "commons_pixel_decision": {
+      "path": "configs/real_film_commons_multi_stock_pixel_decision_v1.json",
+      "sha256": "15ad355d4c403c207021600edfee7b3c8d5318794789bf89edf60e8f3134c344"
+    },
+    "yfcc_velvia_pixel_decision": {
+      "path": "configs/real_film_yfcc_velvia50_pixel_decision_v1.json",
+      "sha256": "742e66fd63a72f3f54bb7df407903e039f2b6578e57848f96a0b097120fdb387"
+    },
+    "yfcc_ektar_pixel_contract": {
+      "path": "configs/real_film_yfcc_ektar100_pixel_v1.json",
+      "sha256": "7e3be8fa9478e64d9907c67c0b90721200aa6ee3d2be8378ec58754a9036f0d7"
+    },
+    "nasa_portra_metadata_snapshot": {
+      "path": "configs/real_film_nasa_sts098_stock_snapshot_v1.json",
+      "sha256": "07e90bfa8abc90884a68ab86a99539518cdb8bc9edd9181dafd606af2a0dd02c"
+    },
+    "portra_same_scene_negative": {
+      "path": "docs/evidence/U5_R2CHAM10_PORTRA400_LOCAL_CORRESPONDENCE_TRANSFER_D1_RESULT.json",
+      "sha256": "1c9e8c1e70058dd5f898f9d7dc2282197674f551d2272f1738241e0bdcf42781"
+    },
+    "ao6_fresh_decision": {
+      "path": "configs/u5_r2ao7_b0_real_film_residual_fresh_confirmation_decision_v1.json",
+      "sha256": "e4e616e7ff03777ecfd69752b081e4750361a265877f64d4ad6add444a72c80f",
+      "required_decision": "close_fresh_confirmation_retain_AO6_development_evidence_only"
+    }
+  },
+  "stock_evidence_matrix": [
+    {
+      "stock_id": "fujifilm_velvia_50",
+      "process_family": "E-6_slide",
+      "rights_cleared_unpaired_pixels": true,
+      "same_level_paired_stock_truth": false,
+      "independent_roll_process_scanner_holdout": false,
+      "available_baselines": [
+        "legacy_unpaired_safe_lab_k1_velvia50",
+        "ao6_velvia50_display_proxy_t15_c35"
+      ],
+      "current_claim": "unpaired_S0_plus_author_rendered_display_proxy_look_approximation",
+      "target_closeness_evaluable": false
+    },
+    {
+      "stock_id": "kodak_portra_400",
+      "process_family": "C-41_colour_negative",
+      "rights_cleared_unpaired_pixels": false,
+      "same_level_paired_stock_truth": false,
+      "independent_roll_process_scanner_holdout": false,
+      "available_baselines": [
+        "legacy_unpaired_safe_lab_k1_portra400"
+      ],
+      "excluded_as_target_truth": "single_unlicensed_same_session_package_and_metadata_only_NASA_rows",
+      "current_claim": "data_gap_plus_legacy_generic_film_inspired_proxy",
+      "target_closeness_evaluable": false
+    },
+    {
+      "stock_id": "kodak_ektar_100",
+      "process_family": "C-41_colour_negative",
+      "rights_cleared_unpaired_pixels": true,
+      "same_level_paired_stock_truth": false,
+      "independent_roll_process_scanner_holdout": false,
+      "available_baselines": [
+        "legacy_unpaired_safe_lab_k1_ektar100"
+      ],
+      "current_claim": "unpaired_S0_source_content_confounded_plus_legacy_generic_film_inspired_proxy",
+      "target_closeness_evaluable": false
+    }
+  ],
+  "source": {
+    "manifest": "outputs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1/run_c/manifest.json",
+    "manifest_sha256": "048992242c82a2cd9efd193c6766065c7148ad0607a5505b88185d0ab781b101",
+    "included_ids": [
+      "canon_eos_kiss_f",
+      "canon_eos_1d_mark_iv",
+      "nikon_d2x",
+      "nikon_d200",
+      "sony_nex_3n",
+      "sony_dslr_a290",
+      "fujifilm_finepix_s5000",
+      "olympus_sp550uz",
+      "olympus_e_p7",
+      "panasonic_dmc_gf2",
+      "panasonic_dmc_fz100",
+      "pentax_k_r",
+      "pentax_k100d_super",
+      "leica_d_lux_6",
+      "leica_digilux_3",
+      "kodak_dcs_pro_14n"
+    ],
+    "expected_rows": 16,
+    "required_allowed_use": "internal_independent_digital_ood_confirmation",
+    "required_rights_scope": "CC0_public_domain_internal_evaluation",
+    "required_color_state": "relative_display_srgb_approximation"
+  },
+  "legacy_k1_operator": {
+    "stats": {
+      "path": "configs/film_color_stats.json",
+      "sha256": "1a45e90765e577edd4ca1773fc8c6cf98fd09b8afbdddfa519b1f097c5dd7c04"
+    },
+    "profile": {
+      "path": "configs/color_rendering_profiles.yaml",
+      "sha256": "d919402ac03b351ceb836bbdc516de094f7bad24f54858f9897950a1dc0428bc",
+      "preset": "safe-rich"
+    },
+    "guardrails": {
+      "path": "configs/color_guardrails.json",
+      "sha256": "6669b7bc873febcc74ba7ddcbc1c1584807e38465447a5cdbeb24073efa00aa7"
+    },
+    "arms": [
+      {
+        "arm_id": "legacy_unpaired_safe_lab_k1_velvia50",
+        "style": "velvia_50"
+      },
+      {
+        "arm_id": "legacy_unpaired_safe_lab_k1_portra400",
+        "style": "portra_400"
+      },
+      {
+        "arm_id": "legacy_unpaired_safe_lab_k1_ektar100",
+        "style": "ektar_100"
+      }
+    ],
+    "grain": 0.0,
+    "dither": 0.0,
+    "learned_rgb_allowed": false,
+    "cohort_fitting_allowed": false
+  },
+  "ao6_velvia_baseline": {
+    "run_manifest": "outputs/u5_r2ao7_b0_real_film_residual_fresh_confirmation_v1/run_a/manifest.json",
+    "run_manifest_sha256": "ea201c785d45bacbc22ccae47101872a61c6a92330530795e19657dce93436e8",
+    "candidate_id": "b0_plus_film_t15_c35",
+    "arm_id": "ao6_velvia50_display_proxy_t15_c35",
+    "allowed_stock_id": "fujifilm_velvia_50",
+    "forbidden_stock_ids": [
+      "kodak_portra_400",
+      "kodak_ektar_100"
+    ]
+  },
+  "comparison": {
+    "target_closeness": "not_evaluable_without_controlled_stock_targets",
+    "stock_distinguishability": "not_evaluable_without_controlled_stock_targets",
+    "proxy_question_only": "operator_output_separation_on_identical_digital_inputs",
+    "minimum_pairwise_population_median_delta_e76": 1.0,
+    "minimum_ao6_vs_legacy_velvia_population_median_delta_e76": 1.0,
+    "maximum_new_output_boundary_fraction": 0.0,
+    "maximum_output_boundary_fraction": 0.0,
+    "finite_required": true,
+    "exact_replay_required": true
+  },
+  "deferred_baselines": {
+    "image_adaptive_lut_or_basis": "not_admitted_due_current_stock_identifiability_and_target_data_gate",
+    "nearest_neighbor": "not_admitted_due_current_stock_identifiability_and_target_data_gate",
+    "hard_medoid_or_sparse_retrieval": "not_admitted_due_current_stock_identifiability_and_target_data_gate",
+    "latent_modes_or_k_greater_than_1": "not_admitted_without_oracle_and_stable_mode_evidence"
+  },
+  "formal_execution": {
+    "fresh_processes": 2,
+    "process_a_order": "canonical",
+    "process_b_order": "reverse",
+    "output_root": "outputs/eval/rf3_three_stock_proxy_baseline_d0_v1",
+    "paths_and_order_excluded_from_scientific_identity": true
+  },
+  "decision_if_pass": "retain_three_stock_k1_proxy_matrix_as_baseline_only_and_open_stock_data_equalization",
+  "decision_if_fail": "retain_data_gap_and_rebuild_no_stock_claim_from_proxy_separation",
+  "claim_ceiling": "Mechanics and safety evidence for three legacy stock-labelled K=1 film-inspired/display-proxy operators on identical CC0 digital inputs. No target-film closeness, stock distinguishability, calibrated response, multi-stock completion, product promotion or population preference claim."
+}
