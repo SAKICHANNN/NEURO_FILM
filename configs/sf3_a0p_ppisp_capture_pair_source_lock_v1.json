@@ -1,0 +1,65 @@
+{
+  "schema": "neuro-film.sf3-a0p-ppisp-capture-pair-source-lock-contract.v1",
+  "experiment_id": "SF3.A0P_PPISP_CAPTURE_PAIR_SOURCE_LOCK_V1",
+  "question": "Does the exact public PPISP release expose structurally paired standard and auto-exposure/white-balance captures with explicit rights and scene separation before any image member is read?",
+  "source": {
+    "dataset_id": "nvidia/PhysicalAI-NuRec-PPISP",
+    "revision": "2521064a3af6ab1c1caa2ba1b01ddde7eecded69",
+    "project_url": "https://research.nvidia.com/labs/sil/projects/ppisp/",
+    "paper_url": "https://openaccess.thecvf.com/content/CVPR2026/html/Deutsch_PPISP_Physically-Plausible_Compensation_and_Control_of_Photometric_Variations_in_Radiance_CVPR_2026_paper.html",
+    "readme_url": "https://huggingface.co/datasets/nvidia/PhysicalAI-NuRec-PPISP/raw/2521064a3af6ab1c1caa2ba1b01ddde7eecded69/README.md",
+    "readme_size": 4100,
+    "readme_sha256": "2f19051a5a9502b22f54cb4acb27ffb3a54b318d770714fc69995cd2ea8e8c69",
+    "required_readme_phrases": [
+      "CC BY 4.0",
+      "commercial and non-commercial",
+      "Nikon Z7",
+      "OM-1 Mark II",
+      "iPhone 13 Pro",
+      "auto exposure and auto white balance"
+    ]
+  },
+  "archives": [
+    {
+      "scene_id": "huerstholz",
+      "path": "colmap/colmap_huerstholz.zip",
+      "size": 3401606566,
+      "sha256": "1d4ad8e1388f0051ee6c1266c9b9a0669c99b8b76bcc47809bb49772b404460c"
+    },
+    {
+      "scene_id": "struktur28",
+      "path": "colmap/colmap_struktur28.zip",
+      "size": 1535277338,
+      "sha256": "cf7ab7f100da66b2bf05b178ebcfa3a950e1bf2b1d7ff64a6c7a1e1f682afa8d"
+    },
+    {
+      "scene_id": "toro",
+      "path": "colmap/colmap_toro.zip",
+      "size": 1706361859,
+      "sha256": "9bb2203246d85604ef580a6664cd16bc3bdb42dc55ee4647bee28bd40372b2c5"
+    },
+    {
+      "scene_id": "valiant",
+      "path": "colmap/colmap_valiant.zip",
+      "size": 1958272527,
+      "sha256": "29e7292f9224907ef389facb0a616318beb04d4812c4fe6cee43258fb94385e9"
+    }
+  ],
+  "network_limits": {
+    "tail_probe_bytes_per_archive": 8388608,
+    "maximum_total_archive_bytes": 67108864,
+    "member_payload_reads": 0
+  },
+  "gates": {
+    "required_scene_count": 4,
+    "minimum_paired_jpegs_per_scene": 4,
+    "minimum_distinct_pair_parent_groups_per_scene": 1,
+    "require_standard_and_auto_namespaces": true,
+    "require_colmap_camera_and_image_metadata_names": true,
+    "require_safe_unencrypted_members": true,
+    "require_explicit_cc_by_4_commercial_scope": true
+  },
+  "decision_if_pass": "OPEN_SF3_A0Q_PPISP_CAPTURE_PAIR_PIXEL_PREFLIGHT_NOT_CANDIDATE",
+  "decision_if_fail": "FAIL_CLOSED_PPISP_CAPTURE_PAIR_SOURCE_STRUCTURE",
+  "claim_ceiling": "Range-only rights and archive-structure qualification for a four-scene capture-time paired mechanism D0. No image member, pixel, operator, fit, render or score is read. Four scenes cannot establish broad or product generalization, cannot satisfy the controlled three-stock protocol, and cannot increment the bounded three-candidate counter."
+}
