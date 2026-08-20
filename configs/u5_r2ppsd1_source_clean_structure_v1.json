@@ -1,0 +1,69 @@
+{
+  "schema": "neuro_film.u5_r2ppsd1_source_clean_structure_contract.v1",
+  "experiment_id": "U5.R2PPSD1",
+  "claim_ceiling": "source-clean-nongenerative-annotation-structure-only",
+  "parents": {
+    "ppsd0_evidence": {
+      "path": "docs/evidence/U5_R2PPSD0_SOURCE_AUDIT_RESULT.json",
+      "sha256": "5df5aac9ecd35f06cef796f455015c3f4b087adf7bceda5dc20b2203c00baee0",
+      "required_decision": "retain_ppsd_internal_annotation_structure_for_separate_source_clean_subset_design"
+    },
+    "paper": {
+      "path": "outputs/source_recon/u5_r2ppsd1_official_materials/paper.pdf",
+      "sha256": "ce825660b2572e1299afd24f5baf3fe58d0fc8b4856a8b5f50d0c9c67d9c0430"
+    },
+    "supplemental": {
+      "path": "outputs/source_recon/u5_r2ppsd1_official_materials/supplemental.pdf",
+      "sha256": "8631c8bc26e247c724c94e9b836bbd26e0a9c55d47704b2f342d725833c2a03d"
+    },
+    "responses_archive_sha256": "986fc5ed5bd3f1011d86cced61eade3a8f9f2f756c5c97be40a6a69f4a45bc1b"
+  },
+  "source_roles": {
+    "included_collections": ["A1", "B1", "B2", "B3", "B4", "B5", "B6"],
+    "excluded_collections": ["C1", "C2", "D1", "D2", "E1", "E2", "E3", "E4", "E5", "E6"],
+    "expected_processed_scene_counts": {
+      "A1": 188,
+      "B1": 60,
+      "B2": 27,
+      "B3": 53,
+      "B4": 43,
+      "B5": 38,
+      "B6": 48
+    },
+    "expected_included_scene_keys": 457,
+    "interpretation": {
+      "A1": "professional-expert-edit-variations",
+      "B1-B6": "device-processing-variations"
+    }
+  },
+  "annotation_source": {
+    "drive_file_id": "1R21XEfrX7TfEcvgu2loc5hXNo4HD2h6T",
+    "maximum_archive_bytes": 5242880
+  },
+  "privacy_and_rights": {
+    "persist_raw_participant_values": false,
+    "persist_raw_scene_or_user_ids": false,
+    "explicit_dataset_license_observed": false,
+    "pixels_or_training_allowed": false,
+    "rights_scope": "internal-research-annotation-structure-only"
+  },
+  "execution": {
+    "formal_runs": 2,
+    "image_archive_requests": 0,
+    "image_member_requests": 0,
+    "image_decodes": 0,
+    "operator_fits": 0
+  },
+  "gates": {
+    "parent_and_primary_material_hashes_exact": true,
+    "included_scene_counts_exact": true,
+    "excluded_collections_absent_from_retained_rows": true,
+    "all_included_vote_rows_structurally_valid": true,
+    "each_included_collection_has_votes_and_participants": true,
+    "no_raw_identifiers_or_participant_values_persisted": true,
+    "pixels_or_training_allowed": false
+  },
+  "decision_if_pass": "retain_ppsd_a_b_internal_structural_candidate_pending_explicit_dataset_license",
+  "decision_if_fail": "close_ppsd_source_clean_structure_before_pixels_or_fit",
+  "decision_if_infrastructure_invalid": "invalidate_ppsd1_without_scientific_source_decision"
+}
