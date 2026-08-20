@@ -7,6 +7,7 @@ from pathlib import Path
 from src.eval.editreward_consumed_source_aware_preference import (
     ScoreRow,
     _presentation_index,
+    _validate_smoke_receipt,
     aggregate_score_locks,
     audit_score_locks,
     wrong_source_controls,
@@ -530,3 +531,31 @@ def test_aggregate_does_not_open_private_files_before_mechanics_pass(
         assert str(error) == "private aggregation is forbidden before mechanics pass"
     else:
         raise AssertionError("private aggregation must stop before opening truth files")
+
+
+def test_formal_scoring_requires_passing_bound_smoke_receipt(tmp_path: Path) -> None:
+    contract = {
+        "external_asset": {"model_sha256": "model-sha"},
+    }
+    contract_path = tmp_path / "contract.json"
+    contract_path.write_text(json.dumps(contract, sort_keys=True), "utf-8")
+    receipt = {
+        "schema": "neuro-film.u5-r2editreward0-blind-score-lock.v1",
+        "status": "MECHANICS_SMOKE_PASS",
+        "smoke": True,
+        "contract_sha256": hashlib.sha256(contract_path.read_bytes()).hexdigest(),
+        "model_sha256": "model-sha",
+        "runtime": {"resource_gate_pass": True},
+    }
+    receipt_path = tmp_path / "smoke.json"
+    receipt_path.write_text(json.dumps(receipt, sort_keys=True), "utf-8")
+    _validate_smoke_receipt(receipt_path, contract_path, contract)
+
+    receipt["runtime"]["resource_gate_pass"] = False
+    receipt_path.write_text(json.dumps(receipt, sort_keys=True), "utf-8")
+    try:
+        _validate_smoke_receipt(receipt_path, contract_path, contract)
+    except ValueError as error:
+        assert str(error) == "smoke receipt resource gate failed"
+    else:
+        raise AssertionError("failed smoke receipt must not authorize formal scoring")

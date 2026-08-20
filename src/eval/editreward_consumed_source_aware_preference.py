@@ -16,6 +16,7 @@ import os
 import statistics
 import subprocess
 import sys
+import time
 import types
 from collections import defaultdict
 from collections.abc import Iterable, Sequence
@@ -256,6 +257,7 @@ class EditRewardRuntime:
         processor_dir: Path,
         offload_dir: Path,
     ) -> None:
+        load_started = time.perf_counter()
         _prepend_runtime_paths(python_deps, transformers_source, official_source)
         os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":4096:8"
         import torch
@@ -383,6 +385,7 @@ class EditRewardRuntime:
                 key: str(value) for key, value in model.hf_device_map.items()
             },
         }
+        self.load_seconds = time.perf_counter() - load_started
 
     def _prepare_batch(
         self, source: Path, candidate: Path, instruction: str, dimension: str
@@ -869,10 +872,27 @@ def _add_score_arguments(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--processor-dir", type=Path, required=True)
     parser.add_argument("--offload-dir", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--smoke-receipt", type=Path)
     parser.add_argument(
         "--order", choices=("canonical", "reverse"), default="canonical"
     )
     parser.add_argument("--smoke", action="store_true")
+
+
+def _validate_smoke_receipt(
+    receipt_path: Path, contract_path: Path, contract: dict[str, Any]
+) -> None:
+    receipt = _load_json(receipt_path)
+    if receipt.get("schema") != SCORE_SCHEMA or receipt.get("smoke") is not True:
+        raise ValueError("formal scoring requires an exact smoke score receipt")
+    if receipt.get("status") != "MECHANICS_SMOKE_PASS":
+        raise ValueError("formal scoring requires a passing smoke receipt")
+    if receipt.get("contract_sha256") != sha256_file(contract_path):
+        raise ValueError("smoke receipt/contract mismatch")
+    if receipt.get("model_sha256") != contract["external_asset"]["model_sha256"]:
+        raise ValueError("smoke receipt/model mismatch")
+    if receipt.get("runtime", {}).get("resource_gate_pass") is not True:
+        raise ValueError("smoke receipt resource gate failed")
 
 
 def main() -> int:
@@ -917,6 +937,7 @@ def main() -> int:
         print(json.dumps({"status": result["status"], "output": str(args.output)}))
         return 0
 
+    run_started = time.perf_counter()
     contract, rows = build_inventory(
         args.contract.resolve(),
         args.p401_public_root.resolve(),
@@ -924,6 +945,12 @@ def main() -> int:
         args.p402_public_root.resolve(),
         args.p402_source_root.resolve(),
     )
+    if not args.smoke:
+        if args.smoke_receipt is None:
+            raise ValueError("--smoke-receipt is required for formal scoring")
+        _validate_smoke_receipt(
+            args.smoke_receipt.resolve(), args.contract.resolve(), contract
+        )
     runtime = EditRewardRuntime(
         contract=contract,
         python_deps=args.python_deps.resolve(),
@@ -943,6 +970,7 @@ def main() -> int:
         primary_rows = primary_rows[:1]
         controls = []
 
+    scoring_started = time.perf_counter()
     primary = []
     for row in primary_rows:
         mean, log_sigma = runtime.score(
@@ -962,10 +990,30 @@ def main() -> int:
         payload["wrong_source_sha256"] = wrong_source_row.source_sha256
         wrong_source.append(payload)
 
+    scoring_seconds = time.perf_counter() - scoring_started
+    score_count = len(primary) + len(wrong_source)
+    seconds_per_asset = scoring_seconds / score_count
+    projected_two_process_hours = (
+        2.0 * (runtime.load_seconds + seconds_per_asset * 96.0) / 3600.0
+    )
+    total_seconds = time.perf_counter() - run_started
+    resource_gate_pass = (
+        total_seconds
+        <= contract["resource_execution"]["mechanics_smoke_wall_seconds_max"]
+        and projected_two_process_hours
+        <= contract["resource_execution"]["projected_two_process_wall_hours_max"]
+    )
+
     payload = {
         "schema": SCORE_SCHEMA,
         "experiment_id": contract["experiment_id"],
-        "status": "MECHANICS_SMOKE_ONLY" if args.smoke else "BLIND_SCORE_LOCK_COMPLETE",
+        "status": (
+            "MECHANICS_SMOKE_PASS"
+            if args.smoke and resource_gate_pass
+            else "MECHANICS_SMOKE_RESOURCE_FAIL"
+            if args.smoke
+            else "BLIND_SCORE_LOCK_COMPLETE"
+        ),
         "contract_sha256": sha256_file(args.contract.resolve()),
         "order": args.order,
         "smoke": args.smoke,
@@ -977,6 +1025,15 @@ def main() -> int:
             "wrong_source_count": len(wrong_source),
             "private_mapping_reads": 0,
             "direct_result_reads": 0,
+        },
+        "runtime": {
+            "load_seconds": runtime.load_seconds,
+            "scoring_seconds": scoring_seconds,
+            "score_count": score_count,
+            "seconds_per_asset": seconds_per_asset,
+            "projected_two_process_wall_hours": projected_two_process_hours,
+            "total_seconds": total_seconds,
+            "resource_gate_pass": resource_gate_pass,
         },
         "primary": sorted(primary, key=lambda row: row["row_id"]),
         "wrong_source": sorted(wrong_source, key=lambda row: row["row_id"]),
