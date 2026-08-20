@@ -13665,3 +13665,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   is `0.62--0.72s`. This opens exact composition with the retained spatial and
   tone stages, not complete renderer promotion. Evidence:
   `docs/evidence/U1_4C22_NATIVE_SAFE_LAB_POINTWISE_RESULT.json`.
+
+### 2026-08-20 - U1.4C23 passes full safe-Lab composition
+
+- C22 native pointwise output composes with the retained Python Gaussian
+  detail preservation and tone rolloff on the exact 24MP state. Two runs are
+  byte exact; maximum Lab error is `2.2888e-5` against the `2.5e-5` gate.
+- Composed safe-Lab time is `3.22--3.68s`. This opens an isolated final-render
+  test against C18 PNG/receipt bytes and unchanged 1GiB/15s product gates; it
+  is not itself a product pass. Evidence:
+  `docs/evidence/U1_4C23_NATIVE_SAFE_LAB_COMPOSITION_RESULT.json`.

@@ -1,0 +1,51 @@
+{
+  "schema": "neuro-film.u1-4c23-native-safe-lab-composition.v1",
+  "experiment_id": "U1.4C23",
+  "question": "Does the retained Python Gaussian luma-detail preservation and tone rolloff compose with the exact C22 native pointwise safe-Lab stage on the same 24MP state without exceeding the frozen Lab tolerance, while keeping C21 gamut compression excluded?",
+  "bindings": [
+    {
+      "path": "scripts/run_u1_4c23_native_safe_lab_composition.py",
+      "sha256": "077d832ad344332d4d558e8eabdefe1911167153d40e8e7962c30abd32190b7f"
+    },
+    {
+      "path": "docs/evidence/U1_4C22_NATIVE_SAFE_LAB_POINTWISE_RESULT.json",
+      "sha256": "6d9210be1adb49141fb73ed8e8a4702b8d533c444694cb855731aaa6a291a396"
+    },
+    {
+      "path": "docs/evidence/U1_4C21_NATIVE_REC2020_LAB_SOURCE_COMPRESS_RESULT.json",
+      "sha256": "c8c3ee6bd3d8b8a7115a641d6a9307df964c7009a02b96b90ceda599fdcf514b"
+    }
+  ],
+  "profile": {
+    "path": "configs/render_profiles/prophoto_rec2020_velvia_v1.json",
+    "sha256": "e0da6e630f616dc25c1bca431ade74edd55a2c0bf3a5eec5bd937c9a62447666"
+  },
+  "source": {
+    "path": "data/wide_gamut/u1_4c18_prophoto_24mp/a0957-IMG_0032_6000x4000.tif",
+    "sha256": "91895fce65e8a32f869dd31ecd5c3ee576c9212cf028d59cd0022b0371668394",
+    "shape": [4000, 6000, 3],
+    "embedded_icc_sha256": "0a8ef7d1d958d98225b3b71d93d9e8e3cecd9c302e014973d025d2a977ecf27c"
+  },
+  "execution": {
+    "formal_runs": 2,
+    "row_chunk": 128,
+    "style_halo_rows": 5,
+    "thread_count": 8,
+    "ingress_softness": 0.015625,
+    "ingress_margin": 0.000030518043793392844,
+    "ingress_iterations": 24,
+    "spatial_detail_implementation": "retained-python-gaussian-sigma-1p1",
+    "tone_rolloff_implementation": "retained-python-safe-lab-v1",
+    "c21_gamut_kernel_allowed": false,
+    "cohort_fitting_allowed": false
+  },
+  "gates": {
+    "maximum_lab_absolute_error": 0.000025,
+    "require_finite_output": true,
+    "require_two_run_output_exact": true,
+    "maximum_composed_wall_seconds": 5.0
+  },
+  "decision_if_pass": "retain_native_safe_lab_composition_and_open_product_renderer_integration",
+  "decision_if_fail": "close_exact_native_safe_lab_composition_without_product_integration",
+  "claim_ceiling": "Local Windows MSVC/Python composition feasibility for one exact safe-Lab look on one 24MP natural-derived ProPhoto fixture; not gamut compression, final RGB or PNG parity, complete renderer performance, cross-platform parity, calibration, preference, HDR, or default promotion."
+}

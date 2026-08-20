@@ -1,0 +1,38 @@
+{
+  "schema": "neuro-film.u1-4c23-native-safe-lab-composition-evidence.v1",
+  "experiment_id": "U1.4C23",
+  "status": "PASS",
+  "decision": "retain_native_safe_lab_composition_and_open_product_renderer_integration",
+  "contract": {
+    "path": "configs/u1_4c23_native_safe_lab_composition_v1.json",
+    "sha256": "75143265dd8e9c262995efc24b1adcb51be9850381c673e596090f444a4d6687"
+  },
+  "formal_report": {
+    "path": "outputs/eval/u1_4c23_native_safe_lab_composition_v1/report.json",
+    "sha256": "8da4658ed4584c8624c38d661fac46c10f29ef1ab508c13f7f8def14ff499874",
+    "stable_evidence_id": "e9ac35eadfbc4607700c8d1c00ab2a71c63304692375a00cede201f6a90b13b0"
+  },
+  "input": {
+    "sha256": "91895fce65e8a32f869dd31ecd5c3ee576c9212cf028d59cd0022b0371668394",
+    "shape": [4000, 6000, 3],
+    "pixel_count": 24000000,
+    "profile_sha256": "e0da6e630f616dc25c1bca431ade74edd55a2c0bf3a5eec5bd937c9a62447666"
+  },
+  "observations": {
+    "formal_runs": 2,
+    "output_exact": true,
+    "output_sha256": "b96f372982aec322f766d5bedbfb89b94c8131a8350f5cdb341699912d9620f1",
+    "maximum_lab_absolute_error": 0.00002288818359375,
+    "finite": true,
+    "composed_wall_seconds": [3.2203934999997728, 3.6815662999870256]
+  },
+  "composition": {
+    "native_pointwise": "U1.4C22",
+    "spatial_detail": "retained-python-gaussian-sigma-1p1",
+    "tone_rolloff": "retained-python-safe-lab-v1",
+    "c21_gamut_kernel_used": false
+  },
+  "interpretation": "The C22 pointwise kernel composes with the retained Gaussian luma-detail and tone stages within the frozen full-Lab tolerance and five-second component gate. This opens an isolated product-renderer integration that must still reproduce the exact C18 PNG and receipt and independently pass the unchanged 1GiB/15s resource gates.",
+  "claim_ceiling": "Local Windows MSVC/Python composition feasibility for one exact safe-Lab look on one 24MP natural-derived ProPhoto fixture; not gamut compression, final RGB or PNG parity, complete renderer performance, cross-platform parity, calibration, preference, HDR, or default promotion.",
+  "production_default_changed": false
+}
