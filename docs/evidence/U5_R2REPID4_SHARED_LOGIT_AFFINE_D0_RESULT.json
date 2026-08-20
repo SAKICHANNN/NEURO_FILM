@@ -62,8 +62,7 @@
       "forward",
       "reverse"
     ],
-    "invalid_cli_attempt": "One pre-report invocation used an unsupported flag, exited nonzero, and created no report.",
-    "duplicate_writer_attempt": "One duplicate reverse process tree was terminated before report creation; the surviving sole writer produced canonical formal_b.",
+    "superseded_full_frame_attempt": "One pre-report full-frame process tree was terminated after the resource-safe evaluator was frozen; it created no report. The two row-blocked canonical executions then completed independently.",
     "scientific_inputs_or_gates_changed": false
   },
   "sealed_member_requests": 0,
