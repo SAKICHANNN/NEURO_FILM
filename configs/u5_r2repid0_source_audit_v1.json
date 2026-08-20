@@ -1,0 +1,67 @@
+{
+  "schema": "neuro_film.u5_r2repid0_source_audit_contract.v1",
+  "experiment_id": "U5.R2REPID0",
+  "question": "Does the exact official REPID release expose a rights-bounded, aggregate, same-scene professional-render preference graph that is structurally suitable for a later single shared explicit-operator D0 before any image payload is read?",
+  "claim_ceiling": "aggregate-annotation-and-rights-source-audit-only",
+  "official_sources": {
+    "paper_url": "https://arxiv.org/abs/2512.05209",
+    "dataset_id": "vsevolodpl/REPID",
+    "revision": "6a16a20a0b7122ad66d1f632af1586d45b443aa9",
+    "api_url": "https://huggingface.co/api/datasets/vsevolodpl/REPID/revision/6a16a20a0b7122ad66d1f632af1586d45b443aa9?expand=sha&expand=lastModified&expand=private&expand=gated&expand=cardData",
+    "tree_url": "https://huggingface.co/api/datasets/vsevolodpl/REPID/tree/6a16a20a0b7122ad66d1f632af1586d45b443aa9?recursive=false&expand=true&limit=100",
+    "resolve_base": "https://huggingface.co/datasets/vsevolodpl/REPID/resolve/6a16a20a0b7122ad66d1f632af1586d45b443aa9",
+    "expected_repository": {
+      "sha": "6a16a20a0b7122ad66d1f632af1586d45b443aa9",
+      "last_modified": "2026-06-10T11:08:26Z",
+      "private": false,
+      "gated": false,
+      "card_license": "other"
+    },
+    "expected_files": {
+      "README.md": {"size": 8078, "sha256": "72752d5e3d1967b55f041b45346d48bd5add8c7f17629e9e998fcb8bea7b01bd"},
+      "LICENSE.md": {"size": 1694, "sha256": "22930d8fd50a5ececd534106f9cc24438b8777fd8dc8569f40cf771d043b5c96"},
+      "LicenseAdobe.txt": {"size": 1841, "sha256": "8121ecfcf743d850d6b6dbd0744cfb517c4cec189387aa010bf378077de84fcf"},
+      "LicenseAdobeMIT.txt": {"size": 1994, "sha256": "69f73c481140c40d3a02a15a739da76073de35646108a70bb1dfffadb182af3d"},
+      "filesAdobe.txt": {"size": 45282, "sha256": "9f4f262b25522d93f97a5b40f48f42de357ae0b14ef7098a576c912c546e8383"},
+      "filesAdobeMIT.txt": {"size": 46936, "sha256": "c4cc6ef8cc9e519466ac130b977cd4292ffe9405f94d04227d0e2aee38aa5475"},
+      "processed_markup.csv": {"size": 69361091, "sha256": "a370d24c8d54c113e38c54f7fc7b4956adc64c08620ce15b94d4d598913ecab2"},
+      "fivek_dataset_auto_jpeg.zip": {"size": 39451997393, "sha256": "8ef04b49e34e7e68af6e244a6e782f2c5cd292d836b7c55255d90710a663ca0e"}
+    },
+    "expected_annotation_structure": {
+      "row_count": 74465,
+      "scene_count": 4981,
+      "unique_scene_pair_count": 74465,
+      "roles": ["original", "tiff16_a", "tiff16_b", "tiff16_c", "tiff16_d", "tiff16_e"],
+      "rows_per_scene_values": [10, 15],
+      "mos_minimum": 0.0,
+      "mos_maximum": 1.0
+    },
+    "expected_image_license_lists": {
+      "adobe_count": 2690,
+      "adobe_mit_count": 2310,
+      "union_count": 5000,
+      "intersection_count": 0
+    }
+  },
+  "bounded_execution": {
+    "maximum_api_bytes": 2097152,
+    "maximum_small_file_bytes": 131072,
+    "maximum_processed_markup_bytes": 73400320,
+    "image_tree_requests": 0,
+    "image_archive_requests": 0,
+    "image_member_requests": 0,
+    "image_decodes": 0,
+    "operator_fits": 0,
+    "persist_annotation_rows": false,
+    "persist_scene_names": false
+  },
+  "rights_gate": {
+    "annotation_license": "CC-BY-4.0",
+    "image_license": "MIT-Adobe-FiveK-research-only",
+    "product_dependency_allowed": false,
+    "redistribution_allowed_by_this_audit": false
+  },
+  "decision_if_pass": "retain_repid_aggregate_preference_source_for_separate_internal_shared_operator_d0",
+  "decision_if_fail": "close_repid_before_image_payload_or_operator_fit",
+  "decision_if_infrastructure_invalid": "invalidate_repid0_without_scientific_source_decision"
+}

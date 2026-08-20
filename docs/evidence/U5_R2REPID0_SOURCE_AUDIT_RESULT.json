@@ -1,0 +1,95 @@
+{
+  "schema": "neuro_film.u5_r2repid0_source_audit_report.v1",
+  "experiment_id": "U5.R2REPID0",
+  "repository": {
+    "sha": "6a16a20a0b7122ad66d1f632af1586d45b443aa9",
+    "last_modified": "2026-06-10T11:08:26.000Z",
+    "private": false,
+    "gated": false,
+    "card_license": "other"
+  },
+  "root_tree_file_facts": {
+    "LICENSE.md": {"size": 1694, "sha256": null},
+    "LicenseAdobe.txt": {"size": 1841, "sha256": null},
+    "LicenseAdobeMIT.txt": {"size": 1994, "sha256": null},
+    "README.md": {"size": 8078, "sha256": null},
+    "filesAdobe.txt": {"size": 45282, "sha256": null},
+    "filesAdobeMIT.txt": {"size": 46936, "sha256": null},
+    "fivek_dataset_auto_jpeg.zip": {
+      "size": 39451997393,
+      "sha256": "8ef04b49e34e7e68af6e244a6e782f2c5cd292d836b7c55255d90710a663ca0e"
+    },
+    "processed_markup.csv": {
+      "size": 69361091,
+      "sha256": "a370d24c8d54c113e38c54f7fc7b4956adc64c08620ce15b94d4d598913ecab2"
+    }
+  },
+  "small_file_facts": {
+    "README.md": {"size": 8078, "sha256": "72752d5e3d1967b55f041b45346d48bd5add8c7f17629e9e998fcb8bea7b01bd"},
+    "LICENSE.md": {"size": 1694, "sha256": "22930d8fd50a5ececd534106f9cc24438b8777fd8dc8569f40cf771d043b5c96"},
+    "LicenseAdobe.txt": {"size": 1841, "sha256": "8121ecfcf743d850d6b6dbd0744cfb517c4cec189387aa010bf378077de84fcf"},
+    "LicenseAdobeMIT.txt": {"size": 1994, "sha256": "69f73c481140c40d3a02a15a739da76073de35646108a70bb1dfffadb182af3d"},
+    "filesAdobe.txt": {"size": 45282, "sha256": "9f4f262b25522d93f97a5b40f48f42de357ae0b14ef7098a576c912c546e8383"},
+    "filesAdobeMIT.txt": {"size": 46936, "sha256": "c4cc6ef8cc9e519466ac130b977cd4292ffe9405f94d04227d0e2aee38aa5475"}
+  },
+  "annotation_structure": {
+    "file_sha256": "a370d24c8d54c113e38c54f7fc7b4956adc64c08620ce15b94d4d598913ecab2",
+    "file_size": 69361091,
+    "column_count": 200,
+    "header_identity_sha256": "202186bbf3680062bfd329913fb9311c4f21846a1f3f471fb44f25abb9052ed5",
+    "row_count": 74465,
+    "scene_count": 4981,
+    "unique_scene_pair_count": 74465,
+    "roles": ["original", "tiff16_a", "tiff16_b", "tiff16_c", "tiff16_d", "tiff16_e"],
+    "rows_per_scene_values": [10, 15],
+    "rows_per_scene_distribution": {"10": 50, "15": 4931},
+    "mos_minimum": 0.0,
+    "mos_maximum": 1.0,
+    "participant_identifier_columns_present": false,
+    "annotation_rows_persisted": false,
+    "scene_names_persisted": false
+  },
+  "image_license_lists": {
+    "adobe_count": 2690,
+    "adobe_mit_count": 2310,
+    "union_count": 5000,
+    "intersection_count": 0
+  },
+  "requests": {
+    "repository_api": 1,
+    "root_tree_api": 1,
+    "small_text_files": 6,
+    "aggregate_annotation_files": 1,
+    "image_tree_requests": 0,
+    "image_archives": 0,
+    "image_members": 0,
+    "image_decodes": 0,
+    "operator_fits": 0
+  },
+  "rights_scope": {
+    "annotation_license": "CC-BY-4.0",
+    "image_license": "MIT-Adobe-FiveK-research-only",
+    "product_dependency_allowed": false,
+    "redistribution_allowed_by_this_audit": false
+  },
+  "gates": {
+    "exact_repository_revision": false,
+    "exact_root_file_inventory": false,
+    "exact_small_file_bytes": true,
+    "exact_processed_markup_bytes": true,
+    "aggregate_annotation_structure_exact": true,
+    "aggregate_annotation_has_no_participant_identifier_columns": true,
+    "image_license_lists_exact_and_disjoint": true,
+    "rights_text_explicitly_separates_annotations_from_research_only_images": true,
+    "image_payload_reads_zero": true,
+    "operator_fits_zero": true,
+    "product_dependency_allowed": false
+  },
+  "automatic_pass": false,
+  "decision": "close_repid_before_image_payload_or_operator_fit",
+  "claim_ceiling": "aggregate-annotation-and-rights-source-audit-only",
+  "stable_evidence_id": "sha256:7c5467942f154322b23777f6ae3eb4c58a58abc2761d37f854fda0e84ab487dc",
+  "formal_report_sha256": "9c92b7d06ae44806c562ae4c501308aa13ef381e6bd4b85104ec24bbac316675",
+  "two_fresh_reports_byte_exact": true,
+  "execution_note": "The first pre-report attempt stopped on an overbroad API response exceeding the byte budget. The API query was narrowed to the same revision and exact required fields before either complete report; source facts, gates and expected values were unchanged."
+}

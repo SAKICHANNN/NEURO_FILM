@@ -13832,3 +13832,19 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Two exact bounded audits inspect the official project page, exact two-file Drive inventory and the 2.73MB annotation archive; `img_src.zip` requests, image decode, training and operator fit remain zero.
 - The archive has 62,688 choices, 521 processed participant files and 1,313 scene keys. No explicit dataset license is visible, sensitive participant fields exist, and evidence persists only aggregates.
 - Retain PPSD as an internal source-structure lead. Any pixel or operator leaf requires explicit rights plus a source-clean non-generative subset gate.
+
+### 2026-08-20 - U5.R2REPID0 exact source lock preserves API-literal failure
+
+- Audited official DEAR/REPID revision `6a16a20...443aa9` without requesting
+  any image tree, archive or member. Exact aggregate facts are 74,465 unique
+  pair rows over 4,981 scenes and six render roles; 50 scenes have 10 rows and
+  4,931 have the complete 15-row graph.
+- The 69,361,091-byte aggregate CSV and all six small license/list files match
+  frozen SHA-256 values. The license explicitly separates CC-BY-4.0 annotations
+  from research-only MIT-Adobe FiveK images; product dependency remains false.
+- Two complete reports are byte exact (`9c92b7d0...16675`, stable
+  `7c546794...487dc`). Preserve formal FAIL because the frozen timestamp lacked
+  `.000Z` and the root-tree contract incorrectly required SHA-256 values on
+  non-LFS rows where HF exposes Git object IDs. No pixel or operator result was
+  produced. A prospective U5.R2REPID1 may bind only those observed API facts.
+- Evidence: `docs/evidence/U5_R2REPID0_SOURCE_AUDIT_RESULT.json`.

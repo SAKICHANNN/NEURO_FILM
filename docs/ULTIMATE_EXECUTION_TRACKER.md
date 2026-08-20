@@ -1542,3 +1542,17 @@ only aggregated internal annotation structure; image requests, decoding,
 training and operator fitting remain zero. A future PPSD leaf must first prove
 an explicitly licensed, source-clean non-generative role rather than mixing
 professional, device, synthetic and generative variants.
+
+U5.R2REPID0 closes its exact metadata-only source lock before image payloads.
+Two complete reports are byte exact (`9c92b7d0...16675`; stable
+`7c546794...487dc`). The aggregate release itself is highly relevant: 4,981
+scenes, 74,465 unique same-scene professional-render preference edges, six
+render roles, explicit CC-BY-4.0 aggregate annotations and separately
+research-only MIT-Adobe FiveK pixels. Every byte, annotation, rights and
+zero-image/zero-fit gate passes. The frozen repository timestamp omitted the
+API's `.000` milliseconds and expected SHA-256 values from non-LFS tree rows
+where the API exposes only Git object IDs, so the two literal API gates fail.
+Preserve REPID0 as a protocol-integrity failure. Only a separately numbered
+prospective correction may bind the observed API semantics before selecting a
+small scene-grouped internal-research shared-operator D0; the 39GB archive and
+477GB repository remain forbidden.
