@@ -14444,6 +14444,19 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   stock claim opens. Continue only with genuinely new paired/capture-time
   information or a distinct mature RAW/DNG/HDR/portable explicit operator.
 
+### 2026-08-21 - RF3.D0 re-centres the mainline on three named stocks
+
+- Freeze and execute one source/evidence matrix for Velvia 50, Portra 400 and
+  Ektar 100 on the same 16 CC0 digital inputs. AO6 is explicitly limited to a
+  Velvia 50 display-proxy Look Approximation; Portra and Ektar cannot consume it.
+- Two fresh processes reproduce all 64 PNGs and scientific content exactly.
+  The three legacy K=1 proxies pass finite/boundary and mechanical-separation
+  gates, but Portra/Ektar is weak at 1.024 median-of-source-medians Delta E76.
+- No controlled stock target exists at the required level, so target closeness
+  and stock distinguishability remain unscored. The next leaf is source/data
+  equalization, not additional Velvia tuning or an adaptive/router rescue.
+  Evidence: `docs/evidence/RF3_D0_THREE_STOCK_PROXY_BASELINE_RESULT.json`.
+
 ### 2026-08-21 - U6.P8X passes private MSVC x64 pointwise conformance
 
 - Parent goal: advance the mature portable explicit-operator engineering lane
