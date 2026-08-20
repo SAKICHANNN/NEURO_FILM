@@ -1,0 +1,29 @@
+{
+  "schema": "neuro_film.u1_4g_rec2100_pq_png_rail_contract.v1",
+  "experiment_id": "u1.4g-rec2100-pq-png-rail-v1",
+  "node": "ULT > U1 > U1.4G",
+  "status": "frozen_before_formal_publication",
+  "bindings": {
+    "contract_path": "docs/planning/U1_4G_REC2100_PQ_PNG_RAIL_CONTRACT.md",
+    "contract_sha256": "efe2bfc6a84b4c7339b368cc839d2cc6fe6da65e6c374a06b1c425e08ea0b38f",
+    "implementation_path": "src/preprocess/png_stream.py",
+    "implementation_sha256": "c3d3c35a23efbc1f7b21babd4255c09872c6ff8cc7eec1423b9d1c9266cf9b97",
+    "runner_path": "scripts/audit_u1_4g_rec2100_pq_png_rail.py",
+    "runner_sha256": "5b3e5441cc5cba7638405d1dba0f63eb2306e87609c59f812aa796a7b6c291a7"
+  },
+  "gates": {
+    "require_pq_sample_exact": true,
+    "require_pq_cicp_hex": "09100001",
+    "require_pq_chunk_order": [
+      "IHDR",
+      "cICP",
+      "IDAT",
+      "IEND"
+    ],
+    "require_all_crc_valid": true,
+    "require_sdr_sample_exact": true,
+    "require_reverse_order_exact": true,
+    "require_two_process_report_exact": true
+  },
+  "claim_ceiling": "private deterministic PNG Third Edition container rail for already PQ-encoded full-range BT.2100 RGB16 samples only; no tone-map correctness, HDR10, mastering/content-light metadata, display correctness, external/platform interoperability, default renderer, public capability or product admission"
+}
