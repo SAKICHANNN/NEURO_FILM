@@ -1,0 +1,48 @@
+{
+  "schema": "neuro-film.u1-4c21-native-rec2020-lab-source-compress-evidence.v1",
+  "experiment_id": "U1.4C21",
+  "status": "FAIL_CLOSED",
+  "decision": "close_exact_native_lab_source_compression_without_fusing_the_safe_lab_chain",
+  "contract": {
+    "path": "configs/u1_4c21_native_rec2020_lab_source_compress_v1.json",
+    "sha256": "52c5b1aef9c25209f30208566cade5e1b1fe719b4a4b4a2002ad879dd0befa32"
+  },
+  "formal_report": {
+    "path": "outputs/eval/u1_4c21_native_rec2020_lab_source_compress_v1/report.json",
+    "sha256": "97eeb51138a6148feaccdad8fb06b29f8073260be3bf7b44a7d2ff71b9d01d4d",
+    "stable_evidence_id": "f91cee2fc1583dc4faa705525809aa83af24d5219a2aa09cc1cd3ace994bc4d9"
+  },
+  "input": {
+    "sha256": "91895fce65e8a32f869dd31ecd5c3ee576c9212cf028d59cd0022b0371668394",
+    "shape": [4000, 6000, 3],
+    "pixel_count": 24000000,
+    "profile_sha256": "e0da6e630f616dc25c1bca431ade74edd55a2c0bf3a5eec5bd937c9a62447666"
+  },
+  "implementation": {
+    "runner_sha256": "43dba8debd5bbd4b597cf794c604ff4cc24b171cee423d064139990757557119",
+    "native_source_sha256": "fc1912622aa25334eedb1cc90a4f18a47b38d03ad68e67f43b80612722c89b0f",
+    "native_header_sha256": "5ce31fa63aca8f3bf183d193bdef5e6ccf87ff736349117c7f4b1defd2093a41",
+    "native_dll_sha256": "a37ee010c5b564401953afa3762012066a48fd69652ba3a06061575991a63d7e",
+    "toolchain": "msvc-x64-c11",
+    "thread_count": 8
+  },
+  "observations": {
+    "formal_runs": 2,
+    "lab_exact": true,
+    "rgb_exact": true,
+    "scale_exact": true,
+    "maximum_lab_absolute_error": 0.00014638900756835938,
+    "maximum_rgb_absolute_error": 2.384185791015625e-7,
+    "finite": true,
+    "bounded": true,
+    "native_kernel_wall_seconds": [1.8277178000134882, 1.834005500015337]
+  },
+  "failed_gate": {
+    "name": "maximum_lab_absolute_error",
+    "threshold": 0.000025,
+    "observed": 0.00014638900756835938
+  },
+  "interpretation": "The native kernel is deterministic, bounded, fast, and close in final linear RGB, but it does not meet the frozen intermediate-Lab equivalence gate. The exact kernel is closed without relaxing the threshold or reinterpreting RGB closeness as a pass. A successor may test a materially different pointwise safe-Lab mechanism but may not fuse or promote this failed Lab-compression implementation.",
+  "claim_ceiling": "Local Windows MSVC host negative evidence for exact intermediate-Lab source compression on one 24MP natural-derived ProPhoto fixture and one fixed look state; not a judgement of the retained Python renderer, style quality, arbitrary ICC, stock calibration, HDR, or product promotion.",
+  "production_default_changed": false
+}

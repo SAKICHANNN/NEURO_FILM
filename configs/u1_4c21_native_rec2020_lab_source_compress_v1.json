@@ -1,0 +1,61 @@
+{
+  "schema": "neuro-film.u1-4c21-native-rec2020-lab-source-compress.v1",
+  "experiment_id": "U1.4C21",
+  "question": "Can one caller-buffer C11 host kernel reproduce the retained source-segment Rec.2020 Lab gamut compression on the exact 24MP C20/C19 look state and reduce the measured compression hotspot below eight seconds without changing the style, source endpoint, iteration count, or gamut tolerance?",
+  "bindings": [
+    {
+      "path": "native/color_engine/nf_rec2020_lab_source_compress_f32_v1.c",
+      "sha256": "fc1912622aa25334eedb1cc90a4f18a47b38d03ad68e67f43b80612722c89b0f"
+    },
+    {
+      "path": "native/color_engine/nf_rec2020_lab_source_compress_f32_v1.h",
+      "sha256": "5ce31fa63aca8f3bf183d193bdef5e6ccf87ff736349117c7f4b1defd2093a41"
+    },
+    {
+      "path": "src/eval/native_rec2020_lab_source_compress.py",
+      "sha256": "3ef1781eb599c534efa9f0ca3bf4f5b6a4c7057a8622ec18fe59acb44d7f9395"
+    },
+    {
+      "path": "scripts/run_u1_4c21_native_rec2020_lab_source_compress.py",
+      "sha256": "43dba8debd5bbd4b597cf794c604ff4cc24b171cee423d064139990757557119"
+    },
+    {
+      "path": "docs/evidence/U1_4C20_NATIVE_REC2020_OKLAB_INGRESS_RESULT.json",
+      "sha256": "2fffb7c75013d3074544b7a1d2ffeccca6cd786b3802d8fabc516d26ff1b9b76"
+    }
+  ],
+  "profile": {
+    "path": "configs/render_profiles/prophoto_rec2020_velvia_v1.json",
+    "sha256": "e0da6e630f616dc25c1bca431ade74edd55a2c0bf3a5eec5bd937c9a62447666"
+  },
+  "source": {
+    "path": "data/wide_gamut/u1_4c18_prophoto_24mp/a0957-IMG_0032_6000x4000.tif",
+    "sha256": "91895fce65e8a32f869dd31ecd5c3ee576c9212cf028d59cd0022b0371668394",
+    "shape": [4000, 6000, 3],
+    "embedded_icc_sha256": "0a8ef7d1d958d98225b3b71d93d9e8e3cecd9c302e014973d025d2a977ecf27c"
+  },
+  "execution": {
+    "formal_runs": 2,
+    "row_chunk": 128,
+    "style_halo_rows": 5,
+    "thread_count": 8,
+    "ingress_softness": 0.015625,
+    "ingress_margin": 0.000030518043793392844,
+    "ingress_iterations": 24,
+    "compression_iterations": 24,
+    "tolerance": 0.000002,
+    "cohort_fitting_allowed": false,
+    "hard_clipping_allowed": false,
+    "posthoc_limiting_allowed": false
+  },
+  "gates": {
+    "maximum_lab_absolute_error": 0.000025,
+    "maximum_rgb_absolute_error": 0.0000025,
+    "require_finite_and_bounded_output": true,
+    "require_two_run_lab_rgb_and_scale_exact": true,
+    "maximum_native_kernel_wall_seconds": 8.0
+  },
+  "decision_if_pass": "retain_native_rec2020_lab_source_compression_and_open_fused_native_safe_lab_chain",
+  "decision_if_fail": "close_exact_native_lab_source_compression_without_fusing_the_safe_lab_chain",
+  "claim_ceiling": "Local Windows MSVC host feasibility for the exact retained Rec.2020 source-segment Lab compression on one 24MP natural-derived ProPhoto fixture and one fixed look state; not a complete renderer resource pass, cross-platform parity, arbitrary ICC, stock calibration, preference, HDR, or default promotion."
+}

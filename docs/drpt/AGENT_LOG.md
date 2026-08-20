@@ -13644,3 +13644,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   frozen fused native colour-chain leaf; the complete 15-second renderer gate
   remains unproved. Evidence:
   `docs/evidence/U1_4C20_NATIVE_REC2020_OKLAB_INGRESS_RESULT.json`.
+
+### 2026-08-20 - U1.4C21 closes exact native Lab compression
+
+- The eight-thread C11 source-segment gamut kernel is deterministic, bounded,
+  and fast (`1.83s` per 24MP run); its linear-RGB maximum error is only
+  `2.38e-7`.
+- The frozen intermediate-Lab error gate nevertheless fails: observed
+  `1.4639e-4` versus the preregistered `2.5e-5` maximum. Do not relax the gate
+  or fuse this exact kernel. Continue only through a materially distinct
+  pointwise safe-Lab/native-product mechanism. Evidence:
+  `docs/evidence/U1_4C21_NATIVE_REC2020_LAB_SOURCE_COMPRESS_RESULT.json`.
