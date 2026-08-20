@@ -1,0 +1,57 @@
+{
+  "schema": "neuro-film.sf3-a0k-three-stock-display-stimulus-evidence.v1",
+  "experiment_id": "SF3.A0K",
+  "status": "PASS_INPUT_PACK_ONLY",
+  "decision": "READY_FOR_PHYSICAL_THREE_STOCK_CAPTURE_INPUT_ONLY",
+  "contract": {
+    "path": "configs/sf3_a0k_three_stock_display_stimulus_v1.json",
+    "sha256": "efef5840c90ff24934a53a730fedf1b9f86d15012585fc780fe3ecb696b48505",
+    "commit": "fdb195096ad294a70963500fe8b677e15a95c978"
+  },
+  "implementation": {
+    "commit": "0a84a20cab8aab24ff6be2b31bc02c021f6208dd",
+    "evaluator": {
+      "path": "src/real_film/three_stock_display_stimulus.py",
+      "sha256": "ca0a003cadf295f63640d9c576efdfb48433a7393756d1b595522edb1000ce71"
+    },
+    "runner": {
+      "path": "scripts/build_sf3_a0k_three_stock_display_stimulus.py",
+      "sha256": "3fefb142781980034e7c8e2d156c1a3ad6c60d15f7a4bce43a64ba38c59c384a"
+    },
+    "tests": {
+      "path": "tests/test_sf3_a0k_three_stock_display_stimulus.py",
+      "sha256": "b7943ec25b7a28787aa2fc9c78ff9d0736d7bd800b15246807be9d99a488f55a"
+    }
+  },
+  "parents": {
+    "controlled_acquisition_contract_sha256": "69241a6c38b15a8c4c8871e513ea53e133ee1d3b5ebe06f39a33f92964eccc8b",
+    "digital_source_manifest_sha256": "048992242c82a2cd9efd193c6766065c7148ad0607a5505b88185d0ab781b101"
+  },
+  "formal_replay": {
+    "run_a_report_sha256": "ee40ffddff7a4d90bda7021e1d9d1dc7b1ba378ebf0ae1f663619c0d9437e5f2",
+    "run_b_report_sha256": "ee40ffddff7a4d90bda7021e1d9d1dc7b1ba378ebf0ae1f663619c0d9437e5f2",
+    "stable_evidence_id": "aa2726cae18fad97b43e17c8e480f06e6a8da3e39d90db443fcf5979e6d7110f",
+    "two_clean_build_reports_exact": true,
+    "two_clean_build_file_inventories_exact": true,
+    "canonical_pack_inventory_exact": true
+  },
+  "canonical_pack": {
+    "logical_path": "data/real_film/sf3_a0k_three_stock_display_stimulus_v1",
+    "physical_storage": "P-backed repository data junction",
+    "manifest_sha256": "22808350c4de311118b10e17c627034b15eb10e9050e004c0ffd44bfbe89d5cf",
+    "file_count": 16,
+    "total_bytes": 36958643,
+    "development_scene_count": 8,
+    "confirmation_scene_count": 4,
+    "diagnostic_count": 3,
+    "scene_pngs_are_exact_source_byte_copies": true,
+    "diagnostics_count_toward_scene_minima": false
+  },
+  "stock_scope": [
+    "fujifilm_velvia_50",
+    "kodak_portra_400",
+    "kodak_ektar_100"
+  ],
+  "interpretation": "The first controlled three-stock acquisition now has one exact, rights-locked and role-disjoint digital input pack. No film has yet been exposed, processed or scanned, so this resolves input preparation only and leaves the physical acquisition and target evidence gap open.",
+  "claim_ceiling": "Rights-locked digital display stimulus input pack only. It contains no film exposure, developed frame, scan, stock target, operator fit, stock response, calibration, preference result, package, capability or product promotion."
+}
