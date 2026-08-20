@@ -13,6 +13,7 @@ from pathlib import Path
 from typing import Any
 
 import cv2
+import tifffile
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
@@ -90,6 +91,10 @@ def load_contract(path: Path, *, root: Path = ROOT) -> tuple[dict[str, Any], str
         or not measurement["run_workers_sequentially"]
     ):
         raise ValueError("streaming staged renderer frozen execution drift")
+    if experiment_id == "U1.4C31":
+        with tifffile.TiffFile(root / payload["fixture"]["path"]) as document:
+            if len(document.pages) != 1 or not document.pages[0].is_memmappable:
+                raise ValueError("C31 requires one directly memmappable TIFF page")
     return payload, _sha256(Path(path))
 
 
