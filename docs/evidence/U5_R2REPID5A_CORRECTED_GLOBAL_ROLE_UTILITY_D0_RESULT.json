@@ -1,0 +1,59 @@
+{
+  "schema": "neuro-film.u5-r2repid5a-corrected-global-role-utility-d0-evidence.v1",
+  "experiment_id": "U5.R2REPID5A",
+  "date": "2026-08-20",
+  "execution_commit": "ac6eb4ee",
+  "contract_path": "configs/u5_r2repid5a_corrected_global_role_utility_d0_v1.json",
+  "contract_sha256": "7bcee3a75cec85cde7cddbc9998f8e204d3c0ba8bc114eda2089ceda09fd4c52",
+  "implementation_sha256": "615c8349e9a988c8a72ce2f4062277eb291da7bfaaee2db4491c2129f658ee1b",
+  "formal_replays": {
+    "run_a_path": "outputs/eval/u5_r2repid5a_corrected_global_role_utility_d0/formal_a.json",
+    "run_b_path": "outputs/eval/u5_r2repid5a_corrected_global_role_utility_d0/formal_b.json",
+    "run_a_sha256": "b2f95e861563b7c850f8663d7a8c28211710dc2086143ae41203ba44054a9899",
+    "run_b_sha256": "b2f95e861563b7c850f8663d7a8c28211710dc2086143ae41203ba44054a9899",
+    "byte_exact": true,
+    "stable_evidence_id": "sha256:142a25d3f2dffa952b0a224e2585673f553a866994fafeb547226f3f5cedf8d6"
+  },
+  "metrics": {
+    "complete_scene_count": 4931,
+    "excluded_selected_scene_count": 128,
+    "development_scene_count": 3598,
+    "confirmation_scene_count": 1205,
+    "development_pairwise_accuracy": 0.6413639733135656,
+    "confirmation_pairwise_accuracy": 0.6459359265202236,
+    "worst_role_pair_accuracy": 0.4887966804979253,
+    "top_role": "tiff16_e",
+    "minimum_top_role_opponent_win_rate": 0.4887966804979253,
+    "leave_one_fold_top_role_stability": 0.875,
+    "development_confirmation_accuracy_gap": 0.0045719532066579305,
+    "pair_majority_agreement_rate": 0.9333333333333333,
+    "label_permuted_accuracy": 0.469540198085542
+  },
+  "failed_gates": [
+    "leave_one_fold_top_role_stability",
+    "pair_majority_agreement_rate",
+    "top_role_opponent_win_rate",
+    "worst_role_pair_accuracy"
+  ],
+  "diagnosis": {
+    "highest_development_utility_roles": [
+      "tiff16_e",
+      "tiff16_c"
+    ],
+    "unstable_fold_top_counts": {
+      "tiff16_e": 14,
+      "tiff16_c": 2
+    },
+    "contradictory_confirmation_pair": "tiff16_c->tiff16_e",
+    "contradictory_pair_accuracy": 0.4887966804979253,
+    "interpretation": "REPID contains a useful aggregate preference signal, but no single transitive global role ordering clears the frozen worst-pair, Condorcet-opponent, fold-stability and all-pair agreement gates. This independently explains why one shared loser-to-winner pixel operator produced a role-localized severe tail."
+  },
+  "image_member_reads": 0,
+  "image_decodes": 0,
+  "operator_fits": 0,
+  "automatic_pass": false,
+  "status": "FAIL_CLOSED",
+  "decision": "close_repid_global_role_preference_route_without_pixel_rescue",
+  "next": "Close REPID as a global product-preference operator source. Do not read its sealed pixels, fit a role router, select a subgroup, or tune the same aggregate. Return to rights-cleared film evidence or another observation that identifies the target transform independently.",
+  "claim_ceiling": "Internal metadata-only professional-render role-identifiability D0; not an image operator, per-image router, user preference model, film or stock evidence, pixel authorization, package, capability or product evidence."
+}

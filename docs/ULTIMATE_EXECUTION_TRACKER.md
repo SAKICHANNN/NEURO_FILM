@@ -1598,3 +1598,12 @@ has a -78.59% worst tail, beats the equal-sampling diagonal operator on only
 negative rows are all `tiff16_b->tiff16_a`, which identifies unresolved render
 role heterogeneity but does not authorize a role router. Close without rescue;
 the 24 sealed scenes remain unread.
+
+U5.R2REPID5 preserves a pre-score contract failure caused by listing nonexistent
+`tiff16_f` instead of the already source-audited `original` role. Corrected
+U5.R2REPID5A then evaluates 3,598 development and 1,205 disjoint confirmation
+scenes twice byte exactly (`b2f95e86...a9899`; stable `142a25d3...fd8d6`).
+Overall role-order accuracy is `64.59%`, but the `c/e` pair is `48.88%`, the
+top role loses its weakest opponent comparison, and leave-one-fold top-role
+stability is only `14/16`. Close REPID as a global role/preference operator
+source without sealed pixels, subgroup routing or model-capacity rescue.

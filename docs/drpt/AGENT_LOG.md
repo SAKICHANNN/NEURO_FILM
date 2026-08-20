@@ -13737,6 +13737,23 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `P:\neuro_film_storage\legacy_d_root_organized_20260820\_verification\d_root_organization_summary_20260820.json`
   (`d91bfd785362cc294a8e37bc37ff6c1d8ffccce6df7f314dc70f05705d105c11`).
 
+### 2026-08-20 - D-root verified-backup quarantine and P volume safety gate
+
+- Revalidated the three large D-side migration backups against their existing
+  P-side SHA-256 evidence: 48,572 files / 83,603,404,102 bytes remain exact in
+  the project-owned P namespaces. The two Android residual files (21,243
+  bytes) also still match their P copies byte-for-byte.
+- A permanently destructive cleanup was authorized by the owner but rejected
+  by the execution platform before mutation. The verified backup root was
+  therefore moved atomically out of D root into
+  `D:\_project_fallbacks\verified_pending_cleanup_20260820`; the Android root
+  remains because `AndrowsStore.exe` holds it open. D root has zero ordinary
+  files. P-backed compatibility junctions remain in place and were not moved.
+- The P NVMe reports healthy hardware, but its exFAT volume is marked Dirty and
+  Windows reports the volume as Warning. No new bulk P copy or unique-source
+  deletion is allowed until a read-only CHKDSK diagnosis completes and an
+  explicitly scheduled offline `/F` repair clears the filesystem gate.
+
 ### 2026-08-20 - U5.R2DEEP0 closes Deep Analog before execution
 
 - Audited the newest primary paper and exact official repository commit. The
@@ -13908,3 +13925,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   equivalent to the original formulas before two corrected exact runs; the
   frozen scientific inputs, operator, metrics and gates did not change.
 - Evidence: `docs/evidence/U5_R2REPID4_SHARED_LOGIT_AFFINE_D0_RESULT.json`.
+
+### 2026-08-20 - U5.R2REPID5A closes global render-role preference
+
+- REPID5 first stopped before scoring because its frozen role list replaced the
+  source-audited `original` role with nonexistent `tiff16_f`; two processes
+  created no report and read no pixels. REPID5A preserves that failure and only
+  corrects the role identity.
+- Two corrected metadata-only reports are byte exact (`b2f95e86...a9899`). A
+  global role utility reaches `64.59%` confirmation accuracy, but worst-pair and
+  top-role-opponent accuracy are both `48.88%`, all-pair agreement is `14/15`,
+  and top-role fold stability is `14/16`.
+- Close REPID's global role/preference route. No sealed image, subgroup, role
+  router or larger model is authorized; product/default state is unchanged.
+- Evidence: `docs/evidence/U5_R2REPID5A_CORRECTED_GLOBAL_ROLE_UTILITY_D0_RESULT.json`.

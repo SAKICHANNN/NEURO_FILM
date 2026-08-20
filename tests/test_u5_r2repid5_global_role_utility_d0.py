@@ -1,9 +1,12 @@
 from __future__ import annotations
 
 import csv
+import hashlib
 import io
 import json
 from pathlib import Path
+
+import pytest
 
 import scripts.run_u5_r2repid5_global_role_utility_d0 as module
 
@@ -80,3 +83,28 @@ def test_corrected_contract_binds_exact_source_audited_roles() -> None:
     assert contract["correction"]["only_change"] == (
         "replace nonexistent tiff16_f with source-audited original role"
     )
+
+
+def test_formal_evidence_binds_exact_negative_report() -> None:
+    evidence = json.loads(
+        (
+            ROOT
+            / "docs/evidence/U5_R2REPID5A_CORRECTED_GLOBAL_ROLE_UTILITY_D0_RESULT.json"
+        ).read_text()
+    )
+    report_path = (
+        ROOT
+        / "outputs/eval/u5_r2repid5a_corrected_global_role_utility_d0/formal_a.json"
+    )
+    if not report_path.exists():
+        pytest.skip("formal P-backed REPID role-utility report is not installed")
+    report = json.loads(report_path.read_text())
+    assert hashlib.sha256(report_path.read_bytes()).hexdigest() == (
+        evidence["formal_replays"]["run_a_sha256"]
+    )
+    assert report["stable_evidence_id"] == evidence["formal_replays"][
+        "stable_evidence_id"
+    ]
+    assert report["metrics"] == evidence["metrics"]
+    assert report["failed_gates"] == evidence["failed_gates"]
+    assert report["decision"] == evidence["decision"]
