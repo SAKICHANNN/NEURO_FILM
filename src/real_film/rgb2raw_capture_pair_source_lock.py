@@ -74,10 +74,16 @@ def analyze_members(members: list[ZipMember]) -> dict[str, Any]:
     for camera in primary_cameras:
         paired = sorted(by_camera[camera][".png"] & by_camera[camera][".npy"])
         unpaired = sorted(by_camera[camera][".png"] ^ by_camera[camera][".npy"])
-        scene_groups = sorted({stem.rsplit("_", 1)[0] for stem in paired})
-        missing_metadata = sorted(set(scene_groups) - metadata[camera])
+        raw_scene_groups = sorted({stem.rsplit("_", 1)[0] for stem in paired})
+        canonical_scene_groups = sorted(
+            {
+                str(int(group)) if group.isdigit() else group.lower()
+                for group in raw_scene_groups
+            }
+        )
+        missing_metadata = sorted(set(raw_scene_groups) - metadata[camera])
         metadata_covered &= not missing_metadata
-        all_scene_groups.update(f"{camera}/{scene}" for scene in scene_groups)
+        all_scene_groups.update(f"{camera}/{scene}" for scene in canonical_scene_groups)
         all_pair_keys.extend(f"{camera}/{stem}" for stem in paired)
         camera_rows.append(
             {
@@ -85,12 +91,16 @@ def analyze_members(members: list[ZipMember]) -> dict[str, Any]:
                 "png_count": len(by_camera[camera][".png"]),
                 "npy_count": len(by_camera[camera][".npy"]),
                 "pair_count": len(paired),
-                "scene_group_count": len(scene_groups),
+                "raw_scene_group_count": len(raw_scene_groups),
+                "canonical_scene_group_count": len(canonical_scene_groups),
                 "metadata_count": len(metadata[camera]),
                 "unpaired_count": len(unpaired),
                 "missing_metadata_count": len(missing_metadata),
                 "pair_keys_sha256": canonical_sha256(paired),
-                "scene_groups_sha256": canonical_sha256(scene_groups),
+                "raw_scene_groups_sha256": canonical_sha256(raw_scene_groups),
+                "canonical_scene_groups_sha256": canonical_sha256(
+                    canonical_scene_groups
+                ),
             }
         )
     return {

@@ -22,7 +22,7 @@
   "gates": {
     "required_primary_camera_groups": ["iphone-x", "samsung-s9"],
     "required_primary_pair_count": 1446,
-    "required_primary_scene_group_count": 241,
+    "required_primary_scene_group_count": 200,
     "required_metadata_member_count": 501,
     "require_each_primary_pair_png_npy": true,
     "require_metadata_for_each_selected_scene_group": true,
