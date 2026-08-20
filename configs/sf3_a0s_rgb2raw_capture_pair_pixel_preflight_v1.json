@@ -1,0 +1,49 @@
+{
+  "schema": "neuro-film.sf3-a0s-rgb2raw-capture-pair-pixel-preflight-contract.v1",
+  "experiment_id": "SF3.A0S_RGB2RAW_CAPTURE_PAIR_PIXEL_PREFLIGHT_V1",
+  "source": {
+    "dataset_id": "marcosv/rgb2raw",
+    "revision": "91a105e8532f082a955b799c15dea0ada9e3caed",
+    "archive_path": "train_rgb2raw.zip",
+    "archive_size": 8731825651,
+    "central_offset": 8731177943,
+    "central_size": 647610,
+    "central_sha256": "79c22ab4d206ce85a76e342386e3f0a2e74fd774d455ad71fd6f9fcecad6f925",
+    "source_lock_stable_identity": "636af45c156a848c374f39db6032743738379d8b7e55c5b56c002a1ce86415d0"
+  },
+  "selection_algorithm": "sha256-rank-numeric-normalized-scene-then-patch-v1",
+  "selection_manifest_sha256": "8b30460b6c5d40667df5aadaae89b82a0cf1387e3d79b05e82581cf6cdd175c1",
+  "rows": [
+    {"camera_group":"iphone-x","scene_group":"0148","canonical_scene_group":"148","pair_stem":"0148_2","png":"train/iphone-x/0148_2.png","npy":"train/iphone-x/0148_2.npy","metadata":"train/iphone-x/0148.pkl"},
+    {"camera_group":"iphone-x","scene_group":"0114","canonical_scene_group":"114","pair_stem":"0114_2","png":"train/iphone-x/0114_2.png","npy":"train/iphone-x/0114_2.npy","metadata":"train/iphone-x/0114.pkl"},
+    {"camera_group":"iphone-x","scene_group":"18","canonical_scene_group":"18","pair_stem":"18_2","png":"train/iphone-x/18_2.png","npy":"train/iphone-x/18_2.npy","metadata":"train/iphone-x/18.pkl"},
+    {"camera_group":"iphone-x","scene_group":"0115","canonical_scene_group":"115","pair_stem":"0115_2","png":"train/iphone-x/0115_2.png","npy":"train/iphone-x/0115_2.npy","metadata":"train/iphone-x/0115.pkl"},
+    {"camera_group":"iphone-x","scene_group":"079","canonical_scene_group":"79","pair_stem":"079_5","png":"train/iphone-x/079_5.png","npy":"train/iphone-x/079_5.npy","metadata":"train/iphone-x/079.pkl"},
+    {"camera_group":"iphone-x","scene_group":"23","canonical_scene_group":"23","pair_stem":"23_5","png":"train/iphone-x/23_5.png","npy":"train/iphone-x/23_5.npy","metadata":"train/iphone-x/23.pkl"},
+    {"camera_group":"samsung-s9","scene_group":"051","canonical_scene_group":"51","pair_stem":"051_2","png":"train/samsung-s9/051_2.png","npy":"train/samsung-s9/051_2.npy","metadata":"train/samsung-s9/051.pkl"},
+    {"camera_group":"samsung-s9","scene_group":"090","canonical_scene_group":"90","pair_stem":"090_0","png":"train/samsung-s9/090_0.png","npy":"train/samsung-s9/090_0.npy","metadata":"train/samsung-s9/090.pkl"},
+    {"camera_group":"samsung-s9","scene_group":"06","canonical_scene_group":"6","pair_stem":"06_3","png":"train/samsung-s9/06_3.png","npy":"train/samsung-s9/06_3.npy","metadata":"train/samsung-s9/06.pkl"},
+    {"camera_group":"samsung-s9","scene_group":"073","canonical_scene_group":"73","pair_stem":"073_4","png":"train/samsung-s9/073_4.png","npy":"train/samsung-s9/073_4.npy","metadata":"train/samsung-s9/073.pkl"},
+    {"camera_group":"samsung-s9","scene_group":"086","canonical_scene_group":"86","pair_stem":"086_1","png":"train/samsung-s9/086_1.png","npy":"train/samsung-s9/086_1.npy","metadata":"train/samsung-s9/086.pkl"},
+    {"camera_group":"samsung-s9","scene_group":"29","canonical_scene_group":"29","pair_stem":"29_3","png":"train/samsung-s9/29_3.png","npy":"train/samsung-s9/29_3.npy","metadata":"train/samsung-s9/29.pkl"}
+  ],
+  "network_limits": {
+    "maximum_total_bytes": 50000000,
+    "persist_member_payloads": false
+  },
+  "gates": {
+    "required_row_count": 12,
+    "required_rows_per_camera": 6,
+    "required_unique_canonical_scene_groups": 12,
+    "required_npy_shape": [512, 512, 4],
+    "required_png_shape": [1024, 1024, 3],
+    "minimum_census_agreement": 0.65,
+    "minimum_gradient_correlation": 0.45,
+    "minimum_display_raw_proxy_difference": 0.01,
+    "require_finite_bounded_raw": true,
+    "require_valid_nonexecuted_pickle_stream": true
+  },
+  "decision_if_pass": "PASS_RGB2RAW_CAPTURE_PAIR_PIXEL_PREFLIGHT_OPEN_OPERATOR_PREREG",
+  "decision_if_fail": "FAIL_CLOSED_RGB2RAW_CAPTURE_PAIR_PIXEL_PREFLIGHT",
+  "claim_ceiling": "Twelve scene-group-disjoint real capture-pair pixel preflight only. No operator quality, preference, film, package, schema, capability or product claim."
+}
