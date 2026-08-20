@@ -42,6 +42,11 @@ SUPPORTED = {
         320,
         "neuro-film.u1-4c31-parallel-staged-prophoto-24mp-report.v1",
     ),
+    "U1.4C32": (
+        "neuro-film.u1-4c32-spilled-context-staged-prophoto-24mp-contract.v1",
+        320,
+        "neuro-film.u1-4c32-spilled-context-staged-prophoto-24mp-report.v1",
+    ),
 }
 
 
@@ -81,17 +86,21 @@ def load_contract(path: Path, *, root: Path = ROOT) -> tuple[dict[str, Any], str
         or candidate["output_staging"] != "in-memory-row-stream"
         or not candidate["exact_float32_threshold_quantization"]
         or (
-            experiment_id == "U1.4C31"
+            experiment_id in {"U1.4C31", "U1.4C32"}
             and (
                 candidate.get("preprocess_workers") != 2
                 or not candidate.get("direct_input_memmap_required")
+                or (
+                    experiment_id == "U1.4C32"
+                    and not candidate.get("spill_mapped_for_context")
+                )
             )
         )
         or measurement["fresh_processes"] != 2
         or not measurement["run_workers_sequentially"]
     ):
         raise ValueError("streaming staged renderer frozen execution drift")
-    if experiment_id == "U1.4C31":
+    if experiment_id in {"U1.4C31", "U1.4C32"}:
         with tifffile.TiffFile(root / payload["fixture"]["path"]) as document:
             if len(document.pages) != 1 or not document.pages[0].is_memmappable:
                 raise ValueError("C31 requires one directly memmappable TIFF page")

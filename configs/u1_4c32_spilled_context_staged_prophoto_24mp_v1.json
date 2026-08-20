@@ -1,0 +1,67 @@
+{
+  "schema": "neuro-film.u1-4c32-spilled-context-staged-prophoto-24mp-contract.v1",
+  "experiment_id": "U1.4C32",
+  "question": "Does closing the exact mapped float32 buffer around the legacy full-image Lab reduction preserve C31 output identity while passing the unchanged 1GiB and 15-second 24MP product gates?",
+  "parents": {
+    "profile": {
+      "path": "configs/render_profiles/prophoto_rec2020_velvia_v1.json",
+      "sha256": "e0da6e630f616dc25c1bca431ade74edd55a2c0bf3a5eec5bd937c9a62447666"
+    },
+    "c31_evidence": {
+      "path": "docs/evidence/U1_4C31_PARALLEL_STAGED_PROPHOTO_24MP_RESULT.json",
+      "sha256": "8ec9749e6c950049b2e36d13becddd6a75e86b9ba5070359ca74826348be61fa"
+    },
+    "staged_core": {
+      "path": "src/inference/romm_rec2020_velvia_staged.py",
+      "sha256": "8c804701d2b6cbc8e9be1bc87367634878124046d5d5d1c71f9397f2d34b5f44"
+    },
+    "native_v2": {
+      "path": "src/inference/romm_rec2020_velvia_staged_native_v2.py",
+      "sha256": "0c792813bd7a4c6503030f6aeefcefc2f06f9c0b5f28c9ba660898387859d027"
+    },
+    "streaming_v3": {
+      "path": "src/inference/romm_rec2020_velvia_staged_streaming_v3.py",
+      "sha256": "937e50dbac0493f9636bc8fd2641888560669d4280d732c470a2a8653593935b"
+    },
+    "runner": {
+      "path": "scripts/benchmark_u1_4c29_streaming_staged_prophoto_v3_24mp.py",
+      "sha256": "d3081737494a81c34bcb2111b487ac46576d4031a2e82aec238e65bebe8ce0c7"
+    }
+  },
+  "fixture": {
+    "path": "data/wide_gamut/u1_4c18_prophoto_24mp/a0957-IMG_0032_6000x4000.tif",
+    "sha256": "91895fce65e8a32f869dd31ecd5c3ee576c9212cf028d59cd0022b0371668394",
+    "pixels": 24000000
+  },
+  "candidate": {
+    "row_chunk": 320,
+    "thread_count": 8,
+    "preprocess_workers": 2,
+    "direct_input_memmap_required": true,
+    "spill_mapped_for_context": true,
+    "output_staging": "in-memory-row-stream",
+    "compression_level": 0,
+    "exact_float32_threshold_quantization": true,
+    "one_final_quantization_only": true,
+    "decoded_rgb16_samples_must_equal_c18": true,
+    "container_bytes_may_differ_from_c18": true,
+    "hard_clipping_allowed": false,
+    "posthoc_limiting_allowed": false
+  },
+  "measurement": {
+    "fresh_processes": 2,
+    "run_workers_sequentially": true,
+    "sample_interval_seconds": 0.01,
+    "worker_timeout_seconds": 300,
+    "native_build_excluded_from_worker_wall": true
+  },
+  "gates": {
+    "required_output_sha256": "6648b164133f6cf31df95a72aa2e85724f2ede3f103de258138e44fc43cc6d6a",
+    "required_sample_sha256": "c6069cb19dc28472a9596a47fef4199c1f872f9f01554e856622a54e95c18ebb",
+    "maximum_peak_process_tree_rss_bytes": 1073741824,
+    "maximum_worker_wall_seconds": 15.0
+  },
+  "decision_if_pass": "retain_exact_spilled_context_staged_v3_24mp_product_path",
+  "decision_if_fail": "retain_c31_exact_components_but_close_this_spilled_context_staged_product_integration",
+  "claim_ceiling": "Local Windows CPU product-resource evidence for one exact 24MP natural-derived uncompressed ProPhoto TIFF and one opt-in Rec.2020 look; not compressed TIFF, arbitrary ICC, cross-platform performance, stock calibration, preference, HDR, or default promotion."
+}
