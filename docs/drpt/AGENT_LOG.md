@@ -2,6 +2,22 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+# 2026-08-21 - Project D fallback substantially returned to P
+
+- Migrated and SHA-256-verified 11,523 files / 5,982,004,002 bytes from the
+  exact project fallback into repo-relative, P-backed `data` and `outputs`
+  namespaces, then removed only the verified D copies.
+- Verified the complete EditReward checkpoint against its frozen official
+  SHA-256 `e2e49a09...861d2` and removed eight redundant partial/range-download
+  files totaling 17,075,229,378 bytes. P had only about 6.1 GB free after the
+  migration, so the one 16,593,468,352-byte complete checkpoint remains under
+  `D:\_project_fallbacks\neuro_film_goal_019f4b76`, not at the D root.
+- Two 21,243-byte Android SDK remnants exist in both the old D-root project
+  directory and the isolated fallback. Their bytes match the P runtime exactly,
+  but Windows still holds the APKs open after emulator/ADB cleanup; they are the
+  only known project scatter at D root and must be deleted only after the lock
+  clears. No unrelated D-root directory was changed.
+
 # 2026-08-11 - U6.P8CQ complete Android PNG stream passes
 
 - The unchanged deterministic RGB16 PNG/ICC writer now consumes the exact P8CP
