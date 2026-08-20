@@ -14169,3 +14169,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   strength, split and reference-exclusion rescues. The next representation
   must be monotone/invertible by construction; no Apply leaf opens.
 - Evidence: `docs/evidence/U5_R2REPID10_CANONCGT_BOUNDED_BASIS_SELECTOR_RESULT.json`.
+
+### 2026-08-20 - U5.R2REPID11 freezes an invertible extended transport
+
+- REPID10 proves local basis selection has real audit error signal but fails
+  safety on 9/9. The successor changes the structural mechanism, not capacity:
+  a fixed analytic asinh bijection maps the full observed pseudo-neutral range
+  `[-.1,1.1]` into `[0,1]`, then the already-confirmed BN4 14-parameter
+  triangular-logit transport fits the reference-only inverse.
+- The composition is cube-bounded, monotone and analytically invertible by
+  construction. Freeze the BN4 parameter bounds, identity shrinkage, fit
+  budget and channel order, plus REPID7's fit/holdout and absolute gates.
+  All nine references must also pass inverse, Jacobian, zero-boundary and
+  matched-control gates before any application source read.
+- No dose, bounds, coordinate, channel-order, optimizer-budget, clipping,
+  projection, threshold or reference-exclusion rescue is allowed.

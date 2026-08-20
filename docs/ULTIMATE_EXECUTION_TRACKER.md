@@ -1698,3 +1698,13 @@ singular on the fixed cube, coefficients reach 2,151.8, and seven references
 create new exact boundaries. Close basis/sigma/ridge/Jacobian-projection and
 strength rescues. Any successor must guarantee monotonicity or invertibility
 by construction rather than add unconstrained local capacity.
+
+U5.R2REPID11 is prospectively frozen as that structural successor. A fixed
+analytic asinh coordinate maps the complete observed pseudo-neutral support
+`[-.1,1.1]` bijectively into the RGB cube, followed by the already-confirmed
+14-parameter BN4 triangular-logit transport at full dose. The composition is
+explicit, source-independent, cube-bounded and analytically invertible with a
+positive triangular Jacobian; it adds no local basis or learned RGB output.
+All nine references must pass the unchanged absolute errors, matched REPID7
+gain, inverse/Jacobian/boundary and replay gates before Apply. Coordinate,
+parameter-bound, dose, channel-order and fit-budget rescue are forbidden.

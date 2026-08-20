@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2repid11-canoncgt-extended-triangular-transport-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2REPID11",
+  "parent_contract": {
+    "path": "configs/u5_r2f1_canoncgt_reference_condition_v1.json",
+    "sha256": "58d2a2b349763f7b29d08ded37e028f394585250f1ded9452a5beb41a4693d8b"
+  },
+  "matched_control_contract": {
+    "path": "configs/u5_r2repid7_canoncgt_self_canonical_inverse_v1.json",
+    "sha256": "4fcc39f273371f2f02ec76c87fde4382b5297349a92c0650e52376125e641575"
+  },
+  "representation_context": {
+    "path": "configs/u5_r2bn4_fivek_triangular_logit_transport_development_v1.json",
+    "sha256": "de829f2bd51b9d52c8b34d0017901f8fb401c39da85ece8772677901e38d81f9",
+    "core_path": "src/roll2film/triangular_logit_transport.py",
+    "core_sha256": "531c848d2668da96a3709f09abae4c2ff8626b89670963a5a5375a74982afe93"
+  },
+  "question": "Can an analytically invertible extended coordinate followed by the already-confirmed 14-parameter triangular-logit transport repair all nine CanonCGT self-canonical inverses without the folds of free quadratic or local bases?",
+  "build": {
+    "application_source_reads": 0,
+    "canonicalizer_input": "reference_only",
+    "operator": "extended_asinh_coordinate_plus_monotone_triangular_logit_transport",
+    "asinh_scale": 2.0,
+    "coordinate_input_minimum": -0.1,
+    "coordinate_input_maximum": 1.1,
+    "maximum_sample_rows": 65536,
+    "fit_partition": "even_positions_in_uniform_index_sample",
+    "holdout_partition": "odd_positions_in_uniform_index_sample",
+    "parameter_lower_bounds": [-0.7, -1.0, -0.7, -0.7, -1.0, -1.0, -0.7, -0.7, -0.7, -0.7, -1.0, -1.0, -1.0, -1.0],
+    "parameter_upper_bounds": [0.7, 1.0, 0.7, 0.7, 1.0, 1.0, 0.7, 0.7, 0.7, 0.7, 1.0, 1.0, 1.0, 1.0],
+    "identity_shrinkage": 0.05,
+    "maximum_fit_evaluations": 100,
+    "jacobian_grid_size": 7,
+    "jacobian_finite_difference": 0.000001
+  },
+  "structural_gates": {
+    "maximum_canonical_range_escape_magnitude": 0.1,
+    "maximum_holdout_oklab_error_median": 0.04,
+    "maximum_holdout_oklab_error_p95": 0.08,
+    "maximum_holdout_to_fit_mean_error_ratio": 1.2,
+    "minimum_grid_jacobian_determinant": 0.0001,
+    "minimum_grid_jacobian_singular_value": 0.01,
+    "maximum_grid_jacobian_condition_number": 25.0,
+    "maximum_inverse_roundtrip_error": 0.00000001,
+    "maximum_new_boundary_fraction": 0.0,
+    "minimum_median_p95_error_reduction_vs_logit_affine": 0.1,
+    "maximum_per_reference_p95_error_regression": 0.01,
+    "required_passing_references": 9
+  },
+  "replay": {
+    "reverse_reference_order_exact": true,
+    "two_fresh_process_reports_exact": true
+  },
+  "stop_rule": "Any fit convergence, absolute, Jacobian, inverse, boundary, matched-control or replay failure closes this exact extended coordinate, bounds, 14-parameter transport, shrinkage, fit budget and split before application-source access; no dose, channel-order, bounds, shrinkage, fit-budget, coordinate, clipping, projection, threshold, reference exclusion or checkpoint rescue.",
+  "pass_ceiling": "A structural pass opens one separately frozen consumed-source shared-operator application D0 only.",
+  "claim_ceiling": "Private consumed-reference analytically invertible explicit-operator preflight; no application quality, stock, calibration, population preference, product, schema or capability claim."
+}
