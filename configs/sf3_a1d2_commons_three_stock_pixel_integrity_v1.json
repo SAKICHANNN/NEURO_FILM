@@ -19,6 +19,7 @@
     "algorithm": "normalized-author-capped-uploader-round-robin-after-frozen-source-text-veto-v1",
     "excluded_page_ids": {
       "27241138": "digital Velvia simulation applied in Alien Skin Exposure",
+      "27167319": "digital Velvia simulation applied repeatedly in Alien Skin Exposure",
       "53705387": "film-package product photograph rather than a film exposure",
       "98037352": "digital VSCO Velvia simulation",
       "123811839": "film-package product photograph rather than a film exposure",
