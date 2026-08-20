@@ -123,7 +123,7 @@ def render_supported_prophoto_velvia_rec2020_staged(
             )
         )
         lab = (
-            np.empty(shape, dtype=np.float32)
+            None
             if _in_memory_staging
             else np.memmap(
                 temporary_path / "lab.f32",
@@ -144,18 +144,29 @@ def render_supported_prophoto_velvia_rec2020_staged(
             source_in_gamut = np.all((decoded >= 0.0) & (decoded <= 1.0), axis=2)
             mapped_tile, chroma_scale = ingress_mapper(decoded)
             mapped[y0:y1] = mapped_tile
-            lab[y0:y1] = linear_rgb_to_lab(
-                mapped_tile, working_space="linear_rec2020"
-            )
+            if lab is not None:
+                lab[y0:y1] = linear_rgb_to_lab(
+                    mapped_tile, working_space="linear_rec2020"
+                )
             mapped_count += int(np.count_nonzero(~source_in_gamut))
             minimum_chroma_scale = min(minimum_chroma_scale, float(np.min(chroma_scale)))
             output_minimum = min(output_minimum, float(np.min(mapped_tile)))
             output_maximum = max(output_maximum, float(np.max(mapped_tile)))
-        if not _in_memory_staging:
+        if _in_memory_staging:
+            del encoded
+            lab = np.empty(shape, dtype=np.float32)
+            for y0 in range(0, height, row_chunk):
+                y1 = min(height, y0 + row_chunk)
+                lab[y0:y1] = linear_rgb_to_lab(
+                    mapped[y0:y1], working_space="linear_rec2020"
+                )
+        else:
             mapped.flush()
+            assert lab is not None
             lab.flush()
-        del encoded
+            del encoded
 
+        assert lab is not None
         context = safe_lab_context_from_lab(lab)
         assets = {binding["role"]: root / binding["path"] for binding in profile["assets"]}
         stats = json.loads(assets["style_statistics"].read_text(encoding="utf-8"))
