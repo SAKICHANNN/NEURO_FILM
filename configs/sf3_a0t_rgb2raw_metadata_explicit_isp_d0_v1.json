@@ -22,6 +22,7 @@
     "group_key": "camera-group plus numeric-normalized capture id",
     "rank_preimage": "sf3-a0t-role-v1|camera_group|canonical_capture_group",
     "pair_rank_preimage": "sf3-a0t-pair-v1|camera_group|canonical_capture_group|pair_stem",
+    "expected_role_lock_sha256": "b0035a5bf6c36302c7a9a434224931a7fc5f98f0d8a99eac06e77dd9caf457c3",
     "per_camera_counts": {
       "fit": 40,
       "calibration": 12,
