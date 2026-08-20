@@ -1,0 +1,17 @@
+{
+  "schema": "neuro-film.u5-r2repid5-role-utility-prescore-failure.v1",
+  "experiment_id": "U5.R2REPID5",
+  "date": "2026-08-20",
+  "contract_path": "configs/u5_r2repid5_global_role_utility_d0_v1.json",
+  "contract_sha256": "64c75a325fbca8934356269f0d1902696833a70b8c6ca9902930ad7a7818661f",
+  "failure": "The frozen role list contained nonexistent tiff16_f and omitted observed role original.",
+  "independent_processes_with_same_failure": 2,
+  "formal_reports_created": 0,
+  "utility_fits": 0,
+  "scores": 0,
+  "image_member_reads": 0,
+  "image_decodes": 0,
+  "scientific_decision": null,
+  "status": "CONTRACT_INVALID_BEFORE_SCORE",
+  "next": "A separately numbered correction may bind the exact six roles already established by the official REPID source audit; numerical gates, split, exclusions and claim ceiling remain unchanged."
+}

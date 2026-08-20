@@ -61,3 +61,22 @@ def test_contract_is_metadata_only_and_parent_bound() -> None:
     assert contract["parent"]["required_decision"] == (
         "close_exact_repid_shared_logit_affine_population_prior"
     )
+
+
+def test_corrected_contract_binds_exact_source_audited_roles() -> None:
+    contract = json.loads(
+        (
+            ROOT / "configs/u5_r2repid5a_corrected_global_role_utility_d0_v1.json"
+        ).read_text()
+    )
+    assert contract["source"]["roles"] == [
+        "original",
+        "tiff16_a",
+        "tiff16_b",
+        "tiff16_c",
+        "tiff16_d",
+        "tiff16_e",
+    ]
+    assert contract["correction"]["only_change"] == (
+        "replace nonexistent tiff16_f with source-audited original role"
+    )

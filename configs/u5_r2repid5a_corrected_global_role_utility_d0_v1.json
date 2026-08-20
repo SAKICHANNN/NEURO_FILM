@@ -1,0 +1,60 @@
+{
+  "schema": "neuro_film.u5_r2repid5a_corrected_global_role_utility_d0_contract.v1",
+  "experiment_id": "U5.R2REPID5A",
+  "question": "After preserving REPID5's pre-score role-list failure, does the exact corrected REPID role universe identify one scene-stable transitive professional-render role utility before any further pixel read?",
+  "correction": {
+    "failed_contract_path": "configs/u5_r2repid5_global_role_utility_d0_v1.json",
+    "failed_contract_sha256": "64c75a325fbca8934356269f0d1902696833a70b8c6ca9902930ad7a7818661f",
+    "failure_evidence_path": "docs/evidence/U5_R2REPID5_ROLE_UTILITY_PRESCORE_FAILURE.json",
+    "failure_evidence_sha256": "aaea6f0171ad0a4b57964dba1ea628649146ea4314ff46f00deb62f58450408c",
+    "source_audit_evidence_path": "docs/evidence/U5_R2REPID0_SOURCE_AUDIT_RESULT.json",
+    "source_audit_evidence_sha256": "530f32dcf1bea2a43fcab72f9a5fc5729cc5cd511b5bc2306527831498ba2199",
+    "only_change": "replace nonexistent tiff16_f with source-audited original role"
+  },
+  "parent": {
+    "evidence_path": "docs/evidence/U5_R2REPID4_SHARED_LOGIT_AFFINE_D0_RESULT.json",
+    "evidence_sha256": "564e888a74a2acb244452c741a3409a7ba73f492375b77e9eb051355dcb4cc33",
+    "required_decision": "close_exact_repid_shared_logit_affine_population_prior",
+    "selected_roles_report_path": "outputs/eval/u5_r2repid2_shared_operator_roles/run_a.json",
+    "selected_roles_report_sha256": "734fc54fa2fd47a0fed8c00b75d0d7e9446bb951ead455230317d4ddc4cd663d",
+    "selected_roles_stable_evidence_id": "sha256:235e8056fa363b0c4c274dda21fc921326a3526f2c2f96db9b70cf3d9cb2f065"
+  },
+  "source": {
+    "dataset_id": "vsevolodpl/REPID",
+    "revision": "6a16a20a0b7122ad66d1f632af1586d45b443aa9",
+    "processed_markup_url": "https://huggingface.co/datasets/vsevolodpl/REPID/resolve/6a16a20a0b7122ad66d1f632af1586d45b443aa9/processed_markup.csv",
+    "processed_markup_size": 69361091,
+    "processed_markup_sha256": "a370d24c8d54c113e38c54f7fc7b4956adc64c08620ce15b94d4d598913ecab2",
+    "roles": ["original", "tiff16_a", "tiff16_b", "tiff16_c", "tiff16_d", "tiff16_e"]
+  },
+  "protocol": {
+    "complete_pair_rows_per_scene": 15,
+    "exclude_all_u5_r2repid2_selected_scenes": true,
+    "split_hash_domain": "u5-r2repid5-v1|",
+    "development_hash_byte_upper_exclusive": 192,
+    "confirmation_hash_byte_upper_exclusive": 256,
+    "utility": "development mean of per-scene signed (mos-0.5) role scores",
+    "prediction": "higher fitted role utility predicts preferred endpoint",
+    "leave_one_hash_fold_count": 16,
+    "label_permutation": "cyclic role permutation by one sorted role",
+    "image_member_reads": 0,
+    "image_decodes": 0,
+    "operator_fits": 0
+  },
+  "gates": {
+    "minimum_complete_scene_count": 4900,
+    "excluded_selected_scene_count": 128,
+    "minimum_development_scene_count": 3500,
+    "minimum_confirmation_scene_count": 1100,
+    "minimum_confirmation_pairwise_accuracy": 0.6,
+    "minimum_worst_role_pair_accuracy": 0.55,
+    "minimum_top_role_opponent_win_rate": 0.55,
+    "minimum_leave_one_fold_top_role_stability": 0.9,
+    "maximum_development_confirmation_accuracy_gap": 0.03,
+    "minimum_pair_majority_agreement_rate": 1.0,
+    "maximum_label_permuted_accuracy": 0.52
+  },
+  "claim_ceiling": "Internal metadata-only professional-render role-identifiability D0; not an image operator, per-image router, user preference model, film or stock evidence, pixel authorization, package, capability or product evidence.",
+  "decision_if_pass": "open_fresh_fixed_role_endpoint_operator_source_lock",
+  "decision_if_fail": "close_repid_global_role_preference_route_without_pixel_rescue"
+}

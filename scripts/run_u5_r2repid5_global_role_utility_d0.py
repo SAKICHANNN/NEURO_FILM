@@ -122,6 +122,27 @@ def evaluate(
     selected = json.loads(selected_bytes)
     excluded = {row["scene_id"] for row in selected["selected"]["rows"]}
 
+    correction = contract.get("correction")
+    correction_checks = {
+        "correction_failure_evidence_exact": True,
+        "correction_source_audit_exact": True,
+        "correction_roles_exact": True,
+    }
+    if correction is not None:
+        failure_bytes = (ROOT / correction["failure_evidence_path"]).read_bytes()
+        source_audit_bytes = (
+            ROOT / correction["source_audit_evidence_path"]
+        ).read_bytes()
+        source_audit = json.loads(source_audit_bytes)
+        correction_checks = {
+            "correction_failure_evidence_exact": _sha256(failure_bytes)
+            == correction["failure_evidence_sha256"],
+            "correction_source_audit_exact": _sha256(source_audit_bytes)
+            == correction["source_audit_evidence_sha256"],
+            "correction_roles_exact": contract["source"]["roles"]
+            == source_audit["annotation_structure"]["roles"],
+        }
+
     source = contract["source"]
     payload = fetch(source["processed_markup_url"], source["processed_markup_size"])
     source_exact = (
@@ -139,7 +160,8 @@ def evaluate(
     development_ids = [
         scene for scene in available if hashlib.sha256(f"{domain}{scene}".encode()).digest()[0] < cut
     ]
-    confirmation_ids = [scene for scene in available if scene not in set(development_ids)]
+    development_set = set(development_ids)
+    confirmation_ids = [scene for scene in available if scene not in development_set]
     development = [complete[scene] for scene in development_ids]
     confirmation = [complete[scene] for scene in confirmation_ids]
     utilities = _fit_utilities(development, roles)
@@ -189,6 +211,7 @@ def evaluate(
         "label_permuted_accuracy": permuted_score["accuracy"],
     }
     gates = {
+        **correction_checks,
         "parent_evidence_exact": _sha256(parent_bytes)
         == parent_cfg["evidence_sha256"],
         "parent_decision_exact": parent["decision"]
@@ -226,7 +249,11 @@ def evaluate(
     }
     passed = all(gates.values())
     report = {
-        "schema": "neuro_film.u5_r2repid5_global_role_utility_d0_report.v1",
+        "schema": (
+            "neuro_film."
+            + contract["experiment_id"].lower().replace(".", "_")
+            + "_global_role_utility_d0_report.v1"
+        ),
         "experiment_id": contract["experiment_id"],
         "contract_sha256": _sha256(
             json.dumps(contract, sort_keys=True, separators=(",", ":")).encode()
