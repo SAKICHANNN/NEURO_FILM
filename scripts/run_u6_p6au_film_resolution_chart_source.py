@@ -24,12 +24,23 @@ def main() -> None:
     parser.add_argument("--data-root", type=Path, required=True)
     parser.add_argument("--report", type=Path, required=True)
     args = parser.parse_args()
-    report = acquire(load_contract(args.config), args.data_root)
+    contract = load_contract(args.config)
+    try:
+        report = acquire(contract, args.data_root)
+    except ValueError as error:
+        report = {
+            "schema": "neuro-film.u6-p6au-film-resolution-chart-source-report.v1",
+            "experiment_id": contract["experiment_id"],
+            "automatic_pass": False,
+            "failure_reason": str(error),
+            "decision": contract["decision_if_fail"],
+            "claim_ceiling": contract["claim_ceiling"],
+        }
     args.report.parent.mkdir(parents=True, exist_ok=True)
     args.report.write_text(
         json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8"
     )
-    print(json.dumps(report["aggregate"], sort_keys=True))
+    print(json.dumps(report, sort_keys=True))
 
 
 if __name__ == "__main__":

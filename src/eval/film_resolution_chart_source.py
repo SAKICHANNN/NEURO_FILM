@@ -83,7 +83,10 @@ def _validate_tiff(path: Path) -> dict[str, Any]:
         values = page.asarray()
         bits = tuple(int(value) for value in np.atleast_1d(page.bitspersample))
         if values.dtype != np.uint16 or values.ndim != 3 or values.shape[2] != 3:
-            raise ValueError("P6AU TIFF is not RGB16")
+            raise ValueError(
+                "P6AU TIFF is not RGB16: "
+                f"dtype={values.dtype}, shape={tuple(int(v) for v in values.shape)}"
+            )
         if bits not in {(16,), (16, 16, 16)}:
             raise ValueError("P6AU TIFF bit depth drift")
         return {
@@ -172,11 +175,15 @@ def acquire(contract: dict[str, Any], destination: Path) -> dict[str, Any]:
     for expected in members:
         if by_name.get(expected["name"]) != expected:
             raise ValueError("P6AU selected central identity drift")
+    # Validate the smallest frozen member before scheduling the remaining
+    # transfer. A failed source-format gate must not acquire the full archive
+    # selection after its decision is already known.
+    outputs = [_fetch_member(source["archive_url"], members[0], destination)]
     with ThreadPoolExecutor(max_workers=4) as executor:
-        outputs = list(
+        outputs.extend(
             executor.map(
                 lambda row: _fetch_member(source["archive_url"], row, destination),
-                members,
+                members[1:],
             )
         )
     return {

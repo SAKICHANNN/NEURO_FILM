@@ -47,7 +47,7 @@ def test_p6au_rgb16_tiff_validation(tmp_path: Path) -> None:
 def test_p6au_rejects_rgb8(tmp_path: Path) -> None:
     path = tmp_path / "rgb8.tif"
     tifffile.imwrite(path, np.zeros((4, 5, 3), dtype=np.uint8), photometric="rgb")
-    with pytest.raises(ValueError, match="not RGB16"):
+    with pytest.raises(ValueError, match="dtype=uint8"):
         _validate_tiff(path)
 
 
