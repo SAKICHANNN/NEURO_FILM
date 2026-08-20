@@ -895,7 +895,7 @@ FLUX.2 gate:
 | U6.P7D-P7E | complete: compiler pass / combined route closed | Compile physical micrometres to virtual scan DPI, then attribute the remaining non-spatial failure | P7C | 4000 dpi repairs blur and passes automatic/severe gates but loses 0/3 blind rounds to colour-only; P7E identifies channelwise paper/sensitometry response as the dominant cast and selects the existing neutral-axis gauge |
 | U6.P7F/P7F1 | complete: development challenger pass | Reuse the data-independent neutral gauge on the corrected 4000-dpi chain | P7E + U5.R2I1 gauge | two 65-file runs are exact; neutral chroma `.00771`, median non-basic/to-colour `11.54/4.83`, zero new boundaries and 0 severe failures; candidate narrowly wins 14/27 choices and 2/3 blind rounds. Production remains unchanged |
 | U6.P7G/P7G1 | complete: fixed-resolution partition pass / broad resolution claim closed | Test tile/order/resolution invariance and attribute failures by stage | P7F pass | 28 tile/order cases are float/quantization/seam exact. Independent lower-resolution recomputation fails 5/8; physical/gauge has one marginal synthetic edge failure, while AO6-only fails 6/8 and dominates real-image error. Bind challenger to 4000-dpi reference identity; P8A next |
-| U6.P8A-P8W | complete: Python canonical profile topology / desktop memory pass | Compile the fixed-reference profile, prove artifact-only replay, and reduce attributed full-frame buffers without changing pixels | P7G pass | Hash-bound profile and exact forward/reverse partitions pass. P8W selects 32 rows; 12MP process-tree peak is 717.14-717.15MB versus 1.79-1.88GiB at P8H. Python micro-optimization closes; P8X native CPU ABI/conformance next. No native/mobile, production or calibration claim |
+| U6.P8A-P8X | complete: Python topology/resource pass plus private MSVC x64 pointwise C ABI conformance | Compile the fixed-reference profile, prove artifact-only replay, reduce attributed full-frame buffers, then validate the frozen pointwise native ABI | P7G pass | P8W selects 32 rows at 717.14-717.15MB for 12MP. P8X independently builds four byte-identical MSVC x64 DLLs and matches the frozen Python oracle to `5.55e-16`; in-place/replay/failure atomicity pass. Spatial/full renderer, mobile/Apple, package, product and calibration remain open/closed as stated. |
 | U6.P8BM | complete: local versioned strength transaction pass | Bind the selected development strength to a separate restart-verifiable native transaction without changing v1 | P8BL pass | Two fresh Canon RAW runs produce byte-exact strength-0.80 PNG `c1a20a1...eac0f`, zero boundary pixels, 565-623MB peak and 15.32-15.49s worker time; v1 strength-1 remains byte-identical. P8BN fresh-population preference confirmation next; no default/promotion |
 | U6.P8BN | complete: automatic/severe pass, reduced-strength preference closed | Compare fixed native Standard strengths 0.80 and 1.00 on a fresh CC0 RAW cohort | P8BM pass | Seven decoded rows/seven makes, 14 boundary-clean renders and zero confirmed new severe artifacts; 0.80 wins only 1/3 autonomous blind rounds versus the frozen 2/3 gate. Retain 1.00, no router/default/product claim; P8BO portable native package next |
 | U6.P8BO | complete: portable source/build pass | Build the frozen strength-1.0 native Standard package with an independent Windows compiler and Android/Apple cross-targets | P8BN closure | Two complete executions share stable ID `0c43c8f...7adbc`; MSVC and LLVM-MinGW are output-byte-exact, Windows and Android arm64/x86_64 builds repeat exactly, and macOS/iOS arm64 ABI witnesses repeat exactly. Android is compile/link-only and Apple object-only; no runtime/product claim |
@@ -1872,3 +1872,15 @@ flat-region p99 reaches `.55272` (gate `.04`), isolated excursions total
 `.05`). Close the exact curve/scanner/diffusion/AO6-order family without
 threshold, clipping, limiting or cohort rescue. Evidence:
 `docs/evidence/U6_P4IK_SIGMOID_SCANNER_PHOTO_DEVELOPMENT_RESULT.json`.
+
+U6.P8X completes the already-frozen portable pointwise print-interpretation
+leaf rather than creating a duplicate P6W successor. Two fresh formal
+processes each perform two independent strict-float MSVC x64 C11 builds; all
+four DLLs are byte identical (`5a28e604...46fcc`) and both reports are byte
+identical (`17cbd27b...5a232`). Native output matches the frozen Python oracle
+to `5.55e-16` against a `5e-13` gate, while same-binary replay, in-place versus
+out-of-place parity and invalid-input output atomicity all pass. Retain only
+the private pointwise C ABI arithmetic result. Spatial response, neutral
+gauge, display look, full-frame renderer, other targets, package, capability,
+calibration and product promotion remain closed. Evidence:
+`docs/evidence/U6_P8X_NATIVE_PRINT_CONFORMANCE_RESULT.json`.

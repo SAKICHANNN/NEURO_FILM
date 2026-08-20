@@ -14443,3 +14443,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Propagation: no product, package, capability, preference, calibration or
   stock claim opens. Continue only with genuinely new paired/capture-time
   information or a distinct mature RAW/DNG/HDR/portable explicit operator.
+
+### 2026-08-21 - U6.P8X passes private MSVC x64 pointwise conformance
+
+- Parent goal: advance the mature portable explicit-operator engineering lane
+  after P4IK closed, without starting another after-only algorithm search.
+- Direction correction: a read-only audit found that the intended P6W native
+  successor already existed as the frozen and implemented P8X leaf. No
+  duplicate ABI, contract or test family was created.
+- Execution: two fresh formal processes, each containing two independent MSVC
+  builds, wrote only to the project-isolated D fallback. All four DLL hashes
+  and both report bytes are exact.
+- Evidence: native output matches the frozen Python oracle to `5.55e-16`;
+  profile validation, replay, in-place parity and invalid-input output
+  atomicity pass. See
+  `docs/evidence/U6_P8X_NATIVE_PRINT_CONFORMANCE_RESULT.json`.
+- Propagation: retain the private Windows x64 pointwise ABI only. No spatial,
+  full-renderer, mobile/Apple, package, public capability, calibration, stock
+  or product claim opens.

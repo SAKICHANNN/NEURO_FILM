@@ -1,0 +1,54 @@
+{
+  "schema": "neuro-film.u6-p8x-native-print-conformance-evidence.v1",
+  "node": "U6.P8X",
+  "status": "PASS_PRIVATE_PORTABLE_MSVC_X64_POINTWISE_CONFORMANCE",
+  "decision": "pass portable MSVC x64 pointwise physical-print C ABI conformance; spatial response, gauge, display look, full-frame renderer and other target runtimes remain open",
+  "execution_start_git_head": "bc73805a",
+  "bindings": {
+    "contract_path": "configs/u6_p8x_native_print_conformance_v1.json",
+    "contract_sha256": "710a2b5b5d3f535592e25799d68dc38d3ab2123e99c17374df02baf6f6dfe299",
+    "runner_path": "scripts/run_u6_p8x_native_print_conformance.py",
+    "runner_sha256": "0ca35e39f61e330f8a00d2b38c27d31dad1437dc33b3b3414ff750368159954b",
+    "harness_path": "src/eval/physical_native_print_conformance.py",
+    "harness_sha256": "71c115f0562e4f3e95c92bf78aa075ab836f0e224cf01f5a3b5577f49245da94",
+    "native_source_path": "native/film_physics/nf_physical_print_v1.c",
+    "native_source_sha256": "b40b0f043068b5fec50c8b680dcc2ae0e4181e006b3215283050d5472f00d100",
+    "native_header_path": "native/film_physics/nf_physical_print_v1.h",
+    "native_header_sha256": "43f58fdea4220d2da8a230a938595ba8a712521662cc6ef1ef56e56a919c5f7a",
+    "profile_payload_sha256": "bf0fb88bd3c1e49da15c392ecc0b2c4fc8b4d70db50b4b0cc34f30aa5ae3851b",
+    "oracle_sha256": "c862f5b70176720503b9c5e6ffb59a485b1e6c6548545ceb6a292ec37a732b4b"
+  },
+  "storage": {
+    "formal_output_root": "D:/_project_fallbacks/neuro_film_goal_019f4b76/u6_p8x",
+    "formal_output_scope": "project-isolated temporary fallback; no D-root files and no new P writes",
+    "durable_promotion_performed": false
+  },
+  "formal_runs": {
+    "fresh_process_count": 2,
+    "independent_builds_per_process": 2,
+    "total_independent_builds": 4,
+    "run_a_report_sha256": "17cbd27bcc5090a7aff52338fef854cde36a833549efdfe93d50a3ce41c5a232",
+    "run_b_report_sha256": "17cbd27bcc5090a7aff52338fef854cde36a833549efdfe93d50a3ce41c5a232",
+    "stable_evidence_id": "66c08da74caff5f84953c620956a58d4beda1c8a56b58b74a5536c58af756db3",
+    "dll_sha256": "5a28e604256fa262756b23682c9b29955b2031add232eca0ee6849a0c2446fcc",
+    "all_four_dll_hashes_exact": true,
+    "all_report_bytes_exact": true,
+    "toolchain": "msvc-x64-c11"
+  },
+  "metrics": {
+    "rgb_count": 12,
+    "python_native_maximum_absolute_error": 5.551115123125783e-16,
+    "python_native_maximum_absolute_error_gate": 5e-13,
+    "output_array_sha256": "c39a05efacefdeb0a7e1628420a87fd35a7441cc4556b6254882d86039348987"
+  },
+  "gates": {
+    "profile_validation": true,
+    "python_native_tolerance": true,
+    "independent_build_dll_sha_exact": true,
+    "same_binary_repeat_byte_exact": true,
+    "invalid_input_output_unchanged": true,
+    "inplace_matches_out_of_place": true
+  },
+  "interpretation": "The already-retained generic pointwise sensitometry and density-to-print equations compile into a deterministic strict-float MSVC x64 C11 ABI and reproduce the frozen Python float64 oracle. This is a portable arithmetic conformance result, not new photographic or stock quality evidence.",
+  "claim_ceiling": "Private local Windows MSVC x64 pointwise generic physical-inspired sensitometry and density-to-print interpretation conformance only; excludes spatial response, neutral-axis gauge, display look, full-frame renderer, mobile or Apple runtime, measured calibration, package, public capability and product promotion."
+}
