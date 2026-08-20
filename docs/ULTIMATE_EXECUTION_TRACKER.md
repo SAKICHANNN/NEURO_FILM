@@ -86,6 +86,20 @@ Close datasheet characteristic shape as a three-stock identity signal without
 redigitization or gate rescue. The next K=1 stock expert must be driven by
 rights-authorized, same-scene, independently grouped pixel evidence.
 
+SF3.A3 now compiles the requested executable source/evidence matrix over eight
+hash-bound results rather than relying on narrative eligibility. Two formal
+reports are byte exact (`676aec5f...74394c`, stable `4954e9b1...98f71b`).
+Velvia 50, Portra 400 and Ektar 100 are all `0/1` for K=1 fitting: controlled
+capture has no rows, the Commons pool failed nuisance-controlled
+identifiability/connectivity, datasheets are non-renderable priors whose MTF
+and curve discriminators failed, NTNU has no public dataset or Portra/Ektar
+arms, and Openverse is infrastructure-invalid. RF3.D0 remains the first
+development-only three-proxy baseline; AO6 is explicitly only its Velvia 50
+display-proxy Look Approximation comparator. Adaptive LUT, retrieval and
+`K>1` remain closed until one real source lane per stock passes all five data
+gates. Evidence:
+`docs/evidence/SF3_A3_THREE_STOCK_ADMISSION_MATRIX_RESULT.json`.
+
 SF3.A2 tests one bounded current public-index refresh without changing the
 three-stock gates. The frozen anonymous Openverse route returned HTTP 401 for
 all three exact queries, despite the current consumer documentation describing

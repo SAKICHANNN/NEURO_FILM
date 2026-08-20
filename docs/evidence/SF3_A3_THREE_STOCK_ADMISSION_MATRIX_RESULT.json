@@ -1,0 +1,60 @@
+{
+  "schema": "neuro-film.sf3-a3-three-stock-admission-matrix-evidence.v1",
+  "experiment_id": "SF3.A3",
+  "date": "2026-08-21",
+  "status": "COMPLETE_NO_STOCK_ADMITTED_FOR_K1_FIT",
+  "decision": "RETAIN_RF3_D0_AS_DEVELOPMENT_BASELINE_AND_PRIORITIZE_CONTROLLED_THREE_STOCK_PIXEL_ACQUISITION",
+  "contract": {
+    "path": "configs/sf3_a3_three_stock_admission_matrix_v1.json",
+    "sha256": "df7047680dddb127872b5b5f10ed3a96f2f22f2afaee936e82f38027b8786a60",
+    "freeze_commit": "b36bc625"
+  },
+  "implementation": {
+    "commit": "9d90d55ceb330f89ec03ec74abdd83c7f0a64484",
+    "evaluator_sha256": "e6525b2a0e4db672c623d332bd144017f1e0201cd0190e3af1272fac5c00a387",
+    "runner_sha256": "8d2d0d80723a2da9a40582deced93ee70e7147d581a19fdc9701fccaff1180aa",
+    "test_sha256": "d0b0c7b5c4238be6d63a5ead8562d6843503fa985775d3f3a8ce1fd852928405"
+  },
+  "formal_replay": {
+    "processes": 2,
+    "reports_byte_exact": true,
+    "report_sha256": "676aec5f1fe49d9d0e2d31e2f331d2d4a53b7a0bf67c21466dd4fb74bb74394c",
+    "stable_evidence_id": "4954e9b12e118369779a8bf49a280da053d40e2d852d298282839d8d3098f71b",
+    "run_a": "outputs/eval/sf3_a3_three_stock_admission_matrix_v1/run_a/report.json",
+    "run_b": "outputs/eval/sf3_a3_three_stock_admission_matrix_v1/run_b/report.json"
+  },
+  "observations": {
+    "bound_evidence_records": 8,
+    "required_stocks": 3,
+    "k1_fit_admitted_stocks": 0,
+    "current_three_stock_baseline": "RF3.D0 development-only proxy matrix",
+    "ao6_role": "Velvia 50 author-rendered display-proxy Look Approximation baseline only",
+    "controlled_capture": "protocol ready; zero acquired rows",
+    "commons_unpaired": "rights-cleared pixels exist, but same-scene references, independent roll/process/scanner holdouts and stock identifiability are absent",
+    "manufacturer_datasheets": "non-renderable physical priors only; MTF and normalized curve-shape discriminators both failed",
+    "ntnu_2026": "controlled Velvia 50/Ektachrome method precedent; no public machine-readable dataset and no Portra/Ektar arms",
+    "openverse": "HTTP 401 infrastructure-invalid; no source-absence inference"
+  },
+  "blocked_until_new_data": [
+    "image-adaptive LUT or basis",
+    "nearest-neighbour retrieval",
+    "hard-medoid or sparse retrieval",
+    "K greater than 1 or latent-mode routing"
+  ],
+  "latest_primary_source_check": {
+    "work": "Colour correction of archival photographs for change detection and digital restoration of paintings",
+    "year": 2026,
+    "doi": "https://doi.org/10.1016/j.daach.2026.e00550",
+    "result": "The publication describes controlled Velvia 50 and Ektachrome E100 captures with hyperspectral ground truth. A current exact-title/author Zenodo API check found no deposited record; it does not cover Portra 400 or Ektar 100."
+  },
+  "verification": {
+    "focused_and_adjacent_tests": 21,
+    "failures": 0,
+    "ruff_pass": true,
+    "py_compile_pass": true,
+    "diff_check_pass": true
+  },
+  "scientific_conclusion": "The requested executable three-stock source/evidence matrix now binds the first runnable RF3.D0 baseline and all current data/prior failures. No stock has a source lane that simultaneously supplies reuse rights, pixels, same-scene digital references, independent roll/process/scanner holdout and passed stock identifiability. Therefore the current result is a data gap, not permission to improve proxy algorithms.",
+  "next_mainline": "Populate the already-frozen SF3.A0 controlled acquisition manifest with rights-cleared Velvia 50, Portra 400 and Ektar 100 observations. Until a real lane passes, keep RF3.D0 as a development-only baseline and do not open adaptive, retrieval or latent-mode work.",
+  "claim_ceiling": "Executable current-evidence admission and exact data-gap localization for three named stocks. No stock response, K=1 fit, calibration, preference, distinguishability, product promotion or completed multi-stock system claim."
+}

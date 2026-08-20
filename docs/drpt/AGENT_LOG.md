@@ -14907,3 +14907,22 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Velvia separates from Portra and Ektar, but Portra--Ektar fails both frozen
   gates (median `.02055`, RMSE `.03349`). Close this prior without rescue and
   proceed to same-scene, independently grouped three-stock pixel evidence.
+
+### 2026-08-21 - SF3.A3 compiles the three-stock admission matrix
+
+- Direction correction is enforced in code: RF3.D0 is the first
+  development-only three-proxy baseline, and AO6 is only its Velvia 50
+  display-proxy Look Approximation comparator.
+- The frozen matrix binds eight current evidence records and requires rights,
+  pixels, same-scene digital reference, independent roll/process/scanner
+  holdout and stock identifiability in one source lane before K=1 fitting.
+- Two reports are byte exact (`676aec5f...74394c`, stable
+  `4954e9b1...98f71b`); all three stocks remain blocked. No adaptive LUT,
+  retrieval, medoid/sparse routing or `K>1` work opens.
+- The next mainline is the already-frozen controlled three-stock acquisition
+  manifest. Current NTNU/Zenodo availability was rechecked: the 2026 method is
+  strong capture-design precedent but exposes no public machine-readable data
+  and lacks Portra/Ektar arms.
+- Verification: 21 focused/adjacent tests, Ruff, py_compile and diff-check
+  pass. Evidence:
+  `docs/evidence/SF3_A3_THREE_STOCK_ADMISSION_MATRIX_RESULT.json`.
