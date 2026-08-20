@@ -1,0 +1,88 @@
+{
+  "schema": "neuro-film.sf3-a0m-three-stock-capture-alignment-stress-contract.v1",
+  "experiment_id": "SF3.A0M",
+  "status": "FROZEN_BEFORE_ALIGNMENT_STRESS",
+  "question": "Can the existing deterministic SIFT-to-RANSAC alignment recover known source-to-scan geometry for every SF3.A0K scene under fixed blur and monotone colour/tone stress before physical film is exposed?",
+  "parent": {
+    "stimulus_evidence": {
+      "path": "docs/evidence/SF3_A0K_THREE_STOCK_DISPLAY_STIMULUS_RESULT.json",
+      "sha256": "1aac3b79610b8707e4b00313a290a5a82ae0bf2e2d60932e4de922e92b213ef2",
+      "required_decision": "READY_FOR_PHYSICAL_THREE_STOCK_CAPTURE_INPUT_ONLY"
+    },
+    "stimulus_manifest": {
+      "path": "data/real_film/sf3_a0k_three_stock_display_stimulus_v1/manifest.json",
+      "sha256": "22808350c4de311118b10e17c627034b15eb10e9050e004c0ffd44bfbe89d5cf"
+    }
+  },
+  "expected_scene_ids": [
+    "canon_eos_kiss_f",
+    "canon_eos_1d_mark_iv",
+    "nikon_d2x",
+    "nikon_d200",
+    "sony_dslr_a290",
+    "fujifilm_finepix_s5000",
+    "olympus_sp550uz",
+    "panasonic_dmc_gf2",
+    "olympus_e_p7",
+    "pentax_k100d_super",
+    "leica_d_lux_6",
+    "kodak_dcs_pro_14n"
+  ],
+  "alignment": {
+    "method": "SIFT_source_to_scan_homography",
+    "maximum_features": 4000,
+    "ratio_test": 0.76,
+    "ransac_reprojection_threshold_px": 3.0,
+    "minimum_good_matches": 35,
+    "minimum_ransac_inliers": 25,
+    "maximum_median_inlier_reprojection_error_px": 1.5
+  },
+  "stress_conditions": [
+    {
+      "id": "mild_warm_scan",
+      "corner_offsets_fraction": [[0.008, 0.006], [-0.009, 0.008], [0.007, -0.007], [-0.006, -0.009]],
+      "gaussian_sigma_pixels": 0.7,
+      "channel_gain": [1.05, 0.98, 0.92],
+      "channel_offset": [-0.01, 0.005, 0.015],
+      "gamma": 1.08
+    },
+    {
+      "id": "cool_low_contrast_scan",
+      "corner_offsets_fraction": [[-0.012, 0.01], [0.01, 0.006], [-0.009, -0.012], [0.012, -0.006]],
+      "gaussian_sigma_pixels": 1.1,
+      "channel_gain": [0.88, 0.96, 1.06],
+      "channel_offset": [0.035, 0.025, 0.005],
+      "gamma": 1.18
+    },
+    {
+      "id": "dense_warp_neutral_scan",
+      "corner_offsets_fraction": [[0.015, -0.012], [-0.014, 0.014], [0.013, 0.011], [-0.016, -0.01]],
+      "gaussian_sigma_pixels": 1.4,
+      "channel_gain": [0.94, 1.03, 0.97],
+      "channel_offset": [0.02, -0.005, 0.015],
+      "gamma": 0.92
+    }
+  ],
+  "evaluation": {
+    "truth_grid_columns": 17,
+    "truth_grid_rows": 13,
+    "inner_margin_fraction": 0.05,
+    "formal_processes": 2,
+    "process_a_order": "canonical",
+    "process_b_order": "reverse",
+    "save_stressed_pixels": false,
+    "pixel_operator_fit_allowed": false,
+    "stock_operator_fit_allowed": false
+  },
+  "gates": {
+    "required_rows": 36,
+    "require_all_rows_aligned": true,
+    "maximum_population_median_truth_reprojection_error_px": 1.0,
+    "maximum_row_p95_truth_reprojection_error_px": 2.5,
+    "maximum_row_max_truth_reprojection_error_px": 5.0,
+    "require_exact_scientific_replay": true
+  },
+  "decision_if_pass": "RETAIN_UNMARKED_SCENE_ALIGNMENT_FOR_FIRST_PHYSICAL_ACQUISITION",
+  "decision_if_fail": "ADD_EXPLICIT_GEOMETRIC_FIDUCIAL_CAPTURE_PLATES_BEFORE_FILM_EXPOSURE",
+  "claim_ceiling": "Synthetic geometric and monotone scan-stress validation on the exact SF3.A0K digital inputs only. It is not physical-film alignment, stock evidence, scanner calibration, target closeness, stock distinguishability, fitting, preference or product promotion."
+}
