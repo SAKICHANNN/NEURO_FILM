@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 import tempfile
+import zlib
 from collections.abc import Callable
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -26,6 +27,7 @@ from src.preprocess import (
     linear_rec2020_to_rec2020,
     save_rec2020_rgb16_png_samples,
 )
+from src.preprocess.png_stream import sha256_rec2020_rgb16_png_samples
 from src.preprocess.prophoto_icc import decode_prophoto_rgb16_to_linear_rec2020
 
 from .romm_rec2020_velvia import (
@@ -355,16 +357,31 @@ def render_supported_prophoto_velvia_rec2020_staged(
             mapped._mmap.close()
         if output_samples is not None:
             save_rec2020_rgb16_png_samples(output_samples, output_path)
-        stored = cv2.imread(str(output_path), cv2.IMREAD_UNCHANGED)
-        if (
-            stored is None
-            or stored.dtype != np.uint16
-            or stored.shape != shape
-        ):
-            output_path.unlink(missing_ok=True)
-            raise ROMMRec2020RenderError("staged PNG exact sample readback failed")
-        stored_rgb = np.ascontiguousarray(stored[..., ::-1])
-        if hashlib.sha256(stored_rgb.tobytes()).digest() != output_sample_digest.digest():
+        if output_writer is None:
+            stored = cv2.imread(str(output_path), cv2.IMREAD_UNCHANGED)
+            if (
+                stored is None
+                or stored.dtype != np.uint16
+                or stored.shape != shape
+            ):
+                output_path.unlink(missing_ok=True)
+                raise ROMMRec2020RenderError("staged PNG exact sample readback failed")
+            stored_sample_sha256 = hashlib.sha256(
+                np.ascontiguousarray(stored[..., ::-1]).tobytes()
+            ).hexdigest()
+        else:
+            try:
+                stored_sample_sha256 = sha256_rec2020_rgb16_png_samples(
+                    output_path,
+                    width=width,
+                    height=height,
+                )
+            except (OSError, ValueError, zlib.error) as exc:
+                output_path.unlink(missing_ok=True)
+                raise ROMMRec2020RenderError(
+                    "staged PNG exact sample readback failed"
+                ) from exc
+        if stored_sample_sha256 != output_sample_digest.hexdigest():
             output_path.unlink(missing_ok=True)
             raise ROMMRec2020RenderError("staged PNG exact sample readback failed")
 
@@ -415,7 +432,8 @@ def render_supported_prophoto_velvia_rec2020_staged(
             "production_default_changed": False,
             "claim_ceiling": profile["claim_ceiling"],
         }
-        del stored
+        if output_writer is None:
+            del stored
         if output_samples is not None:
             output_samples.flush()
             output_samples._mmap.close()

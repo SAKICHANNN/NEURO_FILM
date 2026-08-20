@@ -16,6 +16,7 @@ from .output_encode import srgb_icc_profile
 
 _PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
 _IDAT_PAYLOAD_BYTES = 64 * 1024
+_MAX_VERIFIER_CHUNK_BYTES = 64 * 1024 * 1024
 
 
 def _chunk(kind: bytes, payload: bytes) -> bytes:
@@ -23,6 +24,117 @@ def _chunk(kind: bytes, payload: bytes) -> bytes:
         raise ValueError("PNG chunk type must contain four bytes")
     crc = zlib.crc32(kind + payload) & 0xFFFFFFFF
     return struct.pack(">I", len(payload)) + kind + payload + struct.pack(">I", crc)
+
+
+def sha256_rec2020_rgb16_png_samples(
+    path: Path,
+    *,
+    width: int,
+    height: int,
+) -> str:
+    """Strictly stream and hash native-order RGB16 samples from our PNG rail."""
+
+    if isinstance(width, bool) or not isinstance(width, int) or width <= 0:
+        raise ValueError("width must be a positive integer")
+    if isinstance(height, bool) or not isinstance(height, int) or height <= 0:
+        raise ValueError("height must be a positive integer")
+    row_bytes = width * 3 * 2
+    scanline_bytes = row_bytes + 1
+    pending = bytearray()
+    digest = hashlib.sha256()
+    decoder = zlib.decompressobj()
+    rows = 0
+    seen_ihdr = False
+    seen_cicp = False
+    seen_idat = False
+    idat_ended = False
+    seen_iend = False
+
+    def consume(decoded: bytes) -> None:
+        nonlocal rows
+        pending.extend(decoded)
+        complete = len(pending) // scanline_bytes
+        if complete == 0:
+            return
+        if rows + complete > height:
+            raise ValueError("PNG contains more rows than declared")
+        count = complete * scanline_bytes
+        block = bytes(pending[:count])
+        del pending[:count]
+        matrix = np.frombuffer(block, dtype=np.uint8).reshape(complete, scanline_bytes)
+        if np.any(matrix[:, 0] != 0):
+            raise ValueError("streaming RGB16 PNG must use filter type zero")
+        encoded = np.ascontiguousarray(matrix[:, 1:])
+        samples = np.frombuffer(encoded, dtype=">u2").astype(np.uint16)
+        digest.update(samples.tobytes())
+        rows += complete
+
+    with Path(path).open("rb") as handle:
+        if handle.read(len(_PNG_SIGNATURE)) != _PNG_SIGNATURE:
+            raise ValueError("invalid PNG signature")
+        while not seen_iend:
+            header = handle.read(8)
+            if len(header) != 8:
+                raise ValueError("truncated PNG chunk header")
+            length, kind = struct.unpack(">I4s", header)
+            if length > _MAX_VERIFIER_CHUNK_BYTES:
+                raise ValueError("PNG chunk exceeds verifier bound")
+            payload = handle.read(length)
+            stored_crc = handle.read(4)
+            if len(payload) != length or len(stored_crc) != 4:
+                raise ValueError("truncated PNG chunk")
+            actual_crc = zlib.crc32(kind + payload) & 0xFFFFFFFF
+            if struct.unpack(">I", stored_crc)[0] != actual_crc:
+                raise ValueError("PNG chunk CRC mismatch")
+
+            if kind == b"IHDR":
+                if seen_ihdr or seen_cicp or seen_idat or length != 13:
+                    raise ValueError("invalid IHDR placement")
+                expected = struct.pack(">IIBBBBB", width, height, 16, 2, 0, 0, 0)
+                if payload != expected:
+                    raise ValueError("unexpected RGB16 PNG layout")
+                seen_ihdr = True
+            elif kind == b"cICP":
+                if not seen_ihdr or seen_cicp or seen_idat or payload != REC2020_SDR_CICP:
+                    raise ValueError("unexpected Rec.2020 cICP metadata")
+                seen_cicp = True
+            elif kind == b"IDAT":
+                if not seen_ihdr or not seen_cicp or idat_ended:
+                    raise ValueError("invalid IDAT placement")
+                seen_idat = True
+                compressed = payload
+                output_bound = max(scanline_bytes, _IDAT_PAYLOAD_BYTES)
+                while compressed:
+                    consume(decoder.decompress(compressed, output_bound))
+                    if decoder.unused_data:
+                        raise ValueError("invalid compressed PNG sample stream")
+                    tail = decoder.unconsumed_tail
+                    if tail and len(tail) >= len(compressed):
+                        raise ValueError("PNG decompressor made no progress")
+                    compressed = tail
+            elif kind == b"IEND":
+                if not seen_idat or length != 0:
+                    raise ValueError("invalid IEND chunk")
+                idat_ended = True
+                consume(decoder.flush())
+                if (
+                    not decoder.eof
+                    or decoder.unused_data
+                    or decoder.unconsumed_tail
+                    or pending
+                    or rows != height
+                ):
+                    raise ValueError("incomplete PNG sample stream")
+                seen_iend = True
+            else:
+                raise ValueError("unexpected chunk in deterministic Rec.2020 PNG")
+
+            if seen_idat and kind not in {b"IDAT", b"IEND"}:
+                idat_ended = True
+
+        if handle.read(1):
+            raise ValueError("trailing bytes after IEND")
+    return digest.hexdigest()
 
 
 class _StreamingRgbPngWriter:
@@ -196,4 +308,8 @@ class StreamingRec2020PngWriter(_StreamingRgbPngWriter):
         )
 
 
-__all__ = ["StreamingRec2020PngWriter", "StreamingSrgbPngWriter"]
+__all__ = [
+    "StreamingRec2020PngWriter",
+    "StreamingSrgbPngWriter",
+    "sha256_rec2020_rgb16_png_samples",
+]
