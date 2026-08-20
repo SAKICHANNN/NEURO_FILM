@@ -1,0 +1,53 @@
+{
+  "schema": "neuro-film.rf3-d0s-three-stock-proxy-full-resolution-severe-audit-contract.v1",
+  "experiment_id": "RF3.D0S",
+  "date": "2026-08-21",
+  "status": "FROZEN_BEFORE_FULL_RESOLUTION_AUDIT",
+  "question": "Do the existing RF3.D0 Velvia 50, Portra 400 and Ektar 100 K=1 proxy outputs remain mechanically intact and free of confirmed severe artifacts in deterministic full-resolution risk crops?",
+  "parents": {
+    "rf3_d0_contract": {
+      "path": "configs/rf3_three_stock_proxy_baseline_d0_v1.json",
+      "sha256": "c6671ae81020ec3ea9e5c5c0882c952d6a0525796809b723d0abd32b91ecd44f"
+    },
+    "rf3_d0_evidence": {
+      "path": "docs/evidence/RF3_D0_THREE_STOCK_PROXY_BASELINE_RESULT.json",
+      "sha256": "314e3246b656b018c64b0dfce5bfbbf169eba69826d193de4d598422d0f60ff9",
+      "required_status": "PASS_PROXY_BASELINE_ONLY"
+    },
+    "rf3_d0_report": {
+      "path": "outputs/eval/rf3_three_stock_proxy_baseline_d0_v1/run_a/report.json",
+      "sha256": "0c65d79a8156139553c867a4cffdecdbffdc3c83d87eedb82c552a04cabf1f45",
+      "required_scientific_identity": "6ab66651f1ad5a220129f9d17c64ca04cb50cd3375c65c84d86938849f388a21"
+    }
+  },
+  "expected": {
+    "source_rows": 16,
+    "ordered_arms": [
+      "legacy_unpaired_safe_lab_k1_velvia50",
+      "legacy_unpaired_safe_lab_k1_portra400",
+      "legacy_unpaired_safe_lab_k1_ektar100",
+      "ao6_velvia50_display_proxy_t15_c35"
+    ],
+    "ao6_role": "velvia_50_display_proxy_look_approximation_baseline_only"
+  },
+  "audit": {
+    "crop_size_pixels": 128,
+    "crop_roles": ["lowest_source_gradient", "center", "highest_source_gradient"],
+    "crop_selection_stride_pixels": 64,
+    "include_original_source_as_context": true,
+    "required_png_hash_match": true,
+    "required_pixel_hash_match": true,
+    "required_geometry_match": true,
+    "maximum_new_output_boundary_fraction": 0.0,
+    "visual_categories": [
+      "geometry_or_object_corruption",
+      "banding_or_posterization",
+      "colour_blocks_or_channel_discontinuity",
+      "isolated_speckles_or_unstable_texture",
+      "large_unintended_clipping"
+    ]
+  },
+  "decision_if_integrity_pass": "OPEN_ONLY_RISK_CROP_AUTONOMOUS_VISUAL_REVIEW",
+  "decision_if_integrity_fail": "RETAIN_RF3_D0_WITHOUT_FULL_RESOLUTION_SAFETY_EXTENSION",
+  "claim_ceiling": "Full-resolution mechanical integrity and risk-crop autonomous severe-artifact evidence for the existing three-stock-labelled K=1 proxy baseline. No stock truth, target closeness, stock distinguishability, calibration, population preference, multi-stock completion or product promotion."
+}
