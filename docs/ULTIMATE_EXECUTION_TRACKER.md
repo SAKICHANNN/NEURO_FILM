@@ -1741,3 +1741,15 @@ be finite, intrinsically cube-bounded, sufficiently supported and
 reference-sensitive with exact order/fresh-process replay. Any failure closes
 the observation immediately without clipping, projection, atlas, checkpoint,
 reference or threshold rescue.
+
+U5.R2REPID12 formally closes before operator fitting. Forward/reversed CUDA
+reports are byte exact (`b249eb2f...5d0031`), cover all 27 reference-atlas
+rows and read zero application sources. The observation is finite, within the
+frozen canonical-support ceiling and materially reference-sensitive (median
+pairwise response RMSE `.06422`). It is not intrinsically cube-bounded: the
+worst response has `3.375%` out-of-range values and the observed response range
+reaches `[-.00853, 1.13897]`. Close clipping, projection, atlas, checkpoint,
+strength, threshold and reference-exclusion rescue. No explicit operator is
+fit. CanonCGT fixed-atlas observation repair is now closed; the next leaf must
+introduce an independent identifying observation rather than distill or repair
+these responses.

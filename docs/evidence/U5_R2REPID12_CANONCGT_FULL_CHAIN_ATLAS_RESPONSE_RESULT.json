@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2repid12-canoncgt-full-chain-atlas-response-v1",
+  "status": "FAIL_CLOSED_FULL_CHAIN_ATLAS_OBSERVATION_PRESCORE",
+  "preregistration_commit": "04ad25f68729c262fb6d3744e39ecf8b257d7d43",
+  "execution_commit": "c3fe39d24570be7cd1582f2b27793f3bb4bba0b3",
+  "frozen_inputs": {
+    "config_sha256": "e20ebd7fa39250ff7ec918a47938afcfb8b5a827ec101c7ea33a41d671d7f554",
+    "core_sha256": "88ccb1ed97c96ed65a9a1137eec60fd06b31458826e77e5e9ba18383e8eb1eba",
+    "test_sha256": "09579882b28a354030e52c72819a564c04d18450e2e5dfcb07b72ef8db9d724b",
+    "canoncgt_parent_contract_sha256": "58d2a2b349763f7b29d08ded37e028f394585250f1ded9452a5beb41a4693d8b",
+    "fixed_atlas_control_contract_sha256": "69f2b807193ecbd72565cf91521b5b51b705055c74b488c5a4e51a15d98d727a",
+    "fixed_atlas_core_sha256": "170ba8e632f914934261578ec57db257b4bfcee87b4e0a9a47e6a5ac5360db05"
+  },
+  "replay": {
+    "forward_report_sha256": "b249eb2f600b0735768fee9321c2f81922af99f3e44b469c56a88ef87e5d0031",
+    "reversed_report_sha256": "b249eb2f600b0735768fee9321c2f81922af99f3e44b469c56a88ef87e5d0031",
+    "full_report_byte_exact": true,
+    "report_bytes": 32548,
+    "storage": "project-isolated D fallback because P reported Full Repair Needed"
+  },
+  "execution_order": {
+    "reference_count": 9,
+    "atlas_rows_per_reference": 3,
+    "row_count": 27,
+    "application_source_reads": 0,
+    "application_source_decodes": 0,
+    "operator_fit_executions": 0,
+    "application_outputs": 0
+  },
+  "metrics": {
+    "all_values_finite": true,
+    "complete_inventory": true,
+    "canonical_support": true,
+    "reference_response_sensitivity": true,
+    "response_intrinsically_cube_bounded": false,
+    "reference_pairwise_response_rmse_median": 0.06422239625248977,
+    "maximum_canonical_out_of_range_fraction": 0.06544297406462585,
+    "maximum_response_out_of_range_fraction": 0.03375451743197279,
+    "minimum_observed_response": -0.00853230431675911,
+    "maximum_observed_response": 1.138966679573059
+  },
+  "passed_gates": [
+    "complete 9-reference by 3-atlas inventory",
+    "all canonical and response values finite",
+    "canonical out-of-range support below frozen 10% ceiling",
+    "material reference response sensitivity",
+    "forward/reverse full report byte exact"
+  ],
+  "failed_gates": [
+    "response_intrinsically_cube_bounded"
+  ],
+  "interpretation": "The official full CanonCGT canonicalize-then-restyle chain preserves a material reference-dependent response on the unchanged fixed atlases, so the observation carries identifying information. It is not intrinsically RGB-cube bounded: up to 3.375% of one response lies outside the cube and the observed maximum reaches 1.13897. Therefore it cannot be admitted as the raw target for a safe shared explicit operator without the clipping or projection rescue forbidden by the preregistration.",
+  "closed_rescues": [
+    "response clipping or projection",
+    "atlas replacement, expansion or filtering",
+    "reference exclusion",
+    "checkpoint or strength sweep",
+    "threshold relaxation",
+    "operator fitting after prescore failure",
+    "application-source access or routing",
+    "further CanonCGT fixed-atlas response repair"
+  ],
+  "claim_ceiling": "Private consumed-reference CanonCGT full-chain observation negative; no application quality, stock, calibration, preference, package, schema, capability or product claim."
+}

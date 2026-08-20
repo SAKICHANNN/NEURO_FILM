@@ -14232,3 +14232,19 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   under reversed enumeration and two fresh processes. No operator fit occurs
   unless this passes. Clipping, projection, strength, atlas, checkpoint,
   threshold and reference-exclusion rescue are forbidden.
+
+### 2026-08-20 - U5.R2REPID12 closes raw full-chain atlas distillation
+
+- Two fresh CUDA processes with reversed reference/atlas enumeration produce
+  byte-exact 32,548-byte reports (`b249eb2f...5d0031`). All 27 rows are finite,
+  complete and within the canonical-support ceiling; application reads and
+  operator-fit executions remain zero.
+- The new observation is informative: median reference-pair response RMSE is
+  `.06422`. It nevertheless fails the sole raw-response safety premise. Worst
+  out-of-range fraction is `3.375%`, with observed response values from
+  `-.00853` to `1.13897`.
+- Close this exact full-chain fixed-atlas observation without clipping,
+  projection, strength, atlas, checkpoint, threshold or reference exclusion.
+  The next leaf must use independent identifying information rather than
+  another CanonCGT atlas or self-canonical repair.
+- Evidence: `docs/evidence/U5_R2REPID12_CANONCGT_FULL_CHAIN_ATLAS_RESPONSE_RESULT.json`.
