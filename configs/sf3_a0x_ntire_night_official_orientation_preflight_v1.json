@@ -1,0 +1,33 @@
+{
+  "schema": "neuro-film.sf3-a0x-ntire-night-official-orientation-preflight-contract.v1",
+  "experiment_id": "SF3.A0X_NTIRE_NIGHT_OFFICIAL_ORIENTATION_PREFLIGHT_V1",
+  "date": "2026-08-21",
+  "base_contract": {
+    "path": "configs/sf3_a0w_ntire_night_geometry_preflight_v1.json",
+    "sha256": "f0e0d1bfe49bc259e802f4493d94aabfeca4b2eb3c0df5efff1a9f7fcab54a5a"
+  },
+  "parent_failed_evidence": {
+    "path": "docs/evidence/SF3_A0W_NTIRE_NIGHT_GEOMETRY_PREFLIGHT_RESULT.json",
+    "commit": "04ea06cf",
+    "status_preserved": "FAIL_CLOSED_BEFORE_PIXEL_DECODE_ORIENTATION_CONTRACT"
+  },
+  "official_orientation_mapping": {
+    "Horizontal (normal)": 1,
+    "Mirror horizontal": 2,
+    "Rotate 180": 3,
+    "Mirror vertical": 4,
+    "Mirror horizontal and rotate 270 CW": 5,
+    "Rotate 90 CW": 6,
+    "Mirror horizontal and rotate 90 CW": 7,
+    "Rotate 270 CW": 8
+  },
+  "allowed_numeric_orientations": [1, 2, 3, 4, 5, 6, 7, 8],
+  "rows_unchanged": [310, 60, 819, 113, 804, 943, 466, 456],
+  "scientific_parameters_unchanged": true,
+  "maximum_successor_count_after_a0w": 1,
+  "stop_rule": "Any further metadata, decode, official-geometry or registration mismatch closes this source before candidate 2 without another successor.",
+  "decision_if_pass": "OPEN_FRESH_GROUP_ISOLATED_PAIRED_CAPTURE_CANDIDATE_2_PREREGISTRATION",
+  "bounded_final_candidate_counter_before": 1,
+  "bounded_final_candidate_counter_after": 1,
+  "claim_ceiling": "Final prospective development-only verification of the published official full-orientation geometry on the same eight rows. No target colour quality, operator, candidate 2, film, stock, package, schema, capability or product claim."
+}
