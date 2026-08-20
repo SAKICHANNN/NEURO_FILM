@@ -579,7 +579,10 @@ def aggregate_score_lock(
             p401_tie_margins.append(abs(candidate - identity))
             continue
         p401_decisive += 1
-        predicted = "candidate" if _sign(candidate, identity) > 0 else "identity"
+        pair_sign = _sign(candidate, identity)
+        predicted = (
+            "candidate" if pair_sign > 0 else "identity" if pair_sign < 0 else None
+        )
         p401_agreement += int(predicted == decision)
     p402_map = {
         row["source_id"]: row for row in p402_mapping["rows"] if row["round"] == 1
@@ -614,7 +617,8 @@ def aggregate_score_lock(
                 right_score = _control_score(
                     score_row, control, variant_to_label[right]
                 )
-                predicted = left if _sign(left_score, right_score) > 0 else right
+                pair_sign = _sign(left_score, right_score)
+                predicted = left if pair_sign > 0 else right if pair_sign < 0 else None
                 concordance[control] += int(predicted == winner)
             if "identity" in (left, right):
                 transform = right if left == "identity" else left
@@ -625,25 +629,35 @@ def aggregate_score_lock(
                     identity_score = _control_score(
                         score_row, control, variant_to_label["identity"]
                     )
+                    pair_sign = _sign(transform_score, identity_score)
                     predicted = (
                         transform
-                        if _sign(transform_score, identity_score) > 0
+                        if pair_sign > 0
                         else "identity"
+                        if pair_sign < 0
+                        else None
                     )
                     transform_identity[control] += int(predicted == winner)
             series_left = _control_score(score_row, "series", variant_to_label[left])
             series_right = _control_score(score_row, "series", variant_to_label[right])
-            series_predicted = left if _sign(series_left, series_right) > 0 else right
+            pair_sign = _sign(series_left, series_right)
+            series_predicted = (
+                left if pair_sign > 0 else right if pair_sign < 0 else None
+            )
             role_concordance[result_row["role"]] += int(series_predicted == winner)
         if result_row["unique_winner"] is not None:
             unique_total += 1
-            predicted_top = max(
+            ranked = sorted(
                 variants,
                 key=lambda variant: (
-                    _control_score(score_row, "series", variant_to_label[variant]),
+                    -_control_score(score_row, "series", variant_to_label[variant]),
                     variant,
                 ),
             )
+            top_margin = _control_score(
+                score_row, "series", variant_to_label[ranked[0]]
+            ) - _control_score(score_row, "series", variant_to_label[ranked[1]])
+            predicted_top = ranked[0] if top_margin > 1e-6 else None
             unique_top1 += int(predicted_top == result_row["unique_winner"])
     if total_pairs != 72 or p401_decisive != 11 or unique_total != 11:
         raise ValueError("unexpected direct-truth inventory")
@@ -668,7 +682,8 @@ def aggregate_score_lock(
             predicted_right = _control_score(
                 score_row, "series", variant_to_label[shifted[right]]
             )
-            predicted = left if _sign(predicted_left, predicted_right) > 0 else right
+            pair_sign = _sign(predicted_left, predicted_right)
+            predicted = left if pair_sign > 0 else right if pair_sign < 0 else None
             count += int(predicted == winner)
         derangement_counts.append(count)
     order_sign_exact = True
