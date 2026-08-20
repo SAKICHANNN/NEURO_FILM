@@ -1,0 +1,100 @@
+{
+  "schema": "neuro-film.sf3-a0y-ntire-paired-shaped-lut-candidate2-contract.v1",
+  "experiment_id": "SF3.A0Y_NTIRE_PAIRED_SHAPED_LUT_CANDIDATE2_V1",
+  "date": "2026-08-21",
+  "parent_geometry_evidence": {
+    "path": "docs/evidence/SF3_A0X_NTIRE_NIGHT_OFFICIAL_ORIENTATION_PREFLIGHT_RESULT.json",
+    "sha256": "443eaa6bf2e2f9a24c4735cdc83eafde470991d1042c005ffcc76024dc5c8ffe",
+    "commit": "93b8d55d",
+    "stable_identity": "9a030f8fec3177f20cfdc7236d58d4d27a05822b2f636c3ab892dcd35e8e8bfc"
+  },
+  "source_contracts": {
+    "source_lock": "configs/sf3_a0u_ntire_night_capture_pair_source_lock_v1.json",
+    "geometry_base": "configs/sf3_a0w_ntire_night_geometry_preflight_v1.json",
+    "orientation_overlay": "configs/sf3_a0x_ntire_night_official_orientation_preflight_v1.json"
+  },
+  "roles": {
+    "selection": "sha256-rank-of-sf3-a0y-paired-global-lut-v1-colon-id-after-excluding-all-24-a0v-ids",
+    "excluded_development_ids": [310, 60, 819, 113, 804, 943, 466, 456, 205, 45, 429, 814, 95, 211, 343, 721, 76, 895, 120, 288, 450, 488, 539, 960],
+    "fit": [92, 863, 816, 955, 77, 716, 633, 938, 54, 306, 257, 451, 642, 235, 591, 239, 612, 123, 438, 510, 976, 320, 447, 709, 158, 73, 247, 908, 72, 169, 372, 363],
+    "calibration": [998, 361, 871, 696, 541, 317, 812, 622, 8, 536, 836, 695],
+    "sealed_confirmation": [48, 739, 65, 126, 514, 966, 975, 499, 920, 400, 133, 276],
+    "cross_role_id_overlap": 0,
+    "replacement_allowed": false
+  },
+  "cache": {
+    "root": "data/reference_color_match/sf3_a0y_ntire_paired_shaped_lut_candidate2_v1",
+    "width": 256,
+    "height": 256,
+    "source_storage": "uint16-linear-camera-rgb-after-frozen-metadata-and-official-geometry",
+    "target_storage": "uint8-srgb-after-official-geometry",
+    "full_member_payload_persisted": false,
+    "role_subdirectories": true
+  },
+  "fit_sampling": {
+    "pixels_per_fit_scene": 4096,
+    "selection": "lowest-sha256-of-sf3-a0y-fit-pixel-v1-colon-scene-id-colon-linear-index",
+    "all_calibration_and_confirmation_pixels_scored": true
+  },
+  "candidate": {
+    "id": "zhuise.shaped-global-lut.v1",
+    "source_free_after_fit": true,
+    "shaper_knots": 17,
+    "minimum_shaper_increment": 0.0001,
+    "lut_size": 9,
+    "identity_regularization": 0.01,
+    "difference_regularization": 0.01,
+    "lsqr_iteration_limit": 2000,
+    "output_margin": 0.0000152587890625,
+    "minimum_determinant": 0.01,
+    "strength_iterations": 30,
+    "interpolation": "tetrahedral"
+  },
+  "controls": {
+    "strongest_legitimate": ["per-channel-monotone-shaper", "bounded-logit-affine", "identity-source"],
+    "identification": ["cyclic-wrong-target-same-shaped-lut"],
+    "no_content_router": true,
+    "no_per_scene_operator": true
+  },
+  "execution_order": {
+    "fit_targets_may_be_read_before_model_lock": true,
+    "candidate_and_all_controls_frozen_before_calibration_target_read": true,
+    "sealed_target_read_only_if_all_calibration_gates_pass": true,
+    "second_run_rebuilds_models_from_fit_cache": true
+  },
+  "gates": {
+    "calibration": {
+      "minimum_improvement_rate_vs_strongest_legitimate": 0.75,
+      "minimum_median_relative_reduction_vs_strongest_legitimate": 0.10,
+      "minimum_worst_relative_reduction_vs_strongest_legitimate": -0.10,
+      "maximum_median_mean_oklab_error": 0.08,
+      "maximum_p95_mean_oklab_error": 0.12,
+      "minimum_improvement_rate_vs_cyclic_wrong_target": 0.75,
+      "minimum_median_relative_reduction_vs_cyclic_wrong_target": 0.10,
+      "maximum_gradient_p999_ratio": 2.0,
+      "maximum_new_exact_boundary_fraction": 0.005,
+      "minimum_lut_jacobian_determinant": 0.01,
+      "maximum_replay_error": 0.0
+    },
+    "sealed_confirmation": {
+      "minimum_improvement_rate_vs_strongest_legitimate": 0.75,
+      "minimum_median_relative_reduction_vs_strongest_legitimate": 0.10,
+      "minimum_worst_relative_reduction_vs_strongest_legitimate": -0.10,
+      "maximum_median_mean_oklab_error": 0.08,
+      "maximum_p95_mean_oklab_error": 0.12,
+      "maximum_gradient_p999_ratio": 2.0,
+      "maximum_new_exact_boundary_fraction": 0.005
+    }
+  },
+  "stop_rules": [
+    "calibration scoring consumes candidate 2 even if it fails",
+    "a calibration failure leaves all sealed targets unread",
+    "do not change roles, resolution, samples, LUT size, shaper, regularization, strength, controls or gates after target reads",
+    "do not add metadata/content routing, per-scene operators, capacity rescue or threshold rescue"
+  ],
+  "bounded_final_candidate_counter_before": 1,
+  "bounded_final_candidate_counter_after_calibration_score": 2,
+  "decision_if_pass": "PASS_PRIVATE_PAIRED_CAPTURE_EXPLICIT_ISP_CANDIDATE_2",
+  "decision_if_fail": "FAIL_CLOSED_CANDIDATE_2_OF_3",
+  "claim_ceiling": "One shared safe explicit shaped 3D LUT learned from synchronized, aligned natural Huawei RAW/Sony JPEG pairs. Even a pass is limited to this fixed two-camera night-capture domain and does not establish automatic after-only matching, film/stock identity, arbitrary cameras, package/schema/capability or product admission."
+}
