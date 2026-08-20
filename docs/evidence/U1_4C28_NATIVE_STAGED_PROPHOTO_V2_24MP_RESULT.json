@@ -1,0 +1,50 @@
+{
+  "schema": "neuro-film.u1-4c28-native-staged-prophoto-24mp-evidence.v1",
+  "experiment_id": "U1.4C28",
+  "status": "FAIL_CLOSED_RESOURCE_ONLY",
+  "decision": "retain_c26_c27_components_but_close_this_exact_native_staged_v2_product_integration",
+  "contract": {
+    "path": "configs/u1_4c28_native_staged_prophoto_v2_24mp_v1.json",
+    "sha256": "3223c9476edf49bbd7503965616d43853ad37963ca833dab8e211672541a4c70"
+  },
+  "formal_report": {
+    "path": "outputs/eval/u1_4c28_native_staged_prophoto_v2_24mp_v1/report.json",
+    "sha256": "81b81cbecdf9eb006b49d0249cb76b8b6e770eb04baa1369628fc63acc301041",
+    "stable_evidence_id": "953cf8c4ed1d627427c6112ba970eb2a394b0f1d408332a668836eec870cdda4"
+  },
+  "input": {
+    "sha256": "91895fce65e8a32f869dd31ecd5c3ee576c9212cf028d59cd0022b0371668394",
+    "shape": [4000, 6000, 3],
+    "pixel_count": 24000000,
+    "profile_sha256": "e0da6e630f616dc25c1bca431ade74edd55a2c0bf3a5eec5bd937c9a62447666"
+  },
+  "composition": {
+    "native_ingress": "U1.4C20",
+    "native_safe_lab_pointwise": "U1.4C27",
+    "python_spatial_detail_and_tone_retained": true,
+    "native_gamut_compression": "U1.4C26",
+    "c21_and_c22_kernels_used": false,
+    "python_rgb_residual_and_png_retained": true
+  },
+  "observations": {
+    "formal_runs": 2,
+    "cross_process_output_and_receipt_identity": true,
+    "exact_c18_output": true,
+    "output_sha256": "ff30c351261c0c9004c05f21e5a2929e448716153756407cde7e36225509bd7a",
+    "exact_c18_receipt": true,
+    "receipt_sha256": "e9a442bc89bedacb46d79dd3d63a7e5e99aa6dd6125db15735a491f5abf2b415",
+    "exact_rgb16_sample_readback": true,
+    "peak_process_tree_rss_bytes": [1055477760, 1057882112],
+    "worker_wall_seconds": [38.41247039998416, 41.72427370000514]
+  },
+  "gates": {
+    "maximum_peak_process_tree_rss_bytes": 1073741824,
+    "maximum_worker_wall_seconds": 15.0,
+    "peak_process_tree_rss_pass": true,
+    "worker_wall_pass": false,
+    "automatic_pass": false
+  },
+  "interpretation": "C26 and C27 remove C24's numerical drift: both 24MP workers reproduce the exact C18 PNG, receipt, and decoded RGB16 samples, and the 1GiB memory gate now passes. The unchanged 15-second wall gate still fails at 38.41-41.72 seconds, so this exact integration is retained only as a byte-compatible research boundary while a new profile localizes the remaining post-colour cost.",
+  "claim_ceiling": "Local Windows CPU byte-parity and resource evidence for one 24MP natural-derived ProPhoto fixture and one opt-in Rec.2020 look; not a passing product runtime, arbitrary ICC, cross-platform performance, stock calibration, preference, HDR, or default promotion.",
+  "production_default_changed": false
+}

@@ -13707,3 +13707,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   new exact full-chain integration; default and product promotion remain
   unchanged. Evidence:
   `docs/evidence/U1_4C27_NATIVE_SAFE_LAB_POINTWISE_V2_RESULT.json`.
+
+### 2026-08-20 - U1.4C28 restores exact product bytes and closes on wall time
+
+- C20 ingress, C27 pointwise, retained Python spatial/tone, and C26 gamut
+  compression reproduce the exact C18 PNG, receipt, and decoded RGB16 samples
+  in two fresh 24MP workers. Peak RSS is `1.055--1.058GB`, passing 1GiB.
+- Wall time is still `38.41--41.72s`, so the unchanged 15-second gate fails.
+  Retain the exact chain as a research boundary and profile only the remaining
+  post-colour stages; do not revisit the corrected colour arithmetic. Evidence:
+  `docs/evidence/U1_4C28_NATIVE_STAGED_PROPHOTO_V2_24MP_RESULT.json`.
