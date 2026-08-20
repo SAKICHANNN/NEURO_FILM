@@ -1,0 +1,40 @@
+{
+  "schema": "neuro-film.u1-4c18-prophoto-24mp-product-resources-evidence.v1",
+  "experiment_id": "U1.4C18",
+  "date": "2026-08-20",
+  "status": "FAIL_RESOURCE_GATES_RETAIN_EXACT_PATH",
+  "implementation_commit": "640ea654",
+  "bindings": {
+    "contract": {
+      "path": "configs/u1_4c18_prophoto_24mp_product_resources_v1.json",
+      "sha256": "6bb2b97499e6a5b429119c1a25a068c5e23b35944cbeb59d9aa769326a8c928d"
+    },
+    "formal_report": {
+      "path": "outputs/eval/u1_4c18_prophoto_24mp_product_resources_v1/report.json",
+      "sha256": "b61e5492f2913be78db607dd29dff9d2fc67cd4c8c3e3e1c98dbc2614d694d9a"
+    },
+    "fixture": {
+      "path": "data/wide_gamut/u1_4c18_prophoto_24mp/a0957-IMG_0032_6000x4000.tif",
+      "sha256": "91895fce65e8a32f869dd31ecd5c3ee576c9212cf028d59cd0022b0371668394",
+      "pixels": 24000000
+    }
+  },
+  "formal_runs": {
+    "fresh_processes": 2,
+    "stable_evidence_id": "7db6fd35e908ee8e56819a5aa4f8825493434528efe2005954b093014df36ed9",
+    "output_sha256": "ff30c351261c0c9004c05f21e5a2929e448716153756407cde7e36225509bd7a",
+    "receipt_sha256": "e9a442bc89bedacb46d79dd3d63a7e5e99aa6dd6125db15735a491f5abf2b415",
+    "output_and_receipt_byte_identity": true,
+    "exact_rgb16_sample_readback": true
+  },
+  "measurements": {
+    "peak_process_tree_rss_bytes": [5368401920, 5332848640],
+    "worker_wall_seconds": [68.90285640000366, 68.37296380000771],
+    "maximum_peak_rss_gate_bytes": 1073741824,
+    "maximum_wall_gate_seconds": 15.0
+  },
+  "automatic_pass": false,
+  "decision": "retain_exact_product_path_but_require_streaming_or_native_resource_optimization",
+  "interpretation": "The exact 24MP ProPhoto-to-Rec.2020 look is deterministic and sample-correct, but its current full-frame Python implementation exceeds both frozen product-resource gates by a wide margin. The failure is resource-only and opens a staged or tiled exact implementation; it does not invalidate U1.4C16 colour semantics.",
+  "claim_ceiling": "Local Windows Python CPU resource evidence for one deterministic 24MP natural-derived ProPhoto RGB16 fixture; not cross-machine performance, arbitrary ICC, film-stock calibration, preference, HDR, or default promotion."
+}

@@ -13601,3 +13601,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   output also remains byte exact. Retain this opt-in natural-WCG product path.
   It is same-cohort integration evidence, not independent algorithm, stock,
   calibration, arbitrary-ICC, HDR, preference or default-promotion evidence.
+
+### 2026-08-20 - U1.4C18 closes the current 24MP implementation on resources
+
+- Two fresh 6000x4000 executions preserve identical RGB16 output and receipt
+  bytes with exact sample readback, but require 5.33--5.37GB peak process-tree
+  RSS and 68.37--68.90s per worker.
+- Both frozen product gates (1GiB and 15s) fail. Retain the exact C16 colour
+  path and move directly to a staged/tiled exact implementation; do not relax
+  the resource gates or reinterpret this as a colour-quality failure. Evidence:
+  `docs/evidence/U1_4C18_PROPHOTO_24MP_PRODUCT_RESOURCES_RESULT.json`.
