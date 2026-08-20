@@ -8,10 +8,10 @@ import numpy as np
 
 from .types import DecodeWarning, WorkingImage
 
-
 LINEAR_RGB_TRANSFORM_VERSION = "linear-d65-srgb-rec2020-v1"
 REC2020_TRANSFER_VERSION = "bt2020-2-oetf-v1"
 REC2020_SDR_CICP = bytes((9, 15, 0, 1))
+REC2100_PQ_CICP = bytes((9, 16, 0, 1))
 _SUPPORTED_SPACES = frozenset({"linear_srgb", "linear_rec2020"})
 
 _BT2020_ALPHA = 1.09929682680944

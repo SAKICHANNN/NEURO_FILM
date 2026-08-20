@@ -11,7 +11,7 @@ from typing import Self
 
 import numpy as np
 
-from .color_management import REC2020_SDR_CICP
+from .color_management import REC2020_SDR_CICP, REC2100_PQ_CICP
 from .output_encode import srgb_icc_profile
 
 _PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
@@ -33,6 +33,32 @@ def sha256_rec2020_rgb16_png_samples(
     height: int,
 ) -> str:
     """Strictly stream and hash native-order RGB16 samples from our PNG rail."""
+
+    return _sha256_cicp_rgb16_png_samples(
+        path, width=width, height=height, expected_cicp=REC2020_SDR_CICP
+    )
+
+
+def sha256_rec2100_pq_rgb16_png_samples(
+    path: Path,
+    *,
+    width: int,
+    height: int,
+) -> str:
+    """Strictly hash native RGB16 samples from the Rec.2100 PQ PNG rail."""
+
+    return _sha256_cicp_rgb16_png_samples(
+        path, width=width, height=height, expected_cicp=REC2100_PQ_CICP
+    )
+
+
+def _sha256_cicp_rgb16_png_samples(
+    path: Path,
+    *,
+    width: int,
+    height: int,
+    expected_cicp: bytes,
+) -> str:
 
     if isinstance(width, bool) or not isinstance(width, int) or width <= 0:
         raise ValueError("width must be a positive integer")
@@ -95,8 +121,8 @@ def sha256_rec2020_rgb16_png_samples(
                     raise ValueError("unexpected RGB16 PNG layout")
                 seen_ihdr = True
             elif kind == b"cICP":
-                if not seen_ihdr or seen_cicp or seen_idat or payload != REC2020_SDR_CICP:
-                    raise ValueError("unexpected Rec.2020 cICP metadata")
+                if not seen_ihdr or seen_cicp or seen_idat or payload != expected_cicp:
+                    raise ValueError("unexpected RGB16 cICP metadata")
                 seen_cicp = True
             elif kind == b"IDAT":
                 if not seen_ihdr or not seen_cicp or idat_ended:
@@ -308,8 +334,34 @@ class StreamingRec2020PngWriter(_StreamingRgbPngWriter):
         )
 
 
+class StreamingRec2100PqPngWriter(_StreamingRgbPngWriter):
+    """Consume full-range BT.2100 PQ RGB rows and publish a CICP PNG."""
+
+    def __init__(
+        self,
+        path: Path,
+        *,
+        width: int,
+        height: int,
+        bit_depth: int = 16,
+        compression_level: int = 0,
+    ) -> None:
+        if bit_depth != 16:
+            raise ValueError("Rec.2100 PQ rail requires 16-bit RGB samples")
+        super().__init__(
+            path,
+            width=width,
+            height=height,
+            bit_depth=bit_depth,
+            compression_level=compression_level,
+            cicp=REC2100_PQ_CICP,
+        )
+
+
 __all__ = [
     "StreamingRec2020PngWriter",
+    "StreamingRec2100PqPngWriter",
     "StreamingSrgbPngWriter",
     "sha256_rec2020_rgb16_png_samples",
+    "sha256_rec2100_pq_rgb16_png_samples",
 ]
