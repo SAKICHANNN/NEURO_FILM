@@ -1533,3 +1533,12 @@ scenes have PNG on both preference endpoints, far below the frozen 160-scene
 role requirement; 876/1,296 members are actually JPEG. Close the SPCP source
 for this operator without relabeling, fallback decode or support reduction.
 Next audit the independent CVPR 2026 PPSD release surface before any pixels.
+
+U5.R2PPSD0 passes that bounded release audit twice byte exactly
+(`b79d07d0...d9c0`; stable `8e7c0a46...125e`). The official package exposes
+62,688 raw choices and 1,313 processed scene keys, but no explicit dataset
+license is visible and participant records contain sensitive fields. Retain
+only aggregated internal annotation structure; image requests, decoding,
+training and operator fitting remain zero. A future PPSD leaf must first prove
+an explicitly licensed, source-clean non-generative role rather than mixing
+professional, device, synthetic and generative variants.

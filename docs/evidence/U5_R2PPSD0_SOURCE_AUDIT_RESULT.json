@@ -1,0 +1,53 @@
+{
+  "schema": "neuro_film.u5_r2ppsd0_source_audit_evidence.v1",
+  "experiment_id": "U5.R2PPSD0",
+  "implementation_commit": "f8692764217ce7ea82e7e98a6aa30de38e64e25d",
+  "contract": {
+    "path": "configs/u5_r2ppsd0_source_audit_v1.json",
+    "sha256": "bcf12074958f0d28bd3575cb6ee1d626aef1806bb91412b5be74811cde842208"
+  },
+  "runner": {
+    "path": "scripts/audit_u5_r2ppsd0_source.py",
+    "sha256": "3ba606fc57f868789a69356aa108221f71e47ff8e6159e14c496079f0180414c"
+  },
+  "formal_reports": {
+    "paths": [
+      "outputs/eval/u5_r2ppsd0_source_audit_v1/run_a.json",
+      "outputs/eval/u5_r2ppsd0_source_audit_v1/run_b.json"
+    ],
+    "sha256": "b79d07d0429e3fded444e21c9ad881006fc8adaedac14aa5c57370651552d9c0",
+    "stable_evidence_id": "sha256:8e7c0a468e013b832bc74211dbc64c8cd325fee017e04952ff89802c6199125e"
+  },
+  "official_release_facts": {
+    "paper": "CVPR 2026 Learning Personalized Photographic Style from Pairwise User Preferences",
+    "project_page_url": "https://hello-jinwoo.github.io/pps/",
+    "drive_folder_id": "13o-nUt2QXeQxpcxNrM_w5IsnTWOAR56i",
+    "drive_files": {
+      "img_src.zip": 1397006401,
+      "responses.zip": 2728259
+    },
+    "explicit_dataset_license_observed": false
+  },
+  "annotation_structure": {
+    "archive_files": 529,
+    "uncompressed_bytes": 17005208,
+    "raw_participant_rows": 825,
+    "raw_vote_rows": 62688,
+    "processed_participant_files": 521,
+    "processed_scene_keys": 1313,
+    "sensitive_participant_fields_present": true,
+    "participant_identifiers_persisted_in_reports": false
+  },
+  "execution_boundary": {
+    "project_or_listing_requests_per_run": 2,
+    "annotation_archive_requests_per_run": 1,
+    "image_archive_requests": 0,
+    "image_member_requests": 0,
+    "image_decodes": 0,
+    "operator_fits": 0
+  },
+  "automatic_pass": true,
+  "decision": "retain_ppsd_internal_annotation_structure_for_separate_source_clean_subset_design",
+  "interpretation": "The official release exposes a large same-scene pairwise-preference structure, but the project page and exact two-file Drive inventory expose no dataset license, the annotation package includes sensitive participant fields, and the processed release covers fewer participant files than the published retained-user count. Retain only aggregated internal structure evidence. Do not request the image archive, train, fit an operator, or treat professional, device, generative and synthetic categories as interchangeable truth without a separately frozen source-clean role audit and explicit rights closure.",
+  "claim_ceiling": "metadata-and-annotation-structure-source-audit-only"
+}

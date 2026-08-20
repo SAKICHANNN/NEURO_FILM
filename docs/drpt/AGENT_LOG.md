@@ -13826,3 +13826,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Two fresh full-population signature audits are byte exact (`343636cb...d7eb9`) over 648 SPCP2-disjoint scenes and 1,296 members.
 - Only 16 scene pairs are PNG on both endpoints versus 160 required; 420 members are PNG and 876 are JPEG. All parent, source, exclusion, byte-budget and zero-full-payload/zero-decode/zero-fit gates pass.
 - Close SPCP before acquisition or operator fitting. The next source leaf is a metadata/licence/inventory audit of the independent CVPR 2026 PPSD release; no format fallback or reduced support is allowed.
+
+### 2026-08-20 - U5.R2PPSD0 retains annotation structure only
+
+- Two exact bounded audits inspect the official project page, exact two-file Drive inventory and the 2.73MB annotation archive; `img_src.zip` requests, image decode, training and operator fit remain zero.
+- The archive has 62,688 choices, 521 processed participant files and 1,313 scene keys. No explicit dataset license is visible, sensitive participant fields exist, and evidence persists only aggregates.
+- Retain PPSD as an internal source-structure lead. Any pixel or operator leaf requires explicit rights plus a source-clean non-generative subset gate.
