@@ -50,6 +50,7 @@
     "minimum_grid_jacobian_singular_value": 0.01,
     "maximum_grid_jacobian_condition_number": 25.0,
     "maximum_coefficient_absolute_value": 50.0,
+    "maximum_new_boundary_fraction": 0.0,
     "minimum_median_p95_error_reduction_vs_matched_affine": 0.1,
     "maximum_per_reference_p95_error_regression_vs_matched_affine": 0.01,
     "minimum_selection_audit_agreement_references": 8,
