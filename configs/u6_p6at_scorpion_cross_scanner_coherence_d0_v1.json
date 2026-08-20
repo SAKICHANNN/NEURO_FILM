@@ -1,0 +1,63 @@
+{
+  "schema": "neuro-film.u6-p6at-scorpion-cross-scanner-coherence-d0-contract.v1",
+  "experiment_id": "U6.P6AT",
+  "question": "Can scanner-paired cross-spectral coherence distinguish the same physical structure from same-slide wrong-region and shifted controls across five real scanners?",
+  "source": {
+    "record_id": 16517924,
+    "record_url": "https://zenodo.org/records/16517924",
+    "archive_url": "https://zenodo.org/api/records/16517924/files/SCORPION_dataset.zip/content",
+    "archive_size_bytes": 644090103,
+    "archive_md5": "21e4c586c76a42f3a69b6a5361882a01",
+    "central_directory_offset": 643761647,
+    "central_directory_size": 328434,
+    "central_directory_sha256": "2994e051c4498cf68477c8d46aa19046e0dfafbe374f0e9f46a5fbd348a09ba0",
+    "publication_date": "2025-07-28",
+    "license": "CC-BY-4.0",
+    "expected_jpeg_members": 2400,
+    "expected_slides": 48,
+    "expected_samples_per_slide": 10,
+    "scanner_files": ["AT2.jpg", "DP200.jpg", "GT450.jpg", "P1000.jpg", "Philips.jpg"]
+  },
+  "selection": {
+    "salt": "u6.p6at-v1",
+    "rule": "sort all sample groups by sha256(salt+'|'+group), retain the first 12 distinct slides; within each slide choose the non-primary group minimizing sha256(salt+'|wrong|'+primary+'|'+group)",
+    "pairs": [
+      ["SCORPION_dataset/slide_22/sample_1", "SCORPION_dataset/slide_22/sample_7"],
+      ["SCORPION_dataset/slide_1/sample_3", "SCORPION_dataset/slide_1/sample_5"],
+      ["SCORPION_dataset/slide_48/sample_1", "SCORPION_dataset/slide_48/sample_10"],
+      ["SCORPION_dataset/slide_43/sample_3", "SCORPION_dataset/slide_43/sample_8"],
+      ["SCORPION_dataset/slide_12/sample_10", "SCORPION_dataset/slide_12/sample_6"],
+      ["SCORPION_dataset/slide_28/sample_1", "SCORPION_dataset/slide_28/sample_4"],
+      ["SCORPION_dataset/slide_23/sample_8", "SCORPION_dataset/slide_23/sample_10"],
+      ["SCORPION_dataset/slide_3/sample_10", "SCORPION_dataset/slide_3/sample_1"],
+      ["SCORPION_dataset/slide_47/sample_1", "SCORPION_dataset/slide_47/sample_4"],
+      ["SCORPION_dataset/slide_11/sample_6", "SCORPION_dataset/slide_11/sample_2"],
+      ["SCORPION_dataset/slide_35/sample_3", "SCORPION_dataset/slide_35/sample_9"],
+      ["SCORPION_dataset/slide_29/sample_3", "SCORPION_dataset/slide_29/sample_1"]
+    ]
+  },
+  "analysis": {
+    "luminance": "encoded-rgb-rec709",
+    "normalization": "per-image-midrank-uniform",
+    "crop_size": 768,
+    "window_size": 128,
+    "window_stride": 128,
+    "detrend": "subtract-window-mean-hann",
+    "frequency_min_cycles_per_pixel": 0.03125,
+    "frequency_max_cycles_per_pixel": 0.25,
+    "shift_control_pixels": [64, 64]
+  },
+  "gates": {
+    "required_rows": 12,
+    "required_scanner_pairs_per_row": 10,
+    "minimum_correct_vs_wrong_win_rate": 0.8,
+    "minimum_correct_vs_shifted_win_rate": 0.8,
+    "minimum_median_correct_to_wrong_ratio": 1.5,
+    "minimum_median_correct_to_shifted_ratio": 1.5,
+    "minimum_median_correct_coherence": 0.1,
+    "maximum_repeat_error": 0.0
+  },
+  "decision_if_pass": "retain_cross_scanner_coherence_as_independent_shared_structure_method_d0",
+  "decision_if_fail": "close_cross_scanner_coherence_on_scorpion_without_transfer_or_rescue",
+  "claim_ceiling": "CC-BY-4.0 H&E tissue patches aligned across five whole-slide scanners; generic shared-structure/scanner-method evidence only, not photographic film, material NPS recovery, scanner calibration, product profile or medical claim."
+}
