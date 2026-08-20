@@ -13750,3 +13750,19 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - No external code, weight, image or output was retained. Continue with
   rights-clear independent physical evidence or an already-legal explicit
   baseline; no model training or hosted-demo result is opened.
+
+### 2026-08-20 - U5.R2SPCP0 metadata-only source lock fails on frozen hashes
+
+- Froze the exact SPCP revision and a 5,238,287-byte ZIP Range protocol before
+  reading either annotation workbook. No PNG member payload, operator, render
+  or score was read or produced.
+- Two committed-head executions were byte exact and confirmed the useful
+  structure: 12,000 canonical variants across 1,000 scenes, 45,000 unique
+  same-scene pair rows with 20 binary subject votes, 12,000 score rows, 1,000
+  connected scene graphs and three duplicate extras excluded by CRC/size.
+- The two workbook bytes disagreed only with preregistered SHA-256 values that
+  had been incorrectly expanded from abbreviated coordination hashes; ZIP
+  sizes, CRCs, decompression and every structural gate passed. Preserve the
+  exact failure and do not rewrite SPCP0. A separately numbered prospective
+  metadata-only correction may bind the observed full hashes before pixels.
+- Evidence: `docs/evidence/U5_R2SPCP0_PAIRWISE_PREFERENCE_SOURCE_LOCK_RESULT.json`.

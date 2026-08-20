@@ -18,7 +18,6 @@ from typing import Any
 
 from openpyxl import load_workbook
 
-
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CONTRACT = ROOT / "configs/u5_r2spcp0_pairwise_preference_source_lock_v1.json"
 DEFAULT_OUTPUT = (
@@ -201,7 +200,7 @@ def run(contract_path: Path, output_path: Path) -> dict[str, Any]:
     )
 
     pair_header, pair_rows = _sheet_rows(pair_bytes)
-    score_header, score_rows = _sheet_rows(score_bytes)
+    _score_header, score_rows = _sheet_rows(score_bytes)
     subject_columns = len(pair_header) - 1
 
     canonical_re = re.compile(r"^SPCP_dataset/images/(I\d{4}_\d{2}_\d{2})\.png$")

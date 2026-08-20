@@ -1,0 +1,36 @@
+{
+  "schema": "neuro-film.u5-r2spcp0-pairwise-preference-source-lock-decision.v1",
+  "experiment_id": "U5.R2SPCP0",
+  "status": "failed_closed_before_image_acquisition",
+  "decision": "close_exact_spcp0_protocol_on_preregistered_annotation_hash_mismatch",
+  "failed_gates": [
+    "pair_annotation_sha256_exact",
+    "score_annotation_sha256_exact"
+  ],
+  "execution_integrity": {
+    "image_payload_bytes_read": 0,
+    "operator_fit": false,
+    "render": false,
+    "score": false,
+    "two_fresh_range_audits_byte_exact": true,
+    "failure_origin": "The preregistration expanded previously abbreviated annotation hashes into incorrect full values; observed workbook bytes, ZIP CRC and sizes were stable. The frozen hashes were not changed after observation."
+  },
+  "retained_diagnostic_facts": {
+    "canonical_images": 12000,
+    "scenes": 1000,
+    "variants_per_scene": 12,
+    "pair_rows": 45000,
+    "subjects": 20,
+    "connected_scene_graphs": 1000,
+    "duplicate_extras_excluded": 3,
+    "all_non_hash_structure_gates_pass": true
+  },
+  "forbidden": [
+    "silently replacing the frozen hashes in SPCP0",
+    "calling SPCP0 a source-lock pass",
+    "downloading image members under SPCP0",
+    "operator fitting, rendering, preference generalization or product mapping"
+  ],
+  "next_leaf": "A separately numbered prospective metadata-only lock may bind the now-observed complete annotation hashes and rerun the unchanged range/structure audit before any image acquisition.",
+  "claim_ceiling": "Protocol-integrity failure plus metadata-only diagnostics; not source admission, image acquisition, preference evidence, film-stock evidence or product authorization."
+}

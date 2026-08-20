@@ -11,6 +11,8 @@ from scripts.run_u5_r2spcp0_pairwise_preference_source_lock import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u5_r2spcp0_pairwise_preference_source_lock_v1.json"
+DECISION = ROOT / "configs/u5_r2spcp0_pairwise_preference_source_lock_decision_v1.json"
+EVIDENCE = ROOT / "docs/evidence/U5_R2SPCP0_PAIRWISE_PREFERENCE_SOURCE_LOCK_RESULT.json"
 
 
 def test_spcp0_contract_freezes_metadata_only_source() -> None:
@@ -92,3 +94,25 @@ def test_spcp0_stable_id_ignores_existing_identity() -> None:
     left = {"a": 1}
     right = {"a": 1, "stable_evidence_id": "old"}
     assert _stable_id(left) == _stable_id(right)
+
+
+def test_spcp0_decision_preserves_hash_failure_and_zero_pixels() -> None:
+    decision = json.loads(DECISION.read_text(encoding="utf-8"))
+    assert decision["status"] == "failed_closed_before_image_acquisition"
+    assert decision["failed_gates"] == [
+        "pair_annotation_sha256_exact",
+        "score_annotation_sha256_exact",
+    ]
+    assert decision["execution_integrity"]["image_payload_bytes_read"] == 0
+    assert "silently replacing" in decision["forbidden"][0]
+
+
+def test_spcp0_evidence_binds_exact_replay_and_observed_hashes() -> None:
+    evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+    assert evidence["formal_report_sha256"] == evidence["second_report_sha256"]
+    assert evidence["execution"]["two_report_replay_byte_exact"] is True
+    assert evidence["execution"]["image_payload_bytes_read"] == 0
+    assert evidence["structure"]["connected_pair_graphs"] == 1000
+    assert evidence["observed_annotation_hashes"]["order_trans.xlsx"] == (
+        "8c42140ae0f90f37f32706911ab86cca9f377077bbd18ac301262d952bf5f58c"
+    )

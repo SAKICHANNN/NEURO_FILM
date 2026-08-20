@@ -1489,3 +1489,14 @@ boundary safety and full chroma, but 5/12 rows still fall below dose 0.25 and
 median style remains `3.98`. Two reports are exact (`ba57bad0...8f512`). Close
 the affine family. Next evaluate whole-row authorization of strong CB33 style
 with identity fallback for any row failing unchanged safety gates.
+
+U5.R2SPCP0 closes its exact metadata-only lock before image acquisition. Two
+committed-head Range audits are byte exact (`06c0b75c...b1d2`) and every
+structure gate passes: 12,000 canonical variants, 1,000 scenes, 45,000
+same-scene pair rows, 20 subject columns and 1,000 connected graphs. The two
+annotation SHA-256 gates fail because abbreviated coordination hashes were
+incorrectly expanded in the preregistration; observed workbook bytes, ZIP
+sizes and CRCs are stable. Image payload reads remain zero. Preserve SPCP0 as
+a protocol-integrity failure; only a separately numbered prospective lock may
+bind the observed complete hashes before any explicit-operator D0 or 9GB image
+acquisition.

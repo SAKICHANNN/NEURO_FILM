@@ -1,0 +1,57 @@
+{
+  "schema": "neuro-film.u5-r2spcp0-pairwise-preference-source-lock-evidence.v1",
+  "experiment_id": "U5.R2SPCP0",
+  "date": "2026-08-20",
+  "contract_commit": "f0920ad9",
+  "implementation_commit": "bb4c1d9a9cf5f9226c1c610f3a9ad260206512b4",
+  "contract_sha256": "958e2db3750d333507a094ef6dddb1434ba57051dcaf85d7ca6dbbac31d7992b",
+  "formal_report_path": "outputs/eval/u5_r2spcp0_pairwise_preference_source_lock_v1/committed_a.json",
+  "formal_report_sha256": "06c0b75cc5b910e9a49b4b5ad764278ea95ea4428d54f6843d92a63f7210b1d2",
+  "second_report_path": "outputs/eval/u5_r2spcp0_pairwise_preference_source_lock_v1/committed_b.json",
+  "second_report_sha256": "06c0b75cc5b910e9a49b4b5ad764278ea95ea4428d54f6843d92a63f7210b1d2",
+  "stable_evidence_id": "sha256:8f90e5631dc98ddbe2ff68b027325627875a6391f73764f481bd59e5542e87d6",
+  "source": {
+    "dataset_id": "zwx8981/SPCP_dataset",
+    "revision": "068af97eed82969f15278db3af4bd450176cf6f3",
+    "zip_lfs_sha256": "8643d2be6edb3391f37159476584df59f714205fd427a1d26e325a1f93791ef0",
+    "central_directory_sha256": "f3892690a8434fd42a412c4cf952e050d542740d2dea04b4cad976ad2ea1415d",
+    "publisher_card_license": "apache-2.0",
+    "independent_license_text_present": false,
+    "rights_ceiling": "publisher-declared HF card only; image provenance and redistribution rights not inferred"
+  },
+  "observed_annotation_hashes": {
+    "order_trans.xlsx": "8c42140ae0f90f37f32706911ab86cca9f377077bbd18ac301262d952bf5f58c",
+    "score_trans2.xlsx": "ee5f0fc830ebd40cab3e25b379aa0e01ec5cc4793a55315504c2d06f6af7900d"
+  },
+  "structure": {
+    "zip_members": 12007,
+    "canonical_png_members": 12000,
+    "scenes": 1000,
+    "variants_per_scene_min_max": [12, 12],
+    "pair_rows": 45000,
+    "score_rows": 12000,
+    "subject_columns": 20,
+    "pair_label_domain": [0, 1],
+    "cross_scene_pairs": 0,
+    "connected_pair_graphs": 1000,
+    "pairs_per_scene_min_max": [45, 45],
+    "duplicate_extra_png": 3,
+    "duplicate_extras_match_canonical_crc_and_sizes": 3
+  },
+  "execution": {
+    "zip_bytes_read_per_run": 5238287,
+    "image_payload_bytes_read": 0,
+    "full_zip_downloaded": false,
+    "operator_fit": false,
+    "render": false,
+    "score": false,
+    "two_report_replay_byte_exact": true
+  },
+  "failed_gates": [
+    "pair_annotation_sha256_exact",
+    "score_annotation_sha256_exact"
+  ],
+  "status": "FAIL_CLOSED_METADATA_ONLY_SOURCE_LOCK",
+  "decision": "close_exact_spcp0_protocol_before_image_acquisition",
+  "claim_ceiling": "Metadata-only protocol failure and diagnostics; no source admission, pixels, operator, preference generalization, film-stock evidence, package, capability or product claim."
+}
