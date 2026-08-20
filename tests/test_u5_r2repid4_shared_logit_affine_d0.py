@@ -71,6 +71,35 @@ def test_formal_contract_binds_parent_and_implementation() -> None:
         )
 
 
+def test_formal_evidence_binds_exact_negative_report() -> None:
+    evidence = json.loads(
+        (
+            ROOT / "docs/evidence/U5_R2REPID4_SHARED_LOGIT_AFFINE_D0_RESULT.json"
+        ).read_text()
+    )
+    report_path = ROOT / "outputs/eval/u5_r2repid4_shared_logit_affine_d0/formal_a.json"
+    if not report_path.exists():
+        pytest.skip("formal P-backed REPID report is not installed")
+    report = json.loads(report_path.read_text())
+    assert (
+        hashlib.sha256(report_path.read_bytes()).hexdigest()
+        == evidence["formal_replays"]["run_a_sha256"]
+    )
+    assert (
+        report["stable_evidence_id"] == evidence["formal_replays"]["stable_evidence_id"]
+    )
+    assert report["decision"] == evidence["decision"]
+    assert {name: report["metrics"][name] for name in evidence["metrics"]} == evidence[
+        "metrics"
+    ]
+    assert report["failed_gates"] == evidence["failed_gates"]
+    assert (
+        report["sealed_member_requests"]
+        == evidence["bindings"]["sealed_member_requests"]
+        == 0
+    )
+
+
 def _jpeg(path: Path, offset: int) -> dict[str, object]:
     profile = ImageCms.ImageCmsProfile(ImageCms.createProfile("sRGB")).tobytes()
     y, x = np.indices((18, 24))

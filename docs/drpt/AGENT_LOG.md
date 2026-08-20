@@ -13889,3 +13889,22 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   hit a Windows sharing violation from two legacy writers and did not change
   the frozen cohort.
 - Evidence: `docs/evidence/U5_R2REPID3_FIT_CALIBRATION_ACQUISITION_RESULT.json`.
+
+### 2026-08-20 - U5.R2REPID4 shared population operator closes
+
+- Converted every fit/calibration JPEG from its exact ProPhoto/ROMM ICC into
+  sRGB with the frozen relative-colorimetric ingress, then fit one source-free
+  3x3-plus-bias logit-affine operator on 80 scenes and scored 24 held scenes.
+- Two full-resolution forward/reverse reports are byte exact
+  (`39f89bc3...7a34`, stable `3457793a...edcf`). The candidate improves 20/24
+  scenes with median +20.99% and beats the cyclic label-permuted control on
+  23/24, but the worst tail is -78.59%; it beats the matched diagonal control
+  on only 10/24 and has -2.51% median gain against it.
+- Close the exact global prior. The role-localized negative tail is evidence of
+  heterogeneous professional render relations, not authorization to add a
+  role/content router or tune this cohort. Sealed member requests remain zero.
+- The first full-frame execution emitted no report after exceeding its useful
+  memory envelope. A row-blocked metric implementation was proven numerically
+  equivalent to the original formulas before two corrected exact runs; the
+  frozen scientific inputs, operator, metrics and gates did not change.
+- Evidence: `docs/evidence/U5_R2REPID4_SHARED_LOGIT_AFFINE_D0_RESULT.json`.

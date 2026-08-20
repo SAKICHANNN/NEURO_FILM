@@ -1,0 +1,75 @@
+{
+  "schema": "neuro-film.u5-r2repid4-shared-logit-affine-d0-evidence.v1",
+  "experiment_id": "U5.R2REPID4",
+  "date": "2026-08-20",
+  "execution_commit": "937730ed",
+  "question": "Can one source-free bounded 3x3-plus-bias logit-affine operator fitted from strong REPID loser-to-winner pairs transfer across professional render-role directions without unsafe tails?",
+  "bindings": {
+    "contract_path": "configs/u5_r2repid4_shared_logit_affine_d0_v1.json",
+    "contract_sha256": "34248caf093c2eb83679229862ffb678f3b491725282ccfc755469e867d7ba5e",
+    "acquisition_path": "outputs/eval/u5_r2repid3_fit_calibration_acquisition/run_a.json",
+    "acquisition_sha256": "e04a611e4c6f1889a9adc2b69520ca05b4d4a280a7b5e708eb73de28df40647c",
+    "acquisition_stable_evidence_id": "sha256:96b60f8f7ccb858a4b5b21423dee612625a10253ff34090d5377199e58fdb906",
+    "sealed_member_requests": 0
+  },
+  "preference_direction_verification": {
+    "paper_url": "https://arxiv.org/html/2512.05209",
+    "paper_equation": "DMOS = L - R + B mod 2",
+    "release_readme_url": "https://huggingface.co/datasets/vsevolodpl/REPID/resolve/6a16a20a0b7122ad66d1f632af1586d45b443aa9/README.md",
+    "release_revision": "6a16a20a0b7122ad66d1f632af1586d45b443aa9",
+    "verified_interpretation": "The released normalized mos greater than 0.5 identifies the left image as preferred; the fitted direction is loser to winner."
+  },
+  "formal_replays": {
+    "run_a_path": "outputs/eval/u5_r2repid4_shared_logit_affine_d0/formal_a.json",
+    "run_b_path": "outputs/eval/u5_r2repid4_shared_logit_affine_d0/formal_b.json",
+    "run_a_sha256": "39f89bc389f0a0e69c6a62be77d26e11185487dc9cfe71a731109df1e2797a34",
+    "run_b_sha256": "39f89bc389f0a0e69c6a62be77d26e11185487dc9cfe71a731109df1e2797a34",
+    "byte_exact": true,
+    "stable_evidence_id": "sha256:3457793a64c04eea8074d40c221a040162d9754b8e54facc1aa79c7a16efedcf"
+  },
+  "metrics": {
+    "row_count": 24,
+    "candidate_improvement_rate": 0.8333333333333334,
+    "candidate_improvement_median": 0.2099195146171324,
+    "candidate_improvement_worst": -0.7859294448506206,
+    "beat_diagonal_rate": 0.4166666666666667,
+    "diagonal_relative_gain_median": -0.02509940014545841,
+    "beat_label_permuted_rate": 0.9583333333333334,
+    "label_permuted_relative_gain_median": 0.43585521341502065,
+    "reverse_direction_improvement_rate": 0.0,
+    "median_output_delta_e_oklab_from_identity": 0.04639922171292824,
+    "maximum_new_exact_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio": 1.4530455442692876
+  },
+  "failed_gates": [
+    "beat_diagonal_rate",
+    "candidate_improvement_worst",
+    "diagonal_relative_gain_median"
+  ],
+  "failure_signature": {
+    "negative_rows": 4,
+    "all_negative_rows_directed_role_pair": "tiff16_b->tiff16_a",
+    "directed_role_pair_count": 6,
+    "directed_role_pair_improvement_rate": 0.3333333333333333,
+    "directed_role_pair_median_improvement": -0.21786565153230714,
+    "directed_role_pair_worst_improvement": -0.7859294448506206,
+    "other_observed_directed_role_pairs_all_positive": true,
+    "interpretation": "The candidate contains real pair signal relative to the label-permuted control, but a single shared operator mixes heterogeneous professional render-role directions and creates an unacceptable tail. This is diagnostic only and does not authorize subgroup deletion, a same-cohort mode/router rescue, threshold relaxation, or a larger model."
+  },
+  "execution_integrity": {
+    "canonical_formal_reports": 2,
+    "enumeration_orders": [
+      "forward",
+      "reverse"
+    ],
+    "invalid_cli_attempt": "One pre-report invocation used an unsupported flag, exited nonzero, and created no report.",
+    "duplicate_writer_attempt": "One duplicate reverse process tree was terminated before report creation; the surviving sole writer produced canonical formal_b.",
+    "scientific_inputs_or_gates_changed": false
+  },
+  "sealed_member_requests": 0,
+  "automatic_pass": false,
+  "status": "FAIL_CLOSED",
+  "decision": "close_exact_repid_shared_logit_affine_population_prior",
+  "next": "Return to a genuinely identifying observation or independently frozen source. Do not read the sealed REPID cohort, rescue diagonal control, stratify this calibration cohort, or add model capacity.",
+  "claim_ceiling": "Private internal-research shared professional-render colour-prior D0; not film, stock, scanner, calibrated authenticity, arbitrary-image preference, package, capability or product evidence."
+}

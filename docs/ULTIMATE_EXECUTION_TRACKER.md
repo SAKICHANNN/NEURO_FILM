@@ -1587,3 +1587,14 @@ single ProPhoto ICC identity pass twice byte exactly (`e04a611e...0647c`;
 stable `96b60f8f...b906`); sealed requests remain zero. This opens the frozen
 ICC-normalized shared logit-affine D0, not a product or population preference
 claim.
+
+U5.R2REPID4 formally closes that exact shared-operator hypothesis. Two
+full-resolution forward/reverse reports are byte exact (`39f89bc3...7a34`;
+stable `3457793a...edcf`). The candidate improves 20/24 calibration scenes with
+median +20.99%, beats the cyclic label-permuted control on 23/24 and preserves
+zero new boundaries, so the directed preference signal is real. It nevertheless
+has a -78.59% worst tail, beats the equal-sampling diagonal operator on only
+10/24 scenes and has -2.51% median gain against that control. The four largest
+negative rows are all `tiff16_b->tiff16_a`, which identifies unresolved render
+role heterogeneity but does not authorize a role router. Close without rescue;
+the 24 sealed scenes remain unread.
