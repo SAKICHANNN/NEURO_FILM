@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2repid7-canoncgt-self-canonical-inverse-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2REPID7",
+  "parent_contract": {
+    "path": "configs/u5_r2f1_canoncgt_reference_condition_v1.json",
+    "sha256": "58d2a2b349763f7b29d08ded37e028f394585250f1ded9452a5beb41a4693d8b"
+  },
+  "question": "Can the reference's own CanonCGT canonicalized image act as a same-image pseudo-neutral observation from which one bounded source-independent inverse grade is identified?",
+  "build": {
+    "application_source_reads": 0,
+    "canonicalizer_input": "reference_only",
+    "operator": "12_parameter_logit_affine_canonical_to_reference",
+    "maximum_sample_rows": 65536,
+    "fit_partition": "even_positions_in_uniform_index_sample",
+    "holdout_partition": "odd_positions_in_uniform_index_sample",
+    "ridge_alpha": 0.0001
+  },
+  "structural_gates": {
+    "maximum_reference_canonical_raw_out_of_range_fraction": 0.005,
+    "maximum_holdout_oklab_error_median": 0.04,
+    "maximum_holdout_oklab_error_p95": 0.08,
+    "maximum_holdout_to_fit_mean_error_ratio": 1.2,
+    "minimum_matrix_determinant": 0.05,
+    "minimum_matrix_singular_value": 0.1,
+    "maximum_matrix_condition_number": 10.0,
+    "required_passing_references": 9
+  },
+  "replay": {
+    "reverse_reference_order_exact": true,
+    "two_fresh_process_reports_exact": true
+  },
+  "stop_rule": "Any structural failure closes this exact checkpoint, self-canonical pair, sample split and 12D inverse before application-source access; no projection, dose, ridge, split, threshold, checkpoint or same-reference rescue.",
+  "pass_ceiling": "A structural pass opens a separately executed consumed-source shared-operator application D0 only.",
+  "claim_ceiling": "Private reference-only pseudo-neutral identification preflight; no application quality, stock, calibration, product, schema or capability claim."
+}
