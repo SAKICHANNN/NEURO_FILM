@@ -14130,6 +14130,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Stop before resolution analysis and do not reinterpret this post-result as an
   8-bit experiment. Evidence: `docs/evidence/U6_P6AU_VISION3_RESOLUTION_CHART_SOURCE_RESULT.json`.
 
+### 2026-08-20 - U6.P6AV closes rotated-plate coherence before scoring
+
+- Added the official perpendicular `f0010.tif` scan to existing `f0009.tif`;
+  both are exact single-page uint16 files at `3835x3841` under CC-BY-4.0.
+- SIFT/RANSAC geometry is precise but under-supported: selected `-90` has
+  225/237 inliers and `.3791px` p95 error, below the frozen 500-match gate.
+- Two reports are exact (`a2443fdb...9bb17`), with zero coherence rows. Do not
+  rescue this pair. Evidence: `docs/evidence/U6_P6AV_ROTATED_PLATE_COHERENCE_D0_RESULT.json`.
+
 ### 2026-08-20 - U5.R2REPID10 freezes bounded basis selection
 
 - Direction correction: REPID9C global statistics and REPID9D CanonCGT tokens

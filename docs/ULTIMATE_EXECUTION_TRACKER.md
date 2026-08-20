@@ -1669,6 +1669,13 @@ format/stock cells, but the first exact member is RGB8 rather than the required
 RGB16. Two reports are byte exact (`671aeaf5...ad7d`); the source closes before
 resolution analysis, without row substitution or a post-result format fallback.
 
+U6.P6AV transfers the frozen P6AT discriminator to a CC-BY-4.0 1903 glass
+plate scanned at perpendicular orientations. Both orientation candidates have
+about 95% inlier fractions and subpixel residuals, but only 224/225 inliers
+versus the frozen 500-support gate. Two reports are exact
+(`a2443fdb...9bb17`); coherence rows remain zero and the pair closes without
+registration, crop, author-transform or threshold rescue.
+
 U5.R2REPID10 is prospectively frozen after REPID9C/9D close two distinct
 reference encoders. It returns to REPID7's positive 7/9 self-canonical signal
 but changes only the explicit operator representation: fixed extended-domain

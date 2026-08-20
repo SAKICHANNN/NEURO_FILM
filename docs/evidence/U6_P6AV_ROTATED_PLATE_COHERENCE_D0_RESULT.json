@@ -1,0 +1,59 @@
+{
+  "schema": "neuro-film.u6-p6av-rotated-plate-coherence-d0-evidence.v1",
+  "node": "U6.P6AV",
+  "date": "2026-08-20",
+  "status": "FAIL_CLOSED_BEFORE_COHERENCE_SCORE",
+  "question": "Does the frozen P6AT coherence discriminator transfer to one real photographic plate scanned at perpendicular orientations?",
+  "primary_sources": [
+    {
+      "title": "SCORPION: A Multi-Scanner Whole-Slide Image Dataset for Cross-Scanner Analysis",
+      "url": "https://arxiv.org/abs/2507.20907",
+      "role": "2025 method parent"
+    },
+    {
+      "title": "Precise Photometric Measurements from a 1903 Photographic Plate Using a Commercial Scanner",
+      "url": "https://arxiv.org/abs/2101.03699",
+      "doi": "10.1088/1538-3873/abec20",
+      "role": "perpendicular same-plate scan source"
+    }
+  ],
+  "implementation": {
+    "contract_commits": ["532e244d", "4afc1f84"],
+    "implementation_commit": "7e520b26",
+    "serialization_fix_commit": "3fac4940",
+    "contract_sha256": "06d3cc5dd56dade0b147883f991aba0cc2708070999be203b33ce76e9795600e",
+    "evaluator_sha256": "a0af27e977ac5a8767c3ba2531c338aaafe87f7b34b6a8f23b192737093cf083",
+    "runner_sha256": "3d3f8684ab196d991a81513b7a06c83e730613795b62dbec3357c07586f7d235",
+    "test_sha256": "5c622bef22943e1d32238ef7cea77fe9b52291f9aac9c70fe8ae2ec799da59f6"
+  },
+  "source": {
+    "record_id": "qw505-gq084",
+    "license": "CC-BY-4.0",
+    "reference_sha256": "0a80e94fbd83cc83737e61740ce0a772975f13bac3531af58a6e970388a2623a",
+    "rotated_sha256": "b6d80a498c89543c4c1ad0e8b443b5e9f6d8ba058fa8c82c00ac8ca097fd37fc",
+    "each_shape": [3835, 3841],
+    "dtype": "uint16"
+  },
+  "registration": {
+    "selected_orientation_degrees": -90,
+    "good_matches": 237,
+    "inliers": 225,
+    "inlier_fraction": 0.9493670886075949,
+    "median_inlier_error_pixels": 0.18147419393062592,
+    "p95_inlier_error_pixels": 0.37903445959091187,
+    "required_good_matches": 500,
+    "registration_pass": false,
+    "coherence_rows_scored": 0
+  },
+  "formal_replay": {
+    "reports_byte_exact": true,
+    "report_a_sha256": "a2443fdbaad6e91dfc7f1fe9aa1255711ff72de068a31093d97f1f4e8429bb17",
+    "report_b_sha256": "a2443fdbaad6e91dfc7f1fe9aa1255711ff72de068a31093d97f1f4e8429bb17",
+    "stable_evidence_id": "5f3afe198fb200e1ed5facf4a9399c47f65730e57325863cb026d470dc1a06df",
+    "pre_report_attempt": "one complete scientific computation reached serialization but emitted no report because the selected diagnostics object recursively contained itself; copying diagnostic dictionaries changed no source, registration, metric or gate and the formal runs restarted from entry"
+  },
+  "automatic_pass": false,
+  "decision": "close_rotated_plate_coherence_transfer_without_registration_or_threshold_rescue",
+  "next_hypothesis": "Require a fresh rights-cleared high-support crossed-scan population or a separately prospective source-provided correspondence observation; do not rescue this pair.",
+  "claim_ceiling": "one CC-BY-4.0 1903 glass photographic plate scanned twice at perpendicular orientations on one Epson 12000XL workflow; registration-source negative only, not isolated emulsion NPS, scanner calibration, modern stock transfer or product evidence."
+}
