@@ -59,7 +59,10 @@
     "radial_bins": 64,
     "minimum_normalized_radius": 0.15,
     "maximum_normalized_radius": 0.45,
-    "radial_mean_removal": true
+    "radial_mean_removal": true,
+    "plate_hypothesis": "rotate the perpendicular-scan residual spectrum by 90 degrees into plate coordinates",
+    "scanner_hypothesis": "retain the perpendicular-scan residual spectrum in scanner coordinates",
+    "wrong_plate_control": "maximum correlation to either residual spectrum from the other plate"
   },
   "gates": {
     "required_patches_per_scan": 16,
