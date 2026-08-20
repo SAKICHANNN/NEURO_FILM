@@ -1,0 +1,65 @@
+{
+  "schema": "neuro-film.u1-4c30-lifetime-staged-prophoto-24mp-contract.v1",
+  "experiment_id": "U1.4C30",
+  "question": "Does non-overlapping encoded, mapped and Lab lifetime staging with the exact C29 arithmetic preserve C18 decoded RGB16 samples in two fresh processes while meeting the unchanged 1GiB and 15-second 24MP product gates?",
+  "parents": {
+    "profile": {
+      "path": "configs/render_profiles/prophoto_rec2020_velvia_v1.json",
+      "sha256": "e0da6e630f616dc25c1bca431ade74edd55a2c0bf3a5eec5bd937c9a62447666"
+    },
+    "c29_evidence": {
+      "path": "docs/evidence/U1_4C29_STREAMING_STAGED_PROPHOTO_V3_24MP_RESULT.json",
+      "sha256": "0dcddc29889ad1fdd1a482e425864c9c4e7282620ca76395e9d321c52339fc52"
+    },
+    "staged_core": {
+      "path": "src/inference/romm_rec2020_velvia_staged.py",
+      "sha256": "1e89985c131ffd619f85caa32d1a7e8f853229dfba682bb98e39160d3dc0907f"
+    },
+    "streaming_v3": {
+      "path": "src/inference/romm_rec2020_velvia_staged_streaming_v3.py",
+      "sha256": "3bc7298168926135623e70799e36abf7a2a8f24d682c92beb70b2581113ac8df"
+    },
+    "postcolor_wrapper": {
+      "path": "src/eval/native_rec2020_postcolor_rgb16_v1.py",
+      "sha256": "a782b9c9ecfc407421856867824a18d7ea1358eded81a078d0db941e2fb15a80"
+    },
+    "runner": {
+      "path": "scripts/benchmark_u1_4c29_streaming_staged_prophoto_v3_24mp.py",
+      "sha256": "5b303cb9601d32185e2950dfc4c4edd5c2a4913f52e814e97ff1fb497279df7e"
+    }
+  },
+  "fixture": {
+    "path": "data/wide_gamut/u1_4c18_prophoto_24mp/a0957-IMG_0032_6000x4000.tif",
+    "sha256": "91895fce65e8a32f869dd31ecd5c3ee576c9212cf028d59cd0022b0371668394",
+    "pixels": 24000000
+  },
+  "candidate": {
+    "row_chunk": 320,
+    "thread_count": 8,
+    "output_staging": "in-memory-row-stream",
+    "buffer_lifetime_order": "encoded-then-mapped-then-lab",
+    "compression_level": 0,
+    "exact_float32_threshold_quantization": true,
+    "one_final_quantization_only": true,
+    "decoded_rgb16_samples_must_equal_c18": true,
+    "container_bytes_may_differ_from_c18": true,
+    "hard_clipping_allowed": false,
+    "posthoc_limiting_allowed": false
+  },
+  "measurement": {
+    "fresh_processes": 2,
+    "run_workers_sequentially": true,
+    "sample_interval_seconds": 0.01,
+    "worker_timeout_seconds": 300,
+    "native_build_excluded_from_worker_wall": true
+  },
+  "gates": {
+    "required_output_sha256": "6648b164133f6cf31df95a72aa2e85724f2ede3f103de258138e44fc43cc6d6a",
+    "required_sample_sha256": "c6069cb19dc28472a9596a47fef4199c1f872f9f01554e856622a54e95c18ebb",
+    "maximum_peak_process_tree_rss_bytes": 1073741824,
+    "maximum_worker_wall_seconds": 15.0
+  },
+  "decision_if_pass": "retain_exact_lifetime_staged_v3_24mp_product_path",
+  "decision_if_fail": "retain_c29_exact_streaming_components_but_close_this_lifetime_staged_product_integration",
+  "claim_ceiling": "Local Windows CPU product-resource evidence for one exact 24MP natural-derived ProPhoto fixture and one opt-in Rec.2020 look; not arbitrary ICC, cross-platform performance, stock calibration, preference, HDR, or default promotion."
+}
