@@ -213,6 +213,7 @@ class CSDRuntime:
             (np._core.multiarray.scalar, "numpy.core.multiarray.scalar"),
             np.dtype,
             type(np.dtype(np.float64)),
+            argparse.Namespace,
         ]
         with torch.serialization.safe_globals(safe_numpy_globals):
             checkpoint = torch.load(
@@ -239,6 +240,7 @@ class CSDRuntime:
                 "numpy.core.multiarray.scalar",
                 "numpy.dtype",
                 "numpy.dtypes.Float64DType",
+                "argparse.Namespace",
             ],
             "state_tensor_count": len(state),
             "state_parameter_count": int(sum(value.numel() for value in state.values())),

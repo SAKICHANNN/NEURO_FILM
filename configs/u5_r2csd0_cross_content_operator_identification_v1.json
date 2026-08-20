@@ -96,9 +96,10 @@
     "weights_only_safe_globals": [
       "numpy.core.multiarray.scalar",
       "numpy.dtype",
-      "numpy.dtypes.Float64DType"
+      "numpy.dtypes.Float64DType",
+      "argparse.Namespace"
     ],
-    "safe_global_boundary": "allow only NumPy scalar/dtype metadata constructors required by the official checkpoint; arbitrary classes and weights_only=false remain forbidden",
+    "safe_global_boundary": "allow only the three globals returned by torch.serialization.get_unsafe_globals_in_checkpoint plus the concrete NumPy Float64 dtype needed during reconstruction; arbitrary classes and weights_only=false remain forbidden",
     "state_dict_missing_keys_exact": 0,
     "state_dict_unexpected_keys_exact": 0,
     "clip_initialization_cache": "explicit project-isolated external cache path supplied by CLI; no user-home cache write",

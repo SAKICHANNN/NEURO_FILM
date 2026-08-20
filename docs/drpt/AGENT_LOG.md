@@ -14339,5 +14339,6 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The first single-asset mechanics attempt stopped before inference because
   PyTorch's `weights_only=True` rejected NumPy scalar metadata in the official
   checkpoint. Preserve safe loading: explicitly allow only the NumPy scalar
-  and dtype constructors named by the checkpoint, keep `weights_only=true`,
-  and rerun from zero. No private mapping or scientific score was read.
+  and dtype constructors plus `argparse.Namespace` returned by PyTorch's static
+  unsafe-global inventory, keep `weights_only=true`, and rerun from zero. No
+  private mapping or scientific score was read.
