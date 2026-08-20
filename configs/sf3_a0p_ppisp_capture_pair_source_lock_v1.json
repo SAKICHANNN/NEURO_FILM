@@ -22,25 +22,25 @@
   "archives": [
     {
       "scene_id": "huerstholz",
-      "path": "colmap/colmap_huerstholz.zip",
+      "path": "colmap/huerstholz_colmap.zip",
       "size": 3401606566,
       "sha256": "1d4ad8e1388f0051ee6c1266c9b9a0669c99b8b76bcc47809bb49772b404460c"
     },
     {
       "scene_id": "struktur28",
-      "path": "colmap/colmap_struktur28.zip",
+      "path": "colmap/struktur28_colmap.zip",
       "size": 1535277338,
       "sha256": "cf7ab7f100da66b2bf05b178ebcfa3a950e1bf2b1d7ff64a6c7a1e1f682afa8d"
     },
     {
       "scene_id": "toro",
-      "path": "colmap/colmap_toro.zip",
+      "path": "colmap/toro_colmap.zip",
       "size": 1706361859,
       "sha256": "9bb2203246d85604ef580a6664cd16bc3bdb42dc55ee4647bee28bd40372b2c5"
     },
     {
       "scene_id": "valiant",
-      "path": "colmap/colmap_valiant.zip",
+      "path": "colmap/valiant_colmap.zip",
       "size": 1958272527,
       "sha256": "29e7292f9224907ef389facb0a616318beb04d4812c4fe6cee43258fb94385e9"
     }
