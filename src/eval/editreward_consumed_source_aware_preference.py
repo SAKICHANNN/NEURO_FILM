@@ -997,11 +997,12 @@ def main() -> int:
         2.0 * (runtime.load_seconds + seconds_per_asset * 96.0) / 3600.0
     )
     total_seconds = time.perf_counter() - run_started
-    resource_gate_pass = (
-        total_seconds
+    resource_gate_pass = projected_two_process_hours <= contract[
+        "resource_execution"
+    ]["projected_two_process_wall_hours_max"] and (
+        not args.smoke
+        or total_seconds
         <= contract["resource_execution"]["mechanics_smoke_wall_seconds_max"]
-        and projected_two_process_hours
-        <= contract["resource_execution"]["projected_two_process_wall_hours_max"]
     )
 
     payload = {
