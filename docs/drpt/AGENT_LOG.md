@@ -14380,3 +14380,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   the central-directory and workbook identities; no image payload, graph,
   preference score or scientific result was read, so this is a mechanics-only
   identity amendment rather than a gate or cohort change.
+
+### 2026-08-21 - U5.R2SPCP0 passes the annotation-only source gate
+
+- Two independent Range-only reports are byte exact (`d26061e5...bc6fca`).
+  The exact release contains 1,000 scenes, 12 canonical variants per scene,
+  45,000 pair rows, 20 binary subject labels per row, no cross-scene edge and
+  1,000 connected endpoint graphs; image payload reads remain zero.
+- Three extra PNG members are exact CRC/size duplicates of canonical members
+  and are excluded. The paper abstract calls the comparisons exhaustive, but
+  the release has 45 rather than 66 edges per 12-node scene graph; preserve
+  that distinction and call the release a connected sampled graph.
+- This pass opens only a prospectively scene-grouped image and alignment audit,
+  then at most one shared bounded explicit-operator discriminant. It opens no
+  image-rights, preference-generalization or product claim. Evidence:
+  `docs/evidence/U5_R2SPCP0_METADATA_SOURCE_LOCK_RESULT.json`.

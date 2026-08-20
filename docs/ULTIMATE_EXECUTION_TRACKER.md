@@ -1837,3 +1837,15 @@ control by 25/264. The symmetric identity-reference direction is only 83/132
 role/reference consistency also fails. Close crop, layer, checkpoint,
 aggregation, threshold and cohort rescue. The checkpoint can partially cluster
 one strong transform but cannot authorize single-reference operator routing.
+
+U5.R2SPCP0 changes the identifying information rather than rescuing CSD. The
+official ACM MM 2025 SPCP release contributes direct same-scene human colour
+preference over ISP variants. Two exact HTTP-Range audits (`d26061e5...bc6fca`)
+read only the ZIP64 directory and two annotation workbooks: 1,000 scenes,
+12,000 canonical images, 45,000 within-scene edges, 20 binary subject labels
+per edge, zero cross-scene pairs and 1,000 connected graphs all pass. Three
+extra PNGs are exact CRC/size duplicates and are excluded. The release contains
+45/66 possible edges per scene despite the abstract's exhaustive wording, so
+future claims use `connected sampled pair graph`. Image payload, fit, render and
+scientific-score reads remain zero. Only a separate scene-grouped image and
+alignment audit may now open; product and redistribution rights remain closed.
