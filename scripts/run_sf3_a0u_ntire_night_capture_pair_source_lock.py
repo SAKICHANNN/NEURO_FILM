@@ -9,8 +9,9 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.real_film.ntire_night_capture_pair_source_lock import run_source_lock  # noqa: E402
-
+from src.real_film.ntire_night_capture_pair_source_lock import (
+    run_source_lock,
+)
 
 DEFAULT_CONFIG = (
     ROOT / "configs" / "sf3_a0u_ntire_night_capture_pair_source_lock_v1.json"
