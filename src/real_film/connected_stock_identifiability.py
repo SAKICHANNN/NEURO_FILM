@@ -10,7 +10,7 @@ from pathlib import Path
 from typing import Any
 
 import numpy as np
-from PIL import Image, ImageOps, ImageStat
+from PIL import Image, ImageOps
 from skimage.feature import hog
 
 
@@ -41,6 +41,14 @@ def load_connected_rows(root: Path, config: Mapping[str, Any]) -> list[dict[str,
         source_root = root / str(cell["pixel_root"])
         stock_id = str(cell["film_stock_id"])
         cell_rows = [row for row in manifest["rows"] if str(row["film_stock_id"]) == stock_id]
+        if "included_page_ids" in cell:
+            included_page_ids = [int(page_id) for page_id in cell["included_page_ids"]]
+            if len(included_page_ids) != len(set(included_page_ids)) or any(page_id <= 0 for page_id in included_page_ids):
+                raise ConnectedStockIdentifiabilityError(f"invalid included page ids: {cell['cell_id']}")
+            rows_by_page_id = {int(row["page_id"]): row for row in cell_rows}
+            if len(rows_by_page_id) != len(cell_rows) or any(page_id not in rows_by_page_id for page_id in included_page_ids):
+                raise ConnectedStockIdentifiabilityError(f"included page id drift: {cell['cell_id']}")
+            cell_rows = [rows_by_page_id[page_id] for page_id in included_page_ids]
         if len(cell_rows) != int(cell["expected_files"]):
             raise ConnectedStockIdentifiabilityError(f"cell count drift: {cell['cell_id']}")
         for source in cell_rows:
@@ -130,8 +138,8 @@ def group_loo_centroid(features: np.ndarray, groups: Sequence[str], labels: Sequ
     for index, (group, label) in enumerate(zip(groups, labels, strict=True)):
         group, label = str(group), str(label)
         unit_indices[(group, label)].append(index)
-    unique_groups = sorted(set(str(group) for group in groups))
-    unique_labels = sorted(set(str(label) for label in labels))
+    unique_groups = sorted({str(group) for group in groups})
+    unique_labels = sorted({str(label) for label in labels})
     if any(sum(unit_label == label for _, unit_label in unit_indices) < 2 for label in unique_labels):
         raise ConnectedStockIdentifiabilityError("each class needs at least two author groups")
     predictions: list[dict[str, Any]] = []
@@ -178,7 +186,7 @@ def group_label_permutation_test(
     seed: int,
 ) -> dict[str, Any]:
     observed = group_loo_centroid(features, groups, labels)["balanced_accuracy"]
-    unique_units = sorted(set((str(group), str(label)) for group, label in zip(groups, labels, strict=True)))
+    unique_units = sorted({(str(group), str(label)) for group, label in zip(groups, labels, strict=True)})
     units_by_author: dict[str, list[tuple[str, str]]] = defaultdict(list)
     for unit in unique_units:
         units_by_author[unit[0]].append(unit)

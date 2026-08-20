@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "audit_id": "sf3.a1e-commons-three-stock-author-held-identifiability-v1",
+  "node": "ULT > RF3 > SF3.A1E",
+  "report_output": "outputs/eval/sf3_a1e_commons_three_stock_identifiability_v1/report.json",
+  "cells": [
+    {
+      "cell_id": "commons_clean_velvia50",
+      "source_id": "wikimedia_commons_sf3_a1d2",
+      "film_stock_id": "fujifilm_velvia_50",
+      "manifest": "outputs/eval/sf3_a1d2_commons_three_stock_pixel_integrity_v1/download_manifest.json",
+      "manifest_sha256": "303a4ef63e855f4b1047309496829e64f5aa09ea39d94766b2d4ed090f21f876",
+      "pixel_root": "data/real_film/sf3_a1d2_commons_three_stock_pixels_v1",
+      "expected_files": 21,
+      "included_page_ids": [73092993, 15889500, 165964790, 1088978, 15822744, 196420450, 24804412, 6709062, 73688211, 45896498, 197000546, 17563523, 92646535, 71443490, 147275886, 1884516, 67968756, 14895412, 45046731, 20472681, 138802384]
+    },
+    {
+      "cell_id": "commons_clean_portra400",
+      "source_id": "wikimedia_commons_sf3_a1d2",
+      "film_stock_id": "kodak_portra_400",
+      "manifest": "outputs/eval/sf3_a1d2_commons_three_stock_pixel_integrity_v1/download_manifest.json",
+      "manifest_sha256": "303a4ef63e855f4b1047309496829e64f5aa09ea39d94766b2d4ed090f21f876",
+      "pixel_root": "data/real_film/sf3_a1d2_commons_three_stock_pixels_v1",
+      "expected_files": 21,
+      "included_page_ids": [182131832, 108759479, 176718927, 77381346, 19240196, 160082262, 45721958, 123061366, 141567990, 47845647, 135298243, 85723447, 112858039, 117697490, 79338551, 87524761, 128296162, 73619432, 105406588, 83141397, 144522690]
+    },
+    {
+      "cell_id": "commons_clean_ektar100",
+      "source_id": "wikimedia_commons_sf3_a1d2",
+      "film_stock_id": "kodak_ektar_100",
+      "manifest": "outputs/eval/sf3_a1d2_commons_three_stock_pixel_integrity_v1/download_manifest.json",
+      "manifest_sha256": "303a4ef63e855f4b1047309496829e64f5aa09ea39d94766b2d4ed090f21f876",
+      "pixel_root": "data/real_film/sf3_a1d2_commons_three_stock_pixels_v1",
+      "expected_files": 22,
+      "included_page_ids": [124916942, 36305474, 168517619, 77381466, 21882059, 145128753, 47488847, 20472800, 95788141, 42032349, 114997083, 120728025, 189867948, 55598828, 107265951, 54217721, 71411076, 94240841, 60824387, 92928857, 185005705, 134218417]
+    }
+  ],
+  "author_group_aliases": {},
+  "descriptors": ["rgb_distribution", "luma_distribution", "hog_grayscale", "low_frequency_rgb_4x4", "standardized_rgb_distribution", "geometry_border_source"],
+  "contrasts": [
+    {"contrast_id": "commons_velvia_vs_portra_vs_ektar", "kind": "stock", "filter_field": "source_id", "filter_values": ["wikimedia_commons_sf3_a1d2"], "label_field": "film_stock_id", "label_values": ["fujifilm_velvia_50", "kodak_portra_400", "kodak_ektar_100"]},
+    {"contrast_id": "commons_velvia_vs_portra", "kind": "stock", "filter_field": "source_id", "filter_values": ["wikimedia_commons_sf3_a1d2"], "label_field": "film_stock_id", "label_values": ["fujifilm_velvia_50", "kodak_portra_400"]},
+    {"contrast_id": "commons_velvia_vs_ektar", "kind": "stock", "filter_field": "source_id", "filter_values": ["wikimedia_commons_sf3_a1d2"], "label_field": "film_stock_id", "label_values": ["fujifilm_velvia_50", "kodak_ektar_100"]},
+    {"contrast_id": "commons_portra_vs_ektar", "kind": "stock", "filter_field": "source_id", "filter_values": ["wikimedia_commons_sf3_a1d2"], "label_field": "film_stock_id", "label_values": ["kodak_portra_400", "kodak_ektar_100"]}
+  ],
+  "statistics": {"permutations": 499, "permutation_seed": 3101, "bootstrap_iterations": 4000, "bootstrap_seed": 3102},
+  "gates": {
+    "minimum_groups_per_label": 8,
+    "primary_descriptor": "rgb_distribution",
+    "nuisance_control_descriptors": ["luma_distribution", "hog_grayscale", "low_frequency_rgb_4x4", "standardized_rgb_distribution", "geometry_border_source"],
+    "minimum_primary_balanced_accuracy": 0.7,
+    "maximum_primary_permutation_p": 0.05,
+    "minimum_delta_vs_nuisance": 0.1,
+    "maximum_hog_control_accuracy": 0.65
+  },
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "decision_if_all_pass": "open_group_held_out_k1_global_operator_baseline_only",
+  "decision_if_any_fail": "close_current_commons_stock_learning_and_retain_data_gap",
+  "claim_ceiling": "author-held-out weak exact-text Commons three-stock appearance-versus-content/source identifiability diagnostic only; no stock response, colour operator, calibration, S1/S2, training, authenticity or product claim"
+}
