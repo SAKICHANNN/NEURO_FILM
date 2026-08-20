@@ -1,8 +1,13 @@
 from __future__ import annotations
 
 import json
+import struct
 from pathlib import Path
 
+from scripts.run_u5_r2spcp0_pairwise_preference_source_lock import (
+    _parse_central_directory,
+    _stable_id,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u5_r2spcp0_pairwise_preference_source_lock_v1.json"
@@ -37,3 +42,53 @@ def test_spcp0_successor_is_one_explicit_source_free_operator() -> None:
     assert "one shared source-free bounded" in successor["mechanism"]
     assert "per-image or per-scene routing" in successor["forbidden"]
     assert "direct RGB generation" in successor["forbidden"]
+
+
+def test_spcp0_central_directory_parser_rejects_noncentral_bytes() -> None:
+    try:
+        _parse_central_directory(b"PK\x03\x04")
+    except ValueError as error:
+        assert "signature drift" in str(error)
+    else:
+        raise AssertionError("non-central ZIP bytes were accepted")
+
+
+def test_spcp0_central_directory_parser_reads_one_row() -> None:
+    name = b"SPCP_dataset/example.txt"
+    header = struct.pack(
+        "<IHHHHHHIIIHHHHHII",
+        0x02014B50,
+        20,
+        20,
+        0,
+        8,
+        0,
+        0,
+        123,
+        9,
+        11,
+        len(name),
+        0,
+        0,
+        0,
+        0,
+        0,
+        75,
+    )
+    rows = _parse_central_directory(header + name)
+    assert rows == [
+        {
+            "name": name.decode(),
+            "method": 8,
+            "crc32": 123,
+            "compressed_size": 9,
+            "uncompressed_size": 11,
+            "local_offset": 75,
+        }
+    ]
+
+
+def test_spcp0_stable_id_ignores_existing_identity() -> None:
+    left = {"a": 1}
+    right = {"a": 1, "stable_evidence_id": "old"}
+    assert _stable_id(left) == _stable_id(right)
