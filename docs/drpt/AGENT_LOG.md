@@ -13781,3 +13781,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Rights remain local isolated research only because the HF card has no
   independent license text or per-image provenance.
 - Evidence: `docs/evidence/U5_R2SPCP1_CORRECTED_PAIRWISE_PREFERENCE_SOURCE_LOCK_RESULT.json`.
+
+### 2026-08-20 - U1.4C34 exact RGB16 transfer LUT closes 24MP resource gate
+
+- Replaced repeated per-pixel ProPhoto transfer powers with one immutable
+  65,536-entry float64 LUT computed by the same frozen equations. An exhaustive
+  all-code test preserves direct float64 decode bytes exactly.
+- Two fresh 24MP processes preserve the C18/C33 RGB16 samples, PNG bytes,
+  receipt and native build identities exactly. Wall time is `11.51/12.24s` and
+  peak process-tree RSS is `924.0/926.8MB`; both unchanged 15-second/1GiB gates
+  pass. This closes the performance leaf without changing the product default.
+- Evidence: `docs/evidence/U1_4C34_TRANSFER_LUT_STAGED_PROPHOTO_24MP_RESULT.json`.
