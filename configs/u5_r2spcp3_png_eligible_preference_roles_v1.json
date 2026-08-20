@@ -55,7 +55,9 @@
     "role_assignment_before_signature_lock_forbidden": true
   },
   "execution": {
-    "maximum_parallel_range_requests": 12,
+    "maximum_parallel_range_requests": 8,
+    "maximum_attempts_per_exact_range": 3,
+    "retry_delay_seconds": 0.25,
     "two_fresh_reports_byte_exact": true
   },
   "decision_if_pass": "open_exact_png_eligible_spcp3_fit_calibration_acquisition",

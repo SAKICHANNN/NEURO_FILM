@@ -26,6 +26,8 @@ def test_spcp3_contract_filters_payload_before_role_assignment() -> None:
     assert payload["selection"]["role_assignment_before_signature_lock_forbidden"]
     assert payload["eligibility"]["compressed_prefix_bytes_per_member"] == 256
     assert payload["eligibility"]["maximum_total_range_bytes"] == 370656
+    assert payload["execution"]["maximum_parallel_range_requests"] == 8
+    assert payload["execution"]["maximum_attempts_per_exact_range"] == 3
     assert payload["eligibility"]["full_member_read_forbidden"]
     assert payload["eligibility"]["image_decode_forbidden"]
 
@@ -87,6 +89,8 @@ def test_member_probe_reads_only_frozen_range_and_parses_local_header(monkeypatc
         header_bytes=30,
         compressed_prefix_bytes=256,
         required_signature=bytes.fromhex("89504e470d0a1a0a"),
+        maximum_attempts=3,
+        retry_delay_seconds=0.0,
     )
     compressed_start = 1234 + 30 + len(name.encode())
     assert calls == [(1234, 1263), (compressed_start, compressed_start + 255)]

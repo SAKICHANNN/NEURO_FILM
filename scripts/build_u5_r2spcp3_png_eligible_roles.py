@@ -9,6 +9,7 @@ import hashlib
 import json
 import struct
 import sys
+import time
 import zlib
 from collections import Counter
 from pathlib import Path
@@ -45,9 +46,21 @@ def _probe_member(
     header_bytes: int,
     compressed_prefix_bytes: int,
     required_signature: bytes,
+    maximum_attempts: int,
+    retry_delay_seconds: float,
 ) -> dict[str, Any]:
+    def fetch_exact(byte_range: tuple[int, int]) -> bytes:
+        for attempt in range(1, maximum_attempts + 1):
+            try:
+                return _fetch(url, byte_range)[0]
+            except Exception:
+                if attempt == maximum_attempts:
+                    raise
+                time.sleep(retry_delay_seconds * attempt)
+        raise AssertionError("unreachable")
+
     start = int(member["local_offset"])
-    header, _ = _fetch(url, (start, start + header_bytes - 1))
+    header = fetch_exact((start, start + header_bytes - 1))
     if header[:4] != b"PK\x03\x04":
         raise ValueError(f"local header missing: {member['name']}")
     values = struct.unpack_from("<IHHHHHIIIHH", header, 0)
@@ -55,9 +68,8 @@ def _probe_member(
     if int(member["compressed_size"]) <= compressed_prefix_bytes:
         raise ValueError(f"member too small for a non-complete prefix: {member['name']}")
     compressed_start = start + header_bytes + name_len + extra_len
-    compressed, _ = _fetch(
-        url,
-        (compressed_start, compressed_start + compressed_prefix_bytes - 1),
+    compressed = fetch_exact(
+        (compressed_start, compressed_start + compressed_prefix_bytes - 1)
     )
     decoder = zlib.decompressobj(-15)
     signature = decoder.decompress(compressed, len(required_signature))
@@ -117,6 +129,10 @@ def build(contract_path: Path, output_path: Path) -> dict[str, Any]:
             header_bytes=header_bytes,
             compressed_prefix_bytes=compressed_prefix_bytes,
             required_signature=required_signature,
+            maximum_attempts=int(
+                contract["execution"]["maximum_attempts_per_exact_range"]
+            ),
+            retry_delay_seconds=float(contract["execution"]["retry_delay_seconds"]),
         )
         return scene_id, endpoint, fact
 
