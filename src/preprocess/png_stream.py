@@ -11,6 +11,7 @@ from typing import Self
 
 import numpy as np
 
+from .color_management import REC2020_SDR_CICP
 from .output_encode import srgb_icc_profile
 
 _PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
@@ -24,7 +25,7 @@ def _chunk(kind: bytes, payload: bytes) -> bytes:
     return struct.pack(">I", len(payload)) + kind + payload + struct.pack(">I", crc)
 
 
-class StreamingSrgbPngWriter:
+class _StreamingRgbPngWriter:
     """Consume complete RGB rows in order and atomically publish one PNG."""
 
     def __init__(
@@ -35,6 +36,7 @@ class StreamingSrgbPngWriter:
         height: int,
         bit_depth: int,
         compression_level: int = 6,
+        cicp: bytes | None = None,
     ) -> None:
         if path.suffix.casefold() != ".png":
             raise ValueError("streaming RGB output requires a .png extension")
@@ -67,13 +69,18 @@ class StreamingSrgbPngWriter:
                     struct.pack(">IIBBBBB", width, height, bit_depth, 2, 0, 0, 0),
                 )
             )
-            profile = srgb_icc_profile()
-            self._emit(
-                _chunk(
-                    b"iCCP",
-                    b"K-MCFM sRGB\x00\x00" + zlib.compress(profile, level=9),
+            if cicp is None:
+                profile = srgb_icc_profile()
+                self._emit(
+                    _chunk(
+                        b"iCCP",
+                        b"K-MCFM sRGB\x00\x00" + zlib.compress(profile, level=9),
+                    )
                 )
-            )
+            else:
+                if len(cicp) != 4:
+                    raise ValueError("cICP payload must contain four bytes")
+                self._emit(_chunk(b"cICP", cicp))
         except BaseException:
             self.abort()
             raise
@@ -163,4 +170,30 @@ class StreamingSrgbPngWriter:
             self.abort()
 
 
-__all__ = ["StreamingSrgbPngWriter"]
+class StreamingSrgbPngWriter(_StreamingRgbPngWriter):
+    """Consume sRGB rows and publish a PNG with the exact embedded sRGB ICC."""
+
+
+class StreamingRec2020PngWriter(_StreamingRgbPngWriter):
+    """Consume relative BT.2020 SDR rows and publish a CICP-tagged PNG."""
+
+    def __init__(
+        self,
+        path: Path,
+        *,
+        width: int,
+        height: int,
+        bit_depth: int,
+        compression_level: int = 0,
+    ) -> None:
+        super().__init__(
+            path,
+            width=width,
+            height=height,
+            bit_depth=bit_depth,
+            compression_level=compression_level,
+            cicp=REC2020_SDR_CICP,
+        )
+
+
+__all__ = ["StreamingRec2020PngWriter", "StreamingSrgbPngWriter"]

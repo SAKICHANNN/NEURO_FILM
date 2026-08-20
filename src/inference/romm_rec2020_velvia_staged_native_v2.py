@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -80,6 +81,12 @@ def render_supported_prophoto_velvia_rec2020_staged_native_v2(
     row_chunk: int = 128,
     thread_count: int = 8,
     runtime: NativeStagedVelviaV2Runtime | None = None,
+    _output_writer_factory: Callable[[Path, int, int], Any] | None = None,
+    _postcolor_mapper: Callable[
+        [np.ndarray, np.ndarray, float], tuple[np.ndarray, np.ndarray]
+    ]
+    | None = None,
+    _in_memory_staging: bool = False,
 ) -> dict[str, Any]:
     """Render through the retained C20/C22 components and Python remainder."""
 
@@ -167,6 +174,9 @@ def render_supported_prophoto_velvia_rec2020_staged_native_v2(
         _ingress_mapper=ingress_mapper,
         _style_mapper=style_mapper,
         _gamut_mapper=gamut_mapper,
+        _output_writer_factory=_output_writer_factory,
+        _postcolor_mapper=_postcolor_mapper,
+        _in_memory_staging=_in_memory_staging,
     )
 
 

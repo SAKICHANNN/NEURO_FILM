@@ -7,7 +7,7 @@ import json
 import tempfile
 from collections.abc import Callable
 from pathlib import Path
-from typing import Any
+from typing import Any, Protocol
 
 import cv2
 import numpy as np
@@ -37,6 +37,14 @@ from .romm_rec2020_velvia import (
 )
 
 
+class _OutputWriter(Protocol):
+    def write_rows(self, row_start: int, samples: np.ndarray) -> None: ...
+
+    def finish(self) -> str: ...
+
+    def abort(self) -> None: ...
+
+
 def render_supported_prophoto_velvia_rec2020_staged(
     input_path: Path,
     output_path: Path,
@@ -51,6 +59,12 @@ def render_supported_prophoto_velvia_rec2020_staged(
         [np.ndarray, np.ndarray], tuple[np.ndarray, np.ndarray]
     ]
     | None = None,
+    _postcolor_mapper: Callable[
+        [np.ndarray, np.ndarray, float], tuple[np.ndarray, np.ndarray]
+    ]
+    | None = None,
+    _output_writer_factory: Callable[[Path, int, int], _OutputWriter] | None = None,
+    _in_memory_staging: bool = False,
 ) -> dict[str, Any]:
     """Render the qualified look with disk-staged, bounded-row intermediates."""
 
@@ -86,26 +100,37 @@ def render_supported_prophoto_velvia_rec2020_staged(
             shape = tuple(int(value) for value in page.shape)
             if page.dtype != np.dtype(np.uint16) or len(shape) != 3 or shape[2] != 3:
                 raise ROMMRec2020RenderError("staged input must be RGB16 TIFF")
-            encoded = np.memmap(
-                temporary_path / "encoded.rgb16",
-                mode="w+",
-                dtype=np.uint16,
-                shape=shape,
-            )
-            page.asarray(out=encoded)
+            if _in_memory_staging:
+                encoded = page.asarray()
+            else:
+                encoded = np.memmap(
+                    temporary_path / "encoded.rgb16",
+                    mode="w+",
+                    dtype=np.uint16,
+                    shape=shape,
+                )
+                page.asarray(out=encoded)
 
         height, width, _ = shape
-        mapped = np.memmap(
-            temporary_path / "mapped.f32",
-            mode="w+",
-            dtype=np.float32,
-            shape=shape,
+        mapped = (
+            np.empty(shape, dtype=np.float32)
+            if _in_memory_staging
+            else np.memmap(
+                temporary_path / "mapped.f32",
+                mode="w+",
+                dtype=np.float32,
+                shape=shape,
+            )
         )
-        lab = np.memmap(
-            temporary_path / "lab.f32",
-            mode="w+",
-            dtype=np.float32,
-            shape=shape,
+        lab = (
+            np.empty(shape, dtype=np.float32)
+            if _in_memory_staging
+            else np.memmap(
+                temporary_path / "lab.f32",
+                mode="w+",
+                dtype=np.float32,
+                shape=shape,
+            )
         )
         mapped_count = 0
         minimum_chroma_scale = 1.0
@@ -126,8 +151,9 @@ def render_supported_prophoto_velvia_rec2020_staged(
             minimum_chroma_scale = min(minimum_chroma_scale, float(np.min(chroma_scale)))
             output_minimum = min(output_minimum, float(np.min(mapped_tile)))
             output_maximum = max(output_maximum, float(np.max(mapped_tile)))
-        mapped.flush()
-        lab.flush()
+        if not _in_memory_staging:
+            mapped.flush()
+            lab.flush()
         del encoded
 
         context = safe_lab_context_from_lab(lab)
@@ -138,17 +164,31 @@ def render_supported_prophoto_velvia_rec2020_staged(
         style_id = style["id"]
         guard = dict(guard_payload["defaults"])
         guard.update(guard_payload["styles"].get(style_id, {}))
-        output_samples = np.memmap(
-            temporary_path / "output.rgb16",
-            mode="w+",
-            dtype=np.uint16,
-            shape=shape,
+        output_samples = (
+            None
+            if _output_writer_factory is not None
+            else np.memmap(
+                temporary_path / "output.rgb16",
+                mode="w+",
+                dtype=np.uint16,
+                shape=shape,
+            )
         )
-        residual_scale = np.memmap(
-            temporary_path / "residual_scale.f32",
-            mode="w+",
-            dtype=np.float32,
-            shape=(height, width),
+        output_writer = (
+            _output_writer_factory(output_path, width, height)
+            if _output_writer_factory is not None
+            else None
+        )
+        output_sample_digest = hashlib.sha256()
+        residual_scale = (
+            np.empty((height, width), dtype=np.float32)
+            if _in_memory_staging
+            else np.memmap(
+                temporary_path / "residual_scale.f32",
+                mode="w+",
+                dtype=np.float32,
+                shape=(height, width),
+            )
         )
         halo = 5
         margin = float(profile["residual_execution"]["rgb16_margin"])
@@ -198,14 +238,37 @@ def render_supported_prophoto_velvia_rec2020_staged(
             candidate = np.asarray(np.clip(candidate, 0.0, 1.0), dtype=np.float32)
             crop0 = y0 - expanded_y0
             crop1 = crop0 + (y1 - y0)
-            output_pixels, scale = _source_anchored_interior_residual(
-                np.asarray(mapped[y0:y1]), candidate[crop0:crop1], margin=margin
-            )
-            encoded_output = linear_rec2020_to_rec2020(output_pixels)
-            output_samples[y0:y1] = np.rint(encoded_output * 65535.0).astype(np.uint16)
+            if _postcolor_mapper is None:
+                output_pixels, scale = _source_anchored_interior_residual(
+                    np.asarray(mapped[y0:y1]), candidate[crop0:crop1], margin=margin
+                )
+                encoded_output = linear_rec2020_to_rec2020(output_pixels)
+                samples = np.rint(encoded_output * 65535.0).astype(np.uint16)
+            else:
+                samples, scale = _postcolor_mapper(
+                    np.asarray(mapped[y0:y1]), candidate[crop0:crop1], margin
+                )
+                if (
+                    samples.dtype != np.uint16
+                    or samples.shape != (y1 - y0, width, 3)
+                    or not samples.flags.c_contiguous
+                ):
+                    raise ROMMRec2020RenderError("postcolor mapper output is invalid")
+                output_pixels = encoded_output = None
+            output_sample_digest.update(np.ascontiguousarray(samples).tobytes())
+            if output_writer is None:
+                assert output_samples is not None
+                output_samples[y0:y1] = samples
+            else:
+                output_writer.write_rows(y0, samples)
             residual_scale[y0:y1] = scale
-        output_samples.flush()
-        residual_scale.flush()
+        if output_samples is not None:
+            output_samples.flush()
+        else:
+            assert output_writer is not None
+            output_writer.finish()
+        if not _in_memory_staging:
+            residual_scale.flush()
         median_residual_scale = float(np.median(residual_scale))
         fraction_residual_scale_below_0p5 = float(
             np.mean(residual_scale < 0.5)
@@ -222,17 +285,22 @@ def render_supported_prophoto_velvia_rec2020_staged(
             chroma_scale,
             decoded,
         )
-        for staged in (mapped, lab, residual_scale):
-            staged.flush()
-            staged._mmap.close()
-        save_rec2020_rgb16_png_samples(output_samples, output_path)
+        if not _in_memory_staging:
+            for staged in (mapped, lab, residual_scale):
+                staged.flush()
+                staged._mmap.close()
+        if output_samples is not None:
+            save_rec2020_rgb16_png_samples(output_samples, output_path)
         stored = cv2.imread(str(output_path), cv2.IMREAD_UNCHANGED)
         if (
             stored is None
             or stored.dtype != np.uint16
             or stored.shape != shape
-            or not np.array_equal(stored[..., ::-1], output_samples)
         ):
+            output_path.unlink(missing_ok=True)
+            raise ROMMRec2020RenderError("staged PNG exact sample readback failed")
+        stored_rgb = np.ascontiguousarray(stored[..., ::-1])
+        if hashlib.sha256(stored_rgb.tobytes()).digest() != output_sample_digest.digest():
             output_path.unlink(missing_ok=True)
             raise ROMMRec2020RenderError("staged PNG exact sample readback failed")
 
@@ -284,8 +352,9 @@ def render_supported_prophoto_velvia_rec2020_staged(
             "claim_ceiling": profile["claim_ceiling"],
         }
         del stored
-        output_samples.flush()
-        output_samples._mmap.close()
+        if output_samples is not None:
+            output_samples.flush()
+            output_samples._mmap.close()
         return receipt
 
 

@@ -23,7 +23,7 @@ from .output_encode import (
     srgb_icc_profile_sha256,
 )
 from .pipeline import inspect_input, load_working_image
-from .png_stream import StreamingSrgbPngWriter
+from .png_stream import StreamingRec2020PngWriter, StreamingSrgbPngWriter
 from .raster_decode import working_image_to_legacy_srgb8, working_image_to_srgb_float
 from .romm_rec2020_product import (
     FIVEK_PROPHOTO_MATRIX_SHAPER_ICC_SHA256,
@@ -56,6 +56,7 @@ __all__ = [
     "InputInspection",
     "ROMMRec2020ConversionError",
     "SourceProfile",
+    "StreamingRec2020PngWriter",
     "StreamingSrgbPngWriter",
     "WorkingImage",
     "convert_linear_rgb",
