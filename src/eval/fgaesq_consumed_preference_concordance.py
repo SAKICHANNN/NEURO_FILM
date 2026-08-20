@@ -400,6 +400,14 @@ def build_score_lock(
     ).stdout.strip()
     if head != expected_commit or dirty:
         raise ValueError("external FGAesQ checkout identity mismatch or dirty state")
+    external_asset = config["external_asset"]
+    if (
+        model_path.stat().st_size != external_asset["model_size_bytes"]
+        or _sha256(model_path) != external_asset["model_sha256"]
+        or clip_path.stat().st_size != external_asset["clip_size_bytes"]
+        or _sha256(clip_path) != external_asset["clip_sha256"]
+    ):
+        raise ValueError("frozen FGAesQ or CLIP asset identity mismatch")
     configure_determinism(int(config["strict_mechanics"]["python_numpy_torch_seed"]))
     model, diff_token_class, asset_facts = load_strict_model(
         external_root=external_root,
