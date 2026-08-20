@@ -1,0 +1,63 @@
+{
+  "schema": "neuro-film.u5-r2spcp3-png-eligible-preference-roles-contract.v1",
+  "experiment_id": "U5.R2SPCP3",
+  "date": "2026-08-20",
+  "question": "Does the untouched SPCP scene population contain at least 160 scene pairs whose two declared PNG members are actually PNG before any new experimental role is assigned?",
+  "parents": {
+    "spcp2_manifest": {
+      "path": "manifests/u5_r2spcp2_global_logit_affine_roles_v1.json",
+      "sha256": "5ed0aaa4cf3c79b33f1e9505d0df0cf103ea071d7266655d9bde480192c7b807"
+    },
+    "spcp2_failure_evidence": {
+      "path": "docs/evidence/U5_R2SPCP2_GLOBAL_LOGIT_AFFINE_PREFERENCE_D0_RESULT.json",
+      "sha256": "86d7362d7459f126bbb9cae9a9b4267597175dfa5456f909b5ff131d3a83bf65",
+      "required_decision": "close_exact_spcp2_decode_and_operator_family"
+    },
+    "spcp2_contract": {
+      "path": "configs/u5_r2spcp2_global_logit_affine_preference_d0_v1.json",
+      "sha256": "8c624815934761abf20174d96bb27cc19c1666620d1fee87edc41ed4ca9cffac"
+    }
+  },
+  "source": {
+    "dataset_id": "zwx8981/SPCP_dataset",
+    "revision": "068af97eed82969f15278db3af4bd450176cf6f3",
+    "zip_url": "https://huggingface.co/datasets/zwx8981/SPCP_dataset/resolve/068af97eed82969f15278db3af4bd450176cf6f3/SPCP_dataset.zip",
+    "central_directory_sha256": "f3892690a8434fd42a412c4cf952e050d542740d2dea04b4cad976ad2ea1415d",
+    "pair_annotation_sha256": "8c42140ae0f90f37f32706911ab86cca9f377077bbd18ac301262d952bf5f58c",
+    "score_annotation_sha256": "ee5f0fc830ebd40cab3e25b379aa0e01ec5cc4793a55315504c2d06f6af7900d",
+    "maximum_use": "local isolated internal research",
+    "product_dependency": false
+  },
+  "exclusion": {
+    "selected_scene_count_exact": 160,
+    "sorted_scene_ids_lf_sha256": "e88009e3a967776941edf29b54a5f02ba7b4deb0bcde6e04a7dfcba216d1b4fa",
+    "all_spcp2_selected_scenes_forbidden": true
+  },
+  "eligibility": {
+    "minimum_absolute_vote_margin_from_ten": 4,
+    "minimum_cross_table_concordance": 0.85,
+    "expected_metadata_eligible_scene_count": 808,
+    "expected_unassigned_scene_count": 648,
+    "required_member_method": 8,
+    "required_decompressed_signature_hex": "89504e470d0a1a0a",
+    "range_probe_bytes_per_member": 69632,
+    "maximum_total_range_bytes": 90521600,
+    "full_member_read_forbidden": true,
+    "image_decode_forbidden": true
+  },
+  "selection": {
+    "role_sort": "ascending sha256('u5-r2spcp3-v1|' + scene_id) after signature eligibility",
+    "fit_scenes": 96,
+    "calibration_scenes": 32,
+    "sealed_scenes": 32,
+    "replacement_forbidden": true,
+    "role_assignment_before_signature_lock_forbidden": true
+  },
+  "execution": {
+    "maximum_parallel_range_requests": 12,
+    "two_fresh_reports_byte_exact": true
+  },
+  "decision_if_pass": "open_exact_png_eligible_spcp3_fit_calibration_acquisition",
+  "decision_if_fail": "close_spcp3_before_full_payload_acquisition_or_operator_fit",
+  "claim_ceiling": "Private internal-research payload-eligibility and role lock only; no full image acquisition, decode, operator, preference, film, stock, scanner, package, capability or product evidence."
+}

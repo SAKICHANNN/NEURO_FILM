@@ -50,14 +50,8 @@ def _member_fact(row: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def build(contract_path: Path, output_path: Path) -> dict[str, Any]:
-    contract_bytes = contract_path.read_bytes()
-    contract = json.loads(contract_bytes)
-    parent = contract["parent"]
-    decision_bytes = (ROOT / parent["decision_path"]).read_bytes()
-    evidence_bytes = (ROOT / parent["evidence_path"]).read_bytes()
-    decision = json.loads(decision_bytes)
-
+def load_eligible_scene_rows(contract: dict[str, Any]) -> dict[str, Any]:
+    """Return the complete metadata-eligible scene population without pixels."""
     central, _ = _fetch(contract["source"]["zip_url"], CENTRAL_RANGE)
     annotations, _ = _fetch(contract["source"]["zip_url"], ANNOTATION_RANGE)
     members = _parse_central_directory(central)
@@ -144,6 +138,35 @@ def build(contract_path: Path, output_path: Path) -> dict[str, Any]:
             }
         )
 
+    return {
+        "central": central,
+        "pair_bytes": pair_bytes,
+        "score_bytes": score_bytes,
+        "cross_table_concordance": cross_table_concordance,
+        "concordant": concordant,
+        "comparable": comparable,
+        "eligible": eligible,
+        "rejected": dict(sorted(rejected.items())),
+    }
+
+
+def build(contract_path: Path, output_path: Path) -> dict[str, Any]:
+    contract_bytes = contract_path.read_bytes()
+    contract = json.loads(contract_bytes)
+    parent = contract["parent"]
+    decision_bytes = (ROOT / parent["decision_path"]).read_bytes()
+    evidence_bytes = (ROOT / parent["evidence_path"]).read_bytes()
+    decision = json.loads(decision_bytes)
+    source = load_eligible_scene_rows(contract)
+    central = source["central"]
+    pair_bytes = source["pair_bytes"]
+    score_bytes = source["score_bytes"]
+    cross_table_concordance = source["cross_table_concordance"]
+    concordant = source["concordant"]
+    comparable = source["comparable"]
+    eligible = source["eligible"]
+    rejected = source["rejected"]
+
     eligible.sort(key=lambda row: row["scene_sort_sha256"])
     selection = contract["selection"]
     fit_end = int(selection["fit_scenes"])
@@ -198,7 +221,7 @@ def build(contract_path: Path, output_path: Path) -> dict[str, Any]:
         "cross_table_concordant_pairs": concordant,
         "cross_table_comparable_pairs": comparable,
         "eligible_scene_count": len(eligible),
-        "rejected_scene_counts": dict(sorted(rejected.items())),
+        "rejected_scene_counts": rejected,
         "role_counts": role_counts,
         "initial_member_count": len(initial) * 2,
         "initial_compressed_bytes": initial_compressed_bytes,

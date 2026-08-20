@@ -1,0 +1,46 @@
+from __future__ import annotations
+
+import json
+import zlib
+from pathlib import Path
+
+from scripts.build_u5_r2spcp3_png_eligible_roles import (
+    _role_sort_key,
+    _sorted_ids_sha256,
+)
+
+ROOT = Path(__file__).resolve().parents[1]
+CONTRACT = ROOT / "configs/u5_r2spcp3_png_eligible_preference_roles_v1.json"
+
+
+def test_spcp3_contract_filters_payload_before_role_assignment() -> None:
+    payload = json.loads(CONTRACT.read_text(encoding="utf-8"))
+    assert payload["experiment_id"] == "U5.R2SPCP3"
+    assert payload["exclusion"]["selected_scene_count_exact"] == 160
+    assert payload["eligibility"]["expected_unassigned_scene_count"] == 648
+    assert payload["eligibility"]["required_decompressed_signature_hex"] == (
+        "89504e470d0a1a0a"
+    )
+    assert payload["selection"]["role_assignment_before_signature_lock_forbidden"]
+    assert payload["eligibility"]["full_member_read_forbidden"]
+    assert payload["eligibility"]["image_decode_forbidden"]
+
+
+def test_spcp3_identity_and_sort_are_domain_separated() -> None:
+    assert _sorted_ids_sha256(["I0002", "I0001"]) == _sorted_ids_sha256(
+        ["I0001", "I0002"]
+    )
+    assert _role_sort_key("I0001") != _role_sort_key("I0002")
+    from scripts.build_u5_r2spcp2_preference_roles import _scene_sort_key
+
+    assert _role_sort_key("I0001") != _scene_sort_key("I0001")
+
+
+def test_raw_deflate_prefix_can_identify_png_without_full_member() -> None:
+    png = bytes.fromhex("89504e470d0a1a0a") + b"bounded-prefix-fixture" * 20
+    compressor = zlib.compressobj(level=6, wbits=-15)
+    compressed = compressor.compress(png) + compressor.flush()
+    decoder = zlib.decompressobj(-15)
+    observed = decoder.decompress(compressed[:64], 8)
+    assert observed == png[:8]
+    assert observed != b"\xff\xd8\xff\xe0JFIF"
