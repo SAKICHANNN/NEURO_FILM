@@ -1,0 +1,71 @@
+{
+  "schema": "neuro-film.u6-p6at-scorpion-cross-scanner-coherence-d0-evidence.v1",
+  "node": "U6.P6AT",
+  "date": "2026-08-20",
+  "status": "PASS_GENERIC_SHARED_STRUCTURE_METHOD_D0",
+  "question": "Can scanner-paired cross-spectral coherence distinguish the same physical structure from same-slide wrong-region and shifted controls across five real scanners?",
+  "primary_sources": [
+    {
+      "title": "SCORPION: A Multi-Scanner Whole-Slide Image Dataset for Cross-Scanner Analysis",
+      "url": "https://arxiv.org/abs/2507.20907"
+    },
+    {
+      "title": "SCORPION dataset record",
+      "url": "https://zenodo.org/records/16517924",
+      "license": "CC-BY-4.0",
+      "publication_date": "2025-07-28"
+    }
+  ],
+  "implementation": {
+    "contract_commit": "67736b36",
+    "implementation_commit": "4d78a7cd",
+    "contract_sha256": "ba6b3865778980bda0ecd7131c8a664e275796cb02b7d027d419250b3966c362",
+    "evaluator_sha256": "5e1471923949786b0fa192ddb1266c50688c12f41c0692aa085b1757019b26af",
+    "runner_sha256": "02bfb19112758ca71aebb56ea1b126cabf4fd98a8e5ac484f2e21c7e0d3dfed2",
+    "test_sha256": "6cd208eb5728c16b46a37993b39c520d3be7f7f97d13f5b8c605b57f79270ad7"
+  },
+  "source_lock": {
+    "official_archive_size_bytes": 644090103,
+    "official_archive_md5": "21e4c586c76a42f3a69b6a5361882a01",
+    "full_archive_downloaded_or_rehashed": false,
+    "central_directory_offset": 643761647,
+    "central_directory_size": 328434,
+    "central_directory_sha256": "2994e051c4498cf68477c8d46aa19046e0dfafbe374f0e9f46a5fbd348a09ba0",
+    "central_entries": 2929,
+    "jpeg_members": 2400,
+    "structure": "48 slides x 10 samples x 5 scanner JPEGs",
+    "acquired_members": 120,
+    "acquired_bytes": 32119291,
+    "unique_member_sha256": 120,
+    "acquisition_report_sha256": "ac7c9a3d4c009204ff6884fa678883b430890c10ad95359e096676e84b2401f9"
+  },
+  "formal_replay": {
+    "reports_byte_exact": true,
+    "report_a_sha256": "768d1dc3a1a1841fa0b7187c33894270193a49b523b5df74aae5744bb8ed557f",
+    "report_b_sha256": "768d1dc3a1a1841fa0b7187c33894270193a49b523b5df74aae5744bb8ed557f",
+    "stable_evidence_id": "dabf3c2f5cd6ac5e66138fc48e72dc86fb0e647d72abf9e1edd853c5a55bf772"
+  },
+  "aggregate": {
+    "rows": 12,
+    "scanner_pair_observations": 120,
+    "correct_vs_wrong_win_rate": 1.0,
+    "correct_vs_shifted_win_rate": 1.0,
+    "median_correct_coherence": 0.29051706912210296,
+    "median_correct_to_wrong_ratio": 14.742778039567632,
+    "median_correct_to_shifted_ratio": 13.137696811263437
+  },
+  "gate_results": {
+    "required_rows_12": true,
+    "required_scanner_pairs_per_row_10": true,
+    "correct_vs_wrong_win_rate_at_least_0_8": true,
+    "correct_vs_shifted_win_rate_at_least_0_8": true,
+    "median_correct_to_wrong_ratio_at_least_1_5": true,
+    "median_correct_to_shifted_ratio_at_least_1_5": true,
+    "median_correct_coherence_at_least_0_1": true,
+    "repeat_error_zero": true
+  },
+  "automatic_pass": true,
+  "decision": "retain_cross_scanner_coherence_as_independent_shared_structure_method_d0",
+  "next_hypothesis": "Transfer the frozen coherence discriminator only to an independently rights-cleared photographic-film crossed-scan or repeat-scan population; do not infer material NPS from pathology tissue.",
+  "claim_ceiling": "CC-BY-4.0 H&E tissue patches aligned across five whole-slide scanners; generic shared-structure/scanner-method evidence only, not photographic film, material NPS recovery, scanner calibration, product profile or medical claim."
+}

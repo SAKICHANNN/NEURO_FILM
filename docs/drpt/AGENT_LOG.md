@@ -14095,3 +14095,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   duplicate access aliases as repeated scans. Further scanner/material
   separation requires an exact rights-cleared crossed-scan mapping.
 - Evidence: `docs/evidence/U6_P6AS_PUBLIC_REPEAT_SCAN_SOURCE_AUDIT_RESULT.json`.
+
+### 2026-08-20 - U6.P6AT retains a cross-scanner shared-structure discriminator
+
+- Range-acquired 120 exact SCORPION members (12 regions plus same-slide wrong-region controls across five scanners), 32,119,291 bytes, under CC-BY-4.0. The full 644MB archive was not downloaded or rehashed; the official archive metadata, exact central directory and every retained member are bound separately.
+- Two formal reports are byte exact (`768d1dc3...d557f`, stable `dabf3c2f...bf772`). All 120 scanner-pair observations favor the correct region over both wrong-region and shifted controls; median correct coherence is `.29052`, with `14.74x/13.14x` median ratios.
+- Retain only a generic shared-structure/scanner-method D0. Pathology tissue does not establish photographic-film material NPS, scanner calibration, a profile or a product claim. The next admission requires an independent rights-cleared photographic-film crossed-scan population.
+- Storage side work stayed subordinate: movable D fallback files were copied and SHA-verified under `P:\neuro_film_storage\relocated_d_cleanup_20260820`; the unique large rollback remains on D while P reports `Full Repair Needed`, and two locked Android files remain untouched.
+- Evidence: `docs/evidence/U6_P6AT_SCORPION_CROSS_SCANNER_COHERENCE_D0_RESULT.json`.
