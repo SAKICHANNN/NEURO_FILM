@@ -50,6 +50,8 @@
     "required_pages": 1
   },
   "registration": {
+    "input": "uint16 grayscale upper-eight-bits, area-resized to maximum side 1024",
+    "maximum_side_pixels": 1024,
     "orientation_candidates_degrees": [90, -90],
     "orientation_selection": "maximum SIFT-RANSAC inlier count, then inlier fraction, then +90 tie break; coherence and control scores forbidden",
     "maximum_features": 8000,
