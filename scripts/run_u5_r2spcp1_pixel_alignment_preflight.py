@@ -52,6 +52,18 @@ EXPECTED_VARIANTS = (
 )
 
 
+class SourceMechanicsError(ValueError):
+    """A frozen member failed a source/decode contract before scientific scoring."""
+
+    def __init__(self, *, image_id: str, payload: bytes, observed_format: str | None) -> None:
+        self.image_id = image_id
+        self.payload_sha256 = sha256_bytes(payload)
+        self.payload_size = len(payload)
+        self.observed_prefix_hex = payload[:32].hex()
+        self.observed_format = observed_format
+        super().__init__(f"not a PNG: {image_id}")
+
+
 def _sha256_file(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as handle:
@@ -171,7 +183,11 @@ def _decode_png(payload: bytes, image_id: str) -> tuple[np.ndarray, dict[str, An
     with Image.open(io.BytesIO(payload)) as image:
         image.load()
         if image.format != "PNG":
-            raise ValueError(f"not a PNG: {image_id}")
+            raise SourceMechanicsError(
+                image_id=image_id,
+                payload=payload,
+                observed_format=image.format,
+            )
         if getattr(image, "n_frames", 1) != 1:
             raise ValueError(f"multi-frame PNG: {image_id}")
         if image.mode not in {"RGB", "RGBA"}:
@@ -355,19 +371,51 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
-    result = run_preflight(
-        contract_path=args.contract,
-        role_manifest_path=args.role_manifest,
-        role=args.role,
-        cache_dir=args.cache_dir,
-    )
+    try:
+        result = run_preflight(
+            contract_path=args.contract,
+            role_manifest_path=args.role_manifest,
+            role=args.role,
+            cache_dir=args.cache_dir,
+        )
+    except SourceMechanicsError as error:
+        scientific: dict[str, Any] = {
+            "schema": "neuro-film.u5-r2spcp1-pixel-alignment-source-failure.v1",
+            "experiment_id": "U5.R2SPCP1",
+            "role": args.role,
+            "contract_sha256": _sha256_file(args.contract),
+            "role_manifest_sha256": _sha256_file(args.role_manifest),
+            "status": "INVALID_SOURCE_MECHANICS_BEFORE_ALIGNMENT",
+            "decision": "close_exact_spcp_single_source_pixel_family_no_decode_fallback",
+            "failure": {
+                "image_id": error.image_id,
+                "declared_extension": ".png",
+                "payload_sha256": error.payload_sha256,
+                "payload_size": error.payload_size,
+                "observed_prefix_hex": error.observed_prefix_hex,
+                "observed_format": error.observed_format,
+                "failed_gate": "required_payload_format_png",
+            },
+            "preference_or_score_values_read": 0,
+            "operator_fit_count": 0,
+            "alignment_pair_score_count": 0,
+            "confirmation_payload_reads": 0,
+            "future_role_image_payload_reads": 0,
+            "claim_ceiling": (
+                "Source mechanics failure only; no evidence for or against human "
+                "preference signal or a shared explicit operator."
+            ),
+        }
+        scientific["scientific_payload_id"] = canonical_sha256(scientific)
+        result = {"scientific": scientific, "runtime": {}}
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(
         json.dumps(
             {
                 "role": args.role,
-                "all_gates_pass": result["scientific"]["all_gates_pass"],
+                "all_gates_pass": result["scientific"].get("all_gates_pass", False),
+                "status": result["scientific"].get("status", "COMPLETE"),
                 "scientific_payload_id": result["scientific"]["scientific_payload_id"],
             },
             sort_keys=True,

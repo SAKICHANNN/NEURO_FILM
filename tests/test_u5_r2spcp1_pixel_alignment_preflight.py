@@ -1,9 +1,14 @@
 from __future__ import annotations
 
+import io
+
 import numpy as np
 import pytest
+from PIL import Image
 
 from scripts.run_u5_r2spcp1_pixel_alignment_preflight import (
+    SourceMechanicsError,
+    _decode_png,
     alignment_metrics,
     normalized_correlation,
     tie_aware_midrank,
@@ -31,3 +36,13 @@ def test_ncc_rejects_constant_degenerate_arrays() -> None:
     constant = np.ones((4, 4), dtype=np.float32)
     with pytest.raises(ValueError, match="denominator"):
         normalized_correlation(constant, constant)
+
+
+def test_decode_png_fails_closed_on_jpeg_payload_with_png_name() -> None:
+    buffer = io.BytesIO()
+    Image.new("RGB", (8, 8), (1, 2, 3)).save(buffer, format="JPEG")
+    with pytest.raises(SourceMechanicsError) as caught:
+        _decode_png(buffer.getvalue(), "I0001_02_01")
+    assert caught.value.image_id == "I0001_02_01"
+    assert caught.value.observed_format == "JPEG"
+    assert caught.value.observed_prefix_hex.startswith("ffd8ff")
