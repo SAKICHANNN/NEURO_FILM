@@ -115,7 +115,7 @@ def _load_geometry(contract: Mapping[str, Any], root: Path) -> dict[str, Any]:
         raise NTIREPairedCandidateError("parent geometry evidence drift")
     parent_payload = json.loads(parent.read_text(encoding="utf-8"))
     if (
-        parent_payload.get("stable_identity")
+        parent_payload.get("formal_replay", {}).get("stable_identity")
         != contract["parent_geometry_evidence"]["stable_identity"]
     ):
         raise NTIREPairedCandidateError("parent geometry identity drift")

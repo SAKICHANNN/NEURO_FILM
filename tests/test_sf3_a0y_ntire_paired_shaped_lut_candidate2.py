@@ -10,6 +10,7 @@ from src.real_film.ntire_paired_shaped_lut_candidate import (
     NTIREPairedCandidateError,
     _aggregate,
     _fit_affine,
+    _load_geometry,
     _sample_indices,
     load_contract,
 )
@@ -24,6 +25,13 @@ def test_contract_loads_and_roles_are_disjoint() -> None:
     assert (
         len(set(roles["fit"] + roles["calibration"] + roles["sealed_confirmation"]))
         == 56
+    )
+
+
+def test_parent_geometry_evidence_binding_loads() -> None:
+    geometry = _load_geometry(load_contract(CONFIG), ROOT)
+    assert geometry["official_baseline"]["commit"] == (
+        "3478fbb39449f5cba29483d4cbfe019013f8261f"
     )
 
 
