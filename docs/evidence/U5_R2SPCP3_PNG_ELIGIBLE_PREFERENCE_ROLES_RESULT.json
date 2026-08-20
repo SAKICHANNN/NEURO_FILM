@@ -1,0 +1,56 @@
+{
+  "schema": "neuro-film.u5-r2spcp3-png-eligible-preference-roles-evidence.v1",
+  "experiment_id": "U5.R2SPCP3",
+  "date": "2026-08-20",
+  "execution_commit": "9791b6660f732a76855f3d2551fb940bd8c49d5a",
+  "contract": {
+    "path": "configs/u5_r2spcp3_png_eligible_preference_roles_v1.json",
+    "sha256": "1e751a2c5a54acb25bf7a299cf9761a924186fa0608fcb8d23e32eea76569bd0"
+  },
+  "implementation": {
+    "path": "scripts/build_u5_r2spcp3_png_eligible_roles.py",
+    "sha256": "cffd9bbe9f6e2d01413ee7de0bf4faecf209247f60cc221774c54d2beb2acddd",
+    "test_path": "tests/test_u5_r2spcp3_png_eligible_roles.py",
+    "test_sha256": "bbdfe3995c8768e795b0b4cd0670336ac375c5159e51f8b65d7abce7b8c3e1f0"
+  },
+  "formal_reports": {
+    "run_a_path": "outputs/eval/u5_r2spcp3_png_eligible_preference_roles_v1/run_a.json",
+    "run_b_path": "outputs/eval/u5_r2spcp3_png_eligible_preference_roles_v1/run_b.json",
+    "run_a_sha256": "343636cb5685a74ad78e5eac7bc7b5c2f1da550c236b3c719b8d8b1c722d7eb9",
+    "run_b_sha256": "343636cb5685a74ad78e5eac7bc7b5c2f1da550c236b3c719b8d8b1c722d7eb9",
+    "byte_exact_replay": true,
+    "stable_manifest_id": "sha256:18ccaf4fd40b1284a28305717693b92c9462b764ccf4e8ec4739feda00362e69"
+  },
+  "population": {
+    "metadata_eligible_scenes": 808,
+    "excluded_spcp2_scenes": 160,
+    "fresh_unassigned_scenes": 648,
+    "member_signatures": 1296,
+    "png_members": 420,
+    "jpeg_members": 876,
+    "pair_format_counts": {
+      "JPEG_to_JPEG": 244,
+      "JPEG_to_PNG": 380,
+      "PNG_to_JPEG": 8,
+      "PNG_to_PNG": 16
+    },
+    "png_pair_eligible_scenes": 16,
+    "required_role_scenes": 160
+  },
+  "read_boundary": {
+    "exact_range_bytes_per_member": 1024,
+    "total_range_bytes_per_formal_run": 1327104,
+    "full_member_payload_reads": 0,
+    "image_decodes": 0,
+    "operator_fits": 0
+  },
+  "failed_gates": [
+    "png_pair_support",
+    "role_counts_exact"
+  ],
+  "status": "FAIL_CLOSED_PNG_ELIGIBILITY",
+  "decision": "close_spcp3_before_full_payload_acquisition_or_operator_fit",
+  "execution_amendments": "Pre-formal attempts produced no report. The first stopped before payload Range reads on a contract/helper field mismatch. A later attempt was stopped when review found that its larger fixed Range could cover a complete small compressed member. Parallel exact-prefix attempts were discarded after one TLS EOF; the final committed protocol used one non-complete 1024-byte local-record prefix per member, eight workers and bounded exact-Range retry.",
+  "next_leaf": "Do not relabel JPEG payloads or lower the 160-scene gate on SPCP. Audit the independent latest CVPR 2026 PPSD official release surface for explicit licence, immutable asset inventory, same-scene/style structure and source separation before any pixel request.",
+  "claim_ceiling": "Source payload-eligibility negative only; not evidence for or against the SPCP preference signal, any colour operator, film, stock, scanner, package, capability or product quality."
+}

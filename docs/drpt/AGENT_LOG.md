@@ -13821,3 +13821,8 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   A new prospective leaf may filter payload magic before assigning wholly fresh
   scenes; this failure does not adjudicate the underlying preference signal.
 - Evidence: `docs/evidence/U5_R2SPCP2_GLOBAL_LOGIT_AFFINE_PREFERENCE_D0_RESULT.json`.
+### 2026-08-20 - U5.R2SPCP3 closes the fresh PNG-eligible cohort
+
+- Two fresh full-population signature audits are byte exact (`343636cb...d7eb9`) over 648 SPCP2-disjoint scenes and 1,296 members.
+- Only 16 scene pairs are PNG on both endpoints versus 160 required; 420 members are PNG and 876 are JPEG. All parent, source, exclusion, byte-budget and zero-full-payload/zero-decode/zero-fit gates pass.
+- Close SPCP before acquisition or operator fitting. The next source leaf is a metadata/licence/inventory audit of the independent CVPR 2026 PPSD release; no format fallback or reduced support is allowed.

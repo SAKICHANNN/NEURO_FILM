@@ -1524,3 +1524,12 @@ calibration score and sealed reads are all zero. The 83 already acquired
 CRC-valid members remain isolated on the P-backed project data root. Only a
 new prospective cohort whose payload magic is locked before scene roles may
 continue this question; SPCP2 cannot be relabeled or rescued in place.
+
+U5.R2SPCP3 performs that prospective format-before-role test on all 648
+metadata-eligible scenes not selected by SPCP2. Two reports are byte exact
+(`343636cb...d7eb9`; stable `18ccaf4f...62e69`) after 1,296 bounded 1,024-byte
+local-record prefix reads and zero full members, decodes or fits. Only 16
+scenes have PNG on both preference endpoints, far below the frozen 160-scene
+role requirement; 876/1,296 members are actually JPEG. Close the SPCP source
+for this operator without relabeling, fallback decode or support reduction.
+Next audit the independent CVPR 2026 PPSD release surface before any pixels.
