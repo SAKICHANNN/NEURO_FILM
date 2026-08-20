@@ -14156,6 +14156,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   mapping. Evidence:
   `docs/evidence/U6_P6AW_BARNARD_ROTATED_PLATE_COHERENCE_D0_RESULT.json`.
 
+### 2026-08-20 - U6.P6AX finds heterogeneous plate-following structure
+
+- Replaced point registration with a prospectively frozen, translation-
+  invariant directional-spectrum test on both perpendicular-scan plates. This
+  is a new identifying observation, not a P6AV/P6AW threshold rescue.
+- Two reports are byte exact (`68510187...a06da`, stable
+  `6731e053...8c40b`). The Barnard plate passes the plate-following margin at
+  `+.13003`; the 1903 plate has the same direction but misses at `+.03289`.
+  Neither plate has scanner-fixed evidence, and all support gates pass.
+- Formal status remains inconclusive because both plates were mandatory. Do
+  not tune the frequency band, crop, margin or plate set. A fresh
+  perpendicular-scan population is the only continuation of this exact
+  statistic. Evidence:
+  `docs/evidence/U6_P6AX_ROTATED_PLATE_DIRECTIONAL_ATTRIBUTION_D0_RESULT.json`.
+
 ### 2026-08-20 - U5.R2REPID10 freezes bounded basis selection
 
 - Direction correction: REPID9C global statistics and REPID9D CanonCGT tokens

@@ -1685,6 +1685,16 @@ reports are byte exact (`d03b059c...64a5f`). Geometry remains precise but only
 coherence rows are scored. Close this SIFT/crop/threshold family rather than
 rescuing either plate.
 
+U6.P6AX changes the identifying observation rather than rescuing registration:
+translation-invariant, radially normalized high-frequency spectra test whether
+directional structure follows each physically rotated plate or stays fixed in
+scanner coordinates. Two reports are exact (`68510187...a06da`). The 1905
+Barnard plate strongly follows the plate (`+.13003` margin), but the 1903 plate
+reaches only `+.03289` against the frozen `+.05` margin; neither plate supports
+scanner-fixed structure. The two-plate decision is inconclusive. Keep the
+single positive as a mechanism signal only and require a fresh perpendicular-
+scan population without band/crop/margin rescue.
+
 U5.R2REPID10 is prospectively frozen after REPID9C/9D close two distinct
 reference encoders. It returns to REPID7's positive 7/9 self-canonical signal
 but changes only the explicit operator representation: fixed extended-domain

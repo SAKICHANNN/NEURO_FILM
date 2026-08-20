@@ -1,0 +1,58 @@
+{
+  "schema": "neuro-film.u6-p6ax-rotated-plate-directional-attribution-d0-evidence.v1",
+  "node": "U6.P6AX",
+  "date": "2026-08-20",
+  "status": "FAIL_INCONCLUSIVE_DIRECTIONAL_ATTRIBUTION_D0",
+  "question": "Does aggregate high-frequency directional structure follow the physically rotated plate or remain fixed in scanner coordinates, without point registration?",
+  "implementation": {
+    "contract_commit": "c7e93c26",
+    "implementation_commit": "87402bcd",
+    "contract_sha256": "2cf6dccff09d5b6aa9387dd02ee65ec15cfd7069719549f12a0e4081f0267ef6",
+    "evaluator_sha256": "39b0c4093daaf7bf0a26ced27c1454c545488d60ab427fc975ea5fd967400946",
+    "runner_sha256": "ed2d932a9cc7af3df204a1c4e1002f40241175407fc777867d6963fefa568c96",
+    "test_sha256": "bd8c27ee888027c6f193cf09758a374fc23797b664737a64eeb6d4fc4ae0eb68"
+  },
+  "method": {
+    "plates": 2,
+    "registration_allowed": false,
+    "patches_per_scan": 16,
+    "center_crop_size": 3072,
+    "patch_size": 768,
+    "normalized_frequency_band": [0.15, 0.45],
+    "radial_bins": 64,
+    "minimum_margin": 0.05
+  },
+  "rows": [
+    {
+      "id": "uchicago_1903_f0009_f0010",
+      "plate_following_correlation": 0.046254658585657145,
+      "scanner_fixed_correlation": 0.005466059474108902,
+      "wrong_plate_correlation": 0.013366479543208683,
+      "plate_following_margin": 0.032888179042448465,
+      "scanner_fixed_margin": -0.040788599111548245,
+      "plate_following_pass": false,
+      "scanner_fixed_pass": false
+    },
+    {
+      "id": "uchicago_1905_barnard_10b161",
+      "plate_following_correlation": 0.15872406212146137,
+      "scanner_fixed_correlation": 0.010702623271208467,
+      "wrong_plate_correlation": 0.02869353193301061,
+      "plate_following_margin": 0.13003053018845076,
+      "scanner_fixed_margin": -0.1480214388502529,
+      "plate_following_pass": true,
+      "scanner_fixed_pass": false
+    }
+  ],
+  "formal_replay": {
+    "reports_byte_exact": true,
+    "report_a_sha256": "685101875a2d1a30f014f0ece9c4460d156e1e66999ac419278e1b16340a06da",
+    "report_b_sha256": "685101875a2d1a30f014f0ece9c4460d156e1e66999ac419278e1b16340a06da",
+    "stable_evidence_id": "6731e053163e40edab4be4e4ce108bd31b34e620273b179e239671d8b6b8c40b"
+  },
+  "automatic_pass": false,
+  "decision": "close_rotated_plate_directional_attribution_as_inconclusive",
+  "interpretation": "The Barnard plate has strong plate-following directional evidence and neither plate has scanner-fixed evidence, but the independent 1903 plate misses the frozen margin. This is a heterogeneous two-plate signal, not material attribution.",
+  "next_hypothesis": "Search for a fresh rights-cleared perpendicular-scan plate population and apply this exact frozen statistic; do not tune the band, margin, crop or plate set.",
+  "claim_ceiling": "two historical glass photographic plates, one Epson workflow and aggregate high-frequency directional attribution D0; no isolated material NPS, scanner calibration, modern photographic-film stock transfer or product evidence."
+}
