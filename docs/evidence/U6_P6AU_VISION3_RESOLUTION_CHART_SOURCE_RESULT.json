@@ -1,0 +1,45 @@
+{
+  "schema": "neuro-film.u6-p6au-vision3-resolution-chart-source-evidence.v1",
+  "node": "U6.P6AU",
+  "date": "2026-08-20",
+  "status": "FAIL_CLOSED_SOURCE_SAMPLE_DEPTH",
+  "question": "Does the public 2025 Vision3 archive provide exact RGB16 same-negative 2K/4K/6K resolution-chart groups for a scanner-resolution discriminant?",
+  "primary_source": {
+    "title": "Film Resolution Test",
+    "url": "https://florian-noever.com/filmresolutiontest/",
+    "publication_date": "2025-05",
+    "license": "CC-BY-NC-4.0"
+  },
+  "implementation": {
+    "contract_commit": "d7c5bd79",
+    "implementation_commit": "b2053139",
+    "zip_descriptor_fix_commit": "a628773f",
+    "source_stop_fix_commit": "a1b9198c",
+    "contract_sha256": "980dcbc43dbae7c5a50ae37f696f2abd4df868930aff64df3967264abafb95e0",
+    "evaluator_sha256": "cb11ffb515945716106a671e10a878ef3d4d060e512165e7a51d7aba53a83dd9",
+    "runner_sha256": "b3dcde426893056bdbf7b65cc0c7443b47c79d4e56318a1d85374c1303d9b753",
+    "test_sha256": "862874ffed85c3b09d9377ff08e0c866f9cb68be3b26154db89c1e24688f07ab"
+  },
+  "source_lock": {
+    "archive_size_bytes": 1678009339,
+    "central_directory_sha256": "fdd34d361936287ea26e3ce03a46061904b2e5461aaa042d4838d473d4135637",
+    "central_entries": 225,
+    "real_tiff_members": 90,
+    "frozen_selected_members": 18,
+    "frozen_selected_groups": 6,
+    "first_member_name": "TIFF/Super 16/50D/Scans 2K/Super_16_50D_RC_25mm_T4_2K.tif",
+    "first_member_bytes": 3634672,
+    "first_member_sha256": "c562398ef09bfae7fd0b86201d54f7a9be480ef61b84e069239ba814abeabeea",
+    "first_member_shape": [1080, 1998, 3],
+    "first_member_dtype": "uint8"
+  },
+  "formal_replay": {
+    "reports_byte_exact": true,
+    "report_a_sha256": "671aeaf594f7ef78b8c51a6583f2ad174b47c95f963685334b2fddd56832ad7d",
+    "report_b_sha256": "671aeaf594f7ef78b8c51a6583f2ad174b47c95f963685334b2fddd56832ad7d"
+  },
+  "automatic_pass": false,
+  "decision": "close_noever_resolution_source_without_row_substitution_or_format_fallback",
+  "next_hypothesis": "Seek a genuinely high-bit-depth same-negative or repeated-scan source; do not relax this archive to RGB8 after observing the frozen gate.",
+  "claim_ceiling": "CC-BY-NC-4.0 source-format negative for one author-controlled 2025 Vision3 camera-scan archive; no pixel-resolution, scanner, film-stock, calibration, product or commercial-use conclusion."
+}

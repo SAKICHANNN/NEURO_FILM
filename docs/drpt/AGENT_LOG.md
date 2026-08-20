@@ -14120,3 +14120,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain only a generic shared-structure/scanner-method D0. Pathology tissue does not establish photographic-film material NPS, scanner calibration, a profile or a product claim. The next admission requires an independent rights-cleared photographic-film crossed-scan population.
 - Storage side work stayed subordinate: movable D fallback files were copied and SHA-verified under `P:\neuro_film_storage\relocated_d_cleanup_20260820`; the unique large rollback remains on D while P reports `Full Repair Needed`, and two locked Android files remain untouched.
 - Evidence: `docs/evidence/U6_P6AT_SCORPION_CROSS_SCANNER_COHERENCE_D0_RESULT.json`.
+
+### 2026-08-20 - U6.P6AU closes the Vision3 resolution-chart source
+
+- Frozen 18 exact 2K/4K/6K chart members from the May 2025 CC-BY-NC archive;
+  central-directory and local-member integrity checks pass.
+- The first exact member is `(1080,1998,3)` `uint8`, not the required RGB16.
+  Two fail-closed reports are byte exact (`671aeaf5...ad7d`).
+- Stop before resolution analysis and do not reinterpret this post-result as an
+  8-bit experiment. Evidence: `docs/evidence/U6_P6AU_VISION3_RESOLUTION_CHART_SOURCE_RESULT.json`.

@@ -1663,3 +1663,8 @@ bytes, all gates pass, and payload/decode/fit/sealed requests remain zero. This
 opens exact original-member acquisition into the project-isolated D fallback,
 then one scene-disjoint reference-only bounded-operator parameter-predictor
 D0. It does not open sealed scenes, a product scorer or integration.
+
+U6.P6AU freezes 18 same-negative Vision3 resolution-chart members across six
+format/stock cells, but the first exact member is RGB8 rather than the required
+RGB16. Two reports are byte exact (`671aeaf5...ad7d`); the source closes before
+resolution analysis, without row substitution or a post-result format fallback.
