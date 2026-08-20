@@ -461,3 +461,72 @@ def test_aggregate_score_locks_passes_perfect_consumed_truth(tmp_path: Path) -> 
     )
     assert result["metrics"]["p402_all_pair_concordant"] == 72
     assert result["metrics"]["correct_source_over_wrong_count"] == 24
+
+
+def test_aggregate_does_not_open_private_files_before_mechanics_pass(
+    tmp_path: Path,
+) -> None:
+    contract = {
+        "experiment_id": "U5.R2EDITREWARD0",
+        "fixed_instruction": "fixed",
+        "external_asset": {
+            "model_sha256": "model-sha",
+            "tensor_count": 741,
+            "parameter_count": 8296688740,
+        },
+        "mechanics_gates": {
+            "canonical_reverse_same_asset_score_max_abs_error_max": 1e-5
+        },
+        "claim_ceiling": "test only",
+    }
+    contract_path = tmp_path / "contract.json"
+    contract_path.write_text(json.dumps(contract, sort_keys=True), "utf-8")
+    contract_sha = hashlib.sha256(contract_path.read_bytes()).hexdigest()
+    load = {
+        "state_tensor_count": 741,
+        "state_parameter_count": 8296688740,
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": [],
+        "device_map": {"": "cuda:0"},
+    }
+    score_locks = []
+    for order in ("canonical", "reverse"):
+        lock = {
+            "schema": "neuro-film.u5-r2editreward0-blind-score-lock.v1",
+            "status": "BLIND_SCORE_LOCK_COMPLETE",
+            "smoke": False,
+            "order": order,
+            "contract_sha256": contract_sha,
+            "model_sha256": "model-sha",
+            "instruction_sha256": hashlib.sha256(b"fixed").hexdigest(),
+            "inventory": {
+                "primary_count": 72,
+                "wrong_source_count": 24,
+                "private_mapping_reads": 0,
+                "direct_result_reads": 0,
+            },
+            "load": load,
+            "primary": [],
+            "wrong_source": [],
+        }
+        path = tmp_path / f"{order}.json"
+        path.write_text(json.dumps(lock, sort_keys=True), "utf-8")
+        score_locks.append(path)
+
+    missing = tmp_path / "private-file-must-not-open.json"
+    try:
+        aggregate_score_locks(
+            contract_path=contract_path,
+            score_lock_paths=score_locks,
+            p401_mapping_path=missing,
+            p401_result_path=missing,
+            p402_mapping_path=missing,
+            p402_review_path=missing,
+            p402_result_path=missing,
+        )
+    except RuntimeError as error:
+        assert str(error) == "private aggregation is forbidden before mechanics pass"
+    else:
+        raise AssertionError("private aggregation must stop before opening truth files")
