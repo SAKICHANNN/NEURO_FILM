@@ -13655,3 +13655,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   or fuse this exact kernel. Continue only through a materially distinct
   pointwise safe-Lab/native-product mechanism. Evidence:
   `docs/evidence/U1_4C21_NATIVE_REC2020_LAB_SOURCE_COMPRESS_RESULT.json`.
+
+### 2026-08-20 - U1.4C22 passes native pointwise safe-Lab
+
+- The materially distinct C11 pointwise safe-Lab kernel covers transfer,
+  chroma curve, neutral/skin protection and chroma cap while explicitly
+  excluding spatial detail, tone rolloff and the failed C21 gamut kernel.
+- Two 24MP runs are byte exact; maximum Lab error is `7.63e-6` and native time
+  is `0.62--0.72s`. This opens exact composition with the retained spatial and
+  tone stages, not complete renderer promotion. Evidence:
+  `docs/evidence/U1_4C22_NATIVE_SAFE_LAB_POINTWISE_RESULT.json`.

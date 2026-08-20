@@ -1,0 +1,56 @@
+{
+  "schema": "neuro-film.u1-4c22-native-safe-lab-pointwise-evidence.v1",
+  "experiment_id": "U1.4C22",
+  "status": "PASS",
+  "decision": "retain_native_safe_lab_pointwise_and_open_exact_spatial_tone_composition",
+  "contract": {
+    "path": "configs/u1_4c22_native_safe_lab_pointwise_v1.json",
+    "sha256": "e8d1970ce70cd91cba91c506c87e01805580519ff914457553ac021258caf145"
+  },
+  "formal_report": {
+    "path": "outputs/eval/u1_4c22_native_safe_lab_pointwise_v1/report.json",
+    "sha256": "b29874c241662ade69fd5b9ebaca2118326d7fc1fb6fae3abb1b547cd3b37c16",
+    "stable_evidence_id": "99bc9a6144cfac23818d96a0b426c961ec8f31a138d0905f9b76fd1e055f0a4f"
+  },
+  "input": {
+    "sha256": "91895fce65e8a32f869dd31ecd5c3ee576c9212cf028d59cd0022b0371668394",
+    "shape": [4000, 6000, 3],
+    "pixel_count": 24000000,
+    "profile_sha256": "e0da6e630f616dc25c1bca431ade74edd55a2c0bf3a5eec5bd937c9a62447666"
+  },
+  "implementation": {
+    "runner_sha256": "6bf9420a459a8c995d8940cfe75dc778cae3f0608b4650f6a87f1b25831ae566",
+    "native_source_sha256": "99ff3f99bbdf40b7b1b99e37f57a4b40b4958513e723231a586d2e2aadf724bd",
+    "native_header_sha256": "522a6a2bb7a57ad7ebf1c115bf105bfc1418303286d6a569ab0c762e41f72cc9",
+    "native_dll_sha256": "da9587b3406de0a4f323bfddb84b5bf49d87d84085dc3a428e367c72ae821185",
+    "toolchain": "msvc-x64-c11",
+    "thread_count": 8
+  },
+  "observations": {
+    "formal_runs": 2,
+    "output_exact": true,
+    "output_sha256": "b9874d506417a6a4727ebb1c60068ca831270f5830a0b5bfaa3d810d6aa2465c",
+    "maximum_lab_absolute_error": 0.00000762939453125,
+    "finite": true,
+    "native_kernel_wall_seconds": [0.6205896000028588, 0.7229025000124238]
+  },
+  "scope": {
+    "included": [
+      "Lab mean/std transfer",
+      "chroma curve",
+      "neutral protection",
+      "skin protection",
+      "chroma cap"
+    ],
+    "excluded": [
+      "spatial luma-detail preservation",
+      "tone rolloff",
+      "Lab gamut compression",
+      "RGB residual execution",
+      "PNG publication"
+    ]
+  },
+  "interpretation": "The materially distinct pointwise safe-Lab kernel passes its exact 24MP component gate and reduces the profiled pointwise work from roughly 12.5 seconds to under 0.73 seconds. This opens only exact composition with the retained spatial-detail and tone stages; it does not rescue the failed C21 Lab-compression kernel or establish complete renderer performance.",
+  "claim_ceiling": "Local Windows MSVC host feasibility for the exact pointwise subset of one retained safe-Lab look on one 24MP natural-derived ProPhoto fixture; not spatial-detail or tone parity, gamut compression, complete renderer performance, cross-platform parity, calibration, preference, HDR, or default promotion.",
+  "production_default_changed": false
+}
