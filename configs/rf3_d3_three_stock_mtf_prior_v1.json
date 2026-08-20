@@ -1,0 +1,76 @@
+{
+  "schema": "neuro-film.rf3-three-stock-mtf-prior-contract.v1",
+  "experiment_id": "RF3.D3",
+  "date": "2026-08-21",
+  "status": "FROZEN_BEFORE_MTF_TRACE_SCORE",
+  "question": "Are the three current first-party published MTF shapes materially separated enough to justify stock-specific rather than shared spatial priors?",
+  "parent": {
+    "path": "docs/evidence/RF3_D2_THREE_STOCK_OFFICIAL_SOURCE_MATRIX_RESULT.json",
+    "sha256": "0cb2226b43baa8cd3409ef654f3d9579cc0589dd2e9b28495a7f1e3cc312c818",
+    "required_decision": "retain_three_stock_first_party_physical_prior_matrix_and_open_nonrenderable_common_domain_comparison"
+  },
+  "rendering": {
+    "tool": "pdftoppm 24.04.0",
+    "dpi": 200,
+    "colour_mode": "png_rgb"
+  },
+  "frequencies_cycles_per_mm": [8.0, 15.0, 30.0, 40.0, 60.0],
+  "sources": [
+    {
+      "stock_id": "fujifilm_velvia_50",
+      "page_image": "outputs/eval/rf3_d3_three_stock_mtf_prior_v1/source_pages/velvia50_p8.png",
+      "page_image_sha256": "caa79e274a62a958a3b4970b336e666f4d82c5a3b5bdc750e931055207e78381",
+      "page_image_size": [1653, 2206],
+      "published_curve_semantics": "single_unspecified_composite_mtf",
+      "expected_curve_count": 1,
+      "x_log10_anchors": [[10.0, 484.0], [100.0, 705.0]],
+      "y_log10_anchors": [[100.0, 1174.0], [10.0, 1395.0]],
+      "plot_y_bounds": [1134, 1544],
+      "horizontal_grid_y": [1134, 1174, 1208, 1240, 1300, 1335, 1395, 1431, 1464, 1516, 1544]
+    },
+    {
+      "stock_id": "kodak_portra_400",
+      "page_image": "outputs/eval/rf3_d3_three_stock_mtf_prior_v1/source_pages/portra400_p4.png",
+      "page_image_sha256": "598b2a8d919fa8a491eea7a077c3dbf0c2d0b42354e81c524ba5e0269847efb0",
+      "page_image_size": [1700, 2200],
+      "published_curve_semantics": "rgb_channel_mtf_envelope",
+      "expected_curve_count": 3,
+      "x_log10_anchors": [[10.0, 1171.0], [100.0, 1374.0]],
+      "y_log10_anchors": [[100.0, 1019.0], [10.0, 1219.0]],
+      "plot_y_bounds": [959, 1420],
+      "horizontal_grid_y": [959, 1019, 1050, 1080, 1123, 1157, 1219, 1249, 1280, 1324, 1359, 1420]
+    },
+    {
+      "stock_id": "kodak_ektar_100",
+      "page_image": "outputs/eval/rf3_d3_three_stock_mtf_prior_v1/source_pages/ektar100_p4.png",
+      "page_image_sha256": "b3c421fb87af69cc183aa305259db6daa4087015ef879552c2267fd8749724ae",
+      "page_image_size": [1700, 2200],
+      "published_curve_semantics": "rgb_channel_mtf_envelope",
+      "expected_curve_count": 3,
+      "x_log10_anchors": [[10.0, 1168.0], [100.0, 1370.0]],
+      "y_log10_anchors": [[100.0, 1051.0], [10.0, 1235.0]],
+      "plot_y_bounds": [995, 1420],
+      "horizontal_grid_y": [995, 1051, 1080, 1108, 1148, 1177, 1235, 1264, 1293, 1332, 1364, 1420]
+    }
+  ],
+  "trace": {
+    "black_threshold_uint8": 90,
+    "x_half_window_pixels": 4,
+    "minimum_black_hits_per_row": 2,
+    "horizontal_grid_mask_radius_pixels": 3,
+    "minimum_response_percent": 15.0,
+    "maximum_response_percent": 140.0,
+    "envelope_reduction": "midpoint_in_log10_response_of_topmost_and_bottommost_detected_curve_clusters",
+    "single_curve_reduction": "topmost_detected_curve_cluster"
+  },
+  "gates": {
+    "minimum_pairwise_median_absolute_log10_response_difference": 0.03,
+    "minimum_pairwise_rmse_log10_response_difference": 0.04,
+    "require_all_frequencies_detected": true,
+    "require_source_semantics_reported": true,
+    "exact_replay_required": true
+  },
+  "decision_if_pass": "retain_stock_specific_mtf_envelopes_as_nonrenderable_physical_priors",
+  "decision_if_fail": "retain_shared_or_unknown_mtf_prior_and_close_datasheet_mtf_as_three_stock_discriminator",
+  "claim_ceiling": "Deterministic comparison of manufacturer-published MTF graph shapes at five common frequencies. No measured roll, scanner-independent MTF, RGB colour response, grain, photographic target, fitted renderer, stock authenticity, preference or product claim."
+}
