@@ -14593,3 +14593,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   the next data leaf requires a genuinely new controlled or explicitly
   licensed observation. Evidence:
   `docs/evidence/SF3_A0Z_YFCC_THREE_STOCK_LIVE_RIGHTS_RESULT.json`.
+
+### 2026-08-21 - SF3.A1C opens a Commons three-stock pixel integrity pilot
+
+- A new exact-text, metadata-only Commons audit found current per-file rights
+  and source evidence for Velvia 50, Portra 400 and Ektar 100 without using the
+  sparse exact-category topology that blocked prior stock expansion.
+- The frozen audit retained 58/73/134 eligible rows across 31/36/33 normalized
+  authors, with largest-author shares 12.1%/9.6%/38.8% and zero cross-stock
+  page ambiguity. Fourteen API requests were made; image downloads, pixel
+  decodes and operator fits remain zero.
+- This opens only a bounded author-balanced pixel integrity and severe-source
+  audit. Exact-text labels remain weak evidence and do not establish stock
+  response, calibration or a multi-stock product. Evidence:
+  `docs/evidence/SF3_A1C_COMMONS_THREE_STOCK_TEXT_METADATA_RESULT.json`.

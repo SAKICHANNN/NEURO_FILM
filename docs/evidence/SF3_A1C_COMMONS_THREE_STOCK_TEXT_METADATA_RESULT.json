@@ -1,0 +1,48 @@
+{
+  "schema": "neuro-film.sf3-a1c-commons-three-stock-text-evidence.v1",
+  "experiment_id": "SF3.A1C_COMMONS_THREE_STOCK_TEXT_METADATA_V1",
+  "status": "PASS_METADATA_ONLY_OPEN_BOUNDED_PIXEL_INTEGRITY_PILOT",
+  "implementation_commit": "b935e0c1",
+  "contract": {
+    "path": "configs/sf3_a1c_commons_three_stock_text_metadata_v1.json",
+    "sha256": "46453fe6b07d6eabea62ae6da339750cdb65cc865e120bc174b5ed6fab91c2d6"
+  },
+  "formal_snapshot": {
+    "path": "outputs/eval/sf3_a1c_commons_three_stock_text_metadata_v1/snapshot.json",
+    "sha256": "07ed715edc8cbccb25aeefb6c0eb0e9019fe04679b34acf52f857a841e0ba421"
+  },
+  "formal_report": {
+    "path": "outputs/eval/sf3_a1c_commons_three_stock_text_metadata_v1/report.json",
+    "sha256": "c27364ef7b2cb294f29310268b80fad9aa3c384cb13694f81cbaf103fe835887",
+    "stable_evidence_id": "36ca4d471fa2531e15c02f0c832c59ffa943bd8790fc06cbdf3aeefbd2118fa0"
+  },
+  "observations": {
+    "network_requests": 14,
+    "retained_rows": {
+      "fujifilm_velvia_50": 161,
+      "kodak_portra_400": 155,
+      "kodak_ektar_100": 256
+    },
+    "eligible_rows": {
+      "fujifilm_velvia_50": 58,
+      "kodak_portra_400": 73,
+      "kodak_ektar_100": 134
+    },
+    "unique_authors": {
+      "fujifilm_velvia_50": 31,
+      "kodak_portra_400": 36,
+      "kodak_ektar_100": 33
+    },
+    "largest_author_share": {
+      "fujifilm_velvia_50": 0.1206896551724138,
+      "kodak_portra_400": 0.0958904109589041,
+      "kodak_ektar_100": 0.3880597014925373
+    },
+    "cross_stock_ambiguous_rows": 0,
+    "image_payload_downloads": 0,
+    "pixel_decodes": 0,
+    "operator_fits": 0
+  },
+  "decision": "OPEN_BOUNDED_COMMONS_THREE_STOCK_PIXEL_INTEGRITY_PILOT",
+  "claim_ceiling": "current Wikimedia Commons exact-text weak-label and per-file rights/source metadata feasibility for Velvia 50, Portra 400 and Ektar 100; no same-scene, roll, process, scanner, stock-response, calibration, fitting, training or product claim"
+}
