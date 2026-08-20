@@ -13,6 +13,9 @@ ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u5_r2spcp0_pairwise_preference_source_lock_v1.json"
 DECISION = ROOT / "configs/u5_r2spcp0_pairwise_preference_source_lock_decision_v1.json"
 EVIDENCE = ROOT / "docs/evidence/U5_R2SPCP0_PAIRWISE_PREFERENCE_SOURCE_LOCK_RESULT.json"
+CORRECTED_CONTRACT = (
+    ROOT / "configs/u5_r2spcp1_corrected_pairwise_preference_source_lock_v1.json"
+)
 
 
 def test_spcp0_contract_freezes_metadata_only_source() -> None:
@@ -116,3 +119,19 @@ def test_spcp0_evidence_binds_exact_replay_and_observed_hashes() -> None:
     assert evidence["observed_annotation_hashes"]["order_trans.xlsx"] == (
         "8c42140ae0f90f37f32706911ab86cca9f377077bbd18ac301262d952bf5f58c"
     )
+
+
+def test_spcp1_is_prospective_and_binds_spcp0_failure() -> None:
+    corrected = json.loads(CORRECTED_CONTRACT.read_text(encoding="utf-8"))
+    evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+    assert corrected["experiment_id"] == "U5.R2SPCP1"
+    assert corrected["parent"]["required_decision"] == (
+        "close_exact_spcp0_protocol_on_preregistered_annotation_hash_mismatch"
+    )
+    assert corrected["annotations"]["pairwise"]["sha256"] == (
+        evidence["observed_annotation_hashes"]["order_trans.xlsx"]
+    )
+    assert corrected["annotations"]["scores"]["sha256"] == (
+        evidence["observed_annotation_hashes"]["score_trans2.xlsx"]
+    )
+    assert corrected["range_protocol"]["image_member_payload_read_forbidden"] is True

@@ -1,0 +1,91 @@
+{
+  "schema": "neuro-film.u5-r2spcp1-corrected-pairwise-preference-source-lock-contract.v1",
+  "experiment_id": "U5.R2SPCP1",
+  "date": "2026-08-20",
+  "question": "After preserving SPCP0's preregistration-hash failure, do the exact independently observed annotation bytes and unchanged metadata-only protocol establish a structurally complete same-scene human-preference source?",
+  "parent": {
+    "decision_path": "configs/u5_r2spcp0_pairwise_preference_source_lock_decision_v1.json",
+    "decision_sha256": "a24267861a4c5a8e03b70ac47cbfb08f586ff48e50309933a257c8992fc92606",
+    "required_decision": "close_exact_spcp0_protocol_on_preregistered_annotation_hash_mismatch",
+    "evidence_path": "docs/evidence/U5_R2SPCP0_PAIRWISE_PREFERENCE_SOURCE_LOCK_RESULT.json",
+    "evidence_sha256": "4302bd05e9ef1267e85cf6422a8f81bf8864716a493ef075b0a42b67fd196c93"
+  },
+  "source": {
+    "dataset_id": "zwx8981/SPCP_dataset",
+    "revision": "068af97eed82969f15278db3af4bd450176cf6f3",
+    "api_tree_url": "https://huggingface.co/api/datasets/zwx8981/SPCP_dataset/tree/068af97eed82969f15278db3af4bd450176cf6f3?recursive=false&expand=true",
+    "readme_url": "https://huggingface.co/datasets/zwx8981/SPCP_dataset/resolve/068af97eed82969f15278db3af4bd450176cf6f3/README.md",
+    "zip_url": "https://huggingface.co/datasets/zwx8981/SPCP_dataset/resolve/068af97eed82969f15278db3af4bd450176cf6f3/SPCP_dataset.zip",
+    "zip_size_bytes": 9050462827,
+    "zip_lfs_sha256": "8643d2be6edb3391f37159476584df59f714205fd427a1d26e325a1f93791ef0",
+    "central_directory_sha256": "f3892690a8434fd42a412c4cf952e050d542740d2dea04b4cad976ad2ea1415d"
+  },
+  "rights": {
+    "required_card_front_matter": "---\r\nlicense: apache-2.0\r\n---\r\n",
+    "independent_license_text_required": false,
+    "claim_if_absent": "publisher_declared_hf_card_apache_2_0_only",
+    "image_source_and_redistribution_rights_inferred": false,
+    "maximum_use": "local isolated internal research",
+    "product_dependency": false
+  },
+  "range_protocol": {
+    "tail_start": 9049028973,
+    "tail_end_inclusive": 9050462826,
+    "expected_central_directory_offset": 9049028973,
+    "expected_central_directory_size": 1433756,
+    "annotation_start": 75,
+    "annotation_end_inclusive": 3804507,
+    "maximum_total_zip_bytes_read": 5238287,
+    "full_zip_download_forbidden": true,
+    "image_member_payload_read_forbidden": true
+  },
+  "annotations": {
+    "pairwise": {
+      "member": "order_trans.xlsx",
+      "compressed_size": 941967,
+      "uncompressed_size": 2783545,
+      "crc32_hex": "82a245a6",
+      "sha256": "8c42140ae0f90f37f32706911ab86cca9f377077bbd18ac301262d952bf5f58c"
+    },
+    "scores": {
+      "member": "score_trans2.xlsx",
+      "compressed_size": 2862267,
+      "uncompressed_size": 2904995,
+      "crc32_hex": "086de0e4",
+      "sha256": "ee5f0fc830ebd40cab3e25b379aa0e01ec5cc4793a55315504c2d06f6af7900d"
+    }
+  },
+  "frozen_gates": {
+    "root_file_count_exact": 3,
+    "zip_member_count_exact": 12007,
+    "canonical_image_regex": "^I[0-9]{4}_[0-9]{2}_[0-9]{2}\\.png$",
+    "canonical_image_count_exact": 12000,
+    "scene_count_exact": 1000,
+    "variants_per_scene_exact": 12,
+    "pair_rows_exact": 45000,
+    "pairs_per_scene_exact": 45,
+    "score_rows_exact": 12000,
+    "subject_columns_exact": 20,
+    "pair_label_domain": [0, 1],
+    "cross_scene_pairs_exact": 0,
+    "connected_pair_graphs_exact": 1000,
+    "duplicate_extra_count_exact": 3,
+    "image_payload_bytes_read_exact": 0
+  },
+  "stop_rules": [
+    "Any parent, root, ZIP64, central-directory, annotation hash, row-count, graph, label-domain or endpoint mismatch closes before image acquisition.",
+    "Any image member payload read invalidates this metadata-only execution.",
+    "A pass opens only a separately preregistered explicit-operator D0 and does not itself authorize a full 9 GB download.",
+    "No same-data threshold, role, vote aggregation, variant exclusion or license reinterpretation rescue is allowed."
+  ],
+  "prospective_successor": {
+    "mechanism": "majority-directed same-scene loser-to-winner edges pooled into one shared source-free bounded normalized-logit affine operator",
+    "forbidden": [
+      "per-image or per-scene routing",
+      "direct RGB generation",
+      "application-source-conditioned operator selection",
+      "film-stock, scanner, calibrated-authenticity or product claims"
+    ]
+  },
+  "claim_ceiling": "Corrected prospective metadata-only public-source, rights and preference-graph structure audit; no image pixels, operator fit, render, preference generalization, film-stock evidence, package, capability or product authorization."
+}
