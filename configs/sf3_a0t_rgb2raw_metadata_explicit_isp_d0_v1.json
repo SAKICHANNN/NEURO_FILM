@@ -90,6 +90,11 @@
     "if and only if every calibration gate passes, read sealed confirmation targets once",
     "run a second fresh process in reverse row order"
   ],
+  "network_execution": {
+    "workers_per_process": 4,
+    "maximum_attempts_per_range": 4,
+    "retry_backoff_seconds": [0.25, 0.5, 1.0]
+  },
   "calibration_gates": {
     "required_rows": 24,
     "required_rows_per_camera": 12,

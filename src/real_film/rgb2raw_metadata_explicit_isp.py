@@ -7,6 +7,8 @@ import hashlib
 import io
 import json
 import pickle
+import time
+import urllib.error
 from collections import defaultdict
 from collections.abc import Callable, Mapping, Sequence
 from concurrent.futures import ThreadPoolExecutor
@@ -315,7 +317,8 @@ def _read_rows(
     range_reader: RangeReader,
 ) -> tuple[list[DecodedRow], int]:
     ordered = list(reversed(rows)) if reverse else list(rows)
-    with ThreadPoolExecutor(max_workers=8) as executor:
+    workers = int(config["network_execution"]["workers_per_process"])
+    with ThreadPoolExecutor(max_workers=workers) as executor:
         decoded = list(
             executor.map(
                 lambda row: _decode_row(
@@ -649,11 +652,27 @@ def run_metadata_isp_d0(
     ):
         raise RGB2RAWMetadataISPError("contract schema differs")
     source = config["source"]
+    network = config["network_execution"]
+
+    def resilient_range_reader(url: str, start: int, end: int, size: int) -> bytes:
+        attempts = int(network["maximum_attempts_per_range"])
+        backoffs = [float(value) for value in network["retry_backoff_seconds"]]
+        if attempts != len(backoffs) + 1:
+            raise RGB2RAWMetadataISPError("network retry schedule differs")
+        for attempt in range(attempts):
+            try:
+                return range_reader(url, start, end, size)
+            except (urllib.error.URLError, TimeoutError, ConnectionError, OSError):
+                if attempt + 1 == attempts:
+                    raise
+                time.sleep(backoffs[attempt])
+        raise AssertionError("unreachable retry loop")
+
     url = (
         f"https://huggingface.co/datasets/{source['dataset_id']}/resolve/"
         f"{source['revision']}/{source['archive_path']}?download=true"
     )
-    central = range_reader(
+    central = resilient_range_reader(
         url,
         int(source["central_offset"]),
         int(source["central_offset"]) + int(source["central_size"]) - 1,
@@ -677,7 +696,7 @@ def run_metadata_isp_d0(
         archive_size=int(source["archive_size"]),
         members=members,
         config=config,
-        range_reader=range_reader,
+        range_reader=resilient_range_reader,
     )
     operators = fit_operators(fit_data, config)
     operator_records = {
@@ -720,7 +739,7 @@ def run_metadata_isp_d0(
         archive_size=int(source["archive_size"]),
         members=members,
         config=config,
-        range_reader=range_reader,
+        range_reader=resilient_range_reader,
     )
     calibration = score_role(calibration_data, operators, config)
     calibration_gates = evaluate_gates(
@@ -740,7 +759,7 @@ def run_metadata_isp_d0(
             archive_size=int(source["archive_size"]),
             members=members,
             config=config,
-            range_reader=range_reader,
+            range_reader=resilient_range_reader,
         )
         sealed = score_role(sealed_data, operators, config)
         sealed_gates = evaluate_gates(sealed, operators, config["calibration_gates"])
