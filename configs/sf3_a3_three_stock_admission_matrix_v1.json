@@ -1,0 +1,127 @@
+{
+  "schema": "neuro-film.sf3-a3-three-stock-admission-matrix-contract.v1",
+  "experiment_id": "SF3.A3_THREE_STOCK_ADMISSION_MATRIX_V1",
+  "question": "Which current evidence lanes can support a stock-specific K=1 operator for Velvia 50, Portra 400 and Ektar 100, and what exact blocker remains per stock?",
+  "required_stock_ids": [
+    "fujifilm_velvia_50",
+    "kodak_portra_400",
+    "kodak_ektar_100"
+  ],
+  "evidence_bindings": [
+    {
+      "id": "rf3_d0_proxy_baseline",
+      "path": "docs/evidence/RF3_D0_THREE_STOCK_PROXY_BASELINE_RESULT.json",
+      "sha256": "314e3246b656b018c64b0dfce5bfbbf169eba69826d193de4d598422d0f60ff9",
+      "required_decision": "retain_three_stock_k1_proxy_matrix_as_baseline_only_and_open_stock_data_equalization"
+    },
+    {
+      "id": "rf3_d2_official_priors",
+      "path": "docs/evidence/RF3_D2_THREE_STOCK_OFFICIAL_SOURCE_MATRIX_RESULT.json",
+      "sha256": "0cb2226b43baa8cd3409ef654f3d9579cc0589dd2e9b28495a7f1e3cc312c818",
+      "required_decision": "retain_three_stock_first_party_physical_prior_matrix_and_open_nonrenderable_common_domain_comparison"
+    },
+    {
+      "id": "rf3_d3_mtf_prior",
+      "path": "docs/evidence/RF3_D3_THREE_STOCK_MTF_PRIOR_RESULT.json",
+      "sha256": "37d8fc171212f754666a793ac5d3f7967e56257738074fe2fa2683f0b470889c",
+      "required_decision": "retain_shared_or_unknown_mtf_prior_and_close_datasheet_mtf_as_three_stock_discriminator"
+    },
+    {
+      "id": "rf3_d4_characteristic_shape",
+      "path": "docs/evidence/RF3_D4_THREE_STOCK_CHARACTERISTIC_SHAPE_RESULT.json",
+      "sha256": "f8f468c448ce75d53616dd532956a1901b687688e9cec708bf2cdee3e70b0d1a",
+      "required_decision": "close_datasheet_characteristic_shape_as_a_three_stock_discriminator_and_require_pixel_evidence"
+    },
+    {
+      "id": "sf3_a0_controlled_protocol",
+      "path": "docs/evidence/SF3_A0_THREE_STOCK_CONTROLLED_ACQUISITION_PROTOCOL_RESULT.json",
+      "sha256": "c1ee9b3eb4cc20e0bafb1f554698f70a554a9481e6d9b3b3742972638caa00c1",
+      "required_decision": "READY_FOR_CONTROLLED_ACQUISITION_NO_DATA"
+    },
+    {
+      "id": "sf3_a1e_unpaired_identifiability",
+      "path": "docs/evidence/SF3_A1E_COMMONS_THREE_STOCK_IDENTIFIABILITY_RESULT.json",
+      "sha256": "adac6035e4941bd52d3329b18662dae7cd160458e89ac4b0d078e67e3ed9f004",
+      "required_decision": "CLOSE_CURRENT_COMMONS_STOCK_LEARNING_AND_RETAIN_DATA_GAP"
+    },
+    {
+      "id": "sf3_a1f_author_connectivity",
+      "path": "docs/evidence/SF3_A1F_COMMONS_THREE_STOCK_AUTHOR_CONNECTIVITY_RESULT.json",
+      "sha256": "23de8d29603745c87877456d863aef6cf1006f5d2b666c2ddbd3f71f1d289d41",
+      "required_decision": "CLOSE_COMMONS_SHARED_AUTHOR_ROUTE_BEFORE_PIXEL_ACCESS"
+    },
+    {
+      "id": "sf3_a2_openverse_refresh",
+      "path": "docs/evidence/SF3_A2_OPENVERSE_THREE_STOCK_REFRESH_RESULT.json",
+      "sha256": "4520026e4f7a94d0261563d46459f955dcaa420ebcfda911ffa836d844efbd03",
+      "required_status": "INFRASTRUCTURE_INVALID_NO_SCIENTIFIC_DECISION"
+    }
+  ],
+  "source_lanes": [
+    {
+      "source_id": "project_owned_controlled_capture",
+      "stocks": ["fujifilm_velvia_50", "kodak_portra_400", "kodak_ektar_100"],
+      "rights_clear": true,
+      "pixels_available": false,
+      "same_scene_digital_reference": true,
+      "independent_roll_process_scanner_holdout": true,
+      "stock_identifiability_passed": false,
+      "valid_role": "future_calibrated_or_transferable_k1_target",
+      "blocking_reason": "protocol_ready_but_zero_acquired_rows"
+    },
+    {
+      "source_id": "commons_unpaired_weak_labels",
+      "stocks": ["fujifilm_velvia_50", "kodak_portra_400", "kodak_ektar_100"],
+      "rights_clear": true,
+      "pixels_available": true,
+      "same_scene_digital_reference": false,
+      "independent_roll_process_scanner_holdout": false,
+      "stock_identifiability_passed": false,
+      "valid_role": "internal_failure_analysis_only",
+      "blocking_reason": "author_held_out_stock_signal_does_not_beat_nuisance_controls"
+    },
+    {
+      "source_id": "manufacturer_datasheets",
+      "stocks": ["fujifilm_velvia_50", "kodak_portra_400", "kodak_ektar_100"],
+      "rights_clear": true,
+      "pixels_available": false,
+      "same_scene_digital_reference": false,
+      "independent_roll_process_scanner_holdout": false,
+      "stock_identifiability_passed": false,
+      "valid_role": "nonrenderable_physical_prior_only",
+      "blocking_reason": "mtf_and_normalized_characteristic_shape_fail_three_stock_discrimination"
+    },
+    {
+      "source_id": "ntnu_2026_controlled_reversal_study",
+      "stocks": ["fujifilm_velvia_50"],
+      "rights_clear": false,
+      "pixels_available": false,
+      "same_scene_digital_reference": false,
+      "independent_roll_process_scanner_holdout": false,
+      "stock_identifiability_passed": false,
+      "valid_role": "controlled_capture_method_precedent_only",
+      "blocking_reason": "no_public_machine_readable_dataset_and_no_portra_or_ektar_arm"
+    },
+    {
+      "source_id": "openverse_current_api",
+      "stocks": ["fujifilm_velvia_50", "kodak_portra_400", "kodak_ektar_100"],
+      "rights_clear": false,
+      "pixels_available": false,
+      "same_scene_digital_reference": false,
+      "independent_roll_process_scanner_holdout": false,
+      "stock_identifiability_passed": false,
+      "valid_role": "infrastructure_invalid_no_scientific_inference",
+      "blocking_reason": "official_api_returned_http_401_before_metadata"
+    }
+  ],
+  "k1_admission_gates": {
+    "rights_clear": true,
+    "pixels_available": true,
+    "same_scene_digital_reference": true,
+    "independent_roll_process_scanner_holdout": true,
+    "stock_identifiability_passed": true
+  },
+  "decision_if_all_stocks_admitted": "OPEN_THREE_STOCK_K1_OPERATOR_FIT",
+  "decision_if_any_stock_blocked": "RETAIN_RF3_D0_AS_DEVELOPMENT_BASELINE_AND_PRIORITIZE_CONTROLLED_THREE_STOCK_PIXEL_ACQUISITION",
+  "claim_ceiling": "Executable admission matrix over current Velvia 50, Portra 400 and Ektar 100 evidence. It may authorize a future K=1 fit only when one evidence lane per stock passes every frozen data gate; it cannot itself establish a stock response or calibrated profile."
+}
