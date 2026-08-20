@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 
 import numpy as np
-from PIL import Image, ImageCms
+from PIL import Image, ImageCms, features
 
 import scripts.run_u5_r2repid4_shared_logit_affine_d0 as module
 
@@ -63,6 +63,14 @@ def test_repid_d0_is_enumeration_exact_and_sealed_blind(
             "acquisition_sha256": acquisition_sha,
             "required_decision": "open-development",
             "selected_identity_sha256": "selected",
+        },
+        "ingress": {
+            "required_icc_sha256": records[0]["members"][0]["icc_sha256"],
+            "runtime_versions": {
+                "pillow": Image.__version__,
+                "littlecms": ImageCms.core.littlecms_version,
+                "libjpeg": features.version("jpg"),
+            },
         },
         "fit": {
             "pixels_per_scene": 16,

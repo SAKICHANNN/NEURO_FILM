@@ -12,6 +12,7 @@ from pathlib import Path
 from typing import Any
 
 import numpy as np
+from PIL import Image, ImageCms, features
 
 if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -143,6 +144,21 @@ def run(
         raise ValueError("sealed members were read before development pass")
     if acquisition["selected_identity_sha256"] != parent["selected_identity_sha256"]:
         raise ValueError("selected role identity drift")
+    ingress = contract["ingress"]
+    observed_icc = {
+        member["icc_sha256"]
+        for record in acquisition["records"]
+        for member in record["members"]
+    }
+    if observed_icc != {ingress["required_icc_sha256"]}:
+        raise ValueError("ICC population identity drift")
+    observed_runtime = {
+        "pillow": Image.__version__,
+        "littlecms": ImageCms.core.littlecms_version,
+        "libjpeg": features.version("jpg"),
+    }
+    if observed_runtime != ingress["runtime_versions"]:
+        raise ValueError("ICC conversion runtime drift")
     lookup = _lookup(acquisition)
     fit_rows = [row for row in acquisition["records"] if row["role"] == "fit"]
     calibration_rows = [
@@ -241,6 +257,7 @@ def run(
         "experiment_id": contract["experiment_id"],
         "contract_sha256": _sha256(contract_bytes),
         "acquisition_sha256": _sha256(acquisition_bytes),
+        "ingress": {"icc_sha256": next(iter(observed_icc)), **observed_runtime},
         "enumeration_normalized": True,
         "fit_sample_count": int(fit_sources.shape[0]),
         "operators": {name: _operator_payload(value) for name, value in operators.items()},
