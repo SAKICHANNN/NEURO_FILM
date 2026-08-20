@@ -134,7 +134,9 @@
     "random_seed": 20260821,
     "cuda_tf32": false,
     "deterministic_algorithms": true,
-    "attention_implementation": "sdpa"
+    "attention_implementation": "sdpa",
+    "processor_implementation": "transformers 4.57.0 AutoProcessor default Qwen2_5_VLProcessor with Qwen2VLImageProcessorFast",
+    "slow_processor_rescue_forbidden": true
   },
   "execution_isolation": {
     "score_lock_must_exist_before_private_mapping_or_direct_result_read": true,

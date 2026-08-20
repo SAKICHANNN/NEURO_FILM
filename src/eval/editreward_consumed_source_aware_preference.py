@@ -371,6 +371,8 @@ class EditRewardRuntime:
             "transformers_version": transformers.__version__,
             "torch_version": torch.__version__,
             "processor_class": type(processor).__name__,
+            "image_processor_class": type(processor.image_processor).__name__,
+            "tokenizer_class": type(processor.tokenizer).__name__,
             "state_tensor_count": external["tensor_count"],
             "state_parameter_count": external["parameter_count"],
             "missing_keys": [],
