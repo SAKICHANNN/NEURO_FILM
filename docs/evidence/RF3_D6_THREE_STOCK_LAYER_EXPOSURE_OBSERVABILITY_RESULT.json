@@ -1,0 +1,59 @@
+{
+  "schema": "neuro-film.rf3-three-stock-layer-exposure-observability-evidence.v1",
+  "experiment_id": "RF3.D6",
+  "date": "2026-08-21",
+  "status": "FAIL_CLOSED",
+  "decision": "close_datasheet_layer_exposure_observability_and_require_controlled_photographic_targets",
+  "bindings": {
+    "contract_sha256": "cd91f872c2c694b9416938b21be5831430577c4b4ec3873e07a524d3d2568068",
+    "contract_freeze_commits": ["2158bebc", "badf2d69"],
+    "implementation_commit": "e45b267f",
+    "evaluator_sha256": "4f830582cbedd05dfecc83b5073f7e1c2011798cddf02a1aed192944b9b94ff6",
+    "runner_sha256": "b7d1c2502a5cee7af7d79c7835f5fd5a071bbb452920d282357872e5d8e02bea",
+    "test_sha256": "c45dde2fc155c6001a7b4a7757cabcd28780ac5ad3e13eb271618aa7a240066d",
+    "formal_report_sha256": "42d4e18e56f1cb878da7b184390a48fb565a243b5ce75c0b8609388a32195170",
+    "stable_evidence_id": "6c08ba3289e42b793015e6f6f35ece13326b43ca7b2b56b950a4da0694cd831b"
+  },
+  "formal_replay": {
+    "processes": 2,
+    "reports_byte_exact": true,
+    "output_root": "outputs/eval/rf3_d6_three_stock_layer_exposure_observability_v1",
+    "storage_binding": "repository-relative outputs junction backed by P:/neuro_film_storage/outputs"
+  },
+  "population": {
+    "eligible_measured_reflectances": 1732,
+    "sample_groups": 1592,
+    "chapters": 7,
+    "population_sha256": "2e3f015f053912f12a7339fb2004634dba2099905a47e3ecac984619eec61955",
+    "rights": "US_public_domain"
+  },
+  "pairwise_results": [
+    {
+      "pair": "fujifilm_velvia_50__kodak_portra_400",
+      "median_log_response_l2": 0.011282173329348073,
+      "p10_log_response_l2": 0.0018757362888869838,
+      "material_delta_vector_rms": 0.02853500264975801,
+      "bootstrap_95_lcb_median_l2": 0.010592606317133645,
+      "failed_gates": ["median", "p10"]
+    },
+    {
+      "pair": "fujifilm_velvia_50__kodak_ektar_100",
+      "median_log_response_l2": 0.023405362369206845,
+      "p10_log_response_l2": 0.004116132276358593,
+      "material_delta_vector_rms": 0.04366442757316316,
+      "bootstrap_95_lcb_median_l2": 0.020885460322705253,
+      "failed_gates": ["p10"]
+    },
+    {
+      "pair": "kodak_portra_400__kodak_ektar_100",
+      "median_log_response_l2": 0.021907380886971188,
+      "p10_log_response_l2": 0.004615047563678712,
+      "material_delta_vector_rms": 0.034317047090248944,
+      "bootstrap_95_lcb_median_l2": 0.020452354035150503,
+      "failed_gates": ["p10"]
+    }
+  ],
+  "scientific_conclusion": "Manufacturer layer-sensitivity shapes do create material-dependent response differences after ideal-white and per-material neutral normalization, but all three pairs fail the frozen low-tail separation gate and Velvia-versus-Portra also fails the median gate. This nonrenderable prior is not strong enough to admit a three-stock photographic K=1 operator or to substitute for controlled target photographs.",
+  "next_mainline": "Stop proxy-only spectral expansion. Populate the frozen SF3.A0 controlled Velvia 50, Portra 400 and Ektar 100 acquisition matrix, or retain the three deterministic generic K=1 looks strictly as development baselines until a genuinely new rights-clear paired or capture-time observation exists.",
+  "claim_ceiling": "Public-domain reflectance plus manufacturer spectral-sensitivity prior failure analysis only. No RGB render, stock response, target closeness, calibration, preference, product or multi-stock completion claim."
+}
