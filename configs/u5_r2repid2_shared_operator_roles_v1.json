@@ -1,0 +1,59 @@
+{
+  "schema": "neuro_film.u5_r2repid2_shared_operator_roles_contract.v1",
+  "experiment_id": "U5.R2REPID2",
+  "question": "Does the rights-bounded REPID aggregate contain enough strong, geometry-consistent, project-fresh loser-to-winner pairs to freeze a small scene-grouped one-shared-explicit-operator D0 before any image member is read?",
+  "parent": {
+    "evidence_path": "docs/evidence/U5_R2REPID1_CORRECTED_SOURCE_AUDIT_RESULT.json",
+    "stable_evidence_id": "sha256:867267e19c537482c67623689ae1c3bcf331edfb67c4a37c9bd97ad6ce83c6ff",
+    "formal_report_sha256": "c511cacb23da792f6fb5e449b04d3a9707f8b12c8234a4f5a892f10938845dd9",
+    "required_decision": "open_separately_preregistered_internal_repid_shared_operator_d0"
+  },
+  "source": {
+    "dataset_id": "vsevolodpl/REPID",
+    "revision": "6a16a20a0b7122ad66d1f632af1586d45b443aa9",
+    "processed_markup_url": "https://huggingface.co/datasets/vsevolodpl/REPID/resolve/6a16a20a0b7122ad66d1f632af1586d45b443aa9/processed_markup.csv",
+    "processed_markup_size": 69361091,
+    "processed_markup_sha256": "a370d24c8d54c113e38c54f7fc7b4956adc64c08620ce15b94d4d598913ecab2",
+    "paths_info_url": "https://huggingface.co/api/datasets/vsevolodpl/REPID/paths-info/6a16a20a0b7122ad66d1f632af1586d45b443aa9",
+    "prior_scene_root": "data/external/fivek-bq0-casebank512-v1/normalized_srgb16_256_v1/preview",
+    "prior_scene_count": 509,
+    "prior_scene_identity_sha256": "dce9fdf60862facd7a9bc40efe2f4092dee15a1d7f0d786bd96bd9813b64260b"
+  },
+  "selection": {
+    "mos_semantics": "mos above 0.5 prefers left; below 0.5 prefers right",
+    "complete_pair_rows_per_scene": 15,
+    "score": "sum signed (mos-0.5) over all 15 edges",
+    "unique_score_maximum_and_minimum_required": true,
+    "direct_extreme_edge_must_agree": true,
+    "minimum_direct_preference_margin": 0.2,
+    "geometry_fields": [
+      "CropTop", "CropRight", "CropHeight", "CropLeft", "CropBottom", "CropWidth",
+      "CropAngle", "CropUnit", "CropConstrainToWarp", "PerspectiveVertical",
+      "PerspectiveRotate", "PerspectiveScale", "PerspectiveHorizontal",
+      "LensManualDistortionAmount"
+    ],
+    "geometry_semantics": "each field must be string-exact across endpoints; symmetric absence is the same omitted/default action and asymmetric absence fails",
+    "prior_project_scene_overlap": 0,
+    "role_sort": "ascending sha256('u5-r2repid2-v1|' + scene_id)",
+    "fit_scenes": 80,
+    "calibration_scenes": 24,
+    "sealed_scenes": 24,
+    "all_selected_scenes_mandatory": true,
+    "replacement_forbidden": true
+  },
+  "metadata_gates": {
+    "eligible_scene_count_min": 128,
+    "selected_unique_directed_role_pairs_min": 8,
+    "selected_largest_directed_role_pair_share_max": 0.5,
+    "initial_fit_calibration_bytes_max": 3221225472,
+    "all_selected_bytes_max": 4294967296,
+    "all_paths_lfs_sha256_present": true,
+    "all_paths_jpeg_extension": true,
+    "image_member_reads": 0,
+    "image_decodes": 0,
+    "operator_fits": 0
+  },
+  "claim_ceiling": "internal-research scene-role and exact-member-identity lock only; not an operator, preference model, product dependency, package, schema or capability",
+  "decision_if_pass": "open_exact_fit_calibration_member_acquisition_for_repid_shared_operator_d0",
+  "decision_if_fail": "close_repid_shared_operator_d0_before_image_member_read"
+}
