@@ -1676,6 +1676,15 @@ versus the frozen 500-support gate. Two reports are exact
 (`a2443fdb...9bb17`); coherence rows remain zero and the pair closes without
 registration, crop, author-transform or threshold rescue.
 
+U6.P6AW repeats the unchanged registration and coherence gates on a wholly
+different CC-BY-4.0 1905 Barnard plate with more than 66,000 catalogued stars.
+After two source-format checks froze the official full-resolution RGB16 IFD
+and an equal-weight integer luminance ingress before registration, two formal
+reports are byte exact (`d03b059c...64a5f`). Geometry remains precise but only
+92 good matches /87 inliers pass from the frozen 500-match minimum, so zero
+coherence rows are scored. Close this SIFT/crop/threshold family rather than
+rescuing either plate.
+
 U5.R2REPID10 is prospectively frozen after REPID9C/9D close two distinct
 reference encoders. It returns to REPID7's positive 7/9 self-canonical signal
 but changes only the explicit operator representation: fixed extended-domain

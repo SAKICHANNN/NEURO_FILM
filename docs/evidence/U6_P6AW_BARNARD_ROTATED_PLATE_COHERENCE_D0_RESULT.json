@@ -1,0 +1,67 @@
+{
+  "schema": "neuro-film.u6-p6aw-barnard-rotated-plate-coherence-d0-evidence.v1",
+  "node": "U6.P6AW",
+  "date": "2026-08-20",
+  "status": "FAIL_CLOSED_BEFORE_COHERENCE_SCORE",
+  "question": "Does the unchanged P6AV registration and P6AT coherence protocol pass on a wholly different, higher-feature-count 1905 Barnard glass plate scanned in normal and perpendicular orientations?",
+  "primary_sources": [
+    {
+      "title": "SCORPION: A Multi-Scanner Whole-Slide Image Dataset for Cross-Scanner Analysis",
+      "url": "https://arxiv.org/abs/2507.20907",
+      "role": "2025 frozen method parent"
+    },
+    {
+      "title": "Digitization, Measurement, and Analysis of a 1905 Barnard Atlas Photographic Plate",
+      "url": "https://doi.org/10.1088/1538-3873/ac87cf",
+      "record_url": "https://knowledge.uchicago.edu/records/1cnjt-w1076",
+      "role": "independent high-source-count perpendicular-scan source"
+    }
+  ],
+  "implementation": {
+    "contract_commit": "778e31cf",
+    "source_adaptation_commit": "f93b2b3f",
+    "primary_ifd_fix_commit": "f84e65fb",
+    "rgb_luminance_ingress_fix_commit": "238037aa",
+    "contract_sha256": "627d44e9e3e24bd069737e5de8dd4335adec488cabc56a189a052ed178ffca31",
+    "evaluator_sha256": "7b6d7db29b54cdc2538302e9d838537bd56339900925afd24509e9d84bd467c5",
+    "runner_sha256": "5f830c969e275b7fb1e83fb4dcf519ec50ffcc904f376724a61c0f11e40397a9",
+    "test_sha256": "4ccaa5997ee0c2144719c1cd1e0641b74de1e5143b23bdd1b66889643c2077ce"
+  },
+  "source": {
+    "record_id": "1cnjt-w1076",
+    "license": "CC-BY-4.0",
+    "reference_sha256": "4839d331762e11e8735430e93ac2a83fedd7482fe600d1c1bdc82dfa632f7a2d",
+    "rotated_sha256": "6855e10a85991627a7a1dd82320800a7105512ab1bc90f9d161c6ef863f05aff",
+    "reference_shape": [7200, 7200],
+    "rotated_shape": [7199, 7200],
+    "primary_dtype": "uint16",
+    "primary_samples_per_pixel": 3,
+    "luminance_conversion": "equal-rgb-rounded-nearest-u16",
+    "container": "two IFDs: full-resolution primary RGB16 plus one reduced-resolution thumbnail"
+  },
+  "registration": {
+    "selected_orientation_degrees": 90,
+    "good_matches": 92,
+    "inliers": 87,
+    "inlier_fraction": 0.9456521739130435,
+    "median_inlier_error_pixels": 0.6485798358917236,
+    "p95_inlier_error_pixels": 1.874024510383606,
+    "required_good_matches": 500,
+    "registration_pass": false,
+    "coherence_rows_scored": 0
+  },
+  "formal_replay": {
+    "reports_byte_exact": true,
+    "report_a_sha256": "d03b059ca2c89827fa1169e558d852699f3d7342181c2bd39f381e0c23f64a5f",
+    "report_b_sha256": "d03b059ca2c89827fa1169e558d852699f3d7342181c2bd39f381e0c23f64a5f",
+    "stable_evidence_id": "5819a95b1378d9332f97d51934f11d1d7400a5dbae2d7ad0eb1db66aa1f8c8f9",
+    "pre_score_source_amendments": [
+      "The first attempt stopped on the official two-IFD container before registration; the contract then bound primary IFD zero and the reduced thumbnail IFD.",
+      "The second attempt stopped on RGB16 rather than grayscale before registration; an equal-weight integer RGB luminance rule was frozen before any registration or coherence score."
+    ]
+  },
+  "automatic_pass": false,
+  "decision": "close_barnard_rotated_plate_coherence_without_registration_or_threshold_rescue",
+  "next_hypothesis": "Stop SIFT threshold or crop rescue on these perpendicular scans. A further material-versus-scanner separation leaf requires source-provided correspondence or a genuinely different registration observation frozen on a fresh population.",
+  "claim_ceiling": "one CC-BY-4.0 1905 glass astronomical plate scanned twice at perpendicular orientations; registration-source negative only, not isolated photographic-film NPS, scanner calibration, modern stock transfer or product evidence."
+}

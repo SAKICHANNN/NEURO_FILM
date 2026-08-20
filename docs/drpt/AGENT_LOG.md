@@ -14139,6 +14139,23 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Two reports are exact (`a2443fdb...9bb17`), with zero coherence rows. Do not
   rescue this pair. Evidence: `docs/evidence/U6_P6AV_ROTATED_PLATE_COHERENCE_D0_RESULT.json`.
 
+### 2026-08-20 - U6.P6AW independently closes the rotated-plate registration family
+
+- Acquired the exact normal/perpendicular central scans of the CC-BY-4.0 1905
+  Barnard plate into the P-backed project data root. The official files contain
+  a full-resolution RGB16 IFD and one reduced IFD; both container selection and
+  equal-weight integer luminance ingress were frozen before registration or
+  coherence scoring.
+- Two formal reports are byte exact (`d03b059c...64a5f`, stable
+  `5819a95b...c8f9`). Registration again has a high inlier fraction and
+  subpixel error, but only 92 good matches /87 inliers versus the frozen 500
+  minimum; zero coherence rows were scored.
+- Close SIFT threshold, crop, channel and same-pair rescue. The generic P6AT
+  discriminator remains valid, but photographic material/scanner attribution
+  now requires a genuinely new correspondence observation or source-provided
+  mapping. Evidence:
+  `docs/evidence/U6_P6AW_BARNARD_ROTATED_PLATE_COHERENCE_D0_RESULT.json`.
+
 ### 2026-08-20 - U5.R2REPID10 freezes bounded basis selection
 
 - Direction correction: REPID9C global statistics and REPID9D CanonCGT tokens
