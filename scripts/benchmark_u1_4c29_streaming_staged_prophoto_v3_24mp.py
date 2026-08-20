@@ -36,6 +36,11 @@ SUPPORTED = {
         320,
         "neuro-film.u1-4c30-lifetime-staged-prophoto-24mp-report.v1",
     ),
+    "U1.4C31": (
+        "neuro-film.u1-4c31-parallel-staged-prophoto-24mp-contract.v1",
+        320,
+        "neuro-film.u1-4c31-parallel-staged-prophoto-24mp-report.v1",
+    ),
 }
 
 
@@ -74,6 +79,13 @@ def load_contract(path: Path, *, root: Path = ROOT) -> tuple[dict[str, Any], str
         or candidate["compression_level"] != 0
         or candidate["output_staging"] != "in-memory-row-stream"
         or not candidate["exact_float32_threshold_quantization"]
+        or (
+            experiment_id == "U1.4C31"
+            and (
+                candidate.get("preprocess_workers") != 2
+                or not candidate.get("direct_input_memmap_required")
+            )
+        )
         or measurement["fresh_processes"] != 2
         or not measurement["run_workers_sequentially"]
     ):
