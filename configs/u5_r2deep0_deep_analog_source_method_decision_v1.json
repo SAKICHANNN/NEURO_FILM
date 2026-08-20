@@ -1,0 +1,76 @@
+{
+  "schema": "neuro-film.u5-r2deep0-deep-analog-source-method-decision.v1",
+  "experiment_id": "U5.R2DEEP0",
+  "date": "2026-08-20",
+  "status": "closed_before_execution",
+  "paper": {
+    "title": "Deep Analog: Open-Set Film Emulation with Reference-Conditioned 3D LUTs",
+    "url": "https://arxiv.org/abs/2608.14702",
+    "version": "v1",
+    "submitted": "2026-08-10",
+    "publication_state": "masters_thesis_arxiv_preprint"
+  },
+  "official_repository": {
+    "url": "https://github.com/EtonMu/deep-analog",
+    "commit": "df49ad5176a1b995a33d6ffb45872f5cf781bcec",
+    "tree_truncated": false,
+    "blob_count": 37,
+    "total_blob_bytes": 24460847,
+    "checkpoint_like_blob_count": 0,
+    "license": {
+      "state": "all_rights_reserved_inspection_and_academic_discussion_only",
+      "path": "LICENSE",
+      "bytes": 1618,
+      "sha256": "43aaf0fb9ee8752971b6bd6aa7a3429d78f252946f911014afa2a9b8d4c07616"
+    },
+    "model_weights": {
+      "path": "MODEL_WEIGHTS.md",
+      "bytes": 1032,
+      "sha256": "e487400499f35b33cc10d75196ed2ab891319419f5effe9d79aa8d6b40d7cd30",
+      "distributed": false,
+      "style_lut_checkpoint_expected_bytes_approx": 992000000,
+      "hosted_demo_is_only_supported_public_model_execution": true
+    },
+    "patent_notice": {
+      "path": "PATENTS.md",
+      "bytes": 873,
+      "sha256": "6aff32c8b14b060e962df8f2b6d30e40ae0b3dce74f75205457436b59c750472",
+      "pending_us_patent_applications_declared": true,
+      "patent_license_granted": false
+    },
+    "readme_sha256": "a85411458c51bfe2b748844a0fa5408ce796d99349143c7081b73ca69a42b99f"
+  },
+  "method_facts": {
+    "operator": "single reference-conditioned residual 33-cube LUT plus separate histogram tone match and inverse-predicted grain/halation parameters",
+    "training": "self-supervised procedural colour transforms rather than calibrated film pairs",
+    "reported_colour_test_pairs": 350,
+    "reported_colour_psnr_db": 22.05,
+    "reported_colour_ssim": 0.925,
+    "reported_colour_runtime_ms_1080p": 5.2,
+    "paper_limitations": [
+      "synthetic transforms do not establish real emulsion response",
+      "display-referred execution is not a density-domain physical model",
+      "reference scans confound stock and scanner",
+      "no quantitative open-set real-film benchmark"
+    ]
+  },
+  "nonduplication": {
+    "existing_local_controls": [
+      "U5.R2STATLUT0 spatially agnostic statistical LUT identifiability D0",
+      "U5.R2BJ0-BJ2 bounded image-adaptive explicit LUT basis family",
+      "U5.R2BL12 official SA-LUT compatibility preflight",
+      "reference-match P182-P185 information-flow and cross-source operator protocols"
+    ],
+    "new_scientific_information_from_reimplementation_without_weights_or_new_data": false
+  },
+  "decision": "retain_as_latest_nonreproducible_architecture_and_related_work_baseline_only",
+  "forbidden": [
+    "copy, adapt, vendor or execute repository code without written permission",
+    "reconstruct private checkpoints or train a lookalike merely to imitate the paper",
+    "treat synthetic self-supervision as film-stock identification or calibration",
+    "treat the hosted demo as a reproducible local baseline",
+    "claim first reference-conditioned LUT, first base-plus-residual LUT, or first single-reference film emulation"
+  ],
+  "next_action": "Prioritize rights-clear independently observed film or scanner evidence and already-legal explicit baselines; do not spend compute on this unavailable model.",
+  "claim_ceiling": "Primary-source availability, rights and method-positioning audit only; not a reproduction, model evaluation, film-stock response, calibration, preference result or product authorization."
+}

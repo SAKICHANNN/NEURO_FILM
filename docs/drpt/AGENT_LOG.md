@@ -13736,3 +13736,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   authoritative summary remains outside Git at
   `P:\neuro_film_storage\legacy_d_root_organized_20260820\_verification\d_root_organization_summary_20260820.json`
   (`d91bfd785362cc294a8e37bc37ff6c1d8ffccce6df7f314dc70f05705d105c11`).
+
+### 2026-08-20 - U5.R2DEEP0 closes Deep Analog before execution
+
+- Audited the newest primary paper and exact official repository commit. The
+  public tree has 37 blobs and no model checkpoint; the release is explicitly
+  all-rights-reserved, inspection-only and patent-pending, while the required
+  StyleLUT and analyzer checkpoints remain private.
+- Retain Deep Analog as a direct architecture and related-work baseline only.
+  Its procedural-transform self-supervision does not establish a real stock or
+  scanner response, and reproducing a lookalike without its weights or new
+  identifying data would duplicate already-closed LUT evidence.
+- No external code, weight, image or output was retained. Continue with
+  rights-clear independent physical evidence or an already-legal explicit
+  baseline; no model training or hosted-demo result is opened.

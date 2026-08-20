@@ -19,10 +19,21 @@ cross-content known-look contract?
 | SA-LUT (ICCV 2025) | official code; non-commercial S-Lab 1.0 | spatial context plus 4D LUT | published inference weight is absent from repository | research-only and non-reproducible from release |
 | NLUT (AAAI 2023) | official code/weight; MIT | source/reference-conditioned residual 33³ LUT plus test-time tuning | weight loads; shared-batch variants fail | comparison control only |
 | Neural Preset (CVPR 2023) | metrics only; CC BY-NC-SA 4.0 | learned preset | no inference implementation or weight released | non-commercial paper/control only |
+| Deep Analog (arXiv 2026) | public inspection-only source; all rights reserved; private checkpoints | reference-conditioned residual 33³ LUT plus inferred grain/halation parameters | exact release audit only; no lawful executable local model | latest architecture/related-work baseline only |
 
 Reported paper preference is not treated as local evidence. Conversely, this
 single frozen Velvia-look matrix does not reproduce any paper's complete
 dataset or user study.
+
+Deep Analog is a direct 2026 near-neighbour, but not a runnable baseline. The
+official commit `df49ad5176a1b995a33d6ffb45872f5cf781bcec` contains 37 blobs and
+no checkpoint. Its license permits inspection and academic discussion only,
+declares pending patent applications, and grants neither copyright nor patent
+permission to use or adapt the implementation. The paper's 350-pair result is
+self-supervised on procedural colour transforms; it does not identify a real
+stock, emulsion or scanner. The exact audit is frozen in
+`configs/u5_r2deep0_deep_analog_source_method_decision_v1.json`; no code,
+weights, images or model outputs were copied into this project.
 
 ## CanonCGT asset and execution audit
 
