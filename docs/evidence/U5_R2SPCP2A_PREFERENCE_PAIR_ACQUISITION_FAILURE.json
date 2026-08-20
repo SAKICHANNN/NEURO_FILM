@@ -1,0 +1,33 @@
+{
+  "schema": "neuro-film.u5-r2spcp2a-preference-pair-acquisition-failure-evidence.v1",
+  "experiment_id": "U5.R2SPCP2A",
+  "status": "FAIL_CLOSED_BEFORE_OPERATOR_FIT",
+  "execution_head": "552f4d2fa56219e7e647321a65f3a2bc82310ed1",
+  "contract_sha256": "8c624815934761abf20174d96bb27cc19c1666620d1fee87edc41ed4ca9cffac",
+  "role_manifest_sha256": "5ed0aaa4cf3c79b33f1e9505d0df0cf103ea071d7266655d9bde480192c7b807",
+  "failure": {
+    "scene_id": "I0582",
+    "role": "fit",
+    "endpoint": "loser",
+    "member_name": "SPCP_dataset/images/I0582_03_01.png",
+    "declared_uncompressed_bytes": 145126,
+    "declared_crc32_hex": "6b5522af",
+    "observed_sha256": "d8eb8e95d5385b91128b56e7980b269b87d3ec6f3beda29b35b4c7a6f779aca4",
+    "observed_crc32_hex": "6b5522af",
+    "observed_signature_hex": "ffd8ffe000104a464946",
+    "observed_format": "JPEG",
+    "required_format": "PNG"
+  },
+  "execution": {
+    "downloaded_member_files_retained": 83,
+    "downloaded_member_bytes_retained": 128151946,
+    "sealed_member_reads": 0,
+    "operator_fit": false,
+    "calibration_score": false,
+    "scene_replacement": false,
+    "format_fallback": false
+  },
+  "decision": "close_before_operator_fit_without_replacement",
+  "interpretation": "The ZIP payload is byte-complete and CRC-exact but is JFIF JPEG under a .png member name. This is a frozen source-format failure, not transfer corruption, and the preregistered no-replacement/no-fallback rule closes the exact SPCP2 operator route before fitting.",
+  "claim_ceiling": "Source-format failure for one frozen internal-research SPCP member; no operator, preference generalization, film, stock, scanner, package, capability or product conclusion."
+}
