@@ -3,7 +3,7 @@
   "experiment_id": "SF3.A0R_RGB2RAW_CAPTURE_PAIR_SOURCE_LOCK_V1",
   "date": "2026-08-21",
   "status": "PASS_RANGE_ONLY_SOURCE_STRUCTURE",
-  "implementation_commit": "e57d63aca6852def4c2925244b7e2344ec087312",
+  "implementation_commit": "c2988c41213d7d8071124fb5d358c63e2d7f02cd",
   "source": {
     "dataset_id": "marcosv/rgb2raw",
     "revision": "91a105e8532f082a955b799c15dea0ada9e3caed",
@@ -14,22 +14,30 @@
     "repository_license_text_present": false
   },
   "formal_replay": {
-    "report_a": "outputs/eval/sf3_a0r_rgb2raw_capture_pair_source_lock_v1/formal_run_1.json",
-    "report_b": "outputs/eval/sf3_a0r_rgb2raw_capture_pair_source_lock_v1/formal_run_2.json",
-    "report_sha256": "9be9f528cbb5c5a3d196254d399d15178913b3ca227a0722dcbf5c42eb269750",
-    "stable_identity": "03626a349f2e0b67978700815b21ff3018a77de2de62892358dd0d36a667a9bc",
+    "report_a": "outputs/eval/sf3_a0r_rgb2raw_capture_pair_source_lock_v1/formal_run_3_canonical_groups.json",
+    "report_b": "outputs/eval/sf3_a0r_rgb2raw_capture_pair_source_lock_v1/formal_run_4_canonical_groups.json",
+    "report_sha256": "8d5531e08b353f53f82f1e119e9b2ad4ae336944cc51f55a2d4ba8904df59f19",
+    "stable_identity": "636af45c156a848c374f39db6032743738379d8b7e55c5b56c002a1ce86415d0",
     "byte_exact": true,
     "archive_bytes_read_per_run": 647610
+  },
+  "superseded_replay": {
+    "report_sha256": "9be9f528cbb5c5a3d196254d399d15178913b3ca227a0722dcbf5c42eb269750",
+    "stable_identity": "03626a349f2e0b67978700815b21ff3018a77de2de62892358dd0d36a667a9bc",
+    "reason": "The initial report counted leading-zero aliases such as 29 and 029 as distinct scene groups. It is superseded before member payload reads by numeric scene-ID canonicalization."
   },
   "observations": {
     "zip_member_count": 6411,
     "primary_pair_count": 1446,
-    "primary_scene_group_count": 241,
+    "raw_primary_scene_group_count": 241,
+    "canonical_primary_scene_group_count": 200,
     "metadata_member_count": 501,
     "iphone_x_pair_count": 972,
-    "iphone_x_scene_group_count": 162,
+    "iphone_x_raw_scene_group_count": 162,
+    "iphone_x_canonical_scene_group_count": 129,
     "samsung_s9_pair_count": 474,
-    "samsung_s9_scene_group_count": 79,
+    "samsung_s9_raw_scene_group_count": 79,
+    "samsung_s9_canonical_scene_group_count": 71,
     "unpaired_primary_member_count": 0,
     "primary_scene_groups_without_metadata": 0,
     "unsafe_member_count": 0,
@@ -42,7 +50,7 @@
   "decision": "OPEN_FIXED_GROUP_DISJOINT_MEMBER_AND_PIXEL_PREFLIGHT_ONLY",
   "bounded_final_candidate_counter_before": 0,
   "bounded_final_candidate_counter_after": 0,
-  "scientific_conclusion": "The exact NTIRE 2025 training archive exposes 1,446 complete smartphone RAW-to-ISP-RGB patch pairs across 241 metadata-covered capture groups. This is a materially new paired capture observation and can be sampled by bounded HTTP Range without downloading or persisting the 8.73 GB archive.",
+  "scientific_conclusion": "The exact NTIRE 2025 training archive exposes 1,446 complete smartphone RAW-to-ISP-RGB patch pairs across 241 raw name groups and 200 leakage-safe numeric-normalized capture groups. This is a materially new paired capture observation and can be sampled by bounded HTTP Range without downloading or persisting the 8.73 GB archive.",
   "rights_ceiling": "The Hugging Face card declares MIT but the repository contains no separate license text. Treat this as publisher-declared permissive source metadata pending any product distribution decision; do not silently expand it into a legal warranty.",
   "claim_ceiling": "Range-only source structure. No image-member, pixel, quality, preference, operator, film, package, schema, capability or product claim."
 }

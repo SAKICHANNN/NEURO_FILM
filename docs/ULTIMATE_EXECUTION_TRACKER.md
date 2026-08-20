@@ -68,8 +68,9 @@ addition to commercial rights. Counter remains `0/3`. Evidence:
 SF3.A0R range-locks a materially different real capture source without
 downloading its 8.73GB archive. Exact NTIRE 2025 `rgb2raw` revision
 `91a105e...` contains 1,446 complete RAW/phone-ISP RGB patch pairs across 241
-metadata-covered primary capture groups; two 647,610-byte central-directory
-audits replay exactly (`9be9f528...69750`). The publisher card declares MIT
+raw-name and 200 numeric-normalized metadata-covered primary capture groups;
+two corrected 647,610-byte central-directory audits replay exactly
+(`8d5531e0...59f19`). The publisher card declares MIT
 but contains no separate license text, so this opens only a fixed,
 group-disjoint member/pixel preflight with an explicit rights ceiling. Counter
 remains `0/3`. Evidence:

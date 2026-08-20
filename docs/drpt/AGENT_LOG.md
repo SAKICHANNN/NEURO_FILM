@@ -14650,10 +14650,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 
 - Exact Hugging Face revision `91a105e...` and the 8.73GB train archive were
   audited through one 647,610-byte central-directory range per run; no member
-  payload or pixel was read. Two reports are byte exact at
-  `9be9f528...69750`, stable `03626a34...a9bc`.
+  payload or pixel was read. The initial raw-name count was superseded before
+  member reads; two corrected reports are byte exact at
+  `8d5531e0...59f19`, stable `636af45c...415d0`.
 - The archive exposes 1,446 complete `.npy`/`.png` primary pairs across 241
-  capture groups, with metadata available for every selected group and no
+  raw-name and 200 leakage-safe numeric-normalized capture groups, with
+  metadata available for every selected group and no
   unsafe, encrypted or unsupported members. This is materially different from
   PPISP's reprocessed multi-view name relation.
 - The dataset card declares MIT but provides no standalone license text.
