@@ -1,0 +1,30 @@
+{
+  "schema": "neuro_film.u1_4d_ocio_aces2_output_runtime_contract.v1",
+  "experiment_id": "u1.4d-ocio-aces2-output-runtime-v1",
+  "node": "ULT > U1 > U1.4D",
+  "status": "frozen_before_fixture_scoring",
+  "bindings": {
+    "contract_path": "docs/planning/U1_4D_OCIO_ACES2_OUTPUT_RUNTIME_CONTRACT.md",
+    "contract_sha256": "081b25b56421f9f8497c251042418254931adfa07ac6597c47ee0486947288ba",
+    "implementation_path": "src/preprocess/ocio_aces2_output.py",
+    "implementation_sha256": "e9f82e4311e07ba150712b78feabe3c3aa20c42f731b3ff5be30c49cf16e58e3",
+    "runner_path": "scripts/audit_u1_4d_ocio_aces2_output_runtime.py",
+    "runner_sha256": "d0e17c5aa69a4feb74cd15d8c9fc5a87d379a90b018a01c55d9e236bc7943b52"
+  },
+  "runtime": {
+    "package": "opencolorio==2.5.2",
+    "module": "PyOpenColorIO",
+    "config_uri": "ocio://cg-config-v4.0.0_aces-v2.0_ocio-v2.5",
+    "config_cache_id": "351c1452fc2bde6177841947c5fce086:6001c324468d497f99aa06d3014798d8",
+    "source_space": "ACEScg"
+  },
+  "gates": {
+    "maximum_scalar_packed_absolute_error": 0.000002,
+    "maximum_neutral_channel_spread": 0.0001,
+    "neutral_monotonic_tolerance": 0.000001,
+    "minimum_sdr_hdr_maximum_difference": 0.01,
+    "require_reverse_order_exact": true,
+    "require_two_process_report_exact": true
+  },
+  "claim_ceiling": "isolated Windows CPU official OCIO 2.5.2 ACES 2 numerical runtime only; no ACES certification, camera IDT, image quality, HDR file encoding, display calibration, GPU/macOS parity, renderer integration, public schema/capability, film/stock or product support"
+}
