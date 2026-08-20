@@ -1,0 +1,73 @@
+{
+  "schema": "neuro-film.rf3-three-stock-spectral-shape-contract.v1",
+  "experiment_id": "RF3.D5",
+  "date": "2026-08-21",
+  "status": "FROZEN_BEFORE_SPECTRAL_CURVE_DIGITIZATION",
+  "question": "After removing absolute sensitivity/speed offsets and chart-floor differences, are the manufacturer-published RGB layer spectral-sensitivity shapes materially distinct for all three initial stocks?",
+  "parent": {
+    "path": "docs/evidence/RF3_D2_THREE_STOCK_OFFICIAL_SOURCE_MATRIX_RESULT.json",
+    "sha256": "0cb2226b43baa8cd3409ef654f3d9579cc0589dd2e9b28495a7f1e3cc312c818",
+    "required_decision": "retain_three_stock_first_party_physical_prior_matrix_and_open_nonrenderable_common_domain_comparison"
+  },
+  "wavelengths_nm": [400, 410, 420, 430, 440, 450, 460, 470, 480, 490, 500, 510, 520, 530, 540, 550, 560, 570, 580, 590, 600, 610, 620, 630, 640, 650, 660, 670, 680],
+  "channels": ["blue_or_yellow_forming", "green_or_magenta_forming", "red_or_cyan_forming"],
+  "sources": [
+    {
+      "stock_id": "fujifilm_velvia_50",
+      "film_family": "e6_reversal",
+      "page_image": "outputs/eval/rf3_d3_three_stock_mtf_prior_v1/source_pages/velvia50_p8.png",
+      "page_image_sha256": "caa79e274a62a958a3b4970b336e666f4d82c5a3b5bdc750e931055207e78381",
+      "page_image_size": [1653, 2206],
+      "published_semantics": "status_a_blue_green_red_sensitive_layers",
+      "x_wavelength_anchors": [[400.0, 961.0], [700.0, 1444.0]],
+      "y_log_sensitivity_anchors": [[2.0, 309.0], [-1.0, 789.0]],
+      "digitization_maximum_y_uncertainty_pixels": 3.0
+    },
+    {
+      "stock_id": "kodak_portra_400",
+      "film_family": "c41_colour_negative",
+      "page_image": "outputs/eval/rf3_d3_three_stock_mtf_prior_v1/source_pages/portra400_p4.png",
+      "page_image_sha256": "598b2a8d919fa8a491eea7a077c3dbf0c2d0b42354e81c524ba5e0269847efb0",
+      "page_image_size": [1700, 2200],
+      "published_semantics": "status_m_yellow_magenta_cyan_forming_layers",
+      "x_wavelength_anchors": [[250.0, 212.0], [750.0, 769.0]],
+      "y_log_sensitivity_anchors": [[4.0, 954.0], [0.0, 1373.0]],
+      "digitization_maximum_y_uncertainty_pixels": 3.0
+    },
+    {
+      "stock_id": "kodak_ektar_100",
+      "film_family": "c41_colour_negative",
+      "page_image": "outputs/eval/rf3_d3_three_stock_mtf_prior_v1/source_pages/ektar100_p4.png",
+      "page_image_sha256": "b3c421fb87af69cc183aa305259db6daa4087015ef879552c2267fd8749724ae",
+      "page_image_size": [1700, 2200],
+      "published_semantics": "status_m_yellow_magenta_cyan_forming_layers",
+      "x_wavelength_anchors": [[250.0, 206.0], [750.0, 763.0]],
+      "y_log_sensitivity_anchors": [[3.0, 990.0], [0.0, 1412.0]],
+      "digitization_maximum_y_uncertainty_pixels": 3.0
+    }
+  ],
+  "digitization": {
+    "observation_file": "configs/rf3_d5_three_stock_spectral_digitization_v1.json",
+    "method": "manual_centerline_polyline_points_on_hash_bound_first_party_graphs_with_overlay",
+    "curve_rule": "trace_each_complete_published_layer_curve_including_secondary-wavelength lobes; never select only the highest lobe",
+    "interpolation": "linear_in_wavelength_and_published_log_sensitivity",
+    "normalization": "subtract_each_layer_curve_peak_then_floor_at_minus_1.25_log_sensitivity",
+    "outside_published_curve_support": -1.25,
+    "active_union_rule": "include a channel-wavelength sample when either stock is above the normalized floor",
+    "uncertainty_lower_bound": "observed_pair_metric_minus_sum_of_both_y_axis_3px_log_uncertainties",
+    "minimum_points_per_channel": 9,
+    "require_strict_wavelength_order": true,
+    "require_overlay": true
+  },
+  "gates": {
+    "minimum_pairwise_active_union_mean_absolute_log_shape_difference_lower_bound": 0.05,
+    "minimum_pairwise_active_union_rmse_log_shape_difference_lower_bound": 0.08,
+    "minimum_pairwise_maximum_channel_peak_wavelength_difference_nm": 10.0,
+    "require_all_pairwise_gates": true,
+    "require_all_source_hashes": true,
+    "require_exact_replay": true
+  },
+  "decision_if_pass": "retain_datasheet_spectral_shape_as_a_nonrenderable_three_stock_k1_prior",
+  "decision_if_fail": "close_datasheet_spectral_shape_as_a_three_stock_discriminator_and_require_controlled_pixel_evidence",
+  "claim_ceiling": "Normalized comparison of manually digitized manufacturer-published layer spectral-sensitivity curve shapes. It removes absolute speed/sensitivity and chart floors; it is not an RGB render operator, scanner truth, target-closeness result, calibrated stock response, preference result or product promotion."
+}
