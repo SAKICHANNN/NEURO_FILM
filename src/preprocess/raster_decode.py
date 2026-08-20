@@ -44,6 +44,7 @@ _GAIN_MAP_PAYLOAD_MARKERS = (
     b"hdrgm:version",
     b"item:semantic=\"gainmap\"",
     b"urn:com:apple:photo:2020:aux:hdrgainmap",
+    b"urn:iso:std:iso:ts:21496:-1",
 )
 _PAYLOAD_SCAN_BYTES = 4 * 1024 * 1024
 _MAX_METADATA_PAYLOAD_BYTES = 1024 * 1024
@@ -285,7 +286,7 @@ def _png_metadata_markers(path: Path) -> list[str]:
 
 def _structured_payload_markers(path: Path, format_name: str) -> tuple[list[str], list[str]]:
     try:
-        if format_name == "JPEG":
+        if format_name in {"JPEG", "MPO"}:
             return _jpeg_metadata_markers(path), []
         if format_name == "PNG":
             return _png_metadata_markers(path), []
@@ -307,7 +308,7 @@ def unsupported_dynamic_range_signals(path: Path, inspection: InputInspection) -
             continue
         if any(token in lowered for token in ("hdr", "gain", "cicp", "nclx", "mastering")):
             signals.append(f"metadata:{key}")
-    if inspection.format_name in {"JPEG", "PNG"}:
+    if inspection.format_name in {"JPEG", "MPO", "PNG"}:
         structured, failures = _structured_payload_markers(path, inspection.format_name)
         signals.extend(f"payload:{marker}" for marker in structured)
         signals.extend(failures)
@@ -531,11 +532,6 @@ def load_raster_working_image(path: Path) -> WorkingImage:
     warnings = list(inspection.warnings)
     if inspection.source_kind != "raster":
         raise ValueError(f"Unsupported raster input: {path}")
-    if inspection.frame_count != 1:
-        raise ValueError(
-            "multi-frame raster rendering is not implemented; "
-            f"refusing silent frame-zero fallback (frame_count={inspection.frame_count})"
-        )
     dynamic_range_signals = unsupported_dynamic_range_signals(path, inspection)
     if dynamic_range_signals:
         if any(signal.startswith("metadata:cicp") for signal in dynamic_range_signals):
@@ -546,6 +542,11 @@ def load_raster_working_image(path: Path) -> WorkingImage:
         raise ValueError(
             "HDR/gain-map reconstruction is not implemented; refusing SDR fallback: "
             + ",".join(dynamic_range_signals)
+        )
+    if inspection.frame_count != 1:
+        raise ValueError(
+            "multi-frame raster rendering is not implemented; "
+            f"refusing silent frame-zero fallback (frame_count={inspection.frame_count})"
         )
     supported_rec2020 = (
         inspection.source_profile.kind == "cicp"

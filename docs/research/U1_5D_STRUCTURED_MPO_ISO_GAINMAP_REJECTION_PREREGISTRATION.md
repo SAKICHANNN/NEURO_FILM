@@ -1,7 +1,7 @@
 # U1.5D structured MPO / ISO gain-map rejection preregistration
 
-Date: 2026-08-21  
-Parent: `ULT > U1 > U1.5`  
+Date: 2026-08-21
+Parent: `ULT > U1 > U1.5`
 Contract: `configs/u1_5d_structured_mpo_iso_gainmap_rejection_v1.json`
 
 ## Question

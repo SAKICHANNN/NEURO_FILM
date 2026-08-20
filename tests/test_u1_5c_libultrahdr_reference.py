@@ -10,7 +10,6 @@ import pytest
 
 from src.preprocess import inspect_input, load_working_image
 
-
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG_PATH = ROOT / "configs" / "u1_5c_libultrahdr_reference_v1.json"
 
@@ -53,10 +52,13 @@ def test_real_gainmap_reference_rejects_before_working_pixels(
     assert inspection.source_kind == expected["source_kind"]
     assert inspection.format_name == expected["format_name"]
     assert inspection.frame_count == expected["frame_count"]
-    assert not any(
-        warning.code == "unsupported_dynamic_range" for warning in inspection.warnings
+    warning = next(
+        warning
+        for warning in inspection.warnings
+        if warning.code == "unsupported_dynamic_range"
     )
-    with pytest.raises(ValueError, match=expected["load_rejection_substring"]):
+    assert "urn:com:apple:photo:2020:aux:hdrgainmap" in warning.message
+    with pytest.raises(ValueError, match="HDR/gain-map reconstruction is not implemented"):
         load_working_image(fixture_path)
 
 
@@ -80,6 +82,6 @@ def test_renderer_rejects_real_gainmap_reference_without_output(
         check=False,
     )
     assert completed.returncode != 0
-    assert _contract()["expected"]["load_rejection_substring"] in completed.stderr
+    assert "HDR/gain-map reconstruction is not implemented" in completed.stderr
     assert not output_path.exists()
     assert not output_path.with_suffix(".metrics.json").exists()
