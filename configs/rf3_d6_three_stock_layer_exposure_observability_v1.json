@@ -32,7 +32,10 @@
   "illuminant": {
     "id": "CIE_D65",
     "path": "data/calibration/cie/CIE_std_illum_D65.csv",
-    "sha256": "e76f210bffff3d552ef7113025da5f325d5dfec200dd4b878b1a2f3a507032cb"
+    "sha256": "e76f210bffff3d552ef7113025da5f325d5dfec200dd4b878b1a2f3a507032cb",
+    "observer_path": "data/calibration/cie/CIE_xyz_1931_2deg.csv",
+    "observer_sha256": "fa663e3535a7e0763a745993a1f0a192eb0275ac46ad2d1befd7626841e713c1",
+    "source_eligibility_wavelengths_nm": [400, 410, 420, 430, 440, 450, 460, 470, 480, 490, 500, 510, 520, 530, 540, 550, 560, 570, 580, 590, 600, 610, 620, 630, 640, 650, 660, 670, 680, 690, 700]
   },
   "response": {
     "integration": "trapezoidal_reflectance_times_D65_times_normalized_layer_sensitivity",
