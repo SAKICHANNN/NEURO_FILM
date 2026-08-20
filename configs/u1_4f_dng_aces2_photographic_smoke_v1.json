@@ -1,0 +1,50 @@
+{
+  "schema": "neuro_film.u1_4f_dng_aces2_photographic_smoke_contract.v1",
+  "experiment_id": "u1.4f-dng-aces2-photographic-smoke-v1",
+  "node": "ULT > U1 > U1.4F",
+  "status": "frozen_before_pixel_decode",
+  "bindings": {
+    "contract_path": "docs/planning/U1_4F_DNG_ACES2_PHOTOGRAPHIC_SMOKE_CONTRACT.md",
+    "contract_sha256": "4174df541c157c1c0d9b7a300475cd49ef42547ab88df713c84e7c2745574165",
+    "adapter_path": "src/preprocess/ocio_aces2_output.py",
+    "adapter_sha256": "7ffe89bb448866574d0c6374020b79920d5e9b93d72ec84a29704c45f247378d",
+    "runner_path": "scripts/audit_u1_4f_dng_aces2_photographic_smoke.py",
+    "runner_sha256": "350355628e18c2e0e73e908bbec30d6d9aedf3e540b23560c44d4225a72cd5e5",
+    "source_config_path": "configs/u1_3c_dng_capture_metadata_receipt_v1.json",
+    "source_config_sha256": "8576c8c111ceb0cae42821b76551906b8df9899f2da31ee38f985752940734e7",
+    "adapter_evidence_path": "docs/evidence/U1_4E_WORKING_IMAGE_ACES2_ADAPTER_RESULT.json",
+    "adapter_evidence_sha256": "d9876756e4548931f64cc875ee1c611e446c5e30086a83f2c66fb265337040fc"
+  },
+  "rows": [
+    {
+      "source_id": "dji_fc4382",
+      "logical_path": "data/external/rawpixls_bh0_v1/raw/dji_fc4382.dng",
+      "source_bytes": 14884352,
+      "source_sha256": "f33ddaf2a7fa70b395abced251faccea11100d2ab7e54ae0a6adbff043d72027"
+    },
+    {
+      "source_id": "google_pixel_7_pro",
+      "logical_path": "data/external/rawpixls_bh0_v1/raw/google_pixel_7_pro.dng",
+      "source_bytes": 12243982,
+      "source_sha256": "6b921558944db5fdb4f1c63dc64919b6666ef700857a187e18500099c6e7c6c6"
+    },
+    {
+      "source_id": "apple_iphone_12_pro",
+      "logical_path": "data/external/rawpixls_bh1_v1/raw/apple_iphone_12_pro.dng",
+      "source_bytes": 29195592,
+      "source_sha256": "e91e77a4533ed7cce551d83330676ea5c47dd5e55fb38adda7819366afdbdfc2"
+    },
+    {
+      "source_id": "huawei_eml_l29",
+      "logical_path": "data/external/rawpixls_bh1_v1/raw/huawei_eml_l29.dng",
+      "source_bytes": 23643352,
+      "source_sha256": "77385bde838ab7e0a5b067d7f6e6b8cb3019a3c22353fae6b8689a43adda439a"
+    }
+  ],
+  "gates": {
+    "required_rows": 4,
+    "require_forward_reverse_exact": true,
+    "require_two_process_report_exact": true
+  },
+  "claim_ceiling": "private Windows CPU photographic runtime mechanics for exact four rights-cleared DNGs under existing generic LibRaw scene-linear decode and official ACES 2 numerical outputs only; no vendor parity, calibrated camera IDT, photographic quality, HDR file/metadata, arbitrary DNG, default renderer, public capability, film/stock or product admission"
+}
