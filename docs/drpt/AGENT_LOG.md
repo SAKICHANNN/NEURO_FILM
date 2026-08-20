@@ -15134,3 +15134,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Decision:** retain only the private CPU adapter. Default renderer and file
   integration remain closed pending separately frozen photographic/output
   evidence; no certification, public capability or product claim opens.
+
+### 2026-08-21 - U1.4F freezes the four-DNG photographic smoke
+
+- **Parent:** U1.4 official output chain, using the exact U1.3C capture-receipt
+  cohort and unchanged U1.4E adapter.
+- All four rows are mandatory and byte-bound before pixel decode. Existing
+  generic LibRaw settings are fixed; no row, decoder, exposure or clipping
+  rescue is allowed after execution.
+- The audit retains only hashes and scalar diagnostics and requires four exact
+  process/order reports. It does not encode output images or open a default
+  renderer, camera IDT, image-quality, arbitrary-DNG or product claim.
