@@ -14030,6 +14030,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   the narrower 7/9 self-canonical identification signal.
 - Evidence: `docs/evidence/U5_R2REPID8_CANONCGT_EXTENDED_QUADRATIC_INVERSE_RESULT.json`.
 
+### 2026-08-20 - U5.R2REPID9A locks professional originals before pixels
+
+- Changed the next identifying information source to professional same-scene
+  original/render supervision for a future reference-only explicit-parameter
+  predictor. A metadata feasibility query observed only count/bytes before the
+  contract and read zero member payload bytes.
+- The prospective builder binds all 104 REPID2 fit/calibration originals.
+  Forward/reversed manifests are byte exact (`3050cafd...b12e7`): 80 fit, 24
+  calibration, 10,582,439 bytes, all paths JPEG with LFS SHA-256, all mandatory.
+- Payload reads, image decodes, operator fits and sealed requests remain zero.
+  The result opens only exact D-fallback acquisition and a separately frozen
+  reference-only bounded-operator predictor D0.
+- Evidence: `docs/evidence/U5_R2REPID9A_ORIGINAL_MEMBER_LOCK_RESULT.json`.
+
 ### 2026-08-20 - U6.P6AS closes the current public repeat-scan source gate
 
 - Queried the current official APPLAUSE DR4 and HDAP TAP catalogues without

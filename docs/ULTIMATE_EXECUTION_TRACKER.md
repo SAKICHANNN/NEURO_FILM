@@ -1651,3 +1651,14 @@ reduction versus the frozen 12D control is `-48.41%`. Close scale, basis,
 degree, ridge, Jacobian-projection and threshold rescues. The result rejects
 free quadratic capacity as the repair; it does not invalidate the 7/9
 self-canonical signal or open Apply.
+
+U5.R2REPID9A changes the identifying information source rather than operator
+capacity. A bounded pre-prereg metadata query observed that all 104 frozen
+fit/calibration scenes expose an `images/original/...` member; no payload was
+read. The prospective lock then binds every mandatory original path, size and
+LFS SHA before acquisition. Forward/reversed manifests are byte exact
+(`3050cafd...b12e7`): 80 fit +24 calibration members total only 10,582,439
+bytes, all gates pass, and payload/decode/fit/sealed requests remain zero. This
+opens exact original-member acquisition into the project-isolated D fallback,
+then one scene-disjoint reference-only bounded-operator parameter-predictor
+D0. It does not open sealed scenes, a product scorer or integration.

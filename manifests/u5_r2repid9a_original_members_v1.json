@@ -1,0 +1,782 @@
+{
+  "automatic_pass": true,
+  "claim_ceiling": "Internal-research metadata-only original-member identity lock; no pixels, operator, preference model, package, capability or product claim.",
+  "decision": "open_exact_repid_fit_calibration_original_acquisition",
+  "execution": {
+    "image_decodes": 0,
+    "member_payload_reads": 0,
+    "operator_fits": 0,
+    "sealed_scene_requests": 0
+  },
+  "experiment_id": "u5.r2repid9a-original-member-lock-v1",
+  "gates": {
+    "all_paths_jpeg_extension": true,
+    "all_paths_lfs_sha256_present": true,
+    "all_paths_resolved": true,
+    "image_decodes_zero": true,
+    "member_count_exact": true,
+    "member_payload_reads_zero": true,
+    "operator_fits_zero": true,
+    "role_counts_exact": true,
+    "roles_evidence_exact": true,
+    "roles_report_exact": true,
+    "scene_count_exact": true,
+    "sealed_scene_requests_zero": true,
+    "selected_identity_exact": true,
+    "total_bytes": true
+  },
+  "member_count": 104,
+  "member_identity_sha256": "79889a4e8b7897e6c57a31dd564b1c914f68c2be97f61e146a16929d881a96da",
+  "members": [
+    {
+      "path": "images/original/a0197-Ja_Pe-32.jpeg",
+      "role": "calibration",
+      "scene_id": "a0197-Ja_Pe-32.jpeg",
+      "sha256": "a2978192206c32622c34ee45107bef50916fb0a80459ded052d7343097453d07",
+      "size": 127384
+    },
+    {
+      "path": "images/original/a0201-MB_20030906_073.jpeg",
+      "role": "calibration",
+      "scene_id": "a0201-MB_20030906_073.jpeg",
+      "sha256": "767c338d7add00f7e000dc1fe0fa65edcbd4d84a4aaa64385415b66c227be8ae",
+      "size": 119643
+    },
+    {
+      "path": "images/original/a0206-kme_576.jpeg",
+      "role": "calibration",
+      "scene_id": "a0206-kme_576.jpeg",
+      "sha256": "4a1e09a5e6879e4c9325477404e906b870aa9a2548d8098f594e2d0ce06730e9",
+      "size": 119311
+    },
+    {
+      "path": "images/original/a0252-jmac_DSC3250.jpeg",
+      "role": "calibration",
+      "scene_id": "a0252-jmac_DSC3250.jpeg",
+      "sha256": "747d88ec1bf44ae9bd0ee75a27f19663b06cb4805cb0240966c6b067c9920b05",
+      "size": 105475
+    },
+    {
+      "path": "images/original/a0582-DSC_0020.jpeg",
+      "role": "calibration",
+      "scene_id": "a0582-DSC_0020.jpeg",
+      "sha256": "de542c7a2d7d9fad7eab20c1d36f96ce6733484519ab1517afe4688b8537b347",
+      "size": 70163
+    },
+    {
+      "path": "images/original/a0911-IMG_4647.jpeg",
+      "role": "calibration",
+      "scene_id": "a0911-IMG_4647.jpeg",
+      "sha256": "4a451cc8f45b09052a8751aa5b0dbb75f1ce5b0550bbf3f608af1f4bf149a81c",
+      "size": 61457
+    },
+    {
+      "path": "images/original/a1244-IMG_4410.jpeg",
+      "role": "calibration",
+      "scene_id": "a1244-IMG_4410.jpeg",
+      "sha256": "5bdc1eae3aa29cf013864ab7defb71f5e08b4746ab51f05ec7dc1ed2f1bf796c",
+      "size": 120250
+    },
+    {
+      "path": "images/original/a1411-050816_114824__I2E6868.jpeg",
+      "role": "calibration",
+      "scene_id": "a1411-050816_114824__I2E6868.jpeg",
+      "sha256": "1310d15a0a045d4e6d0f36db0a31b155afa3d271ad5147196b6f7420a0c7556d",
+      "size": 86538
+    },
+    {
+      "path": "images/original/a1511-jmac_MG_6757.jpeg",
+      "role": "calibration",
+      "scene_id": "a1511-jmac_MG_6757.jpeg",
+      "sha256": "87c529cef8fe4596d64975c04c28613446a434104154e85d7644a7d8077fd44b",
+      "size": 130561
+    },
+    {
+      "path": "images/original/a1621-jmac_MG_0344.jpeg",
+      "role": "calibration",
+      "scene_id": "a1621-jmac_MG_0344.jpeg",
+      "sha256": "0ae2e73dc94e0fbde58b48696b37af96b1ce9e0830f5c285a2afbf5beee64415",
+      "size": 87926
+    },
+    {
+      "path": "images/original/a1637-jmac_DSC6121.jpeg",
+      "role": "calibration",
+      "scene_id": "a1637-jmac_DSC6121.jpeg",
+      "sha256": "5aa96fc90746225ecd6aa243a22c924bcfd102dba5daabf00f0a9b915037fc53",
+      "size": 113085
+    },
+    {
+      "path": "images/original/a1717-kme_510.jpeg",
+      "role": "calibration",
+      "scene_id": "a1717-kme_510.jpeg",
+      "sha256": "e36c554d2e76be7758a2fbe40245bbfa6017f0c5b9d9e30e652a162b0e2e7092",
+      "size": 124543
+    },
+    {
+      "path": "images/original/a2043-kme_429.jpeg",
+      "role": "calibration",
+      "scene_id": "a2043-kme_429.jpeg",
+      "sha256": "bef6823743bf77ff17fd79eb7430ee66aec33afdddb32cd2aa580fb70c5d1f8b",
+      "size": 161832
+    },
+    {
+      "path": "images/original/a2515-dvf_072.jpeg",
+      "role": "calibration",
+      "scene_id": "a2515-dvf_072.jpeg",
+      "sha256": "10e19135ffa047bf56779ce499a29a2be3e8a3c4f3e4852015cb237a59ead5a0",
+      "size": 93036
+    },
+    {
+      "path": "images/original/a2895-_DSC1934.jpeg",
+      "role": "calibration",
+      "scene_id": "a2895-_DSC1934.jpeg",
+      "sha256": "ec3206a9e367c15cb92b4573c8e7573ceb9cd384f208558e09dc06b3cb7d3f6a",
+      "size": 89110
+    },
+    {
+      "path": "images/original/a3380-IMG_0034.jpeg",
+      "role": "calibration",
+      "scene_id": "a3380-IMG_0034.jpeg",
+      "sha256": "a3b7d92785269b3a322d5e17c499898f425b29c1228f1504627b1ef192fc2687",
+      "size": 84899
+    },
+    {
+      "path": "images/original/a3382-IMG_4032.jpeg",
+      "role": "calibration",
+      "scene_id": "a3382-IMG_4032.jpeg",
+      "sha256": "69fbfbb96b9c4d79e2c892dee15e7f6428a154dd83e5c32de7517e05f6811ece",
+      "size": 79308
+    },
+    {
+      "path": "images/original/a3408-kme_535.jpeg",
+      "role": "calibration",
+      "scene_id": "a3408-kme_535.jpeg",
+      "sha256": "03365751a5550f1e9ca93535d6afd96969e802cd325b6b7ecb9d4ed58cd4bfec",
+      "size": 84711
+    },
+    {
+      "path": "images/original/a3520-IMG_3470.jpeg",
+      "role": "calibration",
+      "scene_id": "a3520-IMG_3470.jpeg",
+      "sha256": "30b10ef5af7249367c283655e1e80666ba1585a5438aa5c6e4433cfcc7cbfbc5",
+      "size": 65961
+    },
+    {
+      "path": "images/original/a3609-IMG_1702.jpeg",
+      "role": "calibration",
+      "scene_id": "a3609-IMG_1702.jpeg",
+      "sha256": "4233f642a23591ab4e8e21a13142a522a9fd52df5b4afdebf754b905c1ac16ec",
+      "size": 56005
+    },
+    {
+      "path": "images/original/a3806-tc_DSC0674.jpeg",
+      "role": "calibration",
+      "scene_id": "a3806-tc_DSC0674.jpeg",
+      "sha256": "9d698e0e4e826090aec756844bab62688103db5cd7db7f146dbcabc9a8038722",
+      "size": 80576
+    },
+    {
+      "path": "images/original/a4182-WP_CRW_3682.jpeg",
+      "role": "calibration",
+      "scene_id": "a4182-WP_CRW_3682.jpeg",
+      "sha256": "8ef0fb420d219701255d9ee5c8f1e4c5bf839f961a5117e7d05eca8fa68e1f24",
+      "size": 78322
+    },
+    {
+      "path": "images/original/a4762-IMG_1657.jpeg",
+      "role": "calibration",
+      "scene_id": "a4762-IMG_1657.jpeg",
+      "sha256": "c9d64d561ffdafa439199a822c95140e8abe4f26500375414b2237e0f16a7fdc",
+      "size": 61081
+    },
+    {
+      "path": "images/original/a4844-kme_0393.jpeg",
+      "role": "calibration",
+      "scene_id": "a4844-kme_0393.jpeg",
+      "sha256": "5fd8eeae426fc91f65c057232157d8bec6d1bba94ee7261a93b8ee0c2cf054f8",
+      "size": 78051
+    },
+    {
+      "path": "images/original/a0023-07-06-02-at-15h06m48-s_MG_1489.jpeg",
+      "role": "fit",
+      "scene_id": "a0023-07-06-02-at-15h06m48-s_MG_1489.jpeg",
+      "sha256": "07332e21159ec9e01fa534d762203401d75df959b81982fc51805a33a3f5d982",
+      "size": 75557
+    },
+    {
+      "path": "images/original/a0070-IMG_4327.jpeg",
+      "role": "fit",
+      "scene_id": "a0070-IMG_4327.jpeg",
+      "sha256": "26ed4846624a1fffc643c313852294b9c4d845c8a7afbd3e96099c993aed53b1",
+      "size": 123523
+    },
+    {
+      "path": "images/original/a0171-kme_265.jpeg",
+      "role": "fit",
+      "scene_id": "a0171-kme_265.jpeg",
+      "sha256": "39211a2a368b80dc9ced57efa3627f6630eb185d98eac6a7ced0cc7f41017c64",
+      "size": 85610
+    },
+    {
+      "path": "images/original/a0175-KE_-1376.jpeg",
+      "role": "fit",
+      "scene_id": "a0175-KE_-1376.jpeg",
+      "sha256": "876e7a069a2fa5fd3f8b8e028b9df7702f009cc4abca9b9231ef1469cde1ae91",
+      "size": 143635
+    },
+    {
+      "path": "images/original/a0321-KE_-0010.jpeg",
+      "role": "fit",
+      "scene_id": "a0321-KE_-0010.jpeg",
+      "sha256": "30de678b59447713b1df04e082a88a300a0e82fae7fadca177bec4ef6299065f",
+      "size": 113293
+    },
+    {
+      "path": "images/original/a0374-IMG_4326.jpeg",
+      "role": "fit",
+      "scene_id": "a0374-IMG_4326.jpeg",
+      "sha256": "8e943f453f02fd5cd771de83447bce430bc43cf09bb713195a9518c72161cff9",
+      "size": 67109
+    },
+    {
+      "path": "images/original/a0516-IMG_4420.jpeg",
+      "role": "fit",
+      "scene_id": "a0516-IMG_4420.jpeg",
+      "sha256": "61ecbf0f52caf81fb914505187bc447ab5e256f0fd41f3b9ac60dc5c658e8908",
+      "size": 109484
+    },
+    {
+      "path": "images/original/a0551-DSC_0008.jpeg",
+      "role": "fit",
+      "scene_id": "a0551-DSC_0008.jpeg",
+      "sha256": "4b26106ffb76f481c59d60f539c2b421dbf9b402bd57ecac2df3724bc6c811f6",
+      "size": 179564
+    },
+    {
+      "path": "images/original/a0553-_MG_2093.jpeg",
+      "role": "fit",
+      "scene_id": "a0553-_MG_2093.jpeg",
+      "sha256": "1cb79e83985665a2ff936a313db3df941cc6f8baabd6f948cbcc0a86fe7000c4",
+      "size": 71243
+    },
+    {
+      "path": "images/original/a0587-IMG_2780.jpeg",
+      "role": "fit",
+      "scene_id": "a0587-IMG_2780.jpeg",
+      "sha256": "9a7516a3ede8c8a3a4ea1f71fa412b06eb4e8ee1cef74b03ec57b3941392460a",
+      "size": 106870
+    },
+    {
+      "path": "images/original/a0617-20060619_094244__MG_9140.jpeg",
+      "role": "fit",
+      "scene_id": "a0617-20060619_094244__MG_9140.jpeg",
+      "sha256": "6e7b97650469fa0585b0762b67d49b18665ba660de908aac2fd3edcd561ce570",
+      "size": 130338
+    },
+    {
+      "path": "images/original/a0626-20070618_190911__MG_8400.jpeg",
+      "role": "fit",
+      "scene_id": "a0626-20070618_190911__MG_8400.jpeg",
+      "sha256": "227ee5fccabd31421bab972279c40ee2830d7a4e402ec5e9780222eed43e8050",
+      "size": 115033
+    },
+    {
+      "path": "images/original/a0653-kme_132.jpeg",
+      "role": "fit",
+      "scene_id": "a0653-kme_132.jpeg",
+      "sha256": "b97f83955b1c9ca447e4b34ee170f7d022d6fa094f597316a27f65b935086c73",
+      "size": 52375
+    },
+    {
+      "path": "images/original/a0751-kme_582.jpeg",
+      "role": "fit",
+      "scene_id": "a0751-kme_582.jpeg",
+      "sha256": "a40dfbacc2c5d4e144be98716dab16f7b2b35d305b9f020c772b430cdbddbb44",
+      "size": 62065
+    },
+    {
+      "path": "images/original/a0864-DSC_0072.jpeg",
+      "role": "fit",
+      "scene_id": "a0864-DSC_0072.jpeg",
+      "sha256": "86e826a967114adf2aa6662a425911b927505fbf0eea7413966fce426d3b62e5",
+      "size": 176493
+    },
+    {
+      "path": "images/original/a0895-NKIM_MG_2644.jpeg",
+      "role": "fit",
+      "scene_id": "a0895-NKIM_MG_2644.jpeg",
+      "sha256": "de737ec83b12e8533bb196174edc102a8bafd99c91811bc2443ef7253680a1d6",
+      "size": 86587
+    },
+    {
+      "path": "images/original/a0958-jmac_MG_0737.jpeg",
+      "role": "fit",
+      "scene_id": "a0958-jmac_MG_0737.jpeg",
+      "sha256": "3d6810a697490e727a473ab8d2a3ee2b6bb3910970ebb9f56512f2e20b8c8daf",
+      "size": 99658
+    },
+    {
+      "path": "images/original/a0963-MB_040516_035.jpeg",
+      "role": "fit",
+      "scene_id": "a0963-MB_040516_035.jpeg",
+      "sha256": "2f23d01031de8ba95cb0c55afdece43ca113963682c989247ff54fb3d867eb56",
+      "size": 99609
+    },
+    {
+      "path": "images/original/a0998-IMG_4971.jpeg",
+      "role": "fit",
+      "scene_id": "a0998-IMG_4971.jpeg",
+      "sha256": "2eb2e7ffb1f4ebf4198e97d891a1579f5ce0de254fbcedc54ad3aa699cd4a8ca",
+      "size": 55514
+    },
+    {
+      "path": "images/original/a1054-07-06-27-at-13h59m14s-_MG_1801.jpeg",
+      "role": "fit",
+      "scene_id": "a1054-07-06-27-at-13h59m14s-_MG_1801.jpeg",
+      "sha256": "e72d5a20ef9f2b8550e6fcaf2f2edf0e1fdf8f3ec28b5d62dc2467f8f0aefe6b",
+      "size": 58096
+    },
+    {
+      "path": "images/original/a1078-_DSC0042.jpeg",
+      "role": "fit",
+      "scene_id": "a1078-_DSC0042.jpeg",
+      "sha256": "fd999186ccd5e26be19a4c8c227ef7add4d21a8d79caf91b38f5c0be5442400d",
+      "size": 132326
+    },
+    {
+      "path": "images/original/a1091-07-07-04-at-04h03m08s-_MG_2094.jpeg",
+      "role": "fit",
+      "scene_id": "a1091-07-07-04-at-04h03m08s-_MG_2094.jpeg",
+      "sha256": "d415693a30b991dbe104958f2e9c93f7293982bbfc6ef2e674c6d32296b4dcb6",
+      "size": 71573
+    },
+    {
+      "path": "images/original/a1111-IMG_1114.jpeg",
+      "role": "fit",
+      "scene_id": "a1111-IMG_1114.jpeg",
+      "sha256": "e5e44fb948fd681ae7b10beaf83a0bce9c98239ad6be75f44e8461ae34e35305",
+      "size": 80942
+    },
+    {
+      "path": "images/original/a1152-IMG_4712.jpeg",
+      "role": "fit",
+      "scene_id": "a1152-IMG_4712.jpeg",
+      "sha256": "e02c18688175db06fd085f09578436568d11d9c7cfe138ff23c1a7d5ef0c7fd8",
+      "size": 106384
+    },
+    {
+      "path": "images/original/a1323-dgw_156.jpeg",
+      "role": "fit",
+      "scene_id": "a1323-dgw_156.jpeg",
+      "sha256": "24f48df8fe3b7696685460e55a15184a26794c56a7d9040194369bb6d3a3bb5c",
+      "size": 114732
+    },
+    {
+      "path": "images/original/a1344-IMG_4336.jpeg",
+      "role": "fit",
+      "scene_id": "a1344-IMG_4336.jpeg",
+      "sha256": "9a35fb3d3c3bb1a4fea83fac02853988bb65f8ad2230c390074df1ac54f1ade7",
+      "size": 64887
+    },
+    {
+      "path": "images/original/a1450-WP_CRW_9349.jpeg",
+      "role": "fit",
+      "scene_id": "a1450-WP_CRW_9349.jpeg",
+      "sha256": "e4f60345c1dde9c9e57c6bb1c2fce0e502df2e3b42e862d487c9fc9abf084a4f",
+      "size": 81781
+    },
+    {
+      "path": "images/original/a1556-IMG_0413.jpeg",
+      "role": "fit",
+      "scene_id": "a1556-IMG_0413.jpeg",
+      "sha256": "7ea218d0995fed38a600c2f62683d8a8ae03ca029a3caf96f059d024488f6094",
+      "size": 81215
+    },
+    {
+      "path": "images/original/a1653-WP_CRW_0415.jpeg",
+      "role": "fit",
+      "scene_id": "a1653-WP_CRW_0415.jpeg",
+      "sha256": "d15f72d89882e40e986075732c6cccc8e23fb9bb11c244a9f930ee2ae0828510",
+      "size": 179693
+    },
+    {
+      "path": "images/original/a1760-07-06-01-at-13h01m06-s_MG_1253.jpeg",
+      "role": "fit",
+      "scene_id": "a1760-07-06-01-at-13h01m06-s_MG_1253.jpeg",
+      "sha256": "23ce5f373c99879d55b7915bdd13f4b7c767083ed4984a2813a6509548a59665",
+      "size": 92242
+    },
+    {
+      "path": "images/original/a1785-kme_270.jpeg",
+      "role": "fit",
+      "scene_id": "a1785-kme_270.jpeg",
+      "sha256": "3147479714787dbb7dfe17d60787be1a8043800313e9084ce3e8c5205227c27f",
+      "size": 97008
+    },
+    {
+      "path": "images/original/a1789-jmac_DSC6275.jpeg",
+      "role": "fit",
+      "scene_id": "a1789-jmac_DSC6275.jpeg",
+      "sha256": "a4832cff606926ac6f74eb58782b9246b7b318e064512b3311836607d5bd61fd",
+      "size": 110662
+    },
+    {
+      "path": "images/original/a1961-tc_DSC0712.jpeg",
+      "role": "fit",
+      "scene_id": "a1961-tc_DSC0712.jpeg",
+      "sha256": "da86592444bacb632d2339bfe18b1fa8b222a2b9e8fea9bde9497a03bc093502",
+      "size": 56318
+    },
+    {
+      "path": "images/original/a2097-NKIM_MG_6177.jpeg",
+      "role": "fit",
+      "scene_id": "a2097-NKIM_MG_6177.jpeg",
+      "sha256": "60858b1f738151dd15b3b6e4854c17ea21e6b98c4d8d7b7d16ec8df0f156e03d",
+      "size": 125102
+    },
+    {
+      "path": "images/original/a2133-20060617_140539__MG_8570.jpeg",
+      "role": "fit",
+      "scene_id": "a2133-20060617_140539__MG_8570.jpeg",
+      "sha256": "8ee7771c02668fd757891be5013725dce91b0dd45df6a26b2a1a36f65f8b999c",
+      "size": 148787
+    },
+    {
+      "path": "images/original/a2166-dgw_122.jpeg",
+      "role": "fit",
+      "scene_id": "a2166-dgw_122.jpeg",
+      "sha256": "ee83a5ac89aba3a6ff6b9b8e295f3ee9e355da1aafd25bb952ab7efe45f4a0ff",
+      "size": 99910
+    },
+    {
+      "path": "images/original/a2168-IMG_3337.jpeg",
+      "role": "fit",
+      "scene_id": "a2168-IMG_3337.jpeg",
+      "sha256": "a8203250afd84f97bbe3c6af104b481cba315baa94911c6c224327198828bb25",
+      "size": 48057
+    },
+    {
+      "path": "images/original/a2170-IMG_3671.jpeg",
+      "role": "fit",
+      "scene_id": "a2170-IMG_3671.jpeg",
+      "sha256": "a1499ab29b87962cd9936acd9a937a9e34395ed13d6920cf5cf690e0626eeaa6",
+      "size": 52910
+    },
+    {
+      "path": "images/original/a2289-_I2E6949.jpeg",
+      "role": "fit",
+      "scene_id": "a2289-_I2E6949.jpeg",
+      "sha256": "c211907da02c5275782aead0db589de393a66dd2217a117467b3eed78d990e29",
+      "size": 103233
+    },
+    {
+      "path": "images/original/a2368-050701_140258__MG_3390.jpeg",
+      "role": "fit",
+      "scene_id": "a2368-050701_140258__MG_3390.jpeg",
+      "sha256": "4aacd28694dd76ceca992ce1adb2a32032a14d7e9e39bf2e5163cf002c272af8",
+      "size": 83466
+    },
+    {
+      "path": "images/original/a2413-IMG_4413.jpeg",
+      "role": "fit",
+      "scene_id": "a2413-IMG_4413.jpeg",
+      "sha256": "0cc859ac507f2c1f63c4ad8d1436a913c497cba94115c9ffeaa51785fda275aa",
+      "size": 169596
+    },
+    {
+      "path": "images/original/a2480-IMG_0287.jpeg",
+      "role": "fit",
+      "scene_id": "a2480-IMG_0287.jpeg",
+      "sha256": "02a5f8009de2f061cfaba5fd1a98d5f3345e7d79ebf11a8baa4a1924678fb1ff",
+      "size": 74249
+    },
+    {
+      "path": "images/original/a2487-Ja_Pe-54.jpeg",
+      "role": "fit",
+      "scene_id": "a2487-Ja_Pe-54.jpeg",
+      "sha256": "49a6eb7ab77d904f450f451a6bd0d337daf417bcfe70c163c4bbbbe73c8ba9ab",
+      "size": 119714
+    },
+    {
+      "path": "images/original/a2496-LS051026_day_15_LL007.jpeg",
+      "role": "fit",
+      "scene_id": "a2496-LS051026_day_15_LL007.jpeg",
+      "sha256": "66e8d874bc8b4535ddb4a5d8b67a4cdb599f5e4be81af4c29868550e285ca648",
+      "size": 116293
+    },
+    {
+      "path": "images/original/a2516-jmac_DSC3843.jpeg",
+      "role": "fit",
+      "scene_id": "a2516-jmac_DSC3843.jpeg",
+      "sha256": "8f8c8ee5b13ca4dfc005d5ebde222c5fb5c2dd0f026d3061573746188378b5c1",
+      "size": 135132
+    },
+    {
+      "path": "images/original/a2518-IMG_4470.jpeg",
+      "role": "fit",
+      "scene_id": "a2518-IMG_4470.jpeg",
+      "sha256": "5dea4361b2dac8a2878fa458ba24b2434d1c2e6c6928f3fc64325a62c2637aa0",
+      "size": 61416
+    },
+    {
+      "path": "images/original/a2543-kme_590.jpeg",
+      "role": "fit",
+      "scene_id": "a2543-kme_590.jpeg",
+      "sha256": "76bb48790855e930ab44d6791da2885883ae3ee9cf8096d1a4c05c8b1f0826b8",
+      "size": 195024
+    },
+    {
+      "path": "images/original/a2558-_I2E6138.jpeg",
+      "role": "fit",
+      "scene_id": "a2558-_I2E6138.jpeg",
+      "sha256": "7c6e6df278a7065c7c9112c73f2dfb40d38ce4b84d474080fa26345fa3eda563",
+      "size": 72049
+    },
+    {
+      "path": "images/original/a2659-kme_238.jpeg",
+      "role": "fit",
+      "scene_id": "a2659-kme_238.jpeg",
+      "sha256": "e91ee6b5740798366c84db9d3e2079b182e868b7db001985d668a393d6d8939d",
+      "size": 81523
+    },
+    {
+      "path": "images/original/a2660-CRW_0290.jpeg",
+      "role": "fit",
+      "scene_id": "a2660-CRW_0290.jpeg",
+      "sha256": "bd1752082bf99a1c4a2f6dbd26d78f40e88aa23b0cf3c717a8d6592ae29bf1f3",
+      "size": 180515
+    },
+    {
+      "path": "images/original/a2709-kme_348.jpeg",
+      "role": "fit",
+      "scene_id": "a2709-kme_348.jpeg",
+      "sha256": "e2483e5a68945ae3364c4840214d14fa5c052e28d3d0d27a4a54d264d3b364a9",
+      "size": 81552
+    },
+    {
+      "path": "images/original/a2789-jmac_MG_0522.jpeg",
+      "role": "fit",
+      "scene_id": "a2789-jmac_MG_0522.jpeg",
+      "sha256": "a52b900a5ecc7508269254b6b8b8e45e37ff553c701c033a2c79a67ec3938d9d",
+      "size": 85956
+    },
+    {
+      "path": "images/original/a3019-jn_20071005_0002.jpeg",
+      "role": "fit",
+      "scene_id": "a3019-jn_20071005_0002.jpeg",
+      "sha256": "f387683bda8ee63a7b7f3324ed2883cea1b111cfdfc84eb7cb765b3103915b9e",
+      "size": 135669
+    },
+    {
+      "path": "images/original/a3131-KE_.jpeg",
+      "role": "fit",
+      "scene_id": "a3131-KE_.jpeg",
+      "sha256": "3eeb2a9ca1e4e4eda2ccc694e0751c6dee4f46b4897440538c408973a8a3d8c4",
+      "size": 168417
+    },
+    {
+      "path": "images/original/a3240-050620_203534__MG_3224.jpeg",
+      "role": "fit",
+      "scene_id": "a3240-050620_203534__MG_3224.jpeg",
+      "sha256": "7083b8097cd265f131a83e2425247ab73f21bfd79cfaee3dae6a15379cfc445b",
+      "size": 67533
+    },
+    {
+      "path": "images/original/a3283-IMG_1370.jpeg",
+      "role": "fit",
+      "scene_id": "a3283-IMG_1370.jpeg",
+      "sha256": "a06ddff1c589df1e7ee248e2320f0137a1bfd2ca498d3575dd528a73e4e45d71",
+      "size": 123494
+    },
+    {
+      "path": "images/original/a3297-IMG_1426.jpeg",
+      "role": "fit",
+      "scene_id": "a3297-IMG_1426.jpeg",
+      "sha256": "eeb37a2b132e286aef6afa38311400827f5decf4352b932ebcb59091202bbd0f",
+      "size": 75117
+    },
+    {
+      "path": "images/original/a3331-kme_441.jpeg",
+      "role": "fit",
+      "scene_id": "a3331-kme_441.jpeg",
+      "sha256": "f2000fae7c3bb96446adc17ff07014be6b94cc4f2aa8eac5ff1022a900a92cf8",
+      "size": 131413
+    },
+    {
+      "path": "images/original/a3399-WP_CRW_7762.jpeg",
+      "role": "fit",
+      "scene_id": "a3399-WP_CRW_7762.jpeg",
+      "sha256": "9188ee5848f5b71f4936c01543fd4d21bb2adfd930a32df179ed9731e9ce65f6",
+      "size": 104115
+    },
+    {
+      "path": "images/original/a3459-jmacdscf0611.jpeg",
+      "role": "fit",
+      "scene_id": "a3459-jmacdscf0611.jpeg",
+      "sha256": "fe6364dd2d627222279f5260dbad919ed56f48a5623c9191b1bd535aa20edc4d",
+      "size": 107384
+    },
+    {
+      "path": "images/original/a3543-jmac_DSC3389.jpeg",
+      "role": "fit",
+      "scene_id": "a3543-jmac_DSC3389.jpeg",
+      "sha256": "640f32f114c269d42e8ed584c51095782edb12738a0c0afe3e2605ed6719bc32",
+      "size": 139978
+    },
+    {
+      "path": "images/original/a3571-IMG_0290.jpeg",
+      "role": "fit",
+      "scene_id": "a3571-IMG_0290.jpeg",
+      "sha256": "2e4ba994ab0fbd8154679d4d07319e86b97f9ce5f3ed0cc7b68ef582d3e0aa67",
+      "size": 77543
+    },
+    {
+      "path": "images/original/a3696-jmac_DSC1242.jpeg",
+      "role": "fit",
+      "scene_id": "a3696-jmac_DSC1242.jpeg",
+      "sha256": "21b3246192f0541a70aba506d58fa48b988392ae7cc54bf1a3fd92316410d653",
+      "size": 183341
+    },
+    {
+      "path": "images/original/a3712-IMG_4852.jpeg",
+      "role": "fit",
+      "scene_id": "a3712-IMG_4852.jpeg",
+      "sha256": "1167ba4dd543bc0b7259f53f282f65892e20151492a95ef4f124900e9d8620a7",
+      "size": 91708
+    },
+    {
+      "path": "images/original/a3776-_DSC0046.jpeg",
+      "role": "fit",
+      "scene_id": "a3776-_DSC0046.jpeg",
+      "sha256": "37bc63b82e721211a65b8a744ffa29c04cab05f3e26489d16bbb01d8c220a757",
+      "size": 63546
+    },
+    {
+      "path": "images/original/a3809-_DSC0088-2.jpeg",
+      "role": "fit",
+      "scene_id": "a3809-_DSC0088-2.jpeg",
+      "sha256": "1bc4ac99ebe89a0a18ade96e88bcf34c80d48387696e431b7e06ce6872036443",
+      "size": 68079
+    },
+    {
+      "path": "images/original/a3923-_DSC0095.jpeg",
+      "role": "fit",
+      "scene_id": "a3923-_DSC0095.jpeg",
+      "sha256": "75b8b11b50610697cf91196f3b31037f0058b44fc0bed6d5a2b0aa4afc8b3f7c",
+      "size": 86645
+    },
+    {
+      "path": "images/original/a4180-IMG_3686-1.jpeg",
+      "role": "fit",
+      "scene_id": "a4180-IMG_3686-1.jpeg",
+      "sha256": "685165204e4a4130f87e96c8188db4170e58986c91900f01e338634bc1da114f",
+      "size": 54315
+    },
+    {
+      "path": "images/original/a4283-20090417_at_00h57m06__MG_1696.jpeg",
+      "role": "fit",
+      "scene_id": "a4283-20090417_at_00h57m06__MG_1696.jpeg",
+      "sha256": "03fa1fb91c3f6546864ecb01318361e45503c226455257f252a9602e60f20435",
+      "size": 59424
+    },
+    {
+      "path": "images/original/a4284-20090417_at_11h06m33__MG_1831.jpeg",
+      "role": "fit",
+      "scene_id": "a4284-20090417_at_11h06m33__MG_1831.jpeg",
+      "sha256": "6228e9a4a454c4b5075823b1342ac8c841d230a6c5313f59751f12b59be08dd4",
+      "size": 75108
+    },
+    {
+      "path": "images/original/a4425-DSC_0007.jpeg",
+      "role": "fit",
+      "scene_id": "a4425-DSC_0007.jpeg",
+      "sha256": "1bb1ff25bc7cd64100c51bb860e19c52bf6df5b7a4f194b301a2c1fe51860aec",
+      "size": 141378
+    },
+    {
+      "path": "images/original/a4540-Duggan_080411_5948.jpeg",
+      "role": "fit",
+      "scene_id": "a4540-Duggan_080411_5948.jpeg",
+      "sha256": "044432a6ff67224d23f86cdfe24fc01d963a29c57bd306a1260e2c7c90b370e4",
+      "size": 101236
+    },
+    {
+      "path": "images/original/a4593-kme_0276.jpeg",
+      "role": "fit",
+      "scene_id": "a4593-kme_0276.jpeg",
+      "sha256": "615198523c5f7950ec6af82b2588d6885e5659e74b9985c63a5eac9abb9f506f",
+      "size": 139807
+    },
+    {
+      "path": "images/original/a4602-DSC_0284.jpeg",
+      "role": "fit",
+      "scene_id": "a4602-DSC_0284.jpeg",
+      "sha256": "ac582d405cf75bc800079e95dbd0378ee9cc791974d0bda96650bcd34e07daaa",
+      "size": 127800
+    },
+    {
+      "path": "images/original/a4652-20090426_at_13h41m51__MG_0472.jpeg",
+      "role": "fit",
+      "scene_id": "a4652-20090426_at_13h41m51__MG_0472.jpeg",
+      "sha256": "97ab7a5e61b667726632f7089bd209bfd30685bfd9945e6180f0b33a606d0940",
+      "size": 73350
+    },
+    {
+      "path": "images/original/a4690-DSC_0005-1-2.jpeg",
+      "role": "fit",
+      "scene_id": "a4690-DSC_0005-1-2.jpeg",
+      "sha256": "038b1a2a76b007a31d647e475452303b8b87ac1fd164940226b5c0ce00672a25",
+      "size": 73800
+    },
+    {
+      "path": "images/original/a4719-_DSC1342.jpeg",
+      "role": "fit",
+      "scene_id": "a4719-_DSC1342.jpeg",
+      "sha256": "56d7cad95c83b443c688ae211f675206570c4cf61eb419e352598c8cdcabe660",
+      "size": 136241
+    },
+    {
+      "path": "images/original/a4867-DSC_0350.jpeg",
+      "role": "fit",
+      "scene_id": "a4867-DSC_0350.jpeg",
+      "sha256": "a9d72189747e559faf83a60087c45ed984fb709ef02474988fb0e903d0fc0a14",
+      "size": 146713
+    },
+    {
+      "path": "images/original/a4925-_DGW7848.jpeg",
+      "role": "fit",
+      "scene_id": "a4925-_DGW7848.jpeg",
+      "sha256": "c261e5b557a5aed74599be45c8759ace732ff8de9514616f68db3f9aec315e69",
+      "size": 75827
+    },
+    {
+      "path": "images/original/a4963-Duggan_090428_8067.jpeg",
+      "role": "fit",
+      "scene_id": "a4963-Duggan_090428_8067.jpeg",
+      "sha256": "35b29317362302a36f9f23a0afdf4098eb4b20eb3a063465b8e1f2a93bc4aaf1",
+      "size": 158327
+    }
+  ],
+  "prospective_adoption": {
+    "all_rows_mandatory": true,
+    "metadata_was_observed_before_preregistration": true,
+    "observed_requested_count": 104,
+    "observed_resolved_count": 104,
+    "observed_total_bytes": 10582439,
+    "pixel_or_member_payload_bytes_read": 0,
+    "replacement_forbidden": true
+  },
+  "role_counts": {
+    "calibration": 24,
+    "fit": 80
+  },
+  "scene_count": 104,
+  "schema_version": 1,
+  "source": {
+    "dataset_id": "vsevolodpl/REPID",
+    "member_path_template": "images/original/{scene_id}",
+    "paths_info_url": "https://huggingface.co/api/datasets/vsevolodpl/REPID/paths-info/6a16a20a0b7122ad66d1f632af1586d45b443aa9",
+    "revision": "6a16a20a0b7122ad66d1f632af1586d45b443aa9"
+  },
+  "total_bytes": 10582439
+}

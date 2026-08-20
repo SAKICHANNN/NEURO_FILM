@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2repid9a-original-member-lock-v1",
+  "status": "PASS_OPEN_EXACT_ORIGINAL_ACQUISITION",
+  "execution_commit": "343ea04a894156eddfb491e43dcb7a6982532228",
+  "frozen_inputs": {
+    "config_sha256": "ce5cee4fcc1cece917ee107265a92b2be7121faa099db31569cfe9a65dc68d81",
+    "contract_sha256": "fa02c3a9bb694eeae7566798a8ec36cb0c7375d894abf1b64f1ec89fea94e6f7",
+    "builder_sha256": "4cd596819d9e8109b69b167e27740f8932ad1c4cc929d4e68652ae98985f7dfe",
+    "test_sha256": "c2b23c6ca5f30f8be627e47cc36fda6533bd057b97c9599ba5a62e0a2061e99d",
+    "parent_roles_report_sha256": "734fc54fa2fd47a0fed8c00b75d0d7e9446bb951ead455230317d4ddc4cd663d",
+    "parent_selected_identity_sha256": "6874505061a845ee0b199a0ef17be9a0adad1d5bf3797702653806eb8130cda9"
+  },
+  "prospective_adoption": {
+    "metadata_was_observed_before_preregistration": true,
+    "observed_count_and_bytes_only": true,
+    "payload_bytes_read_before_lock": 0,
+    "replacement_forbidden": true
+  },
+  "replay": {
+    "forward_manifest_sha256": "3050cafda59efaa407f6a81a1c183537b6dc569d56299d22583b8603db8b12e7",
+    "reversed_manifest_sha256": "3050cafda59efaa407f6a81a1c183537b6dc569d56299d22583b8603db8b12e7",
+    "tracked_manifest_sha256": "3050cafda59efaa407f6a81a1c183537b6dc569d56299d22583b8603db8b12e7",
+    "byte_exact": true
+  },
+  "metrics": {
+    "scene_count": 104,
+    "member_count": 104,
+    "fit_scene_count": 80,
+    "calibration_scene_count": 24,
+    "total_bytes": 10582439,
+    "member_identity_sha256": "79889a4e8b7897e6c57a31dd564b1c914f68c2be97f61e146a16929d881a96da",
+    "all_gates_pass": true
+  },
+  "execution_order": {
+    "member_payload_reads": 0,
+    "image_decodes": 0,
+    "operator_fits": 0,
+    "sealed_scene_requests": 0
+  },
+  "decision": "open_exact_repid_fit_calibration_original_acquisition",
+  "claim_ceiling": "Internal-research metadata-only original-member identity lock; no pixels, operator, preference model, package, capability or product claim."
+}
