@@ -1,0 +1,53 @@
+{
+  "schema": "neuro-film.sf3-a1c-commons-three-stock-text-metadata-contract.v1",
+  "experiment_id": "SF3.A1C_COMMONS_THREE_STOCK_TEXT_METADATA_V1",
+  "api_endpoint": "https://commons.wikimedia.org/w/api.php",
+  "user_agent": "K-MCFM-research-SF3-A1C/1.0 (https://github.com/SAKICHANNN/NEURO_FILM; bounded metadata-only source audit)",
+  "stock_queries": [
+    {"film_stock_id": "fujifilm_velvia_50", "exact_search_phrase": "Velvia 50"},
+    {"film_stock_id": "kodak_portra_400", "exact_search_phrase": "Kodak Portra 400"},
+    {"film_stock_id": "kodak_ektar_100", "exact_search_phrase": "Kodak Ektar 100"}
+  ],
+  "query_limits": {
+    "maximum_results_per_stock": 256,
+    "results_per_request": 50,
+    "maximum_requests_per_stock": 7,
+    "thumbnail_width": 1600,
+    "timeout_seconds": 60,
+    "retry_delays_seconds": [0, 2, 5]
+  },
+  "license_policy": {
+    "permissive_license_short_names": [
+      "CC0",
+      "Public domain",
+      "Attribution",
+      "CC BY 2.0",
+      "CC BY 2.0 fr",
+      "CC BY 3.0",
+      "CC BY 3.0 de",
+      "CC BY 4.0"
+    ],
+    "author_credit_source_and_derivative_url_required": true
+  },
+  "metadata_exclusions": [
+    "film[ -]?strip|filmstrip|cartridge|canister|test strip|contact sheet|grain scan",
+    "cross[ -]?process|crossprocess|xpro|x-process|c41\\s*(?:as|in)\\s*e6",
+    "\\bhdr\\b|tone[ -]?map",
+    "multiple[ -]?exposure|double[ -]?exposure"
+  ],
+  "metadata_gates": {
+    "minimum_search_rows_per_stock": 50,
+    "minimum_eligible_rows_per_stock": 20,
+    "minimum_unique_authors_per_stock": 8,
+    "maximum_largest_author_share": 0.5,
+    "minimum_short_dimension": 512,
+    "maximum_cross_stock_ambiguous_rows": 0
+  },
+  "snapshot_output": "outputs/eval/sf3_a1c_commons_three_stock_text_metadata_v1/snapshot.json",
+  "report_output": "outputs/eval/sf3_a1c_commons_three_stock_text_metadata_v1/report.json",
+  "decision_if_pass": "OPEN_BOUNDED_COMMONS_THREE_STOCK_PIXEL_INTEGRITY_PILOT",
+  "decision_if_fail": "CLOSE_COMMONS_TEXT_SEARCH_BEFORE_PIXEL_ACCESS",
+  "image_payload_download_allowed": false,
+  "operator_fitting_allowed": false,
+  "claim_ceiling": "current Wikimedia Commons exact-text weak-label and per-file rights/source metadata feasibility for Velvia 50, Portra 400 and Ektar 100; no same-scene, roll, process, scanner, stock-response, calibration, fitting, training or product claim"
+}
