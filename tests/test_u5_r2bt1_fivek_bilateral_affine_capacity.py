@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 
@@ -16,6 +17,10 @@ from src.eval.fivek_bilateral_gain_capacity import _gain_features
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/u5_r2bt1_fivek_bilateral_affine_capacity_v1.json"
+
+
+def _sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def test_bt1_contract_is_development_only_and_parameter_matched() -> None:
@@ -76,3 +81,15 @@ def test_affine_grid_scores_additive_local_effect_against_frozen_controls() -> N
     assert np.isfinite(report["metrics"]["mean_improvement_over_closed_bt0_gain"])
     assert len(report["rows"]) == 4
     assert report["metrics"]["maximum_out_of_cube_fraction"] == 0.0
+
+
+def test_tracked_evidence_binds_exact_formal_close() -> None:
+    evidence = json.loads(
+        (ROOT / "docs/evidence/U5_R2BT1_FIVEK_BILATERAL_AFFINE_CAPACITY_RESULT.json").read_text()
+    )
+    reports = [ROOT / path for path in evidence["formal_reports"]["paths"]]
+    assert {_sha256(path) for path in reports} == {evidence["formal_reports"]["sha256"]}
+    report = json.loads(reports[0].read_text())
+    assert report["stable_evidence_id"] == evidence["formal_reports"]["stable_evidence_id"]
+    assert report["automatic_pass"] is False
+    assert report["confirmation_rows_loaded"] == 0

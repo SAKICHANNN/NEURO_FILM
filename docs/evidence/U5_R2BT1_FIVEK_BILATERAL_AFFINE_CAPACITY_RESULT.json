@@ -1,0 +1,47 @@
+{
+  "schema": "neuro_film.u5_r2bt1_fivek_bilateral_affine_capacity_evidence.v1",
+  "experiment_id": "U5.R2BT1",
+  "implementation_commit": "6cc3af4b4dcfaebd5730d9530378af53403a80c0",
+  "contract": {
+    "path": "configs/u5_r2bt1_fivek_bilateral_affine_capacity_v1.json",
+    "sha256": "c243e7ad45a1281ce6f8d1a261be971ebd83b31ecb776a4b82247b74994c0b08"
+  },
+  "implementation": {
+    "core_sha256": "6bbc7b4cfecb8efba796c6a821edd4b89947a85155105e93a0fa21f14aad0373",
+    "runner_sha256": "548fcd8deadae5b22f168291d8a85bc09bcb3c7a32ce74ffd19590f78f7c5133",
+    "cli_sha256": "693aece0c7f3e6006afe9ce22e67b613c74e3a70cf6bb0016bb2099e5987aa27",
+    "test_sha256": "39515448693645bac3d4d8abd58e93e3be78b649976b6e81ccd99f1c482f7ffd"
+  },
+  "formal_reports": {
+    "paths": [
+      "outputs/u5_r2bt1_fivek_bilateral_affine_capacity_v1/run_a/report.json",
+      "outputs/u5_r2bt1_fivek_bilateral_affine_capacity_v1/run_b/report.json"
+    ],
+    "sha256": "e57130f0eb6c568cd4a699501776709bf438aa313dfdb55acb92d6787004e23c",
+    "stable_evidence_id": "85f4ee8c45f89e391c5ffa9bd4be14b61c8a5f916fbdab94d28bcd074fc82f1d"
+  },
+  "aligned_expert": {
+    "mean_improvement_over_global_lut": 0.060484670130929175,
+    "win_fraction_over_global_lut": 0.3958333333333333,
+    "mean_improvement_over_bt0_gain": 0.08628070207031727,
+    "win_fraction_over_bt0_gain": 0.6875,
+    "mean_improvement_over_luminance_only": 0.11254142841446466,
+    "median_style_retention": 0.8994700854892306,
+    "maximum_new_boundary_fraction": 0.36900436046511625
+  },
+  "filtered": {
+    "mean_improvement_over_global_lut": 0.06916247009330527,
+    "win_fraction_over_global_lut": 0.5,
+    "mean_improvement_over_bt0_gain": 0.06389487164711456,
+    "win_fraction_over_bt0_gain": 0.7083333333333334,
+    "mean_improvement_over_luminance_only": 0.010213238400923176,
+    "median_style_retention": 0.9418871579860428,
+    "maximum_new_boundary_fraction": 0.03597383720930233
+  },
+  "automatic_pass": false,
+  "decision": "close_exact_bilateral_affine_capacity_without_predictor_or_rescue",
+  "confirmation_rows_loaded": 0,
+  "visual_review_performed": false,
+  "interpretation": "The explicit local-affine bilateral grid has real target-informed capacity and improves mean error over both the parameter-matched global LUT and the closed BT0 gain grid. It nevertheless loses the per-row global-LUT win gate in both target variants, barely improves the filtered luminance-only control, and reaches the analytical safety boundary on 3.60% to 36.90% of held pixels. Close this exact grid, regularization and safety coordinate without tuning or predictor training.",
+  "claim_ceiling": "development-only held-block capacity evidence for one explicit bounded local affine bilateral grid on paired FiveK digital-retouch controls; not a deployable predictor, film response, stock identity, calibration, preference or product result"
+}
