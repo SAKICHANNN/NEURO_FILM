@@ -31,10 +31,14 @@
     "black_level": ["blacklevel"],
     "white_level": ["whitelevel"],
     "noise_profile": ["noiseprofile", "noisemodel"],
-    "cfa_pattern": ["cfapattern", "bayerpattern"],
+    "cfa_pattern": ["cfapattern", "bayerpattern", "rawpattern"],
     "orientation": ["orientation"],
-    "white_balance": ["whitebalance", "wbgain", "wbrgb", "asneutral"],
-    "crop_bounds": ["cropbounds", "targetcrop", "sonycrop", "croptop", "cropleft", "cropbottom", "cropright"]
+    "white_balance": ["whitebalance", "camerawhitebalance", "camwb", "wbgain", "wbrgb", "asneutral", "wb"],
+    "crop_bounds": ["cropbounds", "targetcrop", "sonycrop", "croptop", "cropleft", "cropbottom", "cropright", "crop"]
+  },
+  "crop_numeric_contract": {
+    "minimum_numeric_values_per_row": 4,
+    "maximum_absolute_value": 1000000000
   },
   "read_budget": {
     "maximum_central_bytes": 184526,
