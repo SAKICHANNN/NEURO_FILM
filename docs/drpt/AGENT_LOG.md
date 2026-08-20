@@ -13675,3 +13675,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   test against C18 PNG/receipt bytes and unchanged 1GiB/15s product gates; it
   is not itself a product pass. Evidence:
   `docs/evidence/U1_4C23_NATIVE_SAFE_LAB_COMPOSITION_RESULT.json`.
+
+### 2026-08-20 - U1.4C24 closes the exact native staged product integration
+
+- Two fresh 24MP workers are internally exact, including RGB16 sample
+  readback, but their final PNG and receipt identities differ from C18.
+- Peak process-tree RSS is `1.078--1.099GB` and worker time is
+  `59.57--71.32s`, so the unchanged 1GiB/15s gates also fail. Retain C20-C23
+  as component evidence, close this exact integration without parity or
+  threshold rescue, and move to a materially different native bottleneck.
+  Evidence: `docs/evidence/U1_4C24_NATIVE_STAGED_PROPHOTO_24MP_RESULT.json`.

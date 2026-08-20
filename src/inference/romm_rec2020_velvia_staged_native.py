@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
@@ -24,6 +25,37 @@ from .romm_rec2020_velvia_staged import (
 )
 
 
+@dataclass(frozen=True)
+class NativeStagedVelviaRuntime:
+    ingress_library: Any
+    pointwise_library: Any
+    build_receipt: dict[str, Any]
+
+
+def build_native_staged_velvia_runtime(
+    *, root: Path, build_dir: Path
+) -> NativeStagedVelviaRuntime:
+    ingress_build = build_native_rec2020_interior(
+        root=root, output_dir=Path(build_dir) / "ingress"
+    )
+    pointwise_build = build_native_safe_lab_pointwise(
+        root=root, output_dir=Path(build_dir) / "pointwise"
+    )
+    return NativeStagedVelviaRuntime(
+        ingress_library=load_native_rec2020_interior(
+            Path(ingress_build["dll_path"])
+        ),
+        pointwise_library=load_native_safe_lab_pointwise(
+            Path(pointwise_build["dll_path"])
+        ),
+        build_receipt={
+            "ingress_dll_sha256": ingress_build["dll_sha256"],
+            "pointwise_dll_sha256": pointwise_build["dll_sha256"],
+            "toolchain": pointwise_build["toolchain"],
+        },
+    )
+
+
 def render_supported_prophoto_velvia_rec2020_staged_native(
     input_path: Path,
     output_path: Path,
@@ -34,25 +66,19 @@ def render_supported_prophoto_velvia_rec2020_staged_native(
     build_dir: Path,
     row_chunk: int = 128,
     thread_count: int = 8,
+    runtime: NativeStagedVelviaRuntime | None = None,
 ) -> dict[str, Any]:
     """Render through the retained C20/C22 components and Python remainder."""
 
-    ingress_build = build_native_rec2020_interior(
-        root=root, output_dir=Path(build_dir) / "ingress"
-    )
-    ingress_library = load_native_rec2020_interior(Path(ingress_build["dll_path"]))
-    pointwise_build = build_native_safe_lab_pointwise(
-        root=root, output_dir=Path(build_dir) / "pointwise"
-    )
-    pointwise_library = load_native_safe_lab_pointwise(
-        Path(pointwise_build["dll_path"])
+    runtime = runtime or build_native_staged_velvia_runtime(
+        root=root, build_dir=build_dir
     )
 
     def ingress_mapper(decoded: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
         mapped = np.empty_like(decoded)
         scale = np.empty(decoded.shape[:2], dtype=np.float32)
         return apply_native_rec2020_interior(
-            ingress_library,
+            runtime.ingress_library,
             decoded,
             output=mapped,
             chroma_scale=scale,
@@ -82,7 +108,7 @@ def render_supported_prophoto_velvia_rec2020_staged_native(
         if style != "velvia_50" or max_chroma_gain is None or max_chroma_boost is None:
             raise ValueError("native staged renderer requires the frozen Velvia profile")
         pointwise = apply_native_safe_lab_pointwise(
-            pointwise_library,
+            runtime.pointwise_library,
             np.ascontiguousarray(source_lab),
             source_context=source_context,
             destination_mean=destination_mean,
@@ -119,4 +145,8 @@ def render_supported_prophoto_velvia_rec2020_staged_native(
     )
 
 
-__all__ = ["render_supported_prophoto_velvia_rec2020_staged_native"]
+__all__ = [
+    "NativeStagedVelviaRuntime",
+    "build_native_staged_velvia_runtime",
+    "render_supported_prophoto_velvia_rec2020_staged_native",
+]

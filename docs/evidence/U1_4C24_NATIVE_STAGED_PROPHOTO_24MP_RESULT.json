@@ -1,0 +1,44 @@
+{
+  "schema": "neuro-film.u1-4c24-native-staged-prophoto-24mp-evidence.v1",
+  "experiment_id": "U1.4C24",
+  "status": "FAIL_CLOSED",
+  "decision": "retain_c20_c23_components_but_close_this_exact_native_staged_product_integration",
+  "contract": {
+    "path": "configs/u1_4c24_native_staged_prophoto_24mp_v1.json",
+    "sha256": "3446f9a58345a3b93937a952451f9826c215b8706a4fe9981854d0ab229c6d25"
+  },
+  "formal_report": {
+    "path": "outputs/eval/u1_4c24_native_staged_prophoto_24mp_v1/report.json",
+    "sha256": "465f3b28d82f0c7d5a58e145b3eb2a2f7609da2cf58a9d8e5f8828c6a2460e06",
+    "stable_evidence_id": "34fa080a1f4927c6f88c8b9507de57c0d6a21246aae9fa4e0889a884b73a27ae"
+  },
+  "input": {
+    "sha256": "91895fce65e8a32f869dd31ecd5c3ee576c9212cf028d59cd0022b0371668394",
+    "shape": [4000, 6000, 3],
+    "pixel_count": 24000000,
+    "profile_sha256": "e0da6e630f616dc25c1bca431ade74edd55a2c0bf3a5eec5bd937c9a62447666"
+  },
+  "observations": {
+    "formal_runs": 2,
+    "cross_process_output_and_receipt_identity": true,
+    "exact_c18_output": false,
+    "expected_c18_output_sha256": "ff30c351261c0c9004c05f21e5a2929e448716153756407cde7e36225509bd7a",
+    "observed_output_sha256": "7540113adb7aafc5f77bccf2a72e49d70e7a187906db525b3c29e5de0c10894a",
+    "exact_c18_receipt": false,
+    "expected_c18_receipt_sha256": "e9a442bc89bedacb46d79dd3d63a7e5e99aa6dd6125db15735a491f5abf2b415",
+    "observed_receipt_sha256": "865264d5051961a5cf7e5d440fe6109ff2348434bbe3484f1597677e5ff94440",
+    "exact_rgb16_sample_readback": true,
+    "peak_process_tree_rss_bytes": [1078325248, 1099083776],
+    "worker_wall_seconds": [59.5678740000003, 71.3242127999838]
+  },
+  "gates": {
+    "maximum_peak_process_tree_rss_bytes": 1073741824,
+    "maximum_worker_wall_seconds": 15.0,
+    "peak_process_tree_rss_pass": false,
+    "worker_wall_pass": false,
+    "automatic_pass": false
+  },
+  "interpretation": "The C20 ingress and C23 safe-Lab components compose deterministically in the staged renderer, but the final RGB16 PNG and receipt do not reproduce C18 and the unchanged memory and wall-time product gates both fail. This closes the exact C24 integration without threshold or parity rescue; the independently passing C20-C23 component evidence remains valid.",
+  "claim_ceiling": "Local Windows CPU negative product-integration evidence for one 24MP natural-derived ProPhoto fixture and one opt-in Rec.2020 look; not a failure of the component kernels, arbitrary ICC, cross-platform performance, stock calibration, preference, HDR, or default promotion.",
+  "production_default_changed": false
+}
