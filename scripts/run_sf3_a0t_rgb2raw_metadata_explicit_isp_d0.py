@@ -23,9 +23,25 @@ def main() -> None:
         default=ROOT / "configs/sf3_a0t_rgb2raw_metadata_explicit_isp_d0_v1.json",
     )
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--prescore-lock", type=Path)
     parser.add_argument("--reverse", action="store_true")
     args = parser.parse_args()
-    report = run_metadata_isp_d0(args.config, reverse=args.reverse)
+    lock_path = args.prescore_lock or args.output.with_name(
+        args.output.stem + "_prescore_lock.json"
+    )
+
+    def write_prescore_lock(value: dict[str, object]) -> None:
+        lock_path.parent.mkdir(parents=True, exist_ok=True)
+        lock_path.write_text(
+            json.dumps(value, indent=2, sort_keys=True, allow_nan=False) + "\n",
+            encoding="utf-8",
+        )
+
+    report = run_metadata_isp_d0(
+        args.config,
+        pre_calibration_lock_writer=write_prescore_lock,
+        reverse=args.reverse,
+    )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(
         json.dumps(report, indent=2, sort_keys=True, allow_nan=False) + "\n",

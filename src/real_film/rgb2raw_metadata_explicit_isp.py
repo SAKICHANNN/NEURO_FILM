@@ -637,6 +637,7 @@ def evaluate_gates(
 def run_metadata_isp_d0(
     config_path: Path,
     *,
+    pre_calibration_lock_writer: Callable[[dict[str, Any]], None],
     reverse: bool = False,
     range_reader: RangeReader = http_range_get,
 ) -> dict[str, Any]:
@@ -696,6 +697,20 @@ def run_metadata_isp_d0(
             for row in fit_data
         ]
     )
+    pre_calibration_lock = {
+        "schema": "neuro-film.sf3-a0t-rgb2raw-metadata-explicit-isp-prescore-lock.v1",
+        "experiment_id": config["experiment_id"],
+        "contract_sha256": sha256_bytes(config_bytes),
+        "source_revision": source["revision"],
+        "role_lock_sha256": role_lock,
+        "operators": operator_records,
+        "fit_member_identities_sha256": fit_member_identities,
+        "fit_target_reads": len(fit_rows),
+        "calibration_target_reads": 0,
+        "sealed_target_reads": 0,
+    }
+    pre_calibration_lock["stable_identity"] = canonical_sha256(pre_calibration_lock)
+    pre_calibration_lock_writer(pre_calibration_lock)
     del fit_data
     gc.collect()
     calibration_data, calibration_bytes = _read_rows(
@@ -755,6 +770,8 @@ def run_metadata_isp_d0(
         "cross_role_group_overlap": 0,
         "operators": operator_records,
         "fit_member_identities_sha256": fit_member_identities,
+        "pre_calibration_lock_stable_identity": pre_calibration_lock["stable_identity"],
+        "pre_calibration_lock_persisted_before_calibration_target_reads": True,
         "calibration": calibration,
         "calibration_gates": calibration_gates,
         "sealed_confirmation": sealed,
