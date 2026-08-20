@@ -5,9 +5,28 @@ import json
 from pathlib import Path
 
 import numpy as np
+import pytest
 from PIL import Image, ImageCms, features
 
 import scripts.run_u5_r2repid4_shared_logit_affine_d0 as module
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def test_formal_contract_binds_parent_and_implementation() -> None:
+    contract = json.loads(
+        (ROOT / "configs/u5_r2repid4_shared_logit_affine_d0_v1.json").read_text()
+    )
+    parent = ROOT / contract["parent"]["acquisition_path"]
+    if not parent.exists():
+        pytest.skip("formal P-backed REPID acquisition is not installed")
+    assert hashlib.sha256(parent.read_bytes()).hexdigest() == contract["parent"][
+        "acquisition_sha256"
+    ]
+    for binding in contract["implementation"].values():
+        assert hashlib.sha256((ROOT / binding["path"]).read_bytes()).hexdigest() == binding[
+            "sha256"
+        ]
 
 
 def _jpeg(path: Path, offset: int) -> dict[str, object]:
