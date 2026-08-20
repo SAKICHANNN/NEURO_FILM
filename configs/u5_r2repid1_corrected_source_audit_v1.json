@@ -1,0 +1,30 @@
+{
+  "schema": "neuro_film.u5_r2repid1_corrected_source_audit_contract.v1",
+  "experiment_id": "U5.R2REPID1",
+  "question": "After preserving REPID0's API-literal failure, do the exact observed repository timestamp and root-tree hash semantics establish the otherwise unchanged rights-bounded aggregate preference source?",
+  "parent": {
+    "contract_path": "configs/u5_r2repid0_source_audit_v1.json",
+    "contract_sha256": "8cc7620c4e1922ae9a34f8913ef880e172f3921f34bd9483c447d9cb5d671a9f",
+    "evidence_path": "docs/evidence/U5_R2REPID0_SOURCE_AUDIT_RESULT.json",
+    "evidence_sha256": "530f32dcf1bea2a43fcab72f9a5fc5729cc5cd511b5bc2306527831498ba2199",
+    "required_decision": "close_repid_before_image_payload_or_operator_fit"
+  },
+  "corrections": {
+    "expected_last_modified": "2026-06-10T11:08:26.000Z",
+    "root_tree_file_facts": {
+      "README.md": {"size": 8078, "sha256": null},
+      "LICENSE.md": {"size": 1694, "sha256": null},
+      "LicenseAdobe.txt": {"size": 1841, "sha256": null},
+      "LicenseAdobeMIT.txt": {"size": 1994, "sha256": null},
+      "filesAdobe.txt": {"size": 45282, "sha256": null},
+      "filesAdobeMIT.txt": {"size": 46936, "sha256": null},
+      "processed_markup.csv": {"size": 69361091, "sha256": "a370d24c8d54c113e38c54f7fc7b4956adc64c08620ce15b94d4d598913ecab2"},
+      "fivek_dataset_auto_jpeg.zip": {"size": 39451997393, "sha256": "8ef04b49e34e7e68af6e244a6e782f2c5cd292d836b7c55255d90710a663ca0e"}
+    },
+    "non_lfs_content_hashes_remain_bound_by_downloaded_small_file_bytes": true,
+    "scientific_structure_or_rights_changes": false
+  },
+  "decision_if_pass": "open_separately_preregistered_internal_repid_shared_operator_d0",
+  "decision_if_fail": "close_repid_before_image_payload_or_operator_fit",
+  "claim_ceiling": "corrected-aggregate-annotation-and-rights-source-audit-only"
+}
