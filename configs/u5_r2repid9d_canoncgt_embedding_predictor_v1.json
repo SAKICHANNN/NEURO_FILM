@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2repid9d-canoncgt-embedding-predictor-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2REPID9D",
+  "question": "Does the fixed official CanonCGT learned grade embedding identify a safe professional original-to-winner operator better than closed raw statistics and non-identifying controls?",
+  "parents": {
+    "rendered_acquisition_path": "outputs/eval/u5_r2repid3_fit_calibration_acquisition/run_a.json",
+    "rendered_acquisition_sha256": "e04a611e4c6f1889a9adc2b69520ca05b4d4a280a7b5e708eb73de28df40647c",
+    "original_acquisition_evidence_path": "docs/evidence/U5_R2REPID9B_ORIGINAL_ACQUISITION_RESULT.json",
+    "original_acquisition_evidence_sha256": "e9713ba48619475d319b2ae3e09c2710117d0e5106120cf4e70f578778f608c5",
+    "original_acquisition_sha256": "d516d9873041c05f5b7a2eccfb062fb342043cd7666c1d5daf2feadd9a976f1b",
+    "closed_raw_stat_evidence_path": "docs/evidence/U5_R2REPID9C_REFERENCE_OPERATOR_PREDICTOR_RESULT.json",
+    "closed_raw_stat_report_sha256": "8aa34cc8dba066842d7e7e76fc9375834b9148f008f1d5503b3ba54548827de4",
+    "external_parent_paths_cli_required": true
+  },
+  "implementation": {
+    "runner": {
+      "path": "scripts/run_u5_r2repid9d_canoncgt_embedding_predictor.py",
+      "sha256": "7e8195849dfd436021949155eec9793418380369e151feb37fa4728c8543c908"
+    },
+    "predictor_core": {
+      "path": "src/eval/repid_reference_operator_predictor.py",
+      "sha256": "8fc2029e54f1b3c0f71543e252d50511323e2370dc90bc77c627209e02a8d2d8"
+    },
+    "canoncgt_runtime": {
+      "path": "src/eval/canoncgt_fixed_atlas_shared_lut.py",
+      "sha256": "170ba8e632f914934261578ec57db257b4bfcee87b4e0a9a47e6a5ac5360db05"
+    },
+    "icc_ingress": {
+      "path": "src/eval/repid_shared_operator.py",
+      "sha256": "f70e9c298eaa6ff21cabb860e9c2e271efe24d9eddbf19cfa917a19277383384"
+    },
+    "operator_core": {
+      "path": "src/eval/spcp_global_logit_affine.py",
+      "sha256": "a8d26b402bb3e8ec134bba7a11da933359d53d072a2960e2acc2cd2b12e14405"
+    },
+    "ridge_core": {
+      "path": "src/eval/filmmatch_source_conditioned_operator.py",
+      "sha256": "e3af4974991098861c852712482fc7df755b1974d3f1bb1d76942238aaca5184"
+    }
+  },
+  "canoncgt": {
+    "contract_path": "configs/u5_r2repid6_canoncgt_fixed_atlas_shared_lut_v1.json",
+    "contract_sha256": "69f2b807193ecbd72565cf91521b5b51b705055c74b488c5a4e51a15d98d727a",
+    "repository_commit": "229a7d3ec24af19ea5d97bb136f0317762bb9261",
+    "checkpoint_sha256": "916f7ad5028d3fef51cf915bb51febc9508e7a378c0babe9ff3d3992b8c594f7",
+    "license": "Apache-2.0",
+    "embedding": "official normalized 64D Embedding_Net style token",
+    "device": "cuda",
+    "training_or_finetuning": false
+  },
+  "roles": {
+    "fit_scene_count": 80,
+    "calibration_scene_count": 24,
+    "sealed_scene_count": 24,
+    "sealed_reads_before_calibration_pass": 0
+  },
+  "predictor": {
+    "ridge_alpha": 10.0,
+    "same_alpha_operator_and_roles_as_repid9c": true,
+    "application_source_read_during_build": false,
+    "direct_final_rgb_prediction": false
+  },
+  "raw_stat_descriptor": {
+    "reference_descriptor_maximum_side": 512,
+    "rgb_quantiles": [0.05, 0.25, 0.5, 0.75, 0.95],
+    "luma_quantiles": [0.05, 0.25, 0.5, 0.75, 0.95],
+    "chromaticity_quantiles": [0.1, 0.5, 0.9],
+    "chroma_quantiles": [0.1, 0.5, 0.9],
+    "epsilon": 1e-8
+  },
+  "operator": {
+    "family": "bounded safe-dose 3x3-plus-bias logit-affine",
+    "pixels_per_scene": 4096,
+    "operator_ridge_alpha": 0.0001,
+    "parameter_lower_bounds": [-0.75, -0.75, -0.75, -0.75, -0.75, -0.75, -0.75, -0.75, -0.75, -2.0, -2.0, -2.0],
+    "parameter_upper_bounds": [0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 2.0, 2.0, 2.0],
+    "safe_dose_grid": [1.0, 0.75, 0.5, 0.25, 0.0],
+    "matrix_gates": {
+      "determinant_min": 0.05,
+      "condition_number_max": 4.0,
+      "minimum_singular_value": 0.2
+    }
+  },
+  "controls": {
+    "closed_raw_stat_equal_ridge": true,
+    "global_mean_fit_operator": true,
+    "cyclic_embedding_label_permutation": true,
+    "cyclic_parameter_shift": 1,
+    "calibration_scene_oracle": "diagnostic only after prediction freeze"
+  },
+  "calibration_gates": {
+    "candidate_improvement_rate_min": 0.75,
+    "candidate_improvement_median_min": 0.20,
+    "candidate_improvement_worst_min": -0.10,
+    "beat_raw_stat_rate_min": 0.65,
+    "gain_vs_raw_stat_median_min": 0.05,
+    "beat_global_rate_min": 0.65,
+    "gain_vs_global_median_min": 0.05,
+    "beat_permuted_rate_min": 0.75,
+    "gain_vs_permuted_median_min": 0.10,
+    "median_output_delta_e_oklab_min": 0.01,
+    "new_exact_boundary_fraction_max": 0.0,
+    "p999_gradient_ratio_max": 1.5
+  },
+  "stop_rules": [
+    "All candidate/control calibration predictions freeze before any calibration original read.",
+    "Any absolute, raw-relative, global-relative, permutation-relative or safety failure closes before sealed reads.",
+    "No layer, crop, resolution, alpha, bound, dose, role, checkpoint or gate rescue is allowed.",
+    "A pass opens only exact sealed confirmation and cannot promote a product."
+  ],
+  "decision_if_pass": "open_exact_sealed_canoncgt_embedding_operator_confirmation",
+  "decision_if_fail": "close_exact_canoncgt_embedding_operator_predictor",
+  "claim_ceiling": "Private consumed-development learned-style-observation D0 with one bounded explicit operator; not CanonCGT full-method reproduction, population preference, arbitrary-source, package, capability or product evidence."
+}
