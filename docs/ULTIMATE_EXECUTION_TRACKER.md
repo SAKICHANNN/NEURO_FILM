@@ -1808,3 +1808,19 @@ below the frozen 9/11 and 7/11 gates. Close this exact scorer without prompt,
 checkpoint, threshold, aggregation or truth-calibration rescue. It is not a
 preference judge, router or product capability; return to an explicit
 effect-identifying research observation.
+
+U5.R2CSD0 is prospectively frozen as that effect-identification precondition.
+The latest directly relevant primary result, CVPR 2026 StyleDoctor, evaluates
+reference-image style consistency but currently has no released official
+code, checkpoint or SPRData asset, so it cannot be reproduced or replaced by
+an invented proxy. The new leaf instead uses the exact official CSD ViT-L
+checkpoint adopted as a StyleDoctor baseline. On the 12 already-consumed
+P399/P401 scenes, all 24 anonymous round-1 embeddings freeze before the
+private candidate/identity mapping is read. Every candidate reference is then
+tested only against candidate-versus-identity outputs from the other 11
+scenes, with the symmetric identity-reference task, the model's content head,
+OKLab moments and RGB histograms as fixed controls. Same-scene comparison,
+training, new votes, crop/layer/checkpoint rescue and preference interpretation
+are forbidden. The uploaded CSD checkpoint's official discrepancy disclaimer
+is part of the contract; even a pass opens only a fresh explicit-operator
+selection experiment, never a paper-quality, preference or product claim.

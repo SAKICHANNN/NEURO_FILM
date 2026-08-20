@@ -1,0 +1,148 @@
+{
+  "schema": "neuro-film.u5-r2csd0-cross-content-operator-identification-contract.v1",
+  "experiment_id": "U5.R2CSD0",
+  "date": "2026-08-21",
+  "question": "Can the exact released CSD ViT-L style embedding identify one fixed explicit colour operator across unrelated photographic content, rather than merely matching scene content or global colour statistics?",
+  "scientific_role": "consumed-retrospective effect-identification precondition only",
+  "direction_change": {
+    "latest_primary_context": "StyleDoctor: Towards Specialist Reward Model for Style-centric Generation Tasks, CVPR 2026",
+    "latest_primary_finding": "generic human-preference reward models are weak style observers; StyleDoctor explicitly evaluates reference-image style consistency",
+    "unavailable_asset_boundary": "the official StyleDoctor repository is empty and no official checkpoint or SPRData release was located as of 2026-08-21; no substitute model or paper reimplementation is allowed",
+    "runnable_baseline": "the exact official CSD style descriptor used as a StyleDoctor baseline",
+    "materially_distinct_observation": "reference-image and candidate-image style embeddings compared across different scene content",
+    "not_allowed": [
+      "generic aesthetic scoring or preference-judge rescue",
+      "training, calibration or threshold tuning on P399/P401",
+      "same-scene candidate-versus-identity comparisons",
+      "new preference votes or new candidate generation",
+      "claiming StyleDoctor reproduction or paper-level CSD quality"
+    ]
+  },
+  "external_asset": {
+    "paper": "Measuring Style Similarity in Diffusion Models, ECCV 2024",
+    "paper_url": "https://arxiv.org/abs/2404.01292",
+    "repository": "https://github.com/learn2phoenix/CSD",
+    "repository_commit": "3a9df32605b869eceb704897839be80977a9f1ea",
+    "repository_license": "MIT",
+    "model_repository": "tomg-group-umd/CSD-ViT-L",
+    "model_revision": "5bc26a6fb0487f3f00a2a7313135103a005b1b67",
+    "model_card_license": "cc-by-4.0",
+    "model_filename": "pytorch_model.bin",
+    "model_size_bytes": 2438228893,
+    "model_sha256": "40e92fad63a361b8136100cd234c42d401ef9b34ff1748234318929ebcc7e7a1",
+    "model_format": "PyTorch zip checkpoint loaded with weights_only=true",
+    "official_disclaimer": "uploaded model weights have a discrepancy with the reported paper numbers",
+    "disclaimer_effect": "this leaf evaluates only the exact uploaded checkpoint and makes no paper-quality or benchmark-reproduction claim",
+    "openai_clip_model": "ViT-L/14",
+    "openai_clip_sha256": "b8cca3fd41ae0c99ba7e8951adf17d267cdb84cd88be6f7c2e0eca1737a03836",
+    "maximum_use": "local isolated internal research",
+    "product_dependency": false
+  },
+  "official_source_sha256": {
+    "README.md": "05126427b7407bbafe7fc6e43de2d4eb9b9477b53f1dfb61c24ff6ff97606a1d",
+    "LICENSE": "b86b546e8c8f2cf89af570ce3d0716d93ed3153cbd9587cf72370f6fb7bcac43",
+    "CSD/model.py": "bc3d88d0a4defbb6c6296fd3ecf677c812eab5fe5a5d710a2068587255eec79c",
+    "CSD/loss_utils.py": "09cc16cb23f1c2d63f7f5ca13bb79e61a06d2201e25dccb17496f1734d9a1113",
+    "main_sim.py": "eff35a6992534ca9977192f549b87c5c36df3e5b434094eb135de81c35130760"
+  },
+  "consumed_inputs": {
+    "public_root": "outputs/eval/p401_identified_metadata_blind_aesthetic_v1",
+    "public_manifest": "outputs/eval/p401_identified_metadata_blind_aesthetic_v1/public_manifest.json",
+    "public_manifest_sha256": "31b62c085ec144fa0111570a85c1be7d8ef07dd86fe278eb167465be0075cd42",
+    "private_mapping": "outputs/eval/p401_identified_metadata_blind_aesthetic_v1/PRIVATE_mapping.json",
+    "private_mapping_sha256": "77c03d007053213f5c029f2d6fb27fa41789bc4eceab5b85657fc0ad9b46f48f",
+    "round": 1,
+    "source_count": 12,
+    "anonymous_asset_count": 24,
+    "content_roles": {
+      "landscape_nature": 4,
+      "architecture_interior": 4,
+      "night_artificial_light": 4
+    },
+    "cross_content_reference_target_pairs_per_direction": 132,
+    "same_content_pairs_forbidden": true,
+    "input_pixels_already_consumed": true,
+    "new_user_vote_forbidden": true,
+    "asset_reencoding_forbidden": true
+  },
+  "score_lock": {
+    "scorer_reads": "public manifest and exact round-1 anonymous PNG assets only",
+    "private_mapping_reads": 0,
+    "direct_result_reads": 0,
+    "embedding_variants": [
+      "official normalized CSD style output",
+      "official normalized CSD content output",
+      "deterministic full-image OKLab moments",
+      "deterministic full-image RGB histograms"
+    ],
+    "official_preprocess": "Resize shorter side to 224 bicubic, CenterCrop 224, ToTensor, CLIP mean/std normalization",
+    "candidate_enumeration": "process A canonical asset path order; process B exact reverse order",
+    "score_lock_required_before_mapping": true
+  },
+  "aggregation": {
+    "mapping_read_only_after_score_lock": true,
+    "candidate_reference_test": "for every ordered r!=s, candidate_r must be closer to candidate_s than identity_s",
+    "identity_reference_test": "for every ordered r!=s, identity_r must be closer to identity_s than candidate_s",
+    "similarity": "cosine similarity; official CSD outputs are already L2 normalized",
+    "tie_epsilon": 1e-8,
+    "control_policy": "CSD style must beat the strongest of CSD content, OKLab moments and RGB histogram controls",
+    "no_preference_result_used": true
+  },
+  "resource_execution": {
+    "device": "local CUDA",
+    "batch_size": 1,
+    "precision": "float32",
+    "checkpoint_load": "torch.load(weights_only=true) followed by exact model_state_dict extraction",
+    "state_dict_missing_keys_exact": 0,
+    "state_dict_unexpected_keys_exact": 0,
+    "clip_initialization_cache": "explicit project-isolated external cache path supplied by CLI; no user-home cache write",
+    "random_seed": 20260821,
+    "cuda_tf32": false,
+    "deterministic_algorithms": true,
+    "fresh_process_count": 2,
+    "single_asset_mechanics_smoke_before_full_score": true,
+    "model_download_or_score_before_this_contract": false,
+    "formal_output_uses_project-isolated_D_fallback_while_P_needs_repair": true,
+    "machine_drive_letter_persisted": false
+  },
+  "mechanics_gates": {
+    "repository_commit_exact": true,
+    "official_source_sha256_exact": true,
+    "model_sha256_exact": true,
+    "clip_sha256_exact": true,
+    "weights_only_load": true,
+    "state_dict_missing_keys_exact": 0,
+    "state_dict_unexpected_keys_exact": 0,
+    "all_embeddings_finite": true,
+    "all_embedding_norm_abs_error_max": 0.00001,
+    "canonical_reverse_embedding_max_abs_error_max": 0.00001,
+    "fresh_process_embedding_max_abs_error_max": 0.00001,
+    "pairwise_signs_exact": true,
+    "private_mapping_reads_before_both_score_locks": 0
+  },
+  "scientific_gates": {
+    "candidate_reference_correct_min": 99,
+    "candidate_reference_total": 132,
+    "identity_reference_correct_min": 99,
+    "identity_reference_total": 132,
+    "combined_correct_min": 198,
+    "combined_total": 264,
+    "each_target_role_correct_min": 30,
+    "each_target_role_total": 44,
+    "each_reference_role_correct_min": 30,
+    "each_reference_role_total": 44,
+    "per_reference_accuracy_min": 0.7272727272727273,
+    "candidate_references_passing_min": 9,
+    "identity_references_passing_min": 9,
+    "csd_style_minus_strongest_control_correct_min": 14,
+    "median_signed_margin_strictly_positive": true
+  },
+  "stop_rules": [
+    "Asset, commit, hash, safe-load, strict-state, decode, finite, order or replay failure is INVALID_MECHANICS and has no scientific interpretation.",
+    "Any scientific gate failure closes this exact CSD checkpoint and cross-content protocol without crop, resolution, layer, checkpoint, aggregation, threshold or cohort rescue.",
+    "The official checkpoint disclaimer is preserved; even a pass cannot reproduce or validate the paper benchmark.",
+    "A pass opens only a fresh reference-conditioned explicit-operator selection experiment; it does not establish preference, operator quality, stock identity, calibration, product readiness or a default router.",
+    "No new vote, label, candidate, training, fine-tuning or calibration may be added in this leaf."
+  ],
+  "claim_ceiling": "At most, the exact uploaded CSD checkpoint can distinguish one known explicit colour operator from identity across already-consumed unrelated photographs better than fixed content and global-colour controls. No StyleDoctor reproduction, paper-quality, preference, owner, population, stock, calibration, fresh confirmation, operator promotion, routing, package, schema, capability, product or commercial claim."
+}

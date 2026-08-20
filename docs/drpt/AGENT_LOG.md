@@ -14319,3 +14319,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close this checkpoint/prompt/aggregation without rescue and do not use it as
   a project preference judge, router or product capability. Evidence:
   `docs/evidence/U5_R2EDITREWARD0_CONSUMED_SOURCE_AWARE_PREFERENCE_RESULT.json`.
+
+### 2026-08-21 - U5.R2CSD0 cross-content operator observation frozen
+
+- Direction review rejects further generic aesthetic-judge rescue. CVPR 2026
+  StyleDoctor is the closest current primary mechanism, but its official
+  repository has no runnable release; no paper reimplementation is allowed.
+- Freeze the exact official CSD ViT-L checkpoint as a consumed retrospective
+  effect-identification precondition on P399/P401. The scorer sees only the 24
+  anonymous round-1 PNG assets until both fresh-process score locks exist.
+- After lock, evaluate 132 cross-scene candidate-reference comparisons and the
+  symmetric 132 identity-reference comparisons. Require absolute, per-role,
+  per-reference, replay and order gates and a material lead over CSD content,
+  OKLab-moment and RGB-histogram controls.
+- The official uploaded-weight discrepancy is preserved. A pass cannot claim
+  StyleDoctor/CSD benchmark reproduction, preference, fresh confirmation,
+  routing or product readiness. Contract:
+  `configs/u5_r2csd0_cross_content_operator_identification_v1.json`.
