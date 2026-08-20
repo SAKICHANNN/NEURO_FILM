@@ -15106,3 +15106,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   is required before any `WorkingImage`/file/renderer integration. This result
   is not ACES certification, camera IDT, image quality, HDR encoding/metadata,
   display calibration, public capability, film/stock or product support.
+
+### 2026-08-21 - U1.4E freezes the WorkingImage ACES 2 adapter
+
+- **Parent:** U1.4 official high-precision output chain; dependent on the
+  retained U1.4D official ACES 2 CPU runtime.
+- **Decision:** keep `WorkingImage` limited to its existing linear sRGB and
+  linear Rec.2020 spaces. The isolated adapter performs the official source to
+  ACEScg conversion and then calls the unchanged U1.4D output processor.
+- **Frozen gates:** direct-official agreement `<=2e-5`, scalar/packed source
+  agreement `<=2e-6`, neutral monotonicity/spread, input preservation,
+  fail-closed validation, reversed enumeration and two-process exact replay.
+- **Boundary:** no default renderer, file encoding, ACES certification, camera
+  IDT, image-quality, cross-platform, public capability or product claim.
