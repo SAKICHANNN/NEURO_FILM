@@ -16,6 +16,7 @@ from src.real_film.commons_three_stock_pixel import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/sf3_a1d_commons_three_stock_pixel_integrity_v1.json"
+CORRECTED_CONTRACT = ROOT / "configs/sf3_a1d2_commons_three_stock_pixel_integrity_v1.json"
 
 
 def test_frozen_metadata_builds_balanced_three_stock_selection() -> None:
@@ -48,3 +49,13 @@ def test_contract_and_parent_hashes_are_current() -> None:
     assert sha256_file(ROOT / contract["metadata_report"]) == contract["metadata_report_sha256"]
     assert contract["operator_fitting_allowed"] is False
     json.dumps(contract, sort_keys=True)
+
+
+def test_corrected_contract_vetoes_simulations_and_product_photos() -> None:
+    contract = load_contract(CORRECTED_CONTRACT)
+    report = load_metadata_report(ROOT / contract["metadata_report"], contract)
+    selection = build_selection(report, contract)
+    excluded = {int(value) for value in contract["selection"]["excluded_page_ids"]}
+    selected = {int(row["page_id"]) for row in selection["rows"]}
+    assert not selected.intersection(excluded)
+    assert selection["selected_files"] == 72

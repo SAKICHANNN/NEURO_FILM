@@ -9,7 +9,10 @@ from typing import Any
 
 from src.real_film.commons_stock_pilot import build_selection_manifest
 
-CONTRACT_SCHEMA = "neuro-film.sf3-a1d-commons-three-stock-pixel-integrity-contract.v1"
+CONTRACT_SCHEMAS = {
+    "neuro-film.sf3-a1d-commons-three-stock-pixel-integrity-contract.v1",
+    "neuro-film.sf3-a1d2-commons-three-stock-pixel-integrity-contract.v1",
+}
 METADATA_REPORT_SCHEMA = "neuro-film.sf3-a1c-commons-three-stock-text-report.v1"
 
 
@@ -27,7 +30,7 @@ def sha256_file(path: Path) -> str:
 
 def load_contract(path: Path) -> dict[str, Any]:
     value = json.loads(path.read_text(encoding="utf-8"))
-    if not isinstance(value, dict) or value.get("schema") != CONTRACT_SCHEMA:
+    if not isinstance(value, dict) or value.get("schema") not in CONTRACT_SCHEMAS:
         raise CommonsThreeStockPixelError("unsupported SF3.A1D contract")
     if value.get("allowed_stock_ids") != [
         "fujifilm_velvia_50",
@@ -58,12 +61,26 @@ def build_selection(report: dict[str, Any], contract: dict[str, Any]) -> dict[st
     rows = report.get("stock_results")
     if not isinstance(rows, list) or [row.get("film_stock_id") for row in rows] != stock_ids:
         raise CommonsThreeStockPixelError("metadata stock inventory drifted")
+    exclusions = {
+        int(page_id) for page_id in contract["selection"].get("excluded_page_ids", {})
+    }
+    available_ids = {
+        int(source["page_id"])
+        for row in rows
+        for source in row["eligible_candidates"]
+    }
+    if exclusions - available_ids:
+        raise CommonsThreeStockPixelError("manual source exclusion is not in metadata parent")
     snapshot = {
         "categories": [
             {
                 "film_stock_id": row["film_stock_id"],
                 "label_scope": contract["allowed_label_scope"],
-                "files": row["eligible_candidates"],
+                "files": [
+                    source
+                    for source in row["eligible_candidates"]
+                    if int(source["page_id"]) not in exclusions
+                ],
             }
             for row in rows
         ]
