@@ -1,0 +1,48 @@
+{
+  "schema": "neuro-film.u6-p6ay-barnard-fullscan-directional-confirmation-source.v1",
+  "experiment_id": "U6.P6AY",
+  "question": "Do the exact unconsumed full-plate normal and perpendicular scans provide an eligible acquisition-scale confirmation of the Barnard P6AX plate-following signal?",
+  "parent_evidence": {
+    "path": "docs/evidence/U6_P6AX_ROTATED_PLATE_DIRECTIONAL_ATTRIBUTION_D0_RESULT.json",
+    "sha256": "0238c8e9a73a53b27d504c3b994e0b853302428c9e7ddeed7fc410c72ae835ef",
+    "required_status": "FAIL_INCONCLUSIVE_DIRECTIONAL_ATTRIBUTION_D0",
+    "required_barnard_plate_following_margin": 0.13003053018845076
+  },
+  "record": {
+    "url": "https://knowledge.uchicago.edu/records/1cnjt-w1076",
+    "api_url": "https://knowledge.uchicago.edu/api/records/1cnjt-w1076",
+    "license": "CC-BY-4.0"
+  },
+  "sources": [
+    {
+      "role": "reference_full_scan",
+      "path": "data/physical_scanner/uchicago_1905_barnard_fullscan_p6ay_v1/10B-161_full_scan.tif",
+      "url": "https://knowledge.uchicago.edu/api/records/1cnjt-w1076/files/10B-161%20full%20scan.tif/content",
+      "bytes": 321361201,
+      "md5": "1553117420d6b416b2f73f1c19bbb2d7",
+      "api_width": 7301,
+      "api_height": 7336
+    },
+    {
+      "role": "rotated_full_scan",
+      "path": "data/physical_scanner/uchicago_1905_barnard_fullscan_p6ay_v1/10B-161_full_scan_rotated_90.tif",
+      "url": "https://knowledge.uchicago.edu/api/records/1cnjt-w1076/files/10B-161%20full%20scan,%20rotated%2090%C2%BA.tif/content",
+      "bytes": 324100642,
+      "md5": "70cea6d659106d577e3020d3ec3cb7f8",
+      "api_width": 7319,
+      "api_height": 7379
+    }
+  ],
+  "source_gate": {
+    "required_files": 2,
+    "required_primary_dtype": "uint16",
+    "allowed_primary_samples_per_pixel": [1, 3],
+    "rgb_luminance_conversion": "equal-rgb-rounded-nearest-u16",
+    "primary_ifd_rule": "unique non-reduced full-resolution IFD matching API width and height",
+    "reduced_ifds_allowed_only_if_marked_reduced": true,
+    "pixel_analysis_before_source_gate_pass": false
+  },
+  "if_source_passes": "freeze exact P6AX algorithm transfer using the 1903 plate as unchanged wrong-plate control",
+  "if_source_fails": "close P6AY before directional score without substitution or decoder fallback",
+  "claim_ceiling": "source eligibility for one additional acquisition of the already-consumed 1905 Barnard plate; never a third plate, population confirmation, material NPS, scanner calibration or product evidence."
+}
