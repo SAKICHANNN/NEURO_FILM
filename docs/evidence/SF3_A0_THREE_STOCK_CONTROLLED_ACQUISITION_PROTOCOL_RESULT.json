@@ -1,0 +1,69 @@
+{
+  "schema": "neuro-film.sf3-a0-three-stock-controlled-acquisition-evidence.v1",
+  "experiment_id": "SF3.A0",
+  "date": "2026-08-21",
+  "status": "PROTOCOL_READY_NO_DATA",
+  "decision": "READY_FOR_CONTROLLED_ACQUISITION_NO_DATA",
+  "bindings": {
+    "contract_sha256": "69241a6c38b15a8c4c8871e513ea53e133ee1d3b5ebe06f39a33f92964eccc8b",
+    "validator_sha256": "25ba28b013e3cf02cd595af399e8c61c6a49c7832eebbcba5d3b35bf524f8142",
+    "runner_sha256": "b11447b50913cd953e865bbc3c27c22f1cae6a9438f37de00aa93f0f96c28d62",
+    "test_sha256": "eb0b098604c9fae1945495d50a0af41f11b64042cdf7ca4088634f9698867bbb",
+    "formal_report_sha256": "a28786cac500301575130445520e64a4e52b07348ac863976ca01c0626dd2855",
+    "stable_evidence_id": "54490350bce7133002a97b461da0a1c7b8bf2d7957a85fda2d2a8c338b1ebccd"
+  },
+  "formal_replay": {
+    "processes": 2,
+    "reports_byte_exact": true,
+    "output_root": "outputs/eval/sf3_a0_three_stock_controlled_acquisition_v1",
+    "storage_binding": "repository-relative outputs junction backed by P:/neuro_film_storage/outputs"
+  },
+  "frozen_minimum": {
+    "stocks": [
+      "fujifilm_velvia_50",
+      "kodak_portra_400",
+      "kodak_ektar_100"
+    ],
+    "minimum_rows": 108,
+    "development_rolls_per_stock": 2,
+    "confirmation_rolls_per_stock": 1,
+    "development_common_scenes": 8,
+    "confirmation_common_scenes": 4,
+    "development_scans_per_frame": 2,
+    "confirmation_scans_per_frame": 1,
+    "cross_role_disjoint_groups": [
+      "scene_id",
+      "roll_id",
+      "process_session_id",
+      "lab_id",
+      "scanner_session_id",
+      "scanner_device_id",
+      "capture_session_id",
+      "scene_content_group"
+    ]
+  },
+  "latest_primary_method_context": [
+    {
+      "title": "Colour correction of archival photographs for change detection and digital restoration of paintings",
+      "year": 2026,
+      "url": "https://doi.org/10.1016/j.daach.2026.e00550",
+      "use": "controlled Velvia 50 and Ektachrome capture design only; its machine-readable film dataset is not publicly deposited"
+    },
+    {
+      "title": "Emulating Emulsion",
+      "year": 2025,
+      "url": "https://musicofmusix.github.io/siggraphposters25",
+      "use": "paired calibrated one-stock equation-family control; not a public three-stock target corpus"
+    }
+  ],
+  "verification": {
+    "focused_tests": 8,
+    "focused_failures": 0,
+    "ruff_pass": true,
+    "pixel_reads": 0,
+    "operator_fits": 0
+  },
+  "scientific_conclusion": "The current project now has an executable manifest-topology gate for equal-evidence Velvia 50, Portra 400 and Ektar 100 acquisition. It requires same digital references and capture conditions across stocks, two development rolls plus one group-held confirmation roll per stock, independent process and scanner sessions, repeated development scans, declared rights and lineage, and sealed confirmation groups. Passing this gate opens only a separate file, decoded-pixel, alignment and rights-integrity audit; K=1 fitting remains closed until that audit passes.",
+  "next_mainline": "Populate this manifest only from project-owned controlled captures or a genuinely new public cohort with equivalent rights and grouping. Until then retain the RF3.D1 data gap and do not substitute proxy algorithms, AO6 transfer, retrieval, routing or K greater than 1.",
+  "claim_ceiling": "Executable controlled-acquisition manifest-topology protocol and validator only. No acquired data, file or pixel integrity, fitting authority, stock response, calibrated profile, preference result, package, capability or product promotion."
+}

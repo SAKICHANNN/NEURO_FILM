@@ -14495,3 +14495,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   the earlier D fallback copy is not the cited formal root.
 - Evidence:
   `docs/evidence/RF3_D1_THREE_STOCK_TARGET_EVIDENCE_EQUALIZATION_RESULT.json`.
+
+### 2026-08-21 - SF3.A0 compiles the controlled three-stock intake
+
+- Implemented one executable manifest gate for equal-evidence Velvia 50,
+  Portra 400 and Ektar 100 acquisition instead of another proxy algorithm.
+- The 108-row minimum requires same digital references/capture conditions,
+  two development rolls plus one confirmation roll per stock, repeated
+  development scans and disjoint scene/roll/process/scanner confirmation.
+- Two P-backed protocol runs are byte exact at report SHA
+  `a28786ca...d2855`; eight focused tests pass. No candidate data exists, so
+  the decision is `READY_FOR_CONTROLLED_ACQUISITION_NO_DATA`. A future passing
+  manifest opens only file/pixel/alignment/rights integrity; fitting stays
+  closed. Evidence:
+  `docs/evidence/SF3_A0_THREE_STOCK_CONTROLLED_ACQUISITION_PROTOCOL_RESULT.json`.

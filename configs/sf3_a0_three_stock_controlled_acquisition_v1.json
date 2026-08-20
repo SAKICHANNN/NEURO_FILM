@@ -1,0 +1,102 @@
+{
+  "schema": "neuro-film.sf3-a0-three-stock-controlled-acquisition-contract.v1",
+  "experiment_id": "SF3.A0",
+  "question": "Does one candidate acquisition provide rights-clear, same-scene, independently held roll/process/scanner observations for Velvia 50, Portra 400 and Ektar 100 before any stock operator is fitted?",
+  "required_stocks": {
+    "fujifilm_velvia_50": {
+      "process_type": "e6_reversal",
+      "interpretation_id": "direct_slide_neutral_scan"
+    },
+    "kodak_portra_400": {
+      "process_type": "c41_negative",
+      "interpretation_id": "color_negative_neutral_scan"
+    },
+    "kodak_ektar_100": {
+      "process_type": "c41_negative",
+      "interpretation_id": "color_negative_neutral_scan"
+    }
+  },
+  "roles": {
+    "development": {
+      "minimum_common_scenes": 8,
+      "minimum_rolls_per_stock": 2,
+      "minimum_process_sessions_per_stock": 2,
+      "minimum_labs_per_stock": 1,
+      "minimum_scanner_sessions_per_stock": 2,
+      "minimum_scanner_devices_per_stock": 2,
+      "minimum_scans_per_film_frame": 2
+    },
+    "confirmation": {
+      "minimum_common_scenes": 4,
+      "minimum_rolls_per_stock": 1,
+      "minimum_process_sessions_per_stock": 1,
+      "minimum_labs_per_stock": 1,
+      "minimum_scanner_sessions_per_stock": 1,
+      "minimum_scanner_devices_per_stock": 1,
+      "minimum_scans_per_film_frame": 1
+    }
+  },
+  "cross_role_holdout": {
+    "scene_id_disjoint": true,
+    "roll_id_disjoint": true,
+    "process_session_id_disjoint": true,
+    "lab_id_disjoint": true,
+    "scanner_session_id_disjoint": true,
+    "scanner_device_id_disjoint": true,
+    "capture_session_id_disjoint": true,
+    "scene_content_group_disjoint": true
+  },
+  "same_scene_controls": {
+    "identical_scene_sets_across_stocks_per_role": true,
+    "one_digital_reference_sha256_per_role_scene": true,
+    "one_capture_condition_sha256_per_role_scene": true,
+    "every_roll_covers_every_role_scene": true
+  },
+  "rights": {
+    "required_scope": "project_owned_internal_research_and_commercial_derivatives",
+    "internal_training_required": true,
+    "commercial_derivatives_required": true,
+    "released_weights_rights_required": true
+  },
+  "required_row_fields": [
+    "row_id",
+    "stock_id",
+    "role",
+    "scene_id",
+    "scene_content_group",
+    "film_frame_id",
+    "capture_session_id",
+    "source_owner_id",
+    "camera_system_id",
+    "digital_reference_sha256",
+    "capture_condition_sha256",
+    "roll_id",
+    "process_session_id",
+    "process_type",
+    "lab_id",
+    "process_recipe_sha256",
+    "scanner_session_id",
+    "scanner_device_id",
+    "scanner_profile_sha256",
+    "scan_file_sha256",
+    "scan_sample_sha256",
+    "alignment_evidence_sha256",
+    "interpretation_id",
+    "rights_record_sha256",
+    "rights_scope",
+    "rights_allow_internal_training",
+    "rights_allow_commercial_derivatives",
+    "rights_allow_released_weights"
+  ],
+  "forbidden_before_admission": [
+    "operator fitting",
+    "adaptive LUT or basis blending",
+    "nearest-neighbor or sparse retrieval",
+    "latent K greater than 1",
+    "stock-response or calibration claim",
+    "AO6 transfer from Velvia to another stock"
+  ],
+  "decision_if_pass": "OPEN_SF3_A1_FILE_PIXEL_ALIGNMENT_AND_RIGHTS_INTEGRITY_AUDIT",
+  "decision_if_fail": "RETAIN_THREE_STOCK_DATA_GAP_WITHOUT_ALGORITHM_RESCUE",
+  "claim_ceiling": "Controlled-acquisition manifest topology and group-holdout admission only. Passing opens a separate file, decoded-pixel, alignment and rights-integrity audit; it does not admit fitting and is not a stock response, calibrated profile, preference result, package, capability or product promotion."
+}
