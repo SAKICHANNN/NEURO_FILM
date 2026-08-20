@@ -1,0 +1,28 @@
+{
+  "schema": "neuro-film.sf3-a1f-commons-three-stock-author-connectivity-contract.v1",
+  "experiment_id": "SF3.A1F_COMMONS_THREE_STOCK_AUTHOR_CONNECTIVITY_V1",
+  "input_report": "outputs/eval/sf3_a1c_commons_three_stock_text_metadata_v1/report.json",
+  "input_report_sha256": "c27364ef7b2cb294f29310268b80fad9aa3c384cb13694f81cbaf103fe835887",
+  "input_stable_evidence_id": "36ca4d471fa2531e15c02f0c832c59ffa943bd8790fc06cbdf3aeefbd2118fa0",
+  "stock_ids": [
+    "fujifilm_velvia_50",
+    "kodak_portra_400",
+    "kodak_ektar_100"
+  ],
+  "identity_alias_groups": [
+    [
+      "500px:brenkee",
+      "flickr:55128416@n05"
+    ]
+  ],
+  "metadata_gates": {
+    "minimum_shared_authors_per_pair": 5,
+    "minimum_shared_authors_all_three_stocks": 5,
+    "minimum_rows_per_stock_in_connected_pool": 5
+  },
+  "decision_if_pass": "OPEN_BOUNDED_COMMONS_SHARED_AUTHOR_PIXEL_PILOT",
+  "decision_if_fail": "CLOSE_COMMONS_SHARED_AUTHOR_ROUTE_BEFORE_PIXEL_ACCESS",
+  "image_payload_download_allowed": false,
+  "operator_fitting_allowed": false,
+  "claim_ceiling": "frozen Wikimedia Commons exact-text metadata connectivity across Velvia 50, Portra 400 and Ektar 100 author identities; no same-scene, roll, process, scanner, stock-response, pixels, calibration, fitting, training or product claim"
+}
