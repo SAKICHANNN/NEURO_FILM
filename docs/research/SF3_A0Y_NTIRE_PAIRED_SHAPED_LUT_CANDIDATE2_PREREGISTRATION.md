@@ -16,6 +16,16 @@ cyclic-wrong-target shaped-LUT control maps every fit source to the next fit ID
 in the listed role order, with wraparound. These rules are frozen with the
 other controls and are not selected from calibration results.
 
+Storage-only execution amendment: the canonical P-backed exFAT volume reached
+zero free bytes after four complete fit-cache rows. The interrupted attempt had
+zero model fit/lock, calibration reads, sealed reads, or scientific scores. Its
+partial cache was not retained. Formal execution therefore restarts from zero
+through the repo-relative `.data_fallback` junction to the existing namespaced
+`D:\_project_fallbacks\neuro_film_goal_019f4b76\data` root. No payload is placed
+at the D drive root. Roles, pixels, candidate, controls, gates, and stop rules
+remain unchanged; the fallback must be hash-verified back to P when durable P
+space is restored.
+
 All 56 IDs are fresh relative to SF3.A0V/A0X and split before acquisition into
 32 fit, 12 calibration and 12 sealed-confirmation scenes. The cache contains
 only 256x256 aligned source/target arrays under the repo-relative P-backed data
