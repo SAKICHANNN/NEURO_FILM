@@ -1,0 +1,30 @@
+{
+  "schema": "neuro-film.u1-4c31-parallel-staged-prophoto-24mp-evidence.v1",
+  "experiment_id": "U1.4C31",
+  "status": "FAIL_CLOSED_RESOURCE_ONLY",
+  "implementation_commit": "13b318ee",
+  "runner_commit": "a50521ec",
+  "contract_commit": "0c3974a7",
+  "contract_sha256": "63c9281f4bd7e92b700684357f1ff56c2a0f0c1321960f210f3a35154af6db4e",
+  "formal_report": {
+    "path": "outputs/eval/u1_4c31_parallel_staged_prophoto_24mp_v1/report.json",
+    "sha256": "2f8c19437b53a822e19ee88dbf2165c70ad9a24bf52c9cc0e6461dd0990ab84c",
+    "stable_evidence_id": "538c5547fbb9f81e227cfcf583b04ac0ff9e89590d50b5693927d4fb1b15dfc4"
+  },
+  "observations": {
+    "decoded_rgb16_sample_sha256": "c6069cb19dc28472a9596a47fef4199c1f872f9f01554e856622a54e95c18ebb",
+    "output_sha256": "6648b164133f6cf31df95a72aa2e85724f2ede3f103de258138e44fc43cc6d6a",
+    "receipt_sha256": "b24097b81e8fccddb80163b5b732842fd1e41728c3520fca32fd8b946398a6c4",
+    "cross_process_science_container_receipt_and_build_exact": true,
+    "worker_wall_seconds": [15.192542700009653, 13.096304599981522],
+    "peak_process_tree_rss_bytes": [1197621248, 1197907968]
+  },
+  "gate_results": {
+    "maximum_worker_wall_seconds_15": false,
+    "maximum_peak_process_tree_rss_bytes_1073741824": false,
+    "automatic_pass": false
+  },
+  "decision": "retain_c30_exact_components_but_close_this_parallel_staged_product_integration",
+  "next_leaf": "spill and close the exact mapped float32 image around the full-image Lab reduction so its pages do not overlap the legacy std temporary; preserve all frozen output and resource gates",
+  "claim_ceiling": "Local Windows CPU resource evidence for one exact 24MP natural-derived uncompressed ProPhoto TIFF and one opt-in Rec.2020 look; not compressed TIFF, arbitrary ICC, cross-platform performance, stock calibration, preference, HDR, or default promotion."
+}
