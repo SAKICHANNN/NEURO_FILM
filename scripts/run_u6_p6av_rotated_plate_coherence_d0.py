@@ -17,21 +17,24 @@ from src.eval.rotated_plate_coherence_d0 import evaluate, load_contract
 
 
 def _acquire(contract: dict, root: Path) -> None:
-    source = contract["source"]["rotated"]
-    target = root / source["path"]
-    if target.exists():
-        payload = target.read_bytes()
-    else:
-        with urllib.request.urlopen(source["url"], timeout=180) as response:
-            payload = response.read()
-        target.parent.mkdir(parents=True, exist_ok=True)
-        with target.open("xb") as handle:
-            handle.write(payload)
-    if (
-        len(payload) != int(source["bytes"])
-        or hashlib.md5(payload).hexdigest() != source["md5"]
-    ):
-        raise ValueError("P6AV rotated source identity drift")
+    for role in ("reference", "rotated"):
+        source = contract["source"][role]
+        target = root / source["path"]
+        if target.exists():
+            payload = target.read_bytes()
+        elif "url" in source:
+            with urllib.request.urlopen(source["url"], timeout=300) as response:
+                payload = response.read()
+            target.parent.mkdir(parents=True, exist_ok=True)
+            with target.open("xb") as handle:
+                handle.write(payload)
+        else:
+            raise FileNotFoundError(target)
+        if (
+            len(payload) != int(source["bytes"])
+            or hashlib.md5(payload).hexdigest() != source["md5"]
+        ):
+            raise ValueError(f"P6AV {role} source identity drift")
 
 
 def main() -> None:

@@ -159,6 +159,15 @@ def evaluate(contract: dict[str, Any], root: Path) -> dict[str, Any]:
         != parent_spec["required_stable_evidence_id"]
     ):
         raise ValueError("P6AV method parent drift")
+    if "p6av_evidence" in contract["parents"]:
+        prior_spec = contract["parents"]["p6av_evidence"]
+        prior_bytes = (root / prior_spec["path"]).read_bytes()
+        prior = json.loads(prior_bytes)
+        if (
+            _sha(prior_bytes) != prior_spec["sha256"]
+            or prior.get("status") != prior_spec["required_status"]
+        ):
+            raise ValueError("P6AW predecessor evidence drift")
     source = contract["source"]
     reference, reference_facts = _load_u16(
         root / source["reference"]["path"], source["reference"]
@@ -166,8 +175,13 @@ def evaluate(contract: dict[str, Any], root: Path) -> dict[str, Any]:
     rotated, rotated_facts = _load_u16(
         root / source["rotated"]["path"], source["rotated"]
     )
-    required_shape = tuple(int(v) for v in source["required_shape"])
-    if reference.shape != required_shape or rotated.shape != required_shape:
+    reference_shape = tuple(
+        int(v) for v in source.get("reference_shape", source.get("required_shape"))
+    )
+    rotated_shape = tuple(
+        int(v) for v in source.get("rotated_shape", source.get("required_shape"))
+    )
+    if reference.shape != reference_shape or rotated.shape != rotated_shape:
         raise ValueError("P6AV source shape drift")
     homography, registration = _register_orientation(
         reference, rotated, contract["registration"]

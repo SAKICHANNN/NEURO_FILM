@@ -23,6 +23,16 @@ def test_p6av_contract_keeps_method_and_claim_narrow() -> None:
     assert "isolated emulsion NPS" in contract["claim_ceiling"]
 
 
+def test_p6aw_keeps_p6av_protocol_values_exact() -> None:
+    first = load_contract(ROOT / "configs/u6_p6av_rotated_plate_coherence_d0_v1.json")
+    second = load_contract(
+        ROOT / "configs/u6_p6aw_barnard_rotated_plate_coherence_d0_v1.json"
+    )
+    assert second["registration"] == first["registration"]
+    assert second["analysis"] == first["analysis"]
+    assert second["gates"] == first["gates"]
+
+
 def test_midrank_is_tie_stable() -> None:
     values = np.array([[0, 0], [10, 20]], dtype=np.uint16)
     result = _midrank(values)
