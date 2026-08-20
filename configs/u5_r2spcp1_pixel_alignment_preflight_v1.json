@@ -1,0 +1,100 @@
+{
+  "schema": "neuro-film.u5-r2spcp1-pixel-alignment-preflight-contract.v1",
+  "experiment_id": "U5.R2SPCP1",
+  "date": "2026-08-21",
+  "question": "Does the SPCP single-source synthetic subset preserve exact geometry and enough source-observable structural correspondence to support one later shared explicit colour-operator discriminant?",
+  "scientific_role": "prospective pixel and alignment eligibility preflight only",
+  "bounded_program": {
+    "candidate_index": 1,
+    "maximum_materially_distinct_fresh_candidates": 3,
+    "stop_policy": "do not continue indefinite after-only shared-bundle search; failure closes this family and preserves paired/capture-time metadata plus RAW/DNG/HDR/portable explicit-operator engineering as the durable path"
+  },
+  "source_binding": {
+    "u5_r2spcp0_evidence": "docs/evidence/U5_R2SPCP0_METADATA_SOURCE_LOCK_RESULT.json",
+    "u5_r2spcp0_evidence_sha256": "74b62ceb1907b6b569dddc0ae107ef1af7cf073c341ac2a898f16bb2339fa295",
+    "dataset_revision": "068af97eed82969f15278db3af4bd450176cf6f3",
+    "archive_size_bytes": 9050462827,
+    "archive_lfs_sha256": "8643d2be6edb3391f37159476584df59f714205fd427a1d26e325a1f93791ef0",
+    "order_annotation_sha256": "8c42140ae0f90f37f32706911ab86cca9f377077bbd18ac301262d952bf5f58c",
+    "score_annotation_sha256": "ee5f0fc830ebd40cab3e25b379aa0e01ec5cc4793a55315504c2d06f6af7900d",
+    "rights_ceiling": "local isolated internal research only",
+    "product_dependency": false
+  },
+  "eligible_scene_definition": {
+    "exact_variant_ids": [
+      "01_01",
+      "02_01",
+      "02_02",
+      "02_03",
+      "03_01",
+      "03_02",
+      "03_03",
+      "03_04",
+      "04_01",
+      "04_02",
+      "04_03",
+      "04_04"
+    ],
+    "expected_scene_count": 457,
+    "interpretation": "single original plus eleven synthetic ISP variants; this interpretation remains a structural hypothesis until pixel alignment passes",
+    "multi_phone_543_scene_family_excluded": true
+  },
+  "role_freeze": {
+    "selection_key": "sha256(UTF8('U5.R2SPCP1' + NUL + scene_id)); ascending",
+    "development_scene_count": 8,
+    "confirmation_scene_count": 8,
+    "future_operator_fit_scene_count": 128,
+    "future_operator_calibration_scene_count": 32,
+    "future_operator_sealed_scene_count": 32,
+    "reserve_scene_count": 249,
+    "all_scenes_group_indivisible": true,
+    "confirmation_read_only_after_development_pass": true,
+    "future_operator_roles_remain_unread_in_this_leaf": true
+  },
+  "pixel_preflight": {
+    "download": "exact ZIP member ranges only; no complete 9.05 GB archive",
+    "decode": "exact canonical PNG, RGB conversion forbidden for geometry hashes",
+    "reference_variant": "01_01",
+    "tested_variants_per_scene": 11,
+    "alignment_observation": "tie-aware rank-gray Sobel gradients at full decoded geometry",
+    "registration": "no fitted warp; phase-correlation translation is diagnostic and must remain within the frozen subpixel ceiling",
+    "preference_or_score_values_read": false,
+    "operator_fit": false
+  },
+  "development_gates": {
+    "scene_count_exact": 8,
+    "canonical_variant_count_per_scene_exact": 12,
+    "all_decodes_single_frame_rgb_or_rgba": true,
+    "all_variant_geometries_equal_within_scene": true,
+    "all_geometries_exact_1024_square": true,
+    "minimum_pair_gradient_ncc": 0.9,
+    "minimum_pair_rank_gradient_ncc": 0.94,
+    "maximum_phase_translation_pixels": 0.25,
+    "pairs_passing_all_alignment_gates_rate_min": 0.95,
+    "each_variant_family_passing_rate_min": 0.875,
+    "all_finite": true,
+    "image_member_crc_sha_size_exact": true,
+    "preference_score_reads_exact": 0,
+    "operator_fit_count_exact": 0
+  },
+  "confirmation": {
+    "run_only_if_all_development_gates_pass": true,
+    "unchanged_metrics_thresholds_and_code": true,
+    "scene_count_exact": 8,
+    "all_development_gates_repeat": true
+  },
+  "stop_rules": [
+    "Any role, archive member, CRC, size, decode, geometry or finite failure is INVALID_SOURCE_MECHANICS and closes before alignment interpretation.",
+    "Any development alignment gate failure closes the exact single-source synthetic family before confirmation read; no resize, warp, threshold, variant or scene rescue.",
+    "Any confirmation gate failure closes the family before operator fit; no same-cohort rescue.",
+    "A pass opens only the already-frozen future fit/calibration roles for one shared bounded source-free explicit operator; it does not open a content router, direct RGB model, product or rights claim."
+  ],
+  "storage": {
+    "execution_namespace": "D:/_project_fallbacks/neuro_film_goal_019f4b76/u5_r2spcp1",
+    "reason": "P reports Full Repair Needed",
+    "drive_root_write_forbidden": true,
+    "P_migration_only_after_repair_and_byte_verification": true,
+    "repo_runtime_paths_must_remain_drive_agnostic": true
+  },
+  "claim_ceiling": "At most, the exact SPCP single-source subset is geometrically suitable for a later private shared explicit-operator D0. No preference direction, operator value, generalization, product, package, schema, capability, rights or commercial claim."
+}
