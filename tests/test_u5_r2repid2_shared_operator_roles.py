@@ -1,9 +1,23 @@
 from __future__ import annotations
 
+import hashlib
+import json
+from pathlib import Path
+
 from scripts.build_u5_r2repid2_shared_operator_roles import (
     _canonical_stem,
     eligible_rows,
 )
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def test_contract_binds_exact_parent_evidence_file() -> None:
+    contract = json.loads(
+        (ROOT / "configs/u5_r2repid2_shared_operator_roles_v1.json").read_text()
+    )
+    payload = (ROOT / contract["parent"]["evidence_path"]).read_bytes()
+    assert hashlib.sha256(payload).hexdigest() == contract["parent"]["evidence_sha256"]
 
 
 def _scene(name: str, geometry: str = "same") -> list[dict[str, str]]:

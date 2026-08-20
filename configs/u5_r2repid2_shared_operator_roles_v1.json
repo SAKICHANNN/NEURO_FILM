@@ -4,6 +4,7 @@
   "question": "Does the rights-bounded REPID aggregate contain enough strong, geometry-consistent, project-fresh loser-to-winner pairs to freeze a small scene-grouped one-shared-explicit-operator D0 before any image member is read?",
   "parent": {
     "evidence_path": "docs/evidence/U5_R2REPID1_CORRECTED_SOURCE_AUDIT_RESULT.json",
+    "evidence_sha256": "0adfd0ebb49101c518e44d78487ea2494375ed12d15f89e83797408d4ee95a45",
     "stable_evidence_id": "sha256:867267e19c537482c67623689ae1c3bcf331edfb67c4a37c9bd97ad6ce83c6ff",
     "formal_report_sha256": "c511cacb23da792f6fb5e449b04d3a9707f8b12c8234a4f5a892f10938845dd9",
     "required_decision": "open_separately_preregistered_internal_repid_shared_operator_d0"

@@ -191,6 +191,8 @@ def evaluate(
     total_bytes = sum(int(row["size"] or 0) for row in members)
     gates_cfg = contract["metadata_gates"]
     gates = {
+        "parent_evidence_file_exact": _sha256(parent_bytes)
+        == contract["parent"]["evidence_sha256"],
         "parent_stable_evidence_exact": parent["stable_evidence_id"]
         == contract["parent"]["stable_evidence_id"],
         "parent_formal_report_exact": parent["formal_report_sha256"]
@@ -239,6 +241,7 @@ def evaluate(
             "direct_margin_minimum": min(
                 (row["direct_margin"] for row in selected), default=None
             ),
+            "rows": selected,
         },
         "members": {
             "count": len(members),
@@ -246,6 +249,7 @@ def evaluate(
             "initial_fit_calibration_bytes": initial_bytes,
             "all_selected_bytes": total_bytes,
             "image_member_reads": 0,
+            "rows": members,
         },
         "gates": gates,
         "automatic_pass": passed,
