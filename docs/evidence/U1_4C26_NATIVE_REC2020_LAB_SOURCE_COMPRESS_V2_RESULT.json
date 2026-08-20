@@ -1,0 +1,44 @@
+{
+  "schema": "neuro-film.u1-4c26-native-rec2020-lab-source-compress-evidence.v1",
+  "experiment_id": "U1.4C26",
+  "status": "PASS",
+  "decision": "retain_exact_v2_native_rec2020_lab_source_compression_and_open_new_product_integration",
+  "contract": {
+    "path": "configs/u1_4c26_native_rec2020_lab_source_compress_v2.json",
+    "sha256": "d35bba306a0231408f0be5ab1dea539757761b7b0841c045f1f2853f5411c642"
+  },
+  "formal_report": {
+    "path": "outputs/eval/u1_4c26_native_rec2020_lab_source_compress_v2/report.json",
+    "sha256": "296b804fed2609da8b953b2078141961ddadf6240cf01dc70befeb96520e95f1",
+    "stable_evidence_id": "504dcf898eb7d553099df7f8a6e022d4820f933fd5bdd420528448a5888b918b"
+  },
+  "input": {
+    "sha256": "91895fce65e8a32f869dd31ecd5c3ee576c9212cf028d59cd0022b0371668394",
+    "shape": [4000, 6000, 3],
+    "pixel_count": 24000000,
+    "profile_sha256": "e0da6e630f616dc25c1bca431ade74edd55a2c0bf3a5eec5bd937c9a62447666"
+  },
+  "correction": {
+    "superseded_kernel": "U1.4C21",
+    "c21_kernel_used": false,
+    "mechanism": "preserve the legacy Python float32 D65 white-point values before double-precision Lab conversion",
+    "d65_white_xyz": [0.950469970703125, 1.0, 1.0888299942016602]
+  },
+  "observations": {
+    "formal_runs": 2,
+    "lab_exact": true,
+    "lab_sha256": "2d5e3fe7fe66c6a281c1d4f6aa06eaecffdea7ff8617b261af2a78bf1a4b78ef",
+    "rgb_exact": true,
+    "rgb_sha256": "62a45d17dae87efcd6d74a0d7e02a2eb88a0143f400c894de220f1e7c8088364",
+    "scale_exact": true,
+    "scale_sha256": "44e1c2a4fb7d641294c0591bf7113024efbaf13c0d630332a3376b0a6b94b705",
+    "maximum_lab_absolute_error": 0.0,
+    "maximum_rgb_absolute_error": 1.1102230246251565e-16,
+    "finite": true,
+    "bounded": true,
+    "native_kernel_wall_seconds": [1.6296976000012364, 1.3575743999972474]
+  },
+  "interpretation": "The separately versioned v2 kernel exactly reproduces the legacy Lab output and scale on the frozen 24MP state after preserving the float32 D65 white-point semantics that C21 widened to decimal double constants. It replaces neither the historical C21 result nor the product renderer until a new full-chain integration independently passes byte identity and resource gates.",
+  "claim_ceiling": "Local Windows MSVC host evidence for separately versioned exact legacy-semantics Rec.2020 source-segment Lab compression on one 24MP natural-derived ProPhoto fixture and one fixed look state; not a complete renderer resource pass, cross-platform parity, arbitrary ICC, stock calibration, preference, HDR, or default promotion.",
+  "production_default_changed": false
+}

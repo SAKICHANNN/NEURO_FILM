@@ -13685,3 +13685,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   as component evidence, close this exact integration without parity or
   threshold rescue, and move to a materially different native bottleneck.
   Evidence: `docs/evidence/U1_4C24_NATIVE_STAGED_PROPHOTO_24MP_RESULT.json`.
+
+### 2026-08-20 - U1.4C26 corrects and passes native Lab compression
+
+- C21 widened the legacy float32 D65 white point into decimal double constants,
+  which changed binary-search decisions at the gamut boundary. A separately
+  versioned v2 preserves the exact float32 values; it does not rewrite C21.
+- On the frozen 24MP state, Lab and scale are now bit exact, RGB maximum error
+  is `1.11e-16`, and two native runs take `1.36--1.63s` versus the profiled
+  `18.72s` Python hotspot. This opens a new full-chain integration only after
+  the remaining native pointwise stage is made byte-compatible. Evidence:
+  `docs/evidence/U1_4C26_NATIVE_REC2020_LAB_SOURCE_COMPRESS_V2_RESULT.json`.
