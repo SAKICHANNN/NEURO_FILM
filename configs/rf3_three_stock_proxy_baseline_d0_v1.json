@@ -160,6 +160,7 @@
     "target_closeness": "not_evaluable_without_controlled_stock_targets",
     "stock_distinguishability": "not_evaluable_without_controlled_stock_targets",
     "proxy_question_only": "operator_output_separation_on_identical_digital_inputs",
+    "delta_e76_aggregation": "median_of_per_source_full_pixel_medians_with_per_source_p95_reported",
     "minimum_pairwise_population_median_delta_e76": 1.0,
     "minimum_ao6_vs_legacy_velvia_population_median_delta_e76": 1.0,
     "maximum_new_output_boundary_fraction": 0.0,
