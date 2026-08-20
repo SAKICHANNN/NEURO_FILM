@@ -1,0 +1,95 @@
+{
+  "schema": "neuro-film.sf3-a0p-ppisp-capture-pair-source-lock-evidence.v1",
+  "experiment_id": "SF3.A0P_PPISP_CAPTURE_PAIR_SOURCE_LOCK_V1",
+  "date": "2026-08-21",
+  "status": "PASS_RANGE_ONLY_SOURCE_STRUCTURE_NOT_CANDIDATE",
+  "freeze_commit": "93477f2434010a308f0979873417d3149ff0831f",
+  "path_identity_correction_commit": "53180cfe686c8c9c3e351554f26bf651cc9bd064",
+  "documented_namespace_correction_commit": "9999f58b1e74022beb76cfd7692130479d6c67b8",
+  "contract": {
+    "path": "configs/sf3_a0p_ppisp_capture_pair_source_lock_v1.json",
+    "sha256": "9c138cc658501d0e985a34ca6548493cbafe5076a6b57c0672119456e266b173"
+  },
+  "source": {
+    "dataset_id": "nvidia/PhysicalAI-NuRec-PPISP",
+    "revision": "2521064a3af6ab1c1caa2ba1b01ddde7eecded69",
+    "readme_sha256": "2f19051a5a9502b22f54cb4acb27ffb3a54b318d770714fc69995cd2ea8e8c69",
+    "license": "CC BY 4.0",
+    "publisher_scope_text": "ready for commercial/non-commercial use",
+    "scene_count": 4,
+    "capture_systems": [
+      "Nikon Z7",
+      "OM System OM-1 Mark II",
+      "Apple iPhone 13 Pro"
+    ],
+    "capture_observation": "standard full exposure brackets plus selected same-sequence exposures reprocessed with automatic exposure compensation and white balancing"
+  },
+  "archives": [
+    {
+      "scene_id": "huerstholz",
+      "archive_size": 3401606566,
+      "archive_lfs_sha256": "1d4ad8e1388f0051ee6c1266c9b9a0669c99b8b76bcc47809bb49772b404460c",
+      "central_directory_sha256": "7f57e97d2b58d43e8a992a4daaac8b54d2a1e897c7e38598e05d1d62711e0bc0",
+      "member_count": 855,
+      "standard_jpegs": 707,
+      "auto_jpegs": 123,
+      "exact_standard_auto_pairs": 123,
+      "pair_parent_groups": 2
+    },
+    {
+      "scene_id": "struktur28",
+      "archive_size": 1535277338,
+      "archive_lfs_sha256": "cf7ab7f100da66b2bf05b178ebcfa3a950e1bf2b1d7ff64a6c7a1e1f682afa8d",
+      "central_directory_sha256": "7d9001361036bb6b2b0879ff4d6c8f9a02d4931d5de9132f5122cc5991af7e3e",
+      "member_count": 602,
+      "standard_jpegs": 518,
+      "auto_jpegs": 59,
+      "exact_standard_auto_pairs": 59,
+      "pair_parent_groups": 2
+    },
+    {
+      "scene_id": "toro",
+      "archive_size": 1706361859,
+      "archive_lfs_sha256": "9bb2203246d85604ef580a6664cd16bc3bdb42dc55ee4647bee28bd40372b2c5",
+      "central_directory_sha256": "b64dcfa795e6a968f3d8455b7a92ba90b344d36e7d30e17bf22742ef64c996ff",
+      "member_count": 593,
+      "standard_jpegs": 480,
+      "auto_jpegs": 88,
+      "exact_standard_auto_pairs": 88,
+      "pair_parent_groups": 2
+    },
+    {
+      "scene_id": "valiant",
+      "archive_size": 1958272527,
+      "archive_lfs_sha256": "29e7292f9224907ef389facb0a616318beb04d4812c4fe6cee43258fb94385e9",
+      "central_directory_sha256": "2e1c913ef94fbb84ba00aca101d8b2d5a09c87a9aed9269bceec1f2e36fd3568",
+      "member_count": 635,
+      "standard_jpegs": 529,
+      "auto_jpegs": 81,
+      "exact_standard_auto_pairs": 81,
+      "pair_parent_groups": 2
+    }
+  ],
+  "formal_replay": {
+    "report_a": "outputs/eval/sf3_a0p_ppisp_capture_pair_source_lock_v1/formal_run_1.json",
+    "report_b": "outputs/eval/sf3_a0p_ppisp_capture_pair_source_lock_v1/formal_run_2.json",
+    "report_sha256": "c7ee4ace3d4eff3cd4ecf87fe2c29be32dac30e113c45b690b08117cfdd372ec",
+    "stable_identity": "030d65d815e57172fa7987061159a244aed2c033c8015541d1172d0c08262cb8",
+    "byte_exact": true,
+    "archive_tail_and_central_directory_bytes_per_run": 33554432,
+    "image_member_reads": 0,
+    "pixel_decodes": 0,
+    "operator_fits": 0,
+    "renders": 0,
+    "scores": 0
+  },
+  "execution_integrity_notes": [
+    "The first network attempt used reversed archive filename word order and stopped on HTTP 404 before receiving archive bytes or producing a report.",
+    "The first central-directory report used paraphrased README literals and a standard/auto placeholder namespace that contradicted the README's explicit scene/scene_auto example. It is retained as invalid_run_1_pre_namespace_fix.json with SHA-256 1f5ba96b57b5891265c815250fad484bf52225aaf53be16722a95a44fc234e2e and is not scientific evidence.",
+    "The additive correction changed only exact documented paths, README literals and namespace normalization. Source revision, archives, support gates, read limits and claim ceiling remained fixed."
+  ],
+  "decision": "OPEN_SF3_A0Q_PPISP_CAPTURE_PAIR_PIXEL_PREFLIGHT_NOT_CANDIDATE",
+  "bounded_final_candidate_counter_before": 0,
+  "bounded_final_candidate_counter_after": 0,
+  "claim_ceiling": "Range-only rights and archive-structure qualification for a four-scene capture-time paired mechanism D0. It does not establish broad or product generalization, does not satisfy the controlled three-stock protocol, and does not increment the bounded three-candidate counter."
+}

@@ -45,6 +45,16 @@ after-only architecture or procedural self-supervision paper cannot increment
 or reset it. The exact rule is in
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` section 1.1.
 
+SF3.A0P now passes a separately bounded capture-time source qualification for
+NVIDIA PPISP at exact revision `2521064...ded69`: four scenes expose 351 exact
+standard/auto JPEG name pairs plus COLMAP camera/image metadata under explicit
+CC BY 4.0 and commercial/non-commercial publisher scope. Two 32MiB
+Range-only audits are byte exact (`c7ee4ace...372ec`) with zero member payload,
+pixel, fit, render or score reads. This opens only a four-scene pairing/pixel
+preflight; it remains below broad/product generalization and the final counter
+stays `0/3`. Evidence:
+`docs/evidence/SF3_A0P_PPISP_CAPTURE_PAIR_SOURCE_LOCK_RESULT.json`.
+
 **Autonomy invariant**: the active no-data Roll2Film and Style-safe work cannot
 depend on the owner supplying images, film/digital pairs, per-image labels, new
 preference votes or manual annotation. Public online data is an allowed source

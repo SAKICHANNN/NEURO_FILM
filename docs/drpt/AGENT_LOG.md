@@ -14607,3 +14607,24 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   audit. Exact-text labels remain weak evidence and do not establish stock
   response, calibration or a multi-stock product. Evidence:
   `docs/evidence/SF3_A1C_COMMONS_THREE_STOCK_TEXT_METADATA_RESULT.json`.
+
+### 2026-08-21 - SF3.A0P qualifies PPISP capture-time pairs without pixels
+
+- Selected the latest actionable capture-time observation rather than another
+  after-only bundle: NVIDIA PPISP CVPR 2026, exact public revision
+  `2521064...ded69`, explicit CC BY 4.0 and publisher commercial/non-commercial
+  scope.
+- Two Range-only audits read 32MiB of ZIP tails/central directories per run and
+  reproduce the report byte exactly (`c7ee4ace...372ec`). Four scenes expose
+  351 exact standard/auto JPEG name pairs (123/59/88/81), with COLMAP camera
+  and image metadata names present and zero unsafe, encrypted or unsupported
+  members.
+- No image member, pixel, fit, render or score was read. A pre-report 404 read
+  zero archive bytes; one subsequent invalid report exposed paraphrased README
+  literals and incorrect placeholder namespace normalization. The exact
+  documented `scene`/`scene_auto` correction is preserved in evidence rather
+  than hidden.
+- Decision: open only a four-scene pairing/pixel preflight. This is not broad
+  or product evidence and does not consume the bounded scientific counter,
+  which remains `0/3`. Evidence:
+  `docs/evidence/SF3_A0P_PPISP_CAPTURE_PAIR_SOURCE_LOCK_RESULT.json`.

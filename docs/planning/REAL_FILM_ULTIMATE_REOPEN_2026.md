@@ -63,6 +63,14 @@ are paired-metadata features and the RAW/DNG/HDR/portable explicit-operator
 toolchain. Mature engineering conformance may continue independently, but it
 does not consume or reset this scientific budget.
 
+SF3.A0P is the first post-correction capture-time source qualification, not a
+scientific candidate. The exact PPISP release provides 351 structurally paired
+standard/automatic-processing JPEG names across four scenes and explicit CC BY
+4.0 publisher scope. Its four-scene ceiling is too small for broad or product
+generalization, so only a separately frozen member/pixel/metadata preflight may
+follow; the bounded counter remains `0/3` until a fresh natural group-isolated
+candidate is actually scored.
+
 The August 2026 [*Deep Analog* paper](https://arxiv.org/abs/2608.14702) is
 current context, not a candidate under this rule: its reported colour training
 is procedurally self-supervised, its
