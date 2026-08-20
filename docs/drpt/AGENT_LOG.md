@@ -13878,3 +13878,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   partition on undocumented F1/F2 collections; pixels and fitting stay closed.
 - BT1 shows local-affine capacity but fails row consistency and hard boundary
   safety. Close the exact family; fixed AO6 remains the colour incumbent.
+
+### 2026-08-20 - U5.R2REPID3 fit/calibration acquisition passes
+
+- Exact create-only acquisition retains 80 fit and 24 calibration pairs,
+  208 members and 1.467GB; all LFS hashes, JPEG/RGB decodes and paired geometry
+  pass. Every file carries the same ProPhoto/ROMM ICC.
+- Two single-writer replays are byte exact (`e04a611e...0647c`, stable
+  `96b60f8f...b906`); sealed requests remain zero. A prior no-report attempt
+  hit a Windows sharing violation from two legacy writers and did not change
+  the frozen cohort.
+- Evidence: `docs/evidence/U5_R2REPID3_FIT_CALIBRATION_ACQUISITION_RESULT.json`.

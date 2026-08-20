@@ -1,0 +1,22 @@
+{
+  "schema": "neuro_film.u5_r2repid3_fit_calibration_acquisition_evidence.v1",
+  "experiment_id": "U5.R2REPID3",
+  "selected_identity_sha256": "6874505061a845ee0b199a0ef17be9a0adad1d5bf3797702653806eb8130cda9",
+  "all_member_identity_sha256": "df1450c2a5c001c0e71bf30862f8aa2a039d3976066111a8b73ca5a2c763a18c",
+  "role_counts": {"calibration": 24, "fit": 80},
+  "scene_count": 104,
+  "member_count": 208,
+  "total_bytes": 1467342029,
+  "container": "JPEG",
+  "mode": "RGB",
+  "paired_dimensions_equal": true,
+  "icc_profile_sha256": "7d152d48cb5bfd06a356385f7571ac05522027833d0da5cf003e7d46f68da798",
+  "icc_profile_description": "Reference Output Medium Metric (ROMM) / ProPhoto RGB",
+  "sealed_member_requests": 0,
+  "decision": "open_repid_shared_logit_affine_development_fit_and_calibration",
+  "claim_ceiling": "exact internal-research fit/calibration member acquisition and JPEG geometry preflight only; no operator, preference, package, capability or product result",
+  "two_fresh_reports_byte_exact": true,
+  "formal_report_sha256": "e04a611e4c6f1889a9adc2b69520ca05b4d4a280a7b5e708eb73de28df40647c",
+  "stable_evidence_id": "sha256:96b60f8f7ccb858a4b5b21423dee612625a10253ff34090d5377199e58fdb906",
+  "execution_note": "A pre-report attempt encountered a Windows sharing violation because two previously launched acquisition writers reached the same final stage path. It emitted no report and changed no roles or bytes. After the other writer completed the exact LFS-bound file and exited, two single-writer complete hash/decode replays were byte exact."
+}

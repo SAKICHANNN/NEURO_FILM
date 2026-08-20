@@ -1580,3 +1580,10 @@ frozen exact release partition. U5.R2BT1 also closes its 384-parameter local
 affine grid: mean capacity improves, but matched-global row wins fail and new
 boundary fractions reach 36.90%/3.60% on aligned/filtered inputs. No pixel
 acquisition, predictor rescue or AO6 promotion follows either result.
+
+U5.R2REPID3 acquires only the 208 fit/calibration members through the P-backed
+data root. All 1,467,342,029 bytes, JPEG/RGB decodes, pair dimensions and the
+single ProPhoto ICC identity pass twice byte exactly (`e04a611e...0647c`;
+stable `96b60f8f...b906`); sealed requests remain zero. This opens the frozen
+ICC-normalized shared logit-affine D0, not a product or population preference
+claim.
