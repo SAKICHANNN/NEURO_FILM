@@ -14292,3 +14292,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   ordinary nearest-neighbor, hard-medoid and sparse case retrieval without
   encoder-capacity rescue. Evidence:
   `docs/evidence/U5_R2REPID13_PAIRED_STYLE_LATENT_RESULT.json`.
+
+### 2026-08-21 - U5.R2REPID14 closes source-content case routing
+
+- The preregistered correction uses application-source to historical-before
+  content retrieval; all 24 routes freeze before calibration target decode.
+  Two reports are byte exact (`a66efd6f...b6e05`) with zero sealed reads.
+- Sparse top-3 beats top-1 on 19/24, but improves identity only 8/24 and loses
+  badly to the fixed global operator. A post-freeze paired-latent oracle passes
+  19/24, isolating the failure to effect identification/routing rather than
+  case-bank value or bounded-operator safety.
+- Close this routing family without K, temperature, feature or capacity rescue.
+  Retain global K=1 until an authenticated paired reference, explicit edit
+  identity or independently validated preference observation is available.
+  Evidence: `docs/evidence/U5_R2REPID14_PAIRED_STYLE_CASE_ROUTING_RESULT.json`.

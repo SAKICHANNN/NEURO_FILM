@@ -1784,3 +1784,15 @@ Explicit-operator safety passes. Close single-reference continuous latent
 prediction; next compare fixed global, ordinary nearest-neighbor, hard-medoid
 and sparse case retrieval without adding encoder capacity or reading sealed
 scenes.
+
+U5.R2REPID14 corrects the comparison to true source-observable case routing:
+80 paired before/after cases build bounded operators, 24 application sources
+freeze top-3 retrieval before their targets are decoded, and no sealed row is
+read. Forward/reverse reports are byte exact (`a66efd6f...b6e05`). Sparse
+top-3 beats top-1 on 19/24 and has median `+22.04%` gain, but improves identity
+only 8/24 with median `-24.60%`, beats the global operator only 6/24, and has a
+`-36.14%` median gain versus global. The paired-latent oracle passes at 19/24
+and median `+27.19%`: the case bank has value when the edit is independently
+identified, but source content cannot select it. Close source-only case routing
+without K, temperature, representation or capacity rescue; retain global K=1
+until a materially new effect-identifying observation exists.
