@@ -1,0 +1,54 @@
+{
+  "schema": "neuro-film.sf3-a0w-ntire-night-geometry-preflight-evidence.v1",
+  "experiment_id": "SF3.A0W_NTIRE_NIGHT_GEOMETRY_PREFLIGHT_V1",
+  "date": "2026-08-21",
+  "status": "FAIL_CLOSED_BEFORE_PIXEL_DECODE_ORIENTATION_CONTRACT",
+  "preregistration_commit": "1142d7c7",
+  "implementation_commit": "1602a02f",
+  "prepixel_member_case_fix_commit": "c99ed08c",
+  "contract_sha256": "f0e0d1bfe49bc259e802f4493d94aabfeca4b2eb3c0df5efff1a9f7fcab54a5a",
+  "official_baseline": {
+    "repository": "https://github.com/createcolor/nightimaging25",
+    "commit": "3478fbb39449f5cba29483d4cbfe019013f8261f",
+    "license": "MIT"
+  },
+  "execution_history": [
+    {
+      "attempt": 1,
+      "stop": "central-directory target member case was .JPG rather than the implementation's .jpg lookup",
+      "metadata_member_bytes": 0,
+      "raw_png_member_bytes": 0,
+      "sony_jpeg_member_bytes": 0,
+      "report_written": false
+    },
+    {
+      "attempt": 2,
+      "stop": "first selected row orientation was outside the frozen normal-only orientation set",
+      "metadata_rows_read": 1,
+      "raw_png_member_bytes": 0,
+      "sony_jpeg_member_bytes": 0,
+      "report_written": false
+    }
+  ],
+  "consumed_metadata_diagnostic": {
+    "numeric_id": 310,
+    "orientation": "Rotate 90 CW",
+    "huawei_bounds": [672, 2977, 0, 2654],
+    "as_shot_neutral_shape": [3],
+    "huawei_bounds_shape": [4],
+    "note": "This repeats the already-consumed first JSON only. It may motivate a prospective official-orientation successor but cannot rescue SF3.A0W."
+  },
+  "reads": {
+    "raw_png_member_bytes": 0,
+    "sony_jpeg_member_bytes": 0,
+    "pixel_decodes": 0,
+    "operator_fits": 0,
+    "renders": 0,
+    "quality_scores": 0
+  },
+  "bounded_final_candidate_counter_before": 1,
+  "bounded_final_candidate_counter_after": 1,
+  "decision": "FAIL_CLOSED_NO_INPLACE_ORIENTATION_RESCUE",
+  "next_leaf": "At most one prospective successor may implement the already-published official full EXIF orientation semantics on the same development rows. Any further structural mismatch closes this source before candidate 2.",
+  "claim_ceiling": "Pre-pixel protocol failure caused by an unnecessarily narrow frozen orientation set. No natural registration, target quality, operator, candidate 2, film, stock, package, schema, capability or product claim."
+}

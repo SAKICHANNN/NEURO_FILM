@@ -180,6 +180,15 @@ alias rescue. A separate prospective adoption may test those now-observed
 names and geometry semantics; candidate counter remains `1/3`. Evidence:
 `docs/evidence/SF3_A0V_NTIRE_NIGHT_METADATA_PREFLIGHT_RESULT.json`.
 
+SF3.A0W adopts the observed keys and official crop geometry but closes before
+any RAW/JPEG pixel decode: after a pre-payload `.JPG` lookup correction, the
+first selected JSON reports `Rotate 90 CW`, outside the unnecessarily narrow
+normal-only frozen orientation set. No in-place rescue is allowed. At most one
+prospective successor may use the official baseline's already-published full
+EXIF orientation semantics; any further structural mismatch closes this source
+before candidate 2. Counter remains `1/3`. Evidence:
+`docs/evidence/SF3_A0W_NTIRE_NIGHT_GEOMETRY_PREFLIGHT_RESULT.json`.
+
 **Autonomy invariant**: the active no-data Roll2Film and Style-safe work cannot
 depend on the owner supplying images, film/digital pairs, per-image labels, new
 preference votes or manual annotation. Public online data is an allowed source

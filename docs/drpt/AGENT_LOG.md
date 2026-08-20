@@ -14869,6 +14869,24 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   pixel, registration, operator, quality or product claim. Evidence:
   `docs/evidence/SF3_A0V_NTIRE_NIGHT_METADATA_PREFLIGHT_RESULT.json`.
 
+### 2026-08-21 - SF3.A0W stops before pixels on orientation scope
+
+- The official challenge baseline was pinned at commit `3478fbb3...f8261f`
+  and its projective/crop procedure frozen before member reads. Eight fixed
+  development IDs were selected; none can enter candidate 2 roles.
+- First execution stopped after central directories because Sony names use
+  uppercase `.JPG`; `c99ed08c` changes only that pre-payload lookup. The next
+  from-zero execution read one JSON and stopped before RAW/JPEG because its
+  orientation is `Rotate 90 CW`, outside the frozen normal-only set.
+- The normal-only restriction was an avoidable protocol narrowing: the pinned
+  official code already defines all EXIF orientations. SF3.A0W nevertheless
+  remains failed. One repeated read of the already-consumed JSON records exact
+  orientation and shape facts only; it cannot rescue the leaf.
+- Decision: no in-place change, no pixel or operator claim, counter remains
+  `1/3`. Permit at most one prospective full-official-orientation successor;
+  another structural mismatch closes this source before candidate 2. Evidence:
+  `docs/evidence/SF3_A0W_NTIRE_NIGHT_GEOMETRY_PREFLIGHT_RESULT.json`.
+
 ### 2026-08-21 - SF3.A2 current public-index refresh is infrastructure-invalid
 
 - A bounded three-stock Openverse contract was committed before access and
