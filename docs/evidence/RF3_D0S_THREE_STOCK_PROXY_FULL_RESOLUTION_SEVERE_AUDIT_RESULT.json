@@ -1,0 +1,72 @@
+{
+  "schema": "neuro-film.rf3-d0s-three-stock-proxy-full-resolution-severe-audit-evidence.v1",
+  "experiment_id": "RF3.D0S",
+  "date": "2026-08-21",
+  "status": "PARTIAL_PASS_THREE_K1_PROXIES_AO6_SEVERE_VETO",
+  "contract": {
+    "path": "configs/rf3_d0s_three_stock_proxy_full_resolution_severe_audit_v1.json",
+    "sha256": "d68e8cec85e6a2430434135825799f0b4d2d782198d85d4d4320dad2a3fa7120",
+    "freeze_commit": "0c9bbb3b"
+  },
+  "implementation": {
+    "commit": "ce64d453",
+    "evaluator_sha256": "ef004d5c68dd82a5cbfec1e868b845076b9e48e1f2a6908a1141f4b3e2a16c70",
+    "test_sha256": "a98abb05b36fdec990e8d350bfb73d9b649dcf4dc93d4a6cf0838645ab8c6e22"
+  },
+  "formal_replay": {
+    "run_a_report": "outputs/eval/rf3_d0s_three_stock_proxy_full_resolution_severe_audit_v1/run_a/report.json",
+    "run_b_report": "outputs/eval/rf3_d0s_three_stock_proxy_full_resolution_severe_audit_v1/run_b/report.json",
+    "report_sha256_both": "3d924a593b49b4b767359db42842d945f1fdfec515120685d845c9ea26a9bb52",
+    "scientific_identity_both": "907902796ce9f1b67b26ad69f85f444db9241391770747b77155448ea3413689",
+    "risk_crop_sheet_sha256_both": "fe8409be94b15592ccb6f3c10f21a511bb60b1f8e628bf20c89aafd99b73e4c3",
+    "full_resolution_outputs_verified_per_run": 64,
+    "source_rows": 16,
+    "arms": 4,
+    "integrity_failures": 0,
+    "all_png_and_pixel_hashes_exact": true,
+    "all_geometry_exact": true,
+    "maximum_new_output_boundary_fraction": 0.0
+  },
+  "autonomous_visual_review": {
+    "status": "risk_based_full_resolution_severe_review_complete",
+    "reviewed_risk_crop_outputs": 64,
+    "crop_roles_per_output": [
+      "lowest_source_gradient",
+      "center",
+      "highest_source_gradient"
+    ],
+    "additional_full_frame_risk_outputs_reviewed": [
+      {
+        "source_id": "sony_nex_3n",
+        "arm": "ao6_velvia50_display_proxy_t15_c35",
+        "png_sha256": "3e5172e2aab77eb27f2b910d95105c52f12facd043de02799d9ff2d0adfa0a07",
+        "finding": "confirmed_candidate_amplified_coloured_magenta_speckle_across_smooth_sky",
+        "severe": true
+      },
+      {
+        "source_id": "leica_digilux_3",
+        "arm": "ao6_velvia50_display_proxy_t15_c35",
+        "png_sha256": "473a7beb745a4f9dde182d37f2e8fcab910e6733fd7d3e0afcf7e46a81f7d73a",
+        "finding": "strong_colour_and_orientation_inherited_from_source_without_confirmed_new_severe_artifact",
+        "severe": false
+      },
+      {
+        "source_id": "nikon_d200",
+        "arm": "ao6_velvia50_display_proxy_t15_c35",
+        "png_sha256": "c91d53edd41da9ee92e03a75512cb22f7fa0d07c2303e815726c57d4fbe06e46",
+        "finding": "strong_high_key_colour_without_confirmed_geometry_block_banding_or_speckle_failure",
+        "severe": false
+      }
+    ],
+    "confirmed_severe_by_arm": {
+      "legacy_unpaired_safe_lab_k1_velvia50": 0,
+      "legacy_unpaired_safe_lab_k1_portra400": 0,
+      "legacy_unpaired_safe_lab_k1_ektar100": 0,
+      "ao6_velvia50_display_proxy_t15_c35": 1
+    },
+    "interpretation": "The three low-capacity safe-Lab K=1 proxies remain mechanically clean in this bounded 16-source risk review. AO6 visibly amplifies pre-existing source noise into coloured speckle on the Sony sky; under the project's severe-first rule this is a veto, not a style-preference loss. The finding is scoped to this population and does not erase prior AO6 development evidence."
+  },
+  "decision": "RETAIN_THREE_LEGACY_K1_PROXIES_AS_SAFETY_BASELINES_AND_VETO_AO6_PROMOTION_ON_THIS_POPULATION",
+  "next_leaf": "Acquire a rights-authorized same-scene, independently grouped Velvia 50, Portra 400 and Ektar 100 pixel matrix; do not tune these proxies or open adaptive routing without a new stock-identifying observation.",
+  "claim_ceiling": "Bounded mechanical integrity and autonomous severe-artifact evidence for existing three-stock-labelled K=1 proxy outputs on 16 CC0 digital inputs. No stock truth, target closeness, stock distinguishability, calibration, universal safety, population preference, multi-stock completion or product promotion."
+}

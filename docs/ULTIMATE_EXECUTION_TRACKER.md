@@ -2108,3 +2108,12 @@ and gradient-tail gates fail. Fit/calibration/sealed target reads are
 WB/curve/capacity/router rescue, and return the immediate mainline to mature
 RAW/HDR portable explicit-operator engineering. Evidence:
 `docs/evidence/SF3_A0T_RGB2RAW_METADATA_EXPLICIT_ISP_D0_RESULT.json`.
+
+RF3.D0S bounds the missing full-resolution safety check for the first
+three-stock K=1 proxy matrix. Two reports and risk sheets are byte exact; all
+64 outputs pass mechanical integrity and zero-new-boundary gates. The legacy
+Velvia/Portra/Ektar proxies show no confirmed severe failure, but AO6 has one
+confirmed coloured-speckle failure on `sony_nex_3n` and is vetoed from
+promotion on this population. Next is controlled three-stock pixel
+acquisition, not proxy tuning or adaptive routing. Evidence:
+`docs/evidence/RF3_D0S_THREE_STOCK_PROXY_FULL_RESOLUTION_SEVERE_AUDIT_RESULT.json`.

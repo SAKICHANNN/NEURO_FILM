@@ -15030,6 +15030,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   calibrated exposure/noise, arbitrary-DNG support, renderer integration,
   public schema/capability, film/stock identity or product admission.
 
+### 2026-08-21 - RF3.D0S closes the bounded three-stock proxy safety audit
+
+- Two exact replays verify all 64 RF3.D0 PNG/pixel hashes, geometry and zero
+  new boundary values; the three legacy Velvia/Portra/Ektar K=1 proxies have no
+  confirmed severe failure in the deterministic risk crops.
+- Full-frame review confirms AO6 amplifies Sony NEX-3N sky noise into coloured
+  magenta speckle. Severe-first policy therefore vetoes AO6 promotion on this
+  population while preserving it only as a Velvia display-proxy development
+  baseline. No proxy is relabelled as stock truth; acquisition remains next.
+
 ### 2026-08-21 - U1.3D freezes held-device DNG-to-LibRaw conformance
 
 - Four U1.3C rows are explicitly consumed development diagnostics. Five other
