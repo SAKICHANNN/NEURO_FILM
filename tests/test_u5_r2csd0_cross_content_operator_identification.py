@@ -21,7 +21,6 @@ from src.eval.csd_cross_content_operator_identification import (
     _verify_official_source as verify_official_source,
 )
 
-
 ROOT = Path(__file__).resolve().parents[1]
 
 
