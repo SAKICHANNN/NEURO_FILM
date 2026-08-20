@@ -14624,6 +14624,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   remain forbidden. Evidence:
   `docs/evidence/SF3_A1D2_COMMONS_THREE_STOCK_PIXEL_INTEGRITY_RESULT.json`.
 
+### 2026-08-21 - SF3.A1E closes the current Commons pool for stock learning
+
+- Two complete offline processes over the clean 64-row author-held-out matrix
+  reproduce report SHA-256 `dd3905c2...66a33`. All four frozen contrasts fail.
+- Three-way RGB balanced accuracy is `.53247`, below luma `.57864`.
+  Portra--Ektar is `.53355` with permutation `p=.434`. Velvia pairwise RGB
+  reaches about `.79`, but matches or loses to luma and has excessive HOG
+  content signal; it is not stock-specific evidence.
+- No K=1 operator, LUT, retrieval model or router is fitted. The next admissible
+  stock-learning observation must be genuinely same-scene and independently
+  grouped with explicit rights. Existing product proxies remain generic
+  film-inspired looks; AO6 remains Velvia 50 display-proxy only. Evidence:
+  `docs/evidence/SF3_A1E_COMMONS_THREE_STOCK_IDENTIFIABILITY_RESULT.json`.
+
 ### 2026-08-21 - SF3.A0P qualifies PPISP capture-time pairs without pixels
 
 - Selected the latest actionable capture-time observation rather than another

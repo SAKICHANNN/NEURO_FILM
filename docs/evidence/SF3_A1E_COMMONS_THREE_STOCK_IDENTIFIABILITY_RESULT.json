@@ -1,0 +1,66 @@
+{
+  "schema": "neuro-film.sf3-a1e-commons-three-stock-identifiability-result.v1",
+  "experiment_id": "SF3.A1E",
+  "status": "FAIL_CLOSED",
+  "decision": "CLOSE_CURRENT_COMMONS_STOCK_LEARNING_AND_RETAIN_DATA_GAP",
+  "bindings": {
+    "contract_sha256": "3964edc9a6c322e445bf03fae97852e30bcb08a09151ab85b7896ea04e0af018",
+    "implementation_sha256": "0fe8a4e76672e8c085ce7acfae673fe2f9a99e8c077a9e41191c39860e2883b8",
+    "runner_sha256": "928df35777dc338cba983769134948ca18b94d3286c41ffd4a67932e17cbc45f",
+    "test_sha256": "aa97a31dc1b3f7db3276aaa4500b0075c453eab4eab10722af891906a384cdd4",
+    "formal_report_sha256": "dd3905c2e668cc5544a3da5997ea3cdc63fea84b15605dbdc174b71501866a33"
+  },
+  "formal_replay": {
+    "processes": 2,
+    "reports_byte_exact": true,
+    "rows": 64,
+    "author_groups_by_stock": {
+      "fujifilm_velvia_50": 21,
+      "kodak_portra_400": 21,
+      "kodak_ektar_100": 22
+    }
+  },
+  "contrasts": {
+    "velvia_vs_portra_vs_ektar": {
+      "rgb_balanced_accuracy": 0.5324675324675324,
+      "permutation_p": 0.006,
+      "best_nuisance": "luma_distribution",
+      "best_nuisance_balanced_accuracy": 0.5786435786435785,
+      "rgb_minus_nuisance": -0.04617604617604609,
+      "passed": false
+    },
+    "velvia_vs_portra": {
+      "rgb_balanced_accuracy": 0.7857142857142857,
+      "permutation_p": 0.002,
+      "best_nuisance": "luma_distribution",
+      "best_nuisance_balanced_accuracy": 0.7857142857142857,
+      "rgb_minus_nuisance": 0.0,
+      "hog_balanced_accuracy": 0.6904761904761905,
+      "passed": false
+    },
+    "velvia_vs_ektar": {
+      "rgb_balanced_accuracy": 0.7878787878787878,
+      "permutation_p": 0.002,
+      "best_nuisance": "luma_distribution",
+      "best_nuisance_balanced_accuracy": 0.8344155844155845,
+      "rgb_minus_nuisance": -0.046536796536796654,
+      "hog_balanced_accuracy": 0.698051948051948,
+      "passed": false
+    },
+    "portra_vs_ektar": {
+      "rgb_balanced_accuracy": 0.5335497835497836,
+      "permutation_p": 0.434,
+      "best_nuisance": "hog_grayscale",
+      "best_nuisance_balanced_accuracy": 0.5119047619047619,
+      "rgb_minus_nuisance": 0.02164502164502169,
+      "rgb_minus_nuisance_ci95": [-0.20998376623376622, 0.2564935064935065],
+      "passed": false
+    }
+  },
+  "all_four_stock_contrasts_passed": false,
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "scientific_conclusion": "The cleaned Commons weak-label pool contains a visible Velvia-versus-negative-film separation, but it is no stronger than brightness, low-frequency scene colour or content controls. Portra 400 and Ektar 100 are not identified. The pool cannot support stock-specific operator fitting, adaptive LUTs, retrieval or latent modes.",
+  "next_mainline": "Acquire genuinely same-scene and independently grouped stock observations with explicit research/reuse rights, or retain generic film-inspired K=1 product looks and the existing Velvia display-proxy AO6 baseline without stock-response claims.",
+  "claim_ceiling": "author-held-out weak exact-text Commons stock-versus-content/source identifiability failure on one cleaned 64-image pool; no nonexistence claim about film stocks and no stock response, operator, calibration, training or product claim"
+}

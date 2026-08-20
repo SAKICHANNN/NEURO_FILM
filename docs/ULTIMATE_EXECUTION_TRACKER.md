@@ -45,6 +45,18 @@ after-only architecture or procedural self-supervision paper cannot increment
 or reset it. The exact rule is in
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` section 1.1.
 
+**Multi-stock correction, 2026-08-21:** the bounded single-reference cycle is
+subordinate to named-stock evidence and must not expand through paper-inspired
+capacity variants. RF3.D0 retains only a mechanical three-proxy baseline and
+AO6 is only a Velvia 50 display-proxy Look Approximation. SF3.A1C/A1D2 acquired
+and cleaned 72 author-balanced Commons images for Velvia 50, Portra 400 and
+Ektar 100, but SF3.A1E rejects all four author-held-out identifiability
+contrasts (`64` clean rows; Portra--Ektar RGB BA `.53355`, `p=.434`; Velvia
+separation is matched or exceeded by nuisance controls). This pool is closed
+for fitting. A new K=1 stock expert requires genuinely same-scene,
+rights-authorized and independently grouped stock observations; adaptive LUT,
+retrieval and `K>1` remain downstream of that gate.
+
 SF3.A0P now passes a separately bounded capture-time source qualification for
 NVIDIA PPISP at exact revision `2521064...ded69`: four scenes expose 351 exact
 standard/auto JPEG name pairs plus COLMAP camera/image metadata under explicit
