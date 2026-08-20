@@ -39,23 +39,34 @@ def _role_sort_key(scene_id: str) -> str:
 
 
 def _probe_member(
-    url: str, member: dict[str, Any], *, probe_bytes: int, required_signature: bytes
+    url: str,
+    member: dict[str, Any],
+    *,
+    header_bytes: int,
+    compressed_prefix_bytes: int,
+    required_signature: bytes,
 ) -> dict[str, Any]:
     start = int(member["local_offset"])
-    data, _ = _fetch(url, (start, start + probe_bytes - 1))
-    if data[:4] != b"PK\x03\x04":
+    header, _ = _fetch(url, (start, start + header_bytes - 1))
+    if header[:4] != b"PK\x03\x04":
         raise ValueError(f"local header missing: {member['name']}")
-    values = struct.unpack_from("<IHHHHHIIIHH", data, 0)
+    values = struct.unpack_from("<IHHHHHIIIHH", header, 0)
     method, name_len, extra_len = values[3], values[9], values[10]
-    payload_start = 30 + name_len + extra_len
-    compressed = data[payload_start:]
+    if int(member["compressed_size"]) <= compressed_prefix_bytes:
+        raise ValueError(f"member too small for a non-complete prefix: {member['name']}")
+    compressed_start = start + header_bytes + name_len + extra_len
+    compressed, _ = _fetch(
+        url,
+        (compressed_start, compressed_start + compressed_prefix_bytes - 1),
+    )
     decoder = zlib.decompressobj(-15)
     signature = decoder.decompress(compressed, len(required_signature))
     return {
         "name": member["name"],
         "method": method,
-        "range_start": start,
-        "range_bytes": len(data),
+        "local_header_range_start": start,
+        "compressed_prefix_range_start": compressed_start,
+        "range_bytes": len(header) + len(compressed),
         "decompressed_signature_hex": signature.hex(),
         "required_signature_exact": signature == required_signature,
     }
@@ -88,7 +99,10 @@ def build(contract_path: Path, output_path: Path) -> dict[str, Any]:
     required_signature = bytes.fromhex(
         contract["eligibility"]["required_decompressed_signature_hex"]
     )
-    probe_bytes = int(contract["eligibility"]["range_probe_bytes_per_member"])
+    header_bytes = int(contract["eligibility"]["local_header_bytes_per_member"])
+    compressed_prefix_bytes = int(
+        contract["eligibility"]["compressed_prefix_bytes_per_member"]
+    )
     jobs = [
         (str(row["scene_id"]), endpoint, row[f"{endpoint}_member"])
         for row in remaining
@@ -100,7 +114,8 @@ def build(contract_path: Path, output_path: Path) -> dict[str, Any]:
         fact = _probe_member(
             contract["source"]["zip_url"],
             member,
-            probe_bytes=probe_bytes,
+            header_bytes=header_bytes,
+            compressed_prefix_bytes=compressed_prefix_bytes,
             required_signature=required_signature,
         )
         return scene_id, endpoint, fact
