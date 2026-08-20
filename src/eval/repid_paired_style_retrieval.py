@@ -65,7 +65,7 @@ def _medoid_index(latent: np.ndarray) -> int:
 
 
 def train_case_bank(
-    after_features: np.ndarray,
+    source_features: np.ndarray,
     paired_deltas: np.ndarray,
     operator_parameters: np.ndarray,
     *,
@@ -74,7 +74,7 @@ def train_case_bank(
 ) -> dict[str, Any]:
     """Fit the frozen REPID13 factorization and transparent case bank."""
 
-    features = np.asarray(after_features, dtype=np.float64)
+    features = np.asarray(source_features, dtype=np.float64)
     deltas = np.asarray(paired_deltas, dtype=np.float64)
     parameters = np.asarray(operator_parameters, dtype=np.float64)
     if features.shape[0] != deltas.shape[0] or features.shape[0] != parameters.shape[0]:
@@ -108,13 +108,13 @@ def train_case_bank(
 
 def predict_case_routes(
     model: Mapping[str, Any],
-    after_features: np.ndarray,
+    source_features: np.ndarray,
     retrieval_spec: Mapping[str, Any],
 ) -> dict[str, Any]:
     """Return frozen after-only top-3, controls, neighbors and weights."""
 
     queries = _standardize_query(
-        after_features,
+        source_features,
         np.asarray(model["feature_mean"]),
         np.asarray(model["feature_scale"]),
         1e-8,
@@ -136,7 +136,9 @@ def predict_case_routes(
         wrong.append(weights @ cyclic[indices])
         neighbors.append(indices.tolist())
         weights_out.append(weights.tolist())
-    student = predict_factorized(model["factorized"], np.asarray(after_features))
+    source_models = predict_factorized(
+        model["factorized"], np.asarray(source_features)
+    )
     medoid = parameters[int(model["medoid_index"])]
     global_parameters = np.asarray(model["factorized"]["global_parameters"])
     row_count = queries.shape[0]
@@ -145,7 +147,7 @@ def predict_case_routes(
         "top1_parameters": np.stack(top1),
         "medoid_parameters": np.repeat(medoid[None, :], row_count, axis=0),
         "global_parameters": np.repeat(global_parameters[None, :], row_count, axis=0),
-        "repid13_student_parameters": student["candidate_parameters"],
+        "source_ridge_parameters": source_models["direct_parameters"],
         "cyclic_parameters": np.stack(wrong),
         "neighbor_indices": neighbors,
         "neighbor_weights": weights_out,

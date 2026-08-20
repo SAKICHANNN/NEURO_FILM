@@ -78,7 +78,7 @@ def _summarize(rows: list[dict[str, Any]], config: dict[str, Any], operator: dic
             "gain_vs_global",
             "gain_vs_top1",
             "gain_vs_medoid",
-            "gain_vs_repid13_student",
+            "gain_vs_source_ridge",
             "gain_vs_cyclic",
             "paired_latent_oracle_improvement",
         )
@@ -94,8 +94,8 @@ def _summarize(rows: list[dict[str, Any]], config: dict[str, Any], operator: dic
         "gain_vs_top1_median": float(np.median(comparisons["gain_vs_top1"])),
         "beat_medoid_rate": _rate(comparisons["gain_vs_medoid"]),
         "gain_vs_medoid_median": float(np.median(comparisons["gain_vs_medoid"])),
-        "beat_repid13_student_rate": _rate(comparisons["gain_vs_repid13_student"]),
-        "gain_vs_repid13_student_median": float(np.median(comparisons["gain_vs_repid13_student"])),
+        "beat_source_ridge_rate": _rate(comparisons["gain_vs_source_ridge"]),
+        "gain_vs_source_ridge_median": float(np.median(comparisons["gain_vs_source_ridge"])),
         "beat_cyclic_rate": _rate(comparisons["gain_vs_cyclic"]),
         "gain_vs_cyclic_median": float(np.median(comparisons["gain_vs_cyclic"])),
         "paired_latent_oracle_improvement_rate": _rate(comparisons["paired_latent_oracle_improvement"]),
@@ -121,8 +121,8 @@ def _summarize(rows: list[dict[str, Any]], config: dict[str, Any], operator: dic
             "gain_vs_top1_median": metrics["gain_vs_top1_median"] >= spec["gain_vs_top1_median_min"],
             "beat_medoid_rate": metrics["beat_medoid_rate"] >= spec["beat_medoid_rate_min"],
             "gain_vs_medoid_median": metrics["gain_vs_medoid_median"] >= spec["gain_vs_medoid_median_min"],
-            "beat_repid13_student_rate": metrics["beat_repid13_student_rate"] >= spec["beat_repid13_student_rate_min"],
-            "gain_vs_repid13_student_median": metrics["gain_vs_repid13_student_median"] >= spec["gain_vs_repid13_student_median_min"],
+            "beat_source_ridge_rate": metrics["beat_source_ridge_rate"] >= spec["beat_source_ridge_rate_min"],
+            "gain_vs_source_ridge_median": metrics["gain_vs_source_ridge_median"] >= spec["gain_vs_source_ridge_median_min"],
             "beat_cyclic_rate": metrics["beat_cyclic_rate"] >= spec["beat_cyclic_rate_min"],
             "gain_vs_cyclic_median": metrics["gain_vs_cyclic_median"] >= spec["gain_vs_cyclic_median_min"],
             "paired_latent_oracle_improvement_rate": metrics["paired_latent_oracle_improvement_rate"] >= spec["paired_latent_oracle_improvement_rate_min"],
@@ -187,27 +187,28 @@ def run(config_path: Path, original_root: Path, original_report_path: Path, repo
         record = originals[scene_id]
         original = load_original_srgb(original_root / record["logical_path"], expected_sha256=record["sha256"])
         parameters, diagnostics = fit_scene_effect(original, winner, scene_id, operator)
-        fit_payload.append((scene_id, spatial_descriptor(winner, descriptor), spatial_descriptor(original, descriptor), parameters, diagnostics))
+        fit_payload.append((scene_id, spatial_descriptor(original, descriptor), spatial_descriptor(winner, descriptor), parameters, diagnostics))
     fit_payload.sort(key=lambda item: item[0])
     fit_ids = [item[0] for item in fit_payload]
-    after_features = np.stack([item[1] for item in fit_payload])
-    paired_deltas = np.stack([item[1] - item[2] for item in fit_payload])
+    source_features = np.stack([item[1] for item in fit_payload])
+    paired_deltas = np.stack([item[2] - item[1] for item in fit_payload])
     fit_parameters = np.stack([item[3] for item in fit_payload])
     model = train_case_bank(
-        after_features,
+        source_features,
         paired_deltas,
         fit_parameters,
         latent_spec=repid13_config["latent"],
         retrieval_spec=config["retrieval"],
     )
 
-    calibration_references: dict[str, np.ndarray] = {}
+    calibration_sources: dict[str, np.ndarray] = {}
     calibration_features: dict[str, np.ndarray] = {}
     for row in calibration_rows:
         scene_id = row["scene_id"]
-        winner = _load_winner(winners[scene_id])
-        calibration_references[scene_id] = winner
-        calibration_features[scene_id] = spatial_descriptor(winner, descriptor)
+        record = originals[scene_id]
+        source = load_original_srgb(original_root / record["logical_path"], expected_sha256=record["sha256"])
+        calibration_sources[scene_id] = source
+        calibration_features[scene_id] = spatial_descriptor(source, descriptor)
     calibration_ids = sorted(calibration_features)
     feature_matrix = np.stack([calibration_features[scene_id] for scene_id in calibration_ids])
     predictions = predict_case_routes(model, feature_matrix, config["retrieval"])
@@ -217,20 +218,19 @@ def run(config_path: Path, original_root: Path, original_report_path: Path, repo
         "top1_parameters": predictions["top1_parameters"].tolist(),
         "medoid_parameters": predictions["medoid_parameters"].tolist(),
         "global_parameters": predictions["global_parameters"].tolist(),
-        "repid13_student_parameters": predictions["repid13_student_parameters"].tolist(),
+        "source_ridge_parameters": predictions["source_ridge_parameters"].tolist(),
         "cyclic_parameters": predictions["cyclic_parameters"].tolist(),
         "neighbor_scene_ids": [[fit_ids[index] for index in row] for row in predictions["neighbor_indices"]],
         "neighbor_weights": predictions["neighbor_weights"],
     }
     prediction_freeze_sha256 = _canonical_sha(prediction_freeze)
 
-    calibration_originals: dict[str, np.ndarray] = {}
+    calibration_targets: dict[str, np.ndarray] = {}
     actual_deltas = []
     for scene_id in calibration_ids:
-        record = originals[scene_id]
-        original = load_original_srgb(original_root / record["logical_path"], expected_sha256=record["sha256"])
-        calibration_originals[scene_id] = original
-        actual_deltas.append(calibration_features[scene_id] - spatial_descriptor(original, descriptor))
+        winner = _load_winner(winners[scene_id])
+        calibration_targets[scene_id] = winner
+        actual_deltas.append(spatial_descriptor(winner, descriptor) - calibration_features[scene_id])
     oracle = predict_latent_oracle(model, np.stack(actual_deltas), config["retrieval"])
 
     rows: list[dict[str, Any]] = []
@@ -239,7 +239,7 @@ def run(config_path: Path, original_root: Path, original_report_path: Path, repo
         "global",
         "top1",
         "medoid",
-        "repid13_student",
+        "source_ridge",
         "cyclic",
         "paired_latent_oracle",
     )
@@ -249,7 +249,7 @@ def run(config_path: Path, original_root: Path, original_report_path: Path, repo
             "global": predictions["global_parameters"][index],
             "top1": predictions["top1_parameters"][index],
             "medoid": predictions["medoid_parameters"][index],
-            "repid13_student": predictions["repid13_student_parameters"][index],
+            "source_ridge": predictions["source_ridge_parameters"][index],
             "cyclic": predictions["cyclic_parameters"][index],
             "paired_latent_oracle": oracle["parameters"][index],
         }
@@ -257,7 +257,7 @@ def run(config_path: Path, original_root: Path, original_report_path: Path, repo
         clip_counts = {}
         for name in parameter_names:
             decoded[name], clip_counts[name] = decode_safe_effect(encoded_parameters[name], operator)
-        evaluated = evaluate_effects(calibration_originals[scene_id], calibration_references[scene_id], decoded)
+        evaluated = evaluate_effects(calibration_sources[scene_id], calibration_targets[scene_id], decoded)
         errors = evaluated["errors"]
         identity = evaluated["identity_error"]
         rows.append({
@@ -266,7 +266,7 @@ def run(config_path: Path, original_root: Path, original_report_path: Path, repo
             "gain_vs_global": relative_gain(errors["global"], errors["candidate"]),
             "gain_vs_top1": relative_gain(errors["top1"], errors["candidate"]),
             "gain_vs_medoid": relative_gain(errors["medoid"], errors["candidate"]),
-            "gain_vs_repid13_student": relative_gain(errors["repid13_student"], errors["candidate"]),
+            "gain_vs_source_ridge": relative_gain(errors["source_ridge"], errors["candidate"]),
             "gain_vs_cyclic": relative_gain(errors["cyclic"], errors["candidate"]),
             "paired_latent_oracle_improvement": relative_gain(identity, errors["paired_latent_oracle"]),
             "identity_error": identity,
@@ -297,7 +297,8 @@ def run(config_path: Path, original_root: Path, original_report_path: Path, repo
         "implementation_sha256": {path: _sha256((ROOT / path).read_bytes()) for path in implementation_paths},
         "fit_scene_count": len(fit_rows),
         "calibration_scene_count": len(calibration_rows),
-        "calibration_original_reads_before_prediction_freeze": 0,
+        "calibration_source_reads_before_prediction_freeze": len(calibration_rows),
+        "calibration_target_reads_before_prediction_freeze": 0,
         "sealed_requests": 0,
         "prediction_freeze_sha256": prediction_freeze_sha256,
         "model_identity_sha256": _canonical_sha(_jsonable(model)),
