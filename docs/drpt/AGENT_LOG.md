@@ -14277,3 +14277,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   The next leaf must use independent identifying information rather than
   another CanonCGT atlas or self-canonical repair.
 - Evidence: `docs/evidence/U5_R2REPID12_CANONCGT_FULL_CHAIN_ATLAS_RESPONSE_RESULT.json`.
+
+### 2026-08-21 - U5.R2REPID13 closes after-only paired-latent prediction
+
+- A clean-room paired-content cancellation latent, motivated by the 2026
+  InstantRetouch asymmetric-encoder idea, predicts only the existing bounded
+  12-parameter colour operator. Calibration predictions freeze before any
+  calibration original read; sealed reads remain zero.
+- Forward/reverse reports are byte exact (`ed9680bd...d1ed7`). The diagnostic
+  paired-latent oracle improves 20/24 with median `+27.44%`, while the after-only
+  student improves only 10/24 with median `-16.01%`. It beats the matched direct
+  ridge but loses to the fixed global operator; all safety gates pass.
+- Close continuous single-reference latent prediction. Next compare global,
+  ordinary nearest-neighbor, hard-medoid and sparse case retrieval without
+  encoder-capacity rescue. Evidence:
+  `docs/evidence/U5_R2REPID13_PAIRED_STYLE_LATENT_RESULT.json`.

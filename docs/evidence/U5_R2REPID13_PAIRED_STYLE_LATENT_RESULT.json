@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "experiment_id": "u5.r2repid13-paired-style-latent-v1",
+  "node": "ULT > U5 > U5.R2 > U5.R2REPID13",
+  "prereg_commit": "1e30fc04",
+  "implementation_commit": "37eeb2f6",
+  "formal_report_sha256": "ed9680bd10616168af693e7d187ee4afea8eb4a030e2462c050b7eab7fbd1ed7",
+  "formal_reverse_report_sha256": "ed9680bd10616168af693e7d187ee4afea8eb4a030e2462c050b7eab7fbd1ed7",
+  "stable_evidence_id": "sha256:fc483477f78d9524a2ffbf993a6d067c78401576ac462e79b57bdfc71054b9f8",
+  "information_flow": {
+    "fit_pairs": 80,
+    "calibration_after_references": 24,
+    "calibration_original_reads_before_prediction_freeze": 0,
+    "sealed_requests": 0,
+    "direct_final_rgb_prediction": false
+  },
+  "metrics": {
+    "candidate_improvement_rate": 0.4166666666666667,
+    "candidate_improvement_median": -0.16005863712428356,
+    "candidate_improvement_worst": -1.6425725295969753,
+    "beat_direct_rate": 0.8333333333333334,
+    "gain_vs_direct_median": 0.2609871143192229,
+    "beat_global_rate": 0.4583333333333333,
+    "gain_vs_global_median": -0.07443240616066743,
+    "beat_permuted_rate": 0.6666666666666666,
+    "gain_vs_permuted_median": 0.22829729557287504,
+    "paired_latent_oracle_improvement_rate": 0.8333333333333334,
+    "paired_latent_oracle_improvement_median": 0.27439017959336914,
+    "predicted_latent_rmse": 0.4359262175835833,
+    "median_output_delta_e_oklab": 0.05103926508941087,
+    "maximum_new_exact_boundary_fraction": 0.0,
+    "maximum_p999_gradient_ratio": 1.3737677577126568,
+    "minimum_determinant": 0.6789207379829334,
+    "maximum_condition_number": 2.178154199857865,
+    "minimum_singular_value": 0.536586294418534
+  },
+  "decision": "close_exact_repid_paired_style_latent_predictor",
+  "interpretation": "The paired-content edit latent is useful when the same-scene original is available, and its factorization materially beats an equal-input direct after-only ridge. A single after-reference does not recover that latent well enough to beat identity or the global operator on this development cohort. The failure is reference-only latent identification, not explicit-operator safety.",
+  "next_allowed_leaf": "Prospectively compare fixed global, ordinary nearest-neighbor, hard-medoid and sparse top-k case retrieval using the same consumed development rows. Do not add encoder capacity or read sealed scenes.",
+  "claim_ceiling": "Private internal-research paired-supervised after-reference explicit-operator identification negative; not population preference, film, stock, scanner, arbitrary-source, package, capability or product evidence."
+}

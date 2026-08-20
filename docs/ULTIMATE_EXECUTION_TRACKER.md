@@ -1772,3 +1772,15 @@ strength, threshold and reference-exclusion rescue. No explicit operator is
 fit. CanonCGT fixed-atlas observation repair is now closed; the next leaf must
 introduce an independent identifying observation rather than distill or repair
 these responses.
+
+U5.R2REPID13 tests that independent observation using paired-content
+cancellation, motivated by the 2026 InstantRetouch asymmetric style-latent
+idea but predicting only the existing bounded explicit operator. Two reports
+are byte exact (`ed9680bd...d1ed7`). The paired-latent oracle passes at 20/24
+and median `+27.44%`, and the factorized after-only predictor beats a matched
+direct ridge on 20/24 with median `+26.10%`; nevertheless it improves identity
+only 10/24 with median `-16.01%` and loses to the fixed global operator.
+Explicit-operator safety passes. Close single-reference continuous latent
+prediction; next compare fixed global, ordinary nearest-neighbor, hard-medoid
+and sparse case retrieval without adding encoder capacity or reading sealed
+scenes.
