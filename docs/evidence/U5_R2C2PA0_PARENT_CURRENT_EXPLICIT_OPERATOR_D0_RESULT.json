@@ -1,0 +1,48 @@
+{
+  "schema": "neuro-film.u5-r2c2pa0-parent-current-explicit-operator-evidence.v1",
+  "experiment_id": "U5.R2C2PA0",
+  "date": "2026-08-21",
+  "status": "FAIL_CLOSED_C2PA_PAIRED_OPERATOR_D0",
+  "decision": "close_exact_c2pa_parent_current_registration_and_triangular_operator_family_without_rescue",
+  "contract": {
+    "path": "configs/u5_r2c2pa0_parent_current_explicit_operator_d0_v1.json",
+    "sha256": "b7189f3955fd0c6c7bd44610d13fa2db964955c676c804b72b14becaa3e4e624"
+  },
+  "implementation": {
+    "final_commit": "5d584e1e0fea8c1cdbe2f3e94cbae5a953c329e7",
+    "evaluator_sha256": "d2d44cab705c351dabc713e69e844bb46e16e9e3f3572b8de28057916ffdac72",
+    "test_sha256": "6d50f96befc3ba36c043d6652cbd6f7a5e1db9f275fd3ebdd682e4e7af25aab7"
+  },
+  "formal_runs": {
+    "canonical_report": "outputs/eval/u5_r2c2pa0_parent_current_explicit_operator_d0_v1/run_canonical.json",
+    "canonical_report_sha256": "1f3c5023bd5d26f68d3589fddde1fdc69df1332d3006ab6acb194d79cf44cb75",
+    "reverse_report": "outputs/eval/u5_r2c2pa0_parent_current_explicit_operator_d0_v1/run_reverse.json",
+    "reverse_report_sha256": "807edb888c347b82fc05c059c5a1a6084f65b7b94b14c9c53c3067d90e402489",
+    "scientific_content_exact": true,
+    "scientific_identity": "e235c2f7c3c1ade39cecb8a70696763efd61a67da1ca75fa7e172dd4c6b20c8c"
+  },
+  "observations": {
+    "strict_source_rows": 48,
+    "registration_eligible_rows": 46,
+    "candidate_improvement_rate_over_identity": 0.8913043478260869,
+    "median_improvement_over_identity": 0.15758311429515418,
+    "worst_improvement_over_identity": -0.2673541712803202,
+    "candidate_win_rate_over_diagonal": 0.45652173913043476,
+    "median_improvement_over_diagonal": -0.0016886159046711935,
+    "candidate_win_rate_over_shifted": 0.9565217391304348,
+    "median_improvement_over_shifted": 0.2103202759406004,
+    "population_p95_absolute_rgb_error": 0.1151483001392411,
+    "minimum_safe_dose": 0.5944518446922302,
+    "maximum_new_boundary_fraction": 0.00007350470430107527,
+    "finite_inverse_cube_and_jacobian_gates_pass": true
+  },
+  "failed_gates": [
+    "median identity improvement",
+    "worst identity improvement",
+    "diagonal win rate",
+    "median diagonal improvement",
+    "new boundary"
+  ],
+  "interpretation": "Same-file C2PA parent/current observations contain a material paired signal, but this frozen registration plus 14-parameter bounded triangular operator is not sufficiently strong, robust against the simpler diagonal control, or boundary-clean. No threshold, registration, cohort, operator or capacity rescue is permitted.",
+  "claim_ceiling": "Internal quarantined paired-observation mechanism evidence only; no trusted provenance, edit identity, neutral truth, arbitrary after-only inference, film-stock response, calibration, interface, capability or product claim."
+}

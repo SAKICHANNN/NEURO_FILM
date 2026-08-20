@@ -14395,6 +14395,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   then at most one shared bounded explicit-operator discriminant. It opens no
   image-rights, preference-generalization or product claim. Evidence:
   `docs/evidence/U5_R2SPCP0_METADATA_SOURCE_LOCK_RESULT.json`.
+
+### 2026-08-21 - U5.R2C2PA0 closes the exact paired-operator family
+
+- Two fresh processes over the 48 strict embedded-parent rows reproduce the
+  same scientific identity. Registration retains 46 rows, but the candidate
+  fails median/worst identity improvement, diagonal-control and exact new-
+  boundary gates. The fixed registration and 14-parameter triangular operator
+  close without rescue; no stock, product or arbitrary after-only claim opens.
+  Evidence: `docs/evidence/U5_R2C2PA0_PARENT_CURRENT_EXPLICIT_OPERATOR_D0_RESULT.json`.
 ### 2026-08-21 - U5.R2SPCP4 redundant source touch corrected and removed
 
 - Parent goal: bounded final-cycle search only when a materially new identifying
