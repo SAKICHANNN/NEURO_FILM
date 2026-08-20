@@ -392,13 +392,19 @@ def build_score_lock(
         capture_output=True,
         text=True,
     ).stdout.strip()
-    dirty = subprocess.run(
+    porcelain = subprocess.run(
         ["git", "-C", str(external_root), "status", "--porcelain"],
         check=True,
         capture_output=True,
         text=True,
-    ).stdout.strip()
-    if head != expected_commit or dirty:
+    ).stdout.splitlines()
+    non_cache_entries = [
+        entry
+        for entry in porcelain
+        if "__pycache__/" not in entry.replace("\\", "/")
+        and not entry.replace("\\", "/").endswith(".pyc")
+    ]
+    if head != expected_commit or non_cache_entries:
         raise ValueError("external FGAesQ checkout identity mismatch or dirty state")
     external_asset = config["external_asset"]
     if (
@@ -471,6 +477,7 @@ def build_score_lock(
         "experiment_id": "U5.R2FGAESQ0",
         "config_sha256": _sha256(config_path),
         "external_repository_commit": head,
+        "external_generated_cache_entries": porcelain,
         "asset_facts": asset_facts,
         "public_manifest_sha256": {
             "p401": _sha256(p401_root / "public_manifest.json"),
