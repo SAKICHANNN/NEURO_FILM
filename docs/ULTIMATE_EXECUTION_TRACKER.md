@@ -1565,3 +1565,14 @@ gate passes. This opens only a separately preregistered internal-research D0:
 scene-grouped loser/winner pairs may identify one shared, source-free, bounded
 explicit operator. It does not open a scorer, per-image router, 39GB archive,
 population claim, package, capability or product dependency.
+
+U5.R2REPID2 freezes the first small REPID shared-operator role set before any
+image member read. From 74,465 edges it retains 1,986 strong, unique-extreme,
+geometry-consistent and project-fresh scenes, then hash-locks 80 fit, 24
+calibration and 24 sealed scenes across 18 directed expert-role pairs. All 256
+member paths resolve to exact LFS SHA-256 identities; fit+calibration is
+1.467GB and the full sealed-inclusive set is 1.765GB. Two reports are byte
+exact (`7bac1d1c...3d5fd`; stable `a4bee48f...e94f97`), prior FiveK overlap is
+zero and image reads/decodes/fits remain zero. This opens only exact resumable
+fit+calibration acquisition under the P-backed `data/...` root; sealed members
+remain unread until development gates pass.

@@ -1,0 +1,36 @@
+{
+  "schema": "neuro_film.u5_r2repid2_shared_operator_roles_evidence.v1",
+  "experiment_id": "U5.R2REPID2",
+  "source_revision": "6a16a20a0b7122ad66d1f632af1586d45b443aa9",
+  "aggregate": {
+    "row_count": 74465,
+    "eligible_scene_count": 1986,
+    "exclusion_counts": {"geometry_mismatch": 2048, "incomplete_graph": 50, "nonunique_extreme": 112, "prior_project_scene_overlap": 205, "weak_or_disagreeing_direct_edge": 580}
+  },
+  "selected": {
+    "fit_scenes": 80,
+    "calibration_scenes": 24,
+    "sealed_scenes": 24,
+    "identity_sha256": "6874505061a845ee0b199a0ef17be9a0adad1d5bf3797702653806eb8130cda9",
+    "unique_directed_role_pairs": 18,
+    "largest_directed_role_pair_share": 0.1171875,
+    "direct_margin_minimum": 0.21999999999999997,
+    "prior_project_scene_overlap": 0
+  },
+  "members": {
+    "count": 256,
+    "identity_sha256": "df1450c2a5c001c0e71bf30862f8aa2a039d3976066111a8b73ca5a2c763a18c",
+    "fit_calibration_bytes": 1467342029,
+    "all_selected_bytes": 1765077456,
+    "all_lfs_sha256_present": true,
+    "image_member_reads": 0,
+    "image_decodes": 0,
+    "operator_fits": 0
+  },
+  "all_gates_pass": true,
+  "decision": "open_exact_fit_calibration_member_acquisition_for_repid_shared_operator_d0",
+  "claim_ceiling": "internal-research scene-role and exact-member-identity lock only; not an operator, preference model, product dependency, package, schema or capability",
+  "two_fresh_reports_byte_exact": true,
+  "formal_report_sha256": "7bac1d1c19e7209f7b84a87b2c281c568f9c7e03917b0943f5874355fdb3d5fd",
+  "stable_evidence_id": "sha256:a4bee48f0e42cf8fd75492dbb94d433d656ed27e4340fefd9ec86d2b07e94f97"
+}

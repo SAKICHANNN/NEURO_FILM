@@ -13862,3 +13862,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   scorer, content router, full archive, product dependency or user-preference
   claim opens.
 - Evidence: `docs/evidence/U5_R2REPID1_CORRECTED_SOURCE_AUDIT_RESULT.json`.
+
+### 2026-08-20 - U5.R2REPID2 freezes a geometry-clean shared-operator cohort
+
+- Before image payload reads, selected unique preference-score extrema only
+  when their direct edge agrees by at least 0.20 and all 14 crop, perspective
+  and lens-geometry fields match exactly.
+- Excluded 509 prior local FiveK identities. The eligible population is 1,986
+  scenes; roles are 80 fit, 24 calibration and 24 sealed across 18 directed
+  role pairs with zero prior-scene overlap.
+- HF paths-info binds 256 exact LFS members totaling 1.765GB; initial
+  fit+calibration is 1.467GB. Two reports are byte exact (`7bac1d1c...3d5fd`,
+  stable `a4bee48f...e94f97`) and image reads/decodes/fits remain zero.
+- Open only resumable fit+calibration acquisition under the repository-relative
+  P-backed data root. Sealed members remain unread pending development gates.
+- Evidence: `docs/evidence/U5_R2REPID2_SHARED_OPERATOR_ROLES_RESULT.json`.
