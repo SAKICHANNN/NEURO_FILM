@@ -7,7 +7,7 @@ import json
 import math
 import os
 import re
-from collections.abc import Mapping, Sequence
+from collections.abc import Mapping
 from pathlib import Path
 from typing import Any
 
@@ -17,6 +17,9 @@ from omegaconf import OmegaConf
 PROFILE_SCHEMA_ID = "kmcfm.render-profile.v1"
 RECIPE_SCHEMA_ID = "kmcfm.render-recipe.v1"
 PROFILE_EVIDENCE_SUMMARY_SCHEMA_ID = "kmcfm.profile-evidence-summary.v1"
+LEGACY_STYLE_EVIDENCE_INVENTORY_SCHEMA_ID = (
+    "kmcfm.legacy-style-evidence-inventory.v1"
+)
 _HASH = re.compile(r"^[0-9a-f]{64}$")
 _COMMIT = re.compile(r"^[0-9a-f]{40}$")
 _IDENTIFIER = re.compile(r"^[a-z0-9][a-z0-9._-]{0,127}$")
@@ -276,6 +279,43 @@ def summarize_render_profile_evidence(profile: Mapping[str, Any]) -> dict[str, A
         "method": evidence["method"],
         "calibrated_reference_allowed": evidence["calibrated_reference_allowed"],
         "claim_ceiling": evidence["claim_ceiling"],
+    }
+
+
+def summarize_legacy_style_evidence_inventory(
+    profile: Mapping[str, Any],
+) -> dict[str, Any]:
+    """Expose legacy style names without implying stock-specific evidence."""
+    validate_render_profile(profile)
+    identity = _mapping(profile["identity"], "profile.identity")
+    evidence = _mapping(profile["evidence"], "profile.evidence")
+    if identity["film_stock_id"] is not None:
+        raise RenderContractError(
+            "legacy style inventory requires a stock-neutral render profile"
+        )
+    styles = []
+    for style_id in sorted(profile["style_parameters"]):
+        styles.append(
+            {
+                "style_id": style_id,
+                "evidence_role": "legacy_named_look_proxy",
+                "film_stock_id": None,
+                "interpretation": identity["interpretation"],
+                "data_grade": evidence["data_grade"],
+                "method": evidence["method"],
+                "stock_specific_operator_admitted": False,
+                "target_film_closeness_established": False,
+                "stock_distinguishability_established": False,
+                "calibrated_reference_allowed": False,
+                "claim_ceiling": evidence["claim_ceiling"],
+            }
+        )
+    return {
+        "schema_id": LEGACY_STYLE_EVIDENCE_INVENTORY_SCHEMA_ID,
+        "profile_id": profile["profile_id"],
+        "profile_version": profile["profile_version"],
+        "style_count": len(styles),
+        "styles": styles,
     }
 
 

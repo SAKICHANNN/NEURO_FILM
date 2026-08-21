@@ -7,8 +7,10 @@ import sys
 from pathlib import Path
 
 from src.inference import (
+    LEGACY_STYLE_EVIDENCE_INVENTORY_SCHEMA_ID,
     PROFILE_EVIDENCE_SUMMARY_SCHEMA_ID,
     load_render_profile,
+    summarize_legacy_style_evidence_inventory,
     summarize_render_profile_evidence,
 )
 
@@ -78,3 +80,42 @@ def test_cli_fails_closed_on_asset_hash_mismatch(tmp_path: Path) -> None:
     assert result.returncode == 2
     assert "asset hash mismatch" in result.stderr
     assert result.stdout == ""
+
+
+def test_legacy_style_inventory_exposes_names_without_stock_claims() -> None:
+    profile = load_render_profile(PROFILE, root=ROOT)
+    inventory = summarize_legacy_style_evidence_inventory(profile)
+
+    assert inventory["schema_id"] == LEGACY_STYLE_EVIDENCE_INVENTORY_SCHEMA_ID
+    assert inventory["style_count"] == len(profile["style_parameters"])
+    assert [row["style_id"] for row in inventory["styles"]] == sorted(
+        profile["style_parameters"]
+    )
+    assert {row["evidence_role"] for row in inventory["styles"]} == {
+        "legacy_named_look_proxy"
+    }
+    assert {row["film_stock_id"] for row in inventory["styles"]} == {None}
+    assert not any(
+        row["stock_specific_operator_admitted"]
+        or row["target_film_closeness_established"]
+        or row["stock_distinguishability_established"]
+        or row["calibrated_reference_allowed"]
+        for row in inventory["styles"]
+    )
+
+
+def test_cli_legacy_style_inventory_is_exact_and_read_only() -> None:
+    command = [sys.executable, str(SCRIPT), "--legacy-style-inventory"]
+    first = subprocess.run(
+        command, cwd=ROOT, capture_output=True, text=True, check=False
+    )
+    second = subprocess.run(
+        command, cwd=ROOT, capture_output=True, text=True, check=False
+    )
+
+    assert first.returncode == second.returncode == 0
+    assert first.stderr == second.stderr == ""
+    assert first.stdout.encode("utf-8") == second.stdout.encode("utf-8")
+    assert json.loads(first.stdout) == summarize_legacy_style_evidence_inventory(
+        load_render_profile(PROFILE, root=ROOT)
+    )
