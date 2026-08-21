@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import copy
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -14,8 +16,9 @@ from src.inference import (
     load_render_profile,
     render_resolved_safe_lab_rgb,
     render_style_safe_working_image,
+    replay_style_safe_color_recipe,
 )
-from src.preprocess import load_working_image, working_image_to_srgb_float
+from src.preprocess import load_working_image, save_srgb8, working_image_to_srgb_float
 
 ROOT = Path(__file__).resolve().parents[1]
 PROFILE_PATH = ROOT / "configs" / "render_profiles" / "safe_rich_v1.json"
@@ -142,3 +145,50 @@ def test_resolved_engine_rejects_nonfinite_source_and_parameter_drift() -> None:
             guardrails={},
             seed=7,
         )
+
+
+def test_color_only_recipe_replay_is_exact_cli_output(tmp_path: Path) -> None:
+    pixels = np.arange(23 * 31 * 3, dtype=np.uint16).reshape(23, 31, 3)
+    source = tmp_path / "input.png"
+    output = tmp_path / "output.png"
+    replay = tmp_path / "replay.png"
+    Image.fromarray((pixels % 256).astype(np.uint8), mode="RGB").save(source)
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "render_film.py"),
+            str(source),
+            "--style",
+            "portra_400",
+            "--use-render-profile",
+            "--write-recipe",
+            "--output",
+            str(output),
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert completed.returncode == 0, completed.stderr
+    recipe = json.loads(output.with_suffix(".recipe.json").read_text(encoding="utf-8"))
+    rendered = replay_style_safe_color_recipe(
+        recipe, profile_path=PROFILE_PATH, root=ROOT
+    )
+    save_srgb8(rendered, replay)
+    assert replay.read_bytes() == output.read_bytes()
+
+    forged = copy.deepcopy(recipe)
+    forged["render"]["color_parameters"]["strength"] += 0.01
+    with pytest.raises(StyleSafeEngineError, match="differ from profile"):
+        replay_style_safe_color_recipe(forged, profile_path=PROFILE_PATH, root=ROOT)
+
+    absent = copy.deepcopy(recipe)
+    absent["render"]["style"] = "not_a_style"
+    with pytest.raises(StyleSafeEngineError, match="absent from profile"):
+        replay_style_safe_color_recipe(absent, profile_path=PROFILE_PATH, root=ROOT)
+
+    enabled = copy.deepcopy(recipe)
+    enabled["render"]["effects"]["grain"]["strength"] = 0.1
+    with pytest.raises(StyleSafeEngineError, match="enabled effects"):
+        replay_style_safe_color_recipe(enabled, profile_path=PROFILE_PATH, root=ROOT)

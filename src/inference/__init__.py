@@ -63,6 +63,7 @@ __all__ = [
     "plan_tile_windows",
     "render_resolved_safe_lab_rgb",
     "render_style_safe_working_image",
+    "replay_style_safe_color_recipe",
     "sha256_file",
     "summarize_legacy_style_evidence_inventory",
     "summarize_render_profile_evidence",
@@ -77,6 +78,7 @@ def __getattr__(name: str):
         "StyleSafeEngineError",
         "render_resolved_safe_lab_rgb",
         "render_style_safe_working_image",
+        "replay_style_safe_color_recipe",
     }:
         from . import style_safe_engine
 

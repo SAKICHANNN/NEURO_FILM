@@ -2,16 +2,23 @@
 
 from __future__ import annotations
 
+import json
 import math
 from collections.abc import Mapping
+from pathlib import Path
 from typing import Any
 
 import numpy as np
 
-from scripts.pipeline_color_baseline import style_transfer_rgb
-from src.preprocess import WorkingImage, working_image_to_srgb_float
+from scripts.pipeline_color_baseline import load_guardrail_config, style_transfer_rgb
+from src.preprocess import WorkingImage, load_working_image, working_image_to_srgb_float
 
-from .render_contract import COLOR_PARAMETER_KEYS, validate_render_profile
+from .render_contract import (
+    COLOR_PARAMETER_KEYS,
+    load_render_profile,
+    validate_render_profile,
+    verify_render_recipe_files,
+)
 
 
 class StyleSafeEngineError(ValueError):
@@ -120,4 +127,64 @@ def render_style_safe_working_image(
         style_parameters=styles[style],
         guardrails=guardrails,
         seed=seed,
+    )
+
+
+def replay_style_safe_color_recipe(
+    recipe: Mapping[str, Any],
+    *,
+    profile_path: Path,
+    root: Path,
+) -> np.ndarray:
+    """Verify and replay the color-only stage of one existing v1 recipe."""
+
+    verify_render_recipe_files(recipe, profile_path=profile_path, root=root)
+    profile = load_render_profile(profile_path, root=root)
+    render = recipe["render"]
+    style = render["style"]
+    if style not in profile["style_parameters"]:
+        raise StyleSafeEngineError("recipe style is absent from profile")
+    if render["color_parameters"] != profile["style_parameters"][style]:
+        raise StyleSafeEngineError("recipe color parameters differ from profile")
+    effects = render["effects"]
+    if any(
+        float(effects[name]["strength"]) != 0.0
+        for name in ("grain", "halation", "dust")
+    ):
+        raise StyleSafeEngineError("color-only replay rejects enabled effects")
+
+    assets = {asset["role"]: root / asset["path"] for asset in recipe["assets"]}
+    statistics = json.loads(assets["style_statistics"].read_text(encoding="utf-8"))
+    if style not in statistics.get("styles", {}):
+        raise StyleSafeEngineError("recipe style statistics are absent")
+    input_metadata = recipe["input"]
+    if input_metadata["source_profile_fingerprint_sha256"] is not None:
+        raise StyleSafeEngineError("v1 replay cannot verify source profile fingerprint")
+    working = load_working_image(Path(input_metadata["path"]))
+    actual_metadata = {
+        "color_state": working.source_transfer_state,
+        "working_space": working.working_space,
+        "source_profile_kind": working.source_profile.kind,
+        "bit_depth": working.bit_depth_in,
+        "warnings": [warning.__dict__ for warning in working.warnings],
+    }
+    expected_metadata = {
+        key: input_metadata[key]
+        for key in (
+            "color_state",
+            "working_space",
+            "source_profile_kind",
+            "bit_depth",
+            "warnings",
+        )
+    }
+    if actual_metadata != expected_metadata:
+        raise StyleSafeEngineError("recipe decoded input metadata drifted")
+    return render_style_safe_working_image(
+        working,
+        profile=profile,
+        style=style,
+        style_statistics=statistics["styles"][style],
+        guardrails=load_guardrail_config(assets["color_guardrails"], style),
+        seed=render["seed"],
     )
