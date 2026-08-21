@@ -1,0 +1,45 @@
+{
+  "schema": "neuro-film.sf3-a0p-three-stock-scan-storage-preflight-contract.v1",
+  "experiment_id": "SF3.A0P",
+  "status": "FROZEN_BEFORE_PHYSICAL_SCAN_WRITE",
+  "parents": {
+    "work_order": {
+      "path": "outputs/eval/sf3_a0l_three_stock_capture_work_order_v1/run_a/report.json",
+      "sha256": "6e5cc477dbf80fab92fe5058c1af9f52adfdd726848f2049411781816a39af08",
+      "required_decision": "READY_TO_RECORD_CONTROLLED_THREE_STOCK_CAPTURE_WITHOUT_DATA_CLAIM"
+    },
+    "stimulus_manifest": {
+      "path": "data/real_film/sf3_a0k_three_stock_display_stimulus_v1/manifest.json",
+      "sha256": "22808350c4de311118b10e17c627034b15eb10e9050e004c0ffd44bfbe89d5cf"
+    }
+  },
+  "scan_profile": {
+    "width": 3000,
+    "height": 2000,
+    "channels": 3,
+    "integer_bits_per_channel": 16,
+    "lossless_required": true,
+    "maximum_container_overhead_bytes_per_file": 1048576,
+    "minimum_scan_to_stimulus_pixel_ratio": 3.0,
+    "valid_scope": "global_colour_k1_alignment_and_sampling_only",
+    "forbidden_scope": [
+      "grain_or_nps_calibration",
+      "film_or_scanner_mtf_calibration",
+      "native_film_resolution_claim"
+    ]
+  },
+  "storage": {
+    "logical_root": "data/real_film/sf3_a0_physical_capture_v1",
+    "required_resolved_drive": "P:",
+    "minimum_free_bytes_after_worst_case_plan": 536870912,
+    "require_create_only_empty_root": true
+  },
+  "required_counts": {
+    "evidence_scan_tasks": 108,
+    "diagnostic_scan_tasks": 45,
+    "total_scan_tasks": 153
+  },
+  "decision_if_pass": "READY_FOR_P_BACKED_SF3_PHYSICAL_SCAN_CAPTURE_AT_FIXED_COLOUR_BASELINE_TIER",
+  "decision_if_fail": "RETAIN_SF3_PHYSICAL_SCAN_EXECUTION_GAP_WITHOUT_WRITING_PARTIAL_CAPTURE",
+  "claim_ceiling": "Storage and resolution execution preflight for the existing three-stock capture work order only. Passing creates no film pixels, stock response, calibration, fit, preference, product promotion, grain or MTF evidence."
+}

@@ -15704,3 +15704,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   reaches all 12 scenes and 21 frozen fits without an infrastructure failure;
   its synthetic targets correctly remain a scientific negative. Physical
   Velvia/Portra/Ektar pixels are still absent, so no stock claim opens.
+
+### 2026-08-21 - SF3.A0P qualifies a P-backed colour-baseline scan tier
+
+- Bound the existing 153-task A0L work order to a fixed 3000x2000 RGB16
+  lossless scan tier. Its 6MP raster is 3.099x the largest 1.936MP display
+  stimulus; it is valid only for global K=1 alignment/colour sampling, never
+  grain, NPS, MTF or native film-resolution claims.
+- The uncompressed-payload plus 1MiB/file worst case is 5,668,432,128 bytes.
+  Live preflight resolves logical `data/` to the project-owned P root and
+  passes with 6,531,579,904 bytes available, projecting 863,147,776 bytes
+  remaining versus the frozen 512MiB reserve. No capture directory or film
+  data was created. Twenty-eight adjacent A0L--A2 tests pass.
