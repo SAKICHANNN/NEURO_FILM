@@ -66,9 +66,7 @@ def _xyz_tag(tags: dict[bytes, bytes], signature: bytes) -> np.ndarray:
     payload = tags.get(signature, b"")
     if len(payload) < 20 or payload[:4] != b"XYZ ":
         raise ProPhotoICCError(f"ICC profile lacks a valid {signature!r} tag")
-    values = np.asarray(
-        struct.unpack_from(">iii", payload, 8), dtype=np.float64
-    )
+    values = np.asarray(struct.unpack_from(">iii", payload, 8), dtype=np.float64)
     return values / 65536.0
 
 
@@ -93,9 +91,7 @@ def _aligned(value: int) -> int:
     return (value + 3) & ~3
 
 
-def _embedded_curve(
-    payload: bytes, offset: int
-) -> tuple[dict[str, object], int]:
+def _embedded_curve(payload: bytes, offset: int) -> tuple[dict[str, object], int]:
     if offset < 0 or offset + 12 > len(payload):
         raise ProPhotoICCError("ICC embedded curve offset is invalid")
     signature = payload[offset : offset + 4]
@@ -114,10 +110,13 @@ def _embedded_curve(
     count = parameter_counts.get(function_type)
     if count is None or offset + 12 + count * 4 > len(payload):
         raise ProPhotoICCError("ICC parametric curve is invalid")
-    parameters = np.asarray(
-        struct.unpack_from(">" + "i" * count, payload, offset + 12),
-        dtype=np.float64,
-    ) / 65536.0
+    parameters = (
+        np.asarray(
+            struct.unpack_from(">" + "i" * count, payload, offset + 12),
+            dtype=np.float64,
+        )
+        / 65536.0
+    )
     return {
         "kind": "parametric",
         "function_type": function_type,
@@ -165,16 +164,20 @@ def _mab_prophoto_facts(tags: dict[bytes, bytes]) -> dict[str, object]:
         [np.asarray(curve["parameters"], dtype=np.float64) for curve in m_curves]
     )
     expected = np.asarray([1.8, 1.0, 0.0, 1.0 / 16.0, 1.0 / 32.0])
-    if float(np.max(np.abs(parameters - parameters[0]))) > 0.0 or float(
-        np.max(np.abs(parameters[0] - expected))
-    ) > 5e-5:
+    if (
+        float(np.max(np.abs(parameters - parameters[0]))) > 0.0
+        or float(np.max(np.abs(parameters[0] - expected))) > 5e-5
+    ):
         raise ProPhotoICCError("ICC mAB curves are not the supported ROMM transfer")
     if matrix_offset + 48 > len(payload):
         raise ProPhotoICCError("ICC mAB matrix is truncated")
-    matrix_values = np.asarray(
-        struct.unpack_from(">" + "i" * 12, payload, matrix_offset),
-        dtype=np.float64,
-    ) / 65536.0
+    matrix_values = (
+        np.asarray(
+            struct.unpack_from(">" + "i" * 12, payload, matrix_offset),
+            dtype=np.float64,
+        )
+        / 65536.0
+    )
     matrix = matrix_values[:9].reshape(3, 3)
     offset = matrix_values[9:]
     effective_matrix = matrix * _ICC_PCS_XYZ_SCALE
@@ -219,9 +222,16 @@ def prophoto_icc_facts(profile: bytes) -> dict[str, object]:
         matrix_error = float(np.max(np.abs(matrix - _PROPHOTO_TO_XYZ_D50)))
         white_error = float(np.max(np.abs(white - _D50)))
         if matrix_error > 5e-4 or white_error > 5e-4:
-            raise ProPhotoICCError("ICC matrix/white point is not the ProPhoto RGB family")
-        if float(np.max(np.abs(gammas - gammas[0]))) > 0.0 or not 1.79 <= gammas[0] <= 1.81:
-            raise ProPhotoICCError("ICC TRCs are not the supported shared ProPhoto gamma")
+            raise ProPhotoICCError(
+                "ICC matrix/white point is not the ProPhoto RGB family"
+            )
+        if (
+            float(np.max(np.abs(gammas - gammas[0]))) > 0.0
+            or not 1.79 <= gammas[0] <= 1.81
+        ):
+            raise ProPhotoICCError(
+                "ICC TRCs are not the supported shared ProPhoto gamma"
+            )
         return {
             "transform_kind": "matrix-shaper-shared-gamma",
             "transfer_kind": "gamma",
@@ -254,9 +264,7 @@ def _prepared_rgb16_transfer(
     if facts["transfer_kind"] == "gamma":
         transfer = np.power(normalized, float(facts["gamma"]))
     elif facts["transfer_kind"] == "parametric-type3":
-        gamma, a, b, c, d = np.asarray(
-            facts["transfer_parameters"], dtype=np.float64
-        )
+        gamma, a, b, c, d = np.asarray(facts["transfer_parameters"], dtype=np.float64)
         transfer = np.where(
             normalized >= d,
             np.power(a * normalized + b, gamma),
@@ -282,18 +290,35 @@ def decode_prophoto_rgb16_to_linear_rec2020(
         raise ValueError("encoded must be HxWx3 uint16 RGB")
     transfer, matrix, offset, pcs_xyz_scale = _prepared_rgb16_transfer(profile)
     linear_prophoto = transfer[encoded]
-    xyz_d50 = (
-        linear_prophoto @ matrix.T + offset
-    ) * pcs_xyz_scale
-    xyz_d65 = xyz_d50 @ _D50_TO_D65_BRADFORD.T
+    xyz_d50 = (linear_prophoto @ matrix.T + offset) * pcs_xyz_scale
+    rec2020 = d50_xyz_to_linear_rec2020(xyz_d50)
+    return np.asarray(rec2020, dtype=np.float32)
+
+
+def d50_xyz_to_linear_rec2020(xyz_d50: np.ndarray) -> np.ndarray:
+    """Map finite D50 PCS XYZ triplets to unclipped float64 linear Rec.2020."""
+
+    if not isinstance(xyz_d50, np.ndarray):
+        raise TypeError("xyz_d50 must be a numpy ndarray")
+    if (
+        xyz_d50.ndim < 1
+        or xyz_d50.shape[-1] != 3
+        or not np.issubdtype(xyz_d50.dtype, np.number)
+    ):
+        raise ValueError("xyz_d50 must have a numeric final dimension of three")
+    values = np.asarray(xyz_d50, dtype=np.float64)
+    if not np.isfinite(values).all():
+        raise ProPhotoICCError("D50 PCS input contains non-finite values")
+    xyz_d65 = values @ _D50_TO_D65_BRADFORD.T
     rec2020 = xyz_d65 @ _XYZ_D65_TO_LINEAR_REC2020.T
     if not np.isfinite(rec2020).all():
         raise ProPhotoICCError("ICC conversion produced non-finite pixels")
-    return np.asarray(rec2020, dtype=np.float32)
+    return rec2020
 
 
 __all__ = [
     "ProPhotoICCError",
+    "d50_xyz_to_linear_rec2020",
     "decode_prophoto_rgb16_to_linear_rec2020",
     "prophoto_icc_facts",
     "prophoto_matrix_shaper_facts",

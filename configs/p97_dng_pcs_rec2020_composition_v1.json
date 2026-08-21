@@ -1,0 +1,48 @@
+{
+  "schema": "neuro_film.p97_dng_pcs_rec2020_composition_contract.v1",
+  "experiment_id": "p97-dng-pcs-rec2020-composition-v1",
+  "status": "frozen_before_formal_evaluation",
+  "bindings": {
+    "contract": {
+      "path": "docs/planning/P97_DNG_PCS_REC2020_COMPOSITION_CONTRACT.md",
+      "bytes": 2564,
+      "sha256": "efb1fe84345c624dd2b250b2d67e9eb229e737aadf19da82eba01aca2450152b"
+    },
+    "implementation": {
+      "path": "src/preprocess/prophoto_icc.py",
+      "bytes": 12815,
+      "sha256": "cda6cfdff2eb2c8f5a5eff001a38c73d3307327975060a9985ad391aed07b885"
+    },
+    "runner": {
+      "path": "scripts/audit_p97_dng_pcs_rec2020_composition.py",
+      "bytes": 5917,
+      "sha256": "7d3aeb0cb6a1ea89d8b385f6d3d9dfc56d33ee5df2fe53ef79adce066baf0070"
+    },
+    "romm_profile": {
+      "path": "data/wide_gamut/icc_official/ISO22028-2_ROMM-RGB.icc",
+      "bytes": 864,
+      "sha256": "96b2f2987f83e2a545e607799fbfdff43ef8158fb9b215b187c574db8f145aaf"
+    },
+    "p94_evidence": {
+      "path": "docs/evidence/P94_DNG_FORWARD_MATRIX_MECHANICS_RESULT.json",
+      "bytes": 5167,
+      "sha256": "28dbe488dac052ca374d35b883d9eaec93d3f2adb63223bc04ab87290c4ba355"
+    },
+    "p94_report": {
+      "path": "outputs/eval/p94_dng_forward_matrix_mechanics/outer1_forward.json",
+      "bytes": 8972,
+      "sha256": "f5a4aeb31070efcc7bddd9ff485dccadaa6b04e95d0251483c4bc1c24a1ae216"
+    }
+  },
+  "gates": {
+    "required_profiles": 5,
+    "required_transformed_triplets": 1285,
+    "required_invalid_rejections": 2,
+    "required_regression_sha256": "379c29f2a231c4297e34ac46abef05380b076739436ccd00c08d1f1bc58aa752",
+    "maximum_composition_absolute_error": 5e-15,
+    "maximum_white_to_unit_absolute_error": 0.001,
+    "require_forward_reverse_reports_exact": true,
+    "maximum_raster_sample_rgb_reads": 0
+  },
+  "claim_ceiling": "Private reusable D50 PCS-to-linear-Rec.2020 matrix primitive, exact existing ProPhoto decoder parity, and five-profile synthetic composition mechanics only; no arbitrary DNG support, DNG raster decode, sensor or IDT calibration, scene-to-display tone mapping, photographic or colorimetric accuracy, gamut mapping, loader integration, package/schema, public capability, product, film, stock, or preference admission"
+}
