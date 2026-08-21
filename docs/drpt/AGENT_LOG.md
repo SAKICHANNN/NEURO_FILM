@@ -15316,3 +15316,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   admitted, so no stock, calibration, preference or multi-stock result opens;
   the next work remains controlled physical evidence rather than another
   proxy/model family.
+
+### 2026-08-21 - SF3.A4 confirmation render materializer is ready
+
+- Added a target-blind, create-only full-resolution renderer for a future
+  passing SF3.A2 report. It applies the three frozen K=1 operators to each
+  identical confirmation source in row tiles, rejects any out-of-range value,
+  and verifies exact sRGB16 ICC PNG samples after readback.
+- The parent chain must prove A1 integrity, common-coordinate sampling,
+  positive fit count, confirmation-blind selection and an individual pass for
+  Velvia 50, Portra 400 and Ektar 100. Film targets are never read or scored.
+- Eight focused and forty adjacent SF3.A0--A4 tests, Ruff, direct CLI smoke,
+  `py_compile` and diff checks pass. Commits: `d454064a`, `47cae9d6`.
+- This is execution readiness only. With no admitted physical ledger, severe
+  review, blind stock distinguishability, calibration and product promotion
+  remain closed; controlled three-stock acquisition stays the mainline.

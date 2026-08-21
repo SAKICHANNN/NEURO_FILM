@@ -126,6 +126,15 @@ passes 17 adjacent tests. This is implementation readiness only: with zero
 admitted physical rows, it is not a stock result, calibration result or
 multi-stock completion claim.
 
+SF3.A4 completes the next execution-only boundary at `d454064a` plus direct
+CLI repair `47cae9d6`. Only after a genuine all-three-stock SF3.A2 pass, it
+reuses each frozen K=1 operator to render the identical confirmation digital
+sources in 128-row tiles, requires zero raw-domain clipping, verifies exact
+sRGB16 ICC PNG samples after readback and reads no film target. Forty adjacent
+SF3.A0--A4 tests pass. This does not open visual review today because the
+physical target ledger remains empty; it only removes render materialization
+as a future blocker.
+
 SF3.A2 tests one bounded current public-index refresh without changing the
 three-stock gates. The frozen anonymous Openverse route returned HTTP 401 for
 all three exact queries, despite the current consumer documentation describing
