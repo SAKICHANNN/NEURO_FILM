@@ -1,0 +1,52 @@
+{
+  "schema": "neuro-film.sf3-a5-three-stock-blind-distinguishability-contract.v1",
+  "experiment_id": "SF3.A5",
+  "status": "FROZEN_BEFORE_PHYSICAL_TARGET_ADMISSION_OR_RENDER",
+  "question": "After all three controlled K=1 operators pass sealed target and severe-artifact gates, can blinded reviewers distinguish Velvia 50, Portra 400 and Ektar 100 outputs on identical held-out digital scenes?",
+  "parents": {
+    "k1_baseline_contract": {
+      "path": "configs/sf3_a2_three_stock_k1_baseline_v1.json",
+      "sha256": "27d2b2bb02896b91532ab22e42389e4a51d31a6fb6349ec1da04814a9747e59e",
+      "required_decision": "OPEN_THREE_STOCK_K1_SEVERE_ARTIFACT_REVIEW_THEN_BLIND_DISTINGUISHABILITY"
+    },
+    "confirmation_render_contract": {
+      "path": "configs/sf3_a4_three_stock_confirmation_render_v1.json",
+      "sha256": "d7ee3c052bacdb11a7537a3b380abc826fe1e905c096b7176fab9538ddc04c62"
+    }
+  },
+  "required_stocks": [
+    "fujifilm_velvia_50",
+    "kodak_portra_400",
+    "kodak_ektar_100"
+  ],
+  "protocol": {
+    "confirmation_scenes": 4,
+    "blind_rounds": 3,
+    "same_digital_source_within_each_triplet": true,
+    "all_three_stock_outputs_present_once_per_triplet": true,
+    "development_reference_anchors_allowed": true,
+    "confirmation_target_pixels_visible_to_reviewer": false,
+    "mapping_hidden_until_all_observations_frozen": true,
+    "mapping_domain_separated_from_prior_blind_experiments": true,
+    "record_complete_three_way_assignment_not_only_winner": true
+  },
+  "gates": {
+    "severe_artifact_review_pass_required_before_blind": true,
+    "minimum_overall_assignment_accuracy": 0.75,
+    "minimum_per_stock_assignment_accuracy": 0.6666666666666666,
+    "minimum_exact_triplet_rate": 0.5,
+    "minimum_rounds_with_overall_accuracy_at_least_two_thirds": 2,
+    "zero_missing_or_duplicate_observations": true,
+    "exact_mapping_and_output_hash_replay": true
+  },
+  "forbidden": [
+    "AO6 presented as a non-Velvia stock",
+    "target scan shown during blind assignment",
+    "post-result label, round, scene or gate rescue",
+    "preference claim inferred from stock identification",
+    "stock calibration claim inferred from distinguishability"
+  ],
+  "decision_if_pass": "RETAIN_THREE_STOCK_K1_AS_DISTINGUISHABLE_CONTROLLED_RESEARCH_CANDIDATES",
+  "decision_if_fail": "RETAIN_INDIVIDUAL_PASSING_K1_OPERATORS_WITHOUT_MULTI_STOCK_DISTINGUISHABILITY_CLAIM",
+  "claim_ceiling": "Blind distinguishability of three controlled K=1 outputs on four held-out scenes only. Passing is not preference, calibrated stock response, population validity, scanner/process generalization, product promotion, adaptive routing or completed multi-stock simulation."
+}
