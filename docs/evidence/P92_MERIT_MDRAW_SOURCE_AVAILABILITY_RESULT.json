@@ -1,0 +1,104 @@
+{
+  "schema": "neuro-film.research-source-audit.v1",
+  "protocol_id": "p92-merit-mdraw-source-availability-v1",
+  "date_utc": "2026-08-21",
+  "status": "FAIL_CLOSED_BEFORE_ACQUISITION_IDENTITY_RIGHTS_AND_CAPACITY",
+  "question": "Does the current official MERIT release expose a uniquely identified, explicitly licensed and locally admissible MDRAW paired-RAW asset without a bulk download?",
+  "direction_boundary": {
+    "allowed_mainline": [
+      "genuinely new paired or capture-time physical information",
+      "mature RAW/DNG/HDR/portable explicit-operator engineering"
+    ],
+    "forbidden_rescue": [
+      "universal after-only single-reference search",
+      "downloading an unidentified archive to infer its identity after the fact",
+      "using D fallback while the authoritative P-backed repository roots are online",
+      "treating availability or infrastructure failure as a scientific result"
+    ]
+  },
+  "primary_source": {
+    "title": "MERIT: Multi-domain Efficient RAW Image Translation",
+    "venue": "CVPR 2026",
+    "official_paper_url": "https://openaccess.thecvf.com/content/CVPR2026/html/Huang_MERIT_Multi-domain_Efficient_RAW_Image_Translation_CVPR_2026_paper.html",
+    "arxiv_id": "2603.20836",
+    "paper_reported_dataset": {
+      "name": "MDRAW",
+      "camera_domains": 5,
+      "unpaired_raw_images": 519,
+      "paired_raw_images": 285,
+      "paired_groups": 57,
+      "corresponding_srgb_reported": true
+    }
+  },
+  "official_repository": {
+    "url": "https://github.com/WJ-Huang/MERIT-Multi-domain-Efficient-RAW-Image-Translation",
+    "head": "bfe5c6ed7d67a2bf5d45e1dbace5ef42666c028f",
+    "tree_entry_count": 16,
+    "readme_git_blob_sha1": "b449a58c3c59f9224484cf1569f070d24943178b",
+    "readme_link_commit": "bfe5c6ed7d67a2bf5d45e1dbace5ef42666c028f",
+    "readme_link_commit_date_utc": "2026-07-08T20:55:54Z",
+    "readme_link_commit_message": "Add dataset download instructions to README",
+    "github_api_license": null,
+    "license_file_present": false,
+    "dataset_manifest_present": false,
+    "dataset_checksum_present": false
+  },
+  "linked_google_drive_object": {
+    "file_id": "1ToavWhv-Di8Muosmki59xByP0_-H5njT",
+    "observed_filename": "odb-full-v1-processed.tar-001.zst",
+    "observed_size_bytes": 34906333929,
+    "observed_last_modified_utc": "2026-07-08T18:38:42Z",
+    "content_type": "application/octet-stream",
+    "range_status": 206,
+    "range_header": "bytes 0-63/34906333929",
+    "first_64_bytes_sha256": "d795b7dc9a6c82b8c40ad6d834e98bbd580103e91d139d8f5971d275850e324b",
+    "first_4_bytes_hex": "28b52ffd",
+    "container_signature_interpretation": "standard Zstandard frame magic only",
+    "independent_probe_count": 2,
+    "independent_probe_fields_exact": true,
+    "object_name_matches_paper_dataset_name": false,
+    "authoritative_member_inventory_available_without_bulk_download": false,
+    "explicit_dataset_license_found": false
+  },
+  "storage_gate": {
+    "authoritative_repo_relative_roots_resolve_to_p": true,
+    "p_online": true,
+    "p_free_bytes_at_audit": 12415139840,
+    "linked_object_bytes": 34906333929,
+    "linked_object_exceeds_free_bytes_by": 22491194089,
+    "p_dirty_flag_observed": true,
+    "d_fallback_authorized_for_this_download": false,
+    "capacity_gate_pass": false
+  },
+  "gates": {
+    "official_paper_and_repository_identified": true,
+    "public_link_is_range_readable": true,
+    "linked_object_identity_matches_md_raw": false,
+    "explicit_code_license": false,
+    "explicit_dataset_license": false,
+    "manifest_or_member_inventory_before_bulk_read": false,
+    "authoritative_storage_capacity": false,
+    "all_source_admission_gates": false
+  },
+  "read_accounting": {
+    "google_drive_payload_bytes": 128,
+    "full_archive_downloads": 0,
+    "raw_image_payload_reads": 0,
+    "raw_image_decodes": 0,
+    "operator_fits": 0,
+    "model_training_steps": 0,
+    "target_scores": 0
+  },
+  "decision": {
+    "acquire_archive": false,
+    "scientific_candidate_evaluated": false,
+    "interpretation": "The paper makes MDRAW scientifically relevant, but the current release does not establish that its linked 34.9 GB object is the named dataset, grants reusable dataset rights, or fits the authoritative storage budget. This is a source-admission close, not evidence against MERIT or MDRAW.",
+    "reopen_only_if": [
+      "the authors publish a uniquely identified MDRAW object or signed member manifest/checksum",
+      "the code and dataset use rights are stated explicitly",
+      "the authoritative P-backed project storage has verified capacity for acquisition and expansion"
+    ],
+    "product_dependency": false,
+    "package_schema_receipt_capability_mapping": false
+  }
+}

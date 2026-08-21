@@ -15304,6 +15304,30 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   rescue family. No default writer, HDR quality/HDR10 metadata, arbitrary
   input, public capability, product or delivery admission opens.
 
+### 2026-08-21 - P92 closes the current MERIT/MDRAW acquisition gate
+
+- **Parent and direction:** after stopping the bounded automatic-candidate
+  cycle at `2/3`, audited one latest-2026 source that could add genuinely new
+  paired multi-camera RAW information. This is not another after-only model
+  leaf and does not overlap the controlled three-stock capture work order.
+- **Primary source:** CVPR 2026 MERIT reports MDRAW with 519 unpaired and 285
+  paired RAW captures across five camera domains. The exact official repo head
+  is `bfe5c6ed...c028f`; its 2026-07-08 README commit adds the dataset link.
+- **Identity and rights gates:** the 16-entry repository has no `LICENSE`,
+  dataset licence, member manifest or dataset checksum. Two independent
+  64-byte Range probes are exact at `d795b7dc...e324b` and identify a valid
+  Zstandard object of 34,906,333,929 bytes, but its author-served filename is
+  `odb-full-v1-processed.tar-001.zst`, not MDRAW. The object contents therefore
+  cannot be authoritatively bound to the paper dataset before bulk download.
+- **Storage gate:** the object exceeds current P free space by
+  22,491,194,089 bytes and P reports its volume Dirty. P remains the sole
+  durable location; D fallback is not used while P is online.
+- **Decision:** `FAIL_CLOSED_BEFORE_ACQUISITION_IDENTITY_RIGHTS_AND_CAPACITY`.
+  No archive, RAW pixel, decode, fit or score occurred. This is not a negative
+  result for MERIT/MDRAW. Reopen only on author-bound identity or a signed
+  inventory/checksum, explicit rights and verified authoritative storage
+  capacity. No package/schema/receipt/capability/product mapping opens.
+
 ### 2026-08-21 - SF3.A1/A2 controlled three-stock execution path is ready
 
 - **Parent:** stock-first real-film programme; Velvia 50, Portra 400 and Ektar
