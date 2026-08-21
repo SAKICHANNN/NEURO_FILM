@@ -1,0 +1,42 @@
+{
+  "schema": "neuro-film.sf3-a0n-three-stock-capture-receipt-contract.v1",
+  "experiment_id": "SF3.A0N",
+  "status": "FROZEN_BEFORE_PHYSICAL_CAPTURE",
+  "question": "Do the filled field records bind every SF3.A0L common condition and every stock-specific film-frame exposure before any scan is admitted?",
+  "parents": {
+    "work_order": {
+      "path": "outputs/eval/sf3_a0l_three_stock_capture_work_order_v1/run_a/report.json",
+      "sha256": "6e5cc477dbf80fab92fe5058c1af9f52adfdd726848f2049411781816a39af08",
+      "stable_evidence_id": "56457c99a90fc553a6e57da9f318a7871448ed0326a6eff978d643ccaea684ff"
+    }
+  },
+  "expected_counts": {
+    "common_condition_records": 18,
+    "exposure_receipts": 87
+  },
+  "numeric_policy": {
+    "display_luminance_cd_m2_positive": true,
+    "ambient_illuminance_lux_nonnegative": true,
+    "aperture_f_number_positive": true,
+    "focus_distance_m_positive": true,
+    "shutter_seconds_positive": true,
+    "meter_reading_ev100_finite": true,
+    "exposure_compensation_ev_finite": true
+  },
+  "identity_policy": {
+    "film_ei_must_equal_nominal_iso": true,
+    "all_required_ids_nonempty": true,
+    "all_sha256_fields_lowercase_hex": true,
+    "exact_work_order_slot_coverage": true,
+    "extra_or_duplicate_slots_forbidden": true
+  },
+  "forbidden_before_pass": [
+    "scan admission",
+    "operator fitting",
+    "stock-response claim",
+    "calibration claim"
+  ],
+  "decision_if_pass": "OPEN_PHYSICAL_SCAN_LEDGER_ASSEMBLY_WITH_RECEIPT_HASH_BINDING",
+  "decision_if_fail": "RETAIN_CAPTURE_RECEIPT_GAP_WITHOUT_SCAN_ADMISSION",
+  "claim_ceiling": "Filled capture-condition and per-film-frame exposure receipt integrity only. Passing is not evidence that film was processed or scanned and creates no operator, stock-response, calibration, preference or product claim."
+}
