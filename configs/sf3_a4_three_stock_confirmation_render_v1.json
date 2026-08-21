@@ -1,0 +1,54 @@
+{
+  "schema": "neuro-film.sf3-a4-three-stock-confirmation-render-contract.v1",
+  "experiment_id": "SF3.A4",
+  "status": "FROZEN_BEFORE_PHYSICAL_SF3_A2_PASS",
+  "question": "After all three controlled K=1 operators pass sealed SF3.A2, can they be materialized on the identical confirmation digital sources as exact unclipped RGB16 outputs for severe-first and blind stock-distinguishability review without rereading any film target?",
+  "parent": {
+    "k1_contract": {
+      "path": "configs/sf3_a2_three_stock_k1_baseline_v1.json",
+      "sha256": "27d2b2bb02896b91532ab22e42389e4a51d31a6fb6349ec1da04814a9747e59e"
+    },
+    "required_file_runner_schema": "neuro-film.sf3-a2-three-stock-k1-file-runner-report.v1",
+    "required_k1_report_schema": "neuro-film.sf3-a2-three-stock-k1-baseline-report.v1",
+    "required_decision": "OPEN_THREE_STOCK_K1_SEVERE_ARTIFACT_REVIEW_THEN_BLIND_DISTINGUISHABILITY"
+  },
+  "required_stocks": [
+    "fujifilm_velvia_50",
+    "kodak_portra_400",
+    "kodak_ektar_100"
+  ],
+  "source": {
+    "role": "confirmation",
+    "require_identical_digital_reference_per_scene_across_stocks": true,
+    "film_target_file_reads_allowed": 0,
+    "operator_refits_allowed": 0
+  },
+  "render": {
+    "working_space": "interpreted_relative_display_rgb",
+    "row_tile_height": 128,
+    "output_format": "srgb16_png_with_embedded_icc",
+    "output_sample_bits": 16,
+    "quantization": "numpy_rint_times_65535",
+    "require_exact_uint16_readback": true,
+    "require_create_only_output_directory": true
+  },
+  "gates": {
+    "require_parent_automatic_pass": true,
+    "require_all_confirmation_scenes": true,
+    "require_finite_output": true,
+    "maximum_raw_output_clip_fraction": 0.0,
+    "require_unique_stock_output_bytes_per_scene": true,
+    "require_exact_replay": true
+  },
+  "forbidden": [
+    "film target decode or score during rendering",
+    "operator refit, strength adjustment or post-result rescue",
+    "AO6 use for Portra 400 or Ektar 100",
+    "hard clipping, gamut compression or posthoc limiting",
+    "image-adaptive LUT, retrieval or latent K greater than 1",
+    "product or calibrated-stock publication before severe and blind gates"
+  ],
+  "decision_if_pass": "OPEN_THREE_STOCK_K1_SEVERE_ARTIFACT_REVIEW_THEN_DOMAIN_SEPARATED_BLIND_DISTINGUISHABILITY",
+  "decision_if_fail": "RETAIN_SF3_A2_NUMERIC_EVIDENCE_ONLY_AND_CLOSE_VISUAL_REVIEW_WITHOUT_RESCUE",
+  "claim_ceiling": "Exact full-resolution confirmation-source render materialization for three independently fitted controlled K=1 stock-labelled operators. Passing is not target-film closeness, blind stock distinguishability, calibrated stock response, population preference, product promotion, arbitrary scanner/process generalization or multi-stock completion."
+}
