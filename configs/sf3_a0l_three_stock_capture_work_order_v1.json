@@ -1,0 +1,92 @@
+{
+  "schema": "neuro-film.sf3-a0l-three-stock-capture-work-order-contract.v1",
+  "experiment_id": "SF3.A0L",
+  "status": "FROZEN_BEFORE_PHYSICAL_CAPTURE",
+  "question": "Can the admitted SF3.A0K stimulus pack be expanded into a deterministic three-stock exposure/process/scan work order that separates common scene conditions from stock-specific box-speed exposure receipts?",
+  "parents": {
+    "acquisition_contract": {
+      "path": "configs/sf3_a0_three_stock_controlled_acquisition_v1.json",
+      "sha256": "69241a6c38b15a8c4c8871e513ea53e133ee1d3b5ebe06f39a33f92964eccc8b"
+    },
+    "stimulus_manifest": {
+      "path": "data/real_film/sf3_a0k_three_stock_display_stimulus_v1/manifest.json",
+      "sha256": "22808350c4de311118b10e17c627034b15eb10e9050e004c0ffd44bfbe89d5cf"
+    }
+  },
+  "stocks": [
+    {
+      "stock_id": "fujifilm_velvia_50",
+      "nominal_iso": 50,
+      "process_type": "e6_reversal",
+      "interpretation_id": "direct_slide_neutral_scan"
+    },
+    {
+      "stock_id": "kodak_portra_400",
+      "nominal_iso": 400,
+      "process_type": "c41_negative",
+      "interpretation_id": "color_negative_neutral_scan"
+    },
+    {
+      "stock_id": "kodak_ektar_100",
+      "nominal_iso": 100,
+      "process_type": "c41_negative",
+      "interpretation_id": "color_negative_neutral_scan"
+    }
+  ],
+  "role_slots": {
+    "development": {
+      "rolls_per_stock": 2,
+      "process_sessions_per_stock": 2,
+      "scanner_devices_per_frame": 2
+    },
+    "confirmation": {
+      "rolls_per_stock": 1,
+      "process_sessions_per_stock": 1,
+      "scanner_devices_per_frame": 1
+    }
+  },
+  "exposure_policy": {
+    "common_condition_fields": [
+      "stimulus_sha256",
+      "display_device_id",
+      "display_profile_sha256",
+      "display_luminance_cd_m2",
+      "ambient_illuminance_lux",
+      "camera_system_id",
+      "lens_id",
+      "aperture_f_number",
+      "focus_distance_m",
+      "framing_id"
+    ],
+    "stock_exposure_receipt_fields": [
+      "stock_id",
+      "film_ei",
+      "nominal_iso",
+      "shutter_seconds",
+      "meter_reading_ev100",
+      "exposure_compensation_ev",
+      "meter_id",
+      "meter_calibration_sha256"
+    ],
+    "film_ei_must_equal_nominal_iso": true,
+    "same_shutter_across_stocks_required": false,
+    "same_common_condition_record_across_stocks_per_scene": true,
+    "exposure_receipt_required_per_film_frame": true
+  },
+  "diagnostics": {
+    "expose_all_stimulus_diagnostics_once_per_roll": true,
+    "count_toward_scene_minima": false
+  },
+  "gates": {
+    "expected_scene_exposures": 60,
+    "expected_diagnostic_exposures": 27,
+    "expected_scan_rows": 108,
+    "development_and_confirmation_slot_ids_disjoint": true,
+    "all_stimulus_hashes_bound": true,
+    "operator_fits_allowed": 0,
+    "film_target_scores_allowed": 0
+  },
+  "decision_if_pass": "READY_TO_RECORD_CONTROLLED_THREE_STOCK_CAPTURE_WITHOUT_DATA_CLAIM",
+  "decision_if_fail": "RETAIN_CONTROLLED_CAPTURE_EXECUTION_GAP_WITHOUT_FABRICATING_ROWS",
+  "claim_ceiling": "Deterministic physical capture/process/scan work order only. Passing creates no exposure, developed film, scan, stock target, operator fit, stock response, calibration, preference, product or multi-stock completion evidence."
+}
