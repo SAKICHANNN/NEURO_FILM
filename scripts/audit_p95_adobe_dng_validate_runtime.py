@@ -132,6 +132,7 @@ def _run_row(binary: Path, row: dict[str, Any], output_root: Path) -> dict[str, 
     return {
         "camera_make": row["camera_make"],
         "outputs": outputs,
+        "outcome": "success",
         "process_returncode": process.returncode,
         "source_bytes": row["source_bytes"],
         "source_id": row["source_id"],
@@ -161,31 +162,56 @@ def run(config_path: Path, output_root: Path, order: str) -> dict[str, Any]:
     rows = list(config["rows"])
     if order == "reverse":
         rows.reverse()
-    scientific_rows = sorted(
-        (_run_row(Path(bindings["binary"]["path"]), row, output_root) for row in rows),
-        key=lambda item: item["source_id"],
-    )
+    scientific_rows = []
+    for row in rows:
+        try:
+            result = _run_row(Path(bindings["binary"]["path"]), row, output_root)
+        except P95Error as error:
+            _verify_file(
+                Path(row["logical_path"]), row["source_bytes"], row["source_sha256"]
+            )
+            result = {
+                "camera_make": row["camera_make"],
+                "failure": str(error),
+                "outcome": "rejected",
+                "outputs": {},
+                "source_bytes": row["source_bytes"],
+                "source_id": row["source_id"],
+                "source_sha256": row["source_sha256"],
+            }
+        scientific_rows.append(result)
+    scientific_rows.sort(key=lambda item: item["source_id"])
+    successful_rows = [row for row in scientific_rows if row["outcome"] == "success"]
     metrics = {
         "distinct_camera_makes": len({row["camera_make"] for row in scientific_rows}),
         "maximum_final_long_side": max(
-            max(row["outputs"]["final"]["height"], row["outputs"]["final"]["width"])
-            for row in scientific_rows
+            (
+                max(
+                    row["outputs"]["final"]["height"],
+                    row["outputs"]["final"]["width"],
+                )
+                for row in successful_rows
+            ),
+            default=None,
         ),
         "output_file_count": sum(len(row["outputs"]) for row in scientific_rows),
+        "rejected_row_count": len(scientific_rows) - len(successful_rows),
         "row_count": len(scientific_rows),
+        "successful_row_count": len(successful_rows),
         "validation_error_lines": sum(
-            row["validation_error_lines"] for row in scientific_rows
+            row["validation_error_lines"] for row in successful_rows
         ),
     }
     gates = config["gates"]
     gate_results = {
         "camera_make_count": metrics["distinct_camera_makes"]
         == gates["required_camera_makes"],
-        "final_long_side": metrics["maximum_final_long_side"]
-        <= gates["maximum_final_long_side"],
+        "final_long_side": metrics["maximum_final_long_side"] is not None
+        and metrics["maximum_final_long_side"] <= gates["maximum_final_long_side"],
         "output_file_count": metrics["output_file_count"]
         == gates["required_output_files"],
         "row_count": metrics["row_count"] == gates["required_rows"],
+        "successful_rows": metrics["successful_row_count"] == gates["required_rows"],
         "validation_errors": metrics["validation_error_lines"] == 0,
     }
     scientific = {

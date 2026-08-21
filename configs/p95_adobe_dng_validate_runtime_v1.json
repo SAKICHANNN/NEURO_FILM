@@ -10,8 +10,8 @@
     },
     "runner": {
       "path": "scripts/audit_p95_adobe_dng_validate_runtime.py",
-      "bytes": 8182,
-      "sha256": "83b85278e1dd910e692b4c0a95cebf763f3b4e65ee3588296cfe42dd1fc09e41"
+      "bytes": 9270,
+      "sha256": "542dda560a59003fc7cadf52b27417ba168e85337aa124955f00d6f8b277e216"
     },
     "binary": {
       "path": "data/external/adobe_dng_sdk_1_7_1_2652/bin/dng_validate_1_7_1_2652_msbuild_v145_x64.exe",
