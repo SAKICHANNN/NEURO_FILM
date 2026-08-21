@@ -21,6 +21,7 @@ from src.inference import (
     validate_render_profile,
     validate_render_recipe,
     verify_render_recipe_files,
+    verify_render_recipe_inputs,
 )
 
 
@@ -118,6 +119,7 @@ def test_recipe_builder_hashes_files_and_rejects_mutation(tmp_path: Path) -> Non
     assert recipe["input"]["sha256"] == hashlib.sha256(b"input").hexdigest()
     assert recipe["output"]["sha256"] == hashlib.sha256(b"output").hexdigest()
     validate_render_recipe(recipe)
+    verify_render_recipe_inputs(recipe, profile_path=PROFILE, root=ROOT)
     verify_render_recipe_files(recipe, profile_path=PROFILE, root=ROOT)
     mutation = copy.deepcopy(recipe)
     mutation["render"]["effects"]["grain"]["strength"] = float("inf")
@@ -128,6 +130,7 @@ def test_recipe_builder_hashes_files_and_rejects_mutation(tmp_path: Path) -> Non
     with pytest.raises(RenderContractError, match="calibrated Reference"):
         validate_render_recipe(mutation)
     output.write_bytes(b"changed")
+    verify_render_recipe_inputs(recipe, profile_path=PROFILE, root=ROOT)
     with pytest.raises(RenderContractError, match="output file hash mismatch"):
         verify_render_recipe_files(recipe, profile_path=PROFILE, root=ROOT)
 

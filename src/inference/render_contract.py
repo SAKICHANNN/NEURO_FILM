@@ -551,8 +551,10 @@ def build_render_recipe(
     return recipe
 
 
-def verify_render_recipe_files(recipe: Mapping[str, Any], *, profile_path: Path, root: Path) -> None:
-    """Verify a recipe against its immutable profile, assets and local I/O files."""
+def verify_render_recipe_inputs(
+    recipe: Mapping[str, Any], *, profile_path: Path, root: Path
+) -> None:
+    """Verify a recipe against its immutable profile, assets and input file."""
     validate_render_recipe(recipe)
     if not profile_path.is_file() or sha256_file(profile_path) != recipe["profile"]["sha256"]:
         raise RenderContractError("recipe profile file hash mismatch")
@@ -561,10 +563,17 @@ def verify_render_recipe_files(recipe: Mapping[str, Any], *, profile_path: Path,
         raise RenderContractError("recipe profile identity mismatch")
     if recipe["assets"] != profile["assets"]:
         raise RenderContractError("recipe asset ledger differs from profile")
-    for side in ("input", "output"):
-        path = Path(str(recipe[side]["path"]))
-        if not path.is_file() or sha256_file(path) != recipe[side]["sha256"]:
-            raise RenderContractError(f"recipe {side} file hash mismatch")
+    path = Path(str(recipe["input"]["path"]))
+    if not path.is_file() or sha256_file(path) != recipe["input"]["sha256"]:
+        raise RenderContractError("recipe input file hash mismatch")
+
+
+def verify_render_recipe_files(recipe: Mapping[str, Any], *, profile_path: Path, root: Path) -> None:
+    """Verify a recipe against its immutable profile, assets and local I/O files."""
+    verify_render_recipe_inputs(recipe, profile_path=profile_path, root=root)
+    path = Path(str(recipe["output"]["path"]))
+    if not path.is_file() or sha256_file(path) != recipe["output"]["sha256"]:
+        raise RenderContractError("recipe output file hash mismatch")
 
 
 def atomic_write_json(path: Path, payload: Mapping[str, Any]) -> str:

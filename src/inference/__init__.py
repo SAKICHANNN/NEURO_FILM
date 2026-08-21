@@ -26,6 +26,7 @@ from .render_contract import (
     validate_render_profile,
     validate_render_recipe,
     verify_render_recipe_files,
+    verify_render_recipe_inputs,
 )
 from .tiled_render import (
     TiledExecutionMetadata,
@@ -71,6 +72,7 @@ __all__ = [
     "validate_render_profile",
     "validate_render_recipe",
     "verify_render_recipe_files",
+    "verify_render_recipe_inputs",
 ]
 
 

@@ -25,7 +25,7 @@ from .render_contract import (
     COLOR_PARAMETER_KEYS,
     load_render_profile,
     validate_render_profile,
-    verify_render_recipe_files,
+    verify_render_recipe_inputs,
 )
 
 
@@ -145,7 +145,7 @@ def _verified_recipe_base(
     root: Path,
 ) -> tuple[np.ndarray, Mapping[str, Any]]:
 
-    verify_render_recipe_files(recipe, profile_path=profile_path, root=root)
+    verify_render_recipe_inputs(recipe, profile_path=profile_path, root=root)
     profile = load_render_profile(profile_path, root=root)
     render = recipe["render"]
     style = render["style"]

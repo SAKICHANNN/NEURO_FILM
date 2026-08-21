@@ -173,11 +173,13 @@ def test_color_only_recipe_replay_is_exact_cli_output(tmp_path: Path) -> None:
     )
     assert completed.returncode == 0, completed.stderr
     recipe = json.loads(output.with_suffix(".recipe.json").read_text(encoding="utf-8"))
+    expected_output = output.read_bytes()
+    output.unlink()
     rendered = replay_style_safe_color_recipe(
         recipe, profile_path=PROFILE_PATH, root=ROOT
     )
     save_srgb8(rendered, replay)
-    assert replay.read_bytes() == output.read_bytes()
+    assert replay.read_bytes() == expected_output
 
     forged = copy.deepcopy(recipe)
     forged["render"]["color_parameters"]["strength"] += 0.01
@@ -248,6 +250,8 @@ def test_full_recipe_replay_is_exact_cli_effect_output(
     )
     assert completed.returncode == 0, completed.stderr
     recipe = json.loads(output.with_suffix(".recipe.json").read_text(encoding="utf-8"))
+    expected_output = output.read_bytes()
+    output.unlink()
     rendered = replay_style_safe_recipe(recipe, profile_path=PROFILE_PATH, root=ROOT)
     save_srgb8(rendered, replay)
-    assert replay.read_bytes() == output.read_bytes()
+    assert replay.read_bytes() == expected_output
