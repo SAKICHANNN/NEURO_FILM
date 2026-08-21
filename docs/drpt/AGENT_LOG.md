@@ -15288,6 +15288,22 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Storage:** all scratch and reports used repository-relative P-backed roots;
   no D fallback or drive-root artifact was created.
 
+### 2026-08-21 - P91 passes isolated canonical PQ partition invariance
+
+- Froze one prospective structural repair after P90: fixed 65,536-byte
+  uncompressed zlib feed blocks independent of caller row partitions. P90's
+  failure is retained and read as an explicit P91 gate.
+- An initial implementation commit touched historical `png_stream.py` and
+  correctly failed the U1.4G source-binding regression. Before formal P91
+  execution, `ade89edd` restored that file to exact historical SHA
+  `c3d3c35a...9b97` and moved P91 into a new versioned module.
+- All four DNG ACES arrays, RGB16 samples, strict readbacks and complete PNG
+  hashes now match across canonical/reversed partitions. Four fresh reports
+  are byte-exact at `8aa44e4e...6498`, stable `1bfb7b16...686a`.
+- Retain only the private versioned runtime mechanism and stop this compression
+  rescue family. No default writer, HDR quality/HDR10 metadata, arbitrary
+  input, public capability, product or delivery admission opens.
+
 ### 2026-08-21 - SF3.A1/A2 controlled three-stock execution path is ready
 
 - **Parent:** stock-first real-film programme; Velvia 50, Portra 400 and Ektar

@@ -1,0 +1,29 @@
+{
+  "schema": "neuro-film.p91-canonical-pq-partition-invariance-evidence.v1",
+  "status": "PASS_PRIVATE_CANONICAL_PQ_PARTITION_INVARIANCE",
+  "contract_id": "P91_CANONICAL_PQ_PNG_PARTITION_INVARIANCE_V1",
+  "formal_report_sha256": "8aa44e4e9968cf58c142728d63c7c4b370b8139a9c0d8e8db9918088f2e36498",
+  "stable_evidence_id": "1bfb7b168843d1cadf34982a718be2c5d0d2b44c2ae95607c6a3e277add2686a",
+  "execution": {
+    "fresh_processes": 4,
+    "forward_reverse_reports_byte_exact": true,
+    "p90_failure_preserved": true,
+    "required_rows": 4,
+    "all_gates_pass": true
+  },
+  "implementation": {
+    "canonical_writer_sha256": "54fed9a9abdf119bd03fb560e495c62af7d2c0887ee7829d41af391c62d0134d",
+    "aces_bridge_sha256": "57442e9a60b658e82c6b275fdded962395c0aebcc1e2358df7302706f90cef57",
+    "canonical_uncompressed_feed_bytes": 65536,
+    "correction_provenance": "Commit 5cdc80be initially placed optional logic in the historical writer and caused the U1.4G source binding test to fail. Commit ade89edd restored the historical file to exact SHA c3d3c35a...9b97 and isolated P91 in a new versioned module before formal P91 execution."
+  },
+  "metrics": {
+    "encoded_outputs_match_u1_4f": 4,
+    "sample_readbacks_exact": 4,
+    "complete_png_hashes_match_across_partitions": 4,
+    "production_loader_rejections_exact": 4
+  },
+  "decision": "retain_private_versioned_canonical_pq_writer_and_stop_compression_rescue_family",
+  "interpretation": "Fixed 64-KiB uncompressed zlib feed blocks remove caller row-partition dependence while preserving exact ACES arrays, RGB16 samples and the historical U1.4G implementation bytes. P90 remains failed and is not rewritten.",
+  "claim_ceiling": "Private deterministic PQ PNG compression-feed mechanics over four consumed DNGs only; no HDR quality, HDR10 metadata, arbitrary input, default writer/renderer/loader, public capability, product or delivery admission"
+}
