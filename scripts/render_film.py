@@ -20,7 +20,6 @@ from scripts.pipeline_color_baseline import (
     load_guardrail_config,
     load_profile_values,
     style_transfer,
-    style_transfer_rgb,
 )
 from src.filmfx import (
     PhysicalHalationControls,
@@ -39,6 +38,7 @@ from src.inference import (
     atomic_write_json,
     build_render_recipe,
     load_render_profile,
+    render_resolved_safe_lab_rgb,
     sha256_file,
 )
 from src.inference.analytic_render_recipe import build_analytic_render_recipe
@@ -264,24 +264,13 @@ def build_color_render_float(
         if profile_values is None
         else profile_values
     )
-    return style_transfer_rgb(
+    return render_resolved_safe_lab_rgb(
         rgb,
-        stats["styles"][args.style],
-        args.style,
-        strength=profile["strength"],
-        luma_strength=profile["luma_strength"],
-        grain=profile["grain"],
-        seed=args.seed,
-        gamut_safe=profile["gamut_safe"],
-        gamut_mode=profile["gamut_mode"],
-        tone_rolloff=profile["tone_rolloff"],
-        shadow_floor_l=profile["shadow_floor_l"],
-        highlight_ceiling_l=profile["highlight_ceiling_l"],
-        preserve_luma_detail_strength=profile["preserve_luma_detail"],
-        chroma_curve_strength=profile["chroma_curve_strength"],
-        output_margin=profile["output_margin"],
+        style=args.style,
+        style_statistics=stats["styles"][args.style],
+        style_parameters=profile,
         guardrails=load_guardrail_config(args.guardrails, args.style),
-        dither=profile["dither"],
+        seed=args.seed,
     )
 
 
