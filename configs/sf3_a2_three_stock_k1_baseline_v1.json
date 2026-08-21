@@ -25,7 +25,7 @@
     "selection_method": "leave_one_development_roll_out_mean_delta_e76",
     "simplest_relative_error_margin": 0.01,
     "minimum_development_rolls_per_stock": 2,
-    "confirmation_reads_before_selection_frozen": 0
+    "confirmation_target_reads_before_selection_frozen": 0
   },
   "operator_bounds": {
     "channel_gain": [0.5, 1.5],
