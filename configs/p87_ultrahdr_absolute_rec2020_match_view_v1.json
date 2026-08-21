@@ -1,0 +1,28 @@
+{
+  "contract_id": "P87_ULTRAHDR_ABSOLUTE_REC2020_MATCH_VIEW_V1",
+  "status": "FROZEN_BEFORE_IMPLEMENTATION_EVIDENCE",
+  "producer": {
+    "experiment_id": "R1BR",
+    "commit": "ce75e9c47db566b31d14b5739413b1edbdca3fd8",
+    "evidence_path": "docs/evidence/R1BR_LIBULTRAHDR_V2_MATCH_VIEW_CANONICALIZATION_RESULT.json",
+    "evidence_sha256": "85501b21f69cbb6ae8f169749a9b50f57420cfd6fbe3076e8eecf9be0f65eb48",
+    "external_profile_id": "zhuise.display-linear-bt2020-d65-absolute-cdm2-f32.v2"
+  },
+  "official_decoder": {
+    "repository": "https://github.com/google/libultrahdr",
+    "tag": "v2.0.0",
+    "commit": "b2aacb366e1542cfc29605cb0d8a0ebd06bb07f8",
+    "version": "2.0.0",
+    "input_layout": "little-endian-rgba-f16-row-major",
+    "input_gamut": "BT.2100",
+    "input_transfer": "linear",
+    "nominal_maximum": 49.26108374384236
+  },
+  "consumer": {
+    "profile_id": "neuro-film.display-absolute-linear-rec2020-d65-cdm2.v1",
+    "reference_white_nits": 203.0,
+    "output_layout": "big-endian-rgb-f32-row-major",
+    "render_bridge_id": "neuro-film.ultrahdr-v2-public-c-api-203nit.v1"
+  },
+  "claim_ceiling": "Private pinned-decoder arithmetic and identity compatibility only; no arbitrary-media, HDR quality, HDR10, display, public schema/package, capability, shared-bundle, product or delivery claim"
+}
