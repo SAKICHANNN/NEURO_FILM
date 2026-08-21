@@ -15200,3 +15200,25 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Decision:** the Velvia 50 / Portra 400 / Ektar 100 input pack is ready for
   controlled film exposure. No film target exists yet, so fitting, stock
   response, calibration and multi-stock completion claims remain closed.
+
+### 2026-08-21 - P87 passes the private Ultra HDR MatchView ingress
+
+- **Parent:** mature RAW/DNG/HDR/portable explicit-operator engineering under
+  the bounded final-cycle stop-loss; this does not reopen after-only matching.
+- **Skills:** dev-research-reliability primary; research/DRPT/log/structure
+  disciplines as read-only governance.
+- **Implementation:** added one consumer-owned absolute-linear Rec.2020/D65
+  MatchView profile and a no-media-I/O canonicalizer for exact pinned
+  libultrahdr v2 RGBA16F output. Source SHA, decoder version, producer alias,
+  dimensions, length, finite/range/alpha facts and decoded bytes all fail
+  closed before publishing immutable float32 pixels.
+- **Evidence:** 45 focused implementation/regression tests pass. Two fresh
+  processes in canonical and reversed order produced four byte-identical
+  reports at `c681ab92...50cf`, stable `bb1becd5...ddac`; all three expected
+  big-endian pixel hashes and seven negative controls pass.
+- **Decision:** retain the private decoded-payload primitive only. The consumer
+  still does not decode Ultra HDR JPEG, and successor admission remains the
+  frozen SDR profile. No HDR quality, HDR10, display, public package/schema,
+  capability, shared-bundle, product or delivery claim opens.
+- **Storage:** formal outputs use the repo-relative P-backed `outputs` junction.
+  No new D fallback or drive-root data was created.

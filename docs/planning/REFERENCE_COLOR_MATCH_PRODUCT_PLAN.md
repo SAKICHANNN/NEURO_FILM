@@ -293,6 +293,9 @@ with a selected stock, but reference matching alone is labeled
 | P85B | DONE | verify v12 latest-main integration | conflict-free merge tree `e778299c`; local and detached all-color 1003 pass/3 skips; last full remains 1898 pass/4 skips plus unchanged 36 historical failures | detached worktree removed | owner merge remains required |
 | P86A | DONE | freeze large-image EOTF streaming audit | fixed 24 MP/72M-sample workload, odd chunk size, two depths, two compilers, two replays and independent per-scalar oracle | script/tests/evidence doc | Windows host only |
 | P86B | DONE | prove exact chunking and bounded caller buffers | stable evidence `5f7a5150...a579a`; compiler/replay outputs exact; tracked live arrays <=10,485,790 bytes; loaded DLLs close on success/failure | two formal reports; 7 focused and 1028 all-color pass/3 skips | tracked payload is not process RSS |
+| P87A | DONE | freeze exact Ultra HDR decoded-payload bridge | bind R1BR, libultrahdr v2.0.0, producer alias, consumer-owned absolute Rec.2020 profile and exact 203-nit arithmetic before implementation | `05585517`; contract/config | no JPEG/media decode |
+| P87B | DONE | canonicalize pinned RGBA16F into MatchView | strict source/version/profile/geometry/length/finite/range/alpha gates; exact f32-times-203 pixels and immutable identities | `cf86e8f0`; 45 focused pass | private ingress only |
+| P87C | DONE | prove process/order replay and product non-admission | four reports exact `c681ab92...50cf`, stable `bb1becd5...ddac`; seven negative controls reject; successor admission remains SDR | `P87_ULTRAHDR_ABSOLUTE_REC2020_MATCH_VIEW_RESULT.json` | no HDR quality/package/capability/product claim |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.
@@ -768,7 +771,12 @@ Those are different colour states, so a D-PCT frame cannot be re-labeled as a
 record at least rail/domain, reference-white nits, render-bridge ID, decoder
 provenance and gamut/OOD decision.
 
-Until that bridge exists:
+P87 now provides one private, consumer-owned bridge for bytes already decoded
+by the exact pinned libultrahdr v2 public C API: little-endian linear BT.2100
+RGBA16F becomes absolute-light Rec.2020/D65 float32 at exactly 203 nits. It
+does not decode a JPEG, authorize another decoder/profile/white level or make
+the shared matcher/product consume HDR. Therefore the remaining boundaries
+still apply:
 
 - SDR decoded by D-PCT is not automatically compatible;
 - scene-relative RAW requires a versioned scene-to-display render bridge;

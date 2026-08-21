@@ -1,0 +1,55 @@
+{
+  "schema": "neuro-film.p87-ultrahdr-absolute-rec2020-evidence.v1",
+  "node": "Reference Color Match > P87",
+  "status": "PASS_PRIVATE_ULTRAHDR_ABSOLUTE_REC2020_MATCH_VIEW_INGRESS",
+  "decision": "retain private pinned-decoder decoded-payload ingress; arbitrary Ultra HDR media and product admission remain closed",
+  "bindings": {
+    "contract_commit": "05585517537aae5857ccf004d4500e8b82de4e81",
+    "contract_path": "docs/planning/P87_ULTRAHDR_ABSOLUTE_REC2020_MATCH_VIEW_CONTRACT.md",
+    "contract_sha256": "69f3ed6d042ba395a63e5ff658f1cd56abfb8966e4ae267d01e33025405e6bdc",
+    "config_path": "configs/p87_ultrahdr_absolute_rec2020_match_view_v1.json",
+    "config_sha256": "312e5ee442354bfacd06a9f963e544f1d01a01a4b670330164bb7bcaab5ac8d2",
+    "implementation_commit": "cf86e8f0bed29e5f663477fec89ed21dd7877b3f",
+    "implementation_path": "src/color_match/ultra_hdr_ingress.py",
+    "implementation_sha256": "3e2f54f0462f6eabf2a8841e67ef2df7f61f73e76b65d2c20e412eeed9ccdb39",
+    "runner_commit": "5e5ac05af5cabf9bb301700556011dd0faf5442f",
+    "runner_path": "scripts/audit_p87_ultrahdr_absolute_rec2020_match_view_v1.py",
+    "runner_sha256": "d96bcf1ac7e600a62c9b43e2ce75ef4ec52c75e6b9ead092900405f37c532adf",
+    "producer_commit": "ce75e9c47db566b31d14b5739413b1edbdca3fd8",
+    "producer_evidence_sha256": "85501b21f69cbb6ae8f169749a9b50f57420cfd6fbe3076e8eecf9be0f65eb48",
+    "official_libultrahdr_commit": "b2aacb366e1542cfc29605cb0d8a0ebd06bb07f8",
+    "formal_report_path": "outputs/eval/p87_ultrahdr_absolute_rec2020/o1_forward.json",
+    "formal_report_sha256": "c681ab9271b9aff87ed5892fa1e3f7d241354abe940966321c985069cf1150cf",
+    "stable_evidence_id": "bb1becd542b49dd65da3223bd5361f163280e430388cb2e151e58b4b96b7ddac"
+  },
+  "execution": {
+    "fresh_processes": 2,
+    "orders_per_process": [
+      "canonical",
+      "reverse"
+    ],
+    "all_four_report_sha256_exact": true,
+    "fixture_rows": 3,
+    "negative_controls": 7
+  },
+  "metrics": {
+    "consumer_profile_id": "neuro-film.display-absolute-linear-rec2020-d65-cdm2.v1",
+    "producer_profile_id": "zhuise.display-linear-bt2020-d65-absolute-cdm2-f32.v2",
+    "reference_white_nits": 203.0,
+    "maximum_fixture_nits": 9997.75,
+    "pixel_hashes_exact": 3,
+    "input_mutations": 0
+  },
+  "gates": {
+    "producer_evidence_bound": true,
+    "consumer_profile_semantics_exact": true,
+    "float32_times_203_pixel_hashes_exact": true,
+    "source_and_decoded_payload_bound": true,
+    "invalid_source_version_profile_length_nonfinite_range_alpha_reject": true,
+    "input_bytes_unchanged": true,
+    "reverse_order_exact": true,
+    "two_process_report_exact": true,
+    "successor_admission_remains_sdr": true
+  },
+  "claim_ceiling": "Private arithmetic and identity compatibility between pinned libultrahdr v2 linear RGBA16F output and a consumer-owned absolute Rec.2020 MatchView only; no JPEG or arbitrary-media decode, HDR quality, HDR10, display validation, public package/schema/capability, shared-bundle, product or delivery admission"
+}
