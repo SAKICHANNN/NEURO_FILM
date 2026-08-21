@@ -135,6 +135,16 @@ SF3.A0--A4 tests pass. This does not open visual review today because the
 physical target ledger remains empty; it only removes render materialization
 as a future blocker.
 
+SF3.A0L/A0N make the remaining physical-data handoff explicit. A0L expands
+the 12-scene/three-diagnostic stimulus pack into 87 stock-specific box-speed
+exposures and 153 scan tasks while sharing scene/display/geometry conditions,
+not shutter times, across Velvia 50, Portra 400 and Ektar 100. A0N then
+validates all 18 filled common-condition records and all 87 per-film-frame
+exposure receipts before scan-ledger assembly. The 47-test A0--A4 chain is
+green. This is capture readiness only; physical exposures and scans remain
+zero, so the next mainline action is recording the frozen work order rather
+than another proxy or model family.
+
 SF3.A2 tests one bounded current public-index refresh without changing the
 three-stock gates. The frozen anonymous Openverse route returned HTTP 401 for
 all three exact queries, despite the current consumer documentation describing
@@ -534,6 +544,7 @@ Restrictions:
 | U1.3C | complete: private receipt pass | Source-bound private DNG capture-metadata receipt without raster decode | U1.3B + existing raw.pixls.us CC0 DNG locks | four mandatory devices (3 CFA/1 LinearRaw), all source/manifest/self-digest/noise-profile gates and zero raster decode pass; forward/reverse report exact `7dd65d62...24095`; no renderer/public-schema/product claim |
 | U1.3D | complete: structural fail before LibRaw | Audit which exact DNG capture facts survive current LibRaw inspection | U1.3C + five untouched U5.R2BH1S DNG rows | forward-first Motorola and reverse-first Blackmagic both omit explicit CFAPlaneColor/CFALayout; frozen U1.3C receipt fails before LibRaw, report, samples or RGB; no default-tag rescue, U1.3C remains exact-four-device only |
 | U1.3E / P92 | complete: source admission closed before acquisition | Audit the current official CVPR 2026 MERIT/MDRAW release as genuinely new paired multi-camera RAW evidence | direction correction + official paper/repository/link | the repo has no licence, manifest or dataset checksum; two exact 64-byte probes show the linked 34,906,333,929-byte Zstandard object is named `odb-full-v1-processed.tar-001.zst`, not MDRAW, and it exceeds current authoritative P free space by 22,491,194,089 bytes. No archive, RAW pixel, decode, fit or score; reopen only on author-bound identity, explicit rights and verified P capacity; `docs/evidence/P92_MERIT_MDRAW_SOURCE_AVAILABILITY_RESULT.json` |
+| U1.3F / P93 | in progress: standard-default receipt contract frozen | Add a separately versioned DNG receipt that distinguishes explicit tags from the two exact DNG 1.7.1.0 CFA defaults, then rerun the consumed five-device LibRaw audit | U1.3C/D + official DNG 1.7.1.0 | contract freezes only `CFAPlaneColor=[0,1,2]` and `CFALayout=1`, provenance per fact, unchanged v1 behavior, zero raster/RGB reads and complete U1.3D numeric/replay gates; implementation and formal run pending |
 | U1.4 | in progress: primitives retained, first operator closed | ACEScg or validated wide-gamut working contract | U1.2 | U1.4A/B retain explicit Rec.2020 math/file I/O; C1 isolated math passes but C2 real-image OOD automatic boundary gate fails, so no operator integration; OCIO/ACES and user-facing support remain open |
 | U1.4A | complete: primitive pass | Dependency-free D65 linear-sRGB/linear-Rec.2020 conversion primitive | U1.2B/C | matrix/config error 0, identity `2.36e-16`, extended roundtrip `2.38e-7`, neutral 0, no clamp; WorkingImage provenance preserved; 576 tests; `docs/U1_4A_LINEAR_REC2020_PRIMITIVE_RESULTS.md` |
 | U1.4B | complete: file-boundary pass | BT.2020 SDR 16-bit RGB PNG cICP ingress/egress | U1.4A | exact CICP/sample/determinism gates, `1.44e-5` linear roundtrip and fail-closed cases pass; 584 tests; no renderer/HDR/ACES/arbitrary-profile claim; `docs/U1_4B_REC2020_SDR_PNG_CICP_RESULTS.md` |

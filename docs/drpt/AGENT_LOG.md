@@ -15355,3 +15355,38 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - This is execution readiness only. With no admitted physical ledger, severe
   review, blind stock distinguishability, calibration and product promotion
   remain closed; controlled three-stock acquisition stays the mainline.
+
+### 2026-08-21 - SF3.A0L/A0N physical capture receipts are executable
+
+- A0L compiles the frozen three-stock stimulus pack into 18 shared condition
+  records, 87 stock-specific box-speed exposures and 153 scan tasks. Two
+  reports are byte exact at `6e5cc477...af08`, stable
+  `56457c99...84ff`; implementation/evidence commits are `ce1bbf10` and
+  `6bab0495`.
+- A0N adds content validation for every common condition and per-film-frame
+  exposure receipt before scan-ledger assembly (`db39f86b`, `852a750d`). It
+  prevents a merely hash-valid placeholder from satisfying the physical
+  exposure record while preserving the frozen A0--A4 experiments.
+- Forty-seven adjacent A0--A4 tests pass. Physical exposure, processing,
+  scan, fit and score counts remain zero. The next research action is the
+  actual controlled capture; no proxy, adaptive, retrieval or K>1 rescue is
+  opened.
+
+### 2026-08-21 - P93 DNG standard-default receipt contract frozen
+
+- **Direction:** kept the corrected mainline on mature RAW/DNG engineering;
+  no after-only reference model, candidate rescue or pixel renderer change.
+- **Correction:** current `dng_metadata.py` already reads TIFF/DNG IFD tags
+  directly. U1.3D failed because the selected files omitted tags 50710/50711,
+  not because LibRaw discarded them. U1.3D remains unchanged.
+- **Primary source:** downloaded Adobe's official DNG 1.7.1.0 specification
+  through the repository-relative P-backed data junction. Exact PDF SHA-256 is
+  `abdecfd8...b2f8d`; it defines defaults `CFAPlaneColor=[0,1,2]` and
+  `CFALayout=1`.
+- **Freeze:** `docs/planning/P93_DNG_STANDARD_DEFAULT_RECEIPT_CONTRACT.md`
+  freezes a v2-only provenance model, the exact five consumed U1.3D rows,
+  unchanged LibRaw/numeric gates, v1 byte compatibility, two-process replay
+  and zero raster/RGB reads before implementation.
+- **Next ready leaf:** implement only the versioned receipt entry point and its
+  focused tests, then bind code/config and execute the complete five-row audit.
+  No other missing field may be inferred.
