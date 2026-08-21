@@ -6,7 +6,8 @@
   "implementation_commits": [
     "f7d631e5",
     "9f7cfaa7",
-    "49290b6d"
+    "49290b6d",
+    "adb3a710"
   ],
   "source": {
     "path": "data/preference/repid/u5_r2repid3_shared_operator_v1/fit/winner/a4593-kme_0276.jpeg",
@@ -55,7 +56,21 @@
     "observed_working_set_sample_bytes": 3551883264,
     "observed_working_set_is_peak_measurement": false
   },
-  "decision": "RETAIN_EXACT_THREE_STYLE_RECIPE_BATCH_AND_REQUIRE_RESOURCE_OPTIMIZATION_BEFORE_PRODUCT_READINESS",
-  "interpretation": "The same 24.39MP display-sRGB input renders and regenerates byte-exact final files for all three current development profiles. Runtime is about 87-89 seconds per style and a non-peak process sample exceeded 3.5GB, so this closes deterministic batch mechanics but not the ordinary-CPU product resource target.",
+  "parallel_batch_replay": {
+    "workers": 3,
+    "default_workers": 1,
+    "wall_seconds": 105.694,
+    "serial_wall_seconds": 256.429,
+    "wall_ratio": 0.41217646990005036,
+    "speedup": 2.4261452873389215,
+    "peak_process_tree_rss_bytes": 13384609792,
+    "all_png_file_bytes_exact": true,
+    "all_dimensions_exact": true,
+    "all_pngs_rgb16_with_srgb_icc": true,
+    "icc_bytes_per_png": 588,
+    "role": "explicit high-throughput mode; not the low-memory default"
+  },
+  "decision": "RETAIN_EXACT_THREE_STYLE_RECIPE_BATCH_WITH_OPT_IN_PARALLEL_THROUGHPUT_AND_KEEP_SINGLE_STYLE_RESOURCE_TARGET_OPEN",
+  "interpretation": "The same 24.39MP display-sRGB input renders and regenerates byte-exact final files for all three current development profiles. Explicit three-worker replay reduces batch wall time from 256.429 to 105.694 seconds without changing any final byte, but peaks at 13.38 GB process-tree RSS. The default remains one worker; per-style ordinary-CPU latency and memory remain open product targets.",
   "claim_ceiling": "Local Windows/Python exact 24MP final-file and recipe replay evidence for three existing film-inspired development profiles. AO6 is not used. This is not target-film closeness, stock distinguishability, calibrated stock response, population preference, cross-platform performance or multi-stock completion."
 }

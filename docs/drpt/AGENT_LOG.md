@@ -15635,3 +15635,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   observed roughly 3.55GB process working set and was not a formal peak;
   current wall time is already far above the product target. This is product
   resource evidence only, not named-stock truth or multi-stock completion.
+
+### 2026-08-21 - U7.2 adds opt-in parallel multi-profile replay
+
+- **Implementation:** `adb3a710` adds `--workers` to the existing recipe batch
+  CLI. The default remains one worker; independent profiles alone are
+  process-parallel and renderer/recipe/file semantics are unchanged.
+- **Measured result:** three 24.39MP RGB16+ICC recipes replay in `105.694s`
+  with three workers versus `256.429s` serial (`2.426x` speedup). All three
+  PNG files are byte exact to the frozen outputs; peak process-tree RSS is
+  `13,384,609,792` bytes.
+- **Decision:** retain this as explicit high-throughput mode, not a low-memory
+  default. Per-style ordinary-CPU latency and memory remain open. No target
+  closeness, stock distinguishability, calibration or product promotion is
+  inferred.
