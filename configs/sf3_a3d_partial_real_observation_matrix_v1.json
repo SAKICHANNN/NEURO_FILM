@@ -1,0 +1,89 @@
+{
+  "schema": "neuro-film.sf3-a3d-partial-real-observation-matrix-contract.v1",
+  "experiment_id": "SF3.A3D_PARTIAL_REAL_OBSERVATION_MATRIX_V1",
+  "question": "What is the strongest currently bound real colour observation for Velvia 50, Portra 400 and Ektar 100, and which data gate blocks a stock-specific K=1 fit?",
+  "required_stock_ids": [
+    "fujifilm_velvia_50",
+    "kodak_portra_400",
+    "kodak_ektar_100"
+  ],
+  "evidence_bindings": [
+    {
+      "id": "velvia_kci_controlled_chart",
+      "path": "docs/evidence/U5_R2BR0_KCI_VELVIA_SIMULATION_RESIDUAL_RESULT.json",
+      "sha256": "ad5b6c56e30192a16c256ab03e02c600bab619e4d1eb8e92d6fb38636e0b531c",
+      "required_decision": "close_controlled_chart_residual_without_capacity_rescue"
+    },
+    {
+      "id": "portra_same_scene_registration",
+      "path": "docs/evidence/U5_R2CHAM5_PORTRA400_REGISTRATION_D0_RESULT.json",
+      "sha256": "4ba592ab35d54d47802323f57da89bca674d631f17fa7add600fd7b8acb34ef5",
+      "required_decision": "retain_chart_pair_for_separately_frozen_development_only_operator_discriminant"
+    },
+    {
+      "id": "portra_natural_transfer",
+      "path": "docs/evidence/U5_R2CHAM10_PORTRA400_LOCAL_CORRESPONDENCE_TRANSFER_D1_RESULT.json",
+      "sha256": "1c9e8c1e70058dd5f898f9d7dc2282197674f551d2272f1738241e0bdcf42781",
+      "required_decision": "close_chart_affine_natural_local_transfer_without_rescue"
+    }
+  ],
+  "observation_lanes": [
+    {
+      "film_stock_id": "fujifilm_velvia_50",
+      "observation_id": "kci_publication_embedded_24_patch_display_chain",
+      "evidence_ids": ["velvia_kci_controlled_chart"],
+      "observation_grade": "publication_embedded_same_chart_display_chain_observation",
+      "original_pixel_payload_available": false,
+      "rights_clear_for_operator_fit": false,
+      "same_scene_digital_reference": true,
+      "independent_roll_holdout": false,
+      "process_separated": false,
+      "scanner_separated": false,
+      "transferable_stock_signal_passed": false,
+      "blocking_reason": "publication_patch_observation_only_without_original_pixels_or_independent_roll_process_scanner_repeats",
+      "next_required_observation": "rights_cleared_original_same_scene_velvia_pixels_with_independent_roll_and_scanner_holdout"
+    },
+    {
+      "film_stock_id": "kodak_portra_400",
+      "observation_id": "spektrafilm_same_session_chart_and_natural_scanner_chain",
+      "evidence_ids": ["portra_same_scene_registration", "portra_natural_transfer"],
+      "observation_grade": "unlicensed_same_session_registered_chart_plus_conflicting_natural_scan_chains",
+      "original_pixel_payload_available": true,
+      "rights_clear_for_operator_fit": false,
+      "same_scene_digital_reference": true,
+      "independent_roll_holdout": false,
+      "process_separated": false,
+      "scanner_separated": false,
+      "transferable_stock_signal_passed": false,
+      "blocking_reason": "one_unlicensed_session_and_material_noritsu_vs_ra4_epson_nuisance_without_independent_roll_or_scan_repeats",
+      "next_required_observation": "rights_cleared_same_negative_repeat_scans_plus_independent_portra_roll_holdout"
+    },
+    {
+      "film_stock_id": "kodak_ektar_100",
+      "observation_id": "no_comparable_paired_colour_observation",
+      "evidence_ids": [],
+      "observation_grade": "data_gap",
+      "original_pixel_payload_available": false,
+      "rights_clear_for_operator_fit": false,
+      "same_scene_digital_reference": false,
+      "independent_roll_holdout": false,
+      "process_separated": false,
+      "scanner_separated": false,
+      "transferable_stock_signal_passed": false,
+      "blocking_reason": "no_rights_cleared_same_scene_ektar_colour_observation",
+      "next_required_observation": "first_rights_cleared_same_scene_ektar_capture_with_process_and_scanner_receipts"
+    }
+  ],
+  "k1_fit_gates": {
+    "original_pixel_payload_available": true,
+    "rights_clear_for_operator_fit": true,
+    "same_scene_digital_reference": true,
+    "independent_roll_holdout": true,
+    "process_separated": true,
+    "scanner_separated": true,
+    "transferable_stock_signal_passed": true
+  },
+  "decision_if_all_admitted": "OPEN_THREE_STOCK_K1_OPERATOR_FIT",
+  "decision_if_any_blocked": "RETAIN_PARTIAL_REAL_OBSERVATIONS_AND_PRIORITIZE_EKTAR_FIRST_PAIR_PLUS_INDEPENDENT_VELVIA_PORTRA_REPEATS",
+  "claim_ceiling": "Executable matrix of the strongest currently bound real colour observations for three named stocks. It cannot upgrade publication patches, unlicensed same-session pixels, scanner/process mixtures or missing Ektar data into a stock response, calibration or product profile."
+}
