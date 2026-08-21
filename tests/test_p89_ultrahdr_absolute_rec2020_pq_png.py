@@ -53,6 +53,21 @@ def test_p89_contract_is_frozen_and_bindings_exist() -> None:
     assert (ROOT / "docs/evidence/U1_4G_REC2100_PQ_PNG_RAIL_RESULT.json").is_file()
 
 
+def test_p89_tracked_evidence_binds_formal_result() -> None:
+    evidence = _module()._load_object(
+        ROOT / "docs/evidence/P89_ULTRAHDR_ABSOLUTE_REC2020_PQ_PNG_RESULT.json"
+    )
+    assert evidence["status"] == "PASS_PRIVATE_ULTRAHDR_ABSOLUTE_REC2020_PQ_PNG"
+    assert evidence["formal_execution"]["report_sha256"] == (
+        "55316c3e9bb554059eb0768c15170787f93b8c75d7062149c7e65bae83bec1c1"
+    )
+    assert evidence["formal_execution"]["stable_evidence_id"] == (
+        "6107d3a7bdc821d0ebb403c213c7288ed16c2c34754fa6308a91e5bb7e75ecd6"
+    )
+    assert evidence["formal_execution"]["all_gates_pass"]
+    assert len(evidence["records"]) == 2
+
+
 def test_p89_private_bridge_publishes_and_rejects_profile_drift(tmp_path: Path) -> None:
     prepared = _prepared()
     output = tmp_path / "valid.png"

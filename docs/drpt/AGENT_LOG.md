@@ -15241,3 +15241,41 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   capability, product or delivery claim opens.
 - **Storage:** scratch and formal reports use repo-relative P-backed roots;
   no D fallback or drive-root artifact was created.
+
+### 2026-08-21 - P89 closes the private Ultra HDR to PQ PNG mechanics chain
+
+- **Parent:** mature RAW/DNG/HDR/portable explicit-operator engineering after
+  the bounded automatic-candidate cycle stopped at `2/3`; candidate 3 remains
+  intentionally unopened.
+- **Direction check:** R1BT was not composed with P88 because its ABI explicitly
+  labels each transform source-bound. P89 instead uses only reusable standard
+  arithmetic and the retained P87/P88/U1.4G boundaries.
+- **Protocol:** froze ITU-R BT.2100-3 Table 4 inverse PQ EOTF constants,
+  `[0,10000]` cd/m2 rejection, half-up full-range RGB16 quantization, exact
+  scalar oracle, strict PNG readback and production-loader rejection before
+  first P89 transform execution.
+- **Evidence:** a 65,537-point dense probe and both exact CC-BY-4.0 fixtures
+  pass all gates. Four independent forward/reverse reports are byte-identical
+  at `55316c3e...c1c1`, stable `6107d3a7...5ecd6`. Maximum absolute
+  quantization roundtrip is `.12952` cd/m2; both native sample hashes and exact
+  `09 10 00 01` U1.4G signaling survive strict readback.
+- **Decision:** retain only the private exact-fixture mechanics chain. The
+  production loader continues to reject both gain-map JPEG sources and the
+  generated PQ PNGs. No tone map, arbitrary Ultra HDR/ISO 21496-1, HDR10,
+  mastering/content-light metadata, display/HDR quality, public capability,
+  product or delivery claim opens.
+- **Storage:** all formal outputs and scratch use repo-relative P-backed roots;
+  no D fallback or drive-root artifact was created.
+
+### 2026-08-21 - SF3.A1/A2 controlled three-stock execution path is ready
+
+- **Parent:** stock-first real-film programme; Velvia 50, Portra 400 and Ektar
+  100 K=1 experts before any adaptive, retrieval or latent-mode work.
+- **Implementation:** added strict file/rights/alignment integrity auditing,
+  identical common-coordinate paired sampling, per-stock bounded K=1 model
+  selection, and a file-backed A1-to-A2 runner (`c630b968`).
+- **Evidence:** 17 adjacent tests plus Ruff, `py_compile` and diff checks pass.
+- **Decision:** retain as execution readiness only. No physical target rows are
+  admitted, so no stock, calibration, preference or multi-stock result opens;
+  the next work remains controlled physical evidence rather than another
+  proxy/model family.

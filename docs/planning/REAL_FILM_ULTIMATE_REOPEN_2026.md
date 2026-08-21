@@ -706,3 +706,9 @@ a pass is representation evidence only.
   source of identifying information; an after-only architecture or procedural
   self-supervision paper cannot reset this counter. Evidence:
   `docs/evidence/SF3_A0Y_NTIRE_PAIRED_SHAPED_LUT_CANDIDATE2_RESULT.json`.
+
+The mature HDR branch has since closed one narrow engineering chain at
+P87-P89: an exact pinned two-fixture Ultra HDR decode is bound to absolute
+Rec.2020 cd/m2 and then to fixed BT.2100-3 PQ RGB16 PNG. This does not consume
+or reset the `2/3` automatic-candidate counter, does not reopen candidate 3,
+and does not establish tone mapping, arbitrary-media HDR or product support.
