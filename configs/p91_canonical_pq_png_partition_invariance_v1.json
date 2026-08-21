@@ -1,0 +1,10 @@
+{
+  "contract_id": "P91_CANONICAL_PQ_PNG_PARTITION_INVARIANCE_V1",
+  "status": "FROZEN_BEFORE_P91_IMPLEMENTATION",
+  "uncompressed_feed_bytes": 65536,
+  "compression_level": 0,
+  "idat_payload_bytes": 65536,
+  "p90_evidence_sha256": "c4c402d3989cd4c1739ca77778ade7248192600bb31ecafdc2955276e74a8080",
+  "required_rows": 4,
+  "claim_ceiling": "Private deterministic PQ PNG compression-feed mechanics only; P90 remains failed and no HDR quality, HDR10 metadata, arbitrary input, default writer/renderer/loader, public capability, product or delivery admission opens"
+}
