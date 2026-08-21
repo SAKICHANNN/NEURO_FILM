@@ -307,7 +307,12 @@ def test_recipe_replay_cli_regenerates_missing_outputs_as_batch(
     Image.fromarray(np.full((17, 23, 3), (81, 123, 177), dtype=np.uint8)).save(
         source
     )
-    command = [sys.executable, str(ROOT / "scripts/replay_film_recipe.py")]
+    command = [
+        sys.executable,
+        str(ROOT / "scripts/replay_film_recipe.py"),
+        "--workers",
+        "2",
+    ]
     expected: dict[Path, bytes] = {}
     for style in ("velvia_50", "ektar_100"):
         original = tmp_path / f"{style}.png"
