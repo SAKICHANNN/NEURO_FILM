@@ -15815,4 +15815,7 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   distinguishability remain unavailable until the original three-stock path
   runs; no thresholds, operator families or product defaults changed.
 - The existing three-stock CLI remains the default; `--stock` explicitly
-  selects the lower-claim path. Forty-seven adjacent A0-A5 tests pass.
+  selects the lower-claim path. All three first-wave stocks now traverse the
+  file-backed A1-to-A2 chain independently, and the complete 142-test SF3
+  family passes. The admission matrix points to the first ready stock rather
+  than requiring all physical captures to arrive together.
