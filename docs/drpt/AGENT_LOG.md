@@ -15660,3 +15660,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   three-worker peak memory, but 8.08GiB is still too high for a low-memory
   default. Keep one worker as the default and expose 2/3 workers only as
   explicit resource tiers. No stock-authenticity claim changes.
+
+### 2026-08-21 - U7.2 adds exact tiled recipe replay
+
+- **Implementation:** `5852c6bf` exposes the already validated two-pass
+  safe-Lab tile path through recipe replay and `--tile-size`; the default
+  full-frame behavior is unchanged. Full effect recipes and parallel batches
+  retain byte identity in focused tests.
+- **24MP result:** tile size `256` reproduces the exact Velvia, Portra and
+  Ektar RGB16 PNG+ICC bytes. One Velvia worker takes `89.375s` at
+  `2,389,508,096` bytes peak; two simultaneous Portra/Ektar workers take
+  `95.217s` at `4,827,119,616` bytes peak.
+- **Decision:** retain tiled replay as the explicit low-memory mode. It trades
+  only 2.4% Velvia wall time for predictable approximately 2.4GB per worker;
+  full-frame 2/3-worker modes remain separate high-throughput tiers. These are
+  deterministic Look Approximation delivery facts, not stock evidence.
