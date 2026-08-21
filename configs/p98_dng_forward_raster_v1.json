@@ -1,0 +1,71 @@
+{
+  "schema": "neuro_film.p98_dng_forward_raster_contract.v1",
+  "experiment_id": "p98-dng-forward-raster-v1",
+  "status": "frozen_before_implementation_and_formal_raster_run",
+  "node": "ULT > U1 > U1.3K / P98",
+  "bindings": {
+    "contract_path": "docs/planning/P98_DNG_FORWARD_RASTER_CONTRACT.md",
+    "contract_sha256": "b3412b55911e400c7431d1cab14dcfadb35ca98aa3f679f3f09b57c5d8a253b0",
+    "p94_evidence_path": "docs/evidence/P94_DNG_FORWARD_MATRIX_MECHANICS_RESULT.json",
+    "p94_evidence_sha256": "28dbe488dac052ca374d35b883d9eaec93d3f2adb63223bc04ab87290c4ba355",
+    "p97_evidence_path": "docs/evidence/P97_DNG_PCS_REC2020_COMPOSITION_RESULT.json",
+    "p97_evidence_sha256": "63dfd262b06ba37faafa77fabf6f0cc34a1e039766eab959e06ac5914629ee5a",
+    "implementation_path": "src/preprocess/dng_forward_raster.py",
+    "runner_path": "scripts/audit_p98_dng_forward_raster.py"
+  },
+  "rows": [
+    {
+      "source_id": "motorola_moto_g_7_play",
+      "camera_make": "motorola",
+      "logical_path": "data/external/rawpixls_bh1_v1/raw/motorola_moto_g_7_play.dng",
+      "source_bytes": 26286800,
+      "source_sha256": "d46953b116ee7a88b99fb28edc7b2f1b631ed09d66f73391c4ccc2e2ec959575"
+    },
+    {
+      "source_id": "lg_lg_h850",
+      "camera_make": "LG",
+      "logical_path": "data/external/rawpixls_bh1_v1/raw/lg_lg_h850.dng",
+      "source_bytes": 16005440,
+      "source_sha256": "be58e948626b193538217e96bc6d9ff5fdeb91a3a8a8af65624dab41ae39895f"
+    },
+    {
+      "source_id": "xiaomi_m2010j19cg",
+      "camera_make": "Xiaomi",
+      "logical_path": "data/external/rawpixls_bh1_v1/raw/xiaomi_m2010j19cg.dng",
+      "source_bytes": 24029476,
+      "source_sha256": "e1cb49299faa6609547bbb9b2c5a6167031694a99a1d252e1e048ce18ddf214f"
+    },
+    {
+      "source_id": "blackmagic_pocket_cinema_camera_4k",
+      "camera_make": "Blackmagic",
+      "logical_path": "data/external/rawpixls_bh1_v1/raw/blackmagic_pocket_cinema_camera_4k.dng",
+      "source_bytes": 4497152,
+      "source_sha256": "1491a5e5d580a9be151747bddce89faca4d0b9d352503270f516bbf8e8cdf0d9"
+    },
+    {
+      "source_id": "huawei_eml_l29",
+      "camera_make": "HUAWEI",
+      "logical_path": "data/external/rawpixls_bh1_v1/raw/huawei_eml_l29.dng",
+      "source_bytes": 23643352,
+      "source_sha256": "77385bde838ab7e0a5b067d7f6e6b8cb3019a3c22353fae6b8689a43adda439a"
+    }
+  ],
+  "runtime": {
+    "rawpy_version": "0.26.1",
+    "libraw_version": [0, 22, 0]
+  },
+  "gates": {
+    "required_rows": 5,
+    "required_camera_makes": 5,
+    "maximum_composition_error": 5e-15,
+    "maximum_absolute_output": 8.0,
+    "maximum_outside_unit_fraction": 0.25,
+    "require_camera_raster_unit_range": true,
+    "require_float32_oracle_bytes_exact": true,
+    "require_source_hashes_unchanged": true,
+    "require_camera_input_unchanged": true,
+    "require_forward_reverse_exact": true,
+    "require_two_fresh_process_reports_exact": true
+  },
+  "claim_ceiling": "Private opt-in exact five-DNG camera-linear LibRaw demosaic plus DNG ForwardMatrix-to-D50-PCS-to-linear-Rec.2020 WorkingImage mechanics only; no arbitrary DNG, sensor/IDT calibration, vendor/Adobe parity, photographic or colorimetric quality, tone mapping, default-loader integration, output file, public package/schema/capability, product, film, stock, or preference admission"
+}
