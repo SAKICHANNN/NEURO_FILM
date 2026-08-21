@@ -8,7 +8,8 @@
     "9f7cfaa7",
     "49290b6d",
     "adb3a710",
-    "5852c6bf"
+    "5852c6bf",
+    "e16f7fd6"
   ],
   "source": {
     "path": "data/preference/repid/u5_r2repid3_shared_operator_v1/fit/winner/a4593-kme_0276.jpeg",
@@ -89,6 +90,8 @@
   "tiled_batch_replay": {
     "tile_size": 256,
     "velvia_single_worker_wall_seconds": 89.3748707,
+    "velvia_initial_render_cli_wall_seconds": 91.3041566,
+    "velvia_initial_render_cli_png_file_bytes_exact": true,
     "velvia_initial_full_frame_wall_seconds": 87.259,
     "velvia_wall_ratio_to_initial_full_frame": 1.0242481658052465,
     "velvia_peak_process_tree_rss_bytes": 2389508096,
@@ -103,7 +106,7 @@
     "icc_bytes_per_png": 588,
     "role": "explicit exact low-memory mode with predictable per-worker memory"
   },
-  "decision": "RETAIN_EXACT_THREE_STYLE_RECIPE_BATCH_WITH_TILED_LOW_MEMORY_AND_EXPLICIT_PARALLEL_RESOURCE_TIERS",
-  "interpretation": "The same 24.39MP display-sRGB input renders and regenerates byte-exact final files for all three current development profiles. Exact tile-size-256 replay bounds one worker at 2.39 GB peak with only 2.4% wall overhead on Velvia, while two tiled workers complete Portra and Ektar in 95.217 seconds at 4.83 GB peak. Full-frame parallelism remains an opt-in throughput tier: two workers take 180.717 seconds at 8.68 GB and three take 105.694 seconds at 13.38 GB. The default remains one worker; callers may explicitly choose tiled memory control or full-frame parallel throughput.",
+  "decision": "CLOSE_U7_2_WITH_EXACT_INITIAL_AND_RECIPE_TILED_LOW_MEMORY_PLUS_EXPLICIT_PARALLEL_RESOURCE_TIERS",
+  "interpretation": "The same 24.39MP display-sRGB input renders and regenerates byte-exact final files for all three current development profiles. Exact tile-size-256 replay bounds one worker at 2.39 GB peak with only 2.4% wall overhead on Velvia, while two tiled workers complete Portra and Ektar in 95.217 seconds at 4.83 GB peak. The initial render CLI also reproduces the exact Velvia file in 91.304 seconds. Full-frame parallelism remains an opt-in throughput tier: two workers take 180.717 seconds at 8.68 GB and three take 105.694 seconds at 13.38 GB. U7.2 closes with explicit memory/throughput choices and the known 87-91 second Python CPU latency limitation; further colour-core micro-optimization is not the multi-stock scientific mainline.",
   "claim_ceiling": "Local Windows/Python exact 24MP final-file and recipe replay evidence for three existing film-inspired development profiles. AO6 is not used. This is not target-film closeness, stock distinguishability, calibrated stock response, population preference, cross-platform performance or multi-stock completion."
 }

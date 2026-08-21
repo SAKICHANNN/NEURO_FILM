@@ -15664,7 +15664,8 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 ### 2026-08-21 - U7.2 adds exact tiled recipe replay
 
 - **Implementation:** `5852c6bf` exposes the already validated two-pass
-  safe-Lab tile path through recipe replay and `--tile-size`; the default
+  safe-Lab tile path through recipe replay and `--tile-size`; `e16f7fd6`
+  exposes the same opt-in path through the initial render CLI. The default
   full-frame behavior is unchanged. Full effect recipes and parallel batches
   retain byte identity in focused tests.
 - **24MP result:** tile size `256` reproduces the exact Velvia, Portra and
@@ -15674,4 +15675,7 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Decision:** retain tiled replay as the explicit low-memory mode. It trades
   only 2.4% Velvia wall time for predictable approximately 2.4GB per worker;
   full-frame 2/3-worker modes remain separate high-throughput tiers. These are
-  deterministic Look Approximation delivery facts, not stock evidence.
+  deterministic Look Approximation delivery facts, not stock evidence. The
+  initial render CLI also reproduces exact Velvia bytes in `91.304s`; U7.2
+  closes here rather than extending colour-core optimization ahead of the
+  controlled three-stock data programme.
