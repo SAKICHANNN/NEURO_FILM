@@ -15,6 +15,7 @@ from src.real_film.three_stock_acquisition import (
     ThreeStockAcquisitionError,
     compile_acquisition_ledger,
     evaluate_manifest,
+    evaluate_single_stock_manifest,
 )
 
 
@@ -27,10 +28,17 @@ def main() -> int:
     )
     parser.add_argument("--ledger", type=Path, required=True)
     parser.add_argument("--output-manifest", type=Path, required=True)
-    args = parser.parse_args()
-    manifest = compile_acquisition_ledger(
-        args.contract, args.ledger, root=ROOT
+    parser.add_argument(
+        "--stock",
+        choices=(
+            "fujifilm_velvia_50",
+            "kodak_portra_400",
+            "kodak_ektar_100",
+        ),
+        help="Admit only one complete stock lane.",
     )
+    args = parser.parse_args()
+    manifest = compile_acquisition_ledger(args.contract, args.ledger, root=ROOT)
     encoded = (json.dumps(manifest, indent=2, sort_keys=True) + "\n").encode("utf-8")
     args.output_manifest.parent.mkdir(parents=True, exist_ok=True)
     try:
@@ -40,7 +48,13 @@ def main() -> int:
         raise ThreeStockAcquisitionError(
             f"refusing to overwrite manifest: {args.output_manifest}"
         ) from exc
-    report = evaluate_manifest(args.contract, args.output_manifest)
+    report = (
+        evaluate_manifest(args.contract, args.output_manifest)
+        if args.stock is None
+        else evaluate_single_stock_manifest(
+            args.contract, args.output_manifest, stock=args.stock
+        )
+    )
     print(json.dumps(report, indent=2, sort_keys=True))
     return 0 if report["automatic_pass"] else 1
 

@@ -17,8 +17,13 @@ from src.real_film.three_stock_acquisition import (
 CONTRACT_SCHEMA = "neuro-film.sf3-a0n-three-stock-capture-receipt-contract.v1"
 PACKET_SCHEMA = "neuro-film.sf3-a0n-three-stock-capture-receipt-packet.v1"
 REPORT_SCHEMA = "neuro-film.sf3-a0n-three-stock-capture-receipt-report.v1"
+SINGLE_STOCK_PACKET_SCHEMA = "neuro-film.sf3-a0n-single-stock-capture-receipt-packet.v1"
+SINGLE_STOCK_REPORT_SCHEMA = "neuro-film.sf3-a0n-single-stock-capture-receipt-report.v1"
 BINDING_REPORT_SCHEMA = (
     "neuro-film.sf3-a0n-three-stock-receipt-ledger-binding-report.v1"
+)
+SINGLE_STOCK_BINDING_REPORT_SCHEMA = (
+    "neuro-film.sf3-a0n-single-stock-receipt-ledger-binding-report.v1"
 )
 _SHA256 = re.compile(r"^[0-9a-f]{64}$")
 
@@ -81,18 +86,32 @@ def _load_contract_and_work_order(
     return contract_raw, contract, work_order
 
 
-def build_receipt_template(contract_path: Path, *, root: Path) -> dict[str, Any]:
-    """Build the exact fillable packet shape without inventing measurements."""
+def _build_receipt_template(
+    contract_path: Path, *, root: Path, stock: str | None
+) -> dict[str, Any]:
+    """Build an exact fillable packet shape without inventing measurements."""
 
     _, _, work_order = _load_contract_and_work_order(contract_path, root=root)
+    if stock is not None and stock not in {
+        row["stock_id"] for row in work_order["exposure_rows"]
+    }:
+        raise ThreeStockCaptureReceiptError("unsupported single-stock identity")
+    selected_exposures = [
+        row
+        for row in work_order["exposure_rows"]
+        if stock is None or row["stock_id"] == stock
+    ]
+    condition_ids = {row["common_condition_slot_id"] for row in selected_exposures}
     conditions = []
     for expected in work_order["common_condition_records"]:
+        if expected["condition_slot_id"] not in condition_ids:
+            continue
         row = {field: None for field in expected["required_fields"]}
         row["condition_slot_id"] = expected["condition_slot_id"]
         row["stimulus_sha256"] = expected["stimulus_sha256"]
         conditions.append(row)
     exposures = []
-    for expected in work_order["exposure_rows"]:
+    for expected in selected_exposures:
         row = {field: None for field in expected["exposure_receipt_required_fields"]}
         row.update(
             {
@@ -104,48 +123,72 @@ def build_receipt_template(contract_path: Path, *, root: Path) -> dict[str, Any]
         )
         exposures.append(row)
     return {
-        "schema": PACKET_SCHEMA,
+        "schema": PACKET_SCHEMA if stock is None else SINGLE_STOCK_PACKET_SCHEMA,
         "work_order_stable_evidence_id": work_order["stable_evidence_id"],
+        **({} if stock is None else {"stock": stock}),
         "common_condition_records": conditions,
         "exposure_receipts": exposures,
     }
 
 
-def evaluate_receipts(
-    contract_path: Path, packet_path: Path, *, root: Path
+def build_receipt_template(contract_path: Path, *, root: Path) -> dict[str, Any]:
+    """Build the exact full three-stock fillable receipt packet."""
+
+    return _build_receipt_template(contract_path, root=root, stock=None)
+
+
+def build_single_stock_receipt_template(
+    contract_path: Path, *, root: Path, stock: str
+) -> dict[str, Any]:
+    """Build only the receipt rows needed for one complete stock lane."""
+
+    return _build_receipt_template(contract_path, root=root, stock=stock)
+
+
+def _evaluate_receipts(
+    contract_path: Path, packet_path: Path, *, root: Path, stock: str | None
 ) -> dict[str, Any]:
     contract_raw, contract, work_order = _load_contract_and_work_order(
         contract_path, root=root
     )
 
     packet_raw, packet = _read_object(packet_path)
-    if set(packet) != {
+    expected_packet_fields = {
         "schema",
         "work_order_stable_evidence_id",
         "common_condition_records",
         "exposure_receipts",
-    }:
+    } | ({"stock"} if stock is not None else set())
+    if set(packet) != expected_packet_fields:
         raise ThreeStockCaptureReceiptError("capture receipt packet field drift")
     if (
-        packet.get("schema") != PACKET_SCHEMA
+        packet.get("schema")
+        != (PACKET_SCHEMA if stock is None else SINGLE_STOCK_PACKET_SCHEMA)
         or packet.get("work_order_stable_evidence_id")
         != work_order["stable_evidence_id"]
+        or (stock is not None and packet.get("stock") != stock)
     ):
         raise ThreeStockCaptureReceiptError("capture receipt packet parent drift")
 
-    expected_conditions = {
-        row["condition_slot_id"]: row for row in work_order["common_condition_records"]
-    }
     expected_exposures = {
-        row["exposure_slot_id"]: row for row in work_order["exposure_rows"]
+        row["exposure_slot_id"]: row
+        for row in work_order["exposure_rows"]
+        if stock is None or row["stock_id"] == stock
+    }
+    expected_condition_ids = {
+        row["common_condition_slot_id"] for row in expected_exposures.values()
+    }
+    expected_conditions = {
+        row["condition_slot_id"]: row
+        for row in work_order["common_condition_records"]
+        if row["condition_slot_id"] in expected_condition_ids
     }
     conditions = packet.get("common_condition_records")
     exposures = packet.get("exposure_receipts")
     if not isinstance(conditions, list) or not isinstance(exposures, list):
         raise ThreeStockCaptureReceiptError("capture receipt inventories are invalid")
-    if (
-        len(conditions) != contract["expected_counts"]["common_condition_records"]
-        or len(exposures) != contract["expected_counts"]["exposure_receipts"]
+    if len(conditions) != len(expected_conditions) or len(exposures) != len(
+        expected_exposures
     ):
         raise ThreeStockCaptureReceiptError("capture receipt count drift")
 
@@ -214,32 +257,72 @@ def evaluate_receipts(
     ):
         raise ThreeStockCaptureReceiptError("capture receipt slot coverage drift")
     core = {
-        "schema": REPORT_SCHEMA,
-        "experiment_id": contract["experiment_id"],
+        "schema": REPORT_SCHEMA if stock is None else SINGLE_STOCK_REPORT_SCHEMA,
+        "experiment_id": (
+            contract["experiment_id"]
+            if stock is None
+            else f"{contract['experiment_id']}.{stock}"
+        ),
         "contract_sha256": _sha256(contract_raw),
         "work_order_stable_evidence_id": work_order["stable_evidence_id"],
         "packet_sha256": _sha256(packet_raw),
         "common_condition_records": len(conditions),
         "exposure_receipts": len(exposures),
         "automatic_pass": True,
-        "decision": contract["decision_if_pass"],
+        "decision": (
+            contract["decision_if_pass"]
+            if stock is None
+            else "OPEN_SINGLE_STOCK_EVIDENCE_LEDGER_ASSEMBLY"
+        ),
         "operator_fits": 0,
         "film_target_scores": 0,
-        "claim_ceiling": contract["claim_ceiling"],
+        "claim_ceiling": (
+            contract["claim_ceiling"]
+            if stock is None
+            else (
+                "Measured capture-condition and exposure receipt validation for "
+                "one stock lane only. Passing does not establish cross-stock "
+                "controls, pixel integrity, fitting, stock response or calibration."
+            )
+        ),
     }
+    if stock is not None:
+        core["stock"] = stock
     return {**core, "stable_evidence_id": _sha256(_canonical(core))}
 
 
-def build_ledger_template(
+def evaluate_receipts(
+    contract_path: Path, packet_path: Path, *, root: Path
+) -> dict[str, Any]:
+    """Validate the complete three-stock receipt packet."""
+
+    return _evaluate_receipts(contract_path, packet_path, root=root, stock=None)
+
+
+def evaluate_single_stock_receipts(
+    contract_path: Path, packet_path: Path, *, root: Path, stock: str
+) -> dict[str, Any]:
+    """Validate the complete receipt packet for one stock lane."""
+
+    return _evaluate_receipts(contract_path, packet_path, root=root, stock=stock)
+
+
+def _build_ledger_template(
     contract_path: Path,
     packet_path: Path,
     acquisition_contract_path: Path,
     *,
     root: Path,
+    stock: str | None,
 ) -> dict[str, Any]:
-    """Build the exact 108-row evidence-ledger skeleton from verified receipts."""
+    """Build an exact evidence-ledger skeleton from verified receipts."""
 
-    evaluate_receipts(contract_path, packet_path, root=root)
+    if stock is None:
+        evaluate_receipts(contract_path, packet_path, root=root)
+    else:
+        evaluate_single_stock_receipts(
+            contract_path, packet_path, root=root, stock=stock
+        )
     _, _, work_order = _load_contract_and_work_order(contract_path, root=root)
     _, packet = _read_object(packet_path)
     acquisition_raw, acquisition_contract = _read_object(acquisition_contract_path)
@@ -276,6 +359,8 @@ def build_ledger_template(
         if task["counts_toward_evidence_minimum"] is not True:
             continue
         exposure = exposure_by_id[task["exposure_slot_id"]]
+        if stock is not None and exposure["stock_id"] != stock:
+            continue
         condition = condition_by_id[exposure["common_condition_slot_id"]]
         receipt_condition = receipt_condition_by_id[condition["condition_slot_id"]]
         row = {field: None for field in ledger_fields}
@@ -296,19 +381,65 @@ def build_ledger_template(
             }
         )
         rows.append(row)
-    expected = int(work_order["counts"]["evidence_scan_tasks"])
+    expected = (
+        int(work_order["counts"]["evidence_scan_tasks"])
+        if stock is None
+        else sum(
+            task["counts_toward_evidence_minimum"] is True
+            and exposure_by_id[task["exposure_slot_id"]]["stock_id"] == stock
+            for task in work_order["scan_tasks"]
+        )
+    )
     if len(rows) != expected or any(set(row) != ledger_fields for row in rows):
         raise ThreeStockCaptureReceiptError("ledger template inventory drift")
     return {"schema": LEDGER_SCHEMA, "rows": rows}
 
 
-def evaluate_ledger_binding(
+def build_ledger_template(
+    contract_path: Path,
+    packet_path: Path,
+    acquisition_contract_path: Path,
+    *,
+    root: Path,
+) -> dict[str, Any]:
+    """Build the exact 108-row three-stock evidence-ledger skeleton."""
+
+    return _build_ledger_template(
+        contract_path,
+        packet_path,
+        acquisition_contract_path,
+        root=root,
+        stock=None,
+    )
+
+
+def build_single_stock_ledger_template(
+    contract_path: Path,
+    packet_path: Path,
+    acquisition_contract_path: Path,
+    *,
+    root: Path,
+    stock: str,
+) -> dict[str, Any]:
+    """Build only the evidence-ledger rows required by one stock lane."""
+
+    return _build_ledger_template(
+        contract_path,
+        packet_path,
+        acquisition_contract_path,
+        root=root,
+        stock=stock,
+    )
+
+
+def _evaluate_ledger_binding(
     contract_path: Path,
     packet_path: Path,
     acquisition_contract_path: Path,
     ledger_path: Path,
     *,
     root: Path,
+    stock: str | None,
 ) -> dict[str, Any]:
     """Bind one passing receipt packet to the exact evidence scan-task ledger.
 
@@ -316,7 +447,13 @@ def evaluate_ledger_binding(
     physical work order but do not enter the SF3.A0 evidence ledger.
     """
 
-    receipt_report = evaluate_receipts(contract_path, packet_path, root=root)
+    receipt_report = (
+        evaluate_receipts(contract_path, packet_path, root=root)
+        if stock is None
+        else evaluate_single_stock_receipts(
+            contract_path, packet_path, root=root, stock=stock
+        )
+    )
     _, _, work_order = _load_contract_and_work_order(contract_path, root=root)
     packet_raw, packet = _read_object(packet_path)
     ledger_raw, ledger = _read_object(ledger_path)
@@ -345,6 +482,10 @@ def evaluate_ledger_binding(
         row["scan_task_id"]: row
         for row in work_order["scan_tasks"]
         if row["counts_toward_evidence_minimum"] is True
+        and (
+            stock is None
+            or exposure_by_id[row["exposure_slot_id"]]["stock_id"] == stock
+        )
     }
     if len(source_rows) != len(evidence_tasks):
         raise ThreeStockCaptureReceiptError("evidence scan-task count drift")
@@ -397,9 +538,24 @@ def evaluate_ledger_binding(
     if observed_tasks != set(evidence_tasks):
         raise ThreeStockCaptureReceiptError("evidence scan-task coverage drift")
     manifest_raw = _canonical(manifest)
+    selected_task_count = (
+        len(work_order["scan_tasks"])
+        if stock is None
+        else sum(
+            exposure_by_id[row["exposure_slot_id"]]["stock_id"] == stock
+            for row in work_order["scan_tasks"]
+            if row.get("exposure_slot_id") in exposure_by_id
+        )
+    )
     core = {
-        "schema": BINDING_REPORT_SCHEMA,
-        "experiment_id": "SF3.A0N-LEDGER",
+        "schema": (
+            BINDING_REPORT_SCHEMA
+            if stock is None
+            else SINGLE_STOCK_BINDING_REPORT_SCHEMA
+        ),
+        "experiment_id": (
+            "SF3.A0N-LEDGER" if stock is None else f"SF3.A0N-LEDGER.{stock}"
+        ),
         "receipt_contract_sha256": receipt_report["contract_sha256"],
         "work_order_stable_evidence_id": receipt_report[
             "work_order_stable_evidence_id"
@@ -410,10 +566,13 @@ def evaluate_ledger_binding(
         "acquisition_ledger_sha256": _sha256(ledger_raw),
         "compiled_manifest_sha256": _sha256(manifest_raw),
         "evidence_scan_tasks": len(evidence_tasks),
-        "diagnostic_scan_tasks_excluded": len(work_order["scan_tasks"])
-        - len(evidence_tasks),
+        "diagnostic_scan_tasks_excluded": selected_task_count - len(evidence_tasks),
         "automatic_pass": True,
-        "decision": "READY_TO_RUN_SF3_A0_ADMISSION_WITH_RECEIPTS_BOUND",
+        "decision": (
+            "READY_TO_RUN_SF3_A0_ADMISSION_WITH_RECEIPTS_BOUND"
+            if stock is None
+            else "READY_TO_RUN_SINGLE_STOCK_SF3_A0_ADMISSION_WITH_RECEIPTS_BOUND"
+        ),
         "pixel_reads": 0,
         "operator_fits": 0,
         "film_target_scores": 0,
@@ -423,6 +582,9 @@ def evaluate_ledger_binding(
             "a stock response, and creates no fitting, calibration or product claim."
         ),
     }
+    if stock is not None:
+        core["stock"] = stock
+        core["cross_stock_binding_evaluated"] = False
     return {
         **core,
         "compiled_manifest": manifest,
@@ -430,11 +592,59 @@ def evaluate_ledger_binding(
     }
 
 
+def evaluate_ledger_binding(
+    contract_path: Path,
+    packet_path: Path,
+    acquisition_contract_path: Path,
+    ledger_path: Path,
+    *,
+    root: Path,
+) -> dict[str, Any]:
+    """Bind the complete three-stock receipt packet to its evidence ledger."""
+
+    return _evaluate_ledger_binding(
+        contract_path,
+        packet_path,
+        acquisition_contract_path,
+        ledger_path,
+        root=root,
+        stock=None,
+    )
+
+
+def evaluate_single_stock_ledger_binding(
+    contract_path: Path,
+    packet_path: Path,
+    acquisition_contract_path: Path,
+    ledger_path: Path,
+    *,
+    root: Path,
+    stock: str,
+) -> dict[str, Any]:
+    """Bind one stock receipt packet to only its exact evidence tasks."""
+
+    return _evaluate_ledger_binding(
+        contract_path,
+        packet_path,
+        acquisition_contract_path,
+        ledger_path,
+        root=root,
+        stock=stock,
+    )
+
+
 __all__ = [
     "BINDING_REPORT_SCHEMA",
+    "SINGLE_STOCK_BINDING_REPORT_SCHEMA",
+    "SINGLE_STOCK_PACKET_SCHEMA",
+    "SINGLE_STOCK_REPORT_SCHEMA",
     "ThreeStockCaptureReceiptError",
     "build_ledger_template",
     "build_receipt_template",
+    "build_single_stock_ledger_template",
+    "build_single_stock_receipt_template",
     "evaluate_ledger_binding",
     "evaluate_receipts",
+    "evaluate_single_stock_ledger_binding",
+    "evaluate_single_stock_receipts",
 ]

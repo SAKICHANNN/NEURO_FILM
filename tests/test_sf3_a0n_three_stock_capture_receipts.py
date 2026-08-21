@@ -10,8 +10,12 @@ import src.real_film.three_stock_capture_receipts as receipts_module
 from src.real_film.three_stock_capture_receipts import (
     ThreeStockCaptureReceiptError,
     build_receipt_template,
+    build_single_stock_ledger_template,
+    build_single_stock_receipt_template,
     evaluate_ledger_binding,
     evaluate_receipts,
+    evaluate_single_stock_ledger_binding,
+    evaluate_single_stock_receipts,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -86,6 +90,50 @@ def test_template_has_exact_slots_and_only_prefills_bound_identities() -> None:
     assert first["film_ei"] == first["nominal_iso"] == 50
     assert first["shutter_seconds"] is None
     assert template == build_receipt_template(CONTRACT, root=ROOT)
+
+
+def test_single_stock_receipts_and_ledger_can_advance_independently(
+    tmp_path: Path,
+) -> None:
+    stock = "kodak_ektar_100"
+    packet = _packet()
+    packet["schema"] = "neuro-film.sf3-a0n-single-stock-capture-receipt-packet.v1"
+    packet["stock"] = stock
+    packet["exposure_receipts"] = [
+        row for row in packet["exposure_receipts"] if row["stock_id"] == stock
+    ]
+    work = json.loads(WORK_ORDER.read_text(encoding="utf-8"))
+    exposure_ids = {row["exposure_slot_id"] for row in packet["exposure_receipts"]}
+    condition_ids = {
+        row["common_condition_slot_id"]
+        for row in work["exposure_rows"]
+        if row["exposure_slot_id"] in exposure_ids
+    }
+    packet["common_condition_records"] = [
+        row
+        for row in packet["common_condition_records"]
+        if row["condition_slot_id"] in condition_ids
+    ]
+    packet_path = _write(tmp_path, packet)
+    report = evaluate_single_stock_receipts(
+        CONTRACT, packet_path, root=ROOT, stock=stock
+    )
+    template = build_single_stock_receipt_template(CONTRACT, root=ROOT, stock=stock)
+    ledger = build_single_stock_ledger_template(
+        CONTRACT,
+        packet_path,
+        ROOT / "configs/sf3_a0_three_stock_controlled_acquisition_v1.json",
+        root=ROOT,
+        stock=stock,
+    )
+    assert report["automatic_pass"] is True
+    assert report["stock"] == stock
+    assert len(template["exposure_receipts"]) == len(packet["exposure_receipts"])
+    assert len(template["common_condition_records"]) == len(
+        packet["common_condition_records"]
+    )
+    assert len(ledger["rows"]) == 36
+    assert {row["stock_id"] for row in ledger["rows"]} == {stock}
 
 
 @pytest.mark.parametrize("mutation", ["missing", "wrong_ei", "nan", "bad_hash"])
@@ -224,14 +272,39 @@ def test_receipt_packet_binds_exact_evidence_ledger_tasks(
     assert report["pixel_reads"] == report["operator_fits"] == 0
     assert report["compiled_manifest"]["schema"] == "test-manifest"
     manifest_bytes = (
-        json.dumps(
-            report["compiled_manifest"], sort_keys=True, separators=(",", ":")
-        )
+        json.dumps(report["compiled_manifest"], sort_keys=True, separators=(",", ":"))
         + "\n"
     ).encode("ascii")
-    assert report["compiled_manifest_sha256"] == hashlib.sha256(
-        manifest_bytes
-    ).hexdigest()
+    assert (
+        report["compiled_manifest_sha256"] == hashlib.sha256(manifest_bytes).hexdigest()
+    )
+
+
+def test_single_stock_receipt_packet_binds_only_its_tasks(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    root, packet, ledger, source = _binding_fixture(tmp_path, monkeypatch)
+    monkeypatch.setattr(
+        receipts_module,
+        "evaluate_single_stock_receipts",
+        lambda *_args, **_kwargs: {
+            "contract_sha256": "3" * 64,
+            "work_order_stable_evidence_id": "4" * 64,
+            "stable_evidence_id": "5" * 64,
+        },
+    )
+    report = evaluate_single_stock_ledger_binding(
+        tmp_path / "contract.json",
+        packet,
+        tmp_path / "acquisition.json",
+        ledger,
+        root=root,
+        stock=source["stock_id"],
+    )
+    assert report["automatic_pass"] is True
+    assert report["stock"] == source["stock_id"]
+    assert report["cross_stock_binding_evaluated"] is False
+    assert report["evidence_scan_tasks"] == 1
 
 
 def test_receipt_packet_rejects_ledger_slot_drift(

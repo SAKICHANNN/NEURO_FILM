@@ -14,8 +14,12 @@ if str(ROOT) not in sys.path:
 from src.real_film.three_stock_capture_receipts import (
     build_ledger_template,
     build_receipt_template,
+    build_single_stock_ledger_template,
+    build_single_stock_receipt_template,
     evaluate_ledger_binding,
     evaluate_receipts,
+    evaluate_single_stock_ledger_binding,
+    evaluate_single_stock_receipts,
 )
 
 
@@ -38,6 +42,15 @@ def main() -> int:
     )
     parser.add_argument("--manifest-output", type=Path)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument(
+        "--stock",
+        choices=(
+            "fujifilm_velvia_50",
+            "kodak_portra_400",
+            "kodak_ektar_100",
+        ),
+        help="Build or validate only one complete stock lane.",
+    )
     args = parser.parse_args()
     if args.build_template:
         if (
@@ -46,25 +59,43 @@ def main() -> int:
             or args.build_ledger_template
         ):
             parser.error("ledger outputs require --packet")
-        report = build_receipt_template(args.contract, root=ROOT)
+        report = (
+            build_receipt_template(args.contract, root=ROOT)
+            if args.stock is None
+            else build_single_stock_receipt_template(
+                args.contract, root=ROOT, stock=args.stock
+            )
+        )
     elif args.build_ledger_template:
         if args.ledger is not None or args.manifest_output is not None:
             parser.error("--build-ledger-template cannot compile a filled ledger")
-        report = build_ledger_template(
+        builder = (
+            build_ledger_template
+            if args.stock is None
+            else build_single_stock_ledger_template
+        )
+        report = builder(
             args.contract,
             args.packet,
             args.acquisition_contract,
             root=ROOT,
+            **({} if args.stock is None else {"stock": args.stock}),
         )
     elif args.ledger is not None:
         if args.manifest_output is None:
             parser.error("--ledger requires --manifest-output")
-        report = evaluate_ledger_binding(
+        binder = (
+            evaluate_ledger_binding
+            if args.stock is None
+            else evaluate_single_stock_ledger_binding
+        )
+        report = binder(
             args.contract,
             args.packet,
             args.acquisition_contract,
             args.ledger,
             root=ROOT,
+            **({} if args.stock is None else {"stock": args.stock}),
         )
         manifest = report.pop("compiled_manifest")
         manifest_payload = (
@@ -76,7 +107,13 @@ def main() -> int:
     else:
         if args.manifest_output is not None:
             parser.error("--manifest-output requires --ledger")
-        report = evaluate_receipts(args.contract, args.packet, root=ROOT)
+        report = (
+            evaluate_receipts(args.contract, args.packet, root=ROOT)
+            if args.stock is None
+            else evaluate_single_stock_receipts(
+                args.contract, args.packet, root=ROOT, stock=args.stock
+            )
+        )
     payload = (json.dumps(report, indent=2, sort_keys=True) + "\n").encode("ascii")
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with args.output.open("xb") as handle:
