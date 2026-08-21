@@ -15685,6 +15685,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   and 87-exposure A0N packet, then binds the A0 evidence ledger to the exact
   108 scene scan tasks and their A0L exposure, roll, process, scanner, camera
   and stimulus identities before emitting canonical A0 manifest bytes.
-- Diagnostic scans remain excluded from fitting. Thirty-five adjacent A0--A2
-  tests, Ruff, `py_compile` and diff checks pass. Physical receipts/scans are
-  still absent, so this is execution plumbing only; no fit or stock claim opens.
+- A real 108-row synthetic chain using the frozen A0L work order, actual
+  stimulus bytes, filled A0N packet, A0 ledger compiler and A0 admission passes;
+  all 45 diagnostic scan tasks remain excluded from fitting. Thirty-six
+  adjacent A0--A2 tests, Ruff, `py_compile` and diff checks pass. Physical
+  receipts/scans are still absent, so this is execution plumbing only; no fit
+  or stock claim opens.
