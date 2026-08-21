@@ -15444,6 +15444,27 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Handoff:** a new raster-bearing camera-to-PCS conformance leaf may be
   frozen independently; it must not silently replace generic RAW ingress.
 
+### 2026-08-21 - P95 official Adobe DNG runtime closes fail-closed
+
+- **Node:** ULT > U1 > U1.3H / P95.
+- **Skills:** `dev-research-reliability` primary; research, DRPT-BI, agent-log,
+  and structure stewardship as read-only disciplines.
+- **Direction:** Mature RAW/DNG runtime conformance only; no after-only search.
+- **Build:** Exact SDK 1.7.1 build 2652 solution, `Validate Release|x64`, with
+  command-line-only `PlatformToolset=v145`; SDK source/project edits zero.
+- **Execution amendment:** the first mandatory Blackmagic invocation returned
+  106 before image output/report. Only fail-closed row serialization was added,
+  then both outer processes restarted from zero with unchanged command, rows,
+  and gates.
+- **Result:** Blackmagic is rejected as invalid; LG and Motorola exceed the
+  fixed 1024 final long-side gate. Huawei/Xiaomi structurally pass. Across all
+  four rendered rows stage2/stage3 files and final decoded pixels replay exact,
+  but final TIFF files and reports do not because run-time `DateTime` differs.
+- **Decision:** exact P95 cohort fails. Do not strip timestamps, change size,
+  drop rows, or retarget the tool. P94 remains a separate metadata result.
+- **Claim boundary:** no arbitrary DNG, image/color quality, sensor/IDT,
+  project loader, ACES/HDR, package/schema/capability, product, film or stock.
+
 ### 2026-08-21 - SF3.A3B latest paired-source refresh closes without a new lane
 
 - **Node:** ULT > RF3/SF3 > SF3.A3B.

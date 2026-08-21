@@ -2148,6 +2148,17 @@ gauge, display look, full-frame renderer, other targets, package, capability,
 calibration and product promotion remain closed. Evidence:
 `docs/evidence/U6_P8X_NATIVE_PRINT_CONFORMANCE_RESULT.json`.
 
+U1.3H/P95 closes the exact official Adobe `dng_validate` five-device runtime
+cohort. The official SDK rejects the mandatory Blackmagic row with return code
+106 (`File format is invalid`), and LG/Motorola final long sides are 1088/1052
+against the frozen 1024 gate. Four rows render with byte-exact stage2/stage3
+files and byte-exact final decoded pixels, but final TIFF hashes and canonical
+reports differ because the tool writes run-time `DateTime` metadata. No row,
+size, timestamp stripping, or replay rescue is allowed. P94 metadata mechanics
+remain valid independently; arbitrary DNG, quality, loader, package/schema,
+capability, and product claims stay closed. Evidence:
+`docs/evidence/P95_ADOBE_DNG_VALIDATE_RUNTIME_RESULT.json`.
+
 SF3.A0T is bounded candidate 1 of 3 and closes before sealed confirmation.
 Two complete executions persist byte-exact prescore locks (`938b8e28...3c98`)
 before calibration and reproduce byte-exact final reports

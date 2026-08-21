@@ -1,0 +1,119 @@
+{
+  "schema": "neuro_film.p95_adobe_dng_validate_runtime_evidence.v1",
+  "experiment_id": "p95-adobe-dng-validate-runtime-v1",
+  "node": "ULT > U1 > U1.3H / P95",
+  "status": "FAIL_CLOSED_ADOBE_DNG_VALIDATE_RUNTIME",
+  "decision": "close the exact five-row Adobe dng_validate runtime cohort without row, tool, size, timestamp, or replay rescue; retain P94 metadata mechanics independently",
+  "bindings": {
+    "contract": {
+      "path": "docs/planning/P95_ADOBE_DNG_VALIDATE_RUNTIME_CONTRACT.md",
+      "sha256": "f2cb339735d0087723013ee8bd826f0062debde1921a951d040891b886db850a",
+      "freeze_commit": "514aedc8"
+    },
+    "config": {
+      "path": "configs/p95_adobe_dng_validate_runtime_v1.json",
+      "sha256": "29af54094628442fd2d316b5c3bfef9afcb9ea9d731fbe0594cedef71253cf51",
+      "initial_lock_commit": "48b7cb7f",
+      "failure_serialization_commit": "239a9376"
+    },
+    "runner": {
+      "path": "scripts/audit_p95_adobe_dng_validate_runtime.py",
+      "sha256": "542dda560a59003fc7cadf52b27417ba168e85337aa124955f00d6f8b277e216",
+      "failure_serialization_commit": "239a9376"
+    },
+    "sdk_archive": {
+      "path": "data/external/adobe_dng_sdk_1_7_1_2652/dng_sdk_1_7_1_2652_20260714.zip",
+      "bytes": 80494799,
+      "sha256": "73499b47f4683e12120a234bd0946f02e52ab2ff9834bcbd0e9f8ab4f923360e",
+      "version": "1.7.1 build 2652"
+    },
+    "runtime_binary": {
+      "path": "data/external/adobe_dng_sdk_1_7_1_2652/bin/dng_validate_1_7_1_2652_msbuild_v145_x64.exe",
+      "bytes": 13327872,
+      "sha256": "3ac9a60e8989088721c272dfefa5e7086ddcf17bb5ee381624fd84d6337a7d13"
+    },
+    "forward_report": {
+      "path": "outputs/eval/p95_adobe_dng_validate_runtime/outer_a_v2_report.json",
+      "bytes": 4557,
+      "sha256": "c61d3a0f90c35cf3ea29ad05a5e7212ecde54196f48f9397cc39e0840d2f3718",
+      "stable_identity_sha256": "5b78fd06f9139a5eb5e03923b955b5dfea44fdfa9688717dc12ca5d68f41ef73"
+    },
+    "reverse_report": {
+      "path": "outputs/eval/p95_adobe_dng_validate_runtime/outer_b_v2_report.json",
+      "bytes": 4557,
+      "sha256": "87804e14f8f93e44902a503f49ec3f5b4f1da14cf5dab7416ae5c5c49c93934e",
+      "stable_identity_sha256": "4157f572b11f12f3dd6db134a5b5262bd326ce9777e733e612b5b31517e8301c"
+    }
+  },
+  "build_provenance": {
+    "official_solution": "dng_sdk/projects/win/dng_validate.sln",
+    "configuration": "Validate Release|x64",
+    "command_line_toolset_override": "v145",
+    "sdk_source_or_project_edits": 0,
+    "msbuild_sha256": "81263dd8ec9f60137708bfe6fcb301773b881eb21a6831870a2ba025e02140b7",
+    "compiler_version": "19.50.35729 x64",
+    "compiler_sha256": "ed1a6206c8179ed6826187b63306cb9cc421de6507e14166864556851bc2820d",
+    "superseded_failed_builds": 2,
+    "superseded_failure_reason": "published solution requested unavailable ClangCL or v100 toolsets and produced no runtime binary"
+  },
+  "execution_amendments": [
+    {
+      "stage": "first mandatory formal row before any image output or report",
+      "issue": "the runner raised P95Error on the official tool rejection and could not serialize the frozen fail-closed result",
+      "change": "serialize rejected rows, continue the unchanged mandatory enumeration, update only the bound runner hash, and restart both formal outer processes from zero under new output roots",
+      "scientific_inputs_commands_rows_or_gates_changed": false,
+      "partial_report_created": false
+    }
+  ],
+  "metrics": {
+    "mandatory_rows": 5,
+    "distinct_camera_makes": 5,
+    "successful_rows": 2,
+    "rejected_rows": 3,
+    "sdk_invalid_file_rows": 1,
+    "final_long_side_gate_rows": 2,
+    "maximum_observed_final_long_side": 1088,
+    "required_final_long_side": 1024,
+    "blackmagic_returncode": 106,
+    "stage2_file_hash_exact_on_all_four_rendered_rows": true,
+    "stage3_file_hash_exact_on_all_four_rendered_rows": true,
+    "final_decoded_pixel_hash_exact_on_all_four_rendered_rows": true,
+    "final_file_hash_exact_on_all_four_rendered_rows": false,
+    "final_file_nondeterminism_observed_field": "DateTime",
+    "forward_reverse_report_byte_exact": false,
+    "source_hashes_unchanged": true
+  },
+  "row_outcomes": {
+    "blackmagic_pocket_cinema_camera_4k": "official SDK return code 106: File format is invalid; zero outputs",
+    "huawei_eml_l29": "all three outputs satisfy structural and size gates; final pixels replay exact but final file hash differs",
+    "lg_lg_h850": "all three outputs render; final long side 1088 exceeds frozen 1024 gate",
+    "motorola_moto_g_7_play": "all three outputs render; final long side 1052 exceeds frozen 1024 gate",
+    "xiaomi_m2010j19cg": "all three outputs satisfy structural and size gates; final pixels replay exact but final file hash differs"
+  },
+  "gates": {
+    "binary_and_input_hashes": true,
+    "camera_make_count": true,
+    "row_count": true,
+    "successful_process_exit_all_rows": false,
+    "all_rows_emit_three_outputs": false,
+    "final_long_side_all_rows": false,
+    "forward_reverse_output_file_hashes_exact": false,
+    "two_fresh_process_reports_byte_exact": false,
+    "source_hashes_unchanged": true
+  },
+  "interpretation": {
+    "established": [
+      "the exact retargeted official runtime can render four of the five consumed DNGs through stage2, stage3, and final TIFF paths",
+      "stage2 and stage3 files replay exactly for every rendered row",
+      "final decoded uint16 RGB pixels replay exactly for every rendered row even though final TIFF bytes do not"
+    ],
+    "not_established": [
+      "complete support for the exact five-device cohort or arbitrary DNG inputs",
+      "the frozen 1024-long-side bounded final-output contract",
+      "byte-repeatable final TIFF files or reports",
+      "photographic, colorimetric, sensor, IDT, demosaic, ACES, HDR, or product quality",
+      "P94 equivalence, project-loader integration, public package/schema/capability, film, stock, or preference admission"
+    ]
+  },
+  "claim_ceiling": "Private exact five-device official Adobe DNG SDK 1.7.1 build 2652 dng_validate Windows x64 negative runtime evidence only; no arbitrary DNG support, photographic or colorimetric quality, P94 equality, sensor or IDT calibration, project-loader integration, ACES or HDR output, public package/schema/capability, product, film, stock, or preference admission"
+}
