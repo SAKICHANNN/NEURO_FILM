@@ -1,0 +1,49 @@
+{
+  "schema": "neuro-film.sf3-a3c-filmlabpro-public-data-rights-audit-evidence.v1",
+  "experiment_id": "SF3.A3C_FILMLABPRO_PUBLIC_DATA_RIGHTS_AUDIT_V1",
+  "date": "2026-08-21",
+  "status": "COMPLETE_RECONNAISSANCE_ONLY_NOT_ADMITTED",
+  "question": "Does FilmLabPro's current Published Film Data page provide a reusable paired-pixel or explicitly licensed measured-data source for the Velvia 50, Portra 400 and Ektar 100 programme?",
+  "source_snapshot": {
+    "published_data_url": "https://filmlabpro.com/published-data",
+    "published_data_html_bytes": 22854,
+    "published_data_html_sha256": "25d9edaf6987999ad17d86a4f299b8fed8bafe90f3e3880ffbce7170271b336c",
+    "terms_url": "https://filmlabpro.com/terms",
+    "terms_html_bytes": 22761,
+    "terms_html_sha256": "e8006d332cd0444fcd3f13d4195869d47dd8efdbe5004003a56e51e70e520721",
+    "application_bundle_url": "https://filmlabpro.com/assets/index-DdvumSO0.js",
+    "application_bundle_bytes": 1705610,
+    "application_bundle_sha256": "ca1e6861e9f11806f48e5f7a6af3959404831ecc3413c2a9a6928b473eff7654",
+    "retrieved_at": "2026-08-21"
+  },
+  "observed_facts": {
+    "target_stock_names_present": [
+      "Fujifilm Velvia 50",
+      "Kodak Portra 400",
+      "Kodak Ektar 100"
+    ],
+    "page_labels_itself_open_data": true,
+    "page_describes_manufacturer_datasheet_digitization": true,
+    "page_exposes_curves_matrices_and_heuristic_parameters_in_browser": true,
+    "paired_photographic_pixels_present": false,
+    "machine_readable_dataset_download_located": false,
+    "explicit_open_data_license_located": false,
+    "independent_roll_process_scanner_holdouts_present": false,
+    "same_scene_digital_film_pairs_present": false,
+    "terms_reserve_film_emulation_algorithms_and_presets": true,
+    "terms_forbid_bulk_automated_access_without_written_consent": true
+  },
+  "scientific_role": "A current secondary implementation/reconnaissance lead showing which manufacturer datasheet quantities can seed bounded stock priors. It is not a paired target corpus, an independently calibrated stock-response measurement, or an admissible implementation source.",
+  "decision": "DO_NOT_SCRAPE_COPY_FIT_OR_IMPORT_FILMLABPRO_DATA_OR_ALGORITHMS",
+  "allowed_followup": "Use only the cited first-party manufacturer publications already independently bound in RF3.D2-RF3.D6, and continue the project-owned SF3.A0L/A0N controlled capture route.",
+  "forbidden_followup": [
+    "bulk scraping",
+    "copying page algorithms or presets",
+    "treating the Open Data label as an open licence",
+    "using the page as photographic RGB ground truth",
+    "claiming calibrated stock response",
+    "purchasing a product or service without separate authorization"
+  ],
+  "next_mainline": "No further web-source expansion on this lead. Populate the frozen rights-cleared three-stock capture packet and run SF3.A1 -> SF3.A2 -> SF3.A4 -> SF3.A5 when real observations arrive; otherwise advance only deterministic product-core work that does not fabricate stock evidence.",
+  "claim_ceiling": "Bounded current web-source and rights finding only; no reuse permission, copied numeric dataset, operator, pixels, stock response, calibration, preference, product admission or completed multi-stock system."
+}

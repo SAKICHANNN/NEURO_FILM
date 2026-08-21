@@ -2171,3 +2171,13 @@ confirmed coloured-speckle failure on `sony_nex_3n` and is vetoed from
 promotion on this population. Next is controlled three-stock pixel
 acquisition, not proxy tuning or adaptive routing. Evidence:
 `docs/evidence/RF3_D0S_THREE_STOCK_PROXY_FULL_RESOLUTION_SEVERE_AUDIT_RESULT.json`.
+
+SF3.A3C closes the final bounded commercial-page lead without opening another
+proxy experiment. FilmLabPro names all three target stocks and publishes
+datasheet-derived curves and implementation parameters, but exposes no paired
+photographic corpus, machine-readable dataset download or explicit open-data
+licence. Its current Terms reserve the film-emulation algorithms and presets
+and prohibit bulk automated access without consent. Do not scrape, copy or fit
+this source. Continue only the independently bound manufacturer priors and the
+project-owned A0L/A0N controlled-capture route. Evidence:
+`docs/evidence/SF3_A3C_FILMLABPRO_PUBLIC_DATA_RIGHTS_AUDIT_RESULT.json`.

@@ -15460,3 +15460,19 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   is the frozen project-owned A0L/A0N capture followed by A1/A2/A4/A5.
 - **Evidence:**
   `docs/evidence/SF3_A3B_LATEST_PAIRED_SOURCE_REFRESH_RESULT.json`.
+
+### 2026-08-21 - SF3.A3C FilmLabPro lead closes at rights and evidence gates
+
+- **Node:** ULT > RF3/SF3 > SF3.A3C.
+- **Direction:** One bounded check of a three-stock lead only; no new model,
+  proxy operator or literature-inspired rescue.
+- **Result:** the page names Velvia 50, Portra 400 and Ektar 100 and exposes
+  datasheet-derived parameters, but supplies no paired photo corpus,
+  machine-readable dataset download or explicit open-data licence. Current
+  Terms reserve its film-emulation algorithms/presets and forbid unconsented
+  bulk automated access.
+- **Decision:** do not scrape, copy, fit or import the page. Manufacturer
+  documents already independently bound in RF3.D2-RF3.D6 remain priors only;
+  A0L/A0N controlled capture remains the real three-stock route.
+- **Evidence:**
+  `docs/evidence/SF3_A3C_FILMLABPRO_PUBLIC_DATA_RIGHTS_AUDIT_RESULT.json`.
