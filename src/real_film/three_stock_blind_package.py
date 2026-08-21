@@ -274,6 +274,9 @@ def adjudicate_package(
         observations.get("schema") != OBSERVATIONS_SCHEMA
         or observations.get("status") != "observations_frozen_mapping_unread"
         or observations.get("mapping_files_read") is not False
+        or observations.get("render_report_read") is not False
+        or observations.get("stock_labeled_output_paths_read") is not False
+        or observations.get("confirmation_target_pixels_read") is not False
         or observations.get("package_report_sha256") != _sha256(package_raw)
         or observations.get("public_sheet_sha256") != _sha256(sheet_raw)
     ):

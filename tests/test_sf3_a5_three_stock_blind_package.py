@@ -121,6 +121,9 @@ def test_builds_hidden_hash_bound_package_and_adjudicates(tmp_path: Path) -> Non
         "schema": "neuro-film.sf3-a5-three-stock-blind-observations.v1",
         "status": "observations_frozen_mapping_unread",
         "mapping_files_read": False,
+        "render_report_read": False,
+        "stock_labeled_output_paths_read": False,
+        "confirmation_target_pixels_read": False,
         "package_report_sha256": _sha(package_raw),
         "public_sheet_sha256": _sha(sheet_raw),
         "assignments": assignments,
@@ -150,6 +153,30 @@ def test_builds_hidden_hash_bound_package_and_adjudicates(tmp_path: Path) -> Non
     )
     assert final["automatic_pass"] is True
     assert final["preference_claim_allowed"] is False
+
+    observations["render_report_read"] = True
+    leaked_raw = _write(observations_path, observations)
+    _write(
+        reveal_path,
+        {
+            "schema": "neuro-film.sf3-a5-three-stock-mapping-reveal.v1",
+            "status": "mapping_revealed_after_observations_commit",
+            "observations_sha256": _sha(leaked_raw),
+            "private_mapping_sha256": _sha(
+                (output / "private_mapping.json").read_bytes()
+            ),
+            "observations_commit": "b" * 40,
+        },
+    )
+    with pytest.raises(ThreeStockBlindPackageError, match="observation boundary"):
+        adjudicate_package(
+            fixture["contract"],
+            package_report_path=output / "report.json",
+            public_sheet_path=output / "public_sheet.json",
+            private_mapping_path=output / "private_mapping.json",
+            observations_path=observations_path,
+            reveal_path=reveal_path,
+        )
 
 
 def test_severe_or_incomplete_evidence_fails_closed(tmp_path: Path) -> None:
