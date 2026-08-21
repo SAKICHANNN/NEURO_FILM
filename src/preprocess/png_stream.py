@@ -175,6 +175,7 @@ class _StreamingRgbPngWriter:
         bit_depth: int,
         compression_level: int = 6,
         cicp: bytes | None = None,
+        canonical_feed_bytes: int | None = None,
     ) -> None:
         if path.suffix.casefold() != ".png":
             raise ValueError("streaming RGB output requires a .png extension")
@@ -186,6 +187,12 @@ class _StreamingRgbPngWriter:
             raise ValueError("bit_depth must be 8 or 16")
         if not 0 <= compression_level <= 9:
             raise ValueError("compression_level must be between 0 and 9")
+        if canonical_feed_bytes is not None and (
+            isinstance(canonical_feed_bytes, bool)
+            or not isinstance(canonical_feed_bytes, int)
+            or canonical_feed_bytes <= 0
+        ):
+            raise ValueError("canonical_feed_bytes must be a positive integer")
         self.path = path
         self.width = width
         self.height = height
@@ -194,6 +201,8 @@ class _StreamingRgbPngWriter:
         self._row = 0
         self._closed = False
         self._pending = bytearray()
+        self._canonical_pending = bytearray()
+        self._canonical_feed_bytes = canonical_feed_bytes
         self._digest = hashlib.sha256()
         self._compressor = zlib.compressobj(compression_level)
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -238,6 +247,17 @@ class _StreamingRgbPngWriter:
             del self._pending[:count]
             self._emit(_chunk(b"IDAT", payload))
 
+    def _compress_filtered(self, payload: bytes) -> None:
+        if self._canonical_feed_bytes is None:
+            self._pending.extend(self._compressor.compress(payload))
+            return
+        self._canonical_pending.extend(payload)
+        block_size = self._canonical_feed_bytes
+        while len(self._canonical_pending) >= block_size:
+            block = bytes(self._canonical_pending[:block_size])
+            del self._canonical_pending[:block_size]
+            self._pending.extend(self._compressor.compress(block))
+
     def write_rows(self, row_start: int, samples: np.ndarray) -> None:
         if self._closed:
             raise RuntimeError("PNG writer is closed")
@@ -266,7 +286,7 @@ class _StreamingRgbPngWriter:
         else:
             encoded = values.byteswap().view(np.uint8).reshape(rows, row_bytes)
         filtered[:, 1:] = encoded
-        self._pending.extend(self._compressor.compress(filtered.tobytes()))
+        self._compress_filtered(filtered.tobytes())
         self._drain_idat(final=False)
         self._row += rows
 
@@ -277,6 +297,11 @@ class _StreamingRgbPngWriter:
             self.abort()
             raise ValueError("PNG stream ended before all rows were written")
         try:
+            if self._canonical_pending:
+                self._pending.extend(
+                    self._compressor.compress(bytes(self._canonical_pending))
+                )
+                self._canonical_pending.clear()
             self._pending.extend(self._compressor.flush())
             self._drain_idat(final=True)
             self._emit(_chunk(b"IEND", b""))
@@ -358,7 +383,34 @@ class StreamingRec2100PqPngWriter(_StreamingRgbPngWriter):
         )
 
 
+class CanonicalStreamingRec2100PqPngWriter(_StreamingRgbPngWriter):
+    """PQ writer with zlib input boundaries independent of caller partitions."""
+
+    def __init__(
+        self,
+        path: Path,
+        *,
+        width: int,
+        height: int,
+        bit_depth: int = 16,
+        compression_level: int = 0,
+        canonical_feed_bytes: int = 64 * 1024,
+    ) -> None:
+        if bit_depth != 16:
+            raise ValueError("Rec.2100 PQ rail requires 16-bit RGB samples")
+        super().__init__(
+            path,
+            width=width,
+            height=height,
+            bit_depth=bit_depth,
+            compression_level=compression_level,
+            cicp=REC2100_PQ_CICP,
+            canonical_feed_bytes=canonical_feed_bytes,
+        )
+
+
 __all__ = [
+    "CanonicalStreamingRec2100PqPngWriter",
     "StreamingRec2020PngWriter",
     "StreamingRec2100PqPngWriter",
     "StreamingSrgbPngWriter",

@@ -10,6 +10,7 @@ import pytest
 
 from src.preprocess.color_management import REC2100_PQ_CICP
 from src.preprocess.png_stream import (
+    CanonicalStreamingRec2100PqPngWriter,
     StreamingRec2100PqPngWriter,
     sha256_rec2020_rgb16_png_samples,
     sha256_rec2100_pq_rgb16_png_samples,
@@ -69,3 +70,21 @@ def test_rec2100_pq_writer_rejects_wrong_depth_and_row_order(tmp_path: Path) -> 
         writer.write_rows(1, np.zeros((1, 2, 3), dtype=np.uint16))
     writer.abort()
     assert not (tmp_path / "order.png").exists()
+
+
+def test_canonical_pq_writer_is_partition_invariant(tmp_path: Path) -> None:
+    samples = np.random.default_rng(9100).integers(
+        0, 65536, size=(131, 257, 3), dtype=np.uint16
+    )
+    paths = [tmp_path / "a.png", tmp_path / "b.png"]
+    partitions = [[64, 64, 3], [3, 64, 64]]
+    for path, sizes in zip(paths, partitions, strict=True):
+        writer = CanonicalStreamingRec2100PqPngWriter(
+            path, width=257, height=131
+        )
+        start = 0
+        for size in sizes:
+            writer.write_rows(start, np.ascontiguousarray(samples[start : start + size]))
+            start += size
+        writer.finish()
+    assert paths[0].read_bytes() == paths[1].read_bytes()
