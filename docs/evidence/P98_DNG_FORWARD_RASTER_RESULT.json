@@ -1,0 +1,92 @@
+{
+  "schema": "neuro_film.p98_dng_forward_raster_evidence.v1",
+  "experiment_id": "p98-dng-forward-raster-v1",
+  "node": "ULT > U1 > U1.3K / P98",
+  "status": "PASS_PRIVATE_DNG_FORWARD_RASTER",
+  "decision": "retain the private opt-in five-DNG ForwardMatrix raster primitive; keep the generic loader and all product or calibration claims closed",
+  "bindings": {
+    "contract": {
+      "path": "docs/planning/P98_DNG_FORWARD_RASTER_CONTRACT.md",
+      "sha256": "b3412b55911e400c7431d1cab14dcfadb35ca98aa3f679f3f09b57c5d8a253b0",
+      "freeze_commit": "11af25a5"
+    },
+    "config": {
+      "path": "configs/p98_dng_forward_raster_v1.json",
+      "bytes": 3647,
+      "sha256": "5fb17f82cfecdae40a4c812f2ea9c26641e91bcab43e17c8a6a4bc94b2f03c35"
+    },
+    "implementation": {
+      "path": "src/preprocess/dng_forward_raster.py",
+      "bytes": 9297,
+      "sha256": "eb50a4b0957b88a40b2da6da929a90cc5d9e390d95589914b41e0ff0711091e9",
+      "commit": "3e51f7ae84301d8e33fc569a4846d3684a2c46ea"
+    },
+    "runner": {
+      "path": "scripts/audit_p98_dng_forward_raster.py",
+      "bytes": 11927,
+      "sha256": "4299255d3bbe1c0ae642545881e544985c0f7a3c1ab0fc95777266d9ed9a4872"
+    },
+    "raw_report": {
+      "path": "outputs/eval/p98_dng_forward_raster/outer_a_forward.json",
+      "bytes": 8178,
+      "sha256": "289f2828ae71ef8075a56185beddb69693ec1186f7a6021244c0d37696b0958e",
+      "stable_identity_sha256": "df0afe7d51c226b5944576acabce84d850282240ad141ec69af1e3dd4ef8d08f"
+    }
+  },
+  "execution": {
+    "fresh_process_count": 2,
+    "forward_report_count": 1,
+    "reverse_report_count": 1,
+    "reports_byte_exact": true,
+    "report_sha256": "289f2828ae71ef8075a56185beddb69693ec1186f7a6021244c0d37696b0958e",
+    "row_count": 5,
+    "camera_make_count": 5,
+    "decoded_image_artifacts_written": 0,
+    "default_loader_changes": 0
+  },
+  "runtime": {
+    "rawpy_version": "0.26.1",
+    "libraw_version": [0, 22, 0]
+  },
+  "metrics": {
+    "maximum_composition_error": 1.11022302462516e-15,
+    "maximum_absolute_output": 2.30054534362638,
+    "maximum_outside_unit_fraction": 0.0398317871376026,
+    "invalid_rejections": 4,
+    "source_hashes_unchanged": true,
+    "camera_inputs_unchanged": true,
+    "float32_oracle_bytes_exact": true
+  },
+  "gates": {
+    "camera_inputs_unchanged": true,
+    "camera_make_count": true,
+    "camera_raster_unit_range": true,
+    "composition_error": true,
+    "finite_working_images": true,
+    "float32_oracle_bytes": true,
+    "invalid_inputs": true,
+    "output_absolute_range": true,
+    "output_outside_unit_fraction": true,
+    "row_count": true,
+    "runtime_exact": true,
+    "source_hashes_unchanged": true,
+    "working_contract": true,
+    "forward_reverse_reports_exact": true,
+    "two_fresh_process_reports_exact": true
+  },
+  "interpretation": {
+    "established": [
+      "all five exact DNGs decode to camera-linear uint16 rasters and reach finite float32 linear-Rec.2020 WorkingImages through the P94 and P97 primitives",
+      "staged and directly composed camera-to-Rec.2020 paths agree below the frozen 5e-15 gate over every decoded pixel",
+      "the opt-in path preserves negative and above-one scene-linear values rather than silently clipping them",
+      "row enumeration and two fresh processes produce byte-identical scientific reports"
+    ],
+    "not_established": [
+      "arbitrary DNG support, sensor or IDT calibration, or vendor/Adobe rendering parity",
+      "photographic or colorimetric quality, scene-to-display tone mapping, or gamut mapping",
+      "default-loader integration, output files, public package/schema/capability, product, film, stock, or preference admission"
+    ],
+    "diagnostic_note": "The generic LibRaw direct-to-Rec.2020 comparison remains non-binding because it uses a different colour-matrix policy. Blackmagic decoding here does not rescue or contradict P95's separate official dng_validate rejection."
+  },
+  "claim_ceiling": "Private opt-in exact five-DNG camera-linear LibRaw demosaic plus DNG ForwardMatrix-to-D50-PCS-to-linear-Rec.2020 WorkingImage mechanics only; no arbitrary DNG, sensor/IDT calibration, vendor/Adobe parity, photographic or colorimetric quality, tone mapping, default-loader integration, output file, public package/schema/capability, product, film, stock, or preference admission"
+}

@@ -15546,3 +15546,24 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   first Ektar pair, then independent Velvia and Portra repeats.
 - **Verification:** old/new matrix tests 8/8, Ruff, py_compile and diff-check
   pass. No P:/D: paths, product defaults or unrelated working files changed.
+
+### 2026-08-21 - P98 passes an opt-in DNG ForwardMatrix raster path
+
+- **Node:** ULT > U1 > U1.3K / P98. The stop-loss correction remains active:
+  no after-only/shared-bundle rescue; this leaf advances only mature RAW/DNG
+  explicit-operator engineering.
+- **Freeze/implementation:** `11af25a5` freezes all five P94 DNG byte
+  identities and the exact rawpy/LibRaw parameters before the formal raster
+  run. `3e51f7ae` adds one private module; it is not exported from
+  `src.preprocess` and does not change the generic loader.
+- **Result:** five camera makes produce finite float32 linear-Rec.2020
+  `WorkingImage` values. Staged and directly composed paths differ by at most
+  `1.11e-15`; max absolute output is `2.30055` and max outside-unit fraction
+  is `3.9832%`, with no clipping. Sources and camera arrays remain exact.
+- **Replay:** forward and reverse fresh-process reports are byte identical at
+  `289f2828...b0958e`, stable identity `df0afe7d...8d08f`. No decoded image
+  artifact was written; reports remain under the repo-relative P-backed output.
+- **Boundary/handoff:** retain only the exact-cohort opt-in mechanism. This is
+  not arbitrary-DNG, IDT/calibration, Adobe/vendor parity, photographic
+  quality, tone-map, default-loader, package/capability or product evidence.
+  The paired-stock lane remains data-gated at 0/3 admissions.
