@@ -300,43 +300,48 @@ def test_three_stock_recipe_replay_to_file_is_byte_exact(
         )
 
 
-def test_recipe_replay_cli_regenerates_missing_output(tmp_path: Path) -> None:
+def test_recipe_replay_cli_regenerates_missing_outputs_as_batch(
+    tmp_path: Path,
+) -> None:
     source = tmp_path / "source.png"
-    original = tmp_path / "ektar.png"
-    replay = tmp_path / "ektar.replay.png"
     Image.fromarray(np.full((17, 23, 3), (81, 123, 177), dtype=np.uint8)).save(
         source
     )
-    rendered = subprocess.run(
-        [
-            sys.executable,
-            str(ROOT / "scripts/render_film.py"),
-            str(source),
-            "--style",
-            "ektar_100",
-            "--output",
-            str(original),
-            "--write-recipe",
-        ],
-        cwd=ROOT,
-        capture_output=True,
-        text=True,
-        check=False,
-    )
-    assert rendered.returncode == 0, rendered.stderr
-    expected = original.read_bytes()
-    recipe_path = original.with_suffix(".recipe.json")
-    original.unlink()
+    command = [sys.executable, str(ROOT / "scripts/replay_film_recipe.py")]
+    expected: dict[Path, bytes] = {}
+    for style in ("velvia_50", "ektar_100"):
+        original = tmp_path / f"{style}.png"
+        replay = tmp_path / f"{style}.replay.png"
+        rendered = subprocess.run(
+            [
+                sys.executable,
+                str(ROOT / "scripts/render_film.py"),
+                str(source),
+                "--style",
+                style,
+                "--output",
+                str(original),
+                "--write-recipe",
+            ],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        assert rendered.returncode == 0, rendered.stderr
+        expected[replay] = original.read_bytes()
+        command.extend(
+            [
+                "--recipe",
+                str(original.with_suffix(".recipe.json")),
+                "--output",
+                str(replay),
+            ]
+        )
+        original.unlink()
 
     replayed = subprocess.run(
-        [
-            sys.executable,
-            str(ROOT / "scripts/replay_film_recipe.py"),
-            "--recipe",
-            str(recipe_path),
-            "--output",
-            str(replay),
-        ],
+        command,
         cwd=ROOT,
         capture_output=True,
         text=True,
@@ -344,5 +349,5 @@ def test_recipe_replay_cli_regenerates_missing_output(tmp_path: Path) -> None:
     )
 
     assert replayed.returncode == 0, replayed.stderr
-    assert replay.read_bytes() == expected
-    assert "output_sha256=" in replayed.stdout
+    assert all(path.read_bytes() == payload for path, payload in expected.items())
+    assert replayed.stdout.count("output_sha256=") == 2

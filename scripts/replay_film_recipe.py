@@ -17,22 +17,25 @@ from src.inference import replay_style_safe_recipe_to_file
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--recipe", type=Path, required=True)
+    parser.add_argument("--recipe", type=Path, action="append", required=True)
     parser.add_argument(
         "--profile",
         type=Path,
         default=ROOT / "configs/render_profiles/safe_rich_v1.json",
     )
-    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--output", type=Path, action="append", required=True)
     args = parser.parse_args()
-    recipe = json.loads(args.recipe.read_text(encoding="utf-8"))
-    digest = replay_style_safe_recipe_to_file(
-        recipe,
-        profile_path=args.profile,
-        output_path=args.output,
-        root=ROOT,
-    )
-    print(f"output_sha256={digest}")
+    if len(args.recipe) != len(args.output):
+        parser.error("--recipe and --output counts must match")
+    for recipe_path, output_path in zip(args.recipe, args.output, strict=True):
+        recipe = json.loads(recipe_path.read_text(encoding="utf-8"))
+        digest = replay_style_safe_recipe_to_file(
+            recipe,
+            profile_path=args.profile,
+            output_path=output_path,
+            root=ROOT,
+        )
+        print(f"output_sha256={digest} output={output_path}")
     return 0
 
 
