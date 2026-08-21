@@ -6,6 +6,9 @@ from pathlib import Path
 import numpy as np
 import pytest
 
+from src.preprocess.aces2_canonical_pq_png import (
+    publish_working_image_aces2_canonical_hdr_pq_png_v1,
+)
 from src.preprocess.aces2_pq_png import publish_working_image_aces2_hdr_pq_png_v1
 from src.preprocess.png_stream import sha256_rec2100_pq_rgb16_png_samples
 from src.preprocess.types import SourceProfile, WorkingImage
@@ -74,3 +77,19 @@ def test_aces2_pq_png_partition_reversal_is_byte_exact(tmp_path: Path) -> None:
         reverse_partition=True,
     )
     assert canonical.read_bytes() == reversed_partition.read_bytes()
+
+
+def test_canonical_aces2_pq_large_partition_reversal_is_byte_exact(
+    tmp_path: Path,
+) -> None:
+    working = _working()
+    working.pixels = np.tile(working.pixels, (131, 129, 1))
+    a = tmp_path / "a.png"
+    b = tmp_path / "b.png"
+    publish_working_image_aces2_canonical_hdr_pq_png_v1(
+        working, a, row_count=64
+    )
+    publish_working_image_aces2_canonical_hdr_pq_png_v1(
+        working, b, row_count=64, reverse_partition=True
+    )
+    assert a.read_bytes() == b.read_bytes()
