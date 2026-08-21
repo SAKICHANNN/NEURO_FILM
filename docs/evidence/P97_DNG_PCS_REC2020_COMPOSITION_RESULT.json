@@ -1,0 +1,68 @@
+{
+  "schema": "neuro_film.p97_dng_pcs_rec2020_composition_evidence.v1",
+  "experiment_id": "p97-dng-pcs-rec2020-composition-v1",
+  "node": "ULT > U1 > U1.3J / P97",
+  "status": "PASS_PRIVATE_DNG_PCS_REC2020_COMPOSITION",
+  "decision": "retain the private reusable D50 PCS-to-linear-Rec.2020 primitive and exact existing ProPhoto decoder refactor; loader and raster integration remain closed",
+  "bindings": {
+    "contract": {
+      "path": "docs/planning/P97_DNG_PCS_REC2020_COMPOSITION_CONTRACT.md",
+      "sha256": "efb1fe84345c624dd2b250b2d67e9eb229e737aadf19da82eba01aca2450152b",
+      "freeze_commit": "b8f334cc"
+    },
+    "config": {
+      "path": "configs/p97_dng_pcs_rec2020_composition_v1.json",
+      "sha256": "88d1e07be28ab3a07b7b3a322ecdd4575afdc23ea2c20d4e2bc8918982c556b1",
+      "implementation_commit": "66aab13"
+    },
+    "implementation": {
+      "path": "src/preprocess/prophoto_icc.py",
+      "sha256": "cda6cfdff2eb2c8f5a5eff001a38c73d3307327975060a9985ad391aed07b885"
+    },
+    "raw_report": {
+      "path": "outputs/eval/p97_dng_pcs_rec2020_composition/outer_a_report.json",
+      "bytes": 2422,
+      "sha256": "784285744aa94815e4c20327c69bd710559f018a64d1718b65da020e846200a6",
+      "stable_identity_sha256": "bbeb6439c719392e97ae942ba496cfba6818ece13bd9cee5d7ce2ae033b985dc"
+    }
+  },
+  "execution": {
+    "fresh_process_count": 2,
+    "forward_report_count": 1,
+    "reverse_report_count": 1,
+    "reports_byte_exact": true,
+    "profile_count": 5,
+    "probe_count": 257,
+    "transformed_triplet_count": 1285,
+    "raster_sample_rgb_reads": 0
+  },
+  "metrics": {
+    "composition_max_abs_error": 3.552713678800501e-15,
+    "white_to_unit_max_abs_error": 0.0003441172574520923,
+    "invalid_rejections": 2,
+    "official_romm_regression_output_sha256": "379c29f2a231c4297e34ac46abef05380b076739436ccd00c08d1f1bc58aa752"
+  },
+  "gates": {
+    "composition_error": true,
+    "invalid_inputs": true,
+    "profile_count": true,
+    "regression_hash": true,
+    "triplet_count": true,
+    "white_mechanics": true,
+    "zero_raster_reads": true,
+    "forward_reverse_reports_exact": true
+  },
+  "interpretation": {
+    "established": [
+      "the existing ProPhoto D50-PCS segment is reusable without changing the frozen 65,536-triplet decoder output",
+      "staged and directly composed P94 camera-to-Rec.2020 matrices agree within 3.56e-15 across 1,285 probes",
+      "all five metadata camera whites reach nominal Rec.2020 unit white within 3.45e-4 under the existing rounded standard matrices"
+    ],
+    "not_established": [
+      "arbitrary DNG support or any DNG raster decode",
+      "sensor/IDT calibration, scene-to-display tone mapping, photographic or colorimetric accuracy, or gamut mapping",
+      "loader integration, package/schema, public capability, product, film, stock, or preference admission"
+    ]
+  },
+  "claim_ceiling": "Private reusable D50 PCS-to-linear-Rec.2020 matrix primitive, exact existing ProPhoto decoder parity, and five-profile synthetic composition mechanics only; no arbitrary DNG support, DNG raster decode, sensor or IDT calibration, scene-to-display tone mapping, photographic or colorimetric accuracy, gamut mapping, loader integration, package/schema, public capability, product, film, stock, or preference admission"
+}

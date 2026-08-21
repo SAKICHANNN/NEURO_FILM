@@ -15483,6 +15483,22 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   binary, arbitrary DNG, raster/calibration/quality, loader, package/schema,
   capability, product, film or stock claim opens.
 
+### 2026-08-21 - P97 reusable DNG PCS composition passes
+
+- **Node:** ULT > U1 > U1.3J / P97.
+- **Structure:** reused the existing ProPhoto/ROMM D50 Bradford and Rec.2020
+  matrices; no parallel colour module was created.
+- **Implementation:** factored one finite ndarray D50 PCS-to-linear-Rec.2020
+  primitive and routed the existing ProPhoto decoder through it.
+- **Regression:** the frozen 65,536-triplet official-ROMM float32 output hash
+  remains exact. Eleven focused ProPhoto/ROMM/P97 tests pass.
+- **Evidence:** five P94 matrices ×257 probes compose within `3.56e-15`; white
+  mechanics max error is `.0003442`; two fresh reports are byte exact.
+- **Decision:** retain this private primitive as ready plumbing for a future
+  separately frozen raster-bearing RAW leaf. Loader/default behavior remains
+  unchanged; calibration, tone mapping, package/capability and product claims
+  remain closed.
+
 ### 2026-08-21 - SF3.A3B latest paired-source refresh closes without a new lane
 
 - **Node:** ULT > RF3/SF3 > SF3.A3B.

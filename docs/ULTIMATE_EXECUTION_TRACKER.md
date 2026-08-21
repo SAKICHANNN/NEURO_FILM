@@ -2170,6 +2170,17 @@ component fact; all raster, calibration, loader, package/schema/capability and
 product claims remain closed. Evidence:
 `docs/evidence/P96_DNG_CAMERA_TO_PCS_PORTABLE_ABI_RESULT.json`.
 
+U1.3J/P97 reuses rather than duplicates the existing qualified D50-PCS colour
+math. The extracted D50 PCS-to-linear-Rec.2020 primitive preserves the exact
+65,536-triplet official-ROMM float32 output hash. Across five P94 matrices and
+1,285 camera probes, staged and direct composition agree within `3.56e-15`;
+metadata camera whites reach nominal Rec.2020 unit white within `3.45e-4`.
+Two fresh forward/reverse reports are byte exact and all gates pass. Retain the
+private primitive, but keep DNG raster decoding, sensor/IDT calibration,
+scene-to-display tone mapping, loader integration, package/schema/capability
+and product admission closed. Evidence:
+`docs/evidence/P97_DNG_PCS_REC2020_COMPOSITION_RESULT.json`.
+
 SF3.A0T is bounded candidate 1 of 3 and closes before sealed confirmation.
 Two complete executions persist byte-exact prescore locks (`938b8e28...3c98`)
 before calibration and reproduce byte-exact final reports
