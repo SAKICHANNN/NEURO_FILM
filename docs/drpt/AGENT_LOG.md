@@ -15465,6 +15465,24 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Claim boundary:** no arbitrary DNG, image/color quality, sensor/IDT,
   project loader, ACES/HDR, package/schema/capability, product, film or stock.
 
+### 2026-08-21 - P96 portable DNG matrix ABI closes on build identity
+
+- **Node:** ULT > U1 > U1.3I / P96.
+- **Direction:** Independent mature RAW/DNG explicit-operator engineering;
+  no P95 rescue and no after-only research.
+- **Implementation:** one caller-buffer C11 `3x3` float64 matrix operator with
+  exact in-place semantics, partial-overlap rejection and two-pass failure
+  atomicity. No allocation, clipping, adaptation, raster or file I/O.
+- **Evidence:** five P94 matrices ×257 probes produce 0 max error against the
+  explicit Python order and between MSVC/LLVM. All replays, in-place paths and
+  five invalid-input classes pass. Two fresh forward/reverse reports are exact.
+- **Formal failure:** MSVC independent DLLs match, but LLVM-MinGW independent
+  DLLs differ by two bytes; PE timestamps differ by four seconds. The frozen
+  reproducible-build gate fails. No post-result linker flag or rebuild rescue.
+- **Claim boundary:** retain arithmetic source evidence only. No portable
+  binary, arbitrary DNG, raster/calibration/quality, loader, package/schema,
+  capability, product, film or stock claim opens.
+
 ### 2026-08-21 - SF3.A3B latest paired-source refresh closes without a new lane
 
 - **Node:** ULT > RF3/SF3 > SF3.A3B.

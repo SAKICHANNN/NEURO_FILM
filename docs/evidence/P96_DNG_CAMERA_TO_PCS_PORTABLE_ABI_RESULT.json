@@ -1,0 +1,90 @@
+{
+  "schema": "neuro_film.p96_dng_camera_to_pcs_portable_abi_evidence.v1",
+  "experiment_id": "p96-dng-camera-to-pcs-portable-abi-v1",
+  "node": "ULT > U1 > U1.3I / P96",
+  "status": "FAIL_CLOSED_DNG_CAMERA_TO_PCS_PORTABLE_ABI",
+  "decision": "close the exact dual-compiler ABI because pinned LLVM-MinGW DLL builds are not byte reproducible; retain the source arithmetic result as private component evidence only",
+  "bindings": {
+    "contract": {
+      "path": "docs/planning/P96_DNG_CAMERA_TO_PCS_PORTABLE_ABI_CONTRACT.md",
+      "sha256": "584a89a03e380bb63637346fc0f95ee3c7f3ad9ef227ef5b995506096c9b5c0f",
+      "freeze_commit": "d9bdf352"
+    },
+    "config": {
+      "path": "configs/p96_dng_camera_to_pcs_portable_abi_v1.json",
+      "sha256": "289440baa3651f3d603f26b79602b4accc89a38f9df976a53de29e4810016874",
+      "implementation_commit": "e659cdac"
+    },
+    "native_source": {
+      "path": "native/preprocess/nf_dng_camera_to_pcs_v1.c",
+      "sha256": "5071a19de7f66ac459f26f80352cb1727a053512f33d3959aebc5a6f92d3f2f1"
+    },
+    "native_header": {
+      "path": "native/preprocess/nf_dng_camera_to_pcs_v1.h",
+      "sha256": "be44ee396786456c9e26675b53e5c1135b157fa654a61e5e7e6b83b52b559d8d"
+    },
+    "forward_report": {
+      "path": "outputs/eval/p96_dng_camera_to_pcs_portable_abi/outer_a_report.json",
+      "bytes": 3538,
+      "sha256": "7dbe8bc921aa80adf933e8c000ac2c18eebb3ce7f86f99baf04b3d9b75ecdb43",
+      "stable_identity_sha256": "9f37a27d73a3c3bff26b2016ebac5dcfe027f8bed71542f56290588d1d848348"
+    },
+    "reverse_report": {
+      "path": "outputs/eval/p96_dng_camera_to_pcs_portable_abi/outer_b_report.json",
+      "bytes": 3538,
+      "sha256": "7dbe8bc921aa80adf933e8c000ac2c18eebb3ce7f86f99baf04b3d9b75ecdb43",
+      "stable_identity_sha256": "9f37a27d73a3c3bff26b2016ebac5dcfe027f8bed71542f56290588d1d848348"
+    }
+  },
+  "execution": {
+    "profile_count": 5,
+    "probe_count": 257,
+    "transformed_triplet_count": 1285,
+    "fresh_process_count": 2,
+    "independent_builds_per_compiler_per_process": 2,
+    "forward_reverse_reports_byte_exact": true,
+    "raster_sample_rgb_reads": 0
+  },
+  "metrics": {
+    "maximum_python_native_absolute_error": 0.0,
+    "maximum_msvc_llvm_absolute_error": 0.0,
+    "cross_compiler_output_hash_exact": true,
+    "same_binary_repeat_exact": true,
+    "inplace_out_of_place_exact": true,
+    "failure_atomicity_cases_passed": 5,
+    "failure_atomicity_cases_required": 5,
+    "msvc_independent_dll_hash_exact": true,
+    "llvm_independent_dll_hash_exact": false,
+    "llvm_a_sha256": "034888cd1da762caf0a19cc6199341edbe7628c42021a6edd43ce658364deb8d",
+    "llvm_b_sha256": "4c31ac91464665332380f1bb792e09b1e8221f5b7b819b66feca1cb47f0ed53f",
+    "llvm_different_byte_count": 2,
+    "llvm_pe_timestamp_a": 1787277275,
+    "llvm_pe_timestamp_b": 1787277279
+  },
+  "gates": {
+    "cross_compiler_error": true,
+    "failure_atomicity": true,
+    "independent_builds": false,
+    "inplace": true,
+    "profile_count": true,
+    "python_error": true,
+    "repeat": true,
+    "triplet_count": true,
+    "zero_raster_sample_reads": true,
+    "forward_reverse_reports_exact": true
+  },
+  "interpretation": {
+    "established": [
+      "the exact C11 arithmetic matches the explicit Python evaluation order and both compiler runtimes bit-for-bit on all 1,285 triplets",
+      "all five frozen failure classes preserve caller output bytes",
+      "MSVC reproducible builds and canonical forward/reverse reports are byte exact"
+    ],
+    "not_established": [
+      "the frozen dual-compiler reproducible-build contract",
+      "portable binary identity under the pinned LLVM-MinGW invocation",
+      "arbitrary DNG, raster decode, sensor/IDT calibration, photographic or colorimetric quality",
+      "mobile/Apple runtime, project-loader integration, public package/schema/capability, product, film, stock, or preference admission"
+    ]
+  },
+  "claim_ceiling": "Private Windows x64 negative dual-compiler build evidence plus exact five-profile camera-to-D50 PCS arithmetic component evidence only; no arbitrary DNG support, raster decode, sensor or IDT calibration, colorimetric or photographic quality, chromatic adaptation, display rendering, mobile or Apple runtime, project-loader integration, public package/schema/capability, product, film, stock, or preference admission"
+}

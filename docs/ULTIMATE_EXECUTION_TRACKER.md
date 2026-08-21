@@ -2159,6 +2159,17 @@ remain valid independently; arbitrary DNG, quality, loader, package/schema,
 capability, and product claims stay closed. Evidence:
 `docs/evidence/P95_ADOBE_DNG_VALIDATE_RUNTIME_RESULT.json`.
 
+U1.3I/P96 independently tests the retained P94 matrix as a strict caller-buffer
+C11 ABI. All 1,285 five-profile probe transforms are bit-exact against Python
+and across MSVC/LLVM; in-place parity and five failure-atomic cases pass, and
+the forward/reverse reports are byte exact. The exact ABI nevertheless closes:
+two independent pinned LLVM-MinGW DLL builds differ by two bytes, including the
+PE timestamp, violating the frozen reproducible-build gate. Do not add a linker
+flag after result or promote the binary. Retain only the private arithmetic
+component fact; all raster, calibration, loader, package/schema/capability and
+product claims remain closed. Evidence:
+`docs/evidence/P96_DNG_CAMERA_TO_PCS_PORTABLE_ABI_RESULT.json`.
+
 SF3.A0T is bounded candidate 1 of 3 and closes before sealed confirmation.
 Two complete executions persist byte-exact prescore locks (`938b8e28...3c98`)
 before calibration and reproduce byte-exact final reports
