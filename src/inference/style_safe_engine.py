@@ -19,11 +19,20 @@ from src.filmfx import (
     halation_layer,
     physical_halation_layer,
 )
-from src.preprocess import WorkingImage, load_working_image, working_image_to_srgb_float
+from src.preprocess import (
+    WorkingImage,
+    load_working_image,
+    save_srgb8,
+    save_srgb16_png,
+    save_srgb16_tiff,
+    srgb_icc_profile_fingerprint_sha256,
+    working_image_to_srgb_float,
+)
 
 from .render_contract import (
     COLOR_PARAMETER_KEYS,
     load_render_profile,
+    sha256_file,
     validate_render_profile,
     verify_render_recipe_inputs,
 )
@@ -259,3 +268,48 @@ def replay_style_safe_recipe(
             )
         )
     return composite_layers(base, layers, output_margin=4)
+
+
+def replay_style_safe_recipe_to_file(
+    recipe: Mapping[str, Any],
+    *,
+    profile_path: Path,
+    output_path: Path,
+    root: Path,
+) -> str:
+    """Replay one v1 recipe to a new file and require the original byte identity."""
+
+    if output_path.exists():
+        raise StyleSafeEngineError("replay output path already exists")
+    output = recipe.get("output")
+    if not isinstance(output, Mapping):
+        raise StyleSafeEngineError("recipe output is invalid")
+    if (
+        output.get("icc_profile_fingerprint_sha256")
+        != srgb_icc_profile_fingerprint_sha256()
+    ):
+        raise StyleSafeEngineError("recipe output ICC fingerprint is unsupported")
+    rendered = replay_style_safe_recipe(
+        recipe, profile_path=profile_path, root=root
+    )
+    bit_depth = output.get("bit_depth")
+    format_name = output.get("format")
+    suffix = output_path.suffix.casefold()
+    try:
+        if bit_depth == 8 and format_name in {"PNG", "JPEG", "TIFF"}:
+            actual_format = save_srgb8(rendered, output_path)
+        elif bit_depth == 16 and format_name == "PNG" and suffix == ".png":
+            actual_format = save_srgb16_png(rendered, output_path)
+        elif bit_depth == 16 and format_name == "TIFF" and suffix in {".tif", ".tiff"}:
+            actual_format = save_srgb16_tiff(rendered, output_path)
+        else:
+            raise StyleSafeEngineError("recipe output encoding is unsupported")
+        if actual_format != format_name:
+            raise StyleSafeEngineError("replay output extension differs from recipe format")
+        digest = sha256_file(output_path)
+        if digest != output.get("sha256"):
+            raise StyleSafeEngineError("replayed output byte identity differs from recipe")
+        return digest
+    except Exception:
+        output_path.unlink(missing_ok=True)
+        raise

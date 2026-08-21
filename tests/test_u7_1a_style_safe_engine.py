@@ -18,6 +18,7 @@ from src.inference import (
     render_style_safe_working_image,
     replay_style_safe_color_recipe,
     replay_style_safe_recipe,
+    replay_style_safe_recipe_to_file,
 )
 from src.preprocess import load_working_image, save_srgb8, working_image_to_srgb_float
 
@@ -255,3 +256,93 @@ def test_full_recipe_replay_is_exact_cli_effect_output(
     rendered = replay_style_safe_recipe(recipe, profile_path=PROFILE_PATH, root=ROOT)
     save_srgb8(rendered, replay)
     assert replay.read_bytes() == expected_output
+
+
+@pytest.mark.parametrize("style", ["velvia_50", "portra_400", "ektar_100"])
+def test_three_stock_recipe_replay_to_file_is_byte_exact(
+    tmp_path: Path, style: str
+) -> None:
+    source = tmp_path / "source.png"
+    output = tmp_path / f"{style}.png"
+    replay = tmp_path / f"{style}.replay.png"
+    pixels = np.arange(29 * 41 * 3, dtype=np.uint32).reshape(29, 41, 3)
+    Image.fromarray((pixels % 256).astype(np.uint8), mode="RGB").save(source)
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts/render_film.py"),
+            str(source),
+            "--style",
+            style,
+            "--output",
+            str(output),
+            "--write-recipe",
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert completed.returncode == 0, completed.stderr
+    recipe = json.loads(output.with_suffix(".recipe.json").read_text(encoding="utf-8"))
+    expected = output.read_bytes()
+    output.unlink()
+
+    digest = replay_style_safe_recipe_to_file(
+        recipe, profile_path=PROFILE_PATH, output_path=replay, root=ROOT
+    )
+
+    assert replay.read_bytes() == expected
+    assert digest == recipe["output"]["sha256"]
+    with pytest.raises(StyleSafeEngineError, match="already exists"):
+        replay_style_safe_recipe_to_file(
+            recipe, profile_path=PROFILE_PATH, output_path=replay, root=ROOT
+        )
+
+
+def test_recipe_replay_cli_regenerates_missing_output(tmp_path: Path) -> None:
+    source = tmp_path / "source.png"
+    original = tmp_path / "ektar.png"
+    replay = tmp_path / "ektar.replay.png"
+    Image.fromarray(np.full((17, 23, 3), (81, 123, 177), dtype=np.uint8)).save(
+        source
+    )
+    rendered = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts/render_film.py"),
+            str(source),
+            "--style",
+            "ektar_100",
+            "--output",
+            str(original),
+            "--write-recipe",
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert rendered.returncode == 0, rendered.stderr
+    expected = original.read_bytes()
+    recipe_path = original.with_suffix(".recipe.json")
+    original.unlink()
+
+    replayed = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts/replay_film_recipe.py"),
+            "--recipe",
+            str(recipe_path),
+            "--output",
+            str(replay),
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    assert replayed.returncode == 0, replayed.stderr
+    assert replay.read_bytes() == expected
+    assert "output_sha256=" in replayed.stdout
