@@ -195,6 +195,29 @@ def _boundary_metrics(source: np.ndarray, output: np.ndarray) -> dict[str, float
     }
 
 
+def _style_kwargs(profile: dict[str, Any]) -> dict[str, Any]:
+    """Return the frozen legacy style-transfer keyword projection.
+
+    RF3.D0R still evaluates the original DNG proxy arm through
+    ``style_transfer_rgb``.  Keep this projection available for that frozen
+    evaluator even though RF3.D0 itself now routes through the unified engine.
+    """
+    return {
+        "strength": float(profile.get("strength", 0.55)),
+        "luma_strength": float(profile.get("luma_strength", 0.35)),
+        "grain": 0.0,
+        "gamut_safe": bool(profile.get("gamut_safe", False)),
+        "gamut_mode": profile.get("gamut_mode"),
+        "tone_rolloff": float(profile.get("tone_rolloff", 0.0)),
+        "shadow_floor_l": float(profile.get("shadow_floor_l", 1.0)),
+        "highlight_ceiling_l": float(profile.get("highlight_ceiling_l", 99.0)),
+        "preserve_luma_detail_strength": float(profile.get("preserve_luma_detail", 0.0)),
+        "chroma_curve_strength": float(profile.get("chroma_curve_strength", 0.0)),
+        "output_margin": int(profile.get("output_margin", 0)),
+        "dither": 0.0,
+    }
+
+
 def evaluate(contract_path: Path, root: Path, output_dir: Path, order: str) -> dict[str, Any]:
     if order not in {"canonical", "reverse"}:
         raise ThreeStockProxyError("order must be canonical or reverse")

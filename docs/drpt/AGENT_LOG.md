@@ -15722,3 +15722,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   as if they were sRGB; arbitrary 16-bit scanner ICC conversion remains
   intentionally unsupported. Thirty-nine scan-container/output/raster-ingress
   tests pass in the project environment.
+
+### 2026-08-21 - RF3.D0R legacy projection compatibility restored
+
+- Restored the exact frozen profile-to-keyword projection still imported by
+  the DNG three-stock proxy evaluator after RF3.D0 moved to the unified public
+  engine. The current RF3.D0 render path is unchanged; this only repairs the
+  legacy evaluator's collection and replay boundary.
+- Twelve RF3.D0/RF3.D0R tests, including frozen public-engine pixel replay and
+  canonical/reverse RGB16 inventory identity, pass. Ruff, `py_compile` and
+  diff checks pass. No stock evidence, operator, threshold or product claim
+  changes.
