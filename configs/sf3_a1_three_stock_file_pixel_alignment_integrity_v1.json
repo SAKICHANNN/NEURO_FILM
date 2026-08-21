@@ -1,0 +1,49 @@
+{
+  "schema": "neuro-film.sf3-a1-three-stock-file-pixel-alignment-integrity-contract.v1",
+  "experiment_id": "SF3.A1",
+  "status": "FROZEN_BEFORE_PHYSICAL_SCAN_READ",
+  "question": "Does an SF3.A0-admitted controlled Velvia 50, Portra 400 and Ektar 100 acquisition remain valid after exact file rehash, strict RGB decode, rights-record verification and deterministic source-to-scan alignment?",
+  "parent": {
+    "acquisition_contract": {
+      "path": "configs/sf3_a0_three_stock_controlled_acquisition_v1.json",
+      "sha256": "69241a6c38b15a8c4c8871e513ea53e133ee1d3b5ebe06f39a33f92964eccc8b",
+      "required_decision": "OPEN_SF3_A1_FILE_PIXEL_ALIGNMENT_AND_RIGHTS_INTEGRITY_AUDIT"
+    }
+  },
+  "record_schemas": {
+    "rights": "neuro-film.sf3-a1-capture-rights-record.v1",
+    "alignment": "neuro-film.sf3-a1-source-to-scan-alignment-evidence.v1"
+  },
+  "decode": {
+    "allowed_extensions": [".png", ".tif", ".tiff"],
+    "required_channels": 3,
+    "allow_alpha": false,
+    "allow_multiple_frames": false,
+    "allowed_integer_bits": [8, 16],
+    "require_positive_dimensions": true,
+    "require_finite_normalized_samples": true
+  },
+  "alignment": {
+    "method": "SIFT_source_to_scan_homography",
+    "maximum_features": 4000,
+    "ratio_test": 0.76,
+    "ransac_reprojection_threshold_px": 3.0,
+    "minimum_good_matches": 35,
+    "minimum_ransac_inliers": 25,
+    "maximum_median_inlier_reprojection_error_px": 1.5,
+    "maximum_evidence_float_abs_error": 1e-9
+  },
+  "gates": {
+    "require_parent_a0_pass": true,
+    "require_all_file_hashes_exact": true,
+    "require_all_decodes_valid": true,
+    "require_all_rights_records_exact": true,
+    "require_all_alignment_evidence_exact": true,
+    "require_zero_scan_sample_hash_collisions_across_film_frames": true,
+    "require_zero_decoded_sample_hash_collisions_across_film_frames": true,
+    "require_zero_operator_fits": true
+  },
+  "decision_if_pass": "OPEN_SF3_A2_THREE_STOCK_K1_DEVELOPMENT_WITH_CONFIRMATION_SEALED",
+  "decision_if_fail": "RETAIN_THREE_STOCK_DATA_GAP_AND_REPAIR_OR_REACQUIRE_ONLY_FAILED_ROWS",
+  "claim_ceiling": "File, decoded-pixel, rights and geometric-alignment integrity for one SF3.A0-admitted controlled acquisition. Passing admits only stock-specific K=1 development with confirmation sealed; it is not stock response calibration, target closeness, stock distinguishability, preference, adaptive routing, package, capability or product promotion."
+}
