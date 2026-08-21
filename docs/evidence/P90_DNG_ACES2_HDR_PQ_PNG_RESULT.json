@@ -1,0 +1,33 @@
+{
+  "schema": "neuro-film.p90-dng-aces2-hdr-pq-png-evidence.v1",
+  "status": "FAIL_CLOSED_PARTITION_BYTE_REPLAY",
+  "contract_id": "P90_DNG_ACES2_HDR_PQ_PNG_V1",
+  "scope": "exact four previously consumed rights-cleared DNGs through frozen U1.4F and U1.4G mechanics",
+  "execution": {
+    "fresh_processes": 4,
+    "forward_report_sha256": "835c2e7bfcc2c5c3c2bfb61b9f50263ee4404494fbaf02eb3d579b3daa87acec",
+    "reverse_partition_report_sha256": "aad8cbeca51a7efc3ee75f0f107f2eba08be22b5e872bb9f9c800e8a6cd48adb",
+    "forward_two_process_exact": true,
+    "reverse_partition_two_process_exact": true,
+    "forward_reverse_report_exact": false
+  },
+  "metrics": {
+    "required_rows": 4,
+    "encoded_outputs_match_u1_4f": 4,
+    "rgb16_sample_hashes_match_across_partitions": 4,
+    "png_file_hashes_match_across_partitions": 1,
+    "png_file_hashes_differ_across_partitions": 3,
+    "all_strict_sample_readbacks_exact": true,
+    "all_sources_unchanged": true,
+    "all_production_loader_rejections_exact": true,
+    "all_values_finite_and_in_unit": true
+  },
+  "failed_gates": [
+    "canonical_and_reversed_row_partition_complete_png_bytes_exact",
+    "forward_reverse_normalized_scientific_reports_byte_exact"
+  ],
+  "interpretation": "The pinned ACES 2 HDR view, half-up RGB16 quantization and decoded native samples are exact. Three large PNG byte streams change when the same ordered rows are supplied under the reversed chunk-size partition, so the frozen complete-file replay gate fails even though scientific samples do not.",
+  "decision": "close_p90_without_zlib_flush_chunk_partition_or_report_normalization_rescue",
+  "retained_component_facts": "Private ACES 2 HDR encoded arrays and RGB16 sample publication are exact for the four consumed DNGs; this does not authorize the file bridge.",
+  "claim_ceiling": "Failed private four-DNG mechanics audit only; no calibrated IDT, image/display quality, HDR10 metadata, arbitrary DNG, default loader/renderer, public capability, film/stock, product or delivery admission"
+}

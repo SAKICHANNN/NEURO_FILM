@@ -15267,6 +15267,27 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Storage:** all formal outputs and scratch use repo-relative P-backed roots;
   no D fallback or drive-root artifact was created.
 
+### 2026-08-21 - P90 closes on complete-PNG partition replay
+
+- **Parent:** mature RAW/DNG/HDR/portable engineering; P90 connects the exact
+  U1.4F four-DNG official ACES 2 HDR view to the retained U1.4G PQ PNG rail.
+- **Evidence:** all four official encoded outputs equal the frozen U1.4F
+  hashes, all RGB16 sample hashes and strict readbacks are exact, values are
+  finite/in-unit, and production rejects every PQ output. Two forward reports
+  are exact at `835c2e7b...acec`; two reverse-partition reports are exact at
+  `aad8cbec...adb`.
+- **Failure:** only one of four complete PNG hashes is invariant when the same
+  ordered image rows are supplied under canonical versus reversed chunk-size
+  partitions. The other three have exact samples but different compressed
+  file bytes, so both frozen complete-file and cross-order report replay gates
+  fail.
+- **Decision:** formal status `FAIL_CLOSED_PARTITION_BYTE_REPLAY`. Do not alter
+  zlib flush/chunk policy, normalize report fields or weaken file identity to
+  sample identity on this leaf. Retain the arithmetic/sample observation only;
+  no HDR file bridge, default loader/renderer, capability or product opens.
+- **Storage:** all scratch and reports used repository-relative P-backed roots;
+  no D fallback or drive-root artifact was created.
+
 ### 2026-08-21 - SF3.A1/A2 controlled three-stock execution path is ready
 
 - **Parent:** stock-first real-film programme; Velvia 50, Portra 400 and Ektar
