@@ -19,7 +19,9 @@ def _write_json(path: Path, value: object) -> None:
     path.write_text(json.dumps(value), encoding="utf-8")
 
 
-def _working(pixels: np.ndarray) -> WorkingImage:
+def _working(
+    pixels: np.ndarray, source_path: Path = Path("fixture.dng")
+) -> WorkingImage:
     return WorkingImage(
         pixels=pixels,
         working_space="linear_rec2020",
@@ -30,7 +32,7 @@ def _working(pixels: np.ndarray) -> WorkingImage:
         orientation_applied=True,
         alpha_policy="absent",
         bit_depth_in=16,
-        source_path=Path("fixture.dng"),
+        source_path=source_path,
     )
 
 
@@ -46,7 +48,9 @@ def test_real_contract_keeps_ao6_velvia_only_and_claims_proxy_mechanics() -> Non
 
 
 @pytest.mark.parametrize("gate_value", [None, float("nan"), float("inf")])
-def test_contract_rejects_missing_or_nonfinite_gate(tmp_path: Path, gate_value: float | None) -> None:
+def test_contract_rejects_missing_or_nonfinite_gate(
+    tmp_path: Path, gate_value: float | None
+) -> None:
     contract = json.loads(CONTRACT.read_text(encoding="utf-8"))
     key = "minimum_pairwise_population_median_delta_e76"
     if gate_value is None:
@@ -55,14 +59,18 @@ def test_contract_rejects_missing_or_nonfinite_gate(tmp_path: Path, gate_value: 
         contract["gates"][key] = gate_value
     path = tmp_path / "contract.json"
     _write_json(path, contract)
-    with pytest.raises(target.DngThreeStockProxyError, match="gate missing or non-finite"):
+    with pytest.raises(
+        target.DngThreeStockProxyError, match="gate missing or non-finite"
+    ):
         target.load_contract(path, ROOT)
 
 
 def _install_synthetic_runtime(
     monkeypatch: pytest.MonkeyPatch,
     tmp_path: Path,
-    *, nonfinite_style: str | None = None,
+    *,
+    nonfinite_style: str | None = None,
+    invalid_aces_source: str | None = None,
 ) -> tuple[Path, dict[str, object]]:
     p98 = tmp_path / "p98.json"
     _write_json(
@@ -87,7 +95,10 @@ def _install_synthetic_runtime(
         },
     )
     stats = tmp_path / "stats.json"
-    _write_json(stats, {"styles": {name: {} for name in ("velvia_50", "portra_400", "ektar_100")}})
+    _write_json(
+        stats,
+        {"styles": {name: {} for name in ("velvia_50", "portra_400", "ektar_100")}},
+    )
     compiler = tmp_path / "compiler.json"
     _write_json(compiler, {})
     placeholder = tmp_path / "placeholder.json"
@@ -129,46 +140,79 @@ def _install_synthetic_runtime(
     contract_path = tmp_path / "contract.json"
     _write_json(contract_path, contract)
 
-    lookup = {binding["path"]: tmp_path / str(binding["path"]) for binding in bindings.values()}
+    lookup = {
+        binding["path"]: tmp_path / str(binding["path"])
+        for binding in bindings.values()
+    }
     monkeypatch.setattr(target, "load_contract", lambda *_args: copy.deepcopy(contract))
-    monkeypatch.setattr(target, "_bound", lambda _root, binding: lookup[binding["path"]])
+    monkeypatch.setattr(
+        target, "_bound", lambda _root, binding: lookup[binding["path"]]
+    )
     base = np.asarray(
-        [[[0.10, 0.20, 0.30], [0.40, 0.50, 0.60]], [[0.15, 0.25, 0.35], [0.45, 0.55, 0.65]]],
+        [
+            [[0.10, 0.20, 0.30], [0.40, 0.50, 0.60]],
+            [[0.15, 0.25, 0.35], [0.45, 0.55, 0.65]],
+        ],
         dtype=np.float32,
     )
     monkeypatch.setattr(
         target,
         "load_dng_forward_working_image",
-        lambda path, **_kwargs: _working(base + (0.01 if path.name == "b.dng" else 0.0)),
+        lambda path, **_kwargs: _working(
+            base + (0.01 if path.name == "b.dng" else 0.0), source_path=path
+        ),
     )
-    monkeypatch.setattr(target, "apply_working_image_aces2_output", lambda working, _target: working.pixels.copy())
+
+    def aces_output(working: WorkingImage, _target: str) -> np.ndarray:
+        values = working.pixels.copy()
+        if working.source_path.name == invalid_aces_source:
+            values[0, 0, 0] = np.inf
+        return values
+
+    monkeypatch.setattr(target, "apply_working_image_aces2_output", aces_output)
     monkeypatch.setattr(target, "load_profile_values", lambda *_args: {})
     monkeypatch.setattr(target, "load_guardrail_config", lambda *_args: {})
     offsets = {"velvia_50": 0.01, "portra_400": 0.03, "ektar_100": 0.05}
 
-    def transfer(rgb: np.ndarray, _stats: object, style: str, **_kwargs: object) -> np.ndarray:
+    def transfer(
+        rgb: np.ndarray, _stats: object, style: str, **_kwargs: object
+    ) -> np.ndarray:
         if style == nonfinite_style:
             return np.full_like(rgb, np.nan)
         return np.clip(rgb + offsets[style], 0.0, 1.0).astype(np.float32)
 
     monkeypatch.setattr(target, "style_transfer_rgb", transfer)
-    monkeypatch.setattr(target, "compile_standalone_profile_artifact", lambda **_kwargs: {"component_payloads": {"ao6-source-context-display-look": {}}})
+    monkeypatch.setattr(
+        target,
+        "compile_standalone_profile_artifact",
+        lambda **_kwargs: {
+            "component_payloads": {"ao6-source-context-display-look": {}}
+        },
+    )
     monkeypatch.setattr(
         target,
         "build_source_context_display_look_stages",
-        lambda _payload, _source: (lambda value: value, lambda value: np.clip(value + 0.08, 0.0, 1.0)),
+        lambda _payload, _source: (
+            lambda value: value,
+            lambda value: np.clip(value + 0.08, 0.0, 1.0),
+        ),
     )
     return contract_path, contract
 
 
 def _inventory(path: Path) -> list[tuple[str, str]]:
     return sorted(
-        (item.relative_to(path).as_posix(), hashlib.sha256(item.read_bytes()).hexdigest())
+        (
+            item.relative_to(path).as_posix(),
+            hashlib.sha256(item.read_bytes()).hexdigest(),
+        )
         for item in (path / "renders").rglob("*.png")
     )
 
 
-def test_synthetic_evaluation_is_order_and_rgb16_exact(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+def test_synthetic_evaluation_is_order_and_rgb16_exact(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
     contract_path, _ = _install_synthetic_runtime(monkeypatch, tmp_path)
     run_a = tmp_path / "run_a"
     run_b = tmp_path / "run_b"
@@ -185,9 +229,49 @@ def test_synthetic_evaluation_is_order_and_rgb16_exact(tmp_path: Path, monkeypat
     assert _inventory(run_a) == _inventory(run_b)
 
 
-def test_nonfinite_proxy_fails_before_publication(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
-    contract_path, _ = _install_synthetic_runtime(monkeypatch, tmp_path, nonfinite_style="portra_400")
+def test_nonfinite_proxy_fails_before_publication(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    contract_path, _ = _install_synthetic_runtime(
+        monkeypatch, tmp_path, nonfinite_style="portra_400"
+    )
     output = tmp_path / "run"
     with pytest.raises(target.DngThreeStockProxyError, match="non-finite or unbounded"):
         target.evaluate(contract_path, tmp_path, output, "canonical")
     assert not (output / "report.json").exists()
+
+
+def test_invalid_aces_row_is_replayable_scientific_failure(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    contract_path, _ = _install_synthetic_runtime(
+        monkeypatch, tmp_path, invalid_aces_source="b.dng"
+    )
+    run_a = tmp_path / "run_a"
+    run_b = tmp_path / "run_b"
+    canonical = target.evaluate(contract_path, tmp_path, run_a, "canonical")
+    reverse = target.evaluate(contract_path, tmp_path, run_b, "reverse")
+    left = dict(canonical)
+    right = dict(reverse)
+    left.pop("execution_order")
+    right.pop("execution_order")
+    assert left == right
+    assert canonical["decision"] == "fail"
+    assert canonical["rendered_input_rows"] == 1
+    failure = canonical["input_failures"][0]
+    assert failure == {
+        "source_id": "b",
+        "camera_make": "B",
+        "source_sha256": "b" * 64,
+        "shape": [2, 2, 3],
+        "finite_values": 11,
+        "nonfinite_values": 1,
+        "below_zero_values": 0,
+        "above_one_values": 0,
+        "finite_minimum": pytest.approx(0.16),
+        "finite_maximum": pytest.approx(0.66),
+        "failure": "aces2_sdr_nonfinite_or_unbounded",
+    }
+    assert canonical["aggregate"]["failed_gates"] == ["aces2_sdr_finite_bounded:b"]
+    assert len(_inventory(run_a)) == 4
+    assert _inventory(run_a) == _inventory(run_b)
