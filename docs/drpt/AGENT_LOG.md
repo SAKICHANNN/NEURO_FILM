@@ -15622,3 +15622,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   SF3.A3 matrix and A0L/A0N controlled Velvia 50/Portra 400/Ektar 100 capture
   path; the current receipt packet is still unfilled, so no K=1 stock fit,
   adaptive model, retrieval or multi-stock claim opens.
+
+### 2026-08-21 - U7.2 measures exact three-profile 24MP replay
+
+- **Implementation:** `9f7cfaa7` adds final-file replay with original SHA
+  verification; `49290b6d` adds ordered multi-recipe CLI replay.
+- **Run:** one 4032x6048 internal display-sRGB fixture rendered Velvia 50,
+  Portra 400 and Ektar 100 development profiles to RGB16 PNG+ICC in
+  `87.259/88.906/87.137s`. After deleting those outputs, one batch replay
+  regenerated all three exact SHA identities in `256.429s`.
+- **Decision:** retain exact mechanics, but keep U7.2 open. A read-only sample
+  observed roughly 3.55GB process working set and was not a formal peak;
+  current wall time is already far above the product target. This is product
+  resource evidence only, not named-stock truth or multi-stock completion.

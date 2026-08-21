@@ -1,0 +1,61 @@
+{
+  "schema": "neuro-film.u7-2-three-stock-24mp-recipe-replay-evidence.v1",
+  "experiment_id": "U7.2_THREE_STOCK_24MP_RECIPE_REPLAY",
+  "date": "2026-08-21",
+  "status": "PASS_EXACT_REPLAY_RESOURCE_TARGET_OPEN",
+  "implementation_commits": [
+    "f7d631e5",
+    "9f7cfaa7",
+    "49290b6d"
+  ],
+  "source": {
+    "path": "data/preference/repid/u5_r2repid3_shared_operator_v1/fit/winner/a4593-kme_0276.jpeg",
+    "sha256": "7ea3d1ed37b7df518c0466c1379f08aa34ea5ae00eb7dc8208fcff2cfe68d1c6",
+    "width": 4032,
+    "height": 6048,
+    "pixels": 24385536,
+    "role": "preexisting_internal_display_srgb_product_scale_fixture_not_film_truth"
+  },
+  "profile": {
+    "path": "configs/render_profiles/safe_rich_v1.json",
+    "sha256": "72a9948e6fc76e230c4593b847728712bc034840cd339e6b34f079ac7d424c79",
+    "claim": "film-inspired deterministic look approximation; no stock response, calibration or authenticity claim"
+  },
+  "initial_renders": [
+    {
+      "style": "velvia_50",
+      "wall_seconds": 87.259,
+      "png_bytes": 125739747,
+      "png_sha256": "6f405513fcb72f27350c9c42fc238de6daa0ba3584987537431a17a146982732",
+      "recipe_sha256": "254e5c8ddf8703e2689975590531b80ca4e40bde1a37fcd0c382f33e2a42cf25"
+    },
+    {
+      "style": "portra_400",
+      "wall_seconds": 88.906,
+      "png_bytes": 123345416,
+      "png_sha256": "2ff70587520b73634e9096ff297eb390edde7e891bb7634f3cec6c707a119844",
+      "recipe_sha256": "b6dece02a1c6e5cee9569424ae8fd53fdad8f4ee619753f6d81a2b2dea0d0fb3"
+    },
+    {
+      "style": "ektar_100",
+      "wall_seconds": 87.137,
+      "png_bytes": 125479371,
+      "png_sha256": "6c5c8b9c04fea4f265e1b742ce568b13a34d72462f7b6466f29685dabd03045e",
+      "recipe_sha256": "b92a75ed8ca8349df562153aad85df26db33ab0992d6bc07503033245ac7d0b8"
+    }
+  ],
+  "batch_replay": {
+    "original_outputs_deleted_before_replay": true,
+    "recipes_processed": 3,
+    "wall_seconds": 256.429,
+    "all_png_sha256_exact": true,
+    "all_dimensions_exact": true,
+    "all_pngs_rgb16_with_srgb_icc": true,
+    "icc_bytes_per_png": 588,
+    "observed_working_set_sample_bytes": 3551883264,
+    "observed_working_set_is_peak_measurement": false
+  },
+  "decision": "RETAIN_EXACT_THREE_STYLE_RECIPE_BATCH_AND_REQUIRE_RESOURCE_OPTIMIZATION_BEFORE_PRODUCT_READINESS",
+  "interpretation": "The same 24.39MP display-sRGB input renders and regenerates byte-exact final files for all three current development profiles. Runtime is about 87-89 seconds per style and a non-peak process sample exceeded 3.5GB, so this closes deterministic batch mechanics but not the ordinary-CPU product resource target.",
+  "claim_ceiling": "Local Windows/Python exact 24MP final-file and recipe replay evidence for three existing film-inspired development profiles. AO6 is not used. This is not target-film closeness, stock distinguishability, calibrated stock response, population preference, cross-platform performance or multi-stock completion."
+}
