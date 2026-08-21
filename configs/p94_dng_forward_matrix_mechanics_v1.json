@@ -1,0 +1,74 @@
+{
+  "schema": "neuro_film.p94_dng_forward_matrix_mechanics_contract.v1",
+  "experiment_id": "p94-dng-forward-matrix-mechanics-v1",
+  "status": "frozen_before_formal_metadata_evaluation",
+  "bindings": {
+    "contract_path": "docs/planning/P94_DNG_FORWARD_MATRIX_MECHANICS_CONTRACT.md",
+    "contract_sha256": "e90693170b7210e47aa90dc7daa08f7b651f598803b618b757f9f100bd208797",
+    "implementation_path": "src/preprocess/dng_forward_matrix.py",
+    "implementation_sha256": "33aff35d43cec55136cb5817aaa813c1336509b750bb24dd755db00ec8a3246d",
+    "runner_path": "scripts/audit_p94_dng_forward_matrix_mechanics.py",
+    "runner_sha256": "a8625083f2155a12f8bd07aca6b3dca9abc8c1d001b922c1a0d64e72ebeff1b8",
+    "standard_specification_path": "data/external/adobe_dng_spec_1_7_1_0/DNG_Spec_1_7_1_0.pdf",
+    "standard_specification_sha256": "abdecfd8e104e8b86cc054d3a40b677bb2ebe87131bfde080a1df3ee16eb2f8d",
+    "sdk_archive_path": "data/external/adobe_dng_sdk_1_7_1_2652/dng_sdk_1_7_1_2652_20260714.zip",
+    "sdk_archive_sha256": "73499b47f4683e12120a234bd0946f02e52ab2ff9834bcbd0e9f8ab4f923360e",
+    "sdk_member_sha256": {
+      "dng_sdk_1_7_1/LICENSE.txt": "89d75e1bfd65269c41ec57be67adacd48926af81554574d92742f96296ed9166",
+      "dng_sdk_1_7_1/dng_sdk/source/dng_camera_profile.cpp": "988d3d9531ddfefd0faa0b6b4ebf85276a872a55b1956fd2bb964f89c1dd801f",
+      "dng_sdk_1_7_1/dng_sdk/source/dng_color_spec.cpp": "6fb9ab59dcbdae9cb27a893c67810416ba7b2651a537673caa7d728d16d7ec0a",
+      "dng_sdk_1_7_1/dng_sdk/source/dng_temperature.cpp": "a747c94d8b56a821631935ed43ff003fbf35a06b6f978160a17310bad66d3427",
+      "dng_sdk_1_7_1/dng_sdk/source/dng_xy_coord.cpp": "fc28d228f6a8811568d42be52f0d45eb714b45aa11224d6e86b09598b94a490d",
+      "dng_sdk_1_7_1/dng_sdk/source/dng_xy_coord.h": "b36fcb3c46e4c273ca0e3e30d59e5274c4371a4fdaaac5b3a1432487c9f9651c"
+    }
+  },
+  "rows": [
+    {
+      "source_id": "motorola_moto_g_7_play",
+      "camera_make": "motorola",
+      "logical_path": "data/external/rawpixls_bh1_v1/raw/motorola_moto_g_7_play.dng",
+      "source_bytes": 26286800,
+      "source_sha256": "d46953b116ee7a88b99fb28edc7b2f1b631ed09d66f73391c4ccc2e2ec959575"
+    },
+    {
+      "source_id": "lg_lg_h850",
+      "camera_make": "LG",
+      "logical_path": "data/external/rawpixls_bh1_v1/raw/lg_lg_h850.dng",
+      "source_bytes": 16005440,
+      "source_sha256": "be58e948626b193538217e96bc6d9ff5fdeb91a3a8a8af65624dab41ae39895f"
+    },
+    {
+      "source_id": "xiaomi_m2010j19cg",
+      "camera_make": "Xiaomi",
+      "logical_path": "data/external/rawpixls_bh1_v1/raw/xiaomi_m2010j19cg.dng",
+      "source_bytes": 24029476,
+      "source_sha256": "e1cb49299faa6609547bbb9b2c5a6167031694a99a1d252e1e048ce18ddf214f"
+    },
+    {
+      "source_id": "blackmagic_pocket_cinema_camera_4k",
+      "camera_make": "Blackmagic",
+      "logical_path": "data/external/rawpixls_bh1_v1/raw/blackmagic_pocket_cinema_camera_4k.dng",
+      "source_bytes": 4497152,
+      "source_sha256": "1491a5e5d580a9be151747bddce89faca4d0b9d352503270f516bbf8e8cdf0d9"
+    },
+    {
+      "source_id": "huawei_eml_l29",
+      "camera_make": "HUAWEI",
+      "logical_path": "data/external/rawpixls_bh1_v1/raw/huawei_eml_l29.dng",
+      "source_bytes": 23643352,
+      "source_sha256": "77385bde838ab7e0a5b067d7f6e6b8cb3019a3c22353fae6b8689a43adda439a"
+    }
+  ],
+  "gates": {
+    "required_row_count": 5,
+    "required_camera_makes": 5,
+    "maximum_forward_one_to_pcs_error": 1e-12,
+    "maximum_camera_white_to_pcs_error": 1e-10,
+    "maximum_inverse_roundtrip_error": 1e-10,
+    "maximum_neutral_iterations": 30,
+    "require_forward_reverse_exact": true,
+    "require_two_fresh_process_reports_exact": true,
+    "maximum_raster_sample_rgb_decode_calls": 0
+  },
+  "claim_ceiling": "Private metadata-only exact five-device DNG 1.7.1 dual-illuminant ForwardMatrix camera-to-D50 PCS mechanics only; no raster decode, arbitrary DNG, real sensor or IDT calibration accuracy, demosaic/render/ACES quality, default loader, public schema/package/capability, product, film or stock admission"
+}

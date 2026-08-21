@@ -35,7 +35,7 @@ def test_identity_profile_is_finite_and_deterministic() -> None:
     second = build_dual_illuminant_camera_to_pcs(**_kwargs())
     np.testing.assert_array_equal(first.camera_to_pcs, second.camera_to_pcs)
     np.testing.assert_allclose(
-        first.camera_to_pcs @ first.reference_neutral,
+        first.camera_to_pcs @ first.camera_white,
         PCS_XYZ,
         atol=1e-15,
         rtol=0,
