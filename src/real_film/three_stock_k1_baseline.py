@@ -101,11 +101,11 @@ def load_contract(path: Path, *, root: Path) -> tuple[bytes, dict[str, Any]]:
         raise ThreeStockK1BaselineError("SF3.A2 candidate order drift")
     if (
         contract["operator_selection"].get(
-            "confirmation_target_reads_before_selection_frozen"
+            "confirmation_target_colour_fit_or_score_access_before_selection_frozen"
         )
         != 0
     ):
-        raise ThreeStockK1BaselineError("confirmation target read-order gate drift")
+        raise ThreeStockK1BaselineError("confirmation target fit/score gate drift")
     return raw, contract
 
 
