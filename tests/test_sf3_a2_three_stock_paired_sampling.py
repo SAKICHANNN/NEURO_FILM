@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import weakref
 from pathlib import Path
 
 import numpy as np
@@ -7,9 +8,11 @@ import pytest
 
 from src.real_film.three_stock_k1_baseline import evaluate, load_contract
 from src.real_film.three_stock_paired_sampling import (
+    AlignedScanFileRow,
     AlignedScanRow,
     ThreeStockPairedSamplingError,
     extract_common_paired_samples,
+    extract_common_paired_samples_streaming,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -130,6 +133,58 @@ def test_sampling_is_exactly_replayable() -> None:
         for stock in STOCKS:
             for left, right in zip(
                 first[partition][stock], second[partition][stock], strict=True
+            ):
+                assert np.array_equal(left.source, right.source)
+                assert np.array_equal(left.target, right.target)
+
+
+def test_streaming_sampling_is_exactly_equivalent_and_releases_scans() -> None:
+    _, contract = load_contract(CONFIG, root=ROOT)
+    eager_rows = _rows(translation=2.0)
+    expected = extract_common_paired_samples(
+        eager_rows, contract["paired_sampling"]
+    )
+    file_rows = [
+        AlignedScanFileRow(
+            row_id=row.row_id,
+            stock_id=row.stock_id,
+            role=row.role,
+            scene_id=row.scene_id,
+            film_frame_id=row.film_frame_id,
+            roll_id=row.roll_id,
+            source_identity=f"{row.role}:{row.scene_id}",
+            source_shape=row.source_rgb.shape,
+            scan_shape=row.scan_rgb.shape,
+            homography_source_to_scan=row.homography_source_to_scan,
+        )
+        for row in eager_rows
+    ]
+    source_by_id = {row.row_id: row.source_rgb for row in eager_rows}
+    scan_by_id = {row.row_id: row.scan_rgb for row in eager_rows}
+    previous_scan: weakref.ReferenceType[np.ndarray] | None = None
+
+    def load_source(row: AlignedScanFileRow) -> np.ndarray:
+        return source_by_id[row.row_id].copy()
+
+    def load_scan(row: AlignedScanFileRow) -> np.ndarray:
+        nonlocal previous_scan
+        if previous_scan is not None:
+            assert previous_scan() is None
+        value = scan_by_id[row.row_id].copy()
+        previous_scan = weakref.ref(value)
+        return value
+
+    actual = extract_common_paired_samples_streaming(
+        file_rows,
+        contract["paired_sampling"],
+        load_source=load_source,
+        load_scan=load_scan,
+    )
+    assert actual[2] == expected[2]
+    for partition in (0, 1):
+        for stock in STOCKS:
+            for left, right in zip(
+                actual[partition][stock], expected[partition][stock], strict=True
             ):
                 assert np.array_equal(left.source, right.source)
                 assert np.array_equal(left.target, right.target)

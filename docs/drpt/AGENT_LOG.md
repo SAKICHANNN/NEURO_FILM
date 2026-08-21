@@ -15691,3 +15691,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   adjacent A0--A2 tests, Ruff, `py_compile` and diff checks pass. Physical
   receipts/scans are still absent, so this is execution plumbing only; no fit
   or stock claim opens.
+
+### 2026-08-21 - SF3.A2 streams controlled scan sampling
+
+- Replaced the file-backed A2 runner's 108-image eager residency with
+  A1-identity-bound role/scene sampling: inspect container geometry, decode one
+  shared digital source, then decode, sample and release one scan at a time.
+- The 32x32 grid, homographies, common-support mask, bilinear samples and K=1
+  gates are unchanged. Eager/streaming samples are exactly equal and a lifetime
+  regression proves each scan is collectible before the next decode.
+- Eighteen adjacent A1/A2 tests pass. An isolated 108-row A1-to-A2 execution
+  reaches all 12 scenes and 21 frozen fits without an infrastructure failure;
+  its synthetic targets correctly remain a scientific negative. Physical
+  Velvia/Portra/Ektar pixels are still absent, so no stock claim opens.

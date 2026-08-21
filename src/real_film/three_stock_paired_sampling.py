@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from collections import defaultdict
-from collections.abc import Mapping, Sequence
+from collections.abc import Callable, Mapping, Sequence
 from dataclasses import dataclass
 from typing import Any
 
@@ -51,6 +51,49 @@ class AlignedScanRow:
             raise ThreeStockPairedSamplingError("row identities must be non-empty")
         object.__setattr__(self, "source_rgb", source)
         object.__setattr__(self, "scan_rgb", scan)
+        object.__setattr__(self, "homography_source_to_scan", homography)
+
+
+@dataclass(frozen=True)
+class AlignedScanFileRow:
+    """A1-verified aligned row whose pixels are loaded only while sampled."""
+
+    row_id: str
+    stock_id: str
+    role: str
+    scene_id: str
+    film_frame_id: str
+    roll_id: str
+    source_identity: str
+    source_shape: tuple[int, int, int]
+    scan_shape: tuple[int, int, int]
+    homography_source_to_scan: np.ndarray
+
+    def __post_init__(self) -> None:
+        homography = np.asarray(self.homography_source_to_scan, dtype=np.float64)
+        if homography.shape != (3, 3) or not np.isfinite(homography).all():
+            raise ThreeStockPairedSamplingError("homography must be finite 3x3")
+        if abs(float(np.linalg.det(homography))) <= 1e-12:
+            raise ThreeStockPairedSamplingError("homography must be invertible")
+        if self.role not in {"development", "confirmation"}:
+            raise ThreeStockPairedSamplingError("unsupported row role")
+        if not all(
+            (
+                self.row_id,
+                self.stock_id,
+                self.scene_id,
+                self.film_frame_id,
+                self.roll_id,
+                self.source_identity,
+            )
+        ):
+            raise ThreeStockPairedSamplingError("row identities must be non-empty")
+        for name, shape in (
+            ("source", self.source_shape),
+            ("scan", self.scan_shape),
+        ):
+            if len(shape) != 3 or shape[2] != 3 or min(shape[:2]) < 2:
+                raise ThreeStockPairedSamplingError(f"invalid {name} RGB shape")
         object.__setattr__(self, "homography_source_to_scan", homography)
 
 
@@ -197,8 +240,118 @@ def extract_common_paired_samples(
     return dict(development), dict(confirmation), facts
 
 
+def extract_common_paired_samples_streaming(
+    rows: Sequence[AlignedScanFileRow],
+    sampling: Mapping[str, Any],
+    *,
+    load_source: Callable[[AlignedScanFileRow], np.ndarray],
+    load_scan: Callable[[AlignedScanFileRow], np.ndarray],
+) -> tuple[
+    dict[str, list[StockFrameSamples]],
+    dict[str, list[StockFrameSamples]],
+    dict[str, Any],
+]:
+    """Sample A1-verified files while retaining at most one scan image.
+
+    The immediately preceding A1 audit proves that a shared source identity
+    decodes to identical pixels. This function therefore decodes that source
+    once per role/scene and streams each scan through the unchanged sampler.
+    """
+
+    if not rows:
+        raise ThreeStockPairedSamplingError("aligned scan rows are empty")
+    if sampling.get("interpolation") != "bilinear":
+        raise ThreeStockPairedSamplingError("unsupported interpolation")
+    grouped: dict[tuple[str, str], list[AlignedScanFileRow]] = defaultdict(list)
+    for row in rows:
+        grouped[(row.role, row.scene_id)].append(row)
+    development: dict[str, list[StockFrameSamples]] = defaultdict(list)
+    confirmation: dict[str, list[StockFrameSamples]] = defaultdict(list)
+    scene_facts: list[dict[str, Any]] = []
+    edge = float(sampling["scan_edge_margin_pixels"])
+    minimum_fraction = float(sampling["minimum_shared_valid_fraction_per_scene"])
+    if edge < 0.0 or not 0.0 < minimum_fraction <= 1.0:
+        raise ThreeStockPairedSamplingError("invalid shared-validity contract")
+
+    for (role, scene_id), selected in sorted(grouped.items()):
+        canonical = selected[0]
+        if any(
+            row.source_identity != canonical.source_identity
+            or row.source_shape != canonical.source_shape
+            for row in selected[1:]
+        ):
+            raise ThreeStockPairedSamplingError(
+                f"source identity differs within {role}/{scene_id}"
+            )
+        height, width = canonical.source_shape[:2]
+        source_points = _source_grid(height, width, sampling)
+        projected_by_row: dict[str, np.ndarray] = {}
+        shared = np.ones(len(source_points), dtype=bool)
+        for row in selected:
+            projected = _project(source_points, row.homography_source_to_scan)
+            projected_by_row[row.row_id] = projected
+            scan_height, scan_width = row.scan_shape[:2]
+            shared &= (
+                (projected[:, 0] >= edge)
+                & (projected[:, 0] <= scan_width - 1 - edge)
+                & (projected[:, 1] >= edge)
+                & (projected[:, 1] <= scan_height - 1 - edge)
+            )
+        shared_count = int(np.sum(shared))
+        shared_fraction = shared_count / len(source_points)
+        if shared_fraction < minimum_fraction:
+            raise ThreeStockPairedSamplingError(
+                f"shared valid support {shared_fraction:.6f} below gate for {role}/{scene_id}"
+            )
+        common_points = source_points[shared]
+        source_rgb = _rgb(load_source(canonical))
+        if source_rgb.shape != canonical.source_shape:
+            raise ThreeStockPairedSamplingError("decoded source shape drift")
+        source_samples = _bilinear(source_rgb, common_points)
+        del source_rgb
+        destination = development if role == "development" else confirmation
+        for row in sorted(selected, key=lambda value: value.row_id):
+            scan_rgb = _rgb(load_scan(row))
+            if scan_rgb.shape != row.scan_shape:
+                raise ThreeStockPairedSamplingError("decoded scan shape drift")
+            target_samples = _bilinear(
+                scan_rgb, projected_by_row[row.row_id][shared]
+            )
+            del scan_rgb
+            destination[row.stock_id].append(
+                StockFrameSamples(
+                    scene_id=scene_id,
+                    frame_id=row.row_id,
+                    roll_id=row.roll_id,
+                    source=source_samples.copy(),
+                    target=target_samples,
+                )
+            )
+        scene_facts.append(
+            {
+                "role": role,
+                "scene_id": scene_id,
+                "row_count": len(selected),
+                "grid_points": len(source_points),
+                "shared_valid_points": shared_count,
+                "shared_valid_fraction": shared_fraction,
+            }
+        )
+    facts = {
+        "scene_count": len(scene_facts),
+        "row_count": len(rows),
+        "minimum_observed_shared_valid_fraction": min(
+            row["shared_valid_fraction"] for row in scene_facts
+        ),
+        "scenes": scene_facts,
+    }
+    return dict(development), dict(confirmation), facts
+
+
 __all__ = [
+    "AlignedScanFileRow",
     "AlignedScanRow",
     "ThreeStockPairedSamplingError",
     "extract_common_paired_samples",
+    "extract_common_paired_samples_streaming",
 ]

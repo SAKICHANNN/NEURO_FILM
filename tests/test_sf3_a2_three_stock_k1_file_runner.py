@@ -80,6 +80,16 @@ def test_load_aligned_rows_uses_verified_file_identities(tmp_path: Path) -> None
     assert len(rows) == 1
     assert np.array_equal(rows[0].source_rgb, source)
     assert np.array_equal(rows[0].scan_rgb, scan)
+    file_rows, paths = runner.load_aligned_file_rows(
+        root=tmp_path,
+        ledger=ledger,
+        manifest=manifest,
+        alignment_schema=alignment_schema,
+    )
+    assert len(file_rows) == 1
+    assert file_rows[0].source_shape == source.shape
+    assert file_rows[0].scan_shape == scan.shape
+    assert paths["row-1"] == (source_path, scan_path)
 
 
 def test_integrity_failure_stops_before_sampling_or_fit(
@@ -100,7 +110,7 @@ def test_integrity_failure_stops_before_sampling_or_fit(
     )
     monkeypatch.setattr(
         runner,
-        "load_aligned_rows",
+        "load_aligned_file_rows",
         lambda **kwargs: (_ for _ in ()).throw(AssertionError("sampling reached")),
     )
     report = runner.evaluate_files(
@@ -130,7 +140,9 @@ def test_success_reports_actual_roll_dependent_fit_count(
             "stable_evidence_id": "integrity-pass",
         },
     )
-    monkeypatch.setattr(runner, "load_aligned_rows", lambda **kwargs: [])
+    monkeypatch.setattr(
+        runner, "load_aligned_file_rows", lambda **kwargs: ([], {})
+    )
     sample = np.full((4, 3), 0.25, dtype=np.float64)
     development = {
         stock: [
@@ -148,8 +160,12 @@ def test_success_reports_actual_roll_dependent_fit_count(
     confirmation = {stock: [] for stock in STOCKS}
     monkeypatch.setattr(
         runner,
-        "extract_common_paired_samples",
-        lambda rows, config: (development, confirmation, {"row_count": 0}),
+        "extract_common_paired_samples_streaming",
+        lambda rows, config, **kwargs: (
+            development,
+            confirmation,
+            {"row_count": 0},
+        ),
     )
     monkeypatch.setattr(
         runner,
