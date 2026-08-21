@@ -3,14 +3,35 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import random
 from collections import Counter
 from collections.abc import Iterable
+from pathlib import Path
 from typing import Any
+
+CONTRACT_SCHEMA = "neuro-film.sf3-a5-three-stock-blind-distinguishability-contract.v1"
 
 
 class ThreeStockBlindError(ValueError):
     """Raised for incomplete or malformed blind stock assignments."""
+
+
+def load_contract(path: Path) -> dict[str, Any]:
+    value = json.loads(path.read_text(encoding="utf-8"))
+    if (
+        not isinstance(value, dict)
+        or value.get("schema") != CONTRACT_SCHEMA
+        or value.get("status") != "FROZEN_BEFORE_PHYSICAL_TARGET_ADMISSION_OR_RENDER"
+    ):
+        raise ThreeStockBlindError("unsupported or unfrozen SF3.A5 contract")
+    if value.get("required_stocks") != [
+        "fujifilm_velvia_50",
+        "kodak_portra_400",
+        "kodak_ektar_100",
+    ]:
+        raise ThreeStockBlindError("SF3.A5 stock inventory drift")
+    return value
 
 
 def build_mapping(
@@ -44,7 +65,10 @@ def build_mapping(
 
 
 def adjudicate(
-    mapping: list[dict[str, Any]], observations: Iterable[dict[str, Any]]
+    mapping: list[dict[str, Any]],
+    observations: Iterable[dict[str, Any]],
+    *,
+    gates: dict[str, Any],
 ) -> dict[str, Any]:
     expected = {
         (row["round"], row["scene_id"]): row["label_to_stock"] for row in mapping
@@ -84,10 +108,12 @@ def adjudicate(
     exact_rate = exact / len(expected)
     passing_rounds = sum(round_correct[index] / 12 >= 2 / 3 for index in (1, 2, 3))
     passed = (
-        overall >= 0.75
-        and min(per_stock.values()) >= 2 / 3
-        and exact_rate >= 0.5
-        and passing_rounds >= 2
+        overall >= float(gates["minimum_overall_assignment_accuracy"])
+        and min(per_stock.values())
+        >= float(gates["minimum_per_stock_assignment_accuracy"])
+        and exact_rate >= float(gates["minimum_exact_triplet_rate"])
+        and passing_rounds
+        >= int(gates["minimum_rounds_with_overall_accuracy_at_least_two_thirds"])
     )
     return {
         "overall_assignment_accuracy": overall,
@@ -98,4 +124,4 @@ def adjudicate(
     }
 
 
-__all__ = ["ThreeStockBlindError", "adjudicate", "build_mapping"]
+__all__ = ["ThreeStockBlindError", "adjudicate", "build_mapping", "load_contract"]
