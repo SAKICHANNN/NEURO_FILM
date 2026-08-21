@@ -13,6 +13,7 @@ from src.real_film.three_stock_acquisition import (
     compile_acquisition_ledger,
     compile_protocol,
     evaluate_manifest,
+    evaluate_single_stock_manifest,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -110,6 +111,54 @@ def test_complete_group_held_manifest_passes(tmp_path: Path) -> None:
         report["decision"]
         == "OPEN_SF3_A1_FILE_PIXEL_ALIGNMENT_AND_RIGHTS_INTEGRITY_AUDIT"
     )
+
+
+def test_complete_single_stock_lane_opens_only_single_stock_integrity(
+    tmp_path: Path,
+) -> None:
+    manifest = _manifest()
+    stock = "kodak_ektar_100"
+    manifest["rows"] = [  # type: ignore[index]
+        row
+        for row in manifest["rows"]
+        if row["stock_id"] == stock  # type: ignore[index]
+    ]
+    report = evaluate_single_stock_manifest(
+        CONFIG, _write(tmp_path, manifest), stock=stock
+    )
+    assert report["automatic_pass"] is True
+    assert report["stock"] == stock
+    assert report["row_count"] == 36
+    assert report["cross_stock_same_scene_controls_evaluated"] is False
+    assert report["operator_fit_authority"] is False
+    assert report["decision"] == (
+        "OPEN_SINGLE_STOCK_A1_FILE_PIXEL_ALIGNMENT_AND_RIGHTS_INTEGRITY_AUDIT"
+    )
+
+
+def test_single_stock_lane_rejects_mixed_inventory_and_holdout_leak(
+    tmp_path: Path,
+) -> None:
+    manifest = _manifest()
+    stock = "kodak_ektar_100"
+    stock_rows = [
+        row
+        for row in manifest["rows"]
+        if row["stock_id"] == stock  # type: ignore[index]
+    ]
+    mixed = {"schema": MANIFEST_SCHEMA, "rows": stock_rows + [manifest["rows"][0]]}  # type: ignore[index]
+    with pytest.raises(ThreeStockAcquisitionError, match="inventory drift"):
+        evaluate_single_stock_manifest(CONFIG, _write(tmp_path, mixed), stock=stock)
+
+    for row in stock_rows:
+        if row["role"] == "confirmation":
+            row["scene_content_group"] = "content-development-0"
+    single = {"schema": MANIFEST_SCHEMA, "rows": stock_rows}
+    report = evaluate_single_stock_manifest(
+        CONFIG, _write(tmp_path, single), stock=stock
+    )
+    assert report["automatic_pass"] is False
+    assert report["gates"]["cross_role_holdout"] is False
 
 
 def test_scene_leakage_fails_holdout(tmp_path: Path) -> None:

@@ -13,6 +13,9 @@ CONTRACT_SCHEMA = "neuro-film.sf3-a0-three-stock-controlled-acquisition-contract
 MANIFEST_SCHEMA = "neuro-film.sf3-a0-three-stock-controlled-acquisition-manifest.v1"
 LEDGER_SCHEMA = "neuro-film.sf3-a0-three-stock-controlled-acquisition-ledger.v1"
 REPORT_SCHEMA = "neuro-film.sf3-a0-three-stock-controlled-acquisition-report.v1"
+SINGLE_STOCK_REPORT_SCHEMA = (
+    "neuro-film.sf3-a0-single-stock-controlled-acquisition-report.v1"
+)
 _SHA256 = re.compile(r"^[0-9a-f]{64}$")
 
 _HASH_PATH_FIELDS = {
@@ -145,10 +148,10 @@ def compile_acquisition_ledger(
     rows: list[dict[str, Any]] = []
     for index, source in enumerate(ledger_rows):
         if not isinstance(source, dict) or set(source) != ledger_fields:
-            raise ThreeStockAcquisitionError(
-                f"SF3.A0 ledger row {index} field drift"
-            )
-        row = {field: source[field] for field in manifest_fields - set(_HASH_PATH_FIELDS)}
+            raise ThreeStockAcquisitionError(f"SF3.A0 ledger row {index} field drift")
+        row = {
+            field: source[field] for field in manifest_fields - set(_HASH_PATH_FIELDS)
+        }
         for hash_field, path_field in _HASH_PATH_FIELDS.items():
             path = _bound_data_file(root, source[path_field], field=path_field)
             row[hash_field] = _sha256_file(path)
@@ -301,11 +304,9 @@ def evaluate_manifest(contract_path: Path, manifest_path: Path) -> dict[str, Any
             role_support &= (
                 len(scenes) >= requirements["minimum_common_scenes"]
                 and len(rolls) >= requirements["minimum_rolls_per_stock"]
-                and len(processes)
-                >= requirements["minimum_process_sessions_per_stock"]
+                and len(processes) >= requirements["minimum_process_sessions_per_stock"]
                 and len(labs) >= requirements["minimum_labs_per_stock"]
-                and len(scanners)
-                >= requirements["minimum_scanner_sessions_per_stock"]
+                and len(scanners) >= requirements["minimum_scanner_sessions_per_stock"]
                 and len(scanner_devices)
                 >= requirements["minimum_scanner_devices_per_stock"]
                 and frame_identity_support
@@ -393,12 +394,214 @@ def evaluate_manifest(contract_path: Path, manifest_path: Path) -> dict[str, Any
     return {**core, "stable_evidence_id": _sha256(_canonical(core))}
 
 
+def evaluate_single_stock_manifest(
+    contract_path: Path, manifest_path: Path, *, stock: str
+) -> dict[str, Any]:
+    """Admit one complete stock lane without asserting cross-stock controls."""
+
+    contract_raw, contract = _load_contract(contract_path)
+    manifest_raw, manifest = _read_object(manifest_path)
+    if stock not in contract["required_stocks"]:
+        raise ThreeStockAcquisitionError("unsupported single-stock identity")
+    if manifest.get("schema") != MANIFEST_SCHEMA:
+        raise ThreeStockAcquisitionError("unsupported SF3.A0 manifest")
+    rows = manifest.get("rows")
+    if not isinstance(rows, list) or not rows:
+        raise ThreeStockAcquisitionError("SF3.A0 candidate rows are empty")
+    _row_structure(contract, rows)
+    if {row["stock_id"] for row in rows} != {stock}:
+        raise ThreeStockAcquisitionError("single-stock manifest inventory drift")
+
+    rights = contract["rights"]
+    rights_complete = all(
+        row["rights_scope"] == rights["required_scope"]
+        and row["rights_allow_internal_training"] is True
+        and row["rights_allow_commercial_derivatives"] is True
+        and row["rights_allow_released_weights"] is True
+        for row in rows
+    )
+    process_interpretation_exact = all(
+        row["process_type"] == contract["required_stocks"][stock]["process_type"]
+        and row["interpretation_id"]
+        == contract["required_stocks"][stock]["interpretation_id"]
+        for row in rows
+    )
+    role_support = True
+    within_stock_scene_controls = True
+    coverage: dict[str, dict[str, int]] = {}
+    for role_name, requirements in contract["roles"].items():
+        selected = [row for row in rows if row["role"] == role_name]
+        scenes = {row["scene_id"] for row in selected}
+        rolls = {row["roll_id"] for row in selected}
+        processes = {row["process_session_id"] for row in selected}
+        labs = {row["lab_id"] for row in selected}
+        scanners = {row["scanner_session_id"] for row in selected}
+        scanner_devices = {row["scanner_device_id"] for row in selected}
+        frames: dict[str, list[dict[str, Any]]] = defaultdict(list)
+        for row in selected:
+            frames[row["film_frame_id"]].append(row)
+        frame_identity_support = all(
+            len(
+                {
+                    (
+                        row["role"],
+                        row["scene_id"],
+                        row["scene_content_group"],
+                        row["roll_id"],
+                        row["capture_session_id"],
+                        row["source_owner_id"],
+                        row["camera_system_id"],
+                        row["process_session_id"],
+                        row["digital_reference_sha256"],
+                        row["capture_condition_sha256"],
+                        row["interpretation_id"],
+                    )
+                    for row in frame_rows
+                }
+            )
+            == 1
+            for frame_rows in frames.values()
+        ) and bool(frames)
+        frame_scan_support = all(
+            len({row["scanner_session_id"] for row in frame_rows})
+            >= requirements["minimum_scans_per_film_frame"]
+            for frame_rows in frames.values()
+        ) and bool(frames)
+        roll_scene_support = all(
+            {row["scene_id"] for row in selected if row["roll_id"] == roll_id} == scenes
+            for roll_id in rolls
+        ) and bool(rolls)
+        roll_identity_support = all(
+            len(
+                {
+                    (
+                        row["process_session_id"],
+                        row["lab_id"],
+                        row["process_recipe_sha256"],
+                    )
+                    for row in selected
+                    if row["roll_id"] == roll_id
+                }
+            )
+            == 1
+            for roll_id in rolls
+        ) and bool(rolls)
+        scanner_identity_support = all(
+            len(
+                {
+                    (row["scanner_device_id"], row["scanner_profile_sha256"])
+                    for row in selected
+                    if row["scanner_session_id"] == scanner_id
+                }
+            )
+            == 1
+            for scanner_id in scanners
+        ) and bool(scanners)
+        source_controls = all(
+            len(
+                {
+                    (
+                        row["digital_reference_sha256"],
+                        row["capture_condition_sha256"],
+                        row["source_owner_id"],
+                        row["scene_content_group"],
+                        row["camera_system_id"],
+                    )
+                    for row in selected
+                    if row["scene_id"] == scene_id
+                }
+            )
+            == 1
+            for scene_id in scenes
+        ) and bool(scenes)
+        within_stock_scene_controls &= source_controls
+        current_support = (
+            len(scenes) >= requirements["minimum_common_scenes"]
+            and len(rolls) >= requirements["minimum_rolls_per_stock"]
+            and len(processes) >= requirements["minimum_process_sessions_per_stock"]
+            and len(labs) >= requirements["minimum_labs_per_stock"]
+            and len(scanners) >= requirements["minimum_scanner_sessions_per_stock"]
+            and len(scanner_devices)
+            >= requirements["minimum_scanner_devices_per_stock"]
+            and frame_identity_support
+            and frame_scan_support
+            and roll_scene_support
+            and roll_identity_support
+            and scanner_identity_support
+        )
+        role_support &= current_support
+        coverage[role_name] = {
+            "scenes": len(scenes),
+            "rolls": len(rolls),
+            "process_sessions": len(processes),
+            "labs": len(labs),
+            "scanner_sessions": len(scanners),
+            "scanner_devices": len(scanner_devices),
+            "film_frames": len(frames),
+        }
+
+    holdout_fields = (
+        "scene_id",
+        "roll_id",
+        "process_session_id",
+        "lab_id",
+        "scanner_session_id",
+        "scanner_device_id",
+        "capture_session_id",
+        "scene_content_group",
+    )
+    cross_role_holdout = all(
+        not (
+            {row[field] for row in rows if row["role"] == "development"}
+            & {row[field] for row in rows if row["role"] == "confirmation"}
+        )
+        for field in holdout_fields
+    )
+    gates = {
+        "single_stock_inventory_exact": True,
+        "rights_complete": rights_complete,
+        "process_interpretation_exact": process_interpretation_exact,
+        "role_support": role_support,
+        "within_stock_scene_controls": within_stock_scene_controls,
+        "cross_role_holdout": cross_role_holdout,
+    }
+    automatic_pass = all(gates.values())
+    core = {
+        "schema": SINGLE_STOCK_REPORT_SCHEMA,
+        "experiment_id": f"{contract['experiment_id']}.{stock}",
+        "contract_sha256": _sha256(contract_raw),
+        "manifest_sha256": _sha256(manifest_raw),
+        "stock": stock,
+        "row_count": len(rows),
+        "coverage": coverage,
+        "gates": gates,
+        "cross_stock_same_scene_controls_evaluated": False,
+        "automatic_pass": automatic_pass,
+        "decision": (
+            "OPEN_SINGLE_STOCK_A1_FILE_PIXEL_ALIGNMENT_AND_RIGHTS_INTEGRITY_AUDIT"
+            if automatic_pass
+            else "RETAIN_SINGLE_STOCK_DATA_GAP_WITHOUT_ALGORITHM_RESCUE"
+        ),
+        "pixel_reads": 0,
+        "operator_fits": 0,
+        "operator_fit_authority": False,
+        "claim_ceiling": (
+            "Single-stock controlled-acquisition topology and group-holdout admission "
+            "only. Passing does not establish cross-stock controls, fitting, stock "
+            "response, calibration, preference, package or product promotion."
+        ),
+    }
+    return {**core, "stable_evidence_id": _sha256(_canonical(core))}
+
+
 __all__ = [
     "CONTRACT_SCHEMA",
     "LEDGER_SCHEMA",
     "MANIFEST_SCHEMA",
+    "SINGLE_STOCK_REPORT_SCHEMA",
     "ThreeStockAcquisitionError",
     "compile_acquisition_ledger",
     "compile_protocol",
     "evaluate_manifest",
+    "evaluate_single_stock_manifest",
 ]
