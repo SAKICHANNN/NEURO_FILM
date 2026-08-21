@@ -15804,3 +15804,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain the cross-platform 512-tile opt-in and do not add a Windows-only
   product branch. The three-profile tile result is now complete; return to the
   controlled stock-evidence path rather than further colour-core tuning.
+
+### 2026-08-21 - SF3.A0-A2 can advance one complete stock lane
+
+- Added a lower-claim single-stock path through the existing acquisition,
+  file/rights/alignment and K=1 evaluators. It reuses the frozen A0/A1/A2
+  contracts, roll-held-out operator selection and confirmation/tail gates.
+- This lets the first complete Ektar, Velvia or Portra lane run immediately
+  without waiting for the other two. Wrong-stock controls and stock
+  distinguishability remain unavailable until the original three-stock path
+  runs; no thresholds, operator families or product defaults changed.
+- The existing three-stock CLI remains the default; `--stock` explicitly
+  selects the lower-claim path. Forty-seven adjacent A0-A5 tests pass.
