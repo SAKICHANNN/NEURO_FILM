@@ -15,6 +15,7 @@ from src.real_film.three_stock_acquisition import (
     LEDGER_SCHEMA,
     compile_acquisition_ledger,
 )
+from src.real_film.three_stock_k1_file_runner import evaluate_single_stock_files
 from src.real_film.three_stock_scan_integrity import (
     ThreeStockScanIntegrityError,
     build_alignment_evidence,
@@ -29,6 +30,7 @@ from src.real_film.three_stock_scan_integrity import (
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/sf3_a1_three_stock_file_pixel_alignment_integrity_v1.json"
 A0_CONFIG = ROOT / "configs/sf3_a0_three_stock_controlled_acquisition_v1.json"
+K1_CONFIG = ROOT / "configs/sf3_a2_three_stock_k1_baseline_v1.json"
 
 
 def _sha(path: Path) -> str:
@@ -337,6 +339,25 @@ def test_complete_single_stock_fixture_opens_only_single_stock_k1(
     assert report["decision"] == (
         "OPEN_SINGLE_STOCK_A2_K1_DEVELOPMENT_WITH_CONFIRMATION_SEALED"
     )
+
+    k1_contract_value = json.loads(K1_CONFIG.read_text(encoding="utf-8"))
+    k1_contract_value["parent"]["integrity_contract"]["sha256"] = _sha(contract)
+    k1_contract = repo / "configs" / K1_CONFIG.name
+    _write_json(k1_contract, k1_contract_value)
+    k1_report = evaluate_single_stock_files(
+        root=repo,
+        integrity_contract_path=contract,
+        k1_contract_path=k1_contract,
+        ledger_path=ledger,
+        manifest_path=manifest,
+        stock=stock,
+    )
+    assert k1_report["integrity_automatic_pass"] is True
+    assert k1_report["paired_sampling_executed"] is True
+    assert k1_report["stock"] == stock
+    assert k1_report["operator_fits"] == 7
+    assert k1_report["cross_stock_controls_evaluated"] is False
+    assert k1_report["k1_result"]["stock"] == stock
 
 
 def test_alignment_materialization_is_create_only_and_replayable(
