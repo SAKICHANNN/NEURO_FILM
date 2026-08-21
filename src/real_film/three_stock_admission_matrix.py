@@ -178,7 +178,10 @@ def evaluate(contract: Mapping[str, Any], root: Path) -> dict[str, Any]:
             "hard_medoid_or_sparse_retrieval",
             "k_greater_than_1_or_latent_mode_routing",
         ],
-        "next_executable_leaf": "populate_and_validate_sf3_a0_controlled_three_stock_manifest",
+        "next_executable_leaf": (
+            "populate_and_validate_first_ready_sf3_a0_single_stock_manifest_"
+            "then_complete_three_stock_controls"
+        ),
         "decision": contract["decision_if_all_stocks_admitted"]
         if all_admitted
         else contract["decision_if_any_stock_blocked"],

@@ -24,6 +24,10 @@ def test_current_matrix_fails_closed_for_every_stock() -> None:
     assert all(not row["k1_fit_admitted"] for row in report["stock_rows"])
     assert report["current_baseline"]["experiment_id"] == "RF3.D0"
     assert report["current_baseline"]["ao6_role"].endswith("baseline_only")
+    assert report["next_executable_leaf"] == (
+        "populate_and_validate_first_ready_sf3_a0_single_stock_manifest_"
+        "then_complete_three_stock_controls"
+    )
     assert report["decision"].startswith("RETAIN_RF3_D0")
 
 
