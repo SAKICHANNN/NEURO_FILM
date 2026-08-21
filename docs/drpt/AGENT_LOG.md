@@ -15649,3 +15649,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   default. Per-style ordinary-CPU latency and memory remain open. No target
   closeness, stock distinguishability, calibration or product promotion is
   inferred.
+
+### 2026-08-21 - U7.2 measures the intermediate two-worker tier
+
+- **Run:** the same three 24.39MP recipes replayed with two workers in
+  `180.717s` at `8,679,989,248` bytes peak process-tree RSS. All three RGB16
+  PNG files, dimensions and 588-byte ICC profiles match the serial and
+  three-worker outputs exactly.
+- **Decision:** two workers provide `1.419x` serial speedup with 64.85% of the
+  three-worker peak memory, but 8.08GiB is still too high for a low-memory
+  default. Keep one worker as the default and expose 2/3 workers only as
+  explicit resource tiers. No stock-authenticity claim changes.

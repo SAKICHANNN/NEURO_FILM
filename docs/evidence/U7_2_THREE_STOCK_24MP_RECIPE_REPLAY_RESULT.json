@@ -70,7 +70,22 @@
     "icc_bytes_per_png": 588,
     "role": "explicit high-throughput mode; not the low-memory default"
   },
-  "decision": "RETAIN_EXACT_THREE_STYLE_RECIPE_BATCH_WITH_OPT_IN_PARALLEL_THROUGHPUT_AND_KEEP_SINGLE_STYLE_RESOURCE_TARGET_OPEN",
-  "interpretation": "The same 24.39MP display-sRGB input renders and regenerates byte-exact final files for all three current development profiles. Explicit three-worker replay reduces batch wall time from 256.429 to 105.694 seconds without changing any final byte, but peaks at 13.38 GB process-tree RSS. The default remains one worker; per-style ordinary-CPU latency and memory remain open product targets.",
+  "two_worker_batch_replay": {
+    "workers": 2,
+    "wall_seconds": 180.7165709,
+    "serial_wall_seconds": 256.429,
+    "wall_ratio": 0.7047431097886745,
+    "speedup": 1.4189567604284372,
+    "peak_process_tree_rss_bytes": 8679989248,
+    "peak_process_tree_rss_gib": 8.083869934082031,
+    "peak_rss_ratio_to_three_workers": 0.6485052147869146,
+    "all_png_file_bytes_exact": true,
+    "all_dimensions_exact": true,
+    "all_pngs_rgb16_with_srgb_icc": true,
+    "icc_bytes_per_png": 588,
+    "role": "explicit intermediate-throughput mode; still not the low-memory default"
+  },
+  "decision": "RETAIN_EXACT_THREE_STYLE_RECIPE_BATCH_WITH_EXPLICIT_PARALLEL_RESOURCE_TIERS_AND_KEEP_SINGLE_STYLE_RESOURCE_TARGET_OPEN",
+  "interpretation": "The same 24.39MP display-sRGB input renders and regenerates byte-exact final files for all three current development profiles. Explicit three-worker replay reduces batch wall time from 256.429 to 105.694 seconds at 13.38 GB process-tree RSS. Two workers reduce wall time to 180.717 seconds at 8.68 GB RSS. Both preserve every final byte, but neither is a low-memory default; the default remains one worker and per-style ordinary-CPU latency and memory remain open product targets.",
   "claim_ceiling": "Local Windows/Python exact 24MP final-file and recipe replay evidence for three existing film-inspired development profiles. AO6 is not used. This is not target-film closeness, stock distinguishability, calibrated stock response, population preference, cross-platform performance or multi-stock completion."
 }
