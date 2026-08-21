@@ -1,0 +1,62 @@
+{
+  "schema": "neuro-film.sf3-a2-three-stock-k1-baseline-contract.v1",
+  "experiment_id": "SF3.A2",
+  "status": "FROZEN_BEFORE_PHYSICAL_TARGET_ADMISSION",
+  "question": "For each of Velvia 50, Portra 400 and Ektar 100, does the simplest roll-held-out global explicit operator that is statistically competitive on development data improve sealed same-scene confirmation targets and beat wrong-stock operators without unsafe output tails?",
+  "parent": {
+    "integrity_contract": {
+      "path": "configs/sf3_a1_three_stock_file_pixel_alignment_integrity_v1.json",
+      "sha256": "c1822c3f52f8979f7127795a03e8a4b0e970040321942322d5ca61facdf602be",
+      "required_decision": "OPEN_SF3_A2_THREE_STOCK_K1_DEVELOPMENT_WITH_CONFIRMATION_SEALED"
+    }
+  },
+  "required_stocks": [
+    "fujifilm_velvia_50",
+    "kodak_portra_400",
+    "kodak_ektar_100"
+  ],
+  "working_space": "interpreted_relative_display_rgb",
+  "operator_selection": {
+    "candidate_order_simplest_first": [
+      "bounded_per_channel_affine",
+      "bounded_ridge_3x3_affine",
+      "seplut17_monotone_plus_bounded_ridge_3x3"
+    ],
+    "selection_method": "leave_one_development_roll_out_mean_delta_e76",
+    "simplest_relative_error_margin": 0.01,
+    "minimum_development_rolls_per_stock": 2,
+    "confirmation_reads_before_selection_frozen": 0
+  },
+  "operator_bounds": {
+    "channel_gain": [0.5, 1.5],
+    "channel_bias": [-0.15, 0.15],
+    "matrix_coefficient": [-0.5, 1.5],
+    "ridge": 0.001,
+    "lut_knots": 17
+  },
+  "gates": {
+    "minimum_confirmation_frames_per_stock": 4,
+    "minimum_confirmation_improvement_rate_over_identity": 0.75,
+    "minimum_median_relative_improvement_over_identity": 0.05,
+    "minimum_worst_relative_improvement_over_identity": -0.1,
+    "minimum_correct_operator_win_rate_over_median_wrong_stock": 0.75,
+    "minimum_pairwise_stock_output_median_delta_e76": 1.0,
+    "maximum_raw_output_clip_fraction": 0.005,
+    "require_all_three_stocks_pass": true,
+    "require_all_three_stock_pairs_distinguishable": true,
+    "require_finite_outputs": true,
+    "require_exact_replay": true
+  },
+  "forbidden": [
+    "confirmation-informed operator or family selection",
+    "post-result threshold or family rescue",
+    "image-adaptive LUT or basis blending",
+    "nearest-neighbor, hard-medoid or sparse retrieval",
+    "latent K greater than 1",
+    "AO6 transfer from Velvia to Portra or Ektar",
+    "hard clipping or posthoc limiting hidden from metrics"
+  ],
+  "decision_if_pass": "OPEN_THREE_STOCK_K1_SEVERE_ARTIFACT_REVIEW_THEN_BLIND_DISTINGUISHABILITY",
+  "decision_if_fail": "RETAIN_PER_STOCK_SIMPLEST_PASSING_OR_IDENTITY_BASELINES_AND_CLOSE_FAILED_STOCKS_WITHOUT_ROUTER_RESCUE",
+  "claim_ceiling": "Controlled paired development and sealed-confirmation evidence for three independent stock-labelled K=1 explicit operators. Passing is not calibrated stock response, population preference, product promotion, adaptive routing, K>1, arbitrary scanner/process generalization or multi-stock completion."
+}
