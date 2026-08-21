@@ -1,0 +1,40 @@
+{
+  "schema": "neuro-film.sf3-a3b-latest-paired-source-refresh-evidence.v1",
+  "experiment_id": "SF3.A3B_LATEST_PAIRED_SOURCE_REFRESH_V1",
+  "date": "2026-08-21",
+  "status": "COMPLETE_NO_NEW_THREE_STOCK_SOURCE_ADMITTED",
+  "question": "Does the latest primary paired-film literature expose a downloadable, rights-usable, same-scene source covering Velvia 50, Portra 400 and Ektar 100?",
+  "sources": [
+    {
+      "source_id": "emulating_emulsion_siggraph_2025",
+      "primary_url": "https://musicofmusix.github.io/siggraphposters25",
+      "doi": "https://doi.org/10.1145/3721250.3743014",
+      "observed_scope": "3168 colour-patch correspondences from one 36-exposure roll of Fujifilm Velvia 100, plus two qualitative scenes",
+      "public_data_status": "no downloadable paired dataset or dataset licence located on the official project page",
+      "target_stock_coverage": [],
+      "valid_role": "current single-stock controlled-capture and compact-explicit-model precedent",
+      "blocking_reason": "Velvia 100 only; no Velvia 50, Portra 400 or Ektar 100 data release"
+    },
+    {
+      "source_id": "sillystill_cinestill800t_2024",
+      "paper_url": "https://arxiv.org/abs/2411.15967",
+      "repository_url": "https://github.com/mikasenghaas/sillystill",
+      "repository_head": "b1ebdb971207b403b7126b759c1d30d30954a722",
+      "observed_scope": "paired digital and film photographs for Cinestill 800T",
+      "public_data_status": "official README marks both Zenodo and Hugging Face dataset downloads as not yet available; repository contains no explicit licence",
+      "target_stock_coverage": [],
+      "valid_role": "single-stock paired-capture method precedent only",
+      "blocking_reason": "Cinestill 800T only; data unavailable and licence unresolved"
+    }
+  ],
+  "admission_gates": {
+    "covers_all_three_target_stocks": false,
+    "downloadable_pixels": false,
+    "explicit_pixel_reuse_rights": false,
+    "same_scene_digital_reference": true,
+    "independent_roll_process_scanner_holdout": false
+  },
+  "decision": "RETAIN_SF3_A3_DATA_GAP_AND_USE_PROJECT_OWNED_CONTROLLED_CAPTURE_AS_THE_ONLY_CURRENT_EXECUTABLE_ROUTE",
+  "next_mainline": "Populate the frozen SF3.A0L/SF3.A0N physical capture and receipt packet, then execute SF3.A1 -> SF3.A2 -> SF3.A4 -> SF3.A5 without changing roles, gates or operator families.",
+  "claim_ceiling": "Bounded current-source availability result only. It establishes neither permanent source absence nor any stock response, calibration, profile, preference, product admission or completed multi-stock system."
+}

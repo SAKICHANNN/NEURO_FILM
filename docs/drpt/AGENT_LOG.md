@@ -15443,3 +15443,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   package/schema/capability, product, film, and stock claims remain closed.
 - **Handoff:** a new raster-bearing camera-to-PCS conformance leaf may be
   frozen independently; it must not silently replace generic RAW ingress.
+
+### 2026-08-21 - SF3.A3B latest paired-source refresh closes without a new lane
+
+- **Node:** ULT > RF3/SF3 > SF3.A3B.
+- **Direction correction:** AO6 remains only the Velvia 50 display-proxy
+  baseline. No after-only, router, scorer or paper-inspired operator work was
+  opened.
+- **Primary-source result:** SIGGRAPH 2025 *Emulating Emulsion* is one-roll
+  Velvia 100 evidence with no downloadable multi-stock dataset on its official
+  page. The exact Sillystill repository HEAD `b1ebdb97...a722` is Cinestill
+  800T-only, still labels its Zenodo/Hugging Face dataset links as unavailable,
+  and has no explicit licence.
+- **Decision:** neither source covers the target Velvia 50 / Portra 400 /
+  Ektar 100 triangle. Retain the A3 data gap; the only current executable route
+  is the frozen project-owned A0L/A0N capture followed by A1/A2/A4/A5.
+- **Evidence:**
+  `docs/evidence/SF3_A3B_LATEST_PAIRED_SOURCE_REFRESH_RESULT.json`.

@@ -116,6 +116,15 @@ display-proxy Look Approximation comparator. Adaptive LUT, retrieval and
 gates. Evidence:
 `docs/evidence/SF3_A3_THREE_STOCK_ADMISSION_MATRIX_RESULT.json`.
 
+SF3.A3B performs one bounded current-primary-source refresh without opening a
+new algorithm leaf. SIGGRAPH 2025 *Emulating Emulsion* exposes one Velvia 100
+roll and no downloadable multi-stock dataset; the official 2024 Sillystill
+repository remains Cinestill 800T-only, marks its paired dataset downloads as
+not yet available and has no explicit licence. Neither covers Velvia 50,
+Portra 400 or Ektar 100, so the existing A3 data gap and project-owned A0L/A0N
+capture route remain unchanged. Evidence:
+`docs/evidence/SF3_A3B_LATEST_PAIRED_SOURCE_REFRESH_RESULT.json`.
+
 SF3.A1/A2 now provide the executable controlled-data path behind that gate.
 SF3.A1 rehashes and decodes every scan, validates rights and lineage, and
 recomputes alignment before any fit. SF3.A2 samples identical common source
