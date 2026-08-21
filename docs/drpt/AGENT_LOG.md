@@ -15767,3 +15767,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - This completes the software handoff from filled receipts and ledger paths to
   A0 compilation and A1/A2 execution. It reads no absent physical data today
   and does not alter the three-stock data gap or fit authority.
+
+### 2026-08-21 - U7.2 retains 512 as the measured exact replay balance
+
+- One bounded execution comparison reused the existing tile implementation;
+  it did not change the renderer, recipes, profiles or default CLI behavior.
+- On the exact 4032x6048 fixture, Velvia and Portra RGB16 PNG bytes remain
+  identical while wall time falls from `89.375/88.906s` to
+  `72.046/73.961s` (`.8061x/.8319x`). The monitored Portra worker peaks at
+  `2,503,561,216` process-tree RSS bytes.
+- Retain `--tile-size 512` as the measured balanced opt-in. Stop the tile-size
+  search here and return to controlled three-stock evidence; this is delivery
+  performance only, not stock evidence or a product-default change.

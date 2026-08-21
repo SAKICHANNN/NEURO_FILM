@@ -1,0 +1,40 @@
+{
+  "schema": "neuro-film.u7-2-exact-tile512-24mp-speed-result.v1",
+  "date": "2026-08-21",
+  "question": "Does the already-implemented exact 512-pixel safe-Lab tile reduce 24MP recipe replay wall time on more than one development profile without changing delivered PNG bytes?",
+  "execution": {
+    "host": "local Windows ordinary CPU",
+    "command": "scripts/replay_film_recipe.py --tile-size 512",
+    "input_shape": [4032, 6048, 3],
+    "profiles": 2,
+    "new_tile_sizes_tested": [512],
+    "additional_tile_search_performed": false
+  },
+  "rows": [
+    {
+      "style": "velvia_50",
+      "prior_full_frame_wall_seconds": 89.375,
+      "tile512_wall_seconds": 72.046,
+      "wall_ratio": 0.806109090909091,
+      "wall_reduction_fraction": 0.193890909090909,
+      "png_bytes": 125739747,
+      "original_png_sha256": "6f405513fcb72f27350c9c42fc238de6daa0ba3584987537431a17a146982732",
+      "tile512_png_sha256": "6f405513fcb72f27350c9c42fc238de6daa0ba3584987537431a17a146982732",
+      "peak_process_tree_rss_bytes": null
+    },
+    {
+      "style": "portra_400",
+      "prior_full_frame_wall_seconds": 88.906,
+      "tile512_wall_seconds": 73.961,
+      "wall_ratio": 0.8319011090365104,
+      "wall_reduction_fraction": 0.16809889096348962,
+      "png_bytes": 123345416,
+      "original_png_sha256": "2ff70587520b73634e9096ff297eb390edde7e891bb7634f3cec6c707a119844",
+      "tile512_png_sha256": "2ff70587520b73634e9096ff297eb390edde7e891bb7634f3cec6c707a119844",
+      "peak_process_tree_rss_bytes": 2503561216
+    }
+  ],
+  "all_delivered_png_bytes_exact": true,
+  "decision": "retain_tile512_as_the_measured_balanced_opt_in_without_default_change_or_further_tile_search",
+  "claim_ceiling": "Local Windows 24MP deterministic recipe-replay resource evidence for two development profiles only. This is not stock authenticity, target closeness, cross-platform performance, product-default promotion or multi-stock completion."
+}
