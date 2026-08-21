@@ -15590,3 +15590,19 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   adjacent tests, Ruff, py_compile and diff-check pass before evidence commit.
   Outputs remain under the repository-relative P-backed root; `.codex/` and
   `tmp/` were untouched.
+
+### 2026-08-21 - U7.1A/B exposes one exact multi-look render core
+
+- **Node:** ULT > U7 > U7.1, supporting the RF3 three-stock baseline without
+  changing stock claims or product defaults.
+- **Implementation:** `2f3cbc80` adds a file/CLI-independent safe-Lab engine
+  entry and routes the existing CLI through it. `56a6bf5c` routes the fixed
+  Velvia 50, Portra 400 and Ektar 100 RF3.D0 proxy arms through the same API.
+- **Evidence:** all eight versioned profile looks are pixel-exact against the
+  legacy float32 call. A full 16-source x 3-stock replay matches all 48 frozen
+  RF3.D0 output PNG pixel arrays exactly; 51 API/ingress/contract tests and 5
+  RF3 tests pass.
+- **Boundary:** U7.1 remains in progress until a complete recipe-bound public
+  call is available. AO6 remains Velvia-only display-proxy evidence, RF3.D0
+  remains development-only, and real three-stock A0L/A0N acquisition remains
+  the scientific promotion path.
