@@ -2206,6 +2206,15 @@ promotion on this population. Next is controlled three-stock pixel
 acquisition, not proxy tuning or adaptive routing. Evidence:
 `docs/evidence/RF3_D0S_THREE_STOCK_PROXY_FULL_RESOLUTION_SEVERE_AUDIT_RESULT.json`.
 
+RF3.D0R closes the exact five-DNG P98 -> official ACES 2 SDR -> fixed
+three-proxy composition without rescue. Two fresh-process scientific reports
+and 16 RGB16 outputs per run are exact (`d61610cd...8f60f`). The Blackmagic
+row has six finite pre-encode values above one (maximum `1.00000668`), and the
+Portra--Ektar median separation is only `.72932 < 1.0`; both frozen gates fail.
+Do not clip, retune or replace the profiles. RF3.D0 remains a development
+baseline only, and controlled three-stock acquisition remains primary.
+Evidence: `docs/evidence/RF3_D0R_DNG_THREE_STOCK_PROXY_RESULT.json`.
+
 SF3.A3C closes the final bounded commercial-page lead without opening another
 proxy experiment. FilmLabPro names all three target stocks and publishes
 datasheet-derived curves and implementation parameters, but exposes no paired

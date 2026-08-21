@@ -15567,3 +15567,26 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   not arbitrary-DNG, IDT/calibration, Adobe/vendor parity, photographic
   quality, tone-map, default-loader, package/capability or product evidence.
   The paired-stock lane remains data-gated at 0/3 admissions.
+
+### 2026-08-21 - RF3.D0R closes DNG three-stock proxy execution
+
+- **Node and direction:** ULT > RF3 > RF3.D0R; `dev-research-reliability`
+  remained the only writer. The leaf directly tests the corrected three-stock
+  baseline and does not open after-only, router, scorer or new-paper capacity.
+- **Implementation:** `3056af1b` adds the P98 -> official ACES 2 SDR -> fixed
+  Velvia/Portra/Ektar proxy evaluator plus Velvia-only AO6 comparator.
+  `bf829125` fixes only failed-input report retention after the first attempt
+  exposed a real boundedness failure; no pixel, gate or candidate changed.
+- **Result:** two fresh processes and 16 RGB16 files per run replay exactly at
+  stable ID `d61610cd...8f60f`. Blackmagic has 6/26,947,584 finite ACES output
+  values above one (maximum `1.00000668`), and Portra--Ektar separation is
+  `.72932 < 1.0`. Both frozen gates fail; output/new-boundary fractions on the
+  four rendered rows are zero.
+- **Decision:** close this exact composition without clipping, limiting,
+  threshold or profile rescue. The real three-stock A0L/A0N -> A1/A2/A4/A5
+  path remains primary; when its receipts are absent, continue only the
+  deterministic product core without stock-authenticity escalation.
+- **Evidence/checks:** formal result SHA `5e8c5bb1...a612d8`; 26 focused and
+  adjacent tests, Ruff, py_compile and diff-check pass before evidence commit.
+  Outputs remain under the repository-relative P-backed root; `.codex/` and
+  `tmp/` were untouched.

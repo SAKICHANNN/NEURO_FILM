@@ -1,0 +1,104 @@
+{
+  "schema": "neuro-film.rf3-d0r-dng-three-stock-proxy-evidence.v1",
+  "experiment_id": "RF3.D0R",
+  "node": "ULT > RF3 > RF3.D0R",
+  "status": "FAIL_CLOSED",
+  "decision": "close exact P98-to-ACES2 three-stock proxy composition without retuning and keep stock-data acquisition primary",
+  "bindings": {
+    "contract": {
+      "path": "docs/planning/RF3_D0R_DNG_THREE_STOCK_PROXY_CONTRACT.md",
+      "bytes": 1854,
+      "sha256": "a2b07a0faaa2df1189f7ddbc19106aa6a74038c34abec1a501fcc1f4a2a634cd",
+      "freeze_commit": "50ef7a14"
+    },
+    "config": {
+      "path": "configs/rf3_d0r_dng_three_stock_proxy_v1.json",
+      "bytes": 3911,
+      "sha256": "1a1b51318bfab86f7a3b0fd1f882ad1957a27a009867bf40a4ccdb6a85a72e9b"
+    },
+    "implementation": {
+      "path": "src/eval/dng_three_stock_proxy.py",
+      "bytes": 16188,
+      "sha256": "2e62851a69adc46850016135f10a06a4c6bfdd7e6c2e8d9b4c3751a661d40cfc",
+      "commits": [
+        "3056af1b",
+        "bf829125"
+      ]
+    },
+    "runner": {
+      "path": "scripts/run_rf3_d0r_dng_three_stock_proxy.py",
+      "bytes": 3164,
+      "sha256": "c8992c2cc4ec7d21824c5ea3a9ed9d544c673480295bca585703128b9d55fc1d"
+    },
+    "tests": {
+      "path": "tests/test_rf3_d0r_dng_three_stock_proxy.py",
+      "bytes": 9446,
+      "sha256": "5b3d60d94a1f0cd521d95194f8901a7b6f5093825214fdc728bd8136b27ac438"
+    },
+    "formal_result": {
+      "path": "outputs/eval/rf3_d0r_dng_three_stock_proxy_v1/formal_result.json",
+      "bytes": 1592,
+      "sha256": "5e8c5bb1b79d18064abfb509cdd48b9d77bbdb348f8984c27a6ab46e83a612d8"
+    }
+  },
+  "execution": {
+    "fresh_processes": 2,
+    "orders": [
+      "canonical",
+      "reverse"
+    ],
+    "reports_science_exact": true,
+    "rgb16_inventory_exact": true,
+    "rgb16_files_per_run": 16,
+    "run_a_report_sha256": "773c43122262f0c10a82c1057f4e5976c50eb87b92e9ee3d56f0fc619a7b432d",
+    "run_b_report_sha256": "cf8b100e4ba6ec04e97a093378fe30cff5509ce32d49557040bd49d7049555d0",
+    "stable_evidence_id": "d61610cd42eda622a1c57f823b0995b1f1a59c571559f08b169a6e444ef8f60f",
+    "initial_attempt_note": "The first canonical attempt stopped at the Blackmagic boundedness gate before it could persist a scientific failure report. The unchanged evaluator was amended only to retain failed input diagnostics and continue the frozen cohort. Its 12 partial PNGs remain isolated under the P-backed attempt1_pre_diagnostic_report directory and are not formal evidence."
+  },
+  "input_result": {
+    "expected_rows": 5,
+    "rendered_rows": 4,
+    "failed_source_id": "blackmagic_pocket_cinema_camera_4k",
+    "failed_camera_make": "Blackmagic",
+    "failed_source_sha256": "1491a5e5d580a9be151747bddce89faca4d0b9d352503270f516bbf8e8cdf0d9",
+    "shape": [
+      2176,
+      4128,
+      3
+    ],
+    "finite_values": 26947584,
+    "nonfinite_values": 0,
+    "below_zero_values": 0,
+    "above_one_values": 6,
+    "finite_minimum": 0.0,
+    "finite_maximum": 1.0000066757202148
+  },
+  "metrics": {
+    "pairwise_median_of_source_medians_delta_e76": {
+      "velvia_vs_portra": 1.7366085052490234,
+      "velvia_vs_ektar": 1.2403814196586609,
+      "portra_vs_ektar": 0.7293159067630768
+    },
+    "ao6_vs_legacy_velvia_median_of_source_medians_delta_e76": 12.126446723937988,
+    "maximum_output_code_boundary_fraction": 0.0,
+    "maximum_new_output_code_boundary_fraction": 0.0,
+    "failed_gates": [
+      "aces2_sdr_finite_bounded:blackmagic_pocket_cinema_camera_4k",
+      "portra_vs_ektar"
+    ]
+  },
+  "interpretation": {
+    "established": [
+      "four of the five exact P98 DNGs traverse the opt-in ForwardMatrix raster, official ACES 2 SDR output and all four fixed proxy arms with exact RGB16 readback and fresh-process replay",
+      "the Blackmagic row produces six finite pre-encode samples slightly above one, so the frozen no-clipping boundedness contract fails",
+      "the legacy Portra 400 and Ektar 100 proxies are not mechanically separated at the frozen one-Delta-E population threshold on this DNG cohort"
+    ],
+    "not_established": [
+      "photographic quality, target-film closeness, stock distinguishability, calibration or arbitrary DNG support",
+      "a reason to clip, limit, retune or replace the ACES transform, legacy profiles, AO6 or any gate",
+      "a multi-stock product, adaptive LUT, retrieval, latent mode or preference promotion"
+    ]
+  },
+  "next_mainline": "Stop proxy expansion. Populate the existing rights-cleared Velvia 50, Portra 400 and Ektar 100 A0L/A0N physical capture receipts and execute A1/A2/A4/A5. While those real observations are unavailable, advance only the deterministic product core without stock-authenticity escalation.",
+  "claim_ceiling": "Exact five-DNG opt-in ForwardMatrix to official ACES 2 SDR to fixed three-stock proxy and Velvia-only AO6 mechanics. No photographic quality, target-film closeness, stock distinguishability, calibration, arbitrary DNG, default integration, product promotion or completed multi-stock-system claim."
+}
