@@ -1,0 +1,18 @@
+{
+  "contract_id": "P90_DNG_ACES2_HDR_PQ_PNG_V1",
+  "status": "FROZEN_BEFORE_P90_FILE_PUBLICATION",
+  "bindings": {
+    "u1_4f_config_sha256": "05113411500e683b13c036d59e44c6ba57756235aaa26eaf4c41584b1d71a7a2",
+    "u1_4f_evidence_sha256": "53fb902bd72250036c1e2794d644ad6efbdda263185578ac511b47c5eeb4d8aa",
+    "u1_4g_evidence_sha256": "12a53bb49ac0ba92314f2310c77f7dc2ab3c798e0406136d48d9ebb9eb0b0bcb",
+    "aces_adapter_sha256": "7ffe89bb448866574d0c6374020b79920d5e9b93d72ec84a29704c45f247378d"
+  },
+  "source_config": "configs/u1_4f_dng_aces2_photographic_smoke_v1.json",
+  "target": "hdr_rec2020_pq",
+  "display": "Rec.2100-PQ - Display",
+  "view": "ACES 2.0 - HDR 1000 nits (Rec.2020)",
+  "quantizer": "floor(encoded*65535+0.5)",
+  "row_count": 64,
+  "required_rows": 4,
+  "claim_ceiling": "Private exact four-DNG Windows CPU generic-LibRaw to pinned official ACES 2 HDR 1000-nit Rec.2020-PQ to existing U1.4G RGB16 PNG mechanics only; no calibrated IDT, image/display quality, HDR10 metadata, arbitrary DNG, default loader/renderer, public capability, film/stock, product or delivery admission"
+}
