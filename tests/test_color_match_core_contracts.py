@@ -10,6 +10,7 @@ import pytest
 from src.color_match.core_contracts import (
     CAPABILITIES_SCHEMA_ID,
     DIAGNOSTICS_SCHEMA_ID,
+    MATCH_PROFILE_ABSOLUTE_REC2020,
     MATCH_PROFILE_ABSOLUTE_XYZ,
     MATCH_PROFILE_DISPLAY_SRGB,
     MATCH_VIEW_SCHEMA_ID,
@@ -169,6 +170,21 @@ def test_match_view_profile_semantics_and_absolute_white_are_strict() -> None:
             render_bridge_id="trusted.absolute-bridge.v1",
             provenance_fingerprint=SHA_B,
         )
+    absolute_rec2020 = make_match_view(
+        profile_id=MATCH_PROFILE_ABSOLUTE_REC2020,
+        pixel_sha256=SHA_A,
+        shape=(1, 1, 3),
+        render_bridge_id="trusted.absolute-rec2020-bridge.v1",
+        provenance_fingerprint=SHA_B,
+        reference_white_nits=203.0,
+    )
+    assert absolute_rec2020.domain == "display-absolute-linear"
+    assert absolute_rec2020.primaries == "rec2020"
+    assert absolute_rec2020.white_point == "D65"
+    assert absolute_rec2020.reference_white_nits == 203.0
+    Draft202012Validator(
+        _schema("reference_core_match_view_v1.schema.json")
+    ).validate(absolute_rec2020.to_dict())
 
 
 def test_transform_is_source_bound_and_roundtrips() -> None:

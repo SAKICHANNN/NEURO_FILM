@@ -34,7 +34,8 @@
         "neuro-film.display-relative-linear-srgb-d65.v1",
         "neuro-film.display-relative-linear-rec2020-d65.v1",
         "scene-relative-linear-acescg-d60.v1",
-        "display-absolute-linear-xyz-d65.v1"
+        "display-absolute-linear-xyz-d65.v1",
+        "neuro-film.display-absolute-linear-rec2020-d65-cdm2.v1"
       ]
     },
     "pixel_sha256": {

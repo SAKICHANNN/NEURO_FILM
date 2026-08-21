@@ -33,6 +33,9 @@ MATCH_PROFILE_DISPLAY_REC2020 = (
 )
 MATCH_PROFILE_SCENE_ACESCG = "scene-relative-linear-acescg-d60.v1"
 MATCH_PROFILE_ABSOLUTE_XYZ = "display-absolute-linear-xyz-d65.v1"
+MATCH_PROFILE_ABSOLUTE_REC2020 = (
+    "neuro-film.display-absolute-linear-rec2020-d65-cdm2.v1"
+)
 
 _PROFILE_SEMANTICS = {
     MATCH_PROFILE_DISPLAY_SRGB: (
@@ -56,6 +59,12 @@ _PROFILE_SEMANTICS = {
     MATCH_PROFILE_ABSOLUTE_XYZ: (
         "display-absolute-linear",
         "xyz",
+        "D65",
+        True,
+    ),
+    MATCH_PROFILE_ABSOLUTE_REC2020: (
+        "display-absolute-linear",
+        "rec2020",
         "D65",
         True,
     ),
