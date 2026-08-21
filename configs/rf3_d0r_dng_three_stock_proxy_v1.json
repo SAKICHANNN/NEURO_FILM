@@ -1,0 +1,47 @@
+{
+  "schema": "neuro-film.rf3-d0r-dng-three-stock-proxy-contract.v1",
+  "experiment_id": "RF3.D0R",
+  "status": "FROZEN_BEFORE_IMPLEMENTATION_AND_FORMAL_RUN",
+  "question": "Can the exact P98 DNG ForwardMatrix raster feed official ACES 2 SDR and the fixed three-stock proxy matrix without numerical, boundary or replay failure?",
+  "bindings": {
+    "contract": {"path": "docs/planning/RF3_D0R_DNG_THREE_STOCK_PROXY_CONTRACT.md", "sha256": "a2b07a0faaa2df1189f7ddbc19106aa6a74038c34abec1a501fcc1f4a2a634cd"},
+    "p98_contract": {"path": "configs/p98_dng_forward_raster_v1.json", "sha256": "5fb17f82cfecdae40a4c812f2ea9c26641e91bcab43e17c8a6a4bc94b2f03c35"},
+    "p98_evidence": {"path": "docs/evidence/P98_DNG_FORWARD_RASTER_RESULT.json", "sha256": "e73c99fe61781988f61a56fec46278d715431c04ec432173639deb16ba7cfac5", "required_decision": "retain the private opt-in five-DNG ForwardMatrix raster primitive; keep the generic loader and all product or calibration claims closed"},
+    "aces2_adapter": {"path": "src/preprocess/ocio_aces2_output.py", "sha256": "7ffe89bb448866574d0c6374020b79920d5e9b93d72ec84a29704c45f247378d"},
+    "aces2_evidence": {"path": "docs/evidence/U1_4E_WORKING_IMAGE_ACES2_ADAPTER_RESULT.json", "sha256": "d9876756e4548931f64cc875ee1c611e446c5e30086a83f2c66fb265337040fc", "required_decision": "retain isolated adapter; default renderer and file output remain closed"},
+    "ao6_profile_compiler": {"path": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json", "sha256": "0d238a4970ae4c131d0cf39d00d30638e53e2baa63a3eccf56353c93a1ff16c4"},
+    "legacy_stats": {"path": "configs/film_color_stats.json", "sha256": "1a45e90765e577edd4ca1773fc8c6cf98fd09b8afbdddfa519b1f097c5dd7c04"},
+    "legacy_profiles": {"path": "configs/color_rendering_profiles.yaml", "sha256": "d919402ac03b351ceb836bbdc516de094f7bad24f54858f9897950a1dc0428bc"},
+    "legacy_guardrails": {"path": "configs/color_guardrails.json", "sha256": "6669b7bc873febcc74ba7ddcbc1c1584807e38465447a5d5bc78624af4dbdf4"}
+  },
+  "input": {
+    "working_space": "linear_rec2020",
+    "transfer_state": "scene_linear",
+    "display_target": "sdr_rec709",
+    "expected_rows": 5,
+    "expected_camera_makes": 5
+  },
+  "arms": [
+    {"arm_id": "legacy_unpaired_safe_lab_k1_velvia50", "style": "velvia_50", "stock_id": "fujifilm_velvia_50", "role": "legacy_proxy"},
+    {"arm_id": "legacy_unpaired_safe_lab_k1_portra400", "style": "portra_400", "stock_id": "kodak_portra_400", "role": "legacy_proxy"},
+    {"arm_id": "legacy_unpaired_safe_lab_k1_ektar100", "style": "ektar_100", "stock_id": "kodak_ektar_100", "role": "legacy_proxy"},
+    {"arm_id": "ao6_velvia50_display_proxy_t15_c35", "stock_id": "fujifilm_velvia_50", "role": "velvia_display_proxy_baseline_only"}
+  ],
+  "gates": {
+    "minimum_pairwise_population_median_delta_e76": 1.0,
+    "minimum_ao6_vs_legacy_velvia_population_median_delta_e76": 1.0,
+    "maximum_output_code_boundary_fraction": 0.005,
+    "maximum_new_output_code_boundary_fraction": 0.005,
+    "require_finite_and_bounded_before_encode": true,
+    "require_rgb16_sample_exact_readback": true,
+    "require_two_fresh_process_science_and_inventory_exact": true
+  },
+  "execution": {
+    "fresh_processes": 2,
+    "orders": ["canonical", "reverse"],
+    "output_root": "outputs/eval/rf3_d0r_dng_three_stock_proxy_v1"
+  },
+  "decision_if_pass": "retain exact P98-to-ACES2 three-stock proxy execution mechanics and keep stock-data acquisition primary",
+  "decision_if_fail": "close exact P98-to-ACES2 three-stock proxy composition without retuning and keep stock-data acquisition primary",
+  "claim_ceiling": "Exact five-DNG opt-in ForwardMatrix to official ACES 2 SDR to fixed three-stock proxy and Velvia-only AO6 mechanics. No photographic quality, target-film closeness, stock distinguishability, calibration, arbitrary DNG, default integration, product promotion or completed multi-stock-system claim."
+}
