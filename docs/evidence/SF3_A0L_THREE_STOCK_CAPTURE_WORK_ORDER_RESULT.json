@@ -1,0 +1,67 @@
+{
+  "schema": "neuro-film.sf3-a0l-three-stock-capture-work-order-evidence.v1",
+  "experiment_id": "SF3.A0L",
+  "date": "2026-08-21",
+  "status": "PASS_WORK_ORDER_ONLY",
+  "decision": "READY_TO_RECORD_CONTROLLED_THREE_STOCK_CAPTURE_WITHOUT_DATA_CLAIM",
+  "contract": {
+    "path": "configs/sf3_a0l_three_stock_capture_work_order_v1.json",
+    "sha256": "a864987f6ed5abfc212ba7707b563657d6f43f2e524ac119dec2ed94d8ff2cc7",
+    "freeze_commit": "c949b6ec",
+    "count_correction_commit": "a20dac03"
+  },
+  "implementation": {
+    "commit": "ce1bbf10717ee5bc7d63513951f8d6beb373ccb7",
+    "evaluator": {
+      "path": "src/real_film/three_stock_capture_work_order.py",
+      "sha256": "376fca25bce9eb489909d7f85858be692b015e47a9af07c1c3e860cbe8bbf743"
+    },
+    "runner": {
+      "path": "scripts/build_sf3_a0l_three_stock_capture_work_order.py",
+      "sha256": "605d9e2fe2a109d516f74e99d9dd4a81179a828aca84dafed6b9a874e6ec0e69"
+    },
+    "tests": {
+      "path": "tests/test_sf3_a0l_three_stock_capture_work_order.py",
+      "sha256": "64780dbf69c8c7a8d97f9b69206b81a8f0ba0f751807a4658b275c1d6de1fc41"
+    }
+  },
+  "parents": {
+    "controlled_acquisition_contract_sha256": "69241a6c38b15a8c4c8871e513ea53e133ee1d3b5ebe06f39a33f92964eccc8b",
+    "display_stimulus_manifest_sha256": "22808350c4de311118b10e17c627034b15eb10e9050e004c0ffd44bfbe89d5cf"
+  },
+  "formal_replay": {
+    "run_a_report_path": "outputs/eval/sf3_a0l_three_stock_capture_work_order_v1/run_a/report.json",
+    "run_a_report_sha256": "6e5cc477dbf80fab92fe5058c1af9f52adfdd726848f2049411781816a39af08",
+    "run_b_report_path": "outputs/eval/sf3_a0l_three_stock_capture_work_order_v1/run_b/report.json",
+    "run_b_report_sha256": "6e5cc477dbf80fab92fe5058c1af9f52adfdd726848f2049411781816a39af08",
+    "stable_evidence_id": "56457c99a90fc553a6e57da9f318a7871448ed0326a6eff978d643ccaea684ff",
+    "two_reports_byte_exact": true
+  },
+  "stock_scope": [
+    "fujifilm_velvia_50",
+    "kodak_portra_400",
+    "kodak_ektar_100"
+  ],
+  "work_order_counts": {
+    "common_condition_records_to_fill": 18,
+    "scene_exposures": 60,
+    "diagnostic_exposures": 27,
+    "evidence_scan_tasks": 108,
+    "diagnostic_scan_tasks": 45,
+    "total_scan_tasks": 153
+  },
+  "exposure_design": {
+    "same_common_condition_record_across_stocks_per_scene": true,
+    "stock_specific_box_speed_receipt_required_per_film_frame": true,
+    "same_shutter_across_stocks_required": false,
+    "interpretation": "Common scene, display and geometry conditions are shared, while each film frame receives its own nominal-stock-speed exposure receipt. This avoids treating ISO 50, ISO 100 and ISO 400 stocks as if a physically invalid common shutter were required."
+  },
+  "observations": {
+    "physical_exposures": 0,
+    "developed_film_frames": 0,
+    "film_scans": 0,
+    "operator_fits": 0,
+    "target_scores": 0
+  },
+  "claim_ceiling": "Deterministic physical capture, process and scan work order only. Passing creates no exposure, developed film, scan, stock target, operator fit, stock response, calibration, preference, product or multi-stock completion evidence."
+}
