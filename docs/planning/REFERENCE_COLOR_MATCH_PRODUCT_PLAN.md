@@ -296,6 +296,8 @@ with a selected stock, but reference matching alone is labeled
 | P87A | DONE | freeze exact Ultra HDR decoded-payload bridge | bind R1BR, libultrahdr v2.0.0, producer alias, consumer-owned absolute Rec.2020 profile and exact 203-nit arithmetic before implementation | `05585517`; contract/config | no JPEG/media decode |
 | P87B | DONE | canonicalize pinned RGBA16F into MatchView | strict source/version/profile/geometry/length/finite/range/alpha gates; exact f32-times-203 pixels and immutable identities | `cf86e8f0`; 45 focused pass | private ingress only |
 | P87C | DONE | prove process/order replay and product non-admission | four reports exact `c681ab92...50cf`, stable `bb1becd5...ddac`; seven negative controls reject; successor admission remains SDR | `P87_ULTRAHDR_ABSOLUTE_REC2020_MATCH_VIEW_RESULT.json` | no HDR quality/package/capability/product claim |
+| P88A | DONE | freeze pinned official decoder consumption | exact external executable, R1BL/P87 evidence and two consumed CC-BY-4.0 fixtures; fixed CLI invocation before HDR pixel execution | `1555550f`; contract/config | no binary redistribution or arbitrary media |
+| P88B | DONE | execute exact decoder-to-P87 chain | both 384x512 fixtures emit exact 1,572,864-byte RGBA16F and valid P87 views; truncated input atomic | four reports `7bda2f18...d99f`, stable `285e4dca...8049` | production loader remains fail-closed |
 
 At most one row may be `IN_PROGRESS`. A row becomes `DONE` only when its
 verification evidence and commit are recorded in the branch log.

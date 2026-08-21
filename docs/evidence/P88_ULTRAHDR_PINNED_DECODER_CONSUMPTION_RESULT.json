@@ -1,0 +1,46 @@
+{
+  "schema": "neuro-film.p88-ultrahdr-pinned-decoder-evidence.v1",
+  "node": "Reference Color Match > P88",
+  "status": "PASS_PRIVATE_PINNED_ULTRAHDR_DECODER_TO_P87",
+  "decision": "retain exact two-fixture private decoder-to-P87 compatibility; production loader and arbitrary-media support remain closed",
+  "bindings": {
+    "contract_commit": "1555550f818e0bbfce7dd7ba081bebb34325f44c",
+    "contract_path": "docs/planning/P88_ULTRAHDR_PINNED_DECODER_CONSUMPTION_CONTRACT.md",
+    "contract_sha256": "4af683fcfc8190e60da0896210872258ca18853879c70277d9df350853b6ec39",
+    "config_path": "configs/p88_ultrahdr_pinned_decoder_consumption_v1.json",
+    "config_sha256": "315bc96330b3829f2cf8bb6fda409b71bbf07994b63c5a8d783da4785bed2f0f",
+    "runner_commit": "e1deb0e5320869b21dc0eb4c63cb2c3dd951bdb9",
+    "runner_path": "scripts/audit_p88_ultrahdr_pinned_decoder_consumption_v1.py",
+    "runner_sha256": "e23fa4bc105bada203c1a5bb6a25988e09e15bfe938474cb1f188733b8afc9ae",
+    "decoder_executable_sha256": "cffdfcae90b2e999260877b646c36c1d04b87d81745c12417c089ca7099d5df0",
+    "producer_r1bl_evidence_sha256": "b4c312bff76ee7b742853e343e54529e8e3d70eea5adf70334954c7616bbf6ea",
+    "p87_evidence_sha256": "30a6a009215264b62c26cdab89218aca6cb3d8c0180375d67d9b5f5d707b4577",
+    "formal_report_path": "outputs/eval/p88_ultrahdr_pinned_decoder/o1_forward.json",
+    "formal_report_sha256": "7bda2f1840b679ae91764d52cb855269a19ddeb0b57a3f380f1e72604c07d99f",
+    "stable_evidence_id": "285e4dcae76c003ecc4343c34c9eaea9da71289b489731ae392726cd2e348049"
+  },
+  "execution": {
+    "fresh_processes": 2,
+    "orders_per_process": ["canonical", "reverse"],
+    "all_four_report_sha256_exact": true,
+    "fixture_count": 2,
+    "decoded_byte_length_per_fixture": 1572864
+  },
+  "metrics": {
+    "apple_gainmap_new_maximum_nits": 1865.0625,
+    "apple_gainmap_old_maximum_nits": 880.98828125,
+    "minimum_nits": 0.0,
+    "source_mutations": 0
+  },
+  "gates": {
+    "decoder_and_evidence_bindings_exact": true,
+    "decoded_lengths_exact": true,
+    "p87_match_views_exact": true,
+    "sources_unchanged": true,
+    "truncated_input_atomic": true,
+    "production_loader_still_rejects": true,
+    "reverse_order_exact": true,
+    "two_process_report_exact": true
+  },
+  "claim_ceiling": "Private Windows execution compatibility for one exact official libultrahdr v2.0.0 executable, two exact consumed CC-BY-4.0 fixtures and the retained P87 decoded-payload ingress only; no arbitrary Ultra HDR or ISO 21496-1 support, HDR quality, captured truth, display validation, public decoder/package/schema/capability, product or delivery admission"
+}

@@ -15222,3 +15222,22 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   capability, shared-bundle, product or delivery claim opens.
 - **Storage:** formal outputs use the repo-relative P-backed `outputs` junction.
   No new D fallback or drive-root data was created.
+
+### 2026-08-21 - P88 passes exact pinned decoder-to-P87 compatibility
+
+- **Parent:** U1.5 structured HDR boundary and P87 decoded-payload ingress;
+  mature HDR engineering only, not automatic single-reference research.
+- **Protocol:** before HDR pixel execution, froze one exact official
+  libultrahdr v2.0.0 Windows executable, the existing R1BL/P87 evidence and
+  both already-consumed U1.5C CC-BY-4.0 gain-map fixtures. No toolchain or
+  executable was copied into the repository.
+- **Evidence:** both 384x512 fixtures emit exact 1,572,864-byte RGBA16F and
+  pass P87 unchanged. Four fresh process/order reports are byte-identical at
+  `7bda2f18...d99f`, stable `285e4dca...8049`; the truncated-input control
+  returns nonzero with no output.
+- **Boundary:** the production loader still rejects both files before working
+  pixels. Retain only exact-fixture private compatibility; no arbitrary Ultra
+  HDR/ISO 21496-1 support, HDR quality, public decoder/package/schema,
+  capability, product or delivery claim opens.
+- **Storage:** scratch and formal reports use repo-relative P-backed roots;
+  no D fallback or drive-root artifact was created.
