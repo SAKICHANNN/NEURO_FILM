@@ -34,6 +34,15 @@
     "ridge": 0.001,
     "lut_knots": 17
   },
+  "paired_sampling": {
+    "source_grid_rows": 32,
+    "source_grid_columns": 32,
+    "source_inner_margin_fraction": 0.04,
+    "scan_edge_margin_pixels": 1.0,
+    "minimum_shared_valid_fraction_per_scene": 0.75,
+    "interpolation": "bilinear",
+    "require_identical_source_samples_across_all_stock_rows": true
+  },
   "gates": {
     "minimum_confirmation_frames_per_stock": 4,
     "minimum_confirmation_improvement_rate_over_identity": 0.75,
