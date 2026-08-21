@@ -1,0 +1,31 @@
+{
+  "contract_id": "P88_ULTRAHDR_PINNED_DECODER_CONSUMPTION_V1",
+  "status": "FROZEN_BEFORE_DECODER_PIXEL_EXECUTION",
+  "official": {
+    "repository": "https://github.com/google/libultrahdr",
+    "tag": "v2.0.0",
+    "commit": "b2aacb366e1542cfc29605cb0d8a0ebd06bb07f8",
+    "decoder_executable_sha256": "cffdfcae90b2e999260877b646c36c1d04b87d81745c12417c089ca7099d5df0",
+    "arguments": ["-m", "1", "-j", "{input}", "-o", "0", "-O", "4", "-z", "{output}"]
+  },
+  "bindings": {
+    "producer_r1bl_evidence_sha256": "b4c312bff76ee7b742853e343e54529e8e3d70eea5adf70334954c7616bbf6ea",
+    "p87_evidence_sha256": "30a6a009215264b62c26cdab89218aca6cb3d8c0180375d67d9b5f5d707b4577",
+    "fixture_source_manifest": "tests/fixtures/u1_5c_libultrahdr/SOURCE.json"
+  },
+  "fixtures": [
+    {
+      "name": "apple_gainmap_new.jpg",
+      "sha256": "492a94bd0636bcf15b3f560c68142a7783936c1597e78b0d0461d8be7fddc078",
+      "width": 384,
+      "height": 512
+    },
+    {
+      "name": "apple_gainmap_old.jpg",
+      "sha256": "2e4310a0dd37a98678e057e25d936bbc4f936bb6fe17380c0ce99e58ecaa603b",
+      "width": 384,
+      "height": 512
+    }
+  ],
+  "claim_ceiling": "Private exact-Windows-executable/two-consumed-fixture decode-to-P87 compatibility only; no arbitrary Ultra HDR or ISO 21496-1 support, HDR quality, captured truth, display, public decoder/package/schema/capability, product or delivery admission"
+}
