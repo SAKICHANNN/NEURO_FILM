@@ -1,0 +1,59 @@
+{
+  "schema": "neuro_film.p96_dng_camera_to_pcs_portable_abi_contract.v1",
+  "experiment_id": "p96-dng-camera-to-pcs-portable-abi-v1",
+  "status": "frozen_before_formal_native_execution",
+  "bindings": {
+    "contract": {
+      "path": "docs/planning/P96_DNG_CAMERA_TO_PCS_PORTABLE_ABI_CONTRACT.md",
+      "bytes": 3386,
+      "sha256": "584a89a03e380bb63637346fc0f95ee3c7f3ad9ef227ef5b995506096c9b5c0f"
+    },
+    "p94_evidence": {
+      "path": "docs/evidence/P94_DNG_FORWARD_MATRIX_MECHANICS_RESULT.json",
+      "bytes": 5167,
+      "sha256": "28dbe488dac052ca374d35b883d9eaec93d3f2adb63223bc04ab87290c4ba355"
+    },
+    "p94_report": {
+      "path": "outputs/eval/p94_dng_forward_matrix_mechanics/outer1_forward.json",
+      "bytes": 8972,
+      "sha256": "f5a4aeb31070efcc7bddd9ff485dccadaa6b04e95d0251483c4bc1c24a1ae216"
+    },
+    "native_source": {
+      "path": "native/preprocess/nf_dng_camera_to_pcs_v1.c",
+      "bytes": 3665,
+      "sha256": "5071a19de7f66ac459f26f80352cb1727a053512f33d3959aebc5a6f92d3f2f1"
+    },
+    "native_header": {
+      "path": "native/preprocess/nf_dng_camera_to_pcs_v1.h",
+      "bytes": 1351,
+      "sha256": "be44ee396786456c9e26675b53e5c1135b157fa654a61e5e7e6b83b52b559d8d"
+    },
+    "implementation": {
+      "path": "src/eval/dng_camera_to_pcs_native_conformance.py",
+      "bytes": 13287,
+      "sha256": "51099c07a9cdd7d89b1fa3c5e0a0b5141c1681492af6c23234b83c9c7467f84b"
+    },
+    "runner": {
+      "path": "scripts/audit_p96_dng_camera_to_pcs_portable_abi.py",
+      "bytes": 1434,
+      "sha256": "841493e54793aaf1577b907d0081144b20d3a29db6ca83b680b811a5eaa6a18e"
+    },
+    "clang": {
+      "path": "outputs/tmp/tools/llvm-mingw-20260616-ucrt-x86_64/bin/clang.exe",
+      "bytes": 16896,
+      "sha256": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85"
+    }
+  },
+  "gates": {
+    "required_profiles": 5,
+    "required_transformed_triplets": 1285,
+    "maximum_absolute_error": 5e-13,
+    "maximum_raster_sample_rgb_reads": 0,
+    "require_two_independent_builds_per_compiler_exact": true,
+    "require_inplace_exact": true,
+    "require_repeat_exact": true,
+    "require_failure_atomicity": true,
+    "require_forward_reverse_reports_exact": true
+  },
+  "claim_ceiling": "Private Windows x64 arithmetic conformance for the exact five P94 camera-to-D50 PCS matrices under MSVC and LLVM-MinGW only; no arbitrary DNG support, raster decode, sensor or IDT calibration, colorimetric or photographic quality, chromatic adaptation, display rendering, mobile or Apple runtime, project-loader integration, public package/schema/capability, product, film, stock, or preference admission"
+}
