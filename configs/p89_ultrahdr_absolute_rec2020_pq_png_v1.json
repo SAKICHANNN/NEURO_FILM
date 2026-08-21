@@ -1,0 +1,43 @@
+{
+  "contract_id": "P89_ULTRAHDR_ABSOLUTE_REC2020_PQ_PNG_V1",
+  "status": "FROZEN_AFTER_P88_BEFORE_P89_PQ_EXECUTION",
+  "standards": {
+    "bt2100": "ITU-R BT.2100-3 (02/2025) Table 4",
+    "png": "PNG Third Edition (2025)",
+    "cicp_hex": "09100001"
+  },
+  "bindings": {
+    "p87_evidence_sha256": "30a6a009215264b62c26cdab89218aca6cb3d8c0180375d67d9b5f5d707b4577",
+    "p88_evidence_sha256": "ead71a8c4081a37809b81e1891c1593c49f6b91c3117522297faa934da36befc",
+    "u1_4g_evidence_sha256": "12a53bb49ac0ba92314f2310c77f7dc2ab3c798e0406136d48d9ebb9eb0b0bcb",
+    "p88_config_sha256": "315bc96330b3829f2cf8bb6fda409b71bbf07994b63c5a8d783da4785bed2f0f"
+  },
+  "arithmetic": {
+    "maximum_nits": 10000.0,
+    "m1": "2610/16384",
+    "m2": "2523/4096*128",
+    "c1": "3424/4096",
+    "c2": "2413/4096*32",
+    "c3": "2392/4096*32",
+    "dtype": "float64",
+    "quantizer": "floor(encoded*65535+0.5)",
+    "maximum_code_quantization_error": 0.000007629511948348211,
+    "quantization_epsilon": 1e-12,
+    "dense_probe_samples": 65537
+  },
+  "fixtures": [
+    {
+      "name": "apple_gainmap_new.jpg",
+      "sha256": "492a94bd0636bcf15b3f560c68142a7783936c1597e78b0d0461d8be7fddc078",
+      "width": 384,
+      "height": 512
+    },
+    {
+      "name": "apple_gainmap_old.jpg",
+      "sha256": "2e4310a0dd37a98678e057e25d936bbc4f936bb6fe17380c0ce99e58ecaa603b",
+      "width": 384,
+      "height": 512
+    }
+  ],
+  "claim_ceiling": "Private two-consumed-fixture pinned-Windows-decoder to P87 absolute Rec.2020 to fixed BT.2100-3 PQ RGB16 PNG compatibility only; no tone map, arbitrary Ultra HDR, ISO 21496-1, HDR10, mastering/content-light metadata, display/HDR quality, public package/schema/capability, default loader, product or delivery admission"
+}
