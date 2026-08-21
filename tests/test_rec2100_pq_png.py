@@ -8,9 +8,9 @@ from pathlib import Path
 import numpy as np
 import pytest
 
+from src.preprocess.canonical_pq_png import CanonicalStreamingRec2100PqPngWriter
 from src.preprocess.color_management import REC2100_PQ_CICP
 from src.preprocess.png_stream import (
-    CanonicalStreamingRec2100PqPngWriter,
     StreamingRec2100PqPngWriter,
     sha256_rec2020_rgb16_png_samples,
     sha256_rec2100_pq_rgb16_png_samples,
