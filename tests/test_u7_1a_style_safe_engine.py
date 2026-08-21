@@ -291,6 +291,8 @@ def test_three_stock_recipe_replay_to_file_is_byte_exact(
             str(source),
             "--style",
             style,
+            "--tile-size",
+            "11",
             "--output",
             str(output),
             "--write-recipe",

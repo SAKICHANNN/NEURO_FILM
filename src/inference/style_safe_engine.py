@@ -78,6 +78,7 @@ def render_resolved_safe_lab_rgb(
     style_parameters: Mapping[str, Any],
     guardrails: Mapping[str, Any],
     seed: int,
+    tile_size: int | None = None,
 ) -> np.ndarray:
     """Render one already-resolved style without file or CLI state."""
 
@@ -95,7 +96,33 @@ def render_resolved_safe_lab_rgb(
         raise StyleSafeEngineError("style must be non-empty")
     if isinstance(seed, bool) or not isinstance(seed, int):
         raise StyleSafeEngineError("seed must be an integer")
+    if tile_size is not None and (
+        isinstance(tile_size, bool) or not isinstance(tile_size, int) or tile_size < 1
+    ):
+        raise StyleSafeEngineError("tile_size must be a positive integer")
     parameters = _validated_parameters(style_parameters)
+    if tile_size is not None:
+        output, _ = style_transfer_rgb_tiled(
+            source,
+            style_statistics,
+            style,
+            strength=float(parameters["strength"]),
+            luma_strength=float(parameters["luma_strength"]),
+            grain=float(parameters["grain"]),
+            seed=seed,
+            gamut_safe=parameters["gamut_safe"],
+            gamut_mode=parameters["gamut_mode"],
+            tone_rolloff=float(parameters["tone_rolloff"]),
+            shadow_floor_l=float(parameters["shadow_floor_l"]),
+            highlight_ceiling_l=float(parameters["highlight_ceiling_l"]),
+            preserve_luma_detail_strength=float(parameters["preserve_luma_detail"]),
+            chroma_curve_strength=float(parameters["chroma_curve_strength"]),
+            output_margin=int(parameters["output_margin"]),
+            guardrails=dict(guardrails),
+            dither=float(parameters["dither"]),
+            tile_size=tile_size,
+        )
+        return np.ascontiguousarray(output, dtype=np.float32)
     output = np.ascontiguousarray(
         style_transfer_rgb(
             source,
@@ -141,35 +168,7 @@ def render_style_safe_working_image(
     styles = profile["style_parameters"]
     if style not in styles:
         raise StyleSafeEngineError(f"style is absent from profile: {style}")
-    if tile_size is not None and (
-        isinstance(tile_size, bool) or not isinstance(tile_size, int) or tile_size < 1
-    ):
-        raise StyleSafeEngineError("tile_size must be a positive integer")
     source = working_image_to_srgb_float(working)
-    if tile_size is not None:
-        output, _ = style_transfer_rgb_tiled(
-            source,
-            style_statistics,
-            style,
-            strength=float(styles[style]["strength"]),
-            luma_strength=float(styles[style]["luma_strength"]),
-            grain=float(styles[style]["grain"]),
-            seed=seed,
-            gamut_safe=styles[style]["gamut_safe"],
-            gamut_mode=styles[style]["gamut_mode"],
-            tone_rolloff=float(styles[style]["tone_rolloff"]),
-            shadow_floor_l=float(styles[style]["shadow_floor_l"]),
-            highlight_ceiling_l=float(styles[style]["highlight_ceiling_l"]),
-            preserve_luma_detail_strength=float(
-                styles[style]["preserve_luma_detail"]
-            ),
-            chroma_curve_strength=float(styles[style]["chroma_curve_strength"]),
-            output_margin=int(styles[style]["output_margin"]),
-            guardrails=dict(guardrails),
-            dither=float(styles[style]["dither"]),
-            tile_size=tile_size,
-        )
-        return np.ascontiguousarray(output, dtype=np.float32)
     return render_resolved_safe_lab_rgb(
         source,
         style=style,
@@ -177,6 +176,7 @@ def render_style_safe_working_image(
         style_parameters=styles[style],
         guardrails=guardrails,
         seed=seed,
+        tile_size=tile_size,
     )
 
 

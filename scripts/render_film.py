@@ -184,6 +184,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--write-layers", action="store_true")
     parser.add_argument("--write-metrics", action="store_true")
     parser.add_argument("--write-recipe", action="store_true")
+    parser.add_argument(
+        "--tile-size",
+        type=int,
+        default=None,
+        help="Opt into exact bounded-tile safe-Lab execution with this tile size.",
+    )
     return parser.parse_args()
 
 
@@ -271,6 +277,7 @@ def build_color_render_float(
         style_parameters=profile,
         guardrails=load_guardrail_config(args.guardrails, args.style),
         seed=args.seed,
+        tile_size=getattr(args, "tile_size", None),
     )
 
 
@@ -282,6 +289,8 @@ def main() -> int:
         ".tiff",
     }:
         raise ValueError("16-bit output requires .png, .tif or .tiff")
+    if args.tile_size is not None and args.tile_size < 1:
+        raise ValueError("--tile-size must be at least 1")
     analytic_runtime = None
     color_diagnostics = None
     if args.color_engine == "analytic-y-chromaticity":
@@ -293,6 +302,8 @@ def main() -> int:
             raise ValueError(
                 "safe-Lab --use-render-profile cannot be combined with the analytic research engine"
             )
+        if args.tile_size is not None:
+            raise ValueError("--tile-size only supports the safe_lab color engine")
         analytic_runtime = load_analytic_y_chromaticity_profile(
             args.analytic_profile, root=ROOT
         )
@@ -531,6 +542,7 @@ def main() -> int:
             "color_engine": args.color_engine,
             "preset": args.preset,
             "profile_driven_adapter": args.use_render_profile,
+            "tile_size": args.tile_size,
             "analytic_research_profile": (
                 None
                 if analytic_runtime is None
