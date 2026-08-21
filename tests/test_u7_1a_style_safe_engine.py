@@ -17,6 +17,7 @@ from src.inference import (
     render_resolved_safe_lab_rgb,
     render_style_safe_working_image,
     replay_style_safe_color_recipe,
+    replay_style_safe_recipe,
 )
 from src.preprocess import load_working_image, save_srgb8, working_image_to_srgb_float
 
@@ -192,3 +193,61 @@ def test_color_only_recipe_replay_is_exact_cli_output(tmp_path: Path) -> None:
     enabled["render"]["effects"]["grain"]["strength"] = 0.1
     with pytest.raises(StyleSafeEngineError, match="enabled effects"):
         replay_style_safe_color_recipe(enabled, profile_path=PROFILE_PATH, root=ROOT)
+
+
+@pytest.mark.parametrize(
+    "effect_args",
+    [
+        ["--grain", "0.13", "--halation", "0.21", "--dust", "0.08"],
+        [
+            "--halation",
+            "0.24",
+            "--halation-model",
+            "physical",
+            "--halation-preset",
+            "vision3_clean",
+        ],
+        [
+            "--style",
+            "hp5",
+            "--halation",
+            "0.2",
+            "--halation-model",
+            "physical",
+            "--halation-type",
+            "bw_clear_base",
+            "--halation-color-response",
+            "warm_neutral_density",
+        ],
+    ],
+)
+def test_full_recipe_replay_is_exact_cli_effect_output(
+    tmp_path: Path, effect_args: list[str]
+) -> None:
+    y, x = np.mgrid[:29, :37]
+    pixels = np.stack(((x * 7) % 256, (y * 11) % 256, (x * 3 + y * 5) % 256), axis=-1).astype(np.uint8)
+    source = tmp_path / "effect_input.png"
+    output = tmp_path / f"effect_{len(list(tmp_path.iterdir()))}.png"
+    replay = output.with_name(f"{output.stem}_replay.png")
+    Image.fromarray(pixels, mode="RGB").save(source)
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "render_film.py"),
+            str(source),
+            "--use-render-profile",
+            "--write-recipe",
+            "--output",
+            str(output),
+            *effect_args,
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert completed.returncode == 0, completed.stderr
+    recipe = json.loads(output.with_suffix(".recipe.json").read_text(encoding="utf-8"))
+    rendered = replay_style_safe_recipe(recipe, profile_path=PROFILE_PATH, root=ROOT)
+    save_srgb8(rendered, replay)
+    assert replay.read_bytes() == output.read_bytes()

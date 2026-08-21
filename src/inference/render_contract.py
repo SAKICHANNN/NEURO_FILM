@@ -380,7 +380,7 @@ def _validate_json_parameters(value: object, label: str) -> None:
         if not math.isfinite(float(value)):
             raise RenderContractError(f"{label} contains a non-finite number")
         return
-    if isinstance(value, list):
+    if isinstance(value, (list, tuple)):
         for index, item in enumerate(value):
             _validate_json_parameters(item, f"{label}[{index}]")
         return

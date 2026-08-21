@@ -11,6 +11,14 @@ from typing import Any
 import numpy as np
 
 from scripts.pipeline_color_baseline import load_guardrail_config, style_transfer_rgb
+from src.filmfx import (
+    composite_layers,
+    density_halation_layer,
+    dust_scratch_layer,
+    grain_residual_layer,
+    halation_layer,
+    physical_halation_layer,
+)
 from src.preprocess import WorkingImage, load_working_image, working_image_to_srgb_float
 
 from .render_contract import (
@@ -130,13 +138,12 @@ def render_style_safe_working_image(
     )
 
 
-def replay_style_safe_color_recipe(
+def _verified_recipe_base(
     recipe: Mapping[str, Any],
     *,
     profile_path: Path,
     root: Path,
-) -> np.ndarray:
-    """Verify and replay the color-only stage of one existing v1 recipe."""
+) -> tuple[np.ndarray, Mapping[str, Any]]:
 
     verify_render_recipe_files(recipe, profile_path=profile_path, root=root)
     profile = load_render_profile(profile_path, root=root)
@@ -146,13 +153,6 @@ def replay_style_safe_color_recipe(
         raise StyleSafeEngineError("recipe style is absent from profile")
     if render["color_parameters"] != profile["style_parameters"][style]:
         raise StyleSafeEngineError("recipe color parameters differ from profile")
-    effects = render["effects"]
-    if any(
-        float(effects[name]["strength"]) != 0.0
-        for name in ("grain", "halation", "dust")
-    ):
-        raise StyleSafeEngineError("color-only replay rejects enabled effects")
-
     assets = {asset["role"]: root / asset["path"] for asset in recipe["assets"]}
     statistics = json.loads(assets["style_statistics"].read_text(encoding="utf-8"))
     if style not in statistics.get("styles", {}):
@@ -180,7 +180,7 @@ def replay_style_safe_color_recipe(
     }
     if actual_metadata != expected_metadata:
         raise StyleSafeEngineError("recipe decoded input metadata drifted")
-    return render_style_safe_working_image(
+    base = render_style_safe_working_image(
         working,
         profile=profile,
         style=style,
@@ -188,3 +188,74 @@ def replay_style_safe_color_recipe(
         guardrails=load_guardrail_config(assets["color_guardrails"], style),
         seed=render["seed"],
     )
+    return base, render
+
+
+def replay_style_safe_color_recipe(
+    recipe: Mapping[str, Any],
+    *,
+    profile_path: Path,
+    root: Path,
+) -> np.ndarray:
+    """Verify and replay the color-only stage of one existing v1 recipe."""
+
+    base, render = _verified_recipe_base(
+        recipe, profile_path=profile_path, root=root
+    )
+    effects = render["effects"]
+    if any(
+        float(effects[name]["strength"]) != 0.0
+        for name in ("grain", "halation", "dust")
+    ):
+        raise StyleSafeEngineError("color-only replay rejects enabled effects")
+    return base
+
+
+def replay_style_safe_recipe(
+    recipe: Mapping[str, Any],
+    *,
+    profile_path: Path,
+    root: Path,
+) -> np.ndarray:
+    """Verify and replay all deterministic v1 safe-Lab recipe stages."""
+
+    base, render = _verified_recipe_base(
+        recipe, profile_path=profile_path, root=root
+    )
+    effects = render["effects"]
+    layers = []
+    grain = effects["grain"]
+    if float(grain["strength"]) > 0.0:
+        layers.append(
+            grain_residual_layer(
+                base,
+                strength=float(grain["strength"]),
+                seed=int(grain["seed"]),
+                color=grain["color"],
+            )
+        )
+    halation = effects["halation"]
+    if float(halation["strength"]) > 0.0:
+        if halation["model"] == "simple":
+            layers.append(halation_layer(base, strength=float(halation["strength"])))
+        else:
+            resolved = halation["resolved_parameters"]
+            if not isinstance(resolved, Mapping) or not resolved:
+                raise StyleSafeEngineError(
+                    "physical halation recipe lacks resolved parameters"
+                )
+            kwargs = dict(resolved)
+            if "density_tint" in kwargs:
+                layers.append(density_halation_layer(base, **kwargs))
+            else:
+                layers.append(physical_halation_layer(base, **kwargs))
+    dust = effects["dust"]
+    if float(dust["strength"]) > 0.0:
+        layers.append(
+            dust_scratch_layer(
+                base.shape,
+                strength=float(dust["strength"]),
+                seed=int(dust["seed"]),
+            )
+        )
+    return composite_layers(base, layers, output_margin=4)
