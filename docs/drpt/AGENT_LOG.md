@@ -15606,3 +15606,19 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   call is available. AO6 remains Velvia-only display-proxy evidence, RF3.D0
   remains development-only, and real three-stock A0L/A0N acquisition remains
   the scientific promotion path.
+
+### 2026-08-21 - U7.1 closes recipe-bound deterministic replay
+
+- **Implementation:** `0a78747c`, `08fac3a4` and `f7d631e5` add verified
+  colour-only and complete v1 effect replay. Replay verifies the profile,
+  assets and input but no longer requires the prior output file; recreated
+  CLI outputs are byte exact. A real tuple/list mismatch in the B&W density
+  recipe validator was fixed without changing the rendered pixels.
+- **Verification:** 19 focused replay/contract tests and 36 ingress/profile
+  regression tests pass. The earlier 48 Velvia/Portra/Ektar proxy outputs
+  remain exact through the same engine.
+- **Direction:** U7.1 is complete. AO6 stays a Velvia 50 display-proxy Look
+  Approximation only. The scientific mainline remains the existing executable
+  SF3.A3 matrix and A0L/A0N controlled Velvia 50/Portra 400/Ektar 100 capture
+  path; the current receipt packet is still unfilled, so no K=1 stock fit,
+  adaptive model, retrieval or multi-stock claim opens.
