@@ -2192,3 +2192,12 @@ and prohibit bulk automated access without consent. Do not scrape, copy or fit
 this source. Continue only the independently bound manufacturer priors and the
 project-owned A0L/A0N controlled-capture route. Evidence:
 `docs/evidence/SF3_A3C_FILMLABPRO_PUBLIC_DATA_RIGHTS_AUDIT_RESULT.json`.
+
+SF3.A3D corrects the strongest-current-observation matrix without reopening a
+closed operator family. Velvia 50 has one publication-embedded 24-patch
+display-chain observation; Portra 400 has one unlicensed registered chart and
+conflicting Noritsu versus RA4/Epson natural transfer result; Ektar 100 has no
+comparable paired-colour observation. Two byte-exact compiler runs admit 0/3
+stocks for K=1 fitting. The next data order is Ektar first pair, then
+independent Velvia pixels and Portra repeat-scan/roll evidence. Evidence:
+`docs/evidence/SF3_A3D_PARTIAL_REAL_OBSERVATION_MATRIX_RESULT.json`.

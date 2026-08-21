@@ -15497,3 +15497,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   A0L/A0N controlled capture remains the real three-stock route.
 - **Evidence:**
   `docs/evidence/SF3_A3C_FILMLABPRO_PUBLIC_DATA_RIGHTS_AUDIT_RESULT.json`.
+
+### 2026-08-21 - SF3.A3D compiles strongest partial real observations
+
+- **Node:** ULT > RF3/SF3 > SF3.A3D; primary workflow
+  `dev-research-reliability`, research review only.
+- **Implementation:** `11afe1b4` binds the closed Velvia BR0 and Portra
+  CHAM5/CHAM10 results into one executable stock-by-data-gate matrix; Ektar is
+  retained as an explicit empty paired-colour lane.
+- **Result:** two reports are byte exact (`ac5c8034...935aa`), stable identity
+  `aba27ed8...70b29b`; 2/3 stocks have some same-scene observation but 0/3 pass
+  rights/original-pixel/roll/process/scanner/transfer gates.
+- **Decision:** do not refit BR0/CHAM or substitute Ektar proxies. Acquire the
+  first Ektar pair, then independent Velvia and Portra repeats.
+- **Verification:** old/new matrix tests 8/8, Ruff, py_compile and diff-check
+  pass. No P:/D: paths, product defaults or unrelated working files changed.

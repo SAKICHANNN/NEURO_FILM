@@ -1,0 +1,42 @@
+{
+  "schema": "neuro-film.sf3-a3d-partial-real-observation-matrix-evidence.v1",
+  "experiment_id": "SF3.A3D_PARTIAL_REAL_OBSERVATION_MATRIX_V1",
+  "date": "2026-08-21",
+  "status": "COMPLETE_ZERO_OF_THREE_K1_ADMISSIONS",
+  "decision": "RETAIN_PARTIAL_REAL_OBSERVATIONS_AND_PRIORITIZE_EKTAR_FIRST_PAIR_PLUS_INDEPENDENT_VELVIA_PORTRA_REPEATS",
+  "implementation": {
+    "commit": "11afe1b49a93d31235c3ddd4bfedaca9f2f4d09c",
+    "config_sha256": "5e649baf25d5193aabac780beeebf6f8671bc9ce41126eae8d0d66eaf1ee6399",
+    "evaluator_sha256": "9aacb25f73b4d3d394852b66d7279124c5fb6cd4ab9b3fea6525790e4667dba4",
+    "runner_sha256": "e116036b92a11df12a97bf61ae3e97fe0ca48c1e8ece26054a746da2c65d7ccb",
+    "test_sha256": "6b502affdf9833a7449a3704cf2d0622af2f1481ef82b402d9a1a97716b34acb"
+  },
+  "formal_replay": {
+    "processes": 2,
+    "reports_byte_exact": true,
+    "report_sha256": "ac5c8034dc26fd053a2cee82aaacc4188bce2b150f28688e8dcb02ef6b7935aa",
+    "stable_evidence_id": "aba27ed8c3a1a99f0a59f0f197794aad94bf6e0d8ec6c56929f5cc282070b29b",
+    "run_a": "outputs/eval/sf3_a3d_partial_real_observation_matrix_v1/run_a/report.json",
+    "run_b": "outputs/eval/sf3_a3d_partial_real_observation_matrix_v1/run_b/report.json"
+  },
+  "observations": {
+    "stocks_with_same_scene_real_colour_observation": 2,
+    "stocks_admitted_for_k1_fit": 0,
+    "fujifilm_velvia_50": "One publication-embedded controlled 24-patch film-versus-digital display-chain observation exists. Original pixels, reusable data rights, independent roll holdout and separated process/scanner evidence are absent; the frozen 2x2 residual also failed.",
+    "kodak_portra_400": "One public but unlicensed same-session package provides a strongly registered digital-chart versus Portra 400 print-scan observation. The fixed chart affine strongly regresses the RA4/Epson natural observation and only weakly improves Noritsu, proving scanner/print nuisance is material; independent roll and repeat-scan evidence are absent.",
+    "kodak_ektar_100": "No comparable rights-cleared same-scene colour observation is currently bound. Existing unpaired images, external emulation controls, datasheet priors and uniform-grain scans cannot fill this lane."
+  },
+  "next_data_sequence": [
+    "Acquire the first rights-cleared same-scene Ektar 100 digital/film observation with process and scanner receipts.",
+    "Acquire independent Velvia 50 original pixels with roll and scanner holdout.",
+    "Acquire Portra 400 same-negative repeat scans plus an independent roll holdout."
+  ],
+  "verification": {
+    "old_and_new_matrix_tests_passed": 8,
+    "ruff_pass": true,
+    "py_compile_pass": true,
+    "diff_check_pass": true
+  },
+  "scientific_conclusion": "The project is not at zero real observation, but it is at zero admissible stock-specific K=1 training lanes. Velvia 50 and Portra 400 each contribute one bounded mechanism or nuisance observation; Ektar 100 is the first missing paired-colour lane. More proxy algorithms cannot repair these data deficiencies.",
+  "claim_ceiling": "Executable strongest-current-observation matrix for Velvia 50, Portra 400 and Ektar 100. No stock response, calibration, K=1 operator admission, product profile, multi-stock completion or cross-stock preference claim."
+}
