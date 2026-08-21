@@ -15746,3 +15746,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The frozen stock/operator/gate semantics are unchanged and physical rows
   remain absent. Twenty-nine focused A0P--A5 checks and the full 166-test
   SF3/RF3 three-stock suite pass.
+
+### 2026-08-21 - SF3.A0N compiles the physical evidence-ledger skeleton
+
+- A passing filled capture-receipt packet can now generate the exact 108-row
+  Velvia/Portra/Ektar evidence-ledger skeleton directly from the hash-bound A0L
+  work order and A0 acquisition contract. Known stock, scene, roll, process,
+  scanner and camera identities are prefilled; file paths, rights facts and
+  other observations remain explicitly blank until physical capture.
+- The create-only CLI writes this fillable ledger without scanning pixels or
+  inventing evidence. Twenty adjacent A0/A0N tests pass. This reduces manual
+  ingestion error but does not change the zero-physical-row data gap.

@@ -9,7 +9,10 @@ import re
 from pathlib import Path
 from typing import Any
 
-from src.real_film.three_stock_acquisition import compile_acquisition_ledger
+from src.real_film.three_stock_acquisition import (
+    LEDGER_SCHEMA,
+    compile_acquisition_ledger,
+)
 
 CONTRACT_SCHEMA = "neuro-film.sf3-a0n-three-stock-capture-receipt-contract.v1"
 PACKET_SCHEMA = "neuro-film.sf3-a0n-three-stock-capture-receipt-packet.v1"
@@ -227,6 +230,78 @@ def evaluate_receipts(
     return {**core, "stable_evidence_id": _sha256(_canonical(core))}
 
 
+def build_ledger_template(
+    contract_path: Path,
+    packet_path: Path,
+    acquisition_contract_path: Path,
+    *,
+    root: Path,
+) -> dict[str, Any]:
+    """Build the exact 108-row evidence-ledger skeleton from verified receipts."""
+
+    evaluate_receipts(contract_path, packet_path, root=root)
+    _, _, work_order = _load_contract_and_work_order(contract_path, root=root)
+    _, packet = _read_object(packet_path)
+    acquisition_raw, acquisition_contract = _read_object(acquisition_contract_path)
+    if (
+        acquisition_contract.get("schema")
+        != "neuro-film.sf3-a0-three-stock-controlled-acquisition-contract.v1"
+        or _sha256(acquisition_raw) != work_order["acquisition_contract_sha256"]
+    ):
+        raise ThreeStockCaptureReceiptError("acquisition contract identity drift")
+    condition_by_id = {
+        row["condition_slot_id"]: row for row in work_order["common_condition_records"]
+    }
+    receipt_condition_by_id = {
+        row["condition_slot_id"]: row for row in packet["common_condition_records"]
+    }
+    exposure_by_id = {
+        row["exposure_slot_id"]: row for row in work_order["exposure_rows"]
+    }
+    path_fields = {
+        "digital_reference_sha256": "digital_reference_path",
+        "capture_condition_sha256": "capture_condition_record_path",
+        "process_recipe_sha256": "process_recipe_record_path",
+        "scanner_profile_sha256": "scanner_profile_record_path",
+        "scan_file_sha256": "scan_file_path",
+        "scan_sample_sha256": "scan_sample_path",
+        "alignment_evidence_sha256": "alignment_evidence_path",
+        "rights_record_sha256": "rights_record_path",
+    }
+    ledger_fields = (
+        set(acquisition_contract["required_row_fields"]) - set(path_fields)
+    ) | set(path_fields.values())
+    rows: list[dict[str, Any]] = []
+    for task in work_order["scan_tasks"]:
+        if task["counts_toward_evidence_minimum"] is not True:
+            continue
+        exposure = exposure_by_id[task["exposure_slot_id"]]
+        condition = condition_by_id[exposure["common_condition_slot_id"]]
+        receipt_condition = receipt_condition_by_id[condition["condition_slot_id"]]
+        row = {field: None for field in ledger_fields}
+        row.update(
+            {
+                "row_id": task["scan_task_id"],
+                "stock_id": exposure["stock_id"],
+                "role": exposure["role"],
+                "scene_id": condition["scene_id"],
+                "film_frame_id": exposure["exposure_slot_id"],
+                "camera_system_id": receipt_condition["camera_system_id"],
+                "roll_id": exposure["roll_slot_id"],
+                "process_session_id": exposure["process_session_slot_id"],
+                "process_type": exposure["process_type"],
+                "scanner_session_id": task["scanner_session_slot_id"],
+                "scanner_device_id": task["scanner_device_slot_id"],
+                "interpretation_id": exposure["interpretation_id"],
+            }
+        )
+        rows.append(row)
+    expected = int(work_order["counts"]["evidence_scan_tasks"])
+    if len(rows) != expected or any(set(row) != ledger_fields for row in rows):
+        raise ThreeStockCaptureReceiptError("ledger template inventory drift")
+    return {"schema": LEDGER_SCHEMA, "rows": rows}
+
+
 def evaluate_ledger_binding(
     contract_path: Path,
     packet_path: Path,
@@ -261,8 +336,7 @@ def evaluate_ledger_binding(
         row["exposure_slot_id"]: row for row in work_order["exposure_rows"]
     }
     condition_by_id = {
-        row["condition_slot_id"]: row
-        for row in work_order["common_condition_records"]
+        row["condition_slot_id"]: row for row in work_order["common_condition_records"]
     }
     receipt_condition_by_id = {
         row["condition_slot_id"]: row for row in packet["common_condition_records"]
@@ -359,6 +433,7 @@ def evaluate_ledger_binding(
 __all__ = [
     "BINDING_REPORT_SCHEMA",
     "ThreeStockCaptureReceiptError",
+    "build_ledger_template",
     "build_receipt_template",
     "evaluate_ledger_binding",
     "evaluate_receipts",

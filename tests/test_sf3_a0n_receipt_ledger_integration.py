@@ -4,8 +4,12 @@ import json
 import shutil
 from pathlib import Path
 
+import pytest
+
 from src.real_film.three_stock_acquisition import LEDGER_SCHEMA, evaluate_manifest
 from src.real_film.three_stock_capture_receipts import (
+    ThreeStockCaptureReceiptError,
+    build_ledger_template,
     evaluate_ledger_binding,
     evaluate_receipts,
 )
@@ -84,9 +88,7 @@ def test_real_a0l_a0n_to_a0_manifest_chain(tmp_path: Path) -> None:
     packet = _build_packet(work)
     packet_path = tmp_path / "packet.json"
     _write_json(packet_path, packet)
-    assert evaluate_receipts(RECEIPT_CONTRACT, packet_path, root=ROOT)[
-        "automatic_pass"
-    ]
+    assert evaluate_receipts(RECEIPT_CONTRACT, packet_path, root=ROOT)["automatic_pass"]
 
     data_root = tmp_path / "data/sf3"
     condition_by_id = {
@@ -95,9 +97,7 @@ def test_real_a0l_a0n_to_a0_manifest_chain(tmp_path: Path) -> None:
     expected_condition_by_id = {
         row["condition_slot_id"]: row for row in work["common_condition_records"]
     }
-    exposure_by_id = {
-        row["exposure_slot_id"]: row for row in work["exposure_rows"]
-    }
+    exposure_by_id = {row["exposure_slot_id"]: row for row in work["exposure_rows"]}
     condition_paths: dict[str, Path] = {}
     digital_paths: dict[str, Path] = {}
     for condition_id, receipt in condition_by_id.items():
@@ -157,7 +157,9 @@ def test_real_a0l_a0n_to_a0_manifest_chain(tmp_path: Path) -> None:
                 "capture_session_id": f"capture:{role}",
                 "source_owner_id": "project-owner",
                 "camera_system_id": condition_by_id[condition_id]["camera_system_id"],
-                "digital_reference_path": _repo_path(tmp_path, digital_paths[condition_id]),
+                "digital_reference_path": _repo_path(
+                    tmp_path, digital_paths[condition_id]
+                ),
                 "capture_condition_record_path": _repo_path(
                     tmp_path, condition_paths[condition_id]
                 ),
@@ -197,3 +199,44 @@ def test_real_a0l_a0n_to_a0_manifest_chain(tmp_path: Path) -> None:
     assert binding["evidence_scan_tasks"] == admission["row_count"] == 108
     assert binding["diagnostic_scan_tasks_excluded"] == 45
     assert admission["automatic_pass"] is True
+
+
+def test_verified_receipts_build_exact_evidence_ledger_skeleton(tmp_path: Path) -> None:
+    work = json.loads(WORK_ORDER.read_text(encoding="utf-8"))
+    packet_path = tmp_path / "packet.json"
+    _write_json(packet_path, _build_packet(work))
+
+    ledger = build_ledger_template(
+        RECEIPT_CONTRACT,
+        packet_path,
+        ACQUISITION_CONTRACT,
+        root=ROOT,
+    )
+
+    assert ledger["schema"] == LEDGER_SCHEMA
+    assert len(ledger["rows"]) == 108
+    assert len({row["row_id"] for row in ledger["rows"]}) == 108
+    assert {row["stock_id"] for row in ledger["rows"]} == {
+        "fujifilm_velvia_50",
+        "kodak_portra_400",
+        "kodak_ektar_100",
+    }
+    first = ledger["rows"][0]
+    assert first["film_frame_id"] is not None
+    assert first["camera_system_id"] is not None
+    assert first["scanner_device_id"] is not None
+    assert first["digital_reference_path"] is None
+    assert first["scan_sample_path"] is None
+    assert first["rights_scope"] is None
+
+    drifted_contract = tmp_path / "acquisition.json"
+    drifted = json.loads(ACQUISITION_CONTRACT.read_text(encoding="utf-8"))
+    drifted["question"] = "drift"
+    _write_json(drifted_contract, drifted)
+    with pytest.raises(ThreeStockCaptureReceiptError, match="identity drift"):
+        build_ledger_template(
+            RECEIPT_CONTRACT,
+            packet_path,
+            drifted_contract,
+            root=ROOT,
+        )

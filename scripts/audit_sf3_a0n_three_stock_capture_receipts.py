@@ -12,6 +12,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from src.real_film.three_stock_capture_receipts import (
+    build_ledger_template,
     build_receipt_template,
     evaluate_ledger_binding,
     evaluate_receipts,
@@ -29,6 +30,7 @@ def main() -> int:
     mode.add_argument("--packet", type=Path)
     mode.add_argument("--build-template", action="store_true")
     parser.add_argument("--ledger", type=Path)
+    parser.add_argument("--build-ledger-template", action="store_true")
     parser.add_argument(
         "--acquisition-contract",
         type=Path,
@@ -38,9 +40,22 @@ def main() -> int:
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     if args.build_template:
-        if args.ledger is not None or args.manifest_output is not None:
+        if (
+            args.ledger is not None
+            or args.manifest_output is not None
+            or args.build_ledger_template
+        ):
             parser.error("ledger outputs require --packet")
         report = build_receipt_template(args.contract, root=ROOT)
+    elif args.build_ledger_template:
+        if args.ledger is not None or args.manifest_output is not None:
+            parser.error("--build-ledger-template cannot compile a filled ledger")
+        report = build_ledger_template(
+            args.contract,
+            args.packet,
+            args.acquisition_contract,
+            root=ROOT,
+        )
     elif args.ledger is not None:
         if args.manifest_output is None:
             parser.error("--ledger requires --manifest-output")
@@ -66,7 +81,7 @@ def main() -> int:
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with args.output.open("xb") as handle:
         handle.write(payload)
-    if args.build_template:
+    if args.build_template or args.build_ledger_template:
         print(json.dumps({"output": str(args.output), "template_only": True}))
     else:
         print(
