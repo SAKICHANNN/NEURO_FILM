@@ -5,8 +5,10 @@ from pathlib import Path
 
 import cv2
 import numpy as np
+import tifffile
 
 import src.real_film.three_stock_k1_file_runner as runner
+from src.preprocess import srgb_icc_profile
 from src.real_film.three_stock_k1_baseline import StockFrameSamples
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -26,14 +28,25 @@ def _write_json(path: Path, value: object) -> None:
     path.write_text(json.dumps(value), encoding="ascii")
 
 
-def test_load_aligned_rows_uses_verified_file_identities(tmp_path: Path) -> None:
+def test_load_aligned_rows_uses_verified_file_identities(
+    tmp_path: Path, monkeypatch
+) -> None:
     source = np.arange(8 * 9 * 3, dtype=np.uint8).reshape(8, 9, 3)
-    scan = np.flip(source, axis=1).copy()
+    scan = np.flip(source, axis=1).astype(np.uint16) * 257
     source_path = tmp_path / "data" / "source.png"
-    scan_path = tmp_path / "data" / "scan.png"
+    scan_path = tmp_path / "data" / "scan.tiff"
     source_path.parent.mkdir(parents=True)
     assert cv2.imwrite(str(source_path), source[..., ::-1])
-    assert cv2.imwrite(str(scan_path), scan[..., ::-1])
+    profile = srgb_icc_profile()
+    tifffile.imwrite(
+        scan_path,
+        scan,
+        photometric="rgb",
+        planarconfig="contig",
+        compression="deflate",
+        metadata=None,
+        extratags=[(34675, "B", len(profile), profile, False)],
+    )
     evidence_path = tmp_path / "data" / "alignment.json"
     alignment_schema = "test-alignment.v1"
     _write_json(
@@ -51,7 +64,7 @@ def test_load_aligned_rows_uses_verified_file_identities(tmp_path: Path) -> None
             {
                 "alignment_evidence_path": "data/alignment.json",
                 "digital_reference_path": "data/source.png",
-                "scan_sample_path": "data/scan.png",
+                "scan_sample_path": "data/scan.tiff",
             }
         ]
     }
@@ -70,6 +83,19 @@ def test_load_aligned_rows_uses_verified_file_identities(tmp_path: Path) -> None
         ]
     }
     decode = json.loads(INTEGRITY_CONFIG.read_text(encoding="utf-8"))["decode"]
+    decode = {
+        **decode,
+        "required_scan_width": scan.shape[1],
+        "required_scan_height": scan.shape[0],
+    }
+    original_decode_scan = runner.decode_scan_integer_rgb
+    scan_decode_calls: list[Path] = []
+
+    def tracked_decode_scan(path: Path, contract: dict[str, object]) -> np.ndarray:
+        scan_decode_calls.append(path)
+        return original_decode_scan(path, contract)
+
+    monkeypatch.setattr(runner, "decode_scan_integer_rgb", tracked_decode_scan)
     rows = runner.load_aligned_rows(
         root=tmp_path,
         ledger=ledger,
@@ -80,6 +106,7 @@ def test_load_aligned_rows_uses_verified_file_identities(tmp_path: Path) -> None
     assert len(rows) == 1
     assert np.array_equal(rows[0].source_rgb, source)
     assert np.array_equal(rows[0].scan_rgb, scan)
+    assert scan_decode_calls == [scan_path]
     file_rows, paths = runner.load_aligned_file_rows(
         root=tmp_path,
         ledger=ledger,
@@ -140,9 +167,7 @@ def test_success_reports_actual_roll_dependent_fit_count(
             "stable_evidence_id": "integrity-pass",
         },
     )
-    monkeypatch.setattr(
-        runner, "load_aligned_file_rows", lambda **kwargs: ([], {})
-    )
+    monkeypatch.setattr(runner, "load_aligned_file_rows", lambda **kwargs: ([], {}))
     sample = np.full((4, 3), 0.25, dtype=np.float64)
     development = {
         stock: [

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 from types import SimpleNamespace
 
@@ -12,6 +13,7 @@ from src.preprocess import srgb_icc_profile
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/sf3_a0p_three_stock_scan_storage_preflight_v1.json"
+A1_CONTRACT = ROOT / "configs/sf3_a1_three_stock_file_pixel_alignment_integrity_v1.json"
 
 
 def test_current_p_backed_scan_tier_passes(monkeypatch: pytest.MonkeyPatch) -> None:
@@ -27,6 +29,27 @@ def test_current_p_backed_scan_tier_passes(monkeypatch: pytest.MonkeyPatch) -> N
     assert report["worst_case_plan_bytes"] == 5_668_432_128
     assert report["projected_remaining_bytes"] == 863_147_776
     assert report["scan_to_stimulus_pixel_ratio"] >= 3.0
+
+
+def test_scan_profile_is_exactly_propagated_to_a1_ingress() -> None:
+    _, contract = target.load_contract(CONTRACT, root=ROOT)
+    a1 = json.loads(A1_CONTRACT.read_text(encoding="utf-8"))["decode"]
+    profile = contract["scan_profile"]
+    assert profile["width"] == a1["required_scan_width"]
+    assert profile["height"] == a1["required_scan_height"]
+    assert (
+        profile["required_embedded_icc_profile_sha256"]
+        == a1["required_rgb16_tiff_icc_profile_sha256"]
+    )
+    assert profile["required_orientation"] == a1["required_scan_orientation"]
+    assert (
+        profile["required_planar_configuration"]
+        == a1["required_scan_planar_configuration"]
+    )
+    assert (
+        profile["allowed_tiff_compression_codes"]
+        == a1["allowed_scan_tiff_compression_codes"]
+    )
 
 
 def test_insufficient_capacity_fails_without_relaxing_profile(
@@ -47,7 +70,9 @@ def test_contract_rejects_scan_profile_drift(tmp_path: Path) -> None:
     raw = CONTRACT.read_text(encoding="utf-8").replace('"width": 3000', '"width": 2999')
     path = tmp_path / "contract.json"
     path.write_text(raw, encoding="utf-8")
-    with pytest.raises(target.ThreeStockScanStoragePreflightError, match="profile drift"):
+    with pytest.raises(
+        target.ThreeStockScanStoragePreflightError, match="profile drift"
+    ):
         target.load_contract(path, root=ROOT)
 
 
@@ -66,7 +91,9 @@ def test_scan_file_requires_exact_srgb16_container(tmp_path: Path) -> None:
     )
     facts = target.validate_scan_file(path, profile)
     assert facts["shape"] == [8, 10, 3]
-    assert facts["icc_profile_sha256"] == profile["required_embedded_icc_profile_sha256"]
+    assert (
+        facts["icc_profile_sha256"] == profile["required_embedded_icc_profile_sha256"]
+    )
 
     unprofiled = tmp_path / "unprofiled.tif"
     tifffile.imwrite(

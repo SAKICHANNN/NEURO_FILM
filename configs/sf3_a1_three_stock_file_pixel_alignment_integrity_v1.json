@@ -20,6 +20,12 @@
     "allow_alpha": false,
     "allow_multiple_frames": false,
     "allowed_integer_bits": [8, 16],
+    "required_rgb16_tiff_icc_profile_sha256": "217fe48ec958c667f8eef725aa27198f465df95d7662593b90d0a1cc30114356",
+    "required_scan_width": 3000,
+    "required_scan_height": 2000,
+    "required_scan_orientation": 1,
+    "required_scan_planar_configuration": 1,
+    "allowed_scan_tiff_compression_codes": [1, 8, 32946],
     "require_positive_dimensions": true,
     "require_finite_normalized_samples": true
   },

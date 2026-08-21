@@ -24,6 +24,7 @@ from src.real_film.three_stock_paired_sampling import (
 )
 from src.real_film.three_stock_scan_integrity import (
     decode_integer_rgb,
+    decode_scan_integer_rgb,
 )
 from src.real_film.three_stock_scan_integrity import (
     evaluate as evaluate_integrity,
@@ -122,7 +123,7 @@ def load_aligned_rows(
                 film_frame_id=str(row["film_frame_id"]),
                 roll_id=str(row["roll_id"]),
                 source_rgb=decode_integer_rgb(digital_path, decode_contract),
-                scan_rgb=decode_integer_rgb(scan_path, decode_contract),
+                scan_rgb=decode_scan_integer_rgb(scan_path, decode_contract),
                 homography_source_to_scan=homography,
             )
         )
@@ -260,17 +261,15 @@ def evaluate_files(
         alignment_schema=integrity_contract["record_schemas"]["alignment"],
     )
     decode_contract = integrity_contract["decode"]
-    development, confirmation, sampling_facts = (
-        extract_common_paired_samples_streaming(
-            aligned,
-            k1_contract["paired_sampling"],
-            load_source=lambda row: decode_integer_rgb(
-                paths[row.row_id][0], decode_contract
-            ),
-            load_scan=lambda row: decode_integer_rgb(
-                paths[row.row_id][1], decode_contract
-            ),
-        )
+    development, confirmation, sampling_facts = extract_common_paired_samples_streaming(
+        aligned,
+        k1_contract["paired_sampling"],
+        load_source=lambda row: decode_integer_rgb(
+            paths[row.row_id][0], decode_contract
+        ),
+        load_scan=lambda row: decode_scan_integer_rgb(
+            paths[row.row_id][1], decode_contract
+        ),
     )
     result = evaluate_k1(
         k1_contract_path,

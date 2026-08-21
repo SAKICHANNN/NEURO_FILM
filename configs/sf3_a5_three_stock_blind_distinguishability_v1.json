@@ -6,12 +6,12 @@
   "parents": {
     "k1_baseline_contract": {
       "path": "configs/sf3_a2_three_stock_k1_baseline_v1.json",
-      "sha256": "27d2b2bb02896b91532ab22e42389e4a51d31a6fb6349ec1da04814a9747e59e",
+      "sha256": "e8242b5e90f9c893ba6a7ca74910e88b9bd4444052c825293ce2bae0f15edd19",
       "required_decision": "OPEN_THREE_STOCK_K1_SEVERE_ARTIFACT_REVIEW_THEN_BLIND_DISTINGUISHABILITY"
     },
     "confirmation_render_contract": {
       "path": "configs/sf3_a4_three_stock_confirmation_render_v1.json",
-      "sha256": "d7ee3c052bacdb11a7537a3b380abc826fe1e905c096b7176fab9538ddc04c62"
+      "sha256": "4e2e8ac268b8761391f91d89c664218cbf4d77ea1216e68e48dda52a1790c241"
     }
   },
   "required_stocks": [

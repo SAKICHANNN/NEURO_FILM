@@ -6,7 +6,7 @@
   "parent": {
     "integrity_contract": {
       "path": "configs/sf3_a1_three_stock_file_pixel_alignment_integrity_v1.json",
-      "sha256": "c1822c3f52f8979f7127795a03e8a4b0e970040321942322d5ca61facdf602be",
+      "sha256": "67bdc2289cc49b97464a40757d2790884b7590153fde88b31e5023f2cbe41e24",
       "required_decision": "OPEN_SF3_A2_THREE_STOCK_K1_DEVELOPMENT_WITH_CONFIRMATION_SEALED"
     }
   },

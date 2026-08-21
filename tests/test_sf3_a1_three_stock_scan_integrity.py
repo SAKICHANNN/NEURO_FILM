@@ -8,7 +8,9 @@ from pathlib import Path
 import cv2
 import numpy as np
 import pytest
+import tifffile
 
+from src.preprocess import srgb_icc_profile, srgb_icc_profile_sha256
 from src.real_film.three_stock_acquisition import (
     LEDGER_SCHEMA,
     compile_acquisition_ledger,
@@ -16,6 +18,8 @@ from src.real_film.three_stock_acquisition import (
 from src.real_film.three_stock_scan_integrity import (
     ThreeStockScanIntegrityError,
     build_alignment_evidence,
+    decode_integer_rgb,
+    decode_scan_integer_rgb,
     evaluate,
     load_contract,
 )
@@ -62,6 +66,7 @@ def _fixture(
             "maximum_median_inlier_reprojection_error_px": 0.1,
         }
     )
+    contract["decode"].update({"required_scan_width": 96, "required_scan_height": 72})
     contract_path = repo / "configs" / CONFIG.name
     _write_json(contract_path, contract)
 
@@ -115,7 +120,7 @@ def _fixture(
                         scanner_path = data / f"{scanner_id}.json"
                         _write_json(scanner_path, {"scanner_id": scanner_id})
                         row_id = f"{frame_id}-scan-{scanner_index}"
-                        scan_path = data / f"scan-{row_index:03d}.png"
+                        scan_path = data / f"scan-{row_index:03d}.tif"
                         scan = cv2.convertScaleAbs(
                             cv2.imread(str(source_path), cv2.IMREAD_COLOR),
                             alpha=1.0,
@@ -126,7 +131,15 @@ def _fixture(
                             (row_index * 17) % 256,
                             (row_index * 31) % 256,
                         )
-                        assert cv2.imwrite(str(scan_path), scan)
+                        profile = srgb_icc_profile()
+                        tifffile.imwrite(
+                            scan_path,
+                            (scan[..., ::-1].astype(np.uint16) * 257),
+                            photometric="rgb",
+                            planarconfig="contig",
+                            metadata=None,
+                            extratags=[(34675, "B", len(profile), profile, False)],
+                        )
                         alignment_path = data / f"alignment-{row_index:03d}.json"
                         row = {
                             "row_id": row_id,
@@ -207,6 +220,84 @@ def _fixture(
 def test_contract_binds_current_a0() -> None:
     _, contract = load_contract(CONFIG, root=ROOT)
     assert contract["status"] == "FROZEN_BEFORE_PHYSICAL_SCAN_READ"
+    assert (
+        contract["decode"]["required_rgb16_tiff_icc_profile_sha256"]
+        == srgb_icc_profile_sha256()
+    )
+    assert (
+        contract["decode"]["required_scan_width"],
+        contract["decode"]["required_scan_height"],
+    ) == (3000, 2000)
+
+
+def test_rgb16_tiff_requires_bound_canonical_srgb_icc(tmp_path: Path) -> None:
+    _, contract = load_contract(CONFIG, root=ROOT)
+    pixels = np.arange(8 * 10 * 3, dtype=np.uint16).reshape(8, 10, 3)
+    profile = srgb_icc_profile()
+    valid = tmp_path / "valid.tif"
+    tifffile.imwrite(
+        valid,
+        pixels,
+        photometric="rgb",
+        planarconfig="contig",
+        metadata=None,
+        extratags=[(34675, "B", len(profile), profile, False)],
+    )
+    np.testing.assert_array_equal(decode_integer_rgb(valid, contract["decode"]), pixels)
+
+    unprofiled = tmp_path / "unprofiled.tif"
+    tifffile.imwrite(
+        unprofiled,
+        pixels,
+        photometric="rgb",
+        planarconfig="contig",
+        metadata=None,
+    )
+    np.testing.assert_array_equal(
+        decode_integer_rgb(unprofiled, contract["decode"]), pixels
+    )
+
+    small_contract = {
+        **contract["decode"],
+        "required_scan_width": 10,
+        "required_scan_height": 8,
+    }
+    np.testing.assert_array_equal(
+        decode_scan_integer_rgb(valid, small_contract), pixels
+    )
+    with pytest.raises(ThreeStockScanIntegrityError, match="canonical sRGB ICC"):
+        decode_scan_integer_rgb(unprofiled, small_contract)
+    png_scan = tmp_path / "scan.png"
+    assert cv2.imwrite(str(png_scan), pixels.astype(np.uint8)[..., ::-1])
+    with pytest.raises(ThreeStockScanIntegrityError, match="RGB16 TIFF"):
+        decode_scan_integer_rgb(png_scan, small_contract)
+    uint8_scan = tmp_path / "scan.tif"
+    tifffile.imwrite(
+        uint8_scan,
+        pixels.astype(np.uint8),
+        photometric="rgb",
+        planarconfig="contig",
+        metadata=None,
+    )
+    with pytest.raises(ThreeStockScanIntegrityError, match="RGB16 TIFF"):
+        decode_scan_integer_rgb(uint8_scan, small_contract)
+    with pytest.raises(ThreeStockScanIntegrityError, match="geometry"):
+        decode_scan_integer_rgb(valid, {**small_contract, "required_scan_height": 7})
+
+    rotated = tmp_path / "rotated.tif"
+    tifffile.imwrite(
+        rotated,
+        pixels,
+        photometric="rgb",
+        planarconfig="contig",
+        metadata=None,
+        extratags=[
+            (274, "H", 1, 6, False),
+            (34675, "B", len(profile), profile, False),
+        ],
+    )
+    with pytest.raises(ThreeStockScanIntegrityError, match="orientation"):
+        decode_scan_integer_rgb(rotated, small_contract)
 
 
 def test_complete_fixture_passes_without_operator_fit(tmp_path: Path) -> None:

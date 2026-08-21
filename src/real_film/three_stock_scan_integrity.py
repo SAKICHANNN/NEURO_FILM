@@ -14,6 +14,7 @@ import numpy as np
 import tifffile
 from PIL import Image
 
+from src.preprocess import srgb_icc_profile_sha256
 from src.real_film.scanner_nuisance import ScannerNuisanceError, align_source_to_scan
 from src.real_film.three_stock_acquisition import (
     compile_acquisition_ledger,
@@ -86,6 +87,22 @@ def load_contract(path: Path, *, root: Path) -> tuple[bytes, dict[str, Any]]:
         raise ThreeStockScanIntegrityError("SF3.A0 parent contract hash drift")
     if set(contract.get("record_schemas", {})) != {"rights", "alignment"}:
         raise ThreeStockScanIntegrityError("SF3.A1 record schema inventory drift")
+    if (
+        contract.get("decode", {}).get("required_rgb16_tiff_icc_profile_sha256")
+        != srgb_icc_profile_sha256()
+    ):
+        raise ThreeStockScanIntegrityError("SF3.A1 RGB16 TIFF ICC identity drift")
+    for field in ("required_scan_width", "required_scan_height"):
+        value = contract.get("decode", {}).get(field)
+        if not isinstance(value, int) or isinstance(value, bool) or value <= 0:
+            raise ThreeStockScanIntegrityError(f"SF3.A1 {field} is invalid")
+    if (
+        contract["decode"].get("required_scan_orientation") != 1
+        or contract["decode"].get("required_scan_planar_configuration") != 1
+        or contract["decode"].get("allowed_scan_tiff_compression_codes")
+        != [1, 8, 32946]
+    ):
+        raise ThreeStockScanIntegrityError("SF3.A1 scan container policy drift")
     return raw, contract
 
 
@@ -149,6 +166,71 @@ def _sample_identity(rgb: np.ndarray) -> str:
         "ascii"
     )
     return _sha256(header + np.ascontiguousarray(rgb).tobytes())
+
+
+def _validate_scan_sample_container(
+    path: Path, decode_contract: Mapping[str, Any]
+) -> None:
+    if path.suffix.casefold() not in {".tif", ".tiff"}:
+        raise ThreeStockScanIntegrityError(
+            "controlled scan samples must be canonical RGB16 TIFF"
+        )
+    expected = (
+        int(decode_contract["required_scan_height"]),
+        int(decode_contract["required_scan_width"]),
+        int(decode_contract["required_channels"]),
+    )
+    with tifffile.TiffFile(path) as image:
+        if len(image.pages) != 1:
+            raise ThreeStockScanIntegrityError("multi-page TIFF is forbidden")
+        page = image.pages[0]
+        shape = tuple(int(value) for value in page.shape)
+        dtype = np.dtype(page.dtype)
+        icc_tag = page.tags.get(34675)
+        icc_sha256 = _sha256(bytes(icc_tag.value)) if icc_tag is not None else None
+        orientation_tag = page.tags.get("Orientation")
+        orientation = int(orientation_tag.value) if orientation_tag is not None else 1
+        planar = int(page.planarconfig)
+        compression = int(page.compression)
+    if dtype != np.dtype(np.uint16):
+        raise ThreeStockScanIntegrityError(
+            "controlled scan samples must be canonical RGB16 TIFF"
+        )
+    if icc_sha256 != decode_contract["required_rgb16_tiff_icc_profile_sha256"]:
+        raise ThreeStockScanIntegrityError(
+            "controlled scan must carry the bound canonical sRGB ICC profile"
+        )
+    if shape != expected:
+        raise ThreeStockScanIntegrityError(
+            f"controlled scan geometry {shape} does not match {expected}"
+        )
+    if orientation != int(decode_contract["required_scan_orientation"]):
+        raise ThreeStockScanIntegrityError("controlled scan orientation drift")
+    if planar != int(decode_contract["required_scan_planar_configuration"]):
+        raise ThreeStockScanIntegrityError("controlled scan planar layout drift")
+    if compression not in {
+        int(value) for value in decode_contract["allowed_scan_tiff_compression_codes"]
+    }:
+        raise ThreeStockScanIntegrityError("controlled scan compression is not allowed")
+
+
+def decode_scan_integer_rgb(
+    path: Path, decode_contract: Mapping[str, Any]
+) -> np.ndarray:
+    """Decode one controlled scan and enforce the canonical scan container."""
+
+    _validate_scan_sample_container(path, decode_contract)
+    rgb = decode_integer_rgb(path, decode_contract)
+    expected = (
+        int(decode_contract["required_scan_height"]),
+        int(decode_contract["required_scan_width"]),
+        int(decode_contract["required_channels"]),
+    )
+    if rgb.shape != expected or rgb.dtype != np.uint16:
+        raise ThreeStockScanIntegrityError(
+            "controlled scan decode changed its container"
+        )
+    return rgb
 
 
 def build_alignment_evidence(
@@ -278,7 +360,7 @@ def evaluate(
         failures: list[str] = []
         try:
             digital_rgb = decode_integer_rgb(digital_path, contract["decode"])
-            scan_rgb = decode_integer_rgb(scan_path, contract["decode"])
+            scan_rgb = decode_scan_integer_rgb(scan_path, contract["decode"])
             digital_identity = _sample_identity(digital_rgb)
             scan_identity = _sample_identity(scan_rgb)
         except (ThreeStockScanIntegrityError, cv2.error, OSError, ValueError) as error:
@@ -404,6 +486,7 @@ __all__ = [
     "ThreeStockScanIntegrityError",
     "build_alignment_evidence",
     "decode_integer_rgb",
+    "decode_scan_integer_rgb",
     "evaluate",
     "load_contract",
 ]

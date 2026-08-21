@@ -15733,3 +15733,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   canonical/reverse RGB16 inventory identity, pass. Ruff, `py_compile` and
   diff checks pass. No stock evidence, operator, threshold or product claim
   changes.
+
+### 2026-08-21 - SF3.A1/A2 enforce one canonical controlled-scan ingress
+
+- A1 now requires every controlled scan to be a 3000x2000, single-page,
+  contiguous RGB16 TIFF with orientation 1, an allowed lossless compression
+  code and the project's exact sRGB ICC before alignment evidence is built.
+- A2 revalidates the same container at each streaming decode, closing the
+  interval in which a post-A1 file replacement could otherwise reintroduce
+  scanner/container nuisance into the K=1 fit. Digital references retain the
+  existing bounded RGB8/RGB16 ingress.
+- The frozen stock/operator/gate semantics are unchanged and physical rows
+  remain absent. Twenty-nine focused A0P--A5 checks and the full 166-test
+  SF3/RF3 three-stock suite pass.
