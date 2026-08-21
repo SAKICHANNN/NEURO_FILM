@@ -80,7 +80,9 @@
   "gates": {
     "expected_scene_exposures": 60,
     "expected_diagnostic_exposures": 27,
-    "expected_scan_rows": 108,
+    "expected_evidence_scan_rows": 108,
+    "expected_diagnostic_scan_rows": 45,
+    "expected_total_scan_tasks": 153,
     "development_and_confirmation_slot_ids_disjoint": true,
     "all_stimulus_hashes_bound": true,
     "operator_fits_allowed": 0,
