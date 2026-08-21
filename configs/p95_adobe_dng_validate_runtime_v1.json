@@ -1,0 +1,74 @@
+{
+  "schema": "neuro_film.p95_adobe_dng_validate_runtime_contract.v1",
+  "experiment_id": "p95-adobe-dng-validate-runtime-v1",
+  "status": "frozen_before_formal_image_execution",
+  "bindings": {
+    "contract": {
+      "path": "docs/planning/P95_ADOBE_DNG_VALIDATE_RUNTIME_CONTRACT.md",
+      "bytes": 3123,
+      "sha256": "f2cb339735d0087723013ee8bd826f0062debde1921a951d040891b886db850a"
+    },
+    "runner": {
+      "path": "scripts/audit_p95_adobe_dng_validate_runtime.py",
+      "bytes": 8182,
+      "sha256": "83b85278e1dd910e692b4c0a95cebf763f3b4e65ee3588296cfe42dd1fc09e41"
+    },
+    "binary": {
+      "path": "data/external/adobe_dng_sdk_1_7_1_2652/bin/dng_validate_1_7_1_2652_msbuild_v145_x64.exe",
+      "bytes": 13327872,
+      "sha256": "3ac9a60e8989088721c272dfefa5e7086ddcf17bb5ee381624fd84d6337a7d13"
+    },
+    "sdk_archive": {
+      "path": "data/external/adobe_dng_sdk_1_7_1_2652/dng_sdk_1_7_1_2652_20260714.zip",
+      "bytes": 80494799,
+      "sha256": "73499b47f4683e12120a234bd0946f02e52ab2ff9834bcbd0e9f8ab4f923360e"
+    }
+  },
+  "rows": [
+    {
+      "source_id": "blackmagic_pocket_cinema_camera_4k",
+      "camera_make": "Blackmagic",
+      "logical_path": "data/external/rawpixls_bh1_v1/raw/blackmagic_pocket_cinema_camera_4k.dng",
+      "source_bytes": 4497152,
+      "source_sha256": "1491a5e5d580a9be151747bddce89faca4d0b9d352503270f516bbf8e8cdf0d9"
+    },
+    {
+      "source_id": "huawei_eml_l29",
+      "camera_make": "HUAWEI",
+      "logical_path": "data/external/rawpixls_bh1_v1/raw/huawei_eml_l29.dng",
+      "source_bytes": 23643352,
+      "source_sha256": "77385bde838ab7e0a5b067d7f6e6b8cb3019a3c22353fae6b8689a43adda439a"
+    },
+    {
+      "source_id": "lg_lg_h850",
+      "camera_make": "LG",
+      "logical_path": "data/external/rawpixls_bh1_v1/raw/lg_lg_h850.dng",
+      "source_bytes": 16005440,
+      "source_sha256": "be58e948626b193538217e96bc6d9ff5fdeb91a3a8a8af65624dab41ae39895f"
+    },
+    {
+      "source_id": "motorola_moto_g_7_play",
+      "camera_make": "motorola",
+      "logical_path": "data/external/rawpixls_bh1_v1/raw/motorola_moto_g_7_play.dng",
+      "source_bytes": 26286800,
+      "source_sha256": "d46953b116ee7a88b99fb28edc7b2f1b631ed09d66f73391c4ccc2e2ec959575"
+    },
+    {
+      "source_id": "xiaomi_m2010j19cg",
+      "camera_make": "Xiaomi",
+      "logical_path": "data/external/rawpixls_bh1_v1/raw/xiaomi_m2010j19cg.dng",
+      "source_bytes": 24029476,
+      "source_sha256": "e1cb49299faa6609547bbb9b2c5a6167031694a99a1d252e1e048ce18ddf214f"
+    }
+  ],
+  "gates": {
+    "required_rows": 5,
+    "required_camera_makes": 5,
+    "required_output_files": 15,
+    "maximum_final_long_side": 1024,
+    "require_forward_reverse_output_hashes_exact": true,
+    "require_two_fresh_process_reports_exact": true,
+    "require_source_hashes_unchanged": true
+  },
+  "claim_ceiling": "Private exact five-device official Adobe DNG SDK 1.7.1 build 2652 dng_validate Windows x64 bounded runtime mechanics only; no Adobe-binary identity, arbitrary DNG support, photographic or colorimetric quality, P94 equality, sensor or IDT calibration, project-loader integration, ACES or HDR output, public package/schema/capability, product, film, stock, or preference admission"
+}
