@@ -10,7 +10,11 @@ from typing import Any
 
 import numpy as np
 
-from scripts.pipeline_color_baseline import load_guardrail_config, style_transfer_rgb
+from scripts.pipeline_color_baseline import (
+    load_guardrail_config,
+    style_transfer_rgb,
+    style_transfer_rgb_tiled,
+)
 from src.filmfx import (
     composite_layers,
     density_halation_layer,
@@ -129,6 +133,7 @@ def render_style_safe_working_image(
     style_statistics: Mapping[str, Any],
     guardrails: Mapping[str, Any],
     seed: int,
+    tile_size: int | None = None,
 ) -> np.ndarray:
     """Render a validated v1 profile from one WorkingImage to float32 sRGB."""
 
@@ -136,7 +141,35 @@ def render_style_safe_working_image(
     styles = profile["style_parameters"]
     if style not in styles:
         raise StyleSafeEngineError(f"style is absent from profile: {style}")
+    if tile_size is not None and (
+        isinstance(tile_size, bool) or not isinstance(tile_size, int) or tile_size < 1
+    ):
+        raise StyleSafeEngineError("tile_size must be a positive integer")
     source = working_image_to_srgb_float(working)
+    if tile_size is not None:
+        output, _ = style_transfer_rgb_tiled(
+            source,
+            style_statistics,
+            style,
+            strength=float(styles[style]["strength"]),
+            luma_strength=float(styles[style]["luma_strength"]),
+            grain=float(styles[style]["grain"]),
+            seed=seed,
+            gamut_safe=styles[style]["gamut_safe"],
+            gamut_mode=styles[style]["gamut_mode"],
+            tone_rolloff=float(styles[style]["tone_rolloff"]),
+            shadow_floor_l=float(styles[style]["shadow_floor_l"]),
+            highlight_ceiling_l=float(styles[style]["highlight_ceiling_l"]),
+            preserve_luma_detail_strength=float(
+                styles[style]["preserve_luma_detail"]
+            ),
+            chroma_curve_strength=float(styles[style]["chroma_curve_strength"]),
+            output_margin=int(styles[style]["output_margin"]),
+            guardrails=dict(guardrails),
+            dither=float(styles[style]["dither"]),
+            tile_size=tile_size,
+        )
+        return np.ascontiguousarray(output, dtype=np.float32)
     return render_resolved_safe_lab_rgb(
         source,
         style=style,
@@ -152,6 +185,7 @@ def _verified_recipe_base(
     *,
     profile_path: Path,
     root: Path,
+    tile_size: int | None = None,
 ) -> tuple[np.ndarray, Mapping[str, Any]]:
 
     verify_render_recipe_inputs(recipe, profile_path=profile_path, root=root)
@@ -196,6 +230,7 @@ def _verified_recipe_base(
         style_statistics=statistics["styles"][style],
         guardrails=load_guardrail_config(assets["color_guardrails"], style),
         seed=render["seed"],
+        tile_size=tile_size,
     )
     return base, render
 
@@ -205,11 +240,12 @@ def replay_style_safe_color_recipe(
     *,
     profile_path: Path,
     root: Path,
+    tile_size: int | None = None,
 ) -> np.ndarray:
     """Verify and replay the color-only stage of one existing v1 recipe."""
 
     base, render = _verified_recipe_base(
-        recipe, profile_path=profile_path, root=root
+        recipe, profile_path=profile_path, root=root, tile_size=tile_size
     )
     effects = render["effects"]
     if any(
@@ -225,11 +261,12 @@ def replay_style_safe_recipe(
     *,
     profile_path: Path,
     root: Path,
+    tile_size: int | None = None,
 ) -> np.ndarray:
     """Verify and replay all deterministic v1 safe-Lab recipe stages."""
 
     base, render = _verified_recipe_base(
-        recipe, profile_path=profile_path, root=root
+        recipe, profile_path=profile_path, root=root, tile_size=tile_size
     )
     effects = render["effects"]
     layers = []
@@ -276,6 +313,7 @@ def replay_style_safe_recipe_to_file(
     profile_path: Path,
     output_path: Path,
     root: Path,
+    tile_size: int | None = None,
 ) -> str:
     """Replay one v1 recipe to a new file and require the original byte identity."""
 
@@ -290,7 +328,7 @@ def replay_style_safe_recipe_to_file(
     ):
         raise StyleSafeEngineError("recipe output ICC fingerprint is unsupported")
     rendered = replay_style_safe_recipe(
-        recipe, profile_path=profile_path, root=root
+        recipe, profile_path=profile_path, root=root, tile_size=tile_size
     )
     bit_depth = output.get("bit_depth")
     format_name = output.get("format")

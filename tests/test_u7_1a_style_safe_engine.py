@@ -120,6 +120,16 @@ def test_public_engine_rejects_profile_escalation_and_missing_style(working) -> 
             guardrails={},
             seed=7,
         )
+    with pytest.raises(StyleSafeEngineError, match="positive integer"):
+        render_style_safe_working_image(
+            working,
+            profile=profile,
+            style="velvia_50",
+            style_statistics={},
+            guardrails={},
+            seed=7,
+            tile_size=0,
+        )
 
 
 def test_resolved_engine_rejects_nonfinite_source_and_parameter_drift() -> None:
@@ -232,6 +242,7 @@ def test_full_recipe_replay_is_exact_cli_effect_output(
     source = tmp_path / "effect_input.png"
     output = tmp_path / f"effect_{len(list(tmp_path.iterdir()))}.png"
     replay = output.with_name(f"{output.stem}_replay.png")
+    tiled_replay = output.with_name(f"{output.stem}_tiled_replay.png")
     Image.fromarray(pixels, mode="RGB").save(source)
     completed = subprocess.run(
         [
@@ -256,6 +267,11 @@ def test_full_recipe_replay_is_exact_cli_effect_output(
     rendered = replay_style_safe_recipe(recipe, profile_path=PROFILE_PATH, root=ROOT)
     save_srgb8(rendered, replay)
     assert replay.read_bytes() == expected_output
+    tiled = replay_style_safe_recipe(
+        recipe, profile_path=PROFILE_PATH, root=ROOT, tile_size=11
+    )
+    save_srgb8(tiled, tiled_replay)
+    assert tiled_replay.read_bytes() == expected_output
 
 
 @pytest.mark.parametrize("style", ["velvia_50", "portra_400", "ektar_100"])
@@ -265,6 +281,7 @@ def test_three_stock_recipe_replay_to_file_is_byte_exact(
     source = tmp_path / "source.png"
     output = tmp_path / f"{style}.png"
     replay = tmp_path / f"{style}.replay.png"
+    tiled_replay = tmp_path / f"{style}.tiled.replay.png"
     pixels = np.arange(29 * 41 * 3, dtype=np.uint32).reshape(29, 41, 3)
     Image.fromarray((pixels % 256).astype(np.uint8), mode="RGB").save(source)
     completed = subprocess.run(
@@ -294,6 +311,15 @@ def test_three_stock_recipe_replay_to_file_is_byte_exact(
 
     assert replay.read_bytes() == expected
     assert digest == recipe["output"]["sha256"]
+    tiled_digest = replay_style_safe_recipe_to_file(
+        recipe,
+        profile_path=PROFILE_PATH,
+        output_path=tiled_replay,
+        root=ROOT,
+        tile_size=11,
+    )
+    assert tiled_replay.read_bytes() == expected
+    assert tiled_digest == recipe["output"]["sha256"]
     with pytest.raises(StyleSafeEngineError, match="already exists"):
         replay_style_safe_recipe_to_file(
             recipe, profile_path=PROFILE_PATH, output_path=replay, root=ROOT
@@ -312,6 +338,8 @@ def test_recipe_replay_cli_regenerates_missing_outputs_as_batch(
         str(ROOT / "scripts/replay_film_recipe.py"),
         "--workers",
         "2",
+        "--tile-size",
+        "8",
     ]
     expected: dict[Path, bytes] = {}
     for style in ("velvia_50", "ektar_100"):

@@ -16,14 +16,15 @@ if str(ROOT) not in sys.path:
 from src.inference import replay_style_safe_recipe_to_file
 
 
-def _replay_one(task: tuple[Path, Path, Path]) -> tuple[str, Path]:
-    recipe_path, profile_path, output_path = task
+def _replay_one(task: tuple[Path, Path, Path, int | None]) -> tuple[str, Path]:
+    recipe_path, profile_path, output_path, tile_size = task
     recipe = json.loads(recipe_path.read_text(encoding="utf-8"))
     digest = replay_style_safe_recipe_to_file(
         recipe,
         profile_path=profile_path,
         output_path=output_path,
         root=ROOT,
+        tile_size=tile_size,
     )
     return digest, output_path
 
@@ -43,13 +44,21 @@ def main() -> int:
         default=1,
         help="Replay independent recipes in up to this many worker processes.",
     )
+    parser.add_argument(
+        "--tile-size",
+        type=int,
+        default=None,
+        help="Opt into exact bounded-tile safe-Lab execution with this tile size.",
+    )
     args = parser.parse_args()
     if len(args.recipe) != len(args.output):
         parser.error("--recipe and --output counts must match")
     if args.workers < 1:
         parser.error("--workers must be at least 1")
+    if args.tile_size is not None and args.tile_size < 1:
+        parser.error("--tile-size must be at least 1")
     tasks = [
-        (recipe_path, args.profile, output_path)
+        (recipe_path, args.profile, output_path, args.tile_size)
         for recipe_path, output_path in zip(args.recipe, args.output, strict=True)
     ]
     if args.workers == 1:
