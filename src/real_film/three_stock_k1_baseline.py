@@ -23,6 +23,7 @@ from src.real_film.gold_transform_consistency import (
 
 CONTRACT_SCHEMA = "neuro-film.sf3-a2-three-stock-k1-baseline-contract.v1"
 REPORT_SCHEMA = "neuro-film.sf3-a2-three-stock-k1-baseline-report.v1"
+SINGLE_STOCK_REPORT_SCHEMA = "neuro-film.sf3-a2-single-stock-k1-baseline-report.v1"
 
 
 class ThreeStockK1BaselineError(ValueError):
@@ -226,6 +227,106 @@ def _validate_population(
     return sorted(common_scenes)
 
 
+def _validate_single_stock_population(
+    development: Sequence[StockFrameSamples],
+    confirmation: Sequence[StockFrameSamples],
+) -> None:
+    dev_ids = {frame.frame_id for frame in development}
+    conf_ids = {frame.frame_id for frame in confirmation}
+    if len(dev_ids) != len(development) or len(conf_ids) != len(confirmation):
+        raise ThreeStockK1BaselineError("duplicate frame identity")
+    if dev_ids & conf_ids:
+        raise ThreeStockK1BaselineError("development/confirmation frame leakage")
+    conf_scenes = {frame.scene_id for frame in confirmation}
+    if len(conf_scenes) != len(confirmation):
+        raise ThreeStockK1BaselineError("duplicate confirmation scene identity")
+
+
+def evaluate_single_stock(
+    contract_path: Path,
+    *,
+    root: Path,
+    stock: str,
+    development: Sequence[StockFrameSamples],
+    confirmation: Sequence[StockFrameSamples],
+) -> dict[str, Any]:
+    """Evaluate one stock as K=1 without claiming cross-stock evidence.
+
+    This is a lower-claim execution entry for the acquisition order in which one
+    stock can become ready before the complete three-stock population.  It uses
+    the exact frozen SF3.A2 selection family and within-stock gates; only the
+    wrong-stock and pairwise-distinguishability gates remain unavailable.
+    """
+
+    contract_raw, contract = load_contract(contract_path, root=root)
+    if stock not in contract["required_stocks"]:
+        raise ThreeStockK1BaselineError("unsupported stock identity")
+    frames = list(confirmation)
+    dev_frames = list(development)
+    _validate_single_stock_population(dev_frames, frames)
+
+    selected, selection_errors = _select_operator(dev_frames, contract)
+    operator = _fit(selected, dev_frames, contract)
+    gates_cfg = contract["gates"]
+    if len(frames) < int(gates_cfg["minimum_confirmation_frames_per_stock"]):
+        raise ThreeStockK1BaselineError("insufficient confirmation frames")
+    error, identity, clipping = _frame_errors(operator, frames)
+    relative = (identity - error) / np.maximum(identity, 1e-12)
+    metrics = {
+        "confirmation_frames": len(frames),
+        "improvement_rate_over_identity": float(np.mean(error < identity)),
+        "median_relative_improvement_over_identity": float(np.median(relative)),
+        "worst_relative_improvement_over_identity": float(np.min(relative)),
+        "mean_delta_e76_to_target": float(np.mean(error)),
+        "mean_identity_delta_e76_to_target": float(np.mean(identity)),
+        "maximum_raw_output_clip_fraction": float(np.max(clipping)),
+    }
+    checks = {
+        "confirmation_support": len(frames)
+        >= int(gates_cfg["minimum_confirmation_frames_per_stock"]),
+        "improvement_rate": metrics["improvement_rate_over_identity"]
+        >= float(gates_cfg["minimum_confirmation_improvement_rate_over_identity"]),
+        "median_improvement": metrics["median_relative_improvement_over_identity"]
+        >= float(gates_cfg["minimum_median_relative_improvement_over_identity"]),
+        "worst_tail": metrics["worst_relative_improvement_over_identity"]
+        >= float(gates_cfg["minimum_worst_relative_improvement_over_identity"]),
+        "raw_output_clip": metrics["maximum_raw_output_clip_fraction"]
+        <= float(gates_cfg["maximum_raw_output_clip_fraction"]),
+    }
+    automatic_pass = all(checks.values())
+    core = {
+        "schema": SINGLE_STOCK_REPORT_SCHEMA,
+        "experiment_id": f"{contract['experiment_id']}.{stock}",
+        "contract_sha256": _sha256(contract_raw),
+        "stock": stock,
+        "selection_used_confirmation_targets": False,
+        "confirmation_frames_evaluated_after_selection_frozen": len(frames),
+        "selected_operator": selected,
+        "development_roll_heldout_mean_delta_e76": selection_errors,
+        "operator": operator.to_dict(),
+        "metrics": metrics,
+        "gates": checks,
+        "wrong_stock_control_evaluated": False,
+        "cross_stock_distinguishability_evaluated": False,
+        "automatic_pass": automatic_pass,
+        "decision": (
+            "RETAIN_SINGLE_STOCK_K1_CANDIDATE_PENDING_THREE_STOCK_CONTROLS"
+            if automatic_pass
+            else "RETAIN_SINGLE_STOCK_IDENTITY_BASELINE_WITHOUT_CAPACITY_OR_ROUTER_RESCUE"
+        ),
+        "adaptive_or_retrieval_models_fitted": 0,
+        "latent_modes_fitted": 0,
+        "claim_ceiling": (
+            "Controlled paired development and sealed-confirmation evidence for "
+            "one stock-labelled K=1 explicit operator only. Passing does not "
+            "establish wrong-stock rejection, stock distinguishability, calibrated "
+            "stock response, population preference, product promotion, adaptive "
+            "routing, K>1 or multi-stock completion."
+        ),
+    }
+    return {**core, "stable_evidence_id": _sha256(_canonical(core))}
+
+
 def evaluate(
     contract_path: Path,
     *,
@@ -358,8 +459,10 @@ def evaluate(
 __all__ = [
     "CONTRACT_SCHEMA",
     "REPORT_SCHEMA",
+    "SINGLE_STOCK_REPORT_SCHEMA",
     "StockFrameSamples",
     "ThreeStockK1BaselineError",
     "evaluate",
+    "evaluate_single_stock",
     "load_contract",
 ]
