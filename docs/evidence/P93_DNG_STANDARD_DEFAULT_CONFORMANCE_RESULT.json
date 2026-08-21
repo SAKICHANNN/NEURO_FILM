@@ -1,0 +1,127 @@
+{
+  "schema": "neuro_film.p93_dng_standard_default_conformance_evidence.v1",
+  "experiment_id": "p93-dng-standard-default-conformance-v1",
+  "node": "ULT > U1 > U1.3F / P93",
+  "status": "FAIL_CLOSED_DNG_STANDARD_DEFAULT_CONFORMANCE",
+  "decision": "retain the versioned metadata-only receipt primitive but close complete five-device LibRaw conformance without row, tolerance, default or algebra rescue",
+  "bindings": {
+    "contract": {
+      "path": "docs/planning/P93_DNG_STANDARD_DEFAULT_RECEIPT_CONTRACT.md",
+      "sha256": "f6a5f7c5ed1d411428a77e359efc5b4fb8fab8d097b09fbf228ec0df77985abf",
+      "freeze_commit": "55e9047a"
+    },
+    "config": {
+      "path": "configs/p93_dng_standard_default_conformance_v1.json",
+      "sha256": "7166c240b6e23a3dd3a3852ea072b2a4ad3c8545d61c478d27baa35b492cc463",
+      "lock_commit": "46875d3e"
+    },
+    "standard_specification": {
+      "path": "data/external/adobe_dng_spec_1_7_1_0/DNG_Spec_1_7_1_0.pdf",
+      "sha256": "abdecfd8e104e8b86cc054d3a40b677bb2ebe87131bfde080a1df3ee16eb2f8d",
+      "version": "1.7.1.0",
+      "publisher": "Adobe"
+    },
+    "v1_implementation": {
+      "path": "src/preprocess/dng_metadata.py",
+      "sha256": "b63a741837a6e40c5c2a658b17bbe050a9ed25f58aa2057d8f0524b6ef6abb6a",
+      "unchanged": true
+    },
+    "v2_implementation": {
+      "path": "src/preprocess/dng_metadata_v2.py",
+      "sha256": "ab7980085090dbacf15867123996bcd81f1be52e6cf118c0fbe1c8cca1c84ec3",
+      "implementation_commit": "30de20b3"
+    },
+    "runner": {
+      "path": "scripts/audit_p93_dng_standard_default_conformance.py",
+      "sha256": "f85e696c303fcd93a391e1690b4b946c873627029e7e50703a4574ca084b925f",
+      "lock_commit": "46875d3e"
+    },
+    "raw_report": {
+      "path": "outputs/eval/p93_dng_standard_default_conformance/run_a_forward.json",
+      "sha256": "3ae507c0a31613e54154b58414d2588ce0a7cbe868cb5a1b349fb8b39aab39cb",
+      "stable_evidence_id": "dd94eb1f46f132e3b766bbdb616f349674972cf815b593a353d34de1b2e2eb47"
+    }
+  },
+  "execution": {
+    "row_count": 5,
+    "fresh_process_report_count": 4,
+    "forward_report_count": 2,
+    "reverse_report_count": 2,
+    "all_report_sha256": "3ae507c0a31613e54154b58414d2588ce0a7cbe868cb5a1b349fb8b39aab39cb",
+    "forward_reverse_byte_exact": true,
+    "two_fresh_process_reports_byte_exact": true,
+    "raster_sample_reads": 0,
+    "rgb_postprocess_calls": 0,
+    "renderer_calls": 0
+  },
+  "metrics": {
+    "default_row_count": 1,
+    "default_fact_counts": {
+      "cfa_plane_color": 1,
+      "cfa_layout": 1
+    },
+    "defaulted_rows": [
+      "blackmagic_pocket_cinema_camera_4k"
+    ],
+    "maximum_black_level_error_codes": 3,
+    "maximum_black_level_error_row": "autel_robotics_xb015",
+    "maximum_white_level_error_codes": 0.0,
+    "maximum_camera_wb_relative_error": 5.068778996557555e-08,
+    "raw_geometry_match_rate": 1.0,
+    "visible_geometry_explained_rate": 1.0,
+    "warning_count": 0,
+    "pixel_or_rgb_decode_calls": 0
+  },
+  "gates": {
+    "all_per_row": false,
+    "known_default_rows": false,
+    "minimum_default_rows": false,
+    "pixel_or_rgb_decode": true,
+    "row_count": true,
+    "forward_reverse_exact": true,
+    "two_fresh_process_reports_exact": true
+  },
+  "failed_gates": [
+    {
+      "name": "known_default_rows_and_minimum_default_rows",
+      "observed": "only blackmagic_pocket_cinema_camera_4k uses the two standard defaults; current exact Motorola bytes expose both tags explicitly",
+      "frozen_requirement": "both historically reported endpoint rows and at least two rows use a standard default"
+    },
+    {
+      "name": "black_level",
+      "row": "autel_robotics_xb015",
+      "observed_maximum_error_codes": 3,
+      "frozen_maximum_error_codes": 1
+    }
+  ],
+  "historical_u1_3d_identity_note": {
+    "current_motorola_source_sha256_matches_config": true,
+    "current_motorola_tags_50710_50711_are_explicit": true,
+    "u1_3d_source_hash_validation_completed_before_failure": false,
+    "interpretation": "U1.3D remains a valid fail-closed execution record, but its path-level Motorola omission is not promoted to a source-byte-bound fact; P93 does not rewrite the old result"
+  },
+  "interpretation": {
+    "established": [
+      "the official DNG defaults can be represented without pretending that omitted tag bytes exist",
+      "the exact Blackmagic row uses both defaults and passes every unchanged LibRaw comparison",
+      "all five rows match raw geometry and WhiteLevel, expose explained visible geometry and have zero warnings",
+      "all five camera white-balance comparisons are below 5.1e-8 relative error",
+      "the exact Autel row differs from LibRaw by three BlackLevel codes",
+      "the v1 implementation and historical receipt behavior remain unchanged"
+    ],
+    "not_established": [
+      "complete five-device DNG-to-LibRaw metadata conformance",
+      "permission to relax the one-code BlackLevel gate",
+      "arbitrary DNG support or additional inferred defaults",
+      "raster decode, camera IDT, sensor-noise or photographic quality",
+      "default-loader, public schema, capability, package, product, film or stock admission"
+    ]
+  },
+  "rescue": {
+    "row_replacement": false,
+    "black_level_tolerance_change": false,
+    "default_set_change": false,
+    "libraw_parameter_change": false,
+    "rerun_after_result": false
+  }
+}

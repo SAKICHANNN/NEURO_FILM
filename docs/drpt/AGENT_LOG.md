@@ -15390,3 +15390,25 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Next ready leaf:** implement only the versioned receipt entry point and its
   focused tests, then bind code/config and execute the complete five-row audit.
   No other missing field may be inferred.
+
+### 2026-08-21 - P93 closes complete five-device DNG/LibRaw conformance
+
+- Added a separately versioned metadata-only receipt without modifying the
+  source-bound v1 implementation. Facts now distinguish `explicit_ifd_tag`
+  from the two exact DNG 1.7.1.0 defaults; non-RGB omitted plane mappings fail
+  closed. Eight v1/v2 focused tests passed before the formal run.
+- Four fresh forward/reverse reports are byte exact at `3ae507c0...ab39cb`,
+  stable `dd94eb1f...2eb47`; all five rows match raw geometry and WhiteLevel,
+  visible geometry is explained, warnings/pixel reads are zero and maximum WB
+  relative error is `5.07e-8`.
+- Formal result is negative. Only the exact Blackmagic row uses the two
+  defaults, so the frozen historical two-row/default-count gates fail. More
+  decisively, `autel_robotics_xb015` differs from LibRaw by three BlackLevel
+  codes against the frozen one-code maximum.
+- Current exact Motorola bytes match the config SHA and contain both tags.
+  U1.3D failed before hashing its then-current path bytes, so its Motorola
+  omission is retained as an execution record but not upgraded to a bound
+  source-byte fact. U1.3D is not rewritten.
+- Retain the private v2 primitive; close complete five-device conformance with
+  no row/tolerance/default/LibRaw rescue. No raster, IDT/noise, loader, public
+  schema/capability, package, product, film or stock admission opens.
