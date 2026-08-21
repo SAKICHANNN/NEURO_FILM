@@ -9,6 +9,7 @@ import numpy as np
 import pytest
 from PIL import Image
 
+from scripts.pipeline_color_baseline import load_guardrail_config, load_profile_values
 from src.eval import three_stock_proxy_baseline as target
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -126,8 +127,10 @@ def test_synthetic_evaluation_is_order_exact(tmp_path: Path, monkeypatch: pytest
     monkeypatch.setattr(target, "load_guardrail_config", lambda *_args: {})
     monkeypatch.setattr(
         target,
-        "style_transfer_rgb",
-        lambda rgb, _stats, style, **_kwargs: np.clip(rgb + offsets[style], 0.0, 1.0).astype(np.float32),
+        "render_resolved_safe_lab_rgb",
+        lambda rgb, *, style, **_kwargs: np.clip(
+            rgb + offsets[style], 0.0, 1.0
+        ).astype(np.float32),
     )
 
     canonical = target.evaluate(contract_path, tmp_path, tmp_path / "run_a", "canonical")
@@ -147,3 +150,48 @@ def test_missing_gate_does_not_pass() -> None:
     del contract["comparison"]["minimum_pairwise_population_median_delta_e76"]
     with pytest.raises(target.ThreeStockProxyError, match="gate is missing"):
         target._validate_contract_payload(contract)
+
+
+def test_public_engine_replays_all_frozen_three_stock_proxy_pixels() -> None:
+    contract = json.loads(CONTRACT.read_text(encoding="utf-8"))
+    report_path = (
+        ROOT
+        / "outputs"
+        / "eval"
+        / "rf3_three_stock_proxy_baseline_d0_v1"
+        / "run_a"
+        / "report.json"
+    )
+    report = json.loads(report_path.read_text(encoding="utf-8"))
+    stats = json.loads(
+        (ROOT / contract["legacy_k1_operator"]["stats"]["path"]).read_text(
+            encoding="utf-8"
+        )
+    )["styles"]
+    profile_path = ROOT / contract["legacy_k1_operator"]["profile"]["path"]
+    preset = contract["legacy_k1_operator"]["profile"]["preset"]
+    guardrail_path = ROOT / contract["legacy_k1_operator"]["guardrails"]["path"]
+    source_manifest = json.loads(
+        (ROOT / contract["source"]["manifest"]).read_text(encoding="utf-8")
+    )
+    sources = {row["id"]: row for row in source_manifest}
+
+    for row in report["rows"]:
+        source = target._load_rgb8(ROOT / sources[row["source_id"]]["decoded_path"])
+        for arm in contract["legacy_k1_operator"]["arms"]:
+            style = arm["style"]
+            parameters = load_profile_values(profile_path, preset, style)
+            parameters.update({"grain": 0.0, "dither": 0.0})
+            rendered = target.render_resolved_safe_lab_rgb(
+                source.astype(np.float32) / 255.0,
+                style=style,
+                style_statistics=stats[style],
+                style_parameters=parameters,
+                guardrails=load_guardrail_config(guardrail_path, style),
+                seed=1729,
+            )
+            actual = np.rint(rendered * 255.0).astype(np.uint8)
+            frozen = target._load_rgb8(
+                report_path.parent / row["outputs"][arm["arm_id"]]["relative_path"]
+            )
+            np.testing.assert_array_equal(actual, frozen)

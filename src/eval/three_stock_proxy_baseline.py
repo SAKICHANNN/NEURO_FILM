@@ -16,8 +16,8 @@ from skimage.color import rgb2lab
 from scripts.pipeline_color_baseline import (
     load_guardrail_config,
     load_profile_values,
-    style_transfer_rgb,
 )
+from src.inference.style_safe_engine import render_resolved_safe_lab_rgb
 
 SCHEMA = "neuro-film.rf3-three-stock-proxy-baseline-contract.v1"
 RESULT_SCHEMA = "neuro-film.rf3-three-stock-proxy-baseline-result.v1"
@@ -195,23 +195,6 @@ def _boundary_metrics(source: np.ndarray, output: np.ndarray) -> dict[str, float
     }
 
 
-def _style_kwargs(profile: dict[str, Any]) -> dict[str, Any]:
-    return {
-        "strength": float(profile.get("strength", 0.55)),
-        "luma_strength": float(profile.get("luma_strength", 0.35)),
-        "grain": 0.0,
-        "gamut_safe": bool(profile.get("gamut_safe", False)),
-        "gamut_mode": profile.get("gamut_mode"),
-        "tone_rolloff": float(profile.get("tone_rolloff", 0.0)),
-        "shadow_floor_l": float(profile.get("shadow_floor_l", 1.0)),
-        "highlight_ceiling_l": float(profile.get("highlight_ceiling_l", 99.0)),
-        "preserve_luma_detail_strength": float(profile.get("preserve_luma_detail", 0.0)),
-        "chroma_curve_strength": float(profile.get("chroma_curve_strength", 0.0)),
-        "output_margin": int(profile.get("output_margin", 0)),
-        "dither": 0.0,
-    }
-
-
 def evaluate(contract_path: Path, root: Path, output_dir: Path, order: str) -> dict[str, Any]:
     if order not in {"canonical", "reverse"}:
         raise ThreeStockProxyError("order must be canonical or reverse")
@@ -242,13 +225,15 @@ def evaluate(contract_path: Path, root: Path, output_dir: Path, order: str) -> d
             style = arm["style"]
             profile = load_profile_values(profile_path, legacy["profile"]["preset"], style)
             guardrails = load_guardrail_config(guardrail_path, style)
-            rendered = style_transfer_rgb(
+            resolved_profile = dict(profile)
+            resolved_profile.update({"grain": 0.0, "dither": 0.0})
+            rendered = render_resolved_safe_lab_rgb(
                 source_rgb.astype(np.float32) / 255.0,
-                styles[style],
-                style,
-                seed=1729,
+                style=style,
+                style_statistics=styles[style],
+                style_parameters=resolved_profile,
                 guardrails=guardrails,
-                **_style_kwargs(profile),
+                seed=1729,
             )
             if not np.isfinite(rendered).all() or np.any((rendered < 0.0) | (rendered > 1.0)):
                 raise ThreeStockProxyError(f"non-finite or unbounded render: {source_id}/{style}")
