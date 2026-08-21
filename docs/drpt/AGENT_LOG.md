@@ -15757,3 +15757,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The create-only CLI writes this fillable ledger without scanning pixels or
   inventing evidence. Twenty adjacent A0/A0N tests pass. This reduces manual
   ingestion error but does not change the zero-physical-row data gap.
+
+### 2026-08-21 - SF3.A1 materializes controlled alignment evidence
+
+- Added a create-only, replayable A1 mode that decodes each filled ledger's
+  digital stimulus and canonical RGB16 scan, computes the frozen alignment,
+  and writes the exact evidence record named by that ledger row. Matching
+  existing records are reused; mismatches are preserved and fail closed.
+- This completes the software handoff from filled receipts and ledger paths to
+  A0 compilation and A1/A2 execution. It reads no absent physical data today
+  and does not alter the three-stock data gap or fit authority.

@@ -22,6 +22,7 @@ from src.real_film.three_stock_scan_integrity import (
     decode_scan_integer_rgb,
     evaluate,
     load_contract,
+    materialize_alignment_evidence,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -308,6 +309,37 @@ def test_complete_fixture_passes_without_operator_fit(tmp_path: Path) -> None:
     assert report["operator_fits"] == 0
     assert report["automatic_pass"] is True
     assert all(report["gates"].values())
+
+
+def test_alignment_materialization_is_create_only_and_replayable(
+    tmp_path: Path,
+) -> None:
+    repo, contract, ledger, _ = _fixture(tmp_path)
+    ledger_value = json.loads(ledger.read_text(encoding="ascii"))
+    evidence_paths = [
+        repo / row["alignment_evidence_path"] for row in ledger_value["rows"]
+    ]
+    for path in evidence_paths:
+        path.unlink()
+
+    first = materialize_alignment_evidence(contract, ledger, root=repo)
+    second = materialize_alignment_evidence(contract, ledger, root=repo)
+
+    assert first["row_count"] == first["materialized_records"] == 108
+    assert first["reused_records"] == 0
+    assert second["materialized_records"] == 0
+    assert second["reused_records"] == 108
+    assert first["stable_evidence_id"] == second["stable_evidence_id"]
+    assert all(path.is_file() for path in evidence_paths)
+    tampered = evidence_paths[0]
+    before = tampered.read_bytes()
+    value = json.loads(before)
+    value["row_id"] = "foreign-replacement"
+    _write_json(tampered, value)
+    replacement = tampered.read_bytes()
+    with pytest.raises(ThreeStockScanIntegrityError, match="existing.*drift"):
+        materialize_alignment_evidence(contract, ledger, root=repo)
+    assert tampered.read_bytes() == replacement
 
 
 @pytest.mark.parametrize("failure", ["rights", "alignment"])

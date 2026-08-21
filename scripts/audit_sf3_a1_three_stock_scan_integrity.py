@@ -12,7 +12,10 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.real_film.three_stock_scan_integrity import evaluate
+from src.real_film.three_stock_scan_integrity import (
+    evaluate,
+    materialize_alignment_evidence,
+)
 
 
 def main() -> int:
@@ -24,10 +27,18 @@ def main() -> int:
         / "configs/sf3_a1_three_stock_file_pixel_alignment_integrity_v1.json",
     )
     parser.add_argument("--ledger", type=Path, required=True)
-    parser.add_argument("--manifest", type=Path, required=True)
+    parser.add_argument("--manifest", type=Path)
+    parser.add_argument("--build-alignment-evidence", action="store_true")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
-    report = evaluate(args.contract, args.ledger, args.manifest, root=ROOT)
+    if args.build_alignment_evidence:
+        if args.manifest is not None:
+            parser.error("--manifest is not used while building alignment evidence")
+        report = materialize_alignment_evidence(args.contract, args.ledger, root=ROOT)
+    else:
+        if args.manifest is None:
+            parser.error("--manifest is required for the A1 audit")
+        report = evaluate(args.contract, args.ledger, args.manifest, root=ROOT)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with args.output.open("x", encoding="ascii", newline="\n") as handle:
         handle.write(

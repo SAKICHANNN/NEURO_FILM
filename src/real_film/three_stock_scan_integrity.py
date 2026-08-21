@@ -17,6 +17,7 @@ from PIL import Image
 from src.preprocess import srgb_icc_profile_sha256
 from src.real_film.scanner_nuisance import ScannerNuisanceError, align_source_to_scan
 from src.real_film.three_stock_acquisition import (
+    LEDGER_SCHEMA,
     compile_acquisition_ledger,
     evaluate_manifest,
 )
@@ -257,6 +258,108 @@ def build_alignment_evidence(
     }
 
 
+def _data_output_path(root: Path, value: Any, *, field: str) -> Path:
+    if not isinstance(value, str) or not value:
+        raise ThreeStockScanIntegrityError(f"invalid {field}")
+    relative = Path(value)
+    if relative.is_absolute() or ".." in relative.parts:
+        raise ThreeStockScanIntegrityError(f"{field} must be repository-relative")
+    if not relative.parts or relative.parts[0].casefold() != "data":
+        raise ThreeStockScanIntegrityError(f"{field} must use logical data root")
+    return root.joinpath(*relative.parts)
+
+
+def materialize_alignment_evidence(
+    contract_path: Path, ledger_path: Path, *, root: Path
+) -> dict[str, Any]:
+    """Create or verify every A1 alignment record named by a filled A0 ledger."""
+
+    contract_raw, contract = load_contract(contract_path, root=root)
+    ledger_raw, ledger = _read_object(ledger_path)
+    rows = ledger.get("rows")
+    if (
+        set(ledger) != {"schema", "rows"}
+        or ledger.get("schema") != LEDGER_SCHEMA
+        or not isinstance(rows, list)
+        or not rows
+    ):
+        raise ThreeStockScanIntegrityError(
+            "alignment ledger schema or rows are invalid"
+        )
+    inventory: list[dict[str, str]] = []
+    materialized = 0
+    reused = 0
+    for index, row in enumerate(rows):
+        if not isinstance(row, dict) or not isinstance(row.get("row_id"), str):
+            raise ThreeStockScanIntegrityError(f"invalid alignment ledger row {index}")
+        digital_path = _bound_path(
+            root, row.get("digital_reference_path"), field="digital_reference_path"
+        )
+        scan_path = _bound_path(
+            root, row.get("scan_sample_path"), field="scan_sample_path"
+        )
+        output_path = _data_output_path(
+            root,
+            row.get("alignment_evidence_path"),
+            field="alignment_evidence_path",
+        )
+        digital_rgb = decode_integer_rgb(digital_path, contract["decode"])
+        scan_rgb = decode_scan_integer_rgb(scan_path, contract["decode"])
+        evidence = build_alignment_evidence(
+            {
+                "row_id": row["row_id"],
+                "digital_reference_sha256": _sha256_file(digital_path),
+                "scan_sample_sha256": _sha256_file(scan_path),
+            },
+            digital_rgb,
+            scan_rgb,
+            alignment=contract["alignment"],
+            schema=contract["record_schemas"]["alignment"],
+        )
+        payload = _canonical(evidence)
+        if output_path.exists():
+            _, observed = _read_object(output_path)
+            if not _numeric_close(
+                observed,
+                evidence,
+                tolerance=float(
+                    contract["alignment"]["maximum_evidence_float_abs_error"]
+                ),
+            ):
+                raise ThreeStockScanIntegrityError(
+                    f"existing alignment evidence drift: {row['row_id']}"
+                )
+            reused += 1
+        else:
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            with output_path.open("xb") as handle:
+                handle.write(payload)
+            materialized += 1
+        inventory.append({"row_id": row["row_id"], "evidence_sha256": _sha256(payload)})
+    core = {
+        "schema": "neuro-film.sf3-a1-alignment-evidence-materialization-report.v1",
+        "experiment_id": "SF3.A1-ALIGNMENT-EVIDENCE",
+        "contract_sha256": _sha256(contract_raw),
+        "ledger_sha256": _sha256(ledger_raw),
+        "row_count": len(rows),
+        "inventory": inventory,
+        "pixel_reads": len(rows) * 2,
+        "operator_fits": 0,
+        "automatic_pass": True,
+        "decision": "READY_TO_COMPILE_SF3_A0_LEDGER_WITH_ALIGNMENT_EVIDENCE",
+        "claim_ceiling": (
+            "Create-only controlled-scan alignment evidence assembly. Passing is "
+            "not SF3.A0/A1 admission, fitting, stock response or calibration."
+        ),
+    }
+    return {
+        **core,
+        "materialized_records": materialized,
+        "reused_records": reused,
+        "stable_evidence_id": _sha256(_canonical(core)),
+    }
+
+
 def _numeric_close(left: Any, right: Any, *, tolerance: float) -> bool:
     if isinstance(left, bool) or isinstance(right, bool):
         return left is right
@@ -489,4 +592,5 @@ __all__ = [
     "decode_scan_integer_rgb",
     "evaluate",
     "load_contract",
+    "materialize_alignment_evidence",
 ]
