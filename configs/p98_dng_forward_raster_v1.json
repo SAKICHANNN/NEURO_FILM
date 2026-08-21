@@ -11,7 +11,11 @@
     "p97_evidence_path": "docs/evidence/P97_DNG_PCS_REC2020_COMPOSITION_RESULT.json",
     "p97_evidence_sha256": "63dfd262b06ba37faafa77fabf6f0cc34a1e039766eab959e06ac5914629ee5a",
     "implementation_path": "src/preprocess/dng_forward_raster.py",
-    "runner_path": "scripts/audit_p98_dng_forward_raster.py"
+    "implementation_sha256": "eb50a4b0957b88a40b2da6da929a90cc5d9e390d95589914b41e0ff0711091e9",
+    "runner_path": "scripts/audit_p98_dng_forward_raster.py",
+    "runner_sha256": "4299255d3bbe1c0ae642545881e544985c0f7a3c1ab0fc95777266d9ed9a4872",
+    "test_path": "tests/test_dng_forward_raster.py",
+    "test_sha256": "e7bfc84659beac2cceb9c2a96932fb0bc59db8fe048e567f928b10189c9c7b5f"
   },
   "rows": [
     {
