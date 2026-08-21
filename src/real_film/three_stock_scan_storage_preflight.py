@@ -8,6 +8,11 @@ import shutil
 from pathlib import Path
 from typing import Any
 
+import numpy as np
+import tifffile
+
+from src.preprocess import srgb_icc_profile_sha256
+
 SCHEMA = "neuro-film.sf3-a0p-three-stock-scan-storage-preflight-contract.v1"
 REPORT_SCHEMA = "neuro-film.sf3-a0p-three-stock-scan-storage-preflight-report.v1"
 
@@ -71,9 +76,58 @@ def load_contract(path: Path, *, root: Path) -> tuple[bytes, dict[str, Any]]:
         or profile.get("channels") != 3
         or profile.get("integer_bits_per_channel") != 16
         or profile.get("lossless_required") is not True
+        or profile.get("required_embedded_icc_profile_sha256")
+        != srgb_icc_profile_sha256()
+        or profile.get("required_orientation") != 1
+        or profile.get("required_planar_configuration") != 1
+        or profile.get("allowed_tiff_compression_codes") != [1, 8, 32946]
     ):
         raise ThreeStockScanStoragePreflightError("scan profile drift")
     return raw, contract
+
+
+def validate_scan_file(path: Path, profile: dict[str, Any]) -> dict[str, Any]:
+    """Validate one future scanner export without colour-space guessing."""
+
+    if path.suffix.casefold() not in {".tif", ".tiff"} or not path.is_file():
+        raise ThreeStockScanStoragePreflightError("scan must be an existing TIFF")
+    with tifffile.TiffFile(path) as image:
+        if len(image.pages) != 1:
+            raise ThreeStockScanStoragePreflightError("scan TIFF must have one page")
+        page = image.pages[0]
+        shape = (int(page.imagelength), int(page.imagewidth), int(page.samplesperpixel))
+        bits = page.bitspersample
+        if isinstance(bits, tuple):
+            bits = max(bits)
+        orientation_tag = page.tags.get("Orientation")
+        orientation = int(orientation_tag.value) if orientation_tag is not None else 1
+        profile_tag = page.tags.get(34675)
+        embedded = bytes(profile_tag.value) if profile_tag is not None else b""
+        compression = int(page.compression)
+        planar = int(page.planarconfig)
+        dtype = np.dtype(page.dtype)
+    expected_shape = (int(profile["height"]), int(profile["width"]), 3)
+    facts = {
+        "shape": list(shape),
+        "dtype": dtype.str,
+        "orientation": orientation,
+        "planar_configuration": planar,
+        "compression_code": compression,
+        "icc_profile_sha256": _sha256(embedded) if embedded else None,
+    }
+    if shape != expected_shape:
+        raise ThreeStockScanStoragePreflightError("scan geometry drift")
+    if dtype != np.dtype(np.uint16) or int(bits) != 16:
+        raise ThreeStockScanStoragePreflightError("scan must be RGB16")
+    if orientation != int(profile["required_orientation"]):
+        raise ThreeStockScanStoragePreflightError("scan orientation drift")
+    if planar != int(profile["required_planar_configuration"]):
+        raise ThreeStockScanStoragePreflightError("scan planar layout drift")
+    if compression not in {int(value) for value in profile["allowed_tiff_compression_codes"]}:
+        raise ThreeStockScanStoragePreflightError("scan compression is not allowed")
+    if facts["icc_profile_sha256"] != profile["required_embedded_icc_profile_sha256"]:
+        raise ThreeStockScanStoragePreflightError("scan sRGB ICC identity drift")
+    return facts
 
 
 def evaluate(path: Path, *, root: Path) -> dict[str, Any]:
@@ -159,4 +213,5 @@ __all__ = [
     "ThreeStockScanStoragePreflightError",
     "evaluate",
     "load_contract",
+    "validate_scan_file",
 ]

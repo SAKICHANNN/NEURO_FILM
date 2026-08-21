@@ -15716,3 +15716,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   passes with 6,531,579,904 bytes available, projecting 863,147,776 bytes
   remaining versus the frozen 512MiB reserve. No capture directory or film
   data was created. Twenty-eight adjacent A0L--A2 tests pass.
+- The scan tier additionally requires single-page contiguous RGB16 TIFF,
+  orientation 1, lossless/uncompressed-or-Deflate storage and the project's
+  exact sRGB ICC. This prevents device-profile code values from being fitted
+  as if they were sRGB; arbitrary 16-bit scanner ICC conversion remains
+  intentionally unsupported. Thirty-nine scan-container/output/raster-ingress
+  tests pass in the project environment.
