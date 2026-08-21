@@ -154,6 +154,14 @@ green. This is capture readiness only; physical exposures and scans remain
 zero, so the next mainline action is recording the frozen work order rather
 than another proxy or model family.
 
+A0N now also provides the missing receipt-to-ledger compiler boundary. It
+requires the evidence ledger to use the exact 108 scene scan-task IDs, film
+frame/exposure slots, roll/process/scanner slots, camera system and stimulus
+hashes from A0L, and requires every common-condition file to equal its filled
+A0N receipt before emitting the existing A0 manifest bytes. Diagnostic scan
+tasks remain outside the fitting ledger. This removes a future ingestion
+blocker but does not fabricate the still-empty physical packet or open A1/A2.
+
 SF3.A2 tests one bounded current public-index refresh without changing the
 three-stock gates. The frozen anonymous Openverse route returned HTTP 401 for
 all three exact queries, despite the current consumer documentation describing

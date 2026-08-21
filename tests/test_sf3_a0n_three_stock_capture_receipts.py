@@ -1,13 +1,16 @@
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 
 import pytest
 
+import src.real_film.three_stock_capture_receipts as receipts_module
 from src.real_film.three_stock_capture_receipts import (
     ThreeStockCaptureReceiptError,
     build_receipt_template,
+    evaluate_ledger_binding,
     evaluate_receipts,
 )
 
@@ -98,3 +101,151 @@ def test_invalid_receipts_fail_closed(tmp_path: Path, mutation: str) -> None:
         packet["exposure_receipts"][0]["meter_calibration_sha256"] = "0"
     with pytest.raises(ThreeStockCaptureReceiptError):
         evaluate_receipts(CONTRACT, _write(tmp_path, packet), root=ROOT)
+
+
+def _binding_fixture(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> tuple:
+    root = tmp_path / "repo"
+    (tmp_path / "acquisition.json").write_text("{}", encoding="utf-8")
+    condition_path = root / "data" / "condition.json"
+    condition_path.parent.mkdir(parents=True)
+    condition = {
+        "condition_slot_id": "development:scene:scene-1",
+        "stimulus_sha256": "1" * 64,
+        "display_device_id": "display-1",
+        "display_profile_sha256": "2" * 64,
+        "display_luminance_cd_m2": 120.0,
+        "ambient_illuminance_lux": 5.0,
+        "camera_system_id": "camera-1",
+        "lens_id": "lens-1",
+        "aperture_f_number": 8.0,
+        "focus_distance_m": 2.0,
+        "framing_id": "frame-1",
+    }
+    condition_path.write_text(json.dumps(condition), encoding="utf-8")
+    packet = {
+        "common_condition_records": [condition],
+        "exposure_receipts": [],
+    }
+    packet_path = tmp_path / "packet.json"
+    packet_path.write_text(json.dumps(packet), encoding="utf-8")
+    source = {
+        "row_id": "development:fujifilm_velvia_50:roll:01:scene:scene-1:scan:01",
+        "film_frame_id": "development:fujifilm_velvia_50:roll:01:scene:scene-1",
+        "stock_id": "fujifilm_velvia_50",
+        "role": "development",
+        "scene_id": "scene-1",
+        "roll_id": "development:fujifilm_velvia_50:roll:01",
+        "process_session_id": "development:fujifilm_velvia_50:process:01",
+        "process_type": "e6_reversal",
+        "interpretation_id": "direct_slide_neutral_scan",
+        "scanner_device_id": "development:scanner-device:01",
+        "scanner_session_id": "development:scanner-session:01",
+        "camera_system_id": "camera-1",
+        "capture_condition_record_path": "data/condition.json",
+    }
+    ledger_path = tmp_path / "ledger.json"
+    ledger_path.write_text(
+        json.dumps({"schema": "test-ledger", "rows": [source]}), encoding="utf-8"
+    )
+    work_order = {
+        "exposure_rows": [
+            {
+                "exposure_slot_id": source["film_frame_id"],
+                "stock_id": source["stock_id"],
+                "role": source["role"],
+                "roll_slot_id": source["roll_id"],
+                "process_session_slot_id": source["process_session_id"],
+                "process_type": source["process_type"],
+                "interpretation_id": source["interpretation_id"],
+                "common_condition_slot_id": condition["condition_slot_id"],
+            }
+        ],
+        "common_condition_records": [
+            {
+                "condition_slot_id": condition["condition_slot_id"],
+                "scene_id": source["scene_id"],
+                "stimulus_sha256": condition["stimulus_sha256"],
+            }
+        ],
+        "scan_tasks": [
+            {
+                "scan_task_id": source["row_id"],
+                "exposure_slot_id": source["film_frame_id"],
+                "scanner_device_slot_id": source["scanner_device_id"],
+                "scanner_session_slot_id": source["scanner_session_id"],
+                "counts_toward_evidence_minimum": True,
+            },
+            {
+                "scan_task_id": "diagnostic-task",
+                "counts_toward_evidence_minimum": False,
+            },
+        ],
+    }
+    manifest = {
+        "schema": "test-manifest",
+        "rows": [{"digital_reference_sha256": condition["stimulus_sha256"]}],
+    }
+    monkeypatch.setattr(
+        receipts_module,
+        "evaluate_receipts",
+        lambda *_args, **_kwargs: {
+            "contract_sha256": "3" * 64,
+            "work_order_stable_evidence_id": "4" * 64,
+            "stable_evidence_id": "5" * 64,
+        },
+    )
+    monkeypatch.setattr(
+        receipts_module,
+        "_load_contract_and_work_order",
+        lambda *_args, **_kwargs: (b"{}", {}, work_order),
+    )
+    monkeypatch.setattr(
+        receipts_module,
+        "compile_acquisition_ledger",
+        lambda *_args, **_kwargs: manifest,
+    )
+    return root, packet_path, ledger_path, source
+
+
+def test_receipt_packet_binds_exact_evidence_ledger_tasks(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    root, packet, ledger, _ = _binding_fixture(tmp_path, monkeypatch)
+    report = evaluate_ledger_binding(
+        tmp_path / "contract.json",
+        packet,
+        tmp_path / "acquisition.json",
+        ledger,
+        root=root,
+    )
+    assert report["automatic_pass"] is True
+    assert report["evidence_scan_tasks"] == 1
+    assert report["diagnostic_scan_tasks_excluded"] == 1
+    assert report["pixel_reads"] == report["operator_fits"] == 0
+    assert report["compiled_manifest"]["schema"] == "test-manifest"
+    manifest_bytes = (
+        json.dumps(
+            report["compiled_manifest"], sort_keys=True, separators=(",", ":")
+        )
+        + "\n"
+    ).encode("ascii")
+    assert report["compiled_manifest_sha256"] == hashlib.sha256(
+        manifest_bytes
+    ).hexdigest()
+
+
+def test_receipt_packet_rejects_ledger_slot_drift(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    root, packet, ledger, _ = _binding_fixture(tmp_path, monkeypatch)
+    value = json.loads(ledger.read_text(encoding="utf-8"))
+    value["rows"][0]["film_frame_id"] = "foreign-frame"
+    ledger.write_text(json.dumps(value), encoding="utf-8")
+    with pytest.raises(ThreeStockCaptureReceiptError, match="identity drift"):
+        evaluate_ledger_binding(
+            tmp_path / "contract.json",
+            packet,
+            tmp_path / "acquisition.json",
+            ledger,
+            root=root,
+        )

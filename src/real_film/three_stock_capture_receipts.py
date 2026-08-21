@@ -9,9 +9,14 @@ import re
 from pathlib import Path
 from typing import Any
 
+from src.real_film.three_stock_acquisition import compile_acquisition_ledger
+
 CONTRACT_SCHEMA = "neuro-film.sf3-a0n-three-stock-capture-receipt-contract.v1"
 PACKET_SCHEMA = "neuro-film.sf3-a0n-three-stock-capture-receipt-packet.v1"
 REPORT_SCHEMA = "neuro-film.sf3-a0n-three-stock-capture-receipt-report.v1"
+BINDING_REPORT_SCHEMA = (
+    "neuro-film.sf3-a0n-three-stock-receipt-ledger-binding-report.v1"
+)
 _SHA256 = re.compile(r"^[0-9a-f]{64}$")
 
 
@@ -222,8 +227,139 @@ def evaluate_receipts(
     return {**core, "stable_evidence_id": _sha256(_canonical(core))}
 
 
+def evaluate_ledger_binding(
+    contract_path: Path,
+    packet_path: Path,
+    acquisition_contract_path: Path,
+    ledger_path: Path,
+    *,
+    root: Path,
+) -> dict[str, Any]:
+    """Bind one passing receipt packet to the exact evidence scan-task ledger.
+
+    This is deliberately pre-pixel plumbing.  Diagnostic exposures remain in the
+    physical work order but do not enter the SF3.A0 evidence ledger.
+    """
+
+    receipt_report = evaluate_receipts(contract_path, packet_path, root=root)
+    _, _, work_order = _load_contract_and_work_order(contract_path, root=root)
+    packet_raw, packet = _read_object(packet_path)
+    ledger_raw, ledger = _read_object(ledger_path)
+    acquisition_contract_raw = acquisition_contract_path.read_bytes()
+    manifest = compile_acquisition_ledger(
+        acquisition_contract_path, ledger_path, root=root
+    )
+
+    source_rows = ledger.get("rows")
+    if not isinstance(source_rows, list):
+        raise ThreeStockCaptureReceiptError("invalid acquisition ledger rows")
+    manifest_rows = manifest.get("rows")
+    if not isinstance(manifest_rows, list) or len(manifest_rows) != len(source_rows):
+        raise ThreeStockCaptureReceiptError("compiled manifest row-count drift")
+
+    exposure_by_id = {
+        row["exposure_slot_id"]: row for row in work_order["exposure_rows"]
+    }
+    condition_by_id = {
+        row["condition_slot_id"]: row
+        for row in work_order["common_condition_records"]
+    }
+    receipt_condition_by_id = {
+        row["condition_slot_id"]: row for row in packet["common_condition_records"]
+    }
+    evidence_tasks = {
+        row["scan_task_id"]: row
+        for row in work_order["scan_tasks"]
+        if row["counts_toward_evidence_minimum"] is True
+    }
+    if len(source_rows) != len(evidence_tasks):
+        raise ThreeStockCaptureReceiptError("evidence scan-task count drift")
+
+    observed_tasks: set[str] = set()
+    for source, compiled in zip(source_rows, manifest_rows, strict=True):
+        task_id = source.get("row_id")
+        task = evidence_tasks.get(task_id)
+        if task is None or task_id in observed_tasks:
+            raise ThreeStockCaptureReceiptError("unknown or duplicate scan task")
+        observed_tasks.add(task_id)
+        exposure = exposure_by_id[task["exposure_slot_id"]]
+        condition = condition_by_id[exposure["common_condition_slot_id"]]
+        receipt_condition = receipt_condition_by_id[condition["condition_slot_id"]]
+        expected = {
+            "film_frame_id": exposure["exposure_slot_id"],
+            "stock_id": exposure["stock_id"],
+            "role": exposure["role"],
+            "scene_id": condition["scene_id"],
+            "roll_id": exposure["roll_slot_id"],
+            "process_session_id": exposure["process_session_slot_id"],
+            "process_type": exposure["process_type"],
+            "interpretation_id": exposure["interpretation_id"],
+            "scanner_device_id": task["scanner_device_slot_id"],
+            "scanner_session_id": task["scanner_session_slot_id"],
+            "camera_system_id": receipt_condition["camera_system_id"],
+        }
+        if any(source.get(key) != value for key, value in expected.items()):
+            raise ThreeStockCaptureReceiptError(
+                f"ledger/work-order identity drift: {task_id}"
+            )
+        if compiled["digital_reference_sha256"] != condition["stimulus_sha256"]:
+            raise ThreeStockCaptureReceiptError(
+                f"ledger stimulus identity drift: {task_id}"
+            )
+        condition_path = Path(str(source["capture_condition_record_path"]))
+        if (
+            condition_path.is_absolute()
+            or ".." in condition_path.parts
+            or not condition_path.parts
+            or condition_path.parts[0].casefold() != "data"
+        ):
+            raise ThreeStockCaptureReceiptError("invalid capture-condition path")
+        _, observed_condition = _read_object(root.joinpath(*condition_path.parts))
+        if observed_condition != receipt_condition:
+            raise ThreeStockCaptureReceiptError(
+                f"capture-condition receipt drift: {task_id}"
+            )
+
+    if observed_tasks != set(evidence_tasks):
+        raise ThreeStockCaptureReceiptError("evidence scan-task coverage drift")
+    manifest_raw = _canonical(manifest)
+    core = {
+        "schema": BINDING_REPORT_SCHEMA,
+        "experiment_id": "SF3.A0N-LEDGER",
+        "receipt_contract_sha256": receipt_report["contract_sha256"],
+        "work_order_stable_evidence_id": receipt_report[
+            "work_order_stable_evidence_id"
+        ],
+        "receipt_packet_sha256": _sha256(packet_raw),
+        "receipt_stable_evidence_id": receipt_report["stable_evidence_id"],
+        "acquisition_contract_sha256": _sha256(acquisition_contract_raw),
+        "acquisition_ledger_sha256": _sha256(ledger_raw),
+        "compiled_manifest_sha256": _sha256(manifest_raw),
+        "evidence_scan_tasks": len(evidence_tasks),
+        "diagnostic_scan_tasks_excluded": len(work_order["scan_tasks"])
+        - len(evidence_tasks),
+        "automatic_pass": True,
+        "decision": "READY_TO_RUN_SF3_A0_ADMISSION_WITH_RECEIPTS_BOUND",
+        "pixel_reads": 0,
+        "operator_fits": 0,
+        "film_target_scores": 0,
+        "claim_ceiling": (
+            "Exact SF3.A0L/A0N receipt-to-ledger identity binding before SF3.A0 "
+            "admission. Passing is not evidence that scans decode or align, is not "
+            "a stock response, and creates no fitting, calibration or product claim."
+        ),
+    }
+    return {
+        **core,
+        "compiled_manifest": manifest,
+        "stable_evidence_id": _sha256(_canonical(core)),
+    }
+
+
 __all__ = [
+    "BINDING_REPORT_SCHEMA",
     "ThreeStockCaptureReceiptError",
     "build_receipt_template",
+    "evaluate_ledger_binding",
     "evaluate_receipts",
 ]

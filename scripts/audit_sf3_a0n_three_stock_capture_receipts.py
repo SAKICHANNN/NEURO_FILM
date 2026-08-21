@@ -13,6 +13,7 @@ if str(ROOT) not in sys.path:
 
 from src.real_film.three_stock_capture_receipts import (
     build_receipt_template,
+    evaluate_ledger_binding,
     evaluate_receipts,
 )
 
@@ -27,13 +28,40 @@ def main() -> int:
     mode = parser.add_mutually_exclusive_group(required=True)
     mode.add_argument("--packet", type=Path)
     mode.add_argument("--build-template", action="store_true")
+    parser.add_argument("--ledger", type=Path)
+    parser.add_argument(
+        "--acquisition-contract",
+        type=Path,
+        default=ROOT / "configs/sf3_a0_three_stock_controlled_acquisition_v1.json",
+    )
+    parser.add_argument("--manifest-output", type=Path)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
-    report = (
-        build_receipt_template(args.contract, root=ROOT)
-        if args.build_template
-        else evaluate_receipts(args.contract, args.packet, root=ROOT)
-    )
+    if args.build_template:
+        if args.ledger is not None or args.manifest_output is not None:
+            parser.error("ledger outputs require --packet")
+        report = build_receipt_template(args.contract, root=ROOT)
+    elif args.ledger is not None:
+        if args.manifest_output is None:
+            parser.error("--ledger requires --manifest-output")
+        report = evaluate_ledger_binding(
+            args.contract,
+            args.packet,
+            args.acquisition_contract,
+            args.ledger,
+            root=ROOT,
+        )
+        manifest = report.pop("compiled_manifest")
+        manifest_payload = (
+            json.dumps(manifest, sort_keys=True, separators=(",", ":")) + "\n"
+        ).encode("ascii")
+        args.manifest_output.parent.mkdir(parents=True, exist_ok=True)
+        with args.manifest_output.open("xb") as handle:
+            handle.write(manifest_payload)
+    else:
+        if args.manifest_output is not None:
+            parser.error("--manifest-output requires --ledger")
+        report = evaluate_receipts(args.contract, args.packet, root=ROOT)
     payload = (json.dumps(report, indent=2, sort_keys=True) + "\n").encode("ascii")
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with args.output.open("xb") as handle:
