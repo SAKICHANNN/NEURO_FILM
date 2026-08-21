@@ -1,0 +1,106 @@
+{
+  "schema": "neuro_film.p94_dng_forward_matrix_mechanics_evidence.v1",
+  "experiment_id": "p94-dng-forward-matrix-mechanics-v1",
+  "node": "ULT > U1 > U1.3G / P94",
+  "status": "PASS_PRIVATE_DNG_FORWARD_MATRIX_MECHANICS",
+  "decision": "retain the private metadata-only DNG dual-illuminant ForwardMatrix primitive and open only a separately frozen raster-bearing camera-to-PCS conformance leaf",
+  "bindings": {
+    "contract": {
+      "path": "docs/planning/P94_DNG_FORWARD_MATRIX_MECHANICS_CONTRACT.md",
+      "sha256": "e90693170b7210e47aa90dc7daa08f7b651f598803b618b757f9f100bd208797",
+      "freeze_commit": "b1610e86",
+      "prescore_invariant_correction_commit": "acc9c6cf"
+    },
+    "config": {
+      "path": "configs/p94_dng_forward_matrix_mechanics_v1.json",
+      "sha256": "eb271752a2c7ca518fc04b3810355377724c9f132e5f46e8d855a9966ad82af3",
+      "lock_commit": "0d352f8a"
+    },
+    "implementation": {
+      "path": "src/preprocess/dng_forward_matrix.py",
+      "sha256": "33aff35d43cec55136cb5817aaa813c1336509b750bb24dd755db00ec8a3246d",
+      "implementation_commit": "14defa9b"
+    },
+    "runner": {
+      "path": "scripts/audit_p94_dng_forward_matrix_mechanics.py",
+      "sha256": "a8625083f2155a12f8bd07aca6b3dca9abc8c1d001b922c1a0d64e72ebeff1b8",
+      "lock_commit": "0d352f8a"
+    },
+    "standard_specification": {
+      "path": "data/external/adobe_dng_spec_1_7_1_0/DNG_Spec_1_7_1_0.pdf",
+      "sha256": "abdecfd8e104e8b86cc054d3a40b677bb2ebe87131bfde080a1df3ee16eb2f8d",
+      "version": "1.7.1.0"
+    },
+    "sdk_archive": {
+      "path": "data/external/adobe_dng_sdk_1_7_1_2652/dng_sdk_1_7_1_2652_20260714.zip",
+      "sha256": "73499b47f4683e12120a234bd0946f02e52ab2ff9834bcbd0e9f8ab4f923360e",
+      "version": "1.7.1 build 2652"
+    },
+    "raw_report": {
+      "path": "outputs/eval/p94_dng_forward_matrix_mechanics/outer1_forward.json",
+      "sha256": "f5a4aeb31070efcc7bddd9ff485dccadaa6b04e95d0251483c4bc1c24a1ae216",
+      "stable_identity_sha256": "480e7d4365532af7f6265717811ec5b2a24e7e929ca43e51160b5675bf6da7ab"
+    }
+  },
+  "execution": {
+    "row_count": 5,
+    "distinct_camera_makes": 5,
+    "fresh_process_report_count": 4,
+    "forward_report_count": 2,
+    "reverse_report_count": 2,
+    "all_report_sha256": "f5a4aeb31070efcc7bddd9ff485dccadaa6b04e95d0251483c4bc1c24a1ae216",
+    "forward_reverse_byte_exact": true,
+    "two_fresh_process_reports_byte_exact": true,
+    "raster_sample_rgb_decode_calls": 0
+  },
+  "execution_amendments": [
+    {
+      "stage": "before metadata read and before report construction",
+      "issue": "direct script execution did not place the repository root on sys.path and stopped at ModuleNotFoundError",
+      "change": "add only the standard repository-root import bootstrap, update the bound runner hash, and restart all four formal processes from zero",
+      "scientific_inputs_or_gates_changed": false,
+      "partial_report_or_score_created": false
+    }
+  ],
+  "metrics": {
+    "maximum_forward_one_to_pcs_error": 4.440892098500626e-16,
+    "maximum_camera_white_to_pcs_error": 2.220446049250313e-16,
+    "maximum_inverse_roundtrip_error": 3.3306690738754696e-16,
+    "maximum_neutral_iterations": 25,
+    "minimum_camera_to_pcs_determinant": 0.5070847493290644,
+    "maximum_camera_to_pcs_determinant": 3.013687671548487,
+    "standard_default_counts": {
+      "analog_balance_ones": 4,
+      "camera_calibration1_identity": 0,
+      "camera_calibration2_identity": 0
+    }
+  },
+  "gates": {
+    "camera_make_count": true,
+    "camera_white_to_pcs": true,
+    "finite_nonsingular": true,
+    "forward_one_to_pcs": true,
+    "inverse_roundtrip": true,
+    "neutral_iterations": true,
+    "row_count": true,
+    "zero_raster_decode": true,
+    "forward_reverse_exact": true,
+    "two_fresh_process_reports_exact": true
+  },
+  "interpretation": {
+    "established": [
+      "five exact DNGs from five camera makes expose complete A/D65 dual-illuminant ForwardMatrix metadata",
+      "the versioned primitive reproduces the SDK equations with explicit standard-default provenance and no raster/sample decode",
+      "both endpoint ForwardMatrix values map camera one to D50 XYZ to below 4.5e-16 max absolute error",
+      "each final camera-to-PCS matrix maps the reconstructed camera white to D50 XYZ to below 2.3e-16 max absolute error",
+      "all transforms are finite, invertible, deterministic, and pass the fixed seven-probe inverse roundtrip"
+    ],
+    "not_established": [
+      "arbitrary DNG, non-three-channel, custom-illuminant, or missing-ForwardMatrix support",
+      "real sensor, IDT, demosaic, render, ACES, appearance, or photographic quality",
+      "default loader behavior or replacement of the existing generic RAW path",
+      "public API/schema/package/capability, product, film, stock, or preference admission"
+    ]
+  },
+  "claim_ceiling": "Private metadata-only exact five-device DNG 1.7.1 dual-illuminant ForwardMatrix camera-to-D50 PCS mechanics only; no raster decode, arbitrary DNG, real sensor or IDT calibration accuracy, demosaic/render/ACES quality, default loader, public schema/package/capability, product, film or stock admission"
+}

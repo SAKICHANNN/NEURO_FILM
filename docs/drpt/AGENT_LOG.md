@@ -15412,3 +15412,34 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain the private v2 primitive; close complete five-device conformance with
   no row/tolerance/default/LibRaw rescue. No raster, IDT/noise, loader, public
   schema/capability, package, product, film or stock admission opens.
+### 2026-08-21 - P94 DNG ForwardMatrix mechanics passes
+
+- **Node:** ULT > U1 > U1.3G / P94.
+- **Skills:** `dev-research-reliability` primary; research, DRPT-BI, agent-log,
+  structure-steward, and current-source verification as read-only disciplines.
+- **Direction:** Follow the project stop-loss correction: no further open-ended
+  after-only shared-bundle search.  P94 advances only the mature RAW/DNG
+  explicit-operator lane.
+- **Freeze:** `docs/planning/P94_DNG_FORWARD_MATRIX_MECHANICS_CONTRACT.md` and
+  `configs/p94_dng_forward_matrix_mechanics_v1.json` bind Adobe DNG 1.7.1.0,
+  SDK build 2652 source members, five exact DNGs, equations, defaults, gates,
+  and zero-sample-read boundary.
+- **Implementation:** `src/preprocess/dng_forward_matrix.py` adds only the
+  three-channel A/D65 dual-illuminant metadata primitive, with the required
+  Adobe DNG notice.  No existing loader/default path changed.
+- **Prescore corrections:** the frozen invariant was corrected from reference
+  neutral to camera white before implementation/scoring; the first formal
+  launch stopped at import before metadata/report and only received a standard
+  repo-root bootstrap before all four runs restarted.
+- **Evidence:** five makes pass.  Maximum ForwardMatrix camera-one to D50 error
+  `4.440892098500626e-16`; camera-white to D50 error
+  `2.220446049250313e-16`; inverse roundtrip `3.3306690738754696e-16`;
+  maximum neutral iterations 25; raster/sample/RGB reads zero.  Four fresh
+  forward/reverse reports are byte-exact at SHA-256
+  `f5a4aeb31070efcc7bddd9ff485dccadaa6b04e95d0251483c4bc1c24a1ae216`,
+  stable identity `480e7d4365532af7f6265717811ec5b2a24e7e929ca43e51160b5675bf6da7ab`.
+- **Claim boundary:** private matrix mechanics only.  Arbitrary DNG, sensor/IDT
+  calibration, raster/render/ACES quality, loader integration, public
+  package/schema/capability, product, film, and stock claims remain closed.
+- **Handoff:** a new raster-bearing camera-to-PCS conformance leaf may be
+  frozen independently; it must not silently replace generic RAW ingress.
