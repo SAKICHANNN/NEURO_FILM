@@ -60,7 +60,7 @@ All gates are mandatory:
 - all derived matrices/vectors finite and camera-to-PCS determinant nonzero;
 - normalized forward matrices map camera one to D50 XYZ with max absolute
   error at most `1e-12`;
-- derived camera-to-PCS maps its reconstructed reference neutral to D50 XYZ
+- derived camera-to-PCS maps its reconstructed camera white to D50 XYZ
   with max absolute error at most `1e-10`;
 - camera-to-PCS inverse roundtrip max absolute error at most `1e-10` on the
   fixed identity-plus-six-axis probe;
@@ -81,4 +81,3 @@ ForwardMatrix camera-to-D50 PCS mechanics result.  It does not establish
 arbitrary-DNG support, real sensor/IDT calibration accuracy, demosaic or render
 quality, ACES output, default-loader behavior, public API/schema/package,
 capability, product admission, film identity, or stock authenticity.
-
