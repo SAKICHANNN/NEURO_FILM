@@ -20,12 +20,16 @@ from src.real_film.three_stock_acquisition import (
     LEDGER_SCHEMA,
     compile_acquisition_ledger,
     evaluate_manifest,
+    evaluate_single_stock_manifest,
 )
 
 CONTRACT_SCHEMA = (
     "neuro-film.sf3-a1-three-stock-file-pixel-alignment-integrity-contract.v1"
 )
 REPORT_SCHEMA = "neuro-film.sf3-a1-three-stock-file-pixel-alignment-integrity-report.v1"
+SINGLE_STOCK_REPORT_SCHEMA = (
+    "neuro-film.sf3-a1-single-stock-file-pixel-alignment-integrity-report.v1"
+)
 
 
 class ThreeStockScanIntegrityError(ValueError):
@@ -407,12 +411,13 @@ def _rights_exact(
     )
 
 
-def evaluate(
+def _evaluate(
     contract_path: Path,
     ledger_path: Path,
     manifest_path: Path,
     *,
     root: Path,
+    stock: str | None,
 ) -> dict[str, Any]:
     """Audit an A0-admitted physical acquisition without fitting any operator."""
 
@@ -429,11 +434,17 @@ def evaluate(
         raise ThreeStockScanIntegrityError(
             "SF3.A0 manifest does not match ledger bytes"
         )
-    parent_report = evaluate_manifest(parent_path, manifest_path)
-    if (
-        parent_report["decision"]
-        != contract["parent"]["acquisition_contract"]["required_decision"]
-    ):
+    parent_report = (
+        evaluate_manifest(parent_path, manifest_path)
+        if stock is None
+        else evaluate_single_stock_manifest(parent_path, manifest_path, stock=stock)
+    )
+    required_parent_decision = (
+        contract["parent"]["acquisition_contract"]["required_decision"]
+        if stock is None
+        else "OPEN_SINGLE_STOCK_A1_FILE_PIXEL_ALIGNMENT_AND_RIGHTS_INTEGRITY_AUDIT"
+    )
+    if parent_report["decision"] != required_parent_decision:
         raise ThreeStockScanIntegrityError("SF3.A0 parent admission is not open")
 
     source_rows = ledger.get("rows")
@@ -562,8 +573,12 @@ def evaluate(
         row["automatic_pass"] for row in result_rows
     )
     core = {
-        "schema": REPORT_SCHEMA,
-        "experiment_id": contract["experiment_id"],
+        "schema": REPORT_SCHEMA if stock is None else SINGLE_STOCK_REPORT_SCHEMA,
+        "experiment_id": (
+            contract["experiment_id"]
+            if stock is None
+            else f"{contract['experiment_id']}.{stock}"
+        ),
         "contract_sha256": _sha256(contract_raw),
         "ledger_sha256": _sha256(ledger_raw),
         "manifest_sha256": _sha256(manifest_raw),
@@ -572,25 +587,69 @@ def evaluate(
         "rows": result_rows,
         "gates": gates,
         "automatic_pass": automatic_pass,
-        "decision": contract[
-            "decision_if_pass" if automatic_pass else "decision_if_fail"
-        ],
+        "decision": (
+            contract["decision_if_pass" if automatic_pass else "decision_if_fail"]
+            if stock is None
+            else (
+                "OPEN_SINGLE_STOCK_A2_K1_DEVELOPMENT_WITH_CONFIRMATION_SEALED"
+                if automatic_pass
+                else "RETAIN_SINGLE_STOCK_DATA_GAP_WITHOUT_ALGORITHM_RESCUE"
+            )
+        ),
         "pixel_reads": len(result_rows) * 2,
         "operator_fits": 0,
         "operator_fit_authority": False,
-        "claim_ceiling": contract["claim_ceiling"],
+        "claim_ceiling": (
+            contract["claim_ceiling"]
+            if stock is None
+            else (
+                "File, decoded-pixel, rights and alignment integrity for one "
+                "controlled stock lane only. Passing does not establish cross-stock "
+                "controls, fitting, stock response, calibration or product promotion."
+            )
+        ),
     }
+    if stock is not None:
+        core["stock"] = stock
+        core["cross_stock_integrity_evaluated"] = False
     return {**core, "stable_evidence_id": _sha256(_canonical(core))}
+
+
+def evaluate(
+    contract_path: Path,
+    ledger_path: Path,
+    manifest_path: Path,
+    *,
+    root: Path,
+) -> dict[str, Any]:
+    """Audit a complete three-stock A0 admission without fitting an operator."""
+
+    return _evaluate(contract_path, ledger_path, manifest_path, root=root, stock=None)
+
+
+def evaluate_single_stock(
+    contract_path: Path,
+    ledger_path: Path,
+    manifest_path: Path,
+    *,
+    root: Path,
+    stock: str,
+) -> dict[str, Any]:
+    """Audit one complete A0 stock lane without claiming cross-stock integrity."""
+
+    return _evaluate(contract_path, ledger_path, manifest_path, root=root, stock=stock)
 
 
 __all__ = [
     "CONTRACT_SCHEMA",
     "REPORT_SCHEMA",
+    "SINGLE_STOCK_REPORT_SCHEMA",
     "ThreeStockScanIntegrityError",
     "build_alignment_evidence",
     "decode_integer_rgb",
     "decode_scan_integer_rgb",
     "evaluate",
+    "evaluate_single_stock",
     "load_contract",
     "materialize_alignment_evidence",
 ]

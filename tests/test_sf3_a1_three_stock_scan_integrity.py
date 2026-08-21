@@ -21,6 +21,7 @@ from src.real_film.three_stock_scan_integrity import (
     decode_integer_rgb,
     decode_scan_integer_rgb,
     evaluate,
+    evaluate_single_stock,
     load_contract,
     materialize_alignment_evidence,
 )
@@ -309,6 +310,33 @@ def test_complete_fixture_passes_without_operator_fit(tmp_path: Path) -> None:
     assert report["operator_fits"] == 0
     assert report["automatic_pass"] is True
     assert all(report["gates"].values())
+
+
+def test_complete_single_stock_fixture_opens_only_single_stock_k1(
+    tmp_path: Path,
+) -> None:
+    repo, contract, ledger, _ = _fixture(tmp_path)
+    stock = "kodak_ektar_100"
+    ledger_value = json.loads(ledger.read_text(encoding="ascii"))
+    ledger_value["rows"] = [
+        row for row in ledger_value["rows"] if row["stock_id"] == stock
+    ]
+    _write_json(ledger, ledger_value)
+    manifest_value = compile_acquisition_ledger(
+        repo / "configs" / A0_CONFIG.name, ledger, root=repo
+    )
+    manifest = ledger.parent / "single-stock-manifest.json"
+    _write_json(manifest, manifest_value)
+
+    report = evaluate_single_stock(contract, ledger, manifest, root=repo, stock=stock)
+    assert report["automatic_pass"] is True
+    assert report["stock"] == stock
+    assert report["row_count"] == 36
+    assert report["pixel_reads"] == 72
+    assert report["cross_stock_integrity_evaluated"] is False
+    assert report["decision"] == (
+        "OPEN_SINGLE_STOCK_A2_K1_DEVELOPMENT_WITH_CONFIRMATION_SEALED"
+    )
 
 
 def test_alignment_materialization_is_create_only_and_replayable(
