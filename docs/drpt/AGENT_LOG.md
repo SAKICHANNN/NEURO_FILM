@@ -15792,3 +15792,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Close this composition without code or product integration and without
   thread/tile rescue. A future native path must fuse a materially larger stage
   or retain a persistent execution context.
+
+### 2026-08-21 - U7.2 closes full-frame native pointwise product value
+
+- A single full-frame native dispatch restores exact Ektar PNG bytes and takes
+  `70.067s` at `3,916,763,136` bytes peak, passing its old-full-frame speed and
+  4GB resource gates.
+- The exact 512-tile Ektar comparator takes `72.847s` at `2,503,421,952`
+  bytes. Native is only `3.82%` faster while using `1.565x` peak memory, below
+  the frozen 10% incremental-value gate.
+- Retain the cross-platform 512-tile opt-in and do not add a Windows-only
+  product branch. The three-profile tile result is now complete; return to the
+  controlled stock-evidence path rather than further colour-core tuning.

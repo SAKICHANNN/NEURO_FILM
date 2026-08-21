@@ -6,7 +6,7 @@
     "host": "local Windows ordinary CPU",
     "command": "scripts/replay_film_recipe.py --tile-size 512",
     "input_shape": [4032, 6048, 3],
-    "profiles": 2,
+    "profiles": 3,
     "new_tile_sizes_tested": [512],
     "additional_tile_search_performed": false
   },
@@ -32,6 +32,17 @@
       "original_png_sha256": "2ff70587520b73634e9096ff297eb390edde7e891bb7634f3cec6c707a119844",
       "tile512_png_sha256": "2ff70587520b73634e9096ff297eb390edde7e891bb7634f3cec6c707a119844",
       "peak_process_tree_rss_bytes": 2503561216
+    },
+    {
+      "style": "ektar_100",
+      "prior_full_frame_wall_seconds": 87.137,
+      "tile512_wall_seconds": 72.847,
+      "wall_ratio": 0.8360053708527949,
+      "wall_reduction_fraction": 0.16399462914720508,
+      "png_bytes": 125479371,
+      "original_png_sha256": "6c5c8b9c04fea4f265e1b742ce568b13a34d72462f7b6466f29685dabd03045e",
+      "tile512_png_sha256": "6c5c8b9c04fea4f265e1b742ce568b13a34d72462f7b6466f29685dabd03045e",
+      "peak_process_tree_rss_bytes": 2503421952
     }
   ],
   "all_delivered_png_bytes_exact": true,

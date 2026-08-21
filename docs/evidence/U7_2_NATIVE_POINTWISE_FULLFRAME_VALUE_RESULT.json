@@ -1,0 +1,44 @@
+{
+  "schema": "neuro-film.u7-2-native-pointwise-fullframe-value-result.v1",
+  "date": "2026-08-21",
+  "question": "Does one full-frame invocation of the retained exact v2 native safe-Lab pointwise kernel provide enough end-to-end value over the measured 512-tile Python path to justify Windows-specific product integration?",
+  "frozen_gates": {
+    "required_png_byte_identity": true,
+    "maximum_wall_seconds_vs_prior_full_frame": 78.4233,
+    "maximum_peak_process_tree_rss_bytes": 4000000000,
+    "minimum_wall_reduction_vs_best_exact_tile512_for_integration": 0.1
+  },
+  "candidate": {
+    "style": "ektar_100",
+    "shape": [4032, 6048, 3],
+    "native_dispatches": 1,
+    "native_threads": 8,
+    "native_source_sha256": "b9f55802d647319198b1bd2fe6148b3cc1ccc6ff2231806834301d0fe1db814f",
+    "native_header_sha256": "dcaff97738b403284afd4185f214ae8479167af300b484198f091a5cb674df8f",
+    "native_dll_sha256": "38d9d966b530ede3ce376aed2f2a97433d94e4515cd470aa2073b7f7c82a6ad7",
+    "png_sha256": "6c5c8b9c04fea4f265e1b742ce568b13a34d72462f7b6466f29685dabd03045e",
+    "required_png_sha256": "6c5c8b9c04fea4f265e1b742ce568b13a34d72462f7b6466f29685dabd03045e",
+    "png_byte_identity": true,
+    "wall_seconds": 70.06695720000425,
+    "peak_process_tree_rss_bytes": 3916763136
+  },
+  "comparators": {
+    "prior_full_frame_wall_seconds": 87.137,
+    "candidate_to_prior_full_frame_wall_ratio": 0.8041010959753521,
+    "tile512_wall_seconds": 72.847,
+    "tile512_peak_process_tree_rss_bytes": 2503421952,
+    "candidate_to_tile512_wall_ratio": 0.9618372369487317,
+    "candidate_wall_reduction_vs_tile512": 0.03816276305126831,
+    "candidate_to_tile512_rss_ratio": 1.5645637096338765
+  },
+  "gates": {
+    "png_byte_identity": true,
+    "wall_vs_prior_full_frame": true,
+    "peak_process_tree_rss": true,
+    "material_value_vs_best_exact_tile512": false
+  },
+  "automatic_pass": false,
+  "decision": "close_fullframe_native_pointwise_product_integration_and_retain_tile512_opt_in",
+  "interpretation": "A single full-frame native dispatch recovers the component speedup and beats the old full-frame path, but improves on the exact 512-tile path by only 3.82% while using 56.46% more peak memory. That tradeoff does not justify a Windows-only product branch.",
+  "claim_ceiling": "Local Windows 24MP execution-value evidence for one Ektar development profile. This is not cross-platform performance, stock authenticity, target closeness, product promotion or multi-stock completion."
+}
