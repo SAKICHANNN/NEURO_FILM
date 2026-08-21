@@ -12,7 +12,7 @@
     "ao6_profile_compiler": {"path": "configs/u6_p8b_artifact_only_cpu_consumer_v1.json", "sha256": "0d238a4970ae4c131d0cf39d00d30638e53e2baa63a3eccf56353c93a1ff16c4"},
     "legacy_stats": {"path": "configs/film_color_stats.json", "sha256": "1a45e90765e577edd4ca1773fc8c6cf98fd09b8afbdddfa519b1f097c5dd7c04"},
     "legacy_profiles": {"path": "configs/color_rendering_profiles.yaml", "sha256": "d919402ac03b351ceb836bbdc516de094f7bad24f54858f9897950a1dc0428bc"},
-    "legacy_guardrails": {"path": "configs/color_guardrails.json", "sha256": "6669b7bc873febcc74ba7ddcbc1c1584807e38465447a5d5bc78624af4dbdf4"}
+    "legacy_guardrails": {"path": "configs/color_guardrails.json", "sha256": "6669b7bc873febcc74ba7ddcbc1c1584807e38465447a5cdbeb24073efa00aa7"}
   },
   "input": {
     "working_space": "linear_rec2020",
