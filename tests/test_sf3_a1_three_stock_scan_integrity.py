@@ -314,11 +314,18 @@ def test_complete_fixture_passes_without_operator_fit(tmp_path: Path) -> None:
     assert all(report["gates"].values())
 
 
+@pytest.mark.parametrize(
+    "stock",
+    [
+        "fujifilm_velvia_50",
+        "kodak_portra_400",
+        "kodak_ektar_100",
+    ],
+)
 def test_complete_single_stock_fixture_opens_only_single_stock_k1(
-    tmp_path: Path,
+    tmp_path: Path, stock: str,
 ) -> None:
     repo, contract, ledger, _ = _fixture(tmp_path)
-    stock = "kodak_ektar_100"
     ledger_value = json.loads(ledger.read_text(encoding="ascii"))
     ledger_value["rows"] = [
         row for row in ledger_value["rows"] if row["stock_id"] == stock
