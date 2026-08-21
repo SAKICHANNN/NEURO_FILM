@@ -59,3 +59,18 @@ def test_aces2_pq_png_is_create_only_and_validates_rows(tmp_path: Path) -> None:
             row_count=0,
         )
     assert not (tmp_path / "invalid.png").exists()
+
+
+def test_aces2_pq_png_partition_reversal_is_byte_exact(tmp_path: Path) -> None:
+    working = _working()
+    working.pixels = np.repeat(working.pixels, 3, axis=0)
+    canonical = tmp_path / "canonical.png"
+    reversed_partition = tmp_path / "reversed.png"
+    publish_working_image_aces2_hdr_pq_png_v1(working, canonical, row_count=2)
+    publish_working_image_aces2_hdr_pq_png_v1(
+        working,
+        reversed_partition,
+        row_count=2,
+        reverse_partition=True,
+    )
+    assert canonical.read_bytes() == reversed_partition.read_bytes()

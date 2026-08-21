@@ -16,6 +16,7 @@ def publish_working_image_aces2_hdr_pq_png_v1(
     path: Path,
     *,
     row_count: int = 64,
+    reverse_partition: bool = False,
 ) -> tuple[str, np.ndarray, np.ndarray]:
     """Apply the pinned ACES 2 HDR view and publish exact full-range RGB16."""
 
@@ -40,8 +41,15 @@ def publish_working_image_aces2_hdr_pq_png_v1(
         compression_level=0,
     )
     try:
-        for start in range(0, height, row_count):
-            writer.write_rows(start, samples[start : start + row_count])
+        sizes = [row_count] * (height // row_count)
+        if height % row_count:
+            sizes.append(height % row_count)
+        if reverse_partition:
+            sizes.reverse()
+        start = 0
+        for size in sizes:
+            writer.write_rows(start, samples[start : start + size])
+            start += size
         file_sha256 = writer.finish()
     except BaseException:
         writer.abort()
