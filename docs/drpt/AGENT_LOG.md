@@ -15779,3 +15779,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain `--tile-size 512` as the measured balanced opt-in. Stop the tile-size
   search here and return to controlled three-stock evidence; this is delivery
   performance only, not stock evidence or a product-default change.
+
+### 2026-08-21 - U7.2 closes per-tile native pointwise composition
+
+- The retained v2 C11 pointwise kernel was composed with the unchanged Python
+  RGB/Lab, spatial-detail, gamut, dither and margin stages at tile size 512.
+  Three-profile small-image float bytes and 23 adjacent tests were exact.
+- The 24MP Ektar PNG remains byte exact, but wall time is `134.176s` versus
+  the existing `87.137s` full-frame replay (`1.540x`); peak process-tree RSS
+  is `2,208,337,920` bytes. Repeated native/thread dispatch across 96 tiles
+  erases the component gain.
+- Close this composition without code or product integration and without
+  thread/tile rescue. A future native path must fuse a materially larger stage
+  or retain a persistent execution context.

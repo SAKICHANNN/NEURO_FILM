@@ -1,0 +1,32 @@
+{
+  "schema": "neuro-film.u7-2-native-pointwise-tiled-composition-result.v1",
+  "date": "2026-08-21",
+  "question": "Can the retained exact v2 native safe-Lab pointwise kernel accelerate the existing exact 512-tile sRGB recipe path when invoked independently for each tile?",
+  "candidate": {
+    "composition": "rgb2lab_python_then_native_pointwise_per_tile_then_python_detail_tone_gamut_dither_margin",
+    "tile_size": 512,
+    "tile_count": 96,
+    "native_threads_per_tile": 8,
+    "native_source_sha256": "b9f55802d647319198b1bd2fe6148b3cc1ccc6ff2231806834301d0fe1db814f",
+    "native_header_sha256": "dcaff97738b403284afd4185f214ae8479167af300b484198f091a5cb674df8f",
+    "native_dll_sha256": "38d9d966b530ede3ce376aed2f2a97433d94e4515cd470aa2073b7f7c82a6ad7"
+  },
+  "preflight": {
+    "three_profile_small_image_float_byte_identity": true,
+    "adjacent_tests_passed": 23
+  },
+  "full_resolution": {
+    "style": "ektar_100",
+    "shape": [4032, 6048, 3],
+    "png_sha256": "6c5c8b9c04fea4f265e1b742ce568b13a34d72462f7b6466f29685dabd03045e",
+    "required_png_sha256": "6c5c8b9c04fea4f265e1b742ce568b13a34d72462f7b6466f29685dabd03045e",
+    "png_byte_identity": true,
+    "candidate_wall_seconds": 134.17584009998245,
+    "prior_full_frame_wall_seconds": 87.137,
+    "candidate_to_prior_wall_ratio": 1.53982625176426,
+    "peak_process_tree_rss_bytes": 2208337920
+  },
+  "decision": "close_per_tile_native_pointwise_composition_without_product_integration",
+  "interpretation": "The retained C kernel remains exact, but invoking it independently for 96 tiles loses the component-level gain to repeated Python/native and per-call threading overhead. Any future native acceleration must fuse a larger contiguous stage or preserve a persistent execution context; thread-count or tile-size rescue is not pursued here.",
+  "claim_ceiling": "Local Windows 24MP negative composition evidence for one Ektar development profile. This is not a failure of the retained native component, not cross-platform evidence and not stock authenticity or product evidence."
+}
