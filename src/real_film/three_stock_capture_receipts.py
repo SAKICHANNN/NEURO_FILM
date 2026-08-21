@@ -54,9 +54,9 @@ def _finite_number(value: Any, *, positive: bool = False) -> bool:
     )
 
 
-def evaluate_receipts(
-    contract_path: Path, packet_path: Path, *, root: Path
-) -> dict[str, Any]:
+def _load_contract_and_work_order(
+    contract_path: Path, *, root: Path
+) -> tuple[bytes, dict[str, Any], dict[str, Any]]:
     contract_raw, contract = _read_object(contract_path)
     if (
         contract.get("schema") != CONTRACT_SCHEMA
@@ -70,6 +70,45 @@ def evaluate_receipts(
         != contract["parents"]["work_order"]["stable_evidence_id"]
     ):
         raise ThreeStockCaptureReceiptError("work-order stable identity drift")
+    return contract_raw, contract, work_order
+
+
+def build_receipt_template(contract_path: Path, *, root: Path) -> dict[str, Any]:
+    """Build the exact fillable packet shape without inventing measurements."""
+
+    _, _, work_order = _load_contract_and_work_order(contract_path, root=root)
+    conditions = []
+    for expected in work_order["common_condition_records"]:
+        row = {field: None for field in expected["required_fields"]}
+        row["condition_slot_id"] = expected["condition_slot_id"]
+        row["stimulus_sha256"] = expected["stimulus_sha256"]
+        conditions.append(row)
+    exposures = []
+    for expected in work_order["exposure_rows"]:
+        row = {field: None for field in expected["exposure_receipt_required_fields"]}
+        row.update(
+            {
+                "exposure_slot_id": expected["exposure_slot_id"],
+                "stock_id": expected["stock_id"],
+                "film_ei": expected["nominal_iso"],
+                "nominal_iso": expected["nominal_iso"],
+            }
+        )
+        exposures.append(row)
+    return {
+        "schema": PACKET_SCHEMA,
+        "work_order_stable_evidence_id": work_order["stable_evidence_id"],
+        "common_condition_records": conditions,
+        "exposure_receipts": exposures,
+    }
+
+
+def evaluate_receipts(
+    contract_path: Path, packet_path: Path, *, root: Path
+) -> dict[str, Any]:
+    contract_raw, contract, work_order = _load_contract_and_work_order(
+        contract_path, root=root
+    )
 
     packet_raw, packet = _read_object(packet_path)
     if set(packet) != {
@@ -183,4 +222,8 @@ def evaluate_receipts(
     return {**core, "stable_evidence_id": _sha256(_canonical(core))}
 
 
-__all__ = ["ThreeStockCaptureReceiptError", "evaluate_receipts"]
+__all__ = [
+    "ThreeStockCaptureReceiptError",
+    "build_receipt_template",
+    "evaluate_receipts",
+]

@@ -11,7 +11,10 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.real_film.three_stock_capture_receipts import evaluate_receipts
+from src.real_film.three_stock_capture_receipts import (
+    build_receipt_template,
+    evaluate_receipts,
+)
 
 
 def main() -> int:
@@ -21,23 +24,32 @@ def main() -> int:
         type=Path,
         default=ROOT / "configs/sf3_a0n_three_stock_capture_receipts_v1.json",
     )
-    parser.add_argument("--packet", type=Path, required=True)
+    mode = parser.add_mutually_exclusive_group(required=True)
+    mode.add_argument("--packet", type=Path)
+    mode.add_argument("--build-template", action="store_true")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
-    report = evaluate_receipts(args.contract, args.packet, root=ROOT)
+    report = (
+        build_receipt_template(args.contract, root=ROOT)
+        if args.build_template
+        else evaluate_receipts(args.contract, args.packet, root=ROOT)
+    )
     payload = (json.dumps(report, indent=2, sort_keys=True) + "\n").encode("ascii")
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with args.output.open("xb") as handle:
         handle.write(payload)
-    print(
-        json.dumps(
-            {
-                key: report[key]
-                for key in ("automatic_pass", "decision", "stable_evidence_id")
-            },
-            sort_keys=True,
+    if args.build_template:
+        print(json.dumps({"output": str(args.output), "template_only": True}))
+    else:
+        print(
+            json.dumps(
+                {
+                    key: report[key]
+                    for key in ("automatic_pass", "decision", "stable_evidence_id")
+                },
+                sort_keys=True,
+            )
         )
-    )
     return 0
 
 

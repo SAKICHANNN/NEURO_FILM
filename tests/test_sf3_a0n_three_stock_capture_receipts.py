@@ -7,6 +7,7 @@ import pytest
 
 from src.real_film.three_stock_capture_receipts import (
     ThreeStockCaptureReceiptError,
+    build_receipt_template,
     evaluate_receipts,
 )
 
@@ -71,6 +72,17 @@ def test_complete_receipts_pass_without_fitting(tmp_path: Path) -> None:
     assert report["common_condition_records"] == 18
     assert report["exposure_receipts"] == 87
     assert report["operator_fits"] == report["film_target_scores"] == 0
+
+
+def test_template_has_exact_slots_and_only_prefills_bound_identities() -> None:
+    template = build_receipt_template(CONTRACT, root=ROOT)
+    assert len(template["common_condition_records"]) == 18
+    assert len(template["exposure_receipts"]) == 87
+    first = template["exposure_receipts"][0]
+    assert first["stock_id"] == "fujifilm_velvia_50"
+    assert first["film_ei"] == first["nominal_iso"] == 50
+    assert first["shutter_seconds"] is None
+    assert template == build_receipt_template(CONTRACT, root=ROOT)
 
 
 @pytest.mark.parametrize("mutation", ["missing", "wrong_ei", "nan", "bad_hash"])
