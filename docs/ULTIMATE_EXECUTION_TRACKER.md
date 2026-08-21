@@ -39,10 +39,14 @@ single-reference shared-bundle search is closed. Only a new rights-clear
 paired/capture-time/physical observation can open a maximum three-candidate
 fresh natural cycle. All three failures close automatic single-reference
 product work while retaining paired-metadata features and the
-RAW/DNG/HDR/portable explicit-operator toolchain. SF3.A0 is protocol-ready but
-currently has no admitted rows, so the candidate counter remains `0/3`; an
-after-only architecture or procedural self-supervision paper cannot increment
-or reset it. The exact rule is in
+RAW/DNG/HDR/portable explicit-operator toolchain. SF3.A0T and the full-ID
+`SF3.A0Y_NTIRE_PAIRED_SHAPED_LUT_CANDIDATE2_V1` consumed candidates 1 and 2
+and both failed before sealed confirmation. The counter is `2/3`, but the
+cycle is deliberately terminated without opening candidate 3 because the
+second genuinely paired mechanism still reduced to a zero-strength residual
+and failed the strongest same-budget control. An after-only architecture or
+procedural self-supervision paper cannot increment or reset the counter. The
+exact rule is in
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` section 1.1.
 
 **Multi-stock correction, 2026-08-21:** the bounded single-reference cycle is

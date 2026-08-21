@@ -680,3 +680,29 @@ a pass is representation evidence only.
   portable explicit-operator engineering, not candidate 2 using the same
   observation. Evidence:
   `docs/evidence/SF3_A0T_RGB2RAW_METADATA_EXPLICIT_ISP_D0_RESULT.json`.
+
+### 2026-08-21 - SF3.A0Y candidate 2 fails and the bounded cycle stops early
+
+- The full experiment ID is
+  `SF3.A0Y_NTIRE_PAIRED_SHAPED_LUT_CANDIDATE2_V1`; the short A0Y token is
+  ambiguous with an older unrelated source leaf. Exact synchronous
+  beam-splitter RAW/JPEG pairing, official orientation handling and
+  group-isolated 32-fit/12-calibration roles provide a genuinely new
+  capture-time observation rather than after-only inference.
+- Correct pairing is identified: candidate beats the equal-architecture
+  cyclic-wrong target on 12/12 rows with median `+41.986%`. Nevertheless the
+  frozen safe 9-cube residual resolves to exact zero. The remaining monotone
+  shaper beats the strongest simple control on only 3/12 rows; median/worst
+  gain is `-0.0022%/-44.339%` and p95 OKLab error is `.13024`.
+- Structural, boundary and exact replay gates pass; sealed target reads remain
+  zero. Do not rescue LUT size/strength/safety, region matching or the consumed
+  roles. The formal counter is `2/3`, but candidate 3 is intentionally not
+  opened: two genuinely new paired/capture-time mechanisms have not earned a
+  product-relevant same-budget advantage, so continuing the search would
+  violate the bounded stop-loss purpose.
+- Mainline scope returns to controlled named-stock evidence plus mature
+  RAW/DNG/HDR/portable explicit-operator engineering. A future automatic
+  single-reference cycle requires a separately authorized, materially new
+  source of identifying information; an after-only architecture or procedural
+  self-supervision paper cannot reset this counter. Evidence:
+  `docs/evidence/SF3_A0Y_NTIRE_PAIRED_SHAPED_LUT_CANDIDATE2_RESULT.json`.
