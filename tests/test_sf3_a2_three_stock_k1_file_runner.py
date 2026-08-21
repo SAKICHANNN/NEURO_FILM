@@ -210,3 +210,73 @@ def test_success_reports_actual_roll_dependent_fit_count(
     )
     assert report["automatic_pass"] is True
     assert report["operator_fits"] == (2 + 3 + 4) * 3 + 3
+
+
+def test_single_stock_file_entry_samples_and_fits_only_selected_stock(
+    tmp_path: Path, monkeypatch
+) -> None:
+    ledger = tmp_path / "ledger.json"
+    manifest = tmp_path / "manifest.json"
+    _write_json(ledger, {"rows": []})
+    _write_json(manifest, {"rows": []})
+    stock = "kodak_ektar_100"
+    monkeypatch.setattr(
+        runner,
+        "evaluate_single_stock_integrity",
+        lambda *args, **kwargs: {
+            "automatic_pass": True,
+            "stable_evidence_id": "single-integrity-pass",
+            "claim_ceiling": "single-integrity-only",
+        },
+    )
+    monkeypatch.setattr(runner, "load_aligned_file_rows", lambda **kwargs: ([], {}))
+    sample = np.full((4, 3), 0.25, dtype=np.float64)
+    development = {
+        stock: [
+            StockFrameSamples(
+                scene_id=f"scene-{roll}",
+                frame_id=f"frame-{roll}",
+                roll_id=f"roll-{roll}",
+                source=sample,
+                target=sample,
+            )
+            for roll in range(2)
+        ]
+    }
+    confirmation = {stock: []}
+    monkeypatch.setattr(
+        runner,
+        "extract_common_paired_samples_streaming",
+        lambda rows, config, **kwargs: (
+            development,
+            confirmation,
+            {"row_count": 0},
+        ),
+    )
+    observed: dict[str, object] = {}
+
+    def fake_single(*args, **kwargs):
+        observed.update(kwargs)
+        return {
+            "automatic_pass": True,
+            "decision": "SINGLE_PASS",
+            "stable_evidence_id": "single-k1-pass",
+            "claim_ceiling": "single-k1-only",
+        }
+
+    monkeypatch.setattr(runner, "evaluate_single_stock_k1", fake_single)
+    report = runner.evaluate_single_stock_files(
+        root=ROOT,
+        integrity_contract_path=INTEGRITY_CONFIG,
+        k1_contract_path=K1_CONFIG,
+        ledger_path=ledger,
+        manifest_path=manifest,
+        stock=stock,
+    )
+    assert report["automatic_pass"] is True
+    assert report["stock"] == stock
+    assert report["cross_stock_controls_evaluated"] is False
+    assert report["operator_fits"] == 7
+    assert observed["stock"] == stock
+    assert observed["development"] is development[stock]
+    assert observed["confirmation"] is confirmation[stock]

@@ -15,6 +15,9 @@ from src.real_film.three_stock_k1_baseline import (
     evaluate as evaluate_k1,
 )
 from src.real_film.three_stock_k1_baseline import (
+    evaluate_single_stock as evaluate_single_stock_k1,
+)
+from src.real_film.three_stock_k1_baseline import (
     load_contract as load_k1_contract,
 )
 from src.real_film.three_stock_paired_sampling import (
@@ -29,8 +32,12 @@ from src.real_film.three_stock_scan_integrity import (
 from src.real_film.three_stock_scan_integrity import (
     evaluate as evaluate_integrity,
 )
+from src.real_film.three_stock_scan_integrity import (
+    evaluate_single_stock as evaluate_single_stock_integrity,
+)
 
 REPORT_SCHEMA = "neuro-film.sf3-a2-three-stock-k1-file-runner-report.v1"
+SINGLE_STOCK_REPORT_SCHEMA = "neuro-film.sf3-a2-single-stock-k1-file-runner-report.v1"
 
 
 class ThreeStockK1FileRunnerError(ValueError):
@@ -220,26 +227,37 @@ def load_aligned_file_rows(
     return rows, paths
 
 
-def evaluate_files(
+def _evaluate_files(
     *,
     root: Path,
     integrity_contract_path: Path,
     k1_contract_path: Path,
     ledger_path: Path,
     manifest_path: Path,
+    stock: str | None,
 ) -> dict[str, Any]:
     """Run integrity, common-coordinate sampling, then the frozen K=1 experiment."""
 
     k1_raw, k1_contract = load_k1_contract(k1_contract_path, root=root)
-    integrity_report = evaluate_integrity(
-        integrity_contract_path, ledger_path, manifest_path, root=root
+    integrity_report = (
+        evaluate_integrity(
+            integrity_contract_path, ledger_path, manifest_path, root=root
+        )
+        if stock is None
+        else evaluate_single_stock_integrity(
+            integrity_contract_path,
+            ledger_path,
+            manifest_path,
+            root=root,
+            stock=stock,
+        )
     )
     ledger_raw, ledger = _read_object(ledger_path)
     manifest_raw, manifest = _read_object(manifest_path)
     if not integrity_report["automatic_pass"]:
         core = {
-            "schema": REPORT_SCHEMA,
-            "experiment_id": "SF3.A2",
+            "schema": (REPORT_SCHEMA if stock is None else SINGLE_STOCK_REPORT_SCHEMA),
+            "experiment_id": "SF3.A2" if stock is None else f"SF3.A2.{stock}",
             "k1_contract_sha256": _sha256(k1_raw),
             "ledger_sha256": _sha256(ledger_raw),
             "manifest_sha256": _sha256(manifest_raw),
@@ -249,7 +267,11 @@ def evaluate_files(
             "operator_fits": 0,
             "automatic_pass": False,
             "decision": integrity_report["decision"],
-            "claim_ceiling": k1_contract["claim_ceiling"],
+            "claim_ceiling": (
+                k1_contract["claim_ceiling"]
+                if stock is None
+                else integrity_report["claim_ceiling"]
+            ),
         }
         return {**core, "stable_evidence_id": _sha256(_canonical(core))}
 
@@ -271,22 +293,33 @@ def evaluate_files(
             paths[row.row_id][1], decode_contract
         ),
     )
-    result = evaluate_k1(
-        k1_contract_path,
-        root=root,
-        development=development,
-        confirmation=confirmation,
+    result = (
+        evaluate_k1(
+            k1_contract_path,
+            root=root,
+            development=development,
+            confirmation=confirmation,
+        )
+        if stock is None
+        else evaluate_single_stock_k1(
+            k1_contract_path,
+            root=root,
+            stock=stock,
+            development=development.get(stock, []),
+            confirmation=confirmation.get(stock, []),
+        )
     )
     candidate_count = len(
         k1_contract["operator_selection"]["candidate_order_simplest_first"]
     )
+    evaluated_stocks = k1_contract["required_stocks"] if stock is None else [stock]
     operator_fits = sum(
-        len({frame.roll_id for frame in development[stock]}) * candidate_count + 1
-        for stock in k1_contract["required_stocks"]
+        len({frame.roll_id for frame in development[stock_id]}) * candidate_count + 1
+        for stock_id in evaluated_stocks
     )
     core = {
-        "schema": REPORT_SCHEMA,
-        "experiment_id": "SF3.A2",
+        "schema": REPORT_SCHEMA if stock is None else SINGLE_STOCK_REPORT_SCHEMA,
+        "experiment_id": "SF3.A2" if stock is None else f"SF3.A2.{stock}",
         "k1_contract_sha256": _sha256(k1_raw),
         "ledger_sha256": _sha256(ledger_raw),
         "manifest_sha256": _sha256(manifest_raw),
@@ -298,15 +331,63 @@ def evaluate_files(
         "operator_fits": operator_fits,
         "automatic_pass": result["automatic_pass"],
         "decision": result["decision"],
-        "claim_ceiling": k1_contract["claim_ceiling"],
+        "claim_ceiling": (
+            k1_contract["claim_ceiling"] if stock is None else result["claim_ceiling"]
+        ),
     }
+    if stock is not None:
+        core["stock"] = stock
+        core["cross_stock_controls_evaluated"] = False
     return {**core, "stable_evidence_id": _sha256(_canonical(core))}
+
+
+def evaluate_files(
+    *,
+    root: Path,
+    integrity_contract_path: Path,
+    k1_contract_path: Path,
+    ledger_path: Path,
+    manifest_path: Path,
+) -> dict[str, Any]:
+    """Run the complete three-stock file-backed A1 to A2 experiment."""
+
+    return _evaluate_files(
+        root=root,
+        integrity_contract_path=integrity_contract_path,
+        k1_contract_path=k1_contract_path,
+        ledger_path=ledger_path,
+        manifest_path=manifest_path,
+        stock=None,
+    )
+
+
+def evaluate_single_stock_files(
+    *,
+    root: Path,
+    integrity_contract_path: Path,
+    k1_contract_path: Path,
+    ledger_path: Path,
+    manifest_path: Path,
+    stock: str,
+) -> dict[str, Any]:
+    """Run one complete stock lane without claiming cross-stock evidence."""
+
+    return _evaluate_files(
+        root=root,
+        integrity_contract_path=integrity_contract_path,
+        k1_contract_path=k1_contract_path,
+        ledger_path=ledger_path,
+        manifest_path=manifest_path,
+        stock=stock,
+    )
 
 
 __all__ = [
     "REPORT_SCHEMA",
+    "SINGLE_STOCK_REPORT_SCHEMA",
     "ThreeStockK1FileRunnerError",
     "evaluate_files",
+    "evaluate_single_stock_files",
     "load_aligned_file_rows",
     "load_aligned_rows",
 ]

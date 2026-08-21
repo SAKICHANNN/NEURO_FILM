@@ -12,7 +12,10 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.real_film.three_stock_k1_file_runner import evaluate_files
+from src.real_film.three_stock_k1_file_runner import (
+    evaluate_files,
+    evaluate_single_stock_files,
+)
 
 
 def main() -> int:
@@ -20,6 +23,15 @@ def main() -> int:
     parser.add_argument("--ledger", type=Path, required=True)
     parser.add_argument("--manifest", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument(
+        "--stock",
+        choices=(
+            "fujifilm_velvia_50",
+            "kodak_portra_400",
+            "kodak_ektar_100",
+        ),
+        help="Run one complete stock lane; omit for the full three-stock experiment.",
+    )
     parser.add_argument(
         "--integrity-contract",
         type=Path,
@@ -32,12 +44,14 @@ def main() -> int:
         default=ROOT / "configs/sf3_a2_three_stock_k1_baseline_v1.json",
     )
     args = parser.parse_args()
-    report = evaluate_files(
+    evaluator = evaluate_files if args.stock is None else evaluate_single_stock_files
+    report = evaluator(
         root=ROOT,
         integrity_contract_path=args.integrity_contract,
         k1_contract_path=args.k1_contract,
         ledger_path=args.ledger,
         manifest_path=args.manifest,
+        **({} if args.stock is None else {"stock": args.stock}),
     )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with args.output.open("x", encoding="ascii", newline="\n") as handle:
