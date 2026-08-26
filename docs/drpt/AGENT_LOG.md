@@ -16355,3 +16355,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   deserialization/apply audit. No package/schema/capability/product or consumer
   mapping opens. Evidence:
   `docs/evidence/P228_R1CY_PAIRED_HDR_HANDOFF_ARTIFACT_AUDIT_RESULT.json`.
+
+### 2026-08-26 - U7.6A reuses one source context across three stock looks
+
+- **Implementation:** the batch iterator computes the exact full-frame
+  safe-Lab reduction once, then yields the existing tiled Velvia 50, Portra
+  400 and Ektar 100 kernels sequentially so outputs need not coexist.
+- **Formal result:** four fresh-process runs in baseline/candidate/candidate/
+  baseline order preserve all three arrays byte exact. Median wall ratio is
+  `.93744`; median process-tree peak RSS ratio is `.87384`; repeat and bounded
+  output gates pass.
+- **Boundary/handoff:** this is local Windows/Python CPU reuse for the current
+  non-calibrated three-stock baselines. It does not change the empty physical
+  evidence matrix or U7.2C separation result. Next is exact file-batch
+  integration, not another proxy or routing experiment. Evidence:
+  `docs/evidence/U7_6A_THREE_STOCK_SHARED_CONTEXT_RESULT.json`.

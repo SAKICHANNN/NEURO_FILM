@@ -2286,3 +2286,13 @@ comparable paired-colour observation. Two byte-exact compiler runs admit 0/3
 stocks for K=1 fitting. The next data order is Ektar first pair, then
 independent Velvia pixels and Portra repeat-scan/roll evidence. Evidence:
 `docs/evidence/SF3_A3D_PARTIAL_REAL_OBSERVATION_MATRIX_RESULT.json`.
+
+U7.6A removes one concrete multi-stock product bottleneck without changing the
+three stock operators. A single exact source-owned safe-Lab context is reused
+across the tiled Velvia 50, Portra 400 and Ektar 100 Look Approximation batch.
+Four interleaved fresh processes preserve all three output arrays byte exact;
+median wall time falls from `30.4374` to `28.5332` seconds (ratio `.93744`) and
+median process-tree peak RSS from `610,209,792` to `533,225,472` bytes (ratio
+`.87384`). This opens only file-level batch integration; controlled stock
+evidence, U7.2C separation and calibration remain unchanged. Evidence:
+`docs/evidence/U7_6A_THREE_STOCK_SHARED_CONTEXT_RESULT.json`.
