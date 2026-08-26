@@ -19,7 +19,8 @@
     "maximum_requests_per_identity": 2,
     "maximum_total_requests": 48,
     "timeout_seconds": 20,
-    "retry_delays_seconds": [0, 2],
+    "minimum_request_interval_seconds": 1.1,
+    "retry_delays_seconds": [0, 10, 30],
     "thumbnail_width": 512
   },
   "candidate_metadata": {

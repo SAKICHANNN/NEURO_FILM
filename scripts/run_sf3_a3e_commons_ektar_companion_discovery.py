@@ -28,11 +28,15 @@ from src.real_film.commons_ektar_companion import (
 
 def _request(session: requests.Session, endpoint: str, params: dict[str, str], contract: dict) -> dict:
     last: Exception | None = None
+    minimum_interval = float(contract["query"]["minimum_request_interval_seconds"])
     for delay in contract["query"]["retry_delays_seconds"]:
-        if delay:
-            time.sleep(float(delay))
+        time.sleep(max(minimum_interval, float(delay)))
         try:
             response = session.get(endpoint, params=params, timeout=float(contract["query"]["timeout_seconds"]))
+            if response.status_code == 429:
+                retry_after = response.headers.get("Retry-After")
+                if retry_after and retry_after.isdecimal():
+                    time.sleep(float(retry_after))
             response.raise_for_status()
             return response.json()
         except (requests.RequestException, ValueError) as exc:
