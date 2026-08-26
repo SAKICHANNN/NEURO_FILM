@@ -1,0 +1,39 @@
+{
+  "schema_version": "neuro-film.u7-6c-three-stock-decode-lifetime.v1",
+  "node_id": "U7.6C",
+  "objective": "Release the decoded WorkingImage after the independent encoded-sRGB source and immutable input metadata have been captured, before shared-context construction and three-stock rendering.",
+  "input": {
+    "path": "data/preference/repid/u5_r2repid3_shared_operator_v1/fit/winner/a4593-kme_0276.jpeg",
+    "expected_dimensions": [6048, 4032]
+  },
+  "execution": {
+    "look_amount": 1.0,
+    "render_seed": 31,
+    "tile_size": 512,
+    "tile_workers": 1,
+    "png_compression": 0,
+    "run_order": ["baseline", "candidate", "candidate", "baseline"]
+  },
+  "controls": {
+    "baseline": "the U7.6B implementation with an audit-owned strong reference retaining the decoded WorkingImage until the batch returns",
+    "candidate": "the same implementation without that audit-owned retention",
+    "invariants": "encoded PNG16 bytes, decoded RGB16 samples, normalized recipes, stock order and cleanup"
+  },
+  "gates": {
+    "working_image_collectable_before_render_entry": true,
+    "three_encoded_outputs_byte_exact": true,
+    "three_decoded_sample_arrays_exact": true,
+    "three_normalized_recipes_exact": true,
+    "ordered_stock_ids_exact": true,
+    "minimum_peak_process_tree_rss_reduction_bytes": 134217728,
+    "candidate_peak_process_tree_rss_ratio_max": 0.95,
+    "candidate_wall_ratio_max": 1.05,
+    "candidate_residue_count": 0
+  },
+  "stop_rules": [
+    "Do not alter any stock operator, profile, guardrail, output format, recipe semantics or gate after measuring formal outputs.",
+    "A failed memory gate closes this object-lifetime candidate without a threshold rescue.",
+    "Do not use this product-runtime result as stock separation, calibration or controlled-film evidence."
+  ],
+  "claim_ceiling": "Local Windows/Python 24MP three-stock file-batch object-lifetime evidence only; all three outputs remain non-calibrated Look Approximations and U7.2C stock separation remains failed."
+}
