@@ -16728,3 +16728,38 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   simulator. Keep both outputs labeled Look Approximation and prioritize
   controlled same-scene Ektar 100 targets, then independent Portra 400 and
   Velvia 50 confirmation. No calibration, preference or product claim opens.
+
+### 2026-08-26 - U1.6G4J integrates staged density as a strict private recipe route
+
+- **Node and routing:** `ULT > U1.6 > U1.6G4J`; primary
+  `dev-research-reliability`, with scientific-research and project-structure
+  review kept read-only. This leaf follows the completed G4E-I executor,
+  value, resource and adapter chain; it does not reopen the failed legacy
+  drop-in gate or change the staged-density operator.
+- **Implementation:** the renderer now exposes only the explicit non-default
+  `--halation-model staged-density-research` route. It requires the versioned
+  profile, unit strength, locked controls, no other effects and tile64. New
+  strict `kmcfm.render-recipe.v4` records the unchanged
+  `staged-density-halation-v1-defaults` executor, tile64 and fixed source,
+  coarse and composite chunks `64/7/64`; replay uses and validates those exact
+  values. Existing profile v1 and recipe v1-v3 schemas/defaults remain intact.
+- **Evidence:** two complete fixed-root B/C/C/B runs are byte-identical at
+  report SHA-256 `6b927a41...af165`. Candidate output
+  `a2517716...cfeed` and v4 recipe `768941c9...8c3eb` repeat exactly;
+  independent recipe replay and direct executor/compositor output are both
+  byte exact. The legacy v3 baseline repeats at output `505ac2af...f8e5`;
+  RGB16/ICC/bounds, mutation rejection, injected-failure cleanup and empty
+  scratch gates all pass.
+- **Corrections and verification:** the first audit attempt used Pillow's
+  uint8 view of RGB16 and failed only that audit decode gate; commit
+  `7cdea652` switched the audit to explicit OpenCV uint16 decode without
+  changing pixels, operator or gates. A corrected parallel pair then passed
+  every scientific gate but recorded different scratch paths; final complete
+  runs used the same fixed root and are report-exact. Sixty-two adjacent tests,
+  Ruff F/E9, compileall and diff checks pass. Evidence SHA-256
+  `01421a9e...81a2b`:
+  `docs/evidence/U1_6G4J_STAGED_DENSITY_RECIPE_INTEGRATION_RESULT.json`.
+- **Boundary:** retain only a private Windows/Python opt-in Look Approximation
+  integration. No physical-film, named-stock, scanner, calibration,
+  preference, arbitrary-platform, public-package, capability or default
+  product claim opens.
