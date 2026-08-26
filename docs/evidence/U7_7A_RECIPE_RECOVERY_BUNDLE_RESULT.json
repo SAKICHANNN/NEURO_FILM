@@ -1,0 +1,52 @@
+{
+  "schema": "kmcfm.u7-7a-recipe-recovery-bundle-evidence.v1",
+  "node": "U7.7A",
+  "status": "PASS_PRIVATE_NO_PIXEL_RECIPE_RECOVERY_BUNDLE",
+  "contract": "configs/u7_7a_recipe_recovery_bundle_v1.json",
+  "contract_sha256": "d916fff673e8d9e0a67fb51d9d18eb68f214b4b7487be9bd42605faa00c71a13",
+  "implementation_commit": "38e92c5bb1069d25af2d50e0f5eeacee5ea96cd2",
+  "audit_commit": "949a85fe5c6f1f39a7c32224fa862d79ddefe2b2",
+  "raw_report": {
+    "forward": "outputs/eval/u7_7a_recipe_recovery_bundle_v1/forward/report.json",
+    "reverse": "outputs/eval/u7_7a_recipe_recovery_bundle_v1/reverse/report.json",
+    "sha256": "19054447d036d17b3635f31ba92560c1ac4e8bf1f43c565864f1b73e88c3640f",
+    "byte_exact": true,
+    "stable_id": "a759a6e3d979542d8931bbb58161a05e091493a758d709f20e27adc632fdc2ee"
+  },
+  "bundles": [
+    {
+      "style": "ektar_100",
+      "sha256": "560dc90a98374060bf644a5e184cb7f692642c6e14463d18db5a58210844d1b4",
+      "bytes": 6041,
+      "members": 6
+    },
+    {
+      "style": "portra_400",
+      "sha256": "13acb65a4515575c1afd67450d24ded597866087623704d439b3766e5019af46",
+      "bytes": 6039,
+      "members": 6
+    },
+    {
+      "style": "velvia_50",
+      "sha256": "c6c9f929d4213e01e6cf469a1b9eff43f46774b298ab5506fef2f61364bbdd2b",
+      "bytes": 6038,
+      "members": 6
+    }
+  ],
+  "gates": {
+    "three_styles_complete": true,
+    "bundles_distinct": true,
+    "repeat_and_order_exact": true,
+    "recipe_profile_assets_revalidate": true,
+    "no_input_or_output_pixels": true,
+    "network_required": false,
+    "telemetry": false,
+    "existing_destination_unchanged": true,
+    "tamper_duplicate_traversal_and_unexpected_members_rejected": true,
+    "failed_publication_removes_partial": true,
+    "focused_tests": "52 passed",
+    "ruff_and_diff_check": "pass"
+  },
+  "decision": "Retain the deterministic no-pixel recovery-bundle boundary for strict Look Approximation recipes. This is a first packaging/recovery primitive, not a complete installer, automatic restore, export authorization or product release.",
+  "claim_ceiling": "Private deterministic no-pixel recovery bundle mechanics for three existing Look Approximation recipes only; no installer, automatic restore, input availability, output export authorization, calibrated stock response, stock distinguishability, telemetry or product-release claim."
+}

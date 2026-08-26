@@ -16171,3 +16171,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   hybrid-CPU rescue. Product behavior remains on the exact CPU path; the next
   mainline leaf returns to multi-stock evidence rather than backend tuning.
 - Evidence: `docs/evidence/U7_4A_CUDA_GAMUT_DISCRIMINANT_RESULT.json`.
+
+### 2026-08-26 - U7.7A deterministic no-pixel recipe recovery bundles
+
+- Added a strict create-only ZIP containing one exact render recipe, its exact
+  profile and three profile assets. Input/output pixels, network and telemetry
+  are excluded; duplicate members, path traversal, unlisted members and payload
+  tampering fail closed.
+- Velvia/Portra/Ektar formal forward/reverse reports are byte-identical at
+  `19054447...c3640f`; bundles are distinct, repeat exact and only 6,038-6,041
+  bytes. A Windows text-mode ZIP corruption found by the first unit run was
+  fixed by binding binary publication before formal execution.
+- Retain only a private recovery-package primitive. Installation, materialized
+  restore/update rollback, export authorization, calibrated stocks and release
+  remain open. Evidence: `docs/evidence/U7_7A_RECIPE_RECOVERY_BUNDLE_RESULT.json`.

@@ -1222,7 +1222,8 @@ The IPOL grain paper may guide a clean-room mathematical implementation. Its GPL
 | U7.4A | complete: exact candidate closed | Isolated PyTorch CUDA legacy gamut discriminant | U7.2A | CUDA is repeat/order stable and 9-12x faster at 6MP with 663MB peak, but sparse one-step boundary differences reach Lab 0.02468 and RGB16 24 codes, failing frozen exact-replacement gates. No tolerance/hybrid rescue or product integration; `docs/evidence/U7_4A_CUDA_GAMUT_DISCRIMINANT_RESULT.json` |
 | U7.5 | pending | Apple Core ML/Metal path | U5.6 | M5 thermal/swap/parity report |
 | U7.6 | pending | CPU fallback | U7.1 | Quality parity and bounded-memory test |
-| U7.7 | pending | Packaging/update/recovery/privacy | U7.2, U7.3 | Clean install, rollback and no-pixel telemetry audit |
+| U7.7 | in progress: U7.7A no-pixel recovery bundle pass | Packaging/update/recovery/privacy | U7.2, U7.3 | U7.7A packages one strict recipe, its exact profile and three exact assets into a deterministic create-only ZIP while excluding input/output pixels, network and telemetry. Clean install, materialized restore/update rollback and complete privacy audit remain pending |
+| U7.7A | complete: deterministic private bundle pass | No-pixel strict-recipe recovery bundle | U7.1 + U7.2 recipes | Velvia/Portra/Ektar bundles are distinct and repeat/order exact at 6,038-6,041 bytes with six members each; strict recipe/profile/assets revalidate, existing targets stay unchanged, partial writes clean up, and tamper/duplicate/traversal/unexpected members reject. This does not establish installation, automatic restore, export authorization, calibrated stocks or release; `docs/evidence/U7_7A_RECIPE_RECOVERY_BUNDLE_RESULT.json` |
 
 Provisional performance budgets, to be frozen only after U4.5 baseline:
 
