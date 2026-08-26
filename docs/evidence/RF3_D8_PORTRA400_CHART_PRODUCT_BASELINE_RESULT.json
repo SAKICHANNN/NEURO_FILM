@@ -1,0 +1,91 @@
+{
+  "schema": "neuro-film.rf3-d8-portra400-chart-product-baseline-evidence.v1",
+  "experiment_id": "RF3.D8",
+  "node": "ULT > RF3 > RF3.D8",
+  "status": "FAIL_CLOSED",
+  "decision": "record_current_portra_400_chart_gap_and_do_not_retune_without_new_controlled_observations",
+  "bindings": {
+    "contract": {
+      "path": "configs/rf3_d8_portra400_chart_product_baseline_v1.json",
+      "bytes": 2732,
+      "sha256": "f68fb140a95bf1ab354445e19e74c1b63d145059be8ee8d1bb178108a2b8a225",
+      "freeze_commit": "74dab576"
+    },
+    "implementation": {
+      "path": "src/eval/portra400_chart_product_baseline.py",
+      "bytes": 9203,
+      "sha256": "d225f05ab42ef79086adcf3fcc764773b64f43bffd1efd3186615acc684bd5d4",
+      "commit": "c2f03bfd"
+    },
+    "runner": {
+      "path": "scripts/run_rf3_d8_portra400_chart_product_baseline.py",
+      "bytes": 1115,
+      "sha256": "bd6c6c4df6cfe0d949aeb3515a09c7e25d93a56870be8550feccf26d5a9ccc4f"
+    },
+    "tests": {
+      "path": "tests/test_rf3_d8_portra400_chart_product_baseline.py",
+      "bytes": 566,
+      "sha256": "361770622fc1dd44b81a53d11cc5df939e348583d18d5b3cb8e6ea9530b1a486"
+    },
+    "formal_result": {
+      "path": "outputs/eval/rf3_d8_portra400_chart_product_baseline_v1/forward.json",
+      "bytes": 2879,
+      "sha256": "22ef5688cfc701087b64ba9189302622738e68aeef204c521bdf5ee2da86910a"
+    }
+  },
+  "execution": {
+    "fresh_processes": 2,
+    "orders": [
+      "canonical",
+      "reverse"
+    ],
+    "reports_byte_exact": true,
+    "report_sha256": "22ef5688cfc701087b64ba9189302622738e68aeef204c521bdf5ee2da86910a",
+    "stable_evidence_id": "f6c94cd94f5809fa38b4c136e5cf985d232b2746b148d985f7e5596b79b7711a"
+  },
+  "population": {
+    "registered_same_scene_chart_pairs": 1,
+    "sample_count": 3072,
+    "spatial_blocks": 64,
+    "folds": 4,
+    "target_stock": "kodak_portra_400",
+    "current_wrong_stock_control": "kodak_ektar_100",
+    "external_control": "spektrafilm_v1_fixed_e0"
+  },
+  "metrics": {
+    "identity_rmse": 0.19505185178298798,
+    "current_portra_400_rmse": 0.1961775840830542,
+    "current_ektar_100_wrong_stock_rmse": 0.19646146344312496,
+    "frozen_publisher_spektrafilm_portra_400_rmse": 0.1859865592933911,
+    "portra_improvement_over_identity_fraction": -0.005771451487262436,
+    "portra_improvement_over_wrong_stock_fraction": 0.0014449620556397091,
+    "portra_fold_win_fraction_over_identity": 0.0,
+    "portra_worst_fold_improvement_over_identity_fraction": -0.012519080424016504,
+    "maximum_current_output_boundary_fraction": 0.0,
+    "maximum_repeat_error": 0.0
+  },
+  "gates": {
+    "minimum_portra_improvement_over_identity": false,
+    "minimum_portra_improvement_over_wrong_stock": false,
+    "minimum_fold_win_fraction_over_identity": false,
+    "minimum_worst_fold_improvement_over_identity": true,
+    "portra_beats_frozen_publisher_baseline": false,
+    "maximum_current_output_boundary_fraction": true,
+    "maximum_repeat_error": true
+  },
+  "interpretation": {
+    "established": [
+      "the fixed current Portra 400 Look Approximation is deterministic and introduces no sampled output-boundary values on this registered chart",
+      "the current Portra 400 output is 0.577145 percent worse than identity by the frozen chart RMSE",
+      "the current Portra 400 output improves only 0.144496 percent over the current Ektar 100 wrong-stock output",
+      "the frozen publisher SpektraFilm Portra baseline has lower chart RMSE than the current Portra output"
+    ],
+    "not_established": [
+      "Portra 400 calibration, stock-specific fidelity, natural-scene transfer or process/scanner separation",
+      "that SpektraFilm is photographic truth, a permissible teacher or a product dependency",
+      "Ektar 100 or Velvia 50 evidence, multi-stock completion, population preference or product promotion"
+    ]
+  },
+  "next_mainline": "Keep the current Portra 400 profile labeled Look Approximation, do not tune to this single unlicensed chart or the noncommercial external simulator, and acquire independent rights-cleared controlled Portra 400 observations plus a first controlled Ektar 100 observation.",
+  "claim_ceiling": "One unlicensed publisher-shared registered chart, fixed current Look Approximation profiles and one noncommercial external baseline. No Portra 400 calibration, natural-scene transfer, process/scanner separation, Ektar or Velvia evidence, product promotion, redistribution or commercial-use claim."
+}
