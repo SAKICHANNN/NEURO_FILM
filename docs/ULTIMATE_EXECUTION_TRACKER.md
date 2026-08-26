@@ -2324,3 +2324,14 @@ semantic normalization and original report hash are explicit in evidence.
 This completes the bounded file-batch leaf, not stock separation or
 calibration. Evidence:
 `docs/evidence/U7_6B_THREE_STOCK_FILE_BATCH_RESULT.json`.
+
+U7.6C removes the next measured full-frame overlap without changing any stock
+operator. Once the independent encoded-sRGB source and immutable input
+metadata exist, the decoded linear `WorkingImage` is released before shared
+Lab-context construction. Four fresh 24MP B/C/C/B runs preserve all three
+PNG16 files, decoded sample arrays, normalized recipes and stock order exact.
+Mean process-tree peak RSS falls from `2,212,474,880` to `1,919,932,416`
+bytes (`-292,542,464`, ratio `.86778`) at wall ratio `.99478`, with zero
+residue. This is local file-batch resource evidence only; controlled stock
+pixels, U7.2C separation and calibration remain unchanged. Evidence:
+`docs/evidence/U7_6C_THREE_STOCK_DECODE_LIFETIME_RESULT.json`.

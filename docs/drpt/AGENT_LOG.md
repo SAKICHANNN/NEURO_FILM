@@ -16481,3 +16481,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   descriptor/abstention observation, but no Lightroom parity, capability or
   consumer/product mapping opens. P225, P230 and R1DB remain unchanged.
   Evidence: `docs/evidence/P232_TARGET_XMP_OPERATOR_SEMANTICS_RESULT.json`.
+
+### 2026-08-26 - U7.6C releases decoded source before three-stock rendering
+
+- **Node:** `ULT > U7 > U7.6C`; product-runtime support for the three-stock
+  baseline while controlled physical-film acquisition remains data-gated.
+- **Change:** after producing the independent encoded-sRGB source and copying
+  immutable ingress metadata, the one-decode batch releases its decoded
+  linear `WorkingImage` before shared source-context construction. No profile,
+  guardrail, pixel transform, output format or recipe meaning changes.
+- **Formal evidence:** four fresh 24MP B/C/C/B processes preserve three encoded
+  outputs, decoded RGB16 arrays, normalized recipes and stock order exact.
+  Mean peak RSS is `2,212,474,880 -> 1,919,932,416` bytes (ratio `.86778`),
+  wall ratio `.99478`, residue zero; scientific identity `fbb05d66...c970b0`.
+- **Boundary/handoff:** this validates only local Windows/Python object
+  lifetime. The outputs remain non-calibrated Look Approximations and U7.2C
+  separation still fails. The next independent runtime leaf is the generator's
+  prior-output lifetime; do not mix it into this frozen result.
