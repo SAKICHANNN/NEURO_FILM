@@ -1,0 +1,57 @@
+{
+  "schema": "neuro-film.sf3-a0a5-exfat-pipeline-rehearsal-result.v1",
+  "experiment_id": "SF3.A0A5.R1",
+  "date": "2026-08-27",
+  "repository_head_before_execution": "1d974edeb4d20d4506359d2df0d30455c2870e9d",
+  "parent_contract_path": "configs/sf3_a0a5_synthetic_pipeline_rehearsal_v1.json",
+  "parent_contract_sha256": "79a9139804f790c1a3ba65362fd62c1c92bf9c889f9306ca85cceed69f7524cf",
+  "logical_storage_root": "tmp",
+  "physical_storage_volume": {
+    "drive_letter": "P",
+    "filesystem": "exFAT",
+    "health_warning_ignored_by_explicit_owner_direction": true
+  },
+  "runs": [
+    {
+      "order": "forward",
+      "report_bytes": 1276,
+      "report_sha256": "a5c36484d3a8d52addc3af81d7730cb2c5ef97272790623979d1794e3c4c0e63",
+      "stable_evidence_id": "6e436504a7a942390824ce39908545a462c18e7d3fc6548e64157ddea661a7f1",
+      "automatic_pass": true,
+      "temporary_tree_removed_after_return": true
+    },
+    {
+      "order": "reverse",
+      "report_bytes": 1276,
+      "report_sha256": "a5c36484d3a8d52addc3af81d7730cb2c5ef97272790623979d1794e3c4c0e63",
+      "stable_evidence_id": "6e436504a7a942390824ce39908545a462c18e7d3fc6548e64157ddea661a7f1",
+      "automatic_pass": true,
+      "temporary_tree_removed_after_return": true
+    }
+  ],
+  "pipeline_facts": {
+    "acquisition_rows_per_run": 108,
+    "stocks": [
+      "fujifilm_velvia_50",
+      "kodak_portra_400",
+      "kodak_ektar_100"
+    ],
+    "confirmation_outputs_per_stock": 4,
+    "receipt_binding_automatic_pass": true,
+    "a2_automatic_pass_all_stocks": true,
+    "a4_automatic_pass_all_stocks": true,
+    "blind_package_automatic_pass": true,
+    "blind_adjudication_automatic_pass": true,
+    "blind_overall_assignment_accuracy": 1.0,
+    "network_reads": 0,
+    "persistent_pixel_or_intermediate_writes_after_return": 0
+  },
+  "adjacent_regression": {
+    "tests_passed": 115,
+    "tests_failed": 0,
+    "elapsed_seconds": 145.63,
+    "coverage": "SF3 A0N/A1/A2/A4/A5, U7.2C/U7.7A-C/E-G, and U6.P8CS2 create-only publication"
+  },
+  "decision": "PASS_P_BACKED_EXFAT_SF3_A0_TO_A5_PIPELINE_EXECUTION",
+  "claim_ceiling": "Procedural small-fixture execution readiness of the existing three-stock pipeline on the canonical P-backed exFAT storage path only. This is not film evidence, stock identification, calibrated response, preference, severe-artifact human review, scanner or roll generalization, or product promotion."
+}
