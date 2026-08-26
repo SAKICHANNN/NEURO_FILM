@@ -1,0 +1,56 @@
+{
+  "schema": "neuro-film.p221a-r1ck-formal-commit-reproducibility-evidence.v1",
+  "experiment_id": "P221A",
+  "status": "PASS_PRIVATE_R1CK_CONSUMER_REPRODUCIBILITY",
+  "date": "2026-08-26",
+  "consumer": {
+    "contract_commit": "89d3fb0f",
+    "implementation_commit": "b220ac15",
+    "forward_report_sha256": "da9584804d0ff824a9d5703f37f947912132bb637f1e1f61d35e2e1b8b534074",
+    "reverse_report_sha256": "da9584804d0ff824a9d5703f37f947912132bb637f1e1f61d35e2e1b8b534074",
+    "stable_identity": "sha256:a58ddd34d4616ce217cb77ccd4017b02df9d305ae145732e89ab89788e39aaeb"
+  },
+  "producer_binding": {
+    "formal_commit": "8c66ce51094cab760517301c2b495898482c5bd6",
+    "evidence_commit": "a27d7c7d5d6e2b3bb342082e4525761cecaf843e",
+    "evidence_blob": "08cab56c2f796293c54692003a18c9486d7581eb",
+    "evidence_sha256": "43768f4795d036a72c01a300cff22effaaa37e35ff8aba23ac67ed6d0358286f",
+    "formal_report_sha256": "3403ed4fced6ea8cfbdfd0a2cfa246a4579232ec4ce999bccc710a5d68109984",
+    "stable_identity": "81a725667ca9bd8b82444b950537f1b91b25365dad203ee622e492a00b4e9313"
+  },
+  "mechanism_facts": {
+    "fresh_exact_commit_clones": 4,
+    "inner_producer_reports": 4,
+    "all_inner_reports_sha256": "3403ed4fced6ea8cfbdfd0a2cfa246a4579232ec4ce999bccc710a5d68109984",
+    "all_inner_stable_identities": "81a725667ca9bd8b82444b950537f1b91b25365dad203ee622e492a00b4e9313",
+    "wasm_module_bytes": 6168,
+    "wasm_module_sha256": "a1ee6cd057ffc287dc2b7c648571716b12c0c538ca2356b89b94870df18baf29",
+    "output_rgb_sha256": "ab3448a460165ebc2cb349c4fb4038ac0d3921af6c0a437d8714b7839bf89837",
+    "all_transitive_git_blobs_exact": true,
+    "compiler_linker_and_node_hashes_exact": true,
+    "formal_report_identity_exact": true,
+    "stable_identity_exact": true,
+    "wasm_module_identity_exact": true,
+    "runtime_output_identity_exact": true,
+    "temporary_roots_removed": true,
+    "network_downloads": 0
+  },
+  "relationship_to_p221_v1": {
+    "p221_v1_status_unchanged": "FAIL_CLOSED_R1CK_CONSUMER_REPRODUCIBILITY",
+    "interpretation": "P221-v1 bound the later evidence commit as the executable HEAD and correctly failed its own immutable identity contract. P221A separately binds the producer-declared formal-execution commit and proves the frozen report is reproducible.",
+    "not_a_gate_relaxation": true
+  },
+  "decision": {
+    "result": "PASS_PRIVATE_R1CK_CONSUMER_REPRODUCIBILITY",
+    "opens": "Exact producer-declared R1CK formal-commit reproducibility as private Node WebAssembly arithmetic evidence only.",
+    "does_not_open": [
+      "browser or WebView runtime",
+      "media decode or file I/O",
+      "RAW or HDR quality",
+      "shared-reference scientific admission",
+      "public package, schema or capability",
+      "consumer product mapping"
+    ]
+  },
+  "claim_ceiling": "Independent consumer reproducibility audit of the exact producer-declared R1CK formal-execution commit; no browser, WebView, media, RAW/HDR quality, shared-reference science, package, schema, capability or product admission."
+}

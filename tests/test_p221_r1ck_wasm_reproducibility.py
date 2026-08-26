@@ -98,3 +98,22 @@ def test_committed_evidence_records_exact_fail_closed_facts() -> None:
         "each_consumer_report_equals_frozen_producer_report_sha256",
         "stable_identity_exact",
     ]
+
+
+def test_corrected_evidence_preserves_v1_failure_and_exact_pass() -> None:
+    evidence = json.loads(
+        (
+            Path(__file__).resolve().parents[1]
+            / "docs/evidence/P221A_R1CK_FORMAL_COMMIT_REPRODUCIBILITY_RESULT.json"
+        ).read_text(encoding="utf-8")
+    )
+    assert evidence["status"] == "PASS_PRIVATE_R1CK_CONSUMER_REPRODUCIBILITY"
+    assert evidence["consumer"]["forward_report_sha256"] == evidence["consumer"][
+        "reverse_report_sha256"
+    ]
+    assert evidence["mechanism_facts"]["formal_report_identity_exact"] is True
+    assert evidence["mechanism_facts"]["stable_identity_exact"] is True
+    assert evidence["relationship_to_p221_v1"]["p221_v1_status_unchanged"].startswith(
+        "FAIL_CLOSED"
+    )
+    assert evidence["relationship_to_p221_v1"]["not_a_gate_relaxation"] is True
