@@ -7,6 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/u7_6c_three_stock_decode_lifetime_v1.json"
 SCRIPT = ROOT / "scripts/audit_u7_6c_three_stock_decode_lifetime.py"
+EVIDENCE = ROOT / "docs/evidence/U7_6C_THREE_STOCK_DECODE_LIFETIME_RESULT.json"
 
 
 def _module():
@@ -64,3 +65,18 @@ def test_evaluator_requires_exact_outputs_and_memory_reduction(tmp_path: Path) -
 
     rows[1]["rows"] = [{**output_rows[0], "output_sha256": "drift"}, *output_rows[1:]]
     assert module.evaluate_rows(rows, gates)["decision"] == "FAIL_CLOSED"
+
+
+def test_formal_evidence_binds_passing_resource_result() -> None:
+    evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+    assert evidence["decision"] == (
+        "PASS_RELEASE_DECODED_WORKING_IMAGE_BEFORE_THREE_STOCK_RENDER"
+    )
+    assert evidence["scientific_identity"] == (
+        "fbb05d66274971f9848412be32ae6b0736d6561329f1e6f7688144f1e8c970b0"
+    )
+    observations = evidence["observations"]
+    assert observations["peak_rss_reduction_bytes"] >= 134217728
+    assert observations["peak_rss_ratio"] <= 0.95
+    assert observations["wall_ratio"] <= 1.05
+    assert observations["candidate_residue_count"] == 0

@@ -36,6 +36,7 @@ def _source(path: Path) -> None:
 def _normalized_recipe(path: Path) -> dict:
     payload = json.loads(path.read_text(encoding="utf-8"))
     payload["output"]["path"] = "OUTPUT"
+    payload["software"]["commit"] = "SOFTWARE_COMMIT"
     return payload
 
 

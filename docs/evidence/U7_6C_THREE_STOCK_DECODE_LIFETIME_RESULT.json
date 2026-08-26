@@ -1,0 +1,32 @@
+{
+  "schema_version": "neuro-film.u7-6c-three-stock-decode-lifetime-evidence.v1",
+  "node_id": "U7.6C",
+  "bindings": {
+    "config_sha256": "8e305818e7f7272ba16c0c4809b1ff6161b0a7204af1ce7d29dbbb3a16aaa895",
+    "implementation_commit": "511627d7",
+    "implementation_sha256": "ae676aabccf3bd8b12d3e42c253a60078ef74878c1b7ab399124a1607100c5e2",
+    "audit_commit": "3bd991ce",
+    "audit_sha256": "ca151176766cf0b221120c7c92ae9ebc0c51f21239c19e65d8efc1bf5a4a4d4b",
+    "formal_execution_head": "4bd717e7142d52ada878c6dc67d94c850ec93a01",
+    "formal_report_sha256": "49428633e8fc71f12199b5e25b6604d6d30076633107a17f34a159311a2f84a1"
+  },
+  "scientific_identity": "fbb05d66274971f9848412be32ae6b0736d6561329f1e6f7688144f1e8c970b0",
+  "observations": {
+    "three_encoded_outputs_byte_exact": true,
+    "three_decoded_sample_arrays_exact": true,
+    "three_normalized_recipes_exact": true,
+    "ordered_stock_ids_exact": true,
+    "working_image_collectable_before_render_entry": true,
+    "baseline_mean_wall_seconds": 130.654671100001,
+    "candidate_mean_wall_seconds": 129.9728183999996,
+    "wall_ratio": 0.9947812604458701,
+    "baseline_mean_peak_process_tree_rss_bytes": 2212474880,
+    "candidate_mean_peak_process_tree_rss_bytes": 1919932416,
+    "peak_rss_reduction_bytes": 292542464,
+    "peak_rss_ratio": 0.8677759161722098,
+    "candidate_residue_count": 0
+  },
+  "decision": "PASS_RELEASE_DECODED_WORKING_IMAGE_BEFORE_THREE_STOCK_RENDER",
+  "interpretation": "The encoded float32 source and immutable input metadata fully replace the decoded linear WorkingImage before shared Lab context construction. Releasing that redundant full-frame object preserves all durable output semantics while removing about one 24MP RGB float32 image from the measured peak.",
+  "claim_ceiling": "Local Windows/Python 24MP three-stock file-batch object-lifetime evidence only; all three outputs remain non-calibrated Look Approximations and U7.2C stock separation remains failed."
+}
