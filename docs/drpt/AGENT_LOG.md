@@ -17183,3 +17183,28 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   topology; any successor must use a separately frozen scanline/streaming
   representation. No installed dependency, public API/package/schema/
   capability, renderer integration or product mapping opens.
+
+### 2026-08-26 - RF3.D11 closes the fixed PoLUT three-stock global control
+
+- **Node and scope:** `ULT > stock-first real film > RF3.D11`; exact public
+  PoLUT commit `8172157b...8eb5` supplies fixed `Classic_Normal` Velvia 50,
+  Portra 400 and Ektar 100 LUTs. The run uses the same 16 rights-cleared
+  digital inputs and PoLUT's documented gamma-encoded Adobe RGB domain. Only
+  the three exact 970KB LUT assets were retained; no full repository clone or
+  new stock pixels were downloaded.
+- **Formal result:** two fresh runs reproduce scientific identity
+  `80c9c02a...d40b8`, contact sheet `033e4c3e...e811a1` and all 48 output
+  identities. Velvia-Portra and Velvia-Ektar median DeltaE76 are
+  `17.0107/16.9726`, while Portra-Ektar is only `.79345` and gains only
+  `.77449` over RF3.D0. Maximum new output-boundary occupancy is `18.4034%`.
+  The frozen Portra/Ektar separation and exact-boundary gates fail, so the
+  result is `FAIL_CLOSED_EXACT_POLUT_CLASSIC_NORMAL_DISPLAY_DERIVED_CONTROL`.
+- **Corrections and handoff:** before formal reports, a synthetic unit test
+  aligned Adobe RGB to the project's exact D65 normalization, and one partial
+  run was discarded after the runner was strengthened to rehash every LUT
+  against its frozen SHA-256 and Git blob. Formal reports were then run from
+  empty roots; seven focused tests pass. Evidence commit `98bbee5e`, evidence
+  SHA `7385efc9...f929d`. Do not rescue this cohort by changing PoLUT variant,
+  paper, exposure, gamut handling or gates. AO6 remains only a Velvia display-
+  proxy baseline; controlled same-scene, independent-roll stock acquisition
+  remains the next identifying route.

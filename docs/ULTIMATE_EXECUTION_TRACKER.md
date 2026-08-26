@@ -189,6 +189,23 @@ independent observation is required, with first controlled Ektar evidence
 still the highest-information missing stock lane. Evidence:
 `docs/evidence/RF3_D10_VELVIA50_CHART_PRODUCT_BASELINE_RESULT.json`.
 
+RF3.D11 executes one fixed, current public three-stock control rather than
+extending the proxy family: exact PoLUT `8172157b...8eb5` `Classic_Normal`
+LUTs for Velvia 50, Portra 400 and Ektar 100 are applied to the same 16
+rights-cleared digital inputs through their documented gamma-encoded Adobe RGB
+domain and a fixed Adobe RGB-to-sRGB adapter. Two fresh runs have exact
+scientific identity (`80c9c02a...d40b8`), contact sheet
+(`033e4c3e...e811a1`) and 48-image inventories. Velvia separates strongly from
+Portra/Ektar (median DeltaE76 `17.01/16.97`), but Portra versus Ektar is only
+`.793` and improves over the weak RF3.D0 separation by only `.774`; output
+boundary occupancy reaches `18.40%`. The frozen separation and boundary gates
+therefore fail. Close this exact Classic/Normal control without changing
+paper, exposure, gamut handling, LUT variant or thresholds. It is a useful
+display-derived global baseline, not paired stock truth or a product profile;
+controlled same-scene, independent-roll acquisition remains the mainline.
+Evidence:
+`docs/evidence/RF3_D11_POLUT_THREE_STOCK_GLOBAL_BASELINE_RESULT.json`.
+
 SF3.A3E tests the highest-information public Ektar source gap directly rather
 than adding another proxy model. The exact 24 rights-cleared Commons Ektar
 rows yield 18 Flickr identities and 1,111 bounded same-author Commons pages.
