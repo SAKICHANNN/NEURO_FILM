@@ -1,0 +1,75 @@
+{
+  "schema": "neuro-film.p230-r1cz-shared-hdr-payload-consumer-contract.v1",
+  "experiment_id": "P230",
+  "node": "ULT > paired/capture-time HDR > P230",
+  "status": "FROZEN_AFTER_R1CZ_PUBLICATION_BEFORE_CONSUMER_IMPLEMENTATION_OR_APPLY",
+  "producer": {
+    "repository": "C:/Users/hhvrf/Documents/追色",
+    "evidence_commit": "289e32b5a972489533dba253ede1f91213bcafb3",
+    "formal_commit": "70d235b0f4e4a276c4ef7dace306e8b42678f524",
+    "evidence_path": "docs/evidence/R1CZ_R1CY_SHARED_BUNDLE_PAYLOAD_MATERIALIZATION_RESULT.json",
+    "evidence_sha256": "1e3c85dac84b73b094d1dbc5edc716e15e8399b5052399a19f2052c9a25a932b",
+    "evidence_blob": "d35ea225a9152f13fcd9d58f8cc35e66c71ab7c3",
+    "payload_path": "tests/fixtures/r1cy_shared_hdr_bundle_payload_v1.json",
+    "payload_sha256": "aa7fe0400e7bef106a9ff75305babab317a4148bdb05c573c50395d6f4228cb9",
+    "payload_bytes": 4376,
+    "payload_blob": "55c74355f4f11618ec3d8c3f1b4e4f6f0220a47f",
+    "schema_path": "schemas/zhuise_shared_hdr_transform_bundle_v1.schema.json",
+    "schema_sha256": "e77cb34bdbd214a00e2072208aacb6c255332799595357a6e922ac77694a79f0",
+    "schema_blob": "da500b97fc1848207cd360062cee091176be01a5",
+    "oracle_source_path": "src/zhuise/portable.py",
+    "oracle_source_sha256": "b7cdadafcc2b3f4213dd5e2647608c83b0e07c275ac04a1ad24f48c67ce8e89e",
+    "oracle_source_blob": "e2ba3ac626fadc2c548faa986359fb8a2302f9b0"
+  },
+  "parent": {
+    "p228_evidence_path": "docs/evidence/P228_R1CY_PAIRED_HDR_HANDOFF_ARTIFACT_AUDIT_RESULT.json",
+    "p228_evidence_sha256": "e5e2c14b059816fa08e16b94ff2cf8ba85af6f5320c81dbfbd013fa1348c7a0d",
+    "required_status": "FAIL_CLOSED_R1CY_HANDOFF_PAYLOAD_NOT_PERSISTED",
+    "supersedes_artifact_gap_only": true
+  },
+  "envelope": {
+    "schema": "https://zhuise.local/schemas/paired-reference-shared-hdr-bundle-v1",
+    "algorithm_id": "zhuise.rgb-dpct",
+    "algorithm_version": "zhuise.rgb-dpct-reference-white.v3",
+    "capability_id": "zhuise.rgb-dpct-reference-white-shared.cpu-reference.v1",
+    "profile_id": "zhuise.display-linear-bt2020-d65-absolute-cdm2-f32.v2",
+    "reference_white_nits": 203.0,
+    "build_source_view_id": "sha256:af4fbc64be31205e00f53b5680a9b81bf3e7406152536f4592c0cb2e85f9c14b",
+    "reference_view_id": "sha256:e54503bf0f455978a25cf2d2e667c9e0008f3ee46bc5cefa9d3268769033efe6",
+    "legacy_bundle_id": "sha256:c719d1e01cb707212d5e92f2c4b5a7a6963493adebddeb2e4dba02e777862def",
+    "payload_format": "zhuise.rgb-dpct-reference-white.portable-json.v3",
+    "payload_byte_length": 4376,
+    "payload_sha256": "sha256:aa7fe0400e7bef106a9ff75305babab317a4148bdb05c573c50395d6f4228cb9",
+    "bundle_id": "sha256:2759d2193861b95d39bb451efb2477c6ae796f5f58b3b81cf6487cbd85c3220f"
+  },
+  "fixture": {
+    "levels_float32": [-1.0, 0.0, 0.001, 1.0, 18.0, 203.0, 1000.0, 10000.0, 12000.0],
+    "shape": [729, 1, 3],
+    "sha256": "6476554cf17e8c47bd961d61362a17a3443d1eab15826aa1dc1326fb6a0532ec"
+  },
+  "execution": {
+    "orders": ["forward", "reverse"],
+    "fresh_process_per_outer": true,
+    "paired_build_reads": 0,
+    "paired_build_runs": 0,
+    "network_reads": 0,
+    "repository_media_writes": 0
+  },
+  "gates": {
+    "producer_evidence_payload_schema_and_oracle_identities_exact": true,
+    "p228_parent_and_r1cz_artifact_gap_transition_exact": true,
+    "payload_bytes_hash_canonical_json_and_envelope_exact": true,
+    "consumer_fixture_identity_exact": true,
+    "consumer_output_equals_separate_producer_oracle_byte_exact": true,
+    "input_unchanged_output_owned_contiguous_finite_in_bounds": true,
+    "corrupt_payload_wrong_envelope_and_unsupported_format_fail_closed": true,
+    "forward_reverse_reports_byte_exact": true,
+    "paired_build_and_network_reads_zero": true
+  },
+  "decision": {
+    "pass": "Retain private consumer compatibility for the exact R1CZ payload and frozen fixture only.",
+    "fail": "Close without paired rebuild, arithmetic, tolerance, fixture, payload or envelope rescue.",
+    "invalid": "If a producer or parent identity differs, report infrastructure-invalid and do not interpret consumer parity."
+  },
+  "claim_ceiling": "Private exact R1CZ self-authored paired/capture-time payload hash, canonical deserialization, envelope verification and float32 apply compatibility on one frozen consumer fixture only; no arbitrary payload, arbitrary after-only inference, natural/captured HDR quality, display/media quality, public package/schema/capability or product admission."
+}
