@@ -16606,6 +16606,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   proxy rescue. Six adjacent tests, Ruff, compile and diff checks pass.
   Evidence: `docs/evidence/U7_6E_THREE_STOCK_STREAMING_PNG_RESULT.json`.
 
+### 2026-08-26 - U7.6F closes output-stitch and encoder memory work
+
+- **Node:** `ULT > U7 > U7.6F`; final distinct output-memory test after U7.6E.
+- **Experiment:** exact safe-Lab tiles are emitted as bounded full-width row
+  stripes directly into RGB16 PNG. Four 24MP B/C/C/B workers bind decoded
+  samples, ICC, normalized recipes, stock order and both execution identities.
+- **Result:** every semantic, replay, wall and cleanup gate passes. Mean peak
+  changes only `1,920,079,872 -> 1,912,508,416` bytes (`-7,571,456`, ratio
+  `.99606`), failing the frozen `192 MiB` and `.90` gates.
+- **Decision:** `FAIL_CLOSED_REVERT_ROW_STREAM_RENDER`; the full candidate is
+  removed and the product files match their pre-candidate bytes. This locates
+  the peak inside safe-Lab, not final stitching/encoding, and closes this
+  performance family. Evidence:
+  `docs/evidence/U7_6F_THREE_STOCK_ROW_STREAM_RENDER_RESULT.json`.
+
 ### 2026-08-26 - P236 preserves a wrong-coordinate neutral gate as a formal negative
 
 - **Node and routing:** `ULT > U1 > U1.3N/U1.4K / P236`; primary
@@ -16636,3 +16651,40 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   stay closed. Fourteen P100/P224/P236 tests, Ruff, compileall and diff checks
   pass. Evidence SHA-256 `7d8e294e...916a`:
   `docs/evidence/P236_DNG_FORWARD_ACES2_XYZ_NITS_CALLABLE_RESULT.json`.
+
+### 2026-08-26 - P237 closes WACV 2026 RTD product-cycle source admission before pixels
+
+- **Node and routing:** `ULT > bounded paired-source gate > P237`; primary
+  `dev-research-reliability`, with scientific-research and structure
+  stewardship as read-only reviewers. The source was selected from a latest
+  primary-source search because InRetouch/RTD applies professional Lightroom
+  presets across MIT-Adobe FiveK scenes and therefore directly tests a
+  source-independent shared-operator data premise.
+- **Protocol:** before API enumeration or payload access, freeze five mandatory
+  conditions: anonymously enumerable and content-identified payload,
+  commercial model/product rights, explicit scene/preset grouping, exact sizes
+  and hashes, and no contact-sharing/additional-term gate. Dataset/LFS/image,
+  preset, checkpoint, training, inference and pixel reads are forbidden.
+- **Result:** corrected forward/reverse 1,907-byte reports are byte-identical at
+  `b101a796...2004`, stable `cf0c6576...4fa3`. The exact official GitHub HEAD is
+  `cbf0db19...8360d`; Hugging Face dataset SHA is `3e100e1f...f949`.
+  All 96,164 descriptors / 18,027,030,144 bytes are anonymously enumerable,
+  every descriptor has a size and Git identity, 96,161 carry LFS SHA-256, and
+  Train/Validation/Benchmark expose explicit natural/preset roles. No dataset
+  payload or authenticated request occurred.
+- **Formal failure and correction:** RTD is tagged CC BY-NC-SA 4.0, the code is
+  explicitly academic-research-only, and the dataset is `gated=auto`; the
+  commercial-rights and ungated-access gates fail independently. An initial
+  pre-evidence report incorrectly searched for `Benchmark/Train/Natural`
+  instead of the release's top-level `Train`/`Validation` and lowercase
+  `natural` paths. Commit `684042cb` corrected only partition classification
+  and reran both processes from scratch; the decisive failures and decision
+  never changed.
+- **Decision and boundary:**
+  `NOT_ELIGIBLE_PRODUCT_CYCLE_SOURCE_RIGHTS_OR_PAYLOAD_GAP`. Do not accept
+  gated terms, reinterpret noncommercial rights, use credentials/mirrors or
+  count bounded candidate 3. RTD remains valuable current academic context;
+  only a separately licensed future release could reopen source intake. Three
+  focused tests, Ruff, compileall and diff checks pass. Evidence SHA-256
+  `1d0b9e75...c4498`:
+  `docs/evidence/P237_INRETOUCH_RTD_SOURCE_ELIGIBILITY_RESULT.json`.
