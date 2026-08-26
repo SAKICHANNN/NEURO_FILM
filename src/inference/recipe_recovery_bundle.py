@@ -6,7 +6,9 @@ import hashlib
 import io
 import json
 import os
+import shutil
 import stat
+import tempfile
 import zipfile
 from collections.abc import Mapping
 from pathlib import Path, PurePosixPath
@@ -270,6 +272,15 @@ def inspect_recipe_recovery_bundle(bundle_path: Path) -> dict[str, Any]:
                 raise RecipeRecoveryBundleError(
                     "bundle directories/encryption are forbidden"
                 )
+            mode = info.external_attr >> 16
+            if (
+                info.create_system == 3
+                and stat.S_IFMT(mode) != 0
+                and not stat.S_ISREG(mode)
+            ):
+                raise RecipeRecoveryBundleError(
+                    "bundle non-regular members are forbidden"
+                )
             if info.compress_type not in {zipfile.ZIP_STORED, zipfile.ZIP_DEFLATED}:
                 raise RecipeRecoveryBundleError("bundle compression is unsupported")
             total += info.file_size
@@ -407,10 +418,91 @@ def inspect_recipe_recovery_bundle(bundle_path: Path) -> dict[str, Any]:
     }
 
 
+def _write_restored_member(path: Path, payload: bytes) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("xb") as handle:
+        handle.write(payload)
+        handle.flush()
+        os.fsync(handle.fileno())
+
+
+def materialize_recipe_recovery_bundle(
+    *, bundle_path: Path, destination_root: Path
+) -> dict[str, Any]:
+    """Restore a validated bundle into one new directory, or leave no directory."""
+
+    inspected = inspect_recipe_recovery_bundle(bundle_path)
+    if destination_root.exists():
+        raise RecipeRecoveryBundleError("recovery destination already exists")
+    parent = destination_root.parent
+    if not parent.is_dir():
+        raise RecipeRecoveryBundleError("recovery destination parent does not exist")
+    with zipfile.ZipFile(bundle_path, mode="r") as archive:
+        contents = {info.filename: archive.read(info) for info in archive.infolist()}
+    manifest = _strict_json(contents[MANIFEST_MEMBER], "bundle manifest")
+    stage = Path(
+        tempfile.mkdtemp(prefix=f".{destination_root.name}.restore-", dir=parent)
+    )
+    published = False
+    try:
+        for member in sorted(contents):
+            _write_restored_member(stage / PurePosixPath(member), contents[member])
+        recipe = _strict_json((stage / RECIPE_MEMBER).read_bytes(), "restored recipe")
+        profile_member = _normalized_member(
+            manifest["profile_member"], "restored profile member"
+        )
+        payload_root = stage / str(manifest["profile_root"])
+        profile_path = stage / PurePosixPath(profile_member)
+        try:
+            validate_render_recipe(recipe)
+            profile = load_render_profile(profile_path, root=payload_root)
+        except RenderContractError as exc:
+            raise RecipeRecoveryBundleError(
+                "restored recipe/profile validation failed"
+            ) from exc
+        if (
+            _sha256(profile_path.read_bytes()) != recipe["profile"]["sha256"]
+            or recipe["profile"]["profile_id"] != profile["profile_id"]
+            or recipe["profile"]["profile_version"] != profile["profile_version"]
+            or recipe["assets"] != profile["assets"]
+        ):
+            raise RecipeRecoveryBundleError(
+                "restored profile identity or asset ledger differs"
+            )
+        restored_rows = [
+            {
+                "member": member,
+                "sha256": _sha256((stage / PurePosixPath(member)).read_bytes()),
+                "bytes": len(contents[member]),
+            }
+            for member in sorted(contents)
+        ]
+        os.rename(stage, destination_root)
+        published = True
+        return {
+            "schema_id": "kmcfm.recipe-recovery-materialization.v1",
+            "bundle_sha256": inspected["bundle_sha256"],
+            "recipe_sha256": inspected["recipe_sha256"],
+            "style": inspected["style"],
+            "member_count": len(restored_rows),
+            "members": restored_rows,
+            "privacy": inspected["privacy"],
+            "claim": inspected["claim"],
+        }
+    except FileExistsError as exc:
+        raise RecipeRecoveryBundleError(
+            "recovery destination appeared during publication"
+        ) from exc
+    finally:
+        if not published and stage.exists():
+            shutil.rmtree(stage)
+
+
 __all__ = [
     "RECOVERY_BUNDLE_FORMAT",
     "RECOVERY_BUNDLE_SCHEMA_ID",
     "RecipeRecoveryBundleError",
     "build_recipe_recovery_bundle",
     "inspect_recipe_recovery_bundle",
+    "materialize_recipe_recovery_bundle",
 ]

@@ -33,6 +33,7 @@ from .recipe_recovery_bundle import (
     RecipeRecoveryBundleError,
     build_recipe_recovery_bundle,
     inspect_recipe_recovery_bundle,
+    materialize_recipe_recovery_bundle,
 )
 from .render_contract import (
     LEGACY_STYLE_EVIDENCE_INVENTORY_SCHEMA_ID,
@@ -101,6 +102,7 @@ __all__ = [
     "inspect_recipe_recovery_bundle",
     "list_three_stock_looks",
     "load_render_profile",
+    "materialize_recipe_recovery_bundle",
     "migrate_legacy_safe_rich",
     "plan_tile_windows",
     "render_recipe_history_html",

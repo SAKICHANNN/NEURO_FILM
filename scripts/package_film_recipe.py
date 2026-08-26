@@ -18,6 +18,7 @@ if str(ROOT) not in sys.path:
 from src.inference import (
     build_recipe_recovery_bundle,
     inspect_recipe_recovery_bundle,
+    materialize_recipe_recovery_bundle,
 )
 
 
@@ -36,6 +37,9 @@ def parse_args() -> argparse.Namespace:
     build.add_argument("--output", type=Path, required=True)
     inspect = commands.add_parser("inspect")
     inspect.add_argument("--bundle", type=Path, required=True)
+    restore = commands.add_parser("restore")
+    restore.add_argument("--bundle", type=Path, required=True)
+    restore.add_argument("--destination", type=Path, required=True)
     return parser.parse_args()
 
 
@@ -48,8 +52,13 @@ def main() -> int:
             root=ROOT,
             bundle_path=args.output,
         )
-    else:
+    elif args.command == "inspect":
         result = inspect_recipe_recovery_bundle(args.bundle)
+    else:
+        result = materialize_recipe_recovery_bundle(
+            bundle_path=args.bundle,
+            destination_root=args.destination,
+        )
     print(json.dumps(result, sort_keys=True, separators=(",", ":")))
     return 0
 
