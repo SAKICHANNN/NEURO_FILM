@@ -1,0 +1,75 @@
+{
+  "schema": "neuro-film.p242-dng-profile-huesatmap-source-audit-evidence.v1",
+  "experiment_id": "P242",
+  "status": "PASS_PRIVATE_DNG_PROFILE_HUESATMAP_SOURCE_STRUCTURE",
+  "formal_execution_commit": "119f83f0ce24ee48b2ee13de22b93c1bee67dbc8",
+  "implementation_commits": {
+    "contract_and_initial_runner": "60ddd6ba",
+    "license_marker_correction": "0278f65f"
+  },
+  "bindings": {
+    "config_path": "configs/p242_dng_profile_huesatmap_source_audit_v1.json",
+    "config_bytes": 3893,
+    "config_sha256": "50ea26173a79d57900fb2364957511dd8ed6f0b1ed6419cb2502dd0ac121ce1d",
+    "core_path": "src/preprocess/dng_profile_huesatmap_audit.py",
+    "core_bytes": 5466,
+    "core_sha256": "4350dd6f76639cef7a6adc1aa8a187b042336a4ef39130b8377ad37995b280c2",
+    "runner_path": "scripts/audit_p242_dng_profile_huesatmap_source.py",
+    "runner_bytes": 5811,
+    "runner_sha256": "b300ab5c979ed861b0b6305533cc0937c2cbf7573bb68f362a4d71eaea58392d",
+    "test_path": "tests/test_p242_dng_profile_huesatmap_source.py",
+    "test_bytes": 2366,
+    "test_sha256": "683ab943cb0d8f046d4c010c9bb06ce8effa2a4b645448ab5bd9c0351c021251",
+    "official_spec_path": "data/external/adobe_dng_spec_1_7_1_0/DNG_Spec_1_7_1_0.pdf",
+    "official_spec_bytes": 1176100,
+    "official_spec_sha256": "abdecfd8e104e8b86cc054d3a40b677bb2ebe87131bfde080a1df3ee16eb2f8d",
+    "official_sdk_zip_path": "data/external/adobe_dng_sdk_1_7_1_2652/dng_sdk_1_7_1_2652_20260714.zip",
+    "official_sdk_zip_bytes": 80494799,
+    "official_sdk_zip_sha256": "73499b47f4683e12120a234bd0946f02e52ab2ff9834bcbd0e9f8ab4f923360e"
+  },
+  "formal_runs": {
+    "forward_report_path": "outputs/eval/p242_dng_profile_huesatmap_source_audit_v1/formal_forward.json",
+    "forward_report_bytes": 3034,
+    "forward_report_sha256": "fc20c7c5c795fe879c836179408e39abf3a608cc4b303b4d7942b84b79003e16",
+    "reverse_report_path": "outputs/eval/p242_dng_profile_huesatmap_source_audit_v1/formal_reverse.json",
+    "reverse_report_bytes": 3034,
+    "reverse_report_sha256": "fc20c7c5c795fe879c836179408e39abf3a608cc4b303b4d7942b84b79003e16",
+    "reports_byte_exact": true
+  },
+  "excluded_initial_reports": {
+    "report_sha256": "327aff6868d971a48fe5c393c5df52498ee1d99684aa7e658d1edc293a4dbd05",
+    "report_bytes": 3030,
+    "reason": "The runner matched a shortened license phrase that omitted the word 'from' and the subsequent granted actions. The official bound LICENSE.txt contains the required grant. The correction only recognizes the exact normalized official phrase; source rows, dimensions, tables, gates, authority files and claim ceiling were unchanged, and both formal runs were repeated from committed source."
+  },
+  "source_inventory": {
+    "rows": 2,
+    "exif_bytes": 392557,
+    "makes_models": [
+      "DJI FC220",
+      "Fujifilm X100S"
+    ],
+    "table_kinds": {
+      "3d_6x6x3": 1,
+      "2_5d_90x30x1": 1
+    },
+    "raw_files_downloaded": 0,
+    "raw_bytes_downloaded": 0,
+    "pixels_decoded": 0,
+    "operator_applies": 0
+  },
+  "gates": {
+    "valid_rows": true,
+    "dimensions_2_5d_and_3d": true,
+    "all_finite_and_exact_counts": true,
+    "zero_saturation_value_scale_one": true,
+    "sdk_source_and_license_markers": true,
+    "forward_reverse_byte_exact": true,
+    "raw_downloads_zero": true,
+    "pixel_decodes_zero": true,
+    "operator_applies_zero": true
+  },
+  "interpretation": "Two already-consumed P240 metadata rows contain structurally valid DNG ProfileHueSatMap tables covering both three-dimensional and 2.5D forms. Their dimensions, exact entry counts, finite values, default encoding and dynamic-range semantics, and zero-saturation value-scale constraint agree with the bound Adobe DNG specification and SDK source. This establishes source-structure eligibility only; no interpolation or colour transform was executed.",
+  "decision": "open_separately_preregistered_private_interpolation_arithmetic_d0",
+  "next_leaf": "Prospectively freeze an independent Adobe-SDK-backed arithmetic oracle before implementing or scoring a Python interpolation candidate. Do not use image quality, RAW rendering or product gates in that arithmetic leaf.",
+  "claim_ceiling": "Private consumed-metadata DNG ProfileHueSatMap source-structure eligibility only. No interpolation conformance, colour/image quality, arbitrary DNG, RAW rendering, package, schema, capability, film-stock or product claim."
+}
