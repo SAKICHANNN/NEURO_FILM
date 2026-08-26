@@ -1,0 +1,101 @@
+{
+  "schema": "neuro-film.p246-acescg-openexr-exact-consumer-intake-evidence.v1",
+  "experiment_id": "P246",
+  "date": "2026-08-26",
+  "status": "PASS_PRIVATE_EXACT_R1DO_OPENEXR_CONSUMER_INTAKE",
+  "decision": "The exact producer R1DO Git-object writer and pinned OpenEXR wheel reproduce the frozen synthetic ACEScg OpenEXR bytes, float32 pixels, AP1/D60 metadata, validation behavior and publication atomicity from two independent neuro_film consumer processes without copying the writer into this repository. Retain this as a private exact handoff-intake result only.",
+  "claim_ceiling": "Private Windows CPython consumer-side reproducibility of the exact producer R1DO writer/source/wheel handoff on one synthetic ACEScg probe only. No neuro_film public API/dependency/package/schema/capability, AP0 or ST 2065-4 ACES container, large-image or quality result, arbitrary metadata support, Linux claim beyond bound R1DP evidence, or product admission.",
+  "consumer_identity": {
+    "contract_commit": "e09cc50eb5fdfe4ef0207f2f6bf93159ecfd72d5",
+    "contract_sha256": "1795a66c9edf12867e125c588212383d49d350f50ebe47e39db70329fd7ae2ba",
+    "initial_config_commit": "85823c61",
+    "initial_runner_commit": "a3d0be2d",
+    "worker_lifetime_fix_commit": "4244673482e776ace6b48d08afdaba5e342b3d29",
+    "corrected_runner_binding_commit": "7698c8a9",
+    "metadata_binding_fix_commit": "e9a441c95878af575036f53e00d0850ef5bcea54",
+    "runner_sha256": "7a030cee18a50752b69e7cc73b85761717963a0874767a1c0a38f8990618ae1b",
+    "runner_git_blob": "0afb51bf18134eb6c56609aed72b16316236a26c",
+    "config_sha256": "615d66f32c411c3acb6b671701c094df76a5817177c03b4d590cdc4eba754910"
+  },
+  "producer_identity": {
+    "r1do_evidence_commit": "e1a22951e6aae752b73ae9f407e6b0d7a223597c",
+    "r1do_evidence_sha256": "ac1babeb61c93714c5eaf1ed8364699af7f98123cf7065298522f711ae8ceae1",
+    "r1dp_evidence_commit": "3ab2a6fcad8457dd1b53cf841d657fdd3948d071",
+    "r1dp_evidence_sha256": "63b587ad2f0cc9620c7ffa6596f98d907c0a92e7e38fd63cbfa97e9a9cb5ed7f",
+    "writer_commit": "e4023509f1a1ca21606468312bf710972d9e1059",
+    "writer_path": "src/zhuise/acescg_openexr.py",
+    "writer_git_blob": "398f4de2cfb04a887bb13632df324fea1624f5bc",
+    "writer_sha256": "3707b55b2cb7dd7fb102b4237e8ee4317035e917bd71441eb06dd9cc0a2757c3",
+    "writer_copied_to_consumer_repository": false,
+    "wheel": "openexr-3.4.15-cp312-cp312-win_amd64.whl",
+    "wheel_bytes": 740197,
+    "wheel_sha256": "7aa145813acfe10a83d6e89340349379828190b321608e69f2aee426e10c890b"
+  },
+  "formal_execution": {
+    "outer_processes": 2,
+    "orders": ["forward", "reverse"],
+    "fresh_offline_wheel_install_per_outer": true,
+    "network_reads": 0,
+    "producer_real_photo_reads": 0,
+    "project_pixel_reads": 0,
+    "reports_byte_exact": true,
+    "report_bytes": 3526,
+    "report_sha256": "cc644524f4438c5f15ba1b042264737fda9fc5fdd46a03cceb4d26ec18432ab5",
+    "scientific_identity": "sha256:baa94966323e0b602b04cca959f90ddc7151f61e79b6198666dcc8036569881c",
+    "system_temporary_residue": 0,
+    "preformal_operational_exclusion": "The first two controller attempts wrote no report and stopped after EXR execution because Windows retained OpenEXR.pyd until process exit. The corrected controller runs the unchanged writer, wheel, probe and gates in a short-lived worker, waits for exit, and then removes the same temporary tree.",
+    "excluded_binding_report": {
+      "bytes": 3526,
+      "sha256": "e2c9107b48e18ed3fcaee2f7b447e3097d1fa2c5cfa4ee36c265d74076f26609",
+      "reason": "The config transcribed the R1DO green-primary float32 x value as 0.12800000655651093 rather than the exact evidence value 0.12800000607967377. Every other gate passed. The committed amendment changed only this bound decimal; writer, wheel, probe, observed bytes, gate and thresholds were unchanged."
+    }
+  },
+  "result": {
+    "writer_id": "acescg-ap1-d60-float32-zip-openexr-master-v1",
+    "openexr_version": "3.4.15",
+    "shape": [7, 9, 3],
+    "input_f32le_sha256": "3b14e75aa87a09794e0c4cb6339a4fc09862657d9aea190a9e3311c155bdb727",
+    "openexr_bytes": 696,
+    "openexr_sha256": "14a122a7d9f674cc5d6fae50a6a8a5e3e62e33217d38bed48fdf0df2194e48ce",
+    "decoded_maximum_absolute_error": 0.0,
+    "storage": "single-part scanline coalesced RGB float32 ZIP",
+    "chromaticities": [
+      0.7129999995231628,
+      0.2930000126361847,
+      0.16500000655651093,
+      0.8299999833106995,
+      0.12800000607967377,
+      0.04399999976158142,
+      0.3216800093650818,
+      0.3376699984073639
+    ],
+    "adopted_neutral": [0.3216800093650818, 0.3376699984073639],
+    "white_luminance_absent": true,
+    "negative_preserved": true,
+    "above_one_preserved": true
+  },
+  "gates": {
+    "exact_decoded_pixels": true,
+    "exact_evidence_bindings": true,
+    "exact_git_objects": true,
+    "exact_metadata": true,
+    "exact_offline_wheel": true,
+    "exact_openexr_bytes": true,
+    "exact_storage": true,
+    "input_immutability": true,
+    "invalid_input_rejection": true,
+    "negative_and_above_one_preserved": true,
+    "publication_failure_atomicity": true,
+    "writer_contract": true,
+    "zero_external_pixel_reads": true,
+    "zero_network": true,
+    "zero_temporary_residue": true
+  },
+  "rights_and_product": {
+    "new_data_dependency": false,
+    "new_model_dependency": false,
+    "public_api_or_dependency": false,
+    "package_or_schema": false,
+    "capability_or_product_mapping": false
+  }
+}
