@@ -16546,3 +16546,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   This is not arbitrary HDR, grade/aesthetic quality, package/schema/capability
   or product evidence. Evidence:
   `docs/evidence/P234_R1CZ_ULTRAHDR_STILL_SAFETY_RESULT.json`.
+
+### 2026-08-26 - U7.6D closes unproductive generator-yield lifetime change
+
+- **Node:** `ULT > U7 > U7.6D`; bounded product-runtime measurement after the
+  successful U7.6A-C three-stock memory reductions.
+- **Experiment:** a candidate explicitly released each yielded full-resolution
+  result when the generator resumed. Four fresh 24MP B/C/C/B workers compared
+  the exact baseline and candidate while binding output PNGs, decoded arrays,
+  normalized recipes, stock order and residue.
+- **Result:** all durable identities remained exact and wall ratio was
+  `.99272`, but mean process-tree peak RSS changed only
+  `1,920,204,800 -> 1,919,983,616` bytes (`-221,184`, ratio `.99988`). The
+  frozen `128 MiB` reduction and `.95` ratio gates both failed.
+- **Decision:** `FAIL_CLOSED_REVERT_YIELD_LIFETIME_CHANGE`. The product source
+  is restored to the pre-candidate bytes; do not tune the resource gates or
+  open another equivalent generator-lifetime leaf. Resume the multi-stock
+  evidence/product mainline. Evidence:
+  `docs/evidence/U7_6D_THREE_STOCK_YIELD_LIFETIME_RESULT.json`.

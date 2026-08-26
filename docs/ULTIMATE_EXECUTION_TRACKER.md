@@ -2337,3 +2337,12 @@ bytes (`-292,542,464`, ratio `.86778`) at wall ratio `.99478`, with zero
 residue. This is local file-batch resource evidence only; controlled stock
 pixels, U7.2C separation and calibration remain unchanged. Evidence:
 `docs/evidence/U7_6C_THREE_STOCK_DECODE_LIFETIME_RESULT.json`.
+
+U7.6D closes the remaining generator-yield lifetime micro-optimization rather
+than rescuing it. Although the candidate made the prior yielded array
+collectable before the next render, four fresh 24MP B/C/C/B processes preserved
+all durable identities but reduced mean process-tree peak RSS by only `221,184`
+bytes (ratio `.99988`) against frozen `128 MiB` and `.95` gates. The product
+change was reverted byte-for-byte; no threshold rescue or further lifetime
+micro-leaf opens. Evidence:
+`docs/evidence/U7_6D_THREE_STOCK_YIELD_LIFETIME_RESULT.json`.
