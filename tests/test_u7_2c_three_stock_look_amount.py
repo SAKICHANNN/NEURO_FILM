@@ -1,13 +1,21 @@
 from __future__ import annotations
 
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 import numpy as np
 import pytest
+from PIL import Image
 
 from scripts.pipeline_color_baseline import load_guardrail_config
-from src.inference import load_render_profile, render_resolved_safe_lab_rgb
+from src.inference import (
+    RECIPE_SCHEMA_ID_V2,
+    load_render_profile,
+    render_resolved_safe_lab_rgb,
+    replay_style_safe_recipe_to_file,
+)
 from src.inference.three_stock_look import (
     list_three_stock_looks,
     render_three_stock_look_rgb,
@@ -138,3 +146,78 @@ def test_unknown_stock_fails_closed() -> None:
         resolve_three_stock_look_parameters(
             profile, film_stock_id="generic_film", look_amount=0.5
         )
+
+
+def test_cli_amount_recipe_is_byte_exact_replay(tmp_path: Path) -> None:
+    source_path = tmp_path / "source.png"
+    output_path = tmp_path / "portra.png"
+    replay_path = tmp_path / "portra.replay.png"
+    pixels = (
+        (np.arange(67 * 91 * 3, dtype=np.uint32) % 251)
+        .reshape(67, 91, 3)
+        .astype(np.uint8)
+    )
+    Image.fromarray(pixels, mode="RGB").save(source_path)
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts/render_film.py"),
+            str(source_path),
+            "--style",
+            "portra_400",
+            "--use-render-profile",
+            "--look-amount",
+            "0.5",
+            "--tile-size",
+            "29",
+            "--tile-workers",
+            "2",
+            "--write-recipe",
+            "--output",
+            str(output_path),
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert completed.returncode == 0, completed.stderr
+    recipe_path = output_path.with_suffix(".recipe.json")
+    recipe = json.loads(recipe_path.read_text(encoding="utf-8"))
+    assert recipe["schema_id"] == RECIPE_SCHEMA_ID_V2
+    assert recipe["render"]["look_amount"] == 0.5
+    assert recipe["render"]["color_parameters"]["strength"] == 0.175
+    expected = output_path.read_bytes()
+    output_path.unlink()
+    replay_style_safe_recipe_to_file(
+        recipe,
+        profile_path=PROFILE,
+        output_path=replay_path,
+        root=ROOT,
+        tile_size=29,
+    )
+    assert replay_path.read_bytes() == expected
+
+
+def test_cli_rejects_unversioned_amount_override(tmp_path: Path) -> None:
+    source_path = tmp_path / "source.png"
+    output_path = tmp_path / "output.png"
+    Image.fromarray(np.zeros((7, 9, 3), dtype=np.uint8), mode="RGB").save(source_path)
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts/render_film.py"),
+            str(source_path),
+            "--look-amount",
+            "0.5",
+            "--output",
+            str(output_path),
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert completed.returncode != 0
+    assert "requires safe_lab --use-render-profile" in completed.stderr
+    assert not output_path.exists()

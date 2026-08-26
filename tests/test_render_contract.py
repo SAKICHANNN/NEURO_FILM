@@ -14,6 +14,7 @@ from PIL import Image
 from src.inference import (
     PROFILE_SCHEMA_ID,
     RECIPE_SCHEMA_ID,
+    RECIPE_SCHEMA_ID_V2,
     RenderContractError,
     build_render_recipe,
     load_render_profile,
@@ -36,10 +37,13 @@ def _profile() -> dict:
 def test_tracked_schemas_are_strict_and_profile_is_exact_migration() -> None:
     profile_schema = json.loads((ROOT / "configs" / "schemas" / "render_profile_v1.schema.json").read_text())
     recipe_schema = json.loads((ROOT / "configs" / "schemas" / "render_recipe_v1.schema.json").read_text())
+    recipe_schema_v2 = json.loads((ROOT / "configs" / "schemas" / "render_recipe_v2.schema.json").read_text())
     assert profile_schema["additionalProperties"] is False
     assert recipe_schema["additionalProperties"] is False
     assert profile_schema["properties"]["schema_id"]["const"] == PROFILE_SCHEMA_ID
     assert recipe_schema["properties"]["schema_id"]["const"] == RECIPE_SCHEMA_ID
+    assert recipe_schema_v2["properties"]["schema_id"]["const"] == RECIPE_SCHEMA_ID_V2
+    assert "look_amount" in recipe_schema_v2["properties"]["render"]["required"]
     migrated = migrate_legacy_safe_rich(
         ROOT / "configs" / "color_rendering_profiles.yaml",
         ROOT / "configs" / "film_color_stats.json",
@@ -119,6 +123,14 @@ def test_recipe_builder_hashes_files_and_rejects_mutation(tmp_path: Path) -> Non
     assert recipe["input"]["sha256"] == hashlib.sha256(b"input").hexdigest()
     assert recipe["output"]["sha256"] == hashlib.sha256(b"output").hexdigest()
     validate_render_recipe(recipe)
+    v1_with_amount = copy.deepcopy(recipe)
+    v1_with_amount["render"]["look_amount"] = 0.5
+    with pytest.raises(RenderContractError, match="keys mismatch"):
+        validate_render_recipe(v1_with_amount)
+    v2_without_amount = copy.deepcopy(recipe)
+    v2_without_amount["schema_id"] = RECIPE_SCHEMA_ID_V2
+    with pytest.raises(RenderContractError, match="keys mismatch"):
+        validate_render_recipe(v2_without_amount)
     verify_render_recipe_inputs(recipe, profile_path=PROFILE, root=ROOT)
     verify_render_recipe_files(recipe, profile_path=PROFILE, root=ROOT)
     mutation = copy.deepcopy(recipe)
@@ -165,5 +177,6 @@ def test_renderer_recipe_is_opt_in_and_does_not_change_output(tmp_path: Path) ->
     assert recipe["output"]["sha256"] == hashlib.sha256(replay.read_bytes()).hexdigest()
     assert recipe["claim"]["calibrated_reference_allowed"] is False
     metrics = json.loads(replay.with_suffix(".metrics.json").read_text(encoding="utf-8"))
+    assert "look_amount" not in metrics
     assert metrics["render_recipe"]["schema_id"] == RECIPE_SCHEMA_ID
     assert metrics["render_recipe"]["sha256"] == hashlib.sha256(recipe_path.read_bytes()).hexdigest()

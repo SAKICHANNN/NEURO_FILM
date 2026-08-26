@@ -37,8 +37,11 @@ from src.filmfx import (
 from src.inference import (
     atomic_write_json,
     build_render_recipe,
+    list_three_stock_looks,
     load_render_profile,
     render_resolved_safe_lab_rgb,
+    render_three_stock_look_rgb,
+    resolve_three_stock_look_parameters,
     sha256_file,
 )
 from src.inference.analytic_render_recipe import build_analytic_render_recipe
@@ -64,6 +67,12 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("input", type=Path)
     parser.add_argument("--style", default="velvia_50")
+    parser.add_argument(
+        "--look-amount",
+        type=float,
+        default=1.0,
+        help="Bounded [0,1] amount for the three explicit stock Look Approximation baselines.",
+    )
     parser.add_argument(
         "--color-engine",
         choices=("safe_lab", "analytic-y-chromaticity"),
@@ -313,6 +322,16 @@ def main() -> int:
         raise ValueError("--gamut-workers cannot be combined with --tile-size")
     if args.tile_size is None and args.tile_workers != 1:
         raise ValueError("--tile-workers requires --tile-size")
+    if not 0.0 <= args.look_amount <= 1.0:
+        raise ValueError("--look-amount must be in [0,1]")
+    if args.look_amount != 1.0:
+        if args.color_engine != "safe_lab" or not args.use_render_profile:
+            raise ValueError(
+                "non-default --look-amount requires safe_lab --use-render-profile"
+            )
+        supported = {row["style_id"] for row in list_three_stock_looks()}
+        if args.style not in supported:
+            raise ValueError("--look-amount only supports the three-stock look catalog")
     analytic_runtime = None
     color_diagnostics = None
     if args.color_engine == "analytic-y-chromaticity":
@@ -344,6 +363,19 @@ def main() -> int:
         if args.style not in profile_manifest["style_parameters"]:
             raise ValueError(f"Render profile does not contain style {args.style!r}")
         profile_values = dict(profile_manifest["style_parameters"][args.style])
+        if args.look_amount != 1.0:
+            stock_id = next(
+                row["film_stock_id"]
+                for row in list_three_stock_looks()
+                if row["style_id"] == args.style
+            )
+            resolved_style, profile_values = resolve_three_stock_look_parameters(
+                profile_manifest,
+                film_stock_id=stock_id,
+                look_amount=args.look_amount,
+            )
+            if resolved_style != args.style:
+                raise ValueError("three-stock look style resolution drifted")
         if not args.use_render_profile:
             legacy_values = load_profile_values(
                 args.profile_config, args.preset, args.style
@@ -355,11 +387,33 @@ def main() -> int:
     working = load_working_image(args.input)
     output_claim = resolve_look_approximation_claim(working)
     if analytic_runtime is None:
-        base = build_color_render_float(
-            working_image_to_srgb_float(working),
-            args,
-            profile_values=profile_values if args.use_render_profile else None,
-        )
+        source_rgb = working_image_to_srgb_float(working)
+        if args.look_amount == 1.0:
+            base = build_color_render_float(
+                source_rgb,
+                args,
+                profile_values=profile_values if args.use_render_profile else None,
+            )
+        else:
+            assert profile_manifest is not None
+            stock_id = next(
+                row["film_stock_id"]
+                for row in list_three_stock_looks()
+                if row["style_id"] == args.style
+            )
+            statistics = json.loads(args.stats.read_text(encoding="utf-8"))
+            base = render_three_stock_look_rgb(
+                source_rgb,
+                profile=profile_manifest,
+                film_stock_id=stock_id,
+                look_amount=args.look_amount,
+                style_statistics=statistics["styles"][args.style],
+                guardrails=load_guardrail_config(args.guardrails, args.style),
+                seed=args.seed,
+                tile_size=args.tile_size,
+                gamut_workers=args.gamut_workers,
+                tile_workers=args.tile_workers,
+            )
     else:
         base, color_diagnostics = render_analytic_y_chromaticity_profile(
             working,
@@ -488,6 +542,16 @@ def main() -> int:
         ).strip()
         if analytic_runtime is None:
             assert profile_manifest is not None and profile_values is not None
+            render_metadata = {
+                "engine_id": "safe_lab_v1",
+                "preset": args.preset,
+                "style": args.style,
+                "seed": args.seed,
+                "color_parameters": profile_values,
+                "effects": effects,
+            }
+            if args.look_amount != 1.0:
+                render_metadata["look_amount"] = args.look_amount
             recipe = build_render_recipe(
                 profile_path=args.render_profile,
                 profile=profile_manifest,
@@ -496,14 +560,7 @@ def main() -> int:
                     **input_metadata,
                     "source_profile_fingerprint_sha256": None,
                 },
-                render_metadata={
-                    "engine_id": "safe_lab_v1",
-                    "preset": args.preset,
-                    "style": args.style,
-                    "seed": args.seed,
-                    "color_parameters": profile_values,
-                    "effects": effects,
-                },
+                render_metadata=render_metadata,
                 output_path=args.output,
                 output_format=output_format,
                 output_bit_depth=args.output_bit_depth,
@@ -609,6 +666,8 @@ def main() -> int:
             "halation_metadata": halation_metadata,
             "halation_resolved": halation_resolved,
         }
+        if args.look_amount != 1.0:
+            metrics["look_amount"] = args.look_amount
         if recipe_path is not None:
             metrics["render_recipe"] = {
                 "schema_id": recipe["schema_id"],

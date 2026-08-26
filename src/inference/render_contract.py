@@ -16,6 +16,7 @@ from omegaconf import OmegaConf
 
 PROFILE_SCHEMA_ID = "kmcfm.render-profile.v1"
 RECIPE_SCHEMA_ID = "kmcfm.render-recipe.v1"
+RECIPE_SCHEMA_ID_V2 = "kmcfm.render-recipe.v2"
 PROFILE_EVIDENCE_SUMMARY_SCHEMA_ID = "kmcfm.profile-evidence-summary.v1"
 LEGACY_STYLE_EVIDENCE_INVENTORY_SCHEMA_ID = (
     "kmcfm.legacy-style-evidence-inventory.v1"
@@ -395,7 +396,8 @@ def _validate_json_parameters(value: object, label: str) -> None:
 
 def validate_render_recipe(recipe: Mapping[str, Any]) -> None:
     _keys(recipe, {"schema_id", "profile", "assets", "input", "render", "output", "claim", "software"}, "recipe")
-    if recipe["schema_id"] != RECIPE_SCHEMA_ID:
+    schema_id = recipe["schema_id"]
+    if schema_id not in {RECIPE_SCHEMA_ID, RECIPE_SCHEMA_ID_V2}:
         raise RenderContractError("unsupported recipe schema_id")
     profile = _mapping(recipe["profile"], "recipe.profile")
     _keys(profile, {"profile_id", "profile_version", "sha256"}, "recipe.profile")
@@ -442,12 +444,24 @@ def validate_render_recipe(recipe: Mapping[str, Any]) -> None:
         _string(warning["message"], f"recipe.input.warnings[{index}].message")
 
     render = _mapping(recipe["render"], "recipe.render")
-    _keys(render, {"engine_id", "preset", "style", "seed", "color_parameters", "effects"}, "recipe.render")
+    render_keys = {
+        "engine_id",
+        "preset",
+        "style",
+        "seed",
+        "color_parameters",
+        "effects",
+    }
+    if schema_id == RECIPE_SCHEMA_ID_V2:
+        render_keys.add("look_amount")
+    _keys(render, render_keys, "recipe.render")
     if render["engine_id"] != "safe_lab_v1" or render["preset"] != "safe-rich":
         raise RenderContractError("recipe render engine/preset is unsupported")
     if not isinstance(render["style"], str) or not _STYLE.fullmatch(render["style"]):
         raise RenderContractError("recipe.render.style is invalid")
     _integer(render["seed"], "recipe.render.seed", -(2**31), 2**31 - 1)
+    if schema_id == RECIPE_SCHEMA_ID_V2:
+        _number(render["look_amount"], "recipe.render.look_amount", 0.0, 1.0)
     _validate_color_parameters(render["color_parameters"], "recipe.render.color_parameters")
     effects = _mapping(render["effects"], "recipe.render.effects")
     _keys(effects, {"grain", "halation", "dust"}, "recipe.render.effects")
@@ -523,7 +537,11 @@ def build_render_recipe(
     claim = dict(output_claim)
     claim["claim_ceiling"] = profile["evidence"]["claim_ceiling"]
     recipe = {
-        "schema_id": RECIPE_SCHEMA_ID,
+        "schema_id": (
+            RECIPE_SCHEMA_ID_V2
+            if "look_amount" in render_metadata
+            else RECIPE_SCHEMA_ID
+        ),
         "profile": {
             "profile_id": profile["profile_id"],
             "profile_version": profile["profile_version"],

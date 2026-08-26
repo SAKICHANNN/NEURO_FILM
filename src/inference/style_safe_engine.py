@@ -216,7 +216,24 @@ def _verified_recipe_base(
     style = render["style"]
     if style not in profile["style_parameters"]:
         raise StyleSafeEngineError("recipe style is absent from profile")
-    if render["color_parameters"] != profile["style_parameters"][style]:
+    expected_parameters = profile["style_parameters"][style]
+    stock_id = None
+    if "look_amount" in render:
+        from .three_stock_look import (
+            list_three_stock_looks,
+            resolve_three_stock_look_parameters,
+        )
+
+        match = [row for row in list_three_stock_looks() if row["style_id"] == style]
+        if len(match) != 1:
+            raise StyleSafeEngineError("recipe look amount has no exact stock mapping")
+        stock_id = match[0]["film_stock_id"]
+        _, expected_parameters = resolve_three_stock_look_parameters(
+            profile,
+            film_stock_id=stock_id,
+            look_amount=render["look_amount"],
+        )
+    if render["color_parameters"] != expected_parameters:
         raise StyleSafeEngineError("recipe color parameters differ from profile")
     assets = {asset["role"]: root / asset["path"] for asset in recipe["assets"]}
     statistics = json.loads(assets["style_statistics"].read_text(encoding="utf-8"))
@@ -245,15 +262,30 @@ def _verified_recipe_base(
     }
     if actual_metadata != expected_metadata:
         raise StyleSafeEngineError("recipe decoded input metadata drifted")
-    base = render_style_safe_working_image(
-        working,
-        profile=profile,
-        style=style,
-        style_statistics=statistics["styles"][style],
-        guardrails=load_guardrail_config(assets["color_guardrails"], style),
-        seed=render["seed"],
-        tile_size=tile_size,
-    )
+    source_rgb = working_image_to_srgb_float(working)
+    if stock_id is None:
+        base = render_resolved_safe_lab_rgb(
+            source_rgb,
+            style=style,
+            style_statistics=statistics["styles"][style],
+            style_parameters=render["color_parameters"],
+            guardrails=load_guardrail_config(assets["color_guardrails"], style),
+            seed=render["seed"],
+            tile_size=tile_size,
+        )
+    else:
+        from .three_stock_look import render_three_stock_look_rgb
+
+        base = render_three_stock_look_rgb(
+            source_rgb,
+            profile=profile,
+            film_stock_id=stock_id,
+            look_amount=render["look_amount"],
+            style_statistics=statistics["styles"][style],
+            guardrails=load_guardrail_config(assets["color_guardrails"], style),
+            seed=render["seed"],
+            tile_size=tile_size,
+        )
     return base, render
 
 
