@@ -135,3 +135,34 @@ def test_portable_recipe_replay_removes_output_on_identity_failure(
         )
     assert not output.exists()
     assert bound_recipe.is_file()
+
+
+def test_portable_recipe_replay_cli_emits_exact_receipt(
+    portable_fixture: dict[str, Path | bytes], tmp_path: Path
+) -> None:
+    output = tmp_path / "cli.png"
+    bound_recipe = tmp_path / "cli.recipe.json"
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts/replay_portable_film_recipe.py"),
+            "--bundle",
+            str(portable_fixture["bundle"]),
+            "--input",
+            str(portable_fixture["source"]),
+            "--output",
+            str(output),
+            "--bound-recipe",
+            str(bound_recipe),
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert completed.returncode == 0, completed.stderr
+    receipt = json.loads(completed.stdout)
+    assert output.read_bytes() == portable_fixture["expected"]
+    assert receipt["style"] == "portra_400"
+    assert receipt["caller_driven"] is True
+    assert bound_recipe.is_file()
