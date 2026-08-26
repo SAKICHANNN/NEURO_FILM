@@ -1,0 +1,111 @@
+{
+  "schema": "neuro-film.u7-3e-offline-recipe-workspace-evidence.v1",
+  "node": "ULT > U7 > U7.3 > U7.3E",
+  "status": "PASS_PRIVATE_OFFLINE_RECIPE_WORKSPACE",
+  "bindings": {
+    "contract": {
+      "path": "configs/u7_3e_offline_recipe_workspace_v1.json",
+      "bytes": 1988,
+      "sha256": "0f65c7b2d925f1555e58ad72fc31072352fc17f24973d6367886e4ea7db1f308",
+      "commit": "10316cab"
+    },
+    "implementation": {
+      "path": "src/inference/recipe_workspace.py",
+      "bytes": 8433,
+      "sha256": "640271072f8a98e4e9cfea1d3ba36f09a0fa03d34700bf864978981bc94b2e9b",
+      "commit": "b02b9c7c"
+    },
+    "launcher": {
+      "path": "scripts/open_recipe_workspace.py",
+      "bytes": 1334,
+      "sha256": "f21e9809a08babb14ce16c76cfa02ad4ed869f726546d8a9cfbecf5001e5f10e"
+    },
+    "auditor": {
+      "path": "scripts/audit_u7_3e_offline_recipe_workspace.py",
+      "bytes": 5878,
+      "sha256": "2d3c274788d504cd88e0ea9e63fd0dbace8ce9a135a2dca203312eaacd397c15",
+      "commit": "3cd45a36"
+    },
+    "tests": [
+      {
+        "path": "tests/test_u7_3e_recipe_workspace.py",
+        "bytes": 2480,
+        "sha256": "5eba5bd574280686ed4b9f0b13c473f6b90d2f2347aade21b31aafcb2db05504"
+      },
+      {
+        "path": "tests/test_u7_3e_recipe_workspace_audit.py",
+        "bytes": 741,
+        "sha256": "914e0c989428d89fa0fc4f68ad35d6d0bb6c4e7de718cde11718e955e5d2c696"
+      }
+    ],
+    "formal_report": {
+      "path": "outputs/eval/u7_3e_offline_recipe_workspace_v1/forward.json",
+      "bytes": 1895,
+      "sha256": "f0312e49a0a9cc7415e0a516fe1be7fa2b839ac3dfb1bab721e6877013a741f4"
+    }
+  },
+  "execution": {
+    "fresh_processes": 2,
+    "orders": [
+      "canonical",
+      "reverse"
+    ],
+    "reports_byte_exact": true,
+    "report_sha256": "f0312e49a0a9cc7415e0a516fe1be7fa2b839ac3dfb1bab721e6877013a741f4",
+    "stable_identity": "sha256:c1803398442bd4bf397c9f1d9758945550116ae9b2991404fde65a71f363a63a",
+    "edge_viewport_widths": [
+      1440,
+      500
+    ],
+    "owned_temporary_roots_after_each_run": 0
+  },
+  "workspace": {
+    "catalog_counts": {
+      "discovered": 3,
+      "valid": 3,
+      "invalid": 0
+    },
+    "files": {
+      "index.html": {
+        "bytes": 2947,
+        "sha256": "d210c5412ca95b818cb97458ac3b16916f09daad892ba82c79e12dd16accd6b6"
+      },
+      "history.html": {
+        "bytes": 11006,
+        "sha256": "efd83a8ad23d2fe02673e0cff5e24f7b6aca9f0e95053936b37cd37f0f66e262"
+      },
+      "previews.html": {
+        "bytes": 2167862,
+        "sha256": "1b204dd32111f6a60dda0ccfe09d03ccd4cee461bb1a4f07c7945cc7dcbf2e29"
+      },
+      "workspace_receipt.json": {
+        "bytes": 861,
+        "sha256": "e795c7f46a9ebdbe4b0cb744f3357e234e6487a5d0bdeca98619b53d75ce00b1"
+      }
+    }
+  },
+  "gates": {
+    "contract_source_recipes_rehash": true,
+    "exact_workspace_inventory": true,
+    "three_valid_rows": true,
+    "page_hashes_match_receipt": true,
+    "desktop_edge_dom_load": true,
+    "narrow_edge_dom_load": true,
+    "workspace_contains_no_input_files": true,
+    "owned_temporary_roots_removed": true
+  },
+  "interpretation": {
+    "established": [
+      "one local desktop entry point deterministically exposes the already validated recipe-history and existing-output preview pages",
+      "the three Velvia 50, Portra 400 and Ektar 100 development recipes retain exact film-inspired/look-approximation labels",
+      "fresh Microsoft Edge profiles load the entry landmark, heading and both native navigation links at desktop and narrow widths",
+      "the generated workspace embeds only bounded preview data and metadata, not source inputs, a server or remote resources"
+    ],
+    "not_established": [
+      "automatic export from the page, live recipe watching, installation, signed packaging or public release",
+      "stock calibration, stock distinguishability, target-film closeness or product authenticity",
+      "a renderer, recipe or output-byte change"
+    ]
+  },
+  "claim_ceiling": "Private local offline desktop workspace over existing look-approximation recipes and outputs only. No renderer change, installer, filesystem watcher, automatic export, calibrated stock, product release or public packaging claim."
+}
