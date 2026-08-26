@@ -16293,3 +16293,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   CICP/container, display/image quality, portable ABI, package/schema/
   capability, stock, reference-matching or product admission opens. Evidence:
   `docs/evidence/P226_R1CV_REC2100_PQ_RUNTIME_COMPATIBILITY_RESULT.json`.
+
+### 2026-08-26 - U7.3D adds exact export from bounded recipe history
+
+- **Implementation:** one validated recipe-history row can now be selected by
+  its normalized relative path and replayed through the existing style-safe
+  engine to a new destination. The old output is not copied or read; its hash
+  remains only the recipe's frozen expected result. Missing/invalid selections
+  and existing destinations fail before rendering.
+- **Formal result:** forward and reverse 24MP execution replay Velvia 50,
+  Portra 400 and Ektar 100 to all three exact frozen output hashes. Both orders
+  have stable identity `d8d0d684...38726`; recipe rows and gates are identical,
+  old-output/network reads are zero, and scratch is empty.
+- **Boundary/handoff:** this closes only a private local CLI history-to-export
+  bridge for existing development Look Approximations. It does not repair the
+  U7.2C separation failure or establish calibrated stock, target-film
+  closeness, desktop-shell completeness or product release. Return execution
+  priority to materially new controlled named-stock evidence. Evidence:
+  `docs/evidence/U7_3D_RECIPE_HISTORY_EXPORT_RESULT.json`.

@@ -1,0 +1,65 @@
+{
+  "schema": "neuro-film.u7-3d-recipe-history-export-evidence.v1",
+  "node": "U7.3D",
+  "status": "PASS_PRIVATE_EXACT_RECIPE_HISTORY_EXPORT",
+  "contract": {
+    "path": "configs/u7_3d_recipe_history_export_v1.json",
+    "commit": "27672ffe906fd9b81ef1c9a3087c7e9761af3246",
+    "sha256": "d0c22b2ca1c3db4fcc3ced8cca29f93a232422e803c693a21211af7dd63c09f3"
+  },
+  "implementation": {
+    "commit": "728934df9d41d9d55492a3726eef31ac12653fc5",
+    "audit_commit": "4ee42b06f0f2d739f84f55414febc810491713f0",
+    "history_selection_api": "src.inference.recipe_history_export.export_recipe_history_entry",
+    "cli": "scripts/export_recipe_history.py"
+  },
+  "formal_execution": {
+    "forward_report": "outputs/eval/u7_3d_recipe_history_export/forward.json",
+    "forward_report_bytes": 2060,
+    "forward_report_sha256": "4d709eea98c00675fc2a95c476468c6fc34b85bb6a105394946307a728fe9c3d",
+    "reverse_report": "outputs/eval/u7_3d_recipe_history_export/reverse.json",
+    "reverse_report_bytes": 2060,
+    "reverse_report_sha256": "1d4301a0694b76092dc2ff4cf49cab3ef550369dcee71ea732953afed4a90033",
+    "scientific_rows_exact_across_orders": true,
+    "gates_exact_across_orders": true,
+    "stable_identity": "d8d0d684f2fdd0b5a553d0f0429e92e86e253c621f17bb40ebdf2a2864938726"
+  },
+  "rows": [
+    {
+      "style": "ektar_100",
+      "recipe_sha256": "b92a75ed8ca8349df562153aad85df26db33ab0992d6bc07503033245ac7d0b8",
+      "output_sha256": "6c5c8b9c04fea4f265e1b742ce568b13a34d72462f7b6466f29685dabd03045e",
+      "output_bytes": 125479371
+    },
+    {
+      "style": "portra_400",
+      "recipe_sha256": "b6dece02a1c6e5cee9569424ae8fd53fdad8f4ee619753f6d81a2b2dea0d0fb3",
+      "output_sha256": "2ff70587520b73634e9096ff297eb390edde7e891bb7634f3cec6c707a119844",
+      "output_bytes": 123345416
+    },
+    {
+      "style": "velvia_50",
+      "recipe_sha256": "254e5c8ddf8703e2689975590531b80ca4e40bde1a37fcd0c382f33e2a42cf25",
+      "output_sha256": "6f405513fcb72f27350c9c42fc238de6daa0ba3584987537431a17a146982732",
+      "output_bytes": 125739747
+    }
+  ],
+  "information_flow": {
+    "recipe_reads_per_order": 3,
+    "bound_input_decodes_per_order": 3,
+    "existing_output_reads_per_order": 0,
+    "network_reads": 0,
+    "exports_are_recipe_replays_not_output_copies": true
+  },
+  "gates": {
+    "three_history_rows_exported": true,
+    "all_recipe_hashes_exact": true,
+    "all_output_hashes_exact": true,
+    "all_outputs_nonempty": true,
+    "missing_selection_fails_before_output": true,
+    "existing_destination_is_unchanged": true,
+    "existing_output_reads_zero": true,
+    "scratch_empty": true
+  },
+  "claim_ceiling": "Private local CLI/history export of three existing development-only film-inspired/look-approximation recipes. No GUI shell, calibrated stock, target-film closeness, stock distinguishability, packaging or product-release claim."
+}
