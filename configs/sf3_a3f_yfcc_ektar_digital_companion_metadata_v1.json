@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "experiment_id": "sf3.a3f-yfcc-ektar-digital-companion-metadata-v1",
+  "node": "ULT > RF3 > SF3.A3F",
+  "purpose": "Test whether the already-retained YFCC Ektar targets have same-author, near-upload, independently digital-camera-tagged candidate companions before any new network or pixel access.",
+  "sources": {
+    "yfcc_sqlite": "data/raw/yfcc100m_full_metadata_v1/yfcc100m_dataset.sqlite",
+    "yfcc_sqlite_sha256": "dc3739758ce7a73f09c57cfae3c4d97a31a00a4695e525b1b82fd4fa37f83a1c",
+    "yfcc_table": "yfcc100m_dataset",
+    "yfcc_config": "configs/real_film_yfcc_full_index_v1.json",
+    "yfcc_config_sha256": "2bf377aaa8ef34deeefbef7e301fa275033c5f19b0d6d0fe21857dd28e402985",
+    "ektar_target_manifest": "outputs/real_film/yfcc_shared_author_pixel_v1/download_manifest.json",
+    "ektar_target_manifest_sha256": "33395e5bfa765d0a28d0162e5ad40b79b9d54744995623122fe238d072768ba3",
+    "target_stock_id": "kodak_ektar_100",
+    "target_decision": "retain"
+  },
+  "query": {
+    "photoid_radius": 2000000,
+    "maximum_capture_time_delta_seconds": 86400,
+    "maximum_upload_time_delta_seconds": 86400,
+    "allowed_license_urls": [
+      "http://creativecommons.org/licenses/by/2.0/",
+      "https://creativecommons.org/licenses/by/2.0/"
+    ],
+    "require_same_uid": true,
+    "require_nonempty_capturedevice": true,
+    "scanner_device_terms": ["scanner", "scan", "epson", "noritsu", "frontier", "plustek", "coolscan", "opticfilm", "qss"],
+    "film_text_terms": ["film", "ektar", "portra", "velvia", "kodak", "fujifilm", "fuji", "35mm", "120", "medium format", "negative", "slide", "scanner", "scan"],
+    "same_scene_evidence": {
+      "maximum_capture_time_delta_seconds": 1800,
+      "maximum_geodesic_distance_metres": 250.0,
+      "minimum_location_accuracy": 11,
+      "minimum_shared_title_tokens": 1,
+      "minimum_title_token_length": 4,
+      "allowed_routes": ["time_and_geo", "time_and_title"]
+    }
+  },
+  "gates": {
+    "minimum_target_rows": 20,
+    "minimum_target_uids": 5,
+    "minimum_eligible_pairs": 3,
+    "minimum_eligible_uids": 2,
+    "maximum_sqlite_rows_examined": 20000,
+    "maximum_network_requests": 0,
+    "maximum_image_requests": 0,
+    "maximum_pixel_decodes": 0
+  },
+  "stop_rules": [
+    "The exact target manifest and SQLite identities must match before querying.",
+    "Query every retained Ektar target under the same fixed rules; do not replace rows or alter windows after seeing results.",
+    "A candidate is ineligible if its capture device is empty or scanner-like, or if its title, description, tags, or machine tags contain a frozen film-text term.",
+    "A candidate must satisfy same-author, licence, photo-id, upload-time, capture-time, and one frozen same-scene route.",
+    "No page, API, thumbnail, image, or pixel access is permitted in this leaf.",
+    "Failure closes this exact YFCC companion route without widening windows or weakening metadata gates."
+  ],
+  "pass_opens": "A separately preregistered bounded live-rights and thumbnail registration preflight for only the exact eligible pairs.",
+  "claim_ceiling": "metadata-only Ektar same-author digital-companion feasibility; not a paired observation, stock response, calibration, baseline result, learning source, or product capability"
+}
