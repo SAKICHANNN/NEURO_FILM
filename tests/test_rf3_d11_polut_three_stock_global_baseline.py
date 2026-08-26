@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 
@@ -17,6 +18,7 @@ from src.eval.polut_three_stock_global_baseline import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs" / "rf3_d11_polut_three_stock_global_baseline_v1.json"
+EVIDENCE = ROOT / "docs" / "evidence" / "RF3_D11_POLUT_THREE_STOCK_GLOBAL_BASELINE_RESULT.json"
 
 
 def _identity(size: int = 3) -> CubeAsset:
@@ -72,3 +74,19 @@ def test_git_blob_identity_matches_git_object_format(tmp_path: Path) -> None:
     path = tmp_path / "asset.cube"
     path.write_bytes(b"abc")
     assert git_blob_sha1(path) == "f2ba8f84ab5c1bce84a7b441cb1959cfc7093b7f"
+
+
+def test_tracked_evidence_matches_formal_reports() -> None:
+    evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+    assert evidence["status"] == "FAIL_CLOSED_EXACT_POLUT_CLASSIC_NORMAL_DISPLAY_DERIVED_CONTROL"
+    reports = evidence["formal_runs"]
+    run_a = ROOT / reports["run_a_report"]
+    run_b = ROOT / reports["run_b_report"]
+    payload_a = json.loads(run_a.read_text(encoding="utf-8"))
+    payload_b = json.loads(run_b.read_text(encoding="utf-8"))
+    assert hashlib.sha256(run_a.read_bytes()).hexdigest() == reports["run_a_report_sha256"]
+    assert hashlib.sha256(run_b.read_bytes()).hexdigest() == reports["run_b_report_sha256"]
+    assert payload_a["scientific_identity"] == reports["scientific_identity_both"]
+    assert payload_b["scientific_identity"] == reports["scientific_identity_both"]
+    assert payload_a["aggregate"]["automatic_pass"] is False
+    assert payload_b["aggregate"]["automatic_pass"] is False

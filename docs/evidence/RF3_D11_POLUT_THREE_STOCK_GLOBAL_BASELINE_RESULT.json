@@ -1,0 +1,137 @@
+{
+  "schema": "neuro-film.rf3-d11-polut-three-stock-global-baseline-evidence.v1",
+  "experiment_id": "RF3.D11",
+  "date": "2026-08-26",
+  "status": "FAIL_CLOSED_EXACT_POLUT_CLASSIC_NORMAL_DISPLAY_DERIVED_CONTROL",
+  "decision": "CLOSE_EXACT_POLUT_CLASSIC_NORMAL_DISPLAY_DERIVED_CONTROL_WITHOUT_RESCUE",
+  "contract": {
+    "path": "configs/rf3_d11_polut_three_stock_global_baseline_v1.json",
+    "sha256": "351037969155149d63d1d7facc1de78535fe619dfbf68b110af3cf64a562df26",
+    "initial_freeze_commit": "1d12cc57",
+    "common_d65_matrix_correction_commit": "ed16e0ea",
+    "source_identity_binding_commit": "dfd1522f"
+  },
+  "implementation": {
+    "commit": "dfd1522f",
+    "evaluator_sha256": "7f43f5504d244195d27d148c52ebf99e27cf465f3f14781835403f503bdf4a40",
+    "runner_sha256": "60efd6aa85ff39cdd28948d3fd64ad000c5c2de0f686e9ac2a78fda1c8331ebc",
+    "test_sha256": "2c4b0fb6cc53871db29c5441224d1352a9cdd9238f25105a93e6e8a159ee22f1"
+  },
+  "external_source": {
+    "repository": "https://github.com/TomPoczos/PoLUT",
+    "exact_commit": "8172157b6600394d718ea2091c501805b2108eb5",
+    "repository_license": "GPL-3.0",
+    "source_manifest": "data/external/rf3_d11_polut_v1/source_manifest.json",
+    "source_manifest_sha256": "b004827a9287266800f25cbb3244905fb09546e5fb21be0816617d631999da54",
+    "full_repository_clone_performed": false,
+    "downloaded_bytes": 2911388,
+    "assets": [
+      {
+        "stock_id": "fujifilm_velvia_50",
+        "variant": "Velvia50_Classic_Normal",
+        "bytes": 970454,
+        "git_blob_sha1": "2b218983f0e9d44998af3e0336fbf48c7e6a0793",
+        "sha256": "cd440c283ab7b40092bba22f0085d7b8670d21a49fbf9c17f3cee0f6c4e3bd37"
+      },
+      {
+        "stock_id": "kodak_portra_400",
+        "variant": "Portra400_Classic_Normal",
+        "bytes": 970468,
+        "git_blob_sha1": "501f6b7c66089bd0bc1f251f6d5685294e3fad98",
+        "sha256": "0bd906f4ef81a64b4ab7562a924ea2cd902da4cd1a3cc332e44daa1c4bc25384"
+      },
+      {
+        "stock_id": "kodak_ektar_100",
+        "variant": "Ektar100_Classic_Normal",
+        "bytes": 970466,
+        "git_blob_sha1": "3273a37346a051fca86dcb6b557d9fea858f4dee",
+        "sha256": "41a82a7e3d72210f464dfd036140e57ce9ccd2ee7270776386d24d26611d9414"
+      }
+    ],
+    "role": "private one-time fixed global research baseline; published sensitometry/spectral proxy rather than paired stock evidence"
+  },
+  "execution_amendments": [
+    {
+      "phase": "pre_pixel_unit_test",
+      "finding": "The first common Adobe RGB matrix used a slightly different D65 normalization than the project's W3C sRGB matrix, causing a synthetic white-point domain escape.",
+      "action": "Before any formal source pixel execution, derive Adobe RGB 1998 matrices from its standard primaries and the exact same D65 xy; preserve every scientific gate and the strict domain policy."
+    },
+    {
+      "phase": "pre_report_partial_attempt",
+      "finding": "A parallel runner review found that downloaded LUTs were verified externally but the runner itself rechecked only byte sizes.",
+      "action": "Stop the partial run before any report, remove its exact owned run_a tree, bind the source manifest SHA-256, recompute each Git blob SHA-1 and SHA-256 inside the runner, then restart both formal runs from empty directories without changing pixels, candidates, roles or gates."
+    }
+  ],
+  "formal_runs": {
+    "run_a_report": "outputs/eval/rf3_d11_polut_three_stock_global_baseline_v1/run_a/report.json",
+    "run_a_report_sha256": "9813a9fc45c8f2d9c99aac2be49f241747f239f04d725cb080bd365c853b54d7",
+    "run_b_report": "outputs/eval/rf3_d11_polut_three_stock_global_baseline_v1/run_b/report.json",
+    "run_b_report_sha256": "7ace33887d5c45f93ebcecc0618b8a2df0307d6b4f3cd4d7a8924e8f44586890",
+    "scientific_identity_both": "80c9c02a06074e4668d46bd7ac55dd346d7f4c37dfd5d72eec85f2e91b7d40b8",
+    "scientific_content_exact": true,
+    "ordered_png_inventory_exact": true,
+    "png_files_per_run": 48,
+    "contact_sheet_sha256_both": "033e4c3ed9ac88da3ada65b413403ab732a4bcb5ea7358e43cd6c787b5e811a1",
+    "source_rows": 16,
+    "stock_arms": 3
+  },
+  "automatic_observations": {
+    "pairwise_population_median_delta_e76": {
+      "velvia_vs_portra": 17.010704116772825,
+      "velvia_vs_ektar": 16.97260555210214,
+      "portra_vs_ektar": 0.7934478638276122
+    },
+    "pairwise_gain_ratio_vs_rf3_d0": {
+      "velvia_vs_portra": 8.103810219607485,
+      "velvia_vs_ektar": 11.899352223816269,
+      "portra_vs_ektar": 0.7744850197596868
+    },
+    "maximum_gradient_p999_ratio_vs_source": 2.483615564953772,
+    "maximum_new_output_boundary_fraction": 0.18403417908131595,
+    "maximum_output_boundary_fraction": 0.18403417908131595,
+    "maximum_unclipped_out_of_gamut_fraction": 0.1829149208566108,
+    "by_stock": {
+      "fujifilm_velvia_50": {
+        "median_new_output_boundary_fraction": 0.03515851981882223,
+        "maximum_new_output_boundary_fraction": 0.18403417908131595,
+        "maximum_unclipped_out_of_gamut_fraction": 0.1829149208566108,
+        "maximum_gradient_p999_ratio_vs_source": 2.483615564953772
+      },
+      "kodak_portra_400": {
+        "median_new_output_boundary_fraction": 0.00003686015595570725,
+        "maximum_new_output_boundary_fraction": 0.06215219092331768,
+        "maximum_unclipped_out_of_gamut_fraction": 0.061343309859154926,
+        "maximum_gradient_p999_ratio_vs_source": 1.2143727647376565
+      },
+      "kodak_ektar_100": {
+        "median_new_output_boundary_fraction": 0.0000974889380627955,
+        "maximum_new_output_boundary_fraction": 0.08619366197183098,
+        "maximum_unclipped_out_of_gamut_fraction": 0.08559878716744913,
+        "maximum_gradient_p999_ratio_vs_source": 1.2121678601663042
+      }
+    },
+    "passed_gates": [
+      "finite",
+      "exact_scientific_replay",
+      "exact_png_inventory_replay",
+      "velvia_vs_portra_separation",
+      "velvia_vs_portra_gain_ratio",
+      "velvia_vs_ektar_separation",
+      "velvia_vs_ektar_gain_ratio",
+      "gradient_tail"
+    ],
+    "failed_gates": [
+      "portra_vs_ektar_pairwise_separation",
+      "portra_vs_ektar_pairwise_gain_ratio",
+      "new_output_boundary",
+      "output_boundary"
+    ]
+  },
+  "visual_review": {
+    "executed": false,
+    "reason": "The frozen protocol opens visual review only after every automatic gate passes; automatic separation and boundary gates failed."
+  },
+  "interpretation": "The fixed published global baseline creates a very large Velvia-versus-negative separation, but it makes Portra 400 and Ektar 100 less distinct than the existing weak RF3.D0 proxies and produces material Adobe-RGB-to-sRGB out-of-gamut clipping, especially for Velvia. The exact Classic_Normal display-derived control therefore closes without exposure, gamut-map, paper, look, gamma or threshold rescue. This does not evaluate PoLUT in its intended scene-referred raw-development workflow and does not falsify its physical construction. It does show that the unchanged public LUTs cannot be adopted as the project's bounded three-stock sRGB baseline on this input rail.",
+  "next_leaf": "Return to rights-cleared controlled same-scene stock acquisition and independently grouped target evidence. Do not replace RF3.D11 with another PoLUT variant or another proxy family on this cohort.",
+  "claim_ceiling": "One-time mechanics, separation and bounded safety evidence for three fixed public PoLUT Classic_Normal LUT controls on 16 identical CC0 display-derived source approximations. No target-film closeness, stock distinguishability, calibration, stock response, population preference, general PoLUT quality, product dependency or multi-stock completion claim."
+}
