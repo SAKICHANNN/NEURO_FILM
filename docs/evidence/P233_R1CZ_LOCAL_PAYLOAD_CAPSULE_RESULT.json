@@ -1,0 +1,77 @@
+{
+  "schema": "kmcfm.p233-r1cz-local-payload-capsule-evidence.v1",
+  "experiment_id": "P233",
+  "date": "2026-08-26",
+  "status": "PASS_PRIVATE_R1CZ_LOCAL_PAYLOAD_CAPSULE",
+  "commits": {
+    "preregistration": "4bd717e7142d52ada878c6dc67d94c850ec93a01",
+    "implementation_and_formal_execution": "6e5f72c081064c05d66d6511bd2e5a8c7d52dcb5"
+  },
+  "bindings": {
+    "config_sha256": "d8583cdff456351c9e895e1ad7a9b4ac98f70fd9cf3b1b444b910e717be9dd19",
+    "contract_sha256": "ff96777cd95e8bde670f30aaea7ba9a48992f0c32f9a1e2642eab28ce7b848ec",
+    "runner_sha256": "cf46c4c47fe9e2874c169befd3a3e86c69109acad7a89a6d473b2dba57835341",
+    "test_sha256": "5bdb83f4c0658344ff863d95608c31c93d7c07858f1c669fd815e270a44f6d8c",
+    "p230_evidence_sha256": "940a6725f9085e0a05b58ccd9430673979e6c389bf52b68b787c958254328cfe",
+    "r1db_evidence_sha256_recorded": "3ac218ec8527a2da44f02f1759c6e4b04696cde5ed43742eae1795a737c78569"
+  },
+  "capsule": {
+    "path": "tests/fixtures/p233_r1cz_payload_capsule_v1.json",
+    "schema": "kmcfm.r1cz-payload-capsule.v1",
+    "encoding": "hex-lower-v1",
+    "sha256": "66050f5834adadc7fa30392831e73f03d01a993f17d9ea0e3ffc7a75c2dc859e",
+    "bytes": 9029,
+    "decoded_payload_sha256": "aa7fe0400e7bef106a9ff75305babab317a4148bdb05c573c50395d6f4228cb9",
+    "decoded_payload_bytes": 4376,
+    "bundle_id": "sha256:2759d2193861b95d39bb451efb2477c6ae796f5f58b3b81cf6487cbd85c3220f"
+  },
+  "formal": {
+    "forward_report_sha256": "db3cf01c5dcc7d82884d8524b0b4cd59510037e5cd08506d0c52bfc2dacc9d71",
+    "reverse_report_sha256": "db3cf01c5dcc7d82884d8524b0b4cd59510037e5cd08506d0c52bfc2dacc9d71",
+    "report_bytes_each": 2138,
+    "reports_byte_exact": true,
+    "scientific_identity": "sha256:03d63cfe4c8c106369ad6169878fffdbc62011e2afa983330dd9a3947e94f594"
+  },
+  "application": {
+    "source_shape": [729, 1, 3],
+    "source_sha256": "6476554cf17e8c47bd961d61362a17a3443d1eab15826aa1dc1326fb6a0532ec",
+    "output_sha256": "98a1281ef743dae99f762e7175e808b1d2da4cf4e671cdf5fad7ecd2d8036409",
+    "p230_output_sha256": "98a1281ef743dae99f762e7175e808b1d2da4cf4e671cdf5fad7ecd2d8036409",
+    "output_minimum": 0.0,
+    "output_maximum": 10000.0,
+    "source_immutable": true,
+    "output_owned": true,
+    "output_c_contiguous": true
+  },
+  "controls": {
+    "payload_hex_tamper_rejected": true,
+    "wrong_encoding_rejected": true,
+    "wrong_bundle_id_rejected": true
+  },
+  "information_flow": {
+    "formal_producer_repository_reads": 0,
+    "paired_build_reads": 0,
+    "paired_build_runs": 0,
+    "network_reads": 0,
+    "media_writes": 0
+  },
+  "decision": {
+    "result": "PASS_PRIVATE_R1CZ_LOCAL_PAYLOAD_CAPSULE",
+    "interpretation": "The consumer repository now retains a strict hash-bound recovery capsule whose decoded bytes and unchanged local apply output exactly reproduce P230 without a producer checkout read during formal execution.",
+    "does_not_change": [
+      "P230 exact consumer compatibility PASS",
+      "R1DB installed-wheel apply-only PASS",
+      "P231 decode-domain infrastructure-invalid result",
+      "public package/schema/capability and product admission remain false"
+    ],
+    "consumer_mapping": false
+  },
+  "verification": {
+    "focused_and_parent_pytest": "13 passed",
+    "ruff": "PASS",
+    "py_compile": "PASS",
+    "json_parse": "PASS",
+    "diff_check": "PASS"
+  },
+  "claim_ceiling": "Private checkout-independent persistence and exact apply replay for one self-authored R1CZ paired/capture-time payload. No public package/schema/capability, natural HDR quality, after-only inference or product admission."
+}
