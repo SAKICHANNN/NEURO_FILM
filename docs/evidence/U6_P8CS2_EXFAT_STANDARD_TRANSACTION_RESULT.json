@@ -1,0 +1,80 @@
+{
+  "schema": "neuro_film.u6_p8cs2_exfat_standard_transaction_evidence.v1",
+  "node": "U6.P8CS2",
+  "decision": "retain_shared_exfat_create_only_publication_for_native_standard_transactions",
+  "implementation": {
+    "commit": "7280bbc24c339f89e00c4c5d6b8d38890bebc582",
+    "shared_primitive": {
+      "path": "src/film_physics/create_only_file.py",
+      "sha256": "d05292155594392b2c3d3b76f2aa680a3c3f011bab641111393ca3bde708fa37"
+    },
+    "transaction_paths": [
+      "src/film_physics/atomic_native_output.py",
+      "src/film_physics/native_cloud_standard_staging.py",
+      "src/film_physics/native_standard_output.py",
+      "src/film_physics/native_standard_replayable_staging.py",
+      "src/film_physics/native_standard_staging.py",
+      "src/film_physics/native_standard_strength_output.py",
+      "src/film_physics/native_standard_strength_staging.py"
+    ],
+    "tests": [
+      "tests/test_film_physics_create_only_file.py",
+      "tests/test_u6_p8cs2_exfat_standard_transactions.py"
+    ]
+  },
+  "defect": {
+    "prior_publication_primitive": "os.link(sibling_stage, destination)",
+    "affected_existing_paths": 6,
+    "project_durable_filesystem": "exFAT",
+    "observed_prior_failure": "OSError(winerror=1, errno=22)",
+    "impact": "existing local, replayable, cloud and bounded-strength native Standard staging/output transactions could not publish to the canonical durable project volume"
+  },
+  "repair": {
+    "windows": "same-volume no-replace os.rename followed by destination identity capture",
+    "non_windows": "hard-link followed by sibling-stage unlink",
+    "rollback": "remove only while the published destination entry identity still matches",
+    "existing_destination_policy": "reject without overwrite",
+    "report_order": "output first and report last unchanged",
+    "wire_or_pixel_change": false
+  },
+  "actual_durable_volume_verification": {
+    "logical_basetemp": "tmp/u6_p8cs2_formal",
+    "resolved_project_root": "P:/neuro_film_storage/tmp",
+    "filesystem": "exFAT",
+    "pytest": "18 passed in 22.08s",
+    "covered_transactions": [
+      "generic atomic native byte sink",
+      "native Standard local raw staging",
+      "native Standard replayable raw staging",
+      "native cloud plus Standard raw staging",
+      "native Standard PNG16 output",
+      "native Standard bounded-strength raw staging",
+      "native Standard bounded-strength PNG16 output"
+    ],
+    "windows_hard_link_dependency_absent": true,
+    "existing_destination_preserved": true,
+    "replacement_entry_preserved_by_identity_rollback": true,
+    "report_last_restart_verification_passed": true,
+    "transaction_stage_residue_count": 0,
+    "pytest_basetemp_cleanup": {
+      "files": 70,
+      "logical_bytes": 2077214,
+      "state": "retained_after_platform_policy_blocked_exact_recursive_delete",
+      "scientific_or_product_artifact": false
+    }
+  },
+  "execution_amendment": {
+    "initial_p_volume_run": "publication succeeded but a post-rename assertion failed because exFAT changes Python st_ino across rename",
+    "scientific_or_product_output_claimed": false,
+    "correction": "capture the Windows destination identity after successful no-replace rename; retain pre/post identity equality only for the POSIX hard-link branch",
+    "rerun": "the complete 18-test P-backed matrix passed after the correction"
+  },
+  "verification": {
+    "ruff": "pass",
+    "py_compile": "pass",
+    "diff_check": "pass",
+    "remaining_os_link_in_film_physics": "shared non-Windows branch only",
+    "historical_snapshot_tests": "legacy U6.P8BF source-hash assertion and an unrelated pre-existing pipeline_color_baseline hash lock remain historical identities and were not rewritten"
+  },
+  "claim_ceiling": "Windows/exFAT publication compatibility for existing opt-in native Standard and physical-inspired transactions only; no stock calibration, algorithm, profile, schema, wire, output-pixel, visual-quality or product-default change."
+}
