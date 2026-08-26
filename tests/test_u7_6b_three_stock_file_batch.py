@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import subprocess
 import sys
+import weakref
 from pathlib import Path
 
 import numpy as np
@@ -14,6 +15,7 @@ from src.inference.three_stock_batch import (
     render_three_stock_batch_to_directory,
 )
 from src.inference.three_stock_look import list_three_stock_looks
+from src.preprocess import load_working_image
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -112,3 +114,39 @@ def test_existing_output_directory_fails_before_decode(tmp_path: Path) -> None:
             guardrails_path=ROOT / "configs/color_guardrails.json",
         )
     assert marker.read_bytes() == b"keep"
+
+
+def test_decoded_working_image_is_collectable_before_render_entry(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    source = tmp_path / "source.png"
+    _source(source)
+    decoded_ref: weakref.ReferenceType | None = None
+
+    def tracked_load(path: Path):
+        nonlocal decoded_ref
+        working = load_working_image(path)
+        decoded_ref = weakref.ref(working)
+        return working
+
+    def assert_released(*args, **kwargs):
+        assert decoded_ref is not None
+        assert decoded_ref() is None
+        return iter(())
+
+    monkeypatch.setattr(
+        "src.inference.three_stock_batch.load_working_image", tracked_load
+    )
+    monkeypatch.setattr(
+        "src.inference.three_stock_batch.iter_three_stock_look_rgb_shared_context",
+        assert_released,
+    )
+    manifest = render_three_stock_batch_to_directory(
+        source,
+        tmp_path / "candidate",
+        root=ROOT,
+        profile_path=ROOT / "configs/render_profiles/safe_rich_v1.json",
+        statistics_path=ROOT / "configs/film_color_stats.json",
+        guardrails_path=ROOT / "configs/color_guardrails.json",
+    )
+    assert manifest["rows"] == []

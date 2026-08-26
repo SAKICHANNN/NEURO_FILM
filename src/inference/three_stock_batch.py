@@ -93,6 +93,11 @@ def render_three_stock_batch_to_directory(
         "warnings": [warning.__dict__ for warning in working.warnings],
         "source_profile_fingerprint_sha256": None,
     }
+    # ``source`` owns its encoded float32 pixels.  None of the remaining
+    # render or recipe stages needs the decoded linear WorkingImage, whose
+    # full-resolution pixel array would otherwise overlap the shared Lab
+    # context and every stock output.
+    del working
     commit = subprocess.check_output(
         ["git", "rev-parse", "HEAD"], cwd=root, text=True, encoding="utf-8"
     ).strip()
