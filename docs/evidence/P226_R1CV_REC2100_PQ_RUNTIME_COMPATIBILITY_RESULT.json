@@ -1,0 +1,103 @@
+{
+  "schema": "neuro-film.p226-r1cv-rec2100-pq-runtime-compatibility-evidence.v1",
+  "experiment_id": "P226",
+  "status": "PASS_PRIVATE_R1CV_REC2100_PQ_RUNTIME_COMPATIBILITY",
+  "date": "2026-08-26",
+  "consumer": {
+    "preregistration_commit": "4e1a6c63ede14d4c7c8eab1f7ac8a5a4817175c0",
+    "execution_amendment_commit": "be7e723d796c9d0c61bd0d2f8f2eb33bafe0aea7",
+    "implementation_commit": "e92511330710dbb1d15f5997cb2ca4927f30e268",
+    "target": "hdr_p3d65_1000nit_rec2100_pq",
+    "source_sha256": "8f31215c266db683cffcad8f6252a0bfd031025cd12d94c6a88bbe340077475e",
+    "opencolorio_version": "2.5.2",
+    "numpy_version": "2.4.4",
+    "python_version": "3.12.10",
+    "forward_report_sha256": "e37b60c83e421a643cdb023082506ef1dd1ecdc7ae9e9987c79c783fff9b8006",
+    "reverse_report_sha256": "e37b60c83e421a643cdb023082506ef1dd1ecdc7ae9e9987c79c783fff9b8006",
+    "report_bytes_each": 3939,
+    "reports_byte_exact": true,
+    "stable_identity": "sha256:5859381b983a6ce61b7379a0234fababf90c4c5540766aada0670c9703d68e7d"
+  },
+  "producer_binding": {
+    "evidence_commit": "f3b56fc593d1f43816f01425d6f0555fe683f2ec",
+    "implementation_commit": "fe92a9f44575fb25b541fbd1d28ea62fc11398e9",
+    "source_blob": "47ac29f8e150edb433e8aafd96493063f802d76a",
+    "source_sha256": "b5da01509c2bc3e7c3a9866768c29fcc5cf9a3d8033eea6feadd32ee0b08c7da",
+    "evidence_blob": "f6c1e194d54ef5c0708510e800642fe07b50e502",
+    "evidence_sha256": "4bee0747d900b06e21d6bc96ec4bc59b05417e0f57402dffec4ceba108cd1374",
+    "config_sha256": "9e3ec773a7fbc0bb6666e428dedd8ccec4f59b8b6d40506c825cc7a8c02ff2ff",
+    "opencolorio_version": "2.5.0",
+    "opencolorio_wheel_bytes": 3903228,
+    "opencolorio_wheel_sha256": "c45b7f4c3fc464f52b0986fd28e89ab121ce2abe3d181e9b2918cecc2e0b9277",
+    "numpy_version": "2.3.5",
+    "numpy_wheel_bytes": 12782922,
+    "numpy_wheel_sha256": "86945f2ee6d10cdfd67bcb4069c1662dd711f7e2a4343db5cecec06b87cf31aa"
+  },
+  "official_path": {
+    "source_space": "ACEScg",
+    "display": "Rec.2100-PQ - Display",
+    "view": "ACES 2.0 - HDR 1000 nits (P3 D65)",
+    "processor": "OpenColorIO DisplayViewTransform",
+    "analytic_r1cs_path_used": false
+  },
+  "mechanism_facts": {
+    "fixture_rows": 986,
+    "parity_fixture_sha256": "b037b161b8cf637e573b6553fb9245d1f86ccd24f4a91f2097ccbf3822333238",
+    "producer_output_sha256": "d0ca1ec19763382837109bcaaf391327b038b61ddf898651b054703093a71256",
+    "consumer_output_sha256": "d0ca1ec19763382837109bcaaf391327b038b61ddf898651b054703093a71256",
+    "producer_consumer_outputs_byte_exact": true,
+    "minimum_code": 7.30942701920867e-7,
+    "maximum_code": 0.7421783208847046,
+    "official_black_rgb": [
+      7.30942701920867e-7,
+      7.30942701920867e-7,
+      7.30942701920867e-7
+    ],
+    "official_black_exact": true,
+    "inputs_unchanged": true,
+    "outputs_float32_contiguous_finite_in_0_1": true,
+    "invalid_target_rejected": true,
+    "existing_target_output_hashes": {
+      "sdr_rec709": "416132dec9e3fca541e900c24fb68ff751b9064192610adf6d90b2546378dd9a",
+      "hdr_rec2020_pq": "c95554153a53588fccb121380afd1b34c7bd6a3f5e8171ab280592a5b30df923"
+    },
+    "existing_target_hashes_unchanged": true,
+    "media_reads": 0,
+    "formal_network_reads": 0
+  },
+  "execution_amendment": {
+    "initial_attempt_status": "STOPPED_BEFORE_REPORT_ON_PUBLIC_ADAPTER_DOMAIN_REJECTION",
+    "cause": "The inherited 986-row wide-gamut stress fixture contains colors whose official display transform is outside [0,1], so the exact R1CV public adapter rejected them before producing a report.",
+    "correction": "Preserve all 986 rows but prospectively map the inherited ACEScg values into a fixed nonnegative 0.2-chroma display-domain fixture; continue computing old-target regression hashes on the untouched inherited fixture.",
+    "formal_reports_before_amendment": 0,
+    "scientific_scores_before_amendment": 0,
+    "producer_function_changed": false,
+    "output_range_gate_changed": false,
+    "runtime_display_view_or_roles_changed": false
+  },
+  "closed_boundaries": {
+    "r1cs": {
+      "status": "FAIL_CLOSED_ACES2_REC2100_PQ_ADAPTER",
+      "evidence_sha256": "6ea3ba6eb4b5dc1e1d668ac35ee7f19628ce622789fb4b2da64110b06b7ac8ad",
+      "preservation": "P226 uses the exact official display/view and preserves its nonzero black; it does not revive or tolerance-rescue the analytic BT.2020/ST2084 adapter."
+    },
+    "r1cw": {
+      "status": "FAIL_CLOSED_HEVC_MAIN10_MEDIA",
+      "evidence_commit": "973cffd4401db27192764501096febfd8f2c05fc",
+      "evidence_sha256": "15796ac6ed653a883e4d7945e20d9f7dffea1866738e6a5efbc03b6fd6c10240",
+      "preservation": "P226 performs no integer encoding or media/container work and does not alter the independent R1CW closure."
+    }
+  },
+  "decision": {
+    "result": "PASS_PRIVATE_R1CV_REC2100_PQ_RUNTIME_COMPATIBILITY",
+    "opens": "One private opt-in numerical ACEScg-to-P3-D65-1000nit Rec.2100-PQ target under the pinned consumer OpenColorIO runtime.",
+    "does_not_open": [
+      "integer encoding or container/CICP output",
+      "HDR display validation or photographic quality",
+      "portable ABI or target-device runtime",
+      "public package, schema, receipt or capability",
+      "reference matching, stock evidence or product admission"
+    ]
+  },
+  "claim_ceiling": "Private Windows Python cross-runtime parity and opt-in numerical target only. No integer encoding, container/CICP, display validation, photographic quality, portable ABI, package/schema/capability, reference-matching, stock or product admission."
+}

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+from pathlib import Path
 
 import pytest
 
@@ -51,3 +52,19 @@ def test_amended_fixture_preserves_rows_and_is_nonnegative_float32() -> None:
     assert fixture.dtype.name == "float32"
     assert fixture.flags.c_contiguous
     assert fixture.min() >= 0.0
+
+
+def test_tracked_evidence_records_exact_pass_and_closed_media_boundary() -> None:
+    root = Path(__file__).resolve().parents[1]
+    evidence = json.loads(
+        (
+            root
+            / "docs/evidence/P226_R1CV_REC2100_PQ_RUNTIME_COMPATIBILITY_RESULT.json"
+        ).read_text(encoding="utf-8")
+    )
+    assert evidence["status"] == "PASS_PRIVATE_R1CV_REC2100_PQ_RUNTIME_COMPATIBILITY"
+    assert evidence["consumer"]["reports_byte_exact"] is True
+    assert evidence["mechanism_facts"]["producer_consumer_outputs_byte_exact"] is True
+    assert evidence["mechanism_facts"]["official_black_exact"] is True
+    assert evidence["closed_boundaries"]["r1cs"]["status"].startswith("FAIL_CLOSED")
+    assert evidence["closed_boundaries"]["r1cw"]["status"].startswith("FAIL_CLOSED")

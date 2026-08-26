@@ -16267,3 +16267,29 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   stock evidence, target-film closeness, calibration, preference, release or
   multi-stock completion. Evidence:
   `docs/evidence/U7_2D_FAST_PNG16_EXPORT_RESULT.json`.
+
+### 2026-08-26 - P226 closes exact official P3-D65 Rec.2100-PQ parity
+
+- **Question:** Can the exact producer R1CV official Config-ACES P3-D65
+  1000-nit Rec.2100-PQ display/view be retained as one private consumer target
+  across pinned OCIO 2.5.0 and 2.5.2 runtimes without changing old targets?
+- **Implementation:** added only the opt-in
+  `hdr_p3d65_1000nit_rec2100_pq` target to the existing isolated OCIO adapter.
+  The default renderer, SDR target and existing Rec.2020-PQ target are
+  unchanged. Producer source/evidence/config/wheel plus exact NumPy 2.3.5 and
+  consumer runtime identities are bound.
+- **Execution amendment:** the first pre-report run correctly stopped because
+  the inherited wide-gamut fixture makes the exact R1CV public adapter reject
+  values outside `[0,1]`. Before any report or score, all 986 rows were retained
+  under a fixed nonnegative 0.2-chroma domain map; old-target regression hashes
+  remain computed on the untouched fixture. No output range, runtime,
+  display/view, producer function or role changed.
+- **Result:** producer/consumer outputs are byte exact at
+  `d0ca1ec1...1256`; official black is exactly `7.309427e-7`; both existing
+  target hashes remain frozen. Forward/reverse 3,939-byte reports are exact at
+  `e37b60c8...8006`, stable identity `5859381b...8e7d`; all gates pass.
+- **Boundary:** private normalized-float PQ numerical target only. R1CS
+  analytic PQ and R1CW HEVC Main10 media remain closed. No integer encoding,
+  CICP/container, display/image quality, portable ABI, package/schema/
+  capability, stock, reference-matching or product admission opens. Evidence:
+  `docs/evidence/P226_R1CV_REC2100_PQ_RUNTIME_COMPATIBILITY_RESULT.json`.
