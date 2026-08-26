@@ -1,0 +1,47 @@
+{
+  "schema": "kmcfm.u7-7f-explicit-recipe-binding-contract.v1",
+  "node": "U7.7F",
+  "status": "FROZEN_BEFORE_IMPLEMENTATION",
+  "question": "Can a validated portable three-stock recovery bundle be bound to caller-selected local paths and published as one strict private recipe without rendering or weakening its semantic identity?",
+  "parent_evidence": {
+    "path": "docs/evidence/U7_7E_PORTABLE_RECIPE_RECOVERY_BUNDLE_RESULT.json",
+    "sha256": "18630aeda6f79d8787bda973916724a03b3cff5c049824e038a9183f4f2d9e1d"
+  },
+  "operation": {
+    "input": "one validated kmcfm.portable-recipe-recovery-bundle.v1 file",
+    "caller_bindings": ["input_path", "output_path", "recipe_path"],
+    "verify_input_sha256_before_publication": true,
+    "require_output_absent": true,
+    "publish_recipe_create_only": true,
+    "render": false,
+    "decode": false,
+    "network": false
+  },
+  "acceptance": {
+    "three_styles_complete": true,
+    "forward_reverse_reports_byte_exact": true,
+    "bound_recipe_bytes_repeat_exact": true,
+    "bound_recipe_strict_valid": true,
+    "path_independent_semantic_identity_exact": true,
+    "input_hash_mismatch_rejected_before_publication": true,
+    "existing_output_rejected_before_publication": true,
+    "existing_recipe_destination_unchanged": true,
+    "failed_publication_leaves_no_partial": true,
+    "network_image_decode_render_zero": true,
+    "claims_remain_look_approximation": true,
+    "owned_temporary_roots_removed": true
+  },
+  "decision": {
+    "pass": "RETAIN_PRIVATE_EXPLICIT_BINDING_AND_OPEN_CALLER_DRIVEN_RENDER_REPLAY_INTEGRATION",
+    "fail": "CLOSE_EXPLICIT_BINDING_WITHOUT_RENDER_REPLAY_INTEGRATION"
+  },
+  "stop_rules": [
+    "Do not modify historical strict recipes or recovery bundles.",
+    "Do not infer, search for or default either caller path.",
+    "Do not render, decode pixels, create the output target or contact a network.",
+    "Do not publish a recipe unless the selected input bytes match the bundle-bound input SHA-256.",
+    "Do not overwrite any existing recipe or output entry.",
+    "A passing binder creates a private strict recipe only; a later renderer must independently revalidate it."
+  ],
+  "claim_ceiling": "Private explicit path binding and strict recipe publication only; no render authorization, installer, automatic rerender, export, calibrated stock response, stock distinguishability or release claim."
+}
