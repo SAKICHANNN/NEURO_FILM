@@ -1,0 +1,91 @@
+{
+  "schema": "neuro-film.p238-aces2-p3d65-canonical-pq-png-evidence.v1",
+  "experiment_id": "P238",
+  "status": "PASS_PRIVATE_ACES2_P3D65_CANONICAL_PQ_PNG",
+  "date": "2026-08-26",
+  "commits": {
+    "preregistration": "97800b63219c653a6049a318a7bfe1dae406fceb",
+    "implementation": "90913d7c5b53b2a5dce09c2ae6cf862b996243b2",
+    "formal_runner": "91bafd196b07ba153006446de37ed51c2f49d667"
+  },
+  "parent": {
+    "experiment_id": "P226",
+    "evidence_path": "docs/evidence/P226_R1CV_REC2100_PQ_RUNTIME_COMPATIBILITY_RESULT.json",
+    "evidence_sha256": "2be3c6da6a80ab4ab75f3ecf7fa2756a383b34dea03822f6d123b1853b0a6b2a",
+    "target": "hdr_p3d65_1000nit_rec2100_pq",
+    "float_output_sha256": "d0ca1ec19763382837109bcaaf391327b038b61ddf898651b054703093a71256"
+  },
+  "execution": {
+    "python": "3.12.10",
+    "numpy": "2.4.4",
+    "opencolorio": "2.5.2",
+    "fresh_processes": 2,
+    "outer_orders": [
+      "forward",
+      "reverse"
+    ],
+    "formal_execution_commit": "91bafd196b07ba153006446de37ed51c2f49d667",
+    "forward_report_sha256": "ab1aa706effc90181bbe5cff421fb882b9e241c2c59263cf10a0582d382878c9",
+    "reverse_report_sha256": "ab1aa706effc90181bbe5cff421fb882b9e241c2c59263cf10a0582d382878c9",
+    "report_bytes_each": 2213,
+    "reports_byte_exact": true,
+    "network_reads": 0,
+    "new_data_reads": 0,
+    "fit_or_optimization": 0
+  },
+  "mechanism": {
+    "fixture_shape": [
+      29,
+      34,
+      3
+    ],
+    "fixture_rows": 986,
+    "fixture_sha256": "b037b161b8cf637e573b6553fb9245d1f86ccd24f4a91f2097ccbf3822333238",
+    "float_minimum": 7.30942701920867e-7,
+    "float_maximum": 0.7421783208847046,
+    "official_black_float32": 7.30942701920867e-7,
+    "official_black_quantized_code": 0,
+    "quantization": "floor(float64(code) * 65535 + 0.5)",
+    "sample_minimum": 0,
+    "sample_maximum": 48639,
+    "sample_sha256": "8cd312b9f0350ea001239954b437f82361d35dd41d5557120d8e9b42db90be5d",
+    "png_bytes": 6029,
+    "png_sha256": "0a18aa1e1b9ce359b2c85a1ad3261db4c7dc4bdbc8aa331da07c5f1035e2534c",
+    "cicp_hex": "09100001",
+    "existing_hdr_rec2020_pq_output_sha256": "c95554153a53588fccb121380afd1b34c7bd6a3f5e8171ab280592a5b30df923"
+  },
+  "gates": {
+    "frozen_identities_exact": true,
+    "fixture_rows_exact": true,
+    "float_output_f32_contiguous_finite_in_0_1": true,
+    "quantized_samples_exact": true,
+    "strict_sample_readback_exact": true,
+    "cicp_exact": true,
+    "partition_arrays_exact": true,
+    "partition_png_bytes_exact": true,
+    "existing_target_hash_unchanged": true,
+    "input_immutable": true,
+    "invalid_input_rejected": true,
+    "create_only": true,
+    "failure_atomic": true,
+    "fresh_process_reports_exact": true
+  },
+  "execution_notes": {
+    "precommit_validation": "An initial complete forward/reverse validation passed all gates before the formal runner commit. It is not used as final evidence.",
+    "committed_head_replay": "The final two reports were regenerated from the committed formal runner and are byte exact.",
+    "cleanup_note": "Formal media lived only in isolated system-temporary roots and no publication artifact was retained in the repository."
+  },
+  "decision": "PASS_PRIVATE_ACES2_P3D65_CANONICAL_PQ_PNG",
+  "opened_next_leaf": "Separately frozen private target-runtime decode compatibility only.",
+  "closed_boundaries": {
+    "hdr10_conformance": false,
+    "mastering_metadata": false,
+    "display_validation": false,
+    "photographic_quality": false,
+    "arbitrary_image_support": false,
+    "public_package_schema_capability": false,
+    "calibrated_stock": false,
+    "product_admission": false
+  },
+  "claim_ceiling": "Private Windows/Python deterministic RGB16 PNG arithmetic and full-range Rec.2100-PQ CICP metadata for the exact P226 fixture only."
+}
