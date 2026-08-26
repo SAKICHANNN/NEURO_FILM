@@ -17504,3 +17504,24 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   or product admission. Ultimate remains active; controlled physical named-
   stock evidence and truly new identifying observations remain the scientific
   gap.
+
+### 2026-08-27 - U7.3G adds direct three-look development previews
+
+- **Implementation:** frozen contract `f5a41521` and code commits `9aeaa388` /
+  `e9cb764f` add a direct input-to-preview path. The 24.39MP display-sRGB
+  fixture is resized once in linear light to 816x1224, then all three existing
+  Velvia 50, Portra 400 and Ektar 100 Look Approximations share one source
+  context and publish deterministic PNG8 previews. No stock parameters or
+  final-export behavior changed.
+- **Evidence:** four fresh child processes across two complete audits reproduce
+  all three preview hashes and fidelity metrics exactly. Worst RGB RMSE/P95
+  versus the corresponding full-output downsample are `.00877/.01688`, with
+  zero new boundary samples. Total three-look runtime is `5.80-6.29s`; the
+  frozen 15s development gate passes, while the separate 300ms warm-product
+  target fails and remains open. 66 adjacent U7.2/U7.3/U7.6 tests pass.
+  Evidence commit `6469f64a`.
+- **Boundary/next:** this is a usable local Python development-preview tier,
+  not calibrated stock response, stock distinguishability, final export or
+  product-performance promotion. Controlled same-scene physical acquisition
+  remains the scientific mainline; any product-speed successor must change
+  the execution mechanism rather than relax preview fidelity or timing gates.
