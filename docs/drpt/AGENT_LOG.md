@@ -17556,3 +17556,38 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   composition, kernel rewrite, tolerance or thread-count rescue opens. This is
   only a local native pointwise negative, not stock evidence or product
   performance; controlled physical three-stock acquisition remains primary.
+
+### 2026-08-27 - P253 closes the P31C Android runtime gap
+
+- **Node and routing:** `ULT > reference matching product chain > P253`, DRPT
+  L2 / Mode C. `dev-research-reliability` remained the sole write workflow;
+  router, DRPT-BI, project-log and structure skills were read-only governance.
+  This is a platform-conformance child of the retained P31C reference
+  product-chain verifier, not a new matching candidate or scientific leaf.
+- **Frozen execution:** contract `79147c1b`, audit `80d9ffc2` and corrected
+  formal HEAD `c3e17d65` bind the unchanged P31C C/C++ source, 30,848-byte
+  fixture, NDK r27d, emulator 36.6.11.0, API34 x86_64 system image and exact
+  1,617,608-byte `libc++_shared.so`. Each formal process performs two disjoint
+  arm64-v8a/x86_64 builds and one owned `-wipe-data` Android boot; arm64 stays
+  link-only.
+- **Prescore corrections:** five attempts stopped before report publication at
+  direct-script import, missing AVD device catalogue, host-to-adb command
+  length, shared-library loading and delayed Windows log-handle cleanup.
+  Commits `e15982b1`, `534e0f88`, `660cb0f3`, `ebced7a6`, `230bdda0` and
+  `c3e17d65` repair only harness/import/materialization/transport/dependency/
+  cleanup boundaries. Native source, fixture, canonical bytes, truth table,
+  gates and claim ceiling never changed; excluded report count is zero.
+- **Result and evidence:** normal/reverse reports are byte-exact at 5,641 bytes
+  / SHA `75c22f2f...06205`, stable `c84fc8b...492d7`. All 10 canonical
+  identities, eight staging rows, four no-stdout failure controls, one-nibble
+  mutation detection, both deterministic ABI builds, API/ABI identity and
+  zero owned process/scratch gates pass. Evidence commit `0ae8a18d`, evidence
+  SHA `b2cfd1bc...60fc2`; 29 focused/adjacent P31C/P251/P252/P253 tests pass,
+  with Ruff, compileall, JSON and diff checks clean.
+- **Boundary and handoff:** retain only private Windows-hosted Android14
+  x86_64 virtual-device execution of the unchanged verifier. Physical arm64,
+  JNI, app, media, performance, scientific quality, public package/schema/
+  capability, staging authorization and product promotion remain false. Stop
+  adjacent Android mechanical expansion; Ultimate remains active on
+  controlled physical stock evidence, paired/capture-time information and
+  mature bounded RAW/HDR cores.
