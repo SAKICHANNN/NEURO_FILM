@@ -20,7 +20,7 @@ def _source() -> dict:
         "page_id": 10,
         "title": "File:Old station at Pixley California.jpg",
         "author_raw_html": '<a href="https://www.flickr.com/people/abc@N01">A</a>',
-        "credit_raw_html": '<a href="https://www.flickr.com/photos/abc@N01/123">x</a>',
+        "credit_raw_html": '<a href="https://www.flickr.com/photos/visible-screen-name/123">x</a>',
         "date_time_original": "2020-02-12 18:17",
     }
 

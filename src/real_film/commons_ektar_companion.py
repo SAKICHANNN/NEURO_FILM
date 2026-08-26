@@ -23,7 +23,8 @@ class CommonsEktarCompanionError(ValueError):
     """Raised when frozen source or candidate facts violate the contract."""
 
 
-_FLICKR_ID = re.compile(r"flickr\.com/(?:people|photos)/([^/\"<]+)", re.IGNORECASE)
+_FLICKR_PEOPLE_ID = re.compile(r"flickr\.com/people/([^/\"<]+)", re.IGNORECASE)
+_FLICKR_PHOTOS_ID = re.compile(r"flickr\.com/photos/([^/\"<]+)", re.IGNORECASE)
 _TAG = re.compile(r"<[^>]+>")
 _TOKEN = re.compile(r"[\w]+", re.UNICODE)
 _TITLE_STOP = {
@@ -64,7 +65,11 @@ def load_contract(path: Path) -> dict[str, Any]:
 
 def flickr_identity(row: Mapping[str, Any]) -> str:
     text = f"{row.get('author_raw_html', '')} {row.get('credit_raw_html', '')}"
-    matches = _FLICKR_ID.findall(text)
+    # A Commons Flickr import normally exposes the stable NSID in the author
+    # ``people`` URL and a screen name in the credited ``photos`` URL.  Those
+    # strings are aliases, not conflicting identities, so prefer the NSID and
+    # use a photos owner only when no people URL exists.
+    matches = _FLICKR_PEOPLE_ID.findall(text) or _FLICKR_PHOTOS_ID.findall(text)
     if not matches:
         return ""
     normalized = {value.strip().casefold() for value in matches if value.strip()}
