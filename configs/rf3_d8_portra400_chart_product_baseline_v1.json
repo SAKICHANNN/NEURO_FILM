@@ -1,0 +1,54 @@
+{
+  "schema": "neuro-film.rf3-d8-portra400-chart-product-baseline-contract.v1",
+  "experiment_id": "RF3.D8",
+  "status": "FROZEN_BEFORE_EXECUTION",
+  "question": "Does the unchanged current Portra 400 Look Approximation reduce error to the one registered same-scene Portra 400/Fuji DPii chart scan versus identity, the current Ektar 100 wrong-stock look and the frozen publisher SpektraFilm baseline?",
+  "sources": {
+    "cham6_contract": {
+      "path": "configs/u5_r2cham6_portra400_chart_operator_d1_v1.json",
+      "sha256": "c2aae6444eca2da6e8a580cfc01c614173252d1036a967ec4c4f2cf03799e373"
+    },
+    "cham9_evidence": {
+      "path": "docs/evidence/U5_R2CHAM9_SPEKTRAFILM_AUTHOR_BASELINE_D1_RESULT.json",
+      "sha256": "642086e73a828d9d0ab3f78c4d6444968a676adff89757b3abde759a18ce35fc",
+      "required_decision": "close_author_spektrafilm_parameters_as_predictive_chart_baseline"
+    },
+    "render_profile": {
+      "path": "configs/render_profiles/safe_rich_v1.json",
+      "sha256": "72a9948e6fc76e230c4593b847728712bc034840cd339e6b34f079ac7d424c79"
+    },
+    "style_statistics": {
+      "path": "configs/film_color_stats.json",
+      "sha256": "1a45e90765e577edd4ca1773fc8c6cf98fd09b8afbdddfa519b1f097c5dd7c04"
+    },
+    "guardrails": {
+      "path": "configs/color_guardrails.json",
+      "sha256": "6669b7bc873febcc74ba7ddcbc1c1584807e38465447a5cdbeb24073efa00aa7"
+    }
+  },
+  "arms": [
+    "identity",
+    "current_portra_400_look_approximation",
+    "current_ektar_100_wrong_stock_control",
+    "frozen_publisher_spektrafilm_portra_400_baseline"
+  ],
+  "execution": {
+    "look_amount": 1.0,
+    "seed": 20260826,
+    "tile_size": 128,
+    "fit_or_parameter_update_allowed": false,
+    "source_or_target_replacement_allowed": false
+  },
+  "gates": {
+    "minimum_portra_improvement_over_identity_fraction": 0.05,
+    "minimum_portra_improvement_over_wrong_stock_fraction": 0.02,
+    "minimum_fold_win_fraction_over_identity": 0.75,
+    "minimum_worst_fold_improvement_over_identity_fraction": -0.1,
+    "portra_must_beat_frozen_publisher_baseline": true,
+    "maximum_current_output_boundary_fraction": 0.005,
+    "maximum_repeat_error": 0.0
+  },
+  "decision_if_pass": "retain_current_portra_400_as_one_chart_relative_baseline_pending_independent_roll_scanner_confirmation",
+  "decision_if_fail": "record_current_portra_400_chart_gap_and_do_not_retune_without_new_controlled_observations",
+  "claim_ceiling": "One unlicensed publisher-shared registered chart, fixed current Look Approximation profiles and one noncommercial external baseline. No Portra 400 calibration, natural-scene transfer, process/scanner separation, Ektar or Velvia evidence, product promotion, redistribution or commercial-use claim."
+}
