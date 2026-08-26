@@ -64,7 +64,7 @@ def _acquire(contract_path: Path, contract: dict) -> dict:
             "gsrsearch": f'insource:"{identity}"',
             "gsrlimit": "50",
             "prop": "imageinfo",
-            "iiprop": "url|size|sha1|timestamp|mime|mediatype|extmetadata",
+            "iiprop": "url|size|sha1|timestamp|mime|mediatype|metadata|extmetadata",
             "iilimit": "1",
             "iiurlwidth": str(contract["query"]["thumbnail_width"]),
         }

@@ -11,6 +11,7 @@ from src.real_film.commons_ektar_companion import (
     flickr_identity,
     metadata_candidate,
     metadata_candidate_evaluation,
+    normalize_search_page,
     pixel_gate,
     registered_similarity,
     title_jaccard,
@@ -90,6 +91,34 @@ def test_metadata_candidate_accepts_independent_digital_companion() -> None:
     assert row is not None
     assert row["capture_time_delta_seconds"] == 180.0
     assert row["title_token_jaccard"] == title_jaccard(_source()["title"], _candidate()["title"])
+
+
+def test_search_page_uses_image_metadata_for_camera_and_capture_time() -> None:
+    page = {
+        "pageid": 11,
+        "title": "File:x.jpg",
+        "imageinfo": [{
+            "url": "https://example/x.jpg",
+            "descriptionurl": "https://example/page",
+            "thumburl": "https://example/thumb.jpg",
+            "sha1": "abc",
+            "width": 1200,
+            "height": 800,
+            "size": 1000,
+            "mime": "image/jpeg",
+            "metadata": [
+                {"name": "Model", "value": "Nikon D850"},
+                {"name": "DateTimeOriginal", "value": "2020:02:12 18:20:00"},
+            ],
+            "extmetadata": {
+                "LicenseShortName": {"value": "CC BY 4.0"},
+                "Artist": {"value": "A"},
+            },
+        }],
+    }
+    row = normalize_search_page(page)
+    assert row["camera_model"] == "Nikon D850"
+    assert row["date_time_original"] == "2020:02:12 18:20:00"
 
 
 def test_metadata_candidate_rejects_scan_film_or_unrelated_time() -> None:

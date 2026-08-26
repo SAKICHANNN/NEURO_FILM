@@ -113,6 +113,11 @@ def normalize_search_page(page: Mapping[str, Any]) -> dict[str, Any]:
         raise CommonsEktarCompanionError("candidate page requires one imageinfo record")
     info = infos[0]
     metadata = info.get("extmetadata") or {}
+    exif = {
+        str(row.get("name", "")): str(row.get("value", ""))
+        for row in info.get("metadata", [])
+        if isinstance(row, Mapping)
+    }
     required = ("url", "descriptionurl", "sha1", "width", "height", "size")
     if any(info.get(key) in (None, "") for key in required):
         raise CommonsEktarCompanionError("candidate imageinfo is incomplete")
@@ -128,8 +133,8 @@ def normalize_search_page(page: Mapping[str, Any]) -> dict[str, Any]:
         "height": int(info["height"]),
         "mime": str(info.get("mime", "")),
         "upload_timestamp": str(info.get("timestamp", "")),
-        "camera_model": metadata_value(metadata, "Model"),
-        "date_time_original": metadata_value(metadata, "DateTimeOriginal"),
+        "camera_model": exif.get("Model", metadata_value(metadata, "Model")),
+        "date_time_original": exif.get("DateTimeOriginal", metadata_value(metadata, "DateTimeOriginal")),
         "description_raw_html": metadata_value(metadata, "ImageDescription"),
         "credit_raw_html": metadata_value(metadata, "Credit"),
         "author_raw_html": metadata_value(metadata, "Artist"),
