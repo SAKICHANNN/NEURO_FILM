@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 from pathlib import Path
 
 import numpy as np
@@ -9,6 +10,9 @@ import pytest
 from src.preprocess import dng_forward_aces2_pq as module
 from src.preprocess.dng_forward_raster import DngForwardRasterError
 from src.preprocess.types import SourceProfile, WorkingImage
+
+ROOT = Path(__file__).resolve().parents[1]
+EVIDENCE = ROOT / "docs/evidence/P229_DNG_FORWARD_ACES2_P3_PQ_CALLABLE_RESULT.json"
 
 
 def _working() -> WorkingImage:
@@ -110,3 +114,12 @@ def test_callable_rejects_invalid_official_output(monkeypatch, bad_value) -> Non
             expected_source_bytes=1,
             expected_source_sha256="a" * 64,
         )
+
+
+def test_formal_evidence_closes_exact_callable_without_mapping() -> None:
+    evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+    assert evidence["status"] == "FAIL_CLOSED_DNG_FORWARD_ACES2_P3_PQ_CALLABLE"
+    assert len(evidence["rows"]["returned_exact"]) == 3
+    assert len(evidence["rows"]["rejected_before_output"]) == 2
+    assert evidence["gates"]["outputs_float32_contiguous_finite_in_unit"] is False
+    assert evidence["consumer_mapping"] is False

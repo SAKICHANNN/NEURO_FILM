@@ -1,0 +1,102 @@
+{
+  "schema": "neuro-film.p229-dng-forward-aces2-p3-pq-callable-evidence.v1",
+  "experiment_id": "P229",
+  "status": "FAIL_CLOSED_DNG_FORWARD_ACES2_P3_PQ_CALLABLE",
+  "date": "2026-08-26",
+  "commits": {
+    "preregistration": "bdf8e611551da9588e0a4b41d99134d1e6b7a863",
+    "implementation": "1e88e2fc733a68c8360c5cd93a0a22d99487b204",
+    "invalid_input_gate_completion": "7b893482ed2d8b57c7f2e8b0675635aa5ee52daa",
+    "rejection_reporting": "8d203abca54e4169fa91f752da28be7e1ddd8ebc",
+    "formal_execution": "5e82dd23dae422a81afdefa5026b725a0a051951"
+  },
+  "protocol": {
+    "contract_sha256": "b59322c2fa5f5d41e3f6a96ffba77c7b678d850cfd414e1d6446ddb41f115d2a",
+    "config_sha256": "031d86195c9e814219b395c0715b96a0b5a6f8d4c705cbbfaf7462b1d27456d6",
+    "required_rows": 5,
+    "target": "hdr_p3d65_1000nit_rec2100_pq"
+  },
+  "formal": {
+    "forward_report_sha256": "909591519ffca18284e492a8124ff28140a1ce5b3839968c73022a0af0451cb6",
+    "reverse_report_sha256": "909591519ffca18284e492a8124ff28140a1ce5b3839968c73022a0af0451cb6",
+    "report_bytes_each": 5019,
+    "reports_byte_exact": true,
+    "stable_identity": "sha256:e1d2861cf0bf6e3181d4b607cafe56df591e38c886d2db71385eceb966056084",
+    "pixel_reads": 8,
+    "network_reads": 0,
+    "repository_image_writes": 0
+  },
+  "rows": {
+    "returned_exact": [
+      {
+        "source_id": "blackmagic_pocket_cinema_camera_4k",
+        "output_sha256": "1e0cd2d0108fc49150bed9f1a9dc57fda51484156a358cd65ec7f09530cd8046",
+        "minimum": 0.000000730942701920867,
+        "maximum": 0.5873510241508484
+      },
+      {
+        "source_id": "motorola_moto_g_7_play",
+        "output_sha256": "9a85f57ab93a003e8a978d6a986474a75364152b6f122226a8a8e28d8c3c2931",
+        "minimum": 0.000000730942701920867,
+        "maximum": 0.5252113938331604
+      },
+      {
+        "source_id": "xiaomi_m2010j19cg",
+        "output_sha256": "53f8a7d5caf80fc7aec84d5cdd9fc092a8d3db24b728fcc92cae69288b895b7a",
+        "minimum": 0.0004404504143167287,
+        "maximum": 0.4593338966369629
+      }
+    ],
+    "rejected_before_output": [
+      {
+        "source_id": "huawei_eml_l29",
+        "reason": "official ACES 2 output is outside normalized PQ"
+      },
+      {
+        "source_id": "lg_lg_h850",
+        "reason": "official ACES 2 output is outside normalized PQ"
+      }
+    ]
+  },
+  "gates": {
+    "bindings_exact": true,
+    "required_rows_exact": true,
+    "source_identities_and_bytes_unchanged": true,
+    "callable_equals_direct_retained_composition_byte_exact": false,
+    "outputs_float32_contiguous_finite_in_unit": false,
+    "caller_owns_output": false,
+    "wrong_identity_and_invalid_input_fail_closed": true,
+    "default_pipeline_and_generic_raw_sources_unchanged": true,
+    "forward_reverse_reports_byte_exact": true
+  },
+  "negative_controls": {
+    "wrong_bytes": true,
+    "wrong_sha": true,
+    "non_dng": true,
+    "temporary_residue_zero": true
+  },
+  "execution_notes": [
+    "The first formal attempt stopped with no report when the callable rejected an out-of-unit result. The reporting-only correction records fail-closed rows without returning their output and evaluates every frozen row so reverse order can be compared exactly.",
+    "A second pair of exact reports established the result but omitted the explicit replay gate from the gate object. Commit 5e82dd23 adds only that reporting field and the final complete forward/reverse executions were restarted from that commit."
+  ],
+  "decision": {
+    "result": "FAIL_CLOSED_DNG_FORWARD_ACES2_P3_PQ_CALLABLE",
+    "interpretation": "The exact-five source-bound callable is not total over its frozen cohort because two official transforms leave the normalized-PQ unit rail. Three rows reproduce the retained direct composition exactly, so P98 and P226 remain independently valid.",
+    "no_rescue": [
+      "clipping",
+      "exposure or tone-map changes",
+      "OCIO config or target changes",
+      "source-row replacement",
+      "tolerance or backend changes"
+    ],
+    "does_not_open": [
+      "arbitrary DNG support",
+      "sensor or IDT calibration",
+      "default loader or renderer integration",
+      "public package, schema or capability",
+      "product admission"
+    ]
+  },
+  "consumer_mapping": false,
+  "claim_ceiling": "Exact-five-DNG private callable negative only. It does not invalidate the retained P98 raster or P226 official float target independently."
+}

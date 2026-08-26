@@ -16394,3 +16394,29 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   arbitrary after-only inference, natural/captured HDR quality, public
   package/schema/capability or product admission. Evidence:
   `docs/evidence/P230_R1CZ_SHARED_HDR_PAYLOAD_CONSUMER_RESULT.json`.
+
+### 2026-08-26 - P229 closes the exact-five DNG-to-P3-PQ callable
+
+- **Question:** Can the retained P98 exact-five ForwardMatrix raster and P226
+  official P3-D65 1000-nit Rec.2100-PQ target form one total source-bound
+  opt-in callable without changing generic RAW or default rendering?
+- **Implementation:** added a narrow private callable requiring exact caller
+  byte-count/SHA identity and returning only owned contiguous float32 PQ. The
+  formal runner compares against direct retained composition and covers wrong
+  bytes/hash plus an existing non-DNG predecode control.
+- **Formal result:** final forward/reverse 5,019-byte reports are byte exact at
+  `90959151...1cb6`, stable `e1d2861c...6084`. Blackmagic, Motorola and Xiaomi
+  return exact direct-composition arrays; Huawei and LG reject before usable
+  output because the official result leaves normalized PQ. Source/default
+  pipeline/generic RAW identities, negative controls and cleanup pass, but the
+  required total unit-range callable gates fail.
+- **Execution integrity:** the first attempt stopped without a report on the
+  first rejected output. A reporting-only correction recorded rejection while
+  continuing the frozen rows. After an exact report pair exposed a missing
+  explicit replay gate field, the field alone was added and both complete
+  final runs restarted. No pixel, target, row, gate or algorithm changed.
+- **Boundary/handoff:** close this exact callable with no clipping, exposure,
+  tone-map, row, tolerance or backend rescue. P98 and P226 remain valid
+  independently. No arbitrary DNG, sensor/IDT calibration, default integration,
+  package/schema/capability or product mapping opens. Evidence:
+  `docs/evidence/P229_DNG_FORWARD_ACES2_P3_PQ_CALLABLE_RESULT.json`.
