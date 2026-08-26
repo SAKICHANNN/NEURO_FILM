@@ -1,0 +1,74 @@
+{
+  "schema": "neuro-film.u7-4a-cuda-gamut-discriminant-contract.v1",
+  "experiment_id": "U7.4A",
+  "date": "2026-08-26",
+  "status": "FROZEN_BEFORE_CUDA_IMPLEMENTATION",
+  "question": "Can one isolated CUDA implementation of the unchanged 14-iteration source-to-target Lab gamut compression materially beat the existing eight-worker CPU implementation while staying within a strict numerical and RGB16 sample budget on all three development looks?",
+  "bindings": [
+    {
+      "path": "scripts/pipeline_color_baseline.py",
+      "sha256": "49f4e2d4b3e6798130bbb4e32faa5d7d0c332e7bcb5486718a62079544acc7ca"
+    },
+    {
+      "path": "docs/evidence/U7_2A_THREE_STOCK_EXACT_GAMUT_PARALLEL_RESULT.json",
+      "sha256": "098a696d95cd5558b30b5088e5aa7bf2a8bc774544b26b20b691c6723f3d76d2"
+    },
+    {
+      "path": "configs/render_profiles/safe_rich_v1.json",
+      "sha256": "72a9948e6fc76e230c4593b847728712bc034840cd339e6b34f079ac7d424c79"
+    },
+    {
+      "path": "configs/film_color_stats.json",
+      "sha256": "1a45e90765e577edd4ca1773fc8c6cf98fd09b8afbdddfa519b1f097c5dd7c04"
+    },
+    {
+      "path": "configs/color_guardrails.json",
+      "sha256": "6669b7bc873febcc74ba7ddcbc1c1584807e38465447a5cdbeb24073efa00aa7"
+    }
+  ],
+  "source": {
+    "path": "outputs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1/inputs/canon_eos_kiss_f.png",
+    "sha256": "d9d72139fe819afcdfd36b314a211f6749fb7341ce398d646fe1ad2da5f25a97",
+    "role": "preexisting internal digital OOD benchmark; not film truth"
+  },
+  "dimensions": [
+    3000,
+    2000
+  ],
+  "styles": [
+    "velvia_50",
+    "portra_400",
+    "ektar_100"
+  ],
+  "execution": {
+    "iterations": 14,
+    "cpu_workers": 8,
+    "cuda_device": 0,
+    "warmups": 1,
+    "measured_repeats": 3,
+    "orders": [
+      "forward",
+      "reverse"
+    ],
+    "backend_repeat_deterministic": true
+  },
+  "gates": {
+    "maximum_lab_absolute_error": 0.0002,
+    "maximum_lab_p99_absolute_error": 0.00002,
+    "maximum_rgb16_code_delta": 2,
+    "maximum_rgb16_mismatch_fraction": 0.001,
+    "maximum_median_cuda_to_cpu_wall_ratio": 0.5,
+    "maximum_peak_cuda_allocated_bytes": 2000000000,
+    "require_all_three_styles": true,
+    "require_forward_reverse_scientific_identity": true
+  },
+  "decision_if_pass": "open_isolated_full_render_cuda_composition_only",
+  "decision_if_fail": "close_exact_cuda_gamut_candidate_without_product_integration",
+  "forbidden": [
+    "changing the 14-iteration operator",
+    "post-result tolerance rescue",
+    "product default change",
+    "stock calibration or authenticity claim"
+  ],
+  "claim_ceiling": "Local RTX 5070 Ti Laptop / PyTorch CUDA numerical and performance evidence for the existing film-inspired three-look gamut stage only. No stock truth, target-film closeness, product integration, cross-GPU parity or release claim."
+}
