@@ -16746,6 +16746,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   source inputs, rerenders nothing and does not establish page-driven export,
   installation, calibrated stock authenticity or public release.
 
+### 2026-08-26 - RF3.D8 rejects the current Portra product baseline on the registered chart
+
+- **Question:** without fitting or tuning, does the current Portra 400 Look
+  Approximation improve the exact CHAM6 registered chart target over identity
+  and the current Ektar 100 wrong-stock control?
+- **Execution:** frozen contract `74dab576`; implementation `c2f03bfd`.
+  Canonical/reverse reports are byte-identical at `22ef5688...910a`, stable
+  `f6c94cd9...711a`, over 3,072 exact samples, 64 spatial blocks and four folds.
+- **Result:** Portra is 0.577% worse than identity, wins 0/4 folds, and improves
+  only 0.144% over the Ektar wrong-stock control. The frozen publisher
+  SpektraFilm baseline remains lower-error. Boundary and repeat gates pass.
+- **Decision:** `FAIL_CLOSED`; do not tune to one unlicensed chart or a
+  noncommercial simulator. Keep the profile labeled Look Approximation and
+  prioritize new controlled Portra 400 and Ektar 100 observations.
+
 ### 2026-08-26 - U1.6G4J integrates staged density as a strict private recipe route
 
 - **Node and routing:** `ULT > U1.6 > U1.6G4J`; primary

@@ -151,6 +151,19 @@ teacher, and Velvia 100 is not substituted for Velvia 50. Controlled
 same-scene Ektar observations remain the highest-information missing input.
 Evidence: `docs/evidence/RF3_D7_PORTRA_EKTAR_EXTERNAL_ALIGNMENT_RESULT.json`.
 
+RF3.D8 applies the fixed current Portra 400 product Look Approximation to the
+one existing registered Lumix-S5II-RAW / Portra-400-DPii chart observation,
+using the frozen CHAM6 samples with no fitting or tuning. Two fresh-process
+reports are byte exact (`22ef5688...910a`, stable `f6c94cd9...711a`). The
+current Portra result is 0.577% worse than identity, wins 0/4 spatial folds,
+and improves only 0.144% over the current Ektar wrong-stock control. The
+frozen publisher SpektraFilm baseline remains lower-error; boundary and replay
+gates pass. Close this exact baseline as `FAIL_CLOSED`: keep Portra labeled
+Look Approximation and require new rights-cleared controlled Portra and Ektar
+observations rather than tuning to the single unlicensed chart or external
+simulator. Evidence:
+`docs/evidence/RF3_D8_PORTRA400_CHART_PRODUCT_BASELINE_RESULT.json`.
+
 SF3.A3 now compiles the requested executable source/evidence matrix over eight
 hash-bound results rather than relying on narrative eligibility. Two formal
 reports are byte exact (`676aec5f...74394c`, stable `4954e9b1...98f71b`).
