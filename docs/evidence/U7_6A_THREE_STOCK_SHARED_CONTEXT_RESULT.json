@@ -1,0 +1,83 @@
+{
+  "claim_ceiling": "Local Windows/Python CPU three-stock tiled batch reuse only; no stock calibration, stock distinguishability, preference, native/device, or product-performance promotion.",
+  "config_sha256": "4b9a9bed1bb0fac31c8dced29bbd58fd988d5bc10e2b71ddba12ca8dee6e8a9f",
+  "decision": "PASS",
+  "gate_results": {
+    "all_three_output_arrays_byte_exact": true,
+    "candidate_peak_process_tree_rss_ratio": true,
+    "candidate_repeat_peak_rss_ratio": true,
+    "candidate_repeat_wall_ratio": true,
+    "finite_bounded_outputs": true,
+    "fresh_process_reports_complete": true,
+    "median_wall_ratio": true
+  },
+  "implementation_commit": "c09e4088fb03465e0489f459f279917a9ff37c08",
+  "metrics": {
+    "baseline_median_peak_process_tree_rss_bytes": 610209792.0,
+    "baseline_median_wall_seconds": 30.437351250000575,
+    "candidate_median_peak_process_tree_rss_bytes": 533225472.0,
+    "candidate_median_wall_seconds": 28.533247100000153,
+    "candidate_repeat_peak_rss_ratio": 1.0118688859010616,
+    "candidate_repeat_wall_ratio": 1.0207904483594992,
+    "decision": "PASS",
+    "median_peak_rss_ratio": 0.8738395859763588,
+    "median_wall_ratio": 0.9374418577240559
+  },
+  "output_sha256": [
+    "c4be7bb6b6439ba58af0794b049127e9ae108928b9a500c38080f23f4b0b69d8",
+    "24a1522691bedb62df5a4eca89aa0f25152540e934d9225add7c03b555d0eee2",
+    "51239fe0f023bbde7aaacc8cab73a3966222c6a836ec7a9e175048ad04c60c23"
+  ],
+  "rows": [
+    {
+      "finite_bounded": [true, true, true],
+      "mode": "baseline",
+      "output_sha256": [
+        "c4be7bb6b6439ba58af0794b049127e9ae108928b9a500c38080f23f4b0b69d8",
+        "24a1522691bedb62df5a4eca89aa0f25152540e934d9225add7c03b555d0eee2",
+        "51239fe0f023bbde7aaacc8cab73a3966222c6a836ec7a9e175048ad04c60c23"
+      ],
+      "peak_process_tree_rss_bytes": 613724160,
+      "stderr": "",
+      "wall_seconds": 30.383296100000734
+    },
+    {
+      "finite_bounded": [true, true, true],
+      "mode": "candidate",
+      "output_sha256": [
+        "c4be7bb6b6439ba58af0794b049127e9ae108928b9a500c38080f23f4b0b69d8",
+        "24a1522691bedb62df5a4eca89aa0f25152540e934d9225add7c03b555d0eee2",
+        "51239fe0f023bbde7aaacc8cab73a3966222c6a836ec7a9e175048ad04c60c23"
+      ],
+      "peak_process_tree_rss_bytes": 536371200,
+      "stderr": "",
+      "wall_seconds": 28.826805000000604
+    },
+    {
+      "finite_bounded": [true, true, true],
+      "mode": "candidate",
+      "output_sha256": [
+        "c4be7bb6b6439ba58af0794b049127e9ae108928b9a500c38080f23f4b0b69d8",
+        "24a1522691bedb62df5a4eca89aa0f25152540e934d9225add7c03b555d0eee2",
+        "51239fe0f023bbde7aaacc8cab73a3966222c6a836ec7a9e175048ad04c60c23"
+      ],
+      "peak_process_tree_rss_bytes": 530079744,
+      "stderr": "",
+      "wall_seconds": 28.239689199999702
+    },
+    {
+      "finite_bounded": [true, true, true],
+      "mode": "baseline",
+      "output_sha256": [
+        "c4be7bb6b6439ba58af0794b049127e9ae108928b9a500c38080f23f4b0b69d8",
+        "24a1522691bedb62df5a4eca89aa0f25152540e934d9225add7c03b555d0eee2",
+        "51239fe0f023bbde7aaacc8cab73a3966222c6a836ec7a9e175048ad04c60c23"
+      ],
+      "peak_process_tree_rss_bytes": 606695424,
+      "stderr": "",
+      "wall_seconds": 30.491406400000415
+    }
+  ],
+  "schema_version": "neuro-film.u7-6a-three-stock-shared-context.v1",
+  "scientific_identity": "0b7604b05966129d8760869c1f69f24c3ea1dc99194ad8ac1482361e17ca4928"
+}
