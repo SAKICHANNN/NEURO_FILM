@@ -262,6 +262,7 @@ def run(config_path: Path, *, reverse: bool) -> dict[str, Any]:
         "forward_reverse_reports_byte_exact": True,
         "paired_build_and_network_reads_zero": True,
     }
+    gates = {name: bool(value) for name, value in gates.items()}
     scientific = {
         "protocol": config["schema"],
         "producer": {
