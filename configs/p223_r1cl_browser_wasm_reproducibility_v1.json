@@ -1,0 +1,95 @@
+{
+  "schema": "neuro-film.p223-r1cl-browser-wasm-reproducibility-contract.v1",
+  "experiment_id": "P223",
+  "status": "FROZEN_BEFORE_CONSUMER_BROWSER_REBUILD_OR_RUNTIME_EXECUTION",
+  "question": "Can an independent consumer rebuild the producer-declared R1CL formal commit and reproduce its complete Edge/Chrome browser WebAssembly report, stable identity, module and Android/Node oracle without reading producer media or accepting a newly generated identity?",
+  "producer": {
+    "repository": "C:/Users/hhvrf/Documents/追色",
+    "formal_commit": "d25776d8498a30ab88863e5897caddc7fdaf352a",
+    "evidence_commit": "5bf180950965e5c8973b1e2c31d1470209a85944",
+    "evidence_path": "docs/evidence/R1CL_POLYNOMIAL_RGB_BROWSER_WEBASSEMBLY_RUNTIME_RESULT.json",
+    "evidence_blob": "bf9aa36e9a5f2f5c04621fcbc4ef0a5cccd25fd5",
+    "evidence_sha256": "9d2a1ef4f35f61d829d63240736538d712f51695af099990c1856a8ff3514865",
+    "runner_path": "scripts/run_r1cl_polynomial_rgb_browser_webassembly_runtime.py",
+    "bound_git_blobs": {
+      "docs/evidence/R1CK_POLYNOMIAL_RGB_WEBASSEMBLY_RUNTIME_RESULT.json": "08cab56c2f796293c54692003a18c9486d7581eb",
+      "docs/research/R1CL_POLYNOMIAL_RGB_BROWSER_WEBASSEMBLY_RUNTIME_PREREGISTRATION.json": "438c08cf6479cbbae75264ddc881f126df9e1164",
+      "native/polynomial_rgb_api.h": "a4a89d405157c211cc9ff16e3d6d1f2af3e8dacb",
+      "native/polynomial_rgb_portable.c": "08ed2934ed39b67673f654797375939b0f852318",
+      "native/polynomial_rgb_wasm_probe.c": "705df9b304341a337298baf548c7384a674afc65",
+      "scripts/run_r1ck_polynomial_rgb_webassembly_runtime.py": "f3a203178f7f460e91927084bd4433995b0dbe4e",
+      "scripts/run_r1cl_polynomial_rgb_browser_webassembly_runtime.py": "d30bd0acefb8a527695dd4af2aeb9edeeca775bd",
+      "tests/test_run_r1cl_polynomial_rgb_browser_webassembly_runtime.py": "f0c3d6612afe34adf9c6ebe0e915e29a41465bbe"
+    }
+  },
+  "toolchain": {
+    "ndk_path": "C:/Users/hhvrf/Documents/追色/outputs/tmp/tools/android-ndk-r27d",
+    "compiler_sha256": "d5962dc3301294b177963416c23f1987c5ddb2c3e88ce0a5bddb6bd98961e4ef",
+    "wasm_linker_sha256": "1cb3af374d216109e7851a0cdfcc4c0ec11370de1e3c7c291a4be4e391f6a3fb"
+  },
+  "browsers": [
+    {
+      "browser_id": "microsoft-edge-151",
+      "path": "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe",
+      "product_version": "151.0.4129.107",
+      "executable_bytes": 5018440,
+      "executable_sha256": "1c43c32ab3d8442171fafa7614015dd5b6977e60f8fa22e63f0c30f0b1e6ccf8"
+    },
+    {
+      "browser_id": "google-chrome-149",
+      "path": "C:/Program Files/Google/Chrome/Application/chrome.exe",
+      "product_version": "149.0.7827.115",
+      "executable_bytes": 4205720,
+      "executable_sha256": "69c8c7e2d950845df00c1e9f7c024e143c9efdc43401c6fb5009cad89bbf4ef9"
+    }
+  ],
+  "expected": {
+    "producer_status": "PASS_PRIVATE_EDGE_CHROME_BROWSER_WEBASSEMBLY_RUNTIME",
+    "formal_report_sha256": "0361d0c0012b75cdc3a2c8fb3cdaacdac3cb2b74ad68ed895b882dc3549df8df",
+    "stable_identity": "4bae5d7cbb91866ff4cf28a8f75844a26b0587aab8618a84323c814a43f74e03",
+    "wasm_module_bytes": 6168,
+    "wasm_module_sha256": "a1ee6cd057ffc287dc2b7c648571716b12c0c538ca2356b89b94870df18baf29",
+    "output_rgb_sha256": "ab3448a460165ebc2cb349c4fb4038ac0d3921af6c0a437d8714b7839bf89837",
+    "scientific_payload_sha256": "119805e017bbfca0ec6a26796be4b5d8394fb6a175090998f32347481ad21750",
+    "browser_count": 2,
+    "process_observation_count": 4
+  },
+  "execution": {
+    "fresh_exact_commit_clones": 2,
+    "runner_executions_per_clone": 1,
+    "browser_processes_per_clone": 4,
+    "fresh_browser_profile_per_process": true,
+    "outer_orders": [
+      "forward",
+      "reverse"
+    ],
+    "temporary_root": "system temporary directory",
+    "producer_worktree_reads_after_clone": 0,
+    "producer_worktree_writes": 0,
+    "media_reads": 0,
+    "network_downloads": 0
+  },
+  "gates": {
+    "formal_and_evidence_commits_exact": true,
+    "all_transitive_git_blobs_exact": true,
+    "compiler_linker_and_browser_hashes_exact": true,
+    "each_consumer_report_equals_frozen_producer_report_sha256": true,
+    "consumer_reports_byte_exact": true,
+    "producer_status_exact": true,
+    "stable_identity_exact": true,
+    "wasm_module_identity_exact": true,
+    "runtime_output_identity_exact": true,
+    "scientific_payload_identity_exact": true,
+    "browser_and_process_counts_exact": true,
+    "all_inner_producer_gates_pass": true,
+    "temporary_roots_removed": true,
+    "media_reads_zero": true,
+    "network_downloads_zero": true
+  },
+  "decision": {
+    "pass": "Retain exact producer-consumer reproducibility of the private installed Edge/Chrome R1CL arithmetic runtime.",
+    "fail": "Close consumer admission of this exact R1CL browser runtime without changing browser binaries, compiler, linker, source, flags, module, process order, identity or gates.",
+    "invalid": "If a frozen commit, toolchain or browser binary is unavailable, report infrastructure-invalid and do not interpret arithmetic."
+  },
+  "claim_ceiling": "Independent consumer reproducibility of private Windows headless Edge 151 and Chrome 149 wasm32 PolynomialRGBOperatorV1 arithmetic only; no interactive UI, WebView, media, RAW/HDR quality, public package/schema/capability or product admission."
+}
