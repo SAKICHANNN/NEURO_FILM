@@ -17422,3 +17422,25 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   removed with zero stage residue. Evidence SHA `4e9971a6...d8434d`. This is
   storage/runtime compatibility only, with no profile, algorithm, stock,
   calibration, visual-quality or product-default change.
+
+### 2026-08-27 - U6.P8CS2 closes exFAT publication across native Standard transactions
+
+- **Defect and implementation:** the P8CS1 hard-link incompatibility also
+  affected six retained local, replayable, cloud and bounded-strength native
+  Standard staging/output paths. Commit `7280bbc2` moves all seven native
+  transaction users to one shared create-only primitive: Windows uses
+  same-volume no-replace rename, POSIX retains hard-link publication, and
+  report-failure rollback removes only the entry identity published by the
+  transaction.
+- **Target-volume correction and verification:** the first actual P-backed
+  run showed that exFAT changes Python `st_ino` across rename; no product claim
+  was made, Windows identity capture moved to after successful publication,
+  and the complete repo-relative P-backed matrix then passed 18/18 in 22.08s.
+  Existing-destination and replacement-entry controls pass, as do Ruff,
+  py_compile and diff checks. Evidence commit `a5ecd974`, SHA
+  `8625d134...8c133`. The exact 2.08MB pytest basetemp could not be removed
+  because platform policy rejected the recursive delete; it is scratch, not
+  evidence or product data.
+- **Boundary:** pixel bytes, profiles, reports, schemas, algorithms, stock
+  evidence and defaults are unchanged. Immutable U6.P8BF and unrelated legacy
+  baseline source-hash locks were not rewritten to hide historical drift.

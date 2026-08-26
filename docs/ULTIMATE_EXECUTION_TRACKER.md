@@ -2549,3 +2549,13 @@ tests pass, and a repo-relative P-backed probe publishes exact bytes then
 leaves zero file/stage residue. This changes no profile, pixel arithmetic,
 stock evidence or default. Evidence:
 `docs/evidence/U6_P8CS1_EXFAT_ATOMIC_PUBLICATION_RESULT.json`.
+
+U6.P8CS2 closes the same measured exFAT incompatibility across the six
+remaining native Standard local/replayable/cloud/strength staging and PNG
+transactions. One shared create-only primitive now uses Windows no-replace
+rename and POSIX hard-link publication; report-last ordering and
+identity-bound rollback remain unchanged. The complete repo-relative
+P-backed matrix passes 18/18 on exFAT, including existing-destination and
+replacement-preservation controls. This is runtime/storage compatibility
+only and changes no pixels, schema, stock evidence or product default.
+Evidence: `docs/evidence/U6_P8CS2_EXFAT_STANDARD_TRANSACTION_RESULT.json`.
