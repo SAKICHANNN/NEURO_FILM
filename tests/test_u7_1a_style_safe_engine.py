@@ -146,6 +146,17 @@ def test_resolved_engine_rejects_nonfinite_source_and_parameter_drift() -> None:
             guardrails={},
             seed=7,
         )
+
+    with pytest.raises(StyleSafeEngineError, match="tile_workers requires tile_size"):
+        render_resolved_safe_lab_rgb(
+            np.zeros((2, 3, 3), dtype=np.float32),
+            style="velvia_50",
+            style_statistics={"mean": [50.0, 0.0, 0.0], "std": [20.0, 10.0, 10.0]},
+            style_parameters=parameters,
+            guardrails={},
+            seed=7,
+            tile_workers=2,
+        )
     changed = dict(parameters)
     changed["extra"] = 1.0
     with pytest.raises(StyleSafeEngineError, match="keys drifted"):
@@ -157,6 +168,25 @@ def test_resolved_engine_rejects_nonfinite_source_and_parameter_drift() -> None:
             guardrails={},
             seed=7,
         )
+
+
+def test_parallel_tiled_engine_is_exact_to_serial(working) -> None:
+    profile = load_render_profile(PROFILE_PATH, root=ROOT)
+    style = "portra_400"
+    statistics = json.loads(STATS_PATH.read_text(encoding="utf-8"))["styles"][style]
+    guardrails = load_guardrail_config(GUARDRAILS_PATH, style)
+    kwargs = {
+        "profile": profile,
+        "style": style,
+        "style_statistics": statistics,
+        "guardrails": guardrails,
+        "seed": 7,
+        "tile_size": 11,
+    }
+    serial = render_style_safe_working_image(working, **kwargs)
+    parallel = render_style_safe_working_image(working, tile_workers=4, **kwargs)
+
+    np.testing.assert_array_equal(parallel, serial)
 
 
 def test_color_only_recipe_replay_is_exact_cli_output(tmp_path: Path) -> None:

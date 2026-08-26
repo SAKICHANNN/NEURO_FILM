@@ -501,6 +501,7 @@ def style_transfer_rgb_tiled(
     dither: float | None = None,
     *,
     tile_size: int,
+    workers: int = 1,
 ) -> tuple[np.ndarray, TiledExecutionMetadata]:
     """Apply experimental two-pass safe-Lab tiling with the legacy pixels."""
 
@@ -538,7 +539,9 @@ def style_transfer_rgb_tiled(
             dither_window=window,
         )
 
-    return execute_tiled_local_operator(value, render_tile, tile_size=tile_size, halo=halo)
+    return execute_tiled_local_operator(
+        value, render_tile, tile_size=tile_size, halo=halo, workers=workers
+    )
 
 
 def style_transfer(

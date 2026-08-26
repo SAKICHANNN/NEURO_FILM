@@ -80,6 +80,7 @@ def render_resolved_safe_lab_rgb(
     seed: int,
     tile_size: int | None = None,
     gamut_workers: int = 1,
+    tile_workers: int = 1,
 ) -> np.ndarray:
     """Render one already-resolved style without file or CLI state."""
 
@@ -107,6 +108,14 @@ def render_resolved_safe_lab_rgb(
         or gamut_workers < 1
     ):
         raise StyleSafeEngineError("gamut_workers must be a positive integer")
+    if (
+        isinstance(tile_workers, bool)
+        or not isinstance(tile_workers, int)
+        or tile_workers < 1
+    ):
+        raise StyleSafeEngineError("tile_workers must be a positive integer")
+    if tile_size is None and tile_workers != 1:
+        raise StyleSafeEngineError("tile_workers requires tile_size")
     parameters = _validated_parameters(style_parameters)
     if tile_size is not None:
         output, _ = style_transfer_rgb_tiled(
@@ -128,6 +137,7 @@ def render_resolved_safe_lab_rgb(
             guardrails=dict(guardrails),
             dither=float(parameters["dither"]),
             tile_size=tile_size,
+            workers=tile_workers,
         )
         return np.ascontiguousarray(output, dtype=np.float32)
     output = np.ascontiguousarray(
@@ -170,6 +180,7 @@ def render_style_safe_working_image(
     seed: int,
     tile_size: int | None = None,
     gamut_workers: int = 1,
+    tile_workers: int = 1,
 ) -> np.ndarray:
     """Render a validated v1 profile from one WorkingImage to float32 sRGB."""
 
@@ -187,6 +198,7 @@ def render_style_safe_working_image(
         seed=seed,
         tile_size=tile_size,
         gamut_workers=gamut_workers,
+        tile_workers=tile_workers,
     )
 
 

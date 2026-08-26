@@ -196,6 +196,12 @@ def parse_args() -> argparse.Namespace:
         default=1,
         help="Parallel full-frame safe-Lab gamut rows; exact output, default 1.",
     )
+    parser.add_argument(
+        "--tile-workers",
+        type=int,
+        default=1,
+        help="Parallel bounded safe-Lab tiles; requires --tile-size, default 1.",
+    )
     return parser.parse_args()
 
 
@@ -285,6 +291,7 @@ def build_color_render_float(
         seed=args.seed,
         tile_size=getattr(args, "tile_size", None),
         gamut_workers=getattr(args, "gamut_workers", 1),
+        tile_workers=getattr(args, "tile_workers", 1),
     )
 
 
@@ -300,8 +307,12 @@ def main() -> int:
         raise ValueError("--tile-size must be at least 1")
     if args.gamut_workers < 1:
         raise ValueError("--gamut-workers must be at least 1")
+    if args.tile_workers < 1:
+        raise ValueError("--tile-workers must be at least 1")
     if args.tile_size is not None and args.gamut_workers != 1:
         raise ValueError("--gamut-workers cannot be combined with --tile-size")
+    if args.tile_size is None and args.tile_workers != 1:
+        raise ValueError("--tile-workers requires --tile-size")
     analytic_runtime = None
     color_diagnostics = None
     if args.color_engine == "analytic-y-chromaticity":

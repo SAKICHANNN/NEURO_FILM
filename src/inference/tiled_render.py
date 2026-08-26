@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Callable
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 
 import numpy as np
@@ -94,6 +95,7 @@ def execute_tiled_local_operator(
     *,
     tile_size: int,
     halo: int,
+    workers: int = 1,
 ) -> tuple[np.ndarray, TiledExecutionMetadata]:
     """Execute a declared-local operator and stitch only each tile's core.
 
@@ -112,13 +114,14 @@ def execute_tiled_local_operator(
         raise TiledRenderError("image must contain only finite values")
     if not callable(operator):
         raise TiledRenderError("operator must be callable")
+    workers = _integer(workers, "workers", minimum=1)
 
     windows = plan_tile_windows(image.shape[0], image.shape[1], tile_size=tile_size, halo=halo)
     output = np.empty_like(image)
     max_height = 0
     max_width = 0
 
-    for index, window in enumerate(windows):
+    def render_one(index: int, window: TileWindow) -> tuple[int, TileWindow, np.ndarray]:
         tile = image[
             window.expanded_y0 : window.expanded_y1,
             window.expanded_x0 : window.expanded_x1,
@@ -126,11 +129,21 @@ def execute_tiled_local_operator(
         ].view()
         tile.setflags(write=False)
         rendered = operator(tile, window)
+        return index, window, rendered
+
+    def stitch(rendered_row: tuple[int, TileWindow, np.ndarray]) -> None:
+        nonlocal max_height, max_width
+        index, window, rendered = rendered_row
+        tile_shape = (
+            window.expanded_y1 - window.expanded_y0,
+            window.expanded_x1 - window.expanded_x0,
+            image.shape[2],
+        )
         if not isinstance(rendered, np.ndarray) or rendered.ndim != 3:
             raise TiledRenderError(f"operator output {index} must be an HWC numpy array")
-        if rendered.shape != tile.shape:
+        if rendered.shape != tile_shape:
             raise TiledRenderError(
-                f"operator output {index} shape {rendered.shape} does not match tile shape {tile.shape}"
+                f"operator output {index} shape {rendered.shape} does not match tile shape {tile_shape}"
             )
         if rendered.dtype != image.dtype:
             raise TiledRenderError(
@@ -145,8 +158,24 @@ def execute_tiled_local_operator(
             window.core_x0 : window.core_x1,
             :,
         ] = rendered[tile_y0:tile_y1, tile_x0:tile_x1, :]
-        max_height = max(max_height, tile.shape[0])
-        max_width = max(max_width, tile.shape[1])
+        max_height = max(max_height, tile_shape[0])
+        max_width = max(max_width, tile_shape[1])
+
+    if workers == 1:
+        for index, window in enumerate(windows):
+            stitch(render_one(index, window))
+    else:
+        worker_count = min(workers, len(windows))
+        with ThreadPoolExecutor(max_workers=worker_count) as executor:
+            for start in range(0, len(windows), worker_count):
+                batch = tuple(
+                    enumerate(windows[start : start + worker_count], start=start)
+                )
+                futures = [
+                    executor.submit(render_one, index, window) for index, window in batch
+                ]
+                for future in futures:
+                    stitch(future.result())
 
     metadata = TiledExecutionMetadata(
         input_shape=tuple(int(value) for value in image.shape),

@@ -9,7 +9,6 @@ import numpy as np
 import pytest
 
 from scripts.pipeline_color_baseline import (
-    SafeLabSourceContext,
     _style_transfer_rgb_with_context,
     build_safe_lab_source_context,
     legacy_uniform_dither_window,
@@ -18,7 +17,6 @@ from scripts.pipeline_color_baseline import (
     style_transfer_rgb,
     style_transfer_rgb_tiled,
 )
-
 
 ROOT = Path(__file__).resolve().parents[1]
 PROFILE_CONFIG = ROOT / "configs" / "color_rendering_profiles.yaml"
@@ -126,6 +124,18 @@ def test_tiled_safe_lab_repeats_byte_identically():
     second, second_metadata = style_transfer_rgb_tiled(image, **kwargs)
     assert first.tobytes() == second.tobytes()
     assert first_metadata == second_metadata
+
+
+def test_parallel_tiled_safe_lab_is_byte_exact_to_serial():
+    image = np.random.default_rng(20260826).random((31, 47, 3), dtype=np.float32)
+    kwargs = {**_frozen_kwargs(), "dither": 0.35, "tile_size": 8}
+    serial, serial_metadata = style_transfer_rgb_tiled(image, **kwargs)
+    parallel, parallel_metadata = style_transfer_rgb_tiled(
+        image, workers=4, **kwargs
+    )
+
+    np.testing.assert_array_equal(parallel, serial)
+    assert parallel_metadata == serial_metadata
 
 
 def test_tiled_safe_lab_rejects_nonzero_legacy_grain():

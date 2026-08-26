@@ -87,6 +87,49 @@ def test_repeated_execution_is_byte_identical():
     assert first_metadata == second_metadata
 
 
+@pytest.mark.parametrize("workers", [2, 4, 64])
+def test_parallel_execution_preserves_serial_pixels_and_metadata(workers):
+    image = _image((37, 53, 3))
+
+    def operator(tile, window):
+        offset = np.float32((window.core_y0 + window.core_x0) * 1e-6)
+        return np.clip(tile * np.float32(0.75) + offset, 0.0, 1.0).astype(
+            tile.dtype
+        )
+
+    serial, serial_metadata = execute_tiled_local_operator(
+        image, operator, tile_size=11, halo=3
+    )
+    parallel, parallel_metadata = execute_tiled_local_operator(
+        image, operator, tile_size=11, halo=3, workers=workers
+    )
+
+    np.testing.assert_array_equal(parallel, serial)
+    assert parallel_metadata == serial_metadata
+
+
+def test_parallel_finite_support_operator_preserves_serial_pixels():
+    image = _image((37, 53, 3))
+
+    def blur(tile, _):
+        return gaussian_filter_safe(
+            tile,
+            sigma=(1.5, 1.5, 0.0),
+            truncate=3.0,
+            max_direct_radius=32,
+        ).astype(tile.dtype, copy=False)
+
+    serial, serial_metadata = execute_tiled_local_operator(
+        image, blur, tile_size=11, halo=5
+    )
+    parallel, parallel_metadata = execute_tiled_local_operator(
+        image, blur, tile_size=11, halo=5, workers=4
+    )
+
+    np.testing.assert_array_equal(parallel, serial)
+    assert parallel_metadata == serial_metadata
+
+
 @pytest.mark.parametrize(
     "kwargs",
     [
@@ -96,6 +139,8 @@ def test_repeated_execution_is_byte_identical():
         {"image": np.full((3, 3, 3), np.nan, dtype=np.float32), "tile_size": 2, "halo": 0},
         {"image": np.zeros((3, 3, 3), dtype=np.float32), "tile_size": 0, "halo": 0},
         {"image": np.zeros((3, 3, 3), dtype=np.float32), "tile_size": 2, "halo": -1},
+        {"image": np.zeros((3, 3, 3), dtype=np.float32), "tile_size": 2, "halo": 0, "workers": True},
+        {"image": np.zeros((3, 3, 3), dtype=np.float32), "tile_size": 2, "halo": 0, "workers": 0},
     ],
 )
 def test_invalid_inputs_fail_closed(kwargs):
