@@ -1,0 +1,59 @@
+{
+  "schema": "neuro-film.u7-2d-fast-png16-export-result.v1",
+  "date": "2026-08-26",
+  "experiment_id": "U7.2D",
+  "contract_commit": "136f1e7303333aba3c48748bb88d228c086168a7",
+  "implementation_commit": "a7e85a2be12c2b89f188ec7752a5e336a9f1df7b",
+  "audit_commit": "db74587f4e2ec7930379b314ba86083c18f4e8f5",
+  "audit_identity_fix_commit": "db74587f4e2ec7930379b314ba86083c18f4e8f5",
+  "question": "Can an explicit lossless PNG16 fast-export tier materially reduce 24MP end-to-end wall time while preserving decoded RGB16 samples, the exact sRGB ICC profile, deterministic replay and bounded file-size growth?",
+  "source": {
+    "path": "data/preference/repid/u5_r2repid3_shared_operator_v1/fit/winner/a4593-kme_0276.jpeg",
+    "sha256": "7ea3d1ed37b7df518c0466c1379f08aa34ea5ae00eb7dc8208fcff2cfe68d1c6",
+    "role": "preexisting_internal_display_srgb_product_scale_fixture_not_film_truth",
+    "dimensions": [4032, 6048]
+  },
+  "formal_execution": {
+    "forward_report_sha256": "0bcf771314270807091a8ac667d2fe786178f61ed98f84772d27e8c208223e09",
+    "reverse_report_sha256": "d63eafc7d8b98a9dc5a35e110a479100ece02352f7f73622c6c1c3c5880b8031",
+    "stable_identity": "41ea55cec8beb64b9bfa8e3976510158876b6b5d1f1ea503d28ef98701ab6c2f",
+    "forward_decision": "PASS",
+    "reverse_decision": "PASS",
+    "forward_baseline_median_seconds": 26.23519264999868,
+    "forward_candidate_median_seconds": 21.975529299999835,
+    "forward_wall_ratio": 0.8376355223753594,
+    "reverse_baseline_median_seconds": 26.362574250000762,
+    "reverse_candidate_median_seconds": 21.644221299999117,
+    "reverse_wall_ratio": 0.8210207810035278,
+    "maximum_observed_process_tree_rss_bytes": 2559225856
+  },
+  "exact_outputs": {
+    "srgb_icc_sha256": "217fe48ec958c667f8eef725aa27198f465df95d7662593b90d0a1cc30114356",
+    "candidate_png_bytes": 146549896,
+    "velvia_50_candidate_sha256": "f241760b1f5766b79e0bc31b627098c266ef3b07eb4eb898a767eae10905a3e0",
+    "portra_400_candidate_sha256": "c0455b6f140474aa931042d105e22640a34131bb246ee4d1b5326fcb6152fb4f",
+    "ektar_100_candidate_sha256": "7df2f9e550504ef409de035a866102f51f1b00a0950418184a49c130a05d8e0a",
+    "velvia_50_default_sha256": "6f405513fcb72f27350c9c42fc238de6daa0ba3584987537431a17a146982732",
+    "maximum_candidate_to_baseline_file_size_ratio": 1.1881260021856022,
+    "all_three_decoded_rgb16_samples_exact": true,
+    "all_three_srgb_icc_profiles_exact": true,
+    "candidate_repeat_output_bytes_exact": true,
+    "default_encoder_output_bytes_unchanged": true,
+    "recipe_records_exact_png_compression": true,
+    "scratch_empty": true
+  },
+  "execution_amendment": {
+    "reason": "The first forward/reverse attempt derived implementation identity from the concurrently advancing shared-branch HEAD, producing different stable IDs despite exact output and gate results.",
+    "correction": "The audit now binds the exact implementation commit. Scientific inputs, renderer, output bytes, run order and frozen gates were unchanged, and both orders were rerun from empty scratch roots.",
+    "pre_correction_forward_report_sha256": "e49a6c720b4fdd69dfc1bcefeac945b66e723a07ac7eff5e44fd199fc4758c83",
+    "pre_correction_reverse_report_sha256": "0e9706b6e75b8eb08142b4f21a6263b3ed439f7b136c69710af608c7788a30f6"
+  },
+  "verification": {
+    "focused_tests": "89 passed",
+    "ruff": "pass",
+    "py_compile": "pass",
+    "diff_check": "pass"
+  },
+  "decision": "PASS_OPT_IN_FAST_PNG16_EXPORT",
+  "claim_ceiling": "Local Windows Python/OpenCV PNG16 export performance for the existing three development-only Look Approximation outputs. Compression level zero is explicit and replayable; the existing level-six default is unchanged. This is not stock evidence, target-film closeness, calibration, preference, product release or multi-stock completion."
+}

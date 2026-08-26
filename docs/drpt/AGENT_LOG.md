@@ -16246,3 +16246,24 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   named-stock evidence and mature RAW/DNG/HDR/portable explicit operators.
   Evidence:
   `docs/evidence/P225_LATEST_PAIRED_RETOUCH_SOURCE_AUDIT_RESULT.json`.
+
+### 2026-08-26 - U7.2D adds an exact opt-in fast PNG16 export tier
+
+- **Implementation:** PNG16 compression is now an explicit validated render
+  option, bound in strict recipe v3 and replayed by the existing style-safe
+  engine. Compression level 6 remains the default and reproduces the frozen
+  output byte-for-byte; level 0 is opt-in only.
+- **Formal result:** two isolated forward/reverse 24MP runs pass every frozen
+  gate with one stable identity `41ea55ce...ab6c2f`. Median wall ratios are
+  `.83764/.82102`, all three decoded RGB16 sample arrays and the exact sRGB ICC
+  match, candidate bytes repeat exactly, and the maximum file-size ratio is
+  `1.18813` under the frozen `1.2` ceiling.
+- **Execution amendment:** the first audit attempt bound a concurrently moving
+  shared-branch HEAD rather than the exact implementation commit. The harness
+  was corrected before evidence publication and both orders reran from empty
+  scratch without changing pixels, renderer, run order or gates.
+- **Boundary:** this is local Windows Python/OpenCV export performance for the
+  existing Velvia/Portra/Ektar development Look Approximations. It is not new
+  stock evidence, target-film closeness, calibration, preference, release or
+  multi-stock completion. Evidence:
+  `docs/evidence/U7_2D_FAST_PNG16_EXPORT_RESULT.json`.
