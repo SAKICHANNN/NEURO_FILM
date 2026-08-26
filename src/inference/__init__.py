@@ -123,6 +123,7 @@ __all__ = [
     "render_resolved_safe_lab_rgb",
     "render_style_safe_working_image",
     "render_three_stock_look_rgb",
+    "replay_portable_recipe_recovery_bundle_to_file",
     "replay_style_safe_color_recipe",
     "replay_style_safe_recipe",
     "replay_style_safe_recipe_to_file",
@@ -146,10 +147,15 @@ def __getattr__(name: str):
         "replay_style_safe_color_recipe",
         "replay_style_safe_recipe",
         "replay_style_safe_recipe_to_file",
+        "replay_portable_recipe_recovery_bundle_to_file",
         "list_three_stock_looks",
         "render_three_stock_look_rgb",
         "resolve_three_stock_look_parameters",
     }:
+        if name == "replay_portable_recipe_recovery_bundle_to_file":
+            from . import portable_recipe_replay
+
+            return getattr(portable_recipe_replay, name)
         if name in {
             "list_three_stock_looks",
             "render_three_stock_look_rgb",
