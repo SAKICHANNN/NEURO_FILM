@@ -1,0 +1,96 @@
+{
+  "schema": "neuro-film.p251-aces2065-openexr-working-image-ingress-evidence.v1",
+  "experiment_id": "P251",
+  "status": "PASS_PRIVATE_ACES2065_OPENEXR_WORKING_IMAGE_INGRESS",
+  "date": "2026-08-27",
+  "commits": {
+    "preregistration": "f5528c66",
+    "core": "b0e9b338",
+    "formal_runner": "d9a8292b",
+    "corrected_runner": "94cc9c57abaf2a829aa4c5438dcfff60091812c0",
+    "formal_binding_and_execution": "26f2b1e1fd86b2b8632aebacea48852ab9d56a7e",
+    "opt_in_export": "b490c1b9f07587c2c8fc217e03aa0ee8339b239f",
+    "export_sort_correction": "115d69e3c9a7c54b966ba8c0f9d344c7caf5720c"
+  },
+  "protocol": {
+    "contract_path": "docs/planning/P251_ACES2065_OPENEXR_WORKING_IMAGE_INGRESS_CONTRACT.md",
+    "contract_bytes": 3229,
+    "contract_sha256": "111d9c4f23587f330271cb3c2fc26b11b2250309a1e6a93648ff6588f6f36c0a",
+    "config_path": "configs/p251_aces2065_openexr_working_image_ingress_v1.json",
+    "config_bytes": 4305,
+    "config_sha256": "f629aaa3beda06dfc095d6efab7bd6ce362f5a7b4ad1e28c25d776fef5544ff9"
+  },
+  "implementation": {
+    "module_path": "src/preprocess/aces2065_openexr.py",
+    "module_bytes": 6706,
+    "module_sha256": "9ec0e671144624176d122cb72a38b61de40eba55f8c52772234c438dd33d2390",
+    "package_export_path": "src/preprocess/__init__.py",
+    "package_export_sha256": "0e1f99fbb16e906318e09a57f2170c39f8ae42cb36baf908f2465729306ec4b0",
+    "runner_path": "scripts/audit_p251_aces2065_openexr_working_image_ingress.py",
+    "runner_bytes": 11985,
+    "runner_sha256": "81f2cf3bdacb8753922bc957a27c6120728eba46958159c66d6fa374dfb7b210",
+    "test_path": "tests/test_p251_aces2065_openexr_working_image_ingress.py",
+    "test_sha256": "7ca0e917f6dcd3cdf4c32fb96b143feaf9beb98251c5301e3b97424f69a86b07"
+  },
+  "official_dependency": {
+    "openexr_version": "3.4.15",
+    "wheel_bytes": 740197,
+    "wheel_sha256": "7aa145813acfe10a83d6e89340349379828190b321608e69f2aee426e10c890b",
+    "default_project_dependency_added": false,
+    "formal_install_mode": "isolated temporary target, no-index, no-deps"
+  },
+  "producer_lineage": {
+    "r1dt_writer_commit": "a7ec64513c4fa097bc49b9bdbdfd8c3c7c2eb901",
+    "r1dt_writer_sha256": "63995dc36cf41708118f32e90687b8bb5c9b2738100b3db557371bbaf086d84d",
+    "p249_container_bytes": 1144,
+    "p249_container_sha256": "1a25181406270142c98f2169897d3a4c468ec50c979fff9077d37f956c888726",
+    "p249_ap0_pixel_sha256": "2b3417e344aa7c26962a109f55d14237a0926d0e03eb46767477b274c4179cb4",
+    "p249_original_acescg_sha256": "3b14e75aa87a09794e0c4cb6339a4fc09862657d9aea190a9e3311c155bdb727"
+  },
+  "formal": {
+    "forward_report_path": "outputs/eval/p251_aces2065_openexr_working_image_ingress_v1/formal_result.json",
+    "reverse_report_path": "outputs/eval/p251_aces2065_openexr_working_image_ingress_v1/formal_replay.json",
+    "report_bytes_each": 2662,
+    "report_sha256": "bfeecc29165dd8eb0f8e9e84b295d092dff5cdc1f6f24fa7d2b9a0f091789689",
+    "reports_byte_exact": true,
+    "scientific_identity": "sha256:62e9dc8a17707cf313fbc9268ac15ef73ef9df1b9a4404888bf4ec51aae98048",
+    "fresh_process_count": 2,
+    "network_reads": 0,
+    "owned_temporary_residue": 0
+  },
+  "result": {
+    "ingress_id": "aces2065-ap0-openexr-to-acescg-working-image-v1",
+    "output_working_space": "acescg_ap1_d60",
+    "output_transfer_state": "scene_linear",
+    "output_shape": [7, 9, 3],
+    "output_f32le_sha256": "1f1e83dea1805af54d098af1752ba3a25d92b2887e22a6baa11e9e8af662c2c3",
+    "maximum_ap1_roundtrip_error": 0.00000095367431640625,
+    "minimum_component": -4.0,
+    "maximum_component": 16.0,
+    "owned_c_contiguous_writeable": true,
+    "source_and_input_immutable": true,
+    "malformed_rejected": true,
+    "wrong_identity_rejected": true,
+    "half_storage_rejected": true,
+    "extra_channel_rejected": true
+  },
+  "gates": {
+    "exact_bound_identities": true,
+    "exact_openexr_wheel": true,
+    "exact_p249_container": true,
+    "exact_original_lattice": true,
+    "strict_working_image_contract": true,
+    "owned_contiguous_output": true,
+    "negative_and_highlight_preserved": true,
+    "roundtrip_within_gate": true,
+    "source_and_input_immutable": true,
+    "invalid_controls_rejected": true,
+    "zero_network": true,
+    "zero_temporary_residue": true,
+    "two_reports_byte_exact": true
+  },
+  "preformal_execution_correction": "The first two controller invocations stopped before temporary-root creation, worker launch, writer execution, pixel reads or report creation because the already-bound producer wheel was resolved relative to the consumer root. Commit 94cc9c57 changes only that base path to the supplied producer repository, matching P249. Wheel/source/transform/controls/gates were unchanged and both complete executions restarted from the corrected committed binding.",
+  "postformal_export_correction": "The opt-in package export passed functional tests but its first narrow commit retained a Ruff __all__ ordering warning because a chained command continued after Ruff. Commit 115d69e3 applies only deterministic export-list sorting; the formal module, reports, transform and gates are unchanged.",
+  "consumer_mapping": false,
+  "claim_ceiling": "Private Windows/Python opt-in strict ACES2065-1/AP0 OpenEXR to ACEScg/AP1 WorkingImage ingress on frozen synthetic/control files only; no arbitrary OpenEXR/default dependency/dispatch, display or image quality, SMPTE certification, package/schema/capability or product admission."
+}
