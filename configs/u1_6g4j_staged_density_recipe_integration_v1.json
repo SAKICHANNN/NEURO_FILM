@@ -1,0 +1,36 @@
+{
+  "schema": "neuro-film.u1-6g4j-staged-density-recipe-integration-contract.v1",
+  "node": "ULT > U1.6 > U1.6G4J",
+  "question": "Can the retained staged-density operator become an explicit non-default research effect with a strict exact-replay recipe while legacy output and recipes remain unchanged?",
+  "operator": {
+    "model": "staged-density-research",
+    "executor_version": "staged-density-halation-v1-defaults",
+    "strength": 1.0,
+    "control_mode": "locked",
+    "preset": null,
+    "tile_size": 64,
+    "source_row_chunk": 64,
+    "coarse_row_chunk": 7,
+    "composite_row_chunk": 64
+  },
+  "formal_fixture": {
+    "height": 192,
+    "width": 256,
+    "seed": 1604,
+    "output_bit_depth": 16,
+    "process_order": ["baseline", "candidate", "candidate", "baseline"]
+  },
+  "required_gates": [
+    "legacy_output_and_recipe_exact",
+    "candidate_output_and_recipe_exact",
+    "v4_schema_and_independent_replay_exact",
+    "direct_executor_parity_exact",
+    "finite_bounded_srgb_icc",
+    "default_render_unchanged",
+    "mutations_fail_closed",
+    "owned_scratch_empty"
+  ],
+  "decision_if_pass": "retain_private_opt_in_staged_density_recipe_integration",
+  "decision_if_fail": "remove_v4_route_and_retain_isolated_g4e_g4i_only",
+  "claim_ceiling": "Private Windows/Python deterministic integration and exact replay of the retained staged-density Look Approximation effect only; no physical-film, stock, scanner, calibration, preference, platform, package or default-product claim."
+}
