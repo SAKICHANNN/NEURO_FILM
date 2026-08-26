@@ -1,0 +1,48 @@
+{
+  "schema": "neuro-film.p243-dng-profile-huesatmap-sdk-oracle-evidence.v1",
+  "experiment_id": "P243",
+  "status": "FAIL_CLOSED_FRESH_BUILD_BINARY_REPRODUCIBILITY",
+  "formal_execution_commit": "b2fc607b",
+  "bindings": {
+    "config_sha256": "92e57bf52cf4c0fe2e41d1fd8f838c6f808f93e477954c4a6998481e52754b5f",
+    "candidate_sha256": "3330a938a4a4f114eb0e2025d2216342223be08dc78b6925347e68cb05f329d2",
+    "runner_sha256": "2ddf593d39458cdda22f0d20111cfa204c53804bf412af7426cdb25f8522d4e4",
+    "oracle_source_sha256": "85db108ce3aa90520426fecf7f6bab7ebc1241f9f814fabe809c15c37b4b367c",
+    "test_sha256": "8ddb35b04bb9365cb358ad7dd2aaba3f8c60aa8c125642229c74984715ee0c75"
+  },
+  "formal_runs": {
+    "forward_report_bytes": 1500,
+    "forward_report_sha256": "40b6737c794866745ccaafd857af79cd55eabb38ad691bf7f76cb2a7185f7a08",
+    "reverse_report_bytes": 1500,
+    "reverse_report_sha256": "5eb39d0a6ddfd1f21502a624b5454da44117d44aeac97731ee8029ee76c0310b",
+    "reports_byte_exact": false,
+    "scientific_payload_sha256_without_executable_identity": "6233e28b48757dcbf0f4b552ddad533983b465eefe5b5bcf138d9c4bf93c36f9",
+    "scientific_payload_exact": true,
+    "forward_executable_sha256": "e31b38f11438310759c3216d59c15991789e7c3d576f9ac572ae237a048e6836",
+    "reverse_executable_sha256": "b90b9120560e76d44f25686e9ac2d80550db0513a01d2b1f5d4cf94986486623",
+    "executable_bytes_each": 13408256,
+    "fresh_build_binaries_exact": false
+  },
+  "metrics": {
+    "source_tables": 4,
+    "probes_per_table": 4913,
+    "max_abs_error_vs_sdk": 0.0,
+    "max_rmse_vs_sdk": 0.0,
+    "identity_max_abs_error_vs_sdk": 0.0,
+    "all_outputs_finite_and_in_range": true
+  },
+  "information_flow": {
+    "source_rows": "two already-consumed P242 EXIF payloads",
+    "raw_downloads": 0,
+    "pixel_decodes": 0,
+    "image_quality_scores": 0,
+    "full_dng_renders": 0
+  },
+  "excluded_pre_science_attempts": [
+    "Two committed runner attempts stopped before any SDK oracle output or candidate comparison because Windows batch quoting did not invoke VsDevCmd.",
+    "One subsequent attempt built the oracle but stopped before reading a source table because the contract used a nonexistent P240 directory name; the exact already-bound P242 paths were corrected before full replay."
+  ],
+  "decision": "close_exact_msvc_sdk_oracle_family_without_binary_or_report_normalization_rescue",
+  "interpretation": "The Python float32 arithmetic exactly matches two independently built Adobe SDK RefBaselineHueSatMap executions for both Data1 and Data2 of one 3D and one 2.5D real profile table over the frozen dense cube. However, the two fresh MSVC executables are not byte-identical, which independently violates the preregistered binary and complete-report reproducibility gates. The arithmetic match is retained only as a private mechanism signal; the exact admission leaf fails closed.",
+  "claim_ceiling": "Private Windows MSVC Adobe-SDK-backed ProfileHueSatMap arithmetic negative with exact scientific parity but failed build identity. No full DNG pipeline conformance, encoded profile support, overrange support, image quality, arbitrary RAW, package, schema, capability, film-stock or product claim."
+}
