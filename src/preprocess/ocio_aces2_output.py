@@ -128,11 +128,16 @@ def convert_working_image_to_acescg(working: WorkingImage) -> np.ndarray:
         raise OcioAces2RuntimeError("working must be a WorkingImage")
     if working.transfer_state != "scene_linear":
         raise OcioAces2RuntimeError("ACES 2 adapter requires scene_linear input")
+    if working.working_space == "acescg_ap1_d60":
+        source = np.ascontiguousarray(working.pixels.copy())
+        if not np.isfinite(source).all():
+            raise OcioAces2RuntimeError("ACEScg WorkingImage input is non-finite")
+        return source
     try:
         source_space = _WORKING_SOURCE_SPACES[working.working_space]
     except KeyError as exc:
         raise OcioAces2RuntimeError(
-            "ACES 2 adapter requires linear_srgb or linear_rec2020 input"
+            "ACES 2 adapter requires acescg_ap1_d60, linear_srgb or linear_rec2020 input"
         ) from exc
     source = np.ascontiguousarray(working.pixels.reshape(-1, 3).copy())
     ocio = _ocio()

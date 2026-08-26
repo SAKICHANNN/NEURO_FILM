@@ -1,5 +1,8 @@
 """Input preprocessing primitives for film rendering."""
 
+from .aces2065_aces2_pq import (
+    publish_aces2065_openexr_aces2_canonical_hdr_pq_png_v1,
+)
 from .aces2065_openexr import (
     ACES2065_OPENEXR_INGRESS_ID,
     Aces2065OpenExrError,
@@ -85,6 +88,7 @@ __all__ = [
     "load_and_map_supported_prophoto_rgb16",
     "load_working_image",
     "normalized_icc_profile_sha256",
+    "publish_aces2065_openexr_aces2_canonical_hdr_pq_png_v1",
     "rec2020_to_linear_rec2020",
     "resolve_look_approximation_claim",
     "save_rec2020_16_png",
