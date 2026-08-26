@@ -1,0 +1,44 @@
+{
+  "schema": "kmcfm.u7-7a-recipe-recovery-bundle-contract.v1",
+  "node": "U7.7A",
+  "status": "FROZEN_BEFORE_IMPLEMENTATION",
+  "question": "Can one strict render recipe, its exact profile, and its exact profile assets be exported as a deterministic, create-only recovery bundle without including input or output pixels?",
+  "inputs": {
+    "recipes": [
+      "outputs/eval/u7_2_three_stock_24mp_smoke/velvia_50.recipe.json",
+      "outputs/eval/u7_2_three_stock_24mp_smoke/portra_400.recipe.json",
+      "outputs/eval/u7_2_three_stock_24mp_smoke/ektar_100.recipe.json"
+    ],
+    "profile": "configs/render_profiles/safe_rich_v1.json",
+    "profile_asset_count": 3
+  },
+  "bundle": {
+    "format": "deterministic-zip-deflate-v1",
+    "fixed_timestamp": "1980-01-01T00:00:00Z",
+    "maximum_members": 16,
+    "maximum_uncompressed_bytes": 16777216,
+    "create_only": true,
+    "recipe_member": "recipe.json",
+    "manifest_member": "manifest.json",
+    "payload_prefix": "payload/",
+    "include_input_bytes": false,
+    "include_output_bytes": false
+  },
+  "acceptance": {
+    "forward_reverse_bundle_bytes_exact": true,
+    "all_three_bundles_distinct": true,
+    "strict_recipe_profile_and_assets_revalidate_from_bundle": true,
+    "member_hashes_exact": true,
+    "duplicate_member_rejected": true,
+    "path_traversal_rejected": true,
+    "unexpected_member_rejected": true,
+    "tampered_payload_rejected": true,
+    "existing_destination_unchanged": true,
+    "failed_publication_leaves_no_partial_bundle": true
+  },
+  "decision": {
+    "pass": "retain private no-pixel deterministic recipe recovery bundle boundary",
+    "fail": "close this bundle format without weakening recipe, hash, path or privacy checks"
+  },
+  "claim_ceiling": "Private deterministic no-pixel recovery bundle mechanics for three existing Look Approximation recipes only; no installer, automatic restore, input availability, output export authorization, calibrated stock response, stock distinguishability, telemetry or product-release claim."
+}
