@@ -16037,3 +16037,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   separately frozen minimal experiment. Mainline remains controlled named-stock
   evidence plus mature RAW/DNG/HDR/portable explicit-operator engineering.
   Evidence: `docs/evidence/P222_S24_MULTI_RENDER_CAPTURE_SOURCE_AUDIT_RESULT.json`.
+
+### 2026-08-26 - U7.2B adds an exact bounded parallel-tile tier
+
+- **Implementation:** `3364bd30` batches disjoint halo-aware tiles across a
+  bounded thread pool while stitching in canonical order. The opt-in
+  `--tile-workers` rail requires `--tile-size`; all defaults and pixels remain
+  unchanged. `9521f2b2` adds the forward/reverse three-stock benchmark.
+- **Evidence:** 80 adjacent checks and the benchmark test pass. Two 6MP orders
+  reproduce stable identity `96421811...c2c7`, exact float32/sRGB16 outputs and
+  a six-run median wall ratio of `.50690`. At 24.39MP, Velvia 50, Portra 400
+  and Ektar 100 take `29.737/28.839/29.236s`; all three frozen PNG16 files are
+  exact and peak process-tree RSS is at most `2,558,451,712` bytes.
+- **Cleanup/boundary:** each product output was hashed and removed before the
+  next render; scratch is empty. This is local Python resource evidence only,
+  not film-stock identification, calibration, preference or promotion.
