@@ -1,0 +1,39 @@
+{
+  "schema": "neuro_film.u6_p8cs1_exfat_atomic_publication_evidence.v1",
+  "node": "U6.P8CS1",
+  "decision": "retain_windows_exfat_create_only_atomic_publication",
+  "implementation": {
+    "commit": "c85f7de720149cc73be0c7294ffd916225f29bc0",
+    "core": "src/film_physics/atomic_native_output.py",
+    "test": "tests/test_u6_p8cs_atomic_native_output.py"
+  },
+  "defect": {
+    "prior_publication_primitive": "os.link(sibling_stage, destination)",
+    "project_durable_filesystem": "exFAT",
+    "observed_failure": "OSError(winerror=1, errno=22)",
+    "impact": "the retained native physical RGB16 PNG stream could not publish to the canonical durable project volume"
+  },
+  "repair": {
+    "windows": "same-volume no-replace os.rename",
+    "non_windows": "existing hard-link then unlink publication",
+    "existing_destination_policy": "reject without overwrite",
+    "stage_policy": "remove on success or failure"
+  },
+  "actual_durable_volume_probe": {
+    "logical_root": "tmp",
+    "resolved_project_root": "P:/neuro_film_storage/tmp",
+    "bytes": 19,
+    "sha256": "0d52e65482b600d660140b6505308247d276339140e13bcf64f0dd216f0193bd",
+    "payload_exact": true,
+    "published_file_removed": true,
+    "stage_residue_count": 0
+  },
+  "verification": {
+    "pytest": "9 passed in 14.52s",
+    "ruff": "pass",
+    "diff_check": "pass",
+    "concurrent_destination_claim_preserved": true,
+    "windows_hard_link_dependency_absent": true
+  },
+  "claim_ceiling": "Windows/exFAT publication compatibility for the existing opt-in generic physical-inspired native PNG runtime only; no stock calibration, algorithm, profile, visual-quality or product-default change."
+}
