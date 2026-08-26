@@ -1,0 +1,44 @@
+{
+  "schema_version": "neuro-film.u7-6g-three-stock-source-context-memory.v1",
+  "node_id": "U7.6G",
+  "objective": "Reduce the measured 24MP three-stock peak inside safe-Lab source-context construction by materializing exact row-wise RGB-to-Lab values in an owned P-backed memory map, then applying the unchanged legacy full-array reduction.",
+  "input": {
+    "path": "data/preference/repid/u5_r2repid3_shared_operator_v1/fit/winner/a4593-kme_0276.jpeg",
+    "expected_dimensions": [6048, 4032]
+  },
+  "execution": {
+    "look_amount": 1.0,
+    "render_seed": 31,
+    "tile_size": 512,
+    "tile_workers": 1,
+    "png_compression": 0,
+    "lab_row_chunk": 128,
+    "run_order": ["baseline", "candidate", "candidate", "baseline"]
+  },
+  "controls": {
+    "baseline_execution_id": "full-frame-rgb2lab-source-context.v1",
+    "candidate_execution_id": "row-chunked-memmap-rgb2lab-source-context.v1",
+    "baseline": "the current one-decode three-stock batch with build_safe_lab_source_context performing one full-frame skimage rgb2lab allocation",
+    "candidate": "the same batch, stock operators, renderer and encoder with only source-context RGB-to-Lab computed in 128-row chunks into one owned P-backed float32 memory map; the unchanged legacy reduction then consumes that map",
+    "invariants": "source-context values, encoded PNG bytes, decoded RGB16 samples, ICC fingerprints, normalized recipe semantics, stock order, operators, guardrails, tile geometry, output publication and cleanup"
+  },
+  "gates": {
+    "source_context_cross_execution_exact": true,
+    "three_encoded_outputs_cross_execution_exact": true,
+    "three_decoded_sample_arrays_cross_execution_exact": true,
+    "three_icc_fingerprints_cross_execution_exact": true,
+    "three_normalized_recipe_semantics_cross_execution_exact": true,
+    "ordered_stock_ids_exact": true,
+    "minimum_peak_process_tree_rss_reduction_bytes": 201326592,
+    "candidate_peak_process_tree_rss_ratio_max": 0.90,
+    "candidate_wall_ratio_max": 1.15,
+    "candidate_residue_count": 0
+  },
+  "stop_rules": [
+    "Do not change stock parameters, safe-Lab arithmetic, reduction dtype/order, gamut execution, tile geometry, encoder, input, run order or gates after formal execution begins.",
+    "The candidate must reproduce the exact legacy SafeLabSourceContext and all three encoded output bytes; numerical tolerance is not sufficient for this same-platform replacement.",
+    "A failed parity, memory or wall gate closes this exact memory-map architecture without row-size, dtype, reduction, storage, tile, worker or threshold rescue.",
+    "The owned context memory map must be deleted on success and injected failure; no durable input, output or evidence may be placed outside repo-relative P-backed paths."
+  ],
+  "claim_ceiling": "Local Windows/Python 24MP three-stock source-context memory evidence only. All outputs remain non-calibrated Look Approximations; controlled stock evidence, U7.2C separation and product release remain unchanged."
+}
