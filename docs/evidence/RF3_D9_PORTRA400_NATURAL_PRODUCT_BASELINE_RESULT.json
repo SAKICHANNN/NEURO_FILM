@@ -1,0 +1,116 @@
+{
+  "schema": "neuro-film.rf3-d9-portra400-natural-product-baseline-evidence.v1",
+  "experiment_id": "RF3.D9",
+  "node": "ULT > RF3 > RF3.D9",
+  "status": "FAIL_CLOSED",
+  "decision": "record_current_portra_400_natural_transfer_gap_and_require_new_controlled_observations",
+  "bindings": {
+    "contract": {
+      "path": "configs/rf3_d9_portra400_natural_product_baseline_v1.json",
+      "bytes": 3318,
+      "sha256": "902cab6cf9ae0c83a15684827521519b1044fc56f8de62d8ef4e009ac3c12dfd",
+      "freeze_commits": [
+        "cc985ce1",
+        "0b4eaab7"
+      ]
+    },
+    "implementation": {
+      "path": "src/eval/portra400_natural_product_baseline.py",
+      "bytes": 14467,
+      "sha256": "00079344e80c7f87cd2eae905e9643802dccf5642d388b08f4b9a0408d081197",
+      "commit": "bcdbd6fc"
+    },
+    "runner": {
+      "path": "scripts/run_rf3_d9_portra400_natural_product_baseline.py",
+      "bytes": 1152,
+      "sha256": "6e683addbc00d988530f1af34c7fce1e3c7323c81ef155bb1627467089611884"
+    },
+    "tests": {
+      "path": "tests/test_rf3_d9_portra400_natural_product_baseline.py",
+      "bytes": 1355,
+      "sha256": "fcf92256aa8485d19903bd3ab3d2b83ca640f0c8aa19986673b2fe9cdcc24b90"
+    },
+    "formal_result": {
+      "path": "outputs/eval/rf3_d9_portra400_natural_product_baseline_v1/forward.json",
+      "bytes": 3868,
+      "sha256": "a32299a064b23ea5c05c5cbb52d7456fa772ff60fb9d621e05b9ce4c26e51928"
+    }
+  },
+  "execution": {
+    "fresh_processes": 2,
+    "orders": [
+      "canonical",
+      "reverse"
+    ],
+    "reports_byte_exact": true,
+    "report_sha256": "a32299a064b23ea5c05c5cbb52d7456fa772ff60fb9d621e05b9ce4c26e51928",
+    "stable_evidence_id": "9fe2cc96cfecdf6cb9cd12876fd3adb1358a1e79a2fc3389a586ccfa415c740c"
+  },
+  "population": {
+    "registered_same_scene_natural_observations": 2,
+    "interpretations": [
+      "portra400_fuji_dpii_ra4_epson",
+      "portra400_noritsu"
+    ],
+    "eligible_correspondences": {
+      "ra4_epson": 109,
+      "noritsu": 43
+    },
+    "target_stock": "kodak_portra_400",
+    "wrong_stock_control": "kodak_ektar_100"
+  },
+  "metrics": {
+    "ra4_epson": {
+      "identity_rmse": 0.04025587512211634,
+      "current_portra_400_rmse": 0.04445366497475193,
+      "current_ektar_100_wrong_stock_rmse": 0.0478145077412856,
+      "frozen_cham10_chart_affine_rmse": 0.07007415950792023,
+      "portra_improvement_over_identity_fraction": -0.10427769461976855,
+      "portra_improvement_over_wrong_stock_fraction": 0.07028918471185563,
+      "portra_improvement_over_wrong_pairing_fraction": 0.5663586395236612,
+      "portra_improvement_over_frozen_cham10_fraction": 0.36561971935278814,
+      "portra_fold_win_fraction_over_identity": 0.0,
+      "portra_worst_fold_improvement_over_identity_fraction": -0.147810742588538
+    },
+    "noritsu": {
+      "identity_rmse": 0.20471646637440116,
+      "current_portra_400_rmse": 0.20462493198854437,
+      "current_ektar_100_wrong_stock_rmse": 0.20448924588668255,
+      "frozen_cham10_chart_affine_rmse": 0.19914707392808445,
+      "portra_improvement_over_identity_fraction": 0.0004471276174208283,
+      "portra_improvement_over_wrong_stock_fraction": -0.000663536614228688,
+      "portra_improvement_over_wrong_pairing_fraction": 0.1793185091297833,
+      "portra_improvement_over_frozen_cham10_fraction": -0.02750659576569059,
+      "portra_fold_win_fraction_over_identity": 0.5,
+      "portra_worst_fold_improvement_over_identity_fraction": -0.0005970077706958232
+    },
+    "interpretations_improving_identity": 0,
+    "interpretations_beating_wrong_stock": 1,
+    "interpretations_beating_wrong_pairing": 2
+  },
+  "gates": {
+    "minimum_support": true,
+    "minimum_interpretations_improving_identity": false,
+    "minimum_interpretations_beating_wrong_stock": false,
+    "minimum_interpretations_beating_wrong_pairing": true,
+    "minimum_primary_fold_win_fraction_over_identity": false,
+    "minimum_primary_worst_fold_improvement_over_identity": false,
+    "portra_beats_frozen_cham10_on_both_interpretations": false,
+    "maximum_current_output_boundary_fraction": true,
+    "maximum_repeat_error": true
+  },
+  "interpretation": {
+    "established": [
+      "the current Portra output has pairing-specific signal in both registered natural observations",
+      "on the RA4/Epson interpretation, Portra beats current Ektar by 7.029 percent and the frozen chart-affine baseline by 36.562 percent",
+      "the fixed output is deterministic and remains within the sampled output cube"
+    ],
+    "not_established": [
+      "improvement over identity on either scan interpretation",
+      "scanner-independent Portra 400 fidelity or stock-specific natural-scene transfer",
+      "Portra 400 calibration, independent roll/process transfer, Ektar or Velvia evidence, product promotion, redistribution or commercial use"
+    ]
+  },
+  "next_mainline": "Keep the fixed Portra profile as Look Approximation. Do not retune on this same-session package; require an independently controlled Portra roll with scanner/process grouping and a first controlled Ektar 100 observation.",
+  "claim_ceiling": "Two unlicensed publisher-shared same-session natural observations with different print/scan interpretations, fixed current Look Approximation profiles and frozen CHAM10 correspondences. No Portra 400 calibration, independent roll/process/scanner transfer, Ektar or Velvia evidence, product promotion, redistribution or commercial-use claim."
+}
