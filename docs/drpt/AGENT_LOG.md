@@ -16912,3 +16912,34 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   arbitrary DNG, film-stock, package/capability and product claims remain
   false. Evidence:
   `docs/evidence/P240_RAWPIXLS_CAPTURE_METADATA_SOURCE_AUDIT_RESULT.json`.
+
+### 2026-08-26 - P241 closes timestamp/exposure-only AWB before fresh confirmation
+
+- **Node and DoR:** `ULT > capture-time RAW > P241`; use only the 17 complete,
+  already-consumed P240 metadata rows for development. The exact feature map,
+  ridge alpha, leave-one-row-out split, global/time/exposure/cyclic controls,
+  comparative gates and stop-before-fresh-read rule were committed at
+  `72a876ee` before the formal replay. Make/model, RAW bytes and pixels are not
+  model inputs.
+- **Result:** two 7,109-byte forward/reverse reports are byte-exact at
+  `52e41062...763acf`. Full-model median/p95/worst angular errors are
+  `3.6492/8.0008/9.8614` degrees. Against global, time-only, exposure-only and
+  same-capacity cyclic-label controls, win rates are only
+  `47.06%/47.06%/47.06%/52.94%`; median relative reductions are
+  `-11.39%/-0.38%/-3.16%/+1.32%`. The p95 absolute gate passes, but every
+  attribution rate and median gate fails.
+- **Stop and information flow:** status is
+  `FAIL_CLOSED_BEFORE_FRESH_METADATA_CONFIRMATION`. Fresh P241 EXIF reads,
+  fresh target reads, RAW downloads and pixel decodes are all zero. The
+  prospective candidate list was never materialized into a contract, so no
+  unused URL was consumed. Do not tune features, alpha, controls or gates on
+  P240 and do not reinterpret this development stop as natural-image AWB
+  quality.
+- **Verification and boundary:** 20 P240/P241/DNG adjacent tests pass; Ruff,
+  compileall, JSON and diff checks pass. Evidence SHA-256
+  `2be9711c...7754fa`:
+  `docs/evidence/P241_CAPTURE_METADATA_AWB_DEVELOPMENT_RESULT.json`. Candidate
+  3, RAW operator, film-stock, public package/schema/capability and product
+  mapping remain closed. The next research leaf requires genuinely new
+  rights-clear paired/capture-time identifying information or a mature
+  explicit RAW/HDR engineering gap, not another timestamp/exposure ridge.
