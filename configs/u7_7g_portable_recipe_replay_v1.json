@@ -1,0 +1,44 @@
+{
+  "schema": "kmcfm.u7-7g-portable-recipe-replay-contract.v1",
+  "node": "U7.7G",
+  "status": "FROZEN_BEFORE_IMPLEMENTATION",
+  "question": "Can the explicit portable-bundle binder feed the existing deterministic replay engine and reproduce all three frozen 24MP stock-look outputs exactly under one caller action?",
+  "parent_evidence": {
+    "path": "docs/evidence/U7_7F_EXPLICIT_RECIPE_BINDING_RESULT.json",
+    "sha256": "339901730a2aafb4bc372a6a81f3614688a948f19218c22cc03d2fca7f71df95"
+  },
+  "operation": {
+    "stages": [
+      "validate portable bundle",
+      "hash-verify explicit input",
+      "publish strict bound recipe create-only",
+      "independently replay strict recipe to explicit absent output",
+      "require frozen output byte identity"
+    ],
+    "profile": "configs/render_profiles/safe_rich_v1.json",
+    "caller_opt_in_required": true,
+    "network": false
+  },
+  "acceptance": {
+    "three_styles_complete": true,
+    "forward_reverse_reports_byte_exact": true,
+    "frozen_output_sha256_exact": true,
+    "bound_recipe_strict_and_repeat_exact": true,
+    "input_hash_verified_before_render": true,
+    "existing_recipe_and_output_unchanged": true,
+    "failed_replay_removes_output": true,
+    "claim_receipt_remains_look_approximation": true,
+    "owned_temporary_roots_removed": true
+  },
+  "decision": {
+    "pass": "RETAIN_PRIVATE_CALLER_DRIVEN_PORTABLE_REPLAY_AND_OPEN_BOUNDED_CLI_INTEGRATION",
+    "fail": "CLOSE_PORTABLE_REPLAY_WITHOUT_CLI_INTEGRATION"
+  },
+  "stop_rules": [
+    "Do not modify the three frozen source recipes, profiles, assets or outputs.",
+    "Do not default, discover or infer caller paths.",
+    "The existing replay engine must independently validate the bound strict recipe and regenerate the frozen output SHA-256.",
+    "No output overwrite, calibration claim, stock-distinguishability claim, installer action or network access is allowed."
+  ],
+  "claim_ceiling": "Private caller-driven exact replay of the existing three Look Approximation recipes only; no calibrated stock response, stock distinguishability, installer, GUI, release or automatic action claim."
+}
