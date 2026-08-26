@@ -1,0 +1,86 @@
+{
+  "schema": "neuro-film.sf3-a3e-commons-ektar-companion-discovery-evidence.v1",
+  "experiment_id": "SF3.A3E",
+  "node": "ULT > SF3 > SF3.A3E",
+  "status": "FAIL_CLOSED",
+  "decision": "CLOSE_THIS_EXACT_COMMONS_AUTHOR_COMPANION_ROUTE_WITHOUT_QUERY_OR_THRESHOLD_RESCUE",
+  "bindings": {
+    "contract": {
+      "path": "configs/sf3_a3e_commons_ektar_companion_discovery_v1.json",
+      "bytes": 3440,
+      "sha256": "198b89c5a8de065b8749915d771db7caa7e7e4c1237c9981ba135fb4c0b54530",
+      "freeze_commit": "85fe6aa5",
+      "final_transport_commit": "1e99d937"
+    },
+    "implementation": {
+      "path": "src/real_film/commons_ektar_companion.py",
+      "bytes": 16395,
+      "sha256": "ac2aceadec50d51a666127354404efeef55c8c31105905ca1fdcce0dda0184de",
+      "initial_commit": "6d11acb2",
+      "final_commit": "1e99d937"
+    },
+    "runner": {
+      "path": "scripts/run_sf3_a3e_commons_ektar_companion_discovery.py",
+      "bytes": 7019,
+      "sha256": "0e29507a82ee3d38f48063ed8e73ef0e5d489a51f24300cd2d5d8fd9cc5d4c65"
+    },
+    "tests": {
+      "path": "tests/test_sf3_a3e_commons_ektar_companion_discovery.py",
+      "bytes": 6131,
+      "sha256": "44306bf5b033446576e455f26b2ca68f86b3fa6c91cacdd1f484c75e0594c478"
+    },
+    "metadata_snapshot": {
+      "path": "outputs/eval/sf3_a3e_commons_ektar_companion_discovery_v1/metadata_snapshot_with_exif.json",
+      "bytes": 1874912,
+      "sha256": "ac9dbf48548b9b8d84acf3ea6ecf93297cfad9a9a6c5555edb991de82ca32ead"
+    },
+    "formal_result": {
+      "path": "outputs/eval/sf3_a3e_commons_ektar_companion_discovery_v1/exif_forward.json",
+      "bytes": 1353,
+      "sha256": "bb6fca6272dac797259144f055d15b36f3fc25b1d633b172bbc12b57b0749a5e"
+    }
+  },
+  "execution": {
+    "fresh_network_acquisitions": 1,
+    "offline_audit_orders": ["canonical", "reverse"],
+    "reports_byte_exact": true,
+    "report_sha256": "bb6fca6272dac797259144f055d15b36f3fc25b1d633b172bbc12b57b0749a5e",
+    "stable_evidence_id": "55b5ba7bbaef28d512868e61dd2de39e469dcd62a11db27ebb915b29f4016e44",
+    "network_requests": 28,
+    "thumbnail_downloads": 0,
+    "operator_fit_render_or_target_score_count": 0
+  },
+  "population": {
+    "film_stock_id": "kodak_ektar_100",
+    "frozen_target_rows": 24,
+    "parsed_flickr_identities": 18,
+    "commons_pages_audited": 1111,
+    "metadata_candidates": 0,
+    "pixel_candidates": 0
+  },
+  "metadata_funnel_counts": {
+    "capture_time_delta": 634,
+    "dimensions": 2,
+    "film_or_stock_text": 51,
+    "license": 100,
+    "missing_camera_model": 126,
+    "missing_capture_time": 176,
+    "same_page": 16,
+    "scanner_model": 5,
+    "title_overlap": 1
+  },
+  "interpretation": {
+    "established": [
+      "the exact 18 parsed Flickr identities expose 1111 bounded Commons file candidates under the frozen query",
+      "after explicit imageinfo EXIF retrieval, no candidate satisfies the unchanged rights, digital-camera, capture-time and title-overlap gates",
+      "the route closes before any candidate thumbnail, film pixel fitting, render or target score"
+    ],
+    "not_established": [
+      "that the authors never made same-scene digital captures outside Wikimedia Commons",
+      "absence of Ektar signal, stock response, calibration, scanner invariance or product readiness",
+      "eligibility of a relaxed time window, title rule, non-EXIF camera inference or unlicensed source"
+    ]
+  },
+  "next_mainline": "Do not relax this cohort or query. Preserve Ektar as the first controlled-pair acquisition priority; proceed only through the already frozen project-owned A0L/A0N capture packet or a materially new rights-cleared source that supplies explicit same-scene capture identity.",
+  "claim_ceiling": "Bounded same-author Wikimedia Commons Ektar companion-source audit only; no fitting, stock response, calibration, scanner independence, preference or product claim."
+}
