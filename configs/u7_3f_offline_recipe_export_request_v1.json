@@ -1,0 +1,59 @@
+{
+  "schema": "kmcfm.u7-3f-offline-recipe-export-request-contract.v1",
+  "node": "U7.3F",
+  "status": "FROZEN_BEFORE_FORMAL_24MP_REPLAY",
+  "question": "Can a path-free offline selection artifact invoke the existing strict recipe-history replay for all three frozen 24MP Look Approximations with exact output bytes?",
+  "implementation_commit": "6d87cbc7",
+  "implementation_sha256": {
+    "src/inference/recipe_export_request.py": "8acfd234d8b4eb971f6416c47111a42a4bf09932dede95e68f33871cb79c2fc8",
+    "scripts/export_recipe_request.py": "0720ed0a182ad4736f96596ef602ae739136b1cf64de2b6b11c0cd5061e8dec2"
+  },
+  "history_root": "outputs/eval/u7_2_three_stock_24mp_smoke",
+  "profile_path": "configs/render_profiles/safe_rich_v1.json",
+  "rows": [
+    {
+      "recipe_path": "ektar_100.recipe.json",
+      "recipe_sha256": "b92a75ed8ca8349df562153aad85df26db33ab0992d6bc07503033245ac7d0b8",
+      "style": "ektar_100",
+      "expected_output_sha256": "6c5c8b9c04fea4f265e1b742ce568b13a34d72462f7b6466f29685dabd03045e"
+    },
+    {
+      "recipe_path": "portra_400.recipe.json",
+      "recipe_sha256": "b6dece02a1c6e5cee9569424ae8fd53fdad8f4ee619753f6d81a2b2dea0d0fb3",
+      "style": "portra_400",
+      "expected_output_sha256": "2ff70587520b73634e9096ff297eb390edde7e891bb7634f3cec6c707a119844"
+    },
+    {
+      "recipe_path": "velvia_50.recipe.json",
+      "recipe_sha256": "254e5c8ddf8703e2689975590531b80ca4e40bde1a37fcd0c382f33e2a42cf25",
+      "style": "velvia_50",
+      "expected_output_sha256": "6f405513fcb72f27350c9c42fc238de6daa0ba3584987537431a17a146982732"
+    }
+  ],
+  "execution": {
+    "orders": [
+      ["ektar_100", "portra_400", "velvia_50"],
+      ["velvia_50", "portra_400", "ektar_100"]
+    ],
+    "tile_size": 256,
+    "maximum_recipe_files": 10000,
+    "maximum_recipe_bytes": 2097152,
+    "maximum_request_bytes": 65536
+  },
+  "gates": {
+    "request_set_bytes_exact_between_runs": true,
+    "request_files_contain_no_absolute_or_machine_paths": true,
+    "request_recipe_sha256_matches_frozen_row": true,
+    "all_output_sha256_match_frozen_u7_3d": true,
+    "forward_reverse_output_bytes_exact": true,
+    "existing_history_outputs_unread": true,
+    "request_and_recipe_drift_fail_before_render": true,
+    "scratch_empty": true
+  },
+  "stop_rules": [
+    "Do not change the recipes, source pixels, renderer, profile or expected hashes to rescue the bridge.",
+    "Do not copy an existing output; every formal output must use the existing strict replay path.",
+    "A failure closes this request bridge without a server, custom URI handler, installer or tolerance rescue."
+  ],
+  "claim_ceiling": "Private offline user-selection bridge for three existing film-inspired/look-approximation recipes. No controlled stock evidence, calibrated stock, automatic browser execution, installer, product release or population preference claim."
+}
