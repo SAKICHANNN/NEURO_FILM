@@ -1,0 +1,62 @@
+{
+  "schema": "neuro-film.p251-aces2065-openexr-working-image-ingress-contract.v1",
+  "experiment_id": "P251",
+  "status": "FROZEN_BEFORE_IMPLEMENTATION",
+  "bindings": {
+    "contract_path": "docs/planning/P251_ACES2065_OPENEXR_WORKING_IMAGE_INGRESS_CONTRACT.md",
+    "p249_config_path": "configs/p249_aces2065_openexr_exact_consumer_intake_v1.json",
+    "p249_evidence_path": "docs/evidence/P249_ACES2065_OPENEXR_EXACT_CONSUMER_INTAKE_RESULT.json",
+    "openexr_wheel_path": "data/vendor/openexr-3.4.15/openexr-3.4.15-cp312-cp312-win_amd64.whl",
+    "openexr_wheel_bytes": 740197,
+    "openexr_wheel_sha256": "7aa145813acfe10a83d6e89340349379828190b321608e69f2aee426e10c890b"
+  },
+  "input_contract": {
+    "maximum_width": 16384,
+    "maximum_height": 16384,
+    "maximum_pixels": 100000000,
+    "maximum_absolute_component": 65504.0,
+    "chromaticities": [
+      0.7347000241279602,
+      0.2653000056743622,
+      0.0,
+      1.0,
+      0.00009999999747378752,
+      -0.07699999958276749,
+      0.3216800093650818,
+      0.3376699984073639
+    ],
+    "adopted_neutral": [0.3216800093650818, 0.3376699984073639],
+    "aces_image_container_flag": 1,
+    "color_interop_id": "lin_ap0_scene",
+    "storage": "single-part non-deep scanline packed RGB float32"
+  },
+  "transform": {
+    "ap0_to_ap1_matrix": [
+      [1.4514393161, -0.2365107469, -0.2149285693],
+      [-0.0765537734, 1.1762296998, -0.0996759264],
+      [0.0083161484, -0.0060324498, 0.9977163014]
+    ],
+    "working_space": "acescg_ap1_d60",
+    "transfer_state": "scene_linear"
+  },
+  "expected": {
+    "p249_openexr_bytes": 1144,
+    "p249_openexr_sha256": "1a25181406270142c98f2169897d3a4c468ec50c979fff9077d37f956c888726",
+    "p249_input_acescg_f32le_sha256": "3b14e75aa87a09794e0c4cb6339a4fc09862657d9aea190a9e3311c155bdb727",
+    "maximum_ap1_roundtrip_error": 0.000001,
+    "maximum_matrix_inverse_error": 0.000000001
+  },
+  "gates": {
+    "require_exact_wheel": true,
+    "require_zero_network": true,
+    "require_strict_container": true,
+    "require_owned_contiguous_output": true,
+    "require_negative_and_highlight_preservation": true,
+    "require_source_immutability": true,
+    "require_invalid_controls_rejected": true,
+    "require_two_reports_exact": true,
+    "require_zero_temporary_residue": true
+  },
+  "stop_rule": "Any identity, metadata, storage, transform, ownership, boundedness, replay or cleanup failure closes P251 without approximate metadata, half/uint conversion, normalization, clipping, matrix change, dependency substitution or generic EXR routing.",
+  "claim_ceiling": "Private Windows/Python opt-in strict ACES2065-1/AP0 OpenEXR to ACEScg/AP1 WorkingImage ingress on frozen synthetic/control files only; no arbitrary OpenEXR/default dependency/dispatch, display or image quality, SMPTE certification, package/schema/capability or product admission."
+}
