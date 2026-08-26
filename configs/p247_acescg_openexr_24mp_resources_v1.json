@@ -1,0 +1,46 @@
+{
+  "schema": "neuro-film.p247-acescg-openexr-24mp-resource-contract.v1",
+  "experiment_id": "P247",
+  "status": "FROZEN_BEFORE_RUNNER_IMPLEMENTATION_OR_24MP_ALLOCATION",
+  "bindings": {
+    "contract_path": "docs/planning/P247_ACESCG_OPENEXR_24MP_RESOURCE_CONTRACT.md",
+    "contract_sha256": "595f75b9089558c166d2066900a853e14b3119479dd74f8afa032915887a7930",
+    "contract_commit": "cf634687db986e4c7f6c1cb5fab30a0c305ae2f6",
+    "p246_evidence_path": "docs/evidence/P246_ACESCG_OPENEXR_EXACT_CONSUMER_INTAKE_RESULT.json",
+    "p246_evidence_sha256": "3951c6a828cb26705f3787514c2da60d5f4dd28c08ab1dae4da1512005bc449e",
+    "p246_config_path": "configs/p246_acescg_openexr_exact_consumer_intake_v1.json",
+    "p246_config_sha256": "615d66f32c411c3acb6b671701c094df76a5817177c03b4d590cdc4eba754910",
+    "producer_writer_commit": "e4023509f1a1ca21606468312bf710972d9e1059",
+    "producer_writer_path": "src/zhuise/acescg_openexr.py",
+    "producer_writer_git_blob": "398f4de2cfb04a887bb13632df324fea1624f5bc",
+    "producer_writer_sha256": "3707b55b2cb7dd7fb102b4237e8ee4317035e917bd71441eb06dd9cc0a2757c3",
+    "producer_wheel_path": "data/vendor/openexr-3.4.15/openexr-3.4.15-cp312-cp312-win_amd64.whl",
+    "producer_wheel_bytes": 740197,
+    "producer_wheel_sha256": "7aa145813acfe10a83d6e89340349379828190b321608e69f2aee426e10c890b"
+  },
+  "probe": {
+    "height": 4000,
+    "width": 6000,
+    "channels": 3,
+    "dtype": "float32",
+    "input_bytes": 288000000,
+    "row_block": 64,
+    "coordinate_period": 1024
+  },
+  "gates": {
+    "maximum_worker_process_tree_rss_bytes": 2147483648,
+    "maximum_worker_wall_seconds": 120.0,
+    "maximum_openexr_bytes": 1073741824,
+    "maximum_sampling_interval_seconds": 0.1,
+    "require_two_fresh_workers": true,
+    "require_exact_repeat_input_and_container": true,
+    "require_decoded_pixel_maximum_absolute_error": 0.0,
+    "require_exact_ap1_d60_metadata": true,
+    "require_input_immutability": true,
+    "require_negative_and_above_one_values": true,
+    "require_zero_network_and_external_pixel_reads": true,
+    "require_zero_workspace_residue": true
+  },
+  "stop_rule": "Any identity, repeat, pixel, metadata, resource or cleanup failure closes this exact 24MP leaf without changing compression, probe, wheel, metadata, thresholds or process topology.",
+  "claim_ceiling": "Private local Windows CPython 24MP runtime/resource feasibility for the exact R1DO/P246 ACEScg writer on one procedural probe only. No cross-machine performance, natural-image quality, large-image streaming, arbitrary EXR, installed dependency, public package/schema/capability, renderer integration or product admission."
+}
