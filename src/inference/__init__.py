@@ -59,14 +59,17 @@ __all__ = [
     "build_render_recipe",
     "execute_interpretation",
     "execute_tiled_local_operator",
+    "list_three_stock_looks",
     "load_render_profile",
     "migrate_legacy_safe_rich",
     "plan_tile_windows",
     "render_resolved_safe_lab_rgb",
     "render_style_safe_working_image",
+    "render_three_stock_look_rgb",
     "replay_style_safe_color_recipe",
     "replay_style_safe_recipe",
     "replay_style_safe_recipe_to_file",
+    "resolve_three_stock_look_parameters",
     "sha256_file",
     "summarize_legacy_style_evidence_inventory",
     "summarize_render_profile_evidence",
@@ -85,7 +88,18 @@ def __getattr__(name: str):
         "replay_style_safe_color_recipe",
         "replay_style_safe_recipe",
         "replay_style_safe_recipe_to_file",
+        "list_three_stock_looks",
+        "render_three_stock_look_rgb",
+        "resolve_three_stock_look_parameters",
     }:
+        if name in {
+            "list_three_stock_looks",
+            "render_three_stock_look_rgb",
+            "resolve_three_stock_look_parameters",
+        }:
+            from . import three_stock_look
+
+            return getattr(three_stock_look, name)
         from . import style_safe_engine
 
         return getattr(style_safe_engine, name)
