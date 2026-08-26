@@ -31,6 +31,16 @@ class AtomicNativeOutputError(RuntimeError):
     """Raised when a native byte stream cannot be published atomically."""
 
 
+def _publish_create_only(source: Path, destination: Path) -> None:
+    """Publish one sibling stage without replacing an existing destination."""
+    if os.name == "nt":
+        # Windows rename is a same-volume, no-replace operation.  Unlike hard
+        # links it is supported by exFAT, the project's durable data volume.
+        os.rename(source, destination)
+        return
+    os.link(source, destination)
+
+
 class AtomicNativeOutputSink:
     """Write native chunks to a sibling temporary and publish without overwrite."""
 
@@ -78,13 +88,13 @@ class AtomicNativeOutputSink:
             self._handle.flush()
             os.fsync(self._handle.fileno())
             self._handle.close()
-            os.link(self.temporary, self.path)
+            _publish_create_only(self.temporary, self.path)
             result: dict[str, int | str] = {
                 "path": str(self.path),
                 "sha256": self._digest.hexdigest(),
                 "bytes": self._bytes_written,
             }
-            self.temporary.unlink()
+            self.temporary.unlink(missing_ok=True)
             self._closed = True
             return result
         except (AtomicNativeOutputError, OSError, ValueError) as exc:

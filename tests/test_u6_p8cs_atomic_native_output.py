@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 from pathlib import Path
 
 import numpy as np
@@ -69,6 +70,23 @@ def test_atomic_native_output_does_not_overwrite_concurrent_claim(
     with pytest.raises(AtomicNativeOutputError, match="publication failed"):
         sink.finish()
     assert destination.read_bytes() == b"foreign"
+    assert not list(tmp_path.glob("*.stage"))
+
+
+@pytest.mark.skipif(os.name != "nt", reason="Windows publication path")
+def test_atomic_native_output_does_not_require_windows_hard_links(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    def reject_hard_link(*_args: object, **_kwargs: object) -> None:
+        raise AssertionError("Windows publication must not require a hard link")
+
+    monkeypatch.setattr(os, "link", reject_hard_link)
+    destination = (tmp_path / "result.png").resolve()
+    with AtomicNativeOutputSink(destination, maximum_bytes=64) as sink:
+        assert sink.write(b"exfat-compatible")
+        result = sink.finish()
+    assert destination.read_bytes() == b"exfat-compatible"
+    assert result["bytes"] == len(b"exfat-compatible")
     assert not list(tmp_path.glob("*.stage"))
 
 
