@@ -15880,3 +15880,31 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   unchanged full-plan mode continues to budget all 5,668,432,128 bytes.
 - This removes an execution-order blocker only. The live P volume still fails
   the new health gates, so no physical scan write or stock claim opens.
+
+### 2026-08-26 - P220 closes exact portable interior-logit HDR parity
+
+- **Direction and ownership:** paired/capture-time explicit-operator
+  engineering only. Producer R1CG passed its private same-file UltraHDR
+  representation gates and explicitly opened a frozen portable-parity leaf;
+  P220 did not re-fit a bundle, read an application target, or repeat the
+  producer quality score.
+- **Implementation:** commits `bb73d50e` through `45957128` freeze and bind a
+  four-payload, 257-triplet MSVC/LLVM-MinGW C11 ABI. It is caller-buffer,
+  heap-free, exact-boundary preserving, identity/in-place safe and atomic for
+  malformed knots, bad inputs, invalid flags, undersized output and overlap.
+- **Execution:** the first direct invocation failed before any build/report
+  because the root was absent from `sys.path`; the next completed all builds
+  but failed before report write while cleaning a loaded DLL. Both operational
+  defects were committed without changing payloads, probes, ABI, arithmetic,
+  tolerance or gates before clean forward/reverse reruns.
+- **Evidence:** every absolute-error, native-status, boundary, identity,
+  in-place and seven-case failure-atomic gate passes. Maximum absolute error is
+  `.00146484375 cd/m2` under the frozen `.003` ceiling. No producer target or
+  application pixel was read.
+- **Decision:** formal FAIL. Forward relative error reaches
+  `6.832147e-6 > 3e-6`; LLVM-MinGW binary hashes differ between independent
+  builds; even identical MSVC DLL bytes produce different output hashes across
+  independent loads; and forward/reverse scientific payloads are not exact.
+  Close this exact C11/libm route without tolerance/compiler/libm/probe rescue.
+  R1CG's Python paired-information result remains intact; consumer/product,
+  public package/schema/capability and photographic-quality claims stay closed.

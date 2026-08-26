@@ -1,0 +1,72 @@
+{
+  "experiment_id": "P220",
+  "protocol": "neuro_film.p220_interior_logit_hdr_portable_parity_contract.v1",
+  "status": "FAIL_CLOSED_PORTABLE_LIBM_REPLAY",
+  "decision": "RETAIN_R1CG_PYTHON_REPRESENTATION_EVIDENCE_AND_CLOSE_EXACT_WINDOWS_C11_PARITY",
+  "consumer_head_before_evidence": "45957128",
+  "bindings": {
+    "contract_sha256": "04a5587fe3b75560707b8ffb8fb8453f8f249cf29fb1e1d32b07d210e9cc98d0",
+    "config_sha256": "97655ad097bc6e8a2f795939ac74dedf56943fb77259f0450ce3dbba239d5264",
+    "native_source_sha256": "fc91c89b7ad41cd2c7ce22dd088f454cd0b11d3360f7d60f5982978f8378c2c7",
+    "native_header_sha256": "83a106bd1249a060f91ec2c938f165522925e58eec3e30833b4ad42ee16c47ba",
+    "runner_sha256": "84accc33709c08aaa6784de73c28edb314a96447746b625ce6b887a2e656e0f1",
+    "producer_r1cg_report_sha256": "1622aa050602e876effd4f9c2e84cfdd0adca10268c8e05aa35fcda00b47b7ff",
+    "producer_r1cg_stable_identity": "d124e6b3b6fe66b56720ad54a59c7c9bf3be728953f55e620c46c8712297596c"
+  },
+  "formal_execution": {
+    "forward_report": {
+      "path": "outputs/eval/p220_interior_logit_hdr_portable_parity/forward.json",
+      "bytes": 11937,
+      "sha256": "e2b7ccf740a95912165a60e1818f488e1ffd552e92d7d0639ce2c3f7a038b4f0",
+      "stable_identity": "sha256:f8ee02c85713cd1d5e3373e5664a89cdfc4a69ab576d663b3865994ab05fd4c0"
+    },
+    "reverse_report": {
+      "path": "outputs/eval/p220_interior_logit_hdr_portable_parity/reverse.json",
+      "bytes": 11914,
+      "sha256": "6ed300246e190c4cd0a6266a990f1424162bb27645d227124eaf2c97a852a19f",
+      "stable_identity": "sha256:f659750f24a7d74cf85ea5bff7a43748bb7f2f00d97e5d0b3327b0915875acfc"
+    },
+    "scientific_payloads_exact": false,
+    "initial_no_report_attempt": "Direct script execution first failed before any build or report because the repository root was absent from sys.path. A second attempt completed all four builds but failed before report write while removing a loaded Windows DLL. Both were operational runner defects; the frozen ABI, payloads, probes, arithmetic and gates were unchanged before committed clean reruns."
+  },
+  "passed_mechanics": {
+    "payloads": 4,
+    "probe_triplets": 257,
+    "compiler_builds_per_report": 4,
+    "all_native_status_ok": true,
+    "maximum_absolute_error_gate": true,
+    "maximum_absolute_error_cdm2_observed": 0.00146484375,
+    "maximum_absolute_error_cdm2_ceiling": 0.003,
+    "identity_bytes_exact": true,
+    "inplace_exact": true,
+    "existing_boundaries_exact": true,
+    "strict_interior_to_strict_interior": true,
+    "failure_atomicity_cases": 7,
+    "failure_atomicity_all_pass": true,
+    "target_or_application_pixel_reads": 0
+  },
+  "failed_gates": {
+    "maximum_relative_error": {
+      "ceiling": 0.000003,
+      "forward_worst": 0.000006832147083625335,
+      "reverse_worst": 0.0000011813633569257654,
+      "pass_both_reports": false
+    },
+    "two_reproducible_builds_per_compiler": {
+      "msvc_dll_bytes_exact_within_report": true,
+      "msvc_result_bytes_exact_within_report": false,
+      "llvm_mingw_dll_bytes_exact_within_report": false,
+      "llvm_mingw_result_bytes_exact_within_report": false,
+      "all_four_effect_output_hashes_changed_between_same_toolchain_builds": true
+    },
+    "forward_reverse_scientific_exact": false
+  },
+  "interpretation": "The freestanding ABI is bounded, failure-atomic and very close in absolute error, but the exact Windows libm path is not replay-stable under the frozen contract. Even identical MSVC DLL bytes produced different output hashes across independent loads, LLVM-MinGW builds were not byte-identical, and the forward run exceeded the frozen relative-error ceiling. The exact C11 parity leaf therefore closes without tolerance, libm, compiler, probe or payload rescue. This does not weaken producer R1CG's paired-information or Python-representation result.",
+  "producer_science_repeated": false,
+  "consumer_mapping": false,
+  "public_package": false,
+  "public_schema": false,
+  "public_capability": false,
+  "product_admission": false,
+  "claim_ceiling": "Private Windows x64 arithmetic negative for the exact frozen C11/libm parity route only; no captured-HDR truth, arbitrary UltraHDR/gain-map, after-only inference, target runtime, public package/schema/capability, consumer/product/film/stock/preference/quality admission"
+}
