@@ -1,0 +1,142 @@
+{
+  "schema": "neuro-film.rf3-d11-polut-three-stock-global-baseline-contract.v1",
+  "experiment_id": "RF3.D11",
+  "date": "2026-08-26",
+  "status": "FROZEN_BEFORE_EXTERNAL_ASSET_DOWNLOAD_OR_PIXEL_EXECUTION",
+  "question": "Does one fixed, latest public, physically grounded global-LUT baseline produce materially stronger Velvia 50, Portra 400 and Ektar 100 output separation than RF3.D0 on the identical 16-source population while remaining finite, reproducible and free of new sRGB boundary or gradient-tail failures?",
+  "direction": {
+    "primary_product_goal": "multiple independently evidenced stock-specific simulations",
+    "ao6_role": "velvia_50_display_proxy_look_approximation_baseline_only",
+    "baseline_role": "one_time_external_fixed_global_control",
+    "adaptive_or_retrieval_model_admitted": false,
+    "stock_truth_or_calibration_claim_allowed": false,
+    "product_dependency_allowed": false
+  },
+  "parents": {
+    "rf3_d0_contract": {
+      "path": "configs/rf3_three_stock_proxy_baseline_d0_v1.json",
+      "sha256": "c6671ae81020ec3ea9e5c5c0882c952d6a0525796809b723d0abd32b91ecd44f"
+    },
+    "rf3_d0_evidence": {
+      "path": "docs/evidence/RF3_D0_THREE_STOCK_PROXY_BASELINE_RESULT.json",
+      "sha256": "314e3246b656b018c64b0dfce5bfbbf169eba69826d193de4d598422d0f60ff9",
+      "required_status": "PASS_PROXY_BASELINE_ONLY"
+    },
+    "rf3_d0_report": {
+      "path": "outputs/eval/rf3_three_stock_proxy_baseline_d0_v1/run_a/report.json",
+      "sha256": "0c65d79a8156139553c867a4cffdecdbffdc3c83d87eedb82c552a04cabf1f45",
+      "required_scientific_identity": "6ab66651f1ad5a220129f9d17c64ca04cb50cd3375c65c84d86938849f388a21"
+    },
+    "source_manifest": {
+      "path": "outputs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1/run_c/manifest.json",
+      "sha256": "048992242c82a2cd9efd193c6766065c7148ad0607a5505b88185d0ab781b101",
+      "expected_rows": 16,
+      "required_allowed_use": "internal_independent_digital_ood_confirmation",
+      "required_rights_scope": "CC0_public_domain_internal_evaluation",
+      "required_color_state": "relative_display_srgb_approximation"
+    },
+    "cube_parser": {
+      "path": "src/eval/d_lut_published_assets.py",
+      "sha256": "e116f366c5616dd0040d86e7f3597241df2e4aa987d1eba8869dd023dcf79d7b",
+      "axis_order": "standard_cube_red_fastest_rows_to_project_rgb_axes"
+    }
+  },
+  "external_baseline": {
+    "name": "PoLUT",
+    "repository": "https://github.com/TomPoczos/PoLUT",
+    "exact_commit": "8172157b6600394d718ea2091c501805b2108eb5",
+    "repository_license": "GPL-3.0",
+    "allowed_use": "private_research_baseline_only",
+    "full_repository_clone_allowed": false,
+    "source_description": "Public 2026 physically grounded scene-to-display film LUT generator using published sensitometry and spectral data; its outputs are controls, not paired stock observations.",
+    "selection_rule": "Classic_Normal is fixed prospectively for every stock because Classic omits the optional perceptual HK correction and Normal is the common standard-paper rung; no post-result look, paper, exposure, gamma or variant selection is allowed.",
+    "assets": [
+      {
+        "stock_id": "fujifilm_velvia_50",
+        "relative_path": "LUTs/velvia/Velvia50_Classic_Normal.cube",
+        "git_blob_sha1": "2b218983f0e9d44998af3e0336fbf48c7e6a0793",
+        "bytes": 970454,
+        "local_path": "data/external/rf3_d11_polut_v1/Velvia50_Classic_Normal.cube"
+      },
+      {
+        "stock_id": "kodak_portra_400",
+        "relative_path": "LUTs/negative-portra-400/Portra400_Classic_Normal.cube",
+        "git_blob_sha1": "501f6b7c66089bd0bc1f251f6d5685294e3fad98",
+        "bytes": 970468,
+        "local_path": "data/external/rf3_d11_polut_v1/Portra400_Classic_Normal.cube"
+      },
+      {
+        "stock_id": "kodak_ektar_100",
+        "relative_path": "LUTs/negative-ektar-100/Ektar100_Classic_Normal.cube",
+        "git_blob_sha1": "3273a37346a051fca86dcb6b557d9fea858f4dee",
+        "bytes": 970466,
+        "local_path": "data/external/rf3_d11_polut_v1/Ektar100_Classic_Normal.cube"
+      }
+    ]
+  },
+  "colour_execution": {
+    "input_fact": "RF3.D0 sources are relative display-sRGB approximations rather than calibrated scene-linear captures.",
+    "control_interpretation": "Decode display-sRGB to linear values and treat those bounded values as a display-derived scene-code approximation solely to exercise the published scene-referred LUT consistently across the three stocks.",
+    "pipeline": [
+      "encoded_srgb_to_linear",
+      "linear_srgb_to_xyz_d65",
+      "xyz_d65_to_linear_adobe_rgb_1998",
+      "adobe_rgb_1998_gamma_encode",
+      "fixed_33_cube_trilinear",
+      "adobe_rgb_1998_gamma_decode",
+      "linear_adobe_rgb_1998_to_xyz_d65",
+      "xyz_d65_to_linear_srgb",
+      "linear_srgb_to_encoded"
+    ],
+    "adobe_rgb_1998_gamma": 2.19921875,
+    "linear_adobe_rgb_to_xyz_d65": [
+      [0.5767309, 0.185554, 0.1881852],
+      [0.2973769, 0.6273491, 0.0752741],
+      [0.0270343, 0.0706872, 0.9911085]
+    ],
+    "xyz_d65_to_linear_adobe_rgb": [
+      [2.041369083149548, -0.5649465550706994, -0.3446944564649248],
+      [-0.9692661430664631, 1.8760108718464872, 0.041556008265221545],
+      [0.013447292101296564, -0.11838968291225352, 1.0154096100244971]
+    ],
+    "lut_interpolation": "trilinear_float64",
+    "input_domain_policy": "fail_if_any_adobe_rgb_code_is_outside_zero_one_beyond_1e-12",
+    "output_gamut_policy": "measure_unclipped_linear_srgb_then_clip_only_for_uint8_publication; any newly clipped sample fails the frozen gate",
+    "exposure_adjustment_allowed": false,
+    "tone_or_gamut_rescue_allowed": false
+  },
+  "comparison": {
+    "legacy_pairwise_population_median_delta_e76": {
+      "velvia_vs_portra": 2.0990995168685913,
+      "velvia_vs_ektar": 1.426347017288208,
+      "portra_vs_ektar": 1.0244844555854797
+    },
+    "minimum_each_pairwise_population_median_delta_e76": 2.0,
+    "minimum_each_pairwise_gain_ratio_vs_matching_rf3_d0_pair": 1.5,
+    "maximum_new_output_boundary_fraction": 0.0,
+    "maximum_output_boundary_fraction": 0.0,
+    "maximum_gradient_p999_ratio_vs_source": 4.0,
+    "finite_required": true,
+    "exact_scientific_replay_required": true,
+    "exact_png_inventory_replay_required": true,
+    "risk_crop_visual_review_required_after_automatic_pass": true,
+    "target_closeness_evaluable": false,
+    "stock_distinguishability_evaluable": false
+  },
+  "formal_execution": {
+    "fresh_processes": 2,
+    "process_a_order": "canonical",
+    "process_b_order": "reverse",
+    "output_root": "outputs/eval/rf3_d11_polut_three_stock_global_baseline_v1",
+    "paths_and_order_excluded_from_scientific_identity": true
+  },
+  "stop_rules": [
+    "Do not replace, tune or blend LUT variants after any pixel result.",
+    "Do not add exposure placement, tone mapping, gamut compression or threshold rescue on this cohort.",
+    "A failure closes this exact PoLUT Classic_Normal control; it does not falsify PoLUT in its intended raw-development workflow.",
+    "A pass retains only a fixed public baseline for later controlled-stock experiments and does not promote a product stock expert."
+  ],
+  "decision_if_pass": "RETAIN_POLUT_CLASSIC_NORMAL_AS_THREE_STOCK_FIXED_GLOBAL_RESEARCH_BASELINE_ONLY",
+  "decision_if_fail": "CLOSE_EXACT_POLUT_CLASSIC_NORMAL_DISPLAY_DERIVED_CONTROL_WITHOUT_RESCUE",
+  "claim_ceiling": "One-time mechanics, separation and bounded safety evidence for three fixed public PoLUT Classic_Normal LUT controls on 16 identical CC0 display-derived source approximations. No target-film closeness, stock distinguishability, calibration, stock response, population preference, general PoLUT quality, product dependency or multi-stock completion claim."
+}
