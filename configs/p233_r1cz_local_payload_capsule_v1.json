@@ -1,0 +1,72 @@
+{
+  "schema": "kmcfm.p233-r1cz-local-payload-capsule-contract.v1",
+  "experiment_id": "P233",
+  "status": "FROZEN_BEFORE_CREATE_ONLY_LOCAL_CAPSULE_MATERIALIZATION",
+  "question": "Can this repository persist and apply the exact self-authored R1CZ payload without reading the producer checkout during formal execution?",
+  "parents": {
+    "p230_evidence_path": "docs/evidence/P230_R1CZ_SHARED_HDR_PAYLOAD_CONSUMER_RESULT.json",
+    "p230_evidence_sha256": "940a6725f9085e0a05b58ccd9430673979e6c389bf52b68b787c958254328cfe",
+    "p230_required_status": "PASS_PRIVATE_R1CZ_SHARED_HDR_PAYLOAD_CONSUMER",
+    "r1db_evidence_sha256": "3ac218ec8527a2da44f02f1759c6e4b04696cde5ed43742eae1795a737c78569",
+    "r1db_required_status": "PASS_PRIVATE_R1CZ_INSTALLED_WHEEL_APPLY_ONLY"
+  },
+  "payload": {
+    "local_capsule_path": "tests/fixtures/p233_r1cz_payload_capsule_v1.json",
+    "capsule_schema": "kmcfm.r1cz-payload-capsule.v1",
+    "encoding": "hex-lower-v1",
+    "payload_sha256": "aa7fe0400e7bef106a9ff75305babab317a4148bdb05c573c50395d6f4228cb9",
+    "payload_bytes": 4376,
+    "bundle_id": "sha256:2759d2193861b95d39bb451efb2477c6ae796f5f58b3b81cf6487cbd85c3220f"
+  },
+  "envelope": {
+    "schema": "https://zhuise.local/schemas/paired-reference-shared-hdr-bundle-v1",
+    "algorithm_id": "zhuise.rgb-dpct",
+    "algorithm_version": "zhuise.rgb-dpct-reference-white.v3",
+    "capability_id": "zhuise.rgb-dpct-reference-white-shared.cpu-reference.v1",
+    "profile_id": "zhuise.display-linear-bt2020-d65-absolute-cdm2-f32.v2",
+    "reference_white_nits": 203.0,
+    "build_source_view_id": "sha256:af4fbc64be31205e00f53b5680a9b81bf3e7406152536f4592c0cb2e85f9c14b",
+    "reference_view_id": "sha256:e54503bf0f455978a25cf2d2e667c9e0008f3ee46bc5cefa9d3268769033efe6",
+    "legacy_bundle_id": "sha256:c719d1e01cb707212d5e92f2c4b5a7a6963493adebddeb2e4dba02e777862def",
+    "payload_format": "zhuise.rgb-dpct-reference-white.portable-json.v3",
+    "payload_byte_length": 4376,
+    "payload_sha256": "sha256:aa7fe0400e7bef106a9ff75305babab317a4148bdb05c573c50395d6f4228cb9",
+    "bundle_id": "sha256:2759d2193861b95d39bb451efb2477c6ae796f5f58b3b81cf6487cbd85c3220f"
+  },
+  "fixture": {
+    "levels_float32": [-1.0, 0.0, 0.001, 1.0, 18.0, 203.0, 1000.0, 10000.0, 12000.0],
+    "shape": [729, 1, 3],
+    "source_sha256": "6476554cf17e8c47bd961d61362a17a3443d1eab15826aa1dc1326fb6a0532ec",
+    "expected_output_sha256": "98a1281ef743dae99f762e7175e808b1d2da4cf4e671cdf5fad7ecd2d8036409"
+  },
+  "execution": {
+    "orders": ["forward", "reverse"],
+    "fresh_process_per_order": true,
+    "producer_repository_reads": 0,
+    "paired_build_reads": 0,
+    "paired_build_runs": 0,
+    "network_reads": 0,
+    "media_writes": 0
+  },
+  "gates": {
+    "p230_parent_exact": true,
+    "capsule_strict_canonical_and_hash_bound": true,
+    "decoded_payload_exact": true,
+    "local_consumer_output_matches_p230_exact": true,
+    "tamper_wrong_encoding_and_wrong_bundle_reject": true,
+    "forward_reverse_reports_exact": true,
+    "producer_paired_build_network_and_media_reads_zero": true
+  },
+  "decision": {
+    "pass": "Retain one checkout-independent private recovery capsule for the exact R1CZ paired-HDR payload.",
+    "fail": "Close local materialization without changing payload, encoding, envelope, fixture or consumer arithmetic.",
+    "no_rescue": [
+      "paired rebuild",
+      "producer checkout read during formal execution",
+      "payload canonicalization or newline changes",
+      "encoding fallback",
+      "consumer arithmetic change"
+    ]
+  },
+  "claim_ceiling": "Private checkout-independent persistence and exact apply replay for one self-authored R1CZ paired/capture-time payload. No public package/schema/capability, natural HDR quality, after-only inference or product admission."
+}
