@@ -20,6 +20,13 @@ from .recipe_history_html import (
     RecipeHistoryHtmlError,
     render_recipe_history_html,
 )
+from .recipe_preview import (
+    RecipePreview,
+    RecipePreviewError,
+    build_recipe_output_preview,
+    build_recipe_output_previews,
+    render_recipe_preview_html,
+)
 from .render_contract import (
     LEGACY_STYLE_EVIDENCE_INVENTORY_SCHEMA_ID,
     PROFILE_EVIDENCE_SUMMARY_SCHEMA_ID,
@@ -66,12 +73,16 @@ __all__ = [
     "InterpretationResult",
     "RecipeHistoryError",
     "RecipeHistoryHtmlError",
+    "RecipePreview",
+    "RecipePreviewError",
     "RenderContractError",
     "StyleSafeEngineError",
     "TileWindow",
     "TiledExecutionMetadata",
     "TiledRenderError",
     "atomic_write_json",
+    "build_recipe_output_preview",
+    "build_recipe_output_previews",
     "build_render_recipe",
     "build_render_recipe_history",
     "execute_interpretation",
@@ -81,6 +92,7 @@ __all__ = [
     "migrate_legacy_safe_rich",
     "plan_tile_windows",
     "render_recipe_history_html",
+    "render_recipe_preview_html",
     "render_resolved_safe_lab_rgb",
     "render_style_safe_working_image",
     "render_three_stock_look_rgb",
