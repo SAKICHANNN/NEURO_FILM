@@ -1,0 +1,61 @@
+{
+  "schema": "neuro-film.rf3-d9-portra400-natural-product-baseline-contract.v1",
+  "experiment_id": "RF3.D9",
+  "status": "FROZEN_BEFORE_EXECUTION",
+  "question": "Does the unchanged current Portra 400 Look Approximation improve two registered same-scene natural Portra observations over identity, the current Ektar 100 wrong-stock look and the frozen CHAM10 chart-affine baseline without fitting or tuning?",
+  "sources": {
+    "cham10_contract": {
+      "path": "configs/u5_r2cham10_portra400_local_correspondence_transfer_d1_v1.json",
+      "sha256": "85eaee424fe9041ef146a84b17baf43847c8e1ea9b4bd742f8779ca37d357b38"
+    },
+    "cham10_evidence": {
+      "path": "docs/evidence/U5_R2CHAM10_PORTRA400_LOCAL_CORRESPONDENCE_TRANSFER_D1_RESULT.json",
+      "sha256": "1c9e8c1e70058dd5f898f9d7dc2282197674f551d2272f1738241e0bdcf42781",
+      "required_decision": "close_chart_affine_natural_local_transfer_without_rescue"
+    },
+    "rf3_d8_contract": {
+      "path": "configs/rf3_d8_portra400_chart_product_baseline_v1.json",
+      "sha256": "f68fb140a95bf1ab354445e19e74c1b63d145059be8ee8d1bb178108a2b8a225"
+    },
+    "render_profile": {
+      "path": "configs/render_profiles/safe_rich_v1.json",
+      "sha256": "72a9948e6fc76e230c4593b847728712bc034840cd339e6b34f079ac7d424c79"
+    },
+    "style_statistics": {
+      "path": "configs/film_color_stats.json",
+      "sha256": "1a45e90765e577edd4ca1773fc8c6cf98fd09b8afbdddfa519b1f097c5dd7c04"
+    },
+    "guardrails": {
+      "path": "configs/color_guardrails.json",
+      "sha256": "6669b7bc873febcc74ba7ddcbc1c1584807e38465447a5cdbeb24073efa00aa7"
+    }
+  },
+  "arms": [
+    "identity",
+    "current_portra_400_look_approximation",
+    "current_ektar_100_wrong_stock_control",
+    "frozen_cham10_chart_affine"
+  ],
+  "execution": {
+    "look_amount": 1.0,
+    "seed": 20260826,
+    "tile_size": 128,
+    "fit_or_parameter_update_allowed": false,
+    "source_target_or_correspondence_replacement_allowed": false
+  },
+  "gates": {
+    "minimum_eligible_correspondences_per_interpretation": 32,
+    "minimum_portra_improvement_over_identity_fraction": 0.05,
+    "minimum_portra_improvement_over_wrong_stock_fraction": 0.02,
+    "minimum_interpretations_improving_identity": 2,
+    "minimum_interpretations_beating_wrong_stock": 2,
+    "minimum_primary_fold_win_fraction_over_identity": 0.75,
+    "minimum_primary_worst_fold_improvement_over_identity_fraction": -0.1,
+    "portra_must_beat_frozen_cham10_baseline_on_both_interpretations": true,
+    "maximum_current_output_boundary_fraction": 0.005,
+    "maximum_repeat_error": 0.0
+  },
+  "decision_if_pass": "retain_current_portra_400_as_same_session_natural_baseline_pending_independent_roll_scanner_confirmation",
+  "decision_if_fail": "record_current_portra_400_natural_transfer_gap_and_require_new_controlled_observations",
+  "claim_ceiling": "Two unlicensed publisher-shared same-session natural observations with different print/scan interpretations, fixed current Look Approximation profiles and frozen CHAM10 correspondences. No Portra 400 calibration, independent roll/process/scanner transfer, Ektar or Velvia evidence, product promotion, redistribution or commercial-use claim."
+}
