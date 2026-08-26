@@ -188,10 +188,6 @@ def iter_three_stock_look_rgb_shared_context(
                 source_context=source_context,
             )
         yield dict(catalog_row), output
-        # A suspended generator retains its locals.  Drop the output as soon
-        # as the consumer resumes us so that computing the next stock cannot
-        # overlap two full-resolution result arrays.
-        del output
 
 
 __all__ = [

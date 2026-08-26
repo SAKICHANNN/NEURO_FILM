@@ -1,0 +1,36 @@
+{
+  "schema_version": "neuro-film.u7-6d-three-stock-yield-lifetime-evidence.v1",
+  "node_id": "U7.6D",
+  "bindings": {
+    "config_sha256": "7a911aea8f7cc36554c8e05b00d7dcafa0f31d385228feff9c907a3b6e042932",
+    "candidate_commit": "38c42a3a",
+    "candidate_sha256": "7456bf334f021a78515bae156005835ff4ea657a7d9c74bc494a85047aef447b",
+    "audit_commit": "859214f4",
+    "audit_sha256": "5a043617c9d03fd850e0e04a20266a03995a5e803364a407dcd504c11475b747",
+    "formal_execution_head": "9bc80022b145abd30a40f1eb6c2d045fcbab6f5f",
+    "formal_report_sha256": "f2444e0da507fcd5384a1a36ec4f286eb05b9ed8d5496b529b11408150ee860e"
+  },
+  "scientific_identity": "b47c3edc29b31ca36e2a5adc817003c28633ad65f51cc76ffd906d9ccd53049b",
+  "observations": {
+    "prior_output_collectable_before_next_render_entry": true,
+    "three_encoded_outputs_byte_exact": true,
+    "three_decoded_sample_arrays_exact": true,
+    "three_normalized_recipes_exact": true,
+    "ordered_stock_ids_exact": true,
+    "baseline_mean_wall_seconds": 133.1276154999996,
+    "candidate_mean_wall_seconds": 132.15885569999955,
+    "wall_ratio": 0.9927230740492002,
+    "baseline_mean_peak_process_tree_rss_bytes": 1920204800,
+    "candidate_mean_peak_process_tree_rss_bytes": 1919983616,
+    "peak_rss_reduction_bytes": 221184,
+    "peak_rss_ratio": 0.9998848122866895,
+    "candidate_residue_count": 0
+  },
+  "failed_gates": [
+    "minimum_peak_process_tree_rss_reduction_bytes",
+    "candidate_peak_process_tree_rss_ratio"
+  ],
+  "decision": "FAIL_CLOSED_REVERT_YIELD_LIFETIME_CHANGE",
+  "interpretation": "Deleting the suspended generator reference is semantically valid and preserves every durable output, but it does not reduce the measured Windows/Python process-tree peak. The peak is controlled by other render or allocator workspaces, so this exact micro-optimization is reverted and will not be rescued by lowering gates.",
+  "claim_ceiling": "Negative local Windows/Python 24MP generator-lifetime evidence only; no product performance improvement, stock separation, calibration or controlled-film evidence."
+}
