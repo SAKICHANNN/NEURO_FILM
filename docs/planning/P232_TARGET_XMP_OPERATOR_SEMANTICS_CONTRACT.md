@@ -29,6 +29,11 @@ INRetouch pixels.
 The audit reports all three possibilities. It does not assume that a numeric
 XMP value is an implementation specification.
 
+The frozen structural count is 123 unique Camera Raw attribute names. A
+pre-report test initially counted 127 attribute occurrences; four names recur
+inside the embedded profile description. This additive definition correction
+changes no source byte, field value, gate, hypothesis or execution order.
+
 ## Frozen source and rights boundary
 
 - The only retained recipe is

@@ -31,7 +31,7 @@
     "missing_or_untrusted_metadata_must_abstain": true
   },
   "expected_exact_sample_facts": {
-    "camera_raw_attribute_count": 127,
+    "camera_raw_attribute_count": 123,
     "direct_curve_sequence_count": 12,
     "process_version": "11.0",
     "camera_profile": "Adobe Standard",
