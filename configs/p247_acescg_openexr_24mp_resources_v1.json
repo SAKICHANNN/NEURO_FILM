@@ -1,7 +1,7 @@
 {
   "schema": "neuro-film.p247-acescg-openexr-24mp-resource-contract.v1",
   "experiment_id": "P247",
-  "status": "FROZEN_BEFORE_RUNNER_IMPLEMENTATION_OR_24MP_ALLOCATION",
+  "status": "FROZEN_BEFORE_FORMAL_24MP_ALLOCATION",
   "bindings": {
     "contract_path": "docs/planning/P247_ACESCG_OPENEXR_24MP_RESOURCE_CONTRACT.md",
     "contract_sha256": "595f75b9089558c166d2066900a853e14b3119479dd74f8afa032915887a7930",
@@ -16,7 +16,11 @@
     "producer_writer_sha256": "3707b55b2cb7dd7fb102b4237e8ee4317035e917bd71441eb06dd9cc0a2757c3",
     "producer_wheel_path": "data/vendor/openexr-3.4.15/openexr-3.4.15-cp312-cp312-win_amd64.whl",
     "producer_wheel_bytes": 740197,
-    "producer_wheel_sha256": "7aa145813acfe10a83d6e89340349379828190b321608e69f2aee426e10c890b"
+    "producer_wheel_sha256": "7aa145813acfe10a83d6e89340349379828190b321608e69f2aee426e10c890b",
+    "runner_path": "scripts/audit_p247_acescg_openexr_24mp_resources.py",
+    "runner_commit": "46ce4d434a978e8ef17f9346f56ce122fb009948",
+    "runner_git_blob": "725187945d6c5d4fb218d3b5ff3e980db9b92438",
+    "runner_sha256": "9baf2b24afd9918732443121fe4bcc59d002f3107e2a3acc929230364fae6f6e"
   },
   "probe": {
     "height": 4000,
