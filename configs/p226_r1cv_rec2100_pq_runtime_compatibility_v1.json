@@ -1,7 +1,7 @@
 {
   "schema": "neuro-film.p226-r1cv-rec2100-pq-runtime-compatibility-contract.v1",
   "experiment_id": "P226",
-  "status": "FROZEN_AFTER_R1CV_PASS_BEFORE_CONSUMER_TARGET_IMPLEMENTATION",
+  "status": "FROZEN_EXECUTION_AMENDMENT_AFTER_PRE_REPORT_DOMAIN_REJECTION",
   "question": "Does the exact producer R1CV official Config-ACES P3-D65 1000-nit Rec.2100-PQ display/view remain byte-identical under the consumer pinned OpenColorIO 2.5.2 built-in config, and can it be added as one private opt-in target without changing existing SDR or Rec.2020-PQ behavior?",
   "producer": {
     "repository": "C:/Users/hhvrf/Documents/追色",
@@ -62,6 +62,16 @@
     "consumer_uses_builtin_config_not_producer_source": true,
     "producer_worktree_writes": 0,
     "durable_media_outputs": 0
+  },
+  "execution_amendment": {
+    "trigger": "The first implementation check produced no report because the exact R1CV public adapter correctly rejected out-of-display-range output from the inherited wide-gamut stress fixture.",
+    "scientific_scores_before_amendment": 0,
+    "formal_reports_before_amendment": 0,
+    "fixture_rows_preserved": 986,
+    "fixed_input_domain_map": "For parity only, clamp each inherited ACEScg fixture component to >=0, compute its per-row RGB mean, then retain exactly 0.2 of chromatic deviation around that mean in float32. Existing-target regression hashes continue to use the untouched inherited fixture.",
+    "output_range_gate_unchanged": true,
+    "producer_function_unchanged": true,
+    "display_view_runtime_and_roles_unchanged": true
   },
   "decision": {
     "pass": "Retain one private opt-in consumer target for the exact official P3-D65 1000-nit Rec.2100-PQ display/view and open only separately frozen media/container work.",
