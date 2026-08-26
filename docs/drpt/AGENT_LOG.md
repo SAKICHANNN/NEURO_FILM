@@ -15939,3 +15939,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   4,621,131,008 bytes free from the observed 6,510,608,384-byte baseline.
 - This opens physical capture execution only. It creates no exposure receipt,
   scan pixel, stock response, fit, calibration or product evidence.
+### 2026-08-26 - P221 freezes independent R1CK reproducibility acceptance
+
+- **Node/direction:** ULT > portable explicit-operator engineering > P221. This is a consumer acceptance audit of the exact committed producer R1CK artifact, not a duplicate implementation and not another after-only/shared-bundle hypothesis.
+- **Trigger:** producer R1CL code validation observed that a current rebuild did not reproduce the frozen R1CK WASM SHA. P221 therefore tests the handoff identity before any browser or product mapping.
+- **Freeze:** bind producer commit `a27d7c7d5d6e2b3bb342082e4525761cecaf843e`, evidence blob `08cab56c...7581eb`, all six transitive source/test blobs, exact NDK Clang/wasm-ld and Node hashes, producer report/module/output/stable identities, two fresh exact-commit clones and zero producer writes/network.
+- **Decision rule:** both consumer reports must equal the frozen producer report byte-for-byte and reproduce module/output/stable identities. Any mismatch closes consumer admission without toolchain, flag, path, source, tolerance or identity rescue; R1CL remains producer-owned and untouched.
+- **Claim ceiling:** private reproducibility acceptance only; no browser/WebView, media, RAW/HDR quality, shared-reference science, package/schema/capability or product claim.
