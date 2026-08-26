@@ -15,16 +15,28 @@ from typing import Any
 
 import numpy as np
 
-from scripts.audit_p246_acescg_openexr_exact_consumer_intake import (
-    _array_sha256,
-    _canonical_bytes,
-    _git_bytes,
-    _git_text,
-    _load_ephemeral_writer,
-    _sha256_bytes,
-    _sha256_file,
-    _synthetic_lattice,
-)
+if __package__:
+    from scripts.audit_p246_acescg_openexr_exact_consumer_intake import (
+        _array_sha256,
+        _canonical_bytes,
+        _git_bytes,
+        _git_text,
+        _load_ephemeral_writer,
+        _sha256_bytes,
+        _sha256_file,
+        _synthetic_lattice,
+    )
+else:
+    from audit_p246_acescg_openexr_exact_consumer_intake import (
+        _array_sha256,
+        _canonical_bytes,
+        _git_bytes,
+        _git_text,
+        _load_ephemeral_writer,
+        _sha256_bytes,
+        _sha256_file,
+        _synthetic_lattice,
+    )
 
 ROOT = Path(__file__).resolve().parents[1]
 
