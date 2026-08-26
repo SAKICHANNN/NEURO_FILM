@@ -1,0 +1,43 @@
+{
+  "schema": "neuro-film.u7-4a-cuda-gamut-discriminant-evidence.v1",
+  "experiment_id": "U7.4A",
+  "date": "2026-08-26",
+  "decision": "FAIL_CLOSED_EXACT_CUDA_GAMUT_CANDIDATE",
+  "contract": {
+    "path": "configs/u7_4a_cuda_gamut_discriminant_v1.json",
+    "sha256": "76e229a9451150358f50d237d0401a8f171200529d8d7b0d99fde4143d58725c"
+  },
+  "implementation_commits": [
+    "f4f2204b",
+    "76c113a8"
+  ],
+  "formal_reports": {
+    "forward": {
+      "path": "outputs/eval/u7_4a_cuda_gamut_discriminant_v1/forward/report.json",
+      "sha256": "fbeb7b887379a373ecb22845b5d677906b8490b8c164714d7e8dadc170d7b05e"
+    },
+    "reverse": {
+      "path": "outputs/eval/u7_4a_cuda_gamut_discriminant_v1/reverse/report.json",
+      "sha256": "8d82a66ace87da5a9f6aed9d9ef95e377509eef4e40573ba5a0fad4d15457ccf"
+    }
+  },
+  "stable_scientific_id": "3a6acdaa4c27f9b29544f6263ce02fe3786efa70b354adc3747c583193a21de5",
+  "facts": {
+    "source_dimensions": [3000, 2000],
+    "styles": ["velvia_50", "portra_400", "ektar_100"],
+    "forward_reverse_scientific_identity_exact": true,
+    "cuda_repeat_exact_all_styles": true,
+    "cuda_to_cpu_wall_ratio_range": [0.08121398094099265, 0.10660837547112535],
+    "peak_cuda_allocated_bytes": 662520320,
+    "maximum_lab_absolute_error": 0.024677276611328125,
+    "maximum_lab_p99_absolute_error": 0.0,
+    "maximum_rgb16_code_delta": 24,
+    "maximum_rgb16_mismatch_fraction": 0.00007533333333333334
+  },
+  "failed_gates": [
+    "maximum_lab_absolute_error",
+    "maximum_rgb16_code_delta"
+  ],
+  "interpretation": "CUDA is materially faster and repeat-stable, but sparse floating-point boundary decisions differ by one 14-bit bisection step and exceed the frozen worst-pixel Lab/RGB16 gates. The exact replacement candidate closes without tolerance or hybrid-CPU rescue.",
+  "claim_ceiling": "Local RTX 5070 Ti Laptop / PyTorch CUDA performance and numerical evidence for the existing film-inspired three-look gamut stage only. No product integration, stock truth, target-film closeness, cross-GPU parity or release claim."
+}

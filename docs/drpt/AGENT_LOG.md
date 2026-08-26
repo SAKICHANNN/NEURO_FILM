@@ -16131,3 +16131,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   while preview, export, shell integration and complete UX/product acceptance
   remain open. Structure stays under the existing `src/inference` recipe
   boundary; no frontend framework or parallel desktop architecture was added.
+### 2026-08-26 - U7.4A CUDA gamut candidate closes on strict parity
+
+- Froze and implemented an isolated PyTorch CUDA version of the unchanged
+  14-step legacy source-to-target Lab gamut compressor, then ran three 6MP
+  looks in forward and reverse order against the eight-worker CPU reference.
+- CUDA repeat/order identity passed, peak allocation was 662,520,320 bytes,
+  and measured CUDA/CPU wall ratios were 0.0812-0.1066. Sparse floating-point
+  boundary decisions nevertheless reached Lab error 0.02468 and RGB16 delta
+  24, so the frozen worst-pixel gates fail despite p99 Lab error 0.
+- Decision: close the exact CUDA replacement without tolerance, threshold or
+  hybrid-CPU rescue. Product behavior remains on the exact CPU path; the next
+  mainline leaf returns to multi-stock evidence rather than backend tuning.
+- Evidence: `docs/evidence/U7_4A_CUDA_GAMUT_DISCRIMINANT_RESULT.json`.
