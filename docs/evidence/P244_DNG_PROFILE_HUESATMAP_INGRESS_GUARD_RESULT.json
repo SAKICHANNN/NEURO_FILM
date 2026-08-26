@@ -1,0 +1,112 @@
+{
+  "schema": "neuro-film.p244-dng-profile-huesatmap-ingress-guard-evidence.v1",
+  "experiment_id": "P244",
+  "node": "ULT > U1 > U1.3K / P244",
+  "status": "PASS_PRIVATE_DNG_PROFILE_HUESATMAP_INGRESS_GUARD",
+  "decision": "retain the private opt-in fail-closed guard; preserve the exact P98 no-map path and keep HueSatMap application and broader DNG claims closed",
+  "bindings": {
+    "contract": {
+      "path": "docs/planning/P244_DNG_PROFILE_HUESATMAP_INGRESS_GUARD_CONTRACT.md",
+      "bytes": 3089,
+      "sha256": "36a0ba34a59f6f7ba3e07b2eef556b740079cba1bab490aabff5baa99e2259d0",
+      "freeze_commit": "5e00ebf6"
+    },
+    "config": {
+      "path": "configs/p244_dng_profile_huesatmap_ingress_guard_v1.json",
+      "bytes": 4157,
+      "sha256": "7267485b9258ad38e487e65d5a9ff3a24716bfb3a306345e4e1512ab48ca556d"
+    },
+    "implementation": {
+      "path": "src/preprocess/dng_forward_raster.py",
+      "bytes": 10410,
+      "sha256": "6dd8b3a1be8d9be267b016f82fbcc54df3e75b3a02b0b8fcba247738dfaa8f8c",
+      "commit": "a8526c20"
+    },
+    "runner": {
+      "path": "scripts/audit_p244_dng_profile_huesatmap_ingress_guard.py",
+      "bytes": 9444,
+      "sha256": "26ba167b1d1225fe8cac8cad202f1f410e1a91e0a255dfa0431e99a5246d119a",
+      "execution_commit": "aa04c14a8218fb45a2cd2bcc3dae8090d699d272"
+    },
+    "test": {
+      "path": "tests/test_p244_dng_profile_huesatmap_ingress_guard.py",
+      "bytes": 2519,
+      "sha256": "ca71397ec9da6a100e20484f0560ce7b5781075d37e5bfd1886357554730388f"
+    },
+    "raw_reports": {
+      "forward_path": "outputs/eval/p244_dng_profile_huesatmap_ingress_guard_v1/formal_forward.json",
+      "reverse_path": "outputs/eval/p244_dng_profile_huesatmap_ingress_guard_v1/formal_reverse.json",
+      "bytes_each": 5945,
+      "sha256": "49465449c7b4225509d53d61d2fdc3d5b0625f9bc5199045480d30881dc7b6d7",
+      "stable_identity_sha256": "49465449c7b4225509d53d61d2fdc3d5b0625f9bc5199045480d30881dc7b6d7"
+    }
+  },
+  "execution": {
+    "fresh_process_count": 2,
+    "forward_report_count": 1,
+    "reverse_report_count": 1,
+    "reports_byte_exact": true,
+    "row_count": 5,
+    "guarded_tag_count": 6,
+    "single_tag_control_count": 6,
+    "multi_tag_control_count": 1,
+    "camera_decode_calls_on_rejection": 0,
+    "new_raw_or_dng_downloads": 0,
+    "decoded_image_artifacts_written": 0,
+    "huesatmap_operator_applications": 0,
+    "default_loader_changes": 0
+  },
+  "guarded_tags": [
+    {"code": 50937, "name": "ProfileHueSatMapDims"},
+    {"code": 50938, "name": "ProfileHueSatMapData1"},
+    {"code": 50939, "name": "ProfileHueSatMapData2"},
+    {"code": 51107, "name": "ProfileHueSatMapEncoding"},
+    {"code": 52537, "name": "ProfileHueSatMapData3"},
+    {"code": 52551, "name": "ProfileDynamicRange"}
+  ],
+  "metrics": {
+    "real_rows_without_guarded_tags": 5,
+    "real_rows_with_exact_p98_pixel_sha256": 5,
+    "single_tag_rejections": 6,
+    "multi_tag_diagnostic_is_numeric_code_sorted": true,
+    "source_hashes_unchanged": true,
+    "working_contracts_unchanged": true
+  },
+  "gates": {
+    "all_real_rows_tag_free": true,
+    "exact_p98_working_hashes": true,
+    "exact_working_contract": true,
+    "multi_tag_sorted_diagnostic": true,
+    "row_count": true,
+    "sdk_tag_codes_exact": true,
+    "single_tag_rejections": true,
+    "source_hashes_unchanged": true,
+    "zero_decode_calls_on_rejection": true,
+    "forward_reverse_reports_exact": true,
+    "two_fresh_process_reports_exact": true
+  },
+  "excluded_preformal_execution": {
+    "count": 2,
+    "stage": "Python import before config, DNG, TIFF metadata or pixel access",
+    "cause": "direct script execution did not yet add the repository root to sys.path",
+    "correction_commit": "aa04c14a",
+    "scientific_inputs_read": 0,
+    "scientific_outputs_produced": 0,
+    "scope_change": false
+  },
+  "interpretation": {
+    "established": [
+      "the private P98 ForwardMatrix raster path now rejects the complete frozen ProfileHueSatMap-family tag set before LibRaw camera-raster decode",
+      "a partial or malformed profile tag set cannot bypass the guard because any single guarded tag is sufficient to reject",
+      "the five exact P98 DNGs contain none of those tags and retain their historical float32 scene-linear Rec.2020 pixel hashes and WorkingImage contracts",
+      "the guarded numeric codes agree with the bound Adobe DNG SDK source and two fresh row-order processes produce byte-identical reports"
+    ],
+    "not_established": [
+      "ProfileHueSatMap application, dual/triple-illuminant profile selection or ProPhoto-domain integration",
+      "complete DNG render-profile support, arbitrary DNG compatibility, vendor or Adobe rendering parity",
+      "photographic or colorimetric quality, default-loader integration, package, public schema/capability, film-stock evidence or product admission"
+    ],
+    "domain_boundary": "P243 arithmetic accepts linear ProPhoto RGB. P98 produces linear Rec.2020 after D50 PCS conversion. P244 deliberately rejects rather than applying the table in the wrong colour domain or guessing profile-table selection semantics."
+  },
+  "claim_ceiling": "Private opt-in no-silent-drop guard for the exact Adobe DNG ProfileHueSatMap tag family plus unchanged outputs on five frozen P98 no-map DNGs. No HueSatMap application, full DNG conformance, arbitrary DNG, image quality, default-loader integration, package, schema, capability, film-stock or product admission."
+}
