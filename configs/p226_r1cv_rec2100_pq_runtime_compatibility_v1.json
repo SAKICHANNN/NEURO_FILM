@@ -1,0 +1,72 @@
+{
+  "schema": "neuro-film.p226-r1cv-rec2100-pq-runtime-compatibility-contract.v1",
+  "experiment_id": "P226",
+  "status": "FROZEN_AFTER_R1CV_PASS_BEFORE_CONSUMER_TARGET_IMPLEMENTATION",
+  "question": "Does the exact producer R1CV official Config-ACES P3-D65 1000-nit Rec.2100-PQ display/view remain byte-identical under the consumer pinned OpenColorIO 2.5.2 built-in config, and can it be added as one private opt-in target without changing existing SDR or Rec.2020-PQ behavior?",
+  "producer": {
+    "repository": "C:/Users/hhvrf/Documents/追色",
+    "evidence_commit": "f3b56fc593d1f43816f01425d6f0555fe683f2ec",
+    "implementation_commit": "fe92a9f44575fb25b541fbd1d28ea62fc11398e9",
+    "source_path": "src/zhuise/aces2_render_bridge.py",
+    "source_blob": "47ac29f8e150edb433e8aafd96493063f802d76a",
+    "source_sha256": "b5da01509c2bc3e7c3a9866768c29fcc5cf9a3d8033eea6feadd32ee0b08c7da",
+    "evidence_path": "docs/evidence/R1CV_ACES2_OFFICIAL_REC2100_PQ_ADAPTER_RESULT.json",
+    "evidence_blob": "f6c1e194d54ef5c0708510e800642fe07b50e502",
+    "evidence_sha256": "4bee0747d900b06e21d6bc96ec4bc59b05417e0f57402dffec4ceba108cd1374",
+    "required_opencolorio_version": "2.5.0",
+    "opencolorio_wheel_sha256": "c45b7f4c3fc464f52b0986fd28e89ab121ce2abe3d181e9b2918cecc2e0b9277",
+    "config_sha256": "9e3ec773a7fbc0bb6666e428dedd8ccec4f59b8b6d40506c825cc7a8c02ff2ff",
+    "source_space": "ACEScg",
+    "display": "Rec.2100-PQ - Display",
+    "view": "ACES 2.0 - HDR 1000 nits (P3 D65)"
+  },
+  "consumer": {
+    "source_path": "src/preprocess/ocio_aces2_output.py",
+    "parent_source_blob": "0835a8909e7dcbbd4143afa8b74fb4f3fe05994a",
+    "required_opencolorio_version": "2.5.2",
+    "config_uri": "ocio://cg-config-v4.0.0_aces-v2.0_ocio-v2.5",
+    "config_cache_id": "351c1452fc2bde6177841947c5fce086:6001c324468d497f99aa06d3014798d8",
+    "new_private_target": "hdr_p3d65_1000nit_rec2100_pq",
+    "fixture_rows": 986,
+    "existing_targets": ["sdr_rec709", "hdr_rec2020_pq"]
+  },
+  "preserved_boundaries": {
+    "r1cs_status": "FAIL_CLOSED_ACES2_REC2100_PQ_ADAPTER",
+    "r1cs_evidence_sha256": "6ea3ba6eb4b5dc1e1d668ac35ee7f19628ce622789fb4b2da64110b06b7ac8ad",
+    "analytic_adapter_used": false,
+    "official_nonzero_black_preserved": true,
+    "existing_target_outputs_must_not_change": true,
+    "default_renderer_change": false,
+    "media_reads": 0,
+    "network_reads_during_formal_execution": 0
+  },
+  "gates": {
+    "producer_and_consumer_identities_exact": true,
+    "producer_and_consumer_runtime_versions_exact": true,
+    "fixture_rows_exact": true,
+    "producer_consumer_output_bytes_exact": true,
+    "producer_consumer_output_sha256_exact": true,
+    "inputs_unchanged": true,
+    "outputs_float32_contiguous_finite_in_0_1": true,
+    "official_black_value_exact": true,
+    "existing_target_output_hashes_unchanged": true,
+    "invalid_target_rejected": true,
+    "forward_reverse_scientific_payload_exact": true
+  },
+  "execution": {
+    "outer_orders": ["forward", "reverse"],
+    "fresh_process_per_outer": true,
+    "producer_source_materialized_from_exact_git_blob": true,
+    "producer_runtime_installed_from_existing_exact_wheel_in_system_temp": true,
+    "producer_config_read_from_existing_repo_relative_data_tool": true,
+    "consumer_uses_builtin_config_not_producer_source": true,
+    "producer_worktree_writes": 0,
+    "durable_media_outputs": 0
+  },
+  "decision": {
+    "pass": "Retain one private opt-in consumer target for the exact official P3-D65 1000-nit Rec.2100-PQ display/view and open only separately frozen media/container work.",
+    "fail": "Close this exact consumer target without changing config, view, runtime, fixture, black level or existing outputs.",
+    "invalid": "If any exact producer/config/wheel/runtime identity is unavailable, report infrastructure-invalid and do not interpret parity."
+  },
+  "claim_ceiling": "Private Windows Python cross-runtime parity and opt-in numerical target only. No integer encoding, container/CICP, display validation, photographic quality, portable ABI, package/schema/capability, reference-matching, stock or product admission."
+}
