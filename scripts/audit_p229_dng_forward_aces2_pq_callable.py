@@ -75,11 +75,26 @@ def _bindings(config: dict[str, Any]) -> dict[str, dict[str, object]]:
 def _record(row: dict[str, Any], target: str) -> dict[str, Any]:
     source = ROOT / row["logical_path"]
     source_before = _sha256_file(source)
-    callable_output = render_dng_forward_to_aces2_p3_pq(
-        source,
-        expected_source_bytes=row["source_bytes"],
-        expected_source_sha256=row["source_sha256"],
-    )
+    base = {
+        "source_id": row["source_id"],
+        "camera_make": row["camera_make"],
+        "source_bytes": source.stat().st_size,
+        "source_sha256": source_before,
+    }
+    try:
+        callable_output = render_dng_forward_to_aces2_p3_pq(
+            source,
+            expected_source_bytes=row["source_bytes"],
+            expected_source_sha256=row["source_sha256"],
+        )
+    except DngForwardAces2PqError as exc:
+        return {
+            **base,
+            "callable_returned": False,
+            "callable_error": str(exc),
+            "decode_reads": 1,
+            "source_unchanged": _sha256_file(source) == source_before,
+        }
     working = load_dng_forward_working_image(
         source,
         expected_source_bytes=row["source_bytes"],
@@ -89,10 +104,9 @@ def _record(row: dict[str, Any], target: str) -> dict[str, Any]:
     direct = apply_working_image_aces2_output(working, target)
     difference = callable_output.astype(np.float64) - direct.astype(np.float64)
     return {
-        "source_id": row["source_id"],
-        "camera_make": row["camera_make"],
-        "source_bytes": source.stat().st_size,
-        "source_sha256": source_before,
+        **base,
+        "callable_returned": True,
+        "decode_reads": 2,
         "source_unchanged": _sha256_file(source) == source_before,
         "working_pixels_unchanged": _array_sha256(working.pixels) == working_before,
         "shape": list(callable_output.shape),
@@ -177,17 +191,18 @@ def run(config_path: Path, *, reverse: bool) -> dict[str, Any]:
             for row in records
         ),
         "callable_equals_direct_retained_composition_byte_exact": all(
-            row["direct_bytes_exact"] and row["direct_max_abs_error"] == 0.0
+            row.get("direct_bytes_exact", False)
+            and row.get("direct_max_abs_error") == 0.0
             for row in records
         ),
         "outputs_float32_contiguous_finite_in_unit": all(
-            row["dtype"] == "float32"
-            and row["c_contiguous"]
-            and row["finite"]
-            and row["in_unit"]
+            row.get("dtype") == "float32"
+            and row.get("c_contiguous", False)
+            and row.get("finite", False)
+            and row.get("in_unit", False)
             for row in records
         ),
-        "caller_owns_output": all(row["owns_data"] for row in records),
+        "caller_owns_output": all(row.get("owns_data", False) for row in records),
         "wrong_identity_and_invalid_input_fail_closed": all(negative_controls.values()),
         "default_pipeline_and_generic_raw_sources_unchanged": True,
     }
@@ -212,7 +227,7 @@ def run(config_path: Path, *, reverse: bool) -> dict[str, Any]:
             if all(gates.values())
             else "FAIL_CLOSED_DNG_FORWARD_ACES2_P3_PQ_CALLABLE"
         ),
-        "pixel_reads": len(records) * 2,
+        "pixel_reads": sum(int(row["decode_reads"]) for row in records),
         "network_reads": 0,
         "repository_image_writes": 0,
         "claim_ceiling": config["claim_ceiling"],
