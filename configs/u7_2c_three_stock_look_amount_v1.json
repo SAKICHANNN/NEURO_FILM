@@ -1,0 +1,38 @@
+{
+  "schema": "neuro-film.u7-2c-three-stock-look-amount-contract.v1",
+  "experiment_id": "U7.2C",
+  "status": "FROZEN_BEFORE_FORMAL_EXECUTION",
+  "question": "Do the three manually selected stock-look baselines expose a bounded amount control with exact identity/full endpoints, stable replay and material output separation on one common real digital input?",
+  "implementation_commit": "972830be",
+  "source": {
+    "path": "data/preference/repid/u5_r2repid3_shared_operator_v1/fit/winner/a4593-kme_0276.jpeg",
+    "sha256": "7ea3d1ed37b7df518c0466c1379f08aa34ea5ae00eb7dc8208fcff2cfe68d1c6",
+    "role": "preexisting_internal_display_srgb_product_scale_fixture_not_film_truth"
+  },
+  "dimensions": [3000, 2000],
+  "tile_size": 256,
+  "tile_workers": 8,
+  "seed": 1729,
+  "amounts": [0.0, 0.5, 1.0],
+  "film_stock_ids": [
+    "fujifilm_velvia_50",
+    "kodak_portra_400",
+    "kodak_ektar_100"
+  ],
+  "gates": {
+    "zero_amount_exact_identity": true,
+    "one_amount_exact_existing_baseline": true,
+    "forward_reverse_exact": true,
+    "half_residual_rmse_strictly_between_zero_and_full": true,
+    "maximum_nonzero_output_boundary_fraction": 0.0,
+    "minimum_pairwise_full_output_population_median_delta_e76": 1.0
+  },
+  "forbidden_claims": [
+    "calibrated stock response",
+    "target-film closeness",
+    "stock authenticity",
+    "population preference",
+    "multi-stock completion"
+  ],
+  "claim_ceiling": "Deterministic local Windows/Python product mechanics for three manually selected legacy Look Approximation baselines. No real-film target, fit, calibration, authenticity, preference or multi-stock completion claim."
+}
