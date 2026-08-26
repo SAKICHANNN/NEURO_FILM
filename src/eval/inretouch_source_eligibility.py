@@ -62,17 +62,21 @@ def analyze_inretouch_source_eligibility(
     benchmark_partitions = {
         prefix: sum(path.startswith(prefix) for path in paths)
         for prefix in (
-            "Benchmark/Train/Natural/",
-            "Benchmark/Train/Presets/",
-            "Benchmark/Test/Natural/",
+            "Train/natural/",
+            "Train/Presets/",
+            "Validation/natural/",
+            "Validation/Presets/",
+            "Benchmark/Test/natural/",
             "Benchmark/Test/Presets/",
         )
     }
     grouping_explicit = (
         _contains_all(readme, ("retouch transfer dataset", "presets", "569 images"))
-        and benchmark_partitions["Benchmark/Train/Natural/"] > 0
-        and benchmark_partitions["Benchmark/Train/Presets/"] > 0
-        and benchmark_partitions["Benchmark/Test/Natural/"] > 0
+        and benchmark_partitions["Train/natural/"] > 0
+        and benchmark_partitions["Train/Presets/"] > 0
+        and benchmark_partitions["Validation/natural/"] > 0
+        and benchmark_partitions["Validation/Presets/"] > 0
+        and benchmark_partitions["Benchmark/Test/natural/"] > 0
         and benchmark_partitions["Benchmark/Test/Presets/"] > 0
     )
 

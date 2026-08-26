@@ -15,15 +15,24 @@ def _config() -> dict[str, object]:
 
 
 def _siblings() -> list[dict[str, object]]:
-    return [
+    grouped = [
         {
-            "rfilename": f"Benchmark/{split}/{kind}/row.jpg",
+            "rfilename": f"{split}/{kind}/row.jpg",
             "blobId": "1" * 40,
             "size": 7,
         }
-        for split in ("Train", "Test")
-        for kind in ("Natural", "Presets")
+        for split in ("Train", "Validation")
+        for kind in ("natural", "Presets")
     ]
+    grouped.extend(
+        {
+            "rfilename": f"Benchmark/Test/{kind}/row.jpg",
+            "blobId": "1" * 40,
+            "size": 7,
+        }
+        for kind in ("natural", "Presets")
+    )
+    return grouped
 
 
 def _run(*, gated: object = "auto", license_tag: str = "license:cc-by-nc-sa-4.0"):
