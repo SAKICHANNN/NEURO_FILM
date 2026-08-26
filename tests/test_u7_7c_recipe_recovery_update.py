@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import json
+import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -108,3 +111,34 @@ def test_post_backup_failure_restores_previous_tree_exactly(
     assert after == before
     assert list(tmp_path.glob(".restored.update-*")) == []
     assert list(tmp_path.glob(".restored.backup-*")) == []
+
+
+def test_cli_update_receipt_matches_materialized_tree(tmp_path: Path) -> None:
+    old_bundle = _bundle(tmp_path, "portra_400")
+    new_bundle = _bundle(tmp_path, "velvia_50")
+    destination = tmp_path / "restored"
+    materialize_recipe_recovery_bundle(
+        bundle_path=old_bundle, destination_root=destination
+    )
+
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts/package_film_recipe.py"),
+            "update",
+            "--bundle",
+            str(new_bundle),
+            "--destination",
+            str(destination),
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    assert completed.returncode == 0, completed.stderr
+    receipt = json.loads(completed.stdout)
+    tree = inspect_materialized_recipe_recovery_tree(destination)
+    assert receipt["updated_style"] == tree["style"] == "velvia_50"
+    assert receipt["updated_tree_sha256"] == tree["tree_sha256"]

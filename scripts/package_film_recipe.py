@@ -19,6 +19,7 @@ from src.inference import (
     build_recipe_recovery_bundle,
     inspect_recipe_recovery_bundle,
     materialize_recipe_recovery_bundle,
+    update_materialized_recipe_recovery_tree,
 )
 
 
@@ -40,6 +41,9 @@ def parse_args() -> argparse.Namespace:
     restore = commands.add_parser("restore")
     restore.add_argument("--bundle", type=Path, required=True)
     restore.add_argument("--destination", type=Path, required=True)
+    update = commands.add_parser("update")
+    update.add_argument("--bundle", type=Path, required=True)
+    update.add_argument("--destination", type=Path, required=True)
     return parser.parse_args()
 
 
@@ -54,8 +58,13 @@ def main() -> int:
         )
     elif args.command == "inspect":
         result = inspect_recipe_recovery_bundle(args.bundle)
-    else:
+    elif args.command == "restore":
         result = materialize_recipe_recovery_bundle(
+            bundle_path=args.bundle,
+            destination_root=args.destination,
+        )
+    else:
+        result = update_materialized_recipe_recovery_tree(
             bundle_path=args.bundle,
             destination_root=args.destination,
         )
