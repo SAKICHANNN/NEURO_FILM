@@ -35,6 +35,12 @@ def sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
+def git_blob_sha1(path: Path) -> str:
+    data = path.read_bytes()
+    header = f"blob {len(data)}\0".encode("ascii")
+    return hashlib.sha1(header + data).hexdigest()
+
+
 def _canonical_sha256(value: Any) -> str:
     payload = json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=True)
     return hashlib.sha256(payload.encode("utf-8")).hexdigest()
@@ -252,10 +258,44 @@ def evaluate(contract_path: Path, root: Path, output_dir: Path, *, order: str) -
     execution_assets = asset_rows if order == "canonical" else list(reversed(asset_rows))
     assets: dict[str, CubeAsset] = {}
     asset_inventory: list[dict[str, Any]] = []
+    source_manifest_binding = contract["external_baseline"]["source_manifest"]
+    external_manifest_path = root / source_manifest_binding["path"]
+    if (
+        not external_manifest_path.is_file()
+        or external_manifest_path.stat().st_size != int(source_manifest_binding["bytes"])
+        or sha256_file(external_manifest_path) != source_manifest_binding["sha256"]
+    ):
+        raise PoLUTBaselineError("external source manifest drift")
+    external_manifest = _read_json(external_manifest_path)
+    if (
+        external_manifest.get("schema") != "neuro-film.rf3-d11-polut-source-manifest.v1"
+        or external_manifest.get("exact_commit")
+        != contract["external_baseline"]["exact_commit"]
+        or external_manifest.get("repository_license")
+        != contract["external_baseline"]["repository_license"]
+        or external_manifest.get("full_repository_clone_performed") is not False
+    ):
+        raise PoLUTBaselineError("external source manifest policy drift")
+    manifest_rows = {row["stock_id"]: row for row in external_manifest["assets"]}
     for row in asset_rows:
         path = root / row["local_path"]
+        manifest_row = manifest_rows.get(row["stock_id"])
+        if manifest_row is None:
+            raise PoLUTBaselineError(f"external source manifest mismatch: {row['stock_id']}")
+        for manifest_key, contract_key in (
+            ("stock_id", "stock_id"),
+            ("bytes", "bytes"),
+            ("git_blob_sha1", "git_blob_sha1"),
+            ("source_path", "relative_path"),
+        ):
+            if manifest_row.get(manifest_key) != row[contract_key]:
+                raise PoLUTBaselineError(f"external source manifest mismatch: {row['stock_id']}")
         if not path.is_file() or path.stat().st_size != int(row["bytes"]):
             raise PoLUTBaselineError(f"external LUT size drift: {row['stock_id']}")
+        actual_sha256 = sha256_file(path)
+        actual_blob = git_blob_sha1(path)
+        if actual_sha256 != manifest_row.get("sha256") or actual_blob != row["git_blob_sha1"]:
+            raise PoLUTBaselineError(f"external LUT identity drift: {row['stock_id']}")
         asset = parse_cube(path)
         if asset.values.shape[:3] != (33, 33, 33):
             raise PoLUTBaselineError(f"unexpected cube dimension: {row['stock_id']}")
@@ -264,8 +304,8 @@ def evaluate(contract_path: Path, root: Path, output_dir: Path, *, order: str) -
             {
                 "stock_id": row["stock_id"],
                 "bytes": path.stat().st_size,
-                "sha256": sha256_file(path),
-                "git_blob_sha1": row["git_blob_sha1"],
+                "sha256": actual_sha256,
+                "git_blob_sha1": actual_blob,
             }
         )
     images: dict[tuple[str, str], np.ndarray] = {}
@@ -392,6 +432,7 @@ __all__ = [
     "PoLUTBaselineError",
     "apply_polut",
     "evaluate",
+    "git_blob_sha1",
     "load_contract",
     "sha256_file",
     "trilinear_apply",

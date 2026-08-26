@@ -10,6 +10,7 @@ from src.eval.d_lut_published_assets import CubeAsset
 from src.eval.polut_three_stock_global_baseline import (
     PoLUTBaselineError,
     apply_polut,
+    git_blob_sha1,
     load_contract,
     trilinear_apply,
 )
@@ -65,3 +66,9 @@ def test_contract_json_is_canonical_object() -> None:
     payload = json.loads(CONFIG.read_text(encoding="utf-8"))
     assert isinstance(payload, dict)
     assert payload["experiment_id"] == "RF3.D11"
+
+
+def test_git_blob_identity_matches_git_object_format(tmp_path: Path) -> None:
+    path = tmp_path / "asset.cube"
+    path.write_bytes(b"abc")
+    assert git_blob_sha1(path) == "f2ba8f84ab5c1bce84a7b441cb1959cfc7093b7f"

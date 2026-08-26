@@ -48,6 +48,11 @@
     "repository_license": "GPL-3.0",
     "allowed_use": "private_research_baseline_only",
     "full_repository_clone_allowed": false,
+    "source_manifest": {
+      "path": "data/external/rf3_d11_polut_v1/source_manifest.json",
+      "bytes": 1377,
+      "sha256": "b004827a9287266800f25cbb3244905fb09546e5fb21be0816617d631999da54"
+    },
     "source_description": "Public 2026 physically grounded scene-to-display film LUT generator using published sensitometry and spectral data; its outputs are controls, not paired stock observations.",
     "selection_rule": "Classic_Normal is fixed prospectively for every stock because Classic omits the optional perceptual HK correction and Normal is the common standard-paper rung; no post-result look, paper, exposure, gamma or variant selection is allowed.",
     "assets": [
