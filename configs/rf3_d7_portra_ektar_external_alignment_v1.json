@@ -1,0 +1,59 @@
+{
+  "schema": "neuro-film.rf3-d7-portra-ektar-external-alignment-contract.v1",
+  "experiment_id": "RF3.D7",
+  "status": "FROZEN_BEFORE_CURRENT_LOOK_RENDER",
+  "question": "On the same nine frozen gold inputs, do the current Portra 400 and Ektar 100 Look Approximation outputs align more closely with their same-name fixed-exposure SpektraFilm controls than with the opposite-stock control without creating new boundary failures?",
+  "sources": {
+    "gold_set": {
+      "path": "outputs/filmcase/u41_provisional_eval_set.json",
+      "sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15",
+      "sample_ids": ["01", "05", "08", "09", "11", "18", "21", "29", "FS_FACE_01"]
+    },
+    "external_report": {
+      "path": "outputs/external_controls/spektrafilm_v1/phase_a_report.json",
+      "sha256": "4c3bd0b6b0ae0bdd538ba4dd07200554646595cd5781cd338d847473656ef8e0",
+      "candidate_ids": {
+        "kodak_portra_400": "kodak_portra_400__negative_to_print__fixed_e0",
+        "kodak_ektar_100": "kodak_ektar_100__negative_to_print__fixed_e0"
+      },
+      "rights_scope": "noncommercial_internal_research_comparison_only"
+    },
+    "render_profile": {
+      "path": "configs/render_profiles/safe_rich_v1.json",
+      "sha256": "72a9948e6fc76e230c4593b847728712bc034840cd339e6b34f079ac7d424c79"
+    },
+    "style_statistics": {
+      "path": "configs/film_color_stats.json",
+      "sha256": "1a45e90765e577edd4ca1773fc8c6cf98fd09b8afbdddfa519b1f097c5dd7c04"
+    },
+    "guardrails": {
+      "path": "configs/color_guardrails.json",
+      "sha256": "6669b7bc873febcc74ba7ddcbc1c1584807e38465447a5cdbeb24073efa00aa7"
+    }
+  },
+  "execution": {
+    "film_stock_ids": ["kodak_portra_400", "kodak_ektar_100"],
+    "look_amount": 1.0,
+    "seed": 20260826,
+    "tile_size": 128,
+    "resize_to_external_output_geometry": true,
+    "comparison": "CIELAB_D65_DeltaE76_on_identical_decoded_pixels"
+  },
+  "gates": {
+    "minimum_same_name_arm_wins_of_18": 14,
+    "minimum_samples_with_both_same_name_wins_of_9": 7,
+    "maximum_current_output_boundary_fraction": 0.005,
+    "all_sources_and_external_outputs_rehash": true,
+    "forward_reverse_scientific_exact": true
+  },
+  "forbidden": [
+    "treat external simulator output as film ground truth",
+    "substitute Velvia 100 for Velvia 50",
+    "fit or tune either current look from external outputs",
+    "copy external code, profiles or LUTs",
+    "product promotion or calibrated stock claim"
+  ],
+  "decision_if_pass": "retain_current_portra_ektar_relative_stock_alignment_against_one_mature_external_control",
+  "decision_if_fail": "record_label_alignment_gap_and_do_not_tune_without_controlled_stock_targets",
+  "claim_ceiling": "Relative agreement of two existing Look Approximation outputs with one noncommercial external physical-inspired simulator on nine shared display-sRGB inputs. No film truth, calibrated stock response, target closeness, population preference, external-code integration, Velvia 50 evidence or product promotion."
+}
