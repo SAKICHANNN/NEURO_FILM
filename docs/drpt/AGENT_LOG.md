@@ -16456,3 +16456,28 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   search decoder, channel-order or conversion variants after observing the
   mismatch. P230, R1CZ, R1DB and R1CT remain unchanged. Evidence:
   `docs/evidence/P231_R1CZ_REAL_HDR_VIDEO_TEMPORAL_SAFETY_RESULT.json`.
+
+### 2026-08-26 - P232 closes direct target-XMP operator semantics before pixels
+
+- **Question:** can the exact public MMArt-PPR10K XMP sample already retained
+  locally define a deterministic source-independent explicit colour operator,
+  or does it only describe an Adobe renderer recipe?
+- **Frozen alternatives:** direct equation-complete operator, renderer-bound
+  recipe, or descriptor-only metadata. Admission required at least eight
+  authorized independent recipes, exact equations/order, referenced profile
+  bytes and no unknown renderer dependency.
+- **Result:** only one recipe is retained, bulk acquisition remains forbidden
+  by the existing PPR10K rights adjudication, and the XMP lacks the Adobe
+  process equations/order plus referenced profile bytes. It carries 123 unique
+  Camera Raw attribute names and 12 direct curve sequences, so edit intent is
+  real but executable semantics are not identified. Two fresh 4,444-byte
+  reports are exact at `f18ef7e4...6692`, stable `11e9f0e5...2fcf9`.
+- **Execution integrity:** a pre-report test corrected 127 attribute
+  occurrences to 123 unique names; no source byte, field, hypothesis or gate
+  changed, and formal execution restarted from the corrected commit. Pixel,
+  network, operator-build, render and score counts are all zero.
+- **Boundary/handoff:** do not invent Adobe formula/order, substitute profiles,
+  bulk-download recipes or fit pixels. Metadata may remain a future paired
+  descriptor/abstention observation, but no Lightroom parity, capability or
+  consumer/product mapping opens. P225, P230 and R1DB remain unchanged.
+  Evidence: `docs/evidence/P232_TARGET_XMP_OPERATOR_SEMANTICS_RESULT.json`.

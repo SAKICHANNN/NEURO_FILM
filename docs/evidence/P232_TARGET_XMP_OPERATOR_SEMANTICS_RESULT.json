@@ -1,0 +1,89 @@
+{
+  "schema": "kmcfm.p232-target-xmp-operator-semantics-evidence.v1",
+  "experiment_id": "P232",
+  "date": "2026-08-26",
+  "status": "FAIL_CLOSED_BEFORE_OPERATOR_COMPILATION_TARGET_XMP_SEMANTICS_NOT_IDENTIFIABLE",
+  "commits": {
+    "preregistration": "83774680a4abb731863d86209ac69538a29cf00d",
+    "unique_field_count_correction": "4c31f71d054def866dd191811039878d21176b12",
+    "implementation_and_formal_execution": "9e17b846bd64d5d7bff4cf20dfe4191c9b9ebb1b"
+  },
+  "bindings": {
+    "config_sha256": "2d030285f50d09e14e71afff920333eb15751600ba46e7ff9c87f779d40bec1d",
+    "contract_sha256": "416eac00986910b57dc8071115e41e46dc4ef494e40d7ec76bfd0fb9fc843b9b",
+    "runner_sha256": "517b4fa1cfa71cfcf299209ed0e9f20731ad5dfe82385650d254555e0be7b636",
+    "test_sha256": "316c68d05568e7f42e10d6242ee27979fe4dcec76723571bc2c56109ec580a35",
+    "dataset_card_sha256": "00e81b37e54f3a0d818ca0e49b192399c7589323398a42f7d19a024e3c8f703e",
+    "xmp_sha256": "78ec5860c5f458793eda51f44d9ec4594909d74310c94dc72017dca6c7077d75",
+    "xmp_bytes": 9648
+  },
+  "formal": {
+    "forward_report_path": "outputs/eval/p232_target_xmp_operator_semantics_forward.json",
+    "reverse_report_path": "outputs/eval/p232_target_xmp_operator_semantics_reverse.json",
+    "forward_report_sha256": "f18ef7e404298e0537b97d2420c4915709131f89c6812f953604959c75ba6692",
+    "reverse_report_sha256": "f18ef7e404298e0537b97d2420c4915709131f89c6812f953604959c75ba6692",
+    "report_bytes_each": 4444,
+    "reports_byte_exact": true,
+    "scientific_identity": "sha256:11e9f0e5742d2923bfff120bd62192dc67f4626be273827e0af1e0ff8052fcf9"
+  },
+  "source_and_semantic_facts": {
+    "prior_listed_recipe_count": 4055,
+    "prior_listed_base_content_count": 1412,
+    "locally_retained_authorized_recipe_count": 1,
+    "minimum_required_recipe_count": 8,
+    "bulk_recipe_access_authorized": false,
+    "unique_camera_raw_attribute_count": 123,
+    "direct_curve_sequence_count": 12,
+    "process_version": "11.0",
+    "camera_profile": "Adobe Standard",
+    "renderer_equations_present": false,
+    "processing_order_present": false,
+    "referenced_profile_bytes_present": false
+  },
+  "execution": {
+    "fresh_process_reports": 2,
+    "network_reads": 0,
+    "image_pixel_reads": 0,
+    "operator_compilations": 0,
+    "renders": 0,
+    "scores": 0
+  },
+  "prescore_correction": {
+    "first_formal_report_count": 0,
+    "initial_metric": "127 Camera Raw attribute occurrences",
+    "corrected_metric": "123 unique Camera Raw attribute names",
+    "cause": "Four names recur inside the embedded profile description.",
+    "source_bytes_changed": false,
+    "field_values_changed": false,
+    "scientific_hypothesis_or_gate_changed": false,
+    "formal_execution_restarted_from_corrected_commit": true
+  },
+  "decision": {
+    "selected_hypothesis": "h2_renderer_recipe",
+    "interpretation": "The retained XMP records rich target-side edit intent, but one authorized sample cannot establish shared semantics and the metadata does not contain the Adobe processing equations, order or referenced profile bytes required for an exact source-independent operator.",
+    "descriptor_only_remains_possible": true,
+    "no_rescue": [
+      "bulk recipe download",
+      "Adobe formula or processing-order invention",
+      "profile substitution",
+      "pixel fitting",
+      "field dropping after outcome",
+      "rights reinterpretation"
+    ],
+    "does_not_change": [
+      "P225 latest paired-source rights closure",
+      "P230 exact R1CZ consumer compatibility PASS",
+      "R1DB installed-wheel apply-only PASS",
+      "the bounded after-only candidate-cycle closure"
+    ]
+  },
+  "verification": {
+    "focused_pytest": "4 passed",
+    "ruff": "PASS",
+    "py_compile": "PASS",
+    "json_parse": "PASS",
+    "diff_check": "PASS"
+  },
+  "consumer_mapping": false,
+  "claim_ceiling": "One exact public XMP metadata semantic-identifiability negative. No Lightroom/Camera Raw parity, image quality, arbitrary XMP, public package/schema/capability, stock, calibration or product admission."
+}
