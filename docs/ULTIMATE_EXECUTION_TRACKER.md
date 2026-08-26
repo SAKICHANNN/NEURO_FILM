@@ -135,14 +135,16 @@ passes 17 adjacent tests. This is implementation readiness only: with zero
 admitted physical rows, it is not a stock result, calibration result or
 multi-stock completion claim.
 
-SF3.A4 completes the next execution-only boundary at `d454064a` plus direct
-CLI repair `47cae9d6`. Only after a genuine all-three-stock SF3.A2 pass, it
-reuses each frozen K=1 operator to render the identical confirmation digital
-sources in 128-row tiles, requires zero raw-domain clipping, verifies exact
-sRGB16 ICC PNG samples after readback and reads no film target. Forty adjacent
-SF3.A0--A4 tests pass. This does not open visual review today because the
-physical target ledger remains empty; it only removes render materialization
-as a future blocker.
+SF3.A4 now supports either the original complete three-stock parent or one
+independently passing stock lane (`d45dedc4`, corrected at `ce421bed`). It
+reuses each frozen K=1 operator to render target-blind confirmation sources in
+128-row tiles, requires zero raw-domain clipping, verifies exact sRGB16 ICC PNG
+samples after readback and reads no film target. After all three independently
+completed A4 lanes each pass severe review, SF3.A5 can assemble them only when
+the exact four scene IDs and digital-source hashes match (`3a4fa285`); the
+blind test remains the first cross-stock claim gate. The complete SF3 family
+passes 149 tests. Physical rows remain absent, so these changes remove future
+execution blockers without creating stock evidence or a product claim.
 
 SF3.A0L/A0N make the remaining physical-data handoff explicit. A0L expands
 the 12-scene/three-diagnostic stimulus pack into 87 stock-specific box-speed
@@ -564,6 +566,7 @@ Restrictions:
 | U1.3F / P93 | complete: versioned receipt retained, five-device conformance closed | Add a separately versioned DNG receipt that distinguishes explicit tags from the two exact DNG 1.7.1.0 CFA defaults, then rerun the consumed five-device LibRaw audit | U1.3C/D + official DNG 1.7.1.0 | v2 records explicit/default provenance and leaves v1 exact; four reports replay byte-exact, geometry/WhiteLevel/WB/warnings pass, but only Blackmagic uses defaults and Autel BlackLevel differs by 3 codes > frozen 1. Complete conformance closes without rescue; `docs/evidence/P93_DNG_STANDARD_DEFAULT_CONFORMANCE_RESULT.json` |
 | U1.3G / P94 | complete: private metadata-only ForwardMatrix mechanics pass | Implement the exact narrow three-channel A/D65 DNG SDK dual-illuminant camera-to-D50 PCS construction and test five exact existing CC0 DNGs without decoding samples | P93 + official DNG 1.7.1 spec/SDK build 2652 | Five makes pass all finite/inverse/white/replay gates; four reports byte-exact, maximum ForwardMatrix-white error `4.44e-16`, camera-white error `2.22e-16`, inverse error `3.33e-16`, pixel reads zero. Only a separately frozen raster-bearing conformance leaf opens; no loader/product/IDT claim; `docs/evidence/P94_DNG_FORWARD_MATRIX_MECHANICS_RESULT.json` |
 | U1.3K / P98 | complete: private opt-in raster mechanics pass | Compose camera-linear LibRaw demosaic with exact P94 ForwardMatrix and P97 D50-PCS-to-linear-Rec.2020 without changing the generic loader | P94 + P97 + five exact CC0 DNGs | Five makes and two fresh forward/reverse reports pass exactly; max staged/direct error `1.11e-15`, max absolute scene-linear output `2.30055`, max outside-unit fraction `3.9832%`, source/camera inputs unchanged, no image artifacts written. Private exact-cohort mechanism only; no calibration, quality, default-loader or product admission; `docs/evidence/P98_DNG_FORWARD_RASTER_RESULT.json` |
+| U1.3L / P99 | complete: standard metadata mechanics retained, exact family closed | Apply DNG `BaselineExposure` plus `BaselineExposureOffset` as an explicit scene-linear EV multiplier after P98 | P98 + Adobe DNG 1.7.1.0 | Five makes resolve exact explicit/default provenance and match an independent float32 oracle; Blackmagic applies `+2.65412 EV` / `6.294623x`, four zero-EV rows remain P98-byte-exact, and four reports replay exactly. One new exact `1.0` Blackmagic component violates the frozen zero-new-boundary gate, so the exact family closes without tolerance/clipping/tone-curve/proxy rescue; `docs/evidence/P99_DNG_BASELINE_EXPOSURE_RESULT.json` |
 | U1.4 | in progress: primitives retained, first operator closed | ACEScg or validated wide-gamut working contract | U1.2 | U1.4A/B retain explicit Rec.2020 math/file I/O; C1 isolated math passes but C2 real-image OOD automatic boundary gate fails, so no operator integration; OCIO/ACES and user-facing support remain open |
 | U1.4A | complete: primitive pass | Dependency-free D65 linear-sRGB/linear-Rec.2020 conversion primitive | U1.2B/C | matrix/config error 0, identity `2.36e-16`, extended roundtrip `2.38e-7`, neutral 0, no clamp; WorkingImage provenance preserved; 576 tests; `docs/U1_4A_LINEAR_REC2020_PRIMITIVE_RESULTS.md` |
 | U1.4B | complete: file-boundary pass | BT.2020 SDR 16-bit RGB PNG cICP ingress/egress | U1.4A | exact CICP/sample/determinism gates, `1.44e-5` linear roundtrip and fail-closed cases pass; 584 tests; no renderer/HDR/ACES/arbitrary-profile claim; `docs/U1_4B_REC2020_SDR_PNG_CICP_RESULTS.md` |
