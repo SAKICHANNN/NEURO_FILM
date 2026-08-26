@@ -6,6 +6,7 @@ import argparse
 import hashlib
 import json
 import shutil
+import sys
 import tempfile
 from pathlib import Path
 from typing import Any
@@ -13,6 +14,10 @@ from typing import Any
 import cv2
 import numpy as np
 import tifffile
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from src.preprocess import srgb_icc_profile
 from src.real_film.three_stock_acquisition import (
@@ -32,7 +37,6 @@ from src.real_film.three_stock_confirmation_render import (
 from src.real_film.three_stock_k1_file_runner import evaluate_single_stock_files
 from src.real_film.three_stock_scan_integrity import build_alignment_evidence
 
-ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CONTRACT = ROOT / "configs/sf3_a0a5_synthetic_pipeline_rehearsal_v1.json"
 STIMULUS_ROOT = ROOT / "data/real_film/sf3_a0k_three_stock_display_stimulus_v1"
 STOCKS = (
