@@ -127,8 +127,21 @@ def _extract_facts(text: str, expected: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def _validate_runner_binding(config: dict[str, Any]) -> None:
+    binding = config["bindings"]["runner"]
+    runner_path = (ROOT / binding["path"]).resolve()
+    if runner_path != Path(__file__).resolve():
+        raise P250Error("formal runner path does not match frozen binding")
+    runner_bytes = runner_path.read_bytes()
+    if len(runner_bytes) != int(binding["bytes"]):
+        raise P250Error("formal runner byte count does not match frozen binding")
+    if _sha256_bytes(runner_bytes) != binding["sha256"]:
+        raise P250Error("formal runner SHA-256 does not match frozen binding")
+
+
 def execute(config_path: Path) -> dict[str, Any]:
     config = json.loads(config_path.read_text(encoding="utf-8"))
+    _validate_runner_binding(config)
     sources = config["sources"]
     maximum = int(sources["maximum_response_bytes_each"])
     responses = {
