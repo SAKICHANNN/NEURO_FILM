@@ -15908,3 +15908,22 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Close this exact C11/libm route without tolerance/compiler/libm/probe rescue.
   R1CG's Python paired-information result remains intact; consumer/product,
   public package/schema/capability and photographic-quality claims stay closed.
+
+### 2026-08-26 - P100 closes strict P98-to-ACES-2 output composition
+
+- **Parent/direction:** ULT > U1 > U1.3M/U1.4J. This is mature RAW/DNG/HDR
+  explicit-operator engineering after the bounded automatic-candidate cycle
+  stopped at `2/3`; it does not reopen candidate 3 or P99.
+- **Freeze/implementation:** commit `067a551f` freezes exactly the five P98 DNG
+  identities, unchanged P98 raster path, unchanged official ACES 2 adapter,
+  both SDR/HDR targets and a strict `[0,1]` rail. Commit `7609905b` adds a
+  source-bound audit plus an independently invoked official OCIO chain.
+- **Evidence:** two fresh forward/reverse processes produce byte-identical
+  8,014-byte reports at `11eafdcf...228d6`. All ten adapter arrays equal the
+  independent official chain byte-for-byte; sources and input pixels are
+  unchanged, SDR/HDR hashes differ for every row, and all outputs are finite.
+- **Decision:** formal FAIL solely on the strict output rail. Blackmagic SDR
+  reaches `1.0000066757202148`, exceeding unity by `6.67572e-6`. Close this
+  exact composition without clipping, tolerance, tone, exposure, row or
+  backend rescue. P98 and U1.4E remain valid independently; no arbitrary DNG,
+  calibration, quality, package/capability or product claim opens.

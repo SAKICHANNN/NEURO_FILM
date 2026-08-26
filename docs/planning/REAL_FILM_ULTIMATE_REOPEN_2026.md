@@ -712,3 +712,11 @@ P87-P89: an exact pinned two-fixture Ultra HDR decode is bound to absolute
 Rec.2020 cd/m2 and then to fixed BT.2100-3 PQ RGB16 PNG. This does not consume
 or reset the `2/3` automatic-candidate counter, does not reopen candidate 3,
 and does not establish tone mapping, arbitrary-media HDR or product support.
+
+P100 separately composes the retained P98 five-DNG ForwardMatrix scene-linear
+Rec.2020 raster with the pinned official ACES 2 SDR/HDR adapter. All ten arrays
+match an independently invoked official processor chain byte-for-byte, but one
+Blackmagic SDR output reaches `1.0000066757` and fails the frozen strict-unit
+rail. The exact composition closes without clipping, tolerance, exposure or
+tone rescue. P98 and the ACES adapter remain independently retained; no
+automatic candidate, calibrated IDT, quality or product claim opens.

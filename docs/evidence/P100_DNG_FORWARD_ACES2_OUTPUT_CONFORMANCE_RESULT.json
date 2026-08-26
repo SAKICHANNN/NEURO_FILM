@@ -1,0 +1,86 @@
+{
+  "schema": "neuro_film.p100_dng_forward_aces2_output_evidence.v1",
+  "experiment_id": "p100-dng-forward-aces2-output-v1",
+  "node": "ULT > U1 > U1.3M/U1.4J / P100",
+  "status": "FAIL_CLOSED_DNG_FORWARD_ACES2_OUTPUT_CONFORMANCE",
+  "decision": "close the exact five-DNG P98-to-ACES-2 composition without clipping, tolerance, tone-curve, exposure, row, backend or target rescue; retain P98 and U1.4E independently",
+  "bindings": {
+    "contract": {
+      "path": "docs/planning/P100_DNG_FORWARD_ACES2_OUTPUT_CONFORMANCE_CONTRACT.md",
+      "sha256": "44f6f4cb7b3e4825702ffab87690f051fc3b6328e15796a3dcaae619c89cce04",
+      "freeze_commit": "067a551f"
+    },
+    "config": {
+      "path": "configs/p100_dng_forward_aces2_output_v1.json",
+      "bytes": 2490,
+      "sha256": "ea64ba8d3276fab902dc2b4b22ddae658e272df4dbbcec761867581d22ba1f2e"
+    },
+    "implementation": {
+      "path": "scripts/audit_p100_dng_forward_aces2_output.py",
+      "bytes": 9413,
+      "sha256": "bbbca776a8010aa5805b08663df9c2b1a619fb32cd5c388448a436715b17e63c",
+      "commit": "7609905b"
+    },
+    "test": {
+      "path": "tests/test_p100_dng_forward_aces2_output.py",
+      "bytes": 2243,
+      "sha256": "de99d75910f42bdd3cbb6c7820a54abf6351a5ebcd76d012f963f81a3b1ae430"
+    },
+    "formal_report": {
+      "path": "outputs/eval/p100_dng_forward_aces2_output/forward.json",
+      "bytes": 8014,
+      "sha256": "11eafdcf66017cdbb20ac51c94dcc213b6e0560ba046ee375a5bd15932f228d6",
+      "stable_evidence_id": "5b174291d8e9b0e2dc95eabedd4e58559a5c7c98c06576d63d4e1db4562fccdc"
+    }
+  },
+  "execution": {
+    "fresh_process_count": 2,
+    "forward_report_count": 1,
+    "reverse_report_count": 1,
+    "forward_reverse_reports_byte_exact": true,
+    "report_sha256": "11eafdcf66017cdbb20ac51c94dcc213b6e0560ba046ee375a5bd15932f228d6",
+    "row_count": 5,
+    "target_count": 2,
+    "source_bytes_read_from_existing_exact_cohort": 94462320,
+    "decoded_or_encoded_image_artifacts_written": 0,
+    "formal_json_artifact_count": 2,
+    "p99_exposure_output_reads": 0,
+    "reference_target_or_preferred_render_reads": 0
+  },
+  "metrics": {
+    "maximum_official_direct_absolute_error": 0.0,
+    "all_ten_adapter_outputs_match_independent_official_chain_bytes": true,
+    "all_five_inputs_unchanged": true,
+    "all_five_sdr_hdr_hash_pairs_distinct": true,
+    "blackmagic_sdr_maximum": 1.0000066757202148,
+    "blackmagic_sdr_unit_overflow": 0.00000667572021484375,
+    "all_other_row_target_outputs_in_unit": true,
+    "all_outputs_finite": true
+  },
+  "gates": {
+    "finite_in_unit_outputs": false,
+    "input_pixels_unchanged": true,
+    "official_direct_bytes_exact": true,
+    "required_rows": true,
+    "required_targets": true,
+    "source_hashes_unchanged": true,
+    "target_hashes_distinct": true,
+    "working_contract": true,
+    "forward_reverse_exact": true,
+    "two_fresh_process_reports_exact": true
+  },
+  "interpretation": {
+    "established": [
+      "the unchanged P98 linear-Rec.2020 WorkingImages feed the unchanged official ACES 2 adapter deterministically on all five exact DNGs",
+      "adapter bytes equal a separately invoked official Rec.2020-to-ACEScg plus display-view chain for all ten row-target outputs",
+      "input pixels, source bytes, row-order replay and target separation are exact"
+    ],
+    "not_established": [
+      "a strict bounded numerical output rail, because one Blackmagic SDR component exceeds 1.0 by 6.6757e-6",
+      "P99 BaselineExposure safety, calibrated IDT or vendor rendering parity",
+      "photographic or colorimetric quality, tone-map quality, HDR file/metadata, arbitrary DNG or public/product support"
+    ],
+    "scope_note": "This result does not weaken P98 ForwardMatrix raster mechanics or U1.4E ACES 2 adapter mechanics independently. It closes only their exact strict-unit-range composition on the five-row cohort."
+  },
+  "claim_ceiling": "Private exact-five-DNG Windows CPU P98 ForwardMatrix scene-linear Rec.2020 to pinned official ACES 2 SDR/HDR numerical-output composition only; no arbitrary DNG, sensor/IDT calibration, vendor/Adobe parity, photographic or colorimetric quality, P99 exposure safety, tone-map quality, HDR file/metadata, display calibration, default loader/renderer, public package/schema/capability, product, film, stock or preference admission"
+}
