@@ -1,0 +1,54 @@
+{
+  "schema": "kmcfm.u7-3c-offline-recipe-preview-contract.v1",
+  "node": "U7.3C",
+  "status": "FROZEN_BEFORE_IMPLEMENTATION_OR_PIXEL_READ",
+  "purpose": "Display a bounded offline thumbnail of an already-rendered, recipe-bound output without rerendering or authorizing export.",
+  "inputs": {
+    "catalog": "One validated U7.3A recipe-history catalog.",
+    "eligible_rows": "Valid rows with PNG, 16-bit, film-inspired/look-approximation output facts.",
+    "output_file_identity": "The complete output file SHA-256 must equal the recipe-bound output SHA-256 before pixel decode.",
+    "maximum_output_file_bytes": 201326592,
+    "maximum_decoded_pixels": 30000000,
+    "maximum_rows": 8
+  },
+  "preview": {
+    "maximum_width": 960,
+    "maximum_height": 640,
+    "resampling": "OpenCV INTER_AREA after exact uint16 RGB PNG decode",
+    "quantization": "round clipped RGB16 samples to sRGB8",
+    "encoding": "deterministic in-memory PNG with pinned sRGB ICC bytes",
+    "document": "self-contained offline HTML with data:image/png;base64 previews",
+    "interaction": "none beyond browser-native document navigation"
+  },
+  "failure_policy": {
+    "path_missing": "fail closed before decode",
+    "path_not_regular_file": "fail closed before decode",
+    "file_too_large": "fail closed before decode",
+    "sha256_mismatch": "fail closed before decode",
+    "wrong_extension_format_or_bit_depth": "fail closed before decode",
+    "decoded_shape_or_dtype_mismatch": "fail closed without preview bytes",
+    "pixel_limit_exceeded": "fail closed without preview bytes",
+    "nonfinite_or_boundary_case": "not applicable to exact uint16 source samples"
+  },
+  "information_flow": {
+    "input_file_reads": 0,
+    "output_file_reads": "Only the recipe-bound existing render after size and path checks.",
+    "rerender_calls": 0,
+    "network_reads": 0,
+    "filesystem_writes": 0,
+    "telemetry": false
+  },
+  "acceptance": {
+    "three_frozen_rows_preview": true,
+    "source_output_sha256_exact_before_decode": true,
+    "uint16_decode_exact": true,
+    "preview_dimensions_bounded": true,
+    "same_catalog_same_preview_and_html_bytes": true,
+    "row_order_reversal_same_per_recipe_preview_bytes": true,
+    "missing_tampered_oversized_wrong_format_fail_before_decode": true,
+    "offline_html_visual_review": true,
+    "focused_tests_pass": true
+  },
+  "relationship_to_u7_2c": "All visible labels remain film-inspired/look-approximation; preview presence does not establish calibrated or perceptually distinguishable film stocks.",
+  "claim_ceiling": "Private read-only offline previews of three already-rendered, hash-bound look-approximation outputs only; no rerender, export, calibrated stock, stock distinguishability, packaging, telemetry or product-release claim."
+}
