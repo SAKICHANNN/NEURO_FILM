@@ -1,0 +1,64 @@
+{
+  "schema": "neuro-film.rf3-d10-velvia50-chart-product-baseline-contract.v1",
+  "experiment_id": "RF3.D10",
+  "status": "FROZEN_BEFORE_IMPLEMENTATION_AND_FORMAL_RUN",
+  "question": "Does the unchanged current Velvia 50 product Look Approximation move a controlled spectral-reference chart toward the paired real Velvia 50 display proxy, and is it more target-specific than the current Portra and Ektar looks?",
+  "sources": {
+    "paired_patches": {
+      "path": "outputs/u5_r2ao0_balica_velvia_chart_source_v1/formal/paired_patches.json",
+      "sha256": "0b51a236f366af5c0131a357da0edbc36c25e68238fcdf5a386f0ec068142aea"
+    },
+    "source_contract": {
+      "path": "configs/u5_r2ao0_balica_velvia_chart_proxy_source_v1.json",
+      "sha256": "522f292c786135116f40949c816c5406661620306d1a278226370d4fb802b2b8"
+    },
+    "ao6_frozen_report": {
+      "path": "outputs/u6_p8b_artifact_only_cpu_consumer_v1/run_a/report.json",
+      "sha256": "454f31cfec49ed2ef9e2c2de6d9801a113ae0ba8004cb77cf085b84537f3b732",
+      "artifact_canonical_sha256": "e5168fe89f94efc0e1a3b0a7b38ed26f6c4f4dd142dbe9f951be596c398267ae",
+      "display_payload_sha256": "41eddc1bb4ecc6c9356a0d0559b6cf7affc763617902ba896e09788524074b9a"
+    },
+    "render_profile": {
+      "path": "configs/render_profiles/safe_rich_v1.json",
+      "sha256": "72a9948e6fc76e230c4593b847728712bc034840cd339e6b34f079ac7d424c79"
+    },
+    "style_statistics": {
+      "path": "configs/film_color_stats.json",
+      "sha256": "1a45e90765e577edd4ca1773fc8c6cf98fd09b8afbdddfa519b1f097c5dd7c04"
+    },
+    "guardrails": {
+      "path": "configs/color_guardrails.json",
+      "sha256": "6669b7bc873febcc74ba7ddcbc1c1584807e38465447a5cdbeb24073efa00aa7"
+    }
+  },
+  "execution": {
+    "chart_rows": 6,
+    "chart_columns": 4,
+    "patch_size": 64,
+    "look_amount": 1.0,
+    "seed": 20260826,
+    "tile_size": 128,
+    "orders": ["canonical", "reverse"],
+    "output_root": "outputs/eval/rf3_d10_velvia50_chart_product_baseline_v1"
+  },
+  "arms": [
+    "identity",
+    "current_velvia_50_look_approximation",
+    "ao6_velvia_50_display_proxy_baseline",
+    "current_portra_400_wrong_stock_control",
+    "current_ektar_100_wrong_stock_control"
+  ],
+  "gates": {
+    "minimum_velvia_improvement_over_identity_fraction": 0.05,
+    "minimum_velvia_improvement_over_each_wrong_stock_fraction": 0.02,
+    "minimum_fold_win_fraction_over_identity": 0.75,
+    "minimum_worst_fold_improvement_over_identity_fraction": -0.10,
+    "maximum_current_output_boundary_fraction": 0.005,
+    "maximum_repeat_error": 0.0,
+    "require_exact_patch_and_payload_bindings": true,
+    "require_forward_reverse_scientific_identity": true
+  },
+  "decision_if_pass": "retain the current Velvia 50 product look as a one-chart target-specific display-proxy baseline pending independent scene, roll and scanner confirmation",
+  "decision_if_fail": "keep the current Velvia 50 product look at Look Approximation only and require a new stock-specific operator or identifying observation rather than retuning this chart",
+  "claim_ceiling": "One CC-BY-4.0 real Velvia 50 single-illuminant author-rendered sRGB chart display proxy. This compares fixed product looks and frozen AO6 without fitting. It is not a calibrated stock response, scanner-independent evidence, natural-scene transfer, roll/process evidence, preference evidence, or product promotion."
+}
