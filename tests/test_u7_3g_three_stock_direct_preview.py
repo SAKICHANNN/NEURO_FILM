@@ -10,6 +10,7 @@ from PIL import Image
 from src.inference.three_stock_preview import (
     ThreeStockPreviewError,
     preview_dimensions,
+    preview_fidelity_metrics,
     render_three_stock_previews_to_directory,
 )
 
@@ -93,3 +94,15 @@ def test_small_source_is_not_upsampled(tmp_path: Path) -> None:
     _source(source, width=41, height=29)
     manifest = _render(source, tmp_path / "preview", max_pixels=10_000)
     assert (manifest["preview_width"], manifest["preview_height"]) == (41, 29)
+
+
+def test_preview_fidelity_metrics_measure_tail_and_new_boundary() -> None:
+    reference = np.full((2, 2, 3), 0.5, dtype=np.float32)
+    candidate = reference.copy()
+    candidate[0, 0, 0] = 0.0
+    metrics = preview_fidelity_metrics(candidate, reference)
+    assert metrics["rgb_rmse"] == pytest.approx(0.5 / np.sqrt(12.0))
+    assert metrics["rgb_absolute_error_p95"] == pytest.approx(0.225)
+    assert metrics["new_boundary_fraction"] == pytest.approx(1.0 / 12.0)
+    with pytest.raises(ThreeStockPreviewError, match="same-shape"):
+        preview_fidelity_metrics(candidate.astype(np.float64), reference)

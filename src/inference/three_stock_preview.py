@@ -51,6 +51,38 @@ def _positive_integer(value: object, label: str) -> int:
     return value
 
 
+def preview_fidelity_metrics(
+    candidate: np.ndarray, reference: np.ndarray
+) -> dict[str, float]:
+    """Measure a bounded PNG8 preview against a same-size full-render reference."""
+
+    left = np.asarray(candidate)
+    right = np.asarray(reference)
+    if (
+        left.dtype != np.float32
+        or right.dtype != np.float32
+        or left.shape != right.shape
+        or left.ndim != 3
+        or left.shape[2] != 3
+        or left.size == 0
+        or not np.isfinite(left).all()
+        or not np.isfinite(right).all()
+        or np.any((left < 0.0) | (left > 1.0))
+        or np.any((right < 0.0) | (right > 1.0))
+    ):
+        raise ThreeStockPreviewError(
+            "candidate and reference must be same-shape bounded float32 RGB arrays"
+        )
+    absolute = np.abs(left.astype(np.float64) - right.astype(np.float64))
+    reference_interior = (right > (1.0 / 255.0)) & (right < (254.0 / 255.0))
+    candidate_boundary = (left <= 0.0) | (left >= 1.0)
+    return {
+        "rgb_rmse": float(np.sqrt(np.mean(np.square(absolute), dtype=np.float64))),
+        "rgb_absolute_error_p95": float(np.percentile(absolute, 95.0)),
+        "new_boundary_fraction": float(np.mean(candidate_boundary & reference_interior)),
+    }
+
+
 def render_three_stock_previews_to_directory(
     input_path: Path,
     output_directory: Path,
@@ -175,5 +207,6 @@ def render_three_stock_previews_to_directory(
 __all__ = [
     "ThreeStockPreviewError",
     "preview_dimensions",
+    "preview_fidelity_metrics",
     "render_three_stock_previews_to_directory",
 ]
