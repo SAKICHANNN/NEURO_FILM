@@ -17541,3 +17541,18 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   input/profile/output hashing or redefine warm as an unverifiable in-memory
   hit. U7.3G remains a valid development-preview tier; product latency and
   physical three-stock evidence remain open.
+
+### 2026-08-27 - U7.6I closes exact native pointwise replacement
+
+- **Execution:** contract `f6c558c6` and implementation `494a80e0` apply the
+  unchanged U1.4C27 C11 pointwise kernel to the exact U7.3G 0.999MP source and
+  current Velvia 50, Portra 400 and Ektar 100 Look Approximation parameters.
+  Two fresh processes reproduce the same MSVC DLL and all three native output
+  hashes. The three native calls total `.0290-.0297s`, versus `.551-.575s` for
+  the NumPy oracle; the conservative ratio is `.05390`.
+- **Decision and boundary:** Portra and Ektar are byte-exact, but Velvia has a
+  maximum Lab error of `1.9073486e-6`, so the frozen exact-zero gate fails.
+  Evidence commit `8370d275`, evidence SHA `5dbc29ae...07f2b`. No full-chain
+  composition, kernel rewrite, tolerance or thread-count rescue opens. This is
+  only a local native pointwise negative, not stock evidence or product
+  performance; controlled physical three-stock acquisition remains primary.
