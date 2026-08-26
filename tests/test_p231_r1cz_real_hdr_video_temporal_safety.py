@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 from pathlib import Path
 
 import numpy as np
@@ -8,6 +9,7 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts/audit_p231_r1cz_real_hdr_video_temporal_safety.py"
+EVIDENCE = ROOT / "docs/evidence/P231_R1CZ_REAL_HDR_VIDEO_TEMPORAL_SAFETY_RESULT.json"
 SPEC = importlib.util.spec_from_file_location("p231_audit", SCRIPT)
 assert SPEC is not None and SPEC.loader is not None
 module = importlib.util.module_from_spec(SPEC)
@@ -46,3 +48,12 @@ def test_summary_identity_is_safe_and_nonmaterial() -> None:
     assert summary["luminance_temporal_p95_ratio"] == 1.0
     assert summary["chroma_temporal_p95_ratio"] == 1.0
     assert summary["new_luminance_spike_fraction"] == 0.0
+
+
+def test_formal_evidence_is_infrastructure_invalid_before_apply() -> None:
+    evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+    assert evidence["status"] == "INFRASTRUCTURE_INVALID_P231_DECODE_DOMAIN_MISMATCH"
+    assert evidence["decode"]["sampled_source_exact"] is False
+    assert evidence["decode"]["candidate_apply_calls"] == 0
+    assert evidence["decision"]["not_a_scientific_result"] is True
+    assert evidence["consumer_mapping"] is False

@@ -1,0 +1,61 @@
+{
+  "schema": "neuro-film.p231-r1cz-real-hdr-video-temporal-safety-evidence.v1",
+  "experiment_id": "P231",
+  "status": "INFRASTRUCTURE_INVALID_P231_DECODE_DOMAIN_MISMATCH",
+  "date": "2026-08-26",
+  "commits": {
+    "preregistration": "f9fc1aa1e5ade41537053e3fa872f3026fc06781",
+    "implementation_and_formal_execution": "65ca67c5a24d3f2b78ae336bca7c60ee82f8c618"
+  },
+  "protocol": {
+    "contract_sha256": "c7ddcda24a84814c3b1a4636a60c267568049208508d961bea947c9631f11950",
+    "config_sha256": "79714857e1a253d7370534b42bf511b5dd9aa11234b1e5c42469a8d9115d46a3",
+    "payload_sha256": "aa7fe0400e7bef106a9ff75305babab317a4148bdb05c573c50395d6f4228cb9",
+    "bundle_id": "sha256:2759d2193861b95d39bb451efb2477c6ae796f5f58b3b81cf6487cbd85c3220f",
+    "video_sha256": "0e19b7b6eadbe1663b5a539f38ecc4100f32a290bf57c3663724f27628ff3997"
+  },
+  "formal": {
+    "forward_report_sha256": "1ea6a840d91ebb1ee58d7d3c3c583a382b2581660f7899e8d653f8fb7e599216",
+    "reverse_report_sha256": "1ea6a840d91ebb1ee58d7d3c3c583a382b2581660f7899e8d653f8fb7e599216",
+    "report_bytes_each": 3776,
+    "reports_byte_exact": true,
+    "stable_identity": "sha256:201f97e9c1bdad7ce734710e7e123600d5c986afb334198e56d12caaf07e81fb"
+  },
+  "decode": {
+    "runtime": "installed FFmpeg 8.1 gbrpf32le rawvideo stream",
+    "frames": 300,
+    "sampled_height": 135,
+    "sampled_width": 240,
+    "sample_stride": 8,
+    "expected_r1ct_sampled_source_f32le_sha256": "a918196d5a0d751f8733fcb91996c4d1f99ce302d0e3d2cbd11bdee2504822ba",
+    "observed_sampled_source_f32le_sha256": "de4b59f01b7714f8170d61c57acc848c9291c2896a6033b7b70e5bf47f5e8e50",
+    "sampled_source_exact": false,
+    "candidate_apply_calls": 0,
+    "target_reads": 0,
+    "network_reads": 0,
+    "repository_media_writes": 0
+  },
+  "gates": {
+    "all_bindings_and_media_facts_exact": true,
+    "independent_decode_matches_r1ct_source_sha": false
+  },
+  "decision": {
+    "result": "INFRASTRUCTURE_INVALID_P231_DECODE_DOMAIN_MISMATCH",
+    "interpretation": "The exact installed FFmpeg sampled decode does not reproduce the frozen R1CT PyAV sampled-source bytes. The preregistered decode-domain gate therefore stops before payload application or safety interpretation.",
+    "not_a_scientific_result": true,
+    "no_rescue": [
+      "decoder replacement",
+      "channel-order or conversion search",
+      "source-hash tolerance",
+      "payload application on mismatched bytes"
+    ],
+    "does_not_change": [
+      "P230 exact payload consumer PASS",
+      "R1CZ payload materialization PASS",
+      "R1DB installed-wheel apply-only PASS",
+      "R1CT four-payload temporal safety result"
+    ]
+  },
+  "consumer_mapping": false,
+  "claim_ceiling": "Reproducible infrastructure-invalid decode-domain result only. No R1CZ natural-video temporal safety PASS or FAIL was measured."
+}

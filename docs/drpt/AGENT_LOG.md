@@ -16436,3 +16436,23 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   independently. No arbitrary DNG, sensor/IDT calibration, default integration,
   package/schema/capability or product mapping opens. Evidence:
   `docs/evidence/P229_DNG_FORWARD_ACES2_P3_PQ_CALLABLE_RESULT.json`.
+
+### 2026-08-26 - P231 stops before R1CZ video safety on decode-domain mismatch
+
+- **Question:** Does the exact P230/R1CZ paired payload retain the R1CT
+  target-blind temporal-safety invariants on the already-consumed R0VC native
+  PQ/BT.2020 video?
+- **Prospective boundary:** the payload is distinct from all four R1CT
+  payloads. P231 froze the same safety coordinates/gates but required an
+  independent installed-FFmpeg sampled-source SHA to equal the exact R1CT
+  PyAV source SHA before applying the candidate.
+- **Result:** both 300-frame forward/reverse reports are byte exact at
+  `1ea6a840...9216`, stable `201f97e9...81fb`. File and media identities pass,
+  but FFmpeg yields sampled source `de4b59f0...8e50` rather than frozen R1CT
+  `a918196d...22ba`. The leaf therefore returns
+  `INFRASTRUCTURE_INVALID_P231_DECODE_DOMAIN_MISMATCH` with zero candidate
+  apply, zero target reads and zero network/media writes.
+- **Boundary/handoff:** this is not a payload-safety PASS or FAIL. Do not
+  search decoder, channel-order or conversion variants after observing the
+  mismatch. P230, R1CZ, R1DB and R1CT remain unchanged. Evidence:
+  `docs/evidence/P231_R1CZ_REAL_HDR_VIDEO_TEMPORAL_SAFETY_RESULT.json`.
