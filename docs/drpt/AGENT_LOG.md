@@ -17241,3 +17241,30 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   commit `79161de3`, SHA `7d725d89...e96d5`. The current performance family
   stops; controlled physical three-stock acquisition remains the identifying
   mainline.
+
+### 2026-08-26 - P248 passes the frozen 24MP OpenEXR resource gate with ordered scanlines
+
+- **Node, routing and frozen change:** `ULT > mature RAW/HDR explicit
+  mechanisms > P248`, DRPT L2 / Mode C. The primary workflow was
+  `dev-research-reliability`; `scientific-research-harness`, DRPT-BI,
+  project-log and project-structure skills were read-only governance. P248
+  keeps P247's deterministic 4000x6000x3 float32 ACEScg probe, ZIP compression,
+  AP1/D60 metadata and gates, and changes only the writer-side representation
+  to official OpenEXR 3.4.15 `OutputFile::writePixels` in ordered 16-row blocks.
+- **Formal result:** two controller builds and four fresh workers share exact
+  13,067,999-byte EXR `877b9a89...1d693`, decoded pixel SHA
+  `2b4890bd...86adf`, zero float32 error, exact metadata, preserved negative and
+  above-one samples, boundary zero and atomic publication. Maximum process-tree
+  RSS is 625,274,880 bytes, versus P247's 2,302,255,104 bytes (ratio
+  `.27159235`, reduction 1,676,980,224 bytes), so every frozen correctness and
+  resource gate passes.
+- **Reproducibility, correction and propagation:** stable scientific payload
+  `dbe7a522...7b905` is exact after excluding measured resource fields and the
+  native PE container. Independent 1,026,560-byte PE builds have different
+  SHA-256 identities; binary-byte reproducibility was not a frozen gate and is
+  not claimed. Evidence commit `9abc3740`; a follow-up test-only commit
+  `4558529d` replaces exact equality on the serialized RSS ratio with a strict
+  `1e-15` comparison after that test exposed decimal-rounding mismatch. P246-
+  P248 adjacent tests pass 13/13, with Ruff, compile, JSON and diff checks
+  clean. No natural-image quality, arbitrary EXR, cross-platform, public API/
+  package/schema/capability, renderer integration or product mapping opens.
