@@ -1,0 +1,108 @@
+{
+  "schema": "neuro-film.p252-aces2065-aces2-pq-composition-evidence.v1",
+  "experiment_id": "P252",
+  "status": "PASS_PRIVATE_ACES2065_ACES2_PQ_COMPOSITION",
+  "node": "ULT > mature RAW/HDR explicit mechanisms > P252",
+  "question": "Can the exact P251 ACES2065-1 ingress compose with the retained official ACES 2 Rec.2020 1000-nit output and canonical PQ PNG by adding only a strict ACEScg identity branch, with every frozen legacy WorkingImage output unchanged?",
+  "bindings": {
+    "contract_commit": "da55a740",
+    "implementation_commit": "1d974ede",
+    "audit_binding_commit": "296d1b83",
+    "corrected_formal_commit": "70c08aa3fbdd75843b28f699186b191b93fe2177",
+    "config_path": "configs/p252_aces2065_aces2_pq_composition_v1.json",
+    "config_bytes": 6276,
+    "config_sha256": "c34f66ef0189fd00a1efec7f4580074d241cbdbfc9c825dfe27ac92a5c1e8608",
+    "contract_path": "docs/planning/P252_ACES2065_ACES2_PQ_COMPOSITION_CONTRACT.md",
+    "contract_bytes": 4623,
+    "contract_sha256": "6c6a6c9addf2cf8c9629c775e9e6d9e9992f3fe393019c51690d64725cde0576",
+    "ocio_module_path": "src/preprocess/ocio_aces2_output.py",
+    "ocio_module_sha256": "5dd3c0d8db9c595da331f8f47b8177b32aeaf037f34d7783fb742e6949eb5768",
+    "composition_module_path": "src/preprocess/aces2065_aces2_pq.py",
+    "composition_module_sha256": "e1e9a0dff2f17f6f72c4beae5a7cd93c1b00b5cc52b402ab68f7af706c11f683",
+    "runner_path": "scripts/audit_p252_aces2065_aces2_pq_composition.py",
+    "runner_sha256": "26f5c4b7002abd060e3488e5625f5041838235f559e822bc56904c518f1d8007"
+  },
+  "frozen_lineage": {
+    "p249_openexr_bytes": 1144,
+    "p249_openexr_sha256": "1a25181406270142c98f2169897d3a4c468ec50c979fff9077d37f956c888726",
+    "p251_evidence_sha256": "e368560399119d59073a3cb0488261d81ff1cd2078202cbe9df6411a1152aa6c",
+    "openexr_version": "3.4.15",
+    "opencolorio_version": "2.5.2",
+    "ocio_config_cache_id": "351c1452fc2bde6177841947c5fce086:6001c324468d497f99aa06d3014798d8",
+    "display": "Rec.2100-PQ - Display",
+    "view": "ACES 2.0 - HDR 1000 nits (Rec.2020)"
+  },
+  "execution": {
+    "fresh_processes": 2,
+    "orders": [
+      "forward",
+      "reverse"
+    ],
+    "forward_report_path": "outputs/eval/p252_aces2065_aces2_pq_composition/forward.json",
+    "reverse_report_path": "outputs/eval/p252_aces2065_aces2_pq_composition/reverse.json",
+    "report_bytes_each": 3502,
+    "report_sha256": "7b4116a20267fb8e88a85f6cd83dc36ceb2bcf9972285fa0dd25c513712f71c3",
+    "scientific_identity": "sha256:541150acc476c9fc13175d02f4c40895ee05a1a943248e9405a28da2d6f36803",
+    "network_reads": 0,
+    "natural_image_reads": 0,
+    "target_reference_reads": 0,
+    "candidate_counter_change": 0,
+    "durable_media_outputs": 0,
+    "owned_temporary_residue": 0
+  },
+  "formal_correction": {
+    "excluded_first_report_sha256": "94ba3e144e39610e0574aa7d2ea73dbf9064d9f4cb6c72ab7a4891c4659c93ce",
+    "excluded_first_report_bytes": 3504,
+    "reason": "Two audit-only predicates used the wrong decoded-sample byte order and conflated rejection with absence of a pre-existing protected destination.",
+    "scientific_payload_changed": false,
+    "algorithm_or_gates_changed": false,
+    "corrected_action": "Hash unchanged decoded samples as native uint16, matching the strict verifier, and test exception rejection separately from byte-preservation of the foreign destination; then rerun both complete processes from the corrected committed source."
+  },
+  "metrics": {
+    "working_shape": [
+      7,
+      9,
+      3
+    ],
+    "working_space": "acescg_ap1_d60",
+    "working_minimum": -4.0,
+    "working_maximum": 16.0,
+    "maximum_ap1_roundtrip_error": 0.00000095367431640625,
+    "maximum_acescg_identity_error": 0.0,
+    "official_float_output_sha256": "6930dafa4afcfb94add7d262824a9c85b8a65c46fbec23f296e996fb167ae14d",
+    "rgb16_sample_sha256": "5194e283ea14c90cf9f79e09041d684db1e2fe53f6276f8d5cf08d453dc7aa6d",
+    "canonical_png_bytes": 469,
+    "canonical_png_sha256": "533cad62273a55a5863782021d39b477b82ea9230a8578462f6996caa259a2c4",
+    "legacy_output_hashes": {
+      "linear_srgb_sdr_rec709": "9a1e3beb953440b145aac7bca482adc20295a08cbbe30bc5bba756df12d52603",
+      "linear_srgb_hdr_rec2020_pq": "caa96764b834ea11eb4a7a4024d40dd054d4ca9202a115259f8546afa3822212",
+      "linear_rec2020_sdr_rec709": "bf2b4f409caa446e16b1f38f0b3b3c595e55469ee3a35f87a3c716affe0e06be",
+      "linear_rec2020_hdr_rec2020_pq": "be65179faf1a59a376f58b8d51194213721f04ef4c59a1195ab002fca21f2572"
+    }
+  },
+  "gates": {
+    "exact_bound_identities": true,
+    "exact_runtime": true,
+    "exact_p249_source": true,
+    "exact_p251_working_image": true,
+    "identity_conversion_exact_owned": true,
+    "legacy_hashes_unchanged": true,
+    "direct_official_output_exact": true,
+    "finite_unit_output": true,
+    "canonical_png_receipt_exact": true,
+    "strict_rec2100_pq_samples_exact": true,
+    "source_and_input_immutable": true,
+    "invalid_controls_rejected": true,
+    "foreign_destination_preserved": true,
+    "zero_network": true,
+    "zero_temporary_residue": true,
+    "forward_reverse_reports_exact": true
+  },
+  "decision": "Retain one private exact P249/P251 AP0 OpenEXR to official ACES 2 Rec.2020-PQ canonical RGB16 PNG composition. Preserve explicit opt-in loading and every prior claim boundary.",
+  "claim_ceiling": "Private Windows/Python exact P249/P251 ACES2065-1 OpenEXR to official ACES 2 Rec.2020-PQ canonical RGB16 PNG mechanics only. No arbitrary EXR or HDR image, photographic/display quality, HDR10 mastering metadata, SMPTE certification, public dependency/package/schema/capability, stock evidence, single-reference matching, calibrated reference or product admission.",
+  "public_package": false,
+  "schema_mapping": false,
+  "capability_mapping": false,
+  "product_mapping": false,
+  "consumer_mapping": false
+}
