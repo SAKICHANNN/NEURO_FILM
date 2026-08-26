@@ -1,0 +1,44 @@
+{
+  "schema": "neuro-film.u7-2d-fast-png16-export-contract.v1",
+  "experiment_id": "U7.2D",
+  "status": "FROZEN_BEFORE_IMPLEMENTATION_OR_FORMAL_EXECUTION",
+  "question": "Can an explicit lossless PNG16 fast-export tier materially reduce 24MP end-to-end wall time while preserving every decoded RGB16 sample, the exact sRGB ICC profile, deterministic replay and bounded file-size growth?",
+  "source": {
+    "path": "data/preference/repid/u5_r2repid3_shared_operator_v1/fit/winner/a4593-kme_0276.jpeg",
+    "sha256": "7ea3d1ed37b7df518c0466c1379f08aa34ea5ae00eb7dc8208fcff2cfe68d1c6",
+    "role": "preexisting_internal_display_srgb_product_scale_fixture_not_film_truth"
+  },
+  "existing_outputs": {
+    "root": "outputs/eval/u7_2_three_stock_24mp_smoke",
+    "film_stock_ids": [
+      "fujifilm_velvia_50",
+      "kodak_portra_400",
+      "kodak_ektar_100"
+    ],
+    "dimensions": [4032, 6048],
+    "baseline_png_compression": 6,
+    "candidate_png_compression": 0
+  },
+  "performance_discriminant": {
+    "film_stock_id": "fujifilm_velvia_50",
+    "tile_size": 512,
+    "tile_workers": 8,
+    "run_order": ["baseline", "candidate", "candidate", "baseline"]
+  },
+  "gates": {
+    "all_three_decoded_rgb16_samples_exact": true,
+    "all_three_srgb_icc_profiles_exact": true,
+    "candidate_repeat_output_bytes_exact": true,
+    "maximum_candidate_to_baseline_median_wall_ratio": 0.85,
+    "maximum_candidate_to_baseline_file_size_ratio": 1.2,
+    "default_encoder_output_bytes_unchanged": true,
+    "recipe_records_exact_png_compression": true,
+    "invalid_or_inapplicable_compression_fails_before_render": true
+  },
+  "stop_rules": [
+    "Do not change colour pixels, tile scheduling, profile parameters, quantization or ICC bytes to rescue the candidate.",
+    "Do not weaken the wall or file-size gates after formal execution.",
+    "Failure closes compression-level zero as a product export tier; it does not change the existing compression-level-six default."
+  ],
+  "claim_ceiling": "Local Windows Python/OpenCV PNG16 export performance for the existing three development-only Look Approximation outputs. No stock evidence, target-film closeness, calibration, preference, product release or multi-stock completion claim."
+}
