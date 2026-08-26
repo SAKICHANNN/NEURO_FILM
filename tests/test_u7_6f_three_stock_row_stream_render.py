@@ -7,6 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/u7_6f_three_stock_row_stream_render_v1.json"
 SCRIPT = ROOT / "scripts/audit_u7_6f_three_stock_row_stream_render.py"
+EVIDENCE = ROOT / "docs/evidence/U7_6F_THREE_STOCK_ROW_STREAM_RENDER_RESULT.json"
 
 
 def _module():
@@ -75,3 +76,17 @@ def test_evaluator_requires_cross_execution_parity_and_memory(tmp_path: Path) ->
 
     rows[1]["rows"][0]["decoded_rgb16_sha256"] = "drift"
     assert module.evaluate_rows(rows, config["gates"], controls)["decision"] == "FAIL_CLOSED"
+
+
+def test_formal_evidence_reverts_nonreducing_row_stream() -> None:
+    evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+    assert evidence["decision"] == "FAIL_CLOSED_REVERT_ROW_STREAM_RENDER"
+    assert evidence["scientific_identity"] == (
+        "59e9564735b5f550570f045a07b296a6faa42c0d1000167bc824f3efeaea1406"
+    )
+    observations = evidence["observations"]
+    assert observations["three_decoded_sample_arrays_cross_execution_exact"] is True
+    assert observations["three_icc_fingerprints_cross_execution_exact"] is True
+    assert observations["peak_rss_reduction_bytes"] < 201326592
+    assert observations["peak_rss_ratio"] > 0.90
+    assert observations["candidate_residue_count"] == 0

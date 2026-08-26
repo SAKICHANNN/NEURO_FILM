@@ -10,7 +10,6 @@ from src.inference.tiled_render import (
     TiledRenderError,
     execute_tiled_local_operator,
     plan_tile_windows,
-    stream_tiled_local_operator_rows,
 )
 
 
@@ -86,44 +85,6 @@ def test_repeated_execution_is_byte_identical():
     second, second_metadata = execute_tiled_local_operator(image, operator, tile_size=7, halo=3)
     assert first.tobytes() == second.tobytes()
     assert first_metadata == second_metadata
-
-
-def test_row_stream_matches_full_stitch_without_full_output() -> None:
-    image = _image((19, 23, 3))
-
-    def operator(tile, window):
-        offset = np.float32((window.core_y0 + window.core_x0) * 1e-6)
-        return np.clip(tile * np.float32(0.75) + offset, 0.0, 1.0).astype(
-            tile.dtype
-        )
-
-    expected, expected_metadata = execute_tiled_local_operator(
-        image, operator, tile_size=7, halo=3
-    )
-    stripes: list[tuple[int, np.ndarray]] = []
-    actual_metadata = stream_tiled_local_operator_rows(
-        image,
-        operator,
-        lambda row_start, rows: stripes.append((row_start, rows.copy())),
-        tile_size=7,
-        halo=3,
-    )
-    actual = np.concatenate([rows for _, rows in stripes], axis=0)
-    assert [row_start for row_start, _ in stripes] == [0, 7, 14]
-    np.testing.assert_array_equal(actual, expected)
-    assert actual_metadata == expected_metadata
-
-
-def test_row_stream_consumer_receives_read_only_stripes() -> None:
-    image = _image((5, 7, 3))
-
-    def mutate(_row_start, rows):
-        rows[0, 0, 0] = 0.0
-
-    with pytest.raises(ValueError, match="read-only"):
-        stream_tiled_local_operator_rows(
-            image, lambda tile, _: tile, mutate, tile_size=3, halo=1
-        )
 
 
 @pytest.mark.parametrize("workers", [2, 4, 64])

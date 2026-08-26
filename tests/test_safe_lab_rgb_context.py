@@ -9,7 +9,6 @@ from scripts.pipeline_color_baseline import (
     style_transfer_rgb_tiled,
 )
 from src.color_engine.safe_lab_rgb_context import (
-    stream_style_transfer_rgb_tiled_with_source_context,
     style_transfer_rgb_tiled_with_source_context,
     style_transfer_rgb_with_source_context,
 )
@@ -76,24 +75,3 @@ def test_explicit_source_context_matches_direct_tiled() -> None:
     )
     np.testing.assert_array_equal(explicit, direct)
     assert explicit_metadata == direct_metadata
-
-
-def test_streamed_source_context_matches_direct_tiled() -> None:
-    image = np.random.default_rng(197).random((67, 91, 3), dtype=np.float32)
-    kwargs = {**_kwargs(), "dither": 0.35, "tile_size": 29}
-    direct, direct_metadata = style_transfer_rgb_tiled_with_source_context(
-        image,
-        **kwargs,
-        workers=1,
-        source_context=build_safe_lab_source_context(image),
-    )
-    stripes: list[np.ndarray] = []
-    streamed_metadata = stream_style_transfer_rgb_tiled_with_source_context(
-        image,
-        **kwargs,
-        source_context=build_safe_lab_source_context(image),
-        consumer=lambda _row_start, rows: stripes.append(rows.copy()),
-    )
-    streamed = np.concatenate(stripes, axis=0)
-    np.testing.assert_array_equal(streamed, direct)
-    assert streamed_metadata == direct_metadata
