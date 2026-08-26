@@ -58,7 +58,7 @@ def _build_oracle(config: dict[str, Any], root: Path) -> Path:
     dev, _, _ = _tool_paths()
     solution = root / authority["sdk_solution_member"]
     command = (
-        f'"{dev}" -arch=x64 -host_arch=x64 >nul && '
+        f'call "{dev}" -arch=x64 -host_arch=x64 >nul && '
         f'msbuild "{solution}" /m /nologo /v:quiet '
         f'/p:Configuration="Validate Release" /p:Platform=x64 /p:PlatformToolset=v145'
     )
