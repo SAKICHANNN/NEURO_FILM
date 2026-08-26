@@ -1,7 +1,7 @@
 {
   "schema": "neuro-film.p248-acescg-openexr-scanline-streaming-contract.v1",
   "experiment_id": "P248",
-  "status": "FROZEN_BEFORE_NATIVE_BUILD_OR_PROBE_EXECUTION",
+  "status": "FROZEN_BEFORE_FORMAL_24MP_EXECUTION",
   "bindings": {
     "contract_path": "docs/planning/P248_ACESCG_OPENEXR_SCANLINE_STREAMING_CONTRACT.md",
     "contract_sha256": "320ca4beb81e0a4a545de11a548baf8a5b1c0644bc945c6ba1325b57c1ec43d2",
@@ -24,6 +24,9 @@
     "imath_source_sha256": "b4275d83fb95521510e389b8d13af10298ed5bed1c8e13efd961d91b1105e462",
     "imath_tag": "v3.2.2",
     "imath_tag_object": "1e480d11cb98b032a2dece9b9a8730512effc7f6",
+    "producer_wheel_path": "data/vendor/openexr-3.4.15/openexr-3.4.15-cp312-cp312-win_amd64.whl",
+    "producer_wheel_bytes": 740197,
+    "producer_wheel_sha256": "7aa145813acfe10a83d6e89340349379828190b321608e69f2aee426e10c890b",
     "msvc_version": "19.50.35729",
     "msvc_cl_sha256": "ed1a6206c8179ed6826187b63306cb9cc421de6507e14166864556851bc2820d",
     "cmake_version": "4.2.3-msvc3",
@@ -31,7 +34,13 @@
     "ninja_version": "1.12.1",
     "ninja_sha256": "ff29bcb5f547174bae6b73c84278cce9b674e8ebc2f3c3926ab21030b33f34b8",
     "native_source_path": "src/eval/p248_acescg_openexr_scanline_writer.cpp",
-    "runner_path": "scripts/audit_p248_acescg_openexr_scanline_streaming.py"
+    "native_source_commit": "d38a5d00d7ec2a449bf324ff61f4c9d81934fd7b",
+    "native_source_git_blob": "7edfc8c887225b7a1e381138903e0f1114ca95f9",
+    "native_source_sha256": "4f2d9aba58cf80509c6c06a6a471aab608bbb5b9fdc4fcb00b91ba5dac97bc89",
+    "runner_path": "scripts/audit_p248_acescg_openexr_scanline_streaming.py",
+    "runner_commit": "f0e0138b080f56a7345fc004b0b1b6a273edc8ba",
+    "runner_git_blob": "64b388430dad058a554bafc8d2fddf9db8a76cdf",
+    "runner_sha256": "905abb3b769684e732327339dafd945196fe115b95d918dc5f18b5768c6f9e1d"
   },
   "build": {
     "generator": "Ninja",
@@ -42,6 +51,7 @@
     "openexr_build_tools": false,
     "openexr_build_examples": false,
     "openexr_build_python": false,
+    "openexr_force_internal_imath": true,
     "openexr_install": false,
     "imath_build_tests": false,
     "imath_build_python": false,
@@ -75,5 +85,12 @@
     "require_zero_network_external_pixel_reads_and_workspace_residue": true
   },
   "stop_rule": "Any source, build, small-probe, pixel, metadata, resource, replay, atomicity or cleanup failure closes this exact scanline implementation without changing block height, compression, probe, compiler, thresholds, metadata or process topology.",
+  "preformal_corrections": [
+    "The official OpenEXR tar contains one in-root test-only relative symlink. The extractor validates its resolved target and skips creating the symlink because tests are disabled; path traversal, hard links and device members remain rejected.",
+    "The first configure probe stopped before compilation because OpenEXR found an incomplete in-build ImathConfig target file. OPENEXR_FORCE_INTERNAL_IMATH is fixed ON while the already-created local Imath target prevents any FetchContent network access.",
+    "Source-tree target include directories expose Imf and Imath headers without installed OpenEXR/Imath prefixes; includes were corrected before a successful native compilation.",
+    "NOMINMAX was fixed before successful compilation to prevent the Windows max macro from corrupting numeric_limits syntax.",
+    "Small-probe OpenEXR readback now runs in a short-lived process so Windows releases OpenEXR.pyd before owned workspace cleanup; probe pixels, writer, source and gates are unchanged."
+  ],
   "claim_ceiling": "Private local Windows x64 24MP resource feasibility for one official-source native OpenEXR scanline writer and one procedural ACEScg probe only. No natural-image quality, arbitrary EXR, cross-platform parity, AP0/ST 2065-4 ACES interchange, renderer integration, public package/schema/capability or product admission."
 }
