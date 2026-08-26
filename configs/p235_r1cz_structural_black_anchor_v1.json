@@ -1,0 +1,75 @@
+{
+  "schema": "kmcfm.p235-r1cz-structural-black-anchor-contract.v1",
+  "experiment_id": "P235",
+  "status": "FROZEN_AFTER_P234_BEFORE_STRUCTURAL_PROBE_EXECUTION",
+  "question": "Does the exact persisted R1CZ absolute-light payload structurally preserve exact black before and after its frozen output clamp, with all three channel zero crossings anchored at zero?",
+  "parents": {
+    "p233_evidence_path": "docs/evidence/P233_R1CZ_LOCAL_PAYLOAD_CAPSULE_RESULT.json",
+    "p233_evidence_sha256": "7827e0d36fabbfbf8a5b2ebae3cbadbcffa55ed9e711f1b38bcc15a867decd73",
+    "p233_required_status": "PASS_PRIVATE_R1CZ_LOCAL_PAYLOAD_CAPSULE",
+    "p234_evidence_path": "docs/evidence/P234_R1CZ_ULTRAHDR_STILL_SAFETY_RESULT.json",
+    "p234_evidence_sha256": "967218f272507440f21a8cd315facfd1a3d07221dbc7c42c3005a94c1bb54f24",
+    "p234_required_status": "FAIL_CLOSED_R1CZ_ULTRAHDR_STILL_SAFETY"
+  },
+  "payload": {
+    "local_capsule_path": "tests/fixtures/p233_r1cz_payload_capsule_v1.json",
+    "capsule_schema": "kmcfm.r1cz-payload-capsule.v1",
+    "encoding": "hex-lower-v1",
+    "payload_sha256": "aa7fe0400e7bef106a9ff75305babab317a4148bdb05c573c50395d6f4228cb9",
+    "payload_bytes": 4376,
+    "bundle_id": "sha256:2759d2193861b95d39bb451efb2477c6ae796f5f58b3b81cf6487cbd85c3220f"
+  },
+  "envelope": {
+    "schema": "https://zhuise.local/schemas/paired-reference-shared-hdr-bundle-v1",
+    "algorithm_id": "zhuise.rgb-dpct",
+    "algorithm_version": "zhuise.rgb-dpct-reference-white.v3",
+    "capability_id": "zhuise.rgb-dpct-reference-white-shared.cpu-reference.v1",
+    "profile_id": "zhuise.display-linear-bt2020-d65-absolute-cdm2-f32.v2",
+    "reference_white_nits": 203.0,
+    "build_source_view_id": "sha256:af4fbc64be31205e00f53b5680a9b81bf3e7406152536f4592c0cb2e85f9c14b",
+    "reference_view_id": "sha256:e54503bf0f455978a25cf2d2e667c9e0008f3ee46bc5cefa9d3268769033efe6",
+    "legacy_bundle_id": "sha256:c719d1e01cb707212d5e92f2c4b5a7a6963493adebddeb2e4dba02e777862def",
+    "payload_format": "zhuise.rgb-dpct-reference-white.portable-json.v3",
+    "payload_byte_length": 4376,
+    "payload_sha256": "sha256:aa7fe0400e7bef106a9ff75305babab317a4148bdb05c573c50395d6f4228cb9",
+    "bundle_id": "sha256:2759d2193861b95d39bb451efb2477c6ae796f5f58b3b81cf6487cbd85c3220f"
+  },
+  "probe": {
+    "exact_black_nits_float32": [0.0, 0.0, 0.0],
+    "neutral_shadow_levels_nits_float32": [0.0, 0.0000152587890625, 0.001, 0.01, 0.1, 0.5, 1.0, 2.0, 4.0, 8.0, 16.0, 32.0],
+    "zero_crossing_absolute_tolerance_nits": 0.000001
+  },
+  "execution": {
+    "orders": ["forward", "reverse"],
+    "fresh_process_per_order": true,
+    "application_pixel_reads": 0,
+    "paired_build_reads": 0,
+    "paired_build_runs": 0,
+    "network_reads": 0,
+    "media_writes": 0
+  },
+  "gates": {
+    "p233_and_p234_parent_identities_exact": true,
+    "payload_and_envelope_exact": true,
+    "black_preclamp_output_exact_zero_all_channels": true,
+    "black_postclamp_output_exact_zero_all_channels": true,
+    "all_channel_zero_crossings_within_one_micro_nit_of_zero": true,
+    "no_mixed_zero_nonzero_channels_on_fixed_neutral_shadow_probe": true,
+    "forward_reverse_reports_exact": true,
+    "application_pixels_build_network_and_media_reads_zero": true
+  },
+  "decision": {
+    "pass": "Retain only a private structural black-anchor preflight for the exact R1CZ payload; any new application domain still requires a separately frozen safety and quality protocol.",
+    "fail": "Close further arbitrary independent absolute-light application-domain safety accumulation for the exact payload while preserving P233 persistence and the original paired R1CY result.",
+    "no_rescue": [
+      "black floor or offset",
+      "knot insertion or endpoint anchoring",
+      "strength reduction",
+      "output clamp change",
+      "zero-crossing tolerance relaxation",
+      "neutral probe replacement",
+      "additional application domain"
+    ]
+  },
+  "claim_ceiling": "Post-P234 explanatory structural audit of one exact private paired/capture-time payload. It is not an independent confirmation, natural-HDR quality result, public package/schema/capability or product admission."
+}
