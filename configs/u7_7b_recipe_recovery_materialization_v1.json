@@ -1,0 +1,32 @@
+{
+  "schema": "kmcfm.u7-7b-recipe-recovery-materialization-contract.v1",
+  "node": "U7.7B",
+  "status": "FROZEN_BEFORE_IMPLEMENTATION",
+  "question": "Can one validated U7.7A bundle be materialized into a new local recovery directory only after every recipe/profile/asset byte is restored and revalidated, while failures roll back completely?",
+  "parent": "configs/u7_7a_recipe_recovery_bundle_v1.json",
+  "publication": {
+    "destination_must_not_exist": true,
+    "same_parent_private_staging_directory": true,
+    "publish_after_complete_validation": true,
+    "existing_destination_unchanged": true,
+    "failed_restore_removes_owned_staging": true,
+    "follow_archive_links": false,
+    "network_reads": false,
+    "input_pixel_reads": false,
+    "output_pixel_reads": false
+  },
+  "acceptance": {
+    "three_bundles_restore": true,
+    "restored_member_bytes_exact": true,
+    "restored_recipe_profile_assets_revalidate": true,
+    "forward_reverse_receipts_exact": true,
+    "existing_destination_unchanged": true,
+    "injected_write_failure_leaves_no_destination_or_staging": true,
+    "source_bundle_unchanged": true
+  },
+  "decision": {
+    "pass": "retain private create-only validated recovery materialization boundary",
+    "fail": "close materialization without weakening bundle, path, identity or rollback checks"
+  },
+  "claim_ceiling": "Private Windows local create-only materialization of validated no-pixel Look Approximation recovery bundles; no updater, in-place replacement, automatic input discovery, output rerender/export authorization, installer, telemetry, calibrated stock or product-release claim."
+}
