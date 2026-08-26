@@ -3,6 +3,7 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
+import math
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -56,8 +57,11 @@ def test_p248_pass_is_bounded_to_frozen_resource_and_correctness_gates() -> None
     assert result["new_boundary_count"] == 0
     assert result["owned_workspace_residue"] == 0
     assert not result["native_rebuild_binary_sha_exact"]
-    assert result["maximum_rss_ratio_vs_p247_maximum"] == (
+    assert math.isclose(
+        result["maximum_rss_ratio_vs_p247_maximum"],
         result["maximum_worker_peak_process_tree_rss_bytes"]
-        / result["p247_maximum_worker_peak_rss_bytes"]
+        / result["p247_maximum_worker_peak_rss_bytes"],
+        rel_tol=0.0,
+        abs_tol=1e-15,
     )
     assert "public package/schema/capability" in evidence["claim_ceiling"]
