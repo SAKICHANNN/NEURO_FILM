@@ -1,0 +1,35 @@
+{
+  "schema": "neuro-film.p237-inretouch-rtd-source-eligibility-contract.v1",
+  "experiment_id": "P237",
+  "status": "FROZEN_AFTER_PUBLIC_DISCOVERY_BEFORE_API_ENUMERATION_OR_PAYLOAD_ACCESS",
+  "node": "ULT > bounded paired-source gate > P237",
+  "official_sources": {
+    "repository": "https://github.com/omarAlezaby/InRetouch",
+    "repository_api": "https://api.github.com/repos/omarAlezaby/InRetouch",
+    "dataset": "https://huggingface.co/datasets/omaralezaby/Retouch_Transfer_Dataset",
+    "dataset_api": "https://huggingface.co/api/datasets/omaralezaby/Retouch_Transfer_Dataset",
+    "paper": "https://arxiv.org/abs/2412.03848",
+    "project": "https://omaralezaby.github.io/inretouch/"
+  },
+  "mandatory_gates": {
+    "public_payload_enumerable_without_authentication": true,
+    "commercial_model_and_product_use_permitted": true,
+    "scene_and_preset_grouping_explicit": true,
+    "authoritative_file_sizes_and_content_hashes_present": true,
+    "no_contact_sharing_or_additional_terms_acceptance_required": true,
+    "two_normalized_reports_byte_exact": true
+  },
+  "forbidden_reads": [
+    "dataset payload or LFS bytes",
+    "image or preset bytes",
+    "checkpoint or model weights",
+    "training or inference",
+    "pixel decode",
+    "authenticated or gated download"
+  ],
+  "decision": {
+    "pass": "PASS_PRIVATE_SOURCE_ELIGIBLE_FOR_SEPARATE_PIXEL_PREREGISTRATION",
+    "fail": "NOT_ELIGIBLE_PRODUCT_CYCLE_SOURCE_RIGHTS_OR_PAYLOAD_GAP"
+  },
+  "claim_ceiling": "Metadata-only public-source and rights eligibility audit; no data quality, preset authenticity, operator recovery, A1/A4/A5, package, capability, product, film or stock claim"
+}
