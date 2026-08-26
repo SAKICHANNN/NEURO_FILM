@@ -1,0 +1,58 @@
+{
+  "schema": "neuro-film.sf3-a0a5-synthetic-pipeline-rehearsal-evidence.v1",
+  "experiment_id": "SF3.A0A5.R0",
+  "status": "PASS_STRUCTURAL_REHEARSAL_ONLY",
+  "date": "2026-08-27",
+  "implementation": {
+    "contract_commit": "ec7d7bd9",
+    "implementation_commit": "72204c9a",
+    "direct_entry_fix_commit": "3196caa8",
+    "contract_sha256": "79a9139804f790c1a3ba65362fd62c1c92bf9c889f9306ca85cceed69f7524cf",
+    "runner_sha256": "4d39e29232819afc0c7fa039812489c2df759dabb7b574b83a16e1f7ca323acf",
+    "test_sha256": "96c1f23a116a852a3ce2438cd71d85c377c69c9bc007ac638213b8a7b3c787e5"
+  },
+  "formal_runs": {
+    "processes": 2,
+    "orders": [
+      "fujifilm_velvia_50,kodak_portra_400,kodak_ektar_100",
+      "kodak_ektar_100,kodak_portra_400,fujifilm_velvia_50"
+    ],
+    "report_bytes_each": 1276,
+    "report_sha256": "a5c36484d3a8d52addc3af81d7730cb2c5ef97272790623979d1794e3c4c0e63",
+    "byte_exact": true,
+    "stable_evidence_id": "6e436504a7a942390824ce39908545a462c18e7d3fc6548e64157ddea661a7f1"
+  },
+  "measurements": {
+    "receipt_bound_acquisition_rows": 108,
+    "independent_stock_integrity_lanes_passed": 3,
+    "independent_stock_k1_file_fits_passed": 3,
+    "independent_stock_confirmation_renders_passed": 3,
+    "confirmation_outputs": 12,
+    "blind_package_outputs": 36,
+    "blind_assignment_accuracy": 1.0,
+    "confirmation_target_reads_during_render_or_blind": 0,
+    "network_reads": 0,
+    "persistent_pixel_or_report_writes": 0,
+    "temporary_worktrees_remaining": 0
+  },
+  "execution_amendments": [
+    {
+      "stage": "before_A0_binding",
+      "finding": "The first implementation wrote a lookalike ledger schema literal instead of importing the authoritative LEDGER_SCHEMA constant.",
+      "resolution": "Import and use the existing constant; restart from a fresh temporary tree."
+    },
+    {
+      "stage": "during_A0_binding",
+      "finding": "The first scan materialization produced byte-identical repeated scanner observations, violating the frozen unique scan-file identity gate.",
+      "resolution": "Write a deterministic row-ID-derived three-byte edge identity outside the paired sampling grid; restart from a fresh temporary tree without changing any gate."
+    },
+    {
+      "stage": "before_formal_execution",
+      "finding": "Direct script execution did not add the repository root to sys.path although pytest import did.",
+      "resolution": "Add the standard repository-root bootstrap, verify --help, commit, and run both formal processes from scratch."
+    }
+  ],
+  "decision": "RETAIN_SF3_A0_TO_A5_PIPELINE_AS_STRUCTURALLY_REHEARSED_PENDING_PHYSICAL_STOCK_EVIDENCE",
+  "next_mainline": "Populate the already frozen Velvia 50, Portra 400 and Ektar 100 physical capture receipts and scans, then run the unchanged A1, independent A2, A4 and A5 stages. Do not treat this procedural rehearsal as a substitute for those observations.",
+  "claim_ceiling": "Procedural small-fixture execution readiness of the existing three-stock pipeline only. Passing is not film evidence, stock identification, calibrated response, preference, severe-artifact human review, scanner or roll generalization, or product promotion."
+}
