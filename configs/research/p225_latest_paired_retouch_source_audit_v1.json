@@ -1,0 +1,69 @@
+{
+  "schema": "kmcfm.p225-latest-paired-retouch-source-audit.v1",
+  "experiment_id": "P225_LATEST_PAIRED_RETOUCH_SOURCE_AUDIT_V1",
+  "frozen_at": "2026-08-26",
+  "freeze_status": "LOCKED_AFTER_READ_ONLY_SOURCE_SCOUTING_BEFORE_FORMAL_AUDIT",
+  "purpose": "Determine whether a latest primary source supplies a rights-ready paired or capture-time observation that can legally reopen one bounded algorithm cycle.",
+  "information_boundary": {
+    "pixel_downloads": 0,
+    "pixel_decodes": 0,
+    "model_downloads": 0,
+    "model_execution": 0,
+    "training": 0,
+    "scoring": 0,
+    "allowed_reads": [
+      "official paper PDF",
+      "official supplementary PDF",
+      "official repository Git metadata and text blobs"
+    ]
+  },
+  "admission_gates": {
+    "primary_publication_year_minimum": 2025,
+    "exact_official_identity_required": true,
+    "public_paired_pixels_or_explicit_recipe_required": true,
+    "data_rights_cover_commercial_derivatives_or_model_use_required": true,
+    "scene_or_file_disjoint_grouping_facts_required": true,
+    "new_identifying_observation_required": true,
+    "all_gates_required": true
+  },
+  "candidates": [
+    {
+      "candidate_id": "pixtalk_iccv2025",
+      "publication_year": 2025,
+      "official_repository": "https://github.com/mv-lab/pixtalk.git",
+      "official_commit": "03f16b9d233d5675a47b8345301fc0a784c67c66",
+      "required_blobs": {
+        "README.md": "dd031049cdfad2c7e91139e2c144d82b0d0179cd"
+      }
+    },
+    {
+      "candidate_id": "retouchiq_cvpr2026",
+      "publication_year": 2026,
+      "paper_url": "https://openaccess.thecvf.com/content/CVPR2026/papers/Wu_RetouchIQ_MLLM_Agents_for_Instruction-Based_Image_Retouching_with_Generalist_Reward_CVPR_2026_paper.pdf",
+      "paper_sha256": "e84fa3763ca9c4df2c6704b79f2fbef1de9eec69011b797c13f482e26ee548b0",
+      "supplement_url": "https://openaccess.thecvf.com/content/CVPR2026/supplemental/Wu_RetouchIQ_MLLM_Agents_CVPR_2026_supplemental.pdf",
+      "supplement_sha256": "23d9b695332aa3eeab478a189d81ecea639e466189b4dd444922c1408c571582"
+    },
+    {
+      "candidate_id": "instantretouch_cvpr2026",
+      "publication_year": 2026,
+      "official_repository": "https://github.com/OpenImagingLab/InstantRetouch.git",
+      "official_commit": "c5ed1dafc7af38f4af28138be1b9201fdd82e827",
+      "required_blobs": {
+        "LICENSE": "43bbe9580482a19bdf699c4b7397d858e0905da9",
+        "README.md": "9dea28e3196adcd2e5717b7fc59461237aa4068a",
+        "dataset/dataset_5kreq.py": "6f37e91ef78049a1da707b2772ea2ffa209fe2fe"
+      },
+      "paper_url": "https://openaccess.thecvf.com/content/CVPR2026/papers/Wu_InstantRetouch_Efficient_and_High-Fidelity_Instruction-Guided_Image_Retouching_with_Bilateral_Space_CVPR_2026_paper.pdf",
+      "paper_sha256": "4eb561b6c801b51ae4cf3c25cac27d9542b660c681596523bff00f5e25b1f80d",
+      "supplement_url": "https://openaccess.thecvf.com/content/CVPR2026/supplemental/Wu_InstantRetouch_Efficient_and_CVPR_2026_supplemental.pdf",
+      "supplement_sha256": "4640ba770cceff9c201962f263b4cfbd2a5fc3ece8fdb9350748c3ff3de6744d"
+    }
+  ],
+  "decision_rule": {
+    "pass": "PASS_SOURCE_READY_FOR_SEPARATE_PIXEL_LOCK",
+    "fail": "FAIL_CLOSED_NO_LATEST_RIGHTS_READY_PAIRED_SOURCE",
+    "pass_effect": "Only a separate metadata and pixel source-lock leaf may open; no algorithm, model, product, package, schema, capability, or stock claim opens here.",
+    "fail_effect": "Do not download candidate pixels or train. Keep the bounded automatic candidate cycle closed and return to controlled named-stock evidence or mature explicit-operator engineering."
+  }
+}
