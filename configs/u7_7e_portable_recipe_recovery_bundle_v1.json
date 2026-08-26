@@ -1,0 +1,66 @@
+{
+  "schema": "kmcfm.u7-7e-portable-recipe-recovery-bundle-contract.v1",
+  "node": "U7.7E",
+  "status": "FROZEN_BEFORE_IMPLEMENTATION",
+  "question": "Can the three strict Look Approximation recipes be represented in deterministic recovery bundles without machine-local paths while retaining exact semantics after explicit path rebinding?",
+  "parent_evidence": {
+    "path": "docs/evidence/U7_7D_RECIPE_RECOVERY_PRIVACY_AUDIT_RESULT.json",
+    "sha256": "14b9175ec6b7cc7522099cb4318e07e40696af43361f5f01e0a41552ca8cd2cb"
+  },
+  "inputs": {
+    "recipes": [
+      "outputs/eval/u7_2_three_stock_24mp_smoke/velvia_50.recipe.json",
+      "outputs/eval/u7_2_three_stock_24mp_smoke/portra_400.recipe.json",
+      "outputs/eval/u7_2_three_stock_24mp_smoke/ektar_100.recipe.json"
+    ],
+    "recipe_sha256": {
+      "velvia_50": "254e5c8ddf8703e2689975590531b80ca4e40bde1a37fcd0c382f33e2a42cf25",
+      "portra_400": "b6dece02a1c6e5cee9569424ae8fd53fdad8f4ee619753f6d81a2b2dea0d0fb3",
+      "ektar_100": "b92a75ed8ca8349df562153aad85df26db33ab0992d6bc07503033245ac7d0b8"
+    },
+    "profile": "configs/render_profiles/safe_rich_v1.json",
+    "profile_sha256": "72a9948e6fc76e230c4593b847728712bc034840cd339e6b34f079ac7d424c79"
+  },
+  "portable_recipe": {
+    "schema_id": "kmcfm.portable-render-recipe.v1",
+    "input_binding": "unresolved-user-input",
+    "output_binding": "unresolved-user-output",
+    "remove_only_fields": ["/input/path", "/output/path"],
+    "retain_input_and_output_sha256": true,
+    "strict_original_rebind_roundtrip_exact": true
+  },
+  "bundle": {
+    "schema_id": "kmcfm.portable-recipe-recovery-bundle.v1",
+    "format": "deterministic-zip-deflate-v1",
+    "recipe_member": "portable_recipe.json",
+    "manifest_member": "manifest.json",
+    "maximum_members": 16,
+    "maximum_uncompressed_bytes": 16777216,
+    "create_only": true
+  },
+  "acceptance": {
+    "three_styles_complete": true,
+    "forward_reverse_reports_byte_exact": true,
+    "bundle_bytes_repeat_exact": true,
+    "all_member_paths_relative": true,
+    "no_machine_or_user_path_disclosure": true,
+    "no_input_or_output_payloads": true,
+    "strict_original_rebind_roundtrip_exact": true,
+    "profile_and_assets_revalidate": true,
+    "claims_remain_look_approximation": true,
+    "existing_destination_unchanged": true,
+    "failed_publication_leaves_no_partial": true,
+    "owned_temporary_roots_removed": true
+  },
+  "decision": {
+    "pass": "RETAIN_PRIVATE_PORTABLE_RECIPE_BUNDLE_AND_OPEN_EXPLICIT_BINDING_INTEGRATION",
+    "fail": "CLOSE_PORTABLE_RECIPE_BUNDLE_WITHOUT_INSTALLER_INTEGRATION"
+  },
+  "stop_rules": [
+    "Historical strict recipes and U7.7A-C v1 bundles remain byte unchanged.",
+    "Only input.path and output.path may be replaced by explicit unresolved bindings.",
+    "Binding requires caller-supplied input and output paths and must reconstruct the original strict recipe byte-semantically when given the original paths.",
+    "No input/output file read, pixel decode, render, network access or installer action is permitted."
+  ],
+  "claim_ceiling": "Private portable Look Approximation recovery-bundle representation and exact explicit rebinding only; no installer, automatic rerender, export authorization, calibrated stock response, stock distinguishability or release claim."
+}
