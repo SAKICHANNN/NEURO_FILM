@@ -2478,3 +2478,14 @@ than the frozen `192 MiB` and `.90`. The entire unused architecture is reverted.
 The remaining peak is inside the safe-Lab render workspace; do not add another
 stitch, encoder, row-size or lifetime leaf. Evidence:
 `docs/evidence/U7_6F_THREE_STOCK_ROW_STREAM_RENDER_RESULT.json`.
+
+U7.6G closes scratch-backed source-context construction as a memory target.
+Row-chunked RGB-to-Lab plus the unchanged full-array reduction reproduces the
+legacy context and all three complete PNG/recipe identities exactly, with
+neutral wall time and zero scratch residue. Formal mean peak RSS falls only
+`8,556,544` bytes (`1,917,999,104 -> 1,909,442,560`; ratio `.99554`), far
+below the frozen `192 MiB` and `.90` gates. Do not integrate or rescue this
+candidate by changing chunk, storage, reduction or thresholds. Combined with
+U7.6E/F, this localizes the remaining peak to the per-stock safe-Lab render
+workspace after context construction. Evidence:
+`docs/evidence/U7_6G_THREE_STOCK_SOURCE_CONTEXT_MEMORY_RESULT.json`.

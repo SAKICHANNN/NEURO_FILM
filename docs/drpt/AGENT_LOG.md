@@ -17208,3 +17208,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   paper, exposure, gamut handling or gates. AO6 remains only a Velvia display-
   proxy baseline; controlled same-scene, independent-roll stock acquisition
   remains the next identifying route.
+
+### 2026-08-26 - U7.6G closes source-context conversion as the 24MP peak
+
+- **Node:** `ULT > U7 > U7.6G`; exact scratch-backed safe-Lab context memory
+  experiment after U7.6F localized the product peak inside safe-Lab.
+- **Execution:** fixed 128-row RGB-to-Lab writes to one owned P-backed float32
+  memory map, followed by the unchanged legacy reduction. Four fresh 24MP
+  processes in baseline/candidate/candidate/baseline order preserve the exact
+  source context, all three encoded PNGs, decoded RGB16 samples, ICCs, recipes
+  and stock order. Mean wall ratio is `1.00249`; context residue is zero.
+- **Decision:** formal peak changes only `1,917,999,104 -> 1,909,442,560`
+  bytes (`-8,556,544`, ratio `.99554`), failing the frozen `192 MiB` and `.90`
+  gates. Decision is `FAIL_CLOSED_DO_NOT_INTEGRATE_SCRATCH_BACKED_CONTEXT`;
+  no chunk/storage/reduction/threshold rescue and no default product change.
+  Evidence commit `79929c46`, evidence SHA `9e42a119...f411e`. The next distinct
+  runtime leaf must target per-stock safe-Lab render workspace, while
+  controlled three-stock acquisition remains the scientific mainline.
