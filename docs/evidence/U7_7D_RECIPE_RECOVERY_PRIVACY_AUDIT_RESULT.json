@@ -1,0 +1,70 @@
+{
+  "schema": "kmcfm.u7-7d-recipe-recovery-privacy-audit-evidence.v1",
+  "node": "U7.7D",
+  "status": "FAIL_CLOSED_MACHINE_LOCAL_PATH_DISCLOSURE",
+  "decision": "RETAIN_PRIVATE_BUNDLE_ONLY_AND_REQUIRE_A_NEW_PORTABLE_RECIPE_REPRESENTATION",
+  "bindings": {
+    "contract": {
+      "path": "configs/u7_7d_recipe_recovery_privacy_audit_v1.json",
+      "bytes": 2744,
+      "sha256": "63a291969429ad82aa5091a78a8002aeb382fbbeae23b3e119ad1ef629d228f2",
+      "commit": "b0e1b175"
+    },
+    "runner": {
+      "path": "scripts/audit_u7_7d_recipe_recovery_privacy.py",
+      "bytes": 8077,
+      "sha256": "f5b29508471da90168845021f9f06ae1572b712393a60d616373b1bea931c09a",
+      "commit": "3346eb09"
+    },
+    "tests": {
+      "path": "tests/test_u7_7d_recipe_recovery_privacy.py",
+      "bytes": 2008,
+      "sha256": "df5f9fb9a9ee25010216846266c1edd170cdbc38ee1b6d8ef82b30c6a137c654"
+    },
+    "formal_report": {
+      "path": "outputs/eval/u7_7d_recipe_recovery_privacy_audit_v1/forward.json",
+      "bytes": 5110,
+      "sha256": "8bb328bd8dcd0ff698f492b60a94148e03811b3227c6354c7b797e72b2145c9a"
+    }
+  },
+  "execution": {
+    "orders": ["forward", "reverse"],
+    "reports_byte_exact": true,
+    "report_sha256": "8bb328bd8dcd0ff698f492b60a94148e03811b3227c6354c7b797e72b2145c9a",
+    "stable_id": "a92f723f22ad352d74538433a5f99a6d545e28bb53f955e89bc27019cf5c6232",
+    "network_reads": 0,
+    "image_reads": 0,
+    "pixel_decodes": 0,
+    "owned_temporary_roots_removed": true
+  },
+  "results": {
+    "styles": ["ektar_100", "portra_400", "velvia_50"],
+    "bundle_bytes": [6041, 6039, 6038],
+    "member_paths_relative": true,
+    "bundle_bytes_repeat_exact": true,
+    "no_input_or_output_payloads": true,
+    "claims_remain_look_approximation": true,
+    "privacy_findings_per_bundle": 6,
+    "finding_fields": ["/input/path", "/output/path"],
+    "finding_kinds": [
+      "forbidden_local_identifier",
+      "input_path_present",
+      "output_path_present",
+      "windows_absolute_path"
+    ],
+    "no_machine_or_user_path_disclosure": false
+  },
+  "interpretation": {
+    "established": [
+      "all three existing recovery bundles include no input or output pixel bytes but do include the strict recipe's machine-local input and output paths",
+      "the report records only field locations and finding classes, not the leaked path values",
+      "the current bundle format is safe only as a private local recovery artifact and cannot enter installer integration"
+    ],
+    "not_established": [
+      "pixel leakage, telemetry or network access",
+      "a portable installer, automatic rerender, export authorization, calibrated stock response, stock distinguishability or release readiness"
+    ]
+  },
+  "next_leaf": "Freeze and implement a new versioned portable recovery recipe that preserves render/profile/asset/hash semantics while replacing machine-local input/output path bindings with explicit unresolved slots. Do not mutate historical v1 bundles or weaken strict recipe validation.",
+  "claim_ceiling": "Private recovery-bundle path privacy and portability audit only; no installer, release, rerender, export authorization, calibrated stock response, stock distinguishability or product claim."
+}
