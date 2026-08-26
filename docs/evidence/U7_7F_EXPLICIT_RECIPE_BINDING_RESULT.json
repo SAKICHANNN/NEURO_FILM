@@ -1,0 +1,78 @@
+{
+  "schema": "kmcfm.u7-7f-explicit-recipe-binding-evidence.v1",
+  "node": "U7.7F",
+  "status": "PASS_PRIVATE_EXPLICIT_RECIPE_BINDING",
+  "decision": "RETAIN_PRIVATE_EXPLICIT_BINDING_AND_OPEN_CALLER_DRIVEN_RENDER_REPLAY_INTEGRATION",
+  "bindings": {
+    "contract": {
+      "path": "configs/u7_7f_explicit_recipe_binding_v1.json",
+      "bytes": 2400,
+      "sha256": "af66f7d63fa2a007eca553a14b20a15ecf8b9ea036a3e957f509eedbada16d44",
+      "commit": "7ff6d69a"
+    },
+    "implementation": {
+      "path": "src/inference/portable_recipe_bundle.py",
+      "bytes": 20211,
+      "sha256": "8f095a76cd6d79fdeaaf2086210ee4c1767c95ae53a80c2269df39cc1d868e5d",
+      "commit": "bdfd77e0"
+    },
+    "runner": {
+      "path": "scripts/audit_u7_7f_explicit_recipe_binding.py",
+      "bytes": 10179,
+      "sha256": "496983e58d94dde8e2a3f8ea5fc3b09593130759e5f1f03a12b4a78929c25a2c",
+      "commit": "08e714dd"
+    },
+    "tests": {
+      "path": "tests/test_u7_7f_explicit_recipe_binding.py",
+      "bytes": 4350,
+      "sha256": "d1e983fdd9a8a8169d9d341317168773160f6cab1a98f680a621e6927ab4bd9d",
+      "commit": "862e73aa"
+    },
+    "formal_report": {
+      "path": "outputs/eval/u7_7f_explicit_recipe_binding_v1/forward.json",
+      "bytes": 4716,
+      "sha256": "25dcc8033262e63afcc390b486f9db92ddb50598e868438fe276e11dd0f62294"
+    }
+  },
+  "execution": {
+    "orders": ["forward", "reverse"],
+    "reports_byte_exact": true,
+    "report_sha256": "25dcc8033262e63afcc390b486f9db92ddb50598e868438fe276e11dd0f62294",
+    "stable_id": "93be416c19c367d3e8e0bc7ed91e7a3d23ece50443e7220207e3cd7f8d576c73",
+    "input_files_hash_verified": 3,
+    "network_reads": 0,
+    "image_decodes": 0,
+    "renders": 0,
+    "owned_temporary_roots_removed": true
+  },
+  "results": {
+    "styles": ["ektar_100", "portra_400", "velvia_50"],
+    "bound_recipe_sha256": [
+      "c538ea464652b5e4eae17f40025aabc7cbcda0f4a10ac4c7e8bc575cfa3311c4",
+      "4f48148fdcdcc732b9673c2e99edcb3ebe3305b409f65af1a93cbc2d099001d8",
+      "2ac301cb920b093686cb7981b95c505c31b0707f8c33277d5ca77422b7eab085"
+    ],
+    "bound_recipe_bytes_repeat_exact": true,
+    "binding_result_repeat_exact": true,
+    "bound_recipe_strict_valid": true,
+    "explicit_paths_exact": true,
+    "output_not_created": true,
+    "input_hash_mismatch_rejected_before_publication": true,
+    "existing_output_rejected_before_publication": true,
+    "existing_recipe_destination_unchanged": true,
+    "failed_publication_leaves_no_partial": true,
+    "claims_remain_look_approximation": true
+  },
+  "interpretation": {
+    "established": [
+      "a caller can bind each of the three portable stock-look bundles to explicit input and future output paths and publish one strict private recipe",
+      "the selected input file is SHA-256 verified before recipe publication and output creation does not occur",
+      "repeat binding is byte exact and preserves path-independent recipe semantics and Look Approximation claims"
+    ],
+    "not_established": [
+      "render authorization, automatic rerender, installer integration, export, calibrated stock response, stock distinguishability or release readiness"
+    ]
+  },
+  "next_leaf": "Integrate the explicit binder with the existing deterministic replay entry point under an opt-in caller action that independently validates the strict recipe and preserves identity fallback on failure.",
+  "claim_ceiling": "Private explicit path binding and strict recipe publication only; no render authorization, installer, automatic rerender, export, calibrated stock response, stock distinguishability or release claim."
+}
