@@ -9,6 +9,7 @@ from scripts.audit_p235_r1cz_structural_black_anchor import run
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/p235_r1cz_structural_black_anchor_v1.json"
+EVIDENCE = ROOT / "docs/evidence/P235_R1CZ_STRUCTURAL_BLACK_ANCHOR_RESULT.json"
 
 
 def test_p235_forward_reverse_science_is_exact() -> None:
@@ -49,3 +50,15 @@ def test_p235_contract_forbids_rescue_and_new_domain() -> None:
     assert "strength reduction" in no_rescue
     assert "additional application domain" in no_rescue
     assert config["execution"]["application_pixel_reads"] == 0
+
+
+def test_p235_evidence_binds_formal_result() -> None:
+    evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+    report = run(CONFIG)
+    assert evidence["status"] == report["status"]
+    assert evidence["bindings"]["scientific_identity"] == report["scientific_identity"]
+    assert (
+        evidence["structural_probe"]["black_postclamp_output_nits_float32"]
+        == report["structural_probe"]["black_postclamp_output_nits_float32"]
+    )
+    assert evidence["gates"]["forward_reverse_reports_exact"]
