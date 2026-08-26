@@ -16101,3 +16101,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   preview/export, accessibility, packaging, telemetry, calibrated-stock and
   product-release claims remain pending. Placement under `src/inference/`
   follows the existing recipe/replay contract boundary.
+
+### 2026-08-26 - RF3.D6 closes layer-exposure observability
+
+- Ran the frozen manufacturer-sensitivity x public-reflectance experiment on
+  1,732 eligible USGS records in two exact replays.
+- All three pairs fail the low-tail separation gate; Velvia--Portra also fails
+  the median gate. Controlled photographic targets remain the next admissible
+  stock-evidence route; no render or fitting was opened.
+- Evidence: `docs/evidence/RF3_D6_THREE_STOCK_LAYER_EXPOSURE_RESULT.json`.

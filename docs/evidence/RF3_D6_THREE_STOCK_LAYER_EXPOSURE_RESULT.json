@@ -1,0 +1,59 @@
+{
+  "automatic_pass": false,
+  "claim_ceiling": "Public-domain reflectance plus manufacturer spectral-sensitivity prior observability only. No RGB render, characteristic/development response, negative/slide interpretation, scanner truth, target closeness, stock calibration, preference, product or multi-stock completion claim.",
+  "decision": "close_datasheet_layer_exposure_observability_and_require_controlled_photographic_targets",
+  "experiment_id": "RF3.D6",
+  "pairwise_comparisons": [
+    {
+      "bootstrap_gate_pass": true,
+      "group_bootstrap_95_lcb_median_l2": 0.010592606317133645,
+      "left": "fujifilm_velvia_50",
+      "material_delta_vector_rms": 0.02853500264975801,
+      "material_gate_pass": true,
+      "median_gate_pass": false,
+      "median_log_response_l2": 0.011282173329348073,
+      "p10_gate_pass": false,
+      "p10_log_response_l2": 0.0018757362888869838,
+      "right": "kodak_portra_400"
+    },
+    {
+      "bootstrap_gate_pass": true,
+      "group_bootstrap_95_lcb_median_l2": 0.020885460322705253,
+      "left": "fujifilm_velvia_50",
+      "material_delta_vector_rms": 0.04366442757316316,
+      "material_gate_pass": true,
+      "median_gate_pass": true,
+      "median_log_response_l2": 0.023405362369206845,
+      "p10_gate_pass": false,
+      "p10_log_response_l2": 0.004116132276358593,
+      "right": "kodak_ektar_100"
+    },
+    {
+      "bootstrap_gate_pass": true,
+      "group_bootstrap_95_lcb_median_l2": 0.020452354035150503,
+      "left": "kodak_portra_400",
+      "material_delta_vector_rms": 0.034317047090248944,
+      "material_gate_pass": true,
+      "median_gate_pass": true,
+      "median_log_response_l2": 0.021907380886971188,
+      "p10_gate_pass": false,
+      "p10_log_response_l2": 0.004615047563678712,
+      "right": "kodak_ektar_100"
+    }
+  ],
+  "population": {
+    "chapters": 7,
+    "eligible_records": 1732,
+    "population_sha256": "2e3f015f053912f12a7339fb2004634dba2099905a47e3ecac984619eec61955",
+    "rejection_counts": {
+      "errorbars": 679,
+      "insufficient_visible_overlap": 25,
+      "not_aref": 683,
+      "reflectance_out_of_bounds": 5,
+      "relative_y_out_of_bounds": 19
+    },
+    "sample_groups": 1592
+  },
+  "schema": "neuro-film.rf3-three-stock-layer-exposure-observability-report.v1",
+  "stable_evidence_id": "6c08ba3289e42b793015e6f6f35ece13326b43ca7b2b56b950a4da0694cd831b"
+}

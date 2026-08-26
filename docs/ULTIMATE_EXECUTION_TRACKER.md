@@ -102,6 +102,15 @@ SF3.A3: no stock has controlled pixel targets, scanner interpretation or
 independent holdouts, so fitting and product claims remain closed. Evidence:
 `docs/evidence/RF3_D5_THREE_STOCK_SPECTRAL_SHAPE_RESULT.json`.
 
+RF3.D6 tests whether that retained spectral-shape signal remains uniformly
+observable after D65 illumination and per-stock white normalization on 1,732
+public-domain measured reflectances. Two formal reports are byte exact
+(`42d4e18e...95170`). All three stock pairs fail the frozen low-tail gate;
+Velvia--Portra also fails the median gate (`.01128 < .02`). Close this exact
+layer-exposure prior as a three-stock operator source. Controlled photographic
+targets remain required; no RGB render, fitting or product path opens.
+Evidence: `docs/evidence/RF3_D6_THREE_STOCK_LAYER_EXPOSURE_RESULT.json`.
+
 SF3.A3 now compiles the requested executable source/evidence matrix over eight
 hash-bound results rather than relying on narrative eligibility. Two formal
 reports are byte exact (`676aec5f...74394c`, stable `4954e9b1...98f71b`).
