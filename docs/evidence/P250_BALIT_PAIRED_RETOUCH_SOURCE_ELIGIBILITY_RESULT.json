@@ -1,0 +1,94 @@
+{
+  "schema": "neuro-film.p250-balit-paired-retouch-source-eligibility-evidence.v1",
+  "experiment_id": "P250",
+  "status": "NOT_READY_BALIT_SOURCE_RIGHTS_ACCESS_OR_GROUPING_GAP_NOT_SCIENTIFIC_RESULT",
+  "date": "2026-08-27",
+  "commits": {
+    "preregistration": "3fa7270bc1a2c18139df593c61468e12cfc0ce03",
+    "gate_freeze": "4c72d086",
+    "implementation": "a9a3c0a120045e1c8af53a20c5147ccc68eabbf0",
+    "runner_binding": "84d7500191e0ff01b9676c652645c711a15e4270",
+    "formal_execution_head": "3196caa80f189e6b5eed836fb5d9438a0ffb13b4"
+  },
+  "protocol": {
+    "contract_path": "docs/planning/P250_BALIT_PAIRED_RETOUCH_SOURCE_ELIGIBILITY_CONTRACT.md",
+    "contract_bytes": 3331,
+    "contract_sha256": "83ed17c3081deb6197e40de2bceba70ed2e9d65bc3851c21729f2edd96bb1561",
+    "config_path": "configs/p250_balit_paired_retouch_source_eligibility_v1.json",
+    "config_bytes": 2205,
+    "config_sha256": "830d1cdb57e3b3c894150e2d81f4b4c348d8da23816a826c83a4e04c745ee4c8",
+    "all_mandatory_gates_required": true,
+    "dataset_payload_reads_allowed": false
+  },
+  "implementation": {
+    "runner_path": "scripts/audit_p250_balit_paired_retouch_source_eligibility.py",
+    "runner_bytes": 7999,
+    "runner_sha256": "2aa5a639ec4286d9616cc6f81cb3f4cd4db05a96f9a562060e4aeaf9637eb42b",
+    "test_path": "tests/test_p250_balit_paired_retouch_source_eligibility.py",
+    "test_bytes": 1611,
+    "test_sha256": "2581e89cefed41f9a2aeaf77db53c431d545088e92d16aec3b3d37f6ea220755"
+  },
+  "official_source_identity": {
+    "dataset_name": "BALit: Dataset for Backlit Low-Light Image Enhancement",
+    "doi": "10.21227/cdqg-q549",
+    "doi_url": "https://doi.org/10.21227/cdqg-q549",
+    "record_url": "https://ieee-dataport.org/documents/balit-dataset-backlit-low-light-image-enhancement",
+    "official_host": "IEEE DataPort"
+  },
+  "formal": {
+    "forward_report_path": "outputs/eval/p250_balit_paired_retouch_source_eligibility_v1/formal_result.json",
+    "reverse_report_path": "outputs/eval/p250_balit_paired_retouch_source_eligibility_v1/formal_replay.json",
+    "report_bytes_each": 1883,
+    "report_sha256": "9299ec5efdeec8c2150a32d3e66c42745664ab5e8994d71ddc3e4a0965528796",
+    "reports_byte_exact": true,
+    "scientific_identity": "sha256:166f3d89178ca4bb46fd0df09d2eb9b5396f37dfde509d1705e67d9fd2f20003",
+    "fresh_successful_process_count": 2,
+    "official_metadata_requests_per_process": 2,
+    "network_bytes_per_process": 114634,
+    "authenticated_requests": 0,
+    "dataset_file_requests": 0,
+    "image_or_thumbnail_requests": 0,
+    "dataset_payload_bytes": 0,
+    "pixel_decodes": 0,
+    "training_or_inference": 0
+  },
+  "paired_observation": {
+    "input_count_stated": 1000,
+    "input_format_stated": "Canon CR2",
+    "input_size_gb_stated": 21.5,
+    "expert_retouched_reference_count_stated": 1000,
+    "reference_size_gb_stated": 26.84
+  },
+  "gates": {
+    "official_identity": true,
+    "paired_observation": true,
+    "anonymous_public_payload": false,
+    "commercial_rights": false,
+    "public_exact_inventory": false,
+    "group_isolation_facts": false,
+    "two_reports_byte_exact": true
+  },
+  "preserved_infrastructure_exclusion": {
+    "attempt_position": "before the first complete formal report",
+    "failure": "TLS handshake EOF after the DOI redirect",
+    "report_created": false,
+    "dataset_or_image_request_created": false,
+    "scope": "The frozen runner, sources, gates and report schema were unchanged. Two later independent complete processes produced byte-exact reports. This transport failure is not a scientific or source-rights result."
+  },
+  "interpretation": {
+    "positive_facts": [
+      "BALit is a current official paired-capture source whose Canon CR2 inputs and expert-retouched references are materially relevant to the paired-observation research lane.",
+      "The official record states 1,000 CR2 inputs and 1,000 expert-retouched references with stated payload sizes of 21.5 GB and 26.84 GB."
+    ],
+    "formal_failure": "The official record requires login to access dataset files and does not expose an explicit commercial-compatible license, an exact public file manifest with content hashes, or scene/group identifiers with train, validation and test roles.",
+    "no_rescue": [
+      "create or use an IEEE account, cookies, credentials or an authenticated browser session",
+      "download a dataset file, archive, thumbnail, image, paper, model or mirror",
+      "infer commercial rights, exact inventory or group isolation from silence",
+      "consume candidate 3 or reopen the closed after-only route"
+    ],
+    "retained_boundary": "BALit remains a promising paired-source lead. Only a future official release that independently satisfies public payload, commercial rights, exact inventory and group-isolation gates can open a separately preregistered member-integrity preflight."
+  },
+  "consumer_mapping": false,
+  "claim_ceiling": "Metadata-only BALit source eligibility negative; no pixel quality, arbitrary-reference identifiability, A1/A4/A5, shared operator, package, schema, capability, product, stock-authenticity or preference admission"
+}
