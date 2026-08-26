@@ -1,0 +1,65 @@
+{
+  "schema": "neuro-film.p221a-r1ck-formal-commit-reproducibility-contract.v1",
+  "experiment_id": "P221A",
+  "status": "FROZEN_BEFORE_CONSUMER_REBUILD_OR_RUNTIME_EXECUTION",
+  "question": "Does rebuilding the exact producer-declared R1CK formal-execution commit reproduce the frozen formal report and stable identity that P221-v1 could not reproduce from the later evidence commit?",
+  "producer": {
+    "repository": "C:/Users/hhvrf/Documents/追色",
+    "commit": "8c66ce51094cab760517301c2b495898482c5bd6",
+    "evidence_commit": "a27d7c7d5d6e2b3bb342082e4525761cecaf843e",
+    "evidence_path": "docs/evidence/R1CK_POLYNOMIAL_RGB_WEBASSEMBLY_RUNTIME_RESULT.json",
+    "evidence_blob": "08cab56c2f796293c54692003a18c9486d7581eb",
+    "evidence_worktree_sha256": "43768f4795d036a72c01a300cff22effaaa37e35ff8aba23ac67ed6d0358286f",
+    "bound_git_blobs": {
+      "docs/research/R1CK_POLYNOMIAL_RGB_WEBASSEMBLY_RUNTIME_PREREGISTRATION.json": "5e951a9580daddadf9eab7c154bba99809850946",
+      "native/polynomial_rgb_api.h": "a4a89d405157c211cc9ff16e3d6d1f2af3e8dacb",
+      "native/polynomial_rgb_portable.c": "08ed2934ed39b67673f654797375939b0f852318",
+      "native/polynomial_rgb_wasm_probe.c": "705df9b304341a337298baf548c7384a674afc65",
+      "scripts/run_r1ck_polynomial_rgb_webassembly_runtime.py": "f3a203178f7f460e91927084bd4433995b0dbe4e",
+      "tests/test_run_r1ck_polynomial_rgb_webassembly_runtime.py": "e3ee0d52b0501772998c4c780e9edafbb85b10ac"
+    }
+  },
+  "toolchain": {
+    "ndk_logical_path": "C:/Users/hhvrf/Documents/追色/outputs/tmp/tools/android-ndk-r27d",
+    "compiler_sha256": "d5962dc3301294b177963416c23f1987c5ddb2c3e88ce0a5bddb6bd98961e4ef",
+    "wasm_linker_sha256": "1cb3af374d216109e7851a0cdfcc4c0ec11370de1e3c7c291a4be4e391f6a3fb",
+    "node_path": "C:/Users/hhvrf/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+    "node_sha256": "3602f2bb1a10f2cbab4c36886218a33c1ab3db87290e73b033c46c77147d0237"
+  },
+  "expected": {
+    "producer_status": "PASS_PRIVATE_NODE_WEBASSEMBLY_RUNTIME",
+    "formal_report_sha256": "3403ed4fced6ea8cfbdfd0a2cfa246a4579232ec4ce999bccc710a5d68109984",
+    "stable_identity": "81a725667ca9bd8b82444b950537f1b91b25365dad203ee622e492a00b4e9313",
+    "wasm_module_bytes": 6168,
+    "wasm_module_sha256": "a1ee6cd057ffc287dc2b7c648571716b12c0c538ca2356b89b94870df18baf29",
+    "output_rgb_sha256": "ab3448a460165ebc2cb349c4fb4038ac0d3921af6c0a437d8714b7839bf89837"
+  },
+  "execution": {
+    "fresh_exact_commit_clones": 2,
+    "runner_executions_per_clone": 1,
+    "runner_internal_builds_per_execution": 2,
+    "runner_internal_node_processes_per_execution": 2,
+    "temporary_root": "system temporary directory",
+    "producer_worktree_reads_after_clone": 0,
+    "producer_worktree_writes": 0,
+    "network_downloads": 0
+  },
+  "gates": {
+    "producer_formal_commit_and_later_evidence_identity_exact": true,
+    "all_transitive_git_blobs_exact": true,
+    "compiler_linker_and_node_hashes_exact": true,
+    "each_consumer_report_equals_frozen_producer_report_sha256": true,
+    "consumer_reports_byte_exact": true,
+    "wasm_module_identity_exact": true,
+    "runtime_output_identity_exact": true,
+    "stable_identity_exact": true,
+    "temporary_roots_removed": true,
+    "network_downloads_zero": true
+  },
+  "decision": {
+    "pass": "Retain exact R1CK formal-commit reproducibility as private Node WebAssembly arithmetic evidence only; P221-v1 remains failed as written.",
+    "fail": "Close R1CK consumer admission at exact formal-commit reproducibility without compiler, linker, source, flag, path, tolerance, identity or artifact rescue.",
+    "invalid": "If either the exact formal commit, later committed evidence or frozen toolchain is unavailable, record infrastructure-invalid and do not interpret WebAssembly arithmetic."
+  },
+  "claim_ceiling": "Independent consumer reproducibility audit of the exact producer-declared R1CK formal-execution commit; no browser, WebView, media, RAW/HDR quality, shared-reference science, package, schema, capability or product admission."
+}

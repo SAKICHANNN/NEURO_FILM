@@ -15969,6 +15969,22 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   browser/WebView, media, RAW/HDR quality, package/schema/capability, shared
   reference or product mapping opens.
 
+### 2026-08-26 - P221A freezes corrected formal-commit reproducibility question
+
+- **Why this is separate:** P221-v1 remains formally failed and immutable. Its
+  result exposed a consumer binding defect: later evidence HEAD was rebuilt
+  even though the committed evidence explicitly identifies `8c66ce51` as the
+  formal-execution commit hashed into the report. P221A is a new versioned
+  audit, not a relaxed identity gate or rewritten result.
+- **Freeze:** exact formal commit `8c66ce51094cab760517301c2b495898482c5bd6`,
+  later evidence commit/blob `a27d7c7d`/`08cab56c`, the unchanged six
+  transitive blobs, pinned NDK/Node hashes, two fresh no-hardlink clones and
+  the same exact report/module/output/stable identities.
+- **Decision:** PASS requires the complete frozen report and stable identity,
+  not merely arithmetic parity. FAIL closes exact consumer reproducibility.
+  P221-v1 stays failed either way; no browser, package/schema/capability or
+  product mapping can open.
+
 ### 2026-08-26 - U7.2A accelerates the exact three-stock CPU path
 
 - **Implementation:** `36cf7afe` adds opt-in disjoint-row parallel execution
