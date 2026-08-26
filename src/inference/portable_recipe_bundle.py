@@ -395,10 +395,10 @@ def bind_portable_recipe_recovery_bundle(
     for path, label in ((output_path, "output"), (recipe_path, "recipe")):
         if os.path.lexists(path):
             raise RecipeRecoveryBundleError(f"bound {label} destination already exists")
-        if not path.parent.is_dir():
-            raise RecipeRecoveryBundleError(
-                f"bound {label} parent directory does not exist"
-            )
+    if not recipe_path.parent.is_dir():
+        raise RecipeRecoveryBundleError(
+            "bound recipe parent directory does not exist"
+        )
     canonical = {
         os.path.normcase(os.path.abspath(path))
         for path in (input_path, output_path, recipe_path)
