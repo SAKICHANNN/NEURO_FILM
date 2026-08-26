@@ -1,0 +1,32 @@
+{
+  "schema": "kmcfm.u7-7c-recipe-recovery-update-contract.v1",
+  "node": "U7.7C",
+  "status": "FROZEN_BEFORE_IMPLEMENTATION",
+  "question": "Can one previously validated recovery tree be atomically replaced by a different validated U7.7A bundle while preserving the old tree on every injected publication failure?",
+  "parent": "configs/u7_7b_recipe_recovery_materialization_v1.json",
+  "update": {
+    "existing_tree_must_revalidate_before_staging": true,
+    "replacement_bundle_must_revalidate_before_staging": true,
+    "replacement_tree_must_revalidate_before_swap": true,
+    "same_parent_private_stage_and_backup": true,
+    "old_tree_restored_after_injected_publication_failure": true,
+    "successful_update_removes_owned_backup_and_stage": true,
+    "source_bundle_unchanged": true,
+    "network_reads": false,
+    "input_pixel_reads": false,
+    "output_pixel_reads": false
+  },
+  "acceptance": {
+    "all_six_ordered_old_to_new_style_pairs_update": true,
+    "updated_member_bytes_exact": true,
+    "forward_reverse_receipts_exact": true,
+    "injected_post_backup_failure_restores_old_tree_exact": true,
+    "tampered_existing_tree_rejected_before_swap": true,
+    "owned_stage_and_backup_residue_zero": true
+  },
+  "decision": {
+    "pass": "retain private atomic recipe recovery update boundary",
+    "fail": "close update without weakening existing-tree validation or rollback"
+  },
+  "claim_ceiling": "Private local atomic replacement of one validated no-pixel Look Approximation recovery tree by another validated bundle. No installer, automatic update discovery, input recovery, rerender/export authorization, telemetry, calibrated stock or product-release claim."
+}
