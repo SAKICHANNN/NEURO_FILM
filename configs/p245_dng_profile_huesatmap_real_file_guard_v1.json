@@ -1,0 +1,59 @@
+{
+  "schema": "neuro-film.p245-dng-profile-huesatmap-real-file-guard-contract.v1",
+  "experiment_id": "P245",
+  "status": "FROZEN_BEFORE_RAW_DOWNLOAD_OR_FORMAL_RUN",
+  "bindings": {
+    "contract_path": "docs/planning/P245_DNG_PROFILE_HUESATMAP_REAL_FILE_GUARD_CONTRACT.md",
+    "contract_sha256": "c7ddbb8e0b6c9394ff556841e165aaca0040f35c3610977c83af47f2333c242b",
+    "p240_snapshot_path": "data/reference_color_match/p240_rawpixls_capture_metadata_v1/repository_snapshot.json",
+    "p240_snapshot_bytes": 1246029,
+    "p240_snapshot_sha256": "8dc5f5c74e20cc3a38f4548d53bba4bb516835e2a859e80bf86e7ac6283b3aa3",
+    "p242_config_path": "configs/p242_dng_profile_huesatmap_source_audit_v1.json",
+    "p244_evidence_path": "docs/evidence/P244_DNG_PROFILE_HUESATMAP_INGRESS_GUARD_RESULT.json",
+    "p244_evidence_sha256": "32e22f73459c34b108f353e568c29596b24cf9b0499bd07655831614d2c7bf14"
+  },
+  "destination_root": "data/reference_color_match/p245_dng_profile_guard_v1/raw",
+  "network_body_ceiling_bytes": 62914560,
+  "allowed_host": "raw.pixls.us",
+  "rows": [
+    {
+      "id": 1052,
+      "source_id": "dji_fc220_1052",
+      "make": "DJI",
+      "model": "FC220",
+      "rights": "CC0-1.0/Public Domain",
+      "url": "https://raw.pixls.us/getfile.php/1052/nice/DJI - FC220 - 16bit (4:3).DNG",
+      "filename": "1052_dji_fc220.dng",
+      "source_sha256": "85a4fc27cca3c1358abd22898d6426dc3448060ca5143e7bd255cb5fff64392d",
+      "expected_dimensions": [6, 6, 3],
+      "expected_required_tags": [50937, 50938, 50939]
+    },
+    {
+      "id": 2644,
+      "source_id": "fujifilm_x100s_2644",
+      "make": "Fujifilm",
+      "model": "X100S",
+      "rights": "CC0-1.0/Public Domain",
+      "url": "https://raw.pixls.us/getfile.php/2644/nice/Fujifilm - X100S - NAN.dng",
+      "filename": "2644_fujifilm_x100s.dng",
+      "source_sha256": "7adec564bbf74858c70b5a01a2b744000f8057303169fc70d91bde7cb435530f",
+      "expected_dimensions": [90, 30, 1],
+      "expected_required_tags": [50937, 50938, 50939]
+    }
+  ],
+  "gates": {
+    "required_rows": 2,
+    "require_exact_source_hashes": true,
+    "require_exact_snapshot_rights_rows": true,
+    "require_expected_dimensions": true,
+    "require_required_real_tags": true,
+    "require_rejection_names_all_actual_guarded_tags": true,
+    "require_zero_camera_decode_calls": true,
+    "require_source_immutability": true,
+    "require_forward_reverse_exact": true,
+    "require_two_fresh_process_reports_exact": true,
+    "require_zero_partial_residue": true
+  },
+  "stop_rule": "Any rights/source/hash/tag mismatch, camera decode call, source mutation, partial residue or replay mismatch closes this exact confirmation without row replacement, mirror use, pixel decode, profile application or gate rescue.",
+  "claim_ceiling": "Private real-file predecode rejection confirmation on two exact CC0 DNGs with structurally distinct ProfileHueSatMap tables. No profile application, full DNG conformance, arbitrary RAW, image quality, vendor parity, default-loader integration, package, schema, capability, film-stock or product admission."
+}
