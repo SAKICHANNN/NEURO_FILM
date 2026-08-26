@@ -16605,3 +16605,34 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   byte-for-byte to their pre-candidate state; no threshold or encode-only
   proxy rescue. Six adjacent tests, Ruff, compile and diff checks pass.
   Evidence: `docs/evidence/U7_6E_THREE_STOCK_STREAMING_PNG_RESULT.json`.
+
+### 2026-08-26 - P236 preserves a wrong-coordinate neutral gate as a formal negative
+
+- **Node and routing:** `ULT > U1 > U1.3N/U1.4K / P236`; primary
+  `dev-research-reliability`, with scientific-research and structure
+  stewardship as read-only reviewers. A product-shell audit first confirmed
+  that per-output fallback reasons and receipt identities already exist, so no
+  duplicate uncertainty wrapper was added. P236 instead composes two retained
+  private mechanisms: P98 scene-linear Rec.2020 DNG raster and P224 official
+  ACES 2 P3-D65 1000-nit XYZ-D65 absolute output.
+- **Protocol:** exact five already-consumed P98 DNG identities; no P99 exposure,
+  reference/target/preferred render, clipping, normalization, tone mapping,
+  encoded image, network or product mapping. The contract was frozen at
+  `3bd3ce7e`; implementation and runner were fixed at `3cb02a67` before the
+  two formal pixel processes.
+- **Result:** forward/reverse 4,040-byte reports are byte-identical at
+  `c4139194...5f16`, stable `e09e52bb...8605`. All five outputs are owned,
+  C-contiguous float32, finite, shape-preserving and byte-exact to an
+  independently assembled official OCIO chain; exact black is `[0,0,0]`,
+  source bytes and P98 pixels remain unchanged, and output maxima span
+  `40.2383..231.9009` nits.
+- **Formal failure and propagation:** the sole failed gate is the frozen
+  equal-channel neutral check, whose maximum XYZ spread is `14.77003479` nits.
+  That check is conceptually wrong for XYZ-D65 because a neutral follows the
+  D65 white-point chromaticity rather than `X=Y=Z`; nevertheless it is not
+  replaced after score. Status is
+  `FAIL_CLOSED_FROZEN_NEUTRAL_GATE_WRONG_XYZ_COORDINATE`. The private callable
+  remains unpromoted mechanics; P98/P224 stay valid and P99/P100/P229/R1CS
+  stay closed. Fourteen P100/P224/P236 tests, Ruff, compileall and diff checks
+  pass. Evidence SHA-256 `7d8e294e...916a`:
+  `docs/evidence/P236_DNG_FORWARD_ACES2_XYZ_NITS_CALLABLE_RESULT.json`.
