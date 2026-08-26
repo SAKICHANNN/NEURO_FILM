@@ -1,0 +1,102 @@
+{
+  "canonical_rows": [
+    {
+      "decoded_rgb16_sha256": "73d6035a045a01288a43959537c14b0bfd7f3dad33720b296e239535c7742bdf",
+      "normalized_recipe_sha256": "e3433c23d0e906ccce1656a2401b203a46133958a46d03e59fd46fc137f8bd90",
+      "output_sha256": "47670dc5d2b012147398a3a0632616a772f49fc087305b041e32848a7e640e3c",
+      "style_id": "velvia_50"
+    },
+    {
+      "decoded_rgb16_sha256": "00bb10b7fa6d114cb47bc7e6eff2c9532ef75442563d3968d779b8f950fb4480",
+      "normalized_recipe_sha256": "ea9d422b7eef417ac662e8d942c6185da0019f223de16887d5f0d1fc2f6c579b",
+      "output_sha256": "710aca1a0fc462ae2fd53fc436e564fd72ead284268eb6d1a8420500b5f83a5b",
+      "style_id": "portra_400"
+    },
+    {
+      "decoded_rgb16_sha256": "e7b715147454c96ce959b19c2bfe41496542da1664c52a841954bb4e1304799e",
+      "normalized_recipe_sha256": "888f06cad69cb0e1c480ed025b477b20b6569ae9dcecc67533188425777988cc",
+      "output_sha256": "8fa3b8587e99926925d3a6d101f6de749e9b1c3c2d0c8bb23d39d33075ae8743",
+      "style_id": "ektar_100"
+    }
+  ],
+  "claim_ceiling": "Local Windows/Python one-input three-stock PNG16 file batch only; current outputs remain non-calibrated Look Approximations and U7.2C stock separation remains failed.",
+  "config_sha256": "007af4ba3393d33b3c30fee7484ba61af513ecae96ffc086cb6ebb92b1c86edd",
+  "decision": "PASS",
+  "execution_amendment": {
+    "algorithm_or_gate_change": false,
+    "initial_decision": "FAIL_CLOSED",
+    "initial_peak_rss_ratio": 0.8624150286754887,
+    "initial_report_sha256": "38086e600ef5e0d0b83e159eebb57c6e9f43603c2fa63a95ae99c4cb490f0809",
+    "initial_wall_ratio": 0.8816623208758915,
+    "normalization": "output.path and software.commit are excluded only from cross-run recipe semantic comparison",
+    "reason": "concurrent disjoint commits changed only recipe software.commit across the initial B/C/C/B run"
+  },
+  "gate_results": {
+    "candidate_peak_process_tree_rss_ratio": true,
+    "candidate_residue_count": true,
+    "median_wall_ratio": true,
+    "ordered_stock_ids_exact": true,
+    "three_decoded_sample_arrays_exact": true,
+    "three_encoded_outputs_byte_exact": true,
+    "three_normalized_recipes_exact": true
+  },
+  "implementation_commit": "125cab47c275e500fc58ddae0b7a5859a9e884da",
+  "metrics": {
+    "baseline_mean_peak_process_tree_rss_bytes": 2605867008.0,
+    "baseline_mean_wall_seconds": 151.35502619999897,
+    "candidate_mean_peak_process_tree_rss_bytes": 2238926848.0,
+    "candidate_mean_wall_seconds": 140.91731099999924,
+    "candidate_residue_count": 0,
+    "decision": "PASS",
+    "peak_rss_ratio": 0.8591869197954096,
+    "wall_ratio": 0.9310381989811991
+  },
+  "rows": [
+    {
+      "mode": "baseline",
+      "peak_process_tree_rss_bytes": 2605834240,
+      "rows": [
+        {"decoded_rgb16_sha256": "73d6035a045a01288a43959537c14b0bfd7f3dad33720b296e239535c7742bdf", "normalized_recipe_sha256": "e3433c23d0e906ccce1656a2401b203a46133958a46d03e59fd46fc137f8bd90", "output_sha256": "47670dc5d2b012147398a3a0632616a772f49fc087305b041e32848a7e640e3c", "style_id": "velvia_50"},
+        {"decoded_rgb16_sha256": "00bb10b7fa6d114cb47bc7e6eff2c9532ef75442563d3968d779b8f950fb4480", "normalized_recipe_sha256": "ea9d422b7eef417ac662e8d942c6185da0019f223de16887d5f0d1fc2f6c579b", "output_sha256": "710aca1a0fc462ae2fd53fc436e564fd72ead284268eb6d1a8420500b5f83a5b", "style_id": "portra_400"},
+        {"decoded_rgb16_sha256": "e7b715147454c96ce959b19c2bfe41496542da1664c52a841954bb4e1304799e", "normalized_recipe_sha256": "888f06cad69cb0e1c480ed025b477b20b6569ae9dcecc67533188425777988cc", "output_sha256": "8fa3b8587e99926925d3a6d101f6de749e9b1c3c2d0c8bb23d39d33075ae8743", "style_id": "ektar_100"}
+      ],
+      "stderr": "",
+      "wall_seconds": 149.9927104999988
+    },
+    {
+      "mode": "candidate",
+      "peak_process_tree_rss_bytes": 2256355328,
+      "rows": [
+        {"decoded_rgb16_sha256": "73d6035a045a01288a43959537c14b0bfd7f3dad33720b296e239535c7742bdf", "normalized_recipe_sha256": "e3433c23d0e906ccce1656a2401b203a46133958a46d03e59fd46fc137f8bd90", "output_sha256": "47670dc5d2b012147398a3a0632616a772f49fc087305b041e32848a7e640e3c", "style_id": "velvia_50"},
+        {"decoded_rgb16_sha256": "00bb10b7fa6d114cb47bc7e6eff2c9532ef75442563d3968d779b8f950fb4480", "normalized_recipe_sha256": "ea9d422b7eef417ac662e8d942c6185da0019f223de16887d5f0d1fc2f6c579b", "output_sha256": "710aca1a0fc462ae2fd53fc436e564fd72ead284268eb6d1a8420500b5f83a5b", "style_id": "portra_400"},
+        {"decoded_rgb16_sha256": "e7b715147454c96ce959b19c2bfe41496542da1664c52a841954bb4e1304799e", "normalized_recipe_sha256": "888f06cad69cb0e1c480ed025b477b20b6569ae9dcecc67533188425777988cc", "output_sha256": "8fa3b8587e99926925d3a6d101f6de749e9b1c3c2d0c8bb23d39d33075ae8743", "style_id": "ektar_100"}
+      ],
+      "stderr": "",
+      "wall_seconds": 135.3449170999993
+    },
+    {
+      "mode": "candidate",
+      "peak_process_tree_rss_bytes": 2221498368,
+      "rows": [
+        {"decoded_rgb16_sha256": "73d6035a045a01288a43959537c14b0bfd7f3dad33720b296e239535c7742bdf", "normalized_recipe_sha256": "e3433c23d0e906ccce1656a2401b203a46133958a46d03e59fd46fc137f8bd90", "output_sha256": "47670dc5d2b012147398a3a0632616a772f49fc087305b041e32848a7e640e3c", "style_id": "velvia_50"},
+        {"decoded_rgb16_sha256": "00bb10b7fa6d114cb47bc7e6eff2c9532ef75442563d3968d779b8f950fb4480", "normalized_recipe_sha256": "ea9d422b7eef417ac662e8d942c6185da0019f223de16887d5f0d1fc2f6c579b", "output_sha256": "710aca1a0fc462ae2fd53fc436e564fd72ead284268eb6d1a8420500b5f83a5b", "style_id": "portra_400"},
+        {"decoded_rgb16_sha256": "e7b715147454c96ce959b19c2bfe41496542da1664c52a841954bb4e1304799e", "normalized_recipe_sha256": "888f06cad69cb0e1c480ed025b477b20b6569ae9dcecc67533188425777988cc", "output_sha256": "8fa3b8587e99926925d3a6d101f6de749e9b1c3c2d0c8bb23d39d33075ae8743", "style_id": "ektar_100"}
+      ],
+      "stderr": "",
+      "wall_seconds": 146.4897048999992
+    },
+    {
+      "mode": "baseline",
+      "peak_process_tree_rss_bytes": 2605899776,
+      "rows": [
+        {"decoded_rgb16_sha256": "73d6035a045a01288a43959537c14b0bfd7f3dad33720b296e239535c7742bdf", "normalized_recipe_sha256": "e3433c23d0e906ccce1656a2401b203a46133958a46d03e59fd46fc137f8bd90", "output_sha256": "47670dc5d2b012147398a3a0632616a772f49fc087305b041e32848a7e640e3c", "style_id": "velvia_50"},
+        {"decoded_rgb16_sha256": "00bb10b7fa6d114cb47bc7e6eff2c9532ef75442563d3968d779b8f950fb4480", "normalized_recipe_sha256": "ea9d422b7eef417ac662e8d942c6185da0019f223de16887d5f0d1fc2f6c579b", "output_sha256": "710aca1a0fc462ae2fd53fc436e564fd72ead284268eb6d1a8420500b5f83a5b", "style_id": "portra_400"},
+        {"decoded_rgb16_sha256": "e7b715147454c96ce959b19c2bfe41496542da1664c52a841954bb4e1304799e", "normalized_recipe_sha256": "888f06cad69cb0e1c480ed025b477b20b6569ae9dcecc67533188425777988cc", "output_sha256": "8fa3b8587e99926925d3a6d101f6de749e9b1c3c2d0c8bb23d39d33075ae8743", "style_id": "ektar_100"}
+      ],
+      "stderr": "",
+      "wall_seconds": 152.71734189999916
+    }
+  ],
+  "schema_version": "neuro-film.u7-6b-three-stock-file-batch.v1",
+  "scientific_identity": "d079b7dffda0139c37034353e997287317ee5b724e3b8a9b6f2bc359466f02c5"
+}
