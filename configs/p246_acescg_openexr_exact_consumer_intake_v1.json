@@ -20,9 +20,9 @@
     "producer_wheel_bytes": 740197,
     "producer_wheel_sha256": "7aa145813acfe10a83d6e89340349379828190b321608e69f2aee426e10c890b",
     "consumer_runner_path": "scripts/audit_p246_acescg_openexr_exact_consumer_intake.py",
-    "consumer_runner_commit": "a3d0be2dae7e28bb880826f62d21ab1b6eaea388",
-    "consumer_runner_git_blob": "1b96154c0a2a083b261b007084da612954d15e0e",
-    "consumer_runner_sha256": "64116a2e3bb8062a5ccbfb16311cc5cffd245152364f4351f5d00dbbe292bf6a"
+    "consumer_runner_commit": "4244673482e776ace6b48d08afdaba5e342b3d29",
+    "consumer_runner_git_blob": "0afb51bf18134eb6c56609aed72b16316236a26c",
+    "consumer_runner_sha256": "7a030cee18a50752b69e7cc73b85761717963a0874767a1c0a38f8990618ae1b"
   },
   "expected": {
     "writer_id": "acescg-ap1-d60-float32-zip-openexr-master-v1",
@@ -58,5 +58,6 @@
     "require_two_fresh_process_reports_exact": true
   },
   "stop_rule": "Any source, evidence, wheel, runtime, pixel, metadata, byte, atomicity, cleanup or replay mismatch closes this exact consumer intake without source copy, dependency substitution, encoding change, tolerance relaxation or product mapping.",
+  "preformal_execution_correction": "The first two controller attempts wrote no report and stopped during cleanup because Windows retained the loaded OpenEXR extension until process exit. The corrected runner executes the unchanged writer, wheel, probe and gates in a short-lived worker, waits for worker exit, then verifies removal of the same system-temporary tree.",
   "claim_ceiling": "Private Windows CPython consumer-side reproducibility of the exact producer R1DO writer/source/wheel handoff on one synthetic ACEScg probe only. No neuro_film public API/dependency/package/schema/capability, AP0 or ST 2065-4 ACES container, large-image or quality result, arbitrary metadata support, Linux claim beyond bound R1DP evidence, or product admission."
 }
