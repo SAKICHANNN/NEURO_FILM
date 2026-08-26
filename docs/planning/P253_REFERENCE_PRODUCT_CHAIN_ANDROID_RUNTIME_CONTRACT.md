@@ -33,7 +33,12 @@ repository-relative `outputs/tmp/p253_*` namespace.
 
 1. Build arm64-v8a and x86_64 artifacts twice in disjoint build roots.  Both
    artifact hashes must match across builds.
-2. Create an owned API-34 x86_64 AVD when absent, on port 5594.
+2. Create an owned API-34 x86_64 AVD on port 5594 from the locked minimal
+   config in the runner.  The migrated SDK's system image and package index
+   are complete and hash-locked, but its optional `devices.xml` catalogue is
+   absent; a pre-build infrastructure probe showed that `avdmanager` therefore
+   cannot materialize a named device.  The correction does not reuse or modify
+   another project's AVD and does not alter the system image.
 3. Run two complete committed-head processes: normal and reverse fixture
    enumeration.  Each process starts with `-wipe-data`, executes every hash
    and staging case as a fresh Android process, and publishes a canonical
@@ -70,3 +75,13 @@ It means the exact native identity/staging verifier executed consistently on
 one Windows-hosted Android 14 x86_64 virtual device.  It does not promote a
 colour candidate, change A1/A4/A5 outcomes, authorize staging of any rejected
 candidate, or establish a consumer package/capability/product claim.
+
+## Prescore infrastructure correction
+
+The first formal attempt stopped before build, boot, or fixture execution
+because direct script import was not valid.  The next attempt also stopped
+before build because `avdmanager` could not load the missing system-image
+`devices.xml`.  The direct-entry import and owned minimal-AVD materialization
+are additive infrastructure corrections.  All source bytes, fixture rows,
+runtime image, tool identities, scientific gates, and claim ceiling remain
+unchanged; formal execution restarts from the corrected commit.

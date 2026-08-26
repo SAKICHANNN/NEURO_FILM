@@ -52,8 +52,8 @@ def _environment(sdk: Path, avd_home: Path) -> dict[str, str]:
             "ANDROID_HOME": str(sdk),
             "ANDROID_SDK_ROOT": str(sdk),
             "ANDROID_AVD_HOME": str(avd_home),
-            "ANDROID_EMULATOR_HOME": str(avd_home.parent),
-            "ANDROID_USER_HOME": str(avd_home.parent),
+            "ANDROID_EMULATOR_HOME": str(avd_home),
+            "ANDROID_USER_HOME": str(avd_home),
         }
     )
     return environment
@@ -172,37 +172,61 @@ def _build_twice(ndk: Path, work: Path) -> dict[str, Any]:
 
 
 def _create_avd(
-    avdmanager: Path,
     avd_home: Path,
     sdk: Path,
     contract: dict[str, Any],
 ) -> None:
     runtime = contract["runtime"]
     avd_home.mkdir(parents=True, exist_ok=True)
-    environment = _environment(sdk, avd_home)
-    result = _command(
-        [
-            avdmanager,
-            "create",
-            "avd",
-            "--name",
-            runtime["avd_name"],
-            "--package",
-            runtime["system_image"],
-            "--device",
-            runtime["device"],
-            "--force",
-        ],
-        cwd=avd_home,
-        environment=environment,
-        input_text="no\n",
-        timeout=120.0,
+    avd_directory = avd_home / f"{runtime['avd_name']}.avd"
+    avd_directory.mkdir()
+    pointer = (
+        "avd.ini.encoding=UTF-8\n"
+        f"path={avd_directory}\n"
+        f"target=android-{runtime['api_level']}\n"
     )
-    if "Error:" in result.stdout or "Error:" in result.stderr:
-        raise P253RuntimeError("AVD creation reported an error")
-    config = avd_home / f"{runtime['avd_name']}.avd/config.ini"
-    if not config.is_file():
-        raise P253RuntimeError("owned AVD config was not created")
+    (avd_home / f"{runtime['avd_name']}.ini").write_text(
+        pointer, encoding="utf-8", newline="\n"
+    )
+    system_directory = sdk / runtime["system_package_relative_path"]
+    system_relative = system_directory.parent.relative_to(sdk)
+    config = "\n".join(
+        [
+            "PlayStore.enabled = no",
+            f"abi.type = {runtime['abi']}",
+            f"avd.id = {runtime['avd_name']}",
+            "avd.ini.encoding = UTF-8",
+            f"avd.name = {runtime['avd_name']}",
+            "disk.cachePartition = yes",
+            "disk.cachePartition.size = 66MB",
+            "disk.dataPartition.size = 2147483648",
+            "fastboot.forceColdBoot = yes",
+            "fastboot.forceFastBoot = no",
+            "firstboot.saveToLocalSnapshot = no",
+            "hw.cpu.arch = x86_64",
+            "hw.cpu.ncore = 4",
+            "hw.device.manufacturer = Google",
+            "hw.device.name = pixel_8",
+            "hw.gpu.enabled = yes",
+            "hw.gpu.mode = swiftshader_indirect",
+            "hw.keyboard = yes",
+            "hw.lcd.density = 420",
+            "hw.lcd.height = 2400",
+            "hw.lcd.width = 1080",
+            "hw.ramSize = 2048",
+            "hw.sdCard = no",
+            "hw.useext4 = yes",
+            f"image.sysdir.1 = {system_relative}\\",
+            "runtime.network.latency = none",
+            "runtime.network.speed = full",
+            "showDeviceFrame = no",
+            "tag.id = google_apis",
+            f"target = android-{runtime['api_level']}",
+            "vm.heapSize = 228M",
+            "",
+        ]
+    )
+    (avd_directory / "config.ini").write_text(config, encoding="utf-8", newline="\n")
 
 
 def _run_runtime(
@@ -425,7 +449,7 @@ def evaluate(
     build_result: dict[str, Any] | None = None
     work_root.parent.mkdir(parents=True, exist_ok=True)
     try:
-        _create_avd(avdmanager, avd_home, sdk, contract)
+        _create_avd(avd_home, sdk, contract)
         with tempfile.TemporaryDirectory(
             prefix=f"{work_root.name}-", dir=work_root.parent
         ) as temporary:

@@ -8,6 +8,7 @@ import pytest
 from scripts.audit_p253_reference_product_chain_android_runtime import (
     P253RuntimeError,
     _canonical_bytes,
+    _create_avd,
     _fixture_rows,
     _truth_table_rows,
 )
@@ -56,6 +57,19 @@ def test_unknown_order_fails_closed() -> None:
         _fixture_rows(FIXTURE, "random")
     with pytest.raises(P253RuntimeError, match="unsupported enumeration order"):
         _truth_table_rows(CONTRACT, "random")
+
+
+def test_owned_minimal_avd_is_project_isolated(tmp_path: Path) -> None:
+    sdk = tmp_path / "sdk"
+    avd_home = tmp_path / "owned-avd"
+    _create_avd(avd_home, sdk, CONTRACT)
+    name = CONTRACT["runtime"]["avd_name"]
+    pointer = (avd_home / f"{name}.ini").read_text(encoding="utf-8")
+    config = (avd_home / f"{name}.avd/config.ini").read_text(encoding="utf-8")
+    assert f"path={avd_home.resolve()}\\{name}.avd" in pointer
+    assert "target=android-34" in pointer
+    assert "abi.type = x86_64" in config
+    assert "image.sysdir.1 = system-images\\android-34\\google_apis\\x86_64\\" in config
 
 
 def test_report_serialization_is_order_independent_after_sorting() -> None:

@@ -38,6 +38,8 @@
     "abi": "x86_64",
     "avd_name": "nf_019f9f37_p253_api34_x86_64",
     "device": "pixel_8",
+    "avd_creation": "owned_locked_minimal_config",
+    "avd_config_version": "p253-api34-x86_64-minimal-v1",
     "system_image": "system-images;android-34;google_apis;x86_64",
     "system_package_relative_path": "system-images/android-34/google_apis/x86_64/package.xml",
     "port": 5594,
