@@ -16588,3 +16588,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   evidence remain valid. Thirteen adjacent tests, Ruff, compileall and diff
   checks pass. Evidence SHA-256 `7c09acbc...65c2d`:
   `docs/evidence/P235_R1CZ_STRUCTURAL_BLACK_ANCHOR_RESULT.json`.
+
+### 2026-08-26 - U7.6E closes streaming PNG as a batch-memory optimization
+
+- **Node:** `ULT > U7 > U7.6E`; direct measurement of the next attributed
+  24MP three-stock file-batch allocation after U7.6C.
+- **Experiment:** four fresh B/C/C/B workers compare the existing OpenCV RGB16
+  PNG encoder with a 128-row streaming encoder. Encoded replay is required per
+  encoder; decoded samples, ICC identity, normalized recipes and stock order
+  must match across encoders.
+- **Result:** all semantic, replay, wall-time and cleanup gates pass. Mean wall
+  time improves `138.5631 -> 129.4181` seconds, but mean process-tree peak is
+  effectively unchanged at `1,919,942,656 -> 1,920,141,312` bytes (ratio
+  `1.00010`), failing both frozen memory gates.
+- **Decision:** `FAIL_CLOSED_REVERT_STREAMING_PNG`. Product files are restored
+  byte-for-byte to their pre-candidate state; no threshold or encode-only
+  proxy rescue. Six adjacent tests, Ruff, compile and diff checks pass.
+  Evidence: `docs/evidence/U7_6E_THREE_STOCK_STREAMING_PNG_RESULT.json`.

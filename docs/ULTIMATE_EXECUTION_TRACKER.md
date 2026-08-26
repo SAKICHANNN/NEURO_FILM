@@ -2347,3 +2347,12 @@ bytes (ratio `.99988`) against frozen `128 MiB` and `.95` gates. The product
 change was reverted byte-for-byte; no threshold rescue or further lifetime
 micro-leaf opens. Evidence:
 `docs/evidence/U7_6D_THREE_STOCK_YIELD_LIFETIME_RESULT.json`.
+
+U7.6E closes full-frame PNG16 encoding as the next 24MP batch-memory target.
+Bounded-row streaming preserves decoded samples, ICC identity, normalized
+recipe semantics, stock order and per-encoder replay, and improves mean wall
+time from `138.5631` to `129.4181` seconds. It does not reduce the formal
+process-tree peak (`1,919,942,656 -> 1,920,141,312` bytes; ratio `1.00010`),
+so both frozen memory gates fail and the product encoder is reverted. Do not
+rescue this leaf by lowering gates or re-running an isolated encode-only proxy.
+Evidence: `docs/evidence/U7_6E_THREE_STOCK_STREAMING_PNG_RESULT.json`.
