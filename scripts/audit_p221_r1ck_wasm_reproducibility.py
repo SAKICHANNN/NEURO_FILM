@@ -15,6 +15,10 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/p221_r1ck_wasm_reproducibility_audit_v1.json"
+SUPPORTED_SCHEMAS = {
+    "neuro-film.p221-r1ck-wasm-reproducibility-audit-contract.v1",
+    "neuro-film.p221a-r1ck-formal-commit-reproducibility-contract.v1",
+}
 
 
 def canonical_bytes(value: Any) -> bytes:
@@ -59,9 +63,7 @@ def git_text(repository: Path, *arguments: str) -> str:
 
 
 def validate_config(config: dict[str, Any]) -> None:
-    if config["schema"] != (
-        "neuro-film.p221-r1ck-wasm-reproducibility-audit-contract.v1"
-    ):
+    if config["schema"] not in SUPPORTED_SCHEMAS:
         raise RuntimeError("P221 contract schema differs")
     if config["status"] != "FROZEN_BEFORE_CONSUMER_REBUILD_OR_RUNTIME_EXECUTION":
         raise RuntimeError("P221 contract is not frozen")
@@ -80,8 +82,13 @@ def inspect_preconditions(config: dict[str, Any]) -> dict[str, Any]:
         raise RuntimeError("P221 producer identity is not a commit")
 
     evidence_path = producer["evidence_path"]
-    evidence_blob = git_text(repository, "rev-parse", f"{commit}:{evidence_path}")
-    evidence_bytes = git_bytes(repository, "show", f"{commit}:{evidence_path}")
+    evidence_commit = producer.get("evidence_commit", commit)
+    evidence_blob = git_text(
+        repository, "rev-parse", f"{evidence_commit}:{evidence_path}"
+    )
+    evidence_bytes = git_bytes(
+        repository, "show", f"{evidence_commit}:{evidence_path}"
+    )
     observed_blobs = {
         path: git_text(repository, "rev-parse", f"{commit}:{path}")
         for path in producer["bound_git_blobs"]
@@ -167,8 +174,8 @@ def evaluate_reports(
     }
 
 
-def execute(order: str) -> dict[str, Any]:
-    config = json.loads(CONFIG.read_text(encoding="utf-8"))
+def execute(order: str, config_path: Path = CONFIG) -> dict[str, Any]:
+    config = json.loads(config_path.read_text(encoding="utf-8"))
     validate_config(config)
     observed = inspect_preconditions(config)
     exact_preconditions = preconditions_exact(config, observed)
@@ -266,8 +273,11 @@ def execute(order: str) -> dict[str, Any]:
         canonical_bytes(scientific)
     )
     return {
-        "schema": "neuro_film.p221_r1ck_wasm_reproducibility_result.v1",
-        "experiment_id": "P221",
+        "schema": (
+            f"neuro_film.{config['experiment_id'].lower()}_"
+            "r1ck_wasm_reproducibility_result.v1"
+        ),
+        "experiment_id": config["experiment_id"],
         "scientific": scientific,
     }
 
@@ -275,9 +285,10 @@ def execute(order: str) -> dict[str, Any]:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--order", choices=("forward", "reverse"), required=True)
+    parser.add_argument("--config", type=Path, default=CONFIG)
     parser.add_argument("--output", type=Path, required=True)
     arguments = parser.parse_args()
-    report = execute(arguments.order)
+    report = execute(arguments.order, arguments.config)
     arguments.output.parent.mkdir(parents=True, exist_ok=True)
     temporary = arguments.output.with_suffix(arguments.output.suffix + ".tmp")
     temporary.write_bytes(canonical_bytes(report))

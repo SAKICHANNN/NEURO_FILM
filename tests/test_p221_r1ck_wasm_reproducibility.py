@@ -11,6 +11,11 @@ from scripts.audit_p221_r1ck_wasm_reproducibility import (
     validate_config,
 )
 
+P221A_CONFIG = (
+    Path(__file__).resolve().parents[1]
+    / "configs/p221a_r1ck_formal_commit_reproducibility_v1.json"
+)
+
 
 def _producer_report(config: dict) -> dict:
     expected = config["expected"]
@@ -31,6 +36,16 @@ def test_contract_is_frozen_and_has_two_fresh_clones() -> None:
     assert config["execution"]["fresh_exact_commit_clones"] == 2
     assert config["execution"]["producer_worktree_writes"] == 0
     assert config["execution"]["network_downloads"] == 0
+
+
+def test_corrected_contract_separates_formal_and_evidence_commits() -> None:
+    config = json.loads(P221A_CONFIG.read_text(encoding="utf-8"))
+    validate_config(config)
+    assert config["experiment_id"] == "P221A"
+    assert config["producer"]["commit"] == (
+        "8c66ce51094cab760517301c2b495898482c5bd6"
+    )
+    assert config["producer"]["evidence_commit"] != config["producer"]["commit"]
 
 
 def test_runner_avoids_read_only_local_clone_hardlinks() -> None:
