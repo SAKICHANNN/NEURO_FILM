@@ -16780,3 +16780,31 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   integration. No physical-film, named-stock, scanner, calibration,
   preference, arbitrary-platform, public-package, capability or default
   product claim opens.
+
+### 2026-08-26 - P238 passes canonical P3-D65 Rec.2100-PQ PNG publication
+
+- **Node and question:** `ULT > U1.4 > P238`; after P226 retained exact official
+  P3-D65 / 1000-nit Rec.2100-PQ float parity, prospectively test only the
+  missing deterministic RGB16 PNG boundary. No new images, fit, optimization,
+  network read, default renderer change or after-only research was introduced.
+- **Implementation:** `90913d7c` adds a private create-only publisher over the
+  existing canonical Rec.2100-PQ writer. It accepts contiguous finite ACEScg
+  float32 arrays, applies only `hdr_p3d65_1000nit_rec2100_pq`, quantizes with
+  frozen float64 round-nearest and aborts atomically on writer failure.
+- **Evidence:** exact P226 986 rows reshape to `29x34x3`. Two fresh committed-
+  head reports are byte-identical at `ab1aa706...78c9`; forward/reversed 7-row
+  partitions share PNG `0a18aa1e...534c` / 6,029 bytes and RGB16 sample SHA
+  `8cd312b9...be5d`. Strict sample readback, cICP `09 10 00 01`, source
+  immutability, create-only, injected failure cleanup and the frozen existing
+  Rec.2020-PQ hash all pass. Seventeen focused/adjacent tests, Ruff, compileall,
+  JSON and diff checks pass. Evidence SHA-256 `fdef4929...e0a16`:
+  `docs/evidence/P238_ACES2_P3D65_CANONICAL_PQ_PNG_RESULT.json`.
+- **Interpretation:** the official float black `7.309427e-7` is preserved by
+  OCIO and correctly rounds to RGB16 code zero; this is recorded, not hidden or
+  treated as an analytic-black correction.
+- **Boundary and handoff:** retain only private Windows/Python deterministic
+  RGB16 PNG arithmetic and full-range Rec.2100-PQ metadata for the exact P226
+  fixture. HDR10/mastering/display validation, arbitrary-image support, public
+  package/schema/capability, calibrated stock and product admission remain
+  false. A separately frozen target-runtime decode check is the only opened
+  successor.
