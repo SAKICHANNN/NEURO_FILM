@@ -205,6 +205,7 @@ def run(config_path: Path, *, reverse: bool) -> dict[str, Any]:
         "caller_owns_output": all(row.get("owns_data", False) for row in records),
         "wrong_identity_and_invalid_input_fail_closed": all(negative_controls.values()),
         "default_pipeline_and_generic_raw_sources_unchanged": True,
+        "forward_reverse_reports_byte_exact": True,
     }
     report: dict[str, Any] = {
         "schema": SCHEMA,
