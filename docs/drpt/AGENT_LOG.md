@@ -16076,3 +16076,28 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   WebAssembly arithmetic reproducibility only. No interactive UI/WebView,
   media, RAW/HDR quality, public package/schema/capability or product mapping
   opens. Project structure and the existing portable operator remain unchanged.
+
+### 2026-08-26 - U7.3A establishes the read-only desktop history core
+
+- **Direction/scope:** U7.3 is split forward-first because the repository has no
+  existing GUI surface. U7.3A adds only the deterministic history data source;
+  it does not create a frontend framework, preview renderer or export path.
+- **Implementation:** `src.inference.build_render_recipe_history` recursively
+  reads bounded `*.recipe.json` files, uses the existing strict recipe
+  validator, rejects path escape, skips directory symlinks, returns explicit
+  empty/ready/partial/invalid states and isolates malformed or oversized rows.
+  Input/output files are never read or hashed by this API.
+- **Evidence:** three exact U7.2 recipes reproduce the same normalized catalog
+  facts under forward/reverse creation order. Both 3,811-byte reports hash to
+  `4ff15f02...3c53`, stable identity is `71af4d78...7e62`, and all rows remain
+  `film-inspired/look-approximation`. Ten focused tests plus 23 parent contract/
+  engine tests pass; no pixels or network are read and audit temp roots clear.
+- **Execution amendment:** the first direct script invocation stopped before
+  catalog/report creation because repo root was absent from `sys.path`.
+  Correcting only that entrypoint boundary and restarting from committed code
+  yields exact reports; no core, source recipe or gate changed.
+- **Propagation:** U7.2C's legacy proxy stock-separation failure remains fully
+  binding. This leaf opens one future UI data source only; complete GUI,
+  preview/export, accessibility, packaging, telemetry, calibrated-stock and
+  product-release claims remain pending. Placement under `src/inference/`
+  follows the existing recipe/replay contract boundary.

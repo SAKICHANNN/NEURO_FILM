@@ -1,0 +1,87 @@
+{
+  "schema": "kmcfm.u7-3a-desktop-recipe-history-evidence.v1",
+  "node": "U7.3A",
+  "status": "PASS_PRIVATE_DESKTOP_RECIPE_HISTORY_CORE",
+  "date": "2026-08-26",
+  "implementation": {
+    "contract_commit": "f27f44c0",
+    "core_commit": "817f8f3c",
+    "audit_commit": "b91ebf39",
+    "module": "src/inference/recipe_history.py",
+    "public_api": "src.inference.build_render_recipe_history"
+  },
+  "formal_execution": {
+    "forward_report_sha256": "4ff15f024848530f5fee268d72482bcec2a307cb537e02e2b7f68cd837e23c53",
+    "reverse_report_sha256": "4ff15f024848530f5fee268d72482bcec2a307cb537e02e2b7f68cd837e23c53",
+    "report_bytes": 3811,
+    "reports_byte_exact": true,
+    "stable_identity": "sha256:71af4d78aff3c67ed38018bdccb6be06855dc3ce0849ac8c0d1b29e24fdc7e62",
+    "catalog_sha256": "606ddc599db9445c16810b194ed20f05a9f4d0a24a9f14ba53e360e4825157a1"
+  },
+  "source_recipes": {
+    "root": "outputs/eval/u7_2_three_stock_24mp_smoke",
+    "identities": {
+      "ektar_100.recipe.json": "b92a75ed8ca8349df562153aad85df26db33ab0992d6bc07503033245ac7d0b8",
+      "portra_400.recipe.json": "b6dece02a1c6e5cee9569424ae8fd53fdad8f4ee619753f6d81a2b2dea0d0fb3",
+      "velvia_50.recipe.json": "254e5c8ddf8703e2689975590531b80ca4e40bde1a37fcd0c382f33e2a42cf25"
+    },
+    "discovered": 3,
+    "valid": 3,
+    "invalid": 0,
+    "all_output_labels": "film-inspired",
+    "all_evidence_grades": "look-approximation"
+  },
+  "contract_facts": {
+    "recursive_recipe_only_scan": true,
+    "directory_symlinks_not_followed": true,
+    "recipe_path_escape_rejected": true,
+    "maximum_recipe_files": 10000,
+    "maximum_recipe_bytes": 2097152,
+    "invalid_rows_isolated": true,
+    "file_limit_exceeded_fails_closed": true,
+    "empty_state_explicit": true,
+    "rows_sorted_by_relative_recipe_path": true,
+    "input_output_file_reads": 0,
+    "pixel_decodes": 0,
+    "network_reads": 0,
+    "product_api_writes": 0,
+    "audit_only_temporary_recipe_copies_removed": true
+  },
+  "gates": {
+    "source_recipe_identities_exact": true,
+    "forward_reverse_recipe_facts_exact": true,
+    "all_rows_valid": true,
+    "all_rows_look_approximation": true,
+    "input_output_file_reads_zero": true,
+    "network_reads_zero": true,
+    "pixel_decodes_zero": true,
+    "temporary_roots_removed": true,
+    "focused_tests_pass": true
+  },
+  "execution_amendment": {
+    "initial_direct_script_attempt": "STOPPED_BEFORE_CATALOG_OR_REPORT",
+    "cause": "The direct script entrypoint did not place the repository root on sys.path, although pytest invocation from the repository root succeeded.",
+    "correction": "Add the repository root to the direct entrypoint import path and restart both formal reports from the committed audit implementation.",
+    "core_or_contract_changed": false,
+    "source_recipe_or_gate_changed": false,
+    "initial_report_count": 0
+  },
+  "relationship_to_u7_2c": {
+    "u7_2c_proxy_separation_failure_unchanged": true,
+    "interpretation": "Recipe history exposes existing look-approximation records; it does not assert that the three legacy proxy looks are perceptually distinguishable stocks."
+  },
+  "decision": {
+    "result": "PASS_PRIVATE_DESKTOP_RECIPE_HISTORY_CORE",
+    "opens": "One deterministic read-only recipe-history data source for later desktop browser, preview and export UI leaves.",
+    "does_not_open": [
+      "complete desktop GUI",
+      "preview rendering",
+      "export authorization or writes",
+      "filesystem watching",
+      "packaging or telemetry",
+      "calibrated stock or stock distinguishability",
+      "product release"
+    ]
+  },
+  "claim_ceiling": "Private local read-only recipe-history core only; no GUI completeness, preview rendering, export authorization, filesystem watcher, packaging, telemetry, calibrated stock or product-release claim."
+}
