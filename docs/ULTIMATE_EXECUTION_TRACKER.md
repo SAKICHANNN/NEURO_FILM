@@ -49,6 +49,22 @@ procedural self-supervision paper cannot increment or reset the counter. The
 exact rule is in
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` section 1.1.
 
+**Latest paired-source gate, 2026-08-26:** P225 binds the official PixTalk
+ICCV 2025, RetouchIQ CVPR 2026 and InstantRetouch CVPR 2026 paper/repository
+identities and audits only public metadata. All three describe genuinely
+higher-information paired/edit-history observations, but `0/3` supplies the
+simultaneous public payload, commercial data rights and scene/file grouping
+facts required for a new product-oriented cycle. PixTalk's dataset request
+remains unpublished and its repository calls for commercial contact;
+RetouchIQ describes 190k Lightroom-history examples without a public dataset
+locator or data-license statement; InstantRetouch's Apache repository contains
+the loader but no iRetouch payload, and the code license does not establish
+rights to 500 Lightroom-community photo pairs. No pixels, recipes, weights,
+training or scores were read. The bounded candidate counter remains closed at
+`2/3`; controlled named-stock evidence and mature explicit-operator
+engineering remain the legal mainline. Evidence:
+`docs/evidence/P225_LATEST_PAIRED_RETOUCH_SOURCE_AUDIT_RESULT.json`.
+
 **Multi-stock correction, 2026-08-21:** the bounded single-reference cycle is
 subordinate to named-stock evidence and must not expand through paper-inspired
 capacity variants. RF3.D0 retains only a mechanical three-proxy baseline and

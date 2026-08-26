@@ -16221,3 +16221,28 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   quality, media/container, portable ABI, package/schema/capability, stock or
   product mapping. Evidence:
   `docs/evidence/P224_R1CR_ACES2_XYZ_RUNTIME_COMPATIBILITY_RESULT.json`.
+
+### 2026-08-26 - P225 closes the current latest paired-source intake
+
+- **Question:** Does a latest primary retouching release provide the genuinely
+  new paired/edit-history observation, commercial data rights and grouping
+  facts needed to legally reopen one bounded algorithm cycle?
+- **Frozen sources:** exact PixTalk ICCV 2025 repository commit, exact
+  RetouchIQ CVPR 2026 paper/supplement PDFs, and exact InstantRetouch CVPR 2026
+  repository commit plus paper/supplement PDFs. The audit read metadata and
+  text only; pixels, recipes, weights, training and scores stayed at zero.
+- **Result:** `0/3` is admitted. PixTalk's dataset request remains unpublished
+  and commercial use requires contact; RetouchIQ describes 190k Lightroom
+  editing-history examples but publishes neither a dataset locator nor data
+  license; InstantRetouch describes 500 Lightroom-community pairs, while its
+  Apache repository contains a loader but no benchmark payload and does not
+  establish photo rights.
+- **Replay:** two offline reports and a committed-head check are byte exact at
+  `e40811ac...03662`; stable identity `53f09d32...5f9d3`. Four focused tests,
+  Ruff and compile checks pass.
+- **Decision/propagation:** `FAIL_CLOSED_NO_LATEST_RIGHTS_READY_PAIRED_SOURCE`.
+  This is a source-admission result, not a quality verdict on the papers. No
+  download/training or candidate-3 rescue opens; return to controlled
+  named-stock evidence and mature RAW/DNG/HDR/portable explicit operators.
+  Evidence:
+  `docs/evidence/P225_LATEST_PAIRED_RETOUCH_SOURCE_AUDIT_RESULT.json`.

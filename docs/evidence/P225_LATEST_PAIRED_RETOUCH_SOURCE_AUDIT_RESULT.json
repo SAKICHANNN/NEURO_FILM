@@ -1,0 +1,107 @@
+{
+  "schema": "kmcfm.p225-latest-paired-retouch-source-audit-evidence.v1",
+  "experiment_id": "P225_LATEST_PAIRED_RETOUCH_SOURCE_AUDIT_V1",
+  "date": "2026-08-26",
+  "decision": "FAIL_CLOSED_NO_LATEST_RIGHTS_READY_PAIRED_SOURCE",
+  "formal_execution_commit": "790b2593b542e58288620e426ef2bae1e12d62f4",
+  "preregistration_commit": "32ade8cb7dff9627252a26e71d54580c60d09b8a",
+  "bindings": {
+    "preregistration_blob": "b8157f464a6159c5fe4c0a3104537ecb6aeb7650",
+    "runner_blob": "19979004690ebbc034ac0d23a6db853674303f37",
+    "core_blob": "ff844fa567d24a0ea9df0342c0b85011b4b9e49b",
+    "test_blob": "5d376c8978d7e3fdf6007cefe34946dfd3d934b4",
+    "formal_report": "outputs/eval/p225_latest_paired_retouch_source_audit_v1.json",
+    "formal_report_sha256": "e40811acbf39f8cd81b7b087ee84fb74788d71088b2763f6d1ebe97cecc03662",
+    "stable_identity": "sha256:53f09d32c3f1a76357b85e8def99da772d006f4b82d8932da637fcf353d5f9d3"
+  },
+  "official_source_identities": {
+    "pixtalk_iccv2025": {
+      "repository": "https://github.com/mv-lab/pixtalk.git",
+      "commit": "03f16b9d233d5675a47b8345301fc0a784c67c66",
+      "readme_blob": "dd031049cdfad2c7e91139e2c144d82b0d0179cd"
+    },
+    "retouchiq_cvpr2026": {
+      "paper_sha256": "e84fa3763ca9c4df2c6704b79f2fbef1de9eec69011b797c13f482e26ee548b0",
+      "supplement_sha256": "23d9b695332aa3eeab478a189d81ecea639e466189b4dd444922c1408c571582"
+    },
+    "instantretouch_cvpr2026": {
+      "repository": "https://github.com/OpenImagingLab/InstantRetouch.git",
+      "commit": "c5ed1dafc7af38f4af28138be1b9201fdd82e827",
+      "readme_blob": "9dea28e3196adcd2e5717b7fc59461237aa4068a",
+      "license_blob": "43bbe9580482a19bdf699c4b7397d858e0905da9",
+      "dataset_loader_blob": "6f37e91ef78049a1da707b2772ea2ffa209fe2fe",
+      "paper_sha256": "4eb561b6c801b51ae4cf3c25cac27d9542b660c681596523bff00f5e25b1f80d",
+      "supplement_sha256": "4640ba770cceff9c201962f263b4cfbd2a5fc3ece8fdb9350748c3ff3de6744d"
+    }
+  },
+  "frozen_admission_rule": {
+    "publication_year_minimum": 2025,
+    "exact_official_identity_required": true,
+    "public_paired_pixels_or_explicit_recipe_required": true,
+    "commercial_data_rights_required": true,
+    "scene_or_file_disjoint_grouping_facts_required": true,
+    "new_identifying_observation_required": true,
+    "all_gates_required": true
+  },
+  "results": {
+    "candidate_count": 3,
+    "admitted_count": 0,
+    "all_sources_describe_new_identifying_observations": true,
+    "all_sources_fail_public_payload": true,
+    "all_sources_fail_commercial_data_rights": true,
+    "all_sources_fail_grouping_facts": true,
+    "pixtalk": {
+      "dataset_request_form_still_unreleased": true,
+      "commercial_contact_required_by_patent_statement": true
+    },
+    "retouchiq": {
+      "described_examples": 190000,
+      "described_source": "Lightroom user editing histories",
+      "official_dataset_locator_count": 0,
+      "data_license_statement_count": 0
+    },
+    "instantretouch": {
+      "described_benchmark_pairs": 500,
+      "described_source": "Adobe Lightroom community",
+      "repository_dataset_payload_count": 0,
+      "repository_contains_loader_only": true,
+      "apache_license_applies_to_repository_code_not_proven_photo_rights": true
+    }
+  },
+  "replay": {
+    "complete_offline_runs": 2,
+    "reports_byte_exact": true,
+    "committed_head_check_sha256": "e40811acbf39f8cd81b7b087ee84fb74788d71088b2763f6d1ebe97cecc03662",
+    "network_reads_during_formal_runs": 0,
+    "pixel_downloads": 0,
+    "pixel_decodes": 0,
+    "recipe_payload_reads": 0,
+    "model_weight_downloads": 0,
+    "training_runs": 0,
+    "scores": 0
+  },
+  "execution_amendment": {
+    "first_formal_attempt_report_count": 0,
+    "cause": "A frozen InstantRetouch provenance literal assumed a PDF column line break; pdftotext preserves the same fact with column spacing.",
+    "correction": "Match the independently present Lightroom community phrase while retaining the exact PDF SHA and the separate supplement provenance phrase.",
+    "scientific_change": false,
+    "candidate_gate_or_source_change": false,
+    "restart_from_source_verification": true
+  },
+  "interpretation": {
+    "scientific": "The latest primary work confirms that edit histories, explicit Lightroom actions and real before-after pairs are high-information observations. None of the audited releases currently supplies a publicly obtainable, commercially rights-ready and group-auditable dataset for this product research.",
+    "operational": "Do not download candidate pixels, request private data, train, or reopen the bounded automatic candidate cycle. Continue controlled named-stock evidence and mature RAW/DNG/HDR/portable explicit-operator engineering until a genuinely rights-ready source appears.",
+    "not_a_claim": [
+      "not a quality rejection of PixTalk, RetouchIQ or InstantRetouch",
+      "not proof that the described private datasets lack valid internal rights",
+      "not a stock, film, algorithm, model, package, schema, capability or product result"
+    ]
+  },
+  "verification": {
+    "focused_pytest": "4 passed",
+    "ruff": "PASS",
+    "py_compile": "PASS",
+    "json_parse": "PASS",
+    "diff_check": "PASS"
+  }
+}
