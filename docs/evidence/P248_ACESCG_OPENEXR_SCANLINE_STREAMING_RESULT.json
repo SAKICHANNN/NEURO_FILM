@@ -1,0 +1,103 @@
+{
+  "schema": "neuro-film.p248-acescg-openexr-scanline-streaming-evidence.v1",
+  "experiment_id": "P248",
+  "status": "PASS_PRIVATE_ACESCG_OPENEXR_24MP_SCANLINE_STREAMING",
+  "decision": "The official-source OpenEXR 3.4.15 ordered-scanline implementation writes the unchanged P247 24MP procedural ACEScg/AP1-D60 float32 master with exact decoded pixels and metadata while every fresh runtime worker remains below the frozen 2 GiB process-tree RSS ceiling. Retain only this private local mechanism/resource result.",
+  "bindings": {
+    "contract_commit": "83ad320ab4aeb586ac874c061adcef5c1ac31edf",
+    "config_commit": "2405ea3c70b4f37edace6ef16d3bb864ab5eafaa",
+    "config_sha256": "76579c30b46875d6a086308e56db004858cbd29ad3da077d9ba8e52e2ce58086",
+    "implementation_commit": "d38a5d00d7ec2a449bf324ff61f4c9d81934fd7b",
+    "formal_runner_commit": "f0e0138b080f56a7345fc004b0b1b6a273edc8ba",
+    "native_source_git_blob": "7edfc8c887225b7a1e381138903e0f1114ca95f9",
+    "native_source_sha256": "4f2d9aba58cf80509c6c06a6a471aab608bbb5b9fdc4fcb00b91ba5dac97bc89",
+    "runner_git_blob": "64b388430dad058a554bafc8d2fddf9db8a76cdf",
+    "runner_sha256": "905abb3b769684e732327339dafd945196fe115b95d918dc5f18b5768c6f9e1d",
+    "openexr_version": "3.4.15",
+    "openexr_commit": "e71cdd5d30a146dcb56c5e4c576d9e9d3c45f4fb",
+    "openexr_tree": "ae2bef65cf371f1cabbff7be7b92c04d0b51ac11",
+    "openexr_source_bytes": 25840011,
+    "openexr_source_sha256": "ab893d8003773ccd9a5556b2caf38da591ae37e20b06ee9d589a08984c5191f2",
+    "imath_version": "3.2.2",
+    "imath_tag_object": "1e480d11cb98b032a2dece9b9a8730512effc7f6",
+    "imath_source_bytes": 689217,
+    "imath_source_sha256": "b4275d83fb95521510e389b8d13af10298ed5bed1c8e13efd961d91b1105e462",
+    "p246_evidence_sha256": "3951c6a828cb26705f3787514c2da60d5f4dd28c08ab1dae4da1512005bc449e",
+    "p247_evidence_sha256": "1f7cc416ee73c089d764ebf774c310f84daf5c065ce39d4c9fe9e01b49e22435",
+    "msvc_version": "19.50.35729",
+    "msvc_cl_sha256": "ed1a6206c8179ed6826187b63306cb9cc421de6507e14166864556851bc2820d",
+    "cmake_version": "4.2.3-msvc3",
+    "cmake_sha256": "956a2f3f77811652e56090d232eaba9887a4cc17abbdfd2c9c94cc3a5f4b8b28",
+    "ninja_version": "1.12.1",
+    "ninja_sha256": "ff29bcb5f547174bae6b73c84278cce9b674e8ebc2f3c3926ab21030b33f34b8"
+  },
+  "official_sources": {
+    "openexr_release": "https://github.com/AcademySoftwareFoundation/openexr/releases/tag/v3.4.15",
+    "ordered_scanline_documentation": "https://openexr.com/en/latest/ReadingAndWritingImageFiles.html",
+    "license": "BSD-3-Clause"
+  },
+  "formal_reports": [
+    {
+      "path": "outputs/eval/p248_acescg_openexr_scanline_streaming_v1/formal_result.json",
+      "bytes": 6834,
+      "sha256": "6a4f1d0e393620f8b31e4506c0d69391b5d7ea1f13747d12ff4f056a5c7750a3",
+      "scientific_identity_with_resources": "5e0ea22dd2d190bf076956da85b430dcd3309c4c1ac7b0a36c5cfd292391c098",
+      "native_binary_sha256": "18a9fc63758b47d1383d283c5f9fe9e4e2fc2383740c6d9a2deba8fb5ce19312"
+    },
+    {
+      "path": "outputs/eval/p248_acescg_openexr_scanline_streaming_v1/formal_replay.json",
+      "bytes": 6836,
+      "sha256": "87818aa5887c70b1f9a4b2b7da8800c4c8607e2f4d5941565d2b270188faade1",
+      "scientific_identity_with_resources": "5458dc257fc66752f0921d72786e39bccd729dd20d5d6e2283d9573c1ed34c01",
+      "native_binary_sha256": "24c838097aebcd78b74be1ac6663f0eca28e04941bd03af7a5ddbeb80195c176"
+    }
+  ],
+  "result": {
+    "stable_identity_excluding_resource_measurements_and_native_binary_container": "dbe7a522048c8afb4ce92807f21af13cb70c77c9f5f3c01af72423c2c767b905",
+    "two_complete_controllers_stable_exact": true,
+    "native_rebuild_binary_bytes": [1026560, 1026560],
+    "native_rebuild_binary_sha_exact": false,
+    "native_binary_sha_is_not_a_frozen_gate": true,
+    "runtime_workers": 4,
+    "worker_peak_process_tree_rss_bytes": [625274880, 625025024, 625016832, 625020928],
+    "worker_wall_seconds": [4.510462000005646, 4.096735799997987, 3.7167082999949344, 3.7150471999993897],
+    "maximum_worker_peak_process_tree_rss_bytes": 625274880,
+    "maximum_worker_wall_seconds": 4.510462000005646,
+    "frozen_maximum_rss_bytes": 2147483648,
+    "p247_maximum_worker_peak_rss_bytes": 2302255104,
+    "maximum_rss_ratio_vs_p247_maximum": 0.271592352608375,
+    "maximum_rss_reduction_vs_p247_maximum_bytes": 1676980224,
+    "openexr_bytes": 13067999,
+    "openexr_sha256": "877b9a896b7b3bea832cc02f3ea560f5e62f45bc0f88bbb2a0ce4b18baf1d693",
+    "expected_and_decoded_pixel_f32le_sha256": "2b4890bd8fdc9af7caadccbdee56960300803a4ca7f5851fd00280ee0ea86adf",
+    "decoded_maximum_absolute_error": 0.0,
+    "exact_ap1_d60_metadata": true,
+    "zip_scanline": true,
+    "negative_and_above_one_preserved": true,
+    "finite": true,
+    "new_boundary_count": 0,
+    "small_probe_container_sha256": "2cd4e956cbcecda58bc260fe7d64b7637c79670d28eb68cf8351683ea15c33c5",
+    "small_probe_replay_exact": true,
+    "invalid_input_rejected": true,
+    "publication_failure_atomic": true,
+    "network_requests": 0,
+    "external_or_project_pixel_reads": 0,
+    "owned_workspace_residue": 0
+  },
+  "gates": {
+    "atomic_controls": true,
+    "container_repeat": true,
+    "decoded_pixels": true,
+    "metadata": true,
+    "range_and_finite": true,
+    "resource": true,
+    "small_probe": true
+  },
+  "preformal_exclusions": [
+    "The official source-asset request first encountered transport EOF and Schannel failures; no source bytes were accepted until the official asset size and SHA-256 matched.",
+    "Two incomplete Git source probes were stopped after sustained TLS stalls and removed; neither reached compilation.",
+    "Archive symlink handling, vcvars PATH case, local Imath discovery, source-tree include prefixes, NOMINMAX and OpenEXR.pyd process lifetime were corrected before the first 24MP formal execution. No probe, compression, metadata, gate or threshold changed."
+  ],
+  "interpretation": "P247 failed because the full-frame Python writer/readback process exceeded the 2 GiB ceiling. P248 changes only the writer-side memory mechanism to official ordered 16-scanline blocks and passes the unchanged correctness and resource gates. Native PE hashes differ across independent rebuild roots, but the executable size, compiler/source identities, small probe, 24MP container, decoded pixels and all stable scientific fields are exact; native binary byte reproducibility was never a frozen gate and is not claimed.",
+  "claim_ceiling": "Private local Windows x64 24MP resource feasibility for one official-source native OpenEXR scanline writer and one procedural ACEScg probe only. No natural-image quality, arbitrary EXR support, cross-platform parity, AP0/ST 2065-4 ACES interchange, renderer integration, public package/schema/capability or product admission."
+}
