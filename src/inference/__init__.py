@@ -10,6 +10,11 @@ from .interpretation import (
     InterpretationResult,
     execute_interpretation,
 )
+from .recipe_history import (
+    RECIPE_HISTORY_SCHEMA_ID,
+    RecipeHistoryError,
+    build_render_recipe_history,
+)
 from .render_contract import (
     LEGACY_STYLE_EVIDENCE_INVENTORY_SCHEMA_ID,
     PROFILE_EVIDENCE_SUMMARY_SCHEMA_ID,
@@ -44,12 +49,14 @@ __all__ = [
     "LEGACY_STYLE_EVIDENCE_INVENTORY_SCHEMA_ID",
     "PROFILE_EVIDENCE_SUMMARY_SCHEMA_ID",
     "PROFILE_SCHEMA_ID",
+    "RECIPE_HISTORY_SCHEMA_ID",
     "RECIPE_SCHEMA_ID",
     "InterpretationContractError",
     "InterpretationMetadata",
     "InterpretationPlugin",
     "InterpretationRequest",
     "InterpretationResult",
+    "RecipeHistoryError",
     "RenderContractError",
     "StyleSafeEngineError",
     "TileWindow",
@@ -57,6 +64,7 @@ __all__ = [
     "TiledRenderError",
     "atomic_write_json",
     "build_render_recipe",
+    "build_render_recipe_history",
     "execute_interpretation",
     "execute_tiled_local_operator",
     "list_three_stock_looks",
