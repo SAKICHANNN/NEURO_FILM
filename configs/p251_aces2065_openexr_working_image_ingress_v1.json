@@ -1,14 +1,29 @@
 {
   "schema": "neuro-film.p251-aces2065-openexr-working-image-ingress-contract.v1",
   "experiment_id": "P251",
-  "status": "FROZEN_BEFORE_IMPLEMENTATION",
+  "status": "FROZEN_READY_FOR_FORMAL_EXECUTION",
   "bindings": {
     "contract_path": "docs/planning/P251_ACES2065_OPENEXR_WORKING_IMAGE_INGRESS_CONTRACT.md",
+    "contract_bytes": 3229,
+    "contract_sha256": "111d9c4f23587f330271cb3c2fc26b11b2250309a1e6a93648ff6588f6f36c0a",
     "p249_config_path": "configs/p249_aces2065_openexr_exact_consumer_intake_v1.json",
     "p249_evidence_path": "docs/evidence/P249_ACES2065_OPENEXR_EXACT_CONSUMER_INTAKE_RESULT.json",
+    "producer_writer_commit": "a7ec64513c4fa097bc49b9bdbdfd8c3c7c2eb901",
+    "producer_writer_path": "src/zhuise/acescg_openexr.py",
+    "producer_writer_bytes": 7699,
+    "producer_writer_sha256": "63995dc36cf41708118f32e90687b8bb5c9b2738100b3db557371bbaf086d84d",
     "openexr_wheel_path": "data/vendor/openexr-3.4.15/openexr-3.4.15-cp312-cp312-win_amd64.whl",
     "openexr_wheel_bytes": 740197,
-    "openexr_wheel_sha256": "7aa145813acfe10a83d6e89340349379828190b321608e69f2aee426e10c890b"
+    "openexr_wheel_sha256": "7aa145813acfe10a83d6e89340349379828190b321608e69f2aee426e10c890b",
+    "consumer_module_path": "src/preprocess/aces2065_openexr.py",
+    "consumer_module_commit": "b0e9b338",
+    "consumer_module_bytes": 6706,
+    "consumer_module_sha256": "9ec0e671144624176d122cb72a38b61de40eba55f8c52772234c438dd33d2390",
+    "runner_path": "scripts/audit_p251_aces2065_openexr_working_image_ingress.py",
+    "runner_commit": "79cf24050f559553a44ad3ef32f0f0b7253d09ec",
+    "runner_blob": "6d3bf908fb5c6b3d70b13ec11a6e66dbf32ef394",
+    "runner_bytes": 11976,
+    "runner_sha256": "c24eaa7151a4c73195a6a3988ec69671235a1a4427d5f2f6b7779c2d57a449f5"
   },
   "input_contract": {
     "maximum_width": 16384,
