@@ -1,0 +1,66 @@
+{
+  "schema": "neuro-film.three-stock-exact-gamut-parallel-result.v1",
+  "date": "2026-08-26",
+  "implementation_commit": "36cf7afe",
+  "question": "Can disjoint-row parallelism reduce full-frame safe-Lab gamut execution time without changing any float32 or quantized pixel for the three-stock baseline?",
+  "source": {
+    "path": "outputs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1/inputs/canon_eos_kiss_f.png",
+    "file_sha256": "d9d72139fe819afcdfd36b314a211f6749fb7341ce398d646fe1ad2da5f25a97",
+    "allowed_use": "internal_independent_digital_ood_confirmation",
+    "benchmark_resize": [
+      3000,
+      2000
+    ],
+    "resized_rgb8_sha256": "ac02a5d65a7b1430c58124e3b73d724b0a5fc31437d1f3f0c9f0f2f0658d2ddf"
+  },
+  "execution": {
+    "serial_workers": 1,
+    "candidate_workers": 8,
+    "orders": [
+      "forward",
+      "reverse"
+    ],
+    "forward_report": {
+      "path": "outputs/eval/u7_2a_three_stock_gamut_parallel/run_forward.json",
+      "sha256": "54a7f74c2662cfdab8158ca3e0163bd1b574194c82eb680f015ef12566c17a18"
+    },
+    "reverse_report": {
+      "path": "outputs/eval/u7_2a_three_stock_gamut_parallel/run_reverse.json",
+      "sha256": "76c16b006e15f2284cc2c153d9a8527d078846b11271919563d08042de99e3ac"
+    },
+    "stable_identity": "093b7678f110fcf48503ed005a7177bb6dd59356c2ba2403a4a12439048f8418"
+  },
+  "exact_outputs": {
+    "velvia_50": {
+      "float32_sha256": "f3971d9240666efdb0541df4cc9b560258fde96b548563dbdb135f5f0117134d",
+      "srgb16_sha256": "59bb53425e13cce04be3521342f58cb9b14f8b54d20182d89112d2f4d67825d9"
+    },
+    "portra_400": {
+      "float32_sha256": "1f7fd3daeecf3a90441b61b0d610205430362e132a3259d48236b84178916e64",
+      "srgb16_sha256": "8d123d3677041bcb4dcc7879918ce6759356f7d0e40e0949ff5da3cfe853bb18"
+    },
+    "ektar_100": {
+      "float32_sha256": "f1135fa1afb449d558a3b4d75181d044d782506f81cf9352becddeb2ddc6c8a1",
+      "srgb16_sha256": "6166aa71db805c4603301f4d0bb072db60eb82476dc8fddf5218fc1e7f465e90"
+    }
+  },
+  "performance_seconds": {
+    "six_run_serial_median": 9.430984499999795,
+    "six_run_parallel_median": 4.896976700000323,
+    "six_run_wall_ratio_median": 0.5154408580402303,
+    "wall_ratio_minimum": 0.4813723889843288,
+    "wall_ratio_maximum": 0.5470517140694593,
+    "median_speedup": 1.9258789816172033
+  },
+  "verification": {
+    "parallel_equals_serial_float32": true,
+    "parallel_equals_serial_srgb16": true,
+    "forward_reverse_stable_identity_exact": true,
+    "focused_tests": "70 passed",
+    "ruff": "pass",
+    "py_compile": "pass",
+    "diff_check": "pass"
+  },
+  "decision": "PASS_EXACT_OPT_IN_THREE_STOCK_CPU_ACCELERATION",
+  "claim_ceiling": "Local Windows Python CPU, one 6MP CC0/OOD source, safe-Lab Velvia 50/Portra 400/Ektar 100 execution only. This changes no stock evidence, calibration, preference, severe-artifact result, profile, recipe, or output pixels."
+}
