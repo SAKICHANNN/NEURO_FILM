@@ -12,7 +12,8 @@ It does not reopen the closed after-only candidate cycle.
 ## Frozen inputs and information flow
 
 - Exact P233 capsule SHA `66050f58...859e`, decoded payload SHA
-  `aa7fe040...28cb9` and bundle `2759d219...c3220f`.
+  `aa7fe040...28cb9` and bundle `2759d219...c3220f`; the exact P233 config SHA
+  `d8583cdf...dd19` supplies the complete bound envelope.
 - Exact P88 `apple_gainmap_new.jpg` and `apple_gainmap_old.jpg`, both
   `384x512`, under the retained CC-BY-4.0 source manifest.
 - Exact official libultrahdr v2.0.0 commit `b2aacb36...07f8`; the decoder path

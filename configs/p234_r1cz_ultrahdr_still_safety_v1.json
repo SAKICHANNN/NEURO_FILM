@@ -4,6 +4,8 @@
   "status": "FROZEN_BEFORE_SELECTED_FIXTURE_DECODE_OR_CANDIDATE_APPLY",
   "question": "Does the exact local R1CZ paired/capture-time payload remain boundary-safe and spatially non-amplifying when applied source-free to the two exact already-consumed P88 UltraHDR absolute-Rec.2020 fixtures?",
   "payload": {
+    "p233_config_path": "configs/p233_r1cz_local_payload_capsule_v1.json",
+    "p233_config_sha256": "d8583cdff456351c9e895e1ad7a9b4ac98f70fd9cf3b1b444b910e717be9dd19",
     "capsule_path": "tests/fixtures/p233_r1cz_payload_capsule_v1.json",
     "capsule_sha256": "66050f5834adadc7fa30392831e73f03d01a993f17d9ea0e3ffc7a75c2dc859e",
     "p233_evidence_path": "docs/evidence/P233_R1CZ_LOCAL_PAYLOAD_CAPSULE_RESULT.json",
