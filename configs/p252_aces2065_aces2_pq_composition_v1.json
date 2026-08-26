@@ -29,7 +29,7 @@
     "u1_4e_evidence_path": "docs/evidence/U1_4E_WORKING_IMAGE_ACES2_ADAPTER_RESULT.json",
     "u1_4e_evidence_sha256": "d9876756e4548931f64cc875ee1c611e446c5e30086a83f2c66fb265337040fc",
     "runner_path": "scripts/audit_p252_aces2065_aces2_pq_composition.py",
-    "runner_sha256": "4217a453dd29757438a015ffeea4ab74f4b62ea820ff4e1b82ae1f243052aa9d"
+    "runner_sha256": "26f5c4b7002abd060e3488e5625f5041838235f559e822bc56904c518f1d8007"
   },
   "p251_producer": {
     "writer_commit": "a7ec64513c4fa097bc49b9bdbdfd8c3c7c2eb901",
@@ -79,5 +79,6 @@
     "require_zero_temporary_residue": true
   },
   "stop_rule": "Any identity, legacy-regression, direct-parity, range, publication, atomicity, replay or cleanup failure closes P252 without clipping, exposure, tone, view/config substitution, approximate metadata, half/uint ingress, tolerance relaxation, source replacement or generic EXR routing.",
+  "formal_execution_correction": "The first complete forward/reverse reports are excluded from scientific interpretation because two audit-only predicates were implemented incorrectly: the expected in-memory uint16 sample hash was computed after converting to big-endian even though the strict PNG verifier intentionally hashes decoded native uint16 bytes, and the foreign-destination rejection helper incorrectly required an already-existing protected file to become absent. The additive correction hashes the unchanged samples in the verifier's native-byte convention and separates exception rejection from destination preservation. Source/container, AP0-to-AP1 pixels, official ACES2 output, RGB16 samples, PNG bytes, legacy hashes, controls, gates and claim ceiling are unchanged; formal execution restarts from the corrected committed source.",
   "claim_ceiling": "Private Windows/Python exact P249/P251 ACES2065-1 OpenEXR to official ACES 2 Rec.2020-PQ canonical RGB16 PNG mechanics only. No arbitrary EXR or HDR image, photographic/display quality, HDR10 mastering metadata, SMPTE certification, public dependency/package/schema/capability, stock evidence, single-reference matching, calibrated reference or product admission."
 }

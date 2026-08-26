@@ -111,7 +111,7 @@ def _expect_composition_rejection(source: Path, output: Path) -> bool:
     try:
         publish_aces2065_openexr_aces2_canonical_hdr_pq_png_v1(source, output)
     except (RuntimeError, ValueError):
-        return not output.exists()
+        return True
     return False
 
 
@@ -175,7 +175,7 @@ def _worker_execute(
             reverse_partition=order == "reverse",
         )
     )
-    sample_sha = _array_sha256(samples.astype(">u2"))
+    sample_sha = _array_sha256(samples)
     strict_sample_sha = sha256_rec2100_pq_rgb16_png_samples(
         output, width=working.pixels.shape[1], height=working.pixels.shape[0]
     )
@@ -190,9 +190,10 @@ def _worker_execute(
     rejected: dict[str, bool] = {}
     for name in control_names:
         control_source = malformed if name == "malformed" else wrong_identity
+        control_output = workspace / f"{name}.png"
         rejected[name] = _expect_composition_rejection(
-            control_source, workspace / f"{name}.png"
-        )
+            control_source, control_output
+        ) and not control_output.exists()
     foreign = workspace / "foreign.png"
     foreign.write_bytes(b"foreign-destination")
     foreign_before = foreign.read_bytes()
