@@ -56,7 +56,6 @@ from .types import (
 
 __all__ = [
     "ACES2065_OPENEXR_INGRESS_ID",
-    "Aces2065OpenExrError",
     "FIVEK_PROPHOTO_MATRIX_SHAPER_ICC_SHA256",
     "LINEAR_RGB_TRANSFORM_VERSION",
     "OFFICIAL_ROMM_ICC_SHA256",
@@ -66,6 +65,7 @@ __all__ = [
     "ROMM_REC2020_CAPABILITY_ID",
     "ROMM_REC2020_QUALIFICATION_EVIDENCE_SHA256",
     "ROMM_REC2020_RECEIPT_SCHEMA",
+    "Aces2065OpenExrError",
     "DecodeWarning",
     "InputInspection",
     "ROMMRec2020ConversionError",
@@ -80,9 +80,9 @@ __all__ = [
     "inspect_input",
     "linear_rec2020_to_rec2020",
     "linear_rgb_matrix",
+    "load_aces2065_openexr_working_image",
     "load_and_map_official_romm_rgb16",
     "load_and_map_supported_prophoto_rgb16",
-    "load_aces2065_openexr_working_image",
     "load_working_image",
     "normalized_icc_profile_sha256",
     "rec2020_to_linear_rec2020",
