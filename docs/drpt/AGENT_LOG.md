@@ -17117,3 +17117,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   separately bounded caller-driven replay integration. Installer, automatic
   rerender, calibrated stock response, stock distinguishability and release
   remain closed.
+
+### 2026-08-26 - U7.7G replays all three portable stock-look recipes exactly
+
+- **Execution:** the new private API/CLI chains U7.7F explicit binding into the
+  unchanged deterministic replay engine. Forward and reverse fresh processes
+  each regenerate the three 24.39MP Velvia 50, Portra 400 and Ektar 100 files;
+  the complete 3,925-byte reports are byte exact at SHA-256
+  `2e222e08...c2687`, stable ID `0098be78...cdc18`.
+- **Result and failure control:** all three output SHA-256 values equal their
+  frozen U7.2 identities. Existing recipe/output entries remain unchanged, and
+  a deliberately wrong expected output hash completes rendering but removes
+  the failed output. Temporary roots and owned files are removed; network
+  reads are zero. Forty-one adjacent U7.7 tests and Ruff pass.
+- **Boundary and handoff:** evidence commit `55858665`. U7.7 format expansion
+  stops here. The CLI remains private, explicit and opt-in; every receipt says
+  `film-inspired/look-approximation`. Controlled physical stock acquisition is
+  still required for calibration or stock-distinguishability claims.
