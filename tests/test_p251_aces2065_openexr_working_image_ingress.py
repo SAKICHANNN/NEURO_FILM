@@ -6,6 +6,7 @@ from types import SimpleNamespace
 import numpy as np
 import pytest
 
+from src.preprocess import load_aces2065_openexr_working_image
 from src.preprocess.aces2065_openexr import (
     ACES2065_ADOPTED_NEUTRAL,
     ACES2065_CHROMATICITIES,
@@ -13,6 +14,10 @@ from src.preprocess.aces2065_openexr import (
     Aces2065OpenExrError,
     _load_with_module,
 )
+
+
+def test_opt_in_ingress_is_exported_without_loading_openexr() -> None:
+    assert callable(load_aces2065_openexr_working_image)
 
 
 class _FakeFile:

@@ -1,5 +1,10 @@
 """Input preprocessing primitives for film rendering."""
 
+from .aces2065_openexr import (
+    ACES2065_OPENEXR_INGRESS_ID,
+    Aces2065OpenExrError,
+    load_aces2065_openexr_working_image,
+)
 from .color_management import (
     LINEAR_RGB_TRANSFORM_VERSION,
     REC2020_SDR_CICP,
@@ -50,6 +55,8 @@ from .types import (
 )
 
 __all__ = [
+    "ACES2065_OPENEXR_INGRESS_ID",
+    "Aces2065OpenExrError",
     "FIVEK_PROPHOTO_MATRIX_SHAPER_ICC_SHA256",
     "LINEAR_RGB_TRANSFORM_VERSION",
     "OFFICIAL_ROMM_ICC_SHA256",
@@ -75,6 +82,7 @@ __all__ = [
     "linear_rgb_matrix",
     "load_and_map_official_romm_rgb16",
     "load_and_map_supported_prophoto_rgb16",
+    "load_aces2065_openexr_working_image",
     "load_working_image",
     "normalized_icc_profile_sha256",
     "rec2020_to_linear_rec2020",
