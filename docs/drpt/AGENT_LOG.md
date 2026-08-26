@@ -17160,3 +17160,26 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   pass. Parent R1DO/R1DP mechanics are independently consumable, but no
   neuro_film public API/dependency, AP0/ST 2065-4 container, large-image or
   quality result, package/schema/capability or product mapping opens.
+
+### 2026-08-26 - P247 closes the exact full-frame Python OpenEXR path at 24MP
+
+- **Node and frozen probe:** `ULT > mature RAW/HDR explicit mechanisms >
+  P247`; contract `cf634687` keeps the exact P246/R1DO writer and wheel and
+  changes only to a deterministic 4000x6000x3 float32 procedural ACEScg array.
+  The 288,000,000-byte source is constructed in 64-row blocks, consumes no
+  external/project pixels or network, and uses a repo-relative P-backed
+  temporary workspace that is removed after both workers.
+- **Exactness and resources:** two fresh workers produce identical input SHA
+  `2b4890bd...6adf`, identical 13,068,028-byte ZIP EXR SHA
+  `23a3754a...1bafd`, zero decoded error and exact P246 AP1/D60 metadata. Wall
+  times are 3.7671/3.6442 seconds; all file-size, time, pixel, metadata,
+  immutability, range and cleanup gates pass. Process-tree RSS is
+  2,145,665,024 / 2,302,255,104 bytes, so the second worker fails the frozen
+  2,147,483,648-byte ceiling and the leaf formally closes.
+- **Propagation and handoff:** evidence commit `86b615d4`, evidence SHA
+  `1f7cc416...22435`; 34 adjacent ACES/HDR tests, Ruff, compile and diff checks
+  pass. P246 small-probe intake and producer R1DO/R1DP correctness remain
+  valid. Do not raise the memory gate or tune probe/compression/process
+  topology; any successor must use a separately frozen scanline/streaming
+  representation. No installed dependency, public API/package/schema/
+  capability, renderer integration or product mapping opens.
