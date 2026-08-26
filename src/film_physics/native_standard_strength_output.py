@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import hashlib
 import os
-from pathlib import Path
 import uuid
+from pathlib import Path
 from typing import Any
 
 import numpy as np
@@ -15,6 +15,7 @@ from src.preprocess.output_encode import (
     srgb_icc_profile_sha256,
 )
 
+from .create_only_file import publish_create_only, remove_if_published
 from .native_standard_staging import (
     _absolute_unresolved,
     _bounded_read,
@@ -26,7 +27,6 @@ from .native_standard_staging import (
 from .native_standard_strength_staging import (
     verify_native_standard_strength_staging,
 )
-
 
 STRENGTH_OUTPUT_SCHEMA = (
     "neuro_film.native_standard_strength_png16_report.v1"
@@ -96,7 +96,7 @@ def commit_verified_native_standard_strength_png16(
     token = uuid.uuid4().hex
     output_temp = output.parent / f".{output.stem}.{token}.png"
     report_temp = report.parent / f".{report.name}.{token}.stage"
-    output_committed = False
+    output_publication = None
     try:
         pixels = np.memmap(
             raw_output,
@@ -157,18 +157,12 @@ def commit_verified_native_standard_strength_png16(
             handle.write(report_bytes)
             handle.flush()
             os.fsync(handle.fileno())
-        os.link(output_temp, output)
-        output_committed = True
+        output_publication = publish_create_only(output_temp, output)
         try:
-            os.link(report_temp, report)
+            publish_create_only(report_temp, report)
         except BaseException:
-            if (
-                output.exists()
-                and os.path.samefile(output, output_temp)
-                and _sha256_file(output) == png_sha
-            ):
-                output.unlink()
-                output_committed = False
+            if remove_if_published(output_publication):
+                output_publication = None
             raise
         return {
             "schema": STRENGTH_OUTPUT_SCHEMA,
@@ -184,8 +178,8 @@ def commit_verified_native_standard_strength_png16(
     finally:
         output_temp.unlink(missing_ok=True)
         report_temp.unlink(missing_ok=True)
-        if output_committed and not report.exists() and output.exists():
-            output.unlink()
+        if output_publication is not None and not report.exists():
+            remove_if_published(output_publication)
 
 
 def verify_native_standard_strength_png16(

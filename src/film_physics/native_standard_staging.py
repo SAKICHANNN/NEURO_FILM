@@ -5,18 +5,18 @@ from __future__ import annotations
 import hashlib
 import json
 import os
-from pathlib import Path
 import sys
-from typing import Any
 import uuid
+from pathlib import Path
+from typing import Any
 
 from src.preprocess.types import WorkingImage
 
+from .create_only_file import publish_create_only, remove_if_published
 from .native_standard_consumer import (
     render_native_standard_working_image_to_sink,
 )
 from .native_standard_runtime import NativeStandardRuntime
-
 
 STAGING_SCHEMA = "neuro_film.native_standard_staging_report.v1"
 VERIFICATION_SCHEMA = (
@@ -63,7 +63,7 @@ def stage_native_standard_working_image(
     token = uuid.uuid4().hex
     output_temp = parent / f".{output.name}.{token}.stage"
     report_temp = parent / f".{report.name}.{token}.stage"
-    output_committed = False
+    output_publication = None
     try:
         with output_temp.open("xb") as handle:
             staged_bytes = 0
@@ -115,18 +115,12 @@ def stage_native_standard_working_image(
             handle.flush()
             os.fsync(handle.fileno())
 
-        os.link(output_temp, output)
-        output_committed = True
+        output_publication = publish_create_only(output_temp, output)
         try:
-            os.link(report_temp, report)
+            publish_create_only(report_temp, report)
         except BaseException:
-            if (
-                output.exists()
-                and os.path.samefile(output, output_temp)
-                and _sha256_file(output) == output_sha
-            ):
-                output.unlink()
-                output_committed = False
+            if remove_if_published(output_publication):
+                output_publication = None
             raise
         report_sha = hashlib.sha256(report_bytes).hexdigest()
         return {
@@ -142,9 +136,8 @@ def stage_native_standard_working_image(
     finally:
         output_temp.unlink(missing_ok=True)
         report_temp.unlink(missing_ok=True)
-        if output_committed and not report.exists():
-            if output.exists():
-                output.unlink()
+        if output_publication is not None and not report.exists():
+            remove_if_published(output_publication)
 
 
 def verify_native_standard_staging(

@@ -11,6 +11,7 @@ from typing import Any, Self
 
 import numpy as np
 
+from .create_only_file import publish_create_only
 from .native_gauge_profile import NativeGaugeProfileF32V1
 from .native_granularity_amplitude import NativeGranularityAmplitudeProfileV1
 from .native_thomas_export_profile import (
@@ -29,16 +30,6 @@ NativeByteSink = ctypes.CFUNCTYPE(
 
 class AtomicNativeOutputError(RuntimeError):
     """Raised when a native byte stream cannot be published atomically."""
-
-
-def _publish_create_only(source: Path, destination: Path) -> None:
-    """Publish one sibling stage without replacing an existing destination."""
-    if os.name == "nt":
-        # Windows rename is a same-volume, no-replace operation.  Unlike hard
-        # links it is supported by exFAT, the project's durable data volume.
-        os.rename(source, destination)
-        return
-    os.link(source, destination)
 
 
 class AtomicNativeOutputSink:
@@ -88,7 +79,7 @@ class AtomicNativeOutputSink:
             self._handle.flush()
             os.fsync(self._handle.fileno())
             self._handle.close()
-            _publish_create_only(self.temporary, self.path)
+            publish_create_only(self.temporary, self.path)
             result: dict[str, int | str] = {
                 "path": str(self.path),
                 "sha256": self._digest.hexdigest(),

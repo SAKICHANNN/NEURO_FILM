@@ -13,6 +13,7 @@ from src.eval.native_standard_replayable_rows import (
     render_native_standard_replayable_rows,
 )
 
+from .create_only_file import publish_create_only, remove_if_published
 from .native_standard_runtime import NativeStandardRuntime
 from .native_standard_staging import (
     STAGING_SCHEMA,
@@ -52,7 +53,7 @@ def stage_native_standard_replayable_rows(
     token = uuid.uuid4().hex
     output_temp = output.parent / f".{output.name}.{token}.stage"
     report_temp = output.parent / f".{report.name}.{token}.stage"
-    output_committed = False
+    output_publication = None
     try:
         with output_temp.open("xb") as handle:
             staged_bytes = 0
@@ -120,14 +121,12 @@ def stage_native_standard_replayable_rows(
             handle.write(report_bytes)
             handle.flush()
             os.fsync(handle.fileno())
-        os.link(output_temp, output)
-        output_committed = True
+        output_publication = publish_create_only(output_temp, output)
         try:
-            os.link(report_temp, report)
+            publish_create_only(report_temp, report)
         except BaseException:
-            if output.exists() and os.path.samefile(output, output_temp):
-                output.unlink()
-                output_committed = False
+            if remove_if_published(output_publication):
+                output_publication = None
             raise
         return {
             "schema": STAGING_SCHEMA,
@@ -142,8 +141,8 @@ def stage_native_standard_replayable_rows(
     finally:
         output_temp.unlink(missing_ok=True)
         report_temp.unlink(missing_ok=True)
-        if output_committed and not report.exists() and output.exists():
-            output.unlink()
+        if output_publication is not None and not report.exists():
+            remove_if_published(output_publication)
 
 
 __all__ = ["stage_native_standard_replayable_rows"]

@@ -6,14 +6,15 @@ import hashlib
 import os
 import sys
 import uuid
-from pathlib import Path
 from collections.abc import Callable
+from pathlib import Path
 from typing import Any
 
 from src.eval.native_cloud_standard_display import (
     render_cloud_scan_with_standard_display,
 )
 
+from .create_only_file import publish_create_only, remove_if_published
 from .native_cloud_scan_runtime_v2 import WindowedNativeCloudScanRuntime
 from .native_standard_runtime import NativeStandardRuntime
 from .native_standard_staging import (
@@ -57,7 +58,7 @@ def _stage_cloud_display_rows(
     token = uuid.uuid4().hex
     output_temp = output.parent / f".{output.name}.{token}.stage"
     report_temp = output.parent / f".{report.name}.{token}.stage"
-    output_committed = False
+    output_publication = None
     try:
         with output_temp.open("xb") as handle:
             staged_bytes = 0
@@ -127,14 +128,12 @@ def _stage_cloud_display_rows(
             handle.write(report_bytes)
             handle.flush()
             os.fsync(handle.fileno())
-        os.link(output_temp, output)
-        output_committed = True
+        output_publication = publish_create_only(output_temp, output)
         try:
-            os.link(report_temp, report)
+            publish_create_only(report_temp, report)
         except BaseException:
-            if output.exists() and os.path.samefile(output, output_temp):
-                output.unlink()
-                output_committed = False
+            if remove_if_published(output_publication):
+                output_publication = None
             raise
         return {
             "schema": STAGING_SCHEMA,
@@ -149,8 +148,8 @@ def _stage_cloud_display_rows(
     finally:
         output_temp.unlink(missing_ok=True)
         report_temp.unlink(missing_ok=True)
-        if output_committed and not report.exists() and output.exists():
-            output.unlink()
+        if output_publication is not None and not report.exists():
+            remove_if_published(output_publication)
 
 
 def stage_cloud_scan_with_standard_display(
