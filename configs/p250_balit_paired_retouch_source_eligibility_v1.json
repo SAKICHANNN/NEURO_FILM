@@ -1,11 +1,18 @@
 {
   "schema": "neuro-film.p250-balit-paired-retouch-source-eligibility-contract.v1",
   "experiment_id": "P250",
-  "status": "FROZEN_BEFORE_FORMAL_NETWORK_READ",
+  "status": "FROZEN_READY_FOR_FORMAL_EXECUTION",
   "bindings": {
     "contract_path": "docs/planning/P250_BALIT_PAIRED_RETOUCH_SOURCE_ELIGIBILITY_CONTRACT.md",
     "contract_commit": "3fa7270bc1a2c18139df593c61468e12cfc0ce03",
-    "contract_sha256": "83ed17c3081deb6197e40de2bceba70ed2e9d65bc3851c21729f2edd96bb1561"
+    "contract_sha256": "83ed17c3081deb6197e40de2bceba70ed2e9d65bc3851c21729f2edd96bb1561",
+    "runner": {
+      "path": "scripts/audit_p250_balit_paired_retouch_source_eligibility.py",
+      "commit": "68a3e1bb9233da6e4770d32ba786e6b19f00186f",
+      "blob": "c25e6cbad8335bc7fe6c7954966d3d32d4bb2173",
+      "bytes": 7999,
+      "sha256": "2aa5a639ec4286d9616cc6f81cb3f4cd4db05a96f9a562060e4aeaf9637eb42b"
+    }
   },
   "sources": {
     "doi_url": "https://doi.org/10.21227/cdqg-q549",
