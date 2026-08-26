@@ -17046,3 +17046,29 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   or a materially new rights-cleared explicit same-scene source remains the
   admissible route. Contract `eb828902`, implementation `d4ae8b54`, evidence
   `dd036cf5`; four focused tests, Ruff, compile, JSON and diff checks pass.
+
+### 2026-08-26 - P244 prevents silent omission of DNG HueSatMap profiles
+
+- **Node and correction:** `ULT > mature RAW explicit mechanisms > P244`;
+  contract `5e00ebf6` freezes all six Adobe SDK 1.7.1 HueSatMap-family codes,
+  the exact five P98 DNGs and their historical float32 output hashes. Core and
+  focused tests are commit `a8526c20`. The first two attempted formal commands
+  stopped at Python import before config, TIFF metadata or pixel reads because
+  the script entrypoint lacked the repository root; `aa04c14a` fixes only that
+  execution boundary and both complete processes restart from committed HEAD.
+- **Result:** forward/reverse 5,945-byte reports are byte exact at SHA-256
+  `49465449...c7b6d7`. Each of `ProfileHueSatMapDims`, `Data1`, `Data2`,
+  `Encoding`, `Data3` and `ProfileDynamicRange` rejects independently, the
+  combined diagnostic is numeric-code sorted, and every rejection occurs with
+  zero camera-raster decode calls. The five P98 files expose none of the six
+  tags and reproduce every frozen P98 pixel hash, warning list, colour state
+  and source identity.
+- **Propagation and boundary:** the new core hash correctly invalidates P236's
+  historical exact-source binding; its frozen negative evidence/config are not
+  rewritten. The adjacent test now expects this mismatch, while P244 supplies
+  the explicit compatibility proof for the unchanged five pixel inputs. This
+  guard does not apply P243 arithmetic: that primitive consumes linear
+  ProPhoto RGB, whereas P98 emits linear Rec.2020 after D50 PCS conversion.
+  Evidence commit `b64473fd`; no new RAW, target, image artifact, HueSatMap
+  application, default-loader integration, package/schema/capability,
+  film-stock or product claim opens.

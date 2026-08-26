@@ -13,14 +13,9 @@ ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/p236_dng_forward_aces2_xyz_nits_callable_v1.json"
 
 
-def test_p236_forward_reverse_science_is_exact() -> None:
-    forward = execute(CONFIG, reverse=False)
-    reverse = execute(CONFIG, reverse=True)
-    assert forward == reverse
-    assert forward["status"] == "FAIL_CLOSED_DNG_FORWARD_ACES2_XYZ_NITS_CALLABLE"
-    assert {name for name, passed in forward["gate_results"].items() if not passed} == {
-        "neutral_probes"
-    }
+def test_p236_historical_binding_rejects_after_p244_guard() -> None:
+    with pytest.raises(ValueError, match="P236 binding mismatch: p98_source"):
+        execute(CONFIG, reverse=False)
 
 
 def test_xyz_bridge_owns_output_and_preserves_input() -> None:
