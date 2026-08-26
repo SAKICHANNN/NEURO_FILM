@@ -22,11 +22,14 @@ from scripts.pipeline_color_baseline import (
     style_transfer,
 )
 from src.filmfx import (
+    STAGED_DENSITY_VERSION,
     PhysicalHalationControls,
     build_physical_halation_layer,
     composite_layers,
+    composite_staged_density_rows,
     describe_physical_halation_controls,
     dust_scratch_layer,
+    execute_staged_density_halation_default,
     get_halation_preset,
     grain_residual_layer,
     halation_layer,
@@ -117,7 +120,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--grain", type=float, default=0.0)
     parser.add_argument("--halation", type=float, default=0.0)
     parser.add_argument(
-        "--halation-model", choices=("simple", "physical"), default="simple"
+        "--halation-model",
+        choices=("simple", "physical", "staged-density-research"),
+        default="simple",
     )
     parser.add_argument("--halation-preset", default=None)
     parser.add_argument(
@@ -360,6 +365,24 @@ def main() -> int:
         supported = {row["style_id"] for row in list_three_stock_looks()}
         if args.style not in supported:
             raise ValueError("--look-amount only supports the three-stock look catalog")
+    staged_density = args.halation_model == "staged-density-research"
+    if staged_density and (
+        args.color_engine != "safe_lab"
+        or not args.use_render_profile
+        or args.halation != 1.0
+        or args.halation_control_mode != "locked"
+        or args.halation_preset is not None
+        or args.tile_size != 64
+        or args.look_amount != 1.0
+        or args.grain != 0.0
+        or args.dust != 0.0
+        or args.halation_amount is not None
+    ):
+        raise ValueError(
+            "staged-density-research requires safe_lab --use-render-profile, "
+            "--halation 1.0, locked controls, no preset/amount/other effects, "
+            "default look amount and tile size 64"
+        )
     analytic_runtime = None
     color_diagnostics = None
     if args.color_engine == "analytic-y-chromaticity":
@@ -461,8 +484,39 @@ def main() -> int:
                 color=args.style not in {"hp5", "tri_x_400"},
             )
         )
+    staged_density_output = None
     if args.halation > 0:
-        if args.halation_model == "physical":
+        if args.halation_model == "staged-density-research":
+            assert args.tile_size is not None
+            staged_layer, staged_metadata = execute_staged_density_halation_default(
+                base,
+                tile_size=args.tile_size,
+                source_row_chunk=64,
+                coarse_row_chunk=7,
+                name="staged_density_halation_research",
+            )
+            staged_density_output = composite_staged_density_rows(
+                base,
+                staged_layer,
+                row_chunk=64,
+                output_margin=4,
+            )
+            layers.append(staged_layer)
+            halation_resolved = {
+                "executor_version": STAGED_DENSITY_VERSION,
+                "tile_size": args.tile_size,
+                "source_row_chunk": 64,
+                "coarse_row_chunk": 7,
+                "composite_row_chunk": 64,
+            }
+            halation_metadata = {
+                "executor_version": staged_metadata.version,
+                "tile_count": staged_metadata.tile_count,
+                "source_read_calls": staged_metadata.source_read_calls,
+                "scratch_disk_bytes": staged_metadata.scratch_disk_bytes,
+                "static_plan_fingerprint": staged_metadata.static_plan_fingerprint,
+            }
+        elif args.halation_model == "physical":
             if args.halation_control_mode == "locked":
                 base_controls = (
                     get_halation_preset(args.halation_preset).controls
@@ -534,10 +588,14 @@ def main() -> int:
         layers.append(
             dust_scratch_layer(base.shape, strength=args.dust, seed=args.seed + 17)
         )
-    out = composite_layers(
-        base,
-        layers,
-        output_margin=0 if analytic_runtime is not None else 4,
+    out = (
+        staged_density_output
+        if staged_density_output is not None
+        else composite_layers(
+            base,
+            layers,
+            output_margin=0 if analytic_runtime is not None else 4,
+        )
     )
     output_format = save_rgb(
         out,

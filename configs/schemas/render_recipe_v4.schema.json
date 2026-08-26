@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kmcfm.local/schemas/render_recipe_v4.schema.json",
+  "title": "K-MCFM private staged-density replay recipe v4",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_id", "profile", "assets", "input", "render", "output", "claim", "software"],
+  "properties": {
+    "schema_id": {"const": "kmcfm.render-recipe.v4"},
+    "profile": {"$ref": "render_recipe_v2.schema.json#/properties/profile"},
+    "assets": {"$ref": "render_recipe_v2.schema.json#/properties/assets"},
+    "input": {"$ref": "render_recipe_v2.schema.json#/properties/input"},
+    "render": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["engine_id", "preset", "style", "seed", "color_parameters", "effects"],
+      "properties": {
+        "engine_id": {"const": "safe_lab_v1"},
+        "preset": {"const": "safe-rich"},
+        "style": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_]{0,63}$"},
+        "seed": {"type": "integer", "minimum": -2147483648, "maximum": 2147483647},
+        "color_parameters": {"$ref": "render_profile_v1.schema.json#/$defs/color_parameters"},
+        "effects": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["grain", "halation", "dust"],
+          "properties": {
+            "grain": {
+              "allOf": [
+                {"$ref": "render_recipe_v2.schema.json#/$defs/grain"},
+                {"properties": {"strength": {"const": 0.0}}}
+              ]
+            },
+            "halation": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["strength", "model", "preset", "control_mode", "resolved_parameters"],
+              "properties": {
+                "strength": {"const": 1.0},
+                "model": {"const": "staged-density-research"},
+                "preset": {"type": "null"},
+                "control_mode": {"const": "locked"},
+                "resolved_parameters": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["executor_version", "tile_size", "source_row_chunk", "coarse_row_chunk", "composite_row_chunk"],
+                  "properties": {
+                    "executor_version": {"const": "staged-density-halation-v1-defaults"},
+                    "tile_size": {"const": 64},
+                    "source_row_chunk": {"const": 64},
+                    "coarse_row_chunk": {"const": 7},
+                    "composite_row_chunk": {"const": 64}
+                  }
+                }
+              }
+            },
+            "dust": {
+              "allOf": [
+                {"$ref": "render_recipe_v2.schema.json#/$defs/dust"},
+                {"properties": {"strength": {"const": 0.0}}}
+              ]
+            }
+          }
+        }
+      }
+    },
+    "output": {"$ref": "render_recipe_v3.schema.json#/properties/output"},
+    "claim": {"$ref": "render_recipe_v2.schema.json#/properties/claim"},
+    "software": {"$ref": "render_recipe_v2.schema.json#/properties/software"}
+  }
+}

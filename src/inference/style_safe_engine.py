@@ -21,9 +21,12 @@ from src.color_engine.safe_lab_rgb_context import (
     style_transfer_rgb_with_source_context,
 )
 from src.filmfx import (
+    STAGED_DENSITY_VERSION,
     composite_layers,
+    composite_staged_density_rows,
     density_halation_layer,
     dust_scratch_layer,
+    execute_staged_density_halation_default,
     grain_residual_layer,
     halation_layer,
     physical_halation_layer,
@@ -40,6 +43,7 @@ from src.preprocess import (
 
 from .render_contract import (
     COLOR_PARAMETER_KEYS,
+    RECIPE_SCHEMA_ID_V4,
     load_render_profile,
     sha256_file,
     validate_render_profile,
@@ -233,6 +237,14 @@ def _verified_recipe_base(
     verify_render_recipe_inputs(recipe, profile_path=profile_path, root=root)
     profile = load_render_profile(profile_path, root=root)
     render = recipe["render"]
+    effective_tile_size = tile_size
+    if recipe["schema_id"] == RECIPE_SCHEMA_ID_V4:
+        bound_tile_size = render["effects"]["halation"]["resolved_parameters"][
+            "tile_size"
+        ]
+        if tile_size is not None and tile_size != bound_tile_size:
+            raise StyleSafeEngineError("v4 replay tile size differs from recipe")
+        effective_tile_size = bound_tile_size
     style = render["style"]
     if style not in profile["style_parameters"]:
         raise StyleSafeEngineError("recipe style is absent from profile")
@@ -291,7 +303,7 @@ def _verified_recipe_base(
             style_parameters=render["color_parameters"],
             guardrails=load_guardrail_config(assets["color_guardrails"], style),
             seed=render["seed"],
-            tile_size=tile_size,
+            tile_size=effective_tile_size,
         )
     else:
         from .three_stock_look import render_three_stock_look_rgb
@@ -304,7 +316,7 @@ def _verified_recipe_base(
             style_statistics=statistics["styles"][style],
             guardrails=load_guardrail_config(assets["color_guardrails"], style),
             seed=render["seed"],
-            tile_size=tile_size,
+            tile_size=effective_tile_size,
         )
     return base, render
 
@@ -358,6 +370,23 @@ def replay_style_safe_recipe(
     if float(halation["strength"]) > 0.0:
         if halation["model"] == "simple":
             layers.append(halation_layer(base, strength=float(halation["strength"])))
+        elif halation["model"] == "staged-density-research":
+            resolved = halation["resolved_parameters"]
+            if resolved["executor_version"] != STAGED_DENSITY_VERSION:
+                raise StyleSafeEngineError("staged-density executor version drifted")
+            staged_layer, _ = execute_staged_density_halation_default(
+                base,
+                tile_size=resolved["tile_size"],
+                source_row_chunk=resolved["source_row_chunk"],
+                coarse_row_chunk=resolved["coarse_row_chunk"],
+                name="staged_density_halation_research",
+            )
+            return composite_staged_density_rows(
+                base,
+                staged_layer,
+                row_chunk=resolved["composite_row_chunk"],
+                output_margin=4,
+            )
         else:
             resolved = halation["resolved_parameters"]
             if not isinstance(resolved, Mapping) or not resolved:

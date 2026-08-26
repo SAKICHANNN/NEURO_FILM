@@ -14,7 +14,6 @@ from .staged_density import (
     execute_staged_density_halation_default,
 )
 
-
 STAGED_DENSITY_ADAPTER_VERSION = "staged-density-halation-research-adapter-v1"
 
 
@@ -48,7 +47,7 @@ def _readonly_view(value: np.ndarray) -> np.ndarray:
     return view
 
 
-def _composite_rows(
+def composite_staged_density_rows(
     base_rgb: np.ndarray,
     layer: FilmLayer,
     *,
@@ -112,7 +111,7 @@ def render_staged_density_halation_research(
         coarse_row_chunk=coarse_row_chunk,
         name="staged_density_halation_research",
     )
-    output = _composite_rows(
+    output = composite_staged_density_rows(
         base_rgb,
         layer,
         row_chunk=resolved_row_chunk,

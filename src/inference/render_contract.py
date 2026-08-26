@@ -17,6 +17,9 @@ PROFILE_SCHEMA_ID = "kmcfm.render-profile.v1"
 RECIPE_SCHEMA_ID = "kmcfm.render-recipe.v1"
 RECIPE_SCHEMA_ID_V2 = "kmcfm.render-recipe.v2"
 RECIPE_SCHEMA_ID_V3 = "kmcfm.render-recipe.v3"
+RECIPE_SCHEMA_ID_V4 = "kmcfm.render-recipe.v4"
+STAGED_DENSITY_HALATION_MODEL = "staged-density-research"
+STAGED_DENSITY_EXECUTOR_VERSION = "staged-density-halation-v1-defaults"
 PROFILE_EVIDENCE_SUMMARY_SCHEMA_ID = "kmcfm.profile-evidence-summary.v1"
 LEGACY_STYLE_EVIDENCE_INVENTORY_SCHEMA_ID = (
     "kmcfm.legacy-style-evidence-inventory.v1"
@@ -401,6 +404,7 @@ def validate_render_recipe(recipe: Mapping[str, Any]) -> None:
         RECIPE_SCHEMA_ID,
         RECIPE_SCHEMA_ID_V2,
         RECIPE_SCHEMA_ID_V3,
+        RECIPE_SCHEMA_ID_V4,
     }:
         raise RenderContractError("unsupported recipe schema_id")
     profile = _mapping(recipe["profile"], "recipe.profile")
@@ -478,15 +482,58 @@ def validate_render_recipe(recipe: Mapping[str, Any]) -> None:
     halation = _mapping(effects["halation"], "recipe.render.effects.halation")
     _keys(halation, {"strength", "model", "preset", "control_mode", "resolved_parameters"}, "recipe.render.effects.halation")
     _number(halation["strength"], "recipe.render.effects.halation.strength", 0.0, 1.0)
-    if halation["model"] not in {"simple", "physical"} or halation["control_mode"] not in {"locked", "expert"}:
+    allowed_models = {"simple", "physical"}
+    if schema_id == RECIPE_SCHEMA_ID_V4:
+        allowed_models.add(STAGED_DENSITY_HALATION_MODEL)
+    if halation["model"] not in allowed_models or halation["control_mode"] not in {"locked", "expert"}:
         raise RenderContractError("recipe halation model/control mode is invalid")
     if halation["preset"] is not None:
         _identifier(halation["preset"], "recipe.render.effects.halation.preset")
     _validate_json_parameters(halation["resolved_parameters"], "recipe.render.effects.halation.resolved_parameters")
+    if schema_id == RECIPE_SCHEMA_ID_V4:
+        expected_staged_keys = {
+            "executor_version",
+            "tile_size",
+            "source_row_chunk",
+            "coarse_row_chunk",
+            "composite_row_chunk",
+        }
+        resolved = _mapping(
+            halation["resolved_parameters"],
+            "recipe.render.effects.halation.resolved_parameters",
+        )
+        _keys(
+            resolved,
+            expected_staged_keys,
+            "recipe.render.effects.halation.resolved_parameters",
+        )
+        if (
+            halation["model"] != STAGED_DENSITY_HALATION_MODEL
+            or float(halation["strength"]) != 1.0
+            or halation["preset"] is not None
+            or halation["control_mode"] != "locked"
+            or resolved["executor_version"] != STAGED_DENSITY_EXECUTOR_VERSION
+            or resolved["source_row_chunk"] != 64
+            or resolved["coarse_row_chunk"] != 7
+            or resolved["composite_row_chunk"] != 64
+        ):
+            raise RenderContractError("v4 staged-density halation contract drifted")
+        _integer(
+            resolved["tile_size"],
+            "recipe.render.effects.halation.resolved_parameters.tile_size",
+            1,
+            2**31 - 1,
+        )
+        if resolved["tile_size"] != 64:
+            raise RenderContractError("v4 staged-density tile size must remain 64")
     dust = _mapping(effects["dust"], "recipe.render.effects.dust")
     _keys(dust, {"strength", "seed"}, "recipe.render.effects.dust")
     _number(dust["strength"], "recipe.render.effects.dust.strength", 0.0, 1.0)
     _integer(dust["seed"], "recipe.render.effects.dust.seed", -(2**31), 2**31 - 1)
+    if schema_id == RECIPE_SCHEMA_ID_V4 and (
+        float(grain["strength"]) != 0.0 or float(dust["strength"]) != 0.0
+    ):
+        raise RenderContractError("v4 staged-density recipe forbids other effects")
 
     output = _mapping(recipe["output"], "recipe.output")
     output_keys = {
@@ -497,7 +544,7 @@ def validate_render_recipe(recipe: Mapping[str, Any]) -> None:
         "transfer",
         "icc_profile_fingerprint_sha256",
     }
-    if schema_id == RECIPE_SCHEMA_ID_V3:
+    if schema_id in {RECIPE_SCHEMA_ID_V3, RECIPE_SCHEMA_ID_V4}:
         output_keys.add("png_compression")
     _keys(output, output_keys, "recipe.output")
     _string(output["path"], "recipe.output.path")
@@ -507,7 +554,7 @@ def validate_render_recipe(recipe: Mapping[str, Any]) -> None:
     if output["bit_depth"] not in {8, 16} or output["transfer"] != "sRGB":
         raise RenderContractError("recipe output encoding is unsupported")
     _hash(output["icc_profile_fingerprint_sha256"], "recipe.output.icc_profile_fingerprint_sha256")
-    if schema_id == RECIPE_SCHEMA_ID_V3:
+    if schema_id in {RECIPE_SCHEMA_ID_V3, RECIPE_SCHEMA_ID_V4}:
         _integer(output["png_compression"], "recipe.output.png_compression", 0, 9)
         if output["format"] != "PNG" or output["bit_depth"] != 16:
             raise RenderContractError(
@@ -558,16 +605,28 @@ def build_render_recipe(
     claim = dict(output_claim)
     claim["claim_ceiling"] = profile["evidence"]["claim_ceiling"]
     resolved_render = dict(render_metadata)
+    halation = _mapping(
+        _mapping(resolved_render.get("effects"), "render_metadata.effects").get(
+            "halation"
+        ),
+        "render_metadata.effects.halation",
+    )
+    staged_density = halation.get("model") == STAGED_DENSITY_HALATION_MODEL
+    if staged_density and output_png_compression is None:
+        output_png_compression = 6
     if output_png_compression is not None:
         _integer(output_png_compression, "output_png_compression", 0, 9)
         if output_format != "PNG" or output_bit_depth != 16:
             raise RenderContractError(
                 "PNG compression requires 16-bit PNG output"
             )
-        resolved_render.setdefault("look_amount", 1.0)
+        if not staged_density:
+            resolved_render.setdefault("look_amount", 1.0)
     recipe = {
         "schema_id": (
-            RECIPE_SCHEMA_ID_V3
+            RECIPE_SCHEMA_ID_V4
+            if staged_density
+            else RECIPE_SCHEMA_ID_V3
             if output_png_compression is not None
             else RECIPE_SCHEMA_ID_V2
             if "look_amount" in resolved_render
