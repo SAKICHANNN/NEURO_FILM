@@ -1,0 +1,65 @@
+{
+  "schema": "neuro-film.p249-aces2065-openexr-exact-consumer-intake-contract.v1",
+  "experiment_id": "P249",
+  "status": "FROZEN_BEFORE_FORMAL_OPENEXR_INSTALL_OR_EXECUTION",
+  "bindings": {
+    "contract_path": "docs/planning/P249_ACES2065_OPENEXR_EXACT_CONSUMER_INTAKE_CONTRACT.md",
+    "contract_sha256": "21b03e5c92d45315a0542340eec639b822a45c15136f5684499e7c82670ab974",
+    "contract_commit": "a9946f859c33d890960d032ca7f60b4779a97a74",
+    "producer_writer_commit": "a7ec64513c4fa097bc49b9bdbdfd8c3c7c2eb901",
+    "producer_writer_path": "src/zhuise/acescg_openexr.py",
+    "producer_writer_git_blob": "8c3a1452cc13b29d4ad5f07dcd53cc6c626dd927",
+    "producer_writer_bytes": 7699,
+    "producer_writer_sha256": "63995dc36cf41708118f32e90687b8bb5c9b2738100b3db557371bbaf086d84d",
+    "producer_r1dt_evidence_commit": "9e16b14145415c668ebf7c76ca88ec8b3e3618f9",
+    "producer_r1dt_evidence_path": "docs/evidence/R1DT_ACES2065_OPENEXR_CONTAINER_RESULT.json",
+    "producer_r1dt_evidence_bytes": 5175,
+    "producer_r1dt_evidence_sha256": "5d037d2f98f90d6f7d872c6a1b009637423ed2994189f94d5e9ec7f0375a68ff",
+    "producer_wheel_path": "data/vendor/openexr-3.4.15/openexr-3.4.15-cp312-cp312-win_amd64.whl",
+    "producer_wheel_bytes": 740197,
+    "producer_wheel_sha256": "7aa145813acfe10a83d6e89340349379828190b321608e69f2aee426e10c890b"
+  },
+  "expected": {
+    "writer_id": "aces2065-ap0-d60-float32-zip-openexr-container-v1",
+    "openexr_version": "3.4.15",
+    "python_major_minor": "3.12",
+    "input_acescg_f32le_sha256": "3b14e75aa87a09794e0c4cb6339a4fc09862657d9aea190a9e3311c155bdb727",
+    "ap0_pixel_f32le_sha256": "2b3417e344aa7c26962a109f55d14237a0926d0e03eb46767477b274c4179cb4",
+    "openexr_bytes": 1144,
+    "openexr_sha256": "1a25181406270142c98f2169897d3a4c468ec50c979fff9077d37f956c888726",
+    "ap1_to_ap0_matrix": [
+      [0.6954522414, 0.1406786965, 0.1638690622],
+      [0.0447945634, 0.8596711185, 0.0955343182],
+      [-0.0055258826, 0.0040252103, 1.0015006723]
+    ],
+    "chromaticities": [
+      0.7347000241279602,
+      0.2653000056743622,
+      0.0,
+      1.0,
+      0.00009999999747378752,
+      -0.07699999958276749,
+      0.3216800093650818,
+      0.3376699984073639
+    ],
+    "adopted_neutral": [0.3216800093650818, 0.3376699984073639],
+    "aces_image_container_flag": 1,
+    "color_interop_id": "lin_ap0_scene"
+  },
+  "gates": {
+    "require_exact_git_objects": true,
+    "require_exact_evidence_binding": true,
+    "require_exact_offline_wheel": true,
+    "require_zero_network": true,
+    "require_zero_external_pixel_reads": true,
+    "require_exact_openexr_bytes": true,
+    "require_exact_decoded_pixels_and_metadata": true,
+    "require_input_immutability": true,
+    "require_invalid_input_rejection": true,
+    "require_publication_failure_atomicity": true,
+    "require_zero_temporary_residue": true,
+    "require_two_fresh_process_reports_exact": true
+  },
+  "stop_rule": "Any source, evidence, wheel, runtime, matrix, pixel, metadata, byte, atomicity, cleanup or replay mismatch closes this exact consumer intake without source copy, dependency substitution, transform change, metadata rewrite, tolerance relaxation or product mapping.",
+  "claim_ceiling": "Private Windows CPython consumer-side reproducibility of the exact producer R1DT AP1-to-AP0 writer/source/wheel handoff on one synthetic probe only. No neuro_film public API/dependency/package/schema/capability, SMPTE certification, arbitrary metadata/image support, large-image resource or quality result, cross-platform parity, renderer integration or product admission."
+}
