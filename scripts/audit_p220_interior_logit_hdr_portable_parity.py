@@ -64,7 +64,9 @@ def run(order: str) -> dict[str, Any]:
         payloads = list(reversed(payloads))
     probes = build_probes(payloads)
     build_records: list[dict[str, Any]] = []
-    with tempfile.TemporaryDirectory(prefix="p220-", dir=ROOT / "tmp") as temp:
+    with tempfile.TemporaryDirectory(
+        prefix="p220-", dir=ROOT / "tmp", ignore_cleanup_errors=True
+    ) as temp:
         temporary = Path(temp)
         for toolchain in ("msvc", "llvm"):
             for build_index in (1, 2):
