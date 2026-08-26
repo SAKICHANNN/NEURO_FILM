@@ -1,0 +1,66 @@
+{
+  "schema": "kmcfm.p232-target-xmp-operator-semantics-contract.v1",
+  "experiment_id": "P232",
+  "status": "FROZEN_BEFORE_OPERATOR_COMPILATION_OR_PIXEL_READ",
+  "question": "Does the exact locally retained public MMArt-PPR10K XMP evidence support a source-independent explicit colour operator rather than only an Adobe-renderer recipe descriptor?",
+  "source": {
+    "dataset_card_path": "outputs/source_recon/mmart_ppr10k_readme.md",
+    "dataset_card_sha256": "00e81b37e54f3a0d818ca0e49b192399c7589323398a42f7d19a024e3c8f703e",
+    "xmp_path": "outputs/source_recon/mmart_ppr10k_public_metadata/config.xmp",
+    "xmp_sha256": "78ec5860c5f458793eda51f44d9ec4594909d74310c94dc72017dca6c7077d75",
+    "xmp_bytes": 9648,
+    "prior_audit_path": "docs/U5_R2W0_REFERENCE_LOOK_MATCHING_SOURCE_METHOD_AUDIT.md",
+    "listed_recipe_count": 4055,
+    "listed_base_content_count": 1412,
+    "locally_retained_recipe_count": 1,
+    "bulk_recipe_access_authorized": false,
+    "rights_ceiling": "Metadata-only internal research. The derivative card says Apache-2.0, but upstream PPR10K restricts images and derived data to non-commercial research; prior project adjudication forbids bulk recipe acquisition, training, fitting and redistribution."
+  },
+  "hypotheses": {
+    "h1_explicit_operator": "The XMP contains enough independently observed, globally scoped and equation-complete fields to compile a deterministic source-independent colour operator.",
+    "h2_renderer_recipe": "The XMP identifies an Adobe processing recipe, but exact output depends on proprietary process ordering, profiles or renderer semantics not carried by the retained metadata.",
+    "h3_descriptor_only": "The XMP is usable only as a target-side intent descriptor or abstention signal until paired renderer observations identify its effect."
+  },
+  "strict_semantic_rule": {
+    "minimum_independent_recipes": 8,
+    "all_recipes_must_be_locally_authorized": true,
+    "all_nonidentity_colour_fields_require_equations_and_order": true,
+    "all_referenced_profiles_require_exact_bytes": true,
+    "spatial_or_geometry_edits_forbid_global_operator_admission": true,
+    "unknown_or_private_renderer_dependencies_forbid_operator_admission": true,
+    "missing_or_untrusted_metadata_must_abstain": true
+  },
+  "expected_exact_sample_facts": {
+    "camera_raw_attribute_count": 127,
+    "direct_curve_sequence_count": 12,
+    "process_version": "11.0",
+    "camera_profile": "Adobe Standard",
+    "has_settings": "True",
+    "has_crop": "True"
+  },
+  "execution": {
+    "orders": [
+      "forward",
+      "reverse"
+    ],
+    "fresh_process_per_order": true,
+    "network_reads": 0,
+    "image_pixel_reads": 0,
+    "operator_compilations": 0,
+    "renders": 0,
+    "scores": 0
+  },
+  "decision": {
+    "pass": "Open only a separately preregistered private paired-renderer semantic-parity leaf; do not map a product or generic Lightroom capability.",
+    "fail": "Close direct target-XMP-to-explicit-operator compilation before pixels. Preserve metadata only as a non-executable descriptor candidate.",
+    "no_rescue": [
+      "bulk recipe download",
+      "Adobe formula or processing-order invention",
+      "profile substitution",
+      "pixel fitting",
+      "field dropping after outcome",
+      "rights reinterpretation"
+    ]
+  },
+  "claim_ceiling": "One exact public XMP metadata semantic-identifiability audit. No Lightroom/Camera Raw parity, image quality, arbitrary XMP, public package/schema/capability, stock, calibration or product admission."
+}
