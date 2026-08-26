@@ -1,0 +1,82 @@
+{
+  "schema": "neuro-film.p231-r1cz-real-hdr-video-temporal-safety-contract.v1",
+  "experiment_id": "P231",
+  "status": "FROZEN_BEFORE_R0VC_VIDEO_PIXEL_DECODE",
+  "question": "Does the exact P230-verified R1CZ paired payload remain boundary-safe and temporally non-amplifying on the already-consumed R0VC native PQ/BT.2020 video?",
+  "consumer": {
+    "p230_evidence_path": "docs/evidence/P230_R1CZ_SHARED_HDR_PAYLOAD_CONSUMER_RESULT.json",
+    "p230_evidence_sha256": "940a6725f9085e0a05b58ccd9430673979e6c389bf52b68b787c958254328cfe",
+    "p230_source_path": "src/color_match/shared_hdr_dpct_payload.py",
+    "p230_source_sha256": "0ebe95c64b52b9c3b79d601438d76a5a2cb6f9a4b91c076eaef7d82bafcc36ad"
+  },
+  "producer": {
+    "repository": "C:/Users/hhvrf/Documents/追色",
+    "r1cz_evidence_path": "docs/evidence/R1CZ_R1CY_SHARED_BUNDLE_PAYLOAD_MATERIALIZATION_RESULT.json",
+    "r1cz_evidence_sha256": "1e3c85dac84b73b094d1dbc5edc716e15e8399b5052399a19f2052c9a25a932b",
+    "payload_path": "tests/fixtures/r1cy_shared_hdr_bundle_payload_v1.json",
+    "payload_sha256": "aa7fe0400e7bef106a9ff75305babab317a4148bdb05c573c50395d6f4228cb9",
+    "payload_bytes": 4376,
+    "bundle_id": "sha256:2759d2193861b95d39bb451efb2477c6ae796f5f58b3b81cf6487cbd85c3220f",
+    "r1ct_evidence_path": "docs/evidence/R1CT_R1CG_REAL_HDR_VIDEO_TEMPORAL_SAFETY_RESULT.json",
+    "r1ct_evidence_sha256": "1d00ef8194f0b45ea24177f9d9ed193cdc78331909aeff7e0be69fa2e829cebd",
+    "r0vc_evidence_path": "docs/evidence/R0VC_BEYOND8BITS_NATIVE_HDR_VIDEO_RAIL_RESULT.json",
+    "r0vc_evidence_sha256": "8901c2b11875e0a722985fc42999ec5cc23b65641c20b6710d3d2228992513c3",
+    "video_path": "data/beyond8bits_r0vc/0001204d5f245fb2f8c25584be2fb14b.mp4",
+    "video_sha256": "0e19b7b6eadbe1663b5a539f38ecc4100f32a290bf57c3663724f27628ff3997",
+    "video_bytes": 30410681,
+    "r1ct_forward_report_path": "outputs/eval/r1ct_r1cg_real_hdr_video_temporal_safety_forward.json",
+    "r1ct_forward_report_sha256": "c1c272e69888006fcaae77e1451c488aa335b6bea878cc6a0dfc62eff0883d09",
+    "r1ct_reverse_report_path": "outputs/eval/r1ct_r1cg_real_hdr_video_temporal_safety_reverse.json",
+    "r1ct_reverse_report_sha256": "96186d9aa27a70a282dc5f26d856eb5eea4690ab23a2d74178c995410891fbff",
+    "sampled_source_f32le_sha256": "a918196d5a0d751f8733fcb91996c4d1f99ce302d0e3d2cbd11bdee2504822ba",
+    "rights_ceiling": "Local non-commercial research isolation inherited from exact R0VC facts; no redistribution or product dependency."
+  },
+  "runtime": {
+    "ffmpeg_path": "C:/Program Files/Topaz Labs LLC/Topaz Video/ffmpeg.exe",
+    "ffmpeg_sha256": "0221f5ea646576bc8a36c8fdcd5180f0b8a1e39b016b8141072ecfc75792e8a2",
+    "ffmpeg_bytes": 479312,
+    "ffprobe_path": "C:/Program Files/Topaz Labs LLC/Topaz Video/ffprobe.exe",
+    "ffprobe_sha256": "8c2e3ca7d75b1283702f441b50e66de780b182e2b0928ae0738d316b62d3c7b0",
+    "ffprobe_bytes": 212048,
+    "ffmpeg_version": "8.1",
+    "threads": 1
+  },
+  "media": {
+    "frames": 300,
+    "width": 1920,
+    "height": 1080,
+    "pixel_format": "yuv420p10le",
+    "color_primaries": "bt2020",
+    "color_transfer": "smpte2084",
+    "color_space": "bt2020nc",
+    "sample_stride": 8,
+    "sampled_height": 135,
+    "sampled_width": 240
+  },
+  "gates": {
+    "all_bindings_and_media_facts_exact": true,
+    "independent_decode_matches_r1ct_source_sha": true,
+    "output_finite_in_0_10000": true,
+    "new_boundary_fraction_exact": 0.0,
+    "median_log_rgb_material_effect_minimum": 0.01,
+    "luminance_temporal_p95_ratio_maximum": 1.25,
+    "chroma_temporal_p95_ratio_maximum": 1.25,
+    "new_luminance_spike_fraction_maximum": 0.005,
+    "forward_reverse_scientific_payload_exact": true,
+    "network_reads_zero": true
+  },
+  "execution": {
+    "orders": ["forward-frames", "reverse-frames"],
+    "fresh_process_per_outer": true,
+    "payload_build_application_source_reads": 0,
+    "target_reads": 0,
+    "network_reads": 0,
+    "repository_media_writes": 0
+  },
+  "decision": {
+    "pass": "Retain one private consumed-video temporal-safety D0 for the exact R1CZ payload only.",
+    "fail": "Close this exact payload/video safety application without payload, frame, decoder, colour, metric or gate rescue.",
+    "invalid": "If independent sampled source bytes do not equal the frozen R1CT source SHA, report infrastructure-invalid before interpreting candidate safety."
+  },
+  "claim_ceiling": "One exact non-commercial consumed real native HDR video target-blind safety audit of one self-authored paired/capture-time payload; no grade correctness, aesthetic quality, arbitrary video, natural paired HDR quality, public package/schema/capability or product admission."
+}
