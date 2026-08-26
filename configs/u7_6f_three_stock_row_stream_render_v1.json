@@ -1,0 +1,44 @@
+{
+  "schema_version": "neuro-film.u7-6f-three-stock-row-stream-render.v1",
+  "node_id": "U7.6F",
+  "objective": "Eliminate the full-resolution rendered output array by executing safe-Lab tiles in deterministic full-width row stripes and writing each stripe directly to the bounded-row RGB16 PNG encoder.",
+  "input": {
+    "path": "data/preference/repid/u5_r2repid3_shared_operator_v1/fit/winner/a4593-kme_0276.jpeg",
+    "expected_dimensions": [6048, 4032]
+  },
+  "execution": {
+    "look_amount": 1.0,
+    "render_seed": 31,
+    "tile_size": 512,
+    "tile_workers": 1,
+    "png_compression": 0,
+    "run_order": ["baseline", "candidate", "candidate", "baseline"]
+  },
+  "controls": {
+    "baseline_execution_id": "full-frame-safe-lab-plus-opencv-srgb16-png.v1",
+    "candidate_execution_id": "row-striped-safe-lab-plus-streaming-srgb16-png.v1",
+    "baseline": "the exact post-U7.6E production batch with a full-resolution float32 output and OpenCV PNG publication",
+    "candidate": "the same safe-Lab tile operator and frozen source context assembled one full-width core stripe at a time and immediately published through StreamingSrgbPngWriter",
+    "invariants": "decoded RGB16 samples, sRGB ICC fingerprint, normalized recipe semantics, stock order, safe-Lab parameters, source context, tile geometry, atomic directory publication and cleanup; encoded file bytes are execution-version-specific"
+  },
+  "gates": {
+    "candidate_encoded_outputs_repeat_exact": true,
+    "baseline_encoded_outputs_repeat_exact": true,
+    "three_decoded_sample_arrays_cross_execution_exact": true,
+    "three_icc_fingerprints_cross_execution_exact": true,
+    "three_normalized_recipe_semantics_cross_execution_exact": true,
+    "ordered_stock_ids_exact": true,
+    "execution_identity_exact": true,
+    "minimum_peak_process_tree_rss_reduction_bytes": 201326592,
+    "candidate_peak_process_tree_rss_ratio_max": 0.90,
+    "candidate_wall_ratio_max": 1.10,
+    "candidate_residue_count": 0
+  },
+  "stop_rules": [
+    "Do not change a stock operator, profile, guardrail, shared source context, tile geometry, decoded RGB16 sample, ICC profile, recipe meaning or publication atomicity after formal execution begins.",
+    "Encoded PNG bytes may differ only because the execution identity is explicit; each implementation must repeat exactly within itself.",
+    "A failed parity, memory or wall-time gate closes this exact row-stripe architecture without row-size, tile-size, thread-count, compression, threshold or output-format rescue.",
+    "Do not interpret this product-runtime result as stock separation, calibration or controlled-film evidence."
+  ],
+  "claim_ceiling": "Local Windows/Python 24MP three-stock row-stream execution evidence only; all outputs remain non-calibrated Look Approximations and U7.2C stock separation remains failed."
+}
