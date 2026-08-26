@@ -7,6 +7,10 @@ to newer explicit composition code.
 
 from __future__ import annotations
 
+import os
+import tempfile
+from pathlib import Path
+
 import numpy as np
 from skimage.color import rgb2lab
 
@@ -17,6 +21,7 @@ from scripts.pipeline_color_baseline import (
 )
 from src.color_engine.safe_lab import (
     SafeLabSourceContext,
+    safe_lab_context_from_lab,
     validate_safe_lab_source_context,
 )
 from src.inference.tiled_render import (
@@ -87,6 +92,52 @@ def style_transfer_rgb_with_source_context(
         precomputed_lab=lab,
         gamut_workers=gamut_workers,
     )
+
+
+def build_safe_lab_source_context_bounded(
+    rgb: np.ndarray,
+    *,
+    scratch_directory: Path,
+    row_chunk: int = 128,
+) -> SafeLabSourceContext:
+    """Build the exact legacy context with bounded RGB-to-Lab temporaries.
+
+    The complete Lab array is file-backed so the unchanged legacy NumPy
+    reduction retains its dtype and reduction order without keeping the
+    conversion result resident in process memory.
+    """
+
+    if isinstance(row_chunk, bool) or not isinstance(row_chunk, int) or row_chunk < 1:
+        raise ValueError("row_chunk must be a positive integer")
+    directory = Path(scratch_directory)
+    directory.mkdir(parents=True, exist_ok=True)
+    if not directory.is_dir():
+        raise ValueError("scratch_directory must be a directory")
+
+    value = _validate_style_rgb(rgb)
+    descriptor, raw_path = tempfile.mkstemp(
+        prefix="safe_lab_context_",
+        suffix=".f32",
+        dir=directory,
+    )
+    os.close(descriptor)
+    path = Path(raw_path)
+    mapped: np.memmap | None = None
+    try:
+        mapped = np.memmap(path, dtype=np.float32, mode="w+", shape=value.shape)
+        for y0 in range(0, value.shape[0], row_chunk):
+            y1 = min(y0 + row_chunk, value.shape[0])
+            mapped[y0:y1] = rgb2lab(value[y0:y1])
+        mapped.flush()
+        return safe_lab_context_from_lab(
+            mapped,
+            tuple(int(size) for size in value.shape),
+        )
+    finally:
+        if mapped is not None:
+            mapped.flush()
+            del mapped
+        path.unlink(missing_ok=True)
 
 
 def style_transfer_rgb_tiled_with_source_context(
@@ -166,6 +217,7 @@ def style_transfer_rgb_tiled_with_source_context(
 
 __all__ = [
     "build_safe_lab_source_context",
+    "build_safe_lab_source_context_bounded",
     "style_transfer_rgb_tiled_with_source_context",
     "style_transfer_rgb_with_source_context",
 ]
