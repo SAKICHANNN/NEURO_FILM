@@ -319,6 +319,14 @@ identification, human severe review or preference. Physical Velvia 50, Portra
 Evidence:
 `docs/evidence/SF3_A0A5_SYNTHETIC_PIPELINE_REHEARSAL_RESULT.json`.
 
+The physical handoff no longer requires editing the 1,198-line A0N packet in
+one pass. Commit `0953f9cf` adds a copy-on-write capture-session CLI that fills
+one exact condition or exposure row at a time, rejects partial/unknown/
+duplicate rows, preserves the source packet, and reports the next unfilled
+slot in frozen work-order order. A fully incrementally filled 18-condition /
+87-exposure packet passes the unchanged A0N validator. This is acquisition
+plumbing only; measured values and physical film observations remain absent.
+
 SF3.A2 tests one bounded current public-index refresh without changing the
 three-stock gates. The frozen anonymous Openverse route returned HTTP 401 for
 all three exact queries, despite the current consumer documentation describing

@@ -17363,3 +17363,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   controlled Velvia 50, Portra 400 and Ektar 100 physical packet remains the
   next scientific action, with no calibration, stock-identification,
   preference or product claim.
+
+### 2026-08-27 - SF3.A0N physical receipt recording becomes incremental
+
+- **Implementation:** commit `0953f9cf` adds a copy-on-write capture-session
+  core and CLI over the unchanged A0N work order. It records exactly one full
+  condition or exposure row, rejects partial, unknown, immutable-drift or
+  duplicate updates, never overwrites the source packet, and reports the next
+  unfilled slot in frozen order.
+- **Verification and boundary:** an incrementally filled 18-condition /
+  87-exposure packet passes the existing complete validator; CLI copy-on-write,
+  progress and failure controls pass with 14 adjacent tests, Ruff and direct
+  entry checks. This reduces physical acquisition error risk but supplies no
+  measured receipt, scan, film evidence, calibration or product claim.
