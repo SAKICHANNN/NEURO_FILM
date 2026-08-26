@@ -36,7 +36,7 @@
       0.2930000126361847,
       0.16500000655651093,
       0.8299999833106995,
-      0.12800000655651093,
+      0.12800000607967377,
       0.04399999976158142,
       0.3216800093650818,
       0.3376699984073639
@@ -59,5 +59,6 @@
   },
   "stop_rule": "Any source, evidence, wheel, runtime, pixel, metadata, byte, atomicity, cleanup or replay mismatch closes this exact consumer intake without source copy, dependency substitution, encoding change, tolerance relaxation or product mapping.",
   "preformal_execution_correction": "The first two controller attempts wrote no report and stopped during cleanup because Windows retained the loaded OpenEXR extension until process exit. The corrected runner executes the unchanged writer, wheel, probe and gates in a short-lived worker, waits for worker exit, then verifies removal of the same system-temporary tree.",
+  "excluded_first_report_correction": "The first 3526-byte report (SHA-256 e2c9107b48e18ed3fcaee2f7b447e3097d1fa2c5cfa4ee36c265d74076f26609) had every execution gate except metadata equality pass because the config transcribed the bound R1DO green-primary float32 x value as 0.12800000655651093 instead of the exact evidence value 0.12800000607967377. This amendment changes only that decimal binding; writer, wheel, probe, observed bytes, metadata gate and thresholds are unchanged.",
   "claim_ceiling": "Private Windows CPython consumer-side reproducibility of the exact producer R1DO writer/source/wheel handoff on one synthetic ACEScg probe only. No neuro_film public API/dependency/package/schema/capability, AP0 or ST 2065-4 ACES container, large-image or quality result, arbitrary metadata support, Linux claim beyond bound R1DP evidence, or product admission."
 }
