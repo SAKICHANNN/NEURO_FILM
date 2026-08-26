@@ -143,7 +143,9 @@ def _inject_png_cicp(png: bytes, cicp: bytes = REC2020_SDR_CICP) -> bytes:
     return png[:ihdr_end] + _png_chunk(b"cICP", cicp) + png[ihdr_end:]
 
 
-def save_srgb16_png(rgb: np.ndarray, path: Path) -> str:
+def save_srgb16_png(
+    rgb: np.ndarray, path: Path, *, compression_level: int = 6
+) -> str:
     """Encode finite HxWx3 display-sRGB values as true uint16 RGB PNG."""
     if rgb.ndim != 3 or rgb.shape[2] != 3:
         raise ValueError("sRGB output must be an HxWx3 array")
@@ -151,13 +153,19 @@ def save_srgb16_png(rgb: np.ndarray, path: Path) -> str:
         raise ValueError("sRGB output contains non-finite values")
     if path.suffix.casefold() != ".png":
         raise ValueError("16-bit PNG output requires a .png extension")
+    if (
+        isinstance(compression_level, bool)
+        or not isinstance(compression_level, int)
+        or not 0 <= compression_level <= 9
+    ):
+        raise ValueError("PNG compression level must be an integer in [0, 9]")
     import cv2
 
     encoded_rgb = np.rint(np.clip(rgb, 0.0, 1.0) * 65535.0).astype(np.uint16)
     succeeded, buffer = cv2.imencode(
         ".png",
         encoded_rgb[..., ::-1],
-        [cv2.IMWRITE_PNG_COMPRESSION, 6],
+        [cv2.IMWRITE_PNG_COMPRESSION, compression_level],
     )
     if not succeeded:
         raise ValueError("OpenCV failed to encode 16-bit PNG")

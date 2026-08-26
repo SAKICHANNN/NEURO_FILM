@@ -190,6 +190,16 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--seed", type=int, default=7)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--output-bit-depth", type=int, choices=(8, 16), default=8)
+    parser.add_argument(
+        "--png-compression",
+        type=int,
+        choices=range(10),
+        default=None,
+        help=(
+            "Explicit PNG16 compression level 0-9. Level 0 is the fast-export "
+            "tier; omitted keeps the existing level-6 default."
+        ),
+    )
     parser.add_argument("--write-layers", action="store_true")
     parser.add_argument("--write-metrics", action="store_true")
     parser.add_argument("--write-recipe", action="store_true")
@@ -214,11 +224,21 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def save_rgb(rgb: np.ndarray, path: Path, bit_depth: int = 8) -> str:
+def save_rgb(
+    rgb: np.ndarray,
+    path: Path,
+    bit_depth: int = 8,
+    *,
+    png_compression: int | None = None,
+) -> str:
     if bit_depth == 8:
         return save_srgb8(rgb, path)
     if path.suffix.casefold() == ".png":
-        return save_srgb16_png(rgb, path)
+        return save_srgb16_png(
+            rgb,
+            path,
+            compression_level=6 if png_compression is None else png_compression,
+        )
     if path.suffix.casefold() in {".tif", ".tiff"}:
         return save_srgb16_tiff(rgb, path)
     raise ValueError("16-bit output requires .png, .tif or .tiff")
@@ -312,6 +332,14 @@ def main() -> int:
         ".tiff",
     }:
         raise ValueError("16-bit output requires .png, .tif or .tiff")
+    if args.png_compression is not None and (
+        args.output_bit_depth != 16
+        or args.output.suffix.casefold() != ".png"
+        or args.color_engine != "safe_lab"
+    ):
+        raise ValueError(
+            "--png-compression requires safe_lab 16-bit PNG output"
+        )
     if args.tile_size is not None and args.tile_size < 1:
         raise ValueError("--tile-size must be at least 1")
     if args.gamut_workers < 1:
@@ -511,7 +539,12 @@ def main() -> int:
         layers,
         output_margin=0 if analytic_runtime is not None else 4,
     )
-    output_format = save_rgb(out, args.output, args.output_bit_depth)
+    output_format = save_rgb(
+        out,
+        args.output,
+        args.output_bit_depth,
+        png_compression=args.png_compression,
+    )
     recipe_path = None
     recipe_sha256 = None
     if args.write_recipe:
@@ -567,6 +600,7 @@ def main() -> int:
                 output_icc_fingerprint_sha256=srgb_icc_profile_fingerprint_sha256(),
                 output_claim=output_claim,
                 software_commit=commit,
+                output_png_compression=args.png_compression,
             )
         else:
             assert color_diagnostics is not None
@@ -656,6 +690,13 @@ def main() -> int:
                 "icc_profile": "embedded standard sRGB",
                 "icc_profile_sha256": srgb_icc_profile_sha256(),
                 "icc_profile_fingerprint_sha256": srgb_icc_profile_fingerprint_sha256(),
+                "png_compression": (
+                    args.png_compression
+                    if args.png_compression is not None
+                    else 6
+                    if output_format == "PNG" and args.output_bit_depth == 16
+                    else None
+                ),
             },
             "bounds": [int(arr.min()), int(arr.max())],
             "layers": [layer_metrics(layer) for layer in layers],

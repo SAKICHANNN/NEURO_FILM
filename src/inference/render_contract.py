@@ -13,10 +13,10 @@ from typing import Any
 
 from omegaconf import OmegaConf
 
-
 PROFILE_SCHEMA_ID = "kmcfm.render-profile.v1"
 RECIPE_SCHEMA_ID = "kmcfm.render-recipe.v1"
 RECIPE_SCHEMA_ID_V2 = "kmcfm.render-recipe.v2"
+RECIPE_SCHEMA_ID_V3 = "kmcfm.render-recipe.v3"
 PROFILE_EVIDENCE_SUMMARY_SCHEMA_ID = "kmcfm.profile-evidence-summary.v1"
 LEGACY_STYLE_EVIDENCE_INVENTORY_SCHEMA_ID = (
     "kmcfm.legacy-style-evidence-inventory.v1"
@@ -397,7 +397,11 @@ def _validate_json_parameters(value: object, label: str) -> None:
 def validate_render_recipe(recipe: Mapping[str, Any]) -> None:
     _keys(recipe, {"schema_id", "profile", "assets", "input", "render", "output", "claim", "software"}, "recipe")
     schema_id = recipe["schema_id"]
-    if schema_id not in {RECIPE_SCHEMA_ID, RECIPE_SCHEMA_ID_V2}:
+    if schema_id not in {
+        RECIPE_SCHEMA_ID,
+        RECIPE_SCHEMA_ID_V2,
+        RECIPE_SCHEMA_ID_V3,
+    }:
         raise RenderContractError("unsupported recipe schema_id")
     profile = _mapping(recipe["profile"], "recipe.profile")
     _keys(profile, {"profile_id", "profile_version", "sha256"}, "recipe.profile")
@@ -452,7 +456,7 @@ def validate_render_recipe(recipe: Mapping[str, Any]) -> None:
         "color_parameters",
         "effects",
     }
-    if schema_id == RECIPE_SCHEMA_ID_V2:
+    if schema_id in {RECIPE_SCHEMA_ID_V2, RECIPE_SCHEMA_ID_V3}:
         render_keys.add("look_amount")
     _keys(render, render_keys, "recipe.render")
     if render["engine_id"] != "safe_lab_v1" or render["preset"] != "safe-rich":
@@ -460,7 +464,7 @@ def validate_render_recipe(recipe: Mapping[str, Any]) -> None:
     if not isinstance(render["style"], str) or not _STYLE.fullmatch(render["style"]):
         raise RenderContractError("recipe.render.style is invalid")
     _integer(render["seed"], "recipe.render.seed", -(2**31), 2**31 - 1)
-    if schema_id == RECIPE_SCHEMA_ID_V2:
+    if schema_id in {RECIPE_SCHEMA_ID_V2, RECIPE_SCHEMA_ID_V3}:
         _number(render["look_amount"], "recipe.render.look_amount", 0.0, 1.0)
     _validate_color_parameters(render["color_parameters"], "recipe.render.color_parameters")
     effects = _mapping(render["effects"], "recipe.render.effects")
@@ -485,7 +489,17 @@ def validate_render_recipe(recipe: Mapping[str, Any]) -> None:
     _integer(dust["seed"], "recipe.render.effects.dust.seed", -(2**31), 2**31 - 1)
 
     output = _mapping(recipe["output"], "recipe.output")
-    _keys(output, {"path", "sha256", "format", "bit_depth", "transfer", "icc_profile_fingerprint_sha256"}, "recipe.output")
+    output_keys = {
+        "path",
+        "sha256",
+        "format",
+        "bit_depth",
+        "transfer",
+        "icc_profile_fingerprint_sha256",
+    }
+    if schema_id == RECIPE_SCHEMA_ID_V3:
+        output_keys.add("png_compression")
+    _keys(output, output_keys, "recipe.output")
     _string(output["path"], "recipe.output.path")
     _hash(output["sha256"], "recipe.output.sha256")
     if output["format"] not in {"PNG", "JPEG", "TIFF"}:
@@ -493,6 +507,12 @@ def validate_render_recipe(recipe: Mapping[str, Any]) -> None:
     if output["bit_depth"] not in {8, 16} or output["transfer"] != "sRGB":
         raise RenderContractError("recipe output encoding is unsupported")
     _hash(output["icc_profile_fingerprint_sha256"], "recipe.output.icc_profile_fingerprint_sha256")
+    if schema_id == RECIPE_SCHEMA_ID_V3:
+        _integer(output["png_compression"], "recipe.output.png_compression", 0, 9)
+        if output["format"] != "PNG" or output["bit_depth"] != 16:
+            raise RenderContractError(
+                "recipe PNG compression requires 16-bit PNG output"
+            )
 
     claim = _mapping(recipe["claim"], "recipe.claim")
     _keys(
@@ -529,6 +549,7 @@ def build_render_recipe(
     output_icc_fingerprint_sha256: str,
     output_claim: Mapping[str, Any],
     software_commit: str,
+    output_png_compression: int | None = None,
 ) -> dict[str, Any]:
     """Build and validate one post-encode replay recipe."""
     validate_render_profile(profile)
@@ -536,10 +557,20 @@ def build_render_recipe(
         raise RenderContractError("recipe style is absent from the selected profile")
     claim = dict(output_claim)
     claim["claim_ceiling"] = profile["evidence"]["claim_ceiling"]
+    resolved_render = dict(render_metadata)
+    if output_png_compression is not None:
+        _integer(output_png_compression, "output_png_compression", 0, 9)
+        if output_format != "PNG" or output_bit_depth != 16:
+            raise RenderContractError(
+                "PNG compression requires 16-bit PNG output"
+            )
+        resolved_render.setdefault("look_amount", 1.0)
     recipe = {
         "schema_id": (
-            RECIPE_SCHEMA_ID_V2
-            if "look_amount" in render_metadata
+            RECIPE_SCHEMA_ID_V3
+            if output_png_compression is not None
+            else RECIPE_SCHEMA_ID_V2
+            if "look_amount" in resolved_render
             else RECIPE_SCHEMA_ID
         ),
         "profile": {
@@ -553,7 +584,7 @@ def build_render_recipe(
             "sha256": sha256_file(input_path),
             **dict(input_metadata),
         },
-        "render": dict(render_metadata),
+        "render": resolved_render,
         "output": {
             "path": str(output_path.resolve()),
             "sha256": sha256_file(output_path),
@@ -565,6 +596,8 @@ def build_render_recipe(
         "claim": claim,
         "software": {"commit": software_commit},
     }
+    if output_png_compression is not None:
+        recipe["output"]["png_compression"] = output_png_compression
     validate_render_recipe(recipe)
     return recipe
 

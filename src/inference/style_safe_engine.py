@@ -391,7 +391,11 @@ def replay_style_safe_recipe_to_file(
         if bit_depth == 8 and format_name in {"PNG", "JPEG", "TIFF"}:
             actual_format = save_srgb8(rendered, output_path)
         elif bit_depth == 16 and format_name == "PNG" and suffix == ".png":
-            actual_format = save_srgb16_png(rendered, output_path)
+            actual_format = save_srgb16_png(
+                rendered,
+                output_path,
+                compression_level=int(output.get("png_compression", 6)),
+            )
         elif bit_depth == 16 and format_name == "TIFF" and suffix in {".tif", ".tiff"}:
             actual_format = save_srgb16_tiff(rendered, output_path)
         else:
