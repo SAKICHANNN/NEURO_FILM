@@ -51,6 +51,9 @@ def _fixture(tmp_path: Path) -> dict[str, Path]:
                 {
                     "scene_id": scene,
                     "stock_id": stock,
+                    "digital_reference_sha256": _sha(
+                        f"digital-source:{scene}".encode()
+                    ),
                     "relative_path": relative.as_posix(),
                     "png_sha256": _sha(raw),
                 }
@@ -88,6 +91,59 @@ def _fixture(tmp_path: Path) -> dict[str, Path]:
         "render": render_path,
         "severe": severe_path,
     }
+
+
+def _independent_stock_fixture(tmp_path: Path) -> dict[str, object]:
+    fixture = _fixture(tmp_path)
+    complete_render = json.loads(fixture["render"].read_text())
+    reports: list[Path] = []
+    roots: list[Path] = []
+    reviews: list[Path] = []
+    for stock in STOCKS:
+        stock_root = tmp_path / "outputs" / f"a4-{stock}"
+        stock_outputs = []
+        for row in complete_render["outputs"]:
+            if row["stock_id"] != stock:
+                continue
+            source = fixture["render_root"] / row["relative_path"]
+            destination = stock_root / row["relative_path"]
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            destination.write_bytes(source.read_bytes())
+            stock_outputs.append(row)
+        report = {
+            "schema": "neuro-film.sf3-a4-single-stock-confirmation-render-report.v1",
+            "stock": stock,
+            "stocks": [stock],
+            "cross_stock_controls_evaluated": False,
+            "automatic_pass": True,
+            "decision": "OPEN_SINGLE_STOCK_K1_SEVERE_ARTIFACT_REVIEW_ONLY_PENDING_THREE_STOCK_CONTROLS",
+            "confirmation_scenes": complete_render["confirmation_scenes"],
+            "outputs": stock_outputs,
+        }
+        report_path = stock_root / "report.json"
+        report_raw = _write(report_path, report)
+        review_path = tmp_path / f"severe-{stock}.json"
+        _write(
+            review_path,
+            {
+                "schema": "neuro-film.sf3-a5-three-stock-severe-review.v1",
+                "render_report_sha256": _sha(report_raw),
+                "confirmed_severe_count": 0,
+                "reviewed_outputs": [
+                    {
+                        "scene_id": row["scene_id"],
+                        "stock_id": stock,
+                        "png_sha256": row["png_sha256"],
+                        "confirmed_severe": False,
+                    }
+                    for row in stock_outputs
+                ],
+            },
+        )
+        reports.append(report_path)
+        roots.append(stock_root)
+        reviews.append(review_path)
+    return {**fixture, "renders": reports, "roots": roots, "reviews": reviews}
 
 
 def test_builds_hidden_hash_bound_package_and_adjudicates(tmp_path: Path) -> None:
@@ -176,6 +232,65 @@ def test_builds_hidden_hash_bound_package_and_adjudicates(tmp_path: Path) -> Non
             private_mapping_path=output / "private_mapping.json",
             observations_path=observations_path,
             reveal_path=reveal_path,
+        )
+
+
+def test_builds_blind_package_from_three_independent_stock_runs(
+    tmp_path: Path,
+) -> None:
+    fixture = _independent_stock_fixture(tmp_path)
+    output = tmp_path / "outputs" / "a5-independent"
+    report = build_package(
+        fixture["contract"],
+        root=fixture["root"],
+        render_report_path=fixture["renders"],
+        render_root=fixture["roots"],
+        severe_review_path=fixture["reviews"],
+        secret="not-published",
+        output_dir=output,
+    )
+    assert report["blind_png_count"] == 36
+    assert report["assembled_from_independent_single_stock_reports"] is True
+    assert report["cross_stock_controls_evaluated_before_blind"] is False
+    sheet = json.loads((output / "public_sheet.json").read_text())
+    assert len(sheet["rows"]) == 12
+    assert all(len(row["labels"]) == 3 for row in sheet["rows"])
+
+
+def test_independent_stock_runs_require_exact_common_scenes(tmp_path: Path) -> None:
+    fixture = _independent_stock_fixture(tmp_path)
+    drifted = json.loads(fixture["renders"][1].read_text())
+    drifted["confirmation_scenes"][0] = "different-scene"
+    _write(fixture["renders"][1], drifted)
+    with pytest.raises(ThreeStockBlindPackageError, match="exact confirmation scenes"):
+        build_package(
+            fixture["contract"],
+            root=fixture["root"],
+            render_report_path=fixture["renders"],
+            render_root=fixture["roots"],
+            severe_review_path=fixture["reviews"],
+            secret="hidden",
+            output_dir=tmp_path / "outputs" / "blocked-scenes",
+        )
+
+
+def test_independent_stock_runs_require_same_digital_source(tmp_path: Path) -> None:
+    fixture = _independent_stock_fixture(tmp_path)
+    drifted = json.loads(fixture["renders"][1].read_text())
+    drifted["outputs"][0]["digital_reference_sha256"] = "f" * 64
+    report_raw = _write(fixture["renders"][1], drifted)
+    review = json.loads(fixture["reviews"][1].read_text())
+    review["render_report_sha256"] = _sha(report_raw)
+    _write(fixture["reviews"][1], review)
+    with pytest.raises(ThreeStockBlindPackageError, match="same digital source"):
+        build_package(
+            fixture["contract"],
+            root=fixture["root"],
+            render_report_path=fixture["renders"],
+            render_root=fixture["roots"],
+            severe_review_path=fixture["reviews"],
+            secret="hidden",
+            output_dir=tmp_path / "outputs" / "blocked-source",
         )
 
 

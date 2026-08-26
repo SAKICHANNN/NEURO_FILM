@@ -15822,3 +15822,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   stock A2 report can also materialize exact target-blind RGB16 confirmation
   renders for that stock's severe-artifact review; cross-stock blind review
   remains closed until the original complete three-stock path passes.
+
+### 2026-08-26 - SF3.A5 accepts independently completed stock lanes
+
+- A5 can now assemble three hash-bound single-stock A4 runs after each stock's
+  severe review passes, provided all three use the exact same four digital
+  confirmation scenes and source hashes. It preserves the original complete
+  A4 input path and records that cross-stock controls were not evaluated before
+  the blind test.
+- The assembled package contains the same 36 hidden-mapping renders; the blind
+  assignment remains the first cross-stock claim gate. The full SF3 family is
+  green at 149 tests.

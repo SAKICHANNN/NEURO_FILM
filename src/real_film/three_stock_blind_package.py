@@ -17,7 +17,14 @@ from src.real_film.three_stock_blind_distinguishability import (
 )
 
 RENDER_SCHEMA = "neuro-film.sf3-a4-three-stock-confirmation-render-report.v1"
+SINGLE_RENDER_SCHEMA = "neuro-film.sf3-a4-single-stock-confirmation-render-report.v1"
+SINGLE_RENDER_SET_SCHEMA = (
+    "neuro-film.sf3-a4-independent-single-stock-confirmation-render-set.v1"
+)
 SEVERE_SCHEMA = "neuro-film.sf3-a5-three-stock-severe-review.v1"
+SINGLE_SEVERE_SET_SCHEMA = (
+    "neuro-film.sf3-a5-independent-single-stock-severe-review-set.v1"
+)
 PACKAGE_SCHEMA = "neuro-film.sf3-a5-three-stock-blind-package.v1"
 SHEET_SCHEMA = "neuro-film.sf3-a5-three-stock-blind-sheet.v1"
 MAPPING_SCHEMA = "neuro-film.sf3-a5-three-stock-private-mapping.v1"
@@ -54,6 +61,10 @@ def _object(path: Path) -> tuple[bytes, dict[str, Any]]:
     return raw, value
 
 
+def _path_list(value: Path | list[Path] | tuple[Path, ...]) -> list[Path]:
+    return [value] if isinstance(value, Path) else list(value)
+
+
 def _bound_parent(root: Path, binding: dict[str, Any]) -> None:
     relative = Path(str(binding.get("path", "")))
     if relative.is_absolute() or ".." in relative.parts or not relative.parts:
@@ -67,9 +78,9 @@ def build_package(
     contract_path: Path,
     *,
     root: Path,
-    render_report_path: Path,
-    render_root: Path,
-    severe_review_path: Path,
+    render_report_path: Path | list[Path] | tuple[Path, ...],
+    render_root: Path | list[Path] | tuple[Path, ...],
+    severe_review_path: Path | list[Path] | tuple[Path, ...],
     secret: str,
     output_dir: Path,
 ) -> dict[str, Any]:
@@ -79,71 +90,158 @@ def build_package(
     contract = load_contract(contract_path)
     _bound_parent(root, contract["parents"]["k1_baseline_contract"])
     _bound_parent(root, contract["parents"]["confirmation_render_contract"])
-    render_raw, render = _object(render_report_path)
-    severe_raw, severe = _object(severe_review_path)
-    if (
-        render.get("schema") != RENDER_SCHEMA
-        or render.get("automatic_pass") is not True
-        or render.get("decision")
-        != "OPEN_THREE_STOCK_K1_SEVERE_ARTIFACT_REVIEW_THEN_DOMAIN_SEPARATED_BLIND_DISTINGUISHABILITY"
-    ):
-        raise ThreeStockBlindPackageError("A4 render did not open blind review")
     stocks = contract["required_stocks"]
-    scenes = render.get("confirmation_scenes")
-    outputs = render.get("outputs")
-    if (
-        stocks != render.get("stocks")
-        or not isinstance(scenes, list)
-        or len(scenes) != contract["protocol"]["confirmation_scenes"]
-        or len(set(scenes)) != len(scenes)
-        or not isinstance(outputs, list)
-        or len(outputs) != len(scenes) * len(stocks)
+    render_paths = _path_list(render_report_path)
+    render_roots = _path_list(render_root)
+    severe_paths = _path_list(severe_review_path)
+    if not (
+        len(render_paths) == len(render_roots) == len(severe_paths)
+        and len(render_paths) in {1, len(stocks)}
     ):
-        raise ThreeStockBlindPackageError("A4 output inventory drift")
+        raise ThreeStockBlindPackageError(
+            "provide either one complete A4 input or one input per required stock"
+        )
+    assembled_single_stock_set = len(render_paths) > 1
     by_key: dict[tuple[str, str], dict[str, Any]] = {}
-    for row in outputs:
-        key = (row.get("scene_id"), row.get("stock_id"))
-        relative = Path(str(row.get("relative_path", "")))
+    render_bindings: list[dict[str, Any]] = []
+    severe_bindings: list[dict[str, Any]] = []
+    scenes: list[str] | None = None
+    observed_stocks: set[str] = set()
+    scene_source_hashes: dict[str, str] = {}
+    for current_render_path, current_root, current_severe_path in zip(
+        render_paths, render_roots, severe_paths, strict=True
+    ):
+        current_render_raw, render = _object(current_render_path)
+        current_severe_raw, severe = _object(current_severe_path)
+        if assembled_single_stock_set:
+            stock = render.get("stock")
+            if (
+                render.get("schema") != SINGLE_RENDER_SCHEMA
+                or render.get("automatic_pass") is not True
+                or render.get("decision")
+                != "OPEN_SINGLE_STOCK_K1_SEVERE_ARTIFACT_REVIEW_ONLY_PENDING_THREE_STOCK_CONTROLS"
+                or render.get("cross_stock_controls_evaluated") is not False
+                or stock not in stocks
+                or render.get("stocks") != [stock]
+                or stock in observed_stocks
+            ):
+                raise ThreeStockBlindPackageError(
+                    "independent single-stock A4 render did not open severe review"
+                )
+            observed_stocks.add(stock)
+            current_stocks = [stock]
+        else:
+            if (
+                render.get("schema") != RENDER_SCHEMA
+                or render.get("automatic_pass") is not True
+                or render.get("decision")
+                != "OPEN_THREE_STOCK_K1_SEVERE_ARTIFACT_REVIEW_THEN_DOMAIN_SEPARATED_BLIND_DISTINGUISHABILITY"
+                or stocks != render.get("stocks")
+            ):
+                raise ThreeStockBlindPackageError("A4 render did not open blind review")
+            current_stocks = stocks
+        current_scenes = render.get("confirmation_scenes")
+        outputs = render.get("outputs")
         if (
-            key in by_key
-            or key[0] not in scenes
-            or key[1] not in stocks
-            or relative.is_absolute()
-            or ".." in relative.parts
+            not isinstance(current_scenes, list)
+            or len(current_scenes) != contract["protocol"]["confirmation_scenes"]
+            or len(set(current_scenes)) != len(current_scenes)
+            or not isinstance(outputs, list)
+            or len(outputs) != len(current_scenes) * len(current_stocks)
         ):
-            raise ThreeStockBlindPackageError("A4 output identity drift")
-        path = render_root.joinpath(*relative.parts)
-        if not path.is_file() or _sha256_file(path) != row.get("png_sha256"):
-            raise ThreeStockBlindPackageError("A4 output bytes drift")
-        by_key[key] = {**row, "path": path}
+            raise ThreeStockBlindPackageError("A4 output inventory drift")
+        if scenes is None:
+            scenes = list(current_scenes)
+        elif scenes != current_scenes:
+            raise ThreeStockBlindPackageError(
+                "independent A4 reports do not share exact confirmation scenes"
+            )
+        report_keys: set[tuple[str, str]] = set()
+        for row in outputs:
+            key = (row.get("scene_id"), row.get("stock_id"))
+            relative = Path(str(row.get("relative_path", "")))
+            source_sha256 = str(row.get("digital_reference_sha256", ""))
+            if (
+                key in by_key
+                or key[0] not in current_scenes
+                or key[1] not in current_stocks
+                or relative.is_absolute()
+                or ".." in relative.parts
+                or len(source_sha256) != 64
+            ):
+                raise ThreeStockBlindPackageError("A4 output identity drift")
+            prior_source_sha256 = scene_source_hashes.setdefault(
+                str(key[0]), source_sha256
+            )
+            if prior_source_sha256 != source_sha256:
+                raise ThreeStockBlindPackageError(
+                    "A4 stock outputs do not share the same digital source"
+                )
+            path = current_root.joinpath(*relative.parts)
+            if not path.is_file() or _sha256_file(path) != row.get("png_sha256"):
+                raise ThreeStockBlindPackageError("A4 output bytes drift")
+            by_key[key] = {**row, "path": path}
+            report_keys.add(key)
+        reviewed = (
+            severe.get("reviewed_outputs")
+            if severe.get("schema") == SEVERE_SCHEMA
+            else None
+        )
+        if (
+            severe.get("render_report_sha256") != _sha256(current_render_raw)
+            or severe.get("confirmed_severe_count") != 0
+            or not isinstance(reviewed, list)
+            or len(reviewed) != len(report_keys)
+        ):
+            raise ThreeStockBlindPackageError(
+                "severe review did not open blind review"
+            )
+        reviewed_keys: set[tuple[str, str]] = set()
+        for row in reviewed:
+            key = (row.get("scene_id"), row.get("stock_id"))
+            if (
+                key in reviewed_keys
+                or key not in report_keys
+                or row.get("png_sha256") != by_key[key]["png_sha256"]
+                or row.get("confirmed_severe") is not False
+            ):
+                raise ThreeStockBlindPackageError("severe review identity drift")
+            reviewed_keys.add(key)
+        if reviewed_keys != report_keys:
+            raise ThreeStockBlindPackageError("severe review coverage drift")
+        render_bindings.append(
+            {
+                "stock": current_stocks[0] if assembled_single_stock_set else None,
+                "sha256": _sha256(current_render_raw),
+            }
+        )
+        severe_bindings.append(
+            {
+                "stock": current_stocks[0] if assembled_single_stock_set else None,
+                "sha256": _sha256(current_severe_raw),
+            }
+        )
+    assert scenes is not None
     if set(by_key) != {(scene, stock) for scene in scenes for stock in stocks}:
         raise ThreeStockBlindPackageError("A4 output coverage drift")
-
-    reviewed = (
-        severe.get("reviewed_outputs")
-        if severe.get("schema") == SEVERE_SCHEMA
-        else None
-    )
-    if (
-        severe.get("render_report_sha256") != _sha256(render_raw)
-        or severe.get("confirmed_severe_count") != 0
-        or not isinstance(reviewed, list)
-        or len(reviewed) != len(by_key)
-    ):
-        raise ThreeStockBlindPackageError("severe review did not open blind review")
-    reviewed_keys = set()
-    for row in reviewed:
-        key = (row.get("scene_id"), row.get("stock_id"))
-        if (
-            key in reviewed_keys
-            or key not in by_key
-            or row.get("png_sha256") != by_key[key]["png_sha256"]
-            or row.get("confirmed_severe") is not False
-        ):
-            raise ThreeStockBlindPackageError("severe review identity drift")
-        reviewed_keys.add(key)
-    if reviewed_keys != set(by_key):
-        raise ThreeStockBlindPackageError("severe review coverage drift")
+    if assembled_single_stock_set:
+        if observed_stocks != set(stocks):
+            raise ThreeStockBlindPackageError("independent A4 stock coverage drift")
+        render_raw = _canonical(
+            {
+                "schema": SINGLE_RENDER_SET_SCHEMA,
+                "reports": sorted(render_bindings, key=lambda row: row["stock"]),
+            }
+        )
+        severe_raw = _canonical(
+            {
+                "schema": SINGLE_SEVERE_SET_SCHEMA,
+                "reviews": sorted(severe_bindings, key=lambda row: row["stock"]),
+            }
+        )
+    else:
+        render_raw = render_paths[0].read_bytes()
+        severe_raw = severe_paths[0].read_bytes()
 
     logical_outputs = (root / "outputs").resolve()
     output_dir = output_dir.resolve()
@@ -233,6 +331,9 @@ def build_package(
             "decision": "OPEN_FROZEN_BLIND_OBSERVATION_COLLECTION_WITH_MAPPING_HIDDEN",
             "claim_ceiling": contract["claim_ceiling"],
         }
+        if assembled_single_stock_set:
+            core["assembled_from_independent_single_stock_reports"] = True
+            core["cross_stock_controls_evaluated_before_blind"] = False
         report = {**core, "stable_evidence_id": _sha256(_canonical(core))}
         (stage / "report.json").write_bytes(_canonical(report))
         os.rename(stage, output_dir)

@@ -21,9 +21,9 @@ def main() -> int:
         type=Path,
         default=ROOT / "configs/sf3_a5_three_stock_blind_distinguishability_v1.json",
     )
-    parser.add_argument("--render-report", type=Path, required=True)
-    parser.add_argument("--render-root", type=Path, required=True)
-    parser.add_argument("--severe-review", type=Path, required=True)
+    parser.add_argument("--render-report", type=Path, action="append", required=True)
+    parser.add_argument("--render-root", type=Path, action="append", required=True)
+    parser.add_argument("--severe-review", type=Path, action="append", required=True)
     parser.add_argument("--secret-file", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
     args = parser.parse_args()
@@ -31,9 +31,15 @@ def main() -> int:
     report = build_package(
         args.contract,
         root=ROOT,
-        render_report_path=args.render_report,
-        render_root=args.render_root,
-        severe_review_path=args.severe_review,
+        render_report_path=(
+            args.render_report[0] if len(args.render_report) == 1 else args.render_report
+        ),
+        render_root=args.render_root[0] if len(args.render_root) == 1 else args.render_root,
+        severe_review_path=(
+            args.severe_review[0]
+            if len(args.severe_review) == 1
+            else args.severe_review
+        ),
         secret=secret,
         output_dir=args.output_dir,
     )
