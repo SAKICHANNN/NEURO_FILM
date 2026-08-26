@@ -41,6 +41,17 @@ def _canonical_bytes(value: Any) -> bytes:
     return json.dumps(value, indent=2, sort_keys=True, ensure_ascii=True).encode("utf-8") + b"\n"
 
 
+def _git_output(*arguments: str) -> bytes:
+    completed = subprocess.run(
+        ["git", *arguments], cwd=ROOT, check=True, capture_output=True
+    )
+    return completed.stdout
+
+
+def _git_text(*arguments: str) -> str:
+    return _git_output(*arguments).decode("ascii").strip()
+
+
 def _safe_extract(archive: Path, destination: Path) -> Path:
     destination.mkdir(parents=True, exist_ok=False)
     with tarfile.open(archive, "r:gz") as source:
@@ -551,6 +562,7 @@ def execute(config_path: Path, producer_repo: Path) -> dict[str, Any]:
     wheel_binding = p246_config["bindings"]
     wheel = producer_repo / wheel_binding["producer_wheel_path"]
     identities = {
+        "config_sha256": _sha256_file(config_path),
         "contract_sha256": _sha256_file(ROOT / bindings["contract_path"]),
         "p246_evidence_sha256": _sha256_file(ROOT / bindings["p246_evidence_path"]),
         "p247_evidence_sha256": _sha256_file(ROOT / bindings["p247_evidence_path"]),
@@ -559,12 +571,25 @@ def execute(config_path: Path, producer_repo: Path) -> dict[str, Any]:
         "openexr_source_sha256": _sha256_file(ROOT / bindings["openexr_source_path"]),
         "imath_source_bytes": (ROOT / bindings["imath_source_path"]).stat().st_size,
         "imath_source_sha256": _sha256_file(ROOT / bindings["imath_source_path"]),
+        "native_source_git_blob": _git_text(
+            "rev-parse", f"{bindings['native_source_commit']}:{bindings['native_source_path']}"
+        ),
+        "native_source_sha256": _sha256_file(ROOT / bindings["native_source_path"]),
+        "runner_git_blob": _git_text(
+            "rev-parse", f"{bindings['runner_commit']}:{bindings['runner_path']}"
+        ),
+        "runner_sha256": _sha256_file(ROOT / bindings["runner_path"]),
     }
-    if not all(identities[key] == bindings[key] for key in identities):
+    bound_identity_keys = tuple(key for key in identities if key != "config_sha256")
+    if not all(identities[key] == bindings[key] for key in bound_identity_keys):
         raise P248Error("frozen source or parent identity differs")
-    if wheel.stat().st_size != wheel_binding["producer_wheel_bytes"] or _sha256_file(wheel) != wheel_binding[
-        "producer_wheel_sha256"
-    ]:
+    if (
+        bindings["producer_wheel_path"] != wheel_binding["producer_wheel_path"]
+        or bindings["producer_wheel_bytes"] != wheel_binding["producer_wheel_bytes"]
+        or bindings["producer_wheel_sha256"] != wheel_binding["producer_wheel_sha256"]
+        or wheel.stat().st_size != bindings["producer_wheel_bytes"]
+        or _sha256_file(wheel) != bindings["producer_wheel_sha256"]
+    ):
         raise P248Error("frozen OpenEXR Python wheel differs")
 
     scratch = ROOT / "tmp"
