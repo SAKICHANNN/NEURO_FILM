@@ -1,0 +1,50 @@
+{
+  "schema": "neuro-film.sf3-a3e-commons-ektar-companion-discovery-contract.v1",
+  "experiment_id": "SF3.A3E_COMMONS_EKTAR_COMPANION_DISCOVERY_V1",
+  "question": "Do the exact rights-cleared Commons authors already retained for Kodak Ektar 100 expose a separately captured digital image of the same scene, with sufficient metadata and geometric agreement to open one controlled Ektar pixel preflight?",
+  "input_selection_manifest": "outputs/eval/sf3_a1d2_commons_three_stock_pixel_integrity_v1/selection_manifest.json",
+  "input_selection_manifest_sha256": "28b051756183286106114786c046d7c660405dc3cd5ca73f13371cce0f9c4515",
+  "film_stock_id": "kodak_ektar_100",
+  "expected_target_rows": 24,
+  "api_endpoint": "https://commons.wikimedia.org/w/api.php",
+  "user_agent": "K-MCFM-SF3-A3E/1.0 (bounded scientific source discovery)",
+  "query": {
+    "identity_source": "exact Flickr people/photos identity parsed from the already frozen author or credit HTML",
+    "search_expression": "insource exact identity",
+    "maximum_results_per_identity": 100,
+    "maximum_requests_per_identity": 2,
+    "maximum_total_requests": 48,
+    "timeout_seconds": 20,
+    "retry_delays_seconds": [0, 2],
+    "thumbnail_width": 512
+  },
+  "candidate_metadata": {
+    "allowed_licenses": ["CC0", "CC BY 2.0", "CC BY 3.0", "CC BY 4.0"],
+    "allowed_mime": ["image/jpeg", "image/png"],
+    "maximum_capture_time_delta_seconds": 900,
+    "minimum_title_token_jaccard": 0.15,
+    "minimum_short_dimension": 512,
+    "digital_camera_model_required": true,
+    "forbidden_digital_model_tokens": ["scanner", "noritsu", "frontier", "coolscan", "plustek", "epson"],
+    "forbidden_candidate_text_tokens": ["ektar", "portra", "velvia", "film scan", "analog film", "analogue film"]
+  },
+  "pixel_preflight": {
+    "maximum_candidates_per_target": 2,
+    "maximum_thumbnail_downloads": 48,
+    "maximum_total_thumbnail_bytes": 67108864,
+    "minimum_sift_matches": 24,
+    "minimum_homography_inliers": 16,
+    "minimum_homography_inlier_ratio": 0.35,
+    "maximum_median_reprojection_error_pixels": 3.0,
+    "minimum_registered_gradient_ncc": 0.45,
+    "near_duplicate_hamming_threshold": 4
+  },
+  "roles": {
+    "source_film_rows": "existing exact-text weak-label Ektar Commons observations only",
+    "candidate_rows": "same-author rights-cleared Commons images that independently declare digital-camera capture metadata",
+    "admission": "metadata plus registered-pixel preflight only; no fit, render, target scoring or stock-response claim"
+  },
+  "decision_if_pass": "OPEN_ONE_SEPARATELY_PREREGISTERED_EKTAR_SAME_SCENE_PIXEL_PAIR_PREFLIGHT",
+  "decision_if_fail": "CLOSE_THIS_EXACT_COMMONS_AUTHOR_COMPANION_ROUTE_WITHOUT_QUERY_OR_THRESHOLD_RESCUE",
+  "claim_ceiling": "Bounded same-author Commons discovery for a possible rights-cleared Ektar/digital same-scene observation. A pass is only source eligibility; it is not stock response, calibration, fitting, product evidence or multi-stock completion."
+}
