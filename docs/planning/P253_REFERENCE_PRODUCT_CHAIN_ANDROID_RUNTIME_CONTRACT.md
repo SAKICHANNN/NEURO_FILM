@@ -33,7 +33,7 @@ repository-relative `outputs/tmp/p253_*` namespace.
 
 1. Build arm64-v8a and x86_64 artifacts twice in disjoint build roots.  Both
    artifact hashes must match across builds.
-2. Create an owned API-34 x86_64 AVD on port 5594 from the locked minimal
+2. Create an owned API-34 x86_64 AVD on port 5584 from the locked minimal
    config in the runner.  The migrated SDK's system image and package index
    are complete and hash-locked, but its optional `devices.xml` catalogue is
    absent; a pre-build infrastructure probe showed that `avdmanager` therefore
@@ -85,3 +85,10 @@ before build because `avdmanager` could not load the missing system-image
 are additive infrastructure corrections.  All source bytes, fixture rows,
 runtime image, tool identities, scientific gates, and claim ceiling remain
 unchanged; formal execution restarts from the corrected commit.
+
+The first successful boot then stopped on the first large canonical argument:
+the host-to-ADB command line could not carry the longest fixture byte string.
+The corrected harness pushes each fixed hex string as an owned temporary file
+and expands it only inside the device shell.  It also identifies both launcher
+and QEMU child processes by the unique AVD name and port before cleanup.  No
+canonical bytes, expected hashes, native source, or gates changed.

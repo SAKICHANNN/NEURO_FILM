@@ -1,10 +1,12 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from pathlib import Path
 
 import pytest
 
+import scripts.audit_p253_reference_product_chain_android_runtime as audit
 from scripts.audit_p253_reference_product_chain_android_runtime import (
     P253RuntimeError,
     _canonical_bytes,
@@ -70,6 +72,31 @@ def test_owned_minimal_avd_is_project_isolated(tmp_path: Path) -> None:
     assert "target=android-34" in pointer
     assert "abi.type = x86_64" in config
     assert "image.sysdir.1 = system-images\\android-34\\google_apis\\x86_64\\" in config
+
+
+def test_large_canonical_hex_is_transferred_outside_host_command_line(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    calls: list[list[str]] = []
+
+    def fake_command(arguments, **_kwargs):
+        calls.append([str(value) for value in arguments])
+        return subprocess.CompletedProcess(calls[-1], 0, "digest\n", "")
+
+    monkeypatch.setattr(audit, "_command", fake_command)
+    canonical_hex = "ab" * 20_000
+    result = audit._adb_hash_file(
+        Path("adb"),
+        "emulator-5584",
+        "/data/local/tmp/probe",
+        canonical_hex,
+        environment={},
+        work=tmp_path,
+    )
+    assert result.stdout == "digest\n"
+    assert (tmp_path / "canonical.hex").read_text(encoding="ascii") == canonical_hex
+    assert all(canonical_hex not in " ".join(call) for call in calls)
+    assert "$(cat /data/local/tmp/nf_p253_canonical.hex)" in calls[-1][-1]
 
 
 def test_report_serialization_is_order_independent_after_sorting() -> None:

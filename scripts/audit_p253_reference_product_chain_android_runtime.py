@@ -14,6 +14,8 @@ from collections.abc import Iterable
 from pathlib import Path
 from typing import Any
 
+import psutil
+
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
@@ -84,8 +86,10 @@ def _command(
         check=False,
     )
     if check and completed.returncode != 0:
+        diagnostic = (completed.stdout + "\n" + completed.stderr).strip()
         raise P253RuntimeError(
-            f"command failed with exit {completed.returncode}: {command[0]}"
+            f"command failed with exit {completed.returncode}: "
+            f"{command[0]}: {diagnostic[-1000:]}"
         )
     return completed
 
@@ -148,6 +152,67 @@ def _adb_command(
         timeout=90.0,
         check=check,
     )
+
+
+def _adb_hash_file(
+    adb: Path,
+    serial: str,
+    remote: str,
+    canonical_hex: str,
+    *,
+    environment: dict[str, str],
+    work: Path,
+) -> subprocess.CompletedProcess[str]:
+    local_input = work / "canonical.hex"
+    remote_input = "/data/local/tmp/nf_p253_canonical.hex"
+    local_input.write_text(canonical_hex, encoding="ascii", newline="")
+    _command(
+        [adb, "-s", serial, "push", local_input, remote_input],
+        cwd=work,
+        environment=environment,
+    )
+    shell_command = f'{remote} hash "$(cat {remote_input})"'
+    return _command(
+        [adb, "-s", serial, "shell", shell_command],
+        cwd=work,
+        environment=environment,
+        timeout=90.0,
+    )
+
+
+def _cleanup_owned_runtime(emulator_exe: Path, avd_name: str, port: int) -> bool:
+    expected_launcher = os.path.normcase(str(emulator_exe.resolve()))
+    matches: list[psutil.Process] = []
+    for process in psutil.process_iter(["exe", "cmdline"]):
+        try:
+            executable = process.info["exe"]
+            command_text = " ".join(
+                str(value) for value in (process.info["cmdline"] or [])
+            )
+            is_launcher = bool(
+                executable
+                and os.path.normcase(str(Path(executable).resolve()))
+                == expected_launcher
+            )
+            is_qemu_child = bool(
+                executable
+                and Path(executable).name.casefold().startswith("qemu-system-x86_64")
+            )
+            if (
+                (is_launcher or is_qemu_child)
+                and avd_name in command_text
+                and str(port) in command_text
+            ):
+                matches.append(process)
+        except (OSError, psutil.Error):
+            continue
+    for process in matches:
+        process.terminate()
+    _, alive = psutil.wait_procs(matches, timeout=5.0)
+    for process in alive:
+        process.kill()
+    psutil.wait_procs(alive, timeout=5.0)
+    return not any(process.is_running() for process in matches)
 
 
 def _build_twice(ndk: Path, work: Path) -> dict[str, Any]:
@@ -294,12 +359,13 @@ def _run_runtime(
             for case_id, label, canonical_hex, expected in _fixture_rows(
                 fixture, order
             ):
-                completed = _adb_command(
+                completed = _adb_hash_file(
                     adb,
                     serial,
                     remote,
-                    ["hash", canonical_hex],
+                    canonical_hex,
                     environment=environment,
+                    work=work,
                 )
                 identities.append(
                     {
@@ -326,12 +392,13 @@ def _run_runtime(
                 truth_table.append({**row, "observed": completed.stdout.strip()})
             first_hex = fixture["cases"][0]["identities"][0]["canonical_hex"]
             mutated_hex = first_hex[:-1] + ("1" if first_hex[-1] != "1" else "0")
-            mutation = _adb_command(
+            mutation = _adb_hash_file(
                 adb,
                 serial,
                 remote,
-                ["hash", mutated_hex],
+                mutated_hex,
                 environment=environment,
+                work=work,
             ).stdout.strip()
             negative_commands = {
                 "odd_hex": ["hash", "0"],
@@ -412,6 +479,8 @@ def _run_runtime(
                     emulator.terminate()
                     emulator.wait(timeout=15.0)
             _finish_owned_emulator_processes(emulator_exe, runtime["avd_name"], port)
+            if not _cleanup_owned_runtime(emulator_exe, runtime["avd_name"], port):
+                raise P253RuntimeError("owned Android runtime survived cleanup")
 
 
 def evaluate(
@@ -490,7 +559,7 @@ def evaluate(
         "negative_controls_exact": negative_controls_exact,
         "mutation_detected": runtime_result["mutation_detected"],
         "device_exact": device_exact,
-        "owned_processes_zero": not _finish_owned_emulator_processes(
+        "owned_processes_zero": _cleanup_owned_runtime(
             emulator, runtime["avd_name"], int(runtime["port"])
         ),
         "owned_scratch_residue_zero": cleanup_exact,

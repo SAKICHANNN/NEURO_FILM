@@ -42,7 +42,7 @@
     "avd_config_version": "p253-api34-x86_64-minimal-v1",
     "system_image": "system-images;android-34;google_apis;x86_64",
     "system_package_relative_path": "system-images/android-34/google_apis/x86_64/package.xml",
-    "port": 5594,
+    "port": 5584,
     "complete_processes": 2,
     "orders": [
       "normal",
