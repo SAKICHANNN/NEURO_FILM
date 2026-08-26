@@ -1,0 +1,35 @@
+{
+  "schema_version": "neuro-film.u7-6h-three-stock-phase-rss-attribution.v1",
+  "node_id": "U7.6H",
+  "objective": "Attribute the remaining measured 24MP three-stock process peak to input/context, each per-stock safe-Lab render, encoding, or orchestration before authorizing another memory implementation.",
+  "input": {
+    "path": "data/preference/repid/u5_r2repid3_shared_operator_v1/fit/winner/a4593-kme_0276.jpeg",
+    "expected_dimensions": [6048, 4032]
+  },
+  "execution": {
+    "look_amount": 1.0,
+    "render_seed": 31,
+    "tile_size": 512,
+    "tile_workers": 1,
+    "png_compression": 0,
+    "sample_interval_seconds": 0.005,
+    "fresh_process_count": 2
+  },
+  "gates": {
+    "three_encoded_outputs_repeat_exact": true,
+    "three_decoded_sample_arrays_repeat_exact": true,
+    "three_icc_fingerprints_repeat_exact": true,
+    "three_normalized_recipe_semantics_repeat_exact": true,
+    "ordered_stock_ids_exact": true,
+    "dominant_phase_repeat_exact": true,
+    "peak_process_tree_rss_repeat_ratio_max": 1.10,
+    "owned_residue_count": 0
+  },
+  "stop_rules": [
+    "Do not change the product renderer, input, stock parameters, tile geometry, encoder, process topology, sample interval or gates after formal execution begins.",
+    "This leaf measures the unchanged product and must not infer live-object ownership from RSS alone; it only identifies which instrumented call boundary contains the process high-water mark.",
+    "A successor memory implementation may target only a dominant phase reproduced by both runs and must separately freeze exact output and resource gates.",
+    "If attribution is unstable, stop performance work rather than selecting a favorable run."
+  ],
+  "claim_ceiling": "Local Windows/Python 24MP three-stock phase-attribution evidence only; no performance improvement, stock separation, calibration or product-release claim."
+}
