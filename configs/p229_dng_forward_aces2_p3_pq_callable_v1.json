@@ -1,0 +1,53 @@
+{
+  "schema": "neuro-film.p229-dng-forward-aces2-p3-pq-callable-contract.v1",
+  "experiment_id": "P229",
+  "node": "ULT > U1 > U1.3N/U1.4K / P229",
+  "status": "FROZEN_BEFORE_CALLABLE_IMPLEMENTATION_OR_PIXEL_EXECUTION",
+  "question": "Can the exact-five-DNG P98 ForwardMatrix raster and exact P226 official P3-D65 1000-nit Rec.2100-PQ target be composed behind one source-bound opt-in callable without changing generic RAW or default renderer behavior?",
+  "bindings": {
+    "p98_config_path": "configs/p98_dng_forward_raster_v1.json",
+    "p98_config_sha256": "5fb17f82cfecdae40a4c812f2ea9c26641e91bcab43e17c8a6a4bc94b2f03c35",
+    "p98_evidence_path": "docs/evidence/P98_DNG_FORWARD_RASTER_RESULT.json",
+    "p98_evidence_sha256": "e73c99fe61781988f61a56fec46278d715431c04ec432173639deb16ba7cfac5",
+    "p98_source_path": "src/preprocess/dng_forward_raster.py",
+    "p98_source_sha256": "eb50a4b0957b88a40b2da6da929a90cc5d9e390d95589914b41e0ff0711091e9",
+    "p226_source_path": "src/preprocess/ocio_aces2_output.py",
+    "p226_source_sha256": "8f31215c266db683cffcad8f6252a0bfd031025cd12d94c6a88bbe340077475e",
+    "p226_evidence_path": "docs/evidence/P226_R1CV_REC2100_PQ_RUNTIME_COMPATIBILITY_RESULT.json",
+    "p226_evidence_sha256": "2be3c6da6a80ab4ab75f3ecf7fa2756a383b34dea03822f6d123b1853b0a6b2a",
+    "default_pipeline_path": "src/preprocess/pipeline.py",
+    "default_pipeline_sha256": "21a7a165a895679e05bc43e5c67d7d9d439b19dfbe01cf346449e4ea90be6dc4",
+    "generic_raw_path": "src/preprocess/raw_decode.py",
+    "generic_raw_sha256": "6288a4b546b15dd28fcdd675603c65ba57ac67c3c4d42d552d9b825334cfebfe",
+    "contract_path": "docs/planning/P229_DNG_FORWARD_ACES2_P3_PQ_CALLABLE_CONTRACT.md"
+  },
+  "target": "hdr_p3d65_1000nit_rec2100_pq",
+  "required_rows": 5,
+  "execution": {
+    "outer_orders": [
+      "forward",
+      "reverse"
+    ],
+    "fresh_process_per_outer": true,
+    "source_identity_required_before_decode": true,
+    "repository_image_writes": 0,
+    "network_reads": 0
+  },
+  "gates": {
+    "bindings_exact": true,
+    "required_rows_exact": true,
+    "source_identities_and_bytes_unchanged": true,
+    "callable_equals_direct_retained_composition_byte_exact": true,
+    "outputs_float32_contiguous_finite_in_unit": true,
+    "caller_owns_output": true,
+    "wrong_identity_and_invalid_input_fail_closed": true,
+    "default_pipeline_and_generic_raw_sources_unchanged": true,
+    "forward_reverse_reports_byte_exact": true
+  },
+  "decision": {
+    "pass": "Retain one private exact-five-DNG source-bound P98-to-official-P3-PQ callable and open no default or product mapping.",
+    "fail": "Close the exact callable without clipping, exposure, tone-map, config, target, row, tolerance or backend rescue.",
+    "invalid": "If any bound source/evidence/runtime identity is unavailable, report infrastructure-invalid rather than a callable result."
+  },
+  "claim_ceiling": "Private exact-five-DNG Windows Python P98 ForwardMatrix to pinned official ACES 2 P3-D65 1000-nit Rec.2100-PQ numerical callable only; no arbitrary DNG, sensor/IDT calibration, vendor rendering, photographic quality, default loader/renderer integration, integer/media output, public package/schema/capability, stock, preference or product admission."
+}
