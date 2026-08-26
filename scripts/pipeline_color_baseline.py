@@ -11,6 +11,8 @@ import argparse
 import csv
 import json
 import sys
+from concurrent.futures import ThreadPoolExecutor
+from itertools import pairwise
 from pathlib import Path
 
 import numpy as np
@@ -29,8 +31,11 @@ from src.color_engine.safe_lab import (
     safe_lab_context_from_lab,
     validate_safe_lab_source_context,
 )
-from src.inference.tiled_render import TiledExecutionMetadata, TileWindow, execute_tiled_local_operator
-
+from src.inference.tiled_render import (
+    TiledExecutionMetadata,
+    TileWindow,
+    execute_tiled_local_operator,
+)
 
 DEFAULT_GUARDRAILS = ROOT / "configs" / "color_guardrails.json"
 DEFAULT_PROFILES = ROOT / "configs" / "color_rendering_profiles.yaml"
@@ -209,6 +214,40 @@ def compress_to_srgb_gamut(source_lab: np.ndarray, target_lab: np.ndarray, itera
     return source_lab + delta * low
 
 
+def compress_to_srgb_gamut_parallel(
+    source_lab: np.ndarray,
+    target_lab: np.ndarray,
+    *,
+    iterations: int = 14,
+    workers: int = 1,
+) -> np.ndarray:
+    """Run the exact per-pixel compressor on disjoint row ranges in parallel."""
+
+    if isinstance(workers, bool) or not isinstance(workers, int) or workers < 1:
+        raise ValueError("workers must be a positive integer")
+    if source_lab.shape != target_lab.shape or source_lab.ndim != 3:
+        raise ValueError("source and target Lab arrays must have matching HxWx3 shape")
+    if workers == 1 or source_lab.shape[0] == 1:
+        return compress_to_srgb_gamut(source_lab, target_lab, iterations=iterations)
+    worker_count = min(workers, source_lab.shape[0])
+    bounds = np.linspace(0, source_lab.shape[0], worker_count + 1, dtype=np.int64)
+    output = np.empty_like(source_lab)
+
+    def compress_rows(y0: int, y1: int) -> None:
+        output[y0:y1] = compress_to_srgb_gamut(
+            source_lab[y0:y1], target_lab[y0:y1], iterations=iterations
+        )
+
+    with ThreadPoolExecutor(max_workers=worker_count) as executor:
+        futures = [
+            executor.submit(compress_rows, int(y0), int(y1))
+            for y0, y1 in pairwise(bounds)
+        ]
+        for future in futures:
+            future.result()
+    return output
+
+
 def compress_chroma_to_srgb_gamut(target_lab: np.ndarray, iterations: int = 14) -> np.ndarray:
     """Reduce Lab chroma at fixed L and hue until every pixel fits sRGB."""
     low = np.zeros(target_lab.shape[:2] + (1,), dtype=np.float32)
@@ -297,6 +336,7 @@ def _style_transfer_rgb_with_context(
     source_context: SafeLabSourceContext,
     dither_window: TileWindow | None = None,
     precomputed_lab: np.ndarray | None = None,
+    gamut_workers: int = 1,
 ) -> np.ndarray:
     rgb = _validate_style_rgb(rgb)
     _validate_safe_lab_source_context(source_context)
@@ -336,7 +376,7 @@ def _style_transfer_rgb_with_context(
 
     resolved_gamut_mode = gamut_mode or ("source" if gamut_safe else "off")
     if resolved_gamut_mode == "source":
-        out = compress_to_srgb_gamut(lab, out)
+        out = compress_to_srgb_gamut_parallel(lab, out, workers=gamut_workers)
         result = lab_to_rgb_no_clip(out)
     elif resolved_gamut_mode == "chroma":
         out = compress_chroma_to_srgb_gamut(out)
@@ -400,6 +440,7 @@ def style_transfer_rgb(
     max_chroma_boost: float | None = None,
     max_chroma_absolute: float | None = None,
     dither: float | None = None,
+    gamut_workers: int = 1,
 ) -> np.ndarray:
     """Apply the legacy full-frame safe-Lab operator without changing pixels."""
 
@@ -431,6 +472,7 @@ def style_transfer_rgb(
         dither=dither,
         source_context=source_context,
         precomputed_lab=lab,
+        gamut_workers=gamut_workers,
     )
 
 

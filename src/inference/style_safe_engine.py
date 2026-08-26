@@ -79,6 +79,7 @@ def render_resolved_safe_lab_rgb(
     guardrails: Mapping[str, Any],
     seed: int,
     tile_size: int | None = None,
+    gamut_workers: int = 1,
 ) -> np.ndarray:
     """Render one already-resolved style without file or CLI state."""
 
@@ -100,6 +101,12 @@ def render_resolved_safe_lab_rgb(
         isinstance(tile_size, bool) or not isinstance(tile_size, int) or tile_size < 1
     ):
         raise StyleSafeEngineError("tile_size must be a positive integer")
+    if (
+        isinstance(gamut_workers, bool)
+        or not isinstance(gamut_workers, int)
+        or gamut_workers < 1
+    ):
+        raise StyleSafeEngineError("gamut_workers must be a positive integer")
     parameters = _validated_parameters(style_parameters)
     if tile_size is not None:
         output, _ = style_transfer_rgb_tiled(
@@ -144,6 +151,7 @@ def render_resolved_safe_lab_rgb(
             output_margin=int(parameters["output_margin"]),
             guardrails=dict(guardrails) if parameters["use_guardrails"] else None,
             dither=float(parameters["dither"]),
+            gamut_workers=gamut_workers,
         ),
         dtype=np.float32,
     )
@@ -161,6 +169,7 @@ def render_style_safe_working_image(
     guardrails: Mapping[str, Any],
     seed: int,
     tile_size: int | None = None,
+    gamut_workers: int = 1,
 ) -> np.ndarray:
     """Render a validated v1 profile from one WorkingImage to float32 sRGB."""
 
@@ -177,6 +186,7 @@ def render_style_safe_working_image(
         guardrails=guardrails,
         seed=seed,
         tile_size=tile_size,
+        gamut_workers=gamut_workers,
     )
 
 

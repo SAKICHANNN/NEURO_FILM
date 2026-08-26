@@ -190,6 +190,12 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help="Opt into exact bounded-tile safe-Lab execution with this tile size.",
     )
+    parser.add_argument(
+        "--gamut-workers",
+        type=int,
+        default=1,
+        help="Parallel full-frame safe-Lab gamut rows; exact output, default 1.",
+    )
     return parser.parse_args()
 
 
@@ -278,6 +284,7 @@ def build_color_render_float(
         guardrails=load_guardrail_config(args.guardrails, args.style),
         seed=args.seed,
         tile_size=getattr(args, "tile_size", None),
+        gamut_workers=getattr(args, "gamut_workers", 1),
     )
 
 
@@ -291,6 +298,10 @@ def main() -> int:
         raise ValueError("16-bit output requires .png, .tif or .tiff")
     if args.tile_size is not None and args.tile_size < 1:
         raise ValueError("--tile-size must be at least 1")
+    if args.gamut_workers < 1:
+        raise ValueError("--gamut-workers must be at least 1")
+    if args.tile_size is not None and args.gamut_workers != 1:
+        raise ValueError("--gamut-workers cannot be combined with --tile-size")
     analytic_runtime = None
     color_diagnostics = None
     if args.color_engine == "analytic-y-chromaticity":
@@ -304,6 +315,8 @@ def main() -> int:
             )
         if args.tile_size is not None:
             raise ValueError("--tile-size only supports the safe_lab color engine")
+        if args.gamut_workers != 1:
+            raise ValueError("--gamut-workers only supports the safe_lab color engine")
         analytic_runtime = load_analytic_y_chromaticity_profile(
             args.analytic_profile, root=ROOT
         )
