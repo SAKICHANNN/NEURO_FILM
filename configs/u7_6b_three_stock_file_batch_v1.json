@@ -1,0 +1,37 @@
+{
+  "schema_version": "neuro-film.u7-6b-three-stock-file-batch.v1",
+  "node_id": "U7.6B",
+  "objective": "Decode one real input once and export the ordered Velvia 50, Portra 400 and Ektar 100 PNG16 Look Approximation set with strict replay recipes.",
+  "input": {
+    "path": "data/preference/repid/u5_r2repid3_shared_operator_v1/fit/winner/a4593-kme_0276.jpeg",
+    "expected_dimensions": [6048, 4032]
+  },
+  "execution": {
+    "look_amount": 1.0,
+    "render_seed": 31,
+    "tile_size": 512,
+    "tile_workers": 1,
+    "output_bit_depth": 16,
+    "png_compression": 0,
+    "stock_order": [
+      "fujifilm_velvia_50",
+      "kodak_portra_400",
+      "kodak_ektar_100"
+    ]
+  },
+  "controls": {
+    "baseline": "three independent existing render_film.py invocations",
+    "candidate": "one decode plus U7.6A shared-context batch",
+    "comparison": "decoded uint16 samples, encoded bytes, normalized recipes, order, cleanup, wall and process-tree RSS"
+  },
+  "gates": {
+    "three_encoded_outputs_byte_exact": true,
+    "three_decoded_sample_arrays_exact": true,
+    "three_normalized_recipes_exact": true,
+    "ordered_stock_ids_exact": true,
+    "median_wall_ratio_max": 0.95,
+    "candidate_peak_process_tree_rss_ratio_max": 1.05,
+    "candidate_residue_count": 0
+  },
+  "claim_ceiling": "Local Windows/Python one-input three-stock PNG16 file batch only; current outputs remain non-calibrated Look Approximations and U7.2C stock separation remains failed."
+}
