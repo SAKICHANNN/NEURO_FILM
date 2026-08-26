@@ -1,7 +1,7 @@
 {
   "schema": "neuro-film.p249-aces2065-openexr-exact-consumer-intake-contract.v1",
   "experiment_id": "P249",
-  "status": "FROZEN_BEFORE_FORMAL_OPENEXR_INSTALL_OR_EXECUTION",
+  "status": "FROZEN_READY_FOR_FORMAL_EXECUTION",
   "bindings": {
     "contract_path": "docs/planning/P249_ACES2065_OPENEXR_EXACT_CONSUMER_INTAKE_CONTRACT.md",
     "contract_sha256": "21b03e5c92d45315a0542340eec639b822a45c15136f5684499e7c82670ab974",
@@ -17,7 +17,12 @@
     "producer_r1dt_evidence_sha256": "5d037d2f98f90d6f7d872c6a1b009637423ed2994189f94d5e9ec7f0375a68ff",
     "producer_wheel_path": "data/vendor/openexr-3.4.15/openexr-3.4.15-cp312-cp312-win_amd64.whl",
     "producer_wheel_bytes": 740197,
-    "producer_wheel_sha256": "7aa145813acfe10a83d6e89340349379828190b321608e69f2aee426e10c890b"
+    "producer_wheel_sha256": "7aa145813acfe10a83d6e89340349379828190b321608e69f2aee426e10c890b",
+    "consumer_runner_path": "scripts/audit_p249_aces2065_openexr_exact_consumer_intake.py",
+    "consumer_runner_commit": "f49d21e1a82b188f177c4cfa3a3fb0f4414f1297",
+    "consumer_runner_git_blob": "871b33d21d21207c70aa10612aead8c653206fed",
+    "consumer_runner_bytes": 13464,
+    "consumer_runner_sha256": "0cb87398791e407003f455e74e1b24cad664cfdee1a73371cc71bd45b2e44f3f"
   },
   "expected": {
     "writer_id": "aces2065-ap0-d60-float32-zip-openexr-container-v1",
