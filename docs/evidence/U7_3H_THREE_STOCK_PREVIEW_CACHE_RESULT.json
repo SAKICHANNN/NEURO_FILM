@@ -1,0 +1,56 @@
+{
+  "schema": "kmcfm.u7-3h-three-stock-preview-cache-evidence.v1",
+  "experiment_id": "U7.3H_THREE_STOCK_PREVIEW_CACHE",
+  "date": "2026-08-27",
+  "status": "FAIL_CLOSED_VERIFIED_WARM_PREVIEW_CACHE",
+  "commits": {
+    "contract": "0784746f",
+    "implementation": "601efb9c",
+    "audit": "f8ce9b4d"
+  },
+  "identities": {
+    "contract_sha256": "8165c01c1ee11c14bde2b051bc138987f9c8f79c972a9f3e875b3461b5dcc573",
+    "core_sha256": "b4ca03f92eef775554da81a3baaed0588a6bd4c67bbbb8ff7178cadeed7aeb69",
+    "cli_sha256": "1485147b363dbfaf6b239783860ebb059e6d70712ef88a21e06d8dfaea0d563f",
+    "audit_sha256": "7017c0b43c89910f09232ace6103091f731ee382cede27b4508afa8135666af2",
+    "formal_report_sha256": "130d335040b9a636fbbce4d9a608937dcdc878850aa85c4cc5b4699426b16ee6",
+    "replay_report_sha256": "e97ca0567e0d35f03c962f989e68f128cecd7a8979d8ec87e52c57487227eced",
+    "timing_excluded_stable_identity": "5dd04c44a386a0c543015bfc311119a0ac1b0ad481fa7cec5c62485511c4bdc1",
+    "cache_index_sha256": "fa1ab7c1f3211eedb95ba76386c17cd1cc8272673871493ab07bc373ee110240"
+  },
+  "fresh_process_wall_seconds": {
+    "formal": [
+      0.56395909999992,
+      0.6072579000028782,
+      0.6099259999973583,
+      0.6352784000046086
+    ],
+    "replay": [
+      4.085541200001899,
+      1.9618522000018856,
+      1.955621199995221,
+      2.2696798000033596
+    ],
+    "frozen_maximum": 0.3
+  },
+  "gates": {
+    "input_profile_output_hash_validation": true,
+    "fresh_process_identity": true,
+    "warm_lookup_latency": false,
+    "zero_pixel_decode": true,
+    "zero_render_during_lookup": true,
+    "tamper_rejection": true,
+    "portable_relative_output_names": true,
+    "scratch_removed": true
+  },
+  "counters": {
+    "cold_preview_renders_per_complete_audit": 1,
+    "warm_lookup_renders": 0,
+    "warm_lookup_pixel_decodes": 0,
+    "complete_file_hashes_per_warm_lookup": 5,
+    "fresh_process_lookups": 8
+  },
+  "decision": "CLOSE_FRESH_PROCESS_FULL_HASH_CACHE_AS_300MS_PRODUCT_WARM_PATH",
+  "interpretation": "The portable index and complete input/profile/output hashing are deterministic, return the exact U7.3G preview identities, reject output tamper, and perform no pixel decode or render during lookup. Nevertheless, all eight fresh-process lookups exceed the frozen 300ms warm target: the first complete audit spans 0.564-0.635s and the replay under higher host load spans 1.956-4.086s. The timing-excluded report is exact across both audits, so the failure is stable. Do not rescue by skipping complete-file hashes or redefining warm as an unverifiable in-memory hit.",
+  "claim_ceiling": "Private local file-backed cache mechanism negative only. U7.3G development previews remain valid; no render acceleration, calibrated stock, GUI, product release or cross-platform claim opens."
+}
