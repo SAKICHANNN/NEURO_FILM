@@ -16564,3 +16564,27 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   open another equivalent generator-lifetime leaf. Resume the multi-stock
   evidence/product mainline. Evidence:
   `docs/evidence/U7_6D_THREE_STOCK_YIELD_LIFETIME_RESULT.json`.
+
+### 2026-08-26 - P235 closes further R1CZ cross-domain safety accumulation
+
+- **Node and direction correction:** after P234, stop adding runtime wrappers or
+  application datasets. P235 is a post-result explanatory structural audit of
+  the exact persisted payload, not an independent transfer confirmation.
+- **Frozen question:** does absolute black map to exact black before and after
+  the existing clamp, do all three channel zero crossings coincide with zero
+  within `1e-6` nit, and does a fixed neutral-shadow probe avoid mixed
+  zero/nonzero output channels? No application pixels, paired build, network
+  or media are read.
+- **Result:** two fresh forward/reverse 3,241-byte reports are byte exact at
+  `047f373c...f14b`, stable `934b9c9c...4b12`. Exact black becomes
+  `[+1.7696,-2.6284,-1.0185]` nits before clamp and pure red
+  `[1.7696,0,0]` afterward. Channel zero crossings are separated at
+  `-1.7696/+2.6508/+1.0185` nits; every fixed neutral probe from zero through
+  2 nits contains mixed exact-zero and positive channels.
+- **Decision and propagation:** `FAIL_CLOSED_R1CZ_STRUCTURAL_BLACK_ANCHOR`.
+  This structurally explains the P234 boundary/chroma failure, so no black
+  floor, offset, knot, strength, clamp, tolerance, probe replacement or third
+  application-domain rescue opens. P233 persistence and original paired R1CY
+  evidence remain valid. Thirteen adjacent tests, Ruff, compileall and diff
+  checks pass. Evidence SHA-256 `7c09acbc...65c2d`:
+  `docs/evidence/P235_R1CZ_STRUCTURAL_BLACK_ANCHOR_RESULT.json`.
