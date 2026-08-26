@@ -70,7 +70,7 @@ def build_probes(payloads: list[dict[str, Any]]) -> np.ndarray:
         np.float32(10000.0),
         np.float32(5000.0),
     ]
-    for row in payloads:
+    for row in sorted(payloads, key=lambda item: item["effect_id"]):
         knots = np.asarray(row["payload"]["source_knots"], dtype=np.float32)
         positive = knots >= 0.0
         sigmoid = np.empty_like(knots)
