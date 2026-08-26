@@ -1,0 +1,68 @@
+{
+  "schema": "neuro-film.p241-capture-metadata-awb-development-contract.v1",
+  "experiment_id": "P241",
+  "status": "FROZEN_BEFORE_FORMAL_DEVELOPMENT_REPLAY",
+  "question": "Does a fixed source-only capture-time/exposure ridge show enough development signal on consumed P240 rows to justify opening any fresh metadata confirmation target?",
+  "development_source": {
+    "experiment_id": "P240",
+    "report_path": "outputs/eval/p240_rawpixls_capture_metadata_source_audit_v1/formal_forward.json",
+    "report_sha256": "7f2a743101bb1ff854d4ac51bc90ab7e6dfa5394aff30565f4f359b1208027ae",
+    "eligible_rows": 17,
+    "role": "consumed_development_only"
+  },
+  "information_flow": {
+    "inputs": [
+      "DateTimeOriginal cyclic time features",
+      "log2 ExposureTime",
+      "log2 ISO",
+      "log2 FNumber"
+    ],
+    "target": "log red/green and blue/green ratios from green-normalized AsShotNeutral",
+    "forbidden_inputs": [
+      "make",
+      "model",
+      "raw bytes",
+      "decoded pixels",
+      "fresh P241 EXIF",
+      "fresh P241 AsShotNeutral"
+    ]
+  },
+  "models": {
+    "full": {
+      "feature_indices": [0, 1, 2, 3, 4, 5, 6],
+      "ridge_alpha": 10.0
+    },
+    "time_only": {
+      "feature_indices": [0, 1, 2, 3],
+      "ridge_alpha": 10.0
+    },
+    "exposure_only": {
+      "feature_indices": [4, 5, 6],
+      "ridge_alpha": 10.0
+    },
+    "cyclic_target": {
+      "feature_indices": [0, 1, 2, 3, 4, 5, 6],
+      "ridge_alpha": 10.0,
+      "target_rule": "Within each leave-one-out training fold sorted by repository ID, rotate target rows left by one."
+    },
+    "global_mean": {
+      "rule": "Within each leave-one-out fold, predict the mean two-channel log target."
+    }
+  },
+  "evaluation": {
+    "split": "exact leave-one-row-out over the 17 consumed P240 complete rows",
+    "metric": "angular error in degrees between predicted and target green-normalized neutral vectors",
+    "gates": {
+      "minimum_rows": 17,
+      "minimum_win_rate_vs_each_control": 0.6,
+      "minimum_median_relative_reduction_vs_each_control": 0.05,
+      "maximum_p95_angular_error_degrees": 10.0,
+      "require_exact_replay": true,
+      "require_zero_fresh_exif_reads": true,
+      "require_zero_raw_downloads": true,
+      "require_zero_pixel_decodes": true
+    }
+  },
+  "stop_rule": "If the full model fails any development gate, close this exact feature/ridge family before reading any fresh P241 EXIF or AsShotNeutral target. Do not tune features, alpha, gates or cyclic control on P240. A pass would only permit a separately frozen file/model-isolated metadata confirmation.",
+  "claim_ceiling": "Consumed-development metadata-only source-observation discriminant. No fresh confirmation, natural-image AWB quality, candidate-3, RAW operator, package, schema, capability, film-stock or product claim."
+}
