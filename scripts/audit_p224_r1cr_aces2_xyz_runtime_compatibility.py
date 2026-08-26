@@ -7,15 +7,19 @@ import hashlib
 import json
 import os
 import subprocess
+import sys
 import tempfile
 from pathlib import Path
 from typing import Any
 
 import numpy as np
 
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
 from src.preprocess.ocio_aces2_output import OCIO_VERSION, build_aces2_numeric_fixture
 
-ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/p224_r1cr_aces2_xyz_runtime_compatibility_v1.json"
 SCHEMA = "neuro-film.p224-r1cr-aces2-xyz-runtime-compatibility-contract.v1"
 
