@@ -16185,3 +16185,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Retain only a private recovery-package primitive. Installation, materialized
   restore/update rollback, export authorization, calibrated stocks and release
   remain open. Evidence: `docs/evidence/U7_7A_RECIPE_RECOVERY_BUNDLE_RESULT.json`.
+
+### 2026-08-26 - U7.7B validates then materializes recovery directories
+
+- Added create-only restore to a private same-parent staging directory. All six
+  bundled members, the strict recipe, profile and asset ledger revalidate before
+  the directory is published; the source ZIP is not changed.
+- Velvia/Portra/Ektar forward/reverse reports are byte-identical at
+  `fd918069...73d838`, with exact repeated receipts and zero staging residue.
+  Existing destinations remain unchanged and injected write failure removes the
+  owned partial tree.
+- This is not an updater or installer. In-place replacement/rollback, automatic
+  input discovery, rerender/export and product release remain open. Evidence:
+  `docs/evidence/U7_7B_RECIPE_RECOVERY_MATERIALIZATION_RESULT.json`.

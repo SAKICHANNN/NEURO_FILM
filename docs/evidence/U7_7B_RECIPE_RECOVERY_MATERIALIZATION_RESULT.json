@@ -1,0 +1,50 @@
+{
+  "schema": "kmcfm.u7-7b-recipe-recovery-materialization-evidence.v1",
+  "node": "U7.7B",
+  "status": "PASS_PRIVATE_CREATE_ONLY_RECOVERY_MATERIALIZATION",
+  "contract": "configs/u7_7b_recipe_recovery_materialization_v1.json",
+  "contract_sha256": "8b5df36063b65071ba1c76c6b21dd3c89860b19449ba7a936bf172b87b5d0434",
+  "implementation_commit": "f22deeab5c6ca9e516e7017413d3ac7bff5a5b2b",
+  "audit_commit": "f28e4e53eb3b0c4b8aa784c7162b75c3719f00fd",
+  "raw_report": {
+    "forward": "outputs/eval/u7_7b_recipe_recovery_materialization_v1/forward/report.json",
+    "reverse": "outputs/eval/u7_7b_recipe_recovery_materialization_v1/reverse/report.json",
+    "sha256": "fd91806949a59dceef3dc5825451945efea2b9d0327db9c299057c175973d838",
+    "byte_exact": true,
+    "stable_id": "170d6c50a95b50c8f6fe57bfef0642b45aa6ae191ca391800eb544d76f638aa7"
+  },
+  "receipts": [
+    {
+      "style": "ektar_100",
+      "sha256": "4754f1c24b60bdcd2374d912b5b78c7957374d8e36fcbe5aac1dbcbb3c9a040c",
+      "restored_members": 6
+    },
+    {
+      "style": "portra_400",
+      "sha256": "0aad7a3214174b7bd3eecfecc63095c275391e8400a9454ca2b2ad65c1005ff4",
+      "restored_members": 6
+    },
+    {
+      "style": "velvia_50",
+      "sha256": "b2b0901a6e00cac59090a973c0244449a62905513d240ebd9de159d1c9dbb26e",
+      "restored_members": 6
+    }
+  ],
+  "gates": {
+    "three_styles_complete": true,
+    "repeat_and_order_exact": true,
+    "restored_member_bytes_exact": true,
+    "restored_recipe_profile_assets_revalidate": true,
+    "source_bundles_unchanged": true,
+    "existing_destinations_unchanged": true,
+    "injected_write_failure_rolls_back": true,
+    "owned_stage_residue_zero": true,
+    "input_and_output_pixel_reads": 0,
+    "network_reads": 0,
+    "telemetry": false,
+    "focused_tests": "37 passed",
+    "ruff_and_diff_check": "pass"
+  },
+  "decision": "Retain a private create-only materialization boundary for already validated U7.7A bundles. Update replacement, installer behavior, automatic input discovery and render/export remain separate leaves.",
+  "claim_ceiling": "Private Windows local create-only materialization of validated no-pixel Look Approximation recovery bundles; no updater, in-place replacement, automatic input discovery, output rerender/export authorization, installer, telemetry, calibrated stock or product-release claim."
+}
