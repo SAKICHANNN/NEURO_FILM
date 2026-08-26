@@ -1,0 +1,95 @@
+{
+  "schema": "neuro-film.rf3-d10-velvia50-chart-product-baseline-evidence.v1",
+  "experiment_id": "RF3.D10",
+  "node": "ULT > RF3 > RF3.D10",
+  "status": "FAIL_CLOSED",
+  "decision": "keep_current_velvia_at_look_approximation_and_require_new_stock_specific_operator_or_observation",
+  "bindings": {
+    "contract": {
+      "path": "configs/rf3_d10_velvia50_chart_product_baseline_v1.json",
+      "bytes": 3384,
+      "sha256": "899889d8cf569ab38eeebc32ac4fb5bb54ca26d07d44c35d441b162b73e262c6",
+      "commit": "675404c9"
+    },
+    "implementation": {
+      "path": "src/eval/velvia50_chart_product_baseline.py",
+      "bytes": 12020,
+      "sha256": "8301120aa0b563ca3a6eb52c42aa59cdb26babf7d9dacf9ea74a7b4e41a1c8a3",
+      "commit": "2439e276"
+    },
+    "runner": {
+      "path": "scripts/run_rf3_d10_velvia50_chart_product_baseline.py",
+      "bytes": 1115,
+      "sha256": "74c93868238913edc8a03b8a74d19462e8da953621e4aefa2e5eb8cf2bcf6b1d"
+    },
+    "tests": {
+      "path": "tests/test_rf3_d10_velvia50_chart_product_baseline.py",
+      "bytes": 822,
+      "sha256": "0da4b7c178ab5663b557c05c961c704126eb443d109e4e27a707027318126856"
+    },
+    "formal_result": {
+      "path": "outputs/eval/rf3_d10_velvia50_chart_product_baseline_v1/forward.json",
+      "bytes": 3749,
+      "sha256": "3ddde09224d24aba0ab3f6bd630f6870d98d21aae75fcf35ae122435f15fcd32"
+    }
+  },
+  "execution": {
+    "fresh_processes": 2,
+    "orders": [
+      "canonical",
+      "reverse"
+    ],
+    "reports_byte_exact": true,
+    "report_sha256": "3ddde09224d24aba0ab3f6bd630f6870d98d21aae75fcf35ae122435f15fcd32",
+    "stable_evidence_id": "fd64105967c50943dddf4f025f021155aa0c5e1594978639173c62b781d6b0ce"
+  },
+  "population": {
+    "patch_count": 24,
+    "folds": 6,
+    "target_stock": "fujifilm_velvia_50",
+    "source_role": "author-rendered sRGB from reference spectral data",
+    "target_role": "real Velvia 50 multispectral-scan author-rendered sRGB",
+    "wrong_stock_controls": [
+      "kodak_portra_400",
+      "kodak_ektar_100"
+    ],
+    "baseline": "ao6_velvia50_display_proxy_t15_c35"
+  },
+  "metrics": {
+    "identity_rmse": 0.19333926598738857,
+    "current_velvia_50_rmse": 0.19650894245561312,
+    "current_portra_400_wrong_stock_rmse": 0.19734168975341618,
+    "current_ektar_100_wrong_stock_rmse": 0.1973619620390561,
+    "ao6_velvia_50_rmse": 0.24887594392838616,
+    "velvia_improvement_over_identity_fraction": -0.01639437520380005,
+    "velvia_improvement_over_portra_fraction": 0.00421982450258529,
+    "velvia_improvement_over_ektar_fraction": 0.004322107333297409,
+    "velvia_improvement_over_ao6_fraction": 0.21041407476425922,
+    "velvia_fold_win_fraction_over_identity": 0.16666666666666666,
+    "velvia_worst_fold_improvement_over_identity_fraction": -0.06031276410461239,
+    "maximum_current_output_boundary_fraction": 0.0,
+    "maximum_repeat_error": 0.0
+  },
+  "gates": {
+    "minimum_velvia_improvement_over_identity": false,
+    "minimum_velvia_improvement_over_each_wrong_stock": false,
+    "minimum_fold_win_fraction_over_identity": false,
+    "minimum_worst_fold_improvement_over_identity": true,
+    "maximum_current_output_boundary_fraction": true,
+    "maximum_repeat_error": true
+  },
+  "interpretation": {
+    "established": [
+      "the unchanged current Velvia look is the closest of the three current product stock looks on this controlled chart",
+      "the current Velvia look beats the frozen AO6 Velvia display-proxy baseline by 21.041 percent RMSE",
+      "all evaluated fixed operators replay exactly and the current product outputs introduce no sampled code-boundary values"
+    ],
+    "not_established": [
+      "improvement over the identity source: current Velvia is 1.639 percent worse and wins only one of six chart-row folds",
+      "material target-stock separation: gains over Portra and Ektar are only 0.422 and 0.432 percent",
+      "Velvia 50 calibration, natural-scene transfer, independent roll/process/scanner transfer, preference, or product promotion"
+    ]
+  },
+  "next_mainline": "Do not tune the current Velvia or AO6 operators on this chart. Keep both as frozen baselines and obtain a materially new stock-specific operator or independently controlled observation; continue the same-level Ektar 100 evidence lane so the three-stock matrix is not Velvia-centric.",
+  "claim_ceiling": "One CC-BY-4.0 real Velvia 50 single-illuminant author-rendered sRGB chart display proxy. Fixed product looks and frozen AO6 only, with no fitting. Not calibrated, scanner-independent, natural-scene, roll/process, preference, or product-promotion evidence."
+}
