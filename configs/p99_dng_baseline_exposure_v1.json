@@ -13,7 +13,13 @@
     "p98_implementation_path": "src/preprocess/dng_forward_raster.py",
     "p98_implementation_sha256": "eb50a4b0957b88a40b2da6da929a90cc5d9e390d95589914b41e0ff0711091e9",
     "p98_config_path": "configs/p98_dng_forward_raster_v1.json",
-    "p98_config_sha256": "5fb17f82cfecdae40a4c812f2ea9c26641e91bcab43e17c8a6a4bc94b2f03c35"
+    "p98_config_sha256": "5fb17f82cfecdae40a4c812f2ea9c26641e91bcab43e17c8a6a4bc94b2f03c35",
+    "implementation_path": "src/preprocess/dng_baseline_exposure.py",
+    "implementation_sha256": "e28dad5d5ca011f32c470a77b1106b14bee83d126bd8e9c81aae6e0f052ba4d8",
+    "runner_path": "scripts/audit_p99_dng_baseline_exposure.py",
+    "runner_sha256": "7e785be4da06a2c03598bac5991d585463eb6a1687e16a55f7f4011e0c00a88c",
+    "test_path": "tests/test_dng_baseline_exposure.py",
+    "test_sha256": "3e41e76d4c4ca6369575b4e46040886a190b7a23ef4b716250147311f36a6bc6"
   },
   "tags": {
     "baseline_exposure": 50730,
