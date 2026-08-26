@@ -12,6 +12,7 @@ import subprocess
 import sys
 from pathlib import Path
 
+import cv2
 import numpy as np
 from PIL import Image
 
@@ -64,9 +65,12 @@ def _fixture(path: Path) -> None:
 
 
 def _decoded_facts(path: Path) -> dict[str, object]:
+    array = cv2.imread(str(path), cv2.IMREAD_UNCHANGED)
+    if array is None or array.dtype != np.uint16 or array.ndim != 3:
+        raise ValueError("formal output is not a decoded RGB16 PNG")
+    array = array[..., ::-1]
     with Image.open(path) as image:
         image.load()
-        array = np.asarray(image)
         icc = image.info.get("icc_profile", b"")
     return {
         "array_sha256": _sha_bytes(array.tobytes()),
