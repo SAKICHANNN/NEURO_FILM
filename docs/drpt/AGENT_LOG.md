@@ -16710,3 +16710,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   not an installer, update-discovery system, render/export authorization,
   calibrated stock response or release. Controlled three-stock acquisition
   remains the scientific mainline.
+
+### 2026-08-26 - RF3.D7 identifies an Ektar external-alignment gap
+
+- **Question:** on nine shared inputs, are the existing Portra 400 and Ektar
+  100 Look Approximation outputs closer to their same-name fixed-e0
+  SpektraFilm controls than to the cross-stock control?
+- **Frozen execution:** contract `e31ddbd6`; implementation `deae0d7a`;
+  canonical/reverse formal reports are byte-identical at
+  `4cd273cc...13392`, stable `e467c53b...2cc1c`.
+- **Result:** Portra same-name wins 9/9, Ektar same-name wins 0/9; aggregate is
+  9/18 against the frozen 14/18 gate, and 0/9 inputs pass both arms against
+  the 7/9 gate. Current Portra--Ektar median separation is `1.10874` DeltaE76
+  versus `1.47069` externally, with the current separation lower on 7/9.
+  Current boundary fraction is zero.
+- **Decision:** `FAIL_CLOSED`; do not retune toward a noncommercial external
+  simulator. Keep both outputs labeled Look Approximation and prioritize
+  controlled same-scene Ektar 100 targets, then independent Portra 400 and
+  Velvia 50 confirmation. No calibration, preference or product claim opens.

@@ -138,6 +138,19 @@ layer-exposure prior as a three-stock operator source. Controlled photographic
 targets remain required; no RGB render, fitting or product path opens.
 Evidence: `docs/evidence/RF3_D6_THREE_STOCK_LAYER_EXPOSURE_RESULT.json`.
 
+RF3.D7 compares the existing Portra 400 and Ektar 100 Look Approximation
+outputs with the same-name and cross-name fixed-e0 SpektraFilm controls on the
+same nine display-sRGB inputs. Two formal reports are byte exact
+(`4cd273cc...13392`). Portra wins its same-name comparison on 9/9 inputs, but
+Ektar wins 0/9; total same-name wins are 9/18 and no input passes both arms.
+The current pair is also less separated than the external pair on 7/9 inputs.
+Both frozen alignment gates fail with zero current-output boundary pixels.
+Close this external-alignment control without tuning: SpektraFilm remains a
+noncommercial physical-inspired comparison, not photographic truth or a
+teacher, and Velvia 100 is not substituted for Velvia 50. Controlled
+same-scene Ektar observations remain the highest-information missing input.
+Evidence: `docs/evidence/RF3_D7_PORTRA_EKTAR_EXTERNAL_ALIGNMENT_RESULT.json`.
+
 SF3.A3 now compiles the requested executable source/evidence matrix over eight
 hash-bound results rather than relying on narrative eligibility. Two formal
 reports are byte exact (`676aec5f...74394c`, stable `4954e9b1...98f71b`).
