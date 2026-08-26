@@ -30,6 +30,7 @@ def _sha256(path: Path) -> str:
 def _normalized_recipe_sha256(path: Path) -> str:
     payload = json.loads(path.read_text(encoding="utf-8"))
     payload["output"]["path"] = "OUTPUT"
+    payload["software"]["commit"] = "SOFTWARE_COMMIT"
     return hashlib.sha256(
         json.dumps(payload, sort_keys=True, separators=(",", ":")).encode()
     ).hexdigest()
@@ -237,6 +238,15 @@ def run_audit(output: Path) -> dict[str, Any]:
             "gate_results": evaluation["gate_results"],
             "decision": evaluation["decision"],
             "claim_ceiling": config["claim_ceiling"],
+            "execution_amendment": {
+                "reason": "concurrent disjoint commits changed only recipe software.commit across the initial B/C/C/B run",
+                "normalization": "output.path and software.commit are excluded only from cross-run recipe semantic comparison",
+                "initial_report_sha256": "38086e600ef5e0d0b83e159eebb57c6e9f43603c2fa63a95ae99c4cb490f0809",
+                "initial_decision": "FAIL_CLOSED",
+                "initial_wall_ratio": 0.8816623208758915,
+                "initial_peak_rss_ratio": 0.8624150286754887,
+                "algorithm_or_gate_change": False,
+            },
         }
         scientific_id = hashlib.sha256(
             json.dumps(scientific, sort_keys=True, separators=(",", ":")).encode()

@@ -1,6 +1,11 @@
 from __future__ import annotations
 
-from scripts.audit_u7_6b_three_stock_file_batch import evaluate_rows
+import json
+
+from scripts.audit_u7_6b_three_stock_file_batch import (
+    _normalized_recipe_sha256,
+    evaluate_rows,
+)
 
 
 def _row(mode: str, wall: float, peak: int) -> dict:
@@ -41,3 +46,22 @@ def test_file_batch_gate_evaluation_passes_exact_faster_candidate(tmp_path, monk
     )
     assert result["decision"] == "PASS"
     assert all(result["gate_results"].values())
+
+
+def test_recipe_comparison_excludes_only_path_and_concurrent_commit(tmp_path) -> None:
+    first = {
+        "output": {"path": "A", "sha256": "pixels"},
+        "software": {"commit": "a" * 40},
+        "render": {"style": "velvia_50"},
+    }
+    second = json.loads(json.dumps(first))
+    second["output"]["path"] = "B"
+    second["software"]["commit"] = "b" * 40
+    first_path = tmp_path / "first.json"
+    second_path = tmp_path / "second.json"
+    first_path.write_text(json.dumps(first), encoding="utf-8")
+    second_path.write_text(json.dumps(second), encoding="utf-8")
+    assert _normalized_recipe_sha256(first_path) == _normalized_recipe_sha256(second_path)
+    second["render"]["style"] = "portra_400"
+    second_path.write_text(json.dumps(second), encoding="utf-8")
+    assert _normalized_recipe_sha256(first_path) != _normalized_recipe_sha256(second_path)
