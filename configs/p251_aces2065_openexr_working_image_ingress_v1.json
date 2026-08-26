@@ -20,10 +20,10 @@
     "consumer_module_bytes": 6706,
     "consumer_module_sha256": "9ec0e671144624176d122cb72a38b61de40eba55f8c52772234c438dd33d2390",
     "runner_path": "scripts/audit_p251_aces2065_openexr_working_image_ingress.py",
-    "runner_commit": "79cf24050f559553a44ad3ef32f0f0b7253d09ec",
-    "runner_blob": "6d3bf908fb5c6b3d70b13ec11a6e66dbf32ef394",
-    "runner_bytes": 11976,
-    "runner_sha256": "c24eaa7151a4c73195a6a3988ec69671235a1a4427d5f2f6b7779c2d57a449f5"
+    "runner_commit": "94cc9c57abaf2a829aa4c5438dcfff60091812c0",
+    "runner_blob": "fce8bee18b055759f3c631f7dfb608d8ae5b344a",
+    "runner_bytes": 11985,
+    "runner_sha256": "81f2cf3bdacb8753922bc957a27c6120728eba46958159c66d6fa374dfb7b210"
   },
   "input_contract": {
     "maximum_width": 16384,
@@ -73,5 +73,6 @@
     "require_zero_temporary_residue": true
   },
   "stop_rule": "Any identity, metadata, storage, transform, ownership, boundedness, replay or cleanup failure closes P251 without approximate metadata, half/uint conversion, normalization, clipping, matrix change, dependency substitution or generic EXR routing.",
+  "preformal_execution_correction": "The first two controller invocations stopped before temporary-root creation, worker launch, writer execution, pixel reads or report creation because the runner incorrectly resolved the already-bound producer wheel relative to the consumer root. The additive correction resolves the unchanged path relative to the supplied producer repository, matching the frozen P249 lineage; wheel bytes/SHA, source, transform, controls and gates are unchanged.",
   "claim_ceiling": "Private Windows/Python opt-in strict ACES2065-1/AP0 OpenEXR to ACEScg/AP1 WorkingImage ingress on frozen synthetic/control files only; no arbitrary OpenEXR/default dependency/dispatch, display or image quality, SMPTE certification, package/schema/capability or product admission."
 }
