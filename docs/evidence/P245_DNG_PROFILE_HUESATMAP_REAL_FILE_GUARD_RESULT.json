@@ -1,0 +1,57 @@
+{
+  "schema": "neuro-film.p245-dng-profile-huesatmap-real-file-guard-evidence.v1",
+  "experiment_id": "P245",
+  "node": "ULT > U1 > U1.3K / P245",
+  "status": "PASS_PRIVATE_REAL_DNG_PROFILE_GUARD_CONFIRMATION",
+  "decision": "retain P244's private predecode guard with two exact real-file confirmations; keep profile application and all broader DNG claims closed",
+  "bindings": {
+    "contract": {"path": "docs/planning/P245_DNG_PROFILE_HUESATMAP_REAL_FILE_GUARD_CONTRACT.md", "bytes": 2619, "sha256": "c7ddbb8e0b6c9394ff556841e165aaca0040f35c3610977c83af47f2333c242b", "freeze_commit": "840b6043"},
+    "config": {"path": "configs/p245_dng_profile_huesatmap_real_file_guard_v1.json", "bytes": 3087, "sha256": "2f5c374be6b804a3dd8bdb4d6b3fd69955a9e2b251dd67c4f50fb8abf95a0048"},
+    "runner": {"path": "scripts/audit_p245_dng_profile_huesatmap_real_file_guard.py", "bytes": 10702, "sha256": "716c6b147fbcc7a9d6475216a2c7bdef0a2d7acb09c8879b135a91884527734c", "commit": "e5e997ef"},
+    "test": {"path": "tests/test_p245_dng_profile_huesatmap_real_file_guard.py", "bytes": 887, "sha256": "c6d4a82a8b35a795bcae5181323692d0f70f16107bb0d9450d6c98e8ea25a37d"},
+    "execution_commit": "6af65a6d5922baa61f30fd58afc7e42494945854",
+    "acquisition_report": {"path": "outputs/eval/p245_dng_profile_huesatmap_real_file_guard_v1/acquisition.json", "bytes": 688, "sha256": "88e9ca82e46dd04f30c3d3d2f969d428631ad1c6e208cefbd3ca360cbbbf0263"},
+    "formal_reports": {"forward_path": "outputs/eval/p245_dng_profile_huesatmap_real_file_guard_v1/formal_forward.json", "reverse_path": "outputs/eval/p245_dng_profile_huesatmap_real_file_guard_v1/formal_reverse.json", "bytes_each": 2341, "sha256": "3aeda4aa99ebc92f7477ff77e677ec0ef1f009c04031c39205c735da569c9278", "stable_identity_sha256": "3aeda4aa99ebc92f7477ff77e677ec0ef1f009c04031c39205c735da569c9278"}
+  },
+  "sources": [
+    {"source_id": "dji_fc220_1052", "logical_path": "data/reference_color_match/p245_dng_profile_guard_v1/raw/1052_dji_fc220.dng", "bytes": 24331468, "sha256": "85a4fc27cca3c1358abd22898d6426dc3448060ca5143e7bd255cb5fff64392d", "rights": "CC0-1.0/Public Domain", "dimensions": [6, 6, 3], "data1_count": 324, "data2_count": 324},
+    {"source_id": "fujifilm_x100s_2644", "logical_path": "data/reference_color_match/p245_dng_profile_guard_v1/raw/2644_fujifilm_x100s.dng", "bytes": 20729906, "sha256": "7adec564bbf74858c70b5a01a2b744000f8057303169fc70d91bde7cb435530f", "rights": "CC0-1.0/Public Domain", "dimensions": [90, 30, 1], "data1_count": 8100, "data2_count": 8100}
+  ],
+  "execution": {
+    "network_body_bytes": 45061374,
+    "network_body_ceiling_bytes": 62914560,
+    "partial_residue_count": 0,
+    "fresh_process_count": 2,
+    "reports_byte_exact": true,
+    "camera_decode_calls": 0,
+    "pixel_decodes": 0,
+    "profile_operator_applications": 0,
+    "image_or_render_artifacts_written": 0,
+    "row_count": 2
+  },
+  "gates": {
+    "exact_source_hashes": true,
+    "expected_dimensions": true,
+    "rejection_names_all_actual_guarded_tags": true,
+    "required_real_tags": true,
+    "required_rows": true,
+    "snapshot_rights_rows": true,
+    "zero_camera_decode_calls": true,
+    "zero_partial_residue": true,
+    "forward_reverse_reports_exact": true,
+    "two_fresh_process_reports_exact": true
+  },
+  "interpretation": {
+    "established": [
+      "P244 rejects two exact real CC0 DNG files containing structurally distinct 3D and 2.5D ProfileHueSatMap tables",
+      "each rejection names every actual guarded tag and occurs before the private LibRaw camera-raster decoder is invoked",
+      "the exact source bytes remain immutable and two fresh row-order processes produce byte-identical reports"
+    ],
+    "not_established": [
+      "ProfileHueSatMap application, profile-table interpolation or ProPhoto-domain integration",
+      "full DNG conformance, arbitrary RAW support, vendor/Adobe rendering parity or image quality",
+      "default-loader integration, package/schema/capability, film-stock evidence or product admission"
+    ]
+  },
+  "claim_ceiling": "Private real-file predecode rejection confirmation on two exact CC0 DNGs with structurally distinct ProfileHueSatMap tables. No profile application, full DNG conformance, arbitrary RAW, image quality, vendor parity, default-loader integration, package, schema, capability, film-stock or product admission."
+}
