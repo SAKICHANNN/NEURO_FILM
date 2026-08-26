@@ -6,6 +6,10 @@
   "input_selection_manifest_sha256": "28b051756183286106114786c046d7c660405dc3cd5ca73f13371cce0f9c4515",
   "film_stock_id": "kodak_ektar_100",
   "expected_target_rows": 24,
+  "source_pixel_root": "data/real_film/sf3_a1d2_commons_three_stock_pixels_v1/kodak_ektar_100",
+  "metadata_snapshot_output": "outputs/eval/sf3_a3e_commons_ektar_companion_discovery_v1/metadata_snapshot.json",
+  "candidate_thumbnail_root": "data/real_film/sf3_a3e_commons_ektar_companion_discovery_v1",
+  "report_output": "outputs/eval/sf3_a3e_commons_ektar_companion_discovery_v1/report.json",
   "api_endpoint": "https://commons.wikimedia.org/w/api.php",
   "user_agent": "K-MCFM-SF3-A3E/1.0 (bounded scientific source discovery)",
   "query": {
