@@ -2489,3 +2489,15 @@ candidate by changing chunk, storage, reduction or thresholds. Combined with
 U7.6E/F, this localizes the remaining peak to the per-stock safe-Lab render
 workspace after context construction. Evidence:
 `docs/evidence/U7_6G_THREE_STOCK_SOURCE_CONTEXT_MEMORY_RESULT.json`.
+
+U7.6H performs the final unchanged-product phase attribution before stopping
+this performance family. Two fresh product processes repeat all three durable
+identities and overall peak within `.057%`, but the exact maximum label
+alternates between source-context and its immediately adjacent orchestration
+boundary; the frozen dominant-phase gate fails. The stable localization is
+still useful: that boundary is about `1.915 GB`, versus at most `1.291 GB` in
+per-stock render and `1.262 GB` in encoding. Do not pick a favorable label or
+open another tuned memory leaf; U7.6G already closed full Lab memory mapping.
+Resume controlled stock acquisition or a materially distinct, independently
+specified product objective. Evidence:
+`docs/evidence/U7_6H_THREE_STOCK_PHASE_RSS_ATTRIBUTION_RESULT.json`.

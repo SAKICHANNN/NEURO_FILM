@@ -17225,3 +17225,19 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Evidence commit `79929c46`, evidence SHA `9e42a119...f411e`. The next distinct
   runtime leaf must target per-stock safe-Lab render workspace, while
   controlled three-stock acquisition remains the scientific mainline.
+
+### 2026-08-26 - U7.6H stops the current three-stock memory family
+
+- **Node:** `ULT > U7 > U7.6H`; unchanged-product phase attribution, with no
+  product source modification.
+- **Evidence:** two fresh 24MP processes reproduce all three PNG, decoded
+  RGB16, ICC, recipe and stock-order identities. Overall peaks are
+  `1,916,157,952` and `1,915,072,512` bytes (ratio `1.00057`). The exact peak
+  label changes between source-context and the adjacent orchestration boundary,
+  failing the frozen dominant-phase gate. Per-stock render stays at or below
+  `1,290,616,832` bytes and encode at or below `1,261,387,776` bytes.
+- **Decision:** `FAIL_CLOSED_UNSTABLE_SINGLE_PHASE_ATTRIBUTION`; no favorable
+  label selection or further context/chunk/storage/reducer tuning. Evidence
+  commit `79161de3`, SHA `7d725d89...e96d5`. The current performance family
+  stops; controlled physical three-stock acquisition remains the identifying
+  mainline.
