@@ -17268,3 +17268,25 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   P248 adjacent tests pass 13/13, with Ruff, compile, JSON and diff checks
   clean. No natural-image quality, arbitrary EXR, cross-platform, public API/
   package/schema/capability, renderer integration or product mapping opens.
+
+### 2026-08-26 - U7.3F closes the offline selection-to-replay gap
+
+- **Node and scope:** `ULT > U7 > U7.3F`, DRPT L2 / Mode C. The physical
+  three-stock acquisition remains the scientific mainline; this independent
+  product leaf adds no colour operator, profile, stock evidence or claim.
+- **Implementation:** a deterministic offline page emits one canonical,
+  machine-path-free request per valid recipe-history row. The request binds
+  recipe SHA, style, output format/depth and existing Look Approximation claim;
+  the CLI revalidates it against current bounded history before calling the
+  unchanged U7.3D strict replay path. Implementation commit `6d87cbc7`, frozen
+  contract `57a9494a`, formal runner `25958353`.
+- **Formal result:** independent forward/reverse 24MP runs reproduce the same
+  request-set receipt (`7c6fb750...d82777f`) and offline index
+  (`805bfb22...d8ed1b`). All six renders reproduce exact Ektar, Portra and
+  Velvia PNG hashes; request/recipe drift fails before replay and both owned
+  scratch trees are removed. Twenty-five adjacent U7.3 tests pass.
+- **Decision:** `PASS_PRIVATE_OFFLINE_EXPORT_REQUEST_BRIDGE`, evidence commit
+  `43444201`. This does not provide direct browser execution, automatic file
+  destination choice, installer/release, calibrated stocks or stock
+  distinguishability. Do not extend it into a local server or custom URI
+  handler without a separately justified product leaf.
