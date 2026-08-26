@@ -20,6 +20,7 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u7_2d_fast_png16_export_v1.json"
 PROFILE = ROOT / "configs/render_profiles/safe_rich_v1.json"
+IMPLEMENTATION_COMMIT = "a7e85a2be12c2b89f188ec7752a5e336a9f1df7b"
 STYLE_PATHS = {
     "velvia_50": ROOT / "outputs/eval/u7_2_three_stock_24mp_smoke/velvia_50.png",
     "portra_400": ROOT / "outputs/eval/u7_2_three_stock_24mp_smoke/portra_400.png",
@@ -231,9 +232,9 @@ def main() -> int:
     }
     stable_core = {
         "experiment_id": contract["experiment_id"],
-        "implementation_commit": subprocess.check_output(
-            ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
-        ).strip(),
+        # Bind the implementation under test, not a concurrently advancing
+        # shared-branch HEAD that is unrelated to this frozen experiment.
+        "implementation_commit": IMPLEMENTATION_COMMIT,
         "source_sha256": contract["source"]["sha256"],
         "candidate_hashes": sorted(set(candidate_hashes)),
         "baseline_hashes": sorted(set(baseline_hashes)),
