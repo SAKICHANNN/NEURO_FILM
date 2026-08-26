@@ -1,0 +1,45 @@
+{
+  "schema": "neuro-film.p239-p238-opencv-target-decode-contract.v1",
+  "experiment_id": "P239",
+  "status": "FROZEN_BEFORE_P238_PIXEL_DECODE",
+  "parent": "P238",
+  "question": "Can installed OpenCV 4.13.0/libpng 1.6.53 independently decode exact P238 RGB16 samples after strict Rec.2100-PQ cICP and PNG-structure validation?",
+  "p238": {
+    "evidence_path": "docs/evidence/P238_ACES2_P3D65_CANONICAL_PQ_PNG_RESULT.json",
+    "evidence_sha256": "fdef4929fddc8c7992e7871d2c669381ea32741050838f1f1ba39d36e6fe0a16",
+    "png_sha256": "0a18aa1e1b9ce359b2c85a1ad3261db4c7dc4bdbc8aa331da07c5f1035e2534c",
+    "sample_sha256": "8cd312b9f0350ea001239954b437f82361d35dd41d5557120d8e9b42db90be5d",
+    "width": 34,
+    "height": 29,
+    "cicp_hex": "09100001"
+  },
+  "runtime": {
+    "opencv_version": "4.13.0",
+    "opencv_source_revision": "4.13.0-1-gb4c5ec4042",
+    "libpng_version": "1.6.53",
+    "cv2_pyd_sha256": "90034927004e4a4ebf29360480d609c8a8d2ca07c93f8b89dff86399e8534b2a",
+    "decode_flag": "IMREAD_UNCHANGED",
+    "opencv_cicp_visibility": false
+  },
+  "execution": {
+    "orders": ["file_first", "memory_first"],
+    "fresh_process_per_order": true,
+    "alternate_decoder_or_flag": false,
+    "network_reads": 0,
+    "durable_media_outputs": 0
+  },
+  "gates": {
+    "identities_exact": true,
+    "strict_predecode_validation": true,
+    "file_decode_uint16_shape_exact": true,
+    "memory_decode_uint16_shape_exact": true,
+    "file_sample_hash_exact": true,
+    "memory_sample_hash_exact": true,
+    "file_memory_arrays_exact": true,
+    "source_immutable": true,
+    "malformed_controls_reject_before_output": true,
+    "temporary_cleanup": true,
+    "fresh_process_reports_exact": true
+  },
+  "claim_ceiling": "Private exact-P238 Windows OpenCV/libpng RGB16 sample decode compatibility behind strict Rec.2100-PQ validation only; OpenCV cICP visibility, display quality, arbitrary PNG, package/schema/capability and product admission remain false."
+}
