@@ -16943,3 +16943,35 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   mapping remain closed. The next research leaf requires genuinely new
   rights-clear paired/capture-time identifying information or a mature
   explicit RAW/HDR engineering gap, not another timestamp/exposure ridge.
+
+### 2026-08-26 - P242 qualifies DNG ProfileHueSatMap source structure without applying it
+
+- **Node and DoR:** `ULT > mature RAW explicit mechanisms > P242`; after P241
+  closed the timestamp/exposure AWB family, inspect only already-consumed P240
+  EXIF payloads for a standards-defined explicit colour operator. Freeze the
+  Adobe DNG 1.7.1 specification/SDK identities, exact rows, table semantics,
+  zero-download/zero-pixel/zero-apply information flow and source-structure
+  claim ceiling before any interpolation implementation.
+- **Source result:** DJI FC220 supplies a 6x6x3 `ProfileHueSatMap` and Fujifilm
+  X100S a 90x30x1 2.5D map. Both have exact entry counts, finite values,
+  default linear encoding and SDR dynamic range, and value scale one at zero
+  saturation. The bound SDK source confirms value-hue-saturation ordering and
+  its zero-saturation rule; its exact licence grant is present. RAW downloads,
+  pixel decodes and operator applications are all zero.
+- **Correction and replay:** contract/core/initial runner commit `60ddd6ba`.
+  The first two exact reports (`327aff68...4dbd05`) failed only because the
+  runner's literal licence substring omitted the official word `from` and all
+  following granted actions. Commit `0278f65f` changed only the normalized
+  exact licence-grant recognizer and added a focused test; dimensions, tables,
+  rows, gates and claim ceiling were unchanged. Two complete committed-head
+  forward/reverse reports then became byte-exact at 3,034 bytes / SHA-256
+  `fc20c7c5...03e16`, with every frozen gate passing.
+- **Evidence, verification and boundary:** evidence commit `5610effc`; 33
+  P240/P241/P242/DNG adjacent tests pass, as do Ruff, compileall, evidence JSON,
+  report replay and diff checks. Evidence:
+  `docs/evidence/P242_DNG_PROFILE_HUESATMAP_SOURCE_AUDIT_RESULT.json`. Status is
+  `PASS_PRIVATE_DNG_PROFILE_HUESATMAP_SOURCE_STRUCTURE`; it opens only a new,
+  separately preregistered interpolation arithmetic D0 backed by an independent
+  SDK oracle. It does not establish interpolation conformance, colour/image
+  quality, arbitrary DNG support, RAW rendering, package/schema/capability,
+  film-stock or product state.
