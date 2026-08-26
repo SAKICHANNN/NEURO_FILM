@@ -1,0 +1,74 @@
+{
+  "schema": "neuro-film.p242-dng-profile-huesatmap-source-audit-contract.v1",
+  "experiment_id": "P242",
+  "status": "FROZEN_BEFORE_FORMAL_SOURCE_AUDIT",
+  "question": "Do exact retained CC0 DNG metadata rows expose structurally valid and dimensionally distinct Adobe DNG ProfileHueSatMap tables that justify a separately frozen private explicit-operator arithmetic leaf?",
+  "authority": {
+    "spec_path": "data/external/adobe_dng_spec_1_7_1_0/DNG_Spec_1_7_1_0.pdf",
+    "spec_bytes": 1176100,
+    "spec_sha256": "abdecfd8e104e8b86cc054d3a40b677bb2ebe87131bfde080a1df3ee16eb2f8d",
+    "sdk_zip_path": "data/external/adobe_dng_sdk_1_7_1_2652/dng_sdk_1_7_1_2652_20260714.zip",
+    "sdk_zip_bytes": 80494799,
+    "sdk_zip_sha256": "73499b47f4683e12120a234bd0946f02e52ab2ff9834bcbd0e9f8ab4f923360e",
+    "sdk_version": "1.7.1 build 2652",
+    "sdk_release_date": "2026-07-14",
+    "sdk_source_member": "dng_sdk_1_7_1/dng_sdk/source/dng_hue_sat_map.cpp",
+    "sdk_header_member": "dng_sdk_1_7_1/dng_sdk/source/dng_hue_sat_map.h",
+    "sdk_license_member": "dng_sdk_1_7_1/LICENSE.txt"
+  },
+  "source": {
+    "parent_experiment": "P240",
+    "rights": "CC0/Public Domain per exact raw.pixls.us source rows",
+    "rows": [
+      {
+        "id": 1052,
+        "make": "DJI",
+        "model": "FC220",
+        "raw_sha256": "85a4fc27cca3c1358abd22898d6426dc3448060ca5143e7bd255cb5fff64392d",
+        "exif_path": "data/reference_color_match/p240_rawpixls_capture_metadata_v1/exif/1052.txt",
+        "exif_bytes": 15658,
+        "exif_sha256": "e71b44097dfe38e8cbc1753932269014b7d21acc63698413f415780286d717fd"
+      },
+      {
+        "id": 2644,
+        "make": "Fujifilm",
+        "model": "X100S",
+        "raw_sha256": "7adec564bbf74858c70b5a01a2b744000f8057303169fc70d91bde7cb435530f",
+        "exif_path": "data/reference_color_match/p240_rawpixls_capture_metadata_v1/exif/2644.txt",
+        "exif_bytes": 376899,
+        "exif_sha256": "0dea0d7414351d3099b187a8b519f88253eed32c1780fbab4070a58c558e084d"
+      }
+    ],
+    "raw_download_allowed": false,
+    "pixel_decode_allowed": false,
+    "operator_apply_allowed": false
+  },
+  "rules": {
+    "required_tags": [
+      "ProfileHueSatMapDims",
+      "ProfileHueSatMapData1",
+      "ProfileHueSatMapData2"
+    ],
+    "dimensions": "HueDivisions >= 1, SaturationDivisions >= 2, ValueDivisions >= 1.",
+    "data_count": "Each Data tag contains HueDivisions * SaturationDivisions * ValueDivisions * 3 finite values in value-hue-saturation order.",
+    "entry_semantics": "Each triplet is hue shift degrees, saturation scale, value scale.",
+    "zero_saturation": "Every saturation-index-zero entry has value scale exactly 1.0.",
+    "encoding": "Absent ProfileHueSatMapEncoding means linear encoding value 0.",
+    "dynamic_range": "Absent ProfileDynamicRange means Standard Dynamic Range."
+  },
+  "gates": {
+    "minimum_valid_rows": 2,
+    "require_2_5d_and_3d_tables": true,
+    "require_data1_and_data2": true,
+    "require_exact_counts": true,
+    "require_all_finite": true,
+    "require_zero_saturation_value_scale_one": true,
+    "require_sdk_source_and_license_markers": true,
+    "require_exact_replay": true,
+    "require_zero_raw_downloads": true,
+    "require_zero_pixel_decodes": true,
+    "require_zero_operator_applies": true
+  },
+  "stop_rule": "A missing/conflicting tag, identity mismatch, invalid dimension/count, nonfinite value, zero-saturation rule failure or SDK authority mismatch closes this exact source structure without replacement or operator implementation. A pass opens only a separately preregistered private interpolation arithmetic D0 with an independent oracle.",
+  "claim_ceiling": "Private consumed-metadata DNG ProfileHueSatMap source-structure eligibility only. No interpolation conformance, colour/image quality, arbitrary DNG, RAW rendering, package, schema, capability, film-stock or product claim."
+}
