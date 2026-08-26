@@ -16975,3 +16975,28 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   SDK oracle. It does not establish interpolation conformance, colour/image
   quality, arbitrary DNG support, RAW rendering, package/schema/capability,
   film-stock or product state.
+
+### 2026-08-26 - SF3.A3E closes the bounded Commons Ektar companion route
+
+- **Node and DoR:** `ULT > SF3 > SF3.A3E`; use only the exact 24 already
+  rights-cleared Commons Ektar rows and their parsed Flickr identities. Freeze
+  the +/-15-minute, digital-camera EXIF, licence, title-overlap and registration
+  gates before acquisition; a pass can open only a separately preregistered
+  source preflight.
+- **Execution and correction:** 18 identities expose 1,111 bounded Commons
+  pages in 28 API requests. The first pre-evidence acquisition correctly
+  revealed that `extmetadata` omits EXIF camera fields; commit `1e99d937`
+  added official `imageinfo.metadata` retrieval without changing any science
+  gate. The final forward/reverse offline reports are byte exact at SHA-256
+  `bb6fca62...a5e`, stable ID `55b5ba7b...6e44`.
+- **Result:** zero metadata candidates survive. The terminal funnel is 634
+  capture-time misses, 176 missing capture times, 126 missing camera models,
+  100 licence exclusions, 51 film/stock-text exclusions, 16 source pages, five
+  scanner models, two undersized files and one title-overlap miss. Thumbnail,
+  pixel-fit, render and target-score counts are all zero.
+- **Decision and boundary:** `FAIL_CLOSED`; do not widen time/title gates,
+  infer cameras from prose or add unlicensed pages. This does not show absence
+  of Ektar signal outside Commons. The next admissible stock leaf remains the
+  frozen project-owned A0L/A0N capture path or a materially new rights-cleared
+  source with explicit same-scene identity. Evidence commit `45d4daaf`;
+  21 adjacent SF3 tests, Ruff, JSON and diff checks pass.

@@ -189,6 +189,19 @@ independent observation is required, with first controlled Ektar evidence
 still the highest-information missing stock lane. Evidence:
 `docs/evidence/RF3_D10_VELVIA50_CHART_PRODUCT_BASELINE_RESULT.json`.
 
+SF3.A3E tests the highest-information public Ektar source gap directly rather
+than adding another proxy model. The exact 24 rights-cleared Commons Ektar
+rows yield 18 Flickr identities and 1,111 bounded same-author Commons pages.
+After the official imageinfo EXIF channel was added before final evidence,
+zero candidates survive the unchanged licence, digital-camera, +/-15-minute
+capture-time and title-overlap gates; no thumbnail, fit, render or target score
+is consumed. Two offline audit orders are byte exact (`bb6fca62...a5e`, stable
+`55b5ba7b...6e44`). Close this exact query without time/title/metadata rescue.
+Ektar remains the first controlled-pair priority through the frozen A0L/A0N
+capture packet or a materially new rights-cleared source with explicit
+same-scene identity. Evidence:
+`docs/evidence/SF3_A3E_COMMONS_EKTAR_COMPANION_DISCOVERY_RESULT.json`.
+
 SF3.A3 now compiles the requested executable source/evidence matrix over eight
 hash-bound results rather than relying on narrative eligibility. Two formal
 reports are byte exact (`676aec5f...74394c`, stable `4954e9b1...98f71b`).
