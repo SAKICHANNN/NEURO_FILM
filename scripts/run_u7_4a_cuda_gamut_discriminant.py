@@ -76,7 +76,7 @@ def _style_pair(
         tone_rolloff=float(params["tone_rolloff"]),
         shadow_floor_l=float(params["shadow_floor_l"]),
         highlight_ceiling_l=float(params["highlight_ceiling_l"]),
-        preserve_luma_detail_strength=float(params["preserve_luma_detail_strength"]),
+        preserve_luma_detail_strength=float(params["preserve_luma_detail"]),
         chroma_curve_strength=float(params["chroma_curve_strength"]),
         neutral_protect=float(guard["neutral_protect"]),
         skin_protect=float(guard["skin_protect"]),
