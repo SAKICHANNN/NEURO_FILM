@@ -1,0 +1,36 @@
+{
+  "schema": "neuro-film.p250-balit-paired-retouch-source-eligibility-contract.v1",
+  "experiment_id": "P250",
+  "status": "FROZEN_BEFORE_FORMAL_NETWORK_READ",
+  "bindings": {
+    "contract_path": "docs/planning/P250_BALIT_PAIRED_RETOUCH_SOURCE_ELIGIBILITY_CONTRACT.md",
+    "contract_commit": "3fa7270bc1a2c18139df593c61468e12cfc0ce03",
+    "contract_sha256": "83ed17c3081deb6197e40de2bceba70ed2e9d65bc3851c21729f2edd96bb1561"
+  },
+  "sources": {
+    "doi_url": "https://doi.org/10.21227/cdqg-q549",
+    "record_url": "https://ieee-dataport.org/documents/balit-dataset-backlit-low-light-image-enhancement",
+    "maximum_response_bytes_each": 3145728,
+    "maximum_total_network_bytes": 6291456
+  },
+  "expected_discovery_facts": {
+    "dataset_name": "BALit: Dataset for Backlit Low-Light Image Enhancement",
+    "doi": "10.21227/cdqg-q549",
+    "raw_count": 1000,
+    "reference_count": 1000,
+    "raw_format": "CR2",
+    "raw_stated_size_gb": 21.5,
+    "reference_stated_size_gb": 26.84
+  },
+  "gates": {
+    "require_official_identity": true,
+    "require_explicit_paired_observation": true,
+    "require_anonymous_public_payload": true,
+    "require_explicit_commercial_rights": true,
+    "require_public_exact_inventory": true,
+    "require_group_isolation_facts": true,
+    "require_two_reports_exact": true
+  },
+  "stop_rule": "Failure of any eligibility gate closes this source before dataset-file, thumbnail, image, archive, account, cookie, paper, model or mirror access. Do not infer rights or grouping from silence, research intent, citation text or a login boundary.",
+  "claim_ceiling": "Metadata-only BALit source eligibility audit. A pass opens only a separately preregistered member-integrity and paired-observation preflight; no pixels, quality, arbitrary-reference identifiability, A1/A4/A5, shared operator, package/schema/capability or product admission."
+}
