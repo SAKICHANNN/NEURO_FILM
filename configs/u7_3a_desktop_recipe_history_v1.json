@@ -1,0 +1,64 @@
+{
+  "schema": "kmcfm.u7-3a-desktop-recipe-history-contract.v1",
+  "node": "U7.3A",
+  "status": "FROZEN_BEFORE_IMPLEMENTATION",
+  "purpose": "Provide one deterministic read-only catalog of existing strict render recipes for a future desktop browser, preview, history and export surface.",
+  "input": {
+    "root": "caller-selected local directory",
+    "pattern": "**/*.recipe.json",
+    "maximum_recipe_files": 10000,
+    "maximum_recipe_bytes": 2097152,
+    "follow_directory_symlinks": false,
+    "allow_recipe_path_escape": false
+  },
+  "information_flow": {
+    "read_recipe_json": true,
+    "read_input_files": false,
+    "read_output_files": false,
+    "decode_pixels": false,
+    "verify_input_or_output_hashes": false,
+    "write_files": false,
+    "network_reads": false
+  },
+  "behavior": {
+    "strict_recipe_validator": "src.inference.render_contract.validate_render_recipe",
+    "valid_and_invalid_rows_are_reported": true,
+    "one_invalid_recipe_does_not_hide_other_valid_rows": true,
+    "rows_sorted_by_relative_recipe_path": true,
+    "relative_recipe_paths_use_posix_separators": true,
+    "empty_root_returns_empty_catalog": true,
+    "file_limit_exceeded_fails_closed": true,
+    "oversized_recipe_isolated_as_invalid_row": true,
+    "duplicate_recipe_bytes_remain_separate_history_rows": true
+  },
+  "valid_row_fields": [
+    "recipe_path",
+    "recipe_sha256",
+    "profile_id",
+    "profile_version",
+    "input_path",
+    "input_sha256",
+    "input_color_state",
+    "style",
+    "seed",
+    "enabled_effects",
+    "output_path",
+    "output_sha256",
+    "output_format",
+    "output_bit_depth",
+    "output_label",
+    "evidence_grade",
+    "software_commit"
+  ],
+  "acceptance": {
+    "valid_recipe_summary_exact": true,
+    "invalid_json_isolated": true,
+    "invalid_recipe_isolated": true,
+    "empty_state_exact": true,
+    "limit_failure_exact": true,
+    "input_and_output_files_may_be_absent": true,
+    "forward_reverse_enumeration_exact": true,
+    "focused_tests_pass": true
+  },
+  "claim_ceiling": "Private local read-only recipe-history core only; no GUI completeness, preview rendering, export authorization, filesystem watcher, packaging, telemetry, calibrated stock or product-release claim."
+}
