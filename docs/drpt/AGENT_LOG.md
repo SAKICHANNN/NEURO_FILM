@@ -15985,6 +15985,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   P221-v1 stays failed either way; no browser, package/schema/capability or
   product mapping can open.
 
+### 2026-08-26 - P221A passes exact formal-commit reproducibility
+
+- **Execution/evidence:** forward and reverse consumer runs each created two
+  fresh no-hardlink clones of `8c66ce51`; the two outer reports are byte-exact
+  at `da958480...4074`. All four inner producer reports reproduce frozen SHA
+  `3403ed4f...9984` and stable identity `81a72566...9313` exactly.
+- **Mechanism:** all six transitive blobs and pinned compiler/linker/Node hashes
+  match. The 6,168-byte module `a1ee6cd0...baf29`, RGB oracle
+  `ab3448a4...89837`, PASS status, cleanup and zero-network gates all pass.
+- **Decision/propagation:** retain only private R1CK Node WebAssembly arithmetic
+  reproducibility. P221-v1 remains failed under its own later-HEAD contract;
+  P221A proves that the producer-declared formal report itself is reproducible.
+  This opens no browser/WebView, media, RAW/HDR quality, package/schema/
+  capability, shared-reference science or product mapping.
+
 ### 2026-08-26 - U7.2A accelerates the exact three-stock CPU path
 
 - **Implementation:** `36cf7afe` adds opt-in disjoint-row parallel execution
@@ -15996,3 +16011,7 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   compile and diff checks pass.
 - **Boundary:** local Windows/Python CPU execution only. No stock evidence,
   calibration, preference, severe-artifact, recipe or output-pixel claim changes.
+- **Product-scale confirmation:** the product CLI reproduced all three frozen
+  24.39MP RGB16 PNG files byte-exact with eight gamut workers. Aggregate wall
+  time fell from `263.302s` to `99.635s` (2.643x); the three owned temporary
+  PNGs were then removed. No further worker-count tuning opens from this leaf.
