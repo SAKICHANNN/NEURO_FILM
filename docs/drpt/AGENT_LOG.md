@@ -15968,3 +15968,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Propagation:** portable arithmetic remains historically supported; no
   browser/WebView, media, RAW/HDR quality, package/schema/capability, shared
   reference or product mapping opens.
+
+### 2026-08-26 - U7.2A accelerates the exact three-stock CPU path
+
+- **Implementation:** `36cf7afe` adds opt-in disjoint-row parallel execution
+  for the unchanged source-relative safe-Lab gamut compressor and exposes it as
+  `--gamut-workers`; default and tiled execution remain unchanged.
+- **Evidence:** two fresh forward/reverse 6MP runs reproduce one stable identity
+  and exact float32/sRGB16 hashes for Velvia 50, Portra 400 and Ektar 100. The
+  six-run median wall ratio is `.51544` (1.926x); 70 focused tests plus Ruff,
+  compile and diff checks pass.
+- **Boundary:** local Windows/Python CPU execution only. No stock evidence,
+  calibration, preference, severe-artifact, recipe or output-pixel claim changes.
