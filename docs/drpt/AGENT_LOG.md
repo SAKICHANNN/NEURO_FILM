@@ -16883,3 +16883,32 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   product admission remain false. This closes the planned P226 float -> P238
   canonical media -> P239 installed decode engineering chain without changing
   the project default renderer.
+
+### 2026-08-26 - P240 qualifies a fresh capture-metadata DNG source cohort
+
+- **Node and correction:** `ULT > capture-time RAW > P240`; after rechecking
+  the bounded-cycle authority, no after-only or same-information capacity
+  candidate was opened. P240 instead asks the narrower source question needed
+  before any new RAW/capture-metadata experiment.
+- **Frozen source:** exact raw.pixls.us snapshot 1,246,029 bytes / SHA-256
+  `8dc5f5c...b3aa3`; twenty CC0 DNG rows have raw hashes absent from tracked
+  configs/evidence/planning, one row per make, with scanner/converter/cinema
+  rows excluded before selected EXIF access. Replacement is forbidden.
+- **Implementation and evidence:** contract `5604f547`; parser/runner/tests
+  `315d53a9`; evidence `ba20a260`. Twenty official EXIF payloads total
+  688,373 bytes. Seventeen rows across seventeen makes expose capture time,
+  exposure, ISO, aperture, unique model and `AsShotNeutral`. Leica M8 lacks
+  aperture, XIAOYI YIAC 3 lacks unique model and Raspberry Pi imx477 lacks
+  capture time; these failures remain in the report. Two 11,432-byte
+  forward/reverse reports are exact at `7f2a7431...027ae`.
+- **Verification:** 13 P240/DNG adjacent tests pass; Ruff, compileall, both
+  JSON validations and diff check pass. RAW downloads, pixel decodes, training
+  and target scores remain zero.
+- **Boundary and next handoff:** status is
+  `PASS_PRIVATE_CAPTURE_METADATA_SOURCE_ELIGIBILITY`. It opens only a separate
+  preregistration that must freeze exact member roles, source-only features,
+  camera-static/global/gray-world controls, target-unread ordering and
+  attribution/tail gates before any RAW acquisition. Candidate 3, AWB quality,
+  arbitrary DNG, film-stock, package/capability and product claims remain
+  false. Evidence:
+  `docs/evidence/P240_RAWPIXLS_CAPTURE_METADATA_SOURCE_AUDIT_RESULT.json`.
