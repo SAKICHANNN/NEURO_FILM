@@ -1,0 +1,72 @@
+{
+  "schema": "neuro-film.p223-r1cl-browser-wasm-reproducibility-evidence.v1",
+  "experiment_id": "P223",
+  "status": "PASS_PRIVATE_R1CL_CONSUMER_REPRODUCIBILITY",
+  "date": "2026-08-26",
+  "consumer": {
+    "contract_commit": "c7e6c3f4",
+    "implementation_commit": "530fa64e",
+    "forward_report_sha256": "9b6b6756a190795dcdd35ef459546ec5d305b22a0698aae15f99a9064e54bc7e",
+    "reverse_report_sha256": "9b6b6756a190795dcdd35ef459546ec5d305b22a0698aae15f99a9064e54bc7e",
+    "report_bytes": 4954,
+    "reports_byte_exact": true,
+    "stable_identity": "sha256:ed2d346e3ce50e5718b4d4eb178a037e0df9c6d820b2399fd6df0b1d25cab40d"
+  },
+  "producer_binding": {
+    "formal_commit": "d25776d8498a30ab88863e5897caddc7fdaf352a",
+    "evidence_commit": "5bf180950965e5c8973b1e2c31d1470209a85944",
+    "evidence_blob": "bf9aa36e9a5f2f5c04621fcbc4ef0a5cccd25fd5",
+    "evidence_sha256": "9d2a1ef4f35f61d829d63240736538d712f51695af099990c1856a8ff3514865",
+    "formal_report_sha256": "0361d0c0012b75cdc3a2c8fb3cdaacdac3cb2b74ad68ed895b882dc3549df8df",
+    "stable_identity": "4bae5d7cbb91866ff4cf28a8f75844a26b0587aab8618a84323c814a43f74e03"
+  },
+  "mechanism_facts": {
+    "fresh_exact_commit_clones": 4,
+    "inner_producer_reports": 4,
+    "all_inner_reports_sha256": "0361d0c0012b75cdc3a2c8fb3cdaacdac3cb2b74ad68ed895b882dc3549df8df",
+    "all_inner_stable_identities": "4bae5d7cbb91866ff4cf28a8f75844a26b0587aab8618a84323c814a43f74e03",
+    "browser_ids": [
+      "microsoft-edge-151",
+      "google-chrome-149"
+    ],
+    "browser_processes_per_inner_report": 4,
+    "browser_process_observations": 16,
+    "wasm_module_bytes": 6168,
+    "wasm_module_sha256": "a1ee6cd057ffc287dc2b7c648571716b12c0c538ca2356b89b94870df18baf29",
+    "output_rgb_sha256": "ab3448a460165ebc2cb349c4fb4038ac0d3921af6c0a437d8714b7839bf89837",
+    "scientific_payload_sha256": "119805e017bbfca0ec6a26796be4b5d8394fb6a175090998f32347481ad21750",
+    "all_transitive_git_blobs_exact": true,
+    "compiler_linker_and_browser_hashes_exact": true,
+    "formal_report_identity_exact": true,
+    "stable_identity_exact": true,
+    "wasm_module_identity_exact": true,
+    "runtime_output_identity_exact": true,
+    "scientific_payload_identity_exact": true,
+    "all_inner_producer_gates_pass": true,
+    "temporary_roots_removed": true,
+    "media_reads": 0,
+    "network_downloads": 0
+  },
+  "execution_amendment": {
+    "initial_attempt_status": "STOPPED_BEFORE_BROWSER_EXECUTION_AND_BEFORE_REPORT",
+    "cause": "The fresh clone inherited core.autocrlf=true and materialized the producer-bound R1CK evidence blob with CRLF bytes instead of the exact committed LF bytes.",
+    "correction": "Set clone-local core.autocrlf=false after clone --no-checkout and before the first checkout, then restart both formal orders from zero.",
+    "scientific_protocol_changed": false,
+    "source_or_browser_changed": false,
+    "failed_attempt_report_count": 0,
+    "failed_attempt_browser_process_count": 0,
+    "owned_temporary_root_removed": true
+  },
+  "decision": {
+    "result": "PASS_PRIVATE_R1CL_CONSUMER_REPRODUCIBILITY",
+    "opens": "Exact independent consumer reproduction of the producer-declared R1CL formal browser report under the frozen installed Edge 151 and Chrome 149 binaries.",
+    "does_not_open": [
+      "interactive browser UI or WebView integration",
+      "media decode or file I/O",
+      "RAW or HDR quality",
+      "public package, schema, receipt or capability",
+      "consumer product mapping"
+    ]
+  },
+  "claim_ceiling": "Independent consumer reproducibility of private Windows headless Edge 151 and Chrome 149 wasm32 PolynomialRGBOperatorV1 arithmetic only; no interactive UI, WebView, media, RAW/HDR quality, public package/schema/capability or product admission."
+}

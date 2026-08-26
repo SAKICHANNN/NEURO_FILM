@@ -16052,3 +16052,27 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Cleanup/boundary:** each product output was hashed and removed before the
   next render; scratch is empty. This is local Python resource evidence only,
   not film-stock identification, calibration, preference or promotion.
+
+### 2026-08-26 - P223 reproduces the complete R1CL Edge/Chrome report
+
+- **Scope/freeze:** independently bind producer formal commit `d25776d8`, later
+  evidence commit/blob `5bf18095`/`bf9aa36e`, eight transitive Git blobs, the
+  pinned NDK compiler/linker and exact installed Edge 151 plus Chrome 149
+  binaries. Each outer order uses two fresh no-hardlink exact-commit clones.
+- **Execution amendment:** the first attempt stopped before browser execution
+  and before report creation because inherited `core.autocrlf=true`
+  materialized a producer-bound LF evidence blob as CRLF. Clone-local
+  `core.autocrlf=false` is now set before the first checkout; no source,
+  browser, flag, identity, gate or scientific role changed, and both formal
+  orders restarted from zero.
+- **Evidence:** forward and reverse 4,954-byte consumer reports are byte-exact
+  at `9b6b6756...bc7e`. All four inner producer reports reproduce frozen SHA
+  `0361d0c0...9df8`, stable identity `4bae5d7c...e03`, 6,168-byte module
+  `a1ee6cd0...af29`, RGB oracle `ab3448a4...9837` and scientific payload
+  `119805e0...750` exactly. All producer gates pass; 16 browser-process
+  observations completed; owned temporary roots were removed and media/network
+  reads were zero.
+- **Decision/propagation:** retain exact private Windows headless Edge/Chrome
+  WebAssembly arithmetic reproducibility only. No interactive UI/WebView,
+  media, RAW/HDR quality, public package/schema/capability or product mapping
+  opens. Project structure and the existing portable operator remain unchanged.

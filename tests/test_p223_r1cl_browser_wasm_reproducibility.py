@@ -92,3 +92,20 @@ def test_runner_uses_fresh_no_hardlink_clones() -> None:
     text = runner.read_text(encoding="utf-8")
     assert '"--local",\n                    "--no-hardlinks"' in text
     assert '["git", "config", "core.autocrlf", "false"]' in text
+
+
+def test_tracked_evidence_records_exact_pass_and_execution_amendment() -> None:
+    root = Path(__file__).resolve().parents[1]
+    evidence = json.loads(
+        (
+            root / "docs/evidence/P223_R1CL_BROWSER_WASM_REPRODUCIBILITY_RESULT.json"
+        ).read_text(encoding="utf-8")
+    )
+    assert evidence["status"] == "PASS_PRIVATE_R1CL_CONSUMER_REPRODUCIBILITY"
+    assert evidence["consumer"]["reports_byte_exact"] is True
+    assert evidence["mechanism_facts"]["browser_process_observations"] == 16
+    assert evidence["mechanism_facts"]["media_reads"] == 0
+    assert evidence["mechanism_facts"]["network_downloads"] == 0
+    assert evidence["execution_amendment"]["failed_attempt_report_count"] == 0
+    assert evidence["execution_amendment"]["failed_attempt_browser_process_count"] == 0
+    assert evidence["decision"]["does_not_open"]
