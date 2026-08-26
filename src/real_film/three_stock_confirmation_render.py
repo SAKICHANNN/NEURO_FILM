@@ -383,9 +383,14 @@ def evaluate_and_materialize(
             raise ThreeStockConfirmationRenderError(
                 "confirmation scene identity drift"
             )
-    elif k1_result.get("metrics", {}).get("confirmation_frames") != len(sources):
+    elif (
+        not isinstance(
+            k1_result.get("metrics", {}).get("confirmation_frames"), int
+        )
+        or k1_result["metrics"]["confirmation_frames"] < len(sources)
+    ):
         raise ThreeStockConfirmationRenderError(
-            "single-stock confirmation scene count drift"
+            "single-stock confirmation frames do not cover rendered scenes"
         )
     logical_output_root = (root / "outputs").resolve()
     output_dir = output_dir.resolve()

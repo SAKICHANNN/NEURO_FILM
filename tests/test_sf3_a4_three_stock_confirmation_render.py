@@ -234,6 +234,27 @@ def test_materializes_one_stock_without_cross_stock_claim(
     assert report["decision"].startswith("OPEN_SINGLE_STOCK_K1_SEVERE")
 
 
+def test_single_stock_parent_must_cover_every_rendered_scene(tmp_path: Path) -> None:
+    stock = "kodak_ektar_100"
+    fixture = _single_stock_fixture(tmp_path, stock)
+    parent = json.loads(fixture["report"].read_text())
+    parent["k1_result"]["metrics"]["confirmation_frames"] = 1
+    _write_json(fixture["report"], parent)
+    with pytest.raises(
+        ThreeStockConfirmationRenderError,
+        match="frames do not cover rendered scenes",
+    ):
+        evaluate_single_stock_and_materialize(
+            CONTRACT,
+            root=fixture["root"],
+            a2_report_path=fixture["report"],
+            ledger_path=fixture["ledger"],
+            manifest_path=fixture["manifest"],
+            output_dir=tmp_path / "outputs" / "incomplete-single",
+            stock=stock,
+        )
+
+
 def test_nonpassing_parent_creates_no_output(tmp_path: Path) -> None:
     fixture = _fixture(tmp_path)
     report = json.loads(fixture["report"].read_text())
