@@ -1,0 +1,39 @@
+{
+  "schema_version": "neuro-film.u7-6e-three-stock-streaming-png-evidence.v1",
+  "node_id": "U7.6E",
+  "bindings": {
+    "config_commit": "3a8eadb8b726980c59141d19ed793ec3bd986105",
+    "config_sha256": "a53428403eba5f043744398eb09a40677b133c681e0b479af2183bc3a0504d1b",
+    "candidate_commit": "865f1c84984bf728a2d8cbafc456889053d86fd8",
+    "candidate_source_sha256": "b226e553d5a9634a4c7d29bdb28653bb4265fc1400636bb8b0f41a5de539e3dc",
+    "audit_commit": "8daa1c9630ad36a73f2556fb367730537acb3794",
+    "audit_sha256": "fa5a0df560da763a839d08b337689c15c91af79c7a23201a103652e429202a99",
+    "formal_execution_head": "8daa1c9630ad36a73f2556fb367730537acb3794",
+    "formal_report_sha256": "5c7ef77e69c4816e5965d846eaa90405f28c1f8d6bd9e769348f9b4db87f4ffc"
+  },
+  "scientific_identity": "642bcbf5405faae59b083914225e88bbe2733312d069ebba949e708af7b32e1b",
+  "observations": {
+    "baseline_encoded_outputs_repeat_exact": true,
+    "candidate_encoded_outputs_repeat_exact": true,
+    "three_decoded_sample_arrays_cross_encoder_exact": true,
+    "three_icc_fingerprints_cross_encoder_exact": true,
+    "three_normalized_recipe_semantics_cross_encoder_exact": true,
+    "ordered_stock_ids_exact": true,
+    "candidate_encoder_identity_exact": true,
+    "baseline_mean_wall_seconds": 138.563074500002,
+    "candidate_mean_wall_seconds": 129.41808055,
+    "wall_ratio": 0.934001219422989,
+    "baseline_mean_peak_process_tree_rss_bytes": 1919942656,
+    "candidate_mean_peak_process_tree_rss_bytes": 1920141312,
+    "peak_rss_reduction_bytes": -198656,
+    "peak_rss_ratio": 1.00010346975696,
+    "candidate_residue_count": 0
+  },
+  "failed_gates": [
+    "minimum_peak_process_tree_rss_reduction_bytes",
+    "candidate_peak_process_tree_rss_ratio"
+  ],
+  "decision": "FAIL_CLOSED_REVERT_STREAMING_PNG",
+  "interpretation": "The bounded-row encoder preserves decoded RGB16 samples, ICC identity, normalized recipe semantics, stock order and repeatability while improving mean wall time. It does not reduce the measured 24MP three-stock process-tree peak, which remains controlled by the render workspace. The product encoder is reverted without lowering the frozen memory gates.",
+  "claim_ceiling": "Negative local Windows/Python 24MP three-stock encoding-memory evidence only; no product performance improvement, stock separation, calibration or controlled-film evidence."
+}

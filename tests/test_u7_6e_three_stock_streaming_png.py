@@ -7,6 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/u7_6e_three_stock_streaming_png_v1.json"
 SCRIPT = ROOT / "scripts/audit_u7_6e_three_stock_streaming_png.py"
+EVIDENCE = ROOT / "docs/evidence/U7_6E_THREE_STOCK_STREAMING_PNG_RESULT.json"
 
 
 def _module():
@@ -71,3 +72,17 @@ def test_evaluator_requires_cross_encoder_samples_and_memory(tmp_path: Path) -> 
 
     rows[1]["rows"][0]["decoded_rgb16_sha256"] = "drift"
     assert module.evaluate_rows(rows, config["gates"], controls)["decision"] == "FAIL_CLOSED"
+
+
+def test_formal_evidence_reverts_nonreducing_streaming_encoder() -> None:
+    evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+    assert evidence["decision"] == "FAIL_CLOSED_REVERT_STREAMING_PNG"
+    assert evidence["scientific_identity"] == (
+        "642bcbf5405faae59b083914225e88bbe2733312d069ebba949e708af7b32e1b"
+    )
+    observations = evidence["observations"]
+    assert observations["three_decoded_sample_arrays_cross_encoder_exact"] is True
+    assert observations["three_icc_fingerprints_cross_encoder_exact"] is True
+    assert observations["peak_rss_reduction_bytes"] < 134217728
+    assert observations["peak_rss_ratio"] > 0.92
+    assert observations["candidate_residue_count"] == 0

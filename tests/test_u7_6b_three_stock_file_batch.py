@@ -6,7 +6,6 @@ import sys
 import weakref
 from pathlib import Path
 
-import cv2
 import numpy as np
 import pytest
 from PIL import Image
@@ -37,12 +36,11 @@ def _source(path: Path) -> None:
 def _normalized_recipe(path: Path) -> dict:
     payload = json.loads(path.read_text(encoding="utf-8"))
     payload["output"]["path"] = "OUTPUT"
-    payload["output"]["sha256"] = "OUTPUT_SHA"
     payload["software"]["commit"] = "SOFTWARE_COMMIT"
     return payload
 
 
-def test_one_decode_batch_matches_three_existing_cli_export_samples(tmp_path: Path) -> None:
+def test_one_decode_batch_matches_three_existing_cli_exports(tmp_path: Path) -> None:
     source = tmp_path / "source.png"
     _source(source)
     candidate = tmp_path / "candidate"
@@ -61,8 +59,6 @@ def test_one_decode_batch_matches_three_existing_cli_export_samples(tmp_path: Pa
     assert [row["film_stock_id"] for row in manifest["rows"]] == [
         row["film_stock_id"] for row in list_three_stock_looks()
     ]
-    assert manifest["png_encoder_id"] == "kmcfm.streaming-srgb-rgb16-png.v1"
-    assert manifest["png_row_count"] == 128
     baseline = tmp_path / "baseline"
     baseline.mkdir()
     for row in list_three_stock_looks():
@@ -95,13 +91,7 @@ def test_one_decode_batch_matches_three_existing_cli_export_samples(tmp_path: Pa
             capture_output=True,
             text=True,
         )
-        candidate_samples = cv2.imread(
-            str(candidate / output.name), cv2.IMREAD_UNCHANGED
-        )
-        baseline_samples = cv2.imread(str(output), cv2.IMREAD_UNCHANGED)
-        assert candidate_samples is not None and baseline_samples is not None
-        assert candidate_samples.dtype == baseline_samples.dtype == np.uint16
-        assert np.array_equal(candidate_samples, baseline_samples)
+        assert (candidate / output.name).read_bytes() == output.read_bytes()
         assert _normalized_recipe(candidate / f"{style}.recipe.json") == _normalized_recipe(
             baseline / f"{style}.recipe.json"
         )
