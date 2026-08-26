@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 from pathlib import Path
 
 import numpy as np
@@ -78,6 +79,18 @@ def test_callable_wraps_parent_decode_failure(monkeypatch) -> None:
             "bound.dng",
             expected_source_bytes=1,
             expected_source_sha256="a" * 64,
+        )
+
+
+def test_callable_rejects_existing_non_dng_before_decode(tmp_path: Path) -> None:
+    payload = b"P229 non-DNG predecode control\n"
+    source = tmp_path / "not-a-dng.bin"
+    source.write_bytes(payload)
+    with pytest.raises(module.DngForwardAces2PqError, match="existing \\.dng"):
+        module.render_dng_forward_to_aces2_p3_pq(
+            source,
+            expected_source_bytes=len(payload),
+            expected_source_sha256=hashlib.sha256(payload).hexdigest(),
         )
 
 

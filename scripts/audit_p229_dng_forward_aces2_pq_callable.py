@@ -8,6 +8,7 @@ import hashlib
 import json
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 from typing import Any
 
@@ -126,6 +127,21 @@ def _negative_controls(row: dict[str, Any]) -> dict[str, bool]:
             results[name] = True
         else:
             results[name] = False
+    invalid_bytes = b"P229 non-DNG predecode control\n"
+    with tempfile.TemporaryDirectory(prefix="p229-invalid-") as temporary:
+        invalid_path = Path(temporary) / "not-a-dng.bin"
+        invalid_path.write_bytes(invalid_bytes)
+        try:
+            render_dng_forward_to_aces2_p3_pq(
+                invalid_path,
+                expected_source_bytes=len(invalid_bytes),
+                expected_source_sha256=hashlib.sha256(invalid_bytes).hexdigest(),
+            )
+        except DngForwardAces2PqError:
+            results["non_dng"] = True
+        else:
+            results["non_dng"] = False
+    results["temporary_residue_zero"] = not Path(temporary).exists()
     return results
 
 
