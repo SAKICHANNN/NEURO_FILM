@@ -22,8 +22,17 @@ def main() -> int:
         type=Path,
         default=ROOT / "configs/sf3_a0p_three_stock_scan_storage_preflight_v1.json",
     )
+    parser.add_argument(
+        "--stock",
+        choices=(
+            "fujifilm_velvia_50",
+            "kodak_portra_400",
+            "kodak_ektar_100",
+        ),
+        help="Preflight only one independently capturable stock lane.",
+    )
     args = parser.parse_args()
-    report = evaluate(args.contract, root=ROOT)
+    report = evaluate(args.contract, root=ROOT, stock=args.stock)
     print(json.dumps(report, indent=2, sort_keys=True))
     return 0 if report["automatic_pass"] else 1
 

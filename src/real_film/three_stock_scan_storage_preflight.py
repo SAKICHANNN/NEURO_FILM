@@ -16,6 +16,9 @@ from src.preprocess import srgb_icc_profile_sha256
 
 SCHEMA = "neuro-film.sf3-a0p-three-stock-scan-storage-preflight-contract.v1"
 REPORT_SCHEMA = "neuro-film.sf3-a0p-three-stock-scan-storage-preflight-report.v1"
+SINGLE_STOCK_REPORT_SCHEMA = (
+    "neuro-film.sf3-a0p-single-stock-scan-storage-preflight-report.v1"
+)
 
 
 class ThreeStockScanStoragePreflightError(ValueError):
@@ -178,8 +181,10 @@ def validate_scan_file(path: Path, profile: dict[str, Any]) -> dict[str, Any]:
     return facts
 
 
-def evaluate(path: Path, *, root: Path) -> dict[str, Any]:
-    """Evaluate current capacity without creating the physical-capture root."""
+def evaluate(
+    path: Path, *, root: Path, stock: str | None = None
+) -> dict[str, Any]:
+    """Evaluate capacity without creating the selected capture root."""
 
     raw, contract = load_contract(path, root=root)
     _, work_order = _bound_file(root, contract["parents"]["work_order"])
@@ -191,6 +196,20 @@ def evaluate(path: Path, *, root: Path) -> dict[str, Any]:
         int(counts.get(key, -1)) == int(value)
         for key, value in contract["required_counts"].items()
     )
+    exposure_by_id = {
+        row["exposure_slot_id"]: row for row in work_order["exposure_rows"]
+    }
+    supported_stocks = sorted({row["stock_id"] for row in exposure_by_id.values()})
+    if stock is not None and stock not in supported_stocks:
+        raise ThreeStockScanStoragePreflightError(
+            "unsupported single-stock identity"
+        )
+    selected_tasks = [
+        row
+        for row in work_order["scan_tasks"]
+        if stock is None
+        or exposure_by_id[row["exposure_slot_id"]]["stock_id"] == stock
+    ]
     max_stimulus_pixels = max(
         int(row["width"]) * int(row["height"]) for row in stimulus["scene_rows"]
     )
@@ -201,11 +220,11 @@ def evaluate(path: Path, *, root: Path) -> dict[str, Any]:
     worst_file_bytes = payload_per_file + int(
         profile["maximum_container_overhead_bytes_per_file"]
     )
-    worst_plan_bytes = worst_file_bytes * int(
-        contract["required_counts"]["total_scan_tasks"]
-    )
+    worst_plan_bytes = worst_file_bytes * len(selected_tasks)
     storage = contract["storage"]
     logical = root.joinpath(*Path(storage["logical_root"]).parts)
+    if stock is not None:
+        logical = logical / stock
     resolved_data = (root / "data").resolve()
     resolved_drive = resolved_data.drive.upper()
     volume_status = _query_windows_volume_status(resolved_drive)
@@ -228,13 +247,17 @@ def evaluate(path: Path, *, root: Path) -> dict[str, Any]:
     }
     automatic_pass = all(gates.values())
     scientific = {
-        "schema": REPORT_SCHEMA,
-        "experiment_id": contract["experiment_id"],
+        "schema": REPORT_SCHEMA if stock is None else SINGLE_STOCK_REPORT_SCHEMA,
+        "experiment_id": (
+            contract["experiment_id"]
+            if stock is None
+            else f"{contract['experiment_id']}.{stock}"
+        ),
         "contract_sha256": _sha256(raw),
         "work_order_sha256": contract["parents"]["work_order"]["sha256"],
         "stimulus_manifest_sha256": _sha256_file(stimulus_path),
         "scan_profile": profile,
-        "scan_tasks": int(contract["required_counts"]["total_scan_tasks"]),
+        "scan_tasks": len(selected_tasks),
         "maximum_stimulus_pixels": max_stimulus_pixels,
         "scan_pixels": scan_pixels,
         "scan_to_stimulus_pixel_ratio": ratio,
@@ -245,11 +268,26 @@ def evaluate(path: Path, *, root: Path) -> dict[str, Any]:
         ),
         "gates": gates,
         "automatic_pass": automatic_pass,
-        "decision": contract[
-            "decision_if_pass" if automatic_pass else "decision_if_fail"
-        ],
-        "claim_ceiling": contract["claim_ceiling"],
+        "decision": (
+            contract["decision_if_fail"]
+            if not automatic_pass
+            else contract["decision_if_pass"]
+            if stock is None
+            else "READY_FOR_P_BACKED_SINGLE_STOCK_PHYSICAL_SCAN_CAPTURE"
+        ),
+        "claim_ceiling": (
+            contract["claim_ceiling"]
+            if stock is None
+            else (
+                "Storage and resolution execution preflight for one stock lane "
+                "of the existing three-stock work order only. Passing creates "
+                "no film pixels, stock response, calibration, fit, preference "
+                "or product evidence."
+            )
+        ),
     }
+    if stock is not None:
+        scientific["stock"] = stock
     stable = _sha256(_canonical(scientific))
     return {
         **scientific,
@@ -265,6 +303,7 @@ def evaluate(path: Path, *, root: Path) -> dict[str, Any]:
 __all__ = [
     "REPORT_SCHEMA",
     "SCHEMA",
+    "SINGLE_STOCK_REPORT_SCHEMA",
     "ThreeStockScanStoragePreflightError",
     "evaluate",
     "load_contract",

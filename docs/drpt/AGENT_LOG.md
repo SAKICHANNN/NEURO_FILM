@@ -15870,3 +15870,13 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - This is an execution-integrity fix only. It creates no scan, receipt, stock
   response, calibration or product evidence; controlled capture resumes only
   after the canonical P volume is healthy and the same preflight passes.
+
+### 2026-08-26 - SF3 scan capacity can advance one stock independently
+
+- The existing A0N and A1--A5 chain already accepts a complete single-stock
+  lane, but scan-capacity preflight still budgeted all 153 tasks at once.
+- `--stock` now selects the exact 51 work-order tasks and a stock-specific
+  create-only root. Each lane has a 1,889,477,376-byte worst case, while the
+  unchanged full-plan mode continues to budget all 5,668,432,128 bytes.
+- This removes an execution-order blocker only. The live P volume still fails
+  the new health gates, so no physical scan write or stock claim opens.

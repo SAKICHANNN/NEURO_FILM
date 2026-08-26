@@ -100,6 +100,42 @@ def test_unhealthy_volume_fails_even_when_capacity_passes(
     assert report["observed_volume_operational_status"] == ["Full Repair Needed"]
 
 
+def test_single_stock_preflight_uses_only_its_incremental_scan_root_and_bytes(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr(
+        target,
+        "_query_windows_volume_status",
+        lambda drive: {"health_status": "Healthy", "operational_status": ["OK"]},
+    )
+    monkeypatch.setattr(
+        target.shutil,
+        "disk_usage",
+        lambda path: SimpleNamespace(total=3_000_000_000, used=0, free=2_500_000_000),
+    )
+    report = target.evaluate(
+        CONTRACT, root=ROOT, stock="kodak_portra_400"
+    )
+    assert report["automatic_pass"] is True
+    assert report["stock"] == "kodak_portra_400"
+    assert report["scan_tasks"] == 51
+    assert report["worst_case_plan_bytes"] == 1_889_477_376
+    assert report["projected_remaining_bytes"] == 610_522_624
+    assert report["decision"] == "READY_FOR_P_BACKED_SINGLE_STOCK_PHYSICAL_SCAN_CAPTURE"
+
+    full = target.evaluate(CONTRACT, root=ROOT)
+    assert full["automatic_pass"] is False
+    assert full["gates"]["worst_case_plan_preserves_free_space"] is False
+
+
+def test_single_stock_preflight_rejects_unknown_stock() -> None:
+    with pytest.raises(
+        target.ThreeStockScanStoragePreflightError,
+        match="unsupported single-stock identity",
+    ):
+        target.evaluate(CONTRACT, root=ROOT, stock="unknown")
+
+
 def test_contract_rejects_scan_profile_drift(tmp_path: Path) -> None:
     raw = CONTRACT.read_text(encoding="utf-8").replace('"width": 3000', '"width": 2999')
     path = tmp_path / "contract.json"
