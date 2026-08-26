@@ -19,12 +19,12 @@
   "source_rows": [
     {
       "id": 1052,
-      "exif_path": "data/reference_color_match/p240_rawpixls_capture_metadata_source/exif/1052.txt",
+      "exif_path": "data/reference_color_match/p240_rawpixls_capture_metadata_v1/exif/1052.txt",
       "exif_sha256": "e71b44097dfe38e8cbc1753932269014b7d21acc63698413f415780286d717fd"
     },
     {
       "id": 2644,
-      "exif_path": "data/reference_color_match/p240_rawpixls_capture_metadata_source/exif/2644.txt",
+      "exif_path": "data/reference_color_match/p240_rawpixls_capture_metadata_v1/exif/2644.txt",
       "exif_sha256": "0dea0d7414351d3099b187a8b519f88253eed32c1780fbab4070a58c558e084d"
     }
   ],

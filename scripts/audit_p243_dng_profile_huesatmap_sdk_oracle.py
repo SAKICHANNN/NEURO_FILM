@@ -68,6 +68,7 @@ def _build_oracle(config: dict[str, Any], root: Path) -> Path:
         ["cmd", "/d", "/c", str(build_script)],
         capture_output=True,
         text=True,
+        errors="replace",
         timeout=600,
         check=False,
     )
