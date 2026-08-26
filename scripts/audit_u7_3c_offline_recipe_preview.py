@@ -32,8 +32,8 @@ def audit_catalog(
     catalog: Mapping[str, Any],
     *,
     reverse: bool = False,
-    expected_source_dimensions: tuple[int, int] = (6048, 4032),
-    expected_preview_dimensions: tuple[int, int] = (960, 640),
+    expected_source_dimensions: tuple[int, int] = (4032, 6048),
+    expected_preview_dimensions: tuple[int, int] = (427, 640),
 ) -> tuple[dict[str, Any], bytes]:
     """Audit one catalog with optional reversed decode enumeration."""
 
