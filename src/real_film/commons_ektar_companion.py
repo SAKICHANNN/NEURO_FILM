@@ -309,6 +309,11 @@ def audit_snapshot(root: Path, contract: Mapping[str, Any], snapshot: Mapping[st
         raise CommonsEktarCompanionError("snapshot source row count drift")
     if not isinstance(selected, list):
         raise CommonsEktarCompanionError("snapshot selected candidates missing")
+    canonical_snapshot = dict(snapshot)
+    canonical_snapshot["source_rows"] = sorted(sources, key=lambda value: int(value["page_id"]))
+    canonical_snapshot["selected_candidates"] = sorted(
+        selected, key=lambda value: (int(value["source_page_id"]), int(value["candidate"]["page_id"]))
+    )
     results = []
     for row in sorted(selected, key=lambda value: (value["source_page_id"], value["candidate"]["page_id"])):
         source = root / str(contract["source_pixel_root"]) / f"{row['source_page_id']}.img"
@@ -324,7 +329,7 @@ def audit_snapshot(root: Path, contract: Mapping[str, Any], snapshot: Mapping[st
         "schema": "neuro-film.sf3-a3e-commons-ektar-companion-discovery-report.v1",
         "experiment_id": contract["experiment_id"],
         "input_selection_manifest_sha256": contract["input_selection_manifest_sha256"],
-        "metadata_snapshot_sha256": sha256_bytes(canonical_json(snapshot)),
+        "metadata_snapshot_sha256": sha256_bytes(canonical_json(canonical_snapshot)),
         "source_rows": len(sources),
         "flickr_identities": len(snapshot.get("pages_by_identity", {})),
         "network_requests": int(snapshot.get("network_requests", 0)),

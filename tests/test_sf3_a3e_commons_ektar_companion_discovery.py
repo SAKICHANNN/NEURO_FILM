@@ -7,6 +7,7 @@ import numpy as np
 from PIL import Image
 
 from src.real_film.commons_ektar_companion import (
+    audit_snapshot,
     flickr_identity,
     metadata_candidate,
     pixel_gate,
@@ -57,6 +58,30 @@ def _policy() -> dict:
 def test_flickr_identity_requires_one_exact_identity() -> None:
     assert flickr_identity(_source()) == "abc@n01"
     assert flickr_identity({"author_raw_html": "none", "credit_raw_html": ""}) == ""
+
+
+def test_audit_identity_is_invariant_to_input_order(tmp_path: Path) -> None:
+    sources = [{"page_id": 20}, {"page_id": 10}]
+    snapshot = {
+        "source_rows": sources,
+        "selected_candidates": [],
+        "pages_by_identity": {"abc@n01": []},
+        "network_requests": 1,
+    }
+    contract = {
+        "expected_target_rows": 2,
+        "experiment_id": "x",
+        "input_selection_manifest_sha256": "a" * 64,
+        "source_pixel_root": "source",
+        "candidate_thumbnail_root": "candidate",
+        "pixel_preflight": _policy(),
+        "decision_if_pass": "pass",
+        "decision_if_fail": "fail",
+        "claim_ceiling": "test",
+    }
+    forward = audit_snapshot(tmp_path, contract, snapshot)
+    reverse = audit_snapshot(tmp_path, contract, {**snapshot, "source_rows": list(reversed(sources))})
+    assert forward == reverse
 
 
 def test_metadata_candidate_accepts_independent_digital_companion() -> None:
