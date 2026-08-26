@@ -202,6 +202,18 @@ capture packet or a materially new rights-cleared source with explicit
 same-scene identity. Evidence:
 `docs/evidence/SF3_A3E_COMMONS_EKTAR_COMPANION_DISCOVERY_RESULT.json`.
 
+SF3.A3F separately closes the already-local YFCC companion route without a
+new source download. All 21 retained Ektar targets across eight accounts were
+queried under frozen photo-id, capture/upload-time, CC-BY-2.0, explicit
+digital-device and same-scene gates. The bounded neighborhoods contain only
+31 unique rows; non-target evaluations either lack capture-device evidence
+(`24`) or identify a scanner (`8`), leaving zero eligible pairs. Forward and
+reverse reports are byte exact (`ec590069...99ab`, stable
+`10f2d6fe...2587`), with zero network, image, pixel, fit, render or score
+access. Do not widen this route; A0L/A0N or a materially new explicit
+same-scene source remains required. Evidence:
+`docs/evidence/SF3_A3F_YFCC_EKTAR_DIGITAL_COMPANION_METADATA_RESULT.json`.
+
 SF3.A3 now compiles the requested executable source/evidence matrix over eight
 hash-bound results rather than relying on narrative eligibility. Two formal
 reports are byte exact (`676aec5f...74394c`, stable `4954e9b1...98f71b`).

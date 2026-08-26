@@ -17028,3 +17028,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   frozen project-owned A0L/A0N capture path or a materially new rights-cleared
   source with explicit same-scene identity. Evidence commit `45d4daaf`;
   21 adjacent SF3 tests, Ruff, JSON and diff checks pass.
+
+### 2026-08-26 - SF3.A3F closes the local YFCC Ektar companion route
+
+- **Node and method:** `ULT > RF3/SF3 > SF3.A3F`; bind the existing 65.64GB
+  YFCC index and 21 retained Ektar targets, then use only primary-key-bounded
+  same-author metadata queries. Freeze photo-id/time, CC-BY-2.0, explicit
+  non-scanner capture-device and geo/title same-scene gates before querying.
+- **Result:** the 21 targets span eight accounts and expose 31 unique rows in
+  their frozen neighborhoods. Every non-target evaluation either has no
+  capture-device fact (`24`) or names a scanner (`8`); eligible pairs and
+  eligible accounts are both zero. Canonical/reverse reports are byte exact at
+  SHA-256 `ec590069...99ab`, stable ID `10f2d6fe...2587`.
+- **Boundary and evidence:** network/image/pixel/fit/render/score counts are
+  zero. Close without widening windows or inferring devices. This does not
+  establish absence of Ektar signal outside YFCC; controlled A0L/A0N capture
+  or a materially new rights-cleared explicit same-scene source remains the
+  admissible route. Contract `eb828902`, implementation `d4ae8b54`, evidence
+  `dd036cf5`; four focused tests, Ruff, compile, JSON and diff checks pass.
