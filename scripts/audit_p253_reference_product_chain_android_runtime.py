@@ -8,18 +8,22 @@ import json
 import os
 import shutil
 import subprocess
+import sys
 import tempfile
 from collections.abc import Iterable
 from pathlib import Path
 from typing import Any
 
-from scripts.build_reference_chain_android import build
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from build_reference_chain_android import build  # noqa: E402
 from src.eval.native_thomas_rgb16_png_android_runtime import (
     _finish_owned_emulator_processes,
     _wait_for_boot,
-)
+)  # noqa: E402
 
-ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CONTRACT = ROOT / "configs/p253_reference_product_chain_android_runtime_v1.json"
 
 
