@@ -6,6 +6,7 @@ from pathlib import Path
 
 import pytest
 
+import src.inference.recipe_recovery_bundle as recovery
 from src.inference.portable_recipe_bundle import (
     PORTABLE_BUNDLE_SCHEMA_ID,
     PORTABLE_RECIPE_SCHEMA_ID,
@@ -95,3 +96,29 @@ def test_portable_bundle_is_create_only_and_tamper_rejects(tmp_path: Path) -> No
     tampered.write_bytes(payload)
     with pytest.raises((RecipeRecoveryBundleError, zipfile.BadZipFile)):
         inspect_portable_recipe_recovery_bundle(tampered)
+
+
+def test_portable_bundle_failed_write_removes_partial(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    destination = tmp_path / "partial.zip"
+    original_write = recovery.os.write
+    injected = False
+
+    def fail_after_partial(descriptor: int, payload: bytes | memoryview) -> int:
+        nonlocal injected
+        if not injected:
+            injected = True
+            original_write(descriptor, payload[: max(1, len(payload) // 2)])
+            raise OSError("injected partial write")
+        return original_write(descriptor, payload)
+
+    monkeypatch.setattr(recovery.os, "write", fail_after_partial)
+    with pytest.raises(OSError, match="injected partial write"):
+        build_portable_recipe_recovery_bundle(
+            recipe_path=RECIPE,
+            profile_path=PROFILE,
+            root=ROOT,
+            bundle_path=destination,
+        )
+    assert not destination.exists()
