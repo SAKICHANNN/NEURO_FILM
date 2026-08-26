@@ -15818,4 +15818,7 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   selects the lower-claim path. All three first-wave stocks now traverse the
   file-backed A1-to-A2 chain independently, and the complete 142-test SF3
   family passes. The admission matrix points to the first ready stock rather
-  than requiring all physical captures to arrive together.
+  than requiring all physical captures to arrive together. A passing single-
+  stock A2 report can also materialize exact target-blind RGB16 confirmation
+  renders for that stock's severe-artifact review; cross-stock blind review
+  remains closed until the original complete three-stock path passes.
