@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+from pathlib import Path
 
 from scripts.audit_p221_r1ck_wasm_reproducibility import (
     CONFIG,
@@ -30,6 +31,14 @@ def test_contract_is_frozen_and_has_two_fresh_clones() -> None:
     assert config["execution"]["fresh_exact_commit_clones"] == 2
     assert config["execution"]["producer_worktree_writes"] == 0
     assert config["execution"]["network_downloads"] == 0
+
+
+def test_runner_avoids_read_only_local_clone_hardlinks() -> None:
+    runner = (
+        Path(__file__).resolve().parents[1]
+        / "scripts/audit_p221_r1ck_wasm_reproducibility.py"
+    ).read_text(encoding="utf-8")
+    assert '"--local",\n                    "--no-hardlinks"' in runner
 
 
 def test_extract_report_facts_uses_scientific_identity() -> None:

@@ -190,6 +190,7 @@ def execute(order: str) -> dict[str, Any]:
                     "git",
                     "clone",
                     "--local",
+                    "--no-hardlinks",
                     "--no-checkout",
                     producer["repository"],
                     str(clone),
