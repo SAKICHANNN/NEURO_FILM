@@ -16778,6 +16778,24 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   interpretation dependent. Keep Look Approximation and require independent
   roll plus scanner/process controls rather than tuning this package.
 
+### 2026-08-26 - RF3.D10 rejects current Velvia on a controlled chart proxy
+
+- **Question:** without fitting, does the current Velvia 50 product look move
+  a spectral-reference chart toward the paired real Velvia display proxy and
+  separate it from current Portra/Ektar wrong-stock looks?
+- **Execution:** contract `675404c9`, implementation `2439e276`; canonical and
+  reverse reports are byte-identical at `3ddde092...cd32`, stable
+  `fd641059...0ce`. Frozen AO6 is loaded from its exact P8B report payload, so
+  no historical compiler chain or prior experiment was reopened.
+- **Result:** current Velvia is `1.64%` worse than identity and wins `1/6`
+  chart rows. It is the closest current stock arm but beats Portra/Ektar by
+  only `0.42%/0.43%`; AO6 is another `21.04%` worse than current Velvia.
+  Boundary and deterministic replay gates pass.
+- **Decision:** `FAIL_CLOSED`; retain current Velvia and AO6 as fixed Look
+  Approximation baselines. Do not tune on this chart. Require a new
+  stock-specific operator or independent observation and continue the missing
+  controlled Ektar lane.
+
 ### 2026-08-26 - U1.6G4J integrates staged density as a strict private recipe route
 
 - **Node and routing:** `ULT > U1.6 > U1.6G4J`; primary

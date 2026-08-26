@@ -177,6 +177,18 @@ scanner/print interpretation changes the conclusion, so independent roll and
 scanner/process controls remain mandatory. Evidence:
 `docs/evidence/RF3_D9_PORTRA400_NATURAL_PRODUCT_BASELINE_RESULT.json`.
 
+RF3.D10 applies the unchanged current Velvia 50 product look and frozen AO6
+baseline to the 24-patch CC-BY-4.0 BALICA spectral-reference / real-Velvia
+display proxy, with Portra and Ektar as wrong-stock controls. Two reports are
+byte exact (`3ddde092...cd32`, stable `fd641059...0ce`). Current Velvia is the
+closest product stock arm and beats AO6 by `21.04%`, but remains `1.64%` worse
+than identity, wins only `1/6` chart rows, and beats Portra/Ektar by only
+`0.42%/0.43%`. Close without tuning. Current Velvia and AO6 remain Look
+Approximation baselines; a materially new stock-specific operator or
+independent observation is required, with first controlled Ektar evidence
+still the highest-information missing stock lane. Evidence:
+`docs/evidence/RF3_D10_VELVIA50_CHART_PRODUCT_BASELINE_RESULT.json`.
+
 SF3.A3 now compiles the requested executable source/evidence matrix over eight
 hash-bound results rather than relying on narrative eligibility. Two formal
 reports are byte exact (`676aec5f...74394c`, stable `4954e9b1...98f71b`).
