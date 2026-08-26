@@ -205,7 +205,7 @@ def execute(
     contract = ROOT / bindings["contract_path"]
     module = ROOT / bindings["consumer_module_path"]
     runner = ROOT / bindings["runner_path"]
-    wheel = ROOT / bindings["openexr_wheel_path"]
+    wheel = producer_repo / bindings["openexr_wheel_path"]
     identities = {
         "contract": len(contract.read_bytes()) == bindings["contract_bytes"]
         and _sha256_file(contract) == bindings["contract_sha256"],
