@@ -1,0 +1,79 @@
+{
+  "schema": "kmcfm.u7-7g-portable-recipe-replay-evidence.v1",
+  "node": "U7.7G",
+  "status": "PASS_PRIVATE_CALLER_DRIVEN_PORTABLE_REPLAY",
+  "decision": "RETAIN_PRIVATE_CALLER_DRIVEN_PORTABLE_REPLAY_AND_OPEN_BOUNDED_CLI_INTEGRATION",
+  "bindings": {
+    "contract": {
+      "path": "configs/u7_7g_portable_recipe_replay_v1.json",
+      "bytes": 2132,
+      "sha256": "b3cff14d3ac3f8c8e2e4ff41f4d168540c68e0d1fd8dc2ebd1a7552a0b722da9",
+      "commit": "1d401a59"
+    },
+    "implementation": {
+      "path": "src/inference/portable_recipe_replay.py",
+      "bytes": 1895,
+      "sha256": "d75c2a6ae2db7d7addaf0e17b8fb673e5b9e0c907292658f053871e0168c87e6",
+      "commit": "dd2d0305"
+    },
+    "cli": {
+      "path": "scripts/replay_portable_film_recipe.py",
+      "bytes": 1504,
+      "sha256": "656c2115426f86aa1f2324727199d1603662f0361b2909ee3a9791634cfb63ce",
+      "commit": "dd2d0305"
+    },
+    "runner": {
+      "path": "scripts/audit_u7_7g_portable_recipe_replay.py",
+      "bytes": 8632,
+      "sha256": "8332d7f6414e3dc3aa331d52afdfa07b8e557ec5f413b6afb7be7059d0e6dbd7",
+      "commit": "6af65a6d"
+    },
+    "tests": {
+      "path": "tests/test_u7_7g_portable_recipe_replay.py",
+      "bytes": 5834,
+      "sha256": "e8d458035391d673dbc79765cdb6d4372830b557bbf11bcd6088869ef3ebb4e1",
+      "commit": "9e60eb38"
+    },
+    "formal_report": {
+      "path": "outputs/eval/u7_7g_portable_recipe_replay_v1/forward.json",
+      "bytes": 3925,
+      "sha256": "2e222e08853567bf39a375ceae9f2c49a7428595ff2527a4be5db7e2012c2687"
+    }
+  },
+  "execution": {
+    "orders": ["forward", "reverse"],
+    "reports_byte_exact": true,
+    "report_sha256": "2e222e08853567bf39a375ceae9f2c49a7428595ff2527a4be5db7e2012c2687",
+    "stable_id": "0098be781ca8bc93626b87552a56ae6b33f39d927bd064c0907f333b727cdc18",
+    "styles_replayed": 3,
+    "image_decodes": 8,
+    "network_reads": 0,
+    "owned_temporary_roots_removed": true
+  },
+  "results": {
+    "styles": ["ektar_100", "portra_400", "velvia_50"],
+    "frozen_output_sha256": [
+      "6c5c8b9c04fea4f265e1b742ce568b13a34d72462f7b6466f29685dabd03045e",
+      "2ff70587520b73634e9096ff297eb390edde7e891bb7634f3cec6c707a119844",
+      "6f405513fcb72f27350c9c42fc238de6daa0ba3584987537431a17a146982732"
+    ],
+    "frozen_output_sha256_exact": true,
+    "receipt_output_identity_exact": true,
+    "claim_receipt_remains_look_approximation": true,
+    "existing_recipe_and_output_unchanged": true,
+    "failed_replay_removes_output": true,
+    "network_reads_zero": true
+  },
+  "interpretation": {
+    "established": [
+      "one caller action can validate a portable bundle, verify an explicit input, publish a strict bound recipe and drive the existing deterministic renderer",
+      "all three frozen 24MP Velvia 50, Portra 400 and Ektar 100 outputs reproduce their exact expected file SHA-256 in both execution orders",
+      "existing destinations remain unchanged and a deliberately wrong expected output identity removes the failed render"
+    ],
+    "not_established": [
+      "calibrated stock response, stock distinguishability, installer integration, GUI acceptance, release readiness or automatic action"
+    ]
+  },
+  "next_leaf": "Stop recovery-format expansion. Return to controlled physical stock acquisition when rows exist; until then retain this private opt-in CLI as the bounded product delivery path for the current three Look Approximation baselines.",
+  "claim_ceiling": "Private caller-driven exact replay of the existing three Look Approximation recipes only; no calibrated stock response, stock distinguishability, installer, GUI, release or automatic action claim."
+}
