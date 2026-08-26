@@ -1,0 +1,58 @@
+{
+  "schema": "neuro-film.p246-acescg-openexr-exact-consumer-intake-contract.v1",
+  "experiment_id": "P246",
+  "status": "FROZEN_BEFORE_CONSUMER_RUNNER_IMPLEMENTATION_OR_OPENEXR_INSTALL",
+  "bindings": {
+    "contract_path": "docs/planning/P246_ACESCG_OPENEXR_EXACT_CONSUMER_INTAKE_CONTRACT.md",
+    "contract_sha256": "1795a66c9edf12867e125c588212383d49d350f50ebe47e39db70329fd7ae2ba",
+    "contract_commit": "e09cc50eb5fdfe4ef0207f2f6bf93159ecfd72d5",
+    "producer_writer_commit": "e4023509f1a1ca21606468312bf710972d9e1059",
+    "producer_writer_path": "src/zhuise/acescg_openexr.py",
+    "producer_writer_git_blob": "398f4de2cfb04a887bb13632df324fea1624f5bc",
+    "producer_writer_sha256": "3707b55b2cb7dd7fb102b4237e8ee4317035e917bd71441eb06dd9cc0a2757c3",
+    "producer_r1do_evidence_commit": "e1a22951e6aae752b73ae9f407e6b0d7a223597c",
+    "producer_r1do_evidence_path": "docs/evidence/R1DO_ACESCG_OPENEXR_MASTER_RESULT.json",
+    "producer_r1do_evidence_sha256": "ac1babeb61c93714c5eaf1ed8364699af7f98123cf7065298522f711ae8ceae1",
+    "producer_r1dp_evidence_commit": "3ab2a6fcad8457dd1b53cf841d657fdd3948d071",
+    "producer_r1dp_evidence_path": "docs/evidence/R1DP_ACESCG_OPENEXR_LINUX_RUNTIME_RESULT.json",
+    "producer_r1dp_evidence_sha256": "63b587ad2f0cc9620c7ffa6596f98d907c0a92e7e38fd63cbfa97e9a9cb5ed7f",
+    "producer_wheel_path": "data/vendor/openexr-3.4.15/openexr-3.4.15-cp312-cp312-win_amd64.whl",
+    "producer_wheel_bytes": 740197,
+    "producer_wheel_sha256": "7aa145813acfe10a83d6e89340349379828190b321608e69f2aee426e10c890b"
+  },
+  "expected": {
+    "writer_id": "acescg-ap1-d60-float32-zip-openexr-master-v1",
+    "openexr_version": "3.4.15",
+    "python_major_minor": "3.12",
+    "synthetic_pixel_f32le_sha256": "3b14e75aa87a09794e0c4cb6339a4fc09862657d9aea190a9e3311c155bdb727",
+    "synthetic_openexr_bytes": 696,
+    "synthetic_openexr_sha256": "14a122a7d9f674cc5d6fae50a6a8a5e3e62e33217d38bed48fdf0df2194e48ce",
+    "chromaticities": [
+      0.7129999995231628,
+      0.2930000126361847,
+      0.16500000655651093,
+      0.8299999833106995,
+      0.12800000655651093,
+      0.04399999976158142,
+      0.3216800093650818,
+      0.3376699984073639
+    ],
+    "adopted_neutral": [0.3216800093650818, 0.3376699984073639]
+  },
+  "gates": {
+    "require_exact_git_objects": true,
+    "require_exact_evidence_bindings": true,
+    "require_exact_offline_wheel": true,
+    "require_zero_network": true,
+    "require_zero_external_pixel_reads": true,
+    "require_exact_openexr_bytes": true,
+    "require_exact_decoded_pixels_and_metadata": true,
+    "require_input_immutability": true,
+    "require_invalid_input_rejection": true,
+    "require_publication_failure_atomicity": true,
+    "require_zero_temporary_residue": true,
+    "require_two_fresh_process_reports_exact": true
+  },
+  "stop_rule": "Any source, evidence, wheel, runtime, pixel, metadata, byte, atomicity, cleanup or replay mismatch closes this exact consumer intake without source copy, dependency substitution, encoding change, tolerance relaxation or product mapping.",
+  "claim_ceiling": "Private Windows CPython consumer-side reproducibility of the exact producer R1DO writer/source/wheel handoff on one synthetic ACEScg probe only. No neuro_film public API/dependency/package/schema/capability, AP0 or ST 2065-4 ACES container, large-image or quality result, arbitrary metadata support, Linux claim beyond bound R1DP evidence, or product admission."
+}
