@@ -1,0 +1,49 @@
+{
+  "schema": "neuro-film.p221-r1ck-wasm-reproducibility-evidence.v1",
+  "experiment_id": "P221",
+  "status": "FAIL_CLOSED_R1CK_CONSUMER_REPRODUCIBILITY",
+  "date": "2026-08-26",
+  "consumer": {
+    "contract_commit": "2f77a145",
+    "implementation_commit": "1d2d6c47",
+    "clone_isolation_fix_commit": "325afe2f",
+    "forward_report_sha256": "02a8b99680e6ee5f5db706daaef407a261e52c489b782b0402e91267289336b2",
+    "reverse_report_sha256": "02a8b99680e6ee5f5db706daaef407a261e52c489b782b0402e91267289336b2",
+    "stable_identity": "sha256:6c91b9f194e949748a10755c92e27782fe16ca49c96b2c84e75b68fc52530baa"
+  },
+  "producer_binding": {
+    "audited_commit": "a27d7c7d5d6e2b3bb342082e4525761cecaf843e",
+    "evidence_blob": "08cab56c2f796293c54692003a18c9486d7581eb",
+    "evidence_sha256": "43768f4795d036a72c01a300cff22effaaa37e35ff8aba23ac67ed6d0358286f",
+    "evidence_declared_formal_commit": "8c66ce51094cab760517301c2b495898482c5bd6",
+    "expected_formal_report_sha256": "3403ed4fced6ea8cfbdfd0a2cfa246a4579232ec4ce999bccc710a5d68109984",
+    "observed_formal_report_sha256": "acd032f0cc364fb0fcd6aebeaf1c9fcc8c110123d37fac760d97a7a328fa114b",
+    "expected_stable_identity": "81a725667ca9bd8b82444b950537f1b91b25365dad203ee622e492a00b4e9313",
+    "observed_stable_identity": "8ff89f5ef4f8d19910d3280448abf2aff806814e1f5a28720d274c1d696c7751"
+  },
+  "exact_mechanism_facts": {
+    "two_fresh_clone_reports_byte_exact": true,
+    "producer_runner_returncodes": [0, 0],
+    "all_transitive_git_blobs_exact": true,
+    "compiler_linker_and_node_hashes_exact": true,
+    "wasm_module_bytes": 6168,
+    "wasm_module_sha256": "a1ee6cd057ffc287dc2b7c648571716b12c0c538ca2356b89b94870df18baf29",
+    "output_rgb_sha256": "ab3448a460165ebc2cb349c4fb4038ac0d3921af6c0a437d8714b7839bf89837",
+    "wasm_module_identity_exact": true,
+    "runtime_output_identity_exact": true,
+    "producer_status_exact": true,
+    "temporary_formal_roots_removed": true,
+    "network_downloads": 0
+  },
+  "failed_gates": [
+    "each_consumer_report_equals_frozen_producer_report_sha256",
+    "stable_identity_exact"
+  ],
+  "interpretation": {
+    "formal": "The exact P221-v1 consumer admission contract fails because rebuilding the later evidence commit cannot reproduce a formal report whose stable identity includes the earlier formal-execution HEAD.",
+    "mechanism": "The 6,168-byte module and frozen Android RGB arithmetic oracle reproduce exactly; this result does not invalidate the arithmetic mechanism.",
+    "root_cause_fact": "The committed producer evidence declares 8c66ce51094cab760517301c2b495898482c5bd6 as the implementation/formal commit, while P221-v1 prospectively bound later evidence HEAD a27d7c7d5d6e2b3bb342082e4525761cecaf843e. The unchanged producer runner includes HEAD in stable_identity.",
+    "next": "Do not rewrite P221-v1. Any exact-formal-commit audit must be separately versioned and frozen before execution."
+  },
+  "claim_ceiling": "Independent consumer reproducibility audit only; no browser, WebView, media, RAW/HDR quality, shared-reference science, package, schema, capability or product admission."
+}

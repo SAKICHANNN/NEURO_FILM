@@ -64,3 +64,22 @@ def test_report_evaluation_fails_identity_drift() -> None:
     assert gates["wasm_module_identity_exact"] is False
     assert gates["temporary_roots_removed"] is True
     assert not all(gates.values())
+
+
+def test_committed_evidence_records_exact_fail_closed_facts() -> None:
+    evidence = json.loads(
+        (
+            Path(__file__).resolve().parents[1]
+            / "docs/evidence/P221_R1CK_WASM_REPRODUCIBILITY_RESULT.json"
+        ).read_text(encoding="utf-8")
+    )
+    assert evidence["status"] == "FAIL_CLOSED_R1CK_CONSUMER_REPRODUCIBILITY"
+    assert evidence["consumer"]["forward_report_sha256"] == evidence["consumer"][
+        "reverse_report_sha256"
+    ]
+    assert evidence["exact_mechanism_facts"]["wasm_module_identity_exact"] is True
+    assert evidence["exact_mechanism_facts"]["runtime_output_identity_exact"] is True
+    assert evidence["failed_gates"] == [
+        "each_consumer_report_equals_frozen_producer_report_sha256",
+        "stable_identity_exact",
+    ]

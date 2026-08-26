@@ -15946,3 +15946,25 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Freeze:** bind producer commit `a27d7c7d5d6e2b3bb342082e4525761cecaf843e`, evidence blob `08cab56c...7581eb`, all six transitive source/test blobs, exact NDK Clang/wasm-ld and Node hashes, producer report/module/output/stable identities, two fresh exact-commit clones and zero producer writes/network.
 - **Decision rule:** both consumer reports must equal the frozen producer report byte-for-byte and reproduce module/output/stable identities. Any mismatch closes consumer admission without toolchain, flag, path, source, tolerance or identity rescue; R1CL remains producer-owned and untouched.
 - **Claim ceiling:** private reproducibility acceptance only; no browser/WebView, media, RAW/HDR quality, shared-reference science, package/schema/capability or product claim.
+
+### 2026-08-26 - P221 closes consumer identity admission without rejecting arithmetic
+
+- **Execution:** after a pre-report Windows local-clone hardlink cleanup defect,
+  commit `325afe2f` added `--no-hardlinks` only; commit/source/toolchain/gates
+  remained frozen. Forward/reverse formal runs then each used two fresh clones
+  and produced byte-identical consumer reports at `02a8b996...336b2`.
+- **Mechanism facts:** all transitive blobs and pinned NDK/Node hashes match;
+  both inner reports reproduce the exact 6,168-byte module
+  `a1ee6cd0...baf29`, RGB oracle `ab3448a4...89837`, PASS status and each
+  other byte-for-byte. Formal temporary roots were removed and network reads
+  were zero.
+- **Decision:** formal FAIL because inner report SHA `acd032f0...114b` differs
+  from frozen `3403ed4f...9984` and stable identity `8ff89f5e...7751` differs
+  from `81a72566...9313`. The producer evidence declares formal commit
+  `8c66ce51`, while P221-v1 froze later evidence HEAD `a27d7c7d`; the runner
+  includes HEAD in stable identity. Do not rewrite P221-v1 or treat arithmetic
+  parity as identity admission. A corrected formal-commit audit, if pursued,
+  must be separately versioned and prospectively frozen.
+- **Propagation:** portable arithmetic remains historically supported; no
+  browser/WebView, media, RAW/HDR quality, package/schema/capability, shared
+  reference or product mapping opens.
