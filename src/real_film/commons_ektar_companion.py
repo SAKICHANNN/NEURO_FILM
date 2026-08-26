@@ -142,38 +142,45 @@ def normalize_search_page(page: Mapping[str, Any]) -> dict[str, Any]:
 def metadata_candidate(
     source: Mapping[str, Any], candidate: Mapping[str, Any], policy: Mapping[str, Any]
 ) -> dict[str, Any] | None:
+    row, _ = metadata_candidate_evaluation(source, candidate, policy)
+    return row
+
+
+def metadata_candidate_evaluation(
+    source: Mapping[str, Any], candidate: Mapping[str, Any], policy: Mapping[str, Any]
+) -> tuple[dict[str, Any] | None, str]:
     if int(candidate["page_id"]) == int(source["page_id"]):
-        return None
+        return None, "same_page"
     if candidate["license_short_name"] not in set(policy["allowed_licenses"]):
-        return None
+        return None, "license"
     if candidate["mime"] not in set(policy["allowed_mime"]):
-        return None
+        return None, "mime"
     if min(int(candidate["width"]), int(candidate["height"])) < int(policy["minimum_short_dimension"]):
-        return None
+        return None, "dimensions"
     model = visible_text(str(candidate.get("camera_model", "")))
     if policy["digital_camera_model_required"] and not model:
-        return None
+        return None, "missing_camera_model"
     if any(token.casefold() in model for token in policy["forbidden_digital_model_tokens"]):
-        return None
+        return None, "scanner_model"
     candidate_text = visible_text(
         f"{candidate.get('title', '')} {candidate.get('description_raw_html', '')}"
     )
     if any(token.casefold() in candidate_text for token in policy["forbidden_candidate_text_tokens"]):
-        return None
+        return None, "film_or_stock_text"
     source_time = parse_capture_time(str(source.get("date_time_original", "")))
     candidate_time = parse_capture_time(str(candidate.get("date_time_original", "")))
     if source_time is None or candidate_time is None:
-        return None
+        return None, "missing_capture_time"
     delta = abs((candidate_time - source_time).total_seconds())
     if delta > float(policy["maximum_capture_time_delta_seconds"]):
-        return None
+        return None, "capture_time_delta"
     jaccard = title_jaccard(str(source["title"]), str(candidate["title"]))
     if jaccard < float(policy["minimum_title_token_jaccard"]):
-        return None
+        return None, "title_overlap"
     row = dict(candidate)
     row["capture_time_delta_seconds"] = delta
     row["title_token_jaccard"] = jaccard
-    return row
+    return row, "eligible"
 
 
 def select_metadata_candidates(
@@ -324,6 +331,15 @@ def audit_snapshot(root: Path, contract: Mapping[str, Any], snapshot: Mapping[st
         checks = pixel_gate(metrics, contract["pixel_preflight"])
         results.append({**row, "metrics": metrics, "checks": checks, "passed": all(checks.values())})
     passed = [row for row in results if row["passed"]]
+    rejection_counts: dict[str, int] = {}
+    considered = 0
+    pages_by_identity = snapshot.get("pages_by_identity", {})
+    for source in sources:
+        identity = flickr_identity(source)
+        for candidate in pages_by_identity.get(identity, []):
+            considered += 1
+            _, reason = metadata_candidate_evaluation(source, candidate, contract["candidate_metadata"])
+            rejection_counts[reason] = rejection_counts.get(reason, 0) + 1
     decision = contract["decision_if_pass"] if passed else contract["decision_if_fail"]
     report = {
         "schema": "neuro-film.sf3-a3e-commons-ektar-companion-discovery-report.v1",
@@ -334,6 +350,8 @@ def audit_snapshot(root: Path, contract: Mapping[str, Any], snapshot: Mapping[st
         "flickr_identities": len(snapshot.get("pages_by_identity", {})),
         "network_requests": int(snapshot.get("network_requests", 0)),
         "metadata_candidates": len(selected),
+        "metadata_candidate_pairs_considered": considered,
+        "metadata_funnel_counts": dict(sorted(rejection_counts.items())),
         "pixel_candidates_passed": len(passed),
         "candidate_results": results,
         "decision": decision,

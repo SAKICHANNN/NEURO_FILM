@@ -10,6 +10,7 @@ from src.real_film.commons_ektar_companion import (
     audit_snapshot,
     flickr_identity,
     metadata_candidate,
+    metadata_candidate_evaluation,
     pixel_gate,
     registered_similarity,
     title_jaccard,
@@ -95,6 +96,7 @@ def test_metadata_candidate_rejects_scan_film_or_unrelated_time() -> None:
     assert metadata_candidate(_source(), _candidate(camera_model="Noritsu scanner"), _policy()) is None
     assert metadata_candidate(_source(), _candidate(description_raw_html="Ektar film scan"), _policy()) is None
     assert metadata_candidate(_source(), _candidate(date_time_original="2020-02-13 18:20:00"), _policy()) is None
+    assert metadata_candidate_evaluation(_source(), _candidate(camera_model=""), _policy())[1] == "missing_camera_model"
 
 
 def test_registered_similarity_recovers_projective_same_scene(tmp_path: Path) -> None:
