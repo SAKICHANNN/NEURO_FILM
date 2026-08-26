@@ -15,6 +15,7 @@ from src.color_match.shared_hdr_dpct_payload import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/p230_r1cz_shared_hdr_payload_consumer_v1.json"
+EVIDENCE = ROOT / "docs/evidence/P230_R1CZ_SHARED_HDR_PAYLOAD_CONSUMER_RESULT.json"
 PRODUCER = Path("C:/Users/hhvrf/Documents/追色")
 
 
@@ -72,3 +73,12 @@ def test_source_contract_fails_closed() -> None:
         apply_shared_hdr_dpct_payload(
             np.asarray([[[np.nan, 0.0, 0.0]]], dtype=np.float32), bundle
         )
+
+
+def test_formal_evidence_binds_pass_without_consumer_mapping() -> None:
+    evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+    assert evidence["status"] == "PASS_PRIVATE_R1CZ_SHARED_HDR_PAYLOAD_CONSUMER"
+    assert evidence["result"]["maximum_abs_error"] == 0.0
+    assert evidence["result"]["rmse"] == 0.0
+    assert all(evidence["gates"].values())
+    assert evidence["consumer_mapping"] is False

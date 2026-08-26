@@ -1,0 +1,83 @@
+{
+  "schema": "neuro-film.p230-r1cz-shared-hdr-payload-consumer-evidence.v1",
+  "experiment_id": "P230",
+  "status": "PASS_PRIVATE_R1CZ_SHARED_HDR_PAYLOAD_CONSUMER",
+  "date": "2026-08-26",
+  "consumer": {
+    "preregistration_commit": "d1690d6fa2078212781ab206817326a0f8298692",
+    "implementation_commit": "741b6e34485b351c0af82679be6786376d7c9e45",
+    "serialization_correction_commit": "2d010d2e690708fad80cce8aa9d3715fcda8189f",
+    "formal_execution_commit": "2d010d2e690708fad80cce8aa9d3715fcda8189f",
+    "forward_report_sha256": "1bd15d8c0089e9795e4d3d8cbd5f5008274a57d6d724802ed16346b36517a78f",
+    "reverse_report_sha256": "1bd15d8c0089e9795e4d3d8cbd5f5008274a57d6d724802ed16346b36517a78f",
+    "report_bytes_each": 4231,
+    "reports_byte_exact": true,
+    "stable_identity": "sha256:dd9e2df981c18b9c861bdfe5d8bdafd3bb1aa0549c9f9249c90858caec4345e8"
+  },
+  "producer_binding": {
+    "evidence_commit": "289e32b5a972489533dba253ede1f91213bcafb3",
+    "formal_commit": "70d235b0f4e4a276c4ef7dace306e8b42678f524",
+    "evidence_sha256": "1e3c85dac84b73b094d1dbc5edc716e15e8399b5052399a19f2052c9a25a932b",
+    "evidence_git_blob": "d35ea225a9152f13fcd9d58f8cc35e66c71ab7c3",
+    "payload_sha256": "aa7fe0400e7bef106a9ff75305babab317a4148bdb05c573c50395d6f4228cb9",
+    "payload_git_blob": "55c74355f4f11618ec3d8c3f1b4e4f6f0220a47f",
+    "payload_bytes": 4376,
+    "schema_sha256": "e77cb34bdbd214a00e2072208aacb6c255332799595357a6e922ac77694a79f0",
+    "schema_git_blob": "da500b97fc1848207cd360062cee091176be01a5",
+    "oracle_source_sha256": "b7cdadafcc2b3f4213dd5e2647608c83b0e07c275ac04a1ad24f48c67ce8e89e",
+    "oracle_source_git_blob": "e2ba3ac626fadc2c548faa986359fb8a2302f9b0",
+    "bundle_id": "sha256:2759d2193861b95d39bb451efb2477c6ae796f5f58b3b81cf6487cbd85c3220f"
+  },
+  "transition": {
+    "parent_p228_status": "FAIL_CLOSED_R1CY_HANDOFF_PAYLOAD_NOT_PERSISTED",
+    "producer_r1cz_status": "PASS_PRIVATE_R1CY_SHARED_BUNDLE_PAYLOAD_MATERIALIZATION",
+    "interpretation": "R1CZ prospectively persists the exact payload that was absent at P228. P230 verifies and consumes that artifact without rewriting the historical P228 result."
+  },
+  "fixture": {
+    "description": "Cartesian float32 RGB stress grid over nine frozen absolute-luminance values",
+    "shape": [729, 1, 3],
+    "sha256": "6476554cf17e8c47bd961d61362a17a3443d1eab15826aa1dc1326fb6a0532ec",
+    "minimum": -1.0,
+    "maximum": 12000.0
+  },
+  "result": {
+    "consumer_output_sha256": "98a1281ef743dae99f762e7175e808b1d2da4cf4e671cdf5fad7ecd2d8036409",
+    "separate_producer_oracle_output_sha256": "98a1281ef743dae99f762e7175e808b1d2da4cf4e671cdf5fad7ecd2d8036409",
+    "maximum_abs_error": 0.0,
+    "rmse": 0.0,
+    "output_minimum": 0.0,
+    "output_maximum": 10000.0,
+    "dtype": "float32",
+    "output_owned": true,
+    "output_c_contiguous": true,
+    "paired_build_reads": 0,
+    "paired_build_runs": 0,
+    "network_reads": 0,
+    "repository_media_writes": 0,
+    "temporary_residue_zero": true
+  },
+  "gates": {
+    "producer_evidence_payload_schema_and_oracle_identities_exact": true,
+    "p228_parent_and_r1cz_artifact_gap_transition_exact": true,
+    "payload_bytes_hash_canonical_json_and_envelope_exact": true,
+    "consumer_fixture_identity_exact": true,
+    "consumer_output_equals_separate_producer_oracle_byte_exact": true,
+    "input_unchanged_output_owned_contiguous_finite_in_bounds": true,
+    "corrupt_payload_wrong_envelope_and_unsupported_format_fail_closed": true,
+    "forward_reverse_reports_byte_exact": true,
+    "paired_build_and_network_reads_zero": true
+  },
+  "execution_note": "The first committed-head attempt completed the scientific computation but produced no formal report because one NumPy boolean was not canonical JSON. Commit 2d010d2e converts gate scalars only; payload, fixture, implementation, roles and gates are unchanged, and both complete formal runs were restarted from that commit.",
+  "decision": {
+    "result": "PASS_PRIVATE_R1CZ_SHARED_HDR_PAYLOAD_CONSUMER",
+    "interpretation": "An independent consumer can hash, schema-validate, deserialize and apply the exact persisted R1CZ private paired/capture-time payload, reproducing a separately invoked producer oracle byte-for-byte without rerunning the paired build.",
+    "does_not_open": [
+      "arbitrary after-only inference",
+      "natural or captured HDR quality",
+      "public package, schema, receipt or capability",
+      "product admission"
+    ]
+  },
+  "consumer_mapping": false,
+  "claim_ceiling": "Private artifact-level compatibility for one exact self-authored paired/capture-time shared HDR payload on one frozen synthetic stress fixture."
+}

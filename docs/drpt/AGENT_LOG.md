@@ -16370,3 +16370,27 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   evidence matrix or U7.2C separation result. Next is exact file-batch
   integration, not another proxy or routing experiment. Evidence:
   `docs/evidence/U7_6A_THREE_STOCK_SHARED_CONTEXT_RESULT.json`.
+
+### 2026-08-26 - P230 consumes the exact prospectively published R1CZ payload
+
+- **Question:** After R1CZ prospectively persisted the 4,376-byte payload that
+  was absent at P228, can an independent consumer verify and apply it without
+  reconstructing producer state or rerunning the paired build?
+- **Implementation:** added a strict private loader and float32 apply path for
+  the exact composite/D-PCT envelope. The formal audit binds the producer
+  evidence commit, payload/schema/oracle blobs and P228 parent, validates the
+  envelope with JSON Schema, then compares the independent consumer against a
+  separately invoked exact producer oracle on a frozen 729-row stress grid.
+- **Formal result:** forward/reverse 4,231-byte reports are byte exact at
+  `1bd15d8c...a78f`, stable `dd9e2df9...345e8`. Consumer and oracle output SHA
+  are both `98a1281e...6409`; max/RMSE are zero. All identity, canonical JSON,
+  envelope, ownership/range, mutation, replay and zero paired-build/network
+  gates pass. A first report attempt exposed only a NumPy-boolean JSON boundary
+  after computation; the scalar-only correction was committed and both full
+  formal runs were restarted from that commit.
+- **Boundary/handoff:** R1CZ repairs only the prospective artifact gap; P228
+  remains the correct historical failure. This proves private compatibility
+  for one exact paired/capture-time payload and frozen synthetic fixture, not
+  arbitrary after-only inference, natural/captured HDR quality, public
+  package/schema/capability or product admission. Evidence:
+  `docs/evidence/P230_R1CZ_SHARED_HDR_PAYLOAD_CONSUMER_RESULT.json`.
