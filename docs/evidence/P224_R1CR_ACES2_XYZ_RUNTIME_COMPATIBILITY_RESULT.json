@@ -1,0 +1,68 @@
+{
+  "schema": "neuro-film.p224-r1cr-aces2-xyz-runtime-compatibility-evidence.v1",
+  "experiment_id": "P224",
+  "status": "PASS_PRIVATE_R1CR_XYZ_CROSS_RUNTIME_COMPATIBILITY",
+  "date": "2026-08-26",
+  "consumer": {
+    "contract_commit": "dabf879f",
+    "wheel_binding_commit": "27c262ac",
+    "direct_runner_fix_commit": "a31e2d9a",
+    "forward_report_sha256": "dbdb5a8f14b10a32331c453cdbd05382745c845bb977beb300c55045ba421036",
+    "reverse_report_sha256": "dbdb5a8f14b10a32331c453cdbd05382745c845bb977beb300c55045ba421036",
+    "report_bytes": 2775,
+    "reports_byte_exact": true,
+    "stable_identity": "sha256:f2153b1a7b2d01d716ca774c00a9be809f79607ae79f304159359356a6cdc426"
+  },
+  "producer_binding": {
+    "evidence_commit": "c5ae9ab2a1b7cc7bbb3dad70d4c412aeef2a175e",
+    "implementation_commit": "cb8bbaa8a41d475a34c545b32d91222d07c871e6",
+    "source_blob": "e31e27a14f5c858b322fc825b85f18e7a1698dda",
+    "evidence_blob": "fc5e64260baf42a253e678b9e8913561d0b80203",
+    "evidence_sha256": "d6b633b5b6c0bec8be04e616674711d74a877fe9c09a95123a28d531dfe1251e",
+    "opencolorio_version": "2.5.0",
+    "opencolorio_wheel_bytes": 3903228,
+    "opencolorio_wheel_sha256": "c45b7f4c3fc464f52b0986fd28e89ab121ce2abe3d181e9b2918cecc2e0b9277"
+  },
+  "mechanism_facts": {
+    "consumer_opencolorio_version": "2.5.2",
+    "consumer_source_blob": "0835a8909e7dcbbd4143afa8b74fb4f3fe05994a",
+    "fixture_rows": 986,
+    "producer_output_sha256": "374d886453c324d10b7df1007e8af034ef4830c15505a35cf202349230d0864a",
+    "consumer_output_sha256": "374d886453c324d10b7df1007e8af034ef4830c15505a35cf202349230d0864a",
+    "maximum_absolute_difference_nits": 0.0,
+    "rmse_difference_nits": 0.0,
+    "producer_and_consumer_inputs_unchanged": true,
+    "outputs_finite": true,
+    "forward_reverse_reports_byte_exact": true,
+    "media_reads": 0,
+    "formal_network_reads": 0
+  },
+  "closed_route_preservation": {
+    "producer_leaf": "R1CS",
+    "producer_head": "46d1d35ac51cccde98d932ba051a60723cb33f44",
+    "evidence_sha256": "6ea3ba6eb4b5dc1e1d668ac35ee7f19628ce622789fb4b2da64110b06b7ac8ad",
+    "status": "FAIL_CLOSED",
+    "preserved_boundary": "P224 performs no analytic BT.2020/ST2084 encoding, no PQ comparison and no tolerance relaxation. The R1CS dark-tail and exact-black mismatch remains closed."
+  },
+  "execution_amendment": {
+    "initial_attempt_status": "STOPPED_BEFORE_TRANSFORM_EXECUTION_AND_BEFORE_REPORT",
+    "cause": "The direct script entry did not place the repository root on sys.path, so importing src failed before either runtime or transform was invoked.",
+    "correction": "Add the standard repository-root import bootstrap and restart both formal orders from zero.",
+    "scientific_protocol_changed": false,
+    "fixture_or_gate_changed": false,
+    "failed_attempt_report_count": 0,
+    "failed_attempt_transform_execution_count": 0
+  },
+  "decision": {
+    "result": "PASS_PRIVATE_R1CR_XYZ_CROSS_RUNTIME_COMPATIBILITY",
+    "opens": "Private compatibility of the exact R1CR ACEScg-to-P3-D65-1000nit XYZ-D65-nits reference transform between pinned OpenColorIO 2.5.0 and 2.5.2 runtimes.",
+    "does_not_open": [
+      "analytic or encoded PQ output",
+      "HDR display validation or image quality",
+      "encoded media or portable ABI",
+      "public package, schema, receipt or capability",
+      "stock evidence, reference matching or product admission"
+    ]
+  },
+  "claim_ceiling": "Independent private cross-runtime parity of the exact R1CR ACEScg-to-XYZ-D65-nits reference transform only. No analytic or encoded PQ adapter, display validation, image quality, encoded file, portable ABI, public package/schema/capability, stock evidence, reference matching or product admission."
+}

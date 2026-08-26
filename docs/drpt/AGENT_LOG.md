@@ -16198,3 +16198,26 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - This is not an updater or installer. In-place replacement/rollback, automatic
   input discovery, rerender/export and product release remain open. Evidence:
   `docs/evidence/U7_7B_RECIPE_RECOVERY_MATERIALIZATION_RESULT.json`.
+
+### 2026-08-26 - P224 closes R1CR consumer XYZ runtime compatibility
+
+- **Scope and correction:** P224 originally considered an analytic XYZ-to-PQ
+  semantic check. Producer R1CS then formally closed that exact adapter on its
+  dark-tail identity, so the uncommitted duplicate was discarded rather than
+  tolerance-rescued. P224 froze only the distinct OCIO 2.5.0-to-2.5.2 parity of
+  the unchanged R1CR ACEScg-to-P3-D65-1000nit XYZ-D65-nits builtins.
+- **Evidence:** exact producer source/evidence and 3,903,228-byte OCIO 2.5.0
+  wheel identities were bound before score. The independent consumer OCIO
+  2.5.2 execution matches all 986 float32 fixture rows exactly: identical
+  output SHA `374d8864...864a`, maximum/RMSE difference 0 nits. Forward/reverse
+  2,775-byte reports are byte-identical at `dbdb5a8f...1036`, stable identity
+  `f2153b1a...c426`.
+- **Execution amendment:** the first direct invocation stopped before transform
+  execution/report because the script entry lacked the repo-root import path.
+  The standard bootstrap was added at `a31e2d9a`, and both orders restarted
+  from zero without changing fixture, transform, runtime or gates.
+- **Boundary:** retain private XYZ reference-runtime compatibility only. R1CS
+  remains FAIL_CLOSED; P224 opens no analytic/encoded PQ path, display or image
+  quality, media/container, portable ABI, package/schema/capability, stock or
+  product mapping. Evidence:
+  `docs/evidence/P224_R1CR_ACES2_XYZ_RUNTIME_COMPATIBILITY_RESULT.json`.
