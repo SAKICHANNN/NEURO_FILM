@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import pytest
 
+from scripts.audit_p242_dng_profile_huesatmap_source import _has_sdk_license_grant
 from src.preprocess.dng_profile_huesatmap_audit import (
     DngProfileHueSatMapAuditError,
     parse_profile_huesatmap_exif,
@@ -37,6 +38,14 @@ def test_parse_explicit_3d_map() -> None:
     assert result.data1.shape == (2, 2, 2, 3)
     assert result.encoding == 1
     assert result.dynamic_range == 1
+
+
+def test_sdk_license_grant_requires_the_exact_authorized_actions() -> None:
+    grant = b"""Adobe grants a non-exclusive, worldwide, royalty free license to use,
+    reproduce, prepare derivative works from, publicly display, publicly perform,
+    distribute and sublicense the Software for any purpose."""
+    assert _has_sdk_license_grant(grant)
+    assert not _has_sdk_license_grant(grant.replace(b"sublicense", b"reference"))
 
 
 @pytest.mark.parametrize(

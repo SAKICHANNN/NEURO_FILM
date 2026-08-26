@@ -38,6 +38,15 @@ def _canonical(value: Any) -> bytes:
     ).encode("utf-8")
 
 
+def _has_sdk_license_grant(license_bytes: bytes) -> bool:
+    normalized = b" ".join(license_bytes.lower().split())
+    return (
+        b"royalty free license to use, reproduce, prepare derivative works from, "
+        b"publicly display, publicly perform, distribute and sublicense the software"
+        in normalized
+    )
+
+
 def run(config_path: Path, *, reverse: bool) -> dict[str, Any]:
     config = json.loads(config_path.read_text(encoding="utf-8"))
     if config.get("experiment_id") != "P242":
@@ -57,7 +66,7 @@ def run(config_path: Path, *, reverse: bool) -> dict[str, Any]:
         header = archive.read(authority["sdk_header_member"])
         license_bytes = archive.read(authority["sdk_license_member"])
     sdk_markers = {
-        "license_grant": b"royalty free license to use, reproduce, prepare derivative works" in license_bytes,
+        "license_grant": _has_sdk_license_grant(license_bytes),
         "source_zero_saturation_rule": b"Value scale for zero saturation entries must be 1.0" in source,
         "header_value_hue_saturation_order": b"value-hue-saturation order" in header,
     }
