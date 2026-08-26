@@ -19,10 +19,10 @@
     "producer_wheel_bytes": 740197,
     "producer_wheel_sha256": "7aa145813acfe10a83d6e89340349379828190b321608e69f2aee426e10c890b",
     "consumer_runner_path": "scripts/audit_p249_aces2065_openexr_exact_consumer_intake.py",
-    "consumer_runner_commit": "f49d21e1a82b188f177c4cfa3a3fb0f4414f1297",
-    "consumer_runner_git_blob": "871b33d21d21207c70aa10612aead8c653206fed",
-    "consumer_runner_bytes": 13464,
-    "consumer_runner_sha256": "0cb87398791e407003f455e74e1b24cad664cfdee1a73371cc71bd45b2e44f3f"
+    "consumer_runner_commit": "25b4da10f76a443dec4e7e9cb18b6c90bb09fa84",
+    "consumer_runner_git_blob": "ac110d293a6314394735f9b98a93010d4d6534ee",
+    "consumer_runner_bytes": 13791,
+    "consumer_runner_sha256": "3cb56a2133e734c1dd9db4ed7c3d1958f61d1deb635bbd32e345c2401df50601"
   },
   "expected": {
     "writer_id": "aces2065-ap0-d60-float32-zip-openexr-container-v1",
@@ -66,5 +66,6 @@
     "require_two_fresh_process_reports_exact": true
   },
   "stop_rule": "Any source, evidence, wheel, runtime, matrix, pixel, metadata, byte, atomicity, cleanup or replay mismatch closes this exact consumer intake without source copy, dependency substitution, transform change, metadata rewrite, tolerance relaxation or product mapping.",
+  "preformal_execution_correction": "The first controller invocation stopped before wheel install, writer execution or report creation because direct-script Python import resolution could not find the reused P246 helper under its package-qualified name. The additive runner correction selects the same helper through package or sibling import according to invocation context; producer source, wheel, probe, matrix, metadata and gates are unchanged.",
   "claim_ceiling": "Private Windows CPython consumer-side reproducibility of the exact producer R1DT AP1-to-AP0 writer/source/wheel handoff on one synthetic probe only. No neuro_film public API/dependency/package/schema/capability, SMPTE certification, arbitrary metadata/image support, large-image resource or quality result, cross-platform parity, renderer integration or product admission."
 }
