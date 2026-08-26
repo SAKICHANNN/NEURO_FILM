@@ -16729,6 +16729,23 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   controlled same-scene Ektar 100 targets, then independent Portra 400 and
   Velvia 50 confirmation. No calibration, preference or product claim opens.
 
+### 2026-08-26 - U7.3E passes a real offline desktop workspace
+
+- **Product leaf:** after RF3.D7 closed without controlled targets, reuse the
+  passed U7.3B history and U7.3C preview renderers instead of adding another
+  proxy experiment. A new local entry page exposes both existing surfaces and
+  preserves the three stock labels as `film-inspired/look-approximation`.
+- **Execution:** contract `10316cab`, implementation `b02b9c7c`, auditor
+  `3cd45a36`. Two fresh-process reports are byte-identical at
+  `f0312e49...741f4`, stable `c1803398...a63a`.
+- **Evidence:** all three recipe hashes and all four generated workspace files
+  are exact. Fresh Edge profiles at 1440px and 500px load the main landmark,
+  heading and native history/preview links; owned profiles are removed. Three
+  focused tests, Ruff, compile and diff checks pass.
+- **Boundary:** private offline workspace only. It starts no server, embeds no
+  source inputs, rerenders nothing and does not establish page-driven export,
+  installation, calibrated stock authenticity or public release.
+
 ### 2026-08-26 - U1.6G4J integrates staged density as a strict private recipe route
 
 - **Node and routing:** `ULT > U1.6 > U1.6G4J`; primary
