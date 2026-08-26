@@ -1,0 +1,47 @@
+{
+  "schema": "neuro_film.p220_interior_logit_hdr_portable_parity_contract.v1",
+  "experiment_id": "p220-interior-logit-hdr-portable-parity-v1",
+  "status": "frozen_before_consumer_native_implementation_or_execution",
+  "node": "ULT > paired-observation explicit operators > P220",
+  "bindings": {
+    "contract_path": "docs/planning/P220_INTERIOR_LOGIT_HDR_PORTABLE_PARITY_CONTRACT.md",
+    "contract_bytes": 4094,
+    "contract_sha256": "04a5587fe3b75560707b8ffb8fb8453f8f249cf29fb1e1d32b07d210e9cc98d0",
+    "producer_evidence_commit": "b57fd41ea7010354403734698636f714afca0fcf",
+    "producer_implementation_commit": "0a8d82c0e42667a338473b4852e83154629f4ce6",
+    "producer_operator_sha256": "6a84416c42047062ac7c6b4adab400d5c8317ae8aced7532c31a15cf749fc3f5",
+    "producer_report_sha256": "1622aa050602e876effd4f9c2e84cfdd0adca10268c8e05aa35fcda00b47b7ff",
+    "producer_stable_identity": "d124e6b3b6fe66b56720ad54a59c7c9bf3be728953f55e620c46c8712297596c",
+    "producer_evidence_sha256": "b0b175a30c9b447f3ce67d0c4bb240c9c50d45e68207b480438dc0b3655e6fa7",
+    "native_source_path": "native/color_match/nf_interior_logit_hdr_v1.c",
+    "native_header_path": "native/color_match/nf_interior_logit_hdr_v1.h",
+    "implementation_path": "src/eval/interior_logit_hdr_native_conformance.py",
+    "runner_path": "scripts/audit_p220_interior_logit_hdr_portable_parity.py",
+    "test_path": "tests/test_p220_interior_logit_hdr_portable_parity.py"
+  },
+  "format": {
+    "format_id": "zhuise.interior-logit-quantile-transport",
+    "version": 1,
+    "knot_count": 33,
+    "output_maximum": 10000.0,
+    "interior_epsilon_fraction": 0.0000152587890625,
+    "maximum_extrapolation_slope": 1.0,
+    "payloads": 4,
+    "probe_triplets": 257
+  },
+  "gates": {
+    "maximum_absolute_error_cdm2": 0.003,
+    "maximum_relative_error": 0.000003,
+    "require_msvc_and_llvm_mingw": true,
+    "require_two_independent_builds_per_compiler": true,
+    "require_forward_reverse_exact": true,
+    "require_identity_bytes_exact": true,
+    "require_inplace_exact": true,
+    "require_existing_boundaries_exact": true,
+    "require_zero_new_boundaries": true,
+    "require_failure_atomicity": true,
+    "maximum_target_or_application_pixel_reads": 0
+  },
+  "stop_rule": "Any gate failure closes the exact ABI without tolerance, libm, payload, probe, compiler, clipping, or gate rescue.",
+  "claim_ceiling": "Private Windows x64 arithmetic parity for four frozen R1CG interior-logit payloads only; no captured-HDR truth, arbitrary UltraHDR/gain-map, after-only inference, target runtime, public package/schema/capability, consumer/product/film/stock/preference/quality admission"
+}
