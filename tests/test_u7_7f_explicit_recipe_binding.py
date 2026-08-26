@@ -6,6 +6,7 @@ from pathlib import Path
 import pytest
 
 import src.inference.recipe_recovery_bundle as recovery
+from src.inference import bind_portable_recipe_recovery_bundle as public_binder
 from src.inference.portable_recipe_bundle import (
     bind_portable_recipe_recovery_bundle,
     build_portable_recipe_recovery_bundle,
@@ -28,6 +29,10 @@ def _bundle(tmp_path: Path) -> tuple[Path, dict]:
         bundle_path=bundle,
     )
     return bundle, source
+
+
+def test_explicit_binding_is_a_public_inference_callable() -> None:
+    assert public_binder is bind_portable_recipe_recovery_bundle
 
 
 def test_explicit_binding_publishes_strict_recipe_without_output(tmp_path: Path) -> None:

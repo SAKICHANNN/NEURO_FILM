@@ -10,6 +10,10 @@ from .interpretation import (
     InterpretationResult,
     execute_interpretation,
 )
+from .portable_recipe_bundle import (
+    bind_portable_recipe_recovery_bundle,
+    inspect_portable_recipe_recovery_bundle,
+)
 from .recipe_history import (
     RECIPE_HISTORY_SCHEMA_ID,
     RecipeHistoryError,
@@ -98,6 +102,7 @@ __all__ = [
     "TiledExecutionMetadata",
     "TiledRenderError",
     "atomic_write_json",
+    "bind_portable_recipe_recovery_bundle",
     "build_recipe_output_preview",
     "build_recipe_output_previews",
     "build_recipe_recovery_bundle",
@@ -106,6 +111,7 @@ __all__ = [
     "execute_interpretation",
     "execute_tiled_local_operator",
     "inspect_materialized_recipe_recovery_tree",
+    "inspect_portable_recipe_recovery_bundle",
     "inspect_recipe_recovery_bundle",
     "list_three_stock_looks",
     "load_render_profile",
