@@ -52,7 +52,12 @@
     "emulator_sha256": "7f101ca769c15e8b6311801c1487f28583ce643fa87d19a9e0da4cc230be7653",
     "adb_sha256": "957e46b8615f7af5b7292a2ddabe98d2e61940c3fb2b0545756507f080613e71",
     "avdmanager_sha256": "2307299b666c61610d1f35b36ea05c2d24c43ddec33e755d40a52797a21d2aa1",
-    "system_package_sha256": "c89cb2dd967b17420117f529192478a7f79c151699c07f0d10fed068f0f95ab3"
+    "system_package_sha256": "c89cb2dd967b17420117f529192478a7f79c151699c07f0d10fed068f0f95ab3",
+    "runtime_library": {
+      "ndk_relative_path": "toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/x86_64-linux-android/libc++_shared.so",
+      "bytes": 1617608,
+      "sha256": "3d8817f3a50515665b9152c620dedfd8509f84b68307f5f7ef20a75d9ae08f69"
+    }
   },
   "truth_table": [
     {"numeric": 0, "promoted": 0, "research": 0, "expected": "identity-fallback"},

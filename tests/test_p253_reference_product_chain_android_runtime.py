@@ -50,6 +50,14 @@ def test_contract_freezes_complete_truth_table_and_private_ceiling() -> None:
     )
     assert CONTRACT["runtime"]["api_level"] == 34
     assert CONTRACT["runtime"]["abi"] == "x86_64"
+    assert CONTRACT["runtime"]["runtime_library"] == {
+        "ndk_relative_path": (
+            "toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/"
+            "x86_64-linux-android/libc++_shared.so"
+        ),
+        "bytes": 1_617_608,
+        "sha256": ("3d8817f3a50515665b9152c620dedfd8509f84b68307f5f7ef20a75d9ae08f69"),
+    }
     assert "arm64-v8a link-only" in CONTRACT["claim_ceiling"]
     assert CONTRACT["decision_if_pass"].startswith("PASS_PRIVATE_")
 

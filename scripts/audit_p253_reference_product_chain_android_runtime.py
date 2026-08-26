@@ -146,7 +146,16 @@ def _adb_command(
     check: bool = True,
 ) -> subprocess.CompletedProcess[str]:
     return _command(
-        [adb, "-s", serial, "shell", remote, *arguments],
+        [
+            adb,
+            "-s",
+            serial,
+            "shell",
+            "env",
+            "LD_LIBRARY_PATH=/data/local/tmp",
+            remote,
+            *arguments,
+        ],
         cwd=adb.parent,
         environment=environment,
         timeout=90.0,
@@ -171,7 +180,9 @@ def _adb_hash_file(
         cwd=work,
         environment=environment,
     )
-    shell_command = f'{remote} hash "$(cat {remote_input})"'
+    shell_command = (
+        f'LD_LIBRARY_PATH=/data/local/tmp {remote} hash "$(cat {remote_input})"'
+    )
     return _command(
         [adb, "-s", serial, "shell", shell_command],
         cwd=work,
@@ -198,11 +209,11 @@ def _cleanup_owned_runtime(emulator_exe: Path, avd_name: str, port: int) -> bool
                 executable
                 and Path(executable).name.casefold().startswith("qemu-system-x86_64")
             )
-            if (
-                (is_launcher or is_qemu_child)
-                and avd_name in command_text
-                and str(port) in command_text
-            ):
+            launcher_match = (
+                is_launcher and avd_name in command_text and str(port) in command_text
+            )
+            qemu_match = is_qemu_child and avd_name in command_text
+            if launcher_match or qemu_match:
                 matches.append(process)
         except (OSError, psutil.Error):
             continue
@@ -301,6 +312,7 @@ def _run_runtime(
     sdk: Path,
     avd_home: Path,
     executable: Path,
+    runtime_library: Path,
     order: str,
     work: Path,
 ) -> dict[str, Any]:
@@ -347,6 +359,18 @@ def _run_runtime(
             )
             _command(
                 [adb, "-s", serial, "push", executable, remote],
+                cwd=work,
+                environment=environment,
+            )
+            _command(
+                [
+                    adb,
+                    "-s",
+                    serial,
+                    "push",
+                    runtime_library,
+                    "/data/local/tmp/libc++_shared.so",
+                ],
                 cwd=work,
                 environment=environment,
             )
@@ -504,10 +528,19 @@ def evaluate(
     emulator = sdk / "emulator/emulator.exe"
     adb = sdk / "platform-tools/adb.exe"
     system_package = sdk / runtime["system_package_relative_path"]
+    runtime_library_lock = runtime["runtime_library"]
+    runtime_library = ndk / runtime_library_lock["ndk_relative_path"]
     _validate_file(emulator, runtime["emulator_sha256"], "emulator")
     _validate_file(adb, runtime["adb_sha256"], "adb")
     _validate_file(avdmanager, runtime["avdmanager_sha256"], "avdmanager")
     _validate_file(system_package, runtime["system_package_sha256"], "system package")
+    _validate_file(
+        runtime_library,
+        runtime_library_lock["sha256"],
+        "Android C++ runtime library",
+    )
+    if runtime_library.stat().st_size != runtime_library_lock["bytes"]:
+        raise P253RuntimeError("Android C++ runtime library size mismatch")
     fixture_path = ROOT / contract["inputs"]["fixture"]["path"]
     fixture = json.loads(fixture_path.read_text(encoding="utf-8"))
     if avd_home.exists():
@@ -530,6 +563,7 @@ def evaluate(
                 sdk=sdk,
                 avd_home=avd_home,
                 executable=build_result["x86_executable"],
+                runtime_library=runtime_library,
                 order=order,
                 work=work,
             )
@@ -579,6 +613,7 @@ def evaluate(
             "adb_sha256": _sha256(adb),
             "avdmanager_sha256": _sha256(avdmanager),
             "system_package_sha256": _sha256(system_package),
+            "runtime_library_sha256": _sha256(runtime_library),
             "compiler": build_result["compiler"],
         },
         "builds": build_result["artifacts"],

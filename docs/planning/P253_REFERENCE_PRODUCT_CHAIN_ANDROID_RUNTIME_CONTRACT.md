@@ -92,3 +92,10 @@ The corrected harness pushes each fixed hex string as an owned temporary file
 and expands it only inside the device shell.  It also identifies both launcher
 and QEMU child processes by the unique AVD name and port before cleanup.  No
 canonical bytes, expected hashes, native source, or gates changed.
+
+The next corrected boot reached executable loading and stopped before fixture
+execution because the P31C C++ artifact dynamically links the NDK's
+`libc++_shared.so`.  P253 now hash-locks and pushes that exact r27d x86_64
+runtime library, then launches with an owned `/data/local/tmp` library path.
+This preserves the P31C executable and source rather than introducing a new
+static-link variant.
