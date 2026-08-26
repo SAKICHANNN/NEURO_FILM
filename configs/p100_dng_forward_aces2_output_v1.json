@@ -1,0 +1,40 @@
+{
+  "schema": "neuro_film.p100_dng_forward_aces2_output_contract.v1",
+  "experiment_id": "p100-dng-forward-aces2-output-v1",
+  "status": "frozen_before_implementation_or_formal_execution",
+  "node": "ULT > U1 > U1.3M/U1.4J / P100",
+  "bindings": {
+    "contract_path": "docs/planning/P100_DNG_FORWARD_ACES2_OUTPUT_CONFORMANCE_CONTRACT.md",
+    "contract_sha256": "44f6f4cb7b3e4825702ffab87690f051fc3b6328e15796a3dcaae619c89cce04",
+    "p98_config_path": "configs/p98_dng_forward_raster_v1.json",
+    "p98_config_sha256": "5fb17f82cfecdae40a4c812f2ea9c26641e91bcab43e17c8a6a4bc94b2f03c35",
+    "p98_evidence_path": "docs/evidence/P98_DNG_FORWARD_RASTER_RESULT.json",
+    "p98_evidence_sha256": "e73c99fe61781988f61a56fec46278d715431c04ec432173639deb16ba7cfac5",
+    "p98_implementation_path": "src/preprocess/dng_forward_raster.py",
+    "p98_implementation_sha256": "eb50a4b0957b88a40b2da6da929a90cc5d9e390d95589914b41e0ff0711091e9",
+    "aces_adapter_path": "src/preprocess/ocio_aces2_output.py",
+    "aces_adapter_sha256": "7ffe89bb448866574d0c6374020b79920d5e9b93d72ec84a29704c45f247378d",
+    "aces_evidence_path": "docs/evidence/U1_4E_WORKING_IMAGE_ACES2_ADAPTER_RESULT.json",
+    "aces_evidence_sha256": "d9876756e4548931f64cc875ee1c611e446c5e30086a83f2c66fb265337040fc",
+    "runner_path": "scripts/audit_p100_dng_forward_aces2_output.py",
+    "runner_sha256": "TO_BE_FROZEN",
+    "test_path": "tests/test_p100_dng_forward_aces2_output.py",
+    "test_sha256": "TO_BE_FROZEN"
+  },
+  "targets": [
+    "sdr_rec709",
+    "hdr_rec2020_pq"
+  ],
+  "gates": {
+    "required_rows": 5,
+    "required_targets": 2,
+    "require_source_hashes_unchanged": true,
+    "require_input_pixels_unchanged": true,
+    "require_finite_in_unit_outputs": true,
+    "require_target_hashes_distinct": true,
+    "require_official_direct_bytes_exact": true,
+    "require_forward_reverse_exact": true,
+    "require_two_fresh_process_reports_exact": true
+  },
+  "claim_ceiling": "Private exact-five-DNG Windows CPU P98 ForwardMatrix scene-linear Rec.2020 to pinned official ACES 2 SDR/HDR numerical-output composition only; no arbitrary DNG, sensor/IDT calibration, vendor/Adobe parity, photographic or colorimetric quality, P99 exposure safety, tone-map quality, HDR file/metadata, display calibration, default loader/renderer, public package/schema/capability, product, film, stock or preference admission"
+}
