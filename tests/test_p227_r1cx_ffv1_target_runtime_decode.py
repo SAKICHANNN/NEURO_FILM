@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+from pathlib import Path
 
 import pytest
 
@@ -30,3 +31,16 @@ def test_wrong_schema_fails_closed() -> None:
     config["schema"] = "wrong"
     with pytest.raises(RuntimeError, match="schema differs"):
         validate_config(config)
+
+
+def test_tracked_evidence_records_exact_target_decode_pass() -> None:
+    root = Path(__file__).resolve().parents[1]
+    evidence = json.loads(
+        (
+            root / "docs/evidence/P227_R1CX_FFV1_TARGET_RUNTIME_DECODE_RESULT.json"
+        ).read_text(encoding="utf-8")
+    )
+    assert evidence["status"] == "PASS_PRIVATE_R1CX_FFV1_TARGET_RUNTIME_DECODE"
+    assert evidence["consumer"]["reports_byte_exact"] is True
+    assert evidence["decode_facts"]["producer_normalized_sequence_exact"] is True
+    assert evidence["gates"]["single_video_stream_metadata_exact"] is True

@@ -1,0 +1,91 @@
+{
+  "schema": "neuro-film.p227-r1cx-ffv1-target-runtime-decode-evidence.v1",
+  "experiment_id": "P227",
+  "status": "PASS_PRIVATE_R1CX_FFV1_TARGET_RUNTIME_DECODE",
+  "date": "2026-08-26",
+  "consumer": {
+    "preregistration_commit": "466581de52c2822290a33063bb29796ee49d6e7b",
+    "implementation_commit": "87ee4dd68241368e3c1f47948d102df208a5b9ce",
+    "forward_report_sha256": "6b416cc1cec5a5bc484b2434ebe7f92c6a889896f25118656135ffddf390564b",
+    "reverse_report_sha256": "6b416cc1cec5a5bc484b2434ebe7f92c6a889896f25118656135ffddf390564b",
+    "report_bytes_each": 3694,
+    "reports_byte_exact": true,
+    "stable_identity": "sha256:71fd538ea53cf92538d7f49d589d99c07f0d22dff77d9e7b8ebb025b535ba2e7"
+  },
+  "producer_binding": {
+    "evidence_commit": "32472577fbb843b63308da3054f8f6682d99a2ba",
+    "implementation_commit": "cf134859f972ca3363d9e31fd4c9547c892e4176",
+    "evidence_sha256": "ac0007f682b95204af3bcaababc05159ede64907862e2fea578502a937e1955e",
+    "media_sha256": "58556d207db6bdf78db4d2b2938eb1f724cff770c569a93b4abb28d55457e80e",
+    "media_bytes_each": 940175,
+    "media_files": 2,
+    "decoded_sequence_f32le_sha256": "dd9e59bbb6ed8b9a11b4a4aaf2f536e44c287cd31e2596f6e3343e6801b2b06e",
+    "ffv1_configuration_record_sha256": "a36c017e4af67bf971e2f9bd27f9556afc081cce277da37cf4d9acc47e84d61e",
+    "ffv1_configuration_record_bytes": 201
+  },
+  "target_runtime": {
+    "provider": "installed Topaz Video FFmpeg bundle",
+    "ffmpeg_version": "8.1",
+    "ffmpeg_sha256": "0221f5ea646576bc8a36c8fdcd5180f0b8a1e39b016b8141072ecfc75792e8a2",
+    "ffmpeg_bytes": 479312,
+    "ffprobe_version": "8.1",
+    "ffprobe_sha256": "8c2e3ca7d75b1283702f441b50e66de780b182e2b0928ae0738d316b62d3c7b0",
+    "ffprobe_bytes": 212048,
+    "libavcodec": "62.29.100",
+    "libavformat": "62.13.100",
+    "libavutil": "60.27.100",
+    "libswscale": "9.6.100"
+  },
+  "media_facts": {
+    "container": "matroska,webm",
+    "stream_count": 1,
+    "codec": "ffv1",
+    "pixel_format": "gbrp16le",
+    "width": 256,
+    "height": 192,
+    "frame_rate": "24/1",
+    "frames": 6,
+    "color_primaries": "bt2020",
+    "color_transfer": "smpte2084",
+    "color_space": "gbr",
+    "color_range": "pc",
+    "bits_per_raw_sample": "16"
+  },
+  "decode_facts": {
+    "decoded_raw_bytes": 1769472,
+    "decoded_raw_sha256": "39d29c7cd3df08ec9936cde32303c533a757a9b9841df9806062c998b3449eb5",
+    "decoded_unique_16bit_codes": 10016,
+    "normalized_f32le_sha256": "dd9e59bbb6ed8b9a11b4a4aaf2f536e44c287cd31e2596f6e3343e6801b2b06e",
+    "minimum_code": 0.0,
+    "maximum_code": 0.7138170599937439,
+    "forward_reverse_media_decodes_exact": true,
+    "producer_normalized_sequence_exact": true,
+    "source_media_unchanged": true,
+    "temporary_residue_zero": true,
+    "network_reads": 0,
+    "repository_media_writes": 0
+  },
+  "gates": {
+    "producer_evidence_and_media_identities_exact": true,
+    "target_runtime_identities_exact": true,
+    "single_video_stream_metadata_exact": true,
+    "decoded_frame_count_geometry_exact": true,
+    "forward_reverse_decoded_uint16_bytes_exact": true,
+    "normalized_f32_sequence_sha256_matches_producer": true,
+    "all_codes_finite_in_0_1": true,
+    "forward_reverse_reports_exact": true,
+    "temporary_residue_zero": true
+  },
+  "decision": {
+    "result": "PASS_PRIVATE_R1CX_FFV1_TARGET_RUNTIME_DECODE",
+    "opens": "Private decode compatibility of the two exact R1CX FFV1 RGB16 Matroska identities under the frozen installed FFmpeg 8.1 runtime.",
+    "does_not_open": [
+      "arbitrary FFV1 or Matroska input",
+      "streaming or audio",
+      "HDR display or photographic quality",
+      "public FFmpeg dependency, package, schema, receipt or capability",
+      "commercial redistribution or product admission"
+    ]
+  },
+  "claim_ceiling": "Private installed-Windows FFmpeg 8.1 decode compatibility for two exact six-frame R1CX Matroska files only. No arbitrary media, streaming, audio, display/HDR quality, public dependency/package/schema/capability, commercial redistribution or product admission."
+}

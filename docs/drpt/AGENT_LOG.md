@@ -16294,6 +16294,27 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   capability, stock, reference-matching or product admission opens. Evidence:
   `docs/evidence/P226_R1CV_REC2100_PQ_RUNTIME_COMPATIBILITY_RESULT.json`.
 
+### 2026-08-26 - P227 confirms exact R1CX FFV1 target decoding
+
+- **Question:** Can an independently installed target decoder consume the two
+  exact producer R1CX FFV1 level-3/gbrp16le Matroska files while preserving
+  decoded RGB16 samples and BT.2020/PQ/full-range facts?
+- **Frozen runtime:** installed FFmpeg/ffprobe 8.1 executables are SHA-bound;
+  reported libraries are libavcodec 62.29.100, libavformat 62.13.100,
+  libavutil 60.27.100 and libswscale 9.6.100. Producer evidence, both exact
+  940,175-byte files and the 201-byte FFV1 configuration record are bound.
+- **Result:** both media decode to the same 1,769,472 `rgb48le` bytes at
+  `39d29c7c...9eb5`; their normalized float32 sequence exactly reproduces the
+  producer SHA `dd9e59bb...b06e`. Single-stream FFV1/gbrp16le, 256x192,
+  24 fps, BT.2020 primaries, SMPTE ST 2084 transfer, GBR matrix and full range
+  all match. Forward/reverse reports are byte exact at `6b416cc1...564b`,
+  stable `71fd538e...a2e7`; source media are unchanged and temp residue is zero.
+- **Boundary:** private compatibility for two exact six-frame files under this
+  installed Windows runtime only. No arbitrary media, streaming/audio, public
+  FFmpeg dependency/package/schema/capability, commercial redistribution,
+  display/image quality or product admission opens. Evidence:
+  `docs/evidence/P227_R1CX_FFV1_TARGET_RUNTIME_DECODE_RESULT.json`.
+
 ### 2026-08-26 - U7.3D adds exact export from bounded recipe history
 
 - **Implementation:** one validated recipe-history row can now be selected by
