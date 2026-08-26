@@ -17316,3 +17316,28 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   destination choice, installer/release, calibrated stocks or stock
   distinguishability. Do not extend it into a local server or custom URI
   handler without a separately justified product leaf.
+
+### 2026-08-27 - P250 closes BALit before payload access
+
+- **Node and routing:** `ULT > bounded paired-source gate > P250`, DRPT L2 /
+  Mode C. `dev-research-reliability` was the primary workflow;
+  `scientific-research-harness`, DRPT-BI, project-log and project-structure
+  disciplines were read-only governance. The leaf is metadata-only and does
+  not consume candidate 3.
+- **Frozen source and result:** only the official DOI
+  `10.21227/cdqg-q549` and IEEE DataPort record were requested without cookie,
+  credentials or login. The record confirms 1,000 Canon CR2 inputs / 21.5 GB
+  and 1,000 expert-retouched references / 26.84 GB. Two fresh complete reports
+  are byte-exact at 1,883 bytes and SHA `9299ec5e...28796`, scientific identity
+  `166f3d89...f20003`; each reads 114,634 metadata bytes and zero dataset-file,
+  thumbnail or image bytes.
+- **Decision and boundary:**
+  `NOT_READY_BALIT_SOURCE_RIGHTS_ACCESS_OR_GROUPING_GAP_NOT_SCIENTIFIC_RESULT`.
+  Login-gated payload access, absent explicit commercial-compatible data
+  rights, absent exact public manifest/checksums and absent scene/group roles
+  fail the frozen gates. A first transport process ended at a TLS handshake
+  before report creation and is retained as an infrastructure exclusion; the
+  runner, sources and gates were unchanged for the two successful exact runs.
+  Evidence commit `e05df4f0`; five focused tests, Ruff, compileall, JSON and
+  diff checks pass. No account, mirror, payload, pixels, A1/A4/A5, operator,
+  package/schema/capability or product mapping opens.

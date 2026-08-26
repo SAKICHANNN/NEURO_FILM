@@ -65,6 +65,20 @@ training or scores were read. The bounded candidate counter remains closed at
 engineering remain the legal mainline. Evidence:
 `docs/evidence/P225_LATEST_PAIRED_RETOUCH_SOURCE_AUDIT_RESULT.json`.
 
+**BALit paired-source gate, 2026-08-27:** P250 prospectively audits only the
+official IEEE DataPort DOI and record for BALit. The official record confirms
+a materially relevant paired observation: 1,000 Canon CR2 inputs (stated
+21.5 GB) and 1,000 expert-retouched references (stated 26.84 GB). It is not
+ready for the bounded product cycle: dataset files require login, while the
+public record supplies no explicit commercial-compatible data license, exact
+file manifest with content hashes, or scene/group identifiers with frozen
+train/validation/test roles. Two complete unauthenticated reports are
+byte-exact (`9299ec5e...28796`); each uses 114,634 metadata bytes and requests
+zero dataset files, thumbnails or images. This is an operational/source-rights
+gap, not a scientific candidate or data-quality failure; candidate 3 remains
+unopened. Evidence:
+`docs/evidence/P250_BALIT_PAIRED_RETOUCH_SOURCE_ELIGIBILITY_RESULT.json`.
+
 **Target-XMP semantics gate, 2026-08-26:** P232 tests whether the exact single
 public MMArt-PPR10K XMP sample already retained by the project can directly
 define a source-independent explicit operator. It cannot: only one authorized
