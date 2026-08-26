@@ -28,6 +28,14 @@ def sha256_bytes(value: bytes) -> str:
     return hashlib.sha256(value).hexdigest()
 
 
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for block in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
 def run_command(
     command: list[str], *, cwd: Path | None = None, check: bool = True
 ) -> subprocess.CompletedProcess[bytes]:
@@ -64,7 +72,9 @@ def _runtime_version(python: Path) -> str:
     return completed.stdout.decode("utf-8").strip()
 
 
-def inspect_identities(config: dict[str, Any], producer_python: Path) -> dict[str, Any]:
+def inspect_identities(
+    config: dict[str, Any], producer_python: Path, producer_wheel: Path
+) -> dict[str, Any]:
     producer = config["producer"]
     repository = Path(producer["repository"])
     if not repository.is_dir():
@@ -97,6 +107,8 @@ def inspect_identities(config: dict[str, Any], producer_python: Path) -> dict[st
             ROOT, "hash-object", config["consumer"]["source_path"]
         ),
         "producer_opencolorio_version": _runtime_version(producer_python),
+        "producer_opencolorio_wheel_bytes": producer_wheel.stat().st_size,
+        "producer_opencolorio_wheel_sha256": sha256_file(producer_wheel),
         "consumer_opencolorio_version": OCIO_VERSION,
     }
 
@@ -110,6 +122,8 @@ def identities_exact(config: dict[str, Any], observed: dict[str, Any]) -> bool:
         and observed["producer_source_blob"] == producer["source_blob"]
         and observed["producer_evidence_blob"] == producer["evidence_blob"]
         and observed["producer_evidence_sha256"] == producer["evidence_sha256"]
+        and observed["producer_opencolorio_wheel_sha256"]
+        == producer["opencolorio_wheel_sha256"]
         and observed["consumer_source_blob"] == consumer["source_blob"]
     )
 
@@ -191,10 +205,15 @@ Path(facts_path).write_text(json.dumps({
     return canonical, facts
 
 
-def execute(order: str, producer_python: Path, config_path: Path = CONFIG) -> dict[str, Any]:
+def execute(
+    order: str,
+    producer_python: Path,
+    producer_wheel: Path,
+    config_path: Path = CONFIG,
+) -> dict[str, Any]:
     config = json.loads(config_path.read_text(encoding="utf-8"))
     validate_config(config)
-    observed = inspect_identities(config, producer_python)
+    observed = inspect_identities(config, producer_python, producer_wheel)
     exact_identities = identities_exact(config, observed)
     if not exact_identities:
         raise RuntimeError("P224 frozen producer or consumer identity differs")
@@ -308,10 +327,16 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--order", choices=("forward", "reverse"), required=True)
     parser.add_argument("--producer-python", type=Path, required=True)
+    parser.add_argument("--producer-wheel", type=Path, required=True)
     parser.add_argument("--config", type=Path, default=CONFIG)
     parser.add_argument("--output", type=Path, required=True)
     arguments = parser.parse_args()
-    report = execute(arguments.order, arguments.producer_python, arguments.config)
+    report = execute(
+        arguments.order,
+        arguments.producer_python,
+        arguments.producer_wheel,
+        arguments.config,
+    )
     arguments.output.parent.mkdir(parents=True, exist_ok=True)
     temporary = arguments.output.with_suffix(arguments.output.suffix + ".tmp")
     temporary.write_bytes(canonical_bytes(report))

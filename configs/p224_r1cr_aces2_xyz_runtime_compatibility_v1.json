@@ -13,6 +13,7 @@
     "evidence_blob": "fc5e64260baf42a253e678b9e8913561d0b80203",
     "evidence_sha256": "d6b633b5b6c0bec8be04e616674711d74a877fe9c09a95123a28d531dfe1251e",
     "required_opencolorio_version": "2.5.0",
+    "opencolorio_wheel_sha256": "c45b7f4c3fc464f52b0986fd28e89ab121ce2abe3d181e9b2918cecc2e0b9277",
     "scene_to_reference_builtin": "ACEScg_to_ACES2065-1",
     "output_builtin": "ACES-OUTPUT - ACES2065-1_to_CIE-XYZ-D65 - HDR-1000nit-P3-D65_2.0",
     "display_reference_scale_nits": 100.0

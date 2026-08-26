@@ -22,6 +22,7 @@ def test_contract_is_frozen_after_r1cs_and_excludes_analytic_pq_rescue() -> None
 def test_contract_binds_distinct_producer_and_consumer_runtime_versions() -> None:
     config = json.loads(CONFIG.read_text(encoding="utf-8"))
     assert config["producer"]["required_opencolorio_version"] == "2.5.0"
+    assert len(config["producer"]["opencolorio_wheel_sha256"]) == 64
     assert config["consumer"]["required_opencolorio_version"] == "2.5.2"
     assert config["producer"]["output_builtin"].endswith("1000nit-P3-D65_2.0")
 
