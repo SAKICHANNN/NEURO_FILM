@@ -1,0 +1,37 @@
+{
+  "schema_version": "neuro-film.u7-6h-three-stock-phase-rss-attribution-evidence.v1",
+  "node_id": "U7.6H",
+  "bindings": {
+    "contract_commit": "8054755b",
+    "config_sha256": "3ee7e24ede4bb333f387bf515df5b5903308d0caaf0c3d87cf38c04509b7c450",
+    "audit_sha256": "d5b1c816048b10eceefe30a6577fd2323182f4719672d303361ea81d0c0fae80",
+    "formal_execution_head": "f0e0138b080f56a7345fc004b0b1b6a273edc8ba",
+    "formal_report_sha256": "36406c936516e21c6290cab8ae066c49d84d0700b1fa139b8af078b83eb2efee"
+  },
+  "scientific_identity": "0247f9524603b12ff565e3fa63351c3d9c624fc3398ddc01a9904c275940180b",
+  "observations": {
+    "three_encoded_outputs_repeat_exact": true,
+    "three_decoded_sample_arrays_repeat_exact": true,
+    "three_icc_fingerprints_repeat_exact": true,
+    "three_normalized_recipe_semantics_repeat_exact": true,
+    "ordered_stock_ids_exact": true,
+    "peak_process_tree_rss_repeat_ratio": 1.00056678893875,
+    "run_1_peak_process_tree_rss_bytes": 1916157952,
+    "run_2_peak_process_tree_rss_bytes": 1915072512,
+    "run_1_dominant_phase": "input_decode_and_orchestration",
+    "run_2_dominant_phase": "source_context",
+    "run_1_source_context_peak_bytes": 1915281408,
+    "run_2_source_context_peak_bytes": 1915072512,
+    "run_1_orchestration_peak_bytes": 1916157952,
+    "run_2_orchestration_peak_bytes": 1914929152,
+    "maximum_render_phase_peak_bytes": 1290616832,
+    "maximum_encode_phase_peak_bytes": 1261387776,
+    "owned_residue_count": 0
+  },
+  "failed_gates": [
+    "dominant_phase_repeat_exact"
+  ],
+  "decision": "FAIL_CLOSED_UNSTABLE_SINGLE_PHASE_ATTRIBUTION",
+  "interpretation": "The unchanged product repeats every durable output identity and overall peak within 0.057%, but the maximum label alternates between source-context construction and its immediately adjacent orchestration boundary with only 0.09-0.12% separation. The frozen exact dominant-phase gate therefore fails. Both runs independently bound all per-stock render phases at or below 1.291 GB and PNG encoding at or below 1.262 GB, while the source-context/orchestration boundary reaches approximately 1.915 GB. This is useful localization but not permission to select one favorable phase or open another tuned performance leaf. U7.6G already showed that full Lab memory mapping does not reduce this high-water mark.",
+  "claim_ceiling": "Negative local Windows/Python 24MP phase-attribution evidence only; no product performance improvement, stock separation, calibration or release claim."
+}

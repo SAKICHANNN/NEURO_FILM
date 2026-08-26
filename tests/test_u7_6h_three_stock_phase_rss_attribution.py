@@ -7,6 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/u7_6h_three_stock_phase_rss_attribution_v1.json"
 SCRIPT = ROOT / "scripts/audit_u7_6h_three_stock_phase_rss_attribution.py"
+EVIDENCE = ROOT / "docs/evidence/U7_6H_THREE_STOCK_PHASE_RSS_ATTRIBUTION_RESULT.json"
 
 
 def _module():
@@ -53,3 +54,21 @@ def test_evaluator_requires_repeat_exact_dominant_phase(tmp_path: Path) -> None:
     assert module.evaluate_rows(rows, config["gates"])["decision"] == "PASS"
     rows[1]["dominant_phase"] = "encode_png16"
     assert module.evaluate_rows(rows, config["gates"])["decision"] == "FAIL_CLOSED"
+
+
+def test_formal_evidence_closes_unstable_single_phase_attribution() -> None:
+    evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+    assert evidence["decision"] == "FAIL_CLOSED_UNSTABLE_SINGLE_PHASE_ATTRIBUTION"
+    assert evidence["scientific_identity"] == (
+        "0247f9524603b12ff565e3fa63351c3d9c624fc3398ddc01a9904c275940180b"
+    )
+    observations = evidence["observations"]
+    assert observations["three_encoded_outputs_repeat_exact"] is True
+    assert observations["run_1_dominant_phase"] != observations[
+        "run_2_dominant_phase"
+    ]
+    assert observations["peak_process_tree_rss_repeat_ratio"] <= 1.10
+    assert observations["maximum_render_phase_peak_bytes"] < observations[
+        "run_2_source_context_peak_bytes"
+    ]
+    assert observations["owned_residue_count"] == 0
