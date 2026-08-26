@@ -16976,6 +16976,34 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   quality, arbitrary DNG support, RAW rendering, package/schema/capability,
   film-stock or product state.
 
+### 2026-08-26 - P243 matches Adobe HueSatMap arithmetic but fails fresh-build identity
+
+- **Frozen leaf:** `ULT > mature RAW explicit mechanisms > P243`; contract
+  `34495bff` binds the Adobe SDK, MSVC toolchain, two P242 source tables, a
+  17x17x17 linear ProPhoto RGB cube, candidate arithmetic order, absolute
+  parity limits, fresh-build binary identity and complete-report replay before
+  implementation. The candidate and direct SDK wrapper are commit `990f9f53`.
+- **Result:** both independent SDK builds execute all Data1/Data2 branches of
+  the 6x6x3 and 90x30x1 maps. Across 4,913 probes per branch, candidate versus
+  SDK max error, RMSE and identity-map error are all exactly zero; outputs are
+  finite and in [0,1]. The scientific payload is exact at SHA-256
+  `6233e28b...c36f9`.
+- **Decisive failure:** the two 13,408,256-byte MSVC executables have different
+  hashes (`e31b38f1...e6836` versus `b90b9120...86623`), so the 1,500-byte
+  complete reports differ (`40b6737c...f7a08` versus
+  `5eb39d0a...0310b`). The preregistered binary and report replay gates fail.
+  Status is `FAIL_CLOSED_FRESH_BUILD_BINARY_REPRODUCIBILITY`; do not remove PE
+  fields, normalize paths or relax the gate after observing the result.
+- **Corrections and evidence:** two batch-invocation attempts stopped before
+  oracle output; a third built the SDK but stopped before source-table access
+  on a wrong directory name. Commits `92316ba7`, `445bf399` and `b2fc607b`
+  correct only those execution boundaries before the two complete runs.
+  Evidence commit `dd54ed4a`; 12 P242/P243 tests, Ruff, JSON and diff checks
+  pass. Evidence: `docs/evidence/P243_DNG_PROFILE_HUESATMAP_SDK_ORACLE_RESULT.json`.
+  RAW downloads, pixel decodes, full DNG renders and quality scores remain zero.
+  Exact arithmetic is retained only as private mechanism evidence, not full
+  DNG conformance, arbitrary RAW support or product state.
+
 ### 2026-08-26 - SF3.A3E closes the bounded Commons Ektar companion route
 
 - **Node and DoR:** `ULT > SF3 > SF3.A3E`; use only the exact 24 already
