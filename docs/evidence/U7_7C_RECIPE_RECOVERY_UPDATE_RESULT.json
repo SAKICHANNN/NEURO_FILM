@@ -1,0 +1,47 @@
+{
+  "schema": "kmcfm.u7-7c-recipe-recovery-update-evidence.v1",
+  "node": "U7.7C",
+  "date": "2026-08-26",
+  "status": "PASS_PRIVATE_ATOMIC_RECIPE_RECOVERY_UPDATE",
+  "contract": {
+    "path": "configs/u7_7c_recipe_recovery_update_v1.json",
+    "sha256": "e995e415e9378785866fa1055fbe61679def943b38aa847250a05020091208ae",
+    "commit": "11e3a60eee0eb8821e81e185e5ef0802456d6476"
+  },
+  "implementation": {
+    "commit": "3a8a7d6aff99374fcad84085946f6be9e19f4e29",
+    "module_sha256": "ade3f0375dceb519081c64335e8e221ec08707a66ea8a00380614fde062210cd",
+    "public_export_sha256": "e704be49ea2b4e5df743bd4d7fb000e2e868f836bc0f1e2af926c786947b70a7",
+    "test_sha256": "67b14a6695351dd0339c5329446b40fd0dc2d751a1f7e64212e4c8fe2948dcab"
+  },
+  "audit": {
+    "commit": "b59628e060b15bc7980825e9cb5ab258af848cd1",
+    "script_sha256": "a248f14ab4744148d8c37ce5a6b614b230539f9e8f500e0cf8b439d3b19e0fe9",
+    "forward_report": "outputs/eval/u7_7c_recipe_recovery_update_v1/forward.json",
+    "reverse_report": "outputs/eval/u7_7c_recipe_recovery_update_v1/reverse.json",
+    "report_sha256": "3db24ea082581697b77a5d7fcd7c8587008cb0ce2ced2bd44de2b156cc55b851",
+    "reports_byte_exact": true,
+    "stable_id": "b1397710dab51bd7dac40c9dace943acbbccfe82202051f7262d720d6555704d"
+  },
+  "observations": {
+    "ordered_old_to_new_stock_pairs": 6,
+    "all_updated_member_bytes_exact": true,
+    "all_update_receipts_bind_previous_and_updated_tree_hashes": true,
+    "tampered_existing_tree_rejected_before_swap": true,
+    "injected_post_backup_publication_failure_observed": true,
+    "injected_failure_restores_previous_tree_exact": true,
+    "source_bundles_unchanged": true,
+    "owned_stage_and_backup_residue_zero": true,
+    "input_pixel_reads": 0,
+    "output_pixel_reads": 0,
+    "network_reads": 0
+  },
+  "verification": {
+    "adjacent_tests": "44 passed",
+    "ruff_pass": true,
+    "py_compile_pass": true,
+    "diff_check_pass": true
+  },
+  "decision": "Retain the private atomic update boundary for the three existing Look Approximation recovery bundles. Installer integration, update discovery and release remain separate; controlled stock evidence remains the scientific mainline.",
+  "claim_ceiling": "Private local atomic replacement of one validated no-pixel Look Approximation recovery tree by another validated bundle. No installer, automatic update discovery, input recovery, rerender/export authorization, telemetry, calibrated stock or product-release claim."
+}
