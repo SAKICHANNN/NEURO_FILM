@@ -19,6 +19,7 @@ from src.inference.recipe_export_request import (
 
 ROOT = Path(__file__).resolve().parents[1]
 PROFILE = ROOT / "configs/render_profiles/safe_rich_v1.json"
+EVIDENCE = ROOT / "docs/evidence/U7_3F_OFFLINE_RECIPE_EXPORT_REQUEST_RESULT.json"
 
 
 @pytest.fixture()
@@ -176,3 +177,20 @@ def test_cli_builds_and_executes_request(history: dict[str, object], tmp_path: P
     )
     assert execute.returncode == 0, execute.stderr
     assert destination.read_bytes() == history["expected"]
+
+
+def test_formal_evidence_binds_all_three_look_approximation_outputs() -> None:
+    evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+    assert evidence["status"] == "PASS_PRIVATE_OFFLINE_EXPORT_REQUEST_BRIDGE"
+    assert evidence["formal_reports"]["both_status"] == "PASS"
+    assert evidence["portable_request_set"]["request_count"] == 3
+    assert evidence["portable_request_set"]["machine_absolute_paths_present"] is False
+    assert {row["style"] for row in evidence["rows"]} == {
+        "ektar_100",
+        "portra_400",
+        "velvia_50",
+    }
+    assert all(row["forward_reverse_output_exact"] for row in evidence["rows"])
+    assert all(evidence["gates"].values())
+    assert evidence["scientific_boundary"]["stock_evidence_added"] is False
+    assert evidence["scientific_boundary"]["stock_distinguishability_changed"] is False

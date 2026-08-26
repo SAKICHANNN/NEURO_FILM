@@ -1,0 +1,68 @@
+{
+  "schema": "kmcfm.u7-3f-offline-recipe-export-request-evidence.v1",
+  "node": "U7.3F",
+  "status": "PASS_PRIVATE_OFFLINE_EXPORT_REQUEST_BRIDGE",
+  "commits": {
+    "implementation": "6d87cbc7",
+    "contract": "57a9494a",
+    "formal_runner": "259583537223deb0b6301756921f32e4821a50d5"
+  },
+  "contract_sha256": "64cb48f211958d1fac8424a21330b4a94f847383310c78bb1dcd1c2be0b886c7",
+  "formal_reports": {
+    "forward_sha256": "361b8401da225463769d270ea3f4d7dd8b62f37680ed46b95707a2204928af6d",
+    "reverse_sha256": "7349407a70dd6f0589f1cde6dff8d9afccb123e9fe3d674d14f53014011c04d1",
+    "both_status": "PASS",
+    "stderr_bytes": 0
+  },
+  "portable_request_set": {
+    "request_count": 3,
+    "receipt_sha256": "7c6fb750b9738cb1579793ff7787dcc044af6d5593376c613e6e82542d82777f",
+    "index_html_sha256": "805bfb22479c0b0767a0934551fa92a41add69e361b965d436285741f2d8ed1b",
+    "forward_reverse_exact": true,
+    "machine_absolute_paths_present": false,
+    "pixel_reads_during_request_build": 0,
+    "network_reads": 0
+  },
+  "rows": [
+    {
+      "style": "ektar_100",
+      "recipe_sha256": "b92a75ed8ca8349df562153aad85df26db33ab0992d6bc07503033245ac7d0b8",
+      "request_sha256": "9c638584aa0917a82e1a539c8da84bfc811163735fc1269eeeef7aee92fae7f4",
+      "output_sha256": "6c5c8b9c04fea4f265e1b742ce568b13a34d72462f7b6466f29685dabd03045e",
+      "forward_reverse_output_exact": true
+    },
+    {
+      "style": "portra_400",
+      "recipe_sha256": "b6dece02a1c6e5cee9569424ae8fd53fdad8f4ee619753f6d81a2b2dea0d0fb3",
+      "request_sha256": "55e5917b2257e85e6e12ceac7caaed00307ae2d705166513baf7322e2d3c7a95",
+      "output_sha256": "2ff70587520b73634e9096ff297eb390edde7e891bb7634f3cec6c707a119844",
+      "forward_reverse_output_exact": true
+    },
+    {
+      "style": "velvia_50",
+      "recipe_sha256": "254e5c8ddf8703e2689975590531b80ca4e40bde1a37fcd0c382f33e2a42cf25",
+      "request_sha256": "dcaf6b96bb493d0e9f3e2eaf4b09b619af0d240febc704e9d1edb138f12445b5",
+      "output_sha256": "6f405513fcb72f27350c9c42fc238de6daa0ba3584987537431a17a146982732",
+      "forward_reverse_output_exact": true
+    }
+  ],
+  "gates": {
+    "request_set_bytes_exact_between_runs": true,
+    "request_files_contain_no_absolute_or_machine_paths": true,
+    "request_recipe_sha256_matches_frozen_row": true,
+    "all_output_sha256_match_frozen_u7_3d": true,
+    "forward_reverse_output_bytes_exact": true,
+    "existing_history_outputs_unread": true,
+    "request_and_recipe_drift_fail_before_render": true,
+    "scratch_empty": true
+  },
+  "scientific_boundary": {
+    "stock_evidence_added": false,
+    "stock_distinguishability_changed": false,
+    "calibrated_stock_claim": false,
+    "algorithm_or_profile_changed": false,
+    "u7_2c_separation_failure_changed": false
+  },
+  "decision": "retain_private_offline_request_to_existing_strict_replay_bridge",
+  "claim_ceiling": "Private offline user-selection bridge for three existing film-inspired/look-approximation recipes. No controlled stock evidence, calibrated stock, automatic browser execution, installer, product release or population preference claim."
+}
