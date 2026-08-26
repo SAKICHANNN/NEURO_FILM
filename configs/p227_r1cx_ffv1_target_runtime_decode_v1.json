@@ -1,0 +1,72 @@
+{
+  "schema": "neuro-film.p227-r1cx-ffv1-target-runtime-decode-contract.v1",
+  "experiment_id": "P227",
+  "status": "FROZEN_AFTER_R1CX_PASS_BEFORE_TARGET_PIXEL_DECODE",
+  "question": "Can an independently installed FFmpeg 8.1 target runtime decode the two exact producer R1CX FFV1 level-3 gbrp16le Matroska files with exact BT.2020/PQ/full-range facts and reproduce the producer's normalized RGB frame bytes?",
+  "producer": {
+    "repository": "C:/Users/hhvrf/Documents/追色",
+    "evidence_commit": "32472577fbb843b63308da3054f8f6682d99a2ba",
+    "implementation_commit": "cf134859f972ca3363d9e31fd4c9547c892e4176",
+    "evidence_path": "docs/evidence/R1CX_ACES2_REC2100_PQ_FFV1_RGB16_MEDIA_RESULT.json",
+    "evidence_sha256": "ac0007f682b95204af3bcaababc05159ede64907862e2fea578502a937e1955e",
+    "media": [
+      "outputs/eval/r1cx_cf134859_forward.mkv",
+      "outputs/eval/r1cx_cf134859_reverse.mkv"
+    ],
+    "media_sha256": "58556d207db6bdf78db4d2b2938eb1f724cff770c569a93b4abb28d55457e80e",
+    "media_bytes_each": 940175,
+    "decoded_sequence_f32le_sha256": "dd9e59bbb6ed8b9a11b4a4aaf2f536e44c287cd31e2596f6e3343e6801b2b06e",
+    "frames": 6,
+    "width": 256,
+    "height": 192,
+    "frame_rate": "24/1",
+    "codec": "ffv1",
+    "pixel_format": "gbrp16le",
+    "color_primaries": "bt2020",
+    "color_transfer": "smpte2084",
+    "color_space": "gbr",
+    "color_range": "pc",
+    "bits_per_raw_sample": "16",
+    "extradata_bytes": 201,
+    "extradata_sha256": "a36c017e4af67bf971e2f9bd27f9556afc081cce277da37cf4d9acc47e84d61e"
+  },
+  "target_runtime": {
+    "provider": "installed Topaz Video FFmpeg bundle",
+    "ffmpeg_path": "C:/Program Files/Topaz Labs LLC/Topaz Video/ffmpeg.exe",
+    "ffmpeg_version": "8.1",
+    "ffmpeg_sha256": "0221f5ea646576bc8a36c8fdcd5180f0b8a1e39b016b8141072ecfc75792e8a2",
+    "ffmpeg_bytes": 479312,
+    "ffprobe_path": "C:/Program Files/Topaz Labs LLC/Topaz Video/ffprobe.exe",
+    "ffprobe_version": "8.1",
+    "ffprobe_sha256": "8c2e3ca7d75b1283702f441b50e66de780b182e2b0928ae0738d316b62d3c7b0",
+    "ffprobe_bytes": 212048,
+    "decode_output": "rgb48le rawvideo in system temp",
+    "threads": 1
+  },
+  "gates": {
+    "producer_evidence_and_media_identities_exact": true,
+    "target_runtime_identities_exact": true,
+    "single_video_stream_metadata_exact": true,
+    "decoded_frame_count_geometry_exact": true,
+    "forward_reverse_decoded_uint16_bytes_exact": true,
+    "normalized_f32_sequence_sha256_matches_producer": true,
+    "all_codes_finite_in_0_1": true,
+    "fresh_process_forward_reverse_reports_exact": true,
+    "temporary_residue_zero": true
+  },
+  "execution": {
+    "outer_orders": ["forward", "reverse"],
+    "fresh_process_per_outer": true,
+    "source_media_read_only": true,
+    "system_temp_decode_only": true,
+    "network_reads": 0,
+    "media_writes_to_repository": 0,
+    "source_media_mutation": 0
+  },
+  "decision": {
+    "pass": "Retain private target-runtime decoding compatibility for the two exact R1CX media identities only.",
+    "fail": "Close this exact FFmpeg target-runtime path without changing decoder, pixel format, metadata expectations or producer media.",
+    "invalid": "If any evidence, media or target-runtime identity differs, report infrastructure-invalid before pixel interpretation."
+  },
+  "claim_ceiling": "Private installed-Windows FFmpeg 8.1 decode compatibility for two exact six-frame R1CX Matroska files only. No arbitrary media, streaming, audio, display/HDR quality, public dependency/package/schema/capability, commercial redistribution or product admission."
+}
