@@ -1,0 +1,100 @@
+{
+  "schema": "neuro-film.rf3-d7-portra-ektar-external-alignment-evidence.v1",
+  "experiment_id": "RF3.D7",
+  "node": "ULT > RF3 > RF3.D7",
+  "status": "FAIL_CLOSED",
+  "decision": "record_label_alignment_gap_and_do_not_tune_without_controlled_stock_targets",
+  "bindings": {
+    "contract": {
+      "path": "configs/rf3_d7_portra_ektar_external_alignment_v1.json",
+      "bytes": 3017,
+      "sha256": "23a01612fbd5f40efadf4308bd2afbf86b712f7abf51072bfcf645dbdcc6df4e",
+      "freeze_commit": "e31ddbd6"
+    },
+    "implementation": {
+      "path": "src/eval/portra_ektar_external_alignment.py",
+      "bytes": 9373,
+      "sha256": "3973bea4cd520dbcd6bdb9a5e0e7d40011328f777453124a67407f6e2435aa31",
+      "commit": "deae0d7a"
+    },
+    "runner": {
+      "path": "scripts/run_rf3_d7_portra_ektar_external_alignment.py",
+      "bytes": 1039,
+      "sha256": "841c67f96dc8dfdddb9c5ed4b0c4e47760276feee811d6a9bcde4c37f20a291"
+    },
+    "tests": {
+      "path": "tests/test_rf3_d7_portra_ektar_external_alignment.py",
+      "bytes": 721,
+      "sha256": "407bed0c89305f59b6223fac4753b7516fcb5a186759c2d02edc83667e0dd78a"
+    },
+    "formal_result": {
+      "path": "outputs/eval/rf3_d7_portra_ektar_external_alignment_v1/forward.json",
+      "bytes": 9486,
+      "sha256": "4cd273cc0a7e383bf4c10c93c3ab035ce6a5e7b6f6d1940f5abf7fa43d413392"
+    }
+  },
+  "execution": {
+    "fresh_processes": 2,
+    "orders": [
+      "canonical",
+      "reverse"
+    ],
+    "reports_byte_exact": true,
+    "report_sha256": "4cd273cc0a7e383bf4c10c93c3ab035ce6a5e7b6f6d1940f5abf7fa43d413392",
+    "stable_evidence_id": "e467c53b31c6bf064223f9bb1e9a84fcadca08c6339615464b19bea8212cc1c0"
+  },
+  "population": {
+    "shared_display_srgb_inputs": 9,
+    "arms": 18,
+    "stocks": [
+      "kodak_portra_400",
+      "kodak_ektar_100"
+    ],
+    "external_control": "spektrafilm_v1_fixed_e0",
+    "excluded": "The external simulator exposes Velvia 100, not Velvia 50, so it is not used as a substitute for the project's Velvia 50 target."
+  },
+  "metrics": {
+    "same_name_arm_wins": 9,
+    "required_same_name_arm_wins": 14,
+    "samples_with_both_same_name_wins": 0,
+    "required_samples_with_both_same_name_wins": 7,
+    "maximum_current_output_boundary_fraction": 0.0,
+    "portra_400": {
+      "same_name_wins": 9,
+      "median_same_name_delta_e76": 7.1599440574646,
+      "median_cross_name_delta_e76": 7.939953327178955,
+      "median_cross_minus_same_margin": 0.8998708724975586
+    },
+    "ektar_100": {
+      "same_name_wins": 0,
+      "median_same_name_delta_e76": 8.495599746704102,
+      "median_cross_name_delta_e76": 7.422996520996094,
+      "median_cross_minus_same_margin": -0.9998197555541992
+    },
+    "median_current_portra_ektar_separation_delta_e76": 1.108736276626587,
+    "median_external_portra_ektar_separation_delta_e76": 1.4706928730010986,
+    "samples_where_current_separation_is_below_external": 7
+  },
+  "gates": {
+    "all_sources_and_external_outputs_rehash": true,
+    "maximum_current_output_boundary_fraction": true,
+    "minimum_same_name_arm_wins": false,
+    "minimum_samples_with_both_same_name_wins": false
+  },
+  "interpretation": {
+    "established": [
+      "the current Portra 400 Look Approximation is closer to the same-name external control than to the Ektar external control on all nine shared inputs",
+      "the current Ektar 100 Look Approximation is closer to the Portra external control than to the same-name Ektar control on all nine shared inputs",
+      "both current outputs remain finite and interior under the frozen boundary check",
+      "the current Portra/Ektar pair is less separated than the external pair on seven of nine shared inputs"
+    ],
+    "not_established": [
+      "that SpektraFilm is photographic truth, a calibrated stock response or a permissible teacher",
+      "that the Portra profile is authentic merely because its relative label aligns with this one control",
+      "that Ektar should be tuned toward the external control without controlled same-scene photographic targets",
+      "Velvia 50 alignment, population preference, calibrated multi-stock completion or product promotion"
+    ]
+  },
+  "next_mainline": "Keep the profiles labeled Look Approximation, do not tune to the noncommercial external control, and prioritize controlled same-scene Ektar 100 observations followed by independent Portra 400 and Velvia 50 confirmation.",
+  "claim_ceiling": "Relative agreement of two existing Look Approximation outputs with one noncommercial external physical-inspired simulator on nine shared display-sRGB inputs. No film truth, calibrated stock response, target closeness, population preference, external-code integration, Velvia 50 evidence or product promotion."
+}
