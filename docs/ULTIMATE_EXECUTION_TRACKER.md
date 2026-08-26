@@ -2298,3 +2298,16 @@ median process-tree peak RSS from `610,209,792` to `533,225,472` bytes (ratio
 `.87384`). This opens only file-level batch integration; controlled stock
 evidence, U7.2C separation and calibration remain unchanged. Evidence:
 `docs/evidence/U7_6A_THREE_STOCK_SHARED_CONTEXT_RESULT.json`.
+
+U7.6B integrates that reuse into a one-input file batch that publishes ordered
+Velvia 50, Portra 400 and Ektar 100 RGB16 PNGs plus strict replay recipes. On
+the frozen 24MP source, four fresh B/C/C/B processes preserve all three
+encoded files, decoded uint16 arrays and normalized recipe semantics exact.
+Mean wall time falls from `151.3550` to `140.9173` seconds (ratio `.93104`)
+and mean process-tree peak RSS from `2,605,867,008` to `2,238,926,848` bytes
+(ratio `.85919`), with zero residue. The initial report failed only because
+parallel disjoint commits changed recipe `software.commit`; the corrected
+semantic normalization and original report hash are explicit in evidence.
+This completes the bounded file-batch leaf, not stock separation or
+calibration. Evidence:
+`docs/evidence/U7_6B_THREE_STOCK_FILE_BATCH_RESULT.json`.

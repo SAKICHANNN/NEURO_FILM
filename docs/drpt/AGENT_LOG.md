@@ -16371,6 +16371,22 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   integration, not another proxy or routing experiment. Evidence:
   `docs/evidence/U7_6A_THREE_STOCK_SHARED_CONTEXT_RESULT.json`.
 
+### 2026-08-26 - U7.6B publishes one-decode three-stock file batches
+
+- **Implementation:** a dedicated CLI decodes once, reuses the U7.6A context,
+  emits the ordered Velvia/Portra/Ektar PNG16 set sequentially and publishes
+  matching replay recipes with one completed directory rename.
+- **Formal result:** 24MP B/C/C/B runs preserve encoded bytes, decoded uint16
+  arrays and normalized recipe semantics. Wall ratio is `.93104`, peak-RSS
+  ratio `.85919`, and residue is zero.
+- **Correction/boundary:** the initial report failed because concurrent
+  disjoint commits changed only recipe `software.commit`; the rerun normalizes
+  that field and output path solely for semantic comparison and records the
+  initial report SHA. No algorithm or gate changed. This closes file-batch
+  integration while physical three-stock evidence and U7.2C separation remain
+  unchanged. Evidence:
+  `docs/evidence/U7_6B_THREE_STOCK_FILE_BATCH_RESULT.json`.
+
 ### 2026-08-26 - P230 consumes the exact prospectively published R1CZ payload
 
 - **Question:** After R1CZ prospectively persisted the 4,376-byte payload that
