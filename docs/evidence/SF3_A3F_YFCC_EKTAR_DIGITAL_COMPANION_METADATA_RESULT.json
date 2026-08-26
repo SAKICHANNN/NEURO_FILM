@@ -1,0 +1,73 @@
+{
+  "schema": "neuro-film.sf3-a3f-yfcc-ektar-digital-companion-metadata-evidence.v1",
+  "experiment_id": "SF3.A3F",
+  "node": "ULT > RF3 > SF3.A3F",
+  "status": "FAIL_CLOSED",
+  "decision": "CLOSE_EXACT_YFCC_SAME_AUTHOR_NEAR_TIME_DIGITAL_COMPANION_ROUTE_WITHOUT_WINDOW_OR_METADATA_RESCUE",
+  "bindings": {
+    "contract": {
+      "path": "configs/sf3_a3f_yfcc_ektar_digital_companion_metadata_v1.json",
+      "bytes": 3291,
+      "sha256": "709f84e26fc4222a0e0e0c01e0957b8f0f25437514ea344bd7cb479943bbad91",
+      "freeze_commit": "eb828902"
+    },
+    "implementation": {
+      "path": "src/real_film/yfcc_ektar_companion.py",
+      "bytes": 10722,
+      "sha256": "b90a7e216db6e74ea10dba40ac801f50744bd704f42914dac0f8f0a6e9b127dd",
+      "commit": "d4ae8b54"
+    },
+    "runner": {
+      "path": "scripts/audit_sf3_a3f_yfcc_ektar_digital_companion_metadata.py",
+      "bytes": 1261,
+      "sha256": "297cde0cbe4fd49092d9a70be52d843fdbd173414f5a746974496603d1650cf7"
+    },
+    "tests": {
+      "path": "tests/test_sf3_a3f_yfcc_ektar_digital_companion_metadata.py",
+      "bytes": 6604,
+      "sha256": "11008135c97520aafbadccf00aec47625556ae64946adc22ac1733612a0e4437"
+    },
+    "formal_result": {
+      "path": "outputs/eval/sf3_a3f_yfcc_ektar_digital_companion_metadata_v1/formal_forward.json",
+      "bytes": 1146,
+      "sha256": "ec590069625c60b154be0cc8129827bbbe5602e9ee0a87fc3eb39cd79ed199ab"
+    }
+  },
+  "execution": {
+    "orders": ["canonical", "reverse"],
+    "reports_byte_exact": true,
+    "report_sha256": "ec590069625c60b154be0cc8129827bbbe5602e9ee0a87fc3eb39cd79ed199ab",
+    "stable_evidence_id": "10f2d6fe06974059c1b0de7ca5fd80c4d27105d7cae354ae232b76b7cd692587",
+    "network_requests": 0,
+    "image_requests": 0,
+    "pixel_decodes": 0,
+    "operator_fit_render_or_score_count": 0
+  },
+  "population": {
+    "film_stock_id": "kodak_ektar_100",
+    "frozen_target_rows": 21,
+    "target_uids": 8,
+    "unique_sqlite_rows_examined": 31,
+    "eligible_pairs": 0,
+    "eligible_uids": 0
+  },
+  "metadata_funnel_counts": {
+    "same_photo": 21,
+    "missing_capture_device": 24,
+    "scanner_device": 8
+  },
+  "interpretation": {
+    "established": [
+      "all 21 already-retained YFCC Ektar targets across eight accounts were queried under the frozen primary-key, time, rights, device and same-scene rules",
+      "the bounded neighborhoods contain no independently digital-camera-tagged candidate: every non-target evaluation either lacks capture-device evidence or identifies a scanner",
+      "the route closes before any live page, API, thumbnail, image, pixel, fit, render or score"
+    ],
+    "not_established": [
+      "that these authors never made same-scene digital captures outside the frozen YFCC neighborhoods",
+      "absence of Ektar stock signal, stock response, calibration, scanner independence or product readiness",
+      "eligibility of wider photo-id or time windows, inferred camera identities, scanner-derived candidates, different licences or unregistered sources"
+    ]
+  },
+  "next_mainline": "Do not widen or rescue this cohort. Ektar remains the first controlled-pair acquisition priority through the already frozen project-owned A0L/A0N capture packet or a materially new rights-cleared source with explicit same-scene identity.",
+  "claim_ceiling": "Metadata-only YFCC Ektar same-author digital-companion feasibility; no paired observation, stock response, calibration, baseline, learning-source or product claim."
+}
