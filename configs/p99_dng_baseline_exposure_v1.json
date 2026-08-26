@@ -1,0 +1,43 @@
+{
+  "schema": "neuro_film.p99_dng_baseline_exposure_contract.v1",
+  "experiment_id": "p99-dng-baseline-exposure-v1",
+  "status": "frozen_after_metadata_inventory_before_implementation_or_pixel_execution",
+  "node": "ULT > U1 > U1.3L / P99",
+  "bindings": {
+    "contract_path": "docs/planning/P99_DNG_BASELINE_EXPOSURE_CONTRACT.md",
+    "dng_spec_path": "data/external/adobe_dng_spec_1_7_1_0/DNG_Spec_1_7_1_0.pdf",
+    "dng_spec_sha256": "abdecfd8e104e8b86cc054d3a40b677bb2ebe87131bfde080a1df3ee16eb2f8d",
+    "p98_evidence_path": "docs/evidence/P98_DNG_FORWARD_RASTER_RESULT.json",
+    "p98_evidence_sha256": "e73c99fe61781988f61a56fec46278d715431c04ec432173639deb16ba7cfac5",
+    "p98_implementation_path": "src/preprocess/dng_forward_raster.py",
+    "p98_implementation_sha256": "eb50a4b0957b88a40b2da6da929a90cc5d9e390d95589914b41e0ff0711091e9",
+    "p98_config_path": "configs/p98_dng_forward_raster_v1.json",
+    "p98_config_sha256": "5fb17f82cfecdae40a4c812f2ea9c26641e91bcab43e17c8a6a4bc94b2f03c35"
+  },
+  "tags": {
+    "baseline_exposure": 50730,
+    "baseline_exposure_offset": 51109,
+    "missing_default_ev": 0.0
+  },
+  "rows": [
+    {"source_id": "motorola_moto_g_7_play", "baseline_exposure": {"provenance": "explicit_ifd_tag", "numerator": 0, "denominator": 100}, "baseline_exposure_offset": {"provenance": "dng_standard_default", "value": 0.0}},
+    {"source_id": "lg_lg_h850", "baseline_exposure": {"provenance": "dng_standard_default", "value": 0.0}, "baseline_exposure_offset": {"provenance": "dng_standard_default", "value": 0.0}},
+    {"source_id": "xiaomi_m2010j19cg", "baseline_exposure": {"provenance": "explicit_ifd_tag", "numerator": 0, "denominator": 100}, "baseline_exposure_offset": {"provenance": "dng_standard_default", "value": 0.0}},
+    {"source_id": "blackmagic_pocket_cinema_camera_4k", "baseline_exposure": {"provenance": "explicit_ifd_tag", "numerator": 265412, "denominator": 100000}, "baseline_exposure_offset": {"provenance": "dng_standard_default", "value": 0.0}},
+    {"source_id": "huawei_eml_l29", "baseline_exposure": {"provenance": "explicit_ifd_tag", "numerator": 0, "denominator": 100}, "baseline_exposure_offset": {"provenance": "dng_standard_default", "value": 0.0}}
+  ],
+  "gates": {
+    "required_rows": 5,
+    "required_camera_makes": 5,
+    "minimum_total_ev": -8.0,
+    "maximum_total_ev": 8.0,
+    "maximum_absolute_output": 64.0,
+    "require_zero_ev_rows_p98_exact": true,
+    "require_nonzero_row_changed": true,
+    "require_float32_oracle_bytes_exact": true,
+    "require_source_and_parent_unchanged": true,
+    "require_forward_reverse_exact": true,
+    "require_two_fresh_process_reports_exact": true
+  },
+  "claim_ceiling": "Private opt-in exact-five-DNG P98 plus standard BaselineExposure/BaselineExposureOffset scene-linear multiplier mechanics only; no arbitrary DNG, Adobe/vendor parity, sensor calibration, photographic quality, tone mapping, loader/output/public package/schema/capability/product/film/stock/preference claim"
+}
