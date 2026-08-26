@@ -16686,5 +16686,5 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   count bounded candidate 3. RTD remains valuable current academic context;
   only a separately licensed future release could reopen source intake. Three
   focused tests, Ruff, compileall and diff checks pass. Evidence SHA-256
-  `1d0b9e75...c4498`:
+  `cd481e81...72c06`:
   `docs/evidence/P237_INRETOUCH_RTD_SOURCE_ELIGIBILITY_RESULT.json`.
