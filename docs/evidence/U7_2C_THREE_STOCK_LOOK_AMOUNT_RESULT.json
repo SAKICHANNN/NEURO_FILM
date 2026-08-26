@@ -1,0 +1,63 @@
+{
+  "schema": "neuro-film.u7-2c-three-stock-look-amount-result.v1",
+  "date": "2026-08-26",
+  "implementation_commit": "972830be",
+  "preregistration_commit": "7c228ecd",
+  "contract": {
+    "path": "configs/u7_2c_three_stock_look_amount_v1.json",
+    "sha256": "90642a09940d565b8e8953e6437b3b786de66529afacaf291b168bc853421029"
+  },
+  "formal_reports": [
+    {
+      "order": "forward",
+      "path": "outputs/eval/u7_2c_three_stock_look_amount_v1/run_a/report.json",
+      "sha256": "47f8a7dd0ba1fb708ed44e1aedbda203802b8a7db1faaa9102ec55f2da975d9e"
+    },
+    {
+      "order": "reverse",
+      "path": "outputs/eval/u7_2c_three_stock_look_amount_v1/run_b/report.json",
+      "sha256": "e084966d637364d65deeedba5d1f70d68edf5f4e76b8d99d6c44fb6c742633bf"
+    }
+  ],
+  "stable_identity": "9d351625decc97b33cc733baf8cb8393b422b54d196bb3c6f3152636c382499a",
+  "source": {
+    "sha256": "7ea3d1ed37b7df518c0466c1379f08aa34ea5ae00eb7dc8208fcff2cfe68d1c6",
+    "resized_rgb8_sha256": "618d2d77567482cde9f67615992e7ea5abb02a65870c4cd94139d9e7e902d911",
+    "dimensions": [3000, 2000]
+  },
+  "mechanism_gates": {
+    "zero_amount_exact_identity": true,
+    "one_amount_exact_existing_baseline": true,
+    "half_residual_rmse_strictly_between_zero_and_full": true,
+    "nonzero_output_boundary_fraction": 0.0,
+    "forward_reverse_exact": true
+  },
+  "pairwise_full_output_delta_e76": [
+    {
+      "left": "fujifilm_velvia_50",
+      "right": "kodak_portra_400",
+      "median": 1.7381389141082764,
+      "p95": 6.152255535125732,
+      "passes_frozen_one_delta_e_gate": true
+    },
+    {
+      "left": "fujifilm_velvia_50",
+      "right": "kodak_ektar_100",
+      "median": 0.9279583692550659,
+      "p95": 4.693917274475098,
+      "passes_frozen_one_delta_e_gate": false
+    },
+    {
+      "left": "kodak_portra_400",
+      "right": "kodak_ektar_100",
+      "median": 0.9454095363616943,
+      "p95": 2.0475876331329346,
+      "passes_frozen_one_delta_e_gate": false
+    }
+  ],
+  "automatic_pass": false,
+  "decision": "FAIL_CLOSED_LEGACY_THREE_STOCK_PROXIES_ARE_NOT_MATERIALLY_DISTINCT_WITHOUT_RESCUE",
+  "interpretation": "The bounded manual amount mechanism is exact and safe, but two of three full-strength proxy pairs fail the frozen minimum population separation. Retain the API only as an honestly labelled Look Approximation control. Do not increase saturation, alter the threshold, fit these proxy pixels, or use this result as stock authenticity or multi-stock completion evidence.",
+  "next_leaf": "Admit only filled SF3.A0N controlled Velvia 50, Portra 400 and Ektar 100 capture/process/scan receipts, or a genuinely new rights-cleared same-scene independently grouped source. No further legacy-proxy tuning is authorized.",
+  "claim_ceiling": "Local Windows/Python deterministic mechanics and a formal negative product-diversity result for three legacy Look Approximation baselines. No target-film closeness, stock response, calibration, authenticity, preference or multi-stock completion claim."
+}
