@@ -13,7 +13,11 @@ CONFIG_URI = "ocio://cg-config-v4.0.0_aces-v2.0_ocio-v2.5"
 CONFIG_CACHE_ID = "351c1452fc2bde6177841947c5fce086:6001c324468d497f99aa06d3014798d8"
 SOURCE_SPACE = "ACEScg"
 
-OutputTarget = Literal["sdr_rec709", "hdr_rec2020_pq"]
+OutputTarget = Literal[
+    "sdr_rec709",
+    "hdr_rec2020_pq",
+    "hdr_p3d65_1000nit_rec2100_pq",
+]
 
 _TARGETS = {
     "sdr_rec709": (
@@ -23,6 +27,10 @@ _TARGETS = {
     "hdr_rec2020_pq": (
         "Rec.2100-PQ - Display",
         "ACES 2.0 - HDR 1000 nits (Rec.2020)",
+    ),
+    "hdr_p3d65_1000nit_rec2100_pq": (
+        "Rec.2100-PQ - Display",
+        "ACES 2.0 - HDR 1000 nits (P3 D65)",
     ),
 }
 

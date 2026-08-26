@@ -9,6 +9,7 @@ from src.preprocess.ocio_aces2_output import (
     OcioAces2RuntimeError,
     apply_working_image_aces2_output,
     convert_working_image_to_acescg,
+    target_display_view,
 )
 from src.preprocess.types import SourceProfile, WorkingImage
 
@@ -34,7 +35,10 @@ def _working(
 
 
 @pytest.mark.parametrize("working_space", ["linear_srgb", "linear_rec2020"])
-@pytest.mark.parametrize("target", ["sdr_rec709", "hdr_rec2020_pq"])
+@pytest.mark.parametrize(
+    "target",
+    ["sdr_rec709", "hdr_rec2020_pq", "hdr_p3d65_1000nit_rec2100_pq"],
+)
 def test_working_image_adapter_is_finite_nonmutating_and_contiguous(
     working_space: str, target: str
 ) -> None:
@@ -84,3 +88,10 @@ def test_working_image_adapter_rejects_unsupported_boundaries(
 def test_working_image_adapter_rejects_non_working_image() -> None:
     with pytest.raises(OcioAces2RuntimeError, match="WorkingImage"):
         convert_working_image_to_acescg(object())  # type: ignore[arg-type]
+
+
+def test_p3d65_1000nit_rec2100_pq_target_is_exact() -> None:
+    assert target_display_view("hdr_p3d65_1000nit_rec2100_pq") == (
+        "Rec.2100-PQ - Display",
+        "ACES 2.0 - HDR 1000 nits (P3 D65)",
+    )
