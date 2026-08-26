@@ -263,7 +263,7 @@ def main() -> int:
     config = json.loads(CONFIG.read_text(encoding="utf-8"))
     expected = tuple(config["input"]["expected_dimensions"])
     decoded = cv2.imread(str(ROOT / config["input"]["path"]), cv2.IMREAD_UNCHANGED)
-    if decoded is None or (decoded.shape[1], decoded.shape[0]) != expected:
+    if decoded is None or decoded.shape[:2] != expected:
         raise RuntimeError("frozen input dimensions drifted")
     shutil.rmtree(SCRATCH, ignore_errors=True)
     SCRATCH.mkdir(parents=True)
