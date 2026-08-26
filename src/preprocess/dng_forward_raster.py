@@ -17,6 +17,7 @@ import numpy as np
 import tifffile
 
 from .dng_forward_matrix import build_dual_illuminant_camera_to_pcs
+from .dng_metadata import _walk_pages
 from .prophoto_icc import d50_xyz_to_linear_rec2020
 from .types import DecodeWarning, SourceProfile, WorkingImage
 
@@ -38,6 +39,15 @@ _TAGS = {
     "profile_calibration_signature": 50932,
     "forward_matrix1": 50964,
     "forward_matrix2": 50965,
+}
+
+_PROFILE_HUESATMAP_TAGS = {
+    50937: "ProfileHueSatMapDims",
+    50938: "ProfileHueSatMapData1",
+    50939: "ProfileHueSatMapData2",
+    51107: "ProfileHueSatMapEncoding",
+    52537: "ProfileHueSatMapData3",
+    52551: "ProfileDynamicRange",
 }
 
 
@@ -63,9 +73,33 @@ def _rational_array(value: object, *, name: str) -> np.ndarray:
     return result
 
 
+def _guard_unsupported_profile_huesatmap(
+    pages: list[tuple[str, tifffile.TiffPage]],
+) -> None:
+    """Reject render-profile tables that this narrow raster path cannot apply."""
+
+    present: dict[int, list[str]] = {}
+    for ifd_path, page in pages:
+        for code in _PROFILE_HUESATMAP_TAGS:
+            if code in page.tags:
+                present.setdefault(code, []).append(ifd_path)
+    if not present:
+        return
+    details = ", ".join(
+        f"{_PROFILE_HUESATMAP_TAGS[code]}({code})@{'+'.join(present[code])}"
+        for code in sorted(present)
+    )
+    raise DngForwardRasterError(
+        "unsupported DNG ProfileHueSatMap-family tags must not be silently "
+        f"ignored: {details}"
+    )
+
+
 def _read_profile_tags(path: Path) -> dict[str, Any]:
     try:
         with tifffile.TiffFile(path) as document:
+            pages = _walk_pages(document.pages)
+            _guard_unsupported_profile_huesatmap(pages)
             tags = document.pages[0].tags
             required = (
                 "color_matrix1",
