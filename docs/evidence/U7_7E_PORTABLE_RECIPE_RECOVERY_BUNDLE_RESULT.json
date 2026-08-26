@@ -1,0 +1,76 @@
+{
+  "schema": "kmcfm.u7-7e-portable-recipe-recovery-bundle-evidence.v1",
+  "node": "U7.7E",
+  "status": "PASS_PRIVATE_PORTABLE_RECIPE_BUNDLE",
+  "decision": "RETAIN_PRIVATE_PORTABLE_RECIPE_BUNDLE_AND_OPEN_EXPLICIT_BINDING_INTEGRATION",
+  "bindings": {
+    "contract": {
+      "path": "configs/u7_7e_portable_recipe_recovery_bundle_v1.json",
+      "bytes": 3300,
+      "sha256": "a94461a8a7ac8e9097193aa4049e4d5253a367466dd85317e46d9e754b32d610",
+      "commit": "fdf9b19d"
+    },
+    "implementation": {
+      "path": "src/inference/portable_recipe_bundle.py",
+      "bytes": 17313,
+      "sha256": "57e827f006ac660139a2ddf1172ccb3eb0ac65e16f72a85fbc84c3bad32c2d6d",
+      "commit": "7d5adc68"
+    },
+    "runner": {
+      "path": "scripts/audit_u7_7e_portable_recipe_recovery_bundle.py",
+      "bytes": 9049,
+      "sha256": "c378a15335f886becde27021563e7b75775425dd49dd1648ef2f337fbcc8a14a",
+      "commit": "ff57675b"
+    },
+    "tests": {
+      "path": "tests/test_u7_7e_portable_recipe_recovery_bundle.py",
+      "bytes": 4654,
+      "sha256": "5f9890ff3fcde3b6879d76ad7ae3eb9f51355ed56d23a0f785cd11644c787217",
+      "commit": "cf07ad0e"
+    },
+    "formal_report": {
+      "path": "outputs/eval/u7_7e_portable_recipe_recovery_bundle_v1/forward.json",
+      "bytes": 5284,
+      "sha256": "9c1e2a643d2581f031df3be4f4fff2c5ea939152c8e32733ea5722c52e3a639d"
+    }
+  },
+  "execution": {
+    "orders": ["forward", "reverse"],
+    "reports_byte_exact": true,
+    "report_sha256": "9c1e2a643d2581f031df3be4f4fff2c5ea939152c8e32733ea5722c52e3a639d",
+    "stable_id": "9a7c956c858f78112cb465ece91a1fae0c8a8ee91795703a6a90e771a08fd0ba",
+    "network_reads": 0,
+    "image_reads": 0,
+    "pixel_decodes": 0,
+    "owned_temporary_roots_removed": true
+  },
+  "results": {
+    "styles": ["ektar_100", "portra_400", "velvia_50"],
+    "bundle_bytes": [5981, 5982, 5984],
+    "bundle_sha256": [
+      "c5ca30212426f2820cc9a70351be737f85cda3133ee519430b4dfd972a65be50",
+      "e96ad92aeb1bd7dc5130176f094180538185a8ea1e254c4b46f8704eb0f1de73",
+      "18e58cadcf97e7198bee40b071241919aef99c52f3444c47839cdf5f4cc7888c"
+    ],
+    "bundle_bytes_repeat_exact": true,
+    "inspection_repeat_exact": true,
+    "no_machine_or_user_path_disclosure": true,
+    "strict_original_rebind_roundtrip_exact": true,
+    "profile_and_assets_revalidate": true,
+    "existing_destination_unchanged": true,
+    "failed_publication_leaves_no_partial": true,
+    "claims_remain_look_approximation": true
+  },
+  "interpretation": {
+    "established": [
+      "the three existing stock-look recipes can be represented as deterministic portable bundles without machine-local input or output paths",
+      "explicitly rebinding each portable recipe to its original caller paths reconstructs the original strict recipe exactly",
+      "profile, asset, input-hash, output-hash and Look Approximation claim semantics remain bound"
+    ],
+    "not_established": [
+      "automatic rerender, export authorization, installer integration, calibrated stock response, stock distinguishability or release readiness"
+    ]
+  },
+  "next_leaf": "Implement a bounded explicit-binding integration that requires caller-owned input and output paths and preserves the portable recipe's path-independent semantic identity before any render is authorized.",
+  "claim_ceiling": "Private portable Look Approximation recovery-bundle representation and exact explicit rebinding only; no installer, automatic rerender, export authorization, calibrated stock response, stock distinguishability or release claim."
+}
