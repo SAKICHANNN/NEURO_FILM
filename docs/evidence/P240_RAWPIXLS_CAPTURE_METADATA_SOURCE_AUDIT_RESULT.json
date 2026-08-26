@@ -1,0 +1,74 @@
+{
+  "schema": "neuro-film.p240-rawpixls-capture-metadata-source-audit-evidence.v1",
+  "experiment_id": "P240",
+  "status": "PASS_PRIVATE_CAPTURE_METADATA_SOURCE_ELIGIBILITY",
+  "formal_execution_commit": "315d53a9fe87c6878641fdc5b9da25dda26b3ab6",
+  "bindings": {
+    "config_path": "configs/p240_rawpixls_capture_metadata_source_audit_v1.json",
+    "config_sha256": "08aef1a4ce777599d121e748647a9a7c1f11a7c2a48a13831e193090c697e79f",
+    "core_path": "src/preprocess/rawpixls_capture_metadata_audit.py",
+    "core_sha256": "908e913d2f1d6f75f6ee6b8b1d53b98081d4970f5c0bd348503d1483aeafb9f5",
+    "runner_path": "scripts/audit_p240_rawpixls_capture_metadata_source.py",
+    "runner_sha256": "26cfab3776cc64ad3ce9ab237c8b4d17e599221daad939e767ce59627cc39c4e",
+    "test_path": "tests/test_p240_rawpixls_capture_metadata_source.py",
+    "test_sha256": "c14217eca3142544ce990f97839095e01ba4368789c2db5e733cb287393c41df",
+    "repository_snapshot_bytes": 1246029,
+    "repository_snapshot_sha256": "8dc5f5c74e20cc3a38f4548d53bba4bb516835e2a859e80bf86e7ac6283b3aa3",
+    "exif_manifest_sha256": "c849b9d951cbec7d660508c86e378e11bef21c31e892a38bf019b9700194ee39"
+  },
+  "formal_runs": {
+    "forward_report_bytes": 11432,
+    "forward_report_sha256": "7f2a743101bb1ff854d4ac51bc90ab7e6dfa5394aff30565f4f359b1208027ae",
+    "reverse_report_bytes": 11432,
+    "reverse_report_sha256": "7f2a743101bb1ff854d4ac51bc90ab7e6dfa5394aff30565f4f359b1208027ae",
+    "reports_byte_exact": true
+  },
+  "source_inventory": {
+    "candidate_rows": 20,
+    "candidate_makes": 20,
+    "exif_files": 20,
+    "exif_bytes": 688373,
+    "complete_rows": 17,
+    "complete_makes": 17,
+    "largest_complete_make_fraction": 0.0588235294117647,
+    "raw_files_downloaded": 0,
+    "raw_bytes_downloaded": 0,
+    "raw_pixels_decoded": 0,
+    "training_runs": 0,
+    "target_scores": 0
+  },
+  "retained_incomplete_rows": [
+    {
+      "id": 2988,
+      "make": "Leica",
+      "model": "M8",
+      "missing": ["f_number"]
+    },
+    {
+      "id": 3229,
+      "make": "XIAOYI",
+      "model": "YIAC 3",
+      "missing": ["unique_camera_model"]
+    },
+    {
+      "id": 4172,
+      "make": "RaspberryPi",
+      "model": "RP_imx477",
+      "missing": ["date_time_original"]
+    }
+  ],
+  "gates": {
+    "minimum_complete_rows_12": true,
+    "minimum_complete_makes_8": true,
+    "maximum_largest_make_fraction_0_125": true,
+    "source_inventory_exact": true,
+    "forward_reverse_byte_exact": true,
+    "zero_raw_downloads": true,
+    "zero_pixel_decodes": true
+  },
+  "interpretation": "A fresh rights-clear DNG cohort can expose exact capture-time, exposure, ISO, aperture, model and AsShotNeutral observations at useful cross-make breadth without opening RAW payloads. This is a source-eligibility result only; it does not show that those facts predict white balance or image quality.",
+  "decision": "open_separately_preregistered_member_integrity_and_source_only_awb_d0",
+  "candidate_counter_effect": "none; P240 is not bounded-cycle candidate 3",
+  "next_leaf": "Before any RAW download, freeze exact train/calibration/sealed file roles, a source-only feature contract, camera-static/global/gray-world controls, complete target-unread ordering and minimum same-budget attribution and tail gates. Then acquire only the selected exact RAW members.",
+  "claim_ceiling": "Metadata-only eligibility of twenty fresh CC0 raw.pixls.us DNG rows for a future private capture-time AWB mechanism experiment. No RAW byte, pixel, target quality, model, operator, candidate-3, package, capability, film-stock or product claim."
+}
