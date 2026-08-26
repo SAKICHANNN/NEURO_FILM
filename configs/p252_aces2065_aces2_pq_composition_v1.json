@@ -1,0 +1,69 @@
+{
+  "schema": "neuro-film.p252-aces2065-aces2-pq-composition-contract.v1",
+  "experiment_id": "P252",
+  "node": "ULT > mature RAW/HDR explicit mechanisms > P252",
+  "status": "FROZEN_BEFORE_IMPLEMENTATION_OR_OUTPUT_SCORE",
+  "question": "Can the exact P251 ACES2065-1 ingress compose with the retained official ACES 2 Rec.2020 1000-nit output and canonical PQ PNG by adding only a strict ACEScg identity branch, with every frozen legacy WorkingImage output unchanged?",
+  "bindings": {
+    "contract_path": "docs/planning/P252_ACES2065_ACES2_PQ_COMPOSITION_CONTRACT.md",
+    "contract_bytes": 4623,
+    "contract_sha256": "6c6a6c9addf2cf8c9629c775e9e6d9e9992f3fe393019c51690d64725cde0576",
+    "p251_config_path": "configs/p251_aces2065_openexr_working_image_ingress_v1.json",
+    "p251_config_sha256": "f629aaa3beda06dfc095d6efab7bd6ce362f5a7b4ad1e28c25d776fef5544ff9",
+    "p251_evidence_path": "docs/evidence/P251_ACES2065_OPENEXR_WORKING_IMAGE_INGRESS_RESULT.json",
+    "p251_evidence_sha256": "e368560399119d59073a3cb0488261d81ff1cd2078202cbe9df6411a1152aa6c",
+    "ocio_module_path": "src/preprocess/ocio_aces2_output.py",
+    "ocio_parent_commit": "b845d075",
+    "ocio_parent_blob": "eeefd7ec8bb9600328b19d2a52be2a526fe23102",
+    "ocio_parent_bytes": 6799,
+    "ocio_parent_sha256": "8f31215c266db683cffcad8f6252a0bfd031025cd12d94c6a88bbe340077475e",
+    "canonical_bridge_path": "src/preprocess/aces2_canonical_pq_png.py",
+    "canonical_bridge_sha256": "57442e9a60b658e82c6b275fdded962395c0aebcc1e2358df7302706f90cef57",
+    "canonical_writer_path": "src/preprocess/canonical_pq_png.py",
+    "canonical_writer_sha256": "54fed9a9abdf119bd03fb560e495c62af7d2c0887ee7829d41af391c62d0134d",
+    "u1_4e_config_path": "configs/u1_4e_working_image_aces2_adapter_v1.json",
+    "u1_4e_config_sha256": "f3fa252f7452169e17de12f96930864ce75a4d4a098196e208010adced540aa5",
+    "u1_4e_evidence_path": "docs/evidence/U1_4E_WORKING_IMAGE_ACES2_ADAPTER_RESULT.json",
+    "u1_4e_evidence_sha256": "d9876756e4548931f64cc875ee1c611e446c5e30086a83f2c66fb265337040fc"
+  },
+  "runtime": {
+    "openexr_version": "3.4.15",
+    "opencolorio_version": "2.5.2",
+    "config_uri": "ocio://cg-config-v4.0.0_aces-v2.0_ocio-v2.5",
+    "config_cache_id": "351c1452fc2bde6177841947c5fce086:6001c324468d497f99aa06d3014798d8",
+    "source_space": "ACEScg",
+    "display": "Rec.2100-PQ - Display",
+    "view": "ACES 2.0 - HDR 1000 nits (Rec.2020)"
+  },
+  "input": {
+    "p249_openexr_bytes": 1144,
+    "p249_openexr_sha256": "1a25181406270142c98f2169897d3a4c468ec50c979fff9077d37f956c888726",
+    "p249_input_acescg_f32le_sha256": "3b14e75aa87a09794e0c4cb6339a4fc09862657d9aea190a9e3311c155bdb727",
+    "shape": [7, 9, 3],
+    "working_space": "acescg_ap1_d60",
+    "transfer_state": "scene_linear"
+  },
+  "legacy_hashes": {
+    "linear_srgb_sdr_rec709": "9a1e3beb953440b145aac7bca482adc20295a08cbbe30bc5bba756df12d52603",
+    "linear_srgb_hdr_rec2020_pq": "caa96764b834ea11eb4a7a4024d40dd054d4ca9202a115259f8546afa3822212",
+    "linear_rec2020_sdr_rec709": "bf2b4f409caa446e16b1f38f0b3b3c595e55469ee3a35f87a3c716affe0e06be",
+    "linear_rec2020_hdr_rec2020_pq": "be65179faf1a59a376f58b8d51194213721f04ef4c59a1195ab002fca21f2572"
+  },
+  "gates": {
+    "maximum_ap1_roundtrip_error": 0.000001,
+    "maximum_identity_conversion_error": 0.0,
+    "require_exact_bound_identities": true,
+    "require_legacy_hashes_unchanged": true,
+    "require_direct_official_output_exact": true,
+    "require_canonical_partition_file_exact": true,
+    "require_strict_rec2100_pq_cicp": true,
+    "require_finite_unit_output": true,
+    "require_source_and_input_immutable": true,
+    "require_invalid_and_foreign_destination_controls": true,
+    "require_two_fresh_reports_exact": true,
+    "require_zero_network": true,
+    "require_zero_temporary_residue": true
+  },
+  "stop_rule": "Any identity, legacy-regression, direct-parity, range, publication, atomicity, replay or cleanup failure closes P252 without clipping, exposure, tone, view/config substitution, approximate metadata, half/uint ingress, tolerance relaxation, source replacement or generic EXR routing.",
+  "claim_ceiling": "Private Windows/Python exact P249/P251 ACES2065-1 OpenEXR to official ACES 2 Rec.2020-PQ canonical RGB16 PNG mechanics only. No arbitrary EXR or HDR image, photographic/display quality, HDR10 mastering metadata, SMPTE certification, public dependency/package/schema/capability, stock evidence, single-reference matching, calibrated reference or product admission."
+}
