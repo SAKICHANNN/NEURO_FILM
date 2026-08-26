@@ -1,0 +1,62 @@
+{
+  "schema": "neuro-film.p224-r1cr-aces2-xyz-runtime-compatibility-contract.v1",
+  "experiment_id": "P224",
+  "status": "FROZEN_AFTER_R1CS_CLOSURE_BEFORE_CROSS_RUNTIME_SCORE",
+  "question": "Does the exact producer R1CR ACEScg-to-P3-D65-1000nit XYZ-D65-nits bridge under OpenColorIO 2.5.0 reproduce the same two official builtins under the consumer pinned OpenColorIO 2.5.2 runtime on the independent 986-row consumer fixture?",
+  "producer": {
+    "repository": "C:/Users/hhvrf/Documents/追色",
+    "evidence_commit": "c5ae9ab2a1b7cc7bbb3dad70d4c412aeef2a175e",
+    "implementation_commit": "cb8bbaa8a41d475a34c545b32d91222d07c871e6",
+    "source_path": "src/zhuise/aces2_render_bridge.py",
+    "source_blob": "e31e27a14f5c858b322fc825b85f18e7a1698dda",
+    "evidence_path": "docs/evidence/R1CR_ACES2_HDR_RENDER_BRIDGE_RESULT.json",
+    "evidence_blob": "fc5e64260baf42a253e678b9e8913561d0b80203",
+    "evidence_sha256": "d6b633b5b6c0bec8be04e616674711d74a877fe9c09a95123a28d531dfe1251e",
+    "required_opencolorio_version": "2.5.0",
+    "scene_to_reference_builtin": "ACEScg_to_ACES2065-1",
+    "output_builtin": "ACES-OUTPUT - ACES2065-1_to_CIE-XYZ-D65 - HDR-1000nit-P3-D65_2.0",
+    "display_reference_scale_nits": 100.0
+  },
+  "consumer": {
+    "source_path": "src/preprocess/ocio_aces2_output.py",
+    "source_blob": "0835a8909e7dcbbd4143afa8b74fb4f3fe05994a",
+    "required_opencolorio_version": "2.5.2",
+    "fixture_rows": 986
+  },
+  "excluded_closed_route": {
+    "producer_leaf": "R1CS",
+    "producer_head": "46d1d35ac51cccde98d932ba051a60723cb33f44",
+    "evidence_sha256": "6ea3ba6eb4b5dc1e1d668ac35ee7f19628ce622789fb4b2da64110b06b7ac8ad",
+    "status": "FAIL_CLOSED",
+    "exclusion": "P224 does not encode XYZ through an analytic BT.2020/ST2084 adapter, compare PQ codes, relax the R1CS tolerances or reopen its dark-tail identity failure."
+  },
+  "gates": {
+    "producer_and_consumer_identities_exact": true,
+    "producer_and_consumer_runtime_versions_exact": true,
+    "fixture_rows_exact": true,
+    "inputs_unchanged": true,
+    "outputs_finite": true,
+    "maximum_absolute_difference_nits": 0.0002,
+    "rmse_difference_nits": 0.00005,
+    "forward_reverse_reports_byte_exact": true
+  },
+  "execution": {
+    "outer_orders": ["forward", "reverse"],
+    "fresh_process_per_outer": true,
+    "producer_source_materialized_from_exact_git_blob": true,
+    "temporary_root": "system temporary directory",
+    "producer_worktree_writes": 0,
+    "media_reads": 0,
+    "network_reads_during_formal_execution": 0
+  },
+  "decision": {
+    "pass": "Retain private cross-runtime compatibility of the exact R1CR XYZ-D65-nits reference transform between OpenColorIO 2.5.0 and 2.5.2.",
+    "fail": "Close this exact cross-runtime compatibility without changing builtins, fixture, runtimes or tolerances.",
+    "invalid": "If an exact producer identity or pinned runtime is unavailable, report infrastructure-invalid and do not interpret transform parity."
+  },
+  "primary_sources": [
+    "https://docs.acescentral.com/system-components/output-transforms/implementer-notes/",
+    "https://docs.acescentral.com/system-components/transform-id-spec/"
+  ],
+  "claim_ceiling": "Independent private cross-runtime parity of the exact R1CR ACEScg-to-XYZ-D65-nits reference transform only. No analytic or encoded PQ adapter, display validation, image quality, encoded file, portable ABI, public package/schema/capability, stock evidence, reference matching or product admission."
+}
