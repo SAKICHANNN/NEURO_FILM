@@ -265,7 +265,7 @@ def main() -> int:
     config = json.loads(CONFIG.read_text(encoding="utf-8"))
     decoded = cv2.imread(str(ROOT / config["input"]["path"]), cv2.IMREAD_UNCHANGED)
     dimensions = config["input"]["expected_dimensions"]
-    if decoded is None or [decoded.shape[1], decoded.shape[0]] != dimensions:
+    if decoded is None or list(decoded.shape[:2]) != dimensions:
         raise RuntimeError("frozen input dimensions drifted")
     shutil.rmtree(SCRATCH, ignore_errors=True)
     SCRATCH.mkdir(parents=True)
