@@ -16523,3 +16523,26 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   natural captured-HDR evidence, nor a public package, schema, capability or
   product admission. Evidence:
   `docs/evidence/P233_R1CZ_LOCAL_PAYLOAD_CAPSULE_RESULT.json`.
+
+### 2026-08-26 - P234 closes R1CZ on consumed UltraHDR still safety
+
+- **Question:** does the exact locally persisted R1CZ paired/capture-time
+  payload remain boundary-safe and spatially non-amplifying on both exact P88
+  absolute-Rec.2020 UltraHDR fixtures?
+- **Prospective boundary:** P234 froze the exact P233 capsule, P88 decoder and
+  two consumed CC-BY-4.0 rows before selected decode or candidate apply. Bundle
+  construction reads no application source; target, network and repository
+  media reads/writes are zero. Every row must pass the same fixed material,
+  boundary, luminance/chroma p95 and high-margin luminance-spike gates.
+- **Result:** fresh forward/reverse 5,056-byte reports are byte exact at
+  `dd75ae97...b906`, stable `43789309...06e1`. Both rows have material effect
+  `.5122-.5170`, luminance spatial p95 ratios `.9101-.9152` and spike fractions
+  `.00401-.00404`, so those gates pass. But `14.757-14.769%` of strictly
+  interior source channel samples become exact black and chroma spatial p95
+  rises to `1.7431-1.7479x`; both frozen safety gates fail independently.
+- **Boundary/handoff:** close this exact payload/still-domain application with
+  no strength, black-floor, decoder, fixture, metric or threshold rescue.
+  P233 artifact availability and P88 decoding remain valid independently.
+  This is not arbitrary HDR, grade/aesthetic quality, package/schema/capability
+  or product evidence. Evidence:
+  `docs/evidence/P234_R1CZ_ULTRAHDR_STILL_SAFETY_RESULT.json`.
