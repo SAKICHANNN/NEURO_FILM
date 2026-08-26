@@ -27,8 +27,8 @@ IMPLEMENTATION = ROOT / "src/inference/portable_recipe_bundle.py"
 PARENT_EVIDENCE = ROOT / "docs/evidence/U7_7E_PORTABLE_RECIPE_RECOVERY_BUNDLE_RESULT.json"
 PROFILE = ROOT / "configs/render_profiles/safe_rich_v1.json"
 CONTRACT_SHA256 = "af66f7d63fa2a007eca553a14b20a15ecf8b9ea036a3e957f509eedbada16d44"
-IMPLEMENTATION_SHA256 = "1e4746cb69a003d2e91d2839284946063e02442671cb359493551b53b0ee1aea"
-IMPLEMENTATION_COMMIT = "eb0fc682596a4161c864b4880cb68005e7f1691b"
+IMPLEMENTATION_SHA256 = "8f095a76cd6d79fdeaaf2086210ee4c1767c95ae53a80c2269df39cc1d868e5d"
+IMPLEMENTATION_COMMIT = "bdfd77e0f7697379de583747db9d20bd41ee663a"
 RECIPES = {
     style: ROOT / f"outputs/eval/u7_2_three_stock_24mp_smoke/{style}.recipe.json"
     for style in ("ektar_100", "portra_400", "velvia_50")
@@ -121,8 +121,7 @@ def run(*, reverse: bool) -> dict:
             )
             if built["bundle_sha256"] != parent_bundle_sha[style]:
                 raise RuntimeError(f"U7.7F parent bundle identity drift: {style}")
-            output = temp_path / "future" / f"{style}.png"
-            output.parent.mkdir(exist_ok=True)
+            output = Path("renders") / f"{style}.png"
             first_path = temp_path / f"{style}.first.recipe.json"
             second_path = temp_path / f"{style}.second.recipe.json"
             first = bind_portable_recipe_recovery_bundle(
