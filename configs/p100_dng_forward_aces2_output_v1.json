@@ -17,9 +17,9 @@
     "aces_evidence_path": "docs/evidence/U1_4E_WORKING_IMAGE_ACES2_ADAPTER_RESULT.json",
     "aces_evidence_sha256": "d9876756e4548931f64cc875ee1c611e446c5e30086a83f2c66fb265337040fc",
     "runner_path": "scripts/audit_p100_dng_forward_aces2_output.py",
-    "runner_sha256": "TO_BE_FROZEN",
+    "runner_sha256": "bbbca776a8010aa5805b08663df9c2b1a619fb32cd5c388448a436715b17e63c",
     "test_path": "tests/test_p100_dng_forward_aces2_output.py",
-    "test_sha256": "TO_BE_FROZEN"
+    "test_sha256": "de99d75910f42bdd3cbb6c7820a54abf6351a5ebcd76d012f963f81a3b1ae430"
   },
   "targets": [
     "sdr_rec709",
