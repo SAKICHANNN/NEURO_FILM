@@ -1,0 +1,76 @@
+{
+  "schema": "neuro-film.p234-r1cz-ultrahdr-still-safety-contract.v1",
+  "experiment_id": "P234",
+  "status": "FROZEN_BEFORE_SELECTED_FIXTURE_DECODE_OR_CANDIDATE_APPLY",
+  "question": "Does the exact local R1CZ paired/capture-time payload remain boundary-safe and spatially non-amplifying when applied source-free to the two exact already-consumed P88 UltraHDR absolute-Rec.2020 fixtures?",
+  "payload": {
+    "capsule_path": "tests/fixtures/p233_r1cz_payload_capsule_v1.json",
+    "capsule_sha256": "66050f5834adadc7fa30392831e73f03d01a993f17d9ea0e3ffc7a75c2dc859e",
+    "p233_evidence_path": "docs/evidence/P233_R1CZ_LOCAL_PAYLOAD_CAPSULE_RESULT.json",
+    "p233_evidence_sha256": "7827e0d36fabbfbf8a5b2ebae3cbadbcffa55ed9e711f1b38bcc15a867decd73",
+    "loader_path": "src/color_match/shared_hdr_dpct_payload.py",
+    "loader_sha256": "0ebe95c64b52b9c3b79d601438d76a5a2cb6f9a4b91c076eaef7d82bafcc36ad",
+    "payload_sha256": "aa7fe0400e7bef106a9ff75305babab317a4148bdb05c573c50395d6f4228cb9",
+    "payload_bytes": 4376,
+    "bundle_id": "sha256:2759d2193861b95d39bb451efb2477c6ae796f5f58b3b81cf6487cbd85c3220f"
+  },
+  "source": {
+    "p88_evidence_path": "docs/evidence/P88_ULTRAHDR_PINNED_DECODER_CONSUMPTION_RESULT.json",
+    "p88_evidence_sha256": "ead71a8c4081a37809b81e1891c1593c49f6b91c3117522297faa934da36befc",
+    "ingress_path": "src/color_match/ultra_hdr_ingress.py",
+    "ingress_sha256": "3e2f54f0462f6eabf2a8841e67ef2df7f61f73e76b65d2c20e412eeed9ccdb39",
+    "source_manifest_path": "tests/fixtures/u1_5c_libultrahdr/SOURCE.json",
+    "source_manifest_sha256": "b06a3221ec7fc45d3765968fedcb7bf387d532629831dc3b794bd50d461b3567",
+    "license": "CC-BY-4.0",
+    "decoder_executable_sha256": "cffdfcae90b2e999260877b646c36c1d04b87d81745c12417c089ca7099d5df0",
+    "official_libultrahdr_commit": "b2aacb366e1542cfc29605cb0d8a0ebd06bb07f8",
+    "fixtures": [
+      {
+        "name": "apple_gainmap_new.jpg",
+        "sha256": "492a94bd0636bcf15b3f560c68142a7783936c1597e78b0d0461d8be7fddc078",
+        "width": 384,
+        "height": 512
+      },
+      {
+        "name": "apple_gainmap_old.jpg",
+        "sha256": "2e4310a0dd37a98678e057e25d936bbc4f936bb6fe17380c0ce99e58ecaa603b",
+        "width": 384,
+        "height": 512
+      }
+    ],
+    "profile_id": "neuro-film.display-absolute-linear-rec2020-d65-cdm2.v1",
+    "reference_white_nits": 203.0
+  },
+  "metrics": {
+    "luminance_vector": [0.2627, 0.678, 0.0593],
+    "log_epsilon_nits": 1.0,
+    "spatial_edges": ["horizontal", "vertical"],
+    "new_spike_absolute_log2_margin": 0.25
+  },
+  "gates": {
+    "all_bindings_exact": true,
+    "output_finite_in_0_10000": true,
+    "new_boundary_fraction_exact": 0.0,
+    "median_log_rgb_material_effect_minimum": 0.01,
+    "luminance_spatial_p95_ratio_maximum": 1.25,
+    "chroma_spatial_p95_ratio_maximum": 1.25,
+    "new_luminance_spike_fraction_maximum": 0.005,
+    "each_fixture_passes_all_safety_gates": true,
+    "forward_reverse_scientific_payload_exact": true,
+    "payload_build_application_source_reads": 0,
+    "target_reads": 0,
+    "network_reads": 0,
+    "repository_media_writes": 0
+  },
+  "execution": {
+    "orders": ["forward-fixtures", "reverse-fixtures"],
+    "fresh_process_per_outer": true,
+    "decoder_path_supplied_at_runtime": true,
+    "application_target_reads": 0
+  },
+  "decision": {
+    "pass": "Retain one private two-consumed-fixture target-blind still-HDR safety D0 for the exact R1CZ payload only.",
+    "fail": "Close this exact payload/fixture safety application without payload, fixture, decoder, metric, threshold or strength rescue."
+  },
+  "claim_ceiling": "Two exact already-consumed CC-BY-4.0 UltraHDR fixtures, one pinned private decoder and one self-authored paired/capture-time payload target-blind safety audit only; no grade correctness, aesthetic quality, captured HDR truth, arbitrary media, public package/schema/capability or product admission."
+}
