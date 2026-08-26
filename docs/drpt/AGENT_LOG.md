@@ -17525,3 +17525,19 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   product-performance promotion. Controlled same-scene physical acquisition
   remains the scientific mainline; any product-speed successor must change
   the execution mechanism rather than relax preview fidelity or timing gates.
+
+### 2026-08-27 - U7.3H closes the verified fresh-process cache at 300ms
+
+- **Experiment:** contract `0784746f`, implementation `601efb9c` and audit
+  `f8ce9b4d` freeze one portable cache index over the exact U7.3G input,
+  profile and three output hashes. Lookup performs five complete-file hashes,
+  decodes no pixels, renders nothing, exposes only relative output names and
+  rejects a tampered preview.
+- **Result:** index/lookup/gates are timing-excluded exact across two complete
+  audits, stable ID `5dd04c44...4bdc1`. All eight fresh-process lookups miss
+  the frozen 300ms target: `.564-.635s` initially and `1.956-4.086s` under
+  later host load. Evidence commit `f9341e65`; eight adjacent tests pass.
+- **Decision:** close this exact full-hash fresh-process cache. Do not skip
+  input/profile/output hashing or redefine warm as an unverifiable in-memory
+  hit. U7.3G remains a valid development-preview tier; product latency and
+  physical three-stock evidence remain open.
