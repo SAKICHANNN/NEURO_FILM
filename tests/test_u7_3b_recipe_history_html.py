@@ -57,6 +57,8 @@ def test_history_page_is_deterministic_accessible_and_offline() -> None:
     assert parser.external_sources == []
     assert 'aria-live="polite"' in text
     assert "prefers-reduced-motion:reduce" in text
+    assert "word-break:break-all" in text
+    assert "width:min(calc(100% - 20px),1120px)" in text
     assert "connect-src &#x27;none&#x27;" not in text
     assert "connect-src 'none'" in text
     assert text.count('<article class="recipe-card"') == 3
