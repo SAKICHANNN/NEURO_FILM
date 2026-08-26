@@ -1,0 +1,46 @@
+{
+  "schema": "neuro-film.p238-aces2-p3d65-canonical-pq-png-contract.v1",
+  "experiment_id": "P238",
+  "status": "FROZEN_BEFORE_IMPLEMENTATION",
+  "parent": "P226",
+  "question": "Can the exact P226 official P3-D65 1000-nit Rec.2100-PQ float target publish one deterministic create-only RGB16 PNG with exact samples, CICP and partition invariance while preserving the existing Rec.2020-PQ target?",
+  "inputs": {
+    "p226_evidence": "docs/evidence/P226_R1CV_REC2100_PQ_RUNTIME_COMPATIBILITY_RESULT.json",
+    "p226_evidence_sha256": "2be3c6da6a80ab4ab75f3ecf7fa2756a383b34dea03822f6d123b1853b0a6b2a",
+    "ocio_adapter": "src/preprocess/ocio_aces2_output.py",
+    "ocio_adapter_sha256": "8f31215c266db683cffcad8f6252a0bfd031025cd12d94c6a88bbe340077475e",
+    "canonical_writer": "src/preprocess/canonical_pq_png.py",
+    "canonical_writer_sha256": "54fed9a9abdf119bd03fb560e495c62af7d2c0887ee7829d41af391c62d0134d",
+    "strict_reader": "src/preprocess/png_stream.py",
+    "strict_reader_sha256": "c3d3c35a23efbc1f7b21babd4255c09872c6ff8cc7eec1423b9d1c9266cf9b97",
+    "fixture_rows": 986,
+    "fixture_shape": [29, 34, 3]
+  },
+  "target": "hdr_p3d65_1000nit_rec2100_pq",
+  "publication": {
+    "bit_depth": 16,
+    "color_type": 2,
+    "cicp_hex": "09100001",
+    "quantization": "floor(float64(code) * 65535 + 0.5)",
+    "row_count": 7,
+    "partition_orders": ["forward", "reverse"]
+  },
+  "regression": {
+    "target": "hdr_rec2020_pq",
+    "output_sha256": "c95554153a53588fccb121380afd1b34c7bd6a3f5e8171ab280592a5b30df923"
+  },
+  "gates": {
+    "frozen_identities_exact": true,
+    "float_output_f32_contiguous_finite_in_0_1": true,
+    "quantized_samples_exact": true,
+    "strict_sample_readback_exact": true,
+    "cicp_exact": true,
+    "partition_png_bytes_exact": true,
+    "existing_target_hash_unchanged": true,
+    "input_immutable": true,
+    "invalid_inputs_reject": true,
+    "create_only_and_failure_atomic": true,
+    "fresh_process_reports_exact": true
+  },
+  "claim_ceiling": "Private Windows/Python deterministic RGB16 PNG arithmetic and Rec.2100-PQ metadata only; no HDR10/mastering/display/quality/arbitrary-image/public-package/schema/capability/stock/product admission."
+}
