@@ -107,6 +107,29 @@ def test_large_canonical_hex_is_transferred_outside_host_command_line(
     assert "$(cat /data/local/tmp/nf_p253_canonical.hex)" in calls[-1][-1]
 
 
+def test_owned_directory_cleanup_retries_transient_lock(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    owned = tmp_path / "owned"
+    owned.mkdir()
+    (owned / "emulator.log").write_text("complete", encoding="utf-8")
+    real_rmtree = audit.shutil.rmtree
+    calls = 0
+
+    def transient_rmtree(path: Path) -> None:
+        nonlocal calls
+        calls += 1
+        if calls == 1:
+            raise PermissionError("transient inherited handle")
+        real_rmtree(path)
+
+    monkeypatch.setattr(audit.shutil, "rmtree", transient_rmtree)
+    monkeypatch.setattr(audit.time, "sleep", lambda _seconds: None)
+    audit._remove_owned_directory(owned, timeout=1.0)
+    assert calls == 2
+    assert not owned.exists()
+
+
 def test_report_serialization_is_order_independent_after_sorting() -> None:
     normal = {
         "identities": sorted(_fixture_rows(FIXTURE, "normal")),

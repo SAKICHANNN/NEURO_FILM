@@ -9,7 +9,7 @@ import os
 import shutil
 import subprocess
 import sys
-import tempfile
+import time
 from collections.abc import Iterable
 from pathlib import Path
 from typing import Any
@@ -224,6 +224,19 @@ def _cleanup_owned_runtime(emulator_exe: Path, avd_name: str, port: int) -> bool
         process.kill()
     psutil.wait_procs(alive, timeout=5.0)
     return not any(process.is_running() for process in matches)
+
+
+def _remove_owned_directory(path: Path, *, timeout: float = 30.0) -> None:
+    deadline = time.monotonic() + timeout
+    while path.exists():
+        try:
+            shutil.rmtree(path)
+        except OSError as error:
+            if time.monotonic() >= deadline:
+                raise P253RuntimeError(
+                    f"owned scratch cleanup timed out: {path}"
+                ) from error
+            time.sleep(0.25)
 
 
 def _build_twice(ndk: Path, work: Path) -> dict[str, Any]:
@@ -549,27 +562,25 @@ def evaluate(
         raise P253RuntimeError("owned work root must be absent before execution")
     runtime_result: dict[str, Any] | None = None
     build_result: dict[str, Any] | None = None
-    work_root.parent.mkdir(parents=True, exist_ok=True)
+    work_root.mkdir(parents=True)
     try:
         _create_avd(avd_home, sdk, contract)
-        with tempfile.TemporaryDirectory(
-            prefix=f"{work_root.name}-", dir=work_root.parent
-        ) as temporary:
-            work = Path(temporary)
-            build_result = _build_twice(ndk, work)
-            runtime_result = _run_runtime(
-                contract=contract,
-                fixture=fixture,
-                sdk=sdk,
-                avd_home=avd_home,
-                executable=build_result["x86_executable"],
-                runtime_library=runtime_library,
-                order=order,
-                work=work,
-            )
+        build_result = _build_twice(ndk, work_root)
+        runtime_result = _run_runtime(
+            contract=contract,
+            fixture=fixture,
+            sdk=sdk,
+            avd_home=avd_home,
+            executable=build_result["x86_executable"],
+            runtime_library=runtime_library,
+            order=order,
+            work=work_root,
+        )
     finally:
         if avd_home.exists():
-            shutil.rmtree(avd_home)
+            _remove_owned_directory(avd_home)
+        if work_root.exists():
+            _remove_owned_directory(work_root)
     assert build_result is not None and runtime_result is not None
     identities_exact = all(
         row["observed_sha256"] == row["expected_sha256"]

@@ -99,3 +99,10 @@ execution because the P31C C++ artifact dynamically links the NDK's
 runtime library, then launches with an owned `/data/local/tmp` library path.
 This preserves the P31C executable and source rather than introducing a new
 static-link variant.
+
+That complete device execution then reached teardown but the first report was
+excluded before publication because Windows retained the emulator log handle
+briefly after process exit.  The runner now uses the exact caller-owned work
+root and bounded retrying removal while preserving the original zero-residue
+gate.  No device result from an uncommitted or cleanup-incomplete run is
+retained.
