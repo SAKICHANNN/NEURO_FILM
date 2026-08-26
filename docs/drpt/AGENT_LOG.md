@@ -17342,6 +17342,38 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   diff checks pass. No account, mirror, payload, pixels, A1/A4/A5, operator,
   package/schema/capability or product mapping opens.
 
+### 2026-08-27 - P251 adds strict opt-in ACES2065-1 WorkingImage ingress
+
+- **Node and routing:** `ULT > mature RAW/HDR explicit mechanisms > P251`,
+  DRPT L2 / Mode C. `dev-research-reliability` was the primary workflow;
+  `scientific-research-harness`, DRPT-BI, project-log and project-structure
+  disciplines were read-only governance. P251 fills the file-to-WorkingImage
+  gap after P249 rather than extending the closed automatic colour algorithm
+  search.
+- **Implementation and boundary:** the new explicit loader accepts only one
+  non-deep scanline float32 packed-RGB part with exact AP0/D60
+  chromaticities/adoptedNeutral, `acesImageContainerFlag=1` and
+  `colorInteropID=lin_ap0_scene`. It applies the fixed AP0-to-AP1 matrix in
+  float64 and returns owned contiguous float32 ACEScg scene-linear pixels.
+  Multipart/wrong-space/half/extra-channel/malformed/non-finite/oversized data
+  fail before a usable output. The loader is opt-in; generic dispatch and
+  default dependencies are unchanged.
+- **Formal result:** two isolated OpenEXR 3.4.15 wheel processes produce exact
+  2,662-byte reports at SHA `bfeecc29...89689`, scientific identity
+  `62e9dc8a...98048`. The exact P249 1,144-byte AP0 container is preserved and
+  decodes to `7x9x3` ACEScg with maximum roundtrip error `9.536743e-7`, owned /
+  writable / C-contiguous storage, range `-4..16`, immutable input/source,
+  four negative controls rejected, zero network and zero temporary residue.
+- **Corrections, evidence and claim:** the first two controller invocations
+  wrote no report and stopped before temporary-root creation because the
+  producer-owned wheel path was resolved under the consumer root; `94cc9c57`
+  corrects only that root. A later Ruff-only `__all__` sorting correction is
+  `115d69e3`. Evidence commit `fb2055af`, evidence SHA
+  `e3685603...52aa6c`; 20 adjacent P249/P251 tests plus Ruff, compileall, JSON
+  and diff checks pass. Claim remains private synthetic Windows/Python
+  ingress; no arbitrary EXR, display/image quality, SMPTE certification,
+  package/schema/capability or product mapping opens.
+
 ### 2026-08-27 - SF3.A0A5 three-stock pipeline interfaces pass one full rehearsal
 
 - **Node and scope:** `ULT > stock-first controlled evidence > SF3.A0A5.R0`,
