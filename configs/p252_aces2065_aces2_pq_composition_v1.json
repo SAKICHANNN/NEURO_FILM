@@ -17,6 +17,9 @@
     "ocio_parent_blob": "eeefd7ec8bb9600328b19d2a52be2a526fe23102",
     "ocio_parent_bytes": 6799,
     "ocio_parent_sha256": "8f31215c266db683cffcad8f6252a0bfd031025cd12d94c6a88bbe340077475e",
+    "ocio_module_sha256": "5dd3c0d8db9c595da331f8f47b8177b32aeaf037f34d7783fb742e6949eb5768",
+    "composition_module_path": "src/preprocess/aces2065_aces2_pq.py",
+    "composition_module_sha256": "e1e9a0dff2f17f6f72c4beae5a7cd93c1b00b5cc52b402ab68f7af706c11f683",
     "canonical_bridge_path": "src/preprocess/aces2_canonical_pq_png.py",
     "canonical_bridge_sha256": "57442e9a60b658e82c6b275fdded962395c0aebcc1e2358df7302706f90cef57",
     "canonical_writer_path": "src/preprocess/canonical_pq_png.py",
@@ -24,7 +27,18 @@
     "u1_4e_config_path": "configs/u1_4e_working_image_aces2_adapter_v1.json",
     "u1_4e_config_sha256": "f3fa252f7452169e17de12f96930864ce75a4d4a098196e208010adced540aa5",
     "u1_4e_evidence_path": "docs/evidence/U1_4E_WORKING_IMAGE_ACES2_ADAPTER_RESULT.json",
-    "u1_4e_evidence_sha256": "d9876756e4548931f64cc875ee1c611e446c5e30086a83f2c66fb265337040fc"
+    "u1_4e_evidence_sha256": "d9876756e4548931f64cc875ee1c611e446c5e30086a83f2c66fb265337040fc",
+    "runner_path": "scripts/audit_p252_aces2065_aces2_pq_composition.py",
+    "runner_sha256": "4217a453dd29757438a015ffeea4ab74f4b62ea820ff4e1b82ae1f243052aa9d"
+  },
+  "p251_producer": {
+    "writer_commit": "a7ec64513c4fa097bc49b9bdbdfd8c3c7c2eb901",
+    "writer_path": "src/zhuise/acescg_openexr.py",
+    "writer_bytes": 7699,
+    "writer_sha256": "63995dc36cf41708118f32e90687b8bb5c9b2738100b3db557371bbaf086d84d",
+    "openexr_wheel_path": "data/vendor/openexr-3.4.15/openexr-3.4.15-cp312-cp312-win_amd64.whl",
+    "openexr_wheel_bytes": 740197,
+    "openexr_wheel_sha256": "7aa145813acfe10a83d6e89340349379828190b321608e69f2aee426e10c890b"
   },
   "runtime": {
     "openexr_version": "3.4.15",
