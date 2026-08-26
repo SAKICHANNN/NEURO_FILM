@@ -5,9 +5,14 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import sys
 import tempfile
 from pathlib import Path
 from typing import Any
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from src.eval.interior_logit_hdr_native_conformance import (
     build_llvm,
@@ -20,7 +25,6 @@ from src.eval.interior_logit_hdr_native_conformance import (
 )
 from src.eval.native_msvc import sha256_file
 
-ROOT = Path(__file__).parents[1]
 CONFIG = ROOT / "configs/p220_interior_logit_hdr_portable_parity_v1.json"
 FIXTURE = ROOT / "tests/fixtures/p220_r1cg_frozen_payloads_v1.json"
 CLANG = ROOT / "outputs/tmp/tools/llvm-mingw-20260616-ucrt-x86_64/bin/clang.exe"
