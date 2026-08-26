@@ -307,6 +307,18 @@ A0N receipt before emitting the existing A0 manifest bytes. Diagnostic scan
 tasks remain outside the fitting ledger. This removes a future ingestion
 blocker but does not fabricate the still-empty physical packet or open A1/A2.
 
+SF3.A0A5.R0 now executes those existing interfaces as one disposable
+procedural rehearsal. Two fresh forward/reverse processes are byte exact
+(`a5c36484...c0e63`, stable `6e436504...1a7f1`): 108 receipt-bound rows pass
+A0/A1, three independent K=1 file fits pass A2, twelve confirmation outputs
+pass A4, and the 36-image blind package reaches A5 adjudication. Network and
+persistent data writes are zero and temporary trees are removed. This closes
+an execution-readiness gap only; it is not film evidence, stock
+identification, human severe review or preference. Physical Velvia 50, Portra
+400 and Ektar 100 receipts/scans remain the unchanged next mainline action.
+Evidence:
+`docs/evidence/SF3_A0A5_SYNTHETIC_PIPELINE_REHEARSAL_RESULT.json`.
+
 SF3.A2 tests one bounded current public-index refresh without changing the
 three-stock gates. The frozen anonymous Openverse route returned HTTP 401 for
 all three exact queries, despite the current consumer documentation describing

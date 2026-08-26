@@ -17341,3 +17341,25 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Evidence commit `e05df4f0`; five focused tests, Ruff, compileall, JSON and
   diff checks pass. No account, mirror, payload, pixels, A1/A4/A5, operator,
   package/schema/capability or product mapping opens.
+
+### 2026-08-27 - SF3.A0A5 three-stock pipeline interfaces pass one full rehearsal
+
+- **Node and scope:** `ULT > stock-first controlled evidence > SF3.A0A5.R0`,
+  DRPT L2 / Mode C. `dev-research-reliability` was the primary writer;
+  research, DRPT-BI, project-log and project-structure disciplines were
+  read-only governance. The leaf changes no colour core, frozen gate or
+  physical-data role.
+- **Execution:** two fresh forward/reverse processes traverse exact A0N
+  receipts and ledger binding, 108 A0/A1 rows, three independent A2 K=1 file
+  fits, three A4 render lanes, 12 confirmation outputs and the A5 36-image
+  blind package/adjudication. Reports are byte exact at 1,276 bytes and SHA
+  `a5c36484...c0e63`; stable ID `6e436504...1a7f1`. Network and persistent data
+  writes are zero, all temporary trees are removed, and the 70-test adjacent
+  SF3 suite passes.
+- **Boundary and handoff:** the rehearsal exposed and repaired only three
+  interface defects before formal execution: ledger-schema constant reuse,
+  unique synthetic scan identity, and direct-script import routing. Evidence
+  commit `2f89a5e2`. Passing proves pipeline readiness only; the still-empty
+  controlled Velvia 50, Portra 400 and Ektar 100 physical packet remains the
+  next scientific action, with no calibration, stock-identification,
+  preference or product claim.
