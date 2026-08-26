@@ -19,11 +19,23 @@ from PIL import Image
 from src.preprocess.output_encode import save_srgb16_png
 from src.real_film.gold_transform_consistency import operator_from_dict
 from src.real_film.three_stock_k1_baseline import REPORT_SCHEMA as K1_REPORT_SCHEMA
+from src.real_film.three_stock_k1_baseline import (
+    SINGLE_STOCK_REPORT_SCHEMA as SINGLE_STOCK_K1_REPORT_SCHEMA,
+)
 from src.real_film.three_stock_k1_file_runner import REPORT_SCHEMA as FILE_REPORT_SCHEMA
+from src.real_film.three_stock_k1_file_runner import (
+    SINGLE_STOCK_REPORT_SCHEMA as SINGLE_STOCK_FILE_REPORT_SCHEMA,
+)
 from src.real_film.three_stock_scan_integrity import decode_integer_rgb
 
 CONTRACT_SCHEMA = "neuro-film.sf3-a4-three-stock-confirmation-render-contract.v1"
 REPORT_SCHEMA = "neuro-film.sf3-a4-three-stock-confirmation-render-report.v1"
+SINGLE_STOCK_REPORT_SCHEMA = (
+    "neuro-film.sf3-a4-single-stock-confirmation-render-report.v1"
+)
+SINGLE_STOCK_A2_DECISION = (
+    "RETAIN_SINGLE_STOCK_K1_CANDIDATE_PENDING_THREE_STOCK_CONTROLS"
+)
 
 
 class ThreeStockConfirmationRenderError(ValueError):
@@ -159,6 +171,60 @@ def _validate_parent_report(
     return result
 
 
+def _validate_single_stock_parent_report(
+    report: Mapping[str, Any],
+    *,
+    contract: Mapping[str, Any],
+    ledger_sha256: str,
+    manifest_sha256: str,
+    stock: str,
+) -> Mapping[str, Any]:
+    parent = contract["parent"]
+    result = report.get("k1_result")
+    if stock not in contract["required_stocks"]:
+        raise ThreeStockConfirmationRenderError("unsupported single stock")
+    if report.get("schema") != SINGLE_STOCK_FILE_REPORT_SCHEMA:
+        raise ThreeStockConfirmationRenderError("unsupported single-stock file report")
+    if (
+        report.get("stock") != stock
+        or report.get("automatic_pass") is not True
+        or report.get("decision") != SINGLE_STOCK_A2_DECISION
+        or report.get("cross_stock_controls_evaluated") is not False
+    ):
+        raise ThreeStockConfirmationRenderError("single-stock SF3.A2 did not open rendering")
+    if (
+        report.get("integrity_automatic_pass") is not True
+        or report.get("paired_sampling_executed") is not True
+        or not isinstance(report.get("operator_fits"), int)
+        or report["operator_fits"] <= 0
+    ):
+        raise ThreeStockConfirmationRenderError(
+            "single-stock SF3.A2 execution chain is incomplete"
+        )
+    if (
+        report.get("ledger_sha256") != ledger_sha256
+        or report.get("manifest_sha256") != manifest_sha256
+        or report.get("k1_contract_sha256") != parent["k1_contract"]["sha256"]
+    ):
+        raise ThreeStockConfirmationRenderError("single-stock SF3.A2 identity drift")
+    if (
+        not isinstance(result, dict)
+        or result.get("schema") != SINGLE_STOCK_K1_REPORT_SCHEMA
+        or result.get("stock") != stock
+        or result.get("automatic_pass") is not True
+        or result.get("decision") != SINGLE_STOCK_A2_DECISION
+        or result.get("selection_used_confirmation_targets") is not False
+        or result.get("wrong_stock_control_evaluated") is not False
+        or result.get("cross_stock_distinguishability_evaluated") is not False
+        or result.get("contract_sha256") != parent["k1_contract"]["sha256"]
+        or not isinstance(result.get("operator"), dict)
+    ):
+        raise ThreeStockConfirmationRenderError(
+            "single-stock K1 scientific result did not pass"
+        )
+    return result
+
+
 def _confirmation_sources(
     *,
     root: Path,
@@ -278,27 +344,49 @@ def evaluate_and_materialize(
     ledger_path: Path,
     manifest_path: Path,
     output_dir: Path,
+    stock: str | None = None,
 ) -> dict[str, Any]:
-    """Create exact confirmation renders without reading any film target file."""
+    """Create exact confirmation renders without reading any film target file.
+
+    ``stock`` selects the lower-claim single-stock path.  The default preserves
+    the original complete three-stock behavior.
+    """
 
     contract_raw, contract = load_contract(contract_path, root=root)
     report_raw, a2_report = _read_object(a2_report_path)
     ledger_raw, ledger = _read_object(ledger_path)
     manifest_raw, manifest = _read_object(manifest_path)
-    k1_result = _validate_parent_report(
-        a2_report,
-        contract=contract,
-        ledger_sha256=_sha256(ledger_raw),
-        manifest_sha256=_sha256(manifest_raw),
-    )
-    stocks = list(contract["required_stocks"])
+    if stock is None:
+        k1_result = _validate_parent_report(
+            a2_report,
+            contract=contract,
+            ledger_sha256=_sha256(ledger_raw),
+            manifest_sha256=_sha256(manifest_raw),
+        )
+        stocks = list(contract["required_stocks"])
+    else:
+        k1_result = _validate_single_stock_parent_report(
+            a2_report,
+            contract=contract,
+            ledger_sha256=_sha256(ledger_raw),
+            manifest_sha256=_sha256(manifest_raw),
+            stock=stock,
+        )
+        stocks = [stock]
     sources = _confirmation_sources(
         root=root, ledger=ledger, manifest=manifest, stocks=stocks
     )
-    if sorted(
-        str(value) for value in k1_result.get("common_confirmation_scenes", [])
-    ) != [row["scene_id"] for row in sources]:
-        raise ThreeStockConfirmationRenderError("confirmation scene identity drift")
+    if stock is None:
+        if sorted(
+            str(value) for value in k1_result.get("common_confirmation_scenes", [])
+        ) != [row["scene_id"] for row in sources]:
+            raise ThreeStockConfirmationRenderError(
+                "confirmation scene identity drift"
+            )
+    elif k1_result.get("metrics", {}).get("confirmation_frames") != len(sources):
+        raise ThreeStockConfirmationRenderError(
+            "single-stock confirmation scene count drift"
+        )
     logical_output_root = (root / "outputs").resolve()
     output_dir = output_dir.resolve()
     if output_dir == logical_output_root or not output_dir.is_relative_to(
@@ -331,13 +419,18 @@ def evaluate_and_materialize(
             source = decode_integer_rgb(source_row["path"], decode_contract)
             source_decodes += 1
             scene_hashes: set[str] = set()
-            for stock in stocks:
+            for stock_id in stocks:
+                operator_payload = (
+                    k1_result["stocks"][stock_id]["operator"]
+                    if stock is None
+                    else k1_result["operator"]
+                )
                 rendered, diagnostics = _render_operator(
                     source,
-                    k1_result["stocks"][stock]["operator"],
+                    operator_payload,
                     tile_rows=int(contract["render"]["row_tile_height"]),
                 )
-                relative = Path(stock) / f"{source_row['scene_id']}.png"
+                relative = Path(stock_id) / f"{source_row['scene_id']}.png"
                 facts = _save_verified_png(rendered, stage / relative)
                 if facts["png_sha256"] in scene_hashes:
                     raise ThreeStockConfirmationRenderError(
@@ -347,9 +440,9 @@ def evaluate_and_materialize(
                 output_rows.append(
                     {
                         "scene_id": source_row["scene_id"],
-                        "stock_id": stock,
+                        "stock_id": stock_id,
                         "digital_reference_sha256": source_row["sha256"],
-                        "operator_kind": k1_result["stocks"][stock]["operator"]["kind"],
+                        "operator_kind": operator_payload["kind"],
                         "relative_path": relative.as_posix(),
                         **diagnostics,
                         **facts,
@@ -357,8 +450,12 @@ def evaluate_and_materialize(
                 )
                 del rendered
         core = {
-            "schema": REPORT_SCHEMA,
-            "experiment_id": contract["experiment_id"],
+            "schema": REPORT_SCHEMA if stock is None else SINGLE_STOCK_REPORT_SCHEMA,
+            "experiment_id": (
+                contract["experiment_id"]
+                if stock is None
+                else f"{contract['experiment_id']}.{stock}"
+            ),
             "contract_sha256": _sha256(contract_raw),
             "a2_report_sha256": _sha256(report_raw),
             "ledger_sha256": _sha256(ledger_raw),
@@ -370,9 +467,27 @@ def evaluate_and_materialize(
             "operator_refits": 0,
             "outputs": output_rows,
             "automatic_pass": True,
-            "decision": contract["decision_if_pass"],
-            "claim_ceiling": contract["claim_ceiling"],
+            "decision": (
+                contract["decision_if_pass"]
+                if stock is None
+                else "OPEN_SINGLE_STOCK_K1_SEVERE_ARTIFACT_REVIEW_ONLY_PENDING_THREE_STOCK_CONTROLS"
+            ),
+            "claim_ceiling": (
+                contract["claim_ceiling"]
+                if stock is None
+                else (
+                    "Exact full-resolution confirmation-source render materialization "
+                    "for one independently fitted controlled K=1 stock-labelled "
+                    "operator. Passing opens severe-artifact review for that stock "
+                    "only; it is not wrong-stock rejection, stock distinguishability, "
+                    "calibrated stock response, preference, product promotion or "
+                    "multi-stock completion."
+                )
+            ),
         }
+        if stock is not None:
+            core["stock"] = stock
+            core["cross_stock_controls_evaluated"] = False
         report = {**core, "stable_evidence_id": _sha256(_canonical(core))}
         (stage / "report.json").write_bytes(_canonical(report))
         os.rename(stage, output_dir)
@@ -382,10 +497,35 @@ def evaluate_and_materialize(
         raise
 
 
+def evaluate_single_stock_and_materialize(
+    contract_path: Path,
+    *,
+    root: Path,
+    a2_report_path: Path,
+    ledger_path: Path,
+    manifest_path: Path,
+    output_dir: Path,
+    stock: str,
+) -> dict[str, Any]:
+    """Render one passing stock lane for severe-artifact review only."""
+
+    return evaluate_and_materialize(
+        contract_path,
+        root=root,
+        a2_report_path=a2_report_path,
+        ledger_path=ledger_path,
+        manifest_path=manifest_path,
+        output_dir=output_dir,
+        stock=stock,
+    )
+
+
 __all__ = [
     "CONTRACT_SCHEMA",
     "REPORT_SCHEMA",
+    "SINGLE_STOCK_REPORT_SCHEMA",
     "ThreeStockConfirmationRenderError",
     "evaluate_and_materialize",
+    "evaluate_single_stock_and_materialize",
     "load_contract",
 ]

@@ -9,8 +9,10 @@ import numpy as np
 import pytest
 
 from src.real_film.three_stock_confirmation_render import (
+    SINGLE_STOCK_REPORT_SCHEMA,
     ThreeStockConfirmationRenderError,
     evaluate_and_materialize,
+    evaluate_single_stock_and_materialize,
     load_contract,
 )
 
@@ -120,6 +122,54 @@ def _fixture(tmp_path: Path) -> dict[str, Path]:
     }
 
 
+def _single_stock_fixture(tmp_path: Path, stock: str) -> dict[str, Path]:
+    fixture = _fixture(tmp_path)
+    ledger = json.loads(fixture["ledger"].read_text())
+    manifest = json.loads(fixture["manifest"].read_text())
+    retained = [
+        index
+        for index, row in enumerate(manifest["rows"])
+        if row["stock_id"] == stock
+    ]
+    ledger["rows"] = [ledger["rows"][index] for index in retained]
+    manifest["rows"] = [manifest["rows"][index] for index in retained]
+    ledger_raw = _write_json(fixture["ledger"], ledger)
+    manifest_raw = _write_json(fixture["manifest"], manifest)
+    full_report = json.loads(fixture["report"].read_text())
+    operator = full_report["k1_result"]["stocks"][stock]["operator"]
+    single_decision = "RETAIN_SINGLE_STOCK_K1_CANDIDATE_PENDING_THREE_STOCK_CONTROLS"
+    single_result = {
+        "schema": "neuro-film.sf3-a2-single-stock-k1-baseline-report.v1",
+        "contract_sha256": _sha(K1.read_bytes()),
+        "stock": stock,
+        "selection_used_confirmation_targets": False,
+        "automatic_pass": True,
+        "decision": single_decision,
+        "wrong_stock_control_evaluated": False,
+        "cross_stock_distinguishability_evaluated": False,
+        "operator": operator,
+        "metrics": {"confirmation_frames": 2},
+    }
+    _write_json(
+        fixture["report"],
+        {
+            "schema": "neuro-film.sf3-a2-single-stock-k1-file-runner-report.v1",
+            "stock": stock,
+            "automatic_pass": True,
+            "decision": single_decision,
+            "cross_stock_controls_evaluated": False,
+            "k1_contract_sha256": _sha(K1.read_bytes()),
+            "ledger_sha256": _sha(ledger_raw),
+            "manifest_sha256": _sha(manifest_raw),
+            "integrity_automatic_pass": True,
+            "paired_sampling_executed": True,
+            "operator_fits": 7,
+            "k1_result": single_result,
+        },
+    )
+    return fixture
+
+
 def test_contract_binds_k1_parent() -> None:
     _, value = load_contract(CONTRACT, root=ROOT)
     assert value["required_stocks"] == list(STOCKS)
@@ -148,6 +198,7 @@ def test_materializes_exact_target_blind_stock_outputs(tmp_path: Path) -> None:
     assert first["automatic_pass"] is True
     assert first["film_target_file_reads"] == 0
     assert first["operator_refits"] == 0
+    assert "cross_stock_controls_evaluated" not in first
     assert first["digital_source_decodes"] == 2
     assert len(first["outputs"]) == 6
     assert len({row["png_sha256"] for row in first["outputs"]}) == 6
@@ -155,6 +206,32 @@ def test_materializes_exact_target_blind_stock_outputs(tmp_path: Path) -> None:
     for row in first["outputs"]:
         assert row["raw_output_clip_fraction"] == 0.0
         assert (tmp_path / "outputs" / "run-a" / row["relative_path"]).is_file()
+
+
+@pytest.mark.parametrize("stock", STOCKS)
+def test_materializes_one_stock_without_cross_stock_claim(
+    tmp_path: Path, stock: str
+) -> None:
+    fixture = _single_stock_fixture(tmp_path, stock)
+    report = evaluate_single_stock_and_materialize(
+        CONTRACT,
+        root=fixture["root"],
+        a2_report_path=fixture["report"],
+        ledger_path=fixture["ledger"],
+        manifest_path=fixture["manifest"],
+        output_dir=tmp_path / "outputs" / "single",
+        stock=stock,
+    )
+    assert report["schema"] == SINGLE_STOCK_REPORT_SCHEMA
+    assert report["stock"] == stock
+    assert report["stocks"] == [stock]
+    assert report["cross_stock_controls_evaluated"] is False
+    assert report["film_target_file_reads"] == 0
+    assert report["operator_refits"] == 0
+    assert report["digital_source_decodes"] == 2
+    assert len(report["outputs"]) == 2
+    assert all(row["stock_id"] == stock for row in report["outputs"])
+    assert report["decision"].startswith("OPEN_SINGLE_STOCK_K1_SEVERE")
 
 
 def test_nonpassing_parent_creates_no_output(tmp_path: Path) -> None:
