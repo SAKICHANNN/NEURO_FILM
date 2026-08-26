@@ -1,0 +1,98 @@
+{
+  "schema": "neuro-film.p237-inretouch-rtd-source-eligibility-evidence.v1",
+  "experiment_id": "P237",
+  "status": "NOT_ELIGIBLE_PRODUCT_CYCLE_SOURCE_RIGHTS_OR_PAYLOAD_GAP",
+  "date": "2026-08-26",
+  "commits": {
+    "preregistration": "76f04e65b4dd125638f9f64be61d64c562eb868d",
+    "implementation": "8991bebbf4181c1b6f5d7841905c5a49f5490ab1",
+    "pre_evidence_partition_correction": "684042cbdf58f13c42fdec02f0988d6c92a040f5"
+  },
+  "protocol": {
+    "contract_path": "docs/planning/P237_INRETOUCH_RTD_SOURCE_ELIGIBILITY_CONTRACT.md",
+    "contract_sha256": "4aeaa29265bd44d5d1da8e67f0a79ee2dbddf598027a51fcabaed7f57567c49b",
+    "config_path": "configs/p237_inretouch_rtd_source_eligibility_v1.json",
+    "config_sha256": "6bf5b592b5d3608355da57727d57fc1e4319e43d378819a6c4d61aca9df14d6e",
+    "all_mandatory_gates_required": true,
+    "dataset_payload_reads_allowed": false
+  },
+  "implementation": {
+    "analyzer_path": "src/eval/inretouch_source_eligibility.py",
+    "analyzer_sha256": "75b19e09c8e12c7e3bd058cac729ed82f31447cb44e2196aa28c32150392db8f",
+    "runner_path": "scripts/audit_p237_inretouch_rtd_source_eligibility.py",
+    "runner_sha256": "19d43594eca442db9d822767b387911903818d2f6f7fadc069e3a6e8e89856f2",
+    "test_path": "tests/test_p237_inretouch_rtd_source_eligibility.py",
+    "test_sha256": "577017d872a72c21f271caa7bd3925569e675d4889f9c30b626578543cbf921b"
+  },
+  "official_source_identity": {
+    "github_repository": "omarAlezaby/InRetouch",
+    "github_head": "cbf0db19487222c21d63116c320357764438360d",
+    "readme_sha256": "166f2db3277b573bed92642facd811c11aa4101f8f5eba952d2df91cbbb45e8c",
+    "license_sha256": "55a218c62e9fd91d6dbaea59ce256cb390204e94d9937447f6c99662155bdc5b",
+    "huggingface_dataset": "omaralezaby/Retouch_Transfer_Dataset",
+    "huggingface_dataset_sha": "3e100e1fa896d9ed023cd1545890400edd67f949"
+  },
+  "formal": {
+    "forward_report_path": "outputs/eval/p237_inretouch_rtd_source_eligibility/forward.json",
+    "reverse_report_path": "outputs/eval/p237_inretouch_rtd_source_eligibility/reverse.json",
+    "report_bytes_each": 1907,
+    "report_sha256": "b101a796ce5c237c5e2b127ac26e0e222651dbddde8c95a395c7d9750e892004",
+    "reports_byte_exact": true,
+    "stable_identity": "sha256:cf0c6576df16bfd1dc56b011c5a39723eac98edd7060667a6be55b7c6df44fa3",
+    "fresh_process_count": 2,
+    "metadata_request_count_per_process": 5,
+    "metadata_response_bytes_per_process": 23823250,
+    "authenticated_requests": 0,
+    "dataset_payload_bytes": 0,
+    "image_or_preset_bytes": 0,
+    "model_or_checkpoint_bytes": 0,
+    "pixel_decodes": 0,
+    "training_or_inference": 0
+  },
+  "inventory": {
+    "descriptor_count": 96164,
+    "descriptor_total_bytes": 18027030144,
+    "descriptor_size_count": 96164,
+    "descriptor_blob_id_count": 96164,
+    "descriptor_lfs_sha256_count": 96161,
+    "train_natural_files": 508,
+    "train_preset_files": 73660,
+    "validation_natural_files": 61,
+    "validation_preset_files": 8845,
+    "benchmark_test_natural_files": 61,
+    "benchmark_test_preset_files": 1342
+  },
+  "gates": {
+    "public_payload_enumerable_without_authentication": true,
+    "commercial_model_and_product_use_permitted": false,
+    "scene_and_preset_grouping_explicit": true,
+    "authoritative_file_sizes_and_content_hashes_present": true,
+    "no_contact_sharing_or_additional_terms_acceptance_required": false,
+    "two_normalized_reports_byte_exact": true
+  },
+  "preserved_execution_correction": {
+    "superseded_report_sha256": "2a4bff19caf8482b3b0cf601cf70f9e30ec1ede6a6189e0ff30ff88b1466f46b",
+    "superseded_report_bytes_each": 1869,
+    "defect": "The first implementation searched for Benchmark/Train and title-case Natural paths although the official release uses top-level Train and Validation plus lowercase natural directories.",
+    "scope": "The additive correction changed only partition classification before tracked evidence. The decisive noncommercial-license and gated-access failures, source identities, payload boundary, thresholds and decision were unchanged.",
+    "corrected_from_scratch": true
+  },
+  "interpretation": {
+    "positive_facts": [
+      "RTD is a current WACV 2026 paired-retouch source whose explicit scene and preset partitions are highly relevant to shared-operator research.",
+      "The complete 96,164-entry public descriptor inventory is anonymously enumerable and supplies authoritative sizes plus Git or LFS content identities.",
+      "The official inventory would support scene-disjoint and preset-disjoint roles if rights and access gates were separately satisfied."
+    ],
+    "formal_failure": "The exact official release is CC BY-NC-SA 4.0 and explicitly academic-research-only for code, so commercial model/product use is not permitted. The Hugging Face dataset is gated=auto, requiring access acceptance rather than an ungated public acquisition path.",
+    "no_rescue": [
+      "accept the gated terms or share contact information",
+      "reinterpret noncommercial terms as product permission",
+      "use credentials, a mirror, author contact or an alternate copy",
+      "download any image, preset, archive, checkpoint or LFS payload",
+      "count this metadata audit as candidate 3 or reopen the closed after-only route"
+    ],
+    "retained_boundary": "RTD remains useful current academic-source context, but it does not enter the bounded product-cycle data path. A future independently licensed release would require a new prospective source lock."
+  },
+  "consumer_mapping": false,
+  "claim_ceiling": "Metadata-only latest-source and rights eligibility negative; no data quality, preset authenticity, operator recovery, A1/A4/A5, package, capability, product, film-stock or preference admission"
+}
