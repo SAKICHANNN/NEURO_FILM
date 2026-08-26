@@ -16498,3 +16498,28 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   lifetime. The outputs remain non-calibrated Look Approximations and U7.2C
   separation still fails. The next independent runtime leaf is the generator's
   prior-output lifetime; do not mix it into this frozen result.
+
+### 2026-08-26 - P233 persists the exact R1CZ payload inside this checkout
+
+- **Question:** can the exact R1CZ paired/capture-time payload be independently
+  hashed, decoded and applied from this repository without reading the producer
+  checkout or rebuilding paired pixels?
+- **Frozen artifact:** canonical `kmcfm.r1cz-payload-capsule.v1` JSON stores the
+  exact no-newline 4,376-byte payload as lower-case hex, binds payload SHA
+  `aa7fe040...28cb9` and bundle `2759d219...c3220f`, and admits no alternate
+  encoding, payload mutation or bundle identity.
+- **Result:** the tracked 9,029-byte capsule SHA is `66050f58...859e`. Two fresh
+  forward/reverse 2,138-byte reports are byte exact at `db3cf01c...9d71`, stable
+  `03d63cfe...f594`; independent reconstruction reproduces the exact P230
+  output `98a1281e...6409`, with owned contiguous output, source immutability and
+  range gates passing. Payload tamper, wrong encoding and wrong bundle controls
+  all reject.
+- **Execution integrity:** formal producer-checkout reads, paired-build reads,
+  network reads and media writes are zero. A pre-formal import-only failure
+  removed one nonexistent unused exception import before any report or apply;
+  the complete formal pair then ran from the committed implementation.
+- **Boundary/handoff:** P233 repairs only local artifact availability for the
+  existing private R1CZ/R1CY paired candidate. It does not create after-only or
+  natural captured-HDR evidence, nor a public package, schema, capability or
+  product admission. Evidence:
+  `docs/evidence/P233_R1CZ_LOCAL_PAYLOAD_CAPSULE_RESULT.json`.
