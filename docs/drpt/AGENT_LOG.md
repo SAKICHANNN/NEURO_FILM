@@ -17444,3 +17444,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Boundary:** pixel bytes, profiles, reports, schemas, algorithms, stock
   evidence and defaults are unchanged. Immutable U6.P8BF and unrelated legacy
   baseline source-hash locks were not rewritten to hide historical drift.
+
+### 2026-08-27 - SF3.A0A5.R1 passes on the canonical P-backed exFAT path
+
+- **Execution:** the unchanged SF3.A0A5.R0 procedural chain ran once in
+  forward and once in reverse order with both temporary roots resolving
+  through the repository `tmp` junction to P: exFAT. Both 1,276-byte reports
+  are byte-exact at SHA `a5c36484...c0e63` and retain stable identity
+  `6e436504...1a7f1`; each run removed its full intermediate tree.
+- **Verification and boundary:** 115 adjacent SF3 A0N/A1/A2/A4/A5,
+  three-stock product recovery/replay and native publication tests pass in
+  145.63 seconds. This is storage execution evidence only. The physical
+  Velvia 50, Portra 400 and Ektar 100 receipt packet remains empty, so no
+  stock response, calibration, preference, severe-review or promotion claim
+  opens. Evidence commit `a6d8bef1`.

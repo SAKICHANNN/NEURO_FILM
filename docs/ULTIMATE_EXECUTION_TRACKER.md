@@ -319,6 +319,14 @@ identification, human severe review or preference. Physical Velvia 50, Portra
 Evidence:
 `docs/evidence/SF3_A0A5_SYNTHETIC_PIPELINE_REHEARSAL_RESULT.json`.
 
+SF3.A0A5.R1 repeats that unchanged full pipeline through the canonical
+repo-relative P-backed exFAT path. Forward/reverse executions are byte-exact
+at report SHA `a5c36484...c0e63`; each run removes its complete intermediate
+tree, and 115 adjacent SF3/U7/native-publication tests pass. This closes only
+storage execution readiness. Physical receipts/scans and every stock,
+calibration, preference and product claim remain unchanged. Evidence:
+`docs/evidence/SF3_A0A5_EXFAT_PIPELINE_REHEARSAL_RESULT.json`.
+
 The physical handoff no longer requires editing the 1,198-line A0N packet in
 one pass. Commit `0953f9cf` adds a copy-on-write capture-session CLI that fills
 one exact condition or exposure row at a time, rejects partial/unknown/
