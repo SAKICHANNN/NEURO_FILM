@@ -17458,3 +17458,49 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Velvia 50, Portra 400 and Ektar 100 receipt packet remains empty, so no
   stock response, calibration, preference, severe-review or promotion claim
   opens. Evidence commit `a6d8bef1`.
+
+### 2026-08-27 - P252 closes the exact AP0 OpenEXR to canonical PQ composition gap
+
+- **Node and routing:** `ULT > mature RAW/HDR explicit mechanisms > P252`,
+  DRPT L2 / Mode C. `dev-research-reliability` was the sole write workflow;
+  scientific research, plan/tracker, DRPT-BI, project-log and structure skills
+  were read-only governance. The bounded automatic-candidate counter remains
+  stopped at `2/3`; P252 consumes no scientific candidate and reads no natural
+  image, film scan or target reference.
+- **Root gap and frozen change:** P251 correctly produced
+  `acescg_ap1_d60` scene-linear `WorkingImage`, but the retained official ACES
+  2 adapter accepted only `linear_srgb` and `linear_rec2020`. Contract commit
+  `da55a740` froze the minimal repair: exact ACEScg identity must return an
+  owned contiguous copy; existing spaces must retain all four U1.4E output
+  hashes; only then may the existing canonical Rec.2100-PQ writer publish.
+  Implementation `1d974ede` adds that one identity branch and the private
+  `publish_aces2065_openexr_aces2_canonical_hdr_pq_png_v1` composition. Generic
+  EXR/raster/RAW dispatch and the default renderer are unchanged.
+- **Formal correction:** the first complete report pair was excluded at SHA
+  `94ba3e14...c93ce` because the audit hashed expected samples after an
+  unnecessary big-endian conversion while the strict reader hashes decoded
+  native `uint16`, and its foreign-destination helper incorrectly required an
+  already-existing protected file to disappear. Correction commit `70c08aa3`
+  changes only those two audit predicates and records the exclusion; source,
+  AP0/AP1 pixels, official output, PNG bytes, gates and claim ceiling are
+  unchanged. Both complete processes were rerun from the corrected commit.
+- **Evidence and result:** corrected forward/reverse reports are byte-exact at
+  3,502 bytes / SHA `7b4116a2...f71c3`, scientific identity
+  `541150ac...f36803`. P251 AP1 roundtrip remains `9.536743e-7`; ACEScg
+  identity error is zero; the WorkingImage adapter equals the direct official
+  processor byte-for-byte; all four U1.4E legacy hashes are exact. Canonical
+  RGB16 samples hash `5194e283...aa6d`; the 469-byte strict Rec.2100-PQ PNG is
+  exact at `533cad62...a2c4`; range, CICP, create-only/foreign-destination,
+  invalid-container, immutability, replay and cleanup gates all pass. Evidence
+  commit `93b387fe`; evidence SHA `a741ee78...5ce7f`.
+- **Collateral verification and boundary:** 34 focused/adjacent tests pass,
+  including P251, U1.4E, P91 and P238; Ruff, compileall, JSON and diff checks
+  pass. The historical U1.4E evidence test now hashes its exact formal-lock Git
+  objects rather than falsely requiring the current implementation file never
+  to evolve; P252 separately proves behavioral compatibility. Claim remains
+  private exact-file Windows/Python mechanics only: no arbitrary EXR/HDR,
+  photographic or display quality, HDR10 mastering, SMPTE certification,
+  public package/schema/capability, stock evidence, single-reference matching
+  or product admission. Ultimate remains active; controlled physical named-
+  stock evidence and truly new identifying observations remain the scientific
+  gap.
