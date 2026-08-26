@@ -24,6 +24,10 @@ the unchanged 2 GiB process-tree RSS ceiling?
   OpenEXR repository.
 - Official release asset: `openexr-3.4.15.tar.gz`, 25,840,011 bytes, SHA-256
   `ab893d8003773ccd9a5556b2caf38da591ae37e20b06ee9d589a08984c5191f2`.
+- Exact upstream-required Imath tag `v3.2.2`, Git object
+  `1e480d11cb98b032a2dece9b9a8730512effc7f6`; the frozen tag archive is
+  689,217 bytes with SHA-256
+  `b4275d83fb95521510e389b8d13af10298ed5bed1c8e13efd961d91b1105e462`.
 - Build only the required OpenEXR/Imath libraries and one private audit binary;
   tests, tools, examples, Python bindings and shared libraries are disabled.
 - Windows x64 MSVC 19.50.35729, bundled CMake 4.2.3-msvc3 and Ninja 1.12.1
