@@ -219,7 +219,7 @@ def run(*, reverse: bool) -> dict:
         "decision": contract["decision"]["pass"]
         if all(gates.values())
         else contract["decision"]["fail"],
-        "input_hash_reads": len(rows),
+        "input_files_hash_verified": len(rows),
         "network_reads": 0,
         "image_decodes": 0,
         "renders": 0,
