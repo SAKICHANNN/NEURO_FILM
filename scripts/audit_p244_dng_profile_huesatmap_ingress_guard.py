@@ -6,6 +6,7 @@ import argparse
 import hashlib
 import json
 import subprocess
+import sys
 import tempfile
 from pathlib import Path
 from types import SimpleNamespace
@@ -13,6 +14,10 @@ from unittest.mock import patch
 from zipfile import ZipFile
 
 import tifffile
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 import src.preprocess.dng_forward_raster as raster
 from src.preprocess.dng_metadata import _walk_pages, canonical_json_bytes
