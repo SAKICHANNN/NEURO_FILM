@@ -1,0 +1,79 @@
+{
+  "schema": "neuro-film.p253-reference-product-chain-android-runtime.v1",
+  "experiment_id": "p253-reference-product-chain-android-runtime-v1",
+  "node": "ULT > reference matching product chain > P253",
+  "date_frozen": "2026-08-27",
+  "status": "contract_frozen_implementation_ready",
+  "inputs": {
+    "build_script": {
+      "path": "scripts/build_reference_chain_android.py",
+      "sha256": "3e79044653359eb3b87511cb77666eaef62331d51b8b7a2305af6c76469996eb"
+    },
+    "conformance_source": {
+      "path": "native/reference_product_chain_conformance.cpp",
+      "sha256": "d59bc3adadb3296f63123b455866367c6ba62da537aa55c6bc4640fd6d7540fa"
+    },
+    "canonical_core_source": {
+      "path": "native/reference_canonical_core.c",
+      "sha256": "e97a2b4aabc2a7fbf2b9356e122f41d45a878979a7f150dc2f3f372f7935d655"
+    },
+    "canonical_core_header": {
+      "path": "native/reference_canonical_core.h",
+      "sha256": "24ed7d6e88a0a38b167c3dbd3fe5e6c0969abfd3d820b1c7d195bbbdd2b43e49"
+    },
+    "fixture": {
+      "path": "tests/fixtures/reference_product_chain_conformance_v1.json",
+      "sha256": "6cfb24bf7c1b2d4e9d8e550e1a7e4dea2cc58ff55d51bb5f8b309a0e77308fd9"
+    },
+    "ndk_lock": {
+      "path": "configs/reference_match_android_ndk_r27d.json",
+      "sha256": "d9267d0e364479cd15f49b250862c3d8769ae96e00c07c3e70f2cec0d46693ae",
+      "revision": "27.3.13750724",
+      "source_properties_sha256": "fb5eec1ca5dac09442109cf79e9ce49faecd8b312dbc997e88903a394e14994a",
+      "notice_sha256": "4d5224d1c0b54ffa88b0dc0088191638fdbb7227835095dfb98f7f66b416a323"
+    }
+  },
+  "runtime": {
+    "api_level": 34,
+    "abi": "x86_64",
+    "avd_name": "nf_019f9f37_p253_api34_x86_64",
+    "device": "pixel_8",
+    "system_image": "system-images;android-34;google_apis;x86_64",
+    "system_package_relative_path": "system-images/android-34/google_apis/x86_64/package.xml",
+    "port": 5594,
+    "complete_processes": 2,
+    "orders": [
+      "normal",
+      "reverse"
+    ],
+    "emulator_version": "36.6.11.0",
+    "emulator_sha256": "7f101ca769c15e8b6311801c1487f28583ce643fa87d19a9e0da4cc230be7653",
+    "adb_sha256": "957e46b8615f7af5b7292a2ddabe98d2e61940c3fb2b0545756507f080613e71",
+    "avdmanager_sha256": "2307299b666c61610d1f35b36ea05c2d24c43ddec33e755d40a52797a21d2aa1",
+    "system_package_sha256": "c89cb2dd967b17420117f529192478a7f79c151699c07f0d10fed068f0f95ab3"
+  },
+  "truth_table": [
+    {"numeric": 0, "promoted": 0, "research": 0, "expected": "identity-fallback"},
+    {"numeric": 0, "promoted": 0, "research": 1, "expected": "identity-fallback"},
+    {"numeric": 0, "promoted": 1, "research": 0, "expected": "identity-fallback"},
+    {"numeric": 0, "promoted": 1, "research": 1, "expected": "identity-fallback"},
+    {"numeric": 1, "promoted": 0, "research": 0, "expected": "identity-fallback"},
+    {"numeric": 1, "promoted": 0, "research": 1, "expected": "identity-fallback"},
+    {"numeric": 1, "promoted": 1, "research": 0, "expected": "authorized-for-staging"},
+    {"numeric": 1, "promoted": 1, "research": 1, "expected": "identity-fallback"}
+  ],
+  "gates": {
+    "require_two_disjoint_exact_builds": true,
+    "require_all_fixture_hashes_exact": true,
+    "require_complete_truth_table_exact": true,
+    "require_negative_controls_fail_without_stdout": true,
+    "require_mutation_detection": true,
+    "require_forward_reverse_report_byte_identity": true,
+    "require_android_api_and_abi_exact": true,
+    "require_zero_surviving_owned_processes": true,
+    "require_zero_owned_scratch_residue": true
+  },
+  "decision_if_pass": "PASS_PRIVATE_REFERENCE_PRODUCT_CHAIN_ANDROID14_X86_64_RUNTIME",
+  "decision_if_fail": "FAIL_CLOSED_REFERENCE_PRODUCT_CHAIN_ANDROID_RUNTIME",
+  "claim_ceiling": "Private Windows-hosted Android 14 x86_64 virtual-device execution of the unchanged reference product-chain canonical identity and staging verifier; arm64-v8a link-only; no JNI, app, media, performance, scientific quality, public package, capability, staging authorization, or product claim."
+}
