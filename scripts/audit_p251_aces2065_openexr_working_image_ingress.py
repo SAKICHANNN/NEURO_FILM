@@ -204,12 +204,15 @@ def execute(
     expected = config["expected"]
     contract = ROOT / bindings["contract_path"]
     module = ROOT / bindings["consumer_module_path"]
+    runner = ROOT / bindings["runner_path"]
     wheel = ROOT / bindings["openexr_wheel_path"]
     identities = {
         "contract": len(contract.read_bytes()) == bindings["contract_bytes"]
         and _sha256_file(contract) == bindings["contract_sha256"],
         "module": len(module.read_bytes()) == bindings["consumer_module_bytes"]
         and _sha256_file(module) == bindings["consumer_module_sha256"],
+        "runner": len(runner.read_bytes()) == bindings["runner_bytes"]
+        and _sha256_file(runner) == bindings["runner_sha256"],
         "wheel": wheel.stat().st_size == bindings["openexr_wheel_bytes"]
         and _sha256_file(wheel) == bindings["openexr_wheel_sha256"],
     }
