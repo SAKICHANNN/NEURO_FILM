@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 import math
-from collections.abc import Mapping
+from collections.abc import Callable, Mapping
 from pathlib import Path
 from typing import Any
 
@@ -17,6 +17,7 @@ from scripts.pipeline_color_baseline import (
 )
 from src.color_engine.safe_lab import SafeLabSourceContext
 from src.color_engine.safe_lab_rgb_context import (
+    stream_style_transfer_rgb_tiled_with_source_context,
     style_transfer_rgb_tiled_with_source_context,
     style_transfer_rgb_with_source_context,
 )
@@ -188,6 +189,83 @@ def render_resolved_safe_lab_rgb(
     if not np.isfinite(output).all() or np.any((output < 0.0) | (output > 1.0)):
         raise StyleSafeEngineError("safe-Lab output is non-finite or unbounded")
     return output
+
+
+def stream_resolved_safe_lab_rgb_rows(
+    encoded_srgb: np.ndarray,
+    *,
+    style: str,
+    style_statistics: Mapping[str, Any],
+    style_parameters: Mapping[str, Any],
+    guardrails: Mapping[str, Any],
+    seed: int,
+    tile_size: int,
+    source_context: SafeLabSourceContext,
+    consumer: Callable[[int, np.ndarray], None],
+    tile_workers: int = 1,
+) -> None:
+    """Render one resolved safe-Lab look into synchronous row stripes."""
+
+    source = np.asarray(encoded_srgb)
+    if (
+        source.dtype != np.float32
+        or source.ndim != 3
+        or source.shape[2] != 3
+        or source.size == 0
+        or not np.isfinite(source).all()
+        or np.any((source < 0.0) | (source > 1.0))
+    ):
+        raise StyleSafeEngineError("encoded_srgb must be finite bounded HxWx3 float32")
+    if not isinstance(style, str) or not style:
+        raise StyleSafeEngineError("style must be non-empty")
+    if isinstance(seed, bool) or not isinstance(seed, int):
+        raise StyleSafeEngineError("seed must be an integer")
+    if isinstance(tile_size, bool) or not isinstance(tile_size, int) or tile_size < 1:
+        raise StyleSafeEngineError("tile_size must be a positive integer")
+    if (
+        isinstance(tile_workers, bool)
+        or not isinstance(tile_workers, int)
+        or tile_workers < 1
+    ):
+        raise StyleSafeEngineError("tile_workers must be a positive integer")
+    if not callable(consumer):
+        raise StyleSafeEngineError("consumer must be callable")
+    parameters = _validated_parameters(style_parameters)
+
+    def checked_consumer(row_start: int, rows: np.ndarray) -> None:
+        if (
+            rows.dtype != np.float32
+            or rows.ndim != 3
+            or rows.shape[2] != 3
+            or not np.isfinite(rows).all()
+            or np.any((rows < 0.0) | (rows > 1.0))
+        ):
+            raise StyleSafeEngineError("safe-Lab row output is non-finite or unbounded")
+        consumer(row_start, rows)
+
+    stream_style_transfer_rgb_tiled_with_source_context(
+        source,
+        dict(style_statistics),
+        style,
+        strength=float(parameters["strength"]),
+        luma_strength=float(parameters["luma_strength"]),
+        grain=float(parameters["grain"]),
+        seed=seed,
+        gamut_safe=parameters["gamut_safe"],
+        gamut_mode=parameters["gamut_mode"],
+        tone_rolloff=float(parameters["tone_rolloff"]),
+        shadow_floor_l=float(parameters["shadow_floor_l"]),
+        highlight_ceiling_l=float(parameters["highlight_ceiling_l"]),
+        preserve_luma_detail_strength=float(parameters["preserve_luma_detail"]),
+        chroma_curve_strength=float(parameters["chroma_curve_strength"]),
+        output_margin=int(parameters["output_margin"]),
+        guardrails=dict(guardrails) if parameters["use_guardrails"] else None,
+        dither=float(parameters["dither"]),
+        source_context=source_context,
+        tile_size=tile_size,
+        consumer=checked_consumer,
+        workers=tile_workers,
+    )
 
 
 def render_style_safe_working_image(

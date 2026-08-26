@@ -20,9 +20,11 @@ from src.color_engine.safe_lab import (
     validate_safe_lab_source_context,
 )
 from src.inference.tiled_render import (
+    RowStripeConsumer,
     TiledExecutionMetadata,
     TileWindow,
     execute_tiled_local_operator,
+    stream_tiled_local_operator_rows,
 )
 
 
@@ -164,8 +166,86 @@ def style_transfer_rgb_tiled_with_source_context(
     )
 
 
+def stream_style_transfer_rgb_tiled_with_source_context(
+    rgb: np.ndarray,
+    stats: dict,
+    style: str,
+    strength: float,
+    luma_strength: float,
+    grain: float,
+    seed: int,
+    gamut_safe: bool,
+    gamut_mode: str | None = None,
+    tone_rolloff: float = 0.0,
+    shadow_floor_l: float = 1.0,
+    highlight_ceiling_l: float = 99.0,
+    preserve_luma_detail_strength: float = 0.0,
+    chroma_curve_strength: float = 0.0,
+    output_margin: int = 0,
+    guardrails: dict | None = None,
+    neutral_protect: float | None = None,
+    skin_protect: float | None = None,
+    max_chroma_gain: float | None = None,
+    max_chroma_boost: float | None = None,
+    max_chroma_absolute: float | None = None,
+    dither: float | None = None,
+    *,
+    source_context: SafeLabSourceContext,
+    tile_size: int,
+    consumer: RowStripeConsumer,
+    workers: int = 1,
+) -> TiledExecutionMetadata:
+    """Apply exact safe-Lab tiles and synchronously emit bounded row stripes."""
+
+    if grain > 0:
+        raise ValueError("tiled safe-Lab does not support legacy colour-core grain")
+    value = _validate_style_rgb(rgb)
+    validate_safe_lab_source_context(source_context)
+    if tuple(int(size) for size in value.shape) != source_context.source_shape:
+        raise ValueError("source_context must describe the same full-frame shape")
+    halo = 5 if preserve_luma_detail_strength > 0 else 0
+
+    def render_tile(tile: np.ndarray, window: TileWindow) -> np.ndarray:
+        return _style_transfer_rgb_with_context(
+            tile,
+            stats,
+            style,
+            strength,
+            luma_strength,
+            grain,
+            seed,
+            gamut_safe,
+            gamut_mode=gamut_mode,
+            tone_rolloff=tone_rolloff,
+            shadow_floor_l=shadow_floor_l,
+            highlight_ceiling_l=highlight_ceiling_l,
+            preserve_luma_detail_strength=preserve_luma_detail_strength,
+            chroma_curve_strength=chroma_curve_strength,
+            output_margin=output_margin,
+            guardrails=guardrails,
+            neutral_protect=neutral_protect,
+            skin_protect=skin_protect,
+            max_chroma_gain=max_chroma_gain,
+            max_chroma_boost=max_chroma_boost,
+            max_chroma_absolute=max_chroma_absolute,
+            dither=dither,
+            source_context=source_context,
+            dither_window=window,
+        )
+
+    return stream_tiled_local_operator_rows(
+        value,
+        render_tile,
+        consumer,
+        tile_size=tile_size,
+        halo=halo,
+        workers=workers,
+    )
+
+
 __all__ = [
     "build_safe_lab_source_context",
+    "stream_style_transfer_rgb_tiled_with_source_context",
     "style_transfer_rgb_tiled_with_source_context",
     "style_transfer_rgb_with_source_context",
 ]

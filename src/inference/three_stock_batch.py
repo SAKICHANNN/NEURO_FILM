@@ -11,11 +11,15 @@ from collections.abc import Mapping
 from pathlib import Path
 from typing import Any
 
+import numpy as np
+
 from scripts.pipeline_color_baseline import load_guardrail_config
+from src.color_engine.safe_lab import SafeLabSourceContext
+from src.color_engine.safe_lab_rgb_context import build_safe_lab_source_context
 from src.preprocess import (
+    StreamingSrgbPngWriter,
     load_working_image,
     resolve_look_approximation_claim,
-    save_srgb16_png,
     srgb_icc_profile_fingerprint_sha256,
     working_image_to_srgb_float,
 )
@@ -27,14 +31,70 @@ from .render_contract import (
     sha256_file,
     validate_render_recipe,
 )
+from .style_safe_engine import stream_resolved_safe_lab_rgb_rows
 from .three_stock_look import (
-    iter_three_stock_look_rgb_shared_context,
+    list_three_stock_looks,
     resolve_three_stock_look_parameters,
 )
 
 
 class ThreeStockBatchError(ValueError):
     """Raised when a three-stock file batch cannot be completed."""
+
+
+THREE_STOCK_RENDER_EXECUTION_ID = (
+    "row-striped-safe-lab-plus-streaming-srgb16-png.v1"
+)
+
+
+def _stream_three_stock_png(
+    source: np.ndarray,
+    path: Path,
+    *,
+    style: str,
+    style_statistics: Mapping[str, Any],
+    style_parameters: Mapping[str, Any],
+    guardrails: Mapping[str, Any],
+    seed: int,
+    tile_size: int,
+    tile_workers: int,
+    source_context: SafeLabSourceContext | None,
+    compression_level: int,
+) -> str:
+    """Render one look into PNG rows without a full-resolution output array."""
+
+    with StreamingSrgbPngWriter(
+        path,
+        width=int(source.shape[1]),
+        height=int(source.shape[0]),
+        bit_depth=16,
+        compression_level=compression_level,
+    ) as writer:
+
+        def write_rows(row_start: int, rows: np.ndarray) -> None:
+            encoded = np.rint(
+                rows * np.float32(65535.0)
+            ).astype(np.uint16)
+            writer.write_rows(row_start, np.ascontiguousarray(encoded))
+
+        if source_context is None:
+            for row_start in range(0, source.shape[0], tile_size):
+                write_rows(row_start, source[row_start : row_start + tile_size])
+        else:
+            stream_resolved_safe_lab_rgb_rows(
+                source,
+                style=style,
+                style_statistics=style_statistics,
+                style_parameters=style_parameters,
+                guardrails=guardrails,
+                seed=seed,
+                tile_size=tile_size,
+                source_context=source_context,
+                consumer=write_rows,
+                tile_workers=tile_workers,
+            )
+        writer.finish()
+    return "PNG"
 
 
 def _integer(value: object, label: str, minimum: int, maximum: int | None = None) -> int:
@@ -109,16 +169,10 @@ def render_three_stock_batch_to_directory(
     stage.mkdir()
     rows: list[dict[str, Any]] = []
     try:
-        for catalog_row, output in iter_three_stock_look_rgb_shared_context(
-            source,
-            profile=profile,
-            look_amount=look_amount,
-            style_statistics=statistics_by_style,
-            guardrails=guardrails_by_style,
-            seed=seed,
-            tile_size=tile_size,
-            tile_workers=tile_workers,
-        ):
+        source_context = (
+            None if look_amount == 0.0 else build_safe_lab_source_context(source)
+        )
+        for catalog_row in list_three_stock_looks():
             style = catalog_row["style_id"]
             _, color_parameters = resolve_three_stock_look_parameters(
                 profile,
@@ -127,10 +181,19 @@ def render_three_stock_batch_to_directory(
             )
             filename = f"{style}.png"
             staged_output = stage / filename
-            output_format = save_srgb16_png(
-                output, staged_output, compression_level=png_compression
+            output_format = _stream_three_stock_png(
+                source,
+                staged_output,
+                style=style,
+                style_statistics=statistics_by_style[style],
+                style_parameters=color_parameters,
+                guardrails=guardrails_by_style[style],
+                seed=seed,
+                tile_size=tile_size,
+                tile_workers=tile_workers,
+                source_context=source_context,
+                compression_level=png_compression,
             )
-            del output
             final_output = output_directory / filename
             recipe = build_render_recipe(
                 profile_path=profile_path,
@@ -185,6 +248,7 @@ def render_three_stock_batch_to_directory(
             "profile_sha256": sha256_file(profile_path),
             "look_amount": float(look_amount),
             "png_compression": png_compression,
+            "render_execution_id": THREE_STOCK_RENDER_EXECUTION_ID,
             "rows": rows,
             "claim_ceiling": (
                 "Three deterministic non-calibrated Look Approximations; "
@@ -199,4 +263,8 @@ def render_three_stock_batch_to_directory(
         raise
 
 
-__all__ = ["ThreeStockBatchError", "render_three_stock_batch_to_directory"]
+__all__ = [
+    "THREE_STOCK_RENDER_EXECUTION_ID",
+    "ThreeStockBatchError",
+    "render_three_stock_batch_to_directory",
+]
