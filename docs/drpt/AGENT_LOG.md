@@ -16131,6 +16131,33 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   while preview, export, shell integration and complete UX/product acceptance
   remain open. Structure stays under the existing `src/inference` recipe
   boundary; no frontend framework or parallel desktop architecture was added.
+
+### 2026-08-26 - U7.3C adds hash-bound previews of existing renders
+
+- **Scope:** The preview core accepts only valid `film-inspired/look-approximation`
+  history rows, checks regular file/192MiB budget/PNG16 header and the complete
+  recipe-bound SHA before decode, then emits a bounded in-memory sRGB8 PNG. It
+  never reads the input photo, rerenders, exports, accesses the network or
+  writes a core artifact.
+- **Evidence:** all three existing 4032x6048 RGB16 outputs decode only after
+  exact SHA validation and produce unique 427x640 previews. Forward/reverse
+  2,832-byte reports hash exactly to `85558f70...eb96`, stable identity is
+  `64c8aa0a...0efd`, and the 2,167,862-byte self-contained HTML hashes to
+  `1b204dd3...2e29`.
+- **Visual/resource QA:** Edge 151 desktop and 500px narrow screenshots show all
+  images, labels and bounded hashes without clipping. Two exact owned browser
+  profiles were removed and matching processes are zero. Each formal order read
+  374,564,534 existing output bytes; no new source download or durable preview
+  image was created.
+- **Corrections:** the first full audit preserved a FAIL caused by an auditor-only
+  landscape-dimension assumption not present in the contract. `bbfe793a` bound
+  the actual portrait dimensions and restarted both orders. `b32324ea` then
+  separated zero-write core accounting from requested audit artifacts; pixels,
+  algorithm and HTML bytes remained unchanged.
+- **Propagation:** this opens existing-output inspection only. Missing-output
+  rerender, export, shell integration and release remain open. The previews are
+  visibly similar and do not alter U7.2C's failed proxy-separation gate or create
+  calibrated/distinguishable stock claims.
 ### 2026-08-26 - U7.4A CUDA gamut candidate closes on strict parity
 
 - Froze and implemented an isolated PyTorch CUDA version of the unchanged

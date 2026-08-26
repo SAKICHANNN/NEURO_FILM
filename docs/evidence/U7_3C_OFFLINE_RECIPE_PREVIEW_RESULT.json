@@ -1,0 +1,125 @@
+{
+  "schema": "kmcfm.u7-3c-offline-recipe-preview-evidence.v1",
+  "node": "U7.3C",
+  "status": "PASS_PRIVATE_HASH_BOUND_OFFLINE_RECIPE_PREVIEWS",
+  "date": "2026-08-26",
+  "implementation": {
+    "contract_commit": "13422639",
+    "core_commit": "b696b4b3",
+    "audit_commit": "d1621aee",
+    "portrait_dimension_correction_commit": "bbfe793a",
+    "core_write_accounting_commit": "b32324ea",
+    "module": "src/inference/recipe_preview.py",
+    "public_apis": [
+      "src.inference.build_recipe_output_preview",
+      "src.inference.build_recipe_output_previews",
+      "src.inference.render_recipe_preview_html"
+    ]
+  },
+  "formal_execution": {
+    "execution_head": "b32324eaddd7098905215eed1841bc6e065c55e1",
+    "forward_report_sha256": "85558f7023365816405c5da93d977409c1831f0d4eea8e84c2233d3ca7fbeb96",
+    "reverse_report_sha256": "85558f7023365816405c5da93d977409c1831f0d4eea8e84c2233d3ca7fbeb96",
+    "report_bytes": 2832,
+    "reports_byte_exact": true,
+    "stable_identity": "sha256:64c8aa0a790271645a5ceb8c0a4d996abf06a4aae6f12a9858cdb42bc8110efd",
+    "html_sha256": "1b204dd32111f6a60dda0ccfe09d03ccd4cee461bb1a4f07c7945cc7dcbf2e29",
+    "html_bytes": 2167862,
+    "source_output_bytes_read_per_run": 374564534,
+    "input_file_reads": 0,
+    "rerender_calls": 0,
+    "network_reads": 0
+  },
+  "preview_rows": {
+    "ektar_100.recipe.json": {
+      "source_output_sha256": "6c5c8b9c04fea4f265e1b742ce568b13a34d72462f7b6466f29685dabd03045e",
+      "preview_png_sha256": "7f85f73b8813c42f434e9919500af07c90d2cf90a754eece690e3cf88a480604",
+      "preview_png_bytes": 541133
+    },
+    "portra_400.recipe.json": {
+      "source_output_sha256": "2ff70587520b73634e9096ff297eb390edde7e891bb7634f3cec6c707a119844",
+      "preview_png_sha256": "d7f1b36d988656976b7f04214f5da3a7166e5b2f6f3027caa78afe3beae320db",
+      "preview_png_bytes": 536901
+    },
+    "velvia_50.recipe.json": {
+      "source_output_sha256": "6f405513fcb72f27350c9c42fc238de6daa0ba3584987537431a17a146982732",
+      "preview_png_sha256": "347fb6354aafdad308165a15d5d494c669f1f74812c991e28fdb7f2af7ef2c5d",
+      "preview_png_bytes": 544985
+    }
+  },
+  "pixel_contract": {
+    "source_format": "RGB16 PNG",
+    "source_dimensions": "4032x6048",
+    "preview_format": "RGB8 PNG with pinned sRGB ICC",
+    "preview_dimensions": "427x640",
+    "maximum_source_file_bytes": 201326592,
+    "maximum_decoded_pixels": 30000000,
+    "sha256_verified_before_decode": true,
+    "input_photo_pixels_read": 0,
+    "existing_output_pixel_decodes": 3,
+    "preview_core_filesystem_writes": 0,
+    "audit_report_html_and_screenshot_writes_excluded_from_core_count": true
+  },
+  "browser_visual_review": {
+    "browser": "Microsoft Edge 151.0.4129.107",
+    "desktop_viewport": "1440x1100",
+    "desktop_screenshot_sha256": "4f249ce225f253b2efd544e99531b0bfc578fa5c9eca80a92328376594fa955f",
+    "narrow_viewport": "500x1000",
+    "narrow_screenshot_sha256": "b02c008799b282f175737ba8c0450ce69ad47aed45cfe668d7b6bd2ecc3f5a1f",
+    "all_three_images_visible": true,
+    "labels_and_hashes_legible": true,
+    "narrow_layout_bounded": true,
+    "owned_edge_profile_directories_removed": 2,
+    "owned_edge_processes_after_review": 0,
+    "interpretation": "The three previews are visibly very similar; this review does not override U7.2C's failed proxy-separation gate."
+  },
+  "gates": {
+    "forward_reverse_reports_byte_exact": true,
+    "three_frozen_rows_previewed": true,
+    "source_output_sha256_exact_before_decode": true,
+    "all_source_dimensions_exact": true,
+    "all_preview_dimensions_bounded": true,
+    "all_preview_dimensions_exact": true,
+    "all_preview_png_hashes_unique": true,
+    "html_self_contained_data_images": true,
+    "html_claim_labels_present": true,
+    "input_file_reads_zero": true,
+    "rerender_calls_zero": true,
+    "network_reads_zero": true,
+    "desktop_visual_review_pass": true,
+    "narrow_visual_review_pass": true,
+    "owned_browser_profiles_removed": true
+  },
+  "execution_notes": [
+    {
+      "event": "initial_dimension_gate_failure",
+      "scope": "The first complete audit correctly decoded all three outputs but failed because the audit implementation assumed landscape 6048x4032 and 960x640 rather than the actual portrait 4032x6048 and bounded 427x640. The frozen contract specified only maxima, not landscape dimensions. Commit bbfe793a corrected only those factual audit defaults and both formal orders restarted from zero; preview bytes, algorithms, source identities and acceptance ceilings did not change."
+    },
+    {
+      "event": "core_write_accounting_correction",
+      "scope": "Commit b32324ea renamed the report field to distinguish zero-write core APIs from requested audit report, HTML and screenshot artifacts. Pixel and HTML bytes were unchanged; both reports were regenerated from the corrected committed auditor."
+    },
+    {
+      "event": "browser_command_typo",
+      "scope": "The first screenshot command joined -Wait and -PassThru into an invalid PowerShell parameter and stopped before browser launch. Corrected launch arguments then produced both reviewed screenshots."
+    }
+  ],
+  "relationship_to_u7_2c": {
+    "u7_2c_proxy_separation_failure_unchanged": true,
+    "calibrated_stock_claim": false,
+    "stock_distinguishability_claim": false
+  },
+  "decision": {
+    "result": "PASS_PRIVATE_HASH_BOUND_OFFLINE_RECIPE_PREVIEWS",
+    "opens": "One read-only offline preview surface for already-rendered and hash-verified recipe outputs.",
+    "does_not_open": [
+      "preview rerender or missing-output recovery",
+      "export authorization or writes",
+      "complete desktop shell",
+      "calibrated stock or stock distinguishability",
+      "packaging or telemetry",
+      "product release"
+    ]
+  },
+  "claim_ceiling": "Private read-only offline previews of three already-rendered, hash-bound look-approximation outputs only; no rerender, export, calibrated stock, stock distinguishability, packaging, telemetry or product-release claim."
+}

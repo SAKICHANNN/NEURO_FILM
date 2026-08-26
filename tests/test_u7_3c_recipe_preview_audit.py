@@ -1,12 +1,15 @@
 from __future__ import annotations
 
 import hashlib
+import json
 from pathlib import Path
 
 import cv2
 import numpy as np
 
 from scripts.audit_u7_3c_offline_recipe_preview import audit_catalog
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_preview_audit_is_order_invariant_for_frozen_shape(tmp_path: Path) -> None:
@@ -45,3 +48,23 @@ def test_preview_audit_is_order_invariant_for_frozen_shape(tmp_path: Path) -> No
         "PASS_PRIVATE_HASH_BOUND_OFFLINE_RECIPE_PREVIEWS"
     )
     assert all(forward["scientific"]["gates"].values())
+
+
+def test_tracked_u7_3c_evidence_binds_formal_and_visual_results() -> None:
+    evidence = json.loads(
+        (ROOT / "docs/evidence/U7_3C_OFFLINE_RECIPE_PREVIEW_RESULT.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    formal = evidence["formal_execution"]
+    assert evidence["status"] == "PASS_PRIVATE_HASH_BOUND_OFFLINE_RECIPE_PREVIEWS"
+    assert formal["reports_byte_exact"] is True
+    assert formal["forward_report_sha256"] == formal["reverse_report_sha256"]
+    assert formal["html_sha256"] == (
+        "1b204dd32111f6a60dda0ccfe09d03ccd4cee461bb1a4f07c7945cc7dcbf2e29"
+    )
+    assert evidence["pixel_contract"]["sha256_verified_before_decode"] is True
+    assert evidence["pixel_contract"]["input_photo_pixels_read"] == 0
+    assert evidence["browser_visual_review"]["owned_edge_profile_directories_removed"] == 2
+    assert all(evidence["gates"].values())
+    assert evidence["relationship_to_u7_2c"]["u7_2c_proxy_separation_failure_unchanged"]
