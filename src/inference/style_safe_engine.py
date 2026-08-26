@@ -15,6 +15,11 @@ from scripts.pipeline_color_baseline import (
     style_transfer_rgb,
     style_transfer_rgb_tiled,
 )
+from src.color_engine.safe_lab import SafeLabSourceContext
+from src.color_engine.safe_lab_rgb_context import (
+    style_transfer_rgb_tiled_with_source_context,
+    style_transfer_rgb_with_source_context,
+)
 from src.filmfx import (
     composite_layers,
     density_halation_layer,
@@ -81,6 +86,7 @@ def render_resolved_safe_lab_rgb(
     tile_size: int | None = None,
     gamut_workers: int = 1,
     tile_workers: int = 1,
+    source_context: SafeLabSourceContext | None = None,
 ) -> np.ndarray:
     """Render one already-resolved style without file or CLI state."""
 
@@ -118,7 +124,13 @@ def render_resolved_safe_lab_rgb(
         raise StyleSafeEngineError("tile_workers requires tile_size")
     parameters = _validated_parameters(style_parameters)
     if tile_size is not None:
-        output, _ = style_transfer_rgb_tiled(
+        tiled_renderer = (
+            style_transfer_rgb_tiled
+            if source_context is None
+            else style_transfer_rgb_tiled_with_source_context
+        )
+        context_kwargs = {} if source_context is None else {"source_context": source_context}
+        output, _ = tiled_renderer(
             source,
             style_statistics,
             style,
@@ -138,10 +150,17 @@ def render_resolved_safe_lab_rgb(
             dither=float(parameters["dither"]),
             tile_size=tile_size,
             workers=tile_workers,
+            **context_kwargs,
         )
         return np.ascontiguousarray(output, dtype=np.float32)
+    full_renderer = (
+        style_transfer_rgb
+        if source_context is None
+        else style_transfer_rgb_with_source_context
+    )
+    context_kwargs = {} if source_context is None else {"source_context": source_context}
     output = np.ascontiguousarray(
-        style_transfer_rgb(
+        full_renderer(
             source,
             dict(style_statistics),
             style,
@@ -162,6 +181,7 @@ def render_resolved_safe_lab_rgb(
             guardrails=dict(guardrails) if parameters["use_guardrails"] else None,
             dither=float(parameters["dither"]),
             gamut_workers=gamut_workers,
+            **context_kwargs,
         ),
         dtype=np.float32,
     )

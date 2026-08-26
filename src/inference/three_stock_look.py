@@ -8,10 +8,12 @@ or calibrated stock response.
 from __future__ import annotations
 
 import math
-from collections.abc import Mapping
+from collections.abc import Iterator, Mapping
 from typing import Any
 
 import numpy as np
+
+from src.color_engine.safe_lab_rgb_context import build_safe_lab_source_context
 
 from .render_contract import validate_render_profile
 from .style_safe_engine import StyleSafeEngineError, render_resolved_safe_lab_rgb
@@ -136,8 +138,61 @@ def render_three_stock_look_rgb(
     )
 
 
+def iter_three_stock_look_rgb_shared_context(
+    encoded_srgb: np.ndarray,
+    *,
+    profile: Mapping[str, Any],
+    look_amount: float,
+    style_statistics: Mapping[str, Mapping[str, Any]],
+    guardrails: Mapping[str, Mapping[str, Any]],
+    seed: int,
+    tile_size: int,
+    gamut_workers: int = 1,
+    tile_workers: int = 1,
+) -> Iterator[tuple[dict[str, str], np.ndarray]]:
+    """Yield all three tiled looks while computing source statistics once."""
+
+    source = np.asarray(encoded_srgb)
+    if (
+        source.dtype != np.float32
+        or source.ndim != 3
+        or source.shape[2] != 3
+        or source.size == 0
+        or not np.isfinite(source).all()
+        or np.any((source < 0.0) | (source > 1.0))
+    ):
+        raise StyleSafeEngineError("encoded_srgb must be finite bounded HxWx3 float32")
+    amount = _amount(look_amount)
+    source_context = None if amount == 0.0 else build_safe_lab_source_context(source)
+    for catalog_row in THREE_STOCK_LOOK_CATALOG:
+        style, parameters = resolve_three_stock_look_parameters(
+            profile,
+            film_stock_id=catalog_row["film_stock_id"],
+            look_amount=amount,
+        )
+        if style not in style_statistics or style not in guardrails:
+            raise StyleSafeEngineError(f"missing three-stock inputs for style: {style}")
+        if amount == 0.0:
+            output = np.ascontiguousarray(source.copy())
+        else:
+            output = render_resolved_safe_lab_rgb(
+                source,
+                style=style,
+                style_statistics=style_statistics[style],
+                style_parameters=parameters,
+                guardrails=guardrails[style],
+                seed=seed,
+                tile_size=tile_size,
+                gamut_workers=gamut_workers,
+                tile_workers=tile_workers,
+                source_context=source_context,
+            )
+        yield dict(catalog_row), output
+
+
 __all__ = [
     "THREE_STOCK_LOOK_CATALOG",
+    "iter_three_stock_look_rgb_shared_context",
     "list_three_stock_looks",
     "render_three_stock_look_rgb",
     "resolve_three_stock_look_parameters",

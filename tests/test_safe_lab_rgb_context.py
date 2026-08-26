@@ -6,8 +6,10 @@ import pytest
 from scripts.pipeline_color_baseline import (
     build_safe_lab_source_context,
     style_transfer_rgb,
+    style_transfer_rgb_tiled,
 )
 from src.color_engine.safe_lab_rgb_context import (
+    style_transfer_rgb_tiled_with_source_context,
     style_transfer_rgb_with_source_context,
 )
 
@@ -60,3 +62,16 @@ def test_explicit_source_context_rejects_a_different_frame_shape() -> None:
             **_kwargs(),
             source_context=context,
         )
+
+
+def test_explicit_source_context_matches_direct_tiled() -> None:
+    image = np.random.default_rng(97).random((67, 91, 3), dtype=np.float32)
+    kwargs = {**_kwargs(), "dither": 0.35, "tile_size": 29, "workers": 2}
+    direct, direct_metadata = style_transfer_rgb_tiled(image, **kwargs)
+    explicit, explicit_metadata = style_transfer_rgb_tiled_with_source_context(
+        image,
+        **kwargs,
+        source_context=build_safe_lab_source_context(image),
+    )
+    np.testing.assert_array_equal(explicit, direct)
+    assert explicit_metadata == direct_metadata

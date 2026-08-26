@@ -17,6 +17,7 @@ from src.inference import (
     replay_style_safe_recipe_to_file,
 )
 from src.inference.three_stock_look import (
+    iter_three_stock_look_rgb_shared_context,
     list_three_stock_looks,
     render_three_stock_look_rgb,
     resolve_three_stock_look_parameters,
@@ -146,6 +147,45 @@ def test_unknown_stock_fails_closed() -> None:
         resolve_three_stock_look_parameters(
             profile, film_stock_id="generic_film", look_amount=0.5
         )
+
+
+def test_shared_context_batch_is_exact_and_ordered(source) -> None:
+    profile = load_render_profile(PROFILE, root=ROOT)
+    statistics = {}
+    guardrails = {}
+    for row in list_three_stock_looks():
+        _, style, style_statistics, style_guardrails = _inputs(row["film_stock_id"])
+        statistics[style] = style_statistics
+        guardrails[style] = style_guardrails
+    actual = list(
+        iter_three_stock_look_rgb_shared_context(
+            source,
+            profile=profile,
+            look_amount=1.0,
+            style_statistics=statistics,
+            guardrails=guardrails,
+            seed=31,
+            tile_size=29,
+            tile_workers=2,
+        )
+    )
+    assert [row["film_stock_id"] for row, _ in actual] == [
+        row["film_stock_id"] for row in list_three_stock_looks()
+    ]
+    for row, output in actual:
+        _, _, stock_statistics, stock_guardrails = _inputs(row["film_stock_id"])
+        expected = render_three_stock_look_rgb(
+            source,
+            profile=profile,
+            film_stock_id=row["film_stock_id"],
+            look_amount=1.0,
+            style_statistics=stock_statistics,
+            guardrails=stock_guardrails,
+            seed=31,
+            tile_size=29,
+            tile_workers=2,
+        )
+        np.testing.assert_array_equal(output, expected)
 
 
 def test_cli_amount_recipe_is_byte_exact_replay(tmp_path: Path) -> None:
