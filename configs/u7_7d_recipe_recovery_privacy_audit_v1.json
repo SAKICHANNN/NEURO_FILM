@@ -1,0 +1,59 @@
+{
+  "schema": "kmcfm.u7-7d-recipe-recovery-privacy-audit-contract.v1",
+  "node": "U7.7D",
+  "status": "FROZEN_BEFORE_AUDIT",
+  "question": "Do the exact U7.7 recovery bundles avoid machine-local and user-local path disclosure while preserving their no-pixel Look Approximation boundary?",
+  "inputs": {
+    "recipes": [
+      "outputs/eval/u7_2_three_stock_24mp_smoke/velvia_50.recipe.json",
+      "outputs/eval/u7_2_three_stock_24mp_smoke/portra_400.recipe.json",
+      "outputs/eval/u7_2_three_stock_24mp_smoke/ektar_100.recipe.json"
+    ],
+    "recipe_sha256": {
+      "velvia_50": "254e5c8ddf8703e2689975590531b80ca4e40bde1a37fcd0c382f33e2a42cf25",
+      "portra_400": "b6dece02a1c6e5cee9569424ae8fd53fdad8f4ee619753f6d81a2b2dea0d0fb3",
+      "ektar_100": "b92a75ed8ca8349df562153aad85df26db33ab0992d6bc07503033245ac7d0b8"
+    },
+    "profile": "configs/render_profiles/safe_rich_v1.json",
+    "profile_sha256": "72a9948e6fc76e230c4593b847728712bc034840cd339e6b34f079ac7d424c79",
+    "bundle_implementation": "src/inference/recipe_recovery_bundle.py",
+    "bundle_implementation_sha256": "ade3f0375dceb519081c64335e8e221ec08707a66ea8a00380614fde062210cd"
+  },
+  "audit": {
+    "required_bundle_member_count": 6,
+    "required_recipe_member": "recipe.json",
+    "forbid_windows_absolute_paths": true,
+    "forbid_unc_paths": true,
+    "forbidden_casefold_substrings": [
+      "hhvrf",
+      "neuro_film_storage",
+      "documents\\neuro_film",
+      "documents/neuro_film"
+    ],
+    "forbid_recipe_input_path": true,
+    "forbid_recipe_output_path": true,
+    "maximum_network_reads": 0,
+    "maximum_image_reads": 0,
+    "maximum_pixel_decodes": 0
+  },
+  "acceptance": {
+    "three_styles_complete": true,
+    "forward_reverse_reports_byte_exact": true,
+    "bundle_bytes_repeat_exact": true,
+    "all_member_paths_relative": true,
+    "no_machine_or_user_path_disclosure": true,
+    "no_input_or_output_payloads": true,
+    "claims_remain_look_approximation": true,
+    "owned_temporary_roots_removed": true
+  },
+  "decision": {
+    "pass": "OPEN_SEPARATELY_REVIEWED_INSTALLER_INTEGRATION",
+    "fail": "RETAIN_PRIVATE_BUNDLE_ONLY_AND_REQUIRE_A_NEW_PORTABLE_RECIPE_REPRESENTATION"
+  },
+  "stop_rules": [
+    "Audit the exact three bound recipes and current bundle implementation without rewriting either input.",
+    "Do not normalize, redact, ignore, or whitelist a discovered local path after observing the result.",
+    "A failure may open a separately frozen portable-recipe redesign but not installer integration."
+  ],
+  "claim_ceiling": "Private recovery-bundle path privacy and portability audit only; no installer, release, rerender, export authorization, calibrated stock response, stock distinguishability or product claim."
+}
