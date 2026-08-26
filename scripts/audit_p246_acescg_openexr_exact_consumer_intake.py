@@ -180,6 +180,47 @@ def _publication_failure_atomic(module: types.ModuleType, directory: Path) -> bo
     return target.read_bytes() == original and residue == []
 
 
+def _worker_execute(
+    config_path: Path, producer_repo: Path, workspace: Path
+) -> dict[str, Any]:
+    config = json.loads(config_path.read_text(encoding="utf-8"))
+    bindings = config["bindings"]
+    writer = _git_bytes(
+        producer_repo,
+        bindings["producer_writer_commit"],
+        bindings["producer_writer_path"],
+    )
+    if _sha256_bytes(writer) != bindings["producer_writer_sha256"]:
+        raise P246Error("worker writer SHA differs")
+    site = workspace / "site"
+    output = workspace / "synthetic.exr"
+    module = _load_ephemeral_writer(writer, site)
+    openexr = importlib.import_module("OpenEXR")
+    values = _synthetic_lattice()
+    input_before = _array_sha256(values)
+    receipt = module.write_acescg_openexr(output, values)
+    inspection = _inspect(output, values, openexr)
+    return {
+        "file_bytes": output.stat().st_size,
+        "file_sha256": _sha256_file(output),
+        "input_f32le_sha256": input_before,
+        "input_unchanged": _array_sha256(values) == input_before,
+        "inspection": inspection,
+        "invalid_inputs_rejected": _invalid_inputs_rejected(module, workspace),
+        "openexr_version": openexr.__version__,
+        "publication_failure_atomic": _publication_failure_atomic(module, workspace),
+        "receipt": {
+            "file_bytes": receipt.file_bytes,
+            "file_sha256": receipt.file_sha256,
+            "height": receipt.height,
+            "openexr_version": receipt.openexr_version,
+            "pixel_f32le_sha256": receipt.pixel_f32le_sha256,
+            "width": receipt.width,
+            "writer_id": receipt.writer_id,
+        },
+    }
+
+
 def execute(config_path: Path, producer_repo: Path) -> dict[str, Any]:
     config = json.loads(config_path.read_text(encoding="utf-8"))
     bindings = config["bindings"]
@@ -238,8 +279,6 @@ def execute(config_path: Path, producer_repo: Path) -> dict[str, Any]:
 
     temporary = Path(tempfile.mkdtemp(prefix="neuro-film-p246-"))
     site = temporary / "site"
-    output = temporary / "synthetic.exr"
-    module: types.ModuleType | None = None
     result: dict[str, Any] | None = None
     try:
         subprocess.run(
@@ -258,38 +297,26 @@ def execute(config_path: Path, producer_repo: Path) -> dict[str, Any]:
             check=True,
             capture_output=True,
         )
-        module = _load_ephemeral_writer(writer, site)
-        openexr = importlib.import_module("OpenEXR")
-        values = _synthetic_lattice()
-        input_before = _array_sha256(values)
-        receipt = module.write_acescg_openexr(output, values)
-        inspection = _inspect(output, values, openexr)
-        file_bytes = output.stat().st_size
-        file_sha256 = _sha256_file(output)
-        invalid_rejected = _invalid_inputs_rejected(module, temporary)
-        publication_atomic = _publication_failure_atomic(module, temporary)
-        result = {
-            "file_bytes": file_bytes,
-            "file_sha256": file_sha256,
-            "input_f32le_sha256": input_before,
-            "input_unchanged": _array_sha256(values) == input_before,
-            "inspection": inspection,
-            "invalid_inputs_rejected": invalid_rejected,
-            "openexr_version": openexr.__version__,
-            "publication_failure_atomic": publication_atomic,
-            "receipt": {
-                "file_bytes": receipt.file_bytes,
-                "file_sha256": receipt.file_sha256,
-                "height": receipt.height,
-                "openexr_version": receipt.openexr_version,
-                "pixel_f32le_sha256": receipt.pixel_f32le_sha256,
-                "width": receipt.width,
-                "writer_id": receipt.writer_id,
-            },
-        }
+        worker_report = temporary / "worker.json"
+        subprocess.run(
+            [
+                sys.executable,
+                str(Path(__file__).resolve()),
+                "--worker",
+                "--config",
+                str(config_path),
+                "--producer-repo",
+                str(producer_repo),
+                "--workspace",
+                str(temporary),
+                "--output",
+                str(worker_report),
+            ],
+            check=True,
+            capture_output=True,
+        )
+        result = json.loads(worker_report.read_bytes())
     finally:
-        if module is not None:
-            _unload_ephemeral_writer(module, site)
         shutil.rmtree(temporary, ignore_errors=False)
     if result is None:
         raise P246Error("consumer execution did not produce a result")
@@ -355,9 +382,20 @@ def main() -> None:
     parser.add_argument("--config", type=Path, required=True)
     parser.add_argument("--producer-repo", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
-    parser.add_argument("--order", choices=("forward", "reverse"), required=True)
+    parser.add_argument("--order", choices=("forward", "reverse"))
+    parser.add_argument("--worker", action="store_true")
+    parser.add_argument("--workspace", type=Path)
     args = parser.parse_args()
-    report = execute(args.config.resolve(), args.producer_repo.resolve())
+    if args.worker:
+        if args.workspace is None or args.order is not None:
+            raise ValueError("worker requires workspace and forbids order")
+        report = _worker_execute(
+            args.config.resolve(), args.producer_repo.resolve(), args.workspace.resolve()
+        )
+    else:
+        if args.order is None or args.workspace is not None:
+            raise ValueError("controller requires order and forbids workspace")
+        report = execute(args.config.resolve(), args.producer_repo.resolve())
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_bytes(_canonical_bytes(report))
 
