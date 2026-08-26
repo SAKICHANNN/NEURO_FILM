@@ -1,0 +1,92 @@
+{
+  "schema": "neuro-film.p234-r1cz-ultrahdr-still-safety-evidence.v1",
+  "experiment_id": "P234",
+  "status": "FAIL_CLOSED_R1CZ_ULTRAHDR_STILL_SAFETY",
+  "decision": "close the exact R1CZ payload on the exact two consumed UltraHDR still fixtures without payload-strength, black-floor, decoder, metric, threshold or fixture rescue",
+  "bindings": {
+    "preregistration_commit": "417cbd316f2341b3323430378790053f90aa71e9",
+    "envelope_binding_amendment_commit": "d0fa68dd",
+    "implementation_and_formal_commit": "9bc80022b145abd30a40f1eb6c2d045fcbab6f5f",
+    "config_path": "configs/p234_r1cz_ultrahdr_still_safety_v1.json",
+    "config_sha256": "acf7cd097eb5ba9afd02856bc30a52801fdb0382d142bb92f74583e844592495",
+    "contract_path": "docs/planning/P234_R1CZ_ULTRAHDR_STILL_SAFETY_CONTRACT.md",
+    "contract_sha256": "a00df1ab0e169806db92dc9a426b2768d3dfc84acfbccef0f71bb27f3f9c705c",
+    "runner_path": "scripts/audit_p234_r1cz_ultrahdr_still_safety.py",
+    "runner_sha256": "feb075502314fedd2c679a85b5a241e6af818cd3def88b9731a4c03b95c9f444",
+    "test_path": "tests/test_p234_r1cz_ultrahdr_still_safety.py",
+    "test_sha256_before_evidence_assertion": "5f8d83998221bd164f419e62400b8b3ad36c79dd2e5fac729e6c774643126bcc",
+    "p233_evidence_sha256": "7827e0d36fabbfbf8a5b2ebae3cbadbcffa55ed9e711f1b38bcc15a867decd73",
+    "p88_evidence_sha256": "ead71a8c4081a37809b81e1891c1593c49f6b91c3117522297faa934da36befc",
+    "capsule_sha256": "66050f5834adadc7fa30392831e73f03d01a993f17d9ea0e3ffc7a75c2dc859e",
+    "payload_sha256": "aa7fe0400e7bef106a9ff75305babab317a4148bdb05c573c50395d6f4228cb9",
+    "bundle_id": "sha256:2759d2193861b95d39bb451efb2477c6ae796f5f58b3b81cf6487cbd85c3220f",
+    "decoder_executable_sha256": "cffdfcae90b2e999260877b646c36c1d04b87d81745c12417c089ca7099d5df0",
+    "formal_report_paths": [
+      "outputs/eval/p234_r1cz_ultrahdr_still_safety/o1_forward.json",
+      "outputs/eval/p234_r1cz_ultrahdr_still_safety/o2_reverse.json"
+    ],
+    "formal_report_sha256": "dd75ae9710ec904e52ca88752574a19b137f0ef0e0610f98208f8dddc189b906",
+    "formal_report_bytes": 5056,
+    "scientific_identity": "sha256:4378930920339e9bf00f07c64db6044fbc4ecf4865e941c3b5a950bc98e806e1"
+  },
+  "execution": {
+    "fresh_processes": 2,
+    "orders": [
+      "forward-fixtures",
+      "reverse-fixtures"
+    ],
+    "reports_byte_exact": true,
+    "mandatory_fixture_count": 2,
+    "payload_build_application_source_reads": 0,
+    "application_target_reads": 0,
+    "network_reads": 0,
+    "repository_media_writes": 0,
+    "temporary_residue_zero": true
+  },
+  "records": [
+    {
+      "fixture": "apple_gainmap_new.jpg",
+      "fixture_sha256": "492a94bd0636bcf15b3f560c68142a7783936c1597e78b0d0461d8be7fddc078",
+      "decoded_sha256": "fdefc88c427f0e3c1cf07340990b03565e0b77fe47aac38b32fa2c91555a7959",
+      "source_f32le_sha256": "185d8248f4ae17c8215a8cc556ad91c6d864aaba153aa1bf3dd69b7aa61c3df7",
+      "output_f32le_sha256": "2db2d329c940460d84305a8b849759d12f844aa2df8061c87255733e8fec75ba",
+      "median_log_rgb_material_effect": 0.512242154208712,
+      "luminance_spatial_p95_ratio": 0.9152491140786122,
+      "chroma_spatial_p95_ratio": 1.743127827944135,
+      "new_luminance_spike_fraction": 0.0040120309951060355,
+      "new_boundary_fraction": 0.1475745307074653,
+      "minimum_nits": 0.0,
+      "maximum_nits": 2066.299560546875,
+      "all_safety_gates_pass": false
+    },
+    {
+      "fixture": "apple_gainmap_old.jpg",
+      "fixture_sha256": "2e4310a0dd37a98678e057e25d936bbc4f936bb6fe17380c0ce99e58ecaa603b",
+      "decoded_sha256": "c100c1e4f98239fc39c73703435d960f3086110d316ecb5e2b38f604962f2de7",
+      "source_f32le_sha256": "c65961afb6cd0f667278a48dd1ef35134f13ec77b94f21b15d66b9d1e325dbbf",
+      "output_f32le_sha256": "f18b832e0e906b5c7e09d63afc423785026c1a07d51c9262fc136a9892ffe3d6",
+      "median_log_rgb_material_effect": 0.51703354969706,
+      "luminance_spatial_p95_ratio": 0.9100998604639279,
+      "chroma_spatial_p95_ratio": 1.7479152494385433,
+      "new_luminance_spike_fraction": 0.004040069331158238,
+      "new_boundary_fraction": 0.1476932101779514,
+      "minimum_nits": 0.0,
+      "maximum_nits": 966.0706787109375,
+      "all_safety_gates_pass": false
+    }
+  ],
+  "gates": {
+    "all_bindings_exact": true,
+    "both_material_effect_minimum": true,
+    "both_luminance_spatial_p95_ratio": true,
+    "both_new_luminance_spike_fraction": true,
+    "both_output_finite_in_0_10000": true,
+    "both_new_boundary_fraction_exact_zero": false,
+    "both_chroma_spatial_p95_ratio": false,
+    "each_fixture_passes_all_safety_gates": false,
+    "forward_reverse_scientific_payload_exact": true,
+    "zero_build_source_target_network_or_media_reads": true
+  },
+  "interpretation": "The exact paired payload is active and does not amplify p95 log-luminance structure or the frozen high-margin luminance-spike tail on either consumed UltraHDR still. It nevertheless maps about 14.76% of strictly interior source channel samples to exact black and amplifies p95 log-chroma spatial edges to about 1.74 times source on both rows. The frozen boundary and chroma gates therefore independently reject this application. This is a payload/domain safety negative, not a verdict on P88 decode, P233 persistence, R1CY paired quality or UltraHDR image quality.",
+  "claim_ceiling": "Formal negative for one exact self-authored paired/capture-time payload on two exact already-consumed CC-BY-4.0 UltraHDR still fixtures. No arbitrary-media, captured-HDR truth, grade correctness, aesthetic quality, public package/schema/capability, consumer mapping or product admission."
+}

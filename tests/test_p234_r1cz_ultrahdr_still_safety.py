@@ -10,6 +10,7 @@ from scripts.audit_p234_r1cz_ultrahdr_still_safety import spatial_vectors, summa
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/p234_r1cz_ultrahdr_still_safety_v1.json"
+EVIDENCE = ROOT / "docs/evidence/P234_R1CZ_ULTRAHDR_STILL_SAFETY_RESULT.json"
 
 
 def _sha256(path: Path) -> str:
@@ -54,3 +55,12 @@ def test_p234_identity_summary_has_no_new_boundaries_or_spikes() -> None:
     assert metrics["luminance_spatial_p95_ratio"] == 1.0
     assert metrics["chroma_spatial_p95_ratio"] == 1.0
     assert metrics["new_luminance_spike_fraction"] == 0.0
+
+
+def test_p234_evidence_preserves_boundary_and_chroma_failures() -> None:
+    evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+    assert evidence["status"] == "FAIL_CLOSED_R1CZ_ULTRAHDR_STILL_SAFETY"
+    assert evidence["execution"]["reports_byte_exact"] is True
+    assert evidence["gates"]["both_new_boundary_fraction_exact_zero"] is False
+    assert evidence["gates"]["both_chroma_spatial_p95_ratio"] is False
+    assert all(not row["all_safety_gates_pass"] for row in evidence["records"])
