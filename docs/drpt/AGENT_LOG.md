@@ -17072,3 +17072,27 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Evidence commit `b64473fd`; no new RAW, target, image artifact, HueSatMap
   application, default-loader integration, package/schema/capability,
   film-stock or product claim opens.
+
+### 2026-08-26 - U7.7E/F make three-stock recovery recipes portable and explicitly bindable
+
+- **Node and direction:** `ULT > U7.7 > U7.7E/F`; follow the U7.7D privacy
+  negative by changing only the recovery representation and caller binding.
+  Historical v1 bundles and the three frozen Look Approximation recipes remain
+  unchanged. This is delivery engineering for the existing three-stock
+  baseline, not new stock evidence.
+- **U7.7E result:** Velvia 50, Portra 400 and Ektar 100 portable bundles remove
+  only the two machine-local recipe paths, retain hashes/profile/assets/claims,
+  and recover the original strict recipes exactly when rebound to their
+  original paths. Forward/reverse reports are byte exact at SHA-256
+  `9c1e2a64...a639d`, stable ID `9a7c956c...fd0ba`.
+- **U7.7F result:** the public inference binder requires explicit input,
+  future-output and recipe paths, verifies the input SHA-256, then publishes a
+  strict recipe create-only. Three styles bind repeat-exact; mismatched input,
+  existing output/recipe and injected partial write fail closed. Output files,
+  image decode, render and network activity remain zero. Forward/reverse report
+  SHA is `25dcc803...62294`, stable ID `93be416c...76c73`.
+- **Evidence and boundary:** U7.7E evidence commit `04f78aad`; U7.7F evidence
+  commit `9b319fc7`; 37 adjacent U7.7 tests and Ruff pass. This opens only a
+  separately bounded caller-driven replay integration. Installer, automatic
+  rerender, calibrated stock response, stock distinguishability and release
+  remain closed.
