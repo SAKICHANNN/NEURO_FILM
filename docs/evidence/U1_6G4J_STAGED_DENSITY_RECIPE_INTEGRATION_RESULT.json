@@ -1,0 +1,93 @@
+{
+  "schema": "neuro-film.u1-6g4j-staged-density-recipe-integration-evidence.v1",
+  "node": "ULT > U1.6 > U1.6G4J",
+  "status": "PASS_PRIVATE_STAGED_DENSITY_RECIPE_INTEGRATION",
+  "identities": {
+    "prospective_contract_commit": "53785844c46afe602f55d4fb689e2b0e8ca98f22",
+    "implementation_commit": "ba9309a9b0f1a64e83e2fc3c2bc03c6bc90917c2",
+    "audit_commit": "71743b0184a4105aa3d2e90c9e9e9f6b2cc780cd",
+    "audit_decoder_correction_commit": "7cdea6521aa6a2068ac27f96cb1aee6d2bb2e9f9",
+    "formal_execution_head": "b02b9c7c9d5e08737284c4f54add5419d367137b",
+    "contract_sha256": "1d3350c3186aae3172719a2cb18bd98c8d4d142d416032130e3103b8f0370249",
+    "contract_document_sha256": "1206f60efcb16243b491d3ceea57b8c029f5da3316967fb998a5a204efb060ef",
+    "recipe_v4_schema_sha256": "c047c80221001bfe22a49acec717d8c68c41381fccb278b34b81d26823f4d7a6",
+    "formal_report_sha256": "6b927a41f69aa1be77606c83186a7797a4ec54deec7247d8540ae27149caf165"
+  },
+  "execution": {
+    "fixture": "self-authored deterministic 192x256 RGB8 procedural image",
+    "process_order": [
+      "baseline",
+      "candidate",
+      "candidate",
+      "baseline"
+    ],
+    "complete_runs": 2,
+    "fresh_renderer_processes_per_run": 4,
+    "report_bytes_exact": true,
+    "report_sha256_run_1": "6b927a41f69aa1be77606c83186a7797a4ec54deec7247d8540ae27149caf165",
+    "report_sha256_run_2": "6b927a41f69aa1be77606c83186a7797a4ec54deec7247d8540ae27149caf165",
+    "operator": {
+      "model": "staged-density-research",
+      "executor_version": "staged-density-halation-v1-defaults",
+      "strength": 1.0,
+      "tile_size": 64,
+      "source_row_chunk": 64,
+      "coarse_row_chunk": 7,
+      "composite_row_chunk": 64
+    }
+  },
+  "durable_results": {
+    "baseline_output_sha256": "505ac2af360a2861ab183917905104cebd7d213b61e82c5446f962cd8310f8e5",
+    "baseline_recipe_sha256": "4e798c2b0a2988fca30d12f2bd9e7697a96677834a3beb11b1673f375c9f4f96",
+    "baseline_recipe_schema_id": "kmcfm.render-recipe.v3",
+    "candidate_output_sha256": "a2517716c278b8567b5d2af54ca88f3a1e58dec8763dc02c13dbe955d62cfeed",
+    "candidate_recipe_sha256": "768941c9440804e479dd9c082f0fd937ba760c4c7c8e81fab54bdc21dc48c3eb",
+    "candidate_recipe_schema_id": "kmcfm.render-recipe.v4",
+    "candidate_rgb16_sha256": "c41c6d40c85c1934003268941a3945aa957b4dba3d60d9c0c32672e8eff935cf",
+    "candidate_uint16_bounds": [
+      1238,
+      64507
+    ],
+    "standard_srgb_icc_sha256": "217fe48ec958c667f8eef725aa27198f465df95d7662593b90d0a1cc30114356",
+    "independent_recipe_replay_byte_exact": true,
+    "direct_executor_compositor_byte_exact": true,
+    "legacy_baseline_byte_exact": true,
+    "default_model_unchanged": true,
+    "mutation_rejection": true,
+    "injected_failure_output_absent": true,
+    "owned_scratch_empty": true
+  },
+  "gates": {
+    "legacy_output_and_recipe_exact": true,
+    "candidate_output_and_recipe_exact": true,
+    "v4_schema_and_independent_replay_exact": true,
+    "direct_executor_parity_exact": true,
+    "finite_bounded_srgb_icc": true,
+    "default_render_unchanged": true,
+    "mutations_fail_closed": true,
+    "owned_scratch_empty": true
+  },
+  "superseded_execution_facts": [
+    {
+      "stage": "first formal attempt after audit implementation",
+      "result": "failed only the RGB16 decode gate because the audit used Pillow's uint8 view of an RGB16 PNG",
+      "correction": "audit-only decoder changed to OpenCV IMREAD_UNCHANGED with an explicit uint16 assertion",
+      "scientific_inputs_operator_thresholds_and_outputs_changed": false
+    },
+    {
+      "stage": "first corrected dual run",
+      "result": "all scientific gates passed but complete report hashes differed because the two parallel runs used distinct absolute scratch roots recorded in recipes",
+      "correction": "two full runs were repeated sequentially through one fixed owned scratch root",
+      "scientific_inputs_operator_thresholds_and_outputs_changed": false
+    }
+  ],
+  "claim_ceiling": "Private Windows/Python deterministic integration and exact replay of the retained staged-density Look Approximation effect only; no physical-film, stock, scanner, calibration, preference, arbitrary-platform, public-package or default-product claim.",
+  "promotion": {
+    "private_opt_in_research_effect": true,
+    "default_changed": false,
+    "legacy_recipe_changed": false,
+    "calibrated_reference_allowed": false,
+    "public_package_allowed": false,
+    "product_default_allowed": false
+  }
+}
