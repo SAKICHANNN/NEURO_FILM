@@ -18,9 +18,7 @@ FIXTURE = ROOT / "tests/fixtures/p220_r1cg_frozen_payloads_v1.json"
 
 def test_p220_contract_binds_exact_r1cg_result_and_zero_target_reads() -> None:
     config = json.loads(CONFIG.read_text(encoding="utf-8"))
-    assert config["status"] == (
-        "frozen_before_consumer_native_implementation_or_execution"
-    )
+    assert config["status"] == "implementation_frozen_before_formal_native_execution"
     assert config["bindings"]["producer_report_sha256"] == (
         "1622aa050602e876effd4f9c2e84cfdd0adca10268c8e05aa35fcda00b47b7ff"
     )
