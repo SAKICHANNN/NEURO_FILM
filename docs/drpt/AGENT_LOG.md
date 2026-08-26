@@ -17134,3 +17134,29 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   stops here. The CLI remains private, explicit and opt-in; every receipt says
   `film-inspired/look-approximation`. Controlled physical stock acquisition is
   still required for calibration or stock-distinguishability claims.
+
+### 2026-08-26 - P246 consumes the exact R1DO OpenEXR handoff without copying it
+
+- **Node and scope:** `ULT > mature RAW/HDR explicit mechanisms > P246`;
+  contract `e09cc50e` binds producer R1DO/R1DP evidence, writer commit/blob/SHA
+  and the exact 740,197-byte OpenEXR 3.4.15 Windows wheel. The consumer reads
+  the writer only through its fixed Git object, installs the wheel offline in
+  a fresh system-temporary target and never copies the implementation into
+  neuro_film.
+- **Formal result:** corrected forward/reverse fresh processes produce exact
+  3,526-byte reports at SHA-256 `cc644524...32ab5`, scientific identity
+  `baa94966...69881c`. The 7x9 synthetic probe reproduces producer container
+  SHA `14a122a7...e48ce` and pixel SHA `3b14e75a...db727`, with zero decode
+  error, exact AP1/D60 metadata, negative/highlight preservation, input
+  immutability, invalid-input rejection, publication atomicity and zero
+  network/external-pixel/temp-residue gates all passing.
+- **Corrections, propagation and boundary:** two pre-report controller attempts
+  exposed only Windows extension-file lifetime and were fixed by exiting a
+  short-lived worker before cleanup. One excluded 3,526-byte report
+  (`e2c9107b...26609`) passed every gate except metadata equality because the
+  config transcribed one bound float32 decimal incorrectly; `e9a441c9` changes
+  only that evidence value before the two complete reruns. Evidence commit
+  `e824f2e7`; 41 adjacent RAW/ACES/HDR tests, Ruff, compile and diff checks
+  pass. Parent R1DO/R1DP mechanics are independently consumable, but no
+  neuro_film public API/dependency, AP0/ST 2065-4 container, large-image or
+  quality result, package/schema/capability or product mapping opens.
