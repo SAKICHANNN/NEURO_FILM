@@ -1,0 +1,81 @@
+{
+  "schema": "neuro-film.p249-aces2065-openexr-exact-consumer-intake-evidence.v1",
+  "experiment_id": "P249",
+  "status": "PASS_PRIVATE_EXACT_R1DT_ACES2065_CONSUMER_INTAKE",
+  "decision": "The exact producer R1DT AP1-to-AP0 writer, R1DT evidence and pinned OpenEXR wheel can be independently verified from frozen Git objects, loaded without copying producer source, and replayed byte-exactly on the frozen synthetic probe. Retain only this private consumer-side handoff result.",
+  "bindings": {
+    "contract_commit": "a9946f859c33d890960d032ca7f60b4779a97a74",
+    "contract_sha256": "21b03e5c92d45315a0542340eec639b822a45c15136f5684499e7c82670ab974",
+    "config_commit": "5f1ec76a6577791834f6ff116796217d73ba4b78",
+    "config_git_blob": "00923eca18266a758166cf8a3b8a65b36c8a07c8",
+    "config_sha256": "0cb2e085635af2a97b977cd9d6a6d6033d34ba02b6ae866379b5b56c1972511d",
+    "implementation_commit": "f49d21e1a82b188f177c4cfa3a3fb0f4414f1297",
+    "corrected_formal_runner_commit": "25b4da10f76a443dec4e7e9cb18b6c90bb09fa84",
+    "formal_execution_commit": "5f1ec76a6577791834f6ff116796217d73ba4b78",
+    "producer_writer_commit": "a7ec64513c4fa097bc49b9bdbdfd8c3c7c2eb901",
+    "producer_writer_git_blob": "8c3a1452cc13b29d4ad5f07dcd53cc6c626dd927",
+    "producer_writer_bytes": 7699,
+    "producer_writer_sha256": "63995dc36cf41708118f32e90687b8bb5c9b2738100b3db557371bbaf086d84d",
+    "producer_r1dt_evidence_commit": "9e16b14145415c668ebf7c76ca88ec8b3e3618f9",
+    "producer_r1dt_evidence_bytes": 5175,
+    "producer_r1dt_evidence_sha256": "5d037d2f98f90d6f7d872c6a1b009637423ed2994189f94d5e9ec7f0375a68ff",
+    "openexr_version": "3.4.15",
+    "openexr_wheel_bytes": 740197,
+    "openexr_wheel_sha256": "7aa145813acfe10a83d6e89340349379828190b321608e69f2aee426e10c890b"
+  },
+  "formal_reports": [
+    {
+      "path": "outputs/eval/p249_aces2065_openexr_exact_consumer_intake_v1/formal_result.json",
+      "bytes": 3726,
+      "sha256": "b5851574dea4470eb383c912ee6d2d665279aaf8a775258e7ae2bde2b16fa0a0"
+    },
+    {
+      "path": "outputs/eval/p249_aces2065_openexr_exact_consumer_intake_v1/formal_replay.json",
+      "bytes": 3726,
+      "sha256": "b5851574dea4470eb383c912ee6d2d665279aaf8a775258e7ae2bde2b16fa0a0"
+    }
+  ],
+  "result": {
+    "scientific_identity": "sha256:6b593f827a1d40738e4a4bd79fb7b7623315de9f2e4f606a736a85aac7f6d41d",
+    "writer_id": "aces2065-ap0-d60-float32-zip-openexr-container-v1",
+    "input_acescg_f32le_sha256": "3b14e75aa87a09794e0c4cb6339a4fc09862657d9aea190a9e3311c155bdb727",
+    "ap0_pixel_f32le_sha256": "2b3417e344aa7c26962a109f55d14237a0926d0e03eb46767477b274c4179cb4",
+    "openexr_bytes": 1144,
+    "openexr_sha256": "1a25181406270142c98f2169897d3a4c468ec50c979fff9077d37f956c888726",
+    "decoded_maximum_absolute_error": 0.0,
+    "exact_ap1_to_ap0_matrix": true,
+    "exact_ap0_d60_metadata": true,
+    "aces_image_container_flag": 1,
+    "color_interop_id": "lin_ap0_scene",
+    "negative_and_above_one_preserved": true,
+    "input_unchanged": true,
+    "invalid_inputs_rejected": true,
+    "publication_failure_atomic": true,
+    "writer_source_copied_to_repository": false,
+    "network_reads": 0,
+    "producer_real_photo_reads": 0,
+    "project_pixel_reads": 0,
+    "owned_temporary_residue": 0
+  },
+  "gates": {
+    "exact_decoded_pixels": true,
+    "exact_evidence_binding": true,
+    "exact_git_objects": true,
+    "exact_matrix": true,
+    "exact_metadata": true,
+    "exact_offline_wheel": true,
+    "exact_openexr_bytes": true,
+    "exact_storage": true,
+    "input_immutability": true,
+    "invalid_input_rejection": true,
+    "negative_and_above_one_preserved": true,
+    "publication_failure_atomicity": true,
+    "writer_contract": true,
+    "zero_external_pixel_reads": true,
+    "zero_network": true,
+    "zero_temporary_residue": true,
+    "two_fresh_process_reports_exact": true
+  },
+  "preformal_exclusion": "The first controller invocation stopped before wheel install, writer execution or report creation because direct-script import resolution could not find the reused P246 helper under its package-qualified name. The additive runner correction selects the same helper through package or sibling import according to invocation context; producer source, wheel, probe, matrix, metadata and gates are unchanged.",
+  "claim_ceiling": "Private Windows CPython consumer-side reproducibility of the exact producer R1DT AP1-to-AP0 writer/source/wheel handoff on one synthetic probe only. No neuro_film public API/dependency/package/schema/capability, SMPTE certification, arbitrary metadata/image support, large-image resource or quality result, cross-platform parity, renderer integration or product admission."
+}
