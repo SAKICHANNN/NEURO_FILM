@@ -1,0 +1,66 @@
+{
+  "schema": "neuro-film.p240-rawpixls-capture-metadata-source-audit-contract.v1",
+  "experiment_id": "P240",
+  "status": "FROZEN_BEFORE_FRESH_EXIF_READ",
+  "question": "Does a fixed fresh CC0 DNG cohort expose enough exact capture-time and AsShotNeutral metadata to support a separately preregistered source-only AWB mechanism experiment?",
+  "source": {
+    "name": "raw.pixls.us",
+    "repository_url": "https://raw.pixls.us/",
+    "repository_api_url": "https://raw.pixls.us/json/getrepository.php",
+    "repository_snapshot_bytes": 1246029,
+    "repository_snapshot_sha256": "8dc5f5c74e20cc3a38f4548d53bba4bb516835e2a859e80bf86e7ac6283b3aa3",
+    "rights": "CC0/Public Domain per each exact repository row",
+    "observed_date": "2026-08-26"
+  },
+  "selection": {
+    "rule": "From the exact repository snapshot, retain CC0 rows whose linked filename ends in DNG, reported size is 4-30 MB and raw SHA-256 does not occur in tracked configs, evidence or planning files; exclude scanner, DNG-converter, cinema/video and duplicate-make rows before any selected EXIF read; choose the newest remaining row per normalized make, then sort by repository ID.",
+    "candidate_count": 20,
+    "expected_unique_makes": 20,
+    "replacement_allowed": false,
+    "raw_download_allowed": false,
+    "pixel_decode_allowed": false,
+    "training_allowed": false,
+    "target_score_allowed": false
+  },
+  "required_exif_facts": [
+    "make",
+    "unique_camera_model",
+    "date_time_original",
+    "exposure_time",
+    "f_number",
+    "iso_speed",
+    "as_shot_neutral"
+  ],
+  "candidates": [
+    {"id": 939, "make": "Apple", "model": "iPhone 7 Plus", "filename": "Apple - iPhone 7 Plus - 16bit (4:3).DNG", "raw_sha256": "e8c7ebd8f22f7281d165496b91c8fea8a8e79c8113172fb499e1d66d6045332e", "reported_mb": 10.06, "exif_url": "https://raw.pixls.us/getfile.php/939/exif/IMG_0739.DNG.exif.txt"},
+    {"id": 996, "make": "Ricoh", "model": "GR", "filename": "Ricoh - GR - 12bit (4:3).DNG", "raw_sha256": "7ceec1ea31c56b6e0414202504581b915f17818ffe018b4c8bba1393332c405e", "reported_mb": 11.57, "exif_url": "https://raw.pixls.us/getfile.php/996/exif/R0003611.DNG.exif.txt"},
+    {"id": 1027, "make": "PARROT", "model": "Bebop Drone", "filename": "PARROT - Bebop Drone - 16bit (4:3).dng", "raw_sha256": "aeee3ad6fb8ba3219258af980c5ba508848c323e88c043aebe9486c1e1c603b4", "reported_mb": 26.25, "exif_url": "https://raw.pixls.us/getfile.php/1027/exif/Bebop_Drone_2015-11-07T180428+0000_C10611.dng.exif.txt"},
+    {"id": 1052, "make": "DJI", "model": "FC220", "filename": "DJI - FC220 - 16bit (4:3).DNG", "raw_sha256": "85a4fc27cca3c1358abd22898d6426dc3448060ca5143e7bd255cb5fff64392d", "reported_mb": 23.2, "exif_url": "https://raw.pixls.us/getfile.php/1052/exif/DJI_0004.DNG.exif.txt"},
+    {"id": 1103, "make": "motorola", "model": "Nexus 6", "filename": "motorola - Nexus 6 - 16bit (4:3).DNG", "raw_sha256": "c92496d31742e61918ca9f30148c630a61581db0cff512995d54ae5b473f1d4f", "reported_mb": 25.07, "exif_url": "https://raw.pixls.us/getfile.php/1103/exif/DSC_0017.DNG.exif.txt"},
+    {"id": 1421, "make": "Yuneec", "model": "CGO3P", "filename": "Yuneec - CGO3P - 16bit (4:3).dng", "raw_sha256": "9ad52c1cd091eda9a132b8febc0c9a35b7ee6fdb2f45a44694878f0cfb5de299", "reported_mb": 22.93, "exif_url": "https://raw.pixls.us/getfile.php/1421/exif/YUN00007.dng.exif.txt"},
+    {"id": 1988, "make": "Nikon", "model": "D80", "filename": "Nikon - D80 - 16bit (3:2).dng", "raw_sha256": "5095ca264e763624cd3aa62940286dd1bcff4504eefa1ce61cbb72f50f8426bb", "reported_mb": 7.9, "exif_url": "https://raw.pixls.us/getfile.php/1988/exif/DSC_0143.dng.exif.txt"},
+    {"id": 2640, "make": "Panasonic", "model": "DMC-LX1", "filename": "Panasonic - DMC-LX1 - 16bit (16:9).dng", "raw_sha256": "ac7ffeacc04b40201eede7f69e72bdead578d274cff78907e6d11a4fe5c534e1", "reported_mb": 7.77, "exif_url": "https://raw.pixls.us/getfile.php/2640/exif/P1080763.dng.exif.txt"},
+    {"id": 2644, "make": "Fujifilm", "model": "X100S", "filename": "Fujifilm - X100S - NAN.dng", "raw_sha256": "7adec564bbf74858c70b5a01a2b744000f8057303169fc70d91bde7cb435530f", "reported_mb": 19.77, "exif_url": "https://raw.pixls.us/getfile.php/2644/exif/fujifilm-x100s-daylight-DSCF9505.dng.exif.txt"},
+    {"id": 2685, "make": "LG", "model": "LG-H870", "filename": "LG - LG-H870 - 10bit (4:3).dng", "raw_sha256": "6dcd2d12d8064629f0ad48e2625d793f98d5cc6cfd34eae648bf5e4cb33b65f0", "reported_mb": 17.8, "exif_url": "https://raw.pixls.us/getfile.php/2685/exif/20180705_215945.dng.exif.txt"},
+    {"id": 2768, "make": "Pentax", "model": "K10D", "filename": "Pentax - K10D - 12bit 12bit uncompressed (3:2).DNG", "raw_sha256": "e7ea961edfea725ad2753f261d20da5e6addd5d641e5bcbc373999710f27941f", "reported_mb": 16.13, "exif_url": "https://raw.pixls.us/getfile.php/2768/exif/IMGP5398.DNG.exif.txt"},
+    {"id": 2915, "make": "asus", "model": "ASUS_Z01KD", "filename": "asus - ASUS_Z01KD - 16bit (4:3).dng", "raw_sha256": "36708df67ff2f4527dc274688cd23b4fbf811f0d3665b54bad9cb7288e69e3d0", "reported_mb": 22.13, "exif_url": "https://raw.pixls.us/getfile.php/2915/exif/2018-12-02_07.39.26-1.dng.exif.txt"},
+    {"id": 2988, "make": "Leica", "model": "M8", "filename": "Leica - M8 - 8bit 8bit uncompressed (3:2).DNG", "raw_sha256": "7fdcca2371bb07fbf9483fcb08e3b5ab093eca1ca3924cbc86d6863736c31153", "reported_mb": 10.09, "exif_url": "https://raw.pixls.us/getfile.php/2988/exif/L1030132.DNG.exif.txt"},
+    {"id": 3025, "make": "KanDao", "model": "QooCam", "filename": "KanDao - QooCam - 16bit 16bit (2).DNG", "raw_sha256": "400dbe89e2cfb536c0146401e2fc8f2d4a7df3709d3e0ca0a2691c7400c2d67a", "reported_mb": 17.8, "exif_url": "https://raw.pixls.us/getfile.php/3025/exif/Q360_20190310_123437_000001.DNG.exif.txt"},
+    {"id": 3108, "make": "HUAWEI", "model": "HRY-LX1", "filename": "HUAWEI - HRY-LX1 - 16bit (4:3).dng", "raw_sha256": "a21850edf21ac42bd5af366a8bd421c379a53c0f8be89adec9027dafc6e9c01b", "reported_mb": 24.78, "exif_url": "https://raw.pixls.us/getfile.php/3108/exif/IMG_20190427_200711.dng.exif.txt"},
+    {"id": 3229, "make": "XIAOYI", "model": "YIAC 3", "filename": "XIAOYI - YIAC 3 - 16bit (4:3).DNG", "raw_sha256": "8161a97a0e98c3a0a7034ca14fdd611c7ec63034b25bfa1d3d7f0d6771538323", "reported_mb": 15.7, "exif_url": "https://raw.pixls.us/getfile.php/3229/exif/YIAC0075.DNG.exif.txt"},
+    {"id": 3662, "make": "Xiaomi", "model": "MI 8", "filename": "Xiaomi - MI 8 - 16bit (16:9).dng", "raw_sha256": "f1793dd915e12a7c7c0a8a83cab269f05ae99cc6155e81dc913feed57e6ce8a5", "reported_mb": 8.75, "exif_url": "https://raw.pixls.us/getfile.php/3662/exif/IMG_20200101_174326.dng.exif.txt"},
+    {"id": 3818, "make": "Samsung", "model": "SM-G930F", "filename": "Samsung - SM-G930F - 16bit (4:3).dng", "raw_sha256": "9811ddfb5a893be286fc9c750272d672716811bb0ca601a78b71e205135263ff", "reported_mb": 23.82, "exif_url": "https://raw.pixls.us/getfile.php/3818/exif/20200125_130015.dng.exif.txt"},
+    {"id": 4172, "make": "RaspberryPi", "model": "RP_imx477", "filename": "RaspberryPi - RP_imx477 - 12bit (4:3).dng", "raw_sha256": "24e5816c0431ff2f57ef8f02741fa810dec021a411c8ecdfbfa17459d2d8dc2e", "reported_mb": 17.65, "exif_url": "https://raw.pixls.us/getfile.php/4172/exif/pi_hq_picamera.dng.exif.txt"},
+    {"id": 6984, "make": "Canon", "model": "IXY 220F", "filename": "Canon - IXY 220F - 12bit 12bit CHDK ver. 1.6.1 (4:3).DNG", "raw_sha256": "9dd3f4c060d6dc27d95539e9f4c055ef5ec669c113382526449efe7c880ac263", "reported_mb": 24.1, "exif_url": "https://raw.pixls.us/getfile.php/6984/exif/canon_ixy_220f.DNG.exif.txt"}
+  ],
+  "gates": {
+    "minimum_complete_rows": 12,
+    "minimum_complete_makes": 8,
+    "maximum_largest_make_fraction": 0.125,
+    "require_exact_replay": true,
+    "require_zero_raw_downloads": true,
+    "require_zero_pixel_decodes": true
+  },
+  "stop_rule": "If any source identity, rights row or snapshot binding fails, stop before selected EXIF reads. After reads, retain every failure without replacement. A gate failure closes this exact source cohort without downloading RAW files or training. A pass opens only a separately preregistered member-integrity and source-only AWB D0.",
+  "claim_ceiling": "Metadata-only eligibility of twenty fresh CC0 raw.pixls.us DNG rows for a future private capture-time AWB mechanism experiment. No RAW byte, pixel, target quality, model, operator, candidate-3, package, capability, film-stock or product claim."
+}
