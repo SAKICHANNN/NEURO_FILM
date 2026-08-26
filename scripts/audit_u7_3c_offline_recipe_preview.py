@@ -81,7 +81,8 @@ def audit_catalog(
             "pixel_decodes": len(previews),
             "rerender_calls": 0,
             "network_reads": 0,
-            "filesystem_preview_writes": 0,
+            "core_preview_filesystem_writes": 0,
+            "audit_artifact_writes_excluded_from_core_count": True,
         },
         "gates": {
             "three_frozen_rows_previewed": len(previews) == 3,
