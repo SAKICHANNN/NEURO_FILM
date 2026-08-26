@@ -1,0 +1,46 @@
+{
+  "schema": "neuro-film.p244-dng-profile-huesatmap-ingress-guard-contract.v1",
+  "experiment_id": "P244",
+  "status": "FROZEN_BEFORE_IMPLEMENTATION_AND_FORMAL_RUN",
+  "question": "Can the private P98 DNG ForwardMatrix ingress reject every standard ProfileHueSatMap-family tag before pixel decode while preserving exact outputs for the five frozen no-map P98 DNGs?",
+  "bindings": {
+    "contract_path": "docs/planning/P244_DNG_PROFILE_HUESATMAP_INGRESS_GUARD_CONTRACT.md",
+    "contract_sha256": "36a0ba34a59f6f7ba3e07b2eef556b740079cba1bab490aabff5baa99e2259d0",
+    "p98_config_path": "configs/p98_dng_forward_raster_v1.json",
+    "p98_evidence_path": "docs/evidence/P98_DNG_FORWARD_RASTER_RESULT.json",
+    "sdk_zip_path": "data/external/adobe_dng_sdk_1_7_1_2652/dng_sdk_1_7_1_2652_20260714.zip",
+    "sdk_zip_bytes": 80494799,
+    "sdk_zip_sha256": "73499b47f4683e12120a234bd0946f02e52ab2ff9834bcbd0e9f8ab4f923360e",
+    "sdk_tag_code_member": "dng_sdk_1_7_1/dng_sdk/source/dng_tag_codes.h"
+  },
+  "guarded_tags": [
+    {"code": 50937, "name": "ProfileHueSatMapDims"},
+    {"code": 50938, "name": "ProfileHueSatMapData1"},
+    {"code": 50939, "name": "ProfileHueSatMapData2"},
+    {"code": 51107, "name": "ProfileHueSatMapEncoding"},
+    {"code": 52537, "name": "ProfileHueSatMapData3"},
+    {"code": 52551, "name": "ProfileDynamicRange"}
+  ],
+  "rows": [
+    {"source_id": "motorola_moto_g_7_play", "logical_path": "data/external/rawpixls_bh1_v1/raw/motorola_moto_g_7_play.dng", "source_bytes": 26286800, "source_sha256": "d46953b116ee7a88b99fb28edc7b2f1b631ed09d66f73391c4ccc2e2ec959575", "working_float32_sha256": "b71b5e7c7db518e0dd54b865aa68c5e63c9621d10bf446c53f0ed3e24c439273"},
+    {"source_id": "lg_lg_h850", "logical_path": "data/external/rawpixls_bh1_v1/raw/lg_lg_h850.dng", "source_bytes": 16005440, "source_sha256": "be58e948626b193538217e96bc6d9ff5fdeb91a3a8a8af65624dab41ae39895f", "working_float32_sha256": "0844ca0677dedd85fb71bbd58cfa95c211f277f690a6fb42e2a3f49a92497b09"},
+    {"source_id": "xiaomi_m2010j19cg", "logical_path": "data/external/rawpixls_bh1_v1/raw/xiaomi_m2010j19cg.dng", "source_bytes": 24029476, "source_sha256": "e1cb49299faa6609547bbb9b2c5a6167031694a99a1d252e1e048ce18ddf214f", "working_float32_sha256": "da8fdd8e0c7c5f28642df686f89245e771cfd4b71769c51b4ee544c8020026ae"},
+    {"source_id": "blackmagic_pocket_cinema_camera_4k", "logical_path": "data/external/rawpixls_bh1_v1/raw/blackmagic_pocket_cinema_camera_4k.dng", "source_bytes": 4497152, "source_sha256": "1491a5e5d580a9be151747bddce89faca4d0b9d352503270f516bbf8e8cdf0d9", "working_float32_sha256": "2fb7c8f9136a85d5a4032cc6c08496f330fe78eab6db7f0e7422b017a4a48ea7"},
+    {"source_id": "huawei_eml_l29", "logical_path": "data/external/rawpixls_bh1_v1/raw/huawei_eml_l29.dng", "source_bytes": 23643352, "source_sha256": "77385bde838ab7e0a5b067d7f6e6b8cb3019a3c22353fae6b8689a43adda439a", "working_float32_sha256": "d1da20e6efd6e5c9d2c7054b425f87b47381bf70e11dfccb7ecf8918b40fcd56"}
+  ],
+  "expected_warning_codes": ["private_dng_forward_raster", "unqualified_demosaic_and_calibration", "scene_linear_no_tone_map"],
+  "gates": {
+    "required_rows": 5,
+    "required_single_tag_rejections": 6,
+    "require_all_real_rows_tag_free": true,
+    "require_multi_tag_sorted_diagnostic": true,
+    "require_zero_decode_calls_on_rejection": true,
+    "require_exact_p98_working_hashes": true,
+    "require_exact_working_contract": true,
+    "require_source_hashes_unchanged": true,
+    "require_forward_reverse_scientific_exact": true,
+    "require_two_fresh_process_reports_exact": true
+  },
+  "stop_rule": "Any missed guarded tag, pixel decode before rejection, P98 output drift, source mutation or replay mismatch closes the exact guard without applying HueSatMap, changing profile domains, relaxing gates or replacing rows.",
+  "claim_ceiling": "Private opt-in no-silent-drop guard for the exact Adobe DNG ProfileHueSatMap tag family plus unchanged outputs on five frozen P98 no-map DNGs. No HueSatMap application, full DNG conformance, arbitrary DNG, image quality, default-loader integration, package, schema, capability, film-stock or product admission."
+}
