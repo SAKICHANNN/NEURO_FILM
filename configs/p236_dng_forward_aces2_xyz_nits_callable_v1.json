@@ -1,0 +1,46 @@
+{
+  "schema": "neuro-film.p236-dng-forward-aces2-xyz-nits-callable-contract.v1",
+  "experiment_id": "P236",
+  "status": "FROZEN_AFTER_P235_BEFORE_IMPLEMENTATION_OR_PIXEL_EXECUTION",
+  "node": "ULT > U1 > U1.3N/U1.4K / P236",
+  "question": "Can exact P98 scene-linear Rec.2020 DNG rasters enter the independently retained P224 official ACES 2 P3-D65 1000-nit XYZ-D65 absolute-light transform without normalized-output rescue?",
+  "bindings": {
+    "p98_config_path": "configs/p98_dng_forward_raster_v1.json",
+    "p98_config_sha256": "5fb17f82cfecdae40a4c812f2ea9c26641e91bcab43e17c8a6a4bc94b2f03c35",
+    "p98_evidence_path": "docs/evidence/P98_DNG_FORWARD_RASTER_RESULT.json",
+    "p98_evidence_sha256": "e73c99fe61781988f61a56fec46278d715431c04ec432173639deb16ba7cfac5",
+    "p98_source_path": "src/preprocess/dng_forward_raster.py",
+    "p98_source_sha256": "eb50a4b0957b88a40b2da6da929a90cc5d9e390d95589914b41e0ff0711091e9",
+    "p224_config_path": "configs/p224_r1cr_aces2_xyz_runtime_compatibility_v1.json",
+    "p224_config_sha256": "a11ed8e9fd85367ff948fe3b233e9c1c6930bf78c9ae20ea1c1ed872ad2f7300",
+    "p224_evidence_path": "docs/evidence/P224_R1CR_ACES2_XYZ_RUNTIME_COMPATIBILITY_RESULT.json",
+    "p224_evidence_sha256": "e4fe4f5682f7adb869cce522dfc2c1beea281d9b7f0ed7c745f81319e4535e7d",
+    "ocio_source_path": "src/preprocess/ocio_aces2_output.py",
+    "ocio_source_sha256": "8f31215c266db683cffcad8f6252a0bfd031025cd12d94c6a88bbe340077475e"
+  },
+  "transform": {
+    "source_working_space": "linear_rec2020",
+    "source_transfer_state": "scene_linear",
+    "scene_to_reference_builtin": "ACEScg_to_ACES2065-1",
+    "output_builtin": "ACES-OUTPUT - ACES2065-1_to_CIE-XYZ-D65 - HDR-1000nit-P3-D65_2.0",
+    "display_reference_scale_nits": 100.0,
+    "output_profile": "display-absolute-linear-xyz-d65.v1"
+  },
+  "gates": {
+    "required_rows": 5,
+    "maximum_negative_output_nits": 0.00001,
+    "maximum_black_absolute_nits": 0.0002,
+    "maximum_neutral_spread_nits": 0.0002,
+    "require_direct_official_bytes_exact": true,
+    "require_owned_c_contiguous_float32_output": true,
+    "require_input_and_source_unchanged": true,
+    "require_forward_reverse_reports_byte_exact": true
+  },
+  "excluded_closed_routes": [
+    "P99 baseline-exposure composition",
+    "P100 normalized SDR/PQ unit-range composition",
+    "P229 normalized-PQ callable",
+    "R1CS analytic BT.2020/ST2084 adapter"
+  ],
+  "claim_ceiling": "Private exact-five-DNG Windows CPU scene-linear Rec.2020 to official ACES 2 P3-D65 1000-nit XYZ-D65 absolute-light callable mechanics only; no calibrated IDT, arbitrary DNG, photographic/display quality, encoded media, default loader, public package/schema/capability, product, film-stock or preference claim"
+}
