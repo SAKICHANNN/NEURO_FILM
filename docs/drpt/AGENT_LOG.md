@@ -16688,3 +16688,25 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   focused tests, Ruff, compileall and diff checks pass. Evidence SHA-256
   `cd481e81...72c06`:
   `docs/evidence/P237_INRETOUCH_RTD_SOURCE_ELIGIBILITY_RESULT.json`.
+
+### 2026-08-26 - U7.7C passes atomic three-stock recipe recovery updates
+
+- **Direction:** after closing U7.6 output-stitch/encode memory work, local and
+  current-primary-source review confirmed that no new rights-cleared Ektar 100,
+  Portra 400 and Velvia 50 paired cohort can populate the already-complete
+  SF3.A0N capture path. The blocked physical leaf was not replaced by another
+  proxy; work moved to the ready deterministic multi-stock recovery boundary.
+- **Implementation:** an existing recovery tree must revalidate before a new
+  bundle is staged. The replacement tree then revalidates before a same-parent
+  backup/swap, with exact restoration of the previous tree after publication
+  failure. Public inspection/update receipts bind old and new tree identities.
+- **Evidence:** all six ordered old-to-new stock pairs pass. Forward/reverse
+  3,884-byte reports are byte-identical at `3db24ea0...b851`, stable
+  `b1397710...704d`. Tampered existing trees reject before swap; an injected
+  post-backup failure restores the old tree exactly; source bundles and owned
+  temporary inventory remain unchanged/empty. Forty-four adjacent tests, Ruff,
+  compile and diff checks pass.
+- **Boundary:** this is private no-pixel Look Approximation recovery mechanics,
+  not an installer, update-discovery system, render/export authorization,
+  calibrated stock response or release. Controlled three-stock acquisition
+  remains the scientific mainline.
