@@ -1,0 +1,51 @@
+{
+  "schema": "kmcfm.u7-3e-offline-recipe-workspace-contract.v1",
+  "node": "U7.3E",
+  "status": "FROZEN_BEFORE_IMPLEMENTATION",
+  "history_root": "outputs/eval/u7_2_three_stock_24mp_smoke",
+  "source_recipe_sha256": {
+    "ektar_100.recipe.json": "b92a75ed8ca8349df562153aad85df26db33ab0992d6bc07503033245ac7d0b8",
+    "portra_400.recipe.json": "b6dece02a1c6e5cee9569424ae8fd53fdad8f4ee619753f6d81a2b2dea0d0fb3",
+    "velvia_50.recipe.json": "254e5c8ddf8703e2689975590531b80ca4e40bde1a37fcd0c382f33e2a42cf25"
+  },
+  "job_to_be_done": "Open one local desktop entry point, then choose immutable recipe metadata or hash-verified existing-output previews without starting a server or rerendering an image.",
+  "workspace_files": [
+    "index.html",
+    "history.html",
+    "previews.html",
+    "workspace_receipt.json"
+  ],
+  "limits": {
+    "maximum_recipe_files": 10000,
+    "maximum_recipe_bytes": 2097152,
+    "maximum_preview_rows": 8
+  },
+  "user_flow": {
+    "entry_heading": "Film workspace",
+    "primary_actions": [
+      "Open render history",
+      "Open render previews"
+    ],
+    "states": [
+      "ready",
+      "partial",
+      "invalid",
+      "empty"
+    ],
+    "minimum_viewport_width_px": 320,
+    "keyboard_access": true,
+    "reduced_motion": true
+  },
+  "acceptance": {
+    "source_recipes_rehash": true,
+    "same_inputs_produce_exact_workspace_files": true,
+    "history_page_reuses_u7_3b_renderer": true,
+    "preview_page_reuses_u7_3c_renderer": true,
+    "index_has_landmark_heading_and_two_native_links": true,
+    "all_pages_are_self_contained_and_remote_network_free": true,
+    "input_pixels_and_rerender_calls_zero": true,
+    "edge_desktop_and_narrow_dom_load": true,
+    "focused_tests_pass": true
+  },
+  "claim_ceiling": "Private local offline desktop workspace over existing look-approximation recipes and outputs only. No renderer change, installer, filesystem watcher, automatic export, calibrated stock, product release or public packaging claim."
+}
