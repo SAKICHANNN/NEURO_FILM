@@ -9,6 +9,7 @@ import os
 import shutil
 import stat
 import tempfile
+import uuid
 import zipfile
 from collections.abc import Mapping
 from pathlib import Path, PurePosixPath
@@ -426,6 +427,228 @@ def _write_restored_member(path: Path, payload: bytes) -> None:
         os.fsync(handle.fileno())
 
 
+def inspect_materialized_recipe_recovery_tree(
+    destination_root: Path,
+) -> dict[str, Any]:
+    """Revalidate one restored no-pixel tree without following links."""
+
+    if not destination_root.is_dir() or destination_root.is_symlink():
+        raise RecipeRecoveryBundleError(
+            "materialized recovery destination must be a regular directory"
+        )
+    contents: dict[str, bytes] = {}
+    total = 0
+    for current, directories, files in os.walk(destination_root, followlinks=False):
+        current_path = Path(current)
+        for name in directories:
+            if (current_path / name).is_symlink():
+                raise RecipeRecoveryBundleError(
+                    "materialized recovery links are forbidden"
+                )
+        for name in files:
+            path = current_path / name
+            if path.is_symlink() or not path.is_file():
+                raise RecipeRecoveryBundleError(
+                    "materialized recovery members must be regular files"
+                )
+            relative = path.relative_to(destination_root).as_posix()
+            _normalized_member(relative, "materialized member")
+            payload = path.read_bytes()
+            total += len(payload)
+            if total > MAXIMUM_UNCOMPRESSED_BYTES:
+                raise RecipeRecoveryBundleError(
+                    "materialized recovery size exceeds the limit"
+                )
+            contents[relative] = payload
+    if not 1 <= len(contents) <= MAXIMUM_MEMBERS:
+        raise RecipeRecoveryBundleError(
+            "materialized recovery member count is outside the limit"
+        )
+    if MANIFEST_MEMBER not in contents:
+        raise RecipeRecoveryBundleError("materialized recovery manifest is missing")
+
+    manifest = _strict_json(contents[MANIFEST_MEMBER], "materialized manifest")
+    expected_manifest_keys = {
+        "schema_id",
+        "format",
+        "recipe_member",
+        "profile_member",
+        "profile_root",
+        "members",
+        "privacy",
+        "claim",
+    }
+    if (
+        set(manifest) != expected_manifest_keys
+        or manifest.get("schema_id") != RECOVERY_BUNDLE_SCHEMA_ID
+        or manifest.get("format") != RECOVERY_BUNDLE_FORMAT
+        or manifest.get("recipe_member") != RECIPE_MEMBER
+        or manifest.get("profile_root") != PAYLOAD_PREFIX.rstrip("/")
+    ):
+        raise RecipeRecoveryBundleError(
+            "materialized recovery manifest identity is unsupported"
+        )
+    privacy = manifest.get("privacy")
+    if privacy != {
+        "includes_input_bytes": False,
+        "includes_output_bytes": False,
+        "network_required": False,
+        "telemetry": False,
+    }:
+        raise RecipeRecoveryBundleError(
+            "materialized recovery privacy contract is unsupported"
+        )
+    claim = manifest.get("claim")
+    if claim != {
+        "calibrated_reference_allowed": False,
+        "evidence_grade": "look-approximation",
+        "output_label": "film-inspired",
+    }:
+        raise RecipeRecoveryBundleError(
+            "materialized recovery claim differs from Look Approximation"
+        )
+
+    rows = manifest.get("members")
+    if not isinstance(rows, list) or not rows:
+        raise RecipeRecoveryBundleError("materialized member ledger is invalid")
+    expected_names = {MANIFEST_MEMBER}
+    identities: list[dict[str, Any]] = []
+    for row in rows:
+        if not isinstance(row, Mapping) or set(row) != {
+            "role",
+            "member",
+            "sha256",
+            "bytes",
+        }:
+            raise RecipeRecoveryBundleError("materialized member row is invalid")
+        member = _normalized_member(row["member"], "materialized ledger member")
+        payload = contents.get(member)
+        if (
+            payload is None
+            or len(payload) != row["bytes"]
+            or _sha256(payload) != row["sha256"]
+        ):
+            raise RecipeRecoveryBundleError(
+                f"materialized member identity mismatch: {member}"
+            )
+        expected_names.add(member)
+        identities.append(
+            {
+                "member": member,
+                "sha256": row["sha256"],
+                "bytes": row["bytes"],
+            }
+        )
+    if set(contents) != expected_names:
+        raise RecipeRecoveryBundleError(
+            "materialized recovery contains an unexpected member"
+        )
+
+    recipe = _strict_json(contents[RECIPE_MEMBER], "materialized recipe")
+    profile_member = _normalized_member(
+        manifest.get("profile_member"), "materialized profile member"
+    )
+    if not profile_member.startswith(PAYLOAD_PREFIX) or profile_member not in contents:
+        raise RecipeRecoveryBundleError(
+            "materialized recovery profile member is invalid"
+        )
+    profile = _strict_json(contents[profile_member], "materialized profile")
+    try:
+        validate_render_recipe(recipe)
+        validate_render_profile(profile)
+    except RenderContractError as exc:
+        raise RecipeRecoveryBundleError(
+            "materialized recipe/profile validation failed"
+        ) from exc
+    if (
+        _sha256(contents[profile_member]) != recipe["profile"]["sha256"]
+        or recipe["profile"]["profile_id"] != profile["profile_id"]
+        or recipe["profile"]["profile_version"] != profile["profile_version"]
+        or recipe["assets"] != profile["assets"]
+    ):
+        raise RecipeRecoveryBundleError(
+            "materialized profile identity or asset ledger differs"
+        )
+    for asset in profile["assets"]:
+        member = f"{PAYLOAD_PREFIX}{asset['path']}"
+        if member not in contents or _sha256(contents[member]) != asset["sha256"]:
+            raise RecipeRecoveryBundleError(
+                f"materialized profile asset mismatch: {asset['path']}"
+            )
+
+    identities.sort(key=lambda row: str(row["member"]))
+    tree_sha256 = _sha256(_canonical_json({"members": identities}))
+    return {
+        "schema_id": "kmcfm.recipe-recovery-materialized-tree.v1",
+        "tree_sha256": tree_sha256,
+        "recipe_sha256": _sha256(contents[RECIPE_MEMBER]),
+        "profile_sha256": _sha256(contents[profile_member]),
+        "style": recipe["render"]["style"],
+        "member_count": len(contents),
+        "members": identities,
+        "privacy": dict(privacy),
+        "claim": dict(claim),
+    }
+
+
+def _publish_recipe_recovery_update(stage: Path, destination_root: Path) -> None:
+    os.rename(stage, destination_root)
+
+
+def update_materialized_recipe_recovery_tree(
+    *, bundle_path: Path, destination_root: Path
+) -> dict[str, Any]:
+    """Atomically replace one validated restored tree with another bundle."""
+
+    previous = inspect_materialized_recipe_recovery_tree(destination_root)
+    bundle = inspect_recipe_recovery_bundle(bundle_path)
+    parent = destination_root.parent
+    token = uuid.uuid4().hex
+    stage = parent / f".{destination_root.name}.update-{token}"
+    backup = parent / f".{destination_root.name}.backup-{token}"
+    if stage.exists() or backup.exists():
+        raise RecipeRecoveryBundleError("owned update path unexpectedly exists")
+
+    moved_previous = False
+    published = False
+    try:
+        materialize_recipe_recovery_bundle(
+            bundle_path=bundle_path, destination_root=stage
+        )
+        candidate = inspect_materialized_recipe_recovery_tree(stage)
+        os.rename(destination_root, backup)
+        moved_previous = True
+        try:
+            _publish_recipe_recovery_update(stage, destination_root)
+            published = True
+        except Exception:
+            if destination_root.exists():
+                raise RecipeRecoveryBundleError(
+                    "update destination was claimed during publication"
+                )
+            os.rename(backup, destination_root)
+            moved_previous = False
+            raise
+        shutil.rmtree(backup)
+        moved_previous = False
+        return {
+            "schema_id": "kmcfm.recipe-recovery-update.v1",
+            "bundle_sha256": bundle["bundle_sha256"],
+            "previous_tree_sha256": previous["tree_sha256"],
+            "updated_tree_sha256": candidate["tree_sha256"],
+            "previous_style": previous["style"],
+            "updated_style": candidate["style"],
+            "member_count": candidate["member_count"],
+            "privacy": candidate["privacy"],
+            "claim": candidate["claim"],
+        }
+    finally:
+        if not published and stage.exists():
+            shutil.rmtree(stage)
+        if moved_previous and not destination_root.exists() and backup.exists():
+            os.rename(backup, destination_root)
+
+
 def materialize_recipe_recovery_bundle(
     *, bundle_path: Path, destination_root: Path
 ) -> dict[str, Any]:
@@ -503,6 +726,8 @@ __all__ = [
     "RECOVERY_BUNDLE_SCHEMA_ID",
     "RecipeRecoveryBundleError",
     "build_recipe_recovery_bundle",
+    "inspect_materialized_recipe_recovery_tree",
     "inspect_recipe_recovery_bundle",
     "materialize_recipe_recovery_bundle",
+    "update_materialized_recipe_recovery_tree",
 ]

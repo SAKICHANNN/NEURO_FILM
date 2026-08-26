@@ -32,8 +32,10 @@ from .recipe_recovery_bundle import (
     RECOVERY_BUNDLE_SCHEMA_ID,
     RecipeRecoveryBundleError,
     build_recipe_recovery_bundle,
+    inspect_materialized_recipe_recovery_tree,
     inspect_recipe_recovery_bundle,
     materialize_recipe_recovery_bundle,
+    update_materialized_recipe_recovery_tree,
 )
 from .render_contract import (
     LEGACY_STYLE_EVIDENCE_INVENTORY_SCHEMA_ID,
@@ -101,6 +103,7 @@ __all__ = [
     "build_render_recipe_history",
     "execute_interpretation",
     "execute_tiled_local_operator",
+    "inspect_materialized_recipe_recovery_tree",
     "inspect_recipe_recovery_bundle",
     "list_three_stock_looks",
     "load_render_profile",
@@ -119,6 +122,7 @@ __all__ = [
     "sha256_file",
     "summarize_legacy_style_evidence_inventory",
     "summarize_render_profile_evidence",
+    "update_materialized_recipe_recovery_tree",
     "validate_render_profile",
     "validate_render_recipe",
     "verify_render_recipe_files",
