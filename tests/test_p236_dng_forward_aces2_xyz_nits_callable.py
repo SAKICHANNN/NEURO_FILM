@@ -17,8 +17,10 @@ def test_p236_forward_reverse_science_is_exact() -> None:
     forward = execute(CONFIG, reverse=False)
     reverse = execute(CONFIG, reverse=True)
     assert forward == reverse
-    assert forward["status"] == "PASS_PRIVATE_DNG_FORWARD_ACES2_XYZ_NITS_CALLABLE"
-    assert all(forward["gate_results"].values())
+    assert forward["status"] == "FAIL_CLOSED_DNG_FORWARD_ACES2_XYZ_NITS_CALLABLE"
+    assert {name for name, passed in forward["gate_results"].items() if not passed} == {
+        "neutral_probes"
+    }
 
 
 def test_xyz_bridge_owns_output_and_preserves_input() -> None:

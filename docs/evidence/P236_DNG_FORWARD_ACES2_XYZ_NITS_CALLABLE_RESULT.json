@@ -1,0 +1,75 @@
+{
+  "schema": "neuro-film.p236-dng-forward-aces2-xyz-nits-callable-evidence.v1",
+  "experiment_id": "P236",
+  "status": "FAIL_CLOSED_FROZEN_NEUTRAL_GATE_WRONG_XYZ_COORDINATE",
+  "date": "2026-08-26",
+  "commits": {
+    "preregistration": "3bd3ce7eaa113883a61521448dfd0e26545660ec",
+    "implementation_and_formal_execution": "3cb02a67ac6deffef8e6c3debbeb0a0af68d8559"
+  },
+  "protocol": {
+    "contract_path": "docs/planning/P236_DNG_FORWARD_ACES2_XYZ_NITS_CALLABLE_CONTRACT.md",
+    "contract_sha256": "5e9246d06c3702a94df8cbaea58e9baedf3a0273217b5702c7d168a424f73fc7",
+    "config_path": "configs/p236_dng_forward_aces2_xyz_nits_callable_v1.json",
+    "config_sha256": "ecb0dde0ed85fc1aeb0a3961831bcaa323dae9da0f3911b81bd21b9a1d08aa27",
+    "required_rows": 5,
+    "output_profile": "display-absolute-linear-xyz-d65.v1",
+    "display_reference_scale_nits": 100.0
+  },
+  "implementation": {
+    "callable_path": "src/preprocess/dng_forward_aces2_xyz.py",
+    "callable_sha256": "9fd11c42498937449b3c6d82d4c0e009a3ae5a89567387848c2cbac617626bd2",
+    "runner_path": "scripts/audit_p236_dng_forward_aces2_xyz_nits_callable.py",
+    "runner_sha256": "8b4b2b1f05e9494102968f566b17a7f23916d8609f28ede0a92a02748029ab34"
+  },
+  "formal": {
+    "forward_report_path": "outputs/eval/p236_dng_forward_aces2_xyz_nits_callable/forward.json",
+    "reverse_report_path": "outputs/eval/p236_dng_forward_aces2_xyz_nits_callable/reverse.json",
+    "report_bytes_each": 4040,
+    "report_sha256": "c4139194e18cd6f3c6564be25728e84a32cd4c164139139d32a7c7d227115f16",
+    "reports_byte_exact": true,
+    "stable_identity": "sha256:e09e52bba5a8be686feac4a5111fc2a2db965d4086d2fd68431eaa19f2bc8605",
+    "fresh_process_count": 2,
+    "row_count": 5,
+    "source_bytes_read_from_existing_exact_cohort_per_process": 94462320,
+    "reference_target_or_preferred_render_reads": 0,
+    "network_reads": 0,
+    "encoded_image_artifacts_written": 0
+  },
+  "metrics": {
+    "direct_official_maximum_absolute_error_nits": 0.0,
+    "all_five_direct_official_outputs_byte_exact": true,
+    "black_output_nits": [0.0, 0.0, 0.0],
+    "maximum_neutral_xyz_channel_spread_nits": 14.770034790039062,
+    "minimum_output_nits": -3.8338597164526254e-17,
+    "maximum_output_nits": 231.90087890625,
+    "all_outputs_owned_c_contiguous_float32_shape_preserving": true,
+    "all_inputs_and_source_bytes_unchanged": true
+  },
+  "gates": {
+    "required_rows": true,
+    "direct_official_bytes_exact": true,
+    "owned_c_contiguous_float32_output": true,
+    "finite_nonnegative_output": true,
+    "input_and_source_unchanged": true,
+    "black_anchor": true,
+    "neutral_probes": false,
+    "forward_reverse_reports_byte_exact": true
+  },
+  "interpretation": {
+    "established_mechanics": [
+      "all five exact P98 DNG rasters produce owned finite shape-preserving float32 XYZ-D65-nits arrays",
+      "the callable is byte-exact to the independently assembled official OCIO chain on all five rows",
+      "exact black maps to exact zero and no source or P98 input is mutated"
+    ],
+    "formal_failure": "The frozen neutral gate incorrectly required equal XYZ channel values. A D65-neutral XYZ value follows the D65 white-point chromaticity and does not require X=Y=Z, so the measured 14.77003479-nit channel spread fails the literal gate.",
+    "no_rescue": [
+      "replace the XYZ-equality gate with a chromaticity or white-point-ratio gate on this leaf",
+      "change tolerance, probes, output scale, builtins, rows, exposure, clipping, floor or tone mapping",
+      "reinterpret byte-exact official parity as a formal PASS after observing the gate failure"
+    ],
+    "retained_boundary": "The private callable implementation remains mechanically useful but unpromoted. P98 and P224 remain independently valid; P99, P100, P229 and R1CS remain closed."
+  },
+  "consumer_mapping": false,
+  "claim_ceiling": "Private exact-five-DNG Windows CPU scene-linear Rec.2020 to official ACES 2 P3-D65 1000-nit XYZ-D65 absolute-light callable formal negative only; no calibrated IDT, arbitrary DNG, photographic/display quality, encoded media, default loader, public package/schema/capability, product, film-stock or preference admission"
+}
