@@ -15927,3 +15927,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   exact composition without clipping, tolerance, tone, exposure, row or
   backend rescue. P98 and U1.4E remain valid independently; no arbitrary DNG,
   calibration, quality, package/capability or product claim opens.
+
+### 2026-08-26 - SF3 scan health becomes advisory by owner decision
+
+- The P-backed scan preflight still hard-gates the exact drive, create-only
+  destination, fixed RGB16 profile, task inventory and remaining capacity.
+  Current volume health and operational status remain visible in every report
+  but no longer block execution.
+- Live single-stock preflights pass for Ektar 100, Portra 400 and Velvia 50:
+  each selects 51 tasks, budgets 1,889,477,376 bytes worst case and projects
+  4,621,131,008 bytes free from the observed 6,510,608,384-byte baseline.
+- This opens physical capture execution only. It creates no exposure receipt,
+  scan pixel, stock response, fit, calibration or product evidence.

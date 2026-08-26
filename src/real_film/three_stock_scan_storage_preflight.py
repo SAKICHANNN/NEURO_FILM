@@ -129,9 +129,7 @@ def load_contract(path: Path, *, root: Path) -> tuple[bytes, dict[str, Any]]:
     storage = contract.get("storage", {})
     if (
         storage.get("required_resolved_drive") != "P:"
-        or storage.get("required_volume_health_status") != "Healthy"
-        or storage.get("forbidden_operational_statuses")
-        != ["Full Repair Needed", "Needs Scan"]
+        or storage.get("volume_health_is_advisory_only") is not True
     ):
         raise ThreeStockScanStoragePreflightError("storage health policy drift")
     return raw, contract
@@ -231,15 +229,15 @@ def evaluate(
     available = int(shutil.disk_usage(resolved_data).free)
     remaining = available - worst_plan_bytes
     ratio = scan_pixels / max_stimulus_pixels
+    volume_health_warning = (
+        volume_status["health_status"] != "Healthy"
+        or volume_status["operational_status"] != ["OK"]
+    )
     gates = {
         "work_order_counts_exact": count_exact,
         "logical_output_root_is_create_only_absent": not logical.exists(),
         "resolved_storage_drive_exact": resolved_drive
         == str(storage["required_resolved_drive"]).upper(),
-        "storage_volume_health_exact": volume_status["health_status"]
-        == storage["required_volume_health_status"],
-        "storage_volume_operational": set(volume_status["operational_status"])
-        .isdisjoint(storage["forbidden_operational_statuses"]),
         "scan_resolution_exceeds_stimulus_ratio": ratio
         >= float(profile["minimum_scan_to_stimulus_pixel_ratio"]),
         "worst_case_plan_preserves_free_space": remaining
@@ -266,6 +264,10 @@ def evaluate(
         "required_free_bytes_after_plan": int(
             storage["minimum_free_bytes_after_worst_case_plan"]
         ),
+        "advisories": {
+            "storage_volume_health_warning": volume_health_warning,
+            "storage_volume_health_is_nonblocking": True,
+        },
         "gates": gates,
         "automatic_pass": automatic_pass,
         "decision": (

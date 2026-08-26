@@ -76,7 +76,7 @@ def test_insufficient_capacity_fails_without_relaxing_profile(
     assert report["decision"].startswith("RETAIN_SF3")
 
 
-def test_unhealthy_volume_fails_even_when_capacity_passes(
+def test_unhealthy_volume_is_recorded_but_does_not_block_capacity_pass(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     monkeypatch.setattr(
@@ -93,9 +93,9 @@ def test_unhealthy_volume_fails_even_when_capacity_passes(
         lambda path: SimpleNamespace(total=10_000_000_000, used=0, free=6_531_579_904),
     )
     report = target.evaluate(CONTRACT, root=ROOT)
-    assert report["automatic_pass"] is False
-    assert report["gates"]["storage_volume_health_exact"] is False
-    assert report["gates"]["storage_volume_operational"] is False
+    assert report["automatic_pass"] is True
+    assert report["advisories"]["storage_volume_health_warning"] is True
+    assert report["advisories"]["storage_volume_health_is_nonblocking"] is True
     assert report["observed_volume_health_status"] == "Warning"
     assert report["observed_volume_operational_status"] == ["Full Repair Needed"]
 
@@ -148,8 +148,8 @@ def test_contract_rejects_scan_profile_drift(tmp_path: Path) -> None:
 
 def test_contract_rejects_storage_health_policy_drift(tmp_path: Path) -> None:
     raw = CONTRACT.read_text(encoding="utf-8").replace(
-        '"required_volume_health_status": "Healthy"',
-        '"required_volume_health_status": "Warning"',
+        '"volume_health_is_advisory_only": true',
+        '"volume_health_is_advisory_only": false',
     )
     path = tmp_path / "contract.json"
     path.write_text(raw, encoding="utf-8")
