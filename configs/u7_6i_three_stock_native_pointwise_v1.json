@@ -1,0 +1,71 @@
+{
+  "schema": "neuro-film.u7-6i-three-stock-native-pointwise-contract.v1",
+  "experiment_id": "U7.6I",
+  "question": "Does the unchanged exact-semantics C11 safe-Lab pointwise kernel reproduce all three current Look Approximation pointwise states while materially reducing the 0.999MP three-stock CPU cost?",
+  "bindings": [
+    {
+      "path": "native/color_engine/nf_safe_lab_pointwise_f32_v2.c",
+      "sha256": "b9f55802d647319198b1bd2fe6148b3cc1ccc6ff2231806834301d0fe1db814f"
+    },
+    {
+      "path": "native/color_engine/nf_safe_lab_pointwise_f32_v2.h",
+      "sha256": "dcaff97738b403284afd4185f214ae8479167af300b484198f091a5cb674df8f"
+    },
+    {
+      "path": "src/eval/native_safe_lab_pointwise_v2.py",
+      "sha256": "85cde2e9221095c0e290e86f1f6d602bdd908e171e7a32775dbddd07f385aeaa"
+    },
+    {
+      "path": "configs/render_profiles/safe_rich_v1.json",
+      "sha256": "72a9948e6fc76e230c4593b847728712bc034840cd339e6b34f079ac7d424c79"
+    },
+    {
+      "path": "configs/film_color_stats.json",
+      "sha256": "1a45e90765e577edd4ca1773fc8c6cf98fd09b8afbdddfa519b1f097c5dd7c04"
+    },
+    {
+      "path": "configs/color_guardrails.json",
+      "sha256": "6669b7bc873febcc74ba7ddcbc1c1584807e38465447a5cdbeb24073efa00aa7"
+    }
+  ],
+  "source": {
+    "path": "data/preference/repid/u5_r2repid3_shared_operator_v1/fit/winner/a4593-kme_0276.jpeg",
+    "sha256": "7ea3d1ed37b7df518c0466c1379f08aa34ea5ae00eb7dc8208fcff2cfe68d1c6",
+    "source_width": 4032,
+    "source_height": 6048,
+    "preview_width": 816,
+    "preview_height": 1224,
+    "preview_pixels": 998784,
+    "preparation": "existing WorkingImage decode followed by the frozen U7.3G linear-light INTER_AREA resize and encoded-sRGB conversion"
+  },
+  "styles": [
+    "velvia_50",
+    "portra_400",
+    "ektar_100"
+  ],
+  "execution": {
+    "look_amount": 1.0,
+    "thread_count": 8,
+    "formal_processes": 2,
+    "timed_repetitions_per_style": 3,
+    "discard_first_timing_per_style": true,
+    "native_build_excluded_from_timing": true,
+    "full_renderer_integration_allowed": false
+  },
+  "gates": {
+    "maximum_lab_absolute_error": 0.0,
+    "require_finite_output": true,
+    "require_cross_process_output_identity": true,
+    "require_three_distinct_style_outputs": true,
+    "maximum_three_style_native_pointwise_wall_seconds": 0.3,
+    "maximum_native_to_python_pointwise_wall_ratio": 0.5
+  },
+  "stop_rules": [
+    "Do not change the source, preview geometry, style parameters, guardrails, thread count or timing gates after a formal result.",
+    "A pass covers only the pointwise Lab subset; spatial detail, tone rolloff, gamut execution, RGB conversion, quantization and file publication remain outside this experiment.",
+    "A failure closes this exact three-stock native pointwise integration leaf without changing the C11 kernel or rescuing it through different threads, dimensions or thresholds."
+  ],
+  "decision_if_pass": "RETAIN_EXACT_THREE_STOCK_NATIVE_POINTWISE_AND_OPEN_ONE_FULL_CHAIN_COMPOSITION",
+  "decision_if_fail": "CLOSE_EXACT_THREE_STOCK_NATIVE_POINTWISE_PRODUCT_ROUTE",
+  "claim_ceiling": "Local Windows/MSVC CPU evidence for the unchanged pointwise Lab subset of three non-calibrated Look Approximations at 0.999MP; not a complete renderer, final preview performance, stock response, stock distinguishability, calibration or product promotion."
+}
