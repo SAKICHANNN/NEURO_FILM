@@ -11,11 +11,13 @@ from collections.abc import Mapping
 from pathlib import Path
 from typing import Any
 
+import numpy as np
+
 from scripts.pipeline_color_baseline import load_guardrail_config
 from src.preprocess import (
+    StreamingSrgbPngWriter,
     load_working_image,
     resolve_look_approximation_claim,
-    save_srgb16_png,
     srgb_icc_profile_fingerprint_sha256,
     working_image_to_srgb_float,
 )
@@ -35,6 +37,48 @@ from .three_stock_look import (
 
 class ThreeStockBatchError(ValueError):
     """Raised when a three-stock file batch cannot be completed."""
+
+
+THREE_STOCK_PNG_ENCODER_ID = "kmcfm.streaming-srgb-rgb16-png.v1"
+THREE_STOCK_PNG_ROW_COUNT = 128
+
+
+def _save_srgb16_png_streaming(
+    rgb: np.ndarray,
+    path: Path,
+    *,
+    compression_level: int,
+    row_count: int = THREE_STOCK_PNG_ROW_COUNT,
+) -> str:
+    """Quantize and publish one RGB16 PNG without a full-frame encode buffer."""
+
+    values = np.asarray(rgb)
+    if (
+        values.dtype != np.float32
+        or values.ndim != 3
+        or values.shape[2] != 3
+        or values.shape[0] <= 0
+        or values.shape[1] <= 0
+        or not np.isfinite(values).all()
+    ):
+        raise ThreeStockBatchError("streaming PNG input must be finite HxWx3 float32")
+    row_count = _integer(row_count, "row_count", 1)
+    height, width, _ = values.shape
+    with StreamingSrgbPngWriter(
+        path,
+        width=int(width),
+        height=int(height),
+        bit_depth=16,
+        compression_level=compression_level,
+    ) as writer:
+        for row_start in range(0, height, row_count):
+            rows = np.rint(
+                np.clip(values[row_start : row_start + row_count], 0.0, 1.0)
+                * np.float32(65535.0)
+            ).astype(np.uint16)
+            writer.write_rows(row_start, np.ascontiguousarray(rows))
+        writer.finish()
+    return "PNG"
 
 
 def _integer(value: object, label: str, minimum: int, maximum: int | None = None) -> int:
@@ -127,8 +171,10 @@ def render_three_stock_batch_to_directory(
             )
             filename = f"{style}.png"
             staged_output = stage / filename
-            output_format = save_srgb16_png(
-                output, staged_output, compression_level=png_compression
+            output_format = _save_srgb16_png_streaming(
+                output,
+                staged_output,
+                compression_level=png_compression,
             )
             del output
             final_output = output_directory / filename
@@ -185,6 +231,8 @@ def render_three_stock_batch_to_directory(
             "profile_sha256": sha256_file(profile_path),
             "look_amount": float(look_amount),
             "png_compression": png_compression,
+            "png_encoder_id": THREE_STOCK_PNG_ENCODER_ID,
+            "png_row_count": THREE_STOCK_PNG_ROW_COUNT,
             "rows": rows,
             "claim_ceiling": (
                 "Three deterministic non-calibrated Look Approximations; "
@@ -199,4 +247,9 @@ def render_three_stock_batch_to_directory(
         raise
 
 
-__all__ = ["ThreeStockBatchError", "render_three_stock_batch_to_directory"]
+__all__ = [
+    "THREE_STOCK_PNG_ENCODER_ID",
+    "THREE_STOCK_PNG_ROW_COUNT",
+    "ThreeStockBatchError",
+    "render_three_stock_batch_to_directory",
+]
