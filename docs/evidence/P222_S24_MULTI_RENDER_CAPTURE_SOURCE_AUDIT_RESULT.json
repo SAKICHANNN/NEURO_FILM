@@ -1,0 +1,110 @@
+{
+  "schema": "neuro-film.research-source-audit.v1",
+  "protocol_id": "p222-s24-multi-render-capture-source-audit-v1",
+  "date_utc": "2026-08-26",
+  "status": "QUALIFIED_PRIVATE_NONCOMMERCIAL_SOURCE_NO_PRODUCT_CANDIDATE",
+  "question": "Does the latest official S24 RAW-sRGB release provide materially new capture-time paired information with rights suitable for the automatic single-reference product or controlled named-stock mainline?",
+  "direction_boundary": {
+    "allowed": [
+      "official primary-paper and repository facts",
+      "capture-time paired source qualification before payload access",
+      "private isolated noncommercial RAW and multi-render research"
+    ],
+    "forbidden": [
+      "opening candidate 3 of the terminated automatic single-reference cycle",
+      "treating smartphone ISP or Lightroom styles as named-film evidence",
+      "using noncommercial data or derived weights as a product dependency",
+      "downloading train, validation or test pixels before an independently frozen noncommercial protocol"
+    ]
+  },
+  "primary_sources": {
+    "edit_aware_raw": {
+      "title": "Edit-aware RAW reconstruction",
+      "venue": "CVPR 2026",
+      "official_page": "https://openaccess.thecvf.com/content/CVPR2026/html/Punnappurath_Edit-aware_RAW_reconstruction_CVPR_2026_paper.html",
+      "official_pdf": "https://openaccess.thecvf.com/content/CVPR2026/papers/Punnappurath_Edit-aware_RAW_reconstruction_CVPR_2026_paper.pdf",
+      "official_supplement": "https://openaccess.thecvf.com/content/CVPR2026/supplemental/Punnappurath_Edit-aware_RAW_reconstruction_CVPR_2026_supplemental.pdf",
+      "scientific_scope": "An edit-aware sRGB rendering loss for RGB-to-RAW reconstruction using a modular differentiable ISP; not reference-style identification or named-film estimation.",
+      "reported_s24_split": {
+        "total": 3224,
+        "train": 2619,
+        "validation": 205,
+        "test": 400,
+        "resolution": "3000x4000"
+      }
+    },
+    "time_aware_awb": {
+      "title": "Time-Aware Auto White Balance in Mobile Photography",
+      "venue": "ICCV 2025",
+      "official_page": "https://openaccess.thecvf.com/content/ICCV2025/html/Afifi_Time-Aware_Auto_White_Balance_in_Mobile_Photography_ICCV_2025_paper.html",
+      "official_repository": "https://github.com/SamsungLabs/time-aware-awb",
+      "repository_main_commit": "55d193db82fe0d92738a22833657c3cfa58468ab"
+    }
+  },
+  "repository_lock": {
+    "license_path": "LICENSE.md",
+    "license_git_blob_sha1": "7cdbe0b482f604a06a0988dad8877ae8d9257f7d",
+    "license_bytes": 20850,
+    "license_sha256": "e66c269d4819aaab34b49ef5220c4ddab6756f21bb5180761a4eb8561f2b7bbd",
+    "license": "CC-BY-NC-SA-4.0",
+    "root_readme_git_blob_sha1": "2eef5fb7a1070bdaecb668b800bf2e9184f6408b",
+    "root_readme_bytes": 13399,
+    "root_readme_sha256": "5e71430eca6b738ef13ae7514541dc9132d265b56e7f102c8abdd26a28e26227",
+    "dataset_readme_path": "s24-raw-srgb-dataset/README.md",
+    "dataset_readme_git_blob_sha1": "7e8a6f07c36f892c90676dbe2d1561ba51659636",
+    "dataset_readme_bytes": 7576,
+    "dataset_readme_sha256": "090d20d5a46bc1c5a686e833a6287bdad317a8801cd65b55b87445a2d9d80b91",
+    "dataset_directory_separate_license_present": false,
+    "dataset_directory_manifest_or_checksums_present": false,
+    "release_assets_present": false
+  },
+  "material_information": {
+    "same_capture_linear_raw": true,
+    "same_capture_camera_isp_srgb": true,
+    "expert_lightroom_local_tone_render": true,
+    "fixed_lightroom_picture_style_renders": 5,
+    "neutral_chart_white_balance": true,
+    "user_preference_white_balance": true,
+    "capture_metadata": [
+      "iso",
+      "exposure_time",
+      "exposure_bias",
+      "shutter_speed",
+      "flash",
+      "time-of-day and solar-event features",
+      "noise statistics",
+      "SNR statistics",
+      "camera colour matrices"
+    ],
+    "known_pairing_limit": "The camera-ISP sRGB image has a documented pixel shift from internal cropping; exact geometry is not established by the source README alone."
+  },
+  "access": {
+    "official_train_page": "https://ln5.sync.com/dl/336801ec0",
+    "official_validation_page": "https://ln5.sync.com/dl/b846af610",
+    "official_test_page": "https://ln5.sync.com/dl/dfef773b0",
+    "authoritative_archive_sizes_published": false,
+    "authoritative_archive_checksums_published": false,
+    "payload_downloads": 0,
+    "pixel_reads": 0,
+    "pixel_decodes": 0,
+    "model_training_steps": 0,
+    "operator_fits": 0,
+    "target_scores": 0
+  },
+  "gates": {
+    "materially_new_capture_time_information": true,
+    "official_primary_paper_and_repository": true,
+    "explicit_noncommercial_repository_license": true,
+    "separate_dataset_commercial_rights": false,
+    "named_stock_evidence": false,
+    "automatic_single_reference_candidate_authorized": false,
+    "product_dependency_authorized": false,
+    "all_product_source_gates": false
+  },
+  "decision": {
+    "interpretation": "The release is a strong capture-time multi-render research source: it binds one smartphone capture to linear RAW, camera ISP output, an expert local Lightroom render, five preset renders and rich metadata. It is nevertheless a smartphone photofinishing dataset rather than named-film evidence, and the only explicit repository licence is noncommercial ShareAlike with no separate dataset licence in the dataset directory. It therefore cannot reopen candidate 3 or become a commercial product dependency.",
+    "opens": "At most a separately preregistered, storage-bounded, private noncommercial source/pixel preflight for RAW edit-fidelity or multi-render representation research.",
+    "does_not_open": "Automatic single-reference search, named-stock fitting, product weights, public package/schema/capability, or dataset redistribution.",
+    "next_mainline": "Continue the controlled three-stock physical evidence lane and mature RAW/DNG/HDR/portable explicit-operator engineering. Do not download this dataset unless a concrete isolated noncommercial experiment first proves it is the shortest discriminating path."
+  }
+}

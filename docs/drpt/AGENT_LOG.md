@@ -16015,3 +16015,25 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   24.39MP RGB16 PNG files byte-exact with eight gamut workers. Aggregate wall
   time fell from `263.302s` to `99.635s` (2.643x); the three owned temporary
   PNGs were then removed. No further worker-count tuning opens from this leaf.
+
+### 2026-08-26 - P222 qualifies S24 multi-render capture information but closes product use
+
+- **Direction correction:** latest-paper triage was restricted to genuinely
+  new paired/capture-time observations. It did not reopen the terminated
+  after-only candidate search or overlap the controlled three-stock execution.
+- **Primary facts:** CVPR 2026 *Edit-aware RAW reconstruction* uses the ICCV
+  2025 S24 RAW-sRGB release. At SamsungLabs commit
+  `55d193db82fe0d92738a22833657c3cfa58468ab`, each of 3,224 captures can expose
+  linear RAW, camera-ISP sRGB, an expert Lightroom local render, five preset
+  renders, white-balance targets and rich capture/noise/time metadata.
+- **Rights/integrity boundary:** the exact root licence is CC BY-NC-SA 4.0;
+  the dataset directory contains no separate licence, manifest or checksums,
+  and the three Sync access pages publish no authoritative archive sizes.
+  Payload downloads, pixel reads, model steps, fits and scores are all zero.
+- **Decision/propagation:** this is materially new capture-time information but
+  only a possible isolated noncommercial RAW edit-fidelity research source.
+  It is not named-film evidence, cannot become product data/weights, cannot
+  reset or consume candidate 3 and does not justify a large download without a
+  separately frozen minimal experiment. Mainline remains controlled named-stock
+  evidence plus mature RAW/DNG/HDR/portable explicit-operator engineering.
+  Evidence: `docs/evidence/P222_S24_MULTI_RENDER_CAPTURE_SOURCE_AUDIT_RESULT.json`.
