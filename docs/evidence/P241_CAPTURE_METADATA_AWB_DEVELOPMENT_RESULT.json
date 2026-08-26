@@ -1,0 +1,73 @@
+{
+  "schema": "neuro-film.p241-capture-metadata-awb-development-evidence.v1",
+  "experiment_id": "P241",
+  "status": "FAIL_CLOSED_BEFORE_FRESH_METADATA_CONFIRMATION",
+  "formal_execution_commit": "72a876ee772bf09fa2884182c515b30d4a2587a3",
+  "bindings": {
+    "config_path": "configs/p241_capture_metadata_awb_development_v1.json",
+    "config_sha256": "0685bb99e63e2e87103f95e97cf001867bda138b8f4b0566f7bfa69fc02887d8",
+    "core_path": "src/eval/capture_metadata_awb.py",
+    "core_sha256": "45fdd216d54267c4f9c5a545a120bee953dd985b0a669ab3565d99b2da1e7a97",
+    "runner_path": "scripts/audit_p241_capture_metadata_awb_development.py",
+    "runner_sha256": "ab2f990637f467bc6b0868b8bd831f4af7c5db09658c5b14370baf7d284a7283",
+    "test_path": "tests/test_p241_capture_metadata_awb.py",
+    "test_sha256": "f348bb58ce5ae0680043587e9901f637912e98196b7ae3e1b738fe17995b483d",
+    "p240_report_sha256": "7f2a743101bb1ff854d4ac51bc90ab7e6dfa5394aff30565f4f359b1208027ae"
+  },
+  "formal_runs": {
+    "forward_report_bytes": 7109,
+    "forward_report_sha256": "52e41062a55ca464cc2f137fe337760e0752e76521653d721ea15574a8763acf",
+    "reverse_report_bytes": 7109,
+    "reverse_report_sha256": "52e41062a55ca464cc2f137fe337760e0752e76521653d721ea15574a8763acf",
+    "reports_byte_exact": true
+  },
+  "information_flow": {
+    "development_rows": 17,
+    "development_role": "consumed P240 complete metadata rows",
+    "features": "seven fixed time/exposure source-only features; make/model excluded",
+    "target": "green-normalized AsShotNeutral log red/green and blue/green ratios",
+    "raw_files_downloaded": 0,
+    "raw_bytes_downloaded": 0,
+    "pixels_decoded": 0,
+    "fresh_p241_exif_reads": 0,
+    "fresh_p241_target_reads": 0
+  },
+  "metrics": {
+    "full_median_angular_error_degrees": 3.6491634711459997,
+    "full_p95_angular_error_degrees": 8.000772926948342,
+    "full_worst_angular_error_degrees": 9.86141214385098,
+    "vs_global_mean": {
+      "win_rate": 0.47058823529411764,
+      "median_relative_reduction": -0.11391138975298097
+    },
+    "vs_time_only": {
+      "win_rate": 0.47058823529411764,
+      "median_relative_reduction": -0.003770363985989123
+    },
+    "vs_exposure_only": {
+      "win_rate": 0.47058823529411764,
+      "median_relative_reduction": -0.03160747526090142
+    },
+    "vs_cyclic_target": {
+      "win_rate": 0.5294117647058824,
+      "median_relative_reduction": 0.013165105211939677
+    }
+  },
+  "gates": {
+    "row_count_17": true,
+    "p95_angular_error_at_most_10_degrees": true,
+    "minimum_win_rate_0_6_vs_all_controls": false,
+    "minimum_median_reduction_0_05_vs_all_controls": false,
+    "forward_reverse_byte_exact": true,
+    "zero_fresh_exif_reads": true,
+    "zero_fresh_target_reads": true,
+    "zero_raw_downloads": true,
+    "zero_pixel_decodes": true
+  },
+  "interpretation": "The fixed capture-time/exposure ridge is numerically bounded but does not identify AsShotNeutral better than global, time-only, exposure-only or same-capacity cyclic-label controls on consumed development rows. The negative result is a development stop, not an independently confirmed natural-image AWB verdict.",
+  "decision": "close_exact_capture_feature_ridge_family_without_fresh_target_read",
+  "unused_fresh_roles": "No fresh P241 EXIF URL or AsShotNeutral target was read, downloaded or scored; the prospective candidate list was not materialized into a contract.",
+  "candidate_counter_effect": "none; P241 is a metadata-only development discriminant and not bounded-cycle candidate 3",
+  "next_leaf": "Require a genuinely new rights-clear paired or capture-time observation with identifying information beyond timestamp/exposure/aperture/ISO, or return to a mature explicit RAW/HDR operator engineering gap. Do not tune this ridge family or consume its unused candidate metadata.",
+  "claim_ceiling": "Consumed-development metadata-only source-observation negative. No fresh confirmation, natural-image AWB quality, candidate-3, RAW operator, package, schema, capability, film-stock or product claim."
+}
