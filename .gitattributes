@@ -118,3 +118,4 @@ configs/reference_match_main_integration_manifest_v41.json text eol=lf
 configs/schemas/reference_match_main_integration_manifest_v41.schema.json text eol=lf
 scripts/build_reference_match_integration_manifest_v41.py text eol=lf
 tests/test_color_match_main_integration_manifest_v41.py text eol=lf
+tests/fixtures/p220_r1cg_frozen_payloads_v1.json text eol=lf whitespace=-blank-at-eof
