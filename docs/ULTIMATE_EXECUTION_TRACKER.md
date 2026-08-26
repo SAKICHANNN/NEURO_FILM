@@ -2538,3 +2538,13 @@ open another tuned memory leaf; U7.6G already closed full Lab memory mapping.
 Resume controlled stock acquisition or a materially distinct, independently
 specified product objective. Evidence:
 `docs/evidence/U7_6H_THREE_STOCK_PHASE_RSS_ATTRIBUTION_RESULT.json`.
+
+U6.P8CS1 repairs a real durable-publication incompatibility in the retained
+native physical PNG path. P8CS used hard-link publication, which fails on the
+project's canonical exFAT P: volume (`winerror=1`, `errno=22`). Windows now
+uses a same-volume no-replace rename while non-Windows keeps the existing
+hard-link path. The concurrent-destination veto remains exact; nine adjacent
+tests pass, and a repo-relative P-backed probe publishes exact bytes then
+leaves zero file/stage residue. This changes no profile, pixel arithmetic,
+stock evidence or default. Evidence:
+`docs/evidence/U6_P8CS1_EXFAT_ATOMIC_PUBLICATION_RESULT.json`.

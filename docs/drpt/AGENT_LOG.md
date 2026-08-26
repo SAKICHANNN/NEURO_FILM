@@ -17376,3 +17376,17 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   progress and failure controls pass with 14 adjacent tests, Ruff and direct
   entry checks. This reduces physical acquisition error risk but supplies no
   measured receipt, scan, film evidence, calibration or product claim.
+
+### 2026-08-27 - U6.P8CS1 native output now publishes on canonical exFAT storage
+
+- **Defect and repair:** the retained native physical PNG sink published with
+  `os.link`, which is unsupported by the project's canonical exFAT P: volume
+  and failed there with `winerror=1` / `errno=22`. Commit `c85f7de7` uses the
+  Windows same-volume no-replace rename primitive; POSIX keeps the prior
+  hard-link publication and existing destinations remain protected.
+- **Verification and boundary:** nine P8CS tests pass, including forced hard-link
+  unavailability and concurrent foreign destination retention. A 19-byte
+  repo-relative P-backed probe publishes SHA `0d52e654...93bd` exactly and is
+  removed with zero stage residue. Evidence SHA `4e9971a6...d8434d`. This is
+  storage/runtime compatibility only, with no profile, algorithm, stock,
+  calibration, visual-quality or product-default change.
