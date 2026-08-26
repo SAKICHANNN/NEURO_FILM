@@ -18,6 +18,11 @@ A1_CONTRACT = ROOT / "configs/sf3_a1_three_stock_file_pixel_alignment_integrity_
 
 def test_current_p_backed_scan_tier_passes(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setattr(
+        target,
+        "_query_windows_volume_status",
+        lambda drive: {"health_status": "Healthy", "operational_status": ["OK"]},
+    )
+    monkeypatch.setattr(
         target.shutil,
         "disk_usage",
         lambda path: SimpleNamespace(total=10_000_000_000, used=0, free=6_531_579_904),
@@ -56,6 +61,11 @@ def test_insufficient_capacity_fails_without_relaxing_profile(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     monkeypatch.setattr(
+        target,
+        "_query_windows_volume_status",
+        lambda drive: {"health_status": "Healthy", "operational_status": ["OK"]},
+    )
+    monkeypatch.setattr(
         target.shutil,
         "disk_usage",
         lambda path: SimpleNamespace(total=6_000_000_000, used=0, free=6_000_000_000),
@@ -66,12 +76,49 @@ def test_insufficient_capacity_fails_without_relaxing_profile(
     assert report["decision"].startswith("RETAIN_SF3")
 
 
+def test_unhealthy_volume_fails_even_when_capacity_passes(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr(
+        target,
+        "_query_windows_volume_status",
+        lambda drive: {
+            "health_status": "Warning",
+            "operational_status": ["Full Repair Needed"],
+        },
+    )
+    monkeypatch.setattr(
+        target.shutil,
+        "disk_usage",
+        lambda path: SimpleNamespace(total=10_000_000_000, used=0, free=6_531_579_904),
+    )
+    report = target.evaluate(CONTRACT, root=ROOT)
+    assert report["automatic_pass"] is False
+    assert report["gates"]["storage_volume_health_exact"] is False
+    assert report["gates"]["storage_volume_operational"] is False
+    assert report["observed_volume_health_status"] == "Warning"
+    assert report["observed_volume_operational_status"] == ["Full Repair Needed"]
+
+
 def test_contract_rejects_scan_profile_drift(tmp_path: Path) -> None:
     raw = CONTRACT.read_text(encoding="utf-8").replace('"width": 3000', '"width": 2999')
     path = tmp_path / "contract.json"
     path.write_text(raw, encoding="utf-8")
     with pytest.raises(
         target.ThreeStockScanStoragePreflightError, match="profile drift"
+    ):
+        target.load_contract(path, root=ROOT)
+
+
+def test_contract_rejects_storage_health_policy_drift(tmp_path: Path) -> None:
+    raw = CONTRACT.read_text(encoding="utf-8").replace(
+        '"required_volume_health_status": "Healthy"',
+        '"required_volume_health_status": "Warning"',
+    )
+    path = tmp_path / "contract.json"
+    path.write_text(raw, encoding="utf-8")
+    with pytest.raises(
+        target.ThreeStockScanStoragePreflightError, match="health policy drift"
     ):
         target.load_contract(path, root=ROOT)
 

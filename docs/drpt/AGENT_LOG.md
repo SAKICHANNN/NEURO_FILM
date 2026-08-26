@@ -15858,3 +15858,15 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - The assembled package contains the same 36 hidden-mapping renders; the blind
   assignment remains the first cross-stock claim gate. The full SF3 family is
   green at 149 tests.
+
+### 2026-08-26 - SF3 scan preflight rejects an unhealthy evidence volume
+
+- The fixed 153-scan colour-baseline plan still fits by capacity: its bounded
+  worst case is 5,668,432,128 bytes and the current P volume reports
+  6,548,357,120 bytes free.
+- The same live volume reports `Warning / Full Repair Needed`. The scan
+  preflight now binds a healthy-volume policy and fails before creating the
+  physical-capture root even when the byte-capacity gate passes.
+- This is an execution-integrity fix only. It creates no scan, receipt, stock
+  response, calibration or product evidence; controlled capture resumes only
+  after the canonical P volume is healthy and the same preflight passes.

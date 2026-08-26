@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 import shutil
+import subprocess
 from pathlib import Path
 from typing import Any
 
@@ -38,6 +39,45 @@ def _sha256_file(path: Path) -> str:
         for block in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(block)
     return digest.hexdigest()
+
+
+def _query_windows_volume_status(drive: str) -> dict[str, Any]:
+    """Return the mounted Windows volume health without writing to it."""
+
+    letter = drive.rstrip(":\\/").upper()
+    if len(letter) != 1 or not letter.isalpha():
+        raise ThreeStockScanStoragePreflightError("resolved storage drive is invalid")
+    command = (
+        f"$v=Get-Volume -DriveLetter '{letter}'; "
+        "if ($null -eq $v) { throw 'volume not found' }; "
+        "[ordered]@{health_status=[string]$v.HealthStatus; "
+        "operational_status=@($v.OperationalStatus | ForEach-Object {[string]$_})} "
+        "| ConvertTo-Json -Compress"
+    )
+    try:
+        completed = subprocess.run(
+            [
+                "powershell.exe",
+                "-NoProfile",
+                "-NonInteractive",
+                "-Command",
+                command,
+            ],
+            check=True,
+            capture_output=True,
+            text=True,
+            timeout=15,
+        )
+        value = json.loads(completed.stdout)
+    except (OSError, subprocess.SubprocessError, json.JSONDecodeError) as exc:
+        raise ThreeStockScanStoragePreflightError(
+            "could not establish storage volume health"
+        ) from exc
+    if not isinstance(value, dict) or not isinstance(
+        value.get("operational_status"), list
+    ):
+        raise ThreeStockScanStoragePreflightError("invalid storage volume health facts")
+    return value
 
 
 def _bound_file(root: Path, binding: dict[str, Any]) -> tuple[Path, dict[str, Any]]:
@@ -83,6 +123,14 @@ def load_contract(path: Path, *, root: Path) -> tuple[bytes, dict[str, Any]]:
         or profile.get("allowed_tiff_compression_codes") != [1, 8, 32946]
     ):
         raise ThreeStockScanStoragePreflightError("scan profile drift")
+    storage = contract.get("storage", {})
+    if (
+        storage.get("required_resolved_drive") != "P:"
+        or storage.get("required_volume_health_status") != "Healthy"
+        or storage.get("forbidden_operational_statuses")
+        != ["Full Repair Needed", "Needs Scan"]
+    ):
+        raise ThreeStockScanStoragePreflightError("storage health policy drift")
     return raw, contract
 
 
@@ -160,6 +208,7 @@ def evaluate(path: Path, *, root: Path) -> dict[str, Any]:
     logical = root.joinpath(*Path(storage["logical_root"]).parts)
     resolved_data = (root / "data").resolve()
     resolved_drive = resolved_data.drive.upper()
+    volume_status = _query_windows_volume_status(resolved_drive)
     available = int(shutil.disk_usage(resolved_data).free)
     remaining = available - worst_plan_bytes
     ratio = scan_pixels / max_stimulus_pixels
@@ -168,6 +217,10 @@ def evaluate(path: Path, *, root: Path) -> dict[str, Any]:
         "logical_output_root_is_create_only_absent": not logical.exists(),
         "resolved_storage_drive_exact": resolved_drive
         == str(storage["required_resolved_drive"]).upper(),
+        "storage_volume_health_exact": volume_status["health_status"]
+        == storage["required_volume_health_status"],
+        "storage_volume_operational": set(volume_status["operational_status"])
+        .isdisjoint(storage["forbidden_operational_statuses"]),
         "scan_resolution_exceeds_stimulus_ratio": ratio
         >= float(profile["minimum_scan_to_stimulus_pixel_ratio"]),
         "worst_case_plan_preserves_free_space": remaining
@@ -203,6 +256,8 @@ def evaluate(path: Path, *, root: Path) -> dict[str, Any]:
         "observed_available_bytes": available,
         "projected_remaining_bytes": remaining,
         "resolved_data_root": str(resolved_data),
+        "observed_volume_health_status": volume_status["health_status"],
+        "observed_volume_operational_status": volume_status["operational_status"],
         "stable_evidence_id": stable,
     }
 

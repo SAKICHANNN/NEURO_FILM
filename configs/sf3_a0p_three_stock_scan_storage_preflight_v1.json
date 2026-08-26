@@ -35,6 +35,8 @@
   "storage": {
     "logical_root": "data/real_film/sf3_a0_physical_capture_v1",
     "required_resolved_drive": "P:",
+    "required_volume_health_status": "Healthy",
+    "forbidden_operational_statuses": ["Full Repair Needed", "Needs Scan"],
     "minimum_free_bytes_after_worst_case_plan": 536870912,
     "require_create_only_empty_root": true
   },
