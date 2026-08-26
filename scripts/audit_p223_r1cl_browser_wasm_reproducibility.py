@@ -233,6 +233,7 @@ def execute(order: str, config_path: Path = CONFIG) -> dict[str, Any]:
                     str(clone),
                 ]
             )
+            run_command(["git", "config", "core.autocrlf", "false"], cwd=clone)
             run_command(
                 ["git", "checkout", "--detach", producer["formal_commit"]], cwd=clone
             )

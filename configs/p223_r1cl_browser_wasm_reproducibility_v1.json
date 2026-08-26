@@ -63,6 +63,7 @@
       "forward",
       "reverse"
     ],
+    "checkout_line_ending_policy": "Set clone-local core.autocrlf=false before the first checkout so the worktree materializes the exact committed Git blob bytes bound by producer evidence.",
     "temporary_root": "system temporary directory",
     "producer_worktree_reads_after_clone": 0,
     "producer_worktree_writes": 0,

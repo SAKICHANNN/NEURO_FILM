@@ -91,3 +91,4 @@ def test_runner_uses_fresh_no_hardlink_clones() -> None:
     )
     text = runner.read_text(encoding="utf-8")
     assert '"--local",\n                    "--no-hardlinks"' in text
+    assert '["git", "config", "core.autocrlf", "false"]' in text
