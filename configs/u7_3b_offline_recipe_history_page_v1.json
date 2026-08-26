@@ -1,0 +1,69 @@
+{
+  "schema": "kmcfm.u7-3b-offline-recipe-history-page-contract.v1",
+  "node": "U7.3B",
+  "status": "FROZEN_BEFORE_IMPLEMENTATION",
+  "audience": "Local photographer or operator reviewing deterministic render history on a desktop browser.",
+  "job_to_be_done": "Find an existing render recipe, understand its look-approximation status, and inspect its immutable input/output identity without modifying files.",
+  "screen": {
+    "route": "single self-contained offline HTML document",
+    "primary_heading": "Render history",
+    "primary_interaction": "Search recipes",
+    "secondary_information": [
+      "catalog status and valid/invalid counts",
+      "style and enabled effects",
+      "input and output paths plus hashes",
+      "format and bit depth",
+      "film-inspired/look-approximation badges",
+      "software commit"
+    ],
+    "destructive_actions": 0,
+    "render_actions": 0,
+    "export_actions": 0
+  },
+  "states": {
+    "empty": "Show one explicit no-recipes message.",
+    "ready": "Show all valid recipe cards.",
+    "partial": "Show valid and invalid cards plus a warning summary.",
+    "invalid": "Show invalid cards and a fail-closed summary.",
+    "search_no_match": "Show an accessible no-matching-recipes status.",
+    "loading": "Not applicable because the document is fully rendered before open.",
+    "disabled": "Not applicable because there are no actions beyond search."
+  },
+  "security_privacy": {
+    "external_resources": 0,
+    "network_requests": 0,
+    "image_or_pixel_embeds": 0,
+    "inline_catalog_json": false,
+    "all_catalog_text_html_escaped": true,
+    "content_security_policy": "default-src none; inline style/script only; no image or connect source",
+    "telemetry": false,
+    "filesystem_writes": false
+  },
+  "accessibility": {
+    "landmarks_and_heading_order": true,
+    "search_has_visible_label": true,
+    "search_result_status_aria_live": true,
+    "native_keyboard_focus": true,
+    "focus_visible_style": true,
+    "minimum_text_contrast": "WCAG AA target",
+    "reduced_motion_supported": true,
+    "responsive_minimum_css_width_px": 320
+  },
+  "determinism": {
+    "same_catalog_same_utf8_html": true,
+    "catalog_order_preserved": true,
+    "no_current_time_or_random_identity": true
+  },
+  "acceptance": {
+    "valid_catalog_renders": true,
+    "empty_catalog_renders": true,
+    "partial_and_invalid_rows_render": true,
+    "html_injection_is_escaped": true,
+    "no_external_url_or_resource": true,
+    "keyboard_and_accessibility_structure_present": true,
+    "search_script_filters_cards_and_updates_status": true,
+    "forward_reverse_html_exact": true,
+    "focused_tests_pass": true
+  },
+  "claim_ceiling": "Private self-contained read-only desktop browser document only; no live server, file watcher, preview decode/render, export authorization, packaging, telemetry, calibrated stock or product-release claim."
+}
