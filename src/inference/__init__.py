@@ -27,6 +27,13 @@ from .recipe_preview import (
     build_recipe_output_previews,
     render_recipe_preview_html,
 )
+from .recipe_recovery_bundle import (
+    RECOVERY_BUNDLE_FORMAT,
+    RECOVERY_BUNDLE_SCHEMA_ID,
+    RecipeRecoveryBundleError,
+    build_recipe_recovery_bundle,
+    inspect_recipe_recovery_bundle,
+)
 from .render_contract import (
     LEGACY_STYLE_EVIDENCE_INVENTORY_SCHEMA_ID,
     PROFILE_EVIDENCE_SUMMARY_SCHEMA_ID,
@@ -66,6 +73,8 @@ __all__ = [
     "RECIPE_HISTORY_SCHEMA_ID",
     "RECIPE_SCHEMA_ID",
     "RECIPE_SCHEMA_ID_V2",
+    "RECOVERY_BUNDLE_FORMAT",
+    "RECOVERY_BUNDLE_SCHEMA_ID",
     "InterpretationContractError",
     "InterpretationMetadata",
     "InterpretationPlugin",
@@ -75,6 +84,7 @@ __all__ = [
     "RecipeHistoryHtmlError",
     "RecipePreview",
     "RecipePreviewError",
+    "RecipeRecoveryBundleError",
     "RenderContractError",
     "StyleSafeEngineError",
     "TileWindow",
@@ -83,10 +93,12 @@ __all__ = [
     "atomic_write_json",
     "build_recipe_output_preview",
     "build_recipe_output_previews",
+    "build_recipe_recovery_bundle",
     "build_render_recipe",
     "build_render_recipe_history",
     "execute_interpretation",
     "execute_tiled_local_operator",
+    "inspect_recipe_recovery_bundle",
     "list_three_stock_looks",
     "load_render_profile",
     "migrate_legacy_safe_rich",
