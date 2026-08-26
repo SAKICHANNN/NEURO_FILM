@@ -15823,6 +15823,31 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   renders for that stock's severe-artifact review; cross-stock blind review
   remains closed until the original complete three-stock path passes.
 
+### 2026-08-26 - P99 closes exact DNG baseline exposure on boundary identity
+
+- **Parent/direction:** ULT > U1 > U1.3L; mature RAW/DNG explicit-operator
+  engineering only. The controlled physical stock ledger remains empty, and
+  no proxy, after-only model, or RF3.D0R rescue was opened.
+- **Authority/freeze:** official DNG 1.7.1.0 defines `BaselineExposure` and
+  `BaselineExposureOffset` as additive EV values with zero defaults. A
+  metadata-only inventory froze all five P98 rows before implementation or
+  P98 pixel execution; only Blackmagic is nonzero at `+2.65412 EV`.
+- **Implementation:** a private source-bound stage reads explicit/default
+  provenance, rejects totals outside `[-8,+8]`, and applies one unclipped
+  float64 `exp2` multiplier followed by one float32 quantization. The generic
+  loader and `src.preprocess` exports remain unchanged.
+- **Evidence:** two fresh processes and forward/reverse enumeration yield the
+  identical report SHA `4fe073ec...2e3113`, stable identity
+  `1e50b0f9...7200f1`. Metadata, source/parent mutation, finite/range,
+  independent-oracle and replay gates pass. The Blackmagic scale is
+  `6.294623113086004`, maximum absolute output is `14.4810667`.
+- **Decision:** exactly one previously non-boundary Blackmagic component
+  becomes exact `1.0`, so the preregistered zero-new-exact-boundary gate fails.
+  Close the exact family without tolerance, clipping, tone-curve, row or
+  downstream proxy rescue. Retain private mechanics evidence only; arbitrary
+  DNG, quality, calibration, default-loader, package/capability and product
+  claims remain closed.
+
 ### 2026-08-26 - SF3.A5 accepts independently completed stock lanes
 
 - A5 can now assemble three hash-bound single-stock A4 runs after each stock's

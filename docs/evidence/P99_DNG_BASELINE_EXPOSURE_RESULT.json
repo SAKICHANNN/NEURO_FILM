@@ -1,0 +1,101 @@
+{
+  "schema": "neuro_film.p99_dng_baseline_exposure_evidence.v1",
+  "experiment_id": "p99-dng-baseline-exposure-v1",
+  "node": "ULT > U1 > U1.3L / P99",
+  "status": "FAIL_CLOSED_DNG_BASELINE_EXPOSURE",
+  "decision": "close the exact five-DNG BaselineExposure stage on the frozen zero-new-boundary gate without clipping, tolerance, row, or downstream proxy rescue",
+  "bindings": {
+    "contract": {
+      "path": "docs/planning/P99_DNG_BASELINE_EXPOSURE_CONTRACT.md",
+      "bytes": 3965,
+      "sha256": "a3aca10643535e4de867f178aebf9586ff345ffe03afdfaa9be79682c6d5dff9",
+      "freeze_commit": "0c603b9795a57980464425ca8c7163e28b54d17c"
+    },
+    "config": {
+      "path": "configs/p99_dng_baseline_exposure_v1.json",
+      "bytes": 3554,
+      "sha256": "9d332d7deea7b5f87d2b26666eec92df636fbf0cc9cacf1e0607ea8d8718c145",
+      "commit": "5f4dcde19c23096134811d2e093b794d64a20ab2"
+    },
+    "implementation": {
+      "path": "src/preprocess/dng_baseline_exposure.py",
+      "bytes": 7786,
+      "sha256": "e28dad5d5ca011f32c470a77b1106b14bee83d126bd8e9c81aae6e0f052ba4d8",
+      "commit": "51c9260b3adbb8d8f07f011af5c8e88c0e85369e"
+    },
+    "runner": {
+      "path": "scripts/audit_p99_dng_baseline_exposure.py",
+      "bytes": 10115,
+      "sha256": "7e785be4da06a2c03598bac5991d585463eb6a1687e16a55f7f4011e0c00a88c",
+      "commit": "5f4dcde19c23096134811d2e093b794d64a20ab2"
+    },
+    "test": {
+      "path": "tests/test_dng_baseline_exposure.py",
+      "bytes": 3443,
+      "sha256": "3e41e76d4c4ca6369575b4e46040886a190b7a23ef4b716250147311f36a6bc6",
+      "commit": "51c9260b3adbb8d8f07f011af5c8e88c0e85369e"
+    },
+    "raw_report": {
+      "path": "outputs/eval/p99_dng_baseline_exposure_v1/run_a/forward.json",
+      "bytes": 8740,
+      "sha256": "4fe073ec64ff40f30679f1816e2822bdee0dea6586ef1ebf7b816a49fe2e3113",
+      "stable_identity_sha256": "1e50b0f973152c4531ed5d38723d89886e378b0e7e75dae9094fe116dc7200f1"
+    }
+  },
+  "execution": {
+    "fresh_process_count": 2,
+    "forward_report_count": 2,
+    "reverse_report_count": 2,
+    "reports_byte_exact": true,
+    "report_sha256": "4fe073ec64ff40f30679f1816e2822bdee0dea6586ef1ebf7b816a49fe2e3113",
+    "row_count": 5,
+    "camera_make_count": 5,
+    "decoded_image_artifacts_written": 0,
+    "default_loader_changes": 0
+  },
+  "metrics": {
+    "maximum_scale": 6.294623113086004,
+    "maximum_absolute_output": 14.481066703796387,
+    "blackmagic_total_ev": 2.65412,
+    "zero_ev_row_count": 4,
+    "new_exact_boundary_count": 1,
+    "invalid_rejections": 4,
+    "source_hashes_unchanged": true,
+    "parent_pixels_unchanged": true,
+    "float32_oracle_bytes_exact": true
+  },
+  "gates": {
+    "camera_make_count": true,
+    "finite": true,
+    "invalid_inputs": true,
+    "metadata_exact": true,
+    "nonzero_row_changed": true,
+    "no_new_exact_boundary": false,
+    "oracle_float32_exact": true,
+    "output_absolute_range": true,
+    "parent_unchanged": true,
+    "row_count": true,
+    "source_unchanged": true,
+    "total_ev": true,
+    "working_contract": true,
+    "forward_reverse_reports_exact": true,
+    "two_fresh_process_reports_exact": true
+  },
+  "interpretation": {
+    "established": [
+      "the exact five-DNG private path resolves explicit/default BaselineExposure and BaselineExposureOffset provenance exactly as frozen",
+      "the standard scene-linear exp2 adjustment matches the independent float32 oracle and preserves all source and P98 parent bytes",
+      "the Blackmagic row carries a material +2.65412 EV capture-time appearance observation while the other four rows remain byte-identical to P98",
+      "two fresh processes and forward/reverse enumeration produce byte-identical scientific reports"
+    ],
+    "failed": [
+      "one Blackmagic component that was not an exact boundary in P98 becomes exactly 1.0 after the standard multiplier, violating the preregistered zero-new-exact-boundary gate"
+    ],
+    "not_established": [
+      "arbitrary DNG support, Adobe or vendor rendering parity, sensor calibration, or photographic quality",
+      "scene-to-display tone mapping, default-loader integration, output files, public package/schema/capability, product, film, stock, or preference admission"
+    ],
+    "stop_rule": "The exact family closes. Do not add tolerance, clipping, tone curves, row replacement, or rerun RF3.D0R as a rescue."
+  },
+  "claim_ceiling": "Private opt-in exact-five-DNG P98 plus standard BaselineExposure/BaselineExposureOffset scene-linear multiplier mechanics only; no arbitrary DNG, Adobe/vendor parity, sensor calibration, photographic quality, tone mapping, loader/output/public package/schema/capability/product/film/stock/preference claim"
+}
