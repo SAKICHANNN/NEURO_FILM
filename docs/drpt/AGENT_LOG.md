@@ -16823,3 +16823,28 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   package/schema/capability, calibrated stock and product admission remain
   false. A separately frozen target-runtime decode check is the only opened
   successor.
+
+### 2026-08-26 - P239 passes strict-wrapper OpenCV target decoding
+
+- **Node and question:** `ULT > U1.4 > P239`; prospectively rebuild the exact
+  P238 file, validate its Rec.2100-PQ semantics and deterministic structure,
+  then ask whether installed OpenCV 4.13.0/libpng 1.6.53 preserves every RGB16
+  sample through independent file and memory decodes.
+- **Implementation:** `c7f880f3` adds a private adapter that always runs the
+  frozen strict PNG/cICP/sample inspector before OpenCV `IMREAD_UNCHANGED`,
+  requires uint16 HxWx3 BGR, converts to contiguous RGB and requires exact
+  equality to the strict sample hash. It explicitly does not claim OpenCV cICP
+  visibility.
+- **Evidence:** two fresh committed-head 1,332-byte reports are byte-identical
+  at `27f0c454...4bd0`. Both decode paths reproduce P238 sample SHA
+  `8cd312b9...be5d` at range 0..48639. Correct-CRC wrong-cICP, bad-CRC and
+  truncated controls all reject before usable output; the source is immutable.
+  Twenty-one focused/adjacent tests, Ruff, compileall, JSON and diff checks
+  pass. Evidence SHA-256 `b35bb1f4...1a9c0`:
+  `docs/evidence/P239_P238_OPENCV_TARGET_DECODE_RESULT.json`.
+- **Boundary:** private exact-P238 Windows target-runtime sample compatibility
+  only. OpenCV remains semantically HDR-unaware in this interface; display/tone
+  mapping, arbitrary PNG, public dependency/package/schema/capability and
+  product admission remain false. This closes the planned P226 float -> P238
+  canonical media -> P239 installed decode engineering chain without changing
+  the project default renderer.
