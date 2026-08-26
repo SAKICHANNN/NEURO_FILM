@@ -17269,6 +17269,32 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   clean. No natural-image quality, arbitrary EXR, cross-platform, public API/
   package/schema/capability, renderer integration or product mapping opens.
 
+### 2026-08-26 - P249 independently consumes the exact R1DT ACES2065-1 writer
+
+- **Node and boundary:** `ULT > mature RAW/HDR explicit mechanisms > P249`,
+  DRPT L2 / Mode C. The leaf reuses P246's ephemeral Git-object and offline-
+  wheel intake pattern but binds producer R1DT commit `a7ec6451`, writer blob
+  `8c3a1452...6dd927`, R1DT evidence SHA `5d037d2f...5a68ff` and the exact
+  OpenEXR 3.4.15 wheel. Producer source is never copied into this repository;
+  the only pixel input is P246's deterministic 7x9 synthetic ACEScg lattice.
+- **Formal result:** forward/reverse fresh controllers produce byte-identical
+  3,726-byte reports at SHA `b5851574...fa0a0`, scientific identity
+  `6b593f82...f6d41d`. The writer yields exact 1,144-byte AP0 EXR
+  `1a251814...88726` and AP0 pixel SHA `2b3417e3...19cb4`, with zero decoded
+  error, exact frozen AP1-to-AP0 matrix, AP0/D60 chromaticities and adopted
+  neutral, `acesImageContainerFlag=1`, `colorInteropID=lin_ap0_scene`, ZIP
+  float32 RGB storage, preserved negative/highlight values, immutable input,
+  atomic failure and invalid-input gates all passing.
+- **Correction, verification and propagation:** the first controller stopped
+  before wheel install, writer execution or report creation because direct-
+  script import resolution could not find the reused P246 helper. Correction
+  `25b4da10` adds only package/direct-script import routing; exact identities
+  were rebound in `5f1ec76a` before complete reruns. Evidence commit
+  `2747bfa4`, evidence SHA `d7446512...eb4bee`; P246-P249 adjacent tests pass
+  17/17 with Ruff, compile, JSON and diff checks clean. No public API/
+  dependency, SMPTE certification, arbitrary image/metadata, large-image
+  resource, cross-platform, package/schema/capability or product mapping opens.
+
 ### 2026-08-26 - U7.3F closes the offline selection-to-replay gap
 
 - **Node and scope:** `ULT > U7 > U7.3F`, DRPT L2 / Mode C. The physical
