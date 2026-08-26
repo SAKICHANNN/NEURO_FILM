@@ -164,6 +164,19 @@ observations rather than tuning to the single unlicensed chart or external
 simulator. Evidence:
 `docs/evidence/RF3_D8_PORTRA400_CHART_PRODUCT_BASELINE_RESULT.json`.
 
+RF3.D9 then applies the same fixed Portra product baseline to the two existing
+registered natural observations, preserving separate RA4/Epson and Noritsu
+interpretations. Two reports are byte exact (`a32299a0...1928`, stable
+`9fe2cc96...740c`). Both pass the pairing control, and RA4/Epson shows a
+relative Portra signal versus Ektar (`+7.03%`) and frozen chart-affine
+(`+36.56%`), but Portra is still `10.43%` worse than identity and wins no
+occupied fold. Noritsu is effectively identity (`+0.045%`) and slightly loses
+to Ektar and chart-affine. Thus `0/2` interpretations meet the identity gate
+and only `1/2` beats the wrong stock. Close without same-package tuning: the
+scanner/print interpretation changes the conclusion, so independent roll and
+scanner/process controls remain mandatory. Evidence:
+`docs/evidence/RF3_D9_PORTRA400_NATURAL_PRODUCT_BASELINE_RESULT.json`.
+
 SF3.A3 now compiles the requested executable source/evidence matrix over eight
 hash-bound results rather than relying on narrative eligibility. Two formal
 reports are byte exact (`676aec5f...74394c`, stable `4954e9b1...98f71b`).

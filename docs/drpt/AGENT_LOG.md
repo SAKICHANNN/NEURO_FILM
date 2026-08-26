@@ -16761,6 +16761,23 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   noncommercial simulator. Keep the profile labeled Look Approximation and
   prioritize new controlled Portra 400 and Ektar 100 observations.
 
+### 2026-08-26 - RF3.D9 closes current Portra natural transfer
+
+- **Question:** does the unchanged Portra 400 Look Approximation improve both
+  registered same-scene natural observations over identity, current Ektar and
+  the frozen CHAM10 chart-affine candidate?
+- **Execution:** contracts `cc985ce1`/`0b4eaab7`, implementation `bcdbd6fc`;
+  canonical/reverse reports are byte-identical at `a32299a0...1928`, stable
+  `9fe2cc96...740c`. No fit, parameter update, source replacement or download.
+- **Result:** RA4/Epson Portra beats Ektar by `7.03%` and chart-affine by
+  `36.56%`, but is `10.43%` worse than identity and wins 0/2 occupied folds.
+  Noritsu improves only `0.045%` over identity and slightly loses to both
+  controls. Both interpretations pass pairing specificity; 0/2 pass identity
+  and 1/2 pass wrong-stock gates.
+- **Decision:** `FAIL_CLOSED`; the relative Portra signal is scanner/print-
+  interpretation dependent. Keep Look Approximation and require independent
+  roll plus scanner/process controls rather than tuning this package.
+
 ### 2026-08-26 - U1.6G4J integrates staged density as a strict private recipe route
 
 - **Node and routing:** `ULT > U1.6 > U1.6G4J`; primary
