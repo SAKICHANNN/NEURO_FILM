@@ -1,0 +1,33 @@
+{
+  "schema_version": "neuro-film.u7-6a-three-stock-shared-context.v1",
+  "node_id": "U7.6A",
+  "objective": "Eliminate repeated stock-independent safe-Lab source reductions when rendering the three user-selected stock baselines from one decoded frame.",
+  "input": {
+    "kind": "deterministic-procedural-encoded-srgb-float32",
+    "shape": [2000, 3000, 3],
+    "seed": 20260826
+  },
+  "execution": {
+    "stocks": [
+      "fujifilm_velvia_50",
+      "kodak_portra_400",
+      "kodak_ektar_100"
+    ],
+    "look_amount": 1.0,
+    "render_seed": 31,
+    "tile_size": 512,
+    "tile_workers": 1,
+    "fresh_process_order": ["baseline", "candidate", "candidate", "baseline"],
+    "source_context_rule": "candidate computes one exact full-frame context and reuses it for all three otherwise-unchanged tiled kernels"
+  },
+  "gates": {
+    "all_three_output_arrays_byte_exact": true,
+    "fresh_process_reports_complete": true,
+    "median_wall_ratio_max": 0.97,
+    "candidate_peak_process_tree_rss_ratio_max": 1.05,
+    "candidate_repeat_wall_ratio_max": 1.15,
+    "candidate_repeat_peak_rss_ratio_max": 1.15,
+    "finite_bounded_outputs": true
+  },
+  "claim_ceiling": "Local Windows/Python CPU three-stock tiled batch reuse only; no stock calibration, stock distinguishability, preference, native/device, or product-performance promotion."
+}
