@@ -1,0 +1,106 @@
+{
+  "schema": "kmcfm.u7-3b-offline-recipe-history-page-evidence.v1",
+  "node": "U7.3B",
+  "status": "PASS_PRIVATE_OFFLINE_RECIPE_HISTORY_PAGE",
+  "date": "2026-08-26",
+  "implementation": {
+    "contract_commit": "2dde56c9",
+    "page_commit": "0da79050",
+    "audit_commit": "64f2838a",
+    "first_layout_fix_commit": "50d97988",
+    "viewport_clamp_commit": "bfc98965",
+    "module": "src/inference/recipe_history_html.py",
+    "public_api": "src.inference.render_recipe_history_html"
+  },
+  "formal_execution": {
+    "execution_head": "9bb8fff01ed392023543f11c350e82305e3ac8ce",
+    "forward_report_sha256": "39700521a2575086b139eb02e9c409559f9552e44d016406b179d6d0544c538e",
+    "reverse_report_sha256": "39700521a2575086b139eb02e9c409559f9552e44d016406b179d6d0544c538e",
+    "report_bytes": 1408,
+    "reports_byte_exact": true,
+    "stable_identity": "sha256:41b5299ef9b1063ecf0022a8c023580f4ccf7aec744cd1a463b0498eb1beafe1",
+    "html_sha256": "efd83a8ad23d2fe02673e0cff5e24f7b6aca9f0e95053936b37cd37f0f66e262",
+    "html_bytes": 11006
+  },
+  "browser_visual_review": {
+    "browser": "Microsoft Edge 151.0.4129.107",
+    "desktop_viewport": "1440x1100",
+    "desktop_screenshot_sha256": "f51d58d9a3f1ecf74adb300d38a6f0fcbef66c7370f542a373b99c7cfe7840cf",
+    "narrow_supported_headless_viewport": "500x900",
+    "narrow_screenshot_sha256": "ec91eaa71b79e5b8710c0a4d740ecb344d140407485082643d7531feabbe92f7",
+    "desktop_layout_complete": true,
+    "narrow_layout_complete": true,
+    "long_paths_wrap_inside_cards": true,
+    "horizontal_content_truncation_at_supported_viewports": false,
+    "owned_edge_profile_directories_removed": 10,
+    "owned_edge_processes_after_review": 0
+  },
+  "contract_facts": {
+    "self_contained_html": true,
+    "content_security_policy_default_none": true,
+    "external_sources": 0,
+    "network_reads": 0,
+    "image_or_pixel_embeds": 0,
+    "pixel_decodes": 0,
+    "referenced_input_output_reads": 0,
+    "read_only_page": true,
+    "search_only_interaction": true,
+    "native_search_label": true,
+    "live_result_status": true,
+    "responsive_layout": true,
+    "reduced_motion_rule": true,
+    "catalog_rows": 3,
+    "valid_rows": 3,
+    "invalid_rows": 0,
+    "all_output_labels": "film-inspired",
+    "all_evidence_grades": "look-approximation"
+  },
+  "gates": {
+    "forward_reverse_reports_byte_exact": true,
+    "source_recipe_identities_exact": true,
+    "three_valid_look_approximation_rows": true,
+    "html_injection_escaped": true,
+    "offline_content_security_policy_present": true,
+    "no_external_sources": true,
+    "network_reads_zero": true,
+    "pixel_decodes_zero": true,
+    "landmark_heading_and_search_label_present": true,
+    "live_search_status_present": true,
+    "responsive_and_reduced_motion_rules_present": true,
+    "desktop_visual_review_pass": true,
+    "narrow_visual_review_pass": true,
+    "owned_browser_profiles_removed": true
+  },
+  "execution_notes": [
+    {
+      "event": "reverse_audit_invocation_rejected",
+      "scope": "The first reverse command passed an unsupported --reverse CLI option and exited before creating or changing the reverse report. The documented second invocation was then run unchanged."
+    },
+    {
+      "event": "narrow_visual_overflow_correction",
+      "scope": "A 390px headless screenshot exposed Chromium's minimum layout-width crop and motivated a conservative explicit 100vw clamp, max-width bounds, long-token wrapping and overflow protection. The committed page was re-audited from zero; the browser's supported 500px narrow layout and the desktop layout were then reviewed and passed."
+    },
+    {
+      "event": "browser_profile_cleanup",
+      "scope": "Remove-Item was policy-blocked, so the same ten pre-resolved owned TEMP roots were removed with exact System.IO.Directory.Delete calls after confirming no matching Edge process."
+    }
+  ],
+  "relationship_to_u7_2c": {
+    "u7_2c_proxy_separation_failure_unchanged": true,
+    "interpretation": "The page labels all three records as look approximations and does not imply calibrated or distinguishable film stocks."
+  },
+  "decision": {
+    "result": "PASS_PRIVATE_OFFLINE_RECIPE_HISTORY_PAGE",
+    "opens": "One self-contained accessible read-only recipe-history document for later desktop-shell integration.",
+    "does_not_open": [
+      "complete desktop GUI",
+      "live server or filesystem watcher",
+      "preview image decode or rendering",
+      "export authorization or writes",
+      "desktop packaging or telemetry",
+      "calibrated stock or stock distinguishability",
+      "product release"
+    ]
+  },
+  "claim_ceiling": "Private self-contained read-only desktop browser document only; no live server, preview decode/render, export authorization, packaging, telemetry, calibrated stock or product-release claim."
+}

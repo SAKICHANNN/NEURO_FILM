@@ -16110,3 +16110,24 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   the median gate. Controlled photographic targets remain the next admissible
   stock-evidence route; no render or fitting was opened.
 - Evidence: `docs/evidence/RF3_D6_THREE_STOCK_LAYER_EXPOSURE_RESULT.json`.
+
+### 2026-08-26 - U7.3B closes the offline read-only history page
+
+- **Scope/design:** Added one self-contained offline HTML view over the frozen
+  U7.3A catalog. Search is the only interaction; CSP forbids external sources,
+  network, images and objects. The page adds no preview, render, export, watcher,
+  packaging or telemetry path.
+- **Evidence:** formal forward/reverse 1,408-byte reports are byte-exact at
+  `39700521...c538e`; stable identity is `41b5299e...afe1`, and the 11,006-byte
+  HTML hashes to `efd83a8a...e262`. All three rows remain explicitly
+  `film-inspired/look-approximation`; U7.2C's separation failure is unchanged.
+- **Visual/accessibility QA:** Edge 151 desktop 1440x1100 and supported narrow
+  500x900 layouts were reviewed after an explicit viewport clamp and long-token
+  wrapping correction. Landmarks, native search label, live result count,
+  reduced-motion CSS, empty/invalid states and escaped content are covered.
+  Ten exact owned browser profile roots were removed; matching processes are
+  zero.
+- **Propagation:** U7.3 now has a deterministic data core and offline document,
+  while preview, export, shell integration and complete UX/product acceptance
+  remain open. Structure stays under the existing `src/inference` recipe
+  boundary; no frontend framework or parallel desktop architecture was added.
