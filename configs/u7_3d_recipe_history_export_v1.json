@@ -1,0 +1,49 @@
+{
+  "schema": "kmcfm.u7-3d-recipe-history-export-contract.v1",
+  "node": "U7.3D",
+  "status": "FROZEN_BEFORE_IMPLEMENTATION_OR_FORMAL_RERENDER",
+  "question": "Can one bounded history selection export each existing 24MP three-look recipe to a new file with exact frozen bytes, without reading its prior output?",
+  "history_root": "outputs/eval/u7_2_three_stock_24mp_smoke",
+  "profile_path": "configs/render_profiles/safe_rich_v1.json",
+  "rows": [
+    {
+      "recipe_path": "ektar_100.recipe.json",
+      "recipe_sha256": "b92a75ed8ca8349df562153aad85df26db33ab0992d6bc07503033245ac7d0b8",
+      "style": "ektar_100",
+      "expected_output_sha256": "6c5c8b9c04fea4f265e1b742ce568b13a34d72462f7b6466f29685dabd03045e"
+    },
+    {
+      "recipe_path": "portra_400.recipe.json",
+      "recipe_sha256": "b6dece02a1c6e5cee9569424ae8fd53fdad8f4ee619753f6d81a2b2dea0d0fb3",
+      "style": "portra_400",
+      "expected_output_sha256": "2ff70587520b73634e9096ff297eb390edde7e891bb7634f3cec6c707a119844"
+    },
+    {
+      "recipe_path": "velvia_50.recipe.json",
+      "recipe_sha256": "254e5c8ddf8703e2689975590531b80ca4e40bde1a37fcd0c382f33e2a42cf25",
+      "style": "velvia_50",
+      "expected_output_sha256": "6f405513fcb72f27350c9c42fc238de6daa0ba3584987537431a17a146982732"
+    }
+  ],
+  "limits": {
+    "maximum_history_recipe_files": 10000,
+    "maximum_recipe_bytes": 2097152,
+    "maximum_export_rows": 3
+  },
+  "gates": {
+    "forward_reverse_per_recipe_bytes_exact": true,
+    "all_export_hashes_equal_recipe_output_hashes": true,
+    "existing_output_reads": 0,
+    "recipe_and_input_hashes_verified_before_render": true,
+    "destination_must_not_exist": true,
+    "invalid_or_missing_history_selection_fails_before_render": true,
+    "no_partial_destination_after_failure": true,
+    "scratch_empty": true
+  },
+  "stop_rules": [
+    "Do not change the recipes, profile, assets, source pixels or renderer to rescue export identity.",
+    "Do not copy the existing output; the action must replay the validated recipe from its bound input.",
+    "Any mismatch closes this history-export bridge without tolerance or hash substitution."
+  ],
+  "claim_ceiling": "Private local CLI/history export of three existing development-only film-inspired/look-approximation recipes. No GUI shell, calibrated stock, target-film closeness, stock distinguishability, packaging or product-release claim."
+}
