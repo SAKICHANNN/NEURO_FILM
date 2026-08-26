@@ -1,0 +1,45 @@
+{
+  "schema_version": "neuro-film.u7-6e-three-stock-streaming-png.v1",
+  "node_id": "U7.6E",
+  "objective": "Replace the three-stock batch's full-frame OpenCV RGB16 PNG encoding workspace with the existing deterministic bounded-row sRGB PNG writer while preserving decoded samples, ICC semantics, recipe meaning and atomic directory publication.",
+  "input": {
+    "path": "data/preference/repid/u5_r2repid3_shared_operator_v1/fit/winner/a4593-kme_0276.jpeg",
+    "expected_dimensions": [6048, 4032]
+  },
+  "execution": {
+    "look_amount": 1.0,
+    "render_seed": 31,
+    "tile_size": 512,
+    "tile_workers": 1,
+    "png_compression": 0,
+    "png_row_count": 128,
+    "run_order": ["baseline", "candidate", "candidate", "baseline"]
+  },
+  "controls": {
+    "baseline_encoder_id": "opencv-srgb-rgb16-png.v1",
+    "candidate_encoder_id": "kmcfm.streaming-srgb-rgb16-png.v1",
+    "baseline": "the exact pre-U7.6E save_srgb16_png implementation with a full-frame uint16 array and OpenCV imencode buffer",
+    "candidate": "the existing deterministic StreamingSrgbPngWriter fed exact 128-row RGB16 quantization blocks",
+    "invariants": "decoded RGB16 samples, sRGB ICC fingerprint, normalized recipe semantics, stock order, atomic publication and cleanup; encoded file bytes are intentionally encoder-version-specific"
+  },
+  "gates": {
+    "candidate_encoded_outputs_repeat_exact": true,
+    "baseline_encoded_outputs_repeat_exact": true,
+    "three_decoded_sample_arrays_cross_encoder_exact": true,
+    "three_icc_fingerprints_cross_encoder_exact": true,
+    "three_normalized_recipe_semantics_cross_encoder_exact": true,
+    "ordered_stock_ids_exact": true,
+    "candidate_encoder_identity_exact": true,
+    "minimum_peak_process_tree_rss_reduction_bytes": 134217728,
+    "candidate_peak_process_tree_rss_ratio_max": 0.92,
+    "candidate_wall_ratio_max": 1.05,
+    "candidate_residue_count": 0
+  },
+  "stop_rules": [
+    "Do not change any stock operator, profile, guardrail, decoded RGB16 sample, ICC profile, recipe meaning or publication atomicity after formal execution begins.",
+    "Encoded PNG bytes may differ only because the encoder identity is explicit; candidate bytes must repeat exactly within the candidate implementation.",
+    "A failed memory gate closes this encoder integration without row-count, compression, threshold or output-format rescue.",
+    "Do not use this product-runtime result as stock separation, calibration or controlled-film evidence."
+  ],
+  "claim_ceiling": "Local Windows/Python 24MP three-stock file-batch PNG workspace evidence only; all three outputs remain non-calibrated Look Approximations and U7.2C stock separation remains failed."
+}
