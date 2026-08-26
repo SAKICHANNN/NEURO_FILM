@@ -1,0 +1,47 @@
+{
+  "schema": "neuro-film.p228-r1cy-paired-hdr-handoff-artifact-audit-contract.v1",
+  "experiment_id": "P228",
+  "status": "FROZEN_AFTER_R1CY_HANDOFF_BEFORE_CONSUMER_MAPPING",
+  "question": "Does the exact R1CY producer handoff persist every byte required for an independent consumer to verify and apply its frozen shared HDR bundle, rather than only publishing bundle hashes/envelope and final media?",
+  "producer": {
+    "repository": "C:/Users/hhvrf/Documents/追色",
+    "evidence_commit": "aa6bf989aff1d84fbaeb2d2c5898e3e5d3b33769",
+    "implementation_commit": "d018ebdcfcc8d5d35ca4130b49a604aaa428c4c4",
+    "evidence_path": "docs/evidence/R1CY_PAIRED_HDR_SHARED_DPCT_FFV1_MEDIA_RESULT.json",
+    "evidence_sha256": "4251fb6a4cdb65ffb5e43831f177902241d6d15a5214b1663123d59dfe6d8254",
+    "forward_report_path": "outputs/eval/r1cy_d018ebdc_forward.json",
+    "forward_report_sha256": "8c1949c9c5b400c4a6fd549b65145090dd8a023645a1ef2716afefe84e25edc0",
+    "reverse_report_path": "outputs/eval/r1cy_d018ebdc_reverse.json",
+    "reverse_report_sha256": "3440fa24112461e9767ab75a20c18eb8300b4f23ae62f293f816ac0d8bde0851",
+    "scientific_identity": "sha256:9da5993c9a27b480c0f01790af37db8ae0f2a6d02c19c469edd986d4fc478bc6",
+    "bundle_schema_path": "schemas/zhuise_shared_hdr_transform_bundle_v1.schema.json",
+    "invocation_source_path": "src/zhuise/shared_hdr_dpct_invocation.py",
+    "bundle_id": "sha256:2759d2193861b95d39bb451efb2477c6ae796f5f58b3b81cf6487cbd85c3220f",
+    "payload_sha256": "sha256:aa7fe0400e7bef106a9ff75305babab317a4148bdb05c573c50395d6f4228cb9",
+    "payload_bytes": 4376,
+    "media_sha256": "639a7dae751365f0be1eb146cc02fe7cf12f9d5ffa5ad163ee47d16fee1c1cba"
+  },
+  "bounded_artifact_scope": {
+    "tracked_tree_at_evidence_commit": true,
+    "exact_forward_reverse_reports": true,
+    "exact_forward_reverse_media": true,
+    "unbounded_output_or_data_scan": false,
+    "payload_must_be_a_distinct_regular_file_or_exact_report_field": true,
+    "payload_hash_only_is_not_payload": true
+  },
+  "gates": {
+    "producer_evidence_and_reports_exact": true,
+    "bundle_schema_and_invocation_source_tracked": true,
+    "bundle_envelope_exact_in_both_reports": true,
+    "payload_bytes_persisted_and_sha_exact": true,
+    "consumer_can_construct_bundle_without_rerunning_build": true,
+    "no_consumer_mapping_before_all_gates": true,
+    "forward_reverse_audit_reports_exact": true
+  },
+  "decision": {
+    "pass": "Open a separately frozen private consumer deserialization/apply audit using only the persisted producer handoff artifacts.",
+    "fail": "Close current intake without reconstructing payload bytes from producer code or rerunning paired build; request a prospective create-only payload publication.",
+    "invalid": "If producer evidence/report identities differ, report infrastructure-invalid rather than a handoff result."
+  },
+  "claim_ceiling": "Read-only artifact-completeness audit of the exact private R1CY paired HDR handoff. No quality rerun, payload reconstruction, algorithm copy, public schema/package/capability, arbitrary after-only inference or product admission."
+}
