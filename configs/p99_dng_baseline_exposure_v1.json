@@ -5,6 +5,7 @@
   "node": "ULT > U1 > U1.3L / P99",
   "bindings": {
     "contract_path": "docs/planning/P99_DNG_BASELINE_EXPOSURE_CONTRACT.md",
+    "contract_sha256": "a3aca10643535e4de867f178aebf9586ff345ffe03afdfaa9be79682c6d5dff9",
     "dng_spec_path": "data/external/adobe_dng_spec_1_7_1_0/DNG_Spec_1_7_1_0.pdf",
     "dng_spec_sha256": "abdecfd8e104e8b86cc054d3a40b677bb2ebe87131bfde080a1df3ee16eb2f8d",
     "p98_evidence_path": "docs/evidence/P98_DNG_FORWARD_RASTER_RESULT.json",
