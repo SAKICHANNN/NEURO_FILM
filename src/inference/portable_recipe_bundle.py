@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import copy
 import io
+import os
 import stat
 import zipfile
 from collections.abc import Mapping
@@ -26,6 +27,7 @@ from .recipe_recovery_bundle import (
 from .render_contract import (
     RenderContractError,
     load_render_profile,
+    sha256_file,
     validate_render_profile,
     validate_render_recipe,
 )
@@ -369,6 +371,78 @@ def inspect_portable_recipe_recovery_bundle(path: Path) -> dict[str, Any]:
     }
 
 
+def bind_portable_recipe_recovery_bundle(
+    *,
+    bundle_path: Path,
+    input_path: Path,
+    output_path: Path,
+    recipe_path: Path,
+) -> dict[str, Any]:
+    """Publish one strict private recipe from explicit caller bindings.
+
+    The selected input is hash-verified as an opaque file. No image decode,
+    output creation, rendering, path discovery, or network access occurs.
+    """
+
+    inspection = inspect_portable_recipe_recovery_bundle(bundle_path)
+    _, contents = _read_bundle(bundle_path)
+    portable = _strict_json(contents[PORTABLE_RECIPE_MEMBER], "portable recipe")
+    validate_portable_recipe(portable)
+    if not input_path.is_file():
+        raise RecipeRecoveryBundleError("bound input must be an existing file")
+    if sha256_file(input_path) != portable["input"]["sha256"]:
+        raise RecipeRecoveryBundleError("bound input hash differs from recipe")
+    for path, label in ((output_path, "output"), (recipe_path, "recipe")):
+        if os.path.lexists(path):
+            raise RecipeRecoveryBundleError(f"bound {label} destination already exists")
+        if not path.parent.is_dir():
+            raise RecipeRecoveryBundleError(
+                f"bound {label} parent directory does not exist"
+            )
+    canonical = {
+        os.path.normcase(os.path.abspath(path))
+        for path in (input_path, output_path, recipe_path)
+    }
+    if len(canonical) != 3:
+        raise RecipeRecoveryBundleError("bound paths must be distinct")
+    bound = bind_portable_recipe(
+        portable,
+        input_path=str(input_path),
+        output_path=str(output_path),
+    )
+    encoded = _canonical_json(bound)
+    _write_create_only(recipe_path, encoded)
+    try:
+        published = recipe_path.read_bytes()
+        if published != encoded:
+            raise RecipeRecoveryBundleError("published bound recipe identity drifted")
+        decoded = _strict_json(published, "published bound recipe")
+        validate_render_recipe(decoded)
+        if _path_independent_semantic_sha256(decoded) != inspection[
+            "source_recipe_semantic_sha256"
+        ]:
+            raise RecipeRecoveryBundleError(
+                "published bound recipe semantic identity drifted"
+            )
+    except Exception:
+        recipe_path.unlink(missing_ok=True)
+        raise
+    return {
+        "schema_id": "kmcfm.explicit-recipe-binding.v1",
+        "bundle_sha256": inspection["bundle_sha256"],
+        "recipe_sha256": _sha256(encoded),
+        "recipe_bytes": len(encoded),
+        "source_recipe_semantic_sha256": inspection[
+            "source_recipe_semantic_sha256"
+        ],
+        "input_sha256": inspection["input_sha256"],
+        "expected_output_sha256": inspection["output_sha256"],
+        "style": inspection["style"],
+        "claim": inspection["claim"],
+        "rendered": False,
+    }
+
+
 def build_portable_recipe_recovery_bundle(
     *, recipe_path: Path, profile_path: Path, root: Path, bundle_path: Path
 ) -> dict[str, Any]:
@@ -462,6 +536,7 @@ __all__ = [
     "PORTABLE_BUNDLE_SCHEMA_ID",
     "PORTABLE_RECIPE_SCHEMA_ID",
     "bind_portable_recipe",
+    "bind_portable_recipe_recovery_bundle",
     "build_portable_recipe_recovery_bundle",
     "inspect_portable_recipe_recovery_bundle",
     "portable_recipe_from_strict",
