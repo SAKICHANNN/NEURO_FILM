@@ -17073,6 +17073,27 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   application, default-loader integration, package/schema/capability,
   film-stock or product claim opens.
 
+### 2026-08-26 - P245 confirms the profile guard on two real CC0 DNGs
+
+- **Frozen acquisition:** `ULT > mature RAW explicit mechanisms > P245`;
+  contract `840b6043` selects only P240/P242 raw.pixls.us IDs 1052 and 2644,
+  their already-published SHA-256 identities and CC0 rows, a combined 60 MiB
+  network ceiling, exact-host downloads and create-only repo-relative P-backed
+  publication. Runner/tests are commit `e5e997ef`.
+- **Source lock:** acquisition reads 45,061,374 bytes and publishes exact DJI
+  24,331,468-byte `85a4fc27...392d` plus Fujifilm 20,729,906-byte
+  `7adec564...530f`; partial residue is zero. Actual TIFF metadata reproduces
+  DJI `6x6x3` with Data1/Data2 counts `324/324` and Fujifilm `90x30x1` with
+  counts `8100/8100`.
+- **Formal result and boundary:** two fresh forward/reverse 2,341-byte reports
+  are byte exact at SHA-256 `3aeda4aa...c9278`. Both unchanged P244 loader
+  calls reject every actual guarded tag before `_decode_camera_linear_dng`;
+  camera/pixel decode calls, profile applications and image artifacts are all
+  zero, and source hashes remain exact. Evidence commit `86a32c34`. This is a
+  private real-file refusal confirmation only—not HueSatMap application, full
+  DNG conformance, arbitrary RAW, vendor parity, image quality, default-loader
+  integration, package/schema/capability, film-stock or product admission.
+
 ### 2026-08-26 - U7.7E/F make three-stock recovery recipes portable and explicitly bindable
 
 - **Node and direction:** `ULT > U7.7 > U7.7E/F`; follow the U7.7D privacy
