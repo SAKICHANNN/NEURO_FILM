@@ -16332,3 +16332,26 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   closeness, desktop-shell completeness or product release. Return execution
   priority to materially new controlled named-stock evidence. Evidence:
   `docs/evidence/U7_3D_RECIPE_HISTORY_EXPORT_RESULT.json`.
+
+### 2026-08-26 - P228 closes incomplete R1CY bundle handoff artifacts
+
+- **Question:** Does the exact private R1CY paired/capture-time handoff persist
+  all bytes needed for an independent consumer to verify, construct and apply
+  its frozen shared HDR bundle without reconstructing producer state or
+  rerunning the paired build?
+- **Audit:** bound the exact producer evidence commit, implementation commit,
+  evidence, forward/reverse reports, bundle envelope, tracked schema and
+  invocation source. The audit was read-only with zero pixel and network reads.
+- **Result:** producer evidence/reports, the bundle envelope and canonical
+  forward/reverse audit are exact. Both 4,148-byte reports hash to
+  `9eb82171...e8e`, stable `8049c7d8...ae1fc`. The schema exposes payload hash
+  and length but no payload bytes, the invocation requires a separate payload,
+  and neither the tracked tree nor the bounded eval artifacts contain the exact
+  4,376-byte payload. Independent construction therefore fails closed.
+- **Boundary/handoff:** R1CY's paired science and exact FFV1 media remain valid;
+  this is only an artifact-completeness negative. Do not reconstruct payload
+  bytes or rerun the paired build for consumer intake. The only eligible next
+  leaf is prospective create-only publication followed by a separately frozen
+  deserialization/apply audit. No package/schema/capability/product or consumer
+  mapping opens. Evidence:
+  `docs/evidence/P228_R1CY_PAIRED_HDR_HANDOFF_ARTIFACT_AUDIT_RESULT.json`.
