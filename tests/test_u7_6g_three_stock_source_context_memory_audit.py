@@ -7,6 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/u7_6g_three_stock_source_context_memory_v1.json"
 SCRIPT = ROOT / "scripts/audit_u7_6g_three_stock_source_context_memory.py"
+EVIDENCE = ROOT / "docs/evidence/U7_6G_THREE_STOCK_SOURCE_CONTEXT_MEMORY_RESULT.json"
 
 
 def _module():
@@ -65,3 +66,19 @@ def test_evaluator_requires_context_output_and_resource_parity() -> None:
 
     rows[1]["source_context"]["lab_mean"][0] = 4.0
     assert module.evaluate_rows(rows, config["gates"])["decision"] == "FAIL_CLOSED"
+
+
+def test_formal_evidence_closes_nonreducing_context_candidate() -> None:
+    evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+    assert evidence["decision"] == (
+        "FAIL_CLOSED_DO_NOT_INTEGRATE_SCRATCH_BACKED_CONTEXT"
+    )
+    assert evidence["scientific_identity"] == (
+        "374ae9c3f8ae0c2b879bcde81635e51d333e0c8b0ea7bf4e6328fc8ed2ac8c74"
+    )
+    observations = evidence["observations"]
+    assert observations["source_context_cross_execution_exact"] is True
+    assert observations["three_encoded_outputs_cross_execution_exact"] is True
+    assert observations["peak_rss_reduction_bytes"] < 201326592
+    assert observations["peak_rss_ratio"] > 0.90
+    assert observations["candidate_residue_count"] == 0

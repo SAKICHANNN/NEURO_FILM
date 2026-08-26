@@ -1,0 +1,38 @@
+{
+  "schema_version": "neuro-film.u7-6g-three-stock-source-context-memory-evidence.v1",
+  "node_id": "U7.6G",
+  "bindings": {
+    "config_commit": "490d8452",
+    "config_sha256": "7e0a2b934215f442a65ba41d1a3c1b358a288f11d2b6f1173985902d74b2fe8b",
+    "candidate_commit": "ac77e1fe",
+    "candidate_source_sha256": "9264814138af33007990dc3c9d5581d77fc205a7d4da7307def1670f52ba976e",
+    "audit_commit": "6d9aad87",
+    "audit_sha256": "e44cc2db3b6d4b75a549fa0fa267f4f27c27f6ed4b9e8af32dbba277a762d2f1",
+    "formal_execution_head": "1b2caff1f46409e74e4332e6154432134dbe4810",
+    "formal_report_sha256": "68d67c0d2a557bb703e7fcb96dc27ce74231e1c93359276f7d1ef1a72f7d538e"
+  },
+  "scientific_identity": "374ae9c3f8ae0c2b879bcde81635e51d333e0c8b0ea7bf4e6328fc8ed2ac8c74",
+  "observations": {
+    "source_context_cross_execution_exact": true,
+    "three_encoded_outputs_cross_execution_exact": true,
+    "three_decoded_sample_arrays_cross_execution_exact": true,
+    "three_icc_fingerprints_cross_execution_exact": true,
+    "three_normalized_recipe_semantics_cross_execution_exact": true,
+    "ordered_stock_ids_exact": true,
+    "baseline_mean_wall_seconds": 133.767989150001,
+    "candidate_mean_wall_seconds": 134.100552900003,
+    "wall_ratio": 1.0024861235645,
+    "baseline_mean_peak_process_tree_rss_bytes": 1917999104,
+    "candidate_mean_peak_process_tree_rss_bytes": 1909442560,
+    "peak_rss_reduction_bytes": 8556544,
+    "peak_rss_ratio": 0.995538817519698,
+    "candidate_residue_count": 0
+  },
+  "failed_gates": [
+    "minimum_peak_process_tree_rss_reduction_bytes",
+    "candidate_peak_process_tree_rss_ratio"
+  ],
+  "decision": "FAIL_CLOSED_DO_NOT_INTEGRATE_SCRATCH_BACKED_CONTEXT",
+  "interpretation": "The row-chunked scratch-backed RGB-to-Lab conversion reproduces the legacy SafeLabSourceContext and all three complete product output identities exactly, leaves no scratch files and has essentially neutral wall time. It reduces the formal process-tree peak by only 8.56 MB, confirming that the measured approximately 1.92 GB peak occurs after shared source-context construction, inside the per-stock safe-Lab render workspace. The candidate remains research-only and the frozen gates are not relaxed.",
+  "claim_ceiling": "Negative local Windows/Python 24MP three-stock source-context resource evidence only; no product integration, stock separation, calibration or controlled-film evidence."
+}
