@@ -6,10 +6,12 @@ import argparse
 import concurrent.futures
 import hashlib
 import json
+import shutil
+import subprocess
 from pathlib import Path
 from typing import Any
 
-from scripts.run_p287_wildrelight_envmap_conditioned_hdr_d0 import _acquire_member
+from src.film_physics.create_only_file import publish_create_only
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -93,6 +95,71 @@ def _member_state(root: Path, member: dict[str, Any]) -> dict[str, object]:
             exists and size == int(member["bytes"]) and digest == str(member["sha256"])
         ),
     }
+
+
+def _acquire_member(
+    destination: Path, *, url: str, expected_bytes: int, expected_sha256: str
+) -> int:
+    """Acquire one frozen member with bounded retries and resumable staging."""
+    if destination.exists():
+        if (
+            destination.is_file()
+            and destination.stat().st_size == expected_bytes
+            and _sha256_file(destination) == expected_sha256
+        ):
+            return 0
+        raise P302AcquisitionError("existing P302 source member differs")
+    curl = shutil.which("curl.exe") or shutil.which("curl")
+    if curl is None:
+        raise P302AcquisitionError("bounded P302 curl transport is unavailable")
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    stage = destination.parent / f".{destination.name}.p302.partial"
+    if stage.exists() and (
+        not stage.is_file() or stage.stat().st_size > expected_bytes
+    ):
+        raise P302AcquisitionError("P302 resumable stage is invalid")
+    initial_bytes = stage.stat().st_size if stage.is_file() else 0
+    command = [
+        curl,
+        "--fail",
+        "--location",
+        "--silent",
+        "--show-error",
+        "--retry",
+        "4",
+        "--retry-all-errors",
+        "--retry-delay",
+        "1",
+        "--connect-timeout",
+        "20",
+        "--speed-limit",
+        "1024",
+        "--speed-time",
+        "30",
+        "--max-time",
+        "600",
+        "--continue-at",
+        "-",
+        "--user-agent",
+        "neuro-film-p302-source-acquisition/2.0",
+        "--output",
+        str(stage),
+        url,
+    ]
+    completed = subprocess.run(command, check=False, capture_output=True, text=True)
+    if completed.returncode != 0:
+        raise P302AcquisitionError(
+            f"bounded P302 curl transport failed with exit {completed.returncode}"
+        )
+    if (
+        not stage.is_file()
+        or stage.stat().st_size != expected_bytes
+        or _sha256_file(stage) != expected_sha256
+    ):
+        raise P302AcquisitionError("downloaded P302 source member differs")
+    final_bytes = stage.stat().st_size
+    publish_create_only(stage, destination)
+    return max(0, final_bytes - initial_bytes)
 
 
 def _confirmation_allowed(report_path: Path | None, config_sha256: str) -> bool:

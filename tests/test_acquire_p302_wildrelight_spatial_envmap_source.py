@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 
 from scripts.acquire_p302_wildrelight_spatial_envmap_source import (
+    _acquire_member,
     _confirmation_allowed,
     _local_path,
 )
@@ -26,9 +27,26 @@ def test_confirmation_requires_exact_development_pass(tmp_path: Path) -> None:
         "gates": {"all": True},
         "phase": "development",
     }
-    passing["scientific_identity"] = "sha256:" + hashlib.sha256(
-        json.dumps(passing, sort_keys=True, separators=(",", ":")).encode()
-    ).hexdigest()
+    passing["scientific_identity"] = (
+        "sha256:"
+        + hashlib.sha256(
+            json.dumps(passing, sort_keys=True, separators=(",", ":")).encode()
+        ).hexdigest()
+    )
     report.write_text(json.dumps(passing))
     assert _confirmation_allowed(report, "config-sha")
     assert not _confirmation_allowed(report, "different-config-sha")
+
+
+def test_acquire_member_reuses_an_exact_destination(tmp_path: Path) -> None:
+    destination = tmp_path / "member.bin"
+    destination.write_bytes(b"frozen-p302-member")
+    assert (
+        _acquire_member(
+            destination,
+            url="https://invalid.example/member.bin",
+            expected_bytes=destination.stat().st_size,
+            expected_sha256=hashlib.sha256(destination.read_bytes()).hexdigest(),
+        )
+        == 0
+    )

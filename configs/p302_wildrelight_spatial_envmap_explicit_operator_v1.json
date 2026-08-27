@@ -35,8 +35,8 @@
     },
     {
       "path": "scripts/acquire_p302_wildrelight_spatial_envmap_source.py",
-      "bytes": 6981,
-      "sha256": "ca829556d098568edb7de2d4d274f6f90e6a0d81b94f0324ac5b7871ea164127"
+      "bytes": 9163,
+      "sha256": "0aa8babc3f5e300bbf49ea42d25d00dfda26815f97579d60db190626df986e30"
     }
   ],
   "roles": {
