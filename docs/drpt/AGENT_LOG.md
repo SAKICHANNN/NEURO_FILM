@@ -18652,3 +18652,27 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   upstream SI-HDR training-data rights are not fixed for product use. No bulk
   acquisition, HDR quality, arbitrary bracket, package/schema/capability,
   product admission or candidate-3 change opens.
+
+### 2026-08-27 - P276 executes the exact LuckyHDR official bracket twice
+
+- **Node and scope:** `ULT > genuinely new paired/capture-time observation >
+  P276`, DRPT L2 / Mode C. `dev-research-reliability` is primary; research,
+  DRPT-BI, agent-log and structure stewardship keep the result at private
+  runtime/mechanism D0. P275 opened this bounded execution only; candidate 3
+  remains `2/3`.
+- **Freeze and acquisition:** contract `e4d5fcdb`, implementation `466f8150`,
+  formal lock `78a3a3fd` and evidence `b6fad176` bind official LuckyHDR commit/
+  tree, seven source/rights text objects, one 524,786-byte checkpoint and three
+  DNGs. All 11 objects / 27,583,023 bytes pass byte-count and Git-blob SHA-1
+  before create-only P-backed publication; acquisition pixel/model/target reads
+  are zero. Transient Schannel retries completed without mirror or substitution.
+- **Result:** official unchanged inference at 2048 long-edge, fixed README
+  exposures `[1,3.7,30]` and RTX 5070 Ti Laptop CUDA runs twice with exact
+  scientific identity `309eb5be...c2a1b`. Both runs produce exact 3,740,928-byte
+  PNG `b212ee54...99cad` and RGB8 `44149831...1d62`, shape 2048x1536x3, range
+  0..255 and wall 7.52-7.72 s. Source immutability and zero formal residue pass.
+- **Verification and boundary:** eight P275/P276 tests plus Ruff, `py_compile`,
+  JSON and diff checks pass. The bundled demo has no aligned HDR target, so no
+  HDR quality, arbitrary-bracket generalization, capture/training-data product
+  rights, public package/schema/capability, product admission or candidate-3
+  change opens.
