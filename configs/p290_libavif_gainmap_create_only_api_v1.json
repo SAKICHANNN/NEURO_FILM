@@ -42,9 +42,9 @@
   "execution_bindings": {
     "runner": [
       "scripts/audit_p290_libavif_gainmap_create_only_api.py",
-      11067,
-      "4ae0bc7d2437b03d6e47963d6678f433afdea8524a2d86a939ef74d26e98f8c0",
-      "f765ef44"
+      11142,
+      "b2c214d7bb5b44a7ffb5614c752b4bd96a66c13b09f272f58a87abb8e307c595",
+      "9d3bca39"
     ],
     "test": [
       "tests/test_p290_libavif_gainmap_create_only_audit.py",
