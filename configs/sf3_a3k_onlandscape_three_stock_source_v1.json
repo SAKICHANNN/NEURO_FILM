@@ -1,0 +1,56 @@
+{
+  "schema": "neuro-film.sf3-a3k-onlandscape-three-stock-source-contract.v1",
+  "experiment_id": "SF3.A3K_ONLANDSCAPE_THREE_STOCK_SOURCE_V1",
+  "article": {
+    "url": "https://www.onlandscape.co.uk/2011/06/colour-film-comparison-pt-3/",
+    "required_phrases": [
+      "included the new Portra 400 and Portra 160 films",
+      "The scene I was testing was a view from the small poppy drifts",
+      "Digitalab in Newcastle upon Tyne who developed all of the film",
+      "calibrated chromes and for neg film I set the shadow highlight points in my Howtek drum scanner software"
+    ],
+    "required_group": "all",
+    "required_stocks": [
+      {
+        "film_stock_id": "fujifilm_velvia_50",
+        "label": "Velvia 50",
+        "accepted_asset_names": ["Velvia 50.jpg"]
+      },
+      {
+        "film_stock_id": "kodak_portra_400",
+        "label": "Portra 400",
+        "accepted_asset_names": ["Portra 400 default.jpg"]
+      },
+      {
+        "film_stock_id": "kodak_ektar_100",
+        "label": "Ektar",
+        "accepted_asset_names": ["Ektar default.jpg"]
+      }
+    ]
+  },
+  "terms": {
+    "url": "https://www.onlandscape.co.uk/terms-and-conditions/",
+    "required_restriction_phrases": [
+      "download and store in machine readable a single copy of the Materials primarily for one person's exclusive use",
+      "abstract, download, store, reproduce, transmit, display, copy, distribute or use the Materials other than as permitted",
+      "All intellectual property rights and other rights in the Service and Materials"
+    ],
+    "required_explicit_permissions": [
+      "dataset extraction for model or operator fitting",
+      "redistribution of source images or scans",
+      "distribution of derived stock parameters or weights",
+      "commercial product use of derived stock profiles"
+    ]
+  },
+  "network_limits": {
+    "html_requests": 2,
+    "image_requests": 0,
+    "pixel_decodes": 0,
+    "fit_calls": 0,
+    "render_calls": 0,
+    "score_calls": 0
+  },
+  "decision_if_pass": "PASS_OPEN_SEPARATELY_FROZEN_ONLANDSCAPE_PIXEL_PREFLIGHT",
+  "decision_if_fail": "FAIL_CLOSED_ONLANDSCAPE_THREE_STOCK_RIGHTS_OR_STRUCTURE",
+  "claim_ceiling": "Metadata-level same-scene physical three-stock source observation only; no rights-cleared pixels, fitting, stock response, calibration, product profile, redistribution or release."
+}
