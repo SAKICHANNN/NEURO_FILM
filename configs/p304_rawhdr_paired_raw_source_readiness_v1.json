@@ -1,0 +1,65 @@
+{
+  "schema": "neuro-film.p304-rawhdr-paired-raw-source-readiness-contract.v1",
+  "experiment_id": "P304",
+  "status": "FROZEN_READY_FOR_METADATA_ONLY_EXECUTION",
+  "bindings": {
+    "contract_path": "docs/planning/P304_RAWHDR_PAIRED_RAW_SOURCE_READINESS_CONTRACT.md",
+    "contract_commit": "08597df5a6c83d959b852f912f19a6bdb04de387",
+    "contract_bytes": 2794,
+    "contract_sha256": "e84d45b2d56f43f7e771950e67d817876d23cc00e2a06919f97dfc8e966070c2",
+    "runner_path": "scripts/audit_p304_rawhdr_paired_raw_source_readiness.py",
+    "runner_bytes": 0,
+    "runner_sha256": "PENDING",
+    "test_path": "tests/test_p304_rawhdr_paired_raw_source_readiness.py",
+    "test_bytes": 0,
+    "test_sha256": "PENDING"
+  },
+  "official_repository": {
+    "full_name": "yunhao-zou/RawHDR",
+    "commit": "c49e8b2d6ae83ee156aeb957a4c328d1df68e9bd",
+    "tree": "eacc5b8c8b3a287cb5a954360608adc880e6467a"
+  },
+  "sources": {
+    "commit": {
+      "url": "https://api.github.com/repos/yunhao-zou/RawHDR/git/commits/c49e8b2d6ae83ee156aeb957a4c328d1df68e9bd",
+      "bytes": 1081,
+      "sha256": "d56d2e76ac6aaf000be0ee5e52c6401fed46daa805a7eb7c644ac9a04f53bfd9"
+    },
+    "tree": {
+      "url": "https://api.github.com/repos/yunhao-zou/RawHDR/git/trees/eacc5b8c8b3a287cb5a954360608adc880e6467a?recursive=1",
+      "bytes": 3267,
+      "sha256": "4fce9eb0113fc33e39b1e70892b23283d3f1e52c05e74f5d23071897c396cabe"
+    },
+    "readme": {
+      "url": "https://raw.githubusercontent.com/yunhao-zou/RawHDR/c49e8b2d6ae83ee156aeb957a4c328d1df68e9bd/README.md",
+      "bytes": 3095,
+      "sha256": "73bdbf53d538b186d5da99a3fe4dd038b2d0650a3e4c4c6b030f3b95681adaf5"
+    },
+    "license": {
+      "url": "https://raw.githubusercontent.com/yunhao-zou/RawHDR/c49e8b2d6ae83ee156aeb957a4c328d1df68e9bd/LICENSE",
+      "bytes": 1067,
+      "sha256": "2620dab846adc2de167ba4de7cfd28531c438945f3bd20e211acaa53b467353f"
+    },
+    "maximum_response_bytes_each": 1048576,
+    "maximum_total_network_bytes": 4194304
+  },
+  "expected": {
+    "repository_title": "RawHDR: High Dynamic Range Image Reconstruction from a Single Raw Image",
+    "tree_entry_count": 14,
+    "pair_count": 324,
+    "camera": "Canon 5D Mark IV",
+    "resolution": "4480x6720"
+  },
+  "gates": {
+    "require_official_identity": true,
+    "require_materially_distinct_physical_observation": true,
+    "require_anonymous_payload_locator": true,
+    "require_commercial_compatible_code_rights": true,
+    "require_commercial_compatible_data_rights": true,
+    "require_public_exact_inventory": true,
+    "require_group_isolation": true,
+    "require_two_reports_exact": true
+  },
+  "stop_rule": "Failure of any gate closes the source before dataset, archive, image, thumbnail, model, checkpoint, mirror, training, inference or pixel access. Do not infer dataset rights from the repository MIT licence or public download links.",
+  "claim_ceiling": "Current official-source readiness audit only. A complete pass could open a separate exact-object physical-observation preflight; no HDR quality, arbitrary RAW support, shared operator, A1/A4/A5, package/schema/capability/product admission or candidate 3."
+}
