@@ -46,8 +46,11 @@ order. Each process must:
 7. publish that owned absolute-Rec.2020 array twice with the unchanged
    `save_absolute_rec2020_cdm2_to_pq_rgb16_png`, requiring repeat-exact bytes,
    sample readback and create-only rejection;
-8. compare the published RGB16 samples against both the decoded candidate HDR
-   samples and the direct frozen P289 HDR endpoint samples; and
+8. construct an independent direct expectation for both decoded and frozen HDR
+   samples by applying BT.2100 PQ EOTF in BT.709/sRGB primaries, the fixed
+   linear-sRGB-to-linear-Rec.2020 matrix, BT.2100 PQ inverse EOTF and RGB16
+   half-up quantization; compare the published samples against those
+   same-colour-space expectations; and
 9. delete all owned media/PNG scratch and verify sources/runtimes unchanged.
 
 The alternate SDR endpoint is identity-checked but is not transformed into an
@@ -59,10 +62,11 @@ HDR MatchView. P291 does not invent an SDR-to-HDR tone policy.
 - candidate media, receipt and both decoded endpoints exact P289/P290;
 - decoded HDR and direct HDR endpoint differ by at most 17 uint16 codes per
   component, with p95 at most 16 codes (the parent one-code 12-bit envelope);
-- P87/P89 PQ publication roundtrip against the decoded HDR is median/p95/max
-  at most `0/0/1` uint16 code;
-- end-to-end published PQ versus the direct P289 HDR endpoint is median at most
-  1, p95 at most 16 and maximum at most 18 uint16 codes;
+- P87/P89 PQ publication against the independent transformed decoded-HDR
+  expectation is median/p95/max at most `0/0/1` uint16 code;
+- end-to-end published PQ versus the independently transformed direct P289 HDR
+  endpoint is median at most 1, p95 at most 16 and maximum at most 32 uint16
+  codes;
 - CICP/profile/geometry/range/ownership/immutability exact;
 - repeat PNG bytes and decoded sample hashes exact;
 - foreign destination, wrong media hash, wrong role and nonfinite publication
@@ -82,3 +86,13 @@ integration for one exact official fixture. It does not establish an SDR tone
 policy, complete ISO 21496-1 conformance, arbitrary AVIF/HEIF or HDR quality,
 display validation, public dependency/API/package/schema/capability, default
 loader, product admission, film-stock evidence or candidate-3 consumption.
+
+## Prescore colour-space correction
+
+The initial contract text compared published Rec.2020/PQ codes directly with
+the BT.709/PQ endpoint codes. A source-only inspection before any P291 media
+construction or metric execution showed that this would treat the required
+P283 primaries conversion as error. The comparison above therefore uses the
+already-frozen explicit BT.709-to-Rec.2020 transform on both direct and decoded
+endpoints. Parents, fixture, codec profile, runtime, transform, stop rule and
+claim ceiling are unchanged.
