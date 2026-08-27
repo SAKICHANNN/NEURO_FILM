@@ -17874,3 +17874,35 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   stock distinguishability, remote service, installer, release and population
   preference remain false. Stop browser subleaf expansion; controlled physical
   Velvia/Portra/Ektar acquisition remains the scientific mainline.
+
+### 2026-08-27 - P259 closes the five-file DNG to ACES2065 master composition
+
+- **Node and routing:** `ULT > mature RAW/DNG/HDR explicit mechanisms > P259`,
+  DRPT L2 / Mode C. This is a composition proof over the five already-consumed
+  P98 files, not a new data or quality experiment. Contract `cef86f15` froze
+  P98/P257 ingress, the official U1.4D/E Linear Rec.2020 to ACEScg transform,
+  source-locked P249/R1DT AP0 writing, strict P251/R1DV reading, exact negative/
+  highlight/boundary gates, zero target/network reads and per-file deletion.
+- **Execution and result:** implementation lock `f33f61a2`; report-lifecycle fix
+  `301378a3`; evidence `57162315`. Both corrected committed-head processes emit
+  byte-exact 11,431-byte reports at SHA `67a6457f...a1952`, scientific identity
+  `d308e5c5...1d0058`. All five P98 WorkingImage and direct official ACEScg
+  byte hashes remain exact; decoded AP0 pixels and AP0/D60 metadata are exact;
+  maximum AP1 readback error is `2.3841858e-7`. Across the five rows, all
+  `1,499,782` strong-negative and `10,153` strong-highlight components remain
+  beyond their frozen thresholds, new exact boundaries are zero, sources are
+  immutable and all ephemeral EXRs are removed. Forty-one adjacent tests pass
+  with Ruff, py_compile, JSON and diff checks.
+- **Correction boundary:** the first forward report was excluded because its
+  inspection serialized channel names after the owning OpenEXR file context
+  had closed, despite already decoding exact AP0 pixels. The additive fix only
+  captures channel names while that unchanged context is open; writer, wheel,
+  rows, transforms, pixels, metadata requirements and gates stayed frozen, and
+  both complete formal processes restarted from the corrected commit.
+- **Claim and propagation:** retain only private exact-five composition
+  mechanics. No arbitrary DNG/EXR/ACES or SMPTE conformance, calibrated sensor/
+  IDT or Adobe rendering, photographic/colorimetric/display quality, persistent
+  media, public API/package/schema/capability, film-stock, single-reference or
+  product admission opens. Candidate count remains `2/3`; end this composition
+  leaf and return to materially new paired/capture-time evidence or another
+  distinct mature RAW/HDR gap.
