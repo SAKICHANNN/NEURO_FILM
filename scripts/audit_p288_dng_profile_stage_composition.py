@@ -236,7 +236,7 @@ def _compose(
     if direct:
         output = core.apply_profile_tone_curve(
             looked_romm,
-            **modules["tone_curve"].parse_dng_profile_tone_curve_payload_v1(
+            modules["tone_curve"].parse_dng_profile_tone_curve_payload_v1(
                 payloads["tone_curve"]
             ),
         )

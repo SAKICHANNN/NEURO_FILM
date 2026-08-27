@@ -45,6 +45,7 @@
       "sha256": "bd0186cb243739bf9ea974e20594531a5eb73a71e7d0c2a8f2e59b057f25d2af"
     }
   },
+  "prescore_correction": "The first committed-head invocation stopped before any composition output, metric or report because the ToneCurve parser's owned coordinate array was incorrectly expanded as a mapping in the direct-control call. The additive fix passes that same array as the core's positional coordinates argument; all producer objects, payloads, input, exposure, stage order, gates and claim ceiling remain unchanged.",
   "gates": {
     "require_parent_files_exact": true,
     "require_producer_git_objects_exact": true,
