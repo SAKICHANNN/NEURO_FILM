@@ -108,8 +108,31 @@ def _worker(config_path: Path, workspace: Path, order: str) -> dict[str, Any]:
     source_before = _sha256_file(source)
 
     writer_info = config["producer_writer"]
+    producer_repo = Path(writer_info["repository"])
+    wheel = producer_repo / writer_info["wheel_path"]
+    if wheel.stat().st_size != writer_info["wheel_bytes"] or (
+        _sha256_file(wheel) != writer_info["wheel_sha256"]
+    ):
+        raise P264Error("producer OpenEXR wheel identity differs")
+    site = workspace / "site"
+    subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "pip",
+            "install",
+            "--disable-pip-version-check",
+            "--no-deps",
+            "--target",
+            str(site),
+            str(wheel),
+        ],
+        check=True,
+        capture_output=True,
+    )
+    sys.path.insert(0, str(site))
     writer_bytes = _git_bytes(
-        Path(writer_info["repository"]),
+        producer_repo,
         writer_info["commit"],
         writer_info["path"],
     )
@@ -117,7 +140,7 @@ def _worker(config_path: Path, workspace: Path, order: str) -> dict[str, Any]:
         _sha256_bytes(writer_bytes) != writer_info["sha256"]
     ):
         raise P264Error("producer writer identity differs")
-    writer = _load_ephemeral_writer(writer_bytes, workspace / "writer-site")
+    writer = _load_ephemeral_writer(writer_bytes, site)
 
     working = load_dng_forward_working_image(source)
     working_before = _array_sha256(working.pixels)
