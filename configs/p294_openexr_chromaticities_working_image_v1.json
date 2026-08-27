@@ -1,0 +1,68 @@
+{
+  "schema": "neuro-film.p294-openexr-chromaticities-working-image-contract.v1",
+  "experiment_id": "P294",
+  "node": "ULT > HDR source/intake > P294",
+  "question": "Can exact embedded OpenEXR chromaticities convert two official ASWF reference encodings into the same linear_rec2020_d65 WorkingImage representation?",
+  "official_source": {
+    "repository": "https://github.com/AcademySoftwareFoundation/openexr-images",
+    "revision": "e38ffb0790f62f05a6f083a6fa4cac150b3b7452",
+    "license_blob": "268d234adc762429a5d7db6a456651d7d0933dd1",
+    "readme_blob": "8d94d9e2211874955faa6c55021174283335921c",
+    "declaration": "The four Chromaticities files should look the same when displayed properly."
+  },
+  "sources": [
+    {
+      "id": "rec709",
+      "repository_path": "Chromaticities/Rec709.exr",
+      "path": "data/external/p294_openexr_chromaticities_v1/Rec709.exr",
+      "url": "https://raw.githubusercontent.com/AcademySoftwareFoundation/openexr-images/e38ffb0790f62f05a6f083a6fa4cac150b3b7452/Chromaticities/Rec709.exr",
+      "bytes": 908168,
+      "git_blob": "13b3fca94da1426e4793bd66a20299c955b73d00",
+      "chromaticities": [0.64, 0.33, 0.3, 0.6, 0.15, 0.06, 0.3127, 0.329]
+    },
+    {
+      "id": "xyz_equal_energy",
+      "repository_path": "Chromaticities/XYZ.exr",
+      "path": "data/external/p294_openexr_chromaticities_v1/XYZ.exr",
+      "url": "https://raw.githubusercontent.com/AcademySoftwareFoundation/openexr-images/e38ffb0790f62f05a6f083a6fa4cac150b3b7452/Chromaticities/XYZ.exr",
+      "bytes": 930048,
+      "git_blob": "cd4423ab12669b4caaaeb157ddd08fe430f5a775",
+      "chromaticities": [1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.33333334, 0.33333334]
+    }
+  ],
+  "runtime": {
+    "python": "3.12",
+    "openexr_version": "3.4.15",
+    "wheel_path": "data/vendor/openexr-3.4.15/openexr-3.4.15-cp312-cp312-win_amd64.whl",
+    "wheel_bytes": 740197,
+    "wheel_sha256": "7aa145813acfe10a83d6e89340349379828190b321608e69f2aee426e10c890b"
+  },
+  "header": {
+    "type": "scanlineimage",
+    "channel_type": "HALF",
+    "channels": ["B", "G", "R"],
+    "width": 610,
+    "height": 406,
+    "unit_sampling": true,
+    "equal_windows": true,
+    "maximum_width": 4096,
+    "maximum_height": 4096,
+    "maximum_pixels": 16777216,
+    "maximum_absolute_component": 65504.0
+  },
+  "thresholds": {
+    "rec709_existing_primitive_max_abs": 0.000002,
+    "paired_rmse": 0.0005,
+    "paired_p95_abs": 0.001,
+    "paired_max_abs": 0.005
+  },
+  "forbidden_payloads": [
+    "Chromaticities/Rec709_YC.exr",
+    "Chromaticities/XYZ_YC.exr",
+    "Chromaticities/Rec709.jpg",
+    "Chromaticities/XYZ.jpg",
+    "P293 EyefulTower EXR"
+  ],
+  "stop_rule": "Any failed gate closes exact P294 without source, tuple, precision, adaptation, threshold, channel-family, sidecar, clipping, normalization or tone rescue.",
+  "claim_ceiling": "Private two-file chromaticity-aware OpenEXR to linear_rec2020_d65 WorkingImage mechanism only; no arbitrary EXR, DCI-P3, ACES, HDR quality, display rendering, default loader, package/schema/capability/product, stock evidence or candidate-3 change."
+}
