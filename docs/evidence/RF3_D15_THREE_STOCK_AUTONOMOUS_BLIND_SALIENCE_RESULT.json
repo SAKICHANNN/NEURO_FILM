@@ -1,0 +1,91 @@
+{
+  "schema": "neuro-film.rf3-d15-three-stock-autonomous-blind-salience-result.v1",
+  "experiment_id": "RF3.D15",
+  "date": "2026-08-27",
+  "status": "FAIL_CLOSED_K1_THREE_STOCK_AUTONOMOUS_VISUAL_DISTINGUISHABILITY",
+  "decision": "CLOSE_EXISTING_K1_THREE_STOCK_AUTONOMOUS_VISUAL_DISTINGUISHABILITY_WITHOUT_RESCUE",
+  "lineage": {
+    "contract_commit": "929a0d00",
+    "implementation_commit": "495c020a",
+    "observations_commit": "8dccd1ba14163ccddf24003a0e7a585ecb3e1f3c",
+    "contract_sha256": "20dd37c13295f8d1ff389231b6b40de97c5b2d58af41990003ac21a0137a0122",
+    "core_sha256": "609d37fb04fecaf067748d77aca79ffc5a0d1f855a3a54cada6c632cfdae0809",
+    "runner_sha256": "471f0cc4570342ad3f0971cb20c595927ca66ac9a342a179e8d48386c6776e31",
+    "test_sha256": "d578257be976f888f62a654a806dd54e2ab8e536ed2ac01782549cc6ca648c26"
+  },
+  "blind_package": {
+    "report_path": "outputs/eval/rf3_d15_three_stock_autonomous_blind_salience_v1/report.json",
+    "report_bytes": 1054,
+    "report_sha256": "4d67d1097d841d6d54a937f6f681f6401bd0687b88d85a8ca181650bc8b2fe0b",
+    "public_sheet_sha256": "01e68b9711abd1770f8f770bff5b0a52d36013bd9c96fbb2d3cad83bab60f6b0",
+    "private_mapping_sha256": "e857558e1499d4dd3435e088558e28b73de7a3b444f028b8579f3f99ecb6d3bd",
+    "source_count": 16,
+    "arm_count": 3,
+    "round_count": 2,
+    "sheet_count": 32,
+    "anonymous_png_count": 96,
+    "render_calls": 0,
+    "network_reads": 0
+  },
+  "observations": {
+    "path": "docs/evidence/RF3_D15_THREE_STOCK_AUTONOMOUS_BLIND_SALIENCE_OBSERVATIONS.json",
+    "bytes": 8969,
+    "sha256": "3a99040d29e3e9e05379e74dd1689edfd880abc5fdb3c4578ab6f3fda45b1ed7",
+    "decision_count": 96,
+    "mapping_read_before_commit": false,
+    "prior_labeled_exposure_disclosed": true,
+    "reviewer_class": "autonomous_visual_evidence"
+  },
+  "formal_replay": {
+    "forward_report": "outputs/eval/rf3_d15_three_stock_autonomous_blind_salience_v1/report_forward.json",
+    "reverse_report": "outputs/eval/rf3_d15_three_stock_autonomous_blind_salience_v1/report_reverse.json",
+    "report_bytes": 2007,
+    "report_sha256": "b40f1a6f0ef39ddac32a74f1a1f6768be724ffc1d122fb2518f3234156507b1c",
+    "forward_reverse_byte_exact": true,
+    "scientific_identity": "9b2d067b0b75583b6b9a6c6a36305155b3f6b37d56b01ac7de71f419bd254929"
+  },
+  "pair_results": [
+    {
+      "left": "legacy_unpaired_safe_lab_k1_ektar100",
+      "right": "legacy_unpaired_safe_lab_k1_portra400",
+      "both_rounds_visible_source_count": 6,
+      "round_disagreement_count": 5,
+      "source_count": 16,
+      "pair_gate_pass": false
+    },
+    {
+      "left": "legacy_unpaired_safe_lab_k1_ektar100",
+      "right": "legacy_unpaired_safe_lab_k1_velvia50",
+      "both_rounds_visible_source_count": 13,
+      "round_disagreement_count": 3,
+      "source_count": 16,
+      "pair_gate_pass": false
+    },
+    {
+      "left": "legacy_unpaired_safe_lab_k1_portra400",
+      "right": "legacy_unpaired_safe_lab_k1_velvia50",
+      "both_rounds_visible_source_count": 12,
+      "round_disagreement_count": 3,
+      "source_count": 16,
+      "pair_gate_pass": false
+    }
+  ],
+  "gates": {
+    "exact_16_source_three_arm_population": true,
+    "severe_review_pass": true,
+    "observations_frozen_before_mapping_reveal": true,
+    "forward_reverse_byte_exact": true,
+    "every_pair_visible_on_at_least_12_sources_in_both_rounds": false,
+    "every_pair_has_at_most_2_round_disagreements": false
+  },
+  "interpretation": "The label-hidden visual result agrees with RF3.D14's automatic failure rather than rescuing it. Velvia remains more visibly separated from the two negative-film-labelled controls, while Portra 400 versus Ektar 100 is stably visible on only 6 of 16 photographs. The current K=1 Look Approximation population therefore does not establish robust three-stock visual distinguishability.",
+  "retained_boundaries": {
+    "operator_or_threshold_rescue_allowed": false,
+    "target_film_closeness_claim_opened": false,
+    "stock_identity_or_calibration_claim_opened": false,
+    "human_or_population_preference_claim_opened": false,
+    "product_or_multi_stock_completion_opened": false,
+    "controlled_or_new_identifying_stock_evidence_still_required": true
+  },
+  "claim_ceiling": "Autonomous label-hidden pairwise visible-salience evidence for 48 existing RGB8 Look Approximation outputs on 16 source-disjoint photographs. Prior exposure to one labeled review sheet is disclosed. This is not independent human validation, stock identification, target-film closeness, calibration, preference, product promotion or completed multi-stock simulation."
+}
