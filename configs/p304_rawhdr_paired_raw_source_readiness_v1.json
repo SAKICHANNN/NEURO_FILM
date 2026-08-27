@@ -8,11 +8,11 @@
     "contract_bytes": 2794,
     "contract_sha256": "e84d45b2d56f43f7e771950e67d817876d23cc00e2a06919f97dfc8e966070c2",
     "runner_path": "scripts/audit_p304_rawhdr_paired_raw_source_readiness.py",
-    "runner_bytes": 0,
-    "runner_sha256": "PENDING",
+    "runner_bytes": 7507,
+    "runner_sha256": "3648219d6094e6859e9835ac69cfaf94dc3c15a1ef3b735340f506492a6f29f0",
     "test_path": "tests/test_p304_rawhdr_paired_raw_source_readiness.py",
-    "test_bytes": 0,
-    "test_sha256": "PENDING"
+    "test_bytes": 2762,
+    "test_sha256": "f64348d212813eb2a41b8496291aab686b325ff6ee4de674d60abae6055f96c8"
   },
   "official_repository": {
     "full_name": "yunhao-zou/RawHDR",
