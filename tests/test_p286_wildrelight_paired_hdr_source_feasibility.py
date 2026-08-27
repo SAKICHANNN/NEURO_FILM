@@ -78,14 +78,14 @@ def test_p286_manifest_parser_keeps_dng_names_separate_from_payloads() -> None:
             "type": "file",
             "size": 10,
             "oid": "a",
-            "lfs": {"sha256": "a" * 64},
+            "lfs": {"oid": "a" * 64},
         },
         {
             "path": "small-aligned/s/envmap/time0_envmap.exr",
             "type": "file",
             "size": 11,
             "oid": "b",
-            "lfs": {"sha256": "b" * 64},
+            "lfs": {"oid": "b" * 64},
         },
         {
             "path": "small-aligned/s/meta.json",
