@@ -1,0 +1,48 @@
+{
+  "schema": "neuro-film.p303-eyefultower-dci-p3-sidecar-feasibility-contract.v1",
+  "experiment_id": "P303",
+  "status": "FROZEN_READY_FOR_AUTHORITY_ACQUISITION",
+  "source": {
+    "path": "data/external/p293_eyefultower_dci_p3_exr_v1/40_DSC0001.exr",
+    "bytes": 9399313,
+    "sha256": "c7b65fe69568b4d04bbf162381fd6d74c9b9682057a0f9dd8b931ec6b038f174"
+  },
+  "dataset_authority": {
+    "repository_commit": "06a01a4915afc872b893c20a025a0e14598c8478",
+    "readme_blob": "ce06d91887cab8522dae3ceefe3941cd2821c675",
+    "readme_bytes": 54380,
+    "readme_sha256": "bf4fe411c0c0efb756cf18f70dd0eb01bf9679926e1fa91649602fae4bba1689",
+    "declaration": "Color space: DCI-P3 (linear)",
+    "white_point_declared": false
+  },
+  "authority_sources": {
+    "icc_registry": {
+      "url": "https://registry.color.org/rgb-registry/dcip3",
+      "path": "data/external/p303_dci_p3_authority_v1/icc_dci_p3.html",
+      "maximum_bytes": 200000
+    },
+    "smpte_st2113": {
+      "url": "https://pub.smpte.org/pub/st2113/st2113-2018.pdf",
+      "path": "data/external/p303_dci_p3_authority_v1/st2113-2018.pdf",
+      "maximum_bytes": 2000000
+    }
+  },
+  "frozen_color_facts": {
+    "primaries_xy": [0.68, 0.32, 0.265, 0.69, 0.15, 0.06],
+    "authoritative_white_variants": {
+      "P3D65": [0.3127, 0.329],
+      "P3DCI": [0.314, 0.351]
+    },
+    "required_unique_variant_count": 1
+  },
+  "boundaries": {
+    "exr_header_reads": 0,
+    "exr_pixel_reads": 0,
+    "jpeg_reads": 0,
+    "sidecar_publications": 0,
+    "training_fitting_inference": 0,
+    "candidate_count": "2/3"
+  },
+  "stop_rule": "If the literal dataset declaration maps to more than one authoritative P3 white point, fail closed before sidecar publication and EXR header or pixel read. Do not select P3D65, P3DCI, D60 or infer from modern display practice, pixels or JPEGs.",
+  "claim_ceiling": "Private exact-source color-identity feasibility only; no decoded-pixel/HDR quality, arbitrary EXR, package/schema/capability/product, stock evidence or candidate3 change."
+}
