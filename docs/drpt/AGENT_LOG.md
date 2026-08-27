@@ -17936,3 +17936,28 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `2/3`; no package/schema/capability/product mapping opens. A future explicit
   commercial-compatible code+data licence, anonymous exact payload and manifest
   could justify a new prospective intake; paper/public-repo visibility cannot.
+
+### 2026-08-27 - P261 closes silent ProfileToneCurve omission at DNG ingress
+
+- **Question and routing:** `ULT > mature RAW/DNG explicit infrastructure >
+  P261`, DRPT L2 / Mode C. After P260 stopped at the rights boundary, live
+  cartography found that the private P98 raster path guarded HueSatMap and
+  GainTableMap but not the standard profile tone curve. Contract `732bdeeb`
+  froze Adobe DNG SDK 1.7.1 build 2652 as authority, exact tag
+  `ProfileToneCurve=50940`, the five already-consumed P98 rows and zero new
+  DNG/RAW/target/reference reads.
+- **Implementation and evidence:** `d013d8e4` adds one metadata-only guard in
+  `src/preprocess/dng_forward_raster.py`; it runs while TIFF metadata is open
+  and before camera decode. `ca6db782` records evidence SHA
+  `449f77ed...8c387`. Fresh forward/reverse 5,214-byte reports are byte-exact
+  at SHA `6085f442...85b9d1`, scientific identity
+  `00e5aba0...0016c`. All five P98 output/source/WorkingImage identities remain
+  exact, the tag control has zero decode calls, and P244/P257 rejection
+  behavior remains unchanged. Twenty-five adjacent tests pass; Ruff, format,
+  JSON and diff checks are clean.
+- **Decision and boundary:**
+  `PASS_PRIVATE_DNG_PROFILE_TONE_CURVE_INGRESS_GUARD`. This is fail-closed
+  product integrity only. It does not consume or reimplement producer R1DX,
+  apply a tone curve, reopen R1DU, expand default dispatch, or establish full
+  DNG rendering, quality, package/schema/capability/product admission. The
+  candidate count remains `2/3`; stop this guard family after propagation.
