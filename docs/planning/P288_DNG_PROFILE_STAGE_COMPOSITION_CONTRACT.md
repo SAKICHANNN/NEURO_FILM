@@ -1,9 +1,9 @@
 # P288 — DNG Profile Stage Composition Contract
 
 **Status:** frozen before P288 implementation, producer fixture deserialization,
-callable import or composition output.  
-**Date:** 2026-08-27  
-**Node:** `ULT > mature RAW/DNG explicit mechanisms > P288`  
+callable import or composition output.
+**Date:** 2026-08-27
+**Node:** `ULT > mature RAW/DNG explicit mechanisms > P288`
 **DRPT:** L2 / Mode C; consumer owns only the P288 paths named below.
 
 ## Question
