@@ -1,0 +1,69 @@
+{
+  "schema": "neuro-film.p268-hdrplus-burst-source-feasibility-evidence.v1",
+  "experiment_id": "P268",
+  "status": "PASS_PRIVATE_HDRPLUS_ONE_BURST_SOURCE_FEASIBILITY",
+  "decision": "The official Google HDR+ Burst Photography Dataset exposes one deterministically selected, independently addressable bounded RAW burst with capture sidecars and two matching result inventories. This opens only a separately preregistered one-burst acquisition and source-only capture-time RAW D0; it does not authorize that acquisition or admit candidate 3.",
+  "bindings": {
+    "contract_commit": "a8be83a58d6af32e3d0c2c9258cef562a62c5101",
+    "contract_sha256": "42562ce625e2685fbcbd49f1cf67e975438238edfc5795bbd7d5945c630dcaad",
+    "selection_lock_commit": "1be9433f3effb0bdada9547149ed7df408280d8e",
+    "runner_commit": "e45a091b1b32ec4e8d9f388a4dfe4d68006a258f",
+    "runner_git_blob": "4e3adab355a4761aad817b1bee41e7b333ecef04",
+    "runner_sha256": "ab9a55c3e74e94d4a36897dc38cd119be14c07f1f40978b55b455d1b4ddf71d1",
+    "formal_lock_commit": "cd07811fde3ea29d800e32e670d4ffbbfe26686e",
+    "config_git_blob": "0df73f10bd2e74949ef3a9d8901000d61313fee6",
+    "config_sha256": "4933af2ac4f03854c38b5770a0267259f5b3af348c5eef5f18e57cd2bc8c6624",
+    "google_cloud_sdk_version": "577.0.0",
+    "gcloud_crc32c_version": "1.0.0"
+  },
+  "formal_reports": [
+    {
+      "path": "outputs/eval/p268_hdrplus_burst_source_feasibility/formal_result.json",
+      "bytes": 8369,
+      "sha256": "bd823fb2590c30519431dfebfa267c08ca9cff7a3588fa003b38d1705d842c47"
+    },
+    {
+      "path": "outputs/eval/p268_hdrplus_burst_source_feasibility/formal_replay.json",
+      "bytes": 8369,
+      "sha256": "bd823fb2590c30519431dfebfa267c08ca9cff7a3588fa003b38d1705d842c47"
+    }
+  ],
+  "result": {
+    "two_complete_reports_byte_exact": true,
+    "burst_inventory_count": 153,
+    "burst_inventory_sha256": "f5308cb292ed79fedfde26215da092bc80c22154a15839580bde7c12ad3842a0",
+    "selected_burst_id": "0382_20150912_131056_666",
+    "selected_burst_id_sha256": "01d46d74ca18831b4bff9cf73bd79e186d901c765444157c8ae9edcf16a56751",
+    "selected_object_count": 24,
+    "selected_total_bytes": 256482210,
+    "frozen_maximum_selected_total_bytes": 1073741824,
+    "payload_dng_count": 8,
+    "lens_shading_map_count": 8,
+    "rgb2rgb_present": true,
+    "timing_present": true,
+    "result_20161014_roles_complete": true,
+    "result_20171023_roles_complete": true,
+    "dataset_page_sha256": "6ff115b49305e6305f99033961b6ec1b3a5e12723cdc48f20cb3a3172aeed211",
+    "paper_page_sha256": "e641740ee8666ec6c0d1a69f8cb06e7db9da33c3348891c893d20b7091dd8f08",
+    "object_payload_body_bytes_read": 0,
+    "dng_jpeg_tiff_pixel_decodes": 0,
+    "fit_train_inference_score_reads": 0,
+    "bulk_subset_download_bytes": 0
+  },
+  "gates": {
+    "official_page_facts": true,
+    "burst_inventory": true,
+    "hash_ranked_selection": true,
+    "burst_roles": true,
+    "result_roles": true,
+    "fixed_object_identity": true,
+    "selected_total_within_budget": true,
+    "zero_payload_or_pixel_reads": true
+  },
+  "preformal_exclusions": [
+    "A read-only object-shape diagnostic enumerated the 153 immediate prefixes and selected object metadata before the formal runner was committed. It read no object payload body and decoded no pixel.",
+    "The first development report failed only because the parser checked abbreviated payload_N.dng and lens_shading_map_N.tiff tokens while the official page spells payload_N<frame>.dng and lens_shading_map_N<frame>.tiff. The parser literal and its unit fixture were corrected before formal lock; source, selection, objects, budgets and gates did not change.",
+    "No 37 GiB curated subset or 765 GiB full release was downloaded. No selected member body was downloaded during this leaf."
+  ],
+  "claim_ceiling": "Private zero-pixel official HDR+ source and object feasibility only. No object-body acquisition, HDR truth or quality, natural-image evaluation, commercial/share-alike resolution, package, schema, capability, product mapping or candidate-3 admission."
+}

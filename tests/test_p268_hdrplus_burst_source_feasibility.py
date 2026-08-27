@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 
@@ -16,6 +17,7 @@ from scripts.audit_p268_hdrplus_burst_source_feasibility import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/p268_hdrplus_burst_source_feasibility_v1.json"
+EVIDENCE = ROOT / "docs/evidence/P268_HDRPLUS_BURST_SOURCE_FEASIBILITY_RESULT.json"
 
 
 def test_p268_config_forbids_bulk_download_and_freezes_selection() -> None:
@@ -106,3 +108,17 @@ def test_p268_page_facts_are_explicit_and_canonical() -> None:
     assert _canonical_bytes(facts) == _canonical_bytes(
         json.loads(_canonical_bytes(facts))
     )
+
+
+def test_p268_evidence_binds_exact_formal_reports() -> None:
+    evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+    assert evidence["status"] == "PASS_PRIVATE_HDRPLUS_ONE_BURST_SOURCE_FEASIBILITY"
+    assert evidence["result"]["two_complete_reports_byte_exact"] is True
+    assert evidence["result"]["object_payload_body_bytes_read"] == 0
+    assert evidence["result"]["dng_jpeg_tiff_pixel_decodes"] == 0
+    reports = evidence["formal_reports"]
+    assert reports[0]["sha256"] == reports[1]["sha256"]
+    for report in reports:
+        payload = (ROOT / report["path"]).read_bytes()
+        assert len(payload) == report["bytes"]
+        assert hashlib.sha256(payload).hexdigest() == report["sha256"]
