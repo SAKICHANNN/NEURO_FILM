@@ -1,0 +1,36 @@
+{
+  "schema": "neuro_film.p299_hdr_png_create_only_exfat_contract.v1",
+  "experiment_id": "P299",
+  "question": "Can the existing deterministic HDR PNG rail publish create-only on canonical P-backed exFAT without pixel, metadata or byte drift?",
+  "bindings": {
+    "png_stream_path": "src/preprocess/png_stream.py",
+    "png_stream_parent_sha256": "c3d3c35a23efbc1f7b21babd4255c09872c6ff8cc7eec1423b9d1c9266cf9b97",
+    "create_only_path": "src/film_physics/create_only_file.py",
+    "create_only_sha256": "d05292155594392b2c3d3b76f2aa680a3c3f011bab641111393ca3bde708fa37",
+    "p91_evidence_path": "docs/evidence/P91_CANONICAL_PQ_PNG_PARTITION_INVARIANCE_RESULT.json",
+    "p91_evidence_sha256": "827236a6805757cf0392aa1ac38076e0c53c72e40c8edba1189c7b6aab45ee9b",
+    "exfat_parent_evidence_path": "docs/evidence/U6_P8CS1_EXFAT_ATOMIC_PUBLICATION_RESULT.json",
+    "exfat_parent_evidence_sha256": "4e9971a606a76421e03f1e8763ed7136e61962b02252798d50c91e2bd9d8434d",
+    "runner_path": "scripts/audit_p299_hdr_png_create_only_exfat.py",
+    "test_path": "tests/test_p299_hdr_png_create_only_exfat.py"
+  },
+  "formal_fixture": {
+    "width": 37,
+    "height": 29,
+    "seed": 299,
+    "row_count": 7,
+    "logical_output_root": "outputs/eval/p299_hdr_png_create_only_exfat"
+  },
+  "gates": {
+    "existing_destination_preserved": true,
+    "late_destination_preserved": true,
+    "successful_png_bytes_exact": true,
+    "rgb16_samples_exact": true,
+    "rec2100_pq_cicp_exact": true,
+    "stage_residue_zero": true,
+    "p_backed_output": true,
+    "forward_reverse_scientific_exact": true
+  },
+  "stop_rule": "Any overwrite, output drift, stage residue, non-P-backed formal output or replay mismatch closes the leaf without fallback copy, retry, deletion or filesystem bypass.",
+  "claim_ceiling": "Private Windows canonical-P/exFAT create-only transaction safety for existing deterministic Rec.2020/PQ streaming PNG rails only; no new colour transform, HDR/display quality, arbitrary media, package/schema/capability, stock evidence or product-default admission."
+}
