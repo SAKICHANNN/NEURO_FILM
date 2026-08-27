@@ -10,6 +10,7 @@ from scripts.run_p302_wildrelight_spatial_envmap_explicit_operator import (
     _metric,
     _paths,
     _verify_bindings,
+    _verify_role_partition,
 )
 
 
@@ -53,3 +54,19 @@ def test_execution_binding_is_exact_and_tamper_rejects(tmp_path, monkeypatch) ->
     bound.write_bytes(body + b"tamper")
     with pytest.raises(P302Error, match="binding differs"):
         _verify_bindings(config)
+
+
+def test_role_partition_is_scene_and_photo_disjoint() -> None:
+    config = {
+        "roles": {
+            "training": [f"train-{index}" for index in range(12)],
+            "development": [f"dev-{index}" for index in range(6)],
+            "confirmation": [f"confirm-{index}" for index in range(6)],
+            "reserve": [f"reserve-{index}" for index in range(5)],
+            "directed_pairs": [[0, 1], [2, 3], [4, 5]],
+        }
+    }
+    assert _verify_role_partition(config)["scene_overlap_zero"] is True
+    config["roles"]["confirmation"][0] = "dev-0"
+    with pytest.raises(P302Error, match="roles overlap"):
+        _verify_role_partition(config)

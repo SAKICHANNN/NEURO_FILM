@@ -109,6 +109,10 @@ def build_evidence(
         "formal_network_zero": report.get("network_bytes") == 0,
         "report_gates_all_pass": all(report.get("gates", {}).values()),
         "report_phase_exact": report.get("phase") == phase,
+        "role_partition_exact": report.get("role_partition", {}).get(
+            "scene_overlap_zero"
+        )
+        is True,
         "reserve_unread": report.get("reserve_member_reads") == 0,
         "source_lock_no_payload_or_pixels": source_lock.get(
             "archive_or_payload_requests"

@@ -101,6 +101,32 @@ def _verify_bindings(config: dict[str, Any]) -> list[dict[str, object]]:
     return states
 
 
+def _verify_role_partition(config: dict[str, Any]) -> dict[str, object]:
+    expected_counts = {
+        "training": 12,
+        "development": 6,
+        "confirmation": 6,
+        "reserve": 5,
+    }
+    role_sets = {
+        role: set(map(str, config["roles"].get(role, []))) for role in expected_counts
+    }
+    if any(len(role_sets[role]) != count for role, count in expected_counts.items()):
+        raise P302Error("P302 role count differs")
+    combined = set().union(*role_sets.values())
+    if len(combined) != sum(expected_counts.values()) or "lake" in combined:
+        raise P302Error("P302 scene roles overlap or include the consumed scene")
+    pairs = [tuple(map(int, pair)) for pair in config["roles"]["directed_pairs"]]
+    flattened = [index for pair in pairs for index in pair]
+    if pairs != [(0, 1), (2, 3), (4, 5)] or len(flattened) != len(set(flattened)):
+        raise P302Error("P302 directed photo roles differ or overlap")
+    return {
+        "directed_pairs": [list(pair) for pair in pairs],
+        "role_counts": expected_counts,
+        "scene_overlap_zero": True,
+    }
+
+
 def _local_root(config: dict[str, Any]) -> Path:
     relative = Path(str(config["source"]["local_root"]))
     if relative.is_absolute() or ".." in relative.parts:
@@ -523,6 +549,7 @@ def _worker(
     config_body = config_path.read_bytes()
     config = json.loads(config_body)
     binding_states = _verify_bindings(config)
+    role_partition = _verify_role_partition(config)
     manifest = _load_manifest(config)
     members = _members_by_path(manifest)
     source_states = _verify_roles(config, manifest, ("training", phase))
@@ -539,6 +566,7 @@ def _worker(
         "phase": phase,
         "openexr_version": OpenEXR.__version__,
         "reserve_member_reads": 0,
+        "role_partition": role_partition,
         "schema": "neuro-film.p302-wildrelight-development-result.v1",
         "source_file_count": len(source_states),
         "source_files_exact": all(state["valid"] for state in source_states),
@@ -631,9 +659,7 @@ def execute(
     )
     if not report["gates"]["runtime_source_cleanup"]:
         report["decision"] = f"FAIL_CLOSED_P302_{phase.upper()}"
-    report["gates"]["development_model_match"] = report[
-        "development_model_match"
-    ]
+    report["gates"]["development_model_match"] = report["development_model_match"]
     if not report["gates"]["development_model_match"]:
         report["decision"] = f"FAIL_CLOSED_P302_{phase.upper()}"
     report["scientific_identity"] = "sha256:" + _sha256(

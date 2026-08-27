@@ -39,6 +39,7 @@ def test_evidence_preserves_candidate_boundary_and_development_pass() -> None:
         "network_bytes": 0,
         "phase": "development",
         "reserve_member_reads": 0,
+        "role_partition": {"scene_overlap_zero": True},
         "scientific_identity": "sha256:science",
         "summary": {"candidate_control_rate": 1.0},
         "target_reads_before_model_lock": 0,
@@ -85,6 +86,7 @@ def test_evidence_fails_closed_on_confirmation_read() -> None:
         "network_bytes": 0,
         "phase": "development",
         "reserve_member_reads": 0,
+        "role_partition": {"scene_overlap_zero": True},
     }
     evidence = build_evidence(
         config_body=config_body,
