@@ -561,7 +561,11 @@ def _worker(
         "binding_states": binding_states,
         "config_bytes": len(config_body),
         "config_sha256": _sha256(config_body),
-        "confirmation_member_reads": 0,
+        "confirmation_member_reads": (
+            0
+            if phase == "development"
+            else sum(member["role"] == "confirmation" for member in manifest["members"])
+        ),
         "experiment_id": "P302",
         "phase": phase,
         "openexr_version": OpenEXR.__version__,
