@@ -5,6 +5,13 @@ import json
 import subprocess
 from pathlib import Path
 
+from scripts.audit_p282_libavif_gainmap_windows_runtime import (
+    build_base_command,
+    build_metadata_command,
+    build_tonemap_command,
+    parse_alternate_headroom,
+)
+
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/p282_libavif_gainmap_windows_runtime_v1.json"
 
@@ -29,9 +36,9 @@ def test_p282_runtime_source_lock_is_exact_and_minimal() -> None:
     assert set(manifest_rows) == set(expected)
     for name, row in expected.items():
         assert {key: manifest_rows[name][key] for key in row} == row
-    assert {path.name for path in root.iterdir() if path.is_file()} == set(
-        expected
-    ) | {"SOURCE.json"}
+    assert {path.name for path in root.iterdir() if path.is_file()} == set(expected) | {
+        "SOURCE.json"
+    }
     for name, row in expected.items():
         path = root / name
         assert path.stat().st_size == row["size"]
@@ -64,6 +71,48 @@ def test_p282_fixture_roles_and_commands_are_frozen() -> None:
         "{input}",
         "--jobs",
         "1",
+    ]
+
+
+def test_p282_command_builders_and_metadata_parser_are_exact() -> None:
+    executable = Path("avifgainmaputil.exe")
+    source = Path("input.avif")
+    output = Path("output.png")
+    assert (
+        parse_alternate_headroom(" * Alternate headroom:  2.5 (as fraction: 5/2)")
+        == 2.5
+    )
+    assert build_metadata_command(executable, source) == [
+        "avifgainmaputil.exe",
+        "printmetadata",
+        "input.avif",
+        "--jobs",
+        "1",
+    ]
+    assert build_tonemap_command(executable, source, output, 2.5) == [
+        "avifgainmaputil.exe",
+        "tonemap",
+        "input.avif",
+        "output.png",
+        "--headroom",
+        "2.5",
+        "--jobs",
+        "1",
+        "--depth",
+        "12",
+        "--speed",
+        "10",
+    ]
+    assert build_base_command(Path("avifdec.exe"), source, output) == [
+        "avifdec.exe",
+        "--jobs",
+        "1",
+        "--depth",
+        "16",
+        "--png-compress",
+        "0",
+        "input.avif",
+        "output.png",
     ]
 
 
