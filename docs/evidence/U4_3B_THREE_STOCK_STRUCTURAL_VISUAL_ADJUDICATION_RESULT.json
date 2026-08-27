@@ -1,0 +1,105 @@
+{
+  "schema": "neuro-film.u4-3b-three-stock-structural-visual-adjudication-result.v1",
+  "experiment_id": "U4.3B",
+  "date": "2026-08-27",
+  "status": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT_IN_FROZEN_REVIEW_SET",
+  "implementation_commit": "9b43eab7",
+  "config": {
+    "path": "configs/u4_3b_three_stock_structural_visual_adjudication_v1.json",
+    "sha256": "1972dc08468f5646b8e342dc827e48391ef282d7caf10f913f465b7aadf6cd8d"
+  },
+  "material_report": {
+    "path": "outputs/eval/u4_3b_three_stock_structural_visual_adjudication_v1/material_report.json",
+    "bytes": 12820,
+    "sha256": "62e9d945d4e7643643c21ceafec3a2bc022a7ce874b02f190d76874290e58015",
+    "forward_reverse_byte_exact": true,
+    "scientific_identity": "d4042a6579336d0c77344c5613060332c86080e3743af0b4901b6c36acd3f3b7"
+  },
+  "review_protocol": {
+    "reviewer_class": "autonomous_visual_evidence",
+    "selection_frozen_before_review": true,
+    "selected_pairs": 11,
+    "source_output_overviews_reviewed": 11,
+    "exact_pixel_crop_pairs_reviewed": 33,
+    "post_review_substitution_count": 0,
+    "render_calls": 0,
+    "network_reads": 0,
+    "aggregate_scalar_score_present": false,
+    "automatic_metric_veto_present": false
+  },
+  "adjudications": [
+    {
+      "source_id": "canon_eos_kiss_f",
+      "arm_id": "ao6_velvia50_display_proxy_t15_c35",
+      "decision": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT",
+      "rationale": "AO6 strongly changes night-scene colour and contrast and amplifies visible road texture, but the paired crops show continuous billboard, vehicle and reflection structure without new colour blocks, isolated impulses, banding or objectionable halos."
+    },
+    {
+      "source_id": "fujifilm_finepix_s5000",
+      "arm_id": "ao6_velvia50_display_proxy_t15_c35",
+      "decision": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT",
+      "rationale": "The house render is strongly contrasty and saturated, while window, siding, door, gravel and roof edges remain continuous in all three exact-pixel crops; no confirmed structural defect is visible."
+    },
+    {
+      "source_id": "leica_d_lux_6",
+      "arm_id": "ao6_velvia50_display_proxy_t15_c35",
+      "decision": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT",
+      "rationale": "The cyan-orange treatment is extreme, but rail, roof and cloud structures remain coherent; the bright sky region was already highlight-limited in the source and no new band, block, seam or isolated speckle is confirmed."
+    },
+    {
+      "source_id": "leica_d_lux_6",
+      "arm_id": "legacy_unpaired_safe_lab_k1_portra400",
+      "decision": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT",
+      "rationale": "The output remains structurally close to the source across the three sky crops, with continuous cloud gradients and no visible new artifact."
+    },
+    {
+      "source_id": "leica_d_lux_6",
+      "arm_id": "legacy_unpaired_safe_lab_k1_velvia50",
+      "decision": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT",
+      "rationale": "The output adds moderate colour separation while retaining cloud, skyline and highlight structure; no severe anomaly is confirmed."
+    },
+    {
+      "source_id": "leica_digilux_3",
+      "arm_id": "ao6_velvia50_display_proxy_t15_c35",
+      "decision": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT",
+      "rationale": "The indoor output has strong teal-warm separation, but banister, stair, wall texture, lamp and frame edges stay continuous without halos, blocks, geometry loss or banding."
+    },
+    {
+      "source_id": "olympus_e_p7",
+      "arm_id": "ao6_velvia50_display_proxy_t15_c35",
+      "decision": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT",
+      "rationale": "Flower, grass and horizon detail remain coherent under the stronger warm-green treatment; the crop pairs show no confirmed impulse, seam, posterization or geometry damage."
+    },
+    {
+      "source_id": "olympus_sp550uz",
+      "arm_id": "ao6_velvia50_display_proxy_t15_c35",
+      "decision": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT",
+      "rationale": "Bright grass and fence tones are aggressive, but the exact-pixel crops retain continuous grass, fence, tree and wire detail; no band, colour block, halo or isolated chroma speckle is confirmed."
+    },
+    {
+      "source_id": "panasonic_dmc_fz100",
+      "arm_id": "ao6_velvia50_display_proxy_t15_c35",
+      "decision": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT",
+      "rationale": "The flowering tree is rendered very bright, yet branch and leaf structure remains traceable in every selected crop and no new block, halo, seam or isolated impulse is confirmed."
+    },
+    {
+      "source_id": "panasonic_dmc_gf2",
+      "arm_id": "ao6_velvia50_display_proxy_t15_c35",
+      "decision": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT",
+      "rationale": "The forest treatment increases local contrast and blue-orange separation, while leaf, trunk and path structure stays coherent without visible structural corruption."
+    },
+    {
+      "source_id": "sony_dslr_a290",
+      "arm_id": "ao6_velvia50_display_proxy_t15_c35",
+      "decision": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT",
+      "rationale": "The orchid becomes much darker and more saturated, but petal veins, stem edges and defocused background transitions remain coherent without a confirmed severe artifact."
+    }
+  ],
+  "decision_counts": {
+    "PASS_NO_CONFIRMED_SEVERE_ARTIFACT": 11,
+    "FAIL_CONFIRMED_SEVERE_ARTIFACT": 0,
+    "REVIEW_UNRESOLVED": 0
+  },
+  "decision": "Close the frozen U4.3A top-three queue union with no confirmed severe artifact. Retain AO6's elevated structural-tail diagnostics as a prioritization signal, not a veto; no operator change or rescue is authorized by this review.",
+  "claim_ceiling": "Autonomous visual evidence on 11 preselected RF3.D0 raster pairs only; not population preference, stock identification, calibrated film response, universal safety, multi-stock completion or product promotion."
+}
