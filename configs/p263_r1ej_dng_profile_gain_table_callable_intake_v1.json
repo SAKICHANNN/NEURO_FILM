@@ -1,0 +1,55 @@
+{
+  "schema": "neuro-film.p263-r1ej-dng-profile-gain-table-callable-intake-contract.v1",
+  "experiment_id": "P263",
+  "node": "ULT > mature RAW/DNG explicit mechanisms > P263",
+  "status": "FROZEN_BEFORE_FIXTURE_DESERIALIZATION_OR_CALLABLE_IMPORT",
+  "question": "Can the consumer independently verify and execute the exact R1EJ ProfileGainTableMap v1 callable from source-locked producer Git objects without copying it into consumer src?",
+  "contract_path": "docs/planning/P263_R1EJ_DNG_PROFILE_GAIN_TABLE_CALLABLE_INTAKE_CONTRACT.md",
+  "producer": {
+    "repo_head": "5f96c1b99bd53d715643782423ec72dd66feec5e",
+    "contract_commit": "311e22e551ce12dc2db35c7d3f59cdf7c6004538",
+    "implementation_commit": "1473f0caabf34f0c1c649517fdd49e907050624e",
+    "audit_commit": "d92659349f9eb1e369b7da6710e9e7ac4f30f4c4",
+    "execution_commit": "af839ca46fec368516559441966fb097124b9621",
+    "evidence_commit": "5f96c1b99bd53d715643782423ec72dd66feec5e"
+  },
+  "callable": {
+    "id": "zhuise.dng-profile-gain-table-callable.v1",
+    "function": "zhuise.dng_profile_gain_table_callable.apply_dng_profile_gain_table_callable_v1",
+    "input": "finite HxWx3 linear ProPhoto/ROMM RGB after ProfileHueSatMap",
+    "output": "owned writable C-contiguous float32 HxWx3 linear ProPhoto/ROMM RGB",
+    "stage_order": "after ProfileHueSatMap and before exposure, ProfileLookTable and ProfileToneCurve"
+  },
+  "artifacts": {
+    "contract": {"commit_role": "contract_commit", "path": "docs/research/R1EJ_DNG_PROFILE_GAIN_TABLE_CALLABLE_V1_CONTRACT.json", "git_blob": "571f3295db62f67befb3fcdf125dc6c63bf8ee11", "bytes": 3757, "sha256": "17c2c8bf3c118f2f89aa05cc67c899fbb04a3b69a20bd9475f38387c60d39239"},
+    "schema": {"commit_role": "implementation_commit", "path": "schemas/zhuise_dng_profile_gain_table_callable_v1.schema.json", "git_blob": "314b6708302e61f9df5789877c2e8485946429ef", "bytes": 1644, "sha256": "435d04417de9af9dab218f23452c04f8696ccf2b6bf815bed0da54ad9e57142b"},
+    "callable": {"commit_role": "implementation_commit", "path": "src/zhuise/dng_profile_gain_table_callable.py", "git_blob": "057f84c30478175cd7ee3bf55def978f68830733", "bytes": 6291, "sha256": "3025af18cb8b6f9540815d0971ce3228ede45288148607d224487414be200439"},
+    "fixture": {"commit_role": "implementation_commit", "path": "tests/fixtures/r1dy_dng_profile_gain_table_callable_v1_fixture.json", "git_blob": "96962f3b492221bfdca505e5874fabf91c55fcc5", "bytes": 1291, "sha256": "37bda94a036b84ae125c84c32f4e20b101b3bec468e6907ea13b2987bddee724"},
+    "execution_lock": {"commit_role": "execution_commit", "path": "docs/research/R1EJ_DNG_PROFILE_GAIN_TABLE_CALLABLE_EXECUTION_LOCK.json", "git_blob": "4b14e04b9ca9e9b25af3bfc41cbc3039f41a0f54", "bytes": 2217, "sha256": "8a150b4d9bb13241be44c8c64bc6400b75c2d5d8219b5b9f194053d815fdbfc6"},
+    "evidence": {"commit_role": "evidence_commit", "path": "docs/evidence/R1EJ_DNG_PROFILE_GAIN_TABLE_CALLABLE_HANDOFF_RESULT.json", "git_blob": "d901c5d20ebbf126a3c4801c12a4a2b4e76eb91a", "bytes": 3640, "sha256": "7a978197fc9617bb0e674e838bfd96ad12a425e5b93f82de189691fdcad246d1"}
+  },
+  "producer_summary_bindings": {
+    "fixture_output_f32le_sha256_prefix": "9b74c55d",
+    "fixture_output_f32le_sha256_suffix": "5b9b0",
+    "formal_report_sha256": "6d3b381a08674eb3b78935f9d6c6f4ed6be0d6a902059f260c06bc3e3d9b0f3a",
+    "stable_identity_prefix": "fa61d6dc",
+    "stable_identity_suffix": "323be"
+  },
+  "gates": {
+    "require_contract_commit_before_fixture_read": true,
+    "require_exact_git_objects": true,
+    "require_no_producer_worktree_import": true,
+    "require_no_source_copy_into_consumer_src": true,
+    "require_draft202012_schema_validation": true,
+    "require_fixture_output_f32le_exact": true,
+    "require_default_sdr_direct_parity": true,
+    "require_owned_contiguous_writable_float32_output": true,
+    "require_input_and_payload_immutable": true,
+    "require_all_invalid_controls_reject": true,
+    "require_zero_network_and_new_pixels": true,
+    "require_zero_temporary_residue": true,
+    "require_two_fresh_reports_exact": true
+  },
+  "stop_rule": "Any source identity, schema, domain, stage-order, output, ownership, mutation, invalid-control, replay or cleanup mismatch closes P263 without implementation copy, worktree substitution, tuning, tolerance relaxation, loader integration or product mapping.",
+  "claim_ceiling": "Private consumer replay of one exact R1EJ DNG ProfileGainTableMap v1 callable and canonical fixture only; no ProfileGainTableMap2, full DNG renderer, real-pixel quality, arbitrary profile/camera, default-loader integration, public package/schema/capability, stock evidence, automatic matching or product admission. Candidate 3 remains closed at 2/3."
+}
