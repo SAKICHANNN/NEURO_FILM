@@ -1,0 +1,74 @@
+{
+  "schema": "neuro-film.p276-luckyhdr-private-runtime-d0-evidence.v1",
+  "experiment_id": "P276",
+  "date": "2026-08-27",
+  "status": "PASS_PRIVATE_LUCKYHDR_OFFICIAL_BRACKET_RUNTIME_D0",
+  "decision": "Retain one exact private runtime/mechanism D0 for the official LuckyHDR checkpoint on its bundled real iPhone ProRAW bracket. Do not infer HDR quality or consume candidate3 because the demo has no aligned HDR target and product rights remain unresolved.",
+  "fixed_identity": {
+    "contract_commit": "e4d5fcdb",
+    "implementation_commit": "466f8150",
+    "formal_lock_commit": "78a3a3fd",
+    "formal_lock_sha256": "33759db947579805382dea5ab62ffb4cf4461fadca96eb62bbfda31b0c5547b6",
+    "repository_commit": "f5aec06fb70cd092973be5d15ec43899f8209293",
+    "repository_tree": "37c05025490bd8a67494d953f23a7cebb521bc9a",
+    "source_manifest_sha256": "d06b0030f5bd70a22f395777e108905dda9b1969623bdc6bb4d62ad9b0ce7661",
+    "scientific_identity": "sha256:309eb5becd84c7672bdf5643a0e99c032748f080cd36e6cc5ff7924c6d5c2a1b"
+  },
+  "reports": {
+    "acquisition": {"bytes": 2569, "sha256": "d06b0030f5bd70a22f395777e108905dda9b1969623bdc6bb4d62ad9b0ce7661"},
+    "forward": {"bytes": 3951, "sha256": "8d59f62f7520bd94909a96e36af975250f72db51b557d687ca41f0a696d7de94", "wall_seconds": 7.715605899997172},
+    "reverse": {"bytes": 3951, "sha256": "b7d4e7d92d884f42df3191318d02b718b48b2f351b30bfcbfe23d2ba300f8ce4", "wall_seconds": 7.516960899996775}
+  },
+  "source": {
+    "objects": 11,
+    "bytes": 27583023,
+    "checkpoint_bytes": 524786,
+    "three_dng_bytes": 27000234,
+    "frame_roles": ["short", "mid", "long"],
+    "exposures": [1.0, 3.7, 30.0],
+    "acquisition_pixel_decodes": 0,
+    "acquisition_model_loads": 0,
+    "target_reads": 0
+  },
+  "runtime": {
+    "python": "3.12.10",
+    "torch": "2.11.0+cu128",
+    "torch_cuda": "12.8",
+    "numpy": "2.4.4",
+    "rawpy": "0.26.1",
+    "opencv": "4.13.0",
+    "imageio": "2.37.3",
+    "device": "NVIDIA GeForce RTX 5070 Ti Laptop GPU",
+    "max_size": 2048
+  },
+  "result": {
+    "two_fresh_processes_scientific_exact": true,
+    "output_png_bytes": 3740928,
+    "output_png_sha256": "b212ee54a3746115cdf654d96adfc174be6e78ea995aaf4d35d2cb5e8e599cad",
+    "output_rgb8_sha256": "44149831bd4ce7d3f43cd31d2ed2f3382709352fb5bbd5a177aecc5647021d62",
+    "output_shape": [2048, 1536, 3],
+    "output_range": [0, 255],
+    "all_source_identities_exact": true,
+    "source_immutable": true,
+    "formal_temporary_residue": 0,
+    "target_reads": 0,
+    "metric_runs": 0,
+    "training_reads": 0,
+    "external_capture_reads": 0
+  },
+  "preformal_notes": [
+    "Bounded curl retries emitted transient Schannel handshake errors while acquiring distinct objects, then completed all 11 exact Git blobs without mirror or substitution.",
+    "The acquisition report and persisted source manifest are intentionally byte-identical canonical JSON."
+  ],
+  "rights_and_product": {
+    "root_software_license": "MIT",
+    "demo_capture_redistribution_clear": false,
+    "upstream_training_data_product_rights_clear": false,
+    "hdr_ground_truth_quality": false,
+    "arbitrary_bracket": false,
+    "public_package_schema_capability": false,
+    "product_admission": false,
+    "candidate_3": false
+  },
+  "claim_ceiling": "Private runtime/mechanism D0 for one exact official LuckyHDR checkpoint and one exact bundled real three-frame ProRAW bracket only; no HDR ground-truth quality, arbitrary bracket, redistribution/commercial rights, package/schema/capability/product admission or candidate3."
+}

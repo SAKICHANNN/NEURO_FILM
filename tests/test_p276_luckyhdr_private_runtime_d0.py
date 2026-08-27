@@ -13,6 +13,7 @@ from scripts.run_p276_luckyhdr_private_runtime_d0 import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/p276_luckyhdr_private_runtime_d0_v1.json"
+EVIDENCE = ROOT / "docs/evidence/P276_LUCKYHDR_PRIVATE_RUNTIME_D0_RESULT.json"
 
 
 def test_p276_contract_is_bounded_and_rights_limited() -> None:
@@ -31,3 +32,14 @@ def test_p276_git_blob_identity_helper() -> None:
 def test_p276_invalid_order_rejects_before_source_access() -> None:
     with pytest.raises(P276Error, match="order"):
         execute(CONFIG, ROOT, "sideways")
+
+
+def test_p276_evidence_preserves_runtime_and_claim_boundary() -> None:
+    evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+    assert evidence["status"] == "PASS_PRIVATE_LUCKYHDR_OFFICIAL_BRACKET_RUNTIME_D0"
+    assert evidence["result"]["two_fresh_processes_scientific_exact"] is True
+    assert evidence["result"]["output_shape"] == [2048, 1536, 3]
+    assert evidence["result"]["target_reads"] == 0
+    assert evidence["result"]["metric_runs"] == 0
+    assert evidence["rights_and_product"]["hdr_ground_truth_quality"] is False
+    assert evidence["rights_and_product"]["candidate_3"] is False
