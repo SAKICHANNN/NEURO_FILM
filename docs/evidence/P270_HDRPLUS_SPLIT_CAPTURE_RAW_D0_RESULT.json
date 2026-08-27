@@ -1,0 +1,64 @@
+{
+  "schema": "neuro-film.p270-hdrplus-split-capture-raw-d0-evidence.v1",
+  "experiment_id": "P270",
+  "status": "FAIL_CLOSED_HDRPLUS_SPLIT_CAPTURE_RAW_MECHANISM_D0",
+  "decision": "Aligned four-frame averaging materially beats the same four frames averaged without alignment, but it is substantially worse than the strongest frozen single-frame identity/Gaussian control on independently held-out captures. Close this exact one-burst split-capture family without alignment, block, sigma, role or threshold rescue.",
+  "bindings": {
+    "parent_p269_evidence_sha256": "fd2a4d8d966795cf2e21a1d3997991398bc8fc141260a489e71275e96fc9ac96",
+    "contract_commit": "a55fa2856b69580f1a141cb4ec84e4f88119b14f",
+    "contract_sha256": "d9eaff092c3947694676a2a50568b69e1008ba1abe154025179b7992f0364d8b",
+    "implementation_commit": "f27c13990f2eaebc33ca3ca92a639737ac05d430",
+    "formal_lock_commit": "24ecbf9bc30820dfa2cb46c362112013ae1e2f74",
+    "runner_git_blob": "9ac70c1fb6dfd38b9503a8b93732cfe296d4bcdf",
+    "runner_sha256": "d81523eeae8113cff819c1dc5a74b157934838a60c877b8410ad14ea887c3593",
+    "config_git_blob": "a23be151addfb355a3082f53be99297709f0e418",
+    "config_sha256": "1cbcfb9ecca57133e7c14d2cb7d28a54c4d9c95d850c21f94d9c8891cfb469db"
+  },
+  "formal_reports": [
+    {
+      "path": "outputs/eval/p270_hdrplus_split_capture_raw_d0/formal_result.json",
+      "bytes": 148162,
+      "sha256": "5f4ce8145b70f1bca3b50c2777623e8669eeb2bbc0fcb3bd501112163b63bc86"
+    },
+    {
+      "path": "outputs/eval/p270_hdrplus_split_capture_raw_d0/formal_replay.json",
+      "bytes": 148161,
+      "sha256": "68b3930b0a46f89a212c7459e783f9e3619961fb7d9835ceb933ba446752ddb3"
+    }
+  ],
+  "result": {
+    "stable_scientific_identity": "ee9a970dcb304f6c010f8964ad1ee76d736f8409f64f3a5e1202b60306cd1e34",
+    "two_complete_reports_scientific_exact": true,
+    "candidate_freeze_identity": "47742b2738b9bc332e4b1a2cc7307293f53a255682ef620fa5f47a76f65e7c06",
+    "blocks_sha256": "3339e7a1f9ad44879562edf39790090b18be807026a3e011fe6f9cb17d4d755c",
+    "candidate_freeze_event_index": 4,
+    "frozen_blocks": 512,
+    "valid_heldout_blocks": 486,
+    "aligned_even_overlap": 0.996695746199714,
+    "maximum_abs_halfres_shift_pixels": 3.8677810316717114,
+    "vs_strongest_single_win_rate": 0.08641975308641975,
+    "vs_strongest_single_median_reduction": -0.1311482856510614,
+    "vs_strongest_single_p05_reduction": -0.231421217946296,
+    "vs_strongest_single_worst_reduction": -0.3000761163350651,
+    "vs_unaligned_win_rate": 1.0,
+    "vs_unaligned_median_reduction": 0.22372009660425063,
+    "vs_unaligned_p05_reduction": 0.17480377502486594,
+    "vs_unaligned_worst_reduction": 0.1514550828869024,
+    "result_pixel_reads": 0,
+    "fit_train_inference_reads": 0
+  },
+  "gates": {
+    "candidate_frozen_before_heldout": true,
+    "shift": true,
+    "overlap": true,
+    "block_support": true,
+    "vs_strongest_single_rate": false,
+    "vs_strongest_single_median": false,
+    "vs_strongest_single_worst": false,
+    "vs_unaligned_rate": true,
+    "vs_unaligned_median": true,
+    "zero_result_and_model_reads": true
+  },
+  "mechanism_interpretation": "Translation alignment is active and useful relative to an unaligned temporal mean, but on this one handheld burst the remaining motion/interpolation mismatch exceeds the independent-noise reduction when compared with strong single-frame controls. This does not justify a fresh-group program for the unchanged mechanism.",
+  "claim_ceiling": "Private one-scene split-capture RAW negative only. No HDR truth or quality, natural-scene generalization, fresh-group result, package, schema, capability, product mapping or candidate-3 admission."
+}

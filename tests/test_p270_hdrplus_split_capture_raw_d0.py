@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 
@@ -15,6 +16,7 @@ from scripts.run_p270_hdrplus_split_capture_raw_d0 import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/p270_hdrplus_split_capture_raw_d0_v1.json"
+EVIDENCE = ROOT / "docs/evidence/P270_HDRPLUS_SPLIT_CAPTURE_RAW_D0_RESULT.json"
 
 
 def test_p270_roles_and_gates_are_frozen() -> None:
@@ -57,3 +59,20 @@ def test_p270_reduction_handles_zero_baseline() -> None:
     assert _reduction(0.0, 0.0) == 0.0
     assert _reduction(1.0, 0.0) == -1e9
     assert _reduction(1.0, 2.0) == 0.5
+
+
+def test_p270_evidence_binds_exact_negative_without_result_pixels() -> None:
+    evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+    assert evidence["status"] == "FAIL_CLOSED_HDRPLUS_SPLIT_CAPTURE_RAW_MECHANISM_D0"
+    assert evidence["result"]["two_complete_reports_scientific_exact"] is True
+    assert evidence["result"]["vs_unaligned_win_rate"] == 1.0
+    assert evidence["result"]["vs_strongest_single_win_rate"] < 0.75
+    assert evidence["result"]["result_pixel_reads"] == 0
+    for report in evidence["formal_reports"]:
+        payload = (ROOT / report["path"]).read_bytes()
+        assert len(payload) == report["bytes"]
+        assert hashlib.sha256(payload).hexdigest() == report["sha256"]
+        assert (
+            json.loads(payload)["scientific_identity"]
+            == evidence["result"]["stable_scientific_identity"]
+        )
