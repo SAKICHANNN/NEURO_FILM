@@ -1,0 +1,115 @@
+{
+  "schema": "neuro-film.p291-libavif-gainmap-encode-pq-roundtrip-contract.v1",
+  "experiment_id": "P291",
+  "status": "PREREGISTERED_BEFORE_INTEGRATION_EXECUTION",
+  "contract": [
+    "docs/planning/P291_LIBAVIF_GAINMAP_ENCODE_PQ_ROUNDTRIP_CONTRACT.md",
+    4238,
+    "6c7d2829c46216a250de78147f2d1a8ae38aceff7528a9bad5666f19bf04c74a",
+    "d185fdc6"
+  ],
+  "parents": {
+    "p289_config": [
+      "configs/p289_libavif_gainmap_encoder_d0_v1.json",
+      4395,
+      "c337598aa168fcb1808648ab09e838cb169bcafab79f8414c12fe304a9386767"
+    ],
+    "p289_evidence": [
+      "docs/evidence/P289_LIBAVIF_GAINMAP_ENCODER_D0_RESULT.json",
+      4684,
+      "084ae8306e0dcd64b3aa81a887fc858177eddf287260d8dda6016b39753549e8"
+    ],
+    "p290_config": [
+      "configs/p290_libavif_gainmap_create_only_api_v1.json",
+      4003,
+      "ed2b157e815c40145223af6be3094d9aea9a07d1fea5e1f1c0b89f9d5edd79c2"
+    ],
+    "p290_evidence": [
+      "docs/evidence/P290_LIBAVIF_GAINMAP_CREATE_ONLY_API_RESULT.json",
+      5067,
+      "0fcb39779e2ae11d4c219ea6bcce96234a7471406db7e0ab8d687fa251806157"
+    ],
+    "p283_evidence": [
+      "docs/evidence/P283_LIBAVIF_GAINMAP_P87_BRIDGE_RESULT.json",
+      3670,
+      "fb3e34da7126f1b8aa9a5803354c3d3c3ad61f220ae2f68db9ddc2e9a3eaf442"
+    ],
+    "p284_evidence": [
+      "docs/evidence/P284_LIBAVIF_GAINMAP_PQ_PNG_RESULT.json",
+      3832,
+      "70293e19a2e8878af0a5a2134c676d382126087e1a713b8a6fee6ab8b5ce48da"
+    ]
+  },
+  "implementation": {
+    "p289_runner": [
+      "scripts/audit_p289_libavif_gainmap_encoder_d0.py",
+      15347,
+      "700090e3bbbc18e78839f9dbf4184b0ee576066bac0d52b1dea67078bef9de02"
+    ],
+    "p290_encoder": [
+      "src/preprocess/libavif_gainmap_encoder.py",
+      8956,
+      "c512c8312845bfa62ef733674d4433613d605e9e3ab9f755d94c5f363002d80d"
+    ],
+    "p283_ingress": [
+      "src/color_match/libavif_gainmap_ingress.py",
+      10687,
+      "665865f953640e7e990583f2865e1ceedca360bf5f39c43320a94d9145ea94a3"
+    ],
+    "pq_transfer": [
+      "src/preprocess/rec2100_pq_transfer.py",
+      4347,
+      "22b30ca4bd9cd67a2483380816cb656aa3c1b16d3cb8dced787f7184d00b6039"
+    ],
+    "png_stream": [
+      "src/preprocess/png_stream.py",
+      12824,
+      "c3d3c35a23efbc1f7b21babd4255c09872c6ff8cc7eec1423b9d1c9266cf9b97"
+    ]
+  },
+  "profile": {
+    "base_cicp": [1, 16, 0],
+    "alternate_cicp": [1, 13, 0],
+    "base_headroom": 1.3,
+    "alternate_headroom": 0.0,
+    "decoder_version": "1.4.2",
+    "higher_rendition_role": "base",
+    "reference_white_nits": 203.0,
+    "png_row_count": 32
+  },
+  "fixture": {
+    "source_name": "seine_hdr_gainmap_small_srgb.avif",
+    "source_sha256": "573a67fdd581f6e634da198a819cc92a071539dfb720c5d7dfdf02e4e87a0346",
+    "width": 400,
+    "height": 300,
+    "hdr_png_sha256": "404ed7c29bb645481ceda29673c9ff7911c784a114c1d57ceca8cd52fac510c3",
+    "hdr_pixel_sha256": "1f59517838b55b2536bfb355a1c6ff8f86dc4987fe393d366b58329c66a8fb4d",
+    "sdr_png_sha256": "ebfe3af6ad2035d5f808297882fdee737e5fc560d4495c4e80862ee93422e644",
+    "sdr_pixel_sha256": "944aa53e798ed1fc1a28525398aee69f77ce4a5894aca7efd96a2e634f6b571d",
+    "media_bytes": 726506,
+    "media_sha256": "94556d9f58b54955a07b5d8303da74d3ab350ef3eb061aab655cc5da7af6da70",
+    "receipt_sha256": "043061bb1e738b63f9a94364cefb53107cc91a011e7ef8dd46147f2f6de08e00",
+    "decoded_hdr_pixel_sha256": "87dfef6b5f8380580c6b309f3e9e4606502ed034e8391b44b7ff83b3c85eb1ea",
+    "decoded_sdr_pixel_sha256": "894cf73174653acb08a02a06aab341e94f360739fdfb06168beb5e8c840cb634"
+  },
+  "gates": {
+    "decoded_vs_direct_hdr_median_code_error_max": 1.0,
+    "decoded_vs_direct_hdr_p95_code_error_max": 16.0,
+    "decoded_vs_direct_hdr_max_code_error_max": 17,
+    "pq_vs_decoded_hdr_median_code_error_max": 0.0,
+    "pq_vs_decoded_hdr_p95_code_error_max": 0.0,
+    "pq_vs_decoded_hdr_max_code_error_max": 1,
+    "pq_vs_direct_hdr_median_code_error_max": 1.0,
+    "pq_vs_direct_hdr_p95_code_error_max": 16.0,
+    "pq_vs_direct_hdr_max_code_error_max": 18,
+    "require_all_identities_exact": true,
+    "require_profile_geometry_ownership_exact": true,
+    "require_repeat_png_exact": true,
+    "require_invalid_controls_atomic": true,
+    "require_source_runtime_immutable": true,
+    "require_report_byte_exact": true,
+    "require_zero_residue": true
+  },
+  "stop_rule": "Any failed gate closes exact P291 without changing codec parameters, matrices, transfer functions, quantization rules, thresholds, fixture or backend. No clipping, metadata rewriting, tolerance rescue or second fixture.",
+  "claim_ceiling": "One private Windows end-to-end arithmetic/container integration for the exact P289/P290 fixture through unchanged P283/P284 only. No SDR tone policy, complete ISO 21496-1, arbitrary AVIF/HEIF or HDR quality, display validation, public dependency/API/package/schema/capability, default loader, product admission, stock evidence or candidate3 change."
+}
