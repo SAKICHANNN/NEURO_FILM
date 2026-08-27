@@ -1,0 +1,34 @@
+{
+  "schema": "neuro_film.p301_mono_hdr_3d_real_exposure_source_contract.v1",
+  "experiment_id": "P301",
+  "repository": {
+    "url": "https://github.com/prinasi/Mono-HDR-3D",
+    "commit": "80ca495897343cbcbd4feb55bfb5b887901c8aff",
+    "tree": "a9a65c1bdf414282dd68c18386adada9a2a01dff",
+    "readme_git_blob": "4992f033c0f9155e8c3c5322e6bcfe2687907fc7",
+    "readme_bytes": 4720,
+    "readme_sha256": "6ad7862a36b4a0c7b9f68995b62affa19570d46a7fbc03c7ebb1f6bd3df62887",
+    "license_git_blob": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+    "license_bytes": 11357,
+    "license_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  },
+  "external_dataset": {
+    "folder_id": "1OTDLLH8ydKX1DcaNpbQ46LlP0dKx6E-I",
+    "declared_real_scenes": 4,
+    "declared_poses_per_real_scene": 35,
+    "declared_exposures_per_pose": 5,
+    "allowed_request": "HEAD only",
+    "payload_requests": 0
+  },
+  "gates": {
+    "official_identities_exact": true,
+    "material_capture_observation_explicit": true,
+    "external_dataset_rights_explicit": true,
+    "exact_asset_manifest_with_sizes_and_checksums": true,
+    "group_identities_ready": true,
+    "payload_and_pixel_reads_zero": true,
+    "forward_reverse_scientific_exact": true
+  },
+  "stop_rule": "Any missing external-data rights, exact manifest/checksum inventory or group identity closes before payload access; do not infer coverage from the code repository licence.",
+  "claim_ceiling": "Zero-pixel official-source readiness only; no HDR quality, radiometric truth, model reproduction, package/schema/capability, product, stock or candidate3 admission."
+}
