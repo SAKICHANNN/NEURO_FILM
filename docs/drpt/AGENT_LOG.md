@@ -18753,3 +18753,26 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Retain private exact two-file ingress safety only; no arbitrary DNG, HDR
   quality, calibrated scene/display state, public package/schema/capability,
   product admission or candidate-3 change opens.
+
+### 2026-08-27 - P280 proves two official HDR+ result pairs share geometry
+
+- **Node and scope:** `ULT > genuinely new paired/capture-time observation >
+  P280`, DRPT L2 / Mode C. `dev-research-reliability` is primary; research,
+  DRPT-BI, agent-log and structure stewardship limit the result to source
+  eligibility on one already-consumed burst. Candidate 3 remains `2/3`.
+- **Freeze:** contract `36e139ed`, audit `bdc455fe` and evidence `aeb80c9d`
+  bind P269/P279's exact 2016/2017 merged DNGs, their previously pixel-unread
+  official final JPEGs, fixed 256x192 Rec.709-luma Sobel representation, full
+  dimensions and horizontal-flip/fixed-16-column-shift controls before target
+  decode.
+- **Result:** forward/reverse reports are byte-exact at 1,675 bytes / SHA
+  `b4c29752...dd54b`, stable `a36fcb6e...f2e6f`. Identity correlations are
+  `.79272/.78342`, versus flips `.04324/.04386` and shifts `.07903/.08326`;
+  every frozen correlation, margin, dimension and source-immutability gate
+  passes. No target or derived pixel artifact persists.
+- **Verification and boundary:** 18 P269/P270/P279/P280 tests pass; Ruff,
+  format, `py_compile`, JSON and diff checks pass. Retain same-view paired-source
+  eligibility for this one burst only. Any explicit tone/render D0 needs a
+  separate prospective contract and strongest same-budget controls. No HDR
+  truth, radiometric equivalence, independent-scene generalization, rights
+  resolution, package/schema/capability/product or candidate-3 change opens.
