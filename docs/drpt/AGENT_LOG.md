@@ -18887,3 +18887,30 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   21496-1, arbitrary AVIF/HEIF, HDR reconstruction quality, display validation,
   mastering/content-light metadata, public API/dependency/package/schema/
   capability/product or candidate-3 change opens.
+
+### 2026-08-27 - P285 closes BRACE before payload access
+
+- **Node and scope:** `ULT > paired/capture-time sources > P285`, DRPT L2 /
+  Mode C. `dev-research-reliability` is primary; current-source research,
+  DRPT-BI, agent-log and structure stewardship constrain P285 to immutable
+  official text/Git metadata. It is a readiness audit, not a restoration test.
+- **Freeze and execution:** contract `febdb434`, audit `97e9723b`, formal lock
+  `f87e80ea` and evidence `d8e54267` bind official BRACE commit
+  `c17763bd...105a2`, tree `63b59061...fccf`, parent, recursive tree and exact
+  5,211-byte README. Only the commit, recursive-tree and README responses are
+  requested. One pre-contract tree preflight had a transport EOF; a bounded
+  retry of the same immutable URL succeeded and both formal committed-head
+  processes completed without protocol change.
+- **Result:** forward/reverse reports are byte-exact at 3,018 bytes / SHA
+  `3f707bbc...21cbf`, scientific `8e466aac...805d6f`. The bracketed-RAW,
+  automated multi-exposure physical observation is materially new, but the
+  exact 10-entry tree has no licence, executable source, dataset manifest or
+  checksum, checkpoint/model or group-disjoint role manifest. Installation,
+  dataset/model download and inference remain three README TODOs. Formal status
+  is `NOT_READY_BRACE_RELEASE_AND_RIGHTS_GAP_NOT_SCIENTIFIC_RESULT`.
+- **Verification and boundary:** 27 P266/P278/P283-P285 adjacent tests pass;
+  Ruff, `py_compile`, JSON and diff checks pass. Network body is 9,796 bytes per
+  formal run; clone/checkout, figure/data/archive/model requests, pixels,
+  training and inference remain zero. Do not infer rights, acquire payloads or
+  consume candidate 3. No restoration-quality, arbitrary RAW, shared operator,
+  package/schema/capability/product or consumer mapping opens.
