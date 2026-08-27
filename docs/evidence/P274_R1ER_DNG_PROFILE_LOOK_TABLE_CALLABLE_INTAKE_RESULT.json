@@ -1,0 +1,66 @@
+{
+  "schema": "neuro-film.p274-r1er-dng-profile-look-table-callable-intake-evidence.v1",
+  "experiment_id": "P274",
+  "date": "2026-08-27",
+  "status": "PASS_PRIVATE_R1ER_DNG_PROFILE_LOOK_TABLE_CALLABLE_INTAKE",
+  "decision": "Retain exact private consumer-side mechanical intake of the producer's already-frozen R1ER ProfileLookTable v1 callable. Do not integrate the implementation into consumer src or change the P262 predecode guard/default loader.",
+  "fixed_identity": {
+    "consumer_contract_commit": "ae08934a",
+    "consumer_implementation_commit": "7bf626ec",
+    "consumer_formal_lock_commit": "6c979bfd34d3b4ecfb42fb6b994fb25a77145293",
+    "producer_head": "eb26545b0cd859e8d0a8c604429eef4587874dbd",
+    "producer_callable_id": "zhuise.dng-profile-look-table-callable.v1",
+    "producer_callable_source_sha256": "86564d3c310823f116f599eff66a0e484e2dcfce8943e7ede2075b53b351fb13",
+    "producer_schema_sha256": "551e1509dfee39c0a747d0c7cb000679a75a97fb0a6e13563975ce23dbc40393",
+    "producer_fixture_sha256": "4ae448ac93762711e4d986d40a80974113bf0e8f56c2ac73d13af33974f7bc2f",
+    "producer_formal_report_sha256": "8bdbd66c601f10a1df44a5872c2479f6039ce7ceb9e1abe9a8ff776dfeec8f25",
+    "consumer_formal_report_bytes": 4720,
+    "consumer_formal_report_sha256": "a70da4d641b95a546e1e2360af4d58aa3b8cd53856edb78daa82c6ac6af2910f",
+    "consumer_scientific_identity": "sha256:9122d58423364b80a4414a249d0296eab93d75dbcc040ff25a471c6a7a6c5508"
+  },
+  "fixture": {
+    "dimensions": [2, 2, 2],
+    "data_f32le_sha256": "0e43981bd7931f8c2215fa8688a8eb64da0886326fd73598e87a2bcab1fe871d",
+    "payload_canonical_sha256": "c6e78101787acd3ba72e4c225ba2f76fedb3cecdc9598a8d10197819575c2275",
+    "input_f64le_sha256": "0992389d654264d74df857e20f5b8b708a1962d8aade36842197db008f227e58",
+    "output_f64le_sha256": "9640512356553e5f79cd4e3d0f3a60e1aa0edbef9b15f2f3c3be4ec915ceda56"
+  },
+  "real_table_authority": {
+    "source": "CC0/Public Domain Fuji X100S DNG",
+    "source_sha256": "7adec564bbf74858c70b5a01a2b744000f8057303169fc70d91bde7cb435530f",
+    "dimensions": [36, 8, 16],
+    "encoding": 0,
+    "data_f32le_bytes": 55296,
+    "data_f32le_sha256": "a2daae1af80d8163a4aac8435c72b11a47d9a125cf14354bcdddc6bab7dd77c5",
+    "duplicated_into_consumer": false
+  },
+  "formal_execution": {
+    "orders": ["forward", "reverse"],
+    "reports_byte_exact": true,
+    "controls": 17,
+    "controls_passed": 17,
+    "gates": 15,
+    "gates_passed": 15,
+    "network_reads": 0,
+    "new_raw_dng_pixel_target_reads": 0,
+    "producer_worktree_imports": 0,
+    "consumer_src_copies": 0,
+    "temporary_residue": 0
+  },
+  "semantic_boundaries": {
+    "input_domain": "finite nonempty HxWx3 XYZ D50 representing linear ROMM in [0,1] after exposure",
+    "stage_order": "ProfileHueSatMap then ProfileGainTableMap/Map2 then exposure then ProfileLookTable then ProfileToneCurve",
+    "output": "owned writable C-contiguous HxWx3 float64 XYZ D50",
+    "failure": "ValueError before any output is returned"
+  },
+  "rights_and_product": {
+    "new_source_rights_dependency": false,
+    "real_file_stage_composition": false,
+    "complete_dng_renderer": false,
+    "default_loader_changed": false,
+    "public_package_schema_capability": false,
+    "product_dependency": false,
+    "candidate_3": false
+  },
+  "claim_ceiling": "Private consumer replay of one exact R1ER DNG ProfileLookTable v1 callable and canonical fixture only; no real-file stage composition, complete DNG renderer, image quality, arbitrary profile/camera, default-loader integration, public package/schema/capability, stock evidence, automatic matching or product admission. Candidate 3 remains closed at 2/3."
+}
