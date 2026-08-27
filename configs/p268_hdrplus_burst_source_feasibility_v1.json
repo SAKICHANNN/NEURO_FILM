@@ -1,0 +1,52 @@
+{
+  "schema": "neuro-film.p268-hdrplus-burst-source-feasibility-contract.v1",
+  "experiment_id": "P268",
+  "status": "METHOD_FROZEN_BEFORE_FULL_PREFIX_ENUMERATION",
+  "official": {
+    "dataset_url": "http://www.hdrplusdata.org/dataset.html",
+    "paper_url": "https://research.google/pubs/burst-photography-for-high-dynamic-range-and-low-light-imaging-on-mobile-cameras/",
+    "bucket_root": "gs://hdrplusdata/20171106_subset/",
+    "burst_prefix": "gs://hdrplusdata/20171106_subset/bursts/",
+    "result_prefixes": [
+      "gs://hdrplusdata/20171106_subset/results_20161014/",
+      "gs://hdrplusdata/20171106_subset/results_20171023/"
+    ],
+    "licence_label": "CC-BY-SA",
+    "curated_bursts": 153,
+    "curated_bytes_text": "37 GiB",
+    "full_bursts": 3640,
+    "full_bytes_text": "765 GiB"
+  },
+  "selection": {
+    "method": "minimum_sha256_utf8_burst_id_then_burst_id",
+    "selected_burst_id": null,
+    "selected_burst_id_sha256": null
+  },
+  "budgets": {
+    "maximum_selected_burst_and_matching_results_bytes": 1073741824,
+    "maximum_object_body_bytes_read": 0,
+    "maximum_pixel_decodes": 0,
+    "maximum_full_subset_download_bytes": 0
+  },
+  "required_burst_roles": {
+    "minimum_payload_dng_count": 2,
+    "require_lens_shading_map": true,
+    "require_rgb2rgb_txt": true
+  },
+  "required_result_roles": [
+    "merged.dng",
+    "final.jpg",
+    "reference_frame.txt"
+  ],
+  "gates": {
+    "require_two_complete_reports_byte_exact": true,
+    "require_exact_153_unique_safe_burst_ids": true,
+    "require_hash_ranked_selection": true,
+    "require_fixed_object_sizes_and_generations": true,
+    "require_required_burst_and_result_roles": true,
+    "require_selected_total_within_budget": true,
+    "require_zero_object_body_pixel_fit_train_inference_score_reads": true
+  },
+  "stop_rule": "Any rights, official-page identity, prefix-count, path-safety, selected-role, immutable-object-identity or one-burst budget failure closes this exact source route without replacement, gallery selection, bulk download, mirror, account acceptance or threshold rescue.",
+  "claim_ceiling": "Private zero-pixel official HDR+ source/object feasibility only; no object-body acquisition, HDR truth or quality, natural-image evaluation, product-rights conclusion, package/schema/capability/product mapping or candidate3 admission."
+}
