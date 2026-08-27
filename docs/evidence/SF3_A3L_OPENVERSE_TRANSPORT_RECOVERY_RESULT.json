@@ -1,0 +1,50 @@
+{
+  "schema": "neuro-film.sf3-a3l-openverse-transport-recovery-evidence.v1",
+  "experiment_id": "SF3.A3L_OPENVERSE_TRANSPORT_RECOVERY_V1",
+  "status": "FAIL_CLOSED_SOURCE_UNAVAILABLE",
+  "contract_commit": "1988ed8f",
+  "implementation_commit": "75ad050c6fde46d54b77a62e06f38ca98bcb68ba",
+  "contract": {
+    "path": "configs/sf3_a3l_openverse_transport_recovery_v1.json",
+    "base_scientific_contract_unchanged": true,
+    "only_transport_changed_from_sf3_a2": true,
+    "post_result_rescue_allowed": false
+  },
+  "formal_runs": {
+    "report_a": {
+      "path": "outputs/eval/sf3_a3l_openverse_transport_recovery_v1/report_a.json",
+      "bytes": 8340,
+      "sha256": "bff88c732c48ec550ca44b6f0d072231c4f1fd22103daee6ff8b7b59484a2956"
+    },
+    "report_b": {
+      "path": "outputs/eval/sf3_a3l_openverse_transport_recovery_v1/report_b.json",
+      "bytes": 8340,
+      "sha256": "9626f99011bf04b750cad2be168033d140539f39213ba8696b01cca7e4123f42"
+    },
+    "scientific_payload_exact": true,
+    "scientific_payload_sha256": "0b282be038b956605f1fe7f3ef3583b41e7fa39f21b315b8ca9f5f91069001ae"
+  },
+  "result": {
+    "decision_a": "source_unavailable",
+    "decision_b": "source_unavailable",
+    "formal_requests": 6,
+    "http_status_by_request": [401, 401, 401, 401, 401, 401],
+    "response_bytes_by_request": [63, 63, 63, 63, 63, 63],
+    "response_sha256": "ec520375592f3b407a1ec6777f55e315172dff6529c533a57067d1563efae658",
+    "fresh_rows_by_stock": {
+      "fujifilm_velvia_50": 0,
+      "kodak_portra_400": 0,
+      "kodak_ektar_100": 0
+    },
+    "image_thumbnail_detail_landing_related_requests": 0,
+    "pixel_reads": 0,
+    "operator_fit_train_score_reads": 0
+  },
+  "attempt_disclosure": {
+    "precontract_observation": "A bounded PowerShell/urllib probe with page_size=5 returned HTTP 200 and motivated a prospective transport test.",
+    "formal_difference": "The hash-bound SF3.A2 scientific contract requires page_size=50. All formal page_size=50 requests returned the same bounded HTTP 401 body.",
+    "decision": "Do not change page size, query quoting, aliases, pagination, headers, gates or transport after the formal result."
+  },
+  "claim_ceiling": "Stable transport-level source unavailability for the unchanged SF3.A2 three-stock query contract. This is not evidence that Openverse lacks relevant images and not a stock, pixel, operator, calibration, authenticity, product or multi-stock result.",
+  "next_mainline": "Stop Openverse client rescue. Seek a materially new rights-cleared stock observation or official dataset with exact inventory and independent roll/process/scanner grouping; do not reevaluate the closed K1 proxy population."
+}
