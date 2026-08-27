@@ -114,12 +114,14 @@ __all__ = [
     "inspect_portable_recipe_recovery_bundle",
     "inspect_recipe_recovery_bundle",
     "list_generic_bw_looks",
+    "list_product_looks",
     "list_three_stock_looks",
     "load_render_profile",
     "materialize_recipe_recovery_bundle",
     "migrate_legacy_safe_rich",
     "plan_tile_windows",
     "render_generic_bw_look_rgb",
+    "render_product_look_rgb",
     "render_recipe_history_html",
     "render_recipe_preview_html",
     "render_resolved_safe_lab_rgb",
@@ -153,8 +155,10 @@ def __getattr__(name: str):
         "replay_portable_recipe_recovery_bundle_to_file",
         "list_three_stock_looks",
         "list_generic_bw_looks",
+        "list_product_looks",
         "render_three_stock_look_rgb",
         "render_generic_bw_look_rgb",
+        "render_product_look_rgb",
         "resolve_three_stock_look_parameters",
         "resolve_generic_bw_look_parameters",
     }:
@@ -178,6 +182,10 @@ def __getattr__(name: str):
             from . import generic_bw_look
 
             return getattr(generic_bw_look, name)
+        if name in {"list_product_looks", "render_product_look_rgb"}:
+            from . import product_look_catalog
+
+            return getattr(product_look_catalog, name)
         from . import style_safe_engine
 
         return getattr(style_safe_engine, name)

@@ -1,0 +1,33 @@
+{
+  "schema_id": "neuro-film.product-look-catalog-contract.v1",
+  "experiment_id": "U7.2D",
+  "question": "Can the product expose one authoritative catalog and dispatcher for the three current colour-stock Look Approximation baselines plus one generic B&W Look Approximation without surfacing unsupported legacy stock identities?",
+  "parent_evidence": [
+    {
+      "path": "docs/evidence/U7_2C_THREE_STOCK_LOOK_AMOUNT_RESULT.json",
+      "sha256": "9a6828e824f07a93cd3bbae55edf0e0e3b2c14fa67c173ceb41a3ed0016ecc6b"
+    },
+    {
+      "path": "docs/evidence/BW2_D1_GENERIC_BW_LOOK_RESULT.json",
+      "sha256": "d4d279f1e95964f11cff98467ab9b73f9f2ea337db7fd842e7280b2037bc0b88"
+    }
+  ],
+  "required_order": ["velvia_50", "portra_400", "ektar_100", "generic_bw"],
+  "required_gates": [
+    "catalog exposes exactly four defensive-copy rows in frozen order",
+    "three colour rows preserve their current evidence tier and claim ceiling",
+    "generic B&W carries no film_stock_id and exposes no HP5 or Tri-X product identity",
+    "dispatcher is exact with each existing underlying renderer at zero, intermediate and full amount",
+    "full and tiled dispatch are byte-exact",
+    "unknown look IDs and missing runtime assets fail closed",
+    "underlying catalog, render profile, recipe and legacy replay semantics remain unchanged"
+  ],
+  "forbidden": [
+    "promote any row to calibrated stock response",
+    "expose HP5 or Tri-X as a current product look",
+    "infer stock identity from the input image",
+    "add routing, ML, K greater than 1 or new color parameters",
+    "modify frozen three-stock or generic-B&W execution cores"
+  ],
+  "claim_ceiling": "Unified deterministic product discovery and dispatch for three explicitly non-calibrated colour-stock Look Approximation baselines and one generic black-and-white Look Approximation. No stock calibration, authenticity, automatic stock inference or multi-stock scientific completion."
+}
