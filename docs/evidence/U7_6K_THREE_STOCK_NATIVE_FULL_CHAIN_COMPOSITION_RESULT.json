@@ -1,0 +1,49 @@
+{
+  "schema": "neuro-film.u7-6k-three-stock-native-full-chain-composition-evidence.v1",
+  "experiment_id": "U7.6K",
+  "date": "2026-08-27",
+  "status": "PASS",
+  "commits": {
+    "contract": "60439338",
+    "implementation": "1d2b6f23"
+  },
+  "identities": {
+    "contract_sha256": "5867ee0a3082aedf6d0748aeeb33e5b0e6c8f1e496ab5bd5908f3e88cf203438",
+    "formal_runner_sha256": "55bfb40d541571268b2e82eb7861bdb83da5b6c4a14aa920f062a3d1e84d56e8",
+    "formal_report_path": "outputs/eval/u7_6k_three_stock_native_full_chain_composition_v1/report.json",
+    "formal_report_sha256": "541cdfeae213c995943fe58906f72b89d1ddbc44cc7635ff03b896a8c2134b73",
+    "stable_evidence_id": "1e5ef9a4a4f10b55d4b125a82458aacf553e238618cc2cd1ec2fd2599f33fa23",
+    "reproducible_dll_sha256": "bdf215b80d3335b5c62e6b8a4df6e4963397f4da4c0f5926451d2c9298653de5",
+    "source_lab_sha256": "9cec3dd8ade03192143bba35c4e4e32d27f10c8ff4ec89dc0dc71d6324c5356f"
+  },
+  "observations": {
+    "formal_processes": 2,
+    "maximum_rgb_absolute_error": 0.0,
+    "all_three_style_output_sha256_equal_oracle": true,
+    "three_distinct_style_outputs": true,
+    "cross_process_output_identity": true,
+    "reproducible_dll_identity": true,
+    "native_three_style_wall_seconds": [3.0615027999997437, 3.10666990000027],
+    "python_three_style_wall_seconds": [3.6320423500001198, 3.6673607499992613],
+    "conservative_native_to_python_chain_wall_ratio": 0.8553506816901977,
+    "style_output_sha256": {
+      "velvia_50": "5a052ab87363f333df05fb28d12d63842a404397e1702f8094b0d190d4b3281e",
+      "portra_400": "0ead0c0646432d94cebdc0686cb6faefdda0a79690cadc64430b3e143cc0e9f1",
+      "ektar_100": "ce0929d14c2f660cb46e1f241d8940422e1cc4a9cc038ffe8880b7c01149740c"
+    }
+  },
+  "gates": {
+    "maximum_rgb_absolute_error": true,
+    "exact_output_sha256_per_style": true,
+    "finite_bounded_output": true,
+    "cross_process_output_identity": true,
+    "reproducible_dll_identity": true,
+    "three_distinct_style_outputs": true,
+    "three_style_native_chain_wall": true,
+    "native_to_python_chain_wall_ratio": true
+  },
+  "decision": "RETAIN_EXACT_THREE_STOCK_NATIVE_CHAIN_CANDIDATE",
+  "interpretation": "The separately versioned U7.6J kernel preserves every float32 RGB sample of the complete current three-stock preview color chain, including spatial luma-detail preservation, tone rolloff, source-relative gamut compression, deterministic dither and output margin. The conservative full-chain wall ratio is 0.85535. This retains one opt-in engineering candidate; product integration and controlled stock evidence remain separate.",
+  "claim_ceiling": "Local Windows/MSVC CPU evidence for exact current three-stock non-calibrated Look Approximation preview composition at 0.999MP; not file publication, product integration, stock response, stock distinguishability or calibration.",
+  "production_default_changed": false
+}

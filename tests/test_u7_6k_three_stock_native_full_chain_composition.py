@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 
 from scripts.audit_u7_6k_three_stock_native_full_chain_composition import (
@@ -30,3 +31,22 @@ def test_u7_6k_parent_is_exact_pointwise_pass() -> None:
     )
     assert parent["status"] == "PASS"
     assert parent["observations"]["maximum_lab_absolute_error"] == 0.0
+
+
+def test_u7_6k_evidence_binds_formal_report() -> None:
+    evidence = json.loads(
+        (
+            ROOT
+            / "docs/evidence/U7_6K_THREE_STOCK_NATIVE_FULL_CHAIN_COMPOSITION_RESULT.json"
+        ).read_text("utf-8")
+    )
+    report_path = ROOT / evidence["identities"]["formal_report_path"]
+    assert hashlib.sha256(report_path.read_bytes()).hexdigest() == evidence[
+        "identities"
+    ]["formal_report_sha256"]
+    report = json.loads(report_path.read_text("utf-8"))
+    assert report["status"] == "PASS"
+    assert all(report["gates"].values())
+    assert report["stable_evidence_id"] == evidence["identities"][
+        "stable_evidence_id"
+    ]
