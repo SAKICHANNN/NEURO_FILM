@@ -18603,3 +18603,52 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `outputs/tmp` because execution policy rejected their recursive deletion;
   they are outside formal runs. No dependency/API, arbitrary EXR/ACES, SMPTE
   certification, quality, renderer/product mapping or candidate-3 change opens.
+
+### 2026-08-27 - P274 independently consumes the R1ER look-table callable
+
+- **Node and scope:** `ULT > mature RAW/DNG explicit mechanisms > P274`, DRPT
+  L2 / Mode C. `dev-research-reliability` is primary; research, DRPT-BI,
+  agent-log and structure stewardship constrain the no-copy intake. This closes
+  the callable gap behind P262's refusal guard without implementing a real-file
+  profile chain or changing the default loader.
+- **Freeze and execution:** contract `ae08934a`, isolated audit `7bf626ec`,
+  formal lock `6c979bfd` and evidence `30e06b6b` bind producer R1ER head
+  `eb26545b`, 11 contract/core/wrapper/schema/fixture/execution/evidence Git
+  objects, the CC0 Fuji table authority, official stage order and strict
+  ownership/failure semantics. The temporary package is built only from those
+  Git objects; producer worktree imports and consumer `src` copies are zero.
+- **Result:** forward/reverse fresh reports are byte-exact at 4,720 bytes / SHA
+  `a70da4d6...2910f`, stable `9122d584...c5508`; all 17 controls and 15 gates
+  pass. The fixture output, direct-core parity, real 36x8x16 table identity,
+  stage order, ownership, invalid rejection and zero network/new-pixel/temp
+  residue are exact.
+- **Verification and boundary:** 35 P254/P257/P262/P263/P271/P274 adjacent
+  tests pass; Ruff, JSON and diff checks are clean. Retain private exact
+  mechanical consumability only. No real-file composition, full renderer,
+  image quality, public package/schema/capability, product mapping or
+  candidate-3 change opens.
+
+### 2026-08-27 - P275 identifies a bounded LuckyHDR private-runtime source
+
+- **Node and scope:** `ULT > genuinely new paired/capture-time observation >
+  P275`, DRPT L2 / Mode C. `dev-research-reliability` is primary; research,
+  DRPT-BI, agent-log and structure stewardship bound the zero-pixel source
+  decision. Candidate 3 remains `2/3`.
+- **Freeze and execution:** contract `722ed3b0`, prescore transport amendment
+  `9a9c8e23` and evidence `ee643eab` bind official LuckyHDR commit
+  `f5aec06f...293`, tree `37c05025...bc9a`, exact text Git objects, one
+  524,786-byte checkpoint and three DNG blob identities totalling 27,000,234
+  bytes. Forward/reverse scientific payload is exact at
+  `de6a8d0e...5f63e`; each run transferred only 131,320 bytes of Git metadata
+  and text.
+- **Result and correction:** demo short/mid/long roles, capture ExposureTime/ISO
+  and inference conditioning are explicit, so a separately frozen private
+  runtime D0 is source-feasible. Before any report, repeated urllib/Schannel
+  TLS failures were replaced by bounded curl HTTP/1.1 retries without changing
+  objects, roles or gates. Binary bodies, pixels, models, inference, targets
+  and scores remain unread.
+- **Verification and boundary:** four focused tests plus Ruff, JSON and diff
+  checks pass. Root software is MIT, but demo-capture redistribution and
+  upstream SI-HDR training-data rights are not fixed for product use. No bulk
+  acquisition, HDR quality, arbitrary bracket, package/schema/capability,
+  product admission or candidate-3 change opens.
