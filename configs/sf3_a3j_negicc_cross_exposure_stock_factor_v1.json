@@ -1,0 +1,40 @@
+{
+  "schema": "neuro-film.sf3-a3j-negicc-cross-exposure-stock-factor.v1",
+  "experiment_id": "SF3.A3J",
+  "source_lock": {
+    "implementation_commit": "f975a3b491c4adfe5b09feda66350534db9ccfcc",
+    "scientific_identity": "2fc7f43e23c054f2fee3ff674c78e560c2233d41606956a74305ecba3ecfb1ea",
+    "config": "configs/sf3_a3h_negicc_it8_source_lock_v1.json"
+  },
+  "stocks": [
+    "kodak_ektar_100",
+    "kodak_portra_400"
+  ],
+  "exposures_ev": [-1, 0, 1, 2],
+  "representation": {
+    "scanner_coordinates": "log2(max(scanner_rgb/65535,1e-8))",
+    "raw_contrast": "ektar_log_rgb-minus-portra_log_rgb at identical patch/channel/EV",
+    "centered_contrast": "raw contrast after subtracting each stock/EV per-channel patch mean",
+    "pairwise_direction": "cosine across all 288x3 aligned contrast components",
+    "sign_agreement_floor": 1e-06
+  },
+  "gates": {
+    "required_patch_rows_per_stock_exposure": 288,
+    "required_exposure_pairs": 6,
+    "raw_pairwise_cosine_min": 0.75,
+    "centered_pairwise_cosine_min": 0.75,
+    "raw_sign_agreement_min": 0.7,
+    "centered_sign_agreement_min": 0.7,
+    "contrast_rms_min": 0.02,
+    "contrast_rms_coefficient_of_variation_max": 0.25,
+    "finite_required": true,
+    "image_or_tiff_requests_max": 0
+  },
+  "stop_rules": [
+    "This is a retrospective failure-mechanism diagnostic over the already consumed SF3.A3H cohort, not a fresh confirmation or operator result.",
+    "No post-result change to coordinates, centering, pairwise metrics, floors or thresholds.",
+    "Failure requires independent roll/process/scanner and exposure-controlled observations; it must not be rescued by a larger operator, K>1 or routing on this cohort.",
+    "Pass may justify only a separately frozen independent-source confirmation; it does not reopen the failed SF3.A3I operator family."
+  ],
+  "claim_ceiling": "retrospective one-setup IT8 diagnosis of whether the Portra 400 versus Ektar 100 scanner-space contrast is directionally stable across four exposures; not an operator, Velvia evidence, natural-scene transfer, independent roll/process/scanner evidence, calibrated stock response or product promotion"
+}
