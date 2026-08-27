@@ -7,7 +7,6 @@ import argparse
 import hashlib
 import json
 import re
-import sys
 import urllib.request
 from pathlib import Path
 from typing import Any
@@ -51,12 +50,9 @@ def _classify(readme: str, license_text: str, paths: list[str]) -> dict[str, boo
         )
     )
     dataset_context = lowered[lowered.find("download and organize the dataset") :]
-    rights_explicit = (
-        any(
-            token in dataset_context
-            for token in ("dataset license", "dataset is licensed", "data is licensed")
-        )
-        and "apache" in dataset_context
+    rights_explicit = bool(
+        re.search(r"(?:dataset|data)\s+is\s+licensed[^.]*apache", dataset_context)
+        or re.search(r"dataset\s+license[^.]*apache", dataset_context)
     )
     manifest_names = {
         path.casefold()
