@@ -18462,6 +18462,37 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   product/share-alike duties, general burst support, package/schema/capability,
   product mapping and candidate 3 remain closed.
 
+### 2026-08-27 - P270 closes the unchanged one-burst split-capture mechanism
+
+- **Routing and freeze:** `ULT > genuinely new paired/capture-time/physical
+  observations > P270`, DRPT L2 / Mode C. Contract `a55fa285`, implementation
+  `f27c1399`, formal lock `24ecbf9b`. Roles are fixed even frames
+  N000/N002/N004/N006 versus held-out odd frames N001/N003/N005/N007. The
+  aligned candidate, unaligned temporal control, identity plus three Gaussian
+  single-frame controls and exactly 512 source-only reliability blocks are all
+  hashed before any held-out DNG opens.
+- **Formal result:** forward/reverse raw reports are 148,162/148,161 bytes with
+  SHAs `5f4ce814...3bc86` / `68b3930b...2ddb3`; scientific identity is exact
+  `ee9a970dcb304f6c010f8964ad1ee76d736f8409f64f3a5e1202b60306cd1e34`.
+  Candidate freeze identity is `47742b27...e7c06`; 486 frozen blocks remain
+  valid, aligned-even overlap is `.9966957` and maximum shift `3.8678` pixels.
+- **Discriminating outcome:** translation alignment is active and strongly
+  useful against the same four frames averaged without alignment: win rate
+  `1.0`, median/p05/worst RMSE reduction `+22.372%/+17.480%/+15.146%`.
+  Nevertheless, candidate versus the per-block strongest frozen single-frame
+  identity/Gaussian control has win rate only `.08642`, median/p05/worst
+  `-13.115%/-23.142%/-30.008%`. Rate, median and tail gates all fail. The
+  remaining motion/interpolation mismatch exceeds independent-noise reduction
+  on this exact burst.
+- **Evidence and boundary:** evidence commit `8d1e9d87`, tracked evidence SHA
+  `2e12a2705a3894baae85fd25bb0e373c9b01e0ebaed63cd8901e8eed79104dfa`;
+  18 P268/P269/P270 tests pass with Ruff, `py_compile`, JSON and diff checks
+  clean. Result DNG/JPG pixels, fitting, training and inference remain zero.
+  Close this exact one-burst family without alignment, mask, sigma, role,
+  threshold or cohort rescue. P269 remains a valid private source lock, but no
+  fresh-group experiment, HDR-quality claim, candidate 3, package/schema/
+  capability or product mapping opens.
+
 ### 2026-08-27 - SF3.A0N field receipts gain atomic batch import
 
 - **Node and scope:** `ULT > stock-first controlled evidence > SF3.A0N`, DRPT
