@@ -1,0 +1,19 @@
+{
+  "schema": "neuro-film.p281-hdrplus-monotone-tone-d0-contract.v1",
+  "experiment_id": "P281",
+  "status": "FROZEN_BEFORE_TARGET_DEPENDENT_FIT",
+  "source_root": "data/external/p269_hdrplus_one_burst_v1",
+  "parent_p280_evidence_sha256": "edc7061672db639c475ffe4fd44c76896e7272d5ea4e0758b721f86d23369d37",
+  "development": {"version": "20161014", "observation": "result_20161014/merged.dng", "target": "result_20161014/final.jpg"},
+  "confirmation": {"version": "20171023", "observation": "result_20171023/merged.dng", "target": "result_20171023/final.jpg"},
+  "knot_count": 17,
+  "fit_stride": 8,
+  "fit_parity": 0,
+  "heldout_parity": 1,
+  "gates": {
+    "minimum_identity_rmse_reduction": 0.2,
+    "maximum_control_rmse_ratio": 1.05,
+    "maximum_new_boundary_components": 0
+  },
+  "claim_ceiling": "Private one-burst global monotone tone representation D0 across two official Google HDR+ result versions only; no HDR truth, independent-scene generalization, colorimetric calibration, package/schema/capability, product admission or candidate3 change"
+}
