@@ -17630,3 +17630,23 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   three-stock source and preserve the controlled physical capture route.
   Evidence:
   `docs/evidence/SF3_A3G_RICHARD_PHOTO_LAB_STOCK_EXPOSURE_SOURCE_LOCK_RESULT.json`.
+
+### 2026-08-27 - SF3.A3H/A3I test a controlled Portra/Ektar K=1 mechanism
+
+- **Execution:** source commits `f975a3b4`/`1e8c279c` bind exact NegICC Git
+  blobs for Portra 400 and Ektar 100 at EV `-1/0/+1/+2`; two forward/reverse
+  reports are byte-identical (`e3ddfd8d...7644d`) across 2,304 IT8 patch rows
+  with no image or TIFF request. Baseline commits `f739a6c7`/`805793a2`
+  prospectively freeze/build stock-specific K=1 quadratic log-stimulus
+  operators on the first three exposures and read `+2` only after bundle
+  freeze.
+- **Result:** two baseline reports are byte-identical (`61d739a4...f5aca`).
+  Portra beats wrong-stock and pooled controls on 87.15% and 82.99% of held
+  patches, but Ektar wins only 29.86% and 21.53%; correct-stock
+  classification is 1/2. Frozen decision:
+  `FAIL_CLOSED_CONTROLLED_K1_BASELINE`, with no basis/role/gate/K>1 rescue.
+- **Boundary and handoff:** this is one target/capture/develop/scan setup, not
+  natural-scene, independent-roll, scanner-independent or product evidence.
+  Velvia 50 remains absent at this evidence level. Advance only a materially
+  new controlled observation; keep proxy/LUT/latest-paper mechanisms as
+  baselines rather than the stock-evidence mainline.

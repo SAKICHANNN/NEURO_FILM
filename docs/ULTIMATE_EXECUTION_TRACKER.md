@@ -2582,3 +2582,17 @@ The frozen exact-page gate therefore fails; zero ZIP members or pixels were
 read, and page normalization or a same-source rescue is forbidden. Continue
 with an independent rights-cleared three-stock source. Evidence:
 `docs/evidence/SF3_A3G_RICHARD_PHOTO_LAB_STOCK_EXPOSURE_SOURCE_LOCK_RESULT.json`.
+
+SF3.A3H/A3I add and then close one independent controlled two-stock mechanism
+lane. Exact NegICC GPLv3 Git blobs supply one common IT8 target, Portra 400 and
+Ektar 100 at four exposures: 8 observations / 2,304 patch rows pass source
+identity and two byte-exact replays with zero image requests. A prospectively
+frozen stock-specific K=1 quadratic log-stimulus baseline builds on EV
+`-1/0/+1` and confirms on `+2`. Portra retains a stock-specific signal, but
+Ektar is predicted better by both the Portra and pooled controls, so only 1/2
+stocks classify correctly and the exact family fails closed without K>1,
+role, basis or threshold rescue. Velvia 50 remains a same-level data gap; the
+next admissible research leaf requires a materially new independent
+roll/process/scanner or same-scene observation. Evidence:
+`docs/evidence/SF3_A3H_NEGICC_IT8_SOURCE_LOCK_RESULT.json` and
+`docs/evidence/SF3_A3I_NEGICC_STOCK_SPECIFIC_K1_BASELINE_RESULT.json`.
