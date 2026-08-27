@@ -1,0 +1,81 @@
+{
+  "schema": "neuro-film.p285-brace-bracket-raw-source-readiness-evidence.v1",
+  "experiment_id": "P285",
+  "status": "NOT_READY_BRACE_RELEASE_AND_RIGHTS_GAP_NOT_SCIENTIFIC_RESULT",
+  "date": "2026-08-27",
+  "decision": "The official 2026 BRACE repository establishes a materially different bracketed-RAW physical observation based on automated multi-exposure capture, but the exact current release is not experiment-ready. Its 10-entry tree contains only README, figures and directory metadata: no licence, executable source, dataset inventory/checksums, model/checkpoint or group-disjoint manifest. Installation, dataset/model download and inference remain TODO. Do not request figure/data/model payloads, infer rights or consume candidate 3.",
+  "commits": {
+    "preregistration": "febdb434eb6385340c56cea017a4bd19ccb2eca5",
+    "implementation": "97e9723bed7d1b7227e46a4b7ef7cc63cb3fdcf1",
+    "formal_execution_lock": "f87e80eabe862b0e25382fa736b60e36288ffdcb"
+  },
+  "protocol": {
+    "contract_path": "docs/planning/P285_BRACE_BRACKET_RAW_SOURCE_READINESS_CONTRACT.md",
+    "contract_bytes": 2500,
+    "contract_sha256": "b324566ed808421339bc7f0836f3ca7ed546dd4461fba4174f19aab0908849ce",
+    "config_path": "configs/p285_brace_bracket_raw_source_readiness_v1.json",
+    "config_bytes": 3450,
+    "config_sha256": "1e058fc2f33fd603f0d3c0d23f8a80a6392186e975bfa77a5939296d8433d9f1",
+    "runner_path": "scripts/audit_p285_brace_bracket_raw_source_readiness.py",
+    "runner_bytes": 10310,
+    "runner_sha256": "2a11e9a2a2f04a6a1beeb4a9fee35392ae992b0adb64d495fc4e9769a57c30a0",
+    "test_path": "tests/test_p285_brace_bracket_raw_source_readiness.py",
+    "test_bytes": 3218,
+    "test_sha256": "63d6f09e4c2ca8d8a242ef79c98d8a25c1cd94fbe78f2fa247414e1d117a0c93"
+  },
+  "official_sources": {
+    "repository": "https://github.com/ZZH-qwq/BRACE",
+    "paper": "https://arxiv.org/abs/2606.29845",
+    "repository_commit": "c17763bdab166da11cff2eb42d7f6df51d0105a2",
+    "repository_tree": "63b5906181d31e3141db8585cc8bb5d4f5dbfccf",
+    "repository_parent": "4c730d5df58d257f3ec5968a2b8bb2593eb8aa8f",
+    "commit_response_bytes": 2154,
+    "commit_response_sha256": "719109df93f73b123f96ffd1320e849cd4e6ef73c8771673cefe5ea63934689f",
+    "tree_response_bytes": 2431,
+    "tree_response_sha256": "9d33c27baf08d73eca04b07e4b5d3091ebef6402ee624dcff051ca2b7ad88650",
+    "readme_bytes": 5211,
+    "readme_sha256": "234e842953a1ece58d67bc97884c8b490fdd90628dacb1febca59f3a501c4dc8"
+  },
+  "formal": {
+    "forward_report_path": "outputs/eval/p285_brace_bracket_raw_source_readiness_v1/formal_forward.json",
+    "reverse_report_path": "outputs/eval/p285_brace_bracket_raw_source_readiness_v1/formal_reverse.json",
+    "report_bytes_each": 3018,
+    "report_sha256": "3f707bbcb1f138cc6baae9b10612bf04b59b529b15732b899be332b22d421cbf",
+    "reports_byte_exact": true,
+    "scientific_identity": "sha256:8e466aacd3b81cc1e80de926f4e042f5cd8fe4ec28e757f9b02dadd5f8805d6f",
+    "fresh_process_count": 2,
+    "network_bytes_each": 9796,
+    "repository_clone_or_checkout": 0,
+    "figure_blob_requests": 0,
+    "dataset_requests": 0,
+    "archive_or_member_requests": 0,
+    "checkpoint_or_model_requests": 0,
+    "pixel_reads": 0,
+    "training_or_inference_runs": 0
+  },
+  "result": {
+    "repository_path_count": 10,
+    "repository_blob_count": 8,
+    "readme_todo_count": 3,
+    "license_path_count": 0,
+    "code_path_count": 0,
+    "manifest_path_count": 0,
+    "model_path_count": 0,
+    "new_physical_observation": true
+  },
+  "gates": {
+    "official_identity": true,
+    "new_physical_observation": true,
+    "commercial_compatible_code_rights": false,
+    "commercial_compatible_dataset_rights": false,
+    "executable_release": false,
+    "exact_public_archive_inventory": false,
+    "exact_reference_checkpoint": false,
+    "group_isolation": false,
+    "two_reports_byte_exact": true
+  },
+  "infrastructure_note": "One pre-contract tree preflight received a transport EOF; a bounded retry of the exact same immutable URL succeeded. Both formal committed-head processes completed without protocol changes. The excluded transport event is not a scientific gate result.",
+  "candidate_count_after_result": "2/3",
+  "consumer_mapping": false,
+  "claim_ceiling": "Current official-source readiness audit only. The observation is materially relevant but the current release and rights are not ready. No clone, figure/data/model/pixel request, restoration quality, arbitrary RAW support, shared operator, A1/A4/A5, package/schema/capability/product admission or candidate 3."
+}
