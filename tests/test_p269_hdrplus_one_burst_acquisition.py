@@ -20,6 +20,7 @@ from scripts.acquire_p269_hdrplus_one_burst import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/p269_hdrplus_one_burst_acquisition_v1.json"
+EVIDENCE = ROOT / "docs/evidence/P269_HDRPLUS_ONE_BURST_ACQUISITION_RESULT.json"
 
 
 def test_p269_manifest_is_exact_and_bounded() -> None:
@@ -89,3 +90,21 @@ def test_p269_probe_reads_only_requested_row_ranges(tmp_path: Path) -> None:
         probe["probe_u16le_sha256"]
         == hashlib.sha256(expected.astype("<u2").tobytes()).hexdigest()
     )
+
+
+def test_p269_evidence_binds_formal_reports_and_zero_result_pixels() -> None:
+    evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+    assert evidence["status"] == "PASS_PRIVATE_HDRPLUS_ONE_BURST_SOURCE_LOCK"
+    assert evidence["result"]["two_complete_reports_scientific_exact"] is True
+    assert evidence["result"]["full_input_raw_plane_decodes"] == 0
+    assert evidence["result"]["result_dng_pixel_decodes"] == 0
+    assert evidence["result"]["result_jpeg_pixel_decodes"] == 0
+    for report in evidence["formal_reports"]:
+        payload = (ROOT / report["path"]).read_bytes()
+        assert len(payload) == report["bytes"]
+        assert hashlib.sha256(payload).hexdigest() == report["sha256"]
+        parsed = json.loads(payload)
+        assert (
+            parsed["scientific_identity"]
+            == evidence["result"]["stable_scientific_identity"]
+        )

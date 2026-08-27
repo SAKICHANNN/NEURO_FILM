@@ -1,0 +1,68 @@
+{
+  "schema": "neuro-film.p269-hdrplus-one-burst-acquisition-evidence.v1",
+  "experiment_id": "P269",
+  "status": "PASS_PRIVATE_HDRPLUS_ONE_BURST_SOURCE_LOCK",
+  "decision": "The exact P268-selected official HDR+ burst and its two result inventories are locally source-locked with every frozen size, generation and MD5 identity intact. Eight input RAW DNGs support true bounded strip-offset centre probes while result DNG/JPEG pixels remain unread. Retain only this private source/decode feasibility and open at most a separately preregistered one-burst mechanism D0.",
+  "bindings": {
+    "parent_p268_evidence_sha256": "2f9fc7a4875031b16d0488bcde7fe4e107bed03f80ba0147870e4b16e5da5505",
+    "contract_commit": "9bed5397069866a5637cf0c2741ea36d2c757037",
+    "contract_sha256": "ae71aca1256251dfa9787e218f9f7a73b654727cb48fbc9ab4660f05344bf7e5",
+    "initial_runner_commit": "8fbda7de162aa41763758247e45495be92f86328",
+    "bounded_probe_correction_commit": "f2ff3d2d4c1785d856d06247bde7c7acaa32a497",
+    "formal_lock_commit": "200d97c24100049ff3421b608bc9805367e81698",
+    "runner_git_blob": "527d2067165c7d393223cb57f2e23c79d383f938",
+    "runner_sha256": "e48ee6f0da5e449956f35d545c217a3c2abfd6f3f96403cab3cac3465fb04824",
+    "config_git_blob": "fb245cc47276908982b531a2f139039efeb65970",
+    "config_sha256": "f7664e94a03358cedce11703a2a8aef0e434953c6fb70dd0dfeaebf2b05d3664"
+  },
+  "formal_reports": [
+    {
+      "path": "outputs/eval/p269_hdrplus_one_burst_acquisition/formal_result.json",
+      "bytes": 17026,
+      "sha256": "773bde2d0f8d39c5f7bf0b8c6e8f78f4b1a45b77141b6a8d6479842e43aed877"
+    },
+    {
+      "path": "outputs/eval/p269_hdrplus_one_burst_acquisition/formal_replay.json",
+      "bytes": 17025,
+      "sha256": "26f563a67a11ab09876327de33e79f59bda943cf8e66476173387518cce4ed9f"
+    }
+  ],
+  "result": {
+    "stable_scientific_identity": "db171c7dbc9259ec6b947c181070145d816b502193a2de2ad2348785c7159760",
+    "two_complete_reports_scientific_exact": true,
+    "selected_burst_id": "0382_20150912_131056_666",
+    "local_object_count": 24,
+    "local_total_bytes": 256482210,
+    "local_inventory_sha256": "190945626dec38461266a362b723dca92fe4536e50a1f22b05556b236b33e4a1",
+    "input_dng_count": 8,
+    "input_dng_make": "Huawei",
+    "input_dng_model": "angler",
+    "input_dng_shape": [3024, 4032],
+    "input_dng_compression": "NONE",
+    "input_dng_dtype": "uint16",
+    "input_dng_white_level": 1023,
+    "bounded_probe_side": 64,
+    "bounded_probe_payload_bytes_read_per_dng": 8192,
+    "full_input_raw_plane_decodes": 0,
+    "result_dng_metadata_reads": 2,
+    "result_dng_pixel_decodes": 0,
+    "result_jpeg_pixel_decodes": 0,
+    "fit_train_inference_score_reads": 0,
+    "owned_stage_residue": 0
+  },
+  "gates": {
+    "remote_identity": true,
+    "local_identity": true,
+    "signatures": true,
+    "input_dng_bounded_probes": true,
+    "result_metadata_only": true,
+    "sidecars": true,
+    "zero_result_and_science_reads": true
+  },
+  "preformal_exclusions": [
+    "The first bounded acquisition process published and verified 20 objects, then one independent HTTPS handshake ended with SSL UNEXPECTED_EOF while four other workers completed. The finally block removed every owned stage file. The unchanged locked process was resumed once, reused the 20 verified objects and created only the four missing objects.",
+    "The first post-acquisition diagnostic retained only a 64x64 probe but used rawpy, whose backend decoded the complete input RAW plane. No evidence was published. Before formal lock, the runner was corrected to read exactly 64 independent row-strip ranges of 128 bytes each from every uncompressed input DNG. Source, files, roles, result-pixel prohibition and gates did not change.",
+    "Earlier acquisition/diagnostic reports are excluded from formal evidence. Both corrected formal reports revalidate all remote and local identities and share the exact scientific identity above."
+  ],
+  "claim_ceiling": "Private exact one-burst source lock and bounded RAW/capture-sidecar decode feasibility only. No HDR truth or quality, general burst support, result-pixel comparison, commercial/share-alike resolution, package, schema, capability, product mapping or candidate-3 admission."
+}
