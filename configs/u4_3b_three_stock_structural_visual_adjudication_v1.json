@@ -1,0 +1,57 @@
+{
+  "schema": "neuro-film.u4-3b-three-stock-structural-visual-adjudication.v1",
+  "experiment_id": "U4.3B",
+  "date": "2026-08-27",
+  "status": "FROZEN_BEFORE_IMAGE_REVIEW",
+  "input_report": {
+    "path": "outputs/eval/u4_3a_three_stock_structural_diagnostics_v1/report.json",
+    "bytes": 118344,
+    "sha256": "3942d56bf7d6c213e53568eecd9ad52fd32e15b6b4dabf41ed70ed72ec8ca2ac",
+    "scientific_identity": "c2db3f9a88c982dd44e911585e758e6057ea75663d834b3d9c5a7c5f28ab0dac"
+  },
+  "selection": {
+    "rule": "union-of-top-3-from-each-u4-3a-review-queue",
+    "queue_depth": 3,
+    "required_queue_count": 7,
+    "required_pair_count": 11,
+    "pairs": [
+      ["canon_eos_kiss_f", "ao6_velvia50_display_proxy_t15_c35"],
+      ["fujifilm_finepix_s5000", "ao6_velvia50_display_proxy_t15_c35"],
+      ["leica_d_lux_6", "ao6_velvia50_display_proxy_t15_c35"],
+      ["leica_d_lux_6", "legacy_unpaired_safe_lab_k1_portra400"],
+      ["leica_d_lux_6", "legacy_unpaired_safe_lab_k1_velvia50"],
+      ["leica_digilux_3", "ao6_velvia50_display_proxy_t15_c35"],
+      ["olympus_e_p7", "ao6_velvia50_display_proxy_t15_c35"],
+      ["olympus_sp550uz", "ao6_velvia50_display_proxy_t15_c35"],
+      ["panasonic_dmc_fz100", "ao6_velvia50_display_proxy_t15_c35"],
+      ["panasonic_dmc_gf2", "ao6_velvia50_display_proxy_t15_c35"],
+      ["sony_dslr_a290", "ao6_velvia50_display_proxy_t15_c35"]
+    ]
+  },
+  "review_material": {
+    "crop_size": 256,
+    "full_view_max_side": 768,
+    "locations": [
+      "flat_new_high_frequency",
+      "edge_direction_disagreement",
+      "edge_gain_tail"
+    ],
+    "decision_panels_unenhanced": true,
+    "diagnostic_maps_decision_evidence": false,
+    "output_root": "outputs/eval/u4_3b_three_stock_structural_visual_adjudication_v1"
+  },
+  "allowed_decisions": [
+    "PASS_NO_CONFIRMED_SEVERE_ARTIFACT",
+    "FAIL_CONFIRMED_SEVERE_ARTIFACT",
+    "REVIEW_UNRESOLVED"
+  ],
+  "forbidden": {
+    "post_review_row_substitution": true,
+    "aggregate_scalar_score": true,
+    "automatic_metric_veto": true,
+    "render_calls": true,
+    "network_reads": true,
+    "threshold_or_operator_rescue": true
+  },
+  "claim_ceiling": "Autonomous visual evidence on 11 preselected RF3.D0 raster pairs only; not population preference, stock identification, calibrated film response, universal safety, multi-stock completion or product promotion"
+}
