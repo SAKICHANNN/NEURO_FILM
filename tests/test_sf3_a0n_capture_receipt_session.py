@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import csv
+import io
 import json
 from pathlib import Path
 
@@ -9,18 +11,24 @@ from scripts.update_sf3_a0n_capture_receipt_session import main as session_cli
 from src.real_film.three_stock_capture_receipts import (
     ThreeStockCaptureReceiptError,
     build_receipt_template,
+    build_single_stock_receipt_template,
     evaluate_receipts,
+    evaluate_single_stock_receipts,
 )
 from src.real_film.three_stock_capture_session import (
+    CAPTURE_SESSION_CSV_FIELDS,
     CONDITION_KIND,
     EXPOSURE_KIND,
     capture_session_progress,
+    export_capture_session_csv,
+    import_capture_session_csv,
     update_capture_session_batch,
     update_capture_session_row,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/sf3_a0n_three_stock_capture_receipts_v1.json"
+EKTAR = "kodak_ektar_100"
 
 
 def _condition_values() -> dict[str, object]:
@@ -45,6 +53,98 @@ def _exposure_values() -> dict[str, object]:
         "meter_id": "meter-v1",
         "meter_calibration_sha256": "b" * 64,
     }
+
+
+def _filled_csv(packet: dict, *, stock: str) -> str:
+    rows = list(
+        csv.DictReader(
+            io.StringIO(
+                export_capture_session_csv(CONTRACT, packet, root=ROOT, stock=stock)
+            )
+        )
+    )
+    for row in rows:
+        values = (
+            _condition_values() if row["kind"] == CONDITION_KIND else _exposure_values()
+        )
+        for field, value in values.items():
+            row[field] = str(value)
+    output = io.StringIO(newline="")
+    writer = csv.DictWriter(
+        output, fieldnames=CAPTURE_SESSION_CSV_FIELDS, lineterminator="\n"
+    )
+    writer.writeheader()
+    writer.writerows(rows)
+    return output.getvalue()
+
+
+def test_ektar_csv_roundtrip_passes_existing_single_stock_validator(
+    tmp_path: Path,
+) -> None:
+    packet = build_single_stock_receipt_template(CONTRACT, stock=EKTAR, root=ROOT)
+    worksheet = export_capture_session_csv(CONTRACT, packet, root=ROOT, stock=EKTAR)
+    reader = csv.DictReader(io.StringIO(worksheet))
+    rows = list(reader)
+    assert tuple(reader.fieldnames or ()) == CAPTURE_SESSION_CSV_FIELDS
+    assert len(rows) == 47
+
+    updated = import_capture_session_csv(
+        CONTRACT,
+        packet,
+        _filled_csv(packet, stock=EKTAR),
+        root=ROOT,
+        stock=EKTAR,
+    )
+    assert capture_session_progress(CONTRACT, updated, root=ROOT, stock=EKTAR)[
+        "ready_for_complete_receipt_validation"
+    ]
+    assert (
+        capture_session_progress(CONTRACT, packet, root=ROOT, stock=EKTAR)[
+            "conditions"
+        ]["filled"]
+        == 0
+    )
+    path = tmp_path / "ektar-packet.json"
+    path.write_text(json.dumps(updated, sort_keys=True), encoding="utf-8")
+    assert evaluate_single_stock_receipts(CONTRACT, path, stock=EKTAR, root=ROOT)[
+        "automatic_pass"
+    ]
+
+
+def test_csv_import_rejects_drift_atomically() -> None:
+    packet = build_single_stock_receipt_template(CONTRACT, stock=EKTAR, root=ROOT)
+    worksheet = _filled_csv(packet, stock=EKTAR)
+    rows = list(csv.DictReader(io.StringIO(worksheet)))
+
+    def encode(candidate: list[dict[str, str]]) -> str:
+        output = io.StringIO(newline="")
+        writer = csv.DictWriter(
+            output, fieldnames=CAPTURE_SESSION_CSV_FIELDS, lineterminator="\n"
+        )
+        writer.writeheader()
+        writer.writerows(candidate)
+        return output.getvalue()
+
+    with pytest.raises(ThreeStockCaptureReceiptError, match="coverage"):
+        import_capture_session_csv(
+            CONTRACT, packet, encode(rows[:-1]), root=ROOT, stock=EKTAR
+        )
+    with pytest.raises(ThreeStockCaptureReceiptError, match="duplicate"):
+        import_capture_session_csv(
+            CONTRACT, packet, encode(rows + [rows[0]]), root=ROOT, stock=EKTAR
+        )
+    invalid = [dict(row) for row in rows]
+    invalid[-1]["shutter_seconds"] = "not-a-number"
+    with pytest.raises(ThreeStockCaptureReceiptError, match="number"):
+        import_capture_session_csv(
+            CONTRACT, packet, encode(invalid), root=ROOT, stock=EKTAR
+        )
+    assert (
+        capture_session_progress(CONTRACT, packet, root=ROOT, stock=EKTAR)["exposures"][
+            "filled"
+        ]
+        == 0
+    )
 
 
 def test_updates_are_copy_on_write_and_progress_in_frozen_order() -> None:
@@ -305,3 +405,50 @@ def test_cli_applies_batch_to_new_packet(
     )
     assert progress["conditions"]["filled"] == 1
     assert progress["exposures"]["filled"] == 1
+
+
+def test_cli_exports_and_atomically_imports_ektar_csv(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    packet = build_single_stock_receipt_template(CONTRACT, stock=EKTAR, root=ROOT)
+    packet_path = tmp_path / "ektar-template.json"
+    packet_path.write_text(json.dumps(packet), encoding="utf-8")
+    worksheet_path = tmp_path / "ektar-field-sheet.csv"
+    monkeypatch.setattr(
+        "sys.argv",
+        [
+            "update-session",
+            "--packet",
+            str(packet_path),
+            "--stock",
+            EKTAR,
+            "--export-csv",
+            "--output",
+            str(worksheet_path),
+        ],
+    )
+    assert session_cli() == 0
+    assert worksheet_path.read_text(encoding="utf-8") == export_capture_session_csv(
+        CONTRACT, packet, root=ROOT, stock=EKTAR
+    )
+    worksheet_path.unlink()
+    worksheet_path.write_text(_filled_csv(packet, stock=EKTAR), encoding="utf-8")
+    updated_path = tmp_path / "ektar-complete.json"
+    monkeypatch.setattr(
+        "sys.argv",
+        [
+            "update-session",
+            "--packet",
+            str(packet_path),
+            "--stock",
+            EKTAR,
+            "--batch-csv",
+            str(worksheet_path),
+            "--output",
+            str(updated_path),
+        ],
+    )
+    assert session_cli() == 0
+    assert evaluate_single_stock_receipts(
+        CONTRACT, updated_path, stock=EKTAR, root=ROOT
+    )["automatic_pass"]

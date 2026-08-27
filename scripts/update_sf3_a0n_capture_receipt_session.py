@@ -15,6 +15,8 @@ from src.real_film.three_stock_capture_session import (
     CONDITION_KIND,
     EXPOSURE_KIND,
     capture_session_progress,
+    export_capture_session_csv,
+    import_capture_session_csv,
     update_capture_session_batch,
     update_capture_session_row,
 )
@@ -34,6 +36,12 @@ def _write_new(path: Path, value: dict) -> None:
         handle.write(raw)
 
 
+def _write_new_text(path: Path, value: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("xb") as handle:
+        handle.write(value.encode("utf-8"))
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--packet", type=Path, required=True)
@@ -51,10 +59,23 @@ def main() -> int:
     action.add_argument("--condition-id")
     action.add_argument("--exposure-id")
     action.add_argument("--batch", type=Path)
+    action.add_argument("--batch-csv", type=Path)
+    action.add_argument("--export-csv", action="store_true")
     parser.add_argument("--values", type=Path)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     packet = _object(args.packet)
+    if args.export_csv:
+        if args.values is not None:
+            parser.error("--export-csv does not accept --values")
+        _write_new_text(
+            args.output,
+            export_capture_session_csv(
+                args.contract, packet, root=ROOT, stock=args.stock
+            ),
+        )
+        print(json.dumps({"format": "csv", "output": str(args.output)}, sort_keys=True))
+        return 0
     if args.status:
         if args.values is not None:
             parser.error("--status does not accept --values")
@@ -73,6 +94,16 @@ def main() -> int:
             root=ROOT,
             stock=args.stock,
             updates=updates,
+        )
+    elif args.batch_csv is not None:
+        if args.values is not None:
+            parser.error("--batch-csv does not accept --values")
+        result = import_capture_session_csv(
+            args.contract,
+            packet,
+            args.batch_csv.read_text(encoding="utf-8-sig"),
+            root=ROOT,
+            stock=args.stock,
         )
     else:
         if args.values is None:

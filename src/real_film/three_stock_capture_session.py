@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import copy
+import csv
+import io
 import math
 import re
 from collections.abc import Mapping, Sequence
@@ -18,6 +20,47 @@ from src.real_film.three_stock_capture_receipts import (
 CONDITION_KIND = "condition"
 EXPOSURE_KIND = "exposure"
 _SHA256 = re.compile(r"^[0-9a-f]{64}$")
+_CONDITION_FIELDS = (
+    "stimulus_sha256",
+    "display_device_id",
+    "display_profile_sha256",
+    "display_luminance_cd_m2",
+    "ambient_illuminance_lux",
+    "camera_system_id",
+    "lens_id",
+    "aperture_f_number",
+    "focus_distance_m",
+    "framing_id",
+)
+_EXPOSURE_FIELDS = (
+    "stock_id",
+    "film_ei",
+    "nominal_iso",
+    "shutter_seconds",
+    "meter_reading_ev100",
+    "exposure_compensation_ev",
+    "meter_id",
+    "meter_calibration_sha256",
+)
+CAPTURE_SESSION_CSV_FIELDS = (
+    "kind",
+    "slot_id",
+    *_CONDITION_FIELDS,
+    *_EXPOSURE_FIELDS,
+)
+_NUMERIC_FIELDS = frozenset(
+    {
+        "display_luminance_cd_m2",
+        "ambient_illuminance_lux",
+        "aperture_f_number",
+        "focus_distance_m",
+        "film_ei",
+        "nominal_iso",
+        "shutter_seconds",
+        "meter_reading_ev100",
+        "exposure_compensation_ev",
+    }
+)
 
 
 def _template(contract_path: Path, *, root: Path, stock: str | None) -> dict[str, Any]:
@@ -261,10 +304,143 @@ def update_capture_session_batch(
     return updated
 
 
+def export_capture_session_csv(
+    contract_path: Path,
+    packet: Mapping[str, Any],
+    *,
+    root: Path,
+    stock: str | None = None,
+) -> str:
+    """Export one strict, prefilled field worksheet for an A0N packet."""
+
+    template = _template(contract_path, root=root, stock=stock)
+    _validate_partial(packet, template)
+    output = io.StringIO(newline="")
+    writer = csv.DictWriter(
+        output,
+        fieldnames=CAPTURE_SESSION_CSV_FIELDS,
+        lineterminator="\n",
+    )
+    writer.writeheader()
+    for kind, fields in (
+        (CONDITION_KIND, _CONDITION_FIELDS),
+        (EXPOSURE_KIND, _EXPOSURE_FIELDS),
+    ):
+        id_field = _id_field(kind)
+        for source in _rows(packet, kind):
+            row: dict[str, Any] = {field: "" for field in CAPTURE_SESSION_CSV_FIELDS}
+            row.update({"kind": kind, "slot_id": source[id_field]})
+            row.update(
+                {
+                    field: "" if source[field] is None else source[field]
+                    for field in fields
+                }
+            )
+            writer.writerow(row)
+    return output.getvalue()
+
+
+def _parse_csv_value(field: str, value: str) -> Any:
+    if not value:
+        raise ThreeStockCaptureReceiptError(f"empty capture worksheet field: {field}")
+    if field not in _NUMERIC_FIELDS:
+        return value
+    try:
+        parsed = float(value)
+    except ValueError as exc:
+        raise ThreeStockCaptureReceiptError(
+            f"invalid capture worksheet number: {field}"
+        ) from exc
+    if not math.isfinite(parsed):
+        raise ThreeStockCaptureReceiptError(
+            f"invalid capture worksheet number: {field}"
+        )
+    return parsed
+
+
+def import_capture_session_csv(
+    contract_path: Path,
+    packet: Mapping[str, Any],
+    worksheet: str,
+    *,
+    root: Path,
+    stock: str | None = None,
+) -> dict[str, Any]:
+    """Atomically import one complete strict A0N field worksheet."""
+
+    template = _template(contract_path, root=root, stock=stock)
+    _validate_partial(packet, template)
+    reader = csv.DictReader(io.StringIO(worksheet.lstrip("\ufeff"), newline=""))
+    if tuple(reader.fieldnames or ()) != CAPTURE_SESSION_CSV_FIELDS:
+        raise ThreeStockCaptureReceiptError("capture worksheet header drift")
+
+    expected: dict[tuple[str, str], Mapping[str, Any]] = {}
+    fields_by_kind = {
+        CONDITION_KIND: _CONDITION_FIELDS,
+        EXPOSURE_KIND: _EXPOSURE_FIELDS,
+    }
+    for kind in (CONDITION_KIND, EXPOSURE_KIND):
+        id_field = _id_field(kind)
+        expected.update(
+            {(kind, str(row[id_field])): row for row in _rows(template, kind)}
+        )
+
+    updates: list[dict[str, Any]] = []
+    observed: set[tuple[str, str]] = set()
+    for row in reader:
+        if set(row) != set(CAPTURE_SESSION_CSV_FIELDS) or None in row:
+            raise ThreeStockCaptureReceiptError("capture worksheet row drift")
+        kind = row["kind"]
+        slot_id = row["slot_id"]
+        identity = (kind, slot_id)
+        source = expected.get(identity)
+        if source is None or identity in observed:
+            raise ThreeStockCaptureReceiptError(
+                "capture worksheet unknown or duplicate slot"
+            )
+        observed.add(identity)
+        active_fields = fields_by_kind[kind]
+        if any(
+            row[field]
+            for field in set(_CONDITION_FIELDS + _EXPOSURE_FIELDS) - set(active_fields)
+        ):
+            raise ThreeStockCaptureReceiptError(
+                "capture worksheet cross-kind field drift"
+            )
+        values: dict[str, Any] = {}
+        for field in active_fields:
+            parsed = _parse_csv_value(field, row[field])
+            if source[field] is None:
+                values[field] = parsed
+            else:
+                expected_value = source[field]
+                if isinstance(expected_value, (int, float)):
+                    matches = float(parsed) == float(expected_value)
+                else:
+                    matches = parsed == expected_value
+                if not matches:
+                    raise ThreeStockCaptureReceiptError(
+                        f"capture worksheet immutable field drift: {field}"
+                    )
+        updates.append({"kind": kind, "slot_id": slot_id, "values": values})
+    if observed != set(expected):
+        raise ThreeStockCaptureReceiptError("capture worksheet slot coverage drift")
+    return update_capture_session_batch(
+        contract_path,
+        packet,
+        root=root,
+        updates=updates,
+        stock=stock,
+    )
+
+
 __all__ = [
+    "CAPTURE_SESSION_CSV_FIELDS",
     "CONDITION_KIND",
     "EXPOSURE_KIND",
     "capture_session_progress",
+    "export_capture_session_csv",
+    "import_capture_session_csv",
     "update_capture_session_batch",
     "update_capture_session_row",
 ]
