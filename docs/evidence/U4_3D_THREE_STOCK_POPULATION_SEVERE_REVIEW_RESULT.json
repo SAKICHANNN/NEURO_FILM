@@ -1,0 +1,76 @@
+{
+  "schema": "neuro-film.u4-3d-three-stock-population-severe-review-result.v1",
+  "experiment_id": "U4.3D",
+  "date": "2026-08-27",
+  "status": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT_ACROSS_48_EXISTING_K1_OUTPUTS",
+  "implementation_commit": "c212df76db5886e9718b6064e7f6aa4cc6d33f40",
+  "config": {
+    "path": "configs/u4_3d_three_stock_population_severe_review_v1.json",
+    "sha256": "226d3404d4fc89e2be935baf9ca389f204f255f05f9324ad12f8a147797b09b2"
+  },
+  "formal_reports": {
+    "forward_path": "outputs/eval/u4_3d_three_stock_population_severe_review_v1/report_a.json",
+    "reverse_path": "outputs/eval/u4_3d_three_stock_population_severe_review_v1/report_b.json",
+    "bytes_each": 40100,
+    "sha256": "cef2eb6232dbd2b26b881fb3bec2a96cb8f236781172eb9deb6228b42151a3e5",
+    "forward_reverse_byte_exact": true,
+    "scientific_identity": "a3d79caf9951b25f664b41a79037e4cf10eeca1de64cc50fe0a06efae41071e3"
+  },
+  "review_protocol": {
+    "reviewer_class": "autonomous_visual_evidence",
+    "selection_frozen_before_review": true,
+    "selection_rule": "all-16-sources-x-all-3-fixed-k1-look-approximation-arms",
+    "source_count": 16,
+    "output_count": 48,
+    "review_sheet_count": 16,
+    "overview_count": 48,
+    "exact_source_output_crop_pair_count": 144,
+    "crop_classes": [
+      "flat_new_high_frequency",
+      "edge_direction_disagreement",
+      "edge_gain_tail"
+    ],
+    "post_review_substitution_count": 0,
+    "render_calls": 0,
+    "network_reads": 0,
+    "ao6_included": false
+  },
+  "arms": [
+    "legacy_unpaired_safe_lab_k1_velvia50",
+    "legacy_unpaired_safe_lab_k1_portra400",
+    "legacy_unpaired_safe_lab_k1_ektar100"
+  ],
+  "source_adjudications": [
+    {"source_id": "canon_eos_1d_mark_iv", "decisions": ["PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"], "rationale": "Pool architecture, roof edges, foliage, sky gradients and high-frequency crops remain coherent without confirmed impulses, blocks, bands, objectionable halos or structural loss."},
+    {"source_id": "canon_eos_kiss_f", "decisions": ["PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"], "rationale": "Night billboard text, lamps, building edges and dark gradients remain coherent without confirmed impulses, blocks, bands, objectionable halos or geometry failure."},
+    {"source_id": "fujifilm_finepix_s5000", "decisions": ["PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"], "rationale": "House siding, window frames, roof lines and foliage remain continuous without confirmed impulses, blocks, bands or structural loss."},
+    {"source_id": "kodak_dcs_pro_14n", "decisions": ["PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"], "rationale": "Hay texture, tree branches, horizon and sky remain coherent without confirmed posterization, impulses, halos or structural corruption."},
+    {"source_id": "leica_d_lux_6", "decisions": ["PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"], "rationale": "Cloud highlights, sun rays, rail lines and distant buildings remain continuous without confirmed bands, blocks, impulses or objectionable halos."},
+    {"source_id": "leica_digilux_3", "decisions": ["PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"], "rationale": "The source-native rotated scene, stair rails, upholstery texture and wall gradients remain coherent without renderer-induced geometry change, bands or impulses."},
+    {"source_id": "nikon_d200", "decisions": ["PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"], "rationale": "Grass, livestock, tree edges and layered hills remain coherent without confirmed texture repetition, blocks, impulses or structural loss."},
+    {"source_id": "nikon_d2x", "decisions": ["PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"], "rationale": "Brick, branches, furniture and ivy remain coherent without confirmed edge halos, blocks, impulses or detail corruption."},
+    {"source_id": "olympus_e_p7", "decisions": ["PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"], "rationale": "Cloud gradients, fine grass stems and flower edges remain continuous without confirmed bands, blocks, impulses or geometry loss."},
+    {"source_id": "olympus_sp550uz", "decisions": ["PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"], "rationale": "Fence grain, wires, dry grass and foliage remain coherent without confirmed texture repetition, blocks, impulses or objectionable halos."},
+    {"source_id": "panasonic_dmc_fz100", "decisions": ["PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"], "rationale": "Dense foliage, blossoms, tree bark and clipped-source highlights remain coherent without new confirmed blocks, impulses, halos or structural failure."},
+    {"source_id": "panasonic_dmc_gf2", "decisions": ["PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"], "rationale": "Leaf litter, trunks, fine branches and sun patches remain coherent without confirmed repetition, blocks, impulses or geometry loss."},
+    {"source_id": "pentax_k_r", "decisions": ["PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"], "rationale": "Horse silhouette, field texture, treeline and bright sky remain coherent without confirmed bands, impulses, blocks or structural loss."},
+    {"source_id": "pentax_k100d_super", "decisions": ["PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"], "rationale": "Palm fronds, signs, poles, building edges and cloud gradients remain coherent without confirmed halos, blocks, impulses or geometry failure."},
+    {"source_id": "sony_dslr_a290", "decisions": ["PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"], "rationale": "Orchid petal gradients, fine veins and defocused highlight transitions remain coherent without confirmed banding, blotches, impulses or contour failure."},
+    {"source_id": "sony_nex_3n", "decisions": ["PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"], "rationale": "Mountain ridges, road lines, rocky texture and sky gradients remain coherent without confirmed blocks, impulses, bands or structural loss."}
+  ],
+  "decision_counts": {
+    "PASS_NO_CONFIRMED_SEVERE_ARTIFACT": 48,
+    "FAIL_CONFIRMED_SEVERE_ARTIFACT": 0,
+    "REVIEW_UNRESOLVED": 0
+  },
+  "retained_boundaries": {
+    "u7_2c_stock_separation_failure_unchanged": true,
+    "controlled_stock_evidence_gap_unchanged": true,
+    "a0n_physical_capture_gate_unchanged": true,
+    "candidate_or_profile_changed": false,
+    "calibrated_stock_claim_opened": false,
+    "product_promotion_opened": false
+  },
+  "decision": "Close the frozen U4.3D full-population severe-artifact review with no confirmed severe artifact across the 48 existing fixed K=1 stock-labelled Look Approximation outputs. This does not repair the independent stock-separation failure and does not replace the controlled physical-capture gate.",
+  "claim_ceiling": "Autonomous severe-artifact evidence for 48 existing RGB8 outputs from three unchanged K=1 Look Approximation arms across 16 source-disjoint photographs; not target-film closeness, stock identification, calibration, preference, universal safety, multi-stock completion or product promotion."
+}
