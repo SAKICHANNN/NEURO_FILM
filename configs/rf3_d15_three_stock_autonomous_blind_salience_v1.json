@@ -1,0 +1,60 @@
+{
+  "schema": "neuro-film.rf3-d15-three-stock-autonomous-blind-salience-contract.v1",
+  "experiment_id": "RF3.D15",
+  "date": "2026-08-27",
+  "status": "FROZEN_BEFORE_BLIND_MATERIAL_BUILD_OR_REVIEW",
+  "question": "Are all three existing fixed K=1 Look Approximation arms visibly pairwise distinguishable on at least 12 of 16 identical source photographs when stock labels are hidden?",
+  "parents": {
+    "structural_report": {
+      "path": "outputs/eval/u4_3a_three_stock_structural_diagnostics_v1/report.json",
+      "sha256": "3942d56bf7d6c213e53568eecd9ad52fd32e15b6b4dabf41ed70ed72ec8ca2ac"
+    },
+    "severe_review": {
+      "path": "docs/evidence/U4_3D_THREE_STOCK_POPULATION_SEVERE_REVIEW_RESULT.json",
+      "sha256": "30b2cec24f503f6c4e94700b0f737a50dab3e1f5b607e3fe854f27925524dfed",
+      "required_status": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT_ACROSS_48_EXISTING_K1_OUTPUTS"
+    },
+    "automatic_separation": {
+      "path": "docs/evidence/RF3_D14_THREE_STOCK_POPULATION_SEPARATION_RESULT.json",
+      "sha256": "f138e1992f8e0388e655bc2da8d67cc9ce0ee1c88d67cd895c05b629d6af851d",
+      "required_status": "FAIL_CLOSED_K1_THREE_STOCK_POPULATION_SEPARATION"
+    }
+  },
+  "render_root": "outputs/eval/rf3_three_stock_proxy_baseline_d0_v1/run_a",
+  "source_count": 16,
+  "arm_ids": [
+    "legacy_unpaired_safe_lab_k1_velvia50",
+    "legacy_unpaired_safe_lab_k1_portra400",
+    "legacy_unpaired_safe_lab_k1_ektar100"
+  ],
+  "blind_protocol": {
+    "rounds": 2,
+    "mapping_domain": "rf3-d15-autonomous-blind-salience-v1",
+    "seed_sha256": "b13aeaf65ad07a2052d28865c3693764d3e9f4e7bb85bffc73c40d4c9999f338",
+    "same_digital_source_within_triplet": true,
+    "stock_labels_hidden_until_observations_frozen": true,
+    "complete_pairwise_visible_or_not_visible_decisions": true,
+    "no_stock_name_assignment": true,
+    "reviewer_class": "autonomous_visual_evidence",
+    "prior_labeled_exposure_disclosed": true,
+    "round_order_must_not_change_pairwise_decision": true
+  },
+  "gates": {
+    "minimum_visible_source_count_per_stock_pair": 12,
+    "maximum_round_disagreement_count_per_stock_pair": 2,
+    "zero_missing_or_duplicate_observations": true,
+    "exact_mapping_and_output_hash_replay": true,
+    "severe_review_pass_required": true
+  },
+  "decision_if_pass": "RETAIN_EXISTING_K1_OUTPUTS_AS_AUTONOMOUSLY_VISIBLE_THREE_WAY_LOOK_CONTROLS_ONLY",
+  "decision_if_fail": "CLOSE_EXISTING_K1_THREE_STOCK_AUTONOMOUS_VISUAL_DISTINGUISHABILITY_WITHOUT_RESCUE",
+  "forbidden": [
+    "new render",
+    "operator, source, threshold or cohort rescue",
+    "target-film closeness claim",
+    "stock identity or calibrated-response claim",
+    "human or population preference claim",
+    "product or multi-stock completion claim"
+  ],
+  "claim_ceiling": "Autonomous label-hidden pairwise visible-salience evidence for 48 existing RGB8 Look Approximation outputs on 16 source-disjoint photographs. Prior exposure to one labeled review sheet is disclosed. This is not independent human validation, stock identification, target-film closeness, calibration, preference, product promotion or completed multi-stock simulation."
+}
