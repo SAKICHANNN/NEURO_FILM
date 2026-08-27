@@ -12,6 +12,7 @@ from scripts.audit_p267_acescg_openexr_linux_scanline_runtime import (
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/p267_acescg_openexr_linux_scanline_runtime_v1.json"
 SOURCE = ROOT / "src/eval/p267_acescg_openexr_linux_scanline_writer.cpp"
+EVIDENCE = ROOT / "docs/evidence/P267_ACESCG_OPENEXR_LINUX_SCANLINE_RUNTIME_RESULT.json"
 
 
 def test_p267_config_freezes_linux_only_runtime_change() -> None:
@@ -88,3 +89,17 @@ def test_p267_stable_payload_excludes_only_declared_runtime_diagnostics() -> Non
     changed["workers"][0]["file_sha256"] = "container-b"
     changed["workers"][0]["resource"]["wall_seconds"] = 2.0
     assert _stable_controller_payload(base) == _stable_controller_payload(changed)
+
+
+def test_p267_evidence_preserves_private_runtime_claim_ceiling() -> None:
+    evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+    assert evidence["status"] == (
+        "PASS_PRIVATE_ACESCG_OPENEXR_24MP_LINUX_SCANLINE_RUNTIME"
+    )
+    assert all(evidence["gates"].values())
+    assert evidence["result"]["two_complete_reports_stable_exact"] is True
+    assert evidence["result"]["decoded_maximum_absolute_error"] == 0.0
+    assert evidence["result"]["linux_container_matches_windows_p248"] is True
+    assert evidence["result"]["linux_elf_sha_is_not_a_frozen_gate"] is True
+    assert "not physical Linux-device certification" in evidence["claim_ceiling"]
+    assert "product support" in evidence["claim_ceiling"]

@@ -1,0 +1,84 @@
+{
+  "schema": "neuro-film.p267-acescg-openexr-linux-scanline-runtime-evidence.v1",
+  "experiment_id": "P267",
+  "status": "PASS_PRIVATE_ACESCG_OPENEXR_24MP_LINUX_SCANLINE_RUNTIME",
+  "decision": "The frozen official-source OpenEXR 3.4.15 ordered-scanline writer reproduces the exact P248 24MP ACEScg/AP1-D60 float32 pixels, metadata and complete ZIP OpenEXR container in WSL2 Ubuntu 22.04 x86_64 while remaining below the frozen resource ceilings. Retain only this private Linux target-runtime and resource result.",
+  "bindings": {
+    "contract_commit": "a8be83a5",
+    "config_commit": "ce578e00",
+    "config_sha256": "75159b69f2d5b37311caa615d52d703ccb31a2c50734d436cf0361ee8f8f8687",
+    "implementation_commit": "64278d72852d1d913919b16a9afdd39678cc4753",
+    "formal_runner_commit": "c0c981711ed86329b7eb51ac4d13a84eba960e3e",
+    "native_source_git_blob": "1b513e0db73590414397d78fc71fa55f115cc4b9",
+    "native_source_sha256": "3736258572f987571611656c97cb6cf06ce33a984a090447defa02104bbeddc5",
+    "runner_git_blob": "feb4dfa43d498505b3b59228c54549c33784fc3f",
+    "runner_sha256": "5c99944c4a61f1e68f078cf11c33c4bb55c4df063d402abc5aa4d3b7bc11bd6c",
+    "p248_evidence_sha256": "88bb01452def2259a6f6b533ae849231b1f4bdf09e984de8dad100c9f974c27d",
+    "p248_expected_pixel_f32le_sha256": "2b4890bd8fdc9af7caadccbdee56960300803a4ca7f5851fd00280ee0ea86adf",
+    "p248_openexr_sha256": "877b9a896b7b3bea832cc02f3ea560f5e62f45bc0f88bbb2a0ce4b18baf1d693",
+    "openexr_source_sha256": "ab893d8003773ccd9a5556b2caf38da591ae37e20b06ee9d589a08984c5191f2",
+    "imath_source_sha256": "b4275d83fb95521510e389b8d13af10298ed5bed1c8e13efd961d91b1105e462",
+    "cmake_wheel_sha256": "8e91b381aaea3c47110583dccc52f4562333d1accdbb806939f953c16e74ec0a",
+    "cmake_executable_sha256": "603bbaefd2a4a3fb6fb34af8458972780d47a8e32eaa4b91be25e768a9309bcd",
+    "gxx_sha256": "2360901d864cf10bfd6296e261cb2c14053552a80377761ab07146ec9ec9a2c0",
+    "ninja_sha256": "a9ddfbf7e365a2e5026ed44f9173e498e37d8b71ec5e259b2c2a684f16cfa862"
+  },
+  "formal_reports": [
+    {
+      "path": "outputs/eval/p267_acescg_openexr_linux_scanline_runtime/formal_result.json",
+      "bytes": 12506,
+      "sha256": "a89d605758c00b52339f9ad4626b841c0a490609a39ad1987bc4af2dccda6197"
+    },
+    {
+      "path": "outputs/eval/p267_acescg_openexr_linux_scanline_runtime/formal_replay.json",
+      "bytes": 12507,
+      "sha256": "3c01b6d5ccdebfd412b423b18b1af6bf076f1dd2207953b642a929f3f998cc44"
+    }
+  ],
+  "result": {
+    "stable_controller_identity_excluding_resource_elf_and_container": "69a5a3774dc72a486fbc826a4a09b61cffab1dfa5f1abaa89b6f8e5c0fa2cf16",
+    "two_complete_reports_stable_exact": true,
+    "controllers": 4,
+    "fresh_runtime_workers": 8,
+    "runtime_worker_peak_rss_bytes": [8388608, 8388608, 8388608, 8388608, 8388608, 8388608, 8388608, 8388608],
+    "maximum_runtime_worker_peak_rss_bytes": 8388608,
+    "maximum_runtime_worker_wall_seconds": 1.2819644999999582,
+    "frozen_maximum_rss_bytes": 2147483648,
+    "frozen_maximum_wall_seconds": 120.0,
+    "openexr_bytes": 13067999,
+    "openexr_sha256": "877b9a896b7b3bea832cc02f3ea560f5e62f45bc0f88bbb2a0ce4b18baf1d693",
+    "linux_container_matches_windows_p248": true,
+    "decoded_pixel_f32le_sha256": "2b4890bd8fdc9af7caadccbdee56960300803a4ca7f5851fd00280ee0ea86adf",
+    "decoded_maximum_absolute_error": 0.0,
+    "exact_ap1_d60_metadata": true,
+    "zip_scanline": true,
+    "negative_and_above_one_preserved": true,
+    "finite": true,
+    "new_boundary_count": 0,
+    "small_probe_container_sha256": "2cd4e956cbcecda58bc260fe7d64b7637c79670d28eb68cf8351683ea15c33c5",
+    "small_probe_replay_exact": true,
+    "invalid_input_rejected": true,
+    "publication_failure_atomic": true,
+    "independent_linux_elf_hashes_all_distinct": true,
+    "linux_elf_sha_is_not_a_frozen_gate": true,
+    "network_requests": 0,
+    "external_or_project_pixel_reads": 0,
+    "owned_formal_workspace_residue": 0
+  },
+  "gates": {
+    "atomic_controls": true,
+    "controller_scientific_exact": true,
+    "decoded_pixels": true,
+    "metadata": true,
+    "range_and_finite": true,
+    "resource": true,
+    "small_probe": true
+  },
+  "preformal_exclusions": [
+    "A pre-lock development run completed the Linux build and 24MP writers but stopped in report aggregation because the P248 evidence summary does not contain raw chromaticity arrays. The corrected runner follows the exact P248 config binding to its P246 metadata oracle; method, probe, sources, compression and gates did not change.",
+    "One incomplete repository-tmp CMake target probe and one WSL /tmp package probe predated formal execution. Neither produced a scientific report or changed system packages; both are owned cleanup targets.",
+    "The CMake wheel was downloaded once to the repo-relative P-backed vendor cache and hash-locked before formal execution; every formal build installed it offline into a fresh WSL /tmp root."
+  ],
+  "interpretation": "P248 established the ordered-scanline mechanism on Windows. P267 changes only the platform publication boundary and builds the same source-locked OpenEXR/Imath code in fresh WSL2 Linux roots. All decoded bytes, metadata and even complete containers match P248. Independently rebuilt ELF bytes differ, as preregistered, and are diagnostic rather than a correctness gate.",
+  "claim_ceiling": "Private WSL2 Ubuntu 22.04 x86_64 24MP OpenEXR scanline runtime/resource evidence only; not physical Linux-device certification, natural-image quality, arbitrary OpenEXR, AP0/ACES container admission, public dependency/API/package/schema/capability, product support or candidate3 evidence."
+}
