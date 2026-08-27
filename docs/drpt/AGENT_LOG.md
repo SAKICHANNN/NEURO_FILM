@@ -18037,6 +18037,31 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Capture One, use the curves as a teacher/control, or open fitting. Controlled
   same-scene independent-roll three-stock observations remain the mainline.
 
+### 2026-08-27 - U4.5A measures the current three-stock Windows CPU scale floor
+
+- **Node and scope:** `ULT > U4 performance > U4.5A`, DRPT L2 / Mode C. The
+  leaf measures one unchanged current three-look Python CPU path on the same
+  exact 4032x6048 source at 1, 12 and 24MP; it changes no pixels, profiles,
+  renderer, stock claims or scientific gates.
+- **Execution:** contract/runner/tests `1f5c5d6f`; exact-dimension prescore fix
+  `b481ae7b`; evidence `f0518466`. Before formal output, self-review stopped a
+  partial run and replaced a loose within-limit size check with the exact
+  frozen aspect-preserving dimensions. The six formal fresh processes then
+  completed without further change.
+- **Evidence:** all three tiers have exact two-run output hashes, three distinct
+  stock outputs, exact dimensions, repeat wall ratios `1.015-1.045` and zero
+  owned residue. Maximum walls are `8.2718/65.9653/135.8260s`; peak process-tree
+  RSS is `1.9030/1.9151/1.9057GB`. Raw formal report SHA is
+  `8a45d1bf...250886`; tracked semantic-identical evidence SHA is
+  `1974d795...9e0035`. Five focused/evidence tests pass with Ruff and diff
+  checks clean.
+- **Decision and boundary:** `PASS_MECHANICS_PRODUCT_TARGETS_OPEN`. The 1MP
+  preview meets 15 seconds but not 1GiB; 12/24MP miss both. Code and the nearly
+  constant peak locate the floor at full-source decode before preview resize.
+  Do not continue the closed Python buffer/memory microleaf family. This is
+  local Windows CPU Look Approximation evidence only, not mobile/M5/GPU,
+  stock accuracy, calibration, preference or release evidence.
+
 ### 2026-08-27 - P263 independently accepts the R1EJ PGTM callable handoff
 
 - **Routing and scope:** `ULT > mature RAW/DNG explicit mechanisms > P263`,
