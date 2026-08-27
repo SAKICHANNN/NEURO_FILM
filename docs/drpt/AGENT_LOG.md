@@ -19117,3 +19117,28 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   deletion mechanism was used. A future leaf needs container chromaticities or
   a prospectively bound authoritative sidecar. No arbitrary EXR/HDR,
   package/schema/capability/product, stock evidence or candidate-3 change opens.
+
+### 2026-08-27 - P294 closes explicit-only OpenEXR chromaticities intake
+
+- **Node:** `ULT > HDR source/intake > P294`; DRPT L2 / Mode C. This leaf tested
+  a strict explicit-container-identity policy on exact official ASWF OpenEXR
+  reference files. It did not alter the controlled three-stock acquisition lane.
+- **Freeze and source:** contract `c885b7b0`, exact source lock `98afc4e2`,
+  audit/formal lock `d862afe2` and evidence `94d4e354`. Official
+  `openexr-images` commit `e38ffb07...b7452` supplies `Rec709.exr` (908,168
+  bytes, SHA `15028cbf...a370e`) and `XYZ.exr` (930,048 bytes, SHA
+  `8d97c476...7825f`) under the bound repository licence and README.
+- **Result:** both sources are exact 610x406 RGB HALF/PIZ scanline files.
+  `XYZ.exr` explicitly stores its chromaticities, while `Rec709.exr` omits the
+  attribute and relies on OpenEXR's default Rec.709 semantics. The frozen
+  all-files-explicit gate fails before formal pixel-channel, transform and
+  output reads. Two fresh reports are byte-exact at 3,737 bytes / SHA
+  `e918d87a...7a464`, scientific `90fb774d...85d159`; 30 adjacent tests and
+  Ruff/compile/JSON/diff checks pass.
+- **Excluded diagnostic and boundary:** after source lock, one prescore use of
+  `OpenEXR.File(...).channels()` inadvertently materialized both packed channel
+  arrays; it created no persisted pixels, transform, metric or report and is
+  excluded from the formal zero-read claim. P294 does not rescue the missing
+  attribute with default semantics. A future standards-aware default policy
+  must be separately prospective. No arbitrary EXR/DCI-P3/ACES/HDR quality,
+  default/product, stock evidence or candidate-3 change opens.
