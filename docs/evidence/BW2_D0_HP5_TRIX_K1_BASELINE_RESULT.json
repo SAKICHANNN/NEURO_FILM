@@ -1,0 +1,72 @@
+{
+  "schema": "neuro-film.bw2-hp5-trix-k1-baseline-evidence.v1",
+  "experiment_id": "BW2.D0",
+  "date": "2026-08-27",
+  "status": "FAIL_CLOSED_RECOMMEND_ONE_GENERIC_BW_LOOK_APPROXIMATION",
+  "execution_commit": "6c43fa26f35cba28c6fb1faef5a5c0ce80cc6a7d",
+  "lineage": {
+    "contract_commit": "dc195fa8",
+    "implementation_commit": "c5dcbb26",
+    "runner_format_commit": "e3355b37",
+    "direct_entry_fix_commit": "b682a2fd"
+  },
+  "bindings": {
+    "contract": {
+      "path": "configs/bw2_d0_hp5_trix_k1_baseline_v1.json",
+      "sha256": "9759485693dd33c95fc26dd8b198fdb86e52bed238d55090ed9091371173fec2"
+    },
+    "implementation": {
+      "path": "src/eval/bw_two_stock_proxy_baseline.py",
+      "sha256": "45b77d2670719e3177a5882252f4b8580679f654896c93e09298cbad12c9dbdc"
+    },
+    "runner": {
+      "path": "scripts/run_bw2_d0_hp5_trix_k1_baseline.py",
+      "sha256": "91e82435fbd250162552797e0eec996840648830a7a64fba71c26f787e52ea8c"
+    },
+    "source_manifest_sha256": "048992242c82a2cd9efd193c6766065c7148ad0607a5505b88185d0ab781b101"
+  },
+  "formal_runs": [
+    {
+      "order": "canonical",
+      "report": "outputs/eval/bw2_d0_hp5_trix_k1_baseline_v1/run_a/report.json",
+      "report_sha256": "4e8d1125cb6ea147fb1b818ca1d2d988ded2c6f412f9fb161977024d84114831"
+    },
+    {
+      "order": "reverse",
+      "report": "outputs/eval/bw2_d0_hp5_trix_k1_baseline_v1/run_b/report.json",
+      "report_sha256": "1f4f83deba22f598cd695b95156819ea29d3a6b7d54bf8c5cb8027ccc19759c4"
+    }
+  ],
+  "scientific_identity": "c328cef6d35c4ffe2a2dc4de3c89db00fe8a4d6d78107c7f8e6ff50d8881f8d6",
+  "replay": {
+    "scientific_identity_exact": true,
+    "all_32_png_hashes_exact_across_orders": true,
+    "output_hash_mismatches": 0
+  },
+  "aggregate": {
+    "source_count": 16,
+    "output_count": 32,
+    "population_median_of_source_medians_delta_e76": 0.0,
+    "minimum_source_median_delta_e76": 0.0,
+    "sources_passing_frozen_median_delta_e76_1_0": 0,
+    "per_source_p95_delta_e76_range": [
+      0.43906402587890625,
+      0.5037021636962891
+    ],
+    "all_outputs_exact_rgb8_neutral_axis": true,
+    "maximum_new_output_boundary_fraction": 0.0,
+    "failed_gates": [
+      "population separation",
+      "per-source separation coverage"
+    ]
+  },
+  "decision": "recommend_one_generic_bw_look_approximation_and_close_same_cohort_tuning",
+  "interpretation": "The two existing heuristics are deterministic, neutral-axis and boundary-clean, but their per-source median RGB8 output difference is exactly zero on all 16 frozen inputs. They do not justify separate HP5 and Tri-X stock-labelled choices. No strength, statistics, model, threshold or cohort rescue is allowed.",
+  "direction_impact": {
+    "initial_three_colour_stock_program": "unchanged_and_still_data_gapped",
+    "black_and_white_product_recommendation": "one_generic_bw_look_approximation_until_independent_real_stock_evidence_exists",
+    "multi_stock_completion": false,
+    "ao6_role": "velvia_50_display_proxy_look_approximation_baseline_only"
+  },
+  "claim_ceiling": "Deterministic mechanical failure-to-separate evidence for two existing film-inspired B&W Look Approximation profiles. No HP5/Tri-X authenticity, target closeness, developer/process response, calibrated stock response, preference, product promotion or multi-stock completion."
+}
