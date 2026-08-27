@@ -1,0 +1,61 @@
+{
+  "schema": "neuro-film.sf3-a3j-negicc-cross-exposure-stock-factor-evidence.v1",
+  "experiment_id": "SF3.A3J",
+  "status": "FAIL_CLOSED_RETROSPECTIVE_STOCK_FACTOR_STABILITY",
+  "decision": "REQUIRE_NEW_CONTROLLED_OBSERVATIONS_NOT_OPERATOR_CAPACITY",
+  "commits": {
+    "contract": "061998b2",
+    "implementation": "9bc1f090",
+    "serialization_fixes": ["3b3a0f69", "409ff1f0"]
+  },
+  "bindings": {
+    "contract_sha256": "c7a75561840e0652efc259a2e734c96cdb0d1543b6a162e3b840a3404ea21178",
+    "implementation_sha256": "a7084e8e1ca8498317568bcb472b2653e771e28c52be3b1cedc8aa9c2b9d80af",
+    "runner_sha256": "f0d2948e19b680acf72d6f06ec50c4b27bdef742bfd4e62ca3ed42b66a958e17",
+    "test_sha256": "ad0cb498a2b1572614b38fea71fe5c811ca13bc63461218461bb501c0b0305dc",
+    "source_lock_scientific_identity": "2fc7f43e23c054f2fee3ff674c78e560c2233d41606956a74305ecba3ecfb1ea"
+  },
+  "formal_replay": {
+    "processes": 2,
+    "orders": ["forward", "reverse"],
+    "reports_byte_exact": true,
+    "report_sha256": "65a4bc4546dc967dedd61fab81844684271c365072151bf7ce9f8050e6652420",
+    "scientific_identity": "2134dbe6cadd4a06b50a0a24f932a5c8c6ee26866f06623ea8aebf79f7561135",
+    "network_reads_per_process": 8,
+    "image_or_tiff_requests": 0,
+    "pixel_decodes": 0
+  },
+  "observations": {
+    "stocks": ["kodak_ektar_100", "kodak_portra_400"],
+    "exposures_ev": [-1, 0, 1, 2],
+    "patch_rows_per_stock_exposure": 288,
+    "minimum_raw_pairwise_cosine": 0.40234893783348263,
+    "minimum_centered_pairwise_cosine": 0.3858177471311957,
+    "minimum_raw_sign_agreement": 0.5775462962962963,
+    "minimum_centered_sign_agreement": 0.6215277777777778,
+    "raw_contrast_rms_range": [0.20442826260999708, 0.2806740499591894],
+    "raw_contrast_rms_coefficient_of_variation": 0.11121938889184045
+  },
+  "gates": {
+    "patch_identity_exact": true,
+    "reference_xyz_exact": true,
+    "patch_rows": true,
+    "exposure_pairs": true,
+    "raw_pairwise_cosine": false,
+    "centered_pairwise_cosine": false,
+    "raw_sign_agreement": false,
+    "centered_sign_agreement": false,
+    "contrast_rms": true,
+    "contrast_rms_coefficient_of_variation": true,
+    "finite": true,
+    "image_or_tiff_requests": true
+  },
+  "execution_amendment": "Two pre-report attempts stopped before report materialization because strict JSON encoding rejected numpy.bool_ gate values. The implementation converted all gate facts to built-in bool and added a complete report serialization regression; source bytes, representations, metrics, thresholds and stop rules were unchanged before the two formal runs.",
+  "interpretation": "The Portra-versus-Ektar contrast has material magnitude at every exposure, but its direction and component signs are not stable across the four exposure conditions, even after removing each stock/exposure's per-channel patch mean. This explains why the held-exposure Ektar arm in SF3.A3I can prefer the wrong-stock or pooled model. The result requires new independently grouped roll/process/scanner and exposure-controlled observations; it does not justify greater operator capacity on this cohort.",
+  "three_stock_matrix": {
+    "kodak_portra_400": "one-setup controlled patch signal but exposure-factor stability failed",
+    "kodak_ektar_100": "one-setup controlled patch signal but exposure-factor stability failed",
+    "fujifilm_velvia_50": "data gap; no comparable controlled NegICC observation"
+  },
+  "claim_ceiling": "retrospective one-setup IT8 failure-mechanism diagnosis; not an operator, Velvia evidence, natural-scene transfer, independent roll/process/scanner evidence, calibrated stock response or product promotion"
+}
