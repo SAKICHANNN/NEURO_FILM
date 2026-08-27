@@ -36,6 +36,7 @@ def test_evidence_preserves_candidate_boundary_and_development_pass() -> None:
         "gates": {"all": True},
         "model_bytes": 123,
         "model_sha256": "model-sha",
+        "network_bytes": 0,
         "phase": "development",
         "reserve_member_reads": 0,
         "scientific_identity": "sha256:science",
@@ -81,6 +82,7 @@ def test_evidence_fails_closed_on_confirmation_read() -> None:
         "confirmation_member_reads": 1,
         "decision": "PASS_PRIVATE_P302_DEVELOPMENT",
         "gates": {"all": True},
+        "network_bytes": 0,
         "phase": "development",
         "reserve_member_reads": 0,
     }
