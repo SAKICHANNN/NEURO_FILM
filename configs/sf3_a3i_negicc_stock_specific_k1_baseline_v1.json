@@ -1,0 +1,66 @@
+{
+  "schema": "neuro-film.sf3-a3i-negicc-stock-specific-k1-baseline.v1",
+  "experiment_id": "SF3.A3I",
+  "source_lock": {
+    "implementation_commit": "f975a3b491c4adfe5b09feda66350534db9ccfcc",
+    "scientific_identity": "2fc7f43e23c054f2fee3ff674c78e560c2233d41606956a74305ecba3ecfb1ea",
+    "config": "configs/sf3_a3h_negicc_it8_source_lock_v1.json"
+  },
+  "stocks": [
+    "kodak_ektar_100",
+    "kodak_portra_400"
+  ],
+  "roles": {
+    "build_exposures_ev": [
+      -1,
+      0,
+      1
+    ],
+    "confirmation_exposure_ev": 2
+  },
+  "operator": {
+    "family": "stock-specific-k1-log-stimulus-quadratic-ridge",
+    "input_coordinates": "log2(max(reference_xyz/100,1e-6))+ev",
+    "basis": [
+      "1",
+      "x",
+      "y",
+      "z",
+      "x2",
+      "y2",
+      "z2",
+      "xy",
+      "xz",
+      "yz"
+    ],
+    "output_coordinates": "log2(max(scanner_rgb/65535,1e-8))",
+    "ridge_lambda": 1e-06,
+    "intercept_regularized": false
+  },
+  "controls": [
+    "wrong-stock-k1",
+    "pooled-two-stock-global"
+  ],
+  "gates": {
+    "required_confirmation_rows_per_stock": 288,
+    "required_stock_classification_correct": 2,
+    "correct_vs_wrong_patch_win_rate_min": 0.75,
+    "correct_vs_wrong_median_improvement_min": 0.05,
+    "correct_vs_pooled_patch_win_rate_min": 0.6,
+    "correct_vs_pooled_median_improvement_min": 0.02,
+    "finite_required": true,
+    "confirmation_reads_before_bundle_freeze_max": 0,
+    "new_boundary_max": 0
+  },
+  "stop_rules": [
+    "No post-score change to exposure roles, coordinates, basis, ridge, controls or gates.",
+    "Failure closes this exact controlled K=1 family on the cohort; do not rescue with K>1, routing or a larger model.",
+    "Pass opens only a separately frozen independent-roll or natural-scene confirmation; it does not open product profiles."
+  ],
+  "three_stock_matrix": {
+    "kodak_ektar_100": "controlled-it8-ready",
+    "kodak_portra_400": "controlled-it8-ready",
+    "fujifilm_velvia_50": "data-gap-no-comparable-controlled-negicc-observation"
+  },
+  "claim_ceiling": "controlled one-setup IT8 patch evidence for distinguishing Portra 400 and Ektar 100 K=1 response operators across held-out exposure; not Velvia evidence, natural-scene transfer, independent-roll or scanner validation, calibrated stock response, or product promotion"
+}
