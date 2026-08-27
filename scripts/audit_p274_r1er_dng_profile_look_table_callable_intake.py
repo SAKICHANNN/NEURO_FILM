@@ -1,0 +1,344 @@
+#!/usr/bin/env python3
+"""Audit the source-locked R1ER DNG ProfileLookTable callable handoff."""
+
+from __future__ import annotations
+
+import argparse
+import copy
+import hashlib
+import importlib
+import json
+import shutil
+import subprocess
+import sys
+import tempfile
+from collections.abc import Callable
+from pathlib import Path
+from typing import Any
+
+import jsonschema
+import numpy as np
+
+REPORT_SCHEMA = "neuro-film.p274-r1er-dng-profile-look-table-callable-intake.v1"
+
+
+class P274Error(RuntimeError):
+    """Raised when a frozen P274 source or execution gate fails."""
+
+
+def _canonical(value: object) -> bytes:
+    return (
+        json.dumps(
+            value,
+            allow_nan=False,
+            ensure_ascii=True,
+            separators=(",", ":"),
+            sort_keys=True,
+        )
+        + "\n"
+    ).encode("utf-8")
+
+
+def _canonical_no_newline(value: object) -> bytes:
+    return json.dumps(
+        value,
+        allow_nan=False,
+        ensure_ascii=True,
+        separators=(",", ":"),
+        sort_keys=True,
+    ).encode("ascii")
+
+
+def _sha256(value: bytes) -> str:
+    return hashlib.sha256(value).hexdigest()
+
+
+def _array_sha256(value: np.ndarray, dtype: str) -> str:
+    return _sha256(np.ascontiguousarray(value, dtype=dtype).tobytes())
+
+
+def _git_bytes(repo: Path, commit: str, path: str) -> bytes:
+    return subprocess.run(
+        ["git", "show", f"{commit}:{path}"],
+        cwd=repo,
+        check=True,
+        capture_output=True,
+    ).stdout
+
+
+def _git_blob(repo: Path, commit: str, path: str) -> str:
+    return subprocess.run(
+        ["git", "rev-parse", f"{commit}:{path}"],
+        cwd=repo,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
+
+
+def _verify_artifact(
+    producer_repo: Path, commit: str, binding: dict[str, Any]
+) -> bytes:
+    value = _git_bytes(producer_repo, commit, binding["path"])
+    observed = {
+        "bytes": len(value),
+        "git_blob": _git_blob(producer_repo, commit, binding["path"]),
+        "sha256": _sha256(value),
+    }
+    if observed != {key: binding[key] for key in observed}:
+        raise P274Error(f"producer artifact differs: {binding['path']}")
+    return value
+
+
+def _load_isolated_callable(site: Path, core: bytes, wrapper: bytes) -> Any:
+    package = site / "zhuise"
+    package.mkdir(parents=True)
+    (package / "__init__.py").write_bytes(b"")
+    (package / "dng_profile.py").write_bytes(core)
+    (package / "dng_profile_look_table_callable.py").write_bytes(wrapper)
+    sys.path.insert(0, str(site))
+    try:
+        return importlib.import_module("zhuise.dng_profile_look_table_callable")
+    finally:
+        sys.path.remove(str(site))
+
+
+def _expect_value_error(operation: Callable[[], object]) -> bool:
+    try:
+        operation()
+    except ValueError:
+        return True
+    return False
+
+
+def _payload_control(payload: dict[str, Any], name: str) -> dict[str, Any]:
+    candidate = copy.deepcopy(payload)
+    if name == "unexpected-field":
+        candidate["extra"] = 1
+    elif name == "wrong-schema":
+        candidate["schema"] = "wrong"
+    elif name == "bad-dimensions":
+        candidate["dimensions"] = [2, 1, 2]
+    elif name == "boolean-dimension":
+        candidate["dimensions"] = [2, False, 2]
+    elif name == "oversize-dimensions":
+        candidate["dimensions"] = [4_194_305, 2, 1]
+    elif name == "wrong-data-length":
+        candidate["data"] = [0.0] * 6
+    elif name == "boolean-data":
+        candidate["data"] = [0.0, 1.0, False] * 8
+    elif name == "negative-scale":
+        candidate["data"][1] = -1.0
+    elif name == "bad-zero-saturation":
+        candidate["data"][2] = 0.5
+    elif name == "encoding-one":
+        candidate["encoding"] = 1
+    elif name == "encoding-boolean":
+        candidate["encoding"] = False
+    else:
+        raise AssertionError(f"unknown payload control: {name}")
+    return candidate
+
+
+def execute(config_path: Path, producer_repo: Path, order: str) -> dict[str, Any]:
+    if order not in {"forward", "reverse"}:
+        raise P274Error("order must be forward or reverse")
+    config_bytes = config_path.read_bytes()
+    config = json.loads(config_bytes)
+    if config["status"] != "FROZEN_BEFORE_FIXTURE_DESERIALIZATION_OR_CALLABLE_IMPORT":
+        raise P274Error("P274 is not source locked")
+
+    producer = config["producer"]
+    artifacts = config["artifacts"]
+    verified: dict[str, dict[str, Any]] = {}
+    artifact_bytes: dict[str, bytes] = {}
+    for name, binding in artifacts.items():
+        value = _verify_artifact(
+            producer_repo, producer[binding["commit_role"]], binding
+        )
+        artifact_bytes[name] = value
+        verified[name] = {
+            "bytes": len(value),
+            "git_blob": binding["git_blob"],
+            "path": binding["path"],
+            "sha256": _sha256(value),
+        }
+
+    fixture = json.loads(artifact_bytes["fixture"])
+    schema = json.loads(artifact_bytes["schema"])
+    jsonschema.Draft202012Validator(schema).validate(fixture["payload"])
+    source = np.asarray(fixture["input_xyz_d50"], dtype=np.float64)
+    expected = np.asarray(fixture["expected_output_xyz_d50"], dtype=np.float64)
+    source_before = source.copy()
+    payload_before = copy.deepcopy(fixture["payload"])
+
+    temporary = Path(tempfile.mkdtemp(prefix="neuro-film-p274-"))
+    gates: dict[str, bool] = {}
+    scientific: dict[str, Any] = {}
+    try:
+        module = _load_isolated_callable(
+            temporary / "site",
+            artifact_bytes["arithmetic_core"],
+            artifact_bytes["callable"],
+        )
+        apply = module.apply_dng_profile_look_table_callable_v1
+        parse = module.parse_dng_profile_look_table_payload_v1
+        direct = importlib.import_module("zhuise.dng_profile").apply_profile_look_table_xyz_d50
+        isolated_import = Path(module.__file__).resolve().is_relative_to(
+            (temporary / "site").resolve()
+        )
+        names = [
+            "main",
+            "direct-core-parity",
+            "wrong-rank",
+            "empty-input",
+            "nonfinite-input",
+            "out-of-domain",
+            "unexpected-field",
+            "wrong-schema",
+            "bad-dimensions",
+            "boolean-dimension",
+            "oversize-dimensions",
+            "wrong-data-length",
+            "boolean-data",
+            "negative-scale",
+            "bad-zero-saturation",
+            "encoding-one",
+            "encoding-boolean",
+        ]
+        if order == "reverse":
+            names.reverse()
+        controls: dict[str, bool] = {}
+        output: np.ndarray | None = None
+        for name in names:
+            if name == "main":
+                output = apply(source, fixture["payload"])
+                controls[name] = np.array_equal(output, expected)
+            elif name == "direct-core-parity":
+                controls[name] = np.array_equal(
+                    apply(source, fixture["payload"]),
+                    direct(source, **parse(fixture["payload"])),
+                )
+            elif name == "wrong-rank":
+                controls[name] = _expect_value_error(
+                    lambda: apply(np.zeros((2, 3)), fixture["payload"])
+                )
+            elif name == "empty-input":
+                controls[name] = _expect_value_error(
+                    lambda: apply(np.empty((0, 1, 3)), fixture["payload"])
+                )
+            elif name == "nonfinite-input":
+                controls[name] = _expect_value_error(
+                    lambda: apply(np.asarray([[[0.0, np.inf, 0.0]]]), fixture["payload"])
+                )
+            elif name == "out-of-domain":
+                controls[name] = _expect_value_error(
+                    lambda: apply(np.asarray([[[10.0, 10.0, 10.0]]]), fixture["payload"])
+                )
+            else:
+                invalid = _payload_control(fixture["payload"], name)
+                controls[name] = _expect_value_error(
+                    lambda invalid=invalid: apply(source, invalid)
+                )
+        if output is None:
+            raise AssertionError("main control did not execute")
+
+        payload_hash = _sha256(_canonical_no_newline(fixture["payload"]))
+        data_hash = _array_sha256(
+            np.asarray(fixture["payload"]["data"], dtype=np.float32), "<f4"
+        )
+        execution_lock = json.loads(artifact_bytes["execution_lock"])
+        evidence = json.loads(artifact_bytes["evidence"])
+        gates.update(
+            {
+                "all-controls-pass": all(controls.values()),
+                "artifact-identities-exact": len(verified) == len(artifacts),
+                "callable-id-exact": module.CALLABLE_ID == config["callable"]["id"],
+                "fixture-data-hash-exact": data_hash == fixture["data_f32le_sha256"],
+                "fixture-input-hash-exact": _array_sha256(source, "<f8")
+                == fixture["input_f64le_sha256"],
+                "fixture-output-hash-exact": _array_sha256(output, "<f8")
+                == fixture["expected_output_f64le_sha256"],
+                "fixture-payload-hash-exact": payload_hash
+                == fixture["payload_canonical_sha256"],
+                "input-and-payload-unchanged": np.array_equal(source, source_before)
+                and fixture["payload"] == payload_before,
+                "isolated-git-object-import": isolated_import,
+                "official-stage-order-bound": evidence["official_stage_order"]
+                == config["callable"]["stage_order"],
+                "output-owned-contiguous-writable-float64": bool(
+                    output.dtype == np.float64
+                    and output.flags.owndata
+                    and output.flags.c_contiguous
+                    and output.flags.writeable
+                ),
+                "producer-formal-identity-exact": evidence["fixed_identity"]
+                ["formal_report_sha256"]
+                == config["producer_summary_bindings"]["formal_report_sha256"],
+                "producer-real-table-authority-exact": evidence["real_table_authority"]
+                ["source_sha256"]
+                == config["producer_summary_bindings"]["real_fuji_source_sha256"]
+                and evidence["real_table_authority"]["data_f32le_sha256"]
+                == config["producer_summary_bindings"]["real_fuji_table_f32le_sha256"]
+                and evidence["real_table_authority"]["dimensions"]
+                == config["producer_summary_bindings"]["real_fuji_dimensions"],
+                "producer-execution-lock-exact": execution_lock["status"]
+                == "FROZEN_BEFORE_FORMAL_HANDOFF_EXECUTION",
+            }
+        )
+        scientific = {
+            "artifacts": dict(sorted(verified.items())),
+            "callable_id": module.CALLABLE_ID,
+            "consumer_config_sha256": _sha256(config_bytes),
+            "controls": dict(sorted(controls.items())),
+            "fixture_data_f32le_sha256": data_hash,
+            "fixture_input_f64le_sha256": _array_sha256(source, "<f8"),
+            "fixture_output_f64le_sha256": _array_sha256(output, "<f8"),
+            "fixture_payload_canonical_sha256": payload_hash,
+            "gates": gates,
+            "network_reads": 0,
+            "new_raw_dng_pixel_target_reads": 0,
+            "producer_head": producer["repo_head"],
+            "producer_worktree_imports": 0,
+            "consumer_src_copies": 0,
+        }
+    finally:
+        for name in (
+            "zhuise.dng_profile_look_table_callable",
+            "zhuise.dng_profile",
+            "zhuise",
+        ):
+            sys.modules.pop(name, None)
+        shutil.rmtree(temporary, ignore_errors=False)
+
+    gates["zero-temporary-residue"] = not temporary.exists()
+    scientific["zero_temporary_residue"] = not temporary.exists()
+    status = (
+        "PASS_PRIVATE_R1ER_DNG_PROFILE_LOOK_TABLE_CALLABLE_INTAKE"
+        if all(gates.values())
+        else "FAIL_CLOSED"
+    )
+    return {
+        "schema": REPORT_SCHEMA,
+        "status": status,
+        "scientific": scientific,
+        "stable_identity": f"sha256:{_sha256(_canonical(scientific))}",
+        "claim_ceiling": config["claim_ceiling"],
+    }
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--config", type=Path, required=True)
+    parser.add_argument("--producer-repo", type=Path, required=True)
+    parser.add_argument("--order", choices=("forward", "reverse"), required=True)
+    parser.add_argument("--output", type=Path, required=True)
+    args = parser.parse_args()
+    report = execute(args.config.resolve(), args.producer_repo.resolve(), args.order)
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    args.output.write_bytes(_canonical(report))
+    return 0 if report["status"].startswith("PASS_") else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
