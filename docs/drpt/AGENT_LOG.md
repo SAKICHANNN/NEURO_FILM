@@ -19063,3 +19063,31 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   rescue. libavif wrapper/integration expansion stops; no SDR tone policy,
   complete ISO/arbitrary-media support, public API/default/product promotion
   or candidate-3 consumption opens.
+
+### 2026-08-27 - P292 admits one zero-pixel EyefulTower EXR source
+
+- **Node:** `ULT > HDR source/intake > P292`; DRPT L2 / Mode C.
+  `dev-research-reliability` was the primary workflow, with scientific
+  research, DRPT-BI, agent-log and structure stewardship as secondary
+  constraints. The leaf is source readiness only and does not replace the
+  externally blocked controlled-film acquisition lane.
+- **Freeze and execution:** preregistration `b70faf6d`, implementation
+  `a1f8bd1e`, transport normalization `d133dd32`, formal lock `49744b3d` and
+  evidence `4d1e8360`. The exact official EyefulTower commit/tree/README/MIT
+  licence, bounded anonymous S3 listing and official checksum text bind the
+  source without a repository clone or image-body request.
+- **Result:** the prefix contains 126 EXRs / 1,184,313,438 bytes from 14 cameras
+  at nine synchronized capture suffixes, with 126 matching MD5 rows. The
+  selected lexicographically first object is 9,399,313 bytes with MD5
+  `29c574af...6a49`; its HEAD identity passes while EXR/JPEG payload and pixel
+  reads remain zero. Corrected forward/reverse reports are byte-exact at 5,300
+  bytes / SHA `aba2796f...f30c89`, scientific `e8fed078...c3858b`; 71 adjacent
+  P28x/P29x tests pass, with Ruff, compile, JSON and diff checks clean.
+- **Correction and boundary:** the excluded first reports differed only because
+  GitHub alternated `Content-Length` and chunked transfer for the same exact
+  tree bytes. GET lengths were normalized to observed body bytes; sources,
+  facts and gates did not change. P292 opens only a separately frozen exact
+  one-object download and strict linear DCI-P3 float32 EXR-to-WorkingImage
+  intake. JPEGs are same-source tone-mapped derivatives, not independent truth.
+  No HDR/bracket quality, arbitrary EXR, package/schema/capability/product,
+  stock evidence or candidate-3 change opens.
