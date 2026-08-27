@@ -82,11 +82,17 @@ def _member_state(root: Path, member: dict[str, Any]) -> dict[str, object]:
     }
 
 
-def _confirmation_allowed(report_path: Path | None) -> bool:
+def _confirmation_allowed(report_path: Path | None, config_sha256: str) -> bool:
     if report_path is None or not report_path.is_file():
         return False
     report = json.loads(report_path.read_text(encoding="utf-8"))
-    return report.get("decision") == "PASS_PRIVATE_P302_DEVELOPMENT"
+    return bool(
+        report.get("decision") == "PASS_PRIVATE_P302_DEVELOPMENT"
+        and report.get("config_sha256") == config_sha256
+        and report.get("phase") == "development"
+        and report.get("development_model_match") is True
+        and all(report.get("gates", {}).values())
+    )
 
 
 def acquire(
@@ -97,10 +103,13 @@ def acquire(
 ) -> dict[str, object]:
     config_body = config_path.read_bytes()
     config = json.loads(config_body)
+    config_sha256 = hashlib.sha256(config_body).hexdigest()
     allowed = {"training", "development", "confirmation"}
     if not roles or not set(roles).issubset(allowed) or len(set(roles)) != len(roles):
         raise P302AcquisitionError("P302 acquisition roles are invalid")
-    if "confirmation" in roles and not _confirmation_allowed(development_report):
+    if "confirmation" in roles and not _confirmation_allowed(
+        development_report, config_sha256
+    ):
         raise P302AcquisitionError(
             "confirmation acquisition is closed before development pass"
         )
@@ -134,7 +143,7 @@ def acquire(
     states = [_member_state(root, member) for member in members]
     report: dict[str, object] = {
         "config_bytes": len(config_body),
-        "config_sha256": hashlib.sha256(config_body).hexdigest(),
+        "config_sha256": config_sha256,
         "experiment_id": "P302",
         "member_count": len(members),
         "members_exact": all(state["valid"] for state in states),

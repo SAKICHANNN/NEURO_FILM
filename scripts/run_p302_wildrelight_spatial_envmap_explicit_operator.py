@@ -299,20 +299,23 @@ def _train(
     return candidate_state, image_state, model_sha, rows
 
 
-def _evaluate_development(
+def _evaluate_phase(
     config: dict[str, Any],
     members: dict[str, dict[str, Any]],
     root: Path,
     openexr: Any,
     *,
+    phase: str,
     reverse: bool,
 ) -> dict[str, object]:
+    if phase not in {"development", "confirmation"}:
+        raise P302Error("P302 evaluation phase is invalid")
     candidate_state, image_state, model_sha, training_rows = _train(
         config, members, root, openexr
     )
     op = config["operator"]
     gates_config = config["gates"]
-    scenes = list(config["roles"]["development"])
+    scenes = list(config["roles"][phase])
     if reverse:
         scenes.reverse()
     rows: list[dict[str, Any]] = []
@@ -324,7 +327,7 @@ def _evaluate_development(
         for source_index, target_index in pairs:
             paths = _paths(scene, source_index, target_index)
             if any(path not in members for path in paths.values()):
-                raise P302Error("P302 development member is not source-locked")
+                raise P302Error(f"P302 {phase} member is not source-locked")
             source = _decode_rgb(_local_path(root, paths["source_photo"]), openexr)
             source_env = _decode_rgb(_local_path(root, paths["source_env"]), openexr)
             target_env = _decode_rgb(_local_path(root, paths["target_env"]), openexr)
@@ -445,7 +448,7 @@ def _evaluate_development(
                 [row["reduction_percent"] for row in rows if row["scene"] == scene]
             )
         )
-        for scene in sorted(config["roles"]["development"])
+        for scene in sorted(config["roles"][phase])
     }
     summary = {
         "candidate_control_rate": float(np.mean(reductions > 0.0)),
@@ -488,9 +491,9 @@ def _evaluate_development(
         >= float(gates_config["minimum_valid_component_fraction"]),
     }
     return {
-        "decision": "PASS_PRIVATE_P302_DEVELOPMENT"
+        "decision": f"PASS_PRIVATE_P302_{phase.upper()}"
         if all(gates.values())
-        else "FAIL_CLOSED_P302_DEVELOPMENT",
+        else f"FAIL_CLOSED_P302_{phase.upper()}",
         "gates": gates,
         "model_bytes": len(_model_bytes(candidate_state, image_state)),
         "model_sha256": model_sha,
@@ -501,7 +504,9 @@ def _evaluate_development(
     }
 
 
-def _worker(config_path: Path, site: Path, *, reverse: bool) -> dict[str, object]:
+def _worker(
+    config_path: Path, site: Path, *, phase: str, reverse: bool
+) -> dict[str, object]:
     sys.path.insert(0, str(site))
     import OpenEXR  # type: ignore[import-not-found]
 
@@ -510,9 +515,9 @@ def _worker(config_path: Path, site: Path, *, reverse: bool) -> dict[str, object
     binding_states = _verify_bindings(config)
     manifest = _load_manifest(config)
     members = _members_by_path(manifest)
-    source_states = _verify_roles(config, manifest, ("training", "development"))
-    result = _evaluate_development(
-        config, members, _local_root(config), OpenEXR, reverse=reverse
+    source_states = _verify_roles(config, manifest, ("training", phase))
+    result = _evaluate_phase(
+        config, members, _local_root(config), OpenEXR, phase=phase, reverse=reverse
     )
     return {
         **result,
@@ -521,6 +526,7 @@ def _worker(config_path: Path, site: Path, *, reverse: bool) -> dict[str, object
         "config_sha256": _sha256(config_body),
         "confirmation_member_reads": 0,
         "experiment_id": "P302",
+        "phase": phase,
         "openexr_version": OpenEXR.__version__,
         "reserve_member_reads": 0,
         "schema": "neuro-film.p302-wildrelight-development-result.v1",
@@ -529,8 +535,28 @@ def _worker(config_path: Path, site: Path, *, reverse: bool) -> dict[str, object
     }
 
 
-def execute(config_path: Path, *, reverse: bool) -> dict[str, object]:
+def execute(
+    config_path: Path,
+    *,
+    phase: str,
+    reverse: bool,
+    development_report: Path | None = None,
+) -> dict[str, object]:
     config = json.loads(config_path.read_text(encoding="utf-8"))
+    prior_model_sha256: str | None = None
+    if phase == "confirmation":
+        if development_report is None or not development_report.is_file():
+            raise P302Error("P302 confirmation requires a development report")
+        prior = json.loads(development_report.read_text(encoding="utf-8"))
+        if (
+            prior.get("decision") != "PASS_PRIVATE_P302_DEVELOPMENT"
+            or prior.get("config_sha256") != _sha256(config_path.read_bytes())
+            or not all(prior.get("gates", {}).values())
+        ):
+            raise P302Error("P302 development admission differs")
+        prior_model_sha256 = str(prior.get("model_sha256", ""))
+    elif phase != "development":
+        raise P302Error("P302 evaluation phase is invalid")
     wheel = ROOT / "data/vendor/openexr-3.4.15/openexr-3.4.15-cp312-cp312-win_amd64.whl"
     if (
         not wheel.is_file()
@@ -571,6 +597,8 @@ def execute(config_path: Path, *, reverse: bool) -> dict[str, object]:
             str(site),
             "--output",
             str(worker_output),
+            "--phase",
+            phase,
         ]
         if reverse:
             command.append("--reverse")
@@ -583,11 +611,20 @@ def execute(config_path: Path, *, reverse: bool) -> dict[str, object]:
     report["claim_ceiling"] = config["claim_ceiling"]
     report["network_bytes"] = 0
     report["temporary_cleanup"] = cleanup
+    report["development_admission_reads"] = int(phase == "confirmation")
+    report["development_model_match"] = bool(
+        phase == "development" or report["model_sha256"] == prior_model_sha256
+    )
     report["gates"]["runtime_source_cleanup"] = bool(
         report["source_files_exact"] and cleanup
     )
     if not report["gates"]["runtime_source_cleanup"]:
-        report["decision"] = "FAIL_CLOSED_P302_DEVELOPMENT"
+        report["decision"] = f"FAIL_CLOSED_P302_{phase.upper()}"
+    report["gates"]["development_model_match"] = report[
+        "development_model_match"
+    ]
+    if not report["gates"]["development_model_match"]:
+        report["decision"] = f"FAIL_CLOSED_P302_{phase.upper()}"
     report["scientific_identity"] = "sha256:" + _sha256(
         json.dumps(report, sort_keys=True, separators=(",", ":")).encode()
     )
@@ -599,6 +636,10 @@ def main() -> None:
     parser.add_argument("--config", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--reverse", action="store_true")
+    parser.add_argument(
+        "--phase", choices=("development", "confirmation"), default="development"
+    )
+    parser.add_argument("--development-report", type=Path)
     parser.add_argument("--site", type=Path)
     parser.add_argument("--worker", action="store_true")
     args = parser.parse_args()
@@ -606,10 +647,22 @@ def main() -> None:
         if args.site is None:
             raise P302Error("P302 worker site is required")
         report = _worker(
-            args.config.resolve(), args.site.resolve(), reverse=args.reverse
+            args.config.resolve(),
+            args.site.resolve(),
+            phase=args.phase,
+            reverse=args.reverse,
         )
     else:
-        report = execute(args.config.resolve(), reverse=args.reverse)
+        report = execute(
+            args.config.resolve(),
+            phase=args.phase,
+            reverse=args.reverse,
+            development_report=(
+                args.development_report.resolve()
+                if args.development_report is not None
+                else None
+            ),
+        )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_bytes(_canonical_bytes(report))
 
