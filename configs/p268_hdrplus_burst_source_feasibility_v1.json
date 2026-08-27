@@ -1,7 +1,7 @@
 {
   "schema": "neuro-film.p268-hdrplus-burst-source-feasibility-contract.v1",
   "experiment_id": "P268",
-  "status": "METHOD_FROZEN_BEFORE_FULL_PREFIX_ENUMERATION",
+  "status": "SOURCE_SELECTION_LOCKED_BEFORE_FORMAL_OBJECT_AUDIT",
   "official": {
     "dataset_url": "http://www.hdrplusdata.org/dataset.html",
     "paper_url": "https://research.google/pubs/burst-photography-for-high-dynamic-range-and-low-light-imaging-on-mobile-cameras/",
@@ -19,8 +19,8 @@
   },
   "selection": {
     "method": "minimum_sha256_utf8_burst_id_then_burst_id",
-    "selected_burst_id": null,
-    "selected_burst_id_sha256": null
+    "selected_burst_id": "0382_20150912_131056_666",
+    "selected_burst_id_sha256": "01d46d74ca18831b4bff9cf73bd79e186d901c765444157c8ae9edcf16a56751"
   },
   "budgets": {
     "maximum_selected_burst_and_matching_results_bytes": 1073741824,
