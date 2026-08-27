@@ -1,0 +1,80 @@
+{
+  "schema": "neuro-film.p296-openexr-standard-chromaticity-ingress-contract.v1",
+  "experiment_id": "P296",
+  "node": "ULT > HDR source/intake > P296",
+  "question": "Can OpenEXR standard-default Rec.709 and explicit XYZ chromaticities map official reference files into one consistent linear Rec.2020/D65 WorkingImage representation?",
+  "official_source": {
+    "repository": "https://github.com/AcademySoftwareFoundation/openexr-images",
+    "revision": "e38ffb0790f62f05a6f083a6fa4cac150b3b7452",
+    "license_blob": "268d234adc762429a5d7db6a456651d7d0933dd1",
+    "declaration_blob": "8d94d9e2211874955faa6c55021174283335921c",
+    "manifest_path": "data/external/p294_openexr_chromaticities_v1/source_manifest.json",
+    "manifest_bytes": 1004,
+    "manifest_sha256": "c9ab79dc4cf70a932d32e2e0e3eb60b9f8e571a2f553036c36734add6b01e198"
+  },
+  "sources": [
+    {
+      "id": "rec709_default",
+      "path": "data/external/p294_openexr_chromaticities_v1/Rec709.exr",
+      "bytes": 908168,
+      "git_blob": "13b3fca94da1426e4793bd66a20299c955b73d00",
+      "sha256": "15028cbf7bf0efa43738890af715ec550d26ae9e32a1020d0f4e7c785d3a370e",
+      "allow_standard_rec709_default": true,
+      "identity_mode": "openexr_standard_default_rec709_d65"
+    },
+    {
+      "id": "xyz_equal_energy_explicit",
+      "path": "data/external/p294_openexr_chromaticities_v1/XYZ.exr",
+      "bytes": 930048,
+      "git_blob": "cd4423ab12669b4caaaeb157ddd08fe430f5a775",
+      "sha256": "8d97c476726ae67a086220463c91b7202279a4c7c1ea94810ce75a4c28e7825f",
+      "allow_standard_rec709_default": false,
+      "identity_mode": "embedded_chromaticities"
+    }
+  ],
+  "runtime": {
+    "python": "3.12",
+    "openexr_version": "3.4.15",
+    "wheel_path": "data/vendor/openexr-3.4.15/openexr-3.4.15-cp312-cp312-win_amd64.whl",
+    "wheel_bytes": 740197,
+    "wheel_sha256": "7aa145813acfe10a83d6e89340349379828190b321608e69f2aee426e10c890b"
+  },
+  "arithmetic": {
+    "default_rec709_d65_chromaticities": [0.64, 0.33, 0.3, 0.6, 0.15, 0.06, 0.3127, 0.329],
+    "target_d65_xy": [0.3127, 0.329],
+    "bradford_matrix": [[0.8951, 0.2664, -0.1614], [-0.7502, 1.7135, 0.0367], [0.0389, -0.0685, 1.0296]],
+    "xyz_d65_to_linear_rec2020": [[1.7166511879712674, -0.3556707837763924, -0.25336628137365974], [-0.6666843518324892, 1.6164812366349395, 0.01576854581391113], [0.017639857445310783, -0.042770613257808524, 0.9421031212354738]],
+    "maximum_width": 16384,
+    "maximum_height": 16384,
+    "maximum_pixels": 100000000,
+    "maximum_absolute_component": 65504.0
+  },
+  "gates": {
+    "expected_shape": [406, 610, 3],
+    "maximum_cross_source_rmse": 0.002,
+    "maximum_cross_source_p99_absolute_error": 0.005,
+    "maximum_cross_source_absolute_error": 0.05,
+    "require_output_hash_replay": true,
+    "require_owned_writable_contiguous_float32": true,
+    "require_zero_new_boundary": true,
+    "require_source_immutability": true,
+    "require_invalid_controls_atomic": true
+  },
+  "parents": {
+    "p294_evidence_path": "docs/evidence/P294_OPENEXR_CHROMATICITIES_WORKING_IMAGE_RESULT.json",
+    "p294_evidence_sha256": "c17363942ade139f0672188d9cc68d615b3115fe46a3d47f86e13d7800247a3a",
+    "p295_evidence_path": "docs/evidence/P295_OPENEXR_CARROTS_ACES2065_INTEROPERABILITY_RESULT.json",
+    "p295_evidence_sha256": "eccd7ab691324ee4f02e6bf4cc4082774636f2db327500f908aa261dbe1117a8"
+  },
+  "forbidden": [
+    "DCI-P3 or ACES inference",
+    "authoritative sidecar",
+    "JPEG or display rendering",
+    "metadata insertion",
+    "normalization or clipping",
+    "source replacement",
+    "threshold or matrix rescue"
+  ],
+  "stop_rule": "Any failed source, runtime, arithmetic, cross-source, ownership, invalid-control, replay or cleanup gate closes exact P296. Do not change thresholds, sources, matrices, channel policy or default authorization after pixels.",
+  "claim_ceiling": "One private two-source standards-aware OpenEXR to linear Rec.2020/D65 mechanical result only; no arbitrary EXR, DCI-P3/ACES, HDR/display quality, default dispatch, public dependency/API/package/schema/capability/product, stock evidence or candidate-3 change."
+}
