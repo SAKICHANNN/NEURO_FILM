@@ -167,9 +167,10 @@ def run(config_path: Path, output_path: Path, *, reverse: bool) -> dict[str, Any
     config = _json(config_path)
     p98_path = ROOT / config["bindings"]["p98_config_path"]
     p98 = _json(p98_path)
-    p98_evidence = _json(ROOT / "docs/evidence/P98_DNG_FORWARD_RASTER_RESULT.json")
+    p244_path = ROOT / config["bindings"]["p244_config_path"]
+    p244 = _json(p244_path)
     expected_outputs = {
-        row["source_id"]: row["working_float32_sha256"] for row in p98_evidence["rows"]
+        row["source_id"]: row["working_float32_sha256"] for row in p244["rows"]
     }
     rows = list(p98["rows"])
     if reverse:
@@ -210,6 +211,7 @@ def run(config_path: Path, output_path: Path, *, reverse: bool) -> dict[str, Any
             _sha256_file(ROOT / config["authority"]["sdk_path"])
             == config["authority"]["sdk_sha256"]
             and _sha256_file(p98_path) == config["bindings"]["p98_config_sha256"]
+            and _sha256_file(p244_path) == config["bindings"]["p244_config_sha256"]
         ),
         "required_reject_before_decode": all(
             item["rejected"] for item in controls["required"].values()
@@ -256,6 +258,7 @@ def run(config_path: Path, output_path: Path, *, reverse: bool) -> dict[str, Any
             "runner_sha256": _sha256_file(ROOT / config["bindings"]["runner_path"]),
             "sdk_sha256": _sha256_file(ROOT / config["authority"]["sdk_path"]),
             "p98_config_sha256": _sha256_file(p98_path),
+            "p244_config_sha256": _sha256_file(p244_path),
         },
         "controls": controls,
         "rows": results,

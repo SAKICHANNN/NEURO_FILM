@@ -14,6 +14,8 @@
   "bindings": {
     "p98_config_path": "configs/p98_dng_forward_raster_v1.json",
     "p98_config_sha256": "5fb17f82cfecdae40a4c812f2ea9c26641e91bcab43e17c8a6a4bc94b2f03c35",
+    "p244_config_path": "configs/p244_dng_profile_huesatmap_ingress_guard_v1.json",
+    "p244_config_sha256": "7267485b9258ad38e487e65d5a9ff3a24716bfb3a306345e4e1512ab48ca556d",
     "implementation_path": "src/preprocess/dng_forward_raster.py",
     "implementation_parent_sha256": "1de3c12fcb1a00cabf519f2689b62a25f2792ea18e9fa31201f592b54c382cb4",
     "runner_path": "scripts/audit_p297_dng_opcode_list_ingress_safety.py",
