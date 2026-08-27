@@ -1,0 +1,64 @@
+{
+  "schema": "neuro-film.u7-6j-three-stock-native-pointwise-exact-evidence.v1",
+  "experiment_id": "U7.6J",
+  "date": "2026-08-27",
+  "status": "PASS",
+  "commits": {
+    "contract": "b79056b6",
+    "implementation": "602eed16"
+  },
+  "identities": {
+    "contract_sha256": "2df93e51e65f5b16591431e7b2af8b4819aaf704bdb21e6870fcb6c8c5cd7488",
+    "formal_report_path": "outputs/eval/u7_6j_three_stock_native_pointwise_exact_v1/report.json",
+    "formal_report_sha256": "eca227d6ef430dd471f0539305b6bb42f87d9438278df4cf6154876f57e842bc",
+    "stable_evidence_id": "50700a5afe5444925d5f27fb4322c05bfc8945dd300d4576182cfdeb340532dd",
+    "native_source_sha256": "10962368b25a9989a2cc7c20b37439b9261f38aeb5e99ebf9a48b4dc5d437486",
+    "native_header_sha256": "becff74af828d6a1f56dc8eb18937675f0a162ebcbc86705482a01a1de60521b",
+    "native_wrapper_sha256": "88e4ecfaf0b4cd68c57bc130de05897d807132bfc7952462d93011c4a7a6ee57",
+    "formal_runner_sha256": "a5eb2e4142b5c65f6278169c0c21dd10cf7adf09b320defca9542d7702b5b2c9",
+    "reproducible_dll_sha256": "bdf215b80d3335b5c62e6b8a4df6e4963397f4da4c0f5926451d2c9298653de5",
+    "source_lab_sha256": "9cec3dd8ade03192143bba35c4e4e32d27f10c8ff4ec89dc0dc71d6324c5356f"
+  },
+  "diagnosis": {
+    "parent_experiment": "U7.6I",
+    "parent_status_preserved": "FAIL_CLOSED_EXACT_PARITY",
+    "mismatched_preview_pixels": 156,
+    "mismatched_float32_scalars": 211,
+    "parent_maximum_lab_absolute_error": 1.9073486328125e-06,
+    "cause": "The NumPy skin-protection block promotes the complete post-neutral a/b array to binary64 before the chroma-cap stage whenever skin_protect is positive. The v2 C kernel retained binary32. Velvia 50 exercised the cap on the affected pixels; Portra 400 and Ektar 100 did not expose a final-byte difference on this preview.",
+    "repair": "The separately versioned v3 kernel retains the original binary32 order through neutral protection, then mirrors the existing NumPy binary64 skin/cap evaluation and performs one final cast per a/b channel. The zero-skin path remains binary32."
+  },
+  "observations": {
+    "formal_processes": 2,
+    "maximum_lab_absolute_error": 0.0,
+    "all_three_style_output_sha256_equal_oracle": true,
+    "cross_process_output_identity": true,
+    "reproducible_dll_identity": true,
+    "native_three_style_wall_seconds": [
+      0.030929099999411847,
+      0.029392599998573132
+    ],
+    "python_three_style_wall_seconds": [
+      0.5918673999995008,
+      0.5686136000003899
+    ],
+    "conservative_native_to_python_wall_ratio": 0.05439388013123612,
+    "style_output_sha256": {
+      "velvia_50": "eeb833fd18f8716b29cbd497e9788f9115fc46a0f6ed0a8c2a920f85a2c98223",
+      "portra_400": "d97467692b8a3d82b07e0bb3b4d907bd0821c95cd6361fad9ee55648b4fd1984",
+      "ektar_100": "9a39ab6d3afd845501e6a6b300f8c291933b30b67cd9808da17cc9639d908cf1"
+    }
+  },
+  "gates": {
+    "maximum_lab_absolute_error": true,
+    "exact_output_sha256_per_style": true,
+    "finite_output": true,
+    "cross_process_output_identity": true,
+    "reproducible_dll_identity": true,
+    "three_style_native_wall": true,
+    "native_to_python_wall_ratio": true
+  },
+  "decision": "RETAIN_V3_EXACT_POINTWISE_CANDIDATE_AND_OPEN_ONE_FULL_CHAIN_COMPOSITION",
+  "claim_ceiling": "Local Windows/MSVC CPU evidence for a separately versioned exact implementation of the pointwise Lab subset of three non-calibrated Look Approximations at 0.999MP; not a complete renderer, stock response, stock distinguishability, calibration or product promotion.",
+  "production_default_changed": false
+}

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 
 import numpy as np
@@ -132,3 +133,20 @@ def test_u7_6j_nonfinite_failure_is_atomic(native_library) -> None:
             output=output,
         )
     assert np.all(output == 17.0)
+
+
+def test_u7_6j_evidence_binds_formal_report() -> None:
+    evidence_path = (
+        ROOT / "docs/evidence/U7_6J_THREE_STOCK_NATIVE_POINTWISE_EXACT_RESULT.json"
+    )
+    evidence = json.loads(evidence_path.read_text("utf-8"))
+    report_path = ROOT / evidence["identities"]["formal_report_path"]
+    assert hashlib.sha256(report_path.read_bytes()).hexdigest() == evidence[
+        "identities"
+    ]["formal_report_sha256"]
+    report = json.loads(report_path.read_text("utf-8"))
+    assert report["status"] == "PASS"
+    assert report["stable_evidence_id"] == evidence["identities"][
+        "stable_evidence_id"
+    ]
+    assert all(report["gates"].values())
