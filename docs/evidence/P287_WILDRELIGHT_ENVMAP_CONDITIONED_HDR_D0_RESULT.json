@@ -1,0 +1,88 @@
+{
+  "schema": "neuro-film.p287-wildrelight-envmap-conditioned-hdr-d0-evidence.v1",
+  "experiment_id": "P287",
+  "status": "FAIL_CLOSED_WILDRELIGHT_ENVMAP_CONDITIONED_HDR_D0",
+  "date": "2026-08-27",
+  "decision": "The prospectively selected WildRelight lake scene shows that capture-time environment maps contain real temporal information, but the frozen spherical per-channel mean-ratio operator is not competitive with the strongest legitimate identity or scalar control. It improves only 4/10 directed adjacent rows, with median reduction -0.452417% and worst reduction -17.378694%. The exact scene, rows, operator, controls and thresholds are closed without tuning or cross-scene confirmation.",
+  "commits": {
+    "preregistration": "0533632a8f80403832678b407fb7523621e9e913",
+    "implementation_and_tests": "050aee5fc2659a00283145df6716c01dc6a82360",
+    "formal_execution_lock": "853ec467025551eb2f0877c6fded1b84f99ec648"
+  },
+  "protocol": {
+    "contract_path": "docs/planning/P287_WILDRELIGHT_ENVMAP_CONDITIONED_HDR_D0_CONTRACT.md",
+    "contract_bytes": 4326,
+    "contract_sha256": "eeee3f853fc353b068310fc2076ab48de2310fe28c12ff2fdc60c5606ddff537",
+    "config_path": "configs/p287_wildrelight_envmap_conditioned_hdr_d0_v1.json",
+    "config_bytes": 5902,
+    "config_sha256": "4b6b7ef048e0f55926752ce6ecbd84f4f094988f668af6ae859d5831ff7fb9a4",
+    "runner_path": "scripts/run_p287_wildrelight_envmap_conditioned_hdr_d0.py",
+    "runner_bytes": 20519,
+    "runner_sha256": "d2df9a211873183c72032510e06d70e77a4cacabb184d1be368592de7aecbe5a",
+    "test_path": "tests/test_p287_wildrelight_envmap_conditioned_hdr_d0.py",
+    "test_bytes": 2965,
+    "test_sha256": "a757bc6e5977cb88efee5b010e73907849903e3af8f1ccc897ad758f67164fa9"
+  },
+  "source": {
+    "dataset_id": "Lez/wildrelight",
+    "dataset_revision": "90ab579145da9f3ea998d706c8defd0d4b87641f",
+    "dataset_license": "CC-BY-4.0",
+    "variant": "small-aligned",
+    "scene": "lake",
+    "scene_selection": "lexicographic minimum SHA256(dataset_revision + ':' + scene) over the exact 30-scene P286 manifest",
+    "scene_selection_sha256": "18cfbdfa30f4cd7ecf2ccb2c37a2638c64375cd512ea227c5ab546a793da67b5",
+    "member_count": 13,
+    "member_bytes": 108447512,
+    "metadata_sha256": "5b8b8eda3eef430bb001ce0e239a5136d32374fcca12efea65b64a60fe469d1a",
+    "source_acquisition_report_path": "outputs/eval/p287_wildrelight_envmap_conditioned_hdr_d0_v1/source_acquisition.json",
+    "source_acquisition_report_bytes": 3030,
+    "source_acquisition_report_sha256": "d2913bd3954591a4171b83eb99631265ec1c102e32ff278272114a45de39b66b",
+    "source_files_exact": true,
+    "stage_residue_count": 0
+  },
+  "operator": {
+    "description": "Spherical equirectangular sin(theta)-weighted per-channel target/source environment-map mean ratio applied as one global RGB multiplier to the source HDR photo.",
+    "directed_rows": 10,
+    "controls": [
+      "identity",
+      "BT.2020-luma scalar environment-map ratio",
+      "capacity-identical cyclic wrong-target environment-map ratio"
+    ],
+    "target_reads_before_candidate_hash_freeze": 0,
+    "clipping_or_tone_mapping": false
+  },
+  "formal": {
+    "forward_report_path": "outputs/eval/p287_wildrelight_envmap_conditioned_hdr_d0_v1/formal_forward.json",
+    "reverse_report_path": "outputs/eval/p287_wildrelight_envmap_conditioned_hdr_d0_v1/formal_reverse.json",
+    "report_bytes_each": 15083,
+    "report_sha256": "472f41ce8672c0f067882baeed32e1850c44aaac495545aaaf890e62fcd3e50c",
+    "reports_byte_exact": true,
+    "scientific_identity": "sha256:d381b3cc155c0797021473464df33df90da3add92de372c14fc25bc04b15e3a8",
+    "fresh_successful_process_count": 2,
+    "network_bytes_each": 0,
+    "candidate_control_improve_rate": 0.4,
+    "candidate_median_reduction_percent": -0.45241710817933634,
+    "candidate_worst_reduction_percent": -17.378694087197776,
+    "cyclic_improve_rate": 0.9,
+    "cyclic_median_reduction_percent": 64.10245546276687,
+    "maximum_capture_time_separation_seconds": 33.0,
+    "minimum_valid_fraction": 0.991064510719308
+  },
+  "gates": {
+    "bindings_source_runtime_cleanup": true,
+    "candidate_control_rate": false,
+    "candidate_median_reduction": false,
+    "candidate_worst_reduction": false,
+    "capture_time_separation": true,
+    "cyclic_control_rate": true,
+    "cyclic_median_reduction": true,
+    "finite_and_sign_exact": true,
+    "target_unread_before_freeze": true,
+    "valid_support": true,
+    "two_reports_byte_exact": true
+  },
+  "transport_history": "The first direct urllib acquisition and its bounded retry correction encountered repeated TLS EOFs before all members were present and produced no scientific report. The remaining immutable revision-pinned members were acquired through curl with bounded per-attempt time, retry and resume, then accepted only after exact byte-count and SHA-256 verification. This changed no source member, role, operator, control, metric or gate. The final source inventory has zero stage residue.",
+  "candidate_count_after_result": "2/3",
+  "consumer_mapping": false,
+  "claim_ceiling": "Private one-scene physical capture-time HDR mechanism rejection only. The cyclic-control result supports environment-map temporal information but does not authorize the rejected global gain operator. No cross-scene confirmation, relighting quality, source-free shared operator, package/schema/capability/product admission or candidate 3."
+}
