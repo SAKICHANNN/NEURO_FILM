@@ -1,0 +1,74 @@
+{
+  "schema": "neuro-film.p285-brace-bracket-raw-source-readiness-contract.v1",
+  "experiment_id": "P285",
+  "status": "FROZEN_READY_FOR_METADATA_ONLY_EXECUTION",
+  "bindings": {
+    "contract_path": "docs/planning/P285_BRACE_BRACKET_RAW_SOURCE_READINESS_CONTRACT.md",
+    "contract_commit": "febdb434",
+    "contract_bytes": 2500,
+    "contract_sha256": "b324566ed808421339bc7f0836f3ca7ed546dd4461fba4174f19aab0908849ce",
+    "runner_path": "scripts/audit_p285_brace_bracket_raw_source_readiness.py",
+    "runner_commit": "97e9723b",
+    "runner_bytes": 10310,
+    "runner_sha256": "2a11e9a2a2f04a6a1beeb4a9fee35392ae992b0adb64d495fc4e9769a57c30a0",
+    "test_path": "tests/test_p285_brace_bracket_raw_source_readiness.py",
+    "test_commit": "97e9723b",
+    "test_bytes": 3218,
+    "test_sha256": "63d6f09e4c2ca8d8a242ef79c98d8a25c1cd94fbe78f2fa247414e1d117a0c93"
+  },
+  "official_repository": {
+    "full_name": "ZZH-qwq/BRACE",
+    "commit": "c17763bdab166da11cff2eb42d7f6df51d0105a2",
+    "tree": "63b5906181d31e3141db8585cc8bb5d4f5dbfccf",
+    "parent": "4c730d5df58d257f3ec5968a2b8bb2593eb8aa8f"
+  },
+  "sources": {
+    "commit": {
+      "url": "https://api.github.com/repos/ZZH-qwq/BRACE/git/commits/c17763bdab166da11cff2eb42d7f6df51d0105a2",
+      "bytes": 2154,
+      "sha256": "719109df93f73b123f96ffd1320e849cd4e6ef73c8771673cefe5ea63934689f"
+    },
+    "tree": {
+      "url": "https://api.github.com/repos/ZZH-qwq/BRACE/git/trees/63b5906181d31e3141db8585cc8bb5d4f5dbfccf?recursive=1",
+      "bytes": 2431,
+      "sha256": "9d33c27baf08d73eca04b07e4b5d3091ebef6402ee624dcff051ca2b7ad88650"
+    },
+    "readme": {
+      "url": "https://raw.githubusercontent.com/ZZH-qwq/BRACE/c17763bdab166da11cff2eb42d7f6df51d0105a2/README.md",
+      "bytes": 5211,
+      "sha256": "234e842953a1ece58d67bc97884c8b490fdd90628dacb1febca59f3a501c4dc8"
+    },
+    "maximum_response_bytes_each": 16384,
+    "maximum_total_network_bytes": 65536
+  },
+  "expected": {
+    "paper_title": "Bricker to BRACE: A Bracket Exposure RAW Dataset and Restoration Model for Flicker-Banding",
+    "arxiv_id": "2606.29845",
+    "tree_entry_count": 10,
+    "tree_paths": [
+      ".gitignore",
+      "README.md",
+      "assets",
+      "assets/figs",
+      "assets/figs/complex_banding.jpg",
+      "assets/figs/quant_results.jpg",
+      "assets/figs/simulation_pipeline.jpg",
+      "assets/figs/structure.jpg",
+      "assets/figs/title_graph.jpg",
+      "assets/figs/visual_results.jpg"
+    ]
+  },
+  "gates": {
+    "require_official_identity": true,
+    "require_new_physical_observation": true,
+    "require_commercial_compatible_code_rights": true,
+    "require_commercial_compatible_dataset_rights": true,
+    "require_executable_release": true,
+    "require_exact_public_archive_inventory": true,
+    "require_exact_reference_checkpoint": true,
+    "require_group_isolation": true,
+    "require_two_reports_exact": true
+  },
+  "stop_rule": "Failure of any gate closes the source before any clone, figure, dataset, archive, manifest, RAW/JPEG image, checkpoint, pixel, training or inference request. Do not infer rights from repository visibility and do not consume candidate-3.",
+  "claim_ceiling": "Current official-source readiness audit only. A complete pass could open a separate payload-integrity and physical-observation preflight; no restoration quality, arbitrary RAW support, shared operator, A1/A4/A5, package/schema/capability/product admission or candidate 3."
+}
