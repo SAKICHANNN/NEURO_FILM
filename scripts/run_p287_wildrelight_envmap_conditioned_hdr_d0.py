@@ -11,6 +11,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 import urllib.error
 import urllib.request
 from datetime import datetime, timezone
@@ -150,12 +151,23 @@ def acquire(config_path: Path) -> dict[str, Any]:
             f"https://huggingface.co/datasets/{dataset}/resolve/{revision}/"
             f"{remote}?download=true"
         )
-        network_bytes += _acquire_member(
-            root / str(member["relative_path"]),
-            url=url,
-            expected_bytes=int(member["bytes"]),
-            expected_sha256=str(member["sha256"]),
-        )
+        for attempt in range(3):
+            try:
+                transferred = _acquire_member(
+                    root / str(member["relative_path"]),
+                    url=url,
+                    expected_bytes=int(member["bytes"]),
+                    expected_sha256=str(member["sha256"]),
+                )
+            except (ConnectionError, TimeoutError, urllib.error.URLError) as error:
+                if attempt == 2:
+                    raise P287Error(
+                        "source transport failed after bounded retries"
+                    ) from error
+                time.sleep(0.25 * (attempt + 1))
+            else:
+                network_bytes += transferred
+                break
     files = _exact_source_files(config)
     report = {
         "experiment_id": "P287",
