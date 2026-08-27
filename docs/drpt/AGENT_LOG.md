@@ -18179,3 +18179,22 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Windows P252 and producer R1DP bounded results retain their own claims; no
   physical/arbitrary Linux EXR/HDR, quality, public package/capability, product
   state, single-reference matching or candidate 3 opens.
+
+### 2026-08-27 - U4.3A freezes three-stock structural review priorities
+
+- **Node and scope:** `ULT > U4 > U4.3 > U4.3A`, DRPT L2 / Mode C. The leaf
+  reuses the exact 16-source x four-arm RF3.D0 render set; it performs no new
+  rendering, network access, stock fit, preference scoring or data download.
+- **Implementation and evidence:** contract `417ece69`, implementation/fixes
+  `455694b0`/`4839c4a3`/`e8a64312`, evidence `186e828c`. Forward/reverse fresh
+  reports are byte-exact at 118,344 bytes / SHA `3942d56b...a2ac`, scientific
+  identity `c2db3f9a...b0dac`. All 64 rows, four arms and seven independent
+  edge/texture/flat-region/chroma-speckle queues are finite and hash-bound;
+  ten implementation/diagnostic tests plus two evidence tests pass.
+- **Finding and boundary:** AO6 leads most high edge-gain, high texture-tail,
+  flat-region new-high-frequency and low edge-direction queues, while the
+  legacy K=1 arms remain structurally near identity on most summaries. This
+  is review prioritization only: no metric is an automatic severe veto, no
+  arm is rejected or promoted, and no stock identification, calibration,
+  preference, multi-stock completion or product claim opens. The ready child
+  is frozen original-resolution adjudication of the queued cases.
