@@ -1,7 +1,34 @@
 {
   "schema": "neuro-film.p265-aces2065-aces2-pq-linux-runtime-contract.v1",
   "experiment_id": "P265",
-  "status": "FROZEN_BEFORE_DEPENDENCY_ACQUISITION_OR_LINUX_EXECUTION",
+  "status": "FROZEN_FOR_COMMITTED_HEAD_FORMAL_EXECUTION",
+  "bindings": {
+    "implementation_commit": "98150f1e784195b268be2578261013ba05a3167c",
+    "contract_path": "docs/planning/P265_ACES2065_ACES2_PQ_LINUX_RUNTIME_CONTRACT.md",
+    "contract_sha256": "8ded0b8924370af649ceafe0c12c6ca463e66c072403f74d7786399897a67fa0",
+    "runner_path": "scripts/audit_p265_aces2065_aces2_pq_linux_runtime.py",
+    "runner_sha256": "64bba06cc096339f255d913a4419aab180bf60c7d8cd7897daea9f5bc4824c5c",
+    "probe_path": "scripts/p265_aces2065_aces2_pq_linux_probe.py",
+    "probe_sha256": "6a3461fe06f3d7f86d2ddaa4a48778203fe9669f18de32feff53017dc9f0da2d",
+    "test_path": "tests/test_p265_aces2065_aces2_pq_linux_runtime.py",
+    "test_sha256": "23e2c3525c75e18fe9b6a0494735340e5b072aa3df775fbb0b3cf640cdeaa325",
+    "p252_config_path": "configs/p252_aces2065_aces2_pq_composition_v1.json",
+    "p252_config_sha256": "c34f66ef0189fd00a1efec7f4580074d241cbdbfc9c825dfe27ac92a5c1e8608",
+    "p252_evidence_path": "docs/evidence/P252_ACES2065_ACES2_PQ_COMPOSITION_RESULT.json",
+    "p252_evidence_sha256": "a741ee78b7cdea13f801c7b6fa4d52520eee83ea343605a55277b983ae05ce7f",
+    "composition_path": "src/preprocess/aces2065_aces2_pq.py",
+    "composition_sha256": "e1e9a0dff2f17f6f72c4beae5a7cd93c1b00b5cc52b402ab68f7af706c11f683",
+    "ingress_path": "src/preprocess/aces2065_openexr.py",
+    "ingress_sha256": "9ec0e671144624176d122cb72a38b61de40eba55f8c52772234c438dd33d2390",
+    "ocio_path": "src/preprocess/ocio_aces2_output.py",
+    "ocio_sha256": "5dd3c0d8db9c595da331f8f47b8177b32aeaf037f34d7783fb742e6949eb5768",
+    "bridge_path": "src/preprocess/aces2_canonical_pq_png.py",
+    "bridge_sha256": "57442e9a60b658e82c6b275fdded962395c0aebcc1e2358df7302706f90cef57",
+    "writer_path": "src/preprocess/canonical_pq_png.py",
+    "writer_sha256": "54fed9a9abdf119bd03fb560e495c62af7d2c0887ee7829d41af391c62d0134d",
+    "stream_path": "src/preprocess/png_stream.py",
+    "stream_sha256": "c3d3c35a23efbc1f7b21babd4255c09872c6ff8cc7eec1423b9d1c9266cf9b97"
+  },
   "runtime": {
     "distribution": "Ubuntu-22.04",
     "architecture": "x86_64",
@@ -19,6 +46,7 @@
     "opencolorio_pypi_url": "https://pypi.org/project/opencolorio/2.5.2/"
   },
   "windows_oracle": {
+    "p249_input_acescg_f32le_sha256": "3b14e75aa87a09794e0c4cb6339a4fc09862657d9aea190a9e3311c155bdb727",
     "p249_openexr_bytes": 1144,
     "p249_openexr_sha256": "1a25181406270142c98f2169897d3a4c468ec50c979fff9077d37f956c888726",
     "p252_png_bytes": 469,
@@ -26,6 +54,12 @@
     "p252_rgb16_sha256": "5194e283ea14c90cf9f79e09041d684db1e2fe53f6276f8d5cf08d453dc7aa6d",
     "p252_encoded_f32le_sha256": "6930dafa4afcfb94add7d262824a9c85b8a65c46fbec23f296e996fb167ae14d",
     "shape": [7, 9, 3]
+  },
+  "producer_writer": {
+    "commit": "a7ec64513c4fa097bc49b9bdbdfd8c3c7c2eb901",
+    "path": "src/zhuise/acescg_openexr.py",
+    "bytes": 7699,
+    "sha256": "63995dc36cf41708118f32e90687b8bb5c9b2738100b3db557371bbaf086d84d"
   },
   "gates": {
     "require_exact_parent_and_wheel_identities": true,

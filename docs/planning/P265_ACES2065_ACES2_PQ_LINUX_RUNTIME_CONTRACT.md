@@ -1,6 +1,6 @@
 # P265 — ACES2065 / ACES 2 PQ Linux runtime contract
 
-Status: frozen before dependency acquisition or Linux execution.
+Status: dependencies source-locked; frozen for committed-head formal execution.
 
 ## Question
 
@@ -26,6 +26,11 @@ The Linux child imports the exact consumer source modules from the committed
 checkout while bypassing the broad package initializer; it does not copy or
 rewrite the renderer. All wheel contents and output media live under the
 repo-relative P-backed project tree and are hash-bound.
+
+The PNG module's import-only SDR ICC dependency is replaced inside the isolated
+child by a sentinel that raises if called. The frozen Rec.2100-PQ route must
+leave its call count at zero; this avoids adding unexercised Pillow/tifffile
+dependencies while making accidental SDR-branch execution a formal failure.
 
 ## Frozen gates
 
