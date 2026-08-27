@@ -1,0 +1,51 @@
+{
+  "schema": "neuro-film.rf3-d14-three-stock-population-separation-contract.v1",
+  "experiment_id": "RF3.D14",
+  "date": "2026-08-27",
+  "status": "FROZEN_BEFORE_FORMAL_EXECUTION",
+  "question": "Does the one-input U7.2C separation failure persist across all 16 source-disjoint photographs for the same three fixed K=1 Look Approximation arms?",
+  "input_report": {
+    "path": "outputs/eval/u4_3a_three_stock_structural_diagnostics_v1/report.json",
+    "bytes": 118344,
+    "sha256": "3942d56bf7d6c213e53568eecd9ad52fd32e15b6b4dabf41ed70ed72ec8ca2ac",
+    "scientific_identity": "c2db3f9a88c982dd44e911585e758e6057ea75663d834b3d9c5a7c5f28ab0dac"
+  },
+  "severe_review_evidence": {
+    "path": "docs/evidence/U4_3D_THREE_STOCK_POPULATION_SEVERE_REVIEW_RESULT.json",
+    "bytes": 7934,
+    "sha256": "30b2cec24f503f6c4e94700b0f737a50dab3e1f5b607e3fe854f27925524dfed",
+    "required_status": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT_ACROSS_48_EXISTING_K1_OUTPUTS"
+  },
+  "parent_separation_contract": {
+    "path": "configs/u7_2c_three_stock_look_amount_v1.json",
+    "bytes": 1638,
+    "sha256": "90642a09940d565b8e8953e6437b3b786de66529afacaf291b168bc853421029"
+  },
+  "render_root": "outputs/eval/rf3_three_stock_proxy_baseline_d0_v1/run_a",
+  "required_source_count": 16,
+  "arm_ids": [
+    "legacy_unpaired_safe_lab_k1_velvia50",
+    "legacy_unpaired_safe_lab_k1_portra400",
+    "legacy_unpaired_safe_lab_k1_ektar100"
+  ],
+  "gates": {
+    "minimum_pairwise_population_median_delta_e76": 1.0,
+    "minimum_per_pair_source_pass_count": 12,
+    "per_source_pair_median_delta_e76_threshold": 1.0,
+    "maximum_confirmed_severe_artifact_count": 0,
+    "forward_reverse_byte_exact": true
+  },
+  "forbidden": {
+    "ao6_arm": true,
+    "new_render": true,
+    "fit_or_parameter_change": true,
+    "source_or_arm_substitution": true,
+    "threshold_rescue": true,
+    "blind_preference_claim": true,
+    "stock_calibration_claim": true,
+    "product_promotion": true
+  },
+  "decision_if_pass": "RETAIN_EXISTING_K1_POPULATION_SEPARATION_AS_AUTOMATIC_STYLE_SIGNAL_ONLY",
+  "decision_if_fail": "CLOSE_EXISTING_K1_THREE_STOCK_POPULATION_SEPARATION_WITHOUT_RESCUE",
+  "claim_ceiling": "Automatic same-input pairwise DeltaE76 separation evidence for 48 existing RGB8 outputs from three fixed K=1 Look Approximation arms across 16 source-disjoint photographs; not blind human distinguishability, target-film closeness, stock identity, calibration, preference, multi-stock completion or product promotion."
+}
