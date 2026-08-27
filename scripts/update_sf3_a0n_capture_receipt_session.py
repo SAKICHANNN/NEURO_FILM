@@ -15,6 +15,7 @@ from src.real_film.three_stock_capture_session import (
     CONDITION_KIND,
     EXPOSURE_KIND,
     capture_session_progress,
+    update_capture_session_batch,
     update_capture_session_row,
 )
 
@@ -49,6 +50,7 @@ def main() -> int:
     action.add_argument("--status", action="store_true")
     action.add_argument("--condition-id")
     action.add_argument("--exposure-id")
+    action.add_argument("--batch", type=Path)
     parser.add_argument("--values", type=Path)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
@@ -58,6 +60,19 @@ def main() -> int:
             parser.error("--status does not accept --values")
         result = capture_session_progress(
             args.contract, packet, root=ROOT, stock=args.stock
+        )
+    elif args.batch is not None:
+        if args.values is not None:
+            parser.error("--batch does not accept --values")
+        updates = json.loads(args.batch.read_bytes())
+        if not isinstance(updates, list):
+            parser.error("--batch must contain a JSON list")
+        result = update_capture_session_batch(
+            args.contract,
+            packet,
+            root=ROOT,
+            stock=args.stock,
+            updates=updates,
         )
     else:
         if args.values is None:

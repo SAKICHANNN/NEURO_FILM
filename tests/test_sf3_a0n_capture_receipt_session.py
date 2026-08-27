@@ -15,6 +15,7 @@ from src.real_film.three_stock_capture_session import (
     CONDITION_KIND,
     EXPOSURE_KIND,
     capture_session_progress,
+    update_capture_session_batch,
     update_capture_session_row,
 )
 
@@ -115,6 +116,66 @@ def test_complete_incremental_packet_passes_existing_validator(tmp_path: Path) -
     assert evaluate_receipts(CONTRACT, path, root=ROOT)["automatic_pass"] is True
 
 
+def test_complete_batch_is_atomic_and_passes_existing_validator(
+    tmp_path: Path,
+) -> None:
+    packet = build_receipt_template(CONTRACT, root=ROOT)
+    updates = [
+        {
+            "kind": CONDITION_KIND,
+            "slot_id": row["condition_slot_id"],
+            "values": _condition_values(),
+        }
+        for row in reversed(packet["common_condition_records"])
+    ] + [
+        {
+            "kind": EXPOSURE_KIND,
+            "slot_id": row["exposure_slot_id"],
+            "values": _exposure_values(),
+        }
+        for row in reversed(packet["exposure_receipts"])
+    ]
+    updated = update_capture_session_batch(CONTRACT, packet, root=ROOT, updates=updates)
+    assert capture_session_progress(CONTRACT, updated, root=ROOT)[
+        "ready_for_complete_receipt_validation"
+    ]
+    assert (
+        capture_session_progress(CONTRACT, packet, root=ROOT)["conditions"]["filled"]
+        == 0
+    )
+    path = tmp_path / "batch-packet.json"
+    path.write_text(json.dumps(updated, sort_keys=True), encoding="utf-8")
+    assert evaluate_receipts(CONTRACT, path, root=ROOT)["automatic_pass"] is True
+
+
+def test_batch_rejects_duplicate_or_late_invalid_without_mutating_input() -> None:
+    packet = build_receipt_template(CONTRACT, root=ROOT)
+    condition_id = packet["common_condition_records"][0]["condition_slot_id"]
+    exposure_id = packet["exposure_receipts"][0]["exposure_slot_id"]
+    valid = {
+        "kind": CONDITION_KIND,
+        "slot_id": condition_id,
+        "values": _condition_values(),
+    }
+    with pytest.raises(ThreeStockCaptureReceiptError, match="duplicate"):
+        update_capture_session_batch(
+            CONTRACT, packet, root=ROOT, updates=[valid, valid]
+        )
+    invalid_late = {
+        "kind": EXPOSURE_KIND,
+        "slot_id": exposure_id,
+        "values": {**_exposure_values(), "shutter_seconds": 0.0},
+    }
+    with pytest.raises(ThreeStockCaptureReceiptError, match="shutter"):
+        update_capture_session_batch(
+            CONTRACT, packet, root=ROOT, updates=[valid, invalid_late]
+        )
+    assert (
+        capture_session_progress(CONTRACT, packet, root=ROOT)["conditions"]["filled"]
+        == 0
+    )
+
+
 def test_rejects_partial_unknown_or_duplicate_updates() -> None:
     packet = build_receipt_template(CONTRACT, root=ROOT)
     condition_id = packet["common_condition_records"][0]["condition_slot_id"]
@@ -197,3 +258,50 @@ def test_cli_writes_new_packet_then_reports_progress(
     status = json.loads(status_path.read_text(encoding="utf-8"))
     assert status["conditions"]["filled"] == 1
     assert status["exposures"]["filled"] == 0
+
+
+def test_cli_applies_batch_to_new_packet(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    packet = build_receipt_template(CONTRACT, root=ROOT)
+    packet_path = tmp_path / "packet.json"
+    packet_path.write_text(json.dumps(packet), encoding="utf-8")
+    batch_path = tmp_path / "batch.json"
+    batch_path.write_text(
+        json.dumps(
+            [
+                {
+                    "kind": CONDITION_KIND,
+                    "slot_id": packet["common_condition_records"][0][
+                        "condition_slot_id"
+                    ],
+                    "values": _condition_values(),
+                },
+                {
+                    "kind": EXPOSURE_KIND,
+                    "slot_id": packet["exposure_receipts"][0]["exposure_slot_id"],
+                    "values": _exposure_values(),
+                },
+            ]
+        ),
+        encoding="utf-8",
+    )
+    output_path = tmp_path / "batch-updated.json"
+    monkeypatch.setattr(
+        "sys.argv",
+        [
+            "update-session",
+            "--packet",
+            str(packet_path),
+            "--batch",
+            str(batch_path),
+            "--output",
+            str(output_path),
+        ],
+    )
+    assert session_cli() == 0
+    progress = capture_session_progress(
+        CONTRACT, json.loads(output_path.read_bytes()), root=ROOT
+    )
+    assert progress["conditions"]["filled"] == 1
+    assert progress["exposures"]["filled"] == 1

@@ -5,7 +5,7 @@ from __future__ import annotations
 import copy
 import math
 import re
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from pathlib import Path
 from typing import Any
 
@@ -195,9 +195,76 @@ def update_capture_session_row(
     return updated
 
 
+def update_capture_session_batch(
+    contract_path: Path,
+    packet: Mapping[str, Any],
+    *,
+    root: Path,
+    updates: Sequence[Mapping[str, Any]],
+    stock: str | None = None,
+) -> dict[str, Any]:
+    """Atomically record multiple complete field rows in one copied packet.
+
+    The complete update envelope is validated before any copied row is changed.
+    Callers therefore never receive a partially applied packet when one update
+    is malformed, duplicated, unknown, or targets an already-filled row.
+    """
+
+    template = _template(contract_path, root=root, stock=stock)
+    _validate_partial(packet, template)
+    if not isinstance(updates, Sequence) or isinstance(updates, (str, bytes)):
+        raise ThreeStockCaptureReceiptError("capture session batch must be a list")
+    if not updates:
+        raise ThreeStockCaptureReceiptError("capture session batch is empty")
+
+    prepared: list[tuple[str, str, Mapping[str, Any]]] = []
+    seen: set[tuple[str, str]] = set()
+    for update in updates:
+        if not isinstance(update, Mapping) or set(update) != {
+            "kind",
+            "slot_id",
+            "values",
+        }:
+            raise ThreeStockCaptureReceiptError(
+                "capture session batch update field drift"
+            )
+        kind = update["kind"]
+        slot_id = update["slot_id"]
+        values = update["values"]
+        if (
+            kind not in (CONDITION_KIND, EXPOSURE_KIND)
+            or not isinstance(slot_id, str)
+            or not slot_id
+            or not isinstance(values, Mapping)
+        ):
+            raise ThreeStockCaptureReceiptError("invalid capture session batch update")
+        identity = (kind, slot_id)
+        if identity in seen:
+            raise ThreeStockCaptureReceiptError("duplicate capture session batch slot")
+        seen.add(identity)
+        prepared.append((kind, slot_id, values))
+
+    # Validate the entire batch against one temporary copy.  Nothing reachable
+    # from ``packet`` is mutated, including when a later update fails.
+    updated = copy.deepcopy(packet)
+    for kind, slot_id, values in prepared:
+        updated = update_capture_session_row(
+            contract_path,
+            updated,
+            root=root,
+            kind=kind,
+            slot_id=slot_id,
+            values=values,
+            stock=stock,
+        )
+    _validate_partial(updated, template)
+    return updated
+
+
 __all__ = [
     "CONDITION_KIND",
     "EXPOSURE_KIND",
     "capture_session_progress",
+    "update_capture_session_batch",
     "update_capture_session_row",
 ]
