@@ -19170,6 +19170,35 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   deletion mechanism was attempted. No arbitrary EXR/general ACES/SMPTE,
   display quality, default/product, stock evidence or candidate-3 change opens.
 
+### 2026-08-27 - P296 closes standards-aware EXR reference-pair ingress
+
+- **Node:** `ULT > HDR source/intake > P296`; DRPT L2 / Mode C. After P294's
+  explicit-only negative, this separately prospective leaf tested only the
+  OpenEXR-standard default Rec.709/D65 rule plus explicit chromaticities. It
+  reused already-consumed sources and did not alter controlled stock work.
+- **Freeze and implementation:** preregistration `35281ebd`, private core and
+  first formal lock `92fde48f`, boundary-measurement correction `690c3ee8`,
+  evidence `a77893b0`. The exact P294 Rec709/XYZ objects, OpenEXR 3.4.15 wheel,
+  analytic xy-to-XYZ, Bradford-to-D65 and XYZ-D65-to-Rec.2020 matrices, and
+  RMSE/p99/max gates were frozen before P296 pixel reads.
+- **Result:** both sources produce deterministic, finite, owned, writable and
+  contiguous 610x406 float32 linear-Rec.2020 WorkingImages; default identity
+  requires explicit caller authorization, embedded identity is retained, and
+  invalid/source/replay/new-boundary gates pass. Cross-source RMSE `.0266167`,
+  p99 absolute error `.0930788` and maximum absolute error `.560012` exceed
+  frozen `.002/.005/.05` gates. Corrected reports are byte-exact at 2,706 bytes
+  / SHA `5bfd89e7...9e910d`, scientific `ded7ffa4...eddf93`; 24 adjacent tests
+  and Ruff/format/compile/JSON/diff checks pass.
+- **Correction and boundary:** the first committed reports already had the
+  same three failed metrics and output hashes, but emitted `zero_new_boundary`
+  as a constant. Before evidence, `690c3ee8` replaced it with actual
+  per-source/output exact-boundary measurement and full formal replay; no
+  source, arithmetic, threshold, metric, control or decision changed. Do not
+  rescue with another adaptation convention, matrix, source or threshold. The
+  private core remains unexported/unintegrated research code and the official
+  reference-pair family stops. No arbitrary EXR/DCI-P3/ACES/HDR quality,
+  default/product, stock evidence or candidate-3 change opens.
+
 ### 2026-08-27 - RF3.D15 closes autonomous three-stock blind salience
 
 - **Node and scope:** `ULT > RF3 > RF3.D15`, DRPT L2 / Mode C. This leaf
