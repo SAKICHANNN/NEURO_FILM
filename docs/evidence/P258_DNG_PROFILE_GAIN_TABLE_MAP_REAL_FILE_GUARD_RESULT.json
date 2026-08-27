@@ -1,0 +1,82 @@
+{
+  "schema": "neuro-film.p258-dng-profile-gain-table-map-real-file-guard-evidence.v1",
+  "experiment_id": "P258",
+  "status": "PASS_PRIVATE_REAL_DNG_PROFILE_GAIN_TABLE_MAP_GUARD_CONFIRMATION",
+  "decision": "PASS_PRIVATE_REAL_DNG_PROFILE_GAIN_TABLE_MAP_GUARD_CONFIRMATION",
+  "formal_execution_commit": "eda2d84c259150a85165c5166a51604ad9efc83c",
+  "question": "Does the unchanged P257 guard reject one exact retained CC0 Samsung DNG carrying ProfileGainTableMap v1 before any camera-raster decode?",
+  "source": {
+    "source_id": "samsung_galaxy_s21_ultra",
+    "repository_id": 6728,
+    "make_model": "Samsung Galaxy S21 Ultra",
+    "logical_path": "data/external/rawpixls_p7h_v1/raw/samsung_galaxy_s21_ultra.dng",
+    "bytes": 37770480,
+    "sha256": "5baeb5f0c4a125647df03b82c2d38b0f02784393bd39eff1a5b23d8f5308dc5e",
+    "rights_binding": "CC0/Public Domain per exact raw.pixls.us repository row in the frozen P7H config",
+    "network_requests": 0,
+    "new_source_copies": 0
+  },
+  "authority": {
+    "source": "Adobe DNG SDK 1.7.1 build 2652 dng_tag_codes.h",
+    "sdk_zip_bytes": 80494799,
+    "sdk_zip_sha256": "73499b47f4683e12120a234bd0946f02e52ab2ff9834bcbd0e9f8ab4f923360e",
+    "guarded_tags": [
+      {"code": 52525, "name": "ProfileGainTableMap", "version": "DNG 1.6"},
+      {"code": 52544, "name": "ProfileGainTableMap2", "version": "DNG 1.7"}
+    ]
+  },
+  "bindings": {
+    "contract": {"path": "docs/planning/P258_DNG_PROFILE_GAIN_TABLE_MAP_REAL_FILE_GUARD_CONTRACT.md", "bytes": 3187, "sha256": "6a2da60a20d4a7eca809ed5aee9ae85d80f89611e2ae9e2b0289ff512cd75ee7", "git_blob": "5a6a470fcff191ccf6c39579ecc88d320f2cbe36"},
+    "config": {"path": "configs/p258_dng_profile_gain_table_map_real_file_guard_v1.json", "bytes": 4116, "sha256": "03e8cf78913d0d41b07d7fc28e1368656f3bdcab5134ba10754da43e556a2c58", "git_blob": "05d999c78ad860a9a6aab0b673ac1161a4a4d924"},
+    "implementation": {"path": "src/preprocess/dng_forward_raster.py", "bytes": 11314, "sha256": "53d7a535a58d919002f675734eba6399dabc25a64cf2bb9ebef48a512c8dffd7", "git_blob": "3ec22afe9cf0c74c9d52230085445d4a84e47dae"},
+    "runner": {"path": "scripts/audit_p258_dng_profile_gain_table_map_real_file_guard.py", "bytes": 9714, "sha256": "b998a00a0036d50414c24c9a37b3f2220d576e71cdf87064d8d3ba3990ec32e3", "git_blob": "f90fdd929405c75d5073200c305cb83ee403f19f"},
+    "test": {"path": "tests/test_p258_dng_profile_gain_table_map_real_file_guard.py", "bytes": 2576, "sha256": "36656b6a07d83a46d0ca7ae4b08e9ac1375b169b86b7555da9772292a6199f81", "git_blob": "9bee1b7f73f88d856803df00d83c891d525ec86b"},
+    "p7h_source_config": {"path": "configs/u6_p7h0_native_structure_value_source_preflight_v1.json", "bytes": 14274, "sha256": "5708cb773d401e26d96628f8e58e1f158e9caac7fd687cd21a1c403437879ae3", "git_blob": "1b779087e082796221ef167bb4c12317359db8bd"},
+    "p257_evidence": {"path": "docs/evidence/P257_DNG_PROFILE_GAIN_TABLE_MAP_INGRESS_GUARD_RESULT.json", "bytes": 4787, "sha256": "1f4b5612a92ad2eeaf7634eabead68c2dee10b959d48fbbd85d0ce6087da7cc0", "git_blob": "88d7f1974764de9ef6f3f0f50b38b81789a6360f"}
+  },
+  "reports": {
+    "formal": {"path": "outputs/eval/p258_dng_profile_gain_table_map_real_file_guard_v1/formal_result.json", "bytes": 2688, "sha256": "652307f66b4302a9bb6b290fa0241b85fad3a51841acd6d341c9b3f4f36c7a27"},
+    "replay": {"path": "outputs/eval/p258_dng_profile_gain_table_map_real_file_guard_v1/formal_replay.json", "bytes": 2688, "sha256": "652307f66b4302a9bb6b290fa0241b85fad3a51841acd6d341c9b3f4f36c7a27"},
+    "byte_exact": true,
+    "scientific_payload_bytes": 1582,
+    "stable_identity_sha256": "db840e6a00385d3d9cde67ed7d578fe4e2d2b043318311acd36cca4f3b597b7a"
+  },
+  "results": {
+    "actual_guarded_tags": [
+      {"code": 52525, "count": 111088, "ifd_path": "0", "name": "ProfileGainTableMap", "tiff_type": "UNDEFINED"}
+    ],
+    "profile_gain_table_map2_absent": true,
+    "diagnostic": "unsupported DNG ProfileGainTableMap-family tags must not be silently ignored: ProfileGainTableMap(52525)@0",
+    "camera_raster_decode_calls": 0,
+    "source_unchanged": true,
+    "metadata_extract_files": 0,
+    "pixel_artifacts": 0,
+    "preview_artifacts": 0,
+    "partial_files": 0,
+    "all_frozen_gates_pass": true
+  },
+  "excluded_infrastructure_attempts": [
+    {
+      "execution_commit": "f88c5a81",
+      "reports_written": 0,
+      "reason": "report-only relative config path was not normalized against the repository root",
+      "scientific_method_or_gate_changed": false
+    },
+    {
+      "execution_commit": "eda2d84c",
+      "reports_written": 0,
+      "reason": "report-only Path.resolve traversed the repo-relative data junction to P and violated lexical repository-path serialization",
+      "scientific_method_or_gate_changed": false
+    }
+  ],
+  "change_propagation": {
+    "parent": "P257 private ProfileGainTableMap no-silent-drop guard",
+    "sibling_preserved": "P244 ProfileHueSatMap-family guard and all five P98 accepted outputs remain unchanged",
+    "producer_dependency": "R1EB supplied provenance context only; no producer implementation, decoded pixels or gain-map arithmetic was consumed",
+    "interface_effect": "none beyond confirming the already-implemented P257 refusal on one retained real file",
+    "default_loader_effect": "none",
+    "family_stop": "P258 ends the ProfileGainTableMap guard confirmation family",
+    "candidate_count": "unchanged at 2/3"
+  },
+  "claim_ceiling": "Private real-file confirmation that the unchanged P257 opt-in ingress rejects one exact retained CC0 Samsung DNG carrying ProfileGainTableMap v1 before camera-raster decode. No gain-map application, LinearRaw decode, Adobe renderer parity, full or arbitrary DNG support, image quality, default-loader integration, package, schema, capability, film-stock or product admission."
+}
