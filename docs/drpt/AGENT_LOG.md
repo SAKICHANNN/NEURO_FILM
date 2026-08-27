@@ -19142,3 +19142,30 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   attribute with default semantics. A future standards-aware default policy
   must be separately prospective. No arbitrary EXR/DCI-P3/ACES/HDR quality,
   default/product, stock evidence or candidate-3 change opens.
+
+### 2026-08-27 - P295 closes official Carrots strict ACES interop
+
+- **Node:** `ULT > HDR source/intake > P295`; DRPT L2 / Mode C. The sole
+  representative official-sample leaf tested the unchanged strict P251
+  AP0/D60 master-container contract. It did not alter the externally blocked
+  controlled three-stock acquisition lane.
+- **Freeze and source:** preregistration `9916272a`, exact source lock
+  `86b9671b`, audit/formal lock `7ce252ed` and evidence `98a11733`. Exact ASWF
+  `ScanLines/Carrots.exr` is 914,825 bytes, Git blob `b4697022...f88069`, SHA
+  `892d9eb1...39e4e1`; one source payload request completed, with zero JPEG or
+  replacement-sample requests.
+- **Result:** header-only OpenEXR 3.4.15 inspection confirms the declared
+  AP0/D60 chromaticities and D60 adoptedNeutral. The file is RGBA HALF rather
+  than RGB FLOAT and lacks both `acesImageContainerFlag` and `colorInteropID`.
+  The unchanged P251 gate therefore fails before every pixel-channel read and
+  WorkingImage output. Forward/reverse reports are byte-exact at 3,111 bytes /
+  SHA `247f61fe...0cac2`, scientific `2cf39178...92b4a4`; 28 adjacent tests and
+  Ruff/format/compile/JSON/diff checks pass.
+- **Boundary and cleanup:** the official AP0 statement is accurate but does not
+  imply the stricter P251 master-container identity. Do not rewrite HALF to
+  FLOAT, discard alpha, insert metadata, modify P251 or select another sample.
+  The sole representative official-sample family stops. The ignored
+  `tmp/p295_header_site` diagnostic dependency site remains because two exact
+  cleanup commands were policy-rejected before execution; no alternate
+  deletion mechanism was attempted. No arbitrary EXR/general ACES/SMPTE,
+  display quality, default/product, stock evidence or candidate-3 change opens.
