@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "audit_id": "sf3.a3l-openverse-transport-recovery-v1",
+  "node": "ULT > RF3 > SF3.A3L",
+  "base_contract": {
+    "path": "configs/sf3_a2_openverse_three_stock_refresh_v1.json",
+    "sha256": "ade39e816b0c7ad6c676c5ca75e1edb848fb4898f88c3ffda4a8d9689368e410"
+  },
+  "superseded_access_result": {
+    "path": "docs/evidence/SF3_A2_OPENVERSE_THREE_STOCK_REFRESH_RESULT.json",
+    "sha256": "4520026e4f7a94d0261563d46459f955dcaa420ebcfda911ffa836d844efbd03",
+    "supersedes_only_transport_availability": true
+  },
+  "transport": {
+    "implementation": "python_stdlib_urllib",
+    "user_agent": "K-MCFM-Openverse-metadata-refresh/2.0",
+    "accept": "application/json",
+    "timeout_seconds": 60,
+    "redirects_allowed": false,
+    "required_scheme": "https",
+    "required_host": "api.openverse.org",
+    "required_path": "/v1/images/",
+    "maximum_response_bytes": 2097152
+  },
+  "outputs": {
+    "snapshot": "outputs/eval/sf3_a3l_openverse_transport_recovery_v1/metadata_snapshot.json",
+    "report_a": "outputs/eval/sf3_a3l_openverse_transport_recovery_v1/report_a.json",
+    "report_b": "outputs/eval/sf3_a3l_openverse_transport_recovery_v1/report_b.json"
+  },
+  "formal_policy": {
+    "two_complete_fetches_required": true,
+    "scientific_payload_exact_after_volatile_request_fields_removed": true,
+    "reuse_base_queries_aliases_limits_and_connectivity_gates": true,
+    "exclude_prior_openverse_ids_and_landing_urls": true,
+    "image_thumbnail_detail_landing_and_related_requests_allowed": false,
+    "operator_fitting_training_and_mode_study_allowed": false,
+    "post_result_query_alias_page_gate_or_transport_rescue_allowed": false
+  },
+  "claim_ceiling": "current Openverse exact-stock metadata newly visible through a prospectively frozen standard-library transport; no upstream live rights or stock-label verification, pixels, operator, calibration, authenticity, product or multi-stock completion claim"
+}
