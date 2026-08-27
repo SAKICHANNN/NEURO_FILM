@@ -1,0 +1,94 @@
+{
+  "schema": "neuro-film.p296-openexr-standard-chromaticity-ingress-evidence.v1",
+  "experiment_id": "P296",
+  "status": "FAIL_CLOSED_OPENEXR_STANDARD_CHROMATICITY_INGRESS",
+  "date": "2026-08-27",
+  "decision": "The separately prospective standards-aware loader is deterministic, bounded, ownership-safe and applies the OpenEXR default Rec.709/D65 rule only under explicit caller authorization. However, the exact official Rec709 and XYZ reference files do not converge to the frozen common linear Rec.2020/D65 tolerance: RMSE 0.0266167, p99 absolute error 0.0930788 and maximum absolute error 0.560012 all fail. The exact source/matrix/threshold family closes without a white-point, matrix, source or threshold rescue.",
+  "commits": {
+    "preregistration": "35281ebd",
+    "implementation_and_first_formal_lock": "92fde48f",
+    "pre_evidence_boundary_measurement_correction": "690c3ee8"
+  },
+  "protocol": {
+    "contract_path": "docs/planning/P296_OPENEXR_STANDARD_CHROMATICITY_INGRESS_CONTRACT.md",
+    "contract_bytes": 3151,
+    "contract_sha256": "99abae12615c5cd02ee418a4c57f4ff1b9cbc72f6a30ea599d539067c2119429",
+    "config_path": "configs/p296_openexr_standard_chromaticity_ingress_v1.json",
+    "config_bytes": 5493,
+    "config_sha256": "374b1b19354754672e68d5caf7972e7b15e433bba6493d01cf30c531c17decfc",
+    "core_path": "src/preprocess/openexr_chromaticity_ingress.py",
+    "core_bytes": 8817,
+    "core_sha256": "8054708a2d22a76b77e1730390bcc5bdaac4d2ee2adff5ba4aaad25de8444120",
+    "runner_path": "scripts/audit_p296_openexr_standard_chromaticity_ingress.py",
+    "runner_bytes": 10958,
+    "runner_sha256": "f61ada40be65b48fa13b0ddc1c912e31d35a73af03f991efa92fc3fb7441c6b9",
+    "test_path": "tests/test_p296_openexr_standard_chromaticity_ingress.py",
+    "test_bytes": 4642,
+    "test_sha256": "3072bd638ea78aea08ab0ddcdf2d097bd351cd2d409fb6a6a081fa73f47a4630"
+  },
+  "official_source": {
+    "repository": "https://github.com/AcademySoftwareFoundation/openexr-images",
+    "revision": "e38ffb0790f62f05a6f083a6fa4cac150b3b7452",
+    "license_blob": "268d234adc762429a5d7db6a456651d7d0933dd1",
+    "declaration_blob": "8d94d9e2211874955faa6c55021174283335921c",
+    "manifest_bytes": 1004,
+    "manifest_sha256": "c9ab79dc4cf70a932d32e2e0e3eb60b9f8e571a2f553036c36734add6b01e198",
+    "files": [
+      {
+        "id": "rec709_default",
+        "bytes": 908168,
+        "git_blob": "13b3fca94da1426e4793bd66a20299c955b73d00",
+        "sha256": "15028cbf7bf0efa43738890af715ec550d26ae9e32a1020d0f4e7c785d3a370e"
+      },
+      {
+        "id": "xyz_equal_energy_explicit",
+        "bytes": 930048,
+        "git_blob": "cd4423ab12669b4caaaeb157ddd08fe430f5a775",
+        "sha256": "8d97c476726ae67a086220463c91b7202279a4c7c1ea94810ce75a4c28e7825f"
+      }
+    ]
+  },
+  "frozen_thresholds": {
+    "maximum_rmse": 0.002,
+    "maximum_p99_absolute_error": 0.005,
+    "maximum_absolute_error": 0.05
+  },
+  "formal": {
+    "forward_report_path": "outputs/eval/p296_openexr_standard_chromaticity_ingress/formal_forward_corrected.json",
+    "reverse_report_path": "outputs/eval/p296_openexr_standard_chromaticity_ingress/formal_reverse_corrected.json",
+    "report_bytes_each": 2706,
+    "report_sha256": "5bfd89e733674e93e442e83ff1afee6f73d78fe25f551bae36273414619e910d",
+    "reports_byte_exact": true,
+    "scientific_identity": "sha256:ded7ffa4e77ba345aa7d23bb150b7fef36990b5316686237697b08195eeddf93",
+    "fresh_process_count": 2
+  },
+  "results": {
+    "cross_source_rmse": 0.026616707900187643,
+    "cross_source_p99_absolute_error": 0.0930788284540171,
+    "cross_source_maximum_absolute_error": 0.5600118637084961,
+    "rec709_output_sha256": "4905e86e885e077e5c950dc1b5bb67bc4671656de1a8bf6f0f00b2935d7292f4",
+    "xyz_output_sha256": "4144a2163efa4c8a66f819b40153b23e7baab11f3d2e277344cfe09e69b9984f",
+    "shape_each": [406, 610, 3],
+    "new_exact_boundary_components_each": 0
+  },
+  "gates": {
+    "cross_source_maximum": false,
+    "cross_source_p99": false,
+    "cross_source_rmse": false,
+    "exact_identities": true,
+    "exact_openexr_runtime": true,
+    "finite_owned_outputs": true,
+    "identity_modes_exact": true,
+    "invalid_controls_atomic": true,
+    "shape_and_space_exact": true,
+    "source_immutable": true,
+    "zero_new_boundary": true,
+    "zero_temporary_residue": true,
+    "two_reports_byte_exact": true
+  },
+  "excluded_first_reports": "The first committed-head reports already failed the same three cross-source gates with identical comparison metrics and output hashes, but the audit emitted zero_new_boundary as a structural constant. They are excluded before evidence. Commit 690c3ee8 adds actual per-source/output exact-boundary measurement only; sources, arithmetic, thresholds, comparison metrics, controls, stop rule and decision are unchanged, and corrected formal execution restarts from committed HEAD.",
+  "interpretation": "OpenEXR's default Rec.709 identity can be implemented deterministically and safely, but this two-file official reference pair does not provide a sufficiently tight numerical equivalence test for the frozen Bradford-to-D65 representation. The result does not justify a default loader or a different adaptation convention. The private core remains unexported and unintegrated research code; exact P296 is closed.",
+  "candidate_count_after_result": "2/3",
+  "consumer_mapping": false,
+  "claim_ceiling": "One exact two-source standards-aware OpenEXR numerical compatibility negative. No arbitrary EXR, DCI-P3/ACES, HDR/display quality, default dispatch, public dependency/API/package/schema/capability/product, stock evidence or candidate-3 change."
+}
