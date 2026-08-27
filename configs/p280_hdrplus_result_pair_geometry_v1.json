@@ -1,0 +1,23 @@
+{
+  "schema": "neuro-film.p280-hdrplus-result-pair-geometry-contract.v1",
+  "experiment_id": "P280",
+  "status": "FROZEN_BEFORE_TARGET_PIXEL_DECODE",
+  "source_root": "data/external/p269_hdrplus_one_burst_v1",
+  "parent_p279_evidence_sha256": "31dfe9117a05c7ee0cf50e7a5b8721a986e0e73cbf9033d446e94c76d767bad4",
+  "expected_width": 4032,
+  "expected_height": 3024,
+  "downsample_width": 256,
+  "downsample_height": 192,
+  "shift_columns": 16,
+  "rows": [
+    {"version": "20161014", "observation": "result_20161014/merged.dng", "observation_sha256": "ab3a6bf3de83a3d9af62421af446fc2d0de1b3b9a563455f5ef6e412894624f2", "target": "result_20161014/final.jpg", "target_bytes": 5596112, "target_sha256": "d64cfc02cea91205b7fa06d26dd4f023ab6f8d6ef05df75d560e9e7264fd1246"},
+    {"version": "20171023", "observation": "result_20171023/merged.dng", "observation_sha256": "3a21417ff7fba508c7fc13ca2cb758329e39ac914e55522f12f2acdae66bfbdd", "target": "result_20171023/final.jpg", "target_bytes": 5393899, "target_sha256": "70714bcb7104b69a2fde8ecc1c8c798da5d129f16bfb92bcfef2ef764845c3a3"}
+  ],
+  "gates": {
+    "minimum_identity_correlation": 0.7,
+    "minimum_flip_margin": 0.2,
+    "minimum_shift_margin": 0.15,
+    "required_row_count": 2
+  },
+  "claim_ceiling": "Private same-view paired-source eligibility for two official result versions from one exact Google HDR+ burst only; no HDR truth, radiometric equivalence, tone-map quality, independent-scene generalization, rights resolution, package/schema/capability, product admission or candidate3 change"
+}
