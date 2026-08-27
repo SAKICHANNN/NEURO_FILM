@@ -1,0 +1,88 @@
+{
+  "schema": "neuro-film.u4-3a-three-stock-structural-diagnostics-result.v1",
+  "experiment_id": "U4.3A",
+  "date": "2026-08-27",
+  "status": "PASS_DIAGNOSTIC_REVIEW_QUEUES",
+  "implementation_commit": "e8a643126adee8e78fcadbc186a3eed4a54380eb",
+  "config": {
+    "path": "configs/u4_3a_three_stock_structural_diagnostics_v1.json",
+    "sha256": "24991ac7129e5cb170ebc5dfe1c1e6b069002366af3b7c5bf78be2240fa5709f"
+  },
+  "formal_report": {
+    "path": "outputs/eval/u4_3a_three_stock_structural_diagnostics_v1/report.json",
+    "bytes": 118344,
+    "sha256": "3942d56bf7d6c213e53568eecd9ad52fd32e15b6b4dabf41ed70ed72ec8ca2ac",
+    "forward_reverse_byte_exact": true,
+    "scientific_identity": "c2db3f9a88c982dd44e911585e758e6057ea75663d834b3d9c5a7c5f28ab0dac"
+  },
+  "coverage": {
+    "sources": 16,
+    "arms": 4,
+    "rows": 64,
+    "independent_review_queues": 7,
+    "render_calls": 0,
+    "network_reads": 0,
+    "aggregate_scalar_score_present": false,
+    "automatic_veto_present": false
+  },
+  "gate_results": {
+    "exact_input_hashes": true,
+    "all_sources_present": true,
+    "all_arms_present": true,
+    "finite_metrics": true,
+    "forward_reverse_report_exact": true,
+    "render_calls_zero": true,
+    "network_reads_zero": true
+  },
+  "arm_summary": {
+    "ao6_velvia50_display_proxy_t15_c35": {
+      "edge_direction_cosine_p05_min_median_max": [0.8659873008728027, 0.9895170331001282, 0.9958754181861877],
+      "edge_gain_p95_min_median_max": [1.8219550848007202, 2.3552297353744507, 3.2973639965057373],
+      "texture_gain_p95_min_median_max": [1.9487535953521729, 2.5574967861175537, 3.641378879547119],
+      "flat_new_high_frequency_p99_min_median_max": [0.0022434047423303127, 0.007493783487007022, 0.025991514325141907],
+      "speckle_candidate_percent_min_median_max": [0.00017605633802816902, 0.09330985915492956, 0.45141487371375116]
+    },
+    "legacy_unpaired_safe_lab_k1_ektar100": {
+      "edge_direction_cosine_p05_min_median_max": [0.9933347702026367, 0.999491810798645, 0.9999358654022217],
+      "edge_gain_p95_min_median_max": [1.0292186737060547, 1.0369680523872375, 1.1129769086837769],
+      "texture_gain_p95_min_median_max": [1.0478812456130981, 1.0755188465118408, 1.317295789718628],
+      "flat_new_high_frequency_p99_min_median_max": [0.00029147291206754744, 0.0011261792969889939, 0.002172708511352539]
+    },
+    "legacy_unpaired_safe_lab_k1_portra400": {
+      "edge_direction_cosine_p05_min_median_max": [0.993590235710144, 0.9995734095573425, 0.9999412894248962],
+      "edge_gain_p95_min_median_max": [1.0301567316055298, 1.0366398096084595, 1.1141107082366943],
+      "texture_gain_p95_min_median_max": [1.0467333793640137, 1.0705957412719727, 1.2996670007705688],
+      "flat_new_high_frequency_p99_min_median_max": [0.0002799427311401814, 0.0011216112761758268, 0.0030614137649536133]
+    },
+    "legacy_unpaired_safe_lab_k1_velvia50": {
+      "edge_direction_cosine_p05_min_median_max": [0.9934839010238647, 0.9995712041854858, 0.9999328851699829],
+      "edge_gain_p95_min_median_max": [1.0264919996261597, 1.0332451462745667, 1.1082178354263306],
+      "texture_gain_p95_min_median_max": [1.0449364185333252, 1.0724897384643555, 1.306523323059082],
+      "flat_new_high_frequency_p99_min_median_max": [0.000254356418736279, 0.0010441259946674109, 0.0024970173835754395]
+    }
+  },
+  "priority_review_examples": {
+    "highest_edge_gain_p95": [
+      ["canon_eos_kiss_f", "ao6_velvia50_display_proxy_t15_c35", 3.2973639965057373],
+      ["leica_digilux_3", "ao6_velvia50_display_proxy_t15_c35", 3.141723394393921],
+      ["fujifilm_finepix_s5000", "ao6_velvia50_display_proxy_t15_c35", 2.7984108924865723]
+    ],
+    "highest_flat_new_high_frequency_p99": [
+      ["panasonic_dmc_gf2", "ao6_velvia50_display_proxy_t15_c35", 0.025991514325141907],
+      ["panasonic_dmc_fz100", "ao6_velvia50_display_proxy_t15_c35", 0.02365744672715664],
+      ["olympus_sp550uz", "ao6_velvia50_display_proxy_t15_c35", 0.017756881192326546]
+    ],
+    "lowest_edge_direction_cosine_p05": [
+      ["canon_eos_kiss_f", "ao6_velvia50_display_proxy_t15_c35", 0.8659873008728027],
+      ["panasonic_dmc_fz100", "ao6_velvia50_display_proxy_t15_c35", 0.9791464805603027],
+      ["sony_dslr_a290", "ao6_velvia50_display_proxy_t15_c35", 0.9819379448890686]
+    ]
+  },
+  "execution_amendments": [
+    "A combined cleanup-and-run shell command was rejected by platform policy before execution; no scientific process or artifact was created.",
+    "The first direct CLI attempt stopped before input reads because the repository root was absent from sys.path; direct-entry import handling was added and both formal runs restarted from zero.",
+    "The source manifest contains 17 rows while the frozen RF3.D0 output set contains 16 sources; the contract was corrected before formal execution to require exactly the 16 RF3.D0 source identities, all independently present in the source manifest."
+  ],
+  "decision": "Retain the seven independent review queues and prioritize their original-resolution source/output cases for severe-artifact adjudication. AO6 is disproportionately represented in several structural-tail queues, but no diagnostic is an automatic veto and no arm is promoted or rejected here.",
+  "claim_ceiling": "Diagnostic-only structural review queues for existing RF3.D0 film-inspired/display-proxy outputs; not an automatic severe veto, stock identification, calibration, preference, multi-stock completion or product promotion."
+}
