@@ -1,0 +1,76 @@
+{
+  "schema": "neuro-film.p263-r1ej-dng-profile-gain-table-callable-intake-evidence.v1",
+  "experiment_id": "P263",
+  "date": "2026-08-27",
+  "status": "PASS_PRIVATE_R1EJ_DNG_PROFILE_GAIN_TABLE_CALLABLE_INTAKE",
+  "node": "ULT > mature RAW/DNG explicit mechanisms > P263",
+  "question": "Can the consumer independently verify and execute the exact R1EJ ProfileGainTableMap v1 callable from source-locked producer Git objects without copying it into consumer src?",
+  "consumer": {
+    "contract_commit": "ed893993",
+    "implementation_commit": "742f0110f539ed1d33c5990d311462fb97bcdc61",
+    "contract": {
+      "path": "docs/planning/P263_R1EJ_DNG_PROFILE_GAIN_TABLE_CALLABLE_INTAKE_CONTRACT.md",
+      "bytes": 5380,
+      "sha256": "9614effb5e5d05fc2fbfbca5b5ac60e3719aa03df22d411f3ba9a798706a1bdd"
+    },
+    "config": {
+      "path": "configs/p263_r1ej_dng_profile_gain_table_callable_intake_v1.json",
+      "bytes": 5351,
+      "sha256": "1b990a9900baa67828bb79ef8365536e503c8b7a12f14cba5f92c06784f3f9f7"
+    },
+    "runner": {
+      "path": "scripts/audit_p263_r1ej_dng_profile_gain_table_callable_intake.py",
+      "bytes": 12287,
+      "git_blob": "3501a8831ac9a96e5c90d431833421afcea9c9d7",
+      "sha256": "0b1f4be4ef343947154b9f921173f757aa22cfa0ba4d993112683a2919a0d661"
+    }
+  },
+  "producer": {
+    "head": "5f96c1b99bd53d715643782423ec72dd66feec5e",
+    "callable_id": "zhuise.dng-profile-gain-table-callable.v1",
+    "callable_git_blob": "057f84c30478175cd7ee3bf55def978f68830733",
+    "callable_sha256": "3025af18cb8b6f9540815d0971ce3228ede45288148607d224487414be200439",
+    "core_git_blob": "7814dd301ebf08e992d4c82b06f9dcdf17ff387c",
+    "core_sha256": "f608a5e4631e88d145d32379fa3b55480f8e38d7a13be9945ff564d146416b94",
+    "schema_git_blob": "314b6708302e61f9df5789877c2e8485946429ef",
+    "schema_sha256": "435d04417de9af9dab218f23452c04f8696ccf2b6bf815bed0da54ad9e57142b",
+    "fixture_git_blob": "96962f3b492221bfdca505e5874fabf91c55fcc5",
+    "fixture_sha256": "37bda94a036b84ae125c84c32f4e20b101b3bec468e6907ea13b2987bddee724",
+    "formal_report_sha256": "6d3b381a08674eb3b78935f9d6c6f4ed6be0d6a902059f260c06bc3e3d9b0f3a",
+    "stable_identity": "fa61d6dcd1bf5271f4ab12a00789b5851012138c5bdf5b04463e6682a9e323be"
+  },
+  "formal_execution": {
+    "forward_report": "outputs/eval/p263/formal_forward.json",
+    "reverse_report": "outputs/eval/p263/formal_reverse.json",
+    "report_bytes": 3564,
+    "report_sha256": "cc81af152ad8137d9e7b3320739b7ead8a511d954cb1dcc273ce40d04184a043",
+    "reports_byte_exact": true,
+    "stable_identity": "d677189fd23decc40e7f60c2130b19ef62f5e2054cb138156178a6a55667af4a",
+    "fixture_input_f32le_sha256": "ea3a3a1d894ba3fbc527a16a976ff485e5aebd807d4fcdc481d0ca742e3f2814",
+    "fixture_payload_canonical_sha256": "106501211514e804d6cbaa51bd052a06a479147200a30906b3d974546a716c3c",
+    "fixture_output_f32le_sha256": "9b74c55d01d287c2daa9165b4865587076a1e8b61d8b92b288551ba20715b9b0",
+    "controls_passed": 15,
+    "controls_total": 15,
+    "network_reads": 0,
+    "new_raw_dng_pixel_target_reads": 0,
+    "temporary_residue": 0
+  },
+  "gates": {
+    "all_controls_pass": true,
+    "all_source_git_objects_exact": true,
+    "draft202012_payload_valid": true,
+    "fixture_input_payload_output_exact": true,
+    "default_sdr_direct_core_parity": true,
+    "input_and_payload_unchanged": true,
+    "isolated_git_object_import": true,
+    "no_producer_worktree_import": true,
+    "no_source_copy_into_consumer_src": true,
+    "output_owned_contiguous_writable_float32": true,
+    "producer_formal_identities_exact": true,
+    "two_fresh_reports_exact": true,
+    "zero_network_new_pixels_and_temporary_residue": true
+  },
+  "prescore_correction": "The first committed consumer source lock omitted the callable's separate relative-import arithmetic core. The already-bound producer execution lock exposed this before fixture deserialization or callable import. Commit ed893993 added only the exact core Git object; roles, fixture, expected output, gates and claim ceiling were unchanged.",
+  "decision": "The consumer independently reproduced the exact R1EJ canonical ProfileGainTableMap v1 output from source-locked producer Git objects in an isolated temporary package. The handoff is mechanically consumable without copying producer implementation into consumer src. P257/P258 no-silent-drop guards and all product states remain unchanged.",
+  "claim_ceiling": "Private consumer replay of one exact R1EJ DNG ProfileGainTableMap v1 callable and canonical fixture only. No ProfileGainTableMap2, full DNG renderer, real-pixel quality, arbitrary profile/camera, default-loader integration, public package/schema/capability, stock evidence, automatic matching or product admission. Candidate 3 remains closed at 2/3."
+}
