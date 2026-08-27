@@ -1,0 +1,48 @@
+{
+  "schema": "neuro-film.p264-real-dng-ap0-pq-interchange-contract.v1",
+  "experiment_id": "P264",
+  "status": "FROZEN_BEFORE_IMPLEMENTATION_OR_OUTPUT_COMPARISON",
+  "input": {
+    "source_id": "blackmagic_pocket_cinema_camera_4k",
+    "logical_path": "data/external/rawpixls_bh1_v1/raw/blackmagic_pocket_cinema_camera_4k.dng",
+    "source_bytes": 4497152,
+    "source_sha256": "1491a5e5d580a9be151747bddce89faca4d0b9d352503270f516bbf8e8cdf0d9",
+    "p98_working_float32_sha256": "2fb7c8f9136a85d5a4032cc6c08496f330fe78eab6db7f0e7422b017a4a48ea7",
+    "p259_acescg_float32_sha256": "f326ea149a6a3a526af02cbb8c9701b8a1daa8b87b1c692ca8be422cb26a3e7d",
+    "shape": [2176, 4128, 3],
+    "p259_exr_bytes": 101805274,
+    "p259_strong_negative_count": 2511,
+    "p259_strong_highlight_count": 3902
+  },
+  "parents": {
+    "p259_config": ["configs/p259_dng_aces2065_openexr_master_v1.json", 8698, "e4f781996ec80ccfc887c1ce35935783f284545f585263563fd165ac70b7579c"],
+    "p259_evidence": ["docs/evidence/P259_DNG_ACES2065_OPENEXR_MASTER_RESULT.json", 5050, "d2703461ed79f23a89129b1c834103ca0fd13cd89a604dd2685eae8ff23f09f0"],
+    "p252_config": ["configs/p252_aces2065_aces2_pq_composition_v1.json", 6276, "c34f66ef0189fd00a1efec7f4580074d241cbdbfc9c825dfe27ac92a5c1e8608"],
+    "p252_evidence": ["docs/evidence/P252_ACES2065_ACES2_PQ_COMPOSITION_RESULT.json", 5840, "a741ee78b7cdea13f801c7b6fa4d52520eee83ea343605a55277b983ae05ce7f"],
+    "dng_loader": ["src/preprocess/dng_forward_raster.py", 13053, "1de3c12fcb1a00cabf519f2689b62a25f2792ea18e9fa31201f592b54c382cb4"],
+    "ocio_source": ["src/preprocess/ocio_aces2_output.py", 7073, "5dd3c0d8db9c595da331f8f47b8177b32aeaf037f34d7783fb742e6949eb5768"],
+    "composition": ["src/preprocess/aces2065_aces2_pq.py", 933, "e1e9a0dff2f17f6f72c4beae5a7cd93c1b00b5cc52b402ab68f7af706c11f683"],
+    "canonical_bridge": ["src/preprocess/aces2_canonical_pq_png.py", 1828, "57442e9a60b658e82c6b275fdded962395c0aebcc1e2358df7302706f90cef57"]
+  },
+  "producer_writer": {
+    "repository": "C:/Users/hhvrf/Documents/追色",
+    "commit": "a7ec64513c4fa097bc49b9bdbdfd8c3c7c2eb901",
+    "path": "src/zhuise/acescg_openexr.py",
+    "bytes": 7699,
+    "sha256": "63995dc36cf41708118f32e90687b8bb5c9b2738100b3db557371bbaf086d84d"
+  },
+  "gates": {
+    "require_direct_and_interchange_rgb16_exact": true,
+    "require_direct_and_interchange_png_exact": true,
+    "maximum_rgb16_code_difference": 0,
+    "require_partition_invariance": true,
+    "require_negative_and_highlight_support": true,
+    "require_create_only_atomic_publication": true,
+    "require_source_immutability": true,
+    "require_two_fresh_reports_exact": true,
+    "require_zero_network": true,
+    "require_zero_temporary_residue": true
+  },
+  "stop_rule": "Any exactness, identity, source, range, publication, replay or cleanup failure closes P264 without clipping, exposure, matrix, rounding, tolerance, partition, source, output, metadata or cohort rescue.",
+  "claim_ceiling": "Private one-file full-resolution real-DNG AP0/PQ mechanical interchange evidence only; no arbitrary DNG/EXR/ACES/HDR, calibrated camera/display/photographic quality, public API/package/schema/capability, product admission, film-stock evidence, single-reference matching or candidate 3."
+}
