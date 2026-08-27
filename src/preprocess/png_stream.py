@@ -11,6 +11,8 @@ from typing import Self
 
 import numpy as np
 
+from src.film_physics.create_only_file import publish_create_only
+
 from .color_management import REC2020_SDR_CICP, REC2100_PQ_CICP
 from .output_encode import srgb_icc_profile
 
@@ -256,7 +258,9 @@ class _StreamingRgbPngWriter:
             or self._row + values.shape[0] > self.height
             or not values.flags.c_contiguous
         ):
-            raise ValueError("PNG tile must be contiguous RGB rows with exact sample type")
+            raise ValueError(
+                "PNG tile must be contiguous RGB rows with exact sample type"
+            )
         rows = values.shape[0]
         row_bytes = self.width * 3 * self.dtype.itemsize
         filtered = np.empty((rows, row_bytes + 1), dtype=np.uint8)
@@ -283,7 +287,7 @@ class _StreamingRgbPngWriter:
             self._handle.flush()
             os.fsync(self._handle.fileno())
             self._handle.close()
-            os.replace(self.temporary, self.path)
+            publish_create_only(self.temporary, self.path)
             self._closed = True
             return self._digest.hexdigest()
         except BaseException:
