@@ -1,0 +1,36 @@
+{
+  "schema": "neuro-film.p281-hdrplus-monotone-tone-d0-evidence.v1",
+  "status": "FAIL_CLOSED_HDRPLUS_MONOTONE_TONE_D0",
+  "decision": "The fixed three-channel monotone 17-knot representation strongly reduces RMSE on development heldout and the second official result version, and is noninferior to the same-budget unconstrained control, but creates 71/69 exact-boundary components from strictly interior inputs. Close the exact family without endpoint or projection rescue.",
+  "bindings": {
+    "contract_commit": "376c34b3",
+    "implementation_commit": "f1f44d57f16f98083de0018d815cd67ac59dfe09",
+    "parent_p280_evidence_sha256": "edc7061672db639c475ffe4fd44c76896e7272d5ea4e0758b721f86d23369d37"
+  },
+  "formal_result": {
+    "report_sha256": "1311ef6cfd981248c93057e1e223b334e9d15e49aa4cf6206f93e33792c89e5c",
+    "report_size_bytes": 2397,
+    "scientific_sha256": "3e6f390ac583d47626c465bf79f9b69595dfb0c37457acbbdc92011af981977e",
+    "curves_sha256": "c5ece129d5d9512594ae509bd211d0dcddfc367ae92940a587ff493a3e7457cd",
+    "development_heldout": {"identity_rmse": 0.15409796856976174, "candidate_rmse": 0.0678495971925905, "identity_rmse_reduction": 0.5596983021753834, "control_rmse_ratio": 0.990459217562464, "new_boundary_components": 71},
+    "confirmation": {"identity_rmse": 0.1667247390692506, "candidate_rmse": 0.0761522969331765, "identity_rmse_reduction": 0.5432453674343675, "control_rmse_ratio": 0.9901758544059842, "new_boundary_components": 69},
+    "split": {"fit_count": 190512, "heldout_count": 6096384, "fit_heldout_overlap": 0},
+    "gates": {
+      "identity_reduction": true,
+      "control_noninferiority": true,
+      "curves_monotone": true,
+      "finite_range": true,
+      "fit_heldout_overlap_zero": true,
+      "new_boundary_zero": false
+    }
+  },
+  "execution": {
+    "forward_reverse_report_exact": true,
+    "forward_report_sha256": "1311ef6cfd981248c93057e1e223b334e9d15e49aa4cf6206f93e33792c89e5c",
+    "reverse_report_sha256": "1311ef6cfd981248c93057e1e223b334e9d15e49aa4cf6206f93e33792c89e5c",
+    "stable_identity": "3e6f390ac583d47626c465bf79f9b69595dfb0c37457acbbdc92011af981977e",
+    "persistent_model_or_pixel_outputs": 0,
+    "temporary_residue": 0
+  },
+  "claim_ceiling": "Private one-burst global monotone tone representation D0 across two official Google HDR+ result versions only; no HDR truth, independent-scene generalization, colorimetric calibration, package/schema/capability, product admission or candidate3 change."
+}
