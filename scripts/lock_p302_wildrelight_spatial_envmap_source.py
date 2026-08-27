@@ -3,16 +3,18 @@
 from __future__ import annotations
 
 import argparse
+import concurrent.futures
 import hashlib
 import json
 import re
+import shutil
+import subprocess
 from pathlib import Path
 from typing import Any
 
 from scripts.audit_p286_wildrelight_paired_hdr_source_feasibility import (
     _fetch_manifest,
     _manifest_facts,
-    _request_bytes,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -97,30 +99,71 @@ def _select_members(
     return selected
 
 
+def _curl_bytes(url: str, maximum_bytes: int) -> bytes:
+    curl = shutil.which("curl.exe") or shutil.which("curl")
+    if curl is None:
+        raise P302SourceLockError("curl runtime is unavailable")
+    process = subprocess.run(
+        [
+            curl,
+            "--fail",
+            "--location",
+            "--retry",
+            "5",
+            "--retry-all-errors",
+            "--connect-timeout",
+            "20",
+            "--max-time",
+            "120",
+            "--silent",
+            "--show-error",
+            url,
+        ],
+        check=True,
+        capture_output=True,
+    )
+    if len(process.stdout) > maximum_bytes:
+        raise P302SourceLockError("metadata response exceeds frozen byte ceiling")
+    return process.stdout
+
+
+def _bind_metadata_member(
+    member: dict[str, object], dataset_id: str, revision: str
+) -> int:
+    if member["identity_kind"] != "git_blob_sha1_and_body_sha256":
+        return 0
+    url = (
+        f"https://huggingface.co/datasets/{dataset_id}/resolve/"
+        f"{revision}/{member['path']}?download=true"
+    )
+    body = _curl_bytes(url, 65536)
+    if len(body) != int(member["bytes"]):
+        raise P302SourceLockError("metadata body byte count differs")
+    git_blob = hashlib.sha1(
+        f"blob {len(body)}\0".encode() + body, usedforsecurity=False
+    ).hexdigest()
+    if git_blob != member["git_blob_sha1"]:
+        raise P302SourceLockError("metadata Git-blob identity differs")
+    member["sha256"] = _sha256(body)
+    return len(body)
+
+
 def _bind_metadata_bodies(
     members: list[dict[str, object]], dataset_id: str, revision: str
 ) -> tuple[int, int]:
-    requests = 0
-    body_bytes = 0
-    for member in members:
-        if member["identity_kind"] != "git_blob_sha1_and_body_sha256":
-            continue
-        url = (
-            f"https://huggingface.co/datasets/{dataset_id}/resolve/"
-            f"{revision}/{member['path']}?download=true"
+    metadata = [
+        member
+        for member in members
+        if member["identity_kind"] == "git_blob_sha1_and_body_sha256"
+    ]
+    with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
+        body_sizes = list(
+            executor.map(
+                lambda member: _bind_metadata_member(member, dataset_id, revision),
+                metadata,
+            )
         )
-        body, _ = _request_bytes(url, 65536)
-        if len(body) != int(member["bytes"]):
-            raise P302SourceLockError("metadata body byte count differs")
-        git_blob = hashlib.sha1(
-            f"blob {len(body)}\0".encode() + body, usedforsecurity=False
-        ).hexdigest()
-        if git_blob != member["git_blob_sha1"]:
-            raise P302SourceLockError("metadata Git-blob identity differs")
-        member["sha256"] = _sha256(body)
-        requests += 1
-        body_bytes += len(body)
-    return requests, body_bytes
+    return len(metadata), sum(body_sizes)
 
 
 def execute(config_path: Path, p286_config_path: Path) -> dict[str, object]:
