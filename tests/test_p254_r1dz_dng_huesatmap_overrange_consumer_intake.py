@@ -5,7 +5,11 @@ import json
 from pathlib import Path
 
 import numpy as np
+import pytest
 
+from scripts.audit_p254_r1ec_dng_profile_huesat_callable_intake import (
+    _payload_control,
+)
 from src.preprocess.dng_profile_huesatmap_audit import (
     parse_profile_huesatmap_exif,
 )
@@ -86,3 +90,33 @@ def test_stage_b_source_lock_is_complete_before_fixture_execution() -> None:
     assert config["gates"]["require_no_producer_worktree_import"]
     assert config["gates"]["require_no_source_copy_into_consumer_src"]
     assert "NOT_READY_PRODUCER_HANDOFF_GAP" in config["not_ready_rule"]
+
+
+@pytest.mark.parametrize(
+    "name",
+    [
+        "nonfinite-table",
+        "wrong-length-table",
+        "malformed-dimensions",
+        "negative-saturation-scale",
+        "negative-value-scale",
+        "nonunit-zero-saturation-value-scale",
+        "invalid-weight-low",
+        "invalid-weight-high",
+        "unsupported-encoding",
+        "nonboolean-overrange",
+        "unexpected-field",
+    ],
+)
+def test_invalid_payload_controls_are_distinct(name: str) -> None:
+    payload = {
+        "schema": "zhuise.dng-profile-huesat-callable.v1",
+        "dimensions": [2, 2, 2],
+        "data_1": [0.0, 1.0, 1.0] * 8,
+        "data_2": [0.0, 1.0, 1.0] * 8,
+        "calibration_1_weight": 0.5,
+        "encoding": 0,
+        "support_overrange": True,
+    }
+    candidate = _payload_control(payload, name)
+    assert json.dumps(candidate, sort_keys=True) != json.dumps(payload, sort_keys=True)
