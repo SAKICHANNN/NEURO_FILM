@@ -2530,6 +2530,18 @@ must add an independent rights-cleared stock observation rather than another
 evaluation of these outputs. Evidence:
 `docs/evidence/RF3_D15_THREE_STOCK_AUTONOMOUS_BLIND_SALIENCE_RESULT.json`.
 
+SF3.A3L closes the recovered-transport Openverse refresh without changing the
+earlier scientific contract. A standard-library probe could reach a 5-row
+endpoint, but both formal forward/reverse runs reused the hash-bound SF3.A2
+50-row queries and received the same 63-byte HTTP 401 body on all six stock
+requests. Scientific payloads are exact at `0b282be0...01ae`; pixel, landing,
+thumbnail and operator reads remain zero. Do not rescue page size, query text,
+headers or transport. This proves only stable source unavailability for the
+frozen query, not that Openverse has no relevant images. Public-index client
+rescue stops; the next stock leaf requires a materially new rights-cleared
+observation. Evidence:
+`docs/evidence/SF3_A3L_OPENVERSE_TRANSPORT_RECOVERY_RESULT.json`.
+
 SF3.A3C closes the final bounded commercial-page lead without opening another
 proxy experiment. FilmLabPro names all three target stocks and publishes
 datasheet-derived curves and implementation parameters, but exposes no paired

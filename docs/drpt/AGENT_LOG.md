@@ -19224,3 +19224,24 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   three-stock distinguishability. Do not rescue with new shuffles, thresholds,
   tuning or routing. The next admissible stock leaf requires a materially new,
   rights-cleared stock observation; physical owner action is not assumed.
+
+### 2026-08-27 - SF3.A3L closes Openverse transport recovery
+
+- **Node:** `ULT > RF3 > SF3.A3L`, DRPT L2 / Mode C. A precontract 5-row
+  PowerShell/urllib probe returned HTTP 200, so the leaf prospectively tested
+  whether replacing only the previously blocked `requests` transport could
+  recover the exact SF3.A2 metadata refresh.
+- **Freeze and implementation:** contract `1988ed8f`, bounded urllib transport
+  `75ad050c` and evidence `b66faec5`. The hash-bound SF3.A2 queries, aliases,
+  50-row pages, limits, prior-identity exclusions and connectivity gates were
+  unchanged. Raw responses, image URLs, thumbnails, landing pages and related
+  objects were not retained or requested.
+- **Result:** both forward/reverse complete runs receive the same 63-byte HTTP
+  401 body on all six formal requests. Scientific payloads are exact at
+  `0b282be0...01ae`; fresh rows are `0/0/0`, pixel and operator reads zero.
+  Nine adjacent tests pass, with Ruff, format, compile and diff checks clean.
+- **Decision:** `FAIL_CLOSED_SOURCE_UNAVAILABLE`. Do not change page size,
+  quoting, aliases, pagination, headers, thresholds or transport after the
+  result. This closes Openverse client rescue only; it does not claim the
+  service lacks relevant images. Continue only with a materially new,
+  rights-cleared stock observation or official exact-inventory dataset.
