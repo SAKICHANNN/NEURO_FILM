@@ -169,11 +169,12 @@ def execute(config_path: Path, producer_repo: Path, order: str) -> dict[str, Any
     verified: dict[str, dict[str, Any]] = {}
     artifact_bytes: dict[str, bytes] = {}
     for name, binding in artifacts.items():
-        commit = (
-            stage_b["producer_evidence_commit"]
-            if name == "evidence"
-            else implementation
-        )
+        if name == "evidence":
+            commit = stage_b["producer_evidence_commit"]
+        elif name == "execution_lock":
+            commit = stage_b["producer_execution_lock_commit"]
+        else:
+            commit = implementation
         value = _verify_artifact(producer_repo, commit, binding)
         artifact_bytes[name] = value
         verified[name] = {
