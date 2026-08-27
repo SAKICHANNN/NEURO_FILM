@@ -1,7 +1,9 @@
 # P302 — WildRelight spatial environment-conditioned explicit operator
 
-Status: **prospectively frozen before new-scene member acquisition or pixels**  
-Date: 2026-08-28  
+Status: **prospectively frozen before new-scene member acquisition or pixels**
+
+Date: 2026-08-28
+
 Parent: P286 source feasibility; P287 exact global-gain family closed
 
 ## Question and claim ceiling
