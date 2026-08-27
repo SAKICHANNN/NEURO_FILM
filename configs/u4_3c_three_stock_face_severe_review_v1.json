@@ -1,0 +1,70 @@
+{
+  "schema": "neuro-film.u4-3c-three-stock-face-severe-review-contract.v1",
+  "experiment_id": "U4.3C",
+  "status": "FROZEN_BEFORE_EXECUTION",
+  "question": "Do the unchanged three K=1 stock-labelled Look Approximation baselines avoid a confirmed severe face artifact on the one lineage-bound FilmSet face array already recovered by U5.R2CB56?",
+  "parents": {
+    "cb56_contract": {
+      "path": "configs/u5_r2cb56_analytic_y_chromaticity_face_stress_v1.json",
+      "sha256": "6e874588d5980e34fd35e528926cda7e8d64421acee35b5bb0c3bc40f103280e"
+    },
+    "source_arrays": [
+      {
+        "path": "outputs/external_controls/spektrafilm_langmuir_bs0_v1/run_a/FS_FACE_01__source.npy",
+        "bytes": 6291584,
+        "sha256": "85f82dbe9aed757b2159eae3ce0dfd688ea2d39f44d3d1a31acba9846016229e"
+      },
+      {
+        "path": "outputs/external_controls/spektrafilm_langmuir_bs0_v1/run_b/FS_FACE_01__source.npy",
+        "bytes": 6291584,
+        "sha256": "85f82dbe9aed757b2159eae3ce0dfd688ea2d39f44d3d1a31acba9846016229e"
+      }
+    ],
+    "render_profile": {
+      "path": "configs/render_profiles/safe_rich_v1.json",
+      "sha256": "72a9948e6fc76e230c4593b847728712bc034840cd339e6b34f079ac7d424c79"
+    },
+    "style_statistics": {
+      "path": "configs/film_color_stats.json",
+      "sha256": "1a45e90765e577edd4ca1773fc8c6cf98fd09b8afbdddfa519b1f097c5dd7c04"
+    },
+    "guardrails": {
+      "path": "configs/color_guardrails.json",
+      "sha256": "6669b7bc873febcc74ba7ddcbc1c1584807e38465447a5cdbeb24073efa00aa7"
+    },
+    "renderer": {
+      "path": "src/inference/three_stock_look.py",
+      "sha256": "43f758c999121be20f42c40d36ed25d56a7f478c669bc20379fbf1612dd1c943"
+    }
+  },
+  "execution": {
+    "film_stock_ids": [
+      "fujifilm_velvia_50",
+      "kodak_portra_400",
+      "kodak_ektar_100"
+    ],
+    "look_amount": 1.0,
+    "seed": 1729,
+    "tile_size": 128,
+    "tile_workers": 1,
+    "gamut_workers": 1,
+    "required_shape": [512, 512, 3]
+  },
+  "automatic_gates": {
+    "two_source_arrays_byte_identical": true,
+    "forward_reverse_report_byte_exact": true,
+    "output_replay_byte_exact": true,
+    "finite_bounded_rgb": true,
+    "geometry_exact": true,
+    "maximum_new_exact_boundary_fraction": 0.0
+  },
+  "visual_categories": [
+    "dirty_or_blotchy_skin_colour",
+    "isolated_chroma_impulses",
+    "banding_or_posterization",
+    "objectionable_halos",
+    "eyes_lips_hair_or_facial_contour_structure_loss"
+  ],
+  "maximum_confirmed_severe_artifact_count_per_stock": 0,
+  "claim_ceiling": "One decoded-pixel FilmSet face severe-artifact review for three unchanged K=1 Look Approximation baselines; not original file ingress, stock truth, calibration, target-film closeness, preference, population safety, multi-stock completion or product promotion."
+}
