@@ -1,0 +1,65 @@
+{
+  "schema": "neuro-film.sf3-a3i-negicc-stock-specific-k1-baseline-evidence.v1",
+  "experiment_id": "SF3.A3I",
+  "implementation_commit": "805793a2",
+  "status": "FAIL_CLOSED_CONTROLLED_K1_BASELINE",
+  "decision": "CLOSE_EXACT_CONTROLLED_K1_FAMILY",
+  "formal_replays": 2,
+  "formal_report_bytes_exact": true,
+  "formal_report_sha256": "61d739a40042b38ecc49b57c9ad9c120d6802be71fd900eacb10a42f617f5aca",
+  "scientific_identity": "ed3e55384068d9c60a6de6ea88463272ad7840b1a632d62d287a2c572f7b6dd9",
+  "bundle_identity": "e0f48ec16f4b831f2c9b7ad4c2395a06d29ca433c2625c2eca775e72d14df9fb",
+  "roles": {
+    "build_exposures_ev": [
+      -1,
+      0,
+      1
+    ],
+    "confirmation_exposure_ev": 2,
+    "confirmation_reads_before_bundle_freeze": 0
+  },
+  "results": [
+    {
+      "stock_id": "kodak_ektar_100",
+      "confirmation_rows": 288,
+      "correct_total_log2_rmse": 0.74888874122774,
+      "wrong_total_log2_rmse": 0.70918150032591,
+      "pooled_total_log2_rmse": 0.717938528745368,
+      "correct_vs_wrong_patch_win_rate": 0.298611111111111,
+      "correct_vs_wrong_median_improvement": -0.070879439685598,
+      "correct_vs_pooled_patch_win_rate": 0.215277777777778,
+      "correct_vs_pooled_median_improvement": -0.0519262554566586
+    },
+    {
+      "stock_id": "kodak_portra_400",
+      "confirmation_rows": 288,
+      "correct_total_log2_rmse": 0.74132122873571,
+      "wrong_total_log2_rmse": 0.840121522336167,
+      "pooled_total_log2_rmse": 0.781812014158185,
+      "correct_vs_wrong_patch_win_rate": 0.871527777777778,
+      "correct_vs_wrong_median_improvement": 0.141123728484387,
+      "correct_vs_pooled_patch_win_rate": 0.829861111111111,
+      "correct_vs_pooled_median_improvement": 0.0647969406124993
+    }
+  ],
+  "gates": {
+    "confirmation_rows": true,
+    "stock_classification": false,
+    "correct_vs_wrong_patch_win_rate": false,
+    "correct_vs_wrong_median_improvement": false,
+    "correct_vs_pooled_patch_win_rate": false,
+    "correct_vs_pooled_median_improvement": false,
+    "finite": true,
+    "new_boundary": true
+  },
+  "classified_correct": 1,
+  "required_classified_correct": 2,
+  "new_boundary_values": 0,
+  "three_stock_matrix": {
+    "kodak_portra_400": "controlled-signal-positive-but-not-independent",
+    "kodak_ektar_100": "held-out-exposure-negative",
+    "fujifilm_velvia_50": "data-gap-no-comparable-controlled-observation"
+  },
+  "interpretation": "Portra 400 retained a controlled held-out-exposure stock-specific signal, but the Ektar 100 confirmation was explained better by the wrong-stock and pooled controls. The exact two-stock K=1 family is closed without rescue.",
+  "claim_ceiling": "controlled one-setup IT8 patch negative evidence; not natural-scene transfer, independent-roll or scanner validation, calibrated stock response, or product promotion"
+}
