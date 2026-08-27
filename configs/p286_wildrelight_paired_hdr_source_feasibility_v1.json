@@ -26,7 +26,7 @@
     },
     "tree": {
       "url": "https://huggingface.co/api/datasets/Lez/wildrelight/tree/90ab579145da9f3ea998d706c8defd0d4b87641f?recursive=true&expand=true&limit=100",
-      "maximum_response_bytes_each": 65536,
+      "maximum_response_bytes_each": 131072,
       "maximum_pages": 24
     },
     "readme": {

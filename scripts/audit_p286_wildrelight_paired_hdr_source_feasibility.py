@@ -57,7 +57,7 @@ def _request_bytes(url: str, maximum_bytes: int) -> tuple[bytes, str | None]:
                     raise P286Error("official response did not return HTTP 200")
                 link = response.headers.get("Link")
             return body, link
-        except (TimeoutError, urllib.error.URLError) as error:
+        except (ConnectionError, TimeoutError, urllib.error.URLError) as error:
             last_error = error
             if attempt == 2:
                 raise P286Error("official source transport failed after retries") from error
