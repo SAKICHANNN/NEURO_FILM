@@ -1,0 +1,104 @@
+{
+  "schema": "neuro-film.p289-libavif-gainmap-encoder-d0-evidence.v1",
+  "experiment_id": "P289",
+  "status": "PASS_PRIVATE_LIBAVIF_GAINMAP_ENCODER_D0",
+  "date": "2026-08-27",
+  "decision": "The exact official libavif 1.4.2 Windows gain-map utility deterministically creates a valid 12-bit 4:4:4 gain-map AVIF from independently frozen HDR and SDR endpoints. Both endpoints replay within one 12-bit code at maximum error, all metadata, material-action, ownership and atomic controls pass, and the exact media bytes repeat across fresh processes. This opens only a separately frozen consumer integration question.",
+  "commits": {
+    "preregistration": "9729198b",
+    "source_lock": "52712a96",
+    "implementation_and_tests": "48a6c1c1",
+    "formal_execution_lock": "2784b0bb"
+  },
+  "protocol": {
+    "contract_path": "docs/planning/P289_LIBAVIF_GAINMAP_ENCODER_D0_CONTRACT.md",
+    "contract_bytes": 3568,
+    "contract_sha256": "84bcf26c1a88c55050a47e52fd7913404d02d3a549aa18ec06a1a54277a5956d",
+    "config_path": "configs/p289_libavif_gainmap_encoder_d0_v1.json",
+    "config_bytes": 4395,
+    "config_sha256": "c337598aa168fcb1808648ab09e838cb169bcafab79f8414c12fe304a9386767",
+    "runner_path": "scripts/audit_p289_libavif_gainmap_encoder_d0.py",
+    "runner_bytes": 15347,
+    "runner_sha256": "700090e3bbbc18e78839f9dbf4184b0ee576066bac0d52b1dea67078bef9de02",
+    "test_path": "tests/test_p289_libavif_gainmap_encoder_d0.py",
+    "test_bytes": 1943,
+    "test_sha256": "b13f4982eb7842e0e2a9ed00bdb56d3a948d1bec1782fcf6e0ca3d8e973d337d"
+  },
+  "source": {
+    "runtime": "official libavif v1.4.2 Windows release",
+    "runtime_commit": "c5240fc79fe5c2407e10afd35f5505ef6333ea49",
+    "fixture": "seine_hdr_gainmap_small_srgb.avif",
+    "fixture_bytes": 102004,
+    "fixture_sha256": "573a67fdd581f6e634da198a819cc92a071539dfb720c5d7dfdf02e4e87a0346",
+    "selection": "lexicographically smallest SHA-256 among the three exact P278 valid fixtures",
+    "license": "same as official libavif repository licence",
+    "width": 400,
+    "height": 300
+  },
+  "candidate": {
+    "encoder": "official avifgainmaputil combine",
+    "base_role": "HDR endpoint",
+    "alternate_role": "SDR endpoint",
+    "base_cicp": [1, 16, 0],
+    "alternate_cicp": [1, 13, 0],
+    "base_headroom": 1.3,
+    "alternate_headroom": 0.0,
+    "color_depth": 12,
+    "gain_map_depth": 12,
+    "color_yuv": "444",
+    "gain_map_yuv": "444",
+    "color_quality": 100,
+    "gain_map_quality": 100,
+    "gain_map_downscaling": 1,
+    "jobs": 1,
+    "speed": 10
+  },
+  "formal": {
+    "forward_report_path": "outputs/eval/p289_libavif_gainmap_encoder_d0_v1/formal_forward.json",
+    "reverse_report_path": "outputs/eval/p289_libavif_gainmap_encoder_d0_v1/formal_reverse.json",
+    "report_bytes_each": 2295,
+    "report_sha256": "aa74dd4954483a5bb0edcd55e065786b608efb783d30559ead43cb74bcfb2d38",
+    "reports_byte_exact": true,
+    "fresh_process_count": 2,
+    "scientific_identity": "sha256:d4e3f466bb724a34a2a6e0b5dc08811cbf8d7ee6c83a9f3810144ecac0a29782",
+    "candidate_avif_bytes": 726506,
+    "candidate_avif_sha256": "94556d9f58b54955a07b5d8303da74d3ab350ef3eb061aab655cc5da7af6da70",
+    "hdr_error_12bit": {
+      "median": 0.0,
+      "p95": 0.0,
+      "maximum": 1.0
+    },
+    "sdr_error_12bit": {
+      "median": 0.0,
+      "p95": 1.0,
+      "maximum": 1.0
+    },
+    "material_endpoint_difference_fraction": 0.9988777777777778
+  },
+  "gates": {
+    "atomic_invalid_controls": true,
+    "base_cicp_exact": true,
+    "alternate_cicp_exact": true,
+    "candidate_created": true,
+    "candidate_gain_map_recognized": true,
+    "dimensions_and_endpoint_types_exact": true,
+    "endpoint_material_difference": true,
+    "headrooms_exact": true,
+    "hdr_endpoint_error": true,
+    "sdr_endpoint_error": true,
+    "runtime_decodes_succeed": true,
+    "source_runtime_immutable": true,
+    "candidate_media_byte_exact": true,
+    "reports_byte_exact": true,
+    "zero_persistent_media_and_residue": true
+  },
+  "invalid_controls": [
+    "truncated HDR endpoint",
+    "missing HDR endpoint",
+    "foreign pre-existing destination"
+  ],
+  "candidate_count_after_result": "2/3",
+  "consumer_mapping": false,
+  "next_allowed": "One separately prospectively frozen private consumer integration leaf may test explicit inputs and publication boundaries without changing this encoder protocol.",
+  "claim_ceiling": "Private Windows runtime/container mechanics on one exact official libavif fixture only. No complete ISO 21496-1 conformance, arbitrary AVIF/HEIF or HDR quality, display validation, public dependency/API/package/schema/capability, product admission, stock evidence or candidate3 change."
+}
