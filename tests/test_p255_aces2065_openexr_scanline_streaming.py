@@ -7,6 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "src/eval/p255_aces2065_openexr_scanline_writer.cpp"
 CONFIG = ROOT / "configs/p255_aces2065_openexr_scanline_streaming_v1.json"
+EVIDENCE = ROOT / "docs/evidence/P255_ACES2065_OPENEXR_SCANLINE_STREAMING_RESULT.json"
 
 
 def _sha256(path: Path) -> str:
@@ -69,3 +70,25 @@ def test_p248_parent_source_remains_separate() -> None:
     assert "acesImageContainerFlag" not in text
     assert "colorInteropID" not in text
     assert "P248 row block must equal 16" in text
+
+
+def test_formal_evidence_binds_reports_and_preserves_claim_boundary() -> None:
+    evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+    assert evidence["status"] == "PASS_PRIVATE_ACES2065_OPENEXR_24MP_SCANLINE_STREAMING"
+    assert all(evidence["gates"].values())
+    identities = {row["stable_identity"] for row in evidence["formal_reports"]}
+    assert identities == {
+        "0fe90cd9a5a2218300a61f0e1ceb166846c69609a7a8a170e43c99616322dbb2"
+    }
+    for report in evidence["formal_reports"]:
+        path = ROOT / report["path"]
+        assert path.stat().st_size == report["bytes"]
+        assert _sha256(path) == report["sha256"]
+    result = evidence["result"]
+    assert result["two_complete_controllers_stable_exact"]
+    assert result["decoded_maximum_absolute_error"] == 0.0
+    assert result["small_probe_native_vs_p249_maximum_absolute_error"] == 0.0
+    assert result["maximum_worker_peak_process_tree_rss_bytes"] <= 2**31
+    assert result["maximum_worker_wall_seconds"] <= 120.0
+    assert "No natural-image quality" in evidence["claim_ceiling"]
+    assert "Candidate 3 remains closed at 2/3" in evidence["claim_ceiling"]
