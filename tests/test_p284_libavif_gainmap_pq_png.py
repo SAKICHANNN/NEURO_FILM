@@ -47,3 +47,21 @@ def test_p284_existing_pq_rail_is_byte_exact_and_strict(tmp_path: Path) -> None:
 
 def test_p284_invalid_publications_are_atomic(tmp_path: Path) -> None:
     assert all(invalid_publication_controls(tmp_path).values())
+
+
+def test_p284_evidence_binds_one_way_publication_pass() -> None:
+    evidence = json.loads(
+        (ROOT / "docs/evidence/P284_LIBAVIF_GAINMAP_PQ_PNG_RESULT.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    assert evidence["status"] == "PASS_PRIVATE_LIBAVIF_GAINMAP_PQ_PNG"
+    result = evidence["formal_result"]
+    assert result["report_sha256"] == (
+        "cc4a7e335c777544907291e9cff34eacd5dedac4a67768f5410d4811a0f95b0c"
+    )
+    assert all(result["gates"].values())
+    assert (
+        max(row["maximum_absolute_light_error_nits"] for row in result["records"])
+        == 0.04371628489445811
+    )

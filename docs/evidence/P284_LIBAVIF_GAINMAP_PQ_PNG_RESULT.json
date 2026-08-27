@@ -1,0 +1,69 @@
+{
+  "schema": "neuro-film.p284-libavif-gainmap-pq-png-evidence.v1",
+  "status": "PASS_PRIVATE_LIBAVIF_GAINMAP_PQ_PNG",
+  "decision": "The exact three official libavif higher-headroom renditions pass one-way publication from the validated P283 forward P87 absolute-Rec.2020 boundary through the unchanged P89 BT.2100 PQ RGB16 PNG rail. Retain only this private deterministic publication mechanic. P283's inverse-gamut failure remains authoritative and no arbitrary AVIF/HDR or product path opens.",
+  "bindings": {
+    "contract_commit": "67c43ab0",
+    "formal_runner_commit": "6773f13b",
+    "p282_evidence_sha256": "fe40ea1f523847f2f012887d72ad47f45cbe0a5de021562093cf26c74b9afa12",
+    "p283_evidence_sha256": "fb3e34da7126f1b8aa9a5803354c3d3c3ad61f220ae2f68db9ddc2e9a3eaf442",
+    "p89_evidence_sha256": "8ba8a65a7090e643ca74af8b7583351e245fae6ef0f06a2609e8f7769e1784f8",
+    "u1_4g_evidence_sha256": "12a53bb49ac0ba92314f2310c77f7dc2ab3c798e0406136d48d9ebb9eb0b0bcb"
+  },
+  "formal_result": {
+    "report_sha256": "cc4a7e335c777544907291e9cff34eacd5dedac4a67768f5410d4811a0f95b0c",
+    "report_size_bytes": 3784,
+    "stable_identity": "fb6895412e0b2ddc9426a2792568c836aa7350c9e29cc8e40b5c22c5994da1d3",
+    "row_count": 3,
+    "records": [
+      {
+        "name": "seine_hdr_gainmap_small_srgb.avif",
+        "higher_role": "base",
+        "maximum_nits": 750.8896484375,
+        "maximum_absolute_light_error_nits": 0.04371628489445811,
+        "png_file_sha256": "682641e0cc2b906f63e74778ec9bd1f9e5f7f79ec91512c87453131d62cac192",
+        "rgb16_sample_sha256": "b0b837e05753eee3439ba29114cb08f865efea989d247435c73ed437834dca92"
+      },
+      {
+        "name": "seine_sdr_gainmap_big_srgb.avif",
+        "higher_role": "alternate",
+        "maximum_nits": 449.2427062988281,
+        "maximum_absolute_light_error_nits": 0.030364810254070562,
+        "png_file_sha256": "db9e01b11cb4c4b160cba0cfb11425ac4526f24b5f53606ee8262d24878a5f1c",
+        "rgb16_sample_sha256": "c9bb92a893ef9df1fca10f009138d0b641a3f00ae4224927797c220a271a121a"
+      },
+      {
+        "name": "seine_sdr_gainmap_srgb.avif",
+        "higher_role": "alternate",
+        "maximum_nits": 490.53070068359375,
+        "maximum_absolute_light_error_nits": 0.031568602583547545,
+        "png_file_sha256": "d2a0dcce347418e3ea343f092a6406090dfa813843d4008474a20eb623d81b34",
+        "rgb16_sample_sha256": "5bc51639bde9b287e9626da8e5296d69a0ab58ad1b73f94b5b01a16fcce5d1fe"
+      }
+    ],
+    "gates": {
+      "all_absolute_light_errors_bounded": true,
+      "all_cicp_exact": true,
+      "all_code_quantization_errors_bounded": true,
+      "all_inputs_unchanged": true,
+      "all_png_repeats_exact": true,
+      "all_production_outputs_reject": true,
+      "all_rows_present": true,
+      "all_sample_readbacks_exact": true,
+      "create_only_atomic": true,
+      "invalid_inputs_atomic": true,
+      "runtime_immutable": true,
+      "source_immutable": true
+    }
+  },
+  "execution": {
+    "forward_reverse_report_exact": true,
+    "forward_report_sha256": "cc4a7e335c777544907291e9cff34eacd5dedac4a67768f5410d4811a0f95b0c",
+    "reverse_report_sha256": "cc4a7e335c777544907291e9cff34eacd5dedac4a67768f5410d4811a0f95b0c",
+    "stable_identity": "fb6895412e0b2ddc9426a2792568c836aa7350c9e29cc8e40b5c22c5994da1d3",
+    "runtime_network_requests": 0,
+    "retained_png_outputs": 0,
+    "formal_temporary_residue": 0
+  },
+  "claim_ceiling": "Private exact one-way publication mechanics for three frozen official libavif gain-map higher-headroom renditions through P87 and the existing P89 PQ RGB16 PNG rail only; no P283 roundtrip rescue, complete ISO 21496-1, arbitrary AVIF/HEIF, HDR reconstruction quality, display validation, mastering/content-light metadata, public API/dependency/package/schema/capability/product, stock claim or candidate3 change."
+}
