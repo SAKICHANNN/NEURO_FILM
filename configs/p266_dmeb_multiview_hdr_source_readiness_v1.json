@@ -1,0 +1,89 @@
+{
+  "schema": "neuro-film.p266-dmeb-multiview-hdr-source-readiness-contract.v1",
+  "experiment_id": "P266",
+  "status": "FROZEN_READY_FOR_METADATA_ONLY_EXECUTION",
+  "bindings": {
+    "contract_path": "docs/planning/P266_DMEB_MULTIVIEW_HDR_SOURCE_READINESS_CONTRACT.md",
+    "contract_commit": "058a3579",
+    "contract_bytes": 2783,
+    "contract_sha256": "77948e5b54a8ca6babb803adeb3c654994199844a1e88b79c065611539e0e548",
+    "runner_path": "scripts/audit_p266_dmeb_multiview_hdr_source_readiness.py",
+    "runner_bytes": 9653,
+    "runner_sha256": "1a007757ab506dca06d74782113be76185b6bbb29e78ac3b4c924e55f3a8c7eb",
+    "test_path": "tests/test_p266_dmeb_multiview_hdr_source_readiness.py",
+    "test_bytes": 3444,
+    "test_sha256": "a4043fb75f193347016d74b39ecf8cbfd2848e938bcecd759792510d408b80b5"
+  },
+  "official_repository": {
+    "full_name": "divisonofficer/dmeb",
+    "commit": "559e52f4c4bc02a1285b5491fcacb5cd4c5844eb",
+    "tree": "8e81f34d70fbfd0aa18484b9077c314d1787c50d"
+  },
+  "sources": {
+    "commit": {
+      "url": "https://api.github.com/repos/divisonofficer/dmeb/git/commits/559e52f4c4bc02a1285b5491fcacb5cd4c5844eb",
+      "bytes": 1102,
+      "sha256": "7a9366b17dc4e0046ddbeee277c368ea930e4c1defb3f75969cea3e05fead8cf"
+    },
+    "tree": {
+      "url": "https://api.github.com/repos/divisonofficer/dmeb/git/trees/8e81f34d70fbfd0aa18484b9077c314d1787c50d?recursive=1",
+      "bytes": 22162,
+      "sha256": "56fe0ba87e49b306a1d1935d109fb527fd99931441dc14e6544cc9d220c78aec"
+    },
+    "citation": {
+      "url": "https://raw.githubusercontent.com/divisonofficer/dmeb/559e52f4c4bc02a1285b5491fcacb5cd4c5844eb/CITATION.cff",
+      "bytes": 976,
+      "sha256": "c82df66f25b6b4cf05cee94d8b3f5fdaada9d1fafbb3e26745fc57bef498b9ef"
+    },
+    "license": {
+      "url": "https://raw.githubusercontent.com/divisonofficer/dmeb/559e52f4c4bc02a1285b5491fcacb5cd4c5844eb/LICENSE",
+      "bytes": 2783,
+      "sha256": "09c702ac61c9c95356511113af9ccb3b2c628a36263685ada27444f37270a5be"
+    },
+    "dataset_card": {
+      "url": "https://raw.githubusercontent.com/divisonofficer/dmeb/559e52f4c4bc02a1285b5491fcacb5cd4c5844eb/dataset/DATASET_CARD.md",
+      "bytes": 5278,
+      "sha256": "0e902043a721585875717d8008021ea83e8768ecc864eadd43d5f319810b36c4"
+    },
+    "benchmark": {
+      "url": "https://raw.githubusercontent.com/divisonofficer/dmeb/559e52f4c4bc02a1285b5491fcacb5cd4c5844eb/dataset/benchmark_protocol.md",
+      "bytes": 3250,
+      "sha256": "6f94a7eafe347541461fe572093706e5a2f95763987d4d2e0887b9b58802c6d4"
+    },
+    "code_readme": {
+      "url": "https://raw.githubusercontent.com/divisonofficer/dmeb/559e52f4c4bc02a1285b5491fcacb5cd4c5844eb/code/README.md",
+      "bytes": 2406,
+      "sha256": "e2752f944ba3f071fb6fe24663f5b7c110999c8074783d4690e491c23807e893"
+    },
+    "checkpoint": {
+      "url": "https://raw.githubusercontent.com/divisonofficer/dmeb/559e52f4c4bc02a1285b5491fcacb5cd4c5844eb/code/checkpoints/README.md",
+      "bytes": 1248,
+      "sha256": "f0acd3e7123904e1fa59e11a74c685802546c775b82c28b32bbbbd41f11be26a"
+    },
+    "project": {
+      "url": "https://raw.githubusercontent.com/divisonofficer/dmeb/559e52f4c4bc02a1285b5491fcacb5cd4c5844eb/docs/index.html",
+      "bytes": 13114,
+      "sha256": "a5cd2ab33d16a07e48f493d669f487c7c96b0a75078c8fc877d64036c61ff420"
+    },
+    "maximum_response_bytes_each": 1048576,
+    "maximum_total_network_bytes": 4194304
+  },
+  "expected": {
+    "citation_title": "DMEB: A Multi-View Varying-Exposure HDR Robot-Vision Benchmark",
+    "project_title": "Depth-guided Multi-view Exposure Bracketing for HDR Robot Vision",
+    "tree_entry_count": 93
+  },
+  "gates": {
+    "require_official_identity": true,
+    "require_new_physical_observation": true,
+    "require_commercial_compatible_code_rights": true,
+    "require_commercial_compatible_dataset_rights": true,
+    "require_exact_public_scene_frame_counts": true,
+    "require_exact_public_archive_inventory": true,
+    "require_exact_reference_checkpoint": true,
+    "require_group_isolation": true,
+    "require_two_reports_exact": true
+  },
+  "stop_rule": "Failure of any gate closes the source before any Google Drive, archive, manifest, image, depth, checkpoint, backbone, pixel, training or inference request. Do not infer rights from public links or repository visibility.",
+  "claim_ceiling": "Current official-source readiness audit only. A complete pass could open a separate payload-integrity and physical-observation preflight; no HDR quality, arbitrary RAW/HDR support, shared operator, A1/A4/A5, package/schema/capability/product admission or candidate 3."
+}
