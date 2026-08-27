@@ -44,16 +44,14 @@ def _file_sha256(path: Path) -> str:
 
 
 def _edge_version() -> str:
-    completed = subprocess.run(
-        [str(EDGE), "--version"],
-        capture_output=True,
-        text=True,
-        check=False,
-        timeout=15,
-    )
-    if completed.returncode != 0:
-        raise RuntimeError("Edge version query failed")
-    return completed.stdout.strip()
+    candidates: list[tuple[tuple[int, ...], str]] = []
+    for path in EDGE.parent.iterdir():
+        parts = path.name.split(".")
+        if path.is_dir() and len(parts) == 4 and all(part.isdigit() for part in parts):
+            candidates.append((tuple(int(part) for part in parts), path.name))
+    if not candidates:
+        raise RuntimeError("Edge numeric installation version is unavailable")
+    return f"Microsoft Edge {max(candidates)[1]}"
 
 
 def _wait_devtools(profile: Path, expected_url: str, timeout: float) -> tuple[int, str]:
