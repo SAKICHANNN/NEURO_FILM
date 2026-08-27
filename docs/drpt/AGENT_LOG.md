@@ -18309,3 +18309,47 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   all pixel/science operations remain zero. Do not subscribe, infer rights or
   run a private-only fit. A0L/A0N owned capture or a materially independent
   rights-cleared source remains the mainline.
+### 2026-08-27 - P267 proves the bounded P248 scanline writer on WSL2 Linux
+
+- **Routing and scope:** `ULT > mature RAW/DNG/HDR explicit mechanisms > P267`,
+  DRPT L2 / Mode C. `dev-research-reliability` was the primary workflow;
+  research, DRPT-BI, agent-log and structure disciplines were read-only
+  reviewers. This leaf changes only P248's target platform and publication
+  primitive; it does not overlap the producer's R1EO real-DNG profile chain or
+  main-owner SF3 work.
+- **Freeze and implementation:** contract `a8be83a5`, initial Linux writer and
+  runner `64278d72`, frozen tool-identity correction `c0c98171`, formal config
+  lock `ce578e00`. The build uses exact OpenEXR 3.4.15 and Imath 3.2.2 source
+  archives plus the hash-locked CMake 4.2.3 wheel, installs only in a fresh WSL
+  `/tmp` root, runs offline and mutates no system packages.
+- **Formal result:** two complete reports (four controllers/eight fresh 24MP
+  workers) both pass with stable scientific identity
+  `69a5a3774dc72a486fbc826a4a09b61cffab1dfa5f1abaa89b6f8e5c0fa2cf16`.
+  Every decoded float32 image is exact P248 SHA `2b4890bd...86adf`, metadata is
+  AP1/D60 exact, and every 13,067,999-byte ZIP container is exact Windows P248
+  SHA `877b9a89...1d693`. Maximum decoded error/new-boundary are zero;
+  negative/highlight, invalid-input and atomic-publication gates pass. Maximum
+  writer wall is `1.2819645 s` and peak RSS `8,388,608 B`, below frozen
+  `120 s` / `2 GiB` ceilings. Independently rebuilt ELF hashes differ, as
+  preregistered, and are not treated as a correctness gate.
+- **Evidence and verification:** evidence commit `c575aaad`, tracked evidence
+  SHA `4cea9dee38ad1436b2cfa26b92f332e4e99bca9df93aad243de3466754bab3f3`.
+  Formal report SHAs are `a89d6057...a6197` and `3c01b6d5...cc44`; their raw
+  resource timings differ while the frozen stable payload is exact. Nineteen
+  P248/P255/P265/P267 adjacent tests pass; Ruff, `py_compile`, JSON parse and
+  diff checks pass.
+- **Corrections and residue:** a pre-lock development run reached Linux build
+  and 24MP output but failed only in report aggregation because it looked for
+  chromaticity arrays in P248's summary rather than P248's hash-bound P246
+  metadata oracle. That lookup was corrected before formal lock without
+  changing method, probe, sources, compression or gates. Formal workspaces are
+  zero-residue. One earlier repository `tmp/p267-cmake-probe` and its preflight
+  JSON remain owned cleanup residue because the execution policy rejected two
+  exact, prevalidated deletion commands; they are not formal artifacts and are
+  not evidence inputs.
+- **Claim boundary and handoff:** retain only private WSL2 Ubuntu 22.04 x86_64
+  runtime/resource evidence. No physical Linux-device certification, natural
+  image quality, arbitrary EXR, AP0 admission, public dependency/API/package/
+  schema/capability, product support or candidate3 evidence opens. Next work
+  returns to a materially distinct mature RAW/HDR or genuinely new physical
+  observation leaf; no adjacent OpenEXR platform micro-expansion is implied.
