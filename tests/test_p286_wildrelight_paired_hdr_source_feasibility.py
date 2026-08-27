@@ -33,9 +33,9 @@ def test_p286_source_parser_accepts_rights_and_capture_roles() -> None:
         "disabled": False,
     }
     readme = (
-        "---\nlicense: cc-by-4.0\n---\n# WildRelight 2605.11696\n"
-        "Creative Commons Attribution 4.0 International (CC BY 4.0)"
-    ).encode()
+        b"---\nlicense: cc-by-4.0\n---\n# WildRelight 2605.11696\n"
+        b"Creative Commons Attribution 4.0 International (CC BY 4.0)"
+    )
     role = {
         "time": "time0",
         "shooting_time": "2025:01:01 12:00:00",
