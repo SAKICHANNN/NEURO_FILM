@@ -1,0 +1,78 @@
+{
+  "schema": "neuro-film.p286-wildrelight-paired-hdr-source-feasibility-contract.v1",
+  "experiment_id": "P286",
+  "status": "FROZEN_READY_FOR_METADATA_ONLY_EXECUTION",
+  "bindings": {
+    "contract_path": "docs/planning/P286_WILDRELIGHT_PAIRED_HDR_SOURCE_FEASIBILITY_CONTRACT.md",
+    "contract_commit": "75f3f0110a9beed24ddd0565f80339bda9c43781",
+    "contract_bytes": 2414,
+    "contract_sha256": "38be96a8a3d81fc124090d4cd4661adc9c5e4805639eee0e3f2fbe8fd7ef800c",
+    "runner_path": "scripts/audit_p286_wildrelight_paired_hdr_source_feasibility.py",
+    "runner_commit": "0e6609146851135df8c2cbe26f56ba1ab60e48cb",
+    "runner_bytes": 13901,
+    "runner_sha256": "317be558987bdcc6a2dfae859a9ff38748c7bd7d04a4006dff175b9e40f68dc8",
+    "test_path": "tests/test_p286_wildrelight_paired_hdr_source_feasibility.py",
+    "test_commit": "9e91eef1b55c4ac6eb875a5b3b922ba6a40469fd",
+    "test_bytes": 4075,
+    "test_sha256": "b3258f61470410d2b635b69d43702170a1a479fded7b84e0ca67def654d2ffdf"
+  },
+  "official_dataset": {
+    "id": "Lez/wildrelight",
+    "revision": "90ab579145da9f3ea998d706c8defd0d4b87641f"
+  },
+  "sources": {
+    "api": {
+      "url": "https://huggingface.co/api/datasets/Lez/wildrelight/revision/90ab579145da9f3ea998d706c8defd0d4b87641f"
+    },
+    "tree": {
+      "url": "https://huggingface.co/api/datasets/Lez/wildrelight/tree/90ab579145da9f3ea998d706c8defd0d4b87641f?recursive=true&expand=true&limit=100",
+      "maximum_response_bytes_each": 65536,
+      "maximum_pages": 24
+    },
+    "readme": {
+      "url": "https://huggingface.co/datasets/Lez/wildrelight/resolve/90ab579145da9f3ea998d706c8defd0d4b87641f/README.md?download=true",
+      "bytes": 5421,
+      "sha256": "87f34a86b560919bdb7ec33c8eeb55cd82c7df6a2837ea061c9c83575bd70fd8"
+    },
+    "metadata": {
+      "url": "https://huggingface.co/datasets/Lez/wildrelight/resolve/90ab579145da9f3ea998d706c8defd0d4b87641f/small-aligned/bench2/meta.json?download=true",
+      "bytes": 4200,
+      "sha256": "c71c943782a6a18f02c92df216e630db06cb44f0d37eb53febda790910dedd1b"
+    },
+    "maximum_text_response_bytes_each": 131072
+  },
+  "expected": {
+    "arxiv_id": "2605.11696",
+    "entry_count": 2012,
+    "directory_count": 364,
+    "file_count": 1648,
+    "total_file_bytes": 200903304577,
+    "lfs_file_count": 1526,
+    "manifest_bytes": 154380,
+    "manifest_sha256": "3926801fded06f6244496e478abe3b2cf014a184bc86a6c6ecd140e579d800b5",
+    "scene_count": 30,
+    "photo_exr_count": 763,
+    "envmap_exr_count": 763,
+    "metadata_count": 120,
+    "metadata_witness_scene": "bench2",
+    "variants": [
+      "ori-aligned",
+      "ori-unaligned",
+      "small-aligned",
+      "small-unaligned"
+    ]
+  },
+  "gates": {
+    "require_official_identity": true,
+    "require_public_ungated": true,
+    "require_commercial_compatible_dataset_rights": true,
+    "require_exact_public_inventory": true,
+    "require_paired_hdr_roles": true,
+    "require_metadata_capture_roles": true,
+    "require_group_isolation": true,
+    "maximum_public_payload_bytes": 210000000000,
+    "require_two_reports_exact": true
+  },
+  "stop_rule": "P286 requests only revision-pinned repository metadata, README and one meta.json witness. EXR/DNG/image bodies, pixels, code, models, training and inference are forbidden. Passing opens only a separately preregistered bounded one-scene source observation.",
+  "claim_ceiling": "Private rights-clear paired-HDR source feasibility only. The published payload contains merged EXRs and DNG names in metadata, not DNG bodies. No relighting/HDR quality, radiometric calibration, independent generalization, shared operator, A1/A4/A5, public package/schema/capability/product admission or candidate 3."
+}
