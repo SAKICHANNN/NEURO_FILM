@@ -7,10 +7,10 @@ from pathlib import Path
 from src.inference import list_product_looks
 
 ROOT = Path(__file__).resolve().parents[1]
-EVIDENCE = ROOT / "docs/evidence/U7_2D_PRODUCT_LOOK_CATALOG_RESULT.json"
+EVIDENCE = ROOT / "docs/evidence/U7_2E_PRODUCT_LOOK_CATALOG_RESULT.json"
 
 
-def test_u7_2d_evidence_is_bound_to_current_product_catalog() -> None:
+def test_u7_2e_evidence_is_bound_to_current_product_catalog() -> None:
     evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
     assert evidence["status"] == "PASS_UNIFIED_EVIDENCE_BOUNDED_PRODUCT_LOOK_CATALOG"
     for binding in evidence["bindings"].values():

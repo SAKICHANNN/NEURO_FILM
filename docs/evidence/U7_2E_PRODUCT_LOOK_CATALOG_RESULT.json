@@ -1,21 +1,21 @@
 {
   "schema_id": "neuro-film.product-look-catalog-evidence.v1",
-  "experiment_id": "U7.2D",
+  "experiment_id": "U7.2E",
   "date": "2026-08-28",
   "status": "PASS_UNIFIED_EVIDENCE_BOUNDED_PRODUCT_LOOK_CATALOG",
   "execution_commit": "e16262a2",
   "bindings": {
     "contract": {
-      "path": "configs/u7_2d_product_look_catalog_v1.json",
-      "sha256": "165d553961034c2a95efa7511500fbc35e5a78ca0c3849c71fe250ca8bc1fa33"
+      "path": "configs/u7_2e_product_look_catalog_v1.json",
+      "sha256": "73ef9e043f6d3dc754f2af7e439bf972d59585630a63b11840beb089e606107b"
     },
     "implementation": {
       "path": "src/inference/product_look_catalog.py",
       "sha256": "8487d258e97cd06bbc468848cb2bace1846e72a216c5a8ba1824a95346b3b947"
     },
     "test": {
-      "path": "tests/test_u7_2d_product_look_catalog.py",
-      "sha256": "9e03610dc758da81a0788ade47564d254b834a5b7eef420756e740fb54fa6468"
+      "path": "tests/test_u7_2e_product_look_catalog.py",
+      "sha256": "18feff8f04d76553d75807f7e0d235ff4eacdcddb1309d56921063ba44c79023"
     },
     "three_stock_parent": {
       "path": "docs/evidence/U7_2C_THREE_STOCK_LOOK_AMOUNT_RESULT.json",

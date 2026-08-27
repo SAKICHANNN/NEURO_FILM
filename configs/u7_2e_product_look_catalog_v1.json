@@ -1,6 +1,6 @@
 {
   "schema_id": "neuro-film.product-look-catalog-contract.v1",
-  "experiment_id": "U7.2D",
+  "experiment_id": "U7.2E",
   "question": "Can the product expose one authoritative catalog and dispatcher for the three current colour-stock Look Approximation baselines plus one generic B&W Look Approximation without surfacing unsupported legacy stock identities?",
   "parent_evidence": [
     {

@@ -20,7 +20,7 @@ from src.inference.three_stock_look import (
 )
 
 ROOT = Path(__file__).resolve().parents[1]
-CONTRACT = ROOT / "configs/u7_2d_product_look_catalog_v1.json"
+CONTRACT = ROOT / "configs/u7_2e_product_look_catalog_v1.json"
 PROFILE = ROOT / "configs/render_profiles/safe_rich_v1.json"
 STATS = ROOT / "configs/film_color_stats.json"
 GUARDS = ROOT / "configs/color_guardrails.json"
