@@ -18801,3 +18801,32 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   one-burst representation signal; no HDR truth, independent-scene
   generalization, calibration, package/schema/capability/product or candidate-3
   change opens.
+
+### 2026-08-27 - P282 closes the P278 AVIF decoder gap at official runtime mechanics
+
+- **Node and scope:** `ULT > U1 > U1.5 > P282`, DRPT L2 / Mode C.
+  `dev-research-reliability` is primary; current-source research, DRPT-BI,
+  agent-log and structure stewardship constrain this to a private official
+  runtime result. No loader/default/product or candidate-3 state changes.
+- **Freeze and runtime:** contract `6ed27dd4`, source lock `85427e9`, formal
+  runner `0afeefb6` and evidence `f20725ba` bind official libavif v1.4.2 commit
+  `c5240fc...33ea49`, exact 15,810,507-byte Windows release asset
+  `cb2d9fea...c0484a`, two required static executables, licence and exact P278
+  3-valid/3-invalid fixture roles. No local build, alternate backend, encoder or
+  fixture substitution occurred.
+- **Result:** two fresh forward/reverse reports are byte-exact at 4,823 bytes /
+  SHA `ff919823...2fee9`, stable `c0b723a9...037e7c`. All three valid fixtures
+  expose gain-map metadata, decode 400x300 base PNGs and produce deterministic
+  alternate-headroom PNGs with 359,726-359,974 changed RGB components. All
+  three invalid gain maps, the 64-byte truncation and missing-runtime control
+  reject atomically; source/runtime immutability and formal output cleanup pass.
+- **Verification and boundary:** focused tests, Ruff, format, `py_compile`, JSON
+  and diff checks pass; adjacent P277-P282/U1.5 regression follows in the final
+  integration check. The platform rejected deletion of the exact owned source-
+  acquisition scratch before execution, so the verified release ZIP/expanded
+  copy remains quarantined under `tmp/p282_source_lock_v1_4_2`; it is not a
+  scientific or product artifact. Retain private runtime mechanics and open
+  only a separately frozen explicit libavif-to-P87 bridge. No complete ISO
+  21496-1, arbitrary AVIF/HEIF, HDR quality/display validation, metadata
+  preservation, dependency/package/schema/capability/product or candidate-3
+  change opens.
