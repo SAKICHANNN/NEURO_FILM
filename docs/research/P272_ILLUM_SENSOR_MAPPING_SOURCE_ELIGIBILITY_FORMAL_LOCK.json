@@ -1,0 +1,26 @@
+{
+  "schema": "neuro-film.p272-illum-sensor-mapping-source-eligibility-formal-lock.v1",
+  "experiment_id": "P272",
+  "status": "FROZEN_BEFORE_FORMAL_FORWARD_REVERSE_EXECUTION",
+  "date": "2026-08-27",
+  "implementation_commit": "1caf4e8cf73c81c27c52f415638b0719866953dd",
+  "artifacts": [
+    {"path": "configs/p272_illum_sensor_mapping_source_eligibility_v1.json", "bytes": 1927, "git_blob": "d245df5edc94a27667a85d22adcb4f91cad3f7a6", "sha256": "599a62218478e12337dff9cfa04aa992fe99d543fa474c00b9d60d5eab856865"},
+    {"path": "docs/planning/P272_ILLUM_SENSOR_MAPPING_SOURCE_ELIGIBILITY_CONTRACT.md", "bytes": 1502, "git_blob": "1c8c0fc052248316767a2c50c4be4b2b041d96a3", "sha256": "2b8796ee25232f22d06cb66ae96aef201164ab6f99643c6dd28f7a0df4ee25d7"},
+    {"path": "scripts/audit_p272_illum_sensor_mapping_source_eligibility.py", "bytes": 7564, "git_blob": "b4943517bd93fa9d2461d6b6e205361894d9ac29", "sha256": "43502467b5e4841294aef97734c148490d7f37fd929b7c7697635986766abb67"},
+    {"path": "tests/test_p272_illum_sensor_mapping_source_eligibility.py", "bytes": 1230, "git_blob": "3cd4f1e3c777eb652793ed1ddacb63ed349ec675", "sha256": "31ce68006d714898de982c65f4ea74b80d63b0fe2fa070b118be679b5a3c123d"}
+  ],
+  "formal_runs": {
+    "orders": ["forward", "reverse"],
+    "fresh_processes": true,
+    "expected_reports_byte_exact": true,
+    "output_root": "outputs/eval/p272_illum_sensor_mapping_source_eligibility_v1"
+  },
+  "preformal_corrections": [
+    "The first focused run exposed Windows checkout CRLF translation; artifact reads were changed to exact Git object bytes before formal lock.",
+    "The first focused run exposed read-only Git pack cleanup on Windows; owned temporary clone cleanup was made attribute-safe before formal lock.",
+    "No dataset object, pixel, model, training, inference or score request occurred before this lock."
+  ],
+  "stop_rule": "Any failed rights, manifest, access or identity gate closes P272 before dataset-object request without mirror, terms acceptance, download, pixel read, fit, train, inference or candidate admission.",
+  "claim_ceiling": "Current official source eligibility only; no dataset acquisition, pixel integrity, operator, quality, package/schema/capability/product mapping or candidate-3 admission."
+}
