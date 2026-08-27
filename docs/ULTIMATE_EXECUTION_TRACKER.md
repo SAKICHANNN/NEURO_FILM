@@ -2545,6 +2545,19 @@ rescue stops; the next stock leaf requires a materially new rights-cleared
 observation. Evidence:
 `docs/evidence/SF3_A3L_OPENVERSE_TRANSPORT_RECOVERY_RESULT.json`.
 
+BW2.D0 executes the explicitly separate black-and-white branch without
+pretending it repairs the initial three-colour-stock evidence gap. The existing
+HP5 and Tri-X K=1 safe-Lab profiles render the same 16 frozen CC0 digital
+sources in canonical and reverse fresh processes. All 32 outputs replay exact,
+remain exactly neutral at RGB8 and introduce zero new boundary components, but
+all `16/16` per-source median HP5--Tri-X Delta E76 values are exactly `0.0`;
+the per-source p95 range is only `0.4391--0.5037`. Both separation gates fail.
+Close same-cohort tuning and recommend one generic B&W Look Approximation until
+a materially new, independently rights-cleared HP5/Tri-X observation exists.
+This is not stock authenticity, developer/process evidence, product promotion
+or multi-stock completion. Evidence:
+`docs/evidence/BW2_D0_HP5_TRIX_K1_BASELINE_RESULT.json`.
+
 SF3.A3C closes the final bounded commercial-page lead without opening another
 proxy experiment. FilmLabPro names all three target stocks and publishes
 datasheet-derived curves and implementation parameters, but exposes no paired

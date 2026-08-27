@@ -19323,3 +19323,27 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   result. This closes Openverse client rescue only; it does not claim the
   service lacks relevant images. Continue only with a materially new,
   rights-cleared stock observation or official exact-inventory dataset.
+
+### 2026-08-27 - BW2.D0 closes current HP5/Tri-X stock-labelled separation
+
+- **Node and scope:** `ULT > independent B&W branch > BW2.D0`, DRPT L2 / Mode
+  C. After controlled three-colour acquisition proved unavailable to the user,
+  this leaf executed the already requested independent B&W branch without
+  claiming it repairs Velvia 50 / Portra 400 / Ektar 100 evidence.
+- **Freeze and implementation:** contract `dc195fa8`, evaluator `c5dcbb26`,
+  formatting `e3355b37`, direct-entry correction `b682a2fd`, and evidence
+  `e4b4435e`. The direct-script pre-execution attempt failed on repository
+  import before pixel or output access; the entrypoint alone was corrected and
+  both formal processes restarted from zero. Candidates, strengths, source
+  population and gates remained frozen.
+- **Result:** canonical/reverse runs share scientific identity
+  `c328cef6...1f8d6`; all 32 output hashes match, all outputs are exact-neutral
+  RGB8 and maximum new boundary fraction is zero. Yet every one of the 16
+  source median HP5--Tri-X Delta E76 values is exactly `0.0`, with p95 only
+  `0.4391--0.5037`; population and per-source coverage gates both fail. Four
+  dedicated tests, Ruff, compile, JSON and diff checks pass.
+- **Decision:** `FAIL_CLOSED_RECOMMEND_ONE_GENERIC_BW_LOOK_APPROXIMATION`.
+  Do not tune strength/statistics/models/thresholds on this cohort. Until an
+  independent rights-cleared physical-stock observation exists, keep the
+  current result at generic B&W Look Approximation scope and do not claim HP5,
+  Tri-X or multi-stock completion.
