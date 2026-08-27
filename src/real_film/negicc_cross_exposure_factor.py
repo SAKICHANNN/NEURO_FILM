@@ -127,8 +127,8 @@ def run_diagnostic(
         if key not in {"exposure_ev", "left_ev", "right_ev", "patch_rows"}
     ) and np.isfinite(diagnostic["raw_contrast_rms_coefficient_of_variation"])
     gate_results = {
-        "patch_identity_exact": patch_identity_exact,
-        "reference_xyz_exact": reference_xyz_exact,
+        "patch_identity_exact": bool(patch_identity_exact),
+        "reference_xyz_exact": bool(reference_xyz_exact),
         "patch_rows": all(
             row["patch_rows"] == gates["required_patch_rows_per_stock_exposure"]
             for row in exposure_rows

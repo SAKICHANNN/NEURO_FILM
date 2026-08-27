@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import json
+
 import numpy as np
 
 from src.real_film.negicc_cross_exposure_factor import diagnose_contrasts
@@ -47,3 +49,10 @@ def test_reversed_held_exposure_is_detected() -> None:
     assert len(held_pairs) == 3
     assert all(row["raw_cosine"] < -0.999999 for row in held_pairs)
     assert all(row["raw_sign_agreement"] == 0.0 for row in held_pairs)
+
+
+def test_diagnostic_payload_is_strict_json_serializable() -> None:
+    report = diagnose_contrasts(
+        _observations(), stocks=STOCKS, exposures=EXPOSURES, sign_floor=1e-6
+    )
+    assert json.loads(json.dumps(report, allow_nan=False)) == report
