@@ -1,0 +1,63 @@
+{
+  "schema": "neuro-film.p257-dng-profile-gain-table-map-ingress-guard-evidence.v1",
+  "experiment_id": "P257",
+  "status": "PASS_PRIVATE_DNG_PROFILE_GAIN_TABLE_MAP_INGRESS_GUARD",
+  "decision": "PASS_PRIVATE_DNG_PROFILE_GAIN_TABLE_MAP_INGRESS_GUARD",
+  "formal_execution_commit": "4f399ec373055992f402edd25dbcfec2485a019b",
+  "question": "Can the private P98 DNG ForwardMatrix ingress reject standard ProfileGainTableMap v1/v2 tags before pixel decode while preserving exact outputs for the five frozen no-map P98 DNGs?",
+  "authority": {
+    "source": "Adobe DNG SDK 1.7.1 build 2652 dng_tag_codes.h",
+    "sdk_zip_bytes": 80494799,
+    "sdk_zip_sha256": "73499b47f4683e12120a234bd0946f02e52ab2ff9834bcbd0e9f8ab4f923360e",
+    "guarded_tags": [
+      {"code": 52525, "name": "ProfileGainTableMap", "version": "DNG 1.6"},
+      {"code": 52544, "name": "ProfileGainTableMap2", "version": "DNG 1.7"}
+    ]
+  },
+  "bindings": {
+    "contract": {"path": "docs/planning/P257_DNG_PROFILE_GAIN_TABLE_MAP_INGRESS_GUARD_CONTRACT.md", "bytes": 3139, "sha256": "10be0842daaa1126f815316b01e868e35f6d05161439a43ff4d21fc273edd81f", "git_blob": "7d69a80105f73b671149ce625be1bb32a6cb664d"},
+    "config": {"path": "configs/p257_dng_profile_gain_table_map_ingress_guard_v1.json", "bytes": 5656, "sha256": "86872c738927bfe36cbdd0d7bab967a96dd080befc2ba56ebcd232ba6d41279c", "git_blob": "808aaa4786f91c5bb962036dcaf8990bf304b0f1"},
+    "implementation": {"path": "src/preprocess/dng_forward_raster.py", "bytes": 11314, "sha256": "53d7a535a58d919002f675734eba6399dabc25a64cf2bb9ebef48a512c8dffd7", "git_blob": "3ec22afe9cf0c74c9d52230085445d4a84e47dae"},
+    "runner": {"path": "scripts/audit_p257_dng_profile_gain_table_map_ingress_guard.py", "bytes": 11358, "sha256": "6870cfa024cbe70ff65208cc459e71dd8c956bf25115e3a3e55a643090f895bf", "git_blob": "30aaf5041fda7599cdfd6429be86edafe90c756c"},
+    "test": {"path": "tests/test_p257_dng_profile_gain_table_map_ingress_guard.py", "bytes": 2286, "sha256": "261ed59ec7ee13b05eec8fae7266c07c9b38f4ea89653aa9d08c35701308668b", "git_blob": "ea983aea268af490abf7a50db27810216a7ed288"},
+    "p244_config_sha256": "7267485b9258ad38e487e65d5a9ff3a24716bfb3a306345e4e1512ab48ca556d",
+    "p244_evidence_sha256": "32e22f73459c34b108f353e568c29596b24cf9b0499bd07655831614d2c7bf14",
+    "p98_config_sha256": "5fb17f82cfecdae40a4c812f2ea9c26641e91bcab43e17c8a6a4bc94b2f03c35",
+    "p98_evidence_sha256": "e73c99fe61781988f61a56fec46278d715431c04ec432173639deb16ba7cfac5"
+  },
+  "reports": {
+    "formal": {"path": "outputs/eval/p257_dng_profile_gain_table_map_ingress_guard_v1/formal_result.json", "bytes": 6183, "sha256": "e1da6e0bc638d29a4181318a92a93d4445ef4dd42e8ff317e6d2100058ba308c"},
+    "replay": {"path": "outputs/eval/p257_dng_profile_gain_table_map_ingress_guard_v1/formal_replay.json", "bytes": 6183, "sha256": "e1da6e0bc638d29a4181318a92a93d4445ef4dd42e8ff317e6d2100058ba308c"},
+    "byte_exact": true,
+    "scientific_payload_bytes": 5259,
+    "stable_identity_sha256": "63d0add9c55457a4ee735ed777aa3625f4e71ec70bd2a165e14821cdf83452f0"
+  },
+  "results": {
+    "real_rows": 5,
+    "real_rows_with_guarded_tags": 0,
+    "single_tag_rejections": 2,
+    "multi_tag_sorted_diagnostic": true,
+    "decode_calls_on_all_rejections": 0,
+    "p98_working_pixel_hashes_exact": 5,
+    "p244_huesat_rejections_preserved": 6,
+    "source_hashes_unchanged": 5,
+    "working_contract_exact": 5,
+    "all_frozen_gates_pass": true
+  },
+  "working_pixel_sha256": {
+    "blackmagic_pocket_cinema_camera_4k": "2fb7c8f9136a85d5a4032cc6c08496f330fe78eab6db7f0e7422b017a4a48ea7",
+    "huawei_eml_l29": "d1da20e6efd6e5c9d2c7054b425f87b47381bf70e11dfccb7ecf8918b40fcd56",
+    "lg_lg_h850": "0844ca0677dedd85fb71bbd58cfa95c211f277f690a6fb42e2a3f49a92497b09",
+    "motorola_moto_g_7_play": "b71b5e7c7db518e0dd54b865aa68c5e63c9621d10bf446c53f0ed3e24c439273",
+    "xiaomi_m2010j19cg": "da8fdd8e0c7c5f28642df686f89245e771cfd4b71769c51b4ee544c8020026ae"
+  },
+  "change_propagation": {
+    "parent": "P98 private opt-in DNG ForwardMatrix raster ingress",
+    "sibling_preserved": "P244 ProfileHueSatMap-family no-silent-drop guard",
+    "producer_dependency": "R1DY ProfileGainTableMap arithmetic was not copied or invoked",
+    "interface_effect": "inputs carrying tag 52525 or 52544 now fail before camera-raster decode instead of silently omitting the profile stage",
+    "default_loader_effect": "none",
+    "candidate_count": "unchanged at 2/3"
+  },
+  "claim_ceiling": "Private opt-in no-silent-drop guard for exact Adobe DNG ProfileGainTableMap v1/v2 tags plus unchanged outputs on five frozen P98 no-map DNGs. No gain-map application, full DNG conformance, arbitrary DNG, image quality, default-loader integration, package, schema, capability, film-stock or product admission."
+}
