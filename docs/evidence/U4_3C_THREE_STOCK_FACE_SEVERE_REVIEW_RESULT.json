@@ -1,0 +1,78 @@
+{
+  "schema": "neuro-film.u4-3c-three-stock-face-severe-review-result.v1",
+  "experiment_id": "U4.3C",
+  "date": "2026-08-27",
+  "status": "PASS_ONE_DECODED_FACE_NO_CONFIRMED_SEVERE_ARTIFACT",
+  "implementation_commit": "ba0abebe",
+  "contract": {
+    "path": "docs/planning/U4_3C_THREE_STOCK_FACE_SEVERE_REVIEW_CONTRACT.md",
+    "sha256": "a8d794a78c9cffb505f4ecaa357ef4389a6962185024cd25c6038528be4b1d83"
+  },
+  "config": {
+    "path": "configs/u4_3c_three_stock_face_severe_review_v1.json",
+    "sha256": "eb5c16a60bdffd6d8d8c5408fdb9a4f710f12ae36238bce9d54e5f9a5d26dd65"
+  },
+  "formal_reports": {
+    "forward_path": "outputs/eval/u4_3c_three_stock_face_severe_review_v1/forward/report.json",
+    "reverse_path": "outputs/eval/u4_3c_three_stock_face_severe_review_v1/reverse/report.json",
+    "bytes_each": 7059,
+    "sha256": "4270574d6a91b603391bbe97815a58578c79629c3a4db0cfc710c069c8e94228",
+    "forward_reverse_byte_exact": true,
+    "scientific_identity": "4fb3037ddb0c14453e307a33489ac28fc551666822c571f10c7b56f8582e002f"
+  },
+  "review_protocol": {
+    "reviewer_class": "autonomous_visual_evidence",
+    "selection_frozen_before_review": true,
+    "source_id": "FS_FACE_01",
+    "decoded_array_sha256": "85f82dbe9aed757b2159eae3ce0dfd688ea2d39f44d3d1a31acba9846016229e",
+    "required_shape": [512, 512, 3],
+    "stocks_reviewed": 3,
+    "source_output_overviews_reviewed": 3,
+    "post_review_substitution_count": 0,
+    "original_file_reopened": false,
+    "render_calls_after_formal_run": 0,
+    "network_reads": 0,
+    "automatic_metric_veto_present": false
+  },
+  "automatic_gates": {
+    "finite_bounded_rgb": true,
+    "geometry_exact": true,
+    "maximum_new_exact_boundary_fraction": true,
+    "output_replay_byte_exact": true,
+    "two_source_arrays_byte_identical": true
+  },
+  "adjudications": [
+    {
+      "film_stock_id": "fujifilm_velvia_50",
+      "style_id": "velvia_50",
+      "decision": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT",
+      "rationale": "The face, eyes, lips, hair, hand and shirt pattern remain structurally coherent. The stronger cyan-blue background and shirt separation and cooler-magenta skin contrast remain continuous, with no confirmed isolated chroma impulse, skin blotch, banding, objectionable halo or geometry loss.",
+      "diagnostic_note": "The diagnostic-only chroma candidate rate is 0.244903564453125% with 208 small islands, materially above the other two looks; original-resolution review did not confirm those candidates as severe artifacts on this face."
+    },
+    {
+      "film_stock_id": "kodak_portra_400",
+      "style_id": "portra_400",
+      "decision": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT",
+      "rationale": "The mild warm-neutral rendering preserves facial gradients, eyes, lips, hair, hand, garment texture and background transitions without a confirmed skin blotch, impulse, band, halo or structural defect."
+    },
+    {
+      "film_stock_id": "kodak_ektar_100",
+      "style_id": "ektar_100",
+      "decision": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT",
+      "rationale": "The cooler, slightly stronger contrast treatment preserves facial gradients, eyes, lips, hair, hand and garment texture without a confirmed skin blotch, impulse, band, halo or structural defect."
+    }
+  ],
+  "decision_counts": {
+    "PASS_NO_CONFIRMED_SEVERE_ARTIFACT": 3,
+    "FAIL_CONFIRMED_SEVERE_ARTIFACT": 0,
+    "REVIEW_UNRESOLVED": 0
+  },
+  "retained_boundaries": {
+    "ao6_included": false,
+    "ao6_prior_population_veto_unchanged": true,
+    "portra_ektar_controlled_stock_evidence_gap_unchanged": true,
+    "candidate_or_profile_changed": false
+  },
+  "decision": "Close the frozen U4.3C one-face review with no confirmed severe artifact for the three unchanged K=1 stock-labelled Look Approximation baselines. Retain the elevated Velvia diagnostic as a future review-priority signal, not an automatic veto. This result neither supersedes the independent RF3.D0S AO6 severe veto nor opens calibration, target-film closeness, preference or product promotion.",
+  "claim_ceiling": "Autonomous severe-artifact evidence on one previously decoded 512x512 FilmSet face for three unchanged K=1 Look Approximation baselines only; not original-file ingress, stock truth, calibrated film response, target-film closeness, population preference, population safety, multi-stock completion or product promotion."
+}
