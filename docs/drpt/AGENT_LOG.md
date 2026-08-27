@@ -17987,3 +17987,30 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   apply a tone curve, reopen R1DU, expand default dispatch, or establish full
   DNG rendering, quality, package/schema/capability/product admission. The
   candidate count remains `2/3`; stop this guard family after propagation.
+
+### 2026-08-27 - P262 closes the remaining ProfileLookTable omission family
+
+- **Question and routing:** `ULT > mature RAW/DNG explicit infrastructure >
+  P262`, DRPT L2 / Mode C. A read-only scan found 345 of 611 local DNGs carry
+  an unprotected ProfileLookTable family, while the five P98 oracle rows carry
+  none. Contract `3fc7a166` therefore froze this as the terminal profile-stage
+  guard: SDK codes `50981/50982/51108`, the already-retained raw.pixls Google
+  Pixel 4a row4176, and all P98/P244/P257/P261 identities.
+- **Prescore corrections and execution:** the Pixel row also carries an earlier
+  HueSatMap, so before scoring the real file was limited to exact metadata
+  confirmation; isolated synthetic controls alone prove LookTable-triggered
+  public-loader rejection. Implementation `b2b80992` adds the guard. The first
+  two executions wrote no report because strict `zip` was incorrectly used on
+  adjacent unequal-length sequences; `0a1db937` changed only report aggregation
+  to `pairwise`, then complete fresh runs followed.
+- **Evidence:** `3ee1e39d`, evidence SHA `654e47ee...2ca21`. Corrected
+  forward/reverse 6,107-byte reports are byte-exact at SHA
+  `c0aa5d78...687af`, scientific `bc33570b...b97267`. The real metadata,
+  three isolated zero-decode rejection controls, numeric-order multi-tag
+  message, five P98 outputs and three prior guards all pass. Thirty-one
+  adjacent tests pass; Ruff, format, JSON and diff checks are clean.
+- **Decision and boundary:**
+  `PASS_PRIVATE_DNG_PROFILE_LOOK_TABLE_INGRESS_GUARD`. No look-table arithmetic,
+  full/arbitrary DNG, image quality, default dispatch, package/schema/capability
+  or product admission opens; candidate remains `2/3`. The DNG profile-stage
+  no-silent-drop guard family is now closed and must not continue tag by tag.
