@@ -1,0 +1,25 @@
+{
+  "schema": "neuro-film.p271-r1en-dng-profile-tone-curve-callable-formal-lock.v1",
+  "experiment_id": "P271",
+  "status": "FROZEN_BEFORE_FORMAL_FORWARD_REVERSE_EXECUTION",
+  "date": "2026-08-27",
+  "implementation_commit": "7523717541aa122be1f587627dbbe1591718cee3",
+  "artifacts": [
+    {"path": "configs/p271_r1en_dng_profile_tone_curve_callable_intake_v1.json", "bytes": 4868, "git_blob": "eabf248621b4c92360d12fb59afc365cad196eeb", "sha256": "b8ca9d5e750bb14f50ed9eb99f43c7df029f188f5577c4073e682b507d9ec3e4"},
+    {"path": "docs/planning/P271_R1EN_DNG_PROFILE_TONE_CURVE_CALLABLE_INTAKE_CONTRACT.md", "bytes": 2184, "git_blob": "81374c7ebdd63db912f37acaadb30ade121d6fb4", "sha256": "2ee269f1adcd8c592e03a7d983d10b583840902fa87ecbedb7b48238992507d1"},
+    {"path": "scripts/audit_p271_r1en_dng_profile_tone_curve_callable_intake.py", "bytes": 12205, "git_blob": "811386954fe891d625302565278d010ca1f4beb0", "sha256": "0c7902dfeb0cad6709e05490531249e44866cee712b168e4d568b31f811c3205"},
+    {"path": "tests/test_p271_r1en_dng_profile_tone_curve_callable_intake.py", "bytes": 1354, "git_blob": "b322982cf98df05b095d1c2a1a52f4bca62a5f7d", "sha256": "3f7992a2713b41a4f3665e4a552724f27407de8bce36aa52dba73d4fde234276"}
+  ],
+  "formal_runs": {
+    "orders": ["forward", "reverse"],
+    "fresh_processes": true,
+    "expected_reports_byte_exact": true,
+    "output_root": "outputs/eval/p271_r1en_dng_profile_tone_curve_callable_intake_v1"
+  },
+  "preformal_corrections": [
+    "A coordination-abbreviated producer report SHA was replaced with the exact producer-evidence identity after fixture JSON read but before callable import or output.",
+    "The first focused test compared a float32-semantic nonmonotone endpoint to a Python decimal literal; before formal lock it was corrected to exact parsed-core parity."
+  ],
+  "stop_rule": "Any formal mismatch closes P271 without implementation copy, tolerance relaxation, loader integration or product mapping.",
+  "claim_ceiling": "Private consumer replay of one exact R1EN DNG ProfileToneCurve v1 callable and canonical fixture only; no real-file stage composition, complete DNG renderer, image quality, arbitrary profile/camera, default-loader integration, public package/schema/capability, stock evidence, automatic matching or product admission. Candidate 3 remains closed at 2/3."
+}
