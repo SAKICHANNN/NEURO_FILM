@@ -18861,3 +18861,29 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   and gamut-domain failure evidence only; no arbitrary AVIF/HEIF, HDR
   reconstruction quality, display validation, public API/dependency/package/
   schema/capability/product or candidate-3 change opens.
+
+### 2026-08-27 - P284 passes exact one-way libavif gain-map PQ publication
+
+- **Node and scope:** `ULT > U1 > U1.5 > P284`, DRPT L2 / Mode C.
+  `dev-research-reliability` is primary; research, DRPT-BI, agent-log and
+  structure stewardship constrain this to one-way private publication of the
+  exact P282/P283 rows. P283's inverse-gamut failure remains immutable; P284
+  does not ask for or claim recovery of the original BT.709/PQ samples.
+- **Freeze and execution:** contract `67c43ab0`, formal runner `6773f13b` and
+  evidence `5f148f28` bind exact P282/P283/P89/U1.4G evidence and source hashes,
+  fresh official higher-rendition rebuilds, P283 forward P87 descriptors, the
+  unchanged BT.2100-3 float64 formula, half-up RGB16 quantizer, `09 10 00 01`
+  cICP, `.07` cd/m2 frozen absolute-light ceiling and create-only/atomic gates.
+- **Result:** two fresh forward/reverse reports are byte-exact at 3,784 bytes /
+  SHA `cc4a7e33...95b0c`, stable `fb689541...da1d3`. All three 400x300 rows
+  publish repeat-identical PNGs with strict decoded RGB16 sample identity;
+  maximum absolute-light quantization errors are `.0437163/.0303648/.0315686`
+  nits. CICP, code error, input immutability, invalid controls, create-only,
+  production rejection and source/runtime immutability all pass. Formal PNGs
+  and scratch are removed.
+- **Verification and boundary:** 27 P89/P282-P284/U1.4G adjacent tests pass;
+  Ruff, format, `py_compile`, JSON and diff checks pass. Retain only private
+  one-way publication mechanics. No clipping or P283 rescue, complete ISO
+  21496-1, arbitrary AVIF/HEIF, HDR reconstruction quality, display validation,
+  mastering/content-light metadata, public API/dependency/package/schema/
+  capability/product or candidate-3 change opens.
