@@ -1,9 +1,15 @@
 from __future__ import annotations
 
+import hashlib
+import json
+from pathlib import Path
+
 from scripts.lock_p302_wildrelight_spatial_envmap_source import (
     _rank_scenes,
     _select_members,
 )
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_scene_ranking_is_deterministic() -> None:
@@ -49,3 +55,27 @@ def test_select_members_requires_exact_six_time_roles() -> None:
     metadata = [item for item in selected if item["path"].endswith("meta.json")]
     assert len(metadata) == 4
     assert all(item["sha256"] is None for item in metadata)
+
+
+def test_tracked_manifest_preserves_group_disjoint_roles() -> None:
+    config = json.loads(
+        (
+            ROOT / "configs/p302_wildrelight_spatial_envmap_explicit_operator_v1.json"
+        ).read_text(encoding="utf-8")
+    )
+    binding = config["source"]["member_manifest"]
+    body = (ROOT / binding["path"]).read_bytes()
+    assert len(body) == binding["bytes"]
+    assert hashlib.sha256(body).hexdigest() == binding["sha256"]
+    manifest = json.loads(body)
+    role_sets = {
+        role: set(config["roles"][role])
+        for role in ("training", "development", "confirmation", "reserve")
+    }
+    assert sum(map(len, role_sets.values())) == len(set().union(*role_sets.values()))
+    members = manifest["members"]
+    assert len(members) == 377
+    for role, scenes in role_sets.items():
+        role_members = [member for member in members if member["role"] == role]
+        assert len(role_members) == 13 * len(scenes)
+        assert {member["path"].split("/")[1] for member in role_members} == scenes
