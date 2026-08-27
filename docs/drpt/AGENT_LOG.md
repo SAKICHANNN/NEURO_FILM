@@ -18960,3 +18960,32 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   opens. P287 is prospectively frozen as one 108,447,512-byte hash-selected
   `lake` environment-conditioned explicit-radiance D0. The rest of the corpus
   remains unread.
+
+### 2026-08-27 - P287 closes one-scene environment-conditioned global gain
+
+- **Node:** `ULT > paired/capture-time sources > P287`; DRPT L2 / Mode C.
+  `dev-research-reliability` is the primary writer; research, DRPT-BI,
+  agent-log and structure stewardship preserve P286's bounded source and the
+  frozen candidate-3 stop rule.
+- **Freeze and execution:** contract `0533632a`, implementation/tests
+  `050aee5f`, formal lock `853ec467` and evidence `a212d25c` bind the
+  hash-selected `lake` scene, `small-aligned` variant, six paired capture
+  times, ten adjacent directed rows and 108,447,512 exact source bytes. The
+  candidate is one spherical-weighted per-channel environment-map mean ratio;
+  controls are identity, a BT.2020-luma scalar ratio and a capacity-identical
+  cyclic wrong-target ratio. Candidate arrays are hash-frozen before each
+  target photo decode.
+- **Result:** two fresh forward/reverse reports are byte-exact at 15,083 bytes
+  / SHA `472f41ce...e50c`, scientific `d381b3cc...e3a8`. Candidate versus the
+  strongest legitimate control improves 4/10 rows with median/worst reduction
+  `-0.452417%/-17.378694%`; rate, median and worst gates fail. The cyclic
+  comparison improves 9/10 with median `+64.102455%`, so the environment maps
+  carry temporal information but the exact global gain is not a sufficient
+  operator. Valid support is at least `.9910645`, capture separation is at
+  most 33 seconds, and source/runtime/finite/sign/target-unread gates pass.
+- **Verification and boundary:** nine P286/P287 adjacent tests pass; Ruff,
+  JSON and diff checks pass. Repeated TLS EOFs before the scientific run are
+  recorded as transport exclusions; all accepted members match frozen byte
+  counts and SHA-256 with zero stage residue. No tuning, scene replacement,
+  cross-scene confirmation, relighting-quality claim, shared operator,
+  package/schema/capability/product or candidate-3 change opens.

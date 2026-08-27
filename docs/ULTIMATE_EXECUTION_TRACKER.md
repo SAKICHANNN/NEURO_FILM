@@ -2713,3 +2713,16 @@ names as published DNG bodies and does not consume candidate 3. It opens only
 P287, a separately frozen hash-selected `lake` small-aligned one-scene D0
 capped at 108,447,512 source bytes. Evidence:
 `docs/evidence/P286_WILDRELIGHT_PAIRED_HDR_SOURCE_FEASIBILITY_RESULT.json`.
+
+P287 formally closes that exact one-scene environment-conditioned global-gain
+mechanism. Thirteen revision-pinned members are exact and two committed-head
+forward/reverse reports are byte-identical at 15,083 bytes / SHA
+`472f41ce...e50c`. The spherical per-channel environment-map mean ratio beats
+the strongest identity/scalar control on only 4/10 directed adjacent rows;
+median/worst reduction is `-0.452417%/-17.378694%`. Its 9/10 win rate and
+`+64.102455%` median against the capacity-identical cyclic wrong-target control
+show real capture-time environment information, but cannot authorize the
+rejected operator. Exact scene, rows, operator, controls and gates are closed
+without tuning or cross-scene confirmation; candidate 3 remains unconsumed.
+Evidence:
+`docs/evidence/P287_WILDRELIGHT_ENVMAP_CONDITIONED_HDR_D0_RESULT.json`.
