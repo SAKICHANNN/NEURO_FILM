@@ -220,6 +220,18 @@ controlled same-scene, independent-roll acquisition remains the mainline.
 Evidence:
 `docs/evidence/RF3_D11_POLUT_THREE_STOCK_GLOBAL_BASELINE_RESULT.json`.
 
+RF3.D13 audits a materially distinct explicit global baseline source before
+any pixel or operator execution. Exact official ComfyUI-Darkroom commit
+`eb8f3d86...ec99` contains named Capture One-derived curve rows for Velvia 50,
+Portra 400 and Ektar 100, but its tracked tree has no root `LICENSE` even
+though `pyproject.toml` names that file, and the three rows expose no source
+document/page, extraction method or per-row licence. The frozen source gate
+therefore fails closed at zero image reads and zero curve applications. Do not
+normalize the missing rights, scrape Capture One, or use these curves as a
+teacher/control. Controlled same-scene independent-roll observations remain
+the mainline. Evidence:
+`docs/evidence/RF3_D13_DARKROOM_THREE_STOCK_BASELINE_SOURCE_RESULT.json`.
+
 SF3.A3E tests the highest-information public Ektar source gap directly rather
 than adding another proxy model. The exact 24 rights-cleared Commons Ektar
 rows yield 18 Flickr identities and 1,111 bounded same-author Commons pages.

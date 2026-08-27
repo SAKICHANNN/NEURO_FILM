@@ -18014,3 +18014,25 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   full/arbitrary DNG, image quality, default dispatch, package/schema/capability
   or product admission opens; candidate remains `2/3`. The DNG profile-stage
   no-silent-drop guard family is now closed and must not continue tag by tag.
+
+### 2026-08-27 - RF3.D13 closes the Darkroom three-stock baseline source
+
+- **Node and scope:** `ULT > RF3 three-stock explicit controls > RF3.D13`,
+  DRPT L2 / Mode C. The leaf audits one materially distinct, current official
+  explicit-curve source and stops before pixels or curve execution.
+- **Source facts:** exact ComfyUI-Darkroom commit
+  `eb8f3d86f49a57e54ff426b3f517f8747248ec99` contains explicit named rows for
+  Velvia 50, Portra 400 and Ektar 100 among 106 base costyle rows. The source is
+  Capture One-derived and therefore distinct from the closed spectral-film-LUT
+  route.
+- **Gate and evidence:** the exact tracked tree lacks the root `LICENSE` named
+  by `pyproject.toml`, while each of the three audited rows lacks source URL or
+  document/page, extraction method and licence fields. Contract/config
+  `4db0ec14`, implementation/tests `432584ff`, evidence `76083e47`; evidence
+  SHA `65e1f666...a29bd`, stable `4af6aa79...0443b`. Three focused/evidence
+  tests pass with Ruff, py_compile and diff checks clean.
+- **Decision and boundary:**
+  `FAIL_CLOSED_MISSING_ROOT_LICENSE_AND_PER_STOCK_PROVENANCE`. Image reads and
+  operator pixel executions are zero. Do not infer or normalize rights, scrape
+  Capture One, use the curves as a teacher/control, or open fitting. Controlled
+  same-scene independent-roll three-stock observations remain the mainline.
