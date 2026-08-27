@@ -26,8 +26,11 @@ no look-table arithmetic and makes no DNG rendering or image-quality claim.
 1. SDK authority resolves all three tag codes exactly;
 2. the real source hash/size remains exact and exposes exactly dims/data from
    the guarded family;
-3. the public opt-in loader rejects that real source before camera decode;
-4. each synthetic single-tag control rejects with exact name/code/IFD and zero
+3. the real source is used only to confirm exact ProfileLookTable metadata;
+   because it also carries an earlier HueSatMap stage, it is not used as an
+   isolated public-loader trigger for this guard;
+4. each isolated synthetic single-tag control rejects through the public
+   opt-in loader with exact name/code/IFD and zero
    decode calls; a multi-tag control reports numeric-code order;
 5. all five P98 rows are look-table-free and retain exact WorkingImage,
    warning, colour-state and source identities;

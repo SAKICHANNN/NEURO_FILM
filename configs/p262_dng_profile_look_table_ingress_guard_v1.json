@@ -1,0 +1,53 @@
+{
+  "schema": "neuro-film.p262-dng-profile-look-table-ingress-guard-contract.v1",
+  "experiment_id": "P262",
+  "status": "FROZEN_IMPLEMENTATION_READY_FOR_FORMAL_RUN",
+  "bindings": {
+    "contract_path": "docs/planning/P262_DNG_PROFILE_LOOK_TABLE_INGRESS_GUARD_CONTRACT.md",
+    "contract_sha256": "c413c142813ae95f8bf5d3a1573160a61368d580a740080d369280d8d737956c",
+    "implementation_parent_path": "src/preprocess/dng_forward_raster.py",
+    "implementation_parent_sha256": "673f3ab49db78e5ab19d00dbe832703d450698d3069161e32c27847ed895f834",
+    "implementation_path": "src/preprocess/dng_forward_raster.py",
+    "implementation_sha256": "1de3c12fcb1a00cabf519f2689b62a25f2792ea18e9fa31201f592b54c382cb4",
+    "runner_path": "scripts/audit_p262_dng_profile_look_table_ingress_guard.py",
+    "runner_sha256": "8cbf5508e931939e960eb2d8a9aaf6d54f1a0a09d09d326a019dd20827e7079d",
+    "test_path": "tests/test_p262_dng_profile_look_table_ingress_guard.py",
+    "test_sha256": "055bca36020b9766d77fec7c3095c6c2338e026e149b874957341628e294bb0d",
+    "p98_config_path": "configs/p98_dng_forward_raster_v1.json",
+    "p98_config_sha256": "5fb17f82cfecdae40a4c812f2ea9c26641e91bcab43e17c8a6a4bc94b2f03c35",
+    "p98_evidence_path": "docs/evidence/P98_DNG_FORWARD_RASTER_RESULT.json",
+    "p98_evidence_sha256": "e73c99fe61781988f61a56fec46278d715431c04ec432173639deb16ba7cfac5",
+    "p244_evidence_path": "docs/evidence/P244_DNG_PROFILE_HUESATMAP_INGRESS_GUARD_RESULT.json",
+    "p244_evidence_sha256": "32e22f73459c34b108f353e568c29596b24cf9b0499bd07655831614d2c7bf14",
+    "p257_evidence_path": "docs/evidence/P257_DNG_PROFILE_GAIN_TABLE_MAP_INGRESS_GUARD_RESULT.json",
+    "p257_evidence_sha256": "1f4b5612a92ad2eeaf7634eabead68c2dee10b959d48fbbd85d0ce6087da7cc0",
+    "p261_evidence_path": "docs/evidence/P261_DNG_PROFILE_TONE_CURVE_INGRESS_GUARD_RESULT.json",
+    "p261_evidence_sha256": "449f77edf30a1954714c38739dcc5352b324e1a994272f3a8f5b9c9689c8c387",
+    "sdk_zip_path": "data/external/adobe_dng_sdk_1_7_1_2652/dng_sdk_1_7_1_2652_20260714.zip",
+    "sdk_zip_bytes": 80494799,
+    "sdk_zip_sha256": "73499b47f4683e12120a234bd0946f02e52ab2ff9834bcbd0e9f8ab4f923360e",
+    "sdk_tag_code_member": "dng_sdk_1_7_1/dng_sdk/source/dng_tag_codes.h"
+  },
+  "guarded_tags": [
+    {"code": 50981, "name": "ProfileLookTableDims"},
+    {"code": 50982, "name": "ProfileLookTableData"},
+    {"code": 51108, "name": "ProfileLookTableEncoding"}
+  ],
+  "real_source": {
+    "source_id": "google_pixel4a",
+    "repository_id": 4176,
+    "logical_path": "data/external/rawpixls_bk3_v1/raw/google_pixel4a.dng",
+    "source_bytes": 13586704,
+    "source_sha256": "11b38186ee3455376291bcdb3049728a3f9dcd94b9e82ff76855d9f3430e44be",
+    "rights_ceiling": "Inherited raw.pixls.us source lock; local internal regression only."
+  },
+  "rows": [
+    {"source_id": "motorola_moto_g_7_play", "logical_path": "data/external/rawpixls_bh1_v1/raw/motorola_moto_g_7_play.dng", "source_bytes": 26286800, "source_sha256": "d46953b116ee7a88b99fb28edc7b2f1b631ed09d66f73391c4ccc2e2ec959575", "working_float32_sha256": "b71b5e7c7db518e0dd54b865aa68c5e63c9621d10bf446c53f0ed3e24c439273"},
+    {"source_id": "lg_lg_h850", "logical_path": "data/external/rawpixls_bh1_v1/raw/lg_lg_h850.dng", "source_bytes": 16005440, "source_sha256": "be58e948626b193538217e96bc6d9ff5fdeb91a3a8a8af65624dab41ae39895f", "working_float32_sha256": "0844ca0677dedd85fb71bbd58cfa95c211f277f690a6fb42e2a3f49a92497b09"},
+    {"source_id": "xiaomi_m2010j19cg", "logical_path": "data/external/rawpixls_bh1_v1/raw/xiaomi_m2010j19cg.dng", "source_bytes": 24029476, "source_sha256": "e1cb49299faa6609547bbb9b2c5a6167031694a99a1d252e1e048ce18ddf214f", "working_float32_sha256": "da8fdd8e0c7c5f28642df686f89245e771cfd4b71769c51b4ee544c8020026ae"},
+    {"source_id": "blackmagic_pocket_cinema_camera_4k", "logical_path": "data/external/rawpixls_bh1_v1/raw/blackmagic_pocket_cinema_camera_4k.dng", "source_bytes": 4497152, "source_sha256": "1491a5e5d580a9be151747bddce89faca4d0b9d352503270f516bbf8e8cdf0d9", "working_float32_sha256": "2fb7c8f9136a85d5a4032cc6c08496f330fe78eab6db7f0e7422b017a4a48ea7"},
+    {"source_id": "huawei_eml_l29", "logical_path": "data/external/rawpixls_bh1_v1/raw/huawei_eml_l29.dng", "source_bytes": 23643352, "source_sha256": "77385bde838ab7e0a5b067d7f6e6b8cb3019a3c22353fae6b8689a43adda439a", "working_float32_sha256": "d1da20e6efd6e5c9d2c7054b425f87b47381bf70e11dfccb7ecf8918b40fcd56"}
+  ],
+  "expected_warning_codes": ["private_dng_forward_raster", "unqualified_demosaic_and_calibration", "scene_linear_no_tone_map"],
+  "claim_ceiling": "Private opt-in no-silent-drop guard for exact Adobe DNG ProfileLookTable tags, one retained real-file rejection and unchanged five-file P98 behavior. No look-table application, full DNG conformance, arbitrary DNG, image quality, default-loader integration, package, schema, capability, film-stock or product admission."
+}

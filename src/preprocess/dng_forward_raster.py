@@ -59,6 +59,12 @@ _PROFILE_TONE_CURVE_TAGS = {
     50940: "ProfileToneCurve",
 }
 
+_PROFILE_LOOK_TABLE_TAGS = {
+    50981: "ProfileLookTableDims",
+    50982: "ProfileLookTableData",
+    51108: "ProfileLookTableEncoding",
+}
+
 
 def _sha256(path: Path) -> str:
     digest = hashlib.sha256()
@@ -147,6 +153,27 @@ def _guard_unsupported_profile_tone_curve(
     )
 
 
+def _guard_unsupported_profile_look_table(
+    pages: list[tuple[str, tifffile.TiffPage]],
+) -> None:
+    """Reject profile look tables that this narrow raster path cannot apply."""
+
+    present: dict[int, list[str]] = {}
+    for ifd_path, page in pages:
+        for code in _PROFILE_LOOK_TABLE_TAGS:
+            if code in page.tags:
+                present.setdefault(code, []).append(ifd_path)
+    if not present:
+        return
+    details = ", ".join(
+        f"{_PROFILE_LOOK_TABLE_TAGS[code]}({code})@{'+'.join(present[code])}"
+        for code in sorted(present)
+    )
+    raise DngForwardRasterError(
+        f"unsupported DNG ProfileLookTable-family tags must not be silently ignored: {details}"
+    )
+
+
 def _read_profile_tags(path: Path) -> dict[str, Any]:
     try:
         with tifffile.TiffFile(path) as document:
@@ -154,6 +181,7 @@ def _read_profile_tags(path: Path) -> dict[str, Any]:
             _guard_unsupported_profile_huesatmap(pages)
             _guard_unsupported_profile_gain_table_map(pages)
             _guard_unsupported_profile_tone_curve(pages)
+            _guard_unsupported_profile_look_table(pages)
             tags = document.pages[0].tags
             required = (
                 "color_matrix1",
