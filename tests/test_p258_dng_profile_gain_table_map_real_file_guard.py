@@ -8,6 +8,7 @@ from types import SimpleNamespace
 import pytest
 
 import src.preprocess.dng_forward_raster as raster
+from scripts.audit_p258_dng_profile_gain_table_map_real_file_guard import _bound
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/p258_dng_profile_gain_table_map_real_file_guard_v1.json"
@@ -54,3 +55,10 @@ def test_p258_guard_diagnostic_carries_name_code_and_ifd() -> None:
     with pytest.raises(raster.DngForwardRasterError) as caught:
         raster._guard_unsupported_profile_gain_table_map([("0/2", page)])
     assert "ProfileGainTableMap(52525)@0/2" in str(caught.value)
+
+
+def test_p258_report_bindings_preserve_repo_relative_junction_paths() -> None:
+    relative = Path("configs/p258_dng_profile_gain_table_map_real_file_guard_v1.json")
+    source = ROOT / "data/external/rawpixls_p7h_v1/raw/samsung_galaxy_s21_ultra.dng"
+    assert _bound(relative)["path"] == relative.as_posix()
+    assert _bound(source)["path"] == source.relative_to(ROOT).as_posix()
