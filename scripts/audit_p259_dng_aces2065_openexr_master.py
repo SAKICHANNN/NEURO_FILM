@@ -159,11 +159,12 @@ def _inspect_exr(
         parts = getattr(exr_file, "parts", None)
         header = dict(exr_file.header())
         channels = exr_file.channels()
+        channel_names = sorted(channels)
         decoded = channels["RGB"].pixels.copy()
     return {
         "aces_image_container_flag": int(header["acesImageContainerFlag"]),
         "adopted_neutral": [float(value) for value in header["adoptedNeutral"]],
-        "channel_names": sorted(channels),
+        "channel_names": channel_names,
         "chromaticities": [float(value) for value in header["chromaticities"]],
         "color_interop_id": _text(header["colorInteropID"]),
         "compression_zip": bool(header["compression"] == openexr.ZIP_COMPRESSION),

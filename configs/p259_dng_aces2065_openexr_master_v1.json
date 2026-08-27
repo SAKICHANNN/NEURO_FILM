@@ -53,8 +53,8 @@
     "p251_reader_bytes": 6706,
     "p251_reader_sha256": "9ec0e671144624176d122cb72a38b61de40eba55f8c52772234c438dd33d2390",
     "runner_path": "scripts/audit_p259_dng_aces2065_openexr_master.py",
-    "runner_bytes": 19414,
-    "runner_sha256": "41def01e18801eeeaa6282c511fe954a91959c334d16256e2a9fbf235d728397",
+    "runner_bytes": 19452,
+    "runner_sha256": "40c3368576d7274ce0ecc42b81b689720d38b9c493e3e56d1b3091d45e657c05",
     "test_path": "tests/test_p259_dng_aces2065_openexr_master.py",
     "test_bytes": 2477,
     "test_sha256": "b3dd89f8c51b667ae0e8a05bb961abdd38425546a30642e74fb0b9d05dd15226"
