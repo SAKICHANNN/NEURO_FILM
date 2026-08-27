@@ -1,0 +1,49 @@
+{
+  "schema": "neuro-film.p269-hdrplus-one-burst-acquisition-contract.v1",
+  "experiment_id": "P269",
+  "status": "FROZEN_BEFORE_OBJECT_BODY_READ",
+  "parent_evidence_sha256": "2f9fc7a4875031b16d0488bcde7fe4e107bed03f80ba0147870e4b16e5da5505",
+  "selected_burst_id": "0382_20150912_131056_666",
+  "destination_root": "data/external/p269_hdrplus_one_burst_v1",
+  "maximum_total_bytes": 1073741824,
+  "expected_total_bytes": 256482210,
+  "objects": [
+    {"role":"burst","path":"lens_shading_map_N000.tiff","bytes":3854,"generation":"1518721426462994","md5_base64":"AWf7W1BBYeTsg6Vns708cA=="},
+    {"role":"burst","path":"lens_shading_map_N001.tiff","bytes":3854,"generation":"1518721427155162","md5_base64":"AWf7W1BBYeTsg6Vns708cA=="},
+    {"role":"burst","path":"lens_shading_map_N002.tiff","bytes":3854,"generation":"1518721427001875","md5_base64":"AWf7W1BBYeTsg6Vns708cA=="},
+    {"role":"burst","path":"lens_shading_map_N003.tiff","bytes":3854,"generation":"1518721426758238","md5_base64":"AWf7W1BBYeTsg6Vns708cA=="},
+    {"role":"burst","path":"lens_shading_map_N004.tiff","bytes":3854,"generation":"1518721427034836","md5_base64":"AWf7W1BBYeTsg6Vns708cA=="},
+    {"role":"burst","path":"lens_shading_map_N005.tiff","bytes":3854,"generation":"1518721426512000","md5_base64":"AWf7W1BBYeTsg6Vns708cA=="},
+    {"role":"burst","path":"lens_shading_map_N006.tiff","bytes":3854,"generation":"1518721426638993","md5_base64":"AWf7W1BBYeTsg6Vns708cA=="},
+    {"role":"burst","path":"lens_shading_map_N007.tiff","bytes":3854,"generation":"1518721427013131","md5_base64":"AWf7W1BBYeTsg6Vns708cA=="},
+    {"role":"burst","path":"payload_N000.dng","bytes":24410884,"generation":"1518721465938707","md5_base64":"yBTXGV73vIXS9/UYhmy6rw=="},
+    {"role":"burst","path":"payload_N001.dng","bytes":24410884,"generation":"1518721466153136","md5_base64":"DeOCevdJcoeYt7pSbRkNOA=="},
+    {"role":"burst","path":"payload_N002.dng","bytes":24410884,"generation":"1518721466129733","md5_base64":"GUNchLe3Mx2KhfQ5a/FVUA=="},
+    {"role":"burst","path":"payload_N003.dng","bytes":24410884,"generation":"1518721466772293","md5_base64":"5p1GlzI+n0Fs7OAN3lIncg=="},
+    {"role":"burst","path":"payload_N004.dng","bytes":24410884,"generation":"1518721466606546","md5_base64":"2ZpvryPywSx1o8YnEDKfzA=="},
+    {"role":"burst","path":"payload_N005.dng","bytes":24410884,"generation":"1518721465683276","md5_base64":"dNNFSMYb2Ekxnfx84Xga3Q=="},
+    {"role":"burst","path":"payload_N006.dng","bytes":24410884,"generation":"1518721467055080","md5_base64":"KqCHUVmL/A5GDcdQ2uxXOg=="},
+    {"role":"burst","path":"payload_N007.dng","bytes":24410884,"generation":"1518721466702360","md5_base64":"bRGqTC8dfHVPd5pvZqcCtA=="},
+    {"role":"burst","path":"rgb2rgb.txt","bytes":91,"generation":"1518721427256155","md5_base64":"z0/ZHAFhvTVwiZhwg/v8fA=="},
+    {"role":"burst","path":"timing.txt","bytes":66,"generation":"1518721426877346","md5_base64":"faZhpy8hDDA2r4Hf3AEFpw=="},
+    {"role":"result_20161014","path":"final.jpg","bytes":5596112,"generation":"1518721603960543","md5_base64":"FwzKX5LQV7NC5vo7kxyLAQ=="},
+    {"role":"result_20161014","path":"merged.dng","bytes":25288270,"generation":"1518721634711122","md5_base64":"06G7XHZIm6SzdX9unwa6BA=="},
+    {"role":"result_20161014","path":"reference_frame.txt","bytes":2,"generation":"1518721594612219","md5_base64":"iXMWkpF2Rk68mtCF8x5yhA=="},
+    {"role":"result_20171023","path":"final.jpg","bytes":5393899,"generation":"1518721242989412","md5_base64":"3EIYZCn13Wjgawy0qRXDWA=="},
+    {"role":"result_20171023","path":"merged.dng","bytes":24885864,"generation":"1518721272923567","md5_base64":"ju8rdn66jULq/iM9NKlmUw=="},
+    {"role":"result_20171023","path":"reference_frame.txt","bytes":2,"generation":"1518721233478924","md5_base64":"iXMWkpF2Rk68mtCF8x5yhA=="}
+  ],
+  "object_roots": {
+    "burst": "gs://hdrplusdata/20171106_subset/bursts/0382_20150912_131056_666/",
+    "result_20161014": "gs://hdrplusdata/20171106_subset/results_20161014/0382_20150912_131056_666/",
+    "result_20171023": "gs://hdrplusdata/20171106_subset/results_20171023/0382_20150912_131056_666/"
+  },
+  "budgets": {
+    "maximum_downloaded_objects": 24,
+    "maximum_dng_centre_probe_side": 64,
+    "maximum_result_pixel_decodes": 0,
+    "maximum_fit_train_inference_score_reads": 0
+  },
+  "stop_rule": "Any identity, size, generation, MD5, path, total-budget, signature, metadata or bounded input-DNG probe failure closes this exact burst without replacement, bulk download, overwrite, result-pixel decode or scientific rescue.",
+  "claim_ceiling": "Private exact one-burst source lock and bounded RAW/capture-sidecar decode feasibility only; no HDR truth/quality, general burst support, rights resolution, package/schema/capability/product mapping or candidate3 admission."
+}
