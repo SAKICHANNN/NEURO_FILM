@@ -19549,3 +19549,30 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   stock response, automatic stock inference, K>1 and multi-stock completion
   closed. The Goal remains active on independently controlled real-stock
   evidence and core product execution, not further proxy tuning.
+
+### 2026-08-28 - P304 closes RawHDR before dataset access
+
+- **Node and routing:** `ULT > genuinely new capture-time observations >
+  P304`, DRPT L2 / Mode C. `dev-research-reliability` governed the zero-pixel
+  source freeze; scientific claim review, structure stewardship and log
+  discipline were secondary. This is a source-readiness check, not candidate 3
+  or an HDR-quality experiment.
+- **Frozen source:** contract commit `08597df5`, implementation `675d8e74` and
+  execution lock `e243bd1b` bind official RawHDR commit `c49e8b2d...e9bd`,
+  tree `eacc5b8c...467a`, README and root MIT licence. The README documents 324
+  real Canon EOS 5D Mark IV scenes, tripod -3/0/+3 EV brackets, 0 EV 14-bit RAW
+  inputs and 20-bit merged-HDR targets.
+- **Formal result:** two fresh reports are byte-exact at 2,895 bytes / SHA
+  `91f81139...07175`, scientific `9b0bc27b...e2208`. Official identity,
+  physical-observation relevance, public locators and code rights pass.
+  Dataset rights, a file-level size/hash inventory and a public scene/split
+  manifest fail independently. Network use is 8,510 official metadata bytes
+  per report; OneDrive/Baidu, archive, image, thumbnail, model and pixel reads
+  are zero. Evidence commit `72922cfc`, evidence SHA
+  `93fe14df...e762`; 21 adjacent tests plus Ruff, compile, JSON and diff checks
+  pass.
+- **Decision:**
+  `FAIL_CLOSED_RAWHDR_SOURCE_RIGHTS_OR_MANIFEST_GAP_NOT_SCIENTIFIC_RESULT`.
+  Do not infer payload rights from the repository MIT licence, enumerate the
+  remote folders, use mirrors or consume candidate 3. Candidate count remains
+  `2/3`; no payload, package/schema/capability/product or stock mapping opens.
