@@ -19,6 +19,7 @@ def test_frozen_config_binds_parent_sources_and_execution_gates() -> None:
     for prefix in (
         "contract",
         "native_source",
+        "runner",
         "p248_config",
         "p248_evidence",
         "p249_config",
