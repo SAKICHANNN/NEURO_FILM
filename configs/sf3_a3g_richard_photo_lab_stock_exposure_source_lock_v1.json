@@ -1,0 +1,88 @@
+{
+  "schema": "neuro-film.sf3-a3g-richard-photo-lab-stock-exposure-source-lock-contract.v1",
+  "experiment_id": "SF3.A3G_RICHARD_PHOTO_LAB_STOCK_EXPOSURE_SOURCE_LOCK_V1",
+  "question": "Does the exact public Richard Photo Lab package expose same-session, same-scene, neutral-Noritsu exposure ladders for Portra 400 and Ektar 100, plus an independently usable Tri-X/HP5 black-and-white branch, before any image member is read?",
+  "source": {
+    "publisher": "Richard Photo Lab",
+    "page_url": "https://richardphotolab.com/blogs/post/find-your-film-stock-and-exposure-comparisons",
+    "page_size": 486017,
+    "page_sha256": "cff7ca5c8e42d8aa42ec3265566e5049ec75523494c0472d8655c4fbcd4fa525",
+    "required_page_phrases": [
+      "Mamiya 645AF film camera with an 80mm f/2.8 lens",
+      "shot during late morning in open shade",
+      "scanned on the Noritsu with a neutral color balance and density preference",
+      "KODAK PORTRA 400",
+      "KODAK EKTAR 100",
+      "KODAK TRI-X 400",
+      "ILFORD HP5"
+    ],
+    "archive_url": "https://gfs-na.richardphotolab.com/zips/Richards-Film-Stock-And-Exposure-Comparisons.zip",
+    "archive_size": 245270383,
+    "archive_etag_observed": "\"693a5bc0-e9e876f\"",
+    "archive_last_modified_observed": "Thu, 11 Dec 2025 05:50:56 GMT",
+    "central_offset": 245244767,
+    "central_size": 25594,
+    "central_member_count": 182,
+    "tail_sha256": "803d590ed25ceca508f80dcefa0e63a64d81c66d77b4a88c9be7ed56a4e2c2f7",
+    "central_sha256": "be1a99eb39e751776ad36c32d7921430ddaff9ba71a6bcd2fe642fa27e5b0c20",
+    "central_inventory_sha256": "e374c85fdab6f4249ad54fca86b067410a4aa19768c3f62000ff23d87204abb7",
+    "jpeg_member_count": 113
+  },
+  "required_stocks": [
+    {
+      "film_stock_id": "kodak_portra_400",
+      "archive_directory": "2_KODAKPORTRA400",
+      "minimum_full_resolution_scan_count": 6,
+      "minimum_negative_sequence_count": 6,
+      "required_full_resolution_normal_name": "NORMAL-4-500.jpg",
+      "required_negative_normal_name": "Portra400-Neg Sequence/NORMAL.jpg"
+    },
+    {
+      "film_stock_id": "kodak_ektar_100",
+      "archive_directory": "5_KODAKEKTAR100",
+      "minimum_full_resolution_scan_count": 7,
+      "minimum_negative_sequence_count": 7,
+      "required_full_resolution_normal_name": "NORMAL-4-125.jpg",
+      "required_negative_normal_name": "Ektar100-Neg Sequence/NORMAL.jpg"
+    },
+    {
+      "film_stock_id": "kodak_tri_x_400",
+      "archive_directory": "6_KODAK400TX",
+      "minimum_full_resolution_scan_count": 7,
+      "minimum_negative_sequence_count": 7,
+      "required_full_resolution_normal_name": "NORMAL-4-125.jpg",
+      "required_negative_normal_name": "TRIX-Neg Sequence/NORMAL.jpg"
+    },
+    {
+      "film_stock_id": "ilford_hp5_plus",
+      "archive_directory": "7_ILFORDHP5PLUS",
+      "minimum_full_resolution_scan_count": 7,
+      "minimum_negative_sequence_count": 7,
+      "required_full_resolution_normal_name": "NORMAL-4-500.jpg",
+      "required_negative_normal_name": "Hp5-Neg Sequence/NORMAL.jpg"
+    }
+  ],
+  "network_limits": {
+    "tail_probe_bytes": 1048576,
+    "maximum_total_bytes": 1572864,
+    "member_payload_reads": 0,
+    "image_member_reads": 0,
+    "pixel_decodes": 0
+  },
+  "gates": {
+    "require_exact_page_identity": true,
+    "require_all_page_phrases": true,
+    "require_exact_central_identity": true,
+    "require_safe_unencrypted_members": true,
+    "require_all_stock_ladders": true
+  },
+  "stop_rules": [
+    "Do not read any ZIP member payload or decode any pixel in this source-lock leaf.",
+    "Do not infer independent rolls, process identity, scanner settings beyond the publisher statement, or common shutter times across different box speeds.",
+    "Failure closes this exact package identity without replacing files or weakening structure gates.",
+    "A pass opens only a separately frozen bounded pixel preflight on exact normal-exposure members."
+  ],
+  "decision_if_pass": "PASS_OPEN_BOUNDED_RPL_STOCK_PIXEL_PREFLIGHT",
+  "decision_if_fail": "FAIL_CLOSED_RPL_STOCK_SOURCE_STRUCTURE",
+  "claim_ceiling": "Private internal same-session source structure for Portra 400/Ektar 100 and Tri-X/HP5 exposure ladders. Not three-stock completion, Velvia evidence, independent-roll evidence, stock response, calibration, fitting, product capability, redistribution, or public release."
+}
