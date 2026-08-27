@@ -66,6 +66,22 @@
     "p295_evidence_path": "docs/evidence/P295_OPENEXR_CARROTS_ACES2065_INTEROPERABILITY_RESULT.json",
     "p295_evidence_sha256": "eccd7ab691324ee4f02e6bf4cc4082774636f2db327500f908aa261dbe1117a8"
   },
+  "bindings": {
+    "contract_path": "docs/planning/P296_OPENEXR_STANDARD_CHROMATICITY_INGRESS_CONTRACT.md",
+    "contract_bytes": 3151,
+    "contract_sha256": "99abae12615c5cd02ee418a4c57f4ff1b9cbc72f6a30ea599d539067c2119429",
+    "core_path": "src/preprocess/openexr_chromaticity_ingress.py",
+    "core_bytes": 8817,
+    "core_sha256": "8054708a2d22a76b77e1730390bcc5bdaac4d2ee2adff5ba4aaad25de8444120",
+    "runner_path": "scripts/audit_p296_openexr_standard_chromaticity_ingress.py",
+    "runner_bytes": 10303,
+    "runner_sha256": "1506b8affde97795927e7842fa4647e0e5c507be366741eb632e3124610727c1",
+    "test_path": "tests/test_p296_openexr_standard_chromaticity_ingress.py",
+    "test_bytes": 4642,
+    "test_sha256": "3072bd638ea78aea08ab0ddcdf2d097bd351cd2d409fb6a6a081fa73f47a4630",
+    "p294_evidence_bytes": 5255,
+    "p295_evidence_bytes": 4900
+  },
   "forbidden": [
     "DCI-P3 or ACES inference",
     "authoritative sidecar",
