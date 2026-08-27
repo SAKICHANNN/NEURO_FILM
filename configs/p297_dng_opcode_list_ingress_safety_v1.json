@@ -1,0 +1,40 @@
+{
+  "schema": "neuro_film.p297_dng_opcode_list_ingress_safety_contract.v1",
+  "experiment_id": "P297",
+  "question": "Can the private P98 DNG ingress reject required or malformed OpcodeList1/2/3 metadata before pixel decode while preserving exact output for optional-only or absent lists?",
+  "authority": {
+    "sdk_path": "data/external/adobe_dng_sdk_1_7_1_2652/dng_sdk_1_7_1_2652_20260714.zip",
+    "sdk_bytes": 80494799,
+    "sdk_sha256": "73499b47f4683e12120a234bd0946f02e52ab2ff9834bcbd0e9f8ab4f923360e",
+    "tag_codes": {"OpcodeList1": 51008, "OpcodeList2": 51009, "OpcodeList3": 51022},
+    "optional_flag": 1,
+    "allowed_flag_mask": 3,
+    "maximum_supported_version": 17104896
+  },
+  "bindings": {
+    "p98_config_path": "configs/p98_dng_forward_raster_v1.json",
+    "p98_config_sha256": "5fb17f82cfecdae40a4c812f2ea9c26641e91bcab43e17c8a6a4bc94b2f03c35",
+    "implementation_path": "src/preprocess/dng_forward_raster.py",
+    "implementation_parent_sha256": "1de3c12fcb1a00cabf519f2689b62a25f2792ea18e9fa31201f592b54c382cb4",
+    "runner_path": "scripts/audit_p297_dng_opcode_list_ingress_safety.py",
+    "test_path": "tests/test_p297_dng_opcode_list_ingress_safety.py"
+  },
+  "expected_inventory": {
+    "motorola_moto_g_7_play": [{"ifd": "0", "tag": 51009, "bytes": 2452, "sha256": "c067505ff8b334b713a94d665f11c10365cbb4c5b0ccf9301e799c06083e49e9", "ids": [9,9,9,9], "versions": [16973824,16973824,16973824,16973824], "flags": [1,1,1,1]}, {"ifd": "0", "tag": 51022, "bytes": 4, "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119", "ids": [], "versions": [], "flags": []}],
+    "lg_lg_h850": [{"ifd": "0", "tag": 51009, "bytes": 3908, "sha256": "f496780078248d995f64d169da9383fe66c69935519d8414c3fd6a3a7a95abb5", "ids": [9,9,9,9], "versions": [16973824,16973824,16973824,16973824], "flags": [1,1,1,1]}, {"ifd": "0", "tag": 51022, "bytes": 4, "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119", "ids": [], "versions": [], "flags": []}],
+    "xiaomi_m2010j19cg": [{"ifd": "0", "tag": 51009, "bytes": 3908, "sha256": "77aae92bd0402d8927c6b8f63c94be731398948d7d851154575e19da63e19ab6", "ids": [9,9,9,9], "versions": [16973824,16973824,16973824,16973824], "flags": [1,1,1,1]}, {"ifd": "0", "tag": 51022, "bytes": 88, "sha256": "67b044bd534330cebfeff3f7bbd3cccf811bf07e9fc22aff71b11179ce653741", "ids": [1], "versions": [16973824], "flags": [1]}],
+    "blackmagic_pocket_cinema_camera_4k": [],
+    "huawei_eml_l29": [{"ifd": "0", "tag": 51009, "bytes": 564, "sha256": "7268ff51d245d50adb00eae4bef393ae30ccb7202ecb8e9afb19dc39603b677e", "ids": [9,9,9,9], "versions": [16973824,16973824,16973824,16973824], "flags": [1,1,1,1]}, {"ifd": "0", "tag": 51022, "bytes": 4, "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119", "ids": [], "versions": [], "flags": []}]
+  },
+  "gates": {
+    "required_reject_before_decode": true,
+    "malformed_reject_before_decode": true,
+    "optional_warning_exact": true,
+    "inventory_exact": true,
+    "p98_pixel_hashes_exact": true,
+    "source_immutable": true,
+    "forward_reverse_scientific_exact": true
+  },
+  "stop_rule": "Any missed required/malformed opcode, decode-before-reject, inventory drift, P98 pixel drift, source mutation or replay mismatch closes the leaf without opcode application, row replacement or gate relaxation.",
+  "claim_ceiling": "Private exact-five P98 DNG no-silent-required-OpcodeList safety only; optional lists are permitted with an explicit may-be-skipped warning. No opcode execution claim, full DNG renderer, image quality, default-loader, package/schema/capability, stock evidence, candidate3 or product admission."
+}
