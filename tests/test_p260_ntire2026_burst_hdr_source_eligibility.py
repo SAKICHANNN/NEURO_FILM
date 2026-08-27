@@ -24,6 +24,8 @@ def test_p260_sources_are_commit_pinned_official_endpoints() -> None:
 def test_p260_fact_parser_separates_observation_from_rights() -> None:
     config = json.loads(CONFIG.read_text(encoding="utf-8"))
     readme = b"""
+    CVPR 2026 New Trends in Image Restoration and Enhancement NTIRE workshop.
+    Efficient Burst HDR and Restoration.
     Training, validation, and test datasets. 300 scenes. 200 scenes. 20 scenes. 20 scenes.
     Each scene consists of nine input RAW frames Scene-xxx-in-0.tif through Scene-xxx-in-8.tif
     and Scene-xxx-gt.tif. The reference frame is aligned with GT image and uses short exposure time.

@@ -8,11 +8,11 @@
     "contract_bytes": 3626,
     "contract_sha256": "d508a27289d530a643823ff21a6ece9930cb7fba2e525ef41b11762672201fc8",
     "runner_path": "scripts/audit_p260_ntire2026_burst_hdr_source_eligibility.py",
-    "runner_bytes": 8900,
-    "runner_sha256": "d633cdbbe58cf49a07f17f2386a596df243d5d770f1b5ab0e1ea201cb4e6a421",
+    "runner_bytes": 9292,
+    "runner_sha256": "4b555b7a16ed4a5d47a044f004e409b01e4eeaec20d063dd39a41cc29f5503e2",
     "test_path": "tests/test_p260_ntire2026_burst_hdr_source_eligibility.py",
-    "test_bytes": 2924,
-    "test_sha256": "96499ed31c689b8a488c38ba133e8bbf79bcd77bc70e0855927bdda83c307cbb"
+    "test_bytes": 3043,
+    "test_sha256": "8b43d687ece71dec429156048c5d504904949d5ec5b63eb42be29d962ff06fb1"
   },
   "official_repository": {
     "full_name": "Eve-ctr/RawFusion",

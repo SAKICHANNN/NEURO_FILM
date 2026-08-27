@@ -141,19 +141,26 @@ def _extract_facts(
             "scene-xxx-gt.tif",
         )
     )
+    repository_challenge_identity = (
+        "cvpr 2026 new trends in image restoration and enhancement" in lower
+        and "ntire" in lower
+        and "efficient burst hdr and restoration" in lower
+    )
+    cvf_code_url_present = expected["code_url"].casefold() in cvf_lower
     official_identity = (
         commit["sha"] == repo["commit"]
         and commit["tree"]["sha"] == repo["tree"]
         and tree["sha"] == repo["tree"]
         and len(tree["tree"]) == int(expected["tree_entry_count"])
         and expected["paper_title"].casefold() in cvf_lower
-        and expected["code_url"].casefold() in cvf_lower
+        and repository_challenge_identity
     )
     return {
         "anonymous_public_payload": public_payload_locator,
         "code_license_paths": licence_paths,
         "commercial_compatible_code_rights": explicit_code_license,
         "commercial_compatible_data_rights": explicit_commercial_data_rights,
+        "cvf_code_url_present": cvf_code_url_present,
         "dataset_payload_paths": dataset_payload_paths,
         "documented_downloaded_training_scene_count_present": "200 scenes" in lower,
         "exact_inventory_paths": exact_inventory_paths,
@@ -162,6 +169,7 @@ def _extract_facts(
         "official_identity": official_identity,
         "public_exact_inventory": bool(exact_inventory_paths),
         "repository_path_count": len(lower_paths),
+        "repository_challenge_identity": repository_challenge_identity,
         "training_scene_count_present": "300 scenes" in lower,
         "training_use_restriction_present": training_restriction,
         "validation_and_test_scene_counts_present": lower.count("20 scenes") >= 2,
