@@ -137,7 +137,7 @@ def _acquire_member(
         "--speed-time",
         "30",
         "--max-time",
-        "600",
+        "120",
         "--continue-at",
         "-",
         "--user-agent",
