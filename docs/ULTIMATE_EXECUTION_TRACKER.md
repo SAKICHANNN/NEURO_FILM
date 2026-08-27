@@ -2726,3 +2726,36 @@ rejected operator. Exact scene, rows, operator, controls and gates are closed
 without tuning or cross-scene confirmation; candidate 3 remains unconsumed.
 Evidence:
 `docs/evidence/P287_WILDRELIGHT_ENVMAP_CONDITIONED_HDR_D0_RESULT.json`.
+
+P288 formally closes the first complete no-copy composition of the four
+source-locked DNG profile-stage callables. The wrapper preserves the frozen
+Adobe order `HueSatMap -> ProfileGainTableMap -> exposure -> LookTable ->
+ToneCurve` and is byte-identical to direct sequential application, with input
+ownership and invalid-control gates passing. Two reports are byte-exact at
+9,077 bytes / SHA `104c3a21...0ee5`, stable `1d5085a7...b438`. The exact
+synthetic fixture leaves the strict SDR domain immediately after PGTM, so the
+pre-output domain gate fails and no composed renderer, quality, product or
+candidate-3 claim opens. Evidence:
+`docs/evidence/P288_DNG_PROFILE_STAGE_COMPOSITION_RESULT.json`.
+
+P289 passes one bounded libavif v1.4.2 gain-map AVIF encoder D0 on the exact
+P278 hash-min valid fixture. Official `avifgainmaputil combine` at frozen
+12-bit 4:4:4/q100 settings produces a 726,506-byte AVIF with exact SHA
+`94556d9f...6da70`; independent HDR and SDR endpoint decodes have frozen
+12-bit median/p95/max code errors `0/0/1` and `0/1/1`. Two reports are
+byte-exact at 2,295 bytes / SHA `aa74dd49...2d38`, stable
+`d4e3f466...29782`. This proves only private one-fixture encoder mechanics,
+not complete ISO 21496-1, arbitrary-media support, a tone policy, product
+admission or candidate 3. Evidence:
+`docs/evidence/P289_LIBAVIF_GAINMAP_ENCODER_D0_RESULT.json`.
+
+P290 closes the adjacent wrapper family with a private create-only API around
+the unchanged P289 runtime. Callers must provide absolute HDR/SDR endpoint and
+tool paths with exact hashes, fixed CICP/headroom values and an absent
+destination; publication uses the existing same-volume exFAT-compatible
+create-only primitive. Two reports are byte-exact at 2,391 bytes / SHA
+`3231c930...3ddd`, stable `09f33d61...546a`; media and decoded endpoints are
+exact P289 identities, and ten runtime/input/publication negative controls
+reject atomically. No public API, default, product, arbitrary-media or
+candidate-3 state changes. Evidence:
+`docs/evidence/P290_LIBAVIF_GAINMAP_CREATE_ONLY_API_RESULT.json`.

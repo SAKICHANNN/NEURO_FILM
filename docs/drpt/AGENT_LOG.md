@@ -18989,3 +18989,29 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   counts and SHA-256 with zero stage residue. No tuning, scene replacement,
   cross-scene confirmation, relighting-quality claim, shared operator,
   package/schema/capability/product or candidate-3 change opens.
+
+### 2026-08-27 - P288-P290 close DNG composition and bounded gain-map encoding
+
+- **Nodes:** `ULT > DNG profile stages > P288` and `ULT > HDR media >
+  P289/P290`; DRPT L2 / Mode C. `dev-research-reliability` was the primary
+  workflow, with research, DRPT-BI, agent-log and structure stewardship as
+  secondary constraints.
+- **P288:** composed the four exact source-locked DNG callables in the frozen
+  Adobe stage order. Wrapper/direct bytes, ownership and invalid controls pass,
+  but the synthetic fixture leaves the strict SDR domain after PGTM. Formal
+  FAIL_CLOSED reports are 9,077 bytes / SHA `104c3a21...0ee5`, stable
+  `1d5085a7...b438`; evidence commit `d6a2c8b1`, 34 adjacent tests pass.
+- **P289:** froze official libavif v1.4.2 and the exact P278 gain-map fixture,
+  then encoded one 12-bit 4:4:4 gain-map AVIF. The 726,506-byte media SHA is
+  `94556d9f...6da70`; HDR/SDR endpoint errors pass at `0/0/1` and `0/1/1`
+  codes. Reports are 2,295 bytes / SHA `aa74dd49...2d38`, stable
+  `d4e3f466...29782`; evidence commit `a0b0fb83`, 31 adjacent tests pass.
+- **P290:** added a private create-only wrapper requiring exact endpoint/tool
+  hashes and using the existing exFAT-safe same-volume publication primitive.
+  Reports are 2,391 bytes / SHA `3231c930...3ddd`, stable
+  `09f33d61...546a`; ten negative controls reject atomically. Evidence commit
+  `10f9eda5`, 33 adjacent tests pass.
+- **Boundary/handoff:** P288 opens no composed renderer. P289/P290 prove one
+  fixture and one private wrapper only; adjacent wrapper expansion stops.
+  There is no SDR tone policy, complete ISO/arbitrary-media support, public
+  API/default/product promotion or candidate-3 consumption.
