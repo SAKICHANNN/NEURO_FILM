@@ -1,7 +1,24 @@
 {
   "schema": "neuro-film.p293-eyefultower-dci-p3-exr-working-image-contract.v1",
   "experiment_id": "P293",
-  "status": "FROZEN_SOURCE_LOCKED_AWAITING_HEADER_PREFLIGHT",
+  "status": "FROZEN_HEADER_PREFLIGHT_FAIL_READY_FOR_EXACT_REPLAY",
+  "bindings": {
+    "contract_path": "docs/planning/P293_EYEFULTOWER_DCI_P3_EXR_WORKING_IMAGE_CONTRACT.md",
+    "contract_commit": "ba344ddd",
+    "contract_bytes": 3520,
+    "contract_sha256": "2063aaadc1332c18aefd3ee4b4d79b8046d110ce5f182c86ada16106ea9e2baf",
+    "runner_path": "scripts/audit_p293_eyefultower_dci_p3_exr_working_image.py",
+    "runner_commit": "5ca34629",
+    "runner_bytes": 8661,
+    "runner_sha256": "8935c8e85b6fd1c15b63c2a74df7f9e2afd2537a584ec2ca5e97f022ad89a0b6",
+    "test_path": "tests/test_p293_eyefultower_dci_p3_exr_working_image.py",
+    "test_commit": "5ca34629",
+    "test_bytes": 1594,
+    "test_sha256": "14dc0c7f3cf953f438ff89b80ad724199704f871b3e0462119d1bdeab850bc12",
+    "openexr_wheel_path": "data/vendor/openexr-3.4.15/openexr-3.4.15-cp312-cp312-win_amd64.whl",
+    "openexr_wheel_bytes": 740197,
+    "openexr_wheel_sha256": "7aa145813acfe10a83d6e89340349379828190b321608e69f2aee426e10c890b"
+  },
   "parent": {
     "evidence_path": "docs/evidence/P292_EYEFULTOWER_DCI_P3_EXR_SOURCE_READINESS_RESULT.json",
     "evidence_commit": "4d1e8360",
@@ -43,6 +60,36 @@
     "persistent_decoded_pixels_or_media": 0,
     "fitting_training_inference_runs": 0
   },
+  "expected_header": {
+    "keys": [
+      "channels",
+      "compression",
+      "dataWindow",
+      "displayWindow",
+      "lineOrder",
+      "pixelAspectRatio",
+      "screenWindowCenter",
+      "screenWindowWidth"
+    ],
+    "channels": {
+      "B": {"type": "FLOAT", "x_sampling": 1, "y_sampling": 1},
+      "G": {"type": "FLOAT", "x_sampling": 1, "y_sampling": 1},
+      "R": {"type": "FLOAT", "x_sampling": 1, "y_sampling": 1}
+    },
+    "compression": "NO_COMPRESSION",
+    "data_window": {"min": [0, 0], "max": [1081, 722]},
+    "display_window": {"min": [0, 0], "max": [1081, 722]},
+    "line_order": "INCREASING_Y",
+    "pixel_aspect_ratio": 1.0,
+    "chromaticities_present": false
+  },
+  "runtime": {
+    "openexr_version": "3.4.15",
+    "wheel_path": "data/vendor/openexr-3.4.15/openexr-3.4.15-cp312-cp312-win_amd64.whl",
+    "wheel_bytes": 740197,
+    "wheel_sha256": "7aa145813acfe10a83d6e89340349379828190b321608e69f2aee426e10c890b"
+  },
+  "preformal_header_diagnostic": "After the exact source-lock commit and before any channel read or color transform, pinned OpenEXR 3.4.15 InputFile.header() exposed exact RGB FLOAT channels, NO_COMPRESSION and 1082x723 matching windows but no chromaticities or equivalent color-identity attribute. The formal runner is therefore header-only and must fail the frozen container-color-identity gate with zero pixel reads and zero transformed output.",
   "gates": {
     "require_parent_and_source_identity": true,
     "require_one_nondeep_scanline_part": true,
