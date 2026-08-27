@@ -61,7 +61,7 @@ function probe(){
     const forms=[...document.querySelectorAll('form')];
     const target=forms.find(form => form.querySelector('input[name="request_file"]')?.value === ${JSON.stringify(wanted)});
     if(!target || cards.length !== 3 || !cards.every(card => card.querySelector('img')?.complete)) return {state:'waiting'};
-    const remote=[...performance.getEntriesByType('resource')].map(entry=>entry.name).filter(name => /^https?:/i.test(name) && !/^http:\/\/127\.0\.0\.1:/i.test(name));
+    const remote=[...performance.getEntriesByType('resource')].map(entry=>entry.name).filter(name => { try { const url=new URL(name); return (url.protocol==='http:' || url.protocol==='https:') && url.hostname!=='127.0.0.1'; } catch { return false; } });
     const facts={state:'submitted',cards:cards.length,forms:forms.length,images:document.querySelectorAll('img').length,buttons:document.querySelectorAll('button[type="submit"]').length,distinctHeadings:new Set([...document.querySelectorAll('.look-card h2')].map(node=>node.textContent)).size,allImagesDecoded:cards.every(card=>card.querySelector('img').naturalWidth>0),liveRegions:document.querySelectorAll('[aria-live="polite"]').length,remoteResources:remote};
     target.requestSubmit();
     return facts;
