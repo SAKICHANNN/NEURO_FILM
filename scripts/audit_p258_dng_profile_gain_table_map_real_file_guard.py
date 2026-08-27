@@ -36,6 +36,7 @@ def _git_head() -> str:
 
 
 def _bound(path: Path) -> dict[str, object]:
+    path = path.resolve()
     return {
         "bytes": path.stat().st_size,
         "path": path.relative_to(ROOT).as_posix(),

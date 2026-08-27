@@ -24,8 +24,8 @@
     "sdk_zip_sha256": "73499b47f4683e12120a234bd0946f02e52ab2ff9834bcbd0e9f8ab4f923360e",
     "sdk_tag_code_member": "dng_sdk_1_7_1/dng_sdk/source/dng_tag_codes.h",
     "runner_path": "scripts/audit_p258_dng_profile_gain_table_map_real_file_guard.py",
-    "runner_bytes": 9656,
-    "runner_sha256": "c5cd630ec7a29132b1451932d857b5ef83bd085c22b43353e3fc8d13536a8a86",
+    "runner_bytes": 9682,
+    "runner_sha256": "3586d7a51609e179625eb3a9c401986eee4d1bbbdee6ad8bfb94054bf62bfee3",
     "test_path": "tests/test_p258_dng_profile_gain_table_map_real_file_guard.py",
     "test_bytes": 2110,
     "test_sha256": "6d5771b3d06e72cbcfa8d046e7d6f09dcd157844df9ca77c914cd2444a762eee"
