@@ -18094,3 +18094,31 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   public package/schema/capability, stock evidence, single-reference matching
   or product admission. Candidate count remains `2/3`; no further DNG tag-guard
   or callable-wrapper micro-leaf opens.
+
+### 2026-08-27 - U4.5B removes the 1MP JPEG preview decode memory floor
+
+- **Node and scope:** `ULT > U4 performance > U4.5B`, DRPT L2 / Mode C.
+  Following U4.5A's diagnosis, this leaf tests one materially different
+  architecture: explicit libjpeg decoder scaling before float32 expansion for
+  the JPEG preview tier. Generic WorkingImage ingress, non-JPEG inputs, final
+  export, three stock parameters and scientific claims remain unchanged.
+- **Prescore and implementation:** an in-memory feasibility probe passed the
+  existing U7.3G `0.03` RGB-RMSE, `0.08` p95 and `0.001` new-boundary limits.
+  Contract `0248458b`, implementation `6354635b` and audit `6061bd0a` then
+  froze the exact source, ICC handling, 816x1224 target, two fresh processes,
+  1GiB/15s resource limits and no-rescue rules.
+- **Evidence:** `fa65e91d`, raw report SHA `b9360f76...2c994`. Libjpeg decodes
+  4032x6048 to 1008x1512 before float32 conversion, then performs the existing
+  linear-light resize and unchanged shared-context render. Both runs have
+  exact three-stock output hashes and distinct outputs. Maximum fidelity
+  errors are RGB RMSE `0.01658`, p95 `0.03478`, new-boundary `0`; maximum wall
+  is `6.6287s`, repeat ratio `1.0289`, and peak process-tree RSS
+  `188,661,760B`. Twelve focused/evidence tests pass; Ruff, py_compile, JSON,
+  formal-hash and diff checks are clean; owned scratch is empty.
+- **Decision and boundary:**
+  `PASS_JPEG_SCALED_PREVIEW_DECODE_PRODUCT_LATENCY_OPEN`. Relative to U4.5A's
+  1MP baseline, maximum RSS is `0.09914x` and wall is `0.80137x`. Retain the
+  explicit JPEG preview mechanism, but do not call it final export, calibrated
+  stock response, stock distinction, cross-platform performance or release.
+  The separate 300ms warm-preview target and 12/24MP/M5/device tiers remain
+  open; do not return to the closed Python buffer micro-optimization family.
