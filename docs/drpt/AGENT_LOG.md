@@ -17822,3 +17822,28 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   historical commits remain replayable. Default Python preview tests and the
   closed evidence test pass. End this native adjacency and resume controlled
   multi-stock evidence/product work.
+
+### 2026-08-27 - P258 confirms the PGTM refusal on one retained real DNG
+
+- **Node and scope:** `ULT > mature RAW/DNG explicit mechanisms > P258`, DRPT
+  L2 / Mode C. This is a real-file confirmation of the unchanged P257 safety
+  guard, not a new renderer. It reuses the exact P7H Samsung Galaxy S21 Ultra
+  CC0 DNG (`37,770,480` bytes, SHA `5baeb5f0...dc5e`) with zero network,
+  source copy, metadata extract, preview or pixel artifact.
+- **Formal result:** contract `2673a29a`, audit freeze `3a1fb3f5`, lexical
+  junction-binding fix `eda2d84c`, evidence `ac4780c4`. The file exposes only
+  `ProfileGainTableMap(52525)@0` from the guarded family (`count=111088`, TIFF
+  type `UNDEFINED`); `ProfileGainTableMap2(52544)` is absent. The unchanged
+  public P98 opt-in loader emits the complete name/code/IFD diagnostic before
+  camera decode (`decode_calls=0`) and preserves the source SHA. Forward and
+  reverse fresh-process reports are byte exact at `652307f6...c7a27`, stable
+  `db840e6a...7b7a`; all frozen gates pass. Two earlier executions wrote zero
+  reports and were excluded after report-only path fixes: first a relative
+  config binding, then a junction-resolving path representation. No scientific
+  method, source, tag, metric or gate changed. Twenty-six adjacent tests pass
+  with Ruff, py_compile, JSON, binding and diff checks.
+- **Boundary and handoff:** this closes the PGTM guard confirmation family.
+  There is no gain-map application, LinearRaw decode, Adobe renderer parity,
+  complete/arbitrary DNG or image-quality claim, interface/package/schema/
+  capability/product mapping, or candidate3 change. Continue only a distinct
+  mature RAW/HDR gap or genuinely new paired/capture-time/physical evidence.
