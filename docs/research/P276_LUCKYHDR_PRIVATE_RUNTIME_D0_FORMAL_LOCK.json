@@ -1,0 +1,34 @@
+{
+  "schema": "neuro-film.p276-luckyhdr-private-runtime-d0-formal-lock.v1",
+  "experiment_id": "P276",
+  "status": "FROZEN_BEFORE_FORMAL_FORWARD_REVERSE_RUNTIME",
+  "date": "2026-08-27",
+  "implementation_commit": "466f8150",
+  "artifacts": [
+    {"path": "configs/p276_luckyhdr_private_runtime_d0_v1.json", "bytes": 3361, "git_blob": "a0b23bca80ba861b8f39f6de9b3575807550ff7c", "sha256": "a62d0b0fa73db2e93beec2c1ea323661105b167379ceb78aeea8b75cec785ad0"},
+    {"path": "docs/planning/P276_LUCKYHDR_PRIVATE_RUNTIME_D0_CONTRACT.md", "bytes": 1918, "git_blob": "df79740e10f473505b7ba444d848dfac1ac08a84", "sha256": "50e46f22109821ef27d0d9337c84cf20ba4f10144b65202b3ff4a15ee1401b70"},
+    {"path": "scripts/run_p276_luckyhdr_private_runtime_d0.py", "bytes": 12086, "git_blob": "e915c3da40d699b1a71404a249c4efab445c3bad", "sha256": "2d9bf6216e0d0a69cdcbd08222178666cb842518563ab8a5baa3185e87f70030"},
+    {"path": "tests/test_p276_luckyhdr_private_runtime_d0.py", "bytes": 1115, "git_blob": "a0e448973e6381ef701b879b1efe394e666eb289", "sha256": "98e511cb99c4ca1d11efa04d9a0705e4a41c2d50addf9fd4f4cdd629fc978913"}
+  ],
+  "source_manifest": {
+    "path": "data/external/p276_luckyhdr_private_runtime_v1/source_manifest_v1.json",
+    "bytes": 2569,
+    "sha256": "d06b0030f5bd70a22f395777e108905dda9b1969623bdc6bb4d62ad9b0ce7661",
+    "object_count": 11,
+    "total_bytes": 27583023,
+    "pixel_decodes": 0,
+    "model_loads": 0,
+    "target_reads": 0
+  },
+  "formal_runs": {
+    "orders": ["forward", "reverse"],
+    "fresh_processes": true,
+    "exact_output_png_required": true,
+    "output_root": "outputs/eval/p276_luckyhdr_private_runtime_d0_v1"
+  },
+  "preformal_notes": [
+    "Bounded curl retries emitted transient Schannel handshake errors while acquiring distinct objects, then completed all 11 exact Git blobs. No object substitution, mirror, pixel decode or model load occurred."
+  ],
+  "stop_rule": "Any formal mismatch closes P276 without CPU/backend/exposure/checkpoint/input/size substitution or tolerance rescue.",
+  "claim_ceiling": "Private runtime/mechanism D0 for one exact official LuckyHDR checkpoint and one exact bundled real three-frame ProRAW bracket only; no HDR ground-truth quality, arbitrary bracket, redistribution/commercial rights, package/schema/capability/product admission or candidate3."
+}
