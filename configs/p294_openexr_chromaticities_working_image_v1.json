@@ -18,6 +18,7 @@
       "url": "https://raw.githubusercontent.com/AcademySoftwareFoundation/openexr-images/e38ffb0790f62f05a6f083a6fa4cac150b3b7452/Chromaticities/Rec709.exr",
       "bytes": 908168,
       "git_blob": "13b3fca94da1426e4793bd66a20299c955b73d00",
+      "sha256": "15028cbf7bf0efa43738890af715ec550d26ae9e32a1020d0f4e7c785d3a370e",
       "chromaticities": [0.64, 0.33, 0.3, 0.6, 0.15, 0.06, 0.3127, 0.329]
     },
     {
@@ -27,6 +28,7 @@
       "url": "https://raw.githubusercontent.com/AcademySoftwareFoundation/openexr-images/e38ffb0790f62f05a6f083a6fa4cac150b3b7452/Chromaticities/XYZ.exr",
       "bytes": 930048,
       "git_blob": "cd4423ab12669b4caaaeb157ddd08fe430f5a775",
+      "sha256": "8d97c476726ae67a086220463c91b7202279a4c7c1ea94810ce75a4c28e7825f",
       "chromaticities": [1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.33333334, 0.33333334]
     }
   ],
