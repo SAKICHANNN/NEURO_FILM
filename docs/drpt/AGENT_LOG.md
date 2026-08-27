@@ -19254,6 +19254,29 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   default loader, package/schema/capability/product, stock evidence or
   candidate-3 admission.
 
+### 2026-08-27 - P299 repairs HDR PNG create-only publication on P/exFAT
+
+- **Node:** `ULT > mature HDR/media transactions > P299`; DRPT L2 / Mode C.
+  After P298, adjacent DNG tag guards were deliberately stopped. Read-only
+  product-core audit found that the deterministic streaming PNG rail staged
+  sibling bytes but finalized with `os.replace`, permitting overwrite of a
+  destination created after a wrapper's early absence check.
+- **Freeze and implementation:** contract `d69648b2`, implementation
+  `b8cc1b5b`, formal runner `6c43fa26` and evidence `f9342db8`. Only the final
+  publication operation changed, reusing the already verified U6.P8CS1
+  same-volume no-replace primitive. Pixel conversion, compression, cICP,
+  row partitioning, wrappers and defaults are unchanged.
+- **Result:** both a pre-existing target and a target injected after writer
+  construction remain byte exact, both failed stages are removed, and a real
+  resolved-P-backed 37x29 Rec.2100-PQ probe publishes 6,551 exact bytes at SHA
+  `332578d3...53014`. RGB16 samples and cICP are exact; media and stage residue
+  are zero. Forward/reverse 1,513-byte reports are byte exact at SHA
+  `bfbb1d4a...75285`; 22 adjacent tests plus Ruff, format, JSON and diff checks
+  pass.
+- **Boundary:** retain private canonical-P/exFAT transaction safety only. No
+  new colour transform, HDR/display quality, arbitrary media, package/schema/
+  capability, stock evidence or product-default admission opens.
+
 ### 2026-08-27 - RF3.D15 closes autonomous three-stock blind salience
 
 - **Node and scope:** `ULT > RF3 > RF3.D15`, DRPT L2 / Mode C. This leaf
