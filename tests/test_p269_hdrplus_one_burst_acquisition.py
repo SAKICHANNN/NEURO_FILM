@@ -24,7 +24,7 @@ CONFIG = ROOT / "configs/p269_hdrplus_one_burst_acquisition_v1.json"
 
 def test_p269_manifest_is_exact_and_bounded() -> None:
     config = json.loads(CONFIG.read_text(encoding="utf-8"))
-    assert config["status"] == "ACQUISITION_EXECUTION_LOCKED"
+    assert config["status"] == "FORMAL_EXECUTION_LOCKED_AFTER_BOUNDED_PROBE_CORRECTION"
     assert len(config["objects"]) == 24
     assert sum(item["bytes"] for item in config["objects"]) == 256_482_210
     assert config["expected_total_bytes"] < config["maximum_total_bytes"]
