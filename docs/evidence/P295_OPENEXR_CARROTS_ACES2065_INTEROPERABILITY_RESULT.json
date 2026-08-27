@@ -1,0 +1,89 @@
+{
+  "schema": "neuro-film.p295-openexr-carrots-aces2065-interoperability-evidence.v1",
+  "experiment_id": "P295",
+  "status": "FAIL_CLOSED_OPENEXR_CARROTS_ACES2065_INTEROPERABILITY",
+  "date": "2026-08-27",
+  "decision": "The exact official Carrots EXR carries the declared AP0/D60 chromaticities and D60 adoptedNeutral, but it is RGBA HALF rather than RGB FLOAT and omits both acesImageContainerFlag and colorInteropID. The unchanged strict P251 contract therefore rejects the file before every pixel-channel read and WorkingImage output.",
+  "commits": {
+    "preregistration": "9916272a",
+    "source_lock": "86b9671b",
+    "implementation_and_formal_lock": "7ce252ed"
+  },
+  "protocol": {
+    "contract_path": "docs/planning/P295_OPENEXR_CARROTS_ACES2065_INTEROPERABILITY_CONTRACT.md",
+    "contract_bytes": 2355,
+    "contract_sha256": "2619e9e4a23546ada87b1c0c44abaa254b49efcaa0a2e86e696ff5f05f659fae",
+    "config_path": "configs/p295_openexr_carrots_aces2065_interoperability_v1.json",
+    "config_bytes": 5518,
+    "config_sha256": "daeffbc5b4de4bfa646dda881c6105bf242f1b81959ff700d3566cb770e2f853",
+    "runner_path": "scripts/audit_p295_openexr_carrots_aces2065_interoperability.py",
+    "runner_bytes": 10854,
+    "runner_sha256": "f6850589e7fa01e9f9e5579f8b404c4453c993d692db72dd67ff6761a1c84c34",
+    "test_path": "tests/test_p295_openexr_carrots_aces2065_interoperability.py",
+    "test_bytes": 2040,
+    "test_sha256": "a4dd0522c14be648c8798aa08a79de706d0d72a6c1ea8381bb4e2e58db72e224"
+  },
+  "official_source": {
+    "repository": "https://github.com/AcademySoftwareFoundation/openexr-images",
+    "revision": "e38ffb0790f62f05a6f083a6fa4cac150b3b7452",
+    "license_blob": "268d234adc762429a5d7db6a456651d7d0933dd1",
+    "declaration_blob": "ed0909aaf5930b39179afae905e93e15cccb284a",
+    "repository_path": "ScanLines/Carrots.exr",
+    "path": "data/external/p295_openexr_carrots_aces2065_v1/Carrots.exr",
+    "bytes": 914825,
+    "git_blob": "b4697022c7120065b1d6131b20da363a8ff88069",
+    "sha256": "892d9eb1d2b22a3c7c57d22fa60c33aaa4a49ba3ead5304ec594b274aa39e4e1",
+    "manifest_bytes": 873,
+    "manifest_sha256": "7354237c1e7266a4c8e0680a7e1390a9b41e0ffb4ce4aaefa563b933da01e2d8",
+    "payload_requests": 1,
+    "jpeg_requests": 0,
+    "replacement_sample_requests": 0
+  },
+  "observed_header": {
+    "dimensions": [600, 400],
+    "channels": ["A:HALF", "B:HALF", "G:HALF", "R:HALF"],
+    "compression": "ZIP_COMPRESSION",
+    "line_order": "INCREASING_Y",
+    "chromaticities": [0.7347000241279602, 0.2653000056743622, 0.0, 1.0, 0.00009999999747378752, -0.07699999958276749, 0.3216800093650818, 0.3376699984073639],
+    "adopted_neutral": [0.3216800093650818, 0.3376699984073639],
+    "aces_image_container_flag": null,
+    "color_interop_id": null
+  },
+  "formal": {
+    "forward_report_path": "outputs/eval/p295_openexr_carrots_aces2065_interoperability/formal_forward.json",
+    "reverse_report_path": "outputs/eval/p295_openexr_carrots_aces2065_interoperability/formal_reverse.json",
+    "report_bytes_each": 3111,
+    "report_sha256": "247f61fe453fe514428af2f6eefbf7b5cbd1ac9e35d71f6efe04b27e04d0cac2",
+    "reports_byte_exact": true,
+    "scientific_identity": "sha256:2cf39178d0c0d53eab740d0f30feff0998b80ff86be7f291b3ffe584f092b4a4",
+    "fresh_process_count": 2,
+    "pixel_channel_reads": 0,
+    "working_image_outputs": 0
+  },
+  "gates": {
+    "aces_image_container_flag_exact": false,
+    "adopted_neutral_exact": true,
+    "ap0_chromaticities_exact": true,
+    "color_interop_id_exact": false,
+    "exact_header_structure": true,
+    "exact_local_and_source_identities": true,
+    "exact_openexr_runtime": true,
+    "float_rgb_only": false,
+    "source_immutable": true,
+    "zero_forbidden_payload_reads": true,
+    "zero_pixel_reads": true,
+    "zero_temporary_residue": true,
+    "zero_working_image_outputs": true,
+    "two_reports_byte_exact": true
+  },
+  "cleanup": {
+    "formal_temporary_residue": 0,
+    "diagnostic_site_path": "tmp/p295_header_site",
+    "diagnostic_site_cleanup_status": "policy_rejected_before_execution",
+    "alternate_deletion_attempted": false
+  },
+  "interpretation": "The official documentation's ACES2065-1 chromaticity statement is accurate for this file, but it does not imply conformance to the stricter P251 AP0 master-container contract. P295 does not rewrite HALF to FLOAT, discard alpha, insert identity attributes, modify P251 or select another sample. This precise compatibility negative closes the sole representative official-sample family.",
+  "candidate_count_after_result": "2/3",
+  "consumer_mapping": false,
+  "claim_ceiling": "One exact official-file strict-container compatibility negative only. No pixel decode, WorkingImage conversion, arbitrary OpenEXR, general ACES, SMPTE certification, display/image quality, default loader, package/schema/capability/product, stock evidence or candidate-3 change."
+}
