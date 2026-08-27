@@ -1,0 +1,35 @@
+{
+  "schema": "neuro-film.sf3-a2b-three-stock-pooled-global-control-contract.v1",
+  "experiment_id": "SF3.A2B",
+  "status": "FROZEN_BEFORE_PHYSICAL_TARGET_ADMISSION",
+  "question": "Do the three independently selected stock-specific K=1 operators improve sealed confirmation targets beyond one fixed operator selected and fit on the pooled three-stock development population?",
+  "parent": {
+    "k1_contract": {
+      "path": "configs/sf3_a2_three_stock_k1_baseline_v1.json",
+      "sha256": "e8242b5e90f9c893ba6a7ca74910e88b9bd4444052c825293ce2bae0f15edd19",
+      "required_status": "FROZEN_BEFORE_PHYSICAL_TARGET_ADMISSION"
+    }
+  },
+  "required_stocks": [
+    "fujifilm_velvia_50",
+    "kodak_portra_400",
+    "kodak_ektar_100"
+  ],
+  "pooled_selection": {
+    "fold_identity": "stock_id_plus_roll_id",
+    "candidate_family_and_bounds": "exact_parent_sf3_a2",
+    "confirmation_target_access_before_all_selections_frozen": 0
+  },
+  "gates": {
+    "minimum_confirmation_frames_per_stock": 4,
+    "minimum_stock_specific_win_rate_over_pooled_global": 0.75,
+    "minimum_median_relative_improvement_over_pooled_global": 0.05,
+    "minimum_worst_relative_improvement_over_pooled_global": -0.1,
+    "require_all_three_stocks_pass": true,
+    "require_finite_outputs_and_metrics": true,
+    "require_exact_replay": true
+  },
+  "decision_if_pass": "OPEN_STOCK_SPECIFIC_K1_AS_INCREMENTAL_OVER_POOLED_GLOBAL_CONTROL",
+  "decision_if_fail": "RETAIN_POOLED_OR_IDENTITY_BASELINE_AND_CLOSE_FAILED_STOCKS_WITHOUT_CAPACITY_RESCUE",
+  "claim_ceiling": "Controlled paired held-out evidence that three stock-labelled K=1 explicit operators add predictive value beyond one pooled global explicit operator. Not calibrated stock response, scanner/process generalisation, preference, product promotion, adaptive routing, K greater than 1 or multi-stock completion."
+}
