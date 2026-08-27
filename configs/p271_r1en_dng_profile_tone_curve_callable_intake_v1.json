@@ -1,0 +1,41 @@
+{
+  "schema": "neuro-film.p271-r1en-dng-profile-tone-curve-callable-intake-contract.v1",
+  "experiment_id": "P271",
+  "node": "ULT > mature RAW/DNG explicit mechanisms > P271",
+  "status": "FROZEN_BEFORE_FIXTURE_DESERIALIZATION_OR_CALLABLE_IMPORT",
+  "question": "Can the consumer independently verify and execute the exact R1EN ProfileToneCurve v1 callable from source-locked producer Git objects without copying it into consumer src?",
+  "contract_path": "docs/planning/P271_R1EN_DNG_PROFILE_TONE_CURVE_CALLABLE_INTAKE_CONTRACT.md",
+  "producer": {
+    "repo_head": "0acbec09e98ebff621b90f2f51c9a182a3b81fb8",
+    "contract_commit": "f5f053a50a6d6c158016cd91bea22ccb44320868",
+    "implementation_commit": "cf0f9df74de2e1b7d73569f39f4f2b40a7aa0607",
+    "audit_commit": "a37b8cea0888bd81c6919649b487ce73f01b5c62",
+    "execution_commit": "d5b0f6220017193b41d1e749bb26c9e99d75d966",
+    "evidence_commit": "0acbec09e98ebff621b90f2f51c9a182a3b81fb8"
+  },
+  "callable": {
+    "id": "zhuise.dng-profile-tone-curve-callable.v1",
+    "function": "zhuise.dng_profile_tone_curve_callable.apply_dng_profile_tone_curve_callable_v1",
+    "input": "finite linear ProPhoto/ROMM scalar or arbitrary-shaped floating array",
+    "output": "owned writable C-contiguous float64 array with exact input shape",
+    "stage_order": "after ProfileHueSatMap, ProfileGainTableMap/Map2, exposure and ProfileLookTable"
+  },
+  "artifacts": {
+    "contract": {"commit_role": "contract_commit", "path": "docs/research/R1EN_DNG_PROFILE_TONE_CURVE_CALLABLE_V1_CONTRACT.json", "git_blob": "18e1abd1130567c95c0f03b4446fe09d360bd699", "bytes": 4614, "sha256": "69c915380995daa871120fa8fc074e90b25aa4d759b325843ee92c902b7171a3"},
+    "parent_evidence": {"commit_role": "implementation_commit", "path": "docs/evidence/R1DX_DNG_PROFILE_TONE_CURVE_RESULT.json", "git_blob": "0615f04013b53dfd1dd5fdaff7fb198a8bc8857f", "bytes": 3414, "sha256": "d95208630c7b58e97524b83c78206fbea77d9afd359ad355c68511a23c69b82d"},
+    "arithmetic_core": {"commit_role": "implementation_commit", "path": "src/zhuise/dng_profile.py", "git_blob": "63b1b617879bead1cd542915301075856764e916", "bytes": 36685, "sha256": "f9df747091754c9020c24e0bd53f2db1c02287e9a57be25593ea89f23af11b43"},
+    "callable": {"commit_role": "implementation_commit", "path": "src/zhuise/dng_profile_tone_curve_callable.py", "git_blob": "961b697f6c40926ce01996ab6a3a1f30ef788ffa", "bytes": 3002, "sha256": "8aed8d692c1ca40190a2f9dee1322631351510d7e07079b0222335feee8078df"},
+    "schema": {"commit_role": "implementation_commit", "path": "schemas/zhuise_dng_profile_tone_curve_callable_v1.schema.json", "git_blob": "698bc4f2daa7525f2f491d3b8a93024d33485afb", "bytes": 567, "sha256": "c8d59ef9bc41a9f21a881907005e3f5f7fec6171383b4737b2941f082830e94d"},
+    "fixture": {"commit_role": "implementation_commit", "path": "tests/fixtures/r1dx_dng_profile_tone_curve_callable_v1_fixture.json", "git_blob": "7ebdfeb5b14b9ea4311fa1116eabd0de100f4496", "bytes": 5189, "sha256": "d1a5aee3180acc62e6f9d2f14449edf03f83a55f7ff3b777f77b09fb9de5c998"},
+    "execution_lock": {"commit_role": "execution_commit", "path": "docs/research/R1EN_DNG_PROFILE_TONE_CURVE_CALLABLE_EXECUTION_LOCK.json", "git_blob": "cc6089e32c1f73e12f0baa3e0a2b60cd29aabf92", "bytes": 2467},
+    "evidence": {"commit_role": "evidence_commit", "path": "docs/evidence/R1EN_DNG_PROFILE_TONE_CURVE_CALLABLE_RESULT.json", "git_blob": "8e2b0a177c7a0779d9cdd93726333d2411c692ec", "bytes": 4431, "sha256": "eacf9c1f36b6b5438bfa236a9bec4074ea60d178e4cf65b2ad5c6bb644b93087"}
+  },
+  "producer_summary_bindings": {
+    "real_curve_points_f32le_sha256": "b3afd859fde1a6688628c2c6ed3ce0d6a3086ddfc44fdacb672bddd9bb5a4425",
+    "formal_report_sha256": "d60e4d67f389208a106808439b3e8a5fcf1288c5ffd43864a7d77c8a21d5d956",
+    "stable_identity_prefix": "9948f8b1",
+    "stable_identity_suffix": "71c5196"
+  },
+  "stop_rule": "Any source identity, schema, domain, stage-order, output, ownership, mutation, invalid-control, replay or cleanup mismatch closes P271 without implementation copy, tolerance relaxation, loader integration or product mapping.",
+  "claim_ceiling": "Private consumer replay of one exact R1EN DNG ProfileToneCurve v1 callable and canonical fixture only; no real-file stage composition, complete DNG renderer, image quality, arbitrary profile/camera, default-loader integration, public package/schema/capability, stock evidence, automatic matching or product admission. Candidate 3 remains closed at 2/3."
+}
