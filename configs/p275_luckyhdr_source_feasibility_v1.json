@@ -11,6 +11,13 @@
     "tree": "37c05025490bd8a67494d953f23a7cebb521bc9a",
     "api_root": "https://api.github.com/repos/princeton-computational-imaging/lucky-hdr"
   },
+  "transport": {
+    "command": "curl.exe",
+    "http_version": "1.1",
+    "retry_count": 2,
+    "retry_scope": "transport errors only",
+    "amendment_path": "docs/planning/P275_LUCKYHDR_SOURCE_TRANSPORT_PRESCORE_AMENDMENT.md"
+  },
   "text_objects": {
     "license": {"path": "LICENSE", "bytes": 1073, "git_blob": "3973fb0a663d2506f2e11e1fc769063af30b0ee8"},
     "readme": {"path": "README.md", "bytes": 7808, "git_blob": "5c9e605171577e843c84f457836fcd25c294ad97"},

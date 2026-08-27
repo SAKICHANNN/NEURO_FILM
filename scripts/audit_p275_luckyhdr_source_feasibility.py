@@ -7,7 +7,7 @@ import argparse
 import base64
 import hashlib
 import json
-import urllib.request
+import subprocess
 from pathlib import Path
 from typing import Any
 
@@ -36,11 +36,24 @@ def _sha256(value: bytes) -> str:
 
 
 def _request_json(url: str) -> tuple[dict[str, Any], int]:
-    request = urllib.request.Request(
-        url, headers={"User-Agent": "Codex-NeuroFilm-P275"}
+    result = subprocess.run(
+        [
+            "curl.exe",
+            "--http1.1",
+            "--fail",
+            "--silent",
+            "--show-error",
+            "--retry",
+            "2",
+            "--retry-all-errors",
+            "-H",
+            "User-Agent: Codex-NeuroFilm-P275",
+            url,
+        ],
+        check=True,
+        capture_output=True,
     )
-    with urllib.request.urlopen(request, timeout=30) as response:
-        body = response.read()
+    body = result.stdout
     return json.loads(body), len(body)
 
 
