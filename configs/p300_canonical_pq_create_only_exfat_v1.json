@@ -1,0 +1,39 @@
+{
+  "schema": "neuro_film.p300_canonical_pq_create_only_exfat_contract.v1",
+  "experiment_id": "P300",
+  "question": "Can the live canonical-partition PQ PNG writer publish create-only on canonical P-backed exFAT without changing its frozen bytes or samples?",
+  "bindings": {
+    "parent_commit": "37669dad2d72764461ecf1ca345249a375837c84",
+    "canonical_writer_path": "src/preprocess/canonical_pq_png.py",
+    "canonical_writer_parent_sha256": "54fed9a9abdf119bd03fb560e495c62af7d2c0887ee7829d41af391c62d0134d",
+    "create_only_path": "src/film_physics/create_only_file.py",
+    "create_only_sha256": "d05292155594392b2c3d3b76f2aa680a3c3f011bab641111393ca3bde708fa37",
+    "p238_evidence_path": "docs/evidence/P238_ACES2_P3D65_CANONICAL_PQ_PNG_RESULT.json",
+    "p238_evidence_sha256": "fdef4929fddc8c7992e7871d2c669381ea32741050838f1f1ba39d36e6fe0a16",
+    "p299_evidence_path": "docs/evidence/P299_HDR_PNG_CREATE_ONLY_EXFAT_RESULT.json",
+    "p299_evidence_sha256": "24409c2ae7704206a7b925415118b669cf081260c4c9398290f7d28df575858b",
+    "runner_path": "scripts/audit_p300_canonical_pq_create_only_exfat.py",
+    "test_path": "tests/test_p300_canonical_pq_create_only_exfat.py"
+  },
+  "formal_fixture": {
+    "width": 257,
+    "height": 131,
+    "seed": 9100,
+    "forward_partitions": [64, 64, 3],
+    "reverse_partitions": [3, 64, 64],
+    "logical_output_root": "outputs/eval/p300_canonical_pq_create_only_exfat"
+  },
+  "gates": {
+    "parent_bindings_exact": true,
+    "existing_destination_preserved": true,
+    "late_destination_preserved": true,
+    "canonical_png_bytes_exact": true,
+    "rgb16_samples_exact": true,
+    "rec2100_pq_cicp_exact": true,
+    "stage_and_media_residue_zero": true,
+    "p_backed_output": true,
+    "forward_reverse_scientific_exact": true
+  },
+  "stop_rule": "Any overwrite, canonical-byte drift, sample drift, residue, non-P-backed formal output, or replay mismatch closes the leaf without fallback copy, retry, destination deletion, or filesystem bypass.",
+  "claim_ceiling": "Private Windows canonical-P/exFAT create-only transaction safety for the existing canonical-partition Rec.2100-PQ PNG writer only; no new colour transform, HDR/display quality, arbitrary media, package/schema/capability, stock evidence, or product-default admission."
+}
