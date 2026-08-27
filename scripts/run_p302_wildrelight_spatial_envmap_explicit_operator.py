@@ -55,6 +55,16 @@ def _canonical_bytes(value: object) -> bytes:
     )
 
 
+def _report_identity_valid(report: dict[str, Any]) -> bool:
+    claimed = report.get("scientific_identity")
+    payload = dict(report)
+    payload.pop("scientific_identity", None)
+    observed = "sha256:" + _sha256(
+        json.dumps(payload, sort_keys=True, separators=(",", ":")).encode()
+    )
+    return claimed == observed
+
+
 def _load_manifest(config: dict[str, Any]) -> dict[str, Any]:
     binding = config["source"]["member_manifest"]
     if not isinstance(binding, dict):
@@ -551,6 +561,7 @@ def execute(
         if (
             prior.get("decision") != "PASS_PRIVATE_P302_DEVELOPMENT"
             or prior.get("config_sha256") != _sha256(config_path.read_bytes())
+            or not _report_identity_valid(prior)
             or not all(prior.get("gates", {}).values())
         ):
             raise P302Error("P302 development admission differs")

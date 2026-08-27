@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 
@@ -18,16 +19,16 @@ def test_confirmation_requires_exact_development_pass(tmp_path: Path) -> None:
     report = tmp_path / "development.json"
     report.write_text(json.dumps({"decision": "FAIL_CLOSED_P302_DEVELOPMENT"}))
     assert not _confirmation_allowed(report, "config-sha")
-    report.write_text(
-        json.dumps(
-            {
-                "config_sha256": "config-sha",
-                "decision": "PASS_PRIVATE_P302_DEVELOPMENT",
-                "development_model_match": True,
-                "gates": {"all": True},
-                "phase": "development",
-            }
-        )
-    )
+    passing = {
+        "config_sha256": "config-sha",
+        "decision": "PASS_PRIVATE_P302_DEVELOPMENT",
+        "development_model_match": True,
+        "gates": {"all": True},
+        "phase": "development",
+    }
+    passing["scientific_identity"] = "sha256:" + hashlib.sha256(
+        json.dumps(passing, sort_keys=True, separators=(",", ":")).encode()
+    ).hexdigest()
+    report.write_text(json.dumps(passing))
     assert _confirmation_allowed(report, "config-sha")
     assert not _confirmation_allowed(report, "different-config-sha")

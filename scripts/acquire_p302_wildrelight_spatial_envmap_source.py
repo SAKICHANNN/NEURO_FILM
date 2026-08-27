@@ -32,6 +32,19 @@ def _canonical_bytes(value: object) -> bytes:
     )
 
 
+def _report_identity_valid(report: dict[str, Any]) -> bool:
+    claimed = report.get("scientific_identity")
+    payload = dict(report)
+    payload.pop("scientific_identity", None)
+    observed = (
+        "sha256:"
+        + hashlib.sha256(
+            json.dumps(payload, sort_keys=True, separators=(",", ":")).encode()
+        ).hexdigest()
+    )
+    return claimed == observed
+
+
 def _load_manifest(config: dict[str, Any]) -> dict[str, Any]:
     binding = config["source"]["member_manifest"]
     if not isinstance(binding, dict):
@@ -89,6 +102,7 @@ def _confirmation_allowed(report_path: Path | None, config_sha256: str) -> bool:
     return bool(
         report.get("decision") == "PASS_PRIVATE_P302_DEVELOPMENT"
         and report.get("config_sha256") == config_sha256
+        and _report_identity_valid(report)
         and report.get("phase") == "development"
         and report.get("development_model_match") is True
         and all(report.get("gates", {}).values())

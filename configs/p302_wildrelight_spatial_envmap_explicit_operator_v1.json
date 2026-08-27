@@ -30,13 +30,13 @@
     },
     {
       "path": "scripts/run_p302_wildrelight_spatial_envmap_explicit_operator.py",
-      "bytes": 27003,
-      "sha256": "634aad0d8c2e56dccfba76be1cabff45710b390fa91c06f73c7ae25c1122b75f"
+      "bytes": 27383,
+      "sha256": "54ee165df9a1babba44791c3cb2da2aafa75040ffb273696e27fbc2e0176b03f"
     },
     {
       "path": "scripts/acquire_p302_wildrelight_spatial_envmap_source.py",
-      "bytes": 6555,
-      "sha256": "8b85be59e9b934a036ead7e50686f686b0f28af0951e4bb630b5a0acae72c6a2"
+      "bytes": 6980,
+      "sha256": "596863ab1916c58c9f9c0f8d7dcfcaf9834105e726b9f5db9576229bd2933e2b"
     }
   ],
   "roles": {
