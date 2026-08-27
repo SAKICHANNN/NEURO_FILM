@@ -17906,3 +17906,33 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   product admission opens. Candidate count remains `2/3`; end this composition
   leaf and return to materially new paired/capture-time evidence or another
   distinct mature RAW/HDR gap.
+
+### 2026-08-27 - P260 closes the NTIRE 2026 burst-HDR source before data access
+
+- **Question and routing:** `ULT > genuinely new paired/capture-time/physical
+  observations > P260`, DRPT L2 / Mode C with the research reliability harness.
+  Contract `359397a3` froze exact official RawFusion commit
+  `1ac0212b...bee971`, tree `54c975f9...b056f2`, README and CVF paper page;
+  dataset, image, thumbnail, checkpoint, account and mirror requests were zero.
+- **Evidence matrix:** the official sources do establish a materially useful
+  observation: nine noisy/misaligned heterogeneous-exposure RAW frames and one
+  aligned RGB ground truth per scene, with explicit train/validation/test scene
+  roles. Admission nevertheless fails four independent gates. The current
+  48-path source tree carries no challenge payload, no repository licence and
+  no exact payload manifest/checksums; the README expressly states that the
+  training datasets/images must not be shared or used for other purposes.
+- **Replay and correction:** implementation `8f894068`, official-identity
+  correction `5fe92945`, evidence `e5af37b1`. The corrected two fresh reports
+  are byte-exact at 3,038 bytes / SHA `25b3b88d...accfe`, scientific identity
+  `0372cdce...f9dcc`; each reads only 28,655 official metadata bytes. The first
+  reports were excluded because the parser expected the GitHub URL in CVF HTML
+  text although that page contains the title while the URL appears in the PDF;
+  the additive correction cross-binds the commit-pinned README challenge name
+  with the CVF title. Sources, gates, rights facts and decision stayed fixed.
+- **Decision and boundary:**
+  `NOT_READY_NTIRE2026_BURST_HDR_RIGHTS_OR_PAYLOAD_GAP_NOT_SCIENTIFIC_RESULT`.
+  This is not a data-quality or HDR-method failure. Do not enroll, infer rights,
+  use a mirror, download data/models, train or run inference. Candidate remains
+  `2/3`; no package/schema/capability/product mapping opens. A future explicit
+  commercial-compatible code+data licence, anonymous exact payload and manifest
+  could justify a new prospective intake; paper/public-repo visibility cannot.
