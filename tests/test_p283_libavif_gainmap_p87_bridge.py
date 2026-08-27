@@ -5,6 +5,10 @@ import hashlib
 import numpy as np
 import pytest
 
+from scripts.audit_p283_libavif_gainmap_p87_bridge import (
+    parse_chosen_cicp,
+    roundtrip_rgb16,
+)
 from src.color_match.contracts import ReferenceMatchContractError
 from src.color_match.core_contracts import MATCH_PROFILE_ABSOLUTE_REC2020
 from src.color_match.libavif_gainmap_ingress import (
@@ -98,3 +102,28 @@ def test_p283_bridge_rejects_wrong_source_semantics(
 def test_p283_bridge_rejects_invalid_samples(samples: np.ndarray, match: str) -> None:
     with pytest.raises(ReferenceMatchContractError, match=match):
         _prepare(samples)
+
+
+def test_p283_info_parser_selects_exact_base_and_alternate_cicp() -> None:
+    output = """\
+ * Range          : Full
+ * Color Primaries: 1
+ * Transfer Char. : 16
+ * Matrix Coeffs. : 6
+ * Alternate image:
+    * Color Primaries: 1
+    * Transfer Char. : 13
+    * Matrix Coeffs. : 6
+"""
+    assert parse_chosen_cicp(output, "base") == (1, 16, 6)
+    assert parse_chosen_cicp(output, "alternate") == (1, 13, 6)
+
+
+def test_p283_roundtrip_helper_is_exact_on_neutral_codes() -> None:
+    samples = np.asarray(
+        [[[0, 0, 0], [32768, 32768, 32768], [65535, 65535, 65535]]],
+        dtype=np.uint16,
+    )
+    prepared = _prepare(samples)
+    replay = roundtrip_rgb16(prepared.pixels)
+    assert np.max(np.abs(replay.astype(np.int32) - samples.astype(np.int32))) <= 1
