@@ -64,7 +64,7 @@ def _article() -> bytes:
         )
     )
     return (
-        "same scene same lab same scanner"
+        "same <a href='lab'>scene same lab</a> same scanner"
         '<ul urlbase="https://example/film-comparison/all">' + items + "</ul>"
     ).encode()
 

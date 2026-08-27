@@ -68,6 +68,11 @@ def _comparison_inventory(article_html: str) -> list[dict[str, str]]:
     ]
 
 
+def _visible_text(source_html: str) -> str:
+    without_tags = re.sub(r"<[^>]+>", " ", source_html)
+    return re.sub(r"\s+", " ", html.unescape(without_tags)).strip()
+
+
 def run_source_audit(
     config_path: Path,
     *,
@@ -83,10 +88,12 @@ def run_source_audit(
         payloads[role] = html_reader(config[role]["url"])
     article_text = _text(payloads["article"])
     terms_text = _text(payloads["terms"])
+    article_visible_text = _visible_text(article_text)
+    terms_visible_text = _visible_text(terms_text)
     inventory = _comparison_inventory(article_text)
 
     phrase_results = {
-        phrase: phrase in article_text
+        phrase: phrase in article_visible_text
         for phrase in config["article"]["required_phrases"]
     }
     required_stock_results: dict[str, bool] = {}
@@ -99,11 +106,11 @@ def run_source_audit(
         )
 
     restriction_results = {
-        phrase: phrase in terms_text
+        phrase: phrase in terms_visible_text
         for phrase in config["terms"]["required_restriction_phrases"]
     }
     permission_results = {
-        permission: permission in terms_text
+        permission: permission in terms_visible_text
         for permission in config["terms"]["required_explicit_permissions"]
     }
     gates = {
