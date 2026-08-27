@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import sys
 import tempfile
 from pathlib import Path
 from typing import Any
@@ -10,13 +11,15 @@ from typing import Any
 import cv2
 import numpy as np
 
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
 from scripts import audit_p289_libavif_gainmap_encoder_d0 as p289
 from src.preprocess.libavif_gainmap_encoder import (
     LibavifGainMapEncoderError,
     encode_gainmap_avif_create_only_v1,
 )
-
-ROOT = Path(__file__).resolve().parents[1]
 
 
 def _sha256_bytes(value: bytes) -> str:

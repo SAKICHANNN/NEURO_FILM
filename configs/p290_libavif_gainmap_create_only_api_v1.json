@@ -53,6 +53,7 @@
       "f765ef44"
     ]
   },
+  "prescore_correction": "The first direct CLI invocation stopped before endpoint construction, encoder execution, output, metric or report because Python placed scripts/ rather than the repository root on sys.path. The additive fix inserts the exact repository root before importing the already-frozen P289 helper. All parents, source, runtime, endpoints, profile, controls, gates and claim ceiling remain unchanged.",
   "profile": {
     "profile_id": "neuro-film.libavif-gainmap-hdr-pq-sdr-srgb.create-only.v1",
     "base_cicp": [1, 16, 0],
