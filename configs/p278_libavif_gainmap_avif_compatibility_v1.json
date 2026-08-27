@@ -1,0 +1,45 @@
+{
+  "contract_id": "P278_LIBAVIF_GAINMAP_AVIF_COMPATIBILITY_V1",
+  "status": "FROZEN_AFTER_SOURCE_LOCK_BEFORE_FORMAL_DECODER_EXECUTION",
+  "source": {
+    "root": "data/external/p278_libavif_gainmap_v1",
+    "manifest": "data/external/p278_libavif_gainmap_v1/SOURCE.json",
+    "manifest_sha256": "7e818797abb4c276dcdea123c7fad05d8d3a20121230d27334c3772a5ca90925",
+    "repository": "https://aomedia.googlesource.com/libavif",
+    "commit": "b6fb1860837541d6e0c94386f2d09ba7c2341770",
+    "rights_scope": "README states selected test assets are licensed under the same terms as libavif; LICENSE retained"
+  },
+  "decoder": {
+    "repository": "https://github.com/google/libultrahdr",
+    "tag": "v2.0.0",
+    "commit": "b2aacb366e1542cfc29605cb0d8a0ebd06bb07f8",
+    "executable_sha256": "cffdfcae90b2e999260877b646c36c1d04b87d81745c12417c089ca7099d5df0",
+    "arguments": ["-m", "1", "-j", "{input}", "-o", "0", "-O", "4", "-z", "{output}"]
+  },
+  "bindings": {
+    "p87_evidence_sha256": "30a6a009215264b62c26cdab89218aca6cb3d8c0180375d67d9b5f5d707b4577",
+    "producer_r1bl_evidence_sha256": "b4c312bff76ee7b742853e343e54529e8e3d70eea5adf70334954c7616bbf6ea"
+  },
+  "valid_fixtures": [
+    {"name": "seine_hdr_gainmap_small_srgb.avif", "sha256": "573a67fdd581f6e634da198a819cc92a071539dfb720c5d7dfdf02e4e87a0346", "width": 400, "height": 300},
+    {"name": "seine_sdr_gainmap_big_srgb.avif", "sha256": "b672cfd5ac792ae0a70f82b68ef7bab06c117e5d297624ec8afdf56af847c6b7", "width": 400, "height": 300},
+    {"name": "seine_sdr_gainmap_srgb.avif", "sha256": "e0ebdb2f1f44c7d901e6b5f817eb2520eace344624cab0d57aaa929d05d6d971", "width": 400, "height": 300}
+  ],
+  "invalid_fixtures": [
+    {"name": "seine_hdr_gainmap_wrongaltr.avif", "sha256": "23990f6493467f13a313c629dec3c98a6560b85dbfbb11bfb2ab8a6bc9850bbf", "reason": "wrong_altr_preference"},
+    {"name": "seine_sdr_gainmap_gammazero.avif", "sha256": "faf73bb88eb6ed048aefb864db41fb69fa16952d6a1c1246b563465ae020edda", "reason": "gamma_zero"},
+    {"name": "seine_sdr_gainmap_notmapbrand.avif", "sha256": "63da24747562724235e3fc803d2230d25bf5a4f91112aa87a3b804a333f12d7f", "reason": "missing_tmap_brand"}
+  ],
+  "gates": {
+    "required_valid_count": 3,
+    "required_invalid_count": 3,
+    "require_exact_decoded_length": true,
+    "require_all_valid_decode": true,
+    "require_all_invalid_atomic_rejection": true
+  },
+  "precontract_exclusion": {
+    "name": "seine_hdr_gainmap_srgb.avif",
+    "reason": "bounded pre-contract runtime probe; excluded from every formal role"
+  },
+  "claim_ceiling": "Private exact Windows compatibility of the pinned libultrahdr-v2-to-P87 chain with three exact official libavif gain-map AVIF fixtures and three structural negative controls only; no HEIF, arbitrary AVIF, HDR quality, encoder, public package/schema/capability, default-loader change, product admission, film-stock claim or candidate3 change"
+}

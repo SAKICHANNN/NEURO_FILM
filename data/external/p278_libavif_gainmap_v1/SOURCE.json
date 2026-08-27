@@ -1,0 +1,16 @@
+{
+  "schema": "neuro-film.p278-libavif-gainmap-source.v1",
+  "repository": "https://aomedia.googlesource.com/libavif",
+  "commit": "b6fb1860837541d6e0c94386f2d09ba7c2341770",
+  "rights_scope": "README states selected test assets are licensed under the same terms as libavif; LICENSE retained",
+  "files": [
+    {"name": "LICENSE", "size": 20415, "sha256": "165abf92cc04b39e80d29cadea7a6a7e8fddf59407d4ad2616507a7ebe8216f9", "git_blob": "350eb9d15ce1553438b09b8cd14c803e86da316b", "role": "rights"},
+    {"name": "README.md", "size": 42420, "sha256": "3d286e6967fc36e16da14809bc10c8a6c4f1eb8eb4150e4be170481f9ebe1e9e", "git_blob": "c0875ff6cb192f7dbef1a4ae7e0a0fc78889e0cf", "role": "inventory_and_rights"},
+    {"name": "seine_hdr_gainmap_small_srgb.avif", "size": 102004, "sha256": "573a67fdd581f6e634da198a819cc92a071539dfb720c5d7dfdf02e4e87a0346", "git_blob": "929f4e4fda01efa4744e25003f6f12aed4d8286c", "role": "valid"},
+    {"name": "seine_hdr_gainmap_wrongaltr.avif", "size": 122961, "sha256": "23990f6493467f13a313c629dec3c98a6560b85dbfbb11bfb2ab8a6bc9850bbf", "git_blob": "b583caa704a838de33d51e687e279fc765f714f3", "role": "invalid_wrong_altr"},
+    {"name": "seine_sdr_gainmap_big_srgb.avif", "size": 169759, "sha256": "b672cfd5ac792ae0a70f82b68ef7bab06c117e5d297624ec8afdf56af847c6b7", "git_blob": "a51244b2caccf0ea977e2626dc07b8475c42a2b0", "role": "valid"},
+    {"name": "seine_sdr_gainmap_gammazero.avif", "size": 129766, "sha256": "faf73bb88eb6ed048aefb864db41fb69fa16952d6a1c1246b563465ae020edda", "git_blob": "eb34fdcf301a5d3b6a636023fab7678d70771ad1", "role": "invalid_gamma_zero"},
+    {"name": "seine_sdr_gainmap_notmapbrand.avif", "size": 129769, "sha256": "63da24747562724235e3fc803d2230d25bf5a4f91112aa87a3b804a333f12d7f", "git_blob": "b716742bd20ccb5382b38a89e188072b108f8a30", "role": "invalid_missing_tmap_brand"},
+    {"name": "seine_sdr_gainmap_srgb.avif", "size": 129773, "sha256": "e0ebdb2f1f44c7d901e6b5f817eb2520eace344624cab0d57aaa929d05d6d971", "git_blob": "09c4ba2ed6f3a5b6c46a8afe643b4fdd86c68fca", "role": "valid"}
+  ]
+}
