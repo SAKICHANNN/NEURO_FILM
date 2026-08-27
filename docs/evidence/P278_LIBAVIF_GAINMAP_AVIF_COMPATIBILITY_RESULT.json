@@ -1,0 +1,59 @@
+{
+  "schema": "neuro-film.p278-libavif-gainmap-compatibility-evidence.v1",
+  "status": "FAIL_CLOSED_LIBAVIF_GAINMAP_AVIF_DECODER_COMPATIBILITY",
+  "decision": {
+    "summary": "The unchanged pinned libultrahdr v2 decoder rejected all three official valid libavif gain-map AVIF fixtures before P87 reconstruction; this is a decoder/container compatibility negative, not an HDR quality result.",
+    "valid_decode_rate": 0.0,
+    "valid_decode_count": 0,
+    "valid_fixture_count": 3,
+    "invalid_atomic_rejection_rate": 1.0,
+    "invalid_fixture_count": 3,
+    "candidate3_change": false,
+    "default_or_product_change": false
+  },
+  "source": {
+    "repository": "https://aomedia.googlesource.com/libavif",
+    "commit": "b6fb1860837541d6e0c94386f2d09ba7c2341770",
+    "root": "data/external/p278_libavif_gainmap_v1",
+    "manifest_sha256": "7e818797abb4c276dcdea123c7fad05d8d3a20121230d27334c3772a5ca90925",
+    "retained_file_count": 8,
+    "retained_payload_bytes": 846867,
+    "rights_scope": "README states selected test assets are licensed under the same terms as libavif; LICENSE retained",
+    "full_repository_clone": false,
+    "precontract_exclusion": "seine_hdr_gainmap_srgb.avif"
+  },
+  "runtime": {
+    "decoder": "libultrahdr v2.0.0 ultrahdr_app",
+    "decoder_commit": "b2aacb366e1542cfc29605cb0d8a0ebd06bb07f8",
+    "decoder_executable_sha256": "cffdfcae90b2e999260877b646c36c1d04b87d81745c12417c089ca7099d5df0",
+    "p87_evidence_sha256": "30a6a009215264b62c26cdab89218aca6cb3d8c0180375d67d9b5f5d707b4577",
+    "producer_r1bl_evidence_sha256": "b4c312bff76ee7b742853e343e54529e8e3d70eea5adf70334954c7616bbf6ea"
+  },
+  "formal_result": {
+    "implementation_commit": "e531ced1100eac1a822c27aa746b8f4207db406c",
+    "report_sha256": "0e31d95d9155383f17197d2cd3f0b10df6c2d2ebd3a05f74435195101519ff8d",
+    "report_size_bytes": 3900,
+    "scientific_sha256": "8590359e779777516bdd085e14633e4aac7f400d0554786369febf9b520c362d",
+    "valid_rows": [
+      {"name": "seine_hdr_gainmap_small_srgb.avif", "decode_success": false, "diagnostic": "input uhdr image does not contain any valid images"},
+      {"name": "seine_sdr_gainmap_big_srgb.avif", "decode_success": false, "diagnostic": "input uhdr image does not contain gainmap image"},
+      {"name": "seine_sdr_gainmap_srgb.avif", "decode_success": false, "diagnostic": "input uhdr image does not contain gainmap image"}
+    ],
+    "gates": {
+      "all_valid_decode": false,
+      "all_invalid_atomic_rejection": true,
+      "production_loader_fail_closed": true,
+      "source_immutable": true,
+      "truncation_rejected_atomically": true
+    }
+  },
+  "execution": {
+    "forward_reverse_report_exact": true,
+    "forward_report_sha256": "0e31d95d9155383f17197d2cd3f0b10df6c2d2ebd3a05f74435195101519ff8d",
+    "reverse_report_sha256": "0e31d95d9155383f17197d2cd3f0b10df6c2d2ebd3a05f74435195101519ff8d",
+    "stable_identity": "8590359e779777516bdd085e14633e4aac7f400d0554786369febf9b520c362d",
+    "persistent_decoder_outputs": 0,
+    "temporary_residue": 0
+  },
+  "claim_ceiling": "Private exact Windows compatibility audit for three exact official libavif gain-map AVIF fixtures and three structural negative controls through the unchanged libultrahdr-v2-to-P87 chain only. No HEIF, arbitrary AVIF, HDR reconstruction quality, encoder, public package/schema/capability, product admission, film-stock claim or candidate3 change."
+}
