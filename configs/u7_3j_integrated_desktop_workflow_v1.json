@@ -2,7 +2,7 @@
   "schema": "kmcfm.u7-3j-integrated-desktop-workflow-contract.v1",
   "experiment_id": "U7_3J_INTEGRATED_DESKTOP_WORKFLOW_V1",
   "frozen_at": "2026-08-27",
-  "history_root": "outputs/eval/u7_2_three_stock_24mp_recipe_replay_v1/formal/history",
+  "history_root": "outputs/eval/u7_2_three_stock_24mp_smoke",
   "profile_path": "configs/render_profiles/safe_rich_v1.json",
   "expected_styles": [
     "velvia_50",
