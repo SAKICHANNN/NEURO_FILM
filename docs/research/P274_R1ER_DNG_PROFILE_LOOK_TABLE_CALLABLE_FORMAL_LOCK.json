@@ -1,0 +1,21 @@
+{
+  "schema": "neuro-film.p274-r1er-dng-profile-look-table-callable-formal-lock.v1",
+  "experiment_id": "P274",
+  "status": "FROZEN_BEFORE_FORMAL_FORWARD_REVERSE_EXECUTION",
+  "date": "2026-08-27",
+  "implementation_commit": "7bf626ec",
+  "artifacts": [
+    {"path": "configs/p274_r1er_dng_profile_look_table_callable_intake_v1.json", "bytes": 5477, "git_blob": "49490bdd768998da7d6868692e2b21dd6d287d39", "sha256": "c03ad7de7cceb6a3a58510f5e176aff0f162b3707b7ec03d088ff7fce12965df"},
+    {"path": "docs/planning/P274_R1ER_DNG_PROFILE_LOOK_TABLE_CALLABLE_INTAKE_CONTRACT.md", "bytes": 2143, "git_blob": "8a01dfb70fcbb228e0079ea6dcec13449ed2776d", "sha256": "62499ea9cde9487edf47e7a3ddde001a3ee5d5cfc6dd82c2725a88af03247543"},
+    {"path": "scripts/audit_p274_r1er_dng_profile_look_table_callable_intake.py", "bytes": 12827, "git_blob": "a61bb261a06c732bbabab30feb96ec815c02a831", "sha256": "74face48d033a77dfa4cf43bf7acc80bc3b7c107797b3344b21d16b191ffdb94"},
+    {"path": "tests/test_p274_r1er_dng_profile_look_table_callable_intake.py", "bytes": 1706, "git_blob": "52d72c079d87e285c82d3b37ea321f8af6467f93", "sha256": "e18d1e1afa85c8750a5fe1012eba59abe1fea6d0a7d2b0c0084b172acc25cef1"}
+  ],
+  "formal_runs": {
+    "orders": ["forward", "reverse"],
+    "fresh_processes": true,
+    "expected_reports_byte_exact": true,
+    "output_root": "outputs/eval/p274_r1er_dng_profile_look_table_callable_intake_v1"
+  },
+  "stop_rule": "Any formal mismatch closes P274 without implementation copy, tolerance relaxation, loader integration or product mapping.",
+  "claim_ceiling": "Private consumer replay of one exact R1ER DNG ProfileLookTable v1 callable and canonical fixture only; no real-file stage composition, complete DNG renderer, image quality, arbitrary profile/camera, default-loader integration, public package/schema/capability, stock evidence, automatic matching or product admission. Candidate 3 remains closed at 2/3."
+}
