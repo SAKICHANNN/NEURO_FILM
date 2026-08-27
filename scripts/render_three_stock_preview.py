@@ -25,6 +25,7 @@ def main() -> int:
     parser.add_argument("--tile-size", type=int, default=256)
     parser.add_argument("--tile-workers", type=int, default=1)
     parser.add_argument("--png-compression", type=int, choices=range(10), default=6)
+    parser.add_argument("--jpeg-scaled-decode", action="store_true")
     args = parser.parse_args()
     manifest = render_three_stock_previews_to_directory(
         args.input,
@@ -39,6 +40,7 @@ def main() -> int:
         tile_size=args.tile_size,
         tile_workers=args.tile_workers,
         png_compression=args.png_compression,
+        jpeg_scaled_decode=args.jpeg_scaled_decode,
     )
     print(json.dumps(manifest, sort_keys=True))
     return 0

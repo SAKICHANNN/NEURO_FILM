@@ -390,7 +390,7 @@ def _convert_with_icc(image: Image.Image, warnings: list[DecodeWarning]) -> Imag
         dst = ImageCms.createProfile("sRGB")
         converted = ImageCms.profileToProfile(image.convert("RGB"), src, dst, outputMode="RGB")
         return converted
-    except Exception as exc:  # noqa: BLE001 - Pillow/LittleCMS exposes several profile failures.
+    except Exception as exc:
         raise ValueError("embedded ICC conversion failed; refusing unprofiled RGB fallback") from exc
 
 
@@ -525,6 +525,78 @@ def working_image_to_legacy_srgb8(working: WorkingImage) -> Image.Image:
     """Explicit temporary adapter from WorkingImage to the 8-bit legacy renderer."""
     encoded = working_image_to_srgb_float(working)
     return Image.fromarray(np.rint(encoded * 255.0).astype(np.uint8), mode="RGB")
+
+
+def load_jpeg_preview_working_image(
+    path: Path,
+    *,
+    target_width: int,
+    target_height: int,
+) -> WorkingImage:
+    """Decode an explicitly opted-in JPEG preview through libjpeg scaling.
+
+    This path retains the normal metadata, dynamic-range and ICC gates while
+    allowing Pillow/libjpeg to decode a reduced image before float32 expansion.
+    It is deliberately unavailable to generic ingress and final export.
+    """
+
+    for value, label in (
+        (target_width, "target_width"),
+        (target_height, "target_height"),
+    ):
+        if isinstance(value, bool) or not isinstance(value, int) or value < 1:
+            raise ValueError(f"{label} must be a positive integer")
+
+    path = Path(path)
+    inspection = inspect_raster(path)
+    warnings = list(inspection.warnings)
+    if inspection.source_kind != "raster" or inspection.format_name != "JPEG":
+        raise ValueError("scaled preview decode is limited to single-frame JPEG")
+    dynamic_range_signals = unsupported_dynamic_range_signals(path, inspection)
+    if dynamic_range_signals:
+        raise ValueError(
+            "HDR/gain-map reconstruction is not implemented; refusing preview fallback: "
+            + ",".join(dynamic_range_signals)
+        )
+    if inspection.frame_count != 1:
+        raise ValueError("scaled preview decode requires a single-frame JPEG")
+    if inspection.has_alpha:
+        raise ValueError("scaled preview decode does not accept alpha")
+    if inspection.orientation not in {None, 1}:
+        raise ValueError(
+            "scaled preview decode requires identity EXIF orientation"
+        )
+    if inspection.bit_depth != 8:
+        raise ValueError("scaled preview decode requires 8-bit JPEG samples")
+    if target_width > inspection.width or target_height > inspection.height:
+        raise ValueError("scaled preview decode cannot upsample")
+
+    with Image.open(path) as image:
+        image.draft("RGB", (target_width, target_height))
+        if image.width < target_width or image.height < target_height:
+            raise ValueError("JPEG decoder scaling undershot requested preview dimensions")
+        rgb_image = _convert_with_icc(image, warnings)
+        arr = np.asarray(rgb_image, dtype=np.float32) / 255.0
+    warnings.append(
+        DecodeWarning(
+            "jpeg_scaled_preview_decode",
+            "JPEG was decoder-scaled before float32 expansion for an opt-in preview.",
+        )
+    )
+    pixels = _srgb_to_linear(np.clip(arr, 0.0, 1.0))
+    return WorkingImage(
+        pixels=pixels,
+        working_space="linear_srgb",
+        transfer_state="display_linear",
+        source_transfer_state=inspection.transfer_state,
+        source_profile=inspection.source_profile,
+        hdr_metadata=inspection.hdr_metadata,
+        orientation_applied=True,
+        alpha_policy="absent",
+        bit_depth_in=inspection.bit_depth,
+        source_path=path,
+        warnings=warnings,
+    )
 
 
 def load_raster_working_image(path: Path) -> WorkingImage:

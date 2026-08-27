@@ -16,7 +16,13 @@ import cv2
 import numpy as np
 
 from scripts.pipeline_color_baseline import load_guardrail_config
-from src.preprocess import load_working_image, save_srgb8, working_image_to_srgb_float
+from src.preprocess import (
+    inspect_input,
+    load_jpeg_preview_working_image,
+    load_working_image,
+    save_srgb8,
+    working_image_to_srgb_float,
+)
 
 from .render_contract import atomic_write_json, load_render_profile, sha256_file
 from .three_stock_look import iter_three_stock_look_rgb_shared_context
@@ -97,6 +103,7 @@ def render_three_stock_previews_to_directory(
     tile_size: int = 256,
     tile_workers: int = 1,
     png_compression: int = 6,
+    jpeg_scaled_decode: bool = False,
 ) -> dict[str, Any]:
     """Render all three previews after one linear-light area downsample."""
 
@@ -114,6 +121,8 @@ def render_three_stock_previews_to_directory(
         or not 0 <= png_compression <= 9
     ):
         raise ThreeStockPreviewError("png_compression must be an integer in [0, 9]")
+    if not isinstance(jpeg_scaled_decode, bool):
+        raise ThreeStockPreviewError("jpeg_scaled_decode must be a boolean")
     if not input_path.is_file():
         raise ThreeStockPreviewError("input_path must be an existing file")
     if output_directory.exists():
@@ -127,11 +136,29 @@ def render_three_stock_previews_to_directory(
         statistics_by_style[style] = statistics_payload["styles"][style]
         guardrails_by_style[style] = load_guardrail_config(guardrails_path, style)
 
-    working = load_working_image(input_path)
-    source_height, source_width = working.pixels.shape[:2]
+    inspection = inspect_input(input_path)
+    source_width = inspection.width
+    source_height = inspection.height
+    if source_width < 1 or source_height < 1:
+        raise ThreeStockPreviewError("input dimensions could not be inspected")
     preview_width, preview_height = preview_dimensions(
         source_width, source_height, max_preview_pixels
     )
+    use_scaled_decode = jpeg_scaled_decode and (
+        (preview_width, preview_height) != (source_width, source_height)
+    )
+    if use_scaled_decode:
+        try:
+            working = load_jpeg_preview_working_image(
+                input_path,
+                target_width=preview_width,
+                target_height=preview_height,
+            )
+        except ValueError as exc:
+            raise ThreeStockPreviewError(str(exc)) from exc
+    else:
+        working = load_working_image(input_path)
+    decoded_height, decoded_width = working.pixels.shape[:2]
     if (preview_width, preview_height) == (source_width, source_height):
         preview_linear = np.ascontiguousarray(working.pixels.copy())
     else:
@@ -188,8 +215,16 @@ def render_three_stock_previews_to_directory(
             "preview_height": preview_height,
             "preview_pixels": preview_width * preview_height,
             "max_preview_pixels": max_preview_pixels,
+            "decoded_width": decoded_width,
+            "decoded_height": decoded_height,
+            "jpeg_scaled_decode": use_scaled_decode,
             "look_amount": float(look_amount),
-            "preview_basis": "linear-light INTER_AREA resize before shared-context render",
+            "preview_basis": (
+                "libjpeg scaled decode then linear-light INTER_AREA resize before "
+                "shared-context render"
+                if use_scaled_decode
+                else "linear-light INTER_AREA resize before shared-context render"
+            ),
             "rows": rows,
             "claim_ceiling": (
                 "Direct previews of three non-calibrated Look Approximations; "

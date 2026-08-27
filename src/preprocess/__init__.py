@@ -38,7 +38,11 @@ from .png_stream import (
     StreamingSrgbPngWriter,
     sha256_rec2100_pq_rgb16_png_samples,
 )
-from .raster_decode import working_image_to_legacy_srgb8, working_image_to_srgb_float
+from .raster_decode import (
+    load_jpeg_preview_working_image,
+    working_image_to_legacy_srgb8,
+    working_image_to_srgb_float,
+)
 from .romm_rec2020_product import (
     FIVEK_PROPHOTO_MATRIX_SHAPER_ICC_SHA256,
     OFFICIAL_ROMM_ICC_SHA256,
@@ -86,6 +90,7 @@ __all__ = [
     "load_aces2065_openexr_working_image",
     "load_and_map_official_romm_rgb16",
     "load_and_map_supported_prophoto_rgb16",
+    "load_jpeg_preview_working_image",
     "load_working_image",
     "normalized_icc_profile_sha256",
     "publish_aces2065_openexr_aces2_canonical_hdr_pq_png_v1",
