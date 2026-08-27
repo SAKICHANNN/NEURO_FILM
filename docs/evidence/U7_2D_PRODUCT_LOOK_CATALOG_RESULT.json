@@ -1,0 +1,76 @@
+{
+  "schema_id": "neuro-film.product-look-catalog-evidence.v1",
+  "experiment_id": "U7.2D",
+  "date": "2026-08-28",
+  "status": "PASS_UNIFIED_EVIDENCE_BOUNDED_PRODUCT_LOOK_CATALOG",
+  "execution_commit": "e16262a2",
+  "bindings": {
+    "contract": {
+      "path": "configs/u7_2d_product_look_catalog_v1.json",
+      "sha256": "165d553961034c2a95efa7511500fbc35e5a78ca0c3849c71fe250ca8bc1fa33"
+    },
+    "implementation": {
+      "path": "src/inference/product_look_catalog.py",
+      "sha256": "8487d258e97cd06bbc468848cb2bace1846e72a216c5a8ba1824a95346b3b947"
+    },
+    "test": {
+      "path": "tests/test_u7_2d_product_look_catalog.py",
+      "sha256": "9e03610dc758da81a0788ade47564d254b834a5b7eef420756e740fb54fa6468"
+    },
+    "three_stock_parent": {
+      "path": "docs/evidence/U7_2C_THREE_STOCK_LOOK_AMOUNT_RESULT.json",
+      "sha256": "9a6828e824f07a93cd3bbae55edf0e0e3b2c14fa67c173ceb41a3ed0016ecc6b"
+    },
+    "generic_bw_parent": {
+      "path": "docs/evidence/BW2_D1_GENERIC_BW_LOOK_RESULT.json",
+      "sha256": "d4d279f1e95964f11cff98467ab9b73f9f2ea337db7fd842e7280b2037bc0b88"
+    }
+  },
+  "catalog": {
+    "ordered_look_ids": ["velvia_50", "portra_400", "ektar_100", "generic_bw"],
+    "colour_film_stock_ids": ["fujifilm_velvia_50", "kodak_portra_400", "kodak_ektar_100"],
+    "generic_bw_film_stock_id": null,
+    "named_legacy_bw_product_ids_exposed": false,
+    "defensive_copy": true
+  },
+  "formal_probe": {
+    "source_shape": [59, 83, 3],
+    "source_float32_sha256": "3ba8d40caecfcf03a663415df3fc55dbcf4ce582088f7773b027e59885dcb92d",
+    "seed": 31,
+    "tile_size": 23,
+    "tile_workers": 2,
+    "all_full_tiled_exact": true,
+    "output_float32_sha256": {
+      "velvia_50": {
+        "0.0": "3ba8d40caecfcf03a663415df3fc55dbcf4ce582088f7773b027e59885dcb92d",
+        "0.5": "dc7090a4e9b54246cc6463ac9c96423bfa473e1ea2c57eee9115f1bb2ae1a1d3",
+        "1.0": "0849de0ad84afa56ea89b3e28e85f54d0b5c0cddbf34dcf6a8177de9652ee684"
+      },
+      "portra_400": {
+        "0.0": "3ba8d40caecfcf03a663415df3fc55dbcf4ce582088f7773b027e59885dcb92d",
+        "0.5": "0fd9945f7f0379664d0aef1670e63c8fe480bd2ee3f632d549c6dd41f889a190",
+        "1.0": "5e6eba582eb743c86a7d6bdcd0369914b955f878ac6519a9919949b7ffa58be9"
+      },
+      "ektar_100": {
+        "0.0": "3ba8d40caecfcf03a663415df3fc55dbcf4ce582088f7773b027e59885dcb92d",
+        "0.5": "72c5ae85a5d9a7deed8d18f721fbf0404c028c44d5ea1a959cf97dc08ee9d680",
+        "1.0": "5a5ea9ab2703ab510cf13d5acee6f645f67f903bd397e5df89c46d6dae5e0013"
+      },
+      "generic_bw": {
+        "0.0": "3ba8d40caecfcf03a663415df3fc55dbcf4ce582088f7773b027e59885dcb92d",
+        "0.5": "49f6928cfef4aa12a597cd5ece1661173e6ac6b59263638555f687b9159e9787",
+        "1.0": "411a490f1a99e1073659a7d48e4c2016e44593fb5d0eeccde09409e3362535b8"
+      }
+    }
+  },
+  "verification": {
+    "focused": "45 passed",
+    "adjacent_product_chain": "72 passed",
+    "ruff": "pass",
+    "json": "pass",
+    "diff_check": "pass"
+  },
+  "decision": "publish_one_authoritative_manual_product_look_discovery_and_dispatch_boundary",
+  "claim_ceiling": "Deterministic product discovery and dispatch for three explicitly non-calibrated colour-stock Look Approximation baselines and one generic black-and-white Look Approximation. No stock calibration, authenticity, automatic stock inference, K greater than 1 or multi-stock scientific completion.",
+  "multi_stock_completion": false
+}
