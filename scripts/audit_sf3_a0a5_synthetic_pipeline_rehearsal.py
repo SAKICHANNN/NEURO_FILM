@@ -35,6 +35,9 @@ from src.real_film.three_stock_confirmation_render import (
     evaluate_single_stock_and_materialize,
 )
 from src.real_film.three_stock_k1_file_runner import evaluate_single_stock_files
+from src.real_film.three_stock_pooled_global_file_runner import (
+    evaluate_files as evaluate_pooled_global_files,
+)
 from src.real_film.three_stock_scan_integrity import build_alignment_evidence
 
 DEFAULT_CONTRACT = ROOT / "configs/sf3_a0a5_synthetic_pipeline_rehearsal_v1.json"
@@ -107,6 +110,11 @@ def _derive_contracts(paths: dict[str, Path]) -> None:
         paths["integrity_contract"]
     )
     _write(paths["k1_contract"], k1)
+
+    if "pooled_contract" in paths:
+        pooled = json.loads(paths["pooled_contract"].read_text(encoding="utf-8"))
+        pooled["parent"]["k1_contract"]["sha256"] = _sha_file(paths["k1_contract"])
+        _write(paths["pooled_contract"], pooled)
 
     confirmation = json.loads(
         paths["confirmation_contract"].read_text(encoding="utf-8")
@@ -420,10 +428,21 @@ def run_rehearsal(contract_path: Path, *, reverse: bool = False) -> dict[str, An
         paths = _copy_bound_parents(contract, root)
         _derive_contracts(paths)
         packet_path, packet = _fill_receipts(paths, root)
-        ledger_path, _manifest_path, binding = _materialize_packet(
+        ledger_path, manifest_path, binding = _materialize_packet(
             paths, root, packet_path, packet
         )
         ledger = json.loads(ledger_path.read_text(encoding="utf-8"))
+        pooled_report = (
+            evaluate_pooled_global_files(
+                root=root,
+                integrity_contract_path=paths["integrity_contract"],
+                pooled_contract_path=paths["pooled_contract"],
+                ledger_path=ledger_path,
+                manifest_path=manifest_path,
+            )
+            if "pooled_contract" in paths
+            else None
+        )
         lane_order = tuple(reversed(STOCKS)) if reverse else STOCKS
         lane_results = {
             stock: _stock_lane(stock, root=root, paths=paths, ledger=ledger)
@@ -490,6 +509,17 @@ def run_rehearsal(contract_path: Path, *, reverse: bool = False) -> dict[str, An
             "decision": contract["decision_if_pass"],
             "claim_ceiling": contract["claim_ceiling"],
         }
+        if pooled_report is not None:
+            core["pooled_global_control_automatic_pass"] = pooled_report[
+                "automatic_pass"
+            ]
+            core["pooled_global_control_decision"] = pooled_report["decision"]
+            core["pooled_global_control_stable_evidence_id"] = pooled_report[
+                "stable_evidence_id"
+            ]
+            core["automatic_pass"] = (
+                core["automatic_pass"] and pooled_report["automatic_pass"]
+            )
         core["stable_evidence_id"] = _sha(_canonical(core))
         return core
 

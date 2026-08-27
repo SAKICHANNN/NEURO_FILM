@@ -1,0 +1,63 @@
+{
+  "schema": "neuro-film.sf3-a0a5-synthetic-pipeline-rehearsal-contract.v2",
+  "experiment_id": "SF3.A0A5.R1",
+  "status": "FROZEN_BEFORE_REHEARSAL_EXECUTION",
+  "question": "Can one small procedural packet traverse the frozen three-stock receipt, acquisition, scan-integrity, independent K=1 fit, pooled-global control, confirmation-render and blind-package interfaces without mocks at a stage boundary?",
+  "parents": {
+    "receipt_contract": {
+      "path": "configs/sf3_a0n_three_stock_capture_receipts_v1.json",
+      "sha256": "40e3effb9f07a9118a903221d8bf9c6ff1356db2bb9e2b024c6e1aa5c40f9508"
+    },
+    "acquisition_contract": {
+      "path": "configs/sf3_a0_three_stock_controlled_acquisition_v1.json",
+      "sha256": "69241a6c38b15a8c4c8871e513ea53e133ee1d3b5ebe06f39a33f92964eccc8b"
+    },
+    "integrity_contract": {
+      "path": "configs/sf3_a1_three_stock_file_pixel_alignment_integrity_v1.json",
+      "sha256": "67bdc2289cc49b97464a40757d2790884b7590153fde88b31e5023f2cbe41e24"
+    },
+    "k1_contract": {
+      "path": "configs/sf3_a2_three_stock_k1_baseline_v1.json",
+      "sha256": "e8242b5e90f9c893ba6a7ca74910e88b9bd4444052c825293ce2bae0f15edd19"
+    },
+    "pooled_contract": {
+      "path": "configs/sf3_a2b_three_stock_pooled_global_control_v1.json",
+      "sha256": "8edf9ad24d00d2acb5f02439d724f0388baf45ee6ff905ca34e23f2670cc2b77"
+    },
+    "confirmation_contract": {
+      "path": "configs/sf3_a4_three_stock_confirmation_render_v1.json",
+      "sha256": "4e2e8ac268b8761391f91d89c664218cbf4d77ea1216e68e48dda52a1790c241"
+    },
+    "blind_contract": {
+      "path": "configs/sf3_a5_three_stock_blind_distinguishability_v1.json",
+      "sha256": "94f766329024e26c3d099e90a966e544bb24f6a41c806de81bd341c511ecfe7d"
+    },
+    "work_order": {
+      "path": "outputs/eval/sf3_a0l_three_stock_capture_work_order_v1/run_a/report.json",
+      "sha256": "6e5cc477dbf80fab92fe5058c1af9f52adfdd726848f2049411781816a39af08"
+    }
+  },
+  "fixture": {
+    "width": 96,
+    "height": 72,
+    "seed": 240731,
+    "persistent_pixel_or_report_writes": 0,
+    "network_reads": 0,
+    "confirmation_target_reads_during_render_or_blind": 0
+  },
+  "gates": {
+    "all_parent_hashes_exact": true,
+    "receipt_binding_and_acquisition_pass": true,
+    "all_three_independent_scan_integrity_lanes_pass": true,
+    "all_three_independent_k1_file_fits_pass": true,
+    "pooled_global_control_pass": true,
+    "all_three_independent_confirmation_renders_pass": true,
+    "severe_review_fixture_complete_and_zero_confirmed": true,
+    "blind_package_and_adjudication_pass": true,
+    "forward_reverse_scientific_payload_exact": true,
+    "temporary_tree_removed": true
+  },
+  "decision_if_pass": "RETAIN_SF3_A0_TO_A5_PIPELINE_WITH_POOLED_GLOBAL_CONTROL_AS_STRUCTURALLY_REHEARSED_PENDING_PHYSICAL_STOCK_EVIDENCE",
+  "decision_if_fail": "REPAIR_THE_FIRST_FAILED_STAGE_BOUNDARY_BEFORE_PHYSICAL_SCAN_EXECUTION",
+  "claim_ceiling": "Procedural small-fixture execution readiness of the existing three-stock pipeline and pooled-global control only. Passing is not film evidence, stock identification, calibrated response, preference, severe-artifact human review, scanner or roll generalization, or product promotion."
+}
