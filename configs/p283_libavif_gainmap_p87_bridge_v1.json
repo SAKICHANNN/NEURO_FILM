@@ -1,0 +1,62 @@
+{
+  "contract_id": "P283_LIBAVIF_GAINMAP_P87_BRIDGE_V1",
+  "status": "FROZEN_BEFORE_ADAPTER_IMPLEMENTATION_AND_FORMAL_EXECUTION",
+  "bindings": {
+    "p282_evidence": "docs/evidence/P282_LIBAVIF_GAINMAP_WINDOWS_RUNTIME_RESULT.json",
+    "p282_evidence_sha256": "fe40ea1f523847f2f012887d72ad47f45cbe0a5de021562093cf26c74b9afa12",
+    "p87_evidence": "docs/evidence/P87_ULTRAHDR_ABSOLUTE_REC2020_MATCH_VIEW_RESULT.json",
+    "p87_evidence_sha256": "30a6a009215264b62c26cdab89218aca6cb3d8c0180375d67d9b5f5d707b4577"
+  },
+  "runtime": {
+    "root": "data/external/p282_libavif_windows_v1_4_2",
+    "manifest": "data/external/p282_libavif_windows_v1_4_2/SOURCE.json",
+    "manifest_sha256": "96ee33b34df2633cc494026ee47e30c3045314c800f60c3751e91a5daad98469",
+    "decoder_version": "1.4.2",
+    "avifdec_sha256": "a03664ddffb9d847eb484af6ceeffce96e03d641da5c577d26662487dee689f2",
+    "avifgainmaputil_sha256": "64d199dfdaf20dcf8bd5ee1073c01a5866ada595aaf933b911e1cd4bf9267471"
+  },
+  "source_root": "data/external/p278_libavif_gainmap_v1",
+  "rows": [
+    {
+      "name": "seine_hdr_gainmap_small_srgb.avif",
+      "source_sha256": "573a67fdd581f6e634da198a819cc92a071539dfb720c5d7dfdf02e4e87a0346",
+      "higher_role": "base",
+      "base_headroom": 1.3,
+      "alternate_headroom": 0.0,
+      "p282_bgr16_sample_sha256": "1f59517838b55b2536bfb355a1c6ff8f86dc4987fe393d366b58329c66a8fb4d"
+    },
+    {
+      "name": "seine_sdr_gainmap_big_srgb.avif",
+      "source_sha256": "b672cfd5ac792ae0a70f82b68ef7bab06c117e5d297624ec8afdf56af847c6b7",
+      "higher_role": "alternate",
+      "base_headroom": 0.0,
+      "alternate_headroom": 1.3,
+      "p282_bgr16_sample_sha256": "8ae1afd7c381ef24d0c5e5861f4b654abb9c13d52a13fccd6a6b27e617648179"
+    },
+    {
+      "name": "seine_sdr_gainmap_srgb.avif",
+      "source_sha256": "e0ebdb2f1f44c7d901e6b5f817eb2520eace344624cab0d57aaa929d05d6d971",
+      "higher_role": "alternate",
+      "base_headroom": 0.0,
+      "alternate_headroom": 1.3,
+      "p282_bgr16_sample_sha256": "4ec5583b7bb4a517272030a70c3646e35c212e2a5b4479ae620009f2e7373409"
+    }
+  ],
+  "profile": {
+    "color_primaries": 1,
+    "transfer_characteristics": 16,
+    "matrix_coefficients_at_yuv_boundary": 6,
+    "full_range": true,
+    "width": 400,
+    "height": 300,
+    "reference_white_nits": 203.0
+  },
+  "gates": {
+    "required_row_count": 3,
+    "maximum_rgb16_roundtrip_error": 2,
+    "maximum_median_rgb16_roundtrip_error": 1.0,
+    "minimum_maximum_nits": 203.0,
+    "maximum_maximum_nits": 10000.0
+  },
+  "claim_ceiling": "Private exact conversion of three frozen official libavif higher-headroom RGB16 renditions into the existing P87 absolute Rec.2020 MatchView boundary only; no complete ISO 21496-1, arbitrary AVIF/HEIF, HDR reconstruction quality, metadata preservation, display validation, public API/dependency/package/schema/capability/product admission, stock claim or candidate3 change"
+}
