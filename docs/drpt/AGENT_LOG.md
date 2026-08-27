@@ -18830,3 +18830,34 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   21496-1, arbitrary AVIF/HEIF, HDR quality/display validation, metadata
   preservation, dependency/package/schema/capability/product or candidate-3
   change opens.
+
+### 2026-08-27 - P283 closes the exact libavif-to-P87 bridge on inverse gamut domain
+
+- **Node and scope:** `ULT > U1 > U1.5 > P283`, DRPT L2 / Mode C.
+  `dev-research-reliability` is the primary writer; current-source research,
+  DRPT-BI, agent-log and structure stewardship constrain the result to the
+  exact three P282 higher-headroom renditions and existing P87 boundary. No
+  production loader/default or candidate-3 state changes.
+- **Freeze and implementation:** contract `b10fcba1`, private adapter
+  `8aa044f8`, formal runner `c30e7d05`, additive failure-serialization fix
+  `fa69fd83` and evidence `d63a9f16` bind P282/P87 evidence hashes, exact
+  400x300 RGB16 samples, CICP `[1,16,6]`, PQ-to-absolute-light conversion,
+  D65 linear-sRGB-to-Rec.2020 matrix, 203-nit P87 profile and frozen inverse
+  roundtrip/range/ownership/invalid gates. The first two committed-source
+  processes stopped before report publication at the same strict inverse-PQ
+  domain rejection; the additive fix only serialized that rejection and did
+  not clip or change rows, transforms, gates or thresholds.
+- **Result:** corrected forward/reverse reports are byte-exact at 5,029 bytes /
+  SHA `c59bf312...dcd56`, stable `f6d3bc20...2d94d`. Forward ingress passes all
+  CICP, P87 descriptor, finite 0..10000-nit range, ownership, shape,
+  source/runtime immutability and invalid controls; row maxima are
+  449.24-750.89 nits. Formal status is FAIL_CLOSED because inverse Rec.2020 to
+  linear-sRGB yields 4, 33 and 133 negative components with minima from
+  `-3.67e-9` to `-1.89e-6` nits, so strict inverse-PQ-domain and RGB16
+  roundtrip gates fail.
+- **Verification and boundary:** 39 P87/P277-P283/U1.5 adjacent tests pass;
+  Ruff, format, `py_compile`, JSON and diff checks pass. Do not clip, change the
+  matrix or relax the roundtrip gates. Retain precise private forward-ingress
+  and gamut-domain failure evidence only; no arbitrary AVIF/HEIF, HDR
+  reconstruction quality, display validation, public API/dependency/package/
+  schema/capability/product or candidate-3 change opens.
