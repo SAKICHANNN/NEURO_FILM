@@ -5,11 +5,14 @@ import hashlib
 import json
 from pathlib import Path
 
+import numpy as np
 import pytest
+import tifffile
 
 from scripts.acquire_p269_hdrplus_one_burst import (
     P269Error,
     _canonical_bytes,
+    _input_dng_probe,
     _safe_relative,
     _source_url,
     _verify_local,
@@ -71,3 +74,18 @@ def test_p269_canonical_identity_is_order_independent() -> None:
     left.sort(key=lambda row: (row["role"], row["path"]))
     right.sort(key=lambda row: (row["role"], row["path"]))
     assert _canonical_bytes(left) == _canonical_bytes(right)
+
+
+def test_p269_probe_reads_only_requested_row_ranges(tmp_path: Path) -> None:
+    values = np.arange(12 * 16, dtype=np.uint16).reshape(12, 16)
+    path = tmp_path / "probe.dng"
+    tifffile.imwrite(path, values, rowsperstrip=1, metadata=None)
+    probe = _input_dng_probe(path, 4)
+    expected = np.ascontiguousarray(values[4:8, 6:10])
+    assert probe["probe_shape"] == [4, 4]
+    assert probe["file_payload_bytes_read"] == 32
+    assert probe["full_raw_plane_decoded"] is False
+    assert (
+        probe["probe_u16le_sha256"]
+        == hashlib.sha256(expected.astype("<u2").tobytes()).hexdigest()
+    )

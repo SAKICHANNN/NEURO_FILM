@@ -16,7 +16,6 @@ from pathlib import Path
 from typing import Any
 
 import numpy as np
-import rawpy
 import tifffile
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -269,28 +268,49 @@ def _dng_metadata(path: Path) -> dict[str, Any]:
 
 
 def _input_dng_probe(path: Path, side: int) -> dict[str, Any]:
-    with rawpy.imread(str(path)) as raw:
-        image = raw.raw_image_visible
-        height, width = image.shape
+    with tifffile.TiffFile(path) as tif:
+        page = max(tif.pages, key=lambda candidate: int(np.prod(candidate.shape)))
+        if (
+            page.compression.name != "NONE"
+            or page.dtype != np.dtype("uint16")
+            or page.samplesperpixel != 1
+            or len(page.shape) != 2
+        ):
+            raise P269Error("input DNG is not bounded-readable uncompressed uint16")
+        height, width = (int(value) for value in page.shape)
+        rows_per_strip_tag = page.tags.get("RowsPerStrip")
+        rows_per_strip = int(rows_per_strip_tag.value) if rows_per_strip_tag else height
+        if rows_per_strip != 1 or len(page.dataoffsets) != height:
+            raise P269Error(
+                "input DNG does not expose one independently readable strip per row"
+            )
+        if side <= 0 or side > height or side > width:
+            raise P269Error("bounded input DNG probe side is invalid")
         y0 = max(0, (height - side) // 2)
         x0 = max(0, (width - side) // 2)
-        probe = np.ascontiguousarray(image[y0 : y0 + side, x0 : x0 + side])
+        rows: list[np.ndarray] = []
+        with path.open("rb") as stream:
+            for y in range(y0, y0 + side):
+                if int(page.databytecounts[y]) < width * 2:
+                    raise P269Error("input DNG row strip is shorter than expected")
+                stream.seek(int(page.dataoffsets[y]) + x0 * 2)
+                payload = stream.read(side * 2)
+                if len(payload) != side * 2:
+                    raise P269Error("bounded input DNG probe read is truncated")
+                rows.append(np.frombuffer(payload, dtype=f"{tif.byteorder}u2"))
+        probe = np.ascontiguousarray(np.stack(rows).astype(np.uint16, copy=False))
         return {
             "raw_height": int(height),
             "raw_width": int(width),
-            "raw_dtype": str(image.dtype),
-            "raw_pattern": raw.raw_pattern.tolist()
-            if raw.raw_pattern is not None
-            else None,
-            "color_desc": bytes(raw.color_desc).rstrip(b"\x00").decode("ascii"),
-            "white_level": int(raw.white_level),
-            "black_level_per_channel": [
-                int(value) for value in raw.black_level_per_channel
-            ],
+            "raw_dtype": "uint16",
+            "cfa_pattern": _tag_value(page.tags, "CFAPattern"),
+            "white_level": _tag_value(page.tags, "WhiteLevel"),
             "probe_shape": list(probe.shape),
             "probe_minimum": int(probe.min()),
             "probe_maximum": int(probe.max()),
             "probe_u16le_sha256": _sha256_bytes(probe.astype("<u2").tobytes()),
+            "file_payload_bytes_read": int(probe.size * 2),
+            "full_raw_plane_decoded": False,
         }
 
 
