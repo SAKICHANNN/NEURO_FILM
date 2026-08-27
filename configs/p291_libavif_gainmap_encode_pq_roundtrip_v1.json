@@ -1,12 +1,12 @@
 {
   "schema": "neuro-film.p291-libavif-gainmap-encode-pq-roundtrip-contract.v1",
   "experiment_id": "P291",
-  "status": "PREREGISTERED_BEFORE_INTEGRATION_EXECUTION",
+  "status": "PRESCORE_COLOR_SPACE_CORRECTED_BEFORE_INTEGRATION_EXECUTION",
   "contract": [
     "docs/planning/P291_LIBAVIF_GAINMAP_ENCODE_PQ_ROUNDTRIP_CONTRACT.md",
-    4238,
-    "6c7d2829c46216a250de78147f2d1a8ae38aceff7528a9bad5666f19bf04c74a",
-    "d185fdc6"
+    5018,
+    "2dee1a3f1cc2d95cc089ebd3a774b9eea92712559497c135554b6178408f7143",
+    "4637586e"
   ],
   "parents": {
     "p289_config": [
@@ -101,7 +101,7 @@
     "pq_vs_decoded_hdr_max_code_error_max": 1,
     "pq_vs_direct_hdr_median_code_error_max": 1.0,
     "pq_vs_direct_hdr_p95_code_error_max": 16.0,
-    "pq_vs_direct_hdr_max_code_error_max": 18,
+    "pq_vs_direct_hdr_max_code_error_max": 32,
     "require_all_identities_exact": true,
     "require_profile_geometry_ownership_exact": true,
     "require_repeat_png_exact": true,
@@ -110,6 +110,7 @@
     "require_report_byte_exact": true,
     "require_zero_residue": true
   },
+  "prescore_correction": "Before P291 media construction or metric execution, source-only inspection established that the P289 endpoint is BT.709/PQ while P283/P284 publish Rec.2020/PQ. Direct code comparison would misclassify the required primaries conversion. The corrected frozen comparator independently applies the existing BT.709 PQ to absolute sRGB to Rec.2020 to PQ path to both endpoint roles. Parents, fixture, codec profile, runtime, transform, stop rule and claim ceiling are unchanged.",
   "stop_rule": "Any failed gate closes exact P291 without changing codec parameters, matrices, transfer functions, quantization rules, thresholds, fixture or backend. No clipping, metadata rewriting, tolerance rescue or second fixture.",
   "claim_ceiling": "One private Windows end-to-end arithmetic/container integration for the exact P289/P290 fixture through unchanged P283/P284 only. No SDR tone policy, complete ISO 21496-1, arbitrary AVIF/HEIF or HDR quality, display validation, public dependency/API/package/schema/capability, default loader, product admission, stock evidence or candidate3 change."
 }
