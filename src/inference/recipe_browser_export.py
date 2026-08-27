@@ -8,6 +8,7 @@ import secrets
 import sys
 import tempfile
 import threading
+from collections.abc import Callable
 from dataclasses import dataclass
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -24,6 +25,7 @@ from .recipe_export_request import (
 
 LOOPBACK_HOST = "127.0.0.1"
 DEFAULT_MAXIMUM_FORM_BYTES = 4096
+RecipeBrowserPageRenderer = Callable[[list[dict[str, Any]], str], bytes]
 
 
 class RecipeBrowserExportError(ValueError):
@@ -96,9 +98,12 @@ class RecipeBrowserExportSession:
         maximum_recipe_bytes: int = 2 * 1024 * 1024,
         maximum_request_bytes: int = DEFAULT_MAXIMUM_REQUEST_BYTES,
         maximum_form_bytes: int = DEFAULT_MAXIMUM_FORM_BYTES,
+        page_renderer: RecipeBrowserPageRenderer = _page,
     ) -> None:
         if type(maximum_form_bytes) is not int or maximum_form_bytes < 1:
             raise RecipeBrowserExportError("maximum_form_bytes must be positive")
+        if not callable(page_renderer):
+            raise RecipeBrowserExportError("page_renderer must be callable")
         if output_root.exists() and not output_root.is_dir():
             raise RecipeBrowserExportError("output root must be a directory")
         output_root.mkdir(parents=True, exist_ok=True)
@@ -119,6 +124,7 @@ class RecipeBrowserExportSession:
         self._maximum_recipe_bytes = maximum_recipe_bytes
         self._maximum_request_bytes = maximum_request_bytes
         self._maximum_form_bytes = maximum_form_bytes
+        self._page_renderer = page_renderer
         self._rows = {str(row["request_file"]): row for row in rows}
         self._payloads = {
             name: request_set["files"][name] for name in self._rows
@@ -155,7 +161,13 @@ class RecipeBrowserExportSession:
                 if parsed.path != "/" or query != {"token": [session._token]}:
                     self._write(HTTPStatus.NOT_FOUND, b"not found\n")
                     return
-                self._write(HTTPStatus.OK, _page(list(session._rows.values()), session._token))
+                payload = session._page_renderer(
+                    list(session._rows.values()), session._token
+                )
+                if not isinstance(payload, bytes) or not payload:
+                    self._write(HTTPStatus.INTERNAL_SERVER_ERROR, b"page unavailable\n")
+                    return
+                self._write(HTTPStatus.OK, payload)
 
             def do_POST(self) -> None:
                 if self.path != "/export":
@@ -287,4 +299,5 @@ __all__ = [
     "BrowserExportResult",
     "RecipeBrowserExportError",
     "RecipeBrowserExportSession",
+    "RecipeBrowserPageRenderer",
 ]
