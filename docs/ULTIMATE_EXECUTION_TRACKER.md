@@ -2498,6 +2498,19 @@ Do not clip, retune or replace the profiles. RF3.D0 remains a development
 baseline only, and controlled three-stock acquisition remains primary.
 Evidence: `docs/evidence/RF3_D0R_DNG_THREE_STOCK_PROXY_RESULT.json`.
 
+RF3.D14 closes the same fixed K=1 three-stock population as a stable automatic
+separation result without rerendering or rescue. Across all 16 source-disjoint
+U4.3D photographs, Velvia--Portra passes the inherited per-source median
+DeltaE76 threshold on `16/16` sources and Velvia--Ektar on `15/16`, but
+Portra--Ektar passes only `9/16` against the frozen minimum `12/16`. Its
+population median is only `1.02448`, despite zero confirmed severe artifacts
+across all 48 outputs. Forward/reverse 18,766-byte reports are exact at
+`988a47f7...b6b7e`; no AO6, fit, render, source substitution or threshold
+change is allowed. Close the current K=1 three-stock distinguishability claim
+and keep controlled stock-specific acquisition as the primary next evidence.
+Evidence:
+`docs/evidence/RF3_D14_THREE_STOCK_POPULATION_SEPARATION_RESULT.json`.
+
 SF3.A3C closes the final bounded commercial-page lead without opening another
 proxy experiment. FilmLabPro names all three target stocks and publishes
 datasheet-derived curves and implementation parameters, but exposes no paired

@@ -19015,3 +19015,29 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   fixture and one private wrapper only; adjacent wrapper expansion stops.
   There is no SDR tone policy, complete ISO/arbitrary-media support, public
   API/default/product promotion or candidate-3 consumption.
+
+### 2026-08-27 - RF3.D14 closes current K1 three-stock population separation
+
+- **Node and scope:** `ULT > RF3 > RF3.D14`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the primary writer; scientific research,
+  DRPT-BI, agent-log and structure stewardship preserved the frozen
+  stock-first, no-rescue boundary. The audit reused the existing 16 x 3 K1
+  Look Approximation outputs and excluded AO6, new renders and new fitting.
+- **Freeze and execution:** contract commit `954fe9b3`, implementation/test
+  commit `35fbcd73` and evidence commit `cae7275f` bind the exact U4.3A report,
+  U4.3D severe-review evidence and inherited U7.2C DeltaE76 threshold. Two
+  fresh forward/reverse reports are byte-exact at 18,766 bytes / SHA
+  `988a47f7...b6b7e`, scientific `c475718b...f758`; three material/evidence
+  tests pass, with Ruff, JSON and diff checks clean.
+- **Result:** Velvia--Portra reaches the threshold on `16/16` sources and
+  Velvia--Ektar on `15/16`, but Portra--Ektar reaches it on only `9/16` versus
+  the frozen `12/16` minimum. Its population median is `1.02448` and minimum
+  is `.74972`. All 48 outputs retain the independent zero-confirmed-severe
+  result, so this is a distinguishability failure rather than an artifact
+  veto.
+- **Boundary/handoff:** close the current fixed-K1 three-stock population
+  separation without parameter, arm, cohort or threshold rescue. This does
+  not erase partial automatic colour separation, but it is not blind human
+  distinguishability, target-film closeness, stock identity, calibration,
+  preference, multi-stock completion or product promotion. Controlled
+  stock-specific acquisition remains the primary next evidence.
