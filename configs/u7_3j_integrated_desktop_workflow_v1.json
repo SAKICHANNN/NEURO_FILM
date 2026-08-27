@@ -1,0 +1,36 @@
+{
+  "schema": "kmcfm.u7-3j-integrated-desktop-workflow-contract.v1",
+  "experiment_id": "U7_3J_INTEGRATED_DESKTOP_WORKFLOW_V1",
+  "frozen_at": "2026-08-27",
+  "history_root": "outputs/eval/u7_2_three_stock_24mp_recipe_replay_v1/formal/history",
+  "profile_path": "configs/render_profiles/safe_rich_v1.json",
+  "expected_styles": [
+    "velvia_50",
+    "portra_400",
+    "ektar_100"
+  ],
+  "browser": {
+    "executable": "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe",
+    "desktop_viewport": [1440, 1000],
+    "narrow_viewport": [500, 900],
+    "timeout_seconds": 180
+  },
+  "execution": {
+    "tile_size": 256,
+    "maximum_recipe_files": 10000,
+    "maximum_recipe_bytes": 2097152,
+    "maximum_request_bytes": 65536,
+    "maximum_form_bytes": 4096
+  },
+  "gates": {
+    "valid_recipe_count_exact": 3,
+    "preview_count_exact": 3,
+    "distinct_style_count_exact": 3,
+    "distinct_preview_sha256_count_exact": 3,
+    "all_selected_outputs_exact": true,
+    "machine_local_paths_exposed": false,
+    "non_loopback_network_requests": 0,
+    "owned_residue_count": 0
+  },
+  "claim_ceiling": "Private local integrated browser workflow for existing film-inspired Look Approximation recipes only; no stock accuracy, calibration, installer or release claim."
+}
