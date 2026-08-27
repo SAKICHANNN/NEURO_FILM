@@ -1,0 +1,41 @@
+{
+  "schema": "neuro-film.sf3-a3h-negicc-it8-source-lock-evidence.v1",
+  "experiment_id": "SF3.A3H",
+  "implementation_commit": "f975a3b491c4adfe5b09feda66350534db9ccfcc",
+  "status": "PASS_SOURCE_LOCK",
+  "decision": "OPEN_CONTROLLED_PATCH_BASELINE",
+  "formal_replays": 2,
+  "formal_report_bytes_exact": true,
+  "formal_report_sha256": "e3ddfd8d50560874806bebf1e11714d25769aeb1931d8aa1246116af9677644d",
+  "scientific_identity": "2fc7f43e23c054f2fee3ff674c78e560c2233d41606956a74305ecba3ecfb1ea",
+  "source": {
+    "repository": "arufahc/negicc",
+    "commit": "a556c87b1c99cb27039ae3abe1abaffe4395950d",
+    "stocks": [
+      "kodak_ektar_100",
+      "kodak_portra_400"
+    ],
+    "exposures_ev": [
+      -1,
+      0,
+      1,
+      2
+    ],
+    "observations": 8,
+    "patch_rows_per_observation": 288,
+    "total_patch_rows": 2304,
+    "network_reads_per_replay": 20,
+    "image_or_tiff_requests": 0,
+    "pixel_decodes": 0
+  },
+  "gates": {
+    "exact_commit": true,
+    "exact_git_blobs": true,
+    "required_stocks_and_exposures": true,
+    "raw_train_rgb_identity": true,
+    "common_reference_xyz": true,
+    "repository_gpl3_intent": true,
+    "readme_data_provenance": true
+  },
+  "claim_ceiling": "GPLv3-repository controlled IT8 patch observations for one Portra 400 and one Ektar 100 capture/develop/scan setup; not natural-scene transfer, independent-roll evidence, Velvia coverage, scanner-independent stock response, product profile or calibration"
+}
