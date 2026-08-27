@@ -6,12 +6,17 @@ import argparse
 import hashlib
 import json
 import struct
+import sys
 from pathlib import Path
 from types import SimpleNamespace
 from typing import Any
 
 import numpy as np
 import tifffile
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from src.preprocess.dng_forward_raster import (
     DngForwardRasterError,
@@ -21,7 +26,6 @@ from src.preprocess.dng_forward_raster import (
 )
 from src.preprocess.dng_metadata import _walk_pages
 
-ROOT = Path(__file__).resolve().parents[1]
 SCHEMA = "neuro_film.p297_dng_opcode_list_ingress_safety_result.v1"
 
 
