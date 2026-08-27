@@ -1,0 +1,43 @@
+{
+  "schema": "neuro-film.p273-openimageio-aces2065-interoperability-contract.v1",
+  "experiment_id": "P273",
+  "status": "FROZEN_BEFORE_OPENIMAGEIO_CONTAINER_READ",
+  "parents": {
+    "p249_config": {"path": "configs/p249_aces2065_openexr_exact_consumer_intake_v1.json", "bytes": 4399, "git_blob": "00923eca18266a758166cf8a3b8a65b36c8a07c8", "sha256": "0cb2e085635af2a97b977cd9d6a6d6033d34ba02b6ae866379b5b56c1972511d"},
+    "p249_evidence": {"path": "docs/evidence/P249_ACES2065_OPENEXR_EXACT_CONSUMER_INTAKE_RESULT.json", "bytes": 4688, "git_blob": "49ab6792b54eb04cecab4314c48b8e74ec626c9b", "sha256": "d744651246a634e1cdb17e2f421fc16a537c1089b61e777277d813b18eeb4bee"},
+    "p251_evidence": {"path": "docs/evidence/P251_ACES2065_OPENEXR_WORKING_IMAGE_INGRESS_RESULT.json", "bytes": 5443, "git_blob": "34ed0e0e231e97f4b1c22907c882842a7ccef33b", "sha256": "e368560399119d59073a3cb0488261d81ff1cd2078202cbe9df6411a1152aa6c"},
+    "p249_runner": {"path": "scripts/audit_p249_aces2065_openexr_exact_consumer_intake.py", "bytes": 13791, "git_blob": "ac110d293a6314394735f9b98a93010d4d6534ee", "sha256": "3cb56a2133e734c1dd9db4ed7c3d1958f61d1deb635bbd32e345c2401df50601"}
+  },
+  "openimageio_runtime": {
+    "root": "data/physical_reference/spektrafilm_dev_runtime_py312",
+    "version": "3.1.11.0",
+    "files": {
+      "Scripts/python.exe": {"bytes": 274424, "sha256": "0b471133e110cfb53a061cad528ce8e517d7b9ac41a0a396c39ad795a487fc14"},
+      "Lib/site-packages/OpenImageIO/__init__.py": {"bytes": 2185, "sha256": "8661c639980cf0167fcd9d461a01211da5db9ef1e95d7cd0a13e7fb17f27b72f"},
+      "Lib/site-packages/OpenImageIO/OpenImageIO.cp312-win_amd64.pyd": {"bytes": 1433600, "sha256": "d8696e956db50c279a3a77b606ca88d56de50887f7ef42fbf2219328b1868895"},
+      "Lib/site-packages/OpenImageIO/bin/OpenImageIO.dll": {"bytes": 10909696, "sha256": "5109f4aaab350a144f67b68433316c1b89bc43e4cd23f1e619679a50e5f3730e"},
+      "Lib/site-packages/OpenImageIO/bin/OpenImageIO_Util.dll": {"bytes": 646656, "sha256": "949a9dd6a0ee8d7dd4e7e51c6d803a8c3f75fe93b85545e0c1d19c745025da4c"},
+      "Lib/site-packages/OpenImageIO/bin/OpenEXR_v_3_3_5_OpenImageIO_v3_1.dll": {"bytes": 894464, "sha256": "dd051934a8740b5c0cee5ad833a7a9206a601e059858812a5daf75e7ba272294"},
+      "Lib/site-packages/OpenImageIO/bin/OpenEXRCore_v_3_3_5_OpenImageIO_v3_1.dll": {"bytes": 866304, "sha256": "912ef3d70a8ea0514a56ea9e1785fcfe747160ccee3ea02d7fcafb48478449ce"},
+      "Lib/site-packages/OpenImageIO/bin/Iex_v_3_3_5_OpenImageIO_v3_1.dll": {"bytes": 292864, "sha256": "ef7a7f706d46539b841b7190f8270bcacf06a057adaa78aeaf32636d54d99a79"},
+      "Lib/site-packages/OpenImageIO/bin/Imath_v_3_1_10_OpenImageIO_v3_1.dll": {"bytes": 338944, "sha256": "8cee91c313bd5fd0170baa5fe50b74a80ad248a8e0e81c0606ade0182b525edb"},
+      "Lib/site-packages/OpenImageIO/bin/zlib1.dll": {"bytes": 84992, "sha256": "2d32d5a9cec3080e1615185bf932c3f1c9977c0498012832c1e1c58971ef526b"}
+    }
+  },
+  "expected": {
+    "container_bytes": 1144,
+    "container_sha256": "1a25181406270142c98f2169897d3a4c468ec50c979fff9077d37f956c888726",
+    "pixel_f32le_sha256": "2b3417e344aa7c26962a109f55d14237a0926d0e03eb46767477b274c4179cb4",
+    "shape": [7, 9, 3],
+    "channels": ["R", "G", "B"],
+    "format": "float",
+    "compression": "zip",
+    "aces_image_container_flag": 1,
+    "color_interop_id": "lin_ap0_scene",
+    "chromaticities": [0.7347000241279602, 0.2653000056743622, 0.0, 1.0, 0.00009999999747378752, -0.07699999958276749, 0.3216800093650818, 0.3376699984073639],
+    "adopted_neutral": [0.3216800093650818, 0.3376699984073639]
+  },
+  "temporary_root": "outputs/tmp",
+  "stop_rule": "Any runtime, parent, container, pixel, metadata, truncation, replay or cleanup mismatch closes P273 without dependency substitution, metadata rewrite, tolerance rescue or core integration.",
+  "claim_ceiling": "Private interoperability of one exact synthetic P249 AP0/D60 ACES2065-1 OpenEXR with one existing Windows OpenImageIO runtime only; no arbitrary EXR/ACES, image quality, SMPTE certification, public dependency/API/package/schema/capability, renderer/product mapping or candidate-3 change."
+}
