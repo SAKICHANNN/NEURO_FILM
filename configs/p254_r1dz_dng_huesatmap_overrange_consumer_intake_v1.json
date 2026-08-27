@@ -1,7 +1,7 @@
 {
   "schema": "neuro-film.p254-r1dz-dng-huesatmap-overrange-consumer-intake-contract.v1",
   "experiment_id": "P254",
-  "status": "WAITING_PRODUCER_VERSIONED_CALLABLE_BEFORE_SOURCE_LOCK_OR_EXECUTION",
+  "status": "STAGE_B_SOURCE_LOCKED_READY_FOR_FIXTURE_EXECUTION",
   "stage_a_bindings": {
     "contract_path": "docs/planning/P254_R1DZ_DNG_HUESATMAP_OVERRANGE_CONSUMER_INTAKE_CONTRACT.md",
     "contract_commit": "941a8112b0a99046c5815dda217bd99ab51f66a1",
@@ -17,6 +17,109 @@
     "consumer_dji_exif_sha256": "e71b44097dfe38e8cbc1753932269014b7d21acc63698413f415780286d717fd",
     "consumer_dji_data1_f32le_sha256": "fa5d69874bc55aea4c9bf588709be515e121acccb5882cd63b6b6264553ce68b",
     "consumer_dji_data2_f32le_sha256": "65c161161f88a03b6728e47edff371998aec9435636b08a1b943802d48b0f142"
+  },
+  "stage_b_bindings": {
+    "source_lock_path": "docs/planning/P254_R1EC_DNG_PROFILE_HUESATMAP_CALLABLE_SOURCE_LOCK.md",
+    "source_lock_bytes": 5957,
+    "source_lock_sha256": "7cd6a2e93436b1c302cfb75cff7ebecb7ab571500b7cadb031120b808ec6469f",
+    "producer_head": "6fd669de5e50a54233d788c3f31226989c6901de",
+    "producer_implementation_commit": "89d0d71df4d10949b7e5a148ab399021d74dc09c",
+    "producer_execution_lock_commit": "9e1d7a33c92ecd06bb0e52faee6b782f655c0b9f",
+    "producer_formal_execution_commit": "134b2e9a82c905fc6c013155d6486410c3036def",
+    "producer_evidence_commit": "6fd669de5e50a54233d788c3f31226989c6901de",
+    "callable_id": "zhuise.dng-profile-huesat-callable.v1",
+    "callable_function": "zhuise.dng_profile_huesat_callable.apply_dng_profile_huesat_callable_v1",
+    "callable_signature": "(xyz_d50: NDArray[floating], payload: Mapping[str, Any]) -> NDArray[float64]",
+    "artifacts": {
+      "contract": {
+        "path": "docs/research/R1DZ_R1DR_DNG_PROFILE_HUESAT_CALLABLE_V1_CONTRACT.json",
+        "git_blob": "8a4654c26b19ad89181d7f18142810eadab5af0b",
+        "bytes": 2985,
+        "sha256": "dded21b4cc3ca868e6ef2d16c56485f10e1676f21b243cfc306b40925d77f970"
+      },
+      "schema": {
+        "path": "schemas/zhuise_dng_profile_huesat_callable_v1.schema.json",
+        "git_blob": "e2d38afc51ab342079f72a03b6b1349ba857ca0b",
+        "bytes": 1260,
+        "sha256": "8e64fedabc17fdb54ddfad5c2f6f74b9d3c4a7e3b5f33a4542be9a0250affb89"
+      },
+      "callable": {
+        "path": "src/zhuise/dng_profile_huesat_callable.py",
+        "git_blob": "49a405060f86e3b3f6bb5196d9a5d057343fc8b9",
+        "bytes": 4507,
+        "sha256": "0bd850a4869d8956d1a56498baec472b2baeaf680a8c9252bfd8aef4c7fcecbc"
+      },
+      "arithmetic_dependency": {
+        "path": "src/zhuise/dng_profile.py",
+        "git_blob": "63b1b617879bead1cd542915301075856764e916",
+        "bytes": 36685,
+        "sha256": "f9df747091754c9020c24e0bd53f2db1c02287e9a57be25593ea89f23af11b43"
+      },
+      "fixture": {
+        "path": "tests/fixtures/r1dz_dng_profile_huesat_callable_v1_fixture.json",
+        "git_blob": "daca22389488eff392fe83aef0b982a32d77a07c",
+        "bytes": 1393,
+        "sha256": "73a24e296e1d0a65232fbc9dc976369b5769ae8e6be5bd5181432dd7e953d26b"
+      },
+      "execution_lock": {
+        "path": "docs/research/R1EC_DNG_PROFILE_HUESAT_CALLABLE_HANDOFF_EXECUTION_LOCK.json",
+        "git_blob": "64cc01d7a1f0175d9e6db25e513278370b62bcc1",
+        "bytes": 2304,
+        "sha256": "691913b40bf79e603ef80b34b0233f222b8b98fcae6b86aada27f49fecb6fb3d"
+      },
+      "evidence": {
+        "path": "docs/evidence/R1EC_DNG_PROFILE_HUESAT_CALLABLE_HANDOFF_RESULT.json",
+        "git_blob": "f3a56ae0eef81b77fbee6f29561cff48e1f09766",
+        "bytes": 4027,
+        "sha256": "d93ab2f24800225f4b224044b9c6597508850c6141fe63c9dc8563dcfe08f0d4"
+      }
+    },
+    "domain_and_stage_order": {
+      "input": "finite HxWx3 linear XYZ D50",
+      "internal": "linear ProPhoto/ROMM RGB after camera white balance and camera-profile matrix",
+      "table_axis_order": "flat [hue_shift,saturation_scale,value_scale] triplets reshaped to [value,hue,saturation,3]",
+      "stage_order": "ProfileHueSatMap before ProfileGainTableMap, exposure curve, ProfileLookTable and tone curve",
+      "output": "owned C-contiguous writable float64 HxWx3 linear XYZ D50"
+    },
+    "interpolation": {
+      "calibration_1_weight": "Data1 weight",
+      "two_table_formula": "float32(weight*Data1 + float32(1-weight)*Data2)",
+      "single_table": "owned Data1 copy",
+      "weight_range": [0.0, 1.0]
+    },
+    "overrange": {
+      "encoding": 0,
+      "false": "unchanged R1DR/R1DQ bounded-SDR behavior",
+      "true": "R1DZ Adobe-reference encode/apply/decode with frozen negative-ROMM floor"
+    },
+    "ownership_and_failure": {
+      "caller_inputs_unmodified": true,
+      "output_owned_contiguous_writable": true,
+      "exception": "ValueError",
+      "partial_output": false,
+      "filesystem_or_network_io": false
+    },
+    "fixture_identities": {
+      "input_f64le_sha256": "6dbb8ce614ccadb5dd9d61cba5de03a117103e4f67ba2e551fe0de721854f369",
+      "payload_canonical_sha256": "ae8912a42bd8cba0eecd76feb0536261364fb15b37140512acb32a525e907c23",
+      "output_f64le_sha256": "558fd7ba79339c668e3cf09585a3160244a1ec6f9d45d424e3659b17c3a34536",
+      "producer_report_bytes": 2670,
+      "producer_report_sha256": "ec456d50a751554b919a138c587acdf9eef09f560d54d4dfd06273905746771e",
+      "producer_stable_identity": "d4cf3997830a840b29a2debf6fb0e9e0205f3f215ed0b4e9e2c2a2d0e84c43dd"
+    },
+    "invalid_controls": {
+      "nonfinite_or_wrong_rank_rgb": "reject",
+      "nonfinite_or_wrong_length_table": "reject",
+      "malformed_dimensions": "reject",
+      "negative_saturation_or_value_scale": "reject",
+      "nonunit_zero_saturation_value_scale": "reject",
+      "invalid_interpolation_weight": "reject",
+      "unsupported_encoding": "reject",
+      "nonboolean_support_overrange": "reject",
+      "block_workspace_capacity": "not_applicable_no_such_argument"
+    },
+    "default_sdr_parent": "Exact wrapper-to-locked-core parity on safe interior only; R1DQ/R1DR science and consumer P244/P245 guards unchanged.",
+    "rights_and_claim_ceiling": "Producer-authored private Python arithmetic plus NumPy and previously rights-screened metadata-only DJI source. Private exact fixture replay only; no full DNG renderer, RAW quality, public package/schema/capability, stock evidence, automatic matching or product mapping."
   },
   "stage_b_required_bindings": [
     "producer_publication_commit",

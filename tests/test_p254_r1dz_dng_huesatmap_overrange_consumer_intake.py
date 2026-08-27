@@ -29,9 +29,7 @@ def test_stage_a_contract_and_metadata_bindings_are_exact() -> None:
     contract = ROOT / binding["contract_path"]
     exif = ROOT / binding["consumer_dji_exif_path"]
 
-    assert config["status"] == (
-        "WAITING_PRODUCER_VERSIONED_CALLABLE_BEFORE_SOURCE_LOCK_OR_EXECUTION"
-    )
+    assert config["status"] == "STAGE_B_SOURCE_LOCKED_READY_FOR_FIXTURE_EXECUTION"
     assert _sha256(contract) == binding["contract_sha256"]
     assert exif.stat().st_size == binding["consumer_dji_exif_bytes"]
     assert _sha256(exif) == binding["consumer_dji_exif_sha256"]
@@ -48,9 +46,10 @@ def test_stage_a_contract_and_metadata_bindings_are_exact() -> None:
     ]
 
 
-def test_stage_b_cannot_execute_without_complete_producer_handoff() -> None:
+def test_stage_b_source_lock_is_complete_before_fixture_execution() -> None:
     config = json.loads(CONFIG.read_text(encoding="utf-8"))
     required = config["stage_b_required_bindings"]
+    binding = config["stage_b_bindings"]
 
     assert len(required) == len(set(required))
     assert {
@@ -63,7 +62,24 @@ def test_stage_b_cannot_execute_without_complete_producer_handoff() -> None:
         "fixture_input_table_and_output_identities",
         "default_sdr_parent_identities",
     }.issubset(required)
-    assert "stage_b_bindings" not in config
+    source_lock = ROOT / binding["source_lock_path"]
+    assert source_lock.stat().st_size == binding["source_lock_bytes"]
+    assert _sha256(source_lock) == binding["source_lock_sha256"]
+    assert binding["producer_implementation_commit"] == (
+        "89d0d71df4d10949b7e5a148ab399021d74dc09c"
+    )
+    assert set(binding["artifacts"]) == {
+        "arithmetic_dependency",
+        "callable",
+        "contract",
+        "evidence",
+        "execution_lock",
+        "fixture",
+        "schema",
+    }
+    assert binding["invalid_controls"]["block_workspace_capacity"].startswith(
+        "not_applicable"
+    )
     assert config["gates"][
         "require_stage_b_committed_before_expected_output_read"
     ]
