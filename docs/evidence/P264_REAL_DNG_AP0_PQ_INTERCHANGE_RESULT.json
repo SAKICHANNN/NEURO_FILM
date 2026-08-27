@@ -1,0 +1,98 @@
+{
+  "schema": "neuro-film.p264-real-dng-ap0-pq-interchange-evidence.v1",
+  "experiment_id": "P264",
+  "date": "2026-08-27",
+  "status": "FAIL_CLOSED_REAL_DNG_AP0_PQ_EXACT_INTERCHANGE",
+  "node": "ULT > mature RAW/DNG/HDR explicit mechanisms > P264",
+  "question": "Does one frozen full-resolution real P98 DNG produce exact canonical Rec.2100-PQ RGB16 PNG samples and bytes both directly and through the exact P259 ACES2065-1/AP0 master plus strict P251/P252 intake?",
+  "commits": {
+    "preregistration": "84f9cf39",
+    "implementation": "2ef77845",
+    "formal_lock": "b56a2686",
+    "openexr_dependency_correction": "eb03d847",
+    "windows_cleanup_correction": "a17641ef",
+    "parent_threshold_correction": "110d625f"
+  },
+  "protocol": {
+    "contract_path": "docs/planning/P264_REAL_DNG_AP0_PQ_INTERCHANGE_CONTRACT.md",
+    "contract_bytes": 2389,
+    "contract_sha256": "9cdded3f41b8a73cd77c409d981db49eac3a353c40d0d15ead58604a253fdd02",
+    "config_path": "configs/p264_real_dng_ap0_pq_interchange_v1.json",
+    "config_bytes": 4025,
+    "config_sha256": "822dbb440c51f15e1740352f83a9eaf8adb4c185f7f680a86d6a1c1e52bfdbe7",
+    "runner_path": "scripts/audit_p264_real_dng_ap0_pq_interchange.py",
+    "runner_bytes": 15261,
+    "runner_sha256": "80f2cb1edacf9d775366c06258acff8786bdd04ff7c16acba9dd8049b63b3e3f",
+    "test_path": "tests/test_p264_real_dng_ap0_pq_interchange.py",
+    "test_bytes": 1361,
+    "test_sha256": "ff0d95d8634e3ede01cabcb1368e4392d90900f7769d1a34865188a78b2f386f"
+  },
+  "input": {
+    "source_id": "blackmagic_pocket_cinema_camera_4k",
+    "logical_path": "data/external/rawpixls_bh1_v1/raw/blackmagic_pocket_cinema_camera_4k.dng",
+    "source_bytes": 4497152,
+    "source_sha256": "1491a5e5d580a9be151747bddce89faca4d0b9d352503270f516bbf8e8cdf0d9",
+    "shape": [2176, 4128, 3],
+    "working_space": "linear_rec2020_d65",
+    "acescg_strong_negative_count": 2511,
+    "acescg_strong_highlight_count": 3902
+  },
+  "lineage": {
+    "real_dng_ingress": "P98",
+    "real_dng_to_ap0_master": "P259/R1DT",
+    "strict_ap0_reader": "P251/R1DV",
+    "official_aces2_canonical_pq": "P252",
+    "producer_writer_commit": "a7ec64513c4fa097bc49b9bdbdfd8c3c7c2eb901",
+    "producer_writer_sha256": "63995dc36cf41708118f32e90687b8bb5c9b2738100b3db557371bbaf086d84d",
+    "openexr_wheel_sha256": "7aa145813acfe10a83d6e89340349379828190b321608e69f2aee426e10c890b"
+  },
+  "formal": {
+    "forward_report_path": "outputs/eval/p264/formal_forward.json",
+    "reverse_report_path": "outputs/eval/p264/formal_reverse.json",
+    "report_bytes_each": 3775,
+    "report_sha256": "182a771c4b6c943f3b0b5e0ba900f2351acae4c3591e593d7f7b03184e98f4eb",
+    "reports_byte_exact": true,
+    "scientific_identity": "175163377020070c1f97423251f3b8c6b836751427e01e54a4bd55ad01d232a6",
+    "fresh_process_count": 2,
+    "network_reads": 0,
+    "persistent_media_outputs": 0,
+    "owned_temporary_residue": 0
+  },
+  "result": {
+    "ap0_openexr_bytes": 101805274,
+    "direct_png_bytes": 53913457,
+    "interchange_png_bytes": 53913457,
+    "direct_png_sha256": "f38e9c211355fe59ac9d9757b579288b9dab9b9cd4384eb3e23a690939eda21d",
+    "interchange_png_sha256": "b0a4c02efd81e8b960bdef227823ef0d5874861f1f74e9cb746a55648f9eb7cf",
+    "rgb16_component_count": 26947584,
+    "different_rgb16_component_count": 7442,
+    "different_rgb16_component_fraction": 0.0002761657594239246,
+    "maximum_rgb16_code_difference": 1,
+    "encoded_maximum_absolute_difference": 0.000018665276002138853,
+    "encoded_rmse": 1.9413767707239082e-8,
+    "decoded_rgb16_bytes_exact": false,
+    "canonical_png_bytes_exact": false
+  },
+  "gates": {
+    "parent_and_formal_bindings_exact": true,
+    "acescg_identity_exact": true,
+    "negative_and_highlight_support_exact": true,
+    "finite_unit_outputs": true,
+    "strict_rec2100_pq_readback": true,
+    "create_only_atomicity": true,
+    "source_and_inputs_immutable": true,
+    "zero_network_and_temporary_residue": true,
+    "two_fresh_reports_exact": true,
+    "direct_interchange_rgb16_exact": false,
+    "direct_interchange_png_exact": false
+  },
+  "execution_corrections": [
+    "The first attempted fresh children stopped before DNG decode or output because the clean virtual environment did not expose OpenEXR. Commit eb03d847 binds and installs the already-frozen 740197-byte producer wheel into each isolated temporary site; inputs, algorithms, roles, outputs and gates were unchanged.",
+    "The next children completed the comparison but could not delete a loaded Windows OpenEXR DLL before their own exit, so no formal reports were accepted. Commit a17641ef moves cleanup ownership to the outer controller after child exit and the three exact abandoned p264 temporary directories were removed; pixels and gates were unchanged.",
+    "The first complete reports used zero rather than the exact P259 -1e-5 negative-support threshold, adding one non-decisive negative sample. Commit 110d625f restores the parent threshold and both complete processes restarted. The 7442 one-code sample differences and exact-interchange failure were unchanged."
+  ],
+  "decision": "The AP0 OpenEXR route is mechanically finite, replay-exact, create-only and source-safe, but float32 AP1-to-AP0-to-AP1 roundtrip changes 7442 of 26947584 canonical RGB16 components by one code and therefore changes the canonical PNG bytes. Close exact full-resolution real-DNG AP0/PQ interchange without tolerance or rounding rescue. P259 AP0 master and P252 synthetic composition remain valid within their existing claim ceilings.",
+  "consumer_mapping": false,
+  "candidate_count_after_result": "2/3",
+  "claim_ceiling": "Private one-file full-resolution real-DNG AP0/PQ mechanical interchange negative only. No arbitrary DNG/EXR/ACES/HDR, calibrated camera/display/photographic quality, public API/package/schema/capability, product admission, film-stock evidence, single-reference matching or candidate 3."
+}
