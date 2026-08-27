@@ -18036,3 +18036,36 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   operator pixel executions are zero. Do not infer or normalize rights, scrape
   Capture One, use the curves as a teacher/control, or open fitting. Controlled
   same-scene independent-roll three-stock observations remain the mainline.
+
+### 2026-08-27 - P263 independently accepts the R1EJ PGTM callable handoff
+
+- **Routing and scope:** `ULT > mature RAW/DNG explicit mechanisms > P263`,
+  DRPT L2 / Mode C. The planned P252 CLI wrapper was stopped before any file
+  write when producer R1EJ supplied a materially stronger, versioned
+  ProfileGainTableMap v1 callable handoff. P263 tests only consumer-side
+  mechanical consumability; it does not reopen the terminal DNG guard family
+  or alter P98/P257/P258 behavior.
+- **Prospective source lock:** contract/config commit `c101c032` bound the
+  producer contract, wrapper, schema, fixture, execution lock and evidence as
+  exact Git objects before fixture deserialization or callable import. Reading
+  the already-bound execution lock exposed one omitted relative-import core;
+  additive prescore commit `ed893993` added exact blob
+  `7814dd30...7ff387c` before execution. No role, fixture, expected output,
+  gate or claim changed.
+- **Execution and evidence:** audit commit `742f0110`; evidence `0fd9c006`,
+  tracked SHA `3fd3bbac...3d953`. The consumer extracts only the frozen Git
+  blobs into an isolated temporary `zhuise` package. Fresh forward/reverse
+  reports are byte-exact at 3,564 bytes / SHA `cc81af15...a043`, stable
+  identity `d677189f...67af4a`. All 15 main/parity/invalid controls pass; the
+  canonical input, payload and output hashes match, output is owned contiguous
+  writable float32, caller state is unchanged, and network/new pixel/temporary
+  residue counts are zero. Twenty-four adjacent P254/P257/P258/P261/P262/P263
+  tests pass with Ruff, compile and diff checks clean.
+- **Decision and boundary:**
+  `PASS_PRIVATE_R1EJ_DNG_PROFILE_GAIN_TABLE_CALLABLE_INTAKE`. This accepts one
+  exact private PGTM v1 callable/fixture boundary without copying producer code
+  into consumer `src`. It does not establish PGTM2, a full DNG renderer,
+  real-pixel quality, arbitrary profiles/cameras, default-loader integration,
+  public package/schema/capability, stock evidence, single-reference matching
+  or product admission. Candidate count remains `2/3`; no further DNG tag-guard
+  or callable-wrapper micro-leaf opens.
