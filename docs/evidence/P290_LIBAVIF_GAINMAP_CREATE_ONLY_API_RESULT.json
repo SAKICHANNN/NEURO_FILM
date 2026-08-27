@@ -1,0 +1,90 @@
+{
+  "schema": "neuro-film.p290-libavif-gainmap-create-only-api-evidence.v1",
+  "experiment_id": "P290",
+  "status": "PASS_PRIVATE_LIBAVIF_GAINMAP_CREATE_ONLY_API",
+  "date": "2026-08-27",
+  "decision": "Retain one private source-hash-bound and create-only Python API around the exact P289 official libavif profile. The API reproduces the exact P289 media and both decoded endpoint hashes, returns a stable receipt, preserves foreign destinations and rejects all frozen invalid inputs atomically. Adjacent encoder wrapper and target-runtime expansion stops here.",
+  "commits": {
+    "preregistration": "3b6b0edb",
+    "decoder_identity_correction": "9985ff88",
+    "api_and_unit_tests": "937e11cb",
+    "audit_implementation": "f765ef44",
+    "initial_execution_lock": "f0180052",
+    "direct_entry_fix": "9d3bca39",
+    "corrected_execution_lock": "9814493d"
+  },
+  "protocol": {
+    "contract_path": "docs/planning/P290_LIBAVIF_GAINMAP_CREATE_ONLY_API_CONTRACT.md",
+    "contract_bytes": 2929,
+    "contract_sha256": "c4afdc3de3b96a189f22c7acb0c3aaaf88f111f9e4f36fa85c55324cefecc3ea",
+    "config_path": "configs/p290_libavif_gainmap_create_only_api_v1.json",
+    "config_bytes": 4003,
+    "config_sha256": "ed2b157e815c40145223af6be3094d9aea9a07d1fea5e1f1c0b89f9d5edd79c2",
+    "source_path": "src/preprocess/libavif_gainmap_encoder.py",
+    "source_bytes": 8956,
+    "source_sha256": "c512c8312845bfa62ef733674d4433613d605e9e3ab9f755d94c5f363002d80d",
+    "unit_test_path": "tests/test_p290_libavif_gainmap_create_only_api.py",
+    "unit_test_bytes": 3146,
+    "unit_test_sha256": "b26c466582abaf557e4e95a08ce20ae6f5712c2542a777ea2df314ea11ec6b8a",
+    "runner_path": "scripts/audit_p290_libavif_gainmap_create_only_api.py",
+    "runner_bytes": 11142,
+    "runner_sha256": "b2c214d7bb5b44a7ffb5614c752b4bd96a66c13b09f272f58a87abb8e307c595",
+    "audit_test_path": "tests/test_p290_libavif_gainmap_create_only_audit.py",
+    "audit_test_bytes": 1056,
+    "audit_test_sha256": "cf81cc626b559c202daceb37a808964fb9b3ca8b43c469c09ca5f588023a16be"
+  },
+  "parent": {
+    "p289_evidence_sha256": "084ae8306e0dcd64b3aa81a887fc858177eddf287260d8dda6016b39753549e8",
+    "p289_media_bytes": 726506,
+    "p289_media_sha256": "94556d9f58b54955a07b5d8303da74d3ab350ef3eb061aab655cc5da7af6da70"
+  },
+  "interface": {
+    "function": "encode_gainmap_avif_create_only_v1",
+    "profile_id": "neuro-film.libavif-gainmap-hdr-pq-sdr-srgb.create-only.v1",
+    "caller_supplies_rendered_endpoints": true,
+    "caller_supplies_expected_endpoint_hashes": true,
+    "caller_supplies_expected_runtime_and_decoder_hashes": true,
+    "foreign_destination_overwrite": false,
+    "sdr_tone_policy_included": false,
+    "public_export": false
+  },
+  "formal": {
+    "forward_report_path": "outputs/eval/p290_libavif_gainmap_create_only_api_v1/formal_forward.json",
+    "reverse_report_path": "outputs/eval/p290_libavif_gainmap_create_only_api_v1/formal_reverse.json",
+    "report_bytes_each": 2391,
+    "report_sha256": "3231c9308ecea9d8250ccb0615d0b1fb67c9c299c269e72d302bfb8624cdd3dd",
+    "reports_byte_exact": true,
+    "fresh_process_count": 2,
+    "scientific_identity": "sha256:09f33d61d16508bf463e08064e798350e4e98639847fbd0f7c06e19cb623546a",
+    "receipt_sha256": "043061bb1e738b63f9a94364cefb53107cc91a011e7ef8dd46147f2f6de08e00",
+    "media_bytes": 726506,
+    "media_sha256": "94556d9f58b54955a07b5d8303da74d3ab350ef3eb061aab655cc5da7af6da70",
+    "decoded_hdr_pixel_sha256": "87dfef6b5f8380580c6b309f3e9e4606502ed034e8391b44b7ff83b3c85eb1ea",
+    "decoded_sdr_pixel_sha256": "894cf73174653acb08a02a06aab341e94f360739fdfb06168beb5e8c840cb634"
+  },
+  "invalid_controls": {
+    "forced_encoder_failure": true,
+    "foreign_destination": true,
+    "missing_runtime": true,
+    "nonfinite_headroom": true,
+    "wrong_cicp": true,
+    "wrong_decoder_hash": true,
+    "wrong_dimensions": true,
+    "wrong_endpoint_hash": true,
+    "wrong_layout": true,
+    "wrong_runtime_hash": true
+  },
+  "gates": {
+    "all_invalid_controls_atomic": true,
+    "candidate_exact_p289": true,
+    "endpoints_exact_p289": true,
+    "source_runtime_immutable": true,
+    "zero_persistent_media": true,
+    "reports_byte_exact": true
+  },
+  "execution_history": "The first direct CLI invocation stopped before endpoint construction, encoder execution, output, metric or report because Python placed scripts/ rather than the repository root on sys.path. The additive direct-entry bootstrap changed no parent, source, runtime, endpoint, profile, control, gate or claim ceiling; both formal runs restarted from the corrected committed head.",
+  "candidate_count_after_result": "2/3",
+  "consumer_mapping": false,
+  "adjacent_wrapper_expansion_closed": true,
+  "claim_ceiling": "One private Windows/Python create-only API around the exact P289 profile and official libavif runtime only. No SDR tone policy, complete ISO 21496-1, arbitrary AVIF/HEIF or HDR quality, display validation, public dependency/API/package/schema/capability, default loader, product admission, stock evidence or candidate3 change."
+}
