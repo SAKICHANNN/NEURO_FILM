@@ -1,0 +1,79 @@
+{
+  "schema": "neuro-film.p260-ntire2026-burst-hdr-source-eligibility-evidence.v1",
+  "experiment_id": "P260",
+  "status": "NOT_READY_NTIRE2026_BURST_HDR_RIGHTS_OR_PAYLOAD_GAP_NOT_SCIENTIFIC_RESULT",
+  "date": "2026-08-27",
+  "decision": "The official NTIRE 2026 release exposes a genuinely high-information nine-frame heterogeneous-exposure RAW plus aligned RGB observation and usable scene/split grouping, but it is not eligible for this project: the current official tree has no dataset payload, no code licence and no exact payload manifest, while the official README expressly forbids sharing training images or using them for other purposes. Do not request data, run code or consume candidate 3.",
+  "commits": {
+    "preregistration": "359397a33e3b2f6950847d67221f7bcf6ac139ac",
+    "implementation_lock": "8f894068511450b40be857fff8d77ebd2fdb6472",
+    "corrected_formal_execution": "5fe92945e553b0452025046d9ae99896d884880b"
+  },
+  "protocol": {
+    "contract_path": "docs/planning/P260_NTIRE2026_BURST_HDR_SOURCE_ELIGIBILITY_CONTRACT.md",
+    "contract_bytes": 3626,
+    "contract_sha256": "d508a27289d530a643823ff21a6ece9930cb7fba2e525ef41b11762672201fc8",
+    "config_path": "configs/p260_ntire2026_burst_hdr_source_eligibility_v1.json",
+    "config_bytes": 3578,
+    "config_sha256": "68a349b172ab1f60e353d1d391bb4699b05d345b5c7ba8893d0367dd5613105e",
+    "runner_path": "scripts/audit_p260_ntire2026_burst_hdr_source_eligibility.py",
+    "runner_bytes": 9292,
+    "runner_sha256": "4b555b7a16ed4a5d47a044f004e409b01e4eeaec20d063dd39a41cc29f5503e2",
+    "test_path": "tests/test_p260_ntire2026_burst_hdr_source_eligibility.py",
+    "test_bytes": 3043,
+    "test_sha256": "8b43d687ece71dec429156048c5d504904949d5ec5b63eb42be29d962ff06fb1"
+  },
+  "official_sources": {
+    "repository": "https://github.com/Eve-ctr/RawFusion",
+    "repository_commit": "1ac0212b73b3dbdabb262bde36b51aad7abee971",
+    "repository_tree": "54c975f90ca19a06b243ccf710b79535f8b056f2",
+    "commit_response_bytes": 2134,
+    "commit_response_sha256": "54ec909d3fb0b1b31f8c1d459a4ddce68ef6b1c6026c6767ea4cf69586da6834",
+    "tree_response_bytes": 11287,
+    "tree_response_sha256": "e3da833ee13345622803bd160307a119877650729f755ff770d4e3548723606e",
+    "readme_bytes": 5984,
+    "readme_sha256": "c550c73cbe1f5fd199efe442ec7c367b8430f64dda4e5037d10c49e1486f790d",
+    "cvf_page": "https://openaccess.thecvf.com/content/CVPR2026W/NTIRE/html/Park_NTIRE_2026_Challenge_on_Efficient_Burst_HDR_and_Restoration_Datasets_CVPRW_2026_paper.html",
+    "cvf_page_bytes": 9250,
+    "cvf_page_sha256": "e2ee4cad4c6692b248e291a3bc85a88f8f19de2901e9f34dc836c6749b816a64"
+  },
+  "formal": {
+    "forward_report_path": "outputs/eval/p260/formal_corrected_forward.json",
+    "reverse_report_path": "outputs/eval/p260/formal_corrected_reverse.json",
+    "report_bytes_each": 3038,
+    "report_sha256": "25b3b88db1d097c69eb29bc88e998afbe8fcc3a0bca2dc226b1ec3bdc8aaccfe",
+    "reports_byte_exact": true,
+    "scientific_identity": "sha256:0372cdce88ffe0ea89be94b6773f8320e6ca59e5cac5240adeb2721127ff9dcc",
+    "fresh_process_count": 2,
+    "network_bytes_each": 28655,
+    "dataset_file_requests": 0,
+    "image_or_thumbnail_requests": 0,
+    "model_or_checkpoint_requests": 0
+  },
+  "result": {
+    "repository_path_count": 48,
+    "code_license_paths": 0,
+    "dataset_payload_paths": 0,
+    "exact_inventory_paths": 0,
+    "training_scene_count_present": true,
+    "documented_downloaded_training_scene_count_present": true,
+    "validation_and_test_scene_counts_present": true,
+    "training_use_restriction_present": true,
+    "new_physical_observation": true,
+    "group_isolation": true
+  },
+  "gates": {
+    "official_identity": true,
+    "new_physical_observation": true,
+    "group_isolation": true,
+    "anonymous_public_payload": false,
+    "commercial_compatible_data_rights": false,
+    "commercial_compatible_code_rights": false,
+    "public_exact_inventory": false,
+    "two_reports_byte_exact": true
+  },
+  "formal_execution_correction": "The first two complete reports were excluded because official-identity parsing required the repository URL in CVF HTML text, while that HTML page exposes the paper title but not the PDF's URL line. Commit 5fe92945 instead cross-binds the commit-pinned README's full NTIRE 2026 challenge name to the official CVF title. No source, response identity, eligibility gate, rights interpretation or outcome changed; both complete reports restarted from the corrected committed HEAD.",
+  "candidate_count_after_result": "2/3",
+  "consumer_mapping": false,
+  "claim_ceiling": "Current official-source eligibility audit only. The physical observation is relevant but inaccessible under the required rights and payload gates. No dataset/model/image download, HDR quality, arbitrary RAW support, shared operator, A1/A4/A5, package/schema/capability/product admission or candidate 3."
+}
