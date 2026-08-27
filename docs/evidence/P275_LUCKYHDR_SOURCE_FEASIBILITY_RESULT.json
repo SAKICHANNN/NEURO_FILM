@@ -1,0 +1,72 @@
+{
+  "schema": "neuro-film.p275-luckyhdr-source-feasibility-evidence.v1",
+  "experiment_id": "P275",
+  "status": "PASS_PRIVATE_BOUNDED_SOURCE_FEASIBILITY",
+  "decision": "The exact official LuckyHDR repository contains one bounded checkpoint and one explicit short/mid/long iPhone ProRAW bracket suitable for a separately frozen private runtime D0. The audit does not open acquisition or execution because demo-capture redistribution and upstream SI-HDR training-data rights are not fixed for product use.",
+  "bindings": {
+    "contract_commit": "722ed3b0",
+    "transport_amendment_commit": "9a9c8e23",
+    "formal_execution_commit": "9a9c8e23",
+    "repository_commit": "f5aec06fb70cd092973be5d15ec43899f8209293",
+    "repository_tree": "37c05025490bd8a67494d953f23a7cebb521bc9a",
+    "config_sha256": "5acd0c49e388c4f29ec6f3a16c35df8d340ac5a8695bdc810a150b8f77b293fa"
+  },
+  "formal_reports": [
+    {
+      "path": "outputs/eval/p275_luckyhdr_source_feasibility_forward.json",
+      "bytes": 3207,
+      "sha256": "8522693d20ceb6f1767edf0d77980fe644cac2b0bb8bff7a13f9cbc025310c08"
+    },
+    {
+      "path": "outputs/eval/p275_luckyhdr_source_feasibility_reverse.json",
+      "bytes": 3207,
+      "sha256": "1a896a4eef6c85336282e35d3687d86b712e4dcd1a5ee0bcbd6b1f769a749070"
+    }
+  ],
+  "result": {
+    "scientific_payload_sha256": "de6a8d0eb0c451033c925f4cf98429b76a7597f8bd06729a4149a040dd05f63e",
+    "forward_reverse_scientific_exact": true,
+    "network_response_bytes_per_run": 131320,
+    "checkpoint_bytes": 524786,
+    "three_dng_bytes": 27000234,
+    "dng_count": 3,
+    "binary_body_reads": 0,
+    "pixel_decodes": 0,
+    "model_loads": 0,
+    "inference_runs": 0,
+    "target_reads": 0,
+    "score_runs": 0,
+    "ground_truth_present": false,
+    "private_runtime_d0_eligible": true,
+    "product_rights_clear": false,
+    "candidate3_consumed": false
+  },
+  "gates": {
+    "repository_commit_and_tree_exact": true,
+    "root_mit_licence_present": true,
+    "checkpoint_regular_git_blob_and_bounded": true,
+    "three_ordered_dng_blobs_and_bounded": true,
+    "demo_roles_and_capture_metadata_explicit": true,
+    "inference_uses_shutter_times_iso": true,
+    "binary_body_reads_zero": true,
+    "pixel_model_target_and_score_reads_zero": true,
+    "rights_and_upstream_dependency_gap_recorded": true,
+    "product_rights_remain_false": true,
+    "candidate3_not_consumed": true
+  },
+  "preformal_exclusions": [
+    "The first Python urllib attempt stopped on a TLS handshake before any report or bound object was read.",
+    "A second urllib attempt read only the exact commit response before a tree-request TLS failure; it produced no report.",
+    "A filtered Git diagnostic stopped on the initial Schannel TLS request and produced no source checkout.",
+    "Before any formal report, the transport was prospectively amended to bounded curl HTTP/1.1 retries without changing repository objects, roles, limits, gates or interpretation."
+  ],
+  "rights_and_product": {
+    "root_software_license": "MIT",
+    "demo_capture_redistribution_clear": false,
+    "upstream_training_data_rights_fixed": false,
+    "public_package_schema_capability_mapping": false,
+    "product_admission": false,
+    "candidate_3": false
+  },
+  "claim_ceiling": "Private zero-pixel source feasibility for one exact LuckyHDR checkpoint and one exact bundled three-frame ProRAW bracket only; no HDR ground truth or quality, arbitrary bracket, redistribution/commercial rights, package/schema/capability/product admission or candidate3."
+}

@@ -9,6 +9,7 @@ from scripts.audit_p275_luckyhdr_source_feasibility import P275Error, _canonical
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/p275_luckyhdr_source_feasibility_v1.json"
+EVIDENCE = ROOT / "docs/evidence/P275_LUCKYHDR_SOURCE_FEASIBILITY_RESULT.json"
 
 
 def test_p275_contract_is_frozen_and_bounded() -> None:
@@ -31,3 +32,16 @@ def test_p275_invalid_order_rejects_before_network() -> None:
 
     with pytest.raises(P275Error, match="order"):
         execute(CONFIG, "invalid")
+
+
+def test_p275_evidence_preserves_zero_read_and_rights_boundary() -> None:
+    evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+    result = evidence["result"]
+    assert evidence["status"] == "PASS_PRIVATE_BOUNDED_SOURCE_FEASIBILITY"
+    assert result["forward_reverse_scientific_exact"] is True
+    assert result["binary_body_reads"] == 0
+    assert result["pixel_decodes"] == 0
+    assert result["model_loads"] == 0
+    assert result["candidate3_consumed"] is False
+    assert result["product_rights_clear"] is False
+    assert evidence["rights_and_product"]["product_admission"] is False
