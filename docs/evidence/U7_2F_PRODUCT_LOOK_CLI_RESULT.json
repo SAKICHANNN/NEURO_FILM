@@ -1,0 +1,86 @@
+{
+  "schema_id": "neuro-film.product-look-cli-evidence.v1",
+  "experiment_id": "U7.2F",
+  "date": "2026-08-28",
+  "status": "PASS_OPT_IN_GENERIC_BW_CLI_AND_EXACT_RECIPE_REPLAY",
+  "execution_commit": "99c0e510",
+  "bindings": {
+    "contract": {
+      "path": "configs/u7_2f_product_look_cli_v1.json",
+      "sha256": "4b5fdc5d8a456d83a09cfd387ad2a1f4a88b74a3f05ca6a3ad9486fbaabd3ab3"
+    },
+    "product_profile": {
+      "path": "configs/render_profiles/safe_rich_product_v1.json",
+      "sha256": "09722cb48c55d1c4c460220c9f59b9ced81801c1b6fe856708a27f5cc99d39fe"
+    },
+    "cli": {
+      "path": "scripts/render_film.py",
+      "sha256": "ae407bb32a6934bbaa41af362a36362ec103d01124996ad0e3d445c1bba90169"
+    },
+    "replay": {
+      "path": "src/inference/style_safe_engine.py",
+      "sha256": "c9f613554268c31ae8cc42c4f4bcd1035e9703c4d9d3573464519c07bc740780"
+    },
+    "test": {
+      "path": "tests/test_u7_2f_product_look_cli.py",
+      "sha256": "8a6ac2c5ee9f403596752b82c8a1da518a0e0b4517acf80ce0b173c3098eee1b"
+    },
+    "catalog_parent": {
+      "path": "docs/evidence/U7_2E_PRODUCT_LOOK_CATALOG_RESULT.json",
+      "sha256": "af51992278ba40950cce07310cb3dcf4b9d9675a41ad7e6fb50c323c4f744d3c"
+    },
+    "generic_bw_parent": {
+      "path": "docs/evidence/BW2_D1_GENERIC_BW_LOOK_RESULT.json",
+      "sha256": "d4d279f1e95964f11cff98467ab9b73f9f2ea337db7fd842e7280b2037bc0b88"
+    }
+  },
+  "formal_probe": {
+    "source_png_sha256": "71168122db6b170b5543d3bf9f0b0d71bbc58cfbb52dbe02a289d25b0753fee2",
+    "source_rgb8_sha256": "7f22d40cf07e219b3ca67d2d992c4f9a963319f1495e7c08aeb3023463b3c1d7",
+    "forward_reverse_exact": true,
+    "rows": [
+      {
+        "look_amount": 0.0,
+        "output_sha256": "fdaca4621f6f24f92e987fc9d48c4f64fd4055e12349ae8430420dc2497f6da1",
+        "decoded_rgb8_sha256": "7f22d40cf07e219b3ca67d2d992c4f9a963319f1495e7c08aeb3023463b3c1d7",
+        "normalized_recipe_sha256": "dce7b2d444f8abd1c4ae8e65379331b895157fe48f7c5c91b0c26d0759c3c22e",
+        "decoded_source_identity_exact": true
+      },
+      {
+        "look_amount": 0.5,
+        "output_sha256": "865043fe54d6da77aac6201a3a2625cfa8bed66c3fba2d71880d9df25649980d",
+        "decoded_rgb8_sha256": "dfec4f4aa7e7e5f6b5a2ba74e75cd6033c676e80261974e528b4f8b8dba1e36e",
+        "normalized_recipe_sha256": "dbe36503dea91d51367c88c5d24722f1a39c1e6c7727132458a96864721f5100"
+      },
+      {
+        "look_amount": 1.0,
+        "output_sha256": "0524c390a7725a61cffc3805184f65fc372262c24d94b50407deccca30ca73ee",
+        "decoded_rgb8_sha256": "0c25d7663b45ce201aa9f07316464c8ec5f1de0cde1634d20385815656abe810",
+        "normalized_recipe_sha256": "fd8340b557891c7abe654697babba59b701a2b85d2e4acae4b5ee303011d3aea"
+      }
+    ],
+    "temporary_media_residue_count": 0
+  },
+  "defect_correction": {
+    "finding": "The CLI and replay compositor applied the legacy four-code output margin even when look_amount was zero and no effect layer existed.",
+    "correction": "Use zero final output margin only for zero look amount with no effect layers; preserve the legacy margin for all nonzero looks and effect-bearing renders.",
+    "existing_three_stock_zero_recipe_identity_and_replay_exact": true
+  },
+  "compatibility": {
+    "legacy_profile_sha256": "72a9948e6fc76e230c4593b847728712bc034840cd339e6b34f079ac7d424c79",
+    "legacy_profile_changed": false,
+    "legacy_recipe_schema_changed": false,
+    "legacy_named_bw_product_ids_exposed": false,
+    "three_stock_product_profile_output_exact": true
+  },
+  "verification": {
+    "focused": "7 passed",
+    "adjacent_render_and_recipe_chain": "81 passed",
+    "ruff": "pass",
+    "json": "pass",
+    "diff_check": "pass"
+  },
+  "decision": "admit_opt_in_generic_bw_cli_and_exact_replay_without_changing_legacy_defaults",
+  "claim_ceiling": "Opt-in local CLI and replay integration for the existing generic black-and-white Look Approximation identity. No HP5/Tri-X separation, calibrated stock response, automatic stock inference or multi-stock completion.",
+  "multi_stock_completion": false
+}
