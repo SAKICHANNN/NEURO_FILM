@@ -18530,3 +18530,28 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   worksheet remains blank and is not scientific evidence. Next work is the
   actual project-owned Ektar capture/process/scan, which still requires the
   separate purchase/lab authority already frozen by A0N.
+
+### 2026-08-27 - P271 independently consumes the R1EN tone-curve callable
+
+- **Node and scope:** `ULT > mature RAW/DNG explicit mechanisms > P271`, DRPT
+  L2 / Mode C. `dev-research-reliability` is primary; research, DRPT-BI,
+  agent-log and structure stewardship constrain the claim and shared-worktree
+  propagation. This closes the callable gap behind P261's refusal guard; it
+  does not implement a real-file profile chain or change the default loader.
+- **Freeze and implementation:** contracts `9159a566` and `86482575`, isolated
+  audit `75237175`, and formal lock `203d4477` bind producer R1EN head
+  `0acbec09`, its contract/core/wrapper/schema/fixture/execution/evidence Git
+  objects, stage order and strict ownership/failure semantics. The audit builds
+  a temporary package only from those objects; producer worktree imports and
+  consumer `src` copies are zero.
+- **Result and corrections:** evidence commit `39be3b48`. Forward/reverse fresh
+  reports are byte-exact at 3,882 bytes / SHA `b4c0f9dc...0e52b`, stable
+  `8076fc40...9a7dd`; all 13 controls and 13 gates pass. Before callable import
+  or formal lock, one abbreviated producer SHA transcription and one
+  float32-semantic nonmonotone-y predicate were corrected without changing
+  source objects, fixture, roles, output or gates.
+- **Verification and boundary:** 26 P254/P261/P263/P271 adjacent tests pass;
+  Ruff, `py_compile`, JSON and diff checks are clean. Retain private exact
+  mechanical consumability only. No new RAW/DNG pixels, real-file composition,
+  full renderer, image quality, public package/schema/capability, product
+  mapping or candidate-3 change opens.
