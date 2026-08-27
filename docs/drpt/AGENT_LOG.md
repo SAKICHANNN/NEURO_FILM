@@ -18914,3 +18914,28 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   training and inference remain zero. Do not infer rights, acquire payloads or
   consume candidate 3. No restoration-quality, arbitrary RAW, shared operator,
   package/schema/capability/product or consumer mapping opens.
+
+### 2026-08-27 - U4.3D closes the existing three-stock K=1 population severe review
+
+- **Node and scope:** `ULT > U4 > U4.3D`, DRPT L2 / Mode C.
+  `dev-research-reliability` is the primary writer; scientific research,
+  DRPT-BI, agent-log and structure stewardship preserve the frozen
+  severe-artifact-first boundary. The leaf reviews the existing fixed K=1
+  Look Approximation outputs only; AO6 is excluded.
+- **Freeze and execution:** implementation commit `c212df76` selects all 16
+  RF3.D0 source-disjoint photographs x exact Velvia 50, Portra 400 and Ektar
+  100 K=1 arms. It verifies the exact U4.3A report and source/output hashes,
+  performs zero renders and zero network reads, and creates 16 review sheets
+  with 48 overviews plus 144 exact source/output crop pairs. Forward/reverse
+  reports are byte-exact at 40,100 bytes / SHA `cef2eb62...1a3e5`, scientific
+  identity `a3d79caf...1071e3`.
+- **Result:** original-resolution autonomous review records 48/48
+  `PASS_NO_CONFIRMED_SEVERE_ARTIFACT`; no output has a confirmed structural
+  break, colour block/band, isolated chroma impulse, objectionable halo,
+  posterization or non-source geometry error. Evidence/test commit
+  `b6a22164` binds every source and arm.
+- **Verification and boundary:** six U4.3D material/evidence tests pass; Ruff
+  and diff checks pass. This completes U4.3 for the existing fixed K=1
+  three-stock population only. It does not repair U7.2C stock separation,
+  establish target-film closeness or calibration, replace A0N controlled
+  capture, or open product promotion.
