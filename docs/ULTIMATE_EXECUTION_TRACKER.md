@@ -2669,3 +2669,12 @@ runs that pooled control before the three stock lanes, confirmation renders
 and blind package. Forward/reverse v2 reports are exact and all nine adjacent
 tests pass in 446.32 seconds. Physical A0L/A0N acquisition remains the
 stock-science data gate; no additional rehearsal family is opened.
+
+SF3.A0N field recording now accepts an atomic batch of complete condition and
+exposure rows through the existing copy-on-write session CLI. The entire batch
+is validated before a new packet is written; duplicate, unknown, partially
+filled, invalid or already-recorded slots fail without changing the source
+packet or publishing a partial result. A reverse-ordered 105-row batch reaches
+the unchanged complete A0N validator, and 19 adjacent A0N/ledger tests pass.
+This removes manual row-at-a-time ingestion overhead only. The physical packet
+remains empty, and all A1 fitting and stock claims remain closed.

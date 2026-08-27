@@ -18422,3 +18422,21 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   source-only capture-time RAW D0. It does not authorize that acquisition,
   resolve CC-BY-SA commercial/share-alike duties, declare HDR truth/quality,
   consume candidate 3 or create a package/schema/capability/product mapping.
+
+### 2026-08-27 - SF3.A0N field receipts gain atomic batch import
+
+- **Node and scope:** `ULT > stock-first controlled evidence > SF3.A0N`, DRPT
+  L2 / Mode C. This is physical-acquisition execution plumbing, not a new
+  rehearsal, proxy, operator or scientific result.
+- **Implementation:** commit `fb46f00f` adds an atomic multi-row path to the
+  existing copy-on-write capture-session core and CLI. The complete update
+  envelope is checked before any copied row is modified; duplicate, unknown,
+  malformed, invalid and already-filled slots fail without mutating the input
+  packet or creating a partial output. Existing single-row behavior and the
+  frozen A0N packet/schema remain unchanged.
+- **Verification and boundary:** a reverse-ordered 18-condition/87-exposure
+  batch passes the existing complete receipt validator; late-invalid and
+  duplicate controls preserve the empty source packet. Nineteen adjacent
+  A0N/ledger tests, Ruff, formatting and diff checks pass. This only removes
+  105 manual CLI updates from future field ingestion. No physical exposure,
+  film, process, scan, stock response, calibration or product claim exists.
