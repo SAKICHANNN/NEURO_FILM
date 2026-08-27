@@ -1,0 +1,136 @@
+{
+  "schema": "neuro-film.p289-libavif-gainmap-encoder-d0-contract.v1",
+  "experiment_id": "P289",
+  "status": "SOURCE_AND_PROTOCOL_FROZEN_BEFORE_ENDPOINT_BUILD",
+  "contract": {
+    "path": "docs/planning/P289_LIBAVIF_GAINMAP_ENCODER_D0_CONTRACT.md",
+    "commit": "9729198b",
+    "bytes": 3568,
+    "sha256": "84bcf26c1a88c55050a47e52fd7913404d02d3a549aa18ec06a1a54277a5956d"
+  },
+  "parents": {
+    "p282_config": [
+      "configs/p282_libavif_gainmap_windows_runtime_v1.json",
+      3742,
+      "c1a0c0f5f2fade3f3087113f4edd23b1ca074f6b17c0154826889fa47e04f19e"
+    ],
+    "p282_evidence": [
+      "docs/evidence/P282_LIBAVIF_GAINMAP_WINDOWS_RUNTIME_RESULT.json",
+      4136,
+      "fe40ea1f523847f2f012887d72ad47f45cbe0a5de021562093cf26c74b9afa12"
+    ]
+  },
+  "runtime": {
+    "root": "data/external/p282_libavif_windows_v1_4_2",
+    "manifest": [
+      "data/external/p282_libavif_windows_v1_4_2/SOURCE.json",
+      1381,
+      "96ee33b34df2633cc494026ee47e30c3045314c800f60c3751e91a5daad98469"
+    ],
+    "avifdec": [
+      "avifdec.exe",
+      12314624,
+      "a03664ddffb9d847eb484af6ceeffce96e03d641da5c577d26662487dee689f2"
+    ],
+    "avifgainmaputil": [
+      "avifgainmaputil.exe",
+      12959232,
+      "64d199dfdaf20dcf8bd5ee1073c01a5866ada595aaf933b911e1cd4bf9267471"
+    ]
+  },
+  "source": {
+    "root": "data/external/p278_libavif_gainmap_v1",
+    "manifest": [
+      "data/external/p278_libavif_gainmap_v1/SOURCE.json",
+      2058,
+      "7e818797abb4c276dcdea123c7fad05d8d3a20121230d27334c3772a5ca90925"
+    ],
+    "name": "seine_hdr_gainmap_small_srgb.avif",
+    "bytes": 102004,
+    "sha256": "573a67fdd581f6e634da198a819cc92a071539dfb720c5d7dfdf02e4e87a0346",
+    "selection": "lexicographically smallest SHA-256 among the exact three P278 valid fixtures",
+    "width": 400,
+    "height": 300,
+    "base_headroom": 1.3,
+    "alternate_headroom": 0.0
+  },
+  "commands": {
+    "hdr_endpoint": [
+      "avifdec.exe",
+      "--jobs",
+      "1",
+      "--depth",
+      "16",
+      "--png-compress",
+      "0",
+      "{source}",
+      "{hdr_png}"
+    ],
+    "sdr_endpoint": [
+      "avifgainmaputil.exe",
+      "tonemap",
+      "{source}",
+      "{sdr_png}",
+      "--headroom",
+      "0",
+      "--jobs",
+      "1",
+      "--depth",
+      "12",
+      "--speed",
+      "10"
+    ],
+    "combine": [
+      "avifgainmaputil.exe",
+      "combine",
+      "{hdr_png}",
+      "{sdr_png}",
+      "{candidate_avif}",
+      "--downscaling",
+      "1",
+      "--qgain-map",
+      "100",
+      "--depth-gain-map",
+      "12",
+      "--yuv-gain-map",
+      "444",
+      "--max-headroom",
+      "1.3",
+      "--cicp-base",
+      "1/16/0",
+      "--cicp-alternate",
+      "1/13/0",
+      "--speed",
+      "10",
+      "--qcolor",
+      "100",
+      "--qalpha",
+      "100",
+      "--grid",
+      "1x1",
+      "--yuv",
+      "444",
+      "--depth",
+      "12",
+      "--jobs",
+      "1"
+    ]
+  },
+  "gates": {
+    "endpoint_median_abs_error_12bit_max": 1.0,
+    "endpoint_p95_abs_error_12bit_max": 4.0,
+    "endpoint_max_abs_error_12bit_max": 8.0,
+    "minimum_material_endpoint_difference_fraction": 0.01,
+    "require_dimensions": [400, 300],
+    "require_gain_map_metadata": true,
+    "require_base_headroom": 1.3,
+    "require_alternate_headroom": 0.0,
+    "require_candidate_media_byte_exact": true,
+    "require_reports_byte_exact": true,
+    "require_source_runtime_immutable": true,
+    "require_atomic_invalid_controls": true,
+    "require_zero_residue": true
+  },
+  "stop_rule": "Any failed gate closes the exact libavif 1.4.2 encoder/profile/fixture family. Do not change thresholds, CICP, endpoint, headroom, quality, chroma, bit depth, fixture or backend after observation.",
+  "claim_ceiling": "Private Windows runtime/container mechanics on one exact official libavif fixture only; no complete ISO 21496-1 conformance, arbitrary AVIF/HEIF or HDR quality, display validation, public dependency/API/package/schema/capability, product admission, stock evidence or candidate3 change."
+}
