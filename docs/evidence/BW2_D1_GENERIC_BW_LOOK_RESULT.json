@@ -1,0 +1,76 @@
+{
+  "schema_id": "neuro-film.generic-bw-look-evidence.v1",
+  "experiment_id": "BW2.D1",
+  "date": "2026-08-28",
+  "status": "PASS_GENERIC_BW_LOOK_PRODUCT_TRUTH_CORRECTION",
+  "execution_commit": "0486dbc23b3dc81f57da2fda08c95da650a078e8",
+  "bindings": {
+    "contract": {
+      "path": "configs/bw2_d1_generic_bw_look_v1.json",
+      "sha256": "a2fff7fff6a77f0fa3e0124f6d7fe343e6e7c722848a05b2db67b2b9517ea5ad"
+    },
+    "implementation": {
+      "path": "src/inference/generic_bw_look.py",
+      "sha256": "65213674f912941a8eb85cd1b89c1339301e214e60c110ed7073059aceb3a1db"
+    },
+    "test": {
+      "path": "tests/test_bw2_d1_generic_bw_look.py",
+      "sha256": "12b6408f11e9324a33900df4338804c9959b5c8b1410ec747395c0966f960267"
+    },
+    "unchanged_render_profile": {
+      "path": "configs/render_profiles/safe_rich_v1.json",
+      "sha256": "72a9948e6fc76e230c4593b847728712bc034840cd339e6b34f079ac7d424c79"
+    },
+    "parent_evidence": {
+      "path": "docs/evidence/BW2_D0_HP5_TRIX_K1_BASELINE_RESULT.json",
+      "sha256": "bd0511b1c76d23170af23112ed0f428bc2364ed9b7975b64c50e037bed9bc93a"
+    }
+  },
+  "formal_probe": {
+    "source_shape": [67, 91, 3],
+    "source_float32_sha256": "8eee800d0b789196349a7c7ac56818a970339d6325c611674cf8b88365eb3432",
+    "seed": 31,
+    "tile_size": 29,
+    "tile_workers": 2,
+    "rows": [
+      {
+        "look_amount": 0.0,
+        "float32_sha256": "8eee800d0b789196349a7c7ac56818a970339d6325c611674cf8b88365eb3432",
+        "minimum": 0.0,
+        "maximum": 1.0,
+        "identity_exact": true
+      },
+      {
+        "look_amount": 0.5,
+        "float32_sha256": "13b0c60be12b29952af6686bb46ff4e908e06961a5541a518677f35bd3df3474",
+        "minimum": 0.016415243968367577,
+        "maximum": 0.9843136668205261,
+        "neutral_axis_exact": true
+      },
+      {
+        "look_amount": 1.0,
+        "float32_sha256": "dce2594b2f5362cc029c18441ed20f4c9aefb6f3f2e4c5c14e08b020e1b22cf2",
+        "minimum": 0.01568627543747425,
+        "maximum": 0.9843136668205261,
+        "neutral_axis_exact": true,
+        "legacy_hp5_execution_parity_exact": true
+      }
+    ]
+  },
+  "verification": {
+    "command": ".venv\\Scripts\\python.exe -m pytest tests/test_bw2_d1_generic_bw_look.py tests/test_bw2_d0_hp5_trix_k1_baseline.py tests/test_u7_1a_style_safe_engine.py tests/test_u7_2c_three_stock_look_amount.py tests/test_render_contract.py -q -p no:cacheprovider",
+    "result": "53 passed",
+    "ruff": "pass",
+    "json": "pass",
+    "diff_check": "pass"
+  },
+  "compatibility": {
+    "legacy_hp5_profile_preserved": true,
+    "legacy_tri_x_400_profile_preserved": true,
+    "legacy_recipe_replay_changed": false,
+    "frozen_profile_or_asset_hash_changed": false
+  },
+  "decision": "expose_one_generic_bw_look_and_retain_named_legacy_ids_for_replay_only",
+  "claim_ceiling": "One deterministic generic black-and-white Look Approximation backed by BW2.D0 failure-to-separate evidence. The legacy HP5 execution is an implementation identity only, not an HP5 or Tri-X stock-response claim.",
+  "multi_stock_completion": false
+}
