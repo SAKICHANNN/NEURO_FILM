@@ -18232,3 +18232,28 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   U4.3 tracker row enforce the same boundary. No rendered pixel, frozen
   selection, review decision, threshold, operator or scientific identity was
   changed.
+
+### 2026-08-27 - P266 closes DMEB before payload access
+
+- **Question and routing:** `ULT > genuinely new paired/capture-time/physical
+  observations > P266`, DRPT L2 / Mode C. `dev-research-reliability` was the
+  only write workflow; research, DRPT-BI, agent-log and structure disciplines
+  governed scope read-only. Contract `058a3579`, implementation `2361d27e`,
+  execution lock `e0e5c8a3` and evidence `60773af` bind the exact official
+  DMEB commit `559e52f4...844eb`, tree `8e81f34d...7c50d` and nine bounded
+  GitHub API/raw sources.
+- **Evidence:** committed-head forward/reverse reports are byte-exact at 4,475
+  bytes / SHA `4022e2f0...bbd2e`, scientific identity
+  `3bee46fa...e0287`. Official identity, synchronized multi-view
+  varying-exposure plus calibrated-depth observation, MIT code rights and
+  scene/session group isolation pass. Each report reads 52,319 bytes of
+  official text and makes zero Google Drive, archive/member, checkpoint/model,
+  pixel, training or inference requests.
+- **Decision and boundary:** dataset rights are CC BY-NC 4.0, the dataset card
+  retains nine scene/frame-count placeholders, no exact archive inventory is
+  published in the repository, and the reference checkpoint README retains
+  four link/checksum placeholders. Decision is
+  `NOT_READY_DMEB_RIGHTS_INVENTORY_OR_CHECKPOINT_GAP_NOT_SCIENTIFIC_RESULT`.
+  This is not an HDR-method or data-quality negative. Do not request Drive
+  payloads, infer rights, use mirrors or run the model. Candidate remains
+  `2/3`; no A1/A4/A5, package/schema/capability, consumer or product map opens.
