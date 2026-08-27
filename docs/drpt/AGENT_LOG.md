@@ -18198,3 +18198,24 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   arm is rejected or promoted, and no stock identification, calibration,
   preference, multi-stock completion or product claim opens. The ready child
   is frozen original-resolution adjudication of the queued cases.
+
+### 2026-08-27 - U4.3B adjudicates the frozen structural queue union
+
+- **Node and scope:** `ULT > U4 > U4.3 > U4.3B`, DRPT L2 / Mode C. Contract
+  `972edd30` freezes the union of each U4.3A queue's first three rows before
+  image review: 11 source/arm pairs, 11 overview comparisons and 33 paired
+  exact-pixel crops. No row substitution, rendering, network access, fitting
+  or new data was allowed.
+- **Material and verification:** implementation `9b43eab7`, evidence
+  `336f15cc`. Forward/reverse material reports are byte-exact at 12,820 bytes /
+  SHA `62e9d945...e58015`, scientific identity `d4042a65...d3f3b7`; every sheet
+  binds its source, output, crop coordinates and PNG hash. Five combined
+  material/evidence tests pass with Ruff, format, JSON and diff checks clean.
+- **Decision and boundary:** all 11 rows are
+  `PASS_NO_CONFIRMED_SEVERE_ARTIFACT`. The aggressive AO6 colour/contrast
+  treatments preserve recognizable edge and texture structure in the frozen
+  crops without confirmed banding, blocks, seams, objectionable halos or
+  isolated chroma impulses. AO6's U4.3A tail metrics remain valid review
+  signals. This is bounded autonomous visual evidence only, not universal
+  safety, population preference, stock identification/calibration,
+  multi-stock completion or product promotion.
