@@ -91,7 +91,6 @@ __all__ = [
     "InterpretationPlugin",
     "InterpretationRequest",
     "InterpretationResult",
-    "NativeThreeStockPreviewBackend",
     "RecipeHistoryError",
     "RecipeHistoryHtmlError",
     "RecipePreview",
@@ -104,7 +103,6 @@ __all__ = [
     "TiledRenderError",
     "atomic_write_json",
     "bind_portable_recipe_recovery_bundle",
-    "build_native_three_stock_preview_backend",
     "build_recipe_output_preview",
     "build_recipe_output_previews",
     "build_recipe_recovery_bundle",
@@ -115,7 +113,6 @@ __all__ = [
     "inspect_materialized_recipe_recovery_tree",
     "inspect_portable_recipe_recovery_bundle",
     "inspect_recipe_recovery_bundle",
-    "iter_three_stock_look_rgb_native",
     "list_three_stock_looks",
     "load_render_profile",
     "materialize_recipe_recovery_bundle",
@@ -154,22 +151,11 @@ def __getattr__(name: str):
         "list_three_stock_looks",
         "render_three_stock_look_rgb",
         "resolve_three_stock_look_parameters",
-        "NativeThreeStockPreviewBackend",
-        "build_native_three_stock_preview_backend",
-        "iter_three_stock_look_rgb_native",
     }:
         if name == "replay_portable_recipe_recovery_bundle_to_file":
             from . import portable_recipe_replay
 
             return getattr(portable_recipe_replay, name)
-        if name in {
-            "NativeThreeStockPreviewBackend",
-            "build_native_three_stock_preview_backend",
-            "iter_three_stock_look_rgb_native",
-        }:
-            from . import three_stock_native_preview
-
-            return getattr(three_stock_native_preview, name)
         if name in {
             "list_three_stock_looks",
             "render_three_stock_look_rgb",

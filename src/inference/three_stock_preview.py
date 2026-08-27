@@ -10,7 +10,7 @@ import uuid
 from collections.abc import Mapping
 from dataclasses import replace
 from pathlib import Path
-from typing import TYPE_CHECKING, Any
+from typing import Any
 
 import cv2
 import numpy as np
@@ -20,9 +20,6 @@ from src.preprocess import load_working_image, save_srgb8, working_image_to_srgb
 
 from .render_contract import atomic_write_json, load_render_profile, sha256_file
 from .three_stock_look import iter_three_stock_look_rgb_shared_context
-
-if TYPE_CHECKING:
-    from .three_stock_native_preview import NativeThreeStockPreviewBackend
 
 
 class ThreeStockPreviewError(ValueError):
@@ -100,7 +97,6 @@ def render_three_stock_previews_to_directory(
     tile_size: int = 256,
     tile_workers: int = 1,
     png_compression: int = 6,
-    native_backend: NativeThreeStockPreviewBackend | None = None,
 ) -> dict[str, Any]:
     """Render all three previews after one linear-light area downsample."""
 
@@ -159,30 +155,16 @@ def render_three_stock_previews_to_directory(
     stage.mkdir()
     rows: list[dict[str, Any]] = []
     try:
-        if native_backend is None:
-            rendered = iter_three_stock_look_rgb_shared_context(
-                source,
-                profile=profile,
-                look_amount=look_amount,
-                style_statistics=statistics_by_style,
-                guardrails=guardrails_by_style,
-                seed=seed,
-                tile_size=tile_size,
-                tile_workers=tile_workers,
-            )
-        else:
-            from .three_stock_native_preview import iter_three_stock_look_rgb_native
-
-            rendered = iter_three_stock_look_rgb_native(
-                np.ascontiguousarray(source),
-                backend=native_backend,
-                profile=profile,
-                look_amount=look_amount,
-                style_statistics=statistics_by_style,
-                guardrails=guardrails_by_style,
-                seed=seed,
-            )
-        for catalog_row, output in rendered:
+        for catalog_row, output in iter_three_stock_look_rgb_shared_context(
+            source,
+            profile=profile,
+            look_amount=look_amount,
+            style_statistics=statistics_by_style,
+            guardrails=guardrails_by_style,
+            seed=seed,
+            tile_size=tile_size,
+            tile_workers=tile_workers,
+        ):
             style = catalog_row["style_id"]
             filename = f"{style}.preview.png"
             staged_output = stage / filename
@@ -214,13 +196,6 @@ def render_three_stock_previews_to_directory(
                 "not final export, calibrated stock response or stock distinguishability."
             ),
         }
-        if native_backend is not None:
-            manifest["color_backend"] = {
-                "backend_id": "native-safe-lab-pointwise-f32-v3",
-                "dll_sha256": native_backend.dll_sha256,
-                "thread_count": native_backend.thread_count,
-                "gamut_workers": native_backend.gamut_workers,
-            }
         atomic_write_json(stage / "preview.json", manifest)
         os.rename(stage, output_directory)
         return manifest
