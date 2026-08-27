@@ -1,0 +1,24 @@
+{
+  "schema": "neuro-film.p279-hdrplus-merged-dng-ingress-contract.v1",
+  "experiment_id": "P279",
+  "status": "FROZEN_BEFORE_RESULT_PIXEL_DECODE",
+  "parent_p269_evidence_sha256": "fd2a4d8d966795cf2e21a1d3997991398bc8fc141260a489e71275e96fc9ac96",
+  "source_root": "data/external/p269_hdrplus_one_burst_v1",
+  "expected_full_width": 4032,
+  "expected_full_height": 3024,
+  "known_metadata_page_width": 640,
+  "known_metadata_page_height": 480,
+  "rows": [
+    {"version": "20161014", "path": "result_20161014/merged.dng", "bytes": 25288270, "sha256": "ab3a6bf3de83a3d9af62421af446fc2d0de1b3b9a563455f5ef6e412894624f2"},
+    {"version": "20171023", "path": "result_20171023/merged.dng", "bytes": 24885864, "sha256": "3a21417ff7fba508c7fc13ca2cb758329e39ac914e55522f12f2acdae66bfbdd"}
+  ],
+  "gates": {
+    "required_row_count": 2,
+    "allow_explicit_rejection": true,
+    "require_full_dimensions_if_accepted": true,
+    "require_owned_finite_writable_contiguous_if_accepted": true,
+    "require_truncation_rejection": true,
+    "require_source_immutable": true
+  },
+  "claim_ceiling": "Private finite ingress/safety evidence for two exact official Google HDR+ merged DNG results only; no HDR quality, arbitrary DNG, calibrated scene/display state, package/schema/capability, product admission or candidate3 change"
+}
