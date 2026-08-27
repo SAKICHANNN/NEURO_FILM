@@ -18280,3 +18280,32 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   ingress or the complete U4.1 gold set. It does not supersede RF3.D0S's AO6
   population veto and opens no stock truth, target-film closeness, calibration,
   population preference/safety, multi-stock completion or product promotion.
+
+### 2026-08-27 - SF3.A3K closes a same-scene three-stock source at rights
+
+- **Node and routing:** `ULT > stock-first controlled evidence > SF3.A3K`,
+  DRPT L2 / Mode C. `dev-research-reliability` was the only write workflow;
+  router, research and structure disciplines constrained the leaf. The source
+  was selected because it directly contains the requested Velvia 50, Portra
+  400 and Ektar 100 in one physical large-format scene, not because it adds a
+  new model or proxy baseline.
+- **Freeze and correction:** contract/config/implementation commit `c3eaa4d4`;
+  visible-text parser fix `20d91c00`. The first formal attempt revealed that
+  an anchor tag split the frozen Digitalab sentence, producing a raw-HTML
+  false negative. It made zero image, pixel, fit, render or score calls. The
+  correction strips tags and normalizes visible whitespace only; URLs, stocks,
+  rights gates, budgets and stop rules are unchanged.
+- **Evidence:** corrected forward/reverse request orders produce byte-exact
+  2,733-byte reports at SHA `c24e499e...2648c`, stable identity
+  `0e6980be...c173`. The article and its 192-tuple comparison inventory are
+  exact; all three stock assets occur in group `all`, and capture/develop/scan
+  statements pass. Four focused tests pass with Ruff and diff checks clean.
+- **Decision and boundary:** official restrictions are present while explicit
+  permissions for fitting, source redistribution, derived stock
+  parameter/weight distribution and commercial stock-profile use are absent.
+  Negative shadow/highlight selection and processed variants add interpretation
+  nuisance. Decision is
+  `FAIL_CLOSED_ONLANDSCAPE_THREE_STOCK_RIGHTS_OR_STRUCTURE`; image requests and
+  all pixel/science operations remain zero. Do not subscribe, infer rights or
+  run a private-only fit. A0L/A0N owned capture or a materially independent
+  rights-cleared source remains the mainline.

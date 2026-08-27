@@ -2635,3 +2635,18 @@ not expose an exposure-stable stock factor, so capacity, K>1 and routing stay
 closed; the next stock-science input must add independent roll/process/scanner
 and exposure-controlled observations. Evidence:
 `docs/evidence/SF3_A3J_NEGICC_CROSS_EXPOSURE_STOCK_FACTOR_RESULT.json`.
+
+SF3.A3K closes one materially relevant same-scene three-stock publication
+before pixels. The public On Landscape Part 3 page contains Velvia 50, Portra
+400 and Ektar 100 in the same large-format Bamburgh sequence, with one lab and
+Howtek scanner family; the parsed comparison inventory has 192 exact tuples.
+The official terms, however, permit at most bounded single-copy research use
+and do not explicitly permit dataset extraction for fitting, source
+redistribution, derived stock parameters/weights or commercial stock-profile
+use. Negative shadow/highlight selection and displayed curve/gradient variants
+also remain interpretation nuisances. Both request orders are byte exact
+(`c24e499e...2648c`), while image/pixel/fit/render/score counts remain zero.
+Close this exact source without subscription, pixel access or private-fit
+rescue; controlled A0L/A0N capture or a newly rights-cleared independent source
+remains the stock-science mainline. Evidence:
+`docs/evidence/SF3_A3K_ONLANDSCAPE_THREE_STOCK_SOURCE_RESULT.json`.
