@@ -9,7 +9,7 @@
     "tag_codes": {"OpcodeList1": 51008, "OpcodeList2": 51009, "OpcodeList3": 51022},
     "optional_flag": 1,
     "allowed_flag_mask": 3,
-    "maximum_supported_version": 17104896
+    "maximum_supported_version": 17236224
   },
   "bindings": {
     "p98_config_path": "configs/p98_dng_forward_raster_v1.json",
