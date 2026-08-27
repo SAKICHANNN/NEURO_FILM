@@ -1,0 +1,98 @@
+{
+  "schema": "neuro-film.p302-wildrelight-spatial-envmap-explicit-operator-contract.v1",
+  "experiment_id": "P302",
+  "status": "FROZEN_BEFORE_MEMBER_SOURCE_LOCK_OR_PIXEL_ACCESS",
+  "source": {
+    "dataset_id": "Lez/wildrelight",
+    "revision": "90ab579145da9f3ea998d706c8defd0d4b87641f",
+    "license": "CC-BY-4.0",
+    "variant": "small-aligned",
+    "excluded_consumed_scenes": [
+      "lake"
+    ],
+    "local_root": "data/external/p302_wildrelight_spatial_envmap_v1",
+    "member_manifest": null
+  },
+  "roles": {
+    "selection": "ascending SHA256(revision + ':p302:' + scene)",
+    "training": [
+      "yatai",
+      "byway",
+      "table_tennis",
+      "statue2",
+      "garden",
+      "rail",
+      "grassland2",
+      "meadow",
+      "indoor",
+      "sand",
+      "statue",
+      "bike"
+    ],
+    "development": [
+      "bench2",
+      "cabin",
+      "foodtruck",
+      "bridge",
+      "bench3",
+      "road"
+    ],
+    "confirmation": [
+      "playground",
+      "grassland",
+      "stairs",
+      "corridor",
+      "seaside",
+      "building304"
+    ],
+    "reserve": [
+      "wall",
+      "parking",
+      "bikes2",
+      "building324",
+      "pillar"
+    ],
+    "directed_pairs": [
+      [0, 1],
+      [2, 3],
+      [4, 5]
+    ]
+  },
+  "operator": {
+    "crop_fraction": 0.9,
+    "epsilon": 0.0000152587890625,
+    "grid_rows": 4,
+    "grid_columns": 4,
+    "channels": 3,
+    "spherical_harmonic_max_degree": 2,
+    "ridge_lambda": 0.01,
+    "minimum_log2_gain": -4.0,
+    "maximum_log2_gain": 4.0,
+    "solve_dtype": "float64",
+    "decode_dtype": "float32",
+    "openexr_version": "3.4.15"
+  },
+  "controls": {
+    "strongest_legitimate": [
+      "capacity_identical_image_only_ridge",
+      "p287_global_environment_rgb_gain",
+      "identity"
+    ],
+    "identifying": "cyclic_target_environment",
+    "ceiling": "target_exposed_4x4x3_median_log_ratio_grid"
+  },
+  "gates": {
+    "minimum_candidate_control_rate": 0.75,
+    "minimum_candidate_median_reduction_percent": 10.0,
+    "minimum_candidate_worst_reduction_percent": -10.0,
+    "minimum_positive_scene_medians": 5,
+    "minimum_cyclic_control_rate": 0.75,
+    "minimum_cyclic_median_reduction_percent": 10.0,
+    "minimum_median_oracle_gain_recovery": 0.3,
+    "minimum_valid_component_fraction": 0.8,
+    "maximum_candidate_source_p95_gradient_ratio": 1.5,
+    "maximum_new_boundary_fraction": 0.0
+  },
+  "stop_rule": "Any source-lock, role, leakage, build, target-unread, model, control, metric, tail, slice, cyclic, oracle-recovery, finite, boundary, gradient, resource, cleanup or replay failure closes this exact family. Development failure forbids confirmation member requests and decodes. No feature, ridge, grid, gain bound, scene, role, threshold, fallback or postprocess rescue.",
+  "claim_ceiling": "Private group-disjoint capture-time environment-conditioned explicit-operator D0 only. Candidate count remains 2/3 until separate confirmation plus A4/A5 authorization and versioned artifact/schema/receipt gates pass."
+}
