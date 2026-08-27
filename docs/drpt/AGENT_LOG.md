@@ -18257,3 +18257,26 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   This is not an HDR-method or data-quality negative. Do not request Drive
   payloads, infer rights, use mirrors or run the model. Candidate remains
   `2/3`; no A1/A4/A5, package/schema/capability, consumer or product map opens.
+
+### 2026-08-27 - U4.3C closes one decoded-face three-stock safety leaf
+
+- **Node and scope:** `ULT > U4 > U4.1/U4.3 > U4.3C`, DRPT L2 / Mode C.
+  Contract `f82e4453` freezes the already retained, lineage-bound 512x512
+  `FS_FACE_01` decoded array and the unchanged Velvia 50, Portra 400 and Ektar
+  100 K=1 Look Approximation baselines. AO6, original-file reopening, new data,
+  fitting, tuning, preference scoring and network access are excluded.
+- **Implementation and evidence:** implementation `ba0abebe`, adjudication
+  `f854900c`. Forward/reverse formal reports are byte-exact at 7,059 bytes / SHA
+  `4270574d...e94228`, scientific identity `4fb3037d...e002f`. Output replay,
+  finite/bounded RGB, geometry, two-source identity and zero-new-boundary gates
+  pass. Four implementation/evidence tests pass with Ruff, JSON and diff checks
+  clean.
+- **Visual decision and boundary:** all three outputs preserve eyes, lips, hair,
+  face contour, hand and garment structure without a confirmed blotch, isolated
+  chroma impulse, band, objectionable halo or geometry loss. Velvia has the
+  largest diagnostic-only chroma candidate rate (`0.2449036%`), but
+  original-resolution review finds continuous colour and retains it only as a
+  future prioritization signal. This closes one decoded face, not original-file
+  ingress or the complete U4.1 gold set. It does not supersede RF3.D0S's AO6
+  population veto and opens no stock truth, target-film closeness, calibration,
+  population preference/safety, multi-stock completion or product promotion.
