@@ -1,0 +1,40 @@
+{
+  "schema": "neuro-film.u7-6l-three-stock-native-preview-backend-evidence.v1",
+  "experiment_id": "U7.6L",
+  "status": "CLOSE_NATIVE_THREE_STOCK_PREVIEW_BACKEND",
+  "decision": "FAIL_CLOSED_PRODUCT_TRANSACTION_LATENCY",
+  "commits": {
+    "contract": "3c8ccae9",
+    "candidate_api_and_tests": "73b7eeff",
+    "formal_runner": "018d9087"
+  },
+  "formal_report": {
+    "path": "outputs/eval/u7_6l_three_stock_native_preview_backend_v1/report.json",
+    "sha256": "683433f0ed42fd5033f75215f2544a7b1b7c2c3bdf86a30da9e89f73a6fc40ac",
+    "stable_id": "b75a45f09ee71e7d7840c313cdc13c1a3285e69b2a9ef30d9b8c40a03e5be8e1",
+    "worker_sha256": "e52f9e16ea3f4ec540e47252aab44b25ed1e87762b85862f17d1429c42b3e7cf"
+  },
+  "source": {
+    "sha256": "7ea3d1ed37b7df518c0466c1379f08aa34ea5ae00eb7dc8208fcff2cfe68d1c6",
+    "preview_width": 816,
+    "preview_height": 1224,
+    "preview_pixels": 998784
+  },
+  "results": {
+    "maximum_python_transaction_wall_seconds": 5.6498554999998305,
+    "maximum_native_transaction_wall_seconds": 5.250547900000129,
+    "native_to_python_transaction_wall_ratio": 0.929324280948475,
+    "frozen_maximum_native_transaction_wall_seconds": 5.0,
+    "frozen_maximum_native_to_python_transaction_wall_ratio": 0.95,
+    "png_and_decoded_rgb_exact": true,
+    "cross_process_report_exact": true,
+    "dll_reproducible": true,
+    "default_python_manifest_unchanged": true,
+    "closed_backend_failure_before_publication": true,
+    "stage_residue_count": 0,
+    "three_distinct_outputs": true
+  },
+  "interpretation": "The exact native composition is mechanically correct and modestly faster, but its complete real preview transaction misses the preregistered five-second ceiling. The candidate is closed without a timing, source, profile, worker or API rescue.",
+  "required_cleanup": "Remove the failed candidate from the public inference exports and direct-preview API while retaining exact commits and this evidence for replay.",
+  "claim_ceiling": "Private local Windows/MSVC failed product-backend experiment for three non-calibrated Look Approximations; not a retained callable, calibrated stock response, stock distinguishability, device support, installer or release."
+}
