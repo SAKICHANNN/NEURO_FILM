@@ -74,8 +74,8 @@
     "core_bytes": 8817,
     "core_sha256": "8054708a2d22a76b77e1730390bcc5bdaac4d2ee2adff5ba4aaad25de8444120",
     "runner_path": "scripts/audit_p296_openexr_standard_chromaticity_ingress.py",
-    "runner_bytes": 10303,
-    "runner_sha256": "1506b8affde97795927e7842fa4647e0e5c507be366741eb632e3124610727c1",
+    "runner_bytes": 10958,
+    "runner_sha256": "f61ada40be65b48fa13b0ddc1c912e31d35a73af03f991efa92fc3fb7441c6b9",
     "test_path": "tests/test_p296_openexr_standard_chromaticity_ingress.py",
     "test_bytes": 4642,
     "test_sha256": "3072bd638ea78aea08ab0ddcdf2d097bd351cd2d409fb6a6a081fa73f47a4630",
@@ -91,6 +91,7 @@
     "source replacement",
     "threshold or matrix rescue"
   ],
+  "pre_evidence_audit_correction": "The first committed-head forward/reverse reports already failed all three frozen cross-source gates, but zero_new_boundary was incorrectly emitted as a structural constant. Those reports are excluded before evidence. The corrected audit computes newly exact 0/1 output components against each decoded source while leaving sources, arithmetic, thresholds, comparisons, controls and stop rule unchanged; full formal execution restarts from corrected committed HEAD.",
   "stop_rule": "Any failed source, runtime, arithmetic, cross-source, ownership, invalid-control, replay or cleanup gate closes exact P296. Do not change thresholds, sources, matrices, channel policy or default authorization after pixels.",
   "claim_ceiling": "One private two-source standards-aware OpenEXR to linear Rec.2020/D65 mechanical result only; no arbitrary EXR, DCI-P3/ACES, HDR/display quality, default dispatch, public dependency/API/package/schema/capability/product, stock evidence or candidate-3 change."
 }

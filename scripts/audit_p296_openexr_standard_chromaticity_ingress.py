@@ -74,6 +74,11 @@ def _worker(config_path: Path, *, reverse: bool) -> dict[str, object]:
             ),
         )
         pixels = working.pixels
+        with OpenEXR.File(str(source)) as source_file:
+            source_channels = source_file.channels()
+            source_pixels = np.asarray(source_channels["RGB"].pixels)
+        source_boundary = (source_pixels == 0.0) | (source_pixels == 1.0)
+        output_boundary = (pixels == 0.0) | (pixels == 1.0)
         arrays[source_config["id"]] = pixels
         rows[source_config["id"]] = {
             "bit_depth_in": working.bit_depth_in,
@@ -81,9 +86,14 @@ def _worker(config_path: Path, *, reverse: bool) -> dict[str, object]:
             "maximum": float(np.max(pixels)),
             "minimum": float(np.min(pixels)),
             "negative_components": int(np.count_nonzero(pixels < 0.0)),
+            "new_exact_boundary_components": int(
+                np.count_nonzero(output_boundary & ~source_boundary)
+            ),
             "output_sha256": _sha256_bytes(pixels.tobytes(order="C")),
             "owned": bool(pixels.flags.owndata),
             "shape": list(pixels.shape),
+            "source_maximum": float(np.max(source_pixels)),
+            "source_minimum": float(np.min(source_pixels)),
             "source_unchanged": _sha256_file(source) == before,
             "working_space": working.working_space,
             "writeable": bool(pixels.flags.writeable),
@@ -246,7 +256,9 @@ def execute(config_path: Path, *, reverse: bool = False) -> dict[str, object]:
             for row in rows.values()
         ),
         "source_immutable": all(row["source_unchanged"] for row in rows.values()),
-        "zero_new_boundary": True,
+        "zero_new_boundary": all(
+            row["new_exact_boundary_components"] == 0 for row in rows.values()
+        ),
         "zero_temporary_residue": not temporary.exists(),
     }
     decision = (
