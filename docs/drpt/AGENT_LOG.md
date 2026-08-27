@@ -19347,3 +19347,34 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   independent rights-cleared physical-stock observation exists, keep the
   current result at generic B&W Look Approximation scope and do not claim HP5,
   Tri-X or multi-stock completion.
+
+### 2026-08-27 - P300 closes the canonical PQ writer's independent publication race
+
+- **Node:** `ULT > mature HDR/media transactions > P300`; DRPT L2 / Mode C.
+  P299 repaired the base streaming writer, but read-only follow-up found that
+  the live P91/P238/P264 canonical-partition subclass overrides `finish()` and
+  still used `os.replace`. P300 was frozen as a separate sibling leaf; it does
+  not rewrite P299 evidence or broaden that earlier claim.
+- **Freeze and implementation:** preregistration `ee3e8f8c`, prescore fixture
+  correction `c42787f0`, implementation `e0be1730`, runner `1fb666fe`, and
+  evidence `e7af1a51`. Before any formal output or metric, the mistakenly
+  copied P91 large random fixture was replaced by the exact P238 29x34
+  official-ACES fixture. The only runtime change replaces the canonical
+  override's final `os.replace` with the existing U6.P8CS1 create-only
+  primitive; partitioning, compression, cICP, samples and abort behavior stay
+  unchanged.
+- **Result:** two fresh committed-head processes produce byte-exact 1,774-byte
+  reports at SHA `d2fb121f...e1597`. Pre-existing and late-injected foreign
+  targets remain byte-exact and both stages are removed. The real resolved-P
+  publication remains exact P238: 6,029-byte PNG `0a18aa1e...2534c`, RGB16
+  sample SHA `8cd312b9...be5d`, cICP `09100001`, with zero media/stage residue.
+  Twenty-four P91/P238/P239 adjacent tests and Ruff, format, compile, JSON and
+  diff checks pass. An initial command selected system Python 3.14 without
+  pytest/Ruff; it executed no project test and produced no scientific output,
+  then the unchanged checks ran in the repository `.venv`.
+- **Boundary:** retain only private canonical-P/exFAT transaction safety for
+  the existing canonical-partition PQ writer. No new transform, HDR/display
+  quality, arbitrary-media, package/schema/capability, stock evidence or
+  product-default admission opens. Stop adjacent publication micro-leaves
+  unless a separately used live writer has an independently documented
+  create-only contract defect.
