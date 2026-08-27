@@ -1,0 +1,50 @@
+{
+  "schema": "kmcfm.u4-5a-three-stock-windows-cpu-scale-matrix-contract.v1",
+  "source": {
+    "path": "data/preference/repid/u5_r2repid3_shared_operator_v1/fit/winner/a4593-kme_0276.jpeg",
+    "sha256": "7ea3d1ed37b7df518c0466c1379f08aa34ea5ae00eb7dc8208fcff2cfe68d1c6",
+    "width": 4032,
+    "height": 6048
+  },
+  "render": {
+    "look_amount": 1.0,
+    "seed": 7,
+    "tile_size": 256,
+    "tile_workers": 1,
+    "png_compression": 6,
+    "runs_per_tier": 2
+  },
+  "tiers": [
+    {
+      "tier_id": "preview_1mp",
+      "maximum_pixels": 1000000,
+      "provisional_maximum_wall_seconds": 15.0,
+      "provisional_maximum_process_tree_rss_bytes": 1073741824
+    },
+    {
+      "tier_id": "standard_12mp",
+      "maximum_pixels": 12000000,
+      "provisional_maximum_wall_seconds": 15.0,
+      "provisional_maximum_process_tree_rss_bytes": 1073741824
+    },
+    {
+      "tier_id": "desktop_24mp",
+      "maximum_pixels": 24000000,
+      "provisional_maximum_wall_seconds": 15.0,
+      "provisional_maximum_process_tree_rss_bytes": 1073741824
+    }
+  ],
+  "gates": {
+    "maximum_repeat_wall_ratio": 1.15,
+    "require_exact_repeat_output_hashes": true,
+    "require_three_distinct_stock_outputs": true,
+    "require_expected_dimensions": true,
+    "require_zero_owned_residue": true
+  },
+  "stop_rules": [
+    "Do not change the source, renderer, stock parameters, tier sizes, process count, thresholds or output format after observing formal results.",
+    "A provisional product target failure identifies a performance gap; it does not authorize algorithm, quality or gate changes in this leaf.",
+    "This matrix measures the current Windows Python CPU three-look path only and cannot support mobile, Apple, GPU, calibrated-stock or image-quality claims."
+  ],
+  "claim_ceiling": "Current Windows Python CPU scale evidence for three existing deterministic Look Approximations only; not stock accuracy, calibration, preference, mobile/device performance or product release."
+}
