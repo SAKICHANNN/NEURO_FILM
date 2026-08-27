@@ -1,0 +1,39 @@
+{
+  "schema": "neuro-film.p279-hdrplus-merged-dng-ingress-evidence.v1",
+  "status": "PASS_PRIVATE_HDRPLUS_MERGED_DNG_INGRESS_SAFETY",
+  "decision": "Both exact official Google HDR+ merged DNG results enter the unchanged WorkingImage loader at the full 3024x4032 dimensions rather than the known 480x640 metadata page. Retain this private two-file ingress-safety fact only.",
+  "bindings": {
+    "contract_commit": "5064c1f1",
+    "contract_identity_correction_commit": "41d60700",
+    "implementation_commit": "97278ff03dffeff0e5758447449781848c3e57d2",
+    "libraw_rejection_correction_commit": "b89713b2c70e454308fc6f44130637684ae3efdd",
+    "parent_p269_evidence_sha256": "fd2a4d8d966795cf2e21a1d3997991398bc8fc141260a489e71275e96fc9ac96"
+  },
+  "formal_result": {
+    "report_sha256": "c5e3ef8a655bcd4d453735cf84fc9a22acd5a1ef2f81ccd7991799a4fec2c7b3",
+    "report_size_bytes": 1756,
+    "scientific_sha256": "974dbb8455e8585fe14bb3fb7b69270ad4f802c15e3e7f3334b7d6acfa823c1f",
+    "rows": [
+      {"version": "20161014", "source_sha256": "ab3a6bf3de83a3d9af62421af446fc2d0de1b3b9a563455f5ef6e412894624f2", "shape": [3024, 4032, 3], "pixel_sha256": "c56dd39c19cbdfd31366ca94b13595492a392ffae0221318af14f767e928643c", "working_space": "linear_srgb", "range": [0.0, 1.0]},
+      {"version": "20171023", "source_sha256": "3a21417ff7fba508c7fc13ca2cb758329e39ac914e55522f12f2acdae66bfbdd", "shape": [3024, 4032, 3], "pixel_sha256": "479766f0d27fdae33fb976aac1ac1f38d3072dbcaeca9248b25bbbba7fb42d3c", "working_space": "linear_srgb", "range": [0.0, 1.0]}
+    ],
+    "gates": {
+      "all_rows_safe": true,
+      "full_dimensions": true,
+      "no_silent_known_thumbnail": true,
+      "owned_finite_writable_contiguous": true,
+      "source_immutable": true,
+      "truncation_rejected": true
+    }
+  },
+  "execution": {
+    "forward_reverse_report_exact": true,
+    "forward_report_sha256": "c5e3ef8a655bcd4d453735cf84fc9a22acd5a1ef2f81ccd7991799a4fec2c7b3",
+    "reverse_report_sha256": "c5e3ef8a655bcd4d453735cf84fc9a22acd5a1ef2f81ccd7991799a4fec2c7b3",
+    "stable_identity": "974dbb8455e8585fe14bb3fb7b69270ad4f802c15e3e7f3334b7d6acfa823c1f",
+    "persistent_pixel_or_media_outputs": 0,
+    "temporary_residue": 0
+  },
+  "preformal_exclusion": "The first committed implementation completed both real-file attempts but stopped before report serialization because the truncated control raised rawpy.LibRawIOError outside the audit's initial rejection tuple. No report existed. Commit b89713b2 adds only rawpy.LibRawError classification; files, loader, dimensions and gates are unchanged, and both formal processes reran from zero.",
+  "claim_ceiling": "Private finite ingress/safety evidence for two exact official Google HDR+ merged DNG results only; no HDR quality, arbitrary DNG, calibrated scene/display state, package/schema/capability, product admission or candidate3 change."
+}
