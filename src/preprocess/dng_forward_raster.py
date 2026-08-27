@@ -278,7 +278,7 @@ def _dng_version_value(tag: object, *, name: str) -> tuple[int, int, int, int]:
     if dtype_code != 1 or count != 4:
         raise DngForwardRasterError(f"{name} must be exactly four BYTE values")
     try:
-        raw = bytes(getattr(tag, "value"))
+        raw = bytes(tag.value)
     except (TypeError, ValueError) as exc:
         raise DngForwardRasterError(f"{name} is not a byte payload") from exc
     if len(raw) != 4:
@@ -293,9 +293,7 @@ def _guard_dng_version(
 
     if _DNG_VERSION_TAG not in primary_tags:
         raise DngForwardRasterError("missing required DNGVersion tag")
-    version = _dng_version_value(
-        primary_tags[_DNG_VERSION_TAG], name="DNGVersion"
-    )
+    version = _dng_version_value(primary_tags[_DNG_VERSION_TAG], name="DNGVersion")
     if version < _DNG_VERSION_MINIMUM or version > _DNG_VERSION_MAXIMUM:
         raise DngForwardRasterError("DNGVersion is outside the supported range")
 
