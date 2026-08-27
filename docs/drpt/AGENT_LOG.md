@@ -17699,3 +17699,33 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   exposure-controlled observations. Do not add K>1, routing or operator
   capacity to this cohort. Velvia remains a same-level data gap, and all
   product looks remain Look Approximation. Evidence commit `b43d342f`.
+
+### 2026-08-27 - P255 closes the bounded 24MP AP0 OpenEXR master gap
+
+- **Node and routing:** `ULT > mature RAW/HDR explicit mechanisms > P255`,
+  DRPT L2 / Mode C. `dev-research-reliability` was the sole write workflow;
+  router, DRPT-BI, agent-log and structure skills governed scope and
+  propagation read-only. This leaf fills the AP0/ST2065-1 resource gap left by
+  P248 without reopening automatic single-reference matching or candidate 3.
+- **Frozen implementation:** contract `5566f7e8`, native implementation
+  `35409d29`, runner `48e502c9` and final execution lock `dfd5f569` bind the
+  exact P248 OpenEXR/Imath/MSVC topology plus P249's AP1-to-AP0 matrix and
+  AP0/D60 metadata. Before any build or pixel execution, an unused hash from a
+  different P249 probe was removed and the runner's recorded identity was made
+  runtime-enforced; no matrix, probe, resource, metadata or threshold changed.
+- **Formal result:** two complete controllers share stable identity
+  `0fe90cd9...dbb2`. Four fresh 24MP workers produce the same 42,251,493-byte
+  EXR `eeced074...f275` and exact decoded AP0 pixels
+  `d9a9e800...b0008`; max error 0, AP0/D60 metadata/flag/ID exact, negative and
+  above-one values preserved, boundary0. Maximum process-tree RSS is
+  628,363,264 bytes and wall time 4.682 s under 2 GiB/120 s. The fresh 17x13
+  native probe is byte-exact to P249, and atomic, invalid, parent and cleanup
+  controls all pass. Independent PE hashes differ and are explicitly outside
+  the frozen gate. Evidence commit `a50f4f3e`; 29 P248/P249/P251/P255 tests,
+  Ruff, compileall, JSON and diff checks pass.
+- **Boundary and handoff:** this is private procedural Windows x64
+  resource/mechanical conformance only. It does not establish natural-image
+  quality, arbitrary EXR/ACES or SMPTE conformance, public dependency/API,
+  package/schema/capability, renderer integration or product admission.
+  Candidate counter remains `2/3`; continue only materially new
+  paired/capture-time/physical evidence or distinct mature RAW/HDR gaps.
