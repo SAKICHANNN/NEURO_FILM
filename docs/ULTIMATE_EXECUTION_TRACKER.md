@@ -2847,3 +2847,17 @@ object; JPEG derivatives are tone-mapped from the same HDR and cannot be used
 as independent truth. No quality, arbitrary-EXR, product or candidate-3 state
 changes. Evidence:
 `docs/evidence/P292_EYEFULTOWER_DCI_P3_EXR_SOURCE_READINESS_RESULT.json`.
+
+SF3.A3M formally closes the exact Internet Archive fixed-author/fixed-camera
+Ektar lane. Six CC-BY-4.0 item groups from Matthew Paul Argall and one Kodak
+VR35 K4 camera contribute 72 hash-locked thumbnails / 1,235,215 bytes across
+Ektar 100, Pro Image 100 and UltraMax 400. Two fresh-process 11,627-byte
+reports are byte-exact at SHA `46375e10...85f8`. RGB group-LOO reaches
+balanced accuracy `.875`, Ektar recall `1.0` and control recall `.75`, but
+capture date predicts all six labels (`1.0`), low-frequency scene colour also
+reaches `.875`, exact 15-assignment permutation is only `p=.133333`, and the
+primary-minus-best-nuisance delta is `-.125` with 95% CI `[-.375,0]`.
+Therefore the apparent Ektar signal is not stock-identified; no operator/K1,
+training, stock profile or product claim opens, and this exact cohort may not
+be rescued by more frames, descriptors or threshold changes. Evidence:
+`docs/evidence/SF3_A3M_IA_EKTAR_FIXED_CAMERA_IDENTIFIABILITY_RESULT.json`.

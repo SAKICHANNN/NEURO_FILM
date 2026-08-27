@@ -19405,3 +19405,31 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   This is a release gap, not an HDR-quality negative. Do not request payloads
   or infer rights/groups from the code repository. Candidate remains `2/3`;
   no package/schema/capability/product or stock mapping opens.
+
+### 2026-08-28 - SF3.A3M closes fixed-author/camera Ektar evidence on temporal and scene confounding
+
+- **Node and routing:** `ULT > RF3 > stock-first controlled evidence >
+  SF3.A3M`, DRPT L2 / Mode C; `dev-research-reliability` primary with
+  scientific-research and source-verification review. This is a bounded
+  stock-identifiability leaf, not another proxy-look or paper-inspired model
+  experiment.
+- **Freeze and source:** commit `241f7d40` binds six exact CC-BY-4.0 Internet
+  Archive items from Matthew Paul Argall, one Kodak VR35 K4 camera, two item
+  groups each for Ektar 100, Pro Image 100 and UltraMax 400, 12 hash-ranked
+  thumbnails per item, whole-item LOO, nuisance descriptors, exact
+  permutation and immutable gates. Two metadata-only locks are exact at SHA
+  `8683ded1...255a3` with six requests each and zero image/pixel reads.
+- **Execution and evidence:** 72/72 derivatives / 1,235,215 bytes pass pinned
+  MD5, size, decode and local SHA checks. Two fresh-process formal reports are
+  byte-exact at 11,627 bytes / SHA `46375e10...85f8`. Evidence commit
+  `2da257a3`; tracked evidence SHA `0b2377f5...d191`. Eight focused/adjacent
+  tests pass with Ruff, JSON and diff checks clean.
+- **Result:** RGB group-LOO BA `.875`, Ektar recall `1.0`, control recall
+  `.75`; however capture-date BA is `1.0`, low-frequency RGB and luma BA are
+  both `.875`, exact 15-assignment permutation is `p=.133333`, and primary
+  minus strongest nuisance is `-.125` (95% CI `[-.375,0]`).
+- **Decision:** `FAIL_CLOSED_IA_SINGLE_AUTHOR_FIXED_CAMERA_STOCK_IDENTIFIABILITY`.
+  Do not add frames, change descriptors, thresholds, controls or roles to
+  rescue this cohort. No operator/K1 fitting, training, stock response,
+  calibration or product claim opens. A successor needs materially new,
+  independently grouped rolls/sources with stronger capture-time controls.
