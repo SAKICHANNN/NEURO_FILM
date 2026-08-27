@@ -1,0 +1,80 @@
+{
+  "schema": "neuro-film.p254-r1ec-dng-profile-huesat-callable-intake-evidence.v1",
+  "experiment_id": "P254",
+  "date": "2026-08-28",
+  "status": "PASS_PRIVATE_R1EC_DNG_PROFILE_HUESAT_CALLABLE_INTAKE",
+  "consumer": {
+    "stage_b_commit": "b6a9a3e4",
+    "runner_commit": "4ed897a17000ce8caf656743abe469d0cf9ee209",
+    "runner_path": "scripts/audit_p254_r1ec_dng_profile_huesat_callable_intake.py",
+    "runner_git_blob": "d31dd9567dc844d3a1c2a92425a603cf23628b19",
+    "runner_bytes": 13458,
+    "runner_sha256": "aae465e087d298ba85dc0677ebe2bcd50fdfceb1a0ab9ced4072896e68111ad3",
+    "config_path": "configs/p254_r1dz_dng_huesatmap_overrange_consumer_intake_v1.json",
+    "config_git_blob": "0ef4fabe438dabf2ca5ada9e65453879e5168a48",
+    "config_bytes": 9368,
+    "config_sha256": "dfa27821a5d35c7462475684291925bbb7e5d6fc1a152123848522ee01546868",
+    "source_lock_path": "docs/planning/P254_R1EC_DNG_PROFILE_HUESATMAP_CALLABLE_SOURCE_LOCK.md",
+    "source_lock_git_blob": "e0372c8e6708fb88c6354a0a1e702eac58b499d2",
+    "source_lock_bytes": 5957,
+    "source_lock_sha256": "7cd6a2e93436b1c302cfb75cff7ebecb7ab571500b7cadb031120b808ec6469f"
+  },
+  "producer": {
+    "head_at_handoff": "6fd669de5e50a54233d788c3f31226989c6901de",
+    "implementation_commit": "89d0d71df4d10949b7e5a148ab399021d74dc09c",
+    "execution_lock_commit": "9e1d7a33c92ecd06bb0e52faee6b782f655c0b9f",
+    "formal_execution_commit": "134b2e9a82c905fc6c013155d6486410c3036def",
+    "evidence_sha256": "d93ab2f24800225f4b224044b9c6597508850c6141fe63c9dc8563dcfe08f0d4",
+    "callable_id": "zhuise.dng-profile-huesat-callable.v1"
+  },
+  "execution": {
+    "forward_report_path": "outputs/eval/p254_r1ec_callable_forward.json",
+    "reverse_report_path": "outputs/eval/p254_r1ec_callable_reverse.json",
+    "report_bytes_each": 3733,
+    "report_sha256": "67662e7f23cbc7ffbb05ac1751154ce3e19657a0589898e41ae1c92122f35d32",
+    "stable_identity": "sha256:aaadfb756094150830dee09c274daffa853a6b088e7c42da92610ecce159c264",
+    "fresh_processes": 2,
+    "enumeration_orders": [
+      "forward",
+      "reverse"
+    ],
+    "reports_byte_exact": true,
+    "network_reads": 0,
+    "new_raw_dng_pixel_target_reads": 0,
+    "zero_temporary_residue": true
+  },
+  "fixture": {
+    "input_f64le_sha256": "6dbb8ce614ccadb5dd9d61cba5de03a117103e4f67ba2e551fe0de721854f369",
+    "payload_canonical_sha256": "ae8912a42bd8cba0eecd76feb0536261364fb15b37140512acb32a525e907c23",
+    "output_f64le_sha256": "558fd7ba79339c668e3cf09585a3160244a1ec6f9d45d424e3659b17c3a34536"
+  },
+  "local_metadata": {
+    "exif_sha256": "e71b44097dfe38e8cbc1753932269014b7d21acc63698413f415780286d717fd",
+    "data1_f32le_sha256": "fa5d69874bc55aea4c9bf588709be515e121acccb5882cd63b6b6264553ce68b",
+    "data2_f32le_sha256": "65c161161f88a03b6728e47edff371998aec9435636b08a1b943802d48b0f142"
+  },
+  "verification": {
+    "all_16_controls_pass": true,
+    "all_10_gates_pass": true,
+    "all_producer_git_objects_exact": true,
+    "default_sdr_wrapper_core_parity": true,
+    "single_table_wrapper_core_parity": true,
+    "fixture_input_payload_output_exact": true,
+    "input_and_payload_unchanged": true,
+    "isolated_git_object_import": true,
+    "local_metadata_exact": true,
+    "output_owned_contiguous_writable_float64": true,
+    "p244_p245_guards_changed": false,
+    "candidate_counter_changed": false
+  },
+  "excluded_attempts": [
+    {
+      "reason": "The first two process invocations stopped before callable import or fixture execution because the consumer runner looked for the execution-lock artifact at the earlier implementation commit instead of its separately frozen execution-lock commit.",
+      "correction_commit": "4ed897a17000ce8caf656743abe469d0cf9ee209",
+      "science_or_gate_change": false,
+      "report_written": false
+    }
+  ],
+  "decision": "The consumer independently reproduced the exact R1EC canonical output from source-locked producer Git objects without importing the producer worktree or copying its implementation into consumer src. The private callable handoff is mechanically consumable; existing DNG guards and product state remain unchanged.",
+  "claim_ceiling": "Private exact consumer replay of one R1EC DNG ProfileHueSatMap callable and canonical fixture only. No full DNG renderer, real-pixel quality, arbitrary camera/profile support, public API/package/schema/capability, film-stock evidence, automatic single-reference matching or product admission. Candidate 3 remains closed at 2/3."
+}
