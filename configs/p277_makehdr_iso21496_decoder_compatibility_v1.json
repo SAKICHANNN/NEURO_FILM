@@ -1,0 +1,58 @@
+{
+  "contract_id": "P277_MAKEHDR_ISO21496_DECODER_COMPATIBILITY_V1",
+  "status": "FROZEN_AFTER_SOURCE_LOCK_BEFORE_HDR_PIXEL_EXECUTION",
+  "source": {
+    "root": "data/external/p277_makehdr_presskit_v1",
+    "manifest": "data/external/p277_makehdr_presskit_v1/SOURCE.json",
+    "manifest_sha256": "303b81118b12ca4a055bd4b6dafd455876e32d4800c4d2172b711426dfda827f",
+    "archive_sha256": "0c71440b0f09fb255142d6363b31a5a835a7d1468591cc5615cdbdd3ec18e279",
+    "archive_size": 27089268,
+    "rights_scope": "publisher states supplied synthetic samples may be published without clearance"
+  },
+  "decoder": {
+    "repository": "https://github.com/google/libultrahdr",
+    "tag": "v2.0.0",
+    "commit": "b2aacb366e1542cfc29605cb0d8a0ebd06bb07f8",
+    "executable_sha256": "cffdfcae90b2e999260877b646c36c1d04b87d81745c12417c089ca7099d5df0",
+    "arguments": ["-m", "1", "-j", "{input}", "-o", "0", "-O", "4", "-z", "{output}"]
+  },
+  "bindings": {
+    "p87_evidence_sha256": "30a6a009215264b62c26cdab89218aca6cb3d8c0180375d67d9b5f5d707b4577",
+    "producer_r1bl_evidence_sha256": "b4c312bff76ee7b742853e343e54529e8e3d70eea5adf70334954c7616bbf6ea"
+  },
+  "pairs": [
+    {
+      "scene": "interior-window",
+      "hdr": "interior-window-hdr.jpg",
+      "hdr_sha256": "5ec54f21a64ebca57c274987329c7965c175264a98c21a9bad1beb9be8a36beb",
+      "sdr": "interior-window-sdr.jpg",
+      "sdr_sha256": "fcb58f21b04e6447f03d450912f071fdad61fb00b13cf866835544b828c79d72",
+      "width": 2000,
+      "height": 1342
+    },
+    {
+      "scene": "night-street",
+      "hdr": "night-street-hdr.jpg",
+      "hdr_sha256": "908384f8f869241e2b82dba075c22efb92e8c699ff26e006061bae5e9bcd1163",
+      "sdr": "night-street-sdr.jpg",
+      "sdr_sha256": "a63f82cd3e034de4d9673497e9549b9445dd35fb44c354772d58ce94c7634a52",
+      "width": 2000,
+      "height": 1342
+    },
+    {
+      "scene": "sunrise-valley",
+      "hdr": "sunrise-valley-hdr.jpg",
+      "hdr_sha256": "6940d7f06feb050e9049fa032e84577398a01ea62c32b7eb37460efe609408f3",
+      "sdr": "sunrise-valley-sdr.jpg",
+      "sdr_sha256": "265a73de51a6d666e306c2f749b728a12b6a783357ec2d63ab6e88d7a0d6ebae",
+      "width": 2000,
+      "height": 1342
+    }
+  ],
+  "gates": {
+    "minimum_maximum_nits": 203.0,
+    "maximum_sdr_pair_rgb8_mean_absolute_error": 1.0,
+    "required_pair_count": 3
+  },
+  "claim_ceiling": "Private exact Windows compatibility for three exact independently encoded synthetic ISO 21496-1 JPEG samples through the pinned libultrahdr-v2-to-P87 chain only; no natural or captured HDR truth, grade correctness, complete ISO conformance, HEIF/AVIF or arbitrary-media support, display validation, public package/schema/capability, default-loader change, product admission, film-stock claim or candidate3 change"
+}
