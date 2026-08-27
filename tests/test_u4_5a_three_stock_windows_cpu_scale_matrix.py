@@ -7,6 +7,7 @@ import pytest
 
 from scripts.audit_u4_5a_three_stock_windows_cpu_scale_matrix import (
     U45AError,
+    expected_dimensions,
     summarize_tier,
 )
 
@@ -64,3 +65,9 @@ def test_u4_5a_summary_separates_mechanics_from_product_targets() -> None:
 def test_u4_5a_summary_requires_two_runs() -> None:
     with pytest.raises(U45AError, match="exactly two"):
         summarize_tier({}, [], 1.15)
+
+
+def test_u4_5a_expected_dimensions_match_frozen_source_tiers() -> None:
+    assert expected_dimensions(4032, 6048, 1_000_000) == (816, 1224)
+    assert expected_dimensions(4032, 6048, 12_000_000) == (2828, 4242)
+    assert expected_dimensions(4032, 6048, 24_000_000) == (4000, 6000)

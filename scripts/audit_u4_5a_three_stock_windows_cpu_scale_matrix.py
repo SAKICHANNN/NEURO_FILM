@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import shutil
 import subprocess
 import sys
@@ -21,6 +22,22 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class U45AError(RuntimeError):
     """Raised when the frozen scale-matrix contract cannot be executed."""
+
+
+def expected_dimensions(width: int, height: int, maximum_pixels: int) -> tuple[int, int]:
+    """Mirror the frozen preview dimension rule without executing the renderer."""
+
+    if width * height <= maximum_pixels:
+        return width, height
+    scale = math.sqrt(maximum_pixels / float(width * height))
+    resized_width = max(1, math.floor(width * scale))
+    resized_height = max(1, math.floor(height * scale))
+    while resized_width * resized_height > maximum_pixels:
+        if resized_width >= resized_height:
+            resized_width -= 1
+        else:
+            resized_height -= 1
+    return resized_width, resized_height
 
 
 def _sha256(path: Path) -> str:
@@ -106,7 +123,12 @@ def _run_one(
 
 
 def summarize_tier(
-    tier: dict[str, Any], runs: list[dict[str, Any]], maximum_repeat_ratio: float
+    tier: dict[str, Any],
+    runs: list[dict[str, Any]],
+    maximum_repeat_ratio: float,
+    *,
+    source_width: int = 10,
+    source_height: int = 10,
 ) -> dict[str, Any]:
     """Reduce one tier without hiding per-run measurements."""
 
@@ -115,15 +137,17 @@ def summarize_tier(
     walls = [float(run["wall_seconds"]) for run in runs]
     peaks = [int(run["peak_process_tree_rss_bytes"]) for run in runs]
     repeat_ratio = max(walls) / min(walls)
+    expected_width, expected_height = expected_dimensions(
+        source_width, source_height, int(tier["maximum_pixels"])
+    )
     mechanics = {
         "exact_repeat_output_hashes": runs[0]["output_hashes"]
         == runs[1]["output_hashes"],
         "three_outputs_distinct": all(run["three_outputs_distinct"] for run in runs),
         "expected_dimensions": all(
-            run["pixels"] <= int(tier["maximum_pixels"])
-            and run["pixels"] > 0
-            and run["width"] > 0
-            and run["height"] > 0
+            run["width"] == expected_width
+            and run["height"] == expected_height
+            and run["pixels"] == expected_width * expected_height
             for run in runs
         ),
         "repeat_wall_ratio": repeat_ratio <= maximum_repeat_ratio,
@@ -181,6 +205,8 @@ def main() -> int:
                     tier,
                     runs,
                     float(config["gates"]["maximum_repeat_wall_ratio"]),
+                    source_width=int(config["source"]["width"]),
+                    source_height=int(config["source"]["height"]),
                 )
             )
         residue_empty = not any(scratch.iterdir())
@@ -188,11 +214,12 @@ def main() -> int:
         all_targets = all(
             row["provisional_product_targets_pass"] for row in summaries
         )
+        all_mechanical_and_cleanup = all_mechanical and residue_empty
         status = (
             "PASS_CURRENT_WINDOWS_CPU_SCALE_MATRIX"
-            if all_mechanical and all_targets
+            if all_mechanical_and_cleanup and all_targets
             else "PASS_MECHANICS_PRODUCT_TARGETS_OPEN"
-            if all_mechanical
+            if all_mechanical_and_cleanup
             else "FAIL_CLOSED_WINDOWS_CPU_SCALE_MATRIX"
         )
         report = {
@@ -217,7 +244,7 @@ def main() -> int:
             json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8"
         )
         print(json.dumps(report, sort_keys=True))
-        return 0 if all_mechanical and residue_empty else 1
+        return 0 if all_mechanical_and_cleanup else 1
     finally:
         shutil.rmtree(scratch, ignore_errors=True)
 
