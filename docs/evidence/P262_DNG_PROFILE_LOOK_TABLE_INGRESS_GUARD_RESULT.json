@@ -1,0 +1,54 @@
+{
+  "schema": "neuro-film.p262-dng-profile-look-table-ingress-guard-evidence.v1",
+  "experiment_id": "P262",
+  "status": "PASS_PRIVATE_DNG_PROFILE_LOOK_TABLE_INGRESS_GUARD",
+  "formal_execution_commit": "0a1db93785ffeece6478d6909307ebc4b556093c",
+  "formal_reports": {
+    "forward": "outputs/eval/p262/formal_corrected_forward.json",
+    "reverse": "outputs/eval/p262/formal_corrected_reverse.json",
+    "bytes_each": 6107,
+    "byte_exact": true,
+    "sha256": "c0aa5d78002b333a2aea4cd9222b20c09adc513fe1448b32c45d270442a687af",
+    "scientific_identity_sha256": "bc33570b9c0a288be3c0f3c58665a3aa0fe2420919fa9f0d9da1d8aaffb97267"
+  },
+  "source_authority": {
+    "name": "Adobe DNG SDK 1.7.1 build 2652",
+    "archive_sha256": "73499b47f4683e12120a234bd0946f02e52ab2ff9834bcbd0e9f8ab4f923360e",
+    "resolved_tags": [
+      {"code": 50981, "name": "ProfileLookTableDims"},
+      {"code": 50982, "name": "ProfileLookTableData"},
+      {"code": 51108, "name": "ProfileLookTableEncoding"}
+    ]
+  },
+  "real_source": {
+    "source_id": "google_pixel4a",
+    "repository_id": 4176,
+    "bytes": 13586704,
+    "sha256": "11b38186ee3455376291bcdb3049728a3f9dcd94b9e82ff76855d9f3430e44be",
+    "observed_guarded_tags": [50981, 50982],
+    "pixel_decodes": 0,
+    "network_reads": 0
+  },
+  "results": {
+    "frozen_p98_rows": 5,
+    "p98_rows_with_look_table": 0,
+    "p98_working_image_hashes_exact": 5,
+    "source_hashes_unchanged": 6,
+    "three_isolated_tag_rejections": true,
+    "multi_tag_numeric_order": true,
+    "decode_calls_on_synthetic_rejections": 0,
+    "p244_p257_p261_guards_unchanged": true,
+    "all_parent_bindings_exact": true,
+    "all_frozen_gates_pass": true
+  },
+  "corrections": [
+    "Before formal scoring, the real Pixel 4a row was restricted to metadata confirmation because it also carries an earlier HueSatMap stage; isolated public-loader rejection is proved only by synthetic single-stage controls.",
+    "The first two executions stopped before report creation because strict zip was incorrectly used for adjacent unequal-length sequences; pairwise enumeration fixed only that report aggregation defect and complete fresh runs followed."
+  ],
+  "decision": {
+    "admitted": true,
+    "interpretation": "The private opt-in P98 DNG raster path now rejects every standard ProfileLookTable tag before camera-raster decode instead of silently omitting the unsupported stage; the retained real source confirms the tag family exists and all five no-table P98 outputs remain exact.",
+    "profile_stage_guard_family_closed": true
+  },
+  "claim_ceiling": "Private opt-in no-silent-drop guard for Adobe DNG ProfileLookTable tags, one retained real metadata confirmation and unchanged five-file P98 behavior. No look-table application, full DNG conformance, arbitrary DNG or image quality, default-loader integration, package, schema, capability, film-stock or product admission."
+}
