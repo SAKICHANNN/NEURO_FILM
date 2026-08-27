@@ -2560,6 +2560,18 @@ This is not stock authenticity, developer/process evidence, product promotion
 or multi-stock completion. Evidence:
 `docs/evidence/BW2_D0_HP5_TRIX_K1_BASELINE_RESULT.json`.
 
+BW2.D1 implements that product-truth correction without rewriting historical
+assets. Current discovery exposes exactly one `generic_bw` / “Classic Black &
+White” Look Approximation and resolves it to the first preregistered BW2.D0
+candidate (`hp5`) solely as an immutable execution identity. Strength zero is
+exact identity; strength one is exact legacy execution parity; intermediate
+full/tiled rendering is exact and full-strength output remains neutral-axis.
+The frozen safe-rich profile, its asset hashes and both legacy HP5/Tri-X recipe
+identities remain unchanged for replay. This is not HP5/Tri-X separation,
+authenticity, developer/process response, calibration, preference or
+multi-stock completion. Implementation `0486dbc2`; evidence `590005c5` and
+`docs/evidence/BW2_D1_GENERIC_BW_LOOK_RESULT.json`.
+
 SF3.A3C closes the final bounded commercial-page lead without opening another
 proxy experiment. FilmLabPro names all three target stocks and publishes
 datasheet-derived curves and implementation parameters, but exposes no paired

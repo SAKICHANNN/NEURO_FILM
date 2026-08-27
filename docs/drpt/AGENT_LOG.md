@@ -19470,3 +19470,28 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   gains, thresholds, roles or controls; candidate count stays `2/3`. The
   producer independently stopped an overlapping R1FI plan before payload
   access, preserving P302 sealed `building304` and reserve `wall`.
+
+### 2026-08-28 - BW2.D1 exposes one generic B&W look without rewriting legacy recipes
+
+- **Node and scope:** `ULT > independent B&W branch > BW2.D1`, DRPT L2 / Mode
+  C. `dev-research-reliability` was the primary workflow, with scientific
+  claim review and structure stewardship secondary. This leaf implements the
+  exact product recommendation from BW2.D0; it does not substitute for the
+  initial three-colour-stock evidence programme.
+- **Freeze and implementation:** contract plus API commit `0486dbc2` binds the
+  exact BW2.D0 evidence and selects the first frozen candidate, `hp5`, as an
+  implementation identity only. New `generic_bw` discovery/render functions
+  leave `safe_rich_v1.json`, all asset hashes and both historical `hp5` and
+  `tri_x_400` recipe identities unchanged.
+- **Verification:** zero amount is exact source identity; full amount is exact
+  legacy execution parity and exact neutral-axis RGB; intermediate full/tiled
+  output is byte-exact. Evidence commit `590005c5`; tracked evidence
+  `docs/evidence/BW2_D1_GENERIC_BW_LOOK_RESULT.json`. The committed evidence
+  records 53 adjacent passes; an expanded post-commit B&W/engine/recipe batch
+  passes `61/61`, with Ruff, JSON and diff checks clean.
+- **Decision and boundary:** expose one “Classic Black & White” generic Look
+  Approximation. Retain named HP5/Tri-X IDs only for historical replay; do not
+  infer stock separation, authenticity, developer/process response,
+  calibration, preference or multi-stock completion. Reopen named B&W only
+  with a materially new independently rights-cleared physical-stock
+  observation.
