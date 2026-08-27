@@ -122,7 +122,7 @@ def _manifest_facts(config: dict[str, Any], items: list[dict[str, object]]) -> d
         lfs_sha = ""
         if lfs is not None:
             lfs_count += 1
-            lfs_sha = str(lfs.get("sha256", ""))
+            lfs_sha = str(lfs.get("oid", ""))
             if not re.fullmatch(r"[0-9a-f]{64}", lfs_sha):
                 missing_lfs_identity += 1
         manifest_lines.append(
@@ -152,6 +152,9 @@ def _manifest_facts(config: dict[str, Any], items: list[dict[str, object]]) -> d
     envmap_exr = [
         path for path in file_paths if re.search(r"/envmap/time\d+_envmap\.exr$", path)
     ]
+    auxiliary_envmap_exr = [
+        path for path in file_paths if re.search(r"/envmap/time-\d+_envmap\.exr$", path)
+    ]
     metadata = [path for path in file_paths if path.endswith("/meta.json")]
     dng_paths = [path for path in file_paths if path.casefold().endswith(".dng")]
     total_bytes = sum(int(item["size"]) for item in files)
@@ -174,6 +177,8 @@ def _manifest_facts(config: dict[str, Any], items: list[dict[str, object]]) -> d
             len(scenes) == int(expected["scene_count"]),
             len(photo_exr) == int(expected["photo_exr_count"]),
             len(envmap_exr) == int(expected["envmap_exr_count"]),
+            len(auxiliary_envmap_exr)
+            == int(expected["auxiliary_envmap_exr_count"]),
             len(metadata) == int(expected["metadata_count"]),
         )
     )
@@ -181,6 +186,7 @@ def _manifest_facts(config: dict[str, Any], items: list[dict[str, object]]) -> d
         "directory_count": len(directories),
         "dng_count": len(dng_paths),
         "entry_count": len(items),
+        "auxiliary_envmap_exr_count": len(auxiliary_envmap_exr),
         "envmap_exr_count": len(envmap_exr),
         "exact_inventory": exact_inventory,
         "file_count": len(files),

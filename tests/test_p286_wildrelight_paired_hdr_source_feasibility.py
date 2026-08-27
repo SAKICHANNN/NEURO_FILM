@@ -114,6 +114,7 @@ def test_p286_manifest_parser_keeps_dng_names_separate_from_payloads() -> None:
             "scene_count": 1,
             "photo_exr_count": 1,
             "envmap_exr_count": 1,
+            "auxiliary_envmap_exr_count": 0,
             "metadata_count": 1,
         }
     )

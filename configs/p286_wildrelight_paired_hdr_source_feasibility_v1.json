@@ -51,8 +51,9 @@
     "manifest_bytes": 154380,
     "manifest_sha256": "3926801fded06f6244496e478abe3b2cf014a184bc86a6c6ecd140e579d800b5",
     "scene_count": 30,
-    "photo_exr_count": 763,
-    "envmap_exr_count": 763,
+    "photo_exr_count": 762,
+    "envmap_exr_count": 762,
+    "auxiliary_envmap_exr_count": 2,
     "metadata_count": 120,
     "metadata_witness_scene": "bench2",
     "variants": [
