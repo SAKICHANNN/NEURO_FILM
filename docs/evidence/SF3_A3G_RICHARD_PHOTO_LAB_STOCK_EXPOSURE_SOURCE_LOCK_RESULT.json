@@ -1,0 +1,61 @@
+{
+  "schema": "neuro-film.sf3-a3g-richard-photo-lab-stock-exposure-source-lock-evidence.v1",
+  "experiment_id": "SF3.A3G_RICHARD_PHOTO_LAB_STOCK_EXPOSURE_SOURCE_LOCK_V1",
+  "date": "2026-08-27",
+  "status": "FAIL_CLOSED_DYNAMIC_PAGE_IDENTITY",
+  "decision": "FAIL_CLOSED_RPL_STOCK_SOURCE_STRUCTURE",
+  "implementation": {
+    "commit": "191209a83b98f7c5100646af66dd2083482d7917",
+    "config_sha256": "9d7af89258c501d636ce504b72d248a97beb8e1903f4bed07ce8e017a14ebdc0",
+    "source_lock_sha256": "e874763c33c59268feac725283d761db60e6d5e471eaaaa079630794f4f11e00",
+    "runner_sha256": "9957a4208b2ef60b6f5903b660f2f8b691ab3f70db041068570b6869ab6fcde1",
+    "test_sha256": "568cd51d59b76922072b389fab2b484f4be530b0c499ea4741fa4339ef91d60b"
+  },
+  "formal_replay": {
+    "processes": 2,
+    "reports_byte_exact": false,
+    "run_forward": "outputs/eval/sf3_a3g_richard_photo_lab_stock_exposure_source_lock_v1/run_forward.json",
+    "run_forward_sha256": "bc5e4364bdfe1827fca57c06a1b630a72e840305999cef2f7f540790412f8e25",
+    "run_forward_stable_evidence_id": "84f183f65adbeab15229f8e9a24eae46eb72c7c47ee17c38380e7fcc7208a443",
+    "run_replay": "outputs/eval/sf3_a3g_richard_photo_lab_stock_exposure_source_lock_v1/run_replay.json",
+    "run_replay_sha256": "6c1ed07c38357278d949d59edb9cef3614fdc4d92d748e6d352b2612c77e1826",
+    "run_replay_stable_evidence_id": "fe6352dc40102ab7a0155ed6ea9e29449d1286862a541cc6fd5062b9dc00c1ed"
+  },
+  "observed_source_facts": {
+    "network_bytes_per_run": 1534593,
+    "member_payload_reads": 0,
+    "image_member_reads": 0,
+    "pixel_decodes": 0,
+    "page_size_both_runs": 486017,
+    "page_sha256_frozen": "cff7ca5c8e42d8aa42ec3265566e5049ec75523494c0472d8655c4fbcd4fa525",
+    "page_sha256_forward": "f3e4f8926169fb1762559de97116c78df9d2d3c8f8b998ebb0b21e1b4125cff7",
+    "page_sha256_replay": "928b7fc3f5e256c1e7da7eb0626de585e99ebbe7e8e39f51bcdc5f7c1ad0546a",
+    "required_page_phrases_present_both_runs": 7,
+    "tail_sha256_both_runs": "803d590ed25ceca508f80dcefa0e63a64d81c66d77b4a88c9be7ed56a4e2c2f7",
+    "central_sha256_both_runs": "be1a99eb39e751776ad36c32d7921430ddaff9ba71a6bcd2fe642fa27e5b0c20",
+    "central_inventory_sha256_both_runs": "e374c85fdab6f4249ad54fca86b067410a4aa19768c3f62000ff23d87204abb7",
+    "central_member_count": 182,
+    "jpeg_member_count": 113,
+    "unsafe_member_count": 0,
+    "stock_ladders_structurally_present": [
+      "kodak_portra_400",
+      "kodak_ektar_100",
+      "kodak_tri_x_400",
+      "ilford_hp5_plus"
+    ]
+  },
+  "gate_outcomes": {
+    "page_identity_exact": false,
+    "all_page_phrases_present": true,
+    "central_identity_exact": true,
+    "safe_unencrypted_members": true,
+    "all_stock_ladders_present": true,
+    "network_budget": true,
+    "zero_member_payload_reads": true,
+    "zero_image_member_reads": true,
+    "zero_pixel_decodes": true
+  },
+  "interpretation": "The exact ZIP central directory and all four stock ladders were stable, but the official page bytes changed across the frozen observation and both formal requests. The exact-page gate and report replay therefore fail. This exact package identity does not open pixel acquisition; the page hash is not normalized or relaxed after observing the result.",
+  "next_action": "Search for a materially independent, immutable or explicitly versioned physical same-scene stock source. Do not rescue this cohort by normalizing the dynamic page or weakening its frozen exact identity gate.",
+  "claim_ceiling": "Private range-only source-structure negative. No JPEG member was read and no pixel was decoded. The observed archive structure is not stock evidence, a rights clearance, an acquisition authorization, a fit admission, calibration, product capability, redistribution permission or public release."
+}
