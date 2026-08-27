@@ -1,0 +1,62 @@
+{
+  "schema": "neuro-film.p273-openimageio-aces2065-interoperability-evidence.v1",
+  "experiment_id": "P273",
+  "status": "PASS_PRIVATE_OPENIMAGEIO_ACES2065_INTEROPERABILITY",
+  "decision": "One exact synthetic P249 ACES2065-1/AP0/D60 OpenEXR is mechanically interoperable with the already-installed OpenImageIO 3.1.11.0 Windows runtime. Retain this as private third-party reader compatibility only; do not add a dependency or broaden the P249/P251 claim.",
+  "bindings": {
+    "contract_commit": "499b0fb37d1cfb48d79bb7fb866a5d26e53b8f82",
+    "implementation_commit": "bc9822b58e170a1c055767919cdea2a03b8faa36",
+    "formal_lock_commit": "160802ba04877ae6a4f863af00f3646ec677d957",
+    "formal_lock_git_blob": "6f4a4b258472235923c20b37c55a4cfb76390c98",
+    "formal_lock_sha256": "60b3cc9ab11112154a6b317d885128f04d5a547f5f21bce778f2ff3ee7150b91",
+    "p249_container_sha256": "1a25181406270142c98f2169897d3a4c468ec50c979fff9077d37f956c888726",
+    "openimageio_version": "3.1.11.0"
+  },
+  "formal_reports": [
+    {"path": "outputs/eval/p273_openimageio_aces2065_interoperability_v1/forward.json", "bytes": 1739, "sha256": "a4482b498a0f64e811b89476a7d420ac67ef210658cdc3aa0931873f82961660"},
+    {"path": "outputs/eval/p273_openimageio_aces2065_interoperability_v1/reverse.json", "bytes": 1739, "sha256": "a4482b498a0f64e811b89476a7d420ac67ef210658cdc3aa0931873f82961660"}
+  ],
+  "result": {
+    "two_complete_reports_byte_exact": true,
+    "stable_identity": "sha256:32f3cdbcbdbbec3474b9a5ecad6a61a3fc39437d18ccbfe319ea49867c0eafa1",
+    "container_bytes": 1144,
+    "pixel_f32le_sha256": "2b3417e344aa7c26962a109f55d14237a0926d0e03eb46767477b274c4179cb4",
+    "shape": [7, 9, 3],
+    "channels": ["R", "G", "B"],
+    "format": "float",
+    "compression": "zip",
+    "aces_image_container_flag": 1,
+    "color_interop_id": "lin_ap0_scene",
+    "source_immutable": true,
+    "truncated_input_rejected": true,
+    "network_reads": 0,
+    "persistent_media_writes": 0,
+    "formal_temporary_residue_zero": true
+  },
+  "gates": {
+    "exact_container": true,
+    "exact_pixels": true,
+    "exact_shape_channels_format": true,
+    "exact_aces_metadata": true,
+    "exact_runtime_version": true,
+    "source_immutable": true,
+    "truncated_input_rejected": true,
+    "zero_network": true,
+    "zero_temporary_residue": true
+  },
+  "preformal_exclusions": [
+    "The first focused invocation compared identity dictionaries including path labels; the comparison was narrowed to identity keys before any OpenImageIO read.",
+    "The first OpenImageIO read passed, but the parent process retained the temporary OpenEXR native module and blocked Windows cleanup. P249 reconstruction was moved to a child process before formal lock; source, container, pixels, metadata and gates did not change.",
+    "One owned preformal prototype directory and one failed-cleanup directory under outputs/tmp remain quarantined because the execution policy rejected recursive deletion. They are outside formal runs and are not counted as formal residue."
+  ],
+  "rights_and_product": {
+    "new_dependency_or_api": false,
+    "arbitrary_aces_exr_support": false,
+    "smpte_certification": false,
+    "image_quality": false,
+    "package_schema_capability_mapping": false,
+    "product_admission": false,
+    "candidate_3": false
+  },
+  "claim_ceiling": "Private interoperability of one exact synthetic P249 AP0/D60 ACES2065-1 OpenEXR with one existing Windows OpenImageIO runtime only; no arbitrary EXR/ACES, image quality, SMPTE certification, public dependency/API/package/schema/capability, renderer/product mapping or candidate-3 change."
+}

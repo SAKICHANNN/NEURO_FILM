@@ -12,6 +12,7 @@ from scripts.audit_p273_openimageio_aces2065_interoperability import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/p273_openimageio_aces2065_interoperability_v1.json"
+EVIDENCE = ROOT / "docs/evidence/P273_OPENIMAGEIO_ACES2065_INTEROPERABILITY_RESULT.json"
 PRODUCER = ROOT.parent / "追色"
 
 
@@ -32,3 +33,15 @@ def test_p273_exact_container_is_oiio_interoperable() -> None:
 def test_p273_rejects_invalid_order() -> None:
     with pytest.raises(P273Error, match="order"):
         execute(CONFIG, PRODUCER, "sideways")
+
+
+def test_p273_evidence_binds_exact_interoperability() -> None:
+    evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+    assert evidence["status"] == "PASS_PRIVATE_OPENIMAGEIO_ACES2065_INTEROPERABILITY"
+    assert evidence["formal_reports"][0]["sha256"] == evidence["formal_reports"][1][
+        "sha256"
+    ]
+    assert evidence["result"]["pixel_f32le_sha256"] == (
+        "2b3417e344aa7c26962a109f55d14237a0926d0e03eb46767477b274c4179cb4"
+    )
+    assert evidence["rights_and_product"]["product_admission"] is False
