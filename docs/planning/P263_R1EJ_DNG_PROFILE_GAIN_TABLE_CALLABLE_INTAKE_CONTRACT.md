@@ -29,6 +29,7 @@ consumer deserializes the fixture or imports the callable.
 |---|---|---|---:|---|
 | contract | `docs/research/R1EJ_DNG_PROFILE_GAIN_TABLE_CALLABLE_V1_CONTRACT.json` | `571f3295db62f67befb3fcdf125dc6c63bf8ee11` | 3,757 | `17c2c8bf3c118f2f89aa05cc67c899fbb04a3b69a20bd9475f38387c60d39239` |
 | payload schema | `schemas/zhuise_dng_profile_gain_table_callable_v1.schema.json` | `314b6708302e61f9df5789877c2e8485946429ef` | 1,644 | `435d04417de9af9dab218f23452c04f8696ccf2b6bf815bed0da54ad9e57142b` |
+| arithmetic core | `src/zhuise/dng_profile_gain_table.py` | `7814dd301ebf08e992d4c82b06f9dcdf17ff387c` | 8,829 | `f608a5e4631e88d145d32379fa3b55480f8e38d7a13be9945ff564d146416b94` |
 | callable | `src/zhuise/dng_profile_gain_table_callable.py` | `057f84c30478175cd7ee3bf55def978f68830733` | 6,291 | `3025af18cb8b6f9540815d0971ce3228ede45288148607d224487414be200439` |
 | canonical fixture | `tests/fixtures/r1dy_dng_profile_gain_table_callable_v1_fixture.json` | `96962f3b492221bfdca505e5874fabf91c55fcc5` | 1,291 | `37bda94a036b84ae125c84c32f4e20b101b3bec468e6907ea13b2987bddee724` |
 | execution lock | `docs/research/R1EJ_DNG_PROFILE_GAIN_TABLE_CALLABLE_EXECUTION_LOCK.json` | `4b14e04b9ca9e9b25af3bfc41cbc3039f41a0f54` | 2,217 | `8a150b4d9bb13241be44c8c64bc6400b75c2d5d8219b5b9f194053d815fdbfc6` |
@@ -36,6 +37,13 @@ consumer deserializes the fixture or imports the callable.
 
 The consumer must extract these exact objects with `git show`. Importing the
 producer worktree or copying the callable into consumer `src/` is forbidden.
+
+Additive prescore source-lock correction: the first committed contract bound
+the wrapper but omitted its separate relative-import arithmetic core. Reading
+the already-bound producer execution lock exposed that dependency before any
+fixture deserialization or callable import. This amendment adds only the exact
+core Git object; roles, fixture, expected output, gates, and claim ceiling are
+unchanged.
 
 ## Frozen callable boundary
 

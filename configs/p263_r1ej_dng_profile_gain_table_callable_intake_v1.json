@@ -23,6 +23,7 @@
   "artifacts": {
     "contract": {"commit_role": "contract_commit", "path": "docs/research/R1EJ_DNG_PROFILE_GAIN_TABLE_CALLABLE_V1_CONTRACT.json", "git_blob": "571f3295db62f67befb3fcdf125dc6c63bf8ee11", "bytes": 3757, "sha256": "17c2c8bf3c118f2f89aa05cc67c899fbb04a3b69a20bd9475f38387c60d39239"},
     "schema": {"commit_role": "implementation_commit", "path": "schemas/zhuise_dng_profile_gain_table_callable_v1.schema.json", "git_blob": "314b6708302e61f9df5789877c2e8485946429ef", "bytes": 1644, "sha256": "435d04417de9af9dab218f23452c04f8696ccf2b6bf815bed0da54ad9e57142b"},
+    "arithmetic_core": {"commit_role": "implementation_commit", "path": "src/zhuise/dng_profile_gain_table.py", "git_blob": "7814dd301ebf08e992d4c82b06f9dcdf17ff387c", "bytes": 8829, "sha256": "f608a5e4631e88d145d32379fa3b55480f8e38d7a13be9945ff564d146416b94"},
     "callable": {"commit_role": "implementation_commit", "path": "src/zhuise/dng_profile_gain_table_callable.py", "git_blob": "057f84c30478175cd7ee3bf55def978f68830733", "bytes": 6291, "sha256": "3025af18cb8b6f9540815d0971ce3228ede45288148607d224487414be200439"},
     "fixture": {"commit_role": "implementation_commit", "path": "tests/fixtures/r1dy_dng_profile_gain_table_callable_v1_fixture.json", "git_blob": "96962f3b492221bfdca505e5874fabf91c55fcc5", "bytes": 1291, "sha256": "37bda94a036b84ae125c84c32f4e20b101b3bec468e6907ea13b2987bddee724"},
     "execution_lock": {"commit_role": "execution_commit", "path": "docs/research/R1EJ_DNG_PROFILE_GAIN_TABLE_CALLABLE_EXECUTION_LOCK.json", "git_blob": "4b14e04b9ca9e9b25af3bfc41cbc3039f41a0f54", "bytes": 2217, "sha256": "8a150b4d9bb13241be44c8c64bc6400b75c2d5d8219b5b9f194053d815fdbfc6"},
@@ -35,6 +36,7 @@
     "stable_identity_prefix": "fa61d6dc",
     "stable_identity_suffix": "323be"
   },
+  "prescore_source_lock_correction": "The first committed consumer contract omitted the callable's separate relative-import arithmetic core. The already-bound producer execution lock exposed this before fixture deserialization or callable import. This amendment adds only the exact core Git object; roles, expected outputs, gates and claim ceiling are unchanged.",
   "gates": {
     "require_contract_commit_before_fixture_read": true,
     "require_exact_git_objects": true,
