@@ -56,7 +56,7 @@ def _edge_version() -> str:
     return completed.stdout.strip()
 
 
-def _wait_devtools(profile: Path, timeout: float) -> tuple[int, str]:
+def _wait_devtools(profile: Path, expected_url: str, timeout: float) -> tuple[int, str]:
     deadline = time.monotonic() + timeout
     active = profile / "DevToolsActivePort"
     while time.monotonic() < deadline:
@@ -70,7 +70,12 @@ def _wait_devtools(profile: Path, timeout: float) -> tuple[int, str]:
                 except (OSError, URLError, json.JSONDecodeError):
                     time.sleep(0.05)
                     continue
-                pages = [target for target in targets if target.get("type") == "page"]
+                pages = [
+                    target
+                    for target in targets
+                    if target.get("type") == "page"
+                    and str(target.get("url", "")).startswith(expected_url)
+                ]
                 if pages:
                     return port, str(pages[0]["webSocketDebuggerUrl"])
         time.sleep(0.05)
@@ -81,8 +86,10 @@ def _submit_first_form(websocket_url: str, timeout: float) -> None:
     source = r"""
 const ws = new WebSocket(process.argv[1]);
 const timer = setTimeout(() => { console.error('cdp timeout'); process.exit(2); }, Number(process.argv[2]) * 1000);
-ws.onopen = () => ws.send(JSON.stringify({id:1,method:'Runtime.evaluate',params:{expression:"(() => { const f=document.querySelector('form'); if(!f) throw new Error('form missing'); f.requestSubmit(); return 'submitted'; })()",returnByValue:true}}));
-ws.onmessage = (event) => { const value=JSON.parse(event.data); if(value.id===1){ clearTimeout(timer); if(value.error || value.result?.exceptionDetails){ console.error(JSON.stringify(value)); process.exit(3); } console.log('submitted'); ws.close(); }};
+let id = 0;
+function probe(){ id += 1; ws.send(JSON.stringify({id,method:'Runtime.evaluate',params:{expression:"(() => { const f=document.querySelector('form'); if(!f) return 'waiting'; f.requestSubmit(); return 'submitted'; })()",returnByValue:true}})); }
+ws.onopen = probe;
+ws.onmessage = (event) => { const value=JSON.parse(event.data); if(value.id===id){ if(value.error || value.result?.exceptionDetails){ clearTimeout(timer); console.error(JSON.stringify(value)); process.exit(3); } const result=value.result?.result?.value; if(result==='submitted'){ clearTimeout(timer); console.log('submitted'); ws.close(); } else { setTimeout(probe,100); } }};
 ws.onerror = () => { clearTimeout(timer); process.exit(4); };
 """
     completed = subprocess.run(
@@ -156,7 +163,7 @@ def _run_browser_export(config: dict[str, Any], scratch: Path) -> dict[str, Any]
         )
         try:
             _, websocket_url = _wait_devtools(
-                profile, limits["browser_timeout_seconds"]
+                profile, session.url, limits["browser_timeout_seconds"]
             )
             _submit_first_form(websocket_url, limits["browser_timeout_seconds"])
             result = session.wait(limits["session_timeout_seconds"])
