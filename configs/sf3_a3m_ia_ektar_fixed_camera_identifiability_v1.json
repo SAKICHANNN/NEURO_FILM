@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "experiment_id": "sf3.a3m-ia-ektar-fixed-camera-identifiability-v1",
+  "node": "ULT > RF3 > SF3.A3M",
+  "source": {
+    "metadata_endpoint": "https://archive.org/metadata/{identifier}",
+    "download_endpoint": "https://archive.org/download/{identifier}/{name}",
+    "creator": "Matthew Paul Argall",
+    "camera": "Kodak VR35 K4",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "source_lock": "data/real_film/sf3_a3m_ia_ektar_fixed_camera_v1/source_lock.json",
+  "source_lock_sha256": "8683ded1c91d008864eee2de1fdada58b0d5b7ed3e5dba0547dfcd54de2255a3",
+    "pixel_root": "data/real_film/sf3_a3m_ia_ektar_fixed_camera_v1/pixels",
+    "acquisition_manifest": "data/real_film/sf3_a3m_ia_ektar_fixed_camera_v1/acquisition_manifest.json"
+  },
+  "items": [
+    {"identifier": "000006670012", "film_stock_id": "kodak_ektar_100", "film_text": "Kodak Ektar 100", "role": "development", "capture_date": "2018-06-05"},
+    {"identifier": "1854-010", "film_stock_id": "kodak_ektar_100", "film_text": "Kodak Ektar 100", "role": "confirmation", "capture_date": "2018-08-02"},
+    {"identifier": "no-smoking-penalties-apply", "film_stock_id": "kodak_pro_image_100", "film_text": "Kodak Pro Image 100", "role": "development", "capture_date": "2019-04-03"},
+    {"identifier": "62690010", "film_stock_id": "kodak_pro_image_100", "film_text": "Kodak Pro Image 100", "role": "confirmation", "capture_date": "2020-03-26"},
+    {"identifier": "tree-fern_20220527", "film_stock_id": "kodak_ultramax_400", "film_text": "Kodak Ultramax 400", "role": "development", "capture_date": "2019-06-11"},
+    {"identifier": "000041160010", "film_stock_id": "kodak_ultramax_400", "film_text": "Kodak Ultramax 400", "role": "confirmation", "capture_date": "2020-02-13"}
+  ],
+  "selection": {
+    "frames_per_item": 12,
+    "allowed_original_format": "JPEG",
+    "allowed_derivative_format": "JPEG Thumb",
+    "rank_identity": "sha256(experiment_id|identifier|original_name|original_md5)",
+    "maximum_total_download_bytes": 5000000,
+    "maximum_network_requests_lock": 6,
+    "maximum_network_requests_acquire": 72
+  },
+  "descriptors": [
+    "rgb_distribution",
+    "luma_distribution",
+    "hog_grayscale",
+    "low_frequency_rgb_4x4",
+    "standardized_rgb_distribution",
+    "geometry_border_source",
+    "capture_date_ordinal"
+  ],
+  "statistics": {
+    "bootstrap_iterations": 4000,
+    "bootstrap_seed": 33102
+  },
+  "gates": {
+    "minimum_item_groups": 6,
+    "minimum_frames_per_item": 12,
+    "primary_descriptor": "rgb_distribution",
+    "nuisance_control_descriptors": [
+      "luma_distribution",
+      "hog_grayscale",
+      "low_frequency_rgb_4x4",
+      "geometry_border_source",
+      "capture_date_ordinal"
+    ],
+    "minimum_primary_balanced_accuracy": 0.8333333333333333,
+    "minimum_ektar_recall": 1.0,
+    "minimum_control_recall": 0.75,
+    "maximum_exact_permutation_p": 0.1,
+    "minimum_delta_vs_nuisance": 0.16666666666666666,
+    "maximum_date_control_accuracy": 0.6666666666666666,
+    "maximum_hog_control_accuracy": 0.6666666666666666,
+    "maximum_low_frequency_control_accuracy": 0.6666666666666666
+  },
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "decision_if_pass": "PASS_WEAK_UNPAIRED_FIXED_AUTHOR_CAMERA_EKTAR_IDENTIFIABILITY_ONLY",
+  "decision_if_fail": "FAIL_CLOSED_IA_SINGLE_AUTHOR_FIXED_CAMERA_STOCK_IDENTIFIABILITY",
+  "claim_ceiling": "single-author fixed-camera low-resolution unpaired Ektar-vs-Kodak-controls identifiability D0 only; no operator, calibration, roll/process/scanner truth, K1 fitting, stock profile or product claim"
+}
