@@ -1,7 +1,15 @@
 {
   "schema": "neuro-film.p270-hdrplus-split-capture-raw-d0-contract.v1",
   "experiment_id": "P270",
-  "status": "FROZEN_BEFORE_ANY_FULL_RAW_READ",
+  "status": "FORMAL_EXECUTION_LOCKED_BEFORE_ANY_FULL_RAW_READ",
+  "bindings": {
+    "contract_commit": "a55fa2856b69580f1a141cb4ec84e4f88119b14f",
+    "contract_bytes": 3623,
+    "contract_sha256": "d9eaff092c3947694676a2a50568b69e1008ba1abe154025179b7992f0364d8b",
+    "runner_commit": "f27c13990f2eaebc33ca3ca92a639737ac05d430",
+    "runner_bytes": 18479,
+    "runner_sha256": "d81523eeae8113cff819c1dc5a74b157934838a60c877b8410ad14ea887c3593"
+  },
   "parent_p269_evidence_sha256": "fd2a4d8d966795cf2e21a1d3997991398bc8fc141260a489e71275e96fc9ac96",
   "source_root": "data/external/p269_hdrplus_one_burst_v1/burst",
   "development_frames": ["payload_N000.dng", "payload_N002.dng", "payload_N004.dng", "payload_N006.dng"],

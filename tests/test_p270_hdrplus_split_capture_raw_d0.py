@@ -19,6 +19,7 @@ CONFIG = ROOT / "configs/p270_hdrplus_split_capture_raw_d0_v1.json"
 
 def test_p270_roles_and_gates_are_frozen() -> None:
     config = json.loads(CONFIG.read_text(encoding="utf-8"))
+    assert config["status"] == "FORMAL_EXECUTION_LOCKED_BEFORE_ANY_FULL_RAW_READ"
     development = config["development_frames"]
     heldout = config["heldout_frames"]
     assert len(development) == len(heldout) == 4
