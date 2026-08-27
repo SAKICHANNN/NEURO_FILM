@@ -17781,3 +17781,24 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   package/schema/capability, film-stock or product admission. Candidate count
   remains `2/3`; continue only a distinct ready mature RAW/HDR gap or genuinely
   new paired/capture-time observation.
+
+### 2026-08-27 - U7.6J/K retain one exact native three-stock preview candidate
+
+- **Node and correction:** `ULT > U7 CPU fallback > U7.6J/K`, DRPT L2 / Mode C.
+  U7.6I's Velvia-only `1.90735e-6` mismatch was traced to NumPy's intentional
+  float64 promotion when skin protection and chroma capping are active; its
+  frozen failure remains unchanged. U7.6J introduced a separately versioned
+  v3 kernel that reproduces those execution semantics rather than relaxing the
+  zero-error gate.
+- **Evidence:** U7.6J contract `b79056b6`, implementation `602eed16`, evidence
+  `2338a69f`; report SHA `eca227d6...42bc`, stable `50700a5a...32dd`, exact
+  Velvia/Portra/Ektar Lab outputs and `.02939-.03093s` three-look native time.
+  The single permitted U7.6K composition (contract `60439338`, runner/tests
+  `1d2b6f23`, evidence `2bdfdff6`) reproduces all three final RGB hashes
+  exactly through the existing downstream stages; report SHA
+  `541cdfeae...4b73`, stable `1e5ef9a4...fa23`, native/Python conservative
+  ratio `.85535068`. A broader 49-test adjacent regression passes.
+- **Boundary and handoff:** retain one private local opt-in preview-engineering
+  candidate. This is not calibrated stock evidence, stock distinguishability,
+  device/runtime or product admission. Stop adjacent performance micro-leaves
+  and return effort to executable multi-stock evidence and product work.
