@@ -26,15 +26,13 @@ def _sha256_file(path: Path) -> str:
 
 
 def _canonical_bytes(value: object) -> bytes:
-    return (
-        json.dumps(value, indent=2, sort_keys=True, allow_nan=False) + "\n"
-    ).encode("utf-8")
+    return (json.dumps(value, indent=2, sort_keys=True, allow_nan=False) + "\n").encode(
+        "utf-8"
+    )
 
 
 def _array_sha256(value: Any, numpy: Any, *, dtype: str | None = None) -> str:
-    array = numpy.ascontiguousarray(
-        value if dtype is None else value.astype(dtype)
-    )
+    array = numpy.ascontiguousarray(value if dtype is None else value.astype(dtype))
     return _sha256_bytes(array.tobytes(order="C"))
 
 

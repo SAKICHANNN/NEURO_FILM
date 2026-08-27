@@ -45,9 +45,9 @@ def _sha256_file(path: Path) -> str:
 
 
 def _canonical_bytes(value: object) -> bytes:
-    return (
-        json.dumps(value, indent=2, sort_keys=True, allow_nan=False) + "\n"
-    ).encode("utf-8")
+    return (json.dumps(value, indent=2, sort_keys=True, allow_nan=False) + "\n").encode(
+        "utf-8"
+    )
 
 
 def _windows_to_wsl(path: Path) -> str:
@@ -155,9 +155,7 @@ def execute(
         (temporary / "bound-r1dt-writer.py").write_bytes(writer)
         (temporary / "p249-input.f32le").write_bytes(pixel_bytes)
         _extract_wheels(list(wheel_paths.values()), temporary / "site")
-        worker = _run_linux_probe(
-            workspace=temporary, order=order, config=config
-        )
+        worker = _run_linux_probe(workspace=temporary, order=order, config=config)
     finally:
         shutil.rmtree(temporary, ignore_errors=False)
     if worker is None:
@@ -194,9 +192,7 @@ def execute(
             and worker["working"]["transfer_state"] == "scene_linear"
         ),
         "finite_unit_output": worker["encoded_finite_in_unit"],
-        "invalid_controls_rejected": all(
-            worker["invalid_controls_rejected"].values()
-        ),
+        "invalid_controls_rejected": all(worker["invalid_controls_rejected"].values()),
         "foreign_destination_preserved": (
             worker["foreign_destination_rejected"]
             and worker["foreign_destination_unchanged"]
@@ -204,9 +200,7 @@ def execute(
         "source_and_input_immutable": (
             worker["source_unchanged"] and worker["input_pixels_unchanged"]
         ),
-        "pq_path_did_not_call_sdr_dependency": worker[
-            "unused_sdr_dependency_calls"
-        ]
+        "pq_path_did_not_call_sdr_dependency": worker["unused_sdr_dependency_calls"]
         == {"srgb_icc_profile": 0},
         "zero_network": True,
         "zero_temporary_residue": not temporary.exists(),
@@ -235,9 +229,7 @@ def main() -> None:
     parser.add_argument("--order", choices=("forward", "reverse"), required=True)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
-    report = execute(
-        args.config.resolve(), args.producer_repo.resolve(), args.order
-    )
+    report = execute(args.config.resolve(), args.producer_repo.resolve(), args.order)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_bytes(_canonical_bytes(report))
 

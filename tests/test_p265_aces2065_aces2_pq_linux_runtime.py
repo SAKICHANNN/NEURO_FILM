@@ -19,8 +19,9 @@ def _load_module():
 
 def test_p265_contract_and_local_wheel_identity() -> None:
     config = json.loads(
-        (ROOT / "configs" / "p265_aces2065_aces2_pq_linux_runtime_v1.json")
-        .read_text(encoding="utf-8")
+        (ROOT / "configs" / "p265_aces2065_aces2_pq_linux_runtime_v1.json").read_text(
+            encoding="utf-8"
+        )
     )
     assert config["experiment_id"] == "P265"
     assert config["gates"]["require_exact_windows_linux_rgb16"] is True
