@@ -15,7 +15,8 @@ derive an SDR tone policy.
 
 - absolute HDR and SDR endpoint paths plus their expected SHA-256 identities;
 - an absolute, absent destination path;
-- the exact retained `avifgainmaputil.exe` path and expected SHA-256;
+- the exact retained `avifgainmaputil.exe` and `avifdec.exe` paths and expected
+  SHA-256 identities;
 - explicit base/alternate CICP triples and headrooms.
 
 The v1 profile is fixed to P289: HDR base CICP `1/16/0`, SDR alternate CICP
