@@ -5,12 +5,14 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 from pathlib import Path
 from typing import Any
 
 from scripts.audit_p286_wildrelight_paired_hdr_source_feasibility import (
     _fetch_manifest,
     _manifest_facts,
+    _request_bytes,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -59,25 +61,66 @@ def _select_members(
                     raise P302SourceLockError(f"required member is absent: {path}")
                 item = by_path[path]
                 lfs = item.get("lfs")
-                if not isinstance(lfs, dict):
-                    raise P302SourceLockError(
-                        f"required member has no LFS identity: {path}"
-                    )
-                oid = str(lfs.get("oid", ""))
-                if len(oid) != 64:
-                    raise P302SourceLockError(
-                        f"required member has invalid SHA-256: {path}"
-                    )
+                if isinstance(lfs, dict):
+                    oid = str(lfs.get("oid", ""))
+                    if not re.fullmatch(r"[0-9a-f]{64}", oid):
+                        raise P302SourceLockError(
+                            f"required member has invalid LFS SHA-256: {path}"
+                        )
+                    identity = {
+                        "git_blob_sha1": None,
+                        "identity_kind": "lfs_sha256",
+                        "sha256": oid,
+                    }
+                else:
+                    git_oid = str(item.get("oid", ""))
+                    if not path.endswith("/meta.json") or not re.fullmatch(
+                        r"[0-9a-f]{40}", git_oid
+                    ):
+                        raise P302SourceLockError(
+                            f"required member has no exact identity: {path}"
+                        )
+                    identity = {
+                        "git_blob_sha1": git_oid,
+                        "identity_kind": "git_blob_sha1_and_body_sha256",
+                        "sha256": None,
+                    }
                 selected.append(
                     {
                         "bytes": int(item["size"]),
+                        **identity,
                         "path": path,
                         "role": role,
                         "scene": scene,
-                        "sha256": oid,
                     }
                 )
     return selected
+
+
+def _bind_metadata_bodies(
+    members: list[dict[str, object]], dataset_id: str, revision: str
+) -> tuple[int, int]:
+    requests = 0
+    body_bytes = 0
+    for member in members:
+        if member["identity_kind"] != "git_blob_sha1_and_body_sha256":
+            continue
+        url = (
+            f"https://huggingface.co/datasets/{dataset_id}/resolve/"
+            f"{revision}/{member['path']}?download=true"
+        )
+        body, _ = _request_bytes(url, 65536)
+        if len(body) != int(member["bytes"]):
+            raise P302SourceLockError("metadata body byte count differs")
+        git_blob = hashlib.sha1(
+            f"blob {len(body)}\0".encode() + body, usedforsecurity=False
+        ).hexdigest()
+        if git_blob != member["git_blob_sha1"]:
+            raise P302SourceLockError("metadata Git-blob identity differs")
+        member["sha256"] = _sha256(body)
+        requests += 1
+        body_bytes += len(body)
+    return requests, body_bytes
 
 
 def execute(config_path: Path, p286_config_path: Path) -> dict[str, object]:
@@ -116,6 +159,9 @@ def execute(config_path: Path, p286_config_path: Path) -> dict[str, object]:
         raise P302SourceLockError("P302 scene ranking differs")
 
     members = _select_members(manifest["items"], roles)
+    metadata_requests, metadata_body_bytes = _bind_metadata_bodies(
+        members, config["source"]["dataset_id"], config["source"]["revision"]
+    )
     member_payload = {
         "dataset_id": config["source"]["dataset_id"],
         "experiment_id": "P302",
@@ -133,6 +179,8 @@ def execute(config_path: Path, p286_config_path: Path) -> dict[str, object]:
         "experiment_id": "P302",
         "manifest_network_bytes": manifest["network_bytes"],
         "manifest_page_count": manifest["page_count"],
+        "metadata_body_bytes": metadata_body_bytes,
+        "metadata_body_requests": metadata_requests,
         "member_count": len(members),
         "member_manifest_bytes": len(member_bytes),
         "member_manifest_payload": member_payload,

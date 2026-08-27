@@ -30,9 +30,11 @@ admission.
   confirmation, final five reserve. Roles are enumerated in the frozen config.
 - Each scene contributes only disjoint one-way pairs `0->1`, `2->3`, `4->5`.
   A photo is never both source and target within an evaluation role.
-- A source-lock amendment must freeze every selected `meta.json`, photo EXR and
-  environment-map EXR path, byte count and LFS SHA-256 before any selected EXR
-  request. Metadata-only official API reads are allowed for this amendment.
+- A source-lock amendment must freeze every selected path and byte count before
+  any selected EXR request. EXRs require their official LFS SHA-256. Each
+  regular-Git `meta.json` requires its official Git-blob SHA-1 plus a locally
+  computed SHA-256 from the exact bounded metadata body. Metadata-only official
+  API/body reads are allowed for this amendment.
 - Confirmation member bodies and pixel decodes remain zero unless every
   development gate passes. Reserve member bodies remain unread in all cases.
 

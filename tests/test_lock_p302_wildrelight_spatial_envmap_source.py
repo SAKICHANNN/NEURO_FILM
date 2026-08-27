@@ -33,9 +33,11 @@ def test_select_members_requires_exact_six_time_roles() -> None:
                     )
                 )
             for index, path in enumerate(paths):
+                is_metadata = path.endswith("/meta.json")
                 items.append(
                     {
-                        "lfs": {"oid": f"{index + 1:064x}"},
+                        "lfs": None if is_metadata else {"oid": f"{index + 1:064x}"},
+                        "oid": f"{index + 1:040x}",
                         "path": path,
                         "size": index + 1,
                         "type": "file",
@@ -44,3 +46,6 @@ def test_select_members_requires_exact_six_time_roles() -> None:
     selected = _select_members(items, roles)
     assert len(selected) == 52
     assert {item["role"] for item in selected} == set(roles)
+    metadata = [item for item in selected if item["path"].endswith("meta.json")]
+    assert len(metadata) == 4
+    assert all(item["sha256"] is None for item in metadata)
