@@ -562,6 +562,17 @@ def execute(
             linux_root = f"/tmp/p267-{uuid.uuid4().hex}"
             try:
                 binary, build = _build_linux(config, linux_root)
+                expected_tools = {
+                    "cmake_sha256": config["platform"]["cmake_executable_sha256"],
+                    "cmake_version": f"cmake version {config['platform']['cmake_version']}",
+                    "gxx_sha256": config["platform"]["gxx_sha256"],
+                    "gxx_version": config["platform"]["gxx_version"],
+                    "ninja_sha256": config["platform"]["ninja_sha256"],
+                    "ninja_version": config["platform"]["ninja_version"],
+                }
+                for key, expected in expected_tools.items():
+                    if build[key] != expected:
+                        raise P267Error(f"frozen Linux tool identity differs: {key}")
                 controls = _small_controls(config, binary, workspace, site)
                 workers = [
                     _inspect_worker(config, binary, workspace, label, site)

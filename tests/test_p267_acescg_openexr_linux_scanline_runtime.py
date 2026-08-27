@@ -27,6 +27,9 @@ def test_p267_config_freezes_linux_only_runtime_change() -> None:
     )
     assert config["platform"]["wsl_distribution"] == "Ubuntu-22.04"
     assert config["platform"]["formal_network_allowed"] is False
+    assert config["platform"]["cmake_executable_sha256"]
+    assert config["platform"]["gxx_sha256"]
+    assert config["platform"]["ninja_sha256"]
     assert config["diagnostics_not_gates"]
 
 
