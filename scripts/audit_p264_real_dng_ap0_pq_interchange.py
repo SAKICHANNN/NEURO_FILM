@@ -220,8 +220,14 @@ def _worker(config_path: Path, workspace: Path, order: str) -> dict[str, Any]:
             "input_unchanged": _array_sha256(acescg) == acescg_before,
             "maximum": float(np.max(acescg)),
             "minimum": float(np.min(acescg)),
-            "strong_highlight_count": int(np.count_nonzero(acescg > 1.0)),
-            "strong_negative_count": int(np.count_nonzero(acescg < 0.0)),
+            "strong_highlight_count": int(
+                np.count_nonzero(
+                    acescg > source_info["p259_strong_highlight_threshold"]
+                )
+            ),
+            "strong_negative_count": int(
+                np.count_nonzero(acescg < source_info["p259_strong_negative_threshold"])
+            ),
         },
         "comparison": {
             **comparison,

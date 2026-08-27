@@ -11,6 +11,8 @@
     "p259_acescg_float32_sha256": "f326ea149a6a3a526af02cbb8c9701b8a1daa8b87b1c692ca8be422cb26a3e7d",
     "shape": [2176, 4128, 3],
     "p259_exr_bytes": 101805274,
+    "p259_strong_negative_threshold": -0.00001,
+    "p259_strong_highlight_threshold": 1.00001,
     "p259_strong_negative_count": 2511,
     "p259_strong_highlight_count": 3902
   },
@@ -36,7 +38,7 @@
   },
   "formal_bindings": {
     "contract": ["docs/planning/P264_REAL_DNG_AP0_PQ_INTERCHANGE_CONTRACT.md", 2389, "9cdded3f41b8a73cd77c409d981db49eac3a353c40d0d15ead58604a253fdd02"],
-    "runner": ["scripts/audit_p264_real_dng_ap0_pq_interchange.py", 15078, "53439e221978a521be9f698b849d25655f8f8a4cc1eda0f55bb7ac3707357dd3"],
+    "runner": ["scripts/audit_p264_real_dng_ap0_pq_interchange.py", 15261, "80f2cb1edacf9d775366c06258acff8786bdd04ff7c16acba9dd8049b63b3e3f"],
     "test": ["tests/test_p264_real_dng_ap0_pq_interchange.py", 1361, "ff0d95d8634e3ede01cabcb1368e4392d90900f7769d1a34865188a78b2f386f"]
   },
   "gates": {
