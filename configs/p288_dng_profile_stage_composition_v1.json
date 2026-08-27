@@ -1,0 +1,54 @@
+{
+  "schema": "neuro-film.p288-dng-profile-stage-composition-contract.v1",
+  "experiment_id": "P288",
+  "status": "PRESCORE_IMPLEMENTATION",
+  "contract": {
+    "path": "docs/planning/P288_DNG_PROFILE_STAGE_COMPOSITION_CONTRACT.md",
+    "commit": "28bf1faee019e243d807294380ed4d7e7e0f0a90",
+    "bytes": 4893,
+    "sha256": "e7952f649dda940bfbaa51a265926907bfdc7938feae19348c9f5dc53db6a557"
+  },
+  "parents": {
+    "huesat": {
+      "config": ["configs/p254_r1dz_dng_huesatmap_overrange_consumer_intake_v1.json", 9368, "dfa27821a5d35c7462475684291925bbb7e5d6fc1a152123848522ee01546868"],
+      "evidence": ["docs/evidence/P254_R1EC_DNG_PROFILE_HUESAT_CALLABLE_INTAKE_RESULT.json", 4485, "05e3dd977118147dee47563348272739bc2451476b18211d4e8617efd649f5ee"]
+    },
+    "gain_table": {
+      "config": ["configs/p263_r1ej_dng_profile_gain_table_callable_intake_v1.json", 5351, "1b990a9900baa67828bb79ef8365536e503c8b7a12f14cba5f92c06784f3f9f7"],
+      "evidence": ["docs/evidence/P263_R1EJ_DNG_PROFILE_GAIN_TABLE_CALLABLE_INTAKE_RESULT.json", 4780, "3fd3bbacc043216ae9e27ac1ac655965aaee0262fbf0b8c5f42c65eae703d953"]
+    },
+    "look_table": {
+      "config": ["configs/p274_r1er_dng_profile_look_table_callable_intake_v1.json", 5477, "c03ad7de7cceb6a3a58510f5e176aff0f162b3707b7ec03d088ff7fce12965df"],
+      "evidence": ["docs/evidence/P274_R1ER_DNG_PROFILE_LOOK_TABLE_CALLABLE_INTAKE_RESULT.json", 3674, "7ac494d08628e7195cc0c39bf47aac732300a4fb55af462a4981fe3d2bb6fa6c"]
+    },
+    "tone_curve": {
+      "config": ["configs/p271_r1en_dng_profile_tone_curve_callable_intake_v1.json", 4868, "b8ca9d5e750bb14f50ed9eb99f43c7df029f188f5577c4073e682b507d9ec3e4"],
+      "evidence": ["docs/evidence/P271_R1EN_DNG_PROFILE_TONE_CURVE_CALLABLE_INTAKE_RESULT.json", 3769, "1c4f9cc0097f2cd884cbea572bca4973e7926a1aaf51182be5a232c999dfa7fa"]
+    }
+  },
+  "fixture": {
+    "initial_romm_rgb": [[[0.1, 0.2, 0.3], [0.25, 0.5, 0.7]], [[0.4, 0.3, 0.2], [0.7, 0.6, 0.5]]],
+    "exposure_multiplier": 0.75,
+    "stage_order": ["ProfileHueSatMap", "ProfileGainTableMap", "exposure", "ProfileLookTable", "ProfileToneCurve"]
+  },
+  "execution_bindings": {
+    "runner": null,
+    "test": null
+  },
+  "gates": {
+    "require_parent_files_exact": true,
+    "require_producer_git_objects_exact": true,
+    "require_draft202012_payload_validation": true,
+    "require_isolated_imports": true,
+    "require_common_core_exact": true,
+    "require_intermediate_domains": true,
+    "require_wrapper_direct_byte_parity": true,
+    "require_owned_writable_contiguous_float64_output": true,
+    "require_inputs_payloads_unchanged": true,
+    "require_invalid_controls_reject": true,
+    "require_zero_network_pixels_persistent_artifacts_and_temp_residue": true,
+    "require_two_fresh_reports_byte_exact": true
+  },
+  "stop_rule": "Any identity, schema, matrix, domain, order, parity, ownership, invalid-control, replay or cleanup failure closes P288 without producer-code copy, clipping, tolerance relaxation, fixture replacement, default-loader integration or product mapping.",
+  "claim_ceiling": "Private exact interoperability of four already qualified DNG profile callables on one synthetic 2x2 composition fixture only. No real-file stage composition, complete or arbitrary DNG renderer, photographic or colorimetric quality, Adobe renderer equivalence, default-loader integration, public dependency/API/package/schema/capability, stock evidence, automatic matching, product admission or candidate-3 change."
+}
