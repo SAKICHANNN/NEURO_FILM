@@ -1,0 +1,25 @@
+{
+  "schema": "neuro-film.p273-openimageio-aces2065-interoperability-formal-lock.v1",
+  "experiment_id": "P273",
+  "status": "FROZEN_BEFORE_FORMAL_FORWARD_REVERSE_EXECUTION",
+  "date": "2026-08-27",
+  "implementation_commit": "bc9822b58e170a1c055767919cdea2a03b8faa36",
+  "artifacts": [
+    {"path": "configs/p273_openimageio_aces2065_interoperability_v1.json", "bytes": 4134, "git_blob": "ba0f7dcdf90eb9a9727572988bd5f08f327876b4", "sha256": "6bd86a9e71f2e6f741334aa1805de0d80c27e4f84072e48d854ee64ecf972cfc"},
+    {"path": "docs/planning/P273_OPENIMAGEIO_ACES2065_INTEROPERABILITY_CONTRACT.md", "bytes": 1430, "git_blob": "79c38bddfcb87767d1f484f9f90ca6a76cf7ae76", "sha256": "83bc4f4e26fa0fb7d567db7a1cc7245869778056f2ae962841284ae259e9861f"},
+    {"path": "scripts/audit_p273_openimageio_aces2065_interoperability.py", "bytes": 10635, "git_blob": "41d673f800ee37e275b03f28dbcdeeb1315a0ee8", "sha256": "dd1d132f43bed46daa1323634c3e854b1450eb6bcfe247262ee95c555b3b5e1d"},
+    {"path": "tests/test_p273_openimageio_aces2065_interoperability.py", "bytes": 1159, "git_blob": "4ee81d91062a15faf436f9fc4b7ad24fe6d1a477", "sha256": "c60b9acfb358fc0fd5765cecf3232f3344febe76e779fcb375cf09a48ed45a7d"}
+  ],
+  "formal_runs": {
+    "orders": ["forward", "reverse"],
+    "fresh_processes": true,
+    "expected_reports_byte_exact": true,
+    "output_root": "outputs/eval/p273_openimageio_aces2065_interoperability_v1"
+  },
+  "preformal_corrections": [
+    "The first focused run compared bound identities against dictionaries that also contained path labels; comparison was narrowed to identity keys before any OpenImageIO read.",
+    "The first OpenImageIO read passed, but the parent process retained the temporary OpenEXR native module and blocked cleanup on Windows. P249 reconstruction was isolated in a child process before formal lock; source, container, pixels, metadata and gates did not change."
+  ],
+  "stop_rule": "Any runtime, parent, container, pixel, metadata, truncation, replay or cleanup mismatch closes P273 without dependency substitution, metadata rewrite, tolerance rescue or core integration.",
+  "claim_ceiling": "Private interoperability of one exact synthetic P249 AP0/D60 ACES2065-1 OpenEXR with one existing Windows OpenImageIO runtime only; no arbitrary EXR/ACES, image quality, SMPTE certification, public dependency/API/package/schema/capability, renderer/product mapping or candidate-3 change."
+}
