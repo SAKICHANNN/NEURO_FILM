@@ -1,0 +1,74 @@
+{
+  "schema": "neuro-film.p256-aces2065-openexr-24mp-ingress-resource-evidence.v1",
+  "experiment_id": "P256",
+  "status": "PASS_PRIVATE_ACES2065_OPENEXR_24MP_INGRESS_RESOURCE",
+  "decision": "The unchanged strict P251 full-frame reader consumes the exact P255 24MP AP0/D60 master and returns an owned ACEScg WorkingImage with the frozen numerical contract while all four fresh reader workers remain below 2 GiB RSS and 120 seconds. Retain only this private scale/resource result.",
+  "bindings": {
+    "contract_commit": "3195cbf5b9a01845cee4597e7a6b641876d0be51",
+    "config_commit": "68ec83cb2083b4c83a10ca558de6dd3ff4ab4302",
+    "config_git_blob": "202f76acfe53b6a36c17ff769f7cc507339ba75c",
+    "config_bytes": 5307,
+    "config_sha256": "413a87bf147d8dd0299931aabcc281abef99efc37adc9ae3873e2556c618a19b",
+    "runner_commit": "6b30df938a2294f9389e6928a07202612055f628",
+    "runner_git_blob": "5cc089722b5b474f8952b7e2191483d46e3b7e66",
+    "runner_sha256": "fbc143d0e34fe1e2fb5ab264af851ebe77e1840900e6a998c5a2c983fc93c3aa",
+    "p251_module_sha256": "9ec0e671144624176d122cb72a38b61de40eba55f8c52772234c438dd33d2390",
+    "p251_config_sha256": "f629aaa3beda06dfc095d6efab7bd6ce362f5a7b4ad1e28c25d776fef5544ff9",
+    "p251_evidence_sha256": "e368560399119d59073a3cb0488261d81ff1cd2078202cbe9df6411a1152aa6c",
+    "p255_config_sha256": "f7915f2cba826fbf460b337d7eedec63fa178187ae27abad367c22c8c3353984",
+    "p255_evidence_sha256": "14ea5b99217d289c11bb391e3e719455df6e110bfc00a691c85fafd76a4a386d",
+    "openexr_wheel_sha256": "7aa145813acfe10a83d6e89340349379828190b321608e69f2aee426e10c890b"
+  },
+  "formal_reports": [
+    {
+      "path": "outputs/eval/p256_aces2065_openexr_24mp_ingress_resource_v1/formal_result.json",
+      "bytes": 5810,
+      "sha256": "c4beda1baab76729e3101b0604ccc02ed128967bff4446d47f08201a86bd92e1",
+      "stable_identity": "43f1894906b155ea15be3e3abfc64b8222f5cdf1d709642ed44579d794755b32",
+      "native_binary_sha256": "de61551f0af49d9d5a1f99756eecbe4dc8614ba2ad2ccedc77c0eea05ed6a385"
+    },
+    {
+      "path": "outputs/eval/p256_aces2065_openexr_24mp_ingress_resource_v1/formal_replay.json",
+      "bytes": 5810,
+      "sha256": "a1ca4eec43e8470b63568f9fe367f721bcd954156895de59217652457ad26cf6",
+      "stable_identity": "43f1894906b155ea15be3e3abfc64b8222f5cdf1d709642ed44579d794755b32",
+      "native_binary_sha256": "f47b7b4b6c797ebcf4b633e5adc468f03d4259de48bba3e2d7cb40cdf881d59e"
+    }
+  ],
+  "result": {
+    "two_complete_controllers_stable_exact": true,
+    "reader_workers": 4,
+    "source_bytes": 42251493,
+    "source_sha256": "eeced074ea933cd02421d491bc54c78fdba5704caa9bfe3705d47d410a01f275",
+    "output_f32le_sha256": "a1679379acaf4f4830c231d50d3cb4d90373d90e6fac35be15efa9185c392109",
+    "maximum_ap1_roundtrip_error": 0.00000095367431640625,
+    "new_boundary_count": 0,
+    "minimum": -0.2500002682209015,
+    "maximum": 16.0,
+    "worker_peak_process_tree_rss_bytes": [1214066688, 1261981696, 1325907968, 1161142272],
+    "worker_wall_seconds": [2.4944498000004387, 2.3798266000003423, 2.5455222999999023, 2.4193445999999312],
+    "maximum_worker_peak_process_tree_rss_bytes": 1325907968,
+    "maximum_worker_wall_seconds": 2.5455222999999023,
+    "frozen_maximum_rss_bytes": 2147483648,
+    "frozen_maximum_wall_seconds": 120.0,
+    "owned_contiguous_writeable": true,
+    "working_space": "acescg_ap1_d60",
+    "transfer_state": "scene_linear",
+    "source_immutable": true,
+    "network_requests": 0,
+    "external_or_project_pixel_reads": 0,
+    "owned_workspace_residue": 0
+  },
+  "gates": {
+    "identities": true,
+    "numeric": true,
+    "output_repeat": true,
+    "range_and_boundary": true,
+    "resource": true,
+    "source_identity_and_immutability": true,
+    "strict_working_image_contract": true,
+    "workspace_clean": true
+  },
+  "interpretation": "P251 proved strict AP0-to-AP1 ingress only on a 7x9 fixture, while P255 independently proved a bounded 24MP AP0 writer. P256 composes those unchanged mechanisms at scale and shows the existing full-frame Python reader remains within the frozen resident-set and wall-time limits. High private commit observed during execution is diagnostic only: the preregistered process-tree RSS gate remains authoritative and passes without metric substitution.",
+  "claim_ceiling": "Private Windows/Python 24MP strict-ingress resource and mechanical conformance for one procedural P255 AP0/D60 master only. No natural-image quality, arbitrary EXR/ACES conformance, SMPTE certification, cross-platform parity, public dependency/API/package/schema/capability, default renderer integration, automatic reference matching, film-stock evidence or product admission. Candidate 3 remains closed at 2/3."
+}
