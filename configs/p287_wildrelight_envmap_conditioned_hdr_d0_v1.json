@@ -1,0 +1,127 @@
+{
+  "schema": "neuro-film.p287-wildrelight-envmap-conditioned-hdr-d0-contract.v1",
+  "experiment_id": "P287",
+  "status": "FROZEN_BEFORE_SELECTED_EXR_ACQUISITION",
+  "bindings": {
+    "contract_path": "docs/planning/P287_WILDRELIGHT_ENVMAP_CONDITIONED_HDR_D0_CONTRACT.md",
+    "contract_commit": "0533632a8f80403832678b407fb7523621e9e913",
+    "contract_bytes": 4326,
+    "contract_sha256": "eeee3f853fc353b068310fc2076ab48de2310fe28c12ff2fdc60c5606ddff537",
+    "runner_path": "scripts/run_p287_wildrelight_envmap_conditioned_hdr_d0.py",
+    "runner_commit": "050aee5fc2659a00283145df6716c01dc6a82360",
+    "runner_bytes": 19955,
+    "runner_sha256": "6b5910b54ad375bde3b6866ab9cc2aa6ba466ff14f5a9340b146d36ce0360db3",
+    "test_path": "tests/test_p287_wildrelight_envmap_conditioned_hdr_d0.py",
+    "test_commit": "050aee5fc2659a00283145df6716c01dc6a82360",
+    "test_bytes": 2965,
+    "test_sha256": "a757bc6e5977cb88efee5b010e73907849903e3af8f1ccc897ad758f67164fa9",
+    "openexr_wheel_path": "data/vendor/openexr-3.4.15/openexr-3.4.15-cp312-cp312-win_amd64.whl",
+    "openexr_wheel_bytes": 740197,
+    "openexr_wheel_sha256": "7aa145813acfe10a83d6e89340349379828190b321608e69f2aee426e10c890b"
+  },
+  "source": {
+    "dataset_id": "Lez/wildrelight",
+    "revision": "90ab579145da9f3ea998d706c8defd0d4b87641f",
+    "license": "CC-BY-4.0",
+    "variant": "small-aligned",
+    "scene": "lake",
+    "scene_selection_sha256": "18cfbdfa30f4cd7ecf2ccb2c37a2638c64375cd512ea227c5ab546a793da67b5",
+    "local_root": "data/external/p287_wildrelight_lake_v1",
+    "members": [
+      {
+        "remote_path": "small-aligned/lake/meta.json",
+        "relative_path": "meta.json",
+        "bytes": 3987,
+        "sha256": "5b8b8eda3eef430bb001ce0e239a5136d32374fcca12efea65b64a60fe469d1a"
+      },
+      {
+        "remote_path": "small-aligned/lake/envmap/time0_envmap.exr",
+        "relative_path": "envmap/time0_envmap.exr",
+        "bytes": 8018850,
+        "sha256": "ba92eca6ef883e7f1a6ec74adff569562320d3cf7df2fa3f08941947b458696f"
+      },
+      {
+        "remote_path": "small-aligned/lake/envmap/time1_envmap.exr",
+        "relative_path": "envmap/time1_envmap.exr",
+        "bytes": 7996211,
+        "sha256": "0e2306b22903567c6d442f0e023773e8e9caacdc03b3b05e7deaf10c78fe6dce"
+      },
+      {
+        "remote_path": "small-aligned/lake/envmap/time2_envmap.exr",
+        "relative_path": "envmap/time2_envmap.exr",
+        "bytes": 8009683,
+        "sha256": "546af302d72fc033c0bc7522292eb023b4306bf9bf538640b8fd55f287007cd9"
+      },
+      {
+        "remote_path": "small-aligned/lake/envmap/time3_envmap.exr",
+        "relative_path": "envmap/time3_envmap.exr",
+        "bytes": 8028743,
+        "sha256": "13c73f7648be9943b88cf85c1d3c07fdb3b39c27316f7df5c01710e58fc0bbb7"
+      },
+      {
+        "remote_path": "small-aligned/lake/envmap/time4_envmap.exr",
+        "relative_path": "envmap/time4_envmap.exr",
+        "bytes": 8011987,
+        "sha256": "662a68ecd23efc0e5e96b14f702ab3bb9c0ea56919682c00b1c2586b9c79ac3b"
+      },
+      {
+        "remote_path": "small-aligned/lake/envmap/time5_envmap.exr",
+        "relative_path": "envmap/time5_envmap.exr",
+        "bytes": 8045414,
+        "sha256": "a9293ffca881465b84b4cb5e4a416c74c0c133b0f45dfbf32ea8536c84e45f1e"
+      },
+      {
+        "remote_path": "small-aligned/lake/photo/time0_hdr.exr",
+        "relative_path": "photo/time0_hdr.exr",
+        "bytes": 10063758,
+        "sha256": "32aba9e85fc14d9370dc543403e597715a4c7f3a8e8e46e0165609f7c2fe6403"
+      },
+      {
+        "remote_path": "small-aligned/lake/photo/time1_hdr.exr",
+        "relative_path": "photo/time1_hdr.exr",
+        "bytes": 10046526,
+        "sha256": "0fe1dde953ec7c2aa9e6fdc32020c72cdcf425f1c2b0bbb5fc2c76812fc43408"
+      },
+      {
+        "remote_path": "small-aligned/lake/photo/time2_hdr.exr",
+        "relative_path": "photo/time2_hdr.exr",
+        "bytes": 10047415,
+        "sha256": "4079c6566e8eb37f693bde6e3b0455d8fb2a5b5b6b1d66db2a05313001ab9e69"
+      },
+      {
+        "remote_path": "small-aligned/lake/photo/time3_hdr.exr",
+        "relative_path": "photo/time3_hdr.exr",
+        "bytes": 10047785,
+        "sha256": "c4ebfbd584bcd20c16bf3eff23fe93c6ac0a54840c4f53b5f698d134495810be"
+      },
+      {
+        "remote_path": "small-aligned/lake/photo/time4_hdr.exr",
+        "relative_path": "photo/time4_hdr.exr",
+        "bytes": 10061899,
+        "sha256": "d46cfb5a46e357320696001a85fad3aa22479124708383af49889b8a334d23be"
+      },
+      {
+        "remote_path": "small-aligned/lake/photo/time5_hdr.exr",
+        "relative_path": "photo/time5_hdr.exr",
+        "bytes": 10065254,
+        "sha256": "3bd3f9417afe59dd74e1bfaf12c7be371915a1fba9a56c021eaa07a12c58cc05"
+      }
+    ]
+  },
+  "expected": {
+    "source_file_count": 13,
+    "source_total_bytes": 108447512,
+    "time_count": 6,
+    "directed_row_count": 10,
+    "minimum_valid_fraction": 0.8,
+    "minimum_candidate_control_rate": 0.8,
+    "minimum_candidate_median_reduction_percent": 5.0,
+    "minimum_candidate_worst_reduction_percent": -5.0,
+    "minimum_cyclic_control_rate": 0.8,
+    "minimum_cyclic_median_reduction_percent": 10.0,
+    "maximum_capture_time_separation_seconds": 60.0,
+    "openexr_version": "3.4.15"
+  },
+  "stop_rule": "Any source, decode, role, target-unread, support, control, cyclic, tail, finite, sign, capture-time, runtime, cleanup or replay failure closes this exact scene/operator/statistic/metric family. Do not change scene, rows, statistic, crop, epsilon, metric, thresholds or postprocessing after pixels are visible.",
+  "claim_ceiling": "Private one-scene environment-conditioned explicit HDR radiance mechanism D0 only. Passing opens only separately frozen group-disjoint multi-scene confirmation. No relighting system, radiometric calibration, natural-scene generalization, public package/schema/capability/product mapping or candidate 3."
+}
