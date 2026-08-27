@@ -12,6 +12,7 @@ from pathlib import Path
 from typing import Any
 
 import numpy as np
+import rawpy
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
@@ -47,7 +48,7 @@ def _attempt(
 ) -> dict[str, Any]:
     try:
         working = load_working_image(path)
-    except (OSError, RuntimeError, ValueError) as error:
+    except (OSError, RuntimeError, ValueError, rawpy.LibRawError) as error:
         return {
             "accepted": False,
             "error_type": type(error).__name__,
