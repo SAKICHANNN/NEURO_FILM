@@ -1,7 +1,7 @@
 {
   "schema": "neuro-film.p303-eyefultower-dci-p3-sidecar-feasibility-contract.v1",
   "experiment_id": "P303",
-  "status": "FROZEN_READY_FOR_AUTHORITY_ACQUISITION",
+  "status": "FROZEN_AUTHORITY_LOCK_READY_FOR_FORMAL_EXECUTION",
   "source": {
     "path": "data/external/p293_eyefultower_dci_p3_exr_v1/40_DSC0001.exr",
     "bytes": 9399313,
@@ -19,12 +19,16 @@
     "icc_registry": {
       "url": "https://registry.color.org/rgb-registry/dcip3",
       "path": "data/external/p303_dci_p3_authority_v1/icc_dci_p3.html",
-      "maximum_bytes": 200000
+      "maximum_bytes": 200000,
+      "bytes": 10536,
+      "sha256": "723cd815f3aca123d16c7d6c5ba90a8061fc7a708056d00a5d70f422129c582a"
     },
     "smpte_st2113": {
       "url": "https://pub.smpte.org/pub/st2113/st2113-2018.pdf",
       "path": "data/external/p303_dci_p3_authority_v1/st2113-2018.pdf",
-      "maximum_bytes": 2000000
+      "maximum_bytes": 2000000,
+      "bytes": 127566,
+      "sha256": "995c91652c25effdc20ea75cab83882aa36b7b16b5b4214c5b3fc7c9f776c5b7"
     }
   },
   "frozen_color_facts": {
@@ -42,6 +46,10 @@
     "sidecar_publications": 0,
     "training_fitting_inference": 0,
     "candidate_count": "2/3"
+  },
+  "runtime": {
+    "python": "3.12",
+    "pypdf": "6.9.2"
   },
   "stop_rule": "If the literal dataset declaration maps to more than one authoritative P3 white point, fail closed before sidecar publication and EXR header or pixel read. Do not select P3D65, P3DCI, D60 or infer from modern display practice, pixels or JPEGs.",
   "claim_ceiling": "Private exact-source color-identity feasibility only; no decoded-pixel/HDR quality, arbitrary EXR, package/schema/capability/product, stock evidence or candidate3 change."
