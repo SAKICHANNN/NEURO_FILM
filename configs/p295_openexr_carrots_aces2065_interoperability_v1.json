@@ -1,0 +1,46 @@
+{
+  "schema": "neuro-film.p295-openexr-carrots-aces2065-interoperability-contract.v1",
+  "experiment_id": "P295",
+  "node": "ULT > HDR source/intake > P295",
+  "question": "Does unchanged strict P251 accept one independent official photographic OpenEXR sample declared to use ACES2065-1/AP0 chromaticities?",
+  "source": {
+    "repository": "https://github.com/AcademySoftwareFoundation/openexr-images",
+    "revision": "e38ffb0790f62f05a6f083a6fa4cac150b3b7452",
+    "license_blob": "268d234adc762429a5d7db6a456651d7d0933dd1",
+    "declaration_blob": "ed0909aaf5930b39179afae905e93e15cccb284a",
+    "repository_path": "ScanLines/Carrots.exr",
+    "path": "data/external/p295_openexr_carrots_aces2065_v1/Carrots.exr",
+    "url": "https://raw.githubusercontent.com/AcademySoftwareFoundation/openexr-images/e38ffb0790f62f05a6f083a6fa4cac150b3b7452/ScanLines/Carrots.exr",
+    "bytes": 914825,
+    "git_blob": "b4697022c7120065b1d6131b20da363a8ff88069"
+  },
+  "runtime": {
+    "python": "3.12",
+    "openexr_version": "3.4.15",
+    "wheel_path": "data/vendor/openexr-3.4.15/openexr-3.4.15-cp312-cp312-win_amd64.whl",
+    "wheel_bytes": 740197,
+    "wheel_sha256": "7aa145813acfe10a83d6e89340349379828190b321608e69f2aee426e10c890b"
+  },
+  "p251": {
+    "module_path": "src/preprocess/aces2065_openexr.py",
+    "module_bytes": 6706,
+    "module_sha256": "9ec0e671144624176d122cb72a38b61de40eba55f8c52772234c438dd33d2390",
+    "evidence_path": "docs/evidence/P251_ACES2065_OPENEXR_WORKING_IMAGE_INGRESS_RESULT.json",
+    "evidence_sha256": "e368560399119d59073a3cb0488261d81ff1cd2078202cbe9df6411a1152aa6c",
+    "required_chromaticities": [0.7347000241279602, 0.2653000056743622, 0.0, 1.0, 0.00009999999747378752, -0.07699999958276749, 0.3216800093650818, 0.3376699984073639],
+    "required_adopted_neutral": [0.3216800093650818, 0.3376699984073639],
+    "required_aces_image_container_flag": 1,
+    "required_color_interop_id": "lin_ap0_scene",
+    "required_channel_type": "FLOAT"
+  },
+  "forbidden": [
+    "ScanLines/Carrots.jpg",
+    "any replacement OpenEXR sample",
+    "metadata insertion",
+    "HALF-to-FLOAT rewrite",
+    "P251 modification",
+    "clipping or normalization"
+  ],
+  "stop_rule": "Any failed source, runtime, strict P251 header/storage, ownership, replay or cleanup gate closes exact P295. Do not rescue with another sample, JPEG, metadata rewrite, storage conversion, P251 change or threshold relaxation.",
+  "claim_ceiling": "One private official-file strict P251 interoperability result only; no arbitrary OpenEXR, general ACES, SMPTE certification, display/image quality, default loader, package/schema/capability/product, stock evidence or candidate-3 change."
+}
