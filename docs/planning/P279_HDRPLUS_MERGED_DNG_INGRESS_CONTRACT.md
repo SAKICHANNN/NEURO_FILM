@@ -22,7 +22,7 @@ consume candidate 3.
 - `result_20171023/merged.dng`, 24,885,864 bytes, SHA-256
   `3a21417ff7fba508c7fc13ca2cb758329e39ac914e55522f12f2acdae66bfbdd`.
 - Parent P269 evidence SHA-256
-  `2f9fc7a4875031b16d0488bcde7fe4e107bed03f80ba0147870e4b16e5da5505`.
+  `fd2a4d8d966795cf2e21a1d3997991398bc8fc141260a489e71275e96fc9ac96`.
 
 P269 already established metadata-only facts: each file reports a 480x640x3,
 uint8, JPEG-compressed page, while the source burst is 4032x3024. P279 freezes
