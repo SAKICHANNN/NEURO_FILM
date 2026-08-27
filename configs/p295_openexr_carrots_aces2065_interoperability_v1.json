@@ -12,7 +12,11 @@
     "path": "data/external/p295_openexr_carrots_aces2065_v1/Carrots.exr",
     "url": "https://raw.githubusercontent.com/AcademySoftwareFoundation/openexr-images/e38ffb0790f62f05a6f083a6fa4cac150b3b7452/ScanLines/Carrots.exr",
     "bytes": 914825,
-    "git_blob": "b4697022c7120065b1d6131b20da363a8ff88069"
+    "git_blob": "b4697022c7120065b1d6131b20da363a8ff88069",
+    "sha256": "892d9eb1d2b22a3c7c57d22fa60c33aaa4a49ba3ead5304ec594b274aa39e4e1",
+    "manifest_path": "data/external/p295_openexr_carrots_aces2065_v1/source_manifest.json",
+    "manifest_bytes": 873,
+    "manifest_sha256": "7354237c1e7266a4c8e0680a7e1390a9b41e0ffb4ce4aaefa563b933da01e2d8"
   },
   "runtime": {
     "python": "3.12",
