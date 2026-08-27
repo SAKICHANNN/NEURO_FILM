@@ -17614,6 +17614,38 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   the active fail-closed product behavior, and no package/schema/capability or
   product mapping opens.
 
+### 2026-08-28 - P254 independently consumes the exact R1EC callable handoff
+
+- **Node and routing:** `ULT > mature RAW/DNG explicit mechanisms > P254`,
+  DRPT L2 / Mode C. `dev-research-reliability` remained the sole write
+  workflow; router, DRPT-BI, project-log and structure skills were governance
+  reviewers. Producer implementation was not copied into consumer `src/`.
+- **Prospective source lock:** after producer R1EC published, Stage B commit
+  `b6a9a3e4` independently bound the exact contract, schema, callable,
+  arithmetic dependency, fixture, execution lock and evidence Git objects
+  before the first fixture deserialization or callable import. The callable
+  and core were subsequently materialized from those objects only into fresh
+  temporary packages.
+- **Execution and result:** runner commit `4ed897a1` produces forward/reverse
+  3,733-byte reports exact at SHA `67662e7f...5d32`, stable
+  `aaadfb75...9c264`. All 16 controls and 10 gates pass: exact fixture
+  input/payload/output hashes, default-SDR and single-table wrapper/core
+  parity, malformed/nonfinite/table/weight/encoding/overrange rejections,
+  immutable inputs, owned contiguous writable f64 output, exact local DJI
+  metadata, isolated import, zero network/new RAW-DNG-pixel-target reads and
+  zero temporary residue. The first two invocations stopped before import or
+  report because execution-lock bytes were addressed at the implementation
+  commit; the routing-only correction then reran both processes completely.
+  Evidence commit `b6d83504`; 38 adjacent P242-P254 tests pass with Ruff,
+  compileall, JSON and diff checks clean.
+- **Boundary and handoff:** this proves one private consumer callable replay,
+  not complete DNG ordering, real-pixel quality, arbitrary profile/camera
+  support, public API/package/schema/capability or product admission. P244/P245
+  remain the active predecode guards and the automatic candidate counter stays
+  `2/3`. Stop adjacent wrapper/runtime expansion; continue only with a
+  genuinely new paired/capture-time observation or a mature explicit RAW/HDR
+  mechanism with an independent acceptance question.
+
 ### 2026-08-27 - SF3.A3G closes a dynamic package identity before pixels
 
 - **Node and method:** `ULT > stock-first controlled evidence > SF3.A3G`;
