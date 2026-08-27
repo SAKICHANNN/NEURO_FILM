@@ -17753,3 +17753,31 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   public dependency/API/package/schema/capability, default renderer or product
   admission. Candidate counter stays `2/3`; do not extend this result into
   adjacent runtime wrappers.
+
+### 2026-08-27 - P257 closes the DNG ProfileGainTableMap silent-drop gap
+
+- **Node and routing:** `ULT > mature RAW/DNG explicit mechanisms > P257`,
+  DRPT L2 / Mode C. `dev-research-reliability` was the sole write workflow;
+  router, DRPT-BI, agent-log and structure skills governed scope and
+  propagation read-only. The change addresses an independently inspected
+  consumer safety gap and does not copy producer R1DY arithmetic.
+- **Frozen implementation:** contract `a85dd52e`, test/config freeze
+  `1e3100ce`, minimal guard `3e34a9e4`, runner/final binding
+  `69cd219d`/`4f399ec3`. Adobe DNG SDK 1.7.1 resolves
+  `ProfileGainTableMap=52525` and `ProfileGainTableMap2=52544`; either tag now
+  rejects while TIFF metadata is open and before camera-raster decode. The
+  existing P244 HueSat helper and six-tag family remain unchanged.
+- **Formal result:** two fresh committed-head forward/reverse reports are
+  byte-exact at SHA `e1da6e0b...308c`, stable
+  `63d0add9...452f0`. Every single-tag and reverse-ordered two-tag control
+  rejects with exact sorted diagnostics and zero decode calls. All five
+  existing P98 DNGs expose neither tag, retain their exact source and float32
+  WorkingImage hashes/warnings/color states, and all six P244 rejection
+  controls pass. Evidence commit `9f7e2b7b`; 25 adjacent P97/P98/P244/P257
+  tests pass with Ruff, py_compile, JSON, binding and diff checks.
+- **Boundary and handoff:** private opt-in no-silent-drop safety only. No
+  ProfileGainTableMap application, R1DY consumer intake, complete or arbitrary
+  DNG support, color/photographic quality, default-loader change, public
+  package/schema/capability, film-stock or product admission. Candidate count
+  remains `2/3`; continue only a distinct ready mature RAW/HDR gap or genuinely
+  new paired/capture-time observation.
