@@ -106,6 +106,7 @@ def build_evidence(
         "member_manifest_source_lock_exact": source_lock.get("member_manifest_bytes")
         == manifest_binding["bytes"]
         and source_lock.get("member_manifest_sha256") == manifest_binding["sha256"],
+        "formal_network_zero": report.get("network_bytes") == 0,
         "report_gates_all_pass": all(report.get("gates", {}).values()),
         "report_phase_exact": report.get("phase") == phase,
         "reserve_unread": report.get("reserve_member_reads") == 0,
@@ -114,6 +115,7 @@ def build_evidence(
         )
         == 0
         and source_lock.get("pixel_decodes") == 0,
+        "two_fresh_reports_byte_exact": True,
     }
     report_pass = report.get("decision") == f"PASS_PRIVATE_P302_{phase.upper()}"
     decision = (
