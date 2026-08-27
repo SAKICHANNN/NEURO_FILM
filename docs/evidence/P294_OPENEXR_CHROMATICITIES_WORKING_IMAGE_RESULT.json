@@ -1,0 +1,85 @@
+{
+  "schema": "neuro-film.p294-openexr-chromaticities-working-image-evidence.v1",
+  "experiment_id": "P294",
+  "status": "FAIL_CLOSED_OPENEXR_CHROMATICITIES_WORKING_IMAGE",
+  "date": "2026-08-27",
+  "decision": "The exact official Rec709 and XYZ reference EXRs are structurally valid HALF RGB scanline images, but only XYZ.exr explicitly carries a chromaticities attribute. Rec709.exr relies on the OpenEXR default Rec.709 interpretation. The prospectively frozen P294 contract requires every file to carry explicit embedded identity and forbids a missing-metadata fallback, so the exact ingress closes before formal pixel-channel reads or color conversion.",
+  "commits": {
+    "preregistration": "c885b7b07e511a603c2bb317d8f81758e9ecf931",
+    "source_lock": "98afc4e2b41a736a33796907ef688c53a7cb20f0",
+    "implementation_and_formal_lock": "d862afe25d8c52df99509410a1e6101a637e3d7d"
+  },
+  "protocol": {
+    "contract_path": "docs/planning/P294_OPENEXR_CHROMATICITIES_WORKING_IMAGE_CONTRACT.md",
+    "contract_bytes": 3640,
+    "contract_sha256": "1901862ce885596923f88edaae5e50dd293b039fce65aa2b38ec5e08015a5117",
+    "config_path": "configs/p294_openexr_chromaticities_working_image_v1.json",
+    "config_bytes": 5218,
+    "config_sha256": "e85f5c73c1ffc92d8d885dcc8384a010355ec6232e3bad0d0bea03a29493191a",
+    "runner_path": "scripts/audit_p294_openexr_chromaticities_working_image.py",
+    "runner_bytes": 10391,
+    "runner_sha256": "91e3f7789ca1d421e9015d5d2759f4bfee24e041ed8dd6284d94db499d9d8a12",
+    "test_path": "tests/test_p294_openexr_chromaticities_working_image.py",
+    "test_bytes": 1644,
+    "test_sha256": "c493378b466765f03ce6d67203c85da5000458af690b9769626554c6276dd5a9"
+  },
+  "official_source": {
+    "repository": "https://github.com/AcademySoftwareFoundation/openexr-images",
+    "revision": "e38ffb0790f62f05a6f083a6fa4cac150b3b7452",
+    "license_blob": "268d234adc762429a5d7db6a456651d7d0933dd1",
+    "readme_blob": "8d94d9e2211874955faa6c55021174283335921c",
+    "manifest_path": "data/external/p294_openexr_chromaticities_v1/source_manifest.json",
+    "manifest_bytes": 1004,
+    "manifest_sha256": "c9ab79dc4cf70a932d32e2e0e3eb60b9f8e571a2f553036c36734add6b01e198",
+    "payload_requests": 2,
+    "payload_bytes": 1838216,
+    "forbidden_payload_requests": 0
+  },
+  "sources": [
+    {
+      "id": "rec709",
+      "path": "data/external/p294_openexr_chromaticities_v1/Rec709.exr",
+      "bytes": 908168,
+      "git_blob": "13b3fca94da1426e4793bd66a20299c955b73d00",
+      "sha256": "15028cbf7bf0efa43738890af715ec550d26ae9e32a1020d0f4e7c785d3a370e",
+      "chromaticities_present": false
+    },
+    {
+      "id": "xyz_equal_energy",
+      "path": "data/external/p294_openexr_chromaticities_v1/XYZ.exr",
+      "bytes": 930048,
+      "git_blob": "cd4423ab12669b4caaaeb157ddd08fe430f5a775",
+      "sha256": "8d97c476726ae67a086220463c91b7202279a4c7c1ea94810ce75a4c28e7825f",
+      "chromaticities": [1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.3333333432674408, 0.3333333432674408]
+    }
+  ],
+  "formal": {
+    "forward_report_path": "outputs/eval/p294_openexr_chromaticities_working_image_v1/formal_forward.json",
+    "reverse_report_path": "outputs/eval/p294_openexr_chromaticities_working_image_v1/formal_reverse.json",
+    "report_bytes_each": 3737,
+    "report_sha256": "e918d87ac74b20574f6336d57ed70825f62b2ef4f2026f0a7cd7466c8597a464",
+    "reports_byte_exact": true,
+    "scientific_identity": "sha256:90fb774d89c242824f1ab970c06d6a6fde6a378d2cdbfd1cc7846e4f6085d159",
+    "fresh_process_count": 2,
+    "formal_pixel_channel_reads": 0,
+    "formal_color_transforms": 0,
+    "formal_working_image_outputs": 0
+  },
+  "gates": {
+    "all_files_explicitly_identified": false,
+    "exact_header_structure": true,
+    "exact_local_and_source_identities": true,
+    "exact_openexr_runtime": true,
+    "source_immutable": true,
+    "zero_color_transform": true,
+    "zero_forbidden_payload_reads": true,
+    "zero_formal_pixel_reads": true,
+    "zero_temporary_residue": true,
+    "two_reports_byte_exact": true
+  },
+  "excluded_prescore_diagnostic": "After the source-lock commit, a one-off header diagnostic used the OpenEXR File API and inadvertently materialized both packed channel arrays while printing header/channel facts. It produced no persisted pixels, transform, metric or report and did not alter any source, gate or threshold. The committed formal implementation uses InputFile.header only and has zero pixel-channel reads. This diagnostic is disclosed and excluded rather than treated as formal evidence.",
+  "interpretation": "An explicit-only chromaticities policy is stricter than the official OpenEXR Rec709 reference, which uses the format's default Rec.709 interpretation. P294 does not amend that policy after observing the source. A future standards-aware default-colour contract would be a separately prospective family and must not be presented as a P294 rescue.",
+  "candidate_count_after_result": "2/3",
+  "consumer_mapping": false,
+  "claim_ceiling": "Exact two-source header negative only. No decoded-pixel chromaticity conversion, WorkingImage ingress, arbitrary EXR, DCI-P3, ACES, HDR quality, display rendering, default loader, package/schema/capability/product, stock evidence or candidate-3 change."
+}
