@@ -19522,3 +19522,30 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   calibration, preference or multi-stock completion. Reopen named B&W only
   with a materially new independently rights-cleared physical-stock
   observation.
+
+### 2026-08-28 - U7.2E unifies evidence-bounded product look discovery and dispatch
+
+- **Node and scope:** `ULT > stock-first product controls > U7.2E`, DRPT L2 /
+  Mode C. `dev-research-reliability` was the primary writer; scientific claim
+  review, structure stewardship and project-agent-log discipline were
+  secondary. This leaf changes product discovery/dispatch only and does not
+  claim new film evidence.
+- **Implementation:** commit `e16262a2` adds one ordered catalog and dispatcher
+  for `velvia_50`, `portra_400`, `ektar_100` and `generic_bw`, with exact
+  delegation to the existing U7.2C/BW2.D1 cores. Named `hp5` and `tri_x_400`
+  product requests fail closed; legacy recipe identities and all frozen assets
+  remain unchanged.
+- **Evidence:** dedicated evidence commit `9da22761`, followed by identity-only
+  correction commits `7a4242b3`/`41e0863c` after detecting that historical
+  U7.2D already names fast PNG16 export. Final evidence
+  `docs/evidence/U7_2E_PRODUCT_LOOK_CATALOG_RESULT.json` has SHA-256
+  `af519922...4d3c`; 12 deterministic output identities and all full/tiled
+  parity gates pass. Focused evidence chain passes `46/46`; adjacent product
+  chain passes `72/72`; corrected final files pass `20/20`, Ruff, JSON and
+  diff checks.
+- **Decision and handoff:** expose the single manual catalog/dispatcher as an
+  evidence-bounded product interface. Keep all four rows labelled Look
+  Approximation, preserve U7.2C's separation failure, and keep calibrated
+  stock response, automatic stock inference, K>1 and multi-stock completion
+  closed. The Goal remains active on independently controlled real-stock
+  evidence and core product execution, not further proxy tuning.

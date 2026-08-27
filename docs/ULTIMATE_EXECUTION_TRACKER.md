@@ -2903,3 +2903,15 @@ Therefore the apparent Ektar signal is not stock-identified; no operator/K1,
 training, stock profile or product claim opens, and this exact cohort may not
 be rescued by more frames, descriptors or threshold changes. Evidence:
 `docs/evidence/SF3_A3M_IA_EKTAR_FIXED_CAMERA_IDENTIFIABILITY_RESULT.json`.
+
+U7.2E adds one authoritative manual product-look catalog and dispatcher over
+the existing three colour-stock Look Approximation controls plus the generic
+B&W correction from BW2.D1. Discovery exposes exactly `velvia_50`,
+`portra_400`, `ektar_100` and `generic_bw`; HP5/Tri-X remain historical replay
+identities and are rejected as product look IDs. Twelve amount/output
+identities reproduce their unchanged underlying renderers, and every
+full/tiled pair is exact. This is product truth and deterministic dispatch
+only: U7.2C separation failure, controlled-stock data gaps, calibration and
+multi-stock completion remain unchanged. Historical U7.2D continues to mean
+the fast PNG16 export leaf. Evidence:
+`docs/evidence/U7_2E_PRODUCT_LOOK_CATALOG_RESULT.json`.
