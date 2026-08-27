@@ -18704,3 +18704,28 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   HEIF/AVIF/arbitrary-media, display quality, public package/schema/capability,
   default-loader/product admission, film-stock claim or candidate-3 change
   opens.
+
+### 2026-08-27 - P278 closes pinned libultrahdr AVIF compatibility
+
+- **Node and scope:** `ULT > U1 > U1.5 > P278`, DRPT L2 / Mode C.
+  `dev-research-reliability` is primary; current-source research, DRPT-BI,
+  agent-log and structure stewardship constrain this to an exact decoder/
+  container compatibility result. Product defaults and candidate 3 remain
+  unchanged.
+- **Freeze and source:** contract `26245914`, source/config lock `ae21debf`,
+  audit/format `c89cad72` / `e531ced1` and evidence `b51167f9` bind official
+  libavif commit `b6fb1860...1770`, README/LICENSE, three valid gain-map AVIF
+  fixtures and three structural negatives. Only eight selected files / 846,867
+  bytes persist under the repo-relative P-backed data root; no repository clone
+  or unrelated fixture download persists.
+- **Result:** two committed-head forward/reverse reports are byte-exact at 3,900
+  bytes / SHA `0e31d95d...9ff8d`, stable `8590359e...c362d`. The unchanged
+  libultrahdr v2 executable rejects all three official valid AVIFs before P87
+  reconstruction. Three invalid fixtures and one truncated input reject
+  atomically; source immutability and the existing production-loader refusal
+  pass. Formal status is `FAIL_CLOSED_LIBAVIF_GAINMAP_AVIF_DECODER_COMPATIBILITY`.
+- **Verification and boundary:** 17 P87-P89/P277/P278/U1.5C adjacent tests pass;
+  Ruff, format, `py_compile`, JSON and diff checks pass. This identifies a
+  precise AVIF decoder/container gap, not an HDR-quality negative. No alternate
+  backend/build rescue, HEIF/arbitrary AVIF, encoder, public package/schema/
+  capability, product admission, film-stock claim or candidate-3 change opens.
