@@ -39,6 +39,20 @@
     "wheel_bytes": 740197,
     "wheel_sha256": "7aa145813acfe10a83d6e89340349379828190b321608e69f2aee426e10c890b"
   },
+  "bindings": {
+    "contract_path": "docs/planning/P294_OPENEXR_CHROMATICITIES_WORKING_IMAGE_CONTRACT.md",
+    "contract_bytes": 3640,
+    "contract_sha256": "1901862ce885596923f88edaae5e50dd293b039fce65aa2b38ec5e08015a5117",
+    "runner_path": "scripts/audit_p294_openexr_chromaticities_working_image.py",
+    "runner_bytes": 10391,
+    "runner_sha256": "91e3f7789ca1d421e9015d5d2759f4bfee24e041ed8dd6284d94db499d9d8a12",
+    "test_path": "tests/test_p294_openexr_chromaticities_working_image.py",
+    "test_bytes": 1644,
+    "test_sha256": "c493378b466765f03ce6d67203c85da5000458af690b9769626554c6276dd5a9",
+    "manifest_path": "data/external/p294_openexr_chromaticities_v1/source_manifest.json",
+    "manifest_bytes": 1004,
+    "manifest_sha256": "c9ab79dc4cf70a932d32e2e0e3eb60b9f8e571a2f553036c36734add6b01e198"
+  },
   "header": {
     "type": "scanlineimage",
     "channel_type": "HALF",
@@ -52,6 +66,36 @@
     "maximum_pixels": 16777216,
     "maximum_absolute_component": 65504.0
   },
+  "expected_headers": [
+    {
+      "id": "rec709",
+      "channels": {
+        "B": {"type": "HALF", "x_sampling": 1, "y_sampling": 1},
+        "G": {"type": "HALF", "x_sampling": 1, "y_sampling": 1},
+        "R": {"type": "HALF", "x_sampling": 1, "y_sampling": 1}
+      },
+      "chromaticities": null,
+      "compression": "PIZ_COMPRESSION",
+      "data_window": {"min": [0, 0], "max": [609, 405]},
+      "display_window": {"min": [0, 0], "max": [609, 405]},
+      "line_order": "INCREASING_Y",
+      "pixel_aspect_ratio": 1.0
+    },
+    {
+      "id": "xyz_equal_energy",
+      "channels": {
+        "B": {"type": "HALF", "x_sampling": 1, "y_sampling": 1},
+        "G": {"type": "HALF", "x_sampling": 1, "y_sampling": 1},
+        "R": {"type": "HALF", "x_sampling": 1, "y_sampling": 1}
+      },
+      "chromaticities": [1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.3333333432674408, 0.3333333432674408],
+      "compression": "PIZ_COMPRESSION",
+      "data_window": {"min": [0, 0], "max": [609, 405]},
+      "display_window": {"min": [0, 0], "max": [609, 405]},
+      "line_order": "INCREASING_Y",
+      "pixel_aspect_ratio": 1.0
+    }
+  ],
   "thresholds": {
     "rec709_existing_primitive_max_abs": 0.000002,
     "paired_rmse": 0.0005,
