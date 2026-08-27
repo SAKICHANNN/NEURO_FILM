@@ -17802,3 +17802,23 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   candidate. This is not calibrated stock evidence, stock distinguishability,
   device/runtime or product admission. Stop adjacent performance micro-leaves
   and return effort to executable multi-stock evidence and product work.
+
+### 2026-08-27 - U7.6L closes the exact native preview product backend
+
+- **Question and execution:** `ULT > U7 CPU fallback > U7.6L`, DRPT L2 / Mode
+  C. Contract `3c8ccae9` froze one real 816x1224 three-preview file transaction
+  using the exact U7.6J/K candidate. Candidate/API commit `73b7eeff` and formal
+  runner `018d9087` exercised the existing preview publication boundary in two
+  fresh processes.
+- **Formal result:** reports and DLL are exact; all three PNG and decoded RGB
+  identities equal the default Python path, default manifests remain unchanged,
+  outputs are distinct, and a closed-runtime failure publishes no directory or
+  stage residue. The native/Python wall ratio `.929324` passes `.95`, but native
+  worst wall time is `5.250548s > 5.0s`; formal status is
+  `CLOSE_NATIVE_THREE_STOCK_PREVIEW_BACKEND`. Evidence `b7343680`, report SHA
+  `683433f0...40ac`, stable `b75a45f0...e8e1`.
+- **Closure:** no source/timing/worker/API rescue. Commit `6b60968f` removes the
+  failed candidate's inference exports and preview-API option; the exact
+  historical commits remain replayable. Default Python preview tests and the
+  closed evidence test pass. End this native adjacency and resume controlled
+  multi-stock evidence/product work.
