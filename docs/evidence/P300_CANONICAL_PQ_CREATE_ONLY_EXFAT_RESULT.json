@@ -1,0 +1,79 @@
+{
+  "schema": "neuro_film.p300_canonical_pq_create_only_exfat_evidence.v1",
+  "experiment_id": "P300",
+  "status": "PASS_PRIVATE_CANONICAL_PQ_CREATE_ONLY_EXFAT",
+  "date": "2026-08-27",
+  "commits": {
+    "preregistration": "ee3e8f8c25e0e04590313717c22015feaa7d6bfc",
+    "prescore_fixture_correction": "c42787f0a80dfa75193ccacd73e0d2423df0efc3",
+    "implementation": "e0be17305baf1a8fceeaa0e5d361af6a0eeb5faa",
+    "formal_runner": "1fb666fe51608ca97c145681124464685947ae67"
+  },
+  "lineage": {
+    "p299_scope": "base src/preprocess/png_stream.py writer only",
+    "p300_scope": "live src/preprocess/canonical_pq_png.py override used by P91/P238/P264",
+    "p299_evidence_sha256": "24409c2ae7704206a7b925415118b669cf081260c4c9398290f7d28df575858b",
+    "p238_evidence_sha256": "fdef4929fddc8c7992e7871d2c669381ea32741050838f1f1ba39d36e6fe0a16",
+    "create_only_primitive_sha256": "d05292155594392b2c3d3b76f2aa680a3c3f011bab641111393ca3bde708fa37"
+  },
+  "execution": {
+    "formal_execution_commit": "1fb666fe51608ca97c145681124464685947ae67",
+    "fresh_processes": 2,
+    "outer_orders": [
+      "forward",
+      "reverse"
+    ],
+    "report_bytes_each": 1774,
+    "forward_report_sha256": "d2fb121fa3b1ee0003c7fb387f67ef2d31535439153ebb0f6ec0aaa4d46e1597",
+    "reverse_report_sha256": "d2fb121fa3b1ee0003c7fb387f67ef2d31535439153ebb0f6ec0aaa4d46e1597",
+    "reports_byte_exact": true,
+    "resolved_volume": "P:",
+    "network_reads": 0,
+    "new_data_reads": 0,
+    "fit_or_optimization": 0
+  },
+  "mechanism": {
+    "fixture_shape": [
+      29,
+      34,
+      3
+    ],
+    "fixture_source_sha256": "b037b161b8cf637e573b6553fb9245d1f86ccd24f4a91f2097ccbf3822333238",
+    "float_output_sha256": "d0ca1ec19763382837109bcaaf391327b038b61ddf898651b054703093a71256",
+    "sample_sha256": "8cd312b9f0350ea001239954b437f82361d35dd41d5557120d8e9b42db90be5d",
+    "png_bytes": 6029,
+    "png_sha256": "0a18aa1e1b9ce359b2c85a1ad3261db4c7dc4bdbc8aa331da07c5f1035e2534c",
+    "cicp_hex": "09100001",
+    "existing_destination_preserved": true,
+    "late_destination_preserved": true,
+    "stage_and_media_residue": 0
+  },
+  "gates": {
+    "parent_bindings_exact": true,
+    "source_exact": true,
+    "existing_destination_preserved": true,
+    "late_destination_preserved": true,
+    "canonical_png_bytes_exact": true,
+    "rgb16_samples_exact": true,
+    "rec2100_pq_cicp_exact": true,
+    "encoded_finite_in_range": true,
+    "stage_and_media_residue_zero": true,
+    "p_backed_output": true,
+    "forward_reverse_scientific_exact": true
+  },
+  "execution_notes": {
+    "prescore_fixture_correction": "Before any formal output or metric, the mistakenly copied P91 large random partition fixture was replaced by the exact P238 29x34 official-ACES fixture and frozen parent hashes. Contract, implementation and gates were unchanged.",
+    "environment_correction": "The first local unit-test command selected system Python 3.14 without pytest or Ruff. It executed no project tests and produced no scientific output. The unchanged checks were rerun in the repository .venv.",
+    "historical_boundary": "P299 evidence was not rewritten. P300 prospectively covers the independent canonical writer finish override that P299 did not modify."
+  },
+  "decision": "PASS_PRIVATE_CANONICAL_PQ_CREATE_ONLY_EXFAT",
+  "closed_boundaries": {
+    "new_colour_transform": false,
+    "hdr_display_quality": false,
+    "arbitrary_media": false,
+    "public_package_schema_capability": false,
+    "calibrated_stock": false,
+    "product_default": false
+  },
+  "claim_ceiling": "Private Windows canonical-P/exFAT create-only transaction safety for the existing canonical-partition Rec.2100-PQ PNG writer only."
+}
