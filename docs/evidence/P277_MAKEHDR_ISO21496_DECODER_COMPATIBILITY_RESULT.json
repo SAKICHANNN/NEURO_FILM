@@ -1,0 +1,80 @@
+{
+  "schema": "neuro-film.p277-makehdr-iso21496-decoder-evidence.v1",
+  "node": "ULT > U1 > U1.5 > P277",
+  "status": "FAIL_CLOSED_INDEPENDENT_ISO21496_JPEG_DECODER_COMPATIBILITY",
+  "decision": "close the exact MakeHDR sample-pair compatibility protocol because two of three frozen per-pixel SDR-base MAE gates fail; retain the separate observation that all three independent ISO 21496-1 HDR JPEGs decode successfully through the unchanged pinned libultrahdr-v2-to-P87 chain",
+  "bindings": {
+    "contract_commit": "00e4a992",
+    "contract_path": "docs/planning/P277_MAKEHDR_ISO21496_DECODER_COMPATIBILITY_CONTRACT.md",
+    "contract_sha256": "7aa7c73ba11a7ec23ef5f36b6718b58aaa2009abf96248900ddcbb8fa7bdd6e0",
+    "source_lock_commit": "20b08160",
+    "config_path": "configs/p277_makehdr_iso21496_decoder_compatibility_v1.json",
+    "config_sha256": "191ea4b95aa5ac1978e66c4f4c12250113528fb4a4364cbade3294d80f47726a",
+    "implementation_commit": "c4d851a427cefcf2a18665c8595fa72be935f38f",
+    "runner_path": "scripts/audit_p277_makehdr_iso21496_decoder_compatibility.py",
+    "runner_sha256": "9c4865925e01df4bf2773ad3939a8e27314969d5d928ee89c81206a405f895dd",
+    "test_path": "tests/test_p277_makehdr_iso21496_decoder_compatibility.py",
+    "test_sha256": "d08bae545f6cbdb96dbaa1cacbad014aad77831a8b533647ccae1752a926f937",
+    "source_manifest_sha256": "303b81118b12ca4a055bd4b6dafd455876e32d4800c4d2172b711426dfda827f",
+    "archive_sha256": "0c71440b0f09fb255142d6363b31a5a835a7d1468591cc5615cdbdd3ec18e279",
+    "decoder_executable_sha256": "cffdfcae90b2e999260877b646c36c1d04b87d81745c12417c089ca7099d5df0",
+    "p87_evidence_sha256": "30a6a009215264b62c26cdab89218aca6cb3d8c0180375d67d9b5f5d707b4577",
+    "producer_r1bl_evidence_sha256": "b4c312bff76ee7b742853e343e54529e8e3d70eea5adf70334954c7616bbf6ea"
+  },
+  "source": {
+    "publisher": "MakeHDR",
+    "source_page": "https://makehdr.com/press",
+    "archive_url": "https://makehdr.com/press/makehdr-press-kit.zip",
+    "archive_size": 27089268,
+    "archive_sha256": "0c71440b0f09fb255142d6363b31a5a835a7d1468591cc5615cdbdd3ec18e279",
+    "retained_file_count": 7,
+    "retained_bytes_excluding_manifest": 6973959,
+    "rights_scope": "publisher press page and bundled README state that the supplied synthetic samples may be published without clearance",
+    "excluded_assets_removed": true,
+    "formal_runtime_network_requests": 0
+  },
+  "execution": {
+    "fresh_processes": 2,
+    "orders": ["forward", "reverse"],
+    "forward_reverse_report_exact": true,
+    "formal_report_path": "outputs/eval/p277_makehdr_iso21496_decoder_compatibility/forward.json",
+    "formal_report_bytes": 4877,
+    "formal_report_sha256": "f94683827866ea1dd03e1940b1f4625b5e54bb25c83c96ab478f3a1834b80bf8",
+    "stable_evidence_id": "ed3986104e6e99a37e22ebcd9c32196adf2f640e9fa8675f1463adcfdade4728",
+    "retained_decoded_payloads": 0,
+    "owned_download_and_extraction_scratch_removed": true
+  },
+  "metrics": {
+    "decoded_hdr_rows": 3,
+    "decoded_length_exact_rows": 3,
+    "p87_valid_rows": 3,
+    "production_rejected_rows": 3,
+    "maximum_nits_by_scene": {
+      "interior-window": 926.98046875,
+      "night-street": 913.5,
+      "sunrise-valley": 914.29296875
+    },
+    "paired_sdr_rgb8_mean_absolute_error_by_scene": {
+      "interior-window": 1.006656607054148,
+      "night-street": 1.1468073770491802,
+      "sunrise-valley": 0.9062683805265772
+    },
+    "paired_sdr_mae_gate": 1.0,
+    "paired_sdr_mae_pass_rows": 1
+  },
+  "gates": {
+    "all_base_pairs_compatible": false,
+    "all_decoded_lengths_exact": true,
+    "all_hdr_materially_non_sdr": true,
+    "all_match_views_exact": true,
+    "all_sources_unchanged": true,
+    "bindings_exact": true,
+    "pair_count_exact": true,
+    "production_loader_still_rejects": true,
+    "truncated_input_atomic": true,
+    "forward_reverse_report_exact": true,
+    "scratch_cleanup_exact": true
+  },
+  "interpretation": "The independent MakeHDR ISO 21496-1 encoder materially broadens source provenance beyond P88: all three exact HDR JPEGs decode through the pinned official executable and P87, with maxima near 913-927 cd/m2 and exact replay. The formal protocol nevertheless fails because two frozen SDR counterparts differ from the HDR files' decoded primary JPEG by slightly more than one RGB8 code on mean absolute per-pixel comparison. The publisher's separate statement about average RGB levels is not substituted for the preregistered per-pixel MAE metric. No threshold or metric rescue is allowed.",
+  "claim_ceiling": "Formal negative for one exact three-scene synthetic MakeHDR sample-pair compatibility protocol. The separately retained mechanical fact is private Windows compatibility of three independent ISO 21496-1 JPEGs with the pinned libultrahdr-v2-to-P87 chain. No natural or captured HDR truth, grade correctness, complete ISO 21496-1 conformance, HEIF/AVIF or arbitrary-media support, display validation, public package/schema/capability, default-loader change, product admission, film-stock claim or candidate3 change."
+}
