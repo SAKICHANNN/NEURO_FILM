@@ -7,6 +7,7 @@ from pathlib import Path
 
 import numpy as np
 
+from ..film_physics.create_only_file import publish_create_only
 from .color_management import REC2100_PQ_CICP
 from .png_stream import _chunk, _StreamingRgbPngWriter
 
@@ -46,7 +47,11 @@ class CanonicalStreamingRec2100PqPngWriter(_StreamingRgbPngWriter):
         if self._closed:
             raise RuntimeError("PNG writer is closed")
         values = np.asarray(samples)
-        if isinstance(row_start, bool) or not isinstance(row_start, int) or row_start != self._row:
+        if (
+            isinstance(row_start, bool)
+            or not isinstance(row_start, int)
+            or row_start != self._row
+        ):
             raise ValueError("PNG rows must be complete and strictly ordered")
         if (
             values.dtype != np.uint16
@@ -56,7 +61,9 @@ class CanonicalStreamingRec2100PqPngWriter(_StreamingRgbPngWriter):
             or self._row + values.shape[0] > self.height
             or not values.flags.c_contiguous
         ):
-            raise ValueError("PNG tile must be contiguous RGB rows with exact sample type")
+            raise ValueError(
+                "PNG tile must be contiguous RGB rows with exact sample type"
+            )
         rows = values.shape[0]
         row_bytes = self.width * 3 * 2
         filtered = np.empty((rows, row_bytes + 1), dtype=np.uint8)
@@ -74,7 +81,9 @@ class CanonicalStreamingRec2100PqPngWriter(_StreamingRgbPngWriter):
             raise ValueError("PNG stream ended before all rows were written")
         try:
             if self._canonical_pending:
-                self._pending.extend(self._compressor.compress(bytes(self._canonical_pending)))
+                self._pending.extend(
+                    self._compressor.compress(bytes(self._canonical_pending))
+                )
                 self._canonical_pending.clear()
             self._pending.extend(self._compressor.flush())
             self._drain_idat(final=True)
@@ -82,7 +91,7 @@ class CanonicalStreamingRec2100PqPngWriter(_StreamingRgbPngWriter):
             self._handle.flush()
             os.fsync(self._handle.fileno())
             self._handle.close()
-            os.replace(self.temporary, self.path)
+            publish_create_only(self.temporary, self.path)
             self._closed = True
             return self._digest.hexdigest()
         except BaseException:
