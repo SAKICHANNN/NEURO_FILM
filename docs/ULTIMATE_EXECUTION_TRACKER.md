@@ -2916,3 +2916,18 @@ only: U7.2C separation failure, controlled-stock data gaps, calibration and
 multi-stock completion remain unchanged. Historical U7.2D continues to mean
 the fast PNG16 export leaf. Evidence:
 `docs/evidence/U7_2E_PRODUCT_LOOK_CATALOG_RESULT.json`.
+
+U7.2F connects the U7.2E catalog to the existing CLI and recipe replay through
+the explicit opt-in `safe-rich-product-v1` profile. `generic_bw` now renders
+and replays as the generic product identity while internally preserving the
+frozen HP5 execution parameters; the default `safe_rich_v1`, historical
+HP5/Tri-X recipes and all recipe schemas remain unchanged. A real zero-strength
+defect was closed narrowly: when look amount is zero and no effects are active,
+the final four-code output margin is disabled so the decoded result is exact
+source identity; nonzero looks and effect-bearing renders retain the margin.
+Forward/reverse fresh-process CLI runs at amounts `0`, `.5` and `1` are exact,
+with zero temporary residue; focused tests pass `7/7`, the adjacent product
+chain passes `81/81`, and the final evidence chain passes `44/44`. This opens
+only deterministic Look Approximation execution. U7.2C separation failure,
+calibrated stock response and multi-stock completion remain closed. Evidence:
+`docs/evidence/U7_2F_PRODUCT_LOOK_CLI_RESULT.json`.

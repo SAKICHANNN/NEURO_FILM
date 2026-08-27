@@ -19550,6 +19550,40 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   closed. The Goal remains active on independently controlled real-stock
   evidence and core product execution, not further proxy tuning.
 
+### 2026-08-28 - U7.2F connects product looks to opt-in CLI and exact replay
+
+- **Node and scope:** `ULT > stock-first product controls > U7.2F`, DRPT L2 /
+  Mode C. `dev-research-reliability` was the primary writer; scientific claim
+  review, project structure stewardship and project-agent-log discipline were
+  secondary. The leaf integrates the already bounded U7.2E catalog into a
+  real product execution entry without changing stock algorithms or evidence.
+- **Implementation:** commit `99c0e510` adds the explicit
+  `safe-rich-product-v1` profile and allows `generic_bw` only through the
+  opt-in safe-Lab profile path. Recipe replay records the generic product
+  identity while using the frozen HP5 implementation internally. The default
+  profile hash remains `72a9948e...c79`; legacy HP5/Tri-X recipes and both
+  recipe schemas remain unchanged.
+- **Defect and correction:** real CLI/replay probes found that zero look amount
+  still applied the final four-code output margin. The implementation now
+  disables that margin only when look amount is exactly zero and no effects
+  are active. Nonzero looks and effect-bearing renders keep the existing
+  margin. A legacy Velvia zero-amount recipe is now decoded-source exact and
+  byte-replay exact.
+- **Evidence:** forward/reverse fresh-process CLI runs at amounts `0`, `.5`
+  and `1` are exact, amount zero is source identity, all normalized recipes
+  replay byte-exactly and temporary residue is zero. Focused tests pass `7/7`,
+  the adjacent render/profile/recipe chain passes `81/81`, and the final
+  evidence batch passes `44/44`, with Ruff, JSON and diff checks clean.
+  Evidence commit `b33a589f`; tracked evidence
+  `docs/evidence/U7_2F_PRODUCT_LOOK_CLI_RESULT.json` SHA-256
+  `8e95ab23...5180`.
+- **Decision and handoff:** retain this as opt-in deterministic product
+  plumbing only. All exposed looks remain Look Approximation; named B&W stock
+  claims, U7.2C stock separation, calibration, automatic stock inference,
+  K>1 and multi-stock completion remain closed. Do not extend adjacent wrapper
+  leaves; return effort to controlled real-stock evidence and substantive
+  product-core work.
+
 ### 2026-08-28 - P304 closes RawHDR before dataset access
 
 - **Node and routing:** `ULT > genuinely new capture-time observations >
