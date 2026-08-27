@@ -39,6 +39,20 @@
       "937e11cb"
     ]
   },
+  "execution_bindings": {
+    "runner": [
+      "scripts/audit_p290_libavif_gainmap_create_only_api.py",
+      11067,
+      "4ae0bc7d2437b03d6e47963d6678f433afdea8524a2d86a939ef74d26e98f8c0",
+      "f765ef44"
+    ],
+    "test": [
+      "tests/test_p290_libavif_gainmap_create_only_audit.py",
+      1056,
+      "cf81cc626b559c202daceb37a808964fb9b3ca8b43c469c09ca5f588023a16be",
+      "f765ef44"
+    ]
+  },
   "profile": {
     "profile_id": "neuro-film.libavif-gainmap-hdr-pq-sdr-srgb.create-only.v1",
     "base_cicp": [1, 16, 0],
