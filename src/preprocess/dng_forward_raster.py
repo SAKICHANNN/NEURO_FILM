@@ -10,6 +10,7 @@ D50-PCS-to-linear-Rec.2020 primitive.  It is not used by the default loader.
 from __future__ import annotations
 
 import hashlib
+import struct
 from pathlib import Path
 from typing import Any
 
@@ -64,6 +65,15 @@ _PROFILE_LOOK_TABLE_TAGS = {
     50982: "ProfileLookTableData",
     51108: "ProfileLookTableEncoding",
 }
+
+_OPCODE_LIST_TAGS = {
+    51008: "OpcodeList1",
+    51009: "OpcodeList2",
+    51022: "OpcodeList3",
+}
+_OPCODE_OPTIONAL_FLAG = 1
+_OPCODE_ALLOWED_FLAG_MASK = 3
+_DNG_VERSION_1_7_1_0 = 0x01070100
 
 
 def _sha256(path: Path) -> str:
@@ -174,6 +184,84 @@ def _guard_unsupported_profile_look_table(
     )
 
 
+def _parse_optional_opcode_list(
+    value: object,
+    *,
+    tag_name: str,
+    ifd_path: str,
+) -> tuple[tuple[int, int, int, int], ...]:
+    """Parse one Adobe opcode envelope and reject anything not safely skippable."""
+
+    try:
+        payload = bytes(value)
+    except (TypeError, ValueError) as exc:
+        raise DngForwardRasterError(
+            f"{tag_name}@{ifd_path} is not a byte payload"
+        ) from exc
+    if len(payload) < 4:
+        raise DngForwardRasterError(f"{tag_name}@{ifd_path} has a truncated count")
+    count = struct.unpack_from(">I", payload, 0)[0]
+    if count > (len(payload) - 4) // 16:
+        raise DngForwardRasterError(
+            f"{tag_name}@{ifd_path} has an impossible opcode count"
+        )
+    offset = 4
+    entries: list[tuple[int, int, int, int]] = []
+    for index in range(count):
+        if offset + 16 > len(payload):
+            raise DngForwardRasterError(
+                f"{tag_name}@{ifd_path} opcode {index} has a truncated header"
+            )
+        opcode_id, minimum_version, flags, byte_count = struct.unpack_from(
+            ">IIII", payload, offset
+        )
+        offset += 16
+        if minimum_version == 0 or minimum_version > _DNG_VERSION_1_7_1_0:
+            raise DngForwardRasterError(
+                f"{tag_name}@{ifd_path} opcode {index} has an unsupported version"
+            )
+        if flags & ~_OPCODE_ALLOWED_FLAG_MASK:
+            raise DngForwardRasterError(
+                f"{tag_name}@{ifd_path} opcode {index} has reserved flags"
+            )
+        if not flags & _OPCODE_OPTIONAL_FLAG:
+            raise DngForwardRasterError(
+                f"required DNG {tag_name} opcode {opcode_id} at {ifd_path} "
+                "must not be silently delegated to LibRaw"
+            )
+        if byte_count > len(payload) - offset:
+            raise DngForwardRasterError(
+                f"{tag_name}@{ifd_path} opcode {index} has a truncated payload"
+            )
+        offset += byte_count
+        entries.append((opcode_id, minimum_version, flags, byte_count))
+    if offset != len(payload):
+        raise DngForwardRasterError(f"{tag_name}@{ifd_path} has trailing bytes")
+    return tuple(entries)
+
+
+def _guard_dng_opcode_lists(
+    pages: list[tuple[str, tifffile.TiffPage]],
+) -> tuple[str, ...]:
+    """Reject required/malformed opcode lists and summarize optional entries."""
+
+    summaries: list[str] = []
+    for ifd_path, page in pages:
+        for code in sorted(_OPCODE_LIST_TAGS):
+            if code not in page.tags:
+                continue
+            name = _OPCODE_LIST_TAGS[code]
+            entries = _parse_optional_opcode_list(
+                page.tags[code].value,
+                tag_name=name,
+                ifd_path=ifd_path,
+            )
+            if entries:
+                ids = "/".join(str(entry[0]) for entry in entries)
+                summaries.append(f"{name}({code})@{ifd_path}:{ids}")
+    return tuple(summaries)
+
+
 def _read_profile_tags(path: Path) -> dict[str, Any]:
     try:
         with tifffile.TiffFile(path) as document:
@@ -182,6 +270,7 @@ def _read_profile_tags(path: Path) -> dict[str, Any]:
             _guard_unsupported_profile_gain_table_map(pages)
             _guard_unsupported_profile_tone_curve(pages)
             _guard_unsupported_profile_look_table(pages)
+            optional_opcodes = _guard_dng_opcode_lists(pages)
             tags = document.pages[0].tags
             required = (
                 "color_matrix1",
@@ -231,6 +320,7 @@ def _read_profile_tags(path: Path) -> dict[str, Any]:
                 if code in tags
                 else None
             )
+            values["_optional_opcode_summary"] = optional_opcodes
     except DngForwardRasterError:
         raise
     except (OSError, TypeError, ValueError, tifffile.TiffFileError) as exc:
@@ -327,6 +417,7 @@ def load_dng_forward_working_image(
         raise DngForwardRasterError("source SHA-256 mismatch")
 
     values = _read_profile_tags(source)
+    optional_opcodes = tuple(values.pop("_optional_opcode_summary"))
     camera_to_pcs = build_dual_illuminant_camera_to_pcs(**values).camera_to_pcs
     camera = _decode_camera_linear_dng(source)
     pixels = _apply_camera_to_rec2020(camera, camera_to_pcs)
@@ -359,7 +450,18 @@ def load_dng_forward_working_image(
                 "scene_linear_no_tone_map",
                 "Linear Rec.2020 values are retained without clipping, gamut mapping, or a scene-to-display tone map.",
             ),
-        ],
+        ]
+        + (
+            [
+                DecodeWarning(
+                    "optional_dng_opcodes_may_be_skipped",
+                    "Only optional DNG opcodes were present before LibRaw decode; "
+                    "their execution is not claimed: " + ", ".join(optional_opcodes),
+                )
+            ]
+            if optional_opcodes
+            else []
+        ),
     )
 
 
