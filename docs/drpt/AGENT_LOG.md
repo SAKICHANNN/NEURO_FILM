@@ -19227,6 +19227,33 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   full/arbitrary DNG, image quality, default-loader, public package/schema/
   capability/product, stock evidence or candidate-3 admission.
 
+### 2026-08-27 - P298 closes unsupported DNG container-version ingress
+
+- **Node:** `ULT > mature RAW/DNG safety > P298`; DRPT L2 / Mode C. A bounded
+  current-source refresh found no genuinely new rights-clear physical paired
+  candidate, so no candidate slot or download was consumed. Read-only code
+  audit instead found that the private P98 path trusted a `.dng` suffix and
+  profile tags without validating the container's DNG version declaration.
+- **Freeze and implementation:** preregistration `4919c3ee`, implementation
+  `f0b5e706`, style-only correction `68c59a5d`, formal runner `cd77c79e` and
+  evidence `befb247a`. Adobe DNG SDK 1.7.1 Build2652 fixes tags `50706/50707`,
+  four-BYTE structure, the missing-backward default and validity ordering. The
+  private loader now rejects missing, malformed, pre-1.0, future and internally
+  inconsistent declarations before camera decode.
+- **Result:** four exact P98 rows declare DNG 1.4.0.0 / backward 1.1.0.0;
+  Blackmagic declares DNG 1.2.0.0 and its absent backward tag resolves to
+  1.2.0.0. Seven negative controls reject with zero decode calls. All five
+  source and float32 WorkingImage hashes remain exact; forward/reverse
+  3,771-byte reports are byte exact at SHA `81074bdb...090cc`. Fifty-two
+  adjacent tests plus Ruff, format, compile, JSON and diff checks pass.
+- **Correction and boundary:** the first implementation commit was made after
+  Ruff reported one B009 and one formatting issue because that PowerShell
+  sequence did not stop on the first nonzero exit. `68c59a5d` changes only
+  those sites; formal runs occurred afterward. P298 proves only private
+  exact-five container identity. It adds no arbitrary/full DNG, image quality,
+  default loader, package/schema/capability/product, stock evidence or
+  candidate-3 admission.
+
 ### 2026-08-27 - RF3.D15 closes autonomous three-stock blind salience
 
 - **Node and scope:** `ULT > RF3 > RF3.D15`, DRPT L2 / Mode C. This leaf
