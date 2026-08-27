@@ -157,6 +157,50 @@ def _sheet_bytes(
     return stream.getvalue()
 
 
+def _population_sheet_bytes(
+    source: np.ndarray,
+    outputs: list[tuple[str, np.ndarray, dict[str, list[int]]]],
+    source_id: str,
+) -> bytes:
+    """Build one overview plus exact-pixel crop sheet for all three K=1 arms."""
+    if len(outputs) != 3:
+        raise ThreeStockStructuralVisualReviewError(
+            "population review requires exactly three K=1 outputs"
+        )
+    source_image = Image.fromarray(source, mode="RGB")
+    canvas = Image.new("RGB", (1536, 2456), "white")
+    draw = ImageDraw.Draw(canvas)
+    draw.text((12, 8), f"{source_id} | three fixed K=1 Look Approximation arms", fill="black")
+
+    overview_images = [("SOURCE", source_image)] + [
+        (arm_id, Image.fromarray(output, mode="RGB"))
+        for arm_id, output, _boxes in outputs
+    ]
+    for index, (label, image) in enumerate(overview_images):
+        x = (index % 2) * 768
+        y = 34 + (index // 2) * 390
+        canvas.paste(_fit_panel(image, (768, 350)), (x, y))
+        draw.text((x + 8, y + 354), label, fill="black")
+
+    row_top = 820
+    for arm_index, (arm_id, output, boxes) in enumerate(outputs):
+        output_image = Image.fromarray(output, mode="RGB")
+        y = row_top + arm_index * 540
+        draw.text((8, y), arm_id, fill="black")
+        for crop_index, (label, box_values) in enumerate(boxes.items()):
+            left, top, right, bottom = box_values
+            x = crop_index * 512
+            draw.text((x + 8, y + 22), f"{label} {box_values}", fill="black")
+            canvas.paste(source_image.crop((left, top, right, bottom)), (x, y + 46))
+            canvas.paste(output_image.crop((left, top, right, bottom)), (x + 256, y + 46))
+            draw.text((x + 8, y + 306), "SOURCE 1:1", fill="black")
+            draw.text((x + 264, y + 306), "OUTPUT 1:1", fill="black")
+
+    stream = io.BytesIO()
+    canvas.save(stream, format="PNG", compress_level=6)
+    return stream.getvalue()
+
+
 def build_review_material(
     config: dict[str, Any], root: Path, output_dir: Path, *, reverse: bool = False
 ) -> dict[str, Any]:
@@ -252,7 +296,112 @@ def build_review_material(
     }
 
 
+def build_population_review_material(
+    config: dict[str, Any], root: Path, output_dir: Path, *, reverse: bool = False
+) -> dict[str, Any]:
+    """Build grouped review material for every source and every fixed K=1 arm."""
+    if output_dir.exists():
+        raise FileExistsError("U4.3D output directory is create-only")
+    report_spec = config["input_report"]
+    report_bytes = _read_exact(root / report_spec["path"], report_spec["sha256"])
+    if len(report_bytes) != int(report_spec["bytes"]):
+        raise ThreeStockStructuralVisualReviewError("report byte count mismatch")
+    report = json.loads(report_bytes)
+    if report["scientific_identity"] != report_spec["scientific_identity"]:
+        raise ThreeStockStructuralVisualReviewError("scientific identity mismatch")
+
+    manifest_spec = report["scientific_payload"]["inputs"][2]
+    manifest = json.loads(
+        _read_exact(root / manifest_spec["path"], manifest_spec["sha256"])
+    )
+    source_rows = {row["id"]: row for row in manifest}
+    diagnostic_rows = {
+        (row["source_id"], row["arm_id"]): row
+        for row in report["scientific_payload"]["rows"]
+    }
+    selection = config["selection"]
+    source_ids = list(selection["source_ids"])
+    arm_ids = list(selection["arm_ids"])
+    if len(source_ids) != int(selection["required_source_count"]):
+        raise ThreeStockStructuralVisualReviewError("source count mismatch")
+    if len(set(source_ids)) != len(source_ids) or len(set(arm_ids)) != 3:
+        raise ThreeStockStructuralVisualReviewError("selection identities are not unique")
+    expected_pairs = {(source_id, arm_id) for source_id in source_ids for arm_id in arm_ids}
+    if not expected_pairs.issubset(diagnostic_rows):
+        raise ThreeStockStructuralVisualReviewError("frozen population selection mismatch")
+
+    ordered_sources = list(reversed(source_ids)) if reverse else source_ids
+    output_dir.mkdir(parents=True)
+    render_root = root / config["review_material"]["render_root"]
+    crop_size = int(config["review_material"]["crop_size"])
+    sheets: list[dict[str, Any]] = []
+    for source_id in ordered_sources:
+        source_record = source_rows[source_id]
+        source = _read_rgb8(
+            root / source_record["decoded_path"], source_record["decoded_sha256"]
+        )
+        outputs: list[tuple[str, np.ndarray, dict[str, list[int]]]] = []
+        rows: list[dict[str, Any]] = []
+        for arm_id in arm_ids:
+            row = diagnostic_rows[(source_id, arm_id)]
+            output = _read_rgb8(
+                render_root / row["output"]["relative_path"],
+                row["output"]["sha256"],
+            )
+            if output.shape != source.shape:
+                raise ThreeStockStructuralVisualReviewError("output geometry mismatch")
+            boxes = _review_boxes(source, output, crop_size)
+            outputs.append((arm_id, output, boxes))
+            rows.append(
+                {
+                    "arm_id": arm_id,
+                    "output_sha256": row["output"]["sha256"],
+                    "review_boxes": boxes,
+                }
+            )
+        sheet = _population_sheet_bytes(source, outputs, source_id)
+        name = f"{source_id}__three_k1_population.png"
+        (output_dir / name).write_bytes(sheet)
+        sheets.append(
+            {
+                "source_id": source_id,
+                "source_sha256": source_record["decoded_sha256"],
+                "rows": rows,
+                "sheet": {
+                    "relative_path": name,
+                    "bytes": len(sheet),
+                    "sha256": _sha256(sheet),
+                },
+            }
+        )
+    sheets.sort(key=lambda item: source_ids.index(item["source_id"]))
+    payload = {
+        "input_report": {
+            "path": report_spec["path"],
+            "bytes": len(report_bytes),
+            "sha256": _sha256(report_bytes),
+            "scientific_identity": report["scientific_identity"],
+        },
+        "selection_rule": selection["rule"],
+        "source_count": len(source_ids),
+        "output_count": len(source_ids) * len(arm_ids),
+        "sheets": sheets,
+        "render_calls": 0,
+        "network_reads": 0,
+        "adjudications_present": False,
+    }
+    return {
+        "schema": "neuro-film.u4-3d-three-stock-population-review-material.v1",
+        "experiment_id": config["experiment_id"],
+        "status": "REVIEW_MATERIAL_READY",
+        "scientific_payload": payload,
+        "scientific_identity": _sha256(_canonical_bytes(payload)),
+        "claim_ceiling": config["claim_ceiling"],
+    }
+
+
 __all__ = [
     "ThreeStockStructuralVisualReviewError",
+    "build_population_review_material",
     "build_review_material",
 ]

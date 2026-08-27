@@ -1,0 +1,64 @@
+{
+  "schema": "neuro-film.u4-3d-three-stock-population-severe-review-contract.v1",
+  "experiment_id": "U4.3D",
+  "date": "2026-08-27",
+  "status": "FROZEN_BEFORE_IMAGE_REVIEW",
+  "question": "Do all three unchanged K=1 stock-labelled Look Approximation baselines avoid confirmed severe artifacts across all 16 existing source-disjoint RF3.D0 photographs?",
+  "input_report": {
+    "path": "outputs/eval/u4_3a_three_stock_structural_diagnostics_v1/report.json",
+    "bytes": 118344,
+    "sha256": "3942d56bf7d6c213e53568eecd9ad52fd32e15b6b4dabf41ed70ed72ec8ca2ac",
+    "scientific_identity": "c2db3f9a88c982dd44e911585e758e6057ea75663d834b3d9c5a7c5f28ab0dac"
+  },
+  "selection": {
+    "rule": "all-16-sources-x-all-3-fixed-k1-look-approximation-arms",
+    "required_source_count": 16,
+    "source_ids": [
+      "canon_eos_kiss_f",
+      "canon_eos_1d_mark_iv",
+      "nikon_d2x",
+      "nikon_d200",
+      "sony_nex_3n",
+      "sony_dslr_a290",
+      "fujifilm_finepix_s5000",
+      "olympus_sp550uz",
+      "olympus_e_p7",
+      "panasonic_dmc_gf2",
+      "panasonic_dmc_fz100",
+      "pentax_k_r",
+      "pentax_k100d_super",
+      "leica_d_lux_6",
+      "leica_digilux_3",
+      "kodak_dcs_pro_14n"
+    ],
+    "arm_ids": [
+      "legacy_unpaired_safe_lab_k1_velvia50",
+      "legacy_unpaired_safe_lab_k1_portra400",
+      "legacy_unpaired_safe_lab_k1_ektar100"
+    ]
+  },
+  "review_material": {
+    "render_root": "outputs/eval/rf3_three_stock_proxy_baseline_d0_v1/run_a",
+    "crop_size": 256,
+    "overview_and_three_exact_pixel_crops_per_output": true,
+    "output_root": "outputs/eval/u4_3d_three_stock_population_severe_review_v1"
+  },
+  "visual_categories": [
+    "dirty_or_blotchy_skin_or_object_colour",
+    "isolated_chroma_impulses",
+    "banding_or_posterization",
+    "objectionable_halos",
+    "face_text_object_or_fine_structure_loss"
+  ],
+  "maximum_confirmed_severe_artifact_count_per_arm": 0,
+  "forbidden": {
+    "ao6_arm": true,
+    "post_review_substitution": true,
+    "aggregate_scalar_score": true,
+    "automatic_metric_veto": true,
+    "render_calls": true,
+    "network_reads": true,
+    "operator_or_threshold_rescue": true
+  },
+  "claim_ceiling": "Autonomous visual severe-artifact evidence for 48 existing RGB8 outputs from three unchanged K=1 Look Approximation arms across 16 source-disjoint photographs; not target-film closeness, stock identification, calibration, preference, universal safety, multi-stock completion or product promotion."
+}
