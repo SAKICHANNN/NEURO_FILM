@@ -1,7 +1,7 @@
 {
   "schema": "neuro-film.p288-dng-profile-stage-composition-contract.v1",
   "experiment_id": "P288",
-  "status": "PRESCORE_IMPLEMENTATION",
+  "status": "FROZEN_BEFORE_FORMAL_EXECUTION",
   "contract": {
     "path": "docs/planning/P288_DNG_PROFILE_STAGE_COMPOSITION_CONTRACT.md",
     "commit": "28bf1faee019e243d807294380ed4d7e7e0f0a90",
@@ -32,8 +32,18 @@
     "stage_order": ["ProfileHueSatMap", "ProfileGainTableMap", "exposure", "ProfileLookTable", "ProfileToneCurve"]
   },
   "execution_bindings": {
-    "runner": null,
-    "test": null
+    "runner": {
+      "path": "scripts/audit_p288_dng_profile_stage_composition.py",
+      "commit": "4d4350fb5b9ee1300ba48caffee53cc6a29636e8",
+      "bytes": 19130,
+      "sha256": "3b71ebad8e72a8d5651db355920a37c4900b254c60cad989ce1b97a4754c69a3"
+    },
+    "test": {
+      "path": "tests/test_p288_dng_profile_stage_composition.py",
+      "commit": "4d4350fb5b9ee1300ba48caffee53cc6a29636e8",
+      "bytes": 1327,
+      "sha256": "bd0186cb243739bf9ea974e20594531a5eb73a71e7d0c2a8f2e59b057f25d2af"
+    }
   },
   "gates": {
     "require_parent_files_exact": true,
