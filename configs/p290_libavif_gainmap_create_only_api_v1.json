@@ -1,0 +1,72 @@
+{
+  "schema": "neuro-film.p290-libavif-gainmap-create-only-api-contract.v1",
+  "experiment_id": "P290",
+  "status": "IMPLEMENTATION_FROZEN_BEFORE_FORMAL_EXECUTION",
+  "contract": [
+    "docs/planning/P290_LIBAVIF_GAINMAP_CREATE_ONLY_API_CONTRACT.md",
+    2929,
+    "c4afdc3de3b96a189f22c7acb0c3aaaf88f111f9e4f36fa85c55324cefecc3ea",
+    "9985ff88"
+  ],
+  "parents": {
+    "p289_config": [
+      "configs/p289_libavif_gainmap_encoder_d0_v1.json",
+      4395,
+      "c337598aa168fcb1808648ab09e838cb169bcafab79f8414c12fe304a9386767"
+    ],
+    "p289_evidence": [
+      "docs/evidence/P289_LIBAVIF_GAINMAP_ENCODER_D0_RESULT.json",
+      4684,
+      "084ae8306e0dcd64b3aa81a887fc858177eddf287260d8dda6016b39753549e8"
+    ],
+    "p289_runner": [
+      "scripts/audit_p289_libavif_gainmap_encoder_d0.py",
+      15347,
+      "700090e3bbbc18e78839f9dbf4184b0ee576066bac0d52b1dea67078bef9de02"
+    ]
+  },
+  "implementation": {
+    "source": [
+      "src/preprocess/libavif_gainmap_encoder.py",
+      8956,
+      "c512c8312845bfa62ef733674d4433613d605e9e3ab9f755d94c5f363002d80d",
+      "937e11cb"
+    ],
+    "test": [
+      "tests/test_p290_libavif_gainmap_create_only_api.py",
+      3146,
+      "b26c466582abaf557e4e95a08ce20ae6f5712c2542a777ea2df314ea11ec6b8a",
+      "937e11cb"
+    ]
+  },
+  "profile": {
+    "profile_id": "neuro-film.libavif-gainmap-hdr-pq-sdr-srgb.create-only.v1",
+    "base_cicp": [1, 16, 0],
+    "alternate_cicp": [1, 13, 0],
+    "base_headroom": 1.3,
+    "alternate_headroom": 0.0
+  },
+  "fixture": {
+    "hdr_png_sha256": "404ed7c29bb645481ceda29673c9ff7911c784a114c1d57ceca8cd52fac510c3",
+    "hdr_pixel_sha256": "1f59517838b55b2536bfb355a1c6ff8f86dc4987fe393d366b58329c66a8fb4d",
+    "sdr_png_sha256": "ebfe3af6ad2035d5f808297882fdee737e5fc560d4495c4e80862ee93422e644",
+    "sdr_pixel_sha256": "944aa53e798ed1fc1a28525398aee69f77ce4a5894aca7efd96a2e634f6b571d",
+    "expected_output_bytes": 726506,
+    "expected_output_sha256": "94556d9f58b54955a07b5d8303da74d3ab350ef3eb061aab655cc5da7af6da70",
+    "expected_decoded_hdr_pixel_sha256": "87dfef6b5f8380580c6b309f3e9e4606502ed034e8391b44b7ff83b3c85eb1ea",
+    "expected_decoded_sdr_pixel_sha256": "894cf73174653acb08a02a06aab341e94f360739fdfb06168beb5e8c840cb634"
+  },
+  "gates": {
+    "require_parent_and_implementation_exact": true,
+    "require_endpoint_png_and_pixels_exact": true,
+    "require_output_exact_p289": true,
+    "require_decoded_endpoints_exact_p289": true,
+    "require_receipt_exact": true,
+    "require_invalid_controls_atomic": true,
+    "require_sources_runtime_immutable": true,
+    "require_report_byte_exact": true,
+    "require_zero_residue": true
+  },
+  "stop_rule": "Any failed gate closes this exact P290 API/profile. Do not change the official encoder parameters, endpoint fixture, identity requirements or failure boundaries.",
+  "claim_ceiling": "One private Windows/Python create-only API around the exact P289 profile and official libavif runtime only; no SDR tone policy, complete ISO 21496-1, arbitrary AVIF/HEIF or HDR quality, display validation, public dependency/API/package/schema/capability, default loader, product admission, stock evidence or candidate3 change."
+}
