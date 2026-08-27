@@ -1,7 +1,7 @@
 {
   "schema": "neuro-film.p293-eyefultower-dci-p3-exr-working-image-contract.v1",
   "experiment_id": "P293",
-  "status": "FROZEN_AWAITING_EXACT_SOURCE_LOCK",
+  "status": "FROZEN_SOURCE_LOCKED_AWAITING_HEADER_PREFLIGHT",
   "parent": {
     "evidence_path": "docs/evidence/P292_EYEFULTOWER_DCI_P3_EXR_SOURCE_READINESS_RESULT.json",
     "evidence_commit": "4d1e8360",
@@ -14,8 +14,25 @@
     "bytes": 9399313,
     "md5": "29c574af8fc3a543cd773eb812d56a49",
     "etag": "\"a6f750cf77db90d9ca949523c1ed929b-2\"",
-    "sha256": null,
+    "sha256": "c7b65fe69568b4d04bbf162381fd6d74c9b9682057a0f9dd8b931ec6b038f174",
     "payload_download_limit": 1
+  },
+  "source_manifest": {
+    "path": "data/external/p293_eyefultower_dci_p3_exr_v1/source_manifest.json",
+    "bytes": 1514,
+    "sha256": "c368b88d36a0d681311b1d332aa5383a33712163619046aa07eaf69d7f7ff8c2"
+  },
+  "acquisition_record": {
+    "unique_payload_objects": 1,
+    "completed_object_payloads": 1,
+    "http_body_requests": 9,
+    "accepted_range_requests": 8,
+    "aborted_prefix_requests": 1,
+    "total_body_bytes_received": 11103249,
+    "source_header_reads_before_lock": 0,
+    "source_pixel_reads_before_lock": 0,
+    "other_object_payload_requests": 0,
+    "note": "One slow whole-object request was interrupted before completion. Eight fixed non-overlapping ranges completed the same selected object. Official whole-file MD5 and local SHA-256 passed after ordered assembly; source selection and bytes did not change."
   },
   "boundaries": {
     "maximum_width": 2048,
