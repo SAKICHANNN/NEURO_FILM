@@ -530,6 +530,7 @@ def execute(config_path: Path, producer_repo: Path) -> dict[str, Any]:
         "config_sha256": _sha256_file(config_path),
         "contract": _identity(ROOT / bindings["contract_path"]),
         "native_source": _identity(ROOT / bindings["native_source_path"]),
+        "runner": _identity(ROOT / bindings["runner_path"]),
         "p248_config": _identity(ROOT / bindings["p248_config_path"]),
         "p248_evidence": _identity(ROOT / bindings["p248_evidence_path"]),
         "p248_native_source": _identity(ROOT / bindings["p248_native_source_path"]),
@@ -541,6 +542,9 @@ def execute(config_path: Path, producer_repo: Path) -> dict[str, Any]:
             "rev-parse",
             f"{bindings['implementation_commit']}:{bindings['native_source_path']}",
         ),
+        "runner_git_blob": _git_text(
+            "rev-parse", f"{bindings['runner_commit']}:{bindings['runner_path']}"
+        ),
         "p248_native_source_git_blob": _git_text(
             "rev-parse", f"HEAD:{bindings['p248_native_source_path']}"
         ),
@@ -551,6 +555,7 @@ def execute(config_path: Path, producer_repo: Path) -> dict[str, Any]:
             bindings["native_source_bytes"],
             bindings["native_source_sha256"],
         ),
+        "runner": (bindings["runner_bytes"], bindings["runner_sha256"]),
         "p248_config": (
             bindings["p248_config_bytes"],
             bindings["p248_config_sha256"],
@@ -580,7 +585,10 @@ def execute(config_path: Path, producer_repo: Path) -> dict[str, Any]:
         identities[name]["bytes"] == expected[0]
         and identities[name]["sha256"] == expected[1]
         for name, expected in expected_identity.items()
-    ) and identities["native_source_git_blob"] == bindings["native_source_git_blob"]
+    ) and (
+        identities["native_source_git_blob"] == bindings["native_source_git_blob"]
+        and identities["runner_git_blob"] == bindings["runner_git_blob"]
+    )
     p248_parent_unchanged = (
         identities["p248_native_source"]["sha256"]
         == bindings["p248_native_source_sha256"]
