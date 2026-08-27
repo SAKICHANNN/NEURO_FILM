@@ -1,0 +1,96 @@
+{
+  "schema": "neuro-film.p288-dng-profile-stage-composition-evidence.v1",
+  "experiment_id": "P288",
+  "status": "FAIL_CLOSED_DNG_PROFILE_STAGE_COMPOSITION",
+  "date": "2026-08-27",
+  "decision": "The exact source-locked ProfileHueSatMap, ProfileGainTableMap, exposure, ProfileLookTable and ProfileToneCurve callables compose in the Adobe SDK stage order with byte-exact wrapper-to-direct-core parity, but the frozen synthetic fixture leaves the strict SDR domain immediately after ProfileGainTableMap. The exact fixture, exposure, payloads, stage order and domain gates are closed without rescue or product integration.",
+  "commits": {
+    "preregistration": "274430ab",
+    "contract_format_correction": "28bf1fae",
+    "implementation_and_tests": "4d4350fb",
+    "initial_execution_lock": "dd63536e",
+    "preoutput_type_boundary_fix": "f73838a5e8dfca18761b8248f3605b2f49bc9076",
+    "corrected_execution_lock": "0e9f9b1a"
+  },
+  "protocol": {
+    "contract_path": "docs/planning/P288_DNG_PROFILE_STAGE_COMPOSITION_CONTRACT.md",
+    "contract_bytes": 4893,
+    "contract_sha256": "e7952f649dda940bfbaa51a265926907bfdc7938feae19348c9f5dc53db6a557",
+    "config_path": "configs/p288_dng_profile_stage_composition_v1.json",
+    "config_bytes": 4392,
+    "config_sha256": "3b0e6886a2067df3a204101bc914bd9b40b7aeb75df172ea8befabeda9f3c1ef",
+    "runner_path": "scripts/audit_p288_dng_profile_stage_composition.py",
+    "runner_bytes": 19128,
+    "runner_sha256": "e16546d57043e0488844d3b6778ae8cc1658efe62ecb7fb5e3470c7e28d3651e",
+    "test_path": "tests/test_p288_dng_profile_stage_composition.py",
+    "test_bytes": 1327,
+    "test_sha256": "bd0186cb243739bf9ea974e20594531a5eb73a71e7d0c2a8f2e59b057f25d2af"
+  },
+  "parents": {
+    "P254_R1EC_ProfileHueSatMap": "05e3dd977118147dee47563348272739bc2451476b18211d4e8617efd649f5ee",
+    "P263_R1EJ_ProfileGainTableMap": "3fd3bbacc043216ae9e27ac1ac655965aaee0262fbf0b8c5f42c65eae703d953",
+    "P274_R1ER_ProfileLookTable": "7ac494d08628e7195cc0c39bf47aac732300a4fb55af462a4981fe3d2bb6fa6c",
+    "P271_R1EN_ProfileToneCurve": "1c4f9cc0097f2cd884cbea572bca4973e7926a1aaf51182be5a232c999dfa7fa"
+  },
+  "composition": {
+    "input": "one frozen synthetic 2x2 linear ProPhoto/ROMM float64 fixture",
+    "exposure_multiplier": 0.75,
+    "stage_order": [
+      "ProfileHueSatMap",
+      "ProfileGainTableMap",
+      "exposure",
+      "ProfileLookTable",
+      "ProfileToneCurve"
+    ],
+    "producer_worktree_imports": 0,
+    "consumer_source_copies": 0,
+    "new_raw_dng_pixel_target_reads": 0,
+    "network_reads": 0
+  },
+  "formal": {
+    "forward_report_path": "outputs/eval/p288_dng_profile_stage_composition_v1/formal_forward.json",
+    "reverse_report_path": "outputs/eval/p288_dng_profile_stage_composition_v1/formal_reverse.json",
+    "report_bytes_each": 9077,
+    "report_sha256": "104c3a211ee5ceb4634e9c34c1266bb1ea324672d3bea8e0e5d785f5a5dc0ee5",
+    "reports_byte_exact": true,
+    "fresh_process_count": 2,
+    "scientific_identity": "sha256:1d5085a75d0abc9b28085fb10597ee7f0aab82227a93c1304270f1928285b438",
+    "output_f64le_sha256": "4ef87d46006cefd4490788454acf21eaabcca102353d302e0e02ca727d468087",
+    "wrapper_direct_byte_parity": true,
+    "output_owned_writable_contiguous_float64": true
+  },
+  "domain_checks": {
+    "initial_romm": true,
+    "huesat_romm": true,
+    "gain_table_romm": false,
+    "exposed_romm": true,
+    "look_table_romm": true,
+    "tone_curve_finite": true
+  },
+  "gates": {
+    "all_parent_and_producer_identities_exact": true,
+    "all_payload_schemas_valid": true,
+    "common_core_exact": true,
+    "isolated_git_object_imports": true,
+    "stage_order_exact": true,
+    "wrapper_direct_byte_parity": true,
+    "inputs_and_payloads_unchanged": true,
+    "all_invalid_controls_reject": true,
+    "output_ownership": true,
+    "zero_network_pixels_artifacts_and_temp_residue": true,
+    "domains_finite_and_valid": false,
+    "two_reports_byte_exact": true
+  },
+  "invalid_controls": [
+    "wrong-rank input",
+    "nonfinite input",
+    "zero exposure",
+    "nonfinite exposure",
+    "swapped stage payload",
+    "out-of-domain LookTable input"
+  ],
+  "execution_history": "The first committed-head invocation stopped before any composition output, metric or report because the ToneCurve parser returned an owned coordinate array that the direct-control call incorrectly expanded as a mapping. An additive correction passed the same array positionally, refreshed only the runner execution binding, and reran the unchanged protocol from the corrected committed head. No producer object, payload, input, exposure, stage order, gate or claim ceiling changed.",
+  "candidate_count_after_result": "2/3",
+  "consumer_mapping": false,
+  "claim_ceiling": "Private exact interoperability rejection for four already qualified DNG profile callables on one synthetic 2x2 composition fixture only. No real-file stage composition, complete or arbitrary DNG renderer, photographic or colorimetric quality, Adobe renderer equivalence, default-loader integration, public dependency/API/package/schema/capability, stock evidence, automatic matching, product admission or candidate-3 change."
+}
