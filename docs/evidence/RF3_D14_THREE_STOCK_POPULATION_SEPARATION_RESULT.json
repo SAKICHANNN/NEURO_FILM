@@ -1,0 +1,70 @@
+{
+  "schema": "neuro-film.rf3-d14-three-stock-population-separation-result.v1",
+  "experiment_id": "RF3.D14",
+  "date": "2026-08-27",
+  "status": "FAIL_CLOSED_K1_THREE_STOCK_POPULATION_SEPARATION",
+  "decision": "CLOSE_EXISTING_K1_THREE_STOCK_POPULATION_SEPARATION_WITHOUT_RESCUE",
+  "lineage": {
+    "contract_commit": "954fe9b3cce2ff129d16473e421e9acce01bec9a",
+    "implementation_commit": "35fbcd73",
+    "contract_sha256": "6b42760a898bdc0239867eb28dfa14f6bf15fcb949f7198d52122f41d16206de",
+    "core_sha256": "192521a8cf74df357233100e8998c2687f8640d297661452ddbeb7096d616015",
+    "runner_sha256": "164ce4b10bab8d00a5394e88f5378752f849309ca4f7c8743aaf0df6160d3dad",
+    "test_sha256": "32d3c614d9f6e847ce0ea12826f9a83f65b993e76306fdffd43c9fcc0b64c35e"
+  },
+  "formal_replay": {
+    "forward_report": "outputs/eval/rf3_d14_three_stock_population_separation_v1/report_forward.json",
+    "reverse_report": "outputs/eval/rf3_d14_three_stock_population_separation_v1/report_reverse.json",
+    "report_bytes": 18766,
+    "report_sha256": "988a47f7bd74851db65f5fb52725b836b03b6ee1911def1f52cfb8494d9b6b7e",
+    "forward_reverse_byte_exact": true,
+    "scientific_identity": "c475718bc634b6fe20c68b8eeaab474c10b9f5a696828cc128b8a741de0af758"
+  },
+  "population": {
+    "source_count": 16,
+    "arm_count": 3,
+    "pair_source_count": 48,
+    "confirmed_severe_artifact_count": 0,
+    "render_calls": 0,
+    "network_reads": 0
+  },
+  "pair_results": [
+    {
+      "left": "legacy_unpaired_safe_lab_k1_velvia50",
+      "right": "legacy_unpaired_safe_lab_k1_portra400",
+      "source_pass_count_at_delta_e76_ge_1": 16,
+      "source_count": 16,
+      "population_median_delta_e76": 2.0990995168685913,
+      "population_minimum_median_delta_e76": 1.3511183261871338,
+      "pair_gate_pass": true
+    },
+    {
+      "left": "legacy_unpaired_safe_lab_k1_velvia50",
+      "right": "legacy_unpaired_safe_lab_k1_ektar100",
+      "source_pass_count_at_delta_e76_ge_1": 15,
+      "source_count": 16,
+      "population_median_delta_e76": 1.426347017288208,
+      "population_minimum_median_delta_e76": 0.8857199549674988,
+      "pair_gate_pass": true
+    },
+    {
+      "left": "legacy_unpaired_safe_lab_k1_portra400",
+      "right": "legacy_unpaired_safe_lab_k1_ektar100",
+      "source_pass_count_at_delta_e76_ge_1": 9,
+      "source_count": 16,
+      "population_median_delta_e76": 1.0244844555854797,
+      "population_minimum_median_delta_e76": 0.7497221827507019,
+      "pair_gate_pass": false
+    }
+  ],
+  "gates": {
+    "exact_16_source_three_arm_population": true,
+    "u4_3d_severe_review_pass": true,
+    "parent_threshold_inherited": true,
+    "every_pair_population_median": true,
+    "every_pair_source_pass_count": false,
+    "ao6_excluded": true
+  },
+  "interpretation": "The fixed K=1 Velvia-Portra and Velvia-Ektar arms retain automatic same-input separation across most sources, but Portra-Ektar reaches the inherited DeltaE76 threshold on only 9 of 16 sources. The existing three-stock K=1 baseline therefore does not establish stable three-stock distinguishability and is closed without parameter, arm, cohort or threshold rescue.",
+  "claim_ceiling": "Automatic same-input pairwise DeltaE76 separation evidence for existing RGB8 Look Approximation outputs only; not blind human distinguishability, target-film closeness, stock identity, calibration, preference, multi-stock completion or product promotion."
+}
