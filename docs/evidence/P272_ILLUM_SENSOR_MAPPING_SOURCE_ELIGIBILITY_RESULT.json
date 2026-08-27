@@ -1,0 +1,63 @@
+{
+  "schema": "neuro-film.p272-illum-sensor-mapping-source-eligibility-evidence.v1",
+  "experiment_id": "P272",
+  "status": "FAIL_CLOSED_SOURCE_RIGHTS_AND_MANIFEST",
+  "decision": "The official SamsungLabs source describes a materially relevant controlled illumination and multi-camera RAW observation with explicit train, validation and test roles. It is not eligible for this product-oriented research path because the release is explicitly noncommercial and publishes no exact dataset archive size, asset manifest or checksums. P272 therefore closes before any dataset-object request and does not consume candidate 3.",
+  "bindings": {
+    "contract_commit": "0878ed8c7dabcd40107b71b26f316b8f2f09ca5a",
+    "implementation_commit": "1caf4e8cf73c81c27c52f415638b0719866953dd",
+    "formal_lock_commit": "4b216aa25f313f93488a1f687e9b5af180a01d22",
+    "config_git_blob": "d245df5edc94a27667a85d22adcb4f91cad3f7a6",
+    "runner_git_blob": "b4943517bd93fa9d2461d6b6e205361894d9ac29",
+    "formal_lock_git_blob": "de1c725a180ab0e33361b5f15eb9b1324a745e45",
+    "formal_lock_sha256": "0a36a0c096d4847ce2af6baead7d58842838539fb4ca2b037a69e3b61143ac50"
+  },
+  "formal_reports": [
+    {
+      "path": "outputs/eval/p272_illum_sensor_mapping_source_eligibility_v1/forward.json",
+      "bytes": 1857,
+      "sha256": "4d9b96624fe123bb087f88ce24b6515f55f211374ad4fd92956025e135f85e02"
+    },
+    {
+      "path": "outputs/eval/p272_illum_sensor_mapping_source_eligibility_v1/reverse.json",
+      "bytes": 1857,
+      "sha256": "4d9b96624fe123bb087f88ce24b6515f55f211374ad4fd92956025e135f85e02"
+    }
+  ],
+  "result": {
+    "two_complete_reports_byte_exact": true,
+    "stable_identity": "sha256:c347984ba92b0d656f556e2d235ee697b786e6a45c83222cdcc659d197f25639",
+    "official_head": "f649f85cddaafdcdfd92bc32cea2415d3b72fd1e",
+    "official_tree": "48ba815ae8d031523a75e337e090347b0064132d",
+    "declared_illuminants": 390,
+    "declared_cameras": 4,
+    "declared_scenes": 18,
+    "repository_tree_only_readme_license": true,
+    "license": "CC-BY-NC-SA-4.0",
+    "dataset_object_requests": 0,
+    "pixel_reads": 0,
+    "fit_train_inference_score_runs": 0,
+    "zero_temporary_residue": true
+  },
+  "gates": {
+    "official_identity": true,
+    "materially_new_controlled_physical_observation": true,
+    "explicit_group_roles": true,
+    "exact_dataset_manifest_sizes_checksums": false,
+    "anonymous_reproducible_access": false,
+    "commercial_product_research_rights": false,
+    "zero_dataset_pixel_model_requests_before_admission": true
+  },
+  "preformal_and_infrastructure_exclusions": [
+    "Before formal lock, one focused run exposed Windows checkout CRLF translation. The audit was changed to read exact Git object bytes; no dataset object or pixel was requested.",
+    "Before formal lock, one focused run exposed read-only Git pack cleanup on Windows. Owned temporary clone cleanup was made attribute-safe; no scientific result existed.",
+    "During formal execution, the first reverse process stopped at GitHub clone with exit 128 and produced no report. The same frozen reverse process was retried once and completed byte-exact with the forward report."
+  ],
+  "rights_and_product": {
+    "candidate_3": false,
+    "dataset_acquisition_authorized": false,
+    "package_schema_capability_mapping": false,
+    "product_admission": false
+  },
+  "claim_ceiling": "Current official source eligibility only; no dataset acquisition, pixel integrity, operator, quality, package/schema/capability/product mapping or candidate-3 admission."
+}

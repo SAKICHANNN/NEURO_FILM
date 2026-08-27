@@ -12,6 +12,10 @@ from scripts.audit_p272_illum_sensor_mapping_source_eligibility import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/p272_illum_sensor_mapping_source_eligibility_v1.json"
+EVIDENCE = (
+    ROOT
+    / "docs/evidence/P272_ILLUM_SENSOR_MAPPING_SOURCE_ELIGIBILITY_RESULT.json"
+)
 
 
 def test_p272_contract_is_frozen_before_data_access() -> None:
@@ -34,3 +38,13 @@ def test_p272_source_closes_before_data_request() -> None:
 def test_p272_rejects_invalid_order() -> None:
     with pytest.raises(P272Error, match="order"):
         execute(CONFIG, "sideways")
+
+
+def test_p272_evidence_binds_closed_zero_data_decision() -> None:
+    evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+    assert evidence["status"] == "FAIL_CLOSED_SOURCE_RIGHTS_AND_MANIFEST"
+    assert evidence["formal_reports"][0]["sha256"] == evidence["formal_reports"][1][
+        "sha256"
+    ]
+    assert evidence["result"]["dataset_object_requests"] == 0
+    assert evidence["rights_and_product"]["candidate_3"] is False
