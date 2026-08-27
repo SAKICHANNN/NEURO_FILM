@@ -2515,6 +2515,20 @@ and keep controlled stock-specific acquisition as the primary next evidence.
 Evidence:
 `docs/evidence/RF3_D14_THREE_STOCK_POPULATION_SEPARATION_RESULT.json`.
 
+RF3.D15 independently closes autonomous label-hidden visible salience on the
+same exact 16-source by three-stock K=1 output population. Two separately
+shuffled anonymous rounds freeze 96 decisions before mapping reveal. The
+Ektar--Portra pair is visible in both rounds on only `6/16` sources, while
+Ektar--Velvia reaches `13/16` and Portra--Velvia `12/16`; pairwise round
+disagreements are `5/3/3`, all above the frozen maximum `2`. Forward/reverse
+2,007-byte reports are byte exact at `b40f1a6f...7b1c`. This is autonomous
+visual evidence, not independent human validation, and it agrees with RF3.D14:
+the current old proxies do not establish robust three-stock distinguishability.
+No rerender, tuning, router or stock claim opens; the next admissible evidence
+must add an independent rights-cleared stock observation rather than another
+evaluation of these outputs. Evidence:
+`docs/evidence/RF3_D15_THREE_STOCK_AUTONOMOUS_BLIND_SALIENCE_RESULT.json`.
+
 SF3.A3C closes the final bounded commercial-page lead without opening another
 proxy experiment. FilmLabPro names all three target stocks and publishes
 datasheet-derived curves and implementation parameters, but exposes no paired

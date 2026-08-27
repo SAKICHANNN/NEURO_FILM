@@ -19169,3 +19169,29 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   cleanup commands were policy-rejected before execution; no alternate
   deletion mechanism was attempted. No arbitrary EXR/general ACES/SMPTE,
   display quality, default/product, stock evidence or candidate-3 change opens.
+
+### 2026-08-27 - RF3.D15 closes autonomous three-stock blind salience
+
+- **Node and scope:** `ULT > RF3 > RF3.D15`, DRPT L2 / Mode C. This leaf
+  bypassed unavailable owner-run physical experiments by testing only the
+  already frozen RF3.D0/U4.3D 16-source by three-stock K=1 outputs. It did not
+  rerender, tune operators, consume new pixels or substitute for controlled
+  stock evidence.
+- **Freeze and implementation:** contract `929a0d00`, package builder
+  `495c020a`, pre-reveal observations `8dccd1ba` and formal evidence
+  `d26a0950`. Thirty-two anonymous sheets and 96 hash-bound output copies were
+  generated in two independently shuffled rounds; all 96 visual decisions
+  were committed before the private mapping was revealed. The disclosed prior
+  exposure to one labeled U4.3D review sheet limits the claim to autonomous
+  visual evidence, not independent human validation.
+- **Result:** Ektar--Portra reaches only `6/16` both-round-visible sources,
+  Ektar--Velvia `13/16` and Portra--Velvia `12/16`; round disagreement counts
+  are `5/3/3` against a frozen maximum `2`. Forward/reverse 2,007-byte reports
+  are byte exact at SHA `b40f1a6f...7b1c`, scientific identity
+  `9b2d067b...254929`. Seven dedicated and sixteen adjacent RF3.D14/U4.3D tests
+  pass; Ruff, compile, format and diff checks are clean.
+- **Decision and propagation:** `FAIL_CLOSED_CURRENT_K1_AUTONOMOUS_BLIND_SALIENCE`.
+  RF3.D15 agrees with RF3.D14 that the old K1 proxies do not establish robust
+  three-stock distinguishability. Do not rescue with new shuffles, thresholds,
+  tuning or routing. The next admissible stock leaf requires a materially new,
+  rights-cleared stock observation; physical owner action is not assumed.
