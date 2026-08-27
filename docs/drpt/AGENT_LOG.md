@@ -18776,3 +18776,28 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   separate prospective contract and strongest same-budget controls. No HDR
   truth, radiometric equivalence, independent-scene generalization, rights
   resolution, package/schema/capability/product or candidate-3 change opens.
+
+### 2026-08-27 - P281 closes the one-burst monotone tone family on boundaries
+
+- **Node and scope:** `ULT > genuinely new paired/capture-time observation >
+  P281`, DRPT L2 / Mode C. `dev-research-reliability` is primary and the AI/ML
+  harness enforces lineage, split and metric discipline; research, DRPT-BI,
+  agent-log and structure stewardship keep this at one-burst mechanism D0.
+- **Freeze:** contract `376c34b3`, audit `f1f44d57` and evidence `0ea9065b`
+  bind 2016 development fit/heldout checkerboards, target-unread-until-lock 2017
+  confirmation, fixed per-channel 17-knot isotonic curves, same-knot
+  unconstrained control, encoded-RGB RMSE and zero-new-boundary gate. Fit uses
+  190,512 pixels; heldout uses 6,096,384 and overlap is zero.
+- **Result:** forward/reverse reports are byte-exact at 2,397 bytes / SHA
+  `1311ef6c...9e5c`, stable `3e6f390a...1977e`. Candidate RMSE reductions over
+  identity are 55.97% on development heldout and 54.32% on confirmation, and
+  it slightly beats the same-budget control on both (`.99046/.99018` ratios).
+  Monotonicity, finite range, leakage and comparative gates pass. Formal status
+  is FAIL_CLOSED because 71/69 strictly interior components become exact 0/1,
+  violating the frozen zero-new-boundary gate.
+- **Verification and boundary:** 21 P269/P270/P279/P280/P281 tests pass; Ruff,
+  format, `py_compile`, JSON and diff checks pass. No endpoint margin,
+  projection, knot, split or refit rescue is permitted. Retain only the strong
+  one-burst representation signal; no HDR truth, independent-scene
+  generalization, calibration, package/schema/capability/product or candidate-3
+  change opens.
