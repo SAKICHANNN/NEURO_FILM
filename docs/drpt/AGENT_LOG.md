@@ -18386,3 +18386,39 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   forward/reverse v2 reports are exact and the pooled control opens on the
   distinct procedural effects. This is the last rehearsal leaf. A0L/A0N
   controlled physical acquisition remains the data gate.
+
+### 2026-08-27 - P268 qualifies one bounded HDR+ burst before pixels
+
+- **Routing and scope:** `ULT > genuinely new paired/capture-time/physical
+  observations > P268`, DRPT L2 / Mode C. `dev-research-reliability` was the
+  primary write workflow; research, DRPT-BI, agent-log and structure skills
+  constrained the leaf. P268 is a zero-pixel source-admission audit, not an
+  after-only algorithm, HDR-quality test or candidate-3 experiment.
+- **Freeze and execution:** contract `a8be83a5`, deterministic 153-prefix
+  selection lock `1be9433f`, runner `e45a091b`, formal lock `cd07811f`.
+  Selection is the minimum `(SHA-256(UTF-8 burst_id), burst_id)` and yields
+  `0382_20150912_131056_666`; no image, gallery or result content influences
+  it. The installed Google Cloud SDK only lists anonymously readable object
+  metadata. Bulk 37 GiB/765 GiB downloads and all selected object bodies are
+  forbidden.
+- **Formal result:** forward/reverse reports are both 8,369 bytes and byte-exact
+  SHA `bd823fb2590c30519431dfebfa267c08ca9cff7a3588fa003b38d1705d842c47`.
+  The 153-prefix inventory is exact SHA `f5308cb2...842a0`. The selected burst
+  exposes eight RAW DNGs, eight lens-shading maps, `rgb2rgb.txt`, `timing.txt`,
+  and two matching result roots each containing merged DNG, final JPG and
+  reference-frame ID. All 24 selected objects total 256,482,210 bytes, below
+  the frozen 1 GiB future-acquisition ceiling; size, generation, CRC32C and MD5
+  identities are fixed.
+- **Evidence and verification:** evidence commit `bdf2822d`, tracked evidence
+  SHA `2f9fc7a4875031b16d0488bcde7fe4e107bed03f80ba0147870e4b16e5da5505`.
+  Twenty-five P240/P260/P266/P267/P268 adjacent tests pass; Ruff,
+  `py_compile`, JSON parse and diff checks pass. A development parser literal
+  was corrected from abbreviated `payload_N.dng`/`lens_shading_map_N.tiff` to
+  the official page's encoded `<frame>` spellings before formal lock; source,
+  selection, objects, budgets and gates did not change.
+- **Boundary and handoff:** object payload bytes, DNG/JPEG/TIFF pixel decodes,
+  fitting, training, inference and scoring are all zero. PASS opens only a new
+  prospective contract for bounded acquisition of this exact burst and a
+  source-only capture-time RAW D0. It does not authorize that acquisition,
+  resolve CC-BY-SA commercial/share-alike duties, declare HDR truth/quality,
+  consume candidate 3 or create a package/schema/capability/product mapping.
