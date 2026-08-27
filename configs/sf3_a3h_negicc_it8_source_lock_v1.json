@@ -1,0 +1,38 @@
+{
+  "schema": "neuro-film.sf3-a3h-negicc-it8-source-lock.v1",
+  "experiment_id": "SF3.A3H",
+  "repository": {
+    "commit": "a556c87b1c99cb27039ae3abe1abaffe4395950d",
+    "commit_api_url": "https://api.github.com/repos/arufahc/negicc/commits/a556c87b1c99cb27039ae3abe1abaffe4395950d",
+    "raw_base_url": "https://raw.githubusercontent.com/arufahc/negicc/a556c87b1c99cb27039ae3abe1abaffe4395950d",
+    "readme": {"path": "README.md", "git_blob_sha1": "8c4459b4d1143a7c8ccb86245e27bf2af35f5a1b", "bytes": 6847},
+    "license": {"path": "COPYING", "git_blob_sha1": "c557c34ccdc14826b80e9d5016b9c29c49e7fe6a", "bytes": 292, "required_text": "https://www.gnu.org/licenses/gpl-3.0.txt"}
+  },
+  "reference": {"path": "data/cs100a_measurements.txt", "git_blob_sha1": "bbc12eb6b2e595e08feb5f93c6ca21ed1c6fb0a8", "bytes": 7197},
+  "stocks": {
+    "kodak_ektar_100": [
+      {"ev": -1, "raw": ["data/ektar100-1.txt", "feae8f62e59245abb9d8be153a64b88bd8161c5e", 5206], "train": ["data/ektar100-1-r190808_train.txt", "75ec2df54451157183d75ef52dc43979c22ae6e4", 13498]},
+      {"ev": 0, "raw": ["data/ektar100-0.txt", "a7817abba70d0968bd84a83cada736b775173d7c", 5282], "train": ["data/ektar100-0-r190808_train.txt", "9845dda5e293e7e631687e54aefcc948b9027027", 13574]},
+      {"ev": 1, "raw": ["data/ektar100+1.txt", "b20e7927fad2ae3dcfd7fe3921f275bb46db2d86", 5128], "train": ["data/ektar100+1-r190808_train.txt", "ed32492192f1a3945f76c2e038f2b8f7a1c607a4", 13420]},
+      {"ev": 2, "raw": ["data/ektar100+2.txt", "cbde9741eb8bf4eed34b31a3dec94e39029f3b16", 5178], "train": ["data/ektar100+2-r190808_train.txt", "8f276baeb5558080e495a1064caa5939ef657ead", 13470]}
+    ],
+    "kodak_portra_400": [
+      {"ev": -1, "raw": ["data/portra400-1.txt", "862085b6c0bb60a35a4b1f3a3c8ac524848721b6", 5297], "train": ["data/portra400-1-r190808_train.txt", "dcb0aede3a27163e7169d35dadb28ec9f30e125e", 13589]},
+      {"ev": 0, "raw": ["data/portra400-0.txt", "3d56f82f12a4a1e966da4723175723374807d67c", 5267], "train": ["data/portra400-0-r190808_train.txt", "985062e0ae0994eac53c576adbfc34bad0aef148", 13559]},
+      {"ev": 1, "raw": ["data/portra400+1.txt", "abc136e62cd48aff93838bdd30f2410adcf9ae71", 5182], "train": ["data/portra400+1-r190808_train.txt", "cdd7a630e036cf09fc1aaf08e679aec1086dbff3", 13474]},
+      {"ev": 2, "raw": ["data/portra400+2.txt", "18aa65344d582baa43cba261a12453a274756884", 5217], "train": ["data/portra400+2-r190808_train.txt", "8d5a21e3fa1c80c0fcfbd01a092c2ce80efb8b2f", 13509]}
+    ]
+  },
+  "gates": {
+    "required_stocks": ["kodak_ektar_100", "kodak_portra_400"],
+    "required_exposures": [-1, 0, 1, 2],
+    "expected_patch_rows": 288,
+    "require_exact_commit": true,
+    "require_exact_git_blobs": true,
+    "require_raw_train_rgb_identity": true,
+    "require_common_reference_xyz": true,
+    "require_repository_gpl3_intent": true,
+    "image_or_tiff_requests_max": 0
+  },
+  "claim_ceiling": "GPLv3-repository controlled IT8 patch observations for one Portra 400 and one Ektar 100 capture/develop/scan setup; not natural-scene transfer, independent-roll evidence, Velvia coverage, scanner-independent stock response, product profile or calibration"
+}
