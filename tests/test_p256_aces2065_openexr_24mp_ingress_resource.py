@@ -24,11 +24,12 @@ def test_frozen_config_binds_unchanged_p251_and_p255() -> None:
         "p255_evidence",
         "p255_native_source",
         "p255_runner",
+        "runner",
     ):
         path = ROOT / bindings[f"{prefix}_path"]
         assert path.stat().st_size == bindings[f"{prefix}_bytes"]
         assert _sha256(path) == bindings[f"{prefix}_sha256"]
-    assert config["status"] == "FROZEN_BEFORE_RUNNER_OR_PIXEL_EXECUTION"
+    assert config["status"] == "FROZEN_READY_FOR_FORMAL_EXECUTION"
     assert config["input"]["openexr_sha256"] == (
         "eeced074ea933cd02421d491bc54c78fdba5704caa9bfe3705d47d410a01f275"
     )

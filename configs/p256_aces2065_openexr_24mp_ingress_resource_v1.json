@@ -1,7 +1,7 @@
 {
   "schema": "neuro-film.p256-aces2065-openexr-24mp-ingress-resource-contract.v1",
   "experiment_id": "P256",
-  "status": "FROZEN_BEFORE_RUNNER_OR_PIXEL_EXECUTION",
+  "status": "FROZEN_READY_FOR_FORMAL_EXECUTION",
   "bindings": {
     "contract_path": "docs/planning/P256_ACES2065_OPENEXR_24MP_INGRESS_RESOURCE_CONTRACT.md",
     "contract_commit": "3195cbf5b9a01845cee4597e7a6b641876d0be51",
@@ -37,6 +37,11 @@
     "p255_runner_git_blob": "f378f871f6f42345fea3575c753cff4bb85b11d3",
     "p255_runner_bytes": 25346,
     "p255_runner_sha256": "32b52d7185a4dc6329d805ed9224e0e5dd1df453b385373d2c7daf259f85ca72",
+    "runner_path": "scripts/audit_p256_aces2065_openexr_24mp_ingress_resource.py",
+    "runner_commit": "6b30df938a2294f9389e6928a07202612055f628",
+    "runner_git_blob": "5cc089722b5b474f8952b7e2191483d46e3b7e66",
+    "runner_bytes": 12477,
+    "runner_sha256": "fbc143d0e34fe1e2fb5ab264af851ebe77e1840900e6a998c5a2c983fc93c3aa",
     "producer_openexr_wheel_path": "data/vendor/openexr-3.4.15/openexr-3.4.15-cp312-cp312-win_amd64.whl",
     "producer_openexr_wheel_bytes": 740197,
     "producer_openexr_wheel_sha256": "7aa145813acfe10a83d6e89340349379828190b321608e69f2aee426e10c890b"
