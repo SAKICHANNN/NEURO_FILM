@@ -1,0 +1,77 @@
+{
+  "schema": "neuro-film.p282-libavif-gainmap-windows-runtime-evidence.v1",
+  "status": "PASS_PRIVATE_LIBAVIF_GAINMAP_WINDOWS_RUNTIME",
+  "decision": "The exact official libavif v1.4.2 Windows runtime recognizes and decodes every frozen valid P278 gain-map AVIF, applies each gain map at its exact alternate headroom, and rejects all three invalid or required-to-ignore gain maps atomically. Open only a separately frozen explicit libavif-to-P87 bridge; do not change the production loader or infer HDR quality.",
+  "bindings": {
+    "contract_commit": "6ed27dd4",
+    "runtime_lock_commit": "85427e9",
+    "formal_implementation_commit": "0afeefb6",
+    "runtime_tag": "v1.4.2",
+    "runtime_commit": "c5240fc79fe5c2407e10afd35f5505ef6333ea49",
+    "release_asset_sha256": "cb2d9fea43dcbab1d0707e3b37eb7b08070ad2fb60a2c188c39ec12382c0484a",
+    "runtime_manifest_sha256": "96ee33b34df2633cc494026ee47e30c3045314c800f60c3751e91a5daad98469",
+    "p278_fixture_manifest_sha256": "7e818797abb4c276dcdea123c7fad05d8d3a20121230d27334c3772a5ca90925"
+  },
+  "runtime": {
+    "retained_file_count": 3,
+    "avifdec_sha256": "a03664ddffb9d847eb484af6ceeffce96e03d641da5c577d26662487dee689f2",
+    "avifgainmaputil_sha256": "64d199dfdaf20dcf8bd5ee1073c01a5866ada595aaf933b911e1cd4bf9267471",
+    "local_builds": 0,
+    "alternate_backends": 0
+  },
+  "formal_result": {
+    "report_sha256": "ff919823f12ad3f370d0b2c7573f6c2d6b9e6fa15abb8c1634317a347062fee9",
+    "report_size_bytes": 4823,
+    "stable_identity": "c0b723a9fb7a7374f60476d07a624b21cbaabffafc80203b116587d05f037e7c",
+    "valid_fixture_count": 3,
+    "invalid_fixture_count": 3,
+    "valid_records": [
+      {
+        "name": "seine_hdr_gainmap_small_srgb.avif",
+        "alternate_headroom": 0.0,
+        "base_pixel_sha256": "1f59517838b55b2536bfb355a1c6ff8f86dc4987fe393d366b58329c66a8fb4d",
+        "tone_pixel_sha256": "944aa53e798ed1fc1a28525398aee69f77ce4a5894aca7efd96a2e634f6b571d",
+        "nonzero_rgb_difference_components": 359726,
+        "maximum_rgb_code_difference": 27813
+      },
+      {
+        "name": "seine_sdr_gainmap_big_srgb.avif",
+        "alternate_headroom": 1.3,
+        "base_pixel_sha256": "9ac0e4d07c23ae74681cd6083205cf54131d849060628ec99c93f801e5eb474b",
+        "tone_pixel_sha256": "8ae1afd7c381ef24d0c5e5861f4b654abb9c13d52a13fccd6a6b27e617648179",
+        "nonzero_rgb_difference_components": 359974,
+        "maximum_rgb_code_difference": 27288
+      },
+      {
+        "name": "seine_sdr_gainmap_srgb.avif",
+        "alternate_headroom": 1.3,
+        "base_pixel_sha256": "d4d3898dd37e56810cde8fe4c68820b2a0cfd5407987668328ea30f221bf6e7d",
+        "tone_pixel_sha256": "4ec5583b7bb4a517272030a70c3646e35c212e2a5b4479ae620009f2e7373409",
+        "nonzero_rgb_difference_components": 359935,
+        "maximum_rgb_code_difference": 27471
+      }
+    ],
+    "gates": {
+      "all_invalid_gain_maps_reject_atomically": true,
+      "all_valid_base_decode": true,
+      "all_valid_dimensions_exact": true,
+      "all_valid_gain_map_metadata": true,
+      "all_valid_tone_map": true,
+      "all_valid_tone_map_material": true,
+      "missing_runtime_atomic": true,
+      "runtime_immutable": true,
+      "source_immutable": true,
+      "truncation_atomic": true
+    }
+  },
+  "execution": {
+    "forward_reverse_report_exact": true,
+    "forward_report_sha256": "ff919823f12ad3f370d0b2c7573f6c2d6b9e6fa15abb8c1634317a347062fee9",
+    "reverse_report_sha256": "ff919823f12ad3f370d0b2c7573f6c2d6b9e6fa15abb8c1634317a347062fee9",
+    "stable_identity": "c0b723a9fb7a7374f60476d07a624b21cbaabffafc80203b116587d05f037e7c",
+    "runtime_network_requests": 0,
+    "retained_decoded_outputs": 0,
+    "formal_temporary_residue": 0
+  },
+  "claim_ceiling": "Private exact official libavif v1.4.2 Windows runtime mechanics for gain-map recognition, base decode and official gain-map application on three exact official valid fixtures plus three invalid controls only; no complete ISO 21496-1, arbitrary AVIF/HEIF, HDR quality/display validation, metadata preservation, dependency/package/schema/capability/product admission, stock claim or candidate3 change."
+}
