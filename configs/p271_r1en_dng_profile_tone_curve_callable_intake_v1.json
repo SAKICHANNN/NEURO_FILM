@@ -32,10 +32,11 @@
   },
   "producer_summary_bindings": {
     "real_curve_points_f32le_sha256": "b3afd859fde1a6688628c2c6ed3ce0d6a3086ddfc44fdacb672bddd9bb5a4425",
-    "formal_report_sha256": "d60e4d67f389208a106808439b3e8a5fcf1288c5ffd43864a7d77c8a21d5d956",
+    "formal_report_sha256": "d60e4d678be9ac4ee7298095ca14540c0d9b39c27137494657d2f680b2d5d956",
     "stable_identity_prefix": "9948f8b1",
     "stable_identity_suffix": "71c5196"
   },
+  "prescore_identity_correction": "After fixture JSON was read but before callable import or any output/metric, producer evidence showed that a coordination abbreviation had been expanded to the wrong middle bytes for the formal report SHA-256. This correction replaces only that report identity; all commits, Git objects, fixture, roles, gates and claim ceiling remain unchanged.",
   "stop_rule": "Any source identity, schema, domain, stage-order, output, ownership, mutation, invalid-control, replay or cleanup mismatch closes P271 without implementation copy, tolerance relaxation, loader integration or product mapping.",
   "claim_ceiling": "Private consumer replay of one exact R1EN DNG ProfileToneCurve v1 callable and canonical fixture only; no real-file stage composition, complete DNG renderer, image quality, arbitrary profile/camera, default-loader integration, public package/schema/capability, stock evidence, automatic matching or product admission. Candidate 3 remains closed at 2/3."
 }
