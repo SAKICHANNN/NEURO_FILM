@@ -17591,3 +17591,25 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   adjacent Android mechanical expansion; Ultimate remains active on
   controlled physical stock evidence, paired/capture-time information and
   mature bounded RAW/HDR cores.
+
+### 2026-08-28 - P254 freezes consumer intake before producer callable publication
+
+- **Node and routing:** `ULT > mature RAW/DNG explicit mechanisms > P254`,
+  DRPT L2 / Mode C. `dev-research-reliability` is the only write workflow;
+  router, DRPT-BI, project-log and structure skills remain read-only
+  governance. The corrected Goal keeps the automatic candidate counter at
+  `2/3` and forbids reconstruction of a producer interface from experiment
+  code.
+- **Prospective boundary:** contract commit `941a8112` freezes a two-stage
+  intake. Stage A binds corrected R1DZ evidence, the exact existing DJI EXIF
+  and both table hashes. Stage B must bind a newly published callable,
+  complete domain/order/ownership contract and canonical fixture in a commit
+  made before any callable import or expected-output read. Missing publication
+  yields `NOT_READY_PRODUCER_HANDOFF_GAP`, not a scientific negative.
+- **Verification and current state:** config/test commit `cd5da307` proves the
+  15,658-byte EXIF and Data1/Data2 hashes, requires every Stage B identity, and
+  forbids producer-worktree import or source copy. Twenty-five adjacent
+  P242-P245/P254 tests pass; Ruff, JSON and diff checks pass. No callable,
+  RAW/DNG pixel, target, reference or network read occurred. P244/P245 remain
+  the active fail-closed product behavior, and no package/schema/capability or
+  product mapping opens.
