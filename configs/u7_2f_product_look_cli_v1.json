@@ -1,0 +1,31 @@
+{
+  "schema_id": "neuro-film.product-look-cli-contract.v1",
+  "experiment_id": "U7.2F",
+  "question": "Can the existing renderer and recipe replay expose the U7.2E generic B&W product identity through a new opt-in profile while preserving every legacy profile and recipe path?",
+  "parent_evidence": [
+    {
+      "path": "docs/evidence/U7_2E_PRODUCT_LOOK_CATALOG_RESULT.json",
+      "sha256": "af51992278ba40950cce07310cb3dcf4b9d9675a41ad7e6fb50c323c4f744d3c"
+    },
+    {
+      "path": "docs/evidence/BW2_D1_GENERIC_BW_LOOK_RESULT.json",
+      "sha256": "d4d279f1e95964f11cff98467ab9b73f9f2ea337db7fd842e7280b2037bc0b88"
+    }
+  ],
+  "required_gates": [
+    "generic_bw requires safe_lab, --use-render-profile and the explicit product profile",
+    "generic_bw zero, intermediate and full outputs equal the U7.2E dispatcher",
+    "generic_bw recipe records style generic_bw and film-inspired look-approximation claim",
+    "generic_bw recipe replays to exact output bytes",
+    "named legacy hp5 and tri_x_400 recipe paths remain unchanged",
+    "default safe_rich_v1 profile and existing three-stock outputs remain byte exact",
+    "unknown product look, missing runtime asset and wrong profile fail closed"
+  ],
+  "forbidden": [
+    "change safe_rich_v1.json",
+    "change legacy recipe schemas or reinterpret old recipes",
+    "expose HP5 or Tri-X as current product identities",
+    "add stock calibration, automatic routing, K greater than 1 or new colour parameters"
+  ],
+  "claim_ceiling": "Opt-in local CLI and replay integration for the existing generic black-and-white Look Approximation identity. No HP5/Tri-X separation, calibrated stock response, automatic stock inference or multi-stock completion."
+}

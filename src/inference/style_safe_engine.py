@@ -250,26 +250,41 @@ def _verified_recipe_base(
         raise StyleSafeEngineError("recipe style is absent from profile")
     expected_parameters = profile["style_parameters"][style]
     stock_id = None
+    generic_bw = False
     if "look_amount" in render:
-        from .three_stock_look import (
-            list_three_stock_looks,
-            resolve_three_stock_look_parameters,
-        )
+        if style == "generic_bw":
+            from .generic_bw_look import resolve_generic_bw_look_parameters
 
-        match = [row for row in list_three_stock_looks() if row["style_id"] == style]
-        if len(match) != 1:
-            raise StyleSafeEngineError("recipe look amount has no exact stock mapping")
-        stock_id = match[0]["film_stock_id"]
-        _, expected_parameters = resolve_three_stock_look_parameters(
-            profile,
-            film_stock_id=stock_id,
-            look_amount=render["look_amount"],
-        )
+            generic_bw = True
+            _, expected_parameters = resolve_generic_bw_look_parameters(
+                profile,
+                look_amount=render["look_amount"],
+            )
+        else:
+            from .three_stock_look import (
+                list_three_stock_looks,
+                resolve_three_stock_look_parameters,
+            )
+
+            match = [
+                row for row in list_three_stock_looks() if row["style_id"] == style
+            ]
+            if len(match) != 1:
+                raise StyleSafeEngineError(
+                    "recipe look amount has no exact product-look mapping"
+                )
+            stock_id = match[0]["film_stock_id"]
+            _, expected_parameters = resolve_three_stock_look_parameters(
+                profile,
+                film_stock_id=stock_id,
+                look_amount=render["look_amount"],
+            )
     if render["color_parameters"] != expected_parameters:
         raise StyleSafeEngineError("recipe color parameters differ from profile")
     assets = {asset["role"]: root / asset["path"] for asset in recipe["assets"]}
     statistics = json.loads(assets["style_statistics"].read_text(encoding="utf-8"))
-    if style not in statistics.get("styles", {}):
+    execution_style = "hp5" if generic_bw else style
+    if execution_style not in statistics.get("styles", {}):
         raise StyleSafeEngineError("recipe style statistics are absent")
     input_metadata = recipe["input"]
     if input_metadata["source_profile_fingerprint_sha256"] is not None:
@@ -295,7 +310,21 @@ def _verified_recipe_base(
     if actual_metadata != expected_metadata:
         raise StyleSafeEngineError("recipe decoded input metadata drifted")
     source_rgb = working_image_to_srgb_float(working)
-    if stock_id is None:
+    if generic_bw:
+        from .generic_bw_look import render_generic_bw_look_rgb
+
+        base = render_generic_bw_look_rgb(
+            source_rgb,
+            profile=profile,
+            look_amount=render["look_amount"],
+            style_statistics=statistics["styles"][execution_style],
+            guardrails=load_guardrail_config(
+                assets["color_guardrails"], execution_style
+            ),
+            seed=render["seed"],
+            tile_size=effective_tile_size,
+        )
+    elif stock_id is None:
         base = render_resolved_safe_lab_rgb(
             source_rgb,
             style=style,
@@ -407,7 +436,13 @@ def replay_style_safe_recipe(
                 seed=int(dust["seed"]),
             )
         )
-    return composite_layers(base, layers, output_margin=4)
+    return composite_layers(
+        base,
+        layers,
+        output_margin=(
+            0 if render.get("look_amount") == 0.0 and not layers else 4
+        ),
+    )
 
 
 def replay_style_safe_recipe_to_file(

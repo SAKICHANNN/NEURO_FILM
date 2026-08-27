@@ -40,10 +40,13 @@ from src.filmfx import (
 from src.inference import (
     atomic_write_json,
     build_render_recipe,
+    list_product_looks,
     list_three_stock_looks,
     load_render_profile,
+    render_product_look_rgb,
     render_resolved_safe_lab_rgb,
     render_three_stock_look_rgb,
+    resolve_generic_bw_look_parameters,
     resolve_three_stock_look_parameters,
     sha256_file,
 )
@@ -357,14 +360,20 @@ def main() -> int:
         raise ValueError("--tile-workers requires --tile-size")
     if not 0.0 <= args.look_amount <= 1.0:
         raise ValueError("--look-amount must be in [0,1]")
+    product_look_ids = {row["look_id"] for row in list_product_looks()}
+    if args.style == "generic_bw" and (
+        args.color_engine != "safe_lab" or not args.use_render_profile
+    ):
+        raise ValueError(
+            "generic_bw requires safe_lab --use-render-profile and an explicit product profile"
+        )
     if args.look_amount != 1.0:
         if args.color_engine != "safe_lab" or not args.use_render_profile:
             raise ValueError(
                 "non-default --look-amount requires safe_lab --use-render-profile"
             )
-        supported = {row["style_id"] for row in list_three_stock_looks()}
-        if args.style not in supported:
-            raise ValueError("--look-amount only supports the three-stock look catalog")
+        if args.style not in product_look_ids:
+            raise ValueError("--look-amount only supports the product look catalog")
     staged_density = args.halation_model == "staged-density-research"
     if staged_density and (
         args.color_engine != "safe_lab"
@@ -414,7 +423,12 @@ def main() -> int:
         if args.style not in profile_manifest["style_parameters"]:
             raise ValueError(f"Render profile does not contain style {args.style!r}")
         profile_values = dict(profile_manifest["style_parameters"][args.style])
-        if args.look_amount != 1.0:
+        if args.style == "generic_bw":
+            _, profile_values = resolve_generic_bw_look_parameters(
+                profile_manifest,
+                look_amount=args.look_amount,
+            )
+        elif args.look_amount != 1.0:
             stock_id = next(
                 row["film_stock_id"]
                 for row in list_three_stock_looks()
@@ -439,7 +453,29 @@ def main() -> int:
     output_claim = resolve_look_approximation_claim(working)
     if analytic_runtime is None:
         source_rgb = working_image_to_srgb_float(working)
-        if args.look_amount == 1.0:
+        if args.style in product_look_ids and (
+            args.look_amount != 1.0 or args.style == "generic_bw"
+        ):
+            assert profile_manifest is not None
+            statistics = json.loads(args.stats.read_text(encoding="utf-8"))
+            execution_style = "hp5" if args.style == "generic_bw" else args.style
+            base = render_product_look_rgb(
+                source_rgb,
+                profile=profile_manifest,
+                look_id=args.style,
+                look_amount=args.look_amount,
+                style_statistics=statistics["styles"],
+                guardrails={
+                    execution_style: load_guardrail_config(
+                        args.guardrails, execution_style
+                    )
+                },
+                seed=args.seed,
+                tile_size=args.tile_size,
+                gamut_workers=args.gamut_workers,
+                tile_workers=args.tile_workers,
+            )
+        elif args.look_amount == 1.0:
             base = build_color_render_float(
                 source_rgb,
                 args,
@@ -481,7 +517,7 @@ def main() -> int:
                 base,
                 strength=args.grain,
                 seed=args.seed,
-                color=args.style not in {"hp5", "tri_x_400"},
+                color=args.style not in {"generic_bw", "hp5", "tri_x_400"},
             )
         )
     staged_density_output = None
@@ -594,7 +630,12 @@ def main() -> int:
         else composite_layers(
             base,
             layers,
-            output_margin=0 if analytic_runtime is not None else 4,
+            output_margin=(
+                0
+                if analytic_runtime is not None
+                or (args.look_amount == 0.0 and not layers)
+                else 4
+            ),
         )
     )
     output_format = save_rgb(
@@ -617,7 +658,7 @@ def main() -> int:
             "grain": {
                 "strength": args.grain,
                 "seed": args.seed,
-                "color": args.style not in {"hp5", "tri_x_400"},
+                "color": args.style not in {"generic_bw", "hp5", "tri_x_400"},
             },
             "halation": {
                 "strength": args.halation,
@@ -641,7 +682,7 @@ def main() -> int:
                 "color_parameters": profile_values,
                 "effects": effects,
             }
-            if args.look_amount != 1.0:
+            if args.look_amount != 1.0 or args.style == "generic_bw":
                 render_metadata["look_amount"] = args.look_amount
             recipe = build_render_recipe(
                 profile_path=args.render_profile,
