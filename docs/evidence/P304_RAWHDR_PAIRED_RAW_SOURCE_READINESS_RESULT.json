@@ -1,0 +1,58 @@
+{
+  "schema": "neuro-film.p304-rawhdr-paired-raw-source-readiness-evidence.v1",
+  "experiment_id": "P304",
+  "decision": "FAIL_CLOSED_RAWHDR_SOURCE_RIGHTS_OR_MANIFEST_GAP_NOT_SCIENTIFIC_RESULT",
+  "formal_execution_commit": "e243bd1b804b5140ca74f22081572cf353149d72",
+  "contract_commit": "08597df5a6c83d959b852f912f19a6bdb04de387",
+  "implementation_commit": "675d8e74",
+  "official_source": {
+    "repository": "https://github.com/yunhao-zou/RawHDR",
+    "commit": "c49e8b2d6ae83ee156aeb957a4c328d1df68e9bd",
+    "tree": "eacc5b8c8b3a287cb5a954360608adc880e6467a",
+    "readme_sha256": "73bdbf53d538b186d5da99a3fe4dd038b2d0650a3e4c4c6b030f3b95681adaf5",
+    "license_sha256": "2620dab846adc2de167ba4de7cfd28531c438945f3bd20e211acaa53b467353f"
+  },
+  "formal_reports": {
+    "forward_path": "outputs/eval/p304_rawhdr_source_readiness_v1/forward.json",
+    "reverse_path": "outputs/eval/p304_rawhdr_source_readiness_v1/reverse.json",
+    "bytes_each": 2895,
+    "sha256_each": "91f81139ff1a83ac190b36f0d1383320d4577ebcec59899a29dc67814ec07175",
+    "byte_exact": true,
+    "scientific_identity": "sha256:9b0bc27baf2f1d28ad580b8ec9db049e4643667bb475abc9e123713c23de2208"
+  },
+  "passed_gates": {
+    "official_identity": true,
+    "materially_distinct_physical_observation": true,
+    "anonymous_payload_locator": true,
+    "commercial_compatible_code_rights": true,
+    "exact_replay": true
+  },
+  "failed_gates": {
+    "commercial_compatible_data_rights": false,
+    "public_exact_inventory": false,
+    "group_isolation": false
+  },
+  "source_facts": {
+    "camera": "Canon 5D Mark IV",
+    "scene_pairs": 324,
+    "bracket_exposures_ev": [-3, 0, 3],
+    "input": "0 EV 14-bit RAW",
+    "target": "20-bit HDR merged from the bracket",
+    "repository_license": "MIT",
+    "dataset_license": null,
+    "dataset_locators": 2,
+    "repository_paths": 14,
+    "exact_inventory_paths": 0,
+    "public_split_manifest": false
+  },
+  "access_accounting": {
+    "network_bytes_per_report": 8510,
+    "archive_or_dataset_requests": 0,
+    "image_or_thumbnail_requests": 0,
+    "model_or_checkpoint_requests": 0,
+    "pixel_decodes": 0
+  },
+  "interpretation": "RawHDR documents a genuinely relevant real Canon bracket-to-HDR observation and exposes dataset download locators. The repository MIT licence covers code, but the official text does not separately license the photographed RAW/HDR payloads, publish a file-level size/hash inventory, or expose scene identities and a fixed split manifest. Public visibility and repository code rights are not dataset rights. The source therefore closes before any OneDrive/Baidu request.",
+  "stop_rule": "Do not follow the dataset locators, infer rights from MIT, enumerate remote folders, use a mirror, replace the source, request data/model payloads, or consume candidate 3.",
+  "claim_ceiling": "Zero-pixel official-source readiness evidence only; no HDR quality, arbitrary RAW support, shared operator, A1/A4/A5, package/schema/capability/product or stock claim."
+}
