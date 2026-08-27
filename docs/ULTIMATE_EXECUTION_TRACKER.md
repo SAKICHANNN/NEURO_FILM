@@ -2651,3 +2651,16 @@ Close this exact source without subscription, pixel access or private-fit
 rescue; controlled A0L/A0N capture or a newly rights-cleared independent source
 remains the stock-science mainline. Evidence:
 `docs/evidence/SF3_A3K_ONLANDSCAPE_THREE_STOCK_SOURCE_RESULT.json`.
+
+SF3.A2B fills the missing fixed-global baseline in the controlled three-stock
+experiment without changing frozen SF3.A2. It reuses the exact bounded K=1
+operator families and selection rules, selects each stock expert on its own
+development rolls, and separately selects one pooled operator using
+`(stock, roll)` folds before any confirmation target is read. The prospective
+synthetic discriminator passes all three stock-specific incremental gates,
+while an identical/common-effect negative correctly fails every stock; 17
+adjacent tests pass. Two direct CLI replays are byte-exact at 5,424 bytes / SHA
+`bec0d3a9...b5c88` with stable identity `0929e503...adeeb`. This is executable
+control infrastructure only, not real-film evidence or promotion. Physical
+A0L/A0N acquisition and a file-backed controlled three-stock run remain the
+stock-science mainline.

@@ -18353,3 +18353,30 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   schema/capability, product support or candidate3 evidence opens. Next work
   returns to a materially distinct mature RAW/HDR or genuinely new physical
   observation leaf; no adjacent OpenEXR platform micro-expansion is implied.
+
+### 2026-08-27 - SF3.A2B adds the missing pooled-global stock control
+
+- **Node and routing:** `ULT > stock-first controlled evidence > SF3.A2B`,
+  DRPT L2 / Mode C. `dev-research-reliability` was the only write workflow;
+  research and structure disciplines constrained the leaf. Live inspection
+  showed that frozen SF3.A2 compared each stock expert with identity and
+  wrong-stock experts but not with one common pooled operator, leaving shared
+  film/process/scanner appearance as an unresolved confound.
+- **Implementation:** commit `b4fc7e5c` adds an additive versioned control and
+  leaves SF3.A2 unchanged. It reuses the exact bounded per-channel affine,
+  bounded ridge 3x3 affine and SepLUT17-plus-ridge families. Stock experts are
+  selected on their own development rolls; the pooled expert uses composite
+  `(stock, roll)` folds. All model selection freezes before confirmation, and
+  K>1, retrieval, adaptive routing and post-result rescue remain forbidden.
+- **Verification:** 17 adjacent SF3.A2B/SF3.A2/paired-sampling tests pass with
+  Ruff, formatting and diff checks clean. A distinct-effect procedural cohort
+  opens all three incremental gates, while the common-effect negative closes
+  all three. Two direct CLI reports are byte-exact at 5,424 bytes / SHA
+  `bec0d3a91ef028b291679654ad784151ca15640e5e0fd8852ae8cd2cf14b5c88`;
+  stable identity is
+  `0929e5031eec1dfc89718528f3e8c9145752b8f1da555eaf1b1571476c8adeeb`.
+- **Boundary and handoff:** this proves only that the control can distinguish a
+  stock-specific synthetic mechanism from a shared effect. It is not real-film
+  evidence, calibration, stock completion or product promotion. Next mainline
+  work is a file-backed SF3.A2B execution path fed by the controlled physical
+  ledger; A0L/A0N acquisition remains the data gate.
