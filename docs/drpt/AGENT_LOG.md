@@ -19199,6 +19199,34 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   reference-pair family stops. No arbitrary EXR/DCI-P3/ACES/HDR quality,
   default/product, stock evidence or candidate-3 change opens.
 
+### 2026-08-27 - P297 closes the required-DNG-opcode silent-delegation gap
+
+- **Node:** `ULT > mature RAW/DNG safety > P297`; DRPT L2 / Mode C. After
+  confirming that all existing producer handoffs already have independent
+  consumer coverage, this leaf changed mechanisms rather than adding another
+  wrapper or EXR interpretation variant.
+- **Freeze and implementation:** preregistration `e8a9aaa8`, DNG-version
+  correction `a9b0a095`, implementation `baa69c32`, direct-entry correction
+  `d3deee57`, frozen pixel-oracle binding `25368f6e`, evidence `05dd31be`.
+  Adobe DNG SDK 1.7.1 Build2652 fixes tags `51008/51009/51022`, the big-endian
+  opcode envelope and optional flag bit0. The loader now rejects required,
+  malformed, reserved-flag and post-1.7.1 opcode lists before camera decode;
+  valid optional-only lists remain accepted with a single explicit warning.
+- **Result:** the exact five P98 files contain four optional-only inventories
+  and one absent list. Motorola/LG/Huawei carry four optional GainMaps;
+  Xiaomi additionally carries one optional WarpRectilinear. All five existing
+  float32 WorkingImage hashes and source hashes remain exact. Three required
+  list controls and seven malformed/version controls reject; forward/reverse
+  6,250-byte reports are byte-exact at SHA `c581803c...aa459`. Forty-seven
+  adjacent tests and Ruff/format/compile/JSON/diff checks pass.
+- **Corrections and boundary:** the version constant was corrected from
+  1.5.0.0 to 1.7.1.0 before implementation. Two formal commands then stopped
+  before any DNG access: first on direct-script import, then because aggregate
+  P98 evidence lacks row hashes. The accepted runner binds the already-frozen
+  P244 per-row oracle. P297 does not claim optional opcode execution or add
+  full/arbitrary DNG, image quality, default-loader, public package/schema/
+  capability/product, stock evidence or candidate-3 admission.
+
 ### 2026-08-27 - RF3.D15 closes autonomous three-stock blind salience
 
 - **Node and scope:** `ULT > RF3 > RF3.D15`, DRPT L2 / Mode C. This leaf
