@@ -1,0 +1,45 @@
+{
+  "schema": "neuro-film.p274-r1er-dng-profile-look-table-callable-intake-contract.v1",
+  "experiment_id": "P274",
+  "node": "ULT > mature RAW/DNG explicit mechanisms > P274",
+  "status": "FROZEN_BEFORE_FIXTURE_DESERIALIZATION_OR_CALLABLE_IMPORT",
+  "question": "Can the consumer independently verify and execute the exact R1ER ProfileLookTable v1 callable from source-locked producer Git objects without copying it into consumer src?",
+  "contract_path": "docs/planning/P274_R1ER_DNG_PROFILE_LOOK_TABLE_CALLABLE_INTAKE_CONTRACT.md",
+  "producer": {
+    "repo_head": "eb26545b0cd859e8d0a8c604429eef4587874dbd",
+    "contract_commit": "b46298a23aa359e3a1f62562c5b3432f850094b6",
+    "implementation_commit": "8a0428a45b244d58a7778a661dfed0ddc275a5f8",
+    "execution_commit": "d31285cd2d3170b8ae7967b761f91afb9c124688",
+    "evidence_commit": "eb26545b0cd859e8d0a8c604429eef4587874dbd"
+  },
+  "callable": {
+    "id": "zhuise.dng-profile-look-table-callable.v1",
+    "function": "zhuise.dng_profile_look_table_callable.apply_dng_profile_look_table_callable_v1",
+    "input": "finite nonempty HxWx3 XYZ D50 representing linear ROMM after exposure",
+    "output": "owned writable C-contiguous float64 XYZ D50 with exact input shape",
+    "stage_order": ["ProfileHueSatMap", "ProfileGainTableMap or ProfileGainTableMap2", "exposure", "ProfileLookTable", "ProfileToneCurve"]
+  },
+  "artifacts": {
+    "contract": {"commit_role": "contract_commit", "path": "docs/research/R1ER_DNG_PROFILE_LOOK_TABLE_CALLABLE_V1_CONTRACT.json", "git_blob": "95ab58249b8e3cd98c8f30677caa7183ab6a9745", "bytes": 4937, "sha256": "1d2f7f7eb03801c5f96be625fa49aa9ca4302462571e7b32cd25bc16a8437ba0"},
+    "parent_evidence": {"commit_role": "implementation_commit", "path": "docs/evidence/R1DR_DNG_PROFILE_CHAIN_RESULT.json", "git_blob": "6c96bf403cfe65c54e2420dabeca0e88a5585225", "bytes": 6652, "sha256": "6021d11e92ba694a5a62213768ff47933faea906456ca6d03ec597f11324794f"},
+    "arithmetic_core": {"commit_role": "implementation_commit", "path": "src/zhuise/dng_profile.py", "git_blob": "63b1b617879bead1cd542915301075856764e916", "bytes": 36685, "sha256": "f9df747091754c9020c24e0bd53f2db1c02287e9a57be25593ea89f23af11b43"},
+    "callable": {"commit_role": "implementation_commit", "path": "src/zhuise/dng_profile_look_table_callable.py", "git_blob": "03f4c670e0dc866430b1012826cc3974940e4039", "bytes": 4836, "sha256": "86564d3c310823f116f599eff66a0e484e2dcfce8943e7ede2075b53b351fb13"},
+    "schema": {"commit_role": "implementation_commit", "path": "schemas/zhuise_dng_profile_look_table_callable_v1.schema.json", "git_blob": "28d6caba2efedde9a4e3a81002097de5d1e8cf5e", "bytes": 835, "sha256": "551e1509dfee39c0a747d0c7cb000679a75a97fb0a6e13563975ce23dbc40393"},
+    "fixture": {"commit_role": "implementation_commit", "path": "tests/fixtures/r1er_dng_profile_look_table_callable_v1_fixture.json", "git_blob": "47c75e58c750c35436d481b954971729e854b83b", "bytes": 1218, "sha256": "4ae448ac93762711e4d986d40a80974113bf0e8f56c2ac73d13af33974f7bc2f"},
+    "producer_test": {"commit_role": "implementation_commit", "path": "tests/test_dng_profile_look_table_callable.py", "git_blob": "fe7c4065903dcda0c40a27aca1433e1fe5859574", "bytes": 4868, "sha256": "117cfa6f63c02f8b69233b67a2b0cd2b99aeb82ac70b7d452fccebee0a7b6f44"},
+    "ifd_audit": {"commit_role": "implementation_commit", "path": "scripts/audit_local_dng_ifds.py", "git_blob": "0a2f61330213cdcb009da9a937130aab35ed0ca0", "bytes": 15651, "sha256": "6b64918eaf1fb31d585245f685f492eb6492435a8c2acf6ca49db802fa63e243"},
+    "producer_runner": {"commit_role": "implementation_commit", "path": "scripts/run_r1er_dng_profile_look_table_callable_handoff.py", "git_blob": "e5c4af9ce562ebb413ca7e0c7844be310b550f6c", "bytes": 11819, "sha256": "29374ee869ab3f0d3268fdcbea3da2b465eb50eef64cd370fbf8229266f3cee4"},
+    "execution_lock": {"commit_role": "execution_commit", "path": "docs/research/R1ER_DNG_PROFILE_LOOK_TABLE_CALLABLE_EXECUTION_LOCK.json", "git_blob": "4063ca17fd17ad0ab6b8acd91e6304717d7cf2a3", "bytes": 2968, "sha256": "f6cb52d891cba513568800d54e6990b2c271498c8b35993efe162f3749278c44"},
+    "evidence": {"commit_role": "evidence_commit", "path": "docs/evidence/R1ER_DNG_PROFILE_LOOK_TABLE_CALLABLE_RESULT.json", "git_blob": "ebff83ee82b28362a88d01b49f5d1c7979e65af9", "bytes": 4825, "sha256": "62ce79592a1ff4052e00bdcded2fad6079abf3aad720706bbed90381b606b9e5"}
+  },
+  "producer_summary_bindings": {
+    "real_fuji_source_sha256": "7adec564bbf74858c70b5a01a2b744000f8057303169fc70d91bde7cb435530f",
+    "real_fuji_table_f32le_sha256": "a2daae1af80d8163a4aac8435c72b11a47d9a125cf14354bcdddc6bab7dd77c5",
+    "real_fuji_dimensions": [36, 8, 16],
+    "formal_report_sha256": "8bdbd66c601f10a1df44a5872c2479f6039ce7ceb9e1abe9a8ff776dfeec8f25",
+    "stable_identity_prefix": "c922f14f",
+    "stable_identity_suffix": "98610"
+  },
+  "stop_rule": "Any source identity, schema, domain, stage-order, output, ownership, mutation, invalid-control, replay or cleanup mismatch closes P274 without implementation copy, tolerance relaxation, loader integration or product mapping.",
+  "claim_ceiling": "Private consumer replay of one exact R1ER DNG ProfileLookTable v1 callable and canonical fixture only; no real-file stage composition, complete DNG renderer, image quality, arbitrary profile/camera, default-loader integration, public package/schema/capability, stock evidence, automatic matching or product admission. Candidate 3 remains closed at 2/3."
+}
