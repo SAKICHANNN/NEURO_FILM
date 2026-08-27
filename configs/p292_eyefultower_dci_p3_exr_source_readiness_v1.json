@@ -1,0 +1,84 @@
+{
+  "schema": "neuro-film.p292-eyefultower-dci-p3-exr-source-readiness-contract.v1",
+  "experiment_id": "P292",
+  "status": "FROZEN_PRESCORE_METADATA_ONLY",
+  "official_repository": {
+    "full_name": "facebookresearch/EyefulTower",
+    "commit": "06a01a4915afc872b893c20a025a0e14598c8478",
+    "tree": "845efc2cb2c8b6ebefda8df91bf940990ae2aa49",
+    "parents": [
+      "552eb805396674733d6a35591db9ead33d57f495",
+      "36611f85d37c5d36f10ed179a9080c6a15503bcd"
+    ]
+  },
+  "sources": {
+    "commit": {
+      "url": "https://api.github.com/repos/facebookresearch/EyefulTower/git/commits/06a01a4915afc872b893c20a025a0e14598c8478",
+      "bytes": 2765,
+      "sha256": "4dc1dfd73c1575f688d3a22bf6dc679a9169d13370548581f47722e29f4d7f42"
+    },
+    "tree": {
+      "url": "https://api.github.com/repos/facebookresearch/EyefulTower/git/trees/845efc2cb2c8b6ebefda8df91bf940990ae2aa49?recursive=1",
+      "bytes": 99160,
+      "sha256": "9ccf5f59ccfbc67247c3fc13ffeb411da16cd57005e76cb0f6d8682aa3fbd352"
+    },
+    "readme": {
+      "url": "https://raw.githubusercontent.com/facebookresearch/EyefulTower/06a01a4915afc872b893c20a025a0e14598c8478/README.md",
+      "bytes": 54380,
+      "sha256": "bf4fe411c0c0efb756cf18f70dd0eb01bf9679926e1fa91649602fae4bba1689"
+    },
+    "license": {
+      "url": "https://raw.githubusercontent.com/facebookresearch/EyefulTower/06a01a4915afc872b893c20a025a0e14598c8478/LICENSE",
+      "bytes": 1088,
+      "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+    },
+    "listing": {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/?list-type=2&prefix=EyefulTower/playroom_small/images-1k/&max-keys=1000",
+      "bytes": 48886,
+      "sha256": "feec4a20577e246226d60ba01add29ef81244450a7d9426f44b64e0c948dab8f"
+    },
+    "checksums": {
+      "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/playroom_small/images-1k/md5sums.txt",
+      "bytes": 6552,
+      "sha256": "53421c07366b3852b482f54a9e0ee0a8fddaa3606315d07c298d02498d3c825e"
+    },
+    "maximum_response_bytes_each": 110000,
+    "maximum_total_network_bytes": 220000
+  },
+  "expected": {
+    "repository_tree_entries": 385,
+    "license_blob": "b93be90515ccd0b9daedaa589e42bf5929693f1f",
+    "readme_blob": "ce06d91887cab8522dae3ceefe3941cd2821c675",
+    "s3_bucket": "fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15",
+    "s3_prefix": "EyefulTower/playroom_small/images-1k/",
+    "listing_objects": 142,
+    "exr_objects": 126,
+    "exr_total_bytes": 1184313438,
+    "camera_names": [
+      "40", "41", "42", "43", "44", "45", "46",
+      "47", "48", "49", "50", "51", "52", "53"
+    ],
+    "capture_suffixes": [
+      "DSC0001", "DSC0015", "DSC0029", "DSC0043", "DSC0057",
+      "DSC0071", "DSC0085", "DSC0099", "DSC0113"
+    ],
+    "selected_key": "EyefulTower/playroom_small/images-1k/40/40_DSC0001.exr",
+    "selected_size": 9399313,
+    "selected_etag": "\"a6f750cf77db90d9ca949523c1ed929b-2\"",
+    "selected_md5": "29c574af8fc3a543cd773eb812d56a49"
+  },
+  "gates": {
+    "require_official_identity": true,
+    "require_mit_all_content_rights": true,
+    "require_linear_dci_p3_float32_exr": true,
+    "require_nine_raw_bracket_observation": true,
+    "require_complete_bounded_inventory": true,
+    "require_checksum_coverage": true,
+    "require_selected_object_head_exact": true,
+    "require_capture_group_identities": true,
+    "require_zero_payload_and_pixel_reads": true,
+    "require_two_reports_exact": true
+  },
+  "stop_rule": "Any failed gate closes exact P292 without changing repository revision, scene, prefix, selection rule, inventory expectations or response limits. Do not download an EXR/JPEG body, use JPEG as independent truth or consume candidate 3.",
+  "claim_ceiling": "Official-source and metadata readiness for one future strict linear DCI-P3 float32 EXR intake only. No decoded-pixel conformance, HDR or bracket quality, independent truth, arbitrary EXR, package/schema/capability/product admission, stock evidence or candidate-3 change."
+}
