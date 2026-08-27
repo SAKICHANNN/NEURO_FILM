@@ -1,0 +1,34 @@
+{
+  "contract_id": "P284_LIBAVIF_GAINMAP_PQ_PNG_V1",
+  "status": "FROZEN_AFTER_P283_BEFORE_P284_PUBLICATION",
+  "bindings": {
+    "p282_evidence": "docs/evidence/P282_LIBAVIF_GAINMAP_WINDOWS_RUNTIME_RESULT.json",
+    "p282_evidence_sha256": "fe40ea1f523847f2f012887d72ad47f45cbe0a5de021562093cf26c74b9afa12",
+    "p283_config": "configs/p283_libavif_gainmap_p87_bridge_v1.json",
+    "p283_config_sha256": "148d86ad84b18a938a3b2cda2cc69c7cb4f34066cb84b52dbb8d27a004a1f0bb",
+    "p283_evidence": "docs/evidence/P283_LIBAVIF_GAINMAP_P87_BRIDGE_RESULT.json",
+    "p283_evidence_sha256": "fb3e34da7126f1b8aa9a5803354c3d3c3ad61f220ae2f68db9ddc2e9a3eaf442",
+    "p89_evidence": "docs/evidence/P89_ULTRAHDR_ABSOLUTE_REC2020_PQ_PNG_RESULT.json",
+    "p89_evidence_sha256": "8ba8a65a7090e643ca74af8b7583351e245fae6ef0f06a2609e8f7769e1784f8",
+    "u1_4g_evidence": "docs/evidence/U1_4G_REC2100_PQ_PNG_RAIL_RESULT.json",
+    "u1_4g_evidence_sha256": "12a53bb49ac0ba92314f2310c77f7dc2ab3c798e0406136d48d9ebb9eb0b0bcb",
+    "pq_transfer_sha256": "22b30ca4bd9cd67a2483380816cb656aa3c1b16d3cb8dced787f7184d00b6039",
+    "png_stream_sha256": "c3d3c35a23efbc1f7b21babd4255c09872c6ff8cc7eec1423b9d1c9266cf9b97"
+  },
+  "standards": {
+    "bt2100": "ITU-R BT.2100-3 (02/2025) Table 4",
+    "png": "PNG Third Edition (2025)",
+    "cicp_hex": "09100001"
+  },
+  "publication": {
+    "row_count": 64,
+    "quantizer": "floor(encoded*65535+0.5)",
+    "maximum_code_quantization_error": 0.000007629511948348211,
+    "quantization_epsilon": 1e-12
+  },
+  "gates": {
+    "required_row_count": 3,
+    "maximum_absolute_light_error_nits": 0.07
+  },
+  "claim_ceiling": "Private exact one-way publication mechanics for three frozen official libavif gain-map higher-headroom renditions through P87 and the existing P89 PQ RGB16 PNG rail only; no P283 roundtrip rescue, complete ISO 21496-1, arbitrary AVIF/HEIF, HDR reconstruction quality, display validation, mastering/content-light metadata, public API/dependency/package/schema/capability/product, stock claim or candidate3 change"
+}
