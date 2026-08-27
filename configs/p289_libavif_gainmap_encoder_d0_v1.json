@@ -116,6 +116,20 @@
       "1"
     ]
   },
+  "execution_bindings": {
+    "runner": [
+      "scripts/audit_p289_libavif_gainmap_encoder_d0.py",
+      15347,
+      "700090e3bbbc18e78839f9dbf4184b0ee576066bac0d52b1dea67078bef9de02",
+      "48a6c1c1"
+    ],
+    "test": [
+      "tests/test_p289_libavif_gainmap_encoder_d0.py",
+      1943,
+      "b13f4982eb7842e0e2a9ed00bdb56d3a948d1bec1782fcf6e0ca3d8e973d337d",
+      "48a6c1c1"
+    ]
+  },
   "gates": {
     "endpoint_median_abs_error_12bit_max": 1.0,
     "endpoint_p95_abs_error_12bit_max": 4.0,
