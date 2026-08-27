@@ -1,0 +1,63 @@
+{
+  "bindings": {
+    "acquisition_report_bytes": 58869,
+    "acquisition_report_sha256": "dc9a17fd05814f12aa2ca8b2d335c889ac4d104ffde8d298d7c354e96e088bcd",
+    "config_bytes": 3992,
+    "config_sha256": "0601b45e9e62fce3c0c07e6c4474efad11f38b199ac322db98c91b3e54fe694e",
+    "formal_report_bytes": 28675,
+    "formal_report_sha256": "1a0fbc67791c9511e6d31b983998d06051314968e004cfbf97d081be6a375a68",
+    "member_manifest_sha256": "7e65e2bf8c72b6aff68a51d1b1e8e55f2ac4f3df0d9ad0d15653f6e10f50d3c1",
+    "source_lock_report_bytes": 122438,
+    "source_lock_report_sha256": "9076518a8fd9621b76bffa65b9843f323b37d375e6bb8a2ea42c201127db9eac"
+  },
+  "boundary": {
+    "confirmation_member_reads": 0,
+    "reserve_member_reads": 0,
+    "target_reads_before_model_lock": 0
+  },
+  "candidate_count": "2/3",
+  "claim_ceiling": "Private group-disjoint capture-time environment-conditioned explicit-operator D0 only. Candidate count remains 2/3 until separate confirmation plus A4/A5 authorization and versioned artifact/schema/receipt gates pass.",
+  "decision": "FAIL_CLOSED_P302_DEVELOPMENT",
+  "execution_commit": "54c120035e6c9e2e30d0694e97657f11a32ab9bd",
+  "experiment_id": "P302",
+  "gates": {
+    "acquisition_config_exact": true,
+    "acquisition_members_exact": true,
+    "acquisition_role_exact": true,
+    "candidate_count_unchanged": true,
+    "confirmation_unread_during_development": true,
+    "formal_network_zero": true,
+    "member_manifest_source_lock_exact": true,
+    "report_gates_all_pass": false,
+    "report_phase_exact": true,
+    "reserve_unread": true,
+    "role_partition_exact": true,
+    "source_lock_no_payload_or_pixels": true,
+    "two_fresh_reports_byte_exact": true
+  },
+  "model_bytes": 60832,
+  "model_sha256": "57f7faba323d2fd473637f5cf013cd2e89f275eef2a96973acaff9bff456ae25",
+  "phase": "development",
+  "schema": "neuro-film.p302-wildrelight-spatial-envmap-formal-evidence.v1",
+  "scientific_identity": "sha256:f7be32d9f377b68ca047d15c262a53412b2bf62a1a714e63e9ecb75da1576fe9",
+  "summary": {
+    "candidate_control_rate": 0.0,
+    "candidate_median_reduction_percent": -216.48681384353876,
+    "candidate_worst_reduction_percent": -1231.946970228997,
+    "cyclic_control_rate": 0.8888888888888888,
+    "cyclic_median_reduction_percent": 40.35968616584435,
+    "maximum_gradient_ratio": 2.8171275708504737,
+    "maximum_new_boundary_fraction": 0.0,
+    "median_oracle_gain_recovery": -6.840387492182977,
+    "minimum_valid_fraction": 0.9998785827127059,
+    "positive_scene_medians": 0,
+    "scene_medians": {
+      "bench2": -754.8507833266764,
+      "bench3": -1126.9377932043474,
+      "bridge": -21.627637807140466,
+      "cabin": -553.5729326694328,
+      "foodtruck": -79.83050561137742,
+      "road": -204.18053547099962
+    }
+  }
+}

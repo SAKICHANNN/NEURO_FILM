@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+from pathlib import Path
 
 from scripts.audit_p302_wildrelight_spatial_envmap_explicit_operator import (
     build_evidence,
@@ -101,3 +102,20 @@ def test_evidence_fails_closed_on_confirmation_read() -> None:
         phase="development",
     )
     assert evidence["decision"] == "FAIL_CLOSED_P302_DEVELOPMENT"
+
+
+def test_formal_development_evidence_is_bound_and_confirmation_stays_unread() -> None:
+    path = (
+        Path(__file__).resolve().parents[1]
+        / "docs/evidence/P302_WILDRELIGHT_SPATIAL_ENVMAP_EXPLICIT_OPERATOR_RESULT.json"
+    )
+    body = path.read_bytes()
+    evidence = json.loads(body)
+    assert hashlib.sha256(body).hexdigest() == (
+        "37bdda354b28594f9a37cefa21f9f5ca00536a1a86fb12069afbab427009ddbb"
+    )
+    assert evidence["decision"] == "FAIL_CLOSED_P302_DEVELOPMENT"
+    assert evidence["candidate_count"] == "2/3"
+    assert evidence["boundary"]["confirmation_member_reads"] == 0
+    assert evidence["boundary"]["reserve_member_reads"] == 0
+    assert evidence["summary"]["candidate_control_rate"] == 0.0
