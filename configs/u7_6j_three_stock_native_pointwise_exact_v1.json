@@ -1,0 +1,73 @@
+{
+  "schema": "neuro-film.u7-6j-three-stock-native-pointwise-exact-contract.v1",
+  "experiment_id": "U7.6J",
+  "question": "Can a separately versioned C11 kernel reproduce the existing NumPy pointwise safe-Lab evaluation semantics exactly for Velvia 50, Portra 400 and Ektar 100 while retaining the U7.6I material CPU advantage?",
+  "parent_negative": {
+    "experiment_id": "U7.6I",
+    "evidence_path": "docs/evidence/U7_6I_THREE_STOCK_NATIVE_POINTWISE_RESULT.json",
+    "evidence_sha256": "5dbc29ae0008e226492333ec0ec7784b235523a470faa4a0519db8ff69007f2b",
+    "diagnosis": "When skin_protect is positive, the existing NumPy guardrail promotes the complete post-neutral out_ab array to binary64 before skin blending and chroma-cap arithmetic, then casts once to float32. The v2 C kernel retained binary32 through those stages. Velvia 50 alone exercised the cap on 156 preview pixels, producing a maximum 1.9073486328125e-6 Lab difference."
+  },
+  "bindings": [
+    {
+      "path": "src/color_engine/safe_lab.py",
+      "sha256": "f8e270e267691107e778e668588639997577fac0f4494c11a936ef76cb1bf7bc"
+    },
+    {
+      "path": "configs/render_profiles/safe_rich_v1.json",
+      "sha256": "72a9948e6fc76e230c4593b847728712bc034840cd339e6b34f079ac7d424c79"
+    },
+    {
+      "path": "configs/film_color_stats.json",
+      "sha256": "1a45e90765e577edd4ca1773fc8c6cf98fd09b8afbdddfa519b1f097c5dd7c04"
+    },
+    {
+      "path": "configs/color_guardrails.json",
+      "sha256": "6669b7bc873febcc74ba7ddcbc1c1584807e38465447a5cdbeb24073efa00aa7"
+    }
+  ],
+  "source": {
+    "path": "data/preference/repid/u5_r2repid3_shared_operator_v1/fit/winner/a4593-kme_0276.jpeg",
+    "sha256": "7ea3d1ed37b7df518c0466c1379f08aa34ea5ae00eb7dc8208fcff2cfe68d1c6",
+    "preview_width": 816,
+    "preview_height": 1224,
+    "preview_pixels": 998784
+  },
+  "styles": [
+    "velvia_50",
+    "portra_400",
+    "ektar_100"
+  ],
+  "required_native_semantics": {
+    "pre_skin_arithmetic": "binary32 with the existing operation order",
+    "positive_skin_protect_transition": "promote post-neutral out_ab and source_ab to binary64 before skin blending",
+    "post_skin_chroma_cap": "binary64 output norm, scale, smoothstep knee and final multiplication; source-derived cap remains binary32 before binary64 division",
+    "output_cast": "one binary64-to-binary32 cast per a/b channel after the cap stage",
+    "skin_protect_zero": "retain the existing binary32 path because the NumPy skin block is skipped"
+  },
+  "execution": {
+    "look_amount": 1.0,
+    "thread_count": 8,
+    "formal_processes": 2,
+    "timed_repetitions_per_style": 3,
+    "native_build_excluded_from_timing": true,
+    "full_renderer_integration_allowed": false
+  },
+  "gates": {
+    "maximum_lab_absolute_error": 0.0,
+    "require_exact_output_sha256_per_style": true,
+    "require_cross_process_output_identity": true,
+    "require_reproducible_dll_identity": true,
+    "maximum_three_style_native_pointwise_wall_seconds": 0.3,
+    "maximum_native_to_python_pointwise_wall_ratio": 0.5
+  },
+  "stop_rules": [
+    "Do not alter the Python oracle, source, preview geometry, style parameters, guardrails, thread count or gates after this freeze.",
+    "Do not reinterpret U7.6I as passing; U7.6J is a distinct kernel version with an explicit binary64 compatibility stage.",
+    "If exact parity fails, close this implementation without tolerance, compiler-flag, source, dimension, parameter or thread-count rescue.",
+    "A pass opens only one separately frozen full-chain composition test; it does not authorize product default replacement or a stock-response claim."
+  ],
+  "decision_if_pass": "RETAIN_V3_EXACT_POINTWISE_CANDIDATE_AND_OPEN_ONE_FULL_CHAIN_COMPOSITION",
+  "decision_if_fail": "CLOSE_V3_EXACT_POINTWISE_CANDIDATE",
+  "claim_ceiling": "Local Windows/MSVC CPU evidence for a separately versioned exact implementation of the pointwise Lab subset of three non-calibrated Look Approximations at 0.999MP; not a complete renderer, stock response, stock distinguishability, calibration or product promotion."
+}
