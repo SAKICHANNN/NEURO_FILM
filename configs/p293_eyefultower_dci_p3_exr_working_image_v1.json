@@ -1,0 +1,44 @@
+{
+  "schema": "neuro-film.p293-eyefultower-dci-p3-exr-working-image-contract.v1",
+  "experiment_id": "P293",
+  "status": "FROZEN_AWAITING_EXACT_SOURCE_LOCK",
+  "parent": {
+    "evidence_path": "docs/evidence/P292_EYEFULTOWER_DCI_P3_EXR_SOURCE_READINESS_RESULT.json",
+    "evidence_commit": "4d1e8360",
+    "report_sha256": "aba2796fc4b894d74454bfc4543b93367946e59367a8940f424c180e49f30c89",
+    "scientific_identity": "sha256:e8fed078b191c5fd6ed5d4fbde11098c17c75e3a8a3b42e6efa618bccac3858b"
+  },
+  "source": {
+    "url": "https://fb-baas-f32eacb9-8abb-11eb-b2b8-4857dd089e15.s3.amazonaws.com/EyefulTower/playroom_small/images-1k/40/40_DSC0001.exr",
+    "path": "data/external/p293_eyefultower_dci_p3_exr_v1/40_DSC0001.exr",
+    "bytes": 9399313,
+    "md5": "29c574af8fc3a543cd773eb812d56a49",
+    "etag": "\"a6f750cf77db90d9ca949523c1ed929b-2\"",
+    "sha256": null,
+    "payload_download_limit": 1
+  },
+  "boundaries": {
+    "maximum_width": 2048,
+    "maximum_height": 2048,
+    "maximum_pixels": 4194304,
+    "maximum_absolute_component": 65504.0,
+    "jpeg_reads": 0,
+    "persistent_decoded_pixels_or_media": 0,
+    "fitting_training_inference_runs": 0
+  },
+  "gates": {
+    "require_parent_and_source_identity": true,
+    "require_one_nondeep_scanline_part": true,
+    "require_rgb_float32_only": true,
+    "require_no_compression": true,
+    "require_container_dci_p3_chromaticities": true,
+    "require_finite_bounded_pixels": true,
+    "require_negative_and_highlight_preservation": true,
+    "require_explicit_colorimetric_oracle": true,
+    "require_owned_rec2020_working_image": true,
+    "require_failure_atomicity": true,
+    "require_two_reports_exact": true
+  },
+  "stop_rule": "Any failed gate closes exact P293. Do not add or infer missing chromaticities, replace the selected source, normalize or clip pixels, relax thresholds, use the same-source JPEG as truth, or consume candidate 3.",
+  "claim_ceiling": "One private exact-file Windows/Python linear DCI-P3 float32 EXR ingress into linear_rec2020_d65 WorkingImage only. No bracket or HDR quality, arbitrary EXR/DCI-P3, display rendering, package/schema/capability/product admission, stock evidence or candidate-3 change."
+}
