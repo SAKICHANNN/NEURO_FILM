@@ -7,6 +7,7 @@ import hashlib
 import json
 import sys
 import tempfile
+from itertools import pairwise
 from pathlib import Path
 from unittest.mock import patch
 
@@ -211,9 +212,7 @@ def build_report(config_path: Path, order: str) -> dict[str, object]:
         ),
         "sorted_multi_tag_diagnostic": all(
             multi_message.find(guarded[code]) < multi_message.find(guarded[next_code])
-            for code, next_code in zip(
-                sorted(guarded), sorted(guarded)[1:], strict=True
-            )
+            for code, next_code in pairwise(sorted(guarded))
         ),
         "source_hashes_unchanged": all(row["source_unchanged"] for row in results),
     }

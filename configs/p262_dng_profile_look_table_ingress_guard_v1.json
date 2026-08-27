@@ -10,7 +10,7 @@
     "implementation_path": "src/preprocess/dng_forward_raster.py",
     "implementation_sha256": "1de3c12fcb1a00cabf519f2689b62a25f2792ea18e9fa31201f592b54c382cb4",
     "runner_path": "scripts/audit_p262_dng_profile_look_table_ingress_guard.py",
-    "runner_sha256": "8cbf5508e931939e960eb2d8a9aaf6d54f1a0a09d09d326a019dd20827e7079d",
+    "runner_sha256": "4918b8df81ce163dd6d3129e34f60a15cb4b403ce840b08df4f8f41eb7a7c646",
     "test_path": "tests/test_p262_dng_profile_look_table_ingress_guard.py",
     "test_sha256": "055bca36020b9766d77fec7c3095c6c2338e026e149b874957341628e294bb0d",
     "p98_config_path": "configs/p98_dng_forward_raster_v1.json",
