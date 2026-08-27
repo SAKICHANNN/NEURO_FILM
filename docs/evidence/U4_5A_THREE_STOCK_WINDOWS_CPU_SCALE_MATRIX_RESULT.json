@@ -1,0 +1,164 @@
+{
+  "claim_ceiling": "Current Windows Python CPU scale evidence for three existing deterministic Look Approximations only; not stock accuracy, calibration, preference, mobile/device performance or product release.",
+  "contract_sha256": "3390e1e3d0fae451b52082b59cae815595eaa14f61fd84fccdf833f8ad454d57",
+  "gates": {
+    "all_mechanical": true,
+    "all_provisional_product_targets": false,
+    "owned_residue_empty": true
+  },
+  "platform": {
+    "python": "3.12.10",
+    "sys_platform": "win32"
+  },
+  "schema": "kmcfm.u4-5a-three-stock-windows-cpu-scale-matrix-result.v1",
+  "source": {
+    "height": 6048,
+    "path": "data/preference/repid/u5_r2repid3_shared_operator_v1/fit/winner/a4593-kme_0276.jpeg",
+    "sha256": "7ea3d1ed37b7df518c0466c1379f08aa34ea5ae00eb7dc8208fcff2cfe68d1c6",
+    "width": 4032
+  },
+  "status": "PASS_MECHANICS_PRODUCT_TARGETS_OPEN",
+  "tiers": [
+    {
+      "maximum_pixels": 1000000,
+      "maximum_process_tree_rss_bytes": 1902960640,
+      "maximum_wall_seconds": 8.271767100000943,
+      "mechanical_gates": {
+        "exact_repeat_output_hashes": true,
+        "expected_dimensions": true,
+        "repeat_wall_ratio": true,
+        "three_outputs_distinct": true
+      },
+      "mechanical_pass": true,
+      "provisional_product_targets": {
+        "process_tree_rss_bytes": false,
+        "wall_seconds": true
+      },
+      "provisional_product_targets_pass": false,
+      "repeat_wall_ratio": 1.0383005619068664,
+      "runs": [
+        {
+          "height": 1224,
+          "output_hashes": {
+            "ektar_100": "d167d5a4004653e480a7e81a5b88a9927984823e66184de25effec8b74afdf5a",
+            "portra_400": "226961c749f30d35827edffff38eaa2acc0e394cd56925d30f59b124f2a30f21",
+            "velvia_50": "21246c67a31da3ae7791b5b28ca6a2efb4578a3a0ea7b32a22cdee2925f11be8"
+          },
+          "peak_process_tree_rss_bytes": 1896976384,
+          "pixels": 998784,
+          "three_outputs_distinct": true,
+          "wall_seconds": 7.966640300001018,
+          "width": 816
+        },
+        {
+          "height": 1224,
+          "output_hashes": {
+            "ektar_100": "d167d5a4004653e480a7e81a5b88a9927984823e66184de25effec8b74afdf5a",
+            "portra_400": "226961c749f30d35827edffff38eaa2acc0e394cd56925d30f59b124f2a30f21",
+            "velvia_50": "21246c67a31da3ae7791b5b28ca6a2efb4578a3a0ea7b32a22cdee2925f11be8"
+          },
+          "peak_process_tree_rss_bytes": 1902960640,
+          "pixels": 998784,
+          "three_outputs_distinct": true,
+          "wall_seconds": 8.271767100000943,
+          "width": 816
+        }
+      ],
+      "tier_id": "preview_1mp"
+    },
+    {
+      "maximum_pixels": 12000000,
+      "maximum_process_tree_rss_bytes": 1915101184,
+      "maximum_wall_seconds": 65.96528729999955,
+      "mechanical_gates": {
+        "exact_repeat_output_hashes": true,
+        "expected_dimensions": true,
+        "repeat_wall_ratio": true,
+        "three_outputs_distinct": true
+      },
+      "mechanical_pass": true,
+      "provisional_product_targets": {
+        "process_tree_rss_bytes": false,
+        "wall_seconds": false
+      },
+      "provisional_product_targets_pass": false,
+      "repeat_wall_ratio": 1.0445340360214208,
+      "runs": [
+        {
+          "height": 4242,
+          "output_hashes": {
+            "ektar_100": "0aa45ef61cd308468a38202f82236abdba950a8a9286de0ed8631178d3944f4e",
+            "portra_400": "8335de18239eae919773a02882c0d3a29872303ee3c05c4e157b16df33957592",
+            "velvia_50": "98f7ca9325e971e22ee3e98036465634d5fd2384b9cb4b827f6a5ae45dac6e27"
+          },
+          "peak_process_tree_rss_bytes": 1903783936,
+          "pixels": 11996376,
+          "three_outputs_distinct": true,
+          "wall_seconds": 63.15283660000023,
+          "width": 2828
+        },
+        {
+          "height": 4242,
+          "output_hashes": {
+            "ektar_100": "0aa45ef61cd308468a38202f82236abdba950a8a9286de0ed8631178d3944f4e",
+            "portra_400": "8335de18239eae919773a02882c0d3a29872303ee3c05c4e157b16df33957592",
+            "velvia_50": "98f7ca9325e971e22ee3e98036465634d5fd2384b9cb4b827f6a5ae45dac6e27"
+          },
+          "peak_process_tree_rss_bytes": 1915101184,
+          "pixels": 11996376,
+          "three_outputs_distinct": true,
+          "wall_seconds": 65.96528729999955,
+          "width": 2828
+        }
+      ],
+      "tier_id": "standard_12mp"
+    },
+    {
+      "maximum_pixels": 24000000,
+      "maximum_process_tree_rss_bytes": 1905672192,
+      "maximum_wall_seconds": 135.8259517000006,
+      "mechanical_gates": {
+        "exact_repeat_output_hashes": true,
+        "expected_dimensions": true,
+        "repeat_wall_ratio": true,
+        "three_outputs_distinct": true
+      },
+      "mechanical_pass": true,
+      "provisional_product_targets": {
+        "process_tree_rss_bytes": false,
+        "wall_seconds": false
+      },
+      "provisional_product_targets_pass": false,
+      "repeat_wall_ratio": 1.0151315544176756,
+      "runs": [
+        {
+          "height": 6000,
+          "output_hashes": {
+            "ektar_100": "44e06f9cecf2f9f05a7a1d10d64bc206b778070948a5ff64ada5076ec0a7c699",
+            "portra_400": "5e1b2e999220ac7ff091c62f5ec12af44a7b0d3cc6664d52a4127b40f9259c5f",
+            "velvia_50": "75bdb9718d66d1d08c59157dd25325bfd9a39a2e28e4a5d4587cf9a4376784a6"
+          },
+          "peak_process_tree_rss_bytes": 1905340416,
+          "pixels": 24000000,
+          "three_outputs_distinct": true,
+          "wall_seconds": 135.8259517000006,
+          "width": 4000
+        },
+        {
+          "height": 6000,
+          "output_hashes": {
+            "ektar_100": "44e06f9cecf2f9f05a7a1d10d64bc206b778070948a5ff64ada5076ec0a7c699",
+            "portra_400": "5e1b2e999220ac7ff091c62f5ec12af44a7b0d3cc6664d52a4127b40f9259c5f",
+            "velvia_50": "75bdb9718d66d1d08c59157dd25325bfd9a39a2e28e4a5d4587cf9a4376784a6"
+          },
+          "peak_process_tree_rss_bytes": 1905672192,
+          "pixels": 24000000,
+          "three_outputs_distinct": true,
+          "wall_seconds": 133.80132960000083,
+          "width": 4000
+        }
+      ],
+      "tier_id": "desktop_24mp"
+    }
+  ]
+}
