@@ -1,0 +1,49 @@
+{
+  "schema": "neuro-film.p275-luckyhdr-source-feasibility-contract.v1",
+  "experiment_id": "P275",
+  "node": "ULT > paired/capture-time physical observation > P275",
+  "status": "FROZEN_BEFORE_FORMAL_GIT_OBJECT_AUDIT",
+  "contract_path": "docs/planning/P275_LUCKYHDR_SOURCE_FEASIBILITY_CONTRACT.md",
+  "repository": {
+    "owner": "princeton-computational-imaging",
+    "name": "lucky-hdr",
+    "commit": "f5aec06fb70cd092973be5d15ec43899f8209293",
+    "tree": "37c05025490bd8a67494d953f23a7cebb521bc9a",
+    "api_root": "https://api.github.com/repos/princeton-computational-imaging/lucky-hdr"
+  },
+  "text_objects": {
+    "license": {"path": "LICENSE", "bytes": 1073, "git_blob": "3973fb0a663d2506f2e11e1fc769063af30b0ee8"},
+    "readme": {"path": "README.md", "bytes": 7808, "git_blob": "5c9e605171577e843c84f457836fcd25c294ad97"},
+    "datasets": {"path": "DATASETS.md", "bytes": 1935, "git_blob": "265eeaaa7926907e89cbc97a3c499e5452786086"},
+    "third_party": {"path": "THIRD_PARTY.md", "bytes": 1111, "git_blob": "6426ae22031937359d38684552ed0648ef4d8aeb"},
+    "demo_readme": {"path": "examples/bracket_demo/README.md", "bytes": 1747, "git_blob": "ee689952e1725daa2719b08806e390709a041ec1"},
+    "gitattributes": {"path": ".gitattributes", "bytes": 462, "git_blob": "0ed0044db707f95752879c471d5443154e9e2e26"},
+    "inference": {"path": "src/luckyhdr/inference.py", "bytes": 10227, "git_blob": "ce1244b6fc63672c4cf139ae779aac44bc5cdc8b"},
+    "model": {"path": "src/luckyhdr/models/luckyhdr.py", "bytes": 42877, "git_blob": "9360fc3800092517df8873965137b66ad94f0b0c"}
+  },
+  "binary_objects": {
+    "checkpoint": {"path": "checkpoints/luckyhdr_paper.pth", "bytes": 524786, "git_blob": "18b82e41c6564859c2aafcceb961ba33ba92e6d1"},
+    "short": {"path": "examples/bracket_demo/frame_short.dng", "bytes": 7906744, "git_blob": "d31badd74071ff01533bee94b508df506e1bef54"},
+    "mid": {"path": "examples/bracket_demo/frame_mid.dng", "bytes": 7939164, "git_blob": "9a5a17723dca33f55ee295c9f9948a6a5c593b10"},
+    "long": {"path": "examples/bracket_demo/frame_long.dng", "bytes": 11154326, "git_blob": "941bd34783be71f93ff0a70a1a6dd3dcf0096bfc"}
+  },
+  "limits": {
+    "checkpoint_bytes_max": 2097152,
+    "three_dng_bytes_max": 33554432,
+    "binary_body_reads": 0,
+    "pixel_decodes": 0,
+    "model_loads": 0,
+    "inference_runs": 0,
+    "target_reads": 0,
+    "score_runs": 0
+  },
+  "frozen_interpretation": {
+    "private_runtime_d0_eligible_on_pass": true,
+    "product_rights_clear": false,
+    "candidate3_consumed": false,
+    "rights_gap": "The repo root is MIT for authored software, but DATASETS.md retains a no-redistribution statement for real capture data while a later commit ships one demo bracket; upstream SI-HDR training-data rights are not fixed in this repository.",
+    "ground_truth_present": false
+  },
+  "stop_rule": "Any source, Git-object, size, role, licence, dependency, no-body-read or replay mismatch closes P275 before acquisition; no mirror, file substitution, terms inference or data/model execution rescue.",
+  "claim_ceiling": "Private zero-pixel source feasibility for one exact LuckyHDR checkpoint and one exact bundled three-frame ProRAW bracket only; no HDR ground truth or quality, arbitrary bracket, redistribution/commercial rights, package/schema/capability/product admission or candidate3."
+}
