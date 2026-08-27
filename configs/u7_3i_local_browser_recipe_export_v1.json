@@ -1,0 +1,40 @@
+{
+  "schema": "kmcfm.u7-3i-local-browser-recipe-export-contract.v1",
+  "node": "U7.3I",
+  "status": "FROZEN_BEFORE_IMPLEMENTATION",
+  "question": "Can one real local browser action invoke the existing strict recipe replay and publish a new exact 24MP Ektar Look Approximation without exposing arbitrary paths or adding a remote service?",
+  "history_root": "outputs/eval/u7_2_three_stock_24mp_smoke",
+  "profile_path": "configs/render_profiles/safe_rich_v1.json",
+  "selected_row": {
+    "recipe_path": "ektar_100.recipe.json",
+    "recipe_sha256": "b92a75ed8ca8349df562153aad85df26db33ab0992d6bc07503033245ac7d0b8",
+    "style": "ektar_100",
+    "expected_output_sha256": "6c5c8b9c04fea4f265e1b742ce568b13a34d72462f7b6466f29685dabd03045e"
+  },
+  "execution": {
+    "host": "127.0.0.1",
+    "tile_size": 256,
+    "maximum_recipe_files": 10000,
+    "maximum_recipe_bytes": 2097152,
+    "maximum_request_bytes": 65536,
+    "maximum_form_bytes": 4096,
+    "session_timeout_seconds": 120,
+    "browser_timeout_seconds": 90
+  },
+  "gates": {
+    "real_edge_process_submits_the_export_form": true,
+    "server_binds_loopback_only": true,
+    "one_success_ends_the_session": true,
+    "browser_supplies_no_input_output_or_profile_path": true,
+    "request_and_recipe_identity_match_frozen_row": true,
+    "published_output_sha256_matches_frozen_u7_3d": true,
+    "closed_or_invalid_session_publishes_nothing": true,
+    "owned_browser_profile_and_server_scratch_are_removed": true
+  },
+  "stop_rules": [
+    "Do not change the recipe, source pixels, renderer, profile, expected output identity or tile size to rescue the browser bridge.",
+    "Do not add remote binding, arbitrary browser-provided filesystem paths, an installer, background daemon, file watcher or telemetry.",
+    "A failure closes this direct-browser leaf without timing, browser, output-identity or protocol rescue."
+  ],
+  "claim_ceiling": "Private Windows loopback browser execution of one existing Ektar 100 film-inspired/look-approximation recipe only. No calibrated stock, stock distinguishability, remote service, installer, release or population-preference claim."
+}
