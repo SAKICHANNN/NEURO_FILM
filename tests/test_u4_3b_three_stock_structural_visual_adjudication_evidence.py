@@ -13,6 +13,10 @@ MATERIAL_REPORT = MATERIAL_ROOT / "material_report.json"
 EVIDENCE = (
     ROOT / "docs/evidence/U4_3B_THREE_STOCK_STRUCTURAL_VISUAL_ADJUDICATION_RESULT.json"
 )
+PRIOR_SEVERE = (
+    ROOT
+    / "docs/evidence/RF3_D0S_THREE_STOCK_PROXY_FULL_RESOLUTION_SEVERE_AUDIT_RESULT.json"
+)
 
 
 def test_u4_3b_evidence_binds_review_material_and_every_sheet() -> None:
@@ -59,4 +63,13 @@ def test_u4_3b_evidence_adjudicates_exact_frozen_pair_set_without_promotion() ->
     )
     assert evidence["review_protocol"]["post_review_substitution_count"] == 0
     assert evidence["review_protocol"]["aggregate_scalar_score_present"] is False
+    assert evidence["prior_severe_evidence"]["sha256"] == hashlib.sha256(
+        PRIOR_SEVERE.read_bytes()
+    ).hexdigest()
+    prior = json.loads(PRIOR_SEVERE.read_text(encoding="utf-8"))
+    assert (
+        evidence["prior_severe_evidence"]["required_status"] == prior["status"]
+    )
+    assert evidence["prior_severe_evidence"]["retained_decision"] in prior["decision"]
+    assert "prior RF3.D0S AO6 severe veto explicitly retained" in evidence["claim_ceiling"]
     assert "not population preference" in evidence["claim_ceiling"]

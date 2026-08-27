@@ -2,7 +2,7 @@
   "schema": "neuro-film.u4-3b-three-stock-structural-visual-adjudication-result.v1",
   "experiment_id": "U4.3B",
   "date": "2026-08-27",
-  "status": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT_IN_FROZEN_REVIEW_SET",
+  "status": "PASS_NO_ADDITIONAL_CONFIRMED_SEVERE_ARTIFACT_PRIOR_AO6_VETO_RETAINED",
   "implementation_commit": "9b43eab7",
   "config": {
     "path": "configs/u4_3b_three_stock_structural_visual_adjudication_v1.json",
@@ -14,6 +14,13 @@
     "sha256": "62e9d945d4e7643643c21ceafec3a2bc022a7ce874b02f190d76874290e58015",
     "forward_reverse_byte_exact": true,
     "scientific_identity": "d4042a6579336d0c77344c5613060332c86080e3743af0b4901b6c36acd3f3b7"
+  },
+  "prior_severe_evidence": {
+    "path": "docs/evidence/RF3_D0S_THREE_STOCK_PROXY_FULL_RESOLUTION_SEVERE_AUDIT_RESULT.json",
+    "sha256": "490e04e2bdda9ebf613b2a0c867c97a5ca404851c6dc030de844759878917443",
+    "required_status": "PARTIAL_PASS_THREE_K1_PROXIES_AO6_SEVERE_VETO",
+    "retained_finding": "AO6 amplified coloured magenta speckle across smooth sky on sony_nex_3n",
+    "retained_decision": "VETO_AO6_PROMOTION_ON_THIS_POPULATION"
   },
   "review_protocol": {
     "reviewer_class": "autonomous_visual_evidence",
@@ -100,6 +107,6 @@
     "FAIL_CONFIRMED_SEVERE_ARTIFACT": 0,
     "REVIEW_UNRESOLVED": 0
   },
-  "decision": "Close the frozen U4.3A top-three queue union with no confirmed severe artifact. Retain AO6's elevated structural-tail diagnostics as a prioritization signal, not a veto; no operator change or rescue is authorized by this review.",
-  "claim_ceiling": "Autonomous visual evidence on 11 preselected RF3.D0 raster pairs only; not population preference, stock identification, calibrated film response, universal safety, multi-stock completion or product promotion."
+  "decision": "Close the frozen U4.3A top-three queue union with no additional confirmed severe artifact. This subset did not include the prior RF3.D0S sony_nex_3n AO6 failure, so that confirmed severe veto remains authoritative; U4.3B neither supersedes nor relaxes it. No operator change or rescue is authorized by this review.",
+  "claim_ceiling": "Incremental autonomous visual evidence on 11 preselected RF3.D0 raster pairs only, with the prior RF3.D0S AO6 severe veto explicitly retained; not population preference, stock identification, calibrated film response, universal safety, multi-stock completion or product promotion."
 }

@@ -18219,3 +18219,16 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   signals. This is bounded autonomous visual evidence only, not universal
   safety, population preference, stock identification/calibration,
   multi-stock completion or product promotion.
+
+### 2026-08-27 - U4.3B preserves the earlier AO6 severe veto
+
+- **Correction:** a cross-evidence review found that the frozen U4.3B top-queue
+  union did not include `sony_nex_3n`, where RF3.D0S had already confirmed
+  AO6-amplified coloured magenta speckle across smooth sky. U4.3B's 11/11
+  result is therefore incremental evidence with no *additional* confirmed
+  severe artifact, not a replacement for the earlier population veto.
+- **Propagation:** the U4.3B evidence now hash-binds the exact RF3.D0S evidence
+  and retains `VETO_AO6_PROMOTION_ON_THIS_POPULATION`; its evidence test and
+  U4.3 tracker row enforce the same boundary. No rendered pixel, frozen
+  selection, review decision, threshold, operator or scientific identity was
+  changed.
