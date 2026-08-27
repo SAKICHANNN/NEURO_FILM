@@ -74,6 +74,10 @@ _OPCODE_LIST_TAGS = {
 _OPCODE_OPTIONAL_FLAG = 1
 _OPCODE_ALLOWED_FLAG_MASK = 3
 _DNG_VERSION_1_7_1_0 = 0x01070100
+_DNG_VERSION_TAG = 50706
+_DNG_BACKWARD_VERSION_TAG = 50707
+_DNG_VERSION_MINIMUM = (1, 0, 0, 0)
+_DNG_VERSION_MAXIMUM = (1, 7, 1, 0)
 
 
 def _sha256(path: Path) -> str:
@@ -262,6 +266,60 @@ def _guard_dng_opcode_lists(
     return tuple(summaries)
 
 
+def _dng_version_value(tag: object, *, name: str) -> tuple[int, int, int, int]:
+    """Decode one strict four-BYTE DNG version tag."""
+
+    dtype = getattr(tag, "dtype", None)
+    count = getattr(tag, "count", None)
+    try:
+        dtype_code = int(dtype)
+    except (TypeError, ValueError) as exc:
+        raise DngForwardRasterError(f"{name} has an invalid TIFF type") from exc
+    if dtype_code != 1 or count != 4:
+        raise DngForwardRasterError(f"{name} must be exactly four BYTE values")
+    try:
+        raw = bytes(getattr(tag, "value"))
+    except (TypeError, ValueError) as exc:
+        raise DngForwardRasterError(f"{name} is not a byte payload") from exc
+    if len(raw) != 4:
+        raise DngForwardRasterError(f"{name} must be exactly four BYTE values")
+    return tuple(raw)  # type: ignore[return-value]
+
+
+def _guard_dng_version(
+    primary_tags: object,
+) -> dict[str, tuple[int, int, int, int] | None]:
+    """Require one supported and internally consistent DNG version declaration."""
+
+    if _DNG_VERSION_TAG not in primary_tags:
+        raise DngForwardRasterError("missing required DNGVersion tag")
+    version = _dng_version_value(
+        primary_tags[_DNG_VERSION_TAG], name="DNGVersion"
+    )
+    if version < _DNG_VERSION_MINIMUM or version > _DNG_VERSION_MAXIMUM:
+        raise DngForwardRasterError("DNGVersion is outside the supported range")
+
+    backward_tag: tuple[int, int, int, int] | None = None
+    if _DNG_BACKWARD_VERSION_TAG in primary_tags:
+        backward_tag = _dng_version_value(
+            primary_tags[_DNG_BACKWARD_VERSION_TAG], name="DNGBackwardVersion"
+        )
+        backward = backward_tag
+    else:
+        backward = (version[0], version[1], 0, 0)
+    if backward < _DNG_VERSION_MINIMUM:
+        raise DngForwardRasterError("DNGBackwardVersion is below 1.0.0.0")
+    if backward > version:
+        raise DngForwardRasterError("DNGBackwardVersion exceeds DNGVersion")
+    if backward > _DNG_VERSION_MAXIMUM:
+        raise DngForwardRasterError("DNGBackwardVersion is unsupported")
+    return {
+        "version": version,
+        "backward_tag": backward_tag,
+        "resolved_backward": backward,
+    }
+
+
 def _read_profile_tags(path: Path) -> dict[str, Any]:
     try:
         with tifffile.TiffFile(path) as document:
@@ -272,6 +330,7 @@ def _read_profile_tags(path: Path) -> dict[str, Any]:
             _guard_unsupported_profile_look_table(pages)
             optional_opcodes = _guard_dng_opcode_lists(pages)
             tags = document.pages[0].tags
+            _guard_dng_version(tags)
             required = (
                 "color_matrix1",
                 "color_matrix2",
