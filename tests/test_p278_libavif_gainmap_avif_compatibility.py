@@ -15,15 +15,25 @@ def test_p278_source_lock_is_exact_and_minimal() -> None:
     config = json.loads(CONFIG.read_text(encoding="utf-8"))
     root = ROOT / config["source"]["root"]
     manifest_path = ROOT / config["source"]["manifest"]
-    assert hashlib.sha256(manifest_path.read_bytes()).hexdigest() == config["source"]["manifest_sha256"]
+    assert (
+        hashlib.sha256(manifest_path.read_bytes()).hexdigest()
+        == config["source"]["manifest_sha256"]
+    )
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     expected = {row["name"]: row for row in manifest["files"]}
-    assert {path.name for path in root.iterdir() if path.is_file()} == set(expected) | {"SOURCE.json"}
+    assert {path.name for path in root.iterdir() if path.is_file()} == set(expected) | {
+        "SOURCE.json"
+    }
     for name, row in expected.items():
         path = root / name
         assert path.stat().st_size == row["size"]
         assert hashlib.sha256(path.read_bytes()).hexdigest() == row["sha256"]
-        blob = subprocess.run(["git", "hash-object", str(path)], capture_output=True, text=True, check=True).stdout.strip()
+        blob = subprocess.run(
+            ["git", "hash-object", str(path)],
+            capture_output=True,
+            text=True,
+            check=True,
+        ).stdout.strip()
         assert blob == row["git_blob"]
 
 
@@ -31,9 +41,21 @@ def test_p278_roles_and_decoder_command_are_frozen() -> None:
     config = json.loads(CONFIG.read_text(encoding="utf-8"))
     assert len(config["valid_fixtures"]) == 3
     assert len(config["invalid_fixtures"]) == 3
-    assert all((row["width"], row["height"]) == (400, 300) for row in config["valid_fixtures"])
+    assert all(
+        (row["width"], row["height"]) == (400, 300) for row in config["valid_fixtures"]
+    )
     assert build_decoder_command(Path("decoder.exe"), "input.avif", "output.raw") == [
-        "decoder.exe", "-m", "1", "-j", "input.avif", "-o", "0", "-O", "4", "-z", "output.raw",
+        "decoder.exe",
+        "-m",
+        "1",
+        "-j",
+        "input.avif",
+        "-o",
+        "0",
+        "-O",
+        "4",
+        "-z",
+        "output.raw",
     ]
 
 

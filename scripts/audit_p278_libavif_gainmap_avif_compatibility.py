@@ -46,14 +46,27 @@ def _load_object(path: Path) -> dict[str, Any]:
     return value
 
 
-def build_decoder_command(executable: Path, input_name: str, output_name: str) -> list[str]:
+def build_decoder_command(
+    executable: Path, input_name: str, output_name: str
+) -> list[str]:
     return [
-        str(executable), "-m", "1", "-j", input_name,
-        "-o", "0", "-O", "4", "-z", output_name,
+        str(executable),
+        "-m",
+        "1",
+        "-j",
+        input_name,
+        "-o",
+        "0",
+        "-O",
+        "4",
+        "-z",
+        output_name,
     ]
 
 
-def _run_decoder(executable: Path, input_path: Path, output_path: Path) -> subprocess.CompletedProcess[str]:
+def _run_decoder(
+    executable: Path, input_path: Path, output_path: Path
+) -> subprocess.CompletedProcess[str]:
     return subprocess.run(
         build_decoder_command(executable, input_path.name, output_path.name),
         cwd=input_path.parent,
@@ -65,7 +78,11 @@ def _run_decoder(executable: Path, input_path: Path, output_path: Path) -> subpr
 
 
 def _diagnostic(completed: subprocess.CompletedProcess[str]) -> str:
-    lines = [line.strip() for line in (completed.stdout + "\n" + completed.stderr).splitlines() if line.strip()]
+    lines = [
+        line.strip()
+        for line in (completed.stdout + "\n" + completed.stderr).splitlines()
+        if line.strip()
+    ]
     return lines[-1][-300:] if lines else ""
 
 
@@ -73,11 +90,17 @@ def _production_rejection(path: Path) -> dict[str, str | bool]:
     try:
         load_working_image(path)
     except (OSError, RuntimeError, ValueError) as error:
-        return {"accepted": False, "error_type": type(error).__name__, "message": str(error)}
+        return {
+            "accepted": False,
+            "error_type": type(error).__name__,
+            "message": str(error),
+        }
     return {"accepted": True, "error_type": "", "message": ""}
 
 
-def _validate_bindings(config: dict[str, Any], decoder_app: Path, producer_evidence: Path) -> dict[str, str]:
+def _validate_bindings(
+    config: dict[str, Any], decoder_app: Path, producer_evidence: Path
+) -> dict[str, str]:
     decoder_sha = _sha256_file(decoder_app)
     if decoder_sha != config["decoder"]["executable_sha256"]:
         raise ValueError("decoder executable SHA-256 mismatch")
@@ -87,7 +110,9 @@ def _validate_bindings(config: dict[str, Any], decoder_app: Path, producer_evide
     producer = _load_object(producer_evidence)
     if producer["status"] != "PASS_PRIVATE_PUBLIC_C_API_EMBEDDING":
         raise ValueError("producer R1BL status mismatch")
-    p87_path = ROOT / "docs/evidence/P87_ULTRAHDR_ABSOLUTE_REC2020_MATCH_VIEW_RESULT.json"
+    p87_path = (
+        ROOT / "docs/evidence/P87_ULTRAHDR_ABSOLUTE_REC2020_MATCH_VIEW_RESULT.json"
+    )
     p87_sha = _sha256_file(p87_path)
     if p87_sha != config["bindings"]["p87_evidence_sha256"]:
         raise ValueError("P87 evidence SHA-256 mismatch")
@@ -99,7 +124,9 @@ def _validate_bindings(config: dict[str, Any], decoder_app: Path, producer_evide
     }
 
 
-def run(config_path: Path, decoder_app: Path, producer_evidence: Path, *, reverse: bool) -> dict[str, Any]:
+def run(
+    config_path: Path, decoder_app: Path, producer_evidence: Path, *, reverse: bool
+) -> dict[str, Any]:
     config = _load_object(config_path)
     bindings = _validate_bindings(config, decoder_app, producer_evidence)
     source_root = ROOT / config["source"]["root"]
@@ -147,13 +174,17 @@ def run(config_path: Path, decoder_app: Path, producer_evidence: Path, *, revers
             if role == "valid":
                 expected_length = int(row["width"]) * int(row["height"]) * 4 * 2
                 decoded = local_output.read_bytes() if output_exists else b""
-                decode_success = completed.returncode == 0 and len(decoded) == expected_length
-                record.update({
-                    "decode_success": decode_success,
-                    "decoded_byte_length": len(decoded),
-                    "expected_byte_length": expected_length,
-                    "production_rejection": _production_rejection(source_path),
-                })
+                decode_success = (
+                    completed.returncode == 0 and len(decoded) == expected_length
+                )
+                record.update(
+                    {
+                        "decode_success": decode_success,
+                        "decoded_byte_length": len(decoded),
+                        "expected_byte_length": expected_length,
+                        "production_rejection": _production_rejection(source_path),
+                    }
+                )
                 if decode_success:
                     prepared = prepare_ultrahdr_match_view_v1(
                         source_asset=source_bytes,
@@ -164,19 +195,24 @@ def run(config_path: Path, decoder_app: Path, producer_evidence: Path, *, revers
                         decoder_version=ULTRAHDR_DECODER_VERSION,
                         producer_profile_id=ULTRAHDR_EXTERNAL_PROFILE_ID,
                     )
-                    record.update({
-                        "decoded_payload_sha256": prepared.decoded_payload_sha256,
-                        "ingress_id": prepared.ingress_id,
-                        "maximum_nits": float(prepared.pixels.max()),
-                        "minimum_nits": float(prepared.pixels.min()),
-                        "pixel_sha256": prepared.descriptor.pixel_sha256,
-                        "profile_id": prepared.descriptor.profile_id,
-                    })
+                    record.update(
+                        {
+                            "decoded_payload_sha256": prepared.decoded_payload_sha256,
+                            "ingress_id": prepared.ingress_id,
+                            "maximum_nits": float(prepared.pixels.max()),
+                            "minimum_nits": float(prepared.pixels.min()),
+                            "pixel_sha256": prepared.descriptor.pixel_sha256,
+                            "profile_id": prepared.descriptor.profile_id,
+                        }
+                    )
             else:
-                record.update({
-                    "atomic_rejection": completed.returncode != 0 and not output_exists,
-                    "reason": row["reason"],
-                })
+                record.update(
+                    {
+                        "atomic_rejection": completed.returncode != 0
+                        and not output_exists,
+                        "reason": row["reason"],
+                    }
+                )
             records.append(record)
 
         first = (source_root / config["valid_fixtures"][0]["name"]).read_bytes()
@@ -187,13 +223,22 @@ def run(config_path: Path, decoder_app: Path, producer_evidence: Path, *, revers
         truncated_rejected = invalid.returncode != 0 and not truncated_output.exists()
 
     records.sort(key=lambda value: value["name"])
-    sources_unchanged = all((source_root / name).read_bytes() == value for name, value in source_snapshots.items())
+    sources_unchanged = all(
+        (source_root / name).read_bytes() == value
+        for name, value in source_snapshots.items()
+    )
     valid_records = [row for row in records if row["role"] == "valid"]
     invalid_records = [row for row in records if row["role"] == "invalid"]
     gates = {
-        "all_invalid_atomic_rejection": len(invalid_records) == config["gates"]["required_invalid_count"] and all(row["atomic_rejection"] for row in invalid_records),
-        "all_valid_decode": len(valid_records) == config["gates"]["required_valid_count"] and all(row["decode_success"] for row in valid_records),
-        "production_loader_fail_closed": all(not row["production_rejection"]["accepted"] for row in valid_records),
+        "all_invalid_atomic_rejection": len(invalid_records)
+        == config["gates"]["required_invalid_count"]
+        and all(row["atomic_rejection"] for row in invalid_records),
+        "all_valid_decode": len(valid_records)
+        == config["gates"]["required_valid_count"]
+        and all(row["decode_success"] for row in valid_records),
+        "production_loader_fail_closed": all(
+            not row["production_rejection"]["accepted"] for row in valid_records
+        ),
         "source_immutable": sources_unchanged,
         "truncation_rejected_atomically": truncated_rejected,
     }
@@ -205,7 +250,9 @@ def run(config_path: Path, decoder_app: Path, producer_evidence: Path, *, revers
         "records": records,
         "source_commit": config["source"]["commit"],
         "source_manifest_sha256": config["source"]["manifest_sha256"],
-        "status": "PASS_PRIVATE_LIBAVIF_GAINMAP_AVIF_DECODER_COMPATIBILITY" if passed else "FAIL_CLOSED_LIBAVIF_GAINMAP_AVIF_DECODER_COMPATIBILITY",
+        "status": "PASS_PRIVATE_LIBAVIF_GAINMAP_AVIF_DECODER_COMPATIBILITY"
+        if passed
+        else "FAIL_CLOSED_LIBAVIF_GAINMAP_AVIF_DECODER_COMPATIBILITY",
     }
     scientific_bytes = canonical_json_bytes(scientific)
     return {
@@ -226,7 +273,9 @@ def main() -> int:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--reverse", action="store_true")
     args = parser.parse_args()
-    report = run(args.config, args.decoder_app, args.producer_evidence, reverse=args.reverse)
+    report = run(
+        args.config, args.decoder_app, args.producer_evidence, reverse=args.reverse
+    )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_bytes(canonical_json_bytes(report))
     return 0 if report["status"].startswith("PASS_") else 1
