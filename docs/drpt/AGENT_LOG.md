@@ -19471,6 +19471,33 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   producer independently stopped an overlapping R1FI plan before payload
   access, preserving P302 sealed `building304` and reserve `wall`.
 
+### 2026-08-28 - P303 closes ambiguous EyefulTower DCI-P3 sidecar before pixels
+
+- **Node and routing:** `ULT > mature RAW/DNG/HDR explicit infrastructure >
+  P303`, DRPT L2 / Mode C. `dev-research-reliability` governed the prospective
+  identity freeze and fail-closed result; scientific claim review and project
+  structure/log disciplines were secondary. This is the separately
+  authoritative-sidecar branch explicitly left by P293, not a P293 gate
+  rewrite or an arbitrary-EXR feature.
+- **Source and authority lock:** commits `f6c0f563` and `ad63e7ed` bind the
+  exact 9,399,313-byte P292/P293 EXR, EyefulTower commit/README blob and its
+  literal `DCI-P3 (linear)` declaration. Bounded ICC registry and official
+  SMPTE ST 2113 objects are exact at 10,536 / 127,566 bytes and SHA-256
+  `723cd815...c582a` / `995c9165...6c5b7`.
+- **Formal result:** two fresh forward/reverse reports are byte-exact at 1,897
+  bytes / SHA `d56569ec...93df3`, scientific identity
+  `2862ef40...25c16`. Both authorities agree on the P3 primaries but recognize
+  P3D65 `(0.3127,0.3290)` and P3DCI `(0.3140,0.3510)`; the dataset names no
+  white point, so the uniqueness gate fails. EXR header/channel/pixel and JPEG
+  reads, sidecar publications and WorkingImage outputs are all zero. Evidence
+  commit `5ec7736e`; 25 adjacent tests plus Ruff, format, compile, JSON and diff
+  checks pass.
+- **Decision:**
+  `FAIL_CLOSED_AMBIGUOUS_DCI_P3_WHITE_POINT_BEFORE_SIDECAR`. Do not select
+  either white point post-result or infer from display practice/pixels/JPEGs.
+  This is color-identity/source-contract evidence, not HDR quality; candidate
+  remains `2/3`, with no package/schema/capability/product or stock mapping.
+
 ### 2026-08-28 - BW2.D1 exposes one generic B&W look without rewriting legacy recipes
 
 - **Node and scope:** `ULT > independent B&W branch > BW2.D1`, DRPT L2 / Mode
