@@ -1,0 +1,74 @@
+{
+  "schema": "neuro_film.p297_dng_opcode_list_ingress_safety_evidence.v1",
+  "experiment_id": "P297",
+  "status": "PASS_PRIVATE_DNG_OPCODE_LIST_INGRESS_SAFETY",
+  "decision": "retain the private exact-five no-silent-required-OpcodeList safety correction; optional-only lists remain accepted with an explicit may-be-skipped warning",
+  "bindings": {
+    "preregistration_commit": "e8a9aaa8",
+    "version_ceiling_correction_commit": "a9b0a095",
+    "implementation_commit": "baa69c32",
+    "direct_entry_correction_commit": "d3deee57",
+    "oracle_binding_correction_commit": "25368f6e18af7d95337d3bbc337eb64785d203cc",
+    "config": {"path": "configs/p297_dng_opcode_list_ingress_safety_v1.json", "sha256": "87ca64663b4ace40f8eff4e48bdfb8647cfcfa1c8ba571089e4379654d6f6cfd"},
+    "implementation": {"path": "src/preprocess/dng_forward_raster.py", "sha256": "0b6f1b54e92e932dcddee12911c16d8c3b3427afbd0ca0a1e26e4f55b7cbc3d8"},
+    "runner": {"path": "scripts/audit_p297_dng_opcode_list_ingress_safety.py", "sha256": "40b8a51741ddb16f81afe7bd4c60ac973a764825fca01051d278e613ff46e833"},
+    "test": {"path": "tests/test_p297_dng_opcode_list_ingress_safety.py", "sha256": "8b1cb7fde5bfd4a7f38979121f7773f4094431837460b806cb6f2d8586b49317"},
+    "adobe_dng_sdk_1_7_1_2652_sha256": "73499b47f4683e12120a234bd0946f02e52ab2ff9834bcbd0e9f8ab4f923360e",
+    "p98_config_sha256": "5fb17f82cfecdae40a4c812f2ea9c26641e91bcab43e17c8a6a4bc94b2f03c35",
+    "p244_output_oracle_config_sha256": "7267485b9258ad38e487e65d5a9ff3a24716bfb3a306345e4e1512ab48ca556d"
+  },
+  "execution": {
+    "fresh_process_count": 2,
+    "forward_reverse_reports_byte_exact": true,
+    "report_bytes": 6250,
+    "report_sha256": "c581803c05d08c74a4d9c829eac229e4a0acdec78a3e9fdb3e00dd2357eaa459",
+    "row_count": 5,
+    "new_downloads": 0,
+    "new_raw_dng_pixel_roles": 0,
+    "persistent_pixel_outputs": 0
+  },
+  "result": {
+    "required_opcode_controls_rejected": 3,
+    "malformed_or_unsupported_controls_rejected": 7,
+    "optional_only_real_rows": 4,
+    "absent_opcode_real_rows": 1,
+    "p98_pixel_hashes_exact": 5,
+    "source_hashes_unchanged": 5,
+    "real_inventory": {
+      "motorola_moto_g_7_play": "OpcodeList2 four optional GainMap; OpcodeList3 empty",
+      "lg_lg_h850": "OpcodeList2 four optional GainMap; OpcodeList3 empty",
+      "xiaomi_m2010j19cg": "OpcodeList2 four optional GainMap; OpcodeList3 one optional WarpRectilinear",
+      "blackmagic_pocket_cinema_camera_4k": "no opcode list",
+      "huawei_eml_l29": "OpcodeList2 four optional GainMap; OpcodeList3 empty"
+    }
+  },
+  "gates": {
+    "authority_exact": true,
+    "required_reject_before_decode": true,
+    "malformed_reject_before_decode": true,
+    "optional_warning_exact": true,
+    "inventory_exact": true,
+    "p98_pixel_hashes_exact": true,
+    "source_immutable": true,
+    "finite": true,
+    "forward_reverse_scientific_exact": true
+  },
+  "corrections": [
+    "Before implementation or formal controls, the preregistered maximum DNG version constant was corrected from 1.5.0.0 to 1.7.1.0; no source, role or gate changed.",
+    "The first formal command stopped before repository import and before any DNG access; a repository-root direct-entry bootstrap was added.",
+    "The next command stopped before any DNG access because the aggregate P98 evidence does not carry row hashes; the already-frozen P244 output-oracle config and exact SHA were prospectively bound. No report or scientific row existed before the accepted runs."
+  ],
+  "interpretation": {
+    "established": [
+      "required, reserved-flag, malformed and unsupported-version opcode envelopes fail closed before camera decode",
+      "the exact five P98 rows contain only optional opcodes or no opcode list and retain every frozen pixel hash",
+      "optional opcode acceptance is explicit in warnings and does not claim that LibRaw executed those operations"
+    ],
+    "not_established": [
+      "application or Adobe parity of any DNG opcode",
+      "full or arbitrary DNG rendering, photographic quality or calibrated colour",
+      "default-loader, public package/schema/capability, stock evidence, candidate-3 or product admission"
+    ]
+  },
+  "claim_ceiling": "Private exact-five P98 DNG no-silent-required-OpcodeList safety only; optional lists are permitted with an explicit may-be-skipped warning. No opcode execution claim, full DNG renderer, image quality, default-loader, package/schema/capability, stock evidence, candidate3 or product admission."
+}
