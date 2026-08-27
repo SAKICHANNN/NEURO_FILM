@@ -113,11 +113,13 @@ __all__ = [
     "inspect_materialized_recipe_recovery_tree",
     "inspect_portable_recipe_recovery_bundle",
     "inspect_recipe_recovery_bundle",
+    "list_generic_bw_looks",
     "list_three_stock_looks",
     "load_render_profile",
     "materialize_recipe_recovery_bundle",
     "migrate_legacy_safe_rich",
     "plan_tile_windows",
+    "render_generic_bw_look_rgb",
     "render_recipe_history_html",
     "render_recipe_preview_html",
     "render_resolved_safe_lab_rgb",
@@ -127,6 +129,7 @@ __all__ = [
     "replay_style_safe_color_recipe",
     "replay_style_safe_recipe",
     "replay_style_safe_recipe_to_file",
+    "resolve_generic_bw_look_parameters",
     "resolve_three_stock_look_parameters",
     "sha256_file",
     "summarize_legacy_style_evidence_inventory",
@@ -149,8 +152,11 @@ def __getattr__(name: str):
         "replay_style_safe_recipe_to_file",
         "replay_portable_recipe_recovery_bundle_to_file",
         "list_three_stock_looks",
+        "list_generic_bw_looks",
         "render_three_stock_look_rgb",
+        "render_generic_bw_look_rgb",
         "resolve_three_stock_look_parameters",
+        "resolve_generic_bw_look_parameters",
     }:
         if name == "replay_portable_recipe_recovery_bundle_to_file":
             from . import portable_recipe_replay
@@ -164,6 +170,14 @@ def __getattr__(name: str):
             from . import three_stock_look
 
             return getattr(three_stock_look, name)
+        if name in {
+            "list_generic_bw_looks",
+            "render_generic_bw_look_rgb",
+            "resolve_generic_bw_look_parameters",
+        }:
+            from . import generic_bw_look
+
+            return getattr(generic_bw_look, name)
         from . import style_safe_engine
 
         return getattr(style_safe_engine, name)

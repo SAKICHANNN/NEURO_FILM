@@ -1,0 +1,35 @@
+{
+  "schema_id": "neuro-film.generic-bw-look-contract.v1",
+  "experiment_id": "BW2.D1",
+  "parent_experiment_id": "BW2.D0",
+  "question": "Can the product expose one evidence-bounded generic black-and-white Look Approximation while preserving both historical HP5 and Tri-X recipe identities for replay only?",
+  "input_evidence": {
+    "path": "docs/evidence/BW2_D0_HP5_TRIX_K1_BASELINE_RESULT.json",
+    "sha256": "bd0511b1c76d23170af23112ed0f428bc2364ed9b7975b64c50e037bed9bc93a",
+    "required_status": "FAIL_CLOSED_RECOMMEND_ONE_GENERIC_BW_LOOK_APPROXIMATION"
+  },
+  "product_look": {
+    "look_id": "generic_bw",
+    "display_name": "Classic Black & White",
+    "evidence_tier": "generic-bw-look-approximation",
+    "legacy_execution_style_id": "hp5",
+    "selection_rule": "first candidate in the frozen BW2.D0 contract; not selected from post-score performance",
+    "look_amount_range": [0.0, 1.0]
+  },
+  "required_gates": [
+    "catalog exposes exactly one generic B&W look and no named-stock identity",
+    "look amount zero is exact identity",
+    "look amount one is exact legacy HP5 execution parity",
+    "full and tiled execution are byte-exact",
+    "full-strength output is exactly neutral-axis RGB",
+    "invalid amounts and drifted evidence fail closed",
+    "legacy HP5 and Tri-X profile entries remain unchanged"
+  ],
+  "forbidden_changes": [
+    "modify the frozen safe-rich profile or its asset hashes",
+    "remove or rewrite historical HP5/Tri-X recipes",
+    "claim HP5 or Tri-X authenticity, calibration, preference, or separation",
+    "tune either legacy style on the closed BW2.D0 cohort"
+  ],
+  "claim_ceiling": "One deterministic generic black-and-white Look Approximation backed by BW2.D0 failure-to-separate evidence. The legacy HP5 execution is an implementation identity only, not an HP5 or Tri-X stock-response claim."
+}
