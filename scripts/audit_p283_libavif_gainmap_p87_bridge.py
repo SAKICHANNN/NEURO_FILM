@@ -222,8 +222,25 @@ def run(config_path: Path, *, reverse: bool) -> dict[str, Any]:
                 source_full_range=True,
                 higher_rendition_role=row["higher_role"],
             )
-            replay = roundtrip_rgb16(prepared.pixels)
-            error = np.abs(replay.astype(np.int32) - rgb16.astype(np.int32))
+            inverse_matrix = linear_rgb_matrix("linear_rec2020", "linear_srgb")
+            roundtrip_linear_srgb = np.matmul(
+                prepared.pixels.astype(np.float64), inverse_matrix.T
+            )
+            roundtrip_minimum = float(np.min(roundtrip_linear_srgb))
+            roundtrip_maximum = float(np.max(roundtrip_linear_srgb))
+            roundtrip_out_of_domain = int(
+                np.count_nonzero(
+                    (roundtrip_linear_srgb < 0.0) | (roundtrip_linear_srgb > 10000.0)
+                )
+            )
+            if roundtrip_out_of_domain == 0:
+                replay = roundtrip_rgb16(prepared.pixels)
+                error = np.abs(replay.astype(np.int32) - rgb16.astype(np.int32))
+                roundtrip_maximum_error: int | None = int(np.max(error))
+                roundtrip_median_error: float | None = float(np.median(error))
+            else:
+                roundtrip_maximum_error = None
+                roundtrip_median_error = None
             records.append(
                 {
                     "bgr16_parent_sha256": bgr_sha,
@@ -242,8 +259,11 @@ def run(config_path: Path, *, reverse: bool) -> dict[str, Any]:
                     "pixel_sha256": prepared.descriptor.pixel_sha256,
                     "reference_white_nits": prepared.descriptor.reference_white_nits,
                     "render_bridge_id": prepared.descriptor.render_bridge_id,
-                    "roundtrip_maximum_rgb16_error": int(np.max(error)),
-                    "roundtrip_median_rgb16_error": float(np.median(error)),
+                    "roundtrip_linear_srgb_maximum_nits": roundtrip_maximum,
+                    "roundtrip_linear_srgb_minimum_nits": roundtrip_minimum,
+                    "roundtrip_maximum_rgb16_error": roundtrip_maximum_error,
+                    "roundtrip_median_rgb16_error": roundtrip_median_error,
+                    "roundtrip_out_of_domain_components": roundtrip_out_of_domain,
                     "shape": list(prepared.pixels.shape),
                     "source_sha256": row["source_sha256"],
                 }
@@ -278,9 +298,14 @@ def run(config_path: Path, *, reverse: bool) -> dict[str, Any]:
             and row["maximum_nits"] > float(config["gates"]["minimum_maximum_nits"])
             for row in records
         ),
+        "all_roundtrip_domains_valid": all(
+            row["roundtrip_out_of_domain_components"] == 0 for row in records
+        ),
         "all_roundtrips_within_bound": all(
-            row["roundtrip_maximum_rgb16_error"]
+            row["roundtrip_maximum_rgb16_error"] is not None
+            and row["roundtrip_maximum_rgb16_error"]
             <= int(config["gates"]["maximum_rgb16_roundtrip_error"])
+            and row["roundtrip_median_rgb16_error"] is not None
             and row["roundtrip_median_rgb16_error"]
             <= float(config["gates"]["maximum_median_rgb16_roundtrip_error"])
             for row in records
