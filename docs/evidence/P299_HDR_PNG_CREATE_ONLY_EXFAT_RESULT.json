@@ -1,0 +1,54 @@
+{
+  "schema": "neuro_film.p299_hdr_png_create_only_exfat_evidence.v1",
+  "experiment_id": "P299",
+  "status": "PASS_PRIVATE_HDR_PNG_CREATE_ONLY_EXFAT",
+  "decision": "Retain the verified no-replace publication primitive in the deterministic streaming PNG rail. Existing colour transforms, encoded bytes and defaults remain unchanged.",
+  "commits": {
+    "preregistration": "d69648b2",
+    "implementation": "b8cc1b5b",
+    "formal_runner": "6c43fa26"
+  },
+  "bindings": {
+    "config": {"path": "configs/p299_hdr_png_create_only_exfat_v1.json", "sha256": "cec46a767898324e0c393173fbbbab6a8329abe23b26a351d1176f04a2cb9f46"},
+    "implementation": {"path": "src/preprocess/png_stream.py", "sha256": "3e7189a2f90a676e9a3290fedf677ca8701efa3ccb6df9356195cdbd6f37d9e1"},
+    "create_only": {"path": "src/film_physics/create_only_file.py", "sha256": "d05292155594392b2c3d3b76f2aa680a3c3f011bab641111393ca3bde708fa37"},
+    "runner": {"path": "scripts/audit_p299_hdr_png_create_only_exfat.py", "sha256": "1fe353295859da712c9710fa2707e160e007a0f6500365451b9a5344f76e2821"},
+    "test": {"path": "tests/test_p299_hdr_png_create_only_exfat.py", "sha256": "0770dfff617620e6daef7f859af998498eab7d5668c9560abd6c4ce28b5469d9"}
+  },
+  "execution": {
+    "forward_report_path": "outputs/eval/p299_hdr_png_create_only_exfat/formal_forward.json",
+    "reverse_report_path": "outputs/eval/p299_hdr_png_create_only_exfat/formal_reverse.json",
+    "report_bytes": 1513,
+    "report_sha256": "bfbb1d4a72e0b8617faaba7cdf43d7555f598d7b95c1aaf2704cdb46d2675285",
+    "forward_reverse_byte_exact": true,
+    "resolved_volume": "P:"
+  },
+  "facts": {
+    "probe_width": 37,
+    "probe_height": 29,
+    "png_bytes": 6551,
+    "png_sha256": "332578d38aec5414c707bd08304e948d21346b79f317d55bd14280f4c8d53014",
+    "sample_sha256": "a6d64f2fd2a0eb60ffc0c0af3acbb572ba9c42cf3e8a7d019a95eea999d02680",
+    "existing_destination_preserved": true,
+    "late_destination_preserved": true,
+    "stage_residue_count": 0,
+    "formal_media_residue_count": 0
+  },
+  "gates": {
+    "parent_bindings_exact": true,
+    "existing_destination_preserved": true,
+    "late_destination_preserved": true,
+    "successful_png_bytes_exact": true,
+    "rgb16_samples_exact": true,
+    "rec2100_pq_cicp_exact": true,
+    "stage_residue_zero": true,
+    "p_backed_output": true,
+    "forward_reverse_scientific_exact": true
+  },
+  "interpretation": [
+    "The former final os.replace could overwrite a destination created after a higher-level precheck; the retained cross-filesystem primitive now performs an authoritative no-replace publication.",
+    "Both an already-existing target and a target injected after writer construction are preserved byte-exact, with their stages removed.",
+    "Successful P-backed Rec.2100 PQ publication retains exact PNG bytes, cICP and RGB16 samples across forward/reverse row partitions."
+  ],
+  "claim_ceiling": "Private Windows canonical-P/exFAT create-only transaction safety for existing deterministic Rec.2020/PQ streaming PNG rails only; no new colour transform, HDR/display quality, arbitrary media, package/schema/capability, stock evidence or product-default admission."
+}
