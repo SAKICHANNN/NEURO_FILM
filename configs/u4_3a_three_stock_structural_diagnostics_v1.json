@@ -1,0 +1,51 @@
+{
+  "schema": "neuro-film.u4-3a-three-stock-structural-diagnostics.v1",
+  "experiment_id": "U4.3A",
+  "date": "2026-08-27",
+  "status": "FROZEN_BEFORE_DIAGNOSTIC_EXECUTION",
+  "question": "Which existing RF3.D0 three-stock Look Approximation outputs require original-resolution review for colour-induced structural anomalies?",
+  "inputs": {
+    "rf3_d0_contract": {
+      "path": "configs/rf3_three_stock_proxy_baseline_d0_v1.json",
+      "sha256": "c6671ae81020ec3ea9e5c5c0882c952d6a0525796809b723d0abd32b91ecd44f"
+    },
+    "rf3_d0_report": {
+      "path": "outputs/eval/rf3_three_stock_proxy_baseline_d0_v1/run_a/report.json",
+      "sha256": "0c65d79a8156139553c867a4cffdecdbffdc3c83d87eedb82c552a04cabf1f45"
+    },
+    "source_manifest": {
+      "path": "outputs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1/run_c/manifest.json",
+      "sha256": "048992242c82a2cd9efd193c6766065c7148ad0607a5505b88185d0ab781b101"
+    },
+    "render_root": "outputs/eval/rf3_three_stock_proxy_baseline_d0_v1/run_a",
+    "required_sources": 16,
+    "required_arms": [
+      "ao6_velvia50_display_proxy_t15_c35",
+      "legacy_unpaired_safe_lab_k1_ektar100",
+      "legacy_unpaired_safe_lab_k1_portra400",
+      "legacy_unpaired_safe_lab_k1_velvia50"
+    ]
+  },
+  "diagnostics": {
+    "luminance": [0.2126, 0.7152, 0.0722],
+    "sobel_source_edge_percentile": 75.0,
+    "texture_sigma": 1.0,
+    "texture_source_percentile": 75.0,
+    "flat_source_percentile": 25.0,
+    "minimum_denominator": 1e-6,
+    "review_queue_rows_per_metric": 10,
+    "aggregate_scalar_score_forbidden": true,
+    "automatic_veto_forbidden": true
+  },
+  "gates": {
+    "exact_input_hashes": true,
+    "all_sources_present": true,
+    "all_arms_present": true,
+    "finite_metrics": true,
+    "forward_reverse_report_exact": true,
+    "render_calls_max": 0,
+    "network_reads_max": 0
+  },
+  "output": "outputs/eval/u4_3a_three_stock_structural_diagnostics_v1/report.json",
+  "claim_ceiling": "Diagnostic-only structural review queues for existing RF3.D0 film-inspired/display-proxy outputs; not an automatic severe veto, stock identification, calibration, preference, multi-stock completion or product promotion"
+}
