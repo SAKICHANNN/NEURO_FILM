@@ -17847,3 +17847,30 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   complete/arbitrary DNG or image-quality claim, interface/package/schema/
   capability/product mapping, or candidate3 change. Continue only a distinct
   mature RAW/HDR gap or genuinely new paired/capture-time/physical evidence.
+
+### 2026-08-27 - U7.3I closes direct local-browser recipe execution
+
+- **Node and scope:** `ULT > U7 desktop workflow > U7.3I`, DRPT L2 / Mode C.
+  Contract `603e9187` froze one real Edge form submission into a one-shot
+  `127.0.0.1` session that reuses the existing strict recipe replay. The
+  browser can select only a validated request; input, profile and output
+  filesystem paths remain server-bound. No remote listener, daemon, installer,
+  file watcher, telemetry or new rendering algorithm was added.
+- **Implementation and corrections:** implementation `dbc04c0a`; CDP target
+  selection fix `202aecc2`; normal browser-disconnect cleanup `206d2406`; exact
+  numeric Edge installation identity fix `4a264693`. The first attempt stopped
+  before render because CDP selected a background page. A later complete pass
+  exposed only a false browser-version string, so the identical protocol was
+  rerun from fresh profiles after binding `Microsoft Edge 151.0.4129.107`.
+- **Formal result:** two independent real Edge profiles submit the form and
+  each publish the exact frozen 24MP Ektar PNG (`125,479,371` bytes, SHA
+  `6c5c8b9c...3045e`). A second submission returns HTTP 400 with exactly one
+  output preserved; all eight frozen gates pass, server/browser scratch is
+  removed, stable identity is `878ad0a2...6bb33`, and tracked evidence SHA is
+  `70519123...88841` (`9e6c45b1`). Forty-one adjacent U7.3A-I tests pass with
+  Ruff, compile, JSON and diff checks.
+- **Boundary and handoff:** private Windows loopback workflow evidence only.
+  Ektar remains a `film-inspired/look-approximation` proxy; stock calibration,
+  stock distinguishability, remote service, installer, release and population
+  preference remain false. Stop browser subleaf expansion; controlled physical
+  Velvia/Portra/Ektar acquisition remains the scientific mainline.
