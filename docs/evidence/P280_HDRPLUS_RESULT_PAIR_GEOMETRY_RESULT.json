@@ -1,0 +1,36 @@
+{
+  "schema": "neuro-film.p280-hdrplus-result-pair-geometry-evidence.v1",
+  "status": "PASS_PRIVATE_HDRPLUS_RESULT_PAIR_GEOMETRY",
+  "decision": "Both exact official Google HDR+ merged-DNG/final-JPEG result pairs are strongly same-view under the frozen source-derived gradient representation. Retain only paired-source eligibility for this one already-consumed burst.",
+  "bindings": {
+    "contract_commit": "36e139ed",
+    "implementation_commit": "bdc455fe50afa8720317f8fa6ada1e4dba85fb01",
+    "parent_p279_evidence_sha256": "31dfe9117a05c7ee0cf50e7a5b8721a986e0e73cbf9033d446e94c76d767bad4"
+  },
+  "formal_result": {
+    "report_sha256": "b4c297528e31b7f200370aa9b7fc02f0fc6a0c0be0d2a512b1a370ffcbadd54b",
+    "report_size_bytes": 1675,
+    "scientific_sha256": "a36fcb6e54f03a6d7aa4a2c04964effe504b7d3ee7a3e4f482666022c2bf2e6f",
+    "rows": [
+      {"version": "20161014", "identity_correlation": 0.7927223047168579, "flip_correlation": 0.04324360041409503, "flip_margin": 0.7494787043027629, "shift_correlation": 0.07902626471774407, "shift_margin": 0.7136960399991138},
+      {"version": "20171023", "identity_correlation": 0.7834152882274066, "flip_correlation": 0.04385512619406815, "flip_margin": 0.7395601620333384, "shift_correlation": 0.08325687023692545, "shift_margin": 0.7001584179904812}
+    ],
+    "gates": {
+      "dimensions_exact": true,
+      "identity_correlation": true,
+      "flip_margin": true,
+      "shift_margin": true,
+      "source_immutable": true
+    }
+  },
+  "execution": {
+    "forward_reverse_report_exact": true,
+    "forward_report_sha256": "b4c297528e31b7f200370aa9b7fc02f0fc6a0c0be0d2a512b1a370ffcbadd54b",
+    "reverse_report_sha256": "b4c297528e31b7f200370aa9b7fc02f0fc6a0c0be0d2a512b1a370ffcbadd54b",
+    "stable_identity": "a36fcb6e54f03a6d7aa4a2c04964effe504b7d3ee7a3e4f482666022c2bf2e6f",
+    "target_pixel_decode_count": 2,
+    "persistent_pixel_or_media_outputs": 0,
+    "temporary_residue": 0
+  },
+  "claim_ceiling": "Private same-view paired-source eligibility for two official result versions from one exact Google HDR+ burst only; no HDR truth, radiometric equivalence, tone-map quality, independent-scene generalization, rights resolution, package/schema/capability, product admission or candidate3 change."
+}
