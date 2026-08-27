@@ -1,7 +1,7 @@
 {
   "schema": "neuro-film.p267-acescg-openexr-linux-scanline-runtime-contract.v1",
   "experiment_id": "P267",
-  "status": "METHOD_FROZEN_SOURCE_IDENTITY_PENDING",
+  "status": "FORMAL_EXECUTION_LOCKED",
   "bindings": {
     "contract_path": "docs/planning/P267_ACESCG_OPENEXR_LINUX_SCANLINE_RUNTIME_CONTRACT.md",
     "contract_commit": "a8be83a5",
@@ -29,20 +29,27 @@
     "cmake_wheel_bytes": 28904315,
     "cmake_wheel_sha256": "8e91b381aaea3c47110583dccc52f4562333d1accdbb806939f953c16e74ec0a",
     "linux_native_source_path": "src/eval/p267_acescg_openexr_linux_scanline_writer.cpp",
-    "linux_native_source_bytes": null,
-    "linux_native_source_sha256": null,
-    "linux_native_source_commit": null,
+    "linux_native_source_bytes": 7970,
+    "linux_native_source_sha256": "3736258572f987571611656c97cb6cf06ce33a984a090447defa02104bbeddc5",
+    "linux_native_source_git_blob": "1b513e0db73590414397d78fc71fa55f115cc4b9",
+    "linux_native_source_commit": "64278d72852d1d913919b16a9afdd39678cc4753",
     "runner_path": "scripts/audit_p267_acescg_openexr_linux_scanline_runtime.py",
-    "runner_bytes": null,
-    "runner_sha256": null,
-    "runner_commit": null
+    "runner_bytes": 24435,
+    "runner_sha256": "5c99944c4a61f1e68f078cf11c33c4bb55c4df063d402abc5aa4d3b7bc11bd6c",
+    "runner_git_blob": "feb4dfa43d498505b3b59228c54549c33784fc3f",
+    "runner_commit": "c0c981711ed86329b7eb51ac4d13a84eba960e3e"
   },
   "platform": {
     "wsl_distribution": "Ubuntu-22.04",
     "kernel_machine": "x86_64",
     "python_major_minor": "3.10",
     "cmake_version": "4.2.3",
+    "cmake_executable_sha256": "603bbaefd2a4a3fb6fb34af8458972780d47a8e32eaa4b91be25e768a9309bcd",
     "ninja_path": "/usr/bin/ninja",
+    "ninja_version": "1.10.1",
+    "ninja_sha256": "a9ddfbf7e365a2e5026ed44f9173e498e37d8b71ec5e259b2c2a684f16cfa862",
+    "gxx_version": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+    "gxx_sha256": "2360901d864cf10bfd6296e261cb2c14053552a80377761ab07146ec9ec9a2c0",
     "formal_network_allowed": false,
     "system_package_mutation_allowed": false
   },
