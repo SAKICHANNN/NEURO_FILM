@@ -151,7 +151,7 @@ def acquire(
             ) from error
 
     transferred = 0
-    with concurrent.futures.ThreadPoolExecutor(max_workers=12) as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=24) as executor:
         for count in executor.map(transfer, members):
             transferred += count
     states = [_member_state(root, member) for member in members]
