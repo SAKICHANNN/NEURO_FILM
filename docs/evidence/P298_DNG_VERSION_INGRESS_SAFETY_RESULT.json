@@ -1,0 +1,56 @@
+{
+  "schema": "neuro_film.p298_dng_version_ingress_safety_evidence.v1",
+  "experiment_id": "P298",
+  "status": "PASS_PRIVATE_DNG_VERSION_INGRESS_SAFETY",
+  "decision": "Retain the strict version/container-identity guard on the private exact-five P98 DNG ForwardMatrix loader. Do not broaden this result to arbitrary DNG support or image quality.",
+  "commits": {
+    "preregistration": "4919c3ee",
+    "implementation": "f0b5e706",
+    "format_only_correction": "68c59a5d",
+    "formal_runner": "cd77c79e46f9648f0042d936feabbdd6afdc8915"
+  },
+  "bindings": {
+    "config": {"path": "configs/p298_dng_version_ingress_safety_v1.json", "sha256": "bb6a221cfdade134ff8177c64e9629bf5539636dbec8a5c48d01070ca518ad34"},
+    "implementation": {"path": "src/preprocess/dng_forward_raster.py", "sha256": "78f8d3e4a2f733d7ef260178acd20fd7215808025fc167c1710647e673ae7dd1"},
+    "runner": {"path": "scripts/audit_p298_dng_version_ingress_safety.py", "sha256": "ee8d0b8b7c1f3bed283424eebced479cb5329af28b58799fc225e7c26e15e3ab"},
+    "test": {"path": "tests/test_p298_dng_version_ingress_safety.py", "sha256": "50087719e6abbf96ab7d1de4af2abf119943dfc542c0752423efe39252e5c97c"},
+    "adobe_dng_sdk": {"path": "data/external/adobe_dng_sdk_1_7_1_2652/dng_sdk_1_7_1_2652_20260714.zip", "bytes": 80494799, "sha256": "73499b47f4683e12120a234bd0946f02e52ab2ff9834bcbd0e9f8ab4f923360e"},
+    "p98_config_sha256": "5fb17f82cfecdae40a4c812f2ea9c26641e91bcab43e17c8a6a4bc94b2f03c35",
+    "p244_config_sha256": "7267485b9258ad38e487e65d5a9ff3a24716bfb3a306345e4e1512ab48ca556d"
+  },
+  "execution": {
+    "forward_report_path": "outputs/eval/p298_dng_version_ingress_safety/formal_forward.json",
+    "reverse_report_path": "outputs/eval/p298_dng_version_ingress_safety/formal_reverse.json",
+    "report_bytes": 3771,
+    "report_sha256": "81074bdb999e132e4af5933ec52a3b021d6178f9d5b93fee594f55e4a8c090cc",
+    "forward_reverse_byte_exact": true
+  },
+  "facts": {
+    "real_rows": 5,
+    "dng_version_inventory": {"1.4.0.0": 4, "1.2.0.0": 1},
+    "explicit_backward_version_rows": 4,
+    "sdk_default_backward_version_rows": 1,
+    "invalid_controls": 7,
+    "invalid_controls_decode_calls": 0,
+    "p98_pixel_hashes_exact": 5,
+    "source_rows_immutable": 5
+  },
+  "gates": {
+    "authority_exact": true,
+    "invalid_reject_before_decode": true,
+    "inventory_exact": true,
+    "p98_pixel_hashes_exact": true,
+    "source_immutable": true,
+    "finite": true,
+    "forward_reverse_scientific_exact": true
+  },
+  "interpretation": [
+    "The private P98 loader now requires a structurally valid four-BYTE DNGVersion and rejects unsupported or internally inconsistent version declarations before camera decode.",
+    "The optional DNGBackwardVersion follows the Adobe SDK default when absent; the Blackmagic row resolves 1.2.0.0 from DNGVersion 1.2.0.0.",
+    "All five frozen P98 outputs and source bytes remain exact."
+  ],
+  "corrections": [
+    "The implementation commit completed after Ruff reported one B009 and one formatting issue because the PowerShell command sequence did not stop on the first nonzero status. Commit 68c59a5d changes only those two style sites; focused tests already passed and the complete formal runs occurred only after the correction."
+  ],
+  "claim_ceiling": "Private exact-five P98 DNG version/container-identity safety only; no full or arbitrary DNG renderer, image quality, default loader, package/schema/capability, stock evidence, candidate3 or product admission."
+}
