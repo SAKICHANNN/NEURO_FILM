@@ -1,0 +1,57 @@
+{
+  "schema": "neuro-film.p276-luckyhdr-private-runtime-d0-contract.v1",
+  "experiment_id": "P276",
+  "node": "ULT > paired/capture-time physical observation > P276",
+  "status": "FROZEN_BEFORE_BINARY_ACQUISITION_OR_PIXEL_DECODE",
+  "contract_path": "docs/planning/P276_LUCKYHDR_PRIVATE_RUNTIME_D0_CONTRACT.md",
+  "repository": {
+    "owner": "princeton-computational-imaging",
+    "name": "lucky-hdr",
+    "commit": "f5aec06fb70cd092973be5d15ec43899f8209293",
+    "tree": "37c05025490bd8a67494d953f23a7cebb521bc9a",
+    "raw_root": "https://raw.githubusercontent.com/princeton-computational-imaging/lucky-hdr/f5aec06fb70cd092973be5d15ec43899f8209293"
+  },
+  "data_root": "data/external/p276_luckyhdr_private_runtime_v1",
+  "objects": {
+    "license": {"path": "LICENSE", "bytes": 1073, "git_blob": "3973fb0a663d2506f2e11e1fc769063af30b0ee8"},
+    "datasets": {"path": "DATASETS.md", "bytes": 1935, "git_blob": "265eeaaa7926907e89cbc97a3c499e5452786086"},
+    "demo_readme": {"path": "examples/bracket_demo/README.md", "bytes": 1747, "git_blob": "ee689952e1725daa2719b08806e390709a041ec1"},
+    "package_init": {"path": "src/luckyhdr/__init__.py", "bytes": 74, "git_blob": "f642df43f72abe22aa0be532dfb74688a8e3c12d"},
+    "models_init": {"path": "src/luckyhdr/models/__init__.py", "bytes": 70, "git_blob": "59e512b9201af8c2fb1e72f3c41bce022e2e72ba"},
+    "inference": {"path": "src/luckyhdr/inference.py", "bytes": 10227, "git_blob": "ce1244b6fc63672c4cf139ae779aac44bc5cdc8b"},
+    "model": {"path": "src/luckyhdr/models/luckyhdr.py", "bytes": 42877, "git_blob": "9360fc3800092517df8873965137b66ad94f0b0c"},
+    "checkpoint": {"path": "checkpoints/luckyhdr_paper.pth", "bytes": 524786, "git_blob": "18b82e41c6564859c2aafcceb961ba33ba92e6d1"},
+    "short": {"path": "examples/bracket_demo/frame_short.dng", "bytes": 7906744, "git_blob": "d31badd74071ff01533bee94b508df506e1bef54"},
+    "mid": {"path": "examples/bracket_demo/frame_mid.dng", "bytes": 7939164, "git_blob": "9a5a17723dca33f55ee295c9f9948a6a5c593b10"},
+    "long": {"path": "examples/bracket_demo/frame_long.dng", "bytes": 11154326, "git_blob": "941bd34783be71f93ff0a70a1a6dd3dcf0096bfc"}
+  },
+  "runtime": {
+    "python": "3.12.10",
+    "torch": "2.11.0+cu128",
+    "torch_cuda": "12.8",
+    "numpy": "2.4.4",
+    "rawpy": "0.26.1",
+    "opencv": "4.13.0",
+    "imageio": "2.37.3",
+    "device": "NVIDIA GeForce RTX 5070 Ti Laptop GPU",
+    "max_size": 2048,
+    "exposures": [1.0, 3.7, 30.0],
+    "wall_seconds_max": 120.0
+  },
+  "limits": {
+    "object_count": 11,
+    "total_bytes": 27583023,
+    "target_reads": 0,
+    "metric_runs": 0,
+    "training_reads": 0,
+    "external_capture_reads": 0
+  },
+  "rights": {
+    "software_license": "MIT",
+    "demo_capture_redistribution_clear": false,
+    "upstream_training_data_product_rights_clear": false,
+    "product_dependency": false
+  },
+  "stop_rule": "Any object, dependency, load, CUDA, output, replay, finite/range, resource or cleanup mismatch closes P276 without CPU/backend/exposure/checkpoint/input/size substitution or tolerance rescue.",
+  "claim_ceiling": "Private runtime/mechanism D0 for one exact official LuckyHDR checkpoint and one exact bundled real three-frame ProRAW bracket only; no HDR ground-truth quality, arbitrary bracket, redistribution/commercial rights, package/schema/capability/product admission or candidate3."
+}
