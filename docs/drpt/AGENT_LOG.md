@@ -18153,3 +18153,29 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   their exact bounded claims; no arbitrary DNG/EXR/ACES/HDR, camera/display or
   photographic quality, public interface/package/capability, product state,
   single-reference matching or candidate 3 opens.
+
+### 2026-08-27 - P265 closes Windows/Linux exact ACES2 PQ output parity
+
+- **Routing and scope:** `ULT > mature RAW/DNG/HDR explicit mechanisms > P265`,
+  DRPT L2 / Mode C. The exact P249 synthetic AP0 fixture and unchanged strict
+  P251/P252 source were executed under WSL2 Ubuntu 22.04 x86_64 with hash-bound
+  CPython 3.12 NumPy 2.4.4, OpenEXR 3.4.15 and OpenColorIO 2.5.2 wheels. No new
+  image, target, fit, quality score, public interface or product mapping was
+  introduced.
+- **Evidence:** `9060e54d`, evidence SHA `5567db8a...34f839`.
+  Corrected forward/reverse reports are byte-exact at 2,598 bytes / SHA
+  `3d95e853...279d`, stable `eb295d6f...ec41d`. Linux runtime/config, the exact
+  1,144-byte AP0 container, decoded AP1 working pixels, finite/range,
+  invalid-input, create-only, source immutability, partition/outer replay,
+  zero-network and zero-residue gates pass. Twenty-two focused/adjacent tests
+  pass; Ruff, format, JSON and diff checks are clean. A layout-only formatting
+  correction was rebound and fully rerun; every scientific/result byte stayed
+  unchanged.
+- **Decision and boundary:**
+  `FAIL_CLOSED_ACES2065_ACES2_PQ_LINUX_RUNTIME`. The Linux encoded float32,
+  RGB16 and complete PNG hashes differ from frozen Windows P252 despite exact
+  source container, AP1 pixels, library versions and OCIO config ID. No
+  tolerance, wheel, config, source or quantization rescue is allowed. Existing
+  Windows P252 and producer R1DP bounded results retain their own claims; no
+  physical/arbitrary Linux EXR/HDR, quality, public package/capability, product
+  state, single-reference matching or candidate 3 opens.
