@@ -18423,6 +18423,45 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   resolve CC-BY-SA commercial/share-alike duties, declare HDR truth/quality,
   consume candidate 3 or create a package/schema/capability/product mapping.
 
+### 2026-08-27 - P269 source-locks one exact HDR+ burst with bounded RAW reads
+
+- **Routing and scope:** `ULT > genuinely new paired/capture-time/physical
+  observations > P269`, DRPT L2 / Mode C. P269 consumes only the source
+  acquisition permission opened by P268; it does not yet run an HDR mechanism,
+  compare result pixels or consume candidate 3.
+- **Freeze and source:** contract/config freeze `9bed5397`, initial bounded
+  intake runner `8fbda7de`, true strip-read correction `f2ff3d2d`, formal lock
+  `200d97c2`. The exact P268-selected burst
+  `0382_20150912_131056_666` is materialized under repo-relative P-backed
+  `data/external/p269_hdrplus_one_burst_v1/`. All eight payload DNGs, eight
+  lens-shading TIFFs, timing/RGB sidecars, and both three-object result roots
+  match frozen path, byte length, GCS generation and MD5 identities. Total is
+  24 objects / 256,482,210 bytes; stage residue is zero.
+- **Formal result:** forward/reverse reports are 17,026/17,025 bytes with raw
+  SHAs `773bde2d...aed877` / `26f563a6...4ed9f`; enumeration-mode fields differ
+  but stable scientific identity is exact
+  `db171c7dbc9259ec6b947c181070145d816b502193a2de2ad2348785c7159760`.
+  Local inventory SHA is `19094562...3e4a1`. The eight input DNGs are
+  4032x3024 uint16, uncompressed, Huawei `angler`, white level 1023. Each
+  centre probe reads 64 independent row-strip ranges / exactly 8,192 payload
+  bytes. Full input RAW-plane decodes, result DNG/JPEG pixel decodes and
+  fit/train/inference/score reads are zero.
+- **Corrections and evidence:** the first acquisition process published and
+  verified 20 objects before one HTTPS handshake EOF; its cleanup removed all
+  stages and the unchanged locked process resumed only four missing objects.
+  A first diagnostic used rawpy, which retained 64x64 but decoded the full RAW
+  plane. It was excluded before evidence; the corrected reader uses direct
+  strip offsets and an offline bounded-read test. Evidence commit `2adc6cfc`,
+  tracked evidence SHA
+  `fd2a4d8d966795cf2e21a1d3997991398bc8fc141260a489e71275e96fc9ac96`;
+  26 adjacent tests pass with Ruff, `py_compile`, JSON and diff checks clean.
+- **Boundary and handoff:** retain only private exact source lock and bounded
+  RAW/capture-sidecar decode feasibility. A next leaf, if opened, must be a
+  separately frozen one-burst mechanism D0 with a strongest same-information
+  control and must not infer natural HDR quality from one scene. CC-BY-SA
+  product/share-alike duties, general burst support, package/schema/capability,
+  product mapping and candidate 3 remain closed.
+
 ### 2026-08-27 - SF3.A0N field receipts gain atomic batch import
 
 - **Node and scope:** `ULT > stock-first controlled evidence > SF3.A0N`, DRPT
