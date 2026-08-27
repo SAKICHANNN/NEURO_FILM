@@ -310,7 +310,7 @@ def _gates(config: dict[str, Any], result: dict[str, Any]) -> dict[str, bool]:
     }
 
 
-def execute(config_path: Path, order: str) -> dict[str, Any]:
+def execute(config_path: Path, order: str, workspace: Path) -> dict[str, Any]:
     config = json.loads(config_path.read_text(encoding="utf-8"))
     parent_bindings = {
         name: _verify_tuple(binding) for name, binding in config["parents"].items()
@@ -323,17 +323,12 @@ def execute(config_path: Path, order: str) -> dict[str, Any]:
     }
     if not formal_bindings or not all(formal_bindings.values()):
         raise P264Error("one or more formal bindings differ")
-    scratch_root = ROOT / "tmp"
-    scratch_root.mkdir(parents=True, exist_ok=True)
-    workspace = Path(tempfile.mkdtemp(prefix="p264-", dir=scratch_root))
-    try:
-        result = _worker(config_path, workspace, order)
-    finally:
-        shutil.rmtree(workspace, ignore_errors=False)
+    if not workspace.is_dir() or workspace.parent.resolve() != (ROOT / "tmp").resolve():
+        raise P264Error("worker workspace must be an existing direct child of repo tmp")
+    result = _worker(config_path, workspace, order)
     gates = _gates(config, result)
     gates["formal_bindings_exact"] = all(formal_bindings.values())
     gates["parents_exact"] = all(parent_bindings.values())
-    gates["temporary_residue_zero"] = not workspace.exists()
     decision = (
         "PASS_PRIVATE_REAL_DNG_AP0_PQ_EXACT_INTERCHANGE"
         if all(gates.values())
@@ -362,6 +357,9 @@ def execute(config_path: Path, order: str) -> dict[str, Any]:
 
 
 def _fresh(config: Path, order: str) -> bytes:
+    scratch_root = ROOT / "tmp"
+    scratch_root.mkdir(parents=True, exist_ok=True)
+    workspace = Path(tempfile.mkdtemp(prefix="p264-", dir=scratch_root))
     command = [
         sys.executable,
         str(Path(__file__).resolve()),
@@ -370,8 +368,21 @@ def _fresh(config: Path, order: str) -> bytes:
         "--order",
         order,
         "--worker",
+        "--workspace",
+        str(workspace),
     ]
-    return subprocess.run(command, check=True, capture_output=True).stdout
+    try:
+        completed = subprocess.run(command, check=True, capture_output=True)
+    finally:
+        shutil.rmtree(workspace, ignore_errors=False)
+    payload = json.loads(completed.stdout)
+    payload["gates"]["temporary_residue_zero"] = not workspace.exists()
+    payload["decision"] = (
+        "PASS_PRIVATE_REAL_DNG_AP0_PQ_EXACT_INTERCHANGE"
+        if all(payload["gates"].values())
+        else "FAIL_CLOSED_REAL_DNG_AP0_PQ_EXACT_INTERCHANGE"
+    )
+    return _canonical_bytes(payload)
 
 
 def main() -> None:
@@ -379,12 +390,19 @@ def main() -> None:
     parser.add_argument("--config", type=Path, required=True)
     parser.add_argument("--order", choices=("forward", "reverse"), default="forward")
     parser.add_argument("--worker", action="store_true")
+    parser.add_argument("--workspace", type=Path)
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     config = args.config.resolve()
     if args.worker:
-        sys.stdout.buffer.write(_canonical_bytes(execute(config, args.order)))
+        if args.workspace is None:
+            raise SystemExit("--workspace is required in worker mode")
+        sys.stdout.buffer.write(
+            _canonical_bytes(execute(config, args.order, args.workspace.resolve()))
+        )
         return
+    if args.workspace is not None:
+        raise SystemExit("--workspace is worker-only")
     if args.output is None:
         raise SystemExit("--output is required outside worker mode")
     payload = _fresh(config, args.order)
