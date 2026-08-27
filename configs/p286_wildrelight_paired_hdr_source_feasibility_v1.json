@@ -12,7 +12,7 @@
     "runner_bytes": 14202,
     "runner_sha256": "17cb9a33e28e127b6a23023d07193e88af96074277208a0ad16c8b21f3d11e77",
     "test_path": "tests/test_p286_wildrelight_paired_hdr_source_feasibility.py",
-    "test_commit": "0e754e34bc87c881421bedfd4432a0483f6e37d4",
+    "test_commit": "0e754e343d37c0b4a3c68e88c8fcace13a0d25ea",
     "test_bytes": 4114,
     "test_sha256": "e41f5dfa1ffc63eb41b9ebfdd0e3b8f21b04370d4a60cc053fca1346f30e0f0a"
   },
