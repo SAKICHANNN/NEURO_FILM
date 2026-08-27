@@ -2789,6 +2789,22 @@ without tuning or cross-scene confirmation; candidate 3 remains unconsumed.
 Evidence:
 `docs/evidence/P287_WILDRELIGHT_ENVMAP_CONDITIONED_HDR_D0_RESULT.json`.
 
+P302 formally closes the prospective group-disjoint spatial successor before
+confirmation. The exact WildRelight lock excludes consumed `lake` and assigns
+12/6/6/5 disjoint training/development/confirmation/reserve scenes with three
+non-overlapping directed pairs per scene. All 234 training+development members
+are exact at 1,938,784,815 bytes; confirmation and reserve reads remain zero.
+Two committed-head development reports are byte-identical at 28,675 bytes /
+SHA `1a0fbc67...5a68`. The 60,832-byte model beats the strongest equal-budget
+image-only/global/identity control on `0/18` rows, with median/worst reduction
+`-216.4868%/-1231.9470%`, all six scene medians negative, gradient ratio
+`2.8171` and oracle-gain recovery `-6.8404`. Cyclic discrimination, valid
+support, exact replay and boundary zero pass but cannot rescue the decisive
+comparative/tail failures. Exact roles, features, ridge, grid, gain bounds,
+controls and gates close without confirmation acquisition or tuning;
+candidate 3 remains unconsumed. Evidence:
+`docs/evidence/P302_WILDRELIGHT_SPATIAL_ENVMAP_EXPLICIT_OPERATOR_RESULT.json`.
+
 P288 formally closes the first complete no-copy composition of the four
 source-locked DNG profile-stage callables. The wrapper preserves the frozen
 Adobe order `HueSatMap -> ProfileGainTableMap -> exposure -> LookTable ->

@@ -19433,3 +19433,40 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   rescue this cohort. No operator/K1 fitting, training, stock response,
   calibration or product claim opens. A successor needs materially new,
   independently grouped rolls/sources with stronger capture-time controls.
+
+### 2026-08-28 - P302 closes spatial environment-conditioned HDR operator before confirmation
+
+- **Node and routing:** `ULT > genuinely new capture-time observations >
+  P302`, DRPT L2 / Mode C. `dev-research-reliability` and the AI/ML harness
+  governed group isolation, train-only fitting, equal-budget controls and
+  deterministic exact replay; project structure/log disciplines were
+  secondary. The leaf is a candidate-3 precursor, never a product admission.
+- **Freeze and source:** commits through `c043314d` freeze 12/6/6/5 disjoint
+  WildRelight training/development/confirmation/reserve scenes, exclude
+  consumed `lake`, bind three disjoint directed pairs, a 75-feature
+  environment-conditioned ridge candidate, a 75-feature image-only control,
+  global/identity/cyclic controls and all comparative/tail/safety gates.
+  Metadata-only source lock is 122,438 bytes / SHA `9076518a...9eac` and binds
+  377 members. The acquired training+development subset is 234 exact files /
+  1,938,784,815 bytes; acquisition report is 58,869 bytes / SHA
+  `dc9a17fd...8bcd`, with pixel decodes zero.
+- **Transport correction:** the initial source transport imported an unbound
+  P287 helper and could remain connected through the local proxy without
+  progress. Before any pixel decode/model/metric, `d3029cbd` made P302
+  self-contained with bounded resumable curl and `54c12003` reduced the total
+  no-progress ceiling. Completed hashes were reused unchanged. Sixteen old
+  PID stages / 63,963,136 bytes remain ignored outside the manifest because
+  platform policy rejected direct deletion; stable partials are zero.
+- **Formal result:** execution HEAD `54c12003`; two fresh forward/reverse
+  reports are byte-exact at 28,675 bytes / SHA `1a0fbc67...5a68`. Candidate
+  wins `0/18`, median/worst reduction is `-216.4868%/-1231.9470%`, every scene
+  median is negative, gradient ratio is `2.8171`, and median oracle recovery
+  is `-6.8404`. Cyclic rate/median `.8889/+40.3597%`, valid support, boundary
+  zero, model/replay/resource gates pass. Evidence/test commit `0b0e2253`;
+  tracked evidence SHA `37bdda35...9ddbb`; 26 adjacent tests plus Ruff,
+  compile and diff checks pass.
+- **Decision:** `FAIL_CLOSED_P302_DEVELOPMENT`. Confirmation/reserve reads and
+  confirmation downloads remain zero. Do not tune features, ridge, grid,
+  gains, thresholds, roles or controls; candidate count stays `2/3`. The
+  producer independently stopped an overlapping R1FI plan before payload
+  access, preserving P302 sealed `building304` and reserve `wall`.
