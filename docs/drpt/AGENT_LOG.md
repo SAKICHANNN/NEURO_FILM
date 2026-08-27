@@ -18122,3 +18122,34 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   stock response, stock distinction, cross-platform performance or release.
   The separate 300ms warm-preview target and 12/24MP/M5/device tiers remain
   open; do not return to the closed Python buffer micro-optimization family.
+
+### 2026-08-27 - P264 closes exact full-resolution real-DNG AP0/PQ interchange
+
+- **Routing and scope:** `ULT > mature RAW/DNG/HDR explicit mechanisms > P264`,
+  DRPT L2 / Mode C. One already-consumed P98 Blackmagic DNG was frozen before
+  execution to compare direct official ACES 2 canonical Rec.2100-PQ RGB16 PNG
+  against the same pixels routed through the exact P259 AP0 master and strict
+  P251/P252 intake. No new data, fit, target or quality score was read.
+- **Corrections before accepted formal evidence:** the first children stopped
+  before DNG decode because the clean environment did not expose OpenEXR;
+  `eb03d847` binds the already-frozen wheel into isolated child sites. The next
+  children completed science but could not remove a loaded Windows DLL before
+  their own exit; `a17641ef` transfers cleanup to the outer controller. The
+  first complete reports then exposed one non-decisive support-predicate drift
+  (`<0` versus parent P259 `<-1e-5`); `110d625f` restores the parent threshold.
+  All accepted formal work restarted from committed source; inputs, pixels,
+  output transforms and exact gates never changed.
+- **Evidence:** `e26a6d36`, evidence SHA `ef900190...1508a1`.
+  Corrected forward/reverse reports are byte-exact at 3,775 bytes / SHA
+  `182a771c...98f4eb`, stable `17516337...d232a6`. Parent/source/finite/range,
+  Rec.2100-PQ readback, create-only publication, source immutability, exact
+  2,511 negative + 3,902 highlight support and zero-residue gates pass. Nine
+  focused/adjacent tests pass with Ruff, format, JSON and diff checks clean.
+- **Decision and boundary:**
+  `FAIL_CLOSED_REAL_DNG_AP0_PQ_EXACT_INTERCHANGE`. AP0 float32 roundtrip changes
+  7,442 of 26,947,584 RGB16 components by one code; direct and interchange PNG
+  SHA are `f38e9c21...eda21d` and `b0a4c02e...eb7cf`. No rounding or tolerance
+  rescue is allowed. P259 AP0 masters and P252 synthetic composition retain
+  their exact bounded claims; no arbitrary DNG/EXR/ACES/HDR, camera/display or
+  photographic quality, public interface/package/capability, product state,
+  single-reference matching or candidate 3 opens.
