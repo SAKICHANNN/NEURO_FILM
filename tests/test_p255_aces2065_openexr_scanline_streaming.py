@@ -1,9 +1,47 @@
 from __future__ import annotations
 
+import hashlib
+import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "src/eval/p255_aces2065_openexr_scanline_writer.cpp"
+CONFIG = ROOT / "configs/p255_aces2065_openexr_scanline_streaming_v1.json"
+
+
+def _sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def test_frozen_config_binds_parent_sources_and_execution_gates() -> None:
+    config = json.loads(CONFIG.read_text(encoding="utf-8"))
+    bindings = config["bindings"]
+    for prefix in (
+        "contract",
+        "native_source",
+        "p248_config",
+        "p248_evidence",
+        "p249_config",
+        "p249_evidence",
+    ):
+        path = ROOT / bindings[f"{prefix}_path"]
+        assert path.stat().st_size == bindings[f"{prefix}_bytes"]
+        assert _sha256(path) == bindings[f"{prefix}_sha256"]
+    assert _sha256(ROOT / bindings["p248_native_source_path"]) == bindings[
+        "p248_native_source_sha256"
+    ]
+    assert config["transform"]["ap1_to_ap0_matrix"] == [
+        [0.6954522414, 0.1406786965, 0.1638690622],
+        [0.0447945634, 0.8596711185, 0.0955343182],
+        [-0.0055258826, 0.0040252103, 1.0015006723],
+    ]
+    assert config["metadata"]["aces_image_container_flag"] == 1
+    assert config["metadata"]["color_interop_id"] == "lin_ap0_scene"
+    assert config["probe"]["logical_input_bytes"] == 288_000_000
+    assert config["gates"]["maximum_worker_process_tree_rss_bytes"] == 2**31
+    assert config["gates"]["maximum_worker_wall_seconds"] == 120.0
+    assert config["gates"]["require_decoded_pixel_maximum_absolute_error"] == 0.0
+    assert config["status"] == "FROZEN_BEFORE_NATIVE_BUILD_OR_PIXEL_EXECUTION"
 
 
 def test_native_source_binds_ap0_transform_and_identity() -> None:
