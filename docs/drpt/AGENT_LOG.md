@@ -18579,3 +18579,27 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   failure produced no report and was retried unchanged. Do not use mirrors,
   accept terms, download data, consume candidate 3, or map a package/schema/
   capability/product claim from this leaf.
+
+### 2026-08-27 - P273 proves one exact OpenImageIO ACES2065-1 interchange
+
+- **Node and scope:** `ULT > mature HDR explicit mechanisms > P273`, DRPT L2 /
+  Mode C. `dev-research-reliability` is primary; current official ACES-ASWF
+  guidance motivated an independent existing-runtime check, while research,
+  DRPT-BI, agent-log and structure stewardship bound the claim.
+- **Freeze and execution:** contract `499b0fb3`, implementation `bc9822b5`,
+  formal lock `160802ba` and evidence `fd1eaffe` bind P249/P251 identities and
+  the exact existing Windows OpenImageIO 3.1.11.0 runtime files. Forward/reverse
+  reports are byte-exact at 1,739 bytes / SHA `a4482b49...1660`, stable
+  `32f3cdbc...eafa1`.
+- **Result:** OpenImageIO reads exact P249 float32 pixels
+  `2b3417e3...19cb4`, 7x9 RGB order, ZIP compression, AP0 chromaticities, D60
+  adopted neutral, `acesImageContainerFlag=1`, `lin_ap0_scene` and matching
+  OIIO color-space identity. Source immutability, truncated-input rejection,
+  zero network and formal cleanup all pass.
+- **Verification and boundary:** 22 P249/P251/P252/P273 adjacent tests pass;
+  Ruff, `py_compile`, JSON and diff checks are clean. Two preformal controller/
+  Windows native-module cleanup defects were corrected before lock. One
+  prototype and one failed-cleanup directory remain quarantined under
+  `outputs/tmp` because execution policy rejected their recursive deletion;
+  they are outside formal runs. No dependency/API, arbitrary EXR/ACES, SMPTE
+  certification, quality, renderer/product mapping or candidate-3 change opens.
