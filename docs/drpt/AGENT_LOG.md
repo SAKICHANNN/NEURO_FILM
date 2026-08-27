@@ -17729,3 +17729,27 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   package/schema/capability, renderer integration or product admission.
   Candidate counter remains `2/3`; continue only materially new
   paired/capture-time/physical evidence or distinct mature RAW/HDR gaps.
+
+### 2026-08-27 - P256 closes the unchanged strict AP0 ingress at 24MP
+
+- **Node and question:** `ULT > mature RAW/HDR explicit mechanisms > P256`,
+  DRPT L2 / Mode C. P251 had proved strict AP0-to-AP1 ingress only on 7x9;
+  P255 supplied a bounded 24MP AP0 master. P256 changes neither mechanism and
+  asks only whether their full-size composition remains numerically correct
+  and below the frozen 2 GiB/120 s reader limits.
+- **Formal result:** contract `3195cbf5`, runner `6b30df93`, execution lock
+  `68ec83cb` and evidence `5c04a453`. Two controllers share stable identity
+  `43f18949...5b32`. Four fresh readers return exact output hash
+  `a1679379...2109`, owned/C-contiguous/writeable 4000x6000x3 ACEScg
+  WorkingImages, maximum AP1 error exactly `2^-20`, negative/highlight
+  preservation and boundary0. Maximum process-tree RSS is 1,325,907,968 bytes
+  and wall time 2.546 s. Exact P255 source identity/immutability and temporary
+  cleanup pass; 23 P251/P255/P256 adjacent tests plus Ruff, compileall, JSON and
+  diff checks pass.
+- **Interpretation and boundary:** the existing P251 full-frame reader is
+  resource-feasible for this procedural 24MP master, so no streaming-reader
+  rescue is justified. This remains private Windows/Python scale and mechanics
+  only: no natural-image quality, arbitrary EXR/ACES or SMPTE conformance,
+  public dependency/API/package/schema/capability, default renderer or product
+  admission. Candidate counter stays `2/3`; do not extend this result into
+  adjacent runtime wrappers.
