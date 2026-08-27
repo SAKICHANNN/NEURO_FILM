@@ -18676,3 +18676,31 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   HDR quality, arbitrary-bracket generalization, capture/training-data product
   rights, public package/schema/capability, product admission or candidate-3
   change opens.
+
+### 2026-08-27 - P277 closes an independent ISO sample-pair protocol
+
+- **Node and scope:** `ULT > U1 > U1.5 > P277`, DRPT L2 / Mode C.
+  `dev-research-reliability` is primary; current-source research, DRPT-BI,
+  agent-log and structure stewardship bound this to independent JPEG format
+  compatibility. It does not reopen the product loader or candidate 3.
+- **Freeze and source:** contract `00e4a992`, source lock `20b08160`, audit
+  `c4d851a4` and evidence `c97cf632` bind the 27,089,268-byte MakeHDR press-kit
+  archive `0c71440b...8e279`, three exact synthetic HDR/SDR pairs, the publisher
+  README/rights statement and unchanged P87/P88 executable identities. Only
+  seven selected files / 6,973,959 bytes persist behind the repo-relative
+  P-backed data path; archive, screenshots, logo and extraction scratch were
+  removed.
+- **Result:** two fresh forward/reverse reports are byte-exact at 4,877 bytes /
+  SHA `f9468382...80bf8`, stable `ed398610...e4728`. All three independent ISO
+  21496-1 HDR JPEGs decode successfully to valid P87 views with maxima
+  913.5-926.98 cd/m2, and source/length/atomicity/production-refusal gates pass.
+  Formal status is FAIL_CLOSED because frozen paired-SDR per-pixel RGB8 MAE is
+  `1.0067/1.1468/0.9063` against `<=1.0`, so only one row passes. The
+  publisher's separate aggregate-average statement is not substituted and the
+  threshold is not relaxed.
+- **Verification and boundary:** nine P87-P89/P277 tests pass; Ruff, format,
+  `py_compile`, JSON and diff checks pass. Retain only independent private JPEG
+  decoder mechanics. No natural/captured HDR truth, complete ISO conformance,
+  HEIF/AVIF/arbitrary-media, display quality, public package/schema/capability,
+  default-loader/product admission, film-stock claim or candidate-3 change
+  opens.
