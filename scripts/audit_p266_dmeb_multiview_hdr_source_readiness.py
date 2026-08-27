@@ -195,7 +195,7 @@ def _extract_facts(
     }
 
 
-def execute(config_path: Path) -> dict[str, object]:
+def execute(config_path: Path, *, reverse: bool = False) -> dict[str, object]:
     config = json.loads(config_path.read_text(encoding="utf-8"))
     bindings = config["bindings"]
     binding_gates = {
@@ -217,7 +217,8 @@ def execute(config_path: Path) -> dict[str, object]:
         "checkpoint",
         "project",
     )
-    responses = {key: _fetch(config["sources"][key], maximum) for key in source_keys}
+    traversal = tuple(reversed(source_keys)) if reverse else source_keys
+    responses = {key: _fetch(config["sources"][key], maximum) for key in traversal}
     total_bytes = sum(int(item["body_bytes"]) for item in responses.values())
     if total_bytes > int(config["sources"]["maximum_total_network_bytes"]):
         raise P266Error("formal network bytes exceed frozen total ceiling")
@@ -268,8 +269,9 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--reverse", action="store_true")
     args = parser.parse_args()
-    report = execute(args.config.resolve())
+    report = execute(args.config.resolve(), reverse=args.reverse)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_bytes(_canonical_bytes(report))
 
