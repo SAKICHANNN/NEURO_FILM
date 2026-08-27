@@ -294,6 +294,12 @@ def execute(config_path: Path, order: str) -> dict[str, Any]:
     }
     if not all(parent_bindings.values()):
         raise P264Error("one or more parent bindings differ")
+    formal_bindings = {
+        name: _verify_tuple(binding)
+        for name, binding in config.get("formal_bindings", {}).items()
+    }
+    if not formal_bindings or not all(formal_bindings.values()):
+        raise P264Error("one or more formal bindings differ")
     scratch_root = ROOT / "tmp"
     scratch_root.mkdir(parents=True, exist_ok=True)
     workspace = Path(tempfile.mkdtemp(prefix="p264-", dir=scratch_root))
@@ -302,6 +308,7 @@ def execute(config_path: Path, order: str) -> dict[str, Any]:
     finally:
         shutil.rmtree(workspace, ignore_errors=False)
     gates = _gates(config, result)
+    gates["formal_bindings_exact"] = all(formal_bindings.values())
     gates["parents_exact"] = all(parent_bindings.values())
     gates["temporary_residue_zero"] = not workspace.exists()
     decision = (
@@ -323,6 +330,7 @@ def execute(config_path: Path, order: str) -> dict[str, Any]:
         "execution_commit": _git_head(),
         "experiment_id": "P264",
         "gates": gates,
+        "formal_bindings": formal_bindings,
         "network_reads": 0,
         "parent_bindings": parent_bindings,
         "result": result,

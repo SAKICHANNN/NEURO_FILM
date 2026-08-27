@@ -1,7 +1,7 @@
 {
   "schema": "neuro-film.p264-real-dng-ap0-pq-interchange-contract.v1",
   "experiment_id": "P264",
-  "status": "FROZEN_BEFORE_IMPLEMENTATION_OR_OUTPUT_COMPARISON",
+  "status": "LOCKED_FOR_COMMITTED_HEAD_FORMAL_EXECUTION",
   "input": {
     "source_id": "blackmagic_pocket_cinema_camera_4k",
     "logical_path": "data/external/rawpixls_bh1_v1/raw/blackmagic_pocket_cinema_camera_4k.dng",
@@ -30,6 +30,11 @@
     "path": "src/zhuise/acescg_openexr.py",
     "bytes": 7699,
     "sha256": "63995dc36cf41708118f32e90687b8bb5c9b2738100b3db557371bbaf086d84d"
+  },
+  "formal_bindings": {
+    "contract": ["docs/planning/P264_REAL_DNG_AP0_PQ_INTERCHANGE_CONTRACT.md", 2389, "9cdded3f41b8a73cd77c409d981db49eac3a353c40d0d15ead58604a253fdd02"],
+    "runner": ["scripts/audit_p264_real_dng_ap0_pq_interchange.py", 13609, "612670f29df9c3ba8f15117e0786af1bc5dbd93b7e8e6861b85b1521ecd16a31"],
+    "test": ["tests/test_p264_real_dng_ap0_pq_interchange.py", 1361, "ff0d95d8634e3ede01cabcb1368e4392d90900f7769d1a34865188a78b2f386f"]
   },
   "gates": {
     "require_direct_and_interchange_rgb16_exact": true,

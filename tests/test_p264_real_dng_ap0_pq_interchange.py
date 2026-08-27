@@ -16,7 +16,7 @@ def test_p264_contract_freezes_one_existing_real_dng() -> None:
             encoding="utf-8"
         )
     )
-    assert config["status"] == "FROZEN_BEFORE_IMPLEMENTATION_OR_OUTPUT_COMPARISON"
+    assert config["status"] == "LOCKED_FOR_COMMITTED_HEAD_FORMAL_EXECUTION"
     assert config["input"]["source_id"] == "blackmagic_pocket_cinema_camera_4k"
     assert config["input"]["shape"] == [2176, 4128, 3]
     assert config["gates"]["maximum_rgb16_code_difference"] == 0
