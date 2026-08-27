@@ -16,11 +16,14 @@
     "test_path": "tests/test_p300_canonical_pq_create_only_exfat.py"
   },
   "formal_fixture": {
-    "width": 257,
-    "height": 131,
-    "seed": 9100,
-    "forward_partitions": [64, 64, 3],
-    "reverse_partitions": [3, 64, 64],
+    "width": 34,
+    "height": 29,
+    "source": "P238 exact P226 official-ACES fixture",
+    "source_sha256": "b037b161b8cf637e573b6553fb9245d1f86ccd24f4a91f2097ccbf3822333238",
+    "forward_partitions": [7, 7, 7, 7, 1],
+    "reverse_partitions": [1, 7, 7, 7, 7],
+    "expected_sample_sha256": "8cd312b9f0350ea001239954b437f82361d35dd41d5557120d8e9b42db90be5d",
+    "expected_png_sha256": "0a18aa1e1b9ce359b2c85a1ad3261db4c7dc4bdbc8aa331da07c5f1035e2534c",
     "logical_output_root": "outputs/eval/p300_canonical_pq_create_only_exfat"
   },
   "gates": {
