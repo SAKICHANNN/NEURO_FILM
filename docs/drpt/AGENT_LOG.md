@@ -17613,3 +17613,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   RAW/DNG pixel, target, reference or network read occurred. P244/P245 remain
   the active fail-closed product behavior, and no package/schema/capability or
   product mapping opens.
+
+### 2026-08-27 - SF3.A3G closes a dynamic package identity before pixels
+
+- **Node and method:** `ULT > stock-first controlled evidence > SF3.A3G`;
+  commits `191209a8` and `59df3669` freeze and execute a range-only official
+  Richard Photo Lab source lock. Only the page, ZIP tail and central directory
+  were read; member payload and pixel reads remained zero.
+- **Result:** both runs recover the same safe 240-member inventory and exact
+  four-stock exposure structure. ZIP tail, central-directory and inventory
+  identities repeat, but the 486,017-byte official page has different hashes
+  in the two requests and neither matches the frozen page identity. The formal
+  decision is `FAIL_CLOSED_RPL_STOCK_SOURCE_STRUCTURE`.
+- **Handoff:** do not normalize the page, weaken the identity gate or acquire
+  this archive under SF3.A3G. Pivot to an independent rights-cleared
+  three-stock source and preserve the controlled physical capture route.
+  Evidence:
+  `docs/evidence/SF3_A3G_RICHARD_PHOTO_LAB_STOCK_EXPOSURE_SOURCE_LOCK_RESULT.json`.

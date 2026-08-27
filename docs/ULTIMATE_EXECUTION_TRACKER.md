@@ -2573,3 +2573,12 @@ P-backed matrix passes 18/18 on exFAT, including existing-destination and
 replacement-preservation controls. This is runtime/storage compatibility
 only and changes no pixels, schema, stock evidence or product default.
 Evidence: `docs/evidence/U6_P8CS2_EXFAT_STANDARD_TRANSACTION_RESULT.json`.
+
+SF3.A3G closes the exact Richard Photo Lab package identity before pixels.
+The archive tail, central directory and 240-member inventory repeat exactly
+and expose the frozen Velvia 50, Portra 400, Ektar 100 and Gold 200 exposure
+ladders, but the official page bytes change across the two formal requests.
+The frozen exact-page gate therefore fails; zero ZIP members or pixels were
+read, and page normalization or a same-source rescue is forbidden. Continue
+with an independent rights-cleared three-stock source. Evidence:
+`docs/evidence/SF3_A3G_RICHARD_PHOTO_LAB_STOCK_EXPOSURE_SOURCE_LOCK_RESULT.json`.
