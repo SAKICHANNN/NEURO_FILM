@@ -9,6 +9,26 @@
     "portra_400",
     "ektar_100"
   ],
+  "rows": [
+    {
+      "recipe_path": "ektar_100.recipe.json",
+      "recipe_sha256": "b92a75ed8ca8349df562153aad85df26db33ab0992d6bc07503033245ac7d0b8",
+      "style": "ektar_100",
+      "expected_output_sha256": "6c5c8b9c04fea4f265e1b742ce568b13a34d72462f7b6466f29685dabd03045e"
+    },
+    {
+      "recipe_path": "portra_400.recipe.json",
+      "recipe_sha256": "b6dece02a1c6e5cee9569424ae8fd53fdad8f4ee619753f6d81a2b2dea0d0fb3",
+      "style": "portra_400",
+      "expected_output_sha256": "2ff70587520b73634e9096ff297eb390edde7e891bb7634f3cec6c707a119844"
+    },
+    {
+      "recipe_path": "velvia_50.recipe.json",
+      "recipe_sha256": "254e5c8ddf8703e2689975590531b80ca4e40bde1a37fcd0c382f33e2a42cf25",
+      "style": "velvia_50",
+      "expected_output_sha256": "6f405513fcb72f27350c9c42fc238de6daa0ba3584987537431a17a146982732"
+    }
+  ],
   "browser": {
     "executable": "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe",
     "desktop_viewport": [1440, 1000],
