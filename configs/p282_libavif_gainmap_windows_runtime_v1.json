@@ -1,6 +1,6 @@
 {
   "contract_id": "P282_LIBAVIF_GAINMAP_WINDOWS_RUNTIME_V1",
-  "status": "FROZEN_BEFORE_RUNTIME_ACQUISITION_AND_FIXTURE_EXECUTION",
+  "status": "SOURCE_LOCKED_BEFORE_FIXTURE_EXECUTION",
   "runtime": {
     "repository": "https://github.com/AOMediaCodec/libavif",
     "tag": "v1.4.2",
@@ -11,7 +11,13 @@
     "asset_sha256": "cb2d9fea43dcbab1d0707e3b37eb7b08070ad2fb60a2c188c39ec12382c0484a",
     "asset_url": "https://github.com/AOMediaCodec/libavif/releases/download/v1.4.2/windows-artifacts.zip",
     "root": "data/external/p282_libavif_windows_v1_4_2",
-    "manifest": "data/external/p282_libavif_windows_v1_4_2/SOURCE.json"
+    "manifest": "data/external/p282_libavif_windows_v1_4_2/SOURCE.json",
+    "manifest_sha256": "96ee33b34df2633cc494026ee47e30c3045314c800f60c3751e91a5daad98469",
+    "files": [
+      {"name": "LICENSE", "size": 20415, "sha256": "165abf92cc04b39e80d29cadea7a6a7e8fddf59407d4ad2616507a7ebe8216f9", "git_blob": "350eb9d15ce1553438b09b8cd14c803e86da316b"},
+      {"name": "avifdec.exe", "size": 12314624, "sha256": "a03664ddffb9d847eb484af6ceeffce96e03d641da5c577d26662487dee689f2", "git_blob": "995c4067f378d4fbcb0d3fddb8e557db68897afd"},
+      {"name": "avifgainmaputil.exe", "size": 12959232, "sha256": "64d199dfdaf20dcf8bd5ee1073c01a5866ada595aaf933b911e1cd4bf9267471", "git_blob": "274e626903e77031205867e072d822a8dca77394"}
+    ]
   },
   "fixtures": {
     "root": "data/external/p278_libavif_gainmap_v1",
