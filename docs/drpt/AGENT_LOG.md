@@ -18555,3 +18555,27 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   mechanical consumability only. No new RAW/DNG pixels, real-file composition,
   full renderer, image quality, public package/schema/capability, product
   mapping or candidate-3 change opens.
+
+### 2026-08-27 - P272 closes the controlled illumination/sensor source before data access
+
+- **Node and scope:** `ULT > genuinely new paired/capture-time observation >
+  P272`, DRPT L2 / Mode C. `dev-research-reliability` is primary; research,
+  DRPT-BI, agent-log and structure stewardship constrain the zero-data source
+  decision. Candidate 3 remains `2/3`.
+- **Freeze and execution:** contracts `0878ed8c`, implementation `1caf4e8c`,
+  formal lock `4b216aa2` and evidence `6d366b41` bind official SamsungLabs HEAD
+  `f649f85c...fd1e`, tree `48ba815a...132d`, and exact README/LICENSE Git
+  objects. Forward/reverse reports are byte-exact at 1,857 bytes / SHA
+  `4d9b9662...5e02`, stable `c347984b...25639`.
+- **Decision:** the declared 390 illuminants, four cameras, 18 scenes and
+  train/validation/test roles pass the materially-new physical-observation
+  checks. Admission fails because rights are explicitly CC BY-NC-SA 4.0 /
+  noncommercial and the official release publishes no exact archive size,
+  asset manifest or checksums. Dataset-object, pixel and fit/train/inference/
+  score reads remain zero.
+- **Verification and boundary:** 29 P266/P268-P272 adjacent tests pass; Ruff,
+  `py_compile`, JSON and diff checks are clean. Two preformal Windows byte and
+  cleanup defects were corrected before lock. One formal reverse Git clone TLS
+  failure produced no report and was retried unchanged. Do not use mirrors,
+  accept terms, download data, consume candidate 3, or map a package/schema/
+  capability/product claim from this leaf.
