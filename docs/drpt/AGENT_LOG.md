@@ -17682,3 +17682,20 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Velvia 50 remains absent at this evidence level. Advance only a materially
   new controlled observation; keep proxy/LUT/latest-paper mechanisms as
   baselines rather than the stock-evidence mainline.
+
+### 2026-08-28 - SF3.A3J closes exposure-stable stock-factor interpretation
+
+- **Question and scope:** without fitting a successor operator, test whether
+  the exact NegICC Portra 400 versus Ektar 100 contrast is directionally stable
+  across EV `-1/0/+1/+2`. Contract `061998b2`; implementation `9bc1f090`;
+  strict-report fixes `3b3a0f69`/`409ff1f0` preserve every metric and gate.
+- **Result:** forward/reverse reports are byte exact at
+  `65a4bc45...52420` with scientific identity `2134dbe6...61135`.
+  Minimum raw/mean-centered contrast cosines are `.40235/.38582`, and minimum
+  sign agreements are `.57755/.62153`; all four stability gates fail while
+  exact patch/reference identities, material contrast, finite and replay gates
+  pass. Ten adjacent A3H--A3J tests pass with Ruff and evidence bindings.
+- **Handoff:** require new independently grouped roll/process/scanner and
+  exposure-controlled observations. Do not add K>1, routing or operator
+  capacity to this cohort. Velvia remains a same-level data gap, and all
+  product looks remain Look Approximation. Evidence commit `b43d342f`.

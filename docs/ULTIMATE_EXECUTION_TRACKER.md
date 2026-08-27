@@ -2596,3 +2596,13 @@ next admissible research leaf requires a materially new independent
 roll/process/scanner or same-scene observation. Evidence:
 `docs/evidence/SF3_A3H_NEGICC_IT8_SOURCE_LOCK_RESULT.json` and
 `docs/evidence/SF3_A3I_NEGICC_STOCK_SPECIFIC_K1_BASELINE_RESULT.json`.
+
+SF3.A3J diagnoses that failure without fitting another operator. Across the
+same four exposures, the aligned Portra--Ektar scanner-space contrast has
+material RMS but changes direction: minimum raw/mean-centered cosines are
+`.40235/.38582`, and minimum component-sign agreements are `.57755/.62153`.
+Both formal orders are byte exact (`65a4bc45...52420`). This single setup does
+not expose an exposure-stable stock factor, so capacity, K>1 and routing stay
+closed; the next stock-science input must add independent roll/process/scanner
+and exposure-controlled observations. Evidence:
+`docs/evidence/SF3_A3J_NEGICC_CROSS_EXPOSURE_STOCK_FACTOR_RESULT.json`.
