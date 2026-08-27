@@ -1,0 +1,79 @@
+{
+  "schema": "neuro-film.p303-eyefultower-dci-p3-sidecar-feasibility-evidence.v1",
+  "experiment_id": "P303",
+  "status": "FAIL_CLOSED_AMBIGUOUS_DCI_P3_WHITE_POINT_BEFORE_SIDECAR",
+  "date": "2026-08-28",
+  "decision": "The exact EyefulTower README identifies the EXRs only as linear DCI-P3 and does not name a white point. Exact independent ICC and SMPTE authorities confirm the same P3 primaries but define both P3D65 and P3DCI as complete authoritative color spaces with distinct white points. The literal dataset declaration therefore does not select one chromaticity tuple. P303 stops before EXR header/channel/pixel read and publishes no sidecar or WorkingImage.",
+  "commits": {
+    "preregistration": "f6c0f563",
+    "implementation_and_authority_lock": "ad63e7ed",
+    "formal_execution_head": "e16262a23c35c06044c179460b466c1a8e5e5851"
+  },
+  "protocol": {
+    "contract_path": "docs/planning/P303_EYEFULTOWER_DCI_P3_SIDECAR_FEASIBILITY_CONTRACT.md",
+    "contract_bytes": 2842,
+    "contract_sha256": "5044357117c770b77fc883c0025e5e85d79c07851eb5c300460cc1b7fee2fc6b",
+    "config_path": "configs/p303_eyefultower_dci_p3_sidecar_feasibility_v1.json",
+    "config_bytes": 2316,
+    "config_sha256": "19ccc4f8aa1cad9fed2640eb6aef0f9527734b39ee4edf24458f65989d353736",
+    "runner_path": "scripts/audit_p303_eyefultower_dci_p3_sidecar_feasibility.py",
+    "runner_bytes": 6231,
+    "runner_sha256": "9e7fb36db876ab10a8e58b536be94e94fa8934265f73a78244aa8852283154c8"
+  },
+  "source": {
+    "path": "data/external/p293_eyefultower_dci_p3_exr_v1/40_DSC0001.exr",
+    "bytes": 9399313,
+    "sha256": "c7b65fe69568b4d04bbf162381fd6d74c9b9682057a0f9dd8b931ec6b038f174",
+    "dataset_repository_commit": "06a01a4915afc872b893c20a025a0e14598c8478",
+    "dataset_readme_blob": "ce06d91887cab8522dae3ceefe3941cd2821c675",
+    "dataset_readme_sha256": "bf4fe411c0c0efb756cf18f70dd0eb01bf9679926e1fa91649602fae4bba1689",
+    "literal_declaration": "Color space: DCI-P3 (linear)",
+    "white_point_declared": false
+  },
+  "authorities": {
+    "icc_registry": {
+      "url": "https://registry.color.org/rgb-registry/dcip3",
+      "bytes": 10536,
+      "sha256": "723cd815f3aca123d16c7d6c5ba90a8061fc7a708056d00a5d70f422129c582a"
+    },
+    "smpte_st2113": {
+      "url": "https://pub.smpte.org/pub/st2113/st2113-2018.pdf",
+      "bytes": 127566,
+      "sha256": "995c91652c25effdc20ea75cab83882aa36b7b16b5b4214c5b3fc7c9f776c5b7"
+    },
+    "common_primaries_xy": [0.68, 0.32, 0.265, 0.69, 0.15, 0.06],
+    "authoritative_variants": {
+      "P3D65": [0.3127, 0.329],
+      "P3DCI": [0.314, 0.351]
+    }
+  },
+  "formal": {
+    "forward_report_path": "outputs/eval/p303_eyefultower_dci_p3_sidecar_feasibility_v1/formal_forward.json",
+    "reverse_report_path": "outputs/eval/p303_eyefultower_dci_p3_sidecar_feasibility_v1/formal_reverse.json",
+    "report_bytes_each": 1897,
+    "report_sha256": "d56569ec903aa1d929c5d72ea0420d2f870fe07ebf938a5cd285d854af793df3",
+    "reports_byte_exact": true,
+    "scientific_identity": "sha256:2862ef4011a6585849d5ff9f65addc2ae918293362518a2be964b10048625c16",
+    "fresh_process_count": 2,
+    "exr_header_reads": 0,
+    "exr_pixel_reads": 0,
+    "jpeg_reads": 0,
+    "sidecar_publications": 0,
+    "working_image_outputs": 0
+  },
+  "gates": {
+    "exact_source_and_authority_identities": true,
+    "common_p3_primaries_confirmed": true,
+    "dataset_declaration_exact": true,
+    "dataset_white_point_declared": false,
+    "unique_authoritative_white_variant": false,
+    "source_immutable": true,
+    "zero_header_pixel_jpeg_reads": true,
+    "zero_sidecar_publications": true,
+    "two_reports_byte_exact": true
+  },
+  "stop_rule": "Close the exact EyefulTower authoritative-sidecar family. Do not select P3D65 or P3DCI post-result, reinterpret the dataset through modern HDR display practice, inspect pixels or JPEGs to choose, or relax the uniqueness gate.",
+  "candidate_count_after_result": "2/3",
+  "consumer_mapping": false,
+  "claim_ceiling": "Exact-source color-identity ambiguity only. No decoded-pixel or HDR-quality result, arbitrary EXR, package/schema/capability/product, stock evidence or candidate3 change."
+}

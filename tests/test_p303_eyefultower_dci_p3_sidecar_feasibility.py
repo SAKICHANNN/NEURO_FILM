@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 
@@ -7,6 +8,9 @@ from scripts.audit_p303_eyefultower_dci_p3_sidecar_feasibility import execute
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/p303_eyefultower_dci_p3_sidecar_feasibility_v1.json"
+EVIDENCE = (
+    ROOT / "docs/evidence/P303_EYEFULTOWER_DCI_P3_SIDECAR_FEASIBILITY_RESULT.json"
+)
 
 
 def test_p303_freezes_exact_p293_source_without_pixel_authorization() -> None:
@@ -38,3 +42,9 @@ def test_p303_formal_logic_fails_before_sidecar_or_pixels() -> None:
     assert forward["source_header_reads"] == 0
     assert forward["source_pixel_reads"] == 0
     assert forward["sidecar_publications"] == 0
+
+
+def test_p303_evidence_is_frozen() -> None:
+    assert hashlib.sha256(EVIDENCE.read_bytes()).hexdigest() == (
+        "a15ace7a5109d446886f2098075bbb48be68fcfde02f3b80b07ece0f6512d595"
+    )
