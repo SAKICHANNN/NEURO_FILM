@@ -1,0 +1,62 @@
+{
+  "schema": "neuro-film.p271-r1en-dng-profile-tone-curve-callable-intake-evidence.v1",
+  "experiment_id": "P271",
+  "date": "2026-08-27",
+  "status": "PASS_PRIVATE_R1EN_DNG_PROFILE_TONE_CURVE_CALLABLE_INTAKE",
+  "decision": "Retain exact private consumer-side mechanical intake of the producer's already-frozen R1EN ProfileToneCurve v1 callable. Do not integrate the implementation into consumer src or change the P261 predecode guard/default loader.",
+  "fixed_identity": {
+    "consumer_contract_commit": "9159a566",
+    "consumer_identity_correction_commit": "86482575",
+    "consumer_implementation_commit": "7523717541aa122be1f587627dbbe1591718cee3",
+    "consumer_formal_lock_commit": "203d4477",
+    "producer_head": "0acbec09e98ebff621b90f2f51c9a182a3b81fb8",
+    "producer_callable_id": "zhuise.dng-profile-tone-curve-callable.v1",
+    "producer_callable_source_sha256": "8aed8d692c1ca40190a2f9dee1322631351510d7e07079b0222335feee8078df",
+    "producer_schema_sha256": "c8d59ef9bc41a9f21a881907005e3f5f7fec6171383b4737b2941f082830e94d",
+    "producer_fixture_sha256": "d1a5aee3180acc62e6f9d2f14449edf03f83a55f7ff3b777f77b09fb9de5c998",
+    "producer_formal_report_sha256": "d60e4d678be9ac4ee7298095ca14540c0d9b39c27137494657d2f680b2d5d956",
+    "consumer_formal_report_bytes": 3882,
+    "consumer_formal_report_sha256": "b4c0f9dc8eeb198e5416f2dff56467b15eea78aa88d22a448c1f1fd02170e52b",
+    "consumer_scientific_identity": "sha256:8076fc401da0dde4b9b21249478db0220f6cc4bde20472c649cddbd46499a7dd"
+  },
+  "fixture": {
+    "payload_canonical_sha256": "3e15bbb5ffba20f6073f2dfc9a6aa47b8d694d5408f5646a3cc15bd91d7cfe26",
+    "real_curve_points_f32le_sha256": "b3afd859fde1a6688628c2c6ed3ce0d6a3086ddfc44fdacb672bddd9bb5a4425",
+    "input_f64le_sha256": "3cdf7871b328fc576ff0a0249e4874ce73828b28afc75bb3a7c9aa1b484fdad0",
+    "output_f64le_sha256": "307662bff89a77492e4c9e2a1151f6ab265b6fabecb0104a690594cb3d7eab94"
+  },
+  "formal_execution": {
+    "orders": ["forward", "reverse"],
+    "reports_byte_exact": true,
+    "controls": 13,
+    "controls_passed": 13,
+    "gates": 13,
+    "gates_passed": 13,
+    "network_reads": 0,
+    "new_raw_dng_pixel_target_reads": 0,
+    "producer_worktree_imports": 0,
+    "consumer_src_copies": 0,
+    "temporary_residue": 0
+  },
+  "semantic_boundaries": {
+    "input_domain": "finite linear ProPhoto/ROMM scalar or arbitrary-shaped floating array",
+    "stage_order": "ProfileHueSatMap then ProfileGainTableMap/Map2 then exposure then ProfileLookTable then ProfileToneCurve",
+    "coordinate_domain": "finite [0,1], strictly increasing x; nonmonotone y remains valid",
+    "sample_domain": "finite samples outside the curve x domain clamp to endpoint y",
+    "output": "owned writable C-contiguous float64 array with exact input shape"
+  },
+  "preformal_corrections": [
+    "A coordination-abbreviated producer report SHA was corrected to the exact producer evidence identity before callable import or output.",
+    "A nonmonotone-y test predicate was corrected from Python-decimal comparison to parsed float32-core exact parity before formal lock."
+  ],
+  "rights_and_product": {
+    "new_source_rights_dependency": false,
+    "real_file_stage_composition": false,
+    "complete_dng_renderer": false,
+    "default_loader_changed": false,
+    "public_package_schema_capability": false,
+    "product_dependency": false,
+    "candidate_3": false
+  },
+  "claim_ceiling": "Private consumer replay of one exact R1EN DNG ProfileToneCurve v1 callable and canonical fixture only; no real-file stage composition, complete DNG renderer, image quality, arbitrary profile/camera, default-loader integration, public package/schema/capability, stock evidence, automatic matching or product admission. Candidate 3 remains closed at 2/3."
+}
