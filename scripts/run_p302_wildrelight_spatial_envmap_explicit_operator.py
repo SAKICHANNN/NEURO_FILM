@@ -66,6 +66,31 @@ def _load_manifest(config: dict[str, Any]) -> dict[str, Any]:
     return json.loads(body)
 
 
+def _verify_bindings(config: dict[str, Any]) -> list[dict[str, object]]:
+    bindings = config.get("bindings")
+    if not isinstance(bindings, list) or not bindings:
+        raise P302Error("P302 execution bindings are not frozen")
+    states: list[dict[str, object]] = []
+    for binding in bindings:
+        if not isinstance(binding, dict):
+            raise P302Error("P302 execution binding is invalid")
+        relative = Path(str(binding.get("path", "")))
+        if relative.is_absolute() or ".." in relative.parts:
+            raise P302Error("P302 execution binding path is invalid")
+        body = (ROOT / relative).read_bytes()
+        state = {
+            "bytes": len(body),
+            "path": relative.as_posix(),
+            "sha256": _sha256(body),
+        }
+        if state["bytes"] != int(binding.get("bytes", -1)) or state["sha256"] != str(
+            binding.get("sha256", "")
+        ):
+            raise P302Error("P302 execution binding differs")
+        states.append(state)
+    return states
+
+
 def _local_root(config: dict[str, Any]) -> Path:
     relative = Path(str(config["source"]["local_root"]))
     if relative.is_absolute() or ".." in relative.parts:
@@ -243,12 +268,12 @@ def _train(
     for scene in config["roles"]["training"]:
         for source_index, target_index in config["roles"]["directed_pairs"]:
             paths = _paths(scene, source_index, target_index)
+            if any(path not in members for path in paths.values()):
+                raise P302Error("P302 training member is not source-locked")
             source = _decode_rgb(_local_path(root, paths["source_photo"]), openexr)
             target = _decode_rgb(_local_path(root, paths["target_photo"]), openexr)
             source_env = _decode_rgb(_local_path(root, paths["source_env"]), openexr)
             target_env = _decode_rgb(_local_path(root, paths["target_env"]), openexr)
-            if any(path not in members for path in paths.values()):
-                raise P302Error("P302 training member is not source-locked")
             candidate, image = _features(source, source_env, target_env, config)
             gain = target_log_gain_grid(
                 central_crop(source, float(op["crop_fraction"])),
@@ -482,6 +507,7 @@ def _worker(config_path: Path, site: Path, *, reverse: bool) -> dict[str, object
 
     config_body = config_path.read_bytes()
     config = json.loads(config_body)
+    binding_states = _verify_bindings(config)
     manifest = _load_manifest(config)
     members = _members_by_path(manifest)
     source_states = _verify_roles(config, manifest, ("training", "development"))
@@ -490,6 +516,7 @@ def _worker(config_path: Path, site: Path, *, reverse: bool) -> dict[str, object
     )
     return {
         **result,
+        "binding_states": binding_states,
         "config_bytes": len(config_body),
         "config_sha256": _sha256(config_body),
         "confirmation_member_reads": 0,

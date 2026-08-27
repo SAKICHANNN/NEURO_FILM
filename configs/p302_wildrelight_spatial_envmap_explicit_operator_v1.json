@@ -1,7 +1,7 @@
 {
   "schema": "neuro-film.p302-wildrelight-spatial-envmap-explicit-operator-contract.v1",
   "experiment_id": "P302",
-  "status": "FROZEN_BEFORE_MEMBER_SOURCE_LOCK_OR_PIXEL_ACCESS",
+  "status": "SOURCE_LOCKED_BEFORE_PIXEL_ACCESS",
   "source": {
     "dataset_id": "Lez/wildrelight",
     "revision": "90ab579145da9f3ea998d706c8defd0d4b87641f",
@@ -11,8 +11,29 @@
       "lake"
     ],
     "local_root": "data/external/p302_wildrelight_spatial_envmap_v1",
-    "member_manifest": null
+    "member_manifest": {
+      "path": "configs/p302_wildrelight_spatial_envmap_member_manifest_v1.json",
+      "bytes": 114612,
+      "sha256": "7e65e2bf8c72b6aff68a51d1b1e8e55f2ac4f3df0d9ad0d15653f6e10f50d3c1"
+    }
   },
+  "bindings": [
+    {
+      "path": "docs/planning/P302_WILDRELIGHT_SPATIAL_ENVMAP_EXPLICIT_OPERATOR_CONTRACT.md",
+      "bytes": 6387,
+      "sha256": "e34f1f0dee8ec0db4b2e67e3138c599c4f56e23a83c5838949654726459ea4b4"
+    },
+    {
+      "path": "src/eval/wildrelight_spatial_envmap_explicit.py",
+      "bytes": 8903,
+      "sha256": "0412fd8b4741df082a16383409cc0e42a5c150d994a8a93bf4f098268a69973a"
+    },
+    {
+      "path": "scripts/run_p302_wildrelight_spatial_envmap_explicit_operator.py",
+      "bytes": 25080,
+      "sha256": "5715b440dd7efb8b2ba6a9af786addfdd4e09a861d9eb9ee0014f7656f4ab500"
+    }
+  ],
   "roles": {
     "selection": "ascending SHA256(revision + ':p302:' + scene)",
     "training": [

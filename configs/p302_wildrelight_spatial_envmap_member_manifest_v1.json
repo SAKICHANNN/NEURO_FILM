@@ -1,0 +1,3402 @@
+{
+  "dataset_id": "Lez/wildrelight",
+  "experiment_id": "P302",
+  "members": [
+    {
+      "bytes": 4436,
+      "git_blob_sha1": "e3c2440474887f3cbf85985bf8f721fc74979d0e",
+      "identity_kind": "git_blob_sha1_and_body_sha256",
+      "path": "small-aligned/yatai/meta.json",
+      "role": "training",
+      "scene": "yatai",
+      "sha256": "0459bf15b26b1c91d909413ff23ecd713bd4b6c38068bb2963f8275988eff538"
+    },
+    {
+      "bytes": 7917074,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/yatai/envmap/time0_envmap.exr",
+      "role": "training",
+      "scene": "yatai",
+      "sha256": "cde7b4076e834ef0854db23721e87ecedfc388b06d605e0cefd9a7ffd5785ca6"
+    },
+    {
+      "bytes": 10598616,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/yatai/photo/time0_hdr.exr",
+      "role": "training",
+      "scene": "yatai",
+      "sha256": "504b854cbfdfbecbba57805962c8a6682b699f31d07e10134df6018cbd895b95"
+    },
+    {
+      "bytes": 7909911,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/yatai/envmap/time1_envmap.exr",
+      "role": "training",
+      "scene": "yatai",
+      "sha256": "63c364bfa06e6bbc29eec2ff488ad1fa635cb7885b694fe4fd16b155c92f3b58"
+    },
+    {
+      "bytes": 10560183,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/yatai/photo/time1_hdr.exr",
+      "role": "training",
+      "scene": "yatai",
+      "sha256": "7602ce74d572f5a87b7be9d41dc8bfdb6f0c3b54422fdec3eef50e92263c82b4"
+    },
+    {
+      "bytes": 7901545,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/yatai/envmap/time2_envmap.exr",
+      "role": "training",
+      "scene": "yatai",
+      "sha256": "d0245558218a55f2b2cd2e6d34c2432e944311a751982aff676816cf3e7d4c20"
+    },
+    {
+      "bytes": 10567076,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/yatai/photo/time2_hdr.exr",
+      "role": "training",
+      "scene": "yatai",
+      "sha256": "73320c6607a5001a34971175971018e91e06b2635c50b67e5a1d316639e1c37f"
+    },
+    {
+      "bytes": 7889950,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/yatai/envmap/time3_envmap.exr",
+      "role": "training",
+      "scene": "yatai",
+      "sha256": "532d2ac64420a3ab24fbba006f0ee01095bdae3b49a9c2ccdeee656498abf727"
+    },
+    {
+      "bytes": 10567017,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/yatai/photo/time3_hdr.exr",
+      "role": "training",
+      "scene": "yatai",
+      "sha256": "2b14ac370c7feabde4813ccc05fc470bdea7aff385d4e974b8dc86d3e2afb3e9"
+    },
+    {
+      "bytes": 7891172,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/yatai/envmap/time4_envmap.exr",
+      "role": "training",
+      "scene": "yatai",
+      "sha256": "bcc164c504ea4aeee571d32719d2b0fd7971b5f6d7d6a4e0fb2057744624a7dc"
+    },
+    {
+      "bytes": 10527532,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/yatai/photo/time4_hdr.exr",
+      "role": "training",
+      "scene": "yatai",
+      "sha256": "f7a6125d95603161f7d3940911e5b19593b73843b05ec5749990bf0ebc7b5542"
+    },
+    {
+      "bytes": 7914381,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/yatai/envmap/time5_envmap.exr",
+      "role": "training",
+      "scene": "yatai",
+      "sha256": "236cbd8d36ae72aa91714283477c4a7bbf457b82ef3d112d9f6a294497f6fcfd"
+    },
+    {
+      "bytes": 10575822,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/yatai/photo/time5_hdr.exr",
+      "role": "training",
+      "scene": "yatai",
+      "sha256": "d8e4d7b7b1624bd6f92d756ab853edf74067cead8ac4c46d5b71992f5e55a80f"
+    },
+    {
+      "bytes": 4030,
+      "git_blob_sha1": "720babf87f79af38e10d2059f301c1288e67f5b2",
+      "identity_kind": "git_blob_sha1_and_body_sha256",
+      "path": "small-aligned/byway/meta.json",
+      "role": "training",
+      "scene": "byway",
+      "sha256": "a73255e1ec02f3ae4cadc6c07ff32b19f9e68765b3ba8dfc8f51bbaeea8d8b2f"
+    },
+    {
+      "bytes": 8031867,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/byway/envmap/time0_envmap.exr",
+      "role": "training",
+      "scene": "byway",
+      "sha256": "17c69d3424375274eda169d7243b8f0d614ab1cedbe3a05dd9c5ac90a80b17a6"
+    },
+    {
+      "bytes": 10634916,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/byway/photo/time0_hdr.exr",
+      "role": "training",
+      "scene": "byway",
+      "sha256": "754b75283e379d708ec15c636f164976b9f723a01f30964137dc61769be3057b"
+    },
+    {
+      "bytes": 8004759,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/byway/envmap/time1_envmap.exr",
+      "role": "training",
+      "scene": "byway",
+      "sha256": "8295d74c8ee005cf91562e62961db850a0c284432a17b70fa388bf58a3ab91c7"
+    },
+    {
+      "bytes": 10584728,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/byway/photo/time1_hdr.exr",
+      "role": "training",
+      "scene": "byway",
+      "sha256": "a73f596419e6ef0f0db44483b11b6b913f76d1e924264c4bcb492cd39529c35d"
+    },
+    {
+      "bytes": 8011961,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/byway/envmap/time2_envmap.exr",
+      "role": "training",
+      "scene": "byway",
+      "sha256": "91f883294bb78261f4a20785845afb92c4fc5fde778fec976b27a2de2b62679b"
+    },
+    {
+      "bytes": 10574055,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/byway/photo/time2_hdr.exr",
+      "role": "training",
+      "scene": "byway",
+      "sha256": "f5b56ce6c52693e813d8d569b4b8fbd9b9958fca1bc2af739d4067ac93d11746"
+    },
+    {
+      "bytes": 8024301,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/byway/envmap/time3_envmap.exr",
+      "role": "training",
+      "scene": "byway",
+      "sha256": "eab1bee3ca3372c204e894272b60be22f66339fc275eb88b39fa907429abefdf"
+    },
+    {
+      "bytes": 10572410,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/byway/photo/time3_hdr.exr",
+      "role": "training",
+      "scene": "byway",
+      "sha256": "d1c7730a2ac0ffe218bc5b224f57389c002e17009a0f67e08b2281e8eab26851"
+    },
+    {
+      "bytes": 8038451,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/byway/envmap/time4_envmap.exr",
+      "role": "training",
+      "scene": "byway",
+      "sha256": "09f41e413ce5a85bf3ee5ffaa22d41fe6135a7e752160ddd712f88d282a86461"
+    },
+    {
+      "bytes": 10583753,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/byway/photo/time4_hdr.exr",
+      "role": "training",
+      "scene": "byway",
+      "sha256": "645883ceffa6af49336e61eda2f551fd2daa76fe640c294539995973e7a70fba"
+    },
+    {
+      "bytes": 8009354,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/byway/envmap/time5_envmap.exr",
+      "role": "training",
+      "scene": "byway",
+      "sha256": "99991fdf9f512461ee4f31c210491653e3f9ecd70260820fb8314d8baf427aeb"
+    },
+    {
+      "bytes": 10526069,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/byway/photo/time5_hdr.exr",
+      "role": "training",
+      "scene": "byway",
+      "sha256": "3088c4f1f6787494a9b14c205f88869ba859709da961c96bce7d57edff40e1c6"
+    },
+    {
+      "bytes": 4194,
+      "git_blob_sha1": "faad31975e0fc087056761dc23b610b7d29d96a6",
+      "identity_kind": "git_blob_sha1_and_body_sha256",
+      "path": "small-aligned/table_tennis/meta.json",
+      "role": "training",
+      "scene": "table_tennis",
+      "sha256": "2ca76d916759c07ca7223c4773c8681e4b082b18d19b0138bd41b5237d767d80"
+    },
+    {
+      "bytes": 7863506,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/table_tennis/envmap/time0_envmap.exr",
+      "role": "training",
+      "scene": "table_tennis",
+      "sha256": "db9a7de1f76042f555f180c3aae2aae34cfa69ddc7d1a72f13eeaf065ea7fca9"
+    },
+    {
+      "bytes": 10617400,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/table_tennis/photo/time0_hdr.exr",
+      "role": "training",
+      "scene": "table_tennis",
+      "sha256": "0bbf2c1224bab8b4801f7191470981022a22c3fe4af069148569f92f4da91e57"
+    },
+    {
+      "bytes": 7843990,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/table_tennis/envmap/time1_envmap.exr",
+      "role": "training",
+      "scene": "table_tennis",
+      "sha256": "ba05aa75ae19a02b5d42da8f39a6c5b686b77b8fdea063e3e77595a4ce295567"
+    },
+    {
+      "bytes": 10593852,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/table_tennis/photo/time1_hdr.exr",
+      "role": "training",
+      "scene": "table_tennis",
+      "sha256": "8bf844cdd881f2a7f5d954fd0ec8e992febb78ac5efca9b33489cd46fd05352d"
+    },
+    {
+      "bytes": 7755171,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/table_tennis/envmap/time2_envmap.exr",
+      "role": "training",
+      "scene": "table_tennis",
+      "sha256": "f49150ccfcb575873399480bb9457640e2ea7fb71892d9d2d22c34d96629ab01"
+    },
+    {
+      "bytes": 10576308,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/table_tennis/photo/time2_hdr.exr",
+      "role": "training",
+      "scene": "table_tennis",
+      "sha256": "60b2717f76de39b214a5375adf68728187a0434710927c35350eec145d95b608"
+    },
+    {
+      "bytes": 7764980,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/table_tennis/envmap/time3_envmap.exr",
+      "role": "training",
+      "scene": "table_tennis",
+      "sha256": "d58e13392310e1cd47f930311f63300b2a55f8e2f45e3e10a198d74cf01b773d"
+    },
+    {
+      "bytes": 10585520,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/table_tennis/photo/time3_hdr.exr",
+      "role": "training",
+      "scene": "table_tennis",
+      "sha256": "c471f500c7810d7e3576ae628f2e2d7c87ea21ad930ef0d6f1155f911176ee39"
+    },
+    {
+      "bytes": 7751524,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/table_tennis/envmap/time4_envmap.exr",
+      "role": "training",
+      "scene": "table_tennis",
+      "sha256": "f8ea456cd582e0692a0bbf0503ab1b01514858c6830305b076a6bf26188ddb9f"
+    },
+    {
+      "bytes": 10581062,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/table_tennis/photo/time4_hdr.exr",
+      "role": "training",
+      "scene": "table_tennis",
+      "sha256": "d1cd8db981fcf705973a03bf270df68d1943f6f977221525adc9150ec9ebb70c"
+    },
+    {
+      "bytes": 7765098,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/table_tennis/envmap/time5_envmap.exr",
+      "role": "training",
+      "scene": "table_tennis",
+      "sha256": "0219007e39863c41b05337ee9971c178df39c8cb7c0dee96ffb3f238e7c56ad5"
+    },
+    {
+      "bytes": 10586273,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/table_tennis/photo/time5_hdr.exr",
+      "role": "training",
+      "scene": "table_tennis",
+      "sha256": "72b3eb4aa5cabe80828838bad4cfcce4b987278438cd89ebb569fe45d73bbcd1"
+    },
+    {
+      "bytes": 4137,
+      "git_blob_sha1": "2cf307e9e28e62eadcd537e041a608b32b3aebcb",
+      "identity_kind": "git_blob_sha1_and_body_sha256",
+      "path": "small-aligned/statue2/meta.json",
+      "role": "training",
+      "scene": "statue2",
+      "sha256": "373c931acf23efe40119662fae7f0467571c5fdfb42eb61afa1490842c7f9220"
+    },
+    {
+      "bytes": 7925436,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/statue2/envmap/time0_envmap.exr",
+      "role": "training",
+      "scene": "statue2",
+      "sha256": "d0864815cbb197383f8af13da6f5ce89c7abbfb73d77a5efb1602eae49f82970"
+    },
+    {
+      "bytes": 10613231,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/statue2/photo/time0_hdr.exr",
+      "role": "training",
+      "scene": "statue2",
+      "sha256": "559656b1d495c098262c1b5ee5657e3cbe238468bab5a4b8adb6ffa4e6a34230"
+    },
+    {
+      "bytes": 7953126,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/statue2/envmap/time1_envmap.exr",
+      "role": "training",
+      "scene": "statue2",
+      "sha256": "ab799f23f4e14a51be7bc4e6f9f7949f53fedf755b9b15fa6bf65a58742e9337"
+    },
+    {
+      "bytes": 10608316,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/statue2/photo/time1_hdr.exr",
+      "role": "training",
+      "scene": "statue2",
+      "sha256": "565f44449d856c5550f1a68be69f5a086cac8d38e3b65d175260a4db6ba47a62"
+    },
+    {
+      "bytes": 8089623,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/statue2/envmap/time2_envmap.exr",
+      "role": "training",
+      "scene": "statue2",
+      "sha256": "d430f3a8dc67bd3653ce1bd369d567b203e51f7d0485b909b11c48fa6036ed1b"
+    },
+    {
+      "bytes": 10605829,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/statue2/photo/time2_hdr.exr",
+      "role": "training",
+      "scene": "statue2",
+      "sha256": "40817394cc25081699f6ccfeb50ed9d36767e8cce8476c938ae8dd5cc559edcf"
+    },
+    {
+      "bytes": 7966073,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/statue2/envmap/time3_envmap.exr",
+      "role": "training",
+      "scene": "statue2",
+      "sha256": "b98cab560087ad8a61491087ea54052fb0600a5867f8a87a4cafb4e8251b33c4"
+    },
+    {
+      "bytes": 10598841,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/statue2/photo/time3_hdr.exr",
+      "role": "training",
+      "scene": "statue2",
+      "sha256": "6fec059f1e0549cbfe8b35b38a05d001526e619ef4d83e81d0bd7cc0efa9d0d0"
+    },
+    {
+      "bytes": 7930534,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/statue2/envmap/time4_envmap.exr",
+      "role": "training",
+      "scene": "statue2",
+      "sha256": "26a25af359c18d0943a5c9ac4f41faa24b22421eaf9d7da44a5b2cacf7725204"
+    },
+    {
+      "bytes": 10603473,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/statue2/photo/time4_hdr.exr",
+      "role": "training",
+      "scene": "statue2",
+      "sha256": "7c1a86a5281fcf196688b88aa0d4e3ed1990e57bd7b71aafd483638896d1b8ad"
+    },
+    {
+      "bytes": 7964733,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/statue2/envmap/time5_envmap.exr",
+      "role": "training",
+      "scene": "statue2",
+      "sha256": "02233ed50713e45eadafb6e8e8f9ea7227bedd5bfb1cda5b320c2202685fb306"
+    },
+    {
+      "bytes": 10590132,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/statue2/photo/time5_hdr.exr",
+      "role": "training",
+      "scene": "statue2",
+      "sha256": "895d85b69d35d89d5e1dc8d322aef7e04e21f9ca1907f3f04c8c2762da9f7d84"
+    },
+    {
+      "bytes": 2954,
+      "git_blob_sha1": "69d529381ac452335067878fca846d7bb14361b8",
+      "identity_kind": "git_blob_sha1_and_body_sha256",
+      "path": "small-aligned/garden/meta.json",
+      "role": "training",
+      "scene": "garden",
+      "sha256": "527fd88a52a1489ee30496dc9801316c82790d028b16979c1265ebf6745efe42"
+    },
+    {
+      "bytes": 7583351,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/garden/envmap/time0_envmap.exr",
+      "role": "training",
+      "scene": "garden",
+      "sha256": "6867b53193a1e540192b5189d8f9906ffcc4a24fa5f56facdd4f4ef9623870c5"
+    },
+    {
+      "bytes": 9958131,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/garden/photo/time0_hdr.exr",
+      "role": "training",
+      "scene": "garden",
+      "sha256": "c3fc239123122aef0744164e0e24b493a7a49ad2a100a2d78a1c6ac5affb34bb"
+    },
+    {
+      "bytes": 7574436,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/garden/envmap/time1_envmap.exr",
+      "role": "training",
+      "scene": "garden",
+      "sha256": "d35c0f8ad4eba6b413686123450dce3d3cac81962aa24f4107c475cbe0b131d5"
+    },
+    {
+      "bytes": 9930027,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/garden/photo/time1_hdr.exr",
+      "role": "training",
+      "scene": "garden",
+      "sha256": "af9855b9621e33a58731c54e81b19b22f28eb5635e1d9c2e3674fd090e722b8c"
+    },
+    {
+      "bytes": 7603072,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/garden/envmap/time2_envmap.exr",
+      "role": "training",
+      "scene": "garden",
+      "sha256": "db4e2aefa39cdfe6968a7c1ac5d4fd77c986aa6d28667a03a77fbc9210f3e184"
+    },
+    {
+      "bytes": 9958275,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/garden/photo/time2_hdr.exr",
+      "role": "training",
+      "scene": "garden",
+      "sha256": "22957fbf3c8e57eadcd1b7d16f47854c2d22cd169d194a1e0287eeec38a7f39e"
+    },
+    {
+      "bytes": 7537533,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/garden/envmap/time3_envmap.exr",
+      "role": "training",
+      "scene": "garden",
+      "sha256": "ba8ab0322d1bac52fbe25c18041137176e1179b8a6fb3ec3bf32fd9e16737e6d"
+    },
+    {
+      "bytes": 9929239,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/garden/photo/time3_hdr.exr",
+      "role": "training",
+      "scene": "garden",
+      "sha256": "d0be6ba744b9a16feb4ccd075b687590efde1d47210f4256b31235960f6c560c"
+    },
+    {
+      "bytes": 7379697,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/garden/envmap/time4_envmap.exr",
+      "role": "training",
+      "scene": "garden",
+      "sha256": "53219831c465c9ac81da00ae62f846dd8b9138d39835bbdbb19550b09b96b6bb"
+    },
+    {
+      "bytes": 9946604,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/garden/photo/time4_hdr.exr",
+      "role": "training",
+      "scene": "garden",
+      "sha256": "dca92337718d718fbeecfd47051ee6806d452e59e5de21033c08f2e62cd3706d"
+    },
+    {
+      "bytes": 7464991,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/garden/envmap/time5_envmap.exr",
+      "role": "training",
+      "scene": "garden",
+      "sha256": "57f62d62b641a53c777025d84657750cc68dfdc2739b767dbc9037a8c0bb211a"
+    },
+    {
+      "bytes": 9910148,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/garden/photo/time5_hdr.exr",
+      "role": "training",
+      "scene": "garden",
+      "sha256": "215e0b295d88490ba864fb8db4ac1fc04b3c26c8787b7c8ad9ad3eceaabda4b2"
+    },
+    {
+      "bytes": 4925,
+      "git_blob_sha1": "3400fd69b95d29ffedbcd09781515076dc46f43c",
+      "identity_kind": "git_blob_sha1_and_body_sha256",
+      "path": "small-aligned/rail/meta.json",
+      "role": "training",
+      "scene": "rail",
+      "sha256": "8d4e21af8e51b60948c5aa05d011871322260098c17c28dcc2a63aeb6dffa1aa"
+    },
+    {
+      "bytes": 7593619,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/rail/envmap/time0_envmap.exr",
+      "role": "training",
+      "scene": "rail",
+      "sha256": "c6470837b5734b70e9ec18e2ed2047ef534ed6542094110f74237ec1d56c6e48"
+    },
+    {
+      "bytes": 9500976,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/rail/photo/time0_hdr.exr",
+      "role": "training",
+      "scene": "rail",
+      "sha256": "814b0e86a503b465935f3b2e2fca64c41c7203a94c5c336a3c920e959bb9af65"
+    },
+    {
+      "bytes": 7606759,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/rail/envmap/time1_envmap.exr",
+      "role": "training",
+      "scene": "rail",
+      "sha256": "519a39c8f99d41aa2c79022a408ed96cd7ce08da95e3663c8f5e698054703a0c"
+    },
+    {
+      "bytes": 9452570,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/rail/photo/time1_hdr.exr",
+      "role": "training",
+      "scene": "rail",
+      "sha256": "4fa0a1eeb25ef11aad32a43bb64ddb5eb5180e03e87a69fb9bf191e87799fe0f"
+    },
+    {
+      "bytes": 7641203,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/rail/envmap/time2_envmap.exr",
+      "role": "training",
+      "scene": "rail",
+      "sha256": "41d904eca38f623d114b93224bcb2fae0f5b979efb5bedb37d03f10a34677299"
+    },
+    {
+      "bytes": 9466663,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/rail/photo/time2_hdr.exr",
+      "role": "training",
+      "scene": "rail",
+      "sha256": "d3a96b29c7ddb0dbe8598f990c1e8eaea019365d19f64c99ce43d21e1a8176ec"
+    },
+    {
+      "bytes": 7641580,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/rail/envmap/time3_envmap.exr",
+      "role": "training",
+      "scene": "rail",
+      "sha256": "57519acfe748751dc8c9bea827ba0334c548abf52b791675a7fad1a7a281d424"
+    },
+    {
+      "bytes": 9450379,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/rail/photo/time3_hdr.exr",
+      "role": "training",
+      "scene": "rail",
+      "sha256": "61842c668cf4634448fd24d745dffb9b51896e4eae9c83c66dad0a1c459b5010"
+    },
+    {
+      "bytes": 7672419,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/rail/envmap/time4_envmap.exr",
+      "role": "training",
+      "scene": "rail",
+      "sha256": "df5752cb42f11a2673832da9eda8ec36591edbe096fa7bd4b5ace1e6b7a5021c"
+    },
+    {
+      "bytes": 9462823,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/rail/photo/time4_hdr.exr",
+      "role": "training",
+      "scene": "rail",
+      "sha256": "7fa0c698235cbc798510147137f9b6c69936512c7d51d80677938a23ff984ae0"
+    },
+    {
+      "bytes": 7707213,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/rail/envmap/time5_envmap.exr",
+      "role": "training",
+      "scene": "rail",
+      "sha256": "2f1971d4da8a474a3502124e466f9c67937cc6c1bb3cb0bbd0de0c4350530a72"
+    },
+    {
+      "bytes": 9455231,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/rail/photo/time5_hdr.exr",
+      "role": "training",
+      "scene": "rail",
+      "sha256": "88ff0de52cf0dd2ca2160261c7c3cd23ff49c90d26eed8a5da39db48ef64a1d8"
+    },
+    {
+      "bytes": 4224,
+      "git_blob_sha1": "46c268ad7db1ff0f11c143e4c4282d8d71eac9ef",
+      "identity_kind": "git_blob_sha1_and_body_sha256",
+      "path": "small-aligned/grassland2/meta.json",
+      "role": "training",
+      "scene": "grassland2",
+      "sha256": "4d7576a356a3de77c5ebdc7c299d3aaca1efd5b466e6bc0034193e2c71c79a14"
+    },
+    {
+      "bytes": 7715634,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/grassland2/envmap/time0_envmap.exr",
+      "role": "training",
+      "scene": "grassland2",
+      "sha256": "3c91b067cbcf9a1b77eeb897ee0ebec6813c06fdea6faada1e207f0c31d50ca6"
+    },
+    {
+      "bytes": 10207753,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/grassland2/photo/time0_hdr.exr",
+      "role": "training",
+      "scene": "grassland2",
+      "sha256": "284f7f39cdf504e0ec0626d43d0f783b32f5469df62ea0433cc871c13c31784e"
+    },
+    {
+      "bytes": 7765068,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/grassland2/envmap/time1_envmap.exr",
+      "role": "training",
+      "scene": "grassland2",
+      "sha256": "8a3d7d77f764ac2885f9fcdae18751aace180819c54b29d53fce1ea30ad1a12c"
+    },
+    {
+      "bytes": 10172653,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/grassland2/photo/time1_hdr.exr",
+      "role": "training",
+      "scene": "grassland2",
+      "sha256": "54b282e487948fef713c4138d7e5f675dedbb10191be2944616edacb60757209"
+    },
+    {
+      "bytes": 7723548,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/grassland2/envmap/time2_envmap.exr",
+      "role": "training",
+      "scene": "grassland2",
+      "sha256": "468e4f92ea838d09e35f990ebc22dad0666eee93ad582e2d0b884c05d0f88cee"
+    },
+    {
+      "bytes": 10154733,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/grassland2/photo/time2_hdr.exr",
+      "role": "training",
+      "scene": "grassland2",
+      "sha256": "ff8b01fbe98cbd666ca23a94477af0b7f4ef37f7e0a279fb3dda31d95aa945b2"
+    },
+    {
+      "bytes": 7710314,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/grassland2/envmap/time3_envmap.exr",
+      "role": "training",
+      "scene": "grassland2",
+      "sha256": "be6e3dd10cb622dc589375b066659330d7b52807903a3cfe4e896e92eb5abe0f"
+    },
+    {
+      "bytes": 10151875,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/grassland2/photo/time3_hdr.exr",
+      "role": "training",
+      "scene": "grassland2",
+      "sha256": "87754101337e19d8e2b7458e9d29ba010f675511d179772f8ce1c8c5ff2ef055"
+    },
+    {
+      "bytes": 7678101,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/grassland2/envmap/time4_envmap.exr",
+      "role": "training",
+      "scene": "grassland2",
+      "sha256": "af513e96250bdedfa96ac5e3e6821c9ea5bcee781ceade0d760d34956c16a24f"
+    },
+    {
+      "bytes": 10171659,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/grassland2/photo/time4_hdr.exr",
+      "role": "training",
+      "scene": "grassland2",
+      "sha256": "fed7066070fb256075524d296bf0111aa63a6bc18b978d5154efb2276a6c74b7"
+    },
+    {
+      "bytes": 7768712,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/grassland2/envmap/time5_envmap.exr",
+      "role": "training",
+      "scene": "grassland2",
+      "sha256": "0026db4b155053e8b893f7d502b9db32ef56404ffe7ec97b7db94dc035da657d"
+    },
+    {
+      "bytes": 10163040,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/grassland2/photo/time5_hdr.exr",
+      "role": "training",
+      "scene": "grassland2",
+      "sha256": "dc989d77dce701d5b98d9ff696bf546dfe8d4ddd2ccbb3629aaad334a0474a1b"
+    },
+    {
+      "bytes": 4125,
+      "git_blob_sha1": "57c5f9b9ca6ad44981bee2d0de61e62fe86e6ac3",
+      "identity_kind": "git_blob_sha1_and_body_sha256",
+      "path": "small-aligned/meadow/meta.json",
+      "role": "training",
+      "scene": "meadow",
+      "sha256": "ee8bce085012bfd8d7ef391fc0b0ac26c49052dd87776b90214dea24d27c28cb"
+    },
+    {
+      "bytes": 7709502,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/meadow/envmap/time0_envmap.exr",
+      "role": "training",
+      "scene": "meadow",
+      "sha256": "bf148c389d8333bd22faf722752e048bbe60e60eb438c7f74f67d5935b805370"
+    },
+    {
+      "bytes": 10590958,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/meadow/photo/time0_hdr.exr",
+      "role": "training",
+      "scene": "meadow",
+      "sha256": "58a89d136b703a7bf7da0d1a9846a5fa5786acaf531de07d2ae4e82dfa43dd5a"
+    },
+    {
+      "bytes": 7703299,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/meadow/envmap/time1_envmap.exr",
+      "role": "training",
+      "scene": "meadow",
+      "sha256": "68b461e8914e160b1b2393cc8dd78f624eb313deb752e7121fe4f8e0c0853cf3"
+    },
+    {
+      "bytes": 10547424,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/meadow/photo/time1_hdr.exr",
+      "role": "training",
+      "scene": "meadow",
+      "sha256": "69ae4807808e057cde667f02471dd9414f6d56d94f069b7b184682f2a86a0a74"
+    },
+    {
+      "bytes": 7676541,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/meadow/envmap/time2_envmap.exr",
+      "role": "training",
+      "scene": "meadow",
+      "sha256": "a04e66a9f1b500246441a8706515365ec78feade4923950d34ecdefd275cdda4"
+    },
+    {
+      "bytes": 10559739,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/meadow/photo/time2_hdr.exr",
+      "role": "training",
+      "scene": "meadow",
+      "sha256": "d28cb935ba7af750b1b9feb3955c7aeda8425010b6b0d3dd1c5598c00cd32f3d"
+    },
+    {
+      "bytes": 7721178,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/meadow/envmap/time3_envmap.exr",
+      "role": "training",
+      "scene": "meadow",
+      "sha256": "b31ff19bdd4614004b4cda62a642c529d66438fb8e6eb8a4775885302d87d699"
+    },
+    {
+      "bytes": 10569996,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/meadow/photo/time3_hdr.exr",
+      "role": "training",
+      "scene": "meadow",
+      "sha256": "24d7f0ef59ba8808ffd2b1e5936efac3d04d50dfcc4915cabb3a906392a65544"
+    },
+    {
+      "bytes": 7739429,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/meadow/envmap/time4_envmap.exr",
+      "role": "training",
+      "scene": "meadow",
+      "sha256": "e6f386d931a2b8a6a2b0f0cd51dcd2447256d03979640936329b59d53fe09e91"
+    },
+    {
+      "bytes": 10560387,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/meadow/photo/time4_hdr.exr",
+      "role": "training",
+      "scene": "meadow",
+      "sha256": "1a23f4d81ea791ab2d656fdfa680afd85de846ddc223f5c13a00a095f0b8fb23"
+    },
+    {
+      "bytes": 7736540,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/meadow/envmap/time5_envmap.exr",
+      "role": "training",
+      "scene": "meadow",
+      "sha256": "bf354f3ad1d302b3151646e00f8c8daa9bab69631a118a502c4ddfe017831fe3"
+    },
+    {
+      "bytes": 10569185,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/meadow/photo/time5_hdr.exr",
+      "role": "training",
+      "scene": "meadow",
+      "sha256": "6ee44abf72db0d926f41b3b703974b10f0ffb7e40f29829598308ee2769a73c4"
+    },
+    {
+      "bytes": 4330,
+      "git_blob_sha1": "c9b8ca44acadb0fd5a5209e571a48d522d2222c2",
+      "identity_kind": "git_blob_sha1_and_body_sha256",
+      "path": "small-aligned/indoor/meta.json",
+      "role": "training",
+      "scene": "indoor",
+      "sha256": "ee6ef0e412b406b7df70e9c5ae985cbc75420f7fb8c953673d41964d28cebee2"
+    },
+    {
+      "bytes": 7419473,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/indoor/envmap/time0_envmap.exr",
+      "role": "training",
+      "scene": "indoor",
+      "sha256": "5eb202b4d6baf4636b10808de11267e5704a7d10f25375f1f8cb7b99e8cb05b3"
+    },
+    {
+      "bytes": 10318522,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/indoor/photo/time0_hdr.exr",
+      "role": "training",
+      "scene": "indoor",
+      "sha256": "d39faba9a95ddf471e0b76e89d1881c1c94f675154b09f2e11a538e3bb2cd9ca"
+    },
+    {
+      "bytes": 7425808,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/indoor/envmap/time1_envmap.exr",
+      "role": "training",
+      "scene": "indoor",
+      "sha256": "8bc895b935d8153e77ba3a4eb6c12c350c5930e1b46744d175cf6f4d5a2b3200"
+    },
+    {
+      "bytes": 10308618,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/indoor/photo/time1_hdr.exr",
+      "role": "training",
+      "scene": "indoor",
+      "sha256": "279356d2dce8da66899a2c2eb4d7de47d324fb2b9b126de303267b6bcf693d46"
+    },
+    {
+      "bytes": 7421505,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/indoor/envmap/time2_envmap.exr",
+      "role": "training",
+      "scene": "indoor",
+      "sha256": "cdbf63813687d734eb597b946b0ffa7630dda481b7c6955ada268ef4676f8b12"
+    },
+    {
+      "bytes": 10301775,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/indoor/photo/time2_hdr.exr",
+      "role": "training",
+      "scene": "indoor",
+      "sha256": "2b787045db8ecf48d6468fe89aab1db9f9bd7172f0c743165669ac67b8b6dd5e"
+    },
+    {
+      "bytes": 7456763,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/indoor/envmap/time3_envmap.exr",
+      "role": "training",
+      "scene": "indoor",
+      "sha256": "7d3d871ed3eb938b70fb7a226f5b0ad7125f44de98d716d50d163dd295a2053a"
+    },
+    {
+      "bytes": 10315651,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/indoor/photo/time3_hdr.exr",
+      "role": "training",
+      "scene": "indoor",
+      "sha256": "ce693b8563ade33fcd53fa03b7615aa006a62368559dabb2b1d7516c0c53aaf1"
+    },
+    {
+      "bytes": 7517799,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/indoor/envmap/time4_envmap.exr",
+      "role": "training",
+      "scene": "indoor",
+      "sha256": "ccfb204924bee7ee7e73da3239d2d1533d357daf5f459f471ef72e094c913674"
+    },
+    {
+      "bytes": 10302341,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/indoor/photo/time4_hdr.exr",
+      "role": "training",
+      "scene": "indoor",
+      "sha256": "2adae1a7cec8f41162be403b3e53788a42bdb4efb2bf5a58591296754badf5eb"
+    },
+    {
+      "bytes": 7499306,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/indoor/envmap/time5_envmap.exr",
+      "role": "training",
+      "scene": "indoor",
+      "sha256": "e116fac0247a74f0065311c1a677d980fb4eb056dc3b6c6132c97f349b78b8ee"
+    },
+    {
+      "bytes": 10319583,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/indoor/photo/time5_hdr.exr",
+      "role": "training",
+      "scene": "indoor",
+      "sha256": "180aa98e8a51fe6cea3571b00b82ea864a72ceb6a9cd94ccb7bd49e0d407c484"
+    },
+    {
+      "bytes": 3616,
+      "git_blob_sha1": "201044e87b448a081d568529187330408e74af0a",
+      "identity_kind": "git_blob_sha1_and_body_sha256",
+      "path": "small-aligned/sand/meta.json",
+      "role": "training",
+      "scene": "sand",
+      "sha256": "6523f9aadabb74b193a0fbc07e68af4e281ea05a8bf97b67b290ed2b5fa3ec2b"
+    },
+    {
+      "bytes": 6456109,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/sand/envmap/time0_envmap.exr",
+      "role": "training",
+      "scene": "sand",
+      "sha256": "50647d4f419e4076cc0b65bc458d8c9cbd3c24c262057fd2b94f6b10224b5814"
+    },
+    {
+      "bytes": 9811311,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/sand/photo/time0_hdr.exr",
+      "role": "training",
+      "scene": "sand",
+      "sha256": "f70db7edace4c10d3c6b08893064181a4b144bec399ef6dbf74faef5b5f663df"
+    },
+    {
+      "bytes": 6601647,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/sand/envmap/time1_envmap.exr",
+      "role": "training",
+      "scene": "sand",
+      "sha256": "970ea1c97ebbe12ec67b4880e525df4294f1dd85329b93fea1ed749cd9d6ae06"
+    },
+    {
+      "bytes": 9739490,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/sand/photo/time1_hdr.exr",
+      "role": "training",
+      "scene": "sand",
+      "sha256": "8a5c9a036a942515109c21d4147bba442f6805cfc8300649fd85396b8fb7ced4"
+    },
+    {
+      "bytes": 6315406,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/sand/envmap/time2_envmap.exr",
+      "role": "training",
+      "scene": "sand",
+      "sha256": "addfe186cfb4059bc3b8fef90954789ff53ecaec68cac177eceb20f6bbbb4146"
+    },
+    {
+      "bytes": 9682360,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/sand/photo/time2_hdr.exr",
+      "role": "training",
+      "scene": "sand",
+      "sha256": "c6b232a674cdfdcc3c8ad6a1bdaeb7eeef40fef671274a8c64b729ebb43a0f0d"
+    },
+    {
+      "bytes": 6838254,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/sand/envmap/time3_envmap.exr",
+      "role": "training",
+      "scene": "sand",
+      "sha256": "e48a8280f11ed655c3533d990666d31bce79c98590edc0f20a020951988e10cb"
+    },
+    {
+      "bytes": 9733691,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/sand/photo/time3_hdr.exr",
+      "role": "training",
+      "scene": "sand",
+      "sha256": "73d709982c151b6765193112fd6da299cfc0787de3d57e382c9a3ac04a994ced"
+    },
+    {
+      "bytes": 7238731,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/sand/envmap/time4_envmap.exr",
+      "role": "training",
+      "scene": "sand",
+      "sha256": "5f87f0c68c108bbea60110ad6cdaf495e179990b5bdc77be8da613096726f5fe"
+    },
+    {
+      "bytes": 9713197,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/sand/photo/time4_hdr.exr",
+      "role": "training",
+      "scene": "sand",
+      "sha256": "859bdb947e5b3b8af852e165d494d4c04c107c8d1f57f60696959d5fb2ab8472"
+    },
+    {
+      "bytes": 7454140,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/sand/envmap/time5_envmap.exr",
+      "role": "training",
+      "scene": "sand",
+      "sha256": "e5e4984bd064199d69f1e560b42c8a15f4fcd351a53d6d961cb726feb7abf8a1"
+    },
+    {
+      "bytes": 9707983,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/sand/photo/time5_hdr.exr",
+      "role": "training",
+      "scene": "sand",
+      "sha256": "fb42ffc915269829a914afd24792d8f180eb1f823637684c70820fbd53e99a2b"
+    },
+    {
+      "bytes": 3897,
+      "git_blob_sha1": "6bfeba538bf3e4e89dc4472e1928b7c75e07c8bf",
+      "identity_kind": "git_blob_sha1_and_body_sha256",
+      "path": "small-aligned/statue/meta.json",
+      "role": "training",
+      "scene": "statue",
+      "sha256": "a9da317e6728f830c26c72d27b7877c0add8ab8fce01e924bf60b43ab57d02cd"
+    },
+    {
+      "bytes": 7784564,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/statue/envmap/time0_envmap.exr",
+      "role": "training",
+      "scene": "statue",
+      "sha256": "bd8b467b005ff0f71ed87e8f355ea0f088f4fa305e45adb7d72f60736ce898ab"
+    },
+    {
+      "bytes": 10665466,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/statue/photo/time0_hdr.exr",
+      "role": "training",
+      "scene": "statue",
+      "sha256": "5dceb81497eadbd1a1b2c7c345ae36c7c9e75abd88a8735dc82a5bcc74e79cb5"
+    },
+    {
+      "bytes": 7790905,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/statue/envmap/time1_envmap.exr",
+      "role": "training",
+      "scene": "statue",
+      "sha256": "2de30dc96abf72a51317c8314dd2ebaf3433f859bb9559f538662ac8856977e0"
+    },
+    {
+      "bytes": 10643006,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/statue/photo/time1_hdr.exr",
+      "role": "training",
+      "scene": "statue",
+      "sha256": "2da32b2cf8cc8dad0e67c5a54a4fa9839f13847dc635599253bb023e0f3a8bb1"
+    },
+    {
+      "bytes": 7732642,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/statue/envmap/time2_envmap.exr",
+      "role": "training",
+      "scene": "statue",
+      "sha256": "5d5cee09e1576f82595a68569ae23b5dec7b279dd4c98f9f98989566334bf373"
+    },
+    {
+      "bytes": 10632895,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/statue/photo/time2_hdr.exr",
+      "role": "training",
+      "scene": "statue",
+      "sha256": "b858f5eb26c308fb77b1d28af75e29fcd3859babefcf8c0b664f1cb114a72f7e"
+    },
+    {
+      "bytes": 7766278,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/statue/envmap/time3_envmap.exr",
+      "role": "training",
+      "scene": "statue",
+      "sha256": "546d45d79035a13e87f2933e2b64df1dc09420731b28328098279b279069581b"
+    },
+    {
+      "bytes": 10633444,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/statue/photo/time3_hdr.exr",
+      "role": "training",
+      "scene": "statue",
+      "sha256": "9299d9cfc29b0cc1fded44dd72e1c306c710f0c2e96084a763fbf16445bd3bdc"
+    },
+    {
+      "bytes": 7829101,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/statue/envmap/time4_envmap.exr",
+      "role": "training",
+      "scene": "statue",
+      "sha256": "8366c78efdde91b5a570e0e891dc7f39ddd25833d7865d72148f192835378823"
+    },
+    {
+      "bytes": 10641305,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/statue/photo/time4_hdr.exr",
+      "role": "training",
+      "scene": "statue",
+      "sha256": "944bcf171f0b89c9ab06cf59b8c20e0e33284bf8fd7ee6d09ae24c5050fc8052"
+    },
+    {
+      "bytes": 7819040,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/statue/envmap/time5_envmap.exr",
+      "role": "training",
+      "scene": "statue",
+      "sha256": "d5dcbf179f33c52fd618781212657e1d9f3c59937f523449e777c2046c4176fb"
+    },
+    {
+      "bytes": 10615922,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/statue/photo/time5_hdr.exr",
+      "role": "training",
+      "scene": "statue",
+      "sha256": "e5037603d7d67a97568f894320ff3e67f730891dc933dc4789e04857fb9d89ab"
+    },
+    {
+      "bytes": 4236,
+      "git_blob_sha1": "de10fb55a0df60abf91ba41e9c5981fab2d8b13d",
+      "identity_kind": "git_blob_sha1_and_body_sha256",
+      "path": "small-aligned/bike/meta.json",
+      "role": "training",
+      "scene": "bike",
+      "sha256": "0f1b1f0ceaf65d9112cade1ecc8ef455930858352136549545770bd23844d56c"
+    },
+    {
+      "bytes": 8028883,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bike/envmap/time0_envmap.exr",
+      "role": "training",
+      "scene": "bike",
+      "sha256": "6af4b7b1d80b1244574278700527dc8df5eaa95f197e364ea343cbb35afc0dab"
+    },
+    {
+      "bytes": 10388870,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bike/photo/time0_hdr.exr",
+      "role": "training",
+      "scene": "bike",
+      "sha256": "28a7bf51b96e7707be4509f2636ddf5edd8ee8e0de8fdb5203b447d60e685918"
+    },
+    {
+      "bytes": 8049537,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bike/envmap/time1_envmap.exr",
+      "role": "training",
+      "scene": "bike",
+      "sha256": "888c3b2f26b1cd33de5420f5fd784350e59ba0c0d0e883cf552b240bf80798d8"
+    },
+    {
+      "bytes": 10370264,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bike/photo/time1_hdr.exr",
+      "role": "training",
+      "scene": "bike",
+      "sha256": "3b0c5f56b138b99f432ae55b90c80ece92a1a69b61acd835d734817c7479952c"
+    },
+    {
+      "bytes": 8058032,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bike/envmap/time2_envmap.exr",
+      "role": "training",
+      "scene": "bike",
+      "sha256": "ae7edf85fa13c9e3f9c3ccb4785048a44ac3dc87c826408530f301394e8bc914"
+    },
+    {
+      "bytes": 10377272,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bike/photo/time2_hdr.exr",
+      "role": "training",
+      "scene": "bike",
+      "sha256": "dcdbc1de3d9afd8c07a8dc8114926ff185a152de17846a6241fc37e22a04e810"
+    },
+    {
+      "bytes": 8014732,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bike/envmap/time3_envmap.exr",
+      "role": "training",
+      "scene": "bike",
+      "sha256": "4757e6e4da59126caedc4c3b9d336a53f4eac686d3f50f1138598b5f1acc944c"
+    },
+    {
+      "bytes": 10386398,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bike/photo/time3_hdr.exr",
+      "role": "training",
+      "scene": "bike",
+      "sha256": "031efb94623570ab30ea9f8d91bea35a7d93228787ddd39dc62887d5f901e44e"
+    },
+    {
+      "bytes": 8068806,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bike/envmap/time4_envmap.exr",
+      "role": "training",
+      "scene": "bike",
+      "sha256": "2fd73abe775ef81955c0702f39cb6c38f167e6b6a9030f7230b6954f911d1ceb"
+    },
+    {
+      "bytes": 10373258,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bike/photo/time4_hdr.exr",
+      "role": "training",
+      "scene": "bike",
+      "sha256": "c1c0258f2c1d67e450259a7bbc5c39eb88af4c581ebc025eb45d70f2a1d5c72c"
+    },
+    {
+      "bytes": 8114837,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bike/envmap/time5_envmap.exr",
+      "role": "training",
+      "scene": "bike",
+      "sha256": "d0e59c3fb7a74339f314844402982d49e425d72c19e257ed533bda288b31e468"
+    },
+    {
+      "bytes": 10395305,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bike/photo/time5_hdr.exr",
+      "role": "training",
+      "scene": "bike",
+      "sha256": "d4c0d31db0f38c3f327c76d842acad9aeafc6814bce630da7a270d90e1349bf8"
+    },
+    {
+      "bytes": 4200,
+      "git_blob_sha1": "ae1cd632ca097a82ce6412b32dda53a2b1486824",
+      "identity_kind": "git_blob_sha1_and_body_sha256",
+      "path": "small-aligned/bench2/meta.json",
+      "role": "development",
+      "scene": "bench2",
+      "sha256": "c71c943782a6a18f02c92df216e630db06cb44f0d37eb53febda790910dedd1b"
+    },
+    {
+      "bytes": 7805631,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bench2/envmap/time0_envmap.exr",
+      "role": "development",
+      "scene": "bench2",
+      "sha256": "8e9d15be88b77dc6d57826be10257d1775586a2c611bdc96c2fa055e23339c81"
+    },
+    {
+      "bytes": 10578428,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bench2/photo/time0_hdr.exr",
+      "role": "development",
+      "scene": "bench2",
+      "sha256": "095c649951953afccaf409f9277fff0f838e6b94661f1615f598dc224b2bbab9"
+    },
+    {
+      "bytes": 7791178,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bench2/envmap/time1_envmap.exr",
+      "role": "development",
+      "scene": "bench2",
+      "sha256": "7594d5870a8e5deadc5775074b898228e2b8573184a6667feae163318924a3b6"
+    },
+    {
+      "bytes": 10501519,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bench2/photo/time1_hdr.exr",
+      "role": "development",
+      "scene": "bench2",
+      "sha256": "18624c6e75f3560514d1eb222d978d3fb49aa3d42ffe50d6ad4c84c0adefc646"
+    },
+    {
+      "bytes": 7786532,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bench2/envmap/time2_envmap.exr",
+      "role": "development",
+      "scene": "bench2",
+      "sha256": "9661f03c10fb6560ea51b64d91485eb283edffb6fe720c6d577f33688eadbe37"
+    },
+    {
+      "bytes": 10480893,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bench2/photo/time2_hdr.exr",
+      "role": "development",
+      "scene": "bench2",
+      "sha256": "d4830e4fb8e5d6736e18e80985b8202dd5c8827ead12bf82e942174f09f5834d"
+    },
+    {
+      "bytes": 7788881,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bench2/envmap/time3_envmap.exr",
+      "role": "development",
+      "scene": "bench2",
+      "sha256": "045bf222914637267006bac99c8ba9a318cef0136cb0d433d54c6d4290206885"
+    },
+    {
+      "bytes": 10498804,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bench2/photo/time3_hdr.exr",
+      "role": "development",
+      "scene": "bench2",
+      "sha256": "08441dbfc7c194ed3ecae02f5380972f61818df53c9df66791c760ed8d15142a"
+    },
+    {
+      "bytes": 7822160,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bench2/envmap/time4_envmap.exr",
+      "role": "development",
+      "scene": "bench2",
+      "sha256": "4930ee2599c0b3fcf969ea1cd3885ee00f8594be789e0e62085f71c720278869"
+    },
+    {
+      "bytes": 10494108,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bench2/photo/time4_hdr.exr",
+      "role": "development",
+      "scene": "bench2",
+      "sha256": "0c3957ff05957e617031389ad402fbe304e9a435b4d01408a077674f0e9b6fd6"
+    },
+    {
+      "bytes": 7788361,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bench2/envmap/time5_envmap.exr",
+      "role": "development",
+      "scene": "bench2",
+      "sha256": "259d218fa0a4e946643dfc86633e1dc68c03ae3200b45d4e1ccf13281e240246"
+    },
+    {
+      "bytes": 10471610,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bench2/photo/time5_hdr.exr",
+      "role": "development",
+      "scene": "bench2",
+      "sha256": "0167086faf4711f2ad4eb08a1d33b6080028c43e07e2f1aae58f35855565aebe"
+    },
+    {
+      "bytes": 3535,
+      "git_blob_sha1": "342577731630c9b0f596aa104f15f7bc954904b8",
+      "identity_kind": "git_blob_sha1_and_body_sha256",
+      "path": "small-aligned/cabin/meta.json",
+      "role": "development",
+      "scene": "cabin",
+      "sha256": "ed15462cfa557aed4c197f6961958eddd5041b516fc1f7bf1d8400310213e114"
+    },
+    {
+      "bytes": 7458406,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/cabin/envmap/time0_envmap.exr",
+      "role": "development",
+      "scene": "cabin",
+      "sha256": "e2523ccbe3c4c90dede9a12b06d154a48efb6888028615023914ea1da0c2f1e5"
+    },
+    {
+      "bytes": 9220877,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/cabin/photo/time0_hdr.exr",
+      "role": "development",
+      "scene": "cabin",
+      "sha256": "8e41d1030b80ff85be145914e369a9580ea482e1b4de29502cfbe6bf349d384a"
+    },
+    {
+      "bytes": 7643787,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/cabin/envmap/time1_envmap.exr",
+      "role": "development",
+      "scene": "cabin",
+      "sha256": "f888d3c7f6991673a979ac8d6d7771ad402b27beaa2b9cf9052e40756b95511d"
+    },
+    {
+      "bytes": 9148881,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/cabin/photo/time1_hdr.exr",
+      "role": "development",
+      "scene": "cabin",
+      "sha256": "d96d0696ac0be87d929dcf5064a4c78d6030e03f8144333d0c43b510a542edd0"
+    },
+    {
+      "bytes": 7659542,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/cabin/envmap/time2_envmap.exr",
+      "role": "development",
+      "scene": "cabin",
+      "sha256": "77f56c41069481ee2ec88bce2a322cca88188f1cbbba681301463fd49bf95fb0"
+    },
+    {
+      "bytes": 9219113,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/cabin/photo/time2_hdr.exr",
+      "role": "development",
+      "scene": "cabin",
+      "sha256": "dcaf9ecc254a7f367376216058d1b0e0508e973b87f811347d0cfab162cb8b23"
+    },
+    {
+      "bytes": 7655873,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/cabin/envmap/time3_envmap.exr",
+      "role": "development",
+      "scene": "cabin",
+      "sha256": "18a6a499f44b92ffa573a18e6083273fee73157f35fc9878d37d279e52cd1da7"
+    },
+    {
+      "bytes": 9166062,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/cabin/photo/time3_hdr.exr",
+      "role": "development",
+      "scene": "cabin",
+      "sha256": "f3cf8d3874865a8829017ab4e538c85168ccb4d7ae8497eab191bff1c94a7900"
+    },
+    {
+      "bytes": 7765450,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/cabin/envmap/time4_envmap.exr",
+      "role": "development",
+      "scene": "cabin",
+      "sha256": "6d16c56fa4d624bce7932c477a5f7d2a4f268ce9749ddc9283c608b2f0e58a5c"
+    },
+    {
+      "bytes": 9126560,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/cabin/photo/time4_hdr.exr",
+      "role": "development",
+      "scene": "cabin",
+      "sha256": "ddb50770de516b914f3380ee434bcc900cdfdeced93a2348f5b98994a615bce5"
+    },
+    {
+      "bytes": 7998109,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/cabin/envmap/time5_envmap.exr",
+      "role": "development",
+      "scene": "cabin",
+      "sha256": "faafde2615ce75f02ec81d7e5354926c7767c8956fd674b08706f846641d6513"
+    },
+    {
+      "bytes": 9151279,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/cabin/photo/time5_hdr.exr",
+      "role": "development",
+      "scene": "cabin",
+      "sha256": "2cfd5bf5f47d955a2fd0c1a4082b73a5e0d285bd366984afec101b60b5030592"
+    },
+    {
+      "bytes": 4259,
+      "git_blob_sha1": "c430133cf4a137d6f7999cd0e3777859169ea8ea",
+      "identity_kind": "git_blob_sha1_and_body_sha256",
+      "path": "small-aligned/foodtruck/meta.json",
+      "role": "development",
+      "scene": "foodtruck",
+      "sha256": "dcf3a7a48bd329b8d7cf9a76e96e6913ad6955f6665beb5519a5c7c78e4669ca"
+    },
+    {
+      "bytes": 7783339,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/foodtruck/envmap/time0_envmap.exr",
+      "role": "development",
+      "scene": "foodtruck",
+      "sha256": "29db1b8d4caa88b9f3dc5a2cbeac93ceb3dbd3babf8fd0880774e441c4bb3dd8"
+    },
+    {
+      "bytes": 10502372,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/foodtruck/photo/time0_hdr.exr",
+      "role": "development",
+      "scene": "foodtruck",
+      "sha256": "0fe5506938f36d3391934869552e307fabcb11f9260dd591f93db9120aa3d188"
+    },
+    {
+      "bytes": 7801895,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/foodtruck/envmap/time1_envmap.exr",
+      "role": "development",
+      "scene": "foodtruck",
+      "sha256": "320181aa7c8003bf5782328987b7e03bfb0a1515bfc9334e6861a00b4effdc35"
+    },
+    {
+      "bytes": 10425215,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/foodtruck/photo/time1_hdr.exr",
+      "role": "development",
+      "scene": "foodtruck",
+      "sha256": "e609931ef5b2c1423b4cde35ff7aa6307e3b3580f6ed1e08ecd1825d6e2894d4"
+    },
+    {
+      "bytes": 7768718,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/foodtruck/envmap/time2_envmap.exr",
+      "role": "development",
+      "scene": "foodtruck",
+      "sha256": "d0cc7306f71433b0c8708eda2adaa6939c21d57e30980f1b910d259462ec2910"
+    },
+    {
+      "bytes": 10425564,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/foodtruck/photo/time2_hdr.exr",
+      "role": "development",
+      "scene": "foodtruck",
+      "sha256": "ff0123f01c7b71beb8a54b486085b27a44e31e4371292b88037ea8dc3530ff46"
+    },
+    {
+      "bytes": 7750235,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/foodtruck/envmap/time3_envmap.exr",
+      "role": "development",
+      "scene": "foodtruck",
+      "sha256": "8c6d6fe0f85ff17d3e1286991302c8eb2e7758ad1ccbe7decfa0db42546e6440"
+    },
+    {
+      "bytes": 10430373,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/foodtruck/photo/time3_hdr.exr",
+      "role": "development",
+      "scene": "foodtruck",
+      "sha256": "50bcfb58b8630a92740619e91b6c8991708a619df75b7e9764e00dbc5165d502"
+    },
+    {
+      "bytes": 7760806,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/foodtruck/envmap/time4_envmap.exr",
+      "role": "development",
+      "scene": "foodtruck",
+      "sha256": "1405be251081287345efff052ecc93e19c513bfe2b39ea76d4ceaa5f0ca63b0d"
+    },
+    {
+      "bytes": 10431385,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/foodtruck/photo/time4_hdr.exr",
+      "role": "development",
+      "scene": "foodtruck",
+      "sha256": "9fabe5a13d306a706add0b3112a04f811f144c9bf55fdd3b6a4a609793fa05d2"
+    },
+    {
+      "bytes": 7745187,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/foodtruck/envmap/time5_envmap.exr",
+      "role": "development",
+      "scene": "foodtruck",
+      "sha256": "0eb407dc608cd7dafc8a77d86fd62b9c61222d189081415794dd5f0810822f8f"
+    },
+    {
+      "bytes": 10424770,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/foodtruck/photo/time5_hdr.exr",
+      "role": "development",
+      "scene": "foodtruck",
+      "sha256": "14f8a85459abd129fae3705a685840acb7d021d28f11977b7cb525a542d72c09"
+    },
+    {
+      "bytes": 4298,
+      "git_blob_sha1": "e554a36865e31ce92f7e0f56f6e813a8ab6de2dd",
+      "identity_kind": "git_blob_sha1_and_body_sha256",
+      "path": "small-aligned/bridge/meta.json",
+      "role": "development",
+      "scene": "bridge",
+      "sha256": "89aba3473b6e56005fd081d215e9c941b5f5ff2fc8761f002f245c913c7ef399"
+    },
+    {
+      "bytes": 7502350,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bridge/envmap/time0_envmap.exr",
+      "role": "development",
+      "scene": "bridge",
+      "sha256": "4ca64d1695d2d838fc2898f3b5e3dbb682ea2e9d68bd0640e4bef81728483036"
+    },
+    {
+      "bytes": 10345068,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bridge/photo/time0_hdr.exr",
+      "role": "development",
+      "scene": "bridge",
+      "sha256": "8aeb36c0b2397c7779eabb7a2bb6f46f39e711bd8f9d6dfe62365571b02b2649"
+    },
+    {
+      "bytes": 7685636,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bridge/envmap/time1_envmap.exr",
+      "role": "development",
+      "scene": "bridge",
+      "sha256": "e1b7c7c44ba22c0db958ec8c4f4f5b3128fb2481234e090ddc812bc0be4088dc"
+    },
+    {
+      "bytes": 10333603,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bridge/photo/time1_hdr.exr",
+      "role": "development",
+      "scene": "bridge",
+      "sha256": "ccfcb73998b067e8d12fb7eb1255981ce068a377d81edb7d2e0c2ebc4c547abc"
+    },
+    {
+      "bytes": 7583546,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bridge/envmap/time2_envmap.exr",
+      "role": "development",
+      "scene": "bridge",
+      "sha256": "63f7f8681a8f2be3a1fcef7cb0498d5957f22019c4bd811f4b60f99d8d3f36e7"
+    },
+    {
+      "bytes": 10349927,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bridge/photo/time2_hdr.exr",
+      "role": "development",
+      "scene": "bridge",
+      "sha256": "6693d7d9953671019b01af889518dbe5f88e43599b6f15545eff9b5ccc47f20d"
+    },
+    {
+      "bytes": 7643438,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bridge/envmap/time3_envmap.exr",
+      "role": "development",
+      "scene": "bridge",
+      "sha256": "16356eea5aadce98c6fc606a41f73b2c8b791826e2773612fd9bfba03f0bc65a"
+    },
+    {
+      "bytes": 10290552,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bridge/photo/time3_hdr.exr",
+      "role": "development",
+      "scene": "bridge",
+      "sha256": "5b0bd9af2cf7de45456d45ffeb9421ddda0b6c525e3512ddb8588f564a4d652c"
+    },
+    {
+      "bytes": 7529959,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bridge/envmap/time4_envmap.exr",
+      "role": "development",
+      "scene": "bridge",
+      "sha256": "95cded548aafd0ab73779af243ff51e326292f861e43f26188a67ef231c39c62"
+    },
+    {
+      "bytes": 10308456,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bridge/photo/time4_hdr.exr",
+      "role": "development",
+      "scene": "bridge",
+      "sha256": "fde4a1530141ff4e94d2ff5b6df878122934fe2f075692e8001b8cf90301f3e6"
+    },
+    {
+      "bytes": 7574380,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bridge/envmap/time5_envmap.exr",
+      "role": "development",
+      "scene": "bridge",
+      "sha256": "5293be9d0a57911196cb9a73e502a80198787974bd61c28d769a0c45321f6569"
+    },
+    {
+      "bytes": 10323429,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bridge/photo/time5_hdr.exr",
+      "role": "development",
+      "scene": "bridge",
+      "sha256": "553bc66ffb11a2f596375621bc8c1364ef9e8dcea21db0bc4793a1721e30133d"
+    },
+    {
+      "bytes": 4364,
+      "git_blob_sha1": "54a0ee11779c34225d1b4748c53650a56d945037",
+      "identity_kind": "git_blob_sha1_and_body_sha256",
+      "path": "small-aligned/bench3/meta.json",
+      "role": "development",
+      "scene": "bench3",
+      "sha256": "e1e7727a40570db23da813a665f4a7ae7f2f6dde0eda9549fe04440659b02f8e"
+    },
+    {
+      "bytes": 7892826,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bench3/envmap/time0_envmap.exr",
+      "role": "development",
+      "scene": "bench3",
+      "sha256": "fedf19e8ada3cc8f676208c84f2241d25ab3a5719786a9e0ebe13e01e5ecedee"
+    },
+    {
+      "bytes": 10529024,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bench3/photo/time0_hdr.exr",
+      "role": "development",
+      "scene": "bench3",
+      "sha256": "f8398f0f1ee5841c058a5ee4f87efd49debb6988f0b8f9dcb805f98fd8358345"
+    },
+    {
+      "bytes": 7828405,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bench3/envmap/time1_envmap.exr",
+      "role": "development",
+      "scene": "bench3",
+      "sha256": "026bd1158e56442518e6af0f375b97feec6d4f4ce2a6a1e092efdec6ad82654a"
+    },
+    {
+      "bytes": 10525292,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bench3/photo/time1_hdr.exr",
+      "role": "development",
+      "scene": "bench3",
+      "sha256": "fdbc82184ca63a175e672d9c16cd4b6d4cbc64d42a16dfb8f0e316dc65142584"
+    },
+    {
+      "bytes": 7881148,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bench3/envmap/time2_envmap.exr",
+      "role": "development",
+      "scene": "bench3",
+      "sha256": "4f34380d8c8c29d847c4cba5b43e0d1f8f47c9d9e570d6c088d383bfff6cb2c4"
+    },
+    {
+      "bytes": 10510711,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bench3/photo/time2_hdr.exr",
+      "role": "development",
+      "scene": "bench3",
+      "sha256": "d97f495a33a6c767e8e21b02b88c25ddb7e05d4ad4f9de97b651939e0143e5d5"
+    },
+    {
+      "bytes": 7827042,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bench3/envmap/time3_envmap.exr",
+      "role": "development",
+      "scene": "bench3",
+      "sha256": "486731fc9b7cf73f1f5ce476d6306d3dbd11318f31ebd18252768067b0937d72"
+    },
+    {
+      "bytes": 10513460,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bench3/photo/time3_hdr.exr",
+      "role": "development",
+      "scene": "bench3",
+      "sha256": "727ab070bb0d4a84ca04fe2058b750fbb69f27d1d5b804635d33d0d50f520328"
+    },
+    {
+      "bytes": 7832382,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bench3/envmap/time4_envmap.exr",
+      "role": "development",
+      "scene": "bench3",
+      "sha256": "92f23ae54e7e4c4438e4c1de4d3835477191d4500d3c0248c0c25dca62abde7d"
+    },
+    {
+      "bytes": 10515412,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bench3/photo/time4_hdr.exr",
+      "role": "development",
+      "scene": "bench3",
+      "sha256": "71cc0c925e8920550c91fbc2deb7794b64d3fa9b3af3f1a26dbe835f77c0c1d4"
+    },
+    {
+      "bytes": 7827167,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bench3/envmap/time5_envmap.exr",
+      "role": "development",
+      "scene": "bench3",
+      "sha256": "827b19f58119803266d2c0cb7d854f4a2a4ba153d8b1e269dc9a6c78ce136a09"
+    },
+    {
+      "bytes": 10513065,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bench3/photo/time5_hdr.exr",
+      "role": "development",
+      "scene": "bench3",
+      "sha256": "498a249ef8b47663c5f218503d1f9721d740cf13e948be93c3e295e67c7b9065"
+    },
+    {
+      "bytes": 3938,
+      "git_blob_sha1": "a85a172267afafd626c689625ee631f649284070",
+      "identity_kind": "git_blob_sha1_and_body_sha256",
+      "path": "small-aligned/road/meta.json",
+      "role": "development",
+      "scene": "road",
+      "sha256": "a03c6e2fc5f02d4cd72d0e649f368948f95d858ef63f45e9b8edff7cb3fa532b"
+    },
+    {
+      "bytes": 7555696,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/road/envmap/time0_envmap.exr",
+      "role": "development",
+      "scene": "road",
+      "sha256": "2698b5d3e563ef34e2d2d832e522512651219d7ee845bbfb8ba2782948c92cbf"
+    },
+    {
+      "bytes": 9770684,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/road/photo/time0_hdr.exr",
+      "role": "development",
+      "scene": "road",
+      "sha256": "c652003bf5ba290cc0ff1456f438dc8821dda9514d2b91c19b7ba2bc303380fe"
+    },
+    {
+      "bytes": 7705506,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/road/envmap/time1_envmap.exr",
+      "role": "development",
+      "scene": "road",
+      "sha256": "3ccca08bb301785578615352541382111fe9e1c7195277e6969bd5fa3bb11d95"
+    },
+    {
+      "bytes": 9747949,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/road/photo/time1_hdr.exr",
+      "role": "development",
+      "scene": "road",
+      "sha256": "2ae28bc0eba78a01672288985f594ec1816d647a2ecfdc3d887bdd427cbd30b9"
+    },
+    {
+      "bytes": 7709505,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/road/envmap/time2_envmap.exr",
+      "role": "development",
+      "scene": "road",
+      "sha256": "cf4d5942a51d6c3570c4e50811d7b1cd92bd6d3fd7b6a6da292f1f92f83565ea"
+    },
+    {
+      "bytes": 9748657,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/road/photo/time2_hdr.exr",
+      "role": "development",
+      "scene": "road",
+      "sha256": "678bf341702ea26488a39b4a3818d02f7e1e12c7b85cf2561968dc977ecef1ce"
+    },
+    {
+      "bytes": 7735596,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/road/envmap/time3_envmap.exr",
+      "role": "development",
+      "scene": "road",
+      "sha256": "9bc42b01f9b8107841f047441bcccaf6ecf8ad6bf8cc05c3e555d4dae2e22527"
+    },
+    {
+      "bytes": 9817614,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/road/photo/time3_hdr.exr",
+      "role": "development",
+      "scene": "road",
+      "sha256": "b0c983989a802193ed661ef14652af4ac47f5a491da27c0d912768cbd50d900f"
+    },
+    {
+      "bytes": 7797605,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/road/envmap/time4_envmap.exr",
+      "role": "development",
+      "scene": "road",
+      "sha256": "9bc7e99ee875dcfec55f396923875d352189ef8f206ca3a87c8e82aa0d4540f8"
+    },
+    {
+      "bytes": 9786671,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/road/photo/time4_hdr.exr",
+      "role": "development",
+      "scene": "road",
+      "sha256": "e435c9a3e3c1d6028b47c278c960ccb3fe72a5095e8dc70aaedc3dca74298797"
+    },
+    {
+      "bytes": 7905058,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/road/envmap/time5_envmap.exr",
+      "role": "development",
+      "scene": "road",
+      "sha256": "132b7d5f853d42c179573d4b4ee066bceee75eeed131ffad9e4ba29fdcadd0ca"
+    },
+    {
+      "bytes": 9767029,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/road/photo/time5_hdr.exr",
+      "role": "development",
+      "scene": "road",
+      "sha256": "5e7bb3d7b90b51e6541ba4718855bf78638e3638a378dd9769f7068de5fbee8e"
+    },
+    {
+      "bytes": 3789,
+      "git_blob_sha1": "f3b592ed75b4f8b55357bedad71cdf4a2178741c",
+      "identity_kind": "git_blob_sha1_and_body_sha256",
+      "path": "small-aligned/playground/meta.json",
+      "role": "confirmation",
+      "scene": "playground",
+      "sha256": "fa289b775a47d32cbce59fded6d2b778b815599420c027bd749211157de49ad3"
+    },
+    {
+      "bytes": 7743708,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/playground/envmap/time0_envmap.exr",
+      "role": "confirmation",
+      "scene": "playground",
+      "sha256": "949503956fa4aa2a9eb205f94e36197002677cc270e1d89b799ad651f66feaf7"
+    },
+    {
+      "bytes": 10490264,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/playground/photo/time0_hdr.exr",
+      "role": "confirmation",
+      "scene": "playground",
+      "sha256": "7a318d4ff65d06a92e148b38821bb24f9c3c2f8eec05e20fc71bd546e9d6b7cd"
+    },
+    {
+      "bytes": 7811989,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/playground/envmap/time1_envmap.exr",
+      "role": "confirmation",
+      "scene": "playground",
+      "sha256": "f06724b2804d07dfa75a0ecf28eab73f745a0ec74d8aa4d0cd5351d343ac5e3e"
+    },
+    {
+      "bytes": 10478431,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/playground/photo/time1_hdr.exr",
+      "role": "confirmation",
+      "scene": "playground",
+      "sha256": "5ee56f7cc15254b93c6faca13e9aae2db5dca8866da3daae5a4295c3ea15ef2e"
+    },
+    {
+      "bytes": 7824925,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/playground/envmap/time2_envmap.exr",
+      "role": "confirmation",
+      "scene": "playground",
+      "sha256": "5726089d2d65839d766aea8f5ecc94c7f09ec13268455188544734bd98b7c263"
+    },
+    {
+      "bytes": 10478276,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/playground/photo/time2_hdr.exr",
+      "role": "confirmation",
+      "scene": "playground",
+      "sha256": "20c6ed60668095710d044c401e7b3f5fca651163539182497f69c257269581b0"
+    },
+    {
+      "bytes": 7825878,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/playground/envmap/time3_envmap.exr",
+      "role": "confirmation",
+      "scene": "playground",
+      "sha256": "2960bfd55cc651e68561362b203159373c335b30e361002945db5a11950361d0"
+    },
+    {
+      "bytes": 10472023,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/playground/photo/time3_hdr.exr",
+      "role": "confirmation",
+      "scene": "playground",
+      "sha256": "11bbf8b726bef0664dd49dcb3ab3378c4b458c1c859e921de7385520178b032b"
+    },
+    {
+      "bytes": 7910782,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/playground/envmap/time4_envmap.exr",
+      "role": "confirmation",
+      "scene": "playground",
+      "sha256": "b4c8e86d7ba41a9586da94eb876025ae46beb49b55629e6faac9f0ba1bdd00ad"
+    },
+    {
+      "bytes": 10488661,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/playground/photo/time4_hdr.exr",
+      "role": "confirmation",
+      "scene": "playground",
+      "sha256": "fcf6bbe04c34e313530d91b3d5c60ea4794072cf570b1663bd890a8084a09fd7"
+    },
+    {
+      "bytes": 8060133,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/playground/envmap/time5_envmap.exr",
+      "role": "confirmation",
+      "scene": "playground",
+      "sha256": "f07544f76381d11e8b64addfa907a7289287bd2d891ae79f1526ece69705540d"
+    },
+    {
+      "bytes": 10484301,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/playground/photo/time5_hdr.exr",
+      "role": "confirmation",
+      "scene": "playground",
+      "sha256": "615ec7c1b3ab0a77d4308546d5a3fe16fac621aa5d658a21d8dcd02950535ec0"
+    },
+    {
+      "bytes": 4829,
+      "git_blob_sha1": "dc17e503d7f8288d4ab4ce3aab9aa50d73d72565",
+      "identity_kind": "git_blob_sha1_and_body_sha256",
+      "path": "small-aligned/grassland/meta.json",
+      "role": "confirmation",
+      "scene": "grassland",
+      "sha256": "3874a57fc386448f85920b58a99d9d5bade2dbfe49978b09ce806cc8592a4329"
+    },
+    {
+      "bytes": 7705717,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/grassland/envmap/time0_envmap.exr",
+      "role": "confirmation",
+      "scene": "grassland",
+      "sha256": "6a390a52aeb808fbb0be7fd30da6b630f8a9f0d338fba41eba7a51d2962e512b"
+    },
+    {
+      "bytes": 10599482,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/grassland/photo/time0_hdr.exr",
+      "role": "confirmation",
+      "scene": "grassland",
+      "sha256": "c1842c58f289e6862889a3b8e65997263a60bb4a636aef012ef087e278bf68e1"
+    },
+    {
+      "bytes": 7774641,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/grassland/envmap/time1_envmap.exr",
+      "role": "confirmation",
+      "scene": "grassland",
+      "sha256": "1a0fabb9611985a8b9734651c2d623a42230fd767550c477ccb733efc9394ae3"
+    },
+    {
+      "bytes": 10591420,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/grassland/photo/time1_hdr.exr",
+      "role": "confirmation",
+      "scene": "grassland",
+      "sha256": "df28831daf8615be5d4ea43ee462321d154bc2cd4a0be33f646c9ef01e0ae2d5"
+    },
+    {
+      "bytes": 7768961,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/grassland/envmap/time2_envmap.exr",
+      "role": "confirmation",
+      "scene": "grassland",
+      "sha256": "8fb0a3184394bbe9a16b31a4d4a992714e93853b8d15e4942df0b033257476c0"
+    },
+    {
+      "bytes": 10601382,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/grassland/photo/time2_hdr.exr",
+      "role": "confirmation",
+      "scene": "grassland",
+      "sha256": "a902a9e2f32cd794640d9af1aeb89454833e2f9ba7c42d9dee4f275842dc68f2"
+    },
+    {
+      "bytes": 7672213,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/grassland/envmap/time3_envmap.exr",
+      "role": "confirmation",
+      "scene": "grassland",
+      "sha256": "3c7f852322161c17a7e7275050d8992957add10e8451a9dd365bb12336c9be3a"
+    },
+    {
+      "bytes": 10611022,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/grassland/photo/time3_hdr.exr",
+      "role": "confirmation",
+      "scene": "grassland",
+      "sha256": "1b52db4e7ff00d3948cb6a87691360c101e43d3684f6c63d7d8630a1a39795d8"
+    },
+    {
+      "bytes": 7692511,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/grassland/envmap/time4_envmap.exr",
+      "role": "confirmation",
+      "scene": "grassland",
+      "sha256": "a47cec09ac6d05ac4c2bc2c09cd2b2dacc854b647a39453c0371b7497fcf55fd"
+    },
+    {
+      "bytes": 10618778,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/grassland/photo/time4_hdr.exr",
+      "role": "confirmation",
+      "scene": "grassland",
+      "sha256": "a1e5fe1f6ed7874b8ce7036505a22066a85d741c8e05ef3e5676433253b37917"
+    },
+    {
+      "bytes": 7708702,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/grassland/envmap/time5_envmap.exr",
+      "role": "confirmation",
+      "scene": "grassland",
+      "sha256": "f72badedb96abea4766838f45d78dc7fa5cda74cb68b57a2d0581b92bfe44c60"
+    },
+    {
+      "bytes": 10609797,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/grassland/photo/time5_hdr.exr",
+      "role": "confirmation",
+      "scene": "grassland",
+      "sha256": "3c6f66100fd9bd05bab39a1034600ac010c41ed6b012077244944233709e4824"
+    },
+    {
+      "bytes": 4377,
+      "git_blob_sha1": "1bbeec403c2e47d919d0d5868058bb38e4bb7103",
+      "identity_kind": "git_blob_sha1_and_body_sha256",
+      "path": "small-aligned/stairs/meta.json",
+      "role": "confirmation",
+      "scene": "stairs",
+      "sha256": "d8787422cbef0ec9dc5df10eb8fc51ae7a6f9f2a543b991d984bae0e6cee9f8e"
+    },
+    {
+      "bytes": 7986523,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/stairs/envmap/time0_envmap.exr",
+      "role": "confirmation",
+      "scene": "stairs",
+      "sha256": "3695a430953ca4d1f7b896d72050bae072f1d2e5626eef6ae12453aa74745469"
+    },
+    {
+      "bytes": 10615872,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/stairs/photo/time0_hdr.exr",
+      "role": "confirmation",
+      "scene": "stairs",
+      "sha256": "cad68e424cafc8f38a9dd07e865297e4317f59448eca6232ccb60c08cb8b7f24"
+    },
+    {
+      "bytes": 8025099,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/stairs/envmap/time1_envmap.exr",
+      "role": "confirmation",
+      "scene": "stairs",
+      "sha256": "1468ac6a0e08ea85d36c1ff6298f8c2d3ee049e0acbfa51245563103e6067032"
+    },
+    {
+      "bytes": 10590151,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/stairs/photo/time1_hdr.exr",
+      "role": "confirmation",
+      "scene": "stairs",
+      "sha256": "adfcb9593e5f545fd5a97614b80ca14675ea3f9bc3e55a8077911e49a9811750"
+    },
+    {
+      "bytes": 8026538,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/stairs/envmap/time2_envmap.exr",
+      "role": "confirmation",
+      "scene": "stairs",
+      "sha256": "0898a359a6a5dd5ce177d6522f41e01823c728bb663f9a4e53b36f4e550f4f54"
+    },
+    {
+      "bytes": 10582482,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/stairs/photo/time2_hdr.exr",
+      "role": "confirmation",
+      "scene": "stairs",
+      "sha256": "0fb821d03b2b50646c2eebece8d9e63db1bee38fb064c9a46375b4a8b48f262c"
+    },
+    {
+      "bytes": 7985138,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/stairs/envmap/time3_envmap.exr",
+      "role": "confirmation",
+      "scene": "stairs",
+      "sha256": "425819da23737b01305ad9d71643fea2ef03c694e9c246fe667045489778dc38"
+    },
+    {
+      "bytes": 10576752,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/stairs/photo/time3_hdr.exr",
+      "role": "confirmation",
+      "scene": "stairs",
+      "sha256": "898a9c571f7f8f7fb08b0b25ef2acd96b7c9d688505ce4a094f790e6c156a386"
+    },
+    {
+      "bytes": 8037568,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/stairs/envmap/time4_envmap.exr",
+      "role": "confirmation",
+      "scene": "stairs",
+      "sha256": "cbd2ce8919e63afa3efcd0ec2ea56fcadfa05131058e27f900957c9c2f09f5c5"
+    },
+    {
+      "bytes": 10576247,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/stairs/photo/time4_hdr.exr",
+      "role": "confirmation",
+      "scene": "stairs",
+      "sha256": "a5c8e15ef98a13307cc3955e44b548ec0af3d3b2cd86588c595c49276ae5de5a"
+    },
+    {
+      "bytes": 8095847,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/stairs/envmap/time5_envmap.exr",
+      "role": "confirmation",
+      "scene": "stairs",
+      "sha256": "358849ebcc4b7342574649f9dea937d7b228eede6e6a812612fc80a28760f032"
+    },
+    {
+      "bytes": 10611002,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/stairs/photo/time5_hdr.exr",
+      "role": "confirmation",
+      "scene": "stairs",
+      "sha256": "e84addde4af6e716a52ca5c422d16a2d1e6ecbb2591ee59c6b726b47a545cb9c"
+    },
+    {
+      "bytes": 4239,
+      "git_blob_sha1": "7423ba39ec3d12d0055760c232d8ed31b43c8e4b",
+      "identity_kind": "git_blob_sha1_and_body_sha256",
+      "path": "small-aligned/corridor/meta.json",
+      "role": "confirmation",
+      "scene": "corridor",
+      "sha256": "d34d0386666ad68ae47d434b9ab895472a266af2d076b4e99c17ff938d8f1abb"
+    },
+    {
+      "bytes": 7564032,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/corridor/envmap/time0_envmap.exr",
+      "role": "confirmation",
+      "scene": "corridor",
+      "sha256": "1c3a3bd54475a04418d4027df7356612fd0ccbc78f05092e5468312915bc3000"
+    },
+    {
+      "bytes": 10616502,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/corridor/photo/time0_hdr.exr",
+      "role": "confirmation",
+      "scene": "corridor",
+      "sha256": "c1d8ea7e03f12975f1f2f18d2c216bc59b86e0acd6aaea5b3bca03a25e8a1072"
+    },
+    {
+      "bytes": 7570794,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/corridor/envmap/time1_envmap.exr",
+      "role": "confirmation",
+      "scene": "corridor",
+      "sha256": "f02fdfdbaf6be856205f32e8e4f64a03a00d7d4e0f5fa1e5926081e8f256bd76"
+    },
+    {
+      "bytes": 10602677,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/corridor/photo/time1_hdr.exr",
+      "role": "confirmation",
+      "scene": "corridor",
+      "sha256": "837cd7f500d3078ba136659b55073aff126ea6a9be3f098d125310f668586686"
+    },
+    {
+      "bytes": 7605839,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/corridor/envmap/time2_envmap.exr",
+      "role": "confirmation",
+      "scene": "corridor",
+      "sha256": "c9a4b57f7109e0eb048d0caba97f8dd7537265edb8ab7b4d154ef68449eeb416"
+    },
+    {
+      "bytes": 10598558,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/corridor/photo/time2_hdr.exr",
+      "role": "confirmation",
+      "scene": "corridor",
+      "sha256": "de812cacf9b9704486845d82902916c74263bc894ef1b377f1382201f7e4cb98"
+    },
+    {
+      "bytes": 7613726,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/corridor/envmap/time3_envmap.exr",
+      "role": "confirmation",
+      "scene": "corridor",
+      "sha256": "490ac64b9f38a39922e734e506ea7e71f73d8bef5aa72a2c88fb567d3d6d8ece"
+    },
+    {
+      "bytes": 10583601,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/corridor/photo/time3_hdr.exr",
+      "role": "confirmation",
+      "scene": "corridor",
+      "sha256": "61f8384bc680ba70ce676880c7f775079782ae04ab6eb677542472ef62335bcc"
+    },
+    {
+      "bytes": 7565467,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/corridor/envmap/time4_envmap.exr",
+      "role": "confirmation",
+      "scene": "corridor",
+      "sha256": "1addc077376f828f5c471dc7a1187e924a8f98f05b1b11f344dfb99a8fedcdde"
+    },
+    {
+      "bytes": 10547877,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/corridor/photo/time4_hdr.exr",
+      "role": "confirmation",
+      "scene": "corridor",
+      "sha256": "954a74570f2508d724b54dcd3582534ebf6c05b278a2fd7bd11d4f449ea74b0e"
+    },
+    {
+      "bytes": 7652997,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/corridor/envmap/time5_envmap.exr",
+      "role": "confirmation",
+      "scene": "corridor",
+      "sha256": "8838aa5a36ca33e4a43216df9890eec85e851b66987b62401fcf30d782e11e63"
+    },
+    {
+      "bytes": 10577495,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/corridor/photo/time5_hdr.exr",
+      "role": "confirmation",
+      "scene": "corridor",
+      "sha256": "a89de5db10b7a0b307b618533254296c54fe670648b6e25e3cb5a60972219741"
+    },
+    {
+      "bytes": 5175,
+      "git_blob_sha1": "77dfd191c8d9e096b205d157555c55ef8a264146",
+      "identity_kind": "git_blob_sha1_and_body_sha256",
+      "path": "small-aligned/seaside/meta.json",
+      "role": "confirmation",
+      "scene": "seaside",
+      "sha256": "d14938512e4908f27f21eb19e4d516d49e1338dab691bdd0de7cb6ae91cdf908"
+    },
+    {
+      "bytes": 7466313,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/seaside/envmap/time0_envmap.exr",
+      "role": "confirmation",
+      "scene": "seaside",
+      "sha256": "7b97e26094a0e52b2ab21746fc1beee012dea390e30744c66980edec75a84c78"
+    },
+    {
+      "bytes": 9187660,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/seaside/photo/time0_hdr.exr",
+      "role": "confirmation",
+      "scene": "seaside",
+      "sha256": "8efe46eda9f43e2bf1685e4f099a4f5a80b0b742176a5d41afc3622ae7717fff"
+    },
+    {
+      "bytes": 7457971,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/seaside/envmap/time1_envmap.exr",
+      "role": "confirmation",
+      "scene": "seaside",
+      "sha256": "1c92aa85a9feaa34e1880b48312c63fb63f8ff624231707a2dc37044e519f53b"
+    },
+    {
+      "bytes": 8993328,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/seaside/photo/time1_hdr.exr",
+      "role": "confirmation",
+      "scene": "seaside",
+      "sha256": "1d65181ec2263a19eb79837a1f11bbb471139b4b628245a3c94699a337054a1e"
+    },
+    {
+      "bytes": 7466617,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/seaside/envmap/time2_envmap.exr",
+      "role": "confirmation",
+      "scene": "seaside",
+      "sha256": "75423c6da4a347f86e46fc4e44d038a06ab92f59b69d61538e6c599e4e9ed6bc"
+    },
+    {
+      "bytes": 9000333,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/seaside/photo/time2_hdr.exr",
+      "role": "confirmation",
+      "scene": "seaside",
+      "sha256": "7ea04615f9add8cfe9f596dc651f78e502947f7115252a3b0bd22edb76e41b5c"
+    },
+    {
+      "bytes": 7457258,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/seaside/envmap/time3_envmap.exr",
+      "role": "confirmation",
+      "scene": "seaside",
+      "sha256": "c226639e219069ba82a9076b52872214c3a3c4bfd95041c8ffd25d2db0ec424c"
+    },
+    {
+      "bytes": 9049919,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/seaside/photo/time3_hdr.exr",
+      "role": "confirmation",
+      "scene": "seaside",
+      "sha256": "f92ebfa9dccccd2a6790896278a621b82a75fc5fbdc76f54ba8b215159afd978"
+    },
+    {
+      "bytes": 7489098,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/seaside/envmap/time4_envmap.exr",
+      "role": "confirmation",
+      "scene": "seaside",
+      "sha256": "22662af053a45ea395eb60a5171fa90f229cdefbf36da9245ed2744869ad0227"
+    },
+    {
+      "bytes": 9055115,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/seaside/photo/time4_hdr.exr",
+      "role": "confirmation",
+      "scene": "seaside",
+      "sha256": "d590938d5e3bc068970484d1b841c57764bb70041e93f9e82351b90d1c64d6d3"
+    },
+    {
+      "bytes": 7509243,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/seaside/envmap/time5_envmap.exr",
+      "role": "confirmation",
+      "scene": "seaside",
+      "sha256": "512bcbe706db443a5e9d0979576ba1f9d21068f8cfc06ed85ea3cb75f41dd1da"
+    },
+    {
+      "bytes": 9050249,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/seaside/photo/time5_hdr.exr",
+      "role": "confirmation",
+      "scene": "seaside",
+      "sha256": "98457b4d92e93c1dd65f33bb8b065d915806cb84d6f939988265bef6d3576e14"
+    },
+    {
+      "bytes": 3229,
+      "git_blob_sha1": "d3d6b61abca4b94e8a77564e792b2ff08a91de88",
+      "identity_kind": "git_blob_sha1_and_body_sha256",
+      "path": "small-aligned/building304/meta.json",
+      "role": "confirmation",
+      "scene": "building304",
+      "sha256": "f709ea0b1e0b5483bbbe89273369beff6b816da4d33c769a4267c2c7e18d0862"
+    },
+    {
+      "bytes": 7696556,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/building304/envmap/time0_envmap.exr",
+      "role": "confirmation",
+      "scene": "building304",
+      "sha256": "ab8791c2c2d9a5fb1ce20727f8e456011d189fab87ca04772ad02b89f935ecf6"
+    },
+    {
+      "bytes": 10306842,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/building304/photo/time0_hdr.exr",
+      "role": "confirmation",
+      "scene": "building304",
+      "sha256": "95533134ade7cf2b20668f0363d8ce6c7a1bee90126e88e43b4cf4319bd0a0d7"
+    },
+    {
+      "bytes": 7648856,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/building304/envmap/time1_envmap.exr",
+      "role": "confirmation",
+      "scene": "building304",
+      "sha256": "e7388f9c6dc86c894321dc7c7f2e92c0754c6a634171b38270da132279cc9263"
+    },
+    {
+      "bytes": 10268776,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/building304/photo/time1_hdr.exr",
+      "role": "confirmation",
+      "scene": "building304",
+      "sha256": "0487abd3f2a11fdea66410561eaaaa1d3697db10abef2e92183aa3408c91f13c"
+    },
+    {
+      "bytes": 7508590,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/building304/envmap/time2_envmap.exr",
+      "role": "confirmation",
+      "scene": "building304",
+      "sha256": "a364cda74b9d98c562ac3a24433f729c5a29d8571a37ba8d75bcc09215047a78"
+    },
+    {
+      "bytes": 10265864,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/building304/photo/time2_hdr.exr",
+      "role": "confirmation",
+      "scene": "building304",
+      "sha256": "b3b5b0945ef931407877bd8acc05e0a812806095c5df37ad2cdd3c3f4867634e"
+    },
+    {
+      "bytes": 7707920,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/building304/envmap/time3_envmap.exr",
+      "role": "confirmation",
+      "scene": "building304",
+      "sha256": "1f190246330f88b08611285655cc8543effbd1d2720ca08f8c655c8531be6763"
+    },
+    {
+      "bytes": 10246946,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/building304/photo/time3_hdr.exr",
+      "role": "confirmation",
+      "scene": "building304",
+      "sha256": "57bdf1b2007761f8c13d3f273fedbdec52fa31a77a4758a7abbb17a1399bdbdd"
+    },
+    {
+      "bytes": 7587495,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/building304/envmap/time4_envmap.exr",
+      "role": "confirmation",
+      "scene": "building304",
+      "sha256": "ff0ab26f672ce00a62ee54f7c40b9ccfc320fa865deaeeb8a098f2056d6dd131"
+    },
+    {
+      "bytes": 10270977,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/building304/photo/time4_hdr.exr",
+      "role": "confirmation",
+      "scene": "building304",
+      "sha256": "cd602b2de24b04060101e92b4bb998f057a26b4c9f9c8b695920aa89bddb96ac"
+    },
+    {
+      "bytes": 7653248,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/building304/envmap/time5_envmap.exr",
+      "role": "confirmation",
+      "scene": "building304",
+      "sha256": "c7ade3e498e4304bbfc7e0ac07acaf161f87ad17e3897b77bb98c85ef2d570b9"
+    },
+    {
+      "bytes": 10248603,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/building304/photo/time5_hdr.exr",
+      "role": "confirmation",
+      "scene": "building304",
+      "sha256": "b9092bf4d93a55936cdaadd0a34513faa446a40e8159aa6856579387d88eb3c5"
+    },
+    {
+      "bytes": 4200,
+      "git_blob_sha1": "5cfca26f9f424a5c1e8e5fbe02339d2023c9ff82",
+      "identity_kind": "git_blob_sha1_and_body_sha256",
+      "path": "small-aligned/wall/meta.json",
+      "role": "reserve",
+      "scene": "wall",
+      "sha256": "a8e5ae5288451133b6b3e1eb3fd7e2c9acc11637b5ad985b9bfb1b5295437795"
+    },
+    {
+      "bytes": 7722390,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/wall/envmap/time0_envmap.exr",
+      "role": "reserve",
+      "scene": "wall",
+      "sha256": "c957f903da57f98c73753f75293f7b16390e42b096d7c76409ec72928fc2b98c"
+    },
+    {
+      "bytes": 10489424,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/wall/photo/time0_hdr.exr",
+      "role": "reserve",
+      "scene": "wall",
+      "sha256": "ddd7738a83c3a3c0404385d33e4b69f190293454d71ca345684c5ac673aad870"
+    },
+    {
+      "bytes": 7717163,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/wall/envmap/time1_envmap.exr",
+      "role": "reserve",
+      "scene": "wall",
+      "sha256": "dbbfb045e256a59be0d795317e91fcdb65037b3d850857d4a743498f0683a2e3"
+    },
+    {
+      "bytes": 10491520,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/wall/photo/time1_hdr.exr",
+      "role": "reserve",
+      "scene": "wall",
+      "sha256": "cb184fe697095f01265397b752449234c272ac6def700e66c12e154c659ade83"
+    },
+    {
+      "bytes": 7726513,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/wall/envmap/time2_envmap.exr",
+      "role": "reserve",
+      "scene": "wall",
+      "sha256": "a72e7b1b49f4b811b16258652eb00f2da2ff0b644df6d4d9c86cad9458b77956"
+    },
+    {
+      "bytes": 10466081,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/wall/photo/time2_hdr.exr",
+      "role": "reserve",
+      "scene": "wall",
+      "sha256": "03b705a09f183cae35c023b10e88defc6ee131040039d51f2f536c7890f7f9ac"
+    },
+    {
+      "bytes": 7645057,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/wall/envmap/time3_envmap.exr",
+      "role": "reserve",
+      "scene": "wall",
+      "sha256": "57b40925f1f2d72cc31db6baf7719664e6e4c8424b2d7ade92351a6fa78fdf3b"
+    },
+    {
+      "bytes": 10422863,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/wall/photo/time3_hdr.exr",
+      "role": "reserve",
+      "scene": "wall",
+      "sha256": "3804910cc72417e62af4ef9a0144819cdaa5d695372fb0bb2be9f3c059a3b867"
+    },
+    {
+      "bytes": 7662220,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/wall/envmap/time4_envmap.exr",
+      "role": "reserve",
+      "scene": "wall",
+      "sha256": "29faaacea70c92a1253c2ccd2ac1c32b122f522e91da6b9d22560ae1d21a5b81"
+    },
+    {
+      "bytes": 10455642,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/wall/photo/time4_hdr.exr",
+      "role": "reserve",
+      "scene": "wall",
+      "sha256": "32d56af9104cf2af07b0e35a15c73f7e4f5f5ddda172cf2b5a1338b0bcf51cb8"
+    },
+    {
+      "bytes": 7730063,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/wall/envmap/time5_envmap.exr",
+      "role": "reserve",
+      "scene": "wall",
+      "sha256": "1f854e138f0128a3e9e68d2df042930e2f8aad30b3434b0ace0431213a365f5b"
+    },
+    {
+      "bytes": 10505693,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/wall/photo/time5_hdr.exr",
+      "role": "reserve",
+      "scene": "wall",
+      "sha256": "a98d6fdd58e15974bb7769e01eccfdc5d1cf3d2071fa450a0bab7c554272e5f3"
+    },
+    {
+      "bytes": 3724,
+      "git_blob_sha1": "9a5c9cda903a927f4a67423ef85a8a9fed9882b1",
+      "identity_kind": "git_blob_sha1_and_body_sha256",
+      "path": "small-aligned/parking/meta.json",
+      "role": "reserve",
+      "scene": "parking",
+      "sha256": "246ca8d7e55fd9ee7cd42330d015c6efab2c0734f5c62b8269871918888a2de8"
+    },
+    {
+      "bytes": 7660002,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/parking/envmap/time0_envmap.exr",
+      "role": "reserve",
+      "scene": "parking",
+      "sha256": "7914d24658abc8ac5ad310fcaad62d544127ea15bab8bd9dc899d567ed99a182"
+    },
+    {
+      "bytes": 10544173,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/parking/photo/time0_hdr.exr",
+      "role": "reserve",
+      "scene": "parking",
+      "sha256": "bdd521004370f636192b0171670f0202e39000caa3071cfeb1b1df40cfe1e20f"
+    },
+    {
+      "bytes": 7669290,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/parking/envmap/time1_envmap.exr",
+      "role": "reserve",
+      "scene": "parking",
+      "sha256": "e7a5f8fdf5219a28d669e356cf440233530a518fb386269fc033ed59bacc8816"
+    },
+    {
+      "bytes": 10557334,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/parking/photo/time1_hdr.exr",
+      "role": "reserve",
+      "scene": "parking",
+      "sha256": "2780e60adfb2a96e32ab49fa89a7f5fd954180faa326c94e4b6edfb91d42422a"
+    },
+    {
+      "bytes": 7731929,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/parking/envmap/time2_envmap.exr",
+      "role": "reserve",
+      "scene": "parking",
+      "sha256": "51b836bc7b8222564a4d66cb11f10e087c171b6e9eda0542da807c20e196fe54"
+    },
+    {
+      "bytes": 10535840,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/parking/photo/time2_hdr.exr",
+      "role": "reserve",
+      "scene": "parking",
+      "sha256": "dbcb25f02c4a58ccd123e27f2aff98d7f33f48b959ddc87bb9a76d13f2c61b8f"
+    },
+    {
+      "bytes": 7737456,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/parking/envmap/time3_envmap.exr",
+      "role": "reserve",
+      "scene": "parking",
+      "sha256": "7c0cc70bdb4a025c92eb21d256491a915214ec390cd193310ca0883970343e8c"
+    },
+    {
+      "bytes": 10532843,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/parking/photo/time3_hdr.exr",
+      "role": "reserve",
+      "scene": "parking",
+      "sha256": "a0251a34bba13171ac8d9c9a8942b96bbbf52a8361265896da6a2fe46e1bb659"
+    },
+    {
+      "bytes": 7808800,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/parking/envmap/time4_envmap.exr",
+      "role": "reserve",
+      "scene": "parking",
+      "sha256": "ceb062743cd04b3aabaefbeb0a3bc6d6872c428e03d3884797de8a714b5050f9"
+    },
+    {
+      "bytes": 10527318,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/parking/photo/time4_hdr.exr",
+      "role": "reserve",
+      "scene": "parking",
+      "sha256": "6658d213edf03d9ff93e3b182ebc5da6fdb030b416be1681516868f13cc09ef0"
+    },
+    {
+      "bytes": 8028025,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/parking/envmap/time5_envmap.exr",
+      "role": "reserve",
+      "scene": "parking",
+      "sha256": "51a730eb68a0d771da3542c9a5d854ca1fed838a8023c8162078dc83368ea4a8"
+    },
+    {
+      "bytes": 10529684,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/parking/photo/time5_hdr.exr",
+      "role": "reserve",
+      "scene": "parking",
+      "sha256": "f0ae1a7337154206f6f4b346286bc38945a6c67967992ef5571d79bec59a5f5c"
+    },
+    {
+      "bytes": 4182,
+      "git_blob_sha1": "08cbc112380b708d371b1748c9fcad0b35db0499",
+      "identity_kind": "git_blob_sha1_and_body_sha256",
+      "path": "small-aligned/bikes2/meta.json",
+      "role": "reserve",
+      "scene": "bikes2",
+      "sha256": "7d1ffd9ed7512ed8eec1295e70cef9bf180a2311d18a4a0c9ea79c5ae5666494"
+    },
+    {
+      "bytes": 7722232,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bikes2/envmap/time0_envmap.exr",
+      "role": "reserve",
+      "scene": "bikes2",
+      "sha256": "337adcf02849193a1a31319b2f8a1d12d4e06af985db521f3c890e360a73f3c4"
+    },
+    {
+      "bytes": 10579205,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bikes2/photo/time0_hdr.exr",
+      "role": "reserve",
+      "scene": "bikes2",
+      "sha256": "3de6b6800a544b2c2f38ce09df038404fe6c6a6c67e3d64dedea733abc6c3bd5"
+    },
+    {
+      "bytes": 7790696,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bikes2/envmap/time1_envmap.exr",
+      "role": "reserve",
+      "scene": "bikes2",
+      "sha256": "888113108c7d43495e78cbbdf68ba96ba064858bb864491a33588b3fe9a8f308"
+    },
+    {
+      "bytes": 10559267,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bikes2/photo/time1_hdr.exr",
+      "role": "reserve",
+      "scene": "bikes2",
+      "sha256": "5a95593cb7cb58f039ac3a882802ee5d92a23a44e66cf57723ce6c29f8c98a49"
+    },
+    {
+      "bytes": 7761076,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bikes2/envmap/time2_envmap.exr",
+      "role": "reserve",
+      "scene": "bikes2",
+      "sha256": "45af5964880e170be9183d9a0927ded049a81ad866bba82bdf420dca2a7977c5"
+    },
+    {
+      "bytes": 10586580,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bikes2/photo/time2_hdr.exr",
+      "role": "reserve",
+      "scene": "bikes2",
+      "sha256": "ed29167a3f664a98184d8604a079829d1db8b8de9bfd53415c78d257622a7fe4"
+    },
+    {
+      "bytes": 7882374,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bikes2/envmap/time3_envmap.exr",
+      "role": "reserve",
+      "scene": "bikes2",
+      "sha256": "2a1d8d9c294f8006319d10b8cc10e0386ce1250b98233014113cc8280042810f"
+    },
+    {
+      "bytes": 10571934,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bikes2/photo/time3_hdr.exr",
+      "role": "reserve",
+      "scene": "bikes2",
+      "sha256": "8548126ccd2799eeb52a019bc3b714370ed740bbbc3efd37b73d3ce589527446"
+    },
+    {
+      "bytes": 7758079,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bikes2/envmap/time4_envmap.exr",
+      "role": "reserve",
+      "scene": "bikes2",
+      "sha256": "cc814dfbd95bb4b783d7179b0ce3a9bb9d7ce9b9e1b8cdfe73d396f9c12c5a74"
+    },
+    {
+      "bytes": 10574272,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bikes2/photo/time4_hdr.exr",
+      "role": "reserve",
+      "scene": "bikes2",
+      "sha256": "663c6f44fa4b1a6603c280090766477ca7ba76db55736da4fb7ae138b9df7910"
+    },
+    {
+      "bytes": 7798328,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bikes2/envmap/time5_envmap.exr",
+      "role": "reserve",
+      "scene": "bikes2",
+      "sha256": "82d8b59cc7032e983bbf38c296a71c8f4a2d27704113d588e1d14569853c9f56"
+    },
+    {
+      "bytes": 10559837,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/bikes2/photo/time5_hdr.exr",
+      "role": "reserve",
+      "scene": "bikes2",
+      "sha256": "2056f8e2f7451c69d9a850ba7acee5663b115a51940ae1840b822c4e219b1751"
+    },
+    {
+      "bytes": 3271,
+      "git_blob_sha1": "d5c68f88d4bf008af534148f8a1b68122a072f98",
+      "identity_kind": "git_blob_sha1_and_body_sha256",
+      "path": "small-aligned/building324/meta.json",
+      "role": "reserve",
+      "scene": "building324",
+      "sha256": "321edaec1897b22fb5774abf24e154bfe3945baad53f6a1d0e6ca672f1ae51a3"
+    },
+    {
+      "bytes": 7859809,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/building324/envmap/time0_envmap.exr",
+      "role": "reserve",
+      "scene": "building324",
+      "sha256": "907953c156a42762b89ab705bbb20a99458361bee45fa4afd3a989ac014f2b6d"
+    },
+    {
+      "bytes": 10398093,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/building324/photo/time0_hdr.exr",
+      "role": "reserve",
+      "scene": "building324",
+      "sha256": "e256a321dcb53e1f9a4ebf4cdf6e31b2de39dbe60f04f6b8b155827f17487959"
+    },
+    {
+      "bytes": 7870748,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/building324/envmap/time1_envmap.exr",
+      "role": "reserve",
+      "scene": "building324",
+      "sha256": "606331009277434bc059f90a8d5aee281acd7b3fb6b4f147c95824f5c5f46aae"
+    },
+    {
+      "bytes": 10372882,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/building324/photo/time1_hdr.exr",
+      "role": "reserve",
+      "scene": "building324",
+      "sha256": "7d2ba012c7c63a43d3417169fc3ec1ab9b2cab13233c94d54398e3e6cbc281b8"
+    },
+    {
+      "bytes": 7301050,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/building324/envmap/time2_envmap.exr",
+      "role": "reserve",
+      "scene": "building324",
+      "sha256": "1dbbfe258b16a800317d0cad68633b56dd64710434b92e17c649c19a538bff86"
+    },
+    {
+      "bytes": 10377984,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/building324/photo/time2_hdr.exr",
+      "role": "reserve",
+      "scene": "building324",
+      "sha256": "d26cf44ee7dc1afe7e8f22dd458365fc98b81c761c265cdd48cc63378d8d800c"
+    },
+    {
+      "bytes": 7446648,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/building324/envmap/time3_envmap.exr",
+      "role": "reserve",
+      "scene": "building324",
+      "sha256": "7fb5da8be6f34f221aca909865b7c9169bd269511df083052ecacdd877ed67bc"
+    },
+    {
+      "bytes": 10374679,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/building324/photo/time3_hdr.exr",
+      "role": "reserve",
+      "scene": "building324",
+      "sha256": "a116e741570909391236d68f3022e822c04362b5a2d82972fe5f2fa170c60497"
+    },
+    {
+      "bytes": 7659227,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/building324/envmap/time4_envmap.exr",
+      "role": "reserve",
+      "scene": "building324",
+      "sha256": "39f9cd728c82f3f7bd435bf5ac067dffac8298ad10aeeadda6e83f34c7ffd322"
+    },
+    {
+      "bytes": 10381386,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/building324/photo/time4_hdr.exr",
+      "role": "reserve",
+      "scene": "building324",
+      "sha256": "df8bdcc7045d95f4c24e1ab8caf401aa28263f3bd0d9a4527d2242187ada4129"
+    },
+    {
+      "bytes": 7615252,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/building324/envmap/time5_envmap.exr",
+      "role": "reserve",
+      "scene": "building324",
+      "sha256": "132c565741264dfae6cf36c05d602413aacf8400759e0ff8d075beee60bd6853"
+    },
+    {
+      "bytes": 10376913,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/building324/photo/time5_hdr.exr",
+      "role": "reserve",
+      "scene": "building324",
+      "sha256": "41579fcfd39444b1f2eed64b931b409e053c99629d66ec141147aa0aa81ed1b1"
+    },
+    {
+      "bytes": 4071,
+      "git_blob_sha1": "1bc32f5368e7a89ec70900c6a788c53d67736afd",
+      "identity_kind": "git_blob_sha1_and_body_sha256",
+      "path": "small-aligned/pillar/meta.json",
+      "role": "reserve",
+      "scene": "pillar",
+      "sha256": "999d0d48f2b826be00ade41c522490dabe19342a40ffb06d21de2b8eb14bd839"
+    },
+    {
+      "bytes": 7715371,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/pillar/envmap/time0_envmap.exr",
+      "role": "reserve",
+      "scene": "pillar",
+      "sha256": "af163d99fdf292bb454603561a4830f20ea7ca543f77e90e4f34512740b21905"
+    },
+    {
+      "bytes": 10549814,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/pillar/photo/time0_hdr.exr",
+      "role": "reserve",
+      "scene": "pillar",
+      "sha256": "0239bf3809f2354e606a2602d259ce9c18bfd70ddada262751460add9deb77d6"
+    },
+    {
+      "bytes": 7738377,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/pillar/envmap/time1_envmap.exr",
+      "role": "reserve",
+      "scene": "pillar",
+      "sha256": "bec1035c795d4374976e85a649db9729ac73eb18d67fa2bef6e2d2c0909af53e"
+    },
+    {
+      "bytes": 10511936,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/pillar/photo/time1_hdr.exr",
+      "role": "reserve",
+      "scene": "pillar",
+      "sha256": "961d7e49d976481e5e298de8869adbf8c085790559876361de6eef1f5573158f"
+    },
+    {
+      "bytes": 7723748,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/pillar/envmap/time2_envmap.exr",
+      "role": "reserve",
+      "scene": "pillar",
+      "sha256": "3b505e413c21235ec49327380d11a80d95e6186275de38db79be09ba3098db4b"
+    },
+    {
+      "bytes": 10523153,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/pillar/photo/time2_hdr.exr",
+      "role": "reserve",
+      "scene": "pillar",
+      "sha256": "edf5112bbf93d2bfe009d8170def773d824eabc1cf830995bbe02eaaef5c5ace"
+    },
+    {
+      "bytes": 7737587,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/pillar/envmap/time3_envmap.exr",
+      "role": "reserve",
+      "scene": "pillar",
+      "sha256": "80f5e8d2eebe5149f7c9c49253e18e4859f01bc2bd4c81e6efd58b28ff719704"
+    },
+    {
+      "bytes": 10518075,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/pillar/photo/time3_hdr.exr",
+      "role": "reserve",
+      "scene": "pillar",
+      "sha256": "d916bd2366a32a1b82c741995b688cd63765b6edd693c8f4d343d3e552b38393"
+    },
+    {
+      "bytes": 7722227,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/pillar/envmap/time4_envmap.exr",
+      "role": "reserve",
+      "scene": "pillar",
+      "sha256": "151875a80fec5329f0e3da6f6f5bcafb59ca446dfdcd08dd56182a46abd46dcb"
+    },
+    {
+      "bytes": 10515249,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/pillar/photo/time4_hdr.exr",
+      "role": "reserve",
+      "scene": "pillar",
+      "sha256": "2c480e6716d1852b6c954cb681dbb6b898e3485257a871d4530c337e1a3658ae"
+    },
+    {
+      "bytes": 7715387,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/pillar/envmap/time5_envmap.exr",
+      "role": "reserve",
+      "scene": "pillar",
+      "sha256": "4fbb16cc046b0e1ef592579ae94730afc54dd1581c089ff2b098089c798499ed"
+    },
+    {
+      "bytes": 10531439,
+      "git_blob_sha1": null,
+      "identity_kind": "lfs_sha256",
+      "path": "small-aligned/pillar/photo/time5_hdr.exr",
+      "role": "reserve",
+      "scene": "pillar",
+      "sha256": "223b2900a501c7eb0fa39bf3a1ef7fd4d81e2b3252b7e5d6b43c61a545491561"
+    }
+  ],
+  "revision": "90ab579145da9f3ea998d706c8defd0d4b87641f",
+  "schema": "neuro-film.p302-wildrelight-member-manifest.v1",
+  "variant": "small-aligned"
+}
