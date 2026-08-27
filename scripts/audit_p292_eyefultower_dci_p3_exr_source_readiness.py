@@ -67,7 +67,11 @@ def _request(
                     "body": body,
                     "body_bytes": len(body),
                     "body_sha256": _sha256(body),
-                    "content_length": int(headers.get("content-length", "0")),
+                    "content_length": (
+                        int(headers.get("content-length", "0"))
+                        if method == "HEAD"
+                        else len(body)
+                    ),
                     "etag": headers.get("etag"),
                     "final_url": response.geturl(),
                     "http_status": int(response.status),
