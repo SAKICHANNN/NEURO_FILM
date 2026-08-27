@@ -1,7 +1,7 @@
 {
   "schema": "neuro-film.p291-libavif-gainmap-encode-pq-roundtrip-contract.v1",
   "experiment_id": "P291",
-  "status": "PRESCORE_COLOR_SPACE_CORRECTED_BEFORE_INTEGRATION_EXECUTION",
+  "status": "IMPLEMENTATION_FROZEN_BEFORE_FORMAL_EXECUTION",
   "contract": [
     "docs/planning/P291_LIBAVIF_GAINMAP_ENCODE_PQ_ROUNDTRIP_CONTRACT.md",
     5018,
@@ -65,6 +65,20 @@
       "src/preprocess/png_stream.py",
       12824,
       "c3d3c35a23efbc1f7b21babd4255c09872c6ff8cc7eec1423b9d1c9266cf9b97"
+    ]
+  },
+  "execution_bindings": {
+    "runner": [
+      "scripts/audit_p291_libavif_gainmap_encode_pq_roundtrip.py",
+      17623,
+      "e8b8ff840e89788bad9402b896eb616bbe5336b2185132c4f778cc0b69854af8",
+      "f8035c57"
+    ],
+    "test": [
+      "tests/test_p291_libavif_gainmap_encode_pq_roundtrip.py",
+      1804,
+      "9bdc74fc3cd51790a2f013ded29459c89702f4c9a088d71e198eb58a37bde993",
+      "f8035c57"
     ]
   },
   "profile": {
