@@ -18729,3 +18729,27 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   precise AVIF decoder/container gap, not an HDR-quality negative. No alternate
   backend/build rescue, HEIF/arbitrary AVIF, encoder, public package/schema/
   capability, product admission, film-stock claim or candidate-3 change opens.
+
+### 2026-08-27 - P279 proves two exact HDR+ merged-DNG ingresses are full-size
+
+- **Node and scope:** `ULT > mature RAW/DNG/HDR infrastructure > P279`, DRPT
+  L2 / Mode C. `dev-research-reliability` is primary; DRPT-BI, agent-log and
+  structure stewardship constrain this to existing-loader safety. It does not
+  score HDR quality, change the loader or consume candidate 3.
+- **Freeze and correction:** contract `5064c1f1`, parent-identity correction
+  `41d60700`, audit `97278ff0` and LibRaw rejection correction `b89713b2` bind
+  the exact P269 2016/2017 merged DNGs, full 4032x3024 result dimensions and
+  known 480x640 metadata page. The first committed execution made no report
+  because its truncated control raised `LibRawIOError` outside the audit tuple;
+  the additive correction only classifies the public LibRaw error base, then
+  both processes reran from zero.
+- **Result:** forward/reverse reports are byte-exact at 1,756 bytes / SHA
+  `c5e3ef8a...2c7b3`, stable `974dbb84...23c1f`. Both exact DNGs return owned,
+  writable, C-contiguous, finite 3024x4032x3 linear-sRGB WorkingImages, with
+  frozen pixel hashes `c56dd39c...643c` / `479766f0...2d3c`. Neither returns
+  the metadata thumbnail; source immutability and truncation rejection pass.
+- **Verification and boundary:** 17 P98/P269/P270/P279 tests pass; Ruff,
+  format, `py_compile`, JSON and diff checks pass. No output pixels persist.
+  Retain private exact two-file ingress safety only; no arbitrary DNG, HDR
+  quality, calibrated scene/display state, public package/schema/capability,
+  product admission or candidate-3 change opens.
