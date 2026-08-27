@@ -1,0 +1,42 @@
+{
+  "schema": "neuro-film.p265-aces2065-aces2-pq-linux-runtime-contract.v1",
+  "experiment_id": "P265",
+  "status": "FROZEN_BEFORE_DEPENDENCY_ACQUISITION_OR_LINUX_EXECUTION",
+  "runtime": {
+    "distribution": "Ubuntu-22.04",
+    "architecture": "x86_64",
+    "python": "/usr/bin/python3.12",
+    "numpy_version": "2.4.4",
+    "openexr_version": "3.4.15",
+    "opencolorio_version": "2.5.2",
+    "config_cache_id": "351c1452fc2bde6177841947c5fce086:6001c324468d497f99aa06d3014798d8"
+  },
+  "linux_wheels": {
+    "producer_repository": "C:/Users/hhvrf/Documents/追色",
+    "numpy": ["data/vendor/linux/r1dp-py312/wheels/numpy-2.4.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", 16645480, "81f4a14bee47aec54f883e0cad2d73986640c1590eb9bfaaba7ad17394481e6e"],
+    "openexr": ["data/vendor/linux/r1dp-py312/wheels/openexr-3.4.15-cp312-cp312-manylinux_2_28_x86_64.whl", 1299460, "5f81c38ec733259da31e257d964de5cfb4b4ef0b9aa1e7037b71fae709abe710"],
+    "opencolorio": ["data/vendor/linux/p265-py312/wheels/opencolorio-2.5.2-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", 0, "3d0ab1c398d560513c651c7b9c676e68f264a63b97e29fec21722d4270f865aa"],
+    "opencolorio_pypi_url": "https://pypi.org/project/opencolorio/2.5.2/"
+  },
+  "windows_oracle": {
+    "p249_openexr_bytes": 1144,
+    "p249_openexr_sha256": "1a25181406270142c98f2169897d3a4c468ec50c979fff9077d37f956c888726",
+    "p252_png_bytes": 469,
+    "p252_png_sha256": "533cad62273a55a5863782021d39b477b82ea9230a8578462f6996caa259a2c4",
+    "p252_rgb16_sha256": "5194e283ea14c90cf9f79e09041d684db1e2fe53f6276f8d5cf08d453dc7aa6d",
+    "p252_encoded_f32le_sha256": "6930dafa4afcfb94add7d262824a9c85b8a65c46fbec23f296e996fb167ae14d",
+    "shape": [7, 9, 3]
+  },
+  "gates": {
+    "require_exact_parent_and_wheel_identities": true,
+    "require_exact_linux_runtime": true,
+    "require_exact_windows_linux_rgb16": true,
+    "require_exact_windows_linux_png": true,
+    "require_partition_and_outer_replay_exact": true,
+    "require_strict_metadata_and_invalid_controls": true,
+    "require_source_immutability_and_atomicity": true,
+    "require_zero_network_and_temporary_residue": true
+  },
+  "stop_rule": "Any source, wheel, runtime, metadata, pixel, sample, file, atomicity, replay or cleanup mismatch closes P265 without wheel/version/config/source/output/tolerance substitution or rescue.",
+  "claim_ceiling": "Private WSL2 Ubuntu 22.04 x86_64 target-runtime parity on one synthetic P249 fixture only; no physical Linux, arbitrary EXR/HDR, real-image quality, public dependency/API/package/schema/capability, product admission, film-stock evidence, single-reference matching or candidate 3."
+}
