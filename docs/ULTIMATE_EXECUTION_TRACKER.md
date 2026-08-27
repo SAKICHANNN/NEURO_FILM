@@ -2772,3 +2772,16 @@ exact P289 identities, and ten runtime/input/publication negative controls
 reject atomically. No public API, default, product, arbitrary-media or
 candidate-3 state changes. Evidence:
 `docs/evidence/P290_LIBAVIF_GAINMAP_CREATE_ONLY_API_RESULT.json`.
+
+P291 formally closes the single encode-to-PQ integration question opened by
+P289. The exact P290 create-only media, receipt and both decoded endpoints
+reproduce their parent identities; P283/P87 ingress and P284/P89 one-way PQ
+publication pass profile, geometry, ownership, range, repeat, readback,
+atomicity and residue gates. Two fresh reports are byte-exact at 2,364 bytes /
+SHA `db1984ef...f124`, stable `e5b5e7c1...e5393`. The frozen 16-bit
+decoded-versus-direct and end-to-end code gates fail at median/p95/maximum
+`3/7/8` codes, while publication versus the decoded endpoint is `0/0/1`.
+Thresholds, codec profile, transforms, fixture and backend remain unchanged;
+the exact family is closed with no tone policy, arbitrary-media, product or
+candidate-3 change. Evidence:
+`docs/evidence/P291_LIBAVIF_GAINMAP_ENCODE_PQ_INTEGRATION_RESULT.json`.

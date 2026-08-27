@@ -19041,3 +19041,25 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   distinguishability, target-film closeness, stock identity, calibration,
   preference, multi-stock completion or product promotion. Controlled
   stock-specific acquisition remains the primary next evidence.
+
+### 2026-08-27 - P291 closes P289/P290 encode-to-PQ integration
+
+- **Node:** `ULT > HDR media > P291`; DRPT L2 / Mode C. The leaf tests the one
+  consumer integration question opened by P289 without modifying any encoder,
+  decoder, ingress, transfer, publication core or default.
+- **Freeze/corrections:** contract `d185fdc6`, source-only colour-space
+  correction `4637586e`, locks `73d195c0`/`58600d82`, implementation
+  `f8035c57` and formal lock `df3c6bab`. Before P291 execution, the invalid
+  direct BT.709-PQ versus Rec.2020-PQ comparator was replaced by the explicit
+  frozen primaries conversion. A later report literal used the bound profile
+  constant; no metric, threshold, fixture or transform changed.
+- **Result:** formal forward/reverse reports are byte-exact at 2,364 bytes /
+  SHA `db1984ef...f124`, stable `e5b5e7c1...e5393`. Media, receipt, decoded
+  endpoints, P87/P89 publication, invalid controls and residue pass. Frozen
+  decoded/direct and end-to-end code gates fail at median/p95/max `3/7/8`;
+  publication versus decoded endpoint is `0/0/1`. Evidence commit `96af1794`,
+  evidence SHA `31d9f230...a22bb`; 36 adjacent tests pass.
+- **Boundary/handoff:** exact P291 is FAIL_CLOSED without threshold or backend
+  rescue. libavif wrapper/integration expansion stops; no SDR tone policy,
+  complete ISO/arbitrary-media support, public API/default/product promotion
+  or candidate-3 consumption opens.
