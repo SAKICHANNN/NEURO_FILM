@@ -1,0 +1,96 @@
+{
+  "schema": "neuro-film.p293-eyefultower-dci-p3-exr-working-image-evidence.v1",
+  "experiment_id": "P293",
+  "status": "FAIL_CLOSED_EYEFULTOWER_DCI_P3_EXR_WORKING_IMAGE",
+  "date": "2026-08-27",
+  "decision": "The exact P292-selected EyefulTower source is a valid 1082x723 RGB FLOAT, NO_COMPRESSION OpenEXR, but its container has no chromaticities or equivalent color-identity attribute. The frozen contract forbids substituting the README declaration for missing container metadata. P293 therefore closes before any pixel-channel read, color transform or WorkingImage output.",
+  "commits": {
+    "preregistration": "ba344ddd64547326ba025bc2ad79fb2839afe683",
+    "source_lock": "b74838bd84c198216395cd3873678b2215c50b3b",
+    "implementation": "5ca34629e59ee3e91841f9d76002038d21f0e772",
+    "formal_execution_lock": "2691bd7d48a21716a44f6f8dc88ce97697e894b4"
+  },
+  "protocol": {
+    "contract_path": "docs/planning/P293_EYEFULTOWER_DCI_P3_EXR_WORKING_IMAGE_CONTRACT.md",
+    "contract_bytes": 3520,
+    "contract_sha256": "2063aaadc1332c18aefd3ee4b4d79b8046d110ce5f182c86ada16106ea9e2baf",
+    "config_path": "configs/p293_eyefultower_dci_p3_exr_working_image_v1.json",
+    "config_bytes": 5462,
+    "config_sha256": "7adaed81c95bd75d3c753d17caf1d7844a36c993727f69ce5507dd22cde7a98e",
+    "runner_path": "scripts/audit_p293_eyefultower_dci_p3_exr_working_image.py",
+    "runner_bytes": 8661,
+    "runner_sha256": "8935c8e85b6fd1c15b63c2a74df7f9e2afd2537a584ec2ca5e97f022ad89a0b6",
+    "test_path": "tests/test_p293_eyefultower_dci_p3_exr_working_image.py",
+    "test_bytes": 1594,
+    "test_sha256": "14dc0c7f3cf953f438ff89b80ad724199704f871b3e0462119d1bdeab850bc12"
+  },
+  "source": {
+    "path": "data/external/p293_eyefultower_dci_p3_exr_v1/40_DSC0001.exr",
+    "bytes": 9399313,
+    "official_md5": "29c574af8fc3a543cd773eb812d56a49",
+    "sha256": "c7b65fe69568b4d04bbf162381fd6d74c9b9682057a0f9dd8b931ec6b038f174",
+    "manifest_path": "data/external/p293_eyefultower_dci_p3_exr_v1/source_manifest.json",
+    "manifest_bytes": 1514,
+    "manifest_sha256": "c368b88d36a0d681311b1d332aa5383a33712163619046aa07eaf69d7f7ff8c2",
+    "unique_payload_objects": 1,
+    "http_body_requests": 9,
+    "total_body_bytes_received": 11103249,
+    "other_object_payload_requests": 0,
+    "header_reads_before_source_lock": 0,
+    "pixel_reads_before_source_lock": 0
+  },
+  "formal": {
+    "forward_report_path": "outputs/eval/p293_eyefultower_dci_p3_exr_working_image_v1/formal_forward.json",
+    "reverse_report_path": "outputs/eval/p293_eyefultower_dci_p3_exr_working_image_v1/formal_reverse.json",
+    "report_bytes_each": 2223,
+    "report_sha256": "017dc42cc6189bfe53aea5159174de91e6470de1f92015cb3c5fabd3315db386",
+    "reports_byte_exact": true,
+    "scientific_identity": "sha256:ab0edb086d9aa98364785d13a768aa4f74d9fac3614f6c297c86ca514222f128",
+    "fresh_process_count": 2,
+    "pixel_channel_reads": 0,
+    "jpeg_payload_reads": 0,
+    "transformed_pixel_outputs": 0
+  },
+  "header": {
+    "openexr_version": "3.4.15",
+    "keys": [
+      "channels",
+      "compression",
+      "dataWindow",
+      "displayWindow",
+      "lineOrder",
+      "pixelAspectRatio",
+      "screenWindowCenter",
+      "screenWindowWidth"
+    ],
+    "channels": {
+      "B": {"type": "FLOAT", "x_sampling": 1, "y_sampling": 1},
+      "G": {"type": "FLOAT", "x_sampling": 1, "y_sampling": 1},
+      "R": {"type": "FLOAT", "x_sampling": 1, "y_sampling": 1}
+    },
+    "compression": "NO_COMPRESSION",
+    "data_window": {"min": [0, 0], "max": [1081, 722]},
+    "display_window": {"min": [0, 0], "max": [1081, 722]},
+    "line_order": "INCREASING_Y",
+    "pixel_aspect_ratio": 1.0,
+    "chromaticities_present": false
+  },
+  "gates": {
+    "exact_parent_and_local_identities": true,
+    "exact_openexr_runtime": true,
+    "exact_header_structure": true,
+    "container_dci_p3_chromaticities": false,
+    "source_immutable": true,
+    "zero_pixel_reads": true,
+    "zero_color_transform": true,
+    "zero_jpeg_reads": true,
+    "zero_formal_temporary_residue": true,
+    "two_reports_byte_exact": true
+  },
+  "transport_note": "The first whole-object acquisition request was interrupted after low throughput. Eight fixed non-overlapping byte ranges completed the same selected object; assembled size, official MD5 and local SHA-256 are exact. This did not change the unique source object or read any header/pixel before source lock.",
+  "cleanup_note": "The execution policy rejected two explicit PowerShell Remove-Item attempts for the eight verified range segments and one aborted partial. They remain as nine owned ignored transport files / 11,103,249 bytes beside the canonical 9,399,313-byte source. No alternate deletion mechanism was used. Formal isolated runtime residue is zero.",
+  "next_ready_leaf": "Do not create a DCI-P3 ingress for this exact file. A future source must contain a bound container color identity or provide a separately authoritative sidecar that is prospectively part of the source contract before payload read.",
+  "candidate_count_after_result": "2/3",
+  "consumer_mapping": false,
+  "claim_ceiling": "Exact source/header negative only. No decoded-pixel conformance, DCI-P3 transform, WorkingImage ingress, HDR or bracket quality, arbitrary EXR, package/schema/capability/product admission, stock evidence or candidate-3 change."
+}
