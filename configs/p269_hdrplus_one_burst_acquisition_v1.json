@@ -1,7 +1,15 @@
 {
   "schema": "neuro-film.p269-hdrplus-one-burst-acquisition-contract.v1",
   "experiment_id": "P269",
-  "status": "FROZEN_BEFORE_OBJECT_BODY_READ",
+  "status": "ACQUISITION_EXECUTION_LOCKED",
+  "bindings": {
+    "contract_commit": "9bed5397069866a5637cf0c2741ea36d2c757037",
+    "contract_bytes": 2646,
+    "contract_sha256": "ae71aca1256251dfa9787e218f9f7a73b654727cb48fbc9ab4660f05344bf7e5",
+    "runner_commit": "8fbda7de162aa41763758247e45495be92f86328",
+    "runner_bytes": 15440,
+    "runner_sha256": "d8fb0b38924b2d6563096aad43c1e545267bdbd515b59a45fd3756b3ddaead0e"
+  },
   "parent_evidence_sha256": "2f9fc7a4875031b16d0488bcde7fe4e107bed03f80ba0147870e4b16e5da5505",
   "selected_burst_id": "0382_20150912_131056_666",
   "destination_root": "data/external/p269_hdrplus_one_burst_v1",
