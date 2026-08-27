@@ -1,0 +1,31 @@
+{
+  "schema": "neuro-film.rf3-d13-darkroom-three-stock-baseline-source.v1",
+  "experiment_id": "RF3.D13",
+  "status": "FROZEN_BEFORE_GIT_OBJECT_AUDIT",
+  "repository": "https://github.com/jeremieLouvaert/ComfyUI-Darkroom",
+  "commit": "eb8f3d86f49a57e54ff426b3f517f8747248ec99",
+  "required_stock_ids": [
+    "fujifilm_velvia_50",
+    "kodak_portra_400",
+    "kodak_ektar_100"
+  ],
+  "required_gates": [
+    "exact_commit_and_blobs",
+    "root_license_covers_code_and_operator_data",
+    "three_exact_machine_readable_stock_operators",
+    "per_stock_primary_source_and_extraction_provenance",
+    "headless_deterministic_no_network_execution",
+    "no_unresolved_third_party_data_rights",
+    "materially_distinct_from_closed_spectral_film_lut_route"
+  ],
+  "forbidden_reads": [
+    "image_pixels",
+    "film_scans",
+    "capture_one_application",
+    "preset_marketplace_payloads",
+    "user_content"
+  ],
+  "decision_if_pass": "OPEN_SEPARATE_THREE_STOCK_COMMON_INPUT_BASELINE",
+  "decision_if_fail": "CLOSE_SOURCE_WITHOUT_PIXEL_EXECUTION_OR_RIGHTS_RESCUE",
+  "claim_ceiling": "Three-stock explicit Look Approximation baseline source admission only; no stock evidence, accuracy, calibration, preference or product claim."
+}
