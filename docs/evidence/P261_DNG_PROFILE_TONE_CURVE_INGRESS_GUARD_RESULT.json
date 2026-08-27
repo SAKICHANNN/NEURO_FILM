@@ -1,0 +1,59 @@
+{
+  "schema": "neuro-film.p261-dng-profile-tone-curve-ingress-guard-evidence.v1",
+  "experiment_id": "P261",
+  "status": "PASS_PRIVATE_DNG_PROFILE_TONE_CURVE_INGRESS_GUARD",
+  "formal_execution_commit": "d013d8e4469df9145fb304faff4cd3848ded8ed3",
+  "formal_reports": {
+    "forward": "outputs/eval/p261/formal_forward.json",
+    "reverse": "outputs/eval/p261/formal_reverse.json",
+    "bytes_each": 5214,
+    "byte_exact": true,
+    "sha256": "6085f4429f5c5123e39972ec0b1b1e55dedc319d595fd967a3021ea41985b9d1",
+    "scientific_identity_sha256": "00e5aba0cb5e1fce732015cc3458c08570f0ed09c53fd400b3427f6ecac0016c"
+  },
+  "source_authority": {
+    "name": "Adobe DNG SDK 1.7.1 build 2652",
+    "archive_sha256": "73499b47f4683e12120a234bd0946f02e52ab2ff9834bcbd0e9f8ab4f923360e",
+    "member": "dng_sdk_1_7_1/dng_sdk/source/dng_tag_codes.h",
+    "resolved_tag": {"code": 50940, "name": "ProfileToneCurve"}
+  },
+  "execution": {
+    "new_dng_raw_target_reference_reads": 0,
+    "camera_decode_calls_on_rejection": 0,
+    "tone_curve_builds": 0,
+    "tone_curve_applications": 0,
+    "network_reads": 0
+  },
+  "results": {
+    "frozen_p98_rows": 5,
+    "real_rows_with_profile_tone_curve": 0,
+    "p98_working_image_hashes_exact": 5,
+    "source_hashes_unchanged": 5,
+    "profile_tone_curve_rejection_exact": true,
+    "p244_huesat_guard_unchanged": true,
+    "p257_gain_table_map_guard_unchanged": true,
+    "working_contract_exact": true,
+    "all_parent_bindings_exact": true,
+    "all_frozen_gates_pass": true
+  },
+  "decision": {
+    "admitted": true,
+    "interpretation": "The private opt-in P98 DNG raster path now rejects ProfileToneCurve metadata before camera-raster decode instead of silently omitting that unsupported profile stage, while all five frozen no-curve P98 outputs remain exact.",
+    "no_rescue_or_extension": [
+      "R1DX arithmetic application",
+      "tone-curve ordering inference",
+      "warning-only fallback",
+      "default-loader integration",
+      "arbitrary-DNG generalization"
+    ]
+  },
+  "bindings": {
+    "contract_commit": "732bdeeb",
+    "implementation_commit": "d013d8e4",
+    "contract_sha256": "fa3edf86a627875581b6434bdb816bd62662e8f780652dcab4ba5a505d482173",
+    "implementation_sha256": "673f3ab49db78e5ab19d00dbe832703d450698d3069161e32c27847ed895f834",
+    "runner_sha256": "8c24a40144a46805589f8b58a03c3db76a2ede260e9313a489b39249df99a675",
+    "test_sha256": "16410338aec3145499748a59f545cbfd7ce3062a56fa8c283ca3933b61063ceb"
+  },
+  "claim_ceiling": "Private opt-in no-silent-drop guard for Adobe DNG ProfileToneCurve tag 50940 plus unchanged five-file P98 no-curve behavior. No tone-curve application, full DNG conformance, arbitrary DNG or image quality, default-loader integration, package, schema, capability, film-stock or product admission."
+}
