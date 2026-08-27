@@ -1,0 +1,42 @@
+{
+  "schema": "neuro-film.p270-hdrplus-split-capture-raw-d0-contract.v1",
+  "experiment_id": "P270",
+  "status": "FROZEN_BEFORE_ANY_FULL_RAW_READ",
+  "parent_p269_evidence_sha256": "fd2a4d8d966795cf2e21a1d3997991398bc8fc141260a489e71275e96fc9ac96",
+  "source_root": "data/external/p269_hdrplus_one_burst_v1/burst",
+  "development_frames": ["payload_N000.dng", "payload_N002.dng", "payload_N004.dng", "payload_N006.dng"],
+  "heldout_frames": ["payload_N001.dng", "payload_N003.dng", "payload_N005.dng", "payload_N007.dng"],
+  "expected_source_inventory_sha256": "190945626dec38461266a362b723dca92fe4536e50a1f22b05556b236b33e4a1",
+  "representation": {
+    "white_level": 1023.0,
+    "cfa_planes": [[0,0],[0,1],[1,0],[1,1]],
+    "green_plane_indices": [1,2],
+    "phase_scale": 0.25,
+    "interpolation": "opencv_linear_float32_nan_border",
+    "maximum_abs_halfres_shift_pixels": 64.0
+  },
+  "controls": {
+    "single_frame": ["identity", "gaussian_sigma_0.5", "gaussian_sigma_1.0", "gaussian_sigma_1.5"],
+    "gaussian_sigmas": [0.5,1.0,1.5],
+    "temporal": "unaligned_even_mean"
+  },
+  "block_selection": {
+    "block_side": 32,
+    "required_blocks": 512,
+    "gradient_weight": 0.25,
+    "ordering": "risk_then_plane_y_x"
+  },
+  "gates": {
+    "minimum_aligned_even_overlap": 0.8,
+    "minimum_valid_heldout_blocks": 480,
+    "minimum_vs_strongest_single_win_rate": 0.75,
+    "minimum_vs_strongest_single_median_reduction": 0.1,
+    "minimum_vs_strongest_single_worst_reduction": -0.25,
+    "minimum_vs_unaligned_win_rate": 0.75,
+    "minimum_vs_unaligned_median_reduction": 0.05,
+    "require_candidate_freeze_before_heldout_read": true,
+    "maximum_result_pixel_reads": 0
+  },
+  "stop_rule": "Any source role, pre-heldout freeze, shift, overlap, block-support, strongest-control, tail, replay or zero-result-read failure closes this exact one-burst family without role/mask/sigma/alignment/threshold rescue.",
+  "claim_ceiling": "Private one-scene split-capture RAW mechanism evidence only; no HDR truth/quality, natural-scene generalization, fresh-group result, package/schema/capability/product mapping or candidate3 admission."
+}
