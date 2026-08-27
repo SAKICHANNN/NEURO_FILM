@@ -19091,3 +19091,29 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   intake. JPEGs are same-source tone-mapped derivatives, not independent truth.
   No HDR/bracket quality, arbitrary EXR, package/schema/capability/product,
   stock evidence or candidate-3 change opens.
+
+### 2026-08-27 - P293 closes EyefulTower EXR intake before pixels
+
+- **Node:** `ULT > HDR source/intake > P293`; DRPT L2 / Mode C. The leaf tested
+  only whether the exact P292-selected file carries a self-identifying colour
+  contract. It did not replace or advance the externally blocked controlled
+  three-stock acquisition lane.
+- **Freeze and source:** preregistration `ba344ddd`, exact source lock
+  `b74838bd`, implementation `5ca34629`, formal lock `2691bd7d` and evidence
+  `8a46b7bc`. The one selected EXR is 9,399,313 bytes, matches official MD5
+  `29c574af...6a49` and local SHA-256 `c7b65fe6...8f174`. The interrupted
+  whole-object transfer plus eight verified ranges did not change the unique
+  source identity or read a header/pixel before source lock.
+- **Result:** pinned OpenEXR 3.4.15 reports a valid 1082x723 RGB FLOAT,
+  NO_COMPRESSION scanline file, but the header has no `chromaticities` or
+  equivalent colour identity. The frozen gate fails before all pixel-channel,
+  JPEG and colour-transform reads. Two fresh reports are byte-exact at 2,223
+  bytes / SHA `017dc42c...b386`, scientific `ab0edb08...221f128`; 41 adjacent
+  tests and Ruff/compile/JSON/diff checks pass.
+- **Boundary and cleanup:** do not substitute README DCI-P3 prose, a same-source
+  tone-mapped JPEG or a post-result sidecar for missing container identity.
+  Nine ignored transport fragments / 11,103,249 bytes remain because two
+  explicit `Remove-Item` attempts were rejected before execution; no alternate
+  deletion mechanism was used. A future leaf needs container chromaticities or
+  a prospectively bound authoritative sidecar. No arbitrary EXR/HDR,
+  package/schema/capability/product, stock evidence or candidate-3 change opens.
