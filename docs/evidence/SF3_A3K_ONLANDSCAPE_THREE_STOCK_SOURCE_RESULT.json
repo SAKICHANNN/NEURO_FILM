@@ -1,0 +1,77 @@
+{
+  "schema": "neuro-film.sf3-a3k-onlandscape-three-stock-source-evidence.v1",
+  "experiment_id": "SF3.A3K_ONLANDSCAPE_THREE_STOCK_SOURCE_V1",
+  "date": "2026-08-27",
+  "status": "FAIL_CLOSED_RIGHTS",
+  "decision": "FAIL_CLOSED_ONLANDSCAPE_THREE_STOCK_RIGHTS_OR_STRUCTURE",
+  "implementation": {
+    "freeze_commit": "c3eaa4d4",
+    "visible_text_fix_commit": "20d91c00",
+    "config_sha256": "446bbcb51ba69aa32338d6acf2d7d76c8a4d9c0b4f911f03a74a575d402680d8",
+    "source_audit_sha256": "801b92384c69cf2d0c030c59148d3d5e732f48f8bb11d71cc2a8d69019b82557",
+    "runner_sha256": "eb331c87c1f9aa03df3edac96eaf9a75517e89e7028a58fba328cbd7a9251a9d",
+    "test_sha256": "f5cd19a481aaacf80ae8d95dc1929736898c61ac4f48305bd48397be94c38e58"
+  },
+  "execution_amendment": {
+    "initial_attempt_status": "DISCARDED_BEFORE_EVIDENCE",
+    "finding": "The frozen Digitalab sentence was visually continuous but interrupted by an HTML anchor. Raw-HTML substring matching therefore produced a false missing-statement result.",
+    "correction": "The parser now strips tags, decodes entities and collapses whitespace before checking the unchanged required sentences. Source URLs, stocks, rights gates, request budget and stop rules did not change.",
+    "initial_image_requests": 0,
+    "initial_pixel_decodes": 0,
+    "initial_fit_render_score_calls": 0
+  },
+  "formal_replay": {
+    "processes": 2,
+    "request_orders": [
+      ["article", "terms"],
+      ["terms", "article"]
+    ],
+    "reports_byte_exact": true,
+    "report_bytes": 2733,
+    "report_sha256": "c24e499e614e9933e9a77976d9705ea8cf357653f686f982f78100210762648c",
+    "stable_evidence_id": "0e6980be213c5aabea99d5681a7130199e46e419757bc72186b576a34b3bc173",
+    "forward_report": "outputs/eval/sf3_a3k_onlandscape_three_stock_source_v1/run_forward.json",
+    "reverse_report": "outputs/eval/sf3_a3k_onlandscape_three_stock_source_v1/run_reverse.json"
+  },
+  "observed_source_facts": {
+    "article_url": "https://www.onlandscape.co.uk/2011/06/colour-film-comparison-pt-3/",
+    "article_bytes": 140317,
+    "article_sha256": "c037c95e269a89ca18c9226fae3440d7d21b9810f483f2874ddbd021952288b1",
+    "terms_url": "https://www.onlandscape.co.uk/terms-and-conditions/",
+    "terms_bytes": 78008,
+    "terms_sha256": "2ceb4cd4e418191a0acdc53bf577adc31d81269f1c73a219cb81c8c8a06514e1",
+    "comparison_inventory_count": 192,
+    "comparison_inventory_sha256": "f67e6658bbef0aaff6528aefc47fae941d829ab8d454ac04c6bac00092cdb702",
+    "same_group_required_stocks_present": [
+      "fujifilm_velvia_50",
+      "kodak_portra_400",
+      "kodak_ektar_100"
+    ],
+    "capture_develop_scan_statements_present": true,
+    "negative_interpretation_nuisance": "The article states that negative scans use operator-selected shadow/highlight points; displayed variants also include curves, gradients or noise reduction.",
+    "private_or_business_research_single_copy_language_present": true,
+    "explicit_fitting_permission_present": false,
+    "explicit_source_redistribution_permission_present": false,
+    "explicit_derived_parameter_or_weight_distribution_permission_present": false,
+    "explicit_commercial_stock_profile_permission_present": false
+  },
+  "gate_outcomes": {
+    "article_capture_scan_statements_present": true,
+    "same_group_three_stock_inventory_present": true,
+    "official_restrictions_observed": true,
+    "explicit_fitting_release_commercial_permissions_present": false,
+    "zero_image_requests": true,
+    "zero_pixel_fit_render_score": true
+  },
+  "operation_counts_per_formal_run": {
+    "html_requests": 2,
+    "image_requests": 0,
+    "pixel_decodes": 0,
+    "fit_calls": 0,
+    "render_calls": 0,
+    "score_calls": 0
+  },
+  "interpretation": "The page is a materially useful metadata-level observation: one physical large-format scene exposes Velvia 50, Portra 400 and Ektar 100 under one lab and scanner family. It cannot enter the rights-cleared three-stock fitting matrix because the official terms limit use and do not explicitly permit dataset extraction, source redistribution, derived stock parameter or weight distribution, or commercial product use. Scanner and negative-inversion choices are additional nuisance variables.",
+  "next_action": "Close this exact source at zero images. Continue the already frozen owned A0L/A0N physical capture route or admit a materially independent source with explicit fitting, derivation and product-use rights. Do not rescue by subscription, image requests, terms inference or a private-only fit.",
+  "claim_ceiling": "Metadata-level same-scene physical three-stock source observation only; no rights-cleared pixels, fitting, stock response, calibration, product profile, redistribution or release."
+}
