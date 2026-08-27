@@ -50,6 +50,11 @@ _PROFILE_HUESATMAP_TAGS = {
     52551: "ProfileDynamicRange",
 }
 
+_PROFILE_GAIN_TABLE_MAP_TAGS = {
+    52525: "ProfileGainTableMap",
+    52544: "ProfileGainTableMap2",
+}
+
 
 def _sha256(path: Path) -> str:
     digest = hashlib.sha256()
@@ -95,11 +100,34 @@ def _guard_unsupported_profile_huesatmap(
     )
 
 
+def _guard_unsupported_profile_gain_table_map(
+    pages: list[tuple[str, tifffile.TiffPage]],
+) -> None:
+    """Reject profile gain maps that this narrow raster path cannot apply."""
+
+    present: dict[int, list[str]] = {}
+    for ifd_path, page in pages:
+        for code in _PROFILE_GAIN_TABLE_MAP_TAGS:
+            if code in page.tags:
+                present.setdefault(code, []).append(ifd_path)
+    if not present:
+        return
+    details = ", ".join(
+        f"{_PROFILE_GAIN_TABLE_MAP_TAGS[code]}({code})@{'+'.join(present[code])}"
+        for code in sorted(present)
+    )
+    raise DngForwardRasterError(
+        "unsupported DNG ProfileGainTableMap-family tags must not be silently "
+        f"ignored: {details}"
+    )
+
+
 def _read_profile_tags(path: Path) -> dict[str, Any]:
     try:
         with tifffile.TiffFile(path) as document:
             pages = _walk_pages(document.pages)
             _guard_unsupported_profile_huesatmap(pages)
+            _guard_unsupported_profile_gain_table_map(pages)
             tags = document.pages[0].tags
             required = (
                 "color_matrix1",
