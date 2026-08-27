@@ -18377,6 +18377,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `0929e5031eec1dfc89718528f3e8c9145752b8f1da555eaf1b1571476c8adeeb`.
 - **Boundary and handoff:** this proves only that the control can distinguish a
   stock-specific synthetic mechanism from a shared effect. It is not real-film
-  evidence, calibration, stock completion or product promotion. Next mainline
-  work is a file-backed SF3.A2B execution path fed by the controlled physical
-  ledger; A0L/A0N acquisition remains the data gate.
+  evidence, calibration, stock completion or product promotion.
+- **File-backed closure:** commit `dfc0d5cc` routes the unchanged A1 integrity,
+  alignment and streaming-sampling chain into SF3.A2B, failing before sampling
+  or fitting when integrity fails. Commit `b7f31dc5` adds rehearsal v2 without
+  changing v1: the combined ledger runs A2B before the three independent A2
+  lanes, A4 renders and A5 package. Nine adjacent tests pass in 446.32 seconds;
+  forward/reverse v2 reports are exact and the pooled control opens on the
+  distinct procedural effects. This is the last rehearsal leaf. A0L/A0N
+  controlled physical acquisition remains the data gate.

@@ -2661,6 +2661,10 @@ synthetic discriminator passes all three stock-specific incremental gates,
 while an identical/common-effect negative correctly fails every stock; 17
 adjacent tests pass. Two direct CLI replays are byte-exact at 5,424 bytes / SHA
 `bec0d3a9...b5c88` with stable identity `0929e503...adeeb`. This is executable
-control infrastructure only, not real-film evidence or promotion. Physical
-A0L/A0N acquisition and a file-backed controlled three-stock run remain the
-stock-science mainline.
+control infrastructure only, not real-film evidence or promotion. The
+file-backed runner now consumes the unchanged A1 integrity, alignment and
+streaming-sampling chain, and the separately versioned A0--A5 rehearsal v2
+runs that pooled control before the three stock lanes, confirmation renders
+and blind package. Forward/reverse v2 reports are exact and all nine adjacent
+tests pass in 446.32 seconds. Physical A0L/A0N acquisition remains the
+stock-science data gate; no additional rehearsal family is opened.
