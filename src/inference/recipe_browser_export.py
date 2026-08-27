@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import html
 import secrets
+import sys
 import tempfile
 import threading
 from dataclasses import dataclass
@@ -27,6 +28,13 @@ DEFAULT_MAXIMUM_FORM_BYTES = 4096
 
 class RecipeBrowserExportError(ValueError):
     """Raised when a local browser export session cannot be used."""
+
+
+class _LoopbackHTTPServer(ThreadingHTTPServer):
+    def handle_error(self, request: object, client_address: object) -> None:
+        if isinstance(sys.exc_info()[1], ConnectionResetError):
+            return
+        super().handle_error(request, client_address)
 
 
 def _sha256(payload: bytes) -> str:
@@ -120,7 +128,7 @@ class RecipeBrowserExportSession:
         self._done = threading.Event()
         self._result: BrowserExportResult | None = None
         self._scratch = tempfile.TemporaryDirectory(prefix="neuro-film-browser-export-")
-        self._server = ThreadingHTTPServer((LOOPBACK_HOST, 0), self._handler_type())
+        self._server = _LoopbackHTTPServer((LOOPBACK_HOST, 0), self._handler_type())
         self._thread: threading.Thread | None = None
 
     def _handler_type(self) -> type[BaseHTTPRequestHandler]:
