@@ -19378,3 +19378,30 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   product-default admission opens. Stop adjacent publication micro-leaves
   unless a separately used live writer has an independently documented
   create-only contract defect.
+
+### 2026-08-28 - P301 closes Mono-HDR-3D before external data access
+
+- **Node:** `ULT > genuinely new capture-time observations > P301`; DRPT L2 /
+  Mode C. After stopping adjacent publication micro-leaves, P301 prospectively
+  audited the exact official ICML 2025 Mono-HDR-3D source for one materially
+  different real multi-view/multi-exposure observation.
+- **Freeze and correction:** preregistration `4fa2c811`, initial implementation
+  `506102fa`, prescore implementation correction `1662dee7`, and evidence
+  `9109d39b`. The initial lint/test command found one unused import and a
+  positive rights fixture that exposed an overly strict matcher; PowerShell
+  continued to the narrow initial commit, but no formal network audit, data
+  request, pixel read, inference, score or report had run. The correction
+  changed only those prescore implementation/test defects; source, gates and
+  claim ceiling stayed frozen.
+- **Result:** the exact official README declares four real scenes, 35 poses
+  per scene and five exposures per pose. Two corrected committed-head fresh
+  processes produce byte-exact 1,783-byte reports at SHA
+  `b1b7ea88...c7904`. The external dataset rights, exact path-size-checksum
+  manifest and group-identity gates fail. Drive-body/file/archive/pose/image
+  requests, pixel decodes and training/inference are all zero. Two focused
+  tests plus Ruff, format, compile, JSON and diff checks pass.
+- **Decision:**
+  `FAIL_CLOSED_MONO_HDR_3D_SOURCE_RIGHTS_OR_MANIFEST_GAP_NOT_SCIENTIFIC_RESULT`.
+  This is a release gap, not an HDR-quality negative. Do not request payloads
+  or infer rights/groups from the code repository. Candidate remains `2/3`;
+  no package/schema/capability/product or stock mapping opens.
