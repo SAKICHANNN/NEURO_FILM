@@ -120,12 +120,15 @@ def run_diagnostic(
     gates = config["gates"]
     exposure_rows = diagnostic["exposures"]
     pair_rows = diagnostic["pairs"]
-    finite = all(
-        np.isfinite(value)
-        for row in exposure_rows + pair_rows
-        for key, value in row.items()
-        if key not in {"exposure_ev", "left_ev", "right_ev", "patch_rows"}
-    ) and np.isfinite(diagnostic["raw_contrast_rms_coefficient_of_variation"])
+    finite = bool(
+        all(
+            np.isfinite(value)
+            for row in exposure_rows + pair_rows
+            for key, value in row.items()
+            if key not in {"exposure_ev", "left_ev", "right_ev", "patch_rows"}
+        )
+        and np.isfinite(diagnostic["raw_contrast_rms_coefficient_of_variation"])
+    )
     gate_results = {
         "patch_identity_exact": bool(patch_identity_exact),
         "reference_xyz_exact": bool(reference_xyz_exact),
