@@ -1,0 +1,69 @@
+{
+  "schema": "neuro-film.p283-libavif-gainmap-p87-bridge-evidence.v1",
+  "status": "FAIL_CLOSED_LIBAVIF_GAINMAP_P87_BRIDGE",
+  "decision": "The exact three official libavif higher-headroom RGB16 renditions enter the existing P87 absolute-Rec.2020 boundary with correct CICP, range, ownership and immutable-source mechanics, but the frozen inverse roundtrip is not valid without changing values: Rec.2020 to linear-sRGB produces 4 to 133 negative components per row. Preserve this as a precise gamut-domain failure; do not clip, relax the roundtrip gate, change the matrix or promote an AVIF/HDR product path.",
+  "bindings": {
+    "contract_commit": "b10fcba1",
+    "adapter_commit": "8aa044f8",
+    "formal_runner_commit": "c30e7d05",
+    "failure_serialization_commit": "fa69fd83",
+    "p282_evidence_sha256": "fe40ea1f523847f2f012887d72ad47f45cbe0a5de021562093cf26c74b9afa12",
+    "p87_evidence_sha256": "30a6a009215264b62c26cdab89218aca6cb3d8c0180375d67d9b5f5d707b4577"
+  },
+  "formal_result": {
+    "report_sha256": "c59bf3126077d4131f78433cd111e51446be81e79f27dcfd1ffaa957014dcd56",
+    "report_size_bytes": 5029,
+    "stable_identity": "f6d3bc20b65902058bc7750c058dd7fcf52a51d4e517e6b35c750653b782d94d",
+    "row_count": 3,
+    "records": [
+      {
+        "name": "seine_hdr_gainmap_small_srgb.avif",
+        "higher_role": "base",
+        "minimum_nits": 0.000003842717887891922,
+        "maximum_nits": 750.8896484375,
+        "inverse_linear_srgb_minimum_nits": -0.0000018946396795482218,
+        "inverse_out_of_domain_components": 133
+      },
+      {
+        "name": "seine_sdr_gainmap_big_srgb.avif",
+        "higher_role": "alternate",
+        "minimum_nits": 0.007343978155404329,
+        "maximum_nits": 449.2427062988281,
+        "inverse_linear_srgb_minimum_nits": -0.0000010963609612900168,
+        "inverse_out_of_domain_components": 4
+      },
+      {
+        "name": "seine_sdr_gainmap_srgb.avif",
+        "higher_role": "alternate",
+        "minimum_nits": 0.0,
+        "maximum_nits": 490.53070068359375,
+        "inverse_linear_srgb_minimum_nits": -3.6719916509675494e-9,
+        "inverse_out_of_domain_components": 33
+      }
+    ],
+    "gates": {
+      "all_cicp_exact": true,
+      "all_descriptors_exact": true,
+      "all_inputs_unchanged": true,
+      "all_outputs_owned_read_only": true,
+      "all_ranges_valid": true,
+      "all_roundtrip_domains_valid": false,
+      "all_roundtrips_within_bound": false,
+      "all_shapes_exact": true,
+      "invalid_controls_atomic": true,
+      "runtime_immutable": true,
+      "source_immutable": true
+    }
+  },
+  "execution": {
+    "first_two_attempts": "Both committed-source processes stopped before report publication at the same strict inverse-PQ domain rejection. An additive report-only correction serialized the rejection without clipping or changing the protocol, rows, transform, gates or thresholds.",
+    "forward_reverse_report_exact": true,
+    "forward_report_sha256": "c59bf3126077d4131f78433cd111e51446be81e79f27dcfd1ffaa957014dcd56",
+    "reverse_report_sha256": "c59bf3126077d4131f78433cd111e51446be81e79f27dcfd1ffaa957014dcd56",
+    "stable_identity": "f6d3bc20b65902058bc7750c058dd7fcf52a51d4e517e6b35c750653b782d94d",
+    "runtime_network_requests": 0,
+    "retained_decoded_outputs": 0,
+    "formal_temporary_residue": 0
+  },
+  "claim_ceiling": "Private three-fixture conversion and exact failure evidence at the existing P87 boundary only; no clipping-normalized roundtrip, complete ISO 21496-1, arbitrary AVIF/HEIF, HDR reconstruction quality, display validation, public API/dependency/package/schema/capability/product admission, stock claim or candidate3 change."
+}

@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import hashlib
+import json
+from pathlib import Path
 
 import numpy as np
 import pytest
@@ -17,6 +19,8 @@ from src.color_match.libavif_gainmap_ingress import (
     prepare_libavif_gainmap_match_view_v1,
     validate_prepared_libavif_gainmap_match_view_v1,
 )
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def _prepare(samples: np.ndarray | None = None):
@@ -127,3 +131,24 @@ def test_p283_roundtrip_helper_is_exact_on_neutral_codes() -> None:
     prepared = _prepare(samples)
     replay = roundtrip_rgb16(prepared.pixels)
     assert np.max(np.abs(replay.astype(np.int32) - samples.astype(np.int32))) <= 1
+
+
+def test_p283_evidence_preserves_strict_roundtrip_failure() -> None:
+    evidence = json.loads(
+        (ROOT / "docs/evidence/P283_LIBAVIF_GAINMAP_P87_BRIDGE_RESULT.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    assert evidence["status"] == "FAIL_CLOSED_LIBAVIF_GAINMAP_P87_BRIDGE"
+    result = evidence["formal_result"]
+    assert result["report_sha256"] == (
+        "c59bf3126077d4131f78433cd111e51446be81e79f27dcfd1ffaa957014dcd56"
+    )
+    assert result["gates"]["all_ranges_valid"] is True
+    assert result["gates"]["all_roundtrip_domains_valid"] is False
+    assert result["gates"]["all_roundtrips_within_bound"] is False
+    assert [row["inverse_out_of_domain_components"] for row in result["records"]] == [
+        133,
+        4,
+        33,
+    ]
