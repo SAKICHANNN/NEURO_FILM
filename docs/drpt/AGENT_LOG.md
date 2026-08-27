@@ -18939,3 +18939,24 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   three-stock population only. It does not repair U7.2C stock separation,
   establish target-film closeness or calibration, replace A0N controlled
   capture, or open product promotion.
+
+### 2026-08-27 - P286 WildRelight paired-HDR source feasibility passes
+
+- **Node:** `ULT > paired/capture-time sources > P286`; DRPT L2 / Mode C.
+  `dev-research-reliability` is the primary writer, with research, DRPT-BI,
+  agent-log and structure stewardship as read-only constraints.
+- **Work:** preregistered immutable metadata-only intake, implemented bounded
+  Hugging Face pagination, corrected the official LFS field and two auxiliary
+  envmap roles before final execution, froze the exact 252,044-byte manifest,
+  and ran independent forward/reverse processes. Transport attempts that
+  produced no report are recorded as infrastructure exclusions.
+- **Evidence:** commits `75f3f011`, `03a01ba1`, `0e754e34`, `eabb710b` and
+  `7d1092fa`; formal reports 3,071 bytes / SHA `571e5410...b364`, stable
+  `7ebb2ab1...24c1`. Thirty scene groups, 762+762 paired EXRs, 120 metadata
+  files, CC BY 4.0 rights and all 1,526 LFS hashes are exact. Thirty adjacent
+  tests pass; Ruff, `py_compile`, JSON and diff checks pass.
+- **Boundary/handoff:** no EXR/DNG payload or pixel was requested; no quality,
+  calibration, package, schema, capability, product or candidate-3 claim
+  opens. P287 is prospectively frozen as one 108,447,512-byte hash-selected
+  `lake` environment-conditioned explicit-radiance D0. The rest of the corpus
+  remains unread.

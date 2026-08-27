@@ -2701,3 +2701,15 @@ fails closed, and a test-filled copy passes the unchanged single-stock
 validator. The persistent worksheet remains blank evidence, not a receipt.
 This removes manual row-at-a-time ingestion overhead only. The physical packet
 remains empty, and all A1 fitting and stock claims remain closed.
+
+P286 passes metadata-only feasibility for one bounded WildRelight
+paired-HDR observation. Exact public revision `90ab5791...641f` is CC BY 4.0
+and exposes 30 scene groups, 120 capture metadata files, 762 paired photo EXRs,
+762 paired environment-map EXRs and complete SHA-256 identities for all 1,526
+LFS objects. Two committed-head reports are byte-exact at 3,071 bytes / SHA
+`571e5410...b364`; EXR/DNG payload, pixel, model, training and inference reads
+remain zero. This does not authorize the 200.9GB corpus, does not treat DNG
+names as published DNG bodies and does not consume candidate 3. It opens only
+P287, a separately frozen hash-selected `lake` small-aligned one-scene D0
+capped at 108,447,512 source bytes. Evidence:
+`docs/evidence/P286_WILDRELIGHT_PAIRED_HDR_SOURCE_FEASIBILITY_RESULT.json`.
