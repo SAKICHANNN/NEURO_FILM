@@ -34,9 +34,9 @@
   "execution_bindings": {
     "runner": {
       "path": "scripts/audit_p288_dng_profile_stage_composition.py",
-      "commit": "4d4350fb5b9ee1300ba48caffee53cc6a29636e8",
-      "bytes": 19130,
-      "sha256": "3b71ebad8e72a8d5651db355920a37c4900b254c60cad989ce1b97a4754c69a3"
+      "commit": "f73838a5e8dfca18761b8248f3605b2f49bc9076",
+      "bytes": 19128,
+      "sha256": "e16546d57043e0488844d3b6778ae8cc1658efe62ecb7fb5e3470c7e28d3651e"
     },
     "test": {
       "path": "tests/test_p288_dng_profile_stage_composition.py",
