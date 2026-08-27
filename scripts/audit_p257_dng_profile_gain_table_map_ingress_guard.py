@@ -155,6 +155,9 @@ def _verify_parent_bindings(config: dict[str, object]) -> dict[str, bool]:
         "p244_evidence",
         "p98_config",
         "p98_evidence",
+        "implementation",
+        "runner",
+        "test",
     )
     return {
         key: _sha256_file(Path(str(bindings[f"{key}_path"])))
