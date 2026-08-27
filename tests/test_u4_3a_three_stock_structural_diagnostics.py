@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -36,3 +38,19 @@ def test_u4_3a_rejects_input_identity_drift() -> None:
         ThreeStockStructuralDiagnosticError, match="input hash mismatch"
     ):
         run_diagnostics(config, ROOT)
+
+
+def test_u4_3a_direct_cli_help() -> None:
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts/audit_u4_3a_three_stock_structural_diagnostics.py"),
+            "--help",
+        ],
+        cwd=ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert result.returncode == 0, result.stderr
+    assert "--reverse" in result.stdout
