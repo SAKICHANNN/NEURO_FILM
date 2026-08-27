@@ -18479,3 +18479,23 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   A0N/ledger tests, Ruff, formatting and diff checks pass. This only removes
   105 manual CLI updates from future field ingestion. No physical exposure,
   film, process, scan, stock response, calibration or product claim exists.
+
+### 2026-08-27 - Ektar-first A0N gains a strict field worksheet bridge
+
+- **Node and scope:** `ULT > stock-first controlled evidence > SF3.A0N`, DRPT
+  L2 / Mode C. This advances the physical Ektar-first handoff; it is not
+  another proxy, source search or operator experiment.
+- **Implementation:** commit `65d6c26c` adds deterministic CSV export and
+  atomic import to the existing capture-session core/CLI. It preserves packet
+  order, prefills immutable stimulus/stock/EI/ISO fields and requires exact
+  header, slot coverage, kind-specific fields and finite numeric values before
+  delegating to the existing batch validator. Missing, duplicate, unknown,
+  cross-kind, malformed or immutable-field drift produces no updated packet.
+- **Verification and handoff:** the Ektar-first worksheet has 47 rows (18
+  common conditions + 29 Ektar exposures), 5,883 bytes and SHA-256
+  `4615b7543cf3f43c27ec2c06854906720cd5c337b215481bf3d37f78ac60b8c1`.
+  A test-filled copy passes the unchanged single-stock receipt validator; 22
+  A0N/ledger/A1 tests plus Ruff and diff checks pass. The P-backed persistent
+  worksheet remains blank and is not scientific evidence. Next work is the
+  actual project-owned Ektar capture/process/scan, which still requires the
+  separate purchase/lab authority already frozen by A0N.

@@ -2677,5 +2677,11 @@ is validated before a new packet is written; duplicate, unknown, partially
 filled, invalid or already-recorded slots fail without changing the source
 packet or publishing a partial result. A reverse-ordered 105-row batch reaches
 the unchanged complete A0N validator, and 19 adjacent A0N/ledger tests pass.
+Commit `65d6c26c` adds a deterministic CSV field-sheet export and strict atomic
+import over that same batch primitive. The Ektar-first single-stock packet is
+now a 47-row worksheet (18 conditions + 29 exposures); fixed identities are
+prefilled, missing/duplicate/cross-kind/invalid-numeric/immutable-field drift
+fails closed, and a test-filled copy passes the unchanged single-stock
+validator. The persistent worksheet remains blank evidence, not a receipt.
 This removes manual row-at-a-time ingestion overhead only. The physical packet
 remains empty, and all A1 fitting and stock claims remain closed.
