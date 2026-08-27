@@ -17937,6 +17937,32 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   commercial-compatible code+data licence, anonymous exact payload and manifest
   could justify a new prospective intake; paper/public-repo visibility cannot.
 
+### 2026-08-27 - U7.3J closes the integrated private desktop workflow
+
+- **Node and scope:** `ULT > U7 desktop workflow > U7.3J`, DRPT L2 / Mode C.
+  The leaf composes the existing strict recipe catalog, hash-before-decode
+  previews and one-shot loopback replay into one responsive three-look page;
+  it adds no renderer, profile, stock claim or new data.
+- **Implementation:** contract/config `d4efc9ff`/`56dbc599`; integrated session,
+  optional page renderer and launcher `e40a9cbe`; audit `e7ca6cd7`. The first
+  formal attempt stopped before export because the CDP JavaScript expression
+  lost a regex escape; `752607ff` fixes only that audit expression and the
+  complete protocol restarted from fresh profiles.
+- **Evidence:** six fresh Edge 151 sessions across forward/reverse ordering
+  reproduce exact frozen Ektar100, Portra400 and Velvia50 24MP output hashes.
+  All pages contain three distinct previews/cards/forms/buttons, images decode,
+  controls are labelled and keyboard-operable, repeat submission returns 400
+  with one output preserved, and path disclosure, non-loopback requests and
+  owned residue are zero. Desktop 1440x1000 and narrow 500x900 autonomous
+  visual checks pass. Stable identity is `c9446654...2ea22`; tracked evidence
+  SHA is `5e1e5e74...9bc85` (`39adf037`). Fifty-six adjacent U7.3 tests pass;
+  Ruff, py_compile and diff checks pass.
+- **Boundary and handoff:** private local Look Approximation workflow only; no
+  stock accuracy, calibration, distinguishability, installer or release claim.
+  U7.3 is closed and adjacent browser micro-leaves stop. Return effort to
+  controlled multi-stock evidence and materially distinct product/physical
+  implementation gaps.
+
 ### 2026-08-27 - P261 closes silent ProfileToneCurve omission at DNG ingress
 
 - **Question and routing:** `ULT > mature RAW/DNG explicit infrastructure >
