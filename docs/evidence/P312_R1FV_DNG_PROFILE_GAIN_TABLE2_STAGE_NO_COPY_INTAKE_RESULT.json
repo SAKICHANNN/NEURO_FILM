@@ -1,0 +1,68 @@
+{
+  "schema_version": "neuro-film.p312-r1fv-dng-profile-gain-table2-stage-no-copy-intake-result.v1",
+  "experiment_id": "P312",
+  "status": "PASS_PRIVATE_R1FV_DNG_PROFILE_GAIN_TABLE2_STAGE_NO_COPY_INTAKE",
+  "decision": "Independently retain the exact private R1FV selected-profile PGTM2 stage arithmetic boundary for the two synthetic Adobe sample04 maps. The consumer imported exact Git objects in isolation and reproduced all six producer output hashes without copying core code or executing the SDK oracle.",
+  "lineage": {
+    "contract_freeze_commit": "9507d6e18",
+    "audit_implementation_commit": "e0fcbc8b0",
+    "producer_preregistration_commit": "2c6e12dc141a2dbae859dd2108a66a384f11b431",
+    "producer_implementation_commit": "e5d1b74d3ca686973baf22d805b04944eabee36b",
+    "producer_execution_lock_commit": "1abc4319dd21de6205b2d9ecf4d1e32cb2480519",
+    "producer_evidence_commit": "09d0382f4c798437253d260192afdd00b70c4834"
+  },
+  "bindings": {
+    "config": {
+      "path": "configs/p312_r1fv_dng_profile_gain_table2_stage_no_copy_intake_v1.json",
+      "sha256": "f07ae09657052be426b2abb86b9df9b35bccb1acafe7c1329170d5e1d189030b"
+    },
+    "audit": {
+      "path": "scripts/audit_p312_r1fv_dng_profile_gain_table2_stage_no_copy_intake.py",
+      "sha256": "a493bf89c41831a122cbcd1c357ff537cb1013052673cbfb551144149495cfaf"
+    },
+    "stage_module": {
+      "git_blob": "4b9a9c6bb3f256fdb29ba27110dc493fd8d13ee7",
+      "sha256": "fb60c6d6db694c36c5d540aa8dcd018640bdaa85734d38837a5ba682e6403595"
+    },
+    "source": {
+      "bytes": 6010280,
+      "sha256": "14a2afc29ad1c848a12390d2c30abd36f8adb29aab90866f66edbd33efd6e58e"
+    },
+    "forward_report": {
+      "path": "outputs/reports/p312_r1fv_dng_profile_gain_table2_stage_forward.json",
+      "bytes": 4506,
+      "sha256": "73e9805fc08cbf5c1b0bfd89c095f15f7d0a263dd8275ad6cbac2a67ba9a6eea"
+    },
+    "reverse_report": {
+      "path": "outputs/reports/p312_r1fv_dng_profile_gain_table2_stage_reverse.json",
+      "bytes": 4506,
+      "sha256": "73e9805fc08cbf5c1b0bfd89c095f15f7d0a263dd8275ad6cbac2a67ba9a6eea"
+    },
+    "scientific_identity": "b1a6377a8b4226be7061f738176d00ef43d285c55a571936476e8c223d2ba2ac"
+  },
+  "formal_result": {
+    "forward_reverse_byte_exact": true,
+    "gates_passed": 10,
+    "gates_total": 10,
+    "six_output_hashes_exact": true,
+    "invalid_controls_rejected": 5,
+    "strict_range": [0.0, 1.0],
+    "support_overrange_range": [-1.577771544456482, 4.608094215393066],
+    "input_immutable": true,
+    "outputs_owned_writable_c_contiguous": true,
+    "source_immutable": true,
+    "temporary_residue_zero": true,
+    "gamma2_discriminating": false,
+    "general_gamma_claim": false
+  },
+  "rights_and_product": {
+    "candidate_3": false,
+    "consumer_core_copied": false,
+    "image_pixels_decoded": 0,
+    "sdk_oracle_executed": false,
+    "public_capability": false,
+    "product_mapping": false
+  },
+  "stop_rule": "P312 is complete. Do not extend the exact sample04 family with synthetic unequal-intensity tables, alternate probes, gamma claims, raw decode, renderer integration, wrappers or product mapping.",
+  "claim_ceiling": "Private no-copy intake of exact R1FV selected-profile PGTM2 stage arithmetic for two synthetic Adobe sample04 maps only; gamma2 remains nondiscriminating and no general non-unit-gamma claim, raw decode, full renderer, real-file quality, arbitrary DNG/map, default-loader, public package/schema/capability, product mapping, stock evidence, automatic matching or candidate-3 change opens."
+}
