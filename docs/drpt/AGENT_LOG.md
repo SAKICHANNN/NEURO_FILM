@@ -19805,3 +19805,30 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   response, arbitrary profile support, public schema/package/capability,
   installer/discovery, signing, native runtime or product readiness. Stop the
   wrapper family and return to an independent physical-imaging or product gap.
+
+### 2026-08-28 - U7.2G propagates the generic B&W severe veto into product execution
+
+- **Node and routing:** `ULT > product shell > U7.2G`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the primary writer; scientific claim review,
+  structure stewardship and project-agent-log discipline were secondary. A
+  local P-backed manifest scan found no unregistered three-stock evidence; the
+  only additional Portra same-session package was already consumed and remains
+  rights/nuisance limited. The ready product defect was therefore the mismatch
+  between U7.2E/F exposure of `generic_bw` and BW2.D2's later severe veto.
+- **Freeze and implementation:** contract `43268888`, product implementation
+  `fced8c03`, formal runner `e816720b`, evidence `f3abada3`. The catalog retains
+  all four manual IDs, adds explicit availability, and binds the B&W block to
+  exact BW2.D2 evidence. Product dispatch, `render_film.py` and recipe replay
+  reject `generic_bw` before input decode/pixel execution. The historical
+  direct B&W module and BW2.D1 recipe evidence are not deleted or retuned.
+- **Formal evidence:** two fresh forward/reverse reports are byte-exact at
+  5,200 bytes / SHA `8f2588dc...d872`. All ten gates pass: parent identity and
+  status, catalog order/availability, three stable unique colour-output hashes,
+  dispatcher/recipe/CLI early refusal and zero CLI residue. The adjacent
+  U7.2E/F/G plus BW2.D1-D3 suite passes `50/50`; Ruff, py_compile, JSON and diff
+  checks are clean.
+- **Decision:** `PASS_PRODUCT_GENERIC_BW_SEVERE_VETO`. Keep `generic_bw`
+  discoverable but unavailable until a genuinely new repair passes fresh
+  population severe review. Do not reopen the BW2.D2/D3 cohort. Velvia 50,
+  Portra 400 and Ektar 100 remain Look Approximation controls; controlled stock
+  evidence, calibration and multi-stock completion remain open.
