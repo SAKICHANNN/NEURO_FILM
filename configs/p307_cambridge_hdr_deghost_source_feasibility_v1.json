@@ -1,0 +1,86 @@
+{
+  "schema": "neuro-film.p307-cambridge-hdr-deghost-source-feasibility-contract.v1",
+  "experiment_id": "P307",
+  "status": "FROZEN_READY_FOR_RANGE_DISCOVERY",
+  "official_item": {
+    "doi": "10.17863/CAM.6881",
+    "uuid": "b65f07c4-a4f5-4310-b5ec-a1c27fd52d6a",
+    "title": "Multi-exposure image stacks for testing of HDR deghosting methods",
+    "landing_url": "https://www.repository.cam.ac.uk/items/b65f07c4-a4f5-4310-b5ec-a1c27fd52d6a",
+    "api_url": "https://api.repository.cam.ac.uk/server/api/core/items/b65f07c4-a4f5-4310-b5ec-a1c27fd52d6a",
+    "api_bytes": 6734,
+    "api_sha256": "eb1b1b0d28a8e67d919b058a55dbbe6b84f79a03ff1514cffa91a5d7e787cc00"
+  },
+  "metadata_sources": {
+    "original_bundle_url": "https://api.repository.cam.ac.uk/server/api/core/bundles/e12d2ba6-7334-4585-beaa-d3607637023e/bitstreams?size=100",
+    "original_bundle_bytes": 12319,
+    "original_bundle_sha256": "e80507dd66c9b727f2fca78ecd5ff3c85350928c72b32ec96ff113644d09ea95",
+    "license_bundle_url": "https://api.repository.cam.ac.uk/server/api/core/bundles/a62ea823-e180-442a-b43c-3fcf6065e79a/bitstreams?size=20",
+    "license_bundle_bytes": 1739,
+    "license_bundle_sha256": "6fa019eb6fabf43e0c3d62e9833ffcc34545c7365c0cf4e4a71ff9769e6717cb",
+    "readme_uuid": "7c8a4d30-77f8-4af3-b377-1fb3ad35be5d",
+    "readme_url": "https://api.repository.cam.ac.uk/server/api/core/bitstreams/7c8a4d30-77f8-4af3-b377-1fb3ad35be5d/content",
+    "readme_bytes": 7910,
+    "readme_md5": "c9bbba0faa9c7cc50ef188e12d590391",
+    "readme_sha256": "1e48243a73c6febe45d637cc3b91000db41472009aed286076fcb84dc9fc5e23",
+    "license_uuid": "4c1143d2-e9cf-4664-ac5f-5ef3122d9735",
+    "license_url": "https://api.repository.cam.ac.uk/server/api/core/bitstreams/4c1143d2-e9cf-4664-ac5f-5ef3122d9735/content",
+    "license_bytes": 3893,
+    "license_md5": "87eda9de84448d1f82354d60eee3eb5f",
+    "license_sha256": "db610c9837ab13186d8143376ebe891b0c2fccfa7a2dbd6ad67275582ad27350"
+  },
+  "archives": [
+    {
+      "name": "exposure_stacks_part2.zip",
+      "uuid": "62522fb8-356c-440d-bac5-10780f75c8ba",
+      "url": "https://api.repository.cam.ac.uk/server/api/core/bitstreams/62522fb8-356c-440d-bac5-10780f75c8ba/content",
+      "bytes": 1302706663,
+      "md5": "14527d8b3882dc6ffaac868d23aaf9ac",
+      "tail_probe_bytes": 131072,
+      "discovery": null
+    },
+    {
+      "name": "exposure_stacks_part3.zip",
+      "uuid": "4391f37e-5005-44b6-8c99-c9adb0c3b945",
+      "url": "https://api.repository.cam.ac.uk/server/api/core/bitstreams/4391f37e-5005-44b6-8c99-c9adb0c3b945/content",
+      "bytes": 1333017287,
+      "md5": "21a534f26bcc3673b1dc38a615816a28",
+      "tail_probe_bytes": 131072,
+      "discovery": null
+    }
+  ],
+  "fresh_roles": {
+    "categories": ["losm", "multiview", "nrm", "occlusion", "solm", "sosm"],
+    "image_sets_each": 4,
+    "expected_group_count": 24,
+    "expected_files_per_format_and_role": 5,
+    "formats": ["jpg", "raw"],
+    "roles": ["ghosted", "ground_truth"]
+  },
+  "forbidden": {
+    "archives": ["exposure_stacks_part1.zip"],
+    "categories": ["complex", "handheld", "lolm"],
+    "member_payload_reads": 0,
+    "local_header_reads": 0,
+    "image_or_raw_reads": 0,
+    "pixel_decodes": 0
+  },
+  "transport": {
+    "maximum_formal_network_bytes": 4194304,
+    "maximum_response_bytes_metadata": 1048576,
+    "accept_encoding": "identity"
+  },
+  "gates": {
+    "require_exact_official_metadata": true,
+    "require_cc_by_4_0": true,
+    "require_exact_range_transport": true,
+    "require_safe_single_disk_archives": true,
+    "require_exact_fresh_group_count": true,
+    "require_complete_paired_roles": true,
+    "require_forbidden_role_absence": true,
+    "require_zero_member_and_pixel_reads": true,
+    "require_two_reports_exact": true
+  },
+  "stop_rule": "Any metadata, range, ZIP, safety, category, group, role, count, overlap, byte-budget or replay failure closes before local headers, member bodies, images, RAW samples, pixels, models, fusion, deghosting or metrics. Do not replace scenes, infer missing part identities from the README typo, or relax role completeness.",
+  "claim_ceiling": "Private zero-pixel official source and role lock only. A pass may open a separately preregistered bounded acquisition and physical multi-bracket/deghosting experiment; no HDR quality, arbitrary camera support, A1/A4/A5, candidate 3, package/schema/capability or product admission."
+}
