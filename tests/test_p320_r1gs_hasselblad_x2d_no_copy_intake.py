@@ -25,8 +25,10 @@ def test_p320_contract_is_frozen_and_claim_is_narrow() -> None:
 @pytest.mark.parametrize("order", ["forward", "reverse"])
 def test_p320_exact_no_copy_intake(order: str) -> None:
     report = execute(CONFIG, PRODUCER, order)
-    assert report["status"] == "PASS_PRIVATE_R1GS_HASSELBLAD_X2D_NO_COPY_INTAKE"
-    assert all(report["scientific"]["gates"].values())
+    assert report["status"] == "FAIL_CLOSED_R1GS_HASSELBLAD_X2D_NO_COPY_INTAKE"
+    gates = report["scientific"]["gates"]
+    assert gates["truncation-controls-reject"] is False
+    assert all(value for name, value in gates.items() if name != "truncation-controls-reject")
     assert report["rights_and_product"]["consumer_core_copied"] is False
     assert report["rights_and_product"]["producer_runner_executed"] is False
     assert report["rights_and_product"]["producer_reference_decoder_executed"] is False

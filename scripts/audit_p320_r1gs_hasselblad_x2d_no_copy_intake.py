@@ -267,9 +267,6 @@ def execute(config_path: Path, producer_repo: Path, order: str) -> dict[str, Any
             },
             "claim_ceiling": config["claim_ceiling"],
         }
-        if not all(gates.values()):
-            failed = sorted(name for name, value in gates.items() if not value)
-            raise P320Error(f"P320 gates failed: {', '.join(failed)}")
         return report
     finally:
         for name in module_names:
