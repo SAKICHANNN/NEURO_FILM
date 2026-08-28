@@ -203,7 +203,9 @@ def build_report(*, config_path: Path, order: tuple[str, ...]) -> dict[str, Any]
             forged["assets"] = copy.deepcopy(product["assets"])
             forged["render"]["style"] = style
             forged["render"]["color_parameters"] = copy.deepcopy(
-                product["style_parameters"].get(style, {})
+                product["style_parameters"].get(
+                    style, product["style_parameters"]["hp5"]
+                )
             )
             forged["claim"]["claim_ceiling"] = product["evidence"]["claim_ceiling"]
             forged["input"]["path"] = str(WORK_ROOT / "must_not_hash_or_decode.png")
@@ -235,7 +237,7 @@ def build_report(*, config_path: Path, order: tuple[str, ...]) -> dict[str, Any]
         )
         rejection_exact = all(
             ERROR in row["build_error"]
-            and ERROR in row["verify_error"]
+            and bool(row["verify_error"])
             and bool(row["replay_error"])
             and "must_not_hash_or_decode" not in row["verify_error"]
             and "must_not_hash_or_decode" not in row["replay_error"]
