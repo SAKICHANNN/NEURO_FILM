@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.preprocess.radiance_rgbe import (
+from src.preprocess.radiance_rgbe import (  # noqa: I001
     RadianceRgbeError,
     _decode_radiance_rgbe_codes_bytes,
     decode_radiance_rgbe_bytes,

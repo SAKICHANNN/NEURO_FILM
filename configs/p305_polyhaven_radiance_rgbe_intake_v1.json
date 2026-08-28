@@ -16,8 +16,8 @@
     },
     "runner": {
       "path": "scripts/audit_p305_polyhaven_radiance_rgbe_intake.py",
-      "bytes": 9528,
-      "sha256": "4b49f35d3252d5a368cecfb85c3ba3375eda51bde239f3d93be527cbad456c16"
+      "bytes": 9542,
+      "sha256": "093d2ca8d1f8cd00a20149b99ba2025730437ac38bb620a669d0b7b695d51e1f"
     },
     "test": {
       "path": "tests/test_p305_polyhaven_radiance_rgbe_intake.py",
