@@ -20220,3 +20220,27 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   decode, full renderer, real-file quality, arbitrary DNG/map, default-loader,
   public package/schema/capability, product mapping, stock evidence or candidate
   3 opens. Evidence SHA is `f360a347...a3efeb`.
+
+### 2026-08-28 - U7.2K exposes the authoritative product-look catalog in the CLI
+
+- **Node and routing:** `ULT > U7.2 > U7.2K`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the primary writer; scientific claim review,
+  structure stewardship and project-agent-log discipline were secondary. The
+  product catalog and desktop chooser already exposed availability, but the
+  rendering CLI required users and scripts to know internal style IDs.
+- **Implementation:** core/test commit `96201a66`, evidence/test `f9e83603`.
+  `render_film.py --list-product-looks` now emits the authoritative catalog as
+  compact JSON and exits before media handling. List mode rejects input/output
+  paths; normal render mode still requires both. No parallel catalog or look
+  metadata was introduced.
+- **Verification:** two fresh CLI processes emit identical 2,024-byte stdout at
+  SHA `66881e8e...b7ba9`, with empty stderr, zero media reads and zero media
+  writes. The ordered rows are available Velvia 50, Portra 400 and Ektar 100
+  Look Approximations plus generic B&W explicitly blocked by its severe-artifact
+  evidence. Five focused tests, 93 behavioral parent-chain tests, Ruff,
+  py_compile, JSON and diff checks pass.
+- **Decision:** `PASS_PRODUCT_LOOK_CLI_DISCOVERY`. This improves discovery of
+  the existing bounded product surface without changing algorithms, parameters,
+  availability, stock calibration/separation claims, packaging or release
+  state. Evidence SHA is `e588dcc6...0963d`. Adjacent CLI/catalog expansion now
+  stops; the mainline returns to controlled multi-stock evidence.
