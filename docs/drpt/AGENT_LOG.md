@@ -20165,3 +20165,32 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   calibration, separation or release state. Adjacent wrapper expansion stops;
   the next work must return to controlled multi-stock evidence or a distinct
   substantive product defect. Evidence SHA is `a69b0664...f1b96`.
+
+### 2026-08-28 - P311 closes the R1FU per-profile PGTM2 handoff identity
+
+- **Node and routing:** `ULT > U1 DNG ingress > P311`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the primary writer; scientific claim review,
+  structure stewardship and project-agent-log discipline were secondary. P311
+  is distinct from P310: it tests sample04 camera-profile-to-PGTM2 association,
+  not samples05-07 storage encoding.
+- **Freeze and execution:** contract/config `b11f3286`, audit/test `4dfb85e9`,
+  producer-head gate `d58b9fcd`, error-visibility correction `2e684335`,
+  fail-report publication `49c04ba3`, evidence/test `5c872744`. Both exact
+  producer modules were imported from Git blobs into an owned temporary package;
+  consumer source code copied none. Image pixels and SDK renders read zero.
+- **Formal result:** artifact/source/profile name/offset/matrix/tone/table/gain/
+  Raw-IFD identities, six invalid controls, frozen/read-only outputs and source
+  immutability all pass. The frozen exact handoff fails two gates: producer HEAD
+  advanced from `5c4ca4ef...` to `09d0382f...`, and the callable emits role
+  `extra-profile-0` while producer evidence normalizes it to `extra-profile`.
+  Every non-role profile field is exact. The first attempt lacked failed-gate
+  diagnostics; an additive reporting-only correction exposed them, then formal
+  forward/reverse reports were rebuilt byte-exact at 7,759 bytes / SHA
+  `bc7964e4...19375`, scientific `977a9a87...a907b`. Seventeen adjacent tests
+  and Ruff, py_compile, JSON and diff checks pass.
+- **Decision:** `FAIL_CLOSED_R1FU_DNG_PER_PROFILE_GAIN_TABLE_NO_COPY_INTAKE`.
+  Do not relock to the later producer HEAD or normalize the callable role to
+  manufacture a pass. This is a handoff-identity negative, not PGTM arithmetic
+  quality; P310 storage intake and P257 refusal remain valid. No arbitrary DNG,
+  interpolation/stage application, package/schema/capability/product, stock
+  evidence or candidate 3 opens. Evidence SHA is `d5903725...d2f0f`.
