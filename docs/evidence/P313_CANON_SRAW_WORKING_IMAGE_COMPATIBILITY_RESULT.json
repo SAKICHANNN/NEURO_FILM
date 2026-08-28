@@ -1,0 +1,133 @@
+{
+  "schema": "neuro-film.p313-canon-sraw-working-image-compatibility-evidence.v1",
+  "experiment_id": "P313",
+  "status": "PASS_PRIVATE_CANON_SRAW_WORKING_IMAGE_COMPATIBILITY",
+  "commits": {
+    "contract": "b3ed7f87",
+    "implementation": "a9842b74",
+    "execution_lock": "e636a8a71f1bccd87a7ccf13d0de4bab37bdb1a2"
+  },
+  "bindings": {
+    "config": {
+      "path": "configs/p313_canon_sraw_working_image_compatibility_v1.json",
+      "bytes": 4922,
+      "sha256": "dbbdf0670fb5fffd6a6ce00085e9cd0c39078a4f5303039e5192c942452a6e8b"
+    },
+    "contract": {
+      "path": "docs/planning/P313_CANON_SRAW_WORKING_IMAGE_COMPATIBILITY_CONTRACT.md",
+      "bytes": 3035,
+      "sha256": "1523488bd39aad999ca20ca59c101c275d38e021e5e47c0b09ddd3c079bfc302"
+    },
+    "raw_decode": {
+      "path": "src/preprocess/raw_decode.py",
+      "bytes": 4822,
+      "sha256": "6288a4b546b15dd28fcdd675603c65ba57ac67c3c4d42d552d9b825334cfebfe"
+    },
+    "runner": {
+      "path": "scripts/audit_p313_canon_sraw_working_image_compatibility.py",
+      "bytes": 10755,
+      "sha256": "4304a98bf99e5c0821590ab2a6669bcf209f35edc54b3b79cbaa86cd76777cc7"
+    },
+    "source_rows": {
+      "path": "data/external/p313_canon_sraw_working_image_v1/source_rows.json",
+      "bytes": 2879,
+      "sha256": "d111fe4f5591be0fd4e06a44dda729dd0af238475eee9a221a1363a5b1d3fdda"
+    },
+    "test": {
+      "path": "tests/test_p313_canon_sraw_working_image_compatibility.py",
+      "bytes": 1169,
+      "sha256": "11db05286fa0dbfd2c4858433113957604e51db311a67e7e9ff91f85790c205f"
+    }
+  },
+  "formal_replay": {
+    "execution_commit": "e636a8a71f1bccd87a7ccf13d0de4bab37bdb1a2",
+    "forward_report_bytes": 17193,
+    "forward_report_sha256": "be6b90c6a8cb390597dd38a9f480310b45dba030fd7186fe788946a42b024b78",
+    "reverse_report_bytes": 17193,
+    "reverse_report_sha256": "be6b90c6a8cb390597dd38a9f480310b45dba030fd7186fe788946a42b024b78",
+    "reports_byte_exact": true,
+    "scientific_identity": "sha256:3bf82d09914ca123a2ad4b2eb79a26810dfec12f93cfa92d9eaafa7e0358ee3c"
+  },
+  "runtime": {
+    "platform": "Windows",
+    "python": "3.12.10",
+    "rawpy": "0.26.1",
+    "libraw": [0, 22, 0],
+    "numpy": "2.4.4"
+  },
+  "records": [
+    {
+      "source_id": "canon_eos50d_mraw",
+      "model": "EOS 50D",
+      "shape": [2178, 3272, 3],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "f32le_sha256": "e4065f795c3ca07cf195c5c8e523445a52643d8038a4b3b42b0644ea7d521490"
+    },
+    {
+      "source_id": "canon_eos5d_mark_ii_mraw",
+      "model": "EOS 5D Mark II",
+      "shape": [2574, 3866, 3],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "f32le_sha256": "0bff1b0455c4b05b3f21c60e6d6a838223249058e424aff54f75688a84e1989e"
+    },
+    {
+      "source_id": "canon_eos5d_mark_iii_mraw",
+      "model": "EOS 5D Mark III",
+      "shape": [2640, 3960, 3],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "f32le_sha256": "d9d85c9b35838ed49159e8acbb0604e0ea56ad7e012f688a1715191e4f8382bb"
+    },
+    {
+      "source_id": "canon_eos5d_mark_iv_sraw",
+      "model": "EOS 5D Mark IV",
+      "shape": [2240, 3360, 3],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "f32le_sha256": "e4892e05fd542a564877af4c6df68c382d5916b41d7eb6646d01bba8d6e18bc3"
+    },
+    {
+      "source_id": "canon_eos7d_mark_ii_mraw",
+      "model": "EOS 7D Mark II",
+      "shape": [2736, 4104, 3],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "f32le_sha256": "24f21a1e3078ac532e5e03316d3e391e166a849aa518e6ae98f33e0efc15eb92"
+    },
+    {
+      "source_id": "canon_eos7d_mraw",
+      "model": "EOS 7D",
+      "shape": [2592, 3888, 3],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "f32le_sha256": "186ff86c39b7c5b20ef3a60a4f973821acdc8edb3932ad2598a90ffc714c7864"
+    }
+  ],
+  "gates": {
+    "all_decodes_successful": true,
+    "all_inspections_clean": true,
+    "all_nonconstant": true,
+    "all_owned_c_contiguous_writable": true,
+    "all_sources_immutable": true,
+    "all_structures_exact": true,
+    "all_warning_boundaries_exact": true,
+    "bindings_exact": true,
+    "media_output_files_zero": true,
+    "network_requests_zero": true,
+    "runtime_exact": true,
+    "source_lock_exact": true,
+    "tracked_worktree_clean": true
+  },
+  "verification": {
+    "focused_and_adjacent_pytest": "28 passed in 10.77s",
+    "p313_ruff": "PASS",
+    "p313_format": "PASS",
+    "py_compile": "PASS",
+    "diff_check": "PASS",
+    "note": "A broader Ruff invocation surfaced only two pre-existing raw_decode.py findings (import formatting and broad exception handling); P313 did not modify that production file, and the dedicated P313 files pass Ruff and format checks."
+  },
+  "claim_ceiling": "Private Windows/Python generic WorkingImage ingress compatibility on six exact CC0 Canon sRAW/mRAW files only; no vendor-exact colour, general Canon/sRAW support, camera calibration, scene-to-display tone mapping, image quality, new decoder/interface/package/capability, stock evidence, product promotion or candidate 3.",
+  "decision_note": "All six exact files pass the unchanged generic ingress and fresh-process replay gates. Pixel minima/maxima reaching 0/1 are recorded but not interpreted as quality evidence. Producer R1FX/R1FY private reconstruction was neither copied nor consumed."
+}
