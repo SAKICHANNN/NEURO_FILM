@@ -368,7 +368,7 @@ def execute(config_path: Path, order: str) -> dict[str, object]:
     all_analysis = [value["analysis"] for value in ordered_archive_facts.values()]
     categories = sorted({category for value in all_analysis for category in value["categories"]})
     total_groups = sum(int(value["group_count"]) for value in all_analysis)
-    structure_safe = all(
+    archive_safe = all(
         all(
             int(value[key]) == 0
             for key in (
@@ -377,6 +377,14 @@ def execute(config_path: Path, order: str) -> dict[str, object]:
                 "encrypted_member_count",
                 "symlink_member_count",
                 "unsupported_method_member_count",
+            )
+        )
+        for value in all_analysis
+    )
+    role_structure_complete = all(
+        all(
+            int(value[key]) == 0
+            for key in (
                 "unexpected_file_count",
                 "missing_group_count",
                 "extra_group_count",
@@ -392,10 +400,11 @@ def execute(config_path: Path, order: str) -> dict[str, object]:
         "exact_official_metadata": all(metadata_facts.values()),
         "cc_by_4_0": bool(metadata_facts["cc_by_4_0"]),
         "exact_range_transport": True,
-        "safe_single_disk_archives": structure_safe,
+        "safe_single_disk_archives": archive_safe,
         "exact_fresh_group_count": categories == config["fresh_roles"]["categories"]
         and total_groups == config["fresh_roles"]["expected_group_count"],
-        "complete_paired_roles": all(
+        "complete_paired_roles": role_structure_complete
+        and all(
             int(value["complete_group_count"]) == int(value["group_count"])
             for value in all_analysis
         ),
