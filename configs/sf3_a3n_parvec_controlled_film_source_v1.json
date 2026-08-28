@@ -1,0 +1,65 @@
+{
+  "schema": "neuro-film.sf3-a3n-parvec-controlled-film-source-contract.v1",
+  "experiment_id": "SF3.A3N_PARVEC_CONTROLLED_FILM_SOURCE_V1",
+  "project": {
+    "url": "https://www.parvec.es/35-mm-color-science-project",
+    "required_phrases": [
+      "Every emulsion has its own color rendering capabilities.",
+      "methodical and consistent approach",
+      "neutral point of reference",
+      "open and ongoing project",
+      "Each preset is built from the numerical hue, saturation, and luminance data extracted during the analysis process and later refined manually.",
+      "Simply complete the form to receive the presets by email.",
+      "It is still being considered whether all the information will be presented directly on this page or compiled into a structured PDF"
+    ]
+  },
+  "video": {
+    "watch_url": "https://www.youtube.com/watch?v=AVFTtE-8C94",
+    "oembed_url": "https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=AVFTtE-8C94&format=json",
+    "required_title": "Every 35mm Film Color Science Explained - Part 1",
+    "required_author": "PARVEC",
+    "required_chapters": [
+      {
+        "film_stock_id": "kodak_ektar_100",
+        "title": "Kodak Ektar 100"
+      },
+      {
+        "film_stock_id": "kodak_portra_400",
+        "title": "Kodak Portra 400"
+      }
+    ],
+    "required_missing_stock": {
+      "film_stock_id": "fujifilm_velvia_50",
+      "title": "Fujifilm Velvia 50"
+    },
+    "required_protocol_chapter": "PROCEDURE – PROTOCOL"
+  },
+  "admission_requirements": {
+    "required_stock_ids": [
+      "fujifilm_velvia_50",
+      "kodak_portra_400",
+      "kodak_ektar_100"
+    ],
+    "required_public_artifacts": [
+      "machine-readable numerical measurements",
+      "exact source-image and measurement manifest with cryptographic hashes",
+      "independent roll, process, scanner and scene group identities",
+      "explicit permission for fitting and distribution of derived parameters"
+    ]
+  },
+  "network_limits": {
+    "html_requests": 3,
+    "video_stream_requests": 0,
+    "thumbnail_requests": 0,
+    "preset_requests": 0,
+    "form_submissions": 0,
+    "image_requests": 0,
+    "pixel_decodes": 0,
+    "fit_calls": 0,
+    "render_calls": 0,
+    "score_calls": 0
+  },
+  "decision_if_pass": "PASS_OPEN_SEPARATELY_FROZEN_PARVEC_DATA_PREFLIGHT",
+  "decision_if_fail": "FAIL_CLOSED_PARVEC_DATA_RIGHTS_OR_PAYLOAD_GAP",
+  "claim_ceiling": "Controlled same-workflow Portra 400 and Ektar 100 source observation only; no complete Velvia 50/Portra 400/Ektar 100 dataset, independent groups, reusable measurements, calibrated response, fitting rights, product profile or release permission."
+}
