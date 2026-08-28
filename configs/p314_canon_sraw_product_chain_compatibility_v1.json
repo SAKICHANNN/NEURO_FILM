@@ -40,9 +40,9 @@
     },
     "runner": {
       "path": "scripts/audit_p314_canon_sraw_product_chain_compatibility.py",
-      "bytes": 12164,
-      "sha256": "0e77b2fc1476d2260ab01731bf3389914851140c830ec2d6cbf549d6ac1a5247",
-      "implementation_commit": "c96e7d4bd484a7fdb7e6abcf441e8ce2a3e44ce3"
+      "bytes": 11916,
+      "sha256": "ff2bec1f40925f94c56eae3b432c02e550b2c658b8017002957febbe9eff44f3",
+      "implementation_commit": "a94d55ff753c7cc6ffe52da6c1008a2379c98f69"
     },
     "test": {
       "path": "tests/test_p314_canon_sraw_product_chain_compatibility.py",
@@ -67,6 +67,16 @@
         "cli_invocations": 0,
         "product_pixel_renders": 0,
         "reports_written": 0
+      }
+    },
+    {
+      "commit": "a94d55ff753c7cc6ffe52da6c1008a2379c98f69",
+      "scope": "After six CLI renders and six replays had been cleaned but before any report was written, stop empty-directory cleanup at the P314-owned scratch root instead of walking into the shared outputs/eval parent. Sources, rendered bytes, product look, gates and claim ceiling are unchanged, and no candidate report was retained or inspected.",
+      "excluded_attempt": {
+        "cli_invocations": 6,
+        "recipe_replays": 6,
+        "reports_written": 0,
+        "retained_media_files": 0
       }
     }
   ],
