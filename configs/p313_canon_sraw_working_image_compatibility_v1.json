@@ -1,0 +1,116 @@
+{
+  "schema": "neuro-film.p313-canon-sraw-working-image-compatibility-contract.v1",
+  "experiment_id": "P313",
+  "status": "FROZEN_READY_FOR_IMPLEMENTATION",
+  "bindings": {
+    "contract": {
+      "path": "docs/planning/P313_CANON_SRAW_WORKING_IMAGE_COMPATIBILITY_CONTRACT.md",
+      "bytes": 3035,
+      "sha256": "1523488bd39aad999ca20ca59c101c275d38e021e5e47c0b09ddd3c079bfc302"
+    },
+    "raw_decode": {
+      "path": "src/preprocess/raw_decode.py",
+      "bytes": 4822,
+      "sha256": "6288a4b546b15dd28fcdd675603c65ba57ac67c3c4d42d552d9b825334cfebfe"
+    },
+    "source_rows": {
+      "path": "data/external/p313_canon_sraw_working_image_v1/source_rows.json",
+      "bytes": 2879,
+      "sha256": "d111fe4f5591be0fd4e06a44dda729dd0af238475eee9a221a1363a5b1d3fdda"
+    }
+  },
+  "runtime": {
+    "python": "3.12.10",
+    "rawpy": "0.26.1",
+    "libraw": [0, 22, 0],
+    "numpy": "2.4.4",
+    "platform": "Windows"
+  },
+  "rows": [
+    {
+      "source_id": "canon_eos7d_mraw",
+      "model": "EOS 7D",
+      "mode": "sRAW1 (mRAW) (3:2)",
+      "path": "data/external/rawpixls_ai1_v1/raw/canon_eos7d_mraw.cr2",
+      "bytes": 16253693,
+      "sha256": "25c746a58363e910e6046a96cf2915fff45fe2995676eb2c97842d0c156d03a7",
+      "file_id": 130
+    },
+    {
+      "source_id": "canon_eos5d_mark_iii_mraw",
+      "model": "EOS 5D Mark III",
+      "mode": "sRAW1 (mRAW)",
+      "path": "data/rawpixls_cache/Canon_EOS_5D_Mark_III_Canon_-_EOS_5D_Mark_III_-_sRAW1_mRAW_.cr2",
+      "bytes": 15573918,
+      "sha256": "bca87871cd91523e0ff4450a51a1a677de9241c3110b213b99198b9ed3751f66",
+      "file_id": 772
+    },
+    {
+      "source_id": "canon_eos5d_mark_iv_sraw",
+      "model": "EOS 5D Mark IV",
+      "mode": "sRAW2 (sRAW) (3:2)",
+      "path": "data/rawpixls_cache/Canon_EOS_5D_Mark_IV_Canon_-_EOS_5D_Mark_IV_-_sRAW2_sRAW_3_2_.cr2",
+      "bytes": 15217883,
+      "sha256": "25d928f9e9a65525ac796bdff13e93b7b36b627568d7a17338e12dc44424078a",
+      "file_id": 981
+    },
+    {
+      "source_id": "canon_eos7d_mark_ii_mraw",
+      "model": "EOS 7D Mark II",
+      "mode": "sRAW1 (mRAW) (3:2)",
+      "path": "data/rawpixls_cache/Canon_EOS_7D_Mark_II_Canon_-_EOS_7D_Mark_II_-_sRAW1_mRAW_3_2_.cr2",
+      "bytes": 14774007,
+      "sha256": "fca673cdec6a65c8fbafc5fd6416e2c9adbc214b86ea2a0db2daea958b70ffd6",
+      "file_id": 1065
+    },
+    {
+      "source_id": "canon_eos5d_mark_ii_mraw",
+      "model": "EOS 5D Mark II",
+      "mode": "sRAW1 (mRAW) (3:2)",
+      "path": "data/rawpixls_cache/Canon_EOS_5D_Mark_II_Canon_-_EOS_5D_Mark_II_-_sRAW1_mRAW_3_2_.cr2",
+      "bytes": 15445115,
+      "sha256": "acadf73d760b1f311f18f473b859e262ef3ba1513b3360f02675c38dcadba80b",
+      "file_id": 1594
+    },
+    {
+      "source_id": "canon_eos50d_mraw",
+      "model": "EOS 50D",
+      "mode": "sRAW1 (mRAW) (3:2)",
+      "path": "data/rawpixls_cache/Canon_EOS_50D_Canon_-_EOS_50D_-_sRAW1_mRAW_3_2_.cr2",
+      "bytes": 13124350,
+      "sha256": "278f80205ffadb850d2538bd3544f70365b59eed59e8233f9f9667c33b03a729",
+      "file_id": 1793
+    }
+  ],
+  "decode": {
+    "use_camera_wb": true,
+    "no_auto_bright": true,
+    "output_bps": 16,
+    "output_color": "sRGB",
+    "gamma": [1, 1],
+    "user_flip": null
+  },
+  "gates": {
+    "required_rows": 6,
+    "require_all_inspections_clean": true,
+    "require_all_decodes_successful": true,
+    "require_hwc3_float32": true,
+    "require_finite_unit_interval": true,
+    "require_nonconstant": true,
+    "require_owned_c_contiguous_writable": true,
+    "require_linear_srgb_scene_linear": true,
+    "require_orientation_applied": true,
+    "require_absent_alpha": true,
+    "required_warning_codes": [
+      "generic_raw_display_mapping",
+      "generic_raw_render"
+    ],
+    "require_source_immutability": true,
+    "require_two_reports_exact": true,
+    "maximum_network_requests": 0,
+    "maximum_output_files": 0,
+    "maximum_temp_residue_files": 0
+  },
+  "stop_rule": "Any failure closes this exact six-file cohort without source replacement, parameter change, decoder substitution, tolerance relaxation or producer-implementation rescue.",
+  "claim_ceiling": "Private Windows/Python generic WorkingImage ingress compatibility on six exact CC0 Canon sRAW/mRAW files only; no vendor-exact colour, general Canon/sRAW support, camera calibration, scene-to-display tone mapping, image quality, new decoder/interface/package/capability, stock evidence, product promotion or candidate 3."
+}
