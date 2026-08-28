@@ -1,0 +1,136 @@
+{
+  "schema_version": "neuro-film.p318-r1gp-samsung-srw-no-copy-intake.v1",
+  "experiment_id": "P318",
+  "status": "FROZEN_BEFORE_FIRST_CONSUMER_DECODE",
+  "contract_path": "docs/planning/P318_R1GP_SAMSUNG_SRW_NO_COPY_INTAKE_CONTRACT.md",
+  "protocol": "zhuise.samsung-srw-multi-mode-unpack.v1",
+  "producer": {
+    "preregistration_commit": "49c6e1faa40684a9b07e2113a34c81285d845075",
+    "source_lock_commit": "dd24104c260ba631d6f0ca662b4974194231560e",
+    "implementation_commit": "ff21d7abb54e05dd5c7b58def8bea61bf6ef5507",
+    "oracle_commit": "70ca86d9988537d758a264c221e2057f70ca48e4",
+    "runner_commit": "c50281e70dbecbb3ccd9c835abab33d856df9807",
+    "formal_execution_commit": "1d512949bdf2dbc106c9feb941484084baf436f2",
+    "initial_contract_commit": "6f59c657b6d87b49322017548f99aee277020c8b",
+    "corrected_contract_commit": "b75807f3f6350d0236fb65c31f4cd7e0fa2c04e9",
+    "evidence_commit": "dd9a9e0db789623be6450de81789e7818afae555"
+  },
+  "identity_correction": {
+    "superseded_unresolvable_oracle_commit": "70ca86d9bffbf8ce2bef3448335b4e1951de19af",
+    "corrected_oracle_commit": "70ca86d9988537d758a264c221e2057f70ca48e4",
+    "superseded_unresolvable_formal_execution_commit": "1d512949745a96594c2b5e184ed07c4803d8ac8a",
+    "corrected_formal_execution_commit": "1d512949bdf2dbc106c9feb941484084baf436f2",
+    "science_source_core_reports_stable_gates_and_claim_changed": false
+  },
+  "artifacts": {
+    "preregistration": {
+      "commit_role": "preregistration_commit",
+      "path": "docs/research/R1GP_SAMSUNG_SRW_MULTI_MODE_UNPACK_PREREGISTRATION.json",
+      "bytes": 6335,
+      "git_blob": "f3590287ed71649107898a551d652e71ef41d9a3",
+      "sha256": "237d655174f86da4c00bbc9c6b5295f5d3cd817bc5776ee1a6d043b79d03906e"
+    },
+    "source_lock": {
+      "commit_role": "source_lock_commit",
+      "path": "docs/research/R1GP_SAMSUNG_SRW_MULTI_MODE_SOURCE_LOCK.json",
+      "bytes": 4837,
+      "git_blob": "46eade134d40db9fb6a8484cf74e620b4ff00088",
+      "sha256": "edd4e01aec7abc7fe8b99f3900a07b6b38b0418f5c2cf9ff13eb0e50979b0314"
+    },
+    "callable_module": {
+      "commit_role": "implementation_commit",
+      "path": "src/zhuise/samsung_srw.py",
+      "bytes": 13105,
+      "git_blob": "b9f3eeee0a54e8826f7d9643a63dc266251e8797",
+      "sha256": "63b2a95cae3cb79ce6a286def8df3a860a31e651df53986efdd8a3fe8c5d2ef4"
+    },
+    "formal_runner": {
+      "commit_role": "runner_commit",
+      "path": "scripts/run_r1gp_samsung_srw_multi_mode_unpack.py",
+      "bytes": 14649,
+      "git_blob": "48544872a21c594b2e72c32de3c1d38e5abf5d83",
+      "sha256": "2ec64d9098e4f3d645e4d90bf7762c15043166fa5c07f384f07dd06319ce12f8"
+    },
+    "canonical_fixture": {
+      "commit_role": "runner_commit",
+      "path": "tests/fixtures/r1gp_samsung_srw_multi_mode_unpack_v1_fixture.json",
+      "bytes": 1818,
+      "git_blob": "13fd9a829cc4e158edf921b832d0d4d0ab62b7b8",
+      "sha256": "79353efeed879a33c6d51291c28a5197d9a5bba165b3d3724d2e9860bfc991ac"
+    },
+    "execution_lock": {
+      "commit_role": "formal_execution_commit",
+      "path": "docs/research/R1GP_SAMSUNG_SRW_MULTI_MODE_UNPACK_EXECUTION_LOCK.json",
+      "bytes": 3180,
+      "git_blob": "c06f4237caf509c8610f7cfe755c93fa04c96f3e",
+      "sha256": "452203cd855696381cf9c7b79cb9c06ecc843923136e7530104defca58d8c152"
+    },
+    "callable_contract": {
+      "commit_role": "corrected_contract_commit",
+      "path": "docs/research/R1GP_SAMSUNG_SRW_MULTI_MODE_UNPACK_CALLABLE_V1_CONTRACT.json",
+      "bytes": 2606,
+      "git_blob": "84ec48775c514e6bd410c836422620d3e6d6b8f4",
+      "sha256": "8d99275d7ae7c4da4790162778b4665cfda12f37a29ad159d128ec11a5e401a1"
+    },
+    "evidence": {
+      "commit_role": "evidence_commit",
+      "path": "docs/evidence/R1GP_SAMSUNG_SRW_MULTI_MODE_UNPACK_RESULT.json",
+      "bytes": 6372,
+      "git_blob": "fbc136ff1ec5afc99666be8abad276ff1656da96",
+      "sha256": "1cd0f01bc7245f2d07555db4aaa2262204d148a4bc5906eee171a283f3736266"
+    }
+  },
+  "sources": [
+    {
+      "id": "nx500_12bit_normal",
+      "path": "data/r1gp_samsung_srw_multi_mode_v1/source/nx500_12bit_normal.srw",
+      "bytes": 20750652,
+      "sha256": "156e43118811bcecb6fcc600b5f41ee1773c4f00b6a5b2dd72e177e35f6596ab",
+      "geometry_hw": [4336, 6496],
+      "bits_per_sample": 12,
+      "mode_byte": 69,
+      "optflags": 0,
+      "output_uint16le_sha256": "216b1e8ef31db4060c05963640201746a1d7fa4971c2fab229dcdd43007866ae"
+    },
+    {
+      "id": "nx500_12bit_lossless",
+      "path": "data/r1gp_samsung_srw_multi_mode_v1/source/nx500_12bit_lossless.srw",
+      "bytes": 26249903,
+      "sha256": "77ed2a18ca6923a0c1f3a9ad41ade3676136a3272dfe6bf0d8f53d03b0c8db3d",
+      "geometry_hw": [4336, 6496],
+      "bits_per_sample": 12,
+      "mode_byte": 75,
+      "optflags": 5,
+      "output_uint16le_sha256": "03ae5b4254526f364df5307a235eaa44d3a0d208402f80dc689b65d7ed5e296b"
+    },
+    {
+      "id": "nx500_14bit_normal",
+      "path": "data/r1gp_samsung_srw_multi_mode_v1/source/nx500_14bit_normal.srw",
+      "bytes": 23951257,
+      "sha256": "3a1aeeb631b15dfa5be1bebe0e9c96f660ec96021eb6c45c073e33e982ab61b7",
+      "geometry_hw": [4336, 6496],
+      "bits_per_sample": 14,
+      "mode_byte": 69,
+      "optflags": 0,
+      "output_uint16le_sha256": "c8951724d63c286235e663a041919fefad808f53e07e309d55ea052ff6eee9aa"
+    },
+    {
+      "id": "nx500_14bit_lossless",
+      "path": "data/r1gp_samsung_srw_multi_mode_v1/source/nx500_14bit_lossless.srw",
+      "bytes": 32831534,
+      "sha256": "8a3fac531057ab416fc92d4e09560840c7700388a4b566b685df178cd5be8213",
+      "geometry_hw": [4336, 6496],
+      "bits_per_sample": 14,
+      "mode_byte": 75,
+      "optflags": 5,
+      "output_uint16le_sha256": "530ecc64068094f208e476b04bcdd8ecc9d5f0a45e21fd76c0ae600676898d78"
+    }
+  ],
+  "execution": {
+    "producer_report_bytes": 10125,
+    "producer_report_sha256": "15116c661315d2efbda7bb7bc723a51867f22e6333a1f05d3868ad15ed7b5dd5",
+    "producer_stable_identity": "4e880739a1edbbe5f3532cf3926766dffd04cd4fdc5f1fb30eea5c972d7ef88c",
+    "consumer_controls": ["truncate-one-byte-each-source"]
+  },
+  "claim_ceiling": "Private no-copy intake of exact R1GP Samsung NX500 12/14-bit normal/lossless stored-code callable only; no generic SRW/Samsung RAW, crop, black subtraction, calibration, white balance, demosaic, colour, quality, default loader, public package/schema/capability, product mapping, stock evidence, automatic matching or candidate-3 change."
+}
