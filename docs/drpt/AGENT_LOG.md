@@ -19861,3 +19861,35 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   independent table arithmetic, Adobe/vendor parity, arbitrary DNG, image
   quality, default loader, public package/schema/capability/product, stock
   evidence or candidate3 admission opens.
+
+### 2026-08-28 - U1.6G4K closes the staged physical-colour executor on its frozen legacy gate
+
+- **Node and routing:** `ULT > U1.6 > U1.6G4K`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the primary writer; scientific claim review,
+  structure stewardship and project-agent-log discipline were secondary. A
+  live duplicate audit first confirmed that density execution/integration was
+  already complete through G4J; G4K therefore addressed only the distinct
+  `physical-colour-v1` DAG left explicit by G3/G4E.
+- **Freeze and implementation:** contract/config `35cf6a33`, executor/tests
+  `0b4f140e`, mechanical import normalization `71b142bd`, formal evidence
+  `584eaffd`. The executor resolves two bounded streaming percentiles, retains
+  only `local_mean`, `red_tail` and `red_glare` coarse contexts, evaluates the
+  five finite-halo fields tilewise, and publishes no persistent derived
+  full-frame scalar or scratch file.
+- **Formal result:** all eight synthetic/real tile policies match the frozen
+  materialized-v2 RGB, alpha, composite, seams and rounded sRGB8 bytes exactly;
+  repeats and metadata are exact and source windows remain bounded. Forward
+  and reverse reports are byte-identical at SHA
+  `9fbe1f6f...1f031`, scientific identity `4a3f6c9e...56fa8`. The legacy
+  compatibility gate nevertheless fails in 2/4 cases because unpremultiplied
+  RGB drift reaches `.0036229` and `.28` against the frozen `.0007` ceiling in
+  near-zero-alpha regions. Composite max drift stays `.0002447` and uint8 max
+  delta one, but the raw RGB gate is immutable and was not replaced after
+  score.
+- **Decision and verification:**
+  `FAIL_CLOSED_LEGACY_UNPREMULTIPLIED_RGB_DRIFT`; 17 focused tests pass and
+  Ruff, py_compile, JSON and diff checks are clean. Retain the implementation
+  only as closed research evidence. Do not expose, integrate, retune or rescue
+  this executor version; no physical calibration, named-stock distinction,
+  preference, renderer, recipe or product claim opens. Return work to a
+  distinct stock-first evidence or product gap.
