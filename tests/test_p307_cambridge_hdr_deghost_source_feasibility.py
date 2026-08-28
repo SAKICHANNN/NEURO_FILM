@@ -10,6 +10,7 @@ import pytest
 from scripts.audit_p307_cambridge_hdr_deghost_source_feasibility import (
     P307Error,
     _fetch_range,
+    _normalized_text,
     analyze_members,
 )
 from src.real_film.ppisp_capture_pair_source_lock import parse_central_directory
@@ -65,6 +66,12 @@ def test_p307_contract_excludes_r1dn_and_payload_reads() -> None:
         "solm",
         "sosm",
     ]
+
+
+def test_p307_metadata_text_normalization_is_crlf_stable() -> None:
+    assert _normalized_text("test stacks, with motion\r\nand misalignment") == (
+        "test stacks, with motion and misalignment"
+    )
 
 
 def test_p307_fetch_range_rejects_nonexact_transport(monkeypatch: pytest.MonkeyPatch) -> None:

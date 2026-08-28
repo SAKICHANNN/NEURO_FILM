@@ -39,6 +39,10 @@ def _canonical_sha256(value: object) -> str:
     return _sha256(json.dumps(value, sort_keys=True, separators=(",", ":")).encode())
 
 
+def _normalized_text(value: str) -> str:
+    return " ".join(value.split())
+
+
 def _verify_binding(bindings: dict[str, object], prefix: str) -> bool:
     body = (ROOT / str(bindings[f"{prefix}_path"])).read_bytes()
     return len(body) == int(bindings[f"{prefix}_bytes"]) and _sha256(body) == str(
@@ -258,6 +262,7 @@ def _metadata_facts(config: dict[str, Any], responses: dict[str, dict[str, objec
     licence_bundle = json.loads(bytes(responses["license_bundle"]["body"]))
     readme = bytes(responses["readme"]["body"]).decode("utf-8")
     licence = bytes(responses["license"]["body"]).decode("utf-8")
+    normalized_readme = _normalized_text(readme)
     original_rows = {row["name"]: row for row in original["_embedded"]["bitstreams"]}
     licence_rows = {row["name"]: row for row in licence_bundle["_embedded"]["bitstreams"]}
     archive_rows_exact = all(
@@ -271,11 +276,11 @@ def _metadata_facts(config: dict[str, Any], responses: dict[str, dict[str, objec
     rights = [value["value"] for value in item["metadata"].get("dc.rights", [])]
     rights_uri = [value["value"] for value in item["metadata"].get("dc.rights.uri", [])]
     role_phrases = (
-        "test image stacks, with motion and\nmisalignment",
+        "test image stacks, with motion and misalignment",
         "motion-free reference image stacks",
         "36 scenes",
         "9 categories of motion type",
-        "both test and reference multi-exposure sequence were\ncaptured",
+        "both test and reference multi-exposure sequence were captured",
         "perfectly aligned (i.e. ground truth sequence)",
     )
     return {
@@ -289,8 +294,14 @@ def _metadata_facts(config: dict[str, Any], responses: dict[str, dict[str, objec
         == licence_rows["license.txt"]["uuid"],
         "cc_by_4_0": "Attribution 4.0 International (CC BY 4.0)" in rights
         and "https://creativecommons.org/licenses/by/4.0/" in rights_uri
-        and "Creative Commons Attribution 4.0 International" in licence,
-        "paired_role_semantics": all(phrase in readme for phrase in role_phrases),
+        and "provided under the Creative Commons Attribution license (CC BY)"
+        in normalized_readme,
+        "repository_deposit_license_present": licence.startswith(
+            "University of Cambridge institutional repository DEPOSIT LICENCE AGREEMENT"
+        ),
+        "paired_role_semantics": all(
+            phrase in normalized_readme for phrase in role_phrases
+        ),
         "readme_part3_typo_observed": readme.count("* exposure_stacks_part1.zip") == 2
         and "* exposure_stacks_part3.zip" not in readme,
     }
