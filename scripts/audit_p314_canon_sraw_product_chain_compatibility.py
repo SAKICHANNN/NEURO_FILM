@@ -88,7 +88,11 @@ def _tracked_clean() -> bool:
 
 
 def _relative_to_root(path: Path) -> str:
-    return path.resolve().relative_to(ROOT.resolve()).as_posix()
+    # Preserve the repository-relative logical path. ``outputs`` is an NTFS
+    # junction to the canonical P-backed storage root, so resolving it would
+    # erase the portable repository identity and make the path appear to live
+    # on another drive.
+    return path.absolute().relative_to(ROOT.absolute()).as_posix()
 
 
 def _cleanup_row(*paths: Path) -> None:
