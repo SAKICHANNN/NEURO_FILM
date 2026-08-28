@@ -1,0 +1,65 @@
+{
+  "schema_id": "neuro-film.u7-2h-explicit-product-look-selection-evidence.v1",
+  "experiment_id": "U7.2H",
+  "date": "2026-08-28",
+  "status": "PASS",
+  "implementation_commit": "11064156478e3d1773a505884734c9e756118a12",
+  "bindings": {
+    "contract": {
+      "path": "docs/planning/U7_2H_EXPLICIT_PRODUCT_LOOK_SELECTION_CONTRACT.md",
+      "sha256": "597caffc400932c18ffe7360c71438e5acb7591f26e83e6de25c1e01a899153a"
+    },
+    "config": {
+      "path": "configs/u7_2h_explicit_product_look_selection_v1.json",
+      "sha256": "d2186f97f7c8f4f871044f5d31877ddfb8ac80844850405e56f9938491130c3b"
+    },
+    "cli": {
+      "path": "scripts/render_film.py",
+      "sha256": "408eb6bfb2d99bc64d5d5a34793cd9843e862eaf540e31a8c481ec5f52f15af5"
+    },
+    "formal_runner": {
+      "path": "scripts/audit_u7_2h_explicit_product_look_selection.py",
+      "sha256": "8fd0787ced1eb1a5e6126a816465242f8fec607ebf2d0cfe49db447d0c11ee3c"
+    },
+    "parent_u7_2e_sha256": "af51992278ba40950cce07310cb3dcf4b9d9675a41ad7e6fb50c323c4f744d3c",
+    "parent_u7_2f_sha256": "8e95ab23f8cd5b7653e29508613a38b4b18e9e45995eddf35d823eaedac05180"
+  },
+  "formal_reports": {
+    "forward_path": "outputs/eval/u7_2h_explicit_product_look_selection_v1/formal.json",
+    "reverse_path": "outputs/eval/u7_2h_explicit_product_look_selection_v1/formal_replay.json",
+    "bytes_each": 3227,
+    "sha256": "f416ca0a548f4a0f6a0dea6b6429a2bce7c1cb476920805ddce4572af6fce0da",
+    "forward_reverse_byte_exact": true
+  },
+  "selection_result": {
+    "omitted_product_style_rejected_before_input_decode": true,
+    "omitted_product_style_output_or_recipe_count": 0,
+    "explicit_available_look_count": 3,
+    "explicit_product_output_hashes_match_prechange": true,
+    "explicit_product_normalized_recipe_hashes_match_prechange": true,
+    "emitted_recipe_commit_matches_implementation": true,
+    "legacy_omitted_style_output_matches_prechange_velvia_default": true,
+    "legacy_normalized_recipe_matches_prechange": true,
+    "blocked_generic_bw_behavior_unchanged": true,
+    "source_immutable": true,
+    "owned_runtime_residue_count": 0,
+    "all_nine_formal_gates_pass": true
+  },
+  "output_sha256": {
+    "velvia_50": "2198b077eea5d29026694529e208d7db9428a36f97cb7af8fe330ce732e87fa7",
+    "portra_400": "b2b9d118087648f626a0fa2d03bbaf78714ba053347e617bdb2b9505c4cf9453",
+    "ektar_100": "e8e3195dc3ab222567ca03d432eac6e03f48a84fa1a7e6c07a885f3b35999981"
+  },
+  "retained_boundaries": {
+    "legacy_default_velvia_compatible": true,
+    "product_profile_requires_manual_look_selection": true,
+    "three_colour_algorithms_or_parameters_changed": false,
+    "three_colour_output_bytes_changed": false,
+    "blocked_generic_bw_reopened": false,
+    "ao6_promoted": false,
+    "stock_separation_or_calibration_claim_opened": false,
+    "release_or_installer_claim_opened": false
+  },
+  "decision": "Require explicit caller selection for safe-rich-product-v1 while preserving the historical Velvia default outside the product profile. Stop adjacent selection-wrapper expansion and return to controlled multi-stock evidence or a distinct substantive product gap.",
+  "claim_ceiling": "Explicit manual selection for existing non-calibrated Look Approximations only; no stock science, separation, calibration, AO6, algorithm or release promotion."
+}
