@@ -1,0 +1,54 @@
+{
+  "schema_id": "neuro-film.u7-2k-product-look-cli-discovery-evidence.v1",
+  "experiment_id": "U7.2K",
+  "date": "2026-08-28",
+  "status": "PASS",
+  "implementation_commit": "96201a66a70ca16ba39e9df3e890980327fa5efa",
+  "bindings": {
+    "cli": {
+      "path": "scripts/render_film.py",
+      "sha256": "20c9be941960eca99116f92ec672b36a195af3a2a76b0ef36f0fba4b4c013e4a"
+    },
+    "focused_test": {
+      "path": "tests/test_u7_2k_product_look_cli_discovery.py",
+      "sha256": "3ae2e90c2e5d2ceb35a17ec6922351e98080c995612c8f321d2d589e392f93d3"
+    }
+  },
+  "result": {
+    "command": "python scripts/render_film.py --list-product-looks",
+    "fresh_process_replay_count": 2,
+    "stdout_bytes_each": 2024,
+    "stdout_sha256": "66881e8e3d63e8db9aa2c79611afeebdeced2e088b192fce61c9278c093b7ba9",
+    "stdout_byte_exact": true,
+    "stderr_empty": true,
+    "look_order": [
+      "velvia_50",
+      "portra_400",
+      "ektar_100",
+      "generic_bw"
+    ],
+    "available_look_count": 3,
+    "blocked_look_count": 1,
+    "blocked_look_id": "generic_bw",
+    "input_path_required": false,
+    "output_path_required": false,
+    "media_or_pixel_read_count": 0,
+    "media_or_output_write_count": 0
+  },
+  "verification": {
+    "focused_tests": "5 passed",
+    "behavioral_parent_chain": "93 passed",
+    "ruff": "passed",
+    "py_compile": "passed"
+  },
+  "retained_boundaries": {
+    "catalog_source_is_authoritative_product_api": true,
+    "look_algorithms_or_parameters_changed": false,
+    "stock_calibration_or_separation_claim_opened": false,
+    "generic_bw_reopened": false,
+    "product_availability_changed": false,
+    "input_or_output_media_touched": false
+  },
+  "decision": "Expose the existing evidence-bounded product catalog through the rendering CLI so users and scripts can discover the three available named-stock Look Approximations and the blocked generic black-and-white row without reading media.",
+  "claim_ceiling": "CLI discovery for existing non-calibrated product Look Approximations only; no stock science, algorithm, calibration, separation, packaging or release promotion."
+}
