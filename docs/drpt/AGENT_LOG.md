@@ -19774,3 +19774,34 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   cross-platform support or multi-stock completion. Keep the core private;
   return effort to stock-controlled evidence and the remaining 12/24MP/device
   product tiers rather than adjacent cache micro-optimization.
+
+### 2026-08-28 - U6.P6ZK closes bounded scanner-profile file transport
+
+- **Node and routing:** `ULT > U6 physical scanner chain > U6.P6ZK`, DRPT L2 /
+  Mode C. `dev-research-reliability` was the primary writer; scientific claim
+  review, DRPT propagation, structure stewardship and project-agent-log
+  discipline were secondary. The leaf implements only the bounded profile-file
+  package explicitly opened by U6.P6ZJ and stops adjacent wrapper expansion.
+- **Freeze and implementation:** contract `67eba943`, file transport/tests
+  `48cea027`, formal runner `baf2fb45`. The exact 1,006-byte P6ZI profile
+  (`3ebdee37...b891`) is embedded in a canonical ASCII 1,162-byte envelope
+  (`38ed5d2e...b78350`) with a 4,096-byte ceiling and caller-held file/profile
+  identities. Publication is sibling-staged and create-only; loading rejects
+  non-regular/noncanonical/tampered/oversized inputs before unchanged P6ZJ
+  pixel execution.
+- **Formal result:** two committed-head fresh processes in forward/reverse
+  control order produce byte-exact 2,262-byte reports at SHA
+  `124d7a47...b1f4e`, stable `dae0ccb3...34ba4e`. Existing and injected-late
+  foreign destinations remain unchanged, owned stage residue is zero, direct
+  bundle/file/repeat outputs are bit-exact (`11c7b330...2b7dd0`), source is
+  immutable, and network/external pixel reads are zero. The Windows host
+  forbids creating a test file symlink; the loader retains strict lstat/no-
+  follow checks and the portable test executes the rejection where permitted.
+- **Decision and verification:**
+  `PASS_PRIVATE_BOUNDED_SCANNER_CHAIN_PROFILE_FILE`. Evidence commit
+  `0cfc2d11`, evidence SHA `dff17953...1efef3`; 29 adjacent tests pass with one
+  host-capability symlink skip, and Ruff, compile, JSON and diff checks are
+  clean. This is not scanner calibration, photographic quality, stock
+  response, arbitrary profile support, public schema/package/capability,
+  installer/discovery, signing, native runtime or product readiness. Stop the
+  wrapper family and return to an independent physical-imaging or product gap.
