@@ -20008,3 +20008,32 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   prove wide-gamut film-render safety, calibrate a stock, or promote any
   three-stock product path. Adjacent ICC-format expansion stops here; the next
   work returns to a directly discriminating multi-stock data or product gap.
+
+### 2026-08-28 - P309 independently intakes the exact R1FS DNG sequence boundary
+
+- **Node and routing:** `ULT > U1 DNG ingress > P309`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the primary writer; scientific claim review,
+  DRPT governance, structure stewardship and project-agent-log discipline were
+  secondary. The leaf consumes an already-versioned producer handoff rather
+  than reconstructing or copying its implementation.
+- **Freeze and implementation:** contract/config `52fb614b`, initial audit
+  `c5c25b20`, audit correction `ee8d2c67`, evidence/test `0ecaede5`. P309 loads
+  the exact R1FS module and evidence bytes from their producer Git objects into
+  an isolated temporary import root, verifies the three exact official Adobe
+  sample files, and leaves consumer core code unchanged.
+- **Formal result:** the exact `Focus Bracket` sequence canonicalizes indices
+  `1/2/3`, count `3`, final flags `false/false/true` and frame positions
+  `.3/.5/1.0`. Ten missing/duplicate/noncontiguous/cross-sequence/wrong-final/
+  malformed controls reject before output. An expanded adjacent test exposed
+  that the initial gate incorrectly required image libraries to be globally
+  absent even when an earlier test imported them. Before evidence publication,
+  the committed correction instead snapshots the decoder-module set and proves
+  P309 imports none; both fresh formal processes were rerun. Their 3,422-byte
+  reports are byte-identical at SHA `8277b4d3...6cb09`, scientific identity
+  `aeced838...cad78`; 19 P309/P308/P274 adjacent tests and Ruff, py_compile,
+  JSON and diff checks pass.
+- **Decision:** `PASS_PRIVATE_R1FS_DNG_IMAGE_SEQUENCE_NO_COPY_INTAKE`. Retain
+  only exact private metadata/group mechanics. Image pixels, focus/depth truth,
+  registration, fusion, all-in-focus rendering, arbitrary DNG, public package/
+  schema/capability, product mapping, stock evidence and candidate 3 remain
+  closed. Evidence SHA is `e121b2ca...fb4c4`.
