@@ -72,7 +72,14 @@ def parse_args() -> argparse.Namespace:
         description="Render a content-preserving film look."
     )
     parser.add_argument("input", type=Path)
-    parser.add_argument("--style", default="velvia_50")
+    parser.add_argument(
+        "--style",
+        default=None,
+        help=(
+            "Explicit look identifier. Historical profiles retain velvia_50 when "
+            "omitted; safe-rich-product-v1 requires an explicit product look."
+        ),
+    )
     parser.add_argument(
         "--look-amount",
         type=float,
@@ -334,6 +341,9 @@ def build_color_render_float(
 
 def main() -> int:
     args = parse_args()
+    style_was_explicit = args.style is not None
+    if args.style is None:
+        args.style = "velvia_50"
     if args.output_bit_depth == 16 and args.output.suffix.casefold() not in {
         ".png",
         ".tif",
@@ -429,6 +439,13 @@ def main() -> int:
     if args.use_render_profile or (args.write_recipe and analytic_runtime is None):
         profile_manifest = load_render_profile(args.render_profile, root=ROOT)
         _verify_recipe_profile_assets(profile_manifest, args)
+        if (
+            profile_manifest["profile_id"] == "safe-rich-product-v1"
+            and not style_was_explicit
+        ):
+            raise ValueError(
+                "safe-rich-product-v1 requires an explicit --style product look selection"
+            )
         if args.style not in profile_manifest["style_parameters"]:
             raise ValueError(f"Render profile does not contain style {args.style!r}")
         profile_values = dict(profile_manifest["style_parameters"][args.style])

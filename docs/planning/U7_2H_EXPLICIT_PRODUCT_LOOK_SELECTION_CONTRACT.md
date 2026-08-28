@@ -28,13 +28,17 @@ separation evidence or defaults outside `safe-rich-product-v1` may change.
 
 1. omitted style plus exact product profile rejects with a stable diagnostic;
 2. the rejection performs zero input decode and creates no output or recipe;
-3. explicit Velvia 50, Portra 400 and Ektar 100 output/recipe bytes remain
-   identical to the frozen pre-change oracle;
+3. explicit Velvia 50, Portra 400 and Ektar 100 output bytes remain identical
+   to the frozen pre-change oracle and normalized recipe semantics remain exact;
 4. omitted style under the exact legacy profile remains byte-identical to
    explicit Velvia 50;
 5. blocked generic B&W behavior is unchanged;
 6. forward/reverse fresh-process reports are byte-identical and leave no owned
    residue.
+
+The recipe's required `software.commit` provenance is expected to advance with
+this implementation and is excluded only from the normalized semantic
+comparison; the emitted recipe must retain the actual committed HEAD.
 
 ## Claim ceiling and stop rule
 
