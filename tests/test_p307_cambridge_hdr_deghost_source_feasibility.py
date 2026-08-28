@@ -72,6 +72,11 @@ def test_p307_metadata_text_normalization_is_crlf_stable() -> None:
     assert _normalized_text("test stacks, with motion\r\nand misalignment") == (
         "test stacks, with motion and misalignment"
     )
+    official_typo = _normalized_text(
+        "This dataset is priovided under the Creative Commons Attribution\r\n"
+        "license (CC BY)."
+    )
+    assert "Creative Commons Attribution license (CC BY)" in official_typo
 
 
 def test_p307_fetch_range_rejects_nonexact_transport(monkeypatch: pytest.MonkeyPatch) -> None:

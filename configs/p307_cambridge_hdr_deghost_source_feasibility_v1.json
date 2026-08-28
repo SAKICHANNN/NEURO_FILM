@@ -8,11 +8,11 @@
     "contract_bytes": 3778,
     "contract_sha256": "591f52eaaf534fb56cf3a4e566cf1e63de205dc27839881d0ef1f63d95ebda72",
     "runner_path": "scripts/audit_p307_cambridge_hdr_deghost_source_feasibility.py",
-    "runner_bytes": 19150,
-    "runner_sha256": "df16539409cab723e7bcb93cfac46a9f76d04d9fd8e4d68f293d098c74f99911",
+    "runner_bytes": 19123,
+    "runner_sha256": "d8dd2b48e18170de1d9ef3fa3f1a17dbee9ea350c0839fef1d21e08c717a8978",
     "test_path": "tests/test_p307_cambridge_hdr_deghost_source_feasibility.py",
-    "test_bytes": 3357,
-    "test_sha256": "213327c134611074635d0f936242ff73940cea080017952959511dac7664c1c6"
+    "test_bytes": 3582,
+    "test_sha256": "352f7bc57d72d877fc1efd3759ad4cb7bec39b6effec63b0143e34a043d827d2"
   },
   "official_item": {
     "doi": "10.17863/CAM.6881",

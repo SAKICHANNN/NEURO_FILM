@@ -294,8 +294,7 @@ def _metadata_facts(config: dict[str, Any], responses: dict[str, dict[str, objec
         == licence_rows["license.txt"]["uuid"],
         "cc_by_4_0": "Attribution 4.0 International (CC BY 4.0)" in rights
         and "https://creativecommons.org/licenses/by/4.0/" in rights_uri
-        and "provided under the Creative Commons Attribution license (CC BY)"
-        in normalized_readme,
+        and "Creative Commons Attribution license (CC BY)" in normalized_readme,
         "repository_deposit_license_present": licence.startswith(
             "University of Cambridge institutional repository DEPOSIT LICENCE AGREEMENT"
         ),
