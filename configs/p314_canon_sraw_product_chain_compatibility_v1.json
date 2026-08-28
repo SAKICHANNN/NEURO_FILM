@@ -1,8 +1,13 @@
 {
   "schema": "neuro-film.p314-canon-sraw-product-chain-compatibility-contract.v1",
   "experiment_id": "P314",
-  "status": "FROZEN_BEFORE_PRODUCT_RENDER",
+  "status": "FROZEN_READY_FOR_FORMAL_EXECUTION",
   "bindings": {
+    "contract": {
+      "path": "docs/planning/P314_CANON_SRAW_PRODUCT_CHAIN_COMPATIBILITY_CONTRACT.md",
+      "bytes": 3307,
+      "sha256": "895847815b10bcf3228c6175813e51c899c9ac5ad129f49899302a82a1212bf3"
+    },
     "p313_contract": {
       "path": "configs/p313_canon_sraw_working_image_compatibility_v1.json",
       "bytes": 4922,
@@ -32,7 +37,27 @@
       "path": "src/inference/style_safe_engine.py",
       "bytes": 18836,
       "sha256": "ca893a3dcb9c91fe403f12e237fd2c86acbb3d3954cb501a4f605a376e1feb9e"
+    },
+    "runner": {
+      "path": "scripts/audit_p314_canon_sraw_product_chain_compatibility.py",
+      "bytes": 11907,
+      "sha256": "df96bf46b8b6db39de965ec606d1cea2b842983f7b84d9e263e91e42e2a7025d",
+      "implementation_commit": "b8731604c9c89d6d669b6c2af721933a7d075a1e"
+    },
+    "test": {
+      "path": "tests/test_p314_canon_sraw_product_chain_compatibility.py",
+      "bytes": 1447,
+      "sha256": "6289b3b580c4389e99b85276a0c6a86e125ae39570554fbf58fb3ab0f378b646",
+      "implementation_commit": "ba121fe9798d996f9bd03e640af67cc138ad8681"
     }
+  },
+  "runtime": {
+    "python": "3.12.10",
+    "rawpy": "0.26.1",
+    "libraw": [0, 22, 0],
+    "numpy": "2.4.4",
+    "pillow": "12.1.1",
+    "platform": "Windows"
   },
   "execution": {
     "style": "ektar_100",
