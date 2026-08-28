@@ -1,0 +1,100 @@
+{
+  "schema_version": "neuro-film.p316-r1gn-fujifilm-raf-no-copy-intake.v1",
+  "experiment_id": "P316",
+  "status": "FROZEN_BEFORE_FIRST_CONSUMER_DECODE",
+  "contract_path": "docs/planning/P316_R1GN_FUJIFILM_RAF_NO_COPY_INTAKE_CONTRACT.md",
+  "protocol": "zhuise.fujifilm-raf-dual-layout-unpack.v1",
+  "producer": {
+    "preregistration_commit": "56eca62e53a9d5670f7a218ba86b49b39ceddad2",
+    "implementation_commit": "1cb9b9953250127b5d06f78e3e9047040aa46cf2",
+    "runner_commit": "b6e2e4fae408598d5a62ff56b141e5f5c2f41ee3",
+    "formal_execution_commit": "79f346b738dd5d6b6767d113d8b47bddf2677619",
+    "contract_fixture_commit": "b03f21c6b15e000a792fafeeffcaefd6f2c656c6",
+    "identity_correction_commit": "11397b22b9cbd5899d559d5742ddba9026abfc5a"
+  },
+  "identity_correction": {
+    "superseded_unresolvable_implementation_commit": "1cb9b995aaf230e796c35180ad3a60dc03553622",
+    "corrected_implementation_commit": "1cb9b9953250127b5d06f78e3e9047040aa46cf2",
+    "science_source_fixture_gates_and_formal_reports_changed": false
+  },
+  "artifacts": {
+    "callable_module": {
+      "commit_role": "implementation_commit",
+      "path": "src/zhuise/fujifilm_raf.py",
+      "bytes": 5051,
+      "git_blob": "4b1798aa69dc2a0317a2dd7a622b23a8806d3793",
+      "sha256": "50f27d466480d374bb3fd420dc051a549663cf0f5893c0454b80ccf85f816f5c"
+    },
+    "callable_contract": {
+      "commit_role": "identity_correction_commit",
+      "path": "docs/research/R1GN_FUJIFILM_RAF_DUAL_LAYOUT_UNPACK_CALLABLE_V1_CONTRACT.json",
+      "bytes": 2796,
+      "git_blob": "4cc30ac4eee61102d2ef3508c722568c273735c6",
+      "sha256": "200e4d3e69ea3ae0efdf0bb27075ac63fb05df7cb0ae2162192aa4fee640de14"
+    },
+    "canonical_fixture": {
+      "commit_role": "contract_fixture_commit",
+      "path": "tests/fixtures/r1gn_fujifilm_raf_dual_layout_unpack_v1_fixture.json",
+      "bytes": 1007,
+      "git_blob": "52e3825f9f525ebf9d7f8b0617a8d437cd6bb4e5",
+      "sha256": "30f4107bb862920a3493a97c346e0e5ea7d8b814a88092ae006a732e71600840"
+    },
+    "preregistration": {
+      "commit_role": "preregistration_commit",
+      "path": "docs/research/R1GN_FUJIFILM_RAF_DUAL_LAYOUT_UNPACK_PREREGISTRATION.json",
+      "bytes": 6648,
+      "git_blob": "18efc7a02ea9afd2d9acb4bd4b1139a6a558d8b8",
+      "sha256": "913554910ceacc70377f1e85a686a24d4ed60e5e75300b53f4833b6a20f207a6"
+    },
+    "formal_runner": {
+      "commit_role": "runner_commit",
+      "path": "scripts/run_r1gn_fujifilm_raf_dual_layout_unpack.py",
+      "bytes": 11840,
+      "git_blob": "7cd8b77ba9e0f28d8226d1a48918f924a52f9a96",
+      "sha256": "82c791f5f9e1910d79bd5bd58147743b478645e25b37de15d2a16929c66c4f20"
+    },
+    "execution_lock": {
+      "commit_role": "formal_execution_commit",
+      "path": "docs/research/R1GN_FUJIFILM_RAF_DUAL_LAYOUT_UNPACK_EXECUTION_LOCK.json",
+      "bytes": 2314,
+      "git_blob": "e573e3033e681ba73284da08b909c3677b6ed4de",
+      "sha256": "7788059f1186209ce0f856fda52a4e3d4363537d2e62faeafcd9801b70ea5997"
+    },
+    "evidence": {
+      "commit_role": "identity_correction_commit",
+      "path": "docs/evidence/R1GN_FUJIFILM_RAF_DUAL_LAYOUT_UNPACK_RESULT.json",
+      "bytes": 5137,
+      "git_blob": "9b5d9f23ef6adc231e4b4a105a8eb51db10f3855",
+      "sha256": "0b05615523b84ec1cc022d8a24d65d1b5b754048a1693c067d2f3c211649e4a8"
+    }
+  },
+  "sources": [
+    {
+      "id": "fujifilm_s2pro_layout0",
+      "path": "outputs/data/r0ee_rawpixls_native_raw_v1/fujifilm_s2pro.raf",
+      "bytes": 13211656,
+      "sha256": "9fe1bf1361f015d9db862228e4a26b23d69e81015ed4a032eaefb8242ae9ad42",
+      "geometry_hw": [2192, 2944],
+      "fuji_layout_hex": "00010201",
+      "stored_uint16_order": "big-endian",
+      "output_uint16le_sha256": "ebc41ad07b396051ce9d222d32ed9d4918e238f63bbd180dd3c07aa053ef0252"
+    },
+    {
+      "id": "fujifilm_s7000_layout1",
+      "path": "outputs/data/r0ee_rawpixls_native_raw_v1/fujifilm_s7000.raf",
+      "bytes": 13096536,
+      "sha256": "098aa2c64dc6a026f3f48f1494476a55751e08af2d37789b7f557fd11a14cf49",
+      "geometry_hw": [3080, 2048],
+      "fuji_layout_hex": "80818283",
+      "stored_uint16_order": "little-endian",
+      "output_uint16le_sha256": "28278e567276759e8daf20dc0aded6b64cfd6ccf0c7a89e36e16d9e4fcb3a5fa"
+    }
+  ],
+  "execution": {
+    "producer_report_bytes": 6548,
+    "producer_report_sha256": "290c2020d3b73e2c72bd78fd7f98b4e0d7107118f844de84ac0c70c3517ba73d",
+    "producer_stable_identity": "42810ffde0a1b6761d264d3ca8c165679783ca27c80da790dced56a9f00b34e8",
+    "consumer_controls": ["truncate-one-byte-each-source"]
+  },
+  "claim_ceiling": "Private no-copy intake of exact R1GN Fujifilm S2Pro layout-0 and S7000 layout-1 stored-code callable only; no generic RAF/Fujifilm RAW, compressed RAF, SuperCCD remap, crop, black subtraction, calibration, white balance, demosaic, colour, quality, default loader, public package/schema/capability, product mapping, stock evidence, automatic matching or candidate-3 change."
+}
