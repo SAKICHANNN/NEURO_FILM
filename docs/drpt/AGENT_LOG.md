@@ -19893,3 +19893,31 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   this executor version; no physical calibration, named-stock distinction,
   preference, renderer, recipe or product claim opens. Return work to a
   distinct stock-first evidence or product gap.
+
+### 2026-08-28 - U4.5D closes native JPEG draft scaling for the 12MP tier
+
+- **Node and routing:** `ULT > U4 performance > U4.5D`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the primary writer; scientific claim review,
+  DRPT propagation, structure stewardship and project-agent-log discipline were
+  secondary. This is a zero-pixel decoder-geometry experiment, not another
+  buffer or renderer micro-optimization.
+- **Freeze and execution:** contract/config `6aeccec7`, audit/tests `c9dad513`,
+  evidence `45335725`. The exact U4.5B 4032x6048 JPEG, Pillow 12.1.1,
+  libjpeg-turbo 8.0 and unchanged preview geometry derive a frozen
+  2828x4242/11,996,376-pixel target. The runner intercepts and forbids Pillow
+  pixel loading, reads only container/header state and records the exact native
+  decoder tile.
+- **Formal result:** both committed-head processes return full
+  4032x6048/24,385,536-pixel draft geometry. Nonundershoot, source bounds,
+  authority/source/target/tile identity, zero pixel loads, zero media outputs
+  and source immutability pass; strictly-smaller-than-source and <=12MP fail.
+  The two 1,776-byte reports are byte-identical at SHA
+  `289ef80a...2c920e`; 10 focused/adjacent tests and Ruff, py_compile, JSON and
+  diff checks pass. A disclosed read-only precontract diagnostic observed only
+  the same header geometry and decoded no pixels.
+- **Decision:** `FAIL_CLOSED_JPEG_12MP_NATIVE_DRAFT_UNAVAILABLE`. Do not use the
+  2016x3024 half-resolution draft and upscale, replace the source/target/runtime,
+  add a custom decoder or run a full render as rescue. U4.5B's 1MP pass and
+  U4.5C's session-warm pass remain unchanged; only this exact 12MP native-draft
+  route closes. Other materially different 12/24MP mechanisms and device tiers
+  remain open, with no fidelity, latency/memory, product or stock claim.
