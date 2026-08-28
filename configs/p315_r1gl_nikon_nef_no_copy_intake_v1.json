@@ -1,0 +1,92 @@
+{
+  "schema_version": "neuro-film.p315-r1gl-nikon-nef-no-copy-intake.v1",
+  "experiment_id": "P315",
+  "status": "FROZEN_BEFORE_FIRST_CONSUMER_DECODE",
+  "contract_path": "docs/planning/P315_R1GL_NIKON_NEF_NO_COPY_INTAKE_CONTRACT.md",
+  "protocol": "zhuise.nikon-nef-compression34713-unpack.v1",
+  "producer": {
+    "preregistration_commit": "0a44298ea851c751e84dc100581052fe3ae9e0cc",
+    "implementation_commit": "70d7b4917e4584119efa1efa4118874300902e1a",
+    "runner_commit": "99f65a4d11ed4608cd59a01a7f193f4a8691b51c",
+    "formal_execution_commit": "e9252cb4a3657042f938c267d2a12916ad78163e",
+    "evidence_commit": "50fe41df528a0ac07c4c7cd9821eef75254db6f3"
+  },
+  "artifacts": {
+    "callable_module": {
+      "commit_role": "implementation_commit",
+      "path": "src/zhuise/nikon_nef.py",
+      "bytes": 14777,
+      "git_blob": "c1a71959a9fe2bd9e6e43a8f6b8b3593a0a1a598",
+      "sha256": "293f55b3182c413881e6ac6de5d2a19450b71ead129b4cc8ea560f88cd9a706b"
+    },
+    "callable_contract": {
+      "commit_role": "evidence_commit",
+      "path": "docs/research/R1GL_NIKON_NEF_HUFFMAN_CURVE_UNPACK_CALLABLE_V1_CONTRACT.json",
+      "bytes": 2508,
+      "git_blob": "8945f790cb95725f6716198afcaec2aeb4e3fd2d",
+      "sha256": "5ff8caa10cc16849ab0b103cedc3ebe21895d49a7ff337583b96813188737028"
+    },
+    "canonical_fixture": {
+      "commit_role": "evidence_commit",
+      "path": "tests/fixtures/r1gl_nikon_nef_huffman_curve_unpack_v1_fixture.json",
+      "bytes": 861,
+      "git_blob": "cc424138f3b77a7d5b4750616c7334531576ca9d",
+      "sha256": "e26119d2a626c813deb611655859711dca8d12e5a276bbbafe9eaa10db78b393"
+    },
+    "preregistration": {
+      "commit_role": "preregistration_commit",
+      "path": "docs/research/R1GL_NIKON_NEF_HUFFMAN_CURVE_UNPACK_PREREGISTRATION.json",
+      "bytes": 6206,
+      "git_blob": "b3bcc289eb313b8eb17cf715de1ddaf93ad39865",
+      "sha256": "6c80b598b721bf6ae0d0414da7e81d78c49423b7619012e64936027ace34c9b2"
+    },
+    "formal_runner": {
+      "commit_role": "runner_commit",
+      "path": "scripts/run_r1gl_nikon_nef_huffman_curve_unpack.py",
+      "bytes": 11381,
+      "git_blob": "e8125ccea68310d396e78062bf92dbf023b4e36b",
+      "sha256": "ae9c01436fa8ab52ede5791d1431a3a8c59eb8a9ab8b53a8f7d2a3e0261d24bf"
+    },
+    "execution_lock": {
+      "commit_role": "formal_execution_commit",
+      "path": "docs/research/R1GL_NIKON_NEF_HUFFMAN_CURVE_UNPACK_EXECUTION_LOCK.json",
+      "bytes": 1466,
+      "git_blob": "5d9380b97a6ad0027516a4ad4ce17fc7868d5e16",
+      "sha256": "6380ef933cd7df1f89e81b2d43b445877e0b4f21695feaabe758de3641979481"
+    },
+    "evidence": {
+      "commit_role": "evidence_commit",
+      "path": "docs/evidence/R1GL_NIKON_NEF_HUFFMAN_CURVE_UNPACK_RESULT.json",
+      "bytes": 4499,
+      "git_blob": "c8830b5a6ebb4e2f3dc03a71f1016d7d24cea704",
+      "sha256": "491ad2cdbba8abdc822a3834075afb090cfa41b9da29337afabfe546485239e3"
+    }
+  },
+  "sources": [
+    {
+      "id": "nikon_d6_12bit",
+      "path": "outputs/data/r0ee_rawpixls_native_raw_v1/nikon_d6_12bit.nef",
+      "bytes": 14562481,
+      "sha256": "3a098e704d0e1af97efc37541b43a37e5b3457d2f4e7828c0d8d9af37332f233",
+      "geometry_hw": [3728, 5584],
+      "bits_per_sample": 12,
+      "output_uint16le_sha256": "1fc2203cafc67a05a4802969ecce030f38bed8bce2b58d2650a5a39823ea5e57"
+    },
+    {
+      "id": "nikon_d3s_14bit",
+      "path": "outputs/data/r0ee_rawpixls_native_raw_v1/nikon_d3s_14bit.nef",
+      "bytes": 14534253,
+      "sha256": "9b7c39fb4c37a117aecdefdbdb52b35482a092681dfe66068d652b19c47c4eca",
+      "geometry_hw": [2844, 4288],
+      "bits_per_sample": 14,
+      "output_uint16le_sha256": "e64e6ffecd8189f11461e1c94853f9f113c65d5aabf24cb4eb6db7c5f10621d0"
+    }
+  ],
+  "execution": {
+    "producer_report_bytes": 5579,
+    "producer_report_sha256": "b17fc54a2e10386e8d778ba6b67bcb16fcd96cd2809122163c8ee27e00e8a8f1",
+    "producer_stable_identity": "db7353866666439fcb513a6818e1c80bb90fb564f73c40d6d78041b29ccbd1f9",
+    "consumer_controls": ["truncate-one-byte-each-source"]
+  },
+  "claim_ceiling": "Private no-copy intake of the exact R1GL Nikon D6 12-bit and D3S 14-bit compression-34713 unpack callable only; no generic Nikon NEF/lossless claim, HE/split support, crop, black subtraction, calibration, white balance, demosaic, colour, quality, default loader, public package/schema/capability, product mapping, stock evidence, automatic matching or candidate-3 change."
+}
