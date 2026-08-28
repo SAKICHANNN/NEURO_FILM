@@ -19921,3 +19921,32 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   U4.5C's session-warm pass remain unchanged; only this exact 12MP native-draft
   route closes. Other materially different 12/24MP mechanisms and device tiers
   remain open, with no fidelity, latency/memory, product or stock claim.
+
+### 2026-08-28 - SF3.A3N closes the Parvec controlled two-stock source before pixels
+
+- **Node and routing:** `ULT > SF3 > SF3.A3N`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the primary writer; current-source research,
+  scientific claim review, structure stewardship and project-agent-log
+  discipline were secondary. The leaf follows the stock-first data gap rather
+  than adding a new model, proxy operator or product wrapper.
+- **Freeze and implementation:** contract/config `5fd5fff3`, audit/tests
+  `8f8bc000`, evidence `c3bd33bf`. The audit requests only Parvec's official
+  project page, official YouTube watch page and oEmbed identity; it forbids
+  video streams, thumbnails, presets, forms, email, images and pixels.
+- **Formal result:** the official controlled-workflow and protocol statements,
+  video/channel identity and Kodak Ektar 100 / Portra 400 chapters all pass.
+  Velvia 50 is absent. Public machine-readable measurements, an exact
+  source/measurement manifest with hashes, independent roll/process/scanner/
+  scene groups and explicit fitting/derived-parameter rights are all absent;
+  the project instead says documentation release is under consideration and
+  the free presets are manually refined and form/email-gated. Two formal
+  request orders reproduce byte-identical 3,234-byte reports at SHA
+  `07198ac9...04fff`, stable `3b982c2d...3ff76`; all media/preset/pixel/fit/
+  render/score counts are zero. Seven focused tests, Ruff, compile, JSON and
+  diff checks pass; the broader stock-source/separation regression was also
+  launched concurrently.
+- **Decision:** `FAIL_CLOSED_PARVEC_DATA_RIGHTS_OR_PAYLOAD_GAP`. Retain only a
+  controlled same-workflow Portra/Ektar source observation. Do not submit the
+  form, reconstruct values from vectorscopes, infer rights, fit creative
+  presets or substitute another Fujifilm stock. No K=1 fitting, calibration,
+  product profile or multi-stock completion opens.

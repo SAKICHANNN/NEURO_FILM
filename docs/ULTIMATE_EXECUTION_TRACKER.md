@@ -2913,6 +2913,23 @@ training, stock profile or product claim opens, and this exact cohort may not
 be rescued by more frames, descriptors or threshold changes. Evidence:
 `docs/evidence/SF3_A3M_IA_EKTAR_FIXED_CAMERA_IDENTIFIABILITY_RESULT.json`.
 
+SF3.A3N audits a new controlled physical-film observation instead of adding
+another proxy operator. Parvec's exact official 2025 project/video identity
+contains one documented protocol and explicit chapters for Kodak Ektar 100 and
+Kodak Portra 400; the project says its presets start from numerical
+hue/saturation/luminance analysis but are manually refined and delivered only
+through a form/email gate. The official page also says release of the raw data
+and structured documentation is still under consideration. Velvia 50 is absent,
+and no machine-readable measurements, exact source/measurement manifest,
+independent roll/process/scanner/scene groups or fitting/derived-parameter rights
+are public. Two three-request runs are byte-exact at 3,234 bytes / SHA
+`07198ac9...04fff`, stable `3b982c2d...3ff76`; video streams, thumbnails,
+presets, forms, images, pixels, fitting, rendering and scoring remain zero.
+Close this exact source without form submission, vectorscope reconstruction,
+stock substitution or preset fitting. Controlled A0L/A0N capture or a materially
+independent rights-cleared source remains required. Evidence:
+`docs/evidence/SF3_A3N_PARVEC_CONTROLLED_FILM_SOURCE_RESULT.json`.
+
 U7.2E adds one authoritative manual product-look catalog and dispatcher over
 the existing three colour-stock Look Approximation controls plus the generic
 B&W correction from BW2.D1. Discovery exposes exactly `velvia_50`,
