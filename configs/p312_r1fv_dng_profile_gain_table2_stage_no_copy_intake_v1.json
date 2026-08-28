@@ -1,0 +1,91 @@
+{
+  "schema_version": "neuro-film.p312-r1fv-dng-profile-gain-table2-stage-no-copy-intake.v1",
+  "experiment_id": "P312",
+  "status": "FROZEN_BEFORE_FIRST_CONSUMER_STAGE_EXECUTION",
+  "contract_path": "docs/planning/P312_R1FV_DNG_PROFILE_GAIN_TABLE2_STAGE_NO_COPY_INTAKE_CONTRACT.md",
+  "protocol": "zhuise.dng-profile-gain-table-map2-stage-parity.v1",
+  "producer": {
+    "preregistration_commit": "2c6e12dc141a2dbae859dd2108a66a384f11b431",
+    "implementation_commit": "e5d1b74d3ca686973baf22d805b04944eabee36b",
+    "execution_lock_commit": "1abc4319dd21de6205b2d9ecf4d1e32cb2480519",
+    "evidence_commit": "09d0382f4c798437253d260192afdd00b70c4834"
+  },
+  "artifacts": {
+    "stage_module": {
+      "commit_role": "implementation_commit",
+      "path": "src/zhuise/dng_profile_gain_table2.py",
+      "bytes": 10643,
+      "git_blob": "4b9a9c6bb3f256fdb29ba27110dc493fd8d13ee7",
+      "sha256": "fb60c6d6db694c36c5d540aa8dcd018640bdaa85734d38837a5ba682e6403595"
+    },
+    "association_module": {
+      "commit_role": "execution_lock_commit",
+      "path": "src/zhuise/dng_profile_gain_table_set.py",
+      "bytes": 9034,
+      "git_blob": "944fd82c4aea2cce353963dc16e6d291ee472fd2",
+      "sha256": "04b7c0e4fe373dedf8fd67709545a4a2df430d1f4452e28532a70df16996e599"
+    },
+    "formal_runner": {
+      "commit_role": "execution_lock_commit",
+      "path": "scripts/run_r1fv_dng_profile_gain_table2_stage.py",
+      "bytes": 18030,
+      "git_blob": "ad260b8e2cab524bfa9aa3426a4ca487e58a86e5",
+      "sha256": "a22cec5ef7ad1ee46c356e7e09cbf1b3ffc83bc99192a85ca8e3fed9443e7670"
+    },
+    "preregistration": {
+      "commit_role": "preregistration_commit",
+      "path": "docs/research/R1FV_DNG_PROFILE_GAIN_TABLE2_STAGE_PREREGISTRATION.json",
+      "bytes": 5787,
+      "git_blob": "243d38428d8437d510392a077a26372aa2603fc8",
+      "sha256": "60673b9244b2fec56caaed3dacfa9b5bf5fb5aa6967c081ef6124eac7c6d080c"
+    },
+    "execution_lock": {
+      "commit_role": "execution_lock_commit",
+      "path": "docs/research/R1FV_DNG_PROFILE_GAIN_TABLE2_STAGE_EXECUTION_LOCK.json",
+      "bytes": 1396,
+      "git_blob": "18ce9b5f7f91aa90a0bdcf1ff8b15efc3eae6beb",
+      "sha256": "68d56f4290b465e936e13bbbe9b8f81b2d7c9dbed8712ae17d002da850f604ae"
+    },
+    "evidence": {
+      "commit_role": "evidence_commit",
+      "path": "docs/evidence/R1FV_DNG_PROFILE_GAIN_TABLE2_STAGE_RESULT.json",
+      "bytes": 3649,
+      "git_blob": "9051091a02272ead6d38710bec98414044fad2c2",
+      "sha256": "2ebf6dac27bd902f243ada34e1861d4f668e3f74922a0d492cdc85ec1c1d9a7b"
+    }
+  },
+  "source": {
+    "path": "outputs/tmp/r0fe_dng_sdk/sdk/dng_sdk_1_7_1/sample_files/04_PGTM2_per_profile.dng",
+    "bytes": 6010280,
+    "sha256": "14a2afc29ad1c848a12390d2c30abd36f8adb29aab90866f66edbd33efd6e58e",
+    "profiles": [
+      {
+        "name": "PGTM Example (Top-Left Bright)",
+        "table_payload_sha256": "6c5b1347d85a38d2d8e95f4551ee26a05385be4b430d897bc6a48159119f8197"
+      },
+      {
+        "name": "PGTM Example (Top-Right Bright)",
+        "table_payload_sha256": "5d04c8cc11b05db233027d45b0bed823d792a5a559cec910be306dd1b6e5be33"
+      }
+    ]
+  },
+  "execution": {
+    "probe_shape": [13, 17, 3],
+    "probe_f32le_sha256": "0c2793bc6bb3714f1357f11085dc4f93a2ceace3e35ecb4095cacef0cb7c9fe7",
+    "image_area": [7, 11, 20, 28],
+    "exposure_weight_gain": 1.25,
+    "producer_report_bytes": 5468,
+    "producer_report_sha256": "6156065edb4009544471d8d83727f3f23fc41246cd46f1dd1d4a7297ee378b8f",
+    "producer_scientific_identity": "1e43290248d939277348f9ead46b17fc2a275766e3e05895cb0f3a307fa6b411",
+    "expected_rows": [
+      {"role": "main-profile-strict", "gamma": 1.0, "support_overrange": false, "minimum": 0.0, "maximum": 1.0, "output_f32le_sha256": "00f0efe74b3363690c27db2c086c6cef38a0da6da4775f958ef341d0be0e2c1c"},
+      {"role": "main-profile-overrange", "gamma": 1.0, "support_overrange": true, "minimum": -1.577771544456482, "maximum": 2.9124999046325684, "output_f32le_sha256": "c989eb66c5509f792feeb03ec2c6a6823ce88229421cfb4663aad7b2d5ef2001"},
+      {"role": "extra-profile-strict", "gamma": 1.0, "support_overrange": false, "minimum": 0.0, "maximum": 1.0, "output_f32le_sha256": "e463c498e3bf74a477def28811d164f9b647263911e8e85631d96f30ce42edae"},
+      {"role": "extra-profile-overrange", "gamma": 1.0, "support_overrange": true, "minimum": -0.476068377494812, "maximum": 4.608094215393066, "output_f32le_sha256": "c05a21b5438e0dc7229fa1d1f55ffd62dbc715e7ce8102b411de8ae14dc9c1ab"},
+      {"role": "gamma2-strict", "gamma": 2.0, "support_overrange": false, "minimum": 0.0, "maximum": 1.0, "output_f32le_sha256": "00f0efe74b3363690c27db2c086c6cef38a0da6da4775f958ef341d0be0e2c1c"},
+      {"role": "gamma2-overrange", "gamma": 2.0, "support_overrange": true, "minimum": -1.577771544456482, "maximum": 2.9124999046325684, "output_f32le_sha256": "c989eb66c5509f792feeb03ec2c6a6823ce88229421cfb4663aad7b2d5ef2001"}
+    ],
+    "gamma2_discriminating": false
+  },
+  "claim_ceiling": "Private no-copy intake of exact R1FV selected-profile PGTM2 stage arithmetic for two synthetic Adobe sample04 maps only; gamma2 remains nondiscriminating and no general non-unit-gamma claim, raw decode, full renderer, real-file quality, arbitrary DNG/map, default-loader, public package/schema/capability, product mapping, stock evidence, automatic matching or candidate-3 change opens."
+}
