@@ -1,0 +1,81 @@
+{
+  "schema_version": "neuro-film.p311-r1fu-dng-per-profile-gain-table-no-copy-intake.v1",
+  "experiment_id": "P311",
+  "status": "FROZEN_BEFORE_FIRST_CONSUMER_SAMPLE_PARSE",
+  "contract_path": "docs/planning/P311_R1FU_DNG_PER_PROFILE_GAIN_TABLE_NO_COPY_INTAKE_CONTRACT.md",
+  "protocol": "zhuise.dng-per-profile-gain-table-selection.v1",
+  "producer": {
+    "repo_head": "5c4ca4efb586436471bade6567c3611f0826dfb1",
+    "preregistration_commit": "2dd8864a9fa93dc939bf03def3c5a8cb0676b545",
+    "implementation_commit": "9eaefc4525d47aa3ef99b747e619a1202a59cba4",
+    "evidence_commit": "73a943ce726f79684bb9c3ca8d69dc858806870c"
+  },
+  "artifacts": {
+    "association_module": {
+      "commit_role": "implementation_commit",
+      "path": "src/zhuise/dng_profile_gain_table_set.py",
+      "bytes": 9034,
+      "git_blob": "944fd82c4aea2cce353963dc16e6d291ee472fd2",
+      "sha256": "04b7c0e4fe373dedf8fd67709545a4a2df430d1f4452e28532a70df16996e599"
+    },
+    "pgtm2_dependency": {
+      "commit_role": "implementation_commit",
+      "path": "src/zhuise/dng_profile_gain_table2.py",
+      "bytes": 5347,
+      "git_blob": "5298c3730b75b4c01339d73b1ce253eeeeedc490",
+      "sha256": "bbe34e088a77c58b07d98a6663b327e36ee824aceb610ab5680c16c4becac574"
+    },
+    "evidence": {
+      "commit_role": "evidence_commit",
+      "path": "docs/evidence/R1FU_DNG_PER_PROFILE_GAIN_TABLE_SELECTION_RESULT.json",
+      "bytes": 3492,
+      "git_blob": "d8d998b97629f6d0a5f634aff2b9fd1c495d9af5",
+      "sha256": "ab0b34105c1d342d5ea4306b73762ef4a15dba947897c74e4eda4ef26df923bf"
+    },
+    "preregistration": {
+      "commit_role": "preregistration_commit",
+      "path": "docs/research/R1FU_DNG_PER_PROFILE_GAIN_TABLE_SELECTION_PREREGISTRATION.json",
+      "bytes": 6835,
+      "git_blob": "5bfc985c39a2393574d397ff94238a4e229e770c",
+      "sha256": "e02c18076619d1af41affcd2cfd4dd3b293a030bcae35803bb0d82c304c6b7f5"
+    }
+  },
+  "source": {
+    "path": "outputs/tmp/r0fe_dng_sdk/sdk/dng_sdk_1_7_1/sample_files/04_PGTM2_per_profile.dng",
+    "bytes": 6010280,
+    "sha256": "14a2afc29ad1c848a12390d2c30abd36f8adb29aab90866f66edbd33efd6e58e"
+  },
+  "expected": {
+    "decision": "PASS_PRIVATE_DNG_PER_PROFILE_GAIN_TABLE_SELECTION",
+    "producer_report_bytes": 5284,
+    "producer_report_sha256": "b437b2de44c19e26feb0d8991c31747d0a19a975cc2aa256795a04f00a6f1e02",
+    "producer_scientific_identity": "c0f4044b100714ea4c08afa4f8606b93b4e8b9e32843bed00191d083b8cf40a4",
+    "extra_profile_offsets": [7208],
+    "raw_ifd_v1_table_sha256": "a4179e829137f22da1962945b8c91ce19b2af056b8e8e13e9d86d83d3519d5b0",
+    "profiles": [
+      {
+        "role": "main-profile",
+        "name": "PGTM Example (Top-Left Bright)",
+        "profile_offset": 8,
+        "name_payload_sha256": "99085a4792cd234a42bdc4d30f0a6f81bda75c85bb288eabf56c7b805b7b7c63",
+        "color_matrix1_sha256": "ede473ebc1433d44e077e4cb623fe9508b3a4ff2691e8f729d3c21c0421496d5",
+        "forward_matrix1_sha256": "3760ab8dd41f7d7f91f61a53ac97881695b246e5652e39f3b23b3631a779c656",
+        "tone_curve_sha256": "d25b949c65312b91424a3cabd3065dfe18bc73e7cd8893229e9494cd75c16d92",
+        "table_payload_sha256": "6c5b1347d85a38d2d8e95f4551ee26a05385be4b430d897bc6a48159119f8197",
+        "gains_f32le_sha256": "986274a911967dd30aa6ff29b99eb4d135f9f1429cbb2ad1f04ba22665823941"
+      },
+      {
+        "role": "extra-profile",
+        "name": "PGTM Example (Top-Right Bright)",
+        "profile_offset": 7208,
+        "name_payload_sha256": "7c05fac36ff0e345e3d3d51ca668f11b30517f8b4e7f46b586de00db2df5f3ff",
+        "color_matrix1_sha256": "ede473ebc1433d44e077e4cb623fe9508b3a4ff2691e8f729d3c21c0421496d5",
+        "forward_matrix1_sha256": "3760ab8dd41f7d7f91f61a53ac97881695b246e5652e39f3b23b3631a779c656",
+        "tone_curve_sha256": "d25b949c65312b91424a3cabd3065dfe18bc73e7cd8893229e9494cd75c16d92",
+        "table_payload_sha256": "5d04c8cc11b05db233027d45b0bed823d792a5a559cec910be306dd1b6e5be33",
+        "gains_f32le_sha256": "e02195cf313a3ccdf5d52e947f348f3421355c8b3d84384a8f00e168d1629246"
+      }
+    ]
+  },
+  "claim_ceiling": "Private no-copy intake of one exact source-locked R1FU per-profile PGTM2 association parser on one synthetic official Adobe sample only; no image pixels or SDK renders, interpolation, profile-stage application, real-file quality, arbitrary DNG/profile/map, public package/schema/capability, product mapping, stock evidence, automatic matching or candidate-3 change."
+}
