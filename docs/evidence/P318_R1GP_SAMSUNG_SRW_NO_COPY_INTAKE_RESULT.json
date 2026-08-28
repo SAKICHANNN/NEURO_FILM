@@ -1,0 +1,115 @@
+{
+  "schema": "neuro-film.p318-r1gp-samsung-srw-no-copy-intake-evidence.v1",
+  "experiment_id": "P318",
+  "date": "2026-08-28",
+  "status": "PASS_PRIVATE_R1GP_SAMSUNG_SRW_NO_COPY_INTAKE",
+  "decision": "Retain exact no-copy consumer intake of the corrected R1GP Samsung NX500 12/14-bit normal/lossless stored-code callable. Stop adjacent SRW intake expansion.",
+  "bindings": {
+    "consumer_contract_commit": "023bcead",
+    "consumer_audit_commit": "a9ddd11ed5be5eacb244ff59798e932395bc4e5a",
+    "config": {
+      "path": "configs/p318_r1gp_samsung_srw_no_copy_intake_v1.json",
+      "bytes": 6454,
+      "sha256": "158a23717784a6fe045196c7c407eff6f9898e60c9087d6cdcef093e85090fd5"
+    },
+    "audit": {
+      "path": "scripts/audit_p318_r1gp_samsung_srw_no_copy_intake.py",
+      "bytes": 13513,
+      "sha256": "837063cca2024d403f9ebc4162a7c2457ff238f430a7ac11a5615e160ec11fbf"
+    },
+    "forward_report": {
+      "path": "outputs/eval/p318_r1gp_samsung_srw_no_copy_intake_forward.json",
+      "bytes": 5788,
+      "sha256": "f7ca7c892bbb8a3829e9cd55dd7a20369d0f95c277efcdae5670636e8226e99d"
+    },
+    "reverse_report": {
+      "path": "outputs/eval/p318_r1gp_samsung_srw_no_copy_intake_reverse.json",
+      "bytes": 5788,
+      "sha256": "f7ca7c892bbb8a3829e9cd55dd7a20369d0f95c277efcdae5670636e8226e99d"
+    },
+    "producer": {
+      "implementation_commit": "ff21d7abb54e05dd5c7b58def8bea61bf6ef5507",
+      "formal_execution_commit": "1d512949bdf2dbc106c9feb941484084baf436f2",
+      "corrected_contract_commit": "b75807f3f6350d0236fb65c31f4cd7e0fa2c04e9",
+      "evidence_commit": "dd9a9e0db789623be6450de81789e7818afae555",
+      "formal_report_sha256": "15116c661315d2efbda7bb7bc723a51867f22e6333a1f05d3868ad15ed7b5dd5",
+      "stable_identity": "4e880739a1edbbe5f3532cf3926766dffd04cd4fdc5f1fb30eea5c972d7ef88c"
+    }
+  },
+  "formal_result": {
+    "reports_byte_exact": true,
+    "report_bytes": 5788,
+    "report_sha256": "f7ca7c892bbb8a3829e9cd55dd7a20369d0f95c277efcdae5670636e8226e99d",
+    "scientific_identity": "b441105795391831353f484e7efecd2d9947c234b32752ce7ec330f63837cd3e",
+    "gates_passed": 10,
+    "gates_total": 10,
+    "identity_correction": {
+      "corrected_oracle_commit_resolves": true,
+      "corrected_formal_commit_resolves": true,
+      "superseded_oracle_commit_rejects": true,
+      "superseded_formal_commit_rejects": true,
+      "science_source_core_reports_stable_gates_and_claim_changed": false
+    },
+    "rows": [
+      {
+        "id": "nx500_12bit_normal",
+        "geometry_hw": [4336, 6496],
+        "bits_per_sample": 12,
+        "mode_byte": 69,
+        "optflags": 0,
+        "minimum_code": 34,
+        "maximum_code": 4095,
+        "output_uint16le_sha256": "216b1e8ef31db4060c05963640201746a1d7fa4971c2fab229dcdd43007866ae"
+      },
+      {
+        "id": "nx500_12bit_lossless",
+        "geometry_hw": [4336, 6496],
+        "bits_per_sample": 12,
+        "mode_byte": 75,
+        "optflags": 5,
+        "minimum_code": 37,
+        "maximum_code": 4095,
+        "output_uint16le_sha256": "03ae5b4254526f364df5307a235eaa44d3a0d208402f80dc689b65d7ed5e296b"
+      },
+      {
+        "id": "nx500_14bit_normal",
+        "geometry_hw": [4336, 6496],
+        "bits_per_sample": 14,
+        "mode_byte": 69,
+        "optflags": 0,
+        "minimum_code": 132,
+        "maximum_code": 16383,
+        "output_uint16le_sha256": "c8951724d63c286235e663a041919fefad808f53e07e309d55ea052ff6eee9aa"
+      },
+      {
+        "id": "nx500_14bit_lossless",
+        "geometry_hw": [4336, 6496],
+        "bits_per_sample": 14,
+        "mode_byte": 75,
+        "optflags": 5,
+        "minimum_code": 147,
+        "maximum_code": 16383,
+        "output_uint16le_sha256": "530ecc64068094f208e476b04bcdd8ecc9d5f0a45e21fd76c0ae600676898d78"
+      }
+    ],
+    "truncate_one_byte_rejected_each_source": true,
+    "outputs_owned_writable_c_contiguous": true,
+    "sources_immutable": true,
+    "temporary_residue_count": 0
+  },
+  "integrity": {
+    "consumer_core_copied": false,
+    "producer_runner_executed": false,
+    "producer_reference_decoder_executed": false,
+    "default_loader_changed": false,
+    "network_reads": 0,
+    "post_result_source_or_gate_change": false
+  },
+  "rights_and_product": {
+    "source_rights": "raw.pixls.us CC0/Public Domain",
+    "candidate_3": false,
+    "product_mapping": false,
+    "public_package_or_capability": false
+  },
+  "claim_ceiling": "Private no-copy intake of exact R1GP Samsung NX500 12/14-bit normal/lossless stored-code callable only; no generic SRW/Samsung RAW, crop, black subtraction, calibration, white balance, demosaic, colour, quality, default loader, public package/schema/capability, product mapping, stock evidence, automatic matching or candidate-3 change."
+}
