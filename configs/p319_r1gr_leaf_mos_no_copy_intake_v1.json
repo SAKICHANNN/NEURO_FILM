@@ -1,0 +1,109 @@
+{
+  "schema_version": "neuro-film.p319-r1gr-leaf-mos-no-copy-intake.v1",
+  "experiment_id": "P319",
+  "status": "FROZEN_BEFORE_FIRST_CONSUMER_DECODE",
+  "contract_path": "docs/planning/P319_R1GR_LEAF_MOS_NO_COPY_INTAKE_CONTRACT.md",
+  "protocol": "zhuise.leaf-mos-dual-storage-unpack.v1",
+  "producer": {
+    "preregistration_commit": "a850b2f3d5cdb4650185bfd55e64c8285e5f24aa",
+    "source_lock_commit": "70d83ddd643a3cb82541e7b47e3a86abe5b11f0b",
+    "implementation_commit": "b397ed7801182675c17924eef145888622dd7f47",
+    "oracle_commit": "825ea42aeadab502c26d77f7f8c011eeb5a99ab7",
+    "runner_commit": "60a3fae1ba3420e96993c8d453c8d8f7f4114644",
+    "formal_execution_commit": "463e43065d0b18b7cf04c25e612fbd1f0007be50",
+    "contract_commit": "2dcfe3bbef11164332b0f2d3649ae2a4db3d4474",
+    "evidence_commit": "16a9ed3a6d75c0656a8da962f2220780935810ad"
+  },
+  "artifacts": {
+    "preregistration": {
+      "commit_role": "preregistration_commit",
+      "path": "docs/research/R1GR_LEAF_APTUS22_MOS_DUAL_STORAGE_PREREGISTRATION.json",
+      "bytes": 7214,
+      "git_blob": "b456207991ba66384bf381d121907b9181a9e1f4",
+      "sha256": "b06f52b5676187734785c6b9ea8b09ac1b142e21c5e18599f6b329a22f7f260a"
+    },
+    "source_lock": {
+      "commit_role": "source_lock_commit",
+      "path": "docs/research/R1GR_LEAF_APTUS22_MOS_DUAL_STORAGE_SOURCE_LOCK.json",
+      "bytes": 4326,
+      "git_blob": "908071b6593611b754013f9c3ef288ca17dc7ddb",
+      "sha256": "946a419ae8bf3cfa2797cb0c53428cd29e6f3bb70c55f1684064fa8f14d42ac2"
+    },
+    "callable_module": {
+      "commit_role": "implementation_commit",
+      "path": "src/zhuise/leaf_mos.py",
+      "bytes": 7338,
+      "git_blob": "06dba8aca260d4d5ac1769e4ab9df7d1bf9071f1",
+      "sha256": "4f33991c2bfae117a0afa6b30d0e89e20b145db130f93357a41eaf73e0405db6"
+    },
+    "lossless_jpeg_dependency": {
+      "commit_role": "implementation_commit",
+      "path": "src/zhuise/lossless_jpeg.py",
+      "bytes": 24072,
+      "git_blob": "1434ea56f69423e42792bc97ada10e81f4acc657",
+      "sha256": "36901e9d7bac24d74c3a0f600cd9a67452e4a0bd372f25cdd76001658a4a79c5"
+    },
+    "formal_runner": {
+      "commit_role": "runner_commit",
+      "path": "scripts/run_r1gr_leaf_aptus22_mos_dual_storage.py",
+      "bytes": 15019,
+      "git_blob": "60502ba3a7a998bc7cbbdf42f13aecc71ece6c07",
+      "sha256": "a51abe4d22e7dfac36fadb992edf0f642b6634f8f4ba8fa25c3344313e362ddc"
+    },
+    "canonical_fixture": {
+      "commit_role": "runner_commit",
+      "path": "tests/fixtures/r1gr_leaf_aptus22_mos_dual_storage_v1_fixture.json",
+      "bytes": 1005,
+      "git_blob": "b9c407e3aef0a71f2f478fe0048550c1e12aa9e0",
+      "sha256": "a9096f87636ad41645fbc8b7998ea52a274e35f0cacc7603e1c6ef496a4047f0"
+    },
+    "execution_lock": {
+      "commit_role": "formal_execution_commit",
+      "path": "docs/research/R1GR_LEAF_APTUS22_MOS_DUAL_STORAGE_EXECUTION_LOCK.json",
+      "bytes": 3095,
+      "git_blob": "b5b041061e00bcbcd7f2f5f420ab6ec9080161bd",
+      "sha256": "b1e0f76e23fdab8076c0ea963d7b3807bff71cba03577a7f26be4d8b5c7c68e4"
+    },
+    "callable_contract": {
+      "commit_role": "contract_commit",
+      "path": "docs/research/R1GR_LEAF_APTUS22_MOS_DUAL_STORAGE_CALLABLE_V1_CONTRACT.json",
+      "bytes": 2688,
+      "git_blob": "78bb57443fbfc5b3ed76b1f4d05aaf0e6665191d",
+      "sha256": "a86f6859721b5d6b2796f78e8c7c08a5e1657c6e068c54ddca5e1919183bfca1"
+    },
+    "evidence": {
+      "commit_role": "evidence_commit",
+      "path": "docs/evidence/R1GR_LEAF_APTUS22_MOS_DUAL_STORAGE_RESULT.json",
+      "bytes": 5657,
+      "git_blob": "cffdf68da7dbe8a7fe8dc534c12abc12558327f8",
+      "sha256": "3e6b7fc4c75df4fccba3747c78e889aed443202c51a2ceadaa0b19bce44a5193"
+    }
+  },
+  "sources": [
+    {
+      "id": "aptus22_compression99_lossless",
+      "path": "data/r1gr_leaf_aptus22_mos_dual_storage_v1/source/leaf_aptus22_compressed_lossless.mos",
+      "bytes": 23423633,
+      "sha256": "8a1a101cb3940b0648af54a721d92e6fb8612dd29a0909036ea2753196a00ec2",
+      "geometry_hw": [5344, 4008],
+      "compression": 99,
+      "output_uint16le_sha256": "ac1428fcf7739eccabd887037a91afebc44f82a17b0a4c594d1539e7afdf369a"
+    },
+    {
+      "id": "aptus22_compression1_uncompressed",
+      "path": "data/r1gr_leaf_aptus22_mos_dual_storage_v1/source/leaf_aptus22_uncompressed.mos",
+      "bytes": 43365202,
+      "sha256": "2a54d6fb8da0f01a966aaa21b896a036428c83fb2009824bb2ba946b9216a81c",
+      "geometry_hw": [5344, 4008],
+      "compression": 1,
+      "output_uint16le_sha256": "72c012d673654f4544ea7d735cd5291db228ae184ec4401a0431f612a1ccb326"
+    }
+  ],
+  "execution": {
+    "producer_report_bytes": 7107,
+    "producer_report_sha256": "1c186b870342dc33ff5c8614c519fecbaf7368dfe87614a1fc5e38cf3cd514f5",
+    "producer_stable_identity": "00acb2ec0e260457e9fb57fab5345b9db85887dca879ce6ed88d06968ca6ece3",
+    "consumer_controls": ["truncate-one-byte-each-source"]
+  },
+  "claim_ceiling": "Private no-copy intake of exact R1GR Leaf Aptus 22 Compression-99 lossless-JPEG and Compression-1 uncompressed stored-code callable only; no generic MOS/Leaf RAW, other lossless-JPEG profiles, crop, black subtraction, calibration, white balance, demosaic, colour, quality, default loader, public package/schema/capability, product mapping, stock evidence, automatic matching or candidate-3 change."
+}
