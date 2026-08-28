@@ -270,7 +270,7 @@ def run(config_path: Path, output_path: Path, *, reverse: bool) -> dict[str, Any
                         working.pixels.dtype == np.float32,
                         working.pixels.ndim == 3,
                         working.pixels.shape[2] == 3,
-                        working.working_space == "linear_rec2020_d65",
+                        working.working_space == "linear_rec2020",
                         working.transfer_state == "scene_linear",
                         working.source_transfer_state == "scene_linear",
                         working.alpha_policy == "absent",
@@ -295,7 +295,20 @@ def run(config_path: Path, output_path: Path, *, reverse: bool) -> dict[str, Any
             )
         ),
         "inventory_exact": all(
-            item["inventory"] == expected_inventory[item["source_id"]]
+            (
+                item["inventory"] is None
+                and expected_inventory[item["source_id"]] is None
+            )
+            or (
+                item["inventory"] is not None
+                and item["inventory"]["tag_code"] == authority["tag_code"]
+                and {
+                    key: value
+                    for key, value in item["inventory"].items()
+                    if key != "tag_code"
+                }
+                == expected_inventory[item["source_id"]]
+            )
             for item in results
         ),
         "invalid_reject_before_decode": all(
