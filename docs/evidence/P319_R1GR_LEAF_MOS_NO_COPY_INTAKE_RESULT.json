@@ -1,0 +1,85 @@
+{
+  "schema": "neuro-film.p319-r1gr-leaf-mos-no-copy-intake-evidence.v1",
+  "experiment_id": "P319",
+  "date": "2026-08-29",
+  "status": "PASS_PRIVATE_R1GR_LEAF_MOS_NO_COPY_INTAKE",
+  "decision": "Retain exact no-copy consumer intake of the R1GR Leaf Aptus 22 Compression-99 lossless-JPEG and Compression-1 uncompressed stored-code callable. Stop adjacent MOS intake expansion.",
+  "bindings": {
+    "consumer_contract_commit": "d6df30e8",
+    "consumer_audit_commit": "60362683c715d3042e000b2f83ce72b575a251e3",
+    "config": {
+      "path": "configs/p319_r1gr_leaf_mos_no_copy_intake_v1.json",
+      "bytes": 5327,
+      "sha256": "132bb21469f4311c9b1f41038f4db9bbdb01ed761efc1269ea8f48c038ba5c37"
+    },
+    "audit": {
+      "path": "scripts/audit_p319_r1gr_leaf_mos_no_copy_intake.py",
+      "bytes": 11846,
+      "sha256": "76f18a381bffe796dddf84e75c58b4e938d6e257ab841c500fe4f769ff47fa9a"
+    },
+    "forward_report": {
+      "path": "outputs/eval/p319_r1gr_leaf_mos_no_copy_intake_forward.json",
+      "bytes": 4651,
+      "sha256": "584f29a8209f403d88207e9936ec1956ce45ad0c32d7542f9680c869f162812c"
+    },
+    "reverse_report": {
+      "path": "outputs/eval/p319_r1gr_leaf_mos_no_copy_intake_reverse.json",
+      "bytes": 4651,
+      "sha256": "584f29a8209f403d88207e9936ec1956ce45ad0c32d7542f9680c869f162812c"
+    },
+    "producer": {
+      "implementation_commit": "b397ed7801182675c17924eef145888622dd7f47",
+      "formal_execution_commit": "463e43065d0b18b7cf04c25e612fbd1f0007be50",
+      "contract_commit": "2dcfe3bbef11164332b0f2d3649ae2a4db3d4474",
+      "evidence_commit": "16a9ed3a6d75c0656a8da962f2220780935810ad",
+      "formal_report_sha256": "1c186b870342dc33ff5c8614c519fecbaf7368dfe87614a1fc5e38cf3cd514f5",
+      "stable_identity": "00acb2ec0e260457e9fb57fab5345b9db85887dca879ce6ed88d06968ca6ece3"
+    }
+  },
+  "formal_result": {
+    "reports_byte_exact": true,
+    "report_bytes": 4651,
+    "report_sha256": "584f29a8209f403d88207e9936ec1956ce45ad0c32d7542f9680c869f162812c",
+    "scientific_identity": "92eddde7ed380ae1259812dec289a6b826a263ffc3a06caf8c11e37677622eac",
+    "gates_passed": 9,
+    "gates_total": 9,
+    "rows": [
+      {
+        "id": "aptus22_compression99_lossless",
+        "geometry_hw": [5344, 4008],
+        "compression": 99,
+        "minimum_code": 40,
+        "maximum_code": 9835,
+        "output_uint16le_sha256": "ac1428fcf7739eccabd887037a91afebc44f82a17b0a4c594d1539e7afdf369a"
+      },
+      {
+        "id": "aptus22_compression1_uncompressed",
+        "geometry_hw": [5344, 4008],
+        "compression": 1,
+        "minimum_code": 97,
+        "maximum_code": 9810,
+        "output_uint16le_sha256": "72c012d673654f4544ea7d735cd5291db228ae184ec4401a0431f612a1ccb326"
+      }
+    ],
+    "callable_and_dependency_blobs_exact": true,
+    "truncate_one_byte_rejected_each_source": true,
+    "outputs_owned_writable_c_contiguous": true,
+    "sources_immutable": true,
+    "temporary_residue_count": 0
+  },
+  "integrity": {
+    "consumer_core_copied": false,
+    "producer_runner_executed": false,
+    "producer_reference_decoder_executed": false,
+    "default_loader_changed": false,
+    "network_reads": 0,
+    "post_result_source_or_gate_change": false
+  },
+  "rights_and_product": {
+    "source_rights": "raw.pixls.us CC0/Public Domain",
+    "candidate_3": false,
+    "product_mapping": false,
+    "public_package_or_capability": false
+  },
+  "claim_ceiling": "Private no-copy intake of exact R1GR Leaf Aptus 22 Compression-99 lossless-JPEG and Compression-1 uncompressed stored-code callable only; no generic MOS/Leaf RAW, other lossless-JPEG profiles, crop, black subtraction, calibration, white balance, demosaic, colour, quality, default loader, public package/schema/capability, product mapping, stock evidence, automatic matching or candidate-3 change."
+}
