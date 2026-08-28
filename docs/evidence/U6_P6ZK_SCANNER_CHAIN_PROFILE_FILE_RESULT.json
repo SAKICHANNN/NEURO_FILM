@@ -1,0 +1,54 @@
+{
+  "schema": "neuro_film.u6_p6zk_scanner_chain_profile_file_evidence.v1",
+  "node": "U6.P6ZK",
+  "status": "PASS_PRIVATE_BOUNDED_SCANNER_CHAIN_PROFILE_FILE",
+  "decision": "retain_one_bounded_private_research_profile_file_and_close_adjacent_wrapper_expansion",
+  "commits": {
+    "contract": "67eba943891259d9882180199fd2927ba710019c",
+    "implementation": "48cea027acd9706c1cf29ad8fac7dbcb91072c72",
+    "formal_runner": "baf2fb45df04085c7cb7e6779e3559791b3f5bbc"
+  },
+  "bindings": {
+    "contract_sha256": "83c243b45bae504aeb96da778ff080744a2a4115c2089dcf3d7d0b7129a27927",
+    "formal_report_bytes": 2262,
+    "formal_report_sha256": "124d7a47daad779a52693d7c5c2ed0b59352002af4ca139f9d701d61d67b1f4e",
+    "stable_evidence_id": "dae0ccb33e47bc21e60adb7c758e459822d2dd4b23acf526232f8c305a34ba4e",
+    "profile_bytes": 1006,
+    "profile_sha256": "3ebdee37366871460b1f5feaedbe0362c59e593efd3485652a892183bba6b891",
+    "file_bytes": 1162,
+    "file_sha256": "38ed5d2ea154eefdd3f1a264ff86db313f963e3f1ff556c57729fe7ce9c78350",
+    "source_sha256": "2b292e54ae109191f8ff58b277464bf2576b30fc1ff20081d0ae0784aef4dadc",
+    "output_sha256": "11c7b330e0e39d5cf5963bcf2196705281b4886e1ceb2a5ee5d72f9dbc2b7dd0"
+  },
+  "gate_results": {
+    "parent_hashes_exact": true,
+    "artifact_bytes_and_identities_exact": true,
+    "create_only_existing_and_late_destination_atomic": true,
+    "strict_file_and_profile_identity": true,
+    "invalid_files_rejected_before_execution": true,
+    "direct_vs_file_output_bit_exact": true,
+    "repeat_output_exact": true,
+    "source_immutable": true,
+    "formal_artifact_residue_zero": true,
+    "two_reports_exact": true
+  },
+  "invalid_controls": {
+    "wrong_file_identity": true,
+    "wrong_profile_identity": true,
+    "tampered_profile": true,
+    "noncanonical_newline": true,
+    "duplicate_key": true,
+    "oversize": true,
+    "malformed": true,
+    "symlink": "host_creation_forbidden; loader lstat and no-follow boundary retained, portable test executes where host permits symlink creation"
+  },
+  "resource_and_scope": {
+    "network_requests": 0,
+    "external_pixel_reads": 0,
+    "persistent_formal_artifact": false,
+    "machine_paths_embedded": false,
+    "production_integration_allowed": false
+  },
+  "claim_ceiling": "Deterministic bounded local file transport for one generic physical-inspired experimental scanner profile; not scanner calibration, photographic quality, film-stock response, arbitrary profiles, public schema/package/capability, installer/discovery, native runtime, signing or product readiness.",
+  "next_leaf": "Stop adjacent scanner profile wrapper expansion and return to an independent physical-imaging or product gap."
+}
