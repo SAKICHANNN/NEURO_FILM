@@ -20244,3 +20244,30 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   availability, stock calibration/separation claims, packaging or release
   state. Evidence SHA is `e588dcc6...0963d`. Adjacent CLI/catalog expansion now
   stops; the mainline returns to controlled multi-stock evidence.
+
+### 2026-08-28 - P313 verifies six exact Canon sRAW/mRAW files through generic ingress
+
+- **Node and routing:** `ULT > U1 RAW ingress > P313`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the primary workflow; plan-tracker and
+  project-agent-log discipline governed the final propagation. The leaf tests
+  an existing product boundary and copies none of producer R1FX/R1FY.
+- **Freeze and execution:** source/rights contract `b3ed7f87`, audit/test
+  `a9842b74`, committed execution lock `e636a8a7`, evidence/test `8028831d`.
+  Six unique raw.pixls.us CC0 rows bind EOS 50D, 5D Mark II/III/IV and 7D/7D
+  Mark II sRAW/mRAW bytes. No P313 pixel was decoded before the source freeze;
+  formal execution used the unchanged `src/preprocess/raw_decode.py`.
+- **Formal result:** every file inspects and decodes to a nonconstant owned,
+  writable, C-contiguous HxWx3 float32 `linear_srgb/scene_linear`
+  `WorkingImage`; orientation, warnings, source hashes and zero-media/network
+  boundaries pass. Forward/reverse fresh-process reports are byte-identical at
+  17,193 bytes / SHA `be6b90c6...24b78`, scientific `3bf82d09...58ee3c`.
+  Twenty-eight focused/adjacent tests pass; dedicated P313 Ruff, format,
+  py_compile, JSON and diff checks pass. A broader Ruff call only rediscovered
+  two pre-existing findings in the unchanged production loader and is recorded
+  in evidence rather than repaired opportunistically.
+- **Decision:** `PASS_PRIVATE_CANON_SRAW_WORKING_IMAGE_COMPATIBILITY`. This is
+  exact six-file generic-ingress compatibility only. It does not establish
+  vendor-exact colour, general Canon/sRAW support, camera calibration,
+  scene-to-display tone mapping, image quality, a new decoder/interface/
+  package/capability, stock evidence, product promotion or candidate 3.
+  Evidence SHA is `7aaf5262...f4e3a`; adjacent codec-wrapper work is not opened.
