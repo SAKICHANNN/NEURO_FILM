@@ -20194,3 +20194,29 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   quality; P310 storage intake and P257 refusal remain valid. No arbitrary DNG,
   interpolation/stage application, package/schema/capability/product, stock
   evidence or candidate 3 opens. Evidence SHA is `d5903725...d2f0f`.
+
+### 2026-08-28 - P312 independently intakes exact R1FV PGTM2 stage arithmetic
+
+- **Node and routing:** `ULT > U1 DNG ingress > P312`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the primary writer; scientific claim review,
+  structure stewardship and project-agent-log discipline were secondary. This
+  is stage arithmetic, distinct from P310 storage decoding and the closed P311
+  association-identity audit.
+- **Freeze and execution:** contract/config `9507d6e1`, audit/test `e0fcbc8b`,
+  evidence/test `adf4901a`. The consumer verifies immutable R1FV commits and
+  Git blobs rather than mutable producer HEAD, materializes both exact modules
+  only in an owned temporary package, selects sample04 tables by exact profile
+  name, and independently reconstructs the frozen source-free 13x17 probe.
+- **Formal result:** main/extra strict and support-overrange cases plus the
+  gamma2 diagnostic reproduce all six producer float32 hashes. Strict output is
+  `[0,1]`; overrange spans `-1.5777715..4.6080942`; output ownership, input and
+  source immutability, five invalid controls and zero residue pass. Forward and
+  reverse reports are byte-identical at 4,506 bytes / SHA
+  `73e9805f...a6eea`, scientific `b1a6377a...ba2ac`. Twenty-one adjacent tests
+  and Ruff, py_compile, JSON and diff checks pass.
+- **Decision:** `PASS_PRIVATE_R1FV_DNG_PROFILE_GAIN_TABLE2_STAGE_NO_COPY_INTAKE`.
+  The gamma2 control is nondiscriminating because sample04 has equal intensity
+  entries, so no general non-unit-gamma semantics claim is allowed. No raw
+  decode, full renderer, real-file quality, arbitrary DNG/map, default-loader,
+  public package/schema/capability, product mapping, stock evidence or candidate
+  3 opens. Evidence SHA is `f360a347...a3efeb`.
