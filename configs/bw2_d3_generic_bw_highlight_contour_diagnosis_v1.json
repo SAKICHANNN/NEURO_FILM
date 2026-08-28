@@ -1,0 +1,57 @@
+{
+  "schema_id": "neuro-film.generic-bw-highlight-contour-diagnosis-contract.v1",
+  "experiment_id": "BW2.D3",
+  "date": "2026-08-28",
+  "status": "FROZEN_BEFORE_ABLATION_RENDER_OR_REVIEW",
+  "question": "Which single existing generic-B&W stage is necessary for the confirmed BW2.D2 stippled highlight contours?",
+  "parent_evidence": {
+    "path": "docs/evidence/BW2_D2_GENERIC_BW_POPULATION_SEVERE_REVIEW_RESULT.json",
+    "sha256": "205040017bc15122d1d59c2e29708012395ca85e40baed65d7b58725161e796d",
+    "required_status": "FAIL_CLOSED_CONFIRMED_HIGHLIGHT_CONTOUR_ARTIFACTS"
+  },
+  "source": {
+    "manifest": "outputs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1/run_c/manifest.json",
+    "manifest_sha256": "048992242c82a2cd9efd193c6766065c7148ad0607a5505b88185d0ab781b101",
+    "confirmed_fail_ids": ["sony_dslr_a290", "olympus_e_p7", "leica_d_lux_6"],
+    "frozen_pass_control_ids": ["canon_eos_1d_mark_iv", "panasonic_dmc_gf2", "kodak_dcs_pro_14n"]
+  },
+  "renderer": {
+    "profile": "configs/render_profiles/safe_rich_product_v1.json",
+    "profile_sha256": "09722cb48c55d1c4c460220c9f59b9ced81801c1b6fe856708a27f5cc99d39fe",
+    "style_statistics": "configs/film_color_stats.json",
+    "style_statistics_sha256": "1a45e90765e577edd4ca1773fc8c6cf98fd09b8afbdddfa519b1f097c5dd7c04",
+    "guardrails": "configs/color_guardrails.json",
+    "guardrails_sha256": "6669b7bc873febcc74ba7ddcbc1c1584807e38465447a5cdbeb24073efa00aa7",
+    "look_id": "generic_bw",
+    "look_amount": 1.0,
+    "seed": 31
+  },
+  "ordered_single_variable_variants": [
+    {"variant_id": "current", "overrides": {}},
+    {"variant_id": "dither_zero", "overrides": {"dither": 0.0}},
+    {"variant_id": "preserve_luma_detail_zero", "overrides": {"preserve_luma_detail": 0.0}},
+    {"variant_id": "tone_rolloff_zero", "overrides": {"tone_rolloff": 0.0}},
+    {"variant_id": "output_margin_zero", "overrides": {"output_margin": 0}}
+  ],
+  "review": {
+    "crop_size": 384,
+    "criterion": "A stage is necessary only if removing that stage clears the confirmed contour on all three fail rows without creating a confirmed contour on any pass control. This is diagnosis, not a promotion gate.",
+    "categories": ["stippled_highlight_contour", "new_banding_or_posterization", "new_boundary_or_clipping", "detail_or_geometry_loss"]
+  },
+  "formal_execution": {
+    "fresh_processes": 2,
+    "orders": ["canonical", "reverse"],
+    "output_root": "outputs/eval/bw2_d3_generic_bw_highlight_contour_diagnosis_v1",
+    "paths_and_order_excluded_from_scientific_identity": true
+  },
+  "forbidden": {
+    "combined_override": true,
+    "new_parameter_value": true,
+    "threshold_tuning": true,
+    "source_substitution": true,
+    "rewrite_bw2_d2": true,
+    "product_or_population_promotion": true,
+    "named_stock_claim": true
+  },
+  "claim_ceiling": "Single-variable mechanism attribution for three confirmed generic-B&W highlight-contour failures and three frozen pass controls; not a repaired candidate, product promotion, stock response, calibration, preference or multi-stock evidence."
+}
