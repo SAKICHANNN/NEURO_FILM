@@ -7,6 +7,7 @@ import numpy as np
 import pytest
 import tifffile
 
+from scripts.audit_u1_2e_high_precision_adobe_rgb_tiff import run
 from src.preprocess import load_working_image
 from src.preprocess.adobe_rgb_icc import (
     AdobeRGBICCError,
@@ -146,3 +147,11 @@ def test_wrong_profile_remains_fail_closed_at_raster_boundary(tmp_path: Path) ->
     with pytest.raises(ValueError, match="ICC conversion is not implemented"):
         load_working_image(path)
 
+
+def test_formal_audit_passes_and_cleans_scratch(tmp_path: Path) -> None:
+    report = run(
+        ROOT / "configs/u1_2e_high_precision_adobe_rgb_tiff_v1.json",
+        tmp_path / "report.json",
+    )
+    assert report["status"] == "PASS_RGB16_ADOBE_RGB_TIFF_INGRESS"
+    assert all(report["gates"].values())

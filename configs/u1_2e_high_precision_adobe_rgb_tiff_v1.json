@@ -34,5 +34,14 @@
     "clip": false,
     "gamut_map": false
   },
+  "bindings": {
+    "contract_path": "docs/planning/U1_2E_HIGH_PRECISION_ADOBE_RGB_TIFF_CONTRACT.md",
+    "core_paths": [
+      "src/preprocess/adobe_rgb_icc.py",
+      "src/preprocess/raster_decode.py"
+    ],
+    "test_path": "tests/test_u1_2e_high_precision_adobe_rgb_tiff.py",
+    "runner_path": "scripts/audit_u1_2e_high_precision_adobe_rgb_tiff.py"
+  },
   "claim_ceiling": "private RGB16 TIFF input compatibility only"
 }
