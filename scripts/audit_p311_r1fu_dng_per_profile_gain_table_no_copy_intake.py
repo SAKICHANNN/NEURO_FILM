@@ -69,6 +69,16 @@ def _git_blob(repo: Path, commit: str, path: str) -> str:
     ).stdout.strip()
 
 
+def _git_head(repo: Path) -> str:
+    return subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        cwd=repo,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
+
+
 def _verify_artifact(repo: Path, commit: str, binding: dict[str, Any]) -> bytes:
     value = _git_bytes(repo, commit, binding["path"])
     observed = {
@@ -141,6 +151,7 @@ def execute(config_path: Path, producer_repo: Path, order: str) -> dict[str, Any
         raise P311Error("P311 is not source locked")
 
     producer = config["producer"]
+    producer_head_exact = _git_head(producer_repo) == producer["repo_head"]
     artifacts: dict[str, bytes] = {}
     verified: dict[str, dict[str, Any]] = {}
     for name, binding in config["artifacts"].items():
@@ -262,6 +273,7 @@ def execute(config_path: Path, producer_repo: Path, order: str) -> dict[str, Any
             "sha256": _sha256_file(source_path),
         }
         gates = {
+            "producer-head-exact": producer_head_exact,
             "artifact-identities-exact": len(verified) == len(config["artifacts"]),
             "evidence-decision-exact": evidence["decision"] == expected["decision"],
             "evidence-report-identity-exact": evidence["execution"][
