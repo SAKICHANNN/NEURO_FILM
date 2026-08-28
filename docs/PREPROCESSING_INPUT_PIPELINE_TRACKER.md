@@ -140,8 +140,8 @@ decoded. Silent assumptions should become explicit warnings.
 | 3 | Implement SDR raster decode path | partial | JPEG/PNG/TIFF decode to float32 `linear_srgb`; HEIF backend support still pending |
 | 4 | Implement color-management utilities | partial | embedded ICC conversion to sRGB exists; full P3/AdobeRGB/Rec.2020 working transform still pending |
 | 5 | Implement HDR/gain-map detection | pending | HDR and gain-map images are detected and preserved/flagged instead of silently flattened |
-| 6 | Implement RAW decode V1 | partial | rawpy/LibRaw inspection and generic linear decode path exist; broader camera fixture validation pending |
-| 7 | Add evaluation fixtures | partial | tests cover missing file, PNG, JPEG, TIFF; HEIF/HDR/gain-map/RAW decode fixtures pending |
+| 6 | Implement RAW decode V1 | partial | rawpy/LibRaw inspection and generic linear decode path exist; P313 validates six exact CC0 Canon sRAW/mRAW files, while broader cross-make and vendor-exact validation remain pending |
+| 7 | Add evaluation fixtures | partial | tests cover missing file, PNG, JPEG, TIFF and P313's exact six-file Canon sRAW/mRAW cohort; HEIF/HDR/gain-map and broader RAW fixtures remain pending |
 | 8 | Connect FiveK RAW cache builder | pending | FiveK RAW-derived cache generation uses shared preprocessing APIs |
 
 ## 7. Accuracy Rules
@@ -216,6 +216,10 @@ RAW path:
   camera white balance, and daylight white balance;
 - includes a generic `load_raw_working_image` path using camera WB,
   `no_auto_bright=True`, `output_bps=16`, and linear gamma.
+- P313 confirms deterministic `WorkingImage` compatibility on six exact CC0
+  Canon sRAW/mRAW files across six camera models; this is not vendor-exact
+  colour or general RAW support. See
+  `docs/evidence/P313_CANON_SRAW_WORKING_IMAGE_COMPATIBILITY_RESULT.json`.
 
 Verification run:
 
