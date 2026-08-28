@@ -20430,3 +20430,34 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   colour, quality, default loader, package/schema/capability, product, stock
   evidence or candidate 3 opens. Evidence SHA is `8b9121da...813ee`;
   adjacent SRW intake stops.
+
+### 2026-08-29 - P319 independently consumes the exact R1GR Leaf MOS callable
+
+- **Node and routing:** `ULT > U1 RAW ingress > P319`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the primary workflow; plan-tracker,
+  project-structure and project-agent-log discipline governed freeze and
+  propagation. The leaf copies no producer code into consumer `src`, invokes
+  neither producer runner nor LibRaw reference and changes no default loader.
+- **Freeze and implementation:** contract/config commit `d6df30e8` binds the
+  producer preregistration, source lock, implementation, runner, execution
+  lock, callable contract, canonical fixture and evidence objects plus both
+  exact source/output identities. It explicitly binds both callable
+  `leaf_mos.py` and required decoder dependency `lossless_jpeg.py`; the audit
+  imports only those exact Git objects inside an owned temporary package.
+  Audit/test commit is `60362683`, evidence/test commit `ccf68711`. Sources,
+  protocol, output identities and gates were frozen before consumer decode.
+- **Formal result:** Aptus 22 Compression 99 lossless-JPEG and Compression 1
+  big-endian uint16 complete `5344x4008` mosaics reproduce hashes
+  `ac1428fc...369a` and `72c012d6...326` exactly. Source-declared compression,
+  output ownership, source immutability and one-byte truncation rejection pass.
+  Forward/reverse reports are byte-identical at 4,651 bytes / SHA
+  `584f29a8...2812c`, scientific `92eddde7...22eac`; all nine gates pass with
+  zero network and zero residue.
+- **Verification and decision:** four focused tests and three adjacent P317-
+  P319 evidence bindings pass; Ruff, py_compile, JSON and diff checks pass.
+  Decision is `PASS_PRIVATE_R1GR_LEAF_MOS_NO_COPY_INTAKE`, limited to exact
+  private one-camera/two-storage stored-code consumability. No generic MOS or
+  Leaf RAW, crop, black subtraction, calibration, white balance, demosaic,
+  colour, quality, default loader, package/schema/capability, product, stock
+  evidence or candidate 3 opens. Evidence SHA is `49c6f767...fbbef7a`;
+  adjacent MOS intake stops.
