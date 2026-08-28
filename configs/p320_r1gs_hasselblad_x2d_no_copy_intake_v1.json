@@ -1,0 +1,124 @@
+{
+  "schema_version": "neuro-film.p320-r1gs-hasselblad-x2d-no-copy-intake.v1",
+  "experiment_id": "P320",
+  "status": "FROZEN_BEFORE_FIRST_CONSUMER_DECODE",
+  "contract_path": "docs/planning/P320_R1GS_HASSELBLAD_X2D_NO_COPY_INTAKE_CONTRACT.md",
+  "protocol": "zhuise.hasselblad-x2d-dual-container-unpack.v1",
+  "producer": {
+    "preregistration_commit": "8d51b6e13e7ffde8e4bf958c1fd61db25c7ac7ed",
+    "source_lock_commit": "a0d0e5068c8bedc4eddd753863993283095068d0",
+    "implementation_commit": "9df257d5cb8853c03064b9c5cafeb754d9912b79",
+    "oracle_commit": "064087c7c9c803e9b1d450b63ca5e61bbc627de2",
+    "runner_commit": "239682e80451f4f435d7e2eac81e67092b194cbc",
+    "formal_execution_commit": "139e504e6ef5c812fdbfa930e41c54ba6495a0cb",
+    "contract_commit": "1413dd2eae377ece711d258241520942ad4e4d6e",
+    "evidence_commit": "20e9595442ffc707699991ef58de65efd1034adf"
+  },
+  "artifacts": {
+    "preregistration": {
+      "commit_role": "preregistration_commit",
+      "path": "docs/research/R1GS_HASSELBLAD_X2D_DUAL_CONTAINER_PREREGISTRATION.json",
+      "bytes": 6503,
+      "git_blob": "97a83fb2698c2e1483a10e8b0752e141dec2793b",
+      "sha256": "34f4578a5135072793b7d5fe194ef0a9a0e8b861e49837097036c9092ab064e8"
+    },
+    "source_lock": {
+      "commit_role": "source_lock_commit",
+      "path": "docs/research/R1GS_HASSELBLAD_X2D_DUAL_CONTAINER_SOURCE_LOCK.json",
+      "bytes": 5041,
+      "git_blob": "666b7d7a4af17e08f3ab7d42770e0a59737489b7",
+      "sha256": "897af14fff8a40fa9b5e9848f3e2cb3f9148ade197a8d60db6d7e405d31cc0c7"
+    },
+    "callable_module": {
+      "commit_role": "implementation_commit",
+      "path": "src/zhuise/hasselblad_x2d.py",
+      "bytes": 14293,
+      "git_blob": "d581c272bbfc1fa142105d9fd978c7a48371e8c2",
+      "sha256": "09d6a43280582944830b4d12b651f6a8d78158e6b355fb0930825fbf72ace898"
+    },
+    "formal_runner": {
+      "commit_role": "runner_commit",
+      "path": "scripts/run_r1gs_hasselblad_x2d_dual_container.py",
+      "bytes": 15600,
+      "git_blob": "b360ed844b3ec0232c98c81f402defb0c3bea3d0",
+      "sha256": "69f2c2fda638fa994843d45348301af68d83715e86b9f72e6e0acf05961d03f7"
+    },
+    "canonical_fixture": {
+      "commit_role": "contract_commit",
+      "path": "tests/fixtures/r1gs_hasselblad_x2d_dual_container_v1_fixture.json",
+      "bytes": 2260,
+      "git_blob": "961f1e8d7592fc054974efdfb2a517785fcf8555",
+      "sha256": "649ae67b17205b2d06d9ec597562c044f783c372535d7a455e9fc1c27f9d5cdb"
+    },
+    "execution_lock": {
+      "commit_role": "formal_execution_commit",
+      "path": "docs/research/R1GS_HASSELBLAD_X2D_DUAL_CONTAINER_EXECUTION_LOCK.json",
+      "bytes": 4114,
+      "git_blob": "1158cf616007198c0b2c7dc4f7d6244fddb2552a",
+      "sha256": "ee42c3ffd47e8b1b1673ef3c0877000d99a390ac2fc4e811110bb92089d77b3e"
+    },
+    "callable_contract": {
+      "commit_role": "contract_commit",
+      "path": "docs/research/R1GS_HASSELBLAD_X2D_DUAL_CONTAINER_CALLABLE_V1_CONTRACT.json",
+      "bytes": 2736,
+      "git_blob": "4f22685fc38fba6bf0c4d8de063bd3df3597e084",
+      "sha256": "d34d0306da6970d10ff6318fd3f8b57170c192868e41ccbf946aeaeae310a56a"
+    },
+    "evidence": {
+      "commit_role": "evidence_commit",
+      "path": "docs/evidence/R1GS_HASSELBLAD_X2D_DUAL_CONTAINER_RESULT.json",
+      "bytes": 6681,
+      "git_blob": "8bb03745c1be62f472a936015aec7a4b61b49bd4",
+      "sha256": "d7e882f532d65ec8c97d7970f9f2a964c9b97a9e55b44681fd18cef2e86f6596"
+    }
+  },
+  "sources": [
+    {
+      "id": "x2d_3fr_a",
+      "path": "data/r1gs_hasselblad_x2d_dual_container_v1/source/x2d_3fr_a.3FR",
+      "bytes": 213311488,
+      "sha256": "dcc5a4abe3498e6f25e89bb491995fd12c3b669d9277c71b45b49210d3e56280",
+      "geometry_hw": [8842, 11904],
+      "container": "3FR",
+      "compression": 1,
+      "output_uint16le_sha256": "1162dd43aab3f433fae7d525b9c6c7879a4846f68007e3276fdf10b0d0f1b5fa"
+    },
+    {
+      "id": "x2d_fff_a",
+      "path": "data/r1gs_hasselblad_x2d_dual_container_v1/source/x2d_fff_a.fff",
+      "bytes": 160894518,
+      "sha256": "44c38665694e07baf47f1fc34fb9ea0f1bf70eb71b7390183d3c0ef23d164e0f",
+      "geometry_hw": [8842, 11904],
+      "container": "FFF",
+      "compression": 7,
+      "output_uint16le_sha256": "4d8ce9954deab46cc26518fecf5fb18f703740eb77f1e034bb0b11d0e74ece97"
+    },
+    {
+      "id": "x2d_3fr_b",
+      "path": "data/r1gs_hasselblad_x2d_dual_container_v1/source/x2d_3fr_b.3FR",
+      "bytes": 213311488,
+      "sha256": "e19d90bab052b75e2bd04f77d9b9f758a9958ae942ee3e2a8991329a981a0e23",
+      "geometry_hw": [8842, 11904],
+      "container": "3FR",
+      "compression": 1,
+      "output_uint16le_sha256": "71d5f602fc591a9df19235f026d5e880d83da9c00d30c33a994e67dcfa035bbf"
+    },
+    {
+      "id": "x2d_fff_b",
+      "path": "data/r1gs_hasselblad_x2d_dual_container_v1/source/x2d_fff_b.fff",
+      "bytes": 160885346,
+      "sha256": "44977fdaa3063eacbb2ac416dfb531bb4e3b96f3745d073dc49fb1ebcd78bedc",
+      "geometry_hw": [8842, 11904],
+      "container": "FFF",
+      "compression": 7,
+      "output_uint16le_sha256": "5eddfff57cf371e9371ff256eb79847b161bab40acfad943d2e0a75f2a44a49b"
+    }
+  ],
+  "execution": {
+    "producer_report_bytes": 11173,
+    "producer_report_sha256": "2a52d4745262468f5d1780e2f1722911fe0cd1d83f4f296dbcfdf160e07fa045",
+    "producer_stable_identity": "85da60f1da7e39a76c6ac8f89c2681a1d21b24967eb980b0cedf69ea9857091e",
+    "consumer_controls": ["truncate-one-byte-each-source"]
+  },
+  "claim_ceiling": "Private no-copy intake of exact R1GS Hasselblad X2D 100C two-3FR/two-FFF stored-code callable only; no generic 3FR/FFF/Hasselblad RAW, crop, black subtraction, calibration, white balance, demosaic, colour, quality, default loader, public package/schema/capability, product mapping, stock evidence, automatic matching or candidate-3 change."
+}
