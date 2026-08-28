@@ -20399,3 +20399,34 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   calibration, white balance, colour, quality, default loader,
   package/schema/capability, product, stock evidence or candidate 3 opens.
   Evidence SHA is `81ca041e...a96e4`; adjacent X3F intake stops.
+
+### 2026-08-28 - P318 independently consumes the corrected R1GP Samsung SRW callable
+
+- **Node and routing:** `ULT > U1 RAW ingress > P318`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the primary workflow; plan-tracker,
+  project-structure and project-agent-log discipline governed freeze and
+  propagation. The leaf copies no producer code into consumer `src`, invokes
+  neither producer runner nor LibRaw reference and changes no default loader.
+- **Identity correction and freeze:** initial contract `6f59c657` mistyped the
+  expanded oracle and formal-execution commit IDs. Consumer preflight required
+  corrected IDs to resolve and both superseded IDs to reject before source
+  decode. Contract/config commit `023bcead` binds corrected contract
+  `b75807f3`, exact core blob and the unchanged source/report/stable identities.
+  Audit/test commit is `a9ddd11e`, evidence/test commit `dc6c05ae`. Sources,
+  core, fixture, reports, metrics, gates and claim did not change.
+- **Formal result:** NX500 12-bit normal/lossless and 14-bit normal/lossless
+  complete `4336x6496` uint16 mosaics reproduce hashes
+  `216b1e8e...866ae`, `03ae5b42...e296b`, `c8951724...ee9aa` and
+  `530ecc64...98d78` exactly. Source-declared bit depth, mode byte and
+  optflags, output ownership, source immutability and one-byte truncation
+  rejection pass. Forward/reverse reports are byte-identical at 5,788 bytes /
+  SHA `f7ca7c89...6e99d`, scientific `b4411057...cd3e`; all ten gates pass
+  with zero network and zero residue.
+- **Verification and decision:** four focused tests and three adjacent P316-
+  P318 evidence bindings pass; Ruff, py_compile, JSON and diff checks pass.
+  Decision is `PASS_PRIVATE_R1GP_SAMSUNG_SRW_NO_COPY_INTAKE`, limited to exact
+  private one-camera/four-mode stored-code consumability. No generic SRW or
+  Samsung RAW, crop, black subtraction, calibration, white balance, demosaic,
+  colour, quality, default loader, package/schema/capability, product, stock
+  evidence or candidate 3 opens. Evidence SHA is `8b9121da...813ee`;
+  adjacent SRW intake stops.
