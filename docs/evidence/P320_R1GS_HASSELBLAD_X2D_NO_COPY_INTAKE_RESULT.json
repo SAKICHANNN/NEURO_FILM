@@ -1,0 +1,113 @@
+{
+  "schema": "neuro-film.p320-r1gs-hasselblad-x2d-no-copy-intake-evidence.v1",
+  "experiment_id": "P320",
+  "date": "2026-08-29",
+  "status": "FAIL_CLOSED_R1GS_HASSELBLAD_X2D_NO_COPY_INTAKE",
+  "decision": "Close the exact P320 consumer intake because the frozen whole-file one-byte truncation control is not rejected for either 3FR source. Preserve producer R1GS callable evidence unchanged and do not replace the control with raw-payload truncation after observing the result.",
+  "bindings": {
+    "consumer_contract_commit": "716340876b8f5cba95a3e5b7ac7a0fb94606e91d",
+    "consumer_audit_commit": "2fd5f650c0695002b1c7c0e5167777a755bd854d",
+    "consumer_reportability_correction_commit": "869b04ebc2d28335e879076086673006ccd70983",
+    "config": {
+      "path": "configs/p320_r1gs_hasselblad_x2d_no_copy_intake_v1.json",
+      "bytes": 5799,
+      "sha256": "3901e2d0ea6f75c317a40612f3ea85d2c988dd30868bcbcfd2b0ebf0d183c374"
+    },
+    "audit": {
+      "path": "scripts/audit_p320_r1gs_hasselblad_x2d_no_copy_intake.py",
+      "bytes": 11531,
+      "sha256": "4f6bc2c833169483ac77aa39dd66e048a470351e90827dd56bd077940f2c0373"
+    },
+    "forward_report": {
+      "path": "outputs/eval/p320_r1gs_hasselblad_x2d_no_copy_intake_forward.json",
+      "bytes": 5427,
+      "sha256": "7df738503d972030293b2d2cc4df90128264d3dbf981fcd05eb71fee458d41b3"
+    },
+    "reverse_report": {
+      "path": "outputs/eval/p320_r1gs_hasselblad_x2d_no_copy_intake_reverse.json",
+      "bytes": 5427,
+      "sha256": "7df738503d972030293b2d2cc4df90128264d3dbf981fcd05eb71fee458d41b3"
+    },
+    "producer": {
+      "implementation_commit": "9df257d5cb8853c03064b9c5cafeb754d9912b79",
+      "formal_execution_commit": "139e504e6ef5c812fdbfa930e41c54ba6495a0cb",
+      "contract_commit": "1413dd2eae377ece711d258241520942ad4e4d6e",
+      "evidence_commit": "20e9595442ffc707699991ef58de65efd1034adf",
+      "formal_report_sha256": "2a52d4745262468f5d1780e2f1722911fe0cd1d83f4f296dbcfdf160e07fa045",
+      "stable_identity": "85da60f1da7e39a76c6ac8f89c2681a1d21b24967eb980b0cedf69ea9857091e"
+    }
+  },
+  "formal_result": {
+    "reports_byte_exact": true,
+    "report_bytes": 5427,
+    "report_sha256": "7df738503d972030293b2d2cc4df90128264d3dbf981fcd05eb71fee458d41b3",
+    "scientific_identity": "c9c13edd38528013d640387468bd6fc1e8c07a2e317d725a108eff0ffb42f20d",
+    "gates_passed": 8,
+    "gates_total": 9,
+    "failed_gate": "truncation-controls-reject",
+    "rows": [
+      {
+        "id": "x2d_3fr_a",
+        "geometry_hw": [8842, 11904],
+        "container": "3FR",
+        "compression": 1,
+        "minimum_code": 0,
+        "maximum_code": 65535,
+        "output_uint16le_sha256": "1162dd43aab3f433fae7d525b9c6c7879a4846f68007e3276fdf10b0d0f1b5fa",
+        "truncate_whole_file_one_byte_rejected": false
+      },
+      {
+        "id": "x2d_fff_a",
+        "geometry_hw": [8842, 11904],
+        "container": "FFF",
+        "compression": 7,
+        "minimum_code": 0,
+        "maximum_code": 65535,
+        "output_uint16le_sha256": "4d8ce9954deab46cc26518fecf5fb18f703740eb77f1e034bb0b11d0e74ece97",
+        "truncate_whole_file_one_byte_rejected": true
+      },
+      {
+        "id": "x2d_3fr_b",
+        "geometry_hw": [8842, 11904],
+        "container": "3FR",
+        "compression": 1,
+        "minimum_code": 0,
+        "maximum_code": 65535,
+        "output_uint16le_sha256": "71d5f602fc591a9df19235f026d5e880d83da9c00d30c33a994e67dcfa035bbf",
+        "truncate_whole_file_one_byte_rejected": false
+      },
+      {
+        "id": "x2d_fff_b",
+        "geometry_hw": [8842, 11904],
+        "container": "FFF",
+        "compression": 7,
+        "minimum_code": 0,
+        "maximum_code": 65535,
+        "output_uint16le_sha256": "5eddfff57cf371e9371ff256eb79847b161bab40acfad943d2e0a75f2a44a49b",
+        "truncate_whole_file_one_byte_rejected": true
+      }
+    ],
+    "callable_blob_exact": true,
+    "outputs_exact_owned_writable_c_contiguous": true,
+    "sources_immutable": true,
+    "temporary_residue_count": 0,
+    "failure_interpretation": "The frozen control deletes the last byte of the complete file. For 3FR, the raw payload is not the file tail, so this mutation leaves the frozen raw payload complete and the callable still returns the same valid mosaic. The control therefore does not establish malformed raw input for 3FR, but its preregistered all-source rejection gate remains binding and fails."
+  },
+  "integrity": {
+    "consumer_core_copied": false,
+    "producer_runner_executed": false,
+    "producer_reference_decoder_executed": false,
+    "default_loader_changed": false,
+    "network_reads": 0,
+    "post_result_source_control_or_gate_change": false,
+    "reportability_only_correction": "After the first run raised on the failed gate before publishing a report, commit 869b04eb changed only failure reporting to return the canonical FAIL_CLOSED report. Inputs, callable, controls, gate values, stop rule and claim were unchanged before the accepted forward/reverse reruns."
+  },
+  "rights_and_product": {
+    "source_rights": "raw.pixls.us CC0/Public Domain",
+    "candidate_3": false,
+    "product_mapping": false,
+    "public_package_or_capability": false,
+    "producer_r1gs_pass_changed": false
+  },
+  "claim_ceiling": "Formal negative for the exact P320 consumer no-copy intake only. Producer R1GS remains a private exact one-camera/two-container/four-file callable PASS. P320 opens no generic 3FR/FFF/Hasselblad RAW, crop, black subtraction, calibration, white balance, demosaic, colour, quality, default loader, public package/schema/capability, product mapping, stock evidence, automatic matching or candidate-3 change."
+}
