@@ -19645,3 +19645,34 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   white point, create a WorkingImage, generalize to arbitrary `.hdr`, or map
   this private primitive to package/schema/capability/product admission.
   Candidate count remains `2/3`.
+
+### 2026-08-28 - P306 closes the exact-source Radiance RGBE roundtrip
+
+- **Node and routing:** `ULT > mature RAW/DNG/HDR explicit infrastructure >
+  P306`, DRPT L2 / Mode C. `dev-research-reliability` was the primary writer;
+  scientific claim review, structure stewardship and project-agent-log
+  discipline were secondary. The leaf fills P305's outbound container gap
+  only; it does not create colour identity or product HDR support.
+- **Freeze and implementation:** contract `159cd5dc` binds exact P305 source,
+  RGBE-code and decoded-float hashes plus official Radiance `color.c` revision
+  2.16 (6,492 bytes / SHA `2b60358e...d7a4a2`). Implementation/formal commit
+  `718663e1` adds official `setcolr` quantization, exact `fwritecolrs` packet
+  selection and create-only publication. A precommit test corrected an
+  over-strict local overflow check: official maximum primaries occupy `255.x`
+  before uint8 truncation. The frozen exact P305 gates and source were not
+  changed; arbitrary float losslessness was never a gate.
+- **Formal evidence:** two fresh compiled-oracle runs produce byte-exact
+  1,803-byte reports / SHA `620f13a2...8346c`, scientific
+  `e4e663d6...257f66`. Python, independent official-C and the original CC0
+  source share the exact 1,573,705-byte container SHA `39a9c6b3...b65b`;
+  codes and decoded float hashes equal P305. Create-only failure atomicity,
+  five invalid controls, immutability and zero media residue all pass.
+  Evidence commit `0c65f421`; tracked evidence SHA
+  `984dc37c...e46dc`; 19 adjacent tests plus Ruff, compile, JSON and diff
+  checks pass.
+- **Decision and handoff:**
+  `PASS_PRIVATE_POLYHAVEN_RADIANCE_RGBE_WRITER`. Retain the source-locked
+  unlabelled arithmetic/container primitive and close adjacent RGBE wrappers,
+  performance or generic-format expansion. Do not infer primaries/white point,
+  create WorkingImage/default dispatch, or map package/schema/capability/
+  product admission. Candidate count remains `2/3`.
