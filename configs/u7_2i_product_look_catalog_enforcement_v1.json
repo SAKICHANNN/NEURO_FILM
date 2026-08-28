@@ -23,6 +23,11 @@
     "product_profile_sha256": "09722cb48c55d1c4c460220c9f59b9ced81801c1b6fe856708a27f5cc99d39fe",
     "parent_u7_2h_evidence_sha256": "47ca4a8ab95568b98386eec6f401c33a1ff56ebcbac667e5cf36ad06c0731b1a"
   },
+  "prechange_legacy_hp5_oracle": {
+    "fixture_sha256": "71168122db6b170b5543d3bf9f0b0d71bbc58cfbb52dbe02a289d25b0753fee2",
+    "output_sha256": "0524c390a7725a61cffc3805184f65fc372262c24d94b50407deccca30ca73ee",
+    "normalized_recipe_sha256": "e65798ed467c0568d901840ed7c2ea70f58b45cc7ebf83770c83cb4e0b3569c8"
+  },
   "gates": {
     "non_catalog_product_styles_reject_before_input_decode": true,
     "catalog_blocked_style_rejects_before_input_decode": true,
