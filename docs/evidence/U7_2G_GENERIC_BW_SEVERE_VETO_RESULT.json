@@ -1,0 +1,71 @@
+{
+  "schema_id": "neuro-film.u7-2g-generic-bw-severe-veto-evidence.v1",
+  "experiment_id": "U7.2G",
+  "date": "2026-08-28",
+  "status": "PASS",
+  "implementation_commit": "e816720bb08e17071080b42f3a7225fb36df4838",
+  "bindings": {
+    "contract": {
+      "path": "configs/u7_2g_generic_bw_severe_veto_v1.json",
+      "sha256": "a69a642800c2d585b1574389ea4971bf17cc666620b63fd2cf927db770e34cba"
+    },
+    "parent_evidence": {
+      "path": "docs/evidence/BW2_D2_GENERIC_BW_POPULATION_SEVERE_REVIEW_RESULT.json",
+      "sha256": "205040017bc15122d1d59c2e29708012395ca85e40baed65d7b58725161e796d",
+      "required_status": "FAIL_CLOSED_CONFIRMED_HIGHLIGHT_CONTOUR_ARTIFACTS"
+    },
+    "catalog": {
+      "path": "src/inference/product_look_catalog.py",
+      "sha256": "dd48420ed7d14fc505cbd3cc1f8daed76310922b4aa0564f153cad268facebe7"
+    },
+    "recipe_replay": {
+      "path": "src/inference/style_safe_engine.py",
+      "sha256": "ca893a3dcb9c91fe403f12e237fd2c86acbb3d3954cb501a4f605a376e1feb9e"
+    },
+    "cli": {
+      "path": "scripts/render_film.py",
+      "sha256": "c02f0ef23b747142a69ca087fd85e9cbb18a86f66fe39778eef08b83182cd6c3"
+    },
+    "formal_runner": {
+      "path": "scripts/audit_u7_2g_generic_bw_severe_veto.py",
+      "sha256": "5a159c0fd2d6f6a2605bfb8510fc4939a222be999c4653d1e6349a98fe5ac714"
+    }
+  },
+  "formal_reports": {
+    "forward_path": "outputs/eval/u7_2g_generic_bw_severe_veto_v1/formal.json",
+    "reverse_path": "outputs/eval/u7_2g_generic_bw_severe_veto_v1/formal_replay.json",
+    "bytes_each": 5200,
+    "sha256": "8f2588dc06861393bfde46a5d5aa86a0541c979a24ddadc6d0323ef26846d872",
+    "forward_reverse_byte_exact": true
+  },
+  "catalog_result": {
+    "ordered_look_ids": [
+      "velvia_50",
+      "portra_400",
+      "ektar_100",
+      "generic_bw"
+    ],
+    "available_colour_look_count": 3,
+    "generic_bw_availability": "blocked_severe_artifact",
+    "generic_bw_reason_contains_confirmed_failure_count": true
+  },
+  "execution_result": {
+    "colour_output_count": 3,
+    "colour_output_hashes_unique": true,
+    "generic_bw_dispatch_blocked_before_pixel_validation": true,
+    "generic_bw_recipe_blocked_before_profile_or_input_read": true,
+    "generic_bw_cli_blocked_before_input_decode": true,
+    "blocked_cli_residue_count": 0,
+    "all_ten_formal_gates_pass": true
+  },
+  "retained_boundaries": {
+    "historical_bw2_d1_mechanical_replay_code_retained": true,
+    "generic_bw_algorithm_or_parameters_changed": false,
+    "three_colour_look_algorithms_or_outputs_changed": false,
+    "named_hp5_or_tri_x_claim_opened": false,
+    "controlled_stock_evidence_gap_unchanged": true,
+    "multi_stock_completion": false
+  },
+  "decision": "Keep generic_bw discoverable with a source-bound BW2.D2 severe-artifact veto, but reject product dispatch, CLI execution and recipe replay before input decode or pixel execution. Preserve the three colour Look Approximation controls and historical generic B&W mechanical evidence unchanged.",
+  "claim_ceiling": "Product severe-veto propagation only; no algorithm repair, named-stock B&W claim, calibrated response or multi-stock completion."
+}
