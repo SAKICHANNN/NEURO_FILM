@@ -19978,3 +19978,33 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   already-supported sRGB and ProPhoto profiles. It does not establish arbitrary
   TIFF, PNG orientation, RAW camera orientation, HDR, multipage/alpha, new ICC,
   stock calibration or a film operator.
+
+### 2026-08-28 - U1.2E adds strict Adobe-RGB-compatible RGB16 TIFF ingress
+
+- **Node and routing:** `ULT > U1.2 > U1.2E`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the primary writer; scientific claim review,
+  structure stewardship and project-agent-log discipline were secondary. The
+  leaf fills one real high-bit-depth input boundary and does not reopen generic
+  ICC expansion or replace the stock-first research programme.
+- **Freeze and implementation:** contract/config `a6f809d5`, core `677cf47a`,
+  audit/tests `83a48474` and source-normalization correction `f96facaa`, evidence
+  `3009244a`. The decoder accepts only single-page contiguous uint16 RGB TIFF
+  with a strict RGB/XYZ matrix-shaper profile matching Adobe RGB (1998)
+  colourants and its shared 563/256 transfer exponent. It supports explicitly
+  validated D50 or D65 media-white encodings, applies orientation before colour
+  conversion and produces unclipped linear Rec.2020/D65. The project does not
+  distribute an Adobe profile; formal fixtures use a local CC-BY-SA compatible
+  profile plus a separately generated D50 encoding.
+- **Formal result:** both profile encodings and Orientation=6 match an
+  independent float64 matrix/Bradford/transfer oracle exactly after the owned
+  float32 output boundary. Source/profile immutability, malformed/nonuniform
+  TRC, wrong-primary, and existing sRGB16/ProPhoto regression controls pass.
+  Forward/reverse committed-head processes produce byte-identical 2,456-byte
+  reports at SHA `cf259280...e13134`; 46 focused/adjacent tests pass, with
+  owned-file Ruff, py_compile, JSON and residue checks clean.
+- **Decision:** `PASS_RGB16_TIFF_ADOBE_RGB_COMPATIBLE_INGRESS`. This establishes
+  only a deterministic private WorkingImage input-compatibility boundary. It
+  does not distribute Adobe assets, accept arbitrary ICC/TIFF/PNG/RAW/HDR,
+  prove wide-gamut film-render safety, calibrate a stock, or promote any
+  three-stock product path. Adjacent ICC-format expansion stops here; the next
+  work returns to a directly discriminating multi-stock data or product gap.
