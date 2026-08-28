@@ -429,6 +429,30 @@ def _is_supported_srgb_profile(profile: bytes) -> bool:
         return False
 
 
+def _apply_tiff_orientation(array: np.ndarray, orientation: int) -> np.ndarray:
+    """Apply TIFF/EXIF Orientation using only lossless axis operations."""
+
+    if orientation == 1:
+        oriented = array
+    elif orientation == 2:
+        oriented = array[:, ::-1]
+    elif orientation == 3:
+        oriented = array[::-1, ::-1]
+    elif orientation == 4:
+        oriented = array[::-1, :]
+    elif orientation == 5:
+        oriented = np.swapaxes(array, 0, 1)
+    elif orientation == 6:
+        oriented = np.rot90(array, k=3, axes=(0, 1))
+    elif orientation == 7:
+        oriented = np.swapaxes(array, 0, 1)[::-1, ::-1]
+    elif orientation == 8:
+        oriented = np.rot90(array, k=1, axes=(0, 1))
+    else:
+        raise ValueError(f"invalid TIFF Orientation value: {orientation}")
+    return np.ascontiguousarray(oriented)
+
+
 def _load_srgb16_tiff(path: Path, inspection: InputInspection) -> np.ndarray:
     with tifffile.TiffFile(path) as tif:
         page = tif.pages[0]
@@ -439,8 +463,7 @@ def _load_srgb16_tiff(path: Path, inspection: InputInspection) -> np.ndarray:
         orientation = int(orientation_tag.value) if orientation_tag is not None else 1
     if array.dtype != np.uint16 or array.ndim != 3 or array.shape[2] != 3:
         raise ValueError("high-precision TIFF ingress requires contiguous uint16 RGB")
-    if orientation != 1:
-        raise ValueError("high-precision TIFF orientation handling is not implemented")
+    array = _apply_tiff_orientation(array, orientation)
     if profile and not _is_supported_srgb_profile(profile):
         raise ValueError("16-bit TIFF embedded ICC conversion is not implemented for this profile")
     if inspection.source_profile.kind == "icc" and not profile:
@@ -458,8 +481,7 @@ def _load_prophoto16_tiff(path: Path, inspection: InputInspection) -> np.ndarray
         orientation = int(orientation_tag.value) if orientation_tag is not None else 1
     if array.dtype != np.uint16 or array.ndim != 3 or array.shape[2] != 3:
         raise ValueError("high-precision TIFF ingress requires contiguous uint16 RGB")
-    if orientation != 1:
-        raise ValueError("high-precision TIFF orientation handling is not implemented")
+    array = _apply_tiff_orientation(array, orientation)
     if inspection.source_profile.kind != "icc" or not profile:
         raise ValueError("TIFF ICC inspection/decode mismatch")
     try:
