@@ -20307,3 +20307,33 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   evidence, product promotion, a new decoder/interface or candidate 3.
   Evidence commit is `68376434`; evidence SHA is
   `e2b097eb...53abb1`. Adjacent Canon/codec expansion stops.
+
+### 2026-08-28 - P315 independently consumes the exact R1GL Nikon NEF callable
+
+- **Node and routing:** `ULT > U1 RAW ingress > P315`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the primary workflow; plan-tracker,
+  project-structure and project-agent-log discipline governed freeze and
+  propagation. The leaf copies no producer code into consumer `src` and makes
+  no default-loader change.
+- **Freeze and implementation:** contract/config commit `f14e7e5e`, isolated
+  Git-object audit/test commit `58f1cf78`, evidence/test commit `e8cebc73`.
+  The audit verifies the complete producer preregistration, implementation,
+  runner, execution-lock, callable contract, canonical fixture and evidence
+  objects, then imports only exact `nikon_nef.py` inside an owned temporary
+  package. It never invokes the producer runner or reference decoder.
+- **Formal result:** D6 12-bit `3728x5584` and D3S 14-bit `2844x4288`
+  complete uint16 arrays reproduce hashes `1fc2203c...5e57` and
+  `e64e6ffe...21d0` exactly. Output ownership, source immutability, embedded
+  callable identity and one-byte truncation rejection pass. Forward/reverse
+  reports are byte-identical at 4,100 bytes / SHA `592a0dc8...3c505`,
+  scientific `b0187601...b9c85`; all nine gates pass. The initial focused
+  run decoded both rows successfully and failed only a case-sensitive claim
+  text assertion, corrected before the audit commit and formal reports without
+  changing inputs, code-under-test, outputs, controls, gates or claim.
+- **Verification and decision:** four focused tests and three adjacent evidence
+  bindings pass; Ruff, py_compile, JSON and diff checks pass. Decision is
+  `PASS_PRIVATE_R1GL_NIKON_NEF_NO_COPY_INTAKE`, limited to exact private
+  two-model/two-bit-depth unpack consumability. No generic Nikon NEF/lossless,
+  HE/split, crop, calibration, black/WB/demosaic/colour, quality, default
+  loader, package/schema/capability, product, stock evidence or candidate 3
+  opens. Evidence SHA is `6e0213f1...453fa`; adjacent Nikon intake stops.
