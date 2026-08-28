@@ -19708,3 +19708,37 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   confirmation from this cohort. Named HP5/Tri-X response, calibration and
   multi-stock completion remain closed. Stop this exact family and return
   effort to independently controlled stock evidence and product-core work.
+
+### 2026-08-28 - P307 closes Cambridge HDR-deghost intake on exact role structure
+
+- **Node and routing:** `ULT > genuinely new physical capture observations >
+  P307`, DRPT L2 / Mode C. `dev-research-reliability` was the primary writer;
+  scientific claim review, DRPT propagation, structure stewardship and
+  project-agent-log discipline were secondary. Producer R1DN overlap was
+  checked first: it consumed only 12 part1 `ground_truth/raw` groups, while
+  parts2/3 and motion-bearing stacks remained unread.
+- **Freeze and transport:** contract `9c219f4a`, runner lock `444911a7`,
+  direct-entry fix `ce294ce8`, exact metadata corrections
+  `fa6abf07`/`7299e165`, and archive/role gate separation `7be88270` bind
+  Cambridge DOI `10.17863/CAM.6881`, CC BY 4.0, exact part2/3 UUIDs, sizes,
+  MD5s, 128-KiB tails and central directories. The first formal command
+  stopped before network on direct-entry import failure; later corrections
+  only normalized official CRLF/README spelling and separated mechanical ZIP
+  safety from scientific role completeness.
+- **Formal result:** committed shared HEAD `adb8e154`; two fresh forward/reverse
+  reports are byte-exact at 5,936 bytes / SHA `5a557262...03d7b`, scientific
+  `9f8159fd...c14ccb`. Per report, five metadata requests plus four strict
+  ranges consume 368,432 bytes. Official identity, CC BY, paired semantics,
+  Range transport, ZIP safety, all six fresh categories/24 groups, R1DN
+  exclusion and zero part1/local-header/member/image/RAW/pixel/model reads
+  pass. Part2 has 330 members/12 groups and part3 328/12; the sole failure is
+  `losm/image_set2`, whose ghosted JPEG and RAW roles each contain six files
+  while both ground-truth roles contain five.
+- **Decision:**
+  `FAIL_CLOSED_CAMBRIDGE_HDR_DEGHOST_SOURCE_STRUCTURE_GAP_NOT_SCIENTIFIC_RESULT`.
+  Do not choose a favorable five-frame subset, alter the frozen role count,
+  request member bodies or interpret this as fusion/deghosting quality.
+  Evidence commit `be01fda6`, evidence SHA `9908de9e...18049`; 28 focused and
+  adjacent P304-P307 tests plus Ruff, compile, JSON and diff checks pass.
+  Candidate count stays `2/3`; no package/schema/capability/product mapping
+  opens.
