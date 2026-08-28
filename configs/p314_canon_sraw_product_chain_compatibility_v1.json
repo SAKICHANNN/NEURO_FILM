@@ -40,9 +40,9 @@
     },
     "runner": {
       "path": "scripts/audit_p314_canon_sraw_product_chain_compatibility.py",
-      "bytes": 11916,
-      "sha256": "ff2bec1f40925f94c56eae3b432c02e550b2c658b8017002957febbe9eff44f3",
-      "implementation_commit": "a94d55ff753c7cc6ffe52da6c1008a2379c98f69"
+      "bytes": 12740,
+      "sha256": "e0b6d89bb51e0bbcc63e2f46c018f325d61cbda1d83e570b5da6ea82497d5bd5",
+      "implementation_commit": "b16346e1fb5608ccfaea2b538d55bc9060f21436"
     },
     "test": {
       "path": "tests/test_p314_canon_sraw_product_chain_compatibility.py",
@@ -77,6 +77,19 @@
         "recipe_replays": 6,
         "reports_written": 0,
         "retained_media_files": 0
+      }
+    },
+    {
+      "commit": "b16346e1fb5608ccfaea2b538d55bc9060f21436",
+      "scope": "Align the audit assertion with the already-frozen v1 recipe contract: recipe paths are absolute resolved identities, and Look Approximation is represented by render_mode/output_label/evidence_grade/calibrated_reference_allowed plus the profile evidence ceiling. The original identity gate, sources, rendered bytes and product behavior are unchanged.",
+      "excluded_report": {
+        "bytes": 10544,
+        "sha256": "b41ccd665244a0dd02fb8969e2fa96f324b6b4d7b0edc317423212441a2e2437",
+        "decision": "FAIL_CLOSED_CANON_SRAW_PRODUCT_CHAIN_COMPATIBILITY",
+        "failed_gate": "all_recipe_fields_exact",
+        "all_cli_success": true,
+        "all_replays_byte_exact": true,
+        "scratch_residue_files": 0
       }
     }
   ],
