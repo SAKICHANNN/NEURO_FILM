@@ -33,7 +33,8 @@ state?
    nonzero exponents; zero exponent maps to exact black.
 4. In two fresh processes and opposite check order, compare the full decoded
    array to installed OpenCV's independent compiled Radiance decoder after
-   BGR-to-RGB reordering.
+   BGR-to-RGB reordering and account for the explicitly documented semantic
+   difference below.
 5. Freeze exact source/container/header/shape/range/hash/replay and invalid
    controls before interpretation.
 
@@ -41,9 +42,22 @@ state?
 
 All gates must pass: official CC0/source/API identity, exact payload
 size+MD5+SHA-256, 1024x512 RGB float32 decode, finite/nonnegative values,
-owned/contiguous/writable output, maximum absolute parity error <= `1e-7`,
-source immutability, two reports exact, and malformed/truncated/orientation/
-trailing-data controls all reject before output.
+owned/contiguous/writable output, maximum absolute official-semantics residual
+<= `1e-7`, source immutability, two reports exact, and malformed/truncated/
+orientation/trailing-data controls all reject before output.
+
+## Pre-implementation oracle correction
+
+After this contract was first committed but before implementation lock or any
+formal report, a bounded full-file diagnostic found that OpenCV decodes every
+nonzero RGBE primary at the quantization-bin lower edge, while Radiance's
+official `colr_color` uses `(primary + 0.5) * 2^(E-136)`. The official source
+formula is authoritative. OpenCV remains an independent container/RLE/code
+oracle only: its full output plus the exact per-pixel half-bin correction from
+the frozen RGBE exponent must equal the candidate within `1e-7`. The raw
+OpenCV difference is reported, not treated as candidate failure and not hidden
+by a tolerance change. Source, parser scope, invalid controls and claim ceiling
+are unchanged.
 
 Failure closes this exact parser/source pair without tolerance, orientation,
 header, decoder or source substitution. Passing opens only a private
