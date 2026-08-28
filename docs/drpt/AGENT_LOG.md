@@ -20337,3 +20337,35 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   HE/split, crop, calibration, black/WB/demosaic/colour, quality, default
   loader, package/schema/capability, product, stock evidence or candidate 3
   opens. Evidence SHA is `6e0213f1...453fa`; adjacent Nikon intake stops.
+
+### 2026-08-28 - P316 independently consumes the corrected R1GN Fujifilm RAF callable
+
+- **Node and routing:** `ULT > U1 RAW ingress > P316`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the primary workflow; plan-tracker,
+  project-structure and project-agent-log discipline governed freeze and
+  propagation. The leaf copies no producer code into consumer `src`, invokes
+  neither producer runner nor reference decoder and changes no default loader.
+- **Identity correction and freeze:** the initial handoff named an
+  unresolvable full implementation commit. Consumer preflight rejected it
+  before reading either RAF source and requested an additive producer
+  correction. Contract/config commit `e3ddc543` therefore binds corrected
+  implementation commit `1cb9b9953250127b5d06f78e3e9047040aa46cf2`, its
+  exact core blob and producer correction `11397b22`; the audit also requires
+  the superseded identity to remain unresolvable. Audit/test commit is
+  `4d0a7ea5`, evidence/test commit `2d0813ec`. Producer source, fixture,
+  reports, metrics, gates and claim were unchanged by the correction.
+- **Formal result:** S2Pro layout-0/big-endian `2192x2944` and S7000
+  layout-1/little-endian `3080x2048` complete stored-code uint16 arrays
+  reproduce hashes `ebc41ad0...0252` and `28278e56...a5fa` exactly. Output
+  ownership, source immutability, corrected commit-to-core identity and
+  one-byte truncation rejection pass. Forward/reverse reports are
+  byte-identical at 4,370 bytes / SHA `ca2a5c19...f1cf4`, scientific
+  `cba53c99...b428db`; all ten gates pass with zero network and zero residue.
+- **Verification and decision:** four focused tests and three adjacent P314-
+  P316 evidence bindings pass; Ruff, py_compile, JSON and diff checks pass.
+  Decision is `PASS_PRIVATE_R1GN_FUJIFILM_RAF_NO_COPY_INTAKE`, limited to
+  exact private two-file/two-layout stored-code consumability. No generic RAF
+  or Fujifilm RAW, compressed RAF, SuperCCD remap, crop, black subtraction,
+  calibration, white balance, demosaic, colour, quality, default loader,
+  package/schema/capability, product, stock evidence or candidate 3 opens.
+  Evidence SHA is `4672d98f...9924b`; adjacent RAF intake stops.
