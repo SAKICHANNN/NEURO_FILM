@@ -1,0 +1,96 @@
+{
+  "schema_version": "neuro-film.p310-r1ft-dng-profile-gain-table2-no-copy-intake.v1",
+  "experiment_id": "P310",
+  "status": "FROZEN_AFTER_EXCLUDED_UNCOMMITTED_DRY_RUN_BEFORE_FORMAL",
+  "contract_path": "docs/planning/P310_R1FT_DNG_PROFILE_GAIN_TABLE2_NO_COPY_INTAKE_CONTRACT.md",
+  "protocol": "zhuise.dng-profile-gain-table-map2-encoding-parity.v1",
+  "producer": {
+    "repo_head": "4816b51df492018117aac6301ea068bf9806455e",
+    "implementation_commit": "31ca3e378701755943cd457055215681c153e8e1",
+    "evidence_commit": "f629bd755b3b4c66bfdd065f672850f38f109232",
+    "preregistration_commit": "3e6deeca445fdb24aa1a377d94b5f5c73e241370",
+    "residue_audit_fix_commit": "1f3df43be4618e68617296a63d30029468f81fc3"
+  },
+  "excluded_preformal_attempt": {
+    "cause": "One focused dry run read the exact three payloads after these protocol bytes were written but before their Git freeze commit. It is excluded from formal evidence.",
+    "source_roles_changed": false,
+    "controls_or_gates_changed": false,
+    "thresholds_changed": false,
+    "implementation_changed": false,
+    "evidence_published": false
+  },
+  "artifacts": {
+    "module": {
+      "commit_role": "implementation_commit",
+      "path": "src/zhuise/dng_profile_gain_table2.py",
+      "bytes": 5347,
+      "git_blob": "5298c3730b75b4c01339d73b1ce253eeeeedc490",
+      "sha256": "bbe34e088a77c58b07d98a6663b327e36ee824aceb610ab5680c16c4becac574"
+    },
+    "evidence": {
+      "commit_role": "evidence_commit",
+      "path": "docs/evidence/R1FT_DNG_PROFILE_GAIN_TABLE_MAP2_ENCODING_RESULT.json",
+      "bytes": 6024,
+      "git_blob": "9d6890d205df1d1c677290147a141e98ef240a81",
+      "sha256": "d43dca19262296ea2a71cf37e4b501f198dc6c93e5a44f3413b2cb1d5f8e3e29"
+    },
+    "preregistration": {
+      "commit_role": "preregistration_commit",
+      "path": "docs/research/R1FT_DNG_PROFILE_GAIN_TABLE_MAP2_ENCODING_PREREGISTRATION.json",
+      "bytes": 6241,
+      "git_blob": "2dfe22448bc1fae5bdc81cef2f09c4c677c04448",
+      "sha256": "d0762d316c5c6fa719315cfc57e6c1e06db6768f93abe7e4035d72a52a5d8aad"
+    }
+  },
+  "sources": [
+    {
+      "role": "uint8-v2",
+      "path": "outputs/tmp/r0fe_dng_sdk/sdk/dng_sdk_1_7_1/sample_files/05_PGTM2_unsigned8.dng",
+      "bytes": 246576,
+      "sha256": "e60456cb677a173db6d05049e85d1b0695d91e9914bad04021f7ba3d2ba5dad7",
+      "tag": 52544,
+      "payload_offset": 6440,
+      "payload_bytes": 98,
+      "payload_sha256": "b406a8623e42f00f8875be0d5a6a1b5edc393df143f24b4637dec3be8f512d4f",
+      "data_type": 0
+    },
+    {
+      "role": "uint16-v2",
+      "path": "outputs/tmp/r0fe_dng_sdk/sdk/dng_sdk_1_7_1/sample_files/06_PGTM2_unsigned16.dng",
+      "bytes": 246594,
+      "sha256": "afdb417025cb0193f651477fbede3c4cae8d5cd51e095c1353ae559e8366ef8c",
+      "tag": 52544,
+      "payload_offset": 6440,
+      "payload_bytes": 116,
+      "payload_sha256": "9edb6e98c3db068ca875c00173d04f0fe4706520dbdb961ae640c05058276b2f",
+      "data_type": 1
+    },
+    {
+      "role": "float16-v2",
+      "path": "outputs/tmp/r0fe_dng_sdk/sdk/dng_sdk_1_7_1/sample_files/07_PGTM2_float16.dng",
+      "bytes": 246594,
+      "sha256": "5447123247b7da453f886fcdbc34337f8c7e1b115fe22871a28e17d4437f32fb",
+      "tag": 52544,
+      "payload_offset": 6440,
+      "payload_bytes": 116,
+      "payload_sha256": "84486eef31ac49b6d1b598a81870c617dc22fe3cf9177a993d3813a85f87e771",
+      "data_type": 2
+    }
+  ],
+  "expected": {
+    "decision": "PASS_PRIVATE_DNG_PROFILE_GAIN_TABLE_MAP2_ENCODING_PARITY",
+    "producer_report_bytes": 5568,
+    "producer_report_sha256": "7f34419f2963dacd1f3c112c93fa6998bce15a31f6101f86b30b03261776dbbc",
+    "producer_scientific_identity": "b09e7ecc4991d57f19cdf7bfd82f40a6bb204898071f301659578493783a0274",
+    "gains_f32le_sha256": "eac0fd9772c85219adfb17ccccbfd7386848a62817424bc69e1731844368790b",
+    "points": [3, 3],
+    "spacing": [0.5, 0.5],
+    "origin": [0.0, 0.0],
+    "table_points": 2,
+    "weights": [0.25, 0.5, 0.25, 0.0, 0.0],
+    "gamma": 1.0,
+    "gain_min": 1.0,
+    "gain_max": 4.0
+  },
+  "claim_ceiling": "Private no-copy intake of one exact source-locked R1FT PGTM2 storage parser on three synthetic official Adobe samples only; no interpolation, profile-stage application, real-file or image quality, arbitrary DNG/map, default-loader, public package/schema/capability, product mapping, stock evidence, automatic matching or candidate-3 change."
+}
