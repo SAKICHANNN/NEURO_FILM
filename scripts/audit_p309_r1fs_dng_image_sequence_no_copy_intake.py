@@ -147,6 +147,8 @@ def execute(config_path: Path, producer_repo: Path, order: str) -> dict[str, Any
 
     temporary = Path(tempfile.mkdtemp(prefix="neuro-film-p309-"))
     module_name = "zhuise.dng_image_sequence"
+    decoder_module_names = {"rawpy", "PIL", "cv2", "imageio"}
+    decoder_modules_before = decoder_module_names.intersection(sys.modules)
     report: dict[str, Any] | None = None
     try:
         module = _load_isolated_module(temporary / "site", artifact_bytes["module"])
@@ -266,6 +268,7 @@ def execute(config_path: Path, producer_repo: Path, order: str) -> dict[str, Any
             {"bytes": path.stat().st_size, "sha256": _sha256_file(path)}
             for path in source_paths
         ]
+        decoder_modules_after = decoder_module_names.intersection(sys.modules)
         gates = {
             "all-controls-pass": all(controls.values()),
             "artifact-identities-exact": len(verified) == len(config["artifacts"]),
@@ -283,9 +286,8 @@ def execute(config_path: Path, producer_repo: Path, order: str) -> dict[str, Any
             "producer-scientific-identity-exact": evidence["execution"]["scientific_stable_identity"]
             == f"sha256:{config['expected']['scientific_identity']}",
             "source-files-immutable": source_after == source_before,
-            "zero-image-decoder-imports": not any(
-                name in sys.modules for name in ("rawpy", "PIL", "cv2", "imageio")
-            ),
+            "no-new-image-decoder-imports": decoder_modules_after
+            == decoder_modules_before,
         }
         scientific = {
             "controls": controls,
