@@ -19610,3 +19610,38 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Do not infer payload rights from the repository MIT licence, enumerate the
   remote folders, use mirrors or consume candidate 3. Candidate count remains
   `2/3`; no payload, package/schema/capability/product or stock mapping opens.
+
+### 2026-08-28 - P305 adds strict source-locked Radiance RGBE arithmetic
+
+- **Node and routing:** `ULT > mature RAW/DNG/HDR explicit infrastructure >
+  P305`, DRPT L2 / Mode C. `dev-research-reliability` was the primary writer;
+  scientific claim review, structure stewardship and project-agent-log
+  discipline were secondary. This leaf is an exact container/arithmetic
+  primitive, not a colour-state or product-ingress feature.
+- **Freeze and oracle correction:** contract commit `3f824f0a` freezes one
+  exact CC0 Poly Haven `sunset_jhbcentral` 1K Radiance file at 1,573,705 bytes,
+  MD5 `97335a81...ecd75`, SHA-256 `39a9c6b3...b65b`. A bounded diagnostic before
+  implementation lock found that OpenCV uses RGBE lower-bin values while the
+  official Radiance formula uses `(primary + 0.5) * 2^(E-136)`. The contract
+  was corrected prospectively: OpenCV remains the independent container/RLE/
+  code oracle and its output plus the exact exponent-derived half-bin must
+  match the official result. Source, parser, controls and claim ceiling did
+  not change.
+- **Implementation and formal result:** implementation `e426869a`; direct-entry
+  corrections `324c59c5`/`8881c049`. The first formal command stopped before
+  source read/report on a missing repo-root import path; the second correction
+  also closes the observed Ruff import-order issue before accepted execution.
+  From committed HEAD, two fresh forward/reverse reports are byte-exact at
+  2,660 bytes / SHA `b5d1227c...22325`, scientific `b9cd9201...2552ce`.
+  Decoded shape is 512x1024x3 float32, range `.0037078857..19.6875`, with
+  source/code/output hashes exact. Raw OpenCV differs in all 1,572,864
+  components (max `.0625`, RMSE `.00322761`); corrected official-semantics
+  residual is exact zero. Five malformed/truncated/orientation/trailing/width
+  controls reject; ownership, finite/nonnegative and source-immutability gates
+  pass. Evidence commit `cd05e714`, evidence SHA `8cffe333...a134a`; 22
+  adjacent tests plus Ruff, compile, JSON and diff checks pass.
+- **Decision and boundary:** `PASS_PRIVATE_POLYHAVEN_RADIANCE_RGBE_INTAKE`.
+  Output remains unlabelled linear RGB radiance. Do not assign primaries or a
+  white point, create a WorkingImage, generalize to arbitrary `.hdr`, or map
+  this private primitive to package/schema/capability/product admission.
+  Candidate count remains `2/3`.
