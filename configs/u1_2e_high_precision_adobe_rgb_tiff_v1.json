@@ -1,0 +1,39 @@
+{
+  "schema": "neuro_film.u1_2e_high_precision_adobe_rgb_tiff.v1",
+  "source_specification": {
+    "name": "Adobe RGB (1998) Color Image Encoding",
+    "revision": "May 2005",
+    "url": "https://www.adobe.com/digitalimag/pdfs/AdobeRGB1998.pdf"
+  },
+  "test_profile": {
+    "path": "data/physical_reference/spektrafilm_dev_2026_v1/src/spektrafilm/data/icc/ellelstone/ClayRGB-elle-V2-g22.icc",
+    "license": "CC-BY-SA-3.0",
+    "profile_role": "compatible-with-Adobe-RGB-1998 test input only"
+  },
+  "input": {
+    "format": "TIFF",
+    "sample_type": "uint16",
+    "channels": 3,
+    "planar_configuration": "contiguous",
+    "frames": 1,
+    "orientations": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  "icc": {
+    "device_space": "RGB",
+    "pcs": "XYZ",
+    "transform": "matrix-shaper-shared-gamma",
+    "gamma": 2.19921875,
+    "gamma_tolerance": 0.00002,
+    "matrix_tolerance": 0.0005,
+    "white_tolerance": 0.0005
+  },
+  "output": {
+    "working_space": "linear_rec2020",
+    "transfer_state": "display_linear",
+    "dtype": "float32",
+    "clip": false,
+    "gamut_map": false
+  },
+  "claim_ceiling": "private RGB16 TIFF input compatibility only"
+}
+
