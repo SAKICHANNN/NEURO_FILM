@@ -1,0 +1,41 @@
+{
+  "schema_version": "neuro-film.u7-2h-explicit-product-look-selection.v1",
+  "decision": "prospective",
+  "product_profile_id": "safe-rich-product-v1",
+  "legacy_default_style": "velvia_50",
+  "available_product_looks": [
+    "velvia_50",
+    "portra_400",
+    "ektar_100"
+  ],
+  "blocked_product_looks": [
+    "generic_bw"
+  ],
+  "source_locks": {
+    "render_film_sha256": "c02f0ef23b747142a69ca087fd85e9cbb18a86f66fe39778eef08b83182cd6c3",
+    "product_profile_sha256": "09722cb48c55d1c4c460220c9f59b9ced81801c1b6fe856708a27f5cc99d39fe",
+    "legacy_profile_sha256": "72a9948e6fc76e230c4593b847728712bc034840cd339e6b34f079ac7d424c79"
+  },
+  "parent_evidence": [
+    {
+      "path": "docs/evidence/U7_2E_PRODUCT_LOOK_CATALOG_RESULT.json",
+      "sha256": "af51992278ba40950cce07310cb3dcf4b9d9675a41ad7e6fb50c323c4f744d3c"
+    },
+    {
+      "path": "docs/evidence/U7_2F_PRODUCT_LOOK_CLI_RESULT.json",
+      "sha256": "8e95ab23f8cd5b7653e29508613a38b4b18e9e45995eddf35d823eaedac05180"
+    }
+  ],
+  "gates": {
+    "omitted_product_style_rejects": true,
+    "reject_before_input_decode": true,
+    "reject_creates_no_output_or_recipe": true,
+    "three_explicit_colour_outputs_exact": true,
+    "three_explicit_colour_recipes_exact": true,
+    "legacy_default_exact": true,
+    "blocked_generic_bw_unchanged": true,
+    "fresh_process_reports_byte_exact": true,
+    "owned_residue_zero": true
+  },
+  "claim_ceiling": "Explicit manual selection for existing non-calibrated Look Approximations only; no stock science, separation, calibration, AO6, algorithm or release promotion."
+}
