@@ -1,0 +1,51 @@
+{
+  "schema": "neuro_film.p308_dng_linearization_table_delegation_contract.v1",
+  "experiment_id": "P308",
+  "question": "Can exact P98 DNG ingress explicitly receipt valid LinearizationTable delegation before decode while preserving all five frozen outputs and prior guards?",
+  "authority": {
+    "sdk_path": "data/external/adobe_dng_sdk_1_7_1_2652/dng_sdk_1_7_1_2652_20260714.zip",
+    "sdk_bytes": 80494799,
+    "sdk_sha256": "73499b47f4683e12120a234bd0946f02e52ab2ff9834bcbd0e9f8ab4f923360e",
+    "tag_codes_source_path": "outputs/eval/p95_dng_sdk_build_workspace/dng_sdk_1_7_1/dng_sdk/source/dng_tag_codes.h",
+    "tag_codes_source_sha256": "779e4a6802bad289a39952d9c1599fb827131b736bf4689fa321ad6fcebc06ad",
+    "tag_code": 50712,
+    "tag_name": "LinearizationTable",
+    "tiff_type": 3,
+    "minimum_count": 2,
+    "maximum_count": 65536
+  },
+  "bindings": {
+    "contract_path": "docs/planning/P308_DNG_LINEARIZATION_TABLE_DELEGATION_CONTRACT.md",
+    "p98_config_path": "configs/p98_dng_forward_raster_v1.json",
+    "p98_config_sha256": "5fb17f82cfecdae40a4c812f2ea9c26641e91bcab43e17c8a6a4bc94b2f03c35",
+    "p244_config_path": "configs/p244_dng_profile_huesatmap_ingress_guard_v1.json",
+    "p244_config_sha256": "7267485b9258ad38e487e65d5a9ff3a24716bfb3a306345e4e1512ab48ca556d",
+    "implementation_path": "src/preprocess/dng_forward_raster.py",
+    "implementation_parent_sha256": "78f8d3e4a2f733d7ef260178acd20fd7215808025fc167c1710647e673ae7dd1",
+    "runner_path": "scripts/audit_p308_dng_linearization_table_delegation.py",
+    "test_path": "tests/test_p308_dng_linearization_table_delegation.py"
+  },
+  "expected_inventory": {
+    "blackmagic_pocket_cinema_camera_4k": {
+      "ifd_path": "0",
+      "count": 4096,
+      "payload_u16le_sha256": "37ff0c95bd8e810277ee2e0f34c33c613638473e28802af758c7b7317aeca9a0"
+    },
+    "huawei_eml_l29": null,
+    "lg_lg_h850": null,
+    "motorola_moto_g_7_play": null,
+    "xiaomi_m2010j19cg": null
+  },
+  "gates": {
+    "authority_exact": true,
+    "inventory_exact": true,
+    "invalid_reject_before_decode": true,
+    "explicit_warning_exact": true,
+    "p98_pixel_hashes_exact": true,
+    "prior_guards_exact": true,
+    "source_immutable": true,
+    "forward_reverse_exact": true
+  },
+  "stop_rule": "Any invalid declaration accepted, decode-before-reject, inventory/warning/pixel/source/prior-guard drift or replay mismatch closes the leaf without implementing table arithmetic, suppressing the receipt, changing rows or relaxing gates.",
+  "claim_ceiling": "Private exact-five P98 DNG LinearizationTable structural validation and explicit LibRaw-delegation receipt only; no independent table arithmetic, Adobe/vendor parity, full or arbitrary DNG renderer, image quality, default loader, package/schema/capability, stock evidence, candidate3 or product admission."
+}
