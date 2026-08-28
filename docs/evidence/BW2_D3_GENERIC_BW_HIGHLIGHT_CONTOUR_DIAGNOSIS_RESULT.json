@@ -1,0 +1,137 @@
+{
+  "schema_id": "neuro-film.generic-bw-highlight-contour-diagnosis-result.v1",
+  "experiment_id": "BW2.D3",
+  "date": "2026-08-28",
+  "status": "FAIL_CLOSED_NO_SINGLE_STAGE_CAUSE_IDENTIFIED",
+  "implementation_commit": "e7bce88d963b998473074842e37f3e812b435286",
+  "bindings": {
+    "contract": {
+      "path": "configs/bw2_d3_generic_bw_highlight_contour_diagnosis_v1.json",
+      "sha256": "3307bff03c00eadf07c324cd1f5337402addb63fc1056c168c99ea196aa5db3a"
+    },
+    "implementation": {
+      "path": "src/eval/generic_bw_highlight_contour_diagnosis.py",
+      "sha256": "8062d024ec8fed78e268568b596adfa8a1d73d436b0d98384675ec26ce23d869"
+    },
+    "runner": {
+      "path": "scripts/run_bw2_d3_generic_bw_highlight_contour_diagnosis.py",
+      "sha256": "2329edbaa4d9d4788a3d7ef6f1f964f510202ca9909e91aca605b17b67a0f0ab"
+    },
+    "test": {
+      "path": "tests/test_bw2_d3_generic_bw_highlight_contour_diagnosis.py",
+      "sha256": "0e3c5ac9300dd7ca57030bbce2945eac11f32107dbe41e766ce84e4b55fb6a4d"
+    }
+  },
+  "formal_reports": {
+    "forward_path": "outputs/eval/bw2_d3_generic_bw_highlight_contour_diagnosis_v1/report_a.json",
+    "reverse_path": "outputs/eval/bw2_d3_generic_bw_highlight_contour_diagnosis_v1/report_b.json",
+    "bytes_each": 21784,
+    "sha256": "56815a32de0c7d5a2fcb0b7671faba9167e4d04cef2a213416e3a27620d6879a",
+    "forward_reverse_byte_exact": true,
+    "scientific_identity": "12de9b745258953fb65a1e1847fd3349e84d1cb1b8dcd1bf0222a754279c3c78"
+  },
+  "automatic_result": {
+    "source_count": 6,
+    "variant_count": 5,
+    "render_count": 30,
+    "current_variant_exactly_replays_parent_pixels": true,
+    "all_geometry_exact": true,
+    "all_neutral_axis_rgb8_exact": true,
+    "network_reads": 0,
+    "maximum_abs_code_difference_from_current": {
+      "dither_zero": 1,
+      "preserve_luma_detail_zero": 27,
+      "tone_rolloff_zero": 27,
+      "output_margin_zero": 4
+    },
+    "output_margin_zero_introduced_nonzero_boundary_fraction": true,
+    "failed_gates": []
+  },
+  "review_protocol": {
+    "reviewer_class": "autonomous_visual_evidence",
+    "single_variable_variants_frozen_before_render_and_review": true,
+    "confirmed_fail_source_count": 3,
+    "frozen_pass_control_count": 3,
+    "diagnostic_sheet_count": 6,
+    "post_review_variant_or_source_change_count": 0,
+    "necessary_stage_rule": "Removing one stage must clear the confirmed contour on all three fail rows without creating a confirmed contour on any pass control."
+  },
+  "variant_adjudications": [
+    {
+      "variant_id": "dither_zero",
+      "fail_rows_cleared": 0,
+      "pass_controls_with_new_failure": 0,
+      "necessary_stage": false,
+      "rationale": "All three stippled highlight contours remain visually present after dither is disabled. The intervention changes at most one RGB8 code and does not explain the defect."
+    },
+    {
+      "variant_id": "preserve_luma_detail_zero",
+      "fail_rows_cleared": 0,
+      "pass_controls_with_new_failure": 0,
+      "necessary_stage": false,
+      "rationale": "All three confirmed contours remain after luma-detail preservation is removed. Larger tonal changes do not remove the same boundary structure."
+    },
+    {
+      "variant_id": "tone_rolloff_zero",
+      "fail_rows_cleared": 0,
+      "pass_controls_with_new_failure": 0,
+      "necessary_stage": false,
+      "rationale": "All three confirmed contours remain after tone rolloff is removed, so tone rolloff is not singly necessary for the observed failure."
+    },
+    {
+      "variant_id": "output_margin_zero",
+      "fail_rows_cleared": 0,
+      "pass_controls_with_new_failure": 0,
+      "necessary_stage": false,
+      "rationale": "All three contours remain and removing the output margin additionally creates nonzero output-boundary fractions; this intervention cannot serve as a safe repair."
+    }
+  ],
+  "source_adjudications": [
+    {
+      "source_id": "sony_dslr_a290",
+      "parent_decision": "FAIL_CONFIRMED_SEVERE_ARTIFACT",
+      "decision": "FAIL_CONTOUR_PERSISTS_ACROSS_ALL_SINGLE_VARIABLE_ABLATIONS"
+    },
+    {
+      "source_id": "olympus_e_p7",
+      "parent_decision": "FAIL_CONFIRMED_SEVERE_ARTIFACT",
+      "decision": "FAIL_CONTOUR_PERSISTS_ACROSS_ALL_SINGLE_VARIABLE_ABLATIONS"
+    },
+    {
+      "source_id": "leica_d_lux_6",
+      "parent_decision": "FAIL_CONFIRMED_SEVERE_ARTIFACT",
+      "decision": "FAIL_CONTOUR_PERSISTS_ACROSS_ALL_SINGLE_VARIABLE_ABLATIONS"
+    },
+    {
+      "source_id": "canon_eos_1d_mark_iv",
+      "parent_decision": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT",
+      "decision": "PASS_NO_NEW_CONFIRMED_SEVERE_ARTIFACT"
+    },
+    {
+      "source_id": "panasonic_dmc_gf2",
+      "parent_decision": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT",
+      "decision": "PASS_NO_NEW_CONFIRMED_SEVERE_ARTIFACT"
+    },
+    {
+      "source_id": "kodak_dcs_pro_14n",
+      "parent_decision": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT",
+      "decision": "PASS_NO_NEW_CONFIRMED_SEVERE_ARTIFACT"
+    }
+  ],
+  "decision_summary": {
+    "necessary_stage_count": 0,
+    "confirmed_fail_rows_cleared_by_any_single_variant": 0,
+    "safe_product_parameter_change_opened": false,
+    "separate_repair_leaf_opened": false
+  },
+  "retained_boundaries": {
+    "bw2_d2_failure_unchanged": true,
+    "generic_bw_population_safety_promotion_opened": false,
+    "generic_bw_product_parameters_changed": false,
+    "named_hp5_or_tri_x_claim_opened": false,
+    "controlled_stock_evidence_gap_unchanged": true,
+    "multi_stock_completion": false
+  },
+  "decision": "Fail closed the frozen single-variable diagnosis. None of dither, luma-detail preservation, tone rolloff or output margin is singly necessary for the three confirmed highlight-contour failures, and output-margin removal adds boundary violations. Do not mutate the product profile, combine overrides, tune thresholds or open a repair/promotion leaf from this cohort. Return the mainline to stock-specific evidence and product work that does not depend on this closed generic-BW route.",
+  "claim_ceiling": "Single-variable negative mechanism attribution for three confirmed generic-B&W highlight-contour failures and three frozen pass controls; not a repaired candidate, product promotion, stock response, calibration, preference or multi-stock evidence."
+}
