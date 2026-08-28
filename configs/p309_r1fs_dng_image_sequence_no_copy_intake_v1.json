@@ -1,0 +1,75 @@
+{
+  "schema": "neuro-film.p309-r1fs-dng-image-sequence-no-copy-intake-contract.v1",
+  "experiment_id": "P309",
+  "status": "FROZEN_BEFORE_PRODUCER_OBJECT_IMPORT_OR_SOURCE_METADATA_READ",
+  "contract_path": "docs/planning/P309_R1FS_DNG_IMAGE_SEQUENCE_NO_COPY_INTAKE_CONTRACT.md",
+  "producer": {
+    "repo_head": "cb6df1477af99745ab91a9044dee079d474c1cff",
+    "implementation_commit": "edeb312d76f70d37d097e2f7c2bf6f8d7e88d328",
+    "evidence_commit": "c4f19c3e8c230ba5e4f6a8ec3a232b59c3279472",
+    "propagation_commit": "cb6df1477af99745ab91a9044dee079d474c1cff"
+  },
+  "protocol": "zhuise.dng-image-sequence-info-group.v1",
+  "artifacts": {
+    "module": {
+      "commit_role": "implementation_commit",
+      "path": "src/zhuise/dng_image_sequence.py",
+      "git_blob": "9a5211d4b30490f61adfa22e6d18d7e3f623ce98",
+      "bytes": 7765,
+      "sha256": "ea5bdf31d3b2b947795bbd15630697b8fce7cb4235ff0de03398f4e452280441"
+    },
+    "producer_test": {
+      "commit_role": "implementation_commit",
+      "path": "tests/test_dng_image_sequence.py",
+      "git_blob": "7ea59a431be1cc9167b5a6adc9803106fd56499a",
+      "bytes": 4215,
+      "sha256": "d58151ef509c1a6143a36156ced6e1ecf076b518a42da35257e745059b950224"
+    },
+    "evidence": {
+      "commit_role": "evidence_commit",
+      "path": "docs/evidence/R1FS_DNG_IMAGE_SEQUENCE_INFO_GROUP_RESULT.json",
+      "git_blob": "c8343daa91c581f1f73afd0d124ba9cf08cdc220",
+      "bytes": 5477,
+      "sha256": "76302ca3522cd5c00657b5bd660b648610082dab59babadd540de3ca196c9ee3"
+    }
+  },
+  "sources": [
+    {
+      "path": "outputs/tmp/r0fe_dng_sdk/sdk/dng_sdk_1_7_1/sample_files/09_ImageSequenceInfo_1_of_3.dng",
+      "bytes": 246556,
+      "sha256": "4b54e24687de902561b16ad3802bc3a2014cd5a08dcab701e2574786d48ac71f",
+      "payload_sha256": "2ad58355efc46584e654c3876f18b3de63af6d9ed725447c866be38e4dd79f80",
+      "index": 1,
+      "count": 3,
+      "is_final": false,
+      "frame_info": "relative_position=0.3"
+    },
+    {
+      "path": "outputs/tmp/r0fe_dng_sdk/sdk/dng_sdk_1_7_1/sample_files/10_ImageSequenceInfo_2_of_3.dng",
+      "bytes": 246556,
+      "sha256": "9457f5e4604ed9c8be7a5a139d80d1e0b34bc44497981e033fe21e7c86a9dae7",
+      "payload_sha256": "c6950f492ff34f8986caf4e7a76b8edd65edd9860e82ba5111012718cbd7166f",
+      "index": 2,
+      "count": 3,
+      "is_final": false,
+      "frame_info": "relative_position=0.5"
+    },
+    {
+      "path": "outputs/tmp/r0fe_dng_sdk/sdk/dng_sdk_1_7_1/sample_files/11_ImageSequenceInfo_3_of_3.dng",
+      "bytes": 246556,
+      "sha256": "f480b5f777a25de86bae695ed977685d6ce2fb48c470039c53b9cd3f26c9e964",
+      "payload_sha256": "3b5a54394d9dbf6924c7d2bd0e6ab2bccaf4a63df2599c310897d7f3ab857c22",
+      "index": 3,
+      "count": 3,
+      "is_final": true,
+      "frame_info": "relative_position=1.0"
+    }
+  ],
+  "expected": {
+    "sequence_id": "com.adobe.focus.03CFC98885EA4DE",
+    "sequence_type": "Focus Bracket",
+    "report_sha256": "0bf747636104983e903ff7333329385c2e21f27bf190d51cb7bd524bed86ccc9",
+    "scientific_identity": "108c2210012e3f7b9f60116e01f4ddba742ca5d7431c3983c662b9efacecab44"
+  },
+  "claim_ceiling": "Private no-copy consumer replay of one exact R1FS Adobe DNG 1.7 ImageSequenceInfo three-file metadata/group boundary only; no image pixels, focus/depth truth, registration/fusion/all-in-focus rendering, arbitrary DNG, public package/schema/capability, stock evidence, automatic matching or product admission. Candidate 3 remains closed at 2/3."
+}
