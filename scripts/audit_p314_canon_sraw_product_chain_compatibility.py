@@ -100,14 +100,6 @@ def _cleanup_row(*paths: Path) -> None:
         path.unlink(missing_ok=True)
 
 
-def _remove_empty_tree(path: Path, stop: Path) -> None:
-    current = path
-    stop = stop.resolve()
-    while current.exists() and current.resolve() != stop:
-        current.rmdir()
-        current = current.parent
-
-
 def _output_facts(path: Path) -> dict[str, Any]:
     with Image.open(path) as image:
         image.load()
@@ -276,7 +268,7 @@ def execute(config_path: Path, *, reverse: bool = False) -> dict[str, Any]:
         records.sort(key=lambda item: item["source_id"])
     finally:
         if scratch_root.exists() and not any(scratch_root.iterdir()):
-            _remove_empty_tree(scratch_root, ROOT / "outputs")
+            scratch_root.rmdir()
 
     scratch_residue = (
         sum(1 for path in scratch_root.rglob("*") if path.is_file())
