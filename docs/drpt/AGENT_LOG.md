@@ -20461,3 +20461,38 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   colour, quality, default loader, package/schema/capability, product, stock
   evidence or candidate 3 opens. Evidence SHA is `49c6f767...fbbef7a`;
   adjacent MOS intake stops.
+
+### 2026-08-29 - P320 closes exact R1GS X2D consumer intake on its frozen truncation gate
+
+- **Node and routing:** `ULT > U1 RAW ingress > P320`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the primary workflow; plan-tracker,
+  project-structure and project-agent-log discipline governed freeze and
+  propagation. The leaf copies no producer code into consumer `src`, invokes
+  neither producer runner nor LibRaw reference and changes no default loader.
+- **Freeze and implementation:** contract/config commit `71634087` binds the
+  exact R1GS preregistration, source lock, standalone callable, runner,
+  execution lock, callable contract, canonical fixture and evidence objects
+  plus four source/output identities. Audit/test commit `2fd5f650` precedes
+  first consumer decode. The first run hit the frozen all-source whole-file
+  one-byte truncation gate before report publication; additive commit
+  `869b04eb` changed only failure reportability, then accepted forward/reverse
+  runs restarted from committed HEAD. It changed no source, implementation,
+  control, gate, stop rule or claim.
+- **Formal result:** both 3FR and both FFF complete `8842x11904` uint16 mosaics
+  reproduce producer hashes exactly: `1162dd43...1b5fa`,
+  `4d8ce995...ce97`, `71d5f602...5bbf`, `5eddfff5...49b`. All artifact,
+  callable, output, ownership and immutability gates pass. Both FFF sources
+  reject whole-file one-byte truncation, but both 3FR sources accept because
+  their raw payload is not the file tail and deleting the last preview byte
+  leaves the frozen raw payload complete. The preregistered all-source control
+  therefore fails without being replaced by raw-extent truncation.
+- **Replay, verification and decision:** forward/reverse reports are
+  byte-identical at 5,427 bytes / SHA `7df73850...8d41b3`, scientific
+  `c9c13edd...2f20d`; eight of nine gates pass. Evidence/test commit is
+  `13ccb884`, evidence SHA `501c5932...88579`; three adjacent P318-P320
+  evidence bindings, Ruff, py_compile, JSON and diff checks pass. Decision is
+  `FAIL_CLOSED_R1GS_HASSELBLAD_X2D_NO_COPY_INTAKE`. This closes only the exact
+  consumer intake; producer R1GS private callable PASS remains unchanged. No
+  generic 3FR, FFF or Hasselblad RAW, crop, black subtraction, calibration,
+  white balance, demosaic, colour, quality, default loader,
+  package/schema/capability, product, stock evidence or candidate 3 opens.
