@@ -1,0 +1,39 @@
+{
+  "schema": "kmcfm.u4-5c-verified-preview-session-evidence.v1",
+  "experiment_id": "U4.5C",
+  "date": "2026-08-28",
+  "status": "PASS_PRIVATE_VERIFIED_PREVIEW_SESSION",
+  "decision": "retain_private_session_resident_verified_preview_snapshot",
+  "commits": {
+    "contract": "adb8e154",
+    "implementation": "ae7a952a",
+    "formal_runner": "8b74bd2d"
+  },
+  "identities": {
+    "contract_sha256": "3f53a6031aeed9072de6b16dd5c0aa3a1af2083c4682636a2b964c27f9480dec",
+    "core_sha256": "0952cd15e601f1336a8084dbd009ea42c999032c1c6b1ffda7a31f9306b37f89",
+    "runner_sha256": "d062a9e894084406ffbbfeccb138681c608e321b8a650703ff539b4e02063355",
+    "formal_report_sha256": "9eff7b91973a73c9cd86bee0c52a2034aabfdcd412beca07d827c20e96cc8895",
+    "replay_report_sha256": "a400117dfae14094638ae27c9311361719705101ee5aefa5bfaa20bcc8e83865",
+    "scientific_stable_id": "942b2c326ee4d076afca1410ec1f13d852f57b5339e2ab45403d656aed71d4c4"
+  },
+  "results": {
+    "fresh_session_admissions_per_process": 4,
+    "warm_lookups_per_process": 32,
+    "maximum_admission_wall_seconds": 0.04386999999405816,
+    "maximum_warm_lookup_wall_seconds": 0.00031040000612847507,
+    "frozen_maximum_warm_lookup_wall_seconds": 0.3,
+    "canonical_preview_payloads_exact": true,
+    "admitted_payloads_owned_and_immutable": true,
+    "post_admission_disk_mutation_changes_snapshot": false,
+    "new_admission_rejects_disk_mutation": true,
+    "warm_filesystem_reads": 0,
+    "warm_pixel_decodes": 0,
+    "warm_renders": 0,
+    "warm_writes": 0,
+    "scientific_cross_process_exact": true,
+    "scratch_residue_count": 0
+  },
+  "interpretation": "U7.3H remains a valid frozen failure for fresh-process full-file revalidation. U4.5C tests a different product mechanism: four complete session admissions per process hash the full source, profile and all preview files, then retain independently re-hashed immutable preview bytes. Sixty-four warm lookups across forward/reverse processes return the exact three canonical previews without filesystem access, decode, render or write; the worst lookup is 0.3104 ms against the 300 ms target. Replacing a disk preview after admission cannot alter the current snapshot and makes a new admission fail closed.",
+  "claim_ceiling": "Private Windows/Python session-resident warm lookup for three already-rendered non-calibrated Look Approximation previews only. No render acceleration, calibrated stock response, stock distinguishability, installer/release, cross-platform support or multi-stock scientific completion."
+}
