@@ -1,0 +1,77 @@
+{
+  "schema_id": "neuro-film.u7-2j-product-recipe-catalog-enforcement-evidence.v1",
+  "experiment_id": "U7.2J",
+  "date": "2026-08-28",
+  "status": "PASS",
+  "implementation_commit": "954482a6fc3fd1b40435a686a541efbe273d7dec",
+  "bindings": {
+    "contract": {
+      "path": "docs/planning/U7_2J_PRODUCT_RECIPE_CATALOG_ENFORCEMENT_CONTRACT.md",
+      "sha256": "48dd4493d85378700e3e66a0187509375949a2fc0e44f26edd519fbb5406190e"
+    },
+    "config": {
+      "path": "configs/u7_2j_product_recipe_catalog_enforcement_v1.json",
+      "sha256": "f9cb593c2b62ccf2701fd410e09a143e5a29fb5b1a917e833c1962fa56f405dd"
+    },
+    "core": {
+      "path": "src/inference/render_contract.py",
+      "sha256": "00409580e3f0836941f1216fd72074715d0ab52ada3e6ecd252c330c55dce6a9"
+    },
+    "focused_test": {
+      "path": "tests/test_u7_2j_product_recipe_catalog_enforcement.py",
+      "sha256": "a5473f3da288661f84a11f57e655122269c9b3bd956aeaec755d3b236da1920b"
+    },
+    "formal_runner": {
+      "path": "scripts/audit_u7_2j_product_recipe_catalog_enforcement.py",
+      "sha256": "6e01a00da2e5bec8ef909e17adf7882b23283307a90209a5ad90d532de3ef8fd"
+    },
+    "parent_u7_2i_evidence_sha256": "7728f232827337caeea96c1ab2683aa66e7f6da28cfb14bc5aae44d20527c6ec"
+  },
+  "formal_reports": {
+    "forward_path": "outputs/eval/u7_2j_product_recipe_catalog_enforcement_v1/formal.json",
+    "reverse_path": "outputs/eval/u7_2j_product_recipe_catalog_enforcement_v1/formal_replay.json",
+    "bytes_each": 6902,
+    "sha256": "656727ec46ba4e389c8f07ab72579ddc0a05da5fc928e36d4a3d714eb791cf8f",
+    "forward_reverse_byte_exact": true
+  },
+  "result": {
+    "rejected_product_recipe_styles": [
+      "hp5",
+      "tri_x_400",
+      "vision3_250d",
+      "vision3_500t",
+      "portra_800",
+      "generic_bw",
+      "unknown",
+      "<empty>"
+    ],
+    "build_verify_replay_reject_before_file_io": true,
+    "forbidden_io_residue_count": 0,
+    "three_available_product_outputs_match_u7_2i": true,
+    "three_available_product_replays_repeat_exact": true,
+    "legacy_hp5_output_sha256": "0524c390a7725a61cffc3805184f65fc372262c24d94b50407deccca30ca73ee",
+    "legacy_hp5_replay_repeat_exact": true,
+    "owned_runtime_residue_count": 0,
+    "all_nine_formal_gates_pass": true
+  },
+  "verification": {
+    "focused_tests": "17 passed",
+    "behavioral_parent_chain": "88 passed",
+    "historical_evidence_binding_policy": "Old U7.2E/F/G/H/I evidence remains immutable. Tests that require those historical evidence records to hash current mutable source files are not claimed as passing after this additive change.",
+    "first_formal_attempt": "The first report was discarded because the audit expected the new catalog error even where the existing recipe schema or generic-BW severe veto rejected earlier. The audit-only correction accepts any explicit pre-I/O rejection while preserving all frozen styles, inputs, outputs and gates; both formal processes then reran from zero."
+  },
+  "retained_boundaries": {
+    "product_recipe_authorization_uses_authoritative_catalog": true,
+    "product_cli_parent_behavior_changed": false,
+    "historical_profiles_keep_internal_styles": true,
+    "three_colour_algorithms_or_parameters_changed": false,
+    "three_colour_output_bytes_changed": false,
+    "generic_bw_reopened": false,
+    "named_bw_or_vision3_product_look_opened": false,
+    "stock_separation_or_calibration_claim_opened": false,
+    "public_recipe_schema_changed": false,
+    "release_or_installer_claim_opened": false
+  },
+  "decision": "Close the programmatic recipe build/verify/replay bypass for safe-rich-product-v1. Preserve U7.2I and older evidence as historical immutable records, then return to controlled multi-stock evidence or a distinct substantive product defect.",
+  "claim_ceiling": "Product recipe authorization consistency for existing non-calibrated Look Approximations only; no stock science, algorithm, calibration, separation, public schema or release promotion."
+}
