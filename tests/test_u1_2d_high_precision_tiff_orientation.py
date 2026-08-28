@@ -10,6 +10,7 @@ import pytest
 import tifffile
 from PIL import Image
 
+from scripts.audit_u1_2d_high_precision_tiff_orientation import run
 from src.preprocess import load_working_image
 from src.preprocess.output_encode import srgb_icc_profile
 from src.preprocess.prophoto_icc import decode_prophoto_rgb16_to_linear_rec2020
@@ -155,3 +156,12 @@ def test_render_film_consumes_rotated_rgb16_tiff(tmp_path: Path) -> None:
     assert completed.returncode == 0, completed.stderr
     with Image.open(output) as rendered:
         assert rendered.size == (3, 5)
+
+
+def test_formal_audit_passes_and_cleans_scratch(tmp_path: Path) -> None:
+    report = run(
+        ROOT / "configs/u1_2d_high_precision_tiff_orientation_v1.json",
+        tmp_path / "report.json",
+    )
+    assert report["status"] == "PASS_RGB16_TIFF_ORIENTATION_INGRESS"
+    assert all(report["gates"].values())
