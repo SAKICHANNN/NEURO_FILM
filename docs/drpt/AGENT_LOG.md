@@ -20369,3 +20369,33 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   calibration, white balance, demosaic, colour, quality, default loader,
   package/schema/capability, product, stock evidence or candidate 3 opens.
   Evidence SHA is `4672d98f...9924b`; adjacent RAF intake stops.
+
+### 2026-08-28 - P317 independently consumes the exact R1GO Sigma X3F callable
+
+- **Node and routing:** `ULT > U1 RAW ingress > P317`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the primary workflow; plan-tracker,
+  project-structure and project-agent-log discipline governed freeze and
+  propagation. The leaf copies no producer code into consumer `src`, invokes
+  neither producer runner nor LibRaw reference and changes no default loader.
+- **Freeze and implementation:** contract/config commit `32b8367a`, isolated
+  Git-object audit/test commit `ea4ba15d`, evidence/test commit `9b0e3e79`.
+  The audit verifies the complete producer preregistration, source lock,
+  implementation, runner, execution lock, callable contract, canonical
+  fixture and evidence objects, then imports only exact `sigma_x3f.py` inside
+  an owned temporary package. Sources and protocol were frozen before the
+  first consumer decode; no row, codec, output identity or gate changed.
+- **Formal result:** Sigma SD10 HUFFMAN_10BIT `1531x2304x3` and DP1s TRUE
+  `1792x2688x3` complete uint16 arrays reproduce hashes
+  `44a331ab...c7b35` and `308d6450...a059e` exactly. Source-declared
+  type/codec identity, output ownership, source immutability and one-byte
+  truncation rejection pass. Forward/reverse reports are byte-identical at
+  4,382 bytes / SHA `59f80983...d155b`, scientific
+  `e2f15afc...d8632`; all nine gates pass with zero network and zero residue.
+- **Verification and decision:** four focused tests and three adjacent P315-
+  P317 evidence bindings pass; Ruff, py_compile, JSON and diff checks pass.
+  Decision is `PASS_PRIVATE_R1GO_SIGMA_X3F_NO_COPY_INTAKE`, limited to exact
+  private two-file/two-codec stored-code consumability. No generic X3F,
+  Foveon or Sigma RAW, Quattro, resampling, crop, black subtraction,
+  calibration, white balance, colour, quality, default loader,
+  package/schema/capability, product, stock evidence or candidate 3 opens.
+  Evidence SHA is `81ca041e...a96e4`; adjacent X3F intake stops.
