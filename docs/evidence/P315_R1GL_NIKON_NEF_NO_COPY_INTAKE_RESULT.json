@@ -1,0 +1,84 @@
+{
+  "schema": "neuro-film.p315-r1gl-nikon-nef-no-copy-intake-evidence.v1",
+  "experiment_id": "P315",
+  "date": "2026-08-28",
+  "status": "PASS_PRIVATE_R1GL_NIKON_NEF_NO_COPY_INTAKE",
+  "decision": "Retain exact no-copy consumer intake of the frozen R1GL Nikon D6 12-bit and D3S 14-bit compression-34713 unpack callable. Stop adjacent Nikon intake expansion.",
+  "bindings": {
+    "consumer_contract_commit": "f14e7e5e",
+    "consumer_audit_commit": "58f1cf78234de16642d4d4a4b149a47189a40d71",
+    "config": {
+      "path": "configs/p315_r1gl_nikon_nef_no_copy_intake_v1.json",
+      "bytes": 4425,
+      "sha256": "63ff9e2ee90507830804b126e13dc4e8134c59df685e929f1239c8c1b9509bff"
+    },
+    "audit": {
+      "path": "scripts/audit_p315_r1gl_nikon_nef_no_copy_intake.py",
+      "bytes": 11139,
+      "sha256": "039e1e7925839a7eb52cde63bd2c73c82293f1c8b5945796d22f6cb15fc4ce24"
+    },
+    "forward_report": {
+      "path": "outputs/eval/p315_r1gl_nikon_nef_no_copy_intake_forward.json",
+      "bytes": 4100,
+      "sha256": "592a0dc8d2a8e0cd591ff2df482983caa7b21a208295891bb8120e7b3653c505"
+    },
+    "reverse_report": {
+      "path": "outputs/eval/p315_r1gl_nikon_nef_no_copy_intake_reverse.json",
+      "bytes": 4100,
+      "sha256": "592a0dc8d2a8e0cd591ff2df482983caa7b21a208295891bb8120e7b3653c505"
+    },
+    "producer": {
+      "implementation_commit": "70d7b4917e4584119efa1efa4118874300902e1a",
+      "formal_execution_commit": "e9252cb4a3657042f938c267d2a12916ad78163e",
+      "evidence_commit": "50fe41df528a0ac07c4c7cd9821eef75254db6f3",
+      "formal_report_sha256": "b17fc54a2e10386e8d778ba6b67bcb16fcd96cd2809122163c8ee27e00e8a8f1",
+      "stable_identity": "db7353866666439fcb513a6818e1c80bb90fb564f73c40d6d78041b29ccbd1f9"
+    }
+  },
+  "formal_result": {
+    "reports_byte_exact": true,
+    "report_bytes": 4100,
+    "report_sha256": "592a0dc8d2a8e0cd591ff2df482983caa7b21a208295891bb8120e7b3653c505",
+    "scientific_identity": "b018760169ca048c228ae025fe8a9c3e66f139226aaefe5a3fee2f426feb9c85",
+    "gates_passed": 9,
+    "gates_total": 9,
+    "rows": [
+      {
+        "id": "nikon_d6_12bit",
+        "geometry_hw": [3728, 5584],
+        "bits_per_sample": 12,
+        "minimum_code": 267,
+        "maximum_code": 2134,
+        "output_uint16le_sha256": "1fc2203cafc67a05a4802969ecce030f38bed8bce2b58d2650a5a39823ea5e57"
+      },
+      {
+        "id": "nikon_d3s_14bit",
+        "geometry_hw": [2844, 4288],
+        "bits_per_sample": 14,
+        "minimum_code": 14,
+        "maximum_code": 11853,
+        "output_uint16le_sha256": "e64e6ffecd8189f11461e1c94853f9f113c65d5aabf24cb4eb6db7c5f10621d0"
+      }
+    ],
+    "truncate_one_byte_rejected_each_source": true,
+    "outputs_owned_writable_c_contiguous": true,
+    "sources_immutable": true,
+    "temporary_residue_count": 0
+  },
+  "integrity": {
+    "consumer_core_copied": false,
+    "producer_runner_executed": false,
+    "producer_reference_decoder_executed": false,
+    "default_loader_changed": false,
+    "network_reads": 0,
+    "post_result_source_or_gate_change": false,
+    "preformal_test_correction": "The first focused run decoded both rows successfully; only a case-sensitive claim-text assertion failed. The assertion was corrected before the audit implementation commit and before both formal reports; no input, callable, output, control, gate or claim changed."
+  },
+  "rights_and_product": {
+    "source_rights": "raw.pixls.us CC0/Public Domain",
+    "candidate_3": false,
+    "product_mapping": false,
+    "public_package_or_capability": false
+  },
+  "claim_ceiling": "Private no-copy intake of the exact R1GL Nikon D6 12-bit and D3S 14-bit compression-34713 unpack callable only; no generic Nikon NEF/lossless claim, HE/split support, crop, black subtraction, calibration, white balance, demosaic, colour, quality, default loader, public package/schema/capability, product mapping, stock evidence, automatic matching or candidate-3 change."
+}
