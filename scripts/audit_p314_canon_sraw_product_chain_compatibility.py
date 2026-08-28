@@ -173,17 +173,20 @@ def _row_record(
         expected_output_path = _relative_to_root(output)
         recipe_exact = {
             "claim_is_look_approximation": (
-                recipe["claim"]["claim_ceiling"]
-                == "Look Approximation; not calibrated or source-authoritative"
-                and recipe["claim"]["mode"] == "film-inspired"
+                recipe["claim"]["render_mode"] == "Style-safe"
+                and recipe["claim"]["output_label"] == "film-inspired"
+                and recipe["claim"]["evidence_grade"] == "look-approximation"
+                and recipe["claim"]["calibrated_reference_allowed"] is False
+                and recipe["claim"]["claim_ceiling"]
+                == profile["evidence"]["claim_ceiling"]
             ),
             "explicit_style": recipe["render"]["style"] == "ektar_100",
             "input_identity": (
-                recipe["input"]["path"] == expected_input_path
+                Path(recipe["input"]["path"]).resolve() == source.resolve()
                 and recipe["input"]["sha256"] == row["sha256"]
             ),
             "output_identity": (
-                recipe["output"]["path"] == expected_output_path
+                Path(recipe["output"]["path"]).resolve() == output.resolve()
                 and recipe["output"]["sha256"] == output_facts["sha256"]
                 and recipe["output"]["format"] == "PNG"
                 and recipe["output"]["bit_depth"] == 8
@@ -209,7 +212,18 @@ def _row_record(
             "output": output_facts,
             "recipe": {
                 "bytes": len(recipe_bytes),
+                "claim": {
+                    "calibrated_reference_allowed": recipe["claim"][
+                        "calibrated_reference_allowed"
+                    ],
+                    "claim_ceiling": recipe["claim"]["claim_ceiling"],
+                    "evidence_grade": recipe["claim"]["evidence_grade"],
+                    "output_label": recipe["claim"]["output_label"],
+                    "render_mode": recipe["claim"]["render_mode"],
+                },
                 "exact": recipe_exact,
+                "logical_input_path": expected_input_path,
+                "logical_output_path": expected_output_path,
                 "schema_id": recipe["schema_id"],
                 "sha256": _sha256_bytes(recipe_bytes),
             },
