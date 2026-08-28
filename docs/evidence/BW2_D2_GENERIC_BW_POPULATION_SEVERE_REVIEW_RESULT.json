@@ -1,0 +1,150 @@
+{
+  "schema_id": "neuro-film.generic-bw-population-severe-review-result.v1",
+  "experiment_id": "BW2.D2",
+  "date": "2026-08-28",
+  "status": "FAIL_CLOSED_CONFIRMED_HIGHLIGHT_CONTOUR_ARTIFACTS",
+  "implementation_commit": "f5196ee65c2c80665c4c402a2e942e7363b8466e",
+  "bindings": {
+    "contract": {
+      "path": "configs/bw2_d2_generic_bw_population_severe_review_v1.json",
+      "sha256": "cea509ca176a4549d48252aa895eec28555da42c308d41386a6ef81b103c5ed3"
+    },
+    "implementation": {
+      "path": "src/eval/generic_bw_population_severe_review.py",
+      "sha256": "8fa574eeb865320c1d4feb6f999c9e13e14eb0f54bfb3ea287a3fc74ce893b2e"
+    },
+    "runner": {
+      "path": "scripts/run_bw2_d2_generic_bw_population_severe_review.py",
+      "sha256": "dbce7d971fab4f352d9582805b1d27a19832027f733b61e0204bec8a07c1f983"
+    },
+    "test": {
+      "path": "tests/test_bw2_d2_generic_bw_population_severe_review.py",
+      "sha256": "cf88331ba7545f5b5ab71b616ac1c09ba502dfcaed45427ed50c5e25ae608bf4"
+    }
+  },
+  "formal_reports": {
+    "forward_path": "outputs/eval/bw2_d2_generic_bw_population_severe_review_v1/report_a.json",
+    "reverse_path": "outputs/eval/bw2_d2_generic_bw_population_severe_review_v1/report_b.json",
+    "bytes_each": 20110,
+    "sha256": "bc8df2b1d647ae6519297bc261f80bd66671393442cbb7b58dfbe2bcd8ffeef7",
+    "forward_reverse_byte_exact": true,
+    "scientific_identity": "f48dd39ae98cf6671cda5891e42af48b887e70792d4a3ec3e4bf7437a4bf51e6"
+  },
+  "automatic_result": {
+    "source_count": 16,
+    "output_count": 16,
+    "all_geometry_exact": true,
+    "all_neutral_axis_rgb8_exact": true,
+    "maximum_output_boundary_fraction": 0.0,
+    "render_calls_per_process": 16,
+    "network_reads": 0,
+    "failed_gates": []
+  },
+  "review_protocol": {
+    "reviewer_class": "autonomous_visual_evidence",
+    "selection_frozen_before_render_and_review": true,
+    "selection_rule": "all-16-frozen-sources-x-unchanged-full-strength-generic-bw",
+    "review_sheet_count": 16,
+    "overview_count": 16,
+    "exact_source_output_crop_pair_count": 48,
+    "post_review_substitution_count": 0,
+    "parameter_or_threshold_change_count": 0
+  },
+  "source_adjudications": [
+    {
+      "source_id": "canon_eos_kiss_f",
+      "decision": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT",
+      "rationale": "Night billboard text, vehicles, lamps, reflections and dark gradients remain coherent; source-native bright transitions do not become a confirmed severe contour failure."
+    },
+    {
+      "source_id": "canon_eos_1d_mark_iv",
+      "decision": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT",
+      "rationale": "Building edges, balconies, foliage, paving and pool geometry remain coherent without confirmed bands, impulses, halos or structural loss."
+    },
+    {
+      "source_id": "nikon_d2x",
+      "decision": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT",
+      "rationale": "Brick, branches, ivy, furniture and bright wall texture remain coherent without a confirmed objectionable contour or detail failure."
+    },
+    {
+      "source_id": "nikon_d200",
+      "decision": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT",
+      "rationale": "Layered hills, grass, livestock and cloud gradients remain coherent without confirmed banding, impulses or structure loss."
+    },
+    {
+      "source_id": "sony_nex_3n",
+      "decision": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT",
+      "rationale": "Mountain ridges, rocks, road, buildings and sky remain coherent; sparse source-native sky marks are not renderer-created corruption."
+    },
+    {
+      "source_id": "sony_dslr_a290",
+      "decision": "FAIL_CONFIRMED_SEVERE_ARTIFACT",
+      "rationale": "The output adds visible stippled contour lines around multiple large blown-background bokeh regions. They are materially sharper and more segmented than the source transitions and constitute objectionable highlight posterization/impulse structure."
+    },
+    {
+      "source_id": "fujifilm_finepix_s5000",
+      "decision": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT",
+      "rationale": "House siding, doors, windows, roof lines and foliage remain continuous without confirmed impulses, bands, halos or geometry loss."
+    },
+    {
+      "source_id": "olympus_sp550uz",
+      "decision": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT",
+      "rationale": "Fence grain, wires, dry grass and cloud gradients remain coherent without confirmed repetition, blocks, impulses or objectionable halos."
+    },
+    {
+      "source_id": "olympus_e_p7",
+      "decision": "FAIL_CONFIRMED_SEVERE_ARTIFACT",
+      "rationale": "The output introduces a thin stippled contour around the bright cloud selected by all three diagnostic crops; the source cloud edge is smooth, so this is confirmed highlight posterization rather than source structure."
+    },
+    {
+      "source_id": "panasonic_dmc_gf2",
+      "decision": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT",
+      "rationale": "Leaf litter, trunks, fine branches and sun patches remain coherent without confirmed repeated texture, blocks, impulses or structure loss."
+    },
+    {
+      "source_id": "panasonic_dmc_fz100",
+      "decision": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT",
+      "rationale": "Dense foliage, blossoms, bark and source-bright regions remain coherent without new confirmed bands, blocks, impulses or structural failure."
+    },
+    {
+      "source_id": "pentax_k_r",
+      "decision": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT",
+      "rationale": "Horse silhouette, field texture, treeline and bright sky remain coherent at overview and selected exact crops without a confirmed severe artifact."
+    },
+    {
+      "source_id": "pentax_k100d_super",
+      "decision": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT",
+      "rationale": "Palm fronds, signs, poles, building edges, clouds and sky gradients remain coherent without confirmed halos, blocks, impulses or geometry failure."
+    },
+    {
+      "source_id": "leica_d_lux_6",
+      "decision": "FAIL_CONFIRMED_SEVERE_ARTIFACT",
+      "rationale": "The output adds a visible stippled contour along the bright sunlit cloud boundary across all selected exact crops; the source transition is smoother, confirming a renderer-created highlight contour artifact."
+    },
+    {
+      "source_id": "leica_digilux_3",
+      "decision": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT",
+      "rationale": "The source-native rotated interior, rails, furniture, frame and wall gradients remain coherent without renderer-induced geometry, banding or impulse failure."
+    },
+    {
+      "source_id": "kodak_dcs_pro_14n",
+      "decision": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT",
+      "rationale": "Hay, field texture, tree branches, horizon and cloud gradients remain coherent without confirmed posterization, impulses, halos or structure loss."
+    }
+  ],
+  "decision_counts": {
+    "PASS_NO_CONFIRMED_SEVERE_ARTIFACT": 13,
+    "FAIL_CONFIRMED_SEVERE_ARTIFACT": 3,
+    "REVIEW_UNRESOLVED": 0
+  },
+  "retained_boundaries": {
+    "generic_bw_mechanical_replay_evidence_unchanged": true,
+    "generic_bw_population_safety_promotion_opened": false,
+    "named_hp5_or_tri_x_claim_opened": false,
+    "controlled_stock_evidence_gap_unchanged": true,
+    "multi_stock_completion": false,
+    "product_default_changed": false
+  },
+  "decision": "Fail closed the unchanged full-strength generic B&W population review because three of sixteen frozen sources exhibit confirmed renderer-created stippled contours around large highlight transitions. Preserve BW2.D1 mechanical identity/replay evidence, block population-safety promotion, and permit only a separately frozen defect diagnosis or repair without rewriting this result.",
+  "claim_ceiling": "Autonomous severe-artifact evidence for one unchanged generic black-and-white Look Approximation across 16 source-disjoint CC0 photographs; not HP5 or Tri-X stock response, target-film closeness, calibration, preference, universal safety, named-stock evidence or multi-stock completion."
+}
