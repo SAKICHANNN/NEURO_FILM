@@ -78,6 +78,10 @@ _DNG_VERSION_TAG = 50706
 _DNG_BACKWARD_VERSION_TAG = 50707
 _DNG_VERSION_MINIMUM = (1, 0, 0, 0)
 _DNG_VERSION_MAXIMUM = (1, 7, 1, 0)
+_LINEARIZATION_TABLE_TAG = 50712
+_LINEARIZATION_TABLE_TIFF_TYPE = 3
+_LINEARIZATION_TABLE_MINIMUM_COUNT = 2
+_LINEARIZATION_TABLE_MAXIMUM_COUNT = 65536
 
 
 def _sha256(path: Path) -> str:
@@ -318,6 +322,50 @@ def _guard_dng_version(
     }
 
 
+def _linearization_table_delegation(
+    pages: list[tuple[str, tifffile.TiffPage]],
+) -> dict[str, Any] | None:
+    """Validate and receipt one table before delegating camera decode to LibRaw."""
+
+    present = [
+        (ifd_path, page.tags[_LINEARIZATION_TABLE_TAG])
+        for ifd_path, page in pages
+        if _LINEARIZATION_TABLE_TAG in page.tags
+    ]
+    if not present:
+        return None
+    if len(present) != 1:
+        raise DngForwardRasterError(
+            "multiple DNG LinearizationTable declarations are unsupported"
+        )
+    ifd_path, tag = present[0]
+    try:
+        dtype_code = int(tag.dtype)
+        count = int(tag.count)
+    except (TypeError, ValueError) as exc:
+        raise DngForwardRasterError(
+            "DNG LinearizationTable has an invalid TIFF type or count"
+        ) from exc
+    if dtype_code != _LINEARIZATION_TABLE_TIFF_TYPE:
+        raise DngForwardRasterError("DNG LinearizationTable must use TIFF SHORT")
+    if not _LINEARIZATION_TABLE_MINIMUM_COUNT <= count <= _LINEARIZATION_TABLE_MAXIMUM_COUNT:
+        raise DngForwardRasterError("DNG LinearizationTable count is out of range")
+    values = np.asarray(tag.value)
+    if values.dtype.kind != "u" or values.dtype.itemsize != 2 or values.shape != (
+        count,
+    ):
+        raise DngForwardRasterError(
+            "DNG LinearizationTable payload must be one uint16 array matching count"
+        )
+    payload = np.ascontiguousarray(values, dtype="<u2").tobytes()
+    return {
+        "tag_code": _LINEARIZATION_TABLE_TAG,
+        "ifd_path": ifd_path,
+        "count": count,
+        "payload_u16le_sha256": hashlib.sha256(payload).hexdigest(),
+    }
+
+
 def _read_profile_tags(path: Path) -> dict[str, Any]:
     try:
         with tifffile.TiffFile(path) as document:
@@ -327,6 +375,7 @@ def _read_profile_tags(path: Path) -> dict[str, Any]:
             _guard_unsupported_profile_tone_curve(pages)
             _guard_unsupported_profile_look_table(pages)
             optional_opcodes = _guard_dng_opcode_lists(pages)
+            linearization_table = _linearization_table_delegation(pages)
             tags = document.pages[0].tags
             _guard_dng_version(tags)
             required = (
@@ -378,6 +427,7 @@ def _read_profile_tags(path: Path) -> dict[str, Any]:
                 else None
             )
             values["_optional_opcode_summary"] = optional_opcodes
+            values["_linearization_table_delegation"] = linearization_table
     except DngForwardRasterError:
         raise
     except (OSError, TypeError, ValueError, tifffile.TiffFileError) as exc:
@@ -475,6 +525,7 @@ def load_dng_forward_working_image(
 
     values = _read_profile_tags(source)
     optional_opcodes = tuple(values.pop("_optional_opcode_summary"))
+    linearization_table = values.pop("_linearization_table_delegation")
     camera_to_pcs = build_dual_illuminant_camera_to_pcs(**values).camera_to_pcs
     camera = _decode_camera_linear_dng(source)
     pixels = _apply_camera_to_rec2020(camera, camera_to_pcs)
@@ -494,30 +545,48 @@ def load_dng_forward_working_image(
         alpha_policy="absent",
         bit_depth_in=16,
         source_path=source,
-        warnings=[
-            DecodeWarning(
-                "private_dng_forward_raster",
-                "Private exact-cohort DNG ForwardMatrix path; arbitrary DNG support is not established.",
-            ),
-            DecodeWarning(
-                "unqualified_demosaic_and_calibration",
-                "LibRaw demosaic and DNG profile mechanics are not vendor rendering, sensor calibration, or photographic-quality evidence.",
-            ),
-            DecodeWarning(
-                "scene_linear_no_tone_map",
-                "Linear Rec.2020 values are retained without clipping, gamut mapping, or a scene-to-display tone map.",
-            ),
-        ]
-        + (
+        warnings=(
             [
                 DecodeWarning(
-                    "optional_dng_opcodes_may_be_skipped",
-                    "Only optional DNG opcodes were present before LibRaw decode; "
-                    "their execution is not claimed: " + ", ".join(optional_opcodes),
-                )
+                    "private_dng_forward_raster",
+                    "Private exact-cohort DNG ForwardMatrix path; arbitrary DNG support is not established.",
+                ),
+                DecodeWarning(
+                    "unqualified_demosaic_and_calibration",
+                    "LibRaw demosaic and DNG profile mechanics are not vendor rendering, sensor calibration, or photographic-quality evidence.",
+                ),
+                DecodeWarning(
+                    "scene_linear_no_tone_map",
+                    "Linear Rec.2020 values are retained without clipping, gamut mapping, or a scene-to-display tone map.",
+                ),
             ]
-            if optional_opcodes
-            else []
+            + (
+                [
+                    DecodeWarning(
+                        "optional_dng_opcodes_may_be_skipped",
+                        "Only optional DNG opcodes were present before LibRaw decode; "
+                        "their execution is not claimed: " + ", ".join(optional_opcodes),
+                    )
+                ]
+                if optional_opcodes
+                else []
+            )
+            + (
+                [
+                    DecodeWarning(
+                        "dng_linearization_table_delegated_to_libraw",
+                        "DNG LinearizationTable was structurally validated before "
+                        "camera decode but its arithmetic remains delegated to LibRaw; "
+                        f"tag={linearization_table['tag_code']}, "
+                        f"ifd={linearization_table['ifd_path']}, "
+                        f"count={linearization_table['count']}, "
+                        "payload_u16le_sha256="
+                        f"{linearization_table['payload_u16le_sha256']}.",
+                    )
+                ]
+                if linearization_table is not None
+                else []
+            )
         ),
     )
 
