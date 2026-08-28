@@ -1,0 +1,154 @@
+{
+  "schema": "neuro-film.p314-canon-sraw-product-chain-compatibility-evidence.v1",
+  "experiment_id": "P314",
+  "status": "PASS_PRIVATE_CANON_SRAW_PRODUCT_CHAIN_COMPATIBILITY",
+  "execution_commit": "fef9ef133da5da2ecf0645dee81448967523ba06",
+  "candidate_count": "2/3",
+  "bindings": {
+    "config": {
+      "path": "configs/p314_canon_sraw_product_chain_compatibility_v1.json",
+      "bytes": 5612,
+      "sha256": "fa1224bdce7224f436551fd64434ed26aa2c4e84596c21143351e79ae3c39f06"
+    },
+    "contract": {
+      "path": "docs/planning/P314_CANON_SRAW_PRODUCT_CHAIN_COMPATIBILITY_CONTRACT.md",
+      "bytes": 3307,
+      "sha256": "895847815b10bcf3228c6175813e51c899c9ac5ad129f49899302a82a1212bf3"
+    },
+    "runner": {
+      "path": "scripts/audit_p314_canon_sraw_product_chain_compatibility.py",
+      "bytes": 12740,
+      "sha256": "e0b6d89bb51e0bbcc63e2f46c018f325d61cbda1d83e570b5da6ea82497d5bd5"
+    },
+    "test": {
+      "path": "tests/test_p314_canon_sraw_product_chain_compatibility.py",
+      "bytes": 1447,
+      "sha256": "6289b3b580c4389e99b85276a0c6a86e125ae39570554fbf58fb3ab0f378b646"
+    }
+  },
+  "formal_replay": {
+    "processes": 2,
+    "orders": ["forward", "reverse"],
+    "report_bytes": 13987,
+    "forward_report_sha256": "88d08860c063deb50ed539b55f7ef1e8889c63f8899c4132550a5a1f319f1c00",
+    "reverse_report_sha256": "88d08860c063deb50ed539b55f7ef1e8889c63f8899c4132550a5a1f319f1c00",
+    "reports_byte_exact": true,
+    "scientific_identity": "sha256:0995db2a29e3fbfa0cb42b1511b586bc7ea9aa26834416f00f867ed300125d6a"
+  },
+  "execution": {
+    "profile_id": "safe-rich-product-v1",
+    "style": "ektar_100",
+    "look_amount": 1.0,
+    "output": "8-bit sRGB PNG",
+    "recipe_schema": "kmcfm.render-recipe.v1",
+    "tile_size": null,
+    "effects": {"grain": 0.0, "halation": 0.0, "dust": 0.0},
+    "production_core_changes": 0,
+    "network_requests": 0,
+    "final_scratch_files": 0
+  },
+  "gates": {
+    "all_cli_success": true,
+    "all_output_png8_srgb": true,
+    "all_recipe_fields_exact": true,
+    "all_replay_hashes_exact": true,
+    "all_replays_byte_exact": true,
+    "all_sources_immutable": true,
+    "bindings_exact": true,
+    "network_requests_zero": true,
+    "required_rows_complete": true,
+    "runtime_exact": true,
+    "scratch_residue_zero": true,
+    "tracked_worktree_clean": true
+  },
+  "records": [
+    {
+      "source_id": "canon_eos50d_mraw",
+      "model": "EOS 50D",
+      "mode": "sRAW1 (mRAW) (3:2)",
+      "shape": [2178, 3272, 3],
+      "output_bytes": 9379019,
+      "output_sha256": "5d83372c430acc8aa21b2668b7f258aea663f72a7d683af72894f15790490c5a",
+      "recipe_bytes": 3309,
+      "recipe_sha256": "1ac5a76f0ec3f212a78b26f3510ef879cb8565bbf53bda952e70e314e6542d10",
+      "replay_sha256": "5d83372c430acc8aa21b2668b7f258aea663f72a7d683af72894f15790490c5a"
+    },
+    {
+      "source_id": "canon_eos5d_mark_ii_mraw",
+      "model": "EOS 5D Mark II",
+      "mode": "sRAW1 (mRAW) (3:2)",
+      "shape": [2574, 3866, 3],
+      "output_bytes": 10163830,
+      "output_sha256": "aabad94a165d6372527734c64259de26a121a5bb9de7d2f838713bd8aa7e7b2b",
+      "recipe_bytes": 3330,
+      "recipe_sha256": "7a65e6822e837156d9232e775c78ca9b45187c3b37c88005a39393142e5c7593",
+      "replay_sha256": "aabad94a165d6372527734c64259de26a121a5bb9de7d2f838713bd8aa7e7b2b"
+    },
+    {
+      "source_id": "canon_eos5d_mark_iii_mraw",
+      "model": "EOS 5D Mark III",
+      "mode": "sRAW1 (mRAW)",
+      "shape": [2640, 3960, 3],
+      "output_bytes": 8606239,
+      "output_sha256": "f6ff55de81adaba39f9a4ca73cd34c4c492e9bfda34f1829ba000708cadb6c03",
+      "recipe_bytes": 3329,
+      "recipe_sha256": "bc1cd5b228bf3806fddfe934c443a773a94f2cacbc600137db7a9d84f14765ca",
+      "replay_sha256": "f6ff55de81adaba39f9a4ca73cd34c4c492e9bfda34f1829ba000708cadb6c03"
+    },
+    {
+      "source_id": "canon_eos5d_mark_iv_sraw",
+      "model": "EOS 5D Mark IV",
+      "mode": "sRAW2 (sRAW) (3:2)",
+      "shape": [2240, 3360, 3],
+      "output_bytes": 6641528,
+      "output_sha256": "536deeff3c73c31793a5fac19bb5e4d3c4f7d1ef61e3f3326b41107e35597437",
+      "recipe_bytes": 3330,
+      "recipe_sha256": "45c10db4698f739f0b55a743de3abd544060625f8df857e2041405adeca06bab",
+      "replay_sha256": "536deeff3c73c31793a5fac19bb5e4d3c4f7d1ef61e3f3326b41107e35597437"
+    },
+    {
+      "source_id": "canon_eos7d_mark_ii_mraw",
+      "model": "EOS 7D Mark II",
+      "mode": "sRAW1 (mRAW) (3:2)",
+      "shape": [2736, 4104, 3],
+      "output_bytes": 7590746,
+      "output_sha256": "825dc8a017e79ec31b1b00c4cdeeb7b8d7a8d717cf9088aa48189b9012a643c2",
+      "recipe_bytes": 3330,
+      "recipe_sha256": "da9bf9a0c15fd4db80afd63c4b17d3fd3a7701b7a91532278dee261c4b91e2b7",
+      "replay_sha256": "825dc8a017e79ec31b1b00c4cdeeb7b8d7a8d717cf9088aa48189b9012a643c2"
+    },
+    {
+      "source_id": "canon_eos7d_mraw",
+      "model": "EOS 7D",
+      "mode": "sRAW1 (mRAW) (3:2)",
+      "shape": [2592, 3888, 3],
+      "output_bytes": 12042755,
+      "output_sha256": "a54b2e269b342ede014325cf2f12c12aaeda42e6223bc4d05621b16f773be6e9",
+      "recipe_bytes": 3293,
+      "recipe_sha256": "aa60a0f12124027b8ae0094c954ea8aef5f24a6885d6aaf4c6fd7b81e535634e",
+      "replay_sha256": "a54b2e269b342ede014325cf2f12c12aaeda42e6223bc4d05621b16f773be6e9"
+    }
+  ],
+  "excluded_lineage": {
+    "pre_cli_path_correction": {
+      "cli_invocations": 0,
+      "product_pixel_renders": 0,
+      "reports_written": 0
+    },
+    "post_cleanup_scope_correction": {
+      "cli_invocations": 6,
+      "recipe_replays": 6,
+      "reports_written": 0,
+      "retained_media_files": 0
+    },
+    "claim_assertion_report": {
+      "bytes": 10544,
+      "sha256": "b41ccd665244a0dd02fb8969e2fa96f324b6b4d7b0edc317423212441a2e2437",
+      "decision": "FAIL_CLOSED_CANON_SRAW_PRODUCT_CHAIN_COMPATIBILITY",
+      "failed_gate": "all_recipe_fields_exact",
+      "reason": "The auditor asserted nonexistent v1 claim keys and relative paths instead of the already-frozen render_mode/output_label/evidence_grade and resolved absolute path contract. Product bytes and replay identity passed; the assertion was corrected additively before accepted formal execution."
+    }
+  },
+  "decision_note": "The unchanged public product chain accepts all six exact Canon sRAW/mRAW files and produces exact committed recipe replays in both source orders. This closes only the exact local compatibility question; adjacent Canon/codec expansion stops.",
+  "claim_ceiling": "Private Windows/Python end-to-end product-chain compatibility for six exact CC0 Canon sRAW/mRAW files through the existing explicit Ektar 100 Look Approximation and strict recipe replay only; no vendor-exact colour, general Canon/sRAW support, camera calibration, scene-to-display quality, Ektar stock evidence, product promotion, new decoder/interface or candidate 3."
+}
