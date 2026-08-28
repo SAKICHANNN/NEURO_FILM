@@ -29,7 +29,6 @@ from .streaming_percentile import (
     exact_streaming_percentiles,
 )
 
-
 STAGED_PHYSICAL_COLOUR_VERSION = "staged-physical-colour-halation-v1-defaults"
 _SOURCE_PERCENTILE = 99.7
 _SOURCE_HIGH_PERCENTILE = 99.8
