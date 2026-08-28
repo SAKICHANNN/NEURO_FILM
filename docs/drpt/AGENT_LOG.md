@@ -19742,3 +19742,35 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   adjacent P304-P307 tests plus Ruff, compile, JSON and diff checks pass.
   Candidate count stays `2/3`; no package/schema/capability/product mapping
   opens.
+
+### 2026-08-28 - U4.5C closes the true warm-preview target with a verified session snapshot
+
+- **Node and routing:** `ULT > U4 performance > U4.5C`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the primary writer; scientific claim review,
+  structure stewardship and project-agent-log discipline were secondary. The
+  leaf tests a materially distinct session-resident mechanism after U7.3H
+  closed fresh-process full-hash lookup at 300ms; it does not skip admission
+  hashes or reopen that failed family.
+- **Implementation:** freeze `adb8e154`, private core/tests `ae7a952a`, formal
+  runner `8b74bd2`, evidence `14660c8e`. Admission calls the unchanged U7.3H
+  full input/profile/output validation, owns immutable preview bytes, rehashes
+  their payloads and rechecks input/profile identities after admission to
+  detect mutation during the window. Warm lookup performs zero filesystem,
+  decode, render or write work, and post-admission disk mutation cannot alter
+  the admitted snapshot; a new admission rejects the mutation.
+- **Formal evidence:** two fresh processes each perform four admissions and 32
+  warm lookups. Scientific identity is exact at
+  `942b2c32...d71d4c4`; the maximum admission is `0.04387s` and the maximum of
+  64 warm lookups is `0.0003104s`, below the frozen `0.300s` target. All three
+  canonical U7.3G preview byte identities remain exact. Formal reports are
+  4,087/4,084 bytes with stable scientific payload despite timing fields;
+  evidence is `docs/evidence/U4_5C_VERIFIED_PREVIEW_SESSION_RESULT.json`.
+  The adjacent suite passes `18/18`; Ruff, py_compile, JSON and diff checks are
+  clean, and owned formal scratch is removed.
+- **Decision and handoff:**
+  `PASS_PRIVATE_VERIFIED_SESSION_WARM_PREVIEW_LOOKUP`. Preserve U7.3H as the
+  immutable fresh-process failure and do not call this render acceleration,
+  calibrated stock response, stock distinguishability, installer/release,
+  cross-platform support or multi-stock completion. Keep the core private;
+  return effort to stock-controlled evidence and the remaining 12/24MP/device
+  product tiers rather than adjacent cache micro-optimization.
