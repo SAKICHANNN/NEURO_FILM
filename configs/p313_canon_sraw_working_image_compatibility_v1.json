@@ -1,7 +1,7 @@
 {
   "schema": "neuro-film.p313-canon-sraw-working-image-compatibility-contract.v1",
   "experiment_id": "P313",
-  "status": "FROZEN_READY_FOR_IMPLEMENTATION",
+  "status": "FROZEN_READY_FOR_FORMAL_EXECUTION",
   "bindings": {
     "contract": {
       "path": "docs/planning/P313_CANON_SRAW_WORKING_IMAGE_COMPATIBILITY_CONTRACT.md",
@@ -13,10 +13,22 @@
       "bytes": 4822,
       "sha256": "6288a4b546b15dd28fcdd675603c65ba57ac67c3c4d42d552d9b825334cfebfe"
     },
+    "runner": {
+      "path": "scripts/audit_p313_canon_sraw_working_image_compatibility.py",
+      "bytes": 10755,
+      "sha256": "4304a98bf99e5c0821590ab2a6669bcf209f35edc54b3b79cbaa86cd76777cc7",
+      "implementation_commit": "a9842b74"
+    },
     "source_rows": {
       "path": "data/external/p313_canon_sraw_working_image_v1/source_rows.json",
       "bytes": 2879,
       "sha256": "d111fe4f5591be0fd4e06a44dda729dd0af238475eee9a221a1363a5b1d3fdda"
+    },
+    "test": {
+      "path": "tests/test_p313_canon_sraw_working_image_compatibility.py",
+      "bytes": 1169,
+      "sha256": "11db05286fa0dbfd2c4858433113957604e51db311a67e7e9ff91f85790c205f",
+      "implementation_commit": "a9842b74"
     }
   },
   "runtime": {
