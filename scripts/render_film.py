@@ -71,7 +71,20 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Render a content-preserving film look."
     )
-    parser.add_argument("input", type=Path)
+    parser.add_argument(
+        "input",
+        type=Path,
+        nargs="?",
+        help="Input image path. Omit only with --list-product-looks.",
+    )
+    parser.add_argument(
+        "--list-product-looks",
+        action="store_true",
+        help=(
+            "Print the authoritative evidence-bounded product look catalog as "
+            "JSON without reading an input image."
+        ),
+    )
     parser.add_argument(
         "--style",
         default=None,
@@ -203,7 +216,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--halation-no-remjet", type=float, default=-1.0)
     parser.add_argument("--dust", type=float, default=0.0)
     parser.add_argument("--seed", type=int, default=7)
-    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--output", type=Path, default=None)
     parser.add_argument("--output-bit-depth", type=int, choices=(8, 16), default=8)
     parser.add_argument(
         "--png-compression",
@@ -236,7 +249,16 @@ def parse_args() -> argparse.Namespace:
         default=1,
         help="Parallel bounded safe-Lab tiles; requires --tile-size, default 1.",
     )
-    return parser.parse_args()
+    args = parser.parse_args()
+    if args.list_product_looks:
+        if args.input is not None or args.output is not None:
+            parser.error("--list-product-looks cannot be combined with input or --output")
+    else:
+        if args.input is None:
+            parser.error("input is required unless --list-product-looks is used")
+        if args.output is None:
+            parser.error("--output is required unless --list-product-looks is used")
+    return args
 
 
 def save_rgb(
@@ -341,6 +363,13 @@ def build_color_render_float(
 
 def main() -> int:
     args = parse_args()
+    if args.list_product_looks:
+        payload = {
+            "schema_id": "kmcfm.product-look-catalog.v1",
+            "looks": list_product_looks(),
+        }
+        print(json.dumps(payload, sort_keys=True, separators=(",", ":")))
+        return 0
     style_was_explicit = args.style is not None
     if args.style is None:
         args.style = "velvia_50"
