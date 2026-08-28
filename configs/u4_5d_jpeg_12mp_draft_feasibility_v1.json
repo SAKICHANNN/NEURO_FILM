@@ -1,0 +1,53 @@
+{
+  "schema": "kmcfm.u4-5d-jpeg-12mp-draft-feasibility-contract.v1",
+  "experiment_id": "U4.5D_JPEG_12MP_DRAFT_FEASIBILITY",
+  "source": {
+    "path": "data/preference/repid/u5_r2repid3_shared_operator_v1/fit/winner/a4593-kme_0276.jpeg",
+    "bytes": 17798433,
+    "sha256": "7ea3d1ed37b7df518c0466c1379f08aa34ea5ae00eb7dc8208fcff2cfe68d1c6",
+    "width": 4032,
+    "height": 6048,
+    "role": "exact preexisting U4.5B internal display-sRGB product-scale fixture; not film truth"
+  },
+  "target": {
+    "maximum_pixels": 12000000,
+    "width": 2828,
+    "height": 4242,
+    "pixels": 11996376
+  },
+  "runtime": {
+    "python": "3.12",
+    "pillow_version": "12.1.1",
+    "libjpeg_version": "8.0",
+    "jpeg_plugin_path": ".venv/Lib/site-packages/PIL/JpegImagePlugin.py",
+    "jpeg_plugin_bytes": 32438,
+    "jpeg_plugin_sha256": "06fd7382455908153398460c25a199b13eb4226aebeb6799f33acaad6eb32dfd",
+    "imaging_binary_path": ".venv/Lib/site-packages/PIL/_imaging.cp312-win_amd64.pyd",
+    "imaging_binary_bytes": 2588160,
+    "imaging_binary_sha256": "743c7c051b47d60a6bba4b3537e564f1f2e745e342e7351cab5fbe2d0bb96594"
+  },
+  "bindings": {
+    "contract_path": "docs/planning/U4_5D_JPEG_12MP_DRAFT_FEASIBILITY_CONTRACT.md",
+    "u4_5b_config_path": "configs/u4_5b_jpeg_scaled_preview_decode_v1.json",
+    "u4_5b_config_sha256": "3d9fc6d54a1075a4791139902af21d96ea4bb9d34c84411d4a09c13ef2bf70df",
+    "preview_core_path": "src/inference/three_stock_preview.py",
+    "runner_path": "scripts/audit_u4_5d_jpeg_12mp_draft_feasibility.py",
+    "test_path": "tests/test_u4_5d_jpeg_12mp_draft_feasibility.py"
+  },
+  "gates": {
+    "authority_exact": true,
+    "source_exact": true,
+    "target_exact": true,
+    "draft_not_below_target": true,
+    "draft_not_above_source": true,
+    "draft_strictly_smaller_than_source": true,
+    "draft_pixels_at_most_target_ceiling": true,
+    "decoder_tile_exact": true,
+    "pixel_reads_zero": true,
+    "output_writes_zero": true,
+    "source_immutable": true,
+    "forward_reverse_exact": true
+  },
+  "stop_rule": "Failure closes the exact native libjpeg 12MP draft route without target/source/runtime replacement, undershoot-and-upsample, full pixel decode, custom decoder or gate relaxation.",
+  "claim_ceiling": "Private Windows/Pillow exact-source 12MP JPEG native-draft feasibility only; no preview fidelity, render latency/memory, final export, generic ingress, arbitrary JPEG, device performance, calibrated stock response, product release or stock evidence."
+}
