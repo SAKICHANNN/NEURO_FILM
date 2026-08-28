@@ -20009,6 +20009,37 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   three-stock product path. Adjacent ICC-format expansion stops here; the next
   work returns to a directly discriminating multi-stock data or product gap.
 
+### 2026-08-28 - U7.2H removes the implicit Velvia product selection
+
+- **Node and routing:** `ULT > U7.2 > U7.2H`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the primary writer; scientific claim review,
+  structure stewardship and project-agent-log discipline were secondary. Live
+  inspection found that `render_film.py` still defaulted `--style` to
+  `velvia_50`, including when callers explicitly selected the multi-look
+  `safe-rich-product-v1` profile. This contradicted the stock-first rule that
+  the user chooses a target look and that Velvia/AO6 do not represent the
+  product.
+- **Freeze and implementation:** contract/config `345e8936`, narrow CLI/test
+  repair `5c383052`, formal audit `11064156`, evidence `9820966a`. The parser
+  now records whether `--style` was supplied. It retains the historical
+  Velvia default for legacy profiles and the separate analytical research
+  engine, but a validated `safe-rich-product-v1` profile rejects omission
+  before input decode, recipe publication or output creation.
+- **Formal result:** explicit Velvia 50, Portra 400 and Ektar 100 output hashes
+  remain exactly equal to the pre-change oracle. Recipe semantics normalized
+  only over the required advancing `software.commit` field are exact, and the
+  emitted recipes bind the actual implementation commit. The legacy omitted
+  default remains exact, generic B&W remains blocked at its 3/16 severe veto,
+  source bytes are unchanged and runtime residue is zero. Forward/reverse
+  committed-head reports are byte-identical at 3,227 bytes / SHA
+  `f416ca0a...fce0da`; 57 focused/adjacent tests pass, with Ruff, py_compile,
+  JSON and diff checks clean. Evidence SHA is `47ca4a8a...731b1a`.
+- **Decision:** `PASS_EXPLICIT_PRODUCT_LOOK_SELECTION`. This is product truth,
+  not a style or stock-science improvement. It changes no colour parameters,
+  pixels, separation evidence, calibration state or AO6 status. Stop adjacent
+  selection/UI wrappers and return to controlled multi-stock evidence or a
+  materially distinct product capability.
+
 ### 2026-08-28 - P309 independently intakes the exact R1FS DNG sequence boundary
 
 - **Node and routing:** `ULT > U1 DNG ingress > P309`, DRPT L2 / Mode C.
