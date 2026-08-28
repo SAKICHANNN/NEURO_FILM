@@ -1,0 +1,80 @@
+{
+  "schema_version": "neuro-film.p311-r1fu-dng-per-profile-gain-table-no-copy-intake-result.v1",
+  "experiment_id": "P311",
+  "status": "FAIL_CLOSED_R1FU_DNG_PER_PROFILE_GAIN_TABLE_NO_COPY_INTAKE",
+  "decision": "The exact R1FU Git objects, source, profile names, offsets, matrices, tone curve, two PGTM2 payloads, decoded gain hashes, Raw-IFD map, invalid controls and source immutability all verified. The frozen consumer handoff nevertheless fails closed because the live producer HEAD advanced after handoff and the exact callable returns role extra-profile-0 while the producer formal report normalized that role to extra-profile. Do not change the frozen head or role gates to convert this leaf to PASS.",
+  "lineage": {
+    "contract_freeze_commit": "b11f32864",
+    "audit_implementation_commit": "4dfb85e9d",
+    "producer_head_gate_commit": "d58b9fcdb",
+    "failing_gate_visibility_commit": "2e684335",
+    "fail_report_publication_commit": "49c04ba3",
+    "producer_preregistration_commit": "2dd8864a9fa93dc939bf03def3c5a8cb0676b545",
+    "producer_implementation_commit": "9eaefc4525d47aa3ef99b747e619a1202a59cba4",
+    "producer_evidence_commit": "73a943ce726f79684bb9c3ca8d69dc858806870c"
+  },
+  "bindings": {
+    "config": {
+      "path": "configs/p311_r1fu_dng_per_profile_gain_table_no_copy_intake_v1.json",
+      "sha256": "4a94b01db2678b8cf5f8a683cc84cb4c57ee5c22502f982a596875dc6f8a6cb0"
+    },
+    "audit": {
+      "path": "scripts/audit_p311_r1fu_dng_per_profile_gain_table_no_copy_intake.py",
+      "sha256": "923f3112e3d0fe99104a67c2144679f3f37011d2a8b98e0c415d67bcde7c3bb3"
+    },
+    "producer_association_module": {
+      "git_blob": "944fd82c4aea2cce353963dc16e6d291ee472fd2",
+      "sha256": "04b7c0e4fe373dedf8fd67709545a4a2df430d1f4452e28532a70df16996e599"
+    },
+    "producer_pgtm2_dependency": {
+      "git_blob": "5298c3730b75b4c01339d73b1ce253eeeeedc490",
+      "sha256": "bbe34e088a77c58b07d98a6663b327e36ee824aceb610ab5680c16c4becac574"
+    },
+    "source": {
+      "bytes": 6010280,
+      "sha256": "14a2afc29ad1c848a12390d2c30abd36f8adb29aab90866f66edbd33efd6e58e"
+    },
+    "forward_report": {
+      "path": "outputs/reports/p311_r1fu_dng_per_profile_gain_table_forward.json",
+      "bytes": 7759,
+      "sha256": "bc7964e4bd27c731525835a137b6b7b54678ac859766ba6751d48def6cd19375"
+    },
+    "reverse_report": {
+      "path": "outputs/reports/p311_r1fu_dng_per_profile_gain_table_reverse.json",
+      "bytes": 7759,
+      "sha256": "bc7964e4bd27c731525835a137b6b7b54678ac859766ba6751d48def6cd19375"
+    },
+    "scientific_identity": "977a9a87132a84d70f062cf9cde4430dce545d42a1d820bb2abaede426ea907b"
+  },
+  "formal_result": {
+    "forward_reverse_byte_exact": true,
+    "gates_passed": 9,
+    "gates_total": 11,
+    "failed_gates": [
+      "parse-and-read-summaries-exact",
+      "producer-head-exact"
+    ],
+    "expected_producer_head": "5c4ca4efb586436471bade6567c3611f0826dfb1",
+    "observed_producer_head": "09d0382f4c798437253d260192afdd00b70c4834",
+    "expected_extra_role": "extra-profile",
+    "observed_callable_extra_role": "extra-profile-0",
+    "all_non_role_profile_fields_exact": true,
+    "invalid_controls_rejected": 6,
+    "source_immutable": true,
+    "temporary_residue_zero": true
+  },
+  "excluded_attempts": [
+    "The first committed-head forward attempt stopped before report publication because the runner did not expose failing gate names.",
+    "An additive error-message-only commit exposed the two failed gates. A read-only diagnostic localized the role-label mismatch; no source, parser, control, gate, threshold or claim ceiling changed. Formal forward and reverse reports were then rebuilt from the committed report-publication head."
+  ],
+  "rights_and_product": {
+    "candidate_3": false,
+    "consumer_core_copied": false,
+    "image_pixels_decoded": 0,
+    "sdk_renders_executed": 0,
+    "public_capability": false,
+    "product_mapping": false
+  },
+  "stop_rule": "P311 is closed without changing the frozen producer-head or callable-role gates. Do not normalize extra-profile-0 to extra-profile, relock to a later producer HEAD, copy the parser, add wrappers, or claim profile-stage/product support under this leaf.",
+  "claim_ceiling": "Private fail-closed audit of one exact source-locked R1FU per-profile PGTM2 association handoff on one synthetic official Adobe sample; all exact arithmetic/metadata identities except the callable role label matched, but no consumer intake, arbitrary-DNG support, interpolation, stage application, image quality, package/schema/capability, product mapping, stock evidence, automatic matching or candidate-3 change opens."
+}
