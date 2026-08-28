@@ -1,0 +1,66 @@
+{
+  "schema": "neuro_film.p308_dng_linearization_table_delegation_evidence.v1",
+  "experiment_id": "P308",
+  "status": "PASS_PRIVATE_DNG_LINEARIZATION_TABLE_DELEGATION",
+  "decision": "Retain strict predecode LinearizationTable structural validation and an explicit LibRaw-delegation receipt on the private exact-five P98 DNG ingress. Do not represent this as independent table arithmetic or arbitrary DNG support.",
+  "commits": {
+    "preregistration": "b0df04d7",
+    "implementation": "27b9bc51",
+    "formal_runner": "5715fecf",
+    "prescore_runner_binding_correction": "8204d37f"
+  },
+  "bindings": {
+    "config": {"path": "configs/p308_dng_linearization_table_delegation_v1.json", "bytes": 2833, "sha256": "5d77c7edabc1ebb17a40d39d94819c5f05c53d97cad80d1e4982b0258d049a95"},
+    "contract": {"path": "docs/planning/P308_DNG_LINEARIZATION_TABLE_DELEGATION_CONTRACT.md", "bytes": 2172, "sha256": "7316439409bb6fa3d71cdf76725f9712b529e8e9d38b2ed090d79685b8bcb3b2"},
+    "implementation": {"path": "src/preprocess/dng_forward_raster.py", "bytes": 22034, "sha256": "4926834803ceddb849a42363316019c79373c08e3c0ee81710cbc53c5d0e5b14"},
+    "runner": {"path": "scripts/audit_p308_dng_linearization_table_delegation.py", "bytes": 13491, "sha256": "3c33fa38867bbbf0742e3f60284fdd731cdae527edc1ed49d53ea2a9d12813c7"},
+    "test": {"path": "tests/test_p308_dng_linearization_table_delegation.py", "bytes": 3200, "sha256": "b755e1799cf5ec2a7140903fdb82b7534be7ede7562547d209ad1a9d7c5f593f"},
+    "adobe_dng_sdk": {"path": "data/external/adobe_dng_sdk_1_7_1_2652/dng_sdk_1_7_1_2652_20260714.zip", "bytes": 80494799, "sha256": "73499b47f4683e12120a234bd0946f02e52ab2ff9834bcbd0e9f8ab4f923360e"},
+    "p98_config_sha256": "5fb17f82cfecdae40a4c812f2ea9c26641e91bcab43e17c8a6a4bc94b2f03c35",
+    "p244_config_sha256": "7267485b9258ad38e487e65d5a9ff3a24716bfb3a306345e4e1512ab48ca556d"
+  },
+  "execution": {
+    "forward_report_path": "outputs/eval/p308_dng_linearization_table_delegation/formal_forward.json",
+    "reverse_report_path": "outputs/eval/p308_dng_linearization_table_delegation/formal_reverse.json",
+    "report_bytes": 6231,
+    "report_sha256": "379f1ade0a6d1b7787f98f874de977ef2d2059043a3012064f6cb750596ae15f",
+    "forward_reverse_byte_exact": true
+  },
+  "facts": {
+    "real_rows": 5,
+    "rows_with_linearization_table": 1,
+    "linearization_table": {
+      "source_id": "blackmagic_pocket_cinema_camera_4k",
+      "tag_code": 50712,
+      "ifd_path": "0",
+      "count": 4096,
+      "payload_u16le_sha256": "37ff0c95bd8e810277ee2e0f34c33c613638473e28802af758c7b7317aeca9a0"
+    },
+    "invalid_controls": 7,
+    "invalid_controls_decode_calls": 0,
+    "prior_guard_controls": 6,
+    "p98_pixel_hashes_exact": 5,
+    "source_rows_immutable": 5
+  },
+  "gates": {
+    "authority_exact": true,
+    "inventory_exact": true,
+    "invalid_reject_before_decode": true,
+    "explicit_warning_exact": true,
+    "p98_pixel_hashes_exact": true,
+    "prior_guards_exact": true,
+    "working_contract_exact": true,
+    "source_immutable": true,
+    "finite": true,
+    "forward_reverse_scientific_exact": true
+  },
+  "interpretation": [
+    "The exact Blackmagic row now receives a source-bound predecode receipt for its one valid 4096-entry TIFF SHORT LinearizationTable; the other four exact rows remain table-free.",
+    "The loader still delegates camera raster decode and table arithmetic to unchanged LibRaw, and says so in one exact warning on the Blackmagic row.",
+    "All five frozen P98 float32 WorkingImage hashes, prior profile/opcode/version guards, source bytes and working contracts remain exact."
+  ],
+  "corrections": [
+    "The first pre-evidence dual run failed only two audit bindings: the per-row expected inventory omitted globally fixed tag_code 50712, and the runner named the already-frozen working space linear_rec2020_d65 instead of linear_rec2020. Commit 8204d37f corrected only those runner comparisons; implementation, cohort, outputs, controls and gates were unchanged, and both accepted formal processes restarted from the corrected committed HEAD."
+  ],
+  "claim_ceiling": "Private exact-five P98 DNG LinearizationTable structural validation and explicit LibRaw-delegation receipt only; no independent table arithmetic, Adobe/vendor parity, full or arbitrary DNG renderer, image quality, default loader, package/schema/capability, stock evidence, candidate3 or product admission."
+}
