@@ -19950,3 +19950,31 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   form, reconstruct values from vectorscopes, infer rights, fit creative
   presets or substitute another Fujifilm stock. No K=1 fitting, calibration,
   product profile or multi-stock completion opens.
+
+### 2026-08-28 - U1.2D adds lossless RGB16 TIFF orientation ingress
+
+- **Node and routing:** `ULT > U1.2 > U1.2D`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the primary writer; scientific claim review,
+  structure stewardship and project-agent-log discipline were secondary. Live
+  code inspection found a product inconsistency: ordinary 8-bit rasters already
+  apply EXIF orientation, while the separate RGB16 TIFF path rejected every
+  nonidentity orientation.
+- **Freeze and implementation:** contract/config `c282ad08`, core/tests
+  `79f96b5b`, formal audit `cfa5a9d2`, evidence `bc7f44db`. The new core applies
+  only axis permutation/reversal for Orientation 1--8 before sRGB linearization
+  or the supported ProPhoto-to-linear-Rec.2020 transform. It does not resize,
+  interpolate, crop, quantize or change generic PNG/JPEG/RAW/HDR handling.
+- **Formal result:** all eight non-square, channel-distinct RGB16 cases match an
+  independent Pillow transpose oracle byte-for-byte after the existing colour
+  conversion. Source sample multisets and files remain exact; ProPhoto order,
+  identity behaviour, unsupported ICC, multipage, alpha and invalid-orientation
+  controls pass. The real `render_film.py` subprocess consumes Orientation=6
+  and publishes the correctly rotated 3x5 geometry. Forward/reverse fresh
+  processes produce byte-identical 5,068-byte reports at SHA
+  `e72c3dae...a1fe1`; 56 focused/adjacent tests pass, with Ruff, py_compile,
+  JSON and diff checks clean.
+- **Decision:** `PASS_RGB16_TIFF_ORIENTATION_INGRESS`. This is a real deterministic
+  product-ingress repair, but its ceiling is single-page RGB16 TIFF under the
+  already-supported sRGB and ProPhoto profiles. It does not establish arbitrary
+  TIFF, PNG orientation, RAW camera orientation, HDR, multipage/alpha, new ICC,
+  stock calibration or a film operator.
