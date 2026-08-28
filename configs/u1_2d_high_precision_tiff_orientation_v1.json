@@ -1,0 +1,41 @@
+{
+  "schema": "kmcfm.u1-2d-high-precision-tiff-orientation-contract.v1",
+  "experiment_id": "U1.2D_HIGH_PRECISION_TIFF_ORIENTATION",
+  "orientations": {
+    "1": "identity",
+    "2": "mirror_horizontal",
+    "3": "rotate_180",
+    "4": "mirror_vertical",
+    "5": "transpose_main_diagonal",
+    "6": "rotate_90_clockwise",
+    "7": "transpose_anti_diagonal",
+    "8": "rotate_90_counter_clockwise"
+  },
+  "fixture": {
+    "height": 3,
+    "width": 5,
+    "channels": 3,
+    "dtype": "uint16",
+    "channel_distinct": true,
+    "non_square": true
+  },
+  "bindings": {
+    "contract_path": "docs/planning/U1_2D_HIGH_PRECISION_TIFF_ORIENTATION_CONTRACT.md",
+    "core_path": "src/preprocess/raster_decode.py",
+    "test_path": "tests/test_u1_2d_high_precision_tiff_orientation.py",
+    "runner_path": "scripts/audit_u1_2d_high_precision_tiff_orientation.py"
+  },
+  "gates": {
+    "all_orientations_exact": true,
+    "sample_multiset_exact": true,
+    "srgb_path_exact": true,
+    "prophoto_path_exact": true,
+    "identity_legacy_exact": true,
+    "invalid_orientation_rejects": true,
+    "existing_safety_gates_unchanged": true,
+    "renderer_geometry_exact": true,
+    "forward_reverse_exact": true
+  },
+  "stop_rule": "Any orientation-oracle, sample-precision, legacy, ICC, multipage, alpha, geometry or replay failure closes U1.2D without inference, tolerance relaxation or decoder replacement.",
+  "claim_ceiling": "Deterministic single-page RGB16 TIFF Orientation 1-8 ingress for already-supported sRGB and ProPhoto profiles only; no arbitrary TIFF, PNG orientation, RAW orientation, HDR, multipage, alpha, new ICC, stock calibration or film-operator claim."
+}
