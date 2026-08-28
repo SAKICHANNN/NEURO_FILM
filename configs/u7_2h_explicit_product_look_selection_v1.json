@@ -22,20 +22,24 @@
     "product": {
       "velvia_50": {
         "output_sha256": "2198b077eea5d29026694529e208d7db9428a36f97cb7af8fe330ce732e87fa7",
-        "recipe_sha256": "a29ebc4650ff04e54cadf324406295545bb4c9fab4ee7b1fb686c164b670bf2e"
+        "recipe_sha256": "a29ebc4650ff04e54cadf324406295545bb4c9fab4ee7b1fb686c164b670bf2e",
+        "normalized_recipe_sha256": "8c8bb25cd4a65c1f1b453da632a925127ff1af35d577b3d08adab4ea34432109"
       },
       "portra_400": {
         "output_sha256": "b2b9d118087648f626a0fa2d03bbaf78714ba053347e617bdb2b9505c4cf9453",
-        "recipe_sha256": "c099fd3003c32d1747a2bb46e1cfe6ba1fae2edc72609c488b9b87ba69d54be5"
+        "recipe_sha256": "c099fd3003c32d1747a2bb46e1cfe6ba1fae2edc72609c488b9b87ba69d54be5",
+        "normalized_recipe_sha256": "3993bddf9827dd9ec53e78daa128dea537c1a36092d3af45f9f3fe5afcc94ca2"
       },
       "ektar_100": {
         "output_sha256": "e8e3195dc3ab222567ca03d432eac6e03f48a84fa1a7e6c07a885f3b35999981",
-        "recipe_sha256": "51158a970871c048231036483124d4a60c46aaaa4ba77421954829f353223baa"
+        "recipe_sha256": "51158a970871c048231036483124d4a60c46aaaa4ba77421954829f353223baa",
+        "normalized_recipe_sha256": "68aa316a56c00f356b5be5b4720875c1ec2f55a9ed747d691f13d84ed6230d99"
       }
     },
     "legacy_default": {
       "output_sha256": "2198b077eea5d29026694529e208d7db9428a36f97cb7af8fe330ce732e87fa7",
-      "recipe_sha256": "69ef5d7dc7f7d972044baeeb7f784a45be74b2d220e5840a0ea3a67277ee574c"
+      "recipe_sha256": "69ef5d7dc7f7d972044baeeb7f784a45be74b2d220e5840a0ea3a67277ee574c",
+      "normalized_recipe_sha256": "963ad580dfe605dcc8b1e587806b40226d335de58d74ec9b88c56394a46f6797"
     }
   },
   "parent_evidence": [
