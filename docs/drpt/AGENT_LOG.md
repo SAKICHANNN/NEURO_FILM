@@ -20133,3 +20133,35 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   calibration or release state changes. Adjacent selection-wrapper expansion
   stops; the mainline returns to independently controlled multi-stock evidence
   or a distinct substantive product defect.
+
+### 2026-08-28 - U7.2J closes the programmatic product-recipe bypass
+
+- **Node and routing:** `ULT > U7.2 > U7.2J`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the primary writer; scientific claim review,
+  structure stewardship and project-agent-log discipline were secondary. A
+  direct zero-pixel reproduction proved that U7.2I protected the CLI but a
+  caller could still bind `safe-rich-product-v1` to historical `hp5` through
+  the shared recipe builder/verifier and replay it.
+- **Freeze and repair:** contract/config `0c0504b6`, central recipe guard and
+  focused tests `58bfc569`, formal runner `911d0b4b`, audit-only correction
+  `954482a6`, evidence `4e67b375`. The central builder and verifier now consult
+  the same authoritative product catalog before input hashing or decode. A
+  local import preserves the existing module dependency direction; historical
+  profiles remain unchanged.
+- **Formal result:** HP5, Tri-X, both Vision3 styles, Portra 800, blocked generic
+  B&W, unknown and empty product recipes all fail before file I/O. Velvia 50,
+  Portra 400 and Ektar 100 output bytes remain exact to U7.2I and their float32
+  replays repeat exactly; legacy-profile HP5 output remains `0524c390...73ee`.
+  Forward/reverse reports are byte-identical at 6,902 bytes / SHA
+  `656727ec...cf8f`; all nine formal gates, 17 focused tests and 88 behavioral
+  parent-chain tests pass. The first formal attempt was discarded because the
+  audit expected the new error even where the existing schema or generic-B&W
+  severe veto rejected earlier; the correction changed only that audit
+  interpretation and both accepted runs restarted from zero. Old evidence and
+  its intentionally stale current-source bindings were not rewritten.
+- **Decision:** `PASS_CENTRAL_PRODUCT_RECIPE_CATALOG_ENFORCEMENT`. This closes
+  a real product-authorization inconsistency without changing any colour
+  algorithm, look parameter, output byte, public recipe schema, stock evidence,
+  calibration, separation or release state. Adjacent wrapper expansion stops;
+  the next work must return to controlled multi-stock evidence or a distinct
+  substantive product defect. Evidence SHA is `a69b0664...f1b96`.
