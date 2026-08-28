@@ -40,9 +40,9 @@
     },
     "runner": {
       "path": "scripts/audit_p314_canon_sraw_product_chain_compatibility.py",
-      "bytes": 11907,
-      "sha256": "df96bf46b8b6db39de965ec606d1cea2b842983f7b84d9e263e91e42e2a7025d",
-      "implementation_commit": "b8731604c9c89d6d669b6c2af721933a7d075a1e"
+      "bytes": 12164,
+      "sha256": "0e77b2fc1476d2260ab01731bf3389914851140c830ec2d6cbf549d6ac1a5247",
+      "implementation_commit": "c96e7d4bd484a7fdb7e6abcf441e8ce2a3e44ce3"
     },
     "test": {
       "path": "tests/test_p314_canon_sraw_product_chain_compatibility.py",
@@ -59,6 +59,17 @@
     "pillow": "12.1.1",
     "platform": "Windows"
   },
+  "prescore_corrections": [
+    {
+      "commit": "c96e7d4bd484a7fdb7e6abcf441e8ce2a3e44ce3",
+      "scope": "Before any CLI or product pixel execution, replace Path.resolve-based output relativization with lexical repository-relative normalization so the canonical outputs junction remains a portable logical path. Sources, product look, output format, gates and claim ceiling are unchanged.",
+      "excluded_attempt": {
+        "cli_invocations": 0,
+        "product_pixel_renders": 0,
+        "reports_written": 0
+      }
+    }
+  ],
   "execution": {
     "style": "ektar_100",
     "look_amount": 1.0,
