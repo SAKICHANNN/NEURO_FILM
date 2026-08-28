@@ -1,0 +1,30 @@
+{
+  "schema_id": "neuro-film.u7-2g-generic-bw-severe-veto-contract.v1",
+  "experiment_id": "U7.2G",
+  "parent_evidence": {
+    "path": "docs/evidence/BW2_D2_GENERIC_BW_POPULATION_SEVERE_REVIEW_RESULT.json",
+    "sha256": "205040017bc15122d1d59c2e29708012395ca85e40baed65d7b58725161e796d",
+    "required_status": "FAIL_CLOSED_CONFIRMED_HIGHLIGHT_CONTOUR_ARTIFACTS"
+  },
+  "required_order": [
+    "velvia_50",
+    "portra_400",
+    "ektar_100",
+    "generic_bw"
+  ],
+  "availability": {
+    "velvia_50": "available",
+    "portra_400": "available",
+    "ektar_100": "available",
+    "generic_bw": "blocked_severe_artifact"
+  },
+  "blocked_reason": "BW2.D2 confirmed renderer-created stippled contours around large highlight transitions on 3/16 frozen source-disjoint photographs.",
+  "forbidden_changes": [
+    "change generic B&W parameters or renderer",
+    "rerun, tune or rescue the BW2.D2/BW2.D3 cohort",
+    "remove historical generic B&W replay code or evidence",
+    "change any colour-stock look output",
+    "claim HP5, Tri-X, calibrated stock response or multi-stock completion"
+  ],
+  "claim_ceiling": "Product severe-veto propagation only; no algorithm repair, named-stock B&W claim, calibrated response or multi-stock completion."
+}
