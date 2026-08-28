@@ -40,4 +40,3 @@ samples and TIFF orientation, and return an owned unclipped
 This is only a private high-precision TIFF input compatibility boundary. It
 does not distribute Adobe's ICC profile, implement arbitrary ICC transforms,
 add PNG/RAW/HDR support, change a film look, or establish stock calibration.
-

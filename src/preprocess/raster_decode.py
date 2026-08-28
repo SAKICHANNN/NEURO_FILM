@@ -11,6 +11,7 @@ import numpy as np
 import tifffile
 from PIL import Image, ImageCms, ImageOps, UnidentifiedImageError
 
+from .adobe_rgb_icc import AdobeRGBICCError, decode_adobe_rgb16_to_linear_rec2020
 from .color_management import REC2020_SDR_CICP, rec2020_to_linear_rec2020
 from .output_encode import (
     normalized_icc_profile_sha256,
@@ -492,6 +493,22 @@ def _load_prophoto16_tiff(path: Path, inspection: InputInspection) -> np.ndarray
         ) from exc
 
 
+def _load_adobe_rgb16_tiff(path: Path, inspection: InputInspection) -> np.ndarray:
+    with tifffile.TiffFile(path) as tif:
+        page = tif.pages[0]
+        array = page.asarray()
+        profile_tag = page.tags.get(34675)
+        profile = bytes(profile_tag.value) if profile_tag is not None else b""
+        orientation_tag = page.tags.get("Orientation")
+        orientation = int(orientation_tag.value) if orientation_tag is not None else 1
+    if array.dtype != np.uint16 or array.ndim != 3 or array.shape[2] != 3:
+        raise ValueError("high-precision TIFF ingress requires contiguous uint16 RGB")
+    array = _apply_tiff_orientation(array, orientation)
+    if inspection.source_profile.kind != "icc" or not profile:
+        raise ValueError("TIFF ICC inspection/decode mismatch")
+    return decode_adobe_rgb16_to_linear_rec2020(array, profile)
+
+
 def _load_srgb16_png(path: Path, inspection: InputInspection) -> np.ndarray:
     import cv2
 
@@ -678,14 +695,24 @@ def load_raster_working_image(path: Path) -> WorkingImage:
             profile_tag = tif.pages[0].tags.get(34675)
             profile = bytes(profile_tag.value) if profile_tag is not None else b""
         if profile and not _is_supported_srgb_profile(profile):
-            pixels = _load_prophoto16_tiff(path, inspection)
-            warnings.append(
-                DecodeWarning(
-                    "embedded_prophoto_to_linear_rec2020",
-                    "Decoded the supported ProPhoto RGB ICC transform to "
-                    "unclipped linear Rec.2020; gamut mapping was not applied.",
+            try:
+                pixels = _load_adobe_rgb16_tiff(path, inspection)
+                warnings.append(
+                    DecodeWarning(
+                        "embedded_adobe_rgb_to_linear_rec2020",
+                        "Decoded a strict matrix-shaper profile compatible with Adobe RGB "
+                        "(1998) to unclipped linear Rec.2020; gamut mapping was not applied.",
+                    )
                 )
-            )
+            except AdobeRGBICCError:
+                pixels = _load_prophoto16_tiff(path, inspection)
+                warnings.append(
+                    DecodeWarning(
+                        "embedded_prophoto_to_linear_rec2020",
+                        "Decoded the supported ProPhoto RGB ICC transform to "
+                        "unclipped linear Rec.2020; gamut mapping was not applied.",
+                    )
+                )
             return WorkingImage(
                 pixels=pixels,
                 working_space="linear_rec2020",
