@@ -6,18 +6,21 @@ import argparse
 import hashlib
 import json
 import re
+import sys
 import urllib.request
 from collections import defaultdict
 from pathlib import Path, PurePosixPath
 from typing import Any
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from src.real_film.ppisp_capture_pair_source_lock import (
     ZipMember,
     locate_central_directory,
     parse_central_directory,
 )
-
-ROOT = Path(__file__).resolve().parents[1]
 
 
 class P307Error(RuntimeError):

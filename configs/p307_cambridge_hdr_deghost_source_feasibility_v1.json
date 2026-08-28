@@ -8,8 +8,8 @@
     "contract_bytes": 3778,
     "contract_sha256": "591f52eaaf534fb56cf3a4e566cf1e63de205dc27839881d0ef1f63d95ebda72",
     "runner_path": "scripts/audit_p307_cambridge_hdr_deghost_source_feasibility.py",
-    "runner_bytes": 18716,
-    "runner_sha256": "7cb10bb268dd93967b774110228093f3211c186e88359d622385092663f4a5bd",
+    "runner_bytes": 18791,
+    "runner_sha256": "e4f33167d8fd0c2e4544179a71c0351251da043040f8401b8a11448ce2840a74",
     "test_path": "tests/test_p307_cambridge_hdr_deghost_source_feasibility.py",
     "test_bytes": 3126,
     "test_sha256": "a90dde788d9bdcf5a5e60a5569a67d370906b79d4710420fdfdd05c0d971ca41"
