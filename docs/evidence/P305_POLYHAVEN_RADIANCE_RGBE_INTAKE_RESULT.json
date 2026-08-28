@@ -1,0 +1,71 @@
+{
+  "schema": "neuro-film.p305-polyhaven-radiance-rgbe-intake-evidence.v1",
+  "experiment_id": "P305",
+  "decision": "PASS_PRIVATE_POLYHAVEN_RADIANCE_RGBE_INTAKE",
+  "contract_commit": "3f824f0afd6a4e248007624d18d2092fc7cb124e",
+  "implementation_commit": "e426869a",
+  "direct_entry_fix_commits": [
+    "324c59c5",
+    "8881c049"
+  ],
+  "formal_execution_commit": "8881c049",
+  "official_source": {
+    "repository": "https://github.com/Poly-Haven/Public-API",
+    "repository_commit": "400522721de9f917dbd7340d58c7659312e7df6a",
+    "asset_id": "sunset_jhbcentral",
+    "variant": "hdri/1k/hdr",
+    "files_hash": "e2e14a204ee06104209396caa9e7b40322dbb3d4",
+    "source_bytes": 1573705,
+    "source_md5": "97335a81ba615beb6f6ae0da707ecd75",
+    "source_sha256": "39a9c6b391e9bda935501eb5abbe200c38959f054902050ca198d82e9f20b65b",
+    "rights": "CC0; official API README also declares personal and commercial use"
+  },
+  "formal_reports": {
+    "forward_path": "outputs/eval/p305_polyhaven_radiance_rgbe_intake_v1/forward.json",
+    "reverse_path": "outputs/eval/p305_polyhaven_radiance_rgbe_intake_v1/reverse.json",
+    "bytes_each": 2660,
+    "sha256_each": "b5d1227cacc191d6f83cecf1ccd9e6f093d61d71feeafa2c62d08cdc94022325",
+    "byte_exact": true,
+    "scientific_identity": "sha256:b9cd92014d572ae70390f3c9f8bb6579dab86359ce74d73e13bc5405592552ce"
+  },
+  "decoded_result": {
+    "shape": [512, 1024, 3],
+    "dtype": "float32",
+    "minimum": 0.0037078857421875,
+    "maximum": 19.6875,
+    "nonzero_exponent_pixels": 524288,
+    "candidate_f32le_sha256": "e93b097a4704882b22c086f3ed28db2fa50c40355c119f69607a02043814effe",
+    "rgbe_code_sha256": "7fd0c2f772d6fa609094e1178dd60e69fd57f9e633e3341dc50a030789cac6b0"
+  },
+  "oracle_discrepancy_and_resolution": {
+    "official_formula": "(primary + 0.5) * 2^(E-136) for nonzero exponent",
+    "opencv_version": "4.13.0",
+    "raw_opencv_difference_components": 1572864,
+    "raw_opencv_max_abs": 0.0625,
+    "raw_opencv_rmse": 0.003227612169484526,
+    "opencv_plus_exact_half_bin_difference_components": 0,
+    "opencv_plus_exact_half_bin_max_abs": 0.0,
+    "opencv_plus_exact_half_bin_rmse": 0.0,
+    "timing": "corrected prospectively after bounded diagnostic and before implementation lock or any formal report"
+  },
+  "passed_gates": {
+    "official_cc0_source_identity": true,
+    "payload_size_md5_sha256": true,
+    "strict_shape_dtype": true,
+    "finite_nonnegative": true,
+    "owned_contiguous_writable": true,
+    "official_semantics_residual": true,
+    "five_invalid_controls_reject": true,
+    "source_immutable": true,
+    "two_reports_exact": true
+  },
+  "access_accounting": {
+    "formal_network_requests": 0,
+    "source_file_reads_per_report": 1,
+    "alternate_asset_requests": 0,
+    "thumbnail_exr_backplate_requests": 0
+  },
+  "interpretation": "One exact CC0 Poly Haven Radiance file is decoded by a strict project-owned new-style scanline-RLE parser using Radiance's official half-bin RGBE convention. OpenCV independently verifies the container, RLE and code bytes but uses a lower-bin numeric convention; the preregistered correction makes that discrepancy explicit instead of treating OpenCV as the color-value authority.",
+  "stop_rule": "Do not assign primaries or a white point, convert this result to WorkingImage, generalize to arbitrary Radiance files, replace official half-bin semantics with OpenCV lower-bin values, or map this private primitive to a package/capability/product claim.",
+  "claim_ceiling": "Private exact-source Radiance RGBE arithmetic/container primitive producing unlabelled linear RGB radiance only; no primaries, white point, WorkingImage, arbitrary HDR support, package/schema/capability/product admission or candidate 3."
+}
