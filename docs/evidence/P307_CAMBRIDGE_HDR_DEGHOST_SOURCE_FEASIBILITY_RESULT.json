@@ -1,0 +1,110 @@
+{
+  "schema": "neuro-film.p307-cambridge-hdr-deghost-source-feasibility-evidence.v1",
+  "experiment_id": "P307",
+  "decision": "FAIL_CLOSED_CAMBRIDGE_HDR_DEGHOST_SOURCE_STRUCTURE_GAP_NOT_SCIENTIFIC_RESULT",
+  "contract_commit": "9c219f4ad3e446f57794dad414ff4fa710409db3",
+  "execution_lock_commit": "444911a71",
+  "pre_source_direct_entry_fix_commit": "ce294ce8e",
+  "metadata_parser_correction_commits": [
+    "fa6abf073",
+    "7299e1655"
+  ],
+  "archive_role_gate_separation_commit": "7be88270f",
+  "formal_execution_shared_head": "adb8e1541d7701d6f7d846c82060f490506f3b10",
+  "official_source": {
+    "doi": "10.17863/CAM.6881",
+    "item_uuid": "b65f07c4-a4f5-4310-b5ec-a1c27fd52d6a",
+    "rights": "Attribution 4.0 International (CC BY 4.0)",
+    "readme_bytes": 7910,
+    "readme_sha256": "1e48243a73c6febe45d637cc3b91000db41472009aed286076fcb84dc9fc5e23",
+    "license_bytes": 3893,
+    "license_sha256": "db610c9837ab13186d8143376ebe891b0c2fccfa7a2dbd6ad67275582ad27350"
+  },
+  "formal_reports": {
+    "forward_path": "outputs/eval/p307_cambridge_hdr_deghost_source_feasibility_v1/forward.json",
+    "reverse_path": "outputs/eval/p307_cambridge_hdr_deghost_source_feasibility_v1/reverse.json",
+    "bytes_each": 5936,
+    "sha256_each": "5a5572624ab6d77a67c5b0c1622eaa6bb76233571e72df1d815bc2dd4ab03d7b",
+    "byte_exact": true,
+    "scientific_identity": "sha256:9f8159fd77e8489239dc6105d25e3deb36caf428dc7c074d43710c50a8c14ccb"
+  },
+  "archive_results": {
+    "exposure_stacks_part2.zip": {
+      "uuid": "62522fb8-356c-440d-bac5-10780f75c8ba",
+      "bytes": 1302706663,
+      "official_md5": "14527d8b3882dc6ffaac868d23aaf9ac",
+      "central_directory_bytes": 36835,
+      "central_directory_sha256": "b9ff22879d68756bff8056790407fac70fa3e5d3822273d6e7a3c4e51947019e",
+      "member_count": 330,
+      "member_inventory_sha256": "4de52ded358ec39e6e11958ec2a79213da79d52eaf64dffa5571af12cc2639b5",
+      "categories": ["losm", "multiview", "nrm"],
+      "group_count": 12,
+      "complete_group_count": 11,
+      "decisive_incomplete_group": {
+        "category": "losm",
+        "image_set": "image_set2",
+        "ghosted_jpg": 6,
+        "ghosted_raw": 6,
+        "ground_truth_jpg": 5,
+        "ground_truth_raw": 5
+      }
+    },
+    "exposure_stacks_part3.zip": {
+      "uuid": "4391f37e-5005-44b6-8c99-c9adb0c3b945",
+      "bytes": 1333017287,
+      "official_md5": "21a534f26bcc3673b1dc38a615816a28",
+      "central_directory_bytes": 36858,
+      "central_directory_sha256": "ae7745a8388dd697488fd017b94788be6052390cbf91d995d55dff5891472ab2",
+      "member_count": 328,
+      "member_inventory_sha256": "7ebfd550b5e5570c11af7bed63e2c725b9d40eab0bf2d37ffeb02a519b734fb4",
+      "categories": ["occlusion", "solm", "sosm"],
+      "group_count": 12,
+      "complete_group_count": 12
+    }
+  },
+  "gates": {
+    "cc_by_4_0": true,
+    "exact_official_metadata": true,
+    "exact_range_transport": true,
+    "safe_single_disk_archives": true,
+    "exact_fresh_group_count": true,
+    "complete_paired_roles": false,
+    "forbidden_role_absence": true,
+    "zero_member_and_pixel_reads": true,
+    "network_budget": true,
+    "two_reports_exact": true
+  },
+  "access_accounting_per_report": {
+    "metadata_requests": 5,
+    "archive_range_requests": 4,
+    "metadata_network_bytes": 32595,
+    "archive_network_bytes": 335837,
+    "total_network_bytes": 368432,
+    "part1_requests": 0,
+    "local_header_reads": 0,
+    "member_payload_reads": 0,
+    "image_or_raw_reads": 0,
+    "pixel_decodes": 0,
+    "model_or_metric_reads": 0
+  },
+  "excluded_attempts": [
+    {
+      "reason": "direct script entry could not import src",
+      "network_requests": 0,
+      "scientific_result": false
+    },
+    {
+      "reason": "CRLF and official README spelling made narrow metadata markers false",
+      "effect": "report-only faithful parsing correction; the independent six-versus-five role-count failure was already present and unchanged",
+      "scientific_result": false
+    },
+    {
+      "reason": "archive safety and paired-role completeness initially shared one aggregate boolean",
+      "effect": "report-only gate separation; exact role-count failure and final decision unchanged",
+      "scientific_result": false
+    }
+  ],
+  "interpretation": "The untouched parts2/3 are official, CC BY 4.0, range-addressable, ZIP-safe and contain all six frozen fresh categories across 24 scene groups with paired ghosted/reference RAW and JPEG roles. The exact frozen five-files-per-format-and-role contract nevertheless fails because losm/image_set2 contains six ghosted JPEG and six ghosted RAW members while its two ground-truth roles contain five each. P307 therefore closes before any member body or pixel and does not choose a five-frame subset after seeing the inventory.",
+  "stop_rule": "Do not drop the sixth losm/image_set2 ghosted exposure, alter the five-frame role contract, replace a scene, request a member body, decode a pixel, or convert this zero-pixel source failure into a fusion, deghosting, candidate or product claim.",
+  "claim_ceiling": "Formal zero-pixel source-structure negative only; no HDR quality, arbitrary camera support, A1/A4/A5, candidate 3, package/schema/capability or product admission."
+}
