@@ -1,0 +1,81 @@
+{
+  "schema": "neuro-film.sf3-a3n-parvec-controlled-film-source-evidence.v1",
+  "experiment_id": "SF3.A3N_PARVEC_CONTROLLED_FILM_SOURCE_V1",
+  "date": "2026-08-28",
+  "status": "FAIL_CLOSED_SOURCE_RIGHTS_OR_PAYLOAD_GAP",
+  "decision": "FAIL_CLOSED_PARVEC_DATA_RIGHTS_OR_PAYLOAD_GAP",
+  "implementation": {
+    "freeze_commit": "5fd5fff39a23a9e37047498cca9caa0f30d13f04",
+    "implementation_commit": "8f8bc0003174917646e91da19f8254e113262dca",
+    "config_sha256": "fde216092331d3cd5e83c5fcd60c179eb461bda601f570ab910963ccfef6bc62",
+    "source_audit_sha256": "9562ed8ef455333970006ed9e7b62f5fa8f5046e53fe0d925ae7acdf44e8748d",
+    "runner_sha256": "5d256be92cb87b0c94407e64e2a1fb9845a23faf2a1855f8e77a32aec7a3aa05",
+    "test_sha256": "0f165f20bd367a832f2ec4467fe73910ca7e228b2883ccd72505cd1ed512bc20"
+  },
+  "formal_replay": {
+    "processes": 2,
+    "request_orders": [
+      [
+        "project",
+        "watch",
+        "oembed"
+      ],
+      [
+        "oembed",
+        "watch",
+        "project"
+      ]
+    ],
+    "reports_byte_exact": true,
+    "report_bytes": 3234,
+    "report_sha256": "07198ac9b1de0dd8e7e4f546210532f128aaa70d20c395d08fe74c986a904fff",
+    "stable_evidence_id": "3b982c2d63caa7cf71be7ca848ca8e1a52d9353e375fc6c82f425cfa0e73ff76",
+    "forward_report": "outputs/eval/sf3_a3n_parvec_controlled_film_source_v1/run_forward.json",
+    "reverse_report": "outputs/eval/sf3_a3n_parvec_controlled_film_source_v1/run_reverse.json"
+  },
+  "observed_source_facts": {
+    "official_project_url": "https://www.parvec.es/35-mm-color-science-project",
+    "official_video_url": "https://www.youtube.com/watch?v=AVFTtE-8C94",
+    "video_title": "Every 35mm Film Color Science Explained - Part 1",
+    "video_author": "PARVEC",
+    "semantic_source_identity_sha256": "50d5265118ada017eebe59971155be4ea8fb14a9ec41daa06658dfb1dc0b762a",
+    "controlled_workflow_statement_present": true,
+    "numerical_hue_saturation_luminance_statement_present": true,
+    "manual_refinement_statement_present": true,
+    "preset_form_email_gate_present": true,
+    "raw_data_or_documentation_release_still_under_consideration": true,
+    "target_stock_chapters_present": [
+      "kodak_ektar_100",
+      "kodak_portra_400"
+    ],
+    "fujifilm_velvia_50_chapter_present": false,
+    "machine_readable_numerical_measurements_public": false,
+    "exact_source_and_measurement_manifest_with_hashes_public": false,
+    "independent_roll_process_scanner_scene_groups_public": false,
+    "fitting_and_derived_parameter_distribution_rights_explicit": false
+  },
+  "gate_outcomes": {
+    "official_project_statements_present": true,
+    "official_video_identity_present": true,
+    "protocol_chapter_present": true,
+    "portra_ektar_chapters_present": true,
+    "complete_three_stock_coverage_present": false,
+    "public_machine_readable_measurements_and_rights_present": false,
+    "zero_media_preset_pixel_fit_render_score": true
+  },
+  "operation_counts_per_formal_run": {
+    "html_requests": 3,
+    "video_stream_requests": 0,
+    "thumbnail_requests": 0,
+    "preset_requests": 0,
+    "form_submissions": 0,
+    "image_requests": 0,
+    "pixel_decodes": 0,
+    "fit_calls": 0,
+    "render_calls": 0,
+    "score_calls": 0
+  },
+  "interpretation": "This is a materially relevant controlled same-workflow physical-film observation for Portra 400 and Ektar 100, not another arbitrary after-only gallery. It cannot enter the stock-first fitting matrix because Velvia 50 is absent and the official source does not publish the numerical measurements, exact source/measurement manifest, independent nuisance groups or fitting/derived-parameter rights. The free presets are manually refined creative artifacts delivered through a form/email gate, not raw stock evidence.",
+  "next_action": "Close this exact source before presets or pixels. Do not submit the form, infer rights, reconstruct values from vectorscopes, substitute another Fujifilm stock or fit from the creative presets. Continue only with a materially independent rights-cleared controlled source or the already frozen A0L/A0N physical route when executable without user labour.",
+  "claim_ceiling": "Controlled same-workflow Portra 400 and Ektar 100 source observation only; no complete Velvia 50/Portra 400/Ektar 100 dataset, independent groups, reusable measurements, calibrated response, fitting rights, product profile or release permission."
+}
