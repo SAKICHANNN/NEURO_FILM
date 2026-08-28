@@ -1,0 +1,39 @@
+{
+  "schema_version": "neuro-film.u7-2j-product-recipe-catalog-enforcement.v1",
+  "decision": "prospective",
+  "product_profile_id": "safe-rich-product-v1",
+  "available_product_looks": [
+    "velvia_50",
+    "portra_400",
+    "ektar_100"
+  ],
+  "rejected_product_recipe_styles": [
+    "hp5",
+    "tri_x_400",
+    "vision3_250d",
+    "vision3_500t",
+    "portra_800",
+    "unknown",
+    "",
+    "generic_bw"
+  ],
+  "source_locks": {
+    "render_contract_sha256": "9da36402186feb2a390d5a667b854195fc37b0b47fd148672ae88b3d9932b27d",
+    "style_safe_engine_sha256": "ca893a3dcb9c91fe403f12e237fd2c86acbb3d3954cb501a4f605a376e1feb9e",
+    "product_look_catalog_sha256": "dd48420ed7d14fc505cbd3cc1f8daed76310922b4aa0564f153cad268facebe7",
+    "product_profile_sha256": "09722cb48c55d1c4c460220c9f59b9ced81801c1b6fe856708a27f5cc99d39fe",
+    "parent_u7_2i_evidence_sha256": "7728f232827337caeea96c1ab2683aa66e7f6da28cfb14bc5aae44d20527c6ec"
+  },
+  "gates": {
+    "non_catalog_product_recipe_build_rejects": true,
+    "non_catalog_product_recipe_verify_rejects_before_input_hash": true,
+    "non_catalog_product_recipe_replay_rejects_before_decode": true,
+    "unavailable_catalog_recipe_rejects": true,
+    "three_available_product_recipes_and_replays_exact": true,
+    "legacy_hp5_recipe_and_replay_exact": true,
+    "authoritative_catalog_is_single_policy_source": true,
+    "fresh_process_reports_byte_exact": true,
+    "owned_residue_zero": true
+  },
+  "claim_ceiling": "Product recipe authorization consistency for existing non-calibrated Look Approximations only; no stock science, algorithm, calibration, separation, public schema or release promotion."
+}
