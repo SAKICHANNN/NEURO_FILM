@@ -1,0 +1,113 @@
+{
+  "schema_id": "neuro-film.generic-bw-population-severe-review-contract.v1",
+  "experiment_id": "BW2.D2",
+  "date": "2026-08-28",
+  "status": "FROZEN_BEFORE_POPULATION_RENDER_OR_VISUAL_REVIEW",
+  "question": "Does the unchanged full-strength generic B&W Look Approximation avoid confirmed severe artifacts across the same 16 source-disjoint photographs used by U4.3D?",
+  "parent_evidence": {
+    "generic_bw_product_truth": {
+      "path": "docs/evidence/BW2_D1_GENERIC_BW_LOOK_RESULT.json",
+      "sha256": "d4d279f1e95964f11cff98467ab9b73f9f2ea337db7fd842e7280b2037bc0b88",
+      "required_status": "PASS_GENERIC_BW_LOOK_PRODUCT_TRUTH_CORRECTION"
+    },
+    "product_cli": {
+      "path": "docs/evidence/U7_2F_PRODUCT_LOOK_CLI_RESULT.json",
+      "sha256": "8e95ab23f8cd5b7653e29508613a38b4b18e9e45995eddf35d823eaedac05180"
+    },
+    "three_stock_population_review": {
+      "path": "docs/evidence/U4_3D_THREE_STOCK_POPULATION_SEVERE_REVIEW_RESULT.json",
+      "sha256": "30b2cec24f503f6c4e94700b0f737a50dab3e1f5b607e3fe854f27925524dfed",
+      "required_status": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT_ACROSS_48_EXISTING_K1_OUTPUTS"
+    }
+  },
+  "source": {
+    "manifest": "outputs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1/run_c/manifest.json",
+    "manifest_sha256": "048992242c82a2cd9efd193c6766065c7148ad0607a5505b88185d0ab781b101",
+    "required_count": 16,
+    "required_allowed_use": "internal_independent_digital_ood_confirmation",
+    "required_rights_scope": "CC0_public_domain_internal_evaluation",
+    "required_color_state": "relative_display_srgb_approximation",
+    "source_ids": [
+      "canon_eos_kiss_f",
+      "canon_eos_1d_mark_iv",
+      "nikon_d2x",
+      "nikon_d200",
+      "sony_nex_3n",
+      "sony_dslr_a290",
+      "fujifilm_finepix_s5000",
+      "olympus_sp550uz",
+      "olympus_e_p7",
+      "panasonic_dmc_gf2",
+      "panasonic_dmc_fz100",
+      "pentax_k_r",
+      "pentax_k100d_super",
+      "leica_d_lux_6",
+      "leica_digilux_3",
+      "kodak_dcs_pro_14n"
+    ]
+  },
+  "renderer": {
+    "look_id": "generic_bw",
+    "look_amount": 1.0,
+    "seed": 31,
+    "profile": {
+      "path": "configs/render_profiles/safe_rich_product_v1.json",
+      "sha256": "09722cb48c55d1c4c460220c9f59b9ced81801c1b6fe856708a27f5cc99d39fe"
+    },
+    "style_statistics": {
+      "path": "configs/film_color_stats.json",
+      "sha256": "1a45e90765e577edd4ca1773fc8c6cf98fd09b8afbdddfa519b1f097c5dd7c04",
+      "style_id": "hp5"
+    },
+    "guardrails": {
+      "path": "configs/color_guardrails.json",
+      "sha256": "6669b7bc873febcc74ba7ddcbc1c1584807e38465447a5cdbeb24073efa00aa7",
+      "style_id": "hp5"
+    },
+    "encoding": "canonical_srgb8_png",
+    "tile_size": null,
+    "gamut_workers": 1,
+    "tile_workers": 1
+  },
+  "automatic_gates": {
+    "finite_required": true,
+    "geometry_exact_required": true,
+    "neutral_axis_rgb8_exact_required": true,
+    "maximum_output_boundary_fraction": 0.0,
+    "forward_reverse_byte_exact_required": true,
+    "maximum_render_calls_per_process": 16,
+    "network_reads": 0
+  },
+  "review": {
+    "selection_rule": "all-16-frozen-sources-x-unchanged-full-strength-generic-bw",
+    "crop_size": 256,
+    "overview_and_three_exact_pixel_crops_per_output": true,
+    "categories": [
+      "dirty_or_blotchy_skin_or_object_tone",
+      "isolated_intensity_impulses",
+      "banding_or_posterization",
+      "objectionable_halos",
+      "face_text_object_or_fine_structure_loss"
+    ],
+    "maximum_confirmed_severe_artifact_count": 0
+  },
+  "formal_execution": {
+    "fresh_processes": 2,
+    "process_a_order": "canonical",
+    "process_b_order": "reverse",
+    "output_root": "outputs/eval/bw2_d2_generic_bw_population_severe_review_v1",
+    "paths_and_order_excluded_from_scientific_identity": true
+  },
+  "forbidden": {
+    "parameter_or_threshold_tuning": true,
+    "source_substitution": true,
+    "named_hp5_or_tri_x_claim": true,
+    "target_film_closeness_claim": true,
+    "calibration_or_preference_claim": true,
+    "multi_stock_completion_claim": true,
+    "product_default_change": true
+  },
+  "decision_if_pass": "retain_generic_bw_as_population_severe_safety_eligible_look_approximation_only",
+  "decision_if_fail": "retain_generic_bw_mechanical_replay_only_and_block_population_safety_promotion",
+  "claim_ceiling": "Autonomous severe-artifact evidence for one unchanged generic black-and-white Look Approximation across 16 source-disjoint CC0 photographs; not HP5 or Tri-X stock response, target-film closeness, calibration, preference, universal safety, named-stock evidence or multi-stock completion."
+}
