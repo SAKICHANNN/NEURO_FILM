@@ -1,0 +1,92 @@
+{
+  "schema": "neuro-film.p316-r1gn-fujifilm-raf-no-copy-intake-evidence.v1",
+  "experiment_id": "P316",
+  "date": "2026-08-28",
+  "status": "PASS_PRIVATE_R1GN_FUJIFILM_RAF_NO_COPY_INTAKE",
+  "decision": "Retain exact no-copy consumer intake of the corrected R1GN Fujifilm S2Pro layout-0 and S7000 layout-1 stored-code callable. Stop adjacent RAF intake expansion.",
+  "bindings": {
+    "consumer_contract_commit": "e3ddc543",
+    "consumer_audit_commit": "4d0a7ea54834782f7b5f22f5bf9cffbe4a7809de",
+    "config": {
+      "path": "configs/p316_r1gn_fujifilm_raf_no_copy_intake_v1.json",
+      "bytes": 4955,
+      "sha256": "32eb6b9baaee8d21b41d384c97f758520a474a6a746c67ed56874aaf7eaa3889"
+    },
+    "audit": {
+      "path": "scripts/audit_p316_r1gn_fujifilm_raf_no_copy_intake.py",
+      "bytes": 12678,
+      "sha256": "4e2c6afd7c296e860db66290f73a3ee1072406ffcef3e9f36cb430b76c12dea3"
+    },
+    "forward_report": {
+      "path": "outputs/eval/p316_r1gn_fujifilm_raf_no_copy_intake_forward.json",
+      "bytes": 4370,
+      "sha256": "ca2a5c19cf6e2aabaf0c493effb57f276773fe73647c21f8f4630de8917f1cf4"
+    },
+    "reverse_report": {
+      "path": "outputs/eval/p316_r1gn_fujifilm_raf_no_copy_intake_reverse.json",
+      "bytes": 4370,
+      "sha256": "ca2a5c19cf6e2aabaf0c493effb57f276773fe73647c21f8f4630de8917f1cf4"
+    },
+    "producer": {
+      "implementation_commit": "1cb9b9953250127b5d06f78e3e9047040aa46cf2",
+      "formal_execution_commit": "79f346b738dd5d6b6767d113d8b47bddf2677619",
+      "identity_correction_commit": "11397b22b9cbd5899d559d5742ddba9026abfc5a",
+      "formal_report_sha256": "290c2020d3b73e2c72bd78fd7f98b4e0d7107118f844de84ac0c70c3517ba73d",
+      "stable_identity": "42810ffde0a1b6761d264d3ca8c165679783ca27c80da790dced56a9f00b34e8"
+    }
+  },
+  "formal_result": {
+    "reports_byte_exact": true,
+    "report_bytes": 4370,
+    "report_sha256": "ca2a5c19cf6e2aabaf0c493effb57f276773fe73647c21f8f4630de8917f1cf4",
+    "scientific_identity": "cba53c994f0c2a0f227bd89c9cc680e0269b4b1ee902267c6e1076be93b428db",
+    "gates_passed": 10,
+    "gates_total": 10,
+    "identity_correction": {
+      "corrected_commit_resolves": true,
+      "corrected_commit_to_core_blob_exact": true,
+      "superseded_commit_rejects": true,
+      "science_source_fixture_gates_and_formal_reports_changed": false
+    },
+    "rows": [
+      {
+        "id": "fujifilm_s2pro_layout0",
+        "geometry_hw": [2192, 2944],
+        "fuji_layout_hex": "00010201",
+        "stored_uint16_order": "big-endian",
+        "minimum_code": 189,
+        "maximum_code": 2861,
+        "output_uint16le_sha256": "ebc41ad07b396051ce9d222d32ed9d4918e238f63bbd180dd3c07aa053ef0252"
+      },
+      {
+        "id": "fujifilm_s7000_layout1",
+        "geometry_hw": [3080, 2048],
+        "fuji_layout_hex": "80818283",
+        "stored_uint16_order": "little-endian",
+        "minimum_code": 0,
+        "maximum_code": 15869,
+        "output_uint16le_sha256": "28278e567276759e8daf20dc0aded6b64cfd6ccf0c7a89e36e16d9e4fcb3a5fa"
+      }
+    ],
+    "truncate_one_byte_rejected_each_source": true,
+    "outputs_owned_writable_c_contiguous": true,
+    "sources_immutable": true,
+    "temporary_residue_count": 0
+  },
+  "integrity": {
+    "consumer_core_copied": false,
+    "producer_runner_executed": false,
+    "producer_reference_decoder_executed": false,
+    "default_loader_changed": false,
+    "network_reads": 0,
+    "post_result_source_or_gate_change": false,
+    "predecode_identity_correction": "Consumer rejected the initial handoff before source payload reads because contract/evidence named an unresolvable full implementation commit. Producer correction 11397b22 replaced only that identity with the resolvable commit and exact core blob; source, fixture, reports, metrics, gates and claim did not change."
+  },
+  "rights_and_product": {
+    "source_rights": "raw.pixls.us CC0/Public Domain",
+    "candidate_3": false,
+    "product_mapping": false,
+    "public_package_or_capability": false
+  },
+  "claim_ceiling": "Private no-copy intake of exact R1GN Fujifilm S2Pro layout-0 and S7000 layout-1 stored-code callable only; no generic RAF/Fujifilm RAW, compressed RAF, SuperCCD remap, crop, black subtraction, calibration, white balance, demosaic, colour, quality, default loader, public package/schema/capability, product mapping, stock evidence, automatic matching or candidate-3 change."
+}
