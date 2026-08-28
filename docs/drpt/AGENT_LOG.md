@@ -20068,3 +20068,35 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   registration, fusion, all-in-focus rendering, arbitrary DNG, public package/
   schema/capability, product mapping, stock evidence and candidate 3 remain
   closed. Evidence SHA is `e121b2ca...fb4c4`.
+
+### 2026-08-28 - P310 independently intakes the exact R1FT PGTM2 parser
+
+- **Node and routing:** `ULT > U1 DNG ingress > P310`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the primary writer; scientific claim review,
+  DRPT governance, structure stewardship and project-agent-log discipline were
+  secondary. The leaf consumes a newly versioned producer storage parser and
+  deliberately does not turn it into a profile-stage or product integration.
+- **Freeze and implementation:** contract/config `d1c91028`, isolated audit
+  `163e0a5b`, evidence/test `d9df5db5`. P310 reconstructs only the exact
+  5,347-byte parser Git object in a temporary package and binds producer
+  evidence/preregistration objects plus Adobe samples05-07 container, tag and
+  98/116/116-byte payload identities. Consumer `src/`, P257 and the generic DNG
+  loader remain unchanged.
+- **Preformal correction:** one focused dry run executed after the exact
+  protocol files were written but before their Git freeze. It is excluded from
+  formal evidence. The additive disclosure changed no producer object, sample,
+  source role, control, gate, threshold, result interpretation or claim ceiling;
+  all accepted execution restarted from committed freeze/audit heads.
+- **Formal result:** u8, u16 and f16 v2 encodings share exact 3x3x2 headers and
+  decode to float32 gain SHA `eac0fd97...8790b`; results are frozen/slotted and
+  arrays read-only. Nine wrong-endian/header/type/gamma/bounds/truncation/
+  trailing controls reject. Forward/reverse reports are byte-identical at
+  3,944 bytes / SHA `2e67ea7e...0a49a`, scientific identity
+  `cedd111c...f75f5`. Seventeen P310/P257/P258/P263 tests and Ruff, py_compile,
+  JSON and diff checks pass.
+- **Decision:** `PASS_PRIVATE_R1FT_DNG_PROFILE_GAIN_TABLE2_NO_COPY_INTAKE`.
+  Retain only exact private storage-decoding mechanics. No interpolation,
+  profile-stage application, sample08 consumer oracle, real-file/image quality,
+  arbitrary DNG/map, default-loader change, public package/schema/capability,
+  product mapping, stock evidence or candidate 3 opens. Evidence SHA is
+  `d5d95810...6b0af0`.
