@@ -19832,3 +19832,32 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   population severe review. Do not reopen the BW2.D2/D3 cohort. Velvia 50,
   Portra 400 and Ektar 100 remain Look Approximation controls; controlled stock
   evidence, calibration and multi-stock completion remain open.
+
+### 2026-08-28 - P308 makes DNG LinearizationTable delegation explicit
+
+- **Node and routing:** `ULT > U1 DNG ingress > P308`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the primary writer; scientific claim review,
+  DRPT propagation, structure stewardship and project-agent-log discipline were
+  secondary. The leaf closes a silent-delegation gap on the exact P98 loader;
+  it does not implement or validate LinearizationTable arithmetic.
+- **Freeze and implementation:** contract/config `b0df04d7`, core/tests
+  `27b9bc51`, formal runner `5715fecf`, prescore runner-only binding correction
+  `8204d37f`, evidence `2f63ee0c`. Before camera decode, the loader now accepts
+  at most one standard TIFF SHORT table with 2..65,536 uint16 entries, binds its
+  IFD/count/payload hash, rejects malformed or multiple declarations, and emits
+  an explicit LibRaw-delegation warning.
+- **Formal evidence:** the exact Blackmagic P98 source has one primary-IFD
+  4,096-entry table with payload SHA `37ff0c95...aeca9a0`; four sources have no
+  table. Seven invalid controls reject with zero camera-decode calls. All five
+  frozen float32 output hashes, six prior profile/opcode/version guards, source
+  bytes, warning identities and WorkingImage contracts are exact. Two fresh
+  committed-head reports are byte-identical at 6,231 bytes / SHA
+  `379f1ade...6ae15f`; 62 adjacent tests and Ruff, py_compile, JSON and diff
+  checks pass. The excluded first dual run failed only runner comparisons for
+  global tag-code placement and the existing working-space label; no
+  implementation, cohort, output or gate changed before the from-zero rerun.
+- **Decision:** `PASS_PRIVATE_DNG_LINEARIZATION_TABLE_DELEGATION`. Retain only
+  structural validation and an explicit exact-five delegation receipt. No
+  independent table arithmetic, Adobe/vendor parity, arbitrary DNG, image
+  quality, default loader, public package/schema/capability/product, stock
+  evidence or candidate3 admission opens.
