@@ -20100,3 +20100,36 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   arbitrary DNG/map, default-loader change, public package/schema/capability,
   product mapping, stock evidence or candidate 3 opens. Evidence SHA is
   `d5d95810...6b0af0`.
+
+### 2026-08-28 - U7.2I closes historical-style bypass of the product catalog
+
+- **Node and routing:** `ULT > U7.2 > U7.2I`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the primary writer; scientific claim review,
+  structure stewardship and project-agent-log discipline were secondary. A
+  live zero-pixel probe showed that explicit `--style hp5` under
+  `safe-rich-product-v1` reached input decoding because the CLI checked only
+  profile membership. The product profile also carries historical HP5, Tri-X,
+  Vision3 and Portra 800 styles that are intentionally absent from the
+  authoritative available product catalog.
+- **Freeze and repair:** contract/config commits `56d3a45a`/`7da4028b`, narrow
+  CLI/test repair `dfca151c`, formal runner `1a4a5c06`, evidence `4508ceda`.
+  The product profile now accepts only a catalog row whose availability is
+  `available`, before input decode or output/recipe publication. Historical
+  profiles retain their internal styles and compatibility. Independent review
+  added the explicit empty-string test before formal execution.
+- **Formal result:** `hp5`, `tri_x_400`, both Vision3 styles, `portra_800`,
+  unknown, empty and blocked `generic_bw` all reject before decode with zero
+  residue. The three colour outputs and U7.2H-normalized recipe semantics are
+  exact; legacy-profile HP5 output SHA remains `0524c390...73ee` and its
+  portable normalized recipe SHA remains `cfbcbd7b...89da`. Forward/reverse
+  reports are byte-identical at 4,650 bytes / SHA `f66b9678...fd5dc`; 47
+  behavioral adjacent tests plus Ruff, py_compile, JSON and diff checks pass.
+  Historical evidence-binding tests that compare the live CLI to old source
+  hashes remain correctly stale; old evidence was not rewritten. Evidence SHA
+  is `7728f232...7c6ec`.
+- **Decision:** `PASS_AUTHORITATIVE_PRODUCT_LOOK_CATALOG_ENFORCEMENT`. This is
+  product truth and named-stock claim containment, not a new look or scientific
+  result. No colour parameter, output byte, AO6 status, stock separation,
+  calibration or release state changes. Adjacent selection-wrapper expansion
+  stops; the mainline returns to independently controlled multi-stock evidence
+  or a distinct substantive product defect.
