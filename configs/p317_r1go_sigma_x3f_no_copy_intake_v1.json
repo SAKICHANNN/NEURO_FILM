@@ -1,0 +1,103 @@
+{
+  "schema_version": "neuro-film.p317-r1go-sigma-x3f-no-copy-intake.v1",
+  "experiment_id": "P317",
+  "status": "FROZEN_BEFORE_FIRST_CONSUMER_DECODE",
+  "contract_path": "docs/planning/P317_R1GO_SIGMA_X3F_NO_COPY_INTAKE_CONTRACT.md",
+  "protocol": "zhuise.sigma-x3f-dual-codec-unpack.v1",
+  "producer": {
+    "preregistration_commit": "7e95a9efc8cdf0d3129dd49514e4080ff464247d",
+    "source_lock_commit": "a5bff80b86efbe90f584cd8fd2a8b6ea01489af2",
+    "implementation_commit": "1d24386016504ea416c00485c6cf39e12a4ae504",
+    "runner_commit": "c9fd50fb6a38452b06826be2ff445ff641df6b23",
+    "formal_execution_commit": "8c115154a20e794de2477395b1e1bc334333aff6",
+    "contract_commit": "7f1e775a6e7218338146b6e80a31e9372c9b68d6",
+    "evidence_commit": "9cab79e42d25360b78b538c6864384a15e771370"
+  },
+  "artifacts": {
+    "preregistration": {
+      "commit_role": "preregistration_commit",
+      "path": "docs/research/R1GO_SIGMA_X3F_DUAL_CODEC_UNPACK_PREREGISTRATION.json",
+      "bytes": 5255,
+      "git_blob": "dadf2bd725a7726f9f27dfd82fda572d31501742",
+      "sha256": "a0d175f48d3eba887ad3156219c7195c5f51e2019cff7cc96205e0786e7c37b6"
+    },
+    "source_lock": {
+      "commit_role": "source_lock_commit",
+      "path": "docs/research/R1GO_SIGMA_X3F_DUAL_CODEC_SOURCE_LOCK.json",
+      "bytes": 2955,
+      "git_blob": "de9f45da9c8ecd4cdbada3191142b659b27081c5",
+      "sha256": "144181facba6001503f1a65cf72b6cf957dacd828e46c2d73b9cc17830244b16"
+    },
+    "callable_module": {
+      "commit_role": "implementation_commit",
+      "path": "src/zhuise/sigma_x3f.py",
+      "bytes": 12345,
+      "git_blob": "c1cf3808dbb5431fa68d7fc30b19cab8810c1d5e",
+      "sha256": "79ce7a6f21932593620b4f9b75e2a149d8f9ed238df2aa01cfa924a50e81d7df"
+    },
+    "formal_runner": {
+      "commit_role": "runner_commit",
+      "path": "scripts/run_r1go_sigma_x3f_dual_codec_unpack.py",
+      "bytes": 14784,
+      "git_blob": "6cd15f5f3bbabbbefbf1a20da4830ae5c5fa5900",
+      "sha256": "8925bc093ccacf1ea991272ab9c06e457ad2c9499f00e9fec6604eea56ee916d"
+    },
+    "canonical_fixture": {
+      "commit_role": "runner_commit",
+      "path": "tests/fixtures/r1go_sigma_x3f_dual_codec_unpack_v1_fixture.json",
+      "bytes": 971,
+      "git_blob": "1134f28961661b8d4d6805f2e5dc43ff8d9842cb",
+      "sha256": "482976603b5aaf0120a57c46ba7051c0396016ba8c590c2c10b70d905be09279"
+    },
+    "execution_lock": {
+      "commit_role": "formal_execution_commit",
+      "path": "docs/research/R1GO_SIGMA_X3F_DUAL_CODEC_UNPACK_EXECUTION_LOCK.json",
+      "bytes": 2874,
+      "git_blob": "718aee3f1acec4fe72a24839ba1505165475a25c",
+      "sha256": "4de89988ad9dc5504ed65dac2435cc2f411dcd1044542f386d31f5dddea62cb7"
+    },
+    "callable_contract": {
+      "commit_role": "contract_commit",
+      "path": "docs/research/R1GO_SIGMA_X3F_DUAL_CODEC_UNPACK_CALLABLE_V1_CONTRACT.json",
+      "bytes": 2492,
+      "git_blob": "b86592ec51bc1d17b1c0fecd5c25a94cdbe50fe5",
+      "sha256": "d889048ba522e74d031716bc3e61ed686a98c38e71d989e58d5167b5870e18e4"
+    },
+    "evidence": {
+      "commit_role": "evidence_commit",
+      "path": "docs/evidence/R1GO_SIGMA_X3F_DUAL_CODEC_UNPACK_RESULT.json",
+      "bytes": 4729,
+      "git_blob": "ee7b671efb9616880a300894f066330917542127",
+      "sha256": "e0c3392fcba584738c2b9b73aa2c0f414547d0c1f7145e75a4887fcb9e020c46"
+    }
+  },
+  "sources": [
+    {
+      "id": "sigma_sd10_huffman_10bit",
+      "path": "data/r1go_sigma_x3f_dual_codec_v1/source/sigma_sd10.x3f",
+      "bytes": 8103008,
+      "sha256": "ea436ba459a7478d7b338428656fae905469de269f928749f3388db2b7b0d53f",
+      "geometry_hwc": [1531, 2304, 3],
+      "type_format_hex": "0x00030006",
+      "codec": "huffman-10bit",
+      "output_uint16le_sha256": "44a331ab98772b5c41c5670963d73975cbedf962ac752feeaaacaaede86c7b35"
+    },
+    {
+      "id": "sigma_dp1s_true",
+      "path": "data/r1go_sigma_x3f_dual_codec_v1/source/sigma_dp1s.x3f",
+      "bytes": 14289348,
+      "sha256": "dc667efc0c9314124c95c2b9d67a5ba9e6c372f77a9bbea81cae559e3a99436f",
+      "geometry_hwc": [1792, 2688, 3],
+      "type_format_hex": "0x0003001e",
+      "codec": "true",
+      "output_uint16le_sha256": "308d64508d7f2bf7a01d547c76041fad765721dd38afb86268a9da7e609a059e"
+    }
+  ],
+  "execution": {
+    "producer_report_bytes": 7076,
+    "producer_report_sha256": "bd3435386a49e0d74229a161178f16f221f0299d21a6a2fb065a3933c8d459dc",
+    "producer_stable_identity": "914ab8827d98919ba9efd38c1789d21f159177401521008976854482875c2821",
+    "consumer_controls": ["truncate-one-byte-each-source"]
+  },
+  "claim_ceiling": "Private no-copy intake of exact R1GO Sigma SD10 HUFFMAN_10BIT and DP1s TRUE stored-code callable only; no generic X3F/Foveon/Sigma RAW, Quattro, spatial resampling, crop, black subtraction, calibration, white balance, colour, quality, default loader, public package/schema/capability, product mapping, stock evidence, automatic matching or candidate-3 change."
+}
