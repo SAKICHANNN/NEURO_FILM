@@ -26,7 +26,7 @@
   "prechange_legacy_hp5_oracle": {
     "fixture_sha256": "71168122db6b170b5543d3bf9f0b0d71bbc58cfbb52dbe02a289d25b0753fee2",
     "output_sha256": "0524c390a7725a61cffc3805184f65fc372262c24d94b50407deccca30ca73ee",
-    "normalized_recipe_sha256": "e65798ed467c0568d901840ed7c2ea70f58b45cc7ebf83770c83cb4e0b3569c8"
+    "normalized_recipe_sha256": "cfbcbd7b90f7b9f1fcf4798cd0640ac7ebe028dbfed8c8fcbb62f65c567889da"
   },
   "gates": {
     "non_catalog_product_styles_reject_before_input_decode": true,

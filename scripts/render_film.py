@@ -446,6 +446,12 @@ def main() -> int:
             raise ValueError(
                 "safe-rich-product-v1 requires an explicit --style product look selection"
             )
+        if profile_manifest["profile_id"] == "safe-rich-product-v1":
+            product_row = product_looks.get(args.style)
+            if product_row is None or product_row["availability"] != "available":
+                raise ValueError(
+                    "safe-rich-product-v1 only supports available product-catalog looks"
+                )
         if args.style not in profile_manifest["style_parameters"]:
             raise ValueError(f"Render profile does not contain style {args.style!r}")
         profile_values = dict(profile_manifest["style_parameters"][args.style])
