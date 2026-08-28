@@ -20271,3 +20271,39 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   scene-to-display tone mapping, image quality, a new decoder/interface/
   package/capability, stock evidence, product promotion or candidate 3.
   Evidence SHA is `7aaf5262...f4e3a`; adjacent codec-wrapper work is not opened.
+
+### 2026-08-28 - P314 closes the exact Canon sRAW/mRAW public product chain
+
+- **Node and routing:** `ULT > U1 RAW ingress > P314`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the primary workflow; plan-tracker and
+  project-agent-log discipline governed propagation. P314 composes P313 with
+  the existing public product surface and changes no production core.
+- **Freeze and execution:** contract/config `3df07ac0`, audit/test `ba121fe9`,
+  runtime lock `b8731604`, logical-junction correction `c96e7d4b`, bounded
+  cleanup correction `a94d55ff`, and accepted recipe-audit lock `fef9ef13`.
+  The six exact P313 CC0 Canon files run through `render_film.py`, explicit
+  `ektar_100` under `safe-rich-product-v1`, RGB8 sRGB PNG publication, strict
+  v1 recipe generation and `replay_style_safe_recipe_to_file`. Production
+  modules and producer R1FX/R1FY code are untouched.
+- **Correction lineage:** the first attempt failed before CLI/pixels because
+  `Path.resolve()` crossed the repo `outputs` junction; the second completed
+  six renders/replays and cleaned their files but walked past the owned empty
+  root before report publication. The next 10,544-byte report at SHA
+  `b41ccd66...e2437` failed only because the auditor asserted nonexistent claim
+  keys and relative paths instead of the already-frozen v1 claim fields and
+  resolved-path identity. That report, its exact passing pixel/replay gates and
+  the additive assertion correction are preserved; accepted formal execution
+  restarted from committed HEAD without changing sources, bytes, look or gates.
+- **Formal result:** accepted forward/reverse reports are byte-identical at
+  13,987 bytes / SHA `88d08860...f1c00`, scientific
+  `0995db2a...125d6a`. All six output, recipe and replay hashes are exact;
+  source immutability, ICC/PNG8, runtime, zero network and zero scratch gates
+  pass. Three dedicated tests and 40 adjacent product/recipe tests pass, with
+  Ruff, format, py_compile, JSON and diff checks. Formal/excluded report files
+  totaling 38,518 bytes were deleted after exact evidence binding.
+- **Decision:** `PASS_PRIVATE_CANON_SRAW_PRODUCT_CHAIN_COMPATIBILITY`. This is
+  exact local six-file compatibility only, not vendor-exact colour, general
+  Canon/sRAW support, calibration, scene-to-display quality, Ektar stock
+  evidence, product promotion, a new decoder/interface or candidate 3.
+  Evidence commit is `68376434`; evidence SHA is
+  `e2b097eb...53abb1`. Adjacent Canon/codec expansion stops.
