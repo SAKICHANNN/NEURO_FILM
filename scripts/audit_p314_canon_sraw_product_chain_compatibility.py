@@ -11,7 +11,10 @@ import sys
 from pathlib import Path
 from typing import Any
 
+import numpy as np
+import rawpy
 from PIL import Image
+from PIL import __version__ as PILLOW_VERSION
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
@@ -239,6 +242,18 @@ def execute(config_path: Path, *, reverse: bool = False) -> dict[str, Any]:
     if not all(bindings.values()):
         raise P314Error("frozen production binding differs")
 
+    runtime = config["runtime"]
+    runtime_exact = {
+        "libraw": list(rawpy.libraw_version) == runtime["libraw"],
+        "numpy": np.__version__ == runtime["numpy"],
+        "pillow": PILLOW_VERSION == runtime["pillow"],
+        "python": ".".join(map(str, sys.version_info[:3])) == runtime["python"],
+        "rawpy": rawpy.__version__ == runtime["rawpy"],
+        "windows": sys.platform == "win32" and runtime["platform"] == "Windows",
+    }
+    if not all(runtime_exact.values()):
+        raise P314Error("frozen runtime identity differs")
+
     p313 = _load_json(ROOT / config["bindings"]["p313_contract"]["path"])
     rows = list(p313["rows"])
     if reverse:
@@ -286,6 +301,7 @@ def execute(config_path: Path, *, reverse: bool = False) -> dict[str, Any]:
         "bindings_exact": all(bindings.values()),
         "network_requests_zero": True,
         "required_rows_complete": len(records) == int(config["gates"]["required_rows"]),
+        "runtime_exact": all(runtime_exact.values()),
         "scratch_residue_zero": scratch_residue == 0,
         "tracked_worktree_clean": _tracked_clean(),
     }
@@ -305,6 +321,14 @@ def execute(config_path: Path, *, reverse: bool = False) -> dict[str, Any]:
         "gates": gates,
         "network_requests": 0,
         "records": records,
+        "runtime": {
+            "checks": runtime_exact,
+            "libraw": list(rawpy.libraw_version),
+            "numpy": np.__version__,
+            "pillow": PILLOW_VERSION,
+            "python": ".".join(map(str, sys.version_info[:3])),
+            "rawpy": rawpy.__version__,
+        },
         "schema": REPORT_SCHEMA,
         "scratch_residue_files": scratch_residue,
         "stop_rule": config["stop_rule"],
