@@ -1,0 +1,75 @@
+{
+  "schema": "neuro-film.p309-r1fs-dng-image-sequence-no-copy-intake-result.v1",
+  "experiment_id": "P309",
+  "status": "PASS_PRIVATE_R1FS_DNG_IMAGE_SEQUENCE_NO_COPY_INTAKE",
+  "decision": "The consumer independently verified and executed the exact source-locked R1FS DNG ImageSequenceInfo module from its producer Git object on the exact three Adobe DNG 1.7 files. Forward and reverse fresh processes reproduce one complete immutable canonical sequence and every frozen invalid control rejects before output. Retain only this private metadata/group intake boundary.",
+  "producer": {
+    "head": "cb6df1477af99745ab91a9044dee079d474c1cff",
+    "implementation_commit": "edeb312d76f70d37d097e2f7c2bf6f8d7e88d328",
+    "implementation_git_blob": "9a5211d4b30490f61adfa22e6d18d7e3f623ce98",
+    "evidence_commit": "c4f19c3e8c230ba5e4f6a8ec3a232b59c3279472",
+    "evidence_sha256": "76302ca3522cd5c00657b5bd660b648610082dab59babadd540de3ca196c9ee3",
+    "protocol": "zhuise.dng-image-sequence-info-group.v1",
+    "formal_report_sha256": "0bf747636104983e903ff7333329385c2e21f27bf190d51cb7bd524bed86ccc9",
+    "scientific_identity": "108c2210012e3f7b9f60116e01f4ddba742ca5d7431c3983c662b9efacecab44"
+  },
+  "consumer_execution": {
+    "contract_commit": "52fb614bc72484d8a9a14cf1b8b33dede95ae157",
+    "initial_audit_commit": "c5c25b20b03af37dcd1618a31cab9e42d629e0e5",
+    "audit_commit": "ee8d2c67cb3ff8f6d8173fc5c0c7390c0b63c82b",
+    "forward_report": {
+      "path": "outputs/eval/p309_r1fs_dng_image_sequence_no_copy_intake_v1/formal_result.json",
+      "bytes": 3422,
+      "sha256": "8277b4d3282e3d6e55531910f99d6cd21fe626f650afac7159920d0fda86cb09"
+    },
+    "reverse_report": {
+      "path": "outputs/eval/p309_r1fs_dng_image_sequence_no_copy_intake_v1/formal_replay.json",
+      "bytes": 3422,
+      "sha256": "8277b4d3282e3d6e55531910f99d6cd21fe626f650afac7159920d0fda86cb09"
+    },
+    "forward_reverse_byte_exact": true,
+    "scientific_identity": "aeced83870da163d09928c9d3d0333d4fc333368ac7508ad3db5e8d5cd2cad78",
+    "audit_correction": "The initial audit checked global sys.modules emptiness and was contaminated by adjacent tests that had already imported an image library. Before evidence publication, the corrected committed audit froze the pre-execution decoder-module set and required P309 to add none; both formal processes were rerun from that committed HEAD. Producer artifacts, sources, controls, frame facts, claim ceiling and scientific conclusion were unchanged."
+  },
+  "result": {
+    "sequence_id": "com.adobe.focus.03CFC98885EA4DE",
+    "sequence_type": "Focus Bracket",
+    "canonical_indices": [1, 2, 3],
+    "count": 3,
+    "final_flags": [false, false, true],
+    "frame_info": [
+      "relative_position=0.3",
+      "relative_position=0.5",
+      "relative_position=1.0"
+    ],
+    "source_bytes": 739668,
+    "image_pixels_decoded": 0,
+    "consumer_core_copied": false,
+    "invalid_controls": 10,
+    "all_gates_pass": true,
+    "source_files_immutable": true,
+    "temporary_residue_zero": true
+  },
+  "gates": {
+    "artifact_identities_exact": true,
+    "canonical_frame_facts_exact": true,
+    "isolated_git_object_import": true,
+    "immutable_frozen_results": true,
+    "producer_evidence_and_protocol_exact": true,
+    "producer_report_and_scientific_identity_exact": true,
+    "forward_reverse_report_exact": true,
+    "all_invalid_controls_reject": true,
+    "source_files_immutable": true,
+    "zero_image_pixel_decode": true,
+    "temporary_residue_zero": true
+  },
+  "rights_and_product": {
+    "candidate_3": false,
+    "consumer_mapping": false,
+    "product_dependency": false,
+    "public_capability": false,
+    "source_pixels_redistributed": false
+  },
+  "stop_rule": "P309 is complete and frozen. Do not copy or patch the producer implementation, infer filenames, accept partial groups, decode pixels, estimate focus, register or fuse frames, or expand adjacent wrappers under this leaf.",
+  "claim_ceiling": "Private no-copy consumer replay of one exact R1FS Adobe DNG 1.7 ImageSequenceInfo three-file metadata/group boundary only; no image pixels, focus/depth truth, registration/fusion/all-in-focus rendering, arbitrary DNG, public package/schema/capability, stock evidence, automatic matching or product admission. Candidate 3 remains closed at 2/3."
+}
