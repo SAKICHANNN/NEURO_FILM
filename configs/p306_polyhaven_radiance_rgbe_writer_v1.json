@@ -1,7 +1,29 @@
 {
   "schema": "neuro-film.p306-polyhaven-radiance-rgbe-writer-contract.v1",
   "experiment_id": "P306",
-  "status": "PREREGISTERED_BEFORE_IMPLEMENTATION",
+  "status": "FROZEN_READY_FOR_FORMAL_EXECUTION",
+  "bindings": {
+    "contract": {
+      "path": "docs/planning/P306_POLYHAVEN_RADIANCE_RGBE_WRITER_CONTRACT.md",
+      "bytes": 2836,
+      "sha256": "03bc910b56dd510d1d01a50e901b95b2149ef0d52221a0cca1b2025f70b76ba5"
+    },
+    "implementation": {
+      "path": "src/preprocess/radiance_rgbe.py",
+      "bytes": 9007,
+      "sha256": "0e7dbc27e3f455a2d9f4e89c8ec56c82638e9113556da970c68494a31a5ce256"
+    },
+    "runner": {
+      "path": "scripts/audit_p306_polyhaven_radiance_rgbe_writer.py",
+      "bytes": 8374,
+      "sha256": "0e43aa7b06d83911e2f892b57f55eb136c6b0c5ef4720511f6d9968ff215b37e"
+    },
+    "test": {
+      "path": "tests/test_p306_polyhaven_radiance_rgbe_writer.py",
+      "bytes": 2390,
+      "sha256": "207514a8ea406694c4a2b725d896af431de89d46074d7e4502989ddb708fae40"
+    }
+  },
   "parents": {
     "p305_source_sha256": "39a9c6b391e9bda935501eb5abbe200c38959f054902050ca198d82e9f20b65b",
     "p305_codes_sha256": "7fd0c2f772d6fa609094e1178dd60e69fd57f9e633e3341dc50a030789cac6b0",
@@ -19,6 +41,11 @@
     "path": "data/external/p306_radiance_source_v1/color.c",
     "bytes": 6492,
     "sha256": "2b60358ed05f69733c1856d1a72376168285cbaa408266da5e8194e7f1d7a4a2"
+  },
+  "runtime": {
+    "compiler_path": "outputs/tmp/tools/llvm-mingw-20260616-ucrt-x86_64/bin/clang.exe",
+    "compiler_bytes": 16896,
+    "compiler_sha256": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85"
   },
   "expected": {
     "shape": [512, 1024, 3],
