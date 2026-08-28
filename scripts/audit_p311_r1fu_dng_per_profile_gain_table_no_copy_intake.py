@@ -336,7 +336,8 @@ def execute(config_path: Path, producer_repo: Path, order: str) -> dict[str, Any
             "claim_ceiling": config["claim_ceiling"],
         }
         if not all(gates.values()):
-            raise P311Error("one or more P311 gates failed")
+            failed = sorted(name for name, passed in gates.items() if not passed)
+            raise P311Error(f"P311 gates failed: {', '.join(failed)}")
         return report
     finally:
         for name in module_names:
