@@ -1,0 +1,37 @@
+{
+  "schema": "neuro-film.p306-polyhaven-radiance-rgbe-writer-contract.v1",
+  "experiment_id": "P306",
+  "status": "PREREGISTERED_BEFORE_IMPLEMENTATION",
+  "parents": {
+    "p305_source_sha256": "39a9c6b391e9bda935501eb5abbe200c38959f054902050ca198d82e9f20b65b",
+    "p305_codes_sha256": "7fd0c2f772d6fa609094e1178dd60e69fd57f9e633e3341dc50a030789cac6b0",
+    "p305_float_sha256": "e93b097a4704882b22c086f3ed28db2fa50c40355c119f69607a02043814effe"
+  },
+  "source": {
+    "path": "data/external/p305_polyhaven_rgbe_v1/sunset_jhbcentral_1k.hdr",
+    "bytes": 1573705,
+    "sha256": "39a9c6b391e9bda935501eb5abbe200c38959f054902050ca198d82e9f20b65b"
+  },
+  "official_oracle": {
+    "project": "Radiance",
+    "revision": "color.c 2.16",
+    "url": "https://www.radiance-online.org/cgi-bin/viewcvs.cgi/ray/src/common/color.c?pathrev=rad3R7P2&revision=2.16&view=co",
+    "path": "data/external/p306_radiance_source_v1/color.c",
+    "bytes": 6492,
+    "sha256": "2b60358ed05f69733c1856d1a72376168285cbaa408266da5e8194e7f1d7a4a2"
+  },
+  "expected": {
+    "shape": [512, 1024, 3],
+    "source_codes_exact": true,
+    "decoded_float_exact": true,
+    "python_c_container_exact": true
+  },
+  "gates": {
+    "require_two_reports_exact": true,
+    "require_create_only_atomic": true,
+    "require_invalid_controls": true,
+    "require_zero_media_residue": true
+  },
+  "stop_rule": "Any failure closes the exact writer/source pair without quantization, RLE, header, source, width, precision or tolerance rescue.",
+  "claim_ceiling": "Private exact-source deterministic Radiance RGBE writer and arithmetic/container roundtrip only; no primaries, white point, transfer, WorkingImage, arbitrary HDR support or quality, default ingress/egress, package/schema/capability/product admission or candidate 3."
+}
