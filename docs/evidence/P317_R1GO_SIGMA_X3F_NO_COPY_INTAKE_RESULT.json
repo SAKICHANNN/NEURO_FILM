@@ -1,0 +1,86 @@
+{
+  "schema": "neuro-film.p317-r1go-sigma-x3f-no-copy-intake-evidence.v1",
+  "experiment_id": "P317",
+  "date": "2026-08-28",
+  "status": "PASS_PRIVATE_R1GO_SIGMA_X3F_NO_COPY_INTAKE",
+  "decision": "Retain exact no-copy consumer intake of the R1GO Sigma SD10 HUFFMAN_10BIT and DP1s TRUE stored-code callable. Stop adjacent X3F intake expansion.",
+  "bindings": {
+    "consumer_contract_commit": "32b8367a",
+    "consumer_audit_commit": "ea4ba15dbf84f5051d6aaa5280a37726a76fa5f2",
+    "config": {
+      "path": "configs/p317_r1go_sigma_x3f_no_copy_intake_v1.json",
+      "bytes": 4918,
+      "sha256": "c17ad7ac8a3c1874bfebcca916c449a8d1366b1162309168f1563ee805726daf"
+    },
+    "audit": {
+      "path": "scripts/audit_p317_r1go_sigma_x3f_no_copy_intake.py",
+      "bytes": 11510,
+      "sha256": "33505b3b4d93b228d793a9f6dc7aaa373bd52d03ba3fd8462b6fc9850bb027a8"
+    },
+    "forward_report": {
+      "path": "outputs/eval/p317_r1go_sigma_x3f_no_copy_intake_forward.json",
+      "bytes": 4382,
+      "sha256": "59f80983ed9f41ffd19a9b4aad4bad1fbd9f2fd448ded1973b15f907ad5d155b"
+    },
+    "reverse_report": {
+      "path": "outputs/eval/p317_r1go_sigma_x3f_no_copy_intake_reverse.json",
+      "bytes": 4382,
+      "sha256": "59f80983ed9f41ffd19a9b4aad4bad1fbd9f2fd448ded1973b15f907ad5d155b"
+    },
+    "producer": {
+      "implementation_commit": "1d24386016504ea416c00485c6cf39e12a4ae504",
+      "formal_execution_commit": "8c115154a20e794de2477395b1e1bc334333aff6",
+      "contract_commit": "7f1e775a6e7218338146b6e80a31e9372c9b68d6",
+      "evidence_commit": "9cab79e42d25360b78b538c6864384a15e771370",
+      "formal_report_sha256": "bd3435386a49e0d74229a161178f16f221f0299d21a6a2fb065a3933c8d459dc",
+      "stable_identity": "914ab8827d98919ba9efd38c1789d21f159177401521008976854482875c2821"
+    }
+  },
+  "formal_result": {
+    "reports_byte_exact": true,
+    "report_bytes": 4382,
+    "report_sha256": "59f80983ed9f41ffd19a9b4aad4bad1fbd9f2fd448ded1973b15f907ad5d155b",
+    "scientific_identity": "e2f15afc3d982da17ecea36094af725f32785879c3b73ffae2dbce62a98d8632",
+    "gates_passed": 9,
+    "gates_total": 9,
+    "rows": [
+      {
+        "id": "sigma_sd10_huffman_10bit",
+        "geometry_hwc": [1531, 2304, 3],
+        "type_format_hex": "0x00030006",
+        "codec": "huffman-10bit",
+        "minimum_code": 0,
+        "maximum_code": 9869,
+        "output_uint16le_sha256": "44a331ab98772b5c41c5670963d73975cbedf962ac752feeaaacaaede86c7b35"
+      },
+      {
+        "id": "sigma_dp1s_true",
+        "geometry_hwc": [1792, 2688, 3],
+        "type_format_hex": "0x0003001e",
+        "codec": "true",
+        "minimum_code": 0,
+        "maximum_code": 1539,
+        "output_uint16le_sha256": "308d64508d7f2bf7a01d547c76041fad765721dd38afb86268a9da7e609a059e"
+      }
+    ],
+    "truncate_one_byte_rejected_each_source": true,
+    "outputs_owned_writable_c_contiguous": true,
+    "sources_immutable": true,
+    "temporary_residue_count": 0
+  },
+  "integrity": {
+    "consumer_core_copied": false,
+    "producer_runner_executed": false,
+    "producer_reference_decoder_executed": false,
+    "default_loader_changed": false,
+    "network_reads": 0,
+    "post_result_source_or_gate_change": false
+  },
+  "rights_and_product": {
+    "source_rights": "raw.pixls.us CC0/Public Domain",
+    "candidate_3": false,
+    "product_mapping": false,
+    "public_package_or_capability": false
+  },
+  "claim_ceiling": "Private no-copy intake of exact R1GO Sigma SD10 HUFFMAN_10BIT and DP1s TRUE stored-code callable only; no generic X3F/Foveon/Sigma RAW, Quattro, spatial resampling, crop, black subtraction, calibration, white balance, colour, quality, default loader, public package/schema/capability, product mapping, stock evidence, automatic matching or candidate-3 change."
+}
