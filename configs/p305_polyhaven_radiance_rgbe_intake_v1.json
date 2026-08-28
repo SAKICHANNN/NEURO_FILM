@@ -1,0 +1,80 @@
+{
+  "schema": "neuro-film.p305-polyhaven-radiance-rgbe-intake-contract.v1",
+  "experiment_id": "P305",
+  "status": "FROZEN_READY_FOR_FORMAL_EXECUTION",
+  "bindings": {
+    "contract": {
+      "path": "docs/planning/P305_POLYHAVEN_RADIANCE_RGBE_INTAKE_CONTRACT.md",
+      "bytes": 3461,
+      "sha256": "d5d2f82f6b030266b41b0dc2762a3ea08f16cbb414a993e21c0688dbb7f6b517",
+      "commit": "3f824f0afd6a4e248007624d18d2092fc7cb124e"
+    },
+    "implementation": {
+      "path": "src/preprocess/radiance_rgbe.py",
+      "bytes": 4912,
+      "sha256": "023aae569aef8ff8f21005eb838ac7c0ed4e8a85fb63ad8a05f822fd3855b30d"
+    },
+    "runner": {
+      "path": "scripts/audit_p305_polyhaven_radiance_rgbe_intake.py",
+      "bytes": 9454,
+      "sha256": "aaf3159fabbaa0ea6f0fe697e3e40dfa54a58eb76c86ebd50e675323cd59a72d"
+    },
+    "test": {
+      "path": "tests/test_p305_polyhaven_radiance_rgbe_intake.py",
+      "bytes": 2327,
+      "sha256": "3bfda51224ab618889b46d2e0f8ba91b8a1ffca530c597fb5567b79dacaf1454"
+    }
+  },
+  "official_repository": {
+    "full_name": "Poly-Haven/Public-API",
+    "commit": "400522721de9f917dbd7340d58c7659312e7df6a",
+    "tree": "09a050ff242142a543fd165dc0f762717ea4524c"
+  },
+  "source_snapshots": {
+    "asset_files": {
+      "url": "https://api.polyhaven.com/files/sunset_jhbcentral",
+      "path": "data/external/p305_polyhaven_rgbe_v1/asset_files.json",
+      "bytes": 2226,
+      "sha256": "c706cf49042df7fa9e1bcb4d420e26a07685d3dcec43f3917fc8d7470c8e2d87"
+    },
+    "asset_info": {
+      "url": "https://api.polyhaven.com/info/sunset_jhbcentral",
+      "path": "data/external/p305_polyhaven_rgbe_v1/asset_info.json",
+      "bytes": 1084,
+      "sha256": "f8ddd64c95abd60f26738d68ce486117a50a557b1b82a59740b32bc52923177b"
+    },
+    "public_api_readme": {
+      "url": "https://raw.githubusercontent.com/Poly-Haven/Public-API/400522721de9f917dbd7340d58c7659312e7df6a/README.md",
+      "path": "data/external/p305_polyhaven_rgbe_v1/public_api_readme.md",
+      "bytes": 724,
+      "sha256": "34b9884196138966c5594f58a1c2d91ca97f717cf0fd4e204c5752ad4d02a61c"
+    }
+  },
+  "source": {
+    "asset_id": "sunset_jhbcentral",
+    "variant": "hdri/1k/hdr",
+    "files_hash": "e2e14a204ee06104209396caa9e7b40322dbb3d4",
+    "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/sunset_jhbcentral_1k.hdr",
+    "path": "data/external/p305_polyhaven_rgbe_v1/sunset_jhbcentral_1k.hdr",
+    "bytes": 1573705,
+    "md5": "97335a81ba615beb6f6ae0da707ecd75",
+    "sha256": "39a9c6b391e9bda935501eb5abbe200c38959f054902050ca198d82e9f20b65b"
+  },
+  "runtime": {
+    "python": "3.12",
+    "opencv": "4.13.0"
+  },
+  "expected": {
+    "shape": [512, 1024, 3],
+    "dtype": "float32",
+    "raw_opencv_difference_components": 1572864,
+    "minimum": 0.0037078857421875,
+    "maximum": 19.6875
+  },
+  "gates": {
+    "maximum_absolute_official_semantics_residual": 1e-7,
+    "require_two_reports_exact": true
+  },
+  "stop_rule": "Failure closes this exact parser/source pair without tolerance, orientation, header, decoder or source substitution. Do not replace the official Radiance half-bin semantics with OpenCV lower-bin output.",
+  "claim_ceiling": "Private exact-source Radiance RGBE arithmetic/container primitive producing unlabelled linear RGB radiance only; no primaries, white point, WorkingImage, arbitrary HDR support, package/schema/capability/product admission or candidate 3."
+}
