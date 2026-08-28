@@ -1,0 +1,73 @@
+{
+  "schema_id": "neuro-film.u7-2i-product-look-catalog-enforcement-evidence.v1",
+  "experiment_id": "U7.2I",
+  "date": "2026-08-28",
+  "status": "PASS",
+  "implementation_commit": "1a4a5c06835da6883e2521d6ba509ee014bc2021",
+  "bindings": {
+    "contract": {
+      "path": "docs/planning/U7_2I_PRODUCT_LOOK_CATALOG_ENFORCEMENT_CONTRACT.md",
+      "sha256": "edcd874209b4ba1f9c6c6b56d500e07dee60f3888778f2af21ea7cfbbf5422ac"
+    },
+    "config": {
+      "path": "configs/u7_2i_product_look_catalog_enforcement_v1.json",
+      "sha256": "da08a061e4a658dc892b59e549ddfdbbc4f3dc0eecf2d4e404c9286ad043df1f"
+    },
+    "cli": {
+      "path": "scripts/render_film.py",
+      "sha256": "6e63cae84b216626bcc803d226a054812a998814fd6ef4242c4144db99be388a"
+    },
+    "formal_runner": {
+      "path": "scripts/audit_u7_2i_product_look_catalog_enforcement.py",
+      "sha256": "7cc4dc612dd3df875b20c87bd32ffffd30d60d3d24a7a14c3d6ae5b006196242"
+    },
+    "product_catalog_sha256": "dd48420ed7d14fc505cbd3cc1f8daed76310922b4aa0564f153cad268facebe7",
+    "product_profile_sha256": "09722cb48c55d1c4c460220c9f59b9ced81801c1b6fe856708a27f5cc99d39fe",
+    "parent_u7_2h_evidence_sha256": "47ca4a8ab95568b98386eec6f401c33a1ff56ebcbac667e5cf36ad06c0731b1a"
+  },
+  "formal_reports": {
+    "forward_path": "outputs/eval/u7_2i_product_look_catalog_enforcement_v1/formal.json",
+    "reverse_path": "outputs/eval/u7_2i_product_look_catalog_enforcement_v1/formal_replay.json",
+    "bytes_each": 4650,
+    "sha256": "f66b9678e27076be0782ad45f99d9ad6e2b4c304ec49fd90695f9fe1a73fd5dc",
+    "forward_reverse_byte_exact": true
+  },
+  "selection_result": {
+    "rejected_before_input_decode": [
+      "hp5",
+      "tri_x_400",
+      "vision3_250d",
+      "vision3_500t",
+      "portra_800",
+      "unknown",
+      "<empty>",
+      "generic_bw"
+    ],
+    "rejection_output_or_recipe_count": 0,
+    "available_product_look_count": 3,
+    "available_outputs_match_u7_2h": true,
+    "available_normalized_recipes_match_u7_2h": true,
+    "legacy_hp5_output_sha256": "0524c390a7725a61cffc3805184f65fc372262c24d94b50407deccca30ca73ee",
+    "legacy_hp5_portable_normalized_recipe_sha256": "cfbcbd7b90f7b9f1fcf4798cd0640ac7ebe028dbfed8c8fcbb62f65c567889da",
+    "source_immutable": true,
+    "owned_runtime_residue_count": 0,
+    "all_ten_formal_gates_pass": true
+  },
+  "output_sha256": {
+    "velvia_50": "2198b077eea5d29026694529e208d7db9428a36f97cb7af8fe330ce732e87fa7",
+    "portra_400": "b2b9d118087648f626a0fa2d03bbaf78714ba053347e617bdb2b9505c4cf9453",
+    "ektar_100": "e8e3195dc3ab222567ca03d432eac6e03f48a84fa1a7e6c07a885f3b35999981"
+  },
+  "retained_boundaries": {
+    "product_profile_allows_only_authoritative_available_catalog_rows": true,
+    "historical_profiles_keep_internal_named_styles": true,
+    "three_colour_algorithms_or_parameters_changed": false,
+    "three_colour_output_bytes_changed": false,
+    "generic_bw_reopened": false,
+    "named_bw_or_vision3_product_look_opened": false,
+    "stock_separation_or_calibration_claim_opened": false,
+    "release_or_installer_claim_opened": false
+  },
+  "decision": "Enforce the authoritative available product-look catalog at safe-rich-product-v1 before input decode. Historical profiles remain compatible. Stop adjacent selection-wrapper expansion and return to controlled multi-stock evidence or a distinct substantive product gap.",
+  "claim_ceiling": "Authoritative product-catalog enforcement for existing non-calibrated Look Approximations only; no stock science, calibration, separation, algorithm or release promotion."
+}
