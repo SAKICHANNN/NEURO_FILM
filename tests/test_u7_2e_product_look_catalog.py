@@ -13,7 +13,6 @@ from src.inference import (
     load_render_profile,
     render_product_look_rgb,
 )
-from src.inference.generic_bw_look import render_generic_bw_look_rgb
 from src.inference.three_stock_look import (
     list_three_stock_looks,
     render_three_stock_look_rgb,
@@ -79,6 +78,11 @@ def test_catalog_is_exact_ordered_and_does_not_expose_named_bw_stocks() -> None:
         "kodak_ektar_100",
     ]
     assert rows[-1]["film_stock_id"] is None
+    assert [row["availability"] for row in rows[:3]] == ["available"] * 3
+    assert rows[-1]["availability"] == "blocked_severe_artifact"
+    assert rows[-1]["availability_evidence_sha256"] == (
+        "205040017bc15122d1d59c2e29708012395ca85e40baed65d7b58725161e796d"
+    )
     assert "legacy_execution_style_id" not in rows[-1]
     assert "hp5" not in rows[-1]["display_name"].lower()
     assert "tri-x" not in rows[-1]["display_name"].lower()
@@ -89,7 +93,7 @@ def test_catalog_is_exact_ordered_and_does_not_expose_named_bw_stocks() -> None:
 
 @pytest.mark.parametrize("amount", [0.0, 0.5, 1.0])
 @pytest.mark.parametrize(
-    "look_id", ["velvia_50", "portra_400", "ektar_100", "generic_bw"]
+    "look_id", ["velvia_50", "portra_400", "ektar_100"]
 )
 def test_dispatch_is_exact_underlying_renderer(
     source: np.ndarray, runtime, look_id: str, amount: float
@@ -106,32 +110,18 @@ def test_dispatch_is_exact_underlying_renderer(
         tile_size=23,
         tile_workers=2,
     )
-    if look_id == "generic_bw":
-        expected = render_generic_bw_look_rgb(
-            source,
-            profile=profile,
-            look_amount=amount,
-            style_statistics=statistics["hp5"],
-            guardrails=guardrails["hp5"],
-            seed=31,
-            tile_size=23,
-            tile_workers=2,
-        )
-    else:
-        row = {item["style_id"]: item for item in list_three_stock_looks()}[
-            look_id
-        ]
-        expected = render_three_stock_look_rgb(
-            source,
-            profile=profile,
-            film_stock_id=row["film_stock_id"],
-            look_amount=amount,
-            style_statistics=statistics[look_id],
-            guardrails=guardrails[look_id],
-            seed=31,
-            tile_size=23,
-            tile_workers=2,
-        )
+    row = {item["style_id"]: item for item in list_three_stock_looks()}[look_id]
+    expected = render_three_stock_look_rgb(
+        source,
+        profile=profile,
+        film_stock_id=row["film_stock_id"],
+        look_amount=amount,
+        style_statistics=statistics[look_id],
+        guardrails=guardrails[look_id],
+        seed=31,
+        tile_size=23,
+        tile_workers=2,
+    )
     np.testing.assert_array_equal(actual, expected)
 
 
@@ -155,14 +145,31 @@ def test_named_legacy_bw_and_unknown_look_ids_fail_closed(
 def test_missing_runtime_assets_fail_closed(source: np.ndarray, runtime) -> None:
     profile, statistics, guardrails = runtime
     missing_statistics = dict(statistics)
-    del missing_statistics["hp5"]
+    del missing_statistics["velvia_50"]
     with pytest.raises(ValueError, match="runtime assets are incomplete"):
         render_product_look_rgb(
             source,
             profile=profile,
-            look_id="generic_bw",
+            look_id="velvia_50",
             look_amount=1.0,
             style_statistics=missing_statistics,
             guardrails=guardrails,
+            seed=31,
+        )
+
+
+@pytest.mark.parametrize("amount", [0.0, 0.5, 1.0])
+def test_generic_bw_product_dispatch_is_blocked_before_runtime_assets(
+    source: np.ndarray, runtime, amount: float
+) -> None:
+    profile, _, _ = runtime
+    with pytest.raises(ValueError, match="blocked.*3/16|unavailable.*3/16"):
+        render_product_look_rgb(
+            source,
+            profile=profile,
+            look_id="generic_bw",
+            look_amount=amount,
+            style_statistics={},
+            guardrails={},
             seed=31,
         )

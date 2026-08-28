@@ -360,7 +360,16 @@ def main() -> int:
         raise ValueError("--tile-workers requires --tile-size")
     if not 0.0 <= args.look_amount <= 1.0:
         raise ValueError("--look-amount must be in [0,1]")
-    product_look_ids = {row["look_id"] for row in list_product_looks()}
+    product_looks = {row["look_id"]: row for row in list_product_looks()}
+    product_look_ids = set(product_looks)
+    if (
+        args.style in product_looks
+        and product_looks[args.style]["availability"] != "available"
+    ):
+        raise ValueError(
+            f"product look {args.style!r} is unavailable: "
+            f"{product_looks[args.style]['unavailable_reason']}"
+        )
     if args.style == "generic_bw" and (
         args.color_engine != "safe_lab" or not args.use_render_profile
     ):

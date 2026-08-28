@@ -10,25 +10,15 @@ import numpy as np
 import pytest
 from PIL import Image
 
-from scripts.pipeline_color_baseline import load_guardrail_config
 from src.inference import (
-    RECIPE_SCHEMA_ID_V2,
     load_render_profile,
-    render_product_look_rgb,
     replay_style_safe_recipe_to_file,
-)
-from src.preprocess import (
-    load_working_image,
-    save_srgb8,
-    working_image_to_srgb_float,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "configs/u7_2f_product_look_cli_v1.json"
 LEGACY_PROFILE = ROOT / "configs/render_profiles/safe_rich_v1.json"
 PRODUCT_PROFILE = ROOT / "configs/render_profiles/safe_rich_product_v1.json"
-STATS = ROOT / "configs/film_color_stats.json"
-GUARDS = ROOT / "configs/color_guardrails.json"
 
 
 def _source(path: Path) -> None:
@@ -80,14 +70,12 @@ def test_contract_and_product_profile_are_additive() -> None:
 
 
 @pytest.mark.parametrize("amount", [0.0, 0.5, 1.0])
-def test_generic_bw_cli_matches_dispatcher_and_recipe_replays_exact(
+def test_generic_bw_cli_is_blocked_by_population_severe_veto(
     tmp_path: Path, amount: float
 ) -> None:
     source = tmp_path / "source.png"
     label = str(amount).replace(".", "_")
     output = tmp_path / f"generic_{label}.png"
-    direct = tmp_path / f"direct_{label}.png"
-    replay = tmp_path / f"replay_{label}.png"
     _source(source)
     completed = _run(
         source,
@@ -105,44 +93,11 @@ def test_generic_bw_cli_matches_dispatcher_and_recipe_replays_exact(
         "2",
         "--write-recipe",
     )
-    assert completed.returncode == 0, completed.stderr
-
-    profile = load_render_profile(PRODUCT_PROFILE, root=ROOT)
-    statistics = json.loads(STATS.read_text(encoding="utf-8"))["styles"]
-    encoded = working_image_to_srgb_float(load_working_image(source))
-    expected = render_product_look_rgb(
-        encoded,
-        profile=profile,
-        look_id="generic_bw",
-        look_amount=amount,
-        style_statistics=statistics,
-        guardrails={"hp5": load_guardrail_config(GUARDS, "hp5")},
-        seed=7,
-        tile_size=23,
-        tile_workers=2,
-    )
-    save_srgb8(expected, direct)
-    assert output.read_bytes() == direct.read_bytes()
-
-    recipe_path = output.with_suffix(".recipe.json")
-    recipe = json.loads(recipe_path.read_text(encoding="utf-8"))
-    assert recipe["schema_id"] == RECIPE_SCHEMA_ID_V2
-    assert recipe["profile"]["profile_id"] == "safe-rich-product-v1"
-    assert recipe["render"]["style"] == "generic_bw"
-    assert recipe["render"]["look_amount"] == amount
-    assert recipe["render"]["effects"]["grain"]["color"] is False
-    assert recipe["claim"]["output_label"] == "film-inspired"
-    assert recipe["claim"]["evidence_grade"] == "look-approximation"
-
-    output.unlink()
-    replay_style_safe_recipe_to_file(
-        recipe,
-        profile_path=PRODUCT_PROFILE,
-        output_path=replay,
-        root=ROOT,
-        tile_size=23,
-    )
-    assert replay.read_bytes() == direct.read_bytes()
+    assert completed.returncode != 0
+    assert "product look 'generic_bw' is unavailable" in completed.stderr
+    assert "3/16" in completed.stderr
+    assert not output.exists()
+    assert not output.with_suffix(".recipe.json").exists()
 
 
 def test_generic_bw_requires_explicit_product_profile(tmp_path: Path) -> None:
@@ -151,7 +106,7 @@ def test_generic_bw_requires_explicit_product_profile(tmp_path: Path) -> None:
     _source(source)
     no_profile = _run(source, output, "--style", "generic_bw")
     assert no_profile.returncode != 0
-    assert "requires safe_lab --use-render-profile" in no_profile.stderr
+    assert "product look 'generic_bw' is unavailable" in no_profile.stderr
     assert not output.exists()
 
     legacy_profile = _run(
@@ -164,7 +119,7 @@ def test_generic_bw_requires_explicit_product_profile(tmp_path: Path) -> None:
         str(LEGACY_PROFILE),
     )
     assert legacy_profile.returncode != 0
-    assert "does not contain style 'generic_bw'" in legacy_profile.stderr
+    assert "product look 'generic_bw' is unavailable" in legacy_profile.stderr
     assert not output.exists()
 
 

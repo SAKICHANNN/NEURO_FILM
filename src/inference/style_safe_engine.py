@@ -234,6 +234,12 @@ def _verified_recipe_base(
     tile_size: int | None = None,
 ) -> tuple[np.ndarray, Mapping[str, Any]]:
 
+    render_candidate = recipe.get("render") if isinstance(recipe, Mapping) else None
+    if isinstance(render_candidate, Mapping) and render_candidate.get("style") == "generic_bw":
+        from .product_look_catalog import require_product_look_available
+
+        require_product_look_available("generic_bw")
+
     verify_render_recipe_inputs(recipe, profile_path=profile_path, root=root)
     profile = load_render_profile(profile_path, root=root)
     render = recipe["render"]
@@ -454,6 +460,12 @@ def replay_style_safe_recipe_to_file(
     tile_size: int | None = None,
 ) -> str:
     """Replay one v1 recipe to a new file and require the original byte identity."""
+
+    render_candidate = recipe.get("render") if isinstance(recipe, Mapping) else None
+    if isinstance(render_candidate, Mapping) and render_candidate.get("style") == "generic_bw":
+        from .product_look_catalog import require_product_look_available
+
+        require_product_look_available("generic_bw")
 
     if output_path.exists():
         raise StyleSafeEngineError("replay output path already exists")
