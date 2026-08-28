@@ -5,20 +5,22 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import sys
 from pathlib import Path
 from typing import Any
 
 import cv2
 import numpy as np
 
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
 from src.preprocess.radiance_rgbe import (
     RadianceRgbeError,
     _decode_radiance_rgbe_codes_bytes,
     decode_radiance_rgbe_bytes,
 )
-
-ROOT = Path(__file__).resolve().parents[1]
-
 
 class P305Error(RuntimeError):
     """Raised when a frozen P305 identity or execution gate differs."""
