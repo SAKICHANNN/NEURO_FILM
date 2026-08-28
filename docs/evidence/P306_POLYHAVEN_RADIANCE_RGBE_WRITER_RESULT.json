@@ -1,0 +1,49 @@
+{
+  "schema": "neuro-film.p306-polyhaven-radiance-rgbe-writer-evidence.v1",
+  "experiment_id": "P306",
+  "decision": "PASS_PRIVATE_POLYHAVEN_RADIANCE_RGBE_WRITER",
+  "contract_commit": "159cd5dc",
+  "implementation_and_execution_commit": "718663e1e259c9a715dada24c1a397df5c174088",
+  "parents": {
+    "p305_source_sha256": "39a9c6b391e9bda935501eb5abbe200c38959f054902050ca198d82e9f20b65b",
+    "p305_codes_sha256": "7fd0c2f772d6fa609094e1178dd60e69fd57f9e633e3341dc50a030789cac6b0",
+    "p305_float_sha256": "e93b097a4704882b22c086f3ed28db2fa50c40355c119f69607a02043814effe"
+  },
+  "official_oracle": {
+    "project": "Radiance",
+    "source_revision": "color.c 2.16",
+    "source_bytes": 6492,
+    "source_sha256": "2b60358ed05f69733c1856d1a72376168285cbaa408266da5e8194e7f1d7a4a2",
+    "quantizer": "setcolr",
+    "rle_writer": "fwritecolrs",
+    "compiled_harness_sha256": "0f20baab3b8a28662087e1b5d39f18f187dedf1e01e6cd53f33df3ad0dda1268",
+    "compiler_sha256": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85"
+  },
+  "formal_reports": {
+    "forward_path": "outputs/eval/p306_polyhaven_radiance_rgbe_writer_v1/forward.json",
+    "reverse_path": "outputs/eval/p306_polyhaven_radiance_rgbe_writer_v1/reverse.json",
+    "bytes_each": 1803,
+    "sha256_each": "620f13a2d0b1a549729c077173164b625d2fafe7a7650ba58b6f8c618238346c",
+    "byte_exact": true,
+    "scientific_identity": "sha256:e4e663d659521f8bc5d386ea4fcedded1ee33fa36694e67df0133596aa257f66"
+  },
+  "result": {
+    "encoded_bytes": 1573705,
+    "encoded_sha256": "39a9c6b391e9bda935501eb5abbe200c38959f054902050ca198d82e9f20b65b",
+    "full_container_exact_to_source": true,
+    "python_exact_to_compiled_official_c": true,
+    "source_codes_exact": true,
+    "decoded_float_exact": true,
+    "create_only_atomic": true,
+    "five_invalid_controls_reject": true,
+    "formal_media_residue_zero": true
+  },
+  "access_accounting": {
+    "formal_network_requests": 0,
+    "source_file_reads_per_report": 1,
+    "new_image_requests": 0
+  },
+  "interpretation": "The exact P305 bin-center float32 radiance array re-encodes through the project writer to the same complete Radiance file bytes as the original CC0 source and an independently compiled official-C oracle. This closes one exact-source outbound arithmetic/container roundtrip only; RGBE remains a lossy quantizer for arbitrary floating-point inputs.",
+  "stop_rule": "Do not assign color identity, add WorkingImage conversion, generalize to arbitrary Radiance files, alter quantization/RLE/header rules, or map this private primitive to product capability.",
+  "claim_ceiling": "Private exact-source deterministic Radiance RGBE writer and arithmetic/container roundtrip only; no primaries, white point, transfer, WorkingImage, arbitrary HDR support or quality, default ingress/egress, package/schema/capability/product admission or candidate 3."
+}
