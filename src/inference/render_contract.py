@@ -51,6 +51,29 @@ class RenderContractError(ValueError):
     """Raised when a render profile or recipe violates its frozen schema."""
 
 
+def _require_product_profile_style(
+    profile: Mapping[str, Any], style: object
+) -> None:
+    """Apply the authoritative product catalog to product-profile recipes."""
+
+    if profile.get("profile_id") != "safe-rich-product-v1":
+        return
+    if not isinstance(style, str):
+        raise RenderContractError(
+            "safe-rich-product-v1 recipe style must be an available product-catalog look"
+        )
+    # Local import avoids a module-initialization cycle: the catalog dispatches
+    # through the style-safe engine, which itself consumes this contract module.
+    from .product_look_catalog import require_product_look_available
+
+    try:
+        require_product_look_available(style)
+    except ValueError as error:
+        raise RenderContractError(
+            "safe-rich-product-v1 recipe style must be an available product-catalog look"
+        ) from error
+
+
 def sha256_file(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as handle:
@@ -600,6 +623,7 @@ def build_render_recipe(
 ) -> dict[str, Any]:
     """Build and validate one post-encode replay recipe."""
     validate_render_profile(profile)
+    _require_product_profile_style(profile, render_metadata.get("style"))
     if render_metadata.get("style") not in profile["style_parameters"]:
         raise RenderContractError("recipe style is absent from the selected profile")
     claim = dict(output_claim)
@@ -671,6 +695,7 @@ def verify_render_recipe_inputs(
     profile = load_render_profile(profile_path, root=root)
     if recipe["profile"]["profile_id"] != profile["profile_id"] or recipe["profile"]["profile_version"] != profile["profile_version"]:
         raise RenderContractError("recipe profile identity mismatch")
+    _require_product_profile_style(profile, recipe["render"]["style"])
     if recipe["assets"] != profile["assets"]:
         raise RenderContractError("recipe asset ledger differs from profile")
     path = Path(str(recipe["input"]["path"]))
