@@ -1,0 +1,73 @@
+{
+  "schema": "neuro-film.p310-r1ft-dng-profile-gain-table2-no-copy-intake-result.v1",
+  "experiment_id": "P310",
+  "status": "PASS_PRIVATE_R1FT_DNG_PROFILE_GAIN_TABLE2_NO_COPY_INTAKE",
+  "decision": "The consumer independently verified and executed the exact source-locked R1FT ProfileGainTableMap2 parser Git object on the exact official Adobe DNG 1.7 u8, u16 and f16 encoding samples. Retain only this private storage-decoding intake boundary.",
+  "producer": {
+    "head": "4816b51df492018117aac6301ea068bf9806455e",
+    "implementation_commit": "31ca3e378701755943cd457055215681c153e8e1",
+    "implementation_git_blob": "5298c3730b75b4c01339d73b1ce253eeeeedc490",
+    "evidence_commit": "f629bd755b3b4c66bfdd065f672850f38f109232",
+    "evidence_sha256": "d43dca19262296ea2a71cf37e4b501f198dc6c93e5a44f3413b2cb1d5f8e3e29",
+    "protocol": "zhuise.dng-profile-gain-table-map2-encoding-parity.v1",
+    "formal_report_sha256": "7f34419f2963dacd1f3c112c93fa6998bce15a31f6101f86b30b03261776dbbc",
+    "scientific_identity": "b09e7ecc4991d57f19cdf7bfd82f40a6bb204898071f301659578493783a0274"
+  },
+  "consumer_execution": {
+    "freeze_commit": "d1c91028",
+    "audit_commit": "163e0a5b",
+    "forward_report": {
+      "path": "outputs/eval/p310_r1ft_dng_profile_gain_table2_no_copy_intake_v1/formal_result.json",
+      "bytes": 3944,
+      "sha256": "2e67ea7ef278214db9932c47ad5ad5f8cef55fffdd3ddcb440454465fe40a49a"
+    },
+    "reverse_report": {
+      "path": "outputs/eval/p310_r1ft_dng_profile_gain_table2_no_copy_intake_v1/formal_replay.json",
+      "bytes": 3944,
+      "sha256": "2e67ea7ef278214db9932c47ad5ad5f8cef55fffdd3ddcb440454465fe40a49a"
+    },
+    "forward_reverse_byte_exact": true,
+    "scientific_identity": "cedd111cb9aca9b7aff06b54194314e38867644182b41a82fb7a94ef88cf75f5",
+    "excluded_preformal_attempt": "One focused dry run occurred after the exact protocol files were written but before their Git freeze. It is excluded. The additive disclosure changed no source, parser, controls, gates, threshold, result interpretation or claim ceiling; all formal work restarted from the committed freeze and audit heads."
+  },
+  "result": {
+    "source_roles": ["uint8-v2", "uint16-v2", "float16-v2"],
+    "source_files": 3,
+    "source_bytes": 739764,
+    "payload_bytes": 330,
+    "common_points": [3, 3],
+    "common_table_points": 2,
+    "common_gain_hash": "eac0fd9772c85219adfb17ccccbfd7386848a62817424bc69e1731844368790b",
+    "invalid_controls": 9,
+    "all_gates_pass": true,
+    "image_pixels_decoded": 0,
+    "official_renderer_invocations": 0,
+    "sample08_reads": 0,
+    "consumer_core_copied": false,
+    "source_files_immutable": true,
+    "temporary_residue_zero": true
+  },
+  "gates": {
+    "artifact_source_and_payload_identities_exact": true,
+    "producer_evidence_protocol_and_report_exact": true,
+    "isolated_git_object_import": true,
+    "three_encoding_headers_exact": true,
+    "three_encoding_gain_hashes_exact": true,
+    "frozen_slotted_result_and_readonly_arrays": true,
+    "all_invalid_controls_reject": true,
+    "forward_reverse_report_exact": true,
+    "source_files_immutable": true,
+    "temporary_residue_zero": true
+  },
+  "rights_and_product": {
+    "candidate_3": false,
+    "consumer_mapping": false,
+    "default_loader_changed": false,
+    "p257_guard_changed": false,
+    "product_dependency": false,
+    "public_capability": false,
+    "source_pixels_redistributed": false
+  },
+  "stop_rule": "P310 is complete and frozen. Do not copy or patch the producer parser, read sample08 as a consumer oracle, add interpolation or stage application, alter P257, or expand adjacent wrappers under this leaf.",
+  "claim_ceiling": "Private no-copy intake of one exact source-locked R1FT PGTM2 storage parser on three synthetic official Adobe samples only; no interpolation, profile-stage application, real-file or image quality, arbitrary DNG/map, default-loader, public package/schema/capability, product mapping, stock evidence, automatic matching or candidate-3 change."
+}
