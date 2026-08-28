@@ -2933,3 +2933,27 @@ chain passes `81/81`, and the final evidence chain passes `44/44`. This opens
 only deterministic Look Approximation execution. U7.2C separation failure,
 calibrated stock response and multi-stock completion remain closed. Evidence:
 `docs/evidence/U7_2F_PRODUCT_LOOK_CLI_RESULT.json`.
+
+BW2.D2 formally blocks population-safety promotion of the unchanged full-
+strength generic B&W Look Approximation. Across all 16 frozen source-disjoint
+CC0 photographs, geometry, exact neutral-axis RGB8, zero output boundary and
+two-process replay gates pass, but autonomous full-resolution review confirms
+renderer-created stippled contours around large highlight transitions in
+`sony_dslr_a290`, `olympus_e_p7` and `leica_d_lux_6`. The other 13 rows have
+no confirmed severe artifact. Two 20,110-byte reports are byte-exact at SHA
+`bc8df2b1...ffeef7`. BW2.D1 mechanical replay remains valid, but generic-B&W
+population safety, named HP5/Tri-X response and multi-stock completion remain
+closed. Evidence:
+`docs/evidence/BW2_D2_GENERIC_BW_POPULATION_SEVERE_REVIEW_RESULT.json`.
+
+BW2.D3 then closes the bounded single-variable mechanism diagnosis without a
+product rescue. Two 21,784-byte forward/reverse reports are byte-exact at SHA
+`56815a32...6879a`; the unchanged current render reproduces every parent
+pixel. Disabling dither, luma-detail preservation, tone rolloff or output
+margin clears none of the three confirmed contours, while the three frozen
+pass controls gain no confirmed severe artifact. Removing output margin also
+introduces nonzero boundary fractions. Therefore no tested stage is singly
+necessary, no parameter mutation or combined override opens, and this exact
+generic-B&W diagnosis family stops. Return the mainline to independently
+controlled stock evidence and substantive product work. Evidence:
+`docs/evidence/BW2_D3_GENERIC_BW_HIGHLIGHT_CONTOUR_DIAGNOSIS_RESULT.json`.

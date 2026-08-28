@@ -19676,3 +19676,35 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   performance or generic-format expansion. Do not infer primaries/white point,
   create WorkingImage/default dispatch, or map package/schema/capability/
   product admission. Candidate count remains `2/3`.
+
+### 2026-08-28 - BW2.D2/D3 block generic B&W population safety and close bounded diagnosis
+
+- **Node and routing:** `ULT > independent B&W branch > BW2.D2/D3`, DRPT L2 /
+  Mode C. `dev-research-reliability` was the primary writer; scientific claim
+  review, structure stewardship and project-agent-log discipline were
+  secondary. This work tests the actual generic product look and diagnoses a
+  confirmed defect; it does not substitute for named-stock evidence.
+- **BW2.D2 population result:** implementation `f5196ee6`, evidence
+  `79c76048`. Two fresh 20,110-byte reports are byte-exact at SHA
+  `bc8df2b1...ffeef7`; all 16 sources preserve geometry, exact neutral-axis
+  RGB8 and zero output boundary. Full-resolution autonomous review passes 13
+  rows and confirms renderer-created stippled highlight contours on Sony A290,
+  Olympus E-P7 and Leica D-Lux 6. Evidence SHA `20504001...e796d`.
+- **BW2.D3 bounded diagnosis:** freeze `94535187`, implementation `e7bce88d`,
+  evidence `fcb914fc`. Two 21,784-byte forward/reverse reports are byte-exact
+  at SHA `56815a32...6879a`, scientific `12de9b74...c3c78`; 30 renders exactly
+  replay the current parent pixels and evaluate dither, luma-detail, tone-
+  rolloff and output-margin removals one at a time. None clears any of the
+  three failed rows; controls remain free of new confirmed severe artifacts,
+  and output-margin removal adds boundary violations. Evidence SHA
+  `7d0a0e67...d72e8`.
+- **Verification:** BW2.D3 formal replay plus six exact diagnostic sheets were
+  independently reviewed. The adjacent BW2.D1-D3 suite passes `23/23`; Ruff,
+  JSON, py_compile and diff checks are clean. Existing `.codex/` and `tmp/`
+  remain untouched.
+- **Decision and handoff:** retain BW2.D1 mechanical replay but block generic-
+  B&W population safety. No single tested stage is necessary, so do not mutate
+  the product profile, combine overrides, tune thresholds or open a repair
+  confirmation from this cohort. Named HP5/Tri-X response, calibration and
+  multi-stock completion remain closed. Stop this exact family and return
+  effort to independently controlled stock evidence and product-core work.
