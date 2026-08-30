@@ -2967,6 +2967,23 @@ stock substitution or preset fitting. Controlled A0L/A0N capture or a materially
 independent rights-cleared source remains required. Evidence:
 `docs/evidence/SF3_A3N_PARVEC_CONTROLLED_FILM_SOURCE_RESULT.json`.
 
+SF3.A3O audits an official signed-scan provenance route rather than inferring
+stock identity from filenames or community tags. Gelatin Labs documents C2PA
+2.2 credentials that can bind physical-film origin, roll number, film stock,
+scanner and process/push-pull metadata, but the public material exposes no
+downloadable target-stock scan corpus, asset manifest, independent groups or
+fitting rights. Among Velvia 50, Portra 400 and Ektar 100, only a Portra 400
+folder illustration is observed; no image is requested. The official rights
+boundary leaves scan ownership with customers and marks training, inference
+and data mining as not allowed. Corrected forward/reverse 2,883-byte reports
+are byte-exact at SHA `00c880c8...028e`, stable `fe28bac3...0dfd`; scan,
+verifier, account, order, contact, image, pixel, fit, render and score activity
+remain zero. Formal decision is
+`FAIL_CLOSED_C2PA_SCAN_RIGHTS_OR_TARGET_ASSET_GAP`. Reopen only for an
+independently licensed exact export with target-stock assets, hashes and
+roll/process/scanner/source groups. Evidence:
+`docs/evidence/SF3_A3O_GELATIN_C2PA_FILM_SCAN_SOURCE_RESULT.json`.
+
 U7.2E adds one authoritative manual product-look catalog and dispatcher over
 the existing three colour-stock Look Approximation controls plus the generic
 B&W correction from BW2.D1. Discovery exposes exactly `velvia_50`,

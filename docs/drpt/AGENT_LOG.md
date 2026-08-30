@@ -20551,3 +20551,37 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - **Propagation:** tracker, stock-first plan and stock registry now state the
   autonomous-source boundary. Proxy/model/wrapper work remains forbidden as a
   substitute for stock evidence; candidate count remains `2/3`.
+
+### 2026-08-31 - SF3.A3O closes the signed C2PA scan source before pixels
+
+- **Node and routing:** `ULT > SF3 > SF3.A3O`, DRPT L2 / Mode C.
+  `dev-research-reliability` remained the primary workflow, with rigorous
+  source research, DRPT propagation and project-log discipline as read-only
+  secondary controls. The leaf tests whether official signed scan provenance
+  opens a rights-clear target-stock observation, not whether C2PA is a stock
+  operator or quality signal.
+- **Implementation and freeze:** contract/config/core/audit/test commit is
+  `ec1a94b8`; additive exact-label correction is `a6ac69be`; evidence/test
+  commit is `23d2bafb`. The audit freezes the official Content Credentials and
+  Terms pages, target labels, required provenance fields, rights/admission
+  gates and zero-activity counters. The initial formal pair was excluded before
+  evidence because the configured Portra alias did not preserve the exact
+  visible folder label; the correction changes only report identity, not the
+  source, gates or decision.
+- **Formal result:** corrected forward/reverse reports are each 2,883 bytes and
+  byte-exact at SHA `00c880c824d3a0305f87749c92ec92bdedc87f28a2adc5996708ea86eabd028e`,
+  stable `fe28bac3fd8c6f1bbe5875523b0cc711ba348fa949f8a546de145f50e3af0dfd`.
+  Official provenance fields and the customer-rights boundary pass, but
+  complete Velvia 50/Portra 400/Ektar 100 coverage, public exact assets and
+  groups, fitting rights, and training/mining authorization all fail. Only a
+  Portra 400 folder illustration is observed among the targets. Scan, verifier,
+  account, order, contact, image, pixel, fit, render and score activity are all
+  zero.
+- **Decision and evidence:** formal decision is
+  `FAIL_CLOSED_C2PA_SCAN_RIGHTS_OR_TARGET_ASSET_GAP`. Tracked evidence is
+  `docs/evidence/SF3_A3O_GELATIN_C2PA_FILM_SCAN_SOURCE_RESULT.json`, LF SHA
+  `502d7f6ff3184bc7a8d97ecc8d2c7d6ad430d6d78b3794f5e6ef36ec1ba2f39d`.
+  Five focused tests, Ruff, JSON and diff checks pass. No stock evidence,
+  fitting, product state or candidate-3 admission opens; only an independently
+  licensed exact export with target-stock assets, hashes and group roles can
+  reopen this route.
