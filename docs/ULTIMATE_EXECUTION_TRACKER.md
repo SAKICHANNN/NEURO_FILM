@@ -3034,6 +3034,23 @@ the method as strong private-source evidence, but do not fit, consume the LUT
 or open candidate 3. Evidence:
 `docs/evidence/SF3_A3R_FILMMATCH_PORTRA_SOURCE_RESULT.json`.
 
+SF3.A3S audits Luminant as a rights-clear public Portra appearance source
+without downloading image bodies. The site explicitly states that its images
+are human-captured through a photosensitive chemical process and transferred
+digitally by optical reimaging under CC BY 4.0. The complete HTML inventory
+contains 191 Portra-labelled entries; a hash-ranked 24-file original-JPEG HEAD
+sample is fully addressable, totals 124,845,733 bytes and passes status, media
+type and byte-range gates. Committed-head forward/reverse reports are each
+10,233 bytes and byte-exact at SHA `9dfa46a6...6530b2`, stable
+`602403bf...d94460`; image-body, range, pixel, fit, render and score operations
+remain zero. However, the pool has one author/site and no explicit roll,
+process, scanner, same-scene neutral/film pair or sealed confirmation groups.
+Formal decision is
+`FAIL_CLOSED_LUMINANT_PORTRA_SINGLE_SOURCE_NUISANCE_AND_PAIRING_GAP`.
+Preserve the public source as a possible future group-complete input, but do
+not fit it, infer Portra response or admit candidate 3. Evidence:
+`docs/evidence/SF3_A3S_LUMINANT_PORTRA_SOURCE_RESULT.json`.
+
 U7.2E adds one authoritative manual product-look catalog and dispatcher over
 the existing three colour-stock Look Approximation controls plus the generic
 B&W correction from BW2.D1. Discovery exposes exactly `velvia_50`,

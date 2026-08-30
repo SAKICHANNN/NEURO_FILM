@@ -20701,3 +20701,33 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   licensed exact Portra observation export can reopen it. No stock operator,
   product profile or candidate 3 opens, and adjacent FilmMatch source work
   stops.
+
+### 2026-08-31 - SF3.A3S closes Luminant at the single-source nuisance gate
+
+- **Node and routing:** `ULT > SF3 > SF3.A3S`, DRPT L2 / Mode C.
+  `dev-research-reliability` was primary; source research, stock-first gates,
+  DRPT propagation, project-log and structure disciplines were secondary.
+  This was a bounded source-admission audit, not an image acquisition or stock
+  operator experiment.
+- **Source and freeze:** Luminant explicitly states human photochemical capture,
+  optical reimaging and CC BY 4.0. Contract/config commit `a08e066b` froze the
+  full page range, label classes, inventory identity and a hash-ranked
+  24-original-file HEAD sample before formal execution. Core/audit/tests are
+  `034479cf`; evidence/binding test are `c60832f5`.
+- **Formal result:** the HTML inventory contains 191 entries: 152 `Kodak Portra
+  400`, 19 `Kodak Portra 400 +2` and 20 `Portra 400`. All 24 sampled original
+  JPEG HEADs return valid media/range metadata and total 124,845,733 bytes.
+  Forward/reverse reports are each 10,233 bytes and byte-exact at SHA
+  `9dfa46a67d13d5073b68705d547a2845442348226c1365dd2163fbdb6c6530b2`,
+  stable `602403bf4b14f64ff04ff38dba3aaf0630d16c6d44bf6fade6322bd96bd94460`.
+  Image body/range, pixel, fit, render and score counts are zero.
+- **Decision and boundary:** formal decision is
+  `FAIL_CLOSED_LUMINANT_PORTRA_SINGLE_SOURCE_NUISANCE_AND_PAIRING_GAP`.
+  The source is rights-clear and addressable, but has one author/site and no
+  explicit roll, process, scanner, same-scene neutral/film pair or sealed
+  confirmation groups. Tracked evidence is
+  `docs/evidence/SF3_A3S_LUMINANT_PORTRA_SOURCE_RESULT.json`, SHA
+  `31c77ec2623798565cc042c89e099c4d5ecd29304cc07554a23e328f6651e781`.
+  Eighteen focused/adjacent tests pass; Ruff, compile, JSON and diff checks
+  pass. No image acquisition, fitting, Portra-response claim, candidate 3 or
+  product mapping opens.
