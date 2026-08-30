@@ -1,0 +1,136 @@
+{
+  "schema": "neuro-film.sf3-a3u-portra-three-source-heldout-contract.v1",
+  "experiment_id": "SF3.A3U_PORTRA_THREE_SOURCE_HELDOUT_V1",
+  "upstream_bindings": {
+    "commons_metadata_evidence": {
+      "path": "docs/evidence/SF3_A1C_COMMONS_THREE_STOCK_TEXT_METADATA_RESULT.json",
+      "sha256": "2975d312a6662007d95cb64d17747b0b0cf9c7d90802cbb2f120a3d77a4104e1"
+    },
+    "commons_pixel_evidence": {
+      "path": "docs/evidence/SF3_A1D2_COMMONS_THREE_STOCK_PIXEL_INTEGRITY_RESULT.json",
+      "sha256": "4f78fb720885b3a6ff181b05c51b407614d5ab32d7c43618313aacf42f2e1026",
+      "download_manifest": "outputs/eval/sf3_a1d2_commons_three_stock_pixel_integrity_v1/download_manifest.json",
+      "download_manifest_sha256": "303a4ef63e855f4b1047309496829e64f5aa09ea39d94766b2d4ed090f21f876"
+    },
+    "commons_identifiability_evidence": {
+      "path": "docs/evidence/SF3_A1E_COMMONS_THREE_STOCK_IDENTIFIABILITY_RESULT.json",
+      "sha256": "adac6035e4941bd52d3329b18662dae7cd160458e89ac4b0d078e67e3ed9f004"
+    },
+    "luminant_source_evidence": {
+      "path": "docs/evidence/SF3_A3S_LUMINANT_PORTRA_SOURCE_RESULT.json",
+      "sha256": "31c77ec2623798565cc042c89e099c4d5ecd29304cc07554a23e328f6651e781",
+      "inventory_sha256": "6fb1663dd12dc5d4a6c0983328d202ef61b8f49ea0faeb55817148a682071a37"
+    },
+    "r1hg_source_evidence": {
+      "producer_repository": "zhuise",
+      "evidence_commit": "4e0172c0",
+      "producer_head_after_propagation": "53d5abda",
+      "evidence_path": "docs/evidence/R1HG_NICKNICK_PORTRA_SOURCE_RESULT.json",
+      "evidence_sha256": "28c11e350ec7f661b76a1a67f9f1fccdcb42fd6d35fca8221a827a6c2471262a",
+      "formal_report_sha256": "d57c115e12adeaa49ca436772cfcf6556b1035a9c9c15352e8f8132ce11b57ef",
+      "work_manifest_canonical_sha256": "837a4ab9605d3ca53d22ff1f158810945cf7006dc0676b5b00794fddd10fa27f"
+    }
+  },
+  "development": {
+    "source_id": "wikimedia_commons_sf3_a1d2",
+    "pixel_root": "data/real_film/sf3_a1d2_commons_three_stock_pixels_v1",
+    "portra": {
+      "film_stock_id": "kodak_portra_400",
+      "expected_files": 21,
+      "included_page_ids": [182131832, 108759479, 176718927, 77381346, 19240196, 160082262, 45721958, 123061366, 141567990, 47845647, 135298243, 85723447, 112858039, 117697490, 79338551, 87524761, 128296162, 73619432, 105406588, 83141397, 144522690]
+    },
+    "wrong_stock": {
+      "film_stock_id": "kodak_ektar_100",
+      "expected_files": 22,
+      "included_page_ids": [124916942, 36305474, 168517619, 77381466, 21882059, 145128753, 47488847, 20472800, 95788141, 42032349, 114997083, 120728025, 189867948, 55598828, 107265951, 54217721, 71411076, 94240841, 60824387, 92928857, 185005705, 134218417]
+    }
+  },
+  "primary_confirmation": {
+    "source_id": "nicknicknicknick.net/on-film-2023",
+    "page_url": "https://nicknicknicknick.net/notes/2024/01/01/on-film-2023.html",
+    "page_sha256": "0a99e09be9861937b92179458109a71b2de68923cd2490245ed53a2cd7d682e6",
+    "license_id": "CC-BY-4.0",
+    "work_url_template": "https://nicknicknicknick.net/images/film/2023/{index:02d}.jpg",
+    "pixel_root": "data/real_film/sf3_a3u_portra_three_source_heldout_v1/nicknick",
+    "portra": {
+      "required_label": "Portra 400",
+      "indices": [39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50]
+    },
+    "wrong_stock": {
+      "required_label": "Kodak Ultramax 400",
+      "selection": "first-12-by-sha256-of-canonical-url-from-indices-11-through-38",
+      "indices": [29, 33, 26, 19, 24, 32, 14, 22, 12, 30, 28, 21]
+    },
+    "excluded": {
+      "required_label": "Portra Pro 400",
+      "indices": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      "body_reads": 0
+    }
+  },
+  "conditional_positive_confirmation": {
+    "source_id": "luminant.jp",
+    "base_url": "https://luminant.jp",
+    "page_url_template": "https://luminant.jp/page/{page:04d}/",
+    "page_range": [1, 74],
+    "required_inventory_count": 191,
+    "required_inventory_sha256": "6fb1663dd12dc5d4a6c0983328d202ef61b8f49ea0faeb55817148a682071a37",
+    "required_label": "Kodak Portra 400",
+    "excluded_labels": ["Portra 400", "Kodak Portra 400 +2"],
+    "selection": "first-12-by-sha256-of-five-digit-image-id-with-required-label",
+    "count": 12,
+    "pixel_root": "data/real_film/sf3_a3u_portra_three_source_heldout_v1/luminant",
+    "body_reads_before_primary_pass": 0
+  },
+  "descriptors": [
+    "rgb_distribution",
+    "luma_distribution",
+    "hog_grayscale",
+    "low_frequency_rgb_4x4",
+    "standardized_rgb_distribution",
+    "geometry_border_source"
+  ],
+  "statistics": {
+    "primary_descriptor": "rgb_distribution",
+    "permutations": 999,
+    "permutation_seed": 3201,
+    "bootstrap_iterations": 4000,
+    "bootstrap_seed": 3202
+  },
+  "primary_gates": {
+    "expected_development_rows": 43,
+    "expected_confirmation_rows": 24,
+    "minimum_primary_balanced_accuracy": 0.7,
+    "minimum_portra_recall": 0.6666666666666666,
+    "minimum_wrong_stock_specificity": 0.6666666666666666,
+    "maximum_primary_permutation_p": 0.05,
+    "minimum_delta_vs_best_nuisance": 0.1,
+    "maximum_hog_control_accuracy": 0.65,
+    "maximum_reversed_centroid_accuracy": 0.35,
+    "require_finite_descriptors": true,
+    "require_zero_cross_split_exact_or_dhash_le_4_duplicates": true,
+    "require_forward_reverse_report_byte_exact": true
+  },
+  "conditional_positive_gates": {
+    "expected_rows": 12,
+    "minimum_primary_recall": 0.75,
+    "minimum_delta_vs_best_nuisance_recall": 0.1,
+    "require_all_source_integrity_gates": true
+  },
+  "operation_limits": {
+    "nicknick_image_body_requests": 24,
+    "nicknick_pixel_decodes": 24,
+    "excluded_nicknick_image_body_requests": 0,
+    "luminant_image_body_requests_before_primary_pass": 0,
+    "luminant_image_body_requests_after_primary_pass": 12,
+    "luminant_pixel_decodes_after_primary_pass": 12,
+    "operator_fit_calls": 0,
+    "render_calls": 0,
+    "product_writes": 0
+  },
+  "decision_if_primary_fails": "FAIL_CLOSED_PORTRA_SOURCE_HELDOUT_IDENTIFIABILITY_BEFORE_LUMINANT_READ",
+  "decision_if_primary_passes_and_luminant_fails": "FAIL_CLOSED_PORTRA_THIRD_SOURCE_POSITIVE_RECALL",
+  "decision_if_all_pass": "PASS_PRIVATE_PORTRA_THREE_SOURCE_APPEARANCE_IDENTIFIABILITY_D0",
+  "operator_fitting_allowed": false,
+  "training_allowed": false,
+  "claim_ceiling": "Bounded private current-labelled Portra 400 appearance association across fixed Commons development, unseen same-author nicknick Portra-versus-Ultramax confirmation and conditional Luminant positive recall only; no physical stock response, scanner-independent colour, roll/process transfer, digital-to-film operator, calibration, three-stock completion, candidate-three admission or product claim."
+}
