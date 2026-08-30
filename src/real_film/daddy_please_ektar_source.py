@@ -4,8 +4,11 @@ from __future__ import annotations
 
 import hashlib
 import html
+import http.client
 import json
 import re
+import time
+import urllib.error
 import urllib.request
 from collections import Counter
 from collections.abc import Callable, Sequence
@@ -38,15 +41,29 @@ def _json_sha256(value: object) -> str:
 
 
 def _default_fetcher(url: str) -> bytes:
-    request = urllib.request.Request(
-        url,
-        method="GET",
-        headers={"User-Agent": "K-MCFM-source-audit/1.0"},
-    )
-    with urllib.request.urlopen(request, timeout=30) as response:
-        if int(response.status) != 200:
-            raise DaddyPleaseEktarSourceError(f"source returned HTTP {response.status}")
-        return response.read()
+    for attempt in range(3):
+        request = urllib.request.Request(
+            url,
+            method="GET",
+            headers={"User-Agent": "K-MCFM-source-audit/1.0"},
+        )
+        try:
+            with urllib.request.urlopen(request, timeout=30) as response:
+                if int(response.status) != 200:
+                    raise DaddyPleaseEktarSourceError(
+                        f"source returned HTTP {response.status}"
+                    )
+                return response.read()
+        except (
+            http.client.RemoteDisconnected,
+            ConnectionResetError,
+            TimeoutError,
+            urllib.error.URLError,
+        ):
+            if attempt == 2:
+                raise
+            time.sleep(0.25 * (attempt + 1))
+    raise AssertionError("unreachable")
 
 
 def _visible_text(fragment: str) -> str:

@@ -30,7 +30,7 @@
     ],
     "expected_model_count": 100,
     "expected_photos_per_model": 10,
-    "metadata_workers": 16
+    "metadata_workers": 4
   },
   "sample": {
     "selection": "first-24-by-sha256-of-child-inscription-id",
