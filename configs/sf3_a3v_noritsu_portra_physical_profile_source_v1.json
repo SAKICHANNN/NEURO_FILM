@@ -1,0 +1,89 @@
+{
+  "schema": "neuro-film.sf3-a3v-noritsu-portra-physical-profile-source-contract.v1",
+  "experiment_id": "SF3.A3V_NORITSU_PORTRA_PHYSICAL_PROFILE_SOURCE_V1",
+  "repositories": {
+    "noritsu_tool": {
+      "repo": "rohanpandula/noritsu-tool",
+      "commit": "3f24b96234eb44afc2754d7a02d6a61454026ea9",
+      "tree": "de7db93b4ca7d89390234f96ec956c07e3ce38c1"
+    },
+    "negative_universal": {
+      "repo": "rohanpandula/negative-universal",
+      "commit": "9c9298644c21baa0f086778ff64e0515c9207c63",
+      "tree": "cb4ae57bcac7e8956f6aaf09a79771c7f047b5ff"
+    }
+  },
+  "assets": {
+    "readme": {
+      "repo_role": "noritsu_tool",
+      "path": "README.md",
+      "bytes": 14222,
+      "git_blob": "27e96f934f3f92c694316cf01a0896ce3c53ca81",
+      "sha256": "5abb48b8cae17c89e45ff5e0914de370d0273d357632a60b0c0da33477c1c643",
+      "decode_text": true,
+      "required_phrases": [
+        "Validated against a real LS-600",
+        "27 frames across 3 stocks",
+        "Portra 400",
+        "ICE | Frames",
+        "profiles fitted from real LS-600 raw/TIFF pairs"
+      ]
+    },
+    "license": {
+      "repo_role": "noritsu_tool",
+      "path": "LICENSE",
+      "bytes": 1082,
+      "git_blob": "0e779f0c86c4b43e2c813e8ce2964bacd4294eac",
+      "sha256": "45a353efaf116ece44df548208141118e636ab2f5dae73a6f45c47f1150f514b",
+      "decode_text": true,
+      "required_phrases": [
+        "MIT License",
+        "software and associated documentation files"
+      ]
+    },
+    "portra_profile": {
+      "repo_role": "noritsu_tool",
+      "path": "noritsu/profiles/portra400_calib.npz",
+      "bytes": 11560,
+      "git_blob": "cca0726c7602b412d4793ecf0bffe8678fe9f043",
+      "decode_text": false,
+      "required_phrases": []
+    },
+    "paired_audit": {
+      "repo_role": "negative_universal",
+      "path": "noritsu-tool/noritsu/audit.py",
+      "bytes": 111379,
+      "git_blob": "d3759c06b97138ed188f1c111f2ad4d4897c1582",
+      "sha256": "23b4b9cb26dee45fe39819b84cebdd55c98c359caa68beaecd9325dbec282d3a",
+      "decode_text": true,
+      "required_phrases": [
+        "source material (owner scans and native-capture evidence) is private",
+        "not redistributed with this project",
+        "PORTRA400_RAW_SHA256",
+        "PORTRA400_REFERENCE_SHA256"
+      ]
+    }
+  },
+  "target_stock": {
+    "film_stock_id": "kodak_portra_400",
+    "public_label": "Portra 400"
+  },
+  "published_pair_assets": [],
+  "published_pair_rights": [],
+  "published_group_roles": [],
+  "published_pair_manifest": [],
+  "operation_limits": {
+    "github_json_requests": 8,
+    "profile_body_requests": 0,
+    "owner_pair_requests": 0,
+    "sample_image_requests": 0,
+    "pixel_decodes": 0,
+    "fit_calls": 0,
+    "render_calls": 0,
+    "score_calls": 0
+  },
+  "decision_if_pass": "PASS_OPEN_SEPARATELY_FROZEN_NORITSU_PORTRA_PAIR_INTEGRITY_AUDIT",
+  "decision_if_fail": "FAIL_CLOSED_NORITSU_PORTRA_PRIVATE_PAIR_RIGHTS_AND_GROUP_GAP",
+  "claim_ceiling": "Exact public derived-profile source audit only; no digital-to-film operator, source-independent Portra response, calibration, product profile, three-stock completion or candidate 3."
+}
+
