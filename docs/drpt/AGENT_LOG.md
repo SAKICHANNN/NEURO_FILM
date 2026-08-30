@@ -20829,3 +20829,29 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Five focused tests, Ruff, compile, JSON and diff checks pass. The NPZ is not
   consumed and no Portra-response, calibration, candidate 3 or product profile
   opens. Autonomous rights-clear observation discovery remains active.
+
+### 2026-08-31 - Xi Film live inventory no longer supports source-diversification planning
+
+- **Node and routing:** `ULT > SF3 > autonomous source discovery`, DRPT L2 /
+  Mode C. This was a read-only live-source refresh, not a pixel, purchase or
+  scientific experiment leaf.
+- **Current official facts:** the homepage and marketplace expose eight works
+  from one contributor. Metadata across all eight artwork pages contains two
+  Ektar100 works, one Portra400 work and no Velvia50 work. The official
+  licensing page describes a custom paid request covering usage, media,
+  territory, duration, budget and project notes, followed by manual email
+  delivery and a PDF licence certificate; it does not explicitly grant ML
+  fitting/training, derived-parameter or dataset reuse rights.
+- **Read boundary and identities:** only official HTML and artwork metadata
+  were read; image/media bodies, login, checkout, purchase and file requests
+  remain zero. Homepage HTML was 84,391 bytes at SHA-256
+  `ec28f4e23ce2f048a8621f1b94e9879e3349f454c932afb973cd570fab403ba1`,
+  marketplace HTML 92,228 bytes at
+  `9264532cd42e9aa4ccf4e71ae19245ca0c8f76c36deccfba7bb6aa6e7446fcce`,
+  and licensing HTML 27,714 bytes at
+  `20bcaf8ed64be9f33feea5df57b5c5b4e67e912a263c7fbd460faa66894124c7`.
+- **Decision:** downgrade Xi Film from a promising acquisition lane to a
+  watchlist. The current inventory fails target-stock coverage, independent
+  source/group diversity and explicit fitting-rights readiness. No formal
+  source leaf, candidate 3, purchase, pixel read, stock evidence or product
+  mapping opens; autonomous discovery continues.
