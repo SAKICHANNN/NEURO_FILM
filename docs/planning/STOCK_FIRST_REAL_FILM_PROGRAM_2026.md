@@ -30,6 +30,24 @@ This programme does not treat a Capture One recipe, camera simulation, LUT,
 filename hint, generic old-film archive or learned average of all film as stock
 truth. Direct generative RGB editing remains excluded.
 
+### Autonomous acquisition boundary (2026-08-30)
+
+The user will not provide film photographs, paired captures, exposure
+measurements, filled receipt packets or scans. Therefore no stock node may
+remain queued on an owner handoff. The complete A0L/A0N work order, receipt,
+ledger and rehearsal implementation is retained as a reusable protocol only.
+It does not itself contain an observation and is not an active recovery leaf.
+
+The project must locate data autonomously. Before any new pixel request it
+must freeze the official source/revision, exact asset inventory and hashes,
+physical stock identity, allowed research/fitting/derived-output use, scene
+and roll/process/scanner/source groups, leakage controls and independent
+holdout roles. Public-page figures, weak stock text, presets, simulations,
+generated RGB, manufacturer curves and format/runtime mechanics remain
+inadmissible as stock truth. A paid, commissioned or otherwise externally
+coordinated capture is outside this standing authority and requires a separate
+explicit cost and external-action approval.
+
 ## 2. Separate coverage accounts
 
 - Named stocks use `S0 claimed`, `S1 research-eligible`, `S2 transferable` and

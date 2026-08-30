@@ -20368,6 +20368,7 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   or Fujifilm RAW, compressed RAF, SuperCCD remap, crop, black subtraction,
   calibration, white balance, demosaic, colour, quality, default loader,
   package/schema/capability, product, stock evidence or candidate 3 opens.
+
   Evidence SHA is `4672d98f...9924b`; adjacent RAF intake stops.
 
 ### 2026-08-28 - P317 independently consumes the exact R1GO Sigma X3F callable
@@ -20527,3 +20528,26 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   component-ARW intake, alignment, fusion, crop, black subtraction,
   calibration, white balance, demosaic, colour, quality, default loader,
   package/schema/capability, product, stock evidence or candidate 3 opens.
+
+### 2026-08-30 - Stock recovery no longer waits for user-supplied photographs
+
+- **Direction correction:** the user explicitly confirms that they cannot and
+  will not provide film photographs. A0L/A0N remain valid tested acquisition,
+  receipt and ledger infrastructure, but no longer constitute an active owner
+  handoff, a pending user request or a Goal recovery condition.
+- **Autonomous route:** a new stock-science leaf must be found by the project
+  and must prospectively bind exact assets, physical-stock identity, rights,
+  scene/roll/process/scanner/source groups and independent holdouts before
+  pixels. A paid or commissioned capture is not implicitly authorised.
+- **Bounded current audit:** exact DataCite/Figshare/Internet Archive searches
+  and current primary-page checks found no new downloadable, rights-clear
+  Velvia 50/Portra 400/Ektar 100 controlled corpus beyond already closed SF3
+  routes. The 2026 NTNU E100/Velvia 50 study remains methodologically strong
+  but currently exposes no independently consumable dataset record; it also
+  does not cover Portra 400 or Ektar 100. A Commons metadata follow-up was
+  stopped on API throttling and is not interpreted as source absence; existing
+  SF3.A0Y/A0Z and SF3.A1C--A1F already close the frozen YFCC and Commons
+  three-stock cohorts. No image payload, pixel, fit, render or score was read.
+- **Propagation:** tracker, stock-first plan and stock registry now state the
+  autonomous-source boundary. Proxy/model/wrapper work remains forbidden as a
+  substitute for stock evidence; candidate count remains `2/3`.

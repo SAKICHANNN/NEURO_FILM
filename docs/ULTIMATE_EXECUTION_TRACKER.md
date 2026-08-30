@@ -49,6 +49,19 @@ procedural self-supervision paper cannot increment or reset the counter. The
 exact rule is in
 `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` section 1.1.
 
+**Autonomous-source authority, 2026-08-30:** the user will not supply film
+photographs, paired captures, filled A0N receipts or scans. A0L/A0N remain
+valid, tested acquisition/receipt/ledger protocols, but they are not an
+active owner handoff, a pending user request or a recovery condition. The
+project must discover and rights-screen data itself. A stock-science leaf may
+reopen only from a materially new public or otherwise explicitly authorised
+source whose exact assets, physical-film identity, rights, scene/roll/process/
+scanner groups and independent holdouts can be prospectively frozen before
+pixel access. A paid or commissioned capture service would require a separate
+explicit cost/external-action approval. Proxy renders, publication figures,
+manufacturer curves, synthetic rehearsal, RAW/HDR mechanics and userless
+A0N templates do not satisfy this condition.
+
 **Latest paired-source gate, 2026-08-26:** P225 binds the official PixTalk
 ICCV 2025, RetouchIQ CVPR 2026 and InstantRetouch CVPR 2026 paper/repository
 identities and audits only public metadata. All three describe genuinely
@@ -308,8 +321,11 @@ not shutter times, across Velvia 50, Portra 400 and Ektar 100. A0N then
 validates all 18 filled common-condition records and all 87 per-film-frame
 exposure receipts before scan-ledger assembly. The 47-test A0--A4 chain is
 green. This is capture readiness only; physical exposures and scans remain
-zero, so the next mainline action is recording the frozen work order rather
-than another proxy or model family.
+zero. Since the user will not provide film photographs or fill the packet,
+recording that work order is no longer an active next action. Retain A0L/A0N
+only as a ready protocol for a future independently sourced or separately
+authorised acquisition; the active route is autonomous source discovery and
+rights/role screening, not another proxy or model family.
 
 A0N now also provides the missing receipt-to-ledger compiler boundary. It
 requires the evidence ledger to use the exact 108 scene scan-task IDs, film
@@ -327,7 +343,9 @@ pass A4, and the 36-image blind package reaches A5 adjudication. Network and
 persistent data writes are zero and temporary trees are removed. This closes
 an execution-readiness gap only; it is not film evidence, stock
 identification, human severe review or preference. Physical Velvia 50, Portra
-400 and Ektar 100 receipts/scans remain the unchanged next mainline action.
+400 and Ektar 100 receipts/scans remain scientifically required, but the user
+will not supply them; the next active action is autonomous discovery of an
+admissible source, not waiting for an owner-filled packet.
 Evidence:
 `docs/evidence/SF3_A0A5_SYNTHETIC_PIPELINE_REHEARSAL_RESULT.json`.
 

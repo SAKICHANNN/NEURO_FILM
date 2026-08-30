@@ -31,6 +31,15 @@ Within-stock latent modes are recorded only in the separate
 hypothesis: no current stock has proved `K>1`, and latent inference must never
 be copied back into this observed-evidence registry.
 
+The user will not contribute film photographs or fill the existing A0L/A0N
+capture packet. Those files remain empty acquisition infrastructure, not
+pending evidence. New registry rows must therefore come from autonomously
+discovered public data or another source whose use has been explicitly
+authorised and prospectively frozen. A source search, article, figure, empty
+receipt template, synthetic rehearsal, proxy render or media/RAW mechanism
+never increments coverage. External paid/commissioned acquisition is not
+authorised by this statement and requires a separate approval.
+
 ## 2. Canonical hierarchy
 
 ```text
