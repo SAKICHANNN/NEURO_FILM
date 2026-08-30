@@ -37,7 +37,8 @@ stock response or a product experiment.
 All newly selected media must be downloaded through repository-relative
 `data/...`, rehashed into a local manifest and decoded only after its source
 identity, licence, byte count and content type pass. Media roles are determined
-before the first body request.
+before the first body request. Each JPEG is capped at 64 MiB; the nicknick and
+conditional Luminant transfers are capped at 1 GiB and 512 MiB respectively.
 
 ## Frozen method and controls
 

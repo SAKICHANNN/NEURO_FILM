@@ -119,10 +119,14 @@
   "operation_limits": {
     "nicknick_image_body_requests": 24,
     "nicknick_pixel_decodes": 24,
+    "nicknick_max_single_image_bytes": 67108864,
+    "nicknick_max_total_image_bytes": 1073741824,
     "excluded_nicknick_image_body_requests": 0,
     "luminant_image_body_requests_before_primary_pass": 0,
     "luminant_image_body_requests_after_primary_pass": 12,
     "luminant_pixel_decodes_after_primary_pass": 12,
+    "luminant_max_single_image_bytes": 67108864,
+    "luminant_max_total_image_bytes": 536870912,
     "operator_fit_calls": 0,
     "render_calls": 0,
     "product_writes": 0
