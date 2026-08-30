@@ -20659,3 +20659,45 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `docs/evidence/SF3_A3Q_YFCC_THREE_STOCK_GENERATION_CONNECTIVITY_RESULT.json`.
   Do not infer stock response from uploader connectivity, count NC/VC or
   ambiguous generations, reopen SF1.3B, fit operators or admit candidate 3.
+
+### 2026-08-31 - SF3.A3R closes the FilmMatch Portra source before media
+
+- **Node and routing:** `ULT > SF3 > SF3.A3R`, DRPT L2 / Mode C.
+  `dev-research-reliability` was primary; source research, stock-first gates,
+  DRPT propagation and project-log discipline were secondary controls. This
+  is a zero-pixel source-admission audit, not a LUT evaluation or a repeat of
+  the existing FilmMatch Ektachrome science.
+- **Why the source is material:** the official PortraMatch pages explicitly
+  document current Portra 400 shot side by side with Sony FX3, five rolls,
+  roughly 20,000 colour samples, ColorChecker Classic/SG plus emissive colours,
+  3200K/5600K/7500K illumination, -5..+5 EV, linear Reflecta RPS 10M scans and
+  a later validation roll shot three weeks later. This is materially stronger
+  physical/capture-time information than presets, manufacturer curves or
+  uncontrolled image labels.
+- **Freeze and implementation:** contract, config, core, audit and focused
+  tests are commit `687f105a`; tracked evidence and binding test are
+  `5808a585`. Only the three exact official HTML responses were requested.
+  Images, Google Drive metadata/bodies, product/LUT downloads, chart media,
+  pixels, fitting, rendering and scoring remained zero.
+- **Formal result:** committed-head forward/reverse reports are each 4,170
+  bytes and byte-exact at SHA
+  `caad38a4d5d88a0c43cc20f3781082880d8afe2c95f321c92b92657dba904764`,
+  source identity
+  `4108053a73772dca6b3e0a2f2ce0b1126b4f3ecf06b1270bd507cb9880bfe5ec`,
+  stable `7eb07b08099c8897cea883064df35ae2daa689018a06f132ea527f7af0fee076`.
+  All frozen page identities and method facts pass. No Portra-specific public
+  observation payload is linked; the two Drive folders are the already-known
+  generic/Ektachrome practice charts and profiling tools. Dataset fitting and
+  derived-parameter rights, exact asset manifest/checksums, and exact
+  roll/process/scanner/source identities with a sealed confirmation role all
+  fail independently.
+- **Decision and evidence:** formal decision is
+  `FAIL_CLOSED_FILMMATCH_PORTRA_DATASET_RIGHTS_MANIFEST_OR_GROUP_GAP`.
+  Tracked evidence is
+  `docs/evidence/SF3_A3R_FILMMATCH_PORTRA_SOURCE_RESULT.json`, LF SHA
+  `ccefea099be1a3cac22bb4a5c94754a217d8b06fc827a770f47cdb1b70a40089`.
+  Five focused/evidence tests, Ruff, compile, JSON and diff checks pass. The
+  private method is not adjudicated negatively; only an independently
+  licensed exact Portra observation export can reopen it. No stock operator,
+  product profile or candidate 3 opens, and adjacent FilmMatch source work
+  stops.

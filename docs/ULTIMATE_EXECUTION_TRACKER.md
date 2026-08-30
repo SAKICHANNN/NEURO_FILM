@@ -3016,6 +3016,24 @@ reopen the failed SF1.3B identifiability cohort or infer stock evidence from
 uploader connectivity. Evidence:
 `docs/evidence/SF3_A3Q_YFCC_THREE_STOCK_GENERATION_CONNECTIVITY_RESULT.json`.
 
+SF3.A3R audits FilmMatch's official PortraMatch publication as a controlled
+Portra 400 source rather than consuming its paid LUT or the existing
+Ektachrome practice charts. The pages explicitly document five Portra rolls,
+roughly 20,000 colour samples, three illuminants, a -5 to +5 EV sweep,
+side-by-side Sony FX3 capture, linear Reflecta scans and a later validation
+roll. However, no Portra-specific observation payload is publicly linked; the
+two public Drive folders remain the already-known generic/Ektachrome practice
+charts and profiling tools. Dataset fitting/derived-parameter rights, an exact
+asset manifest/checksums, and exact roll/process/scanner/source groups with a
+sealed confirmation role are also absent. Committed-head forward/reverse
+reports are byte-exact at 4,170 bytes / SHA `caad38a4...04764`, stable
+`7eb07b08...ee076`; image, Drive, product, chart-media, pixel, fit, render and
+score operations remain zero. Formal decision is
+`FAIL_CLOSED_FILMMATCH_PORTRA_DATASET_RIGHTS_MANIFEST_OR_GROUP_GAP`. Preserve
+the method as strong private-source evidence, but do not fit, consume the LUT
+or open candidate 3. Evidence:
+`docs/evidence/SF3_A3R_FILMMATCH_PORTRA_SOURCE_RESULT.json`.
+
 U7.2E adds one authoritative manual product-look catalog and dispatcher over
 the existing three colour-stock Look Approximation controls plus the generic
 B&W correction from BW2.D1. Discovery exposes exactly `velvia_50`,
