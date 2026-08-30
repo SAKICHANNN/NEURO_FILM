@@ -15,7 +15,7 @@ def test_sf3_a3q_formal_evidence_is_bound_and_fail_closed() -> None:
     evidence = json.loads(payload)
 
     assert hashlib.sha256(payload).hexdigest() == (
-        "9960f76e3c1355a6689dc3363682f830565a0df92a2b1df3815384bd4e31dc01"
+        "a46e77852e73ac6ad0c7efbf9615aeea0873dd4186b88c3e89792008aae72f07"
     )
     assert evidence["decision"] == (
         "FAIL_CLOSED_YFCC_THREE_STOCK_CURRENT_PORTRA_AUTHOR_CONNECTIVITY"
