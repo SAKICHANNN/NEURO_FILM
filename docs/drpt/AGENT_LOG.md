@@ -20496,3 +20496,34 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   generic 3FR, FFF or Hasselblad RAW, crop, black subtraction, calibration,
   white balance, demosaic, colour, quality, default loader,
   package/schema/capability, product, stock evidence or candidate 3 opens.
+
+### 2026-08-30 - P321 independently consumes the corrected R1GX Sony ARQ callable
+
+- **Node and routing:** `ULT > U1 RAW ingress > P321`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the primary workflow; plan-tracker,
+  project-structure and project-agent-log discipline governed freeze and
+  propagation. The leaf copies no producer code into consumer `src`, invokes
+  neither producer runner nor LibRaw reference, reads no component ARW and
+  changes no default loader.
+- **Freeze and corrected lineage:** contract/config commit `33cd43fd` binds
+  exact producer preregistration, source gate, core, corrected runner, V2
+  execution lock, callable contract, canonical fixture and final evidence
+  objects plus composed-ARQ source/output identities. It explicitly rejects
+  superseded V1 report SHA `e344efa0...d571` and binds authoritative producer
+  evidence `d2fa171f...f070`, stable `c4fb13a0...e98e`. Audit/test commit is
+  `54839b80`; evidence/test commit is `fce0395d`. The audit imports only the
+  exact core Git object inside an owned temporary package.
+- **Formal result:** the 544-byte canonical fixture and complete
+  `5320x8000x4` uint16 RGBG composed ARQ reproduce expected hashes exactly;
+  real output SHA is `611d0a07...4371`, code range is 508--16383, output is
+  owned/writable/C-contiguous, source remains immutable, truncation and mutable
+  input reject, and component ARW reads are zero. Forward/reverse reports are
+  byte-identical at 4,280 bytes / SHA `2bea7690...8da21`, scientific
+  `4aa7abf5...f10ba`; all 14 consumer gates pass with zero owned residue.
+- **Verification and decision:** four focused tests, Ruff, py_compile, JSON and
+  diff checks pass. Decision is
+  `PASS_PRIVATE_R1GX_SONY_ARQ_NO_COPY_INTAKE`, limited to exact private
+  one-camera/one-group stored-code consumability. No ARW-to-ARQ writer or
+  component-ARW intake, alignment, fusion, crop, black subtraction,
+  calibration, white balance, demosaic, colour, quality, default loader,
+  package/schema/capability, product, stock evidence or candidate 3 opens.
