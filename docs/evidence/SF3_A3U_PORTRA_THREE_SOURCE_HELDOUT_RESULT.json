@@ -1,0 +1,72 @@
+{
+  "schema": "neuro-film.sf3-a3u-portra-three-source-heldout-evidence.v1",
+  "experiment_id": "SF3.A3U_PORTRA_THREE_SOURCE_HELDOUT_V1",
+  "decision": "FAIL_CLOSED_PORTRA_SOURCE_HELDOUT_IDENTIFIABILITY_BEFORE_LUMINANT_READ",
+  "formal_reports": {
+    "forward_path": "outputs/eval/sf3_a3u_portra_three_source_heldout_v1/formal_forward.json",
+    "reverse_path": "outputs/eval/sf3_a3u_portra_three_source_heldout_v1/formal_reverse.json",
+    "bytes_each": 46552,
+    "forward_sha256": "f5e8976737e62fb6f337749ab7e18564a83bd3aa95d10536dbfb843d0e0d463d",
+    "reverse_sha256": "f5e8976737e62fb6f337749ab7e18564a83bd3aa95d10536dbfb843d0e0d463d",
+    "byte_exact": true,
+    "stable_evidence_id": "cac501738b1ed1d9750b37d5e240dce401224c7577639c3f8ea68a6629661775"
+  },
+  "bindings": {
+    "config_path": "configs/sf3_a3u_portra_three_source_heldout_v1.json",
+    "config_sha256": "f2568f3ec3b7532af34471a7c010e5fc9b705fa794139f4c3497a2a8173bf721",
+    "implementation_path": "src/real_film/portra_three_source_heldout.py",
+    "implementation_sha256": "11c333e7b1fcfd42893fe52610a0a5a222e498ba11dc7b715c28f90662c2ac23",
+    "implementation_commit": "0c6afdc8dcccfebce95ba8c040d436d3c7096b30",
+    "producer_evidence_commit": "4e0172c0c3f27a6761ca4f4d74b85b13aa15a061",
+    "producer_evidence_sha256": "28c11e350ec7f661b76a1a67f9f1fccdcb42fd6d35fca8221a827a6c2471262a"
+  },
+  "source_lock": {
+    "page_sha256": "0a99e09be9861937b92179458109a71b2de68923cd2490245ed53a2cd7d682e6",
+    "files": 24,
+    "bytes": 9188831,
+    "manifest_path": "data/real_film/sf3_a3u_portra_three_source_heldout_v1/nicknick/manifest.json",
+    "manifest_sha256": "07bc3b622c5d57781de23c06c1f948974afca965770398b79555220499b72c74",
+    "cross_split_exact_pairs": 0,
+    "cross_split_dhash_le_4_pairs": 0
+  },
+  "primary_metrics": {
+    "descriptor": "rgb_distribution",
+    "balanced_accuracy": 0.5,
+    "portra_recall": 0.9166666666666666,
+    "wrong_stock_specificity": 0.08333333333333333,
+    "permutation_p_greater_equal": 0.599,
+    "best_nuisance_control": "hog_grayscale",
+    "best_nuisance_balanced_accuracy": 0.6666666666666667,
+    "primary_minus_best_nuisance": -0.16666666666666674,
+    "primary_minus_best_nuisance_ci95": [
+      -0.375,
+      0.041666666666666685
+    ],
+    "reversed_centroid_accuracy": 0.5
+  },
+  "gates": {
+    "development_rows_exact": true,
+    "confirmation_rows_exact": true,
+    "cross_split_duplicate_gate": true,
+    "portra_recall": true,
+    "primary_balanced_accuracy": false,
+    "wrong_stock_specificity": false,
+    "primary_permutation": false,
+    "delta_vs_best_nuisance": false,
+    "hog_content_ceiling": false,
+    "reversed_centroid_control": false
+  },
+  "operation_counts_per_formal_process": {
+    "nicknick_page_get_requests": 1,
+    "nicknick_image_body_requests": 24,
+    "nicknick_pixel_decodes": 24,
+    "excluded_old_portra_image_body_requests": 0,
+    "luminant_gallery_page_get_requests": 0,
+    "luminant_image_body_requests": 0,
+    "operator_fit_calls": 0,
+    "render_calls": 0,
+    "product_writes": 0
+  },
+  "interpretation": "The fixed Commons Portra-versus-Ektar RGB centroid transferred to unseen nicknick Portra-versus-Ultramax images by predicting nearly every row as Portra. High Portra recall therefore did not provide stock specificity. The primary descriptor was chance-level, nonsignificant and materially worse than the HOG content control. The preregistered stop rule closed the leaf before any Luminant page or image read.",
+  "claim_ceiling": "Strict same-cohort source-held-out negative only. It does not disprove Portra-specific physical response, but this appearance pool cannot identify one and cannot open Luminant confirmation, operator fitting, learning, calibration, three-stock completion, candidate-three admission or product mapping."
+}
