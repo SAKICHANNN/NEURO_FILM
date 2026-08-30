@@ -1,0 +1,110 @@
+{
+  "admission": {
+    "known_practice_charts_folder_id": "1P7AMa5KVuO7qAJCrCihUa0mEMX4Ttd1L",
+    "known_profiling_tools_folder_id": "1J7GXZa22T75IPYYBlg2dTaMoCltUSjHk",
+    "marker_results": {
+      "dataset_rights": {
+        "cc by": false,
+        "creative commons": false,
+        "dataset licence": false,
+        "dataset license": false
+      },
+      "group_roles": {
+        "process_id": false,
+        "roll_id": false,
+        "scanner_id": false,
+        "sealed confirmation": false,
+        "source_group": false
+      },
+      "manifest": {
+        "checksum": false,
+        "manifest": false,
+        "sha256": false
+      }
+    },
+    "portra_specific_dataset_folder_ids": [],
+    "target_stock": {
+      "film_stock_id": "kodak_portra_400",
+      "public_label": "Portra 400"
+    }
+  },
+  "claim_ceiling": "Official Portra 400 controlled-method source evidence only; no public observation payload, stock operator, calibration, product profile or candidate 3 unless a separately licensed exact dataset export with manifest and independent groups appears.",
+  "decision": "FAIL_CLOSED_FILMMATCH_PORTRA_DATASET_RIGHTS_MANIFEST_OR_GROUP_GAP",
+  "experiment_id": "SF3.A3R_FILMMATCH_PORTRA_SOURCE_V1",
+  "gates": {
+    "controlled_portra_method_facts_present": true,
+    "dataset_fitting_and_derived_parameter_rights_present": false,
+    "exact_asset_manifest_and_checksums_present": false,
+    "exact_groups_and_sealed_confirmation_present": false,
+    "official_page_identities_match": true,
+    "public_portra_specific_observation_payload_present": false,
+    "zero_media_drive_pixel_fit_render_score": true
+  },
+  "operation_counts": {
+    "chart_media_requests": 0,
+    "drive_body_requests": 0,
+    "drive_metadata_requests": 0,
+    "fit_calls": 0,
+    "html_requests": 3,
+    "image_requests": 0,
+    "pixel_decodes": 0,
+    "product_downloads": 0,
+    "render_calls": 0,
+    "score_calls": 0
+  },
+  "schema": "neuro-film.sf3-a3r-filmmatch-portra-source-result.v1",
+  "source_identity": {
+    "observed_drive_folder_ids": [
+      "1J7GXZa22T75IPYYBlg2dTaMoCltUSjHk",
+      "1P7AMa5KVuO7qAJCrCihUa0mEMX4Ttd1L"
+    ],
+    "pages": {
+      "learnmore": {
+        "bytes": 928959,
+        "drive_folder_ids": [],
+        "sha256": "e4056ed41d94269b3fa8879274a976b345e4a01ca8bcd2a0554a32c72ee3ded2",
+        "url": "https://www.film-match.com/portramatchlearnmore"
+      },
+      "portramatch": {
+        "bytes": 303123,
+        "drive_folder_ids": [],
+        "sha256": "447d4b901715882def973cd024b130cc677d47457f79a204e3e9eafb934f2bc1",
+        "url": "https://www.film-match.com/portramatch"
+      },
+      "shooting_charts": {
+        "bytes": 1287114,
+        "drive_folder_ids": [
+          "1J7GXZa22T75IPYYBlg2dTaMoCltUSjHk",
+          "1P7AMa5KVuO7qAJCrCihUa0mEMX4Ttd1L"
+        ],
+        "sha256": "801186c6cfad0fc8efd2f9392d308012863d898f69c2c9606eed44ae36163933",
+        "url": "https://www.film-match.com/shooting-charts"
+      }
+    },
+    "required_phrase_results": {
+      "learnmore": {
+        "Portra 400 and Sony FX3": true,
+        "Reflecta rps 10m film scanner": true,
+        "fed to the neural network": true,
+        "linear raw scans of the negative": true
+      },
+      "portramatch": {
+        "3 weeks after I shot the charts": true,
+        "3200k tungsten, 5600k daylight and 7500k cooler daylight": true,
+        "Portra 400 scan": true,
+        "dataset of around 20k color samples": true,
+        "dataset required 5 rolls": true,
+        "from 5 stops underexposed to 5 stops over exposed": true
+      },
+      "shooting_charts": {
+        "Color Checker Classic in combination with the color checker SG": true,
+        "Shooting Color Charts (Creating the Dataset)": true,
+        "record them with both the digital sensor and the film stock": true,
+        "use at least 3 illuminants": true
+      }
+    }
+  },
+  "source_identity_sha256": "4108053a73772dca6b3e0a2f2ce0b1126b4f3ecf06b1270bd507cb9880bfe5ec",
+  "stable_evidence_id": "7eb07b08099c8897cea883064df35ae2daa689018a06f132ea527f7af0fee076"
+}
+
