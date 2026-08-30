@@ -1,0 +1,288 @@
+{
+  "admission_gates": {
+    "explicit_content_group_count": true,
+    "explicit_process_group_count": false,
+    "explicit_roll_group_count": false,
+    "explicit_scanner_group_count": false,
+    "independent_author_source_count": false,
+    "public_child_assets_and_group_metadata_complete": true,
+    "same_scene_neutral_film_pair_count": false,
+    "same_source_cross_stock_control_count": false,
+    "sealed_confirmation_group_count": false,
+    "target_stock_project_identity_exact": true
+  },
+  "admission_minimums": {
+    "explicit_content_group_count": 20,
+    "explicit_process_group_count": 1,
+    "explicit_roll_group_count": 3,
+    "explicit_scanner_group_count": 1,
+    "independent_author_source_count": 3,
+    "same_scene_neutral_film_pair_count": 1,
+    "same_source_cross_stock_control_count": 1,
+    "sealed_confirmation_group_count": 1
+  },
+  "audit_gates": {
+    "child_count_unique_exact": true,
+    "child_metadata_keys_and_strings_exact": true,
+    "child_page_count_and_terminal_flags_exact": true,
+    "model_group_count_exact": true,
+    "ordered_child_id_sha256_exact": true,
+    "parent_project_stock_camera_license_fields_exact": true,
+    "photos_per_model_exact": true,
+    "sample_ids_exact": true,
+    "sample_parent_type_length_exact": true,
+    "sample_total_content_bytes_exact": true,
+    "zero_image_body_pixel_fit_render_score": true
+  },
+  "child_inventory": {
+    "count": 1000,
+    "first_id": "ab924ff229beca227bf40221faf492a20b5e2ee4f084524c84a5f98b80fe527fi0",
+    "last_id": "5e9d62c194a962d9d9ecca4dc5bec73498d5a4e100d023325ab72eb937d9c19ci1",
+    "ordered_id_sha256": "c6c8e53a827592c0a2d44d577db85e9e4926e3c55f661c8f7405ff5c310efafd",
+    "page_count": 10
+  },
+  "claim_ceiling": "CC0-declared, publicly addressable, model-grouped single-project Ektar 100 appearance-source metadata only; no AVIF body, pixels, roll/process/scanner identity, neutral pair, source-independent stock response, fitting, learning, calibration, three-stock result, product profile or candidate-three admission.",
+  "decision": "FAIL_CLOSED_DADDY_PLEASE_EKTAR_SINGLE_PROJECT_NUISANCE_AND_PAIRING_GAP",
+  "experiment_id": "SF3.A3T_DADDY_PLEASE_EKTAR_SOURCE_V1",
+  "group_evidence": {
+    "explicit_content_group_count": 100,
+    "explicit_process_group_count": 0,
+    "explicit_roll_group_count": 0,
+    "explicit_scanner_group_count": 0,
+    "independent_author_source_count": 1,
+    "same_scene_neutral_film_pair_count": 0,
+    "same_source_cross_stock_control_count": 0,
+    "sealed_confirmation_group_count": 0
+  },
+  "metadata_summary": {
+    "entry_count": 1000,
+    "maximum_photos_per_model": 10,
+    "minimum_photos_per_model": 10,
+    "model_count": 100,
+    "model_counts_sha256": "b69f5c6313515e2dc4afa0ff7e467576e8c090210e985dd3e3a92dfd49fbb733",
+    "sha256": "92e3e2cf76f756332645e462d7e034c3240aa88731fdbf0a6ee5184cbd69d6fd"
+  },
+  "operation_counts": {
+    "child_html_get_requests": 24,
+    "child_index_json_get_requests": 10,
+    "child_metadata_json_get_requests": 1000,
+    "fit_calls": 0,
+    "image_body_requests": 0,
+    "image_range_requests": 0,
+    "parent_html_get_requests": 1,
+    "pixel_decodes": 0,
+    "render_calls": 0,
+    "score_calls": 0
+  },
+  "parent_field_gates": {
+    "APERTURE": true,
+    "CAMERA": true,
+    "FILM": true,
+    "LENS": true,
+    "LICENSE": true,
+    "LOCATION": true,
+    "MODELS": true,
+    "PHOTOGRAPHER": true,
+    "PHOTOS": true,
+    "SHUTTER SPEED": true
+  },
+  "parent_fields": {
+    "APERTURE": "F/8",
+    "CAMERA": "CANON EOS-1V",
+    "FILM": "KODAK EKTAR 100",
+    "LENS": "ZEISS PLANAR T* 85MM F/1.4",
+    "LICENSE": "CC0",
+    "LOCATION": "LOS ANGELES, CALIFORNIA",
+    "MODELS": "100",
+    "PHOTOGRAPHER": "PARKER DAY",
+    "PHOTOS": "1000",
+    "SHUTTER SPEED": "1/125"
+  },
+  "sample": {
+    "count": 24,
+    "entries": [
+      {
+        "content_length": 90445,
+        "content_type": "image/avif",
+        "id": "04dd6631f8513450924708bd9f22af84fa3fc57099f8cd7f0778db3e21da2b75i0",
+        "parent_id": "b1ef66c2d1a047cbaa6260b74daac43813924378fe08ef8545da4cb79e8fcf00i0"
+      },
+      {
+        "content_length": 85206,
+        "content_type": "image/avif",
+        "id": "097416d815c9f8f86608d030b278e2414a2e0466f3614eb08b6a8ede0857c95di1",
+        "parent_id": "b1ef66c2d1a047cbaa6260b74daac43813924378fe08ef8545da4cb79e8fcf00i0"
+      },
+      {
+        "content_length": 67522,
+        "content_type": "image/avif",
+        "id": "0a4ddeac66e61631c3eda27ad771b9c54189f63238ec5d7ffee24b95721fe0a8i2",
+        "parent_id": "b1ef66c2d1a047cbaa6260b74daac43813924378fe08ef8545da4cb79e8fcf00i0"
+      },
+      {
+        "content_length": 107127,
+        "content_type": "image/avif",
+        "id": "1384c035751f901035eb99567905d208f5ace43b2aa6b776322b798751d2bb67i0",
+        "parent_id": "b1ef66c2d1a047cbaa6260b74daac43813924378fe08ef8545da4cb79e8fcf00i0"
+      },
+      {
+        "content_length": 71367,
+        "content_type": "image/avif",
+        "id": "1cfdcd22b6550783d8796e77869db6d52ae3f0f8d819dd33aa6a392492f05367i0",
+        "parent_id": "b1ef66c2d1a047cbaa6260b74daac43813924378fe08ef8545da4cb79e8fcf00i0"
+      },
+      {
+        "content_length": 84108,
+        "content_type": "image/avif",
+        "id": "2391c77a635fee5683decaea2c957e8387f358e21bf6965a2b382b5d0fe65b2ai2",
+        "parent_id": "b1ef66c2d1a047cbaa6260b74daac43813924378fe08ef8545da4cb79e8fcf00i0"
+      },
+      {
+        "content_length": 87644,
+        "content_type": "image/avif",
+        "id": "5c3fc0227010bb32ce6764da59f925d446c3516119054f5682de7a1238a3930di3",
+        "parent_id": "b1ef66c2d1a047cbaa6260b74daac43813924378fe08ef8545da4cb79e8fcf00i0"
+      },
+      {
+        "content_length": 49545,
+        "content_type": "image/avif",
+        "id": "61bacfc80b77f5c902ff085a63381d1f8fc690fe9c98fb193984d1627119a5f4i0",
+        "parent_id": "b1ef66c2d1a047cbaa6260b74daac43813924378fe08ef8545da4cb79e8fcf00i0"
+      },
+      {
+        "content_length": 116257,
+        "content_type": "image/avif",
+        "id": "6df21a0aa66547264b8642e02d091031a054c6a8f846576ad6bd40316d10be97i0",
+        "parent_id": "b1ef66c2d1a047cbaa6260b74daac43813924378fe08ef8545da4cb79e8fcf00i0"
+      },
+      {
+        "content_length": 125817,
+        "content_type": "image/avif",
+        "id": "70d4a39ced96b11aecfe32066bde64d8325166800ae02332110dab3d5676d199i1",
+        "parent_id": "b1ef66c2d1a047cbaa6260b74daac43813924378fe08ef8545da4cb79e8fcf00i0"
+      },
+      {
+        "content_length": 50250,
+        "content_type": "image/avif",
+        "id": "71ec8d06ae51d37e2f3f3716c07ea791771f197317c64fc8611bbbe9b8ab8fc0i2",
+        "parent_id": "b1ef66c2d1a047cbaa6260b74daac43813924378fe08ef8545da4cb79e8fcf00i0"
+      },
+      {
+        "content_length": 82461,
+        "content_type": "image/avif",
+        "id": "834c8aaf65af973f37b819ed74e3e899b0ff0d7cb5fb1f6b9a3ec6449ec1352ci1",
+        "parent_id": "b1ef66c2d1a047cbaa6260b74daac43813924378fe08ef8545da4cb79e8fcf00i0"
+      },
+      {
+        "content_length": 76354,
+        "content_type": "image/avif",
+        "id": "834c8aaf65af973f37b819ed74e3e899b0ff0d7cb5fb1f6b9a3ec6449ec1352ci2",
+        "parent_id": "b1ef66c2d1a047cbaa6260b74daac43813924378fe08ef8545da4cb79e8fcf00i0"
+      },
+      {
+        "content_length": 106207,
+        "content_type": "image/avif",
+        "id": "91356da476dec9d97f8ba648ab23ea2d7061a8dfd942d1250ca8aa418a4ec4d6i0",
+        "parent_id": "b1ef66c2d1a047cbaa6260b74daac43813924378fe08ef8545da4cb79e8fcf00i0"
+      },
+      {
+        "content_length": 93370,
+        "content_type": "image/avif",
+        "id": "9310c511a9d7c58bb09027b9dd2982a329a01f2d4dcb2abeb748c8f8898d979di1",
+        "parent_id": "b1ef66c2d1a047cbaa6260b74daac43813924378fe08ef8545da4cb79e8fcf00i0"
+      },
+      {
+        "content_length": 68983,
+        "content_type": "image/avif",
+        "id": "94a4b95f20ee56bf7165b363aac3897446102a5dca5988f0e343893fb35f8ed7i2",
+        "parent_id": "b1ef66c2d1a047cbaa6260b74daac43813924378fe08ef8545da4cb79e8fcf00i0"
+      },
+      {
+        "content_length": 69749,
+        "content_type": "image/avif",
+        "id": "9815e1777eac1b667e769db01b2e0e3e83bd171578699b54dfc0f9660d7a8b8bi0",
+        "parent_id": "b1ef66c2d1a047cbaa6260b74daac43813924378fe08ef8545da4cb79e8fcf00i0"
+      },
+      {
+        "content_length": 71598,
+        "content_type": "image/avif",
+        "id": "98a951e8b4e0b8e3dae8e673a9a5c5323b709bffb0cd1c492244094e0a039b18i3",
+        "parent_id": "b1ef66c2d1a047cbaa6260b74daac43813924378fe08ef8545da4cb79e8fcf00i0"
+      },
+      {
+        "content_length": 59577,
+        "content_type": "image/avif",
+        "id": "a35a2cbec575006e4d9911f6377fadfe208cf51e738131fe0570158208f1b0d5i1",
+        "parent_id": "b1ef66c2d1a047cbaa6260b74daac43813924378fe08ef8545da4cb79e8fcf00i0"
+      },
+      {
+        "content_length": 135412,
+        "content_type": "image/avif",
+        "id": "a5543b6a9de0a9604687cbad48802f7f07d37c0285faad1aa0119c279df41d34i1",
+        "parent_id": "b1ef66c2d1a047cbaa6260b74daac43813924378fe08ef8545da4cb79e8fcf00i0"
+      },
+      {
+        "content_length": 113107,
+        "content_type": "image/avif",
+        "id": "b567cd59407646139ee017490fa424bd32f2c50813cd21962ecf087ff245b76ci0",
+        "parent_id": "b1ef66c2d1a047cbaa6260b74daac43813924378fe08ef8545da4cb79e8fcf00i0"
+      },
+      {
+        "content_length": 96464,
+        "content_type": "image/avif",
+        "id": "d57d4b2aad3e05ca7adcca50a22422ef84207fcb8182ed84b0f25ca7f520b788i0",
+        "parent_id": "b1ef66c2d1a047cbaa6260b74daac43813924378fe08ef8545da4cb79e8fcf00i0"
+      },
+      {
+        "content_length": 102273,
+        "content_type": "image/avif",
+        "id": "d662fad118a5e52b8541c0bd90342c3facfd6061f3e07a61cc9723a9fb5decf1i0",
+        "parent_id": "b1ef66c2d1a047cbaa6260b74daac43813924378fe08ef8545da4cb79e8fcf00i0"
+      },
+      {
+        "content_length": 77744,
+        "content_type": "image/avif",
+        "id": "e44ffe9fdc5f82a68fab69b0daf61f7ceb37b28a0d23d711e4a26742df200651i1",
+        "parent_id": "b1ef66c2d1a047cbaa6260b74daac43813924378fe08ef8545da4cb79e8fcf00i0"
+      }
+    ],
+    "entries_sha256": "e06916a0b9c644056dae342bea9e301f50a68818e196b8a16840f9ffb4c68f8b",
+    "ids": [
+      "9815e1777eac1b667e769db01b2e0e3e83bd171578699b54dfc0f9660d7a8b8bi0",
+      "71ec8d06ae51d37e2f3f3716c07ea791771f197317c64fc8611bbbe9b8ab8fc0i2",
+      "94a4b95f20ee56bf7165b363aac3897446102a5dca5988f0e343893fb35f8ed7i2",
+      "91356da476dec9d97f8ba648ab23ea2d7061a8dfd942d1250ca8aa418a4ec4d6i0",
+      "98a951e8b4e0b8e3dae8e673a9a5c5323b709bffb0cd1c492244094e0a039b18i3",
+      "6df21a0aa66547264b8642e02d091031a054c6a8f846576ad6bd40316d10be97i0",
+      "097416d815c9f8f86608d030b278e2414a2e0466f3614eb08b6a8ede0857c95di1",
+      "a35a2cbec575006e4d9911f6377fadfe208cf51e738131fe0570158208f1b0d5i1",
+      "834c8aaf65af973f37b819ed74e3e899b0ff0d7cb5fb1f6b9a3ec6449ec1352ci1",
+      "61bacfc80b77f5c902ff085a63381d1f8fc690fe9c98fb193984d1627119a5f4i0",
+      "5c3fc0227010bb32ce6764da59f925d446c3516119054f5682de7a1238a3930di3",
+      "70d4a39ced96b11aecfe32066bde64d8325166800ae02332110dab3d5676d199i1",
+      "b567cd59407646139ee017490fa424bd32f2c50813cd21962ecf087ff245b76ci0",
+      "834c8aaf65af973f37b819ed74e3e899b0ff0d7cb5fb1f6b9a3ec6449ec1352ci2",
+      "04dd6631f8513450924708bd9f22af84fa3fc57099f8cd7f0778db3e21da2b75i0",
+      "1384c035751f901035eb99567905d208f5ace43b2aa6b776322b798751d2bb67i0",
+      "e44ffe9fdc5f82a68fab69b0daf61f7ceb37b28a0d23d711e4a26742df200651i1",
+      "a5543b6a9de0a9604687cbad48802f7f07d37c0285faad1aa0119c279df41d34i1",
+      "d57d4b2aad3e05ca7adcca50a22422ef84207fcb8182ed84b0f25ca7f520b788i0",
+      "2391c77a635fee5683decaea2c957e8387f358e21bf6965a2b382b5d0fe65b2ai2",
+      "9310c511a9d7c58bb09027b9dd2982a329a01f2d4dcb2abeb748c8f8898d979di1",
+      "1cfdcd22b6550783d8796e77869db6d52ae3f0f8d819dd33aa6a392492f05367i0",
+      "d662fad118a5e52b8541c0bd90342c3facfd6061f3e07a61cc9723a9fb5decf1i0",
+      "0a4ddeac66e61631c3eda27ad771b9c54189f63238ec5d7ffee24b95721fe0a8i2"
+    ],
+    "selection": "first-24-by-sha256-of-child-inscription-id",
+    "total_content_bytes": 2088587
+  },
+  "schema": "neuro-film.sf3-a3t-daddy-please-ektar-source-result.v1",
+  "source": {
+    "base_url": "https://ordinals.com",
+    "parent_id": "b1ef66c2d1a047cbaa6260b74daac43813924378fe08ef8545da4cb79e8fcf00i0",
+    "parent_slug_url": "https://ordinals.com/inscription/daddyplease"
+  },
+  "stable_evidence_id": "e431c1461df99de76c87bce040304da6bc167c86d411c142990208fba30ee099"
+}
+
+
