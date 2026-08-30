@@ -6,6 +6,7 @@
     "parent_id": "b1ef66c2d1a047cbaa6260b74daac43813924378fe08ef8545da4cb79e8fcf00i0",
     "parent_slug_url": "https://ordinals.com/inscription/daddyplease",
     "child_page_count": 10,
+    "expected_ids_per_page": 100,
     "expected_child_count": 1000,
     "expected_ordered_child_id_sha256": "c6c8e53a827592c0a2d44d577db85e9e4926e3c55f661c8f7405ff5c310efafd",
     "required_parent_fields": {
