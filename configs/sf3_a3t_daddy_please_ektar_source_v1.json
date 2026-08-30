@@ -1,0 +1,101 @@
+{
+  "schema": "neuro-film.sf3-a3t-daddy-please-ektar-source-contract.v1",
+  "experiment_id": "SF3.A3T_DADDY_PLEASE_EKTAR_SOURCE_V1",
+  "source": {
+    "base_url": "https://ordinals.com",
+    "parent_id": "b1ef66c2d1a047cbaa6260b74daac43813924378fe08ef8545da4cb79e8fcf00i0",
+    "parent_slug_url": "https://ordinals.com/inscription/daddyplease",
+    "child_page_count": 10,
+    "expected_child_count": 1000,
+    "expected_ordered_child_id_sha256": "c6c8e53a827592c0a2d44d577db85e9e4926e3c55f661c8f7405ff5c310efafd",
+    "required_parent_fields": {
+      "PHOTOGRAPHER": "PARKER DAY",
+      "CAMERA": "CANON EOS-1V",
+      "FILM": "KODAK EKTAR 100",
+      "LENS": "ZEISS PLANAR T* 85MM F/1.4",
+      "SHUTTER SPEED": "1/125",
+      "APERTURE": "F/8",
+      "MODELS": "100",
+      "PHOTOS": "1000",
+      "LOCATION": "LOS ANGELES, CALIFORNIA",
+      "LICENSE": "CC0"
+    },
+    "required_child_metadata_keys": [
+      "MODEL",
+      "MOOD",
+      "SIGN",
+      "PROP",
+      "BACKGROUND"
+    ],
+    "expected_model_count": 100,
+    "expected_photos_per_model": 10,
+    "metadata_workers": 16
+  },
+  "sample": {
+    "selection": "first-24-by-sha256-of-child-inscription-id",
+    "count": 24,
+    "expected_ids": [
+      "9815e1777eac1b667e769db01b2e0e3e83bd171578699b54dfc0f9660d7a8b8bi0",
+      "71ec8d06ae51d37e2f3f3716c07ea791771f197317c64fc8611bbbe9b8ab8fc0i2",
+      "94a4b95f20ee56bf7165b363aac3897446102a5dca5988f0e343893fb35f8ed7i2",
+      "91356da476dec9d97f8ba648ab23ea2d7061a8dfd942d1250ca8aa418a4ec4d6i0",
+      "98a951e8b4e0b8e3dae8e673a9a5c5323b709bffb0cd1c492244094e0a039b18i3",
+      "6df21a0aa66547264b8642e02d091031a054c6a8f846576ad6bd40316d10be97i0",
+      "097416d815c9f8f86608d030b278e2414a2e0466f3614eb08b6a8ede0857c95di1",
+      "a35a2cbec575006e4d9911f6377fadfe208cf51e738131fe0570158208f1b0d5i1",
+      "834c8aaf65af973f37b819ed74e3e899b0ff0d7cb5fb1f6b9a3ec6449ec1352ci1",
+      "61bacfc80b77f5c902ff085a63381d1f8fc690fe9c98fb193984d1627119a5f4i0",
+      "5c3fc0227010bb32ce6764da59f925d446c3516119054f5682de7a1238a3930di3",
+      "70d4a39ced96b11aecfe32066bde64d8325166800ae02332110dab3d5676d199i1",
+      "b567cd59407646139ee017490fa424bd32f2c50813cd21962ecf087ff245b76ci0",
+      "834c8aaf65af973f37b819ed74e3e899b0ff0d7cb5fb1f6b9a3ec6449ec1352ci2",
+      "04dd6631f8513450924708bd9f22af84fa3fc57099f8cd7f0778db3e21da2b75i0",
+      "1384c035751f901035eb99567905d208f5ace43b2aa6b776322b798751d2bb67i0",
+      "e44ffe9fdc5f82a68fab69b0daf61f7ceb37b28a0d23d711e4a26742df200651i1",
+      "a5543b6a9de0a9604687cbad48802f7f07d37c0285faad1aa0119c279df41d34i1",
+      "d57d4b2aad3e05ca7adcca50a22422ef84207fcb8182ed84b0f25ca7f520b788i0",
+      "2391c77a635fee5683decaea2c957e8387f358e21bf6965a2b382b5d0fe65b2ai2",
+      "9310c511a9d7c58bb09027b9dd2982a329a01f2d4dcb2abeb748c8f8898d979di1",
+      "1cfdcd22b6550783d8796e77869db6d52ae3f0f8d819dd33aa6a392492f05367i0",
+      "d662fad118a5e52b8541c0bd90342c3facfd6061f3e07a61cc9723a9fb5decf1i0",
+      "0a4ddeac66e61631c3eda27ad771b9c54189f63238ec5d7ffee24b95721fe0a8i2"
+    ],
+    "expected_total_content_bytes": 2088587,
+    "required_content_type": "image/avif"
+  },
+  "group_evidence": {
+    "explicit_content_group_count": 100,
+    "independent_author_source_count": 1,
+    "explicit_roll_group_count": 0,
+    "explicit_process_group_count": 0,
+    "explicit_scanner_group_count": 0,
+    "same_source_cross_stock_control_count": 0,
+    "same_scene_neutral_film_pair_count": 0,
+    "sealed_confirmation_group_count": 0
+  },
+  "admission_minimums": {
+    "explicit_content_group_count": 20,
+    "independent_author_source_count": 3,
+    "explicit_roll_group_count": 3,
+    "explicit_process_group_count": 1,
+    "explicit_scanner_group_count": 1,
+    "same_source_cross_stock_control_count": 1,
+    "same_scene_neutral_film_pair_count": 1,
+    "sealed_confirmation_group_count": 1
+  },
+  "operation_limits": {
+    "parent_html_get_requests": 1,
+    "child_index_json_get_requests": 10,
+    "child_metadata_json_get_requests": 1000,
+    "child_html_get_requests": 24,
+    "image_body_requests": 0,
+    "image_range_requests": 0,
+    "pixel_decodes": 0,
+    "fit_calls": 0,
+    "render_calls": 0,
+    "score_calls": 0
+  },
+  "decision_if_pass": "PASS_OPEN_SEPARATELY_FROZEN_DADDY_PLEASE_EKTAR_PIXEL_SOURCE_PREFLIGHT",
+  "decision_if_fail": "FAIL_CLOSED_DADDY_PLEASE_EKTAR_SINGLE_PROJECT_NUISANCE_AND_PAIRING_GAP",
+  "claim_ceiling": "CC0-declared, publicly addressable, model-grouped single-project Ektar 100 appearance-source metadata only; no AVIF body, pixels, roll/process/scanner identity, neutral pair, source-independent stock response, fitting, learning, calibration, three-stock result, product profile or candidate-three admission."
+}
