@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 
@@ -10,6 +11,7 @@ from scripts.audit_p321_r1gx_sony_arq_no_copy_intake import execute
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/p321_r1gx_sony_arq_no_copy_intake_v1.json"
 PRODUCER = ROOT.parent / "追色"
+EVIDENCE = ROOT / "docs/evidence/P321_R1GX_SONY_ARQ_NO_COPY_INTAKE_RESULT.json"
 
 
 def test_p321_contract_is_frozen_and_narrow() -> None:
@@ -20,6 +22,20 @@ def test_p321_contract_is_frozen_and_narrow() -> None:
     assert config["execution"]["producer_report_sha256"].startswith("d2fa171f")
     assert "component-ARW intake" in config["claim_ceiling"]
     assert "candidate-3 change" in config["claim_ceiling"]
+
+
+def test_p321_tracked_evidence_is_exact() -> None:
+    payload = EVIDENCE.read_bytes()
+    evidence = json.loads(payload)
+    assert len(payload) == 4280
+    assert hashlib.sha256(payload).hexdigest() == (
+        "2bea7690a685097e07eae12c0d83624a1c089d888a5a0595c6f7ddee9058da21"
+    )
+    assert evidence["status"] == "PASS_PRIVATE_R1GX_SONY_ARQ_NO_COPY_INTAKE"
+    assert evidence["scientific_identity"] == (
+        "4aa7abf5bbdc26a44bf0cf2f5f7538c24ee34c9b3fcf765d7ead395a6c3f10ba"
+    )
+    assert all(evidence["scientific"]["gates"].values())
 
 
 @pytest.mark.skipif(not PRODUCER.is_dir(), reason="producer repository is absent")
