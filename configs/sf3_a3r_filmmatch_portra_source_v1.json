@@ -1,0 +1,85 @@
+{
+  "schema": "neuro-film.sf3-a3r-filmmatch-portra-source-contract.v1",
+  "experiment_id": "SF3.A3R_FILMMATCH_PORTRA_SOURCE_V1",
+  "sources": {
+    "portramatch": {
+      "url": "https://www.film-match.com/portramatch",
+      "bytes": 303123,
+      "sha256": "447d4b901715882def973cd024b130cc677d47457f79a204e3e9eafb934f2bc1",
+      "required_phrases": [
+        "dataset of around 20k color samples",
+        "3200k tungsten, 5600k daylight and 7500k cooler daylight",
+        "from 5 stops underexposed to 5 stops over exposed",
+        "dataset required 5 rolls",
+        "3 weeks after I shot the charts",
+        "Portra 400 scan"
+      ]
+    },
+    "learnmore": {
+      "url": "https://www.film-match.com/portramatchlearnmore",
+      "bytes": 928959,
+      "sha256": "e4056ed41d94269b3fa8879274a976b345e4a01ca8bcd2a0554a32c72ee3ded2",
+      "required_phrases": [
+        "Portra 400 and Sony FX3",
+        "Reflecta rps 10m film scanner",
+        "linear raw scans of the negative",
+        "fed to the neural network"
+      ]
+    },
+    "shooting_charts": {
+      "url": "https://www.film-match.com/shooting-charts",
+      "bytes": 1287114,
+      "sha256": "801186c6cfad0fc8efd2f9392d308012863d898f69c2c9606eed44ae36163933",
+      "required_phrases": [
+        "Shooting Color Charts (Creating the Dataset)",
+        "Color Checker Classic in combination with the color checker SG",
+        "use at least 3 illuminants",
+        "record them with both the digital sensor and the film stock"
+      ]
+    }
+  },
+  "public_links": {
+    "known_practice_charts_folder_id": "1P7AMa5KVuO7qAJCrCihUa0mEMX4Ttd1L",
+    "known_profiling_tools_folder_id": "1J7GXZa22T75IPYYBlg2dTaMoCltUSjHk",
+    "portra_specific_dataset_folder_ids": []
+  },
+  "target_stock": {
+    "film_stock_id": "kodak_portra_400",
+    "public_label": "Portra 400"
+  },
+  "admission_markers": {
+    "dataset_rights": [
+      "dataset license",
+      "dataset licence",
+      "creative commons",
+      "cc by"
+    ],
+    "manifest": [
+      "sha256",
+      "checksum",
+      "manifest"
+    ],
+    "group_roles": [
+      "roll_id",
+      "process_id",
+      "scanner_id",
+      "source_group",
+      "sealed confirmation"
+    ]
+  },
+  "operation_limits": {
+    "html_requests": 3,
+    "image_requests": 0,
+    "drive_metadata_requests": 0,
+    "drive_body_requests": 0,
+    "product_downloads": 0,
+    "chart_media_requests": 0,
+    "pixel_decodes": 0,
+    "fit_calls": 0,
+    "render_calls": 0,
+    "score_calls": 0
+  },
+  "decision_if_pass": "PASS_OPEN_SEPARATELY_FROZEN_FILMMATCH_PORTRA_DATA_AUDIT",
+  "decision_if_fail": "FAIL_CLOSED_FILMMATCH_PORTRA_DATASET_RIGHTS_MANIFEST_OR_GROUP_GAP",
+  "claim_ceiling": "Official Portra 400 controlled-method source evidence only; no public observation payload, stock operator, calibration, product profile or candidate 3 unless a separately licensed exact dataset export with manifest and independent groups appears."
+}
