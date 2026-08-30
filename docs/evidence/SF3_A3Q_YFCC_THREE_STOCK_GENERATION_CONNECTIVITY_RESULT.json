@@ -1,0 +1,405 @@
+{
+  "claim_ceiling": "Existing SF1.1 metadata-only author connectivity after strict Portra-generation filtering; no pages, pixels, same-scene pairing, nuisance control, stock response, identifiability, fitting, learning, calibration, product profile or candidate-three admission.",
+  "connectivity": {
+    "all_three_author_uid_count": 7,
+    "all_three_author_uids": [
+      "26693938@N08",
+      "29411712@N06",
+      "36521968871@N01",
+      "36602595@N03",
+      "45866629@N07",
+      "79259760@N00",
+      "9139461@N06"
+    ],
+    "pairwise": [
+      {
+        "shared_author_uid_count": 16,
+        "shared_author_uids": [
+          "26693938@N08",
+          "27760134@N03",
+          "29411712@N06",
+          "32676622@N05",
+          "36084044@N07",
+          "36521966221@N01",
+          "36521968871@N01",
+          "36602595@N03",
+          "37089490@N06",
+          "41163853@N08",
+          "45866629@N07",
+          "50893125@N03",
+          "58782227@N00",
+          "77971723@N00",
+          "79259760@N00",
+          "9139461@N06"
+        ],
+        "stock_ids": [
+          "fujifilm_velvia_50",
+          "kodak_ektar_100"
+        ]
+      },
+      {
+        "shared_author_uid_count": 9,
+        "shared_author_uids": [
+          "26693938@N08",
+          "28242329@N00",
+          "29411712@N06",
+          "29704088@N03",
+          "36521968871@N01",
+          "36602595@N03",
+          "45866629@N07",
+          "79259760@N00",
+          "9139461@N06"
+        ],
+        "stock_ids": [
+          "fujifilm_velvia_50",
+          "kodak_portra_400"
+        ]
+      },
+      {
+        "shared_author_uid_count": 40,
+        "shared_author_uids": [
+          "10088577@N00",
+          "14420409@N04",
+          "15481483@N06",
+          "19746950@N00",
+          "21639907@N00",
+          "23959464@N00",
+          "26693938@N08",
+          "27031365@N02",
+          "29233640@N07",
+          "29411712@N06",
+          "30934989@N06",
+          "31599292@N00",
+          "36521968871@N01",
+          "36602595@N03",
+          "37259551@N00",
+          "39024709@N00",
+          "40510080@N04",
+          "45866629@N07",
+          "47350947@N04",
+          "48024574@N00",
+          "48627269@N04",
+          "51035539967@N01",
+          "51234167@N08",
+          "58362996@N04",
+          "59030942@N08",
+          "59301055@N06",
+          "59731892@N00",
+          "68868439@N00",
+          "69064104@N00",
+          "7804911@N08",
+          "79259760@N00",
+          "79635710@N05",
+          "7995421@N08",
+          "81330299@N08",
+          "82127222@N00",
+          "84489880@N06",
+          "88232615@N05",
+          "9139461@N06",
+          "9153440@N06",
+          "97845397@N04"
+        ],
+        "stock_ids": [
+          "kodak_ektar_100",
+          "kodak_portra_400"
+        ]
+      }
+    ]
+  },
+  "decision": "FAIL_CLOSED_YFCC_THREE_STOCK_CURRENT_PORTRA_AUTHOR_CONNECTIVITY",
+  "experiment_id": "SF3.A3Q_YFCC_THREE_STOCK_GENERATION_CONNECTIVITY_V1",
+  "gates": {
+    "all_target_stocks_present": true,
+    "minimum_current_portra_three_stock_author_uids": false,
+    "source_identity_exact": true,
+    "source_metadata_only": true,
+    "zero_database_page_image_pixel_fit_render_score": true
+  },
+  "operation_counts": {
+    "fit_calls": 0,
+    "html_requests": 0,
+    "image_requests": 0,
+    "pixel_decodes": 0,
+    "render_calls": 0,
+    "score_calls": 0,
+    "source_report_reads": 1,
+    "sqlite_reads": 0
+  },
+  "portra_generation": {
+    "classification_author_uids": {
+      "current_explicit": [
+        "26693938@N08",
+        "29411712@N06",
+        "36602595@N03",
+        "45866629@N07"
+      ],
+      "generation_ambiguous": [
+        "26693938@N08",
+        "29411712@N06",
+        "36602595@N03",
+        "79259760@N00"
+      ],
+      "legacy_explicit": [
+        "36521968871@N01",
+        "45866629@N07",
+        "9139461@N06"
+      ]
+    },
+    "classification_row_counts": {
+      "current_explicit": 22,
+      "generation_ambiguous": 24,
+      "legacy_explicit": 7
+    },
+    "classification_rows": {
+      "current_explicit": [
+        {
+          "photoid": 5619428128,
+          "uid": "26693938@N08"
+        },
+        {
+          "photoid": 5637224802,
+          "uid": "26693938@N08"
+        },
+        {
+          "photoid": 7312122290,
+          "uid": "29411712@N06"
+        },
+        {
+          "photoid": 6098484885,
+          "uid": "36602595@N03"
+        },
+        {
+          "photoid": 6124765241,
+          "uid": "36602595@N03"
+        },
+        {
+          "photoid": 6124911973,
+          "uid": "36602595@N03"
+        },
+        {
+          "photoid": 6125307442,
+          "uid": "36602595@N03"
+        },
+        {
+          "photoid": 6125454432,
+          "uid": "36602595@N03"
+        },
+        {
+          "photoid": 6175675547,
+          "uid": "36602595@N03"
+        },
+        {
+          "photoid": 6198543153,
+          "uid": "36602595@N03"
+        },
+        {
+          "photoid": 6198544345,
+          "uid": "36602595@N03"
+        },
+        {
+          "photoid": 6625463743,
+          "uid": "36602595@N03"
+        },
+        {
+          "photoid": 6676703837,
+          "uid": "36602595@N03"
+        },
+        {
+          "photoid": 6676706667,
+          "uid": "36602595@N03"
+        },
+        {
+          "photoid": 6676708579,
+          "uid": "36602595@N03"
+        },
+        {
+          "photoid": 6676714299,
+          "uid": "36602595@N03"
+        },
+        {
+          "photoid": 5939563434,
+          "uid": "45866629@N07"
+        },
+        {
+          "photoid": 6007586191,
+          "uid": "45866629@N07"
+        },
+        {
+          "photoid": 6387812905,
+          "uid": "45866629@N07"
+        },
+        {
+          "photoid": 6514187781,
+          "uid": "45866629@N07"
+        },
+        {
+          "photoid": 6517906821,
+          "uid": "45866629@N07"
+        },
+        {
+          "photoid": 6746059323,
+          "uid": "45866629@N07"
+        }
+      ],
+      "generation_ambiguous": [
+        {
+          "photoid": 5618874721,
+          "uid": "26693938@N08"
+        },
+        {
+          "photoid": 5626830262,
+          "uid": "26693938@N08"
+        },
+        {
+          "photoid": 5634211841,
+          "uid": "26693938@N08"
+        },
+        {
+          "photoid": 5634255845,
+          "uid": "26693938@N08"
+        },
+        {
+          "photoid": 5636674381,
+          "uid": "26693938@N08"
+        },
+        {
+          "photoid": 5637210402,
+          "uid": "26693938@N08"
+        },
+        {
+          "photoid": 5637243726,
+          "uid": "26693938@N08"
+        },
+        {
+          "photoid": 5637248508,
+          "uid": "26693938@N08"
+        },
+        {
+          "photoid": 5890661392,
+          "uid": "26693938@N08"
+        },
+        {
+          "photoid": 7272188996,
+          "uid": "26693938@N08"
+        },
+        {
+          "photoid": 7278113446,
+          "uid": "26693938@N08"
+        },
+        {
+          "photoid": 7403950862,
+          "uid": "26693938@N08"
+        },
+        {
+          "photoid": 7403954326,
+          "uid": "26693938@N08"
+        },
+        {
+          "photoid": 8682466749,
+          "uid": "26693938@N08"
+        },
+        {
+          "photoid": 8682475799,
+          "uid": "26693938@N08"
+        },
+        {
+          "photoid": 9157886796,
+          "uid": "26693938@N08"
+        },
+        {
+          "photoid": 9174121856,
+          "uid": "26693938@N08"
+        },
+        {
+          "photoid": 9474108950,
+          "uid": "26693938@N08"
+        },
+        {
+          "photoid": 9483103759,
+          "uid": "26693938@N08"
+        },
+        {
+          "photoid": 9494245048,
+          "uid": "26693938@N08"
+        },
+        {
+          "photoid": 8740421518,
+          "uid": "29411712@N06"
+        },
+        {
+          "photoid": 5986680112,
+          "uid": "36602595@N03"
+        },
+        {
+          "photoid": 6822039656,
+          "uid": "79259760@N00"
+        },
+        {
+          "photoid": 6822058536,
+          "uid": "79259760@N00"
+        }
+      ],
+      "legacy_explicit": [
+        {
+          "photoid": 2990082276,
+          "uid": "36521968871@N01"
+        },
+        {
+          "photoid": 2990101338,
+          "uid": "36521968871@N01"
+        },
+        {
+          "photoid": 2990101344,
+          "uid": "36521968871@N01"
+        },
+        {
+          "photoid": 5225708342,
+          "uid": "45866629@N07"
+        },
+        {
+          "photoid": 5231246636,
+          "uid": "45866629@N07"
+        },
+        {
+          "photoid": 5548774842,
+          "uid": "45866629@N07"
+        },
+        {
+          "photoid": 2462114386,
+          "uid": "9139461@N06"
+        }
+      ]
+    },
+    "qualifying_current_portra_three_stock_author_uid_count": 4,
+    "qualifying_current_portra_three_stock_author_uids": [
+      "26693938@N08",
+      "29411712@N06",
+      "36602595@N03",
+      "45866629@N07"
+    ],
+    "required_minimum": 5
+  },
+  "schema": "neuro-film.sf3-a3q-yfcc-three-stock-generation-connectivity-result.v1",
+  "source_report": {
+    "bytes": 2031208,
+    "dataset_id": "sf1.1-full-yfcc100m-shared-author-metadata-v1",
+    "path": "outputs/real_film/yfcc100m_full_v1/stock_shared_author_audit_a.json",
+    "sha256": "19fd20b30b6724c1033f90ad2c3dafaabfeaf1dad528df12e2de77deaa3723c2"
+  },
+  "stable_evidence_id": "3a91fffee2d8cb3ed88e3d16b0738aeb71d5a7918ebb53f090d73a4962db1b3d",
+  "target_stock_rows": {
+    "fujifilm_velvia_50": {
+      "author_uid_count": 62,
+      "row_count": 240
+    },
+    "kodak_ektar_100": {
+      "author_uid_count": 122,
+      "row_count": 780
+    },
+    "kodak_portra_400": {
+      "author_uid_count": 89,
+      "row_count": 575
+    }
+  }
+}
+
