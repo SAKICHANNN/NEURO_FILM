@@ -35,7 +35,7 @@ def _metadata(model: str, mood: str) -> bytes:
 
 def _parent_html(fields: dict[str, str]) -> bytes:
     rows = "".join(f"<dt>{key}</dt><dd>{value}</dd>" for key, value in fields.items())
-    return f"<html><dl>{rows}</dl></html>".encode()
+    return f"<html><dl><dt>metadata</dt><dd><dl>{rows}</dl></dd></dl></html>".encode()
 
 
 def _child_html(parent_id: str, *, length: int) -> bytes:

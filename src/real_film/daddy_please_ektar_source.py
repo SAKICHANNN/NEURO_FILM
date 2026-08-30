@@ -75,7 +75,8 @@ def _parse_dl_fields(payload: bytes) -> dict[str, str]:
     text = payload.decode("utf-8")
     fields: dict[str, str] = {}
     for match in re.finditer(
-        r"<dt>(?P<key>.*?)</dt>\s*<dd(?:\s[^>]*)?>(?P<value>.*?)</dd>",
+        r"<dt>(?P<key>[^<]+)</dt>\s*"
+        r"<dd(?:\s[^>]*)?>(?P<value>(?:(?!<dt>).)*?)</dd>",
         text,
         flags=re.IGNORECASE | re.DOTALL,
     ):
