@@ -3051,6 +3051,23 @@ Preserve the public source as a possible future group-complete input, but do
 not fit it, infer Portra response or admit candidate 3. Evidence:
 `docs/evidence/SF3_A3S_LUMINANT_PORTRA_SOURCE_RESULT.json`.
 
+SF3.A3T audits Parker Day's `DADDY PLEASE` Ektar 100 project without
+requesting any AVIF body. The exact parent declares Canon EOS-1V, Kodak Ektar
+100, 100 models, 1,000 photographs and CC0. Ten child-index pages contain
+1,000 unique inscription IDs; every compact metadata object decodes to the
+same five explicit fields and yields exactly 100 model groups of ten photos.
+All 24 hash-ranked child-page samples point to the parent and declare AVIF
+content, totalling 2,088,587 bytes. Corrected committed-head forward/reverse
+reports are each 12,824 bytes and byte-exact at SHA `90fe025c...57376`, stable
+`e431c146...ee099`; media body/range, pixel, fit, render and score operations
+are zero. All source-structure gates pass, but one project/author/camera cannot
+separate stock from source; roll, process, scanner, same-source cross-stock,
+same-scene neutral/film and sealed-confirmation groups are absent. Formal
+decision is
+`FAIL_CLOSED_DADDY_PLEASE_EKTAR_SINGLE_PROJECT_NUISANCE_AND_PAIRING_GAP`.
+Do not download the 1,000 images or treat model groups as film workflows.
+Evidence: `docs/evidence/SF3_A3T_DADDY_PLEASE_EKTAR_SOURCE_RESULT.json`.
+
 U7.2E adds one authoritative manual product-look catalog and dispatcher over
 the existing three colour-stock Look Approximation controls plus the generic
 B&W correction from BW2.D1. Discovery exposes exactly `velvia_50`,

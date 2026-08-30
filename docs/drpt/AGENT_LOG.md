@@ -20731,3 +20731,38 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Eighteen focused/adjacent tests pass; Ruff, compile, JSON and diff checks
   pass. No image acquisition, fitting, Portra-response claim, candidate 3 or
   product mapping opens.
+
+### 2026-08-31 - SF3.A3T closes a complete Ektar project before media
+
+- **Node and routing:** `ULT > SF3 > SF3.A3T`, DRPT L2 / Mode C.
+  `dev-research-reliability` was primary; source research, stock-first gates,
+  DRPT propagation, project-log and structure disciplines were secondary.
+  This leaf audited structured public provenance, not film pixels or an
+  operator.
+- **Freeze and implementation:** contract/config `e0d98581` froze the exact
+  parent, ten child-index pages, ordered 1,000-ID identity, all compact child
+  metadata, 100-by-10 model grouping and 24 hash-ranked child HTML samples.
+  Core/audit/tests are `b1fd2093`. A pre-report attempt was excluded after 16
+  concurrent metadata requests caused a remote disconnect; bounded four-worker
+  transport/retry correction is `d0e14d32`. The first complete report exposed
+  only a nested-`dl` parser omission of `PHOTOGRAPHER`; correction `848e7bfc`
+  added a regression test and both formal directions restarted from zero.
+- **Formal result:** all ten source-structure gates pass. The parent declares
+  Parker Day, Canon EOS-1V, Ektar 100, fixed lens/exposure, 100 models, 1,000
+  photos and CC0. The child inventory has 1,000 unique IDs at SHA
+  `c6c8e53a...efafd`; all metadata entries contain the exact five fields and
+  form 100 models x10. Twenty-four parent-linked AVIF declarations total
+  2,088,587 bytes. Corrected forward/reverse reports are each 12,824 bytes and
+  byte-exact at SHA
+  `90fe025cd8991018d0ca238b2824cb06fb2039f2c4ae4db5e13947227c557376`,
+  stable `e431c1461df99de76c87bce040304da6bc167c86d411c142990208fba30ee099`.
+- **Decision and boundary:** formal decision is
+  `FAIL_CLOSED_DADDY_PLEASE_EKTAR_SINGLE_PROJECT_NUISANCE_AND_PAIRING_GAP`.
+  One author/project/camera and content groups cannot provide independent
+  source, roll, process, scanner, same-source cross-stock, neutral-pair or
+  sealed-confirmation evidence. Media body/range, pixel, fit, render and score
+  counts are zero. Evidence/binding test are `1096a2f4`; tracked evidence SHA
+  is `52d428ab981a3bda2995e033eb9c838304990d67ae780d769705149daddcf6ca`.
+  Eleven focused/adjacent tests, Ruff, format, compile, JSON and diff checks
+  pass. Do not download the collection, fit an Ektar operator, admit candidate
+  3 or map a product claim.
