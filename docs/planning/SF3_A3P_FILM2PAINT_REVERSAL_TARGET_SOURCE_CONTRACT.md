@@ -60,4 +60,3 @@ or that a separately authorised export could not qualify.
 Even a source pass would open only a separately preregistered physical-target
 data audit. It would not establish a stock operator, natural-scene transfer,
 unseen-roll generalisation, product profile, candidate 3 or calibrated output.
-

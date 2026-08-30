@@ -83,6 +83,39 @@
     "independent roll process scanner source groups",
     "sealed confirmation role"
   ],
+  "admission_markers": {
+    "dataset_extensions": [
+      ".zip",
+      ".tar",
+      ".tgz",
+      ".7z",
+      ".csv",
+      ".json",
+      ".tif",
+      ".tiff",
+      ".exr",
+      ".npy",
+      ".npz",
+      ".mat"
+    ],
+    "manifest_name_fragments": [
+      "manifest",
+      "checksum",
+      "sha256"
+    ],
+    "dataset_licence_fragments": [
+      "dataset licence",
+      "dataset license",
+      "cc by 4.0"
+    ],
+    "group_role_fragments": [
+      "roll_id",
+      "process_id",
+      "scanner_id",
+      "source_group",
+      "confirmation"
+    ]
+  },
   "operation_limits": {
     "article_document_requests": 1,
     "repository_metadata_requests": 6,
