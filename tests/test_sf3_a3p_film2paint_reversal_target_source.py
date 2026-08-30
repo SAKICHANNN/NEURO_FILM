@@ -176,4 +176,3 @@ def test_project_contract_forbids_dataset_and_pixel_reads() -> None:
         "score_calls",
     ):
         assert config["operation_limits"][key] == 0
-
