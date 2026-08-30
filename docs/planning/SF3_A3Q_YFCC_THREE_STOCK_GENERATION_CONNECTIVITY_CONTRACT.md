@@ -1,4 +1,4 @@
-# SF3.A3P — YFCC three-stock generation-safe connectivity close
+# SF3.A3Q — YFCC three-stock generation-safe connectivity close
 
 ## Role and prior observation
 

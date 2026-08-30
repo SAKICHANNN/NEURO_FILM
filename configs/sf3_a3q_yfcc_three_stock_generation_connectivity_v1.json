@@ -1,6 +1,6 @@
 {
-  "schema": "neuro-film.sf3-a3p-yfcc-three-stock-generation-connectivity-contract.v1",
-  "experiment_id": "SF3.A3P_YFCC_THREE_STOCK_GENERATION_CONNECTIVITY_V1",
+  "schema": "neuro-film.sf3-a3q-yfcc-three-stock-generation-connectivity-contract.v1",
+  "experiment_id": "SF3.A3Q_YFCC_THREE_STOCK_GENERATION_CONNECTIVITY_V1",
   "source_report": {
     "path": "outputs/real_film/yfcc100m_full_v1/stock_shared_author_audit_a.json",
     "bytes": 2031208,
