@@ -3068,6 +3068,25 @@ decision is
 Do not download the 1,000 images or treat model groups as film workflows.
 Evidence: `docs/evidence/SF3_A3T_DADDY_PLEASE_EKTAR_SOURCE_RESULT.json`.
 
+SF3.A3U prospectively combines the existing 21-Portra/22-Ektar Commons
+development pool with a wholly unseen current-labelled Portra-versus-Ultramax
+confirmation from `nicknicknicknick.net`. The source lock contains 12 Portra
+and 12 SHA-ranked same-author Ultramax JPEGs / 9,188,831 bytes; old ambiguous
+`Portra Pro 400` rows remain unread. Forward/reverse complete reports are each
+46,552 bytes and byte-exact at SHA `f5e89767...d463d`, stable
+`cac50173...61775`. The primary RGB descriptor is chance-level BA `.5000`:
+Portra recall `.9167`, but wrong-stock specificity only `.0833`, permutation
+`p=.599`. HOG content reaches BA `.6667`, so primary-minus-best-nuisance is
+`-.1667` with bootstrap CI `[-.3750, .0417]`; reversed-centroid accuracy is
+`.5000`. Cross-split exact and dHash<=4 duplicate counts are zero. Formal
+decision is
+`FAIL_CLOSED_PORTRA_SOURCE_HELDOUT_IDENTIFIABILITY_BEFORE_LUMINANT_READ`.
+The frozen stop rule kept Luminant at zero page and image requests. Close this
+exact appearance-centroid family without threshold, descriptor, sample or
+positive-only rescue; no fitting, calibration, three-stock completion,
+candidate 3 or product mapping opens. Evidence:
+`docs/evidence/SF3_A3U_PORTRA_THREE_SOURCE_HELDOUT_RESULT.json`.
+
 U7.2E adds one authoritative manual product-look catalog and dispatcher over
 the existing three colour-stock Look Approximation controls plus the generic
 B&W correction from BW2.D1. Discovery exposes exactly `velvia_50`,

@@ -20766,3 +20766,35 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Eleven focused/adjacent tests, Ruff, format, compile, JSON and diff checks
   pass. Do not download the collection, fit an Ektar operator, admit candidate
   3 or map a product claim.
+
+### 2026-08-31 - SF3.A3U closes Portra appearance transfer before Luminant
+
+- **Node and routing:** `ULT > SF3 > SF3.A3U`, DRPT L2 / Mode C.
+  `dev-research-reliability` was primary; research, stock-first, DRPT/log and
+  structure disciplines were secondary. This was a frozen source-heldout
+  identifiability diagnostic, not operator fitting or product development.
+- **Freeze and implementation:** commits `a85aae56`/`14e76573` froze existing
+  Commons 21-Portra/22-Ektar development, unseen nicknick current-Portra versus
+  same-author Ultramax primary confirmation, conditional Luminant positives,
+  descriptors, controls, gates and stop rules before image-body reads.
+  Implementation/tests are `0c6afdc8`; the exact R1HG evidence Git object and
+  all local upstream evidence hashes are verified at runtime.
+- **Formal result:** 24 exact nicknick JPEGs / 9,188,831 bytes were acquired
+  through repo-relative P-backed storage; ambiguous old `Portra Pro 400` rows
+  remained unread and cross-split exact/dHash<=4 duplicate counts are zero.
+  Forward/reverse reports are each 46,552 bytes and byte-exact at SHA
+  `f5e8976737e62fb6f337749ab7e18564a83bd3aa95d10536dbfb843d0e0d463d`,
+  stable `cac501738b1ed1d9750b37d5e240dce401224c7577639c3f8ea68a6629661775`.
+  RGB BA is `.5000`, with Portra recall `.9167`, Ultramax specificity `.0833`
+  and permutation `p=.599`. HOG content reaches `.6667`; the primary delta is
+  `-.1667`, bootstrap CI `[-.3750, .0417]`.
+- **Decision and propagation:** formal decision is
+  `FAIL_CLOSED_PORTRA_SOURCE_HELDOUT_IDENTIFIABILITY_BEFORE_LUMINANT_READ`.
+  Luminant page/image requests and its pixel reads are zero. Evidence/binding
+  test are `45171b27`; evidence SHA is
+  `01702c2fa9daba8c1c917b37dac586ad9c591f78bd1241822754e5b421b7d22c`.
+  Nine focused/adjacent tests, Ruff, format, compile, source-lock and diff
+  checks pass. Close the exact appearance-centroid family without threshold,
+  descriptor, sample or positive-only rescue. Autonomous discovery remains
+  active for materially new rights-clear stock observations; no operator,
+  calibration, three-stock completion, candidate 3 or product mapping opens.
