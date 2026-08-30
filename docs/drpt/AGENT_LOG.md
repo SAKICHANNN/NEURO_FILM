@@ -20798,3 +20798,34 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   descriptor, sample or positive-only rescue. Autonomous discovery remains
   active for materially new rights-clear stock observations; no operator,
   calibration, three-stock completion, candidate 3 or product mapping opens.
+
+### 2026-08-31 - SF3.A3V closes the Noritsu Portra profile before body read
+
+- **Node and routing:** `ULT > SF3 > SF3.A3V`, DRPT L2 / Mode C.
+  `dev-research-reliability` was primary; research, stock-first, DRPT/log and
+  structure disciplines were secondary. This leaf audited a public derived
+  profile's source boundary, not its numerical contents or a stock operator.
+- **Freeze and execution lineage:** contract/config/core/audit/tests were first
+  committed at `10868e58`. The first formal attempt produced no report: strict
+  Base64 validation exposed whitespace in GitHub Contents API encoding, then
+  the anonymous API quota returned 403. No profile body, pair asset or pixel
+  was read. Additive transport correction `db64713a` switched to exact
+  commit-pinned raw text plus a body-free profile HEAD while preserving every
+  source identity, gate and zero-read limit; both formal directions restarted
+  from the corrected committed HEAD.
+- **Formal result:** the repositories bind a real LS-600/raw-TIFF-pair method,
+  Portra 400 statements and the 11,560-byte profile identity. Forward/reverse
+  reports are each 4,927 bytes and byte-exact at SHA
+  `8ee0a198396772d925720f78cc8328b9a1e831f76d10e112f172210ab71a2362`,
+  stable `51d0b34bdf2da4f13236d066210d51d6998a8ea96c18a7584b9b77f438aa9522`.
+  Profile-body, owner-pair, sample-image, pixel, fit, render and score counts
+  are zero.
+- **Decision and propagation:** formal decision is
+  `FAIL_CLOSED_NORITSU_PORTRA_PRIVATE_PAIR_RIGHTS_AND_GROUP_GAP`. Owner scans
+  and native evidence are explicitly private/not redistributed; public pair
+  rights, manifest/checksums and independent roll/process/scanner/confirmation
+  roles are absent. Evidence/binding test are `a178b303`; tracked evidence SHA
+  is `2f7e1f9648be557fd9085464fe3be5cb017573e53cb12065e034a7d1f2ccc43f`.
+  Five focused tests, Ruff, compile, JSON and diff checks pass. The NPZ is not
+  consumed and no Portra-response, calibration, candidate 3 or product profile
+  opens. Autonomous rights-clear observation discovery remains active.

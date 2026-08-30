@@ -3087,6 +3087,23 @@ positive-only rescue; no fitting, calibration, three-stock completion,
 candidate 3 or product mapping opens. Evidence:
 `docs/evidence/SF3_A3U_PORTRA_THREE_SOURCE_HELDOUT_RESULT.json`.
 
+SF3.A3V audits the exact public Noritsu Portra 400 profile source without
+reading the profile body or any owner scan. The pinned repositories state
+that a real LS-600 and raw/TIFF pairs were used, expose a 11,560-byte derived
+`portra400_calib.npz`, and bind the private paired-audit source identities.
+However, the paired owner scans/native captures are explicitly not
+redistributed. Their fitting and derived-parameter rights, public asset
+manifest/checksums, and independent roll/process/scanner/sealed-confirmation
+roles are absent. Corrected committed-head forward/reverse reports are each
+4,927 bytes and byte-exact at SHA `8ee0a198...a2362`, stable
+`51d0b34b...aa9522`; profile-body, owner-pair, sample-image, pixel, fit,
+render and score reads remain zero. Formal decision is
+`FAIL_CLOSED_NORITSU_PORTRA_PRIVATE_PAIR_RIGHTS_AND_GROUP_GAP`. Preserve only
+the public derived-profile/source-method fact; do not consume the NPZ, infer
+source-independent Portra response, open candidate 3 or map a product profile.
+Evidence:
+`docs/evidence/SF3_A3V_NORITSU_PORTRA_PHYSICAL_PROFILE_SOURCE_RESULT.json`.
+
 U7.2E adds one authoritative manual product-look catalog and dispatcher over
 the existing three colour-stock Look Approximation controls plus the generic
 B&W correction from BW2.D1. Discovery exposes exactly `velvia_50`,
