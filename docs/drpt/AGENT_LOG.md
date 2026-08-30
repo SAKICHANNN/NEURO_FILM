@@ -20629,3 +20629,33 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   adjudicated negatively; only an independently licensed exact export with
   manifests and holdout groups may reopen it. No stock operator, product
   profile or candidate 3 opens.
+
+### 2026-08-31 - SF3.A3Q closes current-Portra YFCC connectivity before pages
+
+- **Node and routing:** `ULT > SF3 > SF3.A3Q`, DRPT L2 / Mode C. The leaf is a
+  retrospective admission adjudication over the immutable SF1.1 metadata
+  report, not a prospective scientific experiment or a larger-model rescue.
+  `codex-super-research-harness` was primary; reliability, plan/tracker, DRPT,
+  project-log and structure disciplines supplied the secondary controls.
+- **Freeze and implementation:** the initial contract/config commit
+  `04bce655` collided with the concurrently assigned SF3.A3P node; additive
+  identity correction `a5f79979` moves it to SF3.A3Q without changing source,
+  classification, threshold or operation limits. Core/audit/tests are
+  `963ea596`; formal evidence/test are `417bad1f`, with exact-report newline
+  correction `f031d36a`.
+- **Formal result:** the frozen 2,031,208-byte SF1.1 report / SHA
+  `19fd20b3...72c2` contains 7 all-three uploader UIDs. URL-decoded title,
+  description and user tags classify 22 current-explicit, 7 legacy-explicit
+  and 24 generation-ambiguous Portra rows among those authors. Only four UIDs
+  have current-explicit Portra evidence, below the inherited minimum of five.
+  Forward/reverse reports are each 9,735 bytes and byte-exact at SHA
+  `a46e77852e73ac6ad0c7efbf9615aeea0873dd4186b88c3e89792008aae72f07`,
+  stable `3a91fffee2d8cb3ed88e3d16b0738aeb71d5a7918ebb53f090d73a4962db1b3d`.
+- **Decision and boundary:** formal decision is
+  `FAIL_CLOSED_YFCC_THREE_STOCK_CURRENT_PORTRA_AUTHOR_CONNECTIVITY`. SQLite,
+  HTML, image, pixel, fit, render and score counts are zero. Twenty focused
+  and adjacent tests pass; Ruff, compile, JSON, binary evidence/report equality
+  and diff checks pass. Tracked evidence is
+  `docs/evidence/SF3_A3Q_YFCC_THREE_STOCK_GENERATION_CONNECTIVITY_RESULT.json`.
+  Do not infer stock response from uploader connectivity, count NC/VC or
+  ambiguous generations, reopen SF1.3B, fit operators or admit candidate 3.

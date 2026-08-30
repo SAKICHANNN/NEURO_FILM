@@ -3002,6 +3002,20 @@ method as high-value source evidence but does not open stock fitting or
 candidate 3. Evidence:
 `docs/evidence/SF3_A3P_FILM2PAINT_REVERSAL_TARGET_SOURCE_RESULT.json`.
 
+SF3.A3Q re-adjudicates only the already byte-verified SF1.1 full-YFCC
+metadata report against the current three-stock target and the inherited
+five-independent-author minimum. Seven uploader UIDs have at least one Ektar
+100, Velvia 50 and Portra 400 row, but explicit Portra-generation filtering
+leaves only four UIDs with a post-2010/current formulation row; legacy 400NC/
+400VC and generation-ambiguous rows cannot backfill the threshold. Committed-
+head forward/reverse reports are byte-exact at 9,735 bytes / SHA
+`a46e7785...2f07`, stable `3a91fffe...1b3d`. SQLite, page, image, pixel, fit,
+render and score reads are zero. Formal decision is
+`FAIL_CLOSED_YFCC_THREE_STOCK_CURRENT_PORTRA_AUTHOR_CONNECTIVITY`; do not
+reopen the failed SF1.3B identifiability cohort or infer stock evidence from
+uploader connectivity. Evidence:
+`docs/evidence/SF3_A3Q_YFCC_THREE_STOCK_GENERATION_CONNECTIVITY_RESULT.json`.
+
 U7.2E adds one authoritative manual product-look catalog and dispatcher over
 the existing three colour-stock Look Approximation controls plus the generic
 B&W correction from BW2.D1. Discovery exposes exactly `velvia_50`,
