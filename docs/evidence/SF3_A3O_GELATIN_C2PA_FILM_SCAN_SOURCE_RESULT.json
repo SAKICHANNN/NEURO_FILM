@@ -1,0 +1,72 @@
+{
+  "admission": {
+    "cawg_training_and_mining_not_allowed": true,
+    "customer_owns_photographs": true,
+    "observed_target_stock_ids": [
+      "kodak_portra_400"
+    ],
+    "public_artifact_results": {
+      "cryptographic asset and roll manifest": false,
+      "downloadable target-stock scan assets": false,
+      "explicit research fitting and derived-parameter distribution permission": false,
+      "independent scene and roll groups": false
+    },
+    "required_target_stock_ids": [
+      "fujifilm_velvia_50",
+      "kodak_ektar_100",
+      "kodak_portra_400"
+    ]
+  },
+  "claim_ceiling": "Signed lab-origin C2PA metadata is a provenance mechanism only; no reusable scan dataset, complete target-stock coverage, stock response, fitting rights, holdout, product profile or release permission.",
+  "decision": "FAIL_CLOSED_C2PA_SCAN_RIGHTS_OR_TARGET_ASSET_GAP",
+  "experiment_id": "SF3.A3O_GELATIN_C2PA_FILM_SCAN_SOURCE_V1",
+  "gates": {
+    "complete_target_stock_coverage_present": false,
+    "official_c2pa_provenance_fields_present": true,
+    "official_customer_rights_boundary_present": true,
+    "public_assets_manifest_groups_and_fitting_rights_present": false,
+    "training_mining_authorized": false,
+    "zero_scan_verifier_pixel_fit_render_score": true
+  },
+  "official_sources": {
+    "required_phrase_results": {
+      "credentials": {
+        "14593_120_Portra-400": true,
+        "C2PA 2.2": true,
+        "Content Credentials + Metadata, now on every scan.": true,
+        "Process C-41": true,
+        "Roll number": true,
+        "Scanner Fuji Frontier SP-3000": true,
+        "Source Physical film negative": true,
+        "Stock Kodak Ultramax 400": true,
+        "each set to not allowed": true,
+        "generative training, inference, model training, and data mining": true
+      },
+      "terms": {
+        "Gelatin Labs does not claim any ownership, copyright, or usage rights over any customer work": true,
+        "We will always ask for your permission first": true,
+        "You retain full ownership of your Customer Materials at all times.": true
+      }
+    },
+    "semantic_source_identity_sha256": "2e2cdf5ea000096a79cf0b5e8f3959a2452308d43fd9c5e3f3ce0fd37b351a1e",
+    "urls": {
+      "credentials": "https://cr.gelatinlabs.com/",
+      "terms": "https://gelatinlabs.com/terms-of-service/"
+    }
+  },
+  "operation_counts": {
+    "account_creations": 0,
+    "contact_requests": 0,
+    "fingerprint_queries": 0,
+    "fit_calls": 0,
+    "html_requests": 2,
+    "image_requests": 0,
+    "orders": 0,
+    "pixel_decodes": 0,
+    "render_calls": 0,
+    "score_calls": 0,
+    "verifier_uploads": 0
+  },
+  "schema": "neuro-film.sf3-a3o-gelatin-c2pa-film-scan-source-result.v1",
+  "stable_evidence_id": "fe28bac3fd8c6f1bbe5875523b0cc711ba348fa949f8a546de145f50e3af0dfd"
+}
