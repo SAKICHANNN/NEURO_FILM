@@ -2,16 +2,15 @@
 
 from __future__ import annotations
 
-import base64
 import hashlib
 import json
-import urllib.parse
 import urllib.request
 from collections.abc import Callable, Sequence
 from pathlib import Path
 from typing import Any
 
-JsonReader = Callable[[str], bytes]
+BodyReader = Callable[[str], bytes]
+HeadReader = Callable[[str], dict[str, Any]]
 
 
 def _sha256(payload: bytes) -> str:
@@ -30,11 +29,10 @@ def _canonical_sha256(value: object) -> str:
     )
 
 
-def _read_json(url: str) -> bytes:
+def _read_body(url: str) -> bytes:
     request = urllib.request.Request(
         url,
         headers={
-            "Accept": "application/vnd.github+json",
             "User-Agent": "neuro-film-source-audit/1.0",
         },
     )
@@ -44,24 +42,20 @@ def _read_json(url: str) -> bytes:
         return response.read()
 
 
-def _api_url(repo: str, kind: str, value: str) -> str:
-    escaped = "/".join(urllib.parse.quote(part, safe="") for part in value.split("/"))
-    return f"https://api.github.com/repos/{repo}/{kind}/{escaped}"
-
-
-def _decode_document(payload: bytes) -> dict[str, Any]:
-    document = json.loads(payload)
-    if not isinstance(document, dict):
-        raise TypeError("GitHub response must be a JSON object")
-    return document
-
-
-def _decode_blob(document: dict[str, Any]) -> bytes:
-    if document.get("encoding") != "base64" or not isinstance(
-        document.get("content"), str
-    ):
-        raise ValueError("expected GitHub base64 content response")
-    return base64.b64decode(document["content"], validate=True)
+def _read_head(url: str) -> dict[str, Any]:
+    request = urllib.request.Request(
+        url,
+        method="HEAD",
+        headers={"User-Agent": "neuro-film-source-audit/1.0"},
+    )
+    with urllib.request.urlopen(request, timeout=30) as response:
+        if response.status != 200:
+            raise RuntimeError(f"unexpected HTTP status {response.status}: {url}")
+        return {
+            "status": response.status,
+            "content_length": int(response.headers["Content-Length"]),
+            "content_type": response.headers.get_content_type(),
+        }
 
 
 def _validate_order(order: Sequence[str], roles: set[str]) -> tuple[str, ...]:
@@ -73,7 +67,8 @@ def _validate_order(order: Sequence[str], roles: set[str]) -> tuple[str, ...]:
 def run_source_audit(
     config_path: Path,
     *,
-    json_reader: JsonReader = _read_json,
+    body_reader: BodyReader = _read_body,
+    head_reader: HeadReader = _read_head,
     asset_order: Sequence[str] = (
         "readme",
         "license",
@@ -90,54 +85,55 @@ def run_source_audit(
     repository_rows: dict[str, Any] = {}
     for role in sorted(config["repositories"]):
         source = config["repositories"][role]
-        repo = source["repo"]
-        repo_doc = _decode_document(json_reader(f"https://api.github.com/repos/{repo}"))
-        commit_doc = _decode_document(
-            json_reader(_api_url(repo, "commits", source["commit"]))
-        )
         repository_rows[role] = {
-            "repo": repo,
-            "license_spdx": (repo_doc.get("license") or {}).get("spdx_id"),
-            "commit": commit_doc.get("sha"),
-            "tree": ((commit_doc.get("commit") or {}).get("tree") or {}).get("sha"),
+            "repo": source["repo"],
+            "commit": source["commit"],
+            "tree": source["tree"],
+            "identity_source": "pre-execution GitHub commit/tree freeze",
         }
 
     asset_rows: dict[str, Any] = {}
     phrase_results: dict[str, dict[str, bool]] = {}
     for role in order:
         asset = config["assets"][role]
-        repo = config["repositories"][asset["repo_role"]]["repo"]
-        document = _decode_document(
-            json_reader(_api_url(repo, "contents", asset["path"]))
-        )
         row: dict[str, Any] = {
-            "repo": repo,
+            "repo": config["repositories"][asset["repo_role"]]["repo"],
             "path": asset["path"],
-            "bytes": document.get("size"),
-            "git_blob": document.get("sha"),
+            "raw_url": asset["raw_url"],
+            "git_blob": asset["git_blob"],
             "body_read": False,
         }
         results: dict[str, bool] = {}
         if asset["decode_text"]:
-            body = _decode_blob(document)
+            body = body_reader(asset["raw_url"])
             text = body.decode("utf-8", errors="strict").casefold()
-            row.update({"body_read": True, "sha256": _sha256(body)})
+            row.update({"body_read": True, "bytes": len(body), "sha256": _sha256(body)})
             results = {
                 phrase: phrase.casefold() in text
                 for phrase in asset["required_phrases"]
             }
+        else:
+            head = head_reader(asset["raw_url"])
+            row.update(
+                {
+                    "head_status": head["status"],
+                    "bytes": head["content_length"],
+                    "content_type": head["content_type"],
+                }
+            )
         asset_rows[role] = row
         phrase_results[role] = results
 
     exact_repositories = all(
-        repository_rows[role]["license_spdx"] == "MIT"
-        and repository_rows[role]["commit"] == source["commit"]
+        repository_rows[role]["commit"] == source["commit"]
         and repository_rows[role]["tree"] == source["tree"]
         for role, source in config["repositories"].items()
     )
     exact_assets = all(
         asset_rows[role]["bytes"] == asset["bytes"]
         and asset_rows[role]["git_blob"] == asset["git_blob"]
+        and f"/{config['repositories'][asset['repo_role']]['commit']}/"
+        in asset_rows[role]["raw_url"]
         and (
             not asset["decode_text"]
             or asset_rows[role].get("sha256") == asset["sha256"]
@@ -152,7 +148,9 @@ def run_source_audit(
     group_roles = bool(config["published_group_roles"])
     pair_manifest = bool(config["published_pair_manifest"])
     zero_keys = tuple(
-        key for key in config["operation_limits"] if key != "github_json_requests"
+        key
+        for key in config["operation_limits"]
+        if key not in {"commit_pinned_text_requests", "profile_head_requests"}
     )
     gates = {
         "official_repository_identities_match": exact_repositories,

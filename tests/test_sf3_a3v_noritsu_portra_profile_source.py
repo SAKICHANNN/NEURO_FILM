@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import base64
 import hashlib
 import json
 from pathlib import Path
@@ -29,6 +28,7 @@ def _payloads(*, admitted: bool) -> tuple[dict[str, bytes], dict[str, object]]:
                 "bytes": len(texts["readme"]),
                 "git_blob": "b1",
                 "sha256": hashlib.sha256(texts["readme"]).hexdigest(),
+                "raw_url": "https://raw/owner/tool/c1/README.md",
                 "decode_text": True,
                 "required_phrases": ["real pair statement", "three frames"],
             },
@@ -38,6 +38,7 @@ def _payloads(*, admitted: bool) -> tuple[dict[str, bytes], dict[str, object]]:
                 "bytes": len(texts["license"]),
                 "git_blob": "b2",
                 "sha256": hashlib.sha256(texts["license"]).hexdigest(),
+                "raw_url": "https://raw/owner/tool/c1/LICENSE",
                 "decode_text": True,
                 "required_phrases": ["MIT", "software documentation"],
             },
@@ -46,6 +47,7 @@ def _payloads(*, admitted: bool) -> tuple[dict[str, bytes], dict[str, object]]:
                 "path": "profile.npz",
                 "bytes": 12,
                 "git_blob": "b3",
+                "raw_url": "https://raw/owner/tool/c1/profile.npz",
                 "decode_text": False,
                 "required_phrases": [],
             },
@@ -55,6 +57,7 @@ def _payloads(*, admitted: bool) -> tuple[dict[str, bytes], dict[str, object]]:
                 "bytes": len(texts["paired_audit"]),
                 "git_blob": "b4",
                 "sha256": hashlib.sha256(texts["paired_audit"]).hexdigest(),
+                "raw_url": "https://raw/owner/audit/c2/audit.py",
                 "decode_text": True,
                 "required_phrases": [
                     "private",
@@ -70,7 +73,8 @@ def _payloads(*, admitted: bool) -> tuple[dict[str, bytes], dict[str, object]]:
         "published_group_roles": ["groups"] if admitted else [],
         "published_pair_manifest": ["manifest"] if admitted else [],
         "operation_limits": {
-            "github_json_requests": 8,
+            "commit_pinned_text_requests": 3,
+            "profile_head_requests": 1,
             "profile_body_requests": 0,
             "owner_pair_requests": 0,
             "sample_image_requests": 0,
@@ -84,28 +88,9 @@ def _payloads(*, admitted: bool) -> tuple[dict[str, bytes], dict[str, object]]:
         "claim_ceiling": "test",
     }
     responses: dict[str, bytes] = {}
-    for role, source in config["repositories"].items():
-        responses[f"https://api.github.com/repos/{source['repo']}"] = json.dumps(
-            {"license": {"spdx_id": "MIT"}}
-        ).encode()
-        responses[
-            f"https://api.github.com/repos/{source['repo']}/commits/{source['commit']}"
-        ] = json.dumps(
-            {"sha": source["commit"], "commit": {"tree": {"sha": source["tree"]}}}
-        ).encode()
     for role, asset in config["assets"].items():
-        doc = {"size": asset["bytes"], "sha": asset["git_blob"]}
         if asset["decode_text"]:
-            doc.update(
-                {
-                    "encoding": "base64",
-                    "content": base64.b64encode(texts[role]).decode(),
-                }
-            )
-        repo = config["repositories"][asset["repo_role"]]["repo"]
-        responses[f"https://api.github.com/repos/{repo}/contents/{asset['path']}"] = (
-            json.dumps(doc).encode()
-        )
+            responses[asset["raw_url"]] = texts[role]
     return responses, config
 
 
@@ -118,7 +103,16 @@ def _run(tmp_path: Path, *, admitted: bool, reverse: bool = False) -> dict[str, 
         if reverse
         else ("readme", "license", "portra_profile", "paired_audit")
     )
-    return run_source_audit(path, json_reader=responses.__getitem__, asset_order=order)
+    return run_source_audit(
+        path,
+        body_reader=responses.__getitem__,
+        head_reader=lambda url: {
+            "status": 200,
+            "content_length": 12,
+            "content_type": "application/octet-stream",
+        },
+        asset_order=order,
+    )
 
 
 def test_private_pair_source_fails_without_reading_profile(tmp_path: Path) -> None:
@@ -146,7 +140,12 @@ def test_asset_order_must_be_exact(tmp_path: Path) -> None:
     with pytest.raises(ValueError, match="every frozen asset"):
         run_source_audit(
             path,
-            json_reader=responses.__getitem__,
+            body_reader=responses.__getitem__,
+            head_reader=lambda url: {
+                "status": 200,
+                "content_length": 12,
+                "content_type": "application/octet-stream",
+            },
             asset_order=("readme", "readme", "license", "paired_audit"),
         )
 
@@ -163,5 +162,5 @@ def test_project_contract_forbids_profile_pair_and_pixel_reads() -> None:
     assert all(
         config["operation_limits"][key] == 0
         for key in config["operation_limits"]
-        if key != "github_json_requests"
+        if key not in {"commit_pinned_text_requests", "profile_head_requests"}
     )

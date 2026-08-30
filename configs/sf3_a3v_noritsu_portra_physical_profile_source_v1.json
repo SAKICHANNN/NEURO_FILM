@@ -20,6 +20,7 @@
       "bytes": 14222,
       "git_blob": "27e96f934f3f92c694316cf01a0896ce3c53ca81",
       "sha256": "5abb48b8cae17c89e45ff5e0914de370d0273d357632a60b0c0da33477c1c643",
+      "raw_url": "https://raw.githubusercontent.com/rohanpandula/noritsu-tool/3f24b96234eb44afc2754d7a02d6a61454026ea9/README.md",
       "decode_text": true,
       "required_phrases": [
         "Validated against a real LS-600",
@@ -35,6 +36,7 @@
       "bytes": 1082,
       "git_blob": "0e779f0c86c4b43e2c813e8ce2964bacd4294eac",
       "sha256": "45a353efaf116ece44df548208141118e636ab2f5dae73a6f45c47f1150f514b",
+      "raw_url": "https://raw.githubusercontent.com/rohanpandula/noritsu-tool/3f24b96234eb44afc2754d7a02d6a61454026ea9/LICENSE",
       "decode_text": true,
       "required_phrases": [
         "MIT License",
@@ -46,6 +48,7 @@
       "path": "noritsu/profiles/portra400_calib.npz",
       "bytes": 11560,
       "git_blob": "cca0726c7602b412d4793ecf0bffe8678fe9f043",
+      "raw_url": "https://raw.githubusercontent.com/rohanpandula/noritsu-tool/3f24b96234eb44afc2754d7a02d6a61454026ea9/noritsu/profiles/portra400_calib.npz",
       "decode_text": false,
       "required_phrases": []
     },
@@ -55,6 +58,7 @@
       "bytes": 111379,
       "git_blob": "d3759c06b97138ed188f1c111f2ad4d4897c1582",
       "sha256": "23b4b9cb26dee45fe39819b84cebdd55c98c359caa68beaecd9325dbec282d3a",
+      "raw_url": "https://raw.githubusercontent.com/rohanpandula/negative-universal/9c9298644c21baa0f086778ff64e0515c9207c63/noritsu-tool/noritsu/audit.py",
       "decode_text": true,
       "required_phrases": [
         "source material (owner scans and native-capture evidence) is private",
@@ -73,7 +77,8 @@
   "published_group_roles": [],
   "published_pair_manifest": [],
   "operation_limits": {
-    "github_json_requests": 8,
+    "commit_pinned_text_requests": 3,
+    "profile_head_requests": 1,
     "profile_body_requests": 0,
     "owner_pair_requests": 0,
     "sample_image_requests": 0,
@@ -86,4 +91,3 @@
   "decision_if_fail": "FAIL_CLOSED_NORITSU_PORTRA_PRIVATE_PAIR_RIGHTS_AND_GROUP_GAP",
   "claim_ceiling": "Exact public derived-profile source audit only; no digital-to-film operator, source-independent Portra response, calibration, product profile, three-stock completion or candidate 3."
 }
-

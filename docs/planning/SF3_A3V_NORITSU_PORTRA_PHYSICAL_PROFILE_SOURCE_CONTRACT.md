@@ -23,9 +23,12 @@ The exact repository commits, trees, Git blobs, sizes, decoded-text SHA-256
 identities and required statements are frozen in
 `configs/sf3_a3v_noritsu_portra_physical_profile_source_v1.json`.
 
-The audit may read only GitHub repository/commit/content JSON and decode the
-three frozen text blobs (`README.md`, `LICENSE`, and the paired-data audit
-source). It may inspect only the Git blob identity and byte size of
+The audit may read only commit-pinned GitHub raw responses for the three frozen
+text blobs (`README.md`, `LICENSE`, and the paired-data audit source). It may
+make only a body-free `HEAD` request for the profile. The exact commits, trees
+and Git blobs were frozen before execution; commit-pinned raw URLs plus decoded
+text hashes bind the executed sources without depending on mutable branch heads
+or GitHub API quotas. It may inspect only the Git blob identity and byte size of
 `portra400_calib.npz`. It must not request or decode that profile body, owner
 RAW/TIFF/PRM/native files, sample imagery, pixels, fits, renders or scores.
 
@@ -33,8 +36,8 @@ RAW/TIFF/PRM/native files, sample imagery, pixels, fits, renders or scores.
 
 All gates are conjunctive:
 
-1. Exact official repository, commit, tree, text and profile-metadata
-   identities remain frozen.
+1. Exact official repository, commit, tree, commit-pinned text and
+   profile-metadata identities remain frozen.
 2. The real Portra 400 LS-600 pair and three-frame calibration statements are
    present.
 3. The underlying owner RAW/TIFF observations are publicly addressable.
@@ -56,4 +59,3 @@ require a fresh prospective leaf.
 Even a pass would open only a separately frozen pair-integrity audit. It would
 not establish a digital-to-film operator, source-independent Portra response,
 calibration, product profile, three-stock completion or candidate 3.
-
