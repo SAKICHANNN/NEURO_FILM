@@ -1,8 +1,9 @@
 from __future__ import annotations
 
-import hashlib
 import json
 from pathlib import Path
+
+from tests.historical_evidence_binding import assert_historical_evidence_binding
 
 ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE = ROOT / "docs/evidence/U7_2F_PRODUCT_LOOK_CLI_RESULT.json"
@@ -12,8 +13,7 @@ def test_u7_2f_evidence_is_bound_to_current_cli_and_replay() -> None:
     evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
     assert evidence["status"] == "PASS_OPT_IN_GENERIC_BW_CLI_AND_EXACT_RECIPE_REPLAY"
     for binding in evidence["bindings"].values():
-        path = ROOT / binding["path"]
-        assert hashlib.sha256(path.read_bytes()).hexdigest() == binding["sha256"]
+        assert_historical_evidence_binding(ROOT, binding)
     assert evidence["formal_probe"]["forward_reverse_exact"] is True
     assert evidence["formal_probe"]["rows"][0][
         "decoded_source_identity_exact"

@@ -4,6 +4,8 @@ import hashlib
 import json
 from pathlib import Path
 
+from tests.historical_evidence_binding import assert_historical_evidence_binding
+
 ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE = ROOT / "docs/evidence/U7_2G_GENERIC_BW_SEVERE_VETO_RESULT.json"
 
@@ -12,8 +14,7 @@ def test_u7_2g_evidence_binds_implementation_and_formal_reports() -> None:
     evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
     assert evidence["status"] == "PASS"
     for binding in evidence["bindings"].values():
-        path = ROOT / binding["path"]
-        assert hashlib.sha256(path.read_bytes()).hexdigest() == binding["sha256"]
+        assert_historical_evidence_binding(ROOT, binding)
     reports = evidence["formal_reports"]
     forward = ROOT / reports["forward_path"]
     reverse = ROOT / reports["reverse_path"]
