@@ -2984,6 +2984,24 @@ independently licensed exact export with target-stock assets, hashes and
 roll/process/scanner/source groups. Evidence:
 `docs/evidence/SF3_A3O_GELATIN_C2PA_FILM_SCAN_SOURCE_RESULT.json`.
 
+SF3.A3P audits the official FILM2PAINT / Chromatic Divide lineage as a
+materially stronger physical-target source, not another community-label or LUT
+route. The exact 2,002,643-byte IS&T paper documents Fujichrome Velvia 50,
+ColorChecker Digital SG and IT8 targets, controlled illumination and
+hyperspectral scans against known reference colours. The complete official
+University of Basel DSpace inventory nevertheless contains only one thesis
+PDF, extracted text, thumbnail and licence bitstream; it exposes no film-target
+dataset payload, dataset-specific fitting/derived-output licence, asset
+manifest, independent roll/process/scanner/source groups or confirmation role.
+Corrected committed-head forward/reverse reports are byte-exact at 4,219 bytes
+/ SHA `87a468b9...d46bc3`, stable `9c5f479b...b4f749`; repository bitstream
+content, target scans, derivatives, account/copy requests, pixels, fitting,
+rendering and scoring remain zero. Formal decision is
+`FAIL_CLOSED_FILM2PAINT_DATASET_ASSET_RIGHTS_OR_GROUP_GAP`. This preserves the
+method as high-value source evidence but does not open stock fitting or
+candidate 3. Evidence:
+`docs/evidence/SF3_A3P_FILM2PAINT_REVERSAL_TARGET_SOURCE_RESULT.json`.
+
 U7.2E adds one authoritative manual product-look catalog and dispatcher over
 the existing three colour-stock Look Approximation controls plus the generic
 B&W correction from BW2.D1. Discovery exposes exactly `velvia_50`,

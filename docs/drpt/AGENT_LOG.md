@@ -20585,3 +20585,47 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   fitting, product state or candidate-3 admission opens; only an independently
   licensed exact export with target-stock assets, hashes and group roles can
   reopen this route.
+
+### 2026-08-31 - SF3.A3P closes the FILM2PAINT dataset route before pixels
+
+- **Node and routing:** `ULT > SF3 > SF3.A3P`, DRPT L2 / Mode C.
+  `dev-research-reliability` remained the primary workflow; source research,
+  stock-first gates, DRPT propagation and project-log discipline were
+  secondary controls. This is a physical-target source audit, not a proxy
+  operator search.
+- **Why the source is material:** the exact official IS&T paper is 2,002,643
+  bytes / SHA
+  `bad7ee283b3d8352faf45bdc567cb8166d9aaf4f5a5dc05d206300165643f0f7`
+  and explicitly documents Fujichrome Velvia 50, ColorChecker Digital SG and
+  IT8 targets, D50-controlled illumination and hyperspectral scans against
+  known reference colours. It says the stock dataset was provided by Zurich
+  Central Library. This is materially stronger identifying information than
+  filenames, public figures, presets or manufacturer curves.
+- **Freeze and correction:** prospective contract/config commit is `bfb16254`;
+  implementation/audit/tests are `1888d9e5`; pre-evidence identity correction
+  is `180d0c01`; evidence/test commit is `36db9b30`. The initial dual report
+  pair was excluded because the frozen thumbnail bitstream UUID had one extra
+  terminal character. The correction binds the current official API value and
+  changes no source content, admission gate or scientific decision; V2 was
+  rerun from the corrected committed HEAD.
+- **Formal result:** V2 forward/reverse reports are each 4,219 bytes and
+  byte-exact at SHA
+  `87a468b93c36245958683bfc28f70207fcd6a023369f8d13f2d0c323a7d46bc3`,
+  source identity
+  `b3d93c758c4867ce72f1cbfd3a7a1fdd98842881e4168cd32ef2db1d3c0e66ac`,
+  stable `9c5f479b87ffd9e3bd6ec4c12535f1b784afd10c639cc09024ca849ec2b4f749`.
+  Article identity/method facts and the complete Basel DSpace bundle/bitstream
+  inventory pass. The inventory contains only thesis PDF, extracted text,
+  thumbnail and licence; public dataset payload, dataset-specific fitting and
+  derived-output licence, exact dataset manifest/checksums, independent groups
+  and confirmation role all fail independently.
+- **Boundary and verification:** decision is
+  `FAIL_CLOSED_FILM2PAINT_DATASET_ASSET_RIGHTS_OR_GROUP_GAP`. Tracked evidence
+  is `docs/evidence/SF3_A3P_FILM2PAINT_REVERSAL_TARGET_SOURCE_RESULT.json`, LF
+  SHA `66ca26b07ab31a83423b66f32cf32c430379f29ee05efab2aef08f3732c6bbf7`.
+  Four focused tests, Ruff, JSON, semantic evidence equality and diff checks
+  pass. Repository bitstream content, target scan, derivative, account/copy,
+  pixel, fit, render and score operations are zero. The private dataset is not
+  adjudicated negatively; only an independently licensed exact export with
+  manifests and holdout groups may reopen it. No stock operator, product
+  profile or candidate 3 opens.
