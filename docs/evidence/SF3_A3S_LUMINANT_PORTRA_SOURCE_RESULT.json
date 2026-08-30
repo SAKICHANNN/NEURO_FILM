@@ -1,0 +1,335 @@
+{
+  "about_phrase_gates": {
+    "All images captured by human operator using photosensitive chemical process.": true,
+    "Creative Commons Attribution 4.0 International": true,
+    "Digital domain transfer through optical reimaging method.": true
+  },
+  "admission_gates": {
+    "commercial_compatible_data_rights": true,
+    "explicit_process_group_count": false,
+    "explicit_roll_group_count": false,
+    "explicit_scanner_group_count": false,
+    "independent_author_count": false,
+    "public_original_asset_preflight": true,
+    "same_scene_neutral_film_pair_count": false,
+    "sealed_confirmation_group_count": false,
+    "target_stock_label_exact": true
+  },
+  "admission_minimums": {
+    "explicit_process_group_count": 1,
+    "explicit_roll_group_count": 3,
+    "explicit_scanner_group_count": 1,
+    "independent_author_count": 3,
+    "same_scene_neutral_film_pair_count": 1,
+    "sealed_confirmation_group_count": 1
+  },
+  "audit_gates": {
+    "about_photochemical_optical_statements_exact": true,
+    "head_metadata_sha256_exact": true,
+    "head_sample_ids_exact": true,
+    "head_status_content_type_ranges_valid": true,
+    "head_total_bytes_exact": true,
+    "inventory_count_exact": true,
+    "inventory_sha256_exact": true,
+    "label_counts_exact": true,
+    "site_license_cc_by_4_0": true,
+    "zero_image_body_pixel_fit_render_score": true
+  },
+  "claim_ceiling": "Rights-clear public single-site Portra 400 appearance-source metadata and bounded original-file HEAD availability only; no image body, pixels, roll/process/scanner identity, neutral pair, stock response, source-independent identifiability, fitting, learning, calibration, three-stock result, product profile or candidate-three admission.",
+  "decision": "FAIL_CLOSED_LUMINANT_PORTRA_SINGLE_SOURCE_NUISANCE_AND_PAIRING_GAP",
+  "experiment_id": "SF3.A3S_LUMINANT_PORTRA_SOURCE_V1",
+  "group_evidence": {
+    "explicit_process_group_count": 0,
+    "explicit_roll_group_count": 0,
+    "explicit_scanner_group_count": 0,
+    "independent_author_count": 1,
+    "same_scene_neutral_film_pair_count": 0,
+    "sealed_confirmation_group_count": 0
+  },
+  "head_sample": {
+    "count": 24,
+    "entries": [
+      {
+        "accept_ranges": "bytes",
+        "content_length": 5170578,
+        "content_type": "image/jpeg",
+        "etag": "\"4ee592-60e57140d07fc\"",
+        "id": "00009",
+        "last_modified": "Sun, 07 Jan 2024 08:43:41 GMT",
+        "status": 200
+      },
+      {
+        "accept_ranges": "bytes",
+        "content_length": 3922300,
+        "content_type": "image/jpeg",
+        "etag": "\"3bd97c-60ee643a9799b\"",
+        "id": "00051",
+        "last_modified": "Sun, 14 Jan 2024 11:33:20 GMT",
+        "status": 200
+      },
+      {
+        "accept_ranges": "bytes",
+        "content_length": 6380477,
+        "content_type": "image/jpeg",
+        "etag": "\"615bbd-61463c8970ec8\"",
+        "id": "00116",
+        "last_modified": "Sun, 24 Mar 2024 08:24:19 GMT",
+        "status": 200
+      },
+      {
+        "accept_ranges": "bytes",
+        "content_length": 5526277,
+        "content_type": "image/jpeg",
+        "etag": "\"545305-61463c8adb3a5\"",
+        "id": "00118",
+        "last_modified": "Sun, 24 Mar 2024 08:24:21 GMT",
+        "status": 200
+      },
+      {
+        "accept_ranges": "bytes",
+        "content_length": 5614744,
+        "content_type": "image/jpeg",
+        "etag": "\"55ac98-61463c8b8bfc4\"",
+        "id": "00119",
+        "last_modified": "Sun, 24 Mar 2024 08:24:22 GMT",
+        "status": 200
+      },
+      {
+        "accept_ranges": "bytes",
+        "content_length": 4695173,
+        "content_type": "image/jpeg",
+        "etag": "\"47a485-61463c8c35e83\"",
+        "id": "00120",
+        "last_modified": "Sun, 24 Mar 2024 08:24:22 GMT",
+        "status": 200
+      },
+      {
+        "accept_ranges": "bytes",
+        "content_length": 3570092,
+        "content_type": "image/jpeg",
+        "etag": "\"3679ac-61463c8ef313e\"",
+        "id": "00124",
+        "last_modified": "Sun, 24 Mar 2024 08:24:25 GMT",
+        "status": 200
+      },
+      {
+        "accept_ranges": "bytes",
+        "content_length": 4365149,
+        "content_type": "image/jpeg",
+        "etag": "\"429b5d-616994b03f485\"",
+        "id": "00150",
+        "last_modified": "Sun, 21 Apr 2024 11:05:04 GMT",
+        "status": 200
+      },
+      {
+        "accept_ranges": "bytes",
+        "content_length": 4433180,
+        "content_type": "image/jpeg",
+        "etag": "\"43a51c-616994c792f49\"",
+        "id": "00185",
+        "last_modified": "Sun, 21 Apr 2024 11:05:29 GMT",
+        "status": 200
+      },
+      {
+        "accept_ranges": "bytes",
+        "content_length": 5496635,
+        "content_type": "image/jpeg",
+        "etag": "\"53df3b-616994ca4f266\"",
+        "id": "00189",
+        "last_modified": "Sun, 21 Apr 2024 11:05:31 GMT",
+        "status": 200
+      },
+      {
+        "accept_ranges": "bytes",
+        "content_length": 6454751,
+        "content_type": "image/jpeg",
+        "etag": "\"627ddf-61db936cb2b51\"",
+        "id": "00205",
+        "last_modified": "Sun, 21 Jul 2024 03:06:25 GMT",
+        "status": 200
+      },
+      {
+        "accept_ranges": "bytes",
+        "content_length": 4740264,
+        "content_type": "image/jpeg",
+        "etag": "\"4854a8-61dbb14616f9d\"",
+        "id": "00234",
+        "last_modified": "Sun, 21 Jul 2024 05:19:58 GMT",
+        "status": 200
+      },
+      {
+        "accept_ranges": "bytes",
+        "content_length": 3854551,
+        "content_type": "image/jpeg",
+        "etag": "\"3ad0d7-61dbb14e2f3d8\"",
+        "id": "00246",
+        "last_modified": "Sun, 21 Jul 2024 05:20:06 GMT",
+        "status": 200
+      },
+      {
+        "accept_ranges": "bytes",
+        "content_length": 5260661,
+        "content_type": "image/jpeg",
+        "etag": "\"504575-622aade3417d2\"",
+        "id": "00363",
+        "last_modified": "Sun, 22 Sep 2024 01:05:28 GMT",
+        "status": 200
+      },
+      {
+        "accept_ranges": "bytes",
+        "content_length": 4843188,
+        "content_type": "image/jpeg",
+        "etag": "\"49e6b4-623c5439dd5c9\"",
+        "id": "00431",
+        "last_modified": "Sun, 06 Oct 2024 02:00:10 GMT",
+        "status": 200
+      },
+      {
+        "accept_ranges": "bytes",
+        "content_length": 4298284,
+        "content_type": "image/jpeg",
+        "etag": "\"41962c-623c543bf38a7\"",
+        "id": "00434",
+        "last_modified": "Sun, 06 Oct 2024 02:00:12 GMT",
+        "status": 200
+      },
+      {
+        "accept_ranges": "bytes",
+        "content_length": 5067488,
+        "content_type": "image/jpeg",
+        "etag": "\"4d52e0-623c543e0e9a5\"",
+        "id": "00437",
+        "last_modified": "Sun, 06 Oct 2024 02:00:14 GMT",
+        "status": 200
+      },
+      {
+        "accept_ranges": "bytes",
+        "content_length": 6433307,
+        "content_type": "image/jpeg",
+        "etag": "\"622a1b-623c543eca1a4\"",
+        "id": "00438",
+        "last_modified": "Sun, 06 Oct 2024 02:00:15 GMT",
+        "status": 200
+      },
+      {
+        "accept_ranges": "bytes",
+        "content_length": 4858761,
+        "content_type": "image/jpeg",
+        "etag": "\"4a2389-623c544447600\"",
+        "id": "00446",
+        "last_modified": "Sun, 06 Oct 2024 02:00:21 GMT",
+        "status": 200
+      },
+      {
+        "accept_ranges": "bytes",
+        "content_length": 4588094,
+        "content_type": "image/jpeg",
+        "etag": "\"46023e-6465d807f8017\"",
+        "id": "00693",
+        "last_modified": "Sat, 20 Dec 2025 07:54:22 GMT",
+        "status": 200
+      },
+      {
+        "accept_ranges": "bytes",
+        "content_length": 4085430,
+        "content_type": "image/jpeg",
+        "etag": "\"3e56b6-6468961f2dd82\"",
+        "id": "00700",
+        "last_modified": "Mon, 22 Dec 2025 12:15:28 GMT",
+        "status": 200
+      },
+      {
+        "accept_ranges": "bytes",
+        "content_length": 7135240,
+        "content_type": "image/jpeg",
+        "etag": "\"6ce008-6472728226672\"",
+        "id": "00726",
+        "last_modified": "Tue, 30 Dec 2025 08:29:22 GMT",
+        "status": 200
+      },
+      {
+        "accept_ranges": "bytes",
+        "content_length": 7137665,
+        "content_type": "image/jpeg",
+        "etag": "\"6ce981-64727285aeb2e\"",
+        "id": "00731",
+        "last_modified": "Tue, 30 Dec 2025 08:29:26 GMT",
+        "status": 200
+      },
+      {
+        "accept_ranges": "bytes",
+        "content_length": 6913444,
+        "content_type": "image/jpeg",
+        "etag": "\"697da4-647272873070d\"",
+        "id": "00733",
+        "last_modified": "Tue, 30 Dec 2025 08:29:28 GMT",
+        "status": 200
+      }
+    ],
+    "ids": [
+      "00185",
+      "00246",
+      "00118",
+      "00438",
+      "00051",
+      "00431",
+      "00731",
+      "00116",
+      "00119",
+      "00446",
+      "00700",
+      "00120",
+      "00124",
+      "00733",
+      "00205",
+      "00726",
+      "00363",
+      "00693",
+      "00189",
+      "00434",
+      "00150",
+      "00234",
+      "00009",
+      "00437"
+    ],
+    "metadata_sha256": "88c9cd7411a15b1bcc98f5895907d6a407cc1084225cb1fbcbd268fdb85439b4",
+    "selection": "first-24-by-sha256-of-five-digit-image-id",
+    "total_bytes": 124845733
+  },
+  "inventory": {
+    "count": 191,
+    "first_id": "00001",
+    "label_counts": {
+      "Kodak Portra 400": 152,
+      "Kodak Portra 400 +2": 19,
+      "Portra 400": 20
+    },
+    "last_id": "00741",
+    "sha256": "6fb1663dd12dc5d4a6c0983328d202ef61b8f49ea0faeb55817148a682071a37"
+  },
+  "operation_counts": {
+    "fit_calls": 0,
+    "html_get_requests": 75,
+    "image_get_requests": 0,
+    "image_head_requests": 24,
+    "image_range_requests": 0,
+    "pixel_decodes": 0,
+    "render_calls": 0,
+    "score_calls": 0
+  },
+  "schema": "neuro-film.sf3-a3s-luminant-portra-source-result.v1",
+  "source": {
+    "about_url": "https://luminant.jp/about/",
+    "author_identity": "Luminant Halide",
+    "base_url": "https://luminant.jp",
+    "license_id": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "page_range": [
+      1,
+      74
+    ]
+  },
+  "stable_evidence_id": "602403bf4b14f64ff04ff38dba3aaf0630d16c6d44bf6fade6322bd96bd94460"
+}
+
+
