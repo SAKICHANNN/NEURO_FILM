@@ -1,0 +1,52 @@
+{
+  "schema": "neuro-film.sf3-a3p-yfcc-three-stock-generation-connectivity-contract.v1",
+  "experiment_id": "SF3.A3P_YFCC_THREE_STOCK_GENERATION_CONNECTIVITY_V1",
+  "source_report": {
+    "path": "outputs/real_film/yfcc100m_full_v1/stock_shared_author_audit_a.json",
+    "bytes": 2031208,
+    "sha256": "19fd20b30b6724c1033f90ad2c3dafaabfeaf1dad528df12e2de77deaa3723c2",
+    "required_dataset_id": "sf1.1-full-yfcc100m-shared-author-metadata-v1"
+  },
+  "target_stock_ids": [
+    "kodak_ektar_100",
+    "fujifilm_velvia_50",
+    "kodak_portra_400"
+  ],
+  "portra_generation": {
+    "current_indicators": [
+      "new portra",
+      "new kodak portra",
+      "portra 400 (new)"
+    ],
+    "legacy_indicators": [
+      "portra 400 nc",
+      "portra 400 vc",
+      "portra 400-nc",
+      "portra 400-vc",
+      "portra 400nc",
+      "portra 400vc"
+    ],
+    "text_fields": [
+      "title",
+      "description",
+      "usertags"
+    ]
+  },
+  "gates": {
+    "minimum_current_portra_three_stock_author_uids": 5,
+    "require_source_metadata_only": true,
+    "require_byte_exact_forward_reverse": true
+  },
+  "operation_limits": {
+    "sqlite_reads": 0,
+    "html_requests": 0,
+    "image_requests": 0,
+    "pixel_decodes": 0,
+    "fit_calls": 0,
+    "render_calls": 0,
+    "score_calls": 0
+  },
+  "decision_if_pass": "PASS_OPEN_SEPARATELY_FROZEN_YFCC_THREE_STOCK_RIGHTS_AND_NUISANCE_PREFLIGHT",
+  "decision_if_fail": "FAIL_CLOSED_YFCC_THREE_STOCK_CURRENT_PORTRA_AUTHOR_CONNECTIVITY",
+  "claim_ceiling": "Existing SF1.1 metadata-only author connectivity after strict Portra-generation filtering; no pages, pixels, same-scene pairing, nuisance control, stock response, identifiability, fitting, learning, calibration, product profile or candidate-three admission."
+}
