@@ -1,0 +1,101 @@
+{
+  "schema": "neuro-film.sf3-a3p-film2paint-reversal-target-source-contract.v1",
+  "experiment_id": "SF3.A3P_FILM2PAINT_REVERSAL_TARGET_SOURCE_V1",
+  "article": {
+    "doi": "10.2352/issn.2168-3204.2024.21.1.4",
+    "url": "https://library.imaging.org/admin/apis/public/api/ist/website/downloadArticle/archiving/21/1/4",
+    "bytes": 2002643,
+    "sha256": "bad7ee283b3d8352faf45bdc567cb8166d9aaf4f5a5dc05d206300165643f0f7",
+    "required_text_fragments": [
+      "ColorChecker Digital SG",
+      "Fujichrome Velvia 50",
+      "D50 Bron Tungsten Flashbulbs",
+      "hyperspectral camera",
+      "Zurich Central Library who provided us the dataset of film stocks"
+    ]
+  },
+  "repository": {
+    "base_url": "https://edoc.unibas.ch/server/api/core",
+    "item_uuid": "0485fd09-fdcd-4dfe-97ee-95b133ea8b99",
+    "doi": "10.5451/unibas-006820282",
+    "expected_bundles": [
+      {
+        "name": "LICENSE",
+        "uuid": "84f7e703-fa70-412d-8285-37a5af1aac53"
+      },
+      {
+        "name": "ORIGINAL",
+        "uuid": "08ece4a7-6ef8-4bac-ae8f-2744af61a4d0"
+      },
+      {
+        "name": "TEXT",
+        "uuid": "392b5893-f2f3-4b26-88a8-363b6a582335"
+      },
+      {
+        "name": "THUMBNAIL",
+        "uuid": "79bf8ef6-e32b-4e26-ba11-0968755b2a46"
+      }
+    ],
+    "expected_bitstreams": [
+      {
+        "bundle": "LICENSE",
+        "name": "license.txt",
+        "uuid": "83ce9316-7e41-4e9c-bb01-f68d67ddd133",
+        "bytes": 1748,
+        "checksum_algorithm": "MD5",
+        "checksum": "bb9bdc0b3349e4284e09149f943790b4"
+      },
+      {
+        "bundle": "ORIGINAL",
+        "name": "Elias_Kreyenbuehl_Chromatic_Divide_2018.pdf",
+        "uuid": "2f66d319-df37-4007-9844-637e85e1f37a",
+        "bytes": 24242582,
+        "checksum_algorithm": "MD5",
+        "checksum": "10bddf100c467ad1e7a2627e17b60e4c"
+      },
+      {
+        "bundle": "TEXT",
+        "name": "Elias_Kreyenbuehl_Chromatic_Divide_2018.pdf.txt",
+        "uuid": "a5eaf2e2-26ff-4fe0-b0bd-3c315d81fb7c",
+        "bytes": 100868,
+        "checksum_algorithm": "MD5",
+        "checksum": "1aaa38f387f902771e4bef0d88901d53"
+      },
+      {
+        "bundle": "THUMBNAIL",
+        "name": "Elias_Kreyenbuehl_Chromatic_Divide_2018.pdf.jpg",
+        "uuid": "c21c9bb9-59a5-4e51-ad15-85edd4e04d9a6",
+        "bytes": 2681,
+        "checksum_algorithm": "MD5",
+        "checksum": "1696f77782930d577a96dc084e58d9a6"
+      }
+    ],
+    "document_bitstream_licence": "CC_BY_NC"
+  },
+  "target_stock": {
+    "film_stock_id": "fujifilm_velvia_50",
+    "public_label": "Fujichrome Velvia 50"
+  },
+  "required_dataset_properties": [
+    "public film-target scan payload",
+    "dataset-specific fitting and derived-parameter licence",
+    "exact asset manifest and checksums",
+    "independent roll process scanner source groups",
+    "sealed confirmation role"
+  ],
+  "operation_limits": {
+    "article_document_requests": 1,
+    "repository_metadata_requests": 6,
+    "repository_bitstream_content_requests": 0,
+    "film_target_scan_requests": 0,
+    "image_derivative_requests": 0,
+    "account_or_copy_requests": 0,
+    "pixel_decodes": 0,
+    "fit_calls": 0,
+    "render_calls": 0,
+    "score_calls": 0
+  },
+  "decision_if_pass": "PASS_OPEN_SEPARATELY_FROZEN_FILM2PAINT_DATA_AUDIT",
+  "decision_if_fail": "FAIL_CLOSED_FILM2PAINT_DATASET_ASSET_RIGHTS_OR_GROUP_GAP",
+  "claim_ceiling": "Official physical-target method evidence only unless an independently licensed exact dataset export with manifests and holdout groups is public; no stock operator, natural-scene transfer, product profile, candidate 3 or calibrated claim."
+}
