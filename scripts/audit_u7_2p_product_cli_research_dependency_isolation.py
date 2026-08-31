@@ -10,9 +10,12 @@ import tempfile
 from pathlib import Path
 from typing import Any
 
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
 import scripts.audit_u7_2o_product_look_cli_entry as parent
 
-ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts/render_film.py"
 CONFIG = ROOT / "configs/u7_2p_product_cli_research_dependency_isolation_v1.json"
 CONTRACT = (
