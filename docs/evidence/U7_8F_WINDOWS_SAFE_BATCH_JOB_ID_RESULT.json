@@ -1,0 +1,105 @@
+{
+  "schema_version": "neuro-film.u7-8f-windows-safe-batch-job-id-evidence.v1",
+  "node_id": "U7.8F",
+  "decision": "PASS_PRIVATE_U7_8F_WINDOWS_SAFE_BATCH_JOB_ID",
+  "claim_ceiling": "Private Windows/Python path-component safety for existing deterministic three-look product batch and resume mechanics; no calibrated film-stock response, image-quality, product-value, public API, package, installer or release claim.",
+  "bindings": {
+    "contract_commit": "dac8fa15d9fec7ba7e9af935d9cc12d6683e0641",
+    "implementation_commit": "0b9e9e27bc37c6c0a5fc251dc4976f472dabd1e2",
+    "formal_execution_commit": "84e3b9ffe81a7a74052ac93575be664df8953423",
+    "files": {
+      "docs/planning/U7_8F_WINDOWS_SAFE_BATCH_JOB_ID_CONTRACT.md": {
+        "bytes": 3367,
+        "sha256": "7973502530a5d3e03aed3f4eb81108f66b59a2aa72245eea0da6cd35d176d9de",
+        "git_blob": "6d54ecdb6a0df38de7837967ef990476cefe61b5"
+      },
+      "configs/u7_8f_windows_safe_batch_job_id_v1.json": {
+        "bytes": 3024,
+        "sha256": "656ff0e7a2b1947b0d4fad62cdbc990c4e9de43463d648e5c5353494ed458851",
+        "git_blob": "dbe7e1ed031d8007e06d7cc51eca587801bf9137"
+      },
+      "src/inference/three_stock_input_batch.py": {
+        "bytes": 13084,
+        "sha256": "c83775e3c680b5034d7738ac8179be5cd8ddded44711e9e775cd6017abcf4b93",
+        "git_blob": "94d8b690c206d372dfff30f0013c32eca5228214"
+      },
+      "scripts/audit_u7_8f_windows_safe_batch_job_id.py": {
+        "bytes": 11544,
+        "sha256": "c3a0ea5b5c1af022ccc37798e296e90da511561be4a2ee15cd10b28dcbd52195",
+        "git_blob": "fc15a7409aeca78de910a6ef3eae34f270159ed0"
+      },
+      "tests/test_u7_8f_windows_safe_batch_job_id.py": {
+        "bytes": 5264,
+        "sha256": "1c802c0a3d2569e741585d738f3df3efeb574ac7f843513ead8c298cfa536516",
+        "git_blob": "3c058b53580d6bfc80a60bf7e19c6cdfb088e923"
+      },
+      "tests/test_audit_u7_8f_windows_safe_batch_job_id.py": {
+        "bytes": 1819,
+        "sha256": "4d73cad83100db1e4acf6855ec7d9824ebe34b01f5502d5e78f6737a5f970fc3",
+        "git_blob": "6f97156a6e87da4613dd8623561b679f609726ca"
+      }
+    },
+    "parents": {
+      "u7_8a_evidence_sha256": "da34fdcfc642578281049cfc8442954b0d6ee2cd8d1c772ab6453a26e30f0f02",
+      "u7_8b_evidence_sha256": "a7ef9870b416ed63d050c755b313dfa7bd3ffb2b42e506196de6fcaa7c4c56cf",
+      "u7_8d_evidence_sha256": "4cfb90d68c0541e2792e63214060a931bb4faa9f2ef04575129d000e32de6ac2"
+    }
+  },
+  "formal_reports": {
+    "forward": {
+      "path": "outputs/eval/u7_8f_windows_safe_batch_job_id_v1/formal_forward.json",
+      "bytes": 4943,
+      "sha256": "5e9565da2645dab970caa6ee0eda583a798d4eae229283fc488d54dc08701af5"
+    },
+    "reverse": {
+      "path": "outputs/eval/u7_8f_windows_safe_batch_job_id_v1/formal_reverse.json",
+      "bytes": 4943,
+      "sha256": "5e9565da2645dab970caa6ee0eda583a798d4eae229283fc488d54dc08701af5"
+    },
+    "reports_byte_exact": true,
+    "scientific_identity": "ed0e2c7bdaefcfe7a75347f5e8982d3768b17cf03ef7e39eb7724ccab0c53ed6"
+  },
+  "metrics": {
+    "valid_control_count": 4,
+    "invalid_control_count": 10,
+    "entrypoint_control_count": 20,
+    "forbidden_operation_call_count": 0,
+    "network_requests": 0,
+    "owned_scratch_residue_count": 0
+  },
+  "windows_alias_witness": {
+    "canonical_name": "a",
+    "alias_name": "a.",
+    "alias_creation_rejected_as_existing": true,
+    "both_paths_resolve_as_directory": true,
+    "directory_entries": [
+      "a"
+    ]
+  },
+  "gate_results": {
+    "invalid_ids_reject_in_u7_8a": true,
+    "invalid_ids_reject_in_u7_8b": true,
+    "invalid_ids_reject_before_input_read_hash_decode_or_render": true,
+    "invalid_ids_create_no_stage_workspace_or_destination": true,
+    "valid_ids_preserve_exact_bytes_and_order": true,
+    "windows_alias_witness_reproduced": true,
+    "forward_reverse_report_byte_exact": true,
+    "source_files_immutable": true,
+    "network_requests": true,
+    "owned_scratch_residue_count": true
+  },
+  "historical_evidence": {
+    "u7_8a": "unchanged",
+    "u7_8b": "unchanged",
+    "u7_8c": "immutable real-scale replay negative; not rerun",
+    "u7_8d": "unchanged transaction-provenance pass",
+    "u7_8e": "immutable predecode checkout-materialization negative; not rerun"
+  },
+  "change_propagation": {
+    "parent": "U7.8A/U7.8B now reject unsafe job directory components through one shared parser.",
+    "siblings": "U7.8C/U7.8E remain immutable and were not rerun.",
+    "interface_consumers": "Manifest and receipt schemas are unchanged; previously valid production identifiers are byte-preserved.",
+    "validation": "U7.8A/U7.8B/U7.8D focused regressions remain required.",
+    "documentation": "Tracker and agent log record the correction without changing stock or product claims."
+  }
+}
