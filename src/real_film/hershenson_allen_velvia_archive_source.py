@@ -98,6 +98,12 @@ def _normalized(text: str) -> str:
     return " ".join(text.split())
 
 
+def _normalized_robots(text: str) -> str:
+    return _normalized(
+        " ".join(line.lstrip("# ").strip() for line in text.splitlines())
+    )
+
+
 def run_hershenson_allen_source_audit(
     config_path: Path,
     *,
@@ -177,7 +183,7 @@ def run_hershenson_allen_source_audit(
         )
         and int(operation_counts["prospectus_pdf_requests"]) == 0,
         "robots_reference_only_and_no_ai_training_exact": all(
-            _normalized(phrase) in _normalized(robots_text)
+            _normalized(phrase) in _normalized_robots(robots_text)
             for phrase in source["required_robots_phrases"]
         ),
         "zero_database_media_pixel_and_model_reads": all(

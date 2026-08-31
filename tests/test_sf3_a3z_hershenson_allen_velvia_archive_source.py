@@ -22,7 +22,7 @@ def _fixture(
         "collection": b"<html><body>collection history</body></html>",
         "explore": b"<html><body>inventory statement</body></html>",
         "prospectus": b'<html><body><a href="/p.pdf">PDF</a></body></html>',
-        "robots": b"Content-Signal: search=yes,ai-train=no,use=reference\nright\ns",
+        "robots": b"# Content-Signal: search=yes,ai-train=no,use=reference\n# right\n# s",
     }
     urls = {role: f"https://example.test/{role}" for role in pages}
     keys = [

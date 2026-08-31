@@ -64,6 +64,7 @@ Pre-evidence source runs were excluded before evidence publication. First, the
 official HTML was semantically identical, but Cloudflare rewrote its email
 protection fragment on every response. Second, the official prospectus link is
 published as the path of the frozen absolute URL and the exact robots rights
-sentence is line-wrapped. The additive corrections canonicalize only those
-transport representations. The official sources, source text, roles,
-operation limits, admission gates, thresholds and claim ceiling remain frozen.
+sentence is line-wrapped with per-line comment prefixes. The additive
+corrections canonicalize only those transport representations. The official
+sources, source text, roles, operation limits, admission gates, thresholds and
+claim ceiling remain frozen.
