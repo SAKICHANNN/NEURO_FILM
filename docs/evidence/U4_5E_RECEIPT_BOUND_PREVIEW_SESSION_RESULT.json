@@ -1,0 +1,110 @@
+{
+  "schema_version": "kmcfm.u4-5e-receipt-bound-preview-session-evidence.v1",
+  "node_id": "U4.5E",
+  "date": "2026-09-01",
+  "status": "PASS_PRIVATE_RECEIPT_BOUND_PREVIEW_SESSION",
+  "decision": "retain_separately_named_receipt_bound_preview_admission_and_warm_session",
+  "commits": {
+    "contract": "0d1c6569e279a725100a038eedb28107fc62f415",
+    "implementation": "4f9d0456ee0dda1217e33aab451e5bd5842d1e3c",
+    "formal_runner": "96900a2fd0074081c21e254099efcedfe1b7f959",
+    "operation_counter_correction": "10f3895aa71002420db9a5a9c593ee8f0ccaeb2b",
+    "formal_execution_head": "10f3895aa71002420db9a5a9c593ee8f0ccaeb2b"
+  },
+  "git_objects": {
+    "configs/u4_5e_receipt_bound_preview_session_v1.json": {
+      "git_blob": "cd8b08aa5b180e4d76daa398f9c824e2e68ea11b",
+      "git_lf_bytes": 3264,
+      "git_lf_sha256": "e86c1381f596b75db73570c4ebdc385cd71ca4a37bd006c63e43e1f7e752cef9"
+    },
+    "docs/planning/U4_5E_RECEIPT_BOUND_PREVIEW_SESSION_CONTRACT.md": {
+      "git_blob": "a878669406c496e372458ca94cb9d7559b731fca",
+      "git_lf_bytes": 4170,
+      "git_lf_sha256": "463d05bec6f631389626aad2812b7fa2d1e9fd47a10147bc7f6e6fb13769b4aa"
+    },
+    "src/inference/three_stock_preview_cache.py": {
+      "git_blob": "84acb810b184d9f75cdbbd8924412eb59e2fc00c",
+      "git_lf_bytes": 8090,
+      "git_lf_sha256": "608a7feff4dc08c36822441a58fb38c21c5daeae1e0e873b95b94005bef3437d"
+    },
+    "src/inference/three_stock_preview_session.py": {
+      "git_blob": "765fba66a45e2d7017bf8683be9c5a263780fd94",
+      "git_lf_bytes": 6605,
+      "git_lf_sha256": "c42609560fa93dd076f33e054752a32a7435dd587da99a31c385d3b93c3ee60d"
+    },
+    "tests/test_u4_5e_receipt_bound_preview_session.py": {
+      "git_blob": "f5723dde16e3367e11b1affbe634ea4f1590b1e9",
+      "git_lf_bytes": 8166,
+      "git_lf_sha256": "4d2b46243d585be19972f2c7d411b61aa9329fad2795c24d8bc64a1d24b1db8c"
+    },
+    "scripts/audit_u4_5e_receipt_bound_preview_session.py": {
+      "git_blob": "1f417bdef7133fcdee4b392633ce464230a459c1",
+      "git_lf_bytes": 18664,
+      "git_lf_sha256": "2269e2b5982f5cfef591cd7781f8442e16e5e6544aa06b0599fc646b46e06232"
+    },
+    "tests/test_audit_u4_5e_receipt_bound_preview_session.py": {
+      "git_blob": "090e6fd333b6bcdf7a4983fc8c708fdcc37b1204",
+      "git_lf_bytes": 561,
+      "git_lf_sha256": "4ec71a8e3645278ce7f8f5003fc3791c227ca9580e5382ce571b4ea6b6869157"
+    }
+  },
+  "formal_reports": {
+    "forward": {
+      "path": "outputs/eval/u4_5e_receipt_bound_preview_session_v1/formal.json",
+      "bytes": 5255,
+      "sha256": "8f5e422ef0151043d610bb22c5936e1606cf656c8a364afe9afc9418609053c8",
+      "maximum_warm_lookup_seconds": 0.0001033000007737428
+    },
+    "reverse": {
+      "path": "outputs/eval/u4_5e_receipt_bound_preview_session_v1/formal_replay.json",
+      "bytes": 5264,
+      "sha256": "d1e2458c4ffb578733eb392f916317ac5722e0bc111232e846fd42616fa7d46b",
+      "maximum_warm_lookup_seconds": 0.0000909000082174316
+    },
+    "whole_report_byte_exact": false,
+    "difference_scope": [
+      "order",
+      "timing"
+    ],
+    "scientific_payload_exact": true,
+    "scientific_stable_id": "361207e076f77af133d31b4369bec57f8e37625f289cb9c94815f2a973015113"
+  },
+  "result": {
+    "formal_gate_count": 15,
+    "formal_gate_pass_count": 15,
+    "fresh_session_admissions_per_process": 4,
+    "warm_lookups_per_process": 32,
+    "cache_index_receipt_sha256": "fa1ab7c1f3211eedb95ba76386c17cd1cc8272673871493ab07bc373ee110240",
+    "warm_operation_categories": 14,
+    "warm_operation_attempts_total": 0,
+    "invalid_receipt_controls_passed": 5,
+    "cache_index_tamper_controls_passed": 6,
+    "media_drift_controls_passed": 3,
+    "index_replacement_preserves_current_snapshot": true,
+    "index_replacement_rejects_new_admission": true,
+    "canonical_preview_payloads_exact": true,
+    "source_profile_immutable": true,
+    "owned_runtime_residue_zero": true
+  },
+  "test_evidence": {
+    "targeted_and_historical_tests": "25 passed",
+    "single_index_read_hash_then_parse": "covered by test_u4_5e_receipt_bound_preview_session.py",
+    "invalid_receipt_pre_media_hash_rejection": "covered by test_u4_5e_receipt_bound_preview_session.py",
+    "historical_u7_3h_u4_5c_behavior": "unchanged and passing",
+    "ruff_check": "pass",
+    "ruff_format": "pass",
+    "compileall": "pass",
+    "git_diff_check": "pass"
+  },
+  "retained_boundaries": {
+    "historical_unbound_functions_changed": false,
+    "preview_pixels_or_look_parameters_changed": false,
+    "render_acceleration_claim": false,
+    "calibrated_or_physical_stock_response_claim": false,
+    "stock_distinguishability_claim": false,
+    "browser_or_default_integration_claim": false,
+    "installer_public_api_package_or_release_claim": false
+  },
+  "interpretation": "The separately named U4.5E path requires a caller-held SHA-256 of the exact preview-cache index bytes, reads those bytes once for hash and parse, validates the complete source, profile and three preview payloads, and retains immutable in-memory preview bytes. Four admissions and 32 warm lookups in each of two fresh processes reproduce all three canonical previews. Every measured warm-operation category remains zero, metadata or expected-hash mutation rejects against the original receipt, and replacement of the on-disk index cannot alter an admitted snapshot. The original U7.3H and U4.5C callables and evidence remain unchanged.",
+  "claim_ceiling": "Private Windows/Python receipt-bound admission and session-resident warm lookup for three already-rendered deterministic film-inspired Look Approximation previews only; no render acceleration, calibrated or physical stock response, stock distinguishability, browser/default integration, installer, public API, package or release evidence."
+}
