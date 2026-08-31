@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import os
 import struct
+import tempfile
 import zlib
 from functools import lru_cache
 from pathlib import Path
@@ -12,6 +13,8 @@ from pathlib import Path
 import numpy as np
 import tifffile
 from PIL import Image, ImageCms
+
+from src.film_physics.create_only_file import publish_create_only
 
 from .color_management import (
     REC2020_SDR_CICP,
@@ -31,7 +34,9 @@ _OUTPUT_FORMATS: dict[str, tuple[str, dict[str, object]]] = {
 @lru_cache(maxsize=1)
 def srgb_icc_profile() -> bytes:
     """Return semantically standard sRGB with a stable, valid ICC header."""
-    profile = bytearray(ImageCms.ImageCmsProfile(ImageCms.createProfile("sRGB")).tobytes())
+    profile = bytearray(
+        ImageCms.ImageCmsProfile(ImageCms.createProfile("sRGB")).tobytes()
+    )
     profile[24:36] = struct.pack(">6H", 2000, 1, 1, 0, 0, 0)
     profile[84:100] = b"\x00" * 16
     return bytes(profile)
@@ -57,7 +62,26 @@ def srgb_icc_profile_fingerprint_sha256() -> str:
     return normalized_icc_profile_sha256(srgb_icc_profile())
 
 
-def save_srgb8(rgb: np.ndarray, path: Path) -> str:
+def _output_stage(path: Path, *, create_only: bool) -> Path:
+    if not create_only:
+        return path.with_suffix(path.suffix + ".tmp")
+    descriptor, raw_path = tempfile.mkstemp(
+        dir=path.parent,
+        prefix=f".{path.name}.",
+        suffix=".tmp",
+    )
+    os.close(descriptor)
+    return Path(raw_path)
+
+
+def _publish_output(stage: Path, path: Path, *, create_only: bool) -> None:
+    if create_only:
+        publish_create_only(stage, path)
+    else:
+        os.replace(stage, path)
+
+
+def save_srgb8(rgb: np.ndarray, path: Path, *, create_only: bool = False) -> str:
     """Encode finite HxWx3 display-sRGB values according to the file extension."""
     if rgb.ndim != 3 or rgb.shape[2] != 3:
         raise ValueError("sRGB output must be an HxWx3 array")
@@ -66,21 +90,23 @@ def save_srgb8(rgb: np.ndarray, path: Path) -> str:
     try:
         format_name, options = _OUTPUT_FORMATS[path.suffix.casefold()]
     except KeyError as exc:
-        raise ValueError(f"unsupported output extension: {path.suffix or '<none>'}") from exc
+        raise ValueError(
+            f"unsupported output extension: {path.suffix or '<none>'}"
+        ) from exc
     encoded = np.rint(np.clip(rgb, 0.0, 1.0) * 255.0).astype(np.uint8)
     image = Image.fromarray(encoded, mode="RGB")
     path.parent.mkdir(parents=True, exist_ok=True)
-    temporary = path.with_suffix(path.suffix + ".tmp")
+    temporary = _output_stage(path, create_only=create_only)
     try:
         image.save(temporary, format_name, icc_profile=srgb_icc_profile(), **options)
-        os.replace(temporary, path)
+        _publish_output(temporary, path, create_only=create_only)
     except Exception:
         temporary.unlink(missing_ok=True)
         raise
     return format_name
 
 
-def save_srgb16_tiff(rgb: np.ndarray, path: Path) -> str:
+def save_srgb16_tiff(rgb: np.ndarray, path: Path, *, create_only: bool = False) -> str:
     """Encode finite HxWx3 display-sRGB values as true uint16 RGB TIFF."""
     if rgb.ndim != 3 or rgb.shape[2] != 3:
         raise ValueError("sRGB output must be an HxWx3 array")
@@ -91,7 +117,7 @@ def save_srgb16_tiff(rgb: np.ndarray, path: Path) -> str:
     encoded = np.rint(np.clip(rgb, 0.0, 1.0) * 65535.0).astype(np.uint16)
     profile = srgb_icc_profile()
     path.parent.mkdir(parents=True, exist_ok=True)
-    temporary = path.with_suffix(path.suffix + ".tmp")
+    temporary = _output_stage(path, create_only=create_only)
     try:
         with temporary.open("wb") as handle:
             tifffile.imwrite(
@@ -102,7 +128,7 @@ def save_srgb16_tiff(rgb: np.ndarray, path: Path) -> str:
                 metadata=None,
                 extratags=[(34675, "B", len(profile), profile, False)],
             )
-        os.replace(temporary, path)
+        _publish_output(temporary, path, create_only=create_only)
     except Exception:
         temporary.unlink(missing_ok=True)
         raise
@@ -113,14 +139,24 @@ def _png_iccp_chunk(profile: bytes) -> bytes:
     chunk_type = b"iCCP"
     payload = b"K-MCFM sRGB\x00\x00" + zlib.compress(profile, level=9)
     checksum = zlib.crc32(chunk_type + payload) & 0xFFFFFFFF
-    return struct.pack(">I", len(payload)) + chunk_type + payload + struct.pack(">I", checksum)
+    return (
+        struct.pack(">I", len(payload))
+        + chunk_type
+        + payload
+        + struct.pack(">I", checksum)
+    )
 
 
 def _png_chunk(chunk_type: bytes, payload: bytes) -> bytes:
     if len(chunk_type) != 4:
         raise ValueError("PNG chunk type must contain four bytes")
     checksum = zlib.crc32(chunk_type + payload) & 0xFFFFFFFF
-    return struct.pack(">I", len(payload)) + chunk_type + payload + struct.pack(">I", checksum)
+    return (
+        struct.pack(">I", len(payload))
+        + chunk_type
+        + payload
+        + struct.pack(">I", checksum)
+    )
 
 
 def _inject_png_icc(png: bytes, profile: bytes) -> bytes:
@@ -144,7 +180,11 @@ def _inject_png_cicp(png: bytes, cicp: bytes = REC2020_SDR_CICP) -> bytes:
 
 
 def save_srgb16_png(
-    rgb: np.ndarray, path: Path, *, compression_level: int = 6
+    rgb: np.ndarray,
+    path: Path,
+    *,
+    compression_level: int = 6,
+    create_only: bool = False,
 ) -> str:
     """Encode finite HxWx3 display-sRGB values as true uint16 RGB PNG."""
     if rgb.ndim != 3 or rgb.shape[2] != 3:
@@ -171,10 +211,10 @@ def save_srgb16_png(
         raise ValueError("OpenCV failed to encode 16-bit PNG")
     payload = _inject_png_icc(buffer.tobytes(), srgb_icc_profile())
     path.parent.mkdir(parents=True, exist_ok=True)
-    temporary = path.with_suffix(path.suffix + ".tmp")
+    temporary = _output_stage(path, create_only=create_only)
     try:
         temporary.write_bytes(payload)
-        os.replace(temporary, path)
+        _publish_output(temporary, path, create_only=create_only)
     except Exception:
         temporary.unlink(missing_ok=True)
         raise

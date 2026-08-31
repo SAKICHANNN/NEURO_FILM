@@ -55,6 +55,9 @@ from src.inference.analytic_y_chromaticity_profile_v4 import (
     load_analytic_y_chromaticity_profile,
     render_analytic_y_chromaticity_profile,
 )
+from src.inference.product_render_transaction import (
+    preflight_product_primary_output,
+)
 from src.preprocess import (
     load_working_image,
     resolve_look_approximation_claim,
@@ -252,7 +255,9 @@ def parse_args() -> argparse.Namespace:
     args = parser.parse_args()
     if args.list_product_looks:
         if args.input is not None or args.output is not None:
-            parser.error("--list-product-looks cannot be combined with input or --output")
+            parser.error(
+                "--list-product-looks cannot be combined with input or --output"
+            )
     else:
         if args.input is None:
             parser.error("input is required unless --list-product-looks is used")
@@ -267,17 +272,19 @@ def save_rgb(
     bit_depth: int = 8,
     *,
     png_compression: int | None = None,
+    create_only: bool = False,
 ) -> str:
     if bit_depth == 8:
-        return save_srgb8(rgb, path)
+        return save_srgb8(rgb, path, create_only=create_only)
     if path.suffix.casefold() == ".png":
         return save_srgb16_png(
             rgb,
             path,
             compression_level=6 if png_compression is None else png_compression,
+            create_only=create_only,
         )
     if path.suffix.casefold() in {".tif", ".tiff"}:
-        return save_srgb16_tiff(rgb, path)
+        return save_srgb16_tiff(rgb, path, create_only=create_only)
     raise ValueError("16-bit output requires .png, .tif or .tiff")
 
 
@@ -384,9 +391,7 @@ def main() -> int:
         or args.output.suffix.casefold() != ".png"
         or args.color_engine != "safe_lab"
     ):
-        raise ValueError(
-            "--png-compression requires safe_lab 16-bit PNG output"
-        )
+        raise ValueError("--png-compression requires safe_lab 16-bit PNG output")
     if args.tile_size is not None and args.tile_size < 1:
         raise ValueError("--tile-size must be at least 1")
     if args.gamut_workers < 1:
@@ -465,6 +470,7 @@ def main() -> int:
             raise ValueError("analytic scratch root must be an existing directory")
     profile_manifest = None
     profile_values = None
+    product_primary_create_only = False
     if args.use_render_profile or (args.write_recipe and analytic_runtime is None):
         profile_manifest = load_render_profile(args.render_profile, root=ROOT)
         _verify_recipe_profile_assets(profile_manifest, args)
@@ -476,6 +482,7 @@ def main() -> int:
                 "safe-rich-product-v1 requires an explicit --style product look selection"
             )
         if profile_manifest["profile_id"] == "safe-rich-product-v1":
+            product_primary_create_only = True
             product_row = product_looks.get(args.style)
             if product_row is None or product_row["availability"] != "available":
                 raise ValueError(
@@ -510,6 +517,8 @@ def main() -> int:
                 raise ValueError(
                     f"Recipe profile does not exactly migrate style {args.style!r}"
                 )
+    if product_primary_create_only:
+        preflight_product_primary_output(args.input, args.output)
     working = load_working_image(args.input)
     output_claim = resolve_look_approximation_claim(working)
     if analytic_runtime is None:
@@ -704,6 +713,7 @@ def main() -> int:
         args.output,
         args.output_bit_depth,
         png_compression=args.png_compression,
+        create_only=product_primary_create_only,
     )
     recipe_path = None
     recipe_sha256 = None
