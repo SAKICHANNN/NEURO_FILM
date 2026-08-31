@@ -1,0 +1,70 @@
+{
+  "schema_version": "neuro-film.u7-8d-transaction-software-provenance-snapshot-contract.v1",
+  "node_id": "U7.8D",
+  "objective": "Bind one immutable Git commit to every child recipe in one multi-input transaction and reject before final publication if the live repository identity changes.",
+  "parents": {
+    "u7_8a": {
+      "evidence_path": "docs/evidence/U7_8A_THREE_STOCK_INPUT_BATCH_RESULT.json",
+      "evidence_sha256": "da34fdcfc642578281049cfc8442954b0d6ee2cd8d1c772ab6453a26e30f0f02"
+    },
+    "u7_8b": {
+      "evidence_path": "docs/evidence/U7_8B_RESUMABLE_THREE_STOCK_BATCH_RESULT.json",
+      "evidence_sha256": "a7ef9870b416ed63d050c755b313dfa7bd3ffb2b42e506196de6fcaa7c4c56cf"
+    },
+    "u7_8c": {
+      "decision": "FAIL_CLOSED_U7_8C_FORWARD_REVERSE_RECIPE_IDENTITY_DRIFT",
+      "evidence_path": "docs/evidence/U7_8C_CANON_REAL_SCALE_INPUT_BATCH_RESULT.json",
+      "evidence_sha256": "e140da1a358b6c3a4485bcdcd686379565b84e22721fa6043ecbef8e539eb236"
+    }
+  },
+  "prescore_core": {
+    "commit": "24f67f167bb511c438197dc983ade3e322cb4284",
+    "three_stock_batch_sha256": "ae676aabccf3bd8b12d3e42c253a60078ef74878c1b7ab399124a1607100c5e2",
+    "three_stock_input_batch_sha256": "cb1f54c48520ea0ff3cebe3e92731335c5bd50655408adadccda3a4cfa2a0cf1",
+    "resumable_three_stock_input_batch_sha256": "6e79db49efde793d6e238811a86dfb06298d63cc0425278b14a316fbdd520eb7"
+  },
+  "software_commit": {
+    "format": "lowercase full 40-hex Git commit",
+    "child_explicit_override_is_private": true,
+    "child_omission_preserves_legacy_live_head_resolution": true,
+    "u7_8a_resolves_once_after_complete_preflight": true,
+    "u7_8a_rechecks_live_head_before_publication": true,
+    "u7_8b_uses_existing_workspace_state_snapshot": true,
+    "u7_8b_cross_commit_resume_remains_rejected": true
+  },
+  "formal_fixture": {
+    "generator": "unchanged deterministic U7.8A 32x24 RGB8 generator",
+    "job_count": 3,
+    "styles_per_job": 3,
+    "outer_orders": [
+      "forward",
+      "reverse"
+    ],
+    "injected_drift": "mocked live HEAD changes only after first child render",
+    "stable_comparison": "second from-zero transaction under one fixed mocked HEAD"
+  },
+  "gates": {
+    "transaction_start_commit_resolution_count": 1,
+    "all_child_recipe_commits_equal_transaction_snapshot": true,
+    "injected_head_drift_publishes_no_destination": true,
+    "stable_forward_reverse_outputs_recipes_manifests_receipt_and_batch_exact": true,
+    "u7_8b_child_receives_state_snapshot": true,
+    "u7_8b_final_state_drift_rejected": true,
+    "u7_8b_cross_commit_resume_rejected_before_render": true,
+    "invalid_explicit_commit_rejected_before_decode_render_or_stage": true,
+    "direct_child_default_semantics_unchanged": true,
+    "late_foreign_destination_preserved": true,
+    "source_files_immutable": true,
+    "network_requests": 0,
+    "owned_scratch_residue_count": 0
+  },
+  "stop_rules": [
+    "Do not rewrite or rerun U7.8C.",
+    "Do not strip or normalize provenance.",
+    "Do not permit resume or publication across changed software, core, configuration or input identities.",
+    "Do not change recipe schema, public API, stock parameters, pixels, colour arithmetic, output format or claim ceiling.",
+    "Do not expand into cache, packaging, release, RAW/HDR/OpenEXR or source research.",
+    "Any formal gate failure closes this exact repair without retry, threshold, cohort, ordering or output-only rescue."
+  ],
+  "claim_ceiling": "Private Windows/Python transaction-scoped software provenance mechanics for the existing three deterministic film-inspired Look Approximations; no calibrated stock response, image-quality, product-value, public API, package, release or cross-commit recovery claim."
+}
