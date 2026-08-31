@@ -7,11 +7,16 @@ import hashlib
 import json
 import os
 import subprocess
+import sys
 import tempfile
 from collections.abc import Callable, Mapping
 from pathlib import Path
 from typing import Any
 from unittest.mock import patch
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from src.inference import create_only_directory as directory_module
 from src.inference.recipe_export_request import (
@@ -23,7 +28,6 @@ from src.inference.recipe_workspace import (
     materialize_offline_recipe_workspace,
 )
 
-ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/u7_3k_recipe_directory_create_only_repair_v1.json"
 
 Materializer = Callable[[Path, Path], object]
