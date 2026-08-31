@@ -1,0 +1,39 @@
+{
+  "schema_version": "neuro-film.u7-2p-product-cli-research-dependency-isolation.v1",
+  "node_id": "U7.2P",
+  "parent": "U7.2O",
+  "implementation_scope": [
+    "scripts/render_film.py"
+  ],
+  "blocked_import_roots": [
+    "src.eval",
+    "pypdf",
+    "cryptography",
+    "torch",
+    "torchvision",
+    "diffusers",
+    "transformers",
+    "peft",
+    "wandb",
+    "pytorch_lightning"
+  ],
+  "product_looks": [
+    "ektar_100",
+    "portra_400",
+    "velvia_50"
+  ],
+  "look_amounts": [
+    0.0,
+    0.5,
+    1.0
+  ],
+  "required_profile_id": "safe-rich-product-v1",
+  "required_claim_label": "film-inspired",
+  "required_claim_calibrated": false,
+  "u7_2o_formal_report_sha256": "2e6a58edd09d312520469a3d58699705d71d20200ca534ac614ce4fd6c40f8d4",
+  "u7_2o_formal_report_bytes": 7617,
+  "fresh_process_count": 2,
+  "require_forward_reverse_byte_exact": true,
+  "stop_on_any_product_or_analytic_route_drift": true,
+  "claim_ceiling": "Private unselected research-import isolation for the existing deterministic film-inspired Look Approximation CLI only."
+}
