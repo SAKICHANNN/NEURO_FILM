@@ -1,0 +1,49 @@
+{
+  "schema_version": "neuro-film.u7-2l-product-create-only-render-transaction.v1",
+  "decision": "prospective",
+  "product_profile_id": "safe-rich-product-v1",
+  "transaction_scope": "primary-rendered-image-only",
+  "available_product_looks": [
+    "velvia_50",
+    "portra_400",
+    "ektar_100"
+  ],
+  "source_locks": {
+    "render_film_sha256": "20c9be941960eca99116f92ec672b36a195af3a2a76b0ef36f0fba4b4c013e4a",
+    "output_encode_sha256": "01837cfd289452746234f8c31f009299299dbfdf2daa4261a6d5cac0bf1eb2a1",
+    "create_only_file_sha256": "d05292155594392b2c3d3b76f2aa680a3c3f011bab641111393ca3bde708fa37",
+    "product_profile_sha256": "09722cb48c55d1c4c460220c9f59b9ced81801c1b6fe856708a27f5cc99d39fe",
+    "legacy_profile_sha256": "72a9948e6fc76e230c4593b847728712bc034840cd339e6b34f079ac7d424c79"
+  },
+  "fixture": {
+    "sha256": "71168122db6b170b5543d3bf9f0b0d71bbc58cfbb52dbe02a289d25b0753fee2",
+    "definition": "47x61 RGB8; channels=(13x+7y)%251,(3x+17y+19)%251,(11x+5y+43)%251"
+  },
+  "prechange_output_sha256": {
+    "velvia_50": "2198b077eea5d29026694529e208d7db9428a36f97cb7af8fe330ce732e87fa7",
+    "portra_400": "b2b9d118087648f626a0fa2d03bbaf78714ba053347e617bdb2b9505c4cf9453",
+    "ektar_100": "e8e3195dc3ab222567ca03d432eac6e03f48a84fa1a7e6c07a885f3b35999981",
+    "legacy_velvia_50": "2198b077eea5d29026694529e208d7db9428a36f97cb7af8fe330ce732e87fa7"
+  },
+  "gates": {
+    "reject_same_path_before_decode": true,
+    "reject_existing_entry_before_decode": true,
+    "reject_hardlink_symlink_reparse_alias_before_decode": true,
+    "late_foreign_destination_preserved": true,
+    "concurrent_exactly_one_success": true,
+    "injected_failure_residue_zero": true,
+    "three_product_outputs_byte_exact": true,
+    "source_immutable": true,
+    "legacy_replace_behavior_exact": true,
+    "fresh_process_reports_byte_exact": true,
+    "owned_runtime_residue_zero": true
+  },
+  "non_goals": [
+    "multi-file recipe-metrics-layers transaction",
+    "legacy publication semantic change",
+    "colour algorithm or parameter change",
+    "stock calibration or stock-response claim",
+    "public release, installer or format expansion"
+  ],
+  "claim_ceiling": "Private create-only primary-image publication for existing deterministic film-inspired Look Approximations only."
+}
