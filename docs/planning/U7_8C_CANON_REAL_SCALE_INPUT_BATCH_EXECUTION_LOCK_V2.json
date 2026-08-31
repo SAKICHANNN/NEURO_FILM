@@ -1,0 +1,43 @@
+{
+  "schema_version": "neuro-film.u7-8c-canon-real-scale-input-batch-execution-lock.v2",
+  "node_id": "U7.8C",
+  "status": "V2_LOCKED_AFTER_PRE_REPORT_CONTROLLER_CORRECTIONS",
+  "implementation_commit": "c4b93b6a57fb83924e53809bd006894791490b74",
+  "prior_lock": {
+    "path": "docs/planning/U7_8C_CANON_REAL_SCALE_INPUT_BATCH_EXECUTION_LOCK.json",
+    "sha256": "1bf4e96214f8b46244a45d3c0d792564751dc7e333a842dfd72c6a71e63460a1"
+  },
+  "git_blobs": {
+    "configs/u7_8c_canon_real_scale_input_batch_v1.json": "25ee8c285980a625d2efb3d7446d7c59dbc51c5c",
+    "docs/planning/U7_8C_CANON_REAL_SCALE_INPUT_BATCH_CONTRACT.md": "b1a56d5244cbd5871cf1c3b5f6be48f3d3d61246",
+    "scripts/audit_u7_8c_canon_real_scale_input_batch.py": "438f948bd9817c433c6e0ce9b5f876233ea9d05d",
+    "src/inference/three_stock_batch.py": "10f29531cca92b07c0d77cc8d7282d4331654f1e",
+    "src/inference/three_stock_input_batch.py": "51b3d99532d54de391a74e9ecdc9e4b3b8d1f658",
+    "tests/test_u7_8c_canon_real_scale_input_batch.py": "573eb85f2caed044345f8050d826c7f33d39e1a3"
+  },
+  "excluded_pre_report_attempts": [
+    {
+      "order": "forward",
+      "report_written": false,
+      "scientific_result_observed": false,
+      "scratch_root_absent_after_interrupt": true,
+      "reason": "The worker completed and removed its scratch root, but the V1 controller polled for process exit without draining a JSON stdout pipe larger than the Windows pipe buffer. The child blocked on stdout. The implementation correction redirects stdout/stderr to owned files while preserving controller-plus-descendant RSS monitoring; source, renderer, controls, metrics and gates are unchanged."
+    },
+    {
+      "order": "forward",
+      "report_written": false,
+      "scientific_result_observed": false,
+      "scratch_root_absent_after_owned_cleanup": true,
+      "reason": "A restarted controller was interrupted before report generation when independent review required the corrected implementation to consume an additive V2 lock rather than replace the V1 lock path. The runner now names this V2 lock explicitly; source, renderer, controls, metrics and gates are unchanged."
+    }
+  ],
+  "formal_reports": {
+    "forward": "outputs/eval/u7_8c_canon_real_scale_input_batch_v1/formal_forward.json",
+    "reverse": "outputs/eval/u7_8c_canon_real_scale_input_batch_v1/formal_reverse.json"
+  },
+  "resource_gates": {
+    "maximum_controller_wall_seconds": 1200.0,
+    "maximum_process_tree_rss_bytes": 4294967296
+  },
+  "stop_rule": "Run the exact committed V2 implementation once in each frozen source order. A gate failure closes this exact family without source, renderer, threshold, resolution, compression, control or instrumentation rescue."
+}
