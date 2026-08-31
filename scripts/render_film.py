@@ -7,6 +7,7 @@ import argparse
 import json
 import subprocess
 import sys
+from collections.abc import Callable
 from contextlib import nullcontext
 from pathlib import Path
 
@@ -59,7 +60,7 @@ from src.inference.analytic_y_chromaticity_profile_v4 import (
 )
 from src.inference.product_render_transaction import (
     preflight_product_primary_output,
-    prepare_product_image_recipe_transaction,
+    prepare_product_render_bundle_transaction,
 )
 from src.preprocess import (
     load_working_image,
@@ -322,6 +323,130 @@ def layer_on_white(layer) -> np.ndarray:
     return np.clip(1.0 * (1.0 - alpha) + layer.rgb * alpha, 0.0, 1.0)
 
 
+def _write_layer_outputs(
+    layers: list,
+    layer_dir: Path,
+    *,
+    create_only: bool,
+    on_written: Callable[[Path], None] | None = None,
+) -> None:
+    def save(view: np.ndarray, path: Path) -> None:
+        save_rgb(view, path, create_only=create_only)
+        if on_written is not None:
+            on_written(path)
+
+    for layer in layers:
+        if layer.mode == "residual":
+            view = np.clip(0.5 + layer.residual * 8.0, 0.0, 1.0)
+        else:
+            view = layer_on_black(layer)
+        save(
+            view,
+            layer_dir / f"{layer.name}.png",
+        )
+        if (
+            layer.name in {"halation", "physical_halation", "density_halation"}
+            and layer.mode == "screen"
+        ):
+            save(
+                layer_on_black(layer),
+                layer_dir / f"{layer.name}_on_black.png",
+            )
+            save(
+                layer_on_white(layer),
+                layer_dir / f"{layer.name}_on_white.png",
+            )
+
+
+def _build_metrics_payload(
+    *,
+    args: argparse.Namespace,
+    out: np.ndarray,
+    output_format: str,
+    output_claim: dict,
+    working,
+    layers: list,
+    analytic_runtime,
+    color_diagnostics,
+    halation_control_mode: str,
+    halation_preset_id: str | None,
+    halation_metadata,
+    halation_resolved,
+    recipe_path: Path | None,
+    recipe: dict | None,
+    recipe_sha256: str | None,
+) -> dict:
+    quantization_max = 65535 if args.output_bit_depth == 16 else 255
+    arr = np.rint(out * quantization_max).astype(
+        np.uint16 if args.output_bit_depth == 16 else np.uint8
+    )
+    metrics = {
+        "input": str(args.input),
+        "output": str(args.output),
+        "style": args.style,
+        "color_engine": args.color_engine,
+        "preset": args.preset,
+        "profile_driven_adapter": args.use_render_profile,
+        "tile_size": args.tile_size,
+        "analytic_research_profile": (
+            None
+            if analytic_runtime is None
+            else {
+                "profile_id": analytic_runtime.profile["profile_id"],
+                "profile_version": analytic_runtime.profile["profile_version"],
+                "profile_sha256": analytic_runtime.profile_sha256,
+                "product_default": False,
+                "selector_facts": color_diagnostics,
+            }
+        ),
+        "output_claim": output_claim,
+        "input_decode": {
+            "working_space": working.working_space,
+            "transfer_state": working.transfer_state,
+            "source_transfer_state": working.source_transfer_state,
+            "source_profile_kind": working.source_profile.kind,
+            "source_profile_description": working.source_profile.description,
+            "bit_depth_in": working.bit_depth_in,
+            "orientation_applied": working.orientation_applied,
+            "alpha_policy": working.alpha_policy,
+            "warnings": [warning.__dict__ for warning in working.warnings],
+            "legacy_8bit_adapter": False,
+            "internal_color_precision": "float32",
+        },
+        "output_encode": {
+            "format": output_format,
+            "bit_depth": args.output_bit_depth,
+            "transfer": "sRGB",
+            "icc_profile": "embedded standard sRGB",
+            "icc_profile_sha256": srgb_icc_profile_sha256(),
+            "icc_profile_fingerprint_sha256": srgb_icc_profile_fingerprint_sha256(),
+            "png_compression": (
+                args.png_compression
+                if args.png_compression is not None
+                else 6
+                if output_format == "PNG" and args.output_bit_depth == 16
+                else None
+            ),
+        },
+        "bounds": [int(arr.min()), int(arr.max())],
+        "layers": [layer_metrics(layer) for layer in layers],
+        "halation_control_mode": halation_control_mode if halation_resolved else None,
+        "halation_preset": halation_preset_id,
+        "halation_metadata": halation_metadata,
+        "halation_resolved": halation_resolved,
+    }
+    if args.look_amount != 1.0:
+        metrics["look_amount"] = args.look_amount
+    if recipe_path is not None:
+        assert recipe is not None and recipe_sha256 is not None
+        metrics["render_recipe"] = {
+            "schema_id": recipe["schema_id"],
+            "path": str(recipe_path),
+            "sha256": recipe_sha256,
+        }
+    return metrics
+
+
 def build_color_render(image: Image.Image, args: argparse.Namespace) -> Image.Image:
     stats = json.loads(args.stats.read_text(encoding="utf-8"))
     profile = load_profile_values(args.profile_config, args.preset, args.style)
@@ -521,12 +646,18 @@ def main() -> int:
                     f"Recipe profile does not exactly migrate style {args.style!r}"
                 )
     recipe_path = args.output.with_suffix(".recipe.json") if args.write_recipe else None
-    product_pair_transaction = None
+    product_bundle_transaction = None
     if product_primary_create_only:
-        if args.write_recipe:
-            product_pair_transaction = prepare_product_image_recipe_transaction(
+        effective_layers = args.write_layers and (
+            args.grain > 0 or args.halation > 0 or args.dust > 0
+        )
+        if args.write_recipe or effective_layers or args.write_metrics:
+            product_bundle_transaction = prepare_product_render_bundle_transaction(
                 args.input,
                 args.output,
+                include_recipe=args.write_recipe,
+                include_layers=effective_layers,
+                include_metrics=args.write_metrics,
             )
         else:
             preflight_product_primary_output(args.input, args.output)
@@ -720,14 +851,14 @@ def main() -> int:
         )
     )
     transaction_context = (
-        product_pair_transaction
-        if product_pair_transaction is not None
+        product_bundle_transaction
+        if product_bundle_transaction is not None
         else nullcontext(None)
     )
     with transaction_context:
         encoded_output_path = (
-            product_pair_transaction.image_stage
-            if product_pair_transaction is not None
+            product_bundle_transaction.image_stage
+            if product_bundle_transaction is not None
             else args.output
         )
         output_format = save_rgb(
@@ -737,8 +868,9 @@ def main() -> int:
             png_compression=args.png_compression,
             create_only=product_primary_create_only,
         )
-        if product_pair_transaction is not None:
-            product_pair_transaction.bind_image_stage()
+        if product_bundle_transaction is not None:
+            product_bundle_transaction.bind_image_stage()
+        recipe = None
         recipe_sha256 = None
         if args.write_recipe:
             input_metadata = {
@@ -825,105 +957,60 @@ def main() -> int:
                     software_commit=commit,
                 )
             assert recipe_path is not None
-            if product_pair_transaction is not None:
+            if product_bundle_transaction is not None:
                 recipe["output"]["path"] = str(args.output.resolve())
                 validate_render_recipe(recipe)
-                recipe_sha256 = product_pair_transaction.stage_recipe(recipe)
-                product_pair_transaction.publish()
+                recipe_sha256 = product_bundle_transaction.stage_recipe(recipe)
             else:
                 recipe_sha256 = atomic_write_json(recipe_path, recipe)
 
-    if args.write_layers:
-        layer_dir = args.output.parent / f"{args.output.stem}_layers"
-        for layer in layers:
-            if layer.mode == "residual":
-                view = np.clip(0.5 + layer.residual * 8.0, 0.0, 1.0)
-            else:
-                view = layer_on_black(layer)
-            save_rgb(view, layer_dir / f"{layer.name}.png")
-            if (
-                layer.name in {"halation", "physical_halation", "density_halation"}
-                and layer.mode == "screen"
-            ):
-                save_rgb(
-                    layer_on_black(layer), layer_dir / f"{layer.name}_on_black.png"
-                )
-                save_rgb(
-                    layer_on_white(layer), layer_dir / f"{layer.name}_on_white.png"
-                )
-    if args.write_metrics:
-        quantization_max = 65535 if args.output_bit_depth == 16 else 255
-        arr = np.rint(out * quantization_max).astype(
-            np.uint16 if args.output_bit_depth == 16 else np.uint8
-        )
-        metrics = {
-            "input": str(args.input),
-            "output": str(args.output),
-            "style": args.style,
-            "color_engine": args.color_engine,
-            "preset": args.preset,
-            "profile_driven_adapter": args.use_render_profile,
-            "tile_size": args.tile_size,
-            "analytic_research_profile": (
-                None
-                if analytic_runtime is None
-                else {
-                    "profile_id": analytic_runtime.profile["profile_id"],
-                    "profile_version": analytic_runtime.profile["profile_version"],
-                    "profile_sha256": analytic_runtime.profile_sha256,
-                    "product_default": False,
-                    "selector_facts": color_diagnostics,
-                }
-            ),
-            "output_claim": output_claim,
-            "input_decode": {
-                "working_space": working.working_space,
-                "transfer_state": working.transfer_state,
-                "source_transfer_state": working.source_transfer_state,
-                "source_profile_kind": working.source_profile.kind,
-                "source_profile_description": working.source_profile.description,
-                "bit_depth_in": working.bit_depth_in,
-                "orientation_applied": working.orientation_applied,
-                "alpha_policy": working.alpha_policy,
-                "warnings": [warning.__dict__ for warning in working.warnings],
-                "legacy_8bit_adapter": False,
-                "internal_color_precision": "float32",
-            },
-            "output_encode": {
-                "format": output_format,
-                "bit_depth": args.output_bit_depth,
-                "transfer": "sRGB",
-                "icc_profile": "embedded standard sRGB",
-                "icc_profile_sha256": srgb_icc_profile_sha256(),
-                "icc_profile_fingerprint_sha256": srgb_icc_profile_fingerprint_sha256(),
-                "png_compression": (
-                    args.png_compression
-                    if args.png_compression is not None
-                    else 6
-                    if output_format == "PNG" and args.output_bit_depth == 16
+        if args.write_layers and layers:
+            layer_dir = (
+                product_bundle_transaction.layer_stage
+                if product_bundle_transaction is not None
+                else args.output.parent / f"{args.output.stem}_layers"
+            )
+            assert layer_dir is not None
+            if product_bundle_transaction is not None:
+                product_bundle_transaction.prepare_layer_stage()
+            _write_layer_outputs(
+                layers,
+                layer_dir,
+                create_only=product_bundle_transaction is not None,
+                on_written=(
+                    product_bundle_transaction.bind_layer_file
+                    if product_bundle_transaction is not None
                     else None
                 ),
-            },
-            "bounds": [int(arr.min()), int(arr.max())],
-            "layers": [layer_metrics(layer) for layer in layers],
-            "halation_control_mode": args.halation_control_mode
-            if halation_resolved
-            else None,
-            "halation_preset": halation_preset_id,
-            "halation_metadata": halation_metadata,
-            "halation_resolved": halation_resolved,
-        }
-        if args.look_amount != 1.0:
-            metrics["look_amount"] = args.look_amount
-        if recipe_path is not None:
-            metrics["render_recipe"] = {
-                "schema_id": recipe["schema_id"],
-                "path": str(recipe_path),
-                "sha256": recipe_sha256,
-            }
-        args.output.with_suffix(".metrics.json").write_text(
-            json.dumps(metrics, indent=2), encoding="utf-8"
-        )
+            )
+            if product_bundle_transaction is not None:
+                product_bundle_transaction.bind_layer_stage()
+        if args.write_metrics:
+            metrics = _build_metrics_payload(
+                args=args,
+                out=out,
+                output_format=output_format,
+                output_claim=output_claim,
+                working=working,
+                layers=layers,
+                analytic_runtime=analytic_runtime,
+                color_diagnostics=color_diagnostics,
+                halation_control_mode=args.halation_control_mode,
+                halation_preset_id=halation_preset_id,
+                halation_metadata=halation_metadata,
+                halation_resolved=halation_resolved,
+                recipe_path=recipe_path,
+                recipe=recipe,
+                recipe_sha256=recipe_sha256,
+            )
+            if product_bundle_transaction is not None:
+                product_bundle_transaction.stage_metrics(metrics)
+            else:
+                args.output.with_suffix(".metrics.json").write_text(
+                    json.dumps(metrics, indent=2), encoding="utf-8"
+                )
+        if product_bundle_transaction is not None:
+            product_bundle_transaction.publish()
     print(args.output)
     return 0
 
