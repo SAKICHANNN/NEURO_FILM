@@ -10,6 +10,7 @@ from collections.abc import Callable
 from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlsplit
 
 
 class HershensonAllenSourceError(ValueError):
@@ -157,6 +158,7 @@ def run_hershenson_allen_source_audit(
         return all(_normalized(phrase) in text for phrase in phrases)
 
     prospectus_links = parsed["prospectus"][1]
+    prospectus_path = urlsplit(source["prospectus_pdf_url"]).path
     operation_counts = dict(config["operation_limits"])
     audit_gates = {
         "official_response_identities_exact": all(response_identity_gates.values()),
@@ -169,11 +171,14 @@ def run_hershenson_allen_source_audit(
         "explore_inventory_statement_exact": phrases_present(
             "explore", source["required_explore_phrases"]
         ),
-        "prospectus_link_exact_without_pdf_read": source["prospectus_pdf_url"]
-        in prospectus_links
+        "prospectus_link_exact_without_pdf_read": (
+            source["prospectus_pdf_url"] in prospectus_links
+            or prospectus_path in prospectus_links
+        )
         and int(operation_counts["prospectus_pdf_requests"]) == 0,
         "robots_reference_only_and_no_ai_training_exact": all(
-            phrase in robots_text for phrase in source["required_robots_phrases"]
+            _normalized(phrase) in _normalized(robots_text)
+            for phrase in source["required_robots_phrases"]
         ),
         "zero_database_media_pixel_and_model_reads": all(
             int(operation_counts[key]) == 0

@@ -21,8 +21,8 @@ def _fixture(
         "home": b"<html><body>count fixed workflow Velvia rights</body></html>",
         "collection": b"<html><body>collection history</body></html>",
         "explore": b"<html><body>inventory statement</body></html>",
-        "prospectus": b'<html><body><a href="https://example.test/p.pdf">PDF</a></body></html>',
-        "robots": b"Content-Signal: search=yes,ai-train=no,use=reference\nrights",
+        "prospectus": b'<html><body><a href="/p.pdf">PDF</a></body></html>',
+        "robots": b"Content-Signal: search=yes,ai-train=no,use=reference\nright\ns",
     }
     urls = {role: f"https://example.test/{role}" for role in pages}
     keys = [
@@ -64,7 +64,7 @@ def _fixture(
             "required_explore_phrases": ["inventory statement"],
             "required_robots_phrases": [
                 "Content-Signal: search=yes,ai-train=no,use=reference",
-                "rights",
+                "right s",
             ],
             "archive_image_count": 10,
             "unique_film_count": 8,
