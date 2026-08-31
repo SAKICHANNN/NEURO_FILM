@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import shutil
 import subprocess
 import uuid
@@ -37,7 +38,30 @@ class ThreeStockBatchError(ValueError):
     """Raised when a three-stock file batch cannot be completed."""
 
 
-def _integer(value: object, label: str, minimum: int, maximum: int | None = None) -> int:
+_COMMIT = re.compile(r"^[0-9a-f]{40}$")
+
+
+def _resolve_software_commit(root: Path, supplied: object | None) -> str:
+    if supplied is None:
+        try:
+            supplied = subprocess.check_output(
+                ["git", "rev-parse", "HEAD"],
+                cwd=root,
+                text=True,
+                encoding="utf-8",
+            ).strip()
+        except (OSError, subprocess.CalledProcessError) as exc:
+            raise ThreeStockBatchError("software commit is unavailable") from exc
+    if not isinstance(supplied, str) or _COMMIT.fullmatch(supplied) is None:
+        raise ThreeStockBatchError(
+            "software_commit must be a lowercase full 40-hex Git commit"
+        )
+    return supplied
+
+
+def _integer(
+    value: object, label: str, minimum: int, maximum: int | None = None
+) -> int:
     if isinstance(value, bool) or not isinstance(value, int) or value < minimum:
         raise ThreeStockBatchError(f"{label} must be an integer >= {minimum}")
     if maximum is not None and value > maximum:
@@ -58,6 +82,7 @@ def render_three_stock_batch_to_directory(
     tile_size: int = 512,
     tile_workers: int = 1,
     png_compression: int = 0,
+    software_commit: str | None = None,
 ) -> dict[str, Any]:
     """Render all three PNG16 outputs and recipes, then publish one directory."""
 
@@ -73,6 +98,7 @@ def render_three_stock_batch_to_directory(
         raise ThreeStockBatchError("input_path must be an existing file")
     if output_directory.exists():
         raise ThreeStockBatchError("output_directory must not already exist")
+    commit = _resolve_software_commit(root, software_commit)
 
     profile = load_render_profile(profile_path, root=root)
     statistics_payload = json.loads(statistics_path.read_text(encoding="utf-8"))
@@ -98,10 +124,6 @@ def render_three_stock_batch_to_directory(
     # full-resolution pixel array would otherwise overlap the shared Lab
     # context and every stock output.
     del working
-    commit = subprocess.check_output(
-        ["git", "rev-parse", "HEAD"], cwd=root, text=True, encoding="utf-8"
-    ).strip()
-
     output_directory.parent.mkdir(parents=True, exist_ok=True)
     stage = output_directory.with_name(
         f".{output_directory.name}.{os.getpid()}.{uuid.uuid4().hex}.stage"

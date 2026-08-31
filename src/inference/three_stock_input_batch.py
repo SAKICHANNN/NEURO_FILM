@@ -7,6 +7,7 @@ import json
 import os
 import re
 import shutil
+import subprocess
 import uuid
 from pathlib import Path, PurePosixPath
 from typing import Any
@@ -22,10 +23,23 @@ _JOB_ID = re.compile(r"^[a-z0-9][a-z0-9._-]{0,63}$")
 _MANIFEST_KEYS = {"jobs", "schema_version"}
 _JOB_KEYS = {"input_path", "input_sha256", "job_id"}
 _EXPECTED_STYLES = ("velvia_50", "portra_400", "ektar_100")
+_COMMIT = re.compile(r"^[0-9a-f]{40}$")
 
 
 class ThreeStockInputBatchError(ValueError):
     """Raised when a multi-input look transaction cannot be completed."""
+
+
+def _software_commit(root: Path) -> str:
+    try:
+        value = subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], cwd=root, text=True, encoding="utf-8"
+        ).strip()
+    except (OSError, subprocess.CalledProcessError) as exc:
+        raise ThreeStockInputBatchError("software commit is unavailable") from exc
+    if _COMMIT.fullmatch(value) is None:
+        raise ThreeStockInputBatchError("software commit is invalid")
+    return value
 
 
 def _canonical_bytes(value: object) -> bytes:
@@ -214,6 +228,7 @@ def render_three_stock_input_batch_to_directory(
     profile_sha256 = sha256_file(profile_path)
     statistics_sha256 = sha256_file(statistics_path)
     guardrails_sha256 = sha256_file(guardrails_path)
+    software_commit = _software_commit(root)
 
     stage = output_directory.with_name(
         f".{output_directory.name}.{os.getpid()}.{uuid.uuid4().hex}.stage"
@@ -237,6 +252,7 @@ def render_three_stock_input_batch_to_directory(
                 tile_size=tile_size,
                 tile_workers=tile_workers,
                 png_compression=png_compression,
+                software_commit=software_commit,
             )
             if child_manifest.get("input_sha256") != job["input_sha256"]:
                 raise ThreeStockInputBatchError(
@@ -289,6 +305,10 @@ def render_three_stock_input_batch_to_directory(
             or sha256_file(guardrails_path) != guardrails_sha256
         ):
             raise ThreeStockInputBatchError("render configuration drifted")
+        if _software_commit(root) != software_commit:
+            raise ThreeStockInputBatchError(
+                "software commit drifted before publication"
+            )
         if output_directory.exists() or output_directory.is_symlink():
             raise ThreeStockInputBatchError(
                 "output_directory appeared during publication"

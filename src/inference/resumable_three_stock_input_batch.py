@@ -850,6 +850,7 @@ def render_resumable_three_stock_input_batch_to_directory(
                     tile_size=tile_size,
                     tile_workers=tile_workers,
                     png_compression=png_compression,
+                    software_commit=state["software_commit"],
                 )
                 if child_manifest.get("input_sha256") != job["input_sha256"]:
                     raise ResumableThreeStockBatchError(
