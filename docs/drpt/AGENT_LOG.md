@@ -21099,3 +21099,42 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   reads are zero. Twenty focused/adjacent tests pass with Ruff/format/compile/
   JSON/diff clean. Retain the 5/5 connectivity correction, but do not acquire
   this source, rescue SF1.3B/R1HI, fit, open candidate 3 or map a product.
+
+### 2026-09-01 - U7.2L makes the product primary image create-only
+
+- **Node and routing:** `ULT > U7.2 > U7.2L`, DRPT L2 / Mode C.
+  `codex-super-general-harness` was the sole writing workflow;
+  `dev-research-reliability`, plan/tracker, DRPT-BI, project-log and structure
+  stewardship constrained scope and reviewed evidence. The calibrated
+  stock-response/source-search branch remains paused; this leaf changes only
+  deterministic `film-inspired / Look Approximation` product publication.
+- **Trigger and invariant:** `scripts/render_film.py` routed the exact
+  `safe-rich-product-v1` primary image through the legacy encoder's fixed
+  sibling `.tmp` and final `os.replace`. An output equal to the input or any
+  existing target could therefore be replaced, and concurrent renders shared
+  one stage name. The repaired invariant is predecode rejection of a same-path
+  or existing destination entry plus unique sibling staging and same-volume
+  create-only publication. Optional recipe/metrics/layer sidecars explicitly
+  remain outside the primary-image transaction.
+- **Commits and implementation:** contract/config `04a1ee41`; guarded encoder,
+  private preflight helper and regression tests `efdca7e7`; formal runner/test
+  `93f8adc2`; evidence/binding test `184cfd68`. Only the exact product profile
+  opts in. Legacy profiles retain their historical fixed-stage/replace
+  semantics and frozen output bytes.
+- **Formal result:** two fresh committed-head runs, forward and reverse, emit
+  byte-identical 2,149-byte reports at SHA
+  `9d931485bb648756d4a990738d66fdec84f4fdebc1e92613d9449b82f5ffc23a`.
+  All 15 gates pass: same path, existing regular file, hard link, semantic
+  symlink entry and real Windows junction/reparse entry reject before decode;
+  late foreign content is preserved; concurrent publication has one exact
+  winner; injected encoder failure and every success leave zero owned stages.
+  Source bytes remain unchanged and all three frozen output hashes are exact.
+- **Propagation and compatibility:** focused transaction/primitive checks were
+  23 pass with two file-symlink cases skipped only because this Windows account
+  lacks symlink privilege; the real junction control passed. Seventy-six
+  output/ingress/U7.2F/H/I/J/K compatibility checks passed. The wider U7.2
+  run found 145 pass and one historical U7.2K live-SHA false failure; scoped
+  commit `2e250d1c` switched that test to the existing immutable Git-blob
+  binding helper without changing old evidence, after which K/L evidence and
+  audit checks pass. No colour math, Look availability, calibration,
+  stock-response, installer, release or adjacent wrapper claim changes.
