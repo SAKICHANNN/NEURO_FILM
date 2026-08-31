@@ -1,0 +1,125 @@
+{
+  "schema_version": "neuro-film.u7-8c-canon-real-scale-input-batch-evidence.v1",
+  "node_id": "U7.8C",
+  "decision": "FAIL_CLOSED_U7_8C_FORWARD_REVERSE_RECIPE_IDENTITY_DRIFT",
+  "claim_ceiling": "Private Windows/Python real-scale transaction and resource evidence for six exact CC0 Canon sRAW/mRAW files and three existing deterministic film-inspired Look Approximations only; the frozen replay-exact transaction claim failed and no mixed-format/general RAW/Canon, vendor-exact colour, calibrated stock response, image-quality, product-value, package, release, candidate-three or device claim opens.",
+  "bindings": {
+    "implementation_commit": "c4b93b6a57fb83924e53809bd006894791490b74",
+    "config": {
+      "path": "configs/u7_8c_canon_real_scale_input_batch_v1.json",
+      "git_blob": "25ee8c285980a625d2efb3d7446d7c59dbc51c5c",
+      "sha256": "1ef0bea30fd931d58a5f42dbd5318c176f1b811c78e4f717ae43453ba49b234b"
+    },
+    "contract": {
+      "path": "docs/planning/U7_8C_CANON_REAL_SCALE_INPUT_BATCH_CONTRACT.md",
+      "git_blob": "b1a56d5244cbd5871cf1c3b5f6be48f3d3d61246",
+      "sha256": "e49144b2ed2fa805befc7d05d16e7a9221202fcdd712fd9e56627b22113e1a0e"
+    },
+    "execution_lock_v2": {
+      "path": "docs/planning/U7_8C_CANON_REAL_SCALE_INPUT_BATCH_EXECUTION_LOCK_V2.json",
+      "git_blob": "cac9d1f2369693c0085622b0a5dcdf43917f95c3",
+      "sha256": "52503f28816c10f413f21daa2fe4a8b89e02bba22a1c05c39edaf2e14593043c"
+    },
+    "runner": {
+      "path": "scripts/audit_u7_8c_canon_real_scale_input_batch.py",
+      "git_blob": "438f948bd9817c433c6e0ce9b5f876233ea9d05d",
+      "sha256": "b5496020348898ce3083a26c212204f7a2633726026c2b9359a7c1dea4d5ae86"
+    },
+    "u7_8a_transaction_core": {
+      "path": "src/inference/three_stock_input_batch.py",
+      "git_blob": "51b3d99532d54de391a74e9ecdc9e4b3b8d1f658"
+    },
+    "three_look_child_core": {
+      "path": "src/inference/three_stock_batch.py",
+      "git_blob": "10f29531cca92b07c0d77cc8d7282d4331654f1e"
+    }
+  },
+  "formal_reports": {
+    "forward": {
+      "path": "outputs/eval/u7_8c_canon_real_scale_input_batch_v1/formal_forward.json",
+      "bytes": 11939,
+      "sha256": "d53bd6fcbdbc144f01467e90b4e3df7b4b5d3d4df329dd25fc4d5f6f5c0d232e",
+      "single_controller_decision": "PASS_PRIVATE_U7_8C_CANON_REAL_SCALE_INPUT_BATCH",
+      "scientific_identity": "54be9f375bff8e53cdd78e629719edcb0825c5a3f39cf5a8b6817e5d4425b8f3",
+      "controller_wall_seconds": 567.5078532000043,
+      "process_tree_peak_rss_bytes": 1111150592
+    },
+    "reverse": {
+      "path": "outputs/eval/u7_8c_canon_real_scale_input_batch_v1/formal_reverse.json",
+      "bytes": 11938,
+      "sha256": "93ab0e629e42b77303e91862fb8e55e3cf94ffc184a0e796062e2c1cbca3a7c0",
+      "single_controller_decision": "PASS_PRIVATE_U7_8C_CANON_REAL_SCALE_INPUT_BATCH",
+      "scientific_identity": "dc8e1e236c4933e4d1b2b6cb0d954bcc399ad80aed278f43c48d5e9cbcadefcb",
+      "controller_wall_seconds": 612.4908186999965,
+      "process_tree_peak_rss_bytes": 1111965696
+    }
+  },
+  "cross_run_gates": {
+    "source_identity_exact": true,
+    "source_set_identity_exact": true,
+    "config_identity_exact": true,
+    "execution_lock_identity_exact": true,
+    "decode_counts_exact": true,
+    "failure_controls_exact": true,
+    "stable_gate_results_exact": true,
+    "rgb16_output_identities_exact_18_of_18": true,
+    "recipe_identities_exact_18_of_18": false,
+    "child_manifest_identities_exact_6_of_6": false,
+    "receipt_identity_exact": false,
+    "batch_identity_exact": false,
+    "scientific_identity_exact": false,
+    "forward_reverse_transaction_identities_exact": false
+  },
+  "cross_run_counts": {
+    "sources": 6,
+    "outputs": 18,
+    "matching_output_sha256": 18,
+    "matching_recipe_sha256": 0,
+    "matching_child_manifest_sha256": 0
+  },
+  "resource_result": {
+    "maximum_observed_controller_wall_seconds": 612.4908186999965,
+    "frozen_maximum_controller_wall_seconds": 1200.0,
+    "maximum_observed_process_tree_peak_rss_bytes": 1111965696,
+    "frozen_maximum_process_tree_peak_rss_bytes": 4294967296,
+    "both_runs_pass_resource_gates": true
+  },
+  "successful_mechanics": {
+    "one_decode_per_source_per_successful_run": true,
+    "six_children_eighteen_rgb16_outputs_and_recipes_per_run": true,
+    "injected_second_child_published_nothing": true,
+    "complete_batch_late_foreign_destination_preserved": true,
+    "source_files_immutable": true,
+    "network_requests": 0,
+    "owned_scratch_residue_count": 0
+  },
+  "diagnosis": {
+    "classification": "shared_repository_HEAD_drift_during_long_formal_runs",
+    "facts": [
+      "All eighteen encoded RGB16 PNG hashes are identical across order, while every recipe and child-manifest hash differs.",
+      "The unchanged child renderer obtains software.commit from a live git rev-parse HEAD for each child recipe rather than from the U7.8C execution lock.",
+      "Unrelated U7.8B commits advanced the shared repository HEAD during both accepted controller windows."
+    ],
+    "interpretation": "The failure is transaction provenance instability under concurrent repository progress, not RGB pixel nondeterminism.",
+    "third_run_or_hash_normalization_used": false
+  },
+  "stop_rule": {
+    "exact_family_closed": true,
+    "sources_or_order_changed": false,
+    "thresholds_or_renderer_changed": false,
+    "rerun_to_obtain_favourable_identity": false,
+    "promotion_opened": false
+  },
+  "pre_report_attempts_excluded": [
+    {
+      "reason": "The worker completed but the first controller used pipe-backed stdout and could not drain the large worker report on Windows; no report or scientific result was published.",
+      "result_or_gate_change": false,
+      "scratch_residue_count": 0
+    },
+    {
+      "reason": "A restarted controller was stopped before report publication so the additive V2 execution lock could preserve the pipe correction and prior attempt history.",
+      "result_or_gate_change": false,
+      "scratch_residue_count": 0
+    }
+  ]
+}
