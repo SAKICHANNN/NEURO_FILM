@@ -1,0 +1,94 @@
+{
+  "admission_gates": {
+    "explicit_image_data_fitting_license_count": false,
+    "independent_same_object_reference_pair_count": false,
+    "prospective_development_group_count": false,
+    "public_item_level_velvia_identity_count": false,
+    "public_machine_readable_manifest_count": false,
+    "public_payload_checksum_count": false,
+    "public_scanner_process_group_count": false,
+    "sealed_confirmation_group_count": false
+  },
+  "admission_minimums": {
+    "explicit_image_data_fitting_license_count": 1,
+    "independent_same_object_reference_pair_count": 1,
+    "prospective_development_group_count": 1,
+    "public_item_level_velvia_identity_count": 1,
+    "public_machine_readable_manifest_count": 1,
+    "public_payload_checksum_count": 1,
+    "public_scanner_process_group_count": 1,
+    "sealed_confirmation_group_count": 1
+  },
+  "audit_gates": {
+    "archive_counts_and_physical_workflow_exact": true,
+    "collection_history_exact": true,
+    "explore_inventory_statement_exact": true,
+    "official_response_identities_exact": true,
+    "prospectus_link_exact_without_pdf_read": true,
+    "robots_reference_only_and_no_ai_training_exact": true,
+    "zero_database_media_pixel_and_model_reads": true
+  },
+  "claim_ceiling": "Official archive-scale and fixed physical-capture description with Velvia 50 as an archive-level film example only; no item-level stock identity, public manifest/checksum, media or database read, image/data fitting licence, neutral digital reference, scanner/process group, prospective role, stock response, calibration, candidate-three admission or product claim.",
+  "data_evidence": {
+    "explicit_image_data_fitting_license_count": 0,
+    "independent_same_object_reference_pair_count": 0,
+    "prospective_development_group_count": 0,
+    "public_item_level_velvia_identity_count": 0,
+    "public_machine_readable_manifest_count": 0,
+    "public_payload_checksum_count": 0,
+    "public_scanner_process_group_count": 0,
+    "sealed_confirmation_group_count": 0
+  },
+  "decision": "FAIL_CLOSED_HERSHENSON_ALLEN_ITEM_STOCK_RIGHTS_MANIFEST_AND_ROLE_GAP",
+  "experiment_id": "SF3.A3Z_HERSHENSON_ALLEN_VELVIA_ARCHIVE_SOURCE_V1",
+  "official_statuses": {
+    "collection": 200,
+    "explore": 200,
+    "home": 200,
+    "prospectus": 200,
+    "robots": 200
+  },
+  "operation_counts": {
+    "database_queries": 0,
+    "fit_calls": 0,
+    "media_body_requests": 0,
+    "official_text_get_requests": 5,
+    "pixel_decodes": 0,
+    "poster_image_requests": 0,
+    "prospectus_pdf_requests": 0,
+    "render_calls": 0,
+    "score_calls": 0,
+    "thumbnail_requests": 0,
+    "transparency_requests": 0
+  },
+  "response_identity_gates": {
+    "collection": true,
+    "explore": true,
+    "home": true,
+    "prospectus": true,
+    "robots": true
+  },
+  "schema": "neuro-film.sf3-a3z-hershenson-allen-velvia-archive-source-result.v1",
+  "source": {
+    "archive_image_count": 41987,
+    "canonical_response_sha256": {
+      "collection": "5dde3010697194f1b56f50ef15ecde892b4fc6c021a3933a23e761b6945d5696",
+      "explore": "766afadb1a589de99610dcc33b70050cab275e2d43d12b3200785bdff3465cb1",
+      "home": "5afff4da3484340fe0669cc8cc6406be598ea172e18581370981522d2700d839",
+      "prospectus": "7c40b94e7903139f0af6f144bbd31dae5804a4e6d1cadfa867757cdb04fc983d",
+      "robots": "9c1ef388b73be61752daf8f6be3d82cbad5a701f881a9212f4abeffcc8d6cc0f"
+    },
+    "prospectus_pdf_url": "https://haarchive.com/wp-content/uploads/2022/05/Prospectus-Hershenson-Allen-Archive.pdf",
+    "stock_example": "velvia_50",
+    "unique_film_count": 25809,
+    "urls": {
+      "collection": "https://haarchive.com/about-the-collection/",
+      "explore": "https://haarchive.com/about-the-archive/explore-the-archive/",
+      "home": "https://haarchive.com/",
+      "prospectus": "https://haarchive.com/prospectus/",
+      "robots": "https://haarchive.com/robots.txt"
+    }
+  },
+  "source_identity_sha256": "fc42e1938afa0d6712d2315900cd959d7428ba89367442a3772f9c9b34d9c366",
+  "stable_evidence_id": "d0434042ec7edd0f4754bf0cde8ab2621e0f5436e435f01b68e6f9228ae6e878"
+}
