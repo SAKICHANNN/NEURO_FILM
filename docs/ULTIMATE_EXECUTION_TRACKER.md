@@ -3104,6 +3104,22 @@ source-independent Portra response, open candidate 3 or map a product profile.
 Evidence:
 `docs/evidence/SF3_A3V_NORITSU_PORTRA_PHYSICAL_PROFILE_SOURCE_RESULT.json`.
 
+SF3.A3W audits seven exact Inland Aperture Flickr pages without requesting any
+embedded media URL. Four pages explicitly label Kodak Portra 400 and three
+label Kodak Ektar 100; all name Canon EOS1 / EOS 1, bind the same author and
+carry per-work CC BY 4.0 JSON-LD. The frozen canonical manifest is exact at
+`e2325455...bcdf6`, and all eight source/rights/zero-read gates pass. However,
+the pool is one author/source/camera with no explicit roll, process or scanner
+identity, no same-scene neutral/film pair and no sealed confirmation role.
+Forward/reverse committed-head reports are each 9,206 bytes and byte-exact at
+SHA `7602d161...1f5e58`, stable `666dca13...03b41`; image HEAD/range/body,
+pixel, fit, render and score reads remain zero. Formal decision is
+`FAIL_CLOSED_INLAND_APERTURE_SINGLE_SOURCE_GROUP_AND_PAIRING_GAP`. Retain the
+rights-clear source manifest only; do not acquire its images, merge geographic
+adjacency into a pair, reopen failed natural-label association families, fit
+an operator, open candidate 3 or map a product. Evidence:
+`docs/evidence/SF3_A3W_INLAND_APERTURE_PORTRA_EKTAR_SOURCE_RESULT.json`.
+
 U7.2E adds one authoritative manual product-look catalog and dispatcher over
 the existing three colour-stock Look Approximation controls plus the generic
 B&W correction from BW2.D1. Discovery exposes exactly `velvia_50`,

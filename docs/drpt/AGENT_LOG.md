@@ -20886,3 +20886,35 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   opens. Continue only with materially new primary/institutional assets or an
   explicitly licensed export; SF3.A3W remains an independent concurrent
   Portra/Ektar source gate.
+
+### 2026-08-31 - SF3.A3W closes Inland Aperture before media acquisition
+
+- **Node and routing:** `ULT > SF3 > SF3.A3W`, DRPT L2 / Mode C.
+  `dev-research-reliability` was primary; source research, stock-first,
+  DRPT/log and structure disciplines were secondary. This leaf tested a new
+  exact rights/source manifest, not stock colour or an operator.
+- **Freeze and execution:** contract/config/core/audit/tests were committed at
+  `1aeb2f0c`. The implementation reads only seven fixed Flickr photo-page HTML
+  documents, canonicalizes embedded photo models and independently binds each
+  page's JSON-LD `ImageObject` rights record. The prescore parser correction
+  joined Flickr's separate photo and photo-stats models; it changed no row,
+  role, gate or read boundary. Static media URLs are hashed as identity strings
+  and never requested.
+- **Formal result:** the frozen manifest contains four Portra 400 and three
+  Ektar 100 pages from Matt / Inland Aperture, all Canon EOS1 / EOS 1 and
+  per-work CC BY 4.0. Manifest SHA is
+  `e232545511feb1ecdac64ca6b62da466e43907211f58ac5d9f8faedb704bcdf6`.
+  Forward/reverse reports are each 9,206 bytes and byte-exact at SHA
+  `7602d16185145244e11c4b9994cda75417a13aa2320d6da8f18c30dacf1f5e58`,
+  stable `666dca135e7f191405268ff42c78b4f9820681735f88c2294061e68d6ff03b41`.
+  All eight source/rights/zero-read gates pass; image HEAD/range/body, pixel,
+  fit, render and score counts are zero.
+- **Decision and propagation:** formal decision is
+  `FAIL_CLOSED_INLAND_APERTURE_SINGLE_SOURCE_GROUP_AND_PAIRING_GAP`. The pool
+  has one author/source/camera and no explicit roll/process/scanner identity,
+  same-scene neutral/film pair or sealed confirmation. Evidence/binding test
+  are `123d6e60`; tracked evidence SHA is
+  `297dc36b94816eb6f89a429cfca8fb055d1daa349e051a6acc559ad73e0e4d0b`.
+  Six focused tests, Ruff, JSON and diff checks pass. No media acquisition,
+  natural-label rescue, fitting, calibration, candidate 3 or product mapping
+  opens; autonomous primary-source discovery continues.
