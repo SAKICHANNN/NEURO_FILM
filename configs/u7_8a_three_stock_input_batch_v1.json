@@ -17,10 +17,14 @@
     "maximum_jobs": 100,
     "job_id_pattern": "^[a-z0-9][a-z0-9._-]{0,63}$",
     "require_unique_job_ids": true,
-    "require_complete_input_sha256_before_decode": true
+    "relative_input_path_base": "input manifest parent directory",
+    "require_complete_input_sha256_before_decode": true,
+    "require_complete_input_and_config_revalidation_before_publish": true
   },
   "transaction": {
     "platform": "Windows",
+    "profile_path": "configs/render_profiles/safe_rich_product_v1.json",
+    "catalog_enforcement": "The existing three_stock_look catalog fixes exactly Velvia 50, Portra 400 and Ektar 100; the product profile independently activates central recipe catalog validation.",
     "destination_must_not_exist": true,
     "destination_parent_must_exist": true,
     "preflight_all_jobs_before_stage_creation": true,
@@ -43,6 +47,7 @@
   },
   "gates": {
     "all_inputs_hash_verified_before_decode": true,
+    "all_child_recipe_input_hashes_match_frozen_jobs": true,
     "forward_reverse_receipt_exact": true,
     "all_output_and_recipe_hashes_repeat_exact": true,
     "canonical_job_order_exact": true,
