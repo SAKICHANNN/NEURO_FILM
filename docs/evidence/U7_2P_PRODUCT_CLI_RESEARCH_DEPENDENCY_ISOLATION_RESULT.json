@@ -1,0 +1,118 @@
+{
+  "schema_version": "neuro-film.u7-2p-product-cli-research-dependency-isolation-evidence.v1",
+  "node_id": "U7.2P",
+  "decision": "PASS_PRIVATE_U7_2P_PRODUCT_CLI_RESEARCH_DEPENDENCY_ISOLATION",
+  "claim_ceiling": "Private unselected research-import isolation for the existing deterministic film-inspired Look Approximation CLI only; not a minimal install, package, installer, public API, release, cross-platform environment, calibrated stock response, physical-film reproduction or product-value result.",
+  "bindings": {
+    "contract_commit": "96d6d10a7fee7246301e9646f576915ad7bbcbdb",
+    "implementation_commit": "657b563fffdb84dafbd324a44c1ab644553e330b",
+    "initial_runner_commit": "536f95cd0793a2b8e22c8620cf1bdef5fd1fec15",
+    "direct_entry_correction_commit": "4462718a9864c032e2aef11d355b28fea3195915",
+    "replay_exact_correction_commit": "5fbffa882e7fb1983c8995dd6d3ccc4f19c32258",
+    "formal_execution_head": "5fbffa882e7fb1983c8995dd6d3ccc4f19c32258",
+    "files": {
+      "configs/u7_2p_product_cli_research_dependency_isolation_v1.json": {
+        "bytes": 1058,
+        "sha256": "651506c22f25ffa065ff08716d25db3a3bf0eb59f733695ff0ee6b51c5daabbb",
+        "git_blob": "4f11ca82a5d4b9d66785de4084d6dd29532e0d8b"
+      },
+      "docs/planning/U7_2P_PRODUCT_CLI_RESEARCH_DEPENDENCY_ISOLATION_CONTRACT.md": {
+        "bytes": 3148,
+        "sha256": "52d8a7decde511efc09d012c4bcab7c0a0efc8d935fe50c32af0f11daec606cb",
+        "git_blob": "6a72273e7e44adfaa4be99e5da6c76e7902a9d2c"
+      },
+      "scripts/render_film.py": {
+        "bytes": 40995,
+        "sha256": "287f3dfff1459c386b15c51e3d766177ca74e6c75f70de3a7869f896f4a328a3",
+        "git_blob": "8fe020800b3eb84e8b9b28283c94d6c45602f7b3"
+      },
+      "tests/test_u7_2p_product_cli_research_dependency_isolation.py": {
+        "bytes": 4172,
+        "sha256": "7344d991e854b2457085ea39d02477003149046f5fd424c24d5fa445c519ebbd",
+        "git_blob": "1f261f46866b525eb8a0aff48123f5622ccb6bd9"
+      },
+      "scripts/audit_u7_2p_product_cli_research_dependency_isolation.py": {
+        "bytes": 11737,
+        "sha256": "fde1cd0ba4a8f28beeb90400c0942bfca9ecb9dfbda3f63e7fb1a1b25bb1aa58",
+        "git_blob": "d50459474f7770afa4244148ad2d173a9ac5cbe5"
+      },
+      "tests/test_audit_u7_2p_product_cli_research_dependency_isolation.py": {
+        "bytes": 607,
+        "sha256": "6c8a8eea17be01dccb245f618be05461d60242a00b0f9067938d987e7409e9fc",
+        "git_blob": "1bef33829a4b5aa53844b0d99561d1aade751e5e"
+      },
+      "docs/evidence/U7_2O_PRODUCT_LOOK_CLI_ENTRY_RESULT.json": {
+        "bytes": 5393,
+        "sha256": "92402bfbb8347ada1f097c13f8e4cf7566f123d2cb1ca8982c3f2330e9a45fea",
+        "git_blob": "e6f34331954d19d8789dfe4a859d006468533b8d"
+      }
+    }
+  },
+  "formal_reports": {
+    "forward_path": "outputs/eval/u7_2p_product_cli_research_dependency_isolation_v1/formal.json",
+    "reverse_path": "outputs/eval/u7_2p_product_cli_research_dependency_isolation_v1/formal_replay.json",
+    "bytes_each": 8211,
+    "sha256": "f6e0f2ed7b54ce84b3de728c76cc44210014dde8b44cbff2e8cd2af92f436e5a",
+    "forward_reverse_byte_exact": true,
+    "fresh_process_count": 2
+  },
+  "result": {
+    "formal_gate_count": 12,
+    "formal_gate_pass_count": 12,
+    "product_subprocess_count_per_formal_run": 31,
+    "blocked_import_roots": [
+      "src.eval",
+      "pypdf",
+      "cryptography",
+      "torch",
+      "torchvision",
+      "diffusers",
+      "transformers",
+      "peft",
+      "wandb",
+      "pytorch_lightning"
+    ],
+    "product_subprocesses_with_blocked_import_attempts": 0,
+    "comparison_count": 9,
+    "all_three_looks_all_amounts_exact_to_u7_2o": true,
+    "full_product_bundle_exact_to_u7_2o": true,
+    "catalog_discovery_exact_to_u7_2o": true,
+    "conflicts_invalid_values_and_legacy_exact": true,
+    "analytic_branch_imports_only_when_selected": true,
+    "analytic_branch_still_executes_unblocked": true,
+    "analytic_output_sha256": "e25cac3e2a3a00d847ff4c6f8b2f9072cdaa4c1993816228171186fe25a70e71",
+    "owned_runtime_residue_zero": true,
+    "source_immutable": true
+  },
+  "full_effects_bundle": {
+    "candidate_returncode": 0,
+    "reference_returncode": 0,
+    "image_byte_exact": true,
+    "output_sha256": "47c0e92dc968cf3f1c4e38f5b46c47126dfd980f15e7645cfbd37f2b703cbe7f",
+    "recipe_semantics_exact": true,
+    "metrics_semantics_exact": true,
+    "layer_manifest_exact": true,
+    "layer_sha256": {
+      "dust_scratch.png": "bf14cba9f275b9020798af5507f33c149abf37f5263c0897c537a9378d87081b",
+      "grain.png": "b407c1bbf07028c250988ed8a1fb6c133f1fbd669b3beddaab272c627667bcd4",
+      "halation.png": "be8e2409be4db8fa17451c5dfc70b89d9782fc879569f36ceac8ecabae75f75d",
+      "halation_on_black.png": "be8e2409be4db8fa17451c5dfc70b89d9782fc879569f36ceac8ecabae75f75d",
+      "halation_on_white.png": "a1e42a35694a89d8e20ec6db9f5b34e498464d25e17ea97fc0f8358891fe8306"
+    }
+  },
+  "excluded_attempts": [
+    "The first two direct formal commands stopped before report construction, media creation or product execution because direct script execution put scripts/ rather than the repository root on sys.path. Commit 4462718a added only the standard repository-root bootstrap; both formal processes restarted from zero.",
+    "The next two complete processes passed all 12 product/science gates but their full reports differed only because fast child-PID reuse overwrote one import-observation filename, yielding observed process counts 30 and 31. Commit 5fbffa88 changed only audit-log filenames to PID plus UUID and required the statically derived exact count 31; both formal processes restarted from zero. Product code, blocked roots, sources, outputs, recipes, bundle, analytic route and gates were unchanged."
+  ],
+  "retained_boundaries": {
+    "product_dependency_set_or_requirements_changed": false,
+    "analytic_engine_removed_or_changed": false,
+    "colour_algorithm_profile_catalog_or_recipe_changed": false,
+    "calibrated_stock_response_or_physical_film_claim": false,
+    "new_stock_identification_or_multi_stock_calibration_claim": false,
+    "ao6_promoted_beyond_velvia50_display_proxy_baseline": false,
+    "minimal_install_public_package_installer_or_release_claim": false,
+    "u7_2o_historical_evidence_rewritten": false,
+    "adjacent_cli_wrapper_expansion_authorized": false
+  }
+}
