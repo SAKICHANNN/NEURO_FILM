@@ -1,25 +1,16 @@
 {
   "schema_version": "neuro-film.u7-8c-canon-real-scale-input-batch-execution-lock.v1",
   "node_id": "U7.8C",
-  "status": "V2_LOCKED_AFTER_PRE_REPORT_PIPE_CORRECTION",
-  "implementation_commit": "409d7c22f0a334af0725f8f28c878ef7dfdcc268",
+  "status": "LOCKED_FOR_FIRST_FORMAL_EXECUTION",
+  "implementation_commit": "39b6376216e80b3bdf918d31f65222e44ab8d9bd",
   "git_blobs": {
     "configs/u7_8c_canon_real_scale_input_batch_v1.json": "25ee8c285980a625d2efb3d7446d7c59dbc51c5c",
     "docs/planning/U7_8C_CANON_REAL_SCALE_INPUT_BATCH_CONTRACT.md": "b1a56d5244cbd5871cf1c3b5f6be48f3d3d61246",
-    "scripts/audit_u7_8c_canon_real_scale_input_batch.py": "7d5145cfc2453a50523cf6b34f43d94867d0ab7a",
+    "scripts/audit_u7_8c_canon_real_scale_input_batch.py": "95978f133c37a66f8d3c72cfda72e5ba305104bf",
     "src/inference/three_stock_batch.py": "10f29531cca92b07c0d77cc8d7282d4331654f1e",
     "src/inference/three_stock_input_batch.py": "51b3d99532d54de391a74e9ecdc9e4b3b8d1f658",
-    "tests/test_u7_8c_canon_real_scale_input_batch.py": "573eb85f2caed044345f8050d826c7f33d39e1a3"
+    "tests/test_u7_8c_canon_real_scale_input_batch.py": "606177250df9d983d9267d9943946d2660e593da"
   },
-  "excluded_pre_report_attempts": [
-    {
-      "order": "forward",
-      "report_written": false,
-      "scientific_result_observed": false,
-      "scratch_root_absent_after_interrupt": true,
-      "reason": "The worker completed and removed its scratch root, but the controller polled for process exit without draining a JSON stdout pipe larger than the Windows pipe buffer. The child blocked on stdout and no formal report was written. V2 redirects stdout and stderr to owned files while preserving process-tree RSS monitoring; source, renderer, controls, metrics and gates are unchanged."
-    }
-  ],
   "formal_reports": {
     "forward": "outputs/eval/u7_8c_canon_real_scale_input_batch_v1/formal_forward.json",
     "reverse": "outputs/eval/u7_8c_canon_real_scale_input_batch_v1/formal_reverse.json"

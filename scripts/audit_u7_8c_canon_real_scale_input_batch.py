@@ -34,7 +34,7 @@ from src.inference.three_stock_input_batch import (
 )
 
 CONFIG = ROOT / "configs/u7_8c_canon_real_scale_input_batch_v1.json"
-LOCK = ROOT / "docs/planning/U7_8C_CANON_REAL_SCALE_INPUT_BATCH_EXECUTION_LOCK.json"
+LOCK = ROOT / "docs/planning/U7_8C_CANON_REAL_SCALE_INPUT_BATCH_EXECUTION_LOCK_V2.json"
 SCRATCH = ROOT / "tmp/u7_8c_formal_scratch"
 STYLES = ("velvia_50", "portra_400", "ektar_100")
 
