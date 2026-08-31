@@ -1,0 +1,150 @@
+{
+  "schema_version": "neuro-film.u7-8d-transaction-software-provenance-snapshot-evidence.v1",
+  "node_id": "U7.8D",
+  "decision": "PASS_PRIVATE_U7_8D_TRANSACTION_SOFTWARE_PROVENANCE_SNAPSHOT",
+  "claim_ceiling": "Private Windows/Python transaction-scoped software provenance mechanics for the existing three deterministic film-inspired Look Approximations; no calibrated stock response, image-quality, product-value, public API, package, release or cross-commit recovery claim.",
+  "bindings": {
+    "formal_execution_commit": "7397082dc7799ea8035a9350d860e64a75ea5deb",
+    "contract": {
+      "path": "docs/planning/U7_8D_TRANSACTION_SOFTWARE_PROVENANCE_SNAPSHOT_CONTRACT.md",
+      "bytes": 5754,
+      "sha256": "7f383052f068ce604b494d0848966a1f16a6896d88ec67137a5082ea5dc0ce2f",
+      "git_blob": "1411d8f0f6e849cd1e2501843943a5a582d854a4"
+    },
+    "config": {
+      "path": "configs/u7_8d_transaction_software_provenance_snapshot_v1.json",
+      "bytes": 4030,
+      "sha256": "5e5bc1bfe8348ab0bf79c3439539d40a68e7d3c2ba23f69d151ed956df16cdc2",
+      "git_blob": "a6f0163477496bb017d3f8d68a9427b8169ac88e"
+    },
+    "runner": {
+      "path": "scripts/audit_u7_8d_transaction_software_provenance_snapshot.py",
+      "bytes": 19531,
+      "sha256": "909e7314a06446af27b5bdb1f503e8097ff1b3b0177acf1377d03f1b83af0a72",
+      "git_blob": "4571353b6304762f6c8f092af771231cc5acb77e"
+    },
+    "core": {
+      "src/inference/three_stock_batch.py": {
+        "bytes": 8577,
+        "sha256": "3390cd3570c3975449b5fee6d6068b973d4b0694ffdcf8c6666828b627985b7d",
+        "git_blob": "23f732d1349ce2c35d80c9cfc10cd912c7f4ddb0"
+      },
+      "src/inference/three_stock_input_batch.py": {
+        "bytes": 12597,
+        "sha256": "b597810982d4af14591015b4d18f2051587b6d5a60a70fd6947b5c574bdd08a7",
+        "git_blob": "82baca44eb1f564334986ed486918e9cb3427bb0"
+      },
+      "src/inference/resumable_three_stock_input_batch.py": {
+        "bytes": 35390,
+        "sha256": "fb7f58ce25656e65489d3531bab350815776f634df1d2d8f0327d74fc4bc00be",
+        "git_blob": "68b9617fc54a5a6e86904ba9804fb19e76500013"
+      }
+    },
+    "tests": {
+      "tests/test_u7_8d_transaction_software_provenance_snapshot.py": {
+        "bytes": 8611,
+        "sha256": "0fe26b63a544cf4e889df625dd749b81bf3fb76b6ece436b6aaaaed0823d85d5",
+        "git_blob": "48bceced924504dad0424527f4db1f6500a1d30e"
+      },
+      "tests/test_u7_8a_three_stock_input_batch.py": {
+        "bytes": 11050,
+        "sha256": "6df3f878ae82718e05d380f1467571c24f61fc642a3144cc2a878da97910ab76",
+        "git_blob": "33bb0e4bb077f0693855c6582f7e796af37c95c9"
+      },
+      "tests/test_u7_8c_canon_real_scale_input_batch.py": {
+        "bytes": 7511,
+        "sha256": "066856436e3fe40b04958b5928fc1ffc045bb0f21c988b737f72b40eb721b547",
+        "git_blob": "65c87bb656e655651f4dcb0cdcf674992806ac88"
+      }
+    },
+    "parents": {
+      "u7_8a_evidence_sha256": "da34fdcfc642578281049cfc8442954b0d6ee2cd8d1c772ab6453a26e30f0f02",
+      "u7_8b_evidence_sha256": "a7ef9870b416ed63d050c755b313dfa7bd3ffb2b42e506196de6fcaa7c4c56cf",
+      "u7_8c_evidence_sha256": "e140da1a358b6c3a4485bcdcd686379565b84e22721fa6043ecbef8e539eb236",
+      "u7_8c_decision": "FAIL_CLOSED_U7_8C_FORWARD_REVERSE_RECIPE_IDENTITY_DRIFT"
+    }
+  },
+  "formal_reports": {
+    "forward": {
+      "path": "outputs/eval/u7_8d_transaction_software_provenance_snapshot_v1/formal_forward.json",
+      "bytes": 5544,
+      "sha256": "dea8b47199a0a5bf47173752ffdc885f0f313cff60642439b8366746e6aeea35",
+      "scientific_identity": "f84e5c2e0a1a9931048a2b91e56b12c44e3fc462865ea6275e0ef02c0905f447"
+    },
+    "reverse": {
+      "path": "outputs/eval/u7_8d_transaction_software_provenance_snapshot_v1/formal_reverse.json",
+      "bytes": 5544,
+      "sha256": "dea8b47199a0a5bf47173752ffdc885f0f313cff60642439b8366746e6aeea35",
+      "scientific_identity": "f84e5c2e0a1a9931048a2b91e56b12c44e3fc462865ea6275e0ef02c0905f447"
+    },
+    "reports_byte_exact": true,
+    "scientific_identity_exact": true
+  },
+  "metrics": {
+    "job_count": 3,
+    "style_count_per_job": 3,
+    "stable_tree_file_count": 22,
+    "transaction_start_snapshot_resolution_count": 1,
+    "prepublication_recheck_count": 1,
+    "software_commit_resolution_count_total": 2,
+    "targeted_test_count_per_outer_run": 14,
+    "stable_child_snapshot_observations": 3,
+    "drift_child_snapshot_observations": 3,
+    "resumable_child_snapshot_observations": 3,
+    "network_requests": 0,
+    "owned_scratch_residue_count": 0
+  },
+  "gate_results": {
+    "transaction_start_and_prepublication_resolution_counts_exact": true,
+    "all_stable_children_use_one_snapshot": true,
+    "stable_transaction_counts_exact": true,
+    "stable_forward_reverse_tree_receipt_and_batch_exact": true,
+    "input_head_drift_rejected_before_publication": true,
+    "resumable_child_uses_state_snapshot": true,
+    "resumable_final_drift_rejected": true,
+    "cross_commit_resume_rejected_before_render": true,
+    "invalid_explicit_commit_rejected_before_decode": true,
+    "unavailable_default_head_rejected_before_decode": true,
+    "direct_child_default_resolves_once": true,
+    "late_foreign_and_child_failure_controls_pass": true,
+    "historical_u7_8a_and_u7_8c_bindings_resolve_immutable_blobs": true,
+    "source_files_immutable": true,
+    "network_requests": 0,
+    "owned_scratch_residue_count": 0
+  },
+  "controls": {
+    "u7_8a_injected_live_head_drift_message": "software commit drifted before publication",
+    "u7_8a_injected_live_head_drift_destination_absent": true,
+    "u7_8a_injected_live_head_drift_owned_stage_residue": 0,
+    "u7_8b_final_live_head_drift_message": "input, configuration or core identity drifted before publication",
+    "u7_8b_cross_commit_resume_message": "workspace lease identity mismatch",
+    "u7_8b_cross_commit_resume_render_calls": 0,
+    "invalid_explicit_commit_decode_calls": 0,
+    "unavailable_default_head_decode_calls": 0,
+    "late_foreign_destination_preserved": true,
+    "injected_child_failure_published_nothing": true
+  },
+  "pre_evidence_attempts_excluded": [
+    {
+      "kind": "smoke",
+      "report_sha256": "77f2a14d1d7c5955b2452701af6e78b2c1dbbffe0205e060e38a062f0d0b8434",
+      "reason": "A pre-commit runner smoke proved mechanics before formal execution; its report was deleted and was never evidence."
+    },
+    {
+      "kind": "complete_forward_reverse_pair",
+      "implementation_commit": "6e7ea734dfb24e7a28bd2a68d7f95303b6f46f92",
+      "preserved_path": "outputs/eval/u7_8d_transaction_software_provenance_snapshot_v1_excluded_precorrection_6e7ea734",
+      "forward_report_sha256": "b4cb781fb3e498cf73282ede0883c68282e79d966657b8b7d5081463fc04af3a",
+      "reverse_report_sha256": "b4cb781fb3e498cf73282ede0883c68282e79d966657b8b7d5081463fc04af3a",
+      "reason": "The runner ambiguously labelled the exact total of two HEAD resolutions as a transaction-start count. The pair was excluded before evidence, preserved, and replaced only after an additive report-semantics correction that split one start snapshot from one prepublication recheck. Core behavior, sources, thresholds and scientific gates did not change."
+    }
+  ],
+  "stop_rule": {
+    "u7_8c_rewritten_or_rerun": false,
+    "provenance_normalized_or_stripped": false,
+    "cross_commit_resume_opened": false,
+    "recipe_schema_or_pixels_changed": false,
+    "cache_packaging_raw_hdr_or_stock_scope_opened": false,
+    "promotion_opened": false
+  }
+}
