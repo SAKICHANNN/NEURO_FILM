@@ -21501,3 +21501,35 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   physical-film reproduction, public API/package, installer or release
   readiness. Stop adjacent CLI-wrapper expansion and return to a distinct
   user workflow or product defect.
+
+### 2026-09-01 - U7.3K preserves foreign recipe-directory entries
+
+- **Node and routing:** `ULT > U7 > U7.3K`, DRPT L2 / Mode C. The sole write
+  workflow was `dev-research-reliability`; DRPT-BI, plan, project-structure and
+  agent-log disciplines were secondary reviewers. Paths were coordinated as
+  disjoint from U7.2O/U7.2P.
+- **Observed defect:** both U7.3E and U7.3F preflighted an absent directory,
+  called `mkdir`, wrote members with replacement-capable `write_bytes`, then
+  recursively deleted whatever occupied the destination on any exception. A
+  deterministic current-code race proved that a foreign directory and its
+  `foreign.bin` member were deleted in both paths.
+- **Correction:** one private shared helper now atomically claims the final
+  directory, exclusively creates each flat member, binds directory/file
+  filesystem identities, and validates the exact member set, lengths and
+  SHA-256 payloads. Failure removes only still-matching owned files and then
+  the still-matching directory only when empty. Recursive destination cleanup
+  is absent; foreign initial directories, added members and identity
+  replacements are preserved.
+- **Formal evidence:** contract `ae741f99`, implementation `4eccacda`, runner
+  `01d3c235` plus direct-execution fix `25127727`, evidence `d629eec2`, and
+  evidence-binding test `0eabdf58`. Forward/reverse committed-head reports are
+  both 2,908 bytes / SHA
+  `5a3f9981fcedbee7e172122cd6dc4f5e6444e167e5730a58b5fde621d31a4146`,
+  stable identity `fcfe3e9e...014af9`; all nine gates pass. The tracked
+  evidence is byte-exact to both reports.
+- **Verification and propagation:** 69 U7.3A-K tests pass; Ruff, compileall,
+  JSON, scoped diff and the original destructive-race reproduction pass. The
+  successful workspace/request-set bytes, renderer, recipes, schemas, pixels,
+  stock labels and claims are unchanged. This is private process-level
+  ownership safety only, not a browser, wrapper, installer, release,
+  calibration or physical-stock claim; stop this repair family.
