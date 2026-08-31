@@ -6,6 +6,16 @@
     "U7.3E",
     "U7.3F"
   ],
+  "bindings": {
+    "contract_commit": "ae741f99dde20a8b7d6fb2f5ea5cd9695bf5d796",
+    "implementation_commit": "4eccacdac4d113b3560230ee34e3452856566e69",
+    "implementation_git_lf_sha256": {
+      "src/inference/create_only_directory.py": "be03b8dbbeddd1a1048a1a12c0a7737add125442c9048b6151a43817c249c195",
+      "src/inference/recipe_export_request.py": "95df148c05ff501e42f3c68c50d7342a6fbf0567a727c6708e3e76601c3c279a",
+      "src/inference/recipe_workspace.py": "9d1e8114b08d1996fd54a10c4d65079452a438f71c2567d9de8f89d7d6862cfd",
+      "tests/test_u7_3k_recipe_directory_create_only_repair.py": "0a27d5b1c87e43458f26db0728923a901cb891821dc8d9171839462c0c6a6750"
+    }
+  },
   "owned_paths": [
     "src/inference/create_only_directory.py",
     "src/inference/recipe_workspace.py",
