@@ -1,0 +1,94 @@
+{
+  "schema_version": "neuro-film.u7-8b-resumable-three-stock-batch-contract.v1",
+  "node_id": "U7.8B",
+  "objective": "Allow an interrupted multi-input three-look batch to resume from fully validated per-job checkpoints and publish one final create-only directory without rerendering valid completed jobs.",
+  "parent": {
+    "node_id": "U7.8A",
+    "evidence_path": "docs/evidence/U7_8A_THREE_STOCK_INPUT_BATCH_RESULT.json",
+    "evidence_sha256": "da34fdcfc642578281049cfc8442954b0d6ee2cd8d1c772ab6453a26e30f0f02",
+    "core_path": "src/inference/three_stock_input_batch.py",
+    "core_sha256": "cb1f54c48520ea0ff3cebe3e92731335c5bd50655408adadccda3a4cfa2a0cf1"
+  },
+  "workspace": {
+    "schema_version": "neuro-film.resumable-three-stock-workspace.v1",
+    "platform": "Windows",
+    "workspace_and_destination_must_be_distinct_siblings": true,
+    "workspace_parent_must_exist": true,
+    "workspace_is_caller_dedicated": true,
+    "reserved_transient_prefix": ".u7-8b-",
+    "links_and_reparse_points_forbidden": true,
+    "unexpected_members_fail_closed": true,
+    "state_contains_hashes_and_relative_identities_only": true,
+    "state_binds_destination_without_storing_destination_path": true,
+    "state_binds_software_commit_and_core_hashes": true,
+    "exclusive_lease": "sibling lock file held by a nonblocking Windows process-lifetime byte-range lock",
+    "concurrent_writer_rejected_before_workspace_mutation_or_render": true,
+    "successful_publication_renames_the_workspace_to_the_destination": true
+  },
+  "checkpoint": {
+    "unit": "one input job containing exactly three RGB16 PNG outputs, three strict recipes and one child manifest",
+    "canonical_job_order": "ascending job_id code-point order",
+    "completed_child_publication": "reserved sibling transient, full validation, then Windows os.rename to the absent canonical job directory",
+    "checkpoint_ledger_update": "atomic and strictly after canonical child publication",
+    "completed_jobs_are_fully_rehashed_before_skip": true,
+    "completed_job_recipe_input_output_profile_and_software_identities_are_revalidated": true,
+    "complete_child_missing_from_stale_ledger_is_reconciled_only_after_full_validation": true,
+    "ledger_claiming_missing_truncated_or_tampered_child_fails_closed": true,
+    "tampered_or_unexpected_checkpoints_fail_closed_without_rerender": true,
+    "owned_reserved_transients_are_removed_only_after_workspace_identity_and_exclusive_lease_validation": true,
+    "maximum_new_jobs_per_invocation": "optional integer 1..100; omission completes all remaining jobs",
+    "paused_invocation_publishes_no_destination": true
+  },
+  "publication": {
+    "destination_must_not_exist": true,
+    "publish_unit": "one complete root directory",
+    "publish_operation": "Windows same-parent os.rename no-replace",
+    "late_foreign_destination_is_preserved": true,
+    "workspace_remains_resumable_after_publication_failure": true,
+    "aggregate_receipt_paths": "relative POSIX paths only"
+  },
+  "formal_fixture": {
+    "generator": "the unchanged deterministic U7.8A 32x24 RGB8 PNG generator",
+    "job_count": 100,
+    "first_invocation_maximum_new_jobs": 37,
+    "expected_first_invocation_completed_jobs": 37,
+    "expected_resume_reused_jobs": 37,
+    "expected_resume_new_jobs": 63,
+    "expected_output_count": 300,
+    "expected_recipe_count": 300,
+    "expected_child_manifest_count": 100,
+    "comparison": "one uninterrupted execution with the same committed source, inputs, destination binding and parameters",
+    "run_orders": [
+      "forward",
+      "reverse"
+    ]
+  },
+  "gates": {
+    "paused_destination_absent": true,
+    "paused_workspace_checkpoint_count": 37,
+    "resume_renders_only_remaining_jobs": true,
+    "resumed_and_uninterrupted_output_hash_sets_exact": true,
+    "resumed_and_uninterrupted_aggregate_scientific_identity_exact": true,
+    "all_input_and_config_hashes_revalidated_on_every_invocation": true,
+    "tampered_checkpoint_rejected_without_render_or_publication": true,
+    "software_commit_or_core_drift_rejected_without_render_or_publication": true,
+    "concurrent_writer_rejected_without_mutation_or_render": true,
+    "child_complete_with_stale_checkpoint_reconciled": true,
+    "checkpoint_claiming_missing_child_rejected": true,
+    "stale_reserved_transient_reconciled": true,
+    "crash_after_last_child_before_final_receipt_resumes_without_rerender": true,
+    "late_foreign_destination_preserved": true,
+    "owned_transient_residue_count": 0,
+    "network_requests": 0
+  },
+  "stop_rules": [
+    "Do not modify U7.8A, U7.8C, the single-input renderer, stock parameters, default renderer, recipe schemas or product claims.",
+    "Do not accept a checkpoint from a different manifest, destination binding, software commit, profile, statistics, guardrails or render parameters.",
+    "Do not silently delete, replace or rerender a malformed completed checkpoint.",
+    "Do not trust checkpoint counts or status without independently rehashing the inputs, configuration, core identity and every completed artifact.",
+    "Do not weaken full-file hashing, strict recipe validation, exclusive workspace lease, create-only publication or Windows-only atomicity.",
+    "Do not claim hard-power-loss durability during a currently executing child render, 24MP throughput, installer readiness, calibrated stock response, stock distinguishability, public release or product value.",
+    "Any formal gate failure closes this exact resumable workspace without threshold, checkpoint, cohort, order or retry rescue."
+  ],
+  "claim_ceiling": "Private Windows/Python resumable batch mechanics for the three existing deterministic film-inspired Look Approximations; no calibrated or physical stock response, 24MP performance, installer, public API, package, release or product-value claim."
+}
