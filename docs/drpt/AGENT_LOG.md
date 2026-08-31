@@ -21343,3 +21343,40 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   layers/metrics, calibrated stock response, physical-film reproduction,
   public packaging, installer or release readiness. The exact optional
   layers/metrics gap remains a separately frozen successor question.
+
+### 2026-09-01 - U4.5E binds warm-preview admission to exact cache-index bytes
+
+- **Node and routing:** `ULT > U4 performance > U4.5E`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the sole writer; scientific evidence review,
+  DRPT propagation and structure stewardship were secondary. U4.5E addresses
+  a product-integrity gap in U4.5C: the current preview files were rehashed, but
+  a replaced cache index could provide new metadata and expected hashes as the
+  authority for a fresh admission. Concurrent U7.2M/U7.2N paths remained
+  disjoint and were not touched.
+- **Frozen implementation:** contract/config `0d1c6569`, separately named
+  receipt-bound inspection/session APIs plus focused tests `4f9d0456`, formal
+  runner `96900a2f`, operation-counter correction `10f3895a`, and evidence/test
+  `54c5616c`. The new path requires one lowercase 64-hex caller receipt, reads
+  the cache index once, hashes and parses those same bytes, performs the
+  unchanged complete source/profile/output checks, independently rehashes
+  immutable admitted payloads and rechecks source/profile. Historical
+  U7.3H/U4.5C functions, types and evidence remain unchanged.
+- **Formal evidence:** exactly one forward and one reverse fresh process each
+  perform four admissions and 32 warm lookups. Both pass 15/15 gates with
+  scientific stable ID `361207e0...15113`; report hashes are deliberately
+  distinct (`8f5e422e...053c8` / `d1e2458c...7d46b`) because `order/timing`
+  differ, while scientific dictionaries are exact. All 14 instrumented warm
+  filesystem-read/write, metadata-read, pixel-decode and render categories
+  record zero attempts. Maximum lookup is `.0001033s` against `.300s`; five
+  invalid receipts, six index tamper fields and three media drifts reject, and
+  post-admission index replacement leaves the current snapshot exact while
+  readmission fails. Owned scratch is removed.
+- **Verification and boundary:** 27 targeted, historical and evidence-binding
+  tests pass; an independent consumer reload verifies all commits/blobs/report
+  hashes and scientific equality, with 20 additional checks passing. Ruff,
+  format, compile, JSON and diff checks are clean. Retain only the private
+  Windows/Python receipt-bound Look Approximation admission/session mechanism.
+  Do not call it render acceleration, calibrated or physical stock response,
+  stock distinguishability, browser/default integration, installer, public
+  API, package or release evidence. Stop adjacent cache-wrapper expansion and
+  return to a substantive product capability or defect.
