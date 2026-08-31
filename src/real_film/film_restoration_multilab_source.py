@@ -53,7 +53,15 @@ def _default_fetcher(url: str) -> FetchResult:
             with urllib.request.urlopen(request, timeout=60) as response:
                 return int(response.status), response.read()
         except urllib.error.HTTPError as error:
-            return int(error.code), error.read()
+            status = int(error.code)
+            payload = error.read()
+            if status != 429 and status < 500:
+                return status, payload
+            last_error = error
+            if attempt < 2:
+                time.sleep(1 << attempt)
+                continue
+            return status, payload
         except urllib.error.URLError as error:
             last_error = error
             if attempt < 2:

@@ -29,6 +29,8 @@ stock-calibrated product claim.
 4. Make zero requests for article media, PDF bytes, the source negative,
    positive print, laboratory versions, director-of-photography version,
    frames, thumbnails or pixels.
+5. Retry only transient HTTP 429/5xx or transport failures, at most three
+   attempts per metadata endpoint. All other HTTP failures remain atomic.
 
 ## Admission gates
 

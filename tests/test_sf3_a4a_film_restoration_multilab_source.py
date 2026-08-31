@@ -1,12 +1,15 @@
 from __future__ import annotations
 
 import json
+import urllib.error
 from pathlib import Path
+from typing import Self
 
 import pytest
 
 from src.real_film.film_restoration_multilab_source import (
     FilmRestorationMultilabSourceError,
+    _default_fetcher,
     run_film_restoration_multilab_source_audit,
 )
 
@@ -64,7 +67,8 @@ def _fixture(
         "data_evidence": {key: 6 if data_ready else 0 for key in keys},
         "admission_minimums": {key: 1 for key in keys},
         "operation_limits": {
-            "official_metadata_get_requests": 3,
+            "official_metadata_endpoint_count": 3,
+            "official_metadata_get_requests_max": 9,
             "official_article_html_requests": 0,
             "institutional_file_requests": 0,
             "article_pdf_requests": 0,
@@ -218,6 +222,40 @@ def test_malformed_json_is_atomic(tmp_path: Path) -> None:
         run_film_restoration_multilab_source_audit(
             config, fetcher=lambda url: payloads[url]
         )
+
+
+def test_default_fetcher_retries_transient_http_status(monkeypatch: pytest.MonkeyPatch) -> None:
+    calls = 0
+
+    class Response:
+        status = 200
+
+        def __enter__(self) -> Self:
+            return self
+
+        def __exit__(self, *args: object) -> None:
+            return None
+
+        def read(self) -> bytes:
+            return b"{}"
+
+    def urlopen(*args: object, **kwargs: object) -> Response:
+        nonlocal calls
+        calls += 1
+        if calls == 1:
+            raise urllib.error.HTTPError(
+                "https://example.test",
+                503,
+                "transient",
+                {},
+                None,
+            )
+        return Response()
+
+    monkeypatch.setattr("urllib.request.urlopen", urlopen)
+    monkeypatch.setattr("time.sleep", lambda _: None)
+    assert _default_fetcher("https://example.test") == (200, b"{}")
+    assert calls == 2
 
 
 def test_project_contract_forbids_media_pixel_and_model_reads() -> None:
