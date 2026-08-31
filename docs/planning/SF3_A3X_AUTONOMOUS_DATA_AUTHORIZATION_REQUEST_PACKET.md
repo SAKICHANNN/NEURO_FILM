@@ -11,8 +11,8 @@ Status: ready for user-authorized external outreach; no message sent
 The user cannot supply physical film photographs. Public-source discovery has
 found several controlled physical-film observations whose public records are
 scientifically promising but whose data payload, grouping or reuse rights are
-not sufficient for fitting. This packet converts the four strongest closed
-source routes into precise authorization requests.
+not sufficient for fitting. This packet converts the strongest closed source
+routes into precise authorization requests.
 
 An affirmative reply is not scientific evidence and does not itself authorize
 pixel use. Before any download or fit, the project must separately freeze the
@@ -35,14 +35,17 @@ external-message approval.
 | 3 | PARVEC / Pablo Maraver Cardenas; `parvec.film@gmail.com`; [official project](https://www.parvec.es/35-mm-color-science-project) | Portra 400 and Ektar 100 under one controlled workflow | Unedited digital references, film scans or patch measurements for both stocks; per-stock roll/process/scanner/session identities; at least one held group per stock; exact manifest | `SF3.A3N` and `R1HE`: controlled measurements are described, but raw numerical data, documentation, group identities and fitting rights are absent |
 | 4 | FILM2PAINT data holders: Irina-Mihaela Ciortan (`irina-mihaela.ciortan@ntnu.no`), Giorgio Trumpy (`giorgio.trumpy@ntnu.no`), and Zentralbibliothek Zurich/ZB-Lab (`zb@zb.uzh.ch`); [official paper](https://library.imaging.org/archiving/articles/21/1/4) | Velvia 50 controlled target observations | Original ColorChecker Digital SG and IT8 film scans or extracted patch measurements, target references, stock/format/exposure identifiers, scan metadata and an exact asset manifest; independent group identities if known | `SF3.A3P`: physical Velvia 50 target topology is documented, but the public repositories contain no dataset payload or dataset-specific fitting licence |
 | 5 | NTNU Colourlab: Irina-Mihaela Ciortan and Giorgio Trumpy at the institutional addresses above; [Colourlab people](https://www.ntnu.edu/idi/people/colourlab) | Velvia 50 controlled multispectral observation; E100 is useful context but does not replace Ektar 100 | Original developed-film multispectral scans, matching hyperspectral references, condition/stock/exposure map, capture and processing metadata, and exact manifest/checksums | `SF2.8R`, `R1HC`: controlled Velvia 50/E100 geometry is described, but public attachments do not establish a licensed, grouped dataset |
+| 6 | Royal Danish Academy / National Museum of Denmark study: Joana Silva (`jsil@kglakademi.dk`; [official profile](https://royaldanishacademy.com/en/profile/4343)) and Morten Ryhl-Svendsen (`mrsv@kglakademi.dk`; [official profile](https://royaldanishacademy.com/en/profile/1057)) | Velvia 50 longitudinal physical measurements with frozen reference and natural-ageing conditions | Original 1992 and 2024 densitometry tables for the Velvia 50 samples, sample and replicate identifiers, ColorChecker exposure and E-6 processing metadata, storage-condition map, exact manifest/checksums and written fitting authorization | `SF3.A3Y`: the CC BY 4.0 article documents 96-sample sets, quadruplicates, nine prepared sets and a freezer reference, but exposes no measurement payload, sample manifest, checksum, row-level roles or data licence |
 
 FilmMatch, Demystify Colorgrading and PARVEC are complementary rather than
 substitutes: FilmMatch is the strongest Portra-only controlled source;
 Demystify is the fastest potentially purchasable Portra/Ektar paired-chart
 route if custom rights are granted; PARVEC is the strongest unpublished
 same-workflow Portra/Ektar research bridge. FILM2PAINT and the NTNU study are
-the two strongest Velvia 50 controlled-measurement holders. Ektachrome E100
-must never be counted as Ektar 100.
+the two strongest Velvia 50 colour-target holders. The Danish longitudinal
+study adds a distinct Velvia 50 density/stability observation rather than a
+same-scene digital-to-film pair. Ektachrome E100 must never be counted as
+Ektar 100.
 
 ## 3. Common requested rights
 
@@ -132,6 +135,11 @@ Subject: Request for a licensed research export of controlled photographic-film 
 - **NTNU 2026:** request the condition table before any large hyperspectral
   transfer so that Velvia 50 and E100 observations are not confounded by
   illuminant, exposure or painting identity.
+- **Danish longitudinal study:** ask first for the Velvia 50 rows only, with
+  stable sample/replicate identifiers linking 1992, freezer-reference and 2024
+  measurements. Request the measurement-data licence separately from the
+  article's CC BY 4.0 licence, and do not infer a scanner, RGB operator or
+  natural-scene transfer claim from densitometry alone.
 
 ## 7. Response classification and stop rules
 
