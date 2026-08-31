@@ -21138,3 +21138,36 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   binding helper without changing old evidence, after which K/L evidence and
   audit checks pass. No colour math, Look availability, calibration,
   stock-response, installer, release or adjacent wrapper claim changes.
+
+### 2026-09-01 - U7.8A adds a deterministic multi-input three-look transaction
+
+- **Node and routing:** `ULT > U7 > U7.8A`, DRPT L2 / Mode C. The active Goal
+  remains deterministic, content-safe `film-inspired / Look Approximation`
+  product work; stock calibration and source-search expansion are not completion
+  conditions. `dev-research-reliability` was the primary workflow, with router,
+  general harness, DRPT-BI, structure and project-log checks as read-only
+  reviewers.
+- **Implementation:** contract `771c3156`; transactional core/CLI `a86b3957`;
+  formal failure-control lock `7ea9eae4`; evidence `26cdb46a`. The new core
+  accepts 1..100 hash-bound jobs, resolves relative inputs against the manifest,
+  validates every input before decode, revalidates inputs/configs before one
+  root publication, and uses the exact `safe-rich-product-v1` catalog. Child
+  recipes bind final output paths while the aggregate receipt contains only
+  relative paths.
+- **Evidence:** committed-head forward/reverse reports are 2,617 bytes and
+  byte-exact at SHA
+  `609919eb8a27d48daadf6dd70a51c8003a88aa1aa0d84cf81f35fccacbd4c62a`.
+  The 100 deterministic 32x24 inputs produce 100 child manifests, 300 RGB16
+  outputs and 300 strict recipes; batch ID is `6c5e50e2...8ecc7` and receipt
+  SHA is `4421c3cf...2882`. Full input/config rehash, all recipe input hashes,
+  canonical ordering, relative aggregate paths, late foreign-destination
+  preservation, injected child failure, recipe-identity TOCTOU rejection,
+  network0 and stage residue0 all pass. Tracked evidence Git-LF SHA is
+  `da34fdcfc642578281049cfc8442954b0d6ee2cd8d1c772ab6453a26e30f0f02`.
+- **Verification and boundary:** 39 adjacent tests pass with two inherited
+  Windows symlink skips; independent review adds 29 pass, and Ruff/compile/
+  JSON/diff checks are clean. Two pre-report audit-reader defects (wrong claim
+  key and PIL RGB16 down-conversion) produced no reports or residue and are
+  disclosed in evidence. Claim remains a private 100-small-image Windows/Python
+  transaction; no 24MP performance, calibrated/physical stock response,
+  product-value, installer, public API, package or release claim opens.
