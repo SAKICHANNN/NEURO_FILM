@@ -25,6 +25,8 @@
   },
   "software_commit": {
     "format": "lowercase full 40-hex Git commit",
+    "explicit_child_token_validation": "format only; transaction callers obtain the token from successful git rev-parse HEAD",
+    "object_resolvability_is_transaction_caller_responsibility": true,
     "child_explicit_override_is_private": true,
     "child_omission_preserves_legacy_live_head_resolution": true,
     "u7_8a_resolves_once_after_complete_preflight": true,

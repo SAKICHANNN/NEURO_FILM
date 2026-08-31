@@ -30,9 +30,13 @@ not calibrated or physical stock responses.
 The private child renderer accepts an optional explicit `software_commit`.
 When omitted, its existing direct-child behavior remains exact: it resolves
 the current repository HEAD once for that child invocation. When supplied,
-the value must be a lowercase forty-hex Git object identity and is written
-unchanged into all three strict recipes. Invalid supplied values reject before
-input decode, render or output-stage creation.
+the value is a format-bound caller-supplied commit token: it must be lowercase
+forty-hex and is written unchanged into all three strict recipes. The child does
+not independently resolve the object. Its only callers in this leaf obtain the
+token immediately from successful `git rev-parse HEAD`; repository-object
+resolvability is therefore a transaction-caller responsibility rather than an
+additional per-child Git lookup. Invalid supplied values reject before input
+decode, render or output-stage creation.
 
 U7.8A resolves repository HEAD exactly once after the complete manifest,
 source and configuration preflight and before creating its transaction stage.
