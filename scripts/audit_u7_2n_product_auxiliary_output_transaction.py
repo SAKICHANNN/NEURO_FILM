@@ -442,10 +442,16 @@ def _stage_drift_gates(work: Path) -> dict[str, bool]:
 
 def _existing_entry_gates(work: Path) -> dict[str, bool]:
     results: dict[str, bool] = {}
-    for role in ("metrics", "layer root"):
+    for role in ("output", "recipe", "metrics", "layer root"):
         output = work / f"existing-{role.replace(' ', '-')}.png"
         missing = work / "must-not-decode.png"
-        if role == "metrics":
+        if role == "output":
+            foreign = output
+            foreign.write_bytes(b"foreign")
+        elif role == "recipe":
+            foreign = output.with_suffix(".recipe.json")
+            foreign.write_bytes(b"foreign")
+        elif role == "metrics":
             foreign = output.with_suffix(".metrics.json")
             foreign.write_bytes(b"foreign")
         else:
@@ -455,21 +461,58 @@ def _existing_entry_gates(work: Path) -> dict[str, bool]:
         completed = _run(
             missing,
             output,
-            effects=role == "layer root",
+            effects=True,
             recipe=True,
-            layers=role == "layer root",
-            metrics=role == "metrics",
+            layers=True,
+            metrics=True,
         )
-        results[f"existing_{role.replace(' ', '_')}_predecode_preserved"] = (
-            completed.returncode != 0
-            and f"product {role} destination must not already exist" in completed.stderr
-            and not output.exists()
-            and (
-                foreign.read_bytes() == b"foreign"
-                if role == "metrics"
-                else (foreign / "foreign.bin").read_bytes() == b"foreign"
+        key = f"existing_{role.replace(' ', '_')}_predecode_preserved"
+        if role == "output":
+            results[key] = (
+                completed.returncode != 0
+                and "product output destination must not already exist"
+                in completed.stderr
+                and output.read_bytes() == b"foreign"
             )
-        )
+        else:
+            results[key] = (
+                completed.returncode != 0
+                and f"product {role} destination must not already exist"
+                in completed.stderr
+                and not output.exists()
+                and (
+                    foreign.read_bytes() == b"foreign"
+                    if role in {"recipe", "metrics"}
+                    else (foreign / "foreign.bin").read_bytes() == b"foreign"
+                )
+            )
+    return results
+
+
+def _alias_gates(work: Path) -> dict[str, bool]:
+    results: dict[str, bool] = {}
+    output = work / "alias.png"
+    aliases = {
+        "output": output,
+        "recipe": output.with_suffix(".recipe.json"),
+        "layer_root": work / "alias_layers",
+        "metrics": output.with_suffix(".metrics.json"),
+    }
+    for role, source in aliases.items():
+        try:
+            prepare_product_render_bundle_transaction(
+                source,
+                output,
+                include_recipe=True,
+                include_layers=True,
+                include_metrics=True,
+            )
+        except ProductRenderTransactionError as exc:
+            results[f"input_{role}_alias_predecode_rejected"] = (
+                str(exc) == "product input and requested output paths must be distinct"
+            )
+        else:
+            results[f"input_{role}_alias_predecode_rejected"] = False
     return results
 
 
@@ -636,6 +679,7 @@ def build_report(*, config_path: Path, order: tuple[str, ...]) -> dict[str, Any]
             "fixture_exact": hashlib.sha256(source_before).hexdigest()
             == config["fixture"]["sha256"],
             **_existing_entry_gates(work),
+            **_alias_gates(work),
             "three_parent_pair_oracles_exact": pair_exact,
             "full_effects_bundle_oracles_exact": bundle_exact,
             "image_encode_failure_residue_zero": _image_encode_failure(work),
