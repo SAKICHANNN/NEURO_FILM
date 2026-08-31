@@ -21459,3 +21459,45 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   safety rule. U7.8C and U7.8E remain immutable negatives and were not rerun.
   No adjacent transaction wrapper, identifier normalization, source search,
   RAW/HDR/OpenEXR work or stock-science claim is opened.
+
+### 2026-09-01 - U7.2O adds a first-class product Look Approximation CLI entry
+
+- **Node and routing:** `ULT > U7 > U7.2O`, DRPT L2 / Mode C. The primary
+  workflow was `dev-research-reliability`; DRPT-BI, plan, agent-log and project
+  structure disciplines were read-only secondary reviewers. The product
+  already had an authoritative catalog and deterministic profile, but its
+  README primary render example still used a historical compatibility style
+  and real product invocation required users to know an internal profile/style
+  combination. The leaf was coordinated as disjoint from U7.8F and U7.3K.
+- **Frozen implementation:** contract/config `417ff63c`, CLI/README/tests
+  `f02ca086`, and committed formal runner/tests `7d942f8c`. The new exact
+  `--product-look {velvia_50,portra_400,ektar_100}` selector resolves in
+  argument validation before input decode to the unchanged
+  `safe-rich-product-v1` profile, matching style and existing render-profile
+  semantics. It rejects simultaneous internal style/profile/engine/discovery
+  selectors and rejects generic B&W, historical, unknown and empty values.
+- **Formal evidence:** forward and reverse fresh processes from committed HEAD
+  `7d942f8cef2067c310b758924cc5a6528817e93b` produce byte-identical
+  7,617-byte reports at
+  `2e6a58edd09d312520469a3d58699705d71d20200ca534ac614ce4fd6c40f8d4`.
+  All 12 gates pass. Velvia 50, Portra 400 and Ektar 100 at look amounts
+  `0/0.5/1` reproduce exact image bytes and normalized recipe semantics from
+  the prior explicit profile/style invocation. Every recipe remains
+  `film-inspired`, `claim_calibrated=false` and profile
+  `safe-rich-product-v1`; the full image/recipe/layers/metrics bundle remains
+  exact to U7.2N. Evidence/test commit is `43c15213`; tracked evidence SHA-256
+  is `92402bfbb8347ada1f097c13f8e4cf7566f123d2cb1ca8982c3f2330e9a45fea`.
+- **Verification:** dedicated implementation tests pass 16/16; the wider
+  product-selection parent chain passes 127 tests with four filesystem
+  capability skips; final evidence and adjacent U7.2N transaction suite passes
+  40/40. JSON parsing, Ruff lint/format, compileall and diff checks pass. One
+  initial evidence-only run correctly exposed three omitted full-bundle
+  mechanical fields; the evidence was completed and the full suite rerun from
+  zero without changing implementation, reports, inputs or gates.
+- **Boundary and propagation:** this is a first-class private CLI entry for
+  existing deterministic Look Approximations. It does not change the colour
+  algorithm, product catalog/profile, recipe schema, AO6 baseline status,
+  stock separation or evidence. It proves no calibrated stock response,
+  physical-film reproduction, public API/package, installer or release
+  readiness. Stop adjacent CLI-wrapper expansion and return to a distinct
+  user workflow or product defect.
