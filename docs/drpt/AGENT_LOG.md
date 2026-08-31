@@ -21274,3 +21274,33 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   transaction-provenance mechanics only; real-scale replay, image quality,
   calibration, public API/package/release, product value and cross-commit
   recovery remain unclaimed.
+
+### 2026-09-01 - U7.8E closes real-scale confirmation before pixel decode
+
+- **Node and routing:** `ULT > U7 > U7.8E`, DRPT L2 / Mode C. The producer
+  owned the exact U7.8E contract/config/runner/test/lock/evidence paths; root
+  remained integration owner and did not touch the concurrent U7.2M product
+  transaction paths during formal execution.
+- **Frozen execution:** contract/config `f47c9043`, implementation
+  `0e014f9c9b76f016388e6acee91fc13a9fabb773`, execution lock `51b39653`, and
+  terminal evidence/test `2810c60e`. The fresh repo-relative P-backed checkout
+  was clean at the exact implementation commit, used `core.autocrlf=true`,
+  inherited only a process-scoped exact-path Git `safe.directory`, retained the
+  frozen 5271-byte CRLF historical statistics identity, and passed all six
+  source-hash preflights.
+- **Decision:** the first and only forward worker failed at the runtime-root
+  asset ledger before any source pixel decode. Git object
+  `configs/color_rendering_profiles.yaml` is 1263-byte LF
+  (`d919402a...28bc`), while the required checkout materialized 1311-byte CRLF
+  (`a29663b2...34e`); the locked runner incorrectly demanded Git-LF bytes.
+  Decision is
+  `FAIL_CLOSED_U7_8E_PREFLIGHT_RUNTIME_ASSET_MATERIALIZATION_DRIFT` with one
+  forward controller/worker, zero formal/comparison reports, zero reverse
+  workers, zero renders and zero publications. No correction, rerun or third
+  attempt is allowed.
+- **Verification and boundary:** 17 focused/adjacent tests plus Ruff, format,
+  compile, JSON and diff checks pass. Evidence SHA-256 is
+  `7081a5571db935c4929eabb8fe7c96ddfbb844e4e5475fe07eff8ed12efc1975`.
+  U7.8C remains the real-scale negative and U7.8D remains the private
+  small-fixture provenance pass. No calibrated-stock, image-quality,
+  product-value, public API/package/release or device claim opens.
