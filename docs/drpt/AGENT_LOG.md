@@ -21423,3 +21423,39 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   installer or release readiness. U7.2L/M historical evidence and colour/effect
   semantics are unchanged. Stop adjacent transaction-wrapper expansion and
   return to a materially distinct product capability or defect.
+
+### 2026-09-01 - U7.8F rejects Windows-aliased batch job identifiers
+
+- **Node and routing:** `ULT > U7 > U7.8F`, DRPT L2 / Mode C. The active Goal
+  remains deterministic film-inspired Look Approximation product correctness.
+  The sole write workflow was `dev-research-reliability`; DRPT-BI, project
+  structure, plan and agent-log disciplines were secondary reviewers. U7.8F
+  was coordinated as disjoint from the concurrently owned U7.2O CLI leaf.
+- **Observed defect:** U7.8A/U7.8B accepted `a` and `a.` as distinct semantic
+  IDs and also accepted Windows device basenames such as `con`, `aux` and
+  `com1`, then used each ID directly as a directory component. A real Windows
+  filesystem witness showed that creating `a.` after `a` addresses the existing
+  `a` directory. String uniqueness therefore did not establish filesystem
+  identity.
+- **Correction:** the one shared U7.8A parser now preserves the existing ASCII
+  syntax and valid identifier bytes while rejecting trailing full stops and the
+  case-insensitive basename-before-first-dot set `CON/PRN/AUX/NUL`,
+  `COM1..COM9`, `LPT1..LPT9`. It never trims, rewrites or substitutes IDs.
+  U7.8B inherits the same parser; manifest/receipt/recipe/checkpoint schemas,
+  pixels, stock parameters, rendering, provenance and recovery semantics are
+  unchanged.
+- **Formal evidence:** committed-head forward/reverse reports are both 4,943
+  bytes / SHA `5e9565da2645dab970caa6ee0eda583a798d4eae229283fc488d54dc08701af5`
+  with scientific identity `ed0e2c7b...c53ed6`. All 20 invalid-ID entrypoint
+  controls reject before input preflight/render with zero forbidden calls and
+  zero workspace/stage/destination/scratch residue. Four valid controls retain
+  exact bytes and order; all gates pass.
+- **Verification:** 85 U7.6B/U7.8A/U7.8B/U7.8D/U7.8F parent-chain tests pass;
+  dedicated evidence/audit tests, Ruff, format, compileall, JSON and diff checks
+  pass. Scoped commits are `dac8fa15` (contract/config), `0b9e9e27`
+  (implementation/tests), `84e3b9ff` (formal runner lock) and `d93933e5`
+  (evidence).
+- **Propagation and stop:** U7.8A/U7.8B gain only the shared path-component
+  safety rule. U7.8C and U7.8E remain immutable negatives and were not rerun.
+  No adjacent transaction wrapper, identifier normalization, source search,
+  RAW/HDR/OpenEXR work or stock-science claim is opened.
