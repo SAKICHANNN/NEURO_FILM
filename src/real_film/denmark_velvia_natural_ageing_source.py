@@ -98,6 +98,10 @@ def _normalized_text(text: str) -> str:
     return " ".join(text.split())
 
 
+def _canonical_url(url: str) -> str:
+    return url.rstrip("/")
+
+
 def run_denmark_velvia_source_audit(
     config_path: Path,
     *,
@@ -132,7 +136,9 @@ def run_denmark_velvia_source_audit(
     article = _parse_html(fetched["article"][1])
     pure = _parse_html(fetched["pure"][1])
     article_title = _require_single(article.meta.get("citation_title"), "article title")
-    article_authors = article.meta.get("citation_author", [])
+    article_authors = [
+        _normalized_text(author) for author in article.meta.get("citation_author", [])
+    ]
     article_rights = sorted(set(article.meta.get("DC.Rights", [])))
     article_doi = _require_single(article.meta.get("citation_doi"), "OJS DOI")
     article_pdf_url = _require_single(
@@ -155,7 +161,8 @@ def run_denmark_velvia_source_audit(
         ),
         "article_title_authors_exact": article_title == source["title"]
         and article_authors == source["authors"],
-        "article_cc_by_4_exact": source["article_license_url"] in article_rights,
+        "article_cc_by_4_exact": _canonical_url(source["article_license_url"])
+        in {_canonical_url(value) for value in article_rights},
         "ojs_pdf_identity_exact": article_pdf_url == source["pdf_url"]
         and len(pdf_payload) == int(source["pdf_bytes"])
         and _sha256(pdf_payload) == source["pdf_sha256"],

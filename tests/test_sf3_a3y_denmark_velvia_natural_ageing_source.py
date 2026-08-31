@@ -159,6 +159,25 @@ def test_wrong_pdf_identity_fails_source_gate(tmp_path: Path) -> None:
     assert report["decision"] == "FAIL"
 
 
+def test_rights_url_and_author_whitespace_are_canonicalized(tmp_path: Path) -> None:
+    config, payloads, pdf_text = _fixture(tmp_path)
+    config_data = json.loads(config.read_text(encoding="utf-8"))
+    article_url = config_data["source"]["article_url"]
+    payloads[article_url] = (
+        payloads[article_url][0],
+        payloads[article_url][1]
+        .replace(b"Two Author", b"Two  Author")
+        .replace(b"licenses/by/4.0/", b"licenses/by/4.0"),
+    )
+    report = run_denmark_velvia_source_audit(
+        config,
+        fetcher=lambda url: payloads[url],
+        pdf_text_extractor=lambda _: pdf_text,
+    )
+    assert report["audit_gates"]["article_title_authors_exact"]
+    assert report["audit_gates"]["article_cc_by_4_exact"]
+
+
 def test_missing_required_physical_statement_fails(tmp_path: Path) -> None:
     config, payloads, _ = _fixture(tmp_path)
     report = run_denmark_velvia_source_audit(
