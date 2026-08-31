@@ -1,0 +1,103 @@
+{
+  "schema": "neuro-film.sf3-a4b-flickr-current-portra-all-three-source-evidence.v1",
+  "experiment_id": "SF3.A4B_FLICKR_CURRENT_PORTRA_ALL_THREE_SOURCE_V1",
+  "decision": "FAIL_CLOSED_SPRKLG_THREE_STOCK_ALTERATION_SUPPORT_AND_GROUP_GAP",
+  "claim_ceiling": "One new live Flickr CC BY 2.0 author with explicit current Portra 400, Ektar 100 and Velvia 50 metadata only; no image URL/body, EXIF, pixel, inferred generation, roll/process/scanner, stock response, identifiability, fitting, learning, calibration, candidate-three or product claim.",
+  "commits": {
+    "contract": "3d58ee93",
+    "implementation": "f987bbda4ceb67167f5c9f00456b11959f4580c5"
+  },
+  "source_objects": {
+    "config_blob": "d38e142a18705d5716d4ea26bcc7c7a49551278a",
+    "contract_blob": "85df302646d2d12cc9b9397c1a18453079863e87",
+    "core_blob": "9a60c36d0a7cbdc792d16950421ffbf2a66b834e",
+    "runner_blob": "2eb7a7e6ea0616d406f9c91ed103669a69a9c22f",
+    "test_blob": "d9e804b5d5e43dc35362e1b7cf3b4c5b5482733d"
+  },
+  "formal_replay": {
+    "processes": 2,
+    "orders": [
+      "forward",
+      "reverse"
+    ],
+    "bytes_each": 42643,
+    "byte_exact": true,
+    "sha256": "33fca4b648bf44fd5b19d380f298c071972d0ac98736f6a0f772be941a67a746",
+    "stable_evidence_id": "37f5cede5928ecb65a203ae3a7edcbbb015992cc77dedce132912484f19c927b"
+  },
+  "source": {
+    "author_name": "sprklg",
+    "owner_nsid": "59731892@N00",
+    "license": "CC BY 2.0",
+    "public_photo_metadata_rows": 3285,
+    "api_metadata_pages": 7,
+    "target_manifest_sha256": "44c1aea2bc1974c6138408e561f8bc8f5bd8a298e1290ee9c44038dee7dc5ef2",
+    "target_counts": {
+      "fujifilm_velvia_50": 1,
+      "kodak_ektar_100": 47,
+      "kodak_portra_400_current": 29
+    },
+    "unaltered_target_counts": {
+      "fujifilm_velvia_50": 0,
+      "kodak_ektar_100": 46,
+      "kodak_portra_400_current": 29
+    },
+    "explicit_alteration_rows": [
+      {
+        "photo_id": "5166466046",
+        "stock_id": "kodak_ektar_100",
+        "term": "de-saturated"
+      },
+      {
+        "photo_id": "5208219669",
+        "stock_id": "fujifilm_velvia_50",
+        "term": "desaturated"
+      }
+    ]
+  },
+  "connectivity": {
+    "a3q_baseline_qualifying_author_count": 4,
+    "new_author_distinct": true,
+    "augmented_qualifying_author_count": 5,
+    "required_minimum": 5,
+    "gate_passed": true
+  },
+  "source_gates": {
+    "cc_by_2_license_exact": true,
+    "complete_public_metadata_inventory": true,
+    "current_portra_rows_explicit": true,
+    "new_author_distinct_from_a3q": true,
+    "one_owner_exact": true,
+    "owner_name_exact": true,
+    "public_photo_media_exact": true,
+    "target_manifest_sha256_exact": true,
+    "target_stock_counts_exact": true
+  },
+  "connectivity_gates": {
+    "a3q_baseline_four_exact": true,
+    "augmented_current_portra_author_minimum": true,
+    "new_author_has_all_three_stocks": true
+  },
+  "pixel_admission_gates": {
+    "explicit_cross_stock_camera_group_count": false,
+    "explicit_process_group_count": false,
+    "explicit_roll_group_count": false,
+    "explicit_scanner_group_count": false,
+    "sealed_confirmation_group_count": false,
+    "unaltered_rows_per_stock": false
+  },
+  "operation_counts": {
+    "author_html_get_requests": 1,
+    "api_metadata_get_requests": 7,
+    "image_url_requests": 0,
+    "image_head_requests": 0,
+    "image_range_requests": 0,
+    "image_body_requests": 0,
+    "exif_requests": 0,
+    "pixel_decodes": 0,
+    "fit_calls": 0,
+    "render_calls": 0,
+    "score_calls": 0
+  },
+  "interpretation": "The new author resolves only the previously missing current-generation all-three metadata connectivity count. Pixel admission remains closed because the sole Velvia 50 row is explicitly desaturated and the source lacks the frozen camera/roll/process/scanner/confirmation groups. No media acquisition or natural-label rescue opens."
+}
