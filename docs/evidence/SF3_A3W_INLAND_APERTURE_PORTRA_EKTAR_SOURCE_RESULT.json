@@ -1,0 +1,216 @@
+{
+  "admission_gates": {
+    "explicit_process_group_count": false,
+    "explicit_roll_group_count": false,
+    "explicit_scanner_group_count": false,
+    "independent_author_source_count": false,
+    "observed_photo_count": true,
+    "same_author_camera_cross_stock_control_count": true,
+    "same_scene_neutral_film_pair_count": false,
+    "sealed_confirmation_group_count": false,
+    "target_stock_count": true
+  },
+  "admission_minimums": {
+    "explicit_process_group_count": 1,
+    "explicit_roll_group_count": 3,
+    "explicit_scanner_group_count": 1,
+    "independent_author_source_count": 3,
+    "observed_photo_count": 6,
+    "same_author_camera_cross_stock_control_count": 1,
+    "same_scene_neutral_film_pair_count": 1,
+    "sealed_confirmation_group_count": 1,
+    "target_stock_count": 2
+  },
+  "audit_gates": {
+    "flickr_license_code_exact": true,
+    "per_work_cc_by_4_author_exact": true,
+    "portra_four_ektar_three_exact": true,
+    "same_camera_declaration_exact": true,
+    "selected_manifest_exact": true,
+    "selected_manifest_sha256_exact": true,
+    "seven_fixed_photo_pages_exact": true,
+    "zero_media_pixel_fit_render_score": true
+  },
+  "claim_ceiling": "Seven-page per-work CC BY 4.0 same-author/same-camera Portra 400 and Ektar 100 appearance-source metadata only; no media body, pixels, roll/process/scanner identity, same-scene neutral pair, sealed confirmation, source-independent stock response, fitting, learning, calibration, three-stock result, product profile or candidate-three admission.",
+  "decision": "FAIL_CLOSED_INLAND_APERTURE_SINGLE_SOURCE_GROUP_AND_PAIRING_GAP",
+  "experiment_id": "SF3.A3W_INLAND_APERTURE_PORTRA_EKTAR_SOURCE_V1",
+  "group_evidence": {
+    "explicit_process_group_count": 0,
+    "explicit_roll_group_count": 0,
+    "explicit_scanner_group_count": 0,
+    "independent_author_source_count": 1,
+    "observed_photo_count": 7,
+    "same_author_camera_cross_stock_control_count": 1,
+    "same_scene_neutral_film_pair_count": 0,
+    "sealed_confirmation_group_count": 0,
+    "target_stock_count": 2
+  },
+  "manifest": {
+    "rows": [
+      {
+        "date_posted": "1786311824",
+        "date_taken": "2026-08-09 13:43:44",
+        "description": "My son and I took a weekend trip up Hwy 395 from Southern California to the Eastern Sierras. We spend one night at Crowley Lake dispersed campground which is the location of this photo. It was a warm afternoon and my son waded out into the water to cool off, I snapped this photo on my Canon EOS 1 with Ektar 100.",
+        "height": 2075,
+        "id": "55453442813",
+        "license": 11,
+        "stock": "ektar_100",
+        "title": "Taking it all in\u2026",
+        "width": 3130
+      },
+      {
+        "date_posted": "1786475553",
+        "date_taken": "2026-08-11 11:12:33",
+        "description": "It was our first time visiting Yosemite, we entered the park from the east entrance, and were greeted by some of the most beautiful scenes imaginable. Yosemite has now topped my list pf National Parks as the best of the best. Canon EOS1 Kodak Portra 400",
+        "height": 2075,
+        "id": "55456653037",
+        "license": 11,
+        "stock": "portra_400",
+        "title": "Yosemite National Park",
+        "width": 3130
+      },
+      {
+        "date_posted": "1786475805",
+        "date_taken": "2026-08-11 11:16:45",
+        "description": "Canon eos 1, kodak ektar 100",
+        "height": 2075,
+        "id": "55456660302",
+        "license": 11,
+        "stock": "ektar_100",
+        "title": "Hwy 395",
+        "width": 3130
+      },
+      {
+        "date_posted": "1786475625",
+        "date_taken": "2026-08-11 11:13:45",
+        "description": "The upper owens shot on canon eos 1 with kodak portra 400",
+        "height": 2075,
+        "id": "55457753218",
+        "license": 11,
+        "stock": "portra_400",
+        "title": "Upper Owens River",
+        "width": 3130
+      },
+      {
+        "date_posted": "1786475702",
+        "date_taken": "2026-08-11 11:15:02",
+        "description": "It was our first time visiting Yosemite, we entered the park from the east entrance, and were greeted by some of the most beautiful scenes imaginable. Yosemite has now topped my list pf National Parks as the best of the best. Canon EOS1 Kodak Portra 400",
+        "height": 3129,
+        "id": "55458036905",
+        "license": 11,
+        "stock": "portra_400",
+        "title": "Yosemite National Park",
+        "width": 2074
+      },
+      {
+        "date_posted": "1786556313",
+        "date_taken": "2026-08-12 09:38:33",
+        "description": "Canon EOS1, Kodak Ektar 100",
+        "height": 2555,
+        "id": "55459522926",
+        "license": 11,
+        "stock": "ektar_100",
+        "title": "Upper Owens River, Eastern Sierra Nevada Mountains, CA",
+        "width": 2044
+      },
+      {
+        "date_posted": "1786565281",
+        "date_taken": "2026-08-09 14:12:32",
+        "description": "My son fishing the upper owens. Canon EOS1, Kodak Portra 400",
+        "height": 2075,
+        "id": "55459986799",
+        "license": 11,
+        "stock": "portra_400",
+        "title": "Fly fishing Upper Owens River",
+        "width": 3130
+      }
+    ],
+    "sha256": "e232545511feb1ecdac64ca6b62da466e43907211f58ac5d9f8faedb704bcdf6",
+    "stock_counts": {
+      "ektar_100": 3,
+      "portra_400": 4
+    }
+  },
+  "operation_counts": {
+    "fit_calls": 0,
+    "image_body_requests": 0,
+    "image_head_requests": 0,
+    "image_range_requests": 0,
+    "photo_html_get_requests": 7,
+    "pixel_decodes": 0,
+    "render_calls": 0,
+    "score_calls": 0
+  },
+  "photo_html_requests_observed": 7,
+  "rights": {
+    "rows": [
+      {
+        "acquire_license_page": "https://www.flickr.com/photos/inlandaperture/55453442813",
+        "author_name": "Matt",
+        "author_url": "https://www.flickr.com/photos/inlandaperture",
+        "content_url_sha256": "70e59b2009c7bdb572fe468810b4bfa684a20bcb2f0cf78fcb341a1d14ec1db0",
+        "id": "55453442813",
+        "license": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      {
+        "acquire_license_page": "https://www.flickr.com/photos/inlandaperture/55456653037",
+        "author_name": "Matt",
+        "author_url": "https://www.flickr.com/photos/inlandaperture",
+        "content_url_sha256": "7ce02185a767b61b493f4ccaff72e44ea0d49fb3e31a9a036714fdb3c1c257e3",
+        "id": "55456653037",
+        "license": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      {
+        "acquire_license_page": "https://www.flickr.com/photos/inlandaperture/55456660302",
+        "author_name": "Matt",
+        "author_url": "https://www.flickr.com/photos/inlandaperture",
+        "content_url_sha256": "05775f4490a4e51b3df0018bbf906494ca63f6a1f7eb7339054fe511f8172fb6",
+        "id": "55456660302",
+        "license": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      {
+        "acquire_license_page": "https://www.flickr.com/photos/inlandaperture/55457753218",
+        "author_name": "Matt",
+        "author_url": "https://www.flickr.com/photos/inlandaperture",
+        "content_url_sha256": "753f025c1d00562c9fe2538920d8ae0dec559dcf4393a2dc39127820ef253021",
+        "id": "55457753218",
+        "license": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      {
+        "acquire_license_page": "https://www.flickr.com/photos/inlandaperture/55458036905",
+        "author_name": "Matt",
+        "author_url": "https://www.flickr.com/photos/inlandaperture",
+        "content_url_sha256": "eb17275c8bc646af17c5f56750b3afa6e3344022cc14c78f0b8790fc58b419df",
+        "id": "55458036905",
+        "license": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      {
+        "acquire_license_page": "https://www.flickr.com/photos/inlandaperture/55459522926",
+        "author_name": "Matt",
+        "author_url": "https://www.flickr.com/photos/inlandaperture",
+        "content_url_sha256": "43535bfc0d6f6406d88d2c7552e38e55b91d8e7f16c10f91388dd9c55389a9c9",
+        "id": "55459522926",
+        "license": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      {
+        "acquire_license_page": "https://www.flickr.com/photos/inlandaperture/55459986799",
+        "author_name": "Matt",
+        "author_url": "https://www.flickr.com/photos/inlandaperture",
+        "content_url_sha256": "8d2b9224de9b3759dda7188290d4199e2ea3a5e73551f0e3747d8b2704d89b7c",
+        "id": "55459986799",
+        "license": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "sha256": "60a4d729cf8f494259c5dc414b8061e21a109656103fb745451c3931cd948863"
+  },
+  "schema": "neuro-film.sf3-a3w-inland-aperture-portra-ektar-source-result.v1",
+  "source": {
+    "author_name": "Matt",
+    "author_slug": "inlandaperture",
+    "author_url": "https://www.flickr.com/photos/inlandaperture",
+    "license_code": 11,
+    "license_url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "stable_evidence_id": "666dca135e7f191405268ff42c78b4f9820681735f88c2294061e68d6ff03b41"
+}
+
