@@ -1,0 +1,110 @@
+{
+  "schema_version": "neuro-film.u7-2n-product-auxiliary-output-transaction-evidence.v1",
+  "node_id": "U7.2N",
+  "decision": "PASS_PRIVATE_U7_2N_PRODUCT_AUXILIARY_OUTPUT_TRANSACTION",
+  "claim_ceiling": "Private create-only process-level publication and identity-safe rollback for all explicitly requested artifacts of deterministic film-inspired Look Approximations only; not simultaneous visibility, power-loss atomicity, calibrated stock response, physical-film reproduction, public packaging, installer or release readiness.",
+  "bindings": {
+    "contract_commit": "21e1ca45ad9ca2e107143673ed4cc69ea7b7174c",
+    "implementation_commit": "996faf4c3b866eafc1fccb87a595cb53c3b9e3de",
+    "initial_runner_commit": "4df18e24aa7d191d724712e201e37dd0b252d0dc",
+    "coverage_correction_commit": "eb8bb6f807c22f5bd7bc3aa13cb974cf4c7ab6e5",
+    "formal_runner_commit": "dbd315597f741056a8999544b8a93d52cb5ccf59",
+    "formal_execution_head": "dbd315597f741056a8999544b8a93d52cb5ccf59",
+    "files": {
+      "configs/u7_2n_product_auxiliary_output_transaction_v1.json": {
+        "bytes": 3626,
+        "sha256": "3e93d1d221915adf5a84e2b3ac08332fdc1b240a3d9f72521398d37ae7e58582",
+        "git_blob": "b180de484cd801e33137eb8b162c2e28d19643c6"
+      },
+      "docs/planning/U7_2N_PRODUCT_AUXILIARY_OUTPUT_TRANSACTION_CONTRACT.md": {
+        "bytes": 4572,
+        "sha256": "23620b00c4de37e26fefefe0f046c3a65a6b93b5a31c044caffbc00a990696a6",
+        "git_blob": "79f18adb08ef2a34bc63f7a10a9b6a1e9e66c74f"
+      },
+      "scripts/render_film.py": {
+        "bytes": 39672,
+        "sha256": "f206608284b5fa690a2ab2753c68f254e260781d4992b32e9dadf5c96836bf8b",
+        "git_blob": "46d734806cb57a89b18d6aadc9bd70288e46cac9"
+      },
+      "src/inference/product_render_transaction.py": {
+        "bytes": 18652,
+        "sha256": "af6a0ce56f6cf6b5ab105d69f60f5fc14a2e87a78d68c126bb0ad0470a4a814e",
+        "git_blob": "944843037959d344b950620c03e738d609336817"
+      },
+      "tests/test_u7_2n_product_auxiliary_output_transaction.py": {
+        "bytes": 19265,
+        "sha256": "b66e1b2083698cc27ceac6d9b6eeafbf51e1f6c77931b63847892a3edc045b49",
+        "git_blob": "60d2e45844563c9972a3af13d96577ebd48e80d6"
+      },
+      "scripts/audit_u7_2n_product_auxiliary_output_transaction.py": {
+        "bytes": 28342,
+        "sha256": "03916bea9b59284325e1f5c26521ec57b1b39ec6220ab5073712d7ae85d115fa",
+        "git_blob": "0f4b160b01eb2d7ab8f42d66ab87171858c7b47a"
+      },
+      "tests/test_audit_u7_2n_product_auxiliary_output_transaction.py": {
+        "bytes": 649,
+        "sha256": "e8e11e1c72609609faa2fda8bb800bed27610c0ddebf30cf24a92a3001832326",
+        "git_blob": "eb2961d7c5beee43636cf3a96d9b2bfc7e0a29bf"
+      },
+      "docs/evidence/U7_2M_PRODUCT_IMAGE_RECIPE_TRANSACTION_RESULT.json": {
+        "bytes": 5519,
+        "sha256": "9ea072da51274b6bd1a2cbcc1f60ad8283f60174972107fa96c074ac8995fd5e",
+        "git_blob": "9eaea9f40a9776eb470d847f4997c31e93a76a57"
+      },
+      "src/film_physics/create_only_file.py": {
+        "bytes": 1791,
+        "sha256": "d05292155594392b2c3d3b76f2aa680a3c3f011bab641111393ca3bde708fa37",
+        "git_blob": "205bc185dfdd4b0b273272ae87ddee36f8691f36"
+      }
+    }
+  },
+  "formal_reports": {
+    "forward_path": "outputs/eval/u7_2n_product_auxiliary_output_transaction_v1/formal_v2.json",
+    "reverse_path": "outputs/eval/u7_2n_product_auxiliary_output_transaction_v1/formal_v2_replay.json",
+    "bytes_each": 4493,
+    "sha256": "0043d742f9338d342f1dded09131b89009a8570080c6ccc48f90561f7632f192",
+    "forward_reverse_byte_exact": true,
+    "fresh_process_count": 2
+  },
+  "result": {
+    "formal_gate_count": 41,
+    "formal_gate_pass_count": 41,
+    "concurrent_returncodes": [0, 1],
+    "owned_runtime_residue_zero": true,
+    "three_parent_pair_oracles_exact": true,
+    "full_effects_bundle_oracles_exact": true,
+    "all_existing_and_alias_entries_rejected_predecode": true,
+    "all_encode_and_publication_failures_owned_residue_zero": true,
+    "all_stage_content_and_identity_mutations_rejected": true,
+    "all_foreign_replacements_and_additions_preserved": true,
+    "source_immutable": true,
+    "image_only_pair_and_legacy_unchanged": true
+  },
+  "full_effects_bundle": {
+    "output_sha256": "8f828d8e73d41c63b15c3829c1c0d221aa06aa880f603a8dd8b28601e60cd495",
+    "normalized_recipe_sha256": "297d9c00d1bf121f70b1821361c773c77182ce08ebe2398d54f1662de76511d9",
+    "normalized_metrics_sha256": "903086196029c73fe581f9416443b3d541728c5716ea9e0eeb636621142f857b",
+    "layer_sha256": {
+      "dust_scratch.png": "bf14cba9f275b9020798af5507f33c149abf37f5263c0897c537a9378d87081b",
+      "grain.png": "08a6c1af4d5af8ec62a6f0f2dda7676cb5a6b19a2f4de3613d5bb0cb235251db",
+      "halation.png": "b22f568d3844c8ae2e0c60c04bded593bfbfd9b053489cab12d5b7790ff01c35",
+      "halation_on_black.png": "b22f568d3844c8ae2e0c60c04bded593bfbfd9b053489cab12d5b7790ff01c35",
+      "halation_on_white.png": "7df40232de02867eeac696754981213833e906a439649377bb5b7618d18b200f"
+    }
+  },
+  "excluded_preformal_attempts": [
+    "An initial uncommitted test expected Path('out.metrics.json').with_suffix('.metrics.json') to alias the image path; Python correctly derives out.metrics.metrics.json. The test was corrected before formal execution to use the real input-to-derived-metrics alias, and the implementation gate rejects it predecode.",
+    "Two 3743-byte 27-gate prescore reports with SHA-256 30493be4f4f01fb71c7aa7300435995c9d45f7f2d1d194b28bf87cc1e88253b were generated before the final formal coverage commits. An exact-path deletion attempt was blocked by platform policy before execution, so zero files were deleted. The authoritative dbd315597 fresh-process reports were written to separate formal_v2 paths; the canonical formal paths now contain byte-exact copies of the 4493-byte V2 reports. Only the formal_v2 paths are evidence-bound."
+  ],
+  "retained_boundaries": {
+    "simultaneous_multi_entry_visibility_or_power_loss_atomicity": false,
+    "adversarial_post_seal_cross_process_stage_mutation_claim": false,
+    "legacy_publication_semantics_changed": false,
+    "recipe_or_metrics_schema_changed": false,
+    "colour_algorithm_effects_or_parameters_changed": false,
+    "calibrated_stock_or_physical_film_claim": false,
+    "public_api_package_installer_or_release_claim": false,
+    "u7_2l_or_u7_2m_historical_evidence_rewritten": false,
+    "adjacent_transaction_wrapper_expansion_authorized": false
+  }
+}
