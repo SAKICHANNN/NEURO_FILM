@@ -34,20 +34,31 @@ This is a line-ending representation fact, not a different statistics payload.
 
 Before the first source pixel is decoded, the runner must:
 
-1. read the profile, statistics, and guardrails from the exact immutable
+1. read the profile, its legacy profile-config asset, statistics, and
+   guardrails from the exact immutable
    `U7.8C` Git objects;
 2. verify each Git blob, LF byte count, and LF SHA-256;
 3. reject a statistics blob containing any existing carriage return, verify
    exactly 240 LF bytes, replace every LF with CRLF, and verify the exact frozen
    5,271-byte / `1a45e907...7c04` runtime identity;
 4. materialize all three runtime inputs only inside the owned scratch root;
-5. pass those scratch paths to the unchanged current transaction core; and
-6. remove the materialized files and every other owned scratch member before
+5. independently verify that the fixed formal checkout has
+   `core.autocrlf=true` and that the profile's three relative asset-ledger
+   members under the runtime root are byte exact, including the 5,271-byte
+   CRLF statistics worktree file;
+6. pass the three scratch render-input paths to the unchanged current
+   transaction core; and
+7. remove the materialized files and every other owned scratch member before
    the worker exits.
 
-The machine-local source root, clone root, scratch paths, and execution-lock
-materialization path may never enter a recipe, child manifest, receipt, stable
-scientific payload, or evidence identity.
+Both formal controllers run from the same fixed checkout and therefore the same
+canonical source and scratch path identities. Absolute input/output paths are
+an intentional part of every strict recipe and child manifest. Before deleting
+each successful publication, the runner must prove that all 18 recipe paths and
+all six child-manifest path sets equal those frozen canonical paths. The paths
+are not copied verbatim into the order/resource-independent report payload, but
+their exact recipe/manifest hashes remain binding there. The machine-local
+execution-lock materialization path is never recorded.
 
 ## Frozen inputs and execution
 

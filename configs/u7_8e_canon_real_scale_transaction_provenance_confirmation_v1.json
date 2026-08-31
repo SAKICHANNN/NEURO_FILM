@@ -36,6 +36,13 @@
       "git_lf_sha256": "09722cb48c55d1c4c460220c9f59b9ced81801c1b6fe856708a27f5cc99d39fe",
       "runtime_materialization": "git-lf-bytes"
     },
+    "legacy_profile_config": {
+      "path": "configs/color_rendering_profiles.yaml",
+      "git_blob": "9e98e83d951105aa5cef87d7868c9581601667f8",
+      "git_lf_bytes": 1263,
+      "git_lf_sha256": "d919402ac03b351ceb836bbdc516de094f7bad24f54858f9897950a1dc0428bc",
+      "runtime_materialization": "git-lf-bytes"
+    },
     "statistics": {
       "path": "configs/film_color_stats.json",
       "git_blob": "c12ccafcea9ee8a283badba5b473d29f3d54e162",
@@ -73,6 +80,7 @@
       "sha256": "e2b097ebb5a2c3f91e891c72c52e1d70ecc874332ecadcb5be15d727ca53abb1"
     },
     "u7_8d_evidence": {
+      "commit": "27035e20849aaf05a045c2280cbafb5f8cbf0088",
       "path": "docs/evidence/U7_8D_TRANSACTION_SOFTWARE_PROVENANCE_SNAPSHOT_RESULT.json",
       "git_blob": "0638c5c2a568bbc369f8d9a6f99ef325acf0f908",
       "bytes": 7466,
