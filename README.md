@@ -17,16 +17,32 @@ Earlier SDXL SDEdit, LoRA and InstructPix2Pix paths are retained as research his
 
 The renderer is currently a safe engineering baseline, not yet a calibrated reproduction of named film stocks. The compatibility default remains 8-bit; an opt-in float32 safe-Lab/effects path can now write true 16-bit sRGB PNG/TIFF. HDR, wide gamut and calibrated scene-to-display mapping remain foundation work.
 
-## Current CLI
+## Product Look Approximation CLI
+
+List the authoritative product catalog without reading an image:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\render_film.py --list-product-looks
+```
+
+Render one explicitly selected film-inspired Look Approximation. The available
+colour choices are `velvia_50`, `portra_400` and `ektar_100`; these names are
+product look labels, not claims of calibrated stock response or physical-film
+reproduction.
 
 ```powershell
 .\.venv\Scripts\python.exe scripts\render_film.py input.jpg `
-  --style portra_400 `
-  --preset safe-rich `
-  --grain 0.2 `
-  --halation 0.1 `
+  --product-look portra_400 `
+  --look-amount 0.75 `
+  --write-recipe `
   --output result.png
 ```
+
+Optional deterministic `--grain`, `--halation` and `--dust` controls remain
+available. Add `--write-layers` and `--write-metrics` when those auxiliary
+artifacts are wanted; the product path publishes every requested artifact
+create-only as one process-level bundle. This is not simultaneous visibility
+or power-loss atomicity.
 
 Inspect all current controls with:
 

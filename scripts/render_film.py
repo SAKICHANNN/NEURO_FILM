@@ -101,6 +101,15 @@ def parse_args() -> argparse.Namespace:
         ),
     )
     parser.add_argument(
+        "--product-look",
+        choices=("velvia_50", "portra_400", "ektar_100"),
+        default=None,
+        help=(
+            "Select an available film-inspired Look Approximation and bind the "
+            "authoritative safe-rich-product-v1 profile."
+        ),
+    )
+    parser.add_argument(
         "--look-amount",
         type=float,
         default=1.0,
@@ -123,7 +132,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--render-profile",
         type=Path,
-        default=ROOT / "configs" / "render_profiles" / "safe_rich_v1.json",
+        default=None,
     )
     parser.add_argument(
         "--analytic-profile",
@@ -257,6 +266,25 @@ def parse_args() -> argparse.Namespace:
         help="Parallel bounded safe-Lab tiles; requires --tile-size, default 1.",
     )
     args = parser.parse_args()
+    render_profile_was_explicit = args.render_profile is not None
+    if args.product_look is not None:
+        if args.list_product_looks:
+            parser.error("--product-look cannot be combined with --list-product-looks")
+        if args.style is not None:
+            parser.error("--product-look cannot be combined with --style")
+        if args.use_render_profile:
+            parser.error("--product-look cannot be combined with --use-render-profile")
+        if render_profile_was_explicit:
+            parser.error("--product-look cannot be combined with --render-profile")
+        if args.color_engine != "safe_lab":
+            parser.error("--product-look requires the safe_lab color engine")
+        args.style = args.product_look
+        args.use_render_profile = True
+        args.render_profile = (
+            ROOT / "configs" / "render_profiles" / "safe_rich_product_v1.json"
+        )
+    elif args.render_profile is None:
+        args.render_profile = ROOT / "configs" / "render_profiles" / "safe_rich_v1.json"
     if args.list_product_looks:
         if args.input is not None or args.output is not None:
             parser.error(
