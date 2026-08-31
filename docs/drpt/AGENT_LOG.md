@@ -21502,6 +21502,47 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   readiness. Stop adjacent CLI-wrapper expansion and return to a distinct
   user workflow or product defect.
 
+### 2026-09-01 - U7.2P isolates the product CLI from unselected research dependencies
+
+- **Node and routing:** `ULT > U7 > U7.2P`, DRPT L2 / Mode C. The primary
+  workflow was `dev-research-reliability`; router, general reliability,
+  DRPT-BI, plan, agent-log and project-structure disciplines were read-only
+  secondary reviewers. The leaf was coordinated as disjoint from U7.3K/L.
+- **Observed defect and correction:** product discovery and normal
+  `--product-look` rendering eagerly imported the analytic research engine,
+  which transitively loaded `src.eval`, pypdf, cryptography and a broad ML
+  graph even though that engine was unselected. Commit `657b563` moves only
+  those analytic imports into the already selected
+  `analytic-y-chromaticity` branch; no algorithm, profile, catalog, recipe,
+  dependency requirement or output changed. Freeze commit is `96d6d10a`.
+- **Formal evidence:** runner `536f95cd`, direct-entry bootstrap correction
+  `4462718a`, and replay-exact audit-log correction `5fbffa88` precede the
+  from-zero accepted runs. Forward/reverse reports are both 8,211 bytes / SHA
+  `f6e0f2ed7b54ce84b3de728c76cc44210014dde8b44cbff2e8cd2af92f436e5a`;
+  all 12 gates pass. Across 31 product child processes per run, deterministic
+  blockers observe zero imports of `src.eval`, pypdf, cryptography, the major
+  PyTorch/diffusion/transformer roots, PEFT, W&B or Lightning. Discovery,
+  three looks at amounts `0/0.5/1`, normalized recipes and the complete
+  image/recipe/layers/metrics bundle remain exact to U7.2O. The analytic route
+  imports only when selected and still executes unchanged without the blocker.
+  Evidence/test commit is `a0750ebe`; tracked evidence SHA-256 is
+  `b9578f4fa07e82a5ceedbc1a98c9da1cdc1ab1cb56863d1568f0ed59e50ccf18`.
+- **Verification and honest regression boundary:** four dedicated
+  evidence/audit/behavior tests pass in 93.64 seconds; Ruff lint/format,
+  py_compile, JSON parsing and diff checks pass. A wider run produced
+  `134 passed, 4 skipped, 1 failed`, and a product-parent run produced
+  `59 passed, 1 failed`. Both sole failures are historical tests that require
+  current `style_safe_engine.py` behavior/hash to remain equal to U7.2J/N
+  after the separately frozen and verified U7.3L replay ownership-safety
+  repair. U7.2P behavior did not fail, historical evidence remains immutable,
+  and the later safety fix was not reverted or misreported as an old pass.
+- **Boundary and propagation:** this proves only private isolation of an
+  unselected research import graph for the existing deterministic
+  film-inspired Look Approximation CLI. It is not a minimal environment,
+  package, installer, public API, release, cross-platform, calibrated-stock,
+  physical-film or product-value result. AO6 remains only a Velvia 50
+  display-proxy baseline. Adjacent CLI-wrapper expansion remains stopped.
+
 ### 2026-09-01 - U7.3K preserves foreign recipe-directory entries
 
 - **Node and routing:** `ULT > U7 > U7.3K`, DRPT L2 / Mode C. The sole write
