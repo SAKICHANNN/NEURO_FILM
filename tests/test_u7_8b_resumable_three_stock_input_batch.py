@@ -271,9 +271,7 @@ def test_existing_complete_receipt_retries_late_publication_without_render(
     assert result["job_count"] == 1
 
 
-def test_reserved_transient_is_removed_only_after_valid_resume(
-    tmp_path: Path
-) -> None:
+def test_reserved_transient_is_removed_only_after_valid_resume(tmp_path: Path) -> None:
     manifest = tmp_path / "jobs.json"
     _manifest(manifest, count=2)
     workspace = tmp_path / "resume-workspace"
@@ -426,7 +424,9 @@ def test_child_manifest_extra_semantics_reject_before_rerender(
     child_manifest.write_text(json.dumps(payload), encoding="utf-8")
     monkeypatch.setattr(
         "src.inference.resumable_three_stock_input_batch.render_three_stock_batch_to_directory",
-        lambda *_args, **_kwargs: pytest.fail("semantic drift must reject before render"),
+        lambda *_args, **_kwargs: pytest.fail(
+            "semantic drift must reject before render"
+        ),
     )
     with pytest.raises(ResumableThreeStockBatchError, match="manifest identity"):
         _render(manifest, workspace, destination)
@@ -444,9 +444,7 @@ def test_destination_aliasing_lease_rejects_without_creation(tmp_path: Path) -> 
     assert not workspace.exists()
 
 
-def test_concurrent_lease_rejects_without_workspace_mutation(
-    tmp_path: Path
-) -> None:
+def test_concurrent_lease_rejects_without_workspace_mutation(tmp_path: Path) -> None:
     manifest = tmp_path / "jobs.json"
     _manifest(manifest, count=2)
     workspace = tmp_path / "resume-workspace"

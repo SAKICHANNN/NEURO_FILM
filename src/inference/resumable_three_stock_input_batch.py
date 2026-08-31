@@ -311,9 +311,7 @@ def _exclusive_lease(path: Path, expected: bytes) -> Iterator[BinaryIO]:
         try:
             handle.seek(0)
             if handle.read() != expected:
-                raise ResumableThreeStockBatchError(
-                    "workspace lease identity mismatch"
-                )
+                raise ResumableThreeStockBatchError("workspace lease identity mismatch")
             yield handle
         finally:
             handle.seek(0)
@@ -349,16 +347,12 @@ def _create_workspace(workspace: Path, state: dict[str, Any]) -> None:
         raise
 
 
-def _reconcile_owned_init_stages(
-    workspace: Path, state: dict[str, Any]
-) -> None:
+def _reconcile_owned_init_stages(workspace: Path, state: dict[str, Any]) -> None:
     """Remove only complete state-bound sibling initialization remnants."""
 
     prefix = f".{workspace.name}.u7-8b-init-{state['workspace_id']}-"
     pattern = re.compile(re.escape(prefix) + r"[0-9a-f]{32}")
-    temporary_pattern = re.compile(
-        r"\.(?:resume|checkpoint)\.json\.[0-9]+\.tmp"
-    )
+    temporary_pattern = re.compile(r"\.(?:resume|checkpoint)\.json\.[0-9]+\.tmp")
     for entry in workspace.parent.iterdir():
         if pattern.fullmatch(entry.name) is None:
             continue
@@ -449,8 +443,7 @@ def _validate_child(
     rows = manifest.get("rows")
     if (
         set(manifest) != _CHILD_MANIFEST_KEYS
-        or manifest.get("schema_version")
-        != "neuro-film.three-stock-file-batch.v1"
+        or manifest.get("schema_version") != "neuro-film.three-stock-file-batch.v1"
         or manifest.get("input_sha256") != job["input_sha256"]
         or _normalized_path(Path(str(manifest.get("input_path", ""))))
         != _normalized_path(job["input_path"])
@@ -461,8 +454,7 @@ def _validate_child(
         or not isinstance(rows, list)
         or any(not isinstance(row, dict) for row in rows)
         or any(set(row) != _CHILD_ROW_KEYS for row in rows)
-        or tuple(row.get("style_id") for row in rows)
-        != _EXPECTED_STYLES
+        or tuple(row.get("style_id") for row in rows) != _EXPECTED_STYLES
     ):
         raise ResumableThreeStockBatchError(
             f"child manifest identity drifted for job {job['job_id']}"
@@ -514,11 +506,9 @@ def _validate_child(
             or recipe["render"]["style"] != style
             or recipe["render"]["seed"] != seed
             or recipe["render"]["look_amount"] != float(look_amount)
-            or recipe["render"]["color_parameters"]
-            != expected_color_parameters
+            or recipe["render"]["color_parameters"] != expected_color_parameters
             or recipe["render"]["effects"] != expected_effects
-            or recipe["claim"]["claim_ceiling"]
-            != profile["evidence"]["claim_ceiling"]
+            or recipe["claim"]["claim_ceiling"] != profile["evidence"]["claim_ceiling"]
             or recipe["input"]["sha256"] != job["input_sha256"]
             or _normalized_path(Path(recipe["input"]["path"]))
             != _normalized_path(job["input_path"])
@@ -550,9 +540,7 @@ def _validate_child(
     return sha256_file(manifest_path), receipt_rows
 
 
-def _load_checkpoint(
-    workspace: Path, workspace_id: str
-) -> list[dict[str, str]]:
+def _load_checkpoint(workspace: Path, workspace_id: str) -> list[dict[str, str]]:
     path = workspace / "checkpoint.json"
     _require_regular_single_link(path, "checkpoint ledger")
     payload = _load_json(path, "checkpoint ledger")
@@ -608,7 +596,9 @@ def _inspect_and_reconcile(
                 _require_regular_single_link(entry, f"workspace member {entry.name}")
             continue
         if entry.name not in job_by_id:
-            raise ResumableThreeStockBatchError("workspace contains an unexpected member")
+            raise ResumableThreeStockBatchError(
+                "workspace contains an unexpected member"
+            )
         actual_children.add(entry.name)
     if not set(claimed).issubset(job_by_id):
         raise ResumableThreeStockBatchError("checkpoint ledger names an unknown job")
@@ -758,9 +748,7 @@ def render_resumable_three_stock_input_batch_to_directory(
     output = Path(output_directory)
     root = Path(root)
     if maximum_new_jobs is not None:
-        maximum_new_jobs = _integer(
-            maximum_new_jobs, "maximum_new_jobs", 1, 100
-        )
+        maximum_new_jobs = _integer(maximum_new_jobs, "maximum_new_jobs", 1, 100)
     look_amount = _look_amount(look_amount)
     seed = _integer(seed, "seed", -(2**31), 2**31 - 1)
     tile_size = _integer(tile_size, "tile_size", 1, 2**31 - 1)
