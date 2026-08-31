@@ -20918,3 +20918,30 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Six focused tests, Ruff, JSON and diff checks pass. No media acquisition,
   natural-label rescue, fitting, calibration, candidate 3 or product mapping
   opens; autonomous primary-source discovery continues.
+
+### 2026-08-31 - SF3.A3X freezes autonomous authorization outreach
+
+- **Node and routing:** `ULT > SF3 > SF3.A3X`, DRPT L2 / Mode C.
+  `dev-research-reliability` was primary; current-source research, stock-first,
+  DRPT/log and structure disciplines were secondary. This is acquisition
+  enablement, not a source admission, pixel experiment or scientific result.
+- **Discovery result:** a bounded repository/archive/web refresh found no new
+  public asset that clears stock, rights, manifest and group-role DoR. New
+  inspected routes include generic unspecified-film Figshare scan archives,
+  the code-only MIT `negclone` repository, a publication-only Velvia 50 chart
+  thesis and a BY-NC-SA single-author Flickr lead; all source-close without
+  media requests. The already-audited controlled holders remain materially
+  stronger than additional public-page samples.
+- **Frozen request queue:** FilmMatch PortraMatch is first for Portra 400;
+  PARVEC is second for same-workflow Portra 400/Ektar 100; FILM2PAINT/ZB is
+  third for Velvia 50 targets; NTNU Colourlab is fourth for Velvia 50
+  multispectral observations. The packet requests exact assets or patch
+  measurements, hashes, physical group identities, sealed roles and explicit
+  internal-commercial fitting/derived-output rights. E100 cannot substitute
+  for Ektar 100.
+- **Boundary and handoff:** no email, form, purchase, account, media, file-body
+  or pixel request was made. Status is `READY_FOR_USER_AUTHORIZED_OUTREACH`.
+  External messaging requires explicit user approval, and any affirmative
+  response still requires a new source-intake freeze before download or fit.
+  Packet:
+  `docs/planning/SF3_A3X_AUTONOMOUS_DATA_AUTHORIZATION_REQUEST_PACKET.md`.

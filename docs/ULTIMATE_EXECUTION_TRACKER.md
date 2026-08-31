@@ -3120,6 +3120,22 @@ adjacency into a pair, reopen failed natural-label association families, fit
 an operator, open candidate 3 or map a product. Evidence:
 `docs/evidence/SF3_A3W_INLAND_APERTURE_PORTRA_EKTAR_SOURCE_RESULT.json`.
 
+SF3.A3X converts the four strongest controlled-but-unreleased physical-film
+source routes into one bounded authorization request packet. It ranks
+FilmMatch PortraMatch for Portra 400, PARVEC for a same-workflow Portra 400 /
+Ektar 100 bridge, FILM2PAINT/Zentralbibliothek Zurich for Velvia 50 controlled
+targets, and NTNU Colourlab for Velvia 50 multispectral observations. The
+packet freezes the minimum asset manifest, physical group identities,
+development/validation/confirmation roles, and internal-commercial fitting /
+derived-parameter rights that an affirmative response must contain. It also
+freezes a single follow-up limit and explicitly excludes screenshots,
+publication figures, LUT-only offers, inferred metadata and E100-as-Ektar
+substitution. Status is `READY_FOR_USER_AUTHORIZED_OUTREACH`: no email, form,
+purchase, account, media or pixel request has been sent. External messaging
+remains subject to explicit user approval; any reply still requires a new
+source-intake freeze before file-body or pixel access. Packet:
+`docs/planning/SF3_A3X_AUTONOMOUS_DATA_AUTHORIZATION_REQUEST_PACKET.md`.
+
 U7.2E adds one authoritative manual product-look catalog and dispatcher over
 the existing three colour-stock Look Approximation controls plus the generic
 B&W correction from BW2.D1. Discovery exposes exactly `velvia_50`,
