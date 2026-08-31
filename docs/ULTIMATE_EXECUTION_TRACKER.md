@@ -3199,6 +3199,25 @@ pixel, fit, render and score reads remain zero. No Velvia 50, Portra 400,
 Ektar 100, candidate 3 or product claim opens. Evidence:
 `docs/evidence/SF3_A4A_FILM_RESTORATION_MULTILAB_SOURCE_RESULT.json`.
 
+SF3.A4B resolves the narrow metadata-connectivity question left by SF3.A3Q
+without opening a pixel experiment. The previously unseen live Flickr author
+`sprklg` contributes exact CC BY 2.0 metadata for 47 Ektar 100 rows, 29 rows
+that explicitly say current/new Portra 400, and one Velvia 50 row. This raises
+the strict current-Portra all-three author count from four to the frozen
+minimum of five. Forward/reverse committed-head reports are each 42,643 bytes
+and byte-exact at SHA `33fca4b6...7a746`, stable
+`37f5cede...927b`; all source, connectivity and zero-media gates pass. Pixel
+admission nevertheless fails closed: the sole Velvia row explicitly says
+`desaturated`, leaving zero unaltered Velvia support, while explicit
+cross-stock camera, roll, process, scanner and sealed-confirmation groups are
+all absent. Formal decision is
+`FAIL_CLOSED_SPRKLG_THREE_STOCK_ALTERATION_SUPPORT_AND_GROUP_GAP`. Image URL,
+HEAD/range/body, EXIF, pixel, fit, render and score reads remain zero. This
+updates source connectivity only; SF1.3B/R1HI natural-label failures remain
+authoritative and no acquisition, fitting, candidate 3 or product claim opens.
+Evidence:
+`docs/evidence/SF3_A4B_FLICKR_CURRENT_PORTRA_ALL_THREE_SOURCE_RESULT.json`.
+
 U7.2E adds one authoritative manual product-look catalog and dispatcher over
 the existing three colour-stock Look Approximation controls plus the generic
 B&W correction from BW2.D1. Discovery exposes exactly `velvia_50`,

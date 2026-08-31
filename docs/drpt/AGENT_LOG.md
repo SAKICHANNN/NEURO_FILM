@@ -21064,3 +21064,38 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Seventeen focused/adjacent tests pass with Ruff/JSON/diff clean. Retain only
   as a future auxiliary A5 authorization lead; no target-stock evidence,
   candidate 3, fitting, calibration or product claim opens.
+
+### 2026-08-31 - SF3.A4B closes the live current-Portra all-three source before media access
+
+- **Node and routing:** `ULT > SF3 > SF3.A4B`, DRPT L2 / Mode C.
+  `codex-super-research-harness` was primary; DRPT-BI, reliability, project-log
+  and structure stewardship were secondary. This leaf tested a genuinely new
+  live metadata supplement to SF3.A3Q, not a new natural-label classifier.
+- **Freeze and implementation:** contract/config were committed at `3d58ee93`;
+  the initial metadata-only preflight corrected a carried-over author count
+  from 824 to the exact `sprklg` inventory of 3,285 before the contract commit.
+  Implementation/tests were committed at
+  `f987bbda4ceb67167f5c9f00456b11959f4580c5`; evidence/binding test are
+  `314cdcf8`, with tracked evidence SHA
+  `541e9834238b420df393d6d60188ef4c00f8d1398f154d4a8e516b04a9124624`.
+- **Source and connectivity:** seven official metadata pages yield exact CC BY
+  2.0 target rows: Ektar 100 x47, explicit `New Portra 400` /
+  `Portra 400 (new)` x29 and Velvia 50 x1. Canonical target manifest SHA is
+  `44c1aea2bc1974c6138408e561f8bc8f5bd8a298e1290ee9c44038dee7dc5ef2`.
+  The owner is absent from the A3Q cohort, so the frozen strict-current
+  all-three author count rises from four to five and every connectivity gate
+  passes.
+- **Formal result:** committed-head forward/reverse reports are each 42,643
+  bytes and byte-exact at SHA
+  `33fca4b648bf44fd5b19d380f298c071972d0ac98736f6a0f772be941a67a746`,
+  stable `37f5cede5928ecb65a203ae3a7edcbbb015992cc77dedce132912484f19c927b`.
+  All source/connectivity/zero-media gates pass. The sole Velvia row explicitly
+  says `desaturated`; unaltered Velvia support is zero, and all explicit
+  cross-stock camera, roll, process, scanner and sealed-confirmation gates
+  fail. Formal decision is
+  `FAIL_CLOSED_SPRKLG_THREE_STOCK_ALTERATION_SUPPORT_AND_GROUP_GAP`.
+- **Boundary and handoff:** author HTML requests=1 and official metadata API
+  requests=7; image URL/HEAD/range/body, EXIF, pixel, fit, render and score
+  reads are zero. Twenty focused/adjacent tests pass with Ruff/format/compile/
+  JSON/diff clean. Retain the 5/5 connectivity correction, but do not acquire
+  this source, rescue SF1.3B/R1HI, fit, open candidate 3 or map a product.
