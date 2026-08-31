@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import json
+import re
+from hashlib import sha256
 from pathlib import Path
 from typing import Any
 
@@ -12,6 +14,7 @@ CACHE_INDEX_NAME = "preview-cache.json"
 _PREVIEW_SCHEMA = "neuro-film.three-stock-direct-preview.v1"
 _CACHE_SCHEMA = "neuro-film.three-stock-preview-cache.v1"
 _STYLES = ("velvia_50", "portra_400", "ektar_100")
+_SHA256_RE = re.compile(r"[0-9a-f]{64}")
 
 
 class ThreeStockPreviewCacheError(ValueError):
@@ -25,6 +28,16 @@ def _load_json(path: Path) -> dict[str, Any]:
         raise ThreeStockPreviewCacheError(f"invalid cache JSON: {path.name}") from exc
     if not isinstance(value, dict):
         raise ThreeStockPreviewCacheError(f"cache JSON must be an object: {path.name}")
+    return value
+
+
+def _load_json_bytes(payload: bytes, *, name: str) -> dict[str, Any]:
+    try:
+        value = json.loads(payload.decode("utf-8"))
+    except (UnicodeError, json.JSONDecodeError) as exc:
+        raise ThreeStockPreviewCacheError(f"invalid cache JSON: {name}") from exc
+    if not isinstance(value, dict):
+        raise ThreeStockPreviewCacheError(f"cache JSON must be an object: {name}")
     return value
 
 
@@ -103,6 +116,21 @@ def inspect_three_stock_preview_cache(
 
     preview_directory = Path(preview_directory)
     index = _load_json(preview_directory / CACHE_INDEX_NAME)
+    return _inspect_three_stock_preview_cache_index(
+        index,
+        preview_directory=preview_directory,
+        input_path=Path(input_path),
+        profile_path=Path(profile_path),
+    )
+
+
+def _inspect_three_stock_preview_cache_index(
+    index: dict[str, Any],
+    *,
+    preview_directory: Path,
+    input_path: Path,
+    profile_path: Path,
+) -> dict[str, Any]:
     expected_keys = {
         "schema_version",
         "parent_contract_sha256",
@@ -118,9 +146,9 @@ def inspect_three_stock_preview_cache(
     }
     if set(index) != expected_keys or index.get("schema_version") != _CACHE_SCHEMA:
         raise ThreeStockPreviewCacheError("preview cache index field drift")
-    if sha256_file(Path(input_path)) != index["input_sha256"]:
+    if sha256_file(input_path) != index["input_sha256"]:
         raise ThreeStockPreviewCacheError("preview cache input drift")
-    if sha256_file(Path(profile_path)) != index["profile_sha256"]:
+    if sha256_file(profile_path) != index["profile_sha256"]:
         raise ThreeStockPreviewCacheError("preview cache profile drift")
     rows = index.get("rows")
     if not isinstance(rows, list) or len(rows) != len(_STYLES):
@@ -142,9 +170,45 @@ def inspect_three_stock_preview_cache(
     return index
 
 
+def inspect_receipt_bound_three_stock_preview_cache(
+    preview_directory: Path,
+    *,
+    input_path: Path,
+    profile_path: Path,
+    cache_index_sha256: str,
+) -> dict[str, Any]:
+    """Inspect one cache only when its exact index bytes match the receipt."""
+
+    if (
+        not isinstance(cache_index_sha256, str)
+        or _SHA256_RE.fullmatch(cache_index_sha256) is None
+    ):
+        raise ThreeStockPreviewCacheError(
+            "cache index receipt must be lowercase 64-hex SHA-256"
+        )
+    preview_directory = Path(preview_directory)
+    index_path = preview_directory / CACHE_INDEX_NAME
+    try:
+        payload = index_path.read_bytes()
+    except OSError as exc:
+        raise ThreeStockPreviewCacheError(
+            f"invalid cache JSON: {index_path.name}"
+        ) from exc
+    if sha256(payload).hexdigest() != cache_index_sha256:
+        raise ThreeStockPreviewCacheError("preview cache index receipt drift")
+    index = _load_json_bytes(payload, name=index_path.name)
+    return _inspect_three_stock_preview_cache_index(
+        index,
+        preview_directory=preview_directory,
+        input_path=Path(input_path),
+        profile_path=Path(profile_path),
+    )
+
+
 __all__ = [
     "CACHE_INDEX_NAME",
     "ThreeStockPreviewCacheError",
+    "inspect_receipt_bound_three_stock_preview_cache",
     "inspect_three_stock_preview_cache",
     "publish_three_stock_preview_cache_index",
 ]
