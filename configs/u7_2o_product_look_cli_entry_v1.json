@@ -1,0 +1,59 @@
+{
+  "schema_version": "neuro-film.u7-2o-product-look-cli-entry.v1",
+  "decision": "prospective",
+  "parent": "U7.2N",
+  "product_option": "--product-look",
+  "available_values": ["velvia_50", "portra_400", "ektar_100"],
+  "resolved_engine": "safe_lab",
+  "resolved_profile_id": "safe-rich-product-v1",
+  "resolved_profile_path": "configs/render_profiles/safe_rich_product_v1.json",
+  "amounts": [0.0, 0.5, 1.0],
+  "source_locks": {
+    "render_film_sha256": "f206608284b5fa690a2ab2753c68f254e260781d4992b32e9dadf5c96836bf8b",
+    "product_profile_sha256": "09722cb48c55d1c4c460220c9f59b9ced81801c1b6fe856708a27f5cc99d39fe",
+    "product_catalog_sha256": "dd48420ed7d14fc505cbd3cc1f8daed76310922b4aa0564f153cad268facebe7",
+    "u7_2k_evidence_sha256": "e588dcc6c67e1146c8ba613d31856e6dc76e59b8f7fa256791b9ebff6390963d",
+    "u7_2n_evidence_sha256": "fd5966d53118490becd2e2ca1e505433f8215fbdc2754c220e9c4af949b70b28",
+    "readme_sha256": "134765eb73230f24f62df2a5fa1cc828751b6ea219174259b72b1a06750feffa"
+  },
+  "equivalence": {
+    "reference_arguments": [
+      "--use-render-profile",
+      "--render-profile",
+      "configs/render_profiles/safe_rich_product_v1.json",
+      "--style",
+      "<LOOK_ID>"
+    ],
+    "candidate_arguments": ["--product-look", "<LOOK_ID>"],
+    "image_bytes_exact": true,
+    "normalized_recipe_semantics_exact": true,
+    "transaction_semantics_exact": true
+  },
+  "conflicts_reject_predecode": [
+    "--style",
+    "--use-render-profile",
+    "--render-profile",
+    "--color-engine analytic-y-chromaticity",
+    "--list-product-looks"
+  ],
+  "gates": {
+    "all_three_looks_all_amounts_exact": true,
+    "profile_style_and_claim_exact": true,
+    "auxiliary_transaction_unchanged": true,
+    "all_conflicts_predecode": true,
+    "non_product_values_rejected": true,
+    "legacy_and_discovery_unchanged": true,
+    "readme_quickstart_executable_and_claim_bounded": true,
+    "fresh_process_reports_byte_exact": true,
+    "owned_runtime_residue_zero": true
+  },
+  "non_goals": [
+    "colour algorithm or parameter change",
+    "catalog availability or profile change",
+    "calibrated stock response or physical-film claim",
+    "stock separation or population preference",
+    "public package, installer or release readiness",
+    "cross-platform parity"
+  ],
+  "claim_ceiling": "Private first-class CLI entry for existing deterministic film-inspired Look Approximation product renders only."
+}
