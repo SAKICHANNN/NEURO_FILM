@@ -1,0 +1,97 @@
+{
+  "schema": "neuro-film.sf3-a3z-hershenson-allen-velvia-archive-source-contract.v1",
+  "experiment_id": "SF3.A3Z_HERSHENSON_ALLEN_VELVIA_ARCHIVE_SOURCE_V1",
+  "source": {
+    "home_url": "https://haarchive.com/",
+    "collection_url": "https://haarchive.com/about-the-collection/",
+    "explore_url": "https://haarchive.com/about-the-archive/explore-the-archive/",
+    "prospectus_page_url": "https://haarchive.com/prospectus/",
+    "robots_url": "https://haarchive.com/robots.txt",
+    "prospectus_pdf_url": "https://haarchive.com/wp-content/uploads/2022/05/Prospectus-Hershenson-Allen-Archive.pdf",
+    "expected_responses": {
+      "home": {
+        "bytes": 38177,
+        "sha256": "52c1229a96535bb0e97d8f459afaf2038cdae2689bc2e1783e9d92514abf4d6c"
+      },
+      "collection": {
+        "bytes": 47623,
+        "sha256": "03b6e44e85838887a1a5eae1b0f6adda0fe02e6e5403333473379645347eea84"
+      },
+      "explore": {
+        "bytes": 65123,
+        "sha256": "6b68ee87f2f3afcec58febd0acf3014abb80a90acc46b7b01f779df35860dbf8"
+      },
+      "prospectus": {
+        "bytes": 34540,
+        "sha256": "093123cd5b4ce24f4c0deee0fd1932b8793891cccabbb8b5321ccc39e3f0e883"
+      },
+      "robots": {
+        "bytes": 39504,
+        "sha256": "9c1ef388b73be61752daf8f6be3d82cbad5a701f881a9212f4abeffcc8d6cc0f"
+      }
+    },
+    "required_home_phrases": [
+      "Comprised of 41,987 movie poster images",
+      "Covers 25,809 unique films",
+      "All images are available digitally and physically",
+      "4\u2033 x 5\u2033 high-quality color transparencies",
+      "Image metadata is stored is a queryable SQL database",
+      "stationary 4\u201d x 5\u201d view cameras",
+      "vertical vacuum table",
+      "manufacturer\u2019s color calibration card",
+      "Fuji Velvia 50",
+      "All rights reserved."
+    ],
+    "required_collection_phrases": [
+      "professionally photograph his collection",
+      "professionally restored prior to photography",
+      "combined their holdings into a single archive"
+    ],
+    "required_explore_phrases": [
+      "movie poster images from over 25,000 unique films"
+    ],
+    "required_robots_phrases": [
+      "Content-Signal: search=yes,ai-train=no,use=reference",
+      "ANY RESTRICTIONS EXPRESSED VIA CONTENT SIGNALS ARE EXPRESS RESERVATIONS OF RIGHTS"
+    ],
+    "archive_image_count": 41987,
+    "unique_film_count": 25809,
+    "stock_example": "velvia_50"
+  },
+  "data_evidence": {
+    "public_item_level_velvia_identity_count": 0,
+    "public_machine_readable_manifest_count": 0,
+    "public_payload_checksum_count": 0,
+    "explicit_image_data_fitting_license_count": 0,
+    "public_scanner_process_group_count": 0,
+    "independent_same_object_reference_pair_count": 0,
+    "prospective_development_group_count": 0,
+    "sealed_confirmation_group_count": 0
+  },
+  "admission_minimums": {
+    "public_item_level_velvia_identity_count": 1,
+    "public_machine_readable_manifest_count": 1,
+    "public_payload_checksum_count": 1,
+    "explicit_image_data_fitting_license_count": 1,
+    "public_scanner_process_group_count": 1,
+    "independent_same_object_reference_pair_count": 1,
+    "prospective_development_group_count": 1,
+    "sealed_confirmation_group_count": 1
+  },
+  "operation_limits": {
+    "official_text_get_requests": 5,
+    "prospectus_pdf_requests": 0,
+    "database_queries": 0,
+    "poster_image_requests": 0,
+    "transparency_requests": 0,
+    "thumbnail_requests": 0,
+    "media_body_requests": 0,
+    "pixel_decodes": 0,
+    "fit_calls": 0,
+    "render_calls": 0,
+    "score_calls": 0
+  },
+  "decision_if_pass": "PASS_OPEN_SEPARATELY_FROZEN_HERSHENSON_ALLEN_VELVIA_PREFLIGHT",
+  "decision_if_fail": "FAIL_CLOSED_HERSHENSON_ALLEN_ITEM_STOCK_RIGHTS_MANIFEST_AND_ROLE_GAP",
+  "claim_ceiling": "Official archive-scale and fixed physical-capture description with Velvia 50 as an archive-level film example only; no item-level stock identity, public manifest/checksum, media or database read, image/data fitting licence, neutral digital reference, scanner/process group, prospective role, stock response, calibration, candidate-three admission or product claim."
+}
