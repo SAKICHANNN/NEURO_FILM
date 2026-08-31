@@ -3182,6 +3182,23 @@ archive-level example, scrape the SQL database, override `ai-train=no`, open
 candidate 3 or map a product. Evidence:
 `docs/evidence/SF3_A3Z_HERSHENSON_ALLEN_VELVIA_ARCHIVE_SOURCE_RESULT.json`.
 
+SF3.A4A audits the 2026 official multi-lab colour-film restoration record as
+an auxiliary A5 operator/restoration-uncertainty source, not as target-stock
+evidence. The public topology binds six laboratories, three scenes x24 frames,
+a common original camera negative, positive-print reference and a separately
+held director-of-photography restoration, but the film stock is unknown.
+Forward/reverse committed-head reports are each 6,355 bytes and byte-exact at
+SHA `3854eedd...b4cf`, stable `e8b62de8...eca80`. All eight bibliographic and
+zero-media audit gates pass; all nine data-admission gates fail because there
+is no public observation payload, exact manifest/checksums, observation-data
+fitting licence, exact lab/scanner identities, prospective groups, sealed
+confirmation role or stock identity. Formal decision is
+`FAIL_CLOSED_FILM_RESTORATION_MULTILAB_DATA_RIGHTS_MANIFEST_AND_ROLE_GAP`.
+Article/PDF/media, negative, print, lab-version, independent-reference, frame,
+pixel, fit, render and score reads remain zero. No Velvia 50, Portra 400,
+Ektar 100, candidate 3 or product claim opens. Evidence:
+`docs/evidence/SF3_A4A_FILM_RESTORATION_MULTILAB_SOURCE_RESULT.json`.
+
 U7.2E adds one authoritative manual product-look catalog and dispatcher over
 the existing three colour-stock Look Approximation controls plus the generic
 B&W correction from BW2.D1. Discovery exposes exactly `velvia_50`,

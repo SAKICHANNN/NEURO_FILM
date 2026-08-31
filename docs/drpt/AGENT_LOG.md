@@ -21027,3 +21027,40 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Eight focused tests pass with Ruff/JSON/diff clean. Do not infer item stocks,
   query the SQL database, override `ai-train=no`, fit, open candidate 3 or map
   a product.
+
+### 2026-08-31 - SF3.A4A closes the multi-lab restoration source before media access
+
+- **Node and routing:** `ULT > SF3 > SF3.A4A`, DRPT L2 / Mode C.
+  `dev-research-reliability` was primary; current-source research, stock-first,
+  DRPT/log and structure disciplines were secondary. This leaf evaluated a
+  materially different auxiliary A5 restoration/operator-uncertainty source,
+  not a target-stock observation or product operator.
+- **Freeze and transport correction:** contract/config/core/audit/tests were
+  committed at `7041545f`. The first committed-head attempt stopped before a
+  report when one official metadata endpoint returned a transient non-200.
+  Additive commit `b9c94f03` bounded retries to three attempts for HTTP 429,
+  5xx and transport failures and recorded a maximum of nine GETs across three
+  endpoints. Sources, topology, data evidence, admission gates, read limits
+  and claim ceiling did not change.
+- **Source result:** official records bind DOI
+  `10.1016/j.daach.2026.e00538`, six restoration laboratories, three scenes x
+  24 frames, a common original camera negative, positive-print reference and
+  an independent director-of-photography restoration withheld from participant
+  input. The exact film stock is unknown. Elsevier reports closed access with
+  no user licence; Crossref relation is empty and exposes only TDM/STM policy
+  entries; the exact-title DataCite query returns zero dataset records.
+- **Formal result:** fresh committed-head forward/reverse reports are each
+  6,355 bytes and byte-exact at SHA
+  `3854eeddc8d2c15a6fea5881c70d822f39d5ece58a429075e6838bb11f90b4cf`,
+  stable `e8b62de822b16716ec0930ec895b07d602de15eb9ca4a67203a59bbb2c3eca80`.
+  All eight bibliographic/zero-media audit gates pass and all nine data
+  admission gates fail.
+- **Decision and boundary:** formal decision is
+  `FAIL_CLOSED_FILM_RESTORATION_MULTILAB_DATA_RIGHTS_MANIFEST_AND_ROLE_GAP`.
+  Article/PDF/media, source-negative, positive-print, laboratory-version,
+  independent-reference, frame, pixel, fit, render and score reads are zero.
+  Evidence/binding test commit is `2040d36b`; tracked evidence SHA is
+  `9826836ea5bbf690818365793dc7b38761e2441cbfa86d45ccdec844c8d3ceb8`.
+  Seventeen focused/adjacent tests pass with Ruff/JSON/diff clean. Retain only
+  as a future auxiliary A5 authorization lead; no target-stock evidence,
+  candidate 3, fitting, calibration or product claim opens.
