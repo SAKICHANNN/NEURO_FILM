@@ -6,6 +6,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+from tests.historical_evidence_binding import assert_historical_evidence_binding
+
 ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE = ROOT / "docs/evidence/U7_2K_PRODUCT_LOOK_CLI_DISCOVERY_RESULT.json"
 
@@ -18,7 +20,7 @@ def test_u7_2k_evidence_binds_cli_and_exact_catalog_replay() -> None:
     evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
     assert evidence["status"] == "PASS"
     for binding in evidence["bindings"].values():
-        assert _sha(ROOT / binding["path"]) == binding["sha256"]
+        assert_historical_evidence_binding(ROOT, binding)
 
     outputs: list[bytes] = []
     for _ in range(evidence["result"]["fresh_process_replay_count"]):
