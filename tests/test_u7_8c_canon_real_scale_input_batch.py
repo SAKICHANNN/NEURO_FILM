@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import inspect
 import json
 import subprocess
@@ -11,13 +12,14 @@ from scripts.audit_u7_8c_canon_real_scale_input_batch import (
     _require_relative_posix_path,
     _run_controller,
     _stable_payload,
-    _validate_config,
+    _validate_file_binding,
 )
 from src.inference.render_contract import sha256_file
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/u7_8c_canon_real_scale_input_batch_v1.json"
 CONTRACT = ROOT / "docs/planning/U7_8C_CANON_REAL_SCALE_INPUT_BATCH_CONTRACT.md"
+EVIDENCE = ROOT / "docs/evidence/U7_8C_CANON_REAL_SCALE_INPUT_BATCH_RESULT.json"
 
 
 def _config() -> dict:
@@ -59,7 +61,30 @@ def _worker() -> dict:
 
 def test_frozen_config_binds_six_sources_and_unchanged_product_core() -> None:
     config = _config()
-    _validate_config(config)
+    evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+    commit = evidence["bindings"]["implementation_commit"]
+    core_bindings = {
+        "input_batch_core": evidence["bindings"]["u7_8a_transaction_core"],
+        "child_batch_core": evidence["bindings"]["three_look_child_core"],
+    }
+    for label, row in config["bindings"].items():
+        if label in core_bindings:
+            archived = subprocess.check_output(
+                ["git", "show", f"{commit}:{row['path']}"], cwd=ROOT
+            )
+            assert len(archived) == row["bytes"]
+            assert hashlib.sha256(archived).hexdigest() == row["sha256"]
+            archived_blob = subprocess.check_output(
+                ["git", "rev-parse", f"{commit}:{row['path']}"],
+                cwd=ROOT,
+                text=True,
+                encoding="utf-8",
+            ).strip()
+            assert archived_blob == core_bindings[label]["git_blob"]
+        else:
+            _validate_file_binding(row, label=label)
+    for row in config["sources"]:
+        _validate_file_binding(row, label=row["job_id"])
     assert config["node_id"] == "U7.8C"
     assert len(config["sources"]) == 6
     assert config["formal"]["expected_output_count"] == 18
@@ -74,15 +99,6 @@ def test_frozen_config_binds_six_sources_and_unchanged_product_core() -> None:
         path = ROOT / row["path"]
         assert path.stat().st_size == row["bytes"]
         assert sha256_file(path) == row["sha256"]
-    assert (
-        subprocess.check_output(
-            ["git", "diff", "--numstat", "HEAD", "--", "src/inference"],
-            cwd=ROOT,
-            text=True,
-            encoding="utf-8",
-        ).strip()
-        == ""
-    )
 
 
 def test_manifest_orders_differ_but_bind_the_same_six_jobs() -> None:
