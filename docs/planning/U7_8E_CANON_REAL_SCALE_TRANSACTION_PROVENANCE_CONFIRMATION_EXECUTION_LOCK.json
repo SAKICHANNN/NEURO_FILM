@@ -1,0 +1,41 @@
+{
+  "schema_version": "neuro-film.u7-8e-canon-real-scale-transaction-provenance-confirmation-execution-lock.v1",
+  "node_id": "U7.8E",
+  "status": "LOCKED_BEFORE_FIRST_FORMAL_PIXEL_EXECUTION",
+  "implementation_commit": "0e014f9c9b76f016388e6acee91fc13a9fabb773",
+  "core_changes_forbidden": true,
+  "git_blobs": {
+    "configs/u7_8e_canon_real_scale_transaction_provenance_confirmation_v1.json": "00172292909b7271a796d3e11767f8dcb973b5c9",
+    "docs/planning/U7_8E_CANON_REAL_SCALE_TRANSACTION_PROVENANCE_CONFIRMATION_CONTRACT.md": "6a71835b54e609a5937592f961d2c6f9adf30adb",
+    "scripts/audit_u7_8e_canon_real_scale_transaction_provenance_confirmation.py": "da3b5338ee33629b90d34f363147a84506d1a0bb",
+    "tests/test_u7_8e_canon_real_scale_transaction_provenance_confirmation.py": "be8341de980d034217f7aec73f8b34325833d1f8",
+    "scripts/audit_u7_8c_canon_real_scale_input_batch.py": "438f948bd9817c433c6e0ce9b5f876233ea9d05d",
+    "src/inference/three_stock_batch.py": "23f732d1349ce2c35d80c9cfc10cd912c7f4ddb0",
+    "src/inference/three_stock_input_batch.py": "82baca44eb1f564334986ed486918e9cb3427bb0",
+    "src/inference/render_contract.py": "4f2fd3e244eab41c4c0b9fec0e406952f162b246",
+    "src/inference/product_look_catalog.py": "848548762bbe3b5842430e3229e3fdc2b02d01db"
+  },
+  "historical_control": {
+    "commit": "c4b93b6a57fb83924e53809bd006894791490b74",
+    "statistics_git_blob": "c12ccafcea9ee8a283badba5b473d29f3d54e162",
+    "statistics_git_lf_bytes": 5031,
+    "statistics_git_lf_sha256": "064b1b5f1b75671ecfb6ab4bf851c1df6d03f7bb394b1545af2125e070e7254f",
+    "statistics_lf_count": 240,
+    "statistics_runtime_crlf_bytes": 5271,
+    "statistics_runtime_crlf_sha256": "1a45e90765e577edd4ca1773fc8c6cf98fd09b8afbdddfa519b1f097c5dd7c04"
+  },
+  "runtime": {
+    "platform": "Windows",
+    "formal_checkout_core_autocrlf": true,
+    "same_checkout_and_fixed_scratch_root_for_both_orders": true,
+    "fresh_controller_process_per_order": true,
+    "orders": ["forward", "reverse"],
+    "maximum_formal_runs": 2
+  },
+  "formal_reports": {
+    "forward": "outputs/eval/u7_8e_canon_real_scale_transaction_provenance_confirmation_v1/formal_forward.json",
+    "reverse": "outputs/eval/u7_8e_canon_real_scale_transaction_provenance_confirmation_v1/formal_reverse.json",
+    "comparison": "outputs/eval/u7_8e_canon_real_scale_transaction_provenance_confirmation_v1/formal_comparison.json"
+  },
+  "stop_rule": "Run the exact committed implementation once in each frozen source order from the same exact checkout. A gate failure closes this exact family without a third run, source/config/path/threshold/output change, line-ending fallback, hash normalization or core repair."
+}
