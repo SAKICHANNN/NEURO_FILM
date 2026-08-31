@@ -21380,3 +21380,46 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   stock distinguishability, browser/default integration, installer, public
   API, package or release evidence. Stop adjacent cache-wrapper expansion and
   return to a substantive product capability or defect.
+
+### 2026-09-01 - U7.2N transacts all requested product artifacts
+
+- **Node and routing:** `ULT > U7 > U7.2N`, DRPT L2 / Mode C. The leaf repairs
+  a real product-delivery defect left after U7.2M: requested layer images and
+  metrics were written after the image/recipe pair, could overwrite foreign
+  entries, and could leave an owned partial bundle after failure. The work
+  remained separate from U4.5E and did not reopen stock science or closed
+  RAW/HDR/OpenEXR families.
+- **Frozen implementation:** contract/config `21e1ca45`, CLI/transaction/tests
+  `996faf4c`, initial formal audit `4df18e24`, prescore coverage strengthening
+  `eb8bb6f8`, and final predecode-entry/alias lock `dbd31559`. Product mode
+  derives the existing image/recipe/layer-root/metrics paths, requires every
+  requested final to be absent and distinct from the input before decode,
+  stages all outputs to unique siblings, seals regular files by identity,
+  length and SHA-256, and seals the layer directory by identity plus a sorted
+  complete file manifest. Publication is create-only and rollback removes only
+  still-owned matching entries in reverse order.
+- **Formal result:** exactly one forward and one reverse fresh process from
+  committed HEAD `dbd315597f741056a8999544b8a93d52cb5ccf59` produce
+  byte-identical 4,493-byte reports at
+  `0043d742f9338d342f1dded09131b89009a8570080c6ccc48f90561f7632f192`.
+  All 41 gates pass; concurrent return codes are `[0,1]`; all three U7.2M pair
+  oracles and the frozen Ektar image/recipe/metrics/five-layer bundle are exact.
+  Image/JSON/layer encode and publication failures, four stage content and
+  identity drifts, existing and aliased finals, foreign replacements/additions
+  and concurrent completion all preserve the frozen safety invariants. Source
+  bytes and image-only, pair and legacy behavior remain exact; owned runtime
+  residue is zero. Evidence/test commit is `d1ae367d`; tracked evidence SHA-256
+  is `9e89aa752066a954a4fa0dce084917d9f4f7128a10663b6e6e9c903c7fc0469d`.
+- **Excluded attempts and verification:** one uncommitted alias test was
+  corrected before formal after accurately checking `Path.with_suffix`; two
+  untracked 27-gate prescore reports were never evidence-bound and were removed
+  before the final committed-runner reports. The final parent-chain suite passes
+  66 tests with four capable-filesystem skips; dedicated evidence/audit rerun is
+  2/2. Ruff lint/format, compileall, JSON parsing and diff checks pass.
+- **Boundary and propagation:** this proves private process-level completeness
+  after return, not simultaneous multi-entry visibility, adversarial
+  post-seal cross-process mutation safety, crash/power-loss atomicity,
+  calibrated stock response, physical-film reproduction, public API/package,
+  installer or release readiness. U7.2L/M historical evidence and colour/effect
+  semantics are unchanged. Stop adjacent transaction-wrapper expansion and
+  return to a materially distinct product capability or defect.
