@@ -20932,10 +20932,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   thesis and a BY-NC-SA single-author Flickr lead; all source-close without
   media requests. The already-audited controlled holders remain materially
   stronger than additional public-page samples.
-- **Frozen request queue:** FilmMatch PortraMatch is first for Portra 400;
-  PARVEC is second for same-workflow Portra 400/Ektar 100; FILM2PAINT/ZB is
-  third for Velvia 50 targets; NTNU Colourlab is fourth for Velvia 50
-  multispectral observations. The packet requests exact assets or patch
+- **Frozen request queue:** FilmMatch PortraMatch is first for Portra 400.
+  Demystify Colorgrading is second: its EUR 69.90 photo-stock pack advertises
+  Portra 400/Ektar 100 at -5..+5 EV through Frontier/Cintel, and its EUR 49.90
+  ARRI/RED pack supplies matched digital RAW charts. Current terms prohibit
+  organization sharing and do not explicitly grant fitting/derived-product
+  rights, so purchase remains closed pending a custom licence. PARVEC is third
+  for same-workflow Portra/Ektar; FILM2PAINT/ZB and NTNU follow for Velvia 50.
+  The packet requests exact assets or patch
   measurements, hashes, physical group identities, sealed roles and explicit
   internal-commercial fitting/derived-output rights. E100 cannot substitute
   for Ektar 100.

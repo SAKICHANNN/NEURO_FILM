@@ -31,15 +31,18 @@ external-message approval.
 | Priority | Holder and official contact | Target contribution | Minimum useful export | Current closed evidence |
 |---:|---|---|---|---|
 | 1 | FilmMatch / Gianmarco Della Calce; `filmmatch.info@gmail.com`; [official contact](https://www.film-match.com/contact) | Portra 400 controlled paired colour | Original digital chart captures plus linear film scans for the described five rolls, three illuminants, -5..+5 EV cells and later validation roll; exact roll/session/scanner map and manifest | `SF3.A3R`: method is strong, but no Portra observation payload, fitting rights, exact manifest or group lock is public |
-| 2 | PARVEC / Pablo Maraver Cardenas; `parvec.film@gmail.com`; [official project](https://www.parvec.es/35-mm-color-science-project) | Portra 400 and Ektar 100 under one controlled workflow | Unedited digital references, film scans or patch measurements for both stocks; per-stock roll/process/scanner/session identities; at least one held group per stock; exact manifest | `SF3.A3N` and `R1HE`: controlled measurements are described, but raw numerical data, documentation, group identities and fitting rights are absent |
-| 3 | FILM2PAINT data holders: Irina-Mihaela Ciortan (`irina-mihaela.ciortan@ntnu.no`), Giorgio Trumpy (`giorgio.trumpy@ntnu.no`), and Zentralbibliothek Zurich/ZB-Lab (`zb@zb.uzh.ch`); [official paper](https://library.imaging.org/archiving/articles/21/1/4) | Velvia 50 controlled target observations | Original ColorChecker Digital SG and IT8 film scans or extracted patch measurements, target references, stock/format/exposure identifiers, scan metadata and an exact asset manifest; independent group identities if known | `SF3.A3P`: physical Velvia 50 target topology is documented, but the public repositories contain no dataset payload or dataset-specific fitting licence |
-| 4 | NTNU Colourlab: Irina-Mihaela Ciortan and Giorgio Trumpy at the institutional addresses above; [Colourlab people](https://www.ntnu.edu/idi/people/colourlab) | Velvia 50 controlled multispectral observation; E100 is useful context but does not replace Ektar 100 | Original developed-film multispectral scans, matching hyperspectral references, condition/stock/exposure map, capture and processing metadata, and exact manifest/checksums | `SF2.8R`, `R1HC`: controlled Velvia 50/E100 geometry is described, but public attachments do not establish a licensed, grouped dataset |
+| 2 | Demystify Colorgrading / Nico Fink; `info@demystify-color.com`; [photo-stock charts](https://www.demystify-color.com/product-page/photography-stock-color-charts-mega-pack) and [matched digital RAW charts](https://www.demystify-color.com/product-page/arri-alexa-mini-lf-red-raptor-8k-raw-color-chart-pack) | Immediately addressable Portra 400/Ektar 100 physical charts plus same-chart digital RAW references | Exact product inventory and per-stock exposure/process/scan roles; permission to use the two purchased packs together for internal deterministic fitting and retain derived parameters; one untouched stock/session group if available | Public price is EUR 69.90 plus EUR 49.90, but current terms prohibit redistribution and sharing within an organization and do not explicitly grant fitting/derived-product rights; no purchase is authorized |
+| 3 | PARVEC / Pablo Maraver Cardenas; `parvec.film@gmail.com`; [official project](https://www.parvec.es/35-mm-color-science-project) | Portra 400 and Ektar 100 under one controlled workflow | Unedited digital references, film scans or patch measurements for both stocks; per-stock roll/process/scanner/session identities; at least one held group per stock; exact manifest | `SF3.A3N` and `R1HE`: controlled measurements are described, but raw numerical data, documentation, group identities and fitting rights are absent |
+| 4 | FILM2PAINT data holders: Irina-Mihaela Ciortan (`irina-mihaela.ciortan@ntnu.no`), Giorgio Trumpy (`giorgio.trumpy@ntnu.no`), and Zentralbibliothek Zurich/ZB-Lab (`zb@zb.uzh.ch`); [official paper](https://library.imaging.org/archiving/articles/21/1/4) | Velvia 50 controlled target observations | Original ColorChecker Digital SG and IT8 film scans or extracted patch measurements, target references, stock/format/exposure identifiers, scan metadata and an exact asset manifest; independent group identities if known | `SF3.A3P`: physical Velvia 50 target topology is documented, but the public repositories contain no dataset payload or dataset-specific fitting licence |
+| 5 | NTNU Colourlab: Irina-Mihaela Ciortan and Giorgio Trumpy at the institutional addresses above; [Colourlab people](https://www.ntnu.edu/idi/people/colourlab) | Velvia 50 controlled multispectral observation; E100 is useful context but does not replace Ektar 100 | Original developed-film multispectral scans, matching hyperspectral references, condition/stock/exposure map, capture and processing metadata, and exact manifest/checksums | `SF2.8R`, `R1HC`: controlled Velvia 50/E100 geometry is described, but public attachments do not establish a licensed, grouped dataset |
 
-FilmMatch and PARVEC are complementary rather than substitutes: the first is
-the strongest Portra-only controlled source; the second is the best current
-same-workflow Portra/Ektar bridge. FILM2PAINT and the NTNU study are the two
-strongest Velvia 50 controlled-measurement holders. Ektachrome E100 must never
-be counted as Ektar 100.
+FilmMatch, Demystify Colorgrading and PARVEC are complementary rather than
+substitutes: FilmMatch is the strongest Portra-only controlled source;
+Demystify is the fastest potentially purchasable Portra/Ektar paired-chart
+route if custom rights are granted; PARVEC is the strongest unpublished
+same-workflow Portra/Ektar research bridge. FILM2PAINT and the NTNU study are
+the two strongest Velvia 50 controlled-measurement holders. Ektachrome E100
+must never be counted as Ektar 100.
 
 ## 3. Common requested rights
 
@@ -114,6 +117,12 @@ Subject: Request for a licensed research export of controlled photographic-film 
 - **FilmMatch:** ask whether the five training rolls and later validation roll
   remain separable in the archive, whether the Reflecta outputs are linear and
   ungraded, and whether Sony FX3 chart references are available per condition.
+- **Demystify Colorgrading:** ask for a written licence amendment before any
+  purchase. It must allow one project team to combine the EUR 69.90 physical
+  photo-stock charts with the EUR 49.90 matched ARRI/RED RAW charts, fit and
+  retain non-reconstructive commercial parameters, and report aggregate
+  metrics without redistributing the purchased media. Ask for the exact file
+  inventory and whether Portra/Ektar have independent roll or session groups.
 - **PARVEC:** ask for the exact Portra 400/Ektar 100 rows first, without waiting
   for the full stock catalogue, and request one untouched roll/session per
   stock if the archive supports it.
