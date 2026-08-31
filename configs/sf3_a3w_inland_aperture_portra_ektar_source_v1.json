@@ -1,0 +1,120 @@
+{
+  "schema": "neuro-film.sf3-a3w-inland-aperture-portra-ektar-source-contract.v1",
+  "experiment_id": "SF3.A3W_INLAND_APERTURE_PORTRA_EKTAR_SOURCE_V1",
+  "source": {
+    "author_name": "Matt",
+    "author_slug": "inlandaperture",
+    "author_url": "https://www.flickr.com/photos/inlandaperture",
+    "license_code": 11,
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "required_camera_pattern": "canon\\s+eos\\s*1",
+    "expected_manifest_sha256": "e232545511feb1ecdac64ca6b62da466e43907211f58ac5d9f8faedb704bcdf6",
+    "rows": [
+      {
+        "id": "55459986799",
+        "stock": "portra_400",
+        "title": "Fly fishing Upper Owens River",
+        "description": "My son fishing the upper owens. Canon EOS1, Kodak Portra 400",
+        "width": 3130,
+        "height": 2075,
+        "date_taken": "2026-08-09 14:12:32",
+        "date_posted": "1786565281"
+      },
+      {
+        "id": "55459522926",
+        "stock": "ektar_100",
+        "title": "Upper Owens River, Eastern Sierra Nevada Mountains, CA",
+        "description": "Canon EOS1, Kodak Ektar 100",
+        "width": 2044,
+        "height": 2555,
+        "date_taken": "2026-08-12 09:38:33",
+        "date_posted": "1786556313"
+      },
+      {
+        "id": "55456660302",
+        "stock": "ektar_100",
+        "title": "Hwy 395",
+        "description": "Canon eos 1, kodak ektar 100",
+        "width": 3130,
+        "height": 2075,
+        "date_taken": "2026-08-11 11:16:45",
+        "date_posted": "1786475805"
+      },
+      {
+        "id": "55458036905",
+        "stock": "portra_400",
+        "title": "Yosemite National Park",
+        "description": "It was our first time visiting Yosemite, we entered the park from the east entrance, and were greeted by some of the most beautiful scenes imaginable. Yosemite has now topped my list pf National Parks as the best of the best. Canon EOS1 Kodak Portra 400",
+        "width": 2074,
+        "height": 3129,
+        "date_taken": "2026-08-11 11:15:02",
+        "date_posted": "1786475702"
+      },
+      {
+        "id": "55457753218",
+        "stock": "portra_400",
+        "title": "Upper Owens River",
+        "description": "The upper owens shot on canon eos 1 with kodak portra 400",
+        "width": 3130,
+        "height": 2075,
+        "date_taken": "2026-08-11 11:13:45",
+        "date_posted": "1786475625"
+      },
+      {
+        "id": "55456653037",
+        "stock": "portra_400",
+        "title": "Yosemite National Park",
+        "description": "It was our first time visiting Yosemite, we entered the park from the east entrance, and were greeted by some of the most beautiful scenes imaginable. Yosemite has now topped my list pf National Parks as the best of the best. Canon EOS1 Kodak Portra 400",
+        "width": 3130,
+        "height": 2075,
+        "date_taken": "2026-08-11 11:12:33",
+        "date_posted": "1786475553"
+      },
+      {
+        "id": "55453442813",
+        "stock": "ektar_100",
+        "title": "Taking it all in…",
+        "description": "My son and I took a weekend trip up Hwy 395 from Southern California to the Eastern Sierras. We spend one night at Crowley Lake dispersed campground which is the location of this photo. It was a warm afternoon and my son waded out into the water to cool off, I snapped this photo on my Canon EOS 1 with Ektar 100.",
+        "width": 3130,
+        "height": 2075,
+        "date_taken": "2026-08-09 13:43:44",
+        "date_posted": "1786311824"
+      }
+    ]
+  },
+  "group_evidence": {
+    "target_stock_count": 2,
+    "observed_photo_count": 7,
+    "same_author_camera_cross_stock_control_count": 1,
+    "independent_author_source_count": 1,
+    "explicit_roll_group_count": 0,
+    "explicit_process_group_count": 0,
+    "explicit_scanner_group_count": 0,
+    "same_scene_neutral_film_pair_count": 0,
+    "sealed_confirmation_group_count": 0
+  },
+  "admission_minimums": {
+    "target_stock_count": 2,
+    "observed_photo_count": 6,
+    "same_author_camera_cross_stock_control_count": 1,
+    "independent_author_source_count": 3,
+    "explicit_roll_group_count": 3,
+    "explicit_process_group_count": 1,
+    "explicit_scanner_group_count": 1,
+    "same_scene_neutral_film_pair_count": 1,
+    "sealed_confirmation_group_count": 1
+  },
+  "operation_limits": {
+    "photo_html_get_requests": 7,
+    "image_head_requests": 0,
+    "image_range_requests": 0,
+    "image_body_requests": 0,
+    "pixel_decodes": 0,
+    "fit_calls": 0,
+    "render_calls": 0,
+    "score_calls": 0
+  },
+  "decision_if_pass": "PASS_OPEN_SEPARATELY_FROZEN_INLAND_APERTURE_PIXEL_PREFLIGHT",
+  "decision_if_fail": "FAIL_CLOSED_INLAND_APERTURE_SINGLE_SOURCE_GROUP_AND_PAIRING_GAP",
+  "claim_ceiling": "Seven-page per-work CC BY 4.0 same-author/same-camera Portra 400 and Ektar 100 appearance-source metadata only; no media body, pixels, roll/process/scanner identity, same-scene neutral pair, sealed confirmation, source-independent stock response, fitting, learning, calibration, three-stock result, product profile or candidate-three admission."
+}
