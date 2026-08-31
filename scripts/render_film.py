@@ -53,11 +53,6 @@ from src.inference import (
     sha256_file,
     validate_render_recipe,
 )
-from src.inference.analytic_render_recipe import build_analytic_render_recipe
-from src.inference.analytic_y_chromaticity_profile_v4 import (
-    load_analytic_y_chromaticity_profile,
-    render_analytic_y_chromaticity_profile,
-)
 from src.inference.product_render_transaction import (
     preflight_product_primary_output,
     prepare_product_render_bundle_transaction,
@@ -616,6 +611,12 @@ def main() -> int:
             raise ValueError("--tile-size only supports the safe_lab color engine")
         if args.gamut_workers != 1:
             raise ValueError("--gamut-workers only supports the safe_lab color engine")
+        from src.inference.analytic_render_recipe import build_analytic_render_recipe
+        from src.inference.analytic_y_chromaticity_profile_v4 import (
+            load_analytic_y_chromaticity_profile,
+            render_analytic_y_chromaticity_profile,
+        )
+
         analytic_runtime = load_analytic_y_chromaticity_profile(
             args.analytic_profile, root=ROOT
         )
