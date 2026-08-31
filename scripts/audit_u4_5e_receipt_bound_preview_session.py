@@ -225,6 +225,8 @@ def _warm_lookup_no_io(
         "path_read_bytes": 0,
         "path_read_text": 0,
         "path_open": 0,
+        "path_stat": 0,
+        "path_lstat": 0,
         "path_write_bytes": 0,
         "path_write_text": 0,
         "path_touch": 0,
@@ -248,6 +250,8 @@ def _warm_lookup_no_io(
         patch.object(Path, "read_bytes", _forbid("path_read_bytes")),
         patch.object(Path, "read_text", _forbid("path_read_text")),
         patch.object(Path, "open", _forbid("path_open")),
+        patch.object(Path, "stat", _forbid("path_stat")),
+        patch.object(Path, "lstat", _forbid("path_lstat")),
         patch.object(Path, "write_bytes", _forbid("path_write_bytes")),
         patch.object(Path, "write_text", _forbid("path_write_text")),
         patch.object(Path, "touch", _forbid("path_touch")),
@@ -318,6 +322,8 @@ def build_report(*, config_path: Path, order: str) -> dict[str, Any]:
             "path_read_bytes": 0,
             "path_read_text": 0,
             "path_open": 0,
+            "path_stat": 0,
+            "path_lstat": 0,
             "path_write_bytes": 0,
             "path_write_text": 0,
             "path_touch": 0,
@@ -418,7 +424,13 @@ def build_report(*, config_path: Path, order: str) -> dict[str, Any]:
             <= config["formal"]["maximum_warm_lookup_seconds"],
             "zero_warm_filesystem_reads": all(
                 warm_operation_counts[key] == 0
-                for key in ("path_read_bytes", "path_read_text", "path_open")
+                for key in (
+                    "path_read_bytes",
+                    "path_read_text",
+                    "path_open",
+                    "path_stat",
+                    "path_lstat",
+                )
             ),
             "zero_warm_filesystem_writes": all(
                 warm_operation_counts[key] == 0
