@@ -296,7 +296,10 @@ def test_tracked_evidence_binds_complete_transaction_and_git_objects() -> None:
     )
     for path, expected_blob in evidence["source_blobs"].items():
         actual = subprocess.check_output(
-            ["git", "hash-object", path], cwd=ROOT, text=True, encoding="utf-8"
+            ["git", "rev-parse", f"{evidence['implementation_commit']}:{path}"],
+            cwd=ROOT,
+            text=True,
+            encoding="utf-8",
         ).strip()
         assert actual == expected_blob
     subprocess.run(
