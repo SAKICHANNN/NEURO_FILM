@@ -1,0 +1,38 @@
+{
+  "schema": "kmcfm.u7-3l-recipe-replay-create-only-repair.v1",
+  "node_id": "U7.3L",
+  "question": "Can strict recipe replay preserve every late foreign destination while retaining exact successful output bytes?",
+  "parents": [
+    "U7.3D",
+    "U7.3I",
+    "U7.3J",
+    "U7.7G"
+  ],
+  "bindings": {
+    "contract_commit": null,
+    "implementation_commit": null,
+    "implementation_git_lf_sha256": {}
+  },
+  "owned_paths": [
+    "src/preprocess/output_encode.py",
+    "src/inference/style_safe_engine.py",
+    "tests/test_u7_3l_recipe_replay_create_only_repair.py",
+    "scripts/audit_u7_3l_recipe_replay_create_only_repair.py",
+    "tests/test_u7_3l_recipe_replay_create_only_repair_audit.py",
+    "docs/planning/U7_3L_RECIPE_REPLAY_CREATE_ONLY_REPAIR_CONTRACT.md",
+    "configs/u7_3l_recipe_replay_create_only_repair_v1.json",
+    "docs/evidence/U7_3L_RECIPE_REPLAY_CREATE_ONLY_REPAIR_RESULT.json"
+  ],
+  "gates": {
+    "successful_output_bytes_exact": true,
+    "late_foreign_destination_preserved": true,
+    "postpublication_replacement_preserved": true,
+    "owned_mismatch_residue_zero": true,
+    "existing_and_symlink_destinations_reject": true,
+    "temporary_residue_zero": true,
+    "source_and_recipe_inputs_immutable": true,
+    "parent_regressions_pass": true
+  },
+  "claim_ceiling": "Private process-level create-only ownership repair for existing deterministic Look Approximation recipe replay only; no renderer, format, science, calibration, browser, installer, release or public-product claim.",
+  "stop_rule": "One prospective repair and committed-head forward/reverse audit only. Do not expand into adjacent wrappers, formats, renderers, browsers or source work."
+}
