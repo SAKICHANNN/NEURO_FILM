@@ -21304,3 +21304,42 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   U7.8C remains the real-scale negative and U7.8D remains the private
   small-fixture provenance pass. No calibrated-stock, image-quality,
   product-value, public API/package/release or device claim opens.
+
+### 2026-09-01 - U7.2M commits image + recipe as a create-only pair
+
+- **Node and routing:** `ULT > U7 > U7.2M`, DRPT L2 / Mode C. This is a real
+  product-delivery defect exposed after U7.2L: product mode published its image
+  first, then wrote the derived recipe with `os.replace`, allowing recipe
+  overwrite and an owned partial pair on recipe failure. Root exclusively owned
+  U7.2M paths; U7.8E and U4.5E remained disjoint concurrent leaves.
+- **Frozen implementation:** contract/config `2f762ac8`, core/tests
+  `43b68f30`, immutable-U7.2L test correction `2eaa65c6`, formal runner/test
+  `df944348`, and evidence/test `0e74a2f8`. Pair mode requires distinct absent
+  input/image/recipe paths before decode, encodes both to unique sibling stages,
+  seals identity + byte length + SHA-256, and uses the existing create-only
+  publication primitive. Recipe failure removes only the matching owned image;
+  foreign replacements and identity-mismatched entries remain untouched.
+- **Formal result:** two fresh-process forward/reverse reports are each 3300
+  bytes and byte-identical at
+  `4bf2d6cee8527990b66bf2b2a493d7c6a20756e03878f5381ce414706eae965b`.
+  All 20 gates pass, concurrent return codes are `[0,1]`, all three image and
+  normalized-recipe oracles are exact, source bytes are immutable, and owned
+  runtime residue is zero. Product-without-recipe and legacy publication
+  behavior remain unchanged.
+- **Filesystem evidence boundary:** formal scratch stayed repo-relative and
+  P-backed. It physically exercised regular recipe-entry preservation; exFAT
+  cannot construct hardlinks/symlinks/junctions, so the report separately binds
+  exact selective-`lstat` recipe-entry semantics for hardlink, valid symlink,
+  broken symlink and Windows reparse taxonomies. Committed focused tests retain
+  physical capable-filesystem coverage with explicit environment skips. The
+  inherited image-encode failure control is identified as such; pair-specific
+  controls cover recipe serialization, late foreign destinations, rollback and
+  in-place stage mutation.
+- **Verification and boundary:** 30 targeted/parent functional tests pass with
+  four capability skips; 17 evidence/audit/dedicated/parent tests pass with two
+  capability skips; Ruff, format, compile, JSON and diff checks pass. The pass
+  claims private process-level rollback and a complete pair after return only,
+  not simultaneous two-entry visibility, power-loss atomicity, transactional
+  layers/metrics, calibrated stock response, physical-film reproduction,
+  public packaging, installer or release readiness. The exact optional
+  layers/metrics gap remains a separately frozen successor question.
