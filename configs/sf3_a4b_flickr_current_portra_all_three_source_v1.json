@@ -1,0 +1,69 @@
+{
+  "schema": "neuro-film.sf3-a4b-flickr-current-portra-all-three-source-contract.v1",
+  "experiment_id": "SF3.A4B_FLICKR_CURRENT_PORTRA_ALL_THREE_SOURCE_V1",
+  "source": {
+    "author_name": "sprklg",
+    "owner_nsid": "59731892@N00",
+    "author_page_url": "https://www.flickr.com/photos/59731892@N00/",
+    "api_method": "flickr.people.getPublicPhotos",
+    "api_pages": 7,
+    "per_page": 500,
+    "expected_public_photo_count": 3285,
+    "allowed_license_ids": [4],
+    "license_label": "CC BY 2.0",
+    "expected_target_manifest_sha256": "44c1aea2bc1974c6138408e561f8bc8f5bd8a298e1290ee9c44038dee7dc5ef2",
+    "expected_target_counts": {
+      "fujifilm_velvia_50": 1,
+      "kodak_ektar_100": 47,
+      "kodak_portra_400_current": 29
+    },
+    "current_portra_indicators": [
+      "new portra",
+      "new kodak portra",
+      "portra 400 (new)",
+      "newportra"
+    ],
+    "disqualifying_alteration_terms": [
+      "desaturated",
+      "de-saturated"
+    ]
+  },
+  "baseline": {
+    "path": "docs/evidence/SF3_A3Q_YFCC_THREE_STOCK_GENERATION_CONNECTIVITY_RESULT.json",
+    "bytes": 9735,
+    "sha256": "a46e77852e73ac6ad0c7efbf9615aeea0873dd4186b88c3e89792008aae72f07",
+    "required_qualifying_author_count": 4,
+    "required_total_after_addition": 5
+  },
+  "group_evidence": {
+    "explicit_cross_stock_camera_group_count": 0,
+    "explicit_roll_group_count": 0,
+    "explicit_process_group_count": 0,
+    "explicit_scanner_group_count": 0,
+    "sealed_confirmation_group_count": 0
+  },
+  "admission_minimums": {
+    "unaltered_rows_per_stock": 3,
+    "explicit_cross_stock_camera_group_count": 1,
+    "explicit_roll_group_count": 3,
+    "explicit_process_group_count": 1,
+    "explicit_scanner_group_count": 1,
+    "sealed_confirmation_group_count": 1
+  },
+  "operation_limits": {
+    "author_html_get_requests": 1,
+    "api_metadata_get_requests": 7,
+    "image_url_requests": 0,
+    "image_head_requests": 0,
+    "image_range_requests": 0,
+    "image_body_requests": 0,
+    "exif_requests": 0,
+    "pixel_decodes": 0,
+    "fit_calls": 0,
+    "render_calls": 0,
+    "score_calls": 0
+  },
+  "decision_if_pixel_admission_passes": "PASS_OPEN_SEPARATELY_FROZEN_SPRKLG_THREE_STOCK_PIXEL_PREFLIGHT",
+  "decision_if_pixel_admission_fails": "FAIL_CLOSED_SPRKLG_THREE_STOCK_ALTERATION_SUPPORT_AND_GROUP_GAP",
+  "claim_ceiling": "One new live Flickr CC BY 2.0 author with explicit current Portra 400, Ektar 100 and Velvia 50 metadata only; no image URL/body, EXIF, pixel, inferred generation, roll/process/scanner, stock response, identifiability, fitting, learning, calibration, candidate-three or product claim."
+}
