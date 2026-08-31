@@ -1,0 +1,62 @@
+{
+  "schema_version": "neuro-film.u7-8a-three-stock-input-batch-contract.v1",
+  "node_id": "U7.8A",
+  "objective": "Publish one deterministic create-only batch containing the existing Velvia 50, Portra 400 and Ektar 100 Look Approximation outputs for each of up to 100 explicitly hash-bound input files.",
+  "input_manifest": {
+    "schema_version": "neuro-film.three-stock-input-jobs.v1",
+    "required_top_level_keys": [
+      "jobs",
+      "schema_version"
+    ],
+    "required_job_keys": [
+      "input_path",
+      "input_sha256",
+      "job_id"
+    ],
+    "minimum_jobs": 1,
+    "maximum_jobs": 100,
+    "job_id_pattern": "^[a-z0-9][a-z0-9._-]{0,63}$",
+    "require_unique_job_ids": true,
+    "require_complete_input_sha256_before_decode": true
+  },
+  "transaction": {
+    "platform": "Windows",
+    "destination_must_not_exist": true,
+    "destination_parent_must_exist": true,
+    "preflight_all_jobs_before_stage_creation": true,
+    "canonical_execution_order": "ascending job_id code-point order",
+    "child_renderer": "neuro-film.three-stock-file-batch.v1",
+    "publish_unit": "one complete root directory",
+    "failure_policy": "remove only the owned stage tree and preserve any foreign destination",
+    "receipt_paths": "relative POSIX paths only"
+  },
+  "stress_fixture": {
+    "generator": "deterministic 32x24 RGB8 PNG with one unique arithmetic pattern per job",
+    "job_count": 100,
+    "expected_output_count": 300,
+    "expected_recipe_count": 300,
+    "expected_child_manifest_count": 100,
+    "run_orders": [
+      "forward",
+      "reverse"
+    ]
+  },
+  "gates": {
+    "all_inputs_hash_verified_before_decode": true,
+    "forward_reverse_receipt_exact": true,
+    "all_output_and_recipe_hashes_repeat_exact": true,
+    "canonical_job_order_exact": true,
+    "aggregate_receipt_machine_local_paths_exposed": false,
+    "foreign_destination_preserved": true,
+    "injected_child_failure_publishes_nothing": true,
+    "owned_stage_residue_count": 0,
+    "network_requests": 0
+  },
+  "stop_rules": [
+    "Do not change the existing single-input colour algorithm, stock parameters, default renderer, product claim or U7.2L transaction implementation.",
+    "Do not weaken full-file input hashing or replace it with timestamps, sizes or partial hashes.",
+    "Do not claim 24MP throughput, installer readiness, public release, calibrated stock response or stock distinguishability from the 100-small-image stress run.",
+    "Any formal failure closes this exact transaction without retry, concurrency or path-normalization rescue."
+  ],
+  "claim_ceiling": "Private Windows/Python deterministic multi-input transaction for the three existing film-inspired Look Approximations only; no calibrated or physical stock response, 24MP performance, installer, public API, package, release or product-value claim."
+}
