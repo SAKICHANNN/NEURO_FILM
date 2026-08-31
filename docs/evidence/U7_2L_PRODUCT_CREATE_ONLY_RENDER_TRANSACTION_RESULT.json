@@ -1,0 +1,80 @@
+{
+  "schema_id": "neuro-film.u7-2l-product-create-only-render-transaction-evidence.v1",
+  "experiment_id": "U7.2L",
+  "date": "2026-09-01",
+  "status": "PASS",
+  "commits": {
+    "contract": "04a1ee41",
+    "implementation": "efdca7e7",
+    "formal_runner": "93f8adc2"
+  },
+  "bindings": {
+    "contract": {
+      "path": "docs/planning/U7_2L_PRODUCT_CREATE_ONLY_RENDER_TRANSACTION_CONTRACT.md",
+      "sha256": "9395523ee3955bd8409ee51c3fefc232a4153806f666f6e4a3bea5f82dd3fdf2"
+    },
+    "config": {
+      "path": "configs/u7_2l_product_create_only_render_transaction_v1.json",
+      "sha256": "be1ae2f107a05addc0a3b0399022b1a609caef53e66c0b2ddb10640933f5e3d3"
+    },
+    "cli": {
+      "path": "scripts/render_film.py",
+      "sha256": "6bd1233616f19ad00d2254846676ae23232ac9afc30dab61eb98a2c3d02c6415"
+    },
+    "output_encoder": {
+      "path": "src/preprocess/output_encode.py",
+      "sha256": "9a1a26e253eee6a4dce3cf1e9da1d845f8b297a72f4f8018a9f39a76641f6356"
+    },
+    "transaction_guard": {
+      "path": "src/inference/product_render_transaction.py",
+      "sha256": "1220ebad8be044c5e867fbccdf5b7d036bb924c1091c86dc1c2cef6c54b74eb8"
+    },
+    "formal_runner": {
+      "path": "scripts/audit_u7_2l_product_create_only_render_transaction.py",
+      "sha256": "07a613ee8eb6df71352668c8809bae01dae9d826a85f34822bd98b42186de7cd"
+    }
+  },
+  "formal_reports": {
+    "forward_path": "outputs/eval/u7_2l_product_create_only_render_transaction_v1/formal.json",
+    "reverse_path": "outputs/eval/u7_2l_product_create_only_render_transaction_v1/formal_replay.json",
+    "bytes_each": 2149,
+    "sha256": "9d931485bb648756d4a990738d66fdec84f4fdebc1e92613d9449b82f5ffc23a",
+    "forward_reverse_byte_exact": true
+  },
+  "result": {
+    "formal_gate_count": 15,
+    "formal_gate_pass_count": 15,
+    "same_path_rejected_before_decode": true,
+    "existing_regular_and_hardlink_rejected_before_decode": true,
+    "symlink_entry_semantics_rejected": true,
+    "windows_junction_reparse_entry_rejected": true,
+    "late_foreign_destination_preserved": true,
+    "concurrent_success_count": 1,
+    "concurrent_fail_closed_count": 1,
+    "injected_encoder_failure_residue_count": 0,
+    "owned_stage_residue_count": 0,
+    "source_immutable": true,
+    "legacy_replace_behavior_exact": true,
+    "three_product_output_hashes_exact": {
+      "velvia_50": "2198b077eea5d29026694529e208d7db9428a36f97cb7af8fe330ce732e87fa7",
+      "portra_400": "b2b9d118087648f626a0fa2d03bbaf78714ba053347e617bdb2b9505c4cf9453",
+      "ektar_100": "e8e3195dc3ab222567ca03d432eac6e03f48a84fa1a7e6c07a885f3b35999981"
+    }
+  },
+  "verification": {
+    "focused_transaction_and_primitive": "23 passed, 2 skipped because Windows file-symlink privilege is unavailable; a real Windows junction reparse test passed",
+    "parent_compatibility": "76 passed",
+    "formal_audit_test": "1 passed",
+    "ruff_compile_diff": "PASS"
+  },
+  "retained_boundaries": {
+    "primary_image_only_transaction": true,
+    "optional_sidecars_multi_file_atomic": false,
+    "legacy_profile_semantics_changed": false,
+    "three_look_colour_bytes_changed": false,
+    "calibrated_stock_or_stock_response_claim": false,
+    "public_release_or_installer_opened": false
+  },
+  "decision": "Enable create-only primary-image publication only for the exact safe-rich-product-v1 profile. Existing targets and input aliases reject before decode, races preserve the winner, and legacy replace semantics remain unchanged.",
+  "claim_ceiling": "Private create-only primary-image publication for existing deterministic film-inspired Look Approximations only."
+}
