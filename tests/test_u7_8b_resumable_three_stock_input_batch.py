@@ -297,7 +297,6 @@ def test_state_bound_stale_initialization_sibling_is_reconciled(
     jobs = module._load_jobs(manifest)
     state = module._expected_state(
         jobs=jobs,
-        manifest_path=manifest,
         output_directory=destination,
         root=ROOT,
         profile_path=PROFILE,
@@ -338,7 +337,6 @@ def test_early_state_bound_initialization_crash_is_reconciled(
     jobs = module._load_jobs(manifest)
     state = module._expected_state(
         jobs=jobs,
-        manifest_path=manifest,
         output_directory=destination,
         root=ROOT,
         profile_path=PROFILE,
@@ -444,6 +442,129 @@ def test_destination_aliasing_lease_rejects_without_creation(tmp_path: Path) -> 
     assert not workspace.exists()
 
 
+def test_manifest_row_order_is_nonsemantic_on_resume(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    manifest = tmp_path / "jobs.json"
+    _manifest(manifest, count=3)
+    workspace = tmp_path / "resume-workspace"
+    destination = tmp_path / "published"
+    _render(manifest, workspace, destination, maximum_new_jobs=1)
+    payload = json.loads(manifest.read_text("utf-8"))
+    payload["jobs"].reverse()
+    manifest.write_text(json.dumps(payload), encoding="utf-8")
+
+    from src.inference import resumable_three_stock_input_batch as module
+
+    original = module.render_three_stock_batch_to_directory
+    calls: list[str] = []
+
+    def record(input_path: Path, *args, **kwargs):
+        calls.append(Path(input_path).name)
+        return original(input_path, *args, **kwargs)
+
+    monkeypatch.setattr(module, "render_three_stock_batch_to_directory", record)
+    result = _render(manifest, workspace, destination)
+    assert result["job_count"] == 3
+    assert calls == ["source-001.png", "source-002.png"]
+
+
+def test_input_drift_rejects_before_resume_render(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    manifest = tmp_path / "jobs.json"
+    sources = _manifest(manifest, count=2)
+    workspace = tmp_path / "resume-workspace"
+    destination = tmp_path / "published"
+    _render(manifest, workspace, destination, maximum_new_jobs=1)
+    sources[1].write_bytes(b"changed")
+    monkeypatch.setattr(
+        "src.inference.resumable_three_stock_input_batch.render_three_stock_batch_to_directory",
+        lambda *_args, **_kwargs: pytest.fail("input drift must reject before render"),
+    )
+    with pytest.raises(ValueError, match="input hash drifted"):
+        _render(manifest, workspace, destination)
+
+
+def test_profile_config_drift_rejects_before_resume_render(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    manifest = tmp_path / "jobs.json"
+    _manifest(manifest, count=2)
+    workspace = tmp_path / "resume-workspace"
+    destination = tmp_path / "published"
+    profile = tmp_path / "profile.json"
+    profile.write_bytes(PROFILE.read_bytes())
+
+    def invoke(maximum_new_jobs: int | None = None) -> dict:
+        return render_resumable_three_stock_input_batch_to_directory(
+            manifest,
+            workspace,
+            destination,
+            root=ROOT,
+            profile_path=profile,
+            statistics_path=STATISTICS,
+            guardrails_path=GUARDRAILS,
+            tile_size=16,
+            png_compression=0,
+            maximum_new_jobs=maximum_new_jobs,
+        )
+
+    invoke(maximum_new_jobs=1)
+    profile.write_bytes(profile.read_bytes() + b"\n")
+    monkeypatch.setattr(
+        "src.inference.resumable_three_stock_input_batch.render_three_stock_batch_to_directory",
+        lambda *_args, **_kwargs: pytest.fail("config drift must reject before render"),
+    )
+    with pytest.raises(ResumableThreeStockBatchError, match="identity mismatch"):
+        invoke()
+
+
+def test_unexpected_workspace_member_rejects_before_render(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    manifest = tmp_path / "jobs.json"
+    _manifest(manifest, count=2)
+    workspace = tmp_path / "resume-workspace"
+    destination = tmp_path / "published"
+    _render(manifest, workspace, destination, maximum_new_jobs=1)
+    (workspace / "foreign.bin").write_bytes(b"foreign")
+    monkeypatch.setattr(
+        "src.inference.resumable_three_stock_input_batch.render_three_stock_batch_to_directory",
+        lambda *_args, **_kwargs: pytest.fail("unexpected member must reject"),
+    )
+    with pytest.raises(ResumableThreeStockBatchError, match="unexpected member"):
+        _render(manifest, workspace, destination)
+
+
+def test_reparse_reserved_transient_rejects_before_render(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    manifest = tmp_path / "jobs.json"
+    _manifest(manifest, count=2)
+    workspace = tmp_path / "resume-workspace"
+    destination = tmp_path / "published"
+    _render(manifest, workspace, destination, maximum_new_jobs=1)
+    transient = workspace / ".u7-8b-job-001-reparse.candidate"
+    transient.mkdir()
+
+    from src.inference import resumable_three_stock_input_batch as module
+
+    original_is_reparse = module._is_reparse
+    monkeypatch.setattr(
+        module,
+        "_is_reparse",
+        lambda path: Path(path) == transient or original_is_reparse(Path(path)),
+    )
+    monkeypatch.setattr(
+        module,
+        "render_three_stock_batch_to_directory",
+        lambda *_args, **_kwargs: pytest.fail("reparse member must reject"),
+    )
+    with pytest.raises(ResumableThreeStockBatchError, match="link or reparse"):
+        _render(manifest, workspace, destination)
+
+
 def test_concurrent_lease_rejects_without_workspace_mutation(tmp_path: Path) -> None:
     manifest = tmp_path / "jobs.json"
     _manifest(manifest, count=2)
@@ -454,7 +575,6 @@ def test_concurrent_lease_rejects_without_workspace_mutation(tmp_path: Path) -> 
     jobs = module._load_jobs(manifest)
     state = module._expected_state(
         jobs=jobs,
-        manifest_path=manifest,
         output_directory=destination,
         root=ROOT,
         profile_path=PROFILE,

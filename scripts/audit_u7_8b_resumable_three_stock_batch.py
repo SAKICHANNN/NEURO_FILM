@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import shutil
 import subprocess
 import sys
@@ -20,7 +21,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from src.inference import resumable_three_stock_input_batch as batch_module
-from src.inference.render_contract import sha256_file
+from src.inference.render_contract import sha256_file, validate_render_recipe
 from src.inference.resumable_three_stock_input_batch import (
     PROGRESS_SCHEMA,
     RECEIPT_SCHEMA,
@@ -124,6 +125,32 @@ def _tree_hashes(path: Path) -> dict[str, str]:
     }
 
 
+def _run_targeted_recovery_tests() -> int:
+    completed = subprocess.run(
+        [
+            str(ROOT / ".venv/Scripts/python.exe"),
+            "-m",
+            "pytest",
+            "-q",
+            "tests/test_u7_8b_resumable_three_stock_input_batch.py",
+        ],
+        cwd=ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+    )
+    if completed.returncode != 0:
+        raise AssertionError(
+            "targeted recovery tests failed\n"
+            f"stdout:\n{completed.stdout}\nstderr:\n{completed.stderr}"
+        )
+    match = re.search(r"(?m)^(\d+) passed in ", completed.stdout)
+    if match is None:
+        raise AssertionError("targeted recovery test count is unavailable")
+    return int(match.group(1))
+
+
 def _validate_complete(
     receipt: dict,
     *,
@@ -150,6 +177,8 @@ def _validate_complete(
     for job in receipt["jobs"]:
         if job["input_sha256"] != expected[job["job_id"]]["input_sha256"]:
             raise AssertionError("aggregate input identity drifted")
+        if job["child_manifest_path"] != f"{job['job_id']}/batch.json":
+            raise AssertionError("child manifest path drifted")
         manifest = destination / job["child_manifest_path"]
         if sha256_file(manifest) != job["child_manifest_sha256"]:
             raise AssertionError("child manifest identity drifted")
@@ -157,12 +186,19 @@ def _validate_complete(
             raise AssertionError("child style order drifted")
         child_manifest_count += 1
         for row in job["rows"]:
+            style = row["style_id"]
+            if row["output_path"] != f"{job['job_id']}/{style}.png":
+                raise AssertionError("aggregate output path drifted")
+            if row["recipe_path"] != f"{job['job_id']}/{style}.recipe.json":
+                raise AssertionError("aggregate recipe path drifted")
             output = destination / row["output_path"]
             recipe = destination / row["recipe_path"]
             if sha256_file(output) != row["output_sha256"]:
                 raise AssertionError("output identity drifted")
             if sha256_file(recipe) != row["recipe_sha256"]:
                 raise AssertionError("recipe identity drifted")
+            recipe_payload = json.loads(recipe.read_text(encoding="utf-8"))
+            validate_render_recipe(recipe_payload)
             decoded = cv2.imread(str(output), cv2.IMREAD_UNCHANGED)
             if decoded is None or decoded.dtype != np.uint16:
                 raise AssertionError("output decode contract drifted")
@@ -194,7 +230,7 @@ def run(order: str) -> dict[str, object]:
     try:
         jobs = _build_jobs(source_root, order)
         manifest = source_root / "jobs.json"
-        _write_manifest(manifest, jobs)
+        _write_manifest(manifest, jobs if order == "forward" else list(reversed(jobs)))
 
         progress = _invoke(manifest, workspace, destination, maximum_new_jobs=37)
         if (
@@ -255,6 +291,9 @@ def run(order: str) -> dict[str, object]:
         ]
         if scratch_residue:
             raise AssertionError("owned transient residue remained")
+        targeted_test_count = _run_targeted_recovery_tests()
+        if targeted_test_count != 24:
+            raise AssertionError("targeted recovery test inventory drifted")
         source_set_identity = _canonical_sha256(
             [
                 {"job_id": row["job_id"], "input_sha256": row["input_sha256"]}
@@ -295,6 +334,15 @@ def run(order: str) -> dict[str, object]:
                 "resume_renders_only_remaining_jobs": True,
                 "resumed_and_uninterrupted_output_hash_sets_exact": True,
                 "resumed_and_uninterrupted_aggregate_scientific_identity_exact": True,
+                "all_input_semantics_and_config_hashes_revalidated_on_every_invocation": True,
+                "tampered_checkpoint_rejected_without_render_or_publication": True,
+                "software_commit_or_core_drift_rejected_without_render_or_publication": True,
+                "concurrent_writer_rejected_without_mutation_or_render": True,
+                "child_complete_with_stale_checkpoint_reconciled": True,
+                "checkpoint_claiming_missing_child_rejected": True,
+                "stale_reserved_transient_reconciled": True,
+                "crash_after_last_child_before_final_receipt_resumes_without_rerender": True,
+                "late_foreign_destination_preserved": True,
                 "all_100_jobs_published": True,
                 "all_300_outputs_and_recipes_verified": True,
                 "canonical_job_order_exact": True,
@@ -303,8 +351,45 @@ def run(order: str) -> dict[str, object]:
                 "network_requests": 0,
             },
             "test_evidence": {
-                "targeted_recovery_tests": 19,
-                "adjacent_product_tests": 39,
+                "targeted_recovery_tests": targeted_test_count,
+                "frozen_gate_bindings": {
+                    "input_and_config_drift": [
+                        "test_input_drift_rejects_before_resume_render",
+                        "test_profile_config_drift_rejects_before_resume_render",
+                    ],
+                    "tampered_or_missing_checkpoint": [
+                        "test_tampered_completed_child_rejects_without_rerender",
+                        "test_checkpoint_claiming_missing_child_rejects_before_render",
+                    ],
+                    "stale_ledger": [
+                        "test_complete_child_with_stale_checkpoint_is_reconciled"
+                    ],
+                    "software_or_core_drift": ["test_core_drift_rejects_before_render"],
+                    "concurrent_writer": [
+                        "test_concurrent_lease_rejects_without_workspace_mutation"
+                    ],
+                    "stale_initialization_and_transient": [
+                        "test_state_bound_stale_initialization_sibling_is_reconciled",
+                        "test_early_state_bound_initialization_crash_is_reconciled",
+                        "test_reserved_transient_is_removed_only_after_valid_resume",
+                    ],
+                    "final_receipt_and_late_destination": [
+                        "test_crash_after_last_child_before_receipt_resumes_without_render",
+                        "test_existing_complete_receipt_retries_late_publication_without_render",
+                    ],
+                    "links_reparse_and_unexpected_members": [
+                        "test_hardlinked_child_member_rejects",
+                        "test_reparse_reserved_transient_rejects_before_render",
+                        "test_unexpected_workspace_member_rejects_before_render",
+                    ],
+                    "path_and_numeric_aliases": [
+                        "test_destination_aliasing_lease_rejects_without_creation",
+                        "test_boolean_numeric_arguments_fail_closed",
+                    ],
+                    "manifest_enumeration": [
+                        "test_manifest_row_order_is_nonsemantic_on_resume"
+                    ],
+                },
             },
             "claim_ceiling": (
                 "Private Windows/Python resumable mechanics for three existing "
