@@ -20,6 +20,16 @@ RECEIPT_SCHEMA = "neuro-film.three-stock-input-batch.v1"
 MAXIMUM_JOBS = 100
 _HASH = re.compile(r"^[0-9a-f]{64}$")
 _JOB_ID = re.compile(r"^[a-z0-9][a-z0-9._-]{0,63}$")
+_WINDOWS_RESERVED_JOB_BASENAMES = frozenset(
+    {
+        "aux",
+        "con",
+        "nul",
+        "prn",
+        *(f"com{index}" for index in range(1, 10)),
+        *(f"lpt{index}" for index in range(1, 10)),
+    }
+)
 _MANIFEST_KEYS = {"jobs", "schema_version"}
 _JOB_KEYS = {"input_path", "input_sha256", "job_id"}
 _EXPECTED_STYLES = ("velvia_50", "portra_400", "ektar_100")
@@ -28,6 +38,14 @@ _COMMIT = re.compile(r"^[0-9a-f]{40}$")
 
 class ThreeStockInputBatchError(ValueError):
     """Raised when a multi-input look transaction cannot be completed."""
+
+
+def _job_id_is_safe_path_component(value: object) -> bool:
+    if not isinstance(value, str) or _JOB_ID.fullmatch(value) is None:
+        return False
+    if value.endswith("."):
+        return False
+    return value.split(".", 1)[0].casefold() not in _WINDOWS_RESERVED_JOB_BASENAMES
 
 
 def _software_commit(root: Path) -> str:
@@ -95,7 +113,7 @@ def _load_jobs(manifest_path: Path) -> list[dict[str, Any]]:
         job_id = raw["job_id"]
         input_path = raw["input_path"]
         expected_sha256 = raw["input_sha256"]
-        if not isinstance(job_id, str) or _JOB_ID.fullmatch(job_id) is None:
+        if not _job_id_is_safe_path_component(job_id):
             raise ThreeStockInputBatchError(f"job {index} id is invalid")
         if job_id in seen_ids:
             raise ThreeStockInputBatchError("job ids must be unique")
