@@ -1,0 +1,153 @@
+{
+  "admission_gates": {
+    "exact_film_stock_identity_count": false,
+    "exact_laboratory_identity_count": false,
+    "exact_scanner_workflow_identity_count": false,
+    "explicit_observation_data_fitting_license_count": false,
+    "prospective_development_group_count": false,
+    "public_machine_readable_manifest_count": false,
+    "public_observation_payload_count": false,
+    "public_payload_checksum_count": false,
+    "sealed_confirmation_group_count": false
+  },
+  "admission_minimums": {
+    "exact_film_stock_identity_count": 1,
+    "exact_laboratory_identity_count": 6,
+    "exact_scanner_workflow_identity_count": 1,
+    "explicit_observation_data_fitting_license_count": 1,
+    "prospective_development_group_count": 1,
+    "public_machine_readable_manifest_count": 1,
+    "public_observation_payload_count": 1,
+    "public_payload_checksum_count": 1,
+    "sealed_confirmation_group_count": 1
+  },
+  "audit_gates": {
+    "crossref_identity_authors_and_relation_exact": true,
+    "crossref_licenses_are_policy_not_open_observation_data": true,
+    "datacite_exact_title_has_no_dataset_record": true,
+    "elsevier_bibliographic_identity_exact": true,
+    "elsevier_closed_access_without_user_license": true,
+    "film_stock_identity_explicitly_unknown": true,
+    "public_article_multilab_topology_prospectively_bound": true,
+    "zero_media_pixel_and_model_reads": true
+  },
+  "claim_ceiling": "Official bibliographic identity and public multi-lab restoration topology for an auxiliary A5 operator-uncertainty source only; no public observation payload, manifest, checksum, data-fitting licence, exact lab/scanner groups, prospective roles, target-stock identity, stock evidence, candidate-three admission, calibration, training or product claim.",
+  "data_evidence": {
+    "exact_film_stock_identity_count": 0,
+    "exact_laboratory_identity_count": 0,
+    "exact_scanner_workflow_identity_count": 0,
+    "explicit_observation_data_fitting_license_count": 0,
+    "prospective_development_group_count": 0,
+    "public_machine_readable_manifest_count": 0,
+    "public_observation_payload_count": 0,
+    "public_payload_checksum_count": 0,
+    "sealed_confirmation_group_count": 0
+  },
+  "decision": "FAIL_CLOSED_FILM_RESTORATION_MULTILAB_DATA_RIGHTS_MANIFEST_AND_ROLE_GAP",
+  "experiment_id": "SF3.A4A_FILM_RESTORATION_MULTILAB_SOURCE_V1",
+  "official_statuses": {
+    "crossref": 200,
+    "datacite": 200,
+    "elsevier": 200
+  },
+  "operation_counts": {
+    "article_media_requests": 0,
+    "article_pdf_requests": 0,
+    "fit_calls": 0,
+    "frame_requests": 0,
+    "independent_reference_requests": 0,
+    "institutional_file_requests": 0,
+    "laboratory_version_requests": 0,
+    "official_article_html_requests": 0,
+    "official_metadata_endpoint_count": 3,
+    "official_metadata_get_requests_max": 9,
+    "pixel_decodes": 0,
+    "positive_print_requests": 0,
+    "render_calls": 0,
+    "score_calls": 0,
+    "source_negative_requests": 0
+  },
+  "schema": "neuro-film.sf3-a4a-film-restoration-multilab-source-result.v1",
+  "source": {
+    "doi": "10.1016/j.daach.2026.e00538",
+    "institutional_record_url": "https://air.unimi.it/handle/2434/1170334",
+    "official_article_url": "https://www.sciencedirect.com/science/article/pii/S2212054826000457",
+    "public_article_topology": {
+      "common_source": "original_camera_negative",
+      "film_stock_identity": "unknown",
+      "film_title": "Slike iz Zivota udarnika",
+      "film_year": 1972,
+      "frames_per_scene": 24,
+      "independent_reference": "director_of_photography_supervised_restoration",
+      "independent_reference_withheld_from_participants": true,
+      "laboratory_count": 6,
+      "participant_reference": "positive_print",
+      "scene_count": 3
+    },
+    "selected_metadata": {
+      "crossref": {
+        "authors": [
+          "Lucia Becatti",
+          "Beatrice Sarti",
+          "Enea Ahmedhodzic",
+          "Alessandro Rizzi"
+        ],
+        "doi": "10.1016/j.daach.2026.e00538",
+        "licenses": [
+          {
+            "content_version": "tdm",
+            "url": "https://www.elsevier.com/tdm/userlicense/1.0/"
+          },
+          {
+            "content_version": "tdm",
+            "url": "https://www.elsevier.com/legal/tdmrep-license"
+          },
+          {
+            "content_version": "stm-asf",
+            "url": "https://doi.org/10.15223/policy-017"
+          },
+          {
+            "content_version": "stm-asf",
+            "url": "https://doi.org/10.15223/policy-037"
+          },
+          {
+            "content_version": "stm-asf",
+            "url": "https://doi.org/10.15223/policy-012"
+          },
+          {
+            "content_version": "stm-asf",
+            "url": "https://doi.org/10.15223/policy-029"
+          },
+          {
+            "content_version": "stm-asf",
+            "url": "https://doi.org/10.15223/policy-004"
+          }
+        ],
+        "relation": {},
+        "title": "Subjectivity in color film restoration: A multi-lab comparison"
+      },
+      "datacite": {
+        "record_count": 0,
+        "total": 0
+      },
+      "elsevier": {
+        "cover_date": "2026-06-30",
+        "doi": "10.1016/j.daach.2026.e00538",
+        "journal": "Digital Applications in Archaeology and Cultural Heritage",
+        "openaccess": "0",
+        "openaccess_user_license": null,
+        "pii_compact": "S2212054826000457",
+        "pii_formatted": "S2212-0548(26)00045-7",
+        "title": "Subjectivity in color film restoration: A multi-lab comparison"
+      }
+    },
+    "selected_metadata_sha256": "6cb63212945fd25e4575370b1f2460c9a7ecb530853205ca23c1c41a78a26232",
+    "urls": {
+      "crossref": "https://api.crossref.org/works/10.1016/j.daach.2026.e00538",
+      "datacite": "https://api.datacite.org/dois?query=titles.title%3A%22Subjectivity%20in%20color%20film%20restoration%3A%20A%20multi-lab%20comparison%22&page%5Bsize%5D=1",
+      "elsevier": "https://api.elsevier.com/content/article/doi/10.1016%2Fj.daach.2026.e00538"
+    }
+  },
+  "source_identity_sha256": "4052ebd9ae7b07f0d4422287489664d4df0c89a64257993b3fba2a38f6f78e4b",
+  "stable_evidence_id": "e8b62de822b16716ec0930ec895b07d602de15eb9ca4a67203a59bbb2c3eca80"
+}
