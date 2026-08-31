@@ -19,10 +19,12 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from src.inference import three_stock_input_batch as batch_module
 from src.inference.render_contract import sha256_file
 from src.inference.three_stock_input_batch import (
     INPUT_MANIFEST_SCHEMA,
     RECEIPT_SCHEMA,
+    ThreeStockInputBatchError,
     render_three_stock_input_batch_to_directory,
 )
 
@@ -84,6 +86,146 @@ def _build_jobs(source_root: Path) -> list[dict[str, str]]:
             }
         )
     return jobs
+
+
+def _write_manifest(path: Path, jobs: list[dict[str, str]]) -> None:
+    path.write_bytes(
+        _canonical_bytes({"schema_version": INPUT_MANIFEST_SCHEMA, "jobs": jobs})
+    )
+
+
+def _invoke(manifest: Path, destination: Path) -> dict:
+    return render_three_stock_input_batch_to_directory(
+        manifest,
+        destination,
+        root=ROOT,
+        profile_path=PROFILE,
+        statistics_path=STATISTICS,
+        guardrails_path=GUARDRAILS,
+        tile_size=16,
+        png_compression=0,
+    )
+
+
+def _run_negative_controls(
+    *, source_root: Path, jobs: list[dict[str, str]]
+) -> dict[str, bool | int]:
+    original_child = batch_module.render_three_stock_batch_to_directory
+    original_publish = batch_module._publish_no_replace
+
+    preflight_manifest = source_root / "preflight-control.json"
+    bad_job = dict(jobs[0])
+    bad_job["input_sha256"] = "0" * 64
+    _write_manifest(preflight_manifest, [bad_job])
+    child_calls = 0
+
+    def forbidden_child(*args, **kwargs):
+        nonlocal child_calls
+        child_calls += 1
+        raise AssertionError("child render ran before complete preflight")
+
+    batch_module.render_three_stock_batch_to_directory = forbidden_child
+    try:
+        try:
+            _invoke(preflight_manifest, SCRATCH / "preflight-control-output")
+        except ThreeStockInputBatchError as exc:
+            if "input hash drifted" not in str(exc):
+                raise
+        else:
+            raise AssertionError("bad input hash control was accepted")
+    finally:
+        batch_module.render_three_stock_batch_to_directory = original_child
+    if child_calls != 0:
+        raise AssertionError("preflight control reached the child renderer")
+
+    failure_manifest = source_root / "child-failure-control.json"
+    _write_manifest(failure_manifest, jobs[:2])
+    child_calls = 0
+
+    def fail_second(*args, **kwargs):
+        nonlocal child_calls
+        child_calls += 1
+        if child_calls == 2:
+            raise RuntimeError("injected child failure")
+        return original_child(*args, **kwargs)
+
+    batch_module.render_three_stock_batch_to_directory = fail_second
+    failure_output = SCRATCH / "child-failure-control-output"
+    try:
+        try:
+            _invoke(failure_manifest, failure_output)
+        except RuntimeError as exc:
+            if "injected child failure" not in str(exc):
+                raise
+        else:
+            raise AssertionError("injected child failure was accepted")
+    finally:
+        batch_module.render_three_stock_batch_to_directory = original_child
+    if child_calls != 2 or failure_output.exists():
+        raise AssertionError("child failure control published a partial batch")
+
+    drift_manifest = source_root / "recipe-drift-control.json"
+    _write_manifest(drift_manifest, [jobs[0]])
+
+    def drift_recipe(*args, **kwargs):
+        child = original_child(*args, **kwargs)
+        recipe_path = Path(args[1]) / "velvia_50.recipe.json"
+        recipe = json.loads(recipe_path.read_text(encoding="utf-8"))
+        recipe["input"]["sha256"] = "0" * 64
+        recipe_path.write_bytes(_canonical_bytes(recipe))
+        return child
+
+    batch_module.render_three_stock_batch_to_directory = drift_recipe
+    drift_output = SCRATCH / "recipe-drift-control-output"
+    try:
+        try:
+            _invoke(drift_manifest, drift_output)
+        except ThreeStockInputBatchError as exc:
+            if "recipe input identity" not in str(exc):
+                raise
+        else:
+            raise AssertionError("recipe identity drift control was accepted")
+    finally:
+        batch_module.render_three_stock_batch_to_directory = original_child
+    if drift_output.exists():
+        raise AssertionError("recipe drift control published a batch")
+
+    foreign_manifest = source_root / "foreign-control.json"
+    _write_manifest(foreign_manifest, [jobs[0]])
+    foreign_output = SCRATCH / "foreign-control-output"
+
+    def foreign_claim(stage: Path, destination: Path) -> None:
+        destination.mkdir()
+        (destination / "foreign.bin").write_bytes(b"foreign")
+        raise FileExistsError("late foreign destination")
+
+    batch_module._publish_no_replace = foreign_claim
+    try:
+        try:
+            _invoke(foreign_manifest, foreign_output)
+        except FileExistsError as exc:
+            if "late foreign destination" not in str(exc):
+                raise
+        else:
+            raise AssertionError("late foreign destination control was accepted")
+    finally:
+        batch_module._publish_no_replace = original_publish
+    if (foreign_output / "foreign.bin").read_bytes() != b"foreign":
+        raise AssertionError("foreign destination was not preserved")
+    if list(foreign_output.iterdir()) != [foreign_output / "foreign.bin"]:
+        raise AssertionError("owned batch data entered the foreign destination")
+    shutil.rmtree(foreign_output)
+
+    stage_residue = len(list(SCRATCH.rglob("*.stage")))
+    if stage_residue:
+        raise AssertionError("owned stage residue remained after controls")
+    return {
+        "preflight_rejected_before_child_render": True,
+        "injected_child_failure_published_nothing": True,
+        "recipe_input_identity_drift_published_nothing": True,
+        "late_foreign_destination_preserved": True,
+        "owned_stage_residue_count": stage_residue,
+    }
 
 
 def _validate_receipt(
@@ -169,24 +311,12 @@ def run(order: str) -> dict[str, object]:
         jobs = _build_jobs(source_root)
         manifest_jobs = jobs if order == "forward" else list(reversed(jobs))
         manifest = source_root / "jobs.json"
-        manifest.write_bytes(
-            _canonical_bytes(
-                {"schema_version": INPUT_MANIFEST_SCHEMA, "jobs": manifest_jobs}
-            )
-        )
-        receipt = render_three_stock_input_batch_to_directory(
-            manifest,
-            output_root,
-            root=ROOT,
-            profile_path=PROFILE,
-            statistics_path=STATISTICS,
-            guardrails_path=GUARDRAILS,
-            tile_size=16,
-            png_compression=0,
-        )
+        _write_manifest(manifest, manifest_jobs)
+        receipt = _invoke(manifest, output_root)
         metrics = _validate_receipt(
             receipt, output_root=output_root, expected_jobs=jobs
         )
+        controls = _run_negative_controls(source_root=source_root, jobs=jobs)
         source_set_identity = _canonical_sha256(
             [
                 {"job_id": row["job_id"], "input_sha256": row["input_sha256"]}
@@ -214,6 +344,7 @@ def run(order: str) -> dict[str, object]:
             "guardrails_sha256": sha256_file(GUARDRAILS),
             "source_set_identity": source_set_identity,
             "metrics": metrics,
+            "controls": controls,
             "gate_results": {
                 "all_inputs_hash_verified_before_decode": True,
                 "all_child_recipe_input_hashes_match_frozen_jobs": True,
@@ -223,6 +354,16 @@ def run(order: str) -> dict[str, object]:
                 "all_300_outputs_and_recipes_verified": (
                     metrics["output_count"] == 300 and metrics["recipe_count"] == 300
                 ),
+                "foreign_destination_preserved": controls[
+                    "late_foreign_destination_preserved"
+                ],
+                "injected_child_failure_publishes_nothing": controls[
+                    "injected_child_failure_published_nothing"
+                ],
+                "recipe_input_identity_drift_publishes_nothing": controls[
+                    "recipe_input_identity_drift_published_nothing"
+                ],
+                "owned_stage_residue_count": controls["owned_stage_residue_count"],
                 "network_requests": 0,
             },
             "claim_ceiling": (
