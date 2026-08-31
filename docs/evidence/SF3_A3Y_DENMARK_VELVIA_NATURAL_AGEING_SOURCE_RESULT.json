@@ -1,0 +1,113 @@
+{
+  "admission_gates": {
+    "explicit_measurement_data_license_count": false,
+    "prospective_development_group_count": false,
+    "public_exact_sample_identifier_count": false,
+    "public_measurement_payload_count": false,
+    "public_payload_checksum_count": false,
+    "public_sample_manifest_count": false,
+    "sealed_confirmation_group_count": false
+  },
+  "admission_minimums": {
+    "explicit_measurement_data_license_count": 1,
+    "prospective_development_group_count": 1,
+    "public_exact_sample_identifier_count": 1,
+    "public_measurement_payload_count": 1,
+    "public_payload_checksum_count": 1,
+    "public_sample_manifest_count": 1,
+    "sealed_confirmation_group_count": 1
+  },
+  "audit_gates": {
+    "article_cc_by_4_exact": true,
+    "article_title_authors_exact": true,
+    "doi_catalogue_renderings_recorded": true,
+    "official_document_statuses_exact": true,
+    "ojs_pdf_identity_exact": true,
+    "physical_design_statements_exact": true,
+    "pure_article_identity_exact": true,
+    "registry_absence_exact": true,
+    "zero_collection_data_pixel_and_model_reads": true
+  },
+  "claim_ceiling": "CC BY 4.0 article and exact controlled longitudinal Velvia 50 physical-study identity only; no public measurement payload, sample manifest, checksum, unpublished-data licence, row-level role assignment, figure digitisation, pixel read, stock response, calibration, fitting, candidate-three admission or product claim.",
+  "data_evidence": {
+    "explicit_measurement_data_license_count": 0,
+    "prospective_development_group_count": 0,
+    "public_exact_sample_identifier_count": 0,
+    "public_measurement_payload_count": 0,
+    "public_payload_checksum_count": 0,
+    "public_sample_manifest_count": 0,
+    "sealed_confirmation_group_count": 0
+  },
+  "decision": "FAIL_CLOSED_DENMARK_VELVIA_PUBLIC_DATA_RIGHTS_MANIFEST_AND_ROLE_GAP",
+  "experiment_id": "SF3.A3Y_DENMARK_VELVIA_NATURAL_AGEING_SOURCE_V1",
+  "official_statuses": {
+    "article": 200,
+    "crossref": 404,
+    "datacite": 404,
+    "pdf": 200,
+    "pure": 200
+  },
+  "operation_counts": {
+    "collection_object_requests": 0,
+    "figure_digitization_calls": 0,
+    "fit_calls": 0,
+    "media_body_requests": 0,
+    "official_document_get_requests": 5,
+    "pixel_decodes": 0,
+    "render_calls": 0,
+    "score_calls": 0,
+    "slide_image_requests": 0,
+    "spreadsheet_requests": 0
+  },
+  "public_documents": {
+    "count": 1,
+    "kind": "article_pdf",
+    "pdf_urls": [
+      "https://adk.elsevierpure.com/files/88282276/170211.pdf"
+    ]
+  },
+  "required_pdf_phrase_results": {
+    "9 equal sets were prepared": true,
+    "A reference set was kept in a freezer": true,
+    "All CRFs were exposed to a colour checker": true,
+    "Each set was originally composed of 96 samples": true,
+    "Fuji Fujichrome Velvia ISO 50": true,
+    "Microsoft Excel": true,
+    "records of the measurements made in 1992": true,
+    "with quadruplicates of each type of sample": true
+  },
+  "schema": "neuro-film.sf3-a3y-denmark-velvia-natural-ageing-source-result.v1",
+  "source": {
+    "article_license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "authors": [
+      "Joana Silva",
+      "Sille Juline Høgly Petersen",
+      "Morten Ryhl-Svendsen",
+      "Jesper Stub Johnsen",
+      "Karen Brynjolf Pedersen"
+    ],
+    "ojs_doi_literal": "10.23738//CCSJ.170211",
+    "pdf_bytes": 2916544,
+    "pdf_sha256": "33cc4d5ce708b59522c89885902c7b2a4a8958413fb034dde8b0ca43e82f00fe",
+    "physical_design": {
+      "colour_checker_present": true,
+      "film_type_count": 6,
+      "freezer_reference_present": true,
+      "measurement_epochs": [
+        1992,
+        2024
+      ],
+      "natural_ageing_storage_locations_present": true,
+      "prepared_set_count": 9,
+      "replicates_per_sample_type": 4,
+      "retrieved_set_count": 7,
+      "same_day_e6_processing_except_kodachrome": true,
+      "target_stock": "velvia_50",
+      "target_stock_count": 1
+    },
+    "pure_doi_rendering": "10.23738/CCSJ.170211",
+    "title": "Evaluating the stability of colour slides: 30 years of natural ageing at the National Museum of Denmark"
+  },
+  "source_identity_sha256": "14afd158d323a9df445edac719c9398cf4c11dbf6ee96ccd4fe28c7d558ff5df",
+  "stable_evidence_id": "07051bac779de1c7a81e5627619be3ccd7626c0bc37c391ae71b71d94bba4e9e"
+}
