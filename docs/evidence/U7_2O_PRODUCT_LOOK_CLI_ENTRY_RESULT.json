@@ -1,0 +1,118 @@
+{
+  "schema_version": "neuro-film.u7-2o-product-look-cli-entry-evidence.v1",
+  "node_id": "U7.2O",
+  "decision": "PASS_PRIVATE_U7_2O_PRODUCT_LOOK_CLI_ENTRY",
+  "claim_ceiling": "Private first-class CLI entry for the existing deterministic film-inspired Look Approximation product renders only; not calibrated stock response, physical-film reproduction, a newly identified stock operator, public packaging, installer or release readiness.",
+  "bindings": {
+    "contract_commit": "417ff63c0d9246f80166458937f160b8ab869a4b",
+    "implementation_commit": "f02ca0865e899d2dceec64a9d60404d904e326ce",
+    "formal_runner_commit": "7d942f8cef2067c310b758924cc5a6528817e93b",
+    "formal_execution_head": "7d942f8cef2067c310b758924cc5a6528817e93b",
+    "parent_transaction_evidence_commit": "d1ae367d3b9cba136e8e5e1e67b6548fc1d7d214",
+    "parent_transaction_propagation_commit": "bec296dc2e41e6802335dcca5902925543cf640c",
+    "files": {
+      "configs/u7_2o_product_look_cli_entry_v1.json": {
+        "bytes": 2430,
+        "sha256": "262104531854dd38e58d1aa01594dd292fd6d2296fe1ce13a8ab5dbce6c76ef7",
+        "git_blob": "e7c3072e0b553b5e59222c964f9fa089357e89b4"
+      },
+      "docs/planning/U7_2O_PRODUCT_LOOK_CLI_ENTRY_CONTRACT.md": {
+        "bytes": 3196,
+        "sha256": "feaed0f04e41eed3374ea8c36d81cab0bd9bf06dee813d3c14b2266189e27ae0",
+        "git_blob": "c53970bd4afeec569bbbfb365816c98e152d4972"
+      },
+      "README.md": {
+        "bytes": 8378,
+        "sha256": "fe1adea3a9e6aa91d97a448d0b0f1e324c4bfcd5ffe960315c5be6dd1911d637",
+        "git_blob": "9c97c0877132535929d33a7cfef759f7cc02d4b9"
+      },
+      "scripts/render_film.py": {
+        "bytes": 40954,
+        "sha256": "6b0ed341b8b5934e5c8406b342a7b5129ef7df4cbd2a7969cfa06c95ebd0bed1",
+        "git_blob": "d3075f829b7be46b58364cb5a743c513fb17905b"
+      },
+      "tests/test_u7_2o_product_look_cli_entry.py": {
+        "bytes": 6894,
+        "sha256": "e8c02de9c1a549412de8a21104128601b1c9203d7adb220edc5cc5a54740f3ae",
+        "git_blob": "8e5df0ea3857294f77ed5145537b0a5f0d895db6"
+      },
+      "scripts/audit_u7_2o_product_look_cli_entry.py": {
+        "bytes": 14391,
+        "sha256": "e84fd9d2a80f2abed84e85269af375450c05aca1a964753cb0ac7d37bd260a42",
+        "git_blob": "97e27ca3231d48c47ec00634df392caa8323bf5b"
+      },
+      "tests/test_audit_u7_2o_product_look_cli_entry.py": {
+        "bytes": 562,
+        "sha256": "58f86b29ace318ff02f3cf48a1dd8186ed1aab65ebf5d6686aa84df4eca4326b",
+        "git_blob": "18df7c0bf526b0dc24aea4373790bd97105cd8ce"
+      },
+      "docs/evidence/U7_2N_PRODUCT_AUXILIARY_OUTPUT_TRANSACTION_RESULT.json": {
+        "bytes": 6468,
+        "sha256": "fd5966d53118490becd2e2ca1e505433f8215fbdc2754c220e9c4af949b70b28",
+        "git_blob": "57b10d0c499523fba871cd6a59ac55512bcc14a8"
+      }
+    }
+  },
+  "formal_reports": {
+    "forward_path": "outputs/eval/u7_2o_product_look_cli_entry_v1/formal.json",
+    "reverse_path": "outputs/eval/u7_2o_product_look_cli_entry_v1/formal_replay.json",
+    "bytes_each": 7617,
+    "sha256": "2e6a58edd09d312520469a3d58699705d71d20200ca534ac614ce4fd6c40f8d4",
+    "forward_reverse_byte_exact": true,
+    "fresh_process_count": 2
+  },
+  "result": {
+    "formal_gate_count": 12,
+    "formal_gate_pass_count": 12,
+    "comparison_count": 9,
+    "looks": [
+      "ektar_100",
+      "portra_400",
+      "velvia_50"
+    ],
+    "look_amounts": [
+      0.0,
+      0.5,
+      1.0
+    ],
+    "all_candidate_images_byte_exact_to_explicit_reference": true,
+    "all_normalized_recipes_exact_to_explicit_reference": true,
+    "all_profiles_exact": "safe-rich-product-v1",
+    "all_recipe_claim_labels": "film-inspired",
+    "all_recipe_calibrated_flags": false,
+    "all_conflicts_rejected_predecode": true,
+    "all_non_product_values_rejected": true,
+    "legacy_output_unchanged": true,
+    "catalog_discovery_unchanged": true,
+    "parent_auxiliary_transaction_unchanged": true,
+    "readme_quickstart_executable_and_claim_bounded": true,
+    "owned_runtime_residue_zero": true,
+    "source_immutable": true
+  },
+  "full_effects_bundle": {
+    "candidate_returncode": 0,
+    "reference_returncode": 0,
+    "image_byte_exact": true,
+    "output_sha256": "47c0e92dc968cf3f1c4e38f5b46c47126dfd980f15e7645cfbd37f2b703cbe7f",
+    "recipe_semantics_exact": true,
+    "metrics_semantics_exact": true,
+    "layer_manifest_exact": true,
+    "layer_sha256": {
+      "dust_scratch.png": "bf14cba9f275b9020798af5507f33c149abf37f5263c0897c537a9378d87081b",
+      "grain.png": "b407c1bbf07028c250988ed8a1fb6c133f1fbd669b3beddaab272c627667bcd4",
+      "halation.png": "be8e2409be4db8fa17451c5dfc70b89d9782fc879569f36ceac8ecabae75f75d",
+      "halation_on_black.png": "be8e2409be4db8fa17451c5dfc70b89d9782fc879569f36ceac8ecabae75f75d",
+      "halation_on_white.png": "a1e42a35694a89d8e20ec6db9f5b34e498464d25e17ea97fc0f8358891fe8306"
+    }
+  },
+  "retained_boundaries": {
+    "colour_algorithm_profile_or_product_catalog_changed": false,
+    "recipe_schema_or_claim_semantics_changed": false,
+    "calibrated_stock_response_or_physical_film_claim": false,
+    "new_stock_identification_or_multi_stock_calibration_claim": false,
+    "ao6_promoted_beyond_velvia50_display_proxy_baseline": false,
+    "public_api_package_installer_or_release_claim": false,
+    "u7_2n_historical_evidence_rewritten": false,
+    "adjacent_cli_wrapper_expansion_authorized": false
+  }
+}
