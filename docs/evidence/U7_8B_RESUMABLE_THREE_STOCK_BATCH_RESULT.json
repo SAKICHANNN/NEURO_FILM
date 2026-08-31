@@ -1,0 +1,95 @@
+{
+  "claim_ceiling": "Private Windows/Python resumable mechanics for three existing deterministic film-inspired Look Approximations only; no hard-power-loss durability during an executing child, calibrated or physical stock response, 24MP performance, installer, public API, package, release or product-value claim.",
+  "config_sha256": "6b45256ef487499d9a128a3c54c6f884f9069f2c4ad34692ae21dd79f24219f7",
+  "decision": "PASS_PRIVATE_U7_8B_RESUMABLE_THREE_STOCK_BATCH",
+  "gate_results": {
+    "all_100_jobs_published": true,
+    "all_300_outputs_and_recipes_verified": true,
+    "all_input_semantics_and_config_hashes_revalidated_on_every_invocation": true,
+    "canonical_job_order_exact": true,
+    "checkpoint_claiming_missing_child_rejected": true,
+    "child_complete_with_stale_checkpoint_reconciled": true,
+    "concurrent_writer_rejected_without_mutation_or_render": true,
+    "crash_after_last_child_before_final_receipt_resumes_without_rerender": true,
+    "late_foreign_destination_preserved": true,
+    "manifest_enumeration_is_nonsemantic": true,
+    "network_requests": 0,
+    "owned_transient_residue_count": 0,
+    "paused_destination_absent": true,
+    "paused_workspace_checkpoint_count": 37,
+    "resume_renders_only_remaining_jobs": true,
+    "resumed_and_uninterrupted_aggregate_scientific_identity_exact": true,
+    "resumed_and_uninterrupted_output_hash_sets_exact": true,
+    "reused_children_byte_exact": true,
+    "software_commit_or_core_drift_rejected_without_render_or_publication": true,
+    "stale_reserved_transient_reconciled": true,
+    "tampered_checkpoint_rejected_without_render_or_publication": true
+  },
+  "guardrails_sha256": "6669b7bc873febcc74ba7ddcbc1c1584807e38465447a5cdbeb24073efa00aa7",
+  "implementation_commit": "75e5ada699c903c59528a46acd82ba6ea3e29bfb",
+  "metrics": {
+    "batch_id": "36e3e5a42af0f6811b7089db1e10e24d3a0e6c15f7f943cb2e971b85366cb9cd",
+    "child_manifest_count": 100,
+    "first_invocation_completed_jobs": 37,
+    "job_count": 100,
+    "output_count": 300,
+    "receipt_sha256": "1b3f51f2d0f56aeac2ef537b62a01fa923bd403c2ad834616a47a351f620c957",
+    "recipe_count": 300,
+    "resumed_new_jobs": 63,
+    "resumed_reused_jobs": 37,
+    "resumed_tree_file_count": 703,
+    "uninterrupted_tree_file_count": 703
+  },
+  "node_id": "U7.8B",
+  "outer_replay": {
+    "forward_report_bytes": 4866,
+    "forward_report_sha256": "ceb2710c202582c36cc739c478508485552732ef6387d3705ca041a1840a9847",
+    "reports_byte_exact": true,
+    "reverse_report_bytes": 4866,
+    "reverse_report_sha256": "ceb2710c202582c36cc739c478508485552732ef6387d3705ca041a1840a9847"
+  },
+  "pre_report_attempts_excluded": [
+    {
+      "reason": "The first audit implementation sorted both forward and reverse manifests, so review stopped the running pre-report attempt before it could claim enumeration invariance.",
+      "result_or_gate_change": false,
+      "tracked_report_written": false
+    },
+    {
+      "reason": "The first corrected invocation found the exact interrupted owned scratch root and stopped before rendering or writing a report; the root was moved aside intact before the from-zero formal runs.",
+      "result_or_gate_change": false,
+      "tracked_report_written": false
+    }
+  ],
+  "profile_sha256": "09722cb48c55d1c4c460220c9f59b9ced81801c1b6fe856708a27f5cc99d39fe",
+  "schema_version": "neuro-film.u7-8b-resumable-three-stock-batch-evidence.v1",
+  "source_blobs": {
+    "configs/u7_8b_resumable_three_stock_batch_v1.json": "e7ba1e91e3c64c2fb44a6ffb0805fff51c98173e",
+    "scripts/audit_u7_8b_resumable_three_stock_batch.py": "efd43298ab2e697e2f060105ca94f572b58e6a62",
+    "scripts/render_resumable_three_stock_input_batch.py": "53b4f8eaabf3775573b15deffe2cb690aafdf5d4",
+    "src/inference/resumable_three_stock_input_batch.py": "9207ef8f167cd02e4b2f014da3e6214498dc9990",
+    "tests/test_u7_8b_resumable_three_stock_input_batch.py": "4359c704a579411b02bc98efe4ca2c985e5f2870"
+  },
+  "source_set_identity": "6049dc56448cb907187a6cfa14847ef0ff78de7128330d366a8da1033e7454e5",
+  "statistics_sha256": "1a45e90765e577edd4ca1773fc8c6cf98fd09b8afbdddfa519b1f097c5dd7c04",
+  "test_evidence": {
+    "adjacent_product_tests_passed": 44,
+    "forward_targeted_recovery_tests_passed": 24,
+    "reverse_targeted_recovery_tests_passed": 24,
+    "frozen_negative_families": [
+      "input-and-config-drift",
+      "tampered-or-missing-checkpoint",
+      "stale-ledger",
+      "software-or-core-drift",
+      "concurrent-writer",
+      "stale-initialization-and-transient",
+      "final-receipt-crash-and-late-destination",
+      "hardlink-reparse-and-unexpected-member",
+      "path-and-numeric-alias",
+      "manifest-enumeration"
+    ],
+    "ruff_check": "pass",
+    "ruff_format_check": "pass",
+    "compileall": "pass",
+    "git_diff_check": "pass"
+  }
+}
