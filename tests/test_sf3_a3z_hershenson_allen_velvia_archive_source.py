@@ -8,6 +8,8 @@ import pytest
 
 from src.real_film.hershenson_allen_velvia_archive_source import (
     HershensonAllenSourceError,
+    _canonical_html_identity,
+    _parse_html,
     run_hershenson_allen_source_audit,
 )
 
@@ -43,10 +45,18 @@ def _fixture(
             "robots_url": urls["robots"],
             "prospectus_pdf_url": "https://example.test/p.pdf",
             "expected_responses": {
-                role: {
-                    "bytes": len(payload),
-                    "sha256": hashlib.sha256(payload).hexdigest(),
-                }
+                role: (
+                    {
+                        "identity_kind": "raw_bytes",
+                        "bytes": len(payload),
+                        "sha256": hashlib.sha256(payload).hexdigest(),
+                    }
+                    if role == "robots"
+                    else {
+                        "identity_kind": "canonical_visible_text_and_non_protection_links",
+                        "sha256": _canonical_html_identity(*_parse_html(payload)),
+                    }
+                )
                 for role, payload in pages.items()
             },
             "required_home_phrases": ["count fixed workflow Velvia rights"],
@@ -136,10 +146,10 @@ def test_missing_prospectus_link_fails_without_pdf_request(tmp_path: Path) -> No
         b"<html><body>no link</body></html>",
     )
     data["source"]["expected_responses"]["prospectus"] = {
-        "bytes": len(payloads[data["source"]["prospectus_page_url"]][1]),
-        "sha256": hashlib.sha256(
-            payloads[data["source"]["prospectus_page_url"]][1]
-        ).hexdigest(),
+        "identity_kind": "canonical_visible_text_and_non_protection_links",
+        "sha256": _canonical_html_identity(
+            *_parse_html(payloads[data["source"]["prospectus_page_url"]][1])
+        ),
     }
     config.write_text(json.dumps(data), encoding="utf-8")
     report = run_hershenson_allen_source_audit(
@@ -155,6 +165,14 @@ def test_non_200_source_is_atomic(tmp_path: Path) -> None:
     payloads[data["source"]["explore_url"]] = (503, b"")
     with pytest.raises(HershensonAllenSourceError):
         run_hershenson_allen_source_audit(config, fetcher=lambda url: payloads[url])
+
+
+def test_cloudflare_email_fragment_is_excluded_from_html_identity() -> None:
+    first = b'<html><body>stable<a href="/cdn-cgi/l/email-protection#abc">mail</a></body></html>'
+    second = b'<html><body>stable<a href="/cdn-cgi/l/email-protection#def">mail</a></body></html>'
+    assert _canonical_html_identity(*_parse_html(first)) == _canonical_html_identity(
+        *_parse_html(second)
+    )
 
 
 def test_project_contract_forbids_database_media_and_pixel_reads() -> None:

@@ -19,8 +19,9 @@ applies to any individual item.
 
 1. Read only the official home, collection, exploration and prospectus pages,
    plus the site's `robots.txt` content signals.
-2. Bind exact response identities and the fixed archive/workflow statements in
-   the config.
+2. Bind `robots.txt` as exact raw bytes. Bind each HTML page as canonical
+   visible text plus its sorted non-protection links, excluding only
+   Cloudflare's per-response `/cdn-cgi/l/email-protection#...` fragment.
 3. Record the official prospectus link but do not fetch the PDF.
 4. Treat "available digitally" as an availability statement, not as a public
    manifest, a neutral digital reference or permission to download images.
@@ -56,3 +57,12 @@ capture description, including an archive-level Velvia 50 example. It cannot
 establish item-level stock identity, public media/data availability, reusable
 rights, neutral/film pairs, group-held roles, stock response, calibration,
 learning eligibility, candidate-three admission or product capability.
+
+## Preformal identity correction
+
+The first two preformal source runs were excluded before evidence publication:
+the official HTML was semantically identical, but Cloudflare rewrote its email
+protection fragment on every response. This additive correction changes only
+the transport identity representation described above. The official sources,
+source text, roles, operation limits, admission gates, thresholds and claim
+ceiling remain frozen.

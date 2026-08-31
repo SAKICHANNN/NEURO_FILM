@@ -84,6 +84,15 @@ def _parse_html(payload: bytes) -> tuple[str, list[str]]:
     return " ".join(" ".join(parser.text_parts).split()), sorted(set(parser.links))
 
 
+def _canonical_html_identity(text: str, links: list[str]) -> str:
+    stable_links = sorted(
+        link
+        for link in links
+        if not link.startswith("/cdn-cgi/l/email-protection#")
+    )
+    return _json_sha256({"visible_text": text, "links": stable_links})
+
+
 def _normalized(text: str) -> str:
     return " ".join(text.split())
 
@@ -126,9 +135,20 @@ def run_hershenson_allen_source_audit(
     except UnicodeDecodeError as error:
         raise HershensonAllenSourceError("robots source is not UTF-8") from error
     expected = source["expected_responses"]
+    observed_identities = {
+        role: (
+            _sha256(fetched[role][1])
+            if expected[role]["identity_kind"] == "raw_bytes"
+            else _canonical_html_identity(*parsed[role])
+        )
+        for role in sorted(expected)
+    }
     response_identity_gates = {
-        role: len(fetched[role][1]) == int(expected[role]["bytes"])
-        and _sha256(fetched[role][1]) == expected[role]["sha256"]
+        role: observed_identities[role] == expected[role]["sha256"]
+        and (
+            expected[role]["identity_kind"] != "raw_bytes"
+            or len(fetched[role][1]) == int(expected[role]["bytes"])
+        )
         for role in sorted(expected)
     }
 
@@ -182,9 +202,7 @@ def run_hershenson_allen_source_audit(
         "unique_film_count": int(source["unique_film_count"]),
         "stock_example": source["stock_example"],
         "urls": {role: urls[role] for role in sorted(urls)},
-        "response_sha256": {
-            role: _sha256(fetched[role][1]) for role in sorted(fetched)
-        },
+        "canonical_response_sha256": observed_identities,
         "prospectus_pdf_url": source["prospectus_pdf_url"],
     }
     report: dict[str, Any] = {

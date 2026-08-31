@@ -10,22 +10,23 @@
     "prospectus_pdf_url": "https://haarchive.com/wp-content/uploads/2022/05/Prospectus-Hershenson-Allen-Archive.pdf",
     "expected_responses": {
       "home": {
-        "bytes": 38177,
-        "sha256": "52c1229a96535bb0e97d8f459afaf2038cdae2689bc2e1783e9d92514abf4d6c"
+        "identity_kind": "canonical_visible_text_and_non_protection_links",
+        "sha256": "5afff4da3484340fe0669cc8cc6406be598ea172e18581370981522d2700d839"
       },
       "collection": {
-        "bytes": 47623,
-        "sha256": "03b6e44e85838887a1a5eae1b0f6adda0fe02e6e5403333473379645347eea84"
+        "identity_kind": "canonical_visible_text_and_non_protection_links",
+        "sha256": "5dde3010697194f1b56f50ef15ecde892b4fc6c021a3933a23e761b6945d5696"
       },
       "explore": {
-        "bytes": 65123,
-        "sha256": "6b68ee87f2f3afcec58febd0acf3014abb80a90acc46b7b01f779df35860dbf8"
+        "identity_kind": "canonical_visible_text_and_non_protection_links",
+        "sha256": "766afadb1a589de99610dcc33b70050cab275e2d43d12b3200785bdff3465cb1"
       },
       "prospectus": {
-        "bytes": 34540,
-        "sha256": "093123cd5b4ce24f4c0deee0fd1932b8793891cccabbb8b5321ccc39e3f0e883"
+        "identity_kind": "canonical_visible_text_and_non_protection_links",
+        "sha256": "7c40b94e7903139f0af6f144bbd31dae5804a4e6d1cadfa867757cdb04fc983d"
       },
       "robots": {
+        "identity_kind": "raw_bytes",
         "bytes": 39504,
         "sha256": "9c1ef388b73be61752daf8f6be3d82cbad5a701f881a9212f4abeffcc8d6cc0f"
       }
