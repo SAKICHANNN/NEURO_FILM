@@ -7,6 +7,7 @@ import argparse
 import json
 import subprocess
 import sys
+from contextlib import nullcontext
 from pathlib import Path
 
 import numpy as np
@@ -49,6 +50,7 @@ from src.inference import (
     resolve_generic_bw_look_parameters,
     resolve_three_stock_look_parameters,
     sha256_file,
+    validate_render_recipe,
 )
 from src.inference.analytic_render_recipe import build_analytic_render_recipe
 from src.inference.analytic_y_chromaticity_profile_v4 import (
@@ -57,6 +59,7 @@ from src.inference.analytic_y_chromaticity_profile_v4 import (
 )
 from src.inference.product_render_transaction import (
     preflight_product_primary_output,
+    prepare_product_image_recipe_transaction,
 )
 from src.preprocess import (
     load_working_image,
@@ -517,8 +520,16 @@ def main() -> int:
                 raise ValueError(
                     f"Recipe profile does not exactly migrate style {args.style!r}"
                 )
+    recipe_path = args.output.with_suffix(".recipe.json") if args.write_recipe else None
+    product_pair_transaction = None
     if product_primary_create_only:
-        preflight_product_primary_output(args.input, args.output)
+        if args.write_recipe:
+            product_pair_transaction = prepare_product_image_recipe_transaction(
+                args.input,
+                args.output,
+            )
+        else:
+            preflight_product_primary_output(args.input, args.output)
     working = load_working_image(args.input)
     output_claim = resolve_look_approximation_claim(working)
     if analytic_runtime is None:
@@ -708,94 +719,119 @@ def main() -> int:
             ),
         )
     )
-    output_format = save_rgb(
-        out,
-        args.output,
-        args.output_bit_depth,
-        png_compression=args.png_compression,
-        create_only=product_primary_create_only,
+    transaction_context = (
+        product_pair_transaction
+        if product_pair_transaction is not None
+        else nullcontext(None)
     )
-    recipe_path = None
-    recipe_sha256 = None
-    if args.write_recipe:
-        input_metadata = {
-            "color_state": working.source_transfer_state,
-            "working_space": working.working_space,
-            "source_profile_kind": working.source_profile.kind,
-            "bit_depth": working.bit_depth_in,
-            "warnings": [warning.__dict__ for warning in working.warnings],
-        }
-        effects = {
-            "grain": {
-                "strength": args.grain,
-                "seed": args.seed,
-                "color": args.style not in {"generic_bw", "hp5", "tri_x_400"},
-            },
-            "halation": {
-                "strength": args.halation,
-                "model": args.halation_model,
-                "preset": halation_preset_id,
-                "control_mode": args.halation_control_mode,
-                "resolved_parameters": halation_resolved,
-            },
-            "dust": {"strength": args.dust, "seed": args.seed + 17},
-        }
-        commit = subprocess.check_output(
-            ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True, encoding="utf-8"
-        ).strip()
-        if analytic_runtime is None:
-            assert profile_manifest is not None and profile_values is not None
-            render_metadata = {
-                "engine_id": "safe_lab_v1",
-                "preset": args.preset,
-                "style": args.style,
-                "seed": args.seed,
-                "color_parameters": profile_values,
-                "effects": effects,
+    with transaction_context:
+        encoded_output_path = (
+            product_pair_transaction.image_stage
+            if product_pair_transaction is not None
+            else args.output
+        )
+        output_format = save_rgb(
+            out,
+            encoded_output_path,
+            args.output_bit_depth,
+            png_compression=args.png_compression,
+            create_only=product_primary_create_only,
+        )
+        if product_pair_transaction is not None:
+            product_pair_transaction.bind_image_stage()
+        recipe_sha256 = None
+        if args.write_recipe:
+            input_metadata = {
+                "color_state": working.source_transfer_state,
+                "working_space": working.working_space,
+                "source_profile_kind": working.source_profile.kind,
+                "bit_depth": working.bit_depth_in,
+                "warnings": [warning.__dict__ for warning in working.warnings],
             }
-            if args.look_amount != 1.0 or args.style == "generic_bw":
-                render_metadata["look_amount"] = args.look_amount
-            recipe = build_render_recipe(
-                profile_path=args.render_profile,
-                profile=profile_manifest,
-                input_path=args.input,
-                input_metadata={
-                    **input_metadata,
-                    "source_profile_fingerprint_sha256": None,
+            effects = {
+                "grain": {
+                    "strength": args.grain,
+                    "seed": args.seed,
+                    "color": args.style not in {"generic_bw", "hp5", "tri_x_400"},
                 },
-                render_metadata=render_metadata,
-                output_path=args.output,
-                output_format=output_format,
-                output_bit_depth=args.output_bit_depth,
-                output_icc_fingerprint_sha256=srgb_icc_profile_fingerprint_sha256(),
-                output_claim=output_claim,
-                software_commit=commit,
-                output_png_compression=args.png_compression,
-            )
-        else:
-            assert color_diagnostics is not None
-            recipe = build_analytic_render_recipe(
-                runtime=analytic_runtime,
-                input_path=args.input,
-                input_metadata={
-                    "source_color_state": working.source_transfer_state,
-                    "runtime_transfer_state": working.transfer_state,
-                    "working_space": working.working_space,
-                    "source_profile_kind": working.source_profile.kind,
-                    "bit_depth": working.bit_depth_in,
-                    "warnings": [warning.__dict__ for warning in working.warnings],
+                "halation": {
+                    "strength": args.halation,
+                    "model": args.halation_model,
+                    "preset": halation_preset_id,
+                    "control_mode": args.halation_control_mode,
+                    "resolved_parameters": halation_resolved,
                 },
-                selector_facts=color_diagnostics,
-                effects=effects,
-                output_path=args.output,
-                output_format=output_format,
-                output_bit_depth=args.output_bit_depth,
-                output_icc_fingerprint_sha256=srgb_icc_profile_fingerprint_sha256(),
-                output_claim=output_claim,
-                software_commit=commit,
-            )
-        recipe_path = args.output.with_suffix(".recipe.json")
-        recipe_sha256 = atomic_write_json(recipe_path, recipe)
+                "dust": {"strength": args.dust, "seed": args.seed + 17},
+            }
+            commit = subprocess.check_output(
+                ["git", "rev-parse", "HEAD"],
+                cwd=ROOT,
+                text=True,
+                encoding="utf-8",
+            ).strip()
+            if analytic_runtime is None:
+                assert profile_manifest is not None and profile_values is not None
+                render_metadata = {
+                    "engine_id": "safe_lab_v1",
+                    "preset": args.preset,
+                    "style": args.style,
+                    "seed": args.seed,
+                    "color_parameters": profile_values,
+                    "effects": effects,
+                }
+                if args.look_amount != 1.0 or args.style == "generic_bw":
+                    render_metadata["look_amount"] = args.look_amount
+                recipe = build_render_recipe(
+                    profile_path=args.render_profile,
+                    profile=profile_manifest,
+                    input_path=args.input,
+                    input_metadata={
+                        **input_metadata,
+                        "source_profile_fingerprint_sha256": None,
+                    },
+                    render_metadata=render_metadata,
+                    output_path=encoded_output_path,
+                    output_format=output_format,
+                    output_bit_depth=args.output_bit_depth,
+                    output_icc_fingerprint_sha256=(
+                        srgb_icc_profile_fingerprint_sha256()
+                    ),
+                    output_claim=output_claim,
+                    software_commit=commit,
+                    output_png_compression=args.png_compression,
+                )
+            else:
+                assert color_diagnostics is not None
+                recipe = build_analytic_render_recipe(
+                    runtime=analytic_runtime,
+                    input_path=args.input,
+                    input_metadata={
+                        "source_color_state": working.source_transfer_state,
+                        "runtime_transfer_state": working.transfer_state,
+                        "working_space": working.working_space,
+                        "source_profile_kind": working.source_profile.kind,
+                        "bit_depth": working.bit_depth_in,
+                        "warnings": [warning.__dict__ for warning in working.warnings],
+                    },
+                    selector_facts=color_diagnostics,
+                    effects=effects,
+                    output_path=encoded_output_path,
+                    output_format=output_format,
+                    output_bit_depth=args.output_bit_depth,
+                    output_icc_fingerprint_sha256=(
+                        srgb_icc_profile_fingerprint_sha256()
+                    ),
+                    output_claim=output_claim,
+                    software_commit=commit,
+                )
+            assert recipe_path is not None
+            if product_pair_transaction is not None:
+                recipe["output"]["path"] = str(args.output.resolve())
+                validate_render_recipe(recipe)
+                recipe_sha256 = product_pair_transaction.stage_recipe(recipe)
+                product_pair_transaction.publish()
+            else:
+                recipe_sha256 = atomic_write_json(recipe_path, recipe)
 
     if args.write_layers:
         layer_dir = args.output.parent / f"{args.output.stem}_layers"
