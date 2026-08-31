@@ -239,7 +239,6 @@ def _core_hashes(root: Path) -> dict[str, str]:
 def _expected_state(
     *,
     jobs: list[dict[str, Any]],
-    manifest_path: Path,
     output_directory: Path,
     root: Path,
     profile_path: Path,
@@ -251,9 +250,17 @@ def _expected_state(
     tile_workers: int,
     png_compression: int,
 ) -> dict[str, Any]:
+    semantic_jobs = [
+        {
+            "job_id": row["job_id"],
+            "input_path_binding_sha256": _path_binding(row["input_path"]),
+            "input_sha256": row["input_sha256"],
+        }
+        for row in jobs
+    ]
     identity: dict[str, Any] = {
         "schema_version": WORKSPACE_SCHEMA,
-        "manifest_sha256": sha256_file(manifest_path),
+        "manifest_job_set_identity": _canonical_sha256(semantic_jobs),
         "destination_binding_sha256": _path_binding(output_directory),
         "software_commit": _software_commit(root),
         "core_sha256": _core_hashes(root),
@@ -265,10 +272,7 @@ def _expected_state(
         "tile_size": tile_size,
         "tile_workers": tile_workers,
         "png_compression": png_compression,
-        "jobs": [
-            {"job_id": row["job_id"], "input_sha256": row["input_sha256"]}
-            for row in jobs
-        ],
+        "jobs": semantic_jobs,
         "claim_ceiling": CLAIM_CEILING,
     }
     return {"workspace_id": _canonical_sha256(identity), **identity}
@@ -776,7 +780,6 @@ def render_resumable_three_stock_input_batch_to_directory(
     _preflight_jobs(jobs)
     state = _expected_state(
         jobs=jobs,
-        manifest_path=manifest_path,
         output_directory=output,
         root=root,
         profile_path=Path(profile_path),
@@ -901,7 +904,6 @@ def render_resumable_three_stock_input_batch_to_directory(
         _preflight_jobs(jobs)
         current_state = _expected_state(
             jobs=jobs,
-            manifest_path=manifest_path,
             output_directory=output,
             root=root,
             profile_path=Path(profile_path),

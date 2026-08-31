@@ -42,10 +42,13 @@ The workspace contains:
 - no other persistent members before completion;
 - one final aggregate `batch.json` only when every job is complete.
 
-The state binds the canonical job/hash set, destination through a one-way path
-hash, exact profile/statistics/guardrail hashes, render parameters, software
-commit and core-file hashes. A resume under different code or inputs is
-rejected; completed work is never silently reinterpreted.
+The state binds the canonical job/hash set and a one-way input-path binding per
+job, destination through a one-way path hash, exact
+profile/statistics/guardrail hashes, render parameters, software commit and
+core-file hashes. Raw manifest row order is intentionally non-semantic; the
+same rows in reverse order produce the same state, while any job, path or input
+identity change rejects. A resume under different code or inputs is rejected;
+completed work is never silently reinterpreted.
 
 Each completed job directory contains exactly the existing child manifest,
 three RGB16 PNG outputs and three strict recipes. The job is first built under a
