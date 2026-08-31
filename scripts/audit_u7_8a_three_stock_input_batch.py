@@ -133,9 +133,9 @@ def _validate_receipt(
             recipe = json.loads(recipe_path.read_text(encoding="utf-8"))
             if recipe["input"]["sha256"] != expected["input_sha256"]:
                 raise AssertionError("recipe input identity drifted")
-            if recipe["interpretation"]["output_label"] != "film-inspired":
+            if recipe["claim"]["output_label"] != "film-inspired":
                 raise AssertionError("recipe output label drifted")
-            if recipe["interpretation"]["evidence_grade"] != "look-approximation":
+            if recipe["claim"]["evidence_grade"] != "look-approximation":
                 raise AssertionError("recipe evidence grade drifted")
             with Image.open(output_path) as image:
                 decoded = np.asarray(image)

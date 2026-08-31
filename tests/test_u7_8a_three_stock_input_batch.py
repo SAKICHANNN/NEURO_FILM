@@ -87,6 +87,8 @@ def test_forward_reverse_jobs_publish_exact_portable_receipt(tmp_path: Path) -> 
                 Path(recipe["output"]["path"])
                 == (destination / row["output_path"]).resolve()
             )
+            assert recipe["claim"]["output_label"] == "film-inspired"
+            assert recipe["claim"]["evidence_grade"] == "look-approximation"
 
     shutil.rmtree(destination)
     _manifest(manifest, [("a-first", first), ("b-second", second)])
