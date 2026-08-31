@@ -1,0 +1,76 @@
+{
+  "claim_ceiling": "Private Windows/Python 100-small-image deterministic transaction for three existing film-inspired Look Approximations only; no calibrated stock response, 24MP performance, installer, public API, package, release or product-value claim.",
+  "config_sha256": "f38421fa590adb5e4b970552765634eb4c457c826266df30d45da4e3bb4f0f67",
+  "controls": {
+    "injected_child_failure_published_nothing": true,
+    "late_foreign_destination_preserved": true,
+    "owned_stage_residue_count": 0,
+    "preflight_rejected_before_child_render": true,
+    "recipe_input_identity_drift_published_nothing": true
+  },
+  "decision": "PASS_PRIVATE_U7_8A_THREE_STOCK_INPUT_BATCH",
+  "gate_results": {
+    "aggregate_receipt_contains_no_machine_local_paths": true,
+    "all_100_jobs_published": true,
+    "all_300_outputs_and_recipes_verified": true,
+    "all_child_recipe_input_hashes_match_frozen_jobs": true,
+    "all_inputs_hash_verified_before_decode": true,
+    "canonical_job_order_exact": true,
+    "foreign_destination_preserved": true,
+    "forward_reverse_output_and_recipe_identities_exact": true,
+    "forward_reverse_reports_byte_exact": true,
+    "forward_reverse_receipt_exact": true,
+    "injected_child_failure_publishes_nothing": true,
+    "network_requests": 0,
+    "owned_stage_residue_count": 0,
+    "recipe_input_identity_drift_publishes_nothing": true
+  },
+  "guardrails_sha256": "6669b7bc873febcc74ba7ddcbc1c1584807e38465447a5cdbeb24073efa00aa7",
+  "implementation_commit": "7ea9eae4e0e5e8ee6641022c31fc6fdd867b0426",
+  "metrics": {
+    "batch_id": "6c5e50e28f41a1d0f5c4989b535478aa953f302ccd50bc6b0c9c05fc6598ecc7",
+    "child_manifest_count": 100,
+    "decoded_shapes": [
+      [
+        24,
+        32,
+        3
+      ]
+    ],
+    "job_count": 100,
+    "output_count": 300,
+    "receipt_sha256": "4421c3cfb319216b138af2ee33f912a318e25069daa9d92cbdd2c70994fb2882",
+    "recipe_count": 300
+  },
+  "node_id": "U7.8A",
+  "outer_replay": {
+    "forward_report_bytes": 2617,
+    "forward_report_sha256": "609919eb8a27d48daadf6dd70a51c8003a88aa1aa0d84cf81f35fccacbd4c62a",
+    "reports_byte_exact": true,
+    "reverse_report_bytes": 2617,
+    "reverse_report_sha256": "609919eb8a27d48daadf6dd70a51c8003a88aa1aa0d84cf81f35fccacbd4c62a"
+  },
+  "pre_report_attempts_excluded": [
+    {
+      "reason": "The audit reader used the nonexistent recipe interpretation key instead of the authoritative claim key and stopped before writing a report.",
+      "result_or_gate_change": false,
+      "scratch_residue_count": 0
+    },
+    {
+      "reason": "The audit reader used PIL for RGB16 readback, observed its 8-bit conversion, and stopped before writing a report; the corrected audit uses the repository-standard OpenCV unchanged decode.",
+      "result_or_gate_change": false,
+      "scratch_residue_count": 0
+    }
+  ],
+  "profile_sha256": "09722cb48c55d1c4c460220c9f59b9ced81801c1b6fe856708a27f5cc99d39fe",
+  "schema_version": "neuro-film.u7-8a-three-stock-input-batch-evidence.v1",
+  "source_blobs": {
+    "configs/u7_8a_three_stock_input_batch_v1.json": "1a41ed25c42c1653d2acbe2d799e9325eba44871",
+    "scripts/audit_u7_8a_three_stock_input_batch.py": "58a22fc5dc3551bb53e28de31c2827396b204f9b",
+    "scripts/render_three_stock_input_batch.py": "4a7e32e66283b29182303b987b42f36986b37810",
+    "src/inference/three_stock_batch.py": "10f29531cca92b07c0d77cc8d7282d4331654f1e",
+    "src/inference/three_stock_input_batch.py": "51b3d99532d54de391a74e9ecdc9e4b3b8d1f658"
+  },
+  "source_set_identity": "6049dc56448cb907187a6cfa14847ef0ff78de7128330d366a8da1033e7454e5",
+  "statistics_sha256": "1a45e90765e577edd4ca1773fc8c6cf98fd09b8afbdddfa519b1f097c5dd7c04"
+}

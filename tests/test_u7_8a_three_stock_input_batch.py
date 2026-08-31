@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import shutil
+import subprocess
 from pathlib import Path
 
 import cv2
@@ -20,6 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PROFILE = ROOT / "configs/render_profiles/safe_rich_product_v1.json"
 STATISTICS = ROOT / "configs/film_color_stats.json"
 GUARDRAILS = ROOT / "configs/color_guardrails.json"
+EVIDENCE = ROOT / "docs/evidence/U7_8A_THREE_STOCK_INPUT_BATCH_RESULT.json"
 
 
 def _source(path: Path, offset: int) -> None:
@@ -260,3 +262,45 @@ def test_invalid_manifests_fail_before_publication(
     with pytest.raises(ThreeStockInputBatchError, match=message):
         _render(manifest, tmp_path / "published")
     assert not list(tmp_path.glob(".published.*.stage"))
+
+
+def test_tracked_evidence_binds_complete_transaction_and_git_objects() -> None:
+    evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+    assert evidence["decision"] == "PASS_PRIVATE_U7_8A_THREE_STOCK_INPUT_BATCH"
+    assert evidence["metrics"]["job_count"] == 100
+    assert evidence["metrics"]["output_count"] == 300
+    assert evidence["metrics"]["recipe_count"] == 300
+    assert evidence["metrics"]["child_manifest_count"] == 100
+    assert evidence["outer_replay"]["reports_byte_exact"] is True
+    assert (
+        evidence["outer_replay"]["forward_report_sha256"]
+        == evidence["outer_replay"]["reverse_report_sha256"]
+    )
+    assert evidence["controls"] == {
+        "injected_child_failure_published_nothing": True,
+        "late_foreign_destination_preserved": True,
+        "owned_stage_residue_count": 0,
+        "preflight_rejected_before_child_render": True,
+        "recipe_input_identity_drift_published_nothing": True,
+    }
+    assert all(
+        value is True
+        for key, value in evidence["gate_results"].items()
+        if key != "network_requests" and key != "owned_stage_residue_count"
+    )
+    assert evidence["gate_results"]["network_requests"] == 0
+    assert evidence["gate_results"]["owned_stage_residue_count"] == 0
+    assert (
+        sha256_file(ROOT / "configs/u7_8a_three_stock_input_batch_v1.json")
+        == evidence["config_sha256"]
+    )
+    for path, expected_blob in evidence["source_blobs"].items():
+        actual = subprocess.check_output(
+            ["git", "hash-object", path], cwd=ROOT, text=True, encoding="utf-8"
+        ).strip()
+        assert actual == expected_blob
+    subprocess.run(
+        ["git", "cat-file", "-e", f"{evidence['implementation_commit']}^{{commit}}"],
+        cwd=ROOT,
+        check=True,
+    )
