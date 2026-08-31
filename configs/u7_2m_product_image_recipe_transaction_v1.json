@@ -1,0 +1,66 @@
+{
+  "schema_version": "neuro-film.u7-2m-product-image-recipe-transaction.v1",
+  "decision": "prospective",
+  "parent": "U7.2L",
+  "product_profile_id": "safe-rich-product-v1",
+  "transaction_scope": "primary-rendered-image-plus-derived-recipe",
+  "available_product_looks": [
+    "velvia_50",
+    "portra_400",
+    "ektar_100"
+  ],
+  "source_locks": {
+    "render_film_sha256": "6bd1233616f19ad00d2254846676ae23232ac9afc30dab61eb98a2c3d02c6415",
+    "product_render_transaction_sha256": "1220ebad8be044c5e867fbccdf5b7d036bb924c1091c86dc1c2cef6c54b74eb8",
+    "render_contract_sha256": "00409580e3f0836941f1216fd72074715d0ab52ada3e6ecd252c330c55dce6a9",
+    "create_only_file_sha256": "d05292155594392b2c3d3b76f2aa680a3c3f011bab641111393ca3bde708fa37",
+    "product_profile_sha256": "09722cb48c55d1c4c460220c9f59b9ced81801c1b6fe856708a27f5cc99d39fe",
+    "u7_2l_config_sha256": "be1ae2f107a05addc0a3b0399022b1a609caef53e66c0b2ddb10640933f5e3d3",
+    "u7_2l_evidence_sha256": "578683b3df2d96eda4b1123763816d8fad74001e9be2347f0e32b76015cc35e2"
+  },
+  "fixture": {
+    "sha256": "71168122db6b170b5543d3bf9f0b0d71bbc58cfbb52dbe02a289d25b0753fee2",
+    "definition": "47x61 RGB8; channels=(13x+7y)%251,(3x+17y+19)%251,(11x+5y+43)%251"
+  },
+  "prechange_oracle": {
+    "normalization": "software.commit=40 zeroes; input.path=<INPUT>; output.path=<OUTPUT>; canonical compact ASCII JSON",
+    "velvia_50": {
+      "output_sha256": "2198b077eea5d29026694529e208d7db9428a36f97cb7af8fe330ce732e87fa7",
+      "normalized_recipe_sha256": "a3b80c37113d848d66655ad5f472ccb5725fdc4ce688c063d6f9ea5a8416cc2f"
+    },
+    "portra_400": {
+      "output_sha256": "b2b9d118087648f626a0fa2d03bbaf78714ba053347e617bdb2b9505c4cf9453",
+      "normalized_recipe_sha256": "1ed2ec5fb50f8b2488d771e03409e48cec64d29fce4a32dea593c2257e5f71e2"
+    },
+    "ektar_100": {
+      "output_sha256": "e8e3195dc3ab222567ca03d432eac6e03f48a84fa1a7e6c07a885f3b35999981",
+      "normalized_recipe_sha256": "d72ddae1afae32a7f3c015f84e8f3ae0e63b7f7af5ac0e9d9e60531fe0db4bb9"
+    }
+  },
+  "gates": {
+    "pair_paths_distinct_and_absent_before_decode": true,
+    "existing_recipe_entry_preserved": true,
+    "three_outputs_byte_exact": true,
+    "three_normalized_recipes_exact": true,
+    "image_failure_residue_zero": true,
+    "recipe_failure_rolls_back_owned_image": true,
+    "late_foreign_recipe_preserved": true,
+    "foreign_image_replacement_preserved": true,
+    "concurrent_exactly_one_complete_pair": true,
+    "source_immutable": true,
+    "product_without_recipe_unchanged": true,
+    "legacy_behavior_unchanged": true,
+    "fresh_process_reports_byte_exact": true,
+    "owned_runtime_residue_zero": true
+  },
+  "non_goals": [
+    "power-loss atomicity across two directory entries",
+    "metrics or layer-directory transaction",
+    "legacy publication semantic change",
+    "recipe schema change",
+    "colour algorithm or parameter change",
+    "stock calibration or stock-response claim",
+    "public release, installer or format expansion"
+  ],
+  "claim_ceiling": "Private create-only image/recipe pair publication with identity-safe process-level rollback for deterministic film-inspired Look Approximations only."
+}
