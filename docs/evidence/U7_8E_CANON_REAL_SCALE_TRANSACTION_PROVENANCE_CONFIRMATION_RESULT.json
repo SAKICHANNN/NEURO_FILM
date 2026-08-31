@@ -1,0 +1,138 @@
+{
+  "schema_version": "neuro-film.u7-8e-canon-real-scale-transaction-provenance-confirmation-evidence.v1",
+  "node_id": "U7.8E",
+  "decision": "FAIL_CLOSED_U7_8E_PREFLIGHT_RUNTIME_ASSET_MATERIALIZATION_DRIFT",
+  "claim_ceiling": "Predecode identity failure of the exact U7.8E private Windows/Python real-scale confirmation only; no source pixel decode, render, real-scale replay, calibrated stock response, image-quality, product-value, public API, package, release or device claim.",
+  "bindings": {
+    "implementation_commit": "0e014f9c9b76f016388e6acee91fc13a9fabb773",
+    "execution_lock_commit": "51b39653fbc2b45a0ac4cd9b026a23af6f2831d6",
+    "implementation": {
+      "configs/u7_8e_canon_real_scale_transaction_provenance_confirmation_v1.json": {
+        "bytes": 8786,
+        "sha256": "e2979e69dc2f0bf9fe9113fa1ae546d0c0bb0cf7adf1ee44f61eee9e671ce054",
+        "git_blob": "00172292909b7271a796d3e11767f8dcb973b5c9"
+      },
+      "docs/planning/U7_8E_CANON_REAL_SCALE_TRANSACTION_PROVENANCE_CONFIRMATION_CONTRACT.md": {
+        "bytes": 6013,
+        "sha256": "979e6222a46324d77f0e86ee2a6d1b28347ee05c5758e073448582a03f9f0312",
+        "git_blob": "6a71835b54e609a5937592f961d2c6f9adf30adb"
+      },
+      "scripts/audit_u7_8e_canon_real_scale_transaction_provenance_confirmation.py": {
+        "bytes": 31236,
+        "sha256": "08896ac1e2475294b3166a0992ad49d12bad689709bf24a4a8897abd0582ad6d",
+        "git_blob": "da3b5338ee33629b90d34f363147a84506d1a0bb"
+      },
+      "tests/test_u7_8e_canon_real_scale_transaction_provenance_confirmation.py": {
+        "bytes": 9532,
+        "sha256": "db86755c1d958496c3abe7e77ca7d02ccf600f77784bec20dc1ce0cdc3ffd400",
+        "git_blob": "be8341de980d034217f7aec73f8b34325833d1f8"
+      },
+      "scripts/audit_u7_8c_canon_real_scale_input_batch.py": {
+        "bytes": 26464,
+        "sha256": "b5496020348898ce3083a26c212204f7a2633726026c2b9359a7c1dea4d5ae86",
+        "git_blob": "438f948bd9817c433c6e0ce9b5f876233ea9d05d"
+      },
+      "src/inference/three_stock_batch.py": {
+        "bytes": 8577,
+        "sha256": "3390cd3570c3975449b5fee6d6068b973d4b0694ffdcf8c6666828b627985b7d",
+        "git_blob": "23f732d1349ce2c35d80c9cfc10cd912c7f4ddb0"
+      },
+      "src/inference/three_stock_input_batch.py": {
+        "bytes": 12597,
+        "sha256": "b597810982d4af14591015b4d18f2051587b6d5a60a70fd6947b5c574bdd08a7",
+        "git_blob": "82baca44eb1f564334986ed486918e9cb3427bb0"
+      },
+      "src/inference/render_contract.py": {
+        "bytes": 33097,
+        "sha256": "00409580e3f0836941f1216fd72074715d0ab52ada3e6ecd252c330c55dce6a9",
+        "git_blob": "4f2fd3e244eab41c4c0b9fec0e406952f162b246"
+      },
+      "src/inference/product_look_catalog.py": {
+        "bytes": 4424,
+        "sha256": "dd48420ed7d14fc505cbd3cc1f8daed76310922b4aa0564f153cad268facebe7",
+        "git_blob": "848548762bbe3b5842430e3229e3fdc2b02d01db"
+      }
+    },
+    "execution_lock": {
+      "path": "docs/planning/U7_8E_CANON_REAL_SCALE_TRANSACTION_PROVENANCE_CONFIRMATION_EXECUTION_LOCK.json",
+      "bytes": 2688,
+      "sha256": "a54fe71a79b8ab384d50e2c3bdd4b2f086d3d8c8ef823e94f7ba71c235650042",
+      "git_blob": "387791b834ffb57f7be291ca45962ffc22993f72"
+    },
+    "parents": {
+      "u7_8c_evidence_sha256": "e140da1a358b6c3a4485bcdcd686379565b84e22721fa6043ecbef8e539eb236",
+      "u7_8c_decision": "FAIL_CLOSED_U7_8C_FORWARD_REVERSE_RECIPE_IDENTITY_DRIFT",
+      "u7_8d_evidence_sha256": "4cfb90d68c0541e2792e63214060a931bb4faa9f2ef04575129d000e32de6ac2",
+      "u7_8d_decision": "PASS_PRIVATE_U7_8D_TRANSACTION_SOFTWARE_PROVENANCE_SNAPSHOT"
+    }
+  },
+  "prepixel_environment": {
+    "formal_checkout_path_kind": "repo-relative-P-backed-owned-tmp",
+    "formal_checkout_head": "0e014f9c9b76f016388e6acee91fc13a9fabb773",
+    "formal_checkout_clean": true,
+    "formal_checkout_core_autocrlf": true,
+    "git_safe_directory_scope": "process-only-exact-checkout-inherited-by-controller-worker-and-git-children",
+    "global_git_configuration_changed": false,
+    "source_count": 6,
+    "source_hash_preflight_passed": true,
+    "formal_output_root_absent_before_attempt": true,
+    "historical_statistics_runtime_bytes": 5271,
+    "historical_statistics_runtime_sha256": "1a45e90765e577edd4ca1773fc8c6cf98fd09b8afbdddfa519b1f097c5dd7c04"
+  },
+  "formal_attempts": {
+    "forward_controller_count": 1,
+    "forward_worker_count": 1,
+    "reverse_controller_count": 0,
+    "reverse_worker_count": 0,
+    "formal_report_count": 0,
+    "comparison_report_count": 0,
+    "source_hash_reads": 6,
+    "source_pixel_decode_count": 0,
+    "render_count": 0,
+    "published_transaction_count": 0,
+    "failure_stage": "runtime-root-asset-ledger-before-primary-render",
+    "failure_type": "U78EError",
+    "failure_message": "runtime-root asset materialization drifted for legacy_profile_config",
+    "owned_scratch_absent_after_failure": true,
+    "formal_output_root_absent_after_failure": true,
+    "reverse_not_run_reason": "frozen-stop-rule-forbids-rescue-or-third-run-after-first-formal-gate-failure"
+  },
+  "root_cause": {
+    "asset_role": "legacy_profile_config",
+    "path": "configs/color_rendering_profiles.yaml",
+    "git_blob": "9e98e83d951105aa5cef87d7868c9581601667f8",
+    "frozen_runtime_materialization_policy": "git-lf-bytes",
+    "git_bytes": 1263,
+    "git_sha256": "d919402ac03b351ceb836bbdc516de094f7bad24f54858f9897950a1dc0428bc",
+    "git_lf_count": 48,
+    "git_cr_count": 0,
+    "required_checkout_runtime_bytes": 1311,
+    "required_checkout_runtime_sha256": "a29663b2a1af8e273836fee824f6177e99a1ee55be855073494906a737ec434e",
+    "required_checkout_runtime_lf_count": 48,
+    "required_checkout_runtime_cr_count": 48,
+    "exact_transform": "replace-each-lf-with-crlf-v1",
+    "interpretation": "The locked runner expected Git-LF identity for a runtime-root asset while the same frozen protocol required a core.autocrlf=true checkout. The deterministic checkout materialization therefore failed before any source image decode."
+  },
+  "gate_results": {
+    "implementation_and_execution_lock_resolve_exact": true,
+    "formal_checkout_and_sources_preflight_exact": true,
+    "historical_statistics_crlf_identity_exact": true,
+    "runtime_root_legacy_profile_asset_identity_exact": false,
+    "source_pixels_not_decoded_after_failed_identity_gate": true,
+    "no_formal_report_published": true,
+    "no_transaction_published": true,
+    "owned_scratch_removed": true,
+    "reverse_and_corrected_rerun_forbidden_and_not_run": true,
+    "u7_8c_negative_preserved": true,
+    "u7_8d_small_fixture_pass_preserved": true
+  },
+  "stop_rule": {
+    "runner_or_core_corrected_after_formal_failure": false,
+    "forward_rerun": false,
+    "reverse_run": false,
+    "line_ending_or_hash_normalization_rescue": false,
+    "source_config_path_threshold_or_output_changed": false,
+    "u7_8c_or_u7_8d_rewritten": false,
+    "promotion_opened": false
+  }
+}
