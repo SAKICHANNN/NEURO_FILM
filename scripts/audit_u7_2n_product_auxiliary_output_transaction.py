@@ -27,6 +27,7 @@ from src.inference.product_render_transaction import (
     ProductRenderTransactionError,
     prepare_product_render_bundle_transaction,
 )
+from src.preprocess import output_encode
 
 SCRIPT = ROOT / "scripts/render_film.py"
 PRODUCT_PROFILE = ROOT / "configs/render_profiles/safe_rich_product_v1.json"
@@ -170,12 +171,13 @@ def _populate_transaction(source: Path, output: Path):
 
 def _publication_failures(work: Path) -> dict[str, bool]:
     gates: dict[str, bool] = {}
-    for role in ("recipe", "layer", "metrics"):
+    for role in ("image", "recipe", "layer", "metrics"):
         source = work / f"publish-{role}-source"
         output = work / f"publish-{role}.png"
         source.write_bytes(b"source")
         transaction = _populate_transaction(source, output)
         finals = {
+            "image": output,
             "recipe": output.with_suffix(".recipe.json"),
             "layer": work / f"publish-{role}_layers" / "grain.png",
             "metrics": output.with_suffix(".metrics.json"),
@@ -209,6 +211,29 @@ def _publication_failures(work: Path) -> dict[str, bool]:
             and not (work / f"publish-{role}_layers").exists()
         )
     return gates
+
+
+def _image_encode_failure(work: Path) -> bool:
+    root = work / "image-encode-failure"
+    root.mkdir()
+    output = root / "output.png"
+
+    def fail_save(*_args: object, **_kwargs: object) -> None:
+        raise RuntimeError("injected image encode failure")
+
+    passed = False
+    with patch.object(Image.Image, "save", fail_save):
+        try:
+            output_encode.save_srgb8(
+                np.zeros((3, 4, 3), dtype=np.float32),
+                output,
+                create_only=True,
+            )
+        except RuntimeError as exc:
+            passed = str(exc) == "injected image encode failure"
+    residue = list(root.iterdir())
+    root.rmdir()
+    return passed and not output.exists() and not residue
 
 
 def _json_stage_failures(work: Path) -> dict[str, bool]:
@@ -327,27 +352,39 @@ def _foreign_gates(work: Path) -> dict[str, bool]:
                     transaction.publish()
             except FileExistsError:
                 failed = True
-        if mode == "metrics":
-            preserved = metrics.read_bytes() == b"foreign-metrics"
-        elif mode == "image":
-            preserved = (
-                output.read_bytes() == b"foreign-image"
-                and metrics.read_bytes() == b"foreign-metrics"
+        layer_inventory = (
+            sorted(path.name for path in layer_root.iterdir())
+            if layer_root.is_dir()
+            else []
+        )
+        expected_layers = {
+            "metrics": [],
+            "image": [],
+            "layer-addition": ["foreign.bin"],
+            "layer-replacement": ["grain.png"],
+        }[mode]
+        preserved = (
+            metrics.read_bytes() == b"foreign-metrics"
+            and layer_inventory == expected_layers
+            and (mode != "image" or output.read_bytes() == b"foreign-image")
+            and (
+                mode != "layer-addition"
+                or (layer_root / "foreign.bin").read_bytes() == b"foreign-layer"
             )
-        else:
-            preserved = (
-                (
-                    layer_root
-                    / ("foreign.bin" if mode == "layer-addition" else "grain.png")
-                ).read_bytes()
-                == b"foreign-layer"
-                and metrics.read_bytes() == b"foreign-metrics"
+            and (
+                mode != "layer-replacement"
+                or (layer_root / "grain.png").read_bytes() == b"foreign-layer"
             )
+        )
         results[f"foreign_{mode.replace('-', '_')}_preserved"] = (
             failed
             and preserved
             and (mode == "image" or not output.exists())
             and not recipe.exists()
+            and (
+                mode in {"layer-addition", "layer-replacement"}
+                or not layer_root.exists()
+            )
         )
         if output.exists():
             output.unlink()
@@ -360,31 +397,46 @@ def _foreign_gates(work: Path) -> dict[str, bool]:
 
 def _stage_drift_gates(work: Path) -> dict[str, bool]:
     results: dict[str, bool] = {}
-    for role in ("metrics", "layer"):
-        source = work / f"mutation-{role}-source"
-        output = work / f"mutation-{role}.png"
-        source.write_bytes(b"source")
-        transaction = _populate_transaction(source, output)
-        selected = (
-            transaction.metrics_stage
-            if role == "metrics"
-            else transaction.layer_stage / "grain.png"
-        )
-        assert selected is not None
-        passed = False
-        try:
-            with transaction:
-                selected.write_bytes(b"mutated")
-                transaction.publish()
-        except ProductRenderTransactionError as exc:
-            passed = "content changed" in str(exc)
-        results[f"{role}_stage_mutation_rejected"] = (
-            passed
-            and not output.exists()
-            and not output.with_suffix(".recipe.json").exists()
-            and not output.with_suffix(".metrics.json").exists()
-            and not (work / f"mutation-{role}_layers").exists()
-        )
+    for role in ("image", "recipe", "metrics", "layer"):
+        for mutation in ("content", "identity"):
+            source = work / f"mutation-{role}-{mutation}-source"
+            output = work / f"mutation-{role}-{mutation}.png"
+            source.write_bytes(b"source")
+            transaction = _populate_transaction(source, output)
+            selected = {
+                "image": transaction.image_stage,
+                "recipe": transaction.recipe_stage,
+                "metrics": transaction.metrics_stage,
+                "layer": transaction.layer_stage / "grain.png",
+            }[role]
+            assert selected is not None
+            passed = False
+            try:
+                with transaction:
+                    if mutation == "identity":
+                        selected.unlink()
+                    selected.write_bytes(b"mutated")
+                    transaction.publish()
+            except ProductRenderTransactionError as exc:
+                passed = f"{mutation} changed" in str(exc)
+            layer_root = work / f"mutation-{role}-{mutation}_layers"
+            foreign_stage_preserved = mutation != "identity" or (
+                selected.exists() and selected.read_bytes() == b"mutated"
+            )
+            results[f"{role}_stage_{mutation}_mutation_rejected"] = (
+                passed
+                and foreign_stage_preserved
+                and not output.exists()
+                and not output.with_suffix(".recipe.json").exists()
+                and not output.with_suffix(".metrics.json").exists()
+                and not layer_root.exists()
+            )
+            if mutation == "identity":
+                if role == "layer":
+                    assert transaction.layer_stage is not None
+                    shutil.rmtree(transaction.layer_stage)
+                else:
+                    selected.unlink()
     return results
 
 
@@ -586,6 +638,7 @@ def build_report(*, config_path: Path, order: tuple[str, ...]) -> dict[str, Any]
             **_existing_entry_gates(work),
             "three_parent_pair_oracles_exact": pair_exact,
             "full_effects_bundle_oracles_exact": bundle_exact,
+            "image_encode_failure_residue_zero": _image_encode_failure(work),
             "zero_effect_write_layers_noop": no_effect_run.returncode == 0
             and not (work / "no-effect_layers").exists(),
             "metrics_only_complete": metrics_only_run.returncode == 0
