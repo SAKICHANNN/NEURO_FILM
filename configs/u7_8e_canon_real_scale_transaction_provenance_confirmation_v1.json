@@ -1,0 +1,180 @@
+{
+  "schema_version": "neuro-film.u7-8e-canon-real-scale-transaction-provenance-confirmation-contract.v1",
+  "node_id": "U7.8E",
+  "status": "FROZEN_BEFORE_PIXEL_EXECUTION",
+  "objective": "Confirm that the sole U7.8D transaction-scoped software-provenance repair restores exact U7.8C real-scale forward/reverse transaction identity on the unchanged six Canon sources.",
+  "historical_commit": "c4b93b6a57fb83924e53809bd006894791490b74",
+  "bindings": {
+    "u7_8c_config": {
+      "path": "configs/u7_8c_canon_real_scale_input_batch_v1.json",
+      "git_blob": "25ee8c285980a625d2efb3d7446d7c59dbc51c5c",
+      "bytes": 6627,
+      "sha256": "1ef0bea30fd931d58a5f42dbd5318c176f1b811c78e4f717ae43453ba49b234b"
+    },
+    "u7_8c_contract": {
+      "path": "docs/planning/U7_8C_CANON_REAL_SCALE_INPUT_BATCH_CONTRACT.md",
+      "git_blob": "b1a56d5244cbd5871cf1c3b5f6be48f3d3d61246",
+      "bytes": 3834,
+      "sha256": "e49144b2ed2fa805befc7d05d16e7a9221202fcdd712fd9e56627b22113e1a0e"
+    },
+    "u7_8c_runner": {
+      "path": "scripts/audit_u7_8c_canon_real_scale_input_batch.py",
+      "git_blob": "438f948bd9817c433c6e0ce9b5f876233ea9d05d",
+      "bytes": 26464,
+      "sha256": "b5496020348898ce3083a26c212204f7a2633726026c2b9359a7c1dea4d5ae86"
+    },
+    "u7_8a_contract": {
+      "path": "configs/u7_8a_three_stock_input_batch_v1.json",
+      "git_blob": "1a41ed25c42c1653d2acbe2d799e9325eba44871",
+      "bytes": 3305,
+      "sha256": "f38421fa590adb5e4b970552765634eb4c457c826266df30d45da4e3bb4f0f67"
+    },
+    "product_profile": {
+      "path": "configs/render_profiles/safe_rich_product_v1.json",
+      "git_blob": "db9921150bd0b628753a6062d0f409787e4ef101",
+      "git_lf_bytes": 4259,
+      "git_lf_sha256": "09722cb48c55d1c4c460220c9f59b9ced81801c1b6fe856708a27f5cc99d39fe",
+      "runtime_materialization": "git-lf-bytes"
+    },
+    "statistics": {
+      "path": "configs/film_color_stats.json",
+      "git_blob": "c12ccafcea9ee8a283badba5b473d29f3d54e162",
+      "git_lf_bytes": 5031,
+      "git_lf_sha256": "064b1b5f1b75671ecfb6ab4bf851c1df6d03f7bb394b1545af2125e070e7254f",
+      "git_lf_count": 240,
+      "git_cr_count": 0,
+      "runtime_materialization": "replace-each-lf-with-crlf-v1",
+      "runtime_bytes": 5271,
+      "runtime_sha256": "1a45e90765e577edd4ca1773fc8c6cf98fd09b8afbdddfa519b1f097c5dd7c04"
+    },
+    "guardrails": {
+      "path": "configs/color_guardrails.json",
+      "git_blob": "fa1b53449982b9d863600fb8bd77b7991952707d",
+      "git_lf_bytes": 1540,
+      "git_lf_sha256": "6669b7bc873febcc74ba7ddcbc1c1584807e38465447a5cdbeb24073efa00aa7",
+      "runtime_materialization": "git-lf-bytes"
+    },
+    "p313_contract": {
+      "path": "configs/p313_canon_sraw_working_image_compatibility_v1.json",
+      "git_blob": "bdd577b92a36ae3c96ba0561e6186a03cca72b9a",
+      "bytes": 4922,
+      "sha256": "dbbdf0670fb5fffd6a6ce00085e9cd0c39078a4f5303039e5192c942452a6e8b"
+    },
+    "p313_evidence": {
+      "path": "docs/evidence/P313_CANON_SRAW_WORKING_IMAGE_COMPATIBILITY_RESULT.json",
+      "git_blob": "ffc54ab390457c38d86212e7b4275b6e4241faf6",
+      "bytes": 5246,
+      "sha256": "7aaf526207c7fd76d71ad7b1e7f2853e48a1fc8f7cb3359a1feaf27c07bf4e3a"
+    },
+    "p314_evidence": {
+      "path": "docs/evidence/P314_CANON_SRAW_PRODUCT_CHAIN_COMPATIBILITY_RESULT.json",
+      "git_blob": "079c7df991912b946ac76dbe7300e9cbf480e83d",
+      "bytes": 6827,
+      "sha256": "e2b097ebb5a2c3f91e891c72c52e1d70ecc874332ecadcb5be15d727ca53abb1"
+    },
+    "u7_8d_evidence": {
+      "path": "docs/evidence/U7_8D_TRANSACTION_SOFTWARE_PROVENANCE_SNAPSHOT_RESULT.json",
+      "git_blob": "0638c5c2a568bbc369f8d9a6f99ef325acf0f908",
+      "bytes": 7466,
+      "sha256": "4cfb90d68c0541e2792e63214060a931bb4faa9f2ef04575129d000e32de6ac2"
+    }
+  },
+  "sources": [
+    {
+      "job_id": "canon-eos-50d-mraw",
+      "source_id": "canon_eos50d_mraw",
+      "path": "data/rawpixls_cache/Canon_EOS_50D_Canon_-_EOS_50D_-_sRAW1_mRAW_3_2_.cr2",
+      "bytes": 13124350,
+      "sha256": "278f80205ffadb850d2538bd3544f70365b59eed59e8233f9f9667c33b03a729",
+      "decoded_shape": [2178, 3272, 3],
+      "rights": "raw.pixls.us CC0/Public Domain"
+    },
+    {
+      "job_id": "canon-eos-5d-mark-ii-mraw",
+      "source_id": "canon_eos5d_mark_ii_mraw",
+      "path": "data/rawpixls_cache/Canon_EOS_5D_Mark_II_Canon_-_EOS_5D_Mark_II_-_sRAW1_mRAW_3_2_.cr2",
+      "bytes": 15445115,
+      "sha256": "acadf73d760b1f311f18f473b859e262ef3ba1513b3360f02675c38dcadba80b",
+      "decoded_shape": [2574, 3866, 3],
+      "rights": "raw.pixls.us CC0/Public Domain"
+    },
+    {
+      "job_id": "canon-eos-5d-mark-iii-mraw",
+      "source_id": "canon_eos5d_mark_iii_mraw",
+      "path": "data/rawpixls_cache/Canon_EOS_5D_Mark_III_Canon_-_EOS_5D_Mark_III_-_sRAW1_mRAW_.cr2",
+      "bytes": 15573918,
+      "sha256": "bca87871cd91523e0ff4450a51a1a677de9241c3110b213b99198b9ed3751f66",
+      "decoded_shape": [2640, 3960, 3],
+      "rights": "raw.pixls.us CC0/Public Domain"
+    },
+    {
+      "job_id": "canon-eos-5d-mark-iv-sraw",
+      "source_id": "canon_eos5d_mark_iv_sraw",
+      "path": "data/rawpixls_cache/Canon_EOS_5D_Mark_IV_Canon_-_EOS_5D_Mark_IV_-_sRAW2_sRAW_3_2_.cr2",
+      "bytes": 15217883,
+      "sha256": "25d928f9e9a65525ac796bdff13e93b7b36b627568d7a17338e12dc44424078a",
+      "decoded_shape": [2240, 3360, 3],
+      "rights": "raw.pixls.us CC0/Public Domain"
+    },
+    {
+      "job_id": "canon-eos-7d-mark-ii-mraw",
+      "source_id": "canon_eos7d_mark_ii_mraw",
+      "path": "data/rawpixls_cache/Canon_EOS_7D_Mark_II_Canon_-_EOS_7D_Mark_II_-_sRAW1_mRAW_3_2_.cr2",
+      "bytes": 14774007,
+      "sha256": "fca673cdec6a65c8fbafc5fd6416e2c9adbc214b86ea2a0db2daea958b70ffd6",
+      "decoded_shape": [2736, 4104, 3],
+      "rights": "raw.pixls.us CC0/Public Domain"
+    },
+    {
+      "job_id": "canon-eos-7d-mraw",
+      "source_id": "canon_eos7d_mraw",
+      "path": "data/external/rawpixls_ai1_v1/raw/canon_eos7d_mraw.cr2",
+      "bytes": 16253693,
+      "sha256": "25c746a58363e910e6046a96cf2915fff45fe2995676eb2c97842d0c156d03a7",
+      "decoded_shape": [2592, 3888, 3],
+      "rights": "raw.pixls.us CC0/Public Domain"
+    }
+  ],
+  "render": {
+    "look_amount": 1.0,
+    "seed": 31,
+    "tile_size": 256,
+    "tile_workers": 1,
+    "png_compression": 0,
+    "styles": ["velvia_50", "portra_400", "ektar_100"]
+  },
+  "formal": {
+    "fresh_controller_orders": ["forward", "reverse"],
+    "expected_job_count": 6,
+    "expected_output_count": 18,
+    "expected_recipe_count": 18,
+    "expected_child_manifest_count": 6,
+    "expected_software_commit_start_snapshots": 1,
+    "expected_software_commit_prepublication_rechecks": 1,
+    "expected_software_commit_observations": 2,
+    "injected_child_failure_position": 2,
+    "late_foreign_control_requires_complete_real_batch": true,
+    "maximum_formal_runs": 2
+  },
+  "resource_gates": {
+    "maximum_process_tree_rss_bytes": 4294967296,
+    "maximum_controller_wall_seconds": 1200.0,
+    "per_job_wall_seconds": "report_only"
+  },
+  "gates": {
+    "source_hashes_and_lengths_exact_before_and_after": true,
+    "historical_materialization_exact_and_removed": true,
+    "successful_decode_calls_per_input": 1,
+    "all_recipe_software_commits_equal_formal_implementation_commit": true,
+    "software_commit_observations_start_recheck_total": [1, 1, 2],
+    "forward_reverse_rgb16_recipe_manifest_receipt_batch_and_scientific_identities_exact": true,
+    "all_outputs_rgb16_and_expected_geometry": true,
+    "all_recipes_bind_source_and_look_approximation_claim": true,
+    "real_first_child_then_injected_second_failure_publishes_nothing": true,
+    "complete_real_batch_late_foreign_destination_preserved": true,
+    "owned_stage_and_file_residue_count": 0,
+    "network_requests": 0
+  },
+  "stop_rule": "The first committed-source forward and reverse results are final for this exact historical configuration, six-source cohort, U7.8D core, output, process, resource and failure-control family. No third run or rescue is permitted.",
+  "claim_ceiling": "Private Windows/Python repaired real-scale transaction replay evidence for six exact CC0 Canon sRAW/mRAW files and three existing deterministic film-inspired Look Approximations only; no mixed-format/general RAW/Canon, vendor-exact colour, calibrated or physical stock response, image quality, product value, public API/package/release, candidate-three or device claim opens."
+}
