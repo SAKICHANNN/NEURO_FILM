@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import inspect
 import json
 import subprocess
 from pathlib import Path
@@ -8,6 +9,7 @@ from scripts.audit_u7_8c_canon_real_scale_input_batch import (
     _controller_report,
     _manifest_payload,
     _require_relative_posix_path,
+    _run_controller,
     _stable_payload,
     _validate_config,
 )
@@ -179,3 +181,11 @@ def test_false_boolean_or_cleanup_residue_cannot_pass_as_numeric_zero() -> None:
         "FAIL_CLOSED_U7_8C_CANON_REAL_SCALE_INPUT_BATCH"
     )
     assert cleanup_failure["gate_results"]["scratch_root_absent_after_worker"] is False
+
+
+def test_controller_redirects_worker_json_without_pipe_backpressure() -> None:
+    source = inspect.getsource(_run_controller)
+    assert "stdout=subprocess.PIPE" not in source
+    assert 'stdout_path = controller_temp / "worker.stdout.json"' in source
+    assert "stdout=stdout_handle" in source
+    assert "stderr=stderr_handle" in source

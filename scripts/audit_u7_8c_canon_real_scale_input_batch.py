@@ -10,6 +10,7 @@ import os
 import shutil
 import subprocess
 import sys
+import tempfile
 import time
 from collections.abc import Mapping
 from pathlib import Path, PurePosixPath
@@ -598,24 +599,38 @@ def _run_controller(order: str) -> dict[str, Any]:
     if SCRATCH.exists():
         raise U78CError("formal scratch root already exists")
     command = [sys.executable, str(Path(__file__).resolve()), "--worker", order]
-    started = time.perf_counter()
-    child = subprocess.Popen(
-        command,
-        cwd=ROOT,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        text=True,
-        encoding="utf-8",
+    controller_temp = Path(
+        tempfile.mkdtemp(prefix=f"u7_8c_{order}_controller_", dir=ROOT / "tmp")
     )
-    monitored = psutil.Process(os.getpid())
+    stdout_path = controller_temp / "worker.stdout.json"
+    stderr_path = controller_temp / "worker.stderr.txt"
+    started = time.perf_counter()
     peak_rss = 0
-    while child.poll() is None:
-        peak_rss = max(peak_rss, _tree_rss(monitored))
-        time.sleep(0.02)
-    stdout, stderr = child.communicate()
-    wall_seconds = time.perf_counter() - started
-    if child.returncode != 0:
-        raise U78CError(f"formal worker failed with {child.returncode}: {stderr}")
+    return_code = -1
+    try:
+        with (
+            stdout_path.open("wb") as stdout_handle,
+            stderr_path.open("wb") as stderr_handle,
+        ):
+            child = subprocess.Popen(
+                command,
+                cwd=ROOT,
+                stdout=stdout_handle,
+                stderr=stderr_handle,
+            )
+            monitored = psutil.Process(os.getpid())
+            while child.poll() is None:
+                peak_rss = max(peak_rss, _tree_rss(monitored))
+                time.sleep(0.02)
+            return_code = int(child.returncode)
+        wall_seconds = time.perf_counter() - started
+        stdout = stdout_path.read_text(encoding="utf-8")
+        stderr = stderr_path.read_text(encoding="utf-8")
+    finally:
+        shutil.rmtree(controller_temp, ignore_errors=True)
+    controller_temp_absent = not controller_temp.exists()
+    if return_code != 0:
+        raise U78CError(f"formal worker failed with {return_code}: {stderr}")
     try:
         worker = json.loads(stdout)
     except json.JSONDecodeError as exc:
@@ -626,7 +641,7 @@ def _run_controller(order: str) -> dict[str, Any]:
         worker,
         wall_seconds=wall_seconds,
         peak_rss_bytes=peak_rss,
-        scratch_root_absent=not SCRATCH.exists(),
+        scratch_root_absent=(not SCRATCH.exists() and controller_temp_absent),
     )
 
 
