@@ -20,6 +20,10 @@ from src.color_engine.safe_lab_rgb_context import (
     style_transfer_rgb_tiled_with_source_context,
     style_transfer_rgb_with_source_context,
 )
+from src.film_physics.create_only_file import (
+    PublishedFileIdentity,
+    remove_if_published,
+)
 from src.filmfx import (
     STAGED_DENSITY_VERSION,
     composite_layers,
@@ -34,11 +38,13 @@ from src.filmfx import (
 from src.preprocess import (
     WorkingImage,
     load_working_image,
-    save_srgb8,
-    save_srgb16_png,
-    save_srgb16_tiff,
     srgb_icc_profile_fingerprint_sha256,
     working_image_to_srgb_float,
+)
+from src.preprocess.output_encode import (
+    publish_srgb8_create_only,
+    publish_srgb16_png_create_only,
+    publish_srgb16_tiff_create_only,
 )
 
 from .render_contract import (
@@ -467,7 +473,7 @@ def replay_style_safe_recipe_to_file(
 
         require_product_look_available("generic_bw")
 
-    if output_path.exists():
+    if output_path.exists() or output_path.is_symlink():
         raise StyleSafeEngineError("replay output path already exists")
     output = recipe.get("output")
     if not isinstance(output, Mapping):
@@ -483,25 +489,28 @@ def replay_style_safe_recipe_to_file(
     bit_depth = output.get("bit_depth")
     format_name = output.get("format")
     suffix = output_path.suffix.casefold()
+    publication: PublishedFileIdentity | None = None
     try:
         if bit_depth == 8 and format_name in {"PNG", "JPEG", "TIFF"}:
-            actual_format = save_srgb8(rendered, output_path)
+            encoded = publish_srgb8_create_only(rendered, output_path)
         elif bit_depth == 16 and format_name == "PNG" and suffix == ".png":
-            actual_format = save_srgb16_png(
+            encoded = publish_srgb16_png_create_only(
                 rendered,
                 output_path,
                 compression_level=int(output.get("png_compression", 6)),
             )
         elif bit_depth == 16 and format_name == "TIFF" and suffix in {".tif", ".tiff"}:
-            actual_format = save_srgb16_tiff(rendered, output_path)
+            encoded = publish_srgb16_tiff_create_only(rendered, output_path)
         else:
             raise StyleSafeEngineError("recipe output encoding is unsupported")
-        if actual_format != format_name:
+        publication = encoded.identity
+        if encoded.format_name != format_name:
             raise StyleSafeEngineError("replay output extension differs from recipe format")
         digest = sha256_file(output_path)
         if digest != output.get("sha256"):
             raise StyleSafeEngineError("replayed output byte identity differs from recipe")
         return digest
     except Exception:
-        output_path.unlink(missing_ok=True)
+        if publication is not None:
+            remove_if_published(publication)
         raise

@@ -7,6 +7,7 @@ import os
 import struct
 import tempfile
 import zlib
+from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
 
@@ -14,7 +15,10 @@ import numpy as np
 import tifffile
 from PIL import Image, ImageCms
 
-from src.film_physics.create_only_file import publish_create_only
+from src.film_physics.create_only_file import (
+    PublishedFileIdentity,
+    publish_create_only,
+)
 
 from .color_management import (
     REC2020_SDR_CICP,
@@ -29,6 +33,14 @@ _OUTPUT_FORMATS: dict[str, tuple[str, dict[str, object]]] = {
     ".tif": ("TIFF", {}),
     ".tiff": ("TIFF", {}),
 }
+
+
+@dataclass(frozen=True)
+class CreateOnlyEncodedOutput:
+    """Exact result of one create-only SDR output publication."""
+
+    format_name: str
+    identity: PublishedFileIdentity
 
 
 @lru_cache(maxsize=1)
@@ -74,15 +86,19 @@ def _output_stage(path: Path, *, create_only: bool) -> Path:
     return Path(raw_path)
 
 
-def _publish_output(stage: Path, path: Path, *, create_only: bool) -> None:
+def _publish_output(
+    stage: Path, path: Path, *, create_only: bool
+) -> PublishedFileIdentity | None:
     if create_only:
-        publish_create_only(stage, path)
-    else:
-        os.replace(stage, path)
+        return publish_create_only(stage, path)
+    os.replace(stage, path)
+    return None
 
 
-def save_srgb8(rgb: np.ndarray, path: Path, *, create_only: bool = False) -> str:
-    """Encode finite HxWx3 display-sRGB values according to the file extension."""
+def _save_srgb8(
+    rgb: np.ndarray, path: Path, *, create_only: bool
+) -> tuple[str, PublishedFileIdentity | None]:
+    """Internal RGB8 encoder retaining the exact publication identity."""
     if rgb.ndim != 3 or rgb.shape[2] != 3:
         raise ValueError("sRGB output must be an HxWx3 array")
     if not np.isfinite(rgb).all():
@@ -99,15 +115,31 @@ def save_srgb8(rgb: np.ndarray, path: Path, *, create_only: bool = False) -> str
     temporary = _output_stage(path, create_only=create_only)
     try:
         image.save(temporary, format_name, icc_profile=srgb_icc_profile(), **options)
-        _publish_output(temporary, path, create_only=create_only)
+        identity = _publish_output(temporary, path, create_only=create_only)
     except Exception:
         temporary.unlink(missing_ok=True)
         raise
+    return format_name, identity
+
+
+def save_srgb8(rgb: np.ndarray, path: Path, *, create_only: bool = False) -> str:
+    """Encode finite HxWx3 display-sRGB values according to the file extension."""
+    format_name, _identity = _save_srgb8(rgb, path, create_only=create_only)
     return format_name
 
 
-def save_srgb16_tiff(rgb: np.ndarray, path: Path, *, create_only: bool = False) -> str:
-    """Encode finite HxWx3 display-sRGB values as true uint16 RGB TIFF."""
+def publish_srgb8_create_only(rgb: np.ndarray, path: Path) -> CreateOnlyEncodedOutput:
+    """Encode RGB8 and return the exact create-only publication identity."""
+    format_name, identity = _save_srgb8(rgb, path, create_only=True)
+    if identity is None:  # pragma: no cover - internal invariant
+        raise RuntimeError("create-only RGB8 publication identity is missing")
+    return CreateOnlyEncodedOutput(format_name=format_name, identity=identity)
+
+
+def _save_srgb16_tiff(
+    rgb: np.ndarray, path: Path, *, create_only: bool
+) -> tuple[str, PublishedFileIdentity | None]:
+    """Internal RGB16 TIFF encoder retaining the publication identity."""
     if rgb.ndim != 3 or rgb.shape[2] != 3:
         raise ValueError("sRGB output must be an HxWx3 array")
     if not np.isfinite(rgb).all():
@@ -128,11 +160,27 @@ def save_srgb16_tiff(rgb: np.ndarray, path: Path, *, create_only: bool = False) 
                 metadata=None,
                 extratags=[(34675, "B", len(profile), profile, False)],
             )
-        _publish_output(temporary, path, create_only=create_only)
+        identity = _publish_output(temporary, path, create_only=create_only)
     except Exception:
         temporary.unlink(missing_ok=True)
         raise
-    return "TIFF"
+    return "TIFF", identity
+
+
+def save_srgb16_tiff(rgb: np.ndarray, path: Path, *, create_only: bool = False) -> str:
+    """Encode finite HxWx3 display-sRGB values as true uint16 RGB TIFF."""
+    format_name, _identity = _save_srgb16_tiff(rgb, path, create_only=create_only)
+    return format_name
+
+
+def publish_srgb16_tiff_create_only(
+    rgb: np.ndarray, path: Path
+) -> CreateOnlyEncodedOutput:
+    """Encode RGB16 TIFF and return its create-only publication identity."""
+    format_name, identity = _save_srgb16_tiff(rgb, path, create_only=True)
+    if identity is None:  # pragma: no cover - internal invariant
+        raise RuntimeError("create-only RGB16 TIFF publication identity is missing")
+    return CreateOnlyEncodedOutput(format_name=format_name, identity=identity)
 
 
 def _png_iccp_chunk(profile: bytes) -> bytes:
@@ -179,14 +227,14 @@ def _inject_png_cicp(png: bytes, cicp: bytes = REC2020_SDR_CICP) -> bytes:
     return png[:ihdr_end] + _png_chunk(b"cICP", cicp) + png[ihdr_end:]
 
 
-def save_srgb16_png(
+def _save_srgb16_png(
     rgb: np.ndarray,
     path: Path,
     *,
     compression_level: int = 6,
-    create_only: bool = False,
-) -> str:
-    """Encode finite HxWx3 display-sRGB values as true uint16 RGB PNG."""
+    create_only: bool,
+) -> tuple[str, PublishedFileIdentity | None]:
+    """Internal RGB16 PNG encoder retaining the publication identity."""
     if rgb.ndim != 3 or rgb.shape[2] != 3:
         raise ValueError("sRGB output must be an HxWx3 array")
     if not np.isfinite(rgb).all():
@@ -214,11 +262,46 @@ def save_srgb16_png(
     temporary = _output_stage(path, create_only=create_only)
     try:
         temporary.write_bytes(payload)
-        _publish_output(temporary, path, create_only=create_only)
+        identity = _publish_output(temporary, path, create_only=create_only)
     except Exception:
         temporary.unlink(missing_ok=True)
         raise
-    return "PNG"
+    return "PNG", identity
+
+
+def save_srgb16_png(
+    rgb: np.ndarray,
+    path: Path,
+    *,
+    compression_level: int = 6,
+    create_only: bool = False,
+) -> str:
+    """Encode finite HxWx3 display-sRGB values as true uint16 RGB PNG."""
+    format_name, _identity = _save_srgb16_png(
+        rgb,
+        path,
+        compression_level=compression_level,
+        create_only=create_only,
+    )
+    return format_name
+
+
+def publish_srgb16_png_create_only(
+    rgb: np.ndarray,
+    path: Path,
+    *,
+    compression_level: int = 6,
+) -> CreateOnlyEncodedOutput:
+    """Encode RGB16 PNG and return its create-only publication identity."""
+    format_name, identity = _save_srgb16_png(
+        rgb,
+        path,
+        compression_level=compression_level,
+        create_only=True,
+    )
+    if identity is None:  # pragma: no cover - internal invariant
+        raise RuntimeError("create-only RGB16 PNG publication identity is missing")
+    return CreateOnlyEncodedOutput(format_name=format_name, identity=identity)
 
 
 def save_rec2020_16_png(working: WorkingImage, path: Path) -> str:
