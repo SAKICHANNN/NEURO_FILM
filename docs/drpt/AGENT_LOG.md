@@ -20855,3 +20855,34 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   source/group diversity and explicit fitting-rights readiness. No formal
   source leaf, candidate 3, purchase, pixel read, stock evidence or product
   mapping opens; autonomous discovery continues.
+
+### 2026-08-31 - Autonomous repository and archive source-search delta closes without a new leaf
+
+- **Node and routing:** `ULT > SF3 > autonomous source discovery`, DRPT L2 /
+  Mode C. `dev-research-reliability` was primary; current-source research,
+  DRPT/log and structure disciplines were read-only secondary checks. This was
+  bounded discovery, not a preregistered source audit or scientific result.
+- **Official repository/API sweep:** Internet Archive advanced-search returned
+  57 Ektar/100, 30 Portra/400 and nine Velvia/50 records. The only permissively
+  licensed Ektar image family is the already-closed Matthew Paul Argall
+  single-author collection; Portra's permissive hits are non-photographic
+  false matches, while Velvia images are BY-NC-ND or have no explicit licence.
+  Exact Hugging Face dataset searches returned zero records. GitHub repository
+  searches returned 33/4/7 Portra/Ektar/Velvia README matches, but inspection
+  found filter weights, GUI samples, presets or datasheet simulations rather
+  than rights-clear physical observation manifests.
+- **Discovery-only Openverse cross-check:** the already-closed SF2.1A route was
+  not reopened. Twelve current anonymous metadata pages per stock yielded
+  205/222/132 unique permissive-license indexed rows for Portra/Ektar/Velvia.
+  One upstream Flickr account, Toomore (`92438116@N00`), appears across all
+  three with only 2/23/1 indexed rows; the sole Velvia row is tagged `e6toc41`.
+  Single-author support, severe stock imbalance, cross-processing and absent
+  roll/process/scanner/same-scene/sealed-confirmation roles close that upstream
+  lead before live-page or media access.
+- **Read boundary and decision:** no image, thumbnail, archive member, model,
+  profile or dataset body was requested or retained, and no P-backed write was
+  made. No source meets stock, rights, manifest and grouping DoR, so no formal
+  leaf, replacement cohort, baseline, candidate 3 or product/calibration claim
+  opens. Continue only with materially new primary/institutional assets or an
+  explicitly licensed export; SF3.A3W remains an independent concurrent
+  Portra/Ektar source gate.
