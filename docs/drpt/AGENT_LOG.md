@@ -21233,3 +21233,44 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   py_compile, JSON and diff checks pass. U7.8A/B and all stock governance files
   remain unchanged. No real-scale replay, calibration, image-quality,
   product-value, public package/release or device claim opens.
+
+### 2026-09-01 - U7.8D freezes transaction-scoped software provenance
+
+- **Node and routing:** `ULT > U7 > U7.8D`, DRPT L2 / Mode C. U7.8C exposed a
+  current product correctness defect rather than RGB nondeterminism: each child
+  queried live repository HEAD independently. U7.8D is the sole repair leaf;
+  cache, stock-source and adjacent RAW/HDR/OpenEXR work stayed closed. The Goal
+  remains `film-inspired / Look Approximation`; no calibrated or physical stock
+  response is claimed.
+- **Implementation:** contract/config freeze `0c063a30`, token-boundary
+  clarification `a952e9fe`, core `9824daf3`, focused tests `00efaf94`, and
+  formal runner `6e7ea734`. The child renderer accepts a private explicit
+  lowercase 40-hex commit token while preserving omitted direct-child behavior.
+  U7.8A snapshots HEAD once after full source/config preflight, passes it to all
+  children, and rechecks once immediately before publication. U7.8B passes its
+  existing workspace-state snapshot; final-state and cross-commit resume
+  rejection remain unchanged.
+- **Historical evidence semantics:** U7.8A/U7.8C test-only commits `e0497e83`
+  and `5aafac22` validate their frozen core blobs through immutable formal Git
+  commits rather than requiring the current working tree never to evolve. No
+  old evidence, config, report, decision or scientific result was rewritten.
+- **Formal evidence:** report-count semantics were corrected prospectively in
+  `7397082d` to state one start snapshot plus one prepublication recheck (two
+  total resolutions). The earlier complete pair at `6e7ea734` is preserved and
+  explicitly excluded in evidence; no core, source, threshold or gate changed.
+  Corrected forward/reverse reports are byte exact, 5,544 bytes and SHA
+  `dea8b47199a0a5bf47173752ffdc885f0f313cff60642439b8366746e6aeea35`;
+  scientific identity is
+  `f84e5c2e0a1a9931048a2b91e56b12c44e3fc462865ea6275e0ef02c0905f447`.
+  Stable output/recipe/manifest/receipt/batch identities match, injected U7.8A
+  HEAD drift publishes nothing, U7.8B uses the state snapshot but rejects final
+  drift and cross-commit resume, invalid/unavailable commit controls reject
+  before decode, and source/network/scratch gates pass. Evidence/test commit is
+  `ed2fa5c7`.
+- **Verification and propagation:** 62 adjacent U7.6B/U7.8A/B/C/D functional
+  and evidence tests pass; Ruff check/format, compileall, JSON and diff checks
+  pass. U7.8C remains the authoritative six-Canon real-scale replay negative
+  and was not rerun. U7.8D proves private small-fixture Windows/Python
+  transaction-provenance mechanics only; real-scale replay, image quality,
+  calibration, public API/package/release, product value and cross-commit
+  recovery remain unclaimed.
