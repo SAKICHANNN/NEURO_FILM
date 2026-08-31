@@ -3140,6 +3140,27 @@ remains subject to explicit user approval; any reply still requires a new
 source-intake freeze before file-body or pixel access. Packet:
 `docs/planning/SF3_A3X_AUTONOMOUS_DATA_AUTHORIZATION_REQUEST_PACKET.md`.
 
+SF3.A3Y audits the strongest currently public controlled Velvia 50 ageing
+study without treating its article figures as data. The exact CC BY 4.0
+article documents six reversal films including Velvia 50, colour-checker
+exposure, same-day E-6 processing except Kodachrome, nine 96-sample sets with
+quadruplicates, a freezer reference, seven recovered natural-ageing locations,
+and 1992/2024 densitometry. The official 2,916,544-byte PDF is exact at SHA
+`33cc4d5c...f00fe`; OJS and Pure article identities agree while the catalogue
+DOI renderings are recorded rather than silently normalized. Forward/reverse
+committed-head reports are each 4,436 bytes and byte-exact at SHA
+`e648df6c...36b143`, stable `07051bac...a4e9e`. All nine source/audit gates
+pass, but the only public object is the article PDF: no measurement
+spreadsheet, sample manifest/checksums, explicit measurement-data licence,
+row-level development groups or sealed confirmation role is public. Formal
+decision is
+`FAIL_CLOSED_DENMARK_VELVIA_PUBLIC_DATA_RIGHTS_MANIFEST_AND_ROLE_GAP`.
+Collection-object, spreadsheet, slide-image, media, figure-digitisation,
+pixel, fit, render and score reads remain zero. Retain this as a high-value
+authorization candidate only; do not digitize figures, infer rows, fit an
+operator, open candidate 3 or map a product. Evidence:
+`docs/evidence/SF3_A3Y_DENMARK_VELVIA_NATURAL_AGEING_SOURCE_RESULT.json`.
+
 U7.2E adds one authoritative manual product-look catalog and dispatcher over
 the existing three colour-stock Look Approximation controls plus the generic
 B&W correction from BW2.D1. Discovery exposes exactly `velvia_50`,

@@ -20949,3 +20949,38 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   response still requires a new source-intake freeze before download or fit.
   Packet:
   `docs/planning/SF3_A3X_AUTONOMOUS_DATA_AUTHORIZATION_REQUEST_PACKET.md`.
+
+### 2026-08-31 - SF3.A3Y closes the Denmark Velvia study before data access
+
+- **Node and routing:** `ULT > SF3 > SF3.A3Y`, DRPT L2 / Mode C.
+  `dev-research-reliability` was primary; current-source research, stock-first,
+  DRPT/log and structure disciplines were secondary. This leaf tested public
+  source/data readiness, not article-derived stock colour or an operator.
+- **Freeze and source:** contract/config/core/audit/tests were committed at
+  `a5ff2387`; the additive preformal canonicalization at `53190a5d` normalized
+  author whitespace, CC URL trailing slash and the exact PDF Excel phrase
+  without changing source, roles, gates or read boundaries. The exact official
+  PDF is 2,916,544 bytes / SHA
+  `33cc4d5ce708b59522c89885902c7b2a4a8958413fb034dde8b0ca43e82f00fe`.
+- **Controlled design:** the CC BY 4.0 article documents Velvia 50 among six
+  reversal films, a colour checker, same-day E-6 processing except Kodachrome,
+  nine 96-sample sets with quadruplicates, a freezer reference, seven recovered
+  natural-ageing locations and 1992/2024 measurements. OJS and Pure identities
+  bind; Crossref/DataCite exact endpoints return no dataset record.
+- **Formal result:** V2 forward/reverse reports are each 4,436 bytes and
+  byte-exact at SHA
+  `e648df6c10e1b872afe2e320d9dae91b402f27e318bcd0960c8852c4f236b143`,
+  stable `07051bac779de1c7a81e5627619be3ccd7626c0bc37c391ae71b71d94bba4e9e`.
+  Nine source/audit gates pass and all seven measurement-data admission gates
+  fail. Public records expose only the article PDF: no measurement payload,
+  sample manifest/checksums, explicit data licence, row IDs, prospective
+  development groups or sealed confirmation role.
+- **Decision and boundary:** formal decision is
+  `FAIL_CLOSED_DENMARK_VELVIA_PUBLIC_DATA_RIGHTS_MANIFEST_AND_ROLE_GAP`.
+  Collection-object, spreadsheet, slide-image, media, figure-digitisation,
+  pixel, fit, render and score counts are zero. Evidence/binding test are
+  `ef44cf84`; tracked evidence SHA is
+  `82d16980335c04a6b220552410d0c0c7e88527ab7d5df03a3d4e1b65e5ab11d2`.
+  Eight focused and 60 adjacent source tests pass with Ruff/JSON/diff clean.
+  Retain only as an authorization candidate; figures cannot substitute for
+  data and no fitting, candidate 3 or product mapping opens.
