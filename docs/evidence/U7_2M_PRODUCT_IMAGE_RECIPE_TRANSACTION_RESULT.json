@@ -1,0 +1,110 @@
+{
+  "schema_version": "neuro-film.u7-2m-product-image-recipe-transaction-evidence.v1",
+  "node_id": "U7.2M",
+  "decision": "PASS_PRIVATE_U7_2M_PRODUCT_IMAGE_RECIPE_TRANSACTION",
+  "claim_ceiling": "Private create-only image/recipe pair publication with identity-and-content-sealed process-level rollback for deterministic film-inspired Look Approximations only; not power-loss atomic, calibrated stock response, physical-film reproduction, public packaging or release readiness.",
+  "bindings": {
+    "contract_commit": "2f762ac820756d5eae9ceab4a2230e700de6649b",
+    "implementation_commit": "43b68f30f9054a2a633ebbccb6973212c9d8cd57",
+    "historical_test_commit": "2eaa65c663a9fa98cbe262660acce450d4b2aae6",
+    "runner_commit": "df944348bf35105a72d7d3c5dc3d4c1666ebedd9",
+    "formal_execution_head": "4f9d0456ee0dda1217e33aab451e5bd5842d1e3c",
+    "files": {
+      "configs/u7_2m_product_image_recipe_transaction_v1.json": {
+        "bytes": 3188,
+        "sha256": "48ceeb5a0e815c4e824dc39cbfd387680dff959a25ff1a5e07c906526d359c6c",
+        "git_blob": "e11c5eef7bbaa730020ed9fd02444339d45068d0"
+      },
+      "docs/planning/U7_2M_PRODUCT_IMAGE_RECIPE_TRANSACTION_CONTRACT.md": {
+        "bytes": 3807,
+        "sha256": "916cee29bb52e9518f3b3547db77c05fdacdb9c56cb628471efd13c13a6574ef",
+        "git_blob": "940e4d8eba47a4c764776b00f63b34f8ed507fbb"
+      },
+      "scripts/render_film.py": {
+        "bytes": 36992,
+        "sha256": "f142b0cae451eacaef90cc6db3f2b99aea7a612a45e64ce3320ea97fd9c4b654",
+        "git_blob": "019f4ca6d1231e4a1b59452e4f2ff2748fa5c8db"
+      },
+      "src/inference/product_render_transaction.py": {
+        "bytes": 6882,
+        "sha256": "4730690cf7b83ebd70026158ea2544b123538e36d9da4cebe607a10dd41ad08a",
+        "git_blob": "792dd296f865b4cb60019c1ded67950cd62370c9"
+      },
+      "tests/test_u7_2m_product_image_recipe_transaction.py": {
+        "bytes": 11781,
+        "sha256": "6def032e71b9c3e132d709b49efb00310dacc41ac2b5b917b2eaa4a8aba721c0",
+        "git_blob": "a09bd6d283ad99230abf7e80dc2e974d5bf30338"
+      },
+      "scripts/audit_u7_2m_product_image_recipe_transaction.py": {
+        "bytes": 18660,
+        "sha256": "d63efc328c2a887e933376eb058d019d7f2490a365d4d01353750647be774d4c",
+        "git_blob": "52ccfb446c6a1ded5b755f5710f453ad76290ffb"
+      },
+      "tests/test_audit_u7_2m_product_image_recipe_transaction.py": {
+        "bytes": 641,
+        "sha256": "2ae8def1910f4405a79ac3c440bceffb68e807718ebdcda561cfd10f1ea662ee",
+        "git_blob": "a390fc2aa975cc12dcfc4c2ae662031653a886a1"
+      },
+      "docs/evidence/U7_2L_PRODUCT_CREATE_ONLY_RENDER_TRANSACTION_RESULT.json": {
+        "bytes": 3603,
+        "sha256": "578683b3df2d96eda4b1123763816d8fad74001e9be2347f0e32b76015cc35e2",
+        "git_blob": "812ddc411b2a6e4f80f6f832ec9ce468d2925104"
+      }
+    }
+  },
+  "formal_reports": {
+    "forward_path": "outputs/eval/u7_2m_product_image_recipe_transaction_v1/formal.json",
+    "reverse_path": "outputs/eval/u7_2m_product_image_recipe_transaction_v1/formal_replay.json",
+    "bytes_each": 3300,
+    "sha256": "4bf2d6cee8527990b66bf2b2a493d7c6a20756e03878f5381ce414706eae965b",
+    "forward_reverse_byte_exact": true,
+    "fresh_process_count": 2
+  },
+  "result": {
+    "formal_gate_count": 20,
+    "formal_gate_pass_count": 20,
+    "concurrent_returncodes": [
+      0,
+      1
+    ],
+    "owned_runtime_residue_zero": true,
+    "three_output_hashes_exact": true,
+    "three_normalized_recipe_hashes_exact": true,
+    "recipe_final_paths_exact": true,
+    "source_immutable": true,
+    "product_without_recipe_unchanged": true,
+    "legacy_behavior_unchanged": true
+  },
+  "filesystem_control_scope": {
+    "formal_scratch": "repo-relative P-backed tmp",
+    "actual_formal_entry": "pre-existing regular recipe file preserved",
+    "semantic_formal_entries": [
+      "hardlink",
+      "valid symlink",
+      "broken symlink",
+      "Windows reparse point"
+    ],
+    "semantic_method": "selective Path.lstat success only for the derived recipe path, exact recipe-destination error required",
+    "physical_link_behavior": "covered by committed focused tests on capable filesystems; environment skips remain explicit",
+    "image_encode_failure": "inherited exact create-only encoder cleanup control",
+    "pair_specific_failures": [
+      "recipe serialization failure removes owned image stage",
+      "late foreign recipe preserves foreign and rolls back owned image",
+      "foreign image replacement survives rollback",
+      "image and recipe in-place stage mutations fail before publication"
+    ]
+  },
+  "excluded_preformal_attempts": [
+    "The first local oracle command selected system Python without NumPy and stopped before fixture or render generation; the exact project environment then generated the frozen pre-change oracle.",
+    "An uncommitted preformal runner draft attempted hardlink and symlink construction on P-backed exFAT and stopped before any formal report; the committed runner truthfully separates actual regular-entry execution from lstat semantic taxonomy and committed capable-filesystem tests."
+  ],
+  "retained_boundaries": {
+    "two_entry_simultaneous_visibility_or_power_loss_atomicity": false,
+    "metrics_or_layer_outputs_transactional": false,
+    "recipe_schema_changed": false,
+    "colour_algorithm_or_parameters_changed": false,
+    "calibrated_stock_or_physical_film_claim": false,
+    "public_api_package_installer_or_release_claim": false,
+    "u7_2l_historical_evidence_rewritten": false
+  }
+}
