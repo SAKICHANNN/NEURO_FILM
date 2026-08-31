@@ -9,9 +9,13 @@
     "U7.7G"
   ],
   "bindings": {
-    "contract_commit": null,
-    "implementation_commit": null,
-    "implementation_git_lf_sha256": {}
+    "contract_commit": "31ccdf0069f396e05495c780d6d2fddf88aa1615",
+    "implementation_commit": "fd277301e07b26a43de027e0603f9bfa334a8b3e",
+    "implementation_git_lf_sha256": {
+      "src/inference/style_safe_engine.py": "cfdc66119e2dace3dbfdd293eff8bbfa7e2dec08ca233d6efd440235f3a5e007",
+      "src/preprocess/output_encode.py": "98ea0e2252a804be4be9b6cc13485ee89810f4748992ca4684ae74014bbbf101",
+      "tests/test_u7_3l_recipe_replay_create_only_repair.py": "ff03ac4b4482dc4e294161bda65952569aa2d261ae2e5bc421cb3a2ae1e3af53"
+    }
   },
   "owned_paths": [
     "src/preprocess/output_encode.py",
