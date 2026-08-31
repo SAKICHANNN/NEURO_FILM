@@ -4,6 +4,7 @@ import json
 import shutil
 from pathlib import Path
 
+import cv2
 import numpy as np
 import pytest
 from PIL import Image
@@ -89,6 +90,11 @@ def test_forward_reverse_jobs_publish_exact_portable_receipt(tmp_path: Path) -> 
             )
             assert recipe["claim"]["output_label"] == "film-inspired"
             assert recipe["claim"]["evidence_grade"] == "look-approximation"
+            decoded = cv2.imread(
+                str(destination / row["output_path"]), cv2.IMREAD_UNCHANGED
+            )
+            assert decoded.dtype == np.uint16
+            assert decoded.shape == (24, 32, 3)
 
     shutil.rmtree(destination)
     _manifest(manifest, [("a-first", first), ("b-second", second)])

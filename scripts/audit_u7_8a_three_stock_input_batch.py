@@ -11,6 +11,7 @@ import subprocess
 import sys
 from pathlib import Path
 
+import cv2
 import numpy as np
 from PIL import Image
 
@@ -137,8 +138,7 @@ def _validate_receipt(
                 raise AssertionError("recipe output label drifted")
             if recipe["claim"]["evidence_grade"] != "look-approximation":
                 raise AssertionError("recipe evidence grade drifted")
-            with Image.open(output_path) as image:
-                decoded = np.asarray(image)
+            decoded = cv2.imread(str(output_path), cv2.IMREAD_UNCHANGED)
             if decoded.dtype != np.uint16 or decoded.shape != (24, 32, 3):
                 raise AssertionError("decoded output contract drifted")
             decoded_shapes.add(decoded.shape)
