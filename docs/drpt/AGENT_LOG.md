@@ -20949,6 +20949,12 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   response still requires a new source-intake freeze before download or fit.
   Packet:
   `docs/planning/SF3_A3X_AUTONOMOUS_DATA_AUTHORIZATION_REQUEST_PACKET.md`.
+- **Additive queue update:** after SF3.A3Y formally closed the Danish Velvia
+  route, commit `9b1d8318` added Joana Silva and Morten Ryhl-Svendsen as the
+  sixth request holder. The request is limited to original 1992/2024 Velvia 50
+  densitometry, stable sample/replicate/timepoint identities, manifest hashes
+  and a separate measurement-data licence. It does not infer an RGB operator,
+  scanner response or natural-scene transfer from longitudinal density data.
 
 ### 2026-08-31 - SF3.A3Y closes the Denmark Velvia study before data access
 

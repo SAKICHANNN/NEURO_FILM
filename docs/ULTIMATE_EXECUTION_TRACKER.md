@@ -3120,14 +3120,16 @@ adjacency into a pair, reopen failed natural-label association families, fit
 an operator, open candidate 3 or map a product. Evidence:
 `docs/evidence/SF3_A3W_INLAND_APERTURE_PORTRA_EKTAR_SOURCE_RESULT.json`.
 
-SF3.A3X converts the five strongest controlled-but-unreleased physical-film
+SF3.A3X converts the six strongest controlled-but-unreleased physical-film
 source routes into one bounded authorization request packet. It ranks
 FilmMatch PortraMatch for Portra 400; Demystify Colorgrading's EUR 69.90
 Portra/Ektar physical-chart pack plus EUR 49.90 matched digital RAW pack as
 the fastest potentially purchasable paired route; PARVEC for a same-workflow
 Portra 400 / Ektar 100 bridge; FILM2PAINT/Zentralbibliothek Zurich for Velvia
-50 controlled targets; and NTNU Colourlab for Velvia 50 multispectral
-observations. Current Demystify terms prohibit organization sharing and do not
+50 controlled targets; NTNU Colourlab for Velvia 50 multispectral
+observations; and the Royal Danish Academy / National Museum of Denmark study
+for Velvia 50 longitudinal densitometry with a freezer reference. Current
+Demystify terms prohibit organization sharing and do not
 explicitly grant fitting or derived-product rights, so no purchase opens. The
 packet freezes the minimum asset manifest, physical group identities,
 development/validation/confirmation roles, and internal-commercial fitting /
