@@ -1,0 +1,147 @@
+{
+  "schema_version": "neuro-film.u7-8c-canon-real-scale-input-batch-contract.v1",
+  "node_id": "U7.8C",
+  "status": "FROZEN_BEFORE_SIX_SOURCE_EXECUTION",
+  "objective": "Measure the unchanged U7.8A transaction on the exact six P313/P314 Canon sRAW/mRAW files while proving one decode per input, exact three-look publication, bounded process-tree resources and real-stage failure cleanup.",
+  "bindings": {
+    "u7_8a_contract": {
+      "path": "configs/u7_8a_three_stock_input_batch_v1.json",
+      "bytes": 3305,
+      "sha256": "f38421fa590adb5e4b970552765634eb4c457c826266df30d45da4e3bb4f0f67"
+    },
+    "input_batch_core": {
+      "path": "src/inference/three_stock_input_batch.py",
+      "bytes": 11809,
+      "sha256": "cb1f54c48520ea0ff3cebe3e92731335c5bd50655408adadccda3a4cfa2a0cf1"
+    },
+    "child_batch_core": {
+      "path": "src/inference/three_stock_batch.py",
+      "bytes": 7868,
+      "sha256": "ae676aabccf3bd8b12d3e42c253a60078ef74878c1b7ab399124a1607100c5e2"
+    },
+    "product_profile": {
+      "path": "configs/render_profiles/safe_rich_product_v1.json",
+      "bytes": 4259,
+      "sha256": "09722cb48c55d1c4c460220c9f59b9ced81801c1b6fe856708a27f5cc99d39fe"
+    },
+    "statistics": {
+      "path": "configs/film_color_stats.json",
+      "bytes": 5271,
+      "sha256": "1a45e90765e577edd4ca1773fc8c6cf98fd09b8afbdddfa519b1f097c5dd7c04"
+    },
+    "guardrails": {
+      "path": "configs/color_guardrails.json",
+      "bytes": 1540,
+      "sha256": "6669b7bc873febcc74ba7ddcbc1c1584807e38465447a5cdbeb24073efa00aa7"
+    },
+    "p313_contract": {
+      "path": "configs/p313_canon_sraw_working_image_compatibility_v1.json",
+      "bytes": 4922,
+      "sha256": "dbbdf0670fb5fffd6a6ce00085e9cd0c39078a4f5303039e5192c942452a6e8b"
+    },
+    "p313_evidence": {
+      "path": "docs/evidence/P313_CANON_SRAW_WORKING_IMAGE_COMPATIBILITY_RESULT.json",
+      "bytes": 5246,
+      "sha256": "7aaf526207c7fd76d71ad7b1e7f2853e48a1fc8f7cb3359a1feaf27c07bf4e3a"
+    },
+    "p314_evidence": {
+      "path": "docs/evidence/P314_CANON_SRAW_PRODUCT_CHAIN_COMPATIBILITY_RESULT.json",
+      "bytes": 6827,
+      "sha256": "e2b097ebb5a2c3f91e891c72c52e1d70ecc874332ecadcb5be15d727ca53abb1"
+    }
+  },
+  "sources": [
+    {
+      "job_id": "canon-eos-50d-mraw",
+      "source_id": "canon_eos50d_mraw",
+      "path": "data/rawpixls_cache/Canon_EOS_50D_Canon_-_EOS_50D_-_sRAW1_mRAW_3_2_.cr2",
+      "bytes": 13124350,
+      "sha256": "278f80205ffadb850d2538bd3544f70365b59eed59e8233f9f9667c33b03a729",
+      "decoded_shape": [2178, 3272, 3],
+      "rights": "raw.pixls.us CC0/Public Domain"
+    },
+    {
+      "job_id": "canon-eos-5d-mark-ii-mraw",
+      "source_id": "canon_eos5d_mark_ii_mraw",
+      "path": "data/rawpixls_cache/Canon_EOS_5D_Mark_II_Canon_-_EOS_5D_Mark_II_-_sRAW1_mRAW_3_2_.cr2",
+      "bytes": 15445115,
+      "sha256": "acadf73d760b1f311f18f473b859e262ef3ba1513b3360f02675c38dcadba80b",
+      "decoded_shape": [2574, 3866, 3],
+      "rights": "raw.pixls.us CC0/Public Domain"
+    },
+    {
+      "job_id": "canon-eos-5d-mark-iii-mraw",
+      "source_id": "canon_eos5d_mark_iii_mraw",
+      "path": "data/rawpixls_cache/Canon_EOS_5D_Mark_III_Canon_-_EOS_5D_Mark_III_-_sRAW1_mRAW_.cr2",
+      "bytes": 15573918,
+      "sha256": "bca87871cd91523e0ff4450a51a1a677de9241c3110b213b99198b9ed3751f66",
+      "decoded_shape": [2640, 3960, 3],
+      "rights": "raw.pixls.us CC0/Public Domain"
+    },
+    {
+      "job_id": "canon-eos-5d-mark-iv-sraw",
+      "source_id": "canon_eos5d_mark_iv_sraw",
+      "path": "data/rawpixls_cache/Canon_EOS_5D_Mark_IV_Canon_-_EOS_5D_Mark_IV_-_sRAW2_sRAW_3_2_.cr2",
+      "bytes": 15217883,
+      "sha256": "25d928f9e9a65525ac796bdff13e93b7b36b627568d7a17338e12dc44424078a",
+      "decoded_shape": [2240, 3360, 3],
+      "rights": "raw.pixls.us CC0/Public Domain"
+    },
+    {
+      "job_id": "canon-eos-7d-mark-ii-mraw",
+      "source_id": "canon_eos7d_mark_ii_mraw",
+      "path": "data/rawpixls_cache/Canon_EOS_7D_Mark_II_Canon_-_EOS_7D_Mark_II_-_sRAW1_mRAW_3_2_.cr2",
+      "bytes": 14774007,
+      "sha256": "fca673cdec6a65c8fbafc5fd6416e2c9adbc214b86ea2a0db2daea958b70ffd6",
+      "decoded_shape": [2736, 4104, 3],
+      "rights": "raw.pixls.us CC0/Public Domain"
+    },
+    {
+      "job_id": "canon-eos-7d-mraw",
+      "source_id": "canon_eos7d_mraw",
+      "path": "data/external/rawpixls_ai1_v1/raw/canon_eos7d_mraw.cr2",
+      "bytes": 16253693,
+      "sha256": "25c746a58363e910e6046a96cf2915fff45fe2995676eb2c97842d0c156d03a7",
+      "decoded_shape": [2592, 3888, 3],
+      "rights": "raw.pixls.us CC0/Public Domain"
+    }
+  ],
+  "render": {
+    "profile_path": "configs/render_profiles/safe_rich_product_v1.json",
+    "statistics_path": "configs/film_color_stats.json",
+    "guardrails_path": "configs/color_guardrails.json",
+    "look_amount": 1.0,
+    "seed": 31,
+    "tile_size": 256,
+    "tile_workers": 1,
+    "png_compression": 0,
+    "styles": ["velvia_50", "portra_400", "ektar_100"]
+  },
+  "formal": {
+    "fresh_controller_orders": ["forward", "reverse"],
+    "expected_job_count": 6,
+    "expected_output_count": 18,
+    "expected_recipe_count": 18,
+    "expected_child_manifest_count": 6,
+    "injected_child_failure_position": 2,
+    "late_foreign_control_requires_complete_real_batch": true
+  },
+  "resource_gates": {
+    "maximum_process_tree_rss_bytes": 4294967296,
+    "maximum_controller_wall_seconds": 1200.0,
+    "per_job_wall_seconds": "report_only"
+  },
+  "gates": {
+    "source_hashes_and_lengths_exact_before_and_after": true,
+    "successful_decode_calls_per_input": 1,
+    "forward_reverse_transaction_identities_exact": true,
+    "all_outputs_rgb16_and_expected_geometry": true,
+    "all_recipes_bind_source_and_look_approximation_claim": true,
+    "real_first_child_then_injected_second_failure_publishes_nothing": true,
+    "complete_real_batch_late_foreign_destination_preserved": true,
+    "owned_stage_and_file_residue_count": 0,
+    "network_requests": 0
+  },
+  "stop_rule": "The first committed-source formal result is final for this exact six-source/profile/output/process/resource/failure-control family; do not rescue by changing sources, thresholds, compression, tile settings, resolution, loader, instrumentation, failure position or output format.",
+  "claim_ceiling": "Private Windows/Python real-scale transaction and resource evidence for six exact CC0 Canon sRAW/mRAW files and three existing deterministic film-inspired Look Approximations only; no mixed-format/general RAW/Canon, vendor-exact colour, calibrated stock response, image quality, product value, public API/package/release, candidate-three or device claim."
+}
