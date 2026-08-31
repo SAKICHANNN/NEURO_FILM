@@ -21171,3 +21171,34 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   disclosed in evidence. Claim remains a private 100-small-image Windows/Python
   transaction; no 24MP performance, calibrated/physical stock response,
   product-value, installer, public API, package or release claim opens.
+
+### 2026-09-01 - U7.8B adds resumable three-look batch recovery
+
+- **Node and routing:** `ULT > U7 > U7.8B`, DRPT L2 / Mode C. The active Goal
+  was rechecked and remains accurate: product labels stay strictly
+  `film-inspired / Look Approximation`; neither stock calibration, user-provided
+  film photos nor source-search expansion is a recovery dependency. U7.8C owns
+  the separate Canon real-scale resource audit and its files were not touched.
+- **Implementation:** contract `9c2b1e08`; core/CLI `89e88b1f`; recovery tests
+  `7d264f42`; formatting correction `a1232b22`; semantic manifest identity
+  `0edbeabc`; complete frozen-gate audit lock `75e5ada6`; evidence `56550858`.
+  The Windows-only core holds a process-lifetime byte-range lease, binds a
+  canonical job/hash/path identity and destination hash, atomically publishes
+  each fully validated child before advancing its ledger, reconciles only
+  attributable stale state, and rehashes every input/config/core/child before
+  one no-replace root publication.
+- **Evidence:** both committed-head outer runs pause at 37/100, then reuse all
+  37 and render exactly 63 new jobs. The resumed and uninterrupted executions
+  each contain 100 child manifests, 300 RGB16 outputs and 300 strict recipes;
+  their 703-file trees, aggregate receipt SHA `1b3f51f2...c957` and batch ID
+  `36e3e5a4...cb9cd` are exact. Forward/reverse reports are 4,866 bytes and
+  byte exact at SHA `ceb2710c...a9847`; each outer run also executes all 24
+  targeted recovery tests. Forty-four adjacent product tests, Ruff check and
+  format, compileall, JSON and diff checks pass.
+- **Change propagation and boundary:** U7.8A and U7.8C remain unchanged; no
+  public API, default renderer, recipe schema, colour parameters, RAW/HDR path
+  or stock-evidence claim changed. This proves private Windows/Python
+  application-interruption recovery on 100 small deterministic inputs only;
+  power-loss durability during an executing child, 24MP performance,
+  calibrated/physical stock response, installer, release and product value
+  remain unclaimed.
