@@ -47,6 +47,8 @@
   },
   "gates": {
     "transaction_start_commit_resolution_count": 1,
+    "prepublication_commit_recheck_count": 1,
+    "total_transaction_commit_resolution_count": 2,
     "all_child_recipe_commits_equal_transaction_snapshot": true,
     "injected_head_drift_publishes_no_destination": true,
     "stable_forward_reverse_outputs_recipes_manifests_receipt_and_batch_exact": true,

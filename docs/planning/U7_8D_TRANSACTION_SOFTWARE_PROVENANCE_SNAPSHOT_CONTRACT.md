@@ -41,7 +41,9 @@ decode, render or output-stage creation.
 U7.8A resolves repository HEAD exactly once after the complete manifest,
 source and configuration preflight and before creating its transaction stage.
 It passes that value to every child. Before final publication it resolves HEAD
-again; any change rejects the complete transaction, removes its owned stage
+exactly once again; thus one successful transaction performs one start snapshot
+and one prepublication recheck, for two total HEAD resolutions. Any change
+rejects the complete transaction, removes its owned stage
 and preserves an absent or foreign destination. Thus a live commit cannot
 produce a successfully published mixed-provenance transaction.
 

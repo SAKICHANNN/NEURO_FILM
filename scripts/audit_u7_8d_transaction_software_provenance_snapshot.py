@@ -199,7 +199,9 @@ def _stable_transaction(
         "receipt_sha256": sha256_file(destination / "batch.json"),
         "tree_hashes": tree,
         "tree_file_count": len(tree),
-        "commit_resolution_count": len(resolutions),
+        "software_commit_resolution_count_total": len(resolutions),
+        "transaction_start_snapshot_resolution_count": int(bool(resolutions)),
+        "prepublication_recheck_count": max(0, len(resolutions) - 1),
         "child_observations": observed,
         "recipe_commits": _recipe_commits(destination),
     }
@@ -444,8 +446,10 @@ def run(order: str) -> dict[str, Any]:
         owned_scratch_residue_count = int(SCRATCH.exists())
 
         gates = {
-            "transaction_start_commit_resolution_count_exact": (
-                stable["commit_resolution_count"] == 2
+            "transaction_start_and_prepublication_resolution_counts_exact": (
+                stable["software_commit_resolution_count_total"] == 2
+                and stable["transaction_start_snapshot_resolution_count"] == 1
+                and stable["prepublication_recheck_count"] == 1
             ),
             "all_stable_children_use_one_snapshot": (
                 stable["child_observations"] == [commit] * 3
@@ -488,7 +492,7 @@ def run(order: str) -> dict[str, Any]:
                 and direct["direct_recipe_commits"] == [commit]
             ),
             "source_files_immutable": source_hashes_after == source_hashes,
-            "late_foreign_and_child_failure_controls_pass": test_count == 13,
+            "late_foreign_and_child_failure_controls_pass": test_count == 14,
             "owned_scratch_residue_count": owned_scratch_residue_count,
             "network_requests": 0,
         }

@@ -26,6 +26,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PROFILE = ROOT / "configs/render_profiles/safe_rich_product_v1.json"
 STATISTICS = ROOT / "configs/film_color_stats.json"
 GUARDRAILS = ROOT / "configs/color_guardrails.json"
+CONFIG = ROOT / "configs/u7_8d_transaction_software_provenance_snapshot_v1.json"
 START_COMMIT = "1" * 40
 DRIFT_COMMIT = "2" * 40
 
@@ -96,6 +97,13 @@ def _recipe_commits(directory: Path) -> set[str]:
         json.loads(path.read_text(encoding="utf-8"))["software"]["commit"]
         for path in directory.rglob("*.recipe.json")
     }
+
+
+def test_frozen_resolution_counts_distinguish_snapshot_and_recheck() -> None:
+    config = json.loads(CONFIG.read_text(encoding="utf-8"))
+    assert config["gates"]["transaction_start_commit_resolution_count"] == 1
+    assert config["gates"]["prepublication_commit_recheck_count"] == 1
+    assert config["gates"]["total_transaction_commit_resolution_count"] == 2
 
 
 def test_child_explicit_snapshot_is_used_without_live_head_lookup(
