@@ -44,6 +44,7 @@ def _sitecustomize(path: Path, blocked: tuple[str, ...]) -> None:
         "import os\n"
         "import pathlib\n"
         "import sys\n"
+        "import uuid\n"
         f"BLOCKED = {blocked!r}\n"
         "ATTEMPTS = []\n"
         "class Blocker(importlib.abc.MetaPathFinder):\n"
@@ -60,7 +61,7 @@ def _sitecustomize(path: Path, blocked: tuple[str, ...]) -> None:
         "    directory = pathlib.Path(os.environ['U7_2P_IMPORT_LOG_DIR'])\n"
         "    directory.mkdir(parents=True, exist_ok=True)\n"
         "    payload = {'attempts': ATTEMPTS, 'loaded': loaded}\n"
-        "    (directory / f'{os.getpid()}.json').write_text("
+        "    (directory / f'{os.getpid()}-{uuid.uuid4().hex}.json').write_text("
         "json.dumps(payload, sort_keys=True), encoding='utf-8')\n"
         "atexit.register(record)\n",
         encoding="utf-8",
@@ -168,8 +169,14 @@ def build_report(config_path: Path, order: str) -> dict[str, Any]:
 
         product_observations = _observations(probe_root / "logs")
         product_process_count = len(product_observations)
-        product_imports_clean = all(
-            row == {"attempts": [], "loaded": []} for row in product_observations
+        expected_product_process_count = (
+            len(comparisons) * 2 + 2 + len(conflicts) + len(invalid) + 2
+        )
+        product_imports_clean = (
+            product_process_count == expected_product_process_count
+            and all(
+                row == {"attempts": [], "loaded": []} for row in product_observations
+            )
         )
 
         logs_before_analytic = {
