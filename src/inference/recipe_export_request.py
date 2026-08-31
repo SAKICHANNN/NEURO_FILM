@@ -4,12 +4,12 @@ from __future__ import annotations
 
 import hashlib
 import json
-import shutil
 from collections.abc import Mapping
 from html import escape
 from pathlib import Path, PurePosixPath
 from typing import Any
 
+from .create_only_directory import materialize_create_only_directory
 from .recipe_history import (
     DEFAULT_MAXIMUM_RECIPE_BYTES,
     DEFAULT_MAXIMUM_RECIPE_FILES,
@@ -235,14 +235,7 @@ def materialize_recipe_export_request_set(
         maximum_recipe_files=maximum_recipe_files,
         maximum_recipe_bytes=maximum_recipe_bytes,
     )
-    try:
-        destination.mkdir(parents=True, exist_ok=False)
-        for name, payload in result["files"].items():
-            (destination / name).write_bytes(payload)
-    except BaseException:
-        if destination.exists() and destination.is_dir():
-            shutil.rmtree(destination)
-        raise
+    materialize_create_only_directory(destination, result["files"])
     return result["receipt"]
 
 

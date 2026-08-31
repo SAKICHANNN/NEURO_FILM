@@ -5,12 +5,12 @@ from __future__ import annotations
 import hashlib
 import json
 import os
-import shutil
 from collections.abc import Mapping
 from html import escape
 from pathlib import Path
 from typing import Any
 
+from .create_only_directory import materialize_create_only_directory
 from .recipe_history import build_render_recipe_history
 from .recipe_history_html import render_recipe_history_html
 from .recipe_preview import build_recipe_output_previews, render_recipe_preview_html
@@ -109,14 +109,10 @@ def materialize_offline_recipe_workspace(
         maximum_recipe_files=maximum_recipe_files,
         maximum_recipe_bytes=maximum_recipe_bytes,
     )
-    try:
-        destination.mkdir(parents=True, exist_ok=False)
-        for name in (*_WORKSPACE_NAMES, "workspace_receipt.json"):
-            (destination / name).write_bytes(files[name])
-    except BaseException:
-        if destination.exists() and destination.is_dir():
-            shutil.rmtree(destination)
-        raise
+    materialize_create_only_directory(
+        destination,
+        {name: files[name] for name in (*_WORKSPACE_NAMES, "workspace_receipt.json")},
+    )
     return json.loads(files["workspace_receipt.json"])
 
 
