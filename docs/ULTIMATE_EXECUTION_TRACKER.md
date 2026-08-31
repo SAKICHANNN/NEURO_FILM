@@ -3163,6 +3163,25 @@ authorization candidate only; do not digitize figures, infer rows, fit an
 operator, open candidate 3 or map a product. Evidence:
 `docs/evidence/SF3_A3Y_DENMARK_VELVIA_NATURAL_AGEING_SOURCE_RESULT.json`.
 
+SF3.A3Z audits the official Hershenson-Allen Archive as a materially different
+fixed-object Velvia lead without querying its database or requesting media.
+The official pages bind 41,987 movie-poster images / 25,809 unique films,
+corresponding 4-by-5-inch colour transparencies, stationary view cameras, a
+vacuum table, manufacturer colour card and Velvia 50 as one archive-level film
+example. Forward/reverse committed-head reports are each 4,175 bytes and
+byte-exact at SHA `9f8d0277...f2fad`, stable `d0434042...e6e878`. All seven
+source/audit gates pass, but all eight admission gates fail: there is no public
+item-level Velvia mapping, machine-readable manifest, payload checksum set,
+fitting-compatible image/data licence, scanner/process grouping, independent
+same-object reference pair, prospective development group or sealed
+confirmation role. Formal decision is
+`FAIL_CLOSED_HERSHENSON_ALLEN_ITEM_STOCK_RIGHTS_MANIFEST_AND_ROLE_GAP`.
+Database, prospectus-PDF, poster, transparency, thumbnail, media-body, pixel,
+fit, render and score reads remain zero. Do not infer an item's stock from the
+archive-level example, scrape the SQL database, override `ai-train=no`, open
+candidate 3 or map a product. Evidence:
+`docs/evidence/SF3_A3Z_HERSHENSON_ALLEN_VELVIA_ARCHIVE_SOURCE_RESULT.json`.
+
 U7.2E adds one authoritative manual product-look catalog and dispatcher over
 the existing three colour-stock Look Approximation controls plus the generic
 B&W correction from BW2.D1. Discovery exposes exactly `velvia_50`,

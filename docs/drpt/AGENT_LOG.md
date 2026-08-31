@@ -20990,3 +20990,40 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Eight focused and 60 adjacent source tests pass with Ruff/JSON/diff clean.
   Retain only as an authorization candidate; figures cannot substitute for
   data and no fitting, candidate 3 or product mapping opens.
+
+### 2026-08-31 - SF3.A3Z closes the Hershenson-Allen Velvia archive before media access
+
+- **Node and routing:** `ULT > SF3 > SF3.A3Z`, DRPT L2 / Mode C.
+  `dev-research-reliability` was primary; source research, stock-first,
+  DRPT/log and structure disciplines were secondary. This leaf tested whether
+  a fixed-object transparency archive exposes a rights-clear item-level Velvia
+  observation, not archive image quality or a stock operator.
+- **Freeze and corrections:** the prospective contract/config/core/audit/tests
+  were committed at `7db7aa47`. Before evidence, additive commits `14ef9a68`,
+  `e2916f25` and `25c6089a` excluded unstable/raw transport identities and
+  canonicalized only Cloudflare email-protection fragments, an exact relative
+  prospectus href and line-wrapped robots comment prefixes. Official sources,
+  statements, roles, read limits, admission gates, thresholds and claim ceiling
+  did not change.
+- **Source result:** official pages bind 41,987 movie-poster images / 25,809
+  unique films, corresponding 4x5 colour transparencies, stationary view
+  cameras, a vacuum table, manufacturer colour card and Velvia 50 as one
+  archive-level example. Exact canonical HTML identities and raw `robots.txt`
+  identity pass; the prospectus link is recorded without reading its PDF.
+- **Formal result:** committed-head forward/reverse reports are each 4,175
+  bytes and byte-exact at SHA
+  `9f8d02771498c7fd226015e5a2de1be69d69fcba99d31fe9460f8a6059f2fad9`,
+  stable `d0434042ec7edd0f4754bf0cde8ab2621e0f5436e435f01b68e6f9228ae6e878`.
+  All seven source/audit gates pass; all eight admission gates fail because no
+  public item-level Velvia identity, manifest/checksums, fitting-compatible
+  image/data licence, scanner/process groups, same-object reference pair,
+  prospective development groups or sealed confirmation role exists.
+- **Decision and boundary:** formal decision is
+  `FAIL_CLOSED_HERSHENSON_ALLEN_ITEM_STOCK_RIGHTS_MANIFEST_AND_ROLE_GAP`.
+  Database, prospectus-PDF, poster, transparency, thumbnail, media-body, pixel,
+  fit, render and score reads are zero. Evidence/binding test commit is
+  `b3eef3a9`; tracked evidence SHA is
+  `90f9b109e0a3d1bf7082f26854df31490bd6f56434218a280f83fd6c99a755ea`.
+  Eight focused tests pass with Ruff/JSON/diff clean. Do not infer item stocks,
+  query the SQL database, override `ai-train=no`, fit, open candidate 3 or map
+  a product.
