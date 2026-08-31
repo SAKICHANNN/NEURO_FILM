@@ -1,0 +1,81 @@
+{
+  "schema": "neuro-film.sf3-a4a-film-restoration-multilab-source-contract.v1",
+  "experiment_id": "SF3.A4A_FILM_RESTORATION_MULTILAB_SOURCE_V1",
+  "source": {
+    "doi": "10.1016/j.daach.2026.e00538",
+    "elsevier_url": "https://api.elsevier.com/content/article/doi/10.1016%2Fj.daach.2026.e00538",
+    "crossref_url": "https://api.crossref.org/works/10.1016/j.daach.2026.e00538",
+    "datacite_url": "https://api.datacite.org/dois?query=titles.title%3A%22Subjectivity%20in%20color%20film%20restoration%3A%20A%20multi-lab%20comparison%22&page%5Bsize%5D=1",
+    "official_article_url": "https://www.sciencedirect.com/science/article/pii/S2212054826000457",
+    "institutional_record_url": "https://air.unimi.it/handle/2434/1170334",
+    "expected": {
+      "title": "Subjectivity in color film restoration: A multi-lab comparison",
+      "journal": "Digital Applications in Archaeology and Cultural Heritage",
+      "cover_date": "2026-06-30",
+      "pii_compact": "S2212054826000457",
+      "pii_formatted": "S2212-0548(26)00045-7",
+      "openaccess": "0",
+      "authors": [
+        "Lucia Becatti",
+        "Beatrice Sarti",
+        "Enea Ahmedhodzic",
+        "Alessandro Rizzi"
+      ],
+      "crossref_relation": {},
+      "datacite_exact_title_total": 0
+    },
+    "public_article_topology": {
+      "film_title": "Slike iz Zivota udarnika",
+      "film_year": 1972,
+      "laboratory_count": 6,
+      "scene_count": 3,
+      "frames_per_scene": 24,
+      "common_source": "original_camera_negative",
+      "participant_reference": "positive_print",
+      "independent_reference": "director_of_photography_supervised_restoration",
+      "independent_reference_withheld_from_participants": true,
+      "film_stock_identity": "unknown"
+    }
+  },
+  "data_evidence": {
+    "public_observation_payload_count": 0,
+    "public_machine_readable_manifest_count": 0,
+    "public_payload_checksum_count": 0,
+    "explicit_observation_data_fitting_license_count": 0,
+    "exact_laboratory_identity_count": 0,
+    "exact_scanner_workflow_identity_count": 0,
+    "prospective_development_group_count": 0,
+    "sealed_confirmation_group_count": 0,
+    "exact_film_stock_identity_count": 0
+  },
+  "admission_minimums": {
+    "public_observation_payload_count": 1,
+    "public_machine_readable_manifest_count": 1,
+    "public_payload_checksum_count": 1,
+    "explicit_observation_data_fitting_license_count": 1,
+    "exact_laboratory_identity_count": 6,
+    "exact_scanner_workflow_identity_count": 1,
+    "prospective_development_group_count": 1,
+    "sealed_confirmation_group_count": 1,
+    "exact_film_stock_identity_count": 1
+  },
+  "operation_limits": {
+    "official_metadata_get_requests": 3,
+    "official_article_html_requests": 0,
+    "institutional_file_requests": 0,
+    "article_pdf_requests": 0,
+    "article_media_requests": 0,
+    "source_negative_requests": 0,
+    "positive_print_requests": 0,
+    "laboratory_version_requests": 0,
+    "independent_reference_requests": 0,
+    "frame_requests": 0,
+    "pixel_decodes": 0,
+    "fit_calls": 0,
+    "render_calls": 0,
+    "score_calls": 0
+  },
+  "decision_if_pass": "PASS_OPEN_SEPARATELY_FROZEN_AUXILIARY_A5_MULTILAB_DATA_PREFLIGHT",
+  "decision_if_fail": "FAIL_CLOSED_FILM_RESTORATION_MULTILAB_DATA_RIGHTS_MANIFEST_AND_ROLE_GAP",
+  "claim_ceiling": "Official bibliographic identity and public multi-lab restoration topology for an auxiliary A5 operator-uncertainty source only; no public observation payload, manifest, checksum, data-fitting licence, exact lab/scanner groups, prospective roles, target-stock identity, stock evidence, candidate-three admission, calibration, training or product claim."
+}
