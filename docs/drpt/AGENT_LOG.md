@@ -21202,3 +21202,34 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   power-loss durability during an executing child, 24MP performance,
   calibrated/physical stock response, installer, release and product value
   remain unclaimed.
+
+### 2026-09-01 - U7.8C closes real-scale transaction replay on provenance drift
+
+- **Node and routing:** `ULT > U7 > U7.8C`, DRPT L2 / Mode C. The active Goal
+  remains accurate and keeps the product at `film-inspired / Look
+  Approximation`. U7.8C uses the unchanged U7.8A transaction on six exact
+  P313/P314 Canon sRAW/mRAW inputs; it does not reopen stock calibration,
+  source search or adjacent RAW/HDR wrappers.
+- **Execution and mechanics:** contract/config `0885e4fb`; runner/tests
+  `39b63762`; pipe and gate correction `409d7c22`; preserved V1/V2 lock chain
+  `c4b93b6a` / `f75a49b4`; evidence/test `a6cdaf15`. Both fresh controllers
+  process six inputs into 18 RGB16 PNGs, 18 recipes and six child manifests.
+  One-decode-per-source, source immutability, second-child failure rollback,
+  complete-batch late-foreign preservation, network0 and owned residue0 pass.
+  Maximum wall time is `612.4908187s`; maximum controller-plus-descendants RSS
+  is `1,111,965,696B`, below the frozen 1200-second/4GiB gates.
+- **Formal decision:** all 18 output hashes match across forward/reverse order,
+  but 0/18 recipe and 0/6 child-manifest hashes match; receipt, batch and
+  scientific identities therefore also differ. The unchanged child renderer
+  records live `git rev-parse HEAD` in every recipe, and unrelated U7.8B
+  commits advanced the shared HEAD during both long formal windows. This is
+  provenance/transaction instability rather than RGB nondeterminism, but it
+  violates the frozen exact cross-run gate. U7.8C is
+  `FAIL_CLOSED_U7_8C_FORWARD_REVERSE_RECIPE_IDENTITY_DRIFT`; no third run,
+  recipe normalization, source/order/threshold change or renderer rescue was
+  used.
+- **Verification and propagation:** 23 focused/adjacent U7.8C/U7.8A/P313/P314
+  tests pass; the dedicated evidence tests add 3 pass, and Ruff, format,
+  py_compile, JSON and diff checks pass. U7.8A/B and all stock governance files
+  remain unchanged. No real-scale replay, calibration, image-quality,
+  product-value, public package/release or device claim opens.
