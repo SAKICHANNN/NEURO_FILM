@@ -1,0 +1,67 @@
+{
+  "schema_version": "neuro-film.u7-2n-product-auxiliary-output-transaction.v1",
+  "decision": "prospective",
+  "parent": "U7.2M",
+  "product_profile_id": "safe-rich-product-v1",
+  "transaction_scope": "primary-image-plus-explicit-recipe-layers-metrics",
+  "available_product_looks": ["velvia_50", "portra_400", "ektar_100"],
+  "source_locks": {
+    "render_film_sha256": "f142b0cae451eacaef90cc6db3f2b99aea7a612a45e64ce3320ea97fd9c4b654",
+    "product_render_transaction_sha256": "4730690cf7b83ebd70026158ea2544b123538e36d9da4cebe607a10dd41ad08a",
+    "create_only_file_sha256": "d05292155594392b2c3d3b76f2aa680a3c3f011bab641111393ca3bde708fa37",
+    "product_profile_sha256": "09722cb48c55d1c4c460220c9f59b9ced81801c1b6fe856708a27f5cc99d39fe",
+    "u7_2m_config_sha256": "48ceeb5a0e815c4e824dc39cbfd387680dff959a25ff1a5e07c906526d359c6c",
+    "u7_2m_evidence_sha256": "9ea072da51274b6bd1a2cbcc1f60ad8283f60174972107fa96c074ac8995fd5e"
+  },
+  "fixture": {
+    "sha256": "71168122db6b170b5543d3bf9f0b0d71bbc58cfbb52dbe02a289d25b0753fee2",
+    "definition": "47x61 RGB8; channels=(13x+7y)%251,(3x+17y+19)%251,(11x+5y+43)%251"
+  },
+  "effects_oracle": {
+    "style": "ektar_100",
+    "grain": 0.05,
+    "halation": 0.15,
+    "dust": 0.02,
+    "output_sha256": "8f828d8e73d41c63b15c3829c1c0d221aa06aa880f603a8dd8b28601e60cd495",
+    "normalized_recipe_sha256": "297d9c00d1bf121f70b1821361c773c77182ce08ebe2398d54f1662de76511d9",
+    "normalized_metrics_sha256": "903086196029c73fe581f9416443b3d541728c5716ea9e0eeb636621142f857b",
+    "normalization": "recipe: software.commit=40 zeroes,input.path=<INPUT>,output.path=<OUTPUT>; metrics: input=<INPUT>,output=<OUTPUT>,render_recipe.path=<RECIPE>,render_recipe.sha256=<RECIPE_SHA256>; canonical compact ASCII JSON",
+    "layers": {
+      "dust_scratch.png": "bf14cba9f275b9020798af5507f33c149abf37f5263c0897c537a9378d87081b",
+      "grain.png": "08a6c1af4d5af8ec62a6f0f2dda7676cb5a6b19a2f4de3613d5bb0cb235251db",
+      "halation.png": "b22f568d3844c8ae2e0c60c04bded593bfbfd9b053489cab12d5b7790ff01c35",
+      "halation_on_black.png": "b22f568d3844c8ae2e0c60c04bded593bfbfd9b053489cab12d5b7790ff01c35",
+      "halation_on_white.png": "7df40232de02867eeac696754981213833e906a439649377bb5b7618d18b200f"
+    }
+  },
+  "prechange_defect": {
+    "existing_metrics_overwritten": true,
+    "existing_layer_overwritten": true,
+    "auxiliary_failure_can_leave_published_primary_pair": true
+  },
+  "gates": {
+    "all_requested_paths_distinct_and_absent_before_decode": true,
+    "existing_entries_preserved": true,
+    "three_pair_oracles_exact": true,
+    "effects_bundle_oracles_exact": true,
+    "all_failure_classes_owned_residue_zero": true,
+    "late_foreign_destinations_preserved": true,
+    "foreign_replacements_and_layer_additions_preserved": true,
+    "all_stage_classes_identity_and_content_bound": true,
+    "concurrent_exactly_one_complete_bundle": true,
+    "source_immutable": true,
+    "image_only_and_pair_and_legacy_unchanged": true,
+    "fresh_process_reports_byte_exact": true,
+    "owned_runtime_residue_zero": true
+  },
+  "non_goals": [
+    "simultaneous visibility or power-loss atomicity",
+    "generic public transaction framework",
+    "legacy publication semantic change",
+    "recipe or metrics schema change",
+    "colour algorithm, effect or parameter change",
+    "stock calibration or physical-film claim",
+    "public release, installer or package expansion"
+  ],
+  "claim_ceiling": "Private create-only process-level publication and identity-safe rollback for all explicitly requested artifacts of deterministic film-inspired Look Approximations only."
+}
