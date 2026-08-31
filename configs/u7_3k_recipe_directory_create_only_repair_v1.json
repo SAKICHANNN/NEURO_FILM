@@ -1,0 +1,32 @@
+{
+  "schema": "kmcfm.u7-3k-recipe-directory-create-only-repair.v1",
+  "node_id": "U7.3K",
+  "question": "Can U7.3E and U7.3F preserve every foreign destination entry while retaining exact successful directory bytes?",
+  "parents": [
+    "U7.3E",
+    "U7.3F"
+  ],
+  "owned_paths": [
+    "src/inference/create_only_directory.py",
+    "src/inference/recipe_workspace.py",
+    "src/inference/recipe_export_request.py",
+    "tests/test_u7_3k_recipe_directory_create_only_repair.py",
+    "scripts/audit_u7_3k_recipe_directory_create_only_repair.py",
+    "tests/test_u7_3k_recipe_directory_create_only_repair_audit.py",
+    "docs/planning/U7_3K_RECIPE_DIRECTORY_CREATE_ONLY_REPAIR_CONTRACT.md",
+    "configs/u7_3k_recipe_directory_create_only_repair_v1.json",
+    "docs/evidence/U7_3K_RECIPE_DIRECTORY_CREATE_ONLY_REPAIR_RESULT.json"
+  ],
+  "gates": {
+    "successful_workspace_bytes_exact": true,
+    "successful_request_set_bytes_exact": true,
+    "initial_foreign_directory_preserved": true,
+    "foreign_added_member_preserved": true,
+    "foreign_replacement_preserved": true,
+    "owned_residue_zero_when_no_foreign_entry_remains": true,
+    "no_recursive_destination_cleanup": true,
+    "parent_regressions_pass": true
+  },
+  "claim_ceiling": "Private process-level create-only ownership repair for existing Look Approximation workspace and export-request directories only; no renderer, science, calibration, browser, installer, release or public-product claim.",
+  "stop_rule": "One prospective repair and committed-head forward/reverse audit only. Do not expand into adjacent browser, wrapper, format, renderer or source work."
+}
