@@ -44,6 +44,15 @@ robust three-stock distinguishability remains authoritative and immutable.
    pass. U4.1A's existing original-resolution severe result is retained rather
    than silently overwritten.
 
+The style scale is frozen as: `1` essentially identity/no visible
+film-inspired style; `2` subtle or mainly basic global adjustment; `3`
+clearly visible moderate film-inspired style; `4` strong coherent
+photographic style; `5` dominant and highly salient while still coherent.
+The appeal scale is: `1` objectionable; `2` less appealing than a neutral
+competent rendering; `3` acceptable/neutral; `4` clearly appealing; `5`
+exceptionally appealing. Intended tone or colour strength is not itself a
+severe artifact.
+
 ## Frozen gates
 
 The report is complete only when all 108 observations exist and the two fresh

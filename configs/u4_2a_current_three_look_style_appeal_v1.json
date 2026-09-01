@@ -62,6 +62,22 @@
     "mapping_must_remain_unread_until_observations_are_frozen": true,
     "additional_rounds_after_reveal_allowed": false
   },
+  "score_rubric": {
+    "style_strength": {
+      "1": "essentially identity or no visible film-inspired styling",
+      "2": "subtle or mainly basic global adjustment",
+      "3": "clearly visible but moderate film-inspired styling",
+      "4": "strong coherent photographic styling",
+      "5": "dominant, highly salient, still coherent film-inspired styling"
+    },
+    "appeal": {
+      "1": "objectionable or clearly unattractive photographic rendering",
+      "2": "less appealing than a neutral competent rendering",
+      "3": "acceptable or neutral photographic appeal",
+      "4": "clearly appealing photographic rendering",
+      "5": "exceptionally appealing photographic rendering"
+    }
+  },
   "gates": {
     "formal_reports_byte_exact": true,
     "all_observations_complete": true,

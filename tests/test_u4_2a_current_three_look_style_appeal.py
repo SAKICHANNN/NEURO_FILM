@@ -88,6 +88,8 @@ def test_config_has_frozen_no_rescue_claim_boundary() -> None:
     assert "look_amount_or_parameter_tuning" in CONFIG["forbidden_rescue"]
     assert CONFIG["training_allowed"] is False
     assert CONFIG["operator_fitting_allowed"] is False
+    assert CONFIG["score_rubric"]["style_strength"]["3"].startswith("clearly visible")
+    assert CONFIG["score_rubric"]["appeal"]["3"].startswith("acceptable")
     assert product_output_format("png16").recipe_format == "PNG"
     assert sha256_bytes(b"stable") == sha256_bytes(b"stable")
 
