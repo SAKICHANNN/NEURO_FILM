@@ -14,6 +14,8 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 CONFIG_PATH = "configs/u7_15b_desktop_visible_strength_quantization_v1.json"
 CONTRACT_PATH = "docs/planning/U7_15B_DESKTOP_VISIBLE_STRENGTH_QUANTIZATION_CONTRACT.md"
 UI_PATH = "src/inference/product_desktop_ui.py"
