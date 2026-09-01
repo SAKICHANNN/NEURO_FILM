@@ -434,6 +434,51 @@ def test_post_rename_verification_failure_rolls_back_owned_and_preserves_foreign
     assert workflow.close()
 
 
+def test_recipe_rewrite_checks_handle_before_truncate_and_preserves_foreign(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    recipe = tmp_path / "owned.recipe.json"
+    recipe.write_bytes(b"owned-before-race")
+    real_open = os.open
+    injected = False
+
+    def replace_before_open(path: object, flags: int, mode: int = 0o777) -> int:
+        nonlocal injected
+        candidate = Path(path)  # type: ignore[arg-type]
+        if candidate == recipe and not injected:
+            injected = True
+            recipe.unlink()
+            recipe.write_bytes(b"FOREIGN-DO-NOT-TOUCH")
+        return real_open(path, flags, mode)  # type: ignore[arg-type]
+
+    monkeypatch.setattr(desktop_module.os, "open", replace_before_open)
+    with pytest.raises(ProductDesktopError, match="ownership changed"):
+        desktop_module._replace_owned_json(recipe, {"safe": True})
+    assert recipe.read_bytes() == b"FOREIGN-DO-NOT-TOUCH"
+
+
+@pytest.mark.parametrize("operation", ["create", "rewrite"])
+def test_json_fsync_failure_removes_only_owned_file(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, operation: str
+) -> None:
+    target = tmp_path / "batch.json"
+    if operation == "rewrite":
+        target.write_bytes(b"owned-old-recipe")
+
+    def fail_fsync(_descriptor: int) -> None:
+        raise OSError("injected fsync failure")
+
+    monkeypatch.setattr(desktop_module.os, "fsync", fail_fsync)
+    helper = (
+        desktop_module._write_bound_json
+        if operation == "create"
+        else desktop_module._replace_owned_json
+    )
+    with pytest.raises(OSError, match="injected fsync failure"):
+        helper(target, {"safe": True})
+    assert not os.path.lexists(target)
+
+
 def _tk_exists(root: Any) -> bool:
     try:
         return bool(root.winfo_exists())
@@ -453,15 +498,34 @@ def _pump_tk(
     assert predicate()
 
 
+_SHARED_TK_ROOT: Any | None = None
+
+
+def _shared_tk_root() -> Any:
+    import tkinter as tk
+
+    global _SHARED_TK_ROOT
+    if _SHARED_TK_ROOT is None or not _tk_exists(_SHARED_TK_ROOT):
+        _SHARED_TK_ROOT = tk.Tk()
+        _SHARED_TK_ROOT.withdraw()
+    return _SHARED_TK_ROOT
+
+
+def _reset_shared_tk_app(app: Any) -> None:
+    app.workflow.close()
+    app._clear_preview_widgets()
+    for child in tuple(app.root.winfo_children()):
+        child.destroy()
+    app.root.protocol("WM_DELETE_WINDOW", "")
+    app.root.update_idletasks()
+
+
 def test_native_batch_ui_tracks_progress_cancel_and_non_daemon_worker(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    import tkinter as tk
-
     first, second = _inputs(tmp_path)
     workflow = _workflow(tmp_path)
-    root = tk.Tk()
-    root.withdraw()
+    root = _shared_tk_root()
     shown: list[tuple[str, str]] = []
     started = threading.Event()
     release = threading.Event()
@@ -540,19 +604,15 @@ def test_native_batch_ui_tracks_progress_cancel_and_non_daemon_worker(
         )
     finally:
         release.set()
-        if root.winfo_exists():
-            app.close()
+        _reset_shared_tk_app(app)
 
 
 def test_native_close_waits_for_active_batch_worker(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    import tkinter as tk
-
     first, second = _inputs(tmp_path)
     workflow = _workflow(tmp_path)
-    root = tk.Tk()
-    root.withdraw()
+    root = _shared_tk_root()
     started = threading.Event()
     release = threading.Event()
     monkeypatch.setattr(
@@ -564,6 +624,8 @@ def test_native_close_waits_for_active_batch_worker(
         lambda *_args: None,
     )
     app = build_product_desktop_app(root, workflow, initial_input=first)
+    closed = threading.Event()
+    monkeypatch.setattr(app, "_finish_close", closed.set)
 
     def held_cancelled_export(
         inputs: object,
@@ -590,25 +652,21 @@ def test_native_close_waits_for_active_batch_worker(
         app.close()
         assert app._closing is True
         assert app._batch_cancel.is_set()
-        assert root.winfo_exists()
+        assert closed.is_set() is False
         release.set()
-        _pump_tk(root, lambda: not _tk_exists(root))
+        _pump_tk(root, closed.is_set)
         assert app._batch_thread is None
     finally:
         release.set()
-        if _tk_exists(root):
-            root.destroy()
+        _reset_shared_tk_app(app)
 
 
 def test_native_batch_success_and_error_clear_worker_state(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    import tkinter as tk
-
     first, _ = _inputs(tmp_path)
     workflow = _workflow(tmp_path)
-    root = tk.Tk()
-    root.withdraw()
+    root = _shared_tk_root()
     shown: list[tuple[str, str]] = []
     monkeypatch.setattr(
         "src.inference.product_desktop_ui.messagebox.showinfo",
@@ -654,19 +712,15 @@ def test_native_batch_success_and_error_clear_worker_state(
             "injected batch worker failure",
         )
     finally:
-        if _tk_exists(root):
-            app.close()
+        _reset_shared_tk_app(app)
 
 
 def test_one_photo_ui_keeps_single_export_route(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    import tkinter as tk
-
     first, _ = _inputs(tmp_path)
     workflow = _workflow(tmp_path)
-    root = tk.Tk()
-    root.withdraw()
+    root = _shared_tk_root()
     destination = tmp_path / "single.png"
     calls: list[tuple[str, Path]] = []
     shown: list[tuple[str, str]] = []
@@ -710,5 +764,4 @@ def test_one_photo_ui_keeps_single_export_route(
         assert shown[-1][0] == "Export complete"
         assert app._batch_thread is None and app.batch_active is False
     finally:
-        if _tk_exists(root):
-            app.close()
+        _reset_shared_tk_app(app)

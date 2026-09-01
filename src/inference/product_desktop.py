@@ -348,11 +348,37 @@ def _batch_input_matches(source: DesktopBatchInput) -> bool:
 
 def _write_bound_json(path: Path, payload: Mapping[str, Any]) -> _FileSeal:
     encoded = _encode_json(payload)
-    with path.open("xb") as handle:
-        handle.write(encoded)
-        handle.flush()
-        os.fsync(handle.fileno())
-    return _seal_file(path)
+    descriptor = os.open(
+        path,
+        os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, "O_BINARY", 0),
+        0o666,
+    )
+    details = os.fstat(descriptor)
+    identity = PublishedFileIdentity(
+        path=path,
+        device=details.st_dev,
+        inode=details.st_ino,
+    )
+    try:
+        with os.fdopen(descriptor, "wb") as handle:
+            descriptor = -1
+            if handle.write(encoded) != len(encoded):
+                raise OSError("short batch JSON write")
+            handle.flush()
+            os.fsync(handle.fileno())
+        seal = _seal_file(path)
+        if (
+            seal.identity != identity
+            or seal.size != len(encoded)
+            or seal.sha256 != hashlib.sha256(encoded).hexdigest()
+        ):
+            raise ProductDesktopError("batch JSON publication identity drifted")
+        return seal
+    except BaseException:
+        if descriptor >= 0:
+            os.close(descriptor)
+        remove_if_published(identity)
+        raise
 
 
 def _replace_owned_json(path: Path, payload: Mapping[str, Any]) -> _FileSeal:
@@ -360,14 +386,42 @@ def _replace_owned_json(path: Path, payload: Mapping[str, Any]) -> _FileSeal:
     if path.is_symlink() or not stat.S_ISREG(details.st_mode) or details.st_nlink != 1:
         raise ProductDesktopError("batch recipe ownership changed")
     encoded = _encode_json(payload)
-    with path.open("wb") as handle:
-        current = os.fstat(handle.fileno())
-        if (current.st_dev, current.st_ino) != (details.st_dev, details.st_ino):
+    identity = PublishedFileIdentity(
+        path=path,
+        device=details.st_dev,
+        inode=details.st_ino,
+    )
+    descriptor = -1
+    try:
+        descriptor = os.open(path, os.O_RDWR | getattr(os, "O_BINARY", 0))
+        with os.fdopen(descriptor, "r+b") as handle:
+            descriptor = -1
+            current = os.fstat(handle.fileno())
+            if (
+                (current.st_dev, current.st_ino)
+                != (identity.device, identity.inode)
+                or current.st_nlink != 1
+            ):
+                raise ProductDesktopError("batch recipe ownership changed")
+            handle.seek(0)
+            if handle.write(encoded) != len(encoded):
+                raise OSError("short batch recipe write")
+            handle.truncate()
+            handle.flush()
+            os.fsync(handle.fileno())
+        seal = _seal_file(path)
+        if (
+            seal.identity != identity
+            or seal.size != len(encoded)
+            or seal.sha256 != hashlib.sha256(encoded).hexdigest()
+        ):
             raise ProductDesktopError("batch recipe ownership changed")
-        handle.write(encoded)
-        handle.flush()
-        os.fsync(handle.fileno())
-    return _seal_file(path)
+        return seal
+    except BaseException:
+        if descriptor >= 0:
+            os.close(descriptor)
+        remove_if_published(identity)
+        raise
 
 
 def _cleanup_bound_stage(
