@@ -22,6 +22,19 @@ def test_u7_10a_formal_report_passes_all_frozen_mechanical_gates() -> None:
     assert all(report["scientific"]["gates"].values())
     assert len(report["scientific"]["cases"]) == 2
     assert sum(len(row["exports"]) for row in report["scientific"]["cases"]) == 6
+    gui = report["scientific"]["gui_smoke"]
+    assert gui["timed_out"] is False
+    assert gui["timeout_seconds"] == 75
+    assert gui["state"] == {
+        "absolute_path_disclosed": False,
+        "amount_label": "65%",
+        "amount_value": 0.65,
+        "export_enabled": True,
+        "input_label": "gui-source.png",
+        "preview_look_amount": 0.65,
+        "preview_ready": True,
+        "selected_style": "velvia_50",
+    }
 
 
 def test_u7_10a_implementation_commit_is_a_resolvable_full_commit() -> None:

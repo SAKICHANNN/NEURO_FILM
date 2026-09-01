@@ -7,6 +7,7 @@ import os
 import subprocess
 import sys
 import tempfile
+import time
 import tkinter as tk
 from pathlib import Path
 from typing import Any
@@ -147,18 +148,60 @@ def _case(
     }
 
 
-def _capture_visual(source: Path, scratch: Path, output: Path) -> int:
+def _capture_visual(
+    source: Path, scratch: Path, output: Path, facts_output: Path
+) -> int:
     root = tk.Tk()
     workflow = ProductDesktopWorkflow(root=ROOT, scratch_root=scratch)
     app = build_product_desktop_app(root, workflow, initial_input=source)
+    outcome: dict[str, BaseException | None] = {"error": None}
+
+    def capture_when_ready() -> None:
+        try:
+            if app.preview_ready and workflow.preview_state is not None:
+                root.update_idletasks()
+                preview_state = workflow.preview_state
+                facts = {
+                    "absolute_path_disclosed": str(source.parent)
+                    in app.input_text.get(),
+                    "amount_label": str(app.amount_label.cget("text")),
+                    "amount_value": app.amount.get(),
+                    "export_enabled": str(app.export_button.cget("state")) == "normal",
+                    "input_label": app.input_text.get(),
+                    "preview_look_amount": preview_state.look_amount,
+                    "preview_ready": app.preview_ready,
+                    "selected_style": app.style.get(),
+                }
+                facts_output.write_text(
+                    json.dumps(facts, sort_keys=True, separators=(",", ":")) + "\n",
+                    encoding="utf-8",
+                )
+                ImageGrab.grab(window=root.winfo_id()).save(
+                    output, format="PNG", compress_level=6
+                )
+                root.quit()
+                return
+            if time.monotonic() >= deadline:
+                raise RuntimeError(
+                    f"native preview did not reach ready state: {app.status.get()}"
+                )
+            root.after(25, capture_when_ready)
+        except BaseException as exc:  # noqa: BLE001 - return child failure to audit
+            outcome["error"] = exc
+            root.quit()
+
+    def start_preview() -> None:
+        app.amount.set(0.65)
+        app._amount_changed()
+        app.render_previews()
+        root.after(25, capture_when_ready)
+
+    deadline = time.monotonic() + 60.0
     try:
-        root.update()
-        state = workflow.render_previews(source, 0.65)
-        app._preview_complete(state)
-        root.update()
-        ImageGrab.grab(window=root.winfo_id()).save(
-            output, format="PNG", compress_level=6
-        )
+        root.after(0, start_preview)
+        root.mainloop()
+        if outcome["error"] is not None:
+            raise outcome["error"]
     finally:
         app.close()
     return 0
@@ -170,6 +213,7 @@ def _gui_visual(root: Path) -> tuple[dict[str, Any], bytes]:
     scratch = root / "gui-scratch"
     scratch.mkdir()
     screenshot = root / "gui-ready-state.png"
+    facts_path = root / "gui-ready-state.json"
     completed = subprocess.run(
         [
             sys.executable,
@@ -179,6 +223,7 @@ def _gui_visual(root: Path) -> tuple[dict[str, Any], bytes]:
             str(source),
             str(scratch),
             str(screenshot),
+            str(facts_path),
         ],
         cwd=ROOT,
         env=_environment(),
@@ -187,25 +232,34 @@ def _gui_visual(root: Path) -> tuple[dict[str, Any], bytes]:
         text=True,
         encoding="utf-8",
         errors="replace",
-        timeout=15,
+        timeout=75,
     )
     residue = tuple(scratch.iterdir())
     screenshot_payload = screenshot.read_bytes() if screenshot.is_file() else b""
+    facts = (
+        json.loads(facts_path.read_text(encoding="utf-8"))
+        if facts_path.is_file()
+        else {}
+    )
     if screenshot_payload:
         with Image.open(screenshot) as opened:
             screenshot_size = list(opened.size)
     else:
         screenshot_size = [0, 0]
     screenshot.unlink(missing_ok=True)
+    facts_path.unlink(missing_ok=True)
     source.unlink()
     scratch.rmdir()
     return (
         {
             "ready_state_png_sha256": hashlib.sha256(screenshot_payload).hexdigest(),
             "ready_state_size": screenshot_size,
+            "state": facts,
             "returncode": completed.returncode,
             "scratch_residue_count": len(residue),
             "stderr_empty": not completed.stderr,
+            "timeout_seconds": 75,
+            "timed_out": False,
         },
         screenshot_payload,
     )
@@ -258,12 +312,21 @@ def build_report(order: str, *, visual_output: Path | None = None) -> dict[str, 
             row["source_commit"] == execution_commit for row in all_exports
         ),
         "final_owned_residue_zero": final_residue_count == 0,
-        "gui_smoke_pass": gui["returncode"] == 0
+        "gui_smoke_pass": gui["timed_out"] is False
+        and gui["returncode"] == 0
         and gui["scratch_residue_count"] == 0
         and gui["stderr_empty"]
         and gui["ready_state_size"][0] >= 920
         and gui["ready_state_size"][1] >= 680
-        and bool(visual_payload),
+        and bool(visual_payload)
+        and gui["state"].get("amount_label") == "65%"
+        and gui["state"].get("amount_value") == 0.65
+        and gui["state"].get("preview_look_amount") == 0.65
+        and gui["state"].get("preview_ready") is True
+        and gui["state"].get("export_enabled") is True
+        and gui["state"].get("absolute_path_disclosed") is False
+        and gui["state"].get("input_label") == "gui-source.png"
+        and gui["state"].get("selected_style") == "velvia_50",
         "preview_workspace_cleanup_pass": all(
             row["preview_workspace_cleaned"] and row["scratch_residue_count"] == 0
             for row in rows
@@ -342,13 +405,13 @@ def main() -> int:
     parser.add_argument("--visual-output", type=Path, default=None)
     parser.add_argument(
         "--capture-visual",
-        nargs=3,
-        metavar=("SOURCE", "SCRATCH", "OUTPUT"),
+        nargs=4,
+        metavar=("SOURCE", "SCRATCH", "OUTPUT", "FACTS"),
     )
     args = parser.parse_args()
     if args.capture_visual is not None:
-        source, scratch, visual = (Path(value) for value in args.capture_visual)
-        return _capture_visual(source, scratch, visual)
+        source, scratch, visual, facts = (Path(value) for value in args.capture_visual)
+        return _capture_visual(source, scratch, visual, facts)
     if args.order is None or args.output is None:
         parser.error("--order and --output are required for a formal report")
     output = args.output.resolve(strict=False)
