@@ -1,0 +1,27 @@
+{
+  "schema_version": "neuro-film.u7-3m-research-recipe-product-export-exclusion.v1",
+  "decision": "prospective",
+  "node": "U7.3M",
+  "parents": ["U1.6G4J", "U7.3A", "U7.3D", "U7.3F", "U7.3I"],
+  "research_model": "staged-density-research",
+  "research_invalid_code": "recipe_research_only",
+  "required_gates": [
+    "default_history_retains_research_evidence",
+    "product_history_rejects_research_recipe",
+    "research_only_request_set_empty",
+    "direct_export_rejects_before_replay",
+    "browser_rejects_research_only_history",
+    "ordinary_product_request_and_replay_exact",
+    "mixed_history_exports_only_product_recipe",
+    "inputs_immutable_and_scratch_empty",
+    "fresh_process_scientific_payload_exact"
+  ],
+  "claim_ceiling": "Private product-export eligibility repair for existing deterministic Look Approximation recipe workflows only.",
+  "non_goals": [
+    "new export wrapper, page, format or renderer",
+    "research recipe deletion, mutation or relabelling",
+    "recipe schema or replay-engine change",
+    "stock calibration or physical-film response claim",
+    "public API, package, installer or release claim"
+  ]
+}
