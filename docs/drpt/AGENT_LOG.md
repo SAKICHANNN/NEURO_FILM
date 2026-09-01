@@ -21890,6 +21890,7 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   reviewers. U7.3M owned recipe-history/export/request eligibility plus new
   U7.3M artifacts; concurrent U7.2 work and foreign `.codex/`/`tmp/` remained
   untouched.
+
 - **Observed defect and repair:** a structurally valid v4 recipe carrying the
   research-only `staged-density-research` halation model remained `ready` in
   generic history and could be emitted as a product export request. Contract
@@ -22509,3 +22510,53 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   response, physical film, distinguishability, HDR/wide-gamut publication,
   public release or cross-platform GUI. Existing `.codex/` and `tmp/` remain
   untouched.
+
+### 2026-09-01 - U7.12C renders desktop previews at visible card geometry
+
+- **Node and routing:** `ULT > U7 productization > U7.12C`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the sole writer; router, DRPT-BI,
+  plan-tracker, project-structure and agent-log skills were read-only
+  governance. The long-term Look Approximation Goal remains accurate and
+  active. Producer preregistered the distinct U7.12D recovery leaf but released
+  every U7.12C path. Contract/config are `55b06441`; implementation/tests
+  `1f9f8903`; pre-execution timing clarification `f59b4e2f`; formal controller
+  `25de8307`; stable evidence `1beced49`.
+- **Defect and repair:** the desktop previously rendered three previews at up
+  to one million pixels each and immediately resampled every result to its only
+  visible 300x260 Tk card. `three_stock_preview.py` now accepts paired optional
+  positive width/height limits, and omission preserves the historical direct
+  API and manifest. `ProductDesktopWorkflow` owns the shared 300x260 constant,
+  passes both bounds and verifies geometry/manifest invariants; the UI imports
+  the same constant, so its defensive thumbnail is a no-op for candidate
+  output. Portrait, landscape, square, panorama, tiny/no-upsample and invalid
+  paired-bound cases are covered. Look math, amount, seed, decoder mode,
+  export, recipe, output format, batch and cache semantics are unchanged.
+- **Formal evidence:** exact frozen 4032x6048 JPEG and 4128x2176 Blackmagic DNG
+  fixtures were each executed as baseline/candidate in two fresh workers under
+  forward and reverse source order. Reports are 27,370 / 27,372 bytes at SHA
+  `cd4fd86258b9fc9eeff79872c78992d00336e9b6a6b67aef9a1f10bb63a6a5c8`
+  / `423162465dd714fbafa5e567a1c7909ef45e247dd7c1e57246c1ffa0ffbd7967`.
+  Raw timing/RSS diagnostics are intentionally non-identical; the normalized
+  scientific payload is exact at
+  `404aab50eed0aff39571d706e72b2182a57ca5b05cc7fb17eeb048df4374fce4`
+  and all 20 controller gates pass. JPEG median renderer wall changes from
+  4.304-4.310s to .421-.450s (ratio .0977-.1045); DNG changes from
+  4.371-4.612s to .794-.805s (ratio .1722-.1841). Candidate RSS is below
+  baseline in both orders; maximum RGB RMSE/p95 are .01735/.03530, candidate
+  outputs are repeat-exact/distinct, decoder paths are unchanged and
+  new-boundary fraction/residue are zero.
+- **Verification and boundary:** standalone U7.3G, U4.5B, U4.5F behavioral,
+  U7.10A, U7.11A, U7.12A, U7.12B and U7.12C suites pass 107 tests; one U4.5F
+  historical current-file binding is deliberately deselected because this
+  contract preserves rather than rewrites old evidence. An initial combined
+  process reported 107 passes plus two expected historical current-file
+  binding mismatches and one multi-root Tk `pyimage` lifetime error; the exact
+  Tk case passed in isolation and the complete standalone parent suites then
+  passed. Ruff, compileall, JSON and diff checks pass. Formal raw reports were
+  removed after evidence binding. The claim is only private two-fixture
+  Windows/Python preview latency and visible-fidelity mechanics for the existing
+  deterministic `film-inspired / Look Approximation` choices. It is not
+  arbitrary-input/device quality, calibrated stock response, physical-film
+  reproduction, stock distinguishability, HDR/wide-gamut publication,
+  installer, public release or cross-platform GUI evidence. AO6 remains only
+  the Velvia 50 display-proxy Look Approximation baseline.
