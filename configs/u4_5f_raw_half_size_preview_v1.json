@@ -1,0 +1,81 @@
+{
+  "schema": "kmcfm.u4-5f-raw-half-size-preview-contract.v1",
+  "upstream": {
+    "p98_config_path": "configs/p98_dng_forward_raster_v1.json",
+    "p98_config_sha256": "5fb17f82cfecdae40a4c812f2ea9c26641e91bcab43e17c8a6a4bc94b2f03c35",
+    "p98_evidence_path": "docs/evidence/P98_DNG_FORWARD_RASTER_RESULT.json",
+    "p98_evidence_sha256": "e73c99fe61781988f61a56fec46278d715431c04ec432173639deb16ba7cfac5"
+  },
+  "sources": [
+    {
+      "source_id": "motorola_moto_g_7_play",
+      "path": "data/external/rawpixls_bh1_v1/raw/motorola_moto_g_7_play.dng",
+      "sha256": "d46953b116ee7a88b99fb28edc7b2f1b631ed09d66f73391c4ccc2e2ec959575",
+      "bytes": 26286800,
+      "width": 4208,
+      "height": 3120
+    },
+    {
+      "source_id": "lg_lg_h850",
+      "path": "data/external/rawpixls_bh1_v1/raw/lg_lg_h850.dng",
+      "sha256": "be58e948626b193538217e96bc6d9ff5fdeb91a3a8a8af65624dab41ae39895f",
+      "bytes": 16005440,
+      "width": 3264,
+      "height": 2448
+    },
+    {
+      "source_id": "xiaomi_m2010j19cg",
+      "path": "data/external/rawpixls_bh1_v1/raw/xiaomi_m2010j19cg.dng",
+      "sha256": "e1cb49299faa6609547bbb9b2c5a6167031694a99a1d252e1e048ce18ddf214f",
+      "bytes": 24029476,
+      "width": 4000,
+      "height": 3000
+    },
+    {
+      "source_id": "blackmagic_pocket_cinema_camera_4k",
+      "path": "data/external/rawpixls_bh1_v1/raw/blackmagic_pocket_cinema_camera_4k.dng",
+      "sha256": "1491a5e5d580a9be151747bddce89faca4d0b9d352503270f516bbf8e8cdf0d9",
+      "bytes": 4497152,
+      "width": 4128,
+      "height": 2176
+    },
+    {
+      "source_id": "huawei_eml_l29",
+      "path": "data/external/rawpixls_bh1_v1/raw/huawei_eml_l29.dng",
+      "sha256": "77385bde838ab7e0a5b067d7f6e6b8cb3019a3c22353fae6b8689a43adda439a",
+      "bytes": 23643352,
+      "width": 3968,
+      "height": 2976
+    }
+  ],
+  "runtime": {
+    "platform": "Windows",
+    "rawpy": "0.26.1",
+    "libraw": [0, 22, 0]
+  },
+  "render": {
+    "max_preview_pixels": 1000000,
+    "look_amount": 1.0,
+    "seed": 7,
+    "tile_size": 256,
+    "tile_workers": 1,
+    "png_compression": 6
+  },
+  "gates": {
+    "maximum_rgb_rmse_vs_full_decode": 0.03,
+    "maximum_rgb_absolute_error_p95": 0.08,
+    "maximum_new_boundary_fraction": 0.001,
+    "maximum_candidate_process_tree_rss_bytes": 536870912,
+    "maximum_candidate_to_full_rss_ratio_per_source": 0.75,
+    "maximum_candidate_wall_seconds_per_source": 15.0,
+    "maximum_median_candidate_to_full_wall_ratio": 0.95,
+    "maximum_worst_candidate_to_full_wall_ratio": 1.05,
+    "require_exact_timing_excluded_replay": true,
+    "require_exact_candidate_output_hashes": true,
+    "require_three_distinct_stock_outputs": true,
+    "require_exact_preview_dimensions": true,
+    "require_source_immutability": true,
+    "require_zero_owned_residue": true
+  },
+  "claim_ceiling": "Private Windows/Python 1MP RAW half-size preview mechanics on five exact P98 DNG files for three deterministic Look Approximations only; no arbitrary RAW, vendor/Adobe parity, calibrated camera colour, scene-to-display quality, final export, stock response, public API/package, device, release or product-admission claim."
+}
