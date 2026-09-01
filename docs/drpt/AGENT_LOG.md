@@ -22997,3 +22997,45 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   arbitrary-media quality, public/cross-platform release or product-value
   evidence. Stop automatic representative scoring and adjacent selector
   wrappers; no push occurred.
+
+### 2026-09-02 - U7.15B binds visible strength to preview and recipe
+
+- **Node and routing:** `ULT > U7 productization > U7.15B`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the sole writer; structure and agent-log
+  disciplines were read-only secondary checks. Producer/consumer tasks were
+  notified of exact ownership and did not touch the U7.15B paths. The active
+  Codex Goal remained the single long-lived Look Approximation product goal;
+  no leaf Goal was created or retriggered. Foreign `.codex/` and `tmp/` were
+  preserved and not staged.
+- **Defect and implementation:** frozen parent `ea805347` reproduces a visible
+  mismatch: `0.654321` is labelled `65%` while the workflow receives
+  `0.654321`. Contract `3ffabb9b` and implementation `fbdc76d3` make the native
+  Tk UI use deterministic half-up integer-percent quantization, write the exact
+  snapped value back to the control, and repeat the snap at render entry.
+  Thus `0.625` becomes `63%` / `0.63`, a programmatic `0.654321` write becomes
+  `65%` / `0.65`, and non-finite values stop before workflow execution. The
+  continuous workflow/CLI API and product desktop core remain byte-exact.
+- **Formal evidence:** audit `85bbc935` plus direct-entry correction `51f71fc6`
+  run the parent/current real-Tk probes, the real preview/export/recipe case,
+  U7.15A representative behavior and focused U7.10A/U7.14A parents. The first
+  audit test stopped before Tk/tests/report because direct script execution did
+  not yet add the repo root to `sys.path`; the correction changes no product,
+  case or gate. Accepted forward/reverse reports are byte-identical at 2,744
+  bytes / SHA
+  `fccc0a8d1e2a2ab25d58c7c9b5dc206ce4f541c40a7573d5b92e4ac788a0052b`;
+  scientific identity is
+  `b70aad78b7f756754c1f4545d6b8f6f1c6b59edef0f40ae48e60d3a97c3ca4f3`
+  and every gate passes. Evidence commits `f762e7d0` / `febd5e9b` bind the
+  result and isolated regression facts.
+- **Verification and boundary:** 13 focused tests and 33 preformal parents pass.
+  A single combined 68-test Tk process produces 66 passes plus two known
+  cross-module `PhotoImage` interpreter-lifetime failures; U7.12B and U7.14A
+  then pass 14/14 and 10/10 in separate fresh processes, respectively. Ruff,
+  format, py_compile, JSON and diff checks pass. README now says the displayed
+  integer percent is the preview/export/recipe value. No renderer, look,
+  profile, output, recipe/receipt schema, batch order or representative
+  behavior changed. This is private native-Tk control consistency for
+  deterministic `film-inspired / Look Approximation`, not calibration,
+  physical film, distinguishability, public/cross-platform release or product
+  value. Stop adjacent strength widgets/presets/history/automatic-strength
+  expansion; no push occurred.

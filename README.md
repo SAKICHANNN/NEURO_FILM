@@ -81,8 +81,10 @@ use **Choose photos** in the window.
 
 The window exposes one bounded strength control and renders three distinct
 Velvia 50, Portra 400 and Ektar 100 previews through the existing deterministic
-preview path. No look is selected by default: choose one visible radio option
-before export becomes available. Single-photo and atomic multi-photo sessions
+preview path. Strength snaps half-up to the displayed integer percentage, and
+that exact visible value is used by preview, export and recipe. No look is
+selected by default: choose one visible radio option before export becomes
+available. Single-photo and atomic multi-photo sessions
 offer one batch-wide PNG16, TIFF16 or JPEG8 choice; PNG16 remains the default,
 and every output is published create-only with a strict recipe. Atomic batches
 also return a replayable receipt. Mixed-format batches are forbidden, and the
