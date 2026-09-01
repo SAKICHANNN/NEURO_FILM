@@ -33,7 +33,8 @@
     ]
   },
   "gates": {
-    "require_default_explicit_level_6_byte_identity": true,
+    "require_default_explicit_level_6_output_identity": true,
+    "require_default_explicit_level_6_manifest_semantic_identity": true,
     "require_historical_level_6_output_identity": true,
     "require_all_levels_decoded_rgb8_identity": true,
     "require_all_levels_icc_identity": true,

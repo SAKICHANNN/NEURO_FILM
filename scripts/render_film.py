@@ -282,6 +282,16 @@ def parse_args() -> argparse.Namespace:
                 parser.error(f"{option} must be finite and in [0,1]")
         if not -(2**31) <= args.seed <= 2**31 - 1:
             parser.error("--seed must be a signed 32-bit integer")
+        if (
+            args.output is not None
+            and args.output_bit_depth == 8
+            and args.output.suffix.casefold()
+            not in {".png", ".jpg", ".jpeg", ".tif", ".tiff"}
+        ):
+            parser.error(
+                "unsupported 8-bit product output extension: "
+                f"{args.output.suffix or '<none>'}"
+            )
         args.style = args.product_look
         args.use_render_profile = True
         args.render_profile = (

@@ -35,7 +35,8 @@ but omitted from the `save_srgb8` call.
    `[0, 9]`; its omitted default remains byte-identical to historical behavior.
 2. The preview renderer passes the validated level to the encoder and records
    `png_compression` in `preview.json`.
-3. Default and explicit level 6 produce identical PNG and manifest bytes.
+3. Default and explicit level 6 produce identical PNG bytes and identical
+   semantic manifest facts after excluding destination-dependent output paths.
 4. Levels 0 and 9 decode to exactly the same RGB8 samples and ICC bytes as
    level 6, while their encoded PNG identities differ.
 5. Level 9 must not exceed level 0 in byte length on every frozen look.
