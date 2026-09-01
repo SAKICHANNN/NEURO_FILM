@@ -21,6 +21,10 @@ three-look input-batch experiment, an installer, or a public API.
 - U7.12C is a hard implementation dependency: no U7.12D source, test, pixel, or
   formal run may begin until U7.12C reaches a committed terminal result and its
   parent regressions are stable.
+- The terminal U7.12C evidence is now fixed at commit `1beced4957988619c2f552af820fe6f5f9a7efd3`,
+  Git blob `cb456759c1966f7194742f80a93a1cc04dc67539`, file SHA-256
+  `a68f6d0ebba6d74341798a8828fcc10da9c9ed164078ae6f63bf92ec6161c2ef`,
+  and scientific identity `sha256:404aab50eed0aff39571d706e72b2182a57ca5b05cc7fb17eeb048df4374fce4`.
 - This preregistration owns only this contract and its matching config. It does
   not claim U7.12C source, audit, evidence, tracker, or agent-log paths.
 - Existing `.codex/` and `tmp/` are foreign/untracked. Formal scratch must use
