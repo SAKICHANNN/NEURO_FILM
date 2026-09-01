@@ -1,0 +1,40 @@
+{
+  "schema": "kmcfm.u7-9a-private-windows-product-runtime-install.v1",
+  "source_parent_commit": "045d36e05880ef86ca8120ce66240014e14716ac",
+  "requirements": {
+    "path": "requirements-product-v2.txt",
+    "sha256": "78b2ec79ffd4053c42c90a5db765baf715fed261efa39a5e762e013145718517"
+  },
+  "python": {
+    "implementation": "CPython",
+    "major": 3,
+    "minor": 12,
+    "windows_only": true
+  },
+  "entrypoint": "scripts/render_film.py",
+  "available_looks": [
+    "velvia_50",
+    "portra_400",
+    "ektar_100"
+  ],
+  "forbidden_distributions": [
+    "omegaconf",
+    "antlr4-python3-runtime"
+  ],
+  "launcher_name": "kmcfm-look.cmd",
+  "receipt_name": "product-runtime.json",
+  "install_policy": {
+    "only_binary": true,
+    "destination_must_be_absent": true,
+    "rollback_only_while_owned": true,
+    "repository_bound": true,
+    "public_distribution": false
+  },
+  "claim": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false,
+    "public_release": false
+  }
+}
