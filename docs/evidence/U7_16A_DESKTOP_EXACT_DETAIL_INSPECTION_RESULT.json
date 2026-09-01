@@ -1,0 +1,121 @@
+{
+  "schema": "kmcfm.u7-16a-desktop-exact-detail-inspection-evidence.v1",
+  "node_id": "U7.16A",
+  "status": "PASS_PRIVATE_U7_16A_DESKTOP_EXACT_DETAIL_INSPECTION",
+  "formal_source_commit": "fee86cc4ffb2f0c7bc945064ab0f433ca8f26f7f",
+  "bindings": {
+    "configs/u7_16a_desktop_exact_detail_inspection_v1.json": {
+      "git_blob": "f2d570f927b33b2aee4441780d6490bb191a3a97",
+      "bytes": 2028,
+      "sha256": "a9ea190fb2e3a7dadebc8b21ffa7257897177e74f31c4f1b4d281f3639d09f58"
+    },
+    "docs/planning/U7_16A_DESKTOP_EXACT_DETAIL_INSPECTION_CONTRACT.md": {
+      "git_blob": "15c70d86ff0b2f78091f07e195eee5b8f05fc6d7",
+      "bytes": 7906,
+      "sha256": "c04dc16bd304f7b75b6d19073a89a9cfcb095352a0a544923bac673355413513"
+    },
+    "scripts/audit_u7_16a_desktop_exact_detail_inspection.py": {
+      "git_blob": "d16b2642e0234f035d7daf2b39e995ee12a1809c",
+      "bytes": 13182,
+      "sha256": "d763f94109acc7c1d5343d528622e49905ddd23b697a10fe94e9687b43ca147b"
+    },
+    "src/inference/product_desktop.py": {
+      "git_blob": "c6bf335f773761027edaccc039740f0700ac19e7",
+      "bytes": 55151,
+      "sha256": "d9243200254947f9838da026d7e2edd9fa9415840ea92dd1ebae2a582ceb2aec"
+    },
+    "src/inference/product_desktop_ui.py": {
+      "git_blob": "e8011f3d210280a0ba5609fe8aef68504ce4fcb0",
+      "bytes": 39634,
+      "sha256": "92eb94bd59e582ed13a9e84833d8e14aa68f53f35239fa8bbc3221e59befce0a"
+    },
+    "src/inference/product_detail_inspection.py": {
+      "git_blob": "2d33f08736737bddda997d63383714b0ef5afdbb",
+      "bytes": 8282,
+      "sha256": "001d2b4a35f514e90b906eca54c010510b883dea10751a56ec51c6380e4a373b"
+    },
+    "tests/test_audit_u7_16a_desktop_exact_detail_inspection.py": {
+      "git_blob": "a0898a22f6ef6d9a43237b9b7cbe60f3bc7d3b37",
+      "bytes": 1681,
+      "sha256": "286f46ae94f940b0d525dd3352e421fcecd31b586a82f586056d45ad2392d002"
+    },
+    "tests/test_u7_16a_desktop_exact_detail_inspection.py": {
+      "git_blob": "69bc5360d90f4479b1faa03db54e93871e4c20e2",
+      "bytes": 11543,
+      "sha256": "d1605cff0f22d8d34542b18bfb00f43802b3a28c0a5fe1e9182e9c835cfb0b9f"
+    }
+  },
+  "formal_reports": {
+    "forward_path": "outputs/u7_16a_exact_detail_formal_v4/forward.json",
+    "reverse_path": "outputs/u7_16a_exact_detail_formal_v4/reverse.json",
+    "bytes_each": 4864,
+    "sha256": "4573b16abe5d2801199c44d4dd78de6e69c7c1c60c9dcec196c62aaf9e09c177",
+    "scientific_identity": "9561ff070ab971308d47217d433ac16a9ec461ce1f508e6ce643e506bd895c4f",
+    "forward_reverse_byte_exact": true,
+    "all_gates_pass": true
+  },
+  "primary_observation": {
+    "input_sha256": "7ea3d1ed37b7df518c0466c1379f08aa34ea5ae00eb7dc8208fcff2cfe68d1c6",
+    "style_id": "ektar_100",
+    "look_amount": 0.65,
+    "output_format_id": "png16",
+    "full_dimensions": [4032, 6048],
+    "crop_box": [2687, 1619, 3199, 2131],
+    "detail_dimensions": [512, 512],
+    "temporary_full_output_sha256": "6a59b27af8a12da6edec5d157b3bc683cb9af4ec968dcf9f5da92d7b5849e603",
+    "ordinary_full_output_sha256": "6a59b27af8a12da6edec5d157b3bc683cb9af4ec968dcf9f5da92d7b5849e603",
+    "detail_rgb_sha256": "82b359a9233c4dc25a021f502fc4fc876c29611d92a7e24e692d3e52bc9c07ff",
+    "oracle_rgb_sha256": "82b359a9233c4dc25a021f502fc4fc876c29611d92a7e24e692d3e52bc9c07ff",
+    "temporary_workspace_residue": 0,
+    "scratch_residue": 0,
+    "source_immutable": true
+  },
+  "excluded_reports": [
+    {
+      "path": "outputs/u7_16a_exact_detail_formal_v1/forward.json",
+      "bytes": 4665,
+      "sha256": "84ed4500b765ab6d283a93c45f351bd646eb19c0e626ab1f0bcc466ac2d1146e",
+      "reason": "parent Windows worktree SHA was incorrectly compared with LF Git blob bytes"
+    },
+    {
+      "path": "outputs/u7_16a_exact_detail_formal_v2/forward.json",
+      "bytes": 4666,
+      "sha256": "0563961b140ed1981bcd772142d7bc275443c863e2a136fc6bb4647a6c984a28",
+      "reason": "one isolated U7.10A process returned 1 without retained failure-node output; immediate standalone rerun passed 20/20"
+    },
+    {
+      "forward_path": "outputs/u7_16a_exact_detail_formal_v3/forward.json",
+      "reverse_path": "outputs/u7_16a_exact_detail_formal_v3/reverse.json",
+      "bytes_each": 4935,
+      "forward_sha256": "952da6ca7f156eb1216171008d55418389727273d5253a98baf4750318b383f4",
+      "reverse_sha256": "a2041233ab7602b474de58f6b8988452871be5e85ba3ff3bbb354731c424cb7b",
+      "reason": "both directions passed but unique destination paths changed strict recipe file hashes inside the scientific payload"
+    }
+  ],
+  "verification": {
+    "focused_u7_16a_tests": 21,
+    "audit_tests": 5,
+    "isolated_parent_files": 9,
+    "isolated_parent_tests_in_accepted_reports": true,
+    "ruff": "pass",
+    "format": "pass for new files; legacy core/UI intentionally not reformatted",
+    "py_compile": "pass",
+    "json": "pass",
+    "diff_check": "pass",
+    "tracked_clean": true
+  },
+  "claim": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "private_windows_python_spatial_detail_only": true,
+    "one_exported_pixel_per_viewer_pixel": true,
+    "sample_code_or_display_calibrated": false,
+    "renderer_or_look_math_changed": false,
+    "recipe_or_receipt_schema_changed": false,
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false,
+    "stock_distinguishability": false,
+    "hdr_or_wide_gamut": false,
+    "public_or_cross_platform_release": false
+  }
+}
