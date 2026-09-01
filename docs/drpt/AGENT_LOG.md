@@ -22041,3 +22041,51 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   fail-closed because the repository has no root license. Stop adjacent
   bootstrap/launcher variants and return to a distinct substantive product
   capability or defect.
+
+### 2026-09-01 - U7.3N makes preview-cache index publication create-only
+
+- **Node and routing:** `ULT > U7 desktop workflow > U7.3N`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the sole write workflow; router, DRPT-BI,
+  planning, project-structure, agent-log and code-review disciplines were
+  read-only secondary reviewers. The leaf owned the preview-cache core plus
+  new U7.3N contract/config/audit/test/evidence paths; concurrent U7.9B and
+  foreign `.codex/`/`tmp/` paths remained untouched.
+- **Observed defect and repair:** `publish_three_stock_preview_cache_index`
+  checked an absent `preview-cache.json`, validated all inputs, then called the
+  replacement-capable generic JSON writer. A deterministic late-winner control
+  proved that an intervening foreign index was overwritten. Contract
+  `89ca88bd`, implementation `ed9ea8ec`, identity lock `01c325aa` and audit
+  protocol `9dfd9246` retain the exact historical JSON encoding while writing
+  one exclusive sibling stage and publishing it with the existing same-volume
+  create-only primitive. Cleanup is identity-bound to the owned stage. No
+  cache schema, hash, receipt, session, renderer, preview media or latency
+  policy changed.
+- **Formal evidence:** execution lock `1dd7ed00` includes the concurrent U7.9B
+  audit source in its ancestry. From-zero forward/reverse reports are each
+  5,111 bytes and byte-identical at SHA-256
+  `4d1495adc9fdf0fa9443b48fac42f783a4ec742fd537554c4b43bc5b7018d850`;
+  stable identity is
+  `57fd93ceb99ac9cd660e21dc91363cbd8fca1d080eed84eee1858b680376b4a1`.
+  All eleven source, existing/late-foreign preservation, stage-replacement,
+  clean-failure, exact-byte, parent inspection, receipt inspection and residue
+  gates pass. Evidence/test commit is `bb5d3fed`; tracked evidence Git-LF SHA
+  is the same exact report SHA.
+- **Change propagation and verification:** U4.5E's historical live audit had
+  hard-required its original cache-core Git object, so the legitimate repair
+  alone made that live gate fail while every other receipt/media/function gate
+  passed. Commit `9b73a788` adds a two-object exact allowlist for only the
+  historical blob and U7.3N blob; an unknown blob still rejects and historical
+  evidence is not rewritten. Twenty-eight focused parent/compatibility tests
+  pass. The complete U7.3 plus U4.5C/E adjacent run reports 122 passed and one
+  existing filesystem skip; Ruff, compileall, JSON, Git-object/report identity
+  and scoped diff checks pass. A broader exploratory preview/cache sweep also
+  exposed U4.5F's pre-existing live-file binding drift caused by later U4.5G
+  preview evolution; it is unrelated to U7.3N and was deliberately not folded
+  into this repair.
+- **Claim and handoff:** this proves only private Windows process-level
+  ownership safety for the existing film-inspired / Look Approximation cache
+  index. It does not improve cache latency, change cache authority, add a
+  renderer/media path, validate stock response or open packaging/release.
+  U7.3 is complete through N; stop adjacent cache wrappers and return to a
+  non-duplicate substantive product gap or genuinely new rights-clear physical
+  observation.
