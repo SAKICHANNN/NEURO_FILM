@@ -23279,3 +23279,38 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   not generic vendor RAW, vendor colour/demosaic quality, pixel-shift fusion,
   calibrated stock response, physical-film reproduction, multi-stock
   completion, public release or product promotion. No push occurred.
+
+### 2026-09-02 - U7.19C retains bounded execution but fails its frozen dimension gate
+
+- **Node and routing:** `ULT > U7 productization > U7.19C`, DRPT L2 / Mode C,
+  R1 local. `dev-research-reliability` was the sole writer; router, structure
+  and agent-log disciplines were read-only secondary checks. The long-lived
+  Look Approximation product Goal remains accurate and active; no leaf Goal
+  was created, completed or replaced. Both parallel tasks confirmed exact path
+  and shared-doc availability.
+- **Product repair:** freeze `30ead8ac`, implementation `d9e813b5`, audit
+  `09c2d725`, and execution lock `78d9c0a1` make the previously proved exact
+  safe-Lab `256/1` policy the internal default for
+  `safe-rich-product-v1` CLI and replay only when no explicit policy exists.
+  Existing explicit tile requests and legacy/research profiles remain
+  unchanged. U7.19B and its 16 GiB negative remain immutable.
+- **Formal outcome:** both exact X2D `.3fr` and `.fff` workers complete CLI and
+  strict replay at about `9.65GiB` peak (`10,366,980,096` and
+  `10,367,361,024` bytes), versus U7.19B's `17.21--17.40GB`; output/replay,
+  Look Approximation claim, policy, binding, source, network and cleanup gates
+  all pass. The accepted forward report is 5,372 bytes / SHA
+  `501041d92f8a2386d3b95dd00d9777737c2bcdbe0ed48c269550e5211d70c20a`,
+  scientific identity
+  `0686485efa1b96a99c26f732783acad2616246f0e67dd20e5dc1261d986d67e4`.
+- **Fail-closed boundary:** the contract incorrectly froze stored/raw
+  `8842x11904` dimensions rather than the public LibRaw visible raster
+  `8750x11664`. That sole frozen gate fails. Reverse was not run once the
+  candidate was closed; no dimension correction, tile/worker change, gate
+  relaxation or adjacent U7.19D rescue is allowed. Evidence commit
+  `e154d2e0` records the negative while retaining the safe code improvement.
+- **Verification and claim:** focused preformal tests pass 28/28; U7.19C
+  formal/evidence tests pass 6/6. Adjacent behavioral coverage produced 95
+  passes plus one expected immutable U7.19A current-file binding failure after
+  `render_film.py` changed; historical evidence was not rewritten. Ruff,
+  compileall, JSON and diff checks pass. No generic Hasselblad/RAW, calibrated
+  stock, physical-film, public release or product-value claim; no push.
