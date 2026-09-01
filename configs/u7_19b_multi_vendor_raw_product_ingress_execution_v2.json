@@ -1,0 +1,33 @@
+{
+  "schema": "kmcfm.u7-19b-multi-vendor-raw-product-ingress-execution-lock.v2",
+  "node_id": "U7.19B",
+  "status": "FROZEN_FORMAL_EXECUTION",
+  "admitted_extensions": [".3fr", ".fff", ".mos", ".nef", ".raf", ".x3f"],
+  "bindings": {
+    "contract": {"path": "docs/planning/U7_19B_MULTI_VENDOR_RAW_PRODUCT_INGRESS_CONTRACT.md", "bytes": 3981, "sha256": "f1ffe1a9ec260a010eec43a5c9c6405e8226b45adeae5c778dda9780587a0ab2"},
+    "config": {"path": "configs/u7_19b_multi_vendor_raw_product_ingress_v1.json", "bytes": 7236, "sha256": "2c7e94516305a41e85ad63d2d3f6991240d70961078670071e6b10b3669a9322"},
+    "audit": {"path": "scripts/audit_u7_19b_multi_vendor_raw_product_ingress.py", "bytes": 20633, "sha256": "c8665421f3959c664a8a4b3187bd44a28c4617a3cef6d9992743f1f222bc17ca"},
+    "test": {"path": "tests/test_u7_19b_multi_vendor_raw_product_ingress.py", "bytes": 4913, "sha256": "77d5d54f695421c2e3811aec9f0e351774cc237443007b337ddebd15526a6620"}
+  },
+  "preflight_reports": {
+    "forward": {"path": "outputs/u7_19b_multi_vendor_raw_product_ingress_v1/preflight_forward.json", "bytes": 41116, "sha256": "aa2bca3cb228253ca66fbeb1a7c5649dfeab0bd250e2ae8cc8a67cdf479f7eae"},
+    "reverse": {"path": "outputs/u7_19b_multi_vendor_raw_product_ingress_v1/preflight_reverse.json", "bytes": 41116, "sha256": "a2fc868df1fb3eb860e6add0153cecf093ec63bd49e4a1b06c25c8309055213b"}
+  },
+  "preflight_scientific_identity": "sha256:ef278a92d10de2a4f7bc366543de9d65c754a129cd13e1bd250233159ae9f3d6",
+  "commits": {
+    "contract_freeze": "acaca1bfe894d8c0fdb3e14c97c9407d76beee6f",
+    "contract_binding": "1ee4c33f6e65fb09a2b4c3f34d2f84d82c1051e1",
+    "preflight_runner": "7778166b3bbfaf22418630a028ee930d39043997",
+    "process_tree_correction": "eedab204a23a2e57ba20994d5cc838618123b31b",
+    "empty_scratch_recovery": "017dff7433d51a61a1d2b753fbbb451334fd8be7",
+    "scientific_recovery_normalization": "e70fa97a323464023dee688b07c32b5adebce122"
+  },
+  "excluded_v1": {
+    "formal_reports": 0,
+    "owned_residue_files_after_recovery": 0,
+    "reason": "The first formal controller measured only the direct worker peak while render_film was a child process. Root interrupted its owned 3FR controller before a report, then corrected measurement to the full process tree and reran both preflights from zero."
+  },
+  "scratch_root": "tmp/u7_19b_multi_vendor_raw_product_ingress/media",
+  "runtime": {"platform": "Windows", "python": "3.12.10", "rawpy": "0.26.1", "libraw": [0, 22, 0], "numpy": "2.4.4", "pillow": "12.1.1"},
+  "stop_rule": "Formal V2 execution uses exactly the six corrected-preflight-admitted representatives. Any failure closes that extension; do not replace sources, alter roles, relax resources, tune rendering, invoke private callables or change claim boundaries."
+}
