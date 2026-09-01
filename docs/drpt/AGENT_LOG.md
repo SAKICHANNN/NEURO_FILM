@@ -21994,3 +21994,50 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   physical-film reproduction, packaging, installer or release readiness. Stop
   adjacent effect-option wrappers and return to a non-duplicate substantive
   product defect or genuinely new identifying observation.
+
+### 2026-09-01 - U7.9A makes the private Windows product runtime installable
+
+- **Node and routing:** `ULT > U7 productization > U7.9A`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the sole write workflow; router, DRPT-BI,
+  planning, project-structure and agent-log disciplines were read-only
+  secondary reviewers. U7.9A owned only its contract/config, installer,
+  audit/tests/evidence and README entries; U7.2V and foreign `.codex/`/`tmp/`
+  were preserved.
+- **Product gap and implementation:** the exact first-class Look Approximation
+  CLI and binary-only dependency set existed, but a user still had to assemble
+  the runtime manually. Contract `77f43cc7` and implementation `99940880` add a
+  standard-library, create-only Windows CPython 3.12 installer. It verifies the
+  exact `requirements-product-v2.txt`, installs only binary wheels, runs `pip
+  check`, imports all 12 product distributions, proves OmegaConf/ANTLR absent,
+  and emits a hash-bound receipt plus repository-bound launcher. The launcher
+  revalidates repository HEAD, tracked cleanliness and requirements identity on
+  every invocation.
+- **Formal evidence:** audit `513a8b35` plus the P-backed junction containment
+  correction `7cc9ad6a` produced two committed-head reports that are
+  byte-identical at 7,474 bytes / SHA
+  `50db4f13f245d9b7a64095360a93e5dbf6fb9c1581456990e1f0659591d727f6`,
+  stable identity
+  `7c1877ff8ef97e4ef58e1a25becd52cca00c2666378220a5f5c34bf151e1b92f`.
+  Twelve wheels total 111,666,287 bytes; `pip check`, foreign-CWD launch,
+  catalog/claim identity, existing-destination preservation, failed-install
+  cleanup, requirements-drift rejection and HEAD-drift rejection all pass.
+  Direct and launcher renders are byte-exact for Velvia 50, Portra 400 and
+  Ektar 100; formal installation/cache/temp residue is zero. Evidence/test
+  commit is `8427032a`.
+- **Correction and verification:** the first audit invocation stopped before
+  wheelhouse, environment, media or report work because it compared the C-side
+  junction spelling with the resolved P-side physical path. Only that
+  containment check changed, and both accepted runs restarted from the
+  corrected committed HEAD. Eight installer/evidence tests pass; source/report
+  hashes, README guidance, Git diff and tracked cleanliness were independently
+  rechecked. The separately retained P-backed ignored wheelhouse is setup
+  scratch, not formal-install residue; an exact cleanup request was rejected by
+  platform destructive-action policy and was not bypassed.
+- **Claim and handoff:** README commit `703976db` makes this the primary private
+  Windows install flow and labels all named outputs film-inspired / Look
+  Approximation. The runtime is deliberately repository-bound, not standalone
+  or portable. No public package, calibrated stock response, physical-film or
+  completed multi-stock calibration claim opens. Public distribution remains
+  fail-closed because the repository has no root license. Stop adjacent
+  bootstrap/launcher variants and return to a distinct substantive product
+  capability or defect.
