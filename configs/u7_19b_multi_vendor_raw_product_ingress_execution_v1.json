@@ -7,7 +7,7 @@
     "contract": {"path": "docs/planning/U7_19B_MULTI_VENDOR_RAW_PRODUCT_INGRESS_CONTRACT.md", "bytes": 3981, "sha256": "f1ffe1a9ec260a010eec43a5c9c6405e8226b45adeae5c778dda9780587a0ab2"},
     "config": {"path": "configs/u7_19b_multi_vendor_raw_product_ingress_v1.json", "bytes": 7236, "sha256": "2c7e94516305a41e85ad63d2d3f6991240d70961078670071e6b10b3669a9322"},
     "audit": {"path": "scripts/audit_u7_19b_multi_vendor_raw_product_ingress.py", "bytes": 17852, "sha256": "36f012442448c93d681083fa6befaab1ac8ff4669a658584714d566374a3b177"},
-    "test": {"path": "tests/test_u7_19b_multi_vendor_raw_product_ingress.py", "bytes": 3756, "sha256": "c194ff1aebc903d3d986b805c8ad8c57e99ef9d81eaf0f88b812e49bd5ed99b3"}
+    "test": {"path": "tests/test_u7_19b_multi_vendor_raw_product_ingress.py", "bytes": 4350, "sha256": "e6d0ae79f17599da394450fb2377b054b8d78b70795c0a6de379e00a96f21091"}
   },
   "preflight_reports": {
     "forward": {"path": "outputs/u7_19b_multi_vendor_raw_product_ingress_v1/preflight_forward.json", "bytes": 39340, "sha256": "2ab41f2ef11f7ae0acec3effbefa359162395c4f2cb03447736bbf9e302f621f"},
