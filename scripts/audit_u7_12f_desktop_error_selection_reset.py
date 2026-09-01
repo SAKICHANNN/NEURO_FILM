@@ -74,6 +74,12 @@ def _sha256(value: bytes) -> str:
     return hashlib.sha256(value).hexdigest()
 
 
+def _windows_checkout_bytes(value: bytes) -> bytes:
+    """Return Git LF content in the CRLF form frozen from the Windows checkout."""
+
+    return value.replace(b"\n", b"\r\n")
+
+
 def _canonical_sha256(value: Any) -> str:
     return _sha256(
         json.dumps(
@@ -119,12 +125,16 @@ def main() -> int:
     bindings = {path: _sha256(_git_blob(path)) for path in BOUND_PATHS}
     config = json.loads(_git_blob(CONFIG_PATH))
     parent_commit = str(config["source_parent_commit"])
-    parent_handler = _error_handler(_git_blob(UI_PATH, parent_commit))
+    parent_blob = _git_blob(UI_PATH, parent_commit)
+    parent_handler = _error_handler(parent_blob)
     current_handler = _error_handler(_git_blob(UI_PATH))
     trigger_binding = {
         "parent_commit": parent_commit,
-        "parent_ui_sha256": _sha256(_git_blob(UI_PATH, parent_commit)),
-        "expected_parent_ui_sha256": config["source_identities"][
+        "parent_ui_git_blob_sha256": _sha256(parent_blob),
+        "parent_ui_windows_checkout_sha256": _sha256(
+            _windows_checkout_bytes(parent_blob)
+        ),
+        "expected_parent_ui_windows_checkout_sha256": config["source_identities"][
             "product_desktop_ui_sha256"
         ],
         "parent_clears_style": 'self.style.set("")' in parent_handler,
@@ -153,8 +163,8 @@ def main() -> int:
         "committed_source_bound": all(len(value) == 64 for value in bindings.values()),
         "tracked_diff_clean": tracked_diff_clean,
         "frozen_parent_defect_bound": (
-            trigger_binding["parent_ui_sha256"]
-            == trigger_binding["expected_parent_ui_sha256"]
+            trigger_binding["parent_ui_windows_checkout_sha256"]
+            == trigger_binding["expected_parent_ui_windows_checkout_sha256"]
             and trigger_binding["parent_clears_style"] is False
         ),
         "current_error_reset_is_exact": (
