@@ -1,0 +1,69 @@
+{
+  "schema": "neuro-film.u7-13a-linux-product-cli-runtime-contract.v1",
+  "node_id": "U7.13A",
+  "status": "FROZEN_BEFORE_WHEEL_ACQUISITION_OR_RUNTIME_EXECUTION",
+  "question": "Can the unchanged three-look product CLI run deterministically under WSL2 Ubuntu 22.04 CPython 3.12 and preserve strict replay plus exact decoded RGB16 parity to Windows on one exact real JPEG?",
+  "bindings": {
+    "contract_path": "docs/planning/U7_13A_LINUX_PRODUCT_CLI_RUNTIME_CONTRACT.md",
+    "requirements_path": "requirements-product-v2.txt",
+    "render_cli_path": "scripts/render_film.py",
+    "product_profile_path": "configs/render_profiles/safe_rich_product_v1.json",
+    "product_catalog_path": "src/inference/product_look_catalog.py",
+    "render_contract_path": "src/inference/render_contract.py",
+    "style_safe_engine_path": "src/inference/style_safe_engine.py",
+    "three_stock_look_path": "src/inference/three_stock_look.py",
+    "replay_cli_path": "scripts/replay_style_safe_recipe.py"
+  },
+  "runtime": {
+    "distribution": "Ubuntu-22.04",
+    "architecture": "x86_64",
+    "python": "/usr/bin/python3.12",
+    "wheel_root": "data/vendor/linux/u7_13a-py312/wheels",
+    "formal_root": "outputs/eval/u7_13a_linux_product_cli_runtime_v1",
+    "scratch_parent": "tmp"
+  },
+  "source": {
+    "id": "u4_1a_gold_01",
+    "path": "outputs/color_baseline/velvia50_rawpixls20_s0p50_gamutsafe/inputs/01_Canon_PowerShot_S110_Canon_-_PowerShot_S110_-_RAW_4_3__raw-neutral.jpg",
+    "sha256": "b551eeccf6ec90c6b6b52e09174705d81360afb0d83734f802bcd17cc43c4bb5",
+    "media_kind": "real_jpeg"
+  },
+  "candidate": {
+    "style_ids": ["velvia_50", "portra_400", "ektar_100"],
+    "look_amount": 1.0,
+    "output_format_id": "png16",
+    "output_extension": ".png",
+    "profile_id": "safe-rich-product-v1"
+  },
+  "wheels": [
+    ["imageio", "2.37.3", "imageio-2.37.3-py3-none-any.whl", 317646, "46f5bb8522cd421c0f5ae104d8268f569d856b29eb1a13b92829d1970f32c9f0", "https://files.pythonhosted.org/packages/49/fa/391e437a34e55095173dca5f24070d89cbc233ff85bf1c29c93248c6588d/imageio-2.37.3-py3-none-any.whl"],
+    ["lazy-loader", "0.5", "lazy_loader-0.5-py3-none-any.whl", 8044, "ab0ea149e9c554d4ffeeb21105ac60bed7f3b4fd69b1d2360a4add51b170b005", "https://files.pythonhosted.org/packages/8a/a1/8d812e53a5da1687abb10445275d41a8b13adb781bbf7196ddbcf8d88505/lazy_loader-0.5-py3-none-any.whl"],
+    ["networkx", "3.6.1", "networkx-3.6.1-py3-none-any.whl", 2068504, "d47fbf302e7d9cbbb9e2555a0d267983d2aa476bac30e90dfbe5669bd57f3762", "https://files.pythonhosted.org/packages/9e/c9/b2622292ea83fbb4ec318f5b9ab867d0a28ab43c5717bb85b0a5f6b3b0a4/networkx-3.6.1-py3-none-any.whl"],
+    ["numpy", "2.4.4", "numpy-2.4.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", 16645480, "81f4a14bee47aec54f883e0cad2d73986640c1590eb9bfaaba7ad17394481e6e", "https://files.pythonhosted.org/packages/0a/0d/0e3ecece05b7a7e87ab9fb587855548da437a061326fff64a223b6dcb78a/numpy-2.4.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"],
+    ["opencv-python-headless", "4.13.0.92", "opencv_python_headless-4.13.0.92-cp37-abi3-manylinux_2_28_x86_64.whl", 60391106, "0bd48544f77c68b2941392fcdf9bcd2b9cdf00e98cb8c29b2455d194763cf99e", "https://files.pythonhosted.org/packages/4b/33/b5db29a6c00eb8f50708110d8d453747ca125c8b805bc437b289dbdcc057/opencv_python_headless-4.13.0.92-cp37-abi3-manylinux_2_28_x86_64.whl"],
+    ["packaging", "26.2", "packaging-26.2-py3-none-any.whl", 100195, "5fc45236b9446107ff2415ce77c807cee2862cb6fac22b8a73826d0693b0980e", "https://files.pythonhosted.org/packages/df/b2/87e62e8c3e2f4b32e5fe99e0b86d576da1312593b39f47d8ceef365e95ed/packaging-26.2-py3-none-any.whl"],
+    ["pillow", "12.1.1", "pillow-12.1.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", 7041540, "7aac39bcf8d4770d089588a2e1dd111cbaa42df5a94be3114222057d68336bd0", "https://files.pythonhosted.org/packages/ff/79/6df7b2ee763d619cda2fb4fea498e5f79d984dae304d45a8999b80d6cf5c/pillow-12.1.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"],
+    ["pyyaml", "6.0.3", "pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl", 807870, "ba1cc08a7ccde2d2ec775841541641e4548226580ab850948cbfda66a1befcdc", "https://files.pythonhosted.org/packages/8b/9d/b3589d3877982d4f2329302ef98a8026e7f4443c765c46cfecc8858c6b4b/pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl"],
+    ["rawpy", "0.26.1", "rawpy-0.26.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", 1848135, "b42a19713c4f078fe7e1171dd22dbbc60e5c1f3d3e29bbf7492deb161562b21c", "https://files.pythonhosted.org/packages/02/87/246cd30a97ae7f20f567450d9d548a7b340544f50d1b41b98399bb1aff7c/rawpy-0.26.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"],
+    ["scikit-image", "0.26.0", "scikit_image-0.26.0-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl", 13561683, "7df650e79031634ac90b11e64a9eedaf5a5e06fcd09bcd03a34be01745744466", "https://files.pythonhosted.org/packages/f4/a2/70401a107d6d7466d64b466927e6b96fcefa99d57494b972608e2f8be50f/scikit_image-0.26.0-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl"],
+    ["scipy", "1.17.1", "scipy-1.17.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", 35235890, "02ae3b274fde71c5e92ac4d54bc06c42d80e399fec704383dcd99b301df37458", "https://files.pythonhosted.org/packages/01/8e/1e35281b8ab6d5d72ebe9911edcdffa3f36b04ed9d51dec6dd140396e220/scipy-1.17.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"],
+    ["tifffile", "2026.4.11", "tifffile-2026.4.11-py3-none-any.whl", 248227, "9b94ffeddb39e97601af646345e8808f885773de01b299e480ed6d3a41509ec9", "https://files.pythonhosted.org/packages/3f/9f/74f110b4271ded519c7add4341cbabc824de26817ff1c345b3109df9e99c/tifffile-2026.4.11-py3-none-any.whl"]
+  ],
+  "gates": {
+    "exact_bound_identities": true,
+    "exact_twelve_wheel_archive_and_versions": true,
+    "exact_linux_runtime": true,
+    "pip_check_and_dependency_exclusions": true,
+    "catalog_claims_unchanged": true,
+    "platform_local_forward_reverse_and_replay_exact": true,
+    "windows_linux_decoded_rgb16_and_icc_exact": true,
+    "cross_platform_png_bytes_diagnostic_only": true,
+    "zero_new_exact_boundaries": true,
+    "blocked_look_rejects_predecode": true,
+    "source_and_tracked_tree_immutable": true,
+    "formal_network_reads_zero": true,
+    "owned_residue_zero": true
+  },
+  "stop_rule": "Any wheel, runtime, install, import, source, catalog, render, replay, determinism, decoded-sample, ICC, boundary, invalid-control, ownership or cleanup mismatch closes exact U7.13A without dependency/distribution/interpreter/source/look/amount/output/tolerance/normalization/gate/role rescue.",
+  "claim_ceiling": "Private WSL2 Ubuntu 22.04 x86_64 product-CLI mechanics for one exact real JPEG and three unchanged deterministic film-inspired / Look Approximation choices only; no arbitrary Linux/device/input, cross-platform GUI/installer, compressed-byte interchange, public package/release, preference, distinguishability, calibrated stock response, physical-film reproduction or authenticity claim."
+}
