@@ -1,0 +1,130 @@
+{
+  "bindings": {
+    "commit": "25de8307f0f5273055bb088d6580940c0a520d92",
+    "files": {
+      "configs/u7_12c_desktop_display_native_preview_v1.json": "f5971af144f7f380aca2f27f9442d1a0ebb5d2b34cdba200113a84886f691e16",
+      "docs/planning/U7_12C_DESKTOP_DISPLAY_NATIVE_PREVIEW_CONTRACT.md": "a6b2c37ff9b713fa535c80209b83cc2fac105a6fe4a08c486638391073d40471",
+      "scripts/audit_u7_12c_desktop_display_native_preview.py": "124f5fabb9ef06527babcaf3c56022394c26b4e4c2f492fe66ef055b9de588b7",
+      "src/inference/product_desktop.py": "26273e4d9ae950cf403a8e6e69d5d00a859faf02380604ac599f211594fe7f9f",
+      "src/inference/product_desktop_ui.py": "649890db720c0d304c444e6c1164a4d79b6ce1b7ce6e393c139ede62b32565f3",
+      "src/inference/three_stock_preview.py": "e78519c6b6768215a3cad99f0343b5dcb1de30b409263fbd0a7598ca75c24a7c",
+      "tests/test_u7_12c_desktop_display_native_preview.py": "9f917b1f6668b274ceba8917f979c240ad3e6e7164e627cf79c73d76d239c7b6",
+      "tests/test_u7_12c_desktop_display_native_preview_audit.py": "798450f6559a7c7268010a3776572431de842538c1663505ac28ae6548bd7d23"
+    }
+  },
+  "claim": {
+    "arbitrary_input_or_device_quality": false,
+    "calibrated_stock_response": false,
+    "cross_platform_gui": false,
+    "evidence_grade": "look-approximation",
+    "hdr_or_wide_gamut_publication": false,
+    "mode": "film-inspired",
+    "physical_film_reproduction": false,
+    "private_windows_python_preview_mechanics_only": true,
+    "public_release_or_installer": false,
+    "stock_distinguishability": false
+  },
+  "fidelity": {
+    "maximum_new_boundary_fraction": 0.0,
+    "maximum_rgb_absolute_error_p95": 0.035294145345687866,
+    "maximum_rgb_rmse": 0.01734862751445281,
+    "sources": {
+      "u4_5b_exact_jpeg_portrait": {
+        "candidate_height": 260,
+        "candidate_width": 173,
+        "maximum_new_boundary_fraction": 0.0,
+        "maximum_rgb_absolute_error_p95": 0.035294145345687866,
+        "maximum_rgb_rmse": 0.01734862751445281
+      },
+      "u4_5f_blackmagic_dng_landscape": {
+        "candidate_height": 158,
+        "candidate_width": 300,
+        "maximum_new_boundary_fraction": 0.0,
+        "maximum_rgb_absolute_error_p95": 0.011764705181121826,
+        "maximum_rgb_rmse": 0.007145392814446671
+      }
+    }
+  },
+  "formal_reports": {
+    "forward": {
+      "bytes": 27370,
+      "enumeration": "forward",
+      "sha256": "cd4fd86258b9fc9eeff79872c78992d00336e9b6a6b67aef9a1f10bb63a6a5c8"
+    },
+    "reverse": {
+      "bytes": 27372,
+      "enumeration": "reverse",
+      "sha256": "423162465dd714fbafa5e567a1c7909ef45e247dd7c1e57246c1ffa0ffbd7967"
+    },
+    "full_reports_byte_exact": false,
+    "nondeterministic_fields": [
+      "outer_process_wall_seconds",
+      "peak_process_tree_rss_bytes",
+      "renderer_wall_seconds"
+    ],
+    "order_independent_scientific_payload_exact": true
+  },
+  "gates": {
+    "candidate_peak_rss_not_above_baseline": true,
+    "candidate_repeat_pixels_and_outputs_exact": true,
+    "committed_sources_bound": true,
+    "decoder_paths_unchanged": true,
+    "display_box_containment": true,
+    "dng_renderer_wall_ratio": true,
+    "dng_renderer_wall_seconds": true,
+    "exact_baseline_and_candidate_dimensions": true,
+    "forward_reverse_scientific_payload_exact": true,
+    "jpeg_renderer_wall_ratio": true,
+    "jpeg_renderer_wall_seconds": true,
+    "new_boundary_fraction": true,
+    "owned_residue_empty": true,
+    "parent_u7_12b_exact": true,
+    "required_sources_exact": true,
+    "rgb_absolute_error_p95": true,
+    "rgb_rmse": true,
+    "source_identities_exact": true,
+    "sources_immutable": true,
+    "three_distinct_look_outputs": true,
+    "tracked_diff_clean": true
+  },
+  "node_id": "U7.12C",
+  "performance": {
+    "timing_and_rss_are_nondeterministic_diagnostics": true,
+    "u4_5b_exact_jpeg_portrait": {
+      "forward": {
+        "baseline_median_renderer_wall_seconds": 4.304088500000944,
+        "baseline_peak_process_tree_rss_bytes": 235716608,
+        "candidate_median_renderer_wall_seconds": 0.42069569999875966,
+        "candidate_peak_process_tree_rss_bytes": 155312128,
+        "candidate_to_baseline_renderer_wall_ratio": 0.09774327363358523
+      },
+      "reverse": {
+        "baseline_median_renderer_wall_seconds": 4.310017149990017,
+        "baseline_peak_process_tree_rss_bytes": 241147904,
+        "candidate_median_renderer_wall_seconds": 0.45030494999082293,
+        "candidate_peak_process_tree_rss_bytes": 140517376,
+        "candidate_to_baseline_renderer_wall_ratio": 0.10447869099357666
+      }
+    },
+    "u4_5f_blackmagic_dng_landscape": {
+      "forward": {
+        "baseline_median_renderer_wall_seconds": 4.370697350001137,
+        "baseline_peak_process_tree_rss_bytes": 204865536,
+        "candidate_median_renderer_wall_seconds": 0.8048493999958737,
+        "candidate_peak_process_tree_rss_bytes": 171212800,
+        "candidate_to_baseline_renderer_wall_ratio": 0.1841466785604966
+      },
+      "reverse": {
+        "baseline_median_renderer_wall_seconds": 4.612202249998518,
+        "baseline_peak_process_tree_rss_bytes": 206069760,
+        "candidate_median_renderer_wall_seconds": 0.7943555500023649,
+        "candidate_peak_process_tree_rss_bytes": 179564544,
+        "candidate_to_baseline_renderer_wall_ratio": 0.17222912330061418
+      }
+    }
+  },
+  "schema": "kmcfm.u7-12c-desktop-display-native-preview-evidence.v1",
+  "scientific_identity": "sha256:404aab50eed0aff39571d706e72b2182a57ca5b05cc7fb17eeb048df4374fce4",
+  "source_commit": "25de8307f0f5273055bb088d6580940c0a520d92",
+  "status": "PASS_PRIVATE_U7_12C_DESKTOP_DISPLAY_NATIVE_PREVIEW"
+}
