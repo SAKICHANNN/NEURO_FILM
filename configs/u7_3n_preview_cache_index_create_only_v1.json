@@ -8,7 +8,7 @@
     "U4.5E"
   ],
   "contract_commit": "89ca88bd40bfac330b3a0808465574a77c2179e8",
-  "implementation_commit": null,
+  "implementation_commit": "ed9ea8ec7727de39a7c1c2a21b28427dff7414b8",
   "source_locks": {
     "contract": {
       "path": "docs/planning/U7_3N_PREVIEW_CACHE_INDEX_CREATE_ONLY_CONTRACT.md",
@@ -19,6 +19,16 @@
       "path": "src/inference/three_stock_preview_cache.py",
       "git_blob": "84acb810b184d9f75cdbbd8924412eb59e2fc00c",
       "git_lf_sha256": "608a7feff4dc08c36822441a58fb38c21c5daeae1e0e873b95b94005bef3437d"
+    },
+    "implementation_cache_core": {
+      "path": "src/inference/three_stock_preview_cache.py",
+      "git_blob": "27029a585f67f1edc0cc8d2647eda502ff7b56f9",
+      "git_lf_sha256": "a3908c11dd25a5d1a4b4b4ea214fabc71c0dd476a0159772615bd66a48bc6c9b"
+    },
+    "focused_test": {
+      "path": "tests/test_u7_3n_preview_cache_index_create_only.py",
+      "git_blob": "1a49c8cec7b5984145bac76f5c0e24abfe4a1be9",
+      "git_lf_sha256": "ecffea00bd44282e03181ec0dddcc34057a5d664bfed48e1d27b09dbcf25aee8"
     },
     "u7_3h_evidence": {
       "path": "docs/evidence/U7_3H_THREE_STOCK_PREVIEW_CACHE_RESULT.json",
