@@ -22560,3 +22560,54 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   reproduction, stock distinguishability, HDR/wide-gamut publication,
   installer, public release or cross-platform GUI evidence. AO6 remains only
   the Velvia 50 display-proxy Look Approximation baseline.
+
+### 2026-09-01 - U7.12D makes one-look desktop batches restart-safe
+
+- **Node and routing:** `ULT > U7 productization > U7.12D`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the sole writer; DRPT-BI, plan-tracker,
+  project-structure and agent-log disciplines governed scope and propagation.
+  The one long-term Goal remains accurate and active; U7.12D is a completed
+  leaf, not a replacement Goal. Contract/config commits precede implementation;
+  U7.12C terminal evidence is bound as a hard dependency. Existing `.codex/`
+  and `tmp/` remain foreign/untracked and were not staged.
+- **Implementation and safety:** commit `3cf53cc7` adds the separate explicit
+  `desktop_single_look_batch_recovery` core without changing legacy
+  `ProductDesktopWorkflow.export_batch`. It binds canonical inputs, full hashes
+  and filesystem identities, current preview/session authority, look/amount,
+  destination, source commit and all implementation assets. Complete children
+  are recipe/hash/member validated before reuse; stale ledgers reconcile only
+  from a complete child. Reserved partials are removed only after exact
+  workspace/lease validation. The final U7.11A-flat stage uses create-only
+  handle-bound copies and Windows no-replace rename. Review found an ambiguous
+  post-publication cleanup state before formal execution; prospective contract
+  correction `6748c271` makes a fully validated destination monotonic success
+  while preserving any unowned residue. Missing/tampered children, unexpected
+  members, a second writer and late foreign destination remain fail-closed.
+- **Formal evidence:** audit commits `993f4404` / `52252edd` run fixed eight
+  RGB8 inputs with Portra 400 amount .625. One fresh process pauses after three
+  children, a second reuses exactly three and renders five, and unchanged
+  U7.11A renders all eight at the same destination semantics. Images, recipes,
+  batch receipt and strict replay are exact. Corrected forward/reverse reports
+  are byte-identical at 19,069 bytes and SHA
+  `e705b65245f1175a56124ec356eb34ac69df0174d706a9ea7035be42112b5339`;
+  scientific identity is
+  `2605762415427f3343b08aa3bdde090567d0395c321224d83bd0ee5872110ac7`;
+  all 17 gates pass and owned formal root residue is zero. First reports remain
+  transparently excluded at SHA `d896c965...b45988` / `25f3dae4...2e009`:
+  their only scientific-report difference was the deliberately inode-bound
+  workspace execution ID. The correction removes only that execution field
+  and changes no core, fixture, metric, gate or threshold.
+- **Verification, propagation and boundary:** focused recovery/evidence tests
+  pass 16/16; Ruff, compile, JSON and diff checks pass. U7.8B/U7.11A/U7.12A-D
+  combined parents pass 87/88, with the sole Tk global `pyimage` lifetime case
+  passing immediately in a fresh isolated process. An independent read-only
+  review reruns U7.12D 13/13 plus Ruff/compileall/diff and finds no blocking
+  transaction defect. Evidence commit `4ad662a6` binds the committed formal
+  source and report. The result proves only private Windows/Python restart
+  recovery for the existing deterministic `film-inspired / Look
+  Approximation`; it does not prove hard-power-loss durability during a child,
+  arbitrary media/24MP performance, calibrated stock response, physical-film
+  reproduction, distinguishability, public API, installer, release readiness
+  or product value. The next eligible product leaf is explicit UI invocation
+  of this already-proved core, not another recovery algorithm or RAW/HDR/source
+  wrapper.
