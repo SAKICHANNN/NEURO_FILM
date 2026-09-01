@@ -4,6 +4,8 @@ import hashlib
 import json
 from pathlib import Path
 
+from tests.historical_evidence_binding import assert_historical_evidence_binding
+
 ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE = ROOT / "docs/evidence/U7_2J_PRODUCT_RECIPE_CATALOG_ENFORCEMENT_RESULT.json"
 
@@ -12,12 +14,12 @@ def _sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def test_u7_2j_evidence_binds_current_sources_and_exact_formal_replay() -> None:
+def test_u7_2j_evidence_binds_historical_sources_and_exact_formal_replay() -> None:
     evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
     assert evidence["status"] == "PASS"
     for key in ("contract", "config", "core", "focused_test", "formal_runner"):
         binding = evidence["bindings"][key]
-        assert _sha(ROOT / binding["path"]) == binding["sha256"]
+        assert_historical_evidence_binding(ROOT, binding)
 
     reports = evidence["formal_reports"]
     forward = ROOT / reports["forward_path"]

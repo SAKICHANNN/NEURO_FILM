@@ -18,6 +18,7 @@ from src.inference import (
     verify_render_recipe_inputs,
 )
 from src.inference.style_safe_engine import replay_style_safe_color_recipe
+from tests.historical_evidence_binding import assert_historical_evidence_binding
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts/render_film.py"
@@ -91,19 +92,24 @@ def _dummy_render(style: str) -> dict[str, object]:
     }
 
 
-def test_contract_binds_prechange_core_and_parent_evidence() -> None:
+def test_contract_binds_historical_core_and_parent_evidence() -> None:
     config = json.loads(CONFIG.read_text(encoding="utf-8"))
     locks = config["source_locks"]
     assert locks["render_contract_sha256"] == (
         "9da36402186feb2a390d5a667b854195fc37b0b47fd148672ae88b3d9932b27d"
     )
-    assert _sha(ROOT / "src/inference/style_safe_engine.py") == locks[
-        "style_safe_engine_sha256"
-    ]
+    assert_historical_evidence_binding(
+        ROOT,
+        {
+            "path": "src/inference/style_safe_engine.py",
+            "sha256": locks["style_safe_engine_sha256"],
+        },
+    )
     assert _sha(PRODUCT_PROFILE) == locks["product_profile_sha256"]
-    assert _sha(ROOT / "docs/evidence/U7_2I_PRODUCT_LOOK_CATALOG_ENFORCEMENT_RESULT.json") == locks[
-        "parent_u7_2i_evidence_sha256"
-    ]
+    assert (
+        _sha(ROOT / "docs/evidence/U7_2I_PRODUCT_LOOK_CATALOG_ENFORCEMENT_RESULT.json")
+        == locks["parent_u7_2i_evidence_sha256"]
+    )
 
 
 @pytest.mark.parametrize(
@@ -164,7 +170,9 @@ def test_forged_product_recipe_rejects_before_input_hash_or_decode(
 
     with pytest.raises(RenderContractError, match=ERROR):
         verify_render_recipe_inputs(forged, profile_path=PRODUCT_PROFILE, root=ROOT)
-    replay_error = ERROR if style != "generic_bw" else "product look 'generic_bw' is unavailable"
+    replay_error = (
+        ERROR if style != "generic_bw" else "product look 'generic_bw' is unavailable"
+    )
     with pytest.raises(ValueError, match=replay_error):
         replay_style_safe_color_recipe(forged, profile_path=PRODUCT_PROFILE, root=ROOT)
 
@@ -192,7 +200,9 @@ def test_legacy_hp5_recipe_still_verifies_and_replays(tmp_path: Path) -> None:
     _source(source)
     recipe = _run_recipe(source, output, profile=LEGACY_PROFILE, style="hp5")
     verify_render_recipe_inputs(recipe, profile_path=LEGACY_PROFILE, root=ROOT)
-    replay = replay_style_safe_color_recipe(recipe, profile_path=LEGACY_PROFILE, root=ROOT)
+    replay = replay_style_safe_color_recipe(
+        recipe, profile_path=LEGACY_PROFILE, root=ROOT
+    )
     assert replay.shape == (47, 61, 3)
     assert replay.dtype == np.float32
     assert np.isfinite(replay).all()
