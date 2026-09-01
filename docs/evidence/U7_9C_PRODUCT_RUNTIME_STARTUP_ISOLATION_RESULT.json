@@ -1,0 +1,101 @@
+{
+  "schema": "kmcfm.u7-9c-product-runtime-startup-isolation-evidence.v1",
+  "status": "PASS_PRIVATE_U7_9C_PRODUCT_RUNTIME_STARTUP_ISOLATION",
+  "accepted_execution": {
+    "commit": "fe388a2713c8cd52e8e1a783d35ed32ac241f01d",
+    "audit_git_blob": "0f1cbd619026fe4898fe9c314e9671985eb6c1b8",
+    "forward_report_bytes": 2357,
+    "reverse_report_bytes": 2357,
+    "forward_report_sha256": "130ba8a2b045bf110869b7b2e1dc1187c4e5b06c6d0f24e5cd7cc614db2ff79f",
+    "reverse_report_sha256": "130ba8a2b045bf110869b7b2e1dc1187c4e5b06c6d0f24e5cd7cc614db2ff79f",
+    "reports_byte_exact": true,
+    "formal_roots_absent_after_execution": true
+  },
+  "excluded_attempts": [
+    {
+      "commit": "ef1c7153d368577becfed1d3daf8af090dbe7102",
+      "outer_runs": 2,
+      "runtime_installations": 2,
+      "catalog_executions": 2,
+      "product_render_executions": 12,
+      "reports_written": 0,
+      "accepted": false,
+      "reason": "sentinel repository config stopped on exFAT safe-directory handling before the sentinel child control"
+    },
+    {
+      "commit": "26c7766f3bfa91b1acef45079295d908e503c87e",
+      "outer_runs": 2,
+      "runtime_installations": 2,
+      "catalog_executions": 2,
+      "product_render_executions": 12,
+      "reports_written": 2,
+      "report_bytes_each": 2322,
+      "reports_byte_exact": true,
+      "report_sha256": "c5d661a4b8fe6d9f470cea5bc3756202977a8d4e5caf36aaf53101cdb7e4c827",
+      "stable_identity": "fab8928a447c08be819b2dfe306b94a1c2e43487cc09fa03ab9c87142a1c8d14",
+      "accepted": false,
+      "reason": "mixed-case sentinel child control was blocked by repository safe-directory and owned Git object cleanup failed with WinError 5"
+    }
+  ],
+  "formal_report": {
+    "catalog_sha256": "9897ebc570625409d513fa1bed3df3e5f9cff76d863963fc307c791462bfdd78",
+    "claim": {
+      "calibrated_stock_response": false,
+      "evidence_grade": "look-approximation",
+      "hostile_host_guarantee": false,
+      "mode": "film-inspired",
+      "physical_film_reproduction": false,
+      "private_windows_runtime_only": true,
+      "public_release": false
+    },
+    "execution": {
+      "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+      "runtime_python_role": "installation/runtime/Scripts/python.exe",
+      "scratch_cleaned_before_return": true,
+      "wheelhouse_file_count": 12,
+      "windows": true
+    },
+    "gates": {
+      "catalog_exact": true,
+      "hostile_sitecustomize_not_executed": true,
+      "implementation_commit_and_blob_exact": true,
+      "invalid_look_atomic": true,
+      "launcher_process_isolated": true,
+      "parent_receipt_schema_exact": true,
+      "python_environment_removed": true,
+      "renderer_process_isolated": true,
+      "runtime_residue_zero": true,
+      "source_identity_exact": true,
+      "three_render_outputs_exact": true
+    },
+    "implementation_commit": "fe388a2713c8cd52e8e1a783d35ed32ac241f01d",
+    "renders": [
+      {
+        "image_exact": true,
+        "image_sha256": "f04b89d085a51835d13425b47fdb22cb436883bae35865ef8c788c7e8386ad41",
+        "look": "ektar_100"
+      },
+      {
+        "image_exact": true,
+        "image_sha256": "9d1be91fcb1989454bb4b15c25bd1fe41e35a9afc405ec4c1508622f9066bc42",
+        "look": "portra_400"
+      },
+      {
+        "image_exact": true,
+        "image_sha256": "31413c3b1aaaa58f94f5bd3547cf9df3f3992bc2be8ae8117cb104997709a40d",
+        "look": "velvia_50"
+      }
+    ],
+    "schema": "kmcfm.u7-9c-product-runtime-startup-isolation.v1",
+    "source": {
+      "config_sha256": "d48a3f94814a94604a1fd9e24e99ff6ecd4b4ca82406cc093e3e6b609a568af4",
+      "contract_sha256": "6e23def6d64b969431e7b01461bc018867052cae8ea03ebf48989faf98882712",
+      "installer_sha256": "e7757d43a5e99256720e8b9f085d227622404ec7f152a4c3f2be75578cbad7ec",
+      "renderer_sha256": "2013e7c2f95c2f6a0b84ccff1d93db9bec2b189aead84b1ca6b5ab477447f786",
+      "requirements_sha256": "78b2ec79ffd4053c42c90a5db765baf715fed261efa39a5e762e013145718517"
+    },
+    "stable_identity": "e40dda401610e2376f95b8c40080fdb9325b8ac4abddc7a408a89249b070fb60",
+    "status": "PASS_PRIVATE_U7_9C_PRODUCT_RUNTIME_STARTUP_ISOLATION"
+  },
+  "claim_ceiling": "Private Windows CPython startup-environment isolation for the existing repository-bound film-inspired Look Approximation runtime only; no hostile-host guarantee, standalone/public installer, release, calibrated stock response or physical-film reproduction."
+}
