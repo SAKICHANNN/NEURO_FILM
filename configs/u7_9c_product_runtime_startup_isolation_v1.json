@@ -1,6 +1,10 @@
 {
   "schema": "kmcfm.u7-9c-product-runtime-startup-isolation.v1",
   "parent": "U7.9A/U7.9B",
+  "implementation": {
+    "commit": "000adac525f889c19d71aa3dba1cf2d96826532b",
+    "installer_git_blob": "a0758c50baf90ddf3d650cf9926288cd0a415eb0"
+  },
   "runtime": {
     "implementation": "CPython",
     "major": 3,
