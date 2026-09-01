@@ -71,6 +71,9 @@
   "verification": {
     "new_tests_passed": 13,
     "preformal_parent_tests_passed": 33,
+    "postformal_combined_process_passed": 66,
+    "postformal_combined_process_tk_failures": 2,
+    "postformal_isolated_failing_files_passed": 24,
     "formal_case_suites": 4,
     "formal_audit_test_passed": 1,
     "ruff": "pass",
@@ -85,6 +88,14 @@
       "result": "stopped before Tk, tests, or report",
       "reason": "direct script entry did not yet add the repository root to sys.path",
       "correction_commit": "51f71fc6f",
+      "science_changed": false,
+      "product_changed": false
+    },
+    {
+      "stage": "post-formal combined adjacent regression",
+      "result": "66 passed and two Tk PhotoImage interpreter-lifetime failures",
+      "reason": "multiple test modules each own a module-shared Tk root; combining them in one pytest process leaves later PhotoImage objects registered against a destroyed earlier interpreter",
+      "isolated_replay": "U7.12B 14/14 and U7.14A 10/10 pass in separate fresh processes",
       "science_changed": false,
       "product_changed": false
     }
