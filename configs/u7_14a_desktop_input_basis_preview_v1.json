@@ -1,0 +1,97 @@
+{
+  "schema": "kmcfm.u7-14a-desktop-input-basis-preview-contract.v1",
+  "node_id": "U7.14A",
+  "parent_head": "059b5be4e5fdd5ba88d372d298bacef1d7a2336e",
+  "parent_evidence": {
+    "u7_12g": {
+      "path": "docs/evidence/U7_12G_DESKTOP_BATCH_OUTPUT_FORMAT_RESULT.json",
+      "bytes": 2998,
+      "sha256": "59e62b1ce628f4a8999ebddb387d6a73c6bb9cf984cb33dc6a5f9898aed9aa38"
+    },
+    "u7_12c": {
+      "path": "docs/evidence/U7_12C_DESKTOP_DISPLAY_NATIVE_PREVIEW_RESULT.json",
+      "bytes": 5620,
+      "sha256": "a68f6d0ebba6d74341798a8828fcc10da9c9ed164078ae6f63bf92ec6161c2ef"
+    }
+  },
+  "baseline_bindings": {
+    "three_stock_preview": {
+      "path": "src/inference/three_stock_preview.py",
+      "bytes": 12622,
+      "sha256": "b219c8fbdf0e3d1545045f67263e49625375ef45064e35792dd888e82aabb18f",
+      "git_blob": "84e580c2e836c9c293097f3dc5a8d811d492bf97"
+    },
+    "product_desktop": {
+      "path": "src/inference/product_desktop.py",
+      "bytes": 50933,
+      "sha256": "c323ecfd2abb0bf866a617d988ba18ff33cdf41347cd7f197093e214af0ff9a9",
+      "git_blob": "27d0a89653b8bedfd76c39138257ad203b36c1f4"
+    },
+    "product_desktop_ui": {
+      "path": "src/inference/product_desktop_ui.py",
+      "bytes": 29498,
+      "sha256": "66a14e69a9068b4f6dc3261a1521fa249aeb1e046df3e910f97a9e3760762c69",
+      "git_blob": "31e59a0c0012fa84c6554ef486c243a6b74cb1b5"
+    }
+  },
+  "display": {
+    "preview_width": 300,
+    "preview_height": 260,
+    "ui_input_thumbnail_width": 160,
+    "ui_input_thumbnail_height": 120,
+    "label": "Input basis",
+    "disclosure": "generic display adapter, not a calibrated camera rendering"
+  },
+  "sources": [
+    {
+      "source_id": "u4_5b_exact_jpeg_portrait",
+      "path": "data/preference/repid/u5_r2repid3_shared_operator_v1/fit/winner/a4593-kme_0276.jpeg",
+      "bytes": 17798433,
+      "sha256": "7ea3d1ed37b7df518c0466c1379f08aa34ea5ae00eb7dc8208fcff2cfe68d1c6",
+      "source_kind": "raster",
+      "preview_dimensions": [173, 260],
+      "decoder": "existing JPEG scaled preview decode"
+    },
+    {
+      "source_id": "u4_5f_blackmagic_dng_landscape",
+      "path": "data/external/rawpixls_bh1_v1/raw/blackmagic_pocket_cinema_camera_4k.dng",
+      "bytes": 4497152,
+      "sha256": "1491a5e5d580a9be151747bddce89faca4d0b9d352503270f516bbf8e8cdf0d9",
+      "source_kind": "raw",
+      "preview_dimensions": [300, 158],
+      "decoder": "existing RAW half-size preview decode"
+    }
+  ],
+  "render": {
+    "max_preview_pixels": 1000000,
+    "max_preview_width": 300,
+    "max_preview_height": 260,
+    "look_amount": 1.0,
+    "seed": 7,
+    "tile_size": 256,
+    "tile_workers": 1,
+    "png_compression": 6,
+    "fresh_processes_per_source": 2,
+    "orders": ["forward", "reverse"]
+  },
+  "gates": {
+    "require_default_manifest_and_tree_exact": true,
+    "require_one_selected_source_decode": true,
+    "require_three_look_files_exact_to_baseline": true,
+    "require_input_preview_encoded_and_decoded_exact_to_oracle": true,
+    "require_exact_repeat_and_order_independent_science": true,
+    "require_input_preview_same_geometry": true,
+    "require_strict_separate_manifest_role": true,
+    "require_no_catalog_or_recipe_role": true,
+    "require_session_tamper_rejection": true,
+    "require_ui_truthful_label_and_clear_states": true,
+    "require_source_immutability": true,
+    "require_zero_owned_residue": true
+  },
+  "stop_rules": [
+    "Do not change source, decoder, resize, transfer adapter, label, dimensions, format, look, amount, seed, worker, tile, compression, threshold or UI role after observing candidate pixels.",
+    "Failure closes this exact input-basis preview without embedded-preview, RAW tone-map, camera-accuracy, fourth-look or adjacent-widget rescue.",
+    "Omitted and explicit-false direct-render calls must preserve historical manifest/member/output behavior exactly."
+  ],
+  "claim_ceiling": "Private Windows/Python input-basis comparison aid on two exact existing fixtures. The source thumbnail is the generic renderer input basis, not calibrated camera rendering, RAW development, neutral reference, calibrated stock response, physical-film reproduction, stock distinguishability, HDR/wide-gamut support, installer, public release or cross-platform GUI evidence."
+}
