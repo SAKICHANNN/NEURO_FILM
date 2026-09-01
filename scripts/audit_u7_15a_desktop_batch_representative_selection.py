@@ -212,7 +212,9 @@ def _rejection_controls(work: Path, order: str) -> dict[str, bool]:
                 workflow.bind_batch_inputs = stale_binding  # type: ignore[method-assign]
                 try:
                     workflow.render_batch_previews(
-                        (first, second), 0.5, representative_path=second
+                        (first, second),
+                        0.5,
+                        representative_path=second.resolve(strict=True),
                     )
                 except ProductDesktopError:
                     results[control] = True
@@ -227,6 +229,8 @@ def _rejection_controls(work: Path, order: str) -> dict[str, bool]:
                     if control == "alias"
                     else (first, second)
                 )
+                if control == "external":
+                    representative = external.resolve(strict=True)
                 workflow.render_batch_previews(
                     sources, 0.5, representative_path=representative
                 )
@@ -288,7 +292,7 @@ def build_report(order: str) -> dict[str, Any]:
 
     explicit = _workflow(work / "explicit-scratch")
     explicit_state, explicit_rows = explicit.render_batch_previews(
-        selected, 0.625, representative_path=later
+        selected, 0.625, representative_path=later.resolve(strict=True)
     )
     explicit_receipt = explicit.export_batch(explicit_rows, "portra_400", destination)
     explicit_tree = _tree_hashes(destination)
