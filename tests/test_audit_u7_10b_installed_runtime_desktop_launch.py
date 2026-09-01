@@ -102,6 +102,22 @@ def test_source_git_objects_reject_uncommitted_materialization() -> None:
         untracked.unlink()
 
 
+def test_git_safe_environment_is_scoped_and_additive() -> None:
+    source = {
+        "GIT_CONFIG_COUNT": "1",
+        "GIT_CONFIG_KEY_0": "core.autocrlf",
+        "GIT_CONFIG_VALUE_0": "false",
+    }
+    repository = ROOT / "tmp" / "owned-fixture"
+    result = audit._git_safe_environment(source, repository)
+    assert source["GIT_CONFIG_COUNT"] == "1"
+    assert result["GIT_CONFIG_COUNT"] == "2"
+    assert result["GIT_CONFIG_KEY_0"] == "core.autocrlf"
+    assert result["GIT_CONFIG_VALUE_0"] == "false"
+    assert result["GIT_CONFIG_KEY_1"] == "safe.directory"
+    assert result["GIT_CONFIG_VALUE_1"] == repository.as_posix()
+
+
 def test_formal_uses_actual_installed_desktop_launcher_and_native_input() -> None:
     source = Path(audit.__file__).read_text("utf-8")
     assert "_desktop_interaction(" in source

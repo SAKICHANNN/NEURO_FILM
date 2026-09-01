@@ -158,6 +158,18 @@ def _source_git_objects(
     return facts
 
 
+def _git_safe_environment(
+    environment: dict[str, str], repository: Path
+) -> dict[str, str]:
+    """Authorize one owned exFAT fixture repository for child Git commands."""
+    result = dict(environment)
+    count = int(result.get("GIT_CONFIG_COUNT", "0"))
+    result["GIT_CONFIG_COUNT"] = str(count + 1)
+    result[f"GIT_CONFIG_KEY_{count}"] = "safe.directory"
+    result[f"GIT_CONFIG_VALUE_{count}"] = repository.as_posix()
+    return result
+
+
 def _tiny_input(path: Path) -> None:
     yy, xx = np.indices((43, 61), dtype=np.uint16)
     rgb = np.stack(
@@ -444,12 +456,13 @@ def _tracked_drift_control(
     *, root: Path, runtime_python: Path, environment: dict[str, str]
 ) -> dict[str, Any]:
     repository = root / "tracked-drift-repository"
+    control_environment = _git_safe_environment(environment, repository)
     (repository / "scripts").mkdir(parents=True)
     requirements = repository / "requirements.txt"
     requirements.write_bytes(b"fixture\n")
     entry = repository / "scripts" / "open_product_desktop.py"
     entry.write_text("raise SystemExit('entrypoint must remain unread')\n", "utf-8")
-    _success(_run(["git", "init", "-q"], cwd=repository, env=environment))
+    _success(_run(["git", "init", "-q"], cwd=repository, env=control_environment))
     _success(
         _run(
             [
@@ -462,7 +475,7 @@ def _tracked_drift_control(
                 ".",
             ],
             cwd=repository,
-            env=environment,
+            env=control_environment,
         )
     )
     _success(
@@ -478,11 +491,11 @@ def _tracked_drift_control(
                 "fixture",
             ],
             cwd=repository,
-            env=environment,
+            env=control_environment,
         )
     )
     commit = _success(
-        _run(["git", "rev-parse", "HEAD"], cwd=repository, env=environment)
+        _run(["git", "rev-parse", "HEAD"], cwd=repository, env=control_environment)
     ).strip()
     entry.write_text(
         "raise SystemExit('dirty entrypoint must remain unread')\n", "utf-8"
@@ -494,7 +507,7 @@ def _tracked_drift_control(
         source_commit=commit,
         requirements=requirements,
         requirements_sha256=_sha256(requirements),
-        environment=environment,
+        environment=control_environment,
     )
 
 
@@ -502,6 +515,7 @@ def _environment_strip_control(
     *, root: Path, runtime_python: Path, environment: dict[str, str]
 ) -> dict[str, Any]:
     repository = root / "environment-repository"
+    control_environment = _git_safe_environment(environment, repository)
     (repository / "scripts").mkdir(parents=True)
     requirements = repository / "requirements.txt"
     requirements.write_bytes(b"fixture\n")
@@ -514,7 +528,7 @@ def _environment_strip_control(
         encoding="utf-8",
         newline="\n",
     )
-    _success(_run(["git", "init", "-q"], cwd=repository, env=environment))
+    _success(_run(["git", "init", "-q"], cwd=repository, env=control_environment))
     _success(
         _run(
             [
@@ -527,7 +541,7 @@ def _environment_strip_control(
                 ".",
             ],
             cwd=repository,
-            env=environment,
+            env=control_environment,
         )
     )
     _success(
@@ -543,11 +557,11 @@ def _environment_strip_control(
                 "fixture",
             ],
             cwd=repository,
-            env=environment,
+            env=control_environment,
         )
     )
     commit = _success(
-        _run(["git", "rev-parse", "HEAD"], cwd=repository, env=environment)
+        _run(["git", "rev-parse", "HEAD"], cwd=repository, env=control_environment)
     ).strip()
     launcher = root / "environment-launch.py"
     launcher.write_text(
@@ -562,7 +576,7 @@ def _environment_strip_control(
         newline="\n",
     )
     output = root / "environment-keys.json"
-    hostile = dict(environment)
+    hostile = dict(control_environment)
     hostile["PyThOnPaTh"] = "foreign"
     hostile["PYTHONUSERBASE"] = "foreign-user-base"
     result = _run(
