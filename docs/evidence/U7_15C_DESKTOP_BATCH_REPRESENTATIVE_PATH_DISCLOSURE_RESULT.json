@@ -1,0 +1,114 @@
+{
+  "schema": "kmcfm.u7-15c-desktop-batch-representative-path-disclosure-evidence.v1",
+  "node_id": "U7.15C",
+  "status": "PASS_PRIVATE_U7_15C_DESKTOP_BATCH_REPRESENTATIVE_PATH_DISCLOSURE",
+  "parent_head": "020bb364d9d86824b8af4bb22418bb7a1e27c9ea",
+  "formal_source_commit": "883632646b40c7a8fdf7c0ac73083d76c5c5aaab",
+  "commits": {
+    "contract": "63416208",
+    "implementation": "b74afe71",
+    "audit": "af78c2d2",
+    "logical_role_normalization": "65a0e2ff",
+    "resolved_representative_binding": "88363264"
+  },
+  "formal_reports": {
+    "forward_path": "outputs/eval/u7_15c_desktop_batch_representative_path_disclosure/formal_forward.json",
+    "reverse_path": "outputs/eval/u7_15c_desktop_batch_representative_path_disclosure/formal_reverse.json",
+    "bytes_each": 4891,
+    "sha256": "a9606a518ea1225f2178c2aa67a0d2745c1a32995cf0ff05d8edd6f932e4dfa3",
+    "scientific_identity": "438c5c734043c6b52b0abb8d45fe9d29caff3a5be36e1b11f48493c32fafee9e",
+    "forward_reverse_byte_exact": true,
+    "all_gates_pass": true
+  },
+  "bindings": {
+    "configs/u7_15c_desktop_batch_representative_path_disclosure_v1.json": {
+      "git_blob": "b2c3b59cee2cb0976a773a2025bce48078680077",
+      "sha256": "29d4089dc2edd6718a00dcb6fa90704e93b96155dc427ac5fa23bec974768840",
+      "bytes": 2099
+    },
+    "docs/planning/U7_15C_DESKTOP_BATCH_REPRESENTATIVE_PATH_DISCLOSURE_CONTRACT.md": {
+      "git_blob": "560a06e208a62fe36b146737a7945b8b8aaf6723",
+      "sha256": "a21a29e7652173a80c8ea2ee921215332a2c04c5e74a8bb6567852f87fa9a6b1",
+      "bytes": 4375
+    },
+    "scripts/audit_u7_15c_desktop_batch_representative_path_disclosure.py": {
+      "git_blob": "832171a3c5c7cdbf564984393e9dd43aab2648d0",
+      "sha256": "43c7ea21e5df79dc52074aef021a6755e65ee8e632fa88b3cc4cbf11eb44db20",
+      "bytes": 11976
+    },
+    "src/inference/product_desktop.py": {
+      "git_blob": "ab2eda5ef44ea1511a1130de24371161944dde97",
+      "sha256": "6e7f9701044ee515cf08d9f65ab6cf91b8a75050e7df2c6ce44a2df9156af059",
+      "bytes": 55101
+    },
+    "src/inference/product_desktop_ui.py": {
+      "git_blob": "8d8198ff27423f5e1e161750b377d2ebe1bf3122",
+      "sha256": "19b1acd90830038fb6a60a3319543f1e4c782d59be49fe56de34f91d8b27819b",
+      "bytes": 35410
+    },
+    "tests/test_u7_15c_desktop_batch_representative_path_disclosure.py": {
+      "git_blob": "7220f5be18d47b77c90c24ff2fdbb6f826ff1938",
+      "sha256": "049dd3690a1bb88db662686705c61fa20317e9df202bf600852c881c9dee75c2",
+      "bytes": 4153
+    },
+    "tests/test_audit_u7_15c_desktop_batch_representative_path_disclosure.py": {
+      "git_blob": "6e8eac449d2cd1c39ed4cf1d1700ca5f840dad21",
+      "sha256": "e5063b2cf1f932ef2ca17c5f9d8cdc5ed888a1a78712e130ba776faa38f42961",
+      "bytes": 1208
+    }
+  },
+  "result": {
+    "parent_disclosure_reproduced": true,
+    "visible_values": [
+      "Automatic · canonical first",
+      "001 · same-name.png",
+      "002 · same-name.png"
+    ],
+    "visible_parent_paths_hidden": true,
+    "duplicate_basename_selection_exact": true,
+    "selected_001": "private-beta/same-name.png",
+    "selected_002": "private-alpha/same-name.png",
+    "default_representative": "private-alpha/same-name.png",
+    "explicit_representative": "private-beta/same-name.png",
+    "canonical_inputs": [
+      "private-alpha/same-name.png",
+      "private-beta/same-name.png"
+    ],
+    "batch_receipt_sha256": "d449f25da6b3ed6362dee3d9f71223b8d5dbd3cf1ce19b5441c1ef9d3d9ee0c5",
+    "default_explicit_batch_tree_exact": true,
+    "visible_strength_percent": 63,
+    "visible_strength_amount": 0.63,
+    "product_core_unchanged": true,
+    "source_immutable": true,
+    "tracked_diff_clean": true,
+    "zero_owned_residue": true
+  },
+  "verification": {
+    "focused_implementation": "3 passed",
+    "formal_forward_reverse_test": "1 passed",
+    "u7_10a_parent": "20 passed",
+    "u7_15a_parent": "3 passed",
+    "u7_15b_parent": "13 passed",
+    "ruff": "pass",
+    "compile": "pass",
+    "diff_check": "pass"
+  },
+  "excluded_preformal_diagnostics": [
+    {
+      "stage": "before-report",
+      "cause": "The audit compared a P-backed resolved path to the C logical tmp junction with Path.relative_to.",
+      "correction": "Normalize only to the two frozen source roles; product paths, samples, gates and outputs unchanged.",
+      "report_created": false
+    },
+    {
+      "stage": "before-report",
+      "cause": "The audit passed the C logical junction alias as representative while the real UI stores the resolved P-backed exact path.",
+      "correction": "Pass the already-resolved exact path like the real UI; the product alias rejection remains unchanged.",
+      "report_created": false
+    }
+  ],
+  "decision": "PASS_PRIVATE_U7_15C_DESKTOP_BATCH_REPRESENTATIVE_PATH_DISCLOSURE",
+  "interpretation": "The native batch representative selector now shows only a one-based index and basename. Equal basenames remain separately selectable through the private exact path mapping, and explicit representative choice leaves canonical batch output, recipes and receipt exact. U7.15B visible strength semantics remain exact.",
+  "claim_ceiling": "Private Windows/Python Tk basename-only presentation for the existing explicit film-inspired Look Approximation batch representative only; not filesystem secrecy, public release, calibrated or physical stock response, stock distinguishability, arbitrary-media quality or product value.",
+  "stop_rule": "Stop relative-directory, hash, thumbnail, editable-path, automatic-scoring and adjacent selector variants."
+}
