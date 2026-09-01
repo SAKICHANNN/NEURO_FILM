@@ -362,13 +362,18 @@ class ProductDesktopApp:
         )
 
     def _update_output_format_controls(self) -> None:
-        single_photo = len(self.input_paths) == 1
+        count = len(self.input_paths)
+        single_photo = count == 1
         enabled = single_photo and not self.busy
         if not single_photo:
             self.output_format.set("png16")
-        self.output_format_text.set(
-            "Single-photo output" if single_photo else "Batch output fixed: PNG16"
-        )
+        if count == 0:
+            label = "Choose one photo for output format"
+        elif single_photo:
+            label = "Single-photo output"
+        else:
+            label = "Batch output fixed: PNG16"
+        self.output_format_text.set(label)
         state = "normal" if enabled else "disabled"
         for button in self.output_format_buttons.values():
             button.configure(state=state)

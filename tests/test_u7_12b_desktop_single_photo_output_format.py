@@ -306,9 +306,16 @@ def test_desktop_format_controls_route_single_photo_and_fix_batch_png16(
         lambda title, message: shown.append((title, message)),
     )
     monkeypatch.setattr(workflow, "export", export)
-    app = build_product_desktop_app(root, workflow, initial_input=first)
+    app = build_product_desktop_app(root, workflow)
     monkeypatch.setattr(app, "_background", lambda action, success: success(action()))
     try:
+        assert app.output_format_text.get() == "Choose one photo for output format"
+        assert all(
+            str(button.cget("state")) == "disabled"
+            for button in app.output_format_buttons.values()
+        )
+        app._set_input(first)
+        assert app.output_format_text.get() == "Single-photo output"
         state = workflow.render_previews(first, 0.5)
         app._preview_complete(state)
         app.look_buttons["ektar_100"].invoke()
