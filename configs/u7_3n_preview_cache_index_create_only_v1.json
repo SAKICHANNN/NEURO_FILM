@@ -9,6 +9,7 @@
   ],
   "contract_commit": "89ca88bd40bfac330b3a0808465574a77c2179e8",
   "implementation_commit": "ed9ea8ec7727de39a7c1c2a21b28427dff7414b8",
+  "audit_commit": "9dfd92463781674d426692d18050c29f5ba69bfc",
   "source_locks": {
     "contract": {
       "path": "docs/planning/U7_3N_PREVIEW_CACHE_INDEX_CREATE_ONLY_CONTRACT.md",
@@ -29,6 +30,16 @@
       "path": "tests/test_u7_3n_preview_cache_index_create_only.py",
       "git_blob": "1a49c8cec7b5984145bac76f5c0e24abfe4a1be9",
       "git_lf_sha256": "ecffea00bd44282e03181ec0dddcc34057a5d664bfed48e1d27b09dbcf25aee8"
+    },
+    "audit_runner": {
+      "path": "scripts/audit_u7_3n_preview_cache_index_create_only.py",
+      "git_blob": "aa991d3e25f2494024566ae2f6b42495d0bba5c8",
+      "git_lf_sha256": "1407d46d9027bc17946d85274299d5f76e1fbd326aebbfc47927366de1b2f3c0"
+    },
+    "audit_test": {
+      "path": "tests/test_u7_3n_preview_cache_index_create_only_audit.py",
+      "git_blob": "33da6bf0b7463f822d4f204bf281f9a5810d0e65",
+      "git_lf_sha256": "4e9f225a467180a6fe73b281334510fe48559aa6f299a49657ebc93a59a28dc2"
     },
     "u7_3h_evidence": {
       "path": "docs/evidence/U7_3H_THREE_STOCK_PREVIEW_CACHE_RESULT.json",
