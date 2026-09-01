@@ -273,6 +273,11 @@ def parse_args() -> argparse.Namespace:
             parser.error("--product-look cannot be combined with --render-profile")
         if args.color_engine != "safe_lab":
             parser.error("--product-look requires the safe_lab color engine")
+        if args.halation_model == "staged-density-research":
+            parser.error(
+                "--halation-model staged-density-research is research-only "
+                "and cannot be combined with --product-look"
+            )
         for option, value in (
             ("--grain", args.grain),
             ("--halation", args.halation),
