@@ -116,6 +116,11 @@ the unchanged U7.11A uninterrupted batch for the same inputs, style, amount,
 software commit, and destination semantics. No resume-only field may enter the
 final U7.11A receipt identity. Only after the renamed destination and every
 member validate may the owned recovery workspace and lease be removed.
+Once that validation succeeds, publication is monotonic: failure to remove a
+workspace member safely must preserve both the valid destination and any
+unowned residue, return the successful U7.11A receipt, and still remove only an
+exactly bound lease. It must not report an ambiguous failure or delete the
+already validated destination.
 
 ## Frozen formal roles and gates
 

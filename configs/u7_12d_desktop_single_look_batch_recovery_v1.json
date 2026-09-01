@@ -49,7 +49,9 @@
     "operation": "same-parent Windows no-replace rename of the flat publication stage",
     "late_foreign_destination_preserved": true,
     "workspace_remains_resumable_after_publication_failure": true,
-    "workspace_removed_only_after_destination_and_members_validate": true
+    "workspace_removed_only_after_destination_and_members_validate": true,
+    "validated_destination_is_monotonic_success": true,
+    "post_publication_cleanup_failure_preserves_destination_and_returns_success": true
   },
   "formal_fixture": {
     "input_generator": {
