@@ -1,0 +1,95 @@
+{
+  "schema": "kmcfm.u7-19b-multi-vendor-raw-product-ingress-evidence.v1",
+  "node_id": "U7.19B",
+  "status": "PASS_PRIVATE_U7_19B_PARTIAL_MULTI_VENDOR_RAW_PRODUCT_INGRESS",
+  "formal_execution_commit": "7be210d1480c3b4e4e9634725c7d6c069f50f719",
+  "bindings": {
+    "docs/planning/U7_19B_MULTI_VENDOR_RAW_PRODUCT_INGRESS_CONTRACT.md": {"git_blob": "3ae4e2620f59b3bad375b77d722453b17c79c914", "bytes": 3981, "sha256": "f1ffe1a9ec260a010eec43a5c9c6405e8226b45adeae5c778dda9780587a0ab2"},
+    "configs/u7_19b_multi_vendor_raw_product_ingress_v1.json": {"git_blob": "bee03669b522fa9de59df10733b22b83717b703f", "bytes": 7236, "sha256": "2c7e94516305a41e85ad63d2d3f6991240d70961078670071e6b10b3669a9322"},
+    "configs/u7_19b_multi_vendor_raw_product_ingress_execution_v3.json": {"git_blob": "c4c0b005b74825c5a8078d6088d1d8fdcea65d77", "bytes": 3181, "sha256": "616ca6f0467ba0e28012de7fdb15d1c21ed05b42f3bead9f5dde5d03f2823dc2"},
+    "scripts/audit_u7_19b_multi_vendor_raw_product_ingress.py": {"git_blob": "896b02c8bfd1bb63244853a8e7c487fdef23e67a", "bytes": 21907, "sha256": "024d274863e935cd54133e57edcaebb01a4448134da8aa0b889074bae4207a4c"},
+    "tests/test_u7_19b_multi_vendor_raw_product_ingress.py": {"git_blob": "982d5885bacde5240775ac8237eed2e51a0090bd", "bytes": 5863, "sha256": "0420612078b8845d766006419c7cf8d42245a4d640b0779d70b18a4a63ab30e9"},
+    "src/preprocess/raw_decode.py": {"git_blob": "525871cb825ad06b14666009aa43aad691ef07f3", "bytes": 4846, "sha256": "e95a528bcc9bfe13df1b4ab50e741529f76346d444430c5477bba2c4aaa0636d"},
+    "src/preprocess/pipeline.py": {"git_blob": "85111f0864bd2c3d69c9d7c8b43ad74641f1023c", "bytes": 1035, "sha256": "21a7a165a895679e05bc43e5c67d7d9d439b19dfbe01cf346449e4ea90be6dc4"},
+    "scripts/render_film.py": {"git_blob": "fca3253810a002590ef07820035634fac7d5f6c9", "bytes": 43535, "sha256": "2013e7c2f95c2f6a0b84ccff1d93db9bec2b189aead84b1ca6b5ab477447f786"},
+    "configs/render_profiles/safe_rich_product_v1.json": {"git_blob": "db9921150bd0b628753a6062d0f409787e4ef101", "bytes": 4259, "sha256": "09722cb48c55d1c4c460220c9f59b9ced81801c1b6fe856708a27f5cc99d39fe"},
+    "src/inference/render_contract.py": {"git_blob": "8942e4236ea4ed128d19df611bfecc57bc5c26ea", "bytes": 33077, "sha256": "378aeea559e41aba389022852f2f7f037f3b62e4eb29ce49d8bfc34d45bfd840"},
+    "src/inference/style_safe_engine.py": {"git_blob": "b67ddb7fcf39e6c3eaf2da0d26986dec8fef88e9", "bytes": 19218, "sha256": "cfdc66119e2dace3dbfdd293eff8bbfa7e2dec08ca233d6efd440235f3a5e007"}
+  },
+  "reports": {
+    "preflight_forward": {"path": "outputs/u7_19b_multi_vendor_raw_product_ingress_v1/preflight_forward.json", "bytes": 41116, "sha256": "aa2bca3cb228253ca66fbeb1a7c5649dfeab0bd250e2ae8cc8a67cdf479f7eae"},
+    "preflight_reverse": {"path": "outputs/u7_19b_multi_vendor_raw_product_ingress_v1/preflight_reverse.json", "bytes": 41116, "sha256": "a2fc868df1fb3eb860e6add0153cecf093ec63bd49e4a1b06c25c8309055213b"},
+    "preflight_scientific_identity": "ef278a92d10de2a4f7bc366543de9d65c754a129cd13e1bd250233159ae9f3d6",
+    "preflight_forward_reverse_scientific_exact": true,
+    "formal_forward": {"path": "outputs/u7_19b_multi_vendor_raw_product_ingress_v1/formal_forward.json", "bytes": 11677, "sha256": "77cf3fba29f3adcb35553dcab0bf43d5b4c57acb0dd67ca58b2e40ccfcc8bd09"},
+    "formal_reverse": {"path": "outputs/u7_19b_multi_vendor_raw_product_ingress_v1/formal_reverse.json", "bytes": 11677, "sha256": "1f0a17a86657b9a7af07af1d7d97df6465d15ce4f42458aa5040e80e446081dc"},
+    "formal_scientific_identity": "ab3744a99080d8d40975a95c56afcfd1bbfe6dcbdd16922192300f8d6fb03e7a",
+    "formal_forward_reverse_scientific_exact": true,
+    "full_report_bytes_expected_to_differ_only_in_resource_measurements": true
+  },
+  "decision": {
+    "passed_extensions": [".mos", ".nef", ".raf", ".x3f"],
+    "failed_extensions": [".3fr", ".fff"],
+    "all_twelve_sources_passed_public_working_image_preflight": true,
+    "all_sources_immutable_after_formal": true,
+    "all_global_formal_gates_pass": true,
+    "independent_extension_policy_preserved": true,
+    "network_requests": 0,
+    "scratch_residue_files": 0
+  },
+  "product_chain": {
+    "style_id": "ektar_100",
+    "look_amount": 1.0,
+    "profile_id": "safe-rich-product-v1",
+    "output_format": "PNG8",
+    "recipe_schema": "kmcfm.render-recipe.v1",
+    "passing_records": {
+      ".mos": {"source_id": "aptus22_compression99_lossless", "output_sha256": "b1e7f794a48fbfafdf41ed5e72c3114d9d68c018fe1b340e2413538a47bc16f8", "recipe_sha256": "8c4f869de906f759e9562fd92daf331de7e647ed899b82f3b5c3f7d6695b59f6"},
+      ".nef": {"source_id": "nikon_d6_12bit", "output_sha256": "48676be44aed1f57ebac5d7a2b7a78b07d9f4437373fd3ec39febb85540f5588", "recipe_sha256": "76f0ffb2b1e0dc0a9e4da4b770673acffb55e63aedccdca19bf4f16e2a0d900b"},
+      ".raf": {"source_id": "fujifilm_s2pro_layout0", "output_sha256": "099b79d5e2628303c051586ac5277062b3f5582b0efb08bf26918aaa24295673", "recipe_sha256": "b56f81bf9fe42b63c0d4531a85e7ea92003be36a9af809434379a2a648c1d47c"},
+      ".x3f": {"source_id": "sigma_dp1s_true", "output_sha256": "464beffa8b99df26e5e778926190e4b575894d040b1f03abf52f7fa9533821e0", "recipe_sha256": "43e70a488d63db787627508f626c69328ff19857baa5da2d64fce1080c5e0765"}
+    },
+    "strict_replay_byte_exact": true,
+    "claim_render_mode": "Style-safe",
+    "claim_output_label": "film-inspired",
+    "claim_evidence_grade": "look-approximation",
+    "calibrated_reference_allowed": false
+  },
+  "resource_closures": {
+    "limit_bytes": 17179869184,
+    ".3fr": {"reason": "worker_process_tree_rss_limit_exceeded", "forward_peak_bytes": 17401221120, "reverse_peak_bytes": 17237598208},
+    ".fff": {"reason": "worker_process_tree_rss_limit_exceeded", "forward_peak_bytes": 17279488000, "reverse_peak_bytes": 17210830848},
+    "resource_gate_rescue": false,
+    "source_replacement_or_parameter_tuning": false
+  },
+  "excluded_attempts": {
+    "v1": "Interrupted before report after discovering worker-only rather than full process-tree memory measurement; owned scratch recovered only after proving it contained zero files.",
+    "v2": "Resource outcomes were valid, but report classification incorrectly collapsed independent extension decisions into an all-or-nothing status; only classification semantics changed before V3.",
+    "excluded_v2_forward_report_bytes": 11249,
+    "excluded_v2_forward_report_sha256": "fae248b3e7476b0e0568b563b97d9ad4be52e2213e7ad5fcad11b2031ed4ee1b"
+  },
+  "verification": {
+    "focused_and_evidence": "10/10 pass",
+    "adjacent_behavioral": "118 pass",
+    "ruff": "pass",
+    "format": "pass",
+    "py_compile": "pass",
+    "json": "pass",
+    "diff_check": "pass"
+  },
+  "interpretation": "The unchanged public generic RAW/WorkingImage and Look Approximation product chain is executable for the exact source-locked MOS, NEF, RAF and X3F files. Exact Hasselblad X2D 3FR and FFF inputs pass public WorkingImage preflight but their full public product renders exceed the frozen 16 GiB process-tree gate, so those extensions remain closed without rescue.",
+  "claim": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "exact_file_generic_ingress": true,
+    "generic_vendor_raw_support": false,
+    "vendor_exact_colour": false,
+    "demosaic_quality": false,
+    "pixel_shift_fusion": false,
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false,
+    "multi_stock_system_complete": false,
+    "public_release": false,
+    "product_promotion": false
+  }
+}
