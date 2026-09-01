@@ -43,6 +43,28 @@ def _sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
+def _git_blob_bytes(path: Path) -> bytes:
+    try:
+        relative = path.resolve(strict=True).relative_to(ROOT.resolve()).as_posix()
+    except (FileNotFoundError, ValueError) as exc:
+        raise U713AError(
+            f"bound path is unavailable or outside repository: {path}"
+        ) from exc
+    completed = subprocess.run(
+        ["git", "show", f"HEAD:{relative}"],
+        cwd=ROOT,
+        check=False,
+        capture_output=True,
+    )
+    if completed.returncode != 0:
+        raise U713AError(f"bound path is absent from committed HEAD: {relative}")
+    return completed.stdout
+
+
+def _git_blob_sha256(path: Path) -> str:
+    return _sha256_bytes(_git_blob_bytes(path))
+
+
 def _canonical_bytes(value: object) -> bytes:
     return (json.dumps(value, indent=2, sort_keys=True, allow_nan=False) + "\n").encode(
         "utf-8"
@@ -189,7 +211,7 @@ def _bound_identities(config: dict[str, Any]) -> dict[str, bool]:
         results[name.removesuffix("_path")] = (
             path.is_file()
             and sha_key in config["bindings"]
-            and _sha256_file(path) == config["bindings"][sha_key]
+            and _git_blob_sha256(path) == config["bindings"][sha_key]
         )
     return results
 
@@ -645,7 +667,7 @@ def execute(config_path: Path, order: str) -> dict[str, Any]:
         "owned_residue_zero": not temporary.exists(),
     }
     result = {
-        "config_sha256": _sha256_file(config_path),
+        "config_sha256": _git_blob_sha256(config_path),
         "cross_platform_png_byte_exact_diagnostic": png_byte_diagnostic,
         "linux": linux,
         "linux_runtime": runtime_facts,
