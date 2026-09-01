@@ -8,6 +8,7 @@ import hashlib
 import json
 import os
 import shutil
+import stat
 import subprocess
 import sys
 from pathlib import Path
@@ -40,6 +41,35 @@ def _sha256(path: Path) -> str:
         for chunk in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def _entry_identity(path: Path) -> tuple[int, int]:
+    details = path.stat(follow_symlinks=False)
+    return int(details.st_dev), int(details.st_ino)
+
+
+def _remove_tree(path: Path, expected_identity: tuple[int, int]) -> bool:
+    if not os.path.lexists(path):
+        return True
+    details = path.stat(follow_symlinks=False)
+    attributes = int(getattr(details, "st_file_attributes", 0))
+    reparse = int(getattr(stat, "FILE_ATTRIBUTE_REPARSE_POINT", 0x400))
+    if (
+        not stat.S_ISDIR(details.st_mode)
+        or attributes & reparse
+        or _entry_identity(path) != expected_identity
+    ):
+        return False
+
+    def clear_readonly(function, member, _error):  # type: ignore[no-untyped-def]
+        os.chmod(member, stat.S_IWRITE)
+        function(member)
+
+    try:
+        shutil.rmtree(path, onexc=clear_readonly)
+    except OSError:
+        return False
+    return not path.exists()
 
 
 def _run(
@@ -163,6 +193,9 @@ def _mixed_case_environment_control(
     mixed["PyThOnPaTh"] = hostile_environment["PYTHONPATH"]
     mixed["pYtHoNuSeRbAsE"] = hostile_environment["PYTHONUSERBASE"]
     mixed["PyThOnInSpEcT"] = "1"
+    mixed["GIT_CONFIG_COUNT"] = "1"
+    mixed["GIT_CONFIG_KEY_0"] = "safe.directory"
+    mixed["GIT_CONFIG_VALUE_0"] = str(repository)
     result = _launch(launcher_cmd, [], cwd=root, env=mixed)
     return result.returncode == 0 and json.loads(result.stdout) == []
 
@@ -175,9 +208,10 @@ def audit(root: Path, wheelhouse: Path, order: str) -> dict[str, Any]:
     tmp = (ROOT / "tmp").resolve(strict=True)
     if tmp not in root.parents or tmp not in wheelhouse.parents:
         raise ValueError("formal roots must be repo-relative tmp paths")
-    if root.exists():
-        shutil.rmtree(root)
+    if os.path.lexists(root):
+        raise FileExistsError("formal root must be absent")
     root.mkdir(parents=True)
+    root_identity = _entry_identity(root)
     source_before = _source_facts()
     config = json.loads(CONFIG.read_text("utf-8"))
     commit = _git("rev-parse", "HEAD")
@@ -324,6 +358,8 @@ def audit(root: Path, wheelhouse: Path, order: str) -> dict[str, Any]:
         and all(row["image_exact"] for row in rows),
         "invalid_look_atomic": invalid_rejected,
     }
+    cleanup_complete = _remove_tree(root, root_identity)
+    gates["runtime_residue_zero"] = cleanup_complete
     scientific = {
         "schema": config["schema"],
         "implementation_commit": commit,
@@ -351,7 +387,7 @@ def audit(root: Path, wheelhouse: Path, order: str) -> dict[str, Any]:
             "windows": os.name == "nt",
             "runtime_python_role": "installation/runtime/Scripts/python.exe",
             "wheelhouse_file_count": len(list(wheelhouse.glob("*.whl"))),
-            "scratch_cleaned_after_report": True,
+            "scratch_cleaned_before_return": cleanup_complete,
         },
     }
     return report
@@ -370,7 +406,6 @@ def main() -> int:
         encoding="utf-8",
         newline="\n",
     )
-    shutil.rmtree(arguments.root)
     return 0 if report["status"].startswith("PASS") else 1
 
 

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import stat
 from pathlib import Path
 
 import pytest
@@ -45,4 +46,29 @@ def test_invalid_order_rejects_before_files(tmp_path: Path) -> None:
 def test_sentinel_repository_uses_process_scoped_safe_directory() -> None:
     source = Path(audit.__file__).read_text("utf-8")
     assert 'f"safe.directory={repository}"' in source
+    assert 'mixed["GIT_CONFIG_KEY_0"] = "safe.directory"' in source
     assert "config --global" not in source
+
+
+def test_remove_tree_clears_readonly_owned_files(tmp_path: Path) -> None:
+    root = tmp_path / "owned"
+    root.mkdir()
+    member = root / "readonly.bin"
+    member.write_bytes(b"owned")
+    member.chmod(stat.S_IREAD)
+    identity = audit._entry_identity(root)
+    assert audit._remove_tree(root, identity)
+    assert not root.exists()
+
+
+def test_remove_tree_preserves_identity_replacement(tmp_path: Path) -> None:
+    root = tmp_path / "owned"
+    root.mkdir()
+    identity = audit._entry_identity(root)
+    displaced = tmp_path / "displaced"
+    root.rename(displaced)
+    root.mkdir()
+    (root / "foreign.bin").write_bytes(b"foreign")
+    assert not audit._remove_tree(root, identity)
+    assert (root / "foreign.bin").read_bytes() == b"foreign"
+    assert displaced.is_dir()
