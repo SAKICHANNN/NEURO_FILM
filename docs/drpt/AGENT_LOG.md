@@ -21574,3 +21574,38 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   stock labels and claims are unchanged. This is private process-level
   ownership safety only, not a browser, wrapper, installer, release,
   calibration or physical-stock claim; stop this repair family.
+
+### 2026-09-01 - U7.3L preserves late foreign strict-replay outputs
+
+- **Node and routing:** `ULT > U7 > U7.3L`, DRPT L2 / Mode C. The sole write
+  workflow was `dev-research-reliability`; DRPT-BI, plan, project-structure and
+  agent-log disciplines were secondary reviewers. Paths were coordinated as
+  disjoint from U7.2P.
+- **Observed defect:** `replay_style_safe_recipe_to_file` preflighted an absent
+  output, used replacement-capable encoder publication, and unconditionally
+  unlinked the final path on any later exception. A deterministic injected
+  encoder race proved that a foreign output appearing after preflight was
+  deleted. Recipe-history export, portable replay and local-browser replay all
+  share this strict path.
+- **Correction:** existing SDR encoders retain their historical string-returning
+  APIs and exact bytes, while new private create-only entry points also return
+  the exact `PublishedFileIdentity` captured at publication. Strict replay
+  rejects existing or dangling-symlink destinations before render, publishes
+  create-only, and removes an output after failure only while its filesystem
+  identity still matches. A late foreign winner and a post-publication foreign
+  replacement remain byte exact; a still-owned SHA mismatch leaves no residue.
+- **Formal evidence:** contract `31ccdf00`, implementation `fd277301`, binding
+  config `ce27377d`, runner `db1b5ebe`, evidence `798887bf`, and evidence test
+  `15cadeae`. Forward/reverse committed-head reports are both 2,964 bytes / SHA
+  `64c925714cbc72ae5c7d77d1bd156b0bc817869a9c3a067db279447d940afc10`,
+  stable identity `e5783db2...7b96a`; all eight gates pass. The tracked evidence
+  is byte exact to both reports.
+- **Verification and propagation:** 113 adjacent U7.3/output/replay tests pass
+  with one Windows file-symlink capability skip; focused tests, Ruff, compile,
+  JSON, source-binding and diff checks pass. U7.2J/U7.2N historical evidence
+  remains immutable: tests that require today's evolved core file to equal an
+  older evidence hash no longer reconstruct that historical report, while
+  current replay behavior and U7.2P's separate dependency-isolation gates pass.
+  No renderer, format, recipe schema, pixel, stock, calibration, browser,
+  installer, release or public-product claim changes. Stop adjacent replay or
+  export ownership-wrapper expansion.
