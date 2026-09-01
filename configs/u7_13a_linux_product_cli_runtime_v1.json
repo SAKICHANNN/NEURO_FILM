@@ -12,7 +12,7 @@
     "render_contract_path": "src/inference/render_contract.py",
     "style_safe_engine_path": "src/inference/style_safe_engine.py",
     "three_stock_look_path": "src/inference/three_stock_look.py",
-    "replay_cli_path": "scripts/replay_style_safe_recipe.py"
+    "replay_cli_path": "scripts/replay_film_recipe.py"
   },
   "runtime": {
     "distribution": "Ubuntu-22.04",
