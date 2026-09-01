@@ -1,0 +1,137 @@
+{
+  "schema": "kmcfm.u7-10c-installed-desktop-export-evidence.v1",
+  "experiment_id": "U7_10C_INSTALLED_DESKTOP_EXPORT",
+  "date": "2026-09-01",
+  "status": "FAIL_CLOSED_U7_10C_REPORT_COORDINATE_NONDETERMINISM",
+  "automatic_pass": false,
+  "commits": {
+    "contract": "ab4c74187a3aa94a06110e7de53548dc706da75e",
+    "evidence_gate_lock": "6ee111a8a2033c324ea64fc319dc834fbe0590e0",
+    "visual_gate_clarification": "a2224d90f782aff86d552ed2a18f4b58aacf612a",
+    "implementation_and_test": "3149db8c70f0a16d3d2b920d8992bc599db64d18",
+    "formal_execution": "3149db8c70f0a16d3d2b920d8992bc599db64d18",
+    "excluded_post_result_normalization": "23bc16f70f1236fae91baa3187bb1dc6d11bf40c",
+    "normalization_revert": "a90a9beb567f00e6b5919f53d916cd0a492659fc"
+  },
+  "formal_execution": {
+    "forward_report_path": "outputs/eval/u7_10c_installed_desktop_export/forward.json",
+    "reverse_report_path": "outputs/eval/u7_10c_installed_desktop_export/reverse.json",
+    "report_bytes_each": 13443,
+    "forward_report_sha256": "b3c1b04953acffb630ea4832a06c9d3f9504954d81e53c01d3fa0f8ad073342b",
+    "reverse_report_sha256": "57594d68467f8b562905d54fb7c21683c1c9c04e995f62ac7c98ad73528787dc",
+    "reports_byte_exact": false,
+    "forward_stable_identity": "40545975160bda3aa0e5548a19f09ae3401ceef3b89b743d51f1e48bda353bff",
+    "reverse_stable_identity": "412594a56ae6d4d9d374afb057d126d40ce45170b584d1ed9a39e925c5792894",
+    "forward_visual_path": "outputs/eval/u7_10c_installed_desktop_export/forward.png",
+    "reverse_visual_path": "outputs/eval/u7_10c_installed_desktop_export/reverse.png",
+    "visual_bytes_each": 36202,
+    "visual_sha256": "bddfe2ea290e00ff5d56e8a81484e3b75ba92bc27ac28304d2fc5252736cbf44",
+    "visuals_byte_exact": true,
+    "formal_root_residue_count": 0,
+    "per_run_gate_count": 14,
+    "per_run_gate_pass_count": 14
+  },
+  "cross_run_failure": {
+    "frozen_gate": "forward_reverse_report_and_visual_exact",
+    "failed_dimension": "complete_report_byte_identity",
+    "forward_save_button_screen_coordinate": [
+      796,
+      630
+    ],
+    "reverse_save_button_screen_coordinate": [
+      874,
+      708
+    ],
+    "other_report_leaf_differences": [
+      "stable_identity derived from the serialized coordinate"
+    ],
+    "scientific_or_media_difference_observed": false,
+    "post_result_field_removal_accepted": false,
+    "third_run_executed": false
+  },
+  "mechanical_signal_below_promotion": {
+    "installed_direct_gui_png_byte_exact_per_run": true,
+    "installed_direct_gui_recipe_byte_exact_per_run": true,
+    "gui_strict_replay_png_byte_exact_per_run": true,
+    "gui_output_bytes": 13826,
+    "gui_output_sha256": "9f7baad169d45c56032f7a6cdbb7ba4bf210bd669f2fc9fb1500cea9b50f5fc6",
+    "gui_recipe_bytes": 3162,
+    "gui_recipe_sha256": "385bd908f410d5ec729b7896971e5170fd5e319b2c2da301f5d4b773f3e4e598",
+    "receipt_sha256": "8295e65f00cc492731065f9e2e22b235001c0ede0dbd92be0b3a19bff17853f7",
+    "native_save_dialog_pid_and_owner_bound": true,
+    "native_save_button_physically_clicked": true,
+    "native_completion_dialog_physically_dismissed": true,
+    "owned_process_window_and_formal_root_residue_zero": true
+  },
+  "manual_visual_review": {
+    "three_preview_cards_visible": true,
+    "velvia_radio_selected_visible": true,
+    "look_approximation_claim_visible": true,
+    "not_calibrated_disclaimer_visible": true,
+    "final_status_exact": "Export complete: installed-desktop-velvia.png + installed-desktop-velvia.recipe.json",
+    "overlap_or_crop_observed": false,
+    "absolute_path_visible": false
+  },
+  "source_bindings": {
+    "config": {
+      "path": "configs/u7_10c_installed_desktop_export_v1.json",
+      "sha256": "2c78cbbf878d7306e7535e1c74d475d51f858ef24c2248a47b0cf131778201dd"
+    },
+    "contract": {
+      "path": "docs/planning/U7_10C_INSTALLED_DESKTOP_EXPORT_CONTRACT.md",
+      "sha256": "908a434e4043d2309deef09e4477cd311f24985d3a5c53dc23a16861410d8159"
+    },
+    "audit": {
+      "path": "scripts/audit_u7_10c_installed_desktop_export.py",
+      "sha256": "6e856620c3b377f7e83dd7d295b069434cb267b9f63a232e829ccf642688b31d"
+    },
+    "audit_test": {
+      "path": "tests/test_audit_u7_10c_installed_desktop_export.py",
+      "sha256": "0f57a29148ce794caf7d35eacd0d582a7a4523420e024ffddc6ddf579c479309"
+    },
+    "parent_export_test": {
+      "path": "tests/test_u7_10a_product_desktop_input_workflow.py",
+      "sha256": "23240dc4a65b82787d4a6ca09d34dd52dc4597b46c344bb3415e4de77a6b28a3"
+    }
+  },
+  "excluded_prescore_diagnostics": [
+    {
+      "stage": "native-save-control-discovery",
+      "reason": "The modern DirectUI save dialog exposed a search Edit rather than a filename HWND. WM_SETTEXT was rejected before an accept action; no report was written and the owned root was removed.",
+      "reports_written": 0
+    },
+    {
+      "stage": "native-save-command-diagnostic",
+      "reason": "Unicode input reached the filename field, but WM_COMMAND IDOK did not close the DirectUI dialog. One incorrectly routed diagnostic P.png/recipe pair was removed immediately; no report was written.",
+      "reports_written": 0
+    },
+    {
+      "stage": "native-completion-command-diagnostic",
+      "reason": "A physical Save-button click published the exact intended pair, but the completion message did not close under direct command injection. The pair and root were removed; no report was written. Physical Enter replaced command injection before formal.",
+      "reports_written": 0
+    }
+  ],
+  "verification": {
+    "preformal_focused_and_parent_chain": "39 passed in 20.38s",
+    "post_reportability_revert_focused": "39 passed in 19.32s",
+    "ruff": "passed",
+    "py_compile": "passed",
+    "json": "passed",
+    "diff_check": "passed",
+    "manual_visual_review": "passed"
+  },
+  "claim": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false,
+    "stock_distinguishability": false,
+    "public_release": false,
+    "standalone_installer": false,
+    "cross_platform_gui": false,
+    "arbitrary_input_coverage": false
+  },
+  "decision": "FAIL_CLOSED_U7_10C_REPORT_COORDINATE_NONDETERMINISM",
+  "interpretation": "Both installed-runtime executions completed the real native preview, Velvia selection, Save dialog, PNG16 plus strict recipe export and strict replay with identical media and screenshots. However, the frozen complete-report byte-identity gate failed because a physically clicked Save button appeared at different absolute screen coordinates. That field is operational telemetry, but the preregistered gate is binding; therefore U7.10C does not pass and the local mechanical signal is retained without promotion.",
+  "stop_rule": "Close this exact installed-export composition. Do not delete, normalize or ignore the observed screen coordinate after result; do not run a third confirmation, add UI automation hooks, bypass the native dialog, relax byte identity, change dependencies or open another launcher/package variant. Continue the product Goal only through a materially different ready leaf."
+}
