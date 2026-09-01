@@ -21769,3 +21769,42 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   promotion opens. Stop adjacent RAW-preview scheduling, cache and threshold
   rescue; other materially different 12/24MP or device U4.5 mechanisms remain
   separately open.
+
+### 2026-09-01 - U7.2S removes the product YAML source-build blocker
+
+- **Node and routing:** `ULT > U7 > U7.2S`, DRPT L2 / Mode C. The sole write
+  workflow was `dev-research-reliability`; router, DRPT-BI, planning,
+  project-structure and agent-log disciplines were read-only secondary
+  reviewers. Exact paths and the final shared-doc window were coordinated with
+  the disjoint U7.2R and U4.5F leaves.
+- **Defect and implementation:** U7.2Q proved that the existing product
+  environment could not install binary-only because `omegaconf==2.3.0`
+  requires source-only `antlr4-python3-runtime==4.9.3`. The product used
+  OmegaConf only for two tracked YAML loads. Contract `68e1695d`, implementation
+  `97af8396`, protocol lock `34ac9c20`, corrected runner `e7d6ef7c` and
+  execution relock `e3cfb1fc` add a strict PyYAML SafeLoader, migrate those two
+  call sites and freeze `requirements-product-v2.txt`. Duplicate keys,
+  non-mapping roots, custom tags and unresolved interpolation reject; the exact
+  product profile canonical object remains unchanged.
+- **Formal result:** two from-zero outer runs created four independent Windows
+  CPython 3.12.10 environments. All install the exact 12-distribution
+  binary-only manifest, pass `pip check`, and contain/import neither OmegaConf
+  nor ANTLR. Forward/reverse reports are byte-identical at 5,985 bytes / SHA
+  `fb5486dc711fba8c9733e22a5927726b228820ea45f509e56c32b8f35269a217`;
+  11/11 gates pass. Every nested U7.2R run retains its terminal signed-minimum
+  seed failure and normalized science SHA
+  `ac7e352bfea6e8a2fa636760e14a1d46db9b5f2f7a000adc41cf0f6bc24f50d3`.
+- **Correction and evidence:** the first forward audit is excluded because an
+  unfrozen full nested-report byte-equality gate observed concurrent
+  parent-commit drift; normalized U7.2R science was already exact. The corrected
+  audit removed only that extra full-report gate and changed no dependency,
+  product, source, pixel, threshold or scientific gate. Evidence/test commit
+  `8c0e021a`; tracked evidence Git-LF SHA-256
+  `10243d81284007ae18c322730b4a909467b9b1262dfc48f9c155dd0f49c82663`.
+- **Verification and handoff:** the full U7.2 test family reports 213 passed and
+  4 skipped; focused evidence tests, Ruff, py_compile, JSON, exact-report,
+  source-object and diff checks pass. U7.2S establishes only a private Windows
+  Look Approximation runtime boundary. It does not claim an installer, public
+  package/release, calibrated stock response, physical-film reproduction or a
+  completed multi-stock system. The next product leaf may address an
+  independently observed user-facing defect; adjacent dependency wrappers stop.
