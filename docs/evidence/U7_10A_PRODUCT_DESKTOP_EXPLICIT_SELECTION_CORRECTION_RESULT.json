@@ -1,0 +1,128 @@
+{
+  "schema": "kmcfm.u7-10a-product-desktop-explicit-selection-correction-evidence.v1",
+  "experiment_id": "U7.10A_PRODUCT_DESKTOP_EXPLICIT_SELECTION_CORRECTION",
+  "date": "2026-09-01",
+  "status": "PASS_PRIVATE_U7_10A_PRODUCT_DESKTOP_INPUT_WORKFLOW",
+  "supersedes": {
+    "evidence_path": "docs/evidence/U7_10A_PRODUCT_DESKTOP_INPUT_WORKFLOW_RESULT.json",
+    "evidence_commit": "8e17b4e6f4810799bc39c8687f5218d5e121c85a",
+    "evidence_sha256": "4acfc17e730b231251dc14dc8bee6b9515d408b30bc48bd2dee167e61377e5b7",
+    "reason": "Post-evidence review found that the GUI preselected Velvia before any user action and left all look radios mutable during background export. The old reports remain immutable historical mechanics, but they do not prove the contract's explicit-selection step or visible-selection consistency during export."
+  },
+  "commits": {
+    "contract": "d88d82361",
+    "implementation": "080c116dbf1683397508d712aa4f94fd7011e15f",
+    "visual_state_audit_correction": "0fb1fc0a4e86821ad275823bf79b3328b719d71b",
+    "explicit_selection_and_busy_state_correction": "b80f4adcafe1dc79fa12f51327085038f01eed51"
+  },
+  "bindings": {
+    "config": {
+      "path": "configs/u7_10a_product_desktop_input_workflow_v1.json",
+      "sha256": "5684c2acd7376508f651a60f2e76ae52f615c3cf0dbc2fc64e607499d69fa5e0"
+    },
+    "contract": {
+      "path": "docs/planning/U7_10A_PRODUCT_DESKTOP_INPUT_WORKFLOW_CONTRACT.md",
+      "sha256": "ee1a114a572644bbea213789e7b1e319634d00ff0788216f1d524153f6a9aa60"
+    },
+    "entrypoint": {
+      "path": "scripts/open_product_desktop.py",
+      "sha256": "c92f0a1c81ca896d7065144961fabdf0183b6a51e3368ac50df651da3ace4064"
+    },
+    "core": {
+      "path": "src/inference/product_desktop.py",
+      "sha256": "683a1fab2f94541deec38daf93e79bc7abafa189c49526a88c8e3793e3f60ddb"
+    },
+    "ui": {
+      "path": "src/inference/product_desktop_ui.py",
+      "sha256": "bac32ca62492b7b8f7e96ff35873ed9f80e377e17d8ee82b0ff648b57382957e"
+    },
+    "audit": {
+      "path": "scripts/audit_u7_10a_product_desktop_input_workflow.py",
+      "sha256": "d6906697c52c278d4aff988b7e49b0a373b97d31aae361ef693121d42a440dd0"
+    },
+    "implementation_test": {
+      "path": "tests/test_u7_10a_product_desktop_input_workflow.py",
+      "sha256": "23240dc4a65b82787d4a6ca09d34dd52dc4597b46c344bb3415e4de77a6b28a3"
+    },
+    "audit_test": {
+      "path": "tests/test_audit_u7_10a_product_desktop_input_workflow.py",
+      "sha256": "1513dbfdc8ee1ef10e356b59f9461570f2a54e34ba020a4120a6a31b95eb7121"
+    }
+  },
+  "correction": {
+    "initial_selection_empty": true,
+    "export_disabled_until_radio_action": true,
+    "look_radios_disabled_before_preview": true,
+    "look_radios_disabled_during_preview_and_export": true,
+    "look_radios_restored_after_export": true,
+    "export_uses_frozen_explicit_selection": true,
+    "input_or_amount_invalidation_clears_selection": true,
+    "visual_audit_uses_radio_invoke": true
+  },
+  "execution": {
+    "source_commit": "b80f4adcafe1dc79fa12f51327085038f01eed51",
+    "forward_report_path": "outputs/eval/u7_10a_product_desktop_input_workflow/formal_b80f4adc_forward.json",
+    "reverse_report_path": "outputs/eval/u7_10a_product_desktop_input_workflow/formal_b80f4adc_reverse.json",
+    "report_bytes": 7562,
+    "report_sha256": "e2ccbe3993361ad8a1cd5c880448dcccfacf5c4cf128e58fb65d4332040b4ca1",
+    "scientific_identity_sha256": "687455dc84400b1c7352fe4553c658671066d782c2ecd8a1162805a0efef0021",
+    "forward_reverse_byte_exact": true,
+    "case_count": 2,
+    "export_count": 6,
+    "owned_scratch_residue_count": 0
+  },
+  "visual": {
+    "path": "outputs/eval/u7_10a_product_desktop_input_workflow/ready_state_b80f4adc.png",
+    "bytes": 32395,
+    "sha256": "8701e4c258e796293048dad8333beeba957cb397000ce2ba18d7053cfc816b33",
+    "width": 1180,
+    "height": 760,
+    "automated_state": {
+      "absolute_path_disclosed": false,
+      "amount_label": "65%",
+      "amount_value": 0.65,
+      "export_enabled": true,
+      "input_label": "gui-source.png",
+      "preview_look_amount": 0.65,
+      "preview_ready": true,
+      "selected_style": "velvia_50",
+      "selection_action": "velvia_50_radio_invoke"
+    },
+    "manual_review": {
+      "three_preview_cards_visible": true,
+      "three_look_names_visible": true,
+      "look_approximation_claims_visible": true,
+      "not_calibrated_disclaimer_visible": true,
+      "explicit_selected_radio_visible": true,
+      "look_selected_status_visible": true,
+      "export_action_visible": true,
+      "overlap_or_crop_observed": false,
+      "absolute_path_visible": false
+    }
+  },
+  "gates": {
+    "all_claims_look_approximation": true,
+    "all_direct_cli_images_exact": true,
+    "all_direct_cli_recipes_exact": true,
+    "all_final_outputs_rgb16": true,
+    "all_preview_counts_exact": true,
+    "all_preview_sets_distinct": true,
+    "all_previews_bounded": true,
+    "all_session_commits_exact": true,
+    "final_owned_residue_zero": true,
+    "gui_smoke_pass": true,
+    "preview_workspace_cleanup_pass": true
+  },
+  "verification": {
+    "implementation_tests_after_correction": "20 passed in 12.01s",
+    "formal_audit_tests_before_correction_commit": "3 passed in 75.48s",
+    "independent_implementation_tests": "20 passed in 11.76s",
+    "independent_formal_audit": "reports, screenshot and all 11 gates verified",
+    "ruff": "passed",
+    "py_compile": "passed",
+    "diff_check": "passed"
+  },
+  "decision": "PASS_PRIVATE_U7_10A_PRODUCT_DESKTOP_INPUT_WORKFLOW",
+  "interpretation": "The native workflow now begins with no selected look, enables export only after a real radio action on a ready preview set, and freezes the visible selection by disabling all look radios while export runs. The committed-head audit invokes the Velvia radio through the actual widget, records the selection action, and reproduces the existing deterministic preview and PNG16 plus strict-recipe paths in both execution orders.",
+  "claim_ceiling": "Private repo-local Windows workflow mechanics for three existing deterministic film-inspired Look Approximations only. This is not calibrated stock response, physical-film reproduction, stock distinguishability, population preference, public installer readiness, arbitrary-platform GUI support, or completed product release."
+}
