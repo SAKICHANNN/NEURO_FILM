@@ -52,6 +52,28 @@ automation boundary closed by U7.10C.
 The ephemeral worker is formal audit material only.  It is not installed,
 exported, copied into the runtime, or promoted as a product interface.
 
+### Additive execution lock (before any product render)
+
+- One exact ephemeral bootstrap byte sequence and SHA-256 is generated once and
+  reused unchanged by direct and installed executions.
+- The installed worker must report `sys.executable`, and every captured batch
+  child command `argv[0]` must equal the receipt-bound
+  `runtime\\Scripts\\python.exe`; importing under installed Python alone is not
+  sufficient.
+- The fresh install is local-wheelhouse-only (`pip --no-index`).  The observed
+  installer command ledger must contain no network locator and must point
+  `--find-links` only to the exact local wheelhouse; this proves the formal path
+  exposes no package-index/network request capability without pretending to
+  measure operating-system traffic.
+- Direct and installed executions serially reuse the exact same final source and
+  destination paths.  The direct tree is removed only after its complete member
+  size/SHA-256 snapshot still matches the owned snapshot.
+- PNG, strict recipe and `batch.json` identities are compared raw.  No path,
+  receipt, recipe or artifact normalization is permitted.  Report arrays alone
+  are placed in their predeclared canonical key order before serialization.
+- Source, requirements, all four launcher files and bootstrap bytes are checked
+  before/after their respective execution boundary.
+
 ## Frozen gates
 
 - fresh install and twelve-wheel identity exact;
@@ -67,7 +89,8 @@ exported, copied into the runtime, or promoted as a product interface.
 - installed child failure and cancel controls publish no destination;
 - late foreign destination is preserved exactly;
 - tracked sources remain exact and all owned residue is zero;
-- two fresh complete reports are byte-exact after sorting report-only order.
+- two fresh complete reports are byte-exact after canonical report-only array
+  ordering; raw artifacts, receipts and recipes are never normalized.
 
 Any failed gate closes U7.11B without changing the installer, runtime,
 renderer, batch core, UI, thresholds, fixtures, comparison rules or roles.

@@ -57,11 +57,13 @@
     "cancel-after-current",
     "late-foreign-destination"
   ],
-  "gates": {
+  "run_gates": {
     "fresh_install_and_wheelhouse_exact": true,
     "runtime_receipt_and_pip_check_exact": true,
     "installed_desktop_mainloop_foreign_cwd": true,
     "python_environment_removed": true,
+    "installed_child_python_exact": true,
+    "local_wheelhouse_network_locator_absent": true,
     "direct_installed_canonical_order_exact": true,
     "direct_installed_png16_exact": true,
     "direct_installed_raw_recipes_exact": true,
@@ -70,7 +72,9 @@
     "installed_controls_fail_closed": true,
     "late_foreign_destination_preserved": true,
     "claim_ceiling_exact": true,
-    "source_and_owned_residue_exact": true,
+    "source_and_owned_residue_exact": true
+  },
+  "outer_evidence_gates": {
     "forward_reverse_report_exact": true
   },
   "claim_ceiling": {
