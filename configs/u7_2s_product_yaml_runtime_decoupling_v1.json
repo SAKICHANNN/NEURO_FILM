@@ -4,7 +4,7 @@
   "parent": "U7.2Q",
   "contract_commit": "68e1695d3a5cb234a290676e27a82654f2d86179",
   "implementation_commit": "97af839648b165c14b0037238e71d95f4c164957",
-  "runner_commit": "eef701b6d025aa9c73e9aada3b3df85c9f31cc8e",
+  "runner_commit": "e7d6ef7cfcda96092cb5f4aeef8994b006f35278",
   "python": {
     "required_major_minor": "3.12",
     "qualified_patch": "3.12.10",
@@ -83,8 +83,8 @@
     },
     "runner": {
       "path": "scripts/audit_u7_2s_product_yaml_runtime_decoupling.py",
-      "git_blob": "28af70535cb392c5b5cc47f267863ab630c90abd",
-      "sha256": "6465e7d367b5cc8ef566122352857a7566040511912d8a94336f9f60ab0e54da"
+      "git_blob": "e2fa00d26bcebc5b1a52f55556eb2e63feba43fe",
+      "sha256": "5bfe611ee2510826b4367de37e91925e319cd9d864d12f3d0d697efddfff5478"
     },
     "audit_test": {
       "path": "tests/test_audit_u7_2s_product_yaml_runtime_decoupling.py",
@@ -127,6 +127,12 @@
     "expected_failed_gates": ["valid_numeric_boundaries_execute"]
   },
   "environment_count": 2,
+  "excluded_pre_correction_attempt": {
+    "report_bytes": 6032,
+    "report_sha256": "c8eed189bab0750e00abc64ec9295552fdc28643fc58ce957654f0ac7f0558b6",
+    "failed_gate": "nested_u7_2r_reports_byte_exact",
+    "reason": "The initial audit added an unfrozen full-parent-report byte gate. Concurrent U4.5F commits changed only execution_commit between the two nested reports; both normalized scientific reports exactly matched the frozen U7.2R identity. The extra gate was removed before the accepted from-zero dual replay."
+  },
   "binary_only_install": true,
   "require_pip_check": true,
   "require_owned_residue_zero": true,
