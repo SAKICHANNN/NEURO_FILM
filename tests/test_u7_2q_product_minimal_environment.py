@@ -4,6 +4,8 @@ import hashlib
 import json
 from pathlib import Path
 
+from tests.historical_evidence_binding import assert_historical_evidence_binding
+
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/u7_2q_product_minimal_environment_v1.json"
 REQUIREMENTS = ROOT / "requirements-product.txt"
@@ -41,7 +43,13 @@ def test_product_requirements_are_exactly_the_frozen_runtime_set() -> None:
 def test_product_manifest_binds_the_accepted_parent() -> None:
     config = json.loads(CONFIG.read_text(encoding="utf-8"))
     locks = config["source_locks"]
-    assert _sha256(ROOT / "scripts/render_film.py") == locks["render_film_sha256"]
+    assert_historical_evidence_binding(
+        ROOT,
+        {
+            "path": "scripts/render_film.py",
+            "sha256": locks["render_film_sha256"],
+        },
+    )
     assert (
         _sha256(
             ROOT
