@@ -22289,3 +22289,44 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   preference or release approval. Stop adjacent launcher/bootstrap/PATH/DLL/
   cache/package variants and return to a distinct substantive product defect or
   user workflow.
+
+### 2026-09-01 - U7.10C closes the installed native export composition
+
+- **Node and routing:** `ULT > U7 productization > U7.10C`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the sole writer; router, DRPT-BI, planning,
+  project-structure and agent-log disciplines were read-only secondary
+  reviewers. Owned paths were the U7.10C contract/config, audit/tests, evidence
+  and this exact tracker/log propagation. Existing `.codex/` and `tmp/` were
+  preserved; both collaborating tasks held the shared-doc window read-only.
+- **Product question and implementation:** U7.10B proved installed desktop
+  startup but did not traverse the real Save dialog or publish/replay an export.
+  U7.10C leaves installer, launcher, UI, renderer, product looks and dependencies
+  unchanged. External Win32 input binds each dialog to the product PID and owner
+  chain, physically clicks Preview/Velvia/Export/Save, uses the real DirectUI
+  filename interaction, dismisses the native completion prompt, and compares
+  installed direct CLI bytes with GUI PNG16/recipe plus strict replay. Parent
+  evidence SHA/Git objects, exact profile id/version/SHA and recipe software
+  commit are bound. The 1180x760 completed screenshot was manually reviewed and
+  visibly names `installed-desktop-velvia.png` plus its recipe while retaining
+  the Look Approximation and not-calibrated labels.
+- **Formal result:** committed source `3149db8c` completed two fresh exact
+  12-wheel / 111,666,287-byte installs. Each run passes all fourteen per-run
+  gates; direct/GUI/replay PNG SHA is `9f7baad1...f5fc6`, direct/GUI recipe SHA is
+  `385bd908...e598`, receipt SHA is `8295e65f...53f7`, both 36,202-byte screenshots
+  are byte-exact at `bddfe2ea...bf44`, and process/window/formal-root residue is
+  zero. The complete 13,443-byte reports nevertheless differ: physical Save
+  coordinates `[796,630]` versus `[874,708]` yield report SHA
+  `b3c1b049...73342` versus `57594d68...787dc` and distinct stable identities.
+  Frozen complete-report identity therefore fails. A field-removal commit
+  `23bc16f7` was rejected as post-result rescue and reverted by `a90a9beb`; no
+  third run occurred. Evidence commit `e8692396`, SHA
+  `cb853e02378a70ae0af6d56cef95828a2168ced61d5a280ff4edeec55cedeab3`.
+- **Verification and boundary:** dedicated evidence plus focused/parent suites
+  pass 41/41; the preformal and post-revert focused chains pass 39/39. Ruff,
+  py_compile, JSON, source/Git-object/parent bindings, manual visual review and
+  diff checks pass. Decision is
+  `FAIL_CLOSED_U7_10C_REPORT_COORDINATE_NONDETERMINISM`. Preserve the real
+  installed-export mechanical signal, but do not normalize/ignore the coordinate,
+  run a third confirmation, add UI automation hooks, bypass the native dialog or
+  open an adjacent U7.10D rescue. No calibrated stock, physical-film,
+  distinguishability, public installer, cross-platform GUI or release claim opens.
