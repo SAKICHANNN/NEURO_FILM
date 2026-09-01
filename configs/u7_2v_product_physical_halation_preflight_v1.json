@@ -1,0 +1,42 @@
+{
+  "schema_version": "neuro-film.u7-2v-product-physical-halation-preflight.v1",
+  "decision": "prospective",
+  "parent": "U7.2U",
+  "contract_commit": null,
+  "implementation_commit": null,
+  "source_locks": {},
+  "product_looks": [
+    "velvia_50",
+    "portra_400",
+    "ektar_100"
+  ],
+  "physical_control_mode": "locked",
+  "numeric_domains": {
+    "halation_amount": [0.0, 2.4],
+    "halation_impact": [0.0, 1.0],
+    "halation_anti_halation": [0.0, 1.0],
+    "halation_source_selectivity": [0.0, 1.0],
+    "halation_diffusion": [0.0, 1.0],
+    "halation_warm_core": [0.0, 1.0],
+    "halation_background_visibility": [0.0, 1.0]
+  },
+  "gates": {
+    "source_locks_exact": true,
+    "product_expert_controls_reject_predecode": true,
+    "invalid_locked_values_reject_predecode": true,
+    "invalid_preset_or_categories_reject_predecode": true,
+    "valid_locked_controls_cross_preflight": true,
+    "nonproduct_expert_route_crosses_preflight": true,
+    "product_parent_outputs_exact": true,
+    "fresh_process_reports_byte_exact": true,
+    "owned_runtime_residue_zero": true
+  },
+  "claim_ceiling": "Private finite and domain-bounded locked physical-halation preflight for the existing first-class Look Approximation product entry.",
+  "non_goals": [
+    "halation algorithm, preset or parameter-domain change",
+    "physical-halation realism claim",
+    "non-product expert or research-route change",
+    "calibrated stock or physical-film claim",
+    "public package, installer or release claim"
+  ]
+}
