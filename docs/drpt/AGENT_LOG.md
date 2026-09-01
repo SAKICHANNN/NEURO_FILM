@@ -21917,3 +21917,41 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   installer, release or product-validation claim opens; stop adjacent
   history/export/browser wrappers and return to a non-duplicate substantive
   product defect or genuinely new identifying observation.
+
+### 2026-09-01 - U7.2U isolates private research halation from product selection
+
+- **Node and routing:** `ULT > U7 > U7.2U`, DRPT L2 / Mode C. The sole write
+  workflow was `dev-research-reliability`; router, DRPT-BI, planning,
+  project-structure and agent-log disciplines were secondary reviewers. The
+  leaf owned the product CLI gate plus new U7.2U contract/config/audit/test and
+  evidence paths; concurrent U7.3M paths and foreign `.codex/`/`tmp/` remained
+  untouched.
+- **Observed defect and repair:** the first-class `--product-look` route still
+  accepted `--halation-model staged-density-research` and reached input decode,
+  even though U1.6G4J retains that renderer only as private research with no
+  product claim. Contract `7e218781`, core/test `e77a57d0`, and audit/config
+  `0e9d7ad0` add a product-only parser rejection before profile loading, input
+  decode or publication. All three available looks reject the research model
+  both with and without its controls. Product `simple` and `physical` selectors
+  and the non-product staged-density research route remain unchanged.
+- **Formal evidence:** at stable execution commit
+  `0e9d7ad00f3722a2267b80a0205fa87df850dce`, forward/reverse reports are
+  byte-identical at 4,507 bytes / SHA
+  `a31414903ee028c06f45cf138471b91309067d05da50184d016878d26ac22afb`.
+  All nine source, rejection, supported-selector, research-route, publication
+  and residue gates pass. Evidence/test commit `5258994f`; tracked evidence
+  Git-LF SHA-256
+  `7689a6a8590184e6a24d037dea0ecf1de8b669da6bc43c9b7ac3c0e5aab858b5`.
+- **Historical-evidence correction and verification:** the README product-entry
+  correction made U7.2O's old Windows mixed-line-ending working-file SHA no
+  longer materializable from normalized Git blobs. Commit `3ec48f33` teaches
+  the shared test helper to accept only an explicitly recorded immutable Git
+  blob for that exact path; unknown blobs reject and old evidence is not
+  rewritten. Twelve focused/audit/evidence tests pass, and the complete U7.2
+  family reports 247 passed and 4 skipped. Ruff, py_compile, JSON, Git-object,
+  exact-report and diff checks pass.
+- **Claim and handoff:** this proves only a private Look Approximation
+  product/research boundary. It does not establish halation realism, add an
+  effect, calibrate a stock, reproduce physical film or open a package,
+  installer or release. Stop adjacent halation wrappers and return to a
+  materially distinct user-facing product defect.
