@@ -1,0 +1,83 @@
+{
+  "schema": "kmcfm.u7-19a-srw-arq-generic-product-ingress-evidence.v1",
+  "node_id": "U7.19A",
+  "status": "PASS_PRIVATE_U7_19A_SRW_ARQ_GENERIC_PRODUCT_INGRESS",
+  "formal_source_commit": "5f01e0860e64043ea6bfabda66e4a4e08ac12236",
+  "bindings": {
+    "docs/planning/U7_19A_SRW_ARQ_GENERIC_WORKING_IMAGE_CONTRACT.md": {"git_blob": "f7555bda3cb4d960b8bf858b82052db92e513375", "bytes": 4940, "sha256": "a0a4f399929b0ec33d8611b4c906835bf6ffa78c17da0938b78218d33686c910"},
+    "configs/u7_19a_srw_arq_generic_working_image_v1.json": {"git_blob": "2b1985f51cfc4af17f7cfec146b76c4ee5359073", "bytes": 6543, "sha256": "c8312d7efb582a293265c62b421b4ddc4dd6f48698b5eae0df9f279f1bab8bba"},
+    "configs/u7_19a_srw_arq_generic_working_image_execution_v1.json": {"git_blob": "e1e4edf637c34160ecdf53bbf58e453b0d296320", "bytes": 4148, "sha256": "211799e917883530289e75f347f22ff68e93e4f33226c609ed872640d0688403"},
+    "scripts/audit_u7_19a_srw_arq_generic_working_image.py": {"git_blob": "9d848a68796855b4797a3e63a976d9efcdc8c03d", "bytes": 24360, "sha256": "77c068d7efc7eba938465a41de4585afa6052ec6e33d2e9d12426e97f022ef67"},
+    "tests/test_u7_19a_srw_arq_generic_working_image.py": {"git_blob": "f9e6b579eccb92a538a083d471144becd69949fb", "bytes": 6570, "sha256": "f4f0ae4e87786c754af87aafb102edff0279c07af9b6f14cdbc826752307c7cd"},
+    "src/preprocess/raw_decode.py": {"git_blob": "525871cb825ad06b14666009aa43aad691ef07f3", "bytes": 4846, "sha256": "e95a528bcc9bfe13df1b4ab50e741529f76346d444430c5477bba2c4aaa0636d"},
+    "src/preprocess/pipeline.py": {"git_blob": "85111f0864bd2c3d69c9d7c8b43ad74641f1023c", "bytes": 1035, "sha256": "21a7a165a895679e05bc43e5c67d7d9d439b19dfbe01cf346449e4ea90be6dc4"},
+    "scripts/render_film.py": {"git_blob": "fca3253810a002590ef07820035634fac7d5f6c9", "bytes": 43535, "sha256": "2013e7c2f95c2f6a0b84ccff1d93db9bec2b189aead84b1ca6b5ab477447f786"},
+    "configs/render_profiles/safe_rich_product_v1.json": {"git_blob": "db9921150bd0b628753a6062d0f409787e4ef101", "bytes": 4259, "sha256": "09722cb48c55d1c4c460220c9f59b9ced81801c1b6fe856708a27f5cc99d39fe"},
+    "src/inference/render_contract.py": {"git_blob": "8942e4236ea4ed128d19df611bfecc57bc5c26ea", "bytes": 33077, "sha256": "378aeea559e41aba389022852f2f7f037f3b62e4eb29ce49d8bfc34d45bfd840"},
+    "src/inference/style_safe_engine.py": {"git_blob": "b67ddb7fcf39e6c3eaf2da0d26986dec8fef88e9", "bytes": 19218, "sha256": "cfdc66119e2dace3dbfdd293eff8bbfa7e2dec08ca233d6efd440235f3a5e007"}
+  },
+  "reports": {
+    "preflight_forward_path": "outputs/u7_19a_srw_arq_generic_working_image_v1/preflight_forward.json",
+    "preflight_reverse_path": "outputs/u7_19a_srw_arq_generic_working_image_v1/preflight_reverse.json",
+    "preflight_bytes": 16738,
+    "preflight_sha256": "4b162d88dca0ec3d343949cd24624f29d85f1aaa60ac35fe6a1c5c4e87ce4b4f",
+    "preflight_scientific_identity": "ee610917ef7ccf3f896ec4c3fdbd378893bd3d0047b75e4baa2eaf87ea051ec1",
+    "formal_forward_path": "outputs/u7_19a_srw_arq_generic_working_image_v1/formal_forward.json",
+    "formal_reverse_path": "outputs/u7_19a_srw_arq_generic_working_image_v1/formal_reverse.json",
+    "formal_bytes": 21080,
+    "formal_sha256": "de7e731a72be32aab6984c90040022c36957baeeccd29f6667d7a5d7f1d941ae",
+    "formal_scientific_identity": "346a84f50c12cb3f4fce51c90035a8b7cc7082711fe7a9aded3990bd6fe320b0",
+    "forward_reverse_byte_exact": true,
+    "all_sixteen_gates_pass": true
+  },
+  "sources": {
+    "count": 5,
+    "extensions": [".arq", ".srw"],
+    "all_source_hashes_exact": true,
+    "all_sources_immutable": true,
+    "all_public_working_images_owned_finite_nonconstant": true,
+    "arq_shape": [5320, 7968, 3],
+    "srw_shapes": [[4336, 6496, 3], [4336, 6496, 3], [4336, 6496, 3], [4336, 6496, 3]]
+  },
+  "product_chain": {
+    "style_id": "ektar_100",
+    "look_amount": 1.0,
+    "profile_id": "safe-rich-product-v1",
+    "output_format": "PNG8",
+    "recipe_schema": "kmcfm.render-recipe.v1",
+    "arq_output_sha256": "9c0f47543f32aa32539b311e7da32690e9397acce52358ce59b0270607eacaea",
+    "arq_recipe_sha256": "6681770b0cf0ad9f38787c25ee5e938fa1cf6921b4ac29edba191f02a1280862",
+    "srw_output_sha256": "5b4e051a30b11aebd03a67f47b6d0b094e2e4973d4ff95edf687eb1f29b9e8f9",
+    "srw_recipe_sha256": "5d5fd8bdf287c5a182c948e8a63caae1a8f163afb2b5401ccef47ab91c5c3156",
+    "strict_replay_byte_exact": true,
+    "scratch_residue_files": 0,
+    "network_requests": 0
+  },
+  "excluded_attempt": {
+    "report_files": 0,
+    "owned_residue_files": 0,
+    "stop": "After a successful ARQ render and recipe write, the audit rejected canonical recipe-v1 omission of full look_amount with KeyError before any formal report.",
+    "correction": "Interpret omitted recipe-v1 look_amount as its canonical full-strength default 1.0; sources, product path, roles, thresholds, gates and claim ceiling were unchanged."
+  },
+  "verification": {
+    "focused_after_relock": "7/7 pass",
+    "adjacent_behavioral_suite": "126 pass, 1 expected historical P313 current-file binding failure",
+    "historical_binding_note": "P313 immutable evidence binds the pre-U7.19A raw_decode.py blob; adding exactly .srw and .arq intentionally changes the current file without rewriting historical evidence.",
+    "ruff_new_files": "pass",
+    "json": "pass",
+    "tracked_clean_before_evidence": true
+  },
+  "interpretation": "The public generic LibRaw/WorkingImage dispatcher now recognizes the exact admitted SRW and ARQ extensions, and exact source-locked files complete explicit Look Approximation CLI render, strict recipe and byte-exact replay. This is a bounded product-ingress compatibility result, not general vendor RAW support or film-stock evidence.",
+  "claim": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "exact_source_generic_ingress": true,
+    "general_srw_arq_support": false,
+    "vendor_exact_colour": false,
+    "pixel_shift_fusion": false,
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false,
+    "multi_stock_system_complete": false,
+    "product_promotion": false
+  }
+}
