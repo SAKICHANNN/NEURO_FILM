@@ -278,8 +278,6 @@ def build_report(order: str) -> dict[str, Any]:
     _source(later, 1)
     _source(canonical_first, 2)
     selected = (later, canonical_first)
-    if order == "reverse":
-        selected = tuple(reversed(selected))
     input_before = {path.name: _sha256(path) for path in selected}
 
     parent = _parent_limitation(str(config["parent_head"]), selected)
