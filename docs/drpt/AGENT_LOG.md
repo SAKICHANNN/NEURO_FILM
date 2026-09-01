@@ -22651,3 +22651,40 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   There is no hidden or research UI route. No adjacent recovery algorithm,
   wrapper, source search, RAW/HDR or UI rescue opens.
   Existing foreign `.codex/` and `tmp/` remain untouched; no push occurred.
+
+### 2026-09-01 - U7.12F clears stale look authority after desktop errors
+
+- **Node and routing:** `ULT > U7 productization > U7.12F`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the sole writer; DRPT-BI, plan-tracker,
+  project-structure and agent-log disciplines bounded the change. The long-term
+  Look Approximation Goal remains accurate and active. Producer independently
+  owns U4.1A severe-artifact adjudication; U7.12F touched no U4.1A path.
+- **Defect and repair:** after a user selected a look, any single-photo or batch
+  error invalidated previews but left the Tk `style` variable selected. A new
+  preview completion therefore re-enabled Export without the fresh real radio
+  action required by U7.10A. Contract `f581e7c2` freezes the narrow repair;
+  implementation `acc4edd8` adds one `self.style.set("")` before preview
+  invalidation. Successful export and format changes retain selection;
+  input/strength resets, dialogs, worker lifecycle, cleanup, renderer, output,
+  recipe, recovery and cache remain unchanged.
+- **Formal evidence:** audit commits `bd2fe0f2` / `86efab2e` execute
+  single-export error, batch error, success-retains-selection and five parent
+  cases in separate fresh pytest processes. Corrected forward/reverse reports
+  are byte-identical at 3,025 bytes, SHA
+  `be41b04a05d55a105686f446438ff922841a1154ab4852f303d1b785ab1b5902`;
+  scientific identity is
+  `e767443301fdc963f0b8272edc788eaa6458d17712f0377453a1319dff16c144`
+  and all eight gates pass. The first 2,890-byte reports remain excluded at
+  SHA `9a86f72d...6bfa3`: a report-only comparison used the LF Git blob against
+  the frozen Windows CRLF checkout SHA. The correction explicitly records both
+  forms and reproduces the frozen value; product code, tests, gates and parent
+  commit do not change.
+- **Verification and boundary:** dedicated/evidence tests pass 5/5. Full
+  U7.10A, U7.11A, U7.12A, U7.12B and U7.12C files pass 71/71 in separate fresh
+  processes; Ruff, formatting, compileall, JSON and diff checks pass. Evidence
+  commit `9e7309c8` binds the formal Git objects and both report identities.
+  This is private Windows Tk selection-authority safety for deterministic
+  `film-inspired / Look Approximation` output only. It is not calibrated stock
+  response, physical-film reproduction, stock distinguishability, a renderer
+  change, public release or cross-platform GUI evidence. Existing foreign
+  `.codex/` and `tmp/` remain untouched; no push occurred.
