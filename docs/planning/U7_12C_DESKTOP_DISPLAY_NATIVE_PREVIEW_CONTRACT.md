@@ -61,9 +61,13 @@ execution. Expected candidate dimensions are exactly 173x260 for the JPEG and
 existing half-size decoder.
 
 The formal controller executes both sources in forward and reverse order from
-committed clean HEAD. Each source/variant receives two timed fresh worker
-processes. Raw timings and peak process-tree RSS remain evidence but are
-excluded from the stable scientific identity; source, geometry, pixels,
+committed clean HEAD. Each source/variant receives two fresh worker processes.
+Every worker records renderer wall time around the renderer call; the controller
+also records complete outer-process wall time, including interpreter/import
+startup, as a diagnostic. Performance gates use renderer wall time so an
+unchanged cold-import cost is not attributed to this geometry repair. Raw
+timings and peak process-tree RSS remain evidence but are excluded from the
+stable scientific identity; source, geometry, pixels,
 metrics, output hashes, order-independent decisions, code/config identities,
 cleanup, and gate outcomes must be exact.
 
@@ -72,10 +76,10 @@ cleanup, and gate outcomes must be exact.
 1. Candidate decoded/display RGB versus the baseline visible RGB passes, per
    source and per look: RMSE <= `0.03`, p95 absolute error <= `0.08`, and new
    exact-boundary fraction <= `0.001`.
-2. JPEG candidate median wall time <= `1.0` second and median candidate/baseline
-   wall ratio <= `0.25`.
-3. DNG candidate median wall time <= `8.0` seconds and median
-   candidate/baseline wall ratio <= `0.75`.
+2. JPEG candidate median renderer wall time <= `1.0` second and median
+   candidate/baseline renderer-wall ratio <= `0.25`.
+3. DNG candidate median renderer wall time <= `8.0` seconds and median
+   candidate/baseline renderer-wall ratio <= `0.75`.
 4. Candidate peak process-tree RSS is <= the corresponding baseline maximum
    for both sources.
 5. Both candidate repeats produce exact decoded RGB hashes and exact three PNG
