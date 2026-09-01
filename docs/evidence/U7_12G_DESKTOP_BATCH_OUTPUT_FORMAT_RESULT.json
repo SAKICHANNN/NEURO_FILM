@@ -1,0 +1,88 @@
+{
+  "bindings": {
+    "configs/u7_12g_desktop_batch_output_format_v1.json": "e547871ee98b0fdd716a0c856edc2943429928d7bace2d8bafcff9bfbc973bb8",
+    "docs/planning/U7_12G_DESKTOP_BATCH_OUTPUT_FORMAT_CONTRACT.md": "0c66e5ad19860c7bd17daadb72201ffc4eb7fa5a8c4ff0ac2f81d8eb81724e93",
+    "scripts/audit_u7_12g_desktop_batch_output_format.py": "38bc999f8e6a3ba44083c531fa759f7e53d6e679169480fbb5fc8f6485481b30",
+    "src/inference/product_desktop.py": "c323ecfd2abb0bf866a617d988ba18ff33cdf41347cd7f197093e214af0ff9a9",
+    "src/inference/product_desktop_ui.py": "da9baf3a2179084c73bec75e84acf0c33094c5dd5dd1ef9d99967551a52ec2e5",
+    "tests/test_u7_12g_desktop_batch_output_format.py": "04d69d5fdbf9ad0aaa69d772156a71670b7f6564731e9b279902559f96b11215"
+  },
+  "case_results": {
+    "contract": {
+      "passed": true,
+      "returncode": 0
+    },
+    "desktop-ui-routing": {
+      "passed": true,
+      "returncode": 0
+    },
+    "invalid-format": {
+      "passed": true,
+      "returncode": 0
+    },
+    "jpeg8": {
+      "passed": true,
+      "returncode": 0
+    },
+    "late-foreign-preserved": {
+      "passed": true,
+      "returncode": 0
+    },
+    "parent-direct-replay": {
+      "passed": true,
+      "returncode": 0
+    },
+    "png16": {
+      "passed": true,
+      "returncode": 0
+    },
+    "png16-recovery-ceiling": {
+      "passed": true,
+      "returncode": 0
+    },
+    "tiff16": {
+      "passed": true,
+      "returncode": 0
+    }
+  },
+  "claim": {
+    "calibrated_stock_response": false,
+    "evidence_grade": "look-approximation",
+    "formats": [
+      "png16",
+      "tiff16",
+      "jpeg8"
+    ],
+    "hdr_or_wide_gamut_publication": false,
+    "look_math_changed": false,
+    "mode": "film-inspired",
+    "non_png_receipt_schema": "kmcfm.desktop-single-look-batch.v2",
+    "one_format_per_atomic_batch": true,
+    "physical_film_reproduction": false,
+    "png16_receipt_schema": "kmcfm.desktop-single-look-batch.v1",
+    "private_windows_desktop_batch_export_only": true,
+    "public_release": false,
+    "recovery_format": "png16-only",
+    "renderer_changed": false,
+    "stock_distinguishability": false
+  },
+  "gates": {
+    "committed_source_bound": true,
+    "contract_and_claim_ceiling_exact": true,
+    "desktop_ui_routes_selected_batch_format": true,
+    "invalid_format_pre_stage_and_pre_renderer": true,
+    "late_foreign_destination_preserved": true,
+    "parent_png16_direct_replay_exact": true,
+    "png16_legacy_receipt_shape_exact": true,
+    "recipe_format_and_bit_depth_exact": true,
+    "recovery_remains_png16_only": true,
+    "strict_replay_all_formats_exact": true,
+    "tiff16_and_jpeg8_direct_cli_exact": true,
+    "tracked_diff_clean": true
+  },
+  "node_id": "U7.12G",
+  "schema": "kmcfm.u7-12g-desktop-batch-output-format-report.v1",
+  "scientific_identity": "16fa501dd05c474c26e597096c35ff809fd6675a972f6151e724860c612ff4a6",
+  "source_commit": "600346b6bd1b33e85681babff9e73458a8b5e0b0",
+  "status": "PASS_PRIVATE_U7_12G_DESKTOP_BATCH_OUTPUT_FORMATS"
+}
