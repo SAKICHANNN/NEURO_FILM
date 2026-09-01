@@ -1,0 +1,92 @@
+{
+  "schema_version": "neuro-film.u7-2r-product-effect-argument-preflight-evidence.v1",
+  "node_id": "U7.2R",
+  "decision": "FAIL_CLOSED_U7_2R_SIGNED_SEED_EXECUTION_BOUNDARY",
+  "claim_ceiling": "The product-only CLI now rejects nonfinite or out-of-[0,1] grain, halation and dust values plus seeds outside signed int32 before input decode. The frozen complete preflight claim fails because the existing renderer cannot execute the signed-int32 minimum seed.",
+  "bindings": {
+    "contract_commit": "02caa1cc59462a8f14764c1e02bd78a413453031",
+    "implementation_commit": "71b19760bd7a99b5e72759c93684fb542d1d9e53",
+    "protocol_commit": "f94baa2ae3a4aad4fa4246f566e4df6f65c2df51",
+    "runner_commit": "5f1afc3d3e28ac91c6aaed73948d2c0b30091822",
+    "formal_execution_commit": "97af839648b165c14b0037238e71d95f4c164957",
+    "files": {
+      "docs/planning/U7_2R_PRODUCT_EFFECT_ARGUMENT_PREFLIGHT_CONTRACT.md": {
+        "git_blob": "fe4dcb64bf678938789c6f0c3b871deb0c2d2b77",
+        "sha256": "6f3583280b74f1cf3540c88b91c8129bda877fc1859b0a632f8bc533dc52f796"
+      },
+      "configs/u7_2r_product_effect_argument_preflight_v1.json": {
+        "git_blob": "a740346eae2a893e819f908574811b2219251983",
+        "sha256": "1c13eae9e38350e63c2ffa12bf05c4c63f414d5431fa4c0543cc2f2ba6d11d2f"
+      },
+      "scripts/render_film.py": {
+        "git_blob": "f5ec1bfaeba0190abe01178fd1d9a80bc9250c32",
+        "sha256": "f25a26c835385c8934f4cfe7ed1bdd98b9ecd461212d026a1fb11f9b2dc9398b"
+      },
+      "scripts/audit_u7_2r_product_effect_argument_preflight.py": {
+        "git_blob": "d84c501e99fa5ca4c75d8ff5b36bf30ccec27ea3",
+        "sha256": "d2e8ee85405a0320e2b8c9127d8b14a1b642b2a6d5197367b59f96d24c10778f"
+      },
+      "tests/test_u7_2r_product_effect_argument_preflight.py": {
+        "git_blob": "582356923299be08ca8a989669d5732e94af5665",
+        "sha256": "799b70228b4ef799127d79d6c2a5e91912902a9437121abae71a9f1e55fc18e6"
+      }
+    }
+  },
+  "formal_reports": {
+    "forward_path": "outputs/eval/u7_2r_product_effect_argument_preflight_v1/formal.json",
+    "reverse_path": "outputs/eval/u7_2r_product_effect_argument_preflight_v1/formal_replay.json",
+    "bytes_each": 6694,
+    "sha256": "1ff89227e7af9ed3fdb517cf2395ba24c0e094f835c5c7c4f33beae64457c369",
+    "forward_reverse_byte_exact": true,
+    "fresh_process_count": 2,
+    "execution_order": "sequential_from_zero"
+  },
+  "excluded_concurrent_execution_attempt": {
+    "reason": "The two fresh processes were incorrectly launched concurrently and one process observed the other's owned scratch directory. The reports already failed the same signed-seed boundary; they differed only in owned_runtime_residue_zero. No source, gate, threshold, pixel oracle or scientific result changed before the sequential restart.",
+    "forward_bytes": 6695,
+    "forward_sha256": "e7caa3ec423b3d63a88fbe9a9d05c705becb3f2cc81a6dffc98595db414f15d1",
+    "reverse_bytes": 6694,
+    "reverse_sha256": "9e478f69e727ac8b902cd2756d573eef4f10205bc94ef54d68f4066e602045af",
+    "differing_fields": ["gates.owned_runtime_residue_zero"]
+  },
+  "result": {
+    "formal_status": "FAIL_CLOSED",
+    "formal_gate_count": 10,
+    "formal_gate_pass_count": 9,
+    "failed_gates": ["valid_numeric_boundaries_execute"],
+    "invalid_strength_case_count": 15,
+    "invalid_seed_case_count": 2,
+    "all_invalid_cases_rejected_predecode": true,
+    "all_invalid_cases_publish_nothing": true,
+    "failed_valid_boundary": {
+      "option": "--seed",
+      "value": "-2147483648",
+      "returncode": 1,
+      "output_exists": false
+    },
+    "all_other_valid_boundaries_execute": true,
+    "three_default_product_look_outputs_exact_to_u7_2o": true,
+    "u7_2o_full_effects_output_and_layers_exact": true,
+    "u7_2o_recipe_and_metrics_semantics_exact": true,
+    "legacy_numeric_behavior_unchanged": true,
+    "source_locks_exact": true,
+    "source_immutable": true,
+    "owned_runtime_residue_zero": true
+  },
+  "retained_product_change": {
+    "invalid_effect_strengths_reject_predecode": true,
+    "seeds_outside_signed_int32_reject_predecode": true,
+    "signed_int32_seed_range_fully_executable": false,
+    "effect_algorithm_changed": false,
+    "recipe_schema_changed": false,
+    "research_or_historical_cli_behavior_changed": false
+  },
+  "retained_boundaries": {
+    "complete_product_effect_argument_preflight_claim": false,
+    "negative_seed_rescue_authorized": false,
+    "physical_halation_expert_control_claim": false,
+    "calibrated_stock_response_or_physical_film_claim": false,
+    "public_package_or_release_claim": false,
+    "adjacent_argument_wrapper_expansion_authorized": false
+  }
+}
