@@ -1,0 +1,161 @@
+{
+  "schema": "kmcfm.u7-15a-desktop-batch-representative-selection-evidence.v1",
+  "experiment_id": "U7_15A_DESKTOP_BATCH_REPRESENTATIVE_SELECTION",
+  "date": "2026-09-02",
+  "status": "PASS_PRIVATE_U7_15A_DESKTOP_BATCH_REPRESENTATIVE_SELECTION",
+  "automatic_pass": true,
+  "commits": {
+    "contract": "b9ceb2d1947da78ce43ba2abe39dfb9dd2690753",
+    "implementation": "de315eb0b638174dc3bc43df15e328a4c383559f",
+    "formal_controller": "484b01451cb34b9d0df13faf50ef0768371d3179",
+    "alias_correction": "2245b381c6469f05beb41cc056ac6a43a42a11fe",
+    "resolved_control_correction": "72438e5ec8bf0a763030a26a80ea7ea386ce16dc",
+    "formal_execution": "c370b7b08c931d89548075fbeabbf1b05f7bba59"
+  },
+  "formal_reports": {
+    "forward_path": "outputs/eval/u7_15a_desktop_batch_representative_selection/formal_forward.json",
+    "reverse_path": "outputs/eval/u7_15a_desktop_batch_representative_selection/formal_reverse.json",
+    "bytes_each": 3743,
+    "sha256": "2ea8b1499489f24719adbe0b6ff240033f09f0d2d6d9336a644b7d326a90ee60",
+    "byte_exact": true,
+    "scientific_identity": "a726c15ce5facc1485afcdaf9dcbfb82863918cd2df127a0509472900328521b",
+    "order_independent_scientific_payload_exact": true,
+    "owned_tmp_residue": 0,
+    "owned_publication_residue": 0
+  },
+  "science": {
+    "parent_selected_order": [
+      "z-later.png",
+      "a-first.png"
+    ],
+    "parent_observed_preview": "a-first.png",
+    "parent_limitation_reproduced": true,
+    "current_default_preview": "a-first.png",
+    "current_explicit_preview": "z-later.png",
+    "canonical_order": [
+      "a-first.png",
+      "z-later.png"
+    ],
+    "default_and_explicit_rows_exact": true,
+    "default_and_explicit_receipt_exact": true,
+    "default_and_explicit_tree_exact": true,
+    "receipt_sha256": "218da76cb64da51ec273334347e70ca68931012748b77e75f8f9b1729a0f9111",
+    "rejected_before_preview": [
+      "external member",
+      "missing member",
+      "hard-link alias",
+      "post-bind mutation"
+    ],
+    "final-file symlink_and_reparse_rejected": true,
+    "parent_reparse_alias_rejected": true,
+    "source_immutable": true,
+    "input_immutable": true
+  },
+  "gates": {
+    "batch_receipt_exact": true,
+    "batch_tree_exact": true,
+    "canonical_batch_order_unchanged": true,
+    "default_canonical_first_exact": true,
+    "explicit_nonfirst_preview": true,
+    "focused_tests_pass": true,
+    "input_immutable": true,
+    "invalid_controls_reject_before_preview": true,
+    "owned_residue_zero": true,
+    "parent_limitation_reproduced": true,
+    "parent_ui_tests_pass": true,
+    "source_immutable": true,
+    "tracked_clean_before": true
+  },
+  "formal_materialized_bindings": {
+    "configs/u7_15a_desktop_batch_representative_selection_v1.json": "6ba2a9341daa5a728358e7a01d858898bdae183a3e6e0b33ed849b700505e154",
+    "docs/planning/U7_15A_DESKTOP_BATCH_REPRESENTATIVE_SELECTION_CONTRACT.md": "9d8009c6cdabe214ee6cebbe05731aa81210aef03a1defc8f7067edb3871e63f",
+    "scripts/audit_u7_15a_desktop_batch_representative_selection.py": "ffe17c69e2a8205b4e86bef1dbebdce41ea913b61dd78e137bb5ea9e821ee851",
+    "src/inference/product_desktop.py": "6e7f9701044ee515cf08d9f65ab6cf91b8a75050e7df2c6ce44a2df9156af059",
+    "src/inference/product_desktop_ui.py": "8d55594d3304a5e1465768961d5c3e4a17708e0c7cd9db574028bb5a1829060a",
+    "tests/test_u7_11a_desktop_single_look_batch.py": "93598e29f77237e4c387643a9e0cd569a4afb32bda30a5af8e03569dcb99ce7d",
+    "tests/test_u7_15a_desktop_batch_representative_selection.py": "b18414b7fedbd75542f4c02eaa13507f3937b67b455647e973cfff808d7e2c8d"
+  },
+  "git_object_bindings": {
+    "configs/u7_15a_desktop_batch_representative_selection_v1.json": {
+      "git_blob": "2c8216da8481daba16b6244f9e706a87dbba4799",
+      "sha256": "6ba2a9341daa5a728358e7a01d858898bdae183a3e6e0b33ed849b700505e154"
+    },
+    "docs/planning/U7_15A_DESKTOP_BATCH_REPRESENTATIVE_SELECTION_CONTRACT.md": {
+      "git_blob": "a4e35f514135eaa8f9b60f675f6395cbdefcbfa8",
+      "sha256": "9d8009c6cdabe214ee6cebbe05731aa81210aef03a1defc8f7067edb3871e63f"
+    },
+    "scripts/audit_u7_15a_desktop_batch_representative_selection.py": {
+      "git_blob": "cf1812d57413ee1aa5fc1cac8144a8aa487c81a5",
+      "sha256": "ffe17c69e2a8205b4e86bef1dbebdce41ea913b61dd78e137bb5ea9e821ee851"
+    },
+    "src/inference/product_desktop.py": {
+      "git_blob": "ab2eda5ef44ea1511a1130de24371161944dde97",
+      "sha256": "6e7f9701044ee515cf08d9f65ab6cf91b8a75050e7df2c6ce44a2df9156af059"
+    },
+    "src/inference/product_desktop_ui.py": {
+      "git_blob": "6928bc18cb0b81367eaeb7b82813a2f195c6613e",
+      "sha256": "ef381c2f9a3dcac103acd90435d9fec644b50b9b4db36376c14867b7c81fb60e"
+    },
+    "tests/test_u7_11a_desktop_single_look_batch.py": {
+      "git_blob": "2a88ebc99856b57f647bc32ee94873bfb0bbd32a",
+      "sha256": "88a3e9c62996b9f0d570b1df17462cb30813e5646abba76cfa6c4d3e000c9f6d"
+    },
+    "tests/test_u7_15a_desktop_batch_representative_selection.py": {
+      "git_blob": "af03a643333f895cb628275b649f59915c90daf3",
+      "sha256": "b18414b7fedbd75542f4c02eaa13507f3937b67b455647e973cfff808d7e2c8d"
+    },
+    "tests/test_audit_u7_15a_desktop_batch_representative_selection.py": {
+      "git_blob": "437d9d5b3146241d99dd23d7686564e96bf4f8fb",
+      "sha256": "0f452c4c41e84e7cf8895e91ece7779105997a427e709b3e5b62ceb1ad533dbd"
+    }
+  },
+  "verification": {
+    "fresh_process_behavioral": "100 passed, 1 host-capability skip",
+    "formal_internal_each_run": "3 focused and 22 parent UI tests passed",
+    "audit_controller": "2 passed",
+    "ruff": "passed",
+    "format_new_files": "passed",
+    "compileall": "passed",
+    "json": "passed",
+    "diff_check": "passed"
+  },
+  "excluded_diagnostics": [
+    {
+      "accepted": false,
+      "stage": "pre-formal parallel parent regression",
+      "result": "48 passed, 2 transient Tk runtime-load failures",
+      "reason": "Concurrent Windows Tk processes briefly failed while sourcing distinct ttk library files. Every affected file and the full UI suites passed in separate fresh processes; formal execution uses fresh serial processes."
+    },
+    {
+      "accepted": false,
+      "stage": "first pre-report alias-control attempt",
+      "result": "stopped before report",
+      "reason": "The repo-relative tmp volume is exFAT and cannot create hard links. The product was additively hardened against final-file and parent-reparse aliases; the formal hard-link alias control moved to a tiny owned NTFS checkout path and is removed before return."
+    },
+    {
+      "accepted": false,
+      "stage": "first complete forward/reverse pair",
+      "forward_sha256": "fa1ef17ab100f3409b772747eb05b5160fd39d1a5e5995f154d7e5d9ae12c656",
+      "reverse_sha256": "914bc1687d400f0163987e3c870899b121a1af1116dd2eefeb4b04815cf06240",
+      "forward_scientific_identity": "a4c71d7441af699e37b961c890c7d4134ea79c016b64d0adaa84123f11574506",
+      "reverse_scientific_identity": "d50b2af1fcdc338517baf2c3b177250d10d276636aca0f98f26ded20008c4f97",
+      "reason": "The audit order label incorrectly changed selected input order, so it changed the experimental fact rather than only enumeration order. Both reports passed but are excluded; the additive controller correction preserves one noncanonical selection and only reverses rejection-control enumeration."
+    }
+  ],
+  "claim": {
+    "mode": "film-inspired / Look Approximation",
+    "explicit_user_authority_only": true,
+    "automatic_aesthetic_routing": false,
+    "calibrated_camera_rendering": false,
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false,
+    "stock_distinguishability": false,
+    "arbitrary_media_quality": false,
+    "public_release": false,
+    "cross_platform_gui": false,
+    "product_value_evidence": false
+  },
+  "decision": "PASS_PRIVATE_U7_15A_DESKTOP_BATCH_REPRESENTATIVE_SELECTION",
+  "interpretation": "The private native desktop now lets a batch user explicitly choose any exact selected member as the input-basis and three-look preview source. Omitted selection remains canonical-first. The selected representative does not change canonical child order, image/recipe bytes or aggregate receipt identity. Changing the UI selection invalidates preview/look/export authority and requires a new preview.",
+  "stop_rule": "Stop automatic representative scoring and adjacent selector wrappers. This pass does not establish calibrated camera rendering, calibrated stock response, physical-film reproduction, stock distinguishability, arbitrary-media quality, public/cross-platform release or product value."
+}
