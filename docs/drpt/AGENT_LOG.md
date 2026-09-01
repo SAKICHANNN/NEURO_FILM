@@ -21808,3 +21808,41 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   package/release, calibrated stock response, physical-film reproduction or a
   completed multi-stock system. The next product leaf may address an
   independently observed user-facing defect; adjacent dependency wrappers stop.
+
+### 2026-09-01 - U4.5G repairs the ignored preview PNG compression argument
+
+- **Node and routing:** `ULT > U4 performance > U4.5G`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the sole writer; router, DRPT-BI, planning,
+  structure and agent-log disciplines were secondary. Source/code/test/evidence
+  paths were kept disjoint from concurrent U7.2S/U7.2T work, with explicit
+  short Git-index and shared-doc ownership windows.
+- **Observed defect and prospective freeze:** code inspection plus a temporary
+  deterministic 121x83 witness showed levels 0 and 9 produced identical hashes
+  and byte lengths for all three previews. The CLI passed and the renderer
+  validated `png_compression`, but `save_srgb8` never received it. Contract
+  `0b035025` froze the existing U7.3G source, levels 0/6/9, historical level-6
+  hashes, decoded-pixel/ICC identity, destination-neutral replay, invalid-input
+  and no-rescue gates. A shared-index race placed the three-line prospective
+  clarification in mixed commit `7c85e8e1`; history was preserved rather than
+  amended or reset.
+- **Implementation and correction:** core/test commit `3f6153d1` adds an
+  optional bounded PNG compression level to the existing RGB8 encoder, passes
+  it from the preview renderer and records it in the manifest. Runner/test
+  `c78ba668`, corrected relative-config entry `9ecd9f0a` and execution relock
+  `5e41d00a` bind exact source blobs. The first formal invocation stopped before
+  render, scoring or report publication because the runner did not resolve a
+  repo-relative config path; both accepted runs restarted from zero.
+- **Formal result and claim:** forward/reverse reports are 13,724 bytes with
+  exact scientific identity `d1b95165...8483`; all gates pass. Default and
+  explicit level 6 preserve exact historical output hashes. Levels 0/6/9 have
+  identical decoded RGB8 and ICC data, while level 0 versus 9 encoded hashes
+  differ and every level-9 file is smaller (`9,095/9,006/9,049B` versus
+  `12,310B` each). Five invalid controls reject before input work or output.
+  Evidence/test commit `d72705b7`; tracked evidence Git-LF SHA-256
+  `428fb0fbeec364c62f5135789c57ce2210307e3835bb8ba839ea8926682b818c`.
+  Twenty-five focused/adjacent tests, Ruff, compileall, JSON, Git-object,
+  immutable-input and residue checks pass. Retain only private deterministic
+  PNG8 preview parameter correctness for the three film-inspired Look
+  Approximations; no calibrated/physical stock, preference, final-export
+  performance, public API/package/installer or release claim opens. Stop
+  adjacent compression/cache/RAW-preview timing wrapper work.
