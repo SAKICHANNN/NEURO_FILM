@@ -1,0 +1,63 @@
+{
+  "schema": "kmcfm.u7-14b-desktop-canonical-scratch-boundary-contract.v1",
+  "node_id": "U7.14B",
+  "parent_head": "9ab788dc4999fea054b0d4e76499fca54818a29a",
+  "parent_evidence": {
+    "u7_14a": {
+      "path": "docs/evidence/U7_14A_DESKTOP_INPUT_BASIS_PREVIEW_RESULT.json",
+      "bytes": 4747,
+      "sha256": "2c8257efb5ae49e779577c61a49a03997857121badb1ea261d4609f17ddb166f"
+    }
+  },
+  "baseline_bindings": {
+    "desktop_entrypoint": {
+      "path": "scripts/open_product_desktop.py",
+      "bytes": 1549,
+      "sha256": "c92f0a1c81ca896d7065144961fabdf0183b6a51e3368ac50df651da3ace4064",
+      "git_blob": "8f02b05afe2698a534e715267249423f969ed6a6"
+    },
+    "u7_10a_launcher_test": {
+      "path": "tests/test_u7_10a_product_desktop_input_workflow.py",
+      "bytes": 17611,
+      "sha256": "23240dc4a65b82787d4a6ca09d34dd52dc4597b46c344bb3415e4de77a6b28a3",
+      "git_blob": "c78251caf735668a326bca5133c43a4222aec61c"
+    },
+    "u7_10b_formal_launcher": {
+      "path": "scripts/audit_u7_10b_installed_runtime_desktop_launch.py",
+      "bytes": 33931,
+      "sha256": "835933761534fd48bf452a24649aad10ec48977756c7be334c2e5cb5a56ab439",
+      "git_blob": "d8cdb4d180561716687e2b1a34a1d99e5fae3421"
+    }
+  },
+  "canonical_boundary": {
+    "logical_root": "tmp",
+    "resolve_before_compare": true,
+    "accept_root": true,
+    "accept_existing_descendants": true,
+    "accept_outside_paths": false,
+    "accept_missing_paths": false,
+    "accept_regular_files": false,
+    "accept_escape_reparse_points": false,
+    "machine_specific_drive_path_in_code": false
+  },
+  "gates": {
+    "require_parent_defect_reproduction": true,
+    "require_default_and_canonical_descendant_acceptance": true,
+    "require_external_and_normalized_escape_rejection": true,
+    "require_reparse_escape_rejection_when_supported": true,
+    "require_reject_before_tk_input_and_scratch": true,
+    "require_foreign_sentinel_immutability": true,
+    "require_real_canonical_smoke_mainloop": true,
+    "require_parent_launcher_descendants_admissible": true,
+    "require_parent_behavioral_regressions": true,
+    "require_exact_repeat_and_order_independent_science": true,
+    "require_source_immutability": true,
+    "require_zero_owned_residue": true
+  },
+  "stop_rules": [
+    "Do not allow C:, drive roots, data, outputs, arbitrary temp roots, environment-variable escape, symlink/junction escape or machine-specific P: paths.",
+    "Do not modify ProductDesktopWorkflow scratch injection, renderer, source, look, strength, preview, output, recipe, receipt, batch, installer or storage junction.",
+    "Failure closes this exact entry-boundary repair without fallback flags or adjacent storage wrappers."
+  ],
+  "claim_ceiling": "Private Windows/Python product-desktop scratch routing through the current repo-relative tmp storage binding only; not a filesystem sandbox, standalone installer, public release, cross-platform GUI, calibrated camera rendering, calibrated stock response, physical-film reproduction, stock distinguishability, HDR/wide-gamut or product-value result."
+}
