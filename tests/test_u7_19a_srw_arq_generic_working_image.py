@@ -10,6 +10,7 @@ from src.preprocess import pipeline, raw_decode
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/u7_19a_srw_arq_generic_working_image_v1.json"
+EXECUTION_LOCK = ROOT / "configs/u7_19a_srw_arq_generic_working_image_execution_v1.json"
 
 
 def _sha256(path: Path) -> str:
@@ -125,3 +126,20 @@ def test_u7_19a_public_pipeline_routes_both_extensions_to_generic_raw(
         assert pipeline.load_working_image(path).working_space == "linear_srgb"
     assert inspections == [tmp_path / "source.SRW", tmp_path / "source.ARQ"]
     assert decodes == [tmp_path / "source.SRW", tmp_path / "source.ARQ"]
+
+
+def test_u7_19a_execution_lock_admits_only_byte_exact_preflight_strata() -> None:
+    lock = json.loads(EXECUTION_LOCK.read_text(encoding="utf-8"))
+    assert lock["status"] == (
+        "LOCKED_AFTER_BYTE_EXACT_PREFLIGHT_BEFORE_FORMAL_PRODUCT_EXECUTION"
+    )
+    assert lock["admitted_extensions"] == [".arq", ".srw"]
+    assert lock["preflight_status"] == "PASS_BOTH_INDEPENDENT_EXTENSION_STRATA"
+    reports = lock["preflight_reports"]
+    assert reports["forward"]["bytes"] == reports["reverse"]["bytes"] == 16738
+    assert reports["forward"]["sha256"] == reports["reverse"]["sha256"]
+    for binding in lock["bindings"].values():
+        path = ROOT / binding["path"]
+        assert path.stat().st_size == binding["bytes"]
+        assert _sha256(path) == binding["sha256"]
+    assert all(len(value) == 40 for value in lock["commits"].values())

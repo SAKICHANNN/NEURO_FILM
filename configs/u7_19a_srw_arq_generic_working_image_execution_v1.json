@@ -1,0 +1,86 @@
+{
+  "schema": "kmcfm.u7-19a-srw-arq-generic-working-image-execution-lock.v1",
+  "node_id": "U7.19A",
+  "status": "LOCKED_AFTER_BYTE_EXACT_PREFLIGHT_BEFORE_FORMAL_PRODUCT_EXECUTION",
+  "admitted_extensions": [
+    ".arq",
+    ".srw"
+  ],
+  "commits": {
+    "contract_freeze": "1b75726fb9add252cb48321b600cd56748f62762",
+    "preflight_runner": "47d3de5e27bb2776ecf431a4595052acafb591b7",
+    "public_dispatch_implementation": "5a51ccf17f4a7593354f4f0e89f43b58ae3d7c1a",
+    "formal_runner": "202b175ebe379740a5157c22f9a066e71c5cdfbb"
+  },
+  "bindings": {
+    "contract": {
+      "path": "docs/planning/U7_19A_SRW_ARQ_GENERIC_WORKING_IMAGE_CONTRACT.md",
+      "bytes": 4940,
+      "sha256": "a0a4f399929b0ec33d8611b4c906835bf6ffa78c17da0938b78218d33686c910"
+    },
+    "frozen_config": {
+      "path": "configs/u7_19a_srw_arq_generic_working_image_v1.json",
+      "bytes": 6543,
+      "sha256": "c8312d7efb582a293265c62b421b4ddc4dd6f48698b5eae0df9f279f1bab8bba"
+    },
+    "public_raw_decode": {
+      "path": "src/preprocess/raw_decode.py",
+      "bytes": 4846,
+      "sha256": "e95a528bcc9bfe13df1b4ab50e741529f76346d444430c5477bba2c4aaa0636d"
+    },
+    "public_pipeline": {
+      "path": "src/preprocess/pipeline.py",
+      "bytes": 1035,
+      "sha256": "21a7a165a895679e05bc43e5c67d7d9d439b19dfbe01cf346449e4ea90be6dc4"
+    },
+    "public_render_cli": {
+      "path": "scripts/render_film.py",
+      "bytes": 43535,
+      "sha256": "2013e7c2f95c2f6a0b84ccff1d93db9bec2b189aead84b1ca6b5ab477447f786"
+    },
+    "product_profile": {
+      "path": "configs/render_profiles/safe_rich_product_v1.json",
+      "bytes": 4259,
+      "sha256": "09722cb48c55d1c4c460220c9f59b9ced81801c1b6fe856708a27f5cc99d39fe"
+    },
+    "render_contract": {
+      "path": "src/inference/render_contract.py",
+      "bytes": 33077,
+      "sha256": "378aeea559e41aba389022852f2f7f037f3b62e4eb29ce49d8bfc34d45bfd840"
+    },
+    "style_safe_engine": {
+      "path": "src/inference/style_safe_engine.py",
+      "bytes": 19218,
+      "sha256": "cfdc66119e2dace3dbfdd293eff8bbfa7e2dec08ca233d6efd440235f3a5e007"
+    },
+    "formal_audit": {
+      "path": "scripts/audit_u7_19a_srw_arq_generic_working_image.py",
+      "bytes": 23972,
+      "sha256": "5b80f00c29252bfca3665b564ddc090102f5d4a00c617ba62dca63265de144a6"
+    },
+    "focused_test": {
+      "path": "tests/test_u7_19a_srw_arq_generic_working_image.py",
+      "bytes": 6114,
+      "sha256": "c52769fc780c1d8f177b790738eb845d3976137210fb0fd1bd86813a3b3fa3b4"
+    }
+  },
+  "preflight_reports": {
+    "forward": {
+      "path": "outputs/u7_19a_srw_arq_generic_working_image_v1/preflight_forward.json",
+      "bytes": 16738,
+      "sha256": "4b162d88dca0ec3d343949cd24624f29d85f1aaa60ac35fe6a1c5c4e87ce4b4f"
+    },
+    "reverse": {
+      "path": "outputs/u7_19a_srw_arq_generic_working_image_v1/preflight_reverse.json",
+      "bytes": 16738,
+      "sha256": "4b162d88dca0ec3d343949cd24624f29d85f1aaa60ac35fe6a1c5c4e87ce4b4f"
+    }
+  },
+  "runtime": {
+    "pillow": "12.1.1"
+  },
+  "scratch_root": "tmp/u7_19a_srw_arq_generic_working_image_v1",
+  "preflight_status": "PASS_BOTH_INDEPENDENT_EXTENSION_STRATA",
+  "preflight_scientific_identity": "sha256:ee610917ef7ccf3f896ec4c3fdbd378893bd3d0047b75e4baa2eaf87ea051ec1",
+  "formal_rule": "Re-run all exact sources through the public dispatcher and one representative per admitted extension through the public explicit Ektar100 Look Approximation recipe/replay chain. Any formal failure removes only that extension before closure; no parameter, source, runtime, gate, decoder, or claim rescue."
+}
