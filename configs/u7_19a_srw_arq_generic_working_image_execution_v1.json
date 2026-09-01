@@ -10,7 +10,8 @@
     "contract_freeze": "1b75726fb9add252cb48321b600cd56748f62762",
     "preflight_runner": "47d3de5e27bb2776ecf431a4595052acafb591b7",
     "public_dispatch_implementation": "5a51ccf17f4a7593354f4f0e89f43b58ae3d7c1a",
-    "formal_runner": "202b175ebe379740a5157c22f9a066e71c5cdfbb"
+    "formal_runner": "202b175ebe379740a5157c22f9a066e71c5cdfbb",
+    "recipe_v1_audit_correction": "163f3eaf70b09cf476c5cf57f5abc1af0ac130f4"
   },
   "bindings": {
     "contract": {
@@ -55,13 +56,13 @@
     },
     "formal_audit": {
       "path": "scripts/audit_u7_19a_srw_arq_generic_working_image.py",
-      "bytes": 23972,
-      "sha256": "5b80f00c29252bfca3665b564ddc090102f5d4a00c617ba62dca63265de144a6"
+      "bytes": 24360,
+      "sha256": "77c068d7efc7eba938465a41de4585afa6052ec6e33d2e9d12426e97f022ef67"
     },
     "focused_test": {
       "path": "tests/test_u7_19a_srw_arq_generic_working_image.py",
-      "bytes": 6114,
-      "sha256": "c52769fc780c1d8f177b790738eb845d3976137210fb0fd1bd86813a3b3fa3b4"
+      "bytes": 6570,
+      "sha256": "f4f0ae4e87786c754af87aafb102edff0279c07af9b6f14cdbc826752307c7cd"
     }
   },
   "preflight_reports": {
@@ -82,5 +83,13 @@
   "scratch_root": "tmp/u7_19a_srw_arq_generic_working_image_v1",
   "preflight_status": "PASS_BOTH_INDEPENDENT_EXTENSION_STRATA",
   "preflight_scientific_identity": "sha256:ee610917ef7ccf3f896ec4c3fdbd378893bd3d0047b75e4baa2eaf87ea051ec1",
+  "excluded_first_formal_attempt": {
+    "reason": "The audit assumed recipe.render.look_amount was present even though canonical v1 recipes omit the field for the frozen full amount 1.0.",
+    "product_parameter_change": false,
+    "source_or_gate_change": false,
+    "formal_reports": 0,
+    "owned_media_residue": 0,
+    "correction_scope": "Interpret the already-validated canonical v1 omission as effective look amount 1.0; no product, source, runtime, role, threshold, or claim changed."
+  },
   "formal_rule": "Re-run all exact sources through the public dispatcher and one representative per admitted extension through the public explicit Ektar100 Look Approximation recipe/replay chain. Any formal failure removes only that extension before closure; no parameter, source, runtime, gate, decoder, or claim rescue."
 }
