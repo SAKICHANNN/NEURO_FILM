@@ -22950,3 +22950,50 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   a filesystem sandbox, installer, release, cross-platform GUI, calibrated
   camera/stock response, physical film, distinguishability or HDR/wide-gamut
   evidence. Stop adjacent scratch/fallback wrappers; no push occurred.
+
+### 2026-09-02 - U7.15A adds explicit batch preview authority
+
+- **Node and routing:** `ULT > U7 productization > U7.15A`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the sole writer; research, structure and
+  agent-log disciplines were read-only secondary checks. The user had deleted
+  the old Goal, so this work used no Codex Goal and did not create or retrigger
+  a leaf Goal. Producer/consumer owners reported no exact-path overlap. Foreign
+  `.codex/` and `tmp/` content was not staged.
+- **Product change:** contract/config commit `b9ceb2d1`, implementation
+  `de315eb0`, formal controller `484b0145` and additive alias hardening
+  `2245b381` add one optional keyword-only representative to
+  `render_batch_previews`. Omission preserves canonical-first behavior. An
+  explicit representative must be one exact bound member; final-file
+  symlink/reparse, parent-reparse alias, hard-link alias, external, missing and
+  changed files reject before preview. The native UI exposes a read-only,
+  keyboard-reachable batch-only selector. Changing it clears preview, look and
+  export authority. Canonical child order, encoders, output/recipe bytes and
+  aggregate receipt schema remain unchanged.
+- **Formal evidence:** the frozen parent method executes a deliberately
+  noncanonical selection and previews only `a-first.png`. Current explicit
+  selection previews `z-later.png` while returning canonical order
+  `a-first.png`,`z-later.png`. Default and explicit exports have exact rows,
+  image/recipe trees and receipt SHA
+  `218da76cb64da51ec273334347e70ca68931012748b77e75f8f9b1729a0f9111`.
+  Corrected committed-head forward/reverse reports are byte-identical at 3,743
+  bytes / SHA
+  `2ea8b1499489f24719adbe0b6ff240033f09f0d2d6d9336a644b7d326a90ee60`;
+  scientific identity is
+  `a726c15ce5facc1485afcdaf9dcbfb82863918cd2df127a0509472900328521b`,
+  all 13 gates pass and owned residue is zero. Evidence commit `b6e4cc86`
+  binds both formal materialized bytes and Git-LF objects explicitly.
+- **Excluded diagnostics and boundary:** a parallel pre-formal process produced
+  48 passing tests and two transient Tk library-load failures; all affected
+  files later passed in isolated fresh processes. A first pre-report alias
+  control stopped because the P-backed exFAT `tmp` cannot create hard links;
+  the corrected tiny NTFS control is removed before return. A first complete
+  pair passed but improperly varied selected input order with the audit order,
+  so both reports are retained only as excluded diagnostics. Fresh-process
+  behavioral suites pass 100 tests with one host-capability skip; Ruff,
+  format-new-file, compileall, JSON and diff checks pass. This is only private
+  explicit user authority for deterministic `film-inspired / Look
+  Approximation` batch preview. It is not automatic batch representativeness,
+  calibrated camera/stock response, physical film, distinguishability,
+  arbitrary-media quality, public/cross-platform release or product-value
+  evidence. Stop automatic representative scoring and adjacent selector
+  wrappers; no push occurred.
