@@ -12,6 +12,7 @@ from PIL.PngImagePlugin import PngInfo
 
 from src.preprocess import (
     inspect_input,
+    load_jpeg_preview_working_image,
     load_working_image,
     save_srgb16_png,
     save_srgb16_tiff,
@@ -64,6 +65,25 @@ def test_load_raster_working_image_is_float32_linear(tmp_path: Path) -> None:
     assert [(warning.code, warning.message) for warning in assumed] == [
         ("assumed_srgb", "no embedded ICC profile; assuming sRGB")
     ]
+
+
+def test_scaled_jpeg_preview_keeps_one_canonical_missing_icc_warning(
+    tmp_path: Path,
+) -> None:
+    path = tmp_path / "preview.jpg"
+    _rgb_fixture(path)
+
+    image = load_jpeg_preview_working_image(
+        path,
+        target_width=5,
+        target_height=4,
+    )
+
+    assert [warning.code for warning in image.warnings] == [
+        "assumed_srgb",
+        "jpeg_scaled_preview_decode",
+    ]
+    assert image.warnings[0].message == "no embedded ICC profile; assuming sRGB"
 
 
 @pytest.mark.parametrize("mode", ["RGBA", "LA"])

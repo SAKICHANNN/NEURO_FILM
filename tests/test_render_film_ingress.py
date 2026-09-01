@@ -1,22 +1,26 @@
 from __future__ import annotations
 
 import argparse
-from collections.abc import Callable
 import hashlib
 import json
 import subprocess
 import sys
+from collections.abc import Callable
 from pathlib import Path
 
+import cv2
 import numpy as np
 import pytest
-import cv2
 import tifffile
 from PIL import Image
 
 from scripts.render_film import build_color_render, build_color_render_float
-from src.filmfx import composite_layers, dust_scratch_layer, grain_residual_layer, halation_layer
-
+from src.filmfx import (
+    composite_layers,
+    dust_scratch_layer,
+    grain_residual_layer,
+    halation_layer,
+)
 from src.preprocess import (
     load_working_image,
     save_srgb16_png,
@@ -24,7 +28,6 @@ from src.preprocess import (
     working_image_to_legacy_srgb8,
     working_image_to_srgb_float,
 )
-
 
 ROOT = Path(__file__).resolve().parents[1]
 

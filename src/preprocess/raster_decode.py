@@ -384,7 +384,13 @@ def inspect_raster(path: Path) -> InputInspection:
 def _convert_with_icc(image: Image.Image, warnings: list[DecodeWarning]) -> Image.Image:
     icc = image.info.get("icc_profile")
     if not icc:
-        warnings.append(DecodeWarning("assumed_srgb", "No ICC profile; interpreting raster RGB as sRGB."))
+        if not any(warning.code == "assumed_srgb" for warning in warnings):
+            warnings.append(
+                DecodeWarning(
+                    "assumed_srgb",
+                    "no embedded ICC profile; assuming sRGB",
+                )
+            )
         return image.convert("RGB")
     try:
         src = ImageCms.ImageCmsProfile(BytesIO(icc))
