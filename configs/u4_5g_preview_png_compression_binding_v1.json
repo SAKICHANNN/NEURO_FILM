@@ -70,10 +70,10 @@
     },
     "audit_runner": {
       "path": "scripts/audit_u4_5g_preview_png_compression_binding.py",
-      "bytes": 13036,
-      "sha256": "329e2f462b47216c195ed64bfa7f9cee99b5666f8f27c69bb10dda12b892106b",
-      "git_blob": "6f27b62d1db2576c7b433784e24b07d63349afb7",
-      "commit": "c78ba668fdc37b8151e0642746decad648e28c26"
+      "bytes": 13151,
+      "sha256": "8c15046b87eab841032cba16c2ece267219b77d397cf7dbd4e28847f37b1d7c3",
+      "git_blob": "91446d3e2bdbd4b5961b895d40a6b94a6de3e66d",
+      "commit": "9ecd9f0ae2c970fba6efe91d56479d73415c376d"
     }
   },
   "claim_ceiling": "Private PNG8 preview compression parameter correctness for three existing film-inspired Look Approximations only; not calibrated stock response, image-quality preference, final-export performance, public API, package, installer or release."
