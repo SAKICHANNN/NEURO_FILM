@@ -23236,3 +23236,46 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   vendor RAW or colour support, ARQ component fusion, calibrated stock
   response, physical-film reproduction, multi-stock completion or product
   promotion. No push occurred.
+
+### 2026-09-02 - U7.19B closes the multi-vendor RAW product-ingress matrix
+
+- **Node and routing:** `ULT > U7 productization > U7.19B`, DRPT L2 / Mode C,
+  R1 local. `dev-research-reliability` was the sole writer; router, structure
+  and agent-log disciplines were read-only secondary checks. The long-lived
+  Look Approximation product Goal remains accurate and active; no leaf Goal
+  was created or replaced. Parallel tasks confirmed the U7.19B and shared-doc
+  ownership windows before writes.
+- **Frozen product question:** contract/config commits `acaca1bf` / `1ee4c33f`
+  define one consolidated six-extension matrix instead of six adjacent
+  wrappers. Twelve exact P315/P316/P317/P319/P320 sources remain in the
+  producer repository through its P-backed logical paths. Each extension is
+  independent and must pass public inspection/WorkingImage plus unchanged
+  Ektar100 full-amount PNG8, strict recipe and byte-exact replay under a 16 GiB
+  process-tree limit.
+- **Execution corrections:** initial runner `7778166b` was interrupted before
+  a formal report after discovering it measured only the direct worker rather
+  than the full render process tree. Corrections `eedab204` / `017dff74` /
+  `e70fa97a` add full-tree measurement and recover only a proven empty owned
+  scratch tree; V1 retained zero formal reports and zero residue files. V2
+  measured the correct outcomes but collapsed the frozen independent-format
+  policy into an all-or-nothing status. `70cda1bf` changes classification and
+  post-kill source-hash reporting only; sources, roles, renderer, limits,
+  parameters, controls and claim ceiling are unchanged. V3 execution lock is
+  `7be210d1`.
+- **Formal outcome:** all 12 sources pass public WorkingImage preflight.
+  `.mos`, `.nef`, `.raf` and `.x3f` complete public CLI render, recipe and
+  replay with output SHAs `b1e7f794...c16f8`, `48676be4...f5588`,
+  `099b79d5...95673` and `464beffa...821e0`. Exact X2D `.3fr` and `.fff`
+  renders exceed 16 GiB in both directions (`17,210,830,848` to
+  `17,401,221,120` bytes) and close without rescue. Forward/reverse reports
+  are each 11,677 bytes; resource timing makes their full SHAs differ, while
+  scientific identity is exact at `ab3744a99080d8d40975a95c56afcfd1bbfe6dcbdd16922192300f8d6fb03e7a`.
+  All global gates, source immutability, network-zero and scratch-zero gates
+  pass. Evidence/test commit `4cef7443` binds the reports and Git objects.
+- **Verification and boundary:** focused/evidence tests pass 10/10; U7.2E-K,
+  U7.19A/B, render-ingress and render-contract behavior passes 118/118. Ruff,
+  format, py_compile, JSON and diff checks pass. This is exact-file public
+  compatibility for deterministic `film-inspired / Look Approximation` only,
+  not generic vendor RAW, vendor colour/demosaic quality, pixel-shift fusion,
+  calibrated stock response, physical-film reproduction, multi-stock
+  completion, public release or product promotion. No push occurred.
