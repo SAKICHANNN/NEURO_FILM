@@ -70,9 +70,11 @@ def test_u7_19b_scientific_view_excludes_only_resource_measurements() -> None:
         "results": [{"records": [{"source_id": "x", "resource": {"wall_seconds": 1}}]}],
         "product_records": [{"extension": ".x", "resource": {"wall_seconds": 2}}],
         "scientific_identity": "sha256:old",
+        "scratch_recovered_empty_tree": True,
     }
     view = audit._scientific_view(report)
     assert "scientific_identity" not in view
+    assert "scratch_recovered_empty_tree" not in view
     assert view["results"][0]["records"][0] == {"source_id": "x"}
     assert view["product_records"][0] == {"extension": ".x"}
 

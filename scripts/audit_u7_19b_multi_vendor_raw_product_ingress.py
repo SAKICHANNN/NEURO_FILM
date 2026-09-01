@@ -293,6 +293,7 @@ def _source_gates(
 def _scientific_view(report: dict[str, Any]) -> dict[str, Any]:
     value = json.loads(json.dumps(report))
     value.pop("scientific_identity", None)
+    value.pop("scratch_recovered_empty_tree", None)
     for stratum in value.get("results", []):
         for record in stratum.get("records", []):
             record.pop("resource", None)
