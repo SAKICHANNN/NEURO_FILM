@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import subprocess
 import sys
@@ -10,9 +11,33 @@ import pytest
 from scripts.pipeline_color_baseline import load_profile_values
 from src.inference import migrate_legacy_safe_rich
 from src.inference.yaml_config import YamlConfigError, load_yaml_mapping
+from tests.historical_evidence_binding import assert_historical_evidence_binding
 
 ROOT = Path(__file__).resolve().parents[1]
 PROFILE_YAML = ROOT / "configs" / "color_rendering_profiles.yaml"
+CONFIG = ROOT / "configs" / "u7_2s_product_yaml_runtime_decoupling_v1.json"
+
+
+def _requirements(path: Path) -> dict[str, str]:
+    result: dict[str, str] = {}
+    for raw_line in path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#"):
+            continue
+        name, version = line.split("==", maxsplit=1)
+        canonical = name.lower().replace("_", "-").replace(".", "-")
+        assert canonical not in result
+        result[canonical] = version
+    return result
+
+
+def _normalized_parent_report() -> bytes:
+    config = json.loads(CONFIG.read_text(encoding="utf-8"))
+    report = json.loads(
+        (ROOT / config["u7_2r_terminal_report"]["path"]).read_text(encoding="utf-8")
+    )
+    report.pop("execution_commit", None)
+    return json.dumps(report, sort_keys=True, separators=(",", ":")).encode()
 
 
 def test_tracked_profile_yaml_has_frozen_canonical_identity() -> None:
@@ -97,3 +122,34 @@ def test_existing_profile_migration_remains_exact() -> None:
         )
     )
     assert migrated == tracked
+
+
+def test_v2_manifest_is_exactly_v1_minus_omegaconf_and_antlr() -> None:
+    config = json.loads(CONFIG.read_text(encoding="utf-8"))
+    v1 = _requirements(ROOT / "requirements-product.txt")
+    for distribution, version in config["removed_distributions"].items():
+        assert v1.pop(distribution) == version
+    assert _requirements(ROOT / config["requirements_path"]) == v1
+    assert v1 == config["required_distributions"]
+    assert set(config["removed_distributions"]).isdisjoint(v1)
+
+
+def test_protocol_locks_terminal_parent_without_reclassifying_it() -> None:
+    config = json.loads(CONFIG.read_text(encoding="utf-8"))
+    for binding in config["source_locks"].values():
+        assert_historical_evidence_binding(ROOT, binding)
+    terminal = config["u7_2r_terminal_report"]
+    report_path = ROOT / terminal["path"]
+    assert report_path.stat().st_size == terminal["bytes"]
+    assert hashlib.sha256(report_path.read_bytes()).hexdigest() == terminal["sha256"]
+    normalized = _normalized_parent_report()
+    assert len(normalized) == terminal["normalized_scientific_bytes"]
+    assert (
+        hashlib.sha256(normalized).hexdigest()
+        == terminal["normalized_scientific_sha256"]
+    )
+    report = json.loads(report_path.read_text(encoding="utf-8"))
+    assert report["status"] == terminal["expected_status"] == "FAIL_CLOSED"
+    assert [name for name, passed in report["gates"].items() if not passed] == terminal[
+        "expected_failed_gates"
+    ]

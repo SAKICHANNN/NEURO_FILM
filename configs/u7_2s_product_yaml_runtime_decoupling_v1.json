@@ -1,0 +1,119 @@
+{
+  "schema_version": "neuro-film.u7-2s-product-yaml-runtime-decoupling.v1",
+  "node_id": "U7.2S",
+  "parent": "U7.2Q",
+  "contract_commit": "68e1695d3a5cb234a290676e27a82654f2d86179",
+  "implementation_commit": "97af839648b165c14b0037238e71d95f4c164957",
+  "python": {
+    "required_major_minor": "3.12",
+    "qualified_patch": "3.12.10",
+    "windows_launcher_selector": "-3.12"
+  },
+  "requirements_path": "requirements-product-v2.txt",
+  "required_distributions": {
+    "imageio": "2.37.3",
+    "lazy-loader": "0.5",
+    "networkx": "3.6.1",
+    "numpy": "2.4.4",
+    "opencv-python-headless": "4.13.0.92",
+    "packaging": "26.2",
+    "pillow": "12.1.1",
+    "pyyaml": "6.0.3",
+    "rawpy": "0.26.1",
+    "scikit-image": "0.26.0",
+    "scipy": "1.17.1",
+    "tifffile": "2026.4.11"
+  },
+  "removed_distributions": {
+    "antlr4-python3-runtime": "4.9.3",
+    "omegaconf": "2.3.0"
+  },
+  "forbidden_distribution_roots": [
+    "accelerate",
+    "antlr4-python3-runtime",
+    "bitsandbytes",
+    "cryptography",
+    "diffusers",
+    "lpips",
+    "omegaconf",
+    "peft",
+    "piq",
+    "pypdf",
+    "pytorch-lightning",
+    "safetensors",
+    "tensorboard",
+    "timm",
+    "torch",
+    "torchvision",
+    "transformers",
+    "wandb",
+    "xformers"
+  ],
+  "source_locks": {
+    "contract": {
+      "path": "docs/planning/U7_2S_PRODUCT_YAML_RUNTIME_DECOUPLING_CONTRACT.md",
+      "git_blob": "c0c9a2386f0eeb4256cb037d94d08c4bab74e8f9",
+      "sha256": "8e08fef4d23c5bd19543c1904e8f5b5e4177bafe17a9af94317b11df2c1d853f"
+    },
+    "requirements": {
+      "path": "requirements-product-v2.txt",
+      "git_blob": "f527a0ca45d49b60d6f75812ce2b00ee9a25647e",
+      "sha256": "78b2ec79ffd4053c42c90a5db765baf715fed261efa39a5e762e013145718517"
+    },
+    "yaml_loader": {
+      "path": "src/inference/yaml_config.py",
+      "git_blob": "f155372ef2f8933eebfbdc0fc80851798db55ce4",
+      "sha256": "b958efcf1a2e79df7791e979a4ca6415075b25dfe00d79595c17aa72787b97c2"
+    },
+    "pipeline": {
+      "path": "scripts/pipeline_color_baseline.py",
+      "git_blob": "f67f1d92c7b859846244bc37237e1f8f60f6736e",
+      "sha256": "11f546ff4805c4cc7a713771aa37764d79fd1786f0560eee4532a606855b78f5"
+    },
+    "render_contract": {
+      "path": "src/inference/render_contract.py",
+      "git_blob": "8942e4236ea4ed128d19df611bfecc57bc5c26ea",
+      "sha256": "378aeea559e41aba389022852f2f7f037f3b62e4eb29ce49d8bfc34d45bfd840"
+    },
+    "focused_test": {
+      "path": "tests/test_u7_2s_product_yaml_runtime_decoupling.py",
+      "git_blob": "be155f97c914fc2c75860ee291ec5802fb774a83",
+      "sha256": "337c8b34e39f8eb138ff338204dd861b5142c50691d6f5f6529d303155e6385b"
+    },
+    "render_film": {
+      "path": "scripts/render_film.py",
+      "git_blob": "f5ec1bfaeba0190abe01178fd1d9a80bc9250c32",
+      "sha256": "f25a26c835385c8934f4cfe7ed1bdd98b9ecd461212d026a1fb11f9b2dc9398b"
+    },
+    "u7_2r_runner": {
+      "path": "scripts/audit_u7_2r_product_effect_argument_preflight.py",
+      "git_blob": "d84c501e99fa5ca4c75d8ff5b36bf30ccec27ea3",
+      "sha256": "d2e8ee85405a0320e2b8c9127d8b14a1b642b2a6d5197367b59f96d24c10778f"
+    },
+    "u7_2r_config": {
+      "path": "configs/u7_2r_product_effect_argument_preflight_v1.json",
+      "git_blob": "a740346eae2a893e819f908574811b2219251983",
+      "sha256": "1c13eae9e38350e63c2ffa12bf05c4c63f414d5431fa4c0543cc2f2ba6d11d2f"
+    },
+    "u7_2r_evidence": {
+      "path": "docs/evidence/U7_2R_PRODUCT_EFFECT_ARGUMENT_PREFLIGHT_RESULT.json",
+      "git_blob": "ff894955886f1d072cdb618ae55c6ecd7a01337b",
+      "sha256": "8ce65a299cc3bea82e751e4465fb734a713c7e486f83692d2f45a96cbf804670"
+    }
+  },
+  "u7_2r_terminal_report": {
+    "path": "outputs/eval/u7_2r_product_effect_argument_preflight_v1/formal.json",
+    "bytes": 6694,
+    "sha256": "1ff89227e7af9ed3fdb517cf2395ba24c0e094f835c5c7c4f33beae64457c369",
+    "normalized_scientific_bytes": 6631,
+    "normalized_scientific_sha256": "ac7e352bfea6e8a2fa636760e14a1d46db9b5f2f7a000adc41cf0f6bc24f50d3",
+    "expected_status": "FAIL_CLOSED",
+    "expected_returncode": 1,
+    "expected_failed_gates": ["valid_numeric_boundaries_execute"]
+  },
+  "environment_count": 2,
+  "binary_only_install": true,
+  "require_pip_check": true,
+  "require_owned_residue_zero": true,
+  "claim_ceiling": "Private Windows CPython 3.12 Look Approximation runtime dependency decoupling with exact preservation of the terminal U7.2R product behavior."
+}
