@@ -1,0 +1,58 @@
+{
+  "schema_version": "neuro-film.u7-2q-product-minimal-environment.v1",
+  "node_id": "U7.2Q",
+  "parent": "U7.2P",
+  "python": {
+    "required_major_minor": "3.12",
+    "qualified_patch": "3.12.10",
+    "windows_launcher_selector": "-3.12"
+  },
+  "requirements_path": "requirements-product.txt",
+  "required_distributions": {
+    "antlr4-python3-runtime": "4.9.3",
+    "imageio": "2.37.3",
+    "lazy-loader": "0.5",
+    "networkx": "3.6.1",
+    "numpy": "2.4.4",
+    "omegaconf": "2.3.0",
+    "opencv-python-headless": "4.13.0.92",
+    "packaging": "26.2",
+    "pillow": "12.1.1",
+    "pyyaml": "6.0.3",
+    "rawpy": "0.26.1",
+    "scikit-image": "0.26.0",
+    "scipy": "1.17.1",
+    "tifffile": "2026.4.11"
+  },
+  "forbidden_distribution_roots": [
+    "accelerate",
+    "bitsandbytes",
+    "cryptography",
+    "diffusers",
+    "lpips",
+    "peft",
+    "piq",
+    "pypdf",
+    "pytorch-lightning",
+    "safetensors",
+    "tensorboard",
+    "timm",
+    "torch",
+    "torchvision",
+    "transformers",
+    "wandb",
+    "xformers"
+  ],
+  "source_locks": {
+    "render_film_sha256": "287f3dfff1459c386b15c51e3d766177ca74e6c75f70de3a7869f896f4a328a3",
+    "u7_2p_evidence_sha256": "b9578f4fa07e82a5ceedbc1a98c9da1cdc1ab1cb56863d1568f0ed59e50ccf18",
+    "u7_2p_report_sha256": "f6e0f2ed7b54ce84b3de728c76cc44210014dde8b44cbff2e8cd2af92f436e5a",
+    "u7_2p_report_bytes": 8211
+  },
+  "environment_count": 2,
+  "binary_only_install": true,
+  "require_pip_check": true,
+  "require_nested_u7_2p_byte_exact": true,
+  "require_owned_residue_zero": true,
+  "claim_ceiling": "Private Windows Python 3.12 dependency manifest and fresh-environment execution for the existing deterministic film-inspired Look Approximation CLI only."
+}
