@@ -53,6 +53,7 @@ from src.inference import (
     sha256_file,
     validate_render_recipe,
 )
+from src.inference.product_execution_policy import resolve_product_execution_policy
 from src.inference.product_render_transaction import (
     preflight_product_primary_output,
     prepare_product_render_bundle_transaction,
@@ -751,6 +752,13 @@ def main() -> int:
                 raise ValueError(
                     "safe-rich-product-v1 only supports available product-catalog looks"
                 )
+            execution_policy = resolve_product_execution_policy(
+                profile_id=profile_manifest["profile_id"],
+                tile_size=args.tile_size,
+                tile_workers=args.tile_workers,
+            )
+            args.tile_size = execution_policy.tile_size
+            args.tile_workers = execution_policy.tile_workers
         if args.style not in profile_manifest["style_parameters"]:
             raise ValueError(f"Render profile does not contain style {args.style!r}")
         profile_values = dict(profile_manifest["style_parameters"][args.style])

@@ -35,6 +35,7 @@ from src.filmfx import (
     halation_layer,
     physical_halation_layer,
 )
+from src.inference.product_execution_policy import resolve_product_execution_policy
 from src.preprocess import (
     WorkingImage,
     load_working_image,
@@ -249,7 +250,12 @@ def _verified_recipe_base(
     verify_render_recipe_inputs(recipe, profile_path=profile_path, root=root)
     profile = load_render_profile(profile_path, root=root)
     render = recipe["render"]
-    effective_tile_size = tile_size
+    policy = resolve_product_execution_policy(
+        profile_id=profile["profile_id"],
+        tile_size=tile_size,
+        tile_workers=1,
+    )
+    effective_tile_size = policy.tile_size
     if recipe["schema_id"] == RECIPE_SCHEMA_ID_V4:
         bound_tile_size = render["effects"]["halation"]["resolved_parameters"][
             "tile_size"
