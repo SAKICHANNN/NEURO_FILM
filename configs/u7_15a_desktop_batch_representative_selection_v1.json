@@ -1,0 +1,55 @@
+{
+  "schema": "kmcfm.u7-15a-desktop-batch-representative-selection-contract.v1",
+  "node_id": "U7.15A",
+  "parent_head": "ff1c0d720a9afaf86b440ee5b6b86d240c323b50",
+  "parent_evidence": {
+    "u7_14b": {
+      "path": "docs/evidence/U7_14B_DESKTOP_CANONICAL_SCRATCH_BOUNDARY_RESULT.json",
+      "bytes": 4251,
+      "sha256": "da8a3918d2bc5dbf6189d15c6a44fa8928ec40ea0cc93031602de934b9cc7ab0"
+    }
+  },
+  "baseline_bindings": {
+    "core": {
+      "path": "src/inference/product_desktop.py",
+      "bytes": 52965,
+      "sha256": "149ed425c0770afcbbb1d33f36ba42341545d635d860c391a6fb45f42b45f587",
+      "git_blob": "dac918b7f110a478c23dbea8286b8b28eaa634fa"
+    },
+    "ui": {
+      "path": "src/inference/product_desktop_ui.py",
+      "bytes": 31225,
+      "sha256": "85ef883d03393135c39618ba3553aaa38398591a4635182b7110625f4677c417",
+      "git_blob": "7ef2bf0ee2a9657ac526929f003fe717c3db856c"
+    }
+  },
+  "interface": {
+    "method": "ProductDesktopWorkflow.render_batch_previews",
+    "new_keyword": "representative_path",
+    "default": null,
+    "default_semantics": "canonical-first-exact",
+    "explicit_semantics": "one-exact-bound-member",
+    "canonical_batch_order_unchanged": true,
+    "receipt_schema_unchanged": true
+  },
+  "gates": {
+    "require_parent_limitation_reproduction": true,
+    "require_explicit_nonfirst_preview": true,
+    "require_canonical_batch_order_unchanged": true,
+    "require_batch_receipt_and_child_identity_unchanged": true,
+    "require_external_missing_alias_mutation_rejection": true,
+    "require_ui_readonly_keyboard_selector": true,
+    "require_ui_change_invalidates_preview_authority": true,
+    "require_single_and_default_paths_unchanged": true,
+    "require_parent_regressions": true,
+    "require_exact_repeat_and_order_independent_science": true,
+    "require_source_immutability": true,
+    "require_zero_owned_residue": true
+  },
+  "stop_rules": [
+    "Do not change canonical child order, receipt schemas, preview geometry, look math, amount, renderer, encoders, recovery, cache, scratch policy or publication semantics.",
+    "Do not infer batch-level aesthetic representativeness from one user-selected preview member.",
+    "Failure closes this exact route without automatic routing, score tuning or adjacent UI wrappers."
+  ],
+  "claim_ceiling": "Private Windows/Python explicit representative selection for deterministic film-inspired / Look Approximation batch preview only; not calibrated camera rendering, calibrated stock response, physical-film reproduction, stock distinguishability, automatic aesthetic routing, arbitrary-media quality, installer, public release, cross-platform GUI or product-value evidence."
+}
