@@ -74,9 +74,11 @@ class _ErrorWorkflow:
         _style_id: str,
         _destination: Path,
         *,
+        output_format_id: str = "png16",
         cancel_event: threading.Event,
         progress: object,
     ) -> object:
+        assert output_format_id == "png16"
         del cancel_event, progress
         raise ProductDesktopError("batch cancelled safely")
 

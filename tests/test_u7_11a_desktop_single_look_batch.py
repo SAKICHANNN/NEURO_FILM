@@ -549,9 +549,11 @@ def test_native_batch_ui_tracks_progress_cancel_and_non_daemon_worker(
         style_id: str,
         output_directory: Path,
         *,
+        output_format_id: str = "png16",
         cancel_event: threading.Event,
         progress: object,
     ) -> DesktopBatchReceipt:
+        assert output_format_id == "png16"
         rows = tuple(inputs)  # type: ignore[arg-type]
         progress(1, len(rows), rows[0].basename)  # type: ignore[operator]
         started.set()
@@ -632,9 +634,11 @@ def test_native_close_waits_for_active_batch_worker(
         style_id: str,
         output_directory: Path,
         *,
+        output_format_id: str = "png16",
         cancel_event: threading.Event,
         progress: object,
     ) -> DesktopBatchReceipt:
+        assert output_format_id == "png16"
         del inputs, style_id, output_directory, progress
         started.set()
         assert release.wait(5)

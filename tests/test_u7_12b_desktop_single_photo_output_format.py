@@ -16,6 +16,7 @@ from PIL import Image
 
 from src.inference.product_desktop import (
     PRODUCT_OUTPUT_FORMATS,
+    DesktopBatchReceipt,
     DesktopExportReceipt,
     ProductDesktopError,
     ProductDesktopWorkflow,
@@ -255,7 +256,7 @@ def test_png16_default_command_and_batch_builder_remain_exact(tmp_path: Path) ->
         assert "--png-compression" not in command
 
 
-def test_desktop_format_controls_route_single_photo_and_fix_batch_png16(
+def test_desktop_format_controls_route_single_photo_and_batch(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
@@ -309,7 +310,7 @@ def test_desktop_format_controls_route_single_photo_and_fix_batch_png16(
     app = build_product_desktop_app(root, workflow)
     monkeypatch.setattr(app, "_background", lambda action, success: success(action()))
     try:
-        assert app.output_format_text.get() == "Choose one photo for output format"
+        assert app.output_format_text.get() == "Choose photos for output format"
         assert all(
             str(button.cget("state")) == "disabled"
             for button in app.output_format_buttons.values()
@@ -342,12 +343,54 @@ def test_desktop_format_controls_route_single_photo_and_fix_batch_png16(
 
         app._set_inputs((first, second))
         assert app.output_format.get() == "png16"
-        assert app.output_format_text.get() == "Batch output fixed: PNG16"
+        assert app.output_format_text.get() == "Batch output"
         assert all(
-            str(button.cget("state")) == "disabled"
+            str(button.cget("state")) == "normal"
             for button in app.output_format_buttons.values()
         )
-        assert "2 PNG16" in str(app.export_button.cget("text"))
+        app.output_format_buttons["jpeg8"].invoke()
+        assert "2 JPEG8" in str(app.export_button.cget("text"))
+
+        batch_calls: list[str] = []
+
+        def export_batch(
+            inputs: object,
+            style_id: str,
+            output_directory: Path,
+            *,
+            output_format_id: str = "png16",
+            cancel_event: threading.Event,
+            progress: object,
+        ) -> DesktopBatchReceipt:
+            del inputs, cancel_event, progress
+            batch_calls.append(output_format_id)
+            return DesktopBatchReceipt(
+                batch_id="0" * 64,
+                style_id=style_id,
+                look_amount=0.5,
+                output_directory=output_directory,
+                receipt_path=output_directory / "batch.json",
+                receipt_sha256="1" * 64,
+                job_count=2,
+                receipt={},
+                output_format_id=output_format_id,
+            )
+
+        monkeypatch.setattr(workflow, "export_batch", export_batch)
+        monkeypatch.setattr(
+            "src.inference.product_desktop_ui.filedialog.asksaveasfilename",
+            lambda **_kwargs: str(tmp_path / "batch-output"),
+        )
+        monkeypatch.setattr(
+            app, "_background_batch", lambda action, success: success(action())
+        )
+        state, bound = workflow.render_batch_previews((first, second), 0.5)
+        app._batch_preview_complete((state, bound))
+        app.look_buttons["ektar_100"].invoke()
+        app.output_format_buttons["jpeg8"].invoke()
+        app.export()
+        assert batch_calls == ["jpeg8"]
+        assert "JPEG8" in shown[-1][1]
     finally:
         if root.winfo_exists():
             app.close()

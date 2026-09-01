@@ -222,6 +222,7 @@ class DesktopBatchReceipt:
     receipt_sha256: str
     job_count: int
     receipt: dict[str, Any]
+    output_format_id: str = _DEFAULT_OUTPUT_FORMAT_ID
 
 
 def _run_command(
@@ -905,11 +906,13 @@ class ProductDesktopWorkflow:
         style_id: str,
         output_directory: Path,
         *,
+        output_format_id: str = _DEFAULT_OUTPUT_FORMAT_ID,
         cancel_event: threading.Event | None = None,
         progress: BatchProgress | None = None,
     ) -> DesktopBatchReceipt:
         """Publish one atomic single-look directory through the existing CLI."""
 
+        format_spec = product_output_format(output_format_id)
         with self._lock:
             state = self._state
             if state is None:
@@ -974,7 +977,7 @@ class ProductDesktopWorkflow:
                             f"batch input changed before child {index}"
                         )
                     stem = f"{index:04d}-{_safe_output_stem(source.path)}-{style_id}"
-                    image_name = f"{stem}.png"
+                    image_name = f"{stem}{format_spec.canonical_extension}"
                     recipe_name = f"{stem}.recipe.json"
                     image_path = stage / image_name
                     recipe_path = stage / recipe_name
@@ -986,6 +989,7 @@ class ProductDesktopWorkflow:
                                 style_id,
                                 image_path,
                                 state.look_amount,
+                                output_format_id=output_format_id,
                             ),
                             self.root,
                             environment,
@@ -1035,7 +1039,8 @@ class ProductDesktopWorkflow:
                         or recipe["render"]["style"] != style_id
                         or float(recipe["render"]["look_amount"])
                         != state.look_amount
-                        or recipe["output"]["bit_depth"] != 16
+                        or recipe["output"]["format"] != format_spec.recipe_format
+                        or recipe["output"]["bit_depth"] != format_spec.bit_depth
                         or recipe["output"]["sha256"] != image_seal.sha256
                         or str(recipe["software"]["commit"]).lower()
                         != state.source_commit
@@ -1083,13 +1088,17 @@ class ProductDesktopWorkflow:
                 if {entry.name for entry in stage.iterdir()} != expected_names:
                     raise ProductDesktopError("batch stage member set drifted")
                 identity = {
-                    "schema_version": "kmcfm.desktop-single-look-batch.v1",
+                    "schema_version": (
+                        "kmcfm.desktop-single-look-batch.v1"
+                        if output_format_id == _DEFAULT_OUTPUT_FORMAT_ID
+                        else "kmcfm.desktop-single-look-batch.v2"
+                    ),
                     "style_id": style_id,
                     "look_amount": state.look_amount,
                     "source_commit": state.source_commit,
                     "job_count": len(rows),
-                    "output_format": "PNG",
-                    "output_bit_depth": 16,
+                    "output_format": format_spec.recipe_format,
+                    "output_bit_depth": format_spec.bit_depth,
                     "jobs": receipt_jobs,
                     "claim": {
                         "output_label": "film-inspired / Look Approximation",
@@ -1099,6 +1108,8 @@ class ProductDesktopWorkflow:
                         "stock_distinguishability": False,
                     },
                 }
+                if output_format_id != _DEFAULT_OUTPUT_FORMAT_ID:
+                    identity["output_format_id"] = output_format_id
                 receipt = {"batch_id": _canonical_sha256(identity), **identity}
                 receipt_path = stage / "batch.json"
                 owned_files.append(_write_bound_json(receipt_path, receipt))
@@ -1173,6 +1184,7 @@ class ProductDesktopWorkflow:
                     receipt_sha256=sha256_file(final_receipt),
                     job_count=len(rows),
                     receipt=receipt,
+                    output_format_id=output_format_id,
                 )
             finally:
                 if not published:

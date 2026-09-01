@@ -357,22 +357,20 @@ class ProductDesktopApp:
             text=(
                 f"Export {output.display_name} + recipe"
                 if count <= 1
-                else f"Export {count} PNG16 + recipes"
+                else f"Export {count} {output.display_name} + recipes"
             )
         )
 
     def _update_output_format_controls(self) -> None:
         count = len(self.input_paths)
-        single_photo = count == 1
-        enabled = single_photo and not self.busy
-        if not single_photo:
-            self.output_format.set("png16")
+        has_input = count >= 1
+        enabled = has_input and not self.busy
         if count == 0:
-            label = "Choose one photo for output format"
-        elif single_photo:
+            label = "Choose photos for output format"
+        elif count == 1:
             label = "Single-photo output"
         else:
-            label = "Batch output fixed: PNG16"
+            label = "Batch output"
         self.output_format_text.set(label)
         state = "normal" if enabled else "disabled"
         for button in self.output_format_buttons.values():
@@ -566,11 +564,13 @@ class ProductDesktopApp:
                 f"Rendering 0/{len(self.batch_inputs)} photos…",
             )
             inputs = self.batch_inputs
+            output_format_id = self.output_format.get()
             self._background_batch(
                 lambda: self.workflow.export_batch(
                     inputs,
                     selected,
                     Path(destination),
+                    output_format_id=output_format_id,
                     cancel_event=self._batch_cancel,
                     progress=self._batch_progress,
                 ),
@@ -696,7 +696,9 @@ class ProductDesktopApp:
         messagebox.showinfo(
             "Batch export complete",
             (
-                f"Created {receipt.job_count} PNG16 + recipe pairs and "
+                f"Created {receipt.job_count} "
+                f"{product_output_format(receipt.output_format_id).display_name} "
+                "+ recipe pairs and "
                 f"{receipt.receipt_path.name}.\n\n"
                 "film-inspired / Look Approximation"
             ),
