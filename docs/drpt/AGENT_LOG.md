@@ -21881,3 +21881,39 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   public release, calibrated stock response or physical-film reproduction.
   Stop adjacent output-option wrappers and return to independently observed
   product defects.
+
+### 2026-09-01 - U7.3M excludes research recipes from product export
+
+- **Node and routing:** `ULT > U7 > U7.3M`, DRPT L2 / Mode C. The sole write
+  workflow was `dev-research-reliability`; router, DRPT-BI, planning,
+  project-structure and agent-log disciplines were read-only secondary
+  reviewers. U7.3M owned recipe-history/export/request eligibility plus new
+  U7.3M artifacts; concurrent U7.2 work and foreign `.codex/`/`tmp/` remained
+  untouched.
+- **Observed defect and repair:** a structurally valid v4 recipe carrying the
+  research-only `staged-density-research` halation model remained `ready` in
+  generic history and could be emitted as a product export request. Contract
+  `fedb6ce1` and implementation `7f2b0222` add an explicit product-only history
+  view. Generic read-only history retains the research evidence, while direct
+  export, request-set and inherited browser paths reject it as
+  `recipe_research_only` before replay/output. Ordinary product recipe schema,
+  rendering, pixels, formats and Ektar output/replay SHA remain unchanged.
+- **Formal correction:** the first dual invocation used two different absolute
+  scratch roots; those paths are intentionally bound into recipe/request
+  identity, so the complete reports differed although all gates passed. Both
+  owned reports were excluded before evidence. Commit `f549e9cd` froze one
+  formal scratch identity, `0bfec3c8` relocked execution, and forward/reverse
+  restarted sequentially from zero with unchanged source, controls and gates.
+- **Evidence and verification:** accepted reports are byte-identical at 3,532
+  bytes / SHA `3ae413b92b9ea1e4f44d2798282e59d8408425c95b7e9b6f05522be5cfcc58a1`,
+  stable identity `412ca240c553ede69ec2a24a30cddf6b4989b2bf4efc9c676dde4f7b93a1af4f`;
+  all nine gates pass. Evidence/test commit `b7f46249`; tracked evidence Git-LF
+  SHA-256 `1556914edb25700a0d6203ffa979a4a3829fdc3868dc3f595dfd48ac891d5fd6`.
+  Forty-four focused/adjacent tests pass with one existing filesystem skip;
+  Ruff, compileall, JSON, source/report identity and diff checks pass.
+- **Propagation and handoff:** U7.3 is complete through A-M. The claim is only
+  private Look Approximation product-eligibility safety: research recipes stay
+  inspectable but cannot become product exports. No calibrated/physical stock,
+  installer, release or product-validation claim opens; stop adjacent
+  history/export/browser wrappers and return to a non-duplicate substantive
+  product defect or genuinely new identifying observation.
