@@ -10,6 +10,12 @@
     "u4_1a_report": {
       "path": "outputs/eval/u4_1a_three_stock_gold_severe_adjudication_v1/formal_forward_v2.json",
       "sha256": "90ae1784c24d855f888d1f91110d46ed37e23c3c80e7f9a8dca0ee96a58ff5b5",
+      "required_status": "PASS_OPEN_AUTONOMOUS_VISUAL_REVIEW",
+      "media_root": "outputs/eval/u4_1a_three_stock_gold_severe_adjudication_v1/run_forward_v2"
+    },
+    "u4_1a_evidence": {
+      "path": "docs/evidence/U4_1A_THREE_STOCK_GOLD_SEVERE_ADJUDICATION_RESULT.json",
+      "sha256": "af1ee870de1f749a62d2a39ca1f519fc66724fa7cf2d1e0d4c1d7755ac00972a",
       "required_status": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT_ACROSS_81_ARM_ROTATED_GOLD_VERDICTS"
     }
   },
@@ -21,6 +27,10 @@
     "product_look_core": {
       "path": "src/inference/three_stock_look.py",
       "sha256": "43f758c999121be20f42c40d36ed25d56a7f478c669bc20379fbf1612dd1c943"
+    },
+    "product_desktop_core": {
+      "path": "src/inference/product_desktop.py",
+      "sha256": "26273e4d9ae950cf403a8e6e69d5d00a859faf02380604ac599f211594fe7f9f"
     },
     "blind_protocol_core": {
       "path": "src/filmcase/vision_audit.py",

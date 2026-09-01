@@ -17,6 +17,11 @@ robust three-stock distinguishability remains authoritative and immutable.
 - U4.1A formal-source commit: `7938967269f7b08672cf6e0384eb95eefd58bcd5`.
 - Accepted U4.1A report SHA-256:
   `90ae1784c24d855f888d1f91110d46ed37e23c3c80e7f9a8dca0ee96a58ff5b5`.
+  Its formal status is `PASS_OPEN_AUTONOMOUS_VISUAL_REVIEW`.
+- Final U4.1A adjudication evidence SHA-256:
+  `af1ee870de1f749a62d2a39ca1f519fc66724fa7cf2d1e0d4c1d7755ac00972a`,
+  with status
+  `PASS_NO_CONFIRMED_SEVERE_ARTIFACT_ACROSS_81_ARM_ROTATED_GOLD_VERDICTS`.
 - Frozen samples: `01`, `05`, `08`, `09`, `11`, `18`, `21`, `29`,
   `FS_FACE_01`.
 - Candidate arms: the exact U4.1A `velvia_50`, `portra_400` and `ektar_100`
