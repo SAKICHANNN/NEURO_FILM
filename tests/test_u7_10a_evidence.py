@@ -27,7 +27,7 @@ def _historical_sha256(path: str) -> str:
     return hashlib.sha256(completed.stdout).hexdigest()
 
 
-def test_u7_10a_evidence_binds_current_sources_and_accepted_artifacts() -> None:
+def test_u7_10a_evidence_binds_historical_sources_and_accepted_artifacts() -> None:
     evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
     assert evidence["status"] == "PASS_PRIVATE_U7_10A_PRODUCT_DESKTOP_INPUT_WORKFLOW"
 
