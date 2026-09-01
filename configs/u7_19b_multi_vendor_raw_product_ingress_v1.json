@@ -10,6 +10,7 @@
     "all_extensions_already_declared": true
   },
   "bindings": {
+    "contract": {"path": "docs/planning/U7_19B_MULTI_VENDOR_RAW_PRODUCT_INGRESS_CONTRACT.md", "bytes": 3981, "sha256": "f1ffe1a9ec260a010eec43a5c9c6405e8226b45adeae5c778dda9780587a0ab2"},
     "p315": {"path": "docs/evidence/P315_R1GL_NIKON_NEF_NO_COPY_INTAKE_RESULT.json", "bytes": 3937, "sha256": "6e0213f1bdac36bdde4ceda8729344299f0ea1dcb4b4f5a0696d57637bc453fa"},
     "p316": {"path": "docs/evidence/P316_R1GN_FUJIFILM_RAF_NO_COPY_INTAKE_RESULT.json", "bytes": 4386, "sha256": "4672d98f3d0ca7443d4c8d34093802686807d76986ad0789979e9c6b72a9924b"},
     "p317": {"path": "docs/evidence/P317_R1GO_SIGMA_X3F_NO_COPY_INTAKE_RESULT.json", "bytes": 3773, "sha256": "81ca041e4bec3e2202d2606610b1d191ccbb45307977113fe3b4013cadea96e4"},
