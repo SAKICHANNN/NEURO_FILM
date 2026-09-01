@@ -1,0 +1,89 @@
+{
+  "bindings": {
+    "configs/u7_14a_desktop_input_basis_preview_v1.json": "477c89a1c4946040175940d0986f8afd2659895b191c26f073b74b03412a6771",
+    "docs/planning/U7_14A_DESKTOP_INPUT_BASIS_PREVIEW_CONTRACT.md": "68f222e067b9f702297b66f5652546fb683c3c5130f862277169db6fe231196d",
+    "scripts/audit_u7_14a_desktop_input_basis_preview.py": "fec4440c99b8e3d0512d6cbaf7e7d4549f04a7385bd594c3c96cafd6dff477f9",
+    "src/inference/product_desktop.py": "149ed425c0770afcbbb1d33f36ba42341545d635d860c391a6fb45f42b45f587",
+    "src/inference/product_desktop_ui.py": "352b8698d2a605d14e07367b2da66cbec67fd07d33d759f83d905c699e0876aa",
+    "src/inference/three_stock_preview.py": "79bb32c5b45cbff38db65e46951bae7c55a6a9a2da4f980241eb07feff189483",
+    "tests/test_u7_14a_desktop_input_basis_preview.py": "f168e3aef3e52cbf6ef348ac295560e508d9ff57fa016d8f0da1b0fa0dd396cc",
+    "tests/test_u7_14a_desktop_input_basis_preview_audit.py": "634446da64076910dc8c326ec18a02b8ea470ff3716ce57f14ee8c2c9b5b0464"
+  },
+  "claim": {
+    "ao6_role": "Velvia 50 display-proxy Look Approximation baseline only",
+    "calibrated_camera_rendering": false,
+    "calibrated_stock_response": false,
+    "cross_platform_gui": false,
+    "evidence_grade": "look-approximation",
+    "hdr_or_wide_gamut_support": false,
+    "input_preview_role": "generic renderer input basis",
+    "mode": "film-inspired / Look Approximation",
+    "physical_film_reproduction": false,
+    "private_windows_python_comparison_aid_only": true,
+    "public_release_or_installer": false,
+    "raw_development": false,
+    "stock_distinguishability": false
+  },
+  "excluded_pre_evidence": {
+    "bytes": 7163,
+    "report_sha256": "8016945e7a7c5428863834c7dd065c9cb1a9e070c85f757b77416e2f7d166da5",
+    "status": "FAIL_CLOSED_U7_14A_DESKTOP_INPUT_BASIS_PREVIEW",
+    "why_excluded": "The audit JSON-serialized Windows paths before replacing an unescaped root string, so two otherwise identical default manifests retained different owned output roots. Product bytes, sources, controls, gates, dimensions and thresholds were unchanged; correction 08875899 structurally verifies each output parent before replacing only its owned root."
+  },
+  "formal_reports": {
+    "forward_bytes": 7292,
+    "forward_sha256": "f765c9657f8fac9e97e17862c5bba14c5de3d0376594905566b2fe5c0b35d446",
+    "full_reports_byte_exact": true,
+    "order_independent_scientific_payload_exact": true,
+    "reverse_bytes": 7292,
+    "reverse_sha256": "f765c9657f8fac9e97e17862c5bba14c5de3d0376594905566b2fe5c0b35d446"
+  },
+  "gates": {
+    "catalog_role_unchanged": true,
+    "default_manifest_and_tree_exact": true,
+    "input_preview_geometry_and_pixels": true,
+    "input_preview_oracle_exact": true,
+    "one_selected_source_decode": true,
+    "owned_residue_zero": true,
+    "source_identities_exact": true,
+    "three_look_files_exact": true,
+    "tracked_clean": true,
+    "ui_truthful_and_clears": true,
+    "workflow_binding_and_tamper": true
+  },
+  "node_id": "U7.14A",
+  "schema": "kmcfm.u7-14a-desktop-input-basis-preview-evidence.v1",
+  "scientific_identity": "abd40a408426168be0520660d934b97bd01b65528547d2d9f6586f68d3fec9f1",
+  "source_commit": "08875899716bc6329de5de6df3d2fdee1334e13e",
+  "sources": [
+    {
+      "candidate_decode_calls": 1,
+      "height": 260,
+      "input_preview_sha256": "4fc31e58e3261274d4a7ae526184d7e5703cf2bf12fb0d1e79b1221adf0289dc",
+      "look_output_sha256": {
+        "ektar_100": "27dbcffb0ae1278f5082bff6e38faafad70b1c517863b514dac144ddf6c23f3d",
+        "portra_400": "6bbeb2a50f46745c5349d22c995b9ff98d2f315c1927353e8363c2569ccde050",
+        "velvia_50": "095588c927c6ab821717a8fcbb9e81bf17fd4d4cbf92aa0427298cf702120692"
+      },
+      "oracle_sha256": "4fc31e58e3261274d4a7ae526184d7e5703cf2bf12fb0d1e79b1221adf0289dc",
+      "source_id": "u4_5b_exact_jpeg_portrait",
+      "source_sha256": "7ea3d1ed37b7df518c0466c1379f08aa34ea5ae00eb7dc8208fcff2cfe68d1c6",
+      "width": 173
+    },
+    {
+      "candidate_decode_calls": 1,
+      "height": 158,
+      "input_preview_sha256": "b08c74ede7500cc7b9914d2fb318b3daae81808b6770029d940463777e865f2d",
+      "look_output_sha256": {
+        "ektar_100": "4b62b769d0d7bfedc53b9ce3ee801bf658ea5a3d1d2e006310f307a53578f2a3",
+        "portra_400": "38b682375cc6d146747631ffa3f04ba49f18bdac9ace00b2f90a262299c3840d",
+        "velvia_50": "c9de805b063b2ca2a82fcc92ef3e94e06cf15318a9eff5f5c6b406d256e5136e"
+      },
+      "oracle_sha256": "b08c74ede7500cc7b9914d2fb318b3daae81808b6770029d940463777e865f2d",
+      "source_id": "u4_5f_blackmagic_dng_landscape",
+      "source_sha256": "1491a5e5d580a9be151747bddce89faca4d0b9d352503270f516bbf8e8cdf0d9",
+      "width": 300
+    }
+  ],
+  "status": "PASS_PRIVATE_U7_14A_DESKTOP_INPUT_BASIS_PREVIEW"
+}
