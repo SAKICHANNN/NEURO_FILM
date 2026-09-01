@@ -1,0 +1,85 @@
+{
+  "schema": "kmcfm.u7-12b-desktop-single-photo-output-format-contract.v1",
+  "node_id": "U7.12B",
+  "source_parent_commit": "3c1c079692991a11e768784d808a86de6fe3f930",
+  "entrypoint": "scripts/open_product_desktop.py",
+  "dependency_gate": {
+    "node": "U7.12A",
+    "required_status": "PASS",
+    "bind_exact_committed_core_test_and_evidence_before_first_product_render": true
+  },
+  "source_identities": {
+    "desktop_core_sha256": "acb366af5c1d6f4f9e683158813655f7a72734ff5ebfec3d1d3f998984b5aeba",
+    "desktop_ui_sha256": "63f03f69e36775ceaacbd6a280355e071fb7a183642bfb37bf602b8375f86af1",
+    "render_cli_sha256": "2013e7c2f95c2f6a0b84ccff1d93db9bec2b189aead84b1ca6b5ab477447f786",
+    "u7_2t_evidence_sha256": "f073ff4882c5359b3a7b9051fadf24167766d6a97c116317fcf470f857515c01",
+    "u7_3l_evidence_sha256": "64c925714cbc72ae5c7d77d1bd156b0bc817869a9c3a067db279447d940afc10",
+    "u7_11a_evidence_sha256": "fe84f4adb85bac24dbe3bb598cca1266814cb77454f1ddf236d6df945054b2b3"
+  },
+  "formats": {
+    "png16": {
+      "canonical_extension": ".png",
+      "accepted_extensions": [
+        ".png"
+      ],
+      "recipe_format": "PNG",
+      "bit_depth": 16,
+      "png_compression": 6
+    },
+    "tiff16": {
+      "canonical_extension": ".tiff",
+      "accepted_extensions": [
+        ".tif",
+        ".tiff"
+      ],
+      "recipe_format": "TIFF",
+      "bit_depth": 16,
+      "png_compression": null
+    },
+    "jpeg8": {
+      "canonical_extension": ".jpg",
+      "accepted_extensions": [
+        ".jpg",
+        ".jpeg"
+      ],
+      "recipe_format": "JPEG",
+      "bit_depth": 8,
+      "png_compression": null
+    }
+  },
+  "desktop_contract": {
+    "default_format": "png16",
+    "format_choice_visible_for_single_photo": true,
+    "format_choice_keyboard_reachable": true,
+    "format_choice_disabled_while_busy": true,
+    "preview_survives_format_change": true,
+    "batch_format_fixed": "png16",
+    "batch_behavior_exact": true,
+    "invalid_format_rejects_before_command_runner": true,
+    "format_suffix_recipe_agreement_required": true
+  },
+  "gates": {
+    "png16_default_command_exact": true,
+    "direct_cli_image_exact_all_formats": true,
+    "direct_cli_raw_recipe_exact_all_formats": true,
+    "strict_replay_exact_all_formats": true,
+    "recipe_semantics_exact_all_formats": true,
+    "invalid_format_and_suffix_pre_render_reject": true,
+    "create_only_and_late_foreign_preserved": true,
+    "foreground_close_safety_preserved": true,
+    "batch_artifact_and_command_exact": true,
+    "owned_residue_zero": true
+  },
+  "claim_ceiling": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false,
+    "stock_distinguishability": false,
+    "arbitrary_media_or_profile_support": false,
+    "hdr_or_wide_gamut_publication": false,
+    "public_release": false,
+    "standalone_installer": false,
+    "cross_platform_gui": false
+  }
+}
