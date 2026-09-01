@@ -2,7 +2,7 @@
 
 ## Parent and purpose
 
-U7.2S is a product-delivery child of U7.2Q and the accepted U7.2R product CLI.
+U7.2S is a product-delivery child of U7.2Q and the terminal U7.2R product CLI.
 U7.2Q established that the exact binary-only product environment cannot be
 installed because `omegaconf==2.3.0` requires source-only
 `antlr4-python3-runtime==4.9.3`. U7.2S tests a materially different mechanism:
@@ -25,6 +25,17 @@ mapping loader for the one product profile document.
 - Product use of OmegaConf is limited to profile loading in
   `scripts/pipeline_color_baseline.py` and legacy-profile migration in
   `src/inference/render_contract.py`; guardrails and recipes are JSON.
+
+## Pre-execution upstream correction
+
+After this contract was first committed, but before any U7.2S fresh-environment
+execution, U7.2R terminated `FAIL_CLOSED` at 9/10 gates. Its retained safety
+change rejects invalid product effect values before decode, while the existing
+renderer cannot execute the recipe-valid minimum signed-int32 seed. U7.2S must
+preserve that exact negative scientific result. It may pass only its independent
+dependency-decoupling question; it must not require or imply that U7.2R passed,
+and it must not change the seed boundary, renderer, recipe schema, or U7.2R
+report.
 
 ## Allowed implementation
 
@@ -61,10 +72,11 @@ mapping loader for the one product profile document.
 4. The v2 requirements manifest is exact, pinned, binary-only installable,
    and passes `pip check` in two independently created Windows CPython 3.12.10
    environments under repo-relative project scratch.
-5. Each fresh environment runs the unchanged accepted U7.2R audit from the
+5. Each fresh environment runs the unchanged terminal U7.2R audit from the
    committed tree. Its product images, recipes, metrics, auxiliary bundle,
-   controls, and scientific report identity are exact to the frozen U7.2R
-   baseline.
+   controls, failed seed boundary, terminal decision, and normalized scientific
+   report identity are exact to the frozen U7.2R baseline. The expected nested
+   audit return code is the U7.2R fail-closed return code.
 6. Current profile migration and focused/adjacent U7.2 product regressions pass.
 7. Formal environment, report, media, and stage residue is zero after both
    runs; source inputs and foreign destinations remain immutable.
