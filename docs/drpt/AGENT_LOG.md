@@ -23314,3 +23314,28 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `render_film.py` changed; historical evidence was not rewritten. Ruff,
   compileall, JSON and diff checks pass. No generic Hasselblad/RAW, calibrated
   stock, physical-film, public release or product-value claim; no push.
+
+### 2026-09-02 - U7.20A removes duplicate missing-ICC receipt warnings
+
+- **Node and routing:** `ULT > U7 productization > U7.20A`, DRPT L2 / Mode C,
+  R1 local. `dev-research-reliability` was the sole writer; router, structure
+  and agent-log disciplines were read-only secondary checks. The long-lived
+  Look Approximation Goal remains accurate; no leaf Goal was created.
+- **Trigger and invariant:** a fresh current-head installed runtime rendered a
+  real procedural SDR PNG with two `assumed_srgb` warnings in one strict
+  recipe. The inspection and conversion layers independently described the
+  same missing ICC condition. Freeze `7725133d` requires one canonical warning
+  across full decode, scaled preview and product recipe while retaining exact
+  pixels, amount and claim.
+- **Repair:** implementation `e432d39a` makes `_convert_with_icc` append the
+  canonical warning only when an upstream caller has not already recorded it.
+  The scaled-preview-specific warning remains separate. No colour assumption,
+  transform, catalog, schema or output path changed.
+- **Verification and boundary:** the two frozen tests fail 2/2 before the
+  repair and pass afterward; three focused checks pass, including the
+  equivalent scaled-preview trigger. Six ingress/product/recipe suites pass
+  104/104, the frozen Ektar output remains
+  `fc51547d...2087d`, Ruff import checks, compileall and diff checks pass.
+  Existing whole-file Ruff findings outside the touched lines were not
+  reformatted. Claim remains deterministic `film-inspired / Look
+  Approximation`; no calibrated-stock, physical-film or public-release claim.
