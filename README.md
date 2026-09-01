@@ -94,6 +94,13 @@ response. Preview scratch uses the repository-relative `tmp` junction by
 default. This is a private repository-bound Windows workflow, not a standalone
 or public app.
 
+The desktop also exposes deterministic grain, simple halation and dust as
+integer percentages of frozen product caps: 5%, 15% and 2%, respectively.
+All-zero controls preserve the prior export, recipe and batch behavior exactly.
+The colour preview cards intentionally exclude finishing effects; use **Inspect
+selected at 1:1** or export to see the exact bounded result. This is a finishing
+control for a Look Approximation, not evidence of physical film reproduction.
+
 After previews finish, click inside the selected Look card to choose a spatial
 point, then use **Inspect selected at 1:1**. The desktop renders the unchanged
 full-resolution export to an identity-bound temporary pair, crops at native

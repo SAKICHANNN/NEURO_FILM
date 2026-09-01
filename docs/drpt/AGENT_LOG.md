@@ -23122,3 +23122,44 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   codes, display calibration, calibrated stock response, physical film,
   distinguishability, HDR/wide gamut, public release or cross-platform GUI.
   Stop adjacent loupe/zoom/history/automatic-point/cache expansion; no push.
+
+### 2026-09-02 - U7.17A adds bounded desktop finishing controls
+
+- **Node and routing:** `ULT > U7 productization > U7.17A`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the sole writer; structure and agent-log
+  disciplines were read-only secondary checks. Consumer confirmed the shared
+  README/tracker/log window and continues without a Goal. This root retained
+  the one accurate long-lived Look Approximation product Goal; no leaf Goal was
+  created, replaced or completed. Foreign `.codex/` and `tmp/` remained
+  untracked and unstaged.
+- **Product repair:** contract `b9fe6bb8` freezes a real desktop gap: CLI/recipe
+  already support deterministic grain, simple halation and dust, while native
+  desktop users could export only colour. Implementation `ef6dcae1` exposes
+  integer 0--100% controls of the existing frozen product caps `.05/.15/.02`,
+  fixed effect seed 7 and dust seed 24. Zero is exactly backward-compatible;
+  nonzero detail/single/batch exports carry strict effect semantics and batch
+  receipt v3. Preview cards remain explicitly colour-only, and the UI directs
+  exact inspection to 1:1 detail/export instead of pretending the cards show
+  effects. Git-object correction `08f63c46` only fixed prereport identity
+  representation; formal audit/test commit is `b8f81ac6`.
+- **Formal evidence:** accepted V2 forward/reverse reports are byte-identical
+  at 6,577 bytes / SHA
+  `3cae6fc09774e13955b514c0376e4915be136350b95147cb6c0426fce93eb947`;
+  scientific identity is
+  `ffbc2804f92b4fd776fce08aa3627ada82a4358fa70a60732d0d37fc5d7595d2`.
+  The frozen 4032x6048 Ektar Look Approximation at `.65` with maximum effects
+  changes 92.925% of RGB8 components while staying at `4..251`, creates zero
+  code-boundary samples, and gives exact temporary/ordinary PNG16 SHA
+  `7f1f32d7...e35d` plus exact detail/final RGB SHA `0cc545f4...b09`. Zero
+  effects reproduce parent SHA `6a59b27a...e603`. All formal gates, 13
+  isolated behavior files and cleanup/source-ownership checks pass. Evidence
+  commit `0d899211` binds the reports and Git objects.
+- **Excluded diagnostic and boundary:** V1 is retained fail-closed because one
+  old U7.10A Tk busy-state process failed once; the exact test immediately
+  passed 1/1 and its complete file passed 20/20 without changing source, data,
+  roles, caps or gates. Focused/audit/evidence tests pass 19/19; Ruff, format,
+  compileall, JSON and diff checks pass. This is private deterministic
+  finishing control for `film-inspired / Look Approximation`, not physical
+  grain/halation calibration, calibrated stock response, stock
+  distinguishability, arbitrary-media/population safety, public release or
+  cross-platform GUI evidence. No push occurred.
