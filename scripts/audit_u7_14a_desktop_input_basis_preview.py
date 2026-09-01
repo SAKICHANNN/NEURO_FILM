@@ -138,13 +138,17 @@ def _render_kwargs(config: dict[str, Any], source: Path) -> dict[str, Any]:
 def _oracle_input_preview(
     config: dict[str, Any], row: dict[str, Any], source: Path, output: Path
 ) -> tuple[int, int]:
-    width, height = preview_dimensions(
-        int(row.get("source_width", 0) or 1),
-        int(row.get("source_height", 0) or 1),
-        int(config["render"]["max_preview_pixels"]),
-        max_width=int(config["render"]["max_preview_width"]),
-        max_height=int(config["render"]["max_preview_height"]),
-    ) if "source_width" in row else tuple(row["preview_dimensions"])
+    width, height = (
+        preview_dimensions(
+            int(row.get("source_width", 0) or 1),
+            int(row.get("source_height", 0) or 1),
+            int(config["render"]["max_preview_pixels"]),
+            max_width=int(config["render"]["max_preview_width"]),
+            max_height=int(config["render"]["max_preview_height"]),
+        )
+        if "source_width" in row
+        else tuple(row["preview_dimensions"])
+    )
     if source.suffix.casefold() in {".jpg", ".jpeg"}:
         working = load_jpeg_preview_working_image(
             source, target_width=int(width), target_height=int(height)
@@ -243,7 +247,9 @@ def _workflow_facts(config: dict[str, Any], source: Path, root: Path) -> dict[st
         tamper.input_preview_bytes()
     except ProductDesktopError:
         rejected = True
-    preserved = not tamper.close() and tamper_path.read_bytes() == b"u7-14a-foreign-tamper"
+    preserved = (
+        not tamper.close() and tamper_path.read_bytes() == b"u7-14a-foreign-tamper"
+    )
     facts["tamper_rejected"] = rejected
     facts["foreign_tamper_preserved"] = preserved
     # The auditor injected and owns this control value; product cleanup correctly
@@ -269,9 +275,7 @@ def _ui_facts(config: dict[str, Any], source: Path, root: Path) -> dict[str, Any
     window.withdraw()
     app = build_product_desktop_app(window, workflow, initial_input=source)
     try:
-        state = workflow.render_previews(
-            source, float(config["render"]["look_amount"])
-        )
+        state = workflow.render_previews(source, float(config["render"]["look_amount"]))
         app._preview_complete(state)
         shown = app.input_preview_image is not None
         caption = str(app.input_preview_caption.cget("text"))
@@ -317,9 +321,7 @@ def _source_facts(
         include_input_preview=False,
         **_render_kwargs(config, source),
     )
-    candidate, decode_calls = _counted_candidate_render(
-        config, source, candidate_root
-    )
+    candidate, decode_calls = _counted_candidate_render(config, source, candidate_root)
     expected_width, expected_height = tuple(row["preview_dimensions"])
     _oracle_input_preview(config, row, source, oracle_path)
 
@@ -400,7 +402,8 @@ def build_report(config_path: Path, order: str) -> dict[str, Any]:
                 item["source_immutable"] for item in source_facts
             ),
             "default_manifest_and_tree_exact": all(
-                item["default_manifest_exact"] and item["default_tree_exact"]
+                item["default_manifest_exact"]
+                and item["default_tree_exact"]
                 and item["default_member_names"]
                 == [
                     "ektar_100.preview.png",
@@ -421,8 +424,7 @@ def build_report(config_path: Path, order: str) -> dict[str, Any]:
                 for item in source_facts
             ),
             "input_preview_geometry_and_pixels": all(
-                item["geometry_exact"] and item["finite_rgb8"]
-                for item in source_facts
+                item["geometry_exact"] and item["finite_rgb8"] for item in source_facts
             ),
             "catalog_role_unchanged": all(
                 item["style_ids"] == list(STYLE_IDS) for item in source_facts
@@ -469,9 +471,7 @@ def build_report(config_path: Path, order: str) -> dict[str, Any]:
     finally:
         shutil.rmtree(FORMAL_ROOT, ignore_errors=False)
     report["owned_residue_zero"] = not FORMAL_ROOT.exists()
-    report["scientific"]["gates"]["owned_residue_zero"] = report[
-        "owned_residue_zero"
-    ]
+    report["scientific"]["gates"]["owned_residue_zero"] = report["owned_residue_zero"]
     report["status"] = (
         "PASS_PRIVATE_U7_14A_DESKTOP_INPUT_BASIS_PREVIEW"
         if all(report["scientific"]["gates"].values())
