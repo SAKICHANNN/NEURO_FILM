@@ -62,11 +62,12 @@ def _git(*arguments: str) -> bytes:
 def _verify_source_locks(config: dict[str, Any]) -> dict[str, dict[str, str]]:
     verified: dict[str, dict[str, str]] = {}
     for name, lock in sorted(config["source_locks"].items()):
-        commit = (
-            config["contract_commit"]
-            if name == "contract"
-            else config["implementation_commit"]
-        )
+        if name == "contract":
+            commit = config["contract_commit"]
+        elif name in {"audit_runner", "audit_test"}:
+            commit = config["execution_commit"]
+        else:
+            commit = config["implementation_commit"]
         blob = _git("rev-parse", f"{commit}:{lock['path']}").decode().strip()
         payload = _git("show", f"{commit}:{lock['path']}")
         current_blob = _git("rev-parse", f"HEAD:{lock['path']}").decode().strip()
