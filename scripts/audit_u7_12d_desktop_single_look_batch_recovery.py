@@ -161,10 +161,15 @@ def _worker(
             )
             if not isinstance(value, DesktopBatchProgressReceipt):
                 raise U712DFormalError("pause unexpectedly published a final batch")
+            # The workspace ID deliberately binds NTFS file identities.  Fresh
+            # formal materialization therefore changes it even when caller
+            # enumeration and every scientific byte are identical.
+            progress_receipt = dict(value.receipt)
+            progress_receipt.pop("workspace_id")
             result = {
                 "phase": "pause",
                 "renderer_calls": calls,
-                "progress_receipt": value.receipt,
+                "progress_receipt": progress_receipt,
                 "workspace_children": sorted(
                     path.name for path in workspace.glob("[0-9][0-9][0-9][0-9]")
                 ),
