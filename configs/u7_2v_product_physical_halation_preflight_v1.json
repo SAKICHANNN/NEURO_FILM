@@ -5,6 +5,7 @@
   "contract_commit": "9e5897590ef844777170c94e487454e90ad9b7fd",
   "implementation_commit": "92710f1fe1af4b98025ee96975b0c801dfd36c14",
   "identity_correction_commit": "78d8705bea0a09fbcb53466e1266d56aa6bd8104",
+  "protocol_commit": "bade179221db598060a3b6732bb5f319181a4f87",
   "source_locks": {
     "contract": {
       "path": "docs/planning/U7_2V_PRODUCT_PHYSICAL_HALATION_PREFLIGHT_CONTRACT.md",
