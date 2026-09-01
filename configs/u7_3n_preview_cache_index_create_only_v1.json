@@ -1,0 +1,67 @@
+{
+  "schema_version": "neuro-film.u7-3n-preview-cache-index-create-only.v1",
+  "decision": "prospective",
+  "node_id": "U7.3N",
+  "parent_nodes": [
+    "U7.3H",
+    "U4.5C",
+    "U4.5E"
+  ],
+  "contract_commit": "89ca88bd40bfac330b3a0808465574a77c2179e8",
+  "implementation_commit": null,
+  "source_locks": {
+    "contract": {
+      "path": "docs/planning/U7_3N_PREVIEW_CACHE_INDEX_CREATE_ONLY_CONTRACT.md",
+      "git_blob": "f0023617fe7f46b610bbe80c1480759a685d736c",
+      "git_lf_sha256": "0bd3884eb52971e69c31288da305c21af41dee96faab8dfa482ffc1fc5d0123d"
+    },
+    "baseline_cache_core": {
+      "path": "src/inference/three_stock_preview_cache.py",
+      "git_blob": "84acb810b184d9f75cdbbd8924412eb59e2fc00c",
+      "git_lf_sha256": "608a7feff4dc08c36822441a58fb38c21c5daeae1e0e873b95b94005bef3437d"
+    },
+    "u7_3h_evidence": {
+      "path": "docs/evidence/U7_3H_THREE_STOCK_PREVIEW_CACHE_RESULT.json",
+      "git_lf_sha256": "aa58212dd70690b1e90dab00c7358ef3aa018718eafd9db5f058db0dd106248a"
+    },
+    "u4_5c_evidence": {
+      "path": "docs/evidence/U4_5C_VERIFIED_PREVIEW_SESSION_RESULT.json",
+      "git_lf_sha256": "0977ea6538f98e4e82f71b088f18b3ab8a7aba66b14246a0bd74f2dfad77e774"
+    },
+    "u4_5e_evidence": {
+      "path": "docs/evidence/U4_5E_RECEIPT_BOUND_PREVIEW_SESSION_RESULT.json",
+      "git_lf_sha256": "d645e71fd13b4df79ef34f3c062a2ade4ab6a9ba900e1c43fa703afe1c8821d8"
+    }
+  },
+  "platform": {
+    "os_name": "nt",
+    "publication_primitive": "src.film_physics.create_only_file.publish_create_only",
+    "cleanup_primitive": "src.film_physics.create_only_file.remove_if_published"
+  },
+  "canonical_json": {
+    "encoding": "utf-8",
+    "indent": 2,
+    "sort_keys": true,
+    "ensure_ascii": false,
+    "final_newline": true
+  },
+  "gates": {
+    "existing_destination_preserved": true,
+    "late_foreign_destination_preserved": true,
+    "owned_residue_zero_after_failure": true,
+    "successful_index_bytes_exact": true,
+    "publish_inspect_behavior_unchanged": true,
+    "receipt_bound_behavior_unchanged": true,
+    "adjacent_regressions_pass": true,
+    "forward_reverse_reports_byte_exact": true,
+    "forward_reverse_scientific_payload_byte_exact": true
+  },
+  "claim_ceiling": "Private Windows process-level create-only ownership repair for the existing three-stock Look Approximation preview-cache index only.",
+  "non_goals": [
+    "cache hash, latency, session or receipt-policy change",
+    "renderer, preview-media or browser change",
+    "public API, package, installer or release",
+    "calibrated stock or physical-film claim"
+  ],
+  "stop_rule": "One prospective repair and committed-head forward/reverse audit only; stop adjacent cache work afterward."
+}
