@@ -56,4 +56,3 @@ Approximation CLI. It is not an installer, wheel, executable, signed package,
 public API, release, macOS/Linux parity, arbitrary-input compatibility,
 calibrated stock response, physical-film reproduction or product-value result.
 AO6 remains only a Velvia 50 display-proxy baseline.
-
