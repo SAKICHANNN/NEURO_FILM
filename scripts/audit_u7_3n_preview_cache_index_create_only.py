@@ -232,6 +232,13 @@ def _source_locks(config: dict[str, Any]) -> dict[str, dict[str, Any]]:
         "u4_5c_evidence": config["implementation_commit"],
         "u4_5e_evidence": config["implementation_commit"],
     }
+    if config.get("audit_commit") is not None:
+        commits.update(
+            {
+                "audit_runner": config["audit_commit"],
+                "audit_test": config["audit_commit"],
+            }
+        )
     rows: dict[str, dict[str, Any]] = {}
     for name, lock in sorted(config["source_locks"].items()):
         commit = commits[name]
@@ -313,6 +320,8 @@ def run_audit(order: str) -> dict[str, Any]:
         "bindings": {
             "contract_commit": config["contract_commit"],
             "implementation_commit": config["implementation_commit"],
+            "audit_commit": config.get("audit_commit"),
+            "config_sha256": _sha256(CONFIG.read_bytes()),
             "source_locks": source_locks,
         },
         "rows": rows,
