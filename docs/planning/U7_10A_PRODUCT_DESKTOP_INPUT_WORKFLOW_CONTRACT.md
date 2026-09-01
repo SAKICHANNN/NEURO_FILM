@@ -76,4 +76,3 @@ cross-platform GUI, batch, cache, or release claims.
   evidence closure.
 - The contract/config, implementation/tests, and evidence/propagation are
   separate local commits.  Each commit can be reverted independently.
-
