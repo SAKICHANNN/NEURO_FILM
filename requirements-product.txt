@@ -14,4 +14,3 @@ rawpy==0.26.1
 scikit-image==0.26.0
 scipy==1.17.1
 tifffile==2026.4.11
-
