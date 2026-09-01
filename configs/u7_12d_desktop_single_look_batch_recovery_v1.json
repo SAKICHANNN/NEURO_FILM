@@ -48,11 +48,21 @@
     "workspace_removed_only_after_destination_and_members_validate": true
   },
   "formal_fixture": {
-    "input_generator": "existing deterministic small raster product fixture",
+    "input_generator": {
+      "filenames": "u7-12d-00.png through u7-12d-07.png",
+      "width": 48,
+      "height": 32,
+      "format": "RGB8 PNG, Pillow default deterministic encoding, no metadata",
+      "red": "(13*x + 7*y + 29*i) % 251",
+      "green": "(3*x + 17*y + 47*i + 19) % 251",
+      "blue": "(11*x + 5*y + 61*i + 43) % 251",
+      "require_all_input_hashes_bound_before_render": true
+    },
     "job_count": 8,
     "style_id": "portra_400",
     "look_amount": 0.625,
     "first_invocation_maximum_new_jobs": 3,
+    "resume_process": "separate fresh process after the paused first process exits",
     "expected_reused_jobs": 3,
     "expected_new_jobs_on_resume": 5,
     "comparison": "unchanged U7.11A uninterrupted single-look export",

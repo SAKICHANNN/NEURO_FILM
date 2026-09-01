@@ -115,11 +115,19 @@ member validate may the owned recovery workspace and lease be removed.
 
 ## Frozen formal roles and gates
 
-The committed formal fixture uses eight existing deterministic small raster
-inputs in canonical order, one fixed `portra_400` selection, and look amount
-`0.625`. The uninterrupted control uses unchanged U7.11A. The resumable path
-pauses after three completed children, then a fresh process resumes and renders
-only the remaining five.
+Before implementation, the formal fixture is frozen as eight generated RGB8
+PNG inputs named `u7-12d-00.png` through `u7-12d-07.png`, each `48x32`. For
+zero-based image index `i`, x coordinate `x`, and y coordinate `y`, channels are
+`R=(13*x+7*y+29*i)%251`, `G=(3*x+17*y+47*i+19)%251`, and
+`B=(11*x+5*y+61*i+43)%251`. PNG encoding uses Pillow with no metadata and
+default deterministic parameters; the formal audit records and binds every
+generated file hash before either renderer runs.
+
+The inputs are used in canonical path order with one fixed `portra_400`
+selection and look amount `0.625`. The uninterrupted control uses unchanged
+U7.11A. The resumable path pauses after three completed children; the first
+process exits, and a separately started process reconstructs the same preview
+authority, resumes the workspace, and renders only the remaining five.
 
 Success requires:
 
