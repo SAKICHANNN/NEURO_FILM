@@ -18,6 +18,9 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG_PATH = ROOT / "configs" / "u7_9a_private_windows_product_runtime_install_v1.json"
+DESKTOP_CONFIG_PATH = (
+    ROOT / "configs" / "u7_10b_installed_runtime_desktop_launch_v1.json"
+)
 
 _IMPORTS = {
     "imageio": "imageio",
@@ -160,14 +163,26 @@ def _launcher_source(
     source_commit: str,
     requirements_path: Path,
     requirements_sha256: str,
+    entrypoint: Path | None = None,
 ) -> str:
+    if entrypoint is not None and (
+        entrypoint.is_absolute() or ".." in entrypoint.parts
+    ):
+        raise ValueError("launcher entrypoint must be repository-relative")
     values = {
         "project_root": str(project_root),
         "source_commit": source_commit,
         "requirements_path": str(requirements_path),
         "requirements_sha256": requirements_sha256,
     }
+    if entrypoint is not None:
+        values["entrypoint"] = entrypoint.as_posix()
     bound = json.dumps(values, sort_keys=True)
+    entry_source = 'entry = root / "scripts" / "render_film.py"'
+    if entrypoint is not None:
+        entry_source = """entry = root / BOUND["entrypoint"]
+if not entry.is_file():
+    fail("bound entrypoint is missing")"""
     return f"""#!/usr/bin/env python3
 import hashlib
 import json
@@ -201,7 +216,7 @@ dirty = subprocess.run(
 )
 if dirty.returncode or dirty.stdout.strip():
     fail("tracked repository drift")
-entry = root / "scripts" / "render_film.py"
+{entry_source}
 environment = {{
     key: value
     for key, value in os.environ.items()
@@ -257,6 +272,9 @@ def install_product_runtime(
     requirements = project_root / config["requirements"]["path"]
     if _sha256(requirements) != config["requirements"]["sha256"]:
         raise RuntimeError("product requirements identity mismatch")
+    desktop_config = json.loads(
+        (project_root / DESKTOP_CONFIG_PATH.relative_to(ROOT)).read_text("utf-8")
+    )
     git_directory = project_root / ".git"
     if (
         destination == project_root
@@ -319,25 +337,41 @@ def install_product_runtime(
         } != _pinned_versions(requirements):
             raise RuntimeError("installed product distribution set does not match pins")
         _require_owned_directory(destination, owned_identity)
-        launcher_py = destination / "product-launch.py"
-        _write_new_text(
-            launcher_py,
-            _launcher_source(
-                project_root=project_root,
-                source_commit=source_commit,
-                requirements_path=requirements,
-                requirements_sha256=config["requirements"]["sha256"],
-            ),
-            newline="\n",
-        )
-        launcher_cmd = destination / config["launcher_name"]
-        _write_new_text(
-            launcher_cmd,
-            f'@echo off\r\n"{python}" -I "{launcher_py}" %*\r\n',
-            newline="",
-        )
+        launchers: dict[str, dict[str, str]] = {}
+        for role in ("cli", "desktop"):
+            launcher_config = desktop_config["launchers"][role]
+            launcher_py = destination / launcher_config["python_name"]
+            _write_new_text(
+                launcher_py,
+                _launcher_source(
+                    project_root=project_root,
+                    source_commit=source_commit,
+                    requirements_path=requirements,
+                    requirements_sha256=config["requirements"]["sha256"],
+                    entrypoint=(
+                        Path(launcher_config["entrypoint"])
+                        if role == "desktop"
+                        else None
+                    ),
+                ),
+                newline="\n",
+            )
+            launcher_cmd = destination / launcher_config["command_name"]
+            _write_new_text(
+                launcher_cmd,
+                f'@echo off\r\n"{python}" -I "{launcher_py}" %*\r\n',
+                newline="",
+            )
+            launchers[role] = {
+                "command": str(launcher_cmd),
+                "command_sha256": _sha256(launcher_cmd),
+                "entrypoint": launcher_config["entrypoint"],
+                "python": str(launcher_py),
+                "python_sha256": _sha256(launcher_py),
+            }
+        launcher_cmd = Path(launchers["cli"]["command"])
         receipt = {
-            "schema": "kmcfm.private-product-runtime-receipt.v1",
+            "schema": desktop_config["receipt_schema"],
             "source_commit": source_commit,
             "project_root": str(project_root),
             "requirements": {
@@ -351,6 +385,7 @@ def install_product_runtime(
             },
             "distributions": versions,
             "launcher": str(launcher_cmd),
+            "launchers": launchers,
             "claim": config["claim"],
             "repository_bound": True,
             "public_distribution": False,
