@@ -1,0 +1,66 @@
+{
+  "schema": "kmcfm.u7-12f-desktop-error-selection-reset-contract.v1",
+  "node_id": "U7.12F",
+  "objective": "Clear stale explicit look selection whenever an operation error invalidates the current preview authority, so every newly rendered preview set again requires a real radio action before export.",
+  "source_parent_commit": "c9ad2c18b5a3b51602bae13d919bd6686d8f7e13",
+  "source_identities": {
+    "product_desktop_ui_sha256": "5ee09856e2be1ca4e97e95abedcda2c3691d25d020c50c51b5ee786d5b6a83a4",
+    "product_desktop_core_sha256": "26273e4d9ae950cf403a8e6e69d5d00a859faf02380604ac599f211594fe7f9f",
+    "u7_10a_explicit_selection_evidence_sha256": "2195d1cbf1ebcddba907d322b8cece0a9fd6db93be8a1ff09c0b7384a54718f5",
+    "u7_11a_batch_evidence_sha256": "fe84f4adb85bac24dbe3bb598cca1266814cb77454f1ddf236d6df945054b2b3",
+    "u7_12a_close_safety_evidence_sha256": "9a86a9b7315145b4e38cfc1787ff788361222b0ab812d52f3bc4e7b36d7de4cf",
+    "u7_12b_output_format_evidence_sha256": "281ff125c9f019f83753c0a98ab2d7047232c0d61c7a656b8e1064b704d81488",
+    "u7_12c_preview_evidence_sha256": "a68f6d0ebba6d74341798a8828fcc10da9c9ed164078ae6f63bf92ec6161c2ef"
+  },
+  "owned_paths": {
+    "implementation": "src/inference/product_desktop_ui.py",
+    "new_u7_12f_files_only": true,
+    "product_desktop_core_change": false,
+    "renderer_or_publication_change": false,
+    "recovery_or_cache_change": false
+  },
+  "trigger": {
+    "initial_preview_ready": true,
+    "initial_explicit_style_selected": true,
+    "operation_terminal_state": "error or cancellation",
+    "current_behavior_preview_ready_after_error": false,
+    "current_behavior_style_after_error": "stale selected style",
+    "reproduction": "render a new preview set after the error; export becomes enabled without a new radio action"
+  },
+  "repair": {
+    "clear_style_when_error_invalidates_preview": true,
+    "tk_thread_only": true,
+    "preview_workspace_cleanup_semantics_unchanged": true,
+    "successful_export_selection_retained": true,
+    "format_change_selection_retained": true,
+    "input_and_strength_reset_unchanged": true,
+    "close_suppression_unchanged": true
+  },
+  "gates": {
+    "single_export_error_requires_fresh_selection": true,
+    "batch_error_or_cancel_requires_fresh_selection": true,
+    "fresh_radio_action_reenables_export": true,
+    "successful_paths_unchanged": true,
+    "output_recipe_replay_and_batch_bytes_unchanged": true,
+    "error_dialog_and_worker_lifecycle_unchanged": true,
+    "focused_parent_behavior_pass": true,
+    "owned_residue_zero": true
+  },
+  "claim_ceiling": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "private_windows_tk_state_safety_only": true,
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false,
+    "stock_distinguishability": false,
+    "arbitrary_media_or_device_support": false,
+    "public_release": false,
+    "cross_platform_gui": false,
+    "installer_readiness": false
+  },
+  "stop_rules": [
+    "Do not preserve or automatically restore a stale style after preview-invalidating error.",
+    "Do not change renderer, look math, output or recipe bytes, publication commands, batch recovery, cache, installer or parent evidence.",
+    "Do not rescue a formal failure by changing error/cancel copy, preview validity, fixtures or gates."
+  ]
+}
