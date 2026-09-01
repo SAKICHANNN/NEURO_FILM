@@ -3,12 +3,20 @@
 from __future__ import annotations
 
 import json
+import os
 import re
+import secrets
 from hashlib import sha256
 from pathlib import Path
 from typing import Any
 
-from .render_contract import atomic_write_json, sha256_file
+from src.film_physics.create_only_file import (
+    PublishedFileIdentity,
+    publish_create_only,
+    remove_if_published,
+)
+
+from .render_contract import sha256_file
 
 CACHE_INDEX_NAME = "preview-cache.json"
 _PREVIEW_SCHEMA = "neuro-film.three-stock-direct-preview.v1"
@@ -65,6 +73,44 @@ def _preview_rows(preview: dict[str, Any]) -> list[dict[str, str]]:
     return normalized
 
 
+def _publish_create_only_json(path: Path, payload: dict[str, Any]) -> None:
+    encoded = (
+        json.dumps(payload, indent=2, sort_keys=True, ensure_ascii=False) + "\n"
+    ).encode("utf-8")
+    binary_flag = getattr(os, "O_BINARY", 0)
+    stage = path.with_name(
+        f".{path.name}.{os.getpid()}.{secrets.token_hex(8)}.stage"
+    )
+    descriptor = os.open(
+        stage,
+        os.O_WRONLY | os.O_CREAT | os.O_EXCL | binary_flag,
+        0o600,
+    )
+    stage_identity: PublishedFileIdentity | None = None
+    try:
+        stage_stat = os.fstat(descriptor)
+        stage_identity = PublishedFileIdentity(
+            path=stage,
+            device=stage_stat.st_dev,
+            inode=stage_stat.st_ino,
+        )
+        with os.fdopen(descriptor, "wb") as handle:
+            descriptor = -1
+            handle.write(encoded)
+            handle.flush()
+        try:
+            publish_create_only(stage, path)
+        except FileExistsError as exc:
+            raise ThreeStockPreviewCacheError(
+                "preview cache index already exists"
+            ) from exc
+    finally:
+        if descriptor >= 0:
+            os.close(descriptor)
+        if stage_identity is not None:
+            remove_if_published(stage_identity)
+
+
 def publish_three_stock_preview_cache_index(
     preview_directory: Path,
     *,
@@ -105,7 +151,7 @@ def publish_three_stock_preview_cache_index(
             "not render authorization or final export."
         ),
     }
-    atomic_write_json(index_path, index)
+    _publish_create_only_json(index_path, index)
     return index
 
 
