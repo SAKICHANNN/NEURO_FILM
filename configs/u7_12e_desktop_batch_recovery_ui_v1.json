@@ -1,0 +1,57 @@
+{
+  "schema": "kmcfm.u7-12e-desktop-batch-recovery-ui-contract.v1",
+  "node_id": "U7.12E",
+  "objective": "Expose the proven U7.12D restart-safe one-look batch transaction deliberately through the existing private desktop without changing U7.11A final bytes or legacy core semantics.",
+  "dependencies": {
+    "u7_12d_evidence_commit": "4ad662a6f",
+    "u7_12d_evidence_path": "docs/evidence/U7_12D_DESKTOP_SINGLE_LOOK_BATCH_RECOVERY_RESULT.json",
+    "u7_12d_evidence_sha256": "f052be6957f95f2029728c12d7946d29263d031b0216c3f9c80b7188400db58c",
+    "u7_12d_implementation_commit": "3cf53cc7a",
+    "u7_11a_final_receipt_unchanged": true,
+    "u7_12a_worker_close_safety_unchanged": true
+  },
+  "workspace_derivation": {
+    "normalization": "normcase(abspath(fspath(resolved_destination))) encoded UTF-8",
+    "digest": "SHA-256",
+    "digest_prefix_hex_characters": 32,
+    "name_prefix": ".kmcfm-u7-12e-",
+    "name_suffix": ".recovery",
+    "same_parent_as_destination": true,
+    "user_selectable": false,
+    "final_receipt_field": false
+  },
+  "ui": {
+    "batch_button_copy": "Export / resume N PNG16 + recipes",
+    "cancel_copy": "Pausing safely after the current photo…",
+    "paused_receipt_is_error": false,
+    "paused_copy_binds_completed_and_remaining_counts": true,
+    "paused_copy_requires_same_inputs_look_strength_destination": true,
+    "single_photo_path_unchanged": true,
+    "legacy_export_batch_called_by_ui": false,
+    "u7_12d_entry_point_called_explicitly": true
+  },
+  "formal_fixture": {
+    "job_count": 3,
+    "style_id": "portra_400",
+    "look_amount": 0.625,
+    "pause_after_jobs": 1,
+    "resume_process": "fresh UI and workflow session",
+    "comparison": "unchanged U7.11A export at the same final destination path"
+  },
+  "claim_ceiling": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "private_windows_python_ui_integration_only": true,
+    "hard_power_loss_during_child": false,
+    "arbitrary_input_or_24mp_performance": false,
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false,
+    "stock_distinguishability": false,
+    "public_api_installer_or_release": false
+  },
+  "stop_rules": [
+    "Do not change U7.12D core transaction, U7.11A output/receipt, look math or legacy export_batch.",
+    "Do not add workspace reset, delete, browser, installed-runtime or wrapper variants.",
+    "Do not rescue a formal failure by changing the workspace identity, cancel semantics, messages, fixture or gates."
+  ]
+}
