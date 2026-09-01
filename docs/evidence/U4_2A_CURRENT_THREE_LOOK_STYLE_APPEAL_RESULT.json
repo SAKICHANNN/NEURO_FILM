@@ -1,0 +1,113 @@
+{
+  "schema": "neuro_film.u4_2a_current_three_look_style_appeal_result.v1",
+  "node_id": "U4.2A",
+  "date": "2026-09-01",
+  "status": "FAIL_CLOSED_CURRENT_THREE_LOOK_AUTONOMOUS_STYLE_APPEAL_VALUE",
+  "decision": "The unchanged current Velvia 50, Portra 400 and Ektar 100 Look Approximation outputs retain the U4.1A severe-artifact pass and are not less appealing than the exact identity control on most samples, but none produces the frozen paired style advantage. Keep the mechanically available v1 catalog and its film-inspired / Look Approximation labels, but do not claim that this population proves material product style value. No revote, threshold relaxation, rerender, look-amount tuning, arm drop or stock reinterpretation is allowed.",
+  "source_lock": {
+    "formal_source_commit": "a6211b7934df9dcfd0b998b3666b0abdd82aba7e",
+    "u4_1a_evidence_commit": "4af18939d6567a96144d8df218974c0a64859227",
+    "u4_1a_formal_source_commit": "7938967269f7b08672cf6e0384eb95eefd58bcd5",
+    "u4_1a_formal_report_sha256": "90ae1784c24d855f888d1f91110d46ed37e23c3c80e7f9a8dca0ee96a58ff5b5",
+    "u4_1a_adjudication_evidence_sha256": "af1ee870de1f749a62d2a39ca1f519fc66724fa7cf2d1e0d4c1d7755ac00972a",
+    "observation_git_blob_sha256": "f47a1ca127b3dc263779e81a68036cc7b46f5823d312e1bb2e812740cf0f139f",
+    "public_manifest_sha256": "d8c35bf7414e56f39d203d8ba3d226baf3e4840101ba378e95b4e3401ac3d00f",
+    "blind_build_scientific_identity": "b8b31caa409901ded2663b23111adcb1df3efd6d32b7ff533457dae4ac9d2ab6"
+  },
+  "formal": {
+    "forward_report": "outputs/eval/u4_2a_current_three_look_style_appeal_v1/formal_forward_v1.json",
+    "reverse_report": "outputs/eval/u4_2a_current_three_look_style_appeal_v1/formal_reverse_v1.json",
+    "report_bytes": 20813,
+    "forward_sha256": "46d3a0b2396c30367c24173772c47e82768aa5e79e63ba6e98bbb55dacb33619",
+    "reverse_sha256": "46d3a0b2396c30367c24173772c47e82768aa5e79e63ba6e98bbb55dacb33619",
+    "reports_byte_exact": true,
+    "scientific_identity": "bc6c57a8e88b223d86bad355ac1353e3dae40b905be3ecf5577aaa2862395781",
+    "reviewed_observations": 108,
+    "missing_observations": 0,
+    "passing_named_looks": 0,
+    "required_passing_named_looks": 3,
+    "portfolio_pass": false
+  },
+  "look_results": {
+    "velvia_50": {
+      "pass": false,
+      "severe_yes": 0,
+      "severe_uncertain": 0,
+      "style_median_of_samples": 4.0,
+      "paired_style_delta_median_vs_identity": 0.0,
+      "samples_with_style_delta_at_least_one": 4,
+      "paired_appeal_delta_median_vs_identity": 0.0,
+      "samples_with_appeal_at_least_identity": 6,
+      "failed_checks": ["style_delta_median", "style_delta_count"]
+    },
+    "portra_400": {
+      "pass": false,
+      "severe_yes": 0,
+      "severe_uncertain": 0,
+      "style_median_of_samples": 3.0,
+      "paired_style_delta_median_vs_identity": 0.0,
+      "samples_with_style_delta_at_least_one": 3,
+      "paired_appeal_delta_median_vs_identity": 0.0,
+      "samples_with_appeal_at_least_identity": 7,
+      "failed_checks": ["style_delta_median", "style_delta_count"]
+    },
+    "ektar_100": {
+      "pass": false,
+      "severe_yes": 0,
+      "severe_uncertain": 0,
+      "style_median_of_samples": 3.0,
+      "paired_style_delta_median_vs_identity": 0.0,
+      "samples_with_style_delta_at_least_one": 3,
+      "paired_appeal_delta_median_vs_identity": 0.0,
+      "samples_with_appeal_at_least_identity": 8,
+      "failed_checks": ["style_delta_median", "style_delta_count"]
+    }
+  },
+  "blind_provenance": {
+    "accepted_reviewer_thread_id": "019f9f37-91d9-7b11-b135-ad62bcb32214",
+    "reviewer_class": "autonomous_visual_evidence",
+    "accepted_public_review_sheet_reads": 27,
+    "review_sheet_hashes_exact": true,
+    "candidate_image_reads_before_freeze": 0,
+    "identity_image_reads_before_freeze": 0,
+    "source_image_reads_before_freeze": 0,
+    "recipe_reads_before_freeze": 0,
+    "build_report_reads_before_freeze": 0,
+    "private_mapping_reads_before_freeze": 0,
+    "mapping_reconstructed_before_freeze": false,
+    "mapping_persisted_by_builder": false,
+    "builder_mapping_used_in_memory": true,
+    "observations_committed_before_formal_unblinding": true
+  },
+  "excluded_prescore_history": [
+    "The first committed build stopped on sample 01 after preview decode but before identity export because the implementation used the invalid desktop format id png16-srgb. It produced zero identity files, review sheets, mappings or scores; the owned empty root could not be removed because platform policy rejected recursive deletion.",
+    "The v2-v4 public manifests, identity pixel hashes and review-sheet hashes were exact. Additive corrections changed only the canonical png16 format id, mapping-access wording, rubric and observation-provenance validation.",
+    "Root viewed six v4 public sheets during prescore before the final reviewer protocol was accepted; zero scores were persisted or used. Producer read build-report facts and one identity recipe but no review sheet or image. Both were excluded as accepted reviewers.",
+    "A separate consumer reviewer then read exactly the 27 v5 public sheets and no forbidden sibling media, returned 108 anonymous rows, and performed no unblinding, aggregation or stock inference."
+  ],
+  "artifact_identity_scope": {
+    "identity_pixels_exact_across_builds": true,
+    "review_media_exact_across_builds": true,
+    "public_manifest_exact_across_builds": true,
+    "formal_reports_exact_across_processes": true,
+    "entire_output_tree_or_recipe_bytes_exact_claimed": false,
+    "reason": "Identity recipe bytes contain run-path semantics and are not part of the exact artifact claim."
+  },
+  "execution": {
+    "new_data_downloads": 0,
+    "network_reads": 0,
+    "training_runs": 0,
+    "operator_fit_runs": 0,
+    "rerenders_of_named_looks": 0,
+    "parameter_or_threshold_changes_after_result": 0,
+    "production_default_changed": false
+  },
+  "preserved_boundaries": [
+    "All names remain film-inspired / Look Approximation.",
+    "AO6 remains only a Velvia 50 display-proxy Look Approximation baseline.",
+    "RF3.D15 remains the authoritative failure of robust three-stock visible distinguishability on its frozen population.",
+    "This result is autonomous visual evidence, not human or population preference.",
+    "No target-film closeness, calibrated stock response, physical-film reproduction, authenticity, universal safety or product promotion is established."
+  ],
+  "next_branch": "Do not tune or rerun the current v1 looks on this cohort. Preserve the catalog as a deterministic usable baseline. The next product-style attempt, if pursued, must be a separately versioned bounded explicit challenger with prospectively separated development and confirmation roles; otherwise prioritize a different concrete product defect or runnable user workflow. The long-lived Look Approximation Goal remains active."
+}
