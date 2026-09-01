@@ -40,7 +40,7 @@ class ProductDesktopApp:
         self.preview_images: list[ImageTk.PhotoImage] = []
         self.busy = False
         self.preview_ready = False
-        self.style = tk.StringVar(value=_LOOK_IDS[0])
+        self.style = tk.StringVar(value="")
         self.amount = tk.DoubleVar(value=1.0)
         self.input_text = tk.StringVar(value="No photo selected")
         self.status = tk.StringVar(
@@ -165,6 +165,7 @@ class ProductDesktopApp:
         self.cards = ttk.Frame(outer, style="Root.TFrame")
         self.cards.pack(fill="both", expand=True, pady=18)
         self.preview_labels: dict[str, ttk.Label] = {}
+        self.look_buttons: dict[str, ttk.Radiobutton] = {}
         for column, row in enumerate(PRODUCT_LOOKS):
             card = ttk.Frame(self.cards, style="Panel.TFrame", padding=12)
             card.grid(
@@ -181,14 +182,18 @@ class ProductDesktopApp:
             )
             image_label.pack(fill="both", expand=True)
             self.preview_labels[row["style_id"]] = image_label
-            ttk.Radiobutton(
+            look_button = ttk.Radiobutton(
                 card,
                 text=row["display_name"],
                 value=row["style_id"],
                 variable=self.style,
+                command=self._style_changed,
+                state="disabled",
                 style="Look.TRadiobutton",
                 takefocus=True,
-            ).pack(anchor="w", pady=(10, 2))
+            )
+            look_button.pack(anchor="w", pady=(10, 2))
+            self.look_buttons[row["style_id"]] = look_button
             ttk.Label(card, text=row["process"], style="Panel.TLabel").pack(anchor="w")
             ttk.Label(card, text=row["claim"], style="Panel.TLabel").pack(
                 anchor="w", pady=(3, 0)
@@ -229,6 +234,7 @@ class ProductDesktopApp:
             self._clear_preview_widgets()
         self.input_path = resolved
         self.input_text.set(resolved.name)
+        self.style.set("")
         self.preview_ready = False
         self.export_button.configure(state="disabled")
         self.status.set("Photo selected. Render previews to compare the three looks.")
@@ -249,6 +255,7 @@ class ProductDesktopApp:
             )
 
     def _invalidate_previews(self, message: str) -> None:
+        self.style.set("")
         self.preview_ready = False
         self.export_button.configure(state="disabled")
         if self.workflow.preview_state is not None and not self.workflow.close():
@@ -272,14 +279,28 @@ class ProductDesktopApp:
         self.choose_button.configure(state=state)
         self.preview_button.configure(state=state)
         self.amount_scale.configure(state=state)
+        look_state = "normal" if not busy and self.preview_ready else "disabled"
+        for button in self.look_buttons.values():
+            button.configure(state=look_state)
         self.export_button.configure(
             state=(
                 "normal"
-                if not busy and self.preview_ready and self.workflow.preview_state
+                if not busy
+                and self.preview_ready
+                and self.workflow.preview_state
+                and self.style.get() in _LOOK_IDS
                 else "disabled"
             )
         )
         self.status.set(message)
+
+    def _style_changed(self) -> None:
+        if self.style.get() not in _LOOK_IDS:
+            self.export_button.configure(state="disabled")
+            return
+        if self.preview_ready and not self.busy:
+            self.export_button.configure(state="normal")
+            self.status.set("Look selected. Export a new PNG16 + recipe pair.")
 
     def _background(
         self, action: Callable[[], Any], success: Callable[[Any], None]
@@ -334,10 +355,13 @@ class ProductDesktopApp:
         )
 
     def export(self) -> None:
-        if self.busy or self.workflow.preview_state is None:
+        if self.busy or not self.preview_ready or self.workflow.preview_state is None:
             return
         state = self.workflow.preview_state
         selected = self.style.get()
+        if selected not in _LOOK_IDS:
+            self._show_error(ProductDesktopError("select one look before export"))
+            return
         destination = filedialog.asksaveasfilename(
             title="Export Look Approximation",
             defaultextension=".png",

@@ -33,6 +33,7 @@ def test_u7_10a_formal_report_passes_all_frozen_mechanical_gates() -> None:
         "input_label": "gui-source.png",
         "preview_look_amount": 0.65,
         "preview_ready": True,
+        "selection_action": "velvia_50_radio_invoke",
         "selected_style": "velvia_50",
     }
 

@@ -331,11 +331,23 @@ def test_native_window_covers_bounded_states_without_path_disclosure(
         assert app.busy is True
         assert str(app.choose_button.cget("state")) == "disabled"
         assert str(app.preview_button.cget("state")) == "disabled"
+        assert all(
+            str(button.cget("state")) == "disabled"
+            for button in app.look_buttons.values()
+        )
 
         state = workflow.render_previews(source, 0.6)
         app._preview_complete(state)
         root.update_idletasks()
         assert app.busy is False
+        assert app.style.get() == ""
+        assert str(app.export_button.cget("state")) == "disabled"
+        assert all(
+            str(button.cget("state")) == "normal"
+            for button in app.look_buttons.values()
+        )
+        app.look_buttons["velvia_50"].invoke()
+        assert app.style.get() == "velvia_50"
         assert str(app.export_button.cget("state")) == "normal"
         assert len(app.preview_images) == 3
         assert all(
@@ -349,10 +361,14 @@ def test_native_window_covers_bounded_states_without_path_disclosure(
         assert bool(app.choose_button.cget("takefocus"))
         assert bool(app.preview_button.cget("takefocus"))
         assert bool(app.export_button.cget("takefocus"))
+        assert all(
+            bool(button.cget("takefocus")) for button in app.look_buttons.values()
+        )
 
         app.amount.set(0.5)
         app._amount_changed()
         assert workflow.preview_state is None
+        assert app.style.get() == ""
         assert str(app.export_button.cget("state")) == "disabled"
         assert all(
             label.cget("text") == "Preview not rendered"
@@ -395,6 +411,65 @@ def test_native_window_covers_bounded_states_without_path_disclosure(
         assert workflow.preview_state is state
         assert str(app.export_button.cget("state")) == "disabled"
         assert target.read_bytes() == b"foreign"
+    finally:
+        if root.winfo_exists():
+            app.close()
+
+
+def test_native_export_freezes_explicit_selection_while_busy(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    import tkinter as tk
+
+    source = tmp_path / "source.png"
+    _source(source)
+    workflow = _workflow(tmp_path)
+    root = tk.Tk()
+    root.withdraw()
+    monkeypatch.setattr(
+        "src.inference.product_desktop_ui.messagebox.showinfo",
+        lambda *_args: None,
+    )
+    destination = tmp_path / "selected.png"
+    monkeypatch.setattr(
+        "src.inference.product_desktop_ui.filedialog.asksaveasfilename",
+        lambda **_kwargs: str(destination),
+    )
+    app = build_product_desktop_app(root, workflow, initial_input=source)
+    pending: dict[str, object] = {}
+
+    def hold_background(action, success):  # type: ignore[no-untyped-def]
+        pending["action"] = action
+        pending["success"] = success
+
+    monkeypatch.setattr(app, "_background", hold_background)
+    try:
+        state = workflow.render_previews(source, 0.6)
+        app._preview_complete(state)
+        assert str(app.export_button.cget("state")) == "disabled"
+        app.look_buttons["portra_400"].invoke()
+        assert app.style.get() == "portra_400"
+        assert str(app.export_button.cget("state")) == "normal"
+
+        app.export()
+        assert app.busy is True
+        assert all(
+            str(button.cget("state")) == "disabled"
+            for button in app.look_buttons.values()
+        )
+        app.look_buttons["ektar_100"].invoke()
+        assert app.style.get() == "portra_400"
+
+        receipt = pending["action"]()  # type: ignore[operator]
+        assert receipt.style_id == "portra_400"
+        pending["success"](receipt)  # type: ignore[operator]
+        assert app.busy is False
+        assert app.style.get() == "portra_400"
+        assert all(
+            str(button.cget("state")) == "normal"
+            for button in app.look_buttons.values()
+        )
+        assert str(app.export_button.cget("state")) == "normal"
     finally:
         if root.winfo_exists():
             app.close()

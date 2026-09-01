@@ -159,6 +159,7 @@ def _capture_visual(
     def capture_when_ready() -> None:
         try:
             if app.preview_ready and workflow.preview_state is not None:
+                app.look_buttons["velvia_50"].invoke()
                 root.update_idletasks()
                 preview_state = workflow.preview_state
                 facts = {
@@ -170,6 +171,7 @@ def _capture_visual(
                     "input_label": app.input_text.get(),
                     "preview_look_amount": preview_state.look_amount,
                     "preview_ready": app.preview_ready,
+                    "selection_action": "velvia_50_radio_invoke",
                     "selected_style": app.style.get(),
                 }
                 facts_output.write_text(
@@ -326,6 +328,7 @@ def build_report(order: str, *, visual_output: Path | None = None) -> dict[str, 
         and gui["state"].get("export_enabled") is True
         and gui["state"].get("absolute_path_disclosed") is False
         and gui["state"].get("input_label") == "gui-source.png"
+        and gui["state"].get("selection_action") == "velvia_50_radio_invoke"
         and gui["state"].get("selected_style") == "velvia_50",
         "preview_workspace_cleanup_pass": all(
             row["preview_workspace_cleaned"] and row["scratch_residue_count"] == 0
