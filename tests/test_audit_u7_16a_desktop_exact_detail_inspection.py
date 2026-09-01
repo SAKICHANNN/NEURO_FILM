@@ -38,3 +38,9 @@ def test_formal_controller_has_a_bounded_cli() -> None:
 
 def test_parent_ui_identity_uses_git_object_identity() -> None:
     assert len(_git_oid(UI_PATH, "e76cd5501a267e8ec63c9404b1d5d96ed60038c1")) == 40
+
+
+def test_formal_controller_retains_stable_failure_node_lines() -> None:
+    source = SCRIPT.read_text("utf-8")
+    assert 'line.startswith(("FAILED ", "ERROR "))' in source
+    assert '"failure_lines": failure_lines' in source

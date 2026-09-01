@@ -188,9 +188,15 @@ def _run_cases(order: str) -> dict[str, dict[str, Any]]:
             capture_output=True,
             text=True,
         )
+        failure_lines = sorted(
+            line.strip()
+            for line in (completed.stdout + "\n" + completed.stderr).splitlines()
+            if line.startswith(("FAILED ", "ERROR "))
+        )
         results[name] = {
             "passed": completed.returncode == 0,
             "returncode": completed.returncode,
+            "failure_lines": failure_lines,
         }
     return results
 
