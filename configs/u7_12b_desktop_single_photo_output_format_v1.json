@@ -6,7 +6,21 @@
   "dependency_gate": {
     "node": "U7.12A",
     "required_status": "PASS",
-    "bind_exact_committed_core_test_and_evidence_before_first_product_render": true
+    "bind_exact_committed_core_test_and_evidence_before_first_product_render": true,
+    "terminal_commit": "676142e74a4bb1cc20e000b5e6f775e1cc4a97f4",
+    "implementation_commit": "a64978cbe15759581c34e26cdfb118585ab9eae7",
+    "test_fixture_correction_commit": "56d854b1983900c5a99373cabcebd830dd75a2b0",
+    "evidence_commit": "504d3cb5df2e35eb26858cd60ed4139c9ca0719f",
+    "status": "PASS_PRIVATE_U7_12A_DESKTOP_FOREGROUND_CLOSE_SAFETY",
+    "scientific_identity": "c33a1a84c4f5f77fa0c86251d7b68448036193b8fbb1774eaae60e299d6a3474",
+    "artifact_sha256": {
+      "config": "99ba1b82f818649bca97fa1793d1678c69af71d4c9c2702666619bbc0198e2d9",
+      "contract": "93f99fae1b3ff2b7e7398c49e2aa149522136525d9f697c2f7e4430e9c446641",
+      "desktop_ui": "75babccc066585dc634f746b57d2614c4d8a6bb525833988d3e61b725795344d",
+      "test": "c78c15ad724dfc981ee840a9c140ac27c2ac3595ffc9bec2064e1005bd95dc62",
+      "audit": "3285f380a92ee14b665a6c5c50fdaa0831e559e370f474bced13f5735edce108",
+      "evidence": "9a86a9b7315145b4e38cfc1787ff788361222b0ab812d52f3bc4e7b36d7de4cf"
+    }
   },
   "source_identities": {
     "desktop_core_sha256": "acb366af5c1d6f4f9e683158813655f7a72734ff5ebfec3d1d3f998984b5aeba",
