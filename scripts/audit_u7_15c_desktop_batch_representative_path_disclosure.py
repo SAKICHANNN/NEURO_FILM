@@ -217,7 +217,7 @@ def evaluate(order: str) -> dict[str, Any]:
                 owned_root,
                 name,
                 (second, first),
-                None if name == "default" else second,
+                None if name == "default" else second.resolve(strict=True),
                 first,
                 second,
             )
