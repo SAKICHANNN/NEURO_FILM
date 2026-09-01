@@ -12,6 +12,7 @@ from .types import DecodeWarning, InputInspection, SourceProfile, WorkingImage
 
 RAW_SUFFIXES = {
     ".3fr",
+    ".arq",
     ".arw",
     ".cr2",
     ".cr3",
@@ -31,6 +32,7 @@ RAW_SUFFIXES = {
     ".rw2",
     ".rwl",
     ".sr2",
+    ".srw",
     ".srf",
     ".x3f",
 }
