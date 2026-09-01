@@ -23201,3 +23201,38 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Approximation` export mechanics—not arbitrary-host performance, calibrated
   stock response, physical film, distinguishability, public release or
   cross-platform evidence. No push occurred.
+
+### 2026-09-02 - U7.19A admits exact SRW and ARQ generic product ingress
+
+- **Node and routing:** `ULT > U7 productization > U7.19A`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the sole writer; router, structure and
+  agent-log disciplines were read-only secondary checks. The long-lived Look
+  Approximation product Goal remains accurate and active; no leaf Goal was
+  created or replaced. The other tasks were explicitly told to use no Goal or
+  one genuinely long-term top-level Goal, never repeated short-lived Goals.
+- **Product repair:** contract/config `1b75726f`, preflight `47d3de5e`, and
+  implementation `5a51ccf1` froze and repaired one public dispatcher defect:
+  `.srw` and `.arq` were missing from `RAW_SUFFIXES` despite installed LibRaw
+  support. The source change is exactly two suffix additions. Four exact
+  Samsung NX500 SRWs and one exact Sony A7R III ARQ pass public inspection and
+  WorkingImage gates without copying producer data away from its P-backed
+  source root.
+- **Formal evidence:** runner/lock commits `202b175e`/`8577f858` reached a
+  successful ARQ render before a pre-report audit `KeyError`: canonical recipe
+  v1 omits full-strength `look_amount`. Correction/relock
+  `163f3eaf`/`5f01e086` only interpret that omission as the frozen default
+  `1.0`; source, product path, roles, thresholds, gates and claim ceiling did
+  not change. Accepted forward/reverse reports are byte-identical at 21,080
+  bytes / SHA `de7e731a72be32aab6984c90040022c36957baeeccd29f6667d7a5d7f1d941ae`;
+  scientific identity is `346a84f50c12cb3f4fce51c90035a8b7cc7082711fe7a9aded3990bd6fe320b0`.
+  All 16 gates pass, strict replay is byte-exact, network and scratch residue
+  are zero, and evidence commit `f06cd123` binds the reports and Git objects.
+- **Verification and boundary:** focused/evidence tests pass 8/8; Ruff,
+  format, py_compile, JSON and diff checks pass. A broad adjacent run produced
+  126 passes plus one expected immutable P313 live-current-file binding
+  failure: P313 correctly retains the pre-U7.19A `raw_decode.py` identity and
+  is not rewritten. This is exact-file generic SRW/ARQ ingress compatibility
+  for deterministic `film-inspired / Look Approximation` only—not general
+  vendor RAW or colour support, ARQ component fusion, calibrated stock
+  response, physical-film reproduction, multi-stock completion or product
+  promotion. No push occurred.
