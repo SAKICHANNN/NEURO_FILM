@@ -1,0 +1,70 @@
+{
+  "schema": "kmcfm.u7-10b-installed-runtime-desktop-launch-contract.v1",
+  "source_parent_commit": "5018362a17962c0c84b25484b5171fd3ccc77ed4",
+  "parent_bindings": {
+    "installer": {
+      "path": "scripts/install_product_runtime.py",
+      "sha256": "e7757d43a5e99256720e8b9f085d227622404ec7f152a4c3f2be75578cbad7ec"
+    },
+    "desktop_entrypoint": {
+      "path": "scripts/open_product_desktop.py",
+      "sha256": "c92f0a1c81ca896d7065144961fabdf0183b6a51e3368ac50df651da3ace4064"
+    },
+    "requirements": {
+      "path": "requirements-product-v2.txt",
+      "sha256": "78b2ec79ffd4053c42c90a5db765baf715fed261efa39a5e762e013145718517"
+    },
+    "desktop_evidence": {
+      "path": "docs/evidence/U7_10A_PRODUCT_DESKTOP_EXPLICIT_SELECTION_CORRECTION_RESULT.json",
+      "sha256": "2195d1cbf1ebcddba907d322b8cece0a9fd6db93be8a1ff09c0b7384a54718f5"
+    },
+    "startup_isolation_evidence": {
+      "path": "docs/evidence/U7_9C_PRODUCT_RUNTIME_STARTUP_ISOLATION_RESULT.json",
+      "sha256": "500b551f1485696348b13c2613dac537b86449fe87fff98c8d40f3fb84559e71"
+    }
+  },
+  "launchers": {
+    "cli": {
+      "command_name": "kmcfm-look.cmd",
+      "python_name": "product-launch.py",
+      "entrypoint": "scripts/render_film.py"
+    },
+    "desktop": {
+      "command_name": "kmcfm-desktop.cmd",
+      "python_name": "product-desktop-launch.py",
+      "entrypoint": "scripts/open_product_desktop.py"
+    }
+  },
+  "receipt_schema": "kmcfm.private-product-runtime-receipt.v2",
+  "python": {
+    "implementation": "CPython",
+    "major": 3,
+    "minor": 12,
+    "isolated": true,
+    "windows_only": true
+  },
+  "gates": {
+    "fresh_install_success": true,
+    "pinned_distributions_exact": true,
+    "pip_check_success": true,
+    "dual_launcher_receipt_bound": true,
+    "legacy_cli_field_retained": true,
+    "foreign_cwd_cli_exact": true,
+    "foreign_cwd_desktop_mainloop": true,
+    "desktop_explicit_radio_invoke": true,
+    "python_environment_removed": true,
+    "drift_rejects_before_tk": true,
+    "existing_and_late_foreign_preserved": true,
+    "owned_scratch_and_process_residue_zero": true
+  },
+  "claim_ceiling": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false,
+    "stock_distinguishability": false,
+    "public_release": false,
+    "standalone_installer": false,
+    "cross_platform_gui": false
+  }
+}
