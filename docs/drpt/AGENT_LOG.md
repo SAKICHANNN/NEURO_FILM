@@ -23163,3 +23163,41 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   grain/halation calibration, calibrated stock response, stock
   distinguishability, arbitrary-media/population safety, public release or
   cross-platform GUI evidence. No push occurred.
+
+### 2026-09-02 - U7.18A admits a fixed fast desktop export policy
+
+- **Node and routing:** `ULT > U7 productization > U7.18A`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the sole writer; structure and agent-log
+  disciplines were read-only secondary checks. Consumer released the exact
+  tracker/log window. The one accurate long-lived Look Approximation product
+  Goal remains active; no leaf Goal was created or replaced. Foreign `.codex/`
+  and `tmp/` stayed untracked and unstaged.
+- **Product change:** contract/config commit `6e82b749` froze the existing real
+  gap: U7.2B/D had already proved exact `512/8` tile-parallel export, but the
+  native desktop used preview-oriented `256/1` for both preview and export.
+  Implementation `d455546c` retains preview `256/1`, routes single-photo,
+  batch and exact-detail export through one fixed `512/8` policy only in the
+  real launcher, and preserves legacy/injected constructor fallback exactly.
+  It adds no user resource control, renderer/look/effect/schema change or
+  adjacent scheduler. Formal controller/test commit is `4f7b57ad`.
+- **Formal evidence:** committed-head forward/reverse controllers produce
+  scientific SHA `7d3fdebb4942da47a42f48f9d73a3b296d8d742f97104b593be0949c8acc7f47`
+  exactly. Candidate-to-baseline median wall ratios are `.8441651` and
+  `.7136732`; candidate medians are `55.589s` and `59.470s`. Candidate peak
+  process-tree RSS is `3,630,477,312` / `3,626,811,392` bytes with only
+  `24,481,792` / `7,024,640` bytes increase. PNG16 SHA
+  `7f1f32d7...e35d`, decoded RGB16, ICC, normalized recipe, strict replay,
+  source ownership and cleanup are exact. Every frozen gate and all nine
+  isolated behavioral files pass in each direction. Evidence commit
+  `8f42d383` binds both reports and the committed Git objects.
+- **Verification and boundary:** focused/audit/evidence tests pass 12/12;
+  Ruff, format, py_compile, JSON and diff checks pass. One earlier combined
+  127-test diagnostic yielded 124 passes plus three known cross-module Tk
+  interpreter-lifetime failures; all three exact tests passed independently in
+  fresh processes, and both accepted formal controllers also pass every
+  affected file in isolation. The forward timing gate passed narrowly without
+  rescue, so adjacent tile/worker/compression/performance variants stop. Claim
+  remains private Windows/Python deterministic `film-inspired / Look
+  Approximation` export mechanics—not arbitrary-host performance, calibrated
+  stock response, physical film, distinguishability, public release or
+  cross-platform evidence. No push occurred.
