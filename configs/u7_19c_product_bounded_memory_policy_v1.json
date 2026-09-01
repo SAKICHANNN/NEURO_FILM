@@ -1,0 +1,59 @@
+{
+  "schema": "kmcfm.u7-19c-product-bounded-memory-policy-contract.v1",
+  "node_id": "U7.19C",
+  "status": "FROZEN_BEFORE_U7_19C_X2D_RENDER",
+  "bindings": {
+    "contract": {"path": "docs/planning/U7_19C_PRODUCT_BOUNDED_MEMORY_POLICY_CONTRACT.md", "bytes": 3260, "sha256": "3aa75cdd0282b1615f305afe747acbff2f90de29d90750c0d18016b356247573"},
+    "u7_18a": {"path": "docs/evidence/U7_18A_DESKTOP_FAST_EXPORT_POLICY_RESULT.json", "bytes": 5734, "sha256": "4c297419d16bf5dd53529ac2aa424d5e40cb8bada5fe1c677a20bacfe46c61c3"},
+    "u7_19b": {"path": "docs/evidence/U7_19B_MULTI_VENDOR_RAW_PRODUCT_INGRESS_RESULT.json", "bytes": 7511, "sha256": "e54e63db1b91bcc8a1c5f79645cbdc401deae46fedee3d0717d5f8de087ae81d"},
+    "render_cli_before": {"path": "scripts/render_film.py", "bytes": 43535, "sha256": "2013e7c2f95c2f6a0b84ccff1d93db9bec2b189aead84b1ca6b5ab477447f786"},
+    "style_safe_engine_before": {"path": "src/inference/style_safe_engine.py", "bytes": 19218, "sha256": "cfdc66119e2dace3dbfdd293eff8bbfa7e2dec08ca233d6efd440235f3a5e007"},
+    "render_profile": {"path": "configs/render_profiles/safe_rich_product_v1.json", "bytes": 4259, "sha256": "09722cb48c55d1c4c460220c9f59b9ced81801c1b6fe856708a27f5cc99d39fe"}
+  },
+  "policy": {
+    "profile_id": "safe-rich-product-v1",
+    "default_tile_size": 256,
+    "default_tile_workers": 1,
+    "explicit_policy_remains_authoritative": true,
+    "recipe_semantics_unchanged": true
+  },
+  "sources": [
+    {
+      "extension": ".3fr",
+      "id": "x2d_3fr_a",
+      "path": "data/r1gs_hasselblad_x2d_dual_container_v1/source/x2d_3fr_a.3FR",
+      "bytes": 213311488,
+      "sha256": "dcc5a4abe3498e6f25e89bb491995fd12c3b669d9277c71b45b49210d3e56280",
+      "height": 8842,
+      "width": 11904
+    },
+    {
+      "extension": ".fff",
+      "id": "x2d_fff_a",
+      "path": "data/r1gs_hasselblad_x2d_dual_container_v1/source/x2d_fff_a.fff",
+      "bytes": 160894518,
+      "sha256": "44c38665694e07baf47f1fc34fb9ea0f1bf70eb71b7390183d3c0ef23d164e0f",
+      "height": 8842,
+      "width": 11904
+    }
+  ],
+  "product_chain": {
+    "style": "ektar_100",
+    "look_amount": 1.0,
+    "profile_path": "configs/render_profiles/safe_rich_product_v1.json",
+    "output_bit_depth": 8,
+    "write_recipe": true,
+    "require_claim_render_mode": "Style-safe",
+    "require_claim_output_label": "film-inspired",
+    "require_claim_evidence_grade": "look-approximation",
+    "require_calibrated_reference_allowed_false": true,
+    "require_replay_byte_exact": true
+  },
+  "limits": {
+    "peak_process_tree_rss_bytes": 17179869184,
+    "worker_seconds": 1800,
+    "network_requests": 0
+  },
+  "stop_rule": "The fixed 256/1 policy is the only candidate. Any failure closes U7.19C without changing tile size, workers, resource gate, timeout, source, format, look, resolution, recipe or replay path.",
+  "claim_ceiling": "Private exact two-file Windows/Python bounded-memory Look Approximation product execution only; no generic Hasselblad, 3FR/FFF, RAW colour, demosaic, pixel-shift fusion, calibrated stock response, physical-film reproduction, arbitrary-host performance, public release or product-value claim."
+}
