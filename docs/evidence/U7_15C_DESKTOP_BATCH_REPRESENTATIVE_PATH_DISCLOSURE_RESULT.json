@@ -89,6 +89,7 @@
     "u7_10a_parent": "20 passed",
     "u7_15a_parent": "3 passed",
     "u7_15b_parent": "13 passed",
+    "post_evidence_fresh_process_parent_chain": "91 passed across U7.10A/U7.11A/U7.12B/U7.12G/U7.14A/U7.15A/U7.15B/U7.15C and evidence bindings",
     "ruff": "pass",
     "compile": "pass",
     "diff_check": "pass"
