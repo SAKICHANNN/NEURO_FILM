@@ -1,0 +1,68 @@
+{
+  "schema": "kmcfm.u7-12g-desktop-batch-output-format-contract.v1",
+  "node_id": "U7.12G",
+  "source_parent_commit": "a6211b7934df9dcfd0b998b3666b0abdd82aba7e",
+  "source_identities": {
+    "desktop_core_sha256": "26273e4d9ae950cf403a8e6e69d5d00a859faf02380604ac599f211594fe7f9f",
+    "desktop_ui_sha256": "bba66e966329d7e6161230b01a7a684395e9ab4150d2b785fa1f49fd1ab6f444",
+    "u7_11a_evidence_sha256": "fe84f4adb85bac24dbe3bb598cca1266814cb77454f1ddf236d6df945054b2b3",
+    "u7_12b_evidence_sha256": "281ff125c9f019f83753c0a98ab2d7047232c0d61c7a656b8e1064b704d81488",
+    "u7_12f_evidence_sha256": "b8ddef2983bbaa90d7b860c7bbb0e042f13bafe3724debde348a60da0fa70d02"
+  },
+  "formats": {
+    "png16": {
+      "canonical_extension": ".png",
+      "recipe_format": "PNG",
+      "bit_depth": 16,
+      "legacy_receipt_schema": "kmcfm.desktop-single-look-batch.v1"
+    },
+    "tiff16": {
+      "canonical_extension": ".tiff",
+      "recipe_format": "TIFF",
+      "bit_depth": 16,
+      "receipt_schema": "kmcfm.desktop-single-look-batch.v2"
+    },
+    "jpeg8": {
+      "canonical_extension": ".jpg",
+      "recipe_format": "JPEG",
+      "bit_depth": 8,
+      "receipt_schema": "kmcfm.desktop-single-look-batch.v2"
+    }
+  },
+  "product_contract": {
+    "default_format": "png16",
+    "format_choice_visible_for_batch": true,
+    "format_choice_keyboard_reachable": true,
+    "format_choice_disabled_while_busy": true,
+    "preview_survives_format_change": true,
+    "one_format_per_atomic_batch": true,
+    "png16_legacy_receipt_and_member_bytes_exact": true,
+    "non_png_receipt_explicitly_versioned": true,
+    "invalid_format_rejects_before_stage_or_renderer": true,
+    "recovery_core_remains_png16_only": true
+  },
+  "gates": {
+    "png16_default_batch_exact": true,
+    "direct_cli_image_exact_all_formats": true,
+    "strict_replay_exact_all_formats": true,
+    "recipe_semantics_exact_all_formats": true,
+    "batch_receipt_semantics_exact_all_formats": true,
+    "invalid_format_pre_render_reject": true,
+    "cancel_and_late_foreign_preserved": true,
+    "ui_selection_and_busy_state_exact": true,
+    "u7_11a_u7_12b_u7_12f_regressions_pass": true,
+    "owned_residue_zero": true
+  },
+  "claim_ceiling": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "private_windows_desktop_only": true,
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false,
+    "stock_distinguishability": false,
+    "arbitrary_media_or_profile_support": false,
+    "hdr_or_wide_gamut_publication": false,
+    "public_release": false,
+    "cross_platform_gui": false
+  }
+}
