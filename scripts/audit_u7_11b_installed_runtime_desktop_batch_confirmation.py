@@ -801,7 +801,12 @@ def build_report(order: str) -> dict[str, Any]:
             ),
             "fresh_install_and_wheelhouse_exact": receipt["schema"]
             == "kmcfm.private-product-runtime-receipt.v2"
-            and wheel_rows == parent_u710b["wheelhouse"],
+            and parent_u710b["gates"]["wheelhouse_exact"] is True
+            and len(wheel_rows) == config["runtime"]["wheel_count"]
+            and sum(row["bytes"] for row in wheel_rows)
+            == config["runtime"]["wheel_bytes"]
+            and _canonical_sha256(wheel_rows)
+            == config["runtime"]["wheel_inventory_sha256"],
             "installed_controls_fail_closed": child["rejected"]
             and child["destination_absent"]
             and child["stage_count"] == 0

@@ -61,6 +61,14 @@ def test_u7_11b_config_separates_run_and_outer_evidence_gates() -> None:
         assert config["run_gates"][gate] is True
 
 
+def test_u7_11b_frozen_run_gates_are_computed_by_runner_source() -> None:
+    module = _module()
+    config = module.json.loads(module.CONFIG.read_text(encoding="utf-8"))
+    source = module.AUDIT.read_text(encoding="utf-8")
+    for gate in config["run_gates"]:
+        assert f'"{gate}"' in source
+
+
 def test_u7_11b_parent_bindings_match_frozen_files() -> None:
     module = _module()
     config = module.json.loads(module.CONFIG.read_text(encoding="utf-8"))

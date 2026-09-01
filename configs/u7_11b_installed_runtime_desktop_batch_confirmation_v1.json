@@ -39,6 +39,8 @@
   "runtime": {
     "wheelhouse": "tmp/u7_9a_wheelhouse_v1",
     "wheel_count": 12,
+    "wheel_bytes": 111666287,
+    "wheel_inventory_sha256": "658f448a8c5b20c8e431d7760cb8fdd5fe7bd4f3c3d739ce4a9a8399fc84bf92",
     "python": "runtime/Scripts/python.exe",
     "isolated": true,
     "windows_only": true
