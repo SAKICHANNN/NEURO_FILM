@@ -1,0 +1,92 @@
+{
+  "schema": "kmcfm.u7-12e-desktop-batch-recovery-ui-evidence.v1",
+  "node_id": "U7.12E",
+  "status": "FAIL_CLOSED_U7_12E_DESKTOP_BATCH_RECOVERY_UI",
+  "source_commit": "4793eff6f4ca53fec87bbf9d83648b268798fb82",
+  "bindings": {
+    "contract_initial_commit": "38f04eab7",
+    "contract_copy_correction_commit": "d667ea235",
+    "contract_parent_assertion_amendment_commit": "c99957d5",
+    "implementation_commit": "714316ff",
+    "audit_commit": "4793eff6",
+    "u7_12d_evidence_commit": "4ad662a6f",
+    "u7_12d_evidence_sha256": "f052be6957f95f2029728c12d7946d29263d031b0216c3f9c80b7188400db58c",
+    "bound_git_blob_sha256": {
+      "configs/u7_12e_desktop_batch_recovery_ui_v1.json": "36402e72ffdfd24700f5fad744412de653aca84c2ede666d7f06ce2882c827fb",
+      "docs/planning/U7_12E_DESKTOP_BATCH_RECOVERY_UI_CONTRACT.md": "00578661ecc6ffa713895882b04c4af601642d477abb48f7c4af6f088c616887",
+      "scripts/audit_u7_12e_desktop_batch_recovery_ui.py": "2e92af53ee36d9f140ad6dfe3cac5b5792712ff3038edeb69ad22afda00bc5ca",
+      "src/inference/desktop_single_look_batch_recovery.py": "4eb0d087573730946f126b4f27a240e6326d25702028995e4d3beb2eb72daa23",
+      "src/inference/product_desktop.py": "26273e4d9ae950cf403a8e6e69d5d00a859faf02380604ac599f211594fe7f9f",
+      "src/inference/product_desktop_ui.py": "5721cc8bde5198e83a7ee673de7c1afea7378e1395f8de90a0551dd4f771af60",
+      "tests/test_u7_11a_desktop_single_look_batch.py": "40cbbe8587d1637be45117b915edd0237832922cb4f64c0e9fb8dbbb6fe08d98",
+      "tests/test_u7_12e_desktop_batch_recovery_ui.py": "4174c8d8dbbb0b3aeae435fb3d19b4a3d49f48a1b9ab789e74e8fc62310315a7"
+    }
+  },
+  "formal_reports": {
+    "forward": {
+      "bytes": 6475,
+      "sha256": "57bbfb75680b85acf0c4ebc92a627434cddcf34a3a647843c4fc40db3ccdd09c"
+    },
+    "reverse": {
+      "bytes": 6475,
+      "sha256": "57bbfb75680b85acf0c4ebc92a627434cddcf34a3a647843c4fc40db3ccdd09c"
+    },
+    "full_reports_byte_exact": true
+  },
+  "scientific_identity": "sha256:16bf31877ada2b05056a675691ab6a7aedaebf81b7a86e3d0af363ddfc409df7",
+  "formal_fixture": {
+    "job_count": 3,
+    "style_id": "portra_400",
+    "look_amount": 0.625,
+    "pause_after_jobs": 1,
+    "resume_session": "fresh UI and ProductDesktopWorkflow",
+    "workspace_name": ".kmcfm-u7-12e-0a649be2c224992b4afb585a88a2085a.recovery"
+  },
+  "mechanical_result": {
+    "pause_status": "Batch paused: 1/3 complete (0 reused, 1 new); 2 remaining. Select the same photos, Look, strength and destination to resume.",
+    "pause_error_dialog_count": 0,
+    "pause_workspace_preserved": true,
+    "pause_destination_absent": true,
+    "fresh_session_resume_completed": true,
+    "workspace_removed_after_success": true,
+    "workers_non_daemon": true,
+    "recovered_and_u7_11a_members_exact": true,
+    "recovered_and_u7_11a_receipt_exact": true,
+    "source_immutable": true,
+    "network_reads": 0
+  },
+  "gates": {
+    "batch_copy_explicit_export_resume": true,
+    "initial_copy_exact": true,
+    "entry_point_exact_two_sessions": true,
+    "legacy_export_batch_not_called_by_ui": true,
+    "paused_receipt_truthful_no_error": true,
+    "paused_resume_instruction_exact": true,
+    "paused_controls_restored": true,
+    "paused_workspace_preserved_destination_absent": true,
+    "fresh_session_final_completion": true,
+    "workers_non_daemon": true,
+    "recovered_and_u7_11a_members_exact": true,
+    "recovered_and_u7_11a_receipt_exact": true,
+    "source_immutable": true,
+    "legacy_workspace_clean": true,
+    "focused_parent_tests_pass": false,
+    "network_reads_zero": true
+  },
+  "focused_parent_test_diagnostic": {
+    "combined_result": "66 passed, 1 failed",
+    "failure": "U7.12B shared Tk interpreter rejected stale ImageTk name pyimage16",
+    "isolated_exact_test_result": "1 passed",
+    "decision": "diagnostic only; the frozen combined parent-test gate remains false and is not rescued"
+  },
+  "claim": {
+    "private_windows_python_ui_mechanics_observed": true,
+    "formal_ui_integration_pass": false,
+    "u7_12d_core_or_u7_11a_outputs_invalidated": false,
+    "arbitrary_input_or_24mp_performance": false,
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false,
+    "stock_distinguishability": false,
+    "public_api_installer_release_or_product_value": false
+  }
+}
