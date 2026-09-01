@@ -3,6 +3,35 @@
   "decision": "prospective",
   "node": "U7.3M",
   "parents": ["U1.6G4J", "U7.3A", "U7.3D", "U7.3F", "U7.3I"],
+  "contract_commit": "fedb6ce1a01873b368abcb40e1ef14722ff9427a",
+  "implementation_commit": "7f2b0222782ac1f9a8762ef7f6d7a6d2c3dce853",
+  "source_locks": {
+    "contract": {
+      "path": "docs/planning/U7_3M_RESEARCH_RECIPE_PRODUCT_EXPORT_EXCLUSION_CONTRACT.md",
+      "git_blob": "08f82ea4c4bb0eda8ff50bdea5f67c0ae8c4dafb",
+      "sha256": "ee1ee2531b7949cf52d5016079e76fafdcd6554cb5ac97d0cf05d2ba58195973"
+    },
+    "history": {
+      "path": "src/inference/recipe_history.py",
+      "git_blob": "ba16e4559484298fb4b16f674d6c0b5b3c567ba5",
+      "sha256": "b2624bfba19b8ffc1288e32d8d991502df68348152d5e167e01ef44426b9c20b"
+    },
+    "history_export": {
+      "path": "src/inference/recipe_history_export.py",
+      "git_blob": "cdc43b091e87f7a6a208fd1e1ed991984d07830b",
+      "sha256": "c6fb25e87c5ec68024a5a898afab26879ba80d30260198dd25bcfa8fb5774616"
+    },
+    "export_request": {
+      "path": "src/inference/recipe_export_request.py",
+      "git_blob": "66cb789c02e58fc1e2df66bf70df54c81d69a143",
+      "sha256": "dc01283218c5c18eef2a49d1bcce89aed36be6a1213d24292f05ff1136e5d500"
+    },
+    "focused_test": {
+      "path": "tests/test_u7_3m_research_recipe_product_export_exclusion.py",
+      "git_blob": "d516f1c13b19c561515d4fa5de0c84babd008538",
+      "sha256": "8f32cfd27bce702fda82de4f5cf77342421a02bec8bac4695934dd7de1a92d09"
+    }
+  },
   "research_model": "staged-density-research",
   "research_invalid_code": "recipe_research_only",
   "required_gates": [
