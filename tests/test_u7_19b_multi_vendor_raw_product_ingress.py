@@ -65,6 +65,33 @@ def test_u7_19b_resource_gate_is_frozen() -> None:
     assert not audit._resource_gate(failing, config, product=False)
 
 
+def test_u7_19b_product_decisions_are_independent_by_extension() -> None:
+    config = json.loads(CONFIG.read_text("utf-8"))
+    failed = {
+        "error": "worker_process_tree_rss_limit_exceeded",
+        "key": ".3fr",
+        "resource": {
+            "wall_seconds": 10.0,
+            "peak_process_tree_rss_bytes": 17_200_000_000,
+        },
+        "worker_ok": False,
+    }
+    assert audit._product_record_passes(failed, config) is False
+    passing = {
+        "worker_ok": True,
+        "resource": {
+            "wall_seconds": 10.0,
+            "peak_process_tree_rss_bytes": 2_000_000_000,
+        },
+        "output": {"format": "PNG", "mode": "RGB", "icc_present": True, "sha256": "x"},
+        "recipe": {"exact": {"claim": True}},
+        "replay": {"sha256": "x", "returned_sha256": "x"},
+        "replay_byte_exact": True,
+        "source_unchanged": True,
+    }
+    assert audit._product_record_passes(passing, config) is True
+
+
 def test_u7_19b_scientific_view_excludes_only_resource_measurements() -> None:
     report = {
         "results": [{"records": [{"source_id": "x", "resource": {"wall_seconds": 1}}]}],

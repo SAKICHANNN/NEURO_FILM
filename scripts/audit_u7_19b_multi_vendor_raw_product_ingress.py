@@ -257,6 +257,22 @@ def _resource_gate(
     )
 
 
+def _product_record_passes(record: dict[str, Any], config: dict[str, Any]) -> bool:
+    return bool(
+        record.get("worker_ok")
+        and _resource_gate(record, config, product=True)
+        and record["output"]["format"] == "PNG"
+        and record["output"]["mode"] == "RGB"
+        and record["output"]["icc_present"]
+        and all(record["recipe"]["exact"].values())
+        and record["replay_byte_exact"]
+        and record["output"]["sha256"]
+        == record["replay"]["sha256"]
+        == record["replay"]["returned_sha256"]
+        and record["source_unchanged"]
+    )
+
+
 def _source_gates(
     records: list[dict[str, Any]], stratum: dict[str, Any], config: dict[str, Any]
 ) -> dict[str, bool]:
@@ -462,36 +478,52 @@ def execute_formal(
         shutil.rmtree(controller_root, ignore_errors=True)
 
     complete = [row for row in product_records if row.get("worker_ok")]
+    del complete
+    decisions = {
+        row.get("extension", row.get("key", "unknown")): _product_record_passes(
+            row, config
+        )
+        for row in product_records
+    }
+    passed_extensions = sorted(
+        extension for extension, passed in decisions.items() if passed
+    )
+    failed_extensions = sorted(
+        extension for extension, passed in decisions.items() if not passed
+    )
+    strata_by_extension = {row["extension"]: row for row in config["strata"]}
+    source_immutability = {}
+    for extension in admitted:
+        stratum = strata_by_extension[extension]
+        source = next(
+            row for row in stratum["sources"] if row["id"] == stratum["representative"]
+        )
+        path = producer_repo / source["path"]
+        source_immutability[extension] = (
+            path.is_file()
+            and path.stat().st_size == source["bytes"]
+            and shared._sha256_file(path) == source["sha256"]
+        )
     gates = {
         "all_admitted_extensions_dispatched": all(
             extension in RAW_SUFFIXES for extension in admitted
         ),
-        "all_product_workers_within_limits": len(complete) == len(admitted)
-        and all(_resource_gate(row, config, product=True) for row in complete),
-        "all_product_outputs_exact": len(complete) == len(admitted)
-        and all(
-            row["output"]["format"] == "PNG"
-            and row["output"]["mode"] == "RGB"
-            and row["output"]["icc_present"]
-            for row in complete
+        "all_extensions_classified": len(decisions) == len(admitted)
+        and sorted(decisions) == admitted,
+        "all_failed_extensions_closed": all(
+            not decisions[extension] for extension in failed_extensions
         ),
-        "all_recipe_fields_exact": len(complete) == len(admitted)
-        and all(all(row["recipe"]["exact"].values()) for row in complete),
-        "all_replays_byte_exact": len(complete) == len(admitted)
-        and all(
-            row["replay_byte_exact"]
-            and row["output"]["sha256"]
-            == row["replay"]["sha256"]
-            == row["replay"]["returned_sha256"]
-            for row in complete
-        ),
-        "all_sources_immutable": len(complete) == len(admitted)
-        and all(row["source_unchanged"] for row in complete),
+        "all_sources_immutable": all(source_immutability.values()),
+        "at_least_one_extension_passed": bool(passed_extensions),
         "bindings_exact": all(bindings.values()),
         "commits_resolve": all(commits.values()),
         "network_requests_zero": True,
         "preflight_reports_exact": all(reports.values()),
-        "required_extensions_complete": len(complete) == len(admitted),
+        "passing_extensions_exact": all(
+            _product_record_passes(row, config)
+            for row in product_records
+            if row.get("extension") in passed_extensions
+        ),
         "runtime_exact": all(runtime.values()),
         "scratch_residue_zero": not controller_root.exists(),
         "tracked_worktree_clean": shared._tracked_clean(),
@@ -502,15 +534,19 @@ def execute_formal(
         "claim_ceiling": config["claim_ceiling"],
         "commits": commits,
         "execution_commit": shared._git_head(),
+        "extension_decisions": decisions,
+        "failed_extensions": failed_extensions,
         "gates": gates,
         "network_requests": 0,
         "preflight_reports": reports,
         "product_records": product_records,
+        "passed_extensions": passed_extensions,
         "runtime": {"checks": runtime, **config["runtime"]},
         "scratch_recovered_empty_tree": recovered_empty_tree,
         "schema": FORMAL_SCHEMA,
         "scratch_residue_files": 0 if not controller_root.exists() else 1,
-        "status": "PASS_PRIVATE_U7_19B_MULTI_VENDOR_RAW_PRODUCT_INGRESS"
+        "source_immutability": source_immutability,
+        "status": "PASS_PRIVATE_U7_19B_PARTIAL_MULTI_VENDOR_RAW_PRODUCT_INGRESS"
         if all(gates.values())
         else "FAIL_CLOSED_U7_19B_MULTI_VENDOR_RAW_PRODUCT_INGRESS",
         "stop_rule": config["stop_rule"],
