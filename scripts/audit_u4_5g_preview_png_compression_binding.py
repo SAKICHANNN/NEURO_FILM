@@ -201,6 +201,9 @@ def _invalid_controls(source: Path, scratch: Path) -> dict[str, bool]:
 
 
 def execute(config_path: Path, *, reverse: bool = False) -> dict[str, Any]:
+    config_path = Path(config_path)
+    if not config_path.is_absolute():
+        config_path = ROOT / config_path
     config = json.loads(config_path.read_text(encoding="utf-8"))
     source = ROOT / config["source"]["path"]
     if not source.is_file() or sha256_file(source) != config["source"]["sha256"]:

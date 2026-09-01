@@ -23,7 +23,7 @@ def test_u4_5g_contract_has_exact_source_and_frozen_levels() -> None:
 
 
 def test_u4_5g_execution_passes_all_frozen_gates() -> None:
-    report = execute(CONFIG)
+    report = execute(CONFIG.relative_to(ROOT))
     assert report["status"] == "PASS_PRIVATE_U4_5G_PREVIEW_PNG_COMPRESSION_BINDING"
     assert all(report["gates"].values())
     assert report["owned_residue_empty"] is True
