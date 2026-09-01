@@ -736,7 +736,13 @@ def test_one_photo_ui_keeps_single_export_route(
     state = workflow.render_previews(first, 0.5)
     app._preview_complete(state)
 
-    def single_export(style_id: str, output_path: Path) -> object:
+    def single_export(
+        style_id: str,
+        output_path: Path,
+        *,
+        output_format_id: str = "png16",
+    ) -> object:
+        assert output_format_id == "png16"
         calls.append((style_id, output_path))
         return desktop_module.DesktopExportReceipt(
             style_id=style_id,

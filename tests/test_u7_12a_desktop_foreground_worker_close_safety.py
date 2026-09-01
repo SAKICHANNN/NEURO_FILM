@@ -43,7 +43,14 @@ class _HeldWorkflow:
         assert self.release.wait(5)
         return object()
 
-    def export(self, _style_id: str, _destination: Path) -> object:
+    def export(
+        self,
+        _style_id: str,
+        _destination: Path,
+        *,
+        output_format_id: str = "png16",
+    ) -> object:
+        assert output_format_id == "png16"
         self.started.set()
         assert self.release.wait(5)
         return object()

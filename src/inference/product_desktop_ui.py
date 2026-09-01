@@ -15,12 +15,14 @@ from PIL import Image, ImageTk
 
 from .product_desktop import (
     PRODUCT_LOOKS,
+    PRODUCT_OUTPUT_FORMATS,
     DesktopBatchInput,
     DesktopBatchReceipt,
     DesktopExportReceipt,
     DesktopPreviewState,
     ProductDesktopError,
     ProductDesktopWorkflow,
+    product_output_format,
 )
 
 _LOOK_IDS = tuple(row["style_id"] for row in PRODUCT_LOOKS)
@@ -56,6 +58,8 @@ class ProductDesktopApp:
         self.preview_ready = False
         self.style = tk.StringVar(value="")
         self.amount = tk.DoubleVar(value=1.0)
+        self.output_format = tk.StringVar(value="png16")
+        self.output_format_text = tk.StringVar(value="Single-photo output")
         self.input_text = tk.StringVar(value="No photo selected")
         self.status = tk.StringVar(
             value="Choose a photo to begin. No image leaves this computer."
@@ -224,6 +228,28 @@ class ProductDesktopApp:
             wraplength=760,
         )
         self.status_label.pack(side="left", fill="x", expand=True)
+        self.format_frame = ttk.Frame(footer, style="Root.TFrame")
+        self.format_frame.pack(side="right", padx=(12, 0))
+        self.format_label = ttk.Label(
+            self.format_frame,
+            textvariable=self.output_format_text,
+            style="Body.TLabel",
+        )
+        self.format_label.pack(anchor="e")
+        self.output_format_buttons: dict[str, ttk.Radiobutton] = {}
+        format_choices = ttk.Frame(self.format_frame, style="Root.TFrame")
+        format_choices.pack(anchor="e")
+        for row in PRODUCT_OUTPUT_FORMATS:
+            button = ttk.Radiobutton(
+                format_choices,
+                text=row.display_name,
+                value=row.format_id,
+                variable=self.output_format,
+                command=self._output_format_changed,
+                takefocus=True,
+            )
+            button.pack(side="left", padx=(8, 0))
+            self.output_format_buttons[row.format_id] = button
         self.export_button = ttk.Button(
             footer,
             text="Export PNG16 + recipe",
@@ -242,6 +268,7 @@ class ProductDesktopApp:
             takefocus=True,
         )
         self.cancel_button.pack(side="right")
+        self._update_output_format_controls()
 
     def _set_inputs(self, paths: tuple[Path, ...]) -> None:
         if not 1 <= len(paths) <= 100:
@@ -268,7 +295,10 @@ class ProductDesktopApp:
         self.style.set("")
         self.preview_ready = False
         self.export_button.configure(state="disabled")
+        if len(resolved) > 1:
+            self.output_format.set("png16")
         self._update_export_label()
+        self._update_output_format_controls()
         self.status.set(
             "Photo selected. Render previews to compare the three looks."
             if len(resolved) == 1
@@ -322,13 +352,35 @@ class ProductDesktopApp:
 
     def _update_export_label(self) -> None:
         count = len(self.input_paths)
+        output = product_output_format(self.output_format.get())
         self.export_button.configure(
             text=(
-                "Export PNG16 + recipe"
+                f"Export {output.display_name} + recipe"
                 if count <= 1
                 else f"Export {count} PNG16 + recipes"
             )
         )
+
+    def _update_output_format_controls(self) -> None:
+        single_photo = len(self.input_paths) == 1
+        enabled = single_photo and not self.busy
+        if not single_photo:
+            self.output_format.set("png16")
+        self.output_format_text.set(
+            "Single-photo output" if single_photo else "Batch output fixed: PNG16"
+        )
+        state = "normal" if enabled else "disabled"
+        for button in self.output_format_buttons.values():
+            button.configure(state=state)
+        self._update_export_label()
+
+    def _output_format_changed(self) -> None:
+        output = product_output_format(self.output_format.get())
+        self._update_export_label()
+        if self.preview_ready:
+            self.status.set(
+                f"Output changed to {output.display_name}. Existing previews remain valid."
+            )
 
     def _set_busy(self, busy: bool, message: str) -> None:
         self.busy = busy
@@ -336,6 +388,7 @@ class ProductDesktopApp:
         self.choose_button.configure(state=state)
         self.preview_button.configure(state=state)
         self.amount_scale.configure(state=state)
+        self._update_output_format_controls()
         look_state = "normal" if not busy and self.preview_ready else "disabled"
         for button in self.look_buttons.values():
             button.configure(state=look_state)
@@ -361,7 +414,9 @@ class ProductDesktopApp:
         if self.preview_ready and not self.busy:
             self.export_button.configure(state="normal")
             self.status.set(
-                "Look selected. Export a new PNG16 + recipe pair."
+                "Look selected. Export a new "
+                f"{product_output_format(self.output_format.get()).display_name} "
+                "+ recipe pair."
                 if len(self.input_paths) <= 1
                 else (
                     f"Look selected for all {len(self.input_paths)} photos. "
@@ -469,7 +524,9 @@ class ProductDesktopApp:
         self._set_busy(
             False,
             (
-                "Previews ready. Select one look and export a new PNG16 + recipe pair."
+                "Previews ready. Select one look and export a new "
+                f"{product_output_format(self.output_format.get()).display_name} "
+                "+ recipe pair."
                 if len(self.input_paths) <= 1
                 else (
                     f"Representative preview ready for {len(self.input_paths)} photos. "
@@ -515,17 +572,33 @@ class ProductDesktopApp:
                 self._batch_complete,
             )
             return
+        output = product_output_format(self.output_format.get())
         destination = filedialog.asksaveasfilename(
             title="Export Look Approximation",
-            defaultextension=".png",
-            filetypes=(("16-bit PNG", "*.png"),),
-            initialfile=f"{state.input_path.stem}-{selected}.png",
+            defaultextension=output.canonical_extension,
+            filetypes=(
+                (
+                    output.display_name,
+                    " ".join(f"*{suffix}" for suffix in output.accepted_extensions),
+                ),
+            ),
+            initialfile=(
+                f"{state.input_path.stem}-{selected}{output.canonical_extension}"
+            ),
         )
         if not destination:
             return
-        self._set_busy(True, "Rendering full-resolution PNG16 and strict recipe…")
+        output_format_id = output.format_id
+        self._set_busy(
+            True,
+            f"Rendering full-resolution {output.display_name} and strict recipe…",
+        )
         self._background(
-            lambda: self.workflow.export(selected, Path(destination)),
+            lambda: self.workflow.export(
+                selected,
+                Path(destination),
+                output_format_id=output_format_id,
+            ),
             self._export_complete,
         )
 

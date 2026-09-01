@@ -92,6 +92,78 @@ class _DirectorySeal:
 
 
 @dataclass(frozen=True)
+class ProductOutputFormat:
+    """Existing product encoder exposed by the one-photo desktop."""
+
+    format_id: str
+    display_name: str
+    canonical_extension: str
+    accepted_extensions: tuple[str, ...]
+    recipe_format: str
+    bit_depth: int
+    png_compression: int | None
+
+
+PRODUCT_OUTPUT_FORMATS: tuple[ProductOutputFormat, ...] = (
+    ProductOutputFormat(
+        format_id="png16",
+        display_name="PNG16",
+        canonical_extension=".png",
+        accepted_extensions=(".png",),
+        recipe_format="PNG",
+        bit_depth=16,
+        png_compression=6,
+    ),
+    ProductOutputFormat(
+        format_id="tiff16",
+        display_name="TIFF16",
+        canonical_extension=".tiff",
+        accepted_extensions=(".tif", ".tiff"),
+        recipe_format="TIFF",
+        bit_depth=16,
+        png_compression=None,
+    ),
+    ProductOutputFormat(
+        format_id="jpeg8",
+        display_name="JPEG8",
+        canonical_extension=".jpg",
+        accepted_extensions=(".jpg", ".jpeg"),
+        recipe_format="JPEG",
+        bit_depth=8,
+        png_compression=None,
+    ),
+)
+_OUTPUT_FORMATS_BY_ID = {row.format_id: row for row in PRODUCT_OUTPUT_FORMATS}
+_DEFAULT_OUTPUT_FORMAT_ID = "png16"
+
+
+def product_output_format(output_format_id: str) -> ProductOutputFormat:
+    """Resolve one frozen desktop output format or fail closed."""
+
+    if not isinstance(output_format_id, str):
+        raise ProductDesktopError("unknown desktop output format")
+    try:
+        return _OUTPUT_FORMATS_BY_ID[output_format_id]
+    except KeyError as exc:
+        raise ProductDesktopError("unknown desktop output format") from exc
+
+
+def _validate_output_format_path(
+    output_format_id: str, output_path: Path
+) -> ProductOutputFormat:
+    spec = product_output_format(output_format_id)
+    suffix = Path(output_path).suffix.casefold()
+    if not suffix:
+        raise ProductDesktopError("desktop final export requires a file extension")
+    if suffix not in spec.accepted_extensions:
+        raise ProductDesktopError(
+            f"desktop {spec.display_name} export requires "
+            f"{', '.join(spec.accepted_extensions)}"
+        )
+    return spec
+
+
+@dataclass(frozen=True)
 class DesktopPreviewState:
     """Hash-bound preview state eligible for one or more explicit exports."""
 
@@ -111,7 +183,7 @@ class DesktopPreviewState:
 
 @dataclass(frozen=True)
 class DesktopExportReceipt:
-    """Verified final PNG16 and strict-recipe identities."""
+    """Verified final image and strict-recipe identities."""
 
     style_id: str
     look_amount: float
@@ -122,6 +194,7 @@ class DesktopExportReceipt:
     recipe_path: Path
     recipe_sha256: str
     recipe: dict[str, Any]
+    output_format_id: str = _DEFAULT_OUTPUT_FORMAT_ID
 
 
 @dataclass(frozen=True)
@@ -700,7 +773,13 @@ class ProductDesktopWorkflow:
             source_commit=source_commit,
         )
 
-    def export(self, style_id: str, output_path: Path) -> DesktopExportReceipt:
+    def export(
+        self,
+        style_id: str,
+        output_path: Path,
+        *,
+        output_format_id: str = _DEFAULT_OUTPUT_FORMAT_ID,
+    ) -> DesktopExportReceipt:
         """Export the selected current preview through the existing product CLI."""
 
         with self._lock:
@@ -714,8 +793,7 @@ class ProductDesktopWorkflow:
             if sha256_file(state.input_path) != state.input_sha256:
                 raise ProductDesktopError("input changed after preview")
             destination = Path(output_path).resolve(strict=False)
-            if destination.suffix.casefold() != ".png":
-                raise ProductDesktopError("desktop final export requires a .png path")
+            format_spec = _validate_output_format_path(output_format_id, destination)
             if not destination.parent.is_dir():
                 raise ProductDesktopError("output parent must be an existing directory")
             recipe_path = destination.with_suffix(".recipe.json")
@@ -732,7 +810,11 @@ class ProductDesktopWorkflow:
                 raise ProductDesktopError(
                     "output and recipe destinations must be absent"
                 )
-            command = self.export_command(style_id, destination)
+            command = self.export_command(
+                style_id,
+                destination,
+                output_format_id=output_format_id,
+            )
             environment = {
                 key: value
                 for key, value in os.environ.items()
@@ -758,7 +840,9 @@ class ProductDesktopWorkflow:
             if (
                 recipe["render"]["style"] != style_id
                 or float(recipe["render"]["look_amount"]) != state.look_amount
-                or recipe["output"]["bit_depth"] != 16
+                or recipe["output"]["format"] != format_spec.recipe_format
+                or recipe["output"]["bit_depth"] != format_spec.bit_depth
+                or Path(str(recipe["output"]["path"])).resolve() != destination
                 or str(recipe["software"]["commit"]).lower() != state.source_commit
                 or recipe["claim"]["evidence_grade"] != "look-approximation"
                 or recipe["claim"].get("calibrated_reference_allowed") is not False
@@ -774,6 +858,7 @@ class ProductDesktopWorkflow:
                 recipe_path=recipe_path,
                 recipe_sha256=sha256_file(recipe_path),
                 recipe=recipe,
+                output_format_id=output_format_id,
             )
 
     def render_batch_previews(
@@ -1069,7 +1154,13 @@ class ProductDesktopWorkflow:
                 if not published:
                     _cleanup_bound_stage(stage_seal, owned_files)
 
-    def export_command(self, style_id: str, output_path: Path) -> tuple[str, ...]:
+    def export_command(
+        self,
+        style_id: str,
+        output_path: Path,
+        *,
+        output_format_id: str = _DEFAULT_OUTPUT_FORMAT_ID,
+    ) -> tuple[str, ...]:
         state = self._state
         if state is None:
             raise ProductDesktopError("render previews before exporting")
@@ -1080,6 +1171,7 @@ class ProductDesktopWorkflow:
             style_id,
             Path(output_path),
             state.look_amount,
+            output_format_id=output_format_id,
         )
 
     def _build_export_command(
@@ -1088,8 +1180,11 @@ class ProductDesktopWorkflow:
         style_id: str,
         output_path: Path,
         look_amount: float,
+        *,
+        output_format_id: str = _DEFAULT_OUTPUT_FORMAT_ID,
     ) -> tuple[str, ...]:
-        return (
+        format_spec = _validate_output_format_path(output_format_id, output_path)
+        command = [
             str(self.python_executable),
             "-I",
             str(self.root / "scripts/render_film.py"),
@@ -1099,17 +1194,22 @@ class ProductDesktopWorkflow:
             "--look-amount",
             format(_bounded_look_amount(look_amount), ".17g"),
             "--output-bit-depth",
-            "16",
-            "--png-compression",
-            str(self.png_compression),
-            "--write-recipe",
-            "--tile-size",
-            str(self.tile_size),
-            "--tile-workers",
-            str(self.tile_workers),
-            "--output",
-            str(Path(output_path).resolve(strict=False)),
+            str(format_spec.bit_depth),
+        ]
+        if format_spec.png_compression is not None:
+            command.extend(("--png-compression", str(self.png_compression)))
+        command.extend(
+            (
+                "--write-recipe",
+                "--tile-size",
+                str(self.tile_size),
+                "--tile-workers",
+                str(self.tile_workers),
+                "--output",
+                str(Path(output_path).resolve(strict=False)),
+            )
         )
+        return tuple(command)
 
     def close(self) -> bool:
         """Remove only a still-owned, unchanged preview workspace."""
