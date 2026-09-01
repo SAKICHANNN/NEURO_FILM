@@ -50,6 +50,9 @@ class ProductDesktopApp:
         self._batch_thread: threading.Thread | None = None
         self._batch_outcome: dict[str, Any] = {}
         self._batch_progress_queue: SimpleQueue[tuple[int, int, str]] = SimpleQueue()
+        self._foreground_thread: threading.Thread | None = None
+        self._foreground_outcome: dict[str, Any] = {}
+        self._foreground_success: Callable[[Any], None] | None = None
         self.preview_ready = False
         self.style = tk.StringVar(value="")
         self.amount = tk.DoubleVar(value=1.0)
@@ -369,22 +372,52 @@ class ProductDesktopApp:
     def _background(
         self, action: Callable[[], Any], success: Callable[[Any], None]
     ) -> None:
+        if self._foreground_thread is not None:
+            raise ProductDesktopError("a foreground worker is already active")
+        self._foreground_outcome = {}
+        self._foreground_success = success
+
         def worker() -> None:
             try:
-                result = action()
-            except Exception as exc:  # noqa: BLE001 - report worker failures in UI
-                self.root.after(0, lambda error=exc: self._show_error(error))
-            else:
+                self._foreground_outcome["result"] = action()
+            except BaseException as exc:  # noqa: BLE001 - returned to Tk thread
+                self._foreground_outcome["error"] = exc
 
-                def finish_success() -> None:
-                    try:
-                        success(result)
-                    except Exception as exc:  # noqa: BLE001 - report UI completion failures
-                        self._show_error(exc)
+        self._foreground_thread = threading.Thread(
+            target=worker,
+            name="kmcfm-desktop-foreground",
+            daemon=False,
+        )
+        self._foreground_thread.start()
+        self.root.after(50, self._poll_foreground)
 
-                self.root.after(0, finish_success)
-
-        threading.Thread(target=worker, daemon=True).start()
+    def _poll_foreground(self) -> None:
+        worker = self._foreground_thread
+        if worker is None:
+            return
+        if worker.is_alive():
+            self.root.after(50, self._poll_foreground)
+            return
+        worker.join(timeout=0)
+        self._foreground_thread = None
+        error = self._foreground_outcome.pop("error", None)
+        has_result = "result" in self._foreground_outcome
+        result = self._foreground_outcome.pop("result", None)
+        success = self._foreground_success
+        self._foreground_success = None
+        if self._closing:
+            self._finish_close()
+            return
+        if error is not None:
+            self._show_error(error)
+            return
+        if not has_result or success is None:
+            self._show_error(ProductDesktopError("foreground worker returned no result"))
+            return
+        try:
+            success(result)
+        except Exception as exc:  # noqa: BLE001 - report UI completion failures
+            self._show_error(exc)
 
     def render_previews(self) -> None:
         if self.busy:
@@ -611,6 +644,13 @@ class ProductDesktopApp:
         messagebox.showerror("K-MCFM stopped safely", str(exc))
 
     def close(self) -> None:
+        if self._foreground_thread is not None:
+            self._closing = True
+            self._set_busy(True, "Closing safely after the current operation…")
+            self.cancel_button.configure(state="disabled")
+            if not self._foreground_thread.is_alive():
+                self._poll_foreground()
+            return
         if self._batch_thread is not None:
             if self._batch_thread.is_alive():
                 self._closing = True
