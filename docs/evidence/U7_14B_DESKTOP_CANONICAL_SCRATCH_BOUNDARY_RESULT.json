@@ -1,0 +1,112 @@
+{
+    "schema": "kmcfm.u7-14b-desktop-canonical-scratch-boundary-evidence.v1",
+    "experiment_id": "U7_14B_DESKTOP_CANONICAL_SCRATCH_BOUNDARY",
+    "date": "2026-09-02",
+    "status": "PASS_PRIVATE_U7_14B_DESKTOP_CANONICAL_SCRATCH_BOUNDARY",
+    "automatic_pass": true,
+    "commits": {
+        "contract": "89939682",
+        "implementation": "6ef3a8cc",
+        "formal_controller": "a0ea6e52",
+        "formal_execution": "a0ea6e5287ec7e2fdedb2ba20feda288cbf71c08"
+    },
+    "formal_reports": {
+        "forward_path": "outputs/eval/u7_14b_desktop_canonical_scratch_boundary/formal_forward.json",
+        "reverse_path": "outputs/eval/u7_14b_desktop_canonical_scratch_boundary/formal_reverse.json",
+        "bytes_each": 2803,
+        "sha256": "041390e2c7124c4d6e49c3bb456fed29b221aa20bebac05a9a8522d6e8106150",
+        "byte_exact": true,
+        "scientific_identity": "e8eb81f238775265776022afe474ae9aab7a4225fd660afd56220d4359cbfee0",
+        "order_independent_scientific_payload_exact": true,
+        "owned_tmp_residue": 0,
+        "owned_external_control_residue": 0
+    },
+    "science": {
+        "parent_defect_reproduced": true,
+        "accepted": [
+            "canonical repository tmp",
+            "existing resolved descendant",
+            "normalized equivalent descendant",
+            "U7.10B-style formal launcher descendant"
+        ],
+        "rejected_before_tk_input_or_scratch": [
+            "repository root",
+            "data",
+            "outputs",
+            "C drive root",
+            "tmp/../outputs normalized escape",
+            "external project-owned P-backed directory",
+            "missing path",
+            "regular file"
+        ],
+        "reparse_escape_supported_on_formal_volume": false,
+        "reparse_escape_rejected_when_supported": null,
+        "default_real_tk_smoke_returncode": 0,
+        "explicit_descendant_real_tk_smoke_returncode": 0,
+        "forbidden_pre_rejection_imports": [],
+        "foreign_sentinel_exact": true,
+        "source_immutable": true
+    },
+    "gates": {
+        "canonical_and_descendants_accepted": true,
+        "external_and_normalized_escapes_rejected": true,
+        "foreign_sentinel_immutable": true,
+        "owned_residue_zero": true,
+        "parent_defect_reproduced": true,
+        "real_default_smoke_mainloop": true,
+        "real_explicit_descendant_smoke_mainloop": true,
+        "rejected_before_tk_input_and_scratch": true,
+        "reparse_escape_rejected_when_supported": true,
+        "source_immutable": true,
+        "tracked_clean_before": true
+    },
+    "bindings": {
+        "configs/u7_14b_desktop_canonical_scratch_boundary_v1.json": "c7ab40615336b9a5d973f1e708c3e0b5a5c193cfb8f821e3a8efe90470f8bbd4",
+        "docs/planning/U7_14B_DESKTOP_CANONICAL_SCRATCH_BOUNDARY_CONTRACT.md": "101d1ee6f6974c6b54d4044ecf6525c7064eebd18853b67177f5a88ce097599c",
+        "scripts/open_product_desktop.py": "316413043cc43c204f5bb2a95007ad49e01c0e12f345aef279646edbd0bfc1fe",
+        "tests/test_u7_10a_product_desktop_input_workflow.py": "973915ee0d1d7f96bceafbb89a9fdd68a5ae0483a0d71b4d2f11fc159959eda5",
+        "tests/test_u7_14b_desktop_canonical_scratch_boundary.py": "8fb72ede617d82699e5f463b3f295a652be0d71ad0c02898e10d45d946c62b31",
+        "scripts/audit_u7_14b_desktop_canonical_scratch_boundary.py": "5c3a782d477e489ad972e2e3761f1748232d9af7d0b8474b0ce54f33acbfd8f8",
+        "tests/test_audit_u7_14b_desktop_canonical_scratch_boundary.py": "1a53dfe1e81afb5f4a4cffbb5abeb1785b9706bcfafb4d1acd3fae43409144f7"
+    },
+    "verification": {
+        "fresh_process_behavioral": "81 passed, 1 host-capability skip",
+        "current_evidence_and_installed_launcher": "16 passed",
+        "focused_before_formal": "27 passed, 1 host-capability skip",
+        "ruff": "passed",
+        "format": "passed",
+        "py_compile": "passed",
+        "json": "passed",
+        "diff_check": "passed"
+    },
+    "excluded_diagnostics": [
+        {
+            "accepted": false,
+            "stage": "pre-formal combined parent regression",
+            "result": "62 passed, 1 host-capability skip, 1 transient Tk failure",
+            "reason": "A shared process briefly observed the system Tk altTheme.tcl as missing; the file was present immediately afterward and the exact failed U7.11A test passed alone. Formal parent evidence uses separate fresh processes and does not count this combined run."
+        },
+        {
+            "accepted": false,
+            "stage": "post-formal historical current-file binding",
+            "result": "17 passed, 1 expected historical live-source binding failure",
+            "reason": "U7.10A immutable evidence records the pre-U7.14B open_product_desktop.py SHA. The additive storage-boundary repair intentionally changes that current file; old evidence remains unchanged and its behavioral suite passes."
+        }
+    ],
+    "claim": {
+        "mode": "film-inspired / Look Approximation",
+        "canonical_repo_storage_only": true,
+        "filesystem_sandbox": false,
+        "standalone_installer": false,
+        "public_release": false,
+        "cross_platform_gui": false,
+        "calibrated_camera_rendering": false,
+        "calibrated_stock_response": false,
+        "physical_film_reproduction": false,
+        "stock_distinguishability": false,
+        "hdr_or_wide_gamut": false
+    },
+    "decision": "PASS_PRIVATE_U7_14B_DESKTOP_CANONICAL_SCRATCH_BOUNDARY",
+    "interpretation": "The public native desktop entry now routes every generated scratch workspace through the current repo-relative tmp storage binding. An explicit override can select only the resolved canonical root or one existing resolved descendant. External, drive-root, data, outputs, normalized-escape, missing and regular-file controls reject before tkinter, product modules, input inspection or scratch publication. The renderer, look catalog, strength, previews, exports, recipes, receipts and internal ProductDesktopWorkflow injection remain unchanged.",
+    "stop_rule": "Stop adjacent scratch flags, fallback wrappers and machine-specific storage paths. This pass does not authorize arbitrary filesystem sandboxing, standalone/public installation, cross-platform GUI, calibrated camera rendering, calibrated stock response, physical-film reproduction, stock distinguishability, HDR/wide-gamut support or product-value claims."
+}
