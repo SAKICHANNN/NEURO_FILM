@@ -299,7 +299,6 @@ def run_gold_materialization(
                             "recipe": {
                                 "relative_path": receipt.recipe_path.relative_to(output_dir).as_posix(),
                                 "bytes": receipt.recipe_path.stat().st_size,
-                                "sha256": receipt.recipe_sha256,
                                 "semantic_identity": normalized_recipe_semantic_identity(
                                     receipt.recipe
                                 ),
