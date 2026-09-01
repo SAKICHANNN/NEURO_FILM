@@ -71,18 +71,27 @@
     },
     "audit": {
       "path": "scripts/audit_u7_9b_private_runtime_canon_raw_compatibility.py",
-      "bytes": 19740,
-      "sha256": "be153d4c78c8eb06dc1ea903219cea9f0ca3e2184a2a0e7bbab3fa906a3a7acd"
+      "bytes": 20653,
+      "sha256": "fc1987086b182db05fb70d00c1a2f326e9629ff77cfcee0a171bea6c6f745fb4"
     },
     "test": {
       "path": "tests/test_u7_9b_private_runtime_canon_raw_compatibility.py",
-      "bytes": 3121,
-      "sha256": "fc1dc0f366f4341935ce7933ff24a5bc937d031541a0bf53367da3ec395a6960"
+      "bytes": 3858,
+      "sha256": "41d6bc9bd327a74c98de68dab96525b6e1a906c420a94fc30cba5aeff45c2307"
     }
   },
   "execution_lock": {
-    "implementation_commit": "1c8c7578a536109a09421d93de62d98d12a77f86",
+    "initial_implementation_commit": "1c8c7578a536109a09421d93de62d98d12a77f86",
+    "preexecution_scratch_correction_commit": "bb509c0815a1dd17113477b1f04d982fd2d5389e",
     "unified_formal_base_commit": "bb5d3fedb5619636c0e68a33d39c7d45159ce669"
+  },
+  "excluded_preexecution_attempt": {
+    "stage": "formal-scratch-parent-create",
+    "source_identity_hash_reads": 6,
+    "product_pixel_decodes": 0,
+    "runtime_installations": 0,
+    "renders": 0,
+    "reports": 0
   },
   "runtime": {
     "direct_python": ".venv/Scripts/python.exe",
