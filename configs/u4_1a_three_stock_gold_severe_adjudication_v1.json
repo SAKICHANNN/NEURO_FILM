@@ -1,0 +1,73 @@
+{
+  "schema": "neuro-film.u4-1a-three-stock-gold-severe-adjudication-contract.v1",
+  "node_id": "U4.1A",
+  "status": "FROZEN_BEFORE_CANDIDATE_RENDER",
+  "question": "Do all three current K=1 Look Approximation product looks avoid confirmed severe artifacts on every frozen U4.1 gold input, including direct original-file FilmSet face ingress?",
+  "input_manifest": {
+    "path": "outputs/filmcase/u41_provisional_eval_set.json",
+    "bytes": 18436,
+    "sha256": "de78bb8ee3db76ae217bdf19dfc043cfcfd8bae1f55797f58f9bb0ed3526cc15",
+    "selected_gold_ids": ["01", "05", "08", "09", "11", "18", "21", "29", "FS_FACE_01"],
+    "required_count": 9,
+    "required_coverage_complete": true,
+    "filmset_face_original_file_required": true
+  },
+  "candidate": {
+    "style_ids": ["velvia_50", "portra_400", "ektar_100"],
+    "look_amount": 1.0,
+    "output_format_id": "png16",
+    "profile_path": "configs/render_profiles/safe_rich_product_v1.json",
+    "profile_sha256": "09722cb48c55d1c4c460220c9f59b9ced81801c1b6fe856708a27f5cc99d39fe",
+    "film_color_stats_path": "configs/film_color_stats.json",
+    "film_color_stats_sha256": "1a45e90765e577edd4ca1773fc8c6cf98fd09b8afbdddfa519b1f097c5dd7c04",
+    "guardrails_path": "configs/color_guardrails.json",
+    "guardrails_sha256": "6669b7bc873febcc74ba7ddcbc1c1584807e38465447a5cdbeb24073efa00aa7",
+    "render_film_path": "scripts/render_film.py",
+    "render_film_sha256": "2013e7c2f95c2f6a0b84ccff1d93db9bec2b189aead84b1ca6b5ab477447f786",
+    "product_desktop_path": "src/inference/product_desktop.py",
+    "product_desktop_sha256": "26273e4d9ae950cf403a8e6e69d5d00a859faf02380604ac599f211594fe7f9f",
+    "three_stock_renderer_path": "src/inference/three_stock_look.py",
+    "three_stock_renderer_sha256": "43f758c999121be20f42c40d36ed25d56a7f478c669bc20379fbf1612dd1c943"
+  },
+  "review": {
+    "cells": 27,
+    "overview_required_per_cell": true,
+    "exact_crop_count_per_cell": 4,
+    "passes": 3,
+    "arm_orders": [
+      ["velvia_50", "portra_400", "ektar_100"],
+      ["portra_400", "ektar_100", "velvia_50"],
+      ["ektar_100", "velvia_50", "portra_400"]
+    ],
+    "categories": [
+      "dirty_or_blotchy_skin_or_object_colour",
+      "isolated_chroma_impulses",
+      "banding_or_posterization",
+      "objectionable_halos",
+      "face_text_object_or_fine_structure_loss"
+    ],
+    "maximum_confirmed_severe_per_arm": 0,
+    "maximum_unresolved_cells": 0,
+    "automatic_metrics_are_not_visual_veto_substitutes": true
+  },
+  "automatic_gates": {
+    "input_hash_and_geometry_exact": true,
+    "strict_recipe_replay_byte_exact": true,
+    "finite_output": true,
+    "maximum_new_exact_boundary_fraction": 0.0,
+    "forward_reverse_scientific_exact": true,
+    "source_immutable": true,
+    "network_reads_zero": true,
+    "owned_scratch_residue_zero": true
+  },
+  "output_root": "outputs/eval/u4_1a_three_stock_gold_severe_adjudication_v1",
+  "forbidden": {
+    "source_or_cell_substitution": true,
+    "post_review_crop_change": true,
+    "look_amount_or_renderer_rescue": true,
+    "preference_or_target_film_scoring": true,
+    "stock_calibration_or_physical_claim": true,
+    "new_source_search_or_download": true
+  },
+  "claim_ceiling": "Autonomous severe-artifact evidence for three unchanged deterministic film-inspired Look Approximation choices on nine frozen internal U4.1 gold inputs only; not calibrated or physical stock response, stock distinguishability, target-film closeness, preference, universal safety, FilmSet commercial rights, release or product value."
+}
