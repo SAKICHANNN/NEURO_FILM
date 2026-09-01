@@ -171,6 +171,7 @@ def _launcher_source(
     return f"""#!/usr/bin/env python3
 import hashlib
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -201,7 +202,16 @@ dirty = subprocess.run(
 if dirty.returncode or dirty.stdout.strip():
     fail("tracked repository drift")
 entry = root / "scripts" / "render_film.py"
-raise SystemExit(subprocess.call([sys.executable, str(entry), *sys.argv[1:]], cwd=root))
+environment = {{
+    key: value
+    for key, value in os.environ.items()
+    if not key.upper().startswith("PYTHON")
+}}
+raise SystemExit(subprocess.call(
+    [sys.executable, "-I", str(entry), *sys.argv[1:]],
+    cwd=root,
+    env=environment,
+))
 """
 
 
@@ -323,7 +333,7 @@ def install_product_runtime(
         launcher_cmd = destination / config["launcher_name"]
         _write_new_text(
             launcher_cmd,
-            f'@echo off\r\n"{python}" "{launcher_py}" %*\r\n',
+            f'@echo off\r\n"{python}" -I "{launcher_py}" %*\r\n',
             newline="",
         )
         receipt = {
