@@ -1,0 +1,55 @@
+{
+  "schema": "kmcfm.u7-19b-multi-vendor-raw-product-ingress-contract.v1",
+  "node_id": "U7.19B",
+  "status": "FROZEN_PREDECODE",
+  "predecode_fact": {
+    "pixel_decodes": 0,
+    "product_renders": 0,
+    "media_outputs": 0,
+    "reports": 0,
+    "all_extensions_already_declared": true
+  },
+  "bindings": {
+    "p315": {"path": "docs/evidence/P315_R1GL_NIKON_NEF_NO_COPY_INTAKE_RESULT.json", "bytes": 3937, "sha256": "6e0213f1bdac36bdde4ceda8729344299f0ea1dcb4b4f5a0696d57637bc453fa"},
+    "p316": {"path": "docs/evidence/P316_R1GN_FUJIFILM_RAF_NO_COPY_INTAKE_RESULT.json", "bytes": 4386, "sha256": "4672d98f3d0ca7443d4c8d34093802686807d76986ad0789979e9c6b72a9924b"},
+    "p317": {"path": "docs/evidence/P317_R1GO_SIGMA_X3F_NO_COPY_INTAKE_RESULT.json", "bytes": 3773, "sha256": "81ca041e4bec3e2202d2606610b1d191ccbb45307977113fe3b4013cadea96e4"},
+    "p319": {"path": "docs/evidence/P319_R1GR_LEAF_MOS_NO_COPY_INTAKE_RESULT.json", "bytes": 3819, "sha256": "49c6f7671dfa2a486d077a4903143393b611c3874f27a939d8a141eb8fbbef7a"},
+    "p320": {"path": "docs/evidence/P320_R1GS_HASSELBLAD_X2D_NO_COPY_INTAKE_RESULT.json", "bytes": 5658, "sha256": "501c5932dd9aa123fdd609c2f9bbdd021c4ad5ccca1b87a813cbfbc2f6988579"},
+    "raw_decode": {"path": "src/preprocess/raw_decode.py", "bytes": 4846, "sha256": "e95a528bcc9bfe13df1b4ab50e741529f76346d444430c5477bba2c4aaa0636d"},
+    "pipeline": {"path": "src/preprocess/pipeline.py", "bytes": 1035, "sha256": "21a7a165a895679e05bc43e5c67d7d9d439b19dfbe01cf346449e4ea90be6dc4"},
+    "render_cli": {"path": "scripts/render_film.py", "bytes": 43535, "sha256": "2013e7c2f95c2f6a0b84ccff1d93db9bec2b189aead84b1ca6b5ab477447f786"},
+    "render_profile": {"path": "configs/render_profiles/safe_rich_product_v1.json", "bytes": 4259, "sha256": "09722cb48c55d1c4c460220c9f59b9ced81801c1b6fe856708a27f5cc99d39fe"}
+  },
+  "runtime": {"platform": "Windows", "python": "3.12.10", "rawpy": "0.26.1", "libraw": [0, 22, 0], "numpy": "2.4.4", "pillow": "12.1.1"},
+  "limits": {"source_worker_seconds": 600, "product_worker_seconds": 1800, "peak_process_tree_rss_bytes": 17179869184, "network_requests": 0},
+  "strata": [
+    {"extension": ".nef", "id": "nikon_nef_dual_depth", "evidence": "P315", "representative": "nikon_d6_12bit", "sources": [
+      {"id": "nikon_d6_12bit", "path": "outputs/data/r0ee_rawpixls_native_raw_v1/nikon_d6_12bit.nef", "bytes": 14562481, "sha256": "3a098e704d0e1af97efc37541b43a37e5b3457d2f4e7828c0d8d9af37332f233"},
+      {"id": "nikon_d3s_14bit", "path": "outputs/data/r0ee_rawpixls_native_raw_v1/nikon_d3s_14bit.nef", "bytes": 14534253, "sha256": "9b7c39fb4c37a117aecdefdbdb52b35482a092681dfe66068d652b19c47c4eca"}
+    ]},
+    {"extension": ".raf", "id": "fujifilm_raf_dual_layout", "evidence": "P316", "representative": "fujifilm_s2pro_layout0", "sources": [
+      {"id": "fujifilm_s2pro_layout0", "path": "outputs/data/r0ee_rawpixls_native_raw_v1/fujifilm_s2pro.raf", "bytes": 13211656, "sha256": "9fe1bf1361f015d9db862228e4a26b23d69e81015ed4a032eaefb8242ae9ad42"},
+      {"id": "fujifilm_s7000_layout1", "path": "outputs/data/r0ee_rawpixls_native_raw_v1/fujifilm_s7000.raf", "bytes": 13096536, "sha256": "098aa2c64dc6a026f3f48f1494476a55751e08af2d37789b7f557fd11a14cf49"}
+    ]},
+    {"extension": ".x3f", "id": "sigma_x3f_dual_codec", "evidence": "P317", "representative": "sigma_dp1s_true", "sources": [
+      {"id": "sigma_sd10_huffman_10bit", "path": "data/r1go_sigma_x3f_dual_codec_v1/source/sigma_sd10.x3f", "bytes": 8103008, "sha256": "ea436ba459a7478d7b338428656fae905469de269f928749f3388db2b7b0d53f"},
+      {"id": "sigma_dp1s_true", "path": "data/r1go_sigma_x3f_dual_codec_v1/source/sigma_dp1s.x3f", "bytes": 14289348, "sha256": "dc667efc0c9314124c95c2b9d67a5ba9e6c372f77a9bbea81cae559e3a99436f"}
+    ]},
+    {"extension": ".mos", "id": "leaf_mos_dual_storage", "evidence": "P319", "representative": "aptus22_compression99_lossless", "sources": [
+      {"id": "aptus22_compression99_lossless", "path": "data/r1gr_leaf_aptus22_mos_dual_storage_v1/source/leaf_aptus22_compressed_lossless.mos", "bytes": 23423633, "sha256": "8a1a101cb3940b0648af54a721d92e6fb8612dd29a0909036ea2753196a00ec2"},
+      {"id": "aptus22_compression1_uncompressed", "path": "data/r1gr_leaf_aptus22_mos_dual_storage_v1/source/leaf_aptus22_uncompressed.mos", "bytes": 43365202, "sha256": "2a54d6fb8da0f01a966aaa21b896a036428c83fb2009824bb2ba946b9216a81c"}
+    ]},
+    {"extension": ".3fr", "id": "hasselblad_x2d_3fr_pair", "evidence": "P320", "representative": "x2d_3fr_a", "sources": [
+      {"id": "x2d_3fr_a", "path": "data/r1gs_hasselblad_x2d_dual_container_v1/source/x2d_3fr_a.3FR", "bytes": 213311488, "sha256": "dcc5a4abe3498e6f25e89bb491995fd12c3b669d9277c71b45b49210d3e56280"},
+      {"id": "x2d_3fr_b", "path": "data/r1gs_hasselblad_x2d_dual_container_v1/source/x2d_3fr_b.3FR", "bytes": 213311488, "sha256": "e19d90bab052b75e2bd04f77d9b9f758a9958ae942ee3e2a8991329a981a0e23"}
+    ]},
+    {"extension": ".fff", "id": "hasselblad_x2d_fff_pair", "evidence": "P320", "representative": "x2d_fff_a", "sources": [
+      {"id": "x2d_fff_a", "path": "data/r1gs_hasselblad_x2d_dual_container_v1/source/x2d_fff_a.fff", "bytes": 160894518, "sha256": "44c38665694e07baf47f1fc34fb9ea0f1bf70eb71b7390183d3c0ef23d164e0f"},
+      {"id": "x2d_fff_b", "path": "data/r1gs_hasselblad_x2d_dual_container_v1/source/x2d_fff_b.fff", "bytes": 160885346, "sha256": "44977fdaa3063eacbb2ac416dfb531bb4e3b96f3745d073dc49fb1ebcd78bedc"}
+    ]}
+  ],
+  "preflight": {"require_all_members": true, "require_public_dispatch": true, "require_hwc3_float32": true, "require_finite_unit_interval": true, "require_nonconstant": true, "require_owned_c_contiguous_writable": true, "require_linear_srgb_scene_linear": true, "require_orientation_applied": true, "require_absent_alpha": true, "required_warning_codes": ["generic_raw_display_mapping", "generic_raw_render"], "require_forward_reverse_pixel_hash_exact": true},
+  "product_chain": {"style": "ektar_100", "look_amount": 1.0, "profile_path": "configs/render_profiles/safe_rich_product_v1.json", "output_bit_depth": 8, "write_recipe": true, "require_png_rgb_srgb_icc": true, "require_claim_render_mode": "Style-safe", "require_claim_output_label": "film-inspired", "require_claim_evidence_grade": "look-approximation", "require_calibrated_reference_allowed_false": true, "require_replay_byte_exact": true, "require_source_immutable": true, "require_owned_scratch_residue_zero": true},
+  "stop_rule": "Evaluate each frozen extension independently. Any member or product-chain failure closes that extension without source replacement, member selection, stratum splitting, parameter/runtime/gate changes, private-callable rescue or post-result tuning.",
+  "claim_ceiling": "Exact-file generic public WorkingImage and Look Approximation recipe/replay compatibility only. No generic vendor RAW, vendor-exact colour, demosaic quality, pixel-shift fusion, scene tone mapping, calibrated stock response, physical-film reproduction, multi-stock completion, public release or product-value claim."
+}
