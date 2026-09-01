@@ -46,5 +46,35 @@
     "require_invalid_predecode_rejection": true,
     "require_zero_owned_residue": true
   },
+  "execution_bindings": {
+    "output_encode": {
+      "path": "src/preprocess/output_encode.py",
+      "bytes": 13534,
+      "sha256": "04496435dec4e3f7c8545beaeaddc4ce0c65e81a7fe2acfb60b70e2c6bbcddd9",
+      "git_blob": "1dce20f28ceb89cf0896e695603567fd251c6cca",
+      "commit": "c78ba668fdc37b8151e0642746decad648e28c26"
+    },
+    "three_stock_preview": {
+      "path": "src/inference/three_stock_preview.py",
+      "bytes": 11474,
+      "sha256": "bd0d76e187ee1c04ecfa0b574ac2251e8f7e2cae968954c0a75d1cd9dfb54bf5",
+      "git_blob": "a2f5f5b225f008dec78cfb6e6e040ccde95ff950",
+      "commit": "c78ba668fdc37b8151e0642746decad648e28c26"
+    },
+    "preview_cli": {
+      "path": "scripts/render_three_stock_preview.py",
+      "bytes": 1928,
+      "sha256": "78eb55a9ddce6c23842a45676fce9d8a8e82100d1b46e2793d73fc2e1ea22cd2",
+      "git_blob": "30fac7ded00568f0206577b72552bdf1aadd8fcb",
+      "commit": "c78ba668fdc37b8151e0642746decad648e28c26"
+    },
+    "audit_runner": {
+      "path": "scripts/audit_u4_5g_preview_png_compression_binding.py",
+      "bytes": 13036,
+      "sha256": "329e2f462b47216c195ed64bfa7f9cee99b5666f8f27c69bb10dda12b892106b",
+      "git_blob": "6f27b62d1db2576c7b433784e24b07d63349afb7",
+      "commit": "c78ba668fdc37b8151e0642746decad648e28c26"
+    }
+  },
   "claim_ceiling": "Private PNG8 preview compression parameter correctness for three existing film-inspired Look Approximations only; not calibrated stock response, image-quality preference, final-export performance, public API, package, installer or release."
 }
