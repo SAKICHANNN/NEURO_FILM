@@ -45,6 +45,7 @@ BOUND_PATHS = (
     "src/inference/product_desktop_ui.py",
     "tests/test_u7_14a_desktop_input_basis_preview.py",
     "scripts/audit_u7_14a_desktop_input_basis_preview.py",
+    "tests/test_u7_14a_desktop_input_basis_preview_audit.py",
 )
 STYLE_IDS = ("velvia_50", "portra_400", "ektar_100")
 FORMAL_ROOT = ROOT / "tmp/u7_14a_desktop_input_basis_preview_formal"
@@ -92,8 +93,19 @@ def _rgb8(path: Path) -> np.ndarray:
 
 
 def _portable_manifest(manifest: dict[str, Any], root: Path) -> dict[str, Any]:
-    encoded = json.dumps(manifest, sort_keys=True)
-    return json.loads(encoded.replace(str(root.resolve()), "<root>"))
+    portable = json.loads(json.dumps(manifest, sort_keys=True))
+    resolved_root = root.resolve()
+    for row in portable["rows"]:
+        output = Path(row["output_path"])
+        if output.parent != resolved_root:
+            raise U714AError("preview row escaped its owned output root")
+        row["output_path"] = f"<root>/{output.name}"
+    if "input_preview" in portable:
+        output = Path(portable["input_preview"]["output_path"])
+        if output.parent != resolved_root:
+            raise U714AError("input preview escaped its owned output root")
+        portable["input_preview"]["output_path"] = f"<root>/{output.name}"
+    return portable
 
 
 def _source_row(config: dict[str, Any], source_id: str) -> dict[str, Any]:
