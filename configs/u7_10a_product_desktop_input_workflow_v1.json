@@ -1,0 +1,55 @@
+{
+  "schema": "kmcfm.u7-10a-product-desktop-input-workflow-contract.v1",
+  "source_parent_commit": "9e6bf9f218973dc042e24fdafa1de941ec0d35b8",
+  "entrypoint": "scripts/open_product_desktop.py",
+  "preview": {
+    "max_pixels": 1000000,
+    "png_compression": 6,
+    "tile_size": 256,
+    "tile_workers": 1
+  },
+  "export": {
+    "format": "png",
+    "bit_depth": 16,
+    "write_recipe": true,
+    "create_only": true
+  },
+  "looks": [
+    {
+      "style_id": "velvia_50",
+      "display_name": "Velvia 50",
+      "claim": "film-inspired / Look Approximation"
+    },
+    {
+      "style_id": "portra_400",
+      "display_name": "Portra 400",
+      "claim": "film-inspired / Look Approximation"
+    },
+    {
+      "style_id": "ektar_100",
+      "display_name": "Ektar 100",
+      "claim": "film-inspired / Look Approximation"
+    }
+  ],
+  "gates": {
+    "preview_count": 3,
+    "distinct_preview_count": 3,
+    "maximum_preview_pixels": 1000000,
+    "final_output_bit_depth": 16,
+    "final_recipe_required": true,
+    "input_hash_rechecked": true,
+    "existing_destinations_preserved": true,
+    "owned_preview_residue_count": 0,
+    "direct_cli_output_exact": true,
+    "direct_cli_recipe_exact": true
+  },
+  "claim_ceiling": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false,
+    "stock_distinguishability": false,
+    "public_release": false,
+    "cross_platform_gui": false
+  }
+}
