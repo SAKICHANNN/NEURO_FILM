@@ -21737,3 +21737,35 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   retained, but complete signed-int32 execution, negative-seed rescue,
   calibrated stock, physical-film, package, release and adjacent argument
   wrapper claims remain closed.
+
+### 2026-09-01 - U4.5F retains low-memory RAW previews and closes latency promotion
+
+- **Node and routing:** `ULT > U4 performance > U4.5F`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the sole writer; router, DRPT-BI, planning,
+  structure and agent-log disciplines were secondary. Paths were coordinated
+  disjoint from concurrent U7.2S; shared tracker/log ownership was used only in
+  this final propagation window.
+- **Prospective mechanism:** after a disclosed input-only feasibility smoke,
+  contract `c500ee05` froze five already-retained P98 DNGs, the unchanged full
+  RAW decode control, U7.3G `.03/.08/.001` output gates, absolute and paired
+  RSS/wall gates, reverse source/pair order and no-rescue rules. The new private
+  module requests rawpy/LibRaw `half_size=True`; the general RAW ingress file
+  stays byte-identical, full decode/defaults remain unchanged, and JPEG scaled
+  decode stays separate. Implementation/test `be0b53dd`, runner/binding
+  `d70fd226`/`ab686f51`, execution lock `afb0c473`.
+- **Terminal evidence:** forward/reverse timing-excluded scientific identity is
+  exact at `ac46cec4...dcc24b`; all 15 candidate and 15 full output hashes are
+  exact. Maximum output RMSE/p95/new-boundary are `.018000/.039216/0`. Candidate
+  peak RSS is `205,971,456/228,503,552B` and every per-source ratio is at most
+  `.56266/.61138` of full decode. The only failed gate in each report is paired
+  latency: forward worst `1.12983`; reverse median/worst
+  `1.03777/1.12389` versus frozen `.95/1.05`.
+- **Decision and verification:** evidence/test commit `2f7db877`; tracked
+  evidence Git-LF SHA-256 `bb64a03bd55504a47a35c08ddd84e5fb74766acb3d5eacb673a16f8ad99735e6`.
+  Six implementation/audit tests, 16 focused/adjacent tests, Ruff, compileall,
+  JSON, Git-object bindings, source immutability and zero residue pass. Retain
+  only the explicit private low-memory opt-in and negative evidence; no default,
+  final-export, arbitrary RAW, calibrated camera/stock, device or product
+  promotion opens. Stop adjacent RAW-preview scheduling, cache and threshold
+  rescue; other materially different 12/24MP or device U4.5 mechanisms remain
+  separately open.
