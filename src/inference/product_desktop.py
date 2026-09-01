@@ -678,6 +678,7 @@ class ProductDesktopWorkflow:
                         and source.suffix.casefold() in {".jpg", ".jpeg"}
                     ),
                     raw_half_size_decode=inspection.source_kind == "raw",
+                    include_input_preview=True,
                 )
                 state = self._bind_preview_state(
                     source,
@@ -719,6 +720,25 @@ class ProductDesktopWorkflow:
                 )
                 for row in state.manifest["rows"]
             }
+
+    def input_preview_bytes(self) -> bytes:
+        """Return the bound generic input-basis preview for the native UI."""
+
+        with self._lock:
+            state = self._state
+            if state is None:
+                raise ProductDesktopError("render previews before reading them")
+            self._validate_state(state)
+            self._validate_session(state)
+            input_preview = state.manifest.get("input_preview")
+            if not isinstance(input_preview, Mapping):
+                raise ProductDesktopError("input preview is unavailable")
+            path = Path(str(input_preview.get("output_path", "")))
+            seals = {seal.identity.path: seal for seal in state.files}
+            seal = seals.get(path)
+            if seal is None:
+                raise ProductDesktopError("input preview binding is unavailable")
+            return _read_bound_file(seal)
 
     def _bind_preview_state(
         self,
@@ -771,6 +791,30 @@ class ProductDesktopWorkflow:
             raise ProductDesktopError("preview look catalog drift")
         output_seal = _seal_directory(output_directory)
         expected_names = {"preview.json"}
+        input_preview = manifest.get("input_preview")
+        if not isinstance(input_preview, Mapping) or set(input_preview) != {
+            "role",
+            "output_path",
+            "output_sha256",
+            "source_kind",
+            "display_adapter",
+            "claim",
+        }:
+            raise ProductDesktopError("input preview contract drift")
+        input_path = Path(str(input_preview["output_path"]))
+        if (
+            input_preview["role"] != "input_basis"
+            or input_path.parent != output_directory
+            or input_path.name != "input.preview.png"
+            or input_preview["source_kind"] not in {"raster", "raw"}
+            or input_preview["display_adapter"]
+            != "existing WorkingImage to display-sRGB adapter"
+            or input_preview["claim"]
+            != "generic display adapter, not a calibrated camera rendering"
+            or sha256_file(input_path) != input_preview["output_sha256"]
+        ):
+            raise ProductDesktopError("input preview contract drift")
+        expected_names.add(input_path.name)
         for row in rows:
             path = Path(str(row["output_path"]))
             if path.parent != output_directory or path.name in expected_names:

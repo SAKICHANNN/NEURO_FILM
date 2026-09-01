@@ -27,6 +27,7 @@ from .product_desktop import (
 )
 
 _LOOK_IDS = tuple(row["style_id"] for row in PRODUCT_LOOKS)
+_INPUT_PREVIEW_DISPLAY_SIZE = (160, 120)
 
 
 class ProductDesktopApp:
@@ -45,6 +46,7 @@ class ProductDesktopApp:
         self.input_paths: tuple[Path, ...] = ()
         self.batch_inputs: tuple[DesktopBatchInput, ...] | None = None
         self.preview_images: list[ImageTk.PhotoImage] = []
+        self.input_preview_image: ImageTk.PhotoImage | None = None
         self.busy = False
         self.batch_active = False
         self._closing = False
@@ -177,6 +179,26 @@ class ProductDesktopApp:
         self.preview_button.grid(
             row=1, column=3, columnspan=2, sticky="e", pady=(10, 0)
         )
+        input_basis = ttk.Frame(
+            controls, style="Panel.TFrame", padding=(16, 0, 0, 0)
+        )
+        input_basis.grid(row=0, column=5, rowspan=2, sticky="nsew")
+        self.input_preview_label = ttk.Label(
+            input_basis,
+            text="Input basis not rendered",
+            anchor="center",
+            style="Panel.TLabel",
+        )
+        self.input_preview_label.pack(fill="both", expand=True)
+        self.input_preview_caption = ttk.Label(
+            input_basis,
+            text=(
+                "Input basis · generic display adapter,\n"
+                "not a calibrated camera rendering"
+            ),
+            style="Panel.TLabel",
+        )
+        self.input_preview_caption.pack(anchor="w", pady=(4, 0))
         controls.columnconfigure(1, weight=1)
         controls.columnconfigure(3, weight=1)
 
@@ -347,8 +369,15 @@ class ProductDesktopApp:
 
     def _clear_preview_widgets(self) -> None:
         self.preview_images.clear()
+        self._clear_input_preview_widget()
         for label in self.preview_labels.values():
             label.configure(image="", text="Preview not rendered")
+
+    def _clear_input_preview_widget(self) -> None:
+        self.input_preview_image = None
+        self.input_preview_label.configure(
+            image="", text="Input basis not rendered"
+        )
 
     def _update_export_label(self) -> None:
         count = len(self.input_paths)
@@ -515,6 +544,19 @@ class ProductDesktopApp:
             self.input_paths = (state.input_path,)
             self.input_path = state.input_path
         self.preview_images.clear()
+        input_reader = getattr(self.workflow, "input_preview_bytes", None)
+        if callable(input_reader):
+            with Image.open(BytesIO(input_reader())) as opened:
+                input_image = opened.copy()
+            input_image.thumbnail(
+                _INPUT_PREVIEW_DISPLAY_SIZE, Image.Resampling.LANCZOS
+            )
+            self.input_preview_image = ImageTk.PhotoImage(input_image)
+            self.input_preview_label.configure(
+                image=self.input_preview_image, text=""
+            )
+        else:
+            self._clear_input_preview_widget()
         preview_bytes = self.workflow.preview_bytes()
         for look in PRODUCT_LOOKS:
             with Image.open(BytesIO(preview_bytes[look["style_id"]])) as opened:
@@ -721,6 +763,7 @@ class ProductDesktopApp:
     def _show_error(self, exc: BaseException) -> None:
         self.style.set("")
         self.preview_ready = False
+        self._clear_input_preview_widget()
         self._set_busy(False, f"Stopped safely: {exc}")
         messagebox.showerror("K-MCFM stopped safely", str(exc))
 

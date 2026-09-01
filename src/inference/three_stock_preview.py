@@ -135,6 +135,7 @@ def render_three_stock_previews_to_directory(
     png_compression: int = 6,
     jpeg_scaled_decode: bool = False,
     raw_half_size_decode: bool = False,
+    include_input_preview: bool = False,
 ) -> dict[str, Any]:
     """Render all three previews after one linear-light area downsample."""
 
@@ -156,6 +157,8 @@ def render_three_stock_previews_to_directory(
         raise ThreeStockPreviewError("jpeg_scaled_decode must be a boolean")
     if not isinstance(raw_half_size_decode, bool):
         raise ThreeStockPreviewError("raw_half_size_decode must be a boolean")
+    if not isinstance(include_input_preview, bool):
+        raise ThreeStockPreviewError("include_input_preview must be a boolean")
     if jpeg_scaled_decode and raw_half_size_decode:
         raise ThreeStockPreviewError(
             "jpeg_scaled_decode and raw_half_size_decode are mutually exclusive"
@@ -243,6 +246,27 @@ def render_three_stock_previews_to_directory(
     stage.mkdir()
     rows: list[dict[str, Any]] = []
     try:
+        input_preview: dict[str, Any] | None = None
+        if include_input_preview:
+            input_filename = "input.preview.png"
+            staged_input = stage / input_filename
+            save_srgb8(
+                source,
+                staged_input,
+                png_compression=png_compression,
+            )
+            input_preview = {
+                "role": "input_basis",
+                "output_path": str(
+                    (output_directory / input_filename).resolve()
+                ),
+                "output_sha256": sha256_file(staged_input),
+                "source_kind": inspection.source_kind,
+                "display_adapter": "existing WorkingImage to display-sRGB adapter",
+                "claim": (
+                    "generic display adapter, not a calibrated camera rendering"
+                ),
+            }
         for catalog_row, output in iter_three_stock_look_rgb_shared_context(
             source,
             profile=profile,
@@ -307,6 +331,8 @@ def render_three_stock_previews_to_directory(
         if max_preview_width is not None and max_preview_height is not None:
             manifest["max_preview_width"] = max_preview_width
             manifest["max_preview_height"] = max_preview_height
+        if input_preview is not None:
+            manifest["input_preview"] = input_preview
         atomic_write_json(stage / "preview.json", manifest)
         os.rename(stage, output_directory)
         return manifest
