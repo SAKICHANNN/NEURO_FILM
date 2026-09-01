@@ -11,8 +11,6 @@ from collections.abc import Mapping
 from pathlib import Path
 from typing import Any
 
-from omegaconf import OmegaConf
-
 PROFILE_SCHEMA_ID = "kmcfm.render-profile.v1"
 RECIPE_SCHEMA_ID = "kmcfm.render-recipe.v1"
 RECIPE_SCHEMA_ID_V2 = "kmcfm.render-recipe.v2"
@@ -359,7 +357,9 @@ def migrate_legacy_safe_rich(
     root: Path,
 ) -> dict[str, Any]:
     """Convert current safe-rich YAML into the exact v1 heuristic profile."""
-    document = OmegaConf.to_container(OmegaConf.load(profile_config), resolve=True)
+    from .yaml_config import load_yaml_mapping
+
+    document = load_yaml_mapping(profile_config)
     if not isinstance(document, Mapping) or document.get("schema_version") != 1:
         raise RenderContractError("legacy profile config schema is unsupported")
     profiles = _mapping(document.get("profiles"), "legacy.profiles")

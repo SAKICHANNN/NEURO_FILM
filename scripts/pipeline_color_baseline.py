@@ -16,7 +16,6 @@ from itertools import pairwise
 from pathlib import Path
 
 import numpy as np
-from omegaconf import OmegaConf
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 from skimage.color import lab2rgb, rgb2lab
 
@@ -36,6 +35,7 @@ from src.inference.tiled_render import (
     TileWindow,
     execute_tiled_local_operator,
 )
+from src.inference.yaml_config import load_yaml_mapping
 
 DEFAULT_GUARDRAILS = ROOT / "configs" / "color_guardrails.json"
 DEFAULT_PROFILES = ROOT / "configs" / "color_rendering_profiles.yaml"
@@ -292,7 +292,7 @@ def load_profile_values(path: Path, preset: str, style: str) -> dict:
     if preset == "none":
         return {}
     profile_name = preset.replace("-", "_")
-    doc = OmegaConf.to_container(OmegaConf.load(path), resolve=True)
+    doc = load_yaml_mapping(path)
     profile = doc.get("profiles", {}).get(profile_name)
     if not profile:
         raise ValueError(f"Preset {preset!r} was not found in {path}")

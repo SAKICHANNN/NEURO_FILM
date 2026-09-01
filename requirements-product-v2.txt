@@ -1,0 +1,14 @@
+# K-MCFM private Look Approximation runtime v2 (Windows CPython 3.12)
+# OmegaConf and ANTLR are intentionally absent from the product import path.
+imageio==2.37.3
+lazy-loader==0.5
+networkx==3.6.1
+numpy==2.4.4
+opencv-python-headless==4.13.0.92
+packaging==26.2
+pillow==12.1.1
+pyyaml==6.0.3
+rawpy==0.26.1
+scikit-image==0.26.0
+scipy==1.17.1
+tifffile==2026.4.11
