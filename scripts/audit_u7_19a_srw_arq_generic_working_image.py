@@ -15,11 +15,19 @@ from typing import Any
 
 import numpy as np
 import rawpy
+from PIL import Image
+from PIL import __version__ as PILLOW_VERSION
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from src.inference import (
+    load_render_profile,
+    replay_style_safe_recipe_to_file,
+    validate_render_recipe,
+)
+from src.preprocess.pipeline import inspect_input, load_working_image
 from src.preprocess.raw_decode import (
     RAW_SUFFIXES,
     inspect_raw,
@@ -27,6 +35,7 @@ from src.preprocess.raw_decode import (
 )
 
 REPORT_SCHEMA = "kmcfm.u7-19a-srw-arq-generic-working-image-preflight.v1"
+FORMAL_REPORT_SCHEMA = "kmcfm.u7-19a-srw-arq-generic-working-image-result.v1"
 
 
 class U719AError(RuntimeError):
@@ -92,6 +101,16 @@ def _binding_checks(config: dict[str, Any]) -> dict[str, bool]:
     for name, binding in sorted(config["bindings"].items()):
         checks[name] = _verify_file(ROOT / binding["path"], binding)
     return checks
+
+
+def _commit_resolves(commit: str) -> bool:
+    result = subprocess.run(
+        ["git", "cat-file", "-e", f"{commit}^{{commit}}"],
+        cwd=ROOT,
+        capture_output=True,
+        check=False,
+    )
+    return result.returncode == 0
 
 
 def _runtime_checks(config: dict[str, Any]) -> dict[str, bool]:
@@ -186,11 +205,23 @@ def _stratum_result(
     stratum: dict[str, Any],
     *,
     reverse: bool,
+    public_pipeline: bool = False,
 ) -> dict[str, Any]:
     rows = list(stratum["sources"])
     if reverse:
         rows.reverse()
-    records = [_row_record(producer_repo, row) for row in rows]
+    if public_pipeline:
+        records = [
+            _row_record(
+                producer_repo,
+                row,
+                inspect=inspect_input,
+                load=lambda path, **_kwargs: load_working_image(path),
+            )
+            for row in rows
+        ]
+    else:
+        records = [_row_record(producer_repo, row) for row in rows]
     records.sort(key=lambda item: item["source_id"])
     required_warnings = sorted(
         config["per_stratum_preflight_gates"]["required_warning_codes"]
@@ -240,6 +271,151 @@ def _stratum_result(
         "representative_source_id": stratum["representative_source_id"],
         "stratum_id": stratum["stratum_id"],
     }
+
+
+def _relative_to_root(path: Path) -> str:
+    return path.absolute().relative_to(ROOT.absolute()).as_posix()
+
+
+def _output_facts(path: Path) -> dict[str, Any]:
+    with Image.open(path) as image:
+        image.load()
+        return {
+            "bytes": path.stat().st_size,
+            "format": image.format,
+            "height": image.height,
+            "icc_present": bool(image.info.get("icc_profile")),
+            "mode": image.mode,
+            "sha256": _sha256_file(path),
+            "width": image.width,
+        }
+
+
+def _product_record(
+    config: dict[str, Any],
+    producer_repo: Path,
+    stratum: dict[str, Any],
+    scratch_root: Path,
+) -> dict[str, Any]:
+    row = next(
+        item
+        for item in stratum["sources"]
+        if item["source_id"] == stratum["representative_source_id"]
+    )
+    source = producer_repo / row["path"]
+    source_before = _sha256_file(source)
+    if source.stat().st_size != int(row["bytes"]) or source_before != row["sha256"]:
+        raise U719AError(f"representative source identity differs: {row['source_id']}")
+
+    row_root = scratch_root / stratum["stratum_id"]
+    row_root.mkdir(parents=True, exist_ok=False)
+    output = row_root / "render.png"
+    recipe_path = output.with_suffix(".recipe.json")
+    replay = row_root / "replay.png"
+    profile_path = ROOT / config["product_chain"]["profile_path"]
+    command = [
+        sys.executable,
+        str(ROOT / "scripts/render_film.py"),
+        str(source),
+        "--style",
+        config["product_chain"]["style"],
+        "--look-amount",
+        str(config["product_chain"]["look_amount"]),
+        "--use-render-profile",
+        "--render-profile",
+        _relative_to_root(profile_path),
+        "--output-bit-depth",
+        str(config["product_chain"]["output_bit_depth"]),
+        "--write-recipe",
+        "--output",
+        _relative_to_root(output),
+    ]
+    try:
+        completed = subprocess.run(
+            command,
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        if completed.returncode != 0:
+            stderr = completed.stderr.strip().splitlines()
+            raise U719AError(
+                f"product CLI failed for {stratum['extension']}: "
+                f"{stderr[-1] if stderr else 'no stderr'}"
+            )
+        if not output.is_file() or not recipe_path.is_file():
+            raise U719AError(f"product artifacts missing: {stratum['extension']}")
+        recipe_bytes = recipe_path.read_bytes()
+        recipe = json.loads(recipe_bytes)
+        validate_render_recipe(recipe)
+        profile = load_render_profile(profile_path, root=ROOT)
+        output_facts = _output_facts(output)
+        recipe_exact = {
+            "claim_is_look_approximation": (
+                recipe["claim"]["render_mode"]
+                == config["product_chain"]["require_claim_render_mode"]
+                and recipe["claim"]["output_label"]
+                == config["product_chain"]["require_claim_output_label"]
+                and recipe["claim"]["evidence_grade"]
+                == config["product_chain"]["require_claim_evidence_grade"]
+                and recipe["claim"]["calibrated_reference_allowed"] is False
+                and recipe["claim"]["claim_ceiling"]
+                == profile["evidence"]["claim_ceiling"]
+            ),
+            "explicit_look": (
+                recipe["render"]["style"] == config["product_chain"]["style"]
+                and float(recipe["render"]["look_amount"])
+                == float(config["product_chain"]["look_amount"])
+            ),
+            "input_identity": (
+                Path(recipe["input"]["path"]).resolve() == source.resolve()
+                and recipe["input"]["sha256"] == row["sha256"]
+            ),
+            "output_identity": (
+                Path(recipe["output"]["path"]).resolve() == output.resolve()
+                and recipe["output"]["sha256"] == output_facts["sha256"]
+                and recipe["output"]["format"] == "PNG"
+                and recipe["output"]["bit_depth"]
+                == int(config["product_chain"]["output_bit_depth"])
+            ),
+            "product_profile": (
+                recipe["profile"]["profile_id"] == "safe-rich-product-v1"
+                and recipe["profile"]["profile_version"] == profile["profile_version"]
+                and recipe["profile"]["sha256"] == _sha256_file(profile_path)
+            ),
+            "software_commit": recipe["software"]["commit"] == _git_head(),
+        }
+        replay_digest = replay_style_safe_recipe_to_file(
+            recipe,
+            profile_path=profile_path,
+            output_path=replay,
+            root=ROOT,
+        )
+        replay_facts = _output_facts(replay)
+        return {
+            "cli_returncode": completed.returncode,
+            "extension": stratum["extension"],
+            "output": output_facts,
+            "recipe": {
+                "bytes": len(recipe_bytes),
+                "claim": recipe["claim"],
+                "exact": recipe_exact,
+                "schema_id": recipe["schema_id"],
+                "sha256": _sha256_bytes(recipe_bytes),
+            },
+            "replay": {**replay_facts, "returned_sha256": replay_digest},
+            "replay_byte_exact": output.read_bytes() == replay.read_bytes(),
+            "source_id": row["source_id"],
+            "source_sha256": source_before,
+            "source_unchanged": _sha256_file(source) == source_before,
+            "stratum_id": stratum["stratum_id"],
+        }
+    finally:
+        for path in (replay, recipe_path, output):
+            path.unlink(missing_ok=True)
+        if row_root.exists():
+            row_root.rmdir()
 
 
 def execute_preflight(
@@ -305,16 +481,177 @@ def execute_preflight(
     return report
 
 
+def execute_formal(
+    config_path: Path,
+    execution_lock_path: Path,
+    producer_repo: Path,
+    *,
+    reverse: bool = False,
+) -> dict[str, Any]:
+    config = _load_json(config_path)
+    execution_lock = _load_json(execution_lock_path)
+    bindings = {
+        name: _verify_file(ROOT / binding["path"], binding)
+        for name, binding in sorted(execution_lock["bindings"].items())
+    }
+    preflight_reports = {
+        name: _verify_file(ROOT / binding["path"], binding)
+        for name, binding in sorted(execution_lock["preflight_reports"].items())
+    }
+    commits = {
+        name: _commit_resolves(commit)
+        for name, commit in sorted(execution_lock["commits"].items())
+    }
+    runtime = _runtime_checks(config)
+    runtime["pillow"] = PILLOW_VERSION == execution_lock["runtime"]["pillow"]
+    if not all(bindings.values()):
+        raise U719AError("formal binding differs")
+    if not all(preflight_reports.values()):
+        raise U719AError("preflight report binding differs")
+    if not all(commits.values()):
+        raise U719AError("historical commit binding differs")
+    if not all(runtime.values()):
+        raise U719AError("formal runtime identity differs")
+
+    preflight = _load_json(
+        ROOT / execution_lock["preflight_reports"]["forward"]["path"]
+    )
+    admitted = sorted(execution_lock["admitted_extensions"])
+    if admitted != sorted(preflight["passed_extensions"]):
+        raise U719AError("admitted extensions differ from frozen preflight")
+    strata_by_extension = {row["extension"]: row for row in config["strata"]}
+    strata = [strata_by_extension[extension] for extension in admitted]
+    if reverse:
+        strata.reverse()
+    public_results = [
+        _stratum_result(
+            config,
+            producer_repo,
+            stratum,
+            reverse=reverse,
+            public_pipeline=True,
+        )
+        for stratum in strata
+    ]
+    public_results.sort(key=lambda item: item["extension"])
+
+    scratch_root = ROOT / execution_lock["scratch_root"]
+    if scratch_root.exists() and any(scratch_root.iterdir()):
+        raise U719AError("owned scratch root is not empty before formal execution")
+    scratch_root.mkdir(parents=True, exist_ok=True)
+    try:
+        product_records = [
+            _product_record(config, producer_repo, stratum, scratch_root)
+            for stratum in strata
+        ]
+        product_records.sort(key=lambda item: item["extension"])
+    finally:
+        if scratch_root.exists() and not any(scratch_root.iterdir()):
+            scratch_root.rmdir()
+    scratch_residue = (
+        sum(1 for path in scratch_root.rglob("*") if path.is_file())
+        if scratch_root.exists()
+        else 0
+    )
+    gates = {
+        "all_admitted_extensions_dispatched": all(
+            extension in RAW_SUFFIXES for extension in admitted
+        ),
+        "all_product_cli_success": all(
+            row["cli_returncode"] == 0 for row in product_records
+        ),
+        "all_product_outputs_exact": all(
+            row["output"]["format"] == "PNG"
+            and row["output"]["mode"] == "RGB"
+            and row["output"]["icc_present"]
+            for row in product_records
+        ),
+        "all_public_ingress_pass": all(
+            row["admission"] == "PASS_PREFLIGHT" for row in public_results
+        ),
+        "all_recipe_fields_exact": all(
+            all(row["recipe"]["exact"].values()) for row in product_records
+        ),
+        "all_replays_byte_exact": all(
+            row["replay_byte_exact"] for row in product_records
+        ),
+        "all_replay_hashes_exact": all(
+            row["output"]["sha256"]
+            == row["replay"]["sha256"]
+            == row["replay"]["returned_sha256"]
+            for row in product_records
+        ),
+        "all_sources_immutable": all(row["source_unchanged"] for row in product_records)
+        and all(
+            record["source_unchanged"]
+            for result in public_results
+            for record in result["records"]
+        ),
+        "bindings_exact": all(bindings.values()),
+        "commits_resolve": all(commits.values()),
+        "network_requests_zero": True,
+        "preflight_reports_exact": all(preflight_reports.values()),
+        "required_extensions_complete": len(product_records) == len(admitted),
+        "runtime_exact": all(runtime.values()),
+        "scratch_residue_zero": scratch_residue == 0,
+        "tracked_worktree_clean": _tracked_clean(),
+    }
+    report: dict[str, Any] = {
+        "admitted_extensions": admitted,
+        "bindings": bindings,
+        "claim_ceiling": config["claim_ceiling"],
+        "commits": commits,
+        "execution_commit": _git_head(),
+        "gates": gates,
+        "network_requests": 0,
+        "preflight_reports": preflight_reports,
+        "product_records": product_records,
+        "public_ingress_results": public_results,
+        "runtime": {
+            "checks": runtime,
+            "libraw": list(rawpy.libraw_version),
+            "numpy": np.__version__,
+            "pillow": PILLOW_VERSION,
+            "python": ".".join(map(str, sys.version_info[:3])),
+            "rawpy": rawpy.__version__,
+        },
+        "schema": FORMAL_REPORT_SCHEMA,
+        "scratch_residue_files": scratch_residue,
+        "status": (
+            "PASS_PRIVATE_U7_19A_SRW_ARQ_GENERIC_PRODUCT_INGRESS"
+            if all(gates.values())
+            else "FAIL_CLOSED_U7_19A_SRW_ARQ_GENERIC_PRODUCT_INGRESS"
+        ),
+        "stop_rule": config["stop_rule"],
+    }
+    report["scientific_identity"] = "sha256:" + _sha256_bytes(
+        json.dumps(report, sort_keys=True, separators=(",", ":")).encode()
+    )
+    return report
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
+    parser.add_argument("--stage", choices=("preflight", "formal"), default="preflight")
     parser.add_argument("--config", type=Path, required=True)
+    parser.add_argument("--execution-lock", type=Path)
     parser.add_argument("--producer-repo", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--reverse", action="store_true")
     args = parser.parse_args()
-    report = execute_preflight(
-        args.config.resolve(), args.producer_repo.resolve(), reverse=args.reverse
-    )
+    if args.stage == "formal":
+        if args.execution_lock is None:
+            raise U719AError("--execution-lock is required for formal execution")
+        report = execute_formal(
+            args.config.resolve(),
+            args.execution_lock.resolve(),
+            args.producer_repo.resolve(),
+            reverse=args.reverse,
+        )
+    else:
+        report = execute_preflight(
+            args.config.resolve(), args.producer_repo.resolve(), reverse=args.reverse
+        )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_bytes(_canonical_bytes(report))
 
