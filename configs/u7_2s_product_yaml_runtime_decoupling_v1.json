@@ -4,6 +4,7 @@
   "parent": "U7.2Q",
   "contract_commit": "68e1695d3a5cb234a290676e27a82654f2d86179",
   "implementation_commit": "97af839648b165c14b0037238e71d95f4c164957",
+  "runner_commit": "eef701b6d025aa9c73e9aada3b3df85c9f31cc8e",
   "python": {
     "required_major_minor": "3.12",
     "qualified_patch": "3.12.10",
@@ -77,8 +78,18 @@
     },
     "focused_test": {
       "path": "tests/test_u7_2s_product_yaml_runtime_decoupling.py",
-      "git_blob": "be155f97c914fc2c75860ee291ec5802fb774a83",
-      "sha256": "337c8b34e39f8eb138ff338204dd861b5142c50691d6f5f6529d303155e6385b"
+      "git_blob": "12129042944243b56b6985d86459df9dd3cd0f2e",
+      "sha256": "9c31906c0fb4e8e88f00582d079d817e5e843bf019c386072cd712e3dc8530e7"
+    },
+    "runner": {
+      "path": "scripts/audit_u7_2s_product_yaml_runtime_decoupling.py",
+      "git_blob": "28af70535cb392c5b5cc47f267863ab630c90abd",
+      "sha256": "6465e7d367b5cc8ef566122352857a7566040511912d8a94336f9f60ab0e54da"
+    },
+    "audit_test": {
+      "path": "tests/test_audit_u7_2s_product_yaml_runtime_decoupling.py",
+      "git_blob": "58f35966b8cecdb427f016d267f3c1bce8976f6d",
+      "sha256": "95f63964db99fb0e639a47188c4f410e17e74a7d8076cbae986260a74f6d700c"
     },
     "render_film": {
       "path": "scripts/render_film.py",
@@ -100,6 +111,10 @@
       "git_blob": "ff894955886f1d072cdb618ae55c6ecd7a01337b",
       "sha256": "8ce65a299cc3bea82e751e4465fb734a713c7e486f83692d2f45a96cbf804670"
     }
+  },
+  "profile_yaml_canonical": {
+    "bytes": 1027,
+    "sha256": "dc30f8fd5a50db06d778ed44a747ed534b12552544596d41a08ce25a93b83600"
   },
   "u7_2r_terminal_report": {
     "path": "outputs/eval/u7_2r_product_effect_argument_preflight_v1/formal.json",
