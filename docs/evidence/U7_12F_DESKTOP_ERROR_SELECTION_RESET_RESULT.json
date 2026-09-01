@@ -1,0 +1,89 @@
+{
+  "schema": "kmcfm.u7-12f-desktop-error-selection-reset-evidence.v1",
+  "node_id": "U7.12F",
+  "status": "PASS_PRIVATE_U7_12F_DESKTOP_ERROR_SELECTION_RESET",
+  "source_commit": "86efab2e15e7a3031d45474f5463172941acccc0",
+  "bindings": {
+    "contract_commit": "f581e7c2625eac09101f1af1d094d0fa3b8c039f",
+    "implementation_commit": "acc4edd84cb711b5a14acf4cde4b0c8e2896cc0d",
+    "audit_initial_commit": "bd2fe0f2fa107470f8ce222e7be6796c11935e5b",
+    "audit_windows_identity_correction_commit": "86efab2e15e7a3031d45474f5463172941acccc0",
+    "bound_git_blob_sha256": {
+      "configs/u7_12f_desktop_error_selection_reset_v1.json": "97d5d29bc3e4ab56c83e8c4ad37f3c7b02d6244d61845745f4581ddb090e6f8f",
+      "docs/planning/U7_12F_DESKTOP_ERROR_SELECTION_RESET_CONTRACT.md": "f3ac682add75e1adf5e56f251ac621043e50b259b3346079fa36f8969be0cb50",
+      "scripts/audit_u7_12f_desktop_error_selection_reset.py": "b1ac103e068be7bf83477811e3f127cef3c763c4a8303495e1d4b7326f078a2f",
+      "src/inference/product_desktop_ui.py": "52320298c6a774ac4f2482d901b99bedd153d8ac58dd90839f9cd1c23a278825",
+      "tests/test_u7_12f_desktop_error_selection_reset.py": "22da2697d54d3dc4d2240ef484ae9d7c32f5efc75889a396198738a141f0d54f"
+    }
+  },
+  "formal_reports": {
+    "forward": {
+      "bytes": 3025,
+      "sha256": "be41b04a05d55a105686f446438ff922841a1154ab4852f303d1b785ab1b5902"
+    },
+    "reverse": {
+      "bytes": 3025,
+      "sha256": "be41b04a05d55a105686f446438ff922841a1154ab4852f303d1b785ab1b5902"
+    },
+    "full_reports_byte_exact": true
+  },
+  "scientific_identity": "sha256:e767443301fdc963f0b8272edc788eaa6458d17712f0377453a1319dff16c144",
+  "excluded_first_formal_attempt": {
+    "decision": "excluded before evidence; audit source-representation comparison only",
+    "forward": {
+      "bytes": 2890,
+      "sha256": "9a86f72dc39859c69dd958ea798d638c4ace25006d6f4dee2834c9b28c6bfa3a"
+    },
+    "reverse": {
+      "bytes": 2890,
+      "sha256": "9a86f72dc39859c69dd958ea798d638c4ace25006d6f4dee2834c9b28c6bfa3a"
+    },
+    "status": "FAIL_CLOSED_U7_12F_DESKTOP_ERROR_SELECTION_RESET",
+    "reason": "the frozen source identity is the Windows CRLF checkout SHA, while the initial audit directly compared it with the LF Git blob SHA",
+    "verified_equivalence": {
+      "parent_git_blob_sha256": "649890db720c0d304c444e6c1164a4d79b6ce1b7ce6e393c139ede62b32565f3",
+      "parent_windows_checkout_sha256": "5ee09856e2be1ca4e97e95abedcda2c3691d25d020c50c51b5ee786d5b6a83a4",
+      "frozen_expected_windows_checkout_sha256": "5ee09856e2be1ca4e97e95abedcda2c3691d25d020c50c51b5ee786d5b6a83a4"
+    },
+    "product_code_tests_or_gates_changed": false
+  },
+  "trigger_binding": {
+    "parent_commit": "c9ad2c18b5a3b51602bae13d919bd6686d8f7e13",
+    "parent_clears_style": false,
+    "current_clear_count": 1,
+    "clear_precedes_preview_invalidation": true
+  },
+  "fresh_process_cases": {
+    "single_export_error_reset": true,
+    "batch_error_reset": true,
+    "successful_export_retains_selection": true,
+    "u7_10a_explicit_selection_parent": true,
+    "u7_11a_batch_error_parent": true,
+    "u7_12a_close_safety_parent": true,
+    "u7_12b_format_parent": true,
+    "u7_12c_preview_parent": true
+  },
+  "gates": {
+    "committed_source_bound": true,
+    "tracked_diff_clean": true,
+    "frozen_parent_defect_bound": true,
+    "current_error_reset_is_exact": true,
+    "single_export_error_requires_fresh_selection": true,
+    "batch_error_requires_fresh_selection": true,
+    "successful_export_retains_selection": true,
+    "focused_parent_behavior_pass": true
+  },
+  "claim": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "private_windows_tk_selection_safety_only": true,
+    "renderer_changed": false,
+    "product_desktop_core_changed": false,
+    "output_or_recipe_changed": false,
+    "recovery_or_cache_changed": false,
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false,
+    "stock_distinguishability": false,
+    "public_release": false
+  }
+}
