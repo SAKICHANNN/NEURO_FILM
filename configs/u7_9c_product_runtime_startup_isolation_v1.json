@@ -1,0 +1,42 @@
+{
+  "schema": "kmcfm.u7-9c-product-runtime-startup-isolation.v1",
+  "parent": "U7.9A/U7.9B",
+  "runtime": {
+    "implementation": "CPython",
+    "major": 3,
+    "minor": 12,
+    "windows_only": true,
+    "isolated_flag": "-I",
+    "environment_prefix_removed_case_insensitive": "PYTHON"
+  },
+  "unchanged": {
+    "requirements_path": "requirements-product-v2.txt",
+    "requirements_sha256": "78b2ec79ffd4053c42c90a5db765baf715fed261efa39a5e762e013145718517",
+    "entrypoint": "scripts/render_film.py",
+    "available_looks": [
+      "velvia_50",
+      "portra_400",
+      "ektar_100"
+    ],
+    "receipt_schema": "kmcfm.private-product-runtime-receipt.v1"
+  },
+  "gates": {
+    "launcher_process_isolated": true,
+    "renderer_process_isolated": true,
+    "python_environment_removed": true,
+    "hostile_sitecustomize_not_executed": true,
+    "catalog_exact": true,
+    "three_render_outputs_exact": true,
+    "parent_source_and_failure_gates_retained": true,
+    "forward_reverse_report_exact": true
+  },
+  "claim": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "private_windows_runtime_only": true,
+    "hostile_host_guarantee": false,
+    "public_release": false,
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false
+  }
+}
