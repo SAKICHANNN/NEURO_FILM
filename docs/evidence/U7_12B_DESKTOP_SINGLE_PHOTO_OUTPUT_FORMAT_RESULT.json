@@ -1,0 +1,118 @@
+{
+  "bindings": {
+    "configs/u7_12b_desktop_single_photo_output_format_v1.json": "4bc339ba0ca1c906335fe68f8ad0e5561c4d9dcd7c8952c4da5ef53ecdf17af5",
+    "docs/planning/U7_12B_DESKTOP_SINGLE_PHOTO_OUTPUT_FORMAT_CONTRACT.md": "63642696a96f04050f0f65330ec0ae1599b7e89abd88fc1b3fe9d9e934ce7b92",
+    "scripts/audit_u7_12b_desktop_single_photo_output_format.py": "67a3f59942f69c045892ded4117058a39279006c98df8516ddb8be5d251b9d20",
+    "src/inference/product_desktop.py": "ac365ef9ce3321396becd6fe70f321c866d8ab24ff9d9c7bd30575456e7d64a5",
+    "src/inference/product_desktop_ui.py": "260cf2b3554838b8ae6122052c72bb06f90ca4983f08e5344eb9f9e6f3a34481",
+    "tests/test_u7_12b_desktop_single_photo_output_format.py": "57b91c702ba33c9a5707e4a496ebdfccb149033f1fc44f5f4b2a16d1cbe234d4"
+  },
+  "case_results": {
+    "close-jpeg8": {
+      "passed": true,
+      "returncode": 0
+    },
+    "close-png16": {
+      "passed": true,
+      "returncode": 0
+    },
+    "close-tiff16": {
+      "passed": true,
+      "returncode": 0
+    },
+    "contract-dependency": {
+      "passed": true,
+      "returncode": 0
+    },
+    "desktop-ui": {
+      "passed": true,
+      "returncode": 0
+    },
+    "invalid-controls": {
+      "passed": true,
+      "returncode": 0
+    },
+    "jpeg8": {
+      "passed": true,
+      "returncode": 0
+    },
+    "parent-u7-10a-direct": {
+      "passed": true,
+      "returncode": 0
+    },
+    "parent-u7-10a-existing-pair": {
+      "passed": true,
+      "returncode": 0
+    },
+    "parent-u7-11a-batch": {
+      "passed": true,
+      "returncode": 0
+    },
+    "parent-u7-11a-single": {
+      "passed": true,
+      "returncode": 0
+    },
+    "parent-u7-12a-close": {
+      "passed": true,
+      "returncode": 0
+    },
+    "parent-u7-2t-extension": {
+      "passed": true,
+      "returncode": 0
+    },
+    "parent-u7-3l-create-only": {
+      "passed": true,
+      "returncode": 0
+    },
+    "png16": {
+      "passed": true,
+      "returncode": 0
+    },
+    "png16-batch-compatibility": {
+      "passed": true,
+      "returncode": 0
+    },
+    "tiff16": {
+      "passed": true,
+      "returncode": 0
+    }
+  },
+  "claim": {
+    "batch_format": "png16",
+    "calibrated_stock_response": false,
+    "evidence_grade": "look-approximation",
+    "formats": [
+      "png16",
+      "tiff16",
+      "jpeg8"
+    ],
+    "hdr_or_wide_gamut_publication": false,
+    "look_math_changed": false,
+    "mode": "film-inspired",
+    "physical_film_reproduction": false,
+    "private_native_single_photo_sdr_export_only": true,
+    "public_release": false,
+    "renderer_changed": false,
+    "stock_distinguishability": false
+  },
+  "gates": {
+    "behavioral_parent_chain_passed": true,
+    "committed_source_bound": true,
+    "create_only_and_late_foreign_preserved": true,
+    "desktop_format_state_and_routing_exact": true,
+    "direct_cli_image_and_recipe_exact_all_formats": true,
+    "foreground_close_safety_all_formats": true,
+    "invalid_format_and_suffix_pre_render_reject": true,
+    "owned_residue_zero_all_formats": true,
+    "png16_default_and_batch_command_exact": true,
+    "recipe_semantics_exact_all_formats": true,
+    "strict_replay_exact_all_formats": true,
+    "tracked_diff_clean": true,
+    "u7_12a_dependency_exact": true
+  },
+  "node_id": "U7.12B",
+  "schema": "kmcfm.u7-12b-desktop-single-photo-output-format-report.v1",
+  "scientific_identity": "5f292133b785ca3a4d8562921abf84183028f2a9ec8bff20783c06f6f764ed3f",
+  "source_commit": "2ce6046a6aeae3cf3180fc4ed054cd5a689d866d",
+  "status": "PASS_PRIVATE_U7_12B_DESKTOP_SINGLE_PHOTO_OUTPUT_FORMATS"
+}
