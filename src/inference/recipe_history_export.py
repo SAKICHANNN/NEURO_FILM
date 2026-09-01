@@ -55,6 +55,7 @@ def export_recipe_history_entry(
         history_root,
         maximum_recipe_files=maximum_recipe_files,
         maximum_recipe_bytes=maximum_recipe_bytes,
+        product_export_only=True,
     )
     selected = [row for row in catalog["entries"] if row["recipe_path"] == recipe_path]
     if len(selected) != 1 or selected[0]["status"] != "valid":

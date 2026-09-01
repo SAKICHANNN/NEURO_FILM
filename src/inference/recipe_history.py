@@ -9,7 +9,11 @@ from collections.abc import Mapping
 from pathlib import Path
 from typing import Any
 
-from .render_contract import RenderContractError, validate_render_recipe
+from .render_contract import (
+    STAGED_DENSITY_HALATION_MODEL,
+    RenderContractError,
+    validate_render_recipe,
+)
 
 RECIPE_HISTORY_SCHEMA_ID = "kmcfm.desktop-recipe-history.v1"
 DEFAULT_MAXIMUM_RECIPE_FILES = 10_000
@@ -80,6 +84,7 @@ def _read_recipe_row(
     *,
     root: Path,
     maximum_recipe_bytes: int,
+    product_export_only: bool,
 ) -> dict[str, Any]:
     recipe_path = path.relative_to(root).as_posix()
     try:
@@ -111,6 +116,12 @@ def _read_recipe_row(
         validate_render_recipe(value)
     except (RenderContractError, KeyError, TypeError, ValueError):
         return _invalid_row(recipe_path, "recipe_contract_invalid")
+    if (
+        product_export_only
+        and value["render"]["effects"]["halation"]["model"]
+        == STAGED_DENSITY_HALATION_MODEL
+    ):
+        return _invalid_row(recipe_path, "recipe_research_only")
     return _valid_row(recipe_path, hashlib.sha256(payload).hexdigest(), value)
 
 
@@ -119,12 +130,15 @@ def build_render_recipe_history(
     *,
     maximum_recipe_files: int = DEFAULT_MAXIMUM_RECIPE_FILES,
     maximum_recipe_bytes: int = DEFAULT_MAXIMUM_RECIPE_BYTES,
+    product_export_only: bool = False,
 ) -> dict[str, Any]:
-    """Summarize strict recipes without reading their referenced input/output files."""
+    """Summarize strict recipes without reading referenced input/output files."""
     if type(maximum_recipe_files) is not int or maximum_recipe_files <= 0:
         raise RecipeHistoryError("maximum_recipe_files must be a positive integer")
     if type(maximum_recipe_bytes) is not int or maximum_recipe_bytes <= 0:
         raise RecipeHistoryError("maximum_recipe_bytes must be a positive integer")
+    if type(product_export_only) is not bool:
+        raise RecipeHistoryError("product_export_only must be boolean")
     try:
         resolved_root = root.resolve(strict=True)
     except OSError as exc:
@@ -140,6 +154,7 @@ def build_render_recipe_history(
             path,
             root=resolved_root,
             maximum_recipe_bytes=maximum_recipe_bytes,
+            product_export_only=product_export_only,
         )
         for path in paths
     ]

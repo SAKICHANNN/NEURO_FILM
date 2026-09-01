@@ -169,6 +169,7 @@ def build_recipe_export_request_set(
         history_root,
         maximum_recipe_files=maximum_recipe_files,
         maximum_recipe_bytes=maximum_recipe_bytes,
+        product_export_only=True,
     )
     rows: list[dict[str, Any]] = []
     files: dict[str, bytes] = {}
@@ -260,6 +261,7 @@ def export_recipe_request(
         history_root,
         maximum_recipe_files=maximum_recipe_files,
         maximum_recipe_bytes=maximum_recipe_bytes,
+        product_export_only=True,
     )
     selected = [
         row
