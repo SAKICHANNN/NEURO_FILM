@@ -1,0 +1,43 @@
+{
+  "schema": "kmcfm.u7-8g-input-batch-stage-ownership-repair.v1",
+  "node_id": "U7.8G",
+  "question": "Can the existing multi-input batch preserve a foreign directory that replaces its private outer stage path during failure?",
+  "parents": [
+    "U7.8A",
+    "U7.3K",
+    "U7.3L"
+  ],
+  "bindings": {
+    "contract_commit": "b8ba99c91df389bd0ca0c7a0a253bb9fc38cd963",
+    "implementation_commit": "0642cc56f4f2878a27a7997c1cae7848a4055b7b",
+    "implementation_git_lf_sha256": {
+      "src/inference/three_stock_input_batch.py": "65e35b657b9f7ce58a0d99fed625469981e68ca17b70d92a5e9904205f6099c7",
+      "tests/test_u7_8g_input_batch_stage_ownership_repair.py": "8b594140ca045e2137e42ee26944d301b55339a5b1375ab9e12251c696e380a7"
+    }
+  },
+  "baseline": {
+    "input_sha256": "78b6a9a509feb111f9b2bd75c085f70aafede120d3bdb76fe4610ee2bd0ad5cf",
+    "successful_png_sha256": {
+      "ektar_100.png": "e7ca6e1b2c0fa0b0d75b7db4e0a63612d595ca4ee233034c023f36f580da41ca",
+      "portra_400.png": "bfe057fd2cc83ea4732d71b79f8afc93c40c790d883ba2f2031fb32207d8574f",
+      "velvia_50.png": "d34b4749515c0c1ab5f60fa2d196820fd96c4553ad29df93aab19fc99ef4d627"
+    },
+    "style_order": [
+      "velvia_50",
+      "portra_400",
+      "ektar_100"
+    ]
+  },
+  "gates": {
+    "identity_replaced_stage_preserved": true,
+    "foreign_payload_preserved": true,
+    "ordinary_owned_stage_residue_count": 0,
+    "final_destination_absent_after_failures": true,
+    "successful_png_bytes_exact": true,
+    "successful_receipt_replay_exact": true,
+    "source_and_configuration_inputs_immutable": true,
+    "network_requests": 0
+  },
+  "claim_ceiling": "Private process-level filesystem-identity repair for the existing outer multi-input batch stage only; no renderer, recovery, preview, wrapper, science, calibration, physical-film or public-product claim.",
+  "stop_rule": "One prospective repair and committed-head audit only; do not chain adjacent ownership, preview, resumable, child-stage, wrapper, format or source leaves."
+}
