@@ -21647,3 +21647,36 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   package, installer, public API, release, cross-platform environment,
   calibrated stock response, physical-film reproduction or product value.
   AO6 remains only a Velvia 50 display-proxy baseline.
+
+### 2026-09-01 - U7.8G preserves a replaced outer batch stage
+
+- **Node and routing:** `ULT > U7 > U7.8G`, DRPT L2 / Mode C. The sole write
+  workflow was `dev-research-reliability`; DRPT-BI, plan, project-structure and
+  agent-log disciplines were read-only secondary reviewers. Exact paths were
+  coordinated as disjoint from U7.2Q; only this final tracker/log propagation
+  used a short shared-doc window.
+- **Observed defect:** U7.8A created one private UUID sibling stage and, on any
+  child failure, recursively deleted whatever occupied that path. A
+  deterministic current-code injection moved the owned stage aside, installed
+  a foreign directory and payload at the original path, then failed the child.
+  Current cleanup deleted the foreign directory and left the true owned stage.
+- **Correction and boundary:** the outer stage is now bound by device/inode as
+  soon as it is created. Failure cleanup follows neither a symlink/reparse
+  replacement nor a different directory identity; it recursively removes only
+  the still-matching outer stage. This deliberately does not claim safety for
+  arbitrary foreign additions inside a still-owned UUID directory and does not
+  extend to preview, resumable or child-stage paths.
+- **Formal evidence:** contract `b8ba99c9`, implementation `0642cc56`, binding
+  config `aaaf0389`, runner `4d84b014`, evidence `87b14fe3`. Forward/reverse
+  committed-head reports are both 2,291 bytes / SHA
+  `0b7e2e6a43e6cec38fad542fdfdbed31840518750e3515d179f91b90d0da8691`,
+  stable identity `f23a17db...29508`; all eight gates pass. Replacement-stage
+  bytes survive, ordinary failure leaves zero owned stage/final destination,
+  and the three pre-repair Look Approximation PNG hashes remain exact.
+- **Verification and propagation:** 38 U7.8A/B/G tests pass; Ruff, compileall,
+  JSON, source-object binding, report byte identity, diff and tracked-worktree
+  checks pass. U7.8A historical evidence, renderer, receipt schema, recipes,
+  manifests, pixels, stock labels and claims remain unchanged. This is private
+  process-level batch ownership safety only; no calibration, physical response,
+  product value, installer, package, release or public API opens. Adjacent
+  ownership-wrapper expansion stops.
