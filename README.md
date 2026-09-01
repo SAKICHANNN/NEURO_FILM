@@ -72,7 +72,7 @@ directory while the bound repository commit and requirements remain exact:
 
 For repository development, open the workflow directly from the product
 environment. An optional supported input can be selected at startup; otherwise
-use **Choose photo** in the window.
+use **Choose photos** in the window.
 
 ```powershell
 .\.venv\Scripts\python.exe -I scripts\open_product_desktop.py `
@@ -82,11 +82,15 @@ use **Choose photo** in the window.
 The window exposes one bounded strength control and renders three distinct
 Velvia 50, Portra 400 and Ektar 100 previews through the existing deterministic
 preview path. No look is selected by default: choose one visible radio option
-before the create-only PNG16 plus strict-recipe export becomes available.
-Every named choice is shown as `film-inspired / Look Approximation`, not a
-calibrated stock response. Preview scratch uses the repository-relative `tmp`
-junction by default. This is a private repository-bound Windows workflow, not
-a standalone or public app.
+before export becomes available. Single-photo and atomic multi-photo sessions
+offer one batch-wide PNG16, TIFF16 or JPEG8 choice; PNG16 remains the default,
+and every output is published create-only with a strict recipe. Atomic batches
+also return a replayable receipt. Mixed-format batches are forbidden, and the
+private interrupted-batch recovery contract remains PNG16-only. Every named
+choice is shown as `film-inspired / Look Approximation`, not a calibrated stock
+response. Preview scratch uses the repository-relative `tmp` junction by
+default. This is a private repository-bound Windows workflow, not a standalone
+or public app.
 
 The private runtime is deliberately repository-bound: every launch verifies
 the installed source commit, tracked-clean state and requirements hash. After a
