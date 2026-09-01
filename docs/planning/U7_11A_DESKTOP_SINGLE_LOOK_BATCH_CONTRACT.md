@@ -46,24 +46,32 @@ without preparing a manifest or typing renderer arguments?
   complete set is revalidated before directory publication.
 - Look amount is finite in `[0,1]`. Input-set, amount, look, product assets and
   source-commit drift invalidate the batch before final publication.
-- Output names use a canonical ordinal plus a bounded safe stem and explicit
-  look ID. User basenames never become directory components without
-  normalization. The aggregate receipt exposes relative output/recipe paths,
-  input basenames and hashes, but no absolute input or scratch paths.
+- Output names use a canonical ordinal, a lowercase ASCII `[a-z0-9_-]` stem
+  normalized to at most 48 characters, and the explicit look ID. User
+  basenames never become directory components without that normalization. The
+  aggregate receipt exposes relative output/recipe paths, input basenames and
+  hashes, but no absolute input or scratch paths.
 - The selected destination directory must be absent with an existing parent.
   Every child is first rendered into one identity-owned sibling stage. Each
-  recipe is rewritten before publication to bind its final output path, then
-  structurally and cryptographically revalidated. Only the complete stage is
-  renamed to the final directory.
+  recipe is rewritten before publication to bind its future final output path,
+  then structurally and input-cryptographically revalidated while staged.
+  Only the complete stage is renamed to the final directory; strict recipe
+  file verification runs again after publication and any failure rolls back
+  only still-owned published members.
 - Cleanup removes only still-owned, hash-bound stage files and an unchanged
   empty stage root. A child failure, cancellation, source/config/HEAD drift,
   existing destination, or late foreign destination publishes no final batch
   and preserves foreign filesystem entries.
-- The worker reports completed/total progress to the Tk event loop. While a
-  batch is active, all input/look/amount/export controls are disabled. Cancel
-  or window-close requests stop after the current child, clean owned staging,
-  and do not leave an orphan worker or renderer. The window is destroyed only
-  after the worker has stopped.
+- The batch worker is a tracked non-daemon thread and reports completed/total
+  progress through Tk `after` polling. While a batch is active, all
+  input/look/amount/export controls are disabled. Cancel or window-close
+  requests stop after the current child, clean owned staging, and do not leave
+  an orphan worker or renderer. The Tk main thread never blocks in `join`; the
+  window is destroyed only after polling observes that the worker stopped.
+
+- Batch rendering uses the same current desktop session values as single-file
+  export: PNG compression 6, tile size 256 and one tile worker. It must not
+  inherit U7.8's compression-0/tile-512 research-batch settings.
 
 ## Success gates
 

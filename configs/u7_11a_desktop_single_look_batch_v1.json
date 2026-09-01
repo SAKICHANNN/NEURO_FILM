@@ -9,8 +9,8 @@
     "look_amount_minimum": 0.0,
     "look_amount_maximum": 1.0,
     "output_bit_depth": 16,
-    "png_compression": 0,
-    "tile_size": 512,
+    "png_compression": 6,
+    "tile_size": 256,
     "tile_workers": 1
   },
   "input_contract": {
@@ -29,7 +29,7 @@
     "publish_unit": "one create-only directory",
     "aggregate_receipt": "batch.json",
     "receipt_paths": "relative POSIX output and recipe paths",
-    "safe_output_name": "four-digit ordinal, bounded normalized stem, explicit look id",
+    "safe_output_name": "four-digit ordinal, lowercase ASCII [a-z0-9_-] stem normalized to at most 48 characters, explicit look id",
     "cancel_boundary": "after current child before next child or final publication"
   },
   "looks": [
