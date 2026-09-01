@@ -169,11 +169,15 @@ def _rejection_controls(work: Path, order: str) -> dict[str, bool]:
     first = work / "reject-a.png"
     second = work / "reject-b.png"
     external = work / "reject-external.png"
-    alias = work / "reject-alias.png"
+    alias_target = ROOT / ".u7_15a_alias_target.png"
+    alias = ROOT / ".u7_15a_alias_control.png"
+    if alias_target.exists() or alias.exists():
+        raise RuntimeError("owned alias-control path must be absent")
     _source(first, 31)
     _source(second, 32)
     _source(external, 33)
-    os.link(second, alias)
+    _source(alias_target, 34)
+    os.link(alias_target, alias)
     calls = 0
 
     def forbidden(*_args: object, **_kwargs: object) -> dict[str, object]:
@@ -218,8 +222,13 @@ def _rejection_controls(work: Path, order: str) -> dict[str, bool]:
                     workflow.bind_batch_inputs = original  # type: ignore[method-assign]
                 continue
             try:
+                sources = (
+                    (alias_target, first)
+                    if control == "alias"
+                    else (first, second)
+                )
                 workflow.render_batch_previews(
-                    (first, second), 0.5, representative_path=representative
+                    sources, 0.5, representative_path=representative
                 )
             except ProductDesktopError:
                 results[control] = True
@@ -227,6 +236,8 @@ def _rejection_controls(work: Path, order: str) -> dict[str, bool]:
                 results[control] = False
     finally:
         workflow.close()
+        alias.unlink(missing_ok=True)
+        alias_target.unlink(missing_ok=True)
     results["preview_renderer_calls_zero"] = calls == 0
     return dict(sorted(results.items()))
 

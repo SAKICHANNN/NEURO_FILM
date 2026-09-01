@@ -943,7 +943,25 @@ class ProductDesktopWorkflow:
         representative = bound[0]
         if representative_path is not None:
             try:
-                resolved = Path(representative_path).resolve(strict=True)
+                candidate = Path(representative_path)
+                candidate_details = candidate.lstat()
+                reparse = int(
+                    getattr(stat, "FILE_ATTRIBUTE_REPARSE_POINT", 0x400)
+                )
+                if candidate.is_symlink() or int(
+                    getattr(candidate_details, "st_file_attributes", 0)
+                ) & reparse:
+                    raise ProductDesktopError(
+                        "batch representative must be one selected photo"
+                    )
+                resolved = candidate.resolve(strict=True)
+                raw_absolute = os.path.normcase(
+                    os.path.abspath(os.fspath(candidate))
+                )
+                if raw_absolute != _normalized_path(resolved):
+                    raise ProductDesktopError(
+                        "batch representative must be one selected photo"
+                    )
                 details = resolved.lstat()
             except OSError as exc:
                 raise ProductDesktopError(

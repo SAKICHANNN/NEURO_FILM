@@ -132,6 +132,42 @@ def test_invalid_or_changed_representative_rejects_before_preview(
             (first, second), 0.5, representative_path=tmp_path / "missing.png"
         )
 
+    alias = tmp_path / "alias.png"
+    shutil.copyfile(second, alias)
+    original_resolve = Path.resolve
+    original_is_symlink = Path.is_symlink
+
+    def resolve_alias(path: Path, strict: bool = False) -> Path:
+        if path == alias:
+            return original_resolve(second, strict=strict)
+        return original_resolve(path, strict=strict)
+
+    def identify_alias(path: Path) -> bool:
+        return path == alias or original_is_symlink(path)
+
+    monkeypatch.setattr(Path, "resolve", resolve_alias)
+    monkeypatch.setattr(Path, "is_symlink", identify_alias)
+    with pytest.raises(ProductDesktopError, match="one selected photo"):
+        workflow.render_batch_previews(
+            (first, second), 0.5, representative_path=alias
+        )
+    monkeypatch.undo()
+
+    parent_alias = tmp_path / "parent-alias.png"
+    shutil.copyfile(second, parent_alias)
+
+    def resolve_parent_alias(path: Path, strict: bool = False) -> Path:
+        if path == parent_alias:
+            return original_resolve(second, strict=strict)
+        return original_resolve(path, strict=strict)
+
+    monkeypatch.setattr(Path, "resolve", resolve_parent_alias)
+    with pytest.raises(ProductDesktopError, match="one selected photo"):
+        workflow.render_batch_previews(
+            (first, second), 0.5, representative_path=parent_alias
+        )
+    monkeypatch.undo()
+
     stale = workflow.bind_batch_inputs((first, second))
 
     def bind_then_mutate(_paths: object) -> object:
