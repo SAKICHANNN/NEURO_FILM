@@ -33,7 +33,14 @@ class ThreeStockPreviewError(ValueError):
     """Raised when a direct three-stock preview cannot be produced."""
 
 
-def preview_dimensions(width: int, height: int, max_pixels: int) -> tuple[int, int]:
+def preview_dimensions(
+    width: int,
+    height: int,
+    max_pixels: int,
+    *,
+    max_width: int | None = None,
+    max_height: int | None = None,
+) -> tuple[int, int]:
     """Return deterministic aspect-preserving dimensions without upsampling."""
 
     for value, label in (
@@ -43,9 +50,23 @@ def preview_dimensions(width: int, height: int, max_pixels: int) -> tuple[int, i
     ):
         if isinstance(value, bool) or not isinstance(value, int) or value < 1:
             raise ThreeStockPreviewError(f"{label} must be a positive integer")
-    if width * height <= max_pixels:
+    if (max_width is None) != (max_height is None):
+        raise ThreeStockPreviewError(
+            "max_width and max_height must be provided together"
+        )
+    if max_width is not None and max_height is not None:
+        max_width = _positive_integer(max_width, "max_width")
+        max_height = _positive_integer(max_height, "max_height")
+    if (
+        width * height <= max_pixels
+        and (max_width is None or width <= max_width)
+        and (max_height is None or height <= max_height)
+    ):
         return width, height
-    scale = math.sqrt(max_pixels / float(width * height))
+    scales = [math.sqrt(max_pixels / float(width * height))]
+    if max_width is not None and max_height is not None:
+        scales.extend((max_width / float(width), max_height / float(height)))
+    scale = min(scales)
     resized_width = max(1, math.floor(width * scale))
     resized_height = max(1, math.floor(height * scale))
     while resized_width * resized_height > max_pixels:
@@ -105,6 +126,8 @@ def render_three_stock_previews_to_directory(
     statistics_path: Path,
     guardrails_path: Path,
     max_preview_pixels: int = 1_000_000,
+    max_preview_width: int | None = None,
+    max_preview_height: int | None = None,
     look_amount: float = 1.0,
     seed: int = 7,
     tile_size: int = 256,
@@ -156,7 +179,11 @@ def render_three_stock_previews_to_directory(
     if source_width < 1 or source_height < 1:
         raise ThreeStockPreviewError("input dimensions could not be inspected")
     preview_width, preview_height = preview_dimensions(
-        source_width, source_height, max_preview_pixels
+        source_width,
+        source_height,
+        max_preview_pixels,
+        max_width=max_preview_width,
+        max_height=max_preview_height,
     )
     use_scaled_decode = jpeg_scaled_decode and (
         (preview_width, preview_height) != (source_width, source_height)
@@ -277,6 +304,9 @@ def render_three_stock_previews_to_directory(
         }
         if use_raw_half_size:
             manifest["raw_half_size_decode"] = True
+        if max_preview_width is not None and max_preview_height is not None:
+            manifest["max_preview_width"] = max_preview_width
+            manifest["max_preview_height"] = max_preview_height
         atomic_write_json(stage / "preview.json", manifest)
         os.rename(stage, output_directory)
         return manifest

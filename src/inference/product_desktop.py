@@ -56,6 +56,7 @@ PRODUCT_LOOKS: tuple[dict[str, str], ...] = (
         "claim": "film-inspired / Look Approximation",
     },
 )
+PRODUCT_PREVIEW_DISPLAY_SIZE = (300, 260)
 _LOOK_IDS = tuple(row["style_id"] for row in PRODUCT_LOOKS)
 _DEFAULT_SESSION_BINDINGS = (
     "configs/render_profiles/safe_rich_v1.json",
@@ -664,6 +665,8 @@ class ProductDesktopWorkflow:
                     statistics_path=self.root / "configs/film_color_stats.json",
                     guardrails_path=self.root / "configs/color_guardrails.json",
                     max_preview_pixels=self.max_preview_pixels,
+                    max_preview_width=PRODUCT_PREVIEW_DISPLAY_SIZE[0],
+                    max_preview_height=PRODUCT_PREVIEW_DISPLAY_SIZE[1],
                     look_amount=amount,
                     seed=7,
                     tile_size=self.tile_size,
@@ -733,8 +736,29 @@ class ProductDesktopWorkflow:
             raise ProductDesktopError("preview input identity drift")
         if float(manifest.get("look_amount", -1.0)) != amount:
             raise ProductDesktopError("preview look amount drift")
-        if int(manifest.get("preview_pixels", 0)) > self.max_preview_pixels:
+        preview_width = manifest.get("preview_width")
+        preview_height = manifest.get("preview_height")
+        preview_pixels = manifest.get("preview_pixels")
+        if any(
+            isinstance(value, bool) or not isinstance(value, int) or value < 1
+            for value in (preview_width, preview_height, preview_pixels)
+        ):
+            raise ProductDesktopError("preview geometry drift")
+        if preview_pixels != preview_width * preview_height:
+            raise ProductDesktopError("preview geometry drift")
+        if preview_pixels > self.max_preview_pixels:
             raise ProductDesktopError("preview pixel limit exceeded")
+        if (
+            preview_width > PRODUCT_PREVIEW_DISPLAY_SIZE[0]
+            or preview_height > PRODUCT_PREVIEW_DISPLAY_SIZE[1]
+        ):
+            raise ProductDesktopError("preview display bounds drift")
+        if (
+            manifest.get("max_preview_width") != PRODUCT_PREVIEW_DISPLAY_SIZE[0]
+            or manifest.get("max_preview_height")
+            != PRODUCT_PREVIEW_DISPLAY_SIZE[1]
+        ):
+            raise ProductDesktopError("preview display request drift")
         rows = manifest.get("rows")
         if (
             not isinstance(rows, list)
@@ -1260,6 +1284,7 @@ class ProductDesktopWorkflow:
 
 __all__ = [
     "PRODUCT_LOOKS",
+    "PRODUCT_PREVIEW_DISPLAY_SIZE",
     "DesktopBatchInput",
     "DesktopBatchReceipt",
     "DesktopExportReceipt",

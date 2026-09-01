@@ -16,6 +16,7 @@ from PIL import Image, ImageTk
 from .product_desktop import (
     PRODUCT_LOOKS,
     PRODUCT_OUTPUT_FORMATS,
+    PRODUCT_PREVIEW_DISPLAY_SIZE,
     DesktopBatchInput,
     DesktopBatchReceipt,
     DesktopExportReceipt,
@@ -26,7 +27,6 @@ from .product_desktop import (
 )
 
 _LOOK_IDS = tuple(row["style_id"] for row in PRODUCT_LOOKS)
-_PREVIEW_DISPLAY_SIZE = (300, 260)
 
 
 class ProductDesktopApp:
@@ -521,7 +521,7 @@ class ProductDesktopApp:
         for look in PRODUCT_LOOKS:
             with Image.open(BytesIO(preview_bytes[look["style_id"]])) as opened:
                 image = opened.copy()
-            image.thumbnail(_PREVIEW_DISPLAY_SIZE, Image.Resampling.LANCZOS)
+            image.thumbnail(PRODUCT_PREVIEW_DISPLAY_SIZE, Image.Resampling.LANCZOS)
             photo = ImageTk.PhotoImage(image)
             self.preview_images.append(photo)
             self.preview_labels[look["style_id"]].configure(image=photo, text="")
