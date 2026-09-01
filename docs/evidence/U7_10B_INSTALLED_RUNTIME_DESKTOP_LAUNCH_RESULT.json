@@ -1,0 +1,179 @@
+{
+  "schema": "kmcfm.u7-10b-installed-runtime-desktop-launch-evidence.v1",
+  "experiment_id": "U7_10B_INSTALLED_RUNTIME_DESKTOP_LAUNCH",
+  "date": "2026-09-01",
+  "status": "PASS_PRIVATE_U7_10B_INSTALLED_RUNTIME_DESKTOP_LAUNCH",
+  "automatic_pass": true,
+  "commits": {
+    "contract": "2144d4bcd6f7d6ceb0e32084d154401e3957fc2b",
+    "receipt_binding_correction": "a5ef56ea338ad1481fee3c969ff381f40a747c56",
+    "implementation": "c8384097ea4f63b073fd19349738ebd09e2ce289",
+    "formal_audit": "548ba5fa632df08e600cbf4e55c2f0c413286067",
+    "owned_exfat_git_fixture_correction": "c98978fa03da32d1ba9d30eb31ebdca5bd46efd3",
+    "readonly_git_object_cleanup_correction": "1b1ff649c6f694bb8b6476754068ce9db29e446e",
+    "formal_execution": "1b1ff649c6f694bb8b6476754068ce9db29e446e"
+  },
+  "parent_evidence": {
+    "u7_9a": {
+      "path": "docs/evidence/U7_9A_PRIVATE_WINDOWS_PRODUCT_RUNTIME_INSTALL_RESULT.json",
+      "sha256": "e80f64478831dd68c5fa8b5575c8c57b1e8256ed6d0c35be043ae044a59430b3"
+    },
+    "u7_9c": {
+      "path": "docs/evidence/U7_9C_PRODUCT_RUNTIME_STARTUP_ISOLATION_RESULT.json",
+      "sha256": "500b551f1485696348b13c2613dac537b86449fe87fff98c8d40f3fb84559e71"
+    },
+    "u7_10a": {
+      "path": "docs/evidence/U7_10A_PRODUCT_DESKTOP_EXPLICIT_SELECTION_CORRECTION_RESULT.json",
+      "sha256": "2195d1cbf1ebcddba907d322b8cece0a9fd6db93be8a1ff09c0b7384a54718f5"
+    }
+  },
+  "formal_execution": {
+    "forward_report_path": "outputs/eval/u7_10b_installed_runtime_desktop_launch/formal_forward.json",
+    "reverse_report_path": "outputs/eval/u7_10b_installed_runtime_desktop_launch/formal_reverse.json",
+    "report_bytes_each": 13260,
+    "report_sha256": "54dd9c1b2cba196f3226fce994d387c742fcf7f04b6dec54626128a6e3017a71",
+    "reports_byte_exact": true,
+    "stable_identity": "549dbd9a495a8582e397dfb56d3a6fe0842f751d79801acc1e9d15f277e7c124",
+    "source_commit": "1b1ff649c6f694bb8b6476754068ce9db29e446e",
+    "forward_visual_path": "outputs/eval/u7_10b_installed_runtime_desktop_launch/ready_forward.png",
+    "reverse_visual_path": "outputs/eval/u7_10b_installed_runtime_desktop_launch/ready_reverse.png",
+    "visual_bytes_each": 36158,
+    "visual_sha256": "9466b5cd1d37a7b338f09ac543ae98913387e4c7025ab9c78d52674e30e9ff67",
+    "visuals_byte_exact": true,
+    "formal_root_residue_count": 0
+  },
+  "runtime": {
+    "receipt_schema": "kmcfm.private-product-runtime-receipt.v2",
+    "receipt_sha256": "75a8da81f2fc5c992818c9c04772cce615c0bf9be5a80e3b49fdbadcf72c2feb",
+    "wheel_count": 12,
+    "wheel_bytes": 111666287,
+    "pip_check": true,
+    "child_python_environment_keys": [],
+    "launchers": {
+      "cli": {
+        "command_sha256": "7e3b1abf196c20b7e9ace12a1699baf1912f2b774659a0702be160be4e67a955",
+        "python_sha256": "dbde9c84a47642631dff4fb82870d32e0f28494d55e8e737a2b063aed9934250"
+      },
+      "desktop": {
+        "command_sha256": "6a1fa26ad8e44baf8273c15011bcaf3776d6db927add319e7ab6cbda20f06780",
+        "python_sha256": "74f9ba79b81e791b154bc29bf3a619299b1643ee311d6e75a622726d50865599"
+      }
+    }
+  },
+  "renders": {
+    "ektar_100": "fa651355420c6d6e302a42c1378d29342111e7c4d851049479b4720264b7defe",
+    "portra_400": "f1907743240120bcfe8df5bc579cf14dfcca1879bd0a9c2f9f03d1765e734ab7",
+    "velvia_50": "3f9c0899d4bee5fee708125acf4632d199541fa52dace897c88f1b2367baf91c",
+    "direct_launcher_byte_exact": true
+  },
+  "desktop_interaction": {
+    "client_geometry": [
+      1180,
+      760
+    ],
+    "preview_count": 3,
+    "explicit_selection_action": "physical_velvia_radio_click",
+    "process_returncode": 0,
+    "window_process_terminated": true,
+    "remaining_window_count": 0,
+    "scratch_residue_count": 0,
+    "startup_marker_exists": false,
+    "export_green_fraction": 0.4862280701754386,
+    "velvia_green_fraction": 0.024508850418206576
+  },
+  "manual_visual_review": {
+    "three_preview_cards_visible": true,
+    "velvia_radio_selected_visible": true,
+    "look_approximation_claim_visible": true,
+    "not_calibrated_disclaimer_visible": true,
+    "png16_recipe_export_visible": true,
+    "overlap_or_crop_observed": false,
+    "absolute_path_visible": false
+  },
+  "gates": {
+    "all_four_launcher_files_receipt_bound": true,
+    "desktop_explicit_radio_invoke": true,
+    "drift_rejects_before_tk": true,
+    "existing_and_late_foreign_preserved": true,
+    "foreign_cwd_cli_exact": true,
+    "foreign_cwd_desktop_mainloop": true,
+    "fresh_install_success": true,
+    "legacy_cli_field_retained": true,
+    "owned_process_terminated": true,
+    "owned_scratch_and_process_residue_zero": true,
+    "pinned_distributions_exact": true,
+    "pip_check_success": true,
+    "python_environment_removed": true,
+    "receipt_claim_and_private_exact": true,
+    "source_commit_stable": true,
+    "source_git_objects_exact": true,
+    "source_immutable": true,
+    "three_cli_outputs_exact": true,
+    "tracked_clean_before": true,
+    "wheelhouse_exact": true
+  },
+  "source_bindings": {
+    "config": {
+      "path": "configs/u7_10b_installed_runtime_desktop_launch_v1.json",
+      "sha256": "65679da3f84b733ef16e6fc48e0a67b1d01ff6d3488c27e35a091f051336958c"
+    },
+    "contract": {
+      "path": "docs/planning/U7_10B_INSTALLED_RUNTIME_DESKTOP_LAUNCH_CONTRACT.md",
+      "sha256": "83b56708937398d0f36cc343100e04b2c53818fcbedbb9d4a34b49c72206a031"
+    },
+    "installer": {
+      "path": "scripts/install_product_runtime.py",
+      "sha256": "9c30f32118a7c0077040935885f4145f9540cda44abc5167169d5d791949a8c5"
+    },
+    "audit": {
+      "path": "scripts/audit_u7_10b_installed_runtime_desktop_launch.py",
+      "sha256": "835933761534fd48bf452a24649aad10ec48977756c7be334c2e5cb5a56ab439"
+    },
+    "implementation_test": {
+      "path": "tests/test_u7_10b_installed_runtime_desktop_launch.py",
+      "sha256": "5b160c0a802fdb866f99e62409bdf8973720e1ad58c66e37775b6ce16726cd6c"
+    },
+    "audit_test": {
+      "path": "tests/test_audit_u7_10b_installed_runtime_desktop_launch.py",
+      "sha256": "b99feb33ef39419e9dd5800904701f4eb750a44440abd056ed8aff0e854969b5"
+    }
+  },
+  "excluded_attempts": [
+    {
+      "commit": "548ba5fa632df08e600cbf4e55c2f0c413286067",
+      "accepted": false,
+      "stage": "post-gui-pre-report-tracked-drift-fixture-setup",
+      "reason": "The owned temporary Git repository lived on the P-backed exFAT root and Git rejected its own add command as dubious ownership. No report was published; the generated visual and owned root were removed before a committed additive correction.",
+      "reports_written": 0
+    },
+    {
+      "commit": "c98978fa03da32d1ba9d30eb31ebdca5bd46efd3",
+      "accepted": false,
+      "stage": "post-controls-pre-report-final-cleanup",
+      "reason": "Git object files inside the two owned control repositories were read-only, so the existing identity-owned root cleanup raised PermissionError. No report was published; the generated visual and owned root were removed before a committed fixture-only cleanup correction.",
+      "reports_written": 0
+    }
+  ],
+  "verification": {
+    "pre_audit_focused_and_parent_chain": "61 passed in 124.15s",
+    "post_exfat_correction_focused": "30 passed in 8.56s",
+    "post_cleanup_correction_focused": "31 passed in 9.13s",
+    "ruff": "passed",
+    "py_compile_and_compileall": "passed",
+    "diff_check": "passed",
+    "manual_visual_review": "passed"
+  },
+  "claim": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false,
+    "stock_distinguishability": false,
+    "public_release": false,
+    "standalone_installer": false,
+    "cross_platform_gui": false
+  },
+  "decision": "PASS_PRIVATE_U7_10B_INSTALLED_RUNTIME_DESKTOP_LAUNCH",
+  "interpretation": "One fresh repository-bound private Windows CPython 3.12 installation exposes both the existing isolated CLI and the unchanged native desktop workflow from a foreign current directory. The installed desktop reaches a real Tk mainloop, renders three deterministic previews, receives an actual Velvia radio click, preserves Look Approximation claims, and terminates without owned scratch, process, window, installation, or report-stage residue.",
+  "stop_rule": "Stop adjacent bootstrap, launcher, PATH, DLL, cache and packaging variants. This pass does not authorize a public or standalone installer, signed executable, hostile-host sandbox, cross-platform GUI, calibrated stock response, physical-film reproduction, stock distinguishability, population preference or release approval."
+}
