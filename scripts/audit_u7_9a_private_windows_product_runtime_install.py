@@ -187,7 +187,8 @@ def audit(root: Path, wheelhouse: Path, order: str) -> dict[str, Any]:
         raise ValueError(order)
     root = root.resolve(strict=False)
     wheelhouse = wheelhouse.resolve(strict=False)
-    if ROOT / "tmp" not in root.parents or ROOT / "tmp" not in wheelhouse.parents:
+    tmp_root = (ROOT / "tmp").resolve(strict=True)
+    if tmp_root not in root.parents or tmp_root not in wheelhouse.parents:
         raise ValueError("formal roots must remain under repo-relative tmp")
     if root.exists():
         shutil.rmtree(root)
