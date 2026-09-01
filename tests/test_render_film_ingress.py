@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 from collections.abc import Callable
+import hashlib
 import json
 import subprocess
 import sys
@@ -41,6 +42,58 @@ def _render_args(style: str = "velvia_50") -> argparse.Namespace:
 
 def _quantize8(rgb: np.ndarray) -> np.ndarray:
     return np.rint(np.clip(rgb, 0.0, 1.0) * 255.0).astype(np.uint8)
+
+
+def _sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def test_product_recipe_records_one_canonical_missing_icc_warning(
+    tmp_path: Path,
+) -> None:
+    y, x = np.mgrid[0:43, 0:61]
+    source = np.stack(
+        ((x * 7 + y * 3) % 256, (x * 2 + y * 11) % 256, (x * 13 + y * 5) % 256),
+        axis=-1,
+    ).astype(np.uint8)
+    input_path = tmp_path / "source.png"
+    output_path = tmp_path / "ektar.png"
+    Image.fromarray(source, mode="RGB").save(input_path)
+
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "render_film.py"),
+            str(input_path),
+            "--product-look",
+            "ektar_100",
+            "--look-amount",
+            "0.65",
+            "--output",
+            str(output_path),
+            "--write-recipe",
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    assert completed.returncode == 0, completed.stderr
+    recipe = json.loads(
+        output_path.with_suffix(".recipe.json").read_text(encoding="utf-8")
+    )
+    assert recipe["input"]["warnings"] == [
+        {
+            "code": "assumed_srgb",
+            "message": "no embedded ICC profile; assuming sRGB",
+        }
+    ]
+    assert recipe["render"]["look_amount"] == 0.65
+    assert recipe["claim"]["evidence_grade"] == "look-approximation"
+    assert _sha256(output_path) == (
+        "fc51547d1e00a0a4a36dce96847afe09d27b3b531b65172d3f32fa2a46d2087d"
+    )
 
 
 def test_working_image_legacy_adapter_round_trips_srgb_fixture(tmp_path: Path) -> None:

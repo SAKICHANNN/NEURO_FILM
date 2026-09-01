@@ -60,7 +60,10 @@ def test_load_raster_working_image_is_float32_linear(tmp_path: Path) -> None:
     assert image.transfer_state == "display_linear"
     assert image.source_transfer_state == "display_referred"
     assert 0.0 <= float(image.pixels.min()) <= float(image.pixels.max()) <= 1.0
-    assert any(warning.code == "assumed_srgb" for warning in image.warnings)
+    assumed = [warning for warning in image.warnings if warning.code == "assumed_srgb"]
+    assert [(warning.code, warning.message) for warning in assumed] == [
+        ("assumed_srgb", "no embedded ICC profile; assuming sRGB")
+    ]
 
 
 @pytest.mark.parametrize("mode", ["RGBA", "LA"])
