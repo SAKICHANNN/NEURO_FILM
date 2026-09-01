@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+from copy import deepcopy
 from pathlib import Path
 
 import numpy as np
@@ -123,6 +124,22 @@ def test_observation_freeze_and_media_scope_are_mandatory() -> None:
         assert "media read boundary" in str(exc)
     else:
         raise AssertionError("non-review media access must fail closed")
+
+
+def test_observation_provenance_expectations_come_from_frozen_config() -> None:
+    plan = build_blind_audit(
+        CONFIG["population"]["sample_ids"],
+        CONFIG["arms"],
+        seed=CONFIG["blind_protocol"]["seed"],
+    )
+    drifted = deepcopy(CONFIG)
+    drifted["blind_protocol"]["reviewer_class"] = "different-reviewer-class"
+    try:
+        evaluate_observations(drifted, plan, _observations(plan))
+    except ValueError as exc:
+        assert "reviewer class" in str(exc)
+    else:
+        raise AssertionError("config-driven reviewer-class drift must fail closed")
 
 
 def test_config_has_frozen_no_rescue_claim_boundary() -> None:
