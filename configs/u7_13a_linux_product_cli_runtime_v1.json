@@ -23,7 +23,7 @@
     "replay_cli_path": "scripts/replay_film_recipe.py",
     "replay_cli_sha256": "5bdb98a303aa4f7432e527ca763cccce0c2a81ad75fe164e313e75684bcec5b3",
     "runner_path": "scripts/audit_u7_13a_linux_product_cli_runtime.py",
-    "runner_sha256": "3b6297d850385780bf8e1c70b2eea0d5795a518368d09b83fb1893b4d266cfed"
+    "runner_sha256": "5e281aa609a87602d92c1c635fcbee18c0ea0bfd5c933577975a4f5487ed41e8"
   },
   "runtime": {
     "distribution": "Ubuntu-22.04",
