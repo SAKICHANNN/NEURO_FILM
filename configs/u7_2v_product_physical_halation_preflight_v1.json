@@ -3,14 +3,66 @@
   "decision": "prospective",
   "parent": "U7.2U",
   "contract_commit": "9e5897590ef844777170c94e487454e90ad9b7fd",
-  "implementation_commit": null,
-  "source_locks": {},
+  "implementation_commit": "92710f1fe1af4b98025ee96975b0c801dfd36c14",
+  "identity_correction_commit": "78d8705bea0a09fbcb53466e1266d56aa6bd8104",
+  "source_locks": {
+    "contract": {
+      "path": "docs/planning/U7_2V_PRODUCT_PHYSICAL_HALATION_PREFLIGHT_CONTRACT.md",
+      "git_blob": "727894e1ad763399360211498d9d157cbb5e49ed",
+      "sha256": "efe5f3bdeb81c8d5d9d53b2a192c7dab0c1dc46e7a0d4660c4aa788478a490f5"
+    },
+    "render_film": {
+      "path": "scripts/render_film.py",
+      "git_blob": "fca3253810a002590ef07820035634fac7d5f6c9",
+      "sha256": "2013e7c2f95c2f6a0b84ccff1d93db9bec2b189aead84b1ca6b5ab477447f786"
+    },
+    "focused_test": {
+      "path": "tests/test_u7_2v_product_physical_halation_preflight.py",
+      "git_blob": "3323362680226bf11ee59219a38906ce3be522de",
+      "sha256": "f4685ad005da36310f4aa3a2700bcf8efd64f0f07da653516974570f774191d6"
+    },
+    "product_profile": {
+      "path": "configs/render_profiles/safe_rich_product_v1.json",
+      "git_blob": "db9921150bd0b628753a6062d0f409787e4ef101",
+      "sha256": "09722cb48c55d1c4c460220c9f59b9ced81801c1b6fe856708a27f5cc99d39fe"
+    },
+    "statistics": {
+      "path": "configs/film_color_stats.json",
+      "git_blob": "c12ccafcea9ee8a283badba5b473d29f3d54e162",
+      "sha256": "1a45e90765e577edd4ca1773fc8c6cf98fd09b8afbdddfa519b1f097c5dd7c04"
+    },
+    "guardrails": {
+      "path": "configs/color_guardrails.json",
+      "git_blob": "fa1b53449982b9d863600fb8bd77b7991952707d",
+      "sha256": "6669b7bc873febcc74ba7ddcbc1c1584807e38465447a5cdbeb24073efa00aa7"
+    },
+    "u7_2r_evidence": {
+      "path": "docs/evidence/U7_2R_PRODUCT_EFFECT_ARGUMENT_PREFLIGHT_RESULT.json",
+      "git_blob": "ff894955886f1d072cdb618ae55c6ecd7a01337b",
+      "sha256": "8ce65a299cc3bea82e751e4465fb734a713c7e486f83692d2f45a96cbf804670"
+    }
+  },
   "product_looks": [
     "velvia_50",
     "portra_400",
     "ektar_100"
   ],
   "physical_control_mode": "locked",
+  "valid_presets": [
+    "vision3_clean",
+    "vision3_push",
+    "cinestill_balanced",
+    "cinestill_strong",
+    "cinestill_amber",
+    "classic_soft",
+    "bw_neutral",
+    "bw_warm"
+  ],
+  "parent_output_sha256": {
+    "ektar_100": "e8e3195dc3ab222567ca03d432eac6e03f48a84fa1a7e6c07a885f3b35999981",
+    "portra_400": "b2b9d118087648f626a0fa2d03bbaf78714ba053347e617bdb2b9505c4cf9453",
+    "velvia_50": "2198b077eea5d29026694529e208d7db9428a36f97cb7af8fe330ce732e87fa7"
+  },
   "numeric_domains": {
     "halation_amount": [0.0, 2.4],
     "halation_impact": [0.0, 1.0],
