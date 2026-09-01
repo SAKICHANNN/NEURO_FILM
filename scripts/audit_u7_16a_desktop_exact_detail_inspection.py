@@ -73,6 +73,10 @@ def _git_blob(path: str, commit: str = "HEAD") -> bytes:
     return _run("git", "show", f"{commit}:{path}")
 
 
+def _git_oid(path: str, commit: str = "HEAD") -> str:
+    return _run("git", "rev-parse", f"{commit}:{path}").decode("ascii").strip()
+
+
 def _sha256(value: bytes) -> str:
     return hashlib.sha256(value).hexdigest()
 
@@ -203,6 +207,10 @@ def main() -> int:
     bindings = {path: _sha256(_git_blob(path)) for path in BOUND_PATHS}
     parent_ui = _git_blob(UI_PATH, parent_commit)
     parent_bindings = config["parent_bindings"]
+    parent_evidence = json.loads(
+        _git_blob(parent_bindings["u7_15c_evidence"]["path"], parent_commit)
+    )
+    parent_ui_binding = parent_evidence["bindings"][UI_PATH]
     helper = _git_blob(HELPER_PATH)
     tracked_diff_clean = (
         subprocess.run(["git", "diff", "--quiet"], cwd=ROOT, check=False).returncode
@@ -224,7 +232,9 @@ def main() -> int:
             == parent_bindings["product_desktop"]["sha256"]
         ),
         "parent_ui_exact": (
-            _sha256(parent_ui) == parent_bindings["product_desktop_ui"]["sha256"]
+            _git_oid(UI_PATH, parent_commit) == parent_ui_binding["git_blob"]
+            and parent_bindings["product_desktop_ui"]["sha256"]
+            == parent_ui_binding["sha256"]
         ),
         "parent_u7_15c_evidence_exact": (
             _sha256(
