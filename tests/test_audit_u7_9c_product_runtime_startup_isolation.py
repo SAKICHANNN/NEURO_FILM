@@ -40,3 +40,9 @@ def test_formal_root_must_be_repo_relative_tmp(tmp_path: Path) -> None:
 def test_invalid_order_rejects_before_files(tmp_path: Path) -> None:
     with pytest.raises(ValueError, match="sideways"):
         audit.audit(ROOT / "tmp" / "u7_9c_invalid", tmp_path, "sideways")
+
+
+def test_sentinel_repository_uses_process_scoped_safe_directory() -> None:
+    source = Path(audit.__file__).read_text("utf-8")
+    assert 'f"safe.directory={repository}"' in source
+    assert "config --global" not in source

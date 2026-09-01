@@ -118,16 +118,25 @@ def _mixed_case_environment_control(
         newline="\n",
     )
     git_environment = dict(os.environ)
-    for command in (
-        ["git", "init"],
-        ["git", "config", "user.email", "u7.9c@example.invalid"],
-        ["git", "config", "user.name", "U7.9C"],
-        ["git", "add", "scripts/render_film.py", "requirements.txt"],
-        ["git", "commit", "-m", "sentinel"],
+    _success(
+        _run(["git", "init", str(repository)], cwd=root, env=git_environment)
+    )
+    prefix = [
+        "git",
+        "-c",
+        f"safe.directory={repository}",
+        "-C",
+        str(repository),
+    ]
+    for arguments in (
+        ["config", "user.email", "u7.9c@example.invalid"],
+        ["config", "user.name", "U7.9C"],
+        ["add", "scripts/render_film.py", "requirements.txt"],
+        ["commit", "-m", "sentinel"],
     ):
-        _success(_run(command, cwd=repository, env=git_environment))
+        _success(_run([*prefix, *arguments], cwd=root, env=git_environment))
     commit = _success(
-        _run(["git", "rev-parse", "HEAD"], cwd=repository, env=git_environment)
+        _run([*prefix, "rev-parse", "HEAD"], cwd=root, env=git_environment)
     ).strip()
     launcher_py = root / "sentinel-launch.py"
     launcher_py.write_text(
