@@ -19,9 +19,13 @@ claim.
 - U7.12D implementation commit: `3cf53cc7a`.
 - U7.11A remains authoritative for final PNG16/recipe/batch receipt bytes.
 - U7.12A remains authoritative for non-daemon worker and close safety.
-- This leaf may change only `product_desktop_ui.py` plus its own new contract,
-  config, tests, audit and evidence. It must not change `product_desktop.py`,
-  U7.12D transaction semantics, renderer/look math, recipes or final receipt.
+- This leaf may change only `product_desktop_ui.py`, its own new contract,
+  config, tests, audit and evidence, plus the multi-photo UI route/copy
+  assertions in `tests/test_u7_11a_desktop_single_look_batch.py` that the new
+  route deliberately supersedes. That parent-test adjustment may not change
+  U7.11A core, fixtures, output assertions or evidence. The leaf must not
+  change `product_desktop.py`, U7.12D transaction semantics, renderer/look
+  math, recipes or final receipt.
 
 ## Deliberate UI route
 

@@ -10,6 +10,12 @@
     "u7_11a_final_receipt_unchanged": true,
     "u7_12a_worker_close_safety_unchanged": true
   },
+  "owned_paths": {
+    "implementation": "src/inference/product_desktop_ui.py",
+    "new_u7_12e_files_only": true,
+    "parent_test_assertion_only": "tests/test_u7_11a_desktop_single_look_batch.py",
+    "parent_core_fixture_output_or_evidence_changes": false
+  },
   "workspace_derivation": {
     "normalization": "normcase(abspath(fspath(resolved_destination))) encoded UTF-8",
     "digest": "SHA-256",
