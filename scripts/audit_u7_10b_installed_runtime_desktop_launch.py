@@ -9,6 +9,7 @@ import hashlib
 import json
 import os
 import shutil
+import stat
 import subprocess
 import sys
 import time
@@ -168,6 +169,13 @@ def _git_safe_environment(
     result[f"GIT_CONFIG_KEY_{count}"] = "safe.directory"
     result[f"GIT_CONFIG_VALUE_{count}"] = repository.as_posix()
     return result
+
+
+def _make_git_fixture_writable(repository: Path) -> None:
+    """Clear Git object read-only bits before removing an owned fixture tree."""
+    for path in repository.rglob("*"):
+        if path.is_file():
+            path.chmod(path.stat().st_mode | stat.S_IWRITE)
 
 
 def _tiny_input(path: Path) -> None:
@@ -920,6 +928,11 @@ def audit(
         "source_git_objects": source_git_objects,
         "wheelhouse": wheel_rows,
     }
+    for repository in (
+        root / "tracked-drift-repository",
+        root / "environment-repository",
+    ):
+        _make_git_fixture_writable(repository)
     if not installer._cleanup_owned_directory(root, root_identity):
         raise RuntimeError("formal root ownership changed; preserved")
     report["formal_root_residue_count"] = int(root.exists())

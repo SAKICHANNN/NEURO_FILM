@@ -118,6 +118,16 @@ def test_git_safe_environment_is_scoped_and_additive() -> None:
     assert result["GIT_CONFIG_VALUE_1"] == repository.as_posix()
 
 
+def test_git_fixture_readonly_objects_are_made_writable(tmp_path: Path) -> None:
+    repository = tmp_path / "repository"
+    object_path = repository / ".git" / "objects" / "aa" / "fixture"
+    object_path.parent.mkdir(parents=True)
+    object_path.write_bytes(b"fixture")
+    object_path.chmod(0o444)
+    audit._make_git_fixture_writable(repository)
+    assert object_path.stat().st_mode & audit.stat.S_IWRITE
+
+
 def test_formal_uses_actual_installed_desktop_launcher_and_native_input() -> None:
     source = Path(audit.__file__).read_text("utf-8")
     assert "_desktop_interaction(" in source
