@@ -7,8 +7,10 @@ import json
 import os
 import re
 import shutil
+import stat
 import subprocess
 import uuid
+from dataclasses import dataclass
 from pathlib import Path, PurePosixPath
 from typing import Any
 
@@ -38,6 +40,55 @@ _COMMIT = re.compile(r"^[0-9a-f]{40}$")
 
 class ThreeStockInputBatchError(ValueError):
     """Raised when a multi-input look transaction cannot be completed."""
+
+
+@dataclass(frozen=True)
+class _OwnedStageIdentity:
+    path: Path
+    device: int
+    inode: int
+
+
+def _is_reparse_directory(path: Path, path_stat: os.stat_result) -> bool:
+    is_junction = getattr(path, "is_junction", None)
+    if callable(is_junction) and is_junction():
+        return True
+    return bool(
+        getattr(path_stat, "st_file_attributes", 0)
+        & getattr(stat, "FILE_ATTRIBUTE_REPARSE_POINT", 0x400)
+    )
+
+
+def _claim_stage(path: Path) -> _OwnedStageIdentity:
+    path.mkdir()
+    current = path.lstat()
+    if (
+        path.is_symlink()
+        or _is_reparse_directory(path, current)
+        or not stat.S_ISDIR(current.st_mode)
+    ):
+        raise ThreeStockInputBatchError("created batch stage is not a normal directory")
+    return _OwnedStageIdentity(
+        path=path,
+        device=current.st_dev,
+        inode=current.st_ino,
+    )
+
+
+def _remove_stage_if_owned(identity: _OwnedStageIdentity) -> bool:
+    try:
+        current = identity.path.lstat()
+    except FileNotFoundError:
+        return False
+    if (
+        identity.path.is_symlink()
+        or _is_reparse_directory(identity.path, current)
+        or not stat.S_ISDIR(current.st_mode)
+        or (current.st_dev, current.st_ino) != (identity.device, identity.inode)
+    ):
+        return False
+    shutil.rmtree(identity.path)
+    return True
 
 
 def _job_id_is_safe_path_component(value: object) -> bool:
@@ -251,7 +302,7 @@ def render_three_stock_input_batch_to_directory(
     stage = output_directory.with_name(
         f".{output_directory.name}.{os.getpid()}.{uuid.uuid4().hex}.stage"
     )
-    stage.mkdir()
+    owned_stage = _claim_stage(stage)
     published = False
     try:
         receipt_jobs: list[dict[str, Any]] = []
@@ -335,8 +386,8 @@ def render_three_stock_input_batch_to_directory(
         published = True
         return receipt
     except Exception:
-        if not published and stage.exists():
-            shutil.rmtree(stage)
+        if not published:
+            _remove_stage_if_owned(owned_stage)
         raise
 
 
