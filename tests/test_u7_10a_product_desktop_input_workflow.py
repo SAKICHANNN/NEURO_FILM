@@ -478,25 +478,28 @@ def test_native_export_freezes_explicit_selection_while_busy(
 def test_native_entrypoint_starts_and_closes_cleanly(tmp_path: Path) -> None:
     source = tmp_path / "source.png"
     _source(source)
-    scratch = tmp_path / "scratch"
+    scratch = ROOT / "tmp" / f"u7_14b_u7_10a_{tmp_path.name}"
     scratch.mkdir()
-    completed = subprocess.run(
-        [
-            sys.executable,
-            "-I",
-            str(ROOT / "scripts/open_product_desktop.py"),
-            "--input",
-            str(source),
-            "--scratch-root",
-            str(scratch),
-            "--smoke-exit-ms",
-            "250",
-        ],
-        cwd=ROOT,
-        check=False,
-        capture_output=True,
-        text=True,
-        timeout=15,
-    )
-    assert completed.returncode == 0, completed.stderr
-    assert list(scratch.iterdir()) == []
+    try:
+        completed = subprocess.run(
+            [
+                sys.executable,
+                "-I",
+                str(ROOT / "scripts/open_product_desktop.py"),
+                "--input",
+                str(source),
+                "--scratch-root",
+                str(scratch),
+                "--smoke-exit-ms",
+                "250",
+            ],
+            cwd=ROOT,
+            check=False,
+            capture_output=True,
+            text=True,
+            timeout=15,
+        )
+        assert completed.returncode == 0, completed.stderr
+        assert list(scratch.iterdir()) == []
+    finally:
+        scratch.rmdir()
