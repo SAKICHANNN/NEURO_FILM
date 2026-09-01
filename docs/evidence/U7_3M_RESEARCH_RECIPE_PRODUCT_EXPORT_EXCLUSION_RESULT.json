@@ -1,0 +1,48 @@
+{
+  "schema_version": "neuro-film.u7-3m-research-recipe-product-export-exclusion.evidence.v1",
+  "node": "U7.3M",
+  "status": "PASS_PRIVATE_U7_3M_RESEARCH_RECIPE_PRODUCT_EXPORT_EXCLUSION",
+  "decision": "retain_product_export_eligibility_repair_and_stop_adjacent_export_wrapper_expansion",
+  "bindings": {
+    "contract_commit": "fedb6ce16160a0d970ab3e26ec502475071bf153",
+    "implementation_commit": "7f2b0222782ac1f9a8762ef7f6d7a6d2c3dce853",
+    "formal_scratch_lock_commit": "f549e9cd95dd95c0f759b980e3e7324bbd7d9289",
+    "execution_lock_commit": "0bfec3c85304e9a773f8c6b6e6d530d6d44e683d",
+    "config": {
+      "path": "configs/u7_3m_research_recipe_product_export_exclusion_v1.json",
+      "git_blob": "6d049b77dfee34217941703c2d72801d1415d05f",
+      "git_lf_sha256": "9113ff839fb5c1966e2a7a66a412641f8ad7d01a31f9614c6c605d2e57dbcf52"
+    }
+  },
+  "formal_reports": {
+    "forward": "outputs/eval/u7_3m_research_recipe_product_export_exclusion_v1/formal_forward.json",
+    "reverse": "outputs/eval/u7_3m_research_recipe_product_export_exclusion_v1/formal_reverse.json",
+    "bytes_each": 3532,
+    "sha256_each": "3ae413b92b9ea1e4f44d2798282e59d8408425c95b7e9b6f05522be5cfcc58a1",
+    "byte_exact": true,
+    "report_identity": "f9ee9e267b7bc0d164ed83bbd3bcac7ec582a2c3a4ac505f27596a66e43e1e3e",
+    "stable_identity": "412ca240c553ede69ec2a24a30cddf6b4989b2bf4efc9c676dde4f7b93a1af4f"
+  },
+  "result": {
+    "default_history_research_valid": true,
+    "product_history_research_invalid_code": "recipe_research_only",
+    "research_only_request_count": 0,
+    "direct_research_export_rejected": true,
+    "browser_research_only_session_rejected": true,
+    "mixed_history_request_count": 1,
+    "mixed_history_request_styles": ["ektar_100"],
+    "ordinary_product_output_bytes": 296027,
+    "ordinary_product_output_sha256": "19eb91b3a8f038cf82031b7473e58c0bf9791dadfd33f843bdd96ee75b1bb6aa",
+    "ordinary_product_replay_sha256": "19eb91b3a8f038cf82031b7473e58c0bf9791dadfd33f843bdd96ee75b1bb6aa",
+    "owned_scratch_exists_after_each_run": false,
+    "all_nine_gates_pass": true
+  },
+  "excluded_execution": {
+    "stage": "before_evidence",
+    "reason": "The first dual invocation used two different scratch paths. Absolute recipe input/output bindings therefore changed recipe and request hashes, so forward/reverse report and stable identities differed.",
+    "action": "Both owned reports were removed, one exact formal scratch path was added to the prospective execution lock, formal report order/path/scratch mismatches were made pre-work errors, and both fresh processes restarted from zero sequentially.",
+    "science_or_gate_change": false,
+    "excluded_reports_retained_as_formal": false
+  },
+  "claim_ceiling": "Private product-export eligibility repair for existing deterministic Look Approximation recipe workflows only. General read-only history retains research recipes; research-only recipes cannot be selected by direct, offline-request or local-browser product export. No renderer, recipe schema, stock calibration, physical-film response, public API, package, installer or release claim."
+}
