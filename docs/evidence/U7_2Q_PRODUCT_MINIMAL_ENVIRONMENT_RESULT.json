@@ -1,0 +1,76 @@
+{
+  "schema_version": "neuro-film.u7-2q-product-minimal-environment-evidence.v1",
+  "node_id": "U7.2Q",
+  "decision": "FAIL_CLOSED_BINARY_WHEEL_GAP_BEFORE_PRODUCT_EXECUTION",
+  "claim_ceiling": "The exact pinned Windows Python 3.12 binary-only product environment is not installable. No product image, nested U7.2P audit, calibrated-stock, physical-film, package, installer or release claim opens.",
+  "bindings": {
+    "contract_commit": "087ab95d808c8356b7e4fc93da972ee092722b5d",
+    "manifest_commit": "49e6fa09ca0ea84f67971bcbeecbb1c943f8a5a7",
+    "audit_commit": "b0bf343eb4f322f4450e35fa72ed7d0e95908e1e",
+    "files": {
+      "configs/u7_2q_product_minimal_environment_v1.json": {
+        "bytes": 1720,
+        "sha256": "0ee9f7cc098d2baa5c5a6df4ba62d92e8caa3e93767234ec25509141fb438807",
+        "git_blob": "26a2689b23a5f32e4aaede2d5b7ab996d5af0af6"
+      },
+      "docs/planning/U7_2Q_PRODUCT_MINIMAL_ENVIRONMENT_CONTRACT.md": {
+        "bytes": 2986,
+        "sha256": "f3f8f3851741b6b3d830f9a52de19e788056c710189815b3e27eaac3f6023bfb",
+        "git_blob": "b7907bde005266f7cf69b51f1ed5badaf9ce2b69"
+      },
+      "requirements-product.txt": {
+        "bytes": 405,
+        "sha256": "42815926abbb9063bdd00410965463447af8c5a3576d5912ac3bf25cf2d350f2",
+        "git_blob": "01664c52bf6c316c1f248560e0849f70c34e22df"
+      },
+      "scripts/audit_u7_2q_product_minimal_environment.py": {
+        "bytes": 8894,
+        "sha256": "048e407ae8275eeee2416d2dafc822efbd17fa775799f49e67d08c9e18a2e560",
+        "git_blob": "fdd88a72ccb9a90a54503f09929b29a3e19e64d8"
+      },
+      "tests/test_u7_2q_product_minimal_environment.py": {
+        "bytes": 2017,
+        "sha256": "8b2d0d69b4d9bfe293829ebaeaf5016ea541911bac81aa9160828a0edcf5b4c2",
+        "git_blob": "06ada69cf64e5608660644f20e34814502a30423"
+      },
+      "tests/test_audit_u7_2q_product_minimal_environment.py": {
+        "bytes": 686,
+        "sha256": "216de5aef9d85a1e7ba072994cecbe86536dfc1d2b9bdd7ab9756289af0d1931",
+        "git_blob": "72ff849fe417212e5f7104d46a69f341c1051677"
+      }
+    }
+  },
+  "formal_report": {
+    "path": "outputs/eval/u7_2q_product_minimal_environment_v1/formal.json",
+    "bytes": 2510,
+    "sha256": "f2ec839a484d16d8078aec9133da42dc1453b9c3e5362fb6c7854da19f966cc8",
+    "status": "FAIL_CLOSED"
+  },
+  "result": {
+    "environment_count": 2,
+    "python_environment_create_pass_count": 2,
+    "binary_only_install_pass_count": 0,
+    "product_execution_count": 0,
+    "nested_u7_2p_report_count": 0,
+    "product_image_or_recipe_write_count": 0,
+    "formal_owned_environment_residue_zero": true,
+    "source_locks_exact": true,
+    "diagnosed_unavailable_binary_requirement": "antlr4-python3-runtime==4.9.3",
+    "diagnostic": "pip index exposes version 4.9.3, but binary-only download lists wheels only for 4.11.0 and newer and returns No matching distribution found for 4.9.3.",
+    "replay_not_run_due_to_stop_rule": true
+  },
+  "excluded_diagnostics": [
+    "After the formal pre-product stop, a no-dependency binary-only pip download diagnostic confirmed that antlr4-python3-runtime==4.9.3 has no compatible binary distribution. It downloaded no artifact and read no product image.",
+    "The diagnostic command created an empty tmp/u7_2q_binary_diagnostic directory. Two exact-path PowerShell Remove-Item attempts were rejected before execution by platform destructive-action policy; no file is present in that ignored directory and it is excluded from the formal audit residue gate."
+  ],
+  "retained_boundaries": {
+    "manifest_or_version_rescue_authorized": false,
+    "source_build_fallback_authorized": false,
+    "product_algorithm_profile_catalog_or_recipe_changed": false,
+    "u7_2p_result_changed": false,
+    "calibrated_stock_response_or_physical_film_claim": false,
+    "public_package_installer_or_release_claim": false,
+    "ao6_promoted_beyond_velvia50_display_proxy_baseline": false
+  }
+}
+
