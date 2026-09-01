@@ -1,0 +1,56 @@
+{
+  "schema": "kmcfm.u7-15b-desktop-visible-strength-quantization-contract.v1",
+  "node_id": "U7.15B",
+  "parent_head": "ea805347a1082737fc0efa3be47b1275ac6ff754",
+  "parent_evidence": {
+    "path": "docs/evidence/U7_15A_DESKTOP_BATCH_REPRESENTATIVE_SELECTION_RESULT.json",
+    "bytes": 8565,
+    "sha256": "029122a26a0331854f92821017a72e52ee1a0cae6f06053495121c9eb47c6da8"
+  },
+  "parent_bindings": {
+    "product_desktop_ui": {
+      "path": "src/inference/product_desktop_ui.py",
+      "git_blob": "6928bc18cb0b81367eaeb7b82813a2f195c6613e",
+      "git_sha256": "ef381c2f9a3dcac103acd90435d9fec644b50b9b4db36376c14867b7c81fb60e",
+      "working_sha256": "8d55594d3304a5e1465768961d5c3e4a17708e0c7cd9db574028bb5a1829060a"
+    },
+    "product_desktop": {
+      "path": "src/inference/product_desktop.py",
+      "git_blob": "ab2eda5ef44ea1511a1130de24371161944dde97",
+      "git_sha256": "6e7f9701044ee515cf08d9f65ab6cf91b8a75050e7df2c6ce44a2df9156af059"
+    }
+  },
+  "quantization": {
+    "display_unit": "integer_percent",
+    "rounding": "half_up",
+    "minimum_percent": 0,
+    "maximum_percent": 100,
+    "native_ui_only": true,
+    "render_entry_rebind": true,
+    "reject_non_finite": true
+  },
+  "cases": [
+    {"input": 0.654321, "percent": 65, "amount": 0.65},
+    {"input": 0.625, "percent": 63, "amount": 0.63},
+    {"input": 0.624999, "percent": 62, "amount": 0.62},
+    {"input": 0.005, "percent": 1, "amount": 0.01},
+    {"input": 0.004999, "percent": 0, "amount": 0.0},
+    {"input": -0.25, "percent": 0, "amount": 0.0},
+    {"input": 1.25, "percent": 100, "amount": 1.0}
+  ],
+  "exact_anchors": [0.0, 0.5, 0.65, 1.0],
+  "gates": {
+    "require_parent_mismatch_reproduction": true,
+    "require_callback_label_variable_exact": true,
+    "require_render_entry_rebind": true,
+    "require_recipe_receipt_amount_exact": true,
+    "require_non_finite_preworkflow_rejection": true,
+    "require_anchor_output_recipe_receipt_exact": true,
+    "require_u7_15a_representative_behavior_exact": true,
+    "require_core_and_renderer_unchanged": true,
+    "require_forward_reverse_report_exact": true,
+    "require_source_immutable": true,
+    "require_zero_owned_residue": true
+  },
+  "claim_ceiling": "Private Windows/Python native-Tk visible-strength consistency for deterministic film-inspired / Look Approximation output only."
+}
