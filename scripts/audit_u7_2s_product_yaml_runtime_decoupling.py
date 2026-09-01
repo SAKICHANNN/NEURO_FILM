@@ -311,16 +311,13 @@ def build_report(config_path: Path, order: str) -> dict[str, Any]:
         ),
         "tracked_profile_yaml_exact_in_both_environments": len(rows)
         == config["environment_count"]
-        and len(
-            {
-                (
-                    row["import_probe"].get("profile_canonical_bytes"),
-                    row["import_probe"].get("profile_canonical_sha256"),
-                )
-                for row in rows
-            }
-        )
-        == 1,
+        and all(
+            row["import_probe"].get("profile_canonical_bytes")
+            == config["profile_yaml_canonical"]["bytes"]
+            and row["import_probe"].get("profile_canonical_sha256")
+            == config["profile_yaml_canonical"]["sha256"]
+            for row in rows
+        ),
     }
     return {
         "schema_version": "neuro-film.u7-2s-product-yaml-runtime-decoupling-result.v1",
