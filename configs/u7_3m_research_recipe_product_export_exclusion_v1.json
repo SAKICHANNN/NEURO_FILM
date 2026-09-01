@@ -5,7 +5,7 @@
   "parents": ["U1.6G4J", "U7.3A", "U7.3D", "U7.3F", "U7.3I"],
   "contract_commit": "fedb6ce16160a0d970ab3e26ec502475071bf153",
   "implementation_commit": "7f2b0222782ac1f9a8762ef7f6d7a6d2c3dce853",
-  "execution_commit": "09da5d491c8ab703d589de2972a7fa8c2c6408eb",
+  "execution_commit": "f549e9cd95dd95c0f759b980e3e7324bbd7d9289",
   "formal_reports": {
     "forward": "outputs/eval/u7_3m_research_recipe_product_export_exclusion_v1/formal_forward.json",
     "reverse": "outputs/eval/u7_3m_research_recipe_product_export_exclusion_v1/formal_reverse.json"
@@ -39,8 +39,8 @@
     },
     "audit_runner": {
       "path": "scripts/audit_u7_3m_research_recipe_product_export_exclusion.py",
-      "git_blob": "5ea946c5582f5ea7f5820909da0a5aea20943f63",
-      "sha256": "c188b863137bae9023d4f85046b48a9002e0e9924e279754208e63fccf9a28f8"
+      "git_blob": "f8689d12141649cd490cda954f9e4f66354936dd",
+      "sha256": "849de350fccb01afbcefafb0243943bd4247fc40f98ce9fba3691207f9a5cac4"
     },
     "audit_test": {
       "path": "tests/test_audit_u7_3m_research_recipe_product_export_exclusion.py",
