@@ -50,6 +50,36 @@ def _canonical_sha256(payload: object) -> str:
     return hashlib.sha256(encoded).hexdigest()
 
 
+def _git_output(*args: str) -> str:
+    completed = subprocess.run(
+        ["git", *args],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    return completed.stdout.strip()
+
+
+def _verify_execution_bindings(config: dict[str, Any]) -> bool:
+    bindings = config.get("execution_bindings")
+    if not isinstance(bindings, dict) or not bindings:
+        return False
+    for item in bindings.values():
+        path = ROOT / item["path"]
+        if (
+            not path.is_file()
+            or path.stat().st_size != int(item["bytes"])
+            or sha256_file(path) != item["sha256"]
+            or _git_output("rev-parse", f"{item['commit']}^{{commit}}")
+            != item["commit"]
+            or _git_output("rev-parse", f"{item['commit']}:{item['path']}")
+            != item["git_blob"]
+        ):
+            return False
+    return True
+
+
 def _load_rgb(path: Path) -> np.ndarray:
     bgr = cv2.imread(str(path), cv2.IMREAD_UNCHANGED)
     if bgr is None or bgr.dtype != np.uint8 or bgr.ndim != 3 or bgr.shape[2] != 3:
@@ -336,6 +366,7 @@ def execute(config_path: Path, *, reverse: bool = False) -> dict[str, Any]:
         bindings["p98_config_sha256"] == config["upstream"]["p98_config_sha256"]
         and bindings["p98_evidence_sha256"] == config["upstream"]["p98_evidence_sha256"]
     )
+    execution_bindings_exact = _verify_execution_bindings(config)
     runtime = {
         "platform": sys.platform,
         "python": ".".join(map(str, sys.version_info[:3])),
@@ -372,6 +403,7 @@ def execute(config_path: Path, *, reverse: bool = False) -> dict[str, Any]:
             shutil.rmtree(child)
         gates = {
             "upstream_bindings_exact": upstream_exact,
+            "execution_bindings_exact": execution_bindings_exact,
             "runtime_exact": runtime_exact,
             **evaluate_records(config, records),
             "owned_residue_empty": not any(scratch.iterdir()),
