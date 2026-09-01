@@ -22238,3 +22238,54 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   calibrated stock response, physical-film reproduction, stock
   distinguishability, population preference, a public/standalone installer,
   cross-platform GUI, or completed product release.
+
+### 2026-09-01 - U7.10B composes the installed runtime and native desktop
+
+- **Node and routing:** `ULT > U7 productization > U7.10B`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the sole write workflow; router, DRPT-BI,
+  planning, project-structure and agent-log disciplines were read-only
+  secondary reviewers. Owned files were the U7.10B contract/config,
+  installer/test changes, formal audit/evidence and this minimal propagation;
+  existing `.codex/` and `tmp/` remained foreign/untracked.
+- **Product gap and implementation:** U7.9A installed only the first-class CLI,
+  while U7.10A's real new-input desktop required a checkout environment. Receipt
+  v2 now binds `kmcfm-look.cmd`, `product-launch.py`, `kmcfm-desktop.cmd` and
+  `product-desktop-launch.py`, retaining the legacy CLI `launcher` field. Both
+  generated Python chains run isolated, remove case-insensitive `PYTHON*` and
+  verify the bound repository, requirements and tracked-clean state before
+  entering the unchanged CLI or desktop entrypoint. No renderer, preview, UI,
+  product look, dependency or output algorithm was copied or changed.
+- **Formal evidence:** accepted committed HEAD `1b1ff649` performed two fresh
+  12-wheel / 111,666,287-byte installs. From a foreign current directory, all
+  three direct/CLI PNG hashes are exact. The installed desktop reaches its real
+  1180x760 Tk mainloop, receives a Win32 preview click and physical Velvia radio
+  click, shows three previews plus the Look Approximation/not-calibrated claims,
+  and terminates its process/window with zero scratch and formal-root residue.
+  Receipt, four launcher hashes, pinned distributions, `pip check`, hostile
+  environment stripping, source Git objects, existing/late-foreign destination
+  preservation and pre-Tk requirements/HEAD/tracked drift controls all pass.
+  Forward/reverse reports are each 13,260 bytes and byte-identical at SHA
+  `54dd9c1b2cba196f3226fce994d387c742fcf7f04b6dec54626128a6e3017a71`;
+  stable identity is `549dbd9a495a8582e397dfb56d3a6fe0842f751d79801acc1e9d15f277e7c124`.
+  Both accepted screenshots are 36,158 bytes / SHA
+  `9466b5cd1d37a7b338f09ac543ae98913387e4c7025ab9c78d52674e30e9ff67`.
+  Evidence commit `653e795d` has SHA
+  `7139cf09716a230ac6c466a4a5e246c8b3e820cbbb7394c06bbc197f8c612ba8`.
+- **Excluded attempts and verification:** commit `548ba5fa` stopped after the
+  GUI but before report publication because its owned P-backed exFAT fixture
+  repo lacked process-scoped Git safe-directory authorization. Commit
+  `c98978fa` completed controls but stopped before report publication because
+  Git object files were read-only during identity-owned root cleanup. Both
+  report counts are zero; their visuals/owned roots were removed before
+  committed additive corrections. The accepted evidence-plus-parent chain is
+  66 PASS; earlier focused runs are 61, 30 and 31 PASS. Ruff, compileall, JSON,
+  Git-object/source/parent bindings, manual screenshot review and diff checks
+  pass.
+- **Claim and handoff:** this proves only a private Windows repository-bound
+  installed launch path for the existing deterministic `film-inspired / Look
+  Approximation` workflow. It is not a standalone/public installer, signed
+  executable, hostile-host sandbox, cross-platform GUI, calibrated stock
+  response, physical-film reproduction, stock distinguishability, population
+  preference or release approval. Stop adjacent launcher/bootstrap/PATH/DLL/
+  cache/package variants and return to a distinct substantive product defect or
+  user workflow.

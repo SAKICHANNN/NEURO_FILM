@@ -22,8 +22,9 @@ The renderer is currently a safe engineering baseline, not yet a calibrated repr
 For a private Windows CPython 3.12 installation, create a repository-bound
 runtime under the P-backed `outputs` junction. The destination must not already
 exist. The installer uses only the exact binary product dependencies, runs
-`pip check`, rejects the research/ML dependency graph, and publishes a launcher
-plus an installation receipt:
+`pip check`, rejects the research/ML dependency graph, and publishes separate
+command-line and desktop launchers plus one receipt that binds all four command
+and Python launcher files:
 
 ```powershell
 py -3.12 scripts\install_product_runtime.py outputs\private-product-runtime
@@ -62,9 +63,16 @@ Inspect all current controls with:
 
 ### Native repository desktop workflow
 
-From a repository checkout with the product environment installed, open the
-private Windows desktop workflow directly. An optional supported input can be
-selected at startup; otherwise use **Choose photo** in the window.
+The installed private runtime exposes the same native workflow from any current
+directory while the bound repository commit and requirements remain exact:
+
+```powershell
+.\outputs\private-product-runtime\kmcfm-desktop.cmd --input input.jpg
+```
+
+For repository development, open the workflow directly from the product
+environment. An optional supported input can be selected at startup; otherwise
+use **Choose photo** in the window.
 
 ```powershell
 .\.venv\Scripts\python.exe -I scripts\open_product_desktop.py `
