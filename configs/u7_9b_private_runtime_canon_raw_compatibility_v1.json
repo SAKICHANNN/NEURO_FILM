@@ -71,28 +71,39 @@
     },
     "audit": {
       "path": "scripts/audit_u7_9b_private_runtime_canon_raw_compatibility.py",
-      "bytes": 20653,
-      "sha256": "fc1987086b182db05fb70d00c1a2f326e9629ff77cfcee0a171bea6c6f745fb4"
+      "bytes": 20353,
+      "sha256": "79028f589868ae775750d9721bdc8e1565f719512e19cd26d502505c4e9d4234"
     },
     "test": {
       "path": "tests/test_u7_9b_private_runtime_canon_raw_compatibility.py",
-      "bytes": 3858,
-      "sha256": "41d6bc9bd327a74c98de68dab96525b6e1a906c420a94fc30cba5aeff45c2307"
+      "bytes": 4501,
+      "sha256": "19e78634b4cef2bda56636096876697744e67b569e610d9cfb7ee450916c8b07"
     }
   },
   "execution_lock": {
     "initial_implementation_commit": "1c8c7578a536109a09421d93de62d98d12a77f86",
     "preexecution_scratch_correction_commit": "bb509c0815a1dd17113477b1f04d982fd2d5389e",
+    "preexecution_exfat_control_correction_commit": "a55393964ff93894149f1976e77e609f7fd7e948",
     "unified_formal_base_commit": "bb5d3fedb5619636c0e68a33d39c7d45159ce669"
   },
-  "excluded_preexecution_attempt": {
-    "stage": "formal-scratch-parent-create",
-    "source_identity_hash_reads": 6,
-    "product_pixel_decodes": 0,
-    "runtime_installations": 0,
-    "renders": 0,
-    "reports": 0
-  },
+  "excluded_preexecution_attempts": [
+    {
+      "stage": "formal-scratch-parent-create",
+      "source_identity_hash_reads": 6,
+      "product_pixel_decodes": 0,
+      "runtime_installations": 0,
+      "renders": 0,
+      "reports": 0
+    },
+    {
+      "stage": "exfat-missing-wheel-control-materialization",
+      "source_identity_hash_reads": 6,
+      "product_pixel_decodes": 0,
+      "runtime_installations": 1,
+      "renders": 0,
+      "reports": 0
+    }
+  ],
   "runtime": {
     "direct_python": ".venv/Scripts/python.exe",
     "wheelhouse": "tmp/u7_9a_wheelhouse_v1",
