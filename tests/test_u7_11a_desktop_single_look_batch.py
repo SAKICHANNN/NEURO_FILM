@@ -17,6 +17,9 @@ import pytest
 from PIL import Image
 
 import src.inference.product_desktop as desktop_module
+from src.inference.desktop_single_look_batch_recovery import (
+    DesktopBatchProgressReceipt,
+)
 from src.inference.product_desktop import (
     DesktopBatchReceipt,
     ProductDesktopError,
@@ -545,19 +548,33 @@ def test_native_batch_ui_tracks_progress_cancel_and_non_daemon_worker(
     app = build_product_desktop_app(root, workflow, initial_input=first)
 
     def held_export(
+        active_workflow: ProductDesktopWorkflow,
         inputs: object,
         style_id: str,
+        workspace_directory: Path,
         output_directory: Path,
         *,
         cancel_event: threading.Event,
         progress: object,
-    ) -> DesktopBatchReceipt:
+    ) -> DesktopBatchReceipt | DesktopBatchProgressReceipt:
+        assert active_workflow is workflow
         rows = tuple(inputs)  # type: ignore[arg-type]
         progress(1, len(rows), rows[0].basename)  # type: ignore[operator]
         started.set()
         assert release.wait(5)
         if cancel_event.is_set():
-            raise ProductDesktopError("batch cancelled safely")
+            return DesktopBatchProgressReceipt(
+                workspace_id="2" * 64,
+                style_id=style_id,
+                look_amount=0.5,
+                workspace_directory=workspace_directory,
+                output_directory=output_directory,
+                completed_job_count=1,
+                remaining_job_count=1,
+                reused_job_count=0,
+                newly_completed_job_count=1,
+                receipt={},
+            )
         return DesktopBatchReceipt(
             batch_id="0" * 64,
             style_id=style_id,
@@ -569,13 +586,16 @@ def test_native_batch_ui_tracks_progress_cancel_and_non_daemon_worker(
             receipt={},
         )
 
-    monkeypatch.setattr(workflow, "export_batch", held_export)
+    monkeypatch.setattr(
+        "src.inference.product_desktop_ui.export_resumable_desktop_single_look_batch",
+        held_export,
+    )
     try:
         app._set_inputs((first, second))
         state, bound = workflow.render_batch_previews((first, second), 0.5)
         app._batch_preview_complete((state, bound))
         assert app.input_text.get() == f"2 photos · previewing {bound[0].basename}"
-        assert app.export_button.cget("text") == "Export 2 PNG16 + recipes"
+        assert app.export_button.cget("text") == "Export / resume 2 PNG16 + recipes"
         app.look_buttons["portra_400"].invoke()
         app.export()
         assert started.wait(2)
@@ -591,17 +611,15 @@ def test_native_batch_ui_tracks_progress_cancel_and_non_daemon_worker(
             for button in app.look_buttons.values()
         )
         assert str(app.cancel_button.cget("state")) == "normal"
-        _pump_tk(root, lambda: app.status.get().startswith("Rendered 1/2:"))
+        _pump_tk(root, lambda: app.status.get().startswith("Completed 1/2:"))
         app.cancel_batch()
         assert app._batch_cancel.is_set()
         assert str(app.cancel_button.cget("state")) == "disabled"
         release.set()
         _pump_tk(root, lambda: app._batch_thread is None)
         assert app.batch_active is False and app.busy is False
-        assert shown[-1] == (
-            "K-MCFM stopped safely",
-            "batch cancelled safely",
-        )
+        assert shown == []
+        assert app.status.get().startswith("Batch paused: 1/2 complete")
     finally:
         release.set()
         _reset_shared_tk_app(app)
@@ -628,20 +646,37 @@ def test_native_close_waits_for_active_batch_worker(
     monkeypatch.setattr(app, "_finish_close", closed.set)
 
     def held_cancelled_export(
+        active_workflow: ProductDesktopWorkflow,
         inputs: object,
         style_id: str,
+        workspace_directory: Path,
         output_directory: Path,
         *,
         cancel_event: threading.Event,
         progress: object,
-    ) -> DesktopBatchReceipt:
-        del inputs, style_id, output_directory, progress
+    ) -> DesktopBatchProgressReceipt:
+        del inputs, progress
+        assert active_workflow is workflow
         started.set()
         assert release.wait(5)
         assert cancel_event.is_set()
-        raise ProductDesktopError("batch cancelled safely")
+        return DesktopBatchProgressReceipt(
+            workspace_id="2" * 64,
+            style_id=style_id,
+            look_amount=0.5,
+            workspace_directory=workspace_directory,
+            output_directory=output_directory,
+            completed_job_count=1,
+            remaining_job_count=1,
+            reused_job_count=0,
+            newly_completed_job_count=1,
+            receipt={},
+        )
 
-    monkeypatch.setattr(workflow, "export_batch", held_cancelled_export)
+    monkeypatch.setattr(
+        "src.inference.product_desktop_ui.export_resumable_desktop_single_look_batch",
+        held_cancelled_export,
+    )
     try:
         app._set_inputs((first, second))
         state, bound = workflow.render_batch_previews((first, second), 0.5)
