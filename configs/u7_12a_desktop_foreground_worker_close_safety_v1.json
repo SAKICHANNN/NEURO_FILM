@@ -1,0 +1,33 @@
+{
+  "schema": "kmcfm.u7-12a-desktop-foreground-worker-close-safety-contract.v1",
+  "node_id": "U7.12A",
+  "source_parent_commit": "a1ce9df6989db6b82df2020ad6a64c390a030c1e",
+  "intervention": {
+    "maximum_foreground_workers": 1,
+    "foreground_worker_daemon": false,
+    "worker_calls_tk": false,
+    "close_blocks_tk_thread": false,
+    "close_waits_asynchronously": true,
+    "preview_cancel_added": false,
+    "single_export_cancel_added": false,
+    "batch_behavior_changed": false
+  },
+  "gates": {
+    "preview_close_safe": true,
+    "single_export_close_safe": true,
+    "post_close_callback_zero": true,
+    "ordinary_success_and_error_preserved": true,
+    "concurrent_foreground_rejected": true,
+    "batch_behavior_exact": true,
+    "owned_residue_zero": true
+  },
+  "claim_ceiling": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false,
+    "public_release": false,
+    "cross_platform_gui": false,
+    "installer": false
+  }
+}
