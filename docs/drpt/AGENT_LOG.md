@@ -22905,3 +22905,48 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   or physical stock response, stock distinguishability, HDR/wide-gamut support,
   installer, public release or cross-platform GUI evidence. AO6 remains only
   the Velvia 50 display-proxy Look Approximation baseline; no push occurred.
+
+### 2026-09-02 - U7.14B confines desktop scratch to canonical project storage
+
+- **Node and routing:** `ULT > U7 productization > U7.14B`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the sole writer; router, project-structure and
+  agent-log disciplines were read-only secondary checks. The long-lived Look
+  Approximation Goal remains accurate. Producer and consumer tasks confirmed
+  exact-path and shared-doc avoidance. Foreign `.codex/` and `tmp/` trees were
+  not staged or modified.
+- **Defect and repair:** the public `open_product_desktop.py --scratch-root`
+  help promised a repository-relative generated-artifact root, but the entry
+  accepted any existing directory and could route preview workspaces to C:,
+  a drive root or another tree. Contract/config commit `89939682`, repair
+  `6ef3a8cc` and formal controller `a0ea6e52` now resolve the current repository
+  `tmp` entry and accept only that root or an existing resolved descendant.
+  Validation precedes `tkinter` and product-module imports, input inspection,
+  workflow construction and scratch publication. Internal
+  `ProductDesktopWorkflow` injection remains unchanged; one historical U7.10A
+  launcher smoke fixture now uses and removes a unique canonical descendant.
+- **Formal evidence:** exact execution of the frozen parent Git blob proves the
+  external-directory defect. The corrected entry rejects repository root,
+  `data`, `outputs`, C drive root, `tmp/../outputs`, an external project-owned
+  P-backed directory, missing paths and a regular file before Tk/input/scratch;
+  a reparse escape is required when host capability exists. Default and
+  explicit-descendant real Tk smoke runs return zero, foreign sentinel/source
+  identities remain exact and owned residue is zero. Forward/reverse reports
+  are byte-identical at 2,803 bytes / SHA
+  `041390e2c7124c4d6e49c3bb456fed29b221aa20bebac05a9a8522d6e8106150`;
+  scientific identity is
+  `e8eb81f238775265776022afe474ae9aab7a4225fd660afd56220d4359cbfee0`,
+  all 11 gates pass and evidence commit `026ec6c9` records SHA
+  `da8a3918d2bc5dbf6189d15c6a44fa8928ec40ea0cc93031602de934b9cc7ab0`.
+- **Verification and boundary:** fresh-process focused/U7.14A/U7.12C/F/G/
+  U7.11A/U7.10A behavioral runs pass 90/90 with one host-capability skip; 16
+  current evidence/installed-launcher tests pass. One combined pre-formal run
+  briefly observed a missing system Tk theme file, and the exact failed test
+  immediately passed alone; it is excluded. The immutable U7.10A
+  live-current-file binding correctly fails after this additive entrypoint
+  change and was not rewritten. Ruff, formatting, py_compile, JSON and diff
+  checks pass. Renderer, source, look, strength, preview, output, recipe,
+  receipt, batch and storage junction are unchanged. This is private canonical
+  storage routing for deterministic `film-inspired / Look Approximation`, not
+  a filesystem sandbox, installer, release, cross-platform GUI, calibrated
+  camera/stock response, physical film, distinguishability or HDR/wide-gamut
+  evidence. Stop adjacent scratch/fallback wrappers; no push occurred.
