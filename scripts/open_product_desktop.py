@@ -30,6 +30,20 @@ def resolve_product_scratch_root(candidate: Path, *, project_root: Path = ROOT) 
     return resolved
 
 
+def resolve_product_initial_input(candidate: Path | None) -> Path | None:
+    """Resolve an optional startup photo before the native UI is initialized."""
+
+    if candidate is None:
+        return None
+    try:
+        resolved = Path(candidate).resolve(strict=True)
+    except OSError as exc:
+        raise ValueError("initial input must be an existing file") from exc
+    if not resolved.is_file():
+        raise ValueError("initial input must be an existing file")
+    return resolved
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Open the private new-input K-MCFM Look Approximation desktop."
@@ -56,6 +70,7 @@ def main() -> int:
         raise ValueError("--smoke-exit-ms must be positive")
     try:
         scratch_root = resolve_product_scratch_root(args.scratch_root)
+        initial_input = resolve_product_initial_input(args.input)
     except (OSError, ValueError) as exc:
         print(f"K-MCFM desktop rejected: {exc}", file=sys.stderr)
         return 2
@@ -71,7 +86,7 @@ def main() -> int:
         export_tile_size=DESKTOP_EXPORT_TILE_SIZE,
         export_tile_workers=DESKTOP_EXPORT_TILE_WORKERS,
     )
-    app = build_product_desktop_app(root, workflow, initial_input=args.input)
+    app = build_product_desktop_app(root, workflow, initial_input=initial_input)
     if args.smoke_exit_ms is not None:
         root.after(args.smoke_exit_ms, app.close)
     root.mainloop()
