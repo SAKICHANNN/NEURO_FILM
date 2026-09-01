@@ -253,7 +253,7 @@ def _physical_dialog_button_click(dialog: int, control_id: int) -> dict[str, Any
     return {
         "button_class": _class_name(control),
         "button_id": int(user32.GetDlgCtrlID(control)),
-        "click_screen": [x, y],
+        "physical_click": True,
     }
 
 
