@@ -22806,3 +22806,56 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   physical stock response, distinguishability, HDR/wide gamut, arbitrary media,
   installer, cross-platform GUI, public release or product-value evidence. No
   push occurred.
+
+### 2026-09-01 - U7.13A closes the exact P-backed Linux CLI runtime composition
+
+- **Node and routing:** `ULT > U7 productization > U7.13A`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the sole writer; `codex-super-router`,
+  DRPT-BI, project-structure and agent-log disciplines bounded the leaf. The
+  single long-lived deterministic Look Approximation Goal remains accurate and
+  active; this one runtime composition does not control the Goal lifecycle.
+  Parallel U7.12G used disjoint paths and explicit Git windows. Existing
+  foreign `.codex/`, `tmp/` and the producer-owned README change were not
+  staged or modified.
+- **Freeze and implementation:** contract/config commits `b4ba6f09` and
+  `8a8a6c45` freeze one exact U4.1A real JPEG, the unchanged Velvia 50,
+  Portra 400 and Ektar 100 Look Approximation rows at amount 1.0, PNG16 plus
+  strict replay, Ubuntu-22.04 x86_64 CPython 3.12 and the exact twelve
+  `requirements-product-v2.txt` versions. Controller/lock commits `01964f75`,
+  `f5e06a21` and `78805bf1` bind source, renderer, recipe, profile, catalog,
+  runner and wheel identities through committed Git blobs. Before wheel
+  acquisition or formal execution, review corrected the stale eleven-name
+  prose and random recipe-bearing temp paths without changing the question,
+  dependencies, input, look or gate.
+- **Acquisition and preflight correction:** all twelve official PyPI wheels,
+  138,274,320 bytes total, were acquired create-only under repo-relative
+  `data/vendor/linux/u7_13a-py312/wheels`; every filename, byte length and
+  SHA-256 matches the frozen lock, and a repeat acquisition reports zero new
+  files. Independent read-only review then found that quoted Ubuntu
+  `VERSION_ID` would serialize as `ubuntu-\"22.04\"`; commits `7f6fbdd3` and
+  `b70782ab` normalize the shell quotes and bind a live WSL witness before any
+  formal score. Eight focused tests pass at this committed clean point.
+- **Formal result:** the first committed-head forward attempt stops inside
+  `/usr/bin/python3.12 -m venv --copies` before pip install, render, replay,
+  pixel decode, media output or report. CPython still creates a `lib64`
+  symbolic link; the project-owned P-backed exFAT root rejects it with
+  `[Errno 1] Operation not permitted`. The frozen runtime/install stop rule
+  therefore closes exact U7.13A. No reverse run or post-result rescue is
+  allowed: moving to C, D or internal WSL storage, manually assembling a venv,
+  or changing distribution/interpreter/dependencies/source/look/output/gates
+  would answer a different question.
+- **Evidence, verification and boundary:** evidence commit `5c7a243c` records
+  SHA `217c2fff4f54e60b23a90db35c5f279cd753205120505bbed201cee3d540c3a0`
+  and scientific identity
+  `386acb30c1cd26728207c08d54d7dea2fda23dae61aeaa4aca49e6b7e0bda69f`.
+  Source SHA remains `b551eecc...c4bb5`; tracked state is exact, the partial
+  runtime was removed, the empty formal report root was verified against the
+  P-backed outputs junction then removed, and owned residue is zero. Eleven
+  implementation/evidence tests plus Ruff, formatting, py_compile, JSON and
+  diff checks pass. This proves only that the exact frozen P-backed exFAT WSL2
+  runtime composition cannot create its required fresh venv. Linux renderer
+  parity was not evaluated; existing Windows product evidence remains valid.
+  No adjacent U7.13A storage/runtime rescue, cross-platform GUI/installer,
+  public package/release, calibrated stock response, physical-film
+  reproduction, distinguishability or authenticity claim opens. No push
+  occurred.
