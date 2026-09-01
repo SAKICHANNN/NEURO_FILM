@@ -119,6 +119,23 @@ def _source_identity(path: Path, row: dict[str, Any]) -> bool:
     )
 
 
+def _create_formal_root(
+    root: Path, scratch_parent: Path
+) -> tuple[tuple[int, int], tuple[int, int]]:
+    if root.parent != scratch_parent:
+        raise ValueError("formal root must be one direct child of frozen scratch root")
+    if os.path.lexists(scratch_parent) or os.path.lexists(root):
+        raise FileExistsError("formal scratch root must be absent")
+    scratch_parent.mkdir()
+    parent_identity = _entry_identity(scratch_parent)
+    try:
+        root.mkdir()
+    except BaseException:
+        _cleanup_owned_directory(scratch_parent, parent_identity)
+        raise
+    return _entry_identity(root), parent_identity
+
+
 def _render_arguments(source: Path, output: Path, config: dict[str, Any]) -> list[str]:
     execution = config["execution"]
     return [
@@ -354,8 +371,9 @@ def audit(root: Path, wheelhouse: Path, order: str) -> dict[str, Any]:
     wheelhouse = wheelhouse.resolve(strict=True)
     if tmp_root not in root.parents or tmp_root not in wheelhouse.parents:
         raise ValueError("formal roots must remain below repo-relative tmp")
-    if os.path.lexists(root):
-        raise FileExistsError(root)
+    scratch_parent = (ROOT / str(config["runtime"]["scratch_root"])).resolve(
+        strict=False
+    )
     expected_wheels = list(config["runtime"]["wheels"])
     wheel_rows = _wheelhouse_rows(wheelhouse, expected_wheels)
 
@@ -371,9 +389,9 @@ def audit(root: Path, wheelhouse: Path, order: str) -> dict[str, Any]:
     if order == "reverse":
         rows.reverse()
 
-    root.mkdir()
-    root_identity = _entry_identity(root)
+    root_identity, parent_identity = _create_formal_root(root, scratch_parent)
     cleanup_ok = False
+    parent_cleanup_ok = False
     report: dict[str, Any] | None = None
     try:
         cache = root / "pip-cache"
@@ -525,10 +543,16 @@ def audit(root: Path, wheelhouse: Path, order: str) -> dict[str, Any]:
         report["automatic_pass"] = all(gates.values())
     finally:
         cleanup_ok = _cleanup_owned_directory(root, root_identity)
+        parent_cleanup_ok = _cleanup_owned_directory(scratch_parent, parent_identity)
 
     if report is None:
         raise U79BError("formal report was not constructed")
-    report["owned_residue_zero"] = cleanup_ok and not os.path.lexists(root)
+    report["owned_residue_zero"] = (
+        cleanup_ok
+        and parent_cleanup_ok
+        and not os.path.lexists(root)
+        and not os.path.lexists(scratch_parent)
+    )
     report["gates"]["owned_residue_zero"] = report["owned_residue_zero"]
     report["automatic_pass"] = all(report["gates"].values())
     report["status"] = (

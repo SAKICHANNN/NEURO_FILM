@@ -81,3 +81,21 @@ def test_source_identity_requires_size_and_hash(tmp_path: Path) -> None:
     assert audit._source_identity(source, row)
     source.write_bytes(b"drift")
     assert not audit._source_identity(source, row)
+
+
+def test_formal_root_is_create_only_and_parent_bound(tmp_path: Path) -> None:
+    scratch = tmp_path / "scratch"
+    root = scratch / "formal-work"
+    root_identity, parent_identity = audit._create_formal_root(root, scratch)
+    assert root.is_dir()
+    assert audit._cleanup_owned_directory(root, root_identity)
+    assert audit._cleanup_owned_directory(scratch, parent_identity)
+    assert not scratch.exists()
+
+    wrong_parent = tmp_path / "different"
+    with pytest.raises(ValueError, match="one direct child"):
+        audit._create_formal_root(tmp_path / "scratch" / "nested", wrong_parent)
+
+    scratch.mkdir()
+    with pytest.raises(FileExistsError, match="must be absent"):
+        audit._create_formal_root(root, scratch)
