@@ -1,0 +1,155 @@
+{
+  "schema": "neuro-film.u4-1a-three-stock-gold-severe-adjudication-result.v1",
+  "experiment_id": "U4.1A",
+  "date": "2026-09-01",
+  "status": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT_ACROSS_81_ARM_ROTATED_GOLD_VERDICTS",
+  "formal_execution_commit": "7938967269f7b08672cf6e0384eb95eefd58bcd5",
+  "config": {
+    "path": "configs/u4_1a_three_stock_gold_severe_adjudication_v1.json",
+    "sha256": "9793d8870d0454cb8fdda19c10a0bc961438b9385dd17ba6cd7383fc974c104f"
+  },
+  "contract": {
+    "path": "docs/planning/U4_1A_THREE_STOCK_GOLD_SEVERE_ADJUDICATION_CONTRACT.md",
+    "sha256": "398a0ba1c39a8c4bbb58a49b98eb6d825b0b7b436bf04587a61302fad1429e8e"
+  },
+  "formal_reports": {
+    "forward_path": "outputs/eval/u4_1a_three_stock_gold_severe_adjudication_v1/formal_forward_v2.json",
+    "reverse_path": "outputs/eval/u4_1a_three_stock_gold_severe_adjudication_v1/formal_reverse_v2.json",
+    "forward_media_root": "outputs/eval/u4_1a_three_stock_gold_severe_adjudication_v1/run_forward_v2",
+    "reverse_media_root": "outputs/eval/u4_1a_three_stock_gold_severe_adjudication_v1/run_reverse_v2",
+    "bytes_each": 70076,
+    "sha256": "90ae1784c24d855f888d1f91110d46ed37e23c3c80e7f9a8dca0ee96a58ff5b5",
+    "forward_reverse_byte_exact": true,
+    "scientific_identity": "493b487170bf9db3a01f89c280f98a71155faf6989b7f4927d2627303a3bc589"
+  },
+  "execution_integrity_note": {
+    "excluded_first_forward_run": true,
+    "reason": "The first forward report exposed that raw recipe SHA values include run-specific absolute paths. No visual verdict had been recorded. A report-only correction normalized the already-required recipe semantic identity, then both accepted V2 runs restarted from zero.",
+    "candidate_pixels_changed": false,
+    "review_crops_changed": false,
+    "gates_or_thresholds_changed": false
+  },
+  "review_protocol": {
+    "reviewer_class": "autonomous_visual_evidence",
+    "selection_frozen_before_review": true,
+    "source_count": 9,
+    "style_count": 3,
+    "cell_count": 27,
+    "pass_count": 3,
+    "verdict_count": 81,
+    "review_sheet_count": 27,
+    "exact_crop_count_per_cell": 4,
+    "arm_orders": [
+      ["velvia_50", "portra_400", "ektar_100"],
+      ["portra_400", "ektar_100", "velvia_50"],
+      ["ektar_100", "velvia_50", "portra_400"]
+    ],
+    "categories": [
+      "dirty_or_blotchy_skin_or_object_colour",
+      "isolated_chroma_impulses",
+      "banding_or_posterization",
+      "objectionable_halos",
+      "face_text_object_or_fine_structure_loss"
+    ],
+    "post_review_substitution_count": 0,
+    "automatic_metrics_used_as_visual_substitute": false
+  },
+  "source_adjudications": [
+    {
+      "source_id": "01",
+      "pass_verdicts": [
+        {"velvia_50": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "portra_400": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "ektar_100": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"},
+        {"portra_400": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "ektar_100": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "velvia_50": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"},
+        {"ektar_100": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "velvia_50": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "portra_400": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"}
+      ],
+      "rationale": "Snow, sky, fine branches, hanging fabric and high-contrast structural edges remain coherent without confirmed blocks, bands, impulses, halos or detail loss."
+    },
+    {
+      "source_id": "05",
+      "pass_verdicts": [
+        {"velvia_50": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "portra_400": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "ektar_100": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"},
+        {"portra_400": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "ektar_100": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "velvia_50": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"},
+        {"ektar_100": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "velvia_50": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "portra_400": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"}
+      ],
+      "rationale": "Sky and water gradients, driftwood fibres and shoreline edges remain continuous without confirmed posterization, impulses, objectionable halos or structural loss."
+    },
+    {
+      "source_id": "08",
+      "pass_verdicts": [
+        {"velvia_50": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "portra_400": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "ektar_100": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"},
+        {"portra_400": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "ektar_100": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "velvia_50": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"},
+        {"ektar_100": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "velvia_50": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "portra_400": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"}
+      ],
+      "rationale": "Foliage, masonry, hard shadow boundaries and the blue painted object remain coherent without confirmed dirty colour, impulses, halos, bands or geometry damage."
+    },
+    {
+      "source_id": "09",
+      "pass_verdicts": [
+        {"velvia_50": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "portra_400": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "ektar_100": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"},
+        {"portra_400": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "ektar_100": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "velvia_50": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"},
+        {"ektar_100": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "velvia_50": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "portra_400": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"}
+      ],
+      "rationale": "Bright lamp transitions, wall gradients, frame and door edges, and dark display regions remain continuous without new bands, blocks, impulses or objectionable halos."
+    },
+    {
+      "source_id": "11",
+      "pass_verdicts": [
+        {"velvia_50": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "portra_400": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "ektar_100": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"},
+        {"portra_400": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "ektar_100": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "velvia_50": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"},
+        {"ektar_100": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "velvia_50": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "portra_400": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"}
+      ],
+      "rationale": "The mandatory red-lit discriminator retains smooth red fields, readable frame lettering, colour patches and metal edges without the known speckle/posterization failure or other confirmed severe artifact."
+    },
+    {
+      "source_id": "18",
+      "pass_verdicts": [
+        {"velvia_50": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "portra_400": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "ektar_100": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"},
+        {"portra_400": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "ektar_100": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "velvia_50": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"},
+        {"ektar_100": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "velvia_50": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "portra_400": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"}
+      ],
+      "rationale": "Dense fabric weave, ink strokes and small dark marks remain coherent without confirmed repeated texture, chroma impulses, banding, halos or fine-structure loss."
+    },
+    {
+      "source_id": "21",
+      "pass_verdicts": [
+        {"velvia_50": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "portra_400": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "ektar_100": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"},
+        {"portra_400": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "ektar_100": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "velvia_50": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"},
+        {"ektar_100": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "velvia_50": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "portra_400": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"}
+      ],
+      "rationale": "Face, hair, suit textile, insignia text, helmet reflections and spacecraft edges remain coherent without confirmed dirty skin, impulses, halos, smearing or structural loss."
+    },
+    {
+      "source_id": "29",
+      "pass_verdicts": [
+        {"velvia_50": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "portra_400": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "ektar_100": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"},
+        {"portra_400": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "ektar_100": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "velvia_50": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"},
+        {"ektar_100": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "velvia_50": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "portra_400": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"}
+      ],
+      "rationale": "Dense steel lattice, brick texture, bright haze and dark arches remain coherent without confirmed line breakup, halos, impulses, blocks or posterization."
+    },
+    {
+      "source_id": "FS_FACE_01",
+      "pass_verdicts": [
+        {"velvia_50": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "portra_400": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "ektar_100": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"},
+        {"portra_400": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "ektar_100": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "velvia_50": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"},
+        {"ektar_100": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "velvia_50": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT", "portra_400": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT"}
+      ],
+      "rationale": "Direct original-file face ingress preserves skin texture, freckles, eyelashes, iris boundaries, hair and garment detail without confirmed dirty skin, isolated impulses, halos, banding or structural loss. The vivid cyan iris is a continuous intended colour-style shift, not a geometric or discontinuous artifact."
+    }
+  ],
+  "decision_counts": {
+    "PASS_NO_CONFIRMED_SEVERE_ARTIFACT": 81,
+    "FAIL_CONFIRMED_SEVERE_ARTIFACT": 0,
+    "REVIEW_UNRESOLVED": 0
+  },
+  "retained_boundaries": {
+    "filmset_commercial_rights_established": false,
+    "aesthetic_preference_established": false,
+    "target_film_closeness_established": false,
+    "calibrated_or_physical_stock_response_established": false,
+    "universal_safety_established": false,
+    "public_release_or_product_promotion_opened": false
+  },
+  "decision": "Close U4.1A with no confirmed severe artifact or unresolved verdict across three fixed arm rotations, nine frozen gold sources and the three unchanged current Look Approximation choices. This completes the missing current-gold severe-artifact adjudication but does not open any retained rights, preference, authenticity or promotion gate.",
+  "claim_ceiling": "Autonomous severe-artifact evidence for 81 arm-rotated verdicts covering three unchanged deterministic film-inspired Look Approximation choices on nine frozen internal U4.1 gold inputs; not calibrated or physical film response, stock distinguishability, target-film closeness, preference, universal safety, FilmSet commercial rights, release or product value."
+}
