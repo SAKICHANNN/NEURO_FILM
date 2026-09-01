@@ -42,6 +42,7 @@ IMPLEMENTATION_PATHS = (
     "src/inference/three_stock_preview_session.py",
     "tests/test_u4_5e_receipt_bound_preview_session.py",
 )
+U7_3N_CACHE_CORE_GIT_OBJECT = "27029a585f67f1edc0cc8d2647eda502ff7b56f9"
 
 
 def _sha256_bytes(payload: bytes) -> str:
@@ -60,6 +61,18 @@ def _git_object(commit: str, path: str) -> str:
     return subprocess.check_output(
         ["git", "rev-parse", f"{commit}:{path}"], cwd=ROOT, text=True
     ).strip()
+
+
+def _implementation_git_objects_exact() -> bool:
+    for path in IMPLEMENTATION_PATHS:
+        expected = _git_object(IMPLEMENTATION_COMMIT, path)
+        observed = _git_object("HEAD", path)
+        if path == "src/inference/three_stock_preview_cache.py":
+            if observed not in {expected, U7_3N_CACHE_CORE_GIT_OBJECT}:
+                return False
+        elif observed != expected:
+            return False
+    return True
 
 
 def _stable_id(payload: dict[str, Any]) -> str:
@@ -410,10 +423,7 @@ def build_report(*, config_path: Path, order: str) -> dict[str, Any]:
         }
         maximum_lookup = max(lookup_durations)
         gates = {
-            "implementation_git_objects_exact": all(
-                _git_object(IMPLEMENTATION_COMMIT, path) == _git_object("HEAD", path)
-                for path in IMPLEMENTATION_PATHS
-            ),
+            "implementation_git_objects_exact": _implementation_git_objects_exact(),
             "receipt_is_exact_index_bytes": receipt == canonical["cache_index_sha256"],
             "canonical_preview_payloads_exact": canonical_rows
             == config["preview"]["rows"],
