@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import importlib.util
 import json
+import subprocess
 from pathlib import Path
 
 import pytest
@@ -77,6 +78,28 @@ def test_windows_to_wsl_uses_resolved_drive_and_preserves_suffix() -> None:
     assert converted.endswith("/neuro_film")
     with pytest.raises(module.U713AError, match="unsupported Windows path"):
         module._windows_to_wsl(Path("//server/share/file"))
+
+
+def test_exact_wsl_os_release_normalizes_shell_quotes() -> None:
+    module = _load_module()
+    completed = subprocess.run(
+        ["wsl.exe", "-d", "Ubuntu-22.04", "--", "cat", "/etc/os-release"],
+        check=False,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+    )
+    if completed.returncode != 0:
+        pytest.skip("frozen WSL2 Ubuntu-22.04 runtime is unavailable on this host")
+    values = dict(
+        line.rstrip().split("=", 1)
+        for line in completed.stdout.splitlines()
+        if "=" in line
+    )
+    assert values["ID"] == "ubuntu"
+    assert values["VERSION_ID"] == '"22.04"'
+    assert module._distribution_from_os_release(values) == "ubuntu-22.04"
 
 
 def test_recipe_normalization_removes_only_platform_specific_identity(

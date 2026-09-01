@@ -250,6 +250,22 @@ def _linux_environment(root: Path) -> dict[str, str]:
     }
 
 
+def _distribution_from_os_release(values: dict[str, str]) -> str:
+    def clean(value: str) -> str:
+        stripped = value.strip()
+        if (
+            len(stripped) >= 2
+            and stripped[0] == stripped[-1]
+            and stripped[0] in {"'", '"'}
+        ):
+            return stripped[1:-1]
+        return stripped
+
+    distribution = clean(values.get("ID", "")).casefold()
+    version = clean(values.get("VERSION_ID", "")).casefold()
+    return f"{distribution}-{version}"
+
+
 def _linux_command(
     executable: Path,
     arguments: list[Path | str],
@@ -426,12 +442,14 @@ def _runtime_facts(
         f"names={names!r};"
         "osr=dict(line.rstrip().split('=',1) for line in open('/etc/os-release') if '=' in line);"
         "print(json.dumps({'architecture':platform.machine(),"
-        "'distribution':osr.get('ID','')+'-'+osr.get('VERSION_ID',''),"
+        "'os_release':osr,"
         "'python':platform.python_version(),"
         "'versions':{n:importlib.metadata.version(n) for n in names}},sort_keys=True))"
     )
     output = _run(_linux_command(python, ["-I", "-c", code], config, env), cwd=ROOT)
-    return json.loads(output)
+    facts = json.loads(output)
+    facts["distribution"] = _distribution_from_os_release(facts.pop("os_release"))
+    return facts
 
 
 def _windows_runtime_facts(python: Path, config: dict[str, Any]) -> dict[str, Any]:
