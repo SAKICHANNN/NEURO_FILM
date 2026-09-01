@@ -1,0 +1,70 @@
+{
+  "schema": "kmcfm.u7-8g-input-batch-stage-ownership-repair.v1",
+  "node_id": "U7.8G",
+  "decision": "PASS_PRIVATE_U7_8G_INPUT_BATCH_STAGE_OWNERSHIP_REPAIR",
+  "bindings": {
+    "contract_commit": "b8ba99c91df389bd0ca0c7a0a253bb9fc38cd963",
+    "contract_blob": "c5ec65cdb2d6517b59fad67a19ad5d81eefd7c0f",
+    "contract_git_lf_sha256": "aa26a1f6b1b2b06cd12a4cda745f6394380d3fe834e55fb290787ff6fa8c07a4",
+    "implementation_commit": "0642cc56f4f2878a27a7997c1cae7848a4055b7b",
+    "execution_commit": "4d84b01499c0e22badf7a07ba17d3db6fc0d6985",
+    "config_blob": "341cecbe62873bf75f0c11cf572c603c0cda04f8",
+    "config_sha256": "cbd8ff13e5d6e95ccd8cfea8b5681ad779cac21b34dc403e99c6b4336f37b956",
+    "runner_blob": "e1a98ac7fc62af88bc57648db2f559c6e7836aad",
+    "runner_git_lf_sha256": "f86c86eda121c14ebc1f41443962f42aab46ad6e1a4c3ce0f20685e453e0bb9e",
+    "implementation_git_lf_sha256": {
+      "src/inference/three_stock_input_batch.py": "65e35b657b9f7ce58a0d99fed625469981e68ca17b70d92a5e9904205f6099c7",
+      "tests/test_u7_8g_input_batch_stage_ownership_repair.py": "8b594140ca045e2137e42ee26944d301b55339a5b1375ab9e12251c696e380a7"
+    }
+  },
+  "outer_replay": {
+    "forward_report_bytes": 2291,
+    "reverse_report_bytes": 2291,
+    "forward_report_sha256": "0b7e2e6a43e6cec38fad542fdfdbed31840518750e3515d179f91b90d0da8691",
+    "reverse_report_sha256": "0b7e2e6a43e6cec38fad542fdfdbed31840518750e3515d179f91b90d0da8691",
+    "reports_byte_exact": true,
+    "stable_identity": "f23a17dbcaceb428830b4c997d38dd59e69e66fd220e17fcc0ee6eee44e29508"
+  },
+  "controls": {
+    "ordinary_failure": {
+      "failure_rejected": true,
+      "final_destination_absent": true,
+      "owned_stage_residue_count": 0
+    },
+    "replacement_failure": {
+      "displaced_owned_stage_preserved": true,
+      "failure_rejected": true,
+      "final_destination_absent": true,
+      "foreign_payload_preserved": true,
+      "foreign_stage_preserved": true
+    },
+    "success": {
+      "png_baseline_exact": true,
+      "png_replay_exact": true,
+      "png_sha256": {
+        "ektar_100.png": "e7ca6e1b2c0fa0b0d75b7db4e0a63612d595ca4ee233034c023f36f580da41ca",
+        "portra_400.png": "bfe057fd2cc83ea4732d71b79f8afc93c40c790d883ba2f2031fb32207d8574f",
+        "velvia_50.png": "d34b4749515c0c1ab5f60fa2d196820fd96c4553ad29df93aab19fc99ef4d627"
+      },
+      "receipt_replay_exact": true,
+      "receipt_sha256": "7dbd53a39da9b06b1bc459262ea941f340bc986584192e3f8c0b0a80268f22c7",
+      "style_order": [
+        "velvia_50",
+        "portra_400",
+        "ektar_100"
+      ]
+    }
+  },
+  "gate_results": {
+    "identity_replaced_stage_preserved": true,
+    "foreign_payload_preserved": true,
+    "ordinary_owned_stage_residue_count": 0,
+    "final_destination_absent_after_failures": true,
+    "successful_png_bytes_exact": true,
+    "successful_receipt_replay_exact": true,
+    "source_and_configuration_inputs_immutable": true,
+    "network_requests": 0
+  },
+  "claim_ceiling": "Private process-level filesystem-identity repair for the existing outer multi-input batch stage only; no renderer, recovery, preview, wrapper, science, calibration, physical-film or public-product claim.",
+  "stop_rule": "One prospective repair and committed-head audit only; do not chain adjacent ownership, preview, resumable, child-stage, wrapper, format or source leaves."
+}
