@@ -1,0 +1,101 @@
+{
+  "bindings": {
+    "formal_source_commit": "52252edd99623fb9841fdc51ea75bf732aa4b28d",
+    "implementation_commit": "3cf53cc7a",
+    "monotonic_publication_contract_commit": "6748c271c",
+    "audit_initial_commit": "993f4404",
+    "audit_identity_correction_commit": "52252edd",
+    "files": {
+      "configs/u7_12d_desktop_single_look_batch_recovery_v1.json": "0dc3431d66951d789344b54aa2245def19858a64f14b3636686c483d1932a1b9",
+      "docs/planning/U7_12D_DESKTOP_SINGLE_LOOK_BATCH_RECOVERY_CONTRACT.md": "4ac55706175e4f5e9b974fe293598f2137ff3c1f3013fb3ff8980fcccc394d2a",
+      "scripts/audit_u7_12d_desktop_single_look_batch_recovery.py": "944c3f8747781074bfe14dda796f12f3c04426ba18d66e12ab61125136007831",
+      "src/inference/desktop_single_look_batch_recovery.py": "4eb0d087573730946f126b4f27a240e6326d25702028995e4d3beb2eb72daa23",
+      "src/inference/product_desktop.py": "26273e4d9ae950cf403a8e6e69d5d00a859faf02380604ac599f211594fe7f9f",
+      "src/inference/render_contract.py": "378aeea559e41aba389022852f2f7f037f3b62e4eb29ce49d8bfc34d45bfd840",
+      "tests/test_u7_12d_desktop_single_look_batch_recovery.py": "783bce269fdb2275bfd9175ecc0db566138c945b102a665b9d8caa61f2d283b8"
+    },
+    "parent_u7_11a_evidence_sha256": "fe84f4adb85bac24dbe3bb598cca1266814cb77454f1ddf236d6df945054b2b3",
+    "preview_u7_12c_evidence_commit": "1beced4957988619c2f552af820fe6f5f9a7efd3",
+    "preview_u7_12c_evidence_sha256": "a68f6d0ebba6d74341798a8828fcc10da9c9ed164078ae6f63bf92ec6161c2ef"
+  },
+  "claim": {
+    "arbitrary_input_or_24mp_performance": false,
+    "calibrated_stock_response": false,
+    "evidence_grade": "look-approximation",
+    "hard_power_loss_during_child": false,
+    "mode": "film-inspired",
+    "physical_film_reproduction": false,
+    "private_windows_python_restart_recovery_only": true,
+    "public_api_installer_or_release": false,
+    "stock_distinguishability": false
+  },
+  "excluded_first_formal_attempt": {
+    "decision": "excluded before evidence; report identity only",
+    "forward": {
+      "bytes": 19159,
+      "sha256": "d896c96530d74dd37fc6b1b703ba3103fad2ad9fa4eab141ad130175e3b45988"
+    },
+    "reason": "fresh formal source materialization changes NTFS inode; the recovery workspace ID correctly binds that execution identity but must not enter caller-order scientific identity",
+    "reverse": {
+      "bytes": 19159,
+      "sha256": "25f3dae4e1be3f2369c8d6d75e0e5c5ea4be11d994d95a8b4c0de91a60f2e009"
+    },
+    "science_or_gates_changed": false
+  },
+  "formal_fixture": {
+    "input_sha256": {
+      "u7-12d-00.png": "293463ae4ff8f7ea79610292f53f8b9de129c314d46cbc1b5926d7087e794443",
+      "u7-12d-01.png": "78dd0210c64b58d178d36402deca27e22950c209b68b14fc9af7f38133fabf2b",
+      "u7-12d-02.png": "fc4d8cf7b39b3090e4cc6bc13cd9d7766319be3312325720564081edadc74a3a",
+      "u7-12d-03.png": "5988bb125c2942735999d8efd612a3ff02775cc1329b8f104680b655c8b750a3",
+      "u7-12d-04.png": "bc8663cedb4a563b4cb2004d36ff694e1432c809c290454d8da21d652dbc5831",
+      "u7-12d-05.png": "1a81dffb6aec7d95cd1908fa27cf7a76fb6e21dd8ac4895175e892945d91e331",
+      "u7-12d-06.png": "5f0751f1b794bb44d048ff15331a61f8cadb550e353b2951648e3dde2b0b9313",
+      "u7-12d-07.png": "f8e78861f50f7a18195c23b2da9fbe46361963fdd6cf3e28a794dc231df7c790"
+    },
+    "job_count": 8,
+    "look_amount": 0.625,
+    "pause_after_jobs": 3,
+    "style_id": "portra_400"
+  },
+  "formal_reports": {
+    "forward": {
+      "bytes": 19069,
+      "sha256": "e705b65245f1175a56124ec356eb34ac69df0174d706a9ea7035be42112b5339"
+    },
+    "full_reports_byte_exact": true,
+    "reverse": {
+      "bytes": 19069,
+      "sha256": "e705b65245f1175a56124ec356eb34ac69df0174d706a9ea7035be42112b5339"
+    }
+  },
+  "gates": {
+    "focused_parent_tests_pass": true,
+    "lease_removed_after_success": true,
+    "network_reads_zero": true,
+    "pause_executes_exactly_three_children": true,
+    "paused_destination_absent": true,
+    "paused_partial_child_count": true,
+    "paused_verified_child_count": true,
+    "receipt_payload_exact": true,
+    "resume_executes_exactly_five_children": true,
+    "resume_reuses_exactly_three_children": true,
+    "resumed_and_uninterrupted_members_exact": true,
+    "resumed_and_uninterrupted_receipt_exact": true,
+    "source_immutable": true,
+    "strict_recipe_replay_exact": true,
+    "uninterrupted_executes_exactly_eight_children": true,
+    "worker_cleanup_exact": true,
+    "workspace_removed_after_success": true
+  },
+  "node_id": "U7.12D",
+  "renderer_calls": {
+    "pause": 3,
+    "resume": 5,
+    "uninterrupted_control": 8
+  },
+  "schema": "kmcfm.u7-12d-desktop-single-look-batch-recovery-evidence.v1",
+  "scientific_identity": "sha256:2605762415427f3343b08aa3bdde090567d0395c321224d83bd0ee5872110ac7",
+  "source_commit": "52252edd99623fb9841fdc51ea75bf732aa4b28d",
+  "status": "PASS_PRIVATE_U7_12D_DESKTOP_SINGLE_LOOK_BATCH_RECOVERY"
+}
