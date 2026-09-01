@@ -22766,3 +22766,43 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   calibrated stock response, physical-film reproduction, authenticity,
   universal safety or product promotion. Existing `.codex/` and `tmp/` remain
   untouched; no push occurred.
+
+### 2026-09-01 - U7.12G exposes explicit batch output formats
+
+- **Node and routing:** `ULT > U7 productization > U7.12G`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the sole writer; DRPT-BI,
+  project-structure, plan-tracker and agent-log disciplines bounded the leaf.
+  The single long-lived deterministic Look Approximation Goal remains accurate
+  and active; this completed product leaf does not control the Goal lifecycle.
+  Parallel U7.13A owned disjoint new-only Linux runtime paths and observed two
+  explicit no-commit windows; existing foreign `.codex/` and `tmp/` were not
+  touched.
+- **Implementation:** contract/config commits `2130b040`/`d4c7e824` freeze one
+  format per atomic batch, exact PNG16 v1 compatibility, TIFF16/JPEG8 v2
+  receipts, pre-stage invalid rejection, visible desktop routing and a
+  PNG16-only recovery ceiling. Implementation commit `c5edade7` reuses the
+  already-proven single-photo encoders without changing renderer or look math.
+  The default PNG16 receipt omits the new format identity and preserves the
+  legacy v1 shape; non-PNG batches bind the explicit format ID, canonical
+  extension and recipe bit depth.
+- **Formal evidence:** controller commit `600346b6` ran every gate in fresh
+  pytest processes in forward and reverse format order. Both reports are
+  byte-identical at 2,998 bytes, SHA
+  `59e62b1ce628f4a8999ebddb387d6a73c6bb9cf984cb33dc6a5f9898aed9aa38`;
+  scientific identity is
+  `16fa501dd05c474c26e597096c35ff809fd6675a972f6151e724860c612ff4a6`.
+  All 9 cases and 12 gates pass, including direct CLI and strict replay,
+  desktop UI routing, late-foreign preservation, PNG v1 identity and the
+  unchanged PNG-only recovery contract. Evidence commit `d1010385` preserves
+  the exact report.
+- **Verification and boundary:** focused/evidence tests pass 7/7. Separate
+  fresh-process U7.11A/U7.12B/U7.12F regressions pass 21/21, 14/14 and 3/3.
+  One earlier combined run crossed an independently declared owner commit
+  between preview and export; the source-commit gate correctly rejected it,
+  and the same test passed from a stable HEAD. Ruff lint, compileall, JSON and
+  diff checks pass; legacy large files were not mechanically reformatted.
+  Claim remains private Windows desktop SDR batch-export mechanics for
+  deterministic `film-inspired / Look Approximation` output—not calibrated or
+  physical stock response, distinguishability, HDR/wide gamut, arbitrary media,
+  installer, cross-platform GUI, public release or product-value evidence. No
+  push occurred.
