@@ -1,0 +1,69 @@
+{
+  "schema_version": "neuro-film.u7-2v-product-physical-halation-preflight-evidence.v1",
+  "node_id": "U7.2V",
+  "decision": "PASS_PRIVATE_U7_2V_PRODUCT_PHYSICAL_HALATION_PREFLIGHT",
+  "claim_ceiling": "Private finite and domain-bounded locked physical-halation preflight for the existing first-class film-inspired Look Approximation product entry. This does not validate physical-halation realism and is not a package, installer, release, calibrated stock response, physical-film reproduction, or completed multi-stock calibration result.",
+  "bindings": {
+    "contract_commit": "9e5897590ef844777170c94e487454e90ad9b7fd",
+    "implementation_commit": "92710f1fe1af4b98025ee96975b0c801dfd36c14",
+    "identity_correction_commit": "78d8705bea0a09fbcb53466e1266d56aa6bd8104",
+    "protocol_commit": "bade179221db598060a3b6732bb5f319181a4f87",
+    "formal_execution_commit": "60654b14ba934035368a3edf61a1e1936201dde8",
+    "config_git_blob": "cc964dee8b013fdd4c836327d4e7f921d3d80580",
+    "config_sha256": "e90cb46e3fc551e8e91d406c895a0a75b07ed25071ffb0784ce8cedf84aa12d5",
+    "runner_git_blob": "26a3b2d5de4b08bcb46df4200040ced75c55bac2",
+    "runner_sha256": "b5ab12b937e1d937fadcb9ffd69e06f3a028e77cdf128ac1bc5fcf94398673ed",
+    "audit_test_git_blob": "8cb3a5f7064863c23da9a37ad9ec17a76fe05a23",
+    "audit_test_sha256": "fb11c47e8245ebb31d14264c36ee26f9fd8b28eb1a6589281adb7fc5466bd4da",
+    "focused_test_git_blob": "3323362680226bf11ee59219a38906ce3be522de",
+    "focused_test_sha256": "f4685ad005da36310f4aa3a2700bcf8efd64f0f07da653516974570f774191d6"
+  },
+  "formal_reports": {
+    "forward_path": "outputs/eval/u7_2v_product_physical_halation_preflight_v1/formal.json",
+    "reverse_path": "outputs/eval/u7_2v_product_physical_halation_preflight_v1/formal_replay.json",
+    "bytes_each": 14512,
+    "sha256": "b92ea684fccb80b4bc4cff6d261bd7c838ce3808d0daf42af1a2e2157650cb54",
+    "forward_reverse_byte_exact": true
+  },
+  "result": {
+    "formal_status": "PASS",
+    "case_count": 59,
+    "expert_rejection_count": 3,
+    "numeric_rejection_count": 28,
+    "category_rejection_count": 3,
+    "valid_locked_control_count": 24,
+    "nonproduct_expert_control_count": 1,
+    "parent_product_look_count": 3,
+    "all_frozen_gates_pass": true,
+    "owned_runtime_residue_zero": true,
+    "parent_output_sha256": {
+      "ektar_100": "e8e3195dc3ab222567ca03d432eac6e03f48a84fa1a7e6c07a885f3b35999981",
+      "portra_400": "b2b9d118087648f626a0fa2d03bbaf78714ba053347e617bdb2b9505c4cf9453",
+      "velvia_50": "2198b077eea5d29026694529e208d7db9428a36f97cb7af8fe330ce732e87fa7"
+    }
+  },
+  "gates": {
+    "source_locks_exact": true,
+    "product_expert_controls_reject_predecode": true,
+    "invalid_locked_values_reject_predecode": true,
+    "invalid_preset_or_categories_reject_predecode": true,
+    "invalid_controls_publish_nothing": true,
+    "valid_locked_controls_cross_preflight": true,
+    "nonproduct_expert_route_crosses_preflight": true,
+    "product_parent_outputs_exact": true,
+    "fresh_process_reports_byte_exact": true,
+    "owned_runtime_residue_zero": true
+  },
+  "excluded_execution": {
+    "kind": "pre-formal focused-test argument encoding correction",
+    "report_or_product_artifacts_published": false,
+    "details": "The first focused run encoded negative infinity as a separate argparse token, so argparse rejected it as a missing value before the frozen domain message. The test was corrected prospectively to the standard --option=-inf spelling before the audit protocol, formal execution, or any product output existed. Implementation, domains, controls and gates were unchanged. A separate config-only commit corrected a mistyped full contract SHA before protocol lock."
+  },
+  "non_goals": [
+    "halation algorithm, preset or parameter-domain change",
+    "physical-halation realism claim",
+    "non-product expert or research-route change",
+    "calibrated stock or physical-film claim",
+    "public package, installer or release claim"
+  ]
+}
