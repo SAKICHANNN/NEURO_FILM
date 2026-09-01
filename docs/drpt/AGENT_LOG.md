@@ -22391,3 +22391,45 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   installer, release or preference claim. The exact U7.10C composition remains
   closed; only a separately frozen installed-runtime batch confirmation may
   open, and adjacent wrapper expansion remains stopped.
+
+### 2026-09-01 - U7.11B installed-runtime batch confirmation closes
+
+- **Node and routing:** `ULT > U7 productization > U7.11B`, DRPT L2 / Mode C.
+  `dev-research-reliability` remained the sole writer; router, DRPT-BI,
+  plan-tracker, project-structure and agent-log disciplines were secondary.
+  Contract/config freeze is `7418a560`; audit/execution lock is `0ccde7a9`,
+  exact wheel-inventory binding is `e58cfa4f`, post-result diagnostic correction
+  is `96183cbe`, and terminal evidence is `0d86cbb7`. Existing `.codex/` and
+  `tmp/` were preserved; both collaborating tasks avoided owned/shared paths.
+- **Question and execution:** U7.11B does not add a product API, renderer,
+  installer feature or hidden Tk hook. It freshly installs the exact twelve
+  U7.9A wheels, starts the unchanged installed desktop mainloop from a foreign
+  CWD, then uses one audit-owned bootstrap under direct and receipt-bound
+  installed Python `-I` to call the unchanged U7.11A batch core. Two tiny
+  sources, one Ektar Look Approximation and amount `.625` reuse the exact same
+  source/destination paths. Artifact comparison is raw: PNG16, strict recipes
+  and `batch.json` are never path-normalized. Installed child failure,
+  cancel-after-current and late-foreign controls are also executed.
+- **Terminal result:** committed formal source `e58cfa4f` produces one complete
+  22,790-byte report, SHA
+  `d8f14c155df6efceb646407b4ceff67e5e8cda82bcff8dc4ba696cb7af6193e4`,
+  scientific identity `ad62b7eb9828c55a90f4fae43988002496afdb919913264e47a6effb93ff996d`.
+  Raw PNG/recipe/batch receipt, canonical order, strict replay, real mainloop,
+  offline local-wheel command ledger, environment stripping, receipt/wheel and
+  all failure/foreign/residue controls pass. The sole frozen failure is
+  `installed_child_python_exact`: the expected local `Path` retained the
+  repo-relative `C:` junction alias while receipt, installed worker and every
+  child argv all reported the same resolved P-backed runtime executable. Formal
+  root residue is zero. An earlier run stopped before report construction on an
+  incorrect parent-evidence wheelhouse lookup and left no report/root.
+- **Stop rule and verification:** `96183cbe` fixes only the C-junction/P-resolved
+  comparison after the formal result. It is explicitly non-admission code with
+  zero corrected formal runs; no reverse run or U7.11C alias rescue is allowed.
+  Terminal evidence plus parent/audit checks pass 14/14; the correction-focused
+  suite passes 7/7, Ruff, py_compile, JSON and diff checks pass. U7.11A remains
+  the usable private Windows desktop batch mechanic, but installed batch
+  confirmation and adjacent runtime/batch wrappers close. Every named output
+  remains `film-inspired / Look Approximation`; no calibrated stock response,
+  physical-film reproduction, stock distinguishability, arbitrary-media,
+  native-dialog automation, public installer, cross-platform GUI or release
+  claim opens. Next work must target a materially different real product gap.
