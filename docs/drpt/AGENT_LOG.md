@@ -22089,3 +22089,43 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   U7.3 is complete through N; stop adjacent cache wrappers and return to a
   non-duplicate substantive product gap or genuinely new rights-clear physical
   observation.
+
+### 2026-09-01 - U7.9B confirms the installed runtime on six real Canon RAWs
+
+- **Node and routing:** `ULT > U7 productization > U7.9B`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the sole write workflow; router, DRPT-BI,
+  planning, project-structure and agent-log disciplines were read-only
+  secondary reviewers. U7.9B owned only its contract/config/audit/tests/evidence;
+  concurrent U7.3N and foreign `.codex/`/`tmp/` paths were preserved.
+- **Product question and method:** U7.9A proved a small-fixture repository-bound
+  installer, while P313/P314 separately proved six exact Canon sRAW/mRAW files
+  through WorkingImage and the direct Ektar 100 product chain. U7.9B installs a
+  fresh CPython 3.12 runtime from the same 12 exact binary wheels / 111,666,287
+  bytes, then runs each source sequentially through the current direct CLI, the
+  installed launcher and installed strict recipe replay. Each installed result
+  must also equal its immutable P314 output oracle. No product core changed.
+- **Formal evidence:** execution lock `71761e52` produced forward/reverse reports
+  that are byte-identical at 15,475 bytes / SHA
+  `55c5d47e2031c0709581328ca0dd272bdd82cf87e87d3627d5c20b42f23ed805`;
+  scientific identity is
+  `7eb3fe64acd7059f88f4a067c2d862d2875832924eb28862278ce53f3b6d1e36`.
+  All six direct/launcher outputs, direct/launcher recipes, installed replays and
+  P314 hashes are exact. All eighteen source, wheelhouse, receipt, invalid-input,
+  foreign-destination, source-drift, network, tracked-clean and residue gates
+  pass. Evidence/test commit is `f7f8f429`.
+- **Execution history and verification:** the first formal invocation stopped
+  before installation because the owned scratch parent did not exist. The next
+  installed the runtime but stopped before product pixel decode because exFAT
+  cannot create the hardlinks used by the missing-wheel control. The accepted
+  control uses an empty wheelhouse and both formal directions restart from the
+  corrected committed HEAD. Across both excluded attempts, product pixel
+  decodes, renders and reports are zero. Twenty-three U7.9A/B and P313/P314
+  tests pass; Ruff, format, py_compile, JSON, report/source identity and diff
+  checks pass. One earlier P313 test invocation overlapped U7.3N's commit window
+  and failed only its tracked-clean gate; the clean-head rerun passes unchanged.
+- **Claim and handoff:** this is private exact-cohort Windows runtime
+  compatibility for the existing film-inspired / Look Approximation Ektar 100
+  path. It is not general RAW or Canon support, vendor colour, calibrated stock
+  response, physical-film reproduction, a standalone/public installer or a
+  release claim. Stop adjacent runtime wrappers and Canon-format expansion;
+  return to a distinct substantive product capability or defect.
