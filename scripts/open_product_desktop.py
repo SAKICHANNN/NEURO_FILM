@@ -8,6 +8,8 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+DESKTOP_EXPORT_TILE_SIZE = 512
+DESKTOP_EXPORT_TILE_WORKERS = 8
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
@@ -63,7 +65,12 @@ def main() -> int:
     from src.inference.product_desktop_ui import build_product_desktop_app
 
     root = tk.Tk()
-    workflow = ProductDesktopWorkflow(root=ROOT, scratch_root=scratch_root)
+    workflow = ProductDesktopWorkflow(
+        root=ROOT,
+        scratch_root=scratch_root,
+        export_tile_size=DESKTOP_EXPORT_TILE_SIZE,
+        export_tile_workers=DESKTOP_EXPORT_TILE_WORKERS,
+    )
     app = build_product_desktop_app(root, workflow, initial_input=args.input)
     if args.smoke_exit_ms is not None:
         root.after(args.smoke_exit_ms, app.close)

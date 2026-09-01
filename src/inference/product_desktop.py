@@ -637,6 +637,8 @@ class ProductDesktopWorkflow:
         max_preview_pixels: int = 1_000_000,
         tile_size: int = 256,
         tile_workers: int = 1,
+        export_tile_size: int | None = None,
+        export_tile_workers: int | None = None,
         png_compression: int = 6,
         session_binding_paths: Sequence[Path] | None = None,
     ) -> None:
@@ -652,6 +654,21 @@ class ProductDesktopWorkflow:
         self.max_preview_pixels = int(max_preview_pixels)
         self.tile_size = int(tile_size)
         self.tile_workers = int(tile_workers)
+        if export_tile_size is not None and (
+            isinstance(export_tile_size, bool) or not isinstance(export_tile_size, int)
+        ):
+            raise ProductDesktopError("export_tile_size must be an integer")
+        if export_tile_workers is not None and (
+            isinstance(export_tile_workers, bool)
+            or not isinstance(export_tile_workers, int)
+        ):
+            raise ProductDesktopError("export_tile_workers must be an integer")
+        self.export_tile_size = (
+            self.tile_size if export_tile_size is None else export_tile_size
+        )
+        self.export_tile_workers = (
+            self.tile_workers if export_tile_workers is None else export_tile_workers
+        )
         self.png_compression = int(png_compression)
         self.session_binding_paths = (
             tuple(
@@ -665,6 +682,8 @@ class ProductDesktopWorkflow:
         )
         if self.max_preview_pixels < 1 or self.tile_size < 1 or self.tile_workers < 1:
             raise ProductDesktopError("preview resource limits must be positive")
+        if self.export_tile_size < 1 or self.export_tile_workers < 1:
+            raise ProductDesktopError("export_tile resource limits must be positive")
         if not 0 <= self.png_compression <= 9:
             raise ProductDesktopError("png compression must be in [0,9]")
         self._state: DesktopPreviewState | None = None
@@ -1442,9 +1461,9 @@ class ProductDesktopWorkflow:
             (
                 "--write-recipe",
                 "--tile-size",
-                str(self.tile_size),
+                str(self.export_tile_size),
                 "--tile-workers",
-                str(self.tile_workers),
+                str(self.export_tile_workers),
                 "--output",
                 str(Path(output_path).resolve(strict=False)),
             )
