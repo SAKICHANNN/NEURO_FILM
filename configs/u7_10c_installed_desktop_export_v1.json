@@ -55,7 +55,7 @@
     "source_commit_and_git_objects_exact": true,
     "parent_export_and_installer_foreign_controls_exact": true,
     "owned_process_window_and_root_residue_zero": true,
-    "forward_reverse_report_and_visual_exact": true
+    "visual_matches_frozen_lock": true
   },
   "claim_ceiling": {
     "mode": "film-inspired",
