@@ -15,6 +15,7 @@ from PIL import Image
 
 from .product_desktop import (
     DesktopExportReceipt,
+    DesktopFinishingEffects,
     ProductDesktopError,
     ProductDesktopWorkflow,
     product_output_format,
@@ -49,6 +50,7 @@ class _ExportWorkflow(Protocol):
         output_path: Path,
         *,
         output_format_id: str,
+        effects: DesktopFinishingEffects | None = None,
     ) -> DesktopExportReceipt: ...
 
 
@@ -166,6 +168,7 @@ def render_exact_export_detail(
     output_format_id: str,
     point: tuple[object, object] = (0.5, 0.5),
     crop_limit: object = 512,
+    effects: DesktopFinishingEffects | None = None,
 ) -> DesktopDetailPreview:
     """Render, inspect, and remove one exact temporary full-resolution export."""
 
@@ -188,11 +191,10 @@ def render_exact_export_detail(
     destination = owned_root / f"detail{output.canonical_extension}"
     receipt: DesktopExportReceipt | None = None
     try:
-        receipt = workflow.export(
-            style_id,
-            destination,
-            output_format_id=output_format_id,
-        )
+        export_kwargs: dict[str, object] = {"output_format_id": output_format_id}
+        if effects is not None:
+            export_kwargs["effects"] = effects
+        receipt = workflow.export(style_id, destination, **export_kwargs)
         if (
             receipt.style_id != style_id
             or receipt.output_format_id != output_format_id

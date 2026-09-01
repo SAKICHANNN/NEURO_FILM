@@ -137,6 +137,12 @@ PRODUCT_OUTPUT_FORMATS: tuple[ProductOutputFormat, ...] = (
 )
 _OUTPUT_FORMATS_BY_ID = {row.format_id: row for row in PRODUCT_OUTPUT_FORMATS}
 _DEFAULT_OUTPUT_FORMAT_ID = "png16"
+DESKTOP_EFFECT_SEED = 7
+DESKTOP_EFFECT_CAPS = {
+    "grain": 0.05,
+    "halation": 0.15,
+    "dust": 0.02,
+}
 
 
 def product_output_format(output_format_id: str) -> ProductOutputFormat:
@@ -184,6 +190,80 @@ class DesktopPreviewState:
 
 
 @dataclass(frozen=True)
+class DesktopFinishingEffects:
+    """Existing deterministic finishing layers exposed through bounded caps."""
+
+    grain: float = 0.0
+    halation: float = 0.0
+    dust: float = 0.0
+    seed: int = DESKTOP_EFFECT_SEED
+
+    def __post_init__(self) -> None:
+        for name in ("grain", "halation", "dust"):
+            value = getattr(self, name)
+            if isinstance(value, bool) or not isinstance(value, (int, float)):
+                raise ProductDesktopError(
+                    f"desktop {name} strength must be a finite number"
+                )
+            number = float(value)
+            if (
+                not math.isfinite(number)
+                or not 0.0 <= number <= DESKTOP_EFFECT_CAPS[name]
+            ):
+                raise ProductDesktopError(
+                    f"desktop {name} strength exceeds its frozen cap"
+                )
+            object.__setattr__(self, name, number)
+        if isinstance(self.seed, bool) or self.seed != DESKTOP_EFFECT_SEED:
+            raise ProductDesktopError("desktop finishing seed must remain fixed at 7")
+
+    @property
+    def is_identity(self) -> bool:
+        return self.grain == self.halation == self.dust == 0.0
+
+    def receipt_identity(self) -> dict[str, Any]:
+        return {
+            "grain": self.grain,
+            "halation": self.halation,
+            "dust": self.dust,
+            "seed": self.seed,
+            "halation_model": "simple",
+        }
+
+
+def _desktop_effects(
+    effects: DesktopFinishingEffects | None,
+) -> DesktopFinishingEffects:
+    if effects is None:
+        return DesktopFinishingEffects()
+    if not isinstance(effects, DesktopFinishingEffects):
+        raise ProductDesktopError("desktop finishing effects are invalid")
+    return effects
+
+
+def _validate_desktop_effect_recipe(
+    recipe: Mapping[str, Any], effects: DesktopFinishingEffects
+) -> None:
+    expected = {
+        "grain": {
+            "strength": effects.grain,
+            "seed": effects.seed,
+            "color": True,
+        },
+        "halation": {
+            "strength": effects.halation,
+            "model": "simple",
+            "preset": None,
+            "control_mode": "locked",
+            "resolved_parameters": None,
+        },
+        "dust": {"strength": effects.dust, "seed": effects.seed + 17},
+    }
+    if recipe.get("render", {}).get("effects") != expected:
+        raise ProductDesktopError("desktop finishing-effect recipe semantics drifted")
+
+
+@dataclass(frozen=True)
 class DesktopExportReceipt:
     """Verified final image and strict-recipe identities."""
 
@@ -197,6 +277,7 @@ class DesktopExportReceipt:
     recipe_sha256: str
     recipe: dict[str, Any]
     output_format_id: str = _DEFAULT_OUTPUT_FORMAT_ID
+    effects: DesktopFinishingEffects = DesktopFinishingEffects()
 
 
 @dataclass(frozen=True)
@@ -224,6 +305,7 @@ class DesktopBatchReceipt:
     job_count: int
     receipt: dict[str, Any]
     output_format_id: str = _DEFAULT_OUTPUT_FORMAT_ID
+    effects: DesktopFinishingEffects = DesktopFinishingEffects()
 
 
 def _run_command(
@@ -473,11 +555,10 @@ def _replace_owned_json(path: Path, payload: Mapping[str, Any]) -> _FileSeal:
         with os.fdopen(descriptor, "r+b") as handle:
             descriptor = -1
             current = os.fstat(handle.fileno())
-            if (
-                (current.st_dev, current.st_ino)
-                != (identity.device, identity.inode)
-                or current.st_nlink != 1
-            ):
+            if (current.st_dev, current.st_ino) != (
+                identity.device,
+                identity.inode,
+            ) or current.st_nlink != 1:
                 raise ProductDesktopError("batch recipe ownership changed")
             handle.seek(0)
             if handle.write(encoded) != len(encoded):
@@ -777,8 +858,7 @@ class ProductDesktopWorkflow:
             raise ProductDesktopError("preview display bounds drift")
         if (
             manifest.get("max_preview_width") != PRODUCT_PREVIEW_DISPLAY_SIZE[0]
-            or manifest.get("max_preview_height")
-            != PRODUCT_PREVIEW_DISPLAY_SIZE[1]
+            or manifest.get("max_preview_height") != PRODUCT_PREVIEW_DISPLAY_SIZE[1]
         ):
             raise ProductDesktopError("preview display request drift")
         rows = manifest.get("rows")
@@ -849,10 +929,12 @@ class ProductDesktopWorkflow:
         output_path: Path,
         *,
         output_format_id: str = _DEFAULT_OUTPUT_FORMAT_ID,
+        effects: DesktopFinishingEffects | None = None,
     ) -> DesktopExportReceipt:
         """Export the selected current preview through the existing product CLI."""
 
         with self._lock:
+            selected_effects = _desktop_effects(effects)
             state = self._state
             if state is None:
                 raise ProductDesktopError("render previews before exporting")
@@ -884,6 +966,7 @@ class ProductDesktopWorkflow:
                 style_id,
                 destination,
                 output_format_id=output_format_id,
+                effects=selected_effects,
             )
             environment = {
                 key: value
@@ -907,6 +990,7 @@ class ProductDesktopWorkflow:
                 / "configs/render_profiles/safe_rich_product_v1.json",
                 root=self.root,
             )
+            _validate_desktop_effect_recipe(recipe, selected_effects)
             if (
                 recipe["render"]["style"] != style_id
                 or float(recipe["render"]["look_amount"]) != state.look_amount
@@ -929,6 +1013,7 @@ class ProductDesktopWorkflow:
                 recipe_sha256=sha256_file(recipe_path),
                 recipe=recipe,
                 output_format_id=output_format_id,
+                effects=selected_effects,
             )
 
     def render_batch_previews(
@@ -946,19 +1031,17 @@ class ProductDesktopWorkflow:
             try:
                 candidate = Path(representative_path)
                 candidate_details = candidate.lstat()
-                reparse = int(
-                    getattr(stat, "FILE_ATTRIBUTE_REPARSE_POINT", 0x400)
-                )
-                if candidate.is_symlink() or int(
-                    getattr(candidate_details, "st_file_attributes", 0)
-                ) & reparse:
+                reparse = int(getattr(stat, "FILE_ATTRIBUTE_REPARSE_POINT", 0x400))
+                if (
+                    candidate.is_symlink()
+                    or int(getattr(candidate_details, "st_file_attributes", 0))
+                    & reparse
+                ):
                     raise ProductDesktopError(
                         "batch representative must be one selected photo"
                     )
                 resolved = candidate.resolve(strict=True)
-                raw_absolute = os.path.normcase(
-                    os.path.abspath(os.fspath(candidate))
-                )
+                raw_absolute = os.path.normcase(os.path.abspath(os.fspath(candidate)))
                 if raw_absolute != _normalized_path(resolved):
                     raise ProductDesktopError(
                         "batch representative must be one selected photo"
@@ -997,12 +1080,14 @@ class ProductDesktopWorkflow:
         output_directory: Path,
         *,
         output_format_id: str = _DEFAULT_OUTPUT_FORMAT_ID,
+        effects: DesktopFinishingEffects | None = None,
         cancel_event: threading.Event | None = None,
         progress: BatchProgress | None = None,
     ) -> DesktopBatchReceipt:
         """Publish one atomic single-look directory through the existing CLI."""
 
         format_spec = product_output_format(output_format_id)
+        selected_effects = _desktop_effects(effects)
         with self._lock:
             state = self._state
             if state is None:
@@ -1087,6 +1172,7 @@ class ProductDesktopWorkflow:
                                 image_path,
                                 state.look_amount,
                                 output_format_id=output_format_id,
+                                effects=selected_effects,
                             ),
                             self.root,
                             environment,
@@ -1129,29 +1215,26 @@ class ProductDesktopWorkflow:
                         / "configs/render_profiles/safe_rich_product_v1.json",
                         root=self.root,
                     )
+                    _validate_desktop_effect_recipe(recipe, selected_effects)
                     final_image = destination / image_name
                     if (
                         recipe["input"]["path"] != str(source.path)
                         or recipe["input"]["sha256"] != source.sha256
                         or recipe["render"]["style"] != style_id
-                        or float(recipe["render"]["look_amount"])
-                        != state.look_amount
+                        or float(recipe["render"]["look_amount"]) != state.look_amount
                         or recipe["output"]["format"] != format_spec.recipe_format
                         or recipe["output"]["bit_depth"] != format_spec.bit_depth
                         or recipe["output"]["sha256"] != image_seal.sha256
                         or str(recipe["software"]["commit"]).lower()
                         != state.source_commit
-                        or recipe["claim"]["evidence_grade"]
-                        != "look-approximation"
+                        or recipe["claim"]["evidence_grade"] != "look-approximation"
                         or recipe["claim"].get("calibrated_reference_allowed")
                         is not False
                     ):
                         raise ProductDesktopError(
                             f"batch child {index} recipe semantics drifted"
                         )
-                    recipe["output"]["path"] = str(
-                        final_image.resolve(strict=False)
-                    )
+                    recipe["output"]["path"] = str(final_image.resolve(strict=False))
                     validate_render_recipe(recipe)
                     verify_render_recipe_inputs(
                         recipe,
@@ -1186,9 +1269,13 @@ class ProductDesktopWorkflow:
                     raise ProductDesktopError("batch stage member set drifted")
                 identity = {
                     "schema_version": (
-                        "kmcfm.desktop-single-look-batch.v1"
-                        if output_format_id == _DEFAULT_OUTPUT_FORMAT_ID
-                        else "kmcfm.desktop-single-look-batch.v2"
+                        "kmcfm.desktop-single-look-batch.v3"
+                        if not selected_effects.is_identity
+                        else (
+                            "kmcfm.desktop-single-look-batch.v1"
+                            if output_format_id == _DEFAULT_OUTPUT_FORMAT_ID
+                            else "kmcfm.desktop-single-look-batch.v2"
+                        )
                     ),
                     "style_id": style_id,
                     "look_amount": state.look_amount,
@@ -1207,6 +1294,8 @@ class ProductDesktopWorkflow:
                 }
                 if output_format_id != _DEFAULT_OUTPUT_FORMAT_ID:
                     identity["output_format_id"] = output_format_id
+                if not selected_effects.is_identity:
+                    identity["finishing_effects"] = selected_effects.receipt_identity()
                 receipt = {"batch_id": _canonical_sha256(identity), **identity}
                 receipt_path = stage / "batch.json"
                 owned_files.append(_write_bound_json(receipt_path, receipt))
@@ -1238,10 +1327,10 @@ class ProductDesktopWorkflow:
                         raise ProductDesktopError(
                             "published batch member identity drifted"
                         )
-                    if {entry.name for entry in destination.iterdir()} != expected_names:
-                        raise ProductDesktopError(
-                            "published batch member set drifted"
-                        )
+                    if {
+                        entry.name for entry in destination.iterdir()
+                    } != expected_names:
+                        raise ProductDesktopError("published batch member set drifted")
                     for row in receipt_jobs:
                         recipe_path = destination / row["recipe_path"]
                         recipe = json.loads(recipe_path.read_text("utf-8"))
@@ -1282,6 +1371,7 @@ class ProductDesktopWorkflow:
                     job_count=len(rows),
                     receipt=receipt,
                     output_format_id=output_format_id,
+                    effects=selected_effects,
                 )
             finally:
                 if not published:
@@ -1293,6 +1383,7 @@ class ProductDesktopWorkflow:
         output_path: Path,
         *,
         output_format_id: str = _DEFAULT_OUTPUT_FORMAT_ID,
+        effects: DesktopFinishingEffects | None = None,
     ) -> tuple[str, ...]:
         state = self._state
         if state is None:
@@ -1305,6 +1396,7 @@ class ProductDesktopWorkflow:
             Path(output_path),
             state.look_amount,
             output_format_id=output_format_id,
+            effects=_desktop_effects(effects),
         )
 
     def _build_export_command(
@@ -1315,8 +1407,10 @@ class ProductDesktopWorkflow:
         look_amount: float,
         *,
         output_format_id: str = _DEFAULT_OUTPUT_FORMAT_ID,
+        effects: DesktopFinishingEffects | None = None,
     ) -> tuple[str, ...]:
         format_spec = _validate_output_format_path(output_format_id, output_path)
+        selected_effects = _desktop_effects(effects)
         command = [
             str(self.python_executable),
             "-I",
@@ -1329,6 +1423,19 @@ class ProductDesktopWorkflow:
             "--output-bit-depth",
             str(format_spec.bit_depth),
         ]
+        if not selected_effects.is_identity:
+            command.extend(
+                (
+                    "--grain",
+                    format(selected_effects.grain, ".17g"),
+                    "--halation",
+                    format(selected_effects.halation, ".17g"),
+                    "--dust",
+                    format(selected_effects.dust, ".17g"),
+                    "--seed",
+                    str(selected_effects.seed),
+                )
+            )
         if format_spec.png_compression is not None:
             command.extend(("--png-compression", str(self.png_compression)))
         command.extend(
@@ -1392,11 +1499,14 @@ class ProductDesktopWorkflow:
 
 
 __all__ = [
+    "DESKTOP_EFFECT_CAPS",
+    "DESKTOP_EFFECT_SEED",
     "PRODUCT_LOOKS",
     "PRODUCT_PREVIEW_DISPLAY_SIZE",
     "DesktopBatchInput",
     "DesktopBatchReceipt",
     "DesktopExportReceipt",
+    "DesktopFinishingEffects",
     "DesktopPreviewState",
     "ProductDesktopError",
     "ProductDesktopWorkflow",

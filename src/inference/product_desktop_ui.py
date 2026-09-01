@@ -15,12 +15,14 @@ from typing import Any
 from PIL import Image, ImageTk
 
 from .product_desktop import (
+    DESKTOP_EFFECT_CAPS,
     PRODUCT_LOOKS,
     PRODUCT_OUTPUT_FORMATS,
     PRODUCT_PREVIEW_DISPLAY_SIZE,
     DesktopBatchInput,
     DesktopBatchReceipt,
     DesktopExportReceipt,
+    DesktopFinishingEffects,
     DesktopPreviewState,
     ProductDesktopError,
     ProductDesktopWorkflow,
@@ -80,6 +82,11 @@ class ProductDesktopApp:
         self.preview_ready = False
         self.style = tk.StringVar(value="")
         self.amount = tk.DoubleVar(value=1.0)
+        self.effect_percents = {
+            name: tk.IntVar(value=0) for name in DESKTOP_EFFECT_CAPS
+        }
+        self.effect_value_labels: dict[str, ttk.Label] = {}
+        self.effect_scales: dict[str, ttk.Scale] = {}
         self.output_format = tk.StringVar(value="png16")
         self.representative = tk.StringVar(value="")
         self._representative_paths: dict[str, Path] = {}
@@ -218,9 +225,7 @@ class ProductDesktopApp:
         self.representative_combo.bind(
             "<<ComboboxSelected>>", self._representative_changed
         )
-        input_basis = ttk.Frame(
-            controls, style="Panel.TFrame", padding=(16, 0, 0, 0)
-        )
+        input_basis = ttk.Frame(controls, style="Panel.TFrame", padding=(16, 0, 0, 0))
         input_basis.grid(row=0, column=5, rowspan=2, sticky="nsew")
         self.input_preview_label = ttk.Label(
             input_basis,
@@ -240,6 +245,43 @@ class ProductDesktopApp:
         self.input_preview_caption.pack(anchor="w", pady=(4, 0))
         controls.columnconfigure(1, weight=1)
         controls.columnconfigure(3, weight=1)
+
+        effects = ttk.Frame(outer, style="Panel.TFrame", padding=(16, 10))
+        effects.pack(fill="x", pady=(10, 0))
+        ttk.Label(
+            effects,
+            text="Finishing effects",
+            style="Panel.TLabel",
+        ).grid(row=0, column=0, sticky="w", padx=(0, 14))
+        ttk.Label(
+            effects,
+            text=(
+                "Colour cards exclude effects · exact result appears in 1:1 detail "
+                "and export · 100% is the frozen desktop cap"
+            ),
+            style="Panel.TLabel",
+        ).grid(row=0, column=1, columnspan=8, sticky="w")
+        for column, (name, cap) in enumerate(DESKTOP_EFFECT_CAPS.items()):
+            start = column * 3
+            ttk.Label(
+                effects,
+                text=f"{name.title()} (max {cap:.0%})",
+                style="Panel.TLabel",
+            ).grid(row=1, column=start, sticky="e", padx=(14 if column else 0, 8))
+            control = ttk.Scale(
+                effects,
+                from_=0,
+                to=100,
+                variable=self.effect_percents[name],
+                command=lambda value, effect=name: self._effect_changed(effect, value),
+                takefocus=True,
+            )
+            control.grid(row=1, column=start + 1, sticky="ew")
+            self.effect_scales[name] = control
+            label = ttk.Label(effects, text="0%", style="Panel.TLabel")
+            label.grid(row=1, column=start + 2, sticky="w", padx=(8, 0))
+            self.effect_value_labels[name] = label
+            effects.columnconfigure(start + 1, weight=1)
 
         self.cards = ttk.Frame(outer, style="Root.TFrame")
         self.cards.pack(fill="both", expand=True, pady=18)
@@ -403,9 +445,7 @@ class ProductDesktopApp:
         self._set_inputs((Path(path),))
 
     def choose_input(self) -> None:
-        selected = filedialog.askopenfilenames(
-            title="Choose one or more photos"
-        )
+        selected = filedialog.askopenfilenames(title="Choose one or more photos")
         if selected:
             try:
                 self._set_inputs(tuple(Path(path) for path in selected))
@@ -424,6 +464,34 @@ class ProductDesktopApp:
             self._invalidate_previews(
                 "Strength changed. Render new previews before export."
             )
+
+    def _effect_changed(self, name: str, value: object = None) -> None:
+        if name not in DESKTOP_EFFECT_CAPS:
+            raise ProductDesktopError("unknown desktop finishing effect")
+        try:
+            number = float(
+                value if value is not None else self.effect_percents[name].get()
+            )
+        except (TypeError, ValueError, tk.TclError) as exc:
+            raise ProductDesktopError("desktop finishing percent is invalid") from exc
+        if not math.isfinite(number):
+            raise ProductDesktopError("desktop finishing percent must be finite")
+        percent = min(100, max(0, math.floor(number + 0.5)))
+        self.effect_percents[name].set(percent)
+        self.effect_value_labels[name].configure(text=f"{percent:d}%")
+        self._clear_detail_window()
+        if self.preview_ready:
+            self.status.set(
+                "Finishing effects changed. Colour previews remain valid; "
+                "inspect 1:1 or export for the exact effect result."
+            )
+
+    def _finishing_effects(self) -> DesktopFinishingEffects:
+        values = {
+            name: self.effect_percents[name].get() * cap / 100.0
+            for name, cap in DESKTOP_EFFECT_CAPS.items()
+        }
+        return DesktopFinishingEffects(**values)
 
     def _selected_representative_path(self) -> Path | None:
         selected = self.representative.get()
@@ -492,9 +560,7 @@ class ProductDesktopApp:
 
     def _clear_input_preview_widget(self) -> None:
         self.input_preview_image = None
-        self.input_preview_label.configure(
-            image="", text="Input basis not rendered"
-        )
+        self.input_preview_label.configure(image="", text="Input basis not rendered")
 
     def _clear_detail_window(self) -> None:
         window = self.detail_window
@@ -545,6 +611,8 @@ class ProductDesktopApp:
         self.choose_button.configure(state=state)
         self.preview_button.configure(state=state)
         self.amount_scale.configure(state=state)
+        for control in self.effect_scales.values():
+            control.configure(state=state)
         self._update_representative_control()
         self._update_output_format_controls()
         look_state = "normal" if not busy and self.preview_ready else "disabled"
@@ -638,7 +706,9 @@ class ProductDesktopApp:
             self._show_error(error)
             return
         if not has_result or success is None:
-            self._show_error(ProductDesktopError("foreground worker returned no result"))
+            self._show_error(
+                ProductDesktopError("foreground worker returned no result")
+            )
             return
         try:
             success(result)
@@ -699,13 +769,9 @@ class ProductDesktopApp:
         if callable(input_reader):
             with Image.open(BytesIO(input_reader())) as opened:
                 input_image = opened.copy()
-            input_image.thumbnail(
-                _INPUT_PREVIEW_DISPLAY_SIZE, Image.Resampling.LANCZOS
-            )
+            input_image.thumbnail(_INPUT_PREVIEW_DISPLAY_SIZE, Image.Resampling.LANCZOS)
             self.input_preview_image = ImageTk.PhotoImage(input_image)
-            self.input_preview_label.configure(
-                image=self.input_preview_image, text=""
-            )
+            self.input_preview_label.configure(image=self.input_preview_image, text="")
         else:
             self._clear_input_preview_widget()
         preview_bytes = self.workflow.preview_bytes()
@@ -768,6 +834,8 @@ class ProductDesktopApp:
             return
         output_format_id = self.output_format.get()
         point = self.detail_point
+        effects = self._finishing_effects()
+        effect_kwargs = {} if effects.is_identity else {"effects": effects}
         self._set_busy(
             True,
             "Rendering an exact full-resolution temporary output for 1:1 inspection…",
@@ -779,6 +847,7 @@ class ProductDesktopApp:
                 output_format_id=output_format_id,
                 point=point,
                 crop_limit=512,
+                **effect_kwargs,
             ),
             self._detail_complete,
         )
@@ -809,7 +878,9 @@ class ProductDesktopApp:
         ).pack(anchor="w", pady=(10, 0))
         self.detail_window = window
         window.protocol("WM_DELETE_WINDOW", self._clear_detail_window)
-        self._set_busy(False, "Exact 1:1 spatial detail ready; temporary export removed.")
+        self._set_busy(
+            False, "Exact 1:1 spatial detail ready; temporary export removed."
+        )
 
     def export(self) -> None:
         if self.busy or not self.preview_ready or self.workflow.preview_state is None:
@@ -822,6 +893,8 @@ class ProductDesktopApp:
         if self.batch_inputs is None:
             self._show_error(ProductDesktopError("render previews before exporting"))
             return
+        effects = self._finishing_effects()
+        effect_kwargs = {} if effects.is_identity else {"effects": effects}
         if len(self.batch_inputs) > 1:
             destination = filedialog.asksaveasfilename(
                 title="Choose a new batch folder",
@@ -846,6 +919,7 @@ class ProductDesktopApp:
                     output_format_id=output_format_id,
                     cancel_event=self._batch_cancel,
                     progress=self._batch_progress,
+                    **effect_kwargs,
                 ),
                 self._batch_complete,
             )
@@ -876,6 +950,7 @@ class ProductDesktopApp:
                 selected,
                 Path(destination),
                 output_format_id=output_format_id,
+                **effect_kwargs,
             ),
             self._export_complete,
         )
@@ -944,7 +1019,9 @@ class ProductDesktopApp:
             if self._closing:
                 self._finish_close()
             else:
-                self._show_error(ProductDesktopError("batch worker returned no receipt"))
+                self._show_error(
+                    ProductDesktopError("batch worker returned no receipt")
+                )
             return
         if self._closing:
             self._finish_close()
