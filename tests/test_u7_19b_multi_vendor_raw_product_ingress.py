@@ -10,6 +10,7 @@ from src.preprocess.raw_decode import RAW_SUFFIXES
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/u7_19b_multi_vendor_raw_product_ingress_v1.json"
+EXECUTION = ROOT / "configs/u7_19b_multi_vendor_raw_product_ingress_execution_v1.json"
 
 
 def test_u7_19b_contract_is_predecode_and_extensions_are_public() -> None:
@@ -109,3 +110,15 @@ def test_u7_19b_product_worker_requires_scratch_root(tmp_path: Path) -> None:
             audit.main()
         finally:
             audit.sys.argv = old
+
+
+def test_u7_19b_execution_lock_admits_exact_preflight_extensions() -> None:
+    config = json.loads(CONFIG.read_text("utf-8"))
+    execution = json.loads(EXECUTION.read_text("utf-8"))
+    assert execution["status"] == "FROZEN_FORMAL_EXECUTION"
+    assert execution["admitted_extensions"] == sorted(
+        row["extension"] for row in config["strata"]
+    )
+    assert execution["preflight_scientific_identity"] == (
+        "sha256:b9109865bcf2f27718f1323fdb64fc3ae1305f271c49a47e94bf150be8056b30"
+    )
