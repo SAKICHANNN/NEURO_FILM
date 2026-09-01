@@ -65,6 +65,7 @@ _DEFAULT_SESSION_BINDINGS = (
     "configs/film_color_stats.json",
     "configs/color_guardrails.json",
     "scripts/render_film.py",
+    "src/inference/product_detail_inspection.py",
     "src/inference/three_stock_preview.py",
     "src/inference/style_safe_engine.py",
     "src/inference/product_look_catalog.py",

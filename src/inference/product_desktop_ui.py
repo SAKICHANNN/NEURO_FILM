@@ -26,6 +26,11 @@ from .product_desktop import (
     ProductDesktopWorkflow,
     product_output_format,
 )
+from .product_detail_inspection import (
+    DesktopDetailPreview,
+    normalized_card_point,
+    render_exact_export_detail,
+)
 
 _LOOK_IDS = tuple(row["style_id"] for row in PRODUCT_LOOKS)
 _INPUT_PREVIEW_DISPLAY_SIZE = (160, 120)
@@ -59,6 +64,9 @@ class ProductDesktopApp:
         self.batch_inputs: tuple[DesktopBatchInput, ...] | None = None
         self.preview_images: list[ImageTk.PhotoImage] = []
         self.input_preview_image: ImageTk.PhotoImage | None = None
+        self.detail_point = (0.5, 0.5)
+        self.detail_window: tk.Toplevel | None = None
+        self.detail_image: ImageTk.PhotoImage | None = None
         self.busy = False
         self.batch_active = False
         self._closing = False
@@ -252,6 +260,12 @@ class ProductDesktopApp:
                 style="Panel.TLabel",
             )
             image_label.pack(fill="both", expand=True)
+            image_label.bind(
+                "<Button-1>",
+                lambda event, style_id=row["style_id"]: self._detail_point_selected(
+                    style_id, event
+                ),
+            )
             self.preview_labels[row["style_id"]] = image_label
             look_button = ttk.Radiobutton(
                 card,
@@ -312,6 +326,15 @@ class ProductDesktopApp:
             takefocus=True,
         )
         self.export_button.pack(side="right", padx=(16, 0))
+        self.detail_button = ttk.Button(
+            footer,
+            text="Inspect selected at 1:1",
+            command=self.render_detail,
+            state="disabled",
+            style="Secondary.TButton",
+            takefocus=True,
+        )
+        self.detail_button.pack(side="right")
         self.cancel_button = ttk.Button(
             footer,
             text="Cancel batch",
@@ -460,6 +483,8 @@ class ProductDesktopApp:
         self.status.set(message)
 
     def _clear_preview_widgets(self) -> None:
+        self._clear_detail_window()
+        self.detail_button.configure(state="disabled")
         self.preview_images.clear()
         self._clear_input_preview_widget()
         for label in self.preview_labels.values():
@@ -470,6 +495,13 @@ class ProductDesktopApp:
         self.input_preview_label.configure(
             image="", text="Input basis not rendered"
         )
+
+    def _clear_detail_window(self) -> None:
+        window = self.detail_window
+        self.detail_window = None
+        self.detail_image = None
+        if window is not None and window.winfo_exists():
+            window.destroy()
 
     def _update_export_label(self) -> None:
         count = len(self.input_paths)
@@ -500,6 +532,7 @@ class ProductDesktopApp:
 
     def _output_format_changed(self) -> None:
         output = product_output_format(self.output_format.get())
+        self._clear_detail_window()
         self._update_export_label()
         if self.preview_ready:
             self.status.set(
@@ -527,17 +560,30 @@ class ProductDesktopApp:
                 else "disabled"
             )
         )
+        self.detail_button.configure(
+            state=(
+                "normal"
+                if not busy
+                and self.preview_ready
+                and self.workflow.preview_state
+                and self.style.get() in _LOOK_IDS
+                else "disabled"
+            )
+        )
         self.cancel_button.configure(
             state="normal" if self.batch_active and busy else "disabled"
         )
         self.status.set(message)
 
     def _style_changed(self) -> None:
+        self._clear_detail_window()
         if self.style.get() not in _LOOK_IDS:
             self.export_button.configure(state="disabled")
+            self.detail_button.configure(state="disabled")
             return
         if self.preview_ready and not self.busy:
             self.export_button.configure(state="normal")
+            self.detail_button.configure(state="normal")
             self.status.set(
                 "Look selected. Export a new "
                 f"{product_output_format(self.output_format.get()).display_name} "
@@ -646,6 +692,8 @@ class ProductDesktopApp:
             self.batch_inputs = self.workflow.bind_batch_inputs((state.input_path,))
             self.input_paths = (state.input_path,)
             self.input_path = state.input_path
+        self._clear_detail_window()
+        self.detail_point = (0.5, 0.5)
         self.preview_images.clear()
         input_reader = getattr(self.workflow, "input_preview_bytes", None)
         if callable(input_reader):
@@ -682,6 +730,86 @@ class ProductDesktopApp:
                 )
             ),
         )
+
+    def _detail_point_selected(self, style_id: str, event: tk.Event) -> None:
+        if self.busy or not self.preview_ready or style_id not in _LOOK_IDS:
+            return
+        try:
+            photo = self.preview_images[_LOOK_IDS.index(style_id)]
+            label = self.preview_labels[style_id]
+            point = normalized_card_point(
+                int(event.x),
+                int(event.y),
+                widget_width=int(label.winfo_width()),
+                widget_height=int(label.winfo_height()),
+                image_width=int(photo.width()),
+                image_height=int(photo.height()),
+            )
+        except (IndexError, ProductDesktopError) as exc:
+            self.status.set(str(exc))
+            return
+        self.style.set(style_id)
+        self._style_changed()
+        self.detail_point = point
+        self.status.set(
+            "Detail point selected at "
+            f"{round(point[0] * 100):d}% x {round(point[1] * 100):d}%. "
+            "Render the exact 1:1 detail when ready."
+        )
+
+    def render_detail(self) -> None:
+        if self.busy or not self.preview_ready or self.workflow.preview_state is None:
+            return
+        selected = self.style.get()
+        if selected not in _LOOK_IDS:
+            self._show_error(
+                ProductDesktopError("select one look before detail inspection")
+            )
+            return
+        output_format_id = self.output_format.get()
+        point = self.detail_point
+        self._set_busy(
+            True,
+            "Rendering an exact full-resolution temporary output for 1:1 inspection…",
+        )
+        self._background(
+            lambda: render_exact_export_detail(
+                self.workflow,
+                selected,
+                output_format_id=output_format_id,
+                point=point,
+                crop_limit=512,
+            ),
+            self._detail_complete,
+        )
+
+    def _detail_complete(self, detail: DesktopDetailPreview) -> None:
+        self._clear_detail_window()
+        with Image.open(BytesIO(detail.crop_png)) as opened:
+            image = opened.copy()
+        window = tk.Toplevel(self.root)
+        window.title("K-MCFM · 1:1 spatial detail")
+        window.transient(self.root)
+        panel = ttk.Frame(window, padding=16, style="Root.TFrame")
+        panel.pack(fill="both", expand=True)
+        self.detail_image = ImageTk.PhotoImage(image)
+        ttk.Label(panel, image=self.detail_image, style="Panel.TLabel").pack()
+        left, top, right, bottom = detail.crop_box
+        role = "Representative" if len(self.input_paths) > 1 else "Photo"
+        ttk.Label(
+            panel,
+            text=(
+                f"{role} 1:1 spatial crop · {right - left}x{bottom - top} of "
+                f"{detail.full_width}x{detail.full_height} · "
+                f"{product_output_format(detail.output_format_id).display_name} "
+                "viewer RGB8\n"
+                "film-inspired / Look Approximation · not display calibrated"
+            ),
+            style="Panel.TLabel",
+        ).pack(anchor="w", pady=(10, 0))
+        self.detail_window = window
+        window.protocol("WM_DELETE_WINDOW", self._clear_detail_window)
+        self._set_busy(False, "Exact 1:1 spatial detail ready; temporary export removed.")
 
     def export(self) -> None:
         if self.busy or not self.preview_ready or self.workflow.preview_state is None:
@@ -866,6 +994,8 @@ class ProductDesktopApp:
     def _show_error(self, exc: BaseException) -> None:
         self.style.set("")
         self.preview_ready = False
+        self.detail_button.configure(state="disabled")
+        self._clear_detail_window()
         self._clear_input_preview_widget()
         self._set_busy(False, f"Stopped safely: {exc}")
         messagebox.showerror("K-MCFM stopped safely", str(exc))
