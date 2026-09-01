@@ -50,8 +50,13 @@
     "invalid_format_pre_render_reject": true,
     "cancel_and_late_foreign_preserved": true,
     "ui_selection_and_busy_state_exact": true,
-    "u7_11a_u7_12b_u7_12f_regressions_pass": true,
+    "u7_11a_png_behavior_u7_12b_single_photo_and_u7_12f_regressions_pass": true,
     "owned_residue_zero": true
+  },
+  "superseded_behavior": {
+    "u7_12b_batch_format_fixed_png16": true,
+    "historical_u7_12b_evidence_immutable": true,
+    "single_photo_format_contract_unchanged": true
   },
   "claim_ceiling": {
     "mode": "film-inspired",

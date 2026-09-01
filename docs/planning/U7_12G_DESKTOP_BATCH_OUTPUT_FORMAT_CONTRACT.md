@@ -17,7 +17,9 @@ rescue.
 - Source parent is commit
   `a6211b7934df9dcfd0b998b3666b0abdd82aba7e`.
 - U7.11A remains the authoritative PNG16 batch contract.
-- U7.12B remains the authoritative single-photo format contract.
+- U7.12B remains the authoritative single-photo format contract. Its historical
+  assertion that multi-photo sessions disable the selector is the one behavior
+  prospectively superseded by U7.12G; U7.12B evidence remains immutable.
 - U7.12F remains the authoritative post-error selection reset.
 - The default `export_batch(...)` call and a UI session that never changes the
   format must still emit the exact U7.11A PNG members, recipes and v1
@@ -57,8 +59,10 @@ modify the withdrawn U7.12E recovery UI route.
    late-created foreign destination preserve the existing atomic behavior.
 7. Format controls are disabled while busy and remain usable only when the
    current preview authority is valid.
-8. Focused tests plus U7.11A, U7.12B and U7.12F regressions pass in fresh
-   processes; no owned scratch residue remains.
+8. Focused tests plus U7.11A PNG behavior, U7.12B single-photo behavior and
+   U7.12F regressions pass in fresh processes. The exact old U7.12B
+   batch-selector assertion is replaced, not silently dropped; no owned scratch
+   residue remains.
 
 Any gate failure closes this exact composition without encoder tuning,
 threshold changes, byte normalization, receipt weakening or adjacent recovery
