@@ -6,6 +6,7 @@ import hashlib
 import json
 import math
 import os
+import re
 import stat
 import subprocess
 import sys
@@ -13,7 +14,7 @@ import threading
 import uuid
 from collections.abc import Callable, Mapping, Sequence
 from dataclasses import dataclass
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from typing import Any
 
 from src.film_physics.create_only_file import (
@@ -22,7 +23,12 @@ from src.film_physics.create_only_file import (
 )
 from src.preprocess import inspect_input
 
-from .render_contract import sha256_file, verify_render_recipe_files
+from .render_contract import (
+    sha256_file,
+    validate_render_recipe,
+    verify_render_recipe_files,
+    verify_render_recipe_inputs,
+)
 from .three_stock_preview import render_three_stock_previews_to_directory
 
 
@@ -68,6 +74,7 @@ CommandRunner = Callable[
     [Sequence[str], Path, Mapping[str, str]], subprocess.CompletedProcess[str]
 ]
 PreviewRenderer = Callable[..., dict[str, Any]]
+BatchProgress = Callable[[int, int, str], None]
 
 
 @dataclass(frozen=True)
@@ -117,6 +124,32 @@ class DesktopExportReceipt:
     recipe: dict[str, Any]
 
 
+@dataclass(frozen=True)
+class DesktopBatchInput:
+    """Canonical source identity frozen before representative preview."""
+
+    path: Path
+    basename: str
+    sha256: str
+    size: int
+    device: int
+    inode: int
+
+
+@dataclass(frozen=True)
+class DesktopBatchReceipt:
+    """Verified aggregate identity for one single-look desktop batch."""
+
+    batch_id: str
+    style_id: str
+    look_amount: float
+    output_directory: Path
+    receipt_path: Path
+    receipt_sha256: str
+    job_count: int
+    receipt: dict[str, Any]
+
+
 def _run_command(
     command: Sequence[str], cwd: Path, environment: Mapping[str, str]
 ) -> subprocess.CompletedProcess[str]:
@@ -159,6 +192,57 @@ def _bounded_look_amount(value: object) -> float:
     if not math.isfinite(amount) or not 0.0 <= amount <= 1.0:
         raise ProductDesktopError("look amount must be a finite number in [0,1]")
     return amount
+
+
+def _normalized_path(path: Path) -> str:
+    return os.path.normcase(os.path.abspath(os.fspath(path.resolve(strict=False))))
+
+
+def _canonical_sha256(payload: Mapping[str, Any]) -> str:
+    encoded = json.dumps(
+        payload,
+        allow_nan=False,
+        ensure_ascii=False,
+        separators=(",", ":"),
+        sort_keys=True,
+    ).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
+
+
+def _safe_output_stem(path: Path) -> str:
+    stem = re.sub(r"[^A-Za-z0-9_-]+", "-", path.stem).strip("-_")
+    return (stem[:48] or "image").casefold()
+
+
+def _valid_windows_component(name: str) -> bool:
+    reserved = {
+        "con",
+        "prn",
+        "aux",
+        "nul",
+        *(f"com{index}" for index in range(1, 10)),
+        *(f"lpt{index}" for index in range(1, 10)),
+    }
+    base = name.split(".", 1)[0].casefold()
+    return bool(
+        name
+        and name not in {".", ".."}
+        and not name.endswith((" ", "."))
+        and base not in reserved
+        and not any(character in '<>:"/\\|?*' for character in name)
+    )
+
+
+def _batch_directory_rename_supported() -> bool:
+    """Return whether directory rename is create-only on the formal platform."""
+
+    return os.name == "nt"
+
+
+def _encode_json(payload: Mapping[str, Any]) -> bytes:
+    return (
+        json.dumps(payload, indent=2, sort_keys=True, ensure_ascii=False) + "\n"
+    ).encode("utf-8")
 
 
 def _is_normal_directory(path: Path, details: os.stat_result | None = None) -> bool:
@@ -248,6 +332,86 @@ def _remove_empty_directory_if_owned(seal: _DirectorySeal) -> bool:
     return True
 
 
+def _batch_input_matches(source: DesktopBatchInput) -> bool:
+    try:
+        details = source.path.lstat()
+    except FileNotFoundError:
+        return False
+    return (
+        not source.path.is_symlink()
+        and stat.S_ISREG(details.st_mode)
+        and (details.st_dev, details.st_ino) == (source.device, source.inode)
+        and details.st_size == source.size
+        and sha256_file(source.path) == source.sha256
+    )
+
+
+def _write_bound_json(path: Path, payload: Mapping[str, Any]) -> _FileSeal:
+    encoded = _encode_json(payload)
+    with path.open("xb") as handle:
+        handle.write(encoded)
+        handle.flush()
+        os.fsync(handle.fileno())
+    return _seal_file(path)
+
+
+def _replace_owned_json(path: Path, payload: Mapping[str, Any]) -> _FileSeal:
+    details = path.lstat()
+    if path.is_symlink() or not stat.S_ISREG(details.st_mode) or details.st_nlink != 1:
+        raise ProductDesktopError("batch recipe ownership changed")
+    encoded = _encode_json(payload)
+    with path.open("wb") as handle:
+        current = os.fstat(handle.fileno())
+        if (current.st_dev, current.st_ino) != (details.st_dev, details.st_ino):
+            raise ProductDesktopError("batch recipe ownership changed")
+        handle.write(encoded)
+        handle.flush()
+        os.fsync(handle.fileno())
+    return _seal_file(path)
+
+
+def _cleanup_bound_stage(
+    stage: _DirectorySeal,
+    files: Sequence[_FileSeal],
+) -> bool:
+    for seal in reversed(files):
+        remove_if_published(seal.identity)
+    return _remove_empty_directory_if_owned(stage)
+
+
+def _bind_unfinished_child_candidates(
+    stage: _DirectorySeal,
+    paths: Sequence[Path],
+) -> tuple[_FileSeal, ...]:
+    """Bind regular expected outputs created inside our unguessable owned stage."""
+
+    if not _directory_matches(stage):
+        return ()
+    bound: list[_FileSeal] = []
+    for path in paths:
+        try:
+            details = path.lstat()
+        except FileNotFoundError:
+            continue
+        if (
+            path.parent == stage.path
+            and not path.is_symlink()
+            and stat.S_ISREG(details.st_mode)
+            and details.st_nlink == 1
+        ):
+            bound.append(_seal_file(path))
+    return tuple(bound)
+
+
+def _bind_file_after_directory_rename(seal: _FileSeal, root: Path) -> _FileSeal:
+    """Bind an exact renamed member on filesystems that synthesize new inodes."""
+
+    rebound = _seal_file(root / seal.identity.path.name)
+    if rebound.size != seal.size or rebound.sha256 != seal.sha256:
+        raise ProductDesktopError("published batch member identity drifted")
+    return rebound
+
+
 class ProductDesktopWorkflow:
     """Thread-safe core for one native new-input preview/export session."""
 
@@ -298,6 +462,43 @@ class ProductDesktopWorkflow:
     @property
     def preview_state(self) -> DesktopPreviewState | None:
         return self._state
+
+    def bind_batch_inputs(
+        self, input_paths: Sequence[Path]
+    ) -> tuple[DesktopBatchInput, ...]:
+        """Hash and canonically bind one bounded set before representative preview."""
+
+        if isinstance(input_paths, (str, bytes)):
+            raise ProductDesktopError("batch inputs must be a path sequence")
+        if not 1 <= len(input_paths) <= 100:
+            raise ProductDesktopError("choose between one and 100 photos")
+        resolved = [Path(path).resolve(strict=True) for path in input_paths]
+        ordered = sorted(resolved, key=_normalized_path)
+        normalized = [_normalized_path(path) for path in ordered]
+        if len(set(normalized)) != len(normalized):
+            raise ProductDesktopError("batch inputs must identify unique paths")
+        identities: set[tuple[int, int]] = set()
+        bound: list[DesktopBatchInput] = []
+        for source in ordered:
+            details = source.lstat()
+            if source.is_symlink() or not stat.S_ISREG(details.st_mode):
+                raise ProductDesktopError("batch input must be a regular file")
+            identity = (details.st_dev, details.st_ino)
+            if identity in identities:
+                raise ProductDesktopError("batch inputs must identify unique files")
+            identities.add(identity)
+            inspect_input(source)
+            bound.append(
+                DesktopBatchInput(
+                    path=source,
+                    basename=source.name,
+                    sha256=sha256_file(source),
+                    size=details.st_size,
+                    device=details.st_dev,
+                    inode=details.st_ino,
+                )
+            )
+        return tuple(bound)
 
     def render_previews(
         self, input_path: Path, look_amount: float
@@ -521,21 +722,328 @@ class ProductDesktopWorkflow:
                 recipe=recipe,
             )
 
+    def render_batch_previews(
+        self,
+        input_paths: Sequence[Path],
+        look_amount: float,
+    ) -> tuple[DesktopPreviewState, tuple[DesktopBatchInput, ...]]:
+        """Bind every selected source, then preview the canonical first source."""
+
+        bound = self.bind_batch_inputs(input_paths)
+        state = self.render_previews(bound[0].path, look_amount)
+        if state.input_sha256 != bound[0].sha256:
+            self.close()
+            raise ProductDesktopError("representative preview input identity drifted")
+        return state, bound
+
+    def export_batch(
+        self,
+        inputs: Sequence[DesktopBatchInput],
+        style_id: str,
+        output_directory: Path,
+        *,
+        cancel_event: threading.Event | None = None,
+        progress: BatchProgress | None = None,
+    ) -> DesktopBatchReceipt:
+        """Publish one atomic single-look directory through the existing CLI."""
+
+        with self._lock:
+            state = self._state
+            if state is None:
+                raise ProductDesktopError("render previews before exporting")
+            if style_id not in _LOOK_IDS:
+                raise ProductDesktopError("unknown or unavailable product look")
+            rows = tuple(inputs)
+            if not 2 <= len(rows) <= 100:
+                raise ProductDesktopError("desktop batch requires two to 100 photos")
+            if tuple(sorted((row.path for row in rows), key=_normalized_path)) != tuple(
+                row.path for row in rows
+            ):
+                raise ProductDesktopError("batch input order is not canonical")
+            if len({_normalized_path(row.path) for row in rows}) != len(rows) or len(
+                {(row.device, row.inode) for row in rows}
+            ) != len(rows):
+                raise ProductDesktopError("batch inputs must identify unique files")
+            if state.input_path != rows[0].path or state.input_sha256 != rows[0].sha256:
+                raise ProductDesktopError("representative preview does not bind this batch")
+            self._validate_state(state)
+            self._validate_session(state)
+            if not all(_batch_input_matches(row) for row in rows):
+                raise ProductDesktopError("batch input changed after preview")
+            if not _batch_directory_rename_supported():
+                raise ProductDesktopError("desktop batch publication requires Windows")
+
+            destination = Path(output_directory).resolve(strict=False)
+            if not _valid_windows_component(destination.name):
+                raise ProductDesktopError("batch destination name is unsafe on Windows")
+            if not destination.parent.is_dir():
+                raise ProductDesktopError("batch destination parent must exist")
+            if os.path.lexists(destination):
+                raise ProductDesktopError("batch destination must be absent")
+            if destination == state.workspace or state.workspace in destination.parents:
+                raise ProductDesktopError(
+                    "batch destination must be outside the preview workspace"
+                )
+            stage = destination.with_name(
+                f".{destination.name}.u7-11a-{uuid.uuid4().hex}.stage"
+            )
+            if os.path.lexists(stage):
+                raise ProductDesktopError("batch stage path unexpectedly exists")
+            stage.mkdir()
+            stage_seal = _seal_directory(stage)
+            owned_files: list[_FileSeal] = []
+            published = False
+            environment = {
+                key: value
+                for key, value in os.environ.items()
+                if not key.upper().startswith("PYTHON")
+            }
+            receipt_jobs: list[dict[str, Any]] = []
+            expected_names: set[str] = set()
+            try:
+                for index, source in enumerate(rows, 1):
+                    if cancel_event is not None and cancel_event.is_set():
+                        raise ProductDesktopError("batch cancelled safely")
+                    self._validate_state(state)
+                    self._validate_session(state)
+                    if not _batch_input_matches(source):
+                        raise ProductDesktopError(
+                            f"batch input changed before child {index}"
+                        )
+                    stem = f"{index:04d}-{_safe_output_stem(source.path)}-{style_id}"
+                    image_name = f"{stem}.png"
+                    recipe_name = f"{stem}.recipe.json"
+                    image_path = stage / image_name
+                    recipe_path = stage / recipe_name
+                    expected_names.update({image_name, recipe_name})
+                    try:
+                        completed = self.command_runner(
+                            self._build_export_command(
+                                source.path,
+                                style_id,
+                                image_path,
+                                state.look_amount,
+                            ),
+                            self.root,
+                            environment,
+                        )
+                    except BaseException:
+                        owned_files.extend(
+                            _bind_unfinished_child_candidates(
+                                stage_seal, (image_path, recipe_path)
+                            )
+                        )
+                        raise
+                    if completed.returncode != 0:
+                        owned_files.extend(
+                            _bind_unfinished_child_candidates(
+                                stage_seal, (image_path, recipe_path)
+                            )
+                        )
+                        detail = (
+                            completed.stderr or completed.stdout or "render failed"
+                        )[-4000:]
+                        raise ProductDesktopError(
+                            f"batch child {index} failed: {detail}"
+                        )
+                    if not image_path.is_file() or not recipe_path.is_file():
+                        owned_files.extend(
+                            _bind_unfinished_child_candidates(
+                                stage_seal, (image_path, recipe_path)
+                            )
+                        )
+                        raise ProductDesktopError(
+                            f"batch child {index} returned without a complete pair"
+                        )
+                    image_seal = _seal_file(image_path)
+                    recipe_seal = _seal_file(recipe_path)
+                    owned_files.extend((image_seal, recipe_seal))
+                    recipe = json.loads(recipe_path.read_text("utf-8"))
+                    verify_render_recipe_files(
+                        recipe,
+                        profile_path=self.root
+                        / "configs/render_profiles/safe_rich_product_v1.json",
+                        root=self.root,
+                    )
+                    final_image = destination / image_name
+                    if (
+                        recipe["input"]["path"] != str(source.path)
+                        or recipe["input"]["sha256"] != source.sha256
+                        or recipe["render"]["style"] != style_id
+                        or float(recipe["render"]["look_amount"])
+                        != state.look_amount
+                        or recipe["output"]["bit_depth"] != 16
+                        or recipe["output"]["sha256"] != image_seal.sha256
+                        or str(recipe["software"]["commit"]).lower()
+                        != state.source_commit
+                        or recipe["claim"]["evidence_grade"]
+                        != "look-approximation"
+                        or recipe["claim"].get("calibrated_reference_allowed")
+                        is not False
+                    ):
+                        raise ProductDesktopError(
+                            f"batch child {index} recipe semantics drifted"
+                        )
+                    recipe["output"]["path"] = str(
+                        final_image.resolve(strict=False)
+                    )
+                    validate_render_recipe(recipe)
+                    verify_render_recipe_inputs(
+                        recipe,
+                        profile_path=self.root
+                        / "configs/render_profiles/safe_rich_product_v1.json",
+                        root=self.root,
+                    )
+                    owned_files[-1] = _replace_owned_json(recipe_path, recipe)
+                    receipt_jobs.append(
+                        {
+                            "job_id": f"{index:04d}",
+                            "input_basename": source.basename,
+                            "input_sha256": source.sha256,
+                            "output_path": PurePosixPath(image_name).as_posix(),
+                            "output_sha256": image_seal.sha256,
+                            "recipe_path": PurePosixPath(recipe_name).as_posix(),
+                            "recipe_sha256": owned_files[-1].sha256,
+                        }
+                    )
+                    if progress is not None:
+                        progress(index, len(rows), source.basename)
+
+                if cancel_event is not None and cancel_event.is_set():
+                    raise ProductDesktopError("batch cancelled safely")
+                self._validate_state(state)
+                self._validate_session(state)
+                if _source_commit(self.root) != state.source_commit:
+                    raise ProductDesktopError("source commit changed during batch")
+                if not all(_batch_input_matches(row) for row in rows):
+                    raise ProductDesktopError("batch input changed before publication")
+                if {entry.name for entry in stage.iterdir()} != expected_names:
+                    raise ProductDesktopError("batch stage member set drifted")
+                identity = {
+                    "schema_version": "kmcfm.desktop-single-look-batch.v1",
+                    "style_id": style_id,
+                    "look_amount": state.look_amount,
+                    "source_commit": state.source_commit,
+                    "job_count": len(rows),
+                    "output_format": "PNG",
+                    "output_bit_depth": 16,
+                    "jobs": receipt_jobs,
+                    "claim": {
+                        "output_label": "film-inspired / Look Approximation",
+                        "evidence_grade": "look-approximation",
+                        "calibrated_stock_response": False,
+                        "physical_film_reproduction": False,
+                        "stock_distinguishability": False,
+                    },
+                }
+                receipt = {"batch_id": _canonical_sha256(identity), **identity}
+                receipt_path = stage / "batch.json"
+                owned_files.append(_write_bound_json(receipt_path, receipt))
+                expected_names.add("batch.json")
+                if {entry.name for entry in stage.iterdir()} != expected_names:
+                    raise ProductDesktopError("batch receipt member set drifted")
+                if os.path.lexists(destination):
+                    raise ProductDesktopError("batch destination appeared")
+                os.rename(stage, destination)
+                final_root: _DirectorySeal | None = None
+                final_files: list[_FileSeal] = []
+                try:
+                    final_root = _seal_directory(destination)
+                    if final_root.device != stage_seal.device:
+                        raise ProductDesktopError(
+                            "published batch directory identity drifted"
+                        )
+                    binding_failed = False
+                    for seal in owned_files:
+                        try:
+                            final_files.append(
+                                _bind_file_after_directory_rename(seal, destination)
+                            )
+                        except (OSError, ProductDesktopError):
+                            binding_failed = True
+                    if binding_failed or not all(
+                        _file_matches(seal) for seal in final_files
+                    ):
+                        raise ProductDesktopError(
+                            "published batch member identity drifted"
+                        )
+                    if {entry.name for entry in destination.iterdir()} != expected_names:
+                        raise ProductDesktopError(
+                            "published batch member set drifted"
+                        )
+                    for row in receipt_jobs:
+                        recipe_path = destination / row["recipe_path"]
+                        recipe = json.loads(recipe_path.read_text("utf-8"))
+                        verify_render_recipe_files(
+                            recipe,
+                            profile_path=self.root
+                            / "configs/render_profiles/safe_rich_product_v1.json",
+                            root=self.root,
+                        )
+                        if (
+                            sha256_file(recipe_path) != row["recipe_sha256"]
+                            or sha256_file(destination / row["output_path"])
+                            != row["output_sha256"]
+                        ):
+                            raise ProductDesktopError(
+                                "published batch child identity drifted"
+                            )
+                    final_receipt = destination / "batch.json"
+                    if (
+                        json.loads(final_receipt.read_text("utf-8")) != receipt
+                        or sha256_file(final_receipt) != final_files[-1].sha256
+                    ):
+                        raise ProductDesktopError(
+                            "published aggregate receipt identity drifted"
+                        )
+                except BaseException:
+                    if final_root is not None:
+                        _cleanup_bound_stage(final_root, final_files)
+                    raise
+                published = True
+                return DesktopBatchReceipt(
+                    batch_id=receipt["batch_id"],
+                    style_id=style_id,
+                    look_amount=state.look_amount,
+                    output_directory=destination,
+                    receipt_path=final_receipt,
+                    receipt_sha256=sha256_file(final_receipt),
+                    job_count=len(rows),
+                    receipt=receipt,
+                )
+            finally:
+                if not published:
+                    _cleanup_bound_stage(stage_seal, owned_files)
+
     def export_command(self, style_id: str, output_path: Path) -> tuple[str, ...]:
         state = self._state
         if state is None:
             raise ProductDesktopError("render previews before exporting")
         if style_id not in _LOOK_IDS:
             raise ProductDesktopError("unknown or unavailable product look")
+        return self._build_export_command(
+            state.input_path,
+            style_id,
+            Path(output_path),
+            state.look_amount,
+        )
+
+    def _build_export_command(
+        self,
+        input_path: Path,
+        style_id: str,
+        output_path: Path,
+        look_amount: float,
+    ) -> tuple[str, ...]:
         return (
             str(self.python_executable),
             "-I",
             str(self.root / "scripts/render_film.py"),
-            str(state.input_path),
+            str(Path(input_path).resolve(strict=True)),
             "--product-look",
             style_id,
             "--look-amount",
-            format(state.look_amount, ".17g"),
+            format(_bounded_look_amount(look_amount), ".17g"),
             "--output-bit-depth",
             "16",
             "--png-compression",
@@ -598,6 +1106,8 @@ class ProductDesktopWorkflow:
 
 __all__ = [
     "PRODUCT_LOOKS",
+    "DesktopBatchInput",
+    "DesktopBatchReceipt",
     "DesktopExportReceipt",
     "DesktopPreviewState",
     "ProductDesktopError",

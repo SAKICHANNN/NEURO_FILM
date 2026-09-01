@@ -7,6 +7,7 @@ import tkinter as tk
 from collections.abc import Callable
 from io import BytesIO
 from pathlib import Path
+from queue import Empty, SimpleQueue
 from tkinter import filedialog, messagebox, ttk
 from typing import Any
 
@@ -14,6 +15,8 @@ from PIL import Image, ImageTk
 
 from .product_desktop import (
     PRODUCT_LOOKS,
+    DesktopBatchInput,
+    DesktopBatchReceipt,
     DesktopExportReceipt,
     DesktopPreviewState,
     ProductDesktopError,
@@ -37,8 +40,16 @@ class ProductDesktopApp:
         self.root = root
         self.workflow = workflow
         self.input_path: Path | None = None
+        self.input_paths: tuple[Path, ...] = ()
+        self.batch_inputs: tuple[DesktopBatchInput, ...] | None = None
         self.preview_images: list[ImageTk.PhotoImage] = []
         self.busy = False
+        self.batch_active = False
+        self._closing = False
+        self._batch_cancel = threading.Event()
+        self._batch_thread: threading.Thread | None = None
+        self._batch_outcome: dict[str, Any] = {}
+        self._batch_progress_queue: SimpleQueue[tuple[int, int, str]] = SimpleQueue()
         self.preview_ready = False
         self.style = tk.StringVar(value="")
         self.amount = tk.DoubleVar(value=1.0)
@@ -126,7 +137,7 @@ class ProductDesktopApp:
         controls.pack(fill="x")
         self.choose_button = ttk.Button(
             controls,
-            text="Choose photo",
+            text="Choose photos",
             command=self.choose_input,
             style="Secondary.TButton",
             takefocus=True,
@@ -219,10 +230,21 @@ class ProductDesktopApp:
             takefocus=True,
         )
         self.export_button.pack(side="right", padx=(16, 0))
+        self.cancel_button = ttk.Button(
+            footer,
+            text="Cancel batch",
+            command=self.cancel_batch,
+            state="disabled",
+            style="Secondary.TButton",
+            takefocus=True,
+        )
+        self.cancel_button.pack(side="right")
 
-    def _set_input(self, path: Path) -> None:
-        resolved = path.resolve(strict=True)
-        if not resolved.is_file():
+    def _set_inputs(self, paths: tuple[Path, ...]) -> None:
+        if not 1 <= len(paths) <= 100:
+            raise ProductDesktopError("choose between one and 100 photos")
+        resolved = tuple(path.resolve(strict=True) for path in paths)
+        if any(not path.is_file() for path in resolved):
             raise ProductDesktopError("input must be an existing file")
         if self.workflow.preview_state is not None:
             if not self.workflow.close():
@@ -232,18 +254,39 @@ class ProductDesktopApp:
                     "preview workspace ownership changed; preserved for inspection"
                 )
             self._clear_preview_widgets()
-        self.input_path = resolved
-        self.input_text.set(resolved.name)
+        self.input_paths = resolved
+        self.input_path = resolved[0]
+        self.batch_inputs = None
+        self.input_text.set(
+            resolved[0].name
+            if len(resolved) == 1
+            else f"{len(resolved)} photos · preview representative pending"
+        )
         self.style.set("")
         self.preview_ready = False
         self.export_button.configure(state="disabled")
-        self.status.set("Photo selected. Render previews to compare the three looks.")
+        self._update_export_label()
+        self.status.set(
+            "Photo selected. Render previews to compare the three looks."
+            if len(resolved) == 1
+            else (
+                f"{len(resolved)} photos selected. Render previews to bind the "
+                "canonical representative and compare looks."
+            )
+        )
+
+    def _set_input(self, path: Path) -> None:
+        """Retain the existing one-photo setup helper."""
+
+        self._set_inputs((Path(path),))
 
     def choose_input(self) -> None:
-        selected = filedialog.askopenfilename(title="Choose a photo")
+        selected = filedialog.askopenfilenames(
+            title="Choose one or more photos"
+        )
         if selected:
             try:
-                self._set_input(Path(selected))
+                self._set_inputs(tuple(Path(path) for path in selected))
             except (OSError, ProductDesktopError) as exc:
                 self._show_error(exc)
 
@@ -256,6 +299,7 @@ class ProductDesktopApp:
 
     def _invalidate_previews(self, message: str) -> None:
         self.style.set("")
+        self.batch_inputs = None
         self.preview_ready = False
         self.export_button.configure(state="disabled")
         if self.workflow.preview_state is not None and not self.workflow.close():
@@ -272,6 +316,16 @@ class ProductDesktopApp:
         self.preview_images.clear()
         for label in self.preview_labels.values():
             label.configure(image="", text="Preview not rendered")
+
+    def _update_export_label(self) -> None:
+        count = len(self.input_paths)
+        self.export_button.configure(
+            text=(
+                "Export PNG16 + recipe"
+                if count <= 1
+                else f"Export {count} PNG16 + recipes"
+            )
+        )
 
     def _set_busy(self, busy: bool, message: str) -> None:
         self.busy = busy
@@ -292,6 +346,9 @@ class ProductDesktopApp:
                 else "disabled"
             )
         )
+        self.cancel_button.configure(
+            state="normal" if self.batch_active and busy else "disabled"
+        )
         self.status.set(message)
 
     def _style_changed(self) -> None:
@@ -300,7 +357,14 @@ class ProductDesktopApp:
             return
         if self.preview_ready and not self.busy:
             self.export_button.configure(state="normal")
-            self.status.set("Look selected. Export a new PNG16 + recipe pair.")
+            self.status.set(
+                "Look selected. Export a new PNG16 + recipe pair."
+                if len(self.input_paths) <= 1
+                else (
+                    f"Look selected for all {len(self.input_paths)} photos. "
+                    "Export one new atomic batch folder."
+                )
+            )
 
     def _background(
         self, action: Callable[[], Any], success: Callable[[Any], None]
@@ -331,14 +395,34 @@ class ProductDesktopApp:
             )
             return
         amount = self.amount.get()
-        source = self.input_path
+        sources = self.input_paths
         self._set_busy(True, "Rendering three bounded previews…")
         self._background(
-            lambda: self.workflow.render_previews(source, amount),
-            self._preview_complete,
+            lambda: self.workflow.render_batch_previews(sources, amount),
+            self._batch_preview_complete,
         )
 
+    def _batch_preview_complete(
+        self,
+        result: tuple[DesktopPreviewState, tuple[DesktopBatchInput, ...]],
+    ) -> None:
+        state, inputs = result
+        self.batch_inputs = inputs
+        self.input_paths = tuple(row.path for row in inputs)
+        self.input_path = inputs[0].path
+        self.input_text.set(
+            inputs[0].basename
+            if len(inputs) == 1
+            else f"{len(inputs)} photos · previewing {inputs[0].basename}"
+        )
+        self._update_export_label()
+        self._preview_complete(state)
+
     def _preview_complete(self, state: DesktopPreviewState) -> None:
+        if self.batch_inputs is None:
+            self.batch_inputs = self.workflow.bind_batch_inputs((state.input_path,))
+            self.input_paths = (state.input_path,)
+            self.input_path = state.input_path
         self.preview_images.clear()
         preview_bytes = self.workflow.preview_bytes()
         for look in PRODUCT_LOOKS:
@@ -351,7 +435,14 @@ class ProductDesktopApp:
         self.preview_ready = True
         self._set_busy(
             False,
-            "Previews ready. Select one look and export a new PNG16 + recipe pair.",
+            (
+                "Previews ready. Select one look and export a new PNG16 + recipe pair."
+                if len(self.input_paths) <= 1
+                else (
+                    f"Representative preview ready for {len(self.input_paths)} photos. "
+                    "Select one look for the whole batch."
+                )
+            ),
         )
 
     def export(self) -> None:
@@ -361,6 +452,35 @@ class ProductDesktopApp:
         selected = self.style.get()
         if selected not in _LOOK_IDS:
             self._show_error(ProductDesktopError("select one look before export"))
+            return
+        if self.batch_inputs is None:
+            self._show_error(ProductDesktopError("render previews before exporting"))
+            return
+        if len(self.batch_inputs) > 1:
+            destination = filedialog.asksaveasfilename(
+                title="Choose a new batch folder",
+                initialfile=f"kmcfm-{selected}-{len(self.batch_inputs)}-photos",
+                filetypes=(("Batch folder name", "*"),),
+            )
+            if not destination:
+                return
+            self._batch_cancel.clear()
+            self.batch_active = True
+            self._set_busy(
+                True,
+                f"Rendering 0/{len(self.batch_inputs)} photos…",
+            )
+            inputs = self.batch_inputs
+            self._background_batch(
+                lambda: self.workflow.export_batch(
+                    inputs,
+                    selected,
+                    Path(destination),
+                    cancel_event=self._batch_cancel,
+                    progress=self._batch_progress,
+                ),
+                self._batch_complete,
+            )
             return
         destination = filedialog.asksaveasfilename(
             title="Export Look Approximation",
@@ -374,6 +494,101 @@ class ProductDesktopApp:
         self._background(
             lambda: self.workflow.export(selected, Path(destination)),
             self._export_complete,
+        )
+
+    def _batch_progress(self, completed: int, total: int, basename: str) -> None:
+        self._batch_progress_queue.put((completed, total, basename))
+
+    def _drain_batch_progress(self) -> None:
+        latest: tuple[int, int, str] | None = None
+        while True:
+            try:
+                latest = self._batch_progress_queue.get_nowait()
+            except Empty:
+                break
+        if latest is not None:
+            completed, total, basename = latest
+            self.status.set(f"Rendered {completed}/{total}: {basename}")
+
+    def _background_batch(
+        self,
+        action: Callable[[], DesktopBatchReceipt],
+        success: Callable[[DesktopBatchReceipt], None],
+    ) -> None:
+        if self._batch_thread is not None:
+            raise ProductDesktopError("a batch worker is already active")
+        self._batch_outcome = {}
+        self._drain_batch_progress()
+
+        def worker() -> None:
+            try:
+                self._batch_outcome["result"] = action()
+            except BaseException as exc:  # noqa: BLE001 - returned to Tk thread
+                self._batch_outcome["error"] = exc
+
+        self._batch_thread = threading.Thread(
+            target=worker,
+            name="kmcfm-desktop-batch",
+            daemon=False,
+        )
+        self._batch_thread.start()
+        self.root.after(50, lambda: self._poll_batch(success))
+
+    def _poll_batch(
+        self,
+        success: Callable[[DesktopBatchReceipt], None],
+    ) -> None:
+        worker = self._batch_thread
+        if worker is None:
+            return
+        self._drain_batch_progress()
+        if worker.is_alive():
+            self.root.after(50, lambda: self._poll_batch(success))
+            return
+        worker.join(timeout=0)
+        self._batch_thread = None
+        self.batch_active = False
+        error = self._batch_outcome.pop("error", None)
+        result = self._batch_outcome.pop("result", None)
+        if error is not None:
+            if self._closing:
+                self._finish_close()
+            else:
+                self._show_error(error)
+            return
+        if not isinstance(result, DesktopBatchReceipt):
+            if self._closing:
+                self._finish_close()
+            else:
+                self._show_error(ProductDesktopError("batch worker returned no receipt"))
+            return
+        if self._closing:
+            self._finish_close()
+            return
+        success(result)
+
+    def cancel_batch(self) -> None:
+        if self._batch_thread is None or not self._batch_thread.is_alive():
+            return
+        self._batch_cancel.set()
+        self.cancel_button.configure(state="disabled")
+        self.status.set("Stopping safely after the current photo…")
+
+    def _batch_complete(self, receipt: DesktopBatchReceipt) -> None:
+        self._set_busy(
+            False,
+            (
+                f"Batch complete: {receipt.job_count} photos in "
+                f"{receipt.output_directory.name}"
+            ),
+        )
+        messagebox.showinfo(
+            "Batch export complete",
+            (
+                f"Created {receipt.job_count} PNG16 + recipe pairs and "
+                f"{receipt.receipt_path.name}.\n\n"
+                "film-inspired / Look Approximation"
+            ),
         )
 
     def _export_complete(self, receipt: DesktopExportReceipt) -> None:
@@ -396,8 +611,26 @@ class ProductDesktopApp:
         messagebox.showerror("K-MCFM stopped safely", str(exc))
 
     def close(self) -> None:
+        if self._batch_thread is not None:
+            if self._batch_thread.is_alive():
+                self._closing = True
+                self._batch_cancel.set()
+                self._set_busy(True, "Closing safely after the current photo…")
+                self.cancel_button.configure(state="disabled")
+                return
+            self._batch_thread.join(timeout=0)
+            self._batch_thread = None
+            self.batch_active = False
+        self._finish_close()
+
+    def _finish_close(self) -> None:
         self.workflow.close()
-        self.root.destroy()
+        if self.root.winfo_exists():
+            # Release Tk-owned PhotoImage objects while their interpreter is
+            # still alive.  Retaining them across root destruction can make a
+            # subsequent desktop session race their delayed finalizers.
+            self._clear_preview_widgets()
+            self.root.destroy()
 
 
 def build_product_desktop_app(
