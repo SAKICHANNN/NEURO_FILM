@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import math
 import threading
 import tkinter as tk
 from collections.abc import Callable
@@ -29,6 +30,16 @@ from .product_desktop import (
 _LOOK_IDS = tuple(row["style_id"] for row in PRODUCT_LOOKS)
 _INPUT_PREVIEW_DISPLAY_SIZE = (160, 120)
 _AUTO_REPRESENTATIVE = "Automatic · canonical first"
+
+
+def _visible_look_amount(value: float) -> tuple[int, float]:
+    """Return the integer percent and exact amount shown by the native UI."""
+
+    amount = float(value)
+    if not math.isfinite(amount):
+        raise ProductDesktopError("look strength must be finite")
+    percent = min(100, max(0, math.floor(amount * 100.0 + 0.5)))
+    return percent, percent / 100.0
 
 
 class ProductDesktopApp:
@@ -378,8 +389,14 @@ class ProductDesktopApp:
             except (OSError, ProductDesktopError) as exc:
                 self._show_error(exc)
 
+    def _snap_visible_amount(self) -> float:
+        percent, amount = _visible_look_amount(self.amount.get())
+        self.amount.set(amount)
+        self.amount_label.configure(text=f"{percent:d}%")
+        return amount
+
     def _amount_changed(self, _value: object = None) -> None:
-        self.amount_label.configure(text=f"{round(self.amount.get() * 100):d}%")
+        self._snap_visible_amount()
         if self.workflow.preview_state is not None:
             self._invalidate_previews(
                 "Strength changed. Render new previews before export."
@@ -590,7 +607,7 @@ class ProductDesktopApp:
                 ProductDesktopError("choose a photo before rendering previews")
             )
             return
-        amount = self.amount.get()
+        amount = self._snap_visible_amount()
         sources = self.input_paths
         representative = self._selected_representative_path()
         self._set_busy(True, "Rendering three bounded previews…")
