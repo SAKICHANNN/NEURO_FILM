@@ -36,6 +36,7 @@ from src.preprocess.raw_decode import (
 
 REPORT_SCHEMA = "kmcfm.u7-19a-srw-arq-generic-working-image-preflight.v1"
 FORMAL_REPORT_SCHEMA = "kmcfm.u7-19a-srw-arq-generic-working-image-result.v1"
+LEGACY_RECIPE_SCHEMA_ID = "kmcfm.render-recipe.v1"
 
 
 class U719AError(RuntimeError):
@@ -291,6 +292,15 @@ def _output_facts(path: Path) -> dict[str, Any]:
         }
 
 
+def _effective_recipe_look_amount(recipe: dict[str, Any]) -> float:
+    render = recipe["render"]
+    if "look_amount" in render:
+        return float(render["look_amount"])
+    if recipe["schema_id"] == LEGACY_RECIPE_SCHEMA_ID:
+        return 1.0
+    raise U719AError("recipe omits look_amount outside canonical v1 default semantics")
+
+
 def _product_record(
     config: dict[str, Any],
     producer_repo: Path,
@@ -365,7 +375,7 @@ def _product_record(
             ),
             "explicit_look": (
                 recipe["render"]["style"] == config["product_chain"]["style"]
-                and float(recipe["render"]["look_amount"])
+                and _effective_recipe_look_amount(recipe)
                 == float(config["product_chain"]["look_amount"])
             ),
             "input_identity": (

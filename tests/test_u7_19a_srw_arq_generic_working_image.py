@@ -5,7 +5,10 @@ import json
 from pathlib import Path
 from types import SimpleNamespace
 
-from scripts.audit_u7_19a_srw_arq_generic_working_image import _stratum_result
+from scripts.audit_u7_19a_srw_arq_generic_working_image import (
+    _effective_recipe_look_amount,
+    _stratum_result,
+)
 from src.preprocess import pipeline, raw_decode
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -143,3 +146,13 @@ def test_u7_19a_execution_lock_admits_only_byte_exact_preflight_strata() -> None
         assert path.stat().st_size == binding["bytes"]
         assert _sha256(path) == binding["sha256"]
     assert all(len(value) == 40 for value in lock["commits"].values())
+
+
+def test_u7_19a_recipe_v1_omission_has_frozen_full_amount_semantics() -> None:
+    recipe = {"schema_id": "kmcfm.render-recipe.v1", "render": {"style": "ektar_100"}}
+    assert _effective_recipe_look_amount(recipe) == 1.0
+    recipe = {
+        "schema_id": "kmcfm.render-recipe.v2",
+        "render": {"style": "ektar_100", "look_amount": 0.65},
+    }
+    assert _effective_recipe_look_amount(recipe) == 0.65
