@@ -16,7 +16,7 @@ runtime, the desktop UI or the public dependency set.
 
 - Distribution: WSL2 `Ubuntu-22.04`, x86_64.
 - Interpreter: `/usr/bin/python3.12`.
-- Product dependencies: the exact eleven names and versions already present in
+- Product dependencies: the exact twelve names and versions already present in
   `requirements-product-v2.txt`, materialized only from the exact official
   PyPI wheel files locked in the U7.13A config.
 - Input: exact U4.1A gold row `01`, a real JPEG already present under the

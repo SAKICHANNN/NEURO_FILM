@@ -25,6 +25,7 @@
   "source": {
     "id": "u4_1a_gold_01",
     "path": "outputs/color_baseline/velvia50_rawpixls20_s0p50_gamutsafe/inputs/01_Canon_PowerShot_S110_Canon_-_PowerShot_S110_-_RAW_4_3__raw-neutral.jpg",
+    "bytes": 668914,
     "sha256": "b551eeccf6ec90c6b6b52e09174705d81360afb0d83734f802bcd17cc43c4bb5",
     "media_kind": "real_jpeg"
   },
