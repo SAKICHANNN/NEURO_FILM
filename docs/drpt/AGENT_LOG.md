@@ -22433,3 +22433,40 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   physical-film reproduction, stock distinguishability, arbitrary-media,
   native-dialog automation, public installer, cross-platform GUI or release
   claim opens. Next work must target a materially different real product gap.
+
+### 2026-09-01 - U7.12A repairs foreground-operation close safety
+
+- **Node and routing:** `ULT > U7 productization > U7.12A`, DRPT L2 / Mode C.
+  The single long-term Goal remains accurate and unchanged. The leaf came from
+  a read-only desktop lifecycle audit; it is not a U7.10C native-dialog or
+  U7.11B installed-runtime rescue. U7.12B froze new-only format-selection files
+  concurrently and did not touch the shared UI before this release.
+- **Defect and repair:** preview and one-photo export used anonymous daemon
+  threads, while `close()` synchronously called `workflow.close()` on the Tk
+  thread. Because preview/export and cleanup share the workflow lock, a close
+  could freeze the mainloop until the long operation ended and race a queued
+  completion callback against root destruction. `ProductDesktopApp` now tracks
+  one named non-daemon foreground worker. The worker only records result/error;
+  Tk polls terminal state. Close returns without joining or acquiring the
+  workflow lock, truthfully waits after the current non-cancellable operation,
+  suppresses post-close dialogs/success callbacks, then cleans/destroys once.
+- **Evidence:** contract `255ab049`, implementation/tests `a64978cb`, formal
+  controller `f347ed9d`, combined-suite Tk-fixture correction `56d854b1` and
+  final evidence `504d3cb5`. Corrected forward/reverse committed-head reports
+  are byte exact at 1,824 bytes / SHA
+  `9a86a9b7315145b4e38cfc1787ff788361222b0ab812d52f3bc4e7b36d7de4cf`,
+  scientific identity
+  `c33a1a84c4f5f77fa0c86251d7b68448036193b8fbb1774eaae60e299d6a3474`.
+  The initial standalone evidence commit `1ddd4df8` is superseded: a subsequent
+  combined parent run exposed only that repeated root-Tk destruction polluted
+  later ImageTk interpreters. The additive correction retains one shared Tk
+  master and destroys per-case Toplevels; product core, cases and gates did not
+  change. Preview-close, single-export-close and success/error/concurrency pass;
+  focused/evidence plus U7.10A/U7.11A parents pass 46/46. Ruff, compile, JSON
+  and diff checks pass.
+- **Propagation and boundary:** renderer, looks, pixels, strict recipes,
+  batch, installer and native-dialog behavior are unchanged. U7.12A exposes
+  only private Windows Tk foreground close safety for deterministic
+  `film-inspired / Look Approximation`; no calibration, physical-film,
+  distinguishability, public release or cross-platform claim opens. Shared UI
+  is released to the separately frozen U7.12B product-format leaf.
