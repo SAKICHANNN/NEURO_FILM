@@ -69,6 +69,13 @@ def test_u7_11b_frozen_run_gates_are_computed_by_runner_source() -> None:
         assert f'"{gate}"' in source
 
 
+def test_u7_11b_runtime_identity_compares_resolved_paths(tmp_path: Path) -> None:
+    module = _module()
+    runtime = tmp_path / "runtime.exe"
+    runtime.write_bytes(b"fixture")
+    assert module._same_resolved_path(runtime, runtime.resolve(strict=True))
+
+
 def test_u7_11b_parent_bindings_match_frozen_files() -> None:
     module = _module()
     config = module.json.loads(module.CONFIG.read_text(encoding="utf-8"))

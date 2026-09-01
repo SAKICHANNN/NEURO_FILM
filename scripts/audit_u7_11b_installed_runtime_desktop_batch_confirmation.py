@@ -151,6 +151,10 @@ def _member_subset(
     return {name: row for name, row in members.items() if name.endswith(suffix)}
 
 
+def _same_resolved_path(left: Path | str, right: Path | str) -> bool:
+    return Path(left).resolve(strict=True) == Path(right).resolve(strict=True)
+
+
 def _remove_owned_snapshot_directory(
     directory: Path, expected: dict[str, dict[str, Any]]
 ) -> None:
@@ -823,17 +827,17 @@ def build_report(order: str) -> dict[str, Any]:
                 all(row["replay_exact"].values()) for row in installed_rows
             ),
             "installed_child_python_exact": all(
-                Path(row["worker_python"]).resolve(strict=True) == runtime_python
+                _same_resolved_path(row["worker_python"], runtime_python)
                 and len(row["child_argv0"]) == 2
                 and all(
-                    Path(command).resolve(strict=True) == runtime_python
+                    _same_resolved_path(command, runtime_python)
                     for command in row["child_argv0"]
                 )
                 for row in installed_rows
             )
             and all(
                 all(
-                    Path(command).resolve(strict=True) == runtime_python
+                    _same_resolved_path(command, runtime_python)
                     for command in control["child_argv0"]
                 )
                 for control in (child, cancel, foreign)
