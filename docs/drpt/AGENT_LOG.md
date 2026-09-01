@@ -22611,3 +22611,43 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   or product value. The next eligible product leaf is explicit UI invocation
   of this already-proved core, not another recovery algorithm or RAW/HDR/source
   wrapper.
+
+### 2026-09-01 - U7.12E exposes recovery in the desktop but formal closes
+
+- **Node and routing:** `ULT > U7 productization > U7.12E`, DRPT L2 / Mode C.
+  The long-term film-inspired / Look Approximation Goal remains active. The
+  prior Goal was not deleted in backend state and no replacement Goal was
+  created. This leaf deliberately returned from repeated source-audit work to
+  an already-frozen product gap. `dev-research-reliability` was the writer;
+  DRPT-BI, plan-tracker, structure and agent-log disciplines bounded scope.
+- **Implementation:** prospective commits `38f04eab`, `d667ea23` and
+  `c99957d5` freeze route, copy and parent-test assertion ownership. Commit
+  `714316ff` changes only the native UI and relevant UI tests: multi-photo
+  export derives `.kmcfm-u7-12e-<destination-sha-prefix>.recovery`, calls the
+  existing U7.12D entry point, labels progress as completed rather than
+  rendered, restores controls after a truthful progress receipt and preserves
+  the workspace on cancel/close. One-photo export and legacy
+  `ProductDesktopWorkflow.export_batch` remain unchanged.
+- **Formal evidence:** audit commit `4793eff6` runs three deterministic RGB8
+  photos, Portra 400 amount .625, pauses after one child through the real Tk
+  route, then resumes through a fresh Tk app and workflow. Recovered images,
+  recipes and `batch.json` match unchanged U7.11A exactly; no pause error dialog
+  appears, the destination is absent while paused, the workspace is removed
+  after success, both workers are non-daemon, sources are immutable and network
+  reads are zero. Forward/reverse reports are byte-identical at 6,475 bytes,
+  SHA `57bbfb75680b85acf0c4ebc92a627434cddcf34a3a647843c4fc40db3ccdd09c`;
+  scientific identity is
+  `16bf31877ada2b05056a675691ab6a7aedaebf81b7a86e3d0af363ddfc409df7`.
+- **Decision and propagation:** 15/16 gates pass. The frozen combined parent
+  suite reports 66 pass and one U7.12B shared-interpreter Tk lifetime failure,
+  `image "pyimage16" doesn't exist`; the exact test passes 1/1 in isolation.
+  Because `focused_parent_tests_pass` was binding, the isolated diagnostic is
+  not a rescue and U7.12E closes
+  `FAIL_CLOSED_U7_12E_DESKTOP_BATCH_RECOVERY_UI`. Evidence commit `497a4079`
+  records the negative without invalidating U7.12D or U7.11A. To avoid leaving
+  a formally rejected route reachable by default, commit `b8b444f7` reverts
+  the UI source and superseding parent-test assertions from `714316ff`; the
+  U7.12D private core and U7.12E contract/audit/negative evidence remain.
+  There is no hidden or research UI route. No adjacent recovery algorithm,
+  wrapper, source search, RAW/HDR or UI rescue opens.
+  Existing foreign `.codex/` and `tmp/` remain untouched; no push occurred.
