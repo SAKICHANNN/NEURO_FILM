@@ -1,0 +1,85 @@
+{
+  "schema": "kmcfm.u4-5f-raw-half-size-preview-evidence.v1",
+  "node_id": "U4.5F",
+  "status": "FAIL_CLOSED_U4_5F_RAW_HALF_SIZE_PREVIEW_LATENCY_TAIL",
+  "question": "Can LibRaw native half-size demosaic materially reduce fresh 1MP RAW three-stock preview resources while preserving the unchanged full-decode preview within frozen U7.3G quality and boundary gates?",
+  "protocol": {
+    "config_path": "configs/u4_5f_raw_half_size_preview_v1.json",
+    "config_bytes": 6928,
+    "config_sha256": "5cdea9531d41050f3ac6542196d119f3c36863129b5a4bafc2ebc50c78ecd5c0",
+    "contract_commit": "c500ee05",
+    "implementation_commit": "be0b53dd",
+    "runner_commit": "ab686f51",
+    "execution_lock_commit": "afb0c473",
+    "sources": "five exact already-retained P98 rights-cleared DNGs from five camera makes",
+    "reference": "unchanged full-resolution rawpy/LibRaw decode followed by the existing 1MP linear-light area resize and shared-context three-stock render",
+    "candidate": "rawpy/LibRaw half_size=True decode followed by the identical 1MP resize and render",
+    "pre_protocol_disclosure": "Before freeze, an input-only feasibility smoke used all five rows and observed 2.63x-5.48x LibRaw postprocess speedups, input-level RMSE .00246-.00687, p95 .00455-.01484 and maximum new-boundary 7.67e-6. No output-level render, process-tree RSS, full product wall, replay or negative-control result had been observed. These are development mechanics rows, not hidden confirmation data."
+  },
+  "formal_reports": {
+    "forward": {
+      "path": "outputs/eval/u4_5f_raw_half_size_preview_v1/formal_forward.json",
+      "bytes": 14823,
+      "sha256": "e6c1e10b6950ca6126d4deb038898daf9e54f77a2cba31e4d80e736b40487bb0",
+      "status": "FAIL_CLOSED_U4_5F_RAW_HALF_SIZE_PREVIEW",
+      "scientific_identity": "sha256:ac46cec4881b68c96013e85929418fd5e9b289c2417da4335e6dda7704dcc24b",
+      "summary": {
+        "maximum_rgb_rmse": 0.01800004509181851,
+        "maximum_rgb_absolute_error_p95": 0.039215683937072754,
+        "maximum_new_boundary_fraction": 0.0,
+        "maximum_candidate_process_tree_rss_bytes": 205971456,
+        "maximum_candidate_to_full_rss_ratio": 0.5626604649020804,
+        "maximum_candidate_wall_seconds": 9.888403499993728,
+        "median_candidate_to_full_wall_ratio": 0.9314876482032121,
+        "maximum_candidate_to_full_wall_ratio": 1.1298326396289415
+      }
+    },
+    "reverse": {
+      "path": "outputs/eval/u4_5f_raw_half_size_preview_v1/formal_reverse.json",
+      "bytes": 14820,
+      "sha256": "3a3a8119b80bbb01cee0c618474bb402654e7828bda19f27edfff6488da0c7eb",
+      "status": "FAIL_CLOSED_U4_5F_RAW_HALF_SIZE_PREVIEW",
+      "scientific_identity": "sha256:ac46cec4881b68c96013e85929418fd5e9b289c2417da4335e6dda7704dcc24b",
+      "summary": {
+        "maximum_rgb_rmse": 0.01800004509181851,
+        "maximum_rgb_absolute_error_p95": 0.039215683937072754,
+        "maximum_new_boundary_fraction": 0.0,
+        "maximum_candidate_process_tree_rss_bytes": 228503552,
+        "maximum_candidate_to_full_rss_ratio": 0.6113754403806342,
+        "maximum_candidate_wall_seconds": 10.471762700006366,
+        "median_candidate_to_full_wall_ratio": 1.0377680251484294,
+        "maximum_candidate_to_full_wall_ratio": 1.1238876485279423
+      }
+    }
+  },
+  "replay": {
+    "timing_excluded_scientific_identity_exact": true,
+    "all_15_candidate_output_hashes_exact": true,
+    "all_15_full_reference_output_hashes_exact": true,
+    "source_enumeration_reversed": true,
+    "paired_execution_order_reversed": true
+  },
+  "terminal_gates": {
+    "source_and_execution_bindings_exact": true,
+    "runtime_exact": true,
+    "candidate_decodes_before_float_expansion": true,
+    "exact_preview_dimensions": true,
+    "three_distinct_stock_outputs_per_source": true,
+    "rgb_rmse_at_most_0_03": true,
+    "rgb_p95_at_most_0_08": true,
+    "new_boundary_fraction_at_most_0_001": true,
+    "candidate_peak_rss_at_most_512_mib": true,
+    "candidate_to_full_rss_ratio_at_most_0_75_per_source": true,
+    "candidate_wall_at_most_15_seconds_per_source": true,
+    "median_and_worst_candidate_to_full_wall_ratio": false,
+    "source_immutability": true,
+    "owned_residue_empty": true,
+    "formal_pass": false
+  },
+  "decision": {
+    "result": "The half-size path is a repeatable low-memory preview mechanism with acceptable output fidelity, but it does not reliably reduce complete product-preview latency. Forward worst paired wall ratio is 1.12983; reverse median/worst are 1.03777/1.12389 against frozen .95/1.05 gates.",
+    "retention": "Retain only the explicit private opt-in and its negative evidence; default full RAW decode, JPEG scaled decode, final export and all historical evidence remain unchanged.",
+    "stop": "Do not tune scheduling, source order, thresholds, decoder settings, resize, stock parameters or output format. Do not open an adjacent RAW preview timing/cache wrapper leaf. Other materially different 12MP/24MP or target-device U4.5 mechanisms remain separately open."
+  },
+  "claim_ceiling": "Private Windows/Python 1MP RAW half-size preview negative on five exact P98 DNG files for three deterministic Look Approximations only; no arbitrary RAW, vendor/Adobe parity, calibrated camera colour, scene-to-display quality, final export, stock response, public API/package, device, release or product admission."
+}
