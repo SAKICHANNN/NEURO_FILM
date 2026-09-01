@@ -1,0 +1,88 @@
+{
+  "schema": "neuro-film.u7-13a-linux-product-cli-runtime-result.v1",
+  "node_id": "U7.13A",
+  "status": "FAIL_CLOSED_U7_13A_P_BACKED_EXFAT_VENV_UNAVAILABLE_PRE_REPORT",
+  "source_commit": "b70782abb49afa8f3eede9d812947f9355c79ce8",
+  "bindings": {
+    "configs/u7_13a_linux_product_cli_runtime_v1.json": "0df35937e5c62247d4608acf5403519f2b4a80856bdcee623965bfb6ca72ca20",
+    "configs/render_profiles/safe_rich_product_v1.json": "09722cb48c55d1c4c460220c9f59b9ced81801c1b6fe856708a27f5cc99d39fe",
+    "docs/planning/U7_13A_LINUX_PRODUCT_CLI_RUNTIME_CONTRACT.md": "d4c92abf0da1cd5b5174a34a4337517c2016e21f4f9026ff904ff95ae98fdbbf",
+    "requirements-product-v2.txt": "78b2ec79ffd4053c42c90a5db765baf715fed261efa39a5e762e013145718517",
+    "scripts/audit_u7_13a_linux_product_cli_runtime.py": "5e281aa609a87602d92c1c635fcbee18c0ea0bfd5c933577975a4f5487ed41e8",
+    "scripts/render_film.py": "2013e7c2f95c2f6a0b84ccff1d93db9bec2b189aead84b1ca6b5ab477447f786",
+    "scripts/replay_film_recipe.py": "5bdb98a303aa4f7432e527ca763cccce0c2a81ad75fe164e313e75684bcec5b3",
+    "src/inference/product_look_catalog.py": "dd48420ed7d14fc505cbd3cc1f8daed76310922b4aa0564f153cad268facebe7",
+    "src/inference/render_contract.py": "378aeea559e41aba389022852f2f7f037f3b62e4eb29ce49d8bfc34d45bfd840",
+    "src/inference/style_safe_engine.py": "cfdc66119e2dace3dbfdd293eff8bbfa7e2dec08ca233d6efd440235f3a5e007",
+    "src/inference/three_stock_look.py": "43f758c999121be20f42c40d36ed25d56a7f478c669bc20379fbf1612dd1c943",
+    "tests/test_u7_13a_linux_product_cli_runtime.py": "30beb9d21d9c68d6d184f267ae2f813d80dbf2a67aef76fb9195847908cef4df"
+  },
+  "acquisition": {
+    "archive_root": "data/vendor/linux/u7_13a-py312/wheels",
+    "archive_target": "P:\\neuro_film_storage\\data\\vendor\\linux\\u7_13a-py312\\wheels",
+    "first_acquisition_count": 12,
+    "second_acquisition_count": 0,
+    "wheel_count": 12,
+    "total_bytes": 138274320,
+    "all_filenames_sizes_sha256_exact": true
+  },
+  "formal_attempt": {
+    "attempt_count": 1,
+    "order_requested": "forward",
+    "stage": "fresh-linux-venv-create-before-pip-install-render-or-report",
+    "distribution": "Ubuntu-22.04",
+    "architecture": "x86_64",
+    "python": "3.12.13",
+    "command_semantics": "/usr/bin/python3.12 -m venv --copies <p-backed-formal-root>/runtime",
+    "normalized_error": "[Errno 1] Operation not permitted: 'lib' -> '<p-backed-formal-root>/runtime/lib64'",
+    "cause": "CPython venv still creates a lib64 symbolic link after --copies, while the project-owned P-backed exFAT root rejects that symlink operation",
+    "report_count": 0,
+    "pip_install_count": 0,
+    "render_count": 0,
+    "replay_count": 0,
+    "pixel_decode_count": 0,
+    "media_output_count": 0,
+    "formal_network_reads": 0
+  },
+  "post_attempt": {
+    "source_sha256": "b551eeccf6ec90c6b6b52e09174705d81360afb0d83734f802bcd17cc43c4bb5",
+    "source_immutable": true,
+    "tracked_tree_clean": true,
+    "temporary_runtime_exists": false,
+    "formal_report_root_exists": false,
+    "owned_residue_count": 0
+  },
+  "decision": {
+    "exact_leaf_closed": true,
+    "windows_product_evidence_unchanged": true,
+    "linux_render_parity_evaluated": false,
+    "allowed_rescue": false,
+    "forbidden_rescues": [
+      "move the frozen runtime to C or an internal WSL filesystem",
+      "use D while P remains available",
+      "manually assemble a non-venv runtime",
+      "change distribution, interpreter, dependency set, source, looks, output or gates"
+    ],
+    "next_product_direction": "Select a materially distinct ready product leaf; do not open an adjacent U7.13A storage/runtime rescue."
+  },
+  "scientific": {
+    "status": "FAIL_CLOSED_U7_13A_P_BACKED_EXFAT_VENV_UNAVAILABLE_PRE_REPORT",
+    "source_commit": "b70782abb49afa8f3eede9d812947f9355c79ce8",
+    "source_sha256": "b551eeccf6ec90c6b6b52e09174705d81360afb0d83734f802bcd17cc43c4bb5",
+    "wheel_count": 12,
+    "wheel_bytes": 138274320,
+    "distribution": "Ubuntu-22.04",
+    "architecture": "x86_64",
+    "python": "3.12.13",
+    "failure_stage": "venv-create-before-pip-install-render-or-report",
+    "errno": 1,
+    "pip_install_count": 0,
+    "render_count": 0,
+    "replay_count": 0,
+    "pixel_decode_count": 0,
+    "media_output_count": 0,
+    "owned_residue_count": 0
+  },
+  "scientific_identity": "386acb30c1cd26728207c08d54d7dea2fda23dae61aeaa4aca49e6b7e0bda69f",
+  "claim_ceiling": "This result proves only that the exact frozen P-backed exFAT WSL2 runtime composition cannot create its required fresh CPython venv. It does not evaluate Linux renderer output, arbitrary Linux/device/input support, GUI or installer portability, compressed-byte interchange, public packaging/release, preference, distinguishability, calibrated stock response, physical-film reproduction or authenticity."
+}
