@@ -1,0 +1,164 @@
+{
+  "schema": "kmcfm.u7-19a-srw-arq-generic-working-image-contract.v1",
+  "node_id": "U7.19A",
+  "status": "FROZEN_PREDECODE",
+  "question": "Can source-locked SRW and ARQ strata independently pass the existing generic WorkingImage boundary and public Look Approximation recipe/replay chain?",
+  "predecode_fact": {
+    "u7_19a_pixel_decodes": 0,
+    "u7_19a_product_renders": 0,
+    "u7_19a_reports": 0,
+    "current_raw_suffixes_contain_srw": false,
+    "current_raw_suffixes_contain_arq": false
+  },
+  "bindings": {
+    "contract": {
+      "path": "docs/planning/U7_19A_SRW_ARQ_GENERIC_WORKING_IMAGE_CONTRACT.md",
+      "bytes": 4940,
+      "sha256": "a0a4f399929b0ec33d8611b4c906835bf6ffa78c17da0938b78218d33686c910"
+    },
+    "p318_evidence": {
+      "path": "docs/evidence/P318_R1GP_SAMSUNG_SRW_NO_COPY_INTAKE_RESULT.json",
+      "bytes": 4759,
+      "sha256": "8b9121da17b98d531a2ac58e5cc73d43d4f60f2336b8b589aac72530c27813ee"
+    },
+    "p321_evidence": {
+      "path": "docs/evidence/P321_R1GX_SONY_ARQ_NO_COPY_INTAKE_RESULT.json",
+      "bytes": 4280,
+      "sha256": "2bea7690a685097e07eae12c0d83624a1c089d888a5a0595c6f7ddee9058da21"
+    },
+    "predecode_raw_decode": {
+      "path": "src/preprocess/raw_decode.py",
+      "bytes": 4822,
+      "sha256": "6288a4b546b15dd28fcdd675603c65ba57ac67c3c4d42d552d9b825334cfebfe"
+    },
+    "pipeline": {
+      "path": "src/preprocess/pipeline.py",
+      "bytes": 1035,
+      "sha256": "21a7a165a895679e05bc43e5c67d7d9d439b19dfbe01cf346449e4ea90be6dc4"
+    },
+    "render_cli": {
+      "path": "scripts/render_film.py",
+      "bytes": 43535,
+      "sha256": "2013e7c2f95c2f6a0b84ccff1d93db9bec2b189aead84b1ca6b5ab477447f786"
+    },
+    "render_profile": {
+      "path": "configs/render_profiles/safe_rich_product_v1.json",
+      "bytes": 4259,
+      "sha256": "09722cb48c55d1c4c460220c9f59b9ced81801c1b6fe856708a27f5cc99d39fe"
+    }
+  },
+  "runtime": {
+    "platform": "Windows",
+    "python": "3.12.10",
+    "rawpy": "0.26.1",
+    "libraw": [0, 22, 0],
+    "numpy": "2.4.4"
+  },
+  "producer_repository": {
+    "runtime_argument_required": true,
+    "persistent_absolute_path_forbidden": true,
+    "source_paths_are_producer_repo_relative": true,
+    "source_storage_must_resolve_through_project_p_backed_data_junction": true
+  },
+  "strata": [
+    {
+      "extension": ".srw",
+      "stratum_id": "samsung_nx500_srw_four_mode",
+      "source_evidence": "P318",
+      "representative_source_id": "nx500_12bit_normal",
+      "required_members": 4,
+      "sources": [
+        {
+          "source_id": "nx500_12bit_normal",
+          "path": "data/r1gp_samsung_srw_multi_mode_v1/source/nx500_12bit_normal.srw",
+          "bytes": 20750652,
+          "sha256": "156e43118811bcecb6fcc600b5f41ee1773c4f00b6a5b2dd72e177e35f6596ab"
+        },
+        {
+          "source_id": "nx500_12bit_lossless",
+          "path": "data/r1gp_samsung_srw_multi_mode_v1/source/nx500_12bit_lossless.srw",
+          "bytes": 26249903,
+          "sha256": "77ed2a18ca6923a0c1f3a9ad41ade3676136a3272dfe6bf0d8f53d03b0c8db3d"
+        },
+        {
+          "source_id": "nx500_14bit_normal",
+          "path": "data/r1gp_samsung_srw_multi_mode_v1/source/nx500_14bit_normal.srw",
+          "bytes": 23951257,
+          "sha256": "3a1aeeb631b15dfa5be1bebe0e9c96f660ec96021eb6c45c073e33e982ab61b7"
+        },
+        {
+          "source_id": "nx500_14bit_lossless",
+          "path": "data/r1gp_samsung_srw_multi_mode_v1/source/nx500_14bit_lossless.srw",
+          "bytes": 32831534,
+          "sha256": "8a3fac531057ab416fc92d4e09560840c7700388a4b566b685df178cd5be8213"
+        }
+      ]
+    },
+    {
+      "extension": ".arq",
+      "stratum_id": "sony_a7rm3_four_shot_arq",
+      "source_evidence": "P321",
+      "representative_source_id": "a7rm3_pixelshift_arq",
+      "required_members": 1,
+      "sources": [
+        {
+          "source_id": "a7rm3_pixelshift_arq",
+          "path": "data/r1gx_sony_arq_four_shot_v1/source/a7rm3_pixelshift_arq.ARQ",
+          "bytes": 340873216,
+          "sha256": "67af1f9f4cff82bd182f3fc48e95d39ae7d8352595e3c72f3386c9dee114f27d"
+        }
+      ]
+    }
+  ],
+  "decode": {
+    "use_camera_wb": true,
+    "no_auto_bright": true,
+    "output_bps": 16,
+    "output_color": "sRGB",
+    "gamma": [1, 1],
+    "user_flip": null
+  },
+  "per_stratum_preflight_gates": {
+    "require_all_members": true,
+    "require_source_identity_and_immutability": true,
+    "require_clean_inspection": true,
+    "require_hwc3_float32": true,
+    "require_finite_unit_interval": true,
+    "require_nonconstant": true,
+    "require_owned_c_contiguous_writable": true,
+    "require_linear_srgb_scene_linear": true,
+    "require_orientation_applied": true,
+    "require_absent_alpha": true,
+    "required_warning_codes": [
+      "generic_raw_display_mapping",
+      "generic_raw_render"
+    ],
+    "require_forward_reverse_pixel_hash_exact": true,
+    "maximum_network_requests": 0,
+    "maximum_media_outputs": 0
+  },
+  "independent_admission_policy": {
+    "frozen_before_pixel_decode": true,
+    "passing_stratum_may_be_admitted_if_other_stratum_fails": true,
+    "failing_stratum_must_remain_absent_from_raw_suffixes": true,
+    "post_result_source_or_member_selection_forbidden": true
+  },
+  "product_chain": {
+    "style": "ektar_100",
+    "look_amount": 1.0,
+    "profile_path": "configs/render_profiles/safe_rich_product_v1.json",
+    "output_bit_depth": 8,
+    "write_recipe": true,
+    "require_png_rgb_srgb_icc": true,
+    "require_claim_render_mode": "Style-safe",
+    "require_claim_output_label": "film-inspired",
+    "require_claim_evidence_grade": "look-approximation",
+    "require_calibrated_reference_allowed_false": true,
+    "require_replay_byte_exact": true,
+    "require_source_immutable": true,
+    "require_owned_scratch_residue_zero": true,
+    "maximum_network_requests": 0
+  },
+  "stop_rule": "Evaluate the frozen SRW and ARQ strata independently. Any member or product-chain failure closes that extension without source replacement, stratum splitting, parameter/runtime/gate changes, private-callable rescue, or post-result tuning. A passing extension does not promote the failing extension.",
+  "claim_ceiling": "Public generic LibRaw/WorkingImage and Look Approximation recipe/replay compatibility only for the exact admitted source-locked files. No general SRW/ARQ or Samsung/Sony support, component-ARW handling, pixel-shift fusion, vendor-exact colour, calibration, tone mapping, quality, stock response, physical-film reproduction, or calibrated multi-stock claim."
+}
