@@ -22129,3 +22129,59 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   response, physical-film reproduction, a standalone/public installer or a
   release claim. Stop adjacent runtime wrappers and Canon-format expansion;
   return to a distinct substantive product capability or defect.
+
+### 2026-09-01 - U7.9C isolates the private product runtime before source checks
+
+- **Node and routing:** `ULT > U7 productization > U7.9C`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the sole write workflow; router, DRPT-BI,
+  planning, project-structure, agent-log and code-review disciplines were
+  read-only secondary reviewers. U7.9C owned its contract/config/audit/tests/
+  evidence plus the minimal installer change; foreign `.codex/` and `tmp/`
+  remained untracked and were not staged.
+- **Observed defect and repair:** U7.9A's generated `.cmd` started Python
+  without isolated mode, so inherited `PYTHONPATH` or user-site
+  `sitecustomize` could execute before `product-launch.py` checked the bound
+  Git commit and requirements SHA. Commit `000adac5` starts both the launcher
+  and actual renderer child with `-I`; the launcher also removes every
+  case-insensitive `PYTHON*` environment key before the child. It does not
+  change dependencies, receipt schema, repository binding, renderer, catalog,
+  Look parameters, media encoding or claims.
+- **Formal evidence:** accepted execution `fe388a27` installs two independent
+  runtimes from the exact 12-wheel local wheelhouse. The generated `.cmd`
+  executes catalog and all three tiny Look Approximation renders under hostile
+  `PYTHONPATH`/user-site without creating the `sitecustomize` marker; a
+  process-scoped safe-directory sentinel repository proves mixed-case
+  `PyThOn*` variables are absent in the renderer child. Direct isolated and
+  launcher PNGs are exact for Velvia 50, Portra 400 and Ektar 100. Forward and
+  reverse reports are each 2,357 bytes and byte-identical at SHA-256
+  `130ba8a2b045bf110869b7b2e1dc1187c4e5b06c6d0f24e5cd7cc614db2ff79f`;
+  stable identity is
+  `e40dda401610e2376f95b8c40080fdb9325b8ac4abddc7a408a89249b070fb60`.
+  All eleven source, receipt, launcher/child isolation, environment, hostile
+  import, catalog, render, invalid-look and residue gates pass. Tracked
+  evidence commit `1ac04747` has Git-LF SHA
+  `500b551f1485696348b13c2613dac537b86449fe87fff98c8d40f3fb84559e71`.
+- **Excluded execution facts:** at audit commit `ef1c7153`, two attempts each
+  completed one runtime install, one catalog and six product renderer
+  executions, then stopped at the sentinel repository's exFAT safe-directory
+  gate; report count was zero. At `26c7766f`, two more attempts completed the
+  same product work and wrote two byte-exact 2,322-byte FAIL reports (SHA
+  `c5d661a4...e4c827`, stable `fab8928a...1c8d14`), but the mixed-case sentinel
+  lacked process-scoped safe-directory authorization and read-only Git objects
+  caused cleanup failure. Neither group is relabelled as accepted. The audit
+  now uses process-only Git authorization and deletes only an identity-matching
+  owned formal root while clearing Git read-only object bits.
+- **Verification and propagation:** the initial complete adjacent U7.2P/U7.9
+  run reports 34 passed in 101.78s; after evidence hardening, 30 U7.9 tests pass
+  in 4.72s. Ruff, compileall, JSON, Git-object/historical-blob binding and diff
+  checks pass. Commit `3e383cc7` reconstructs historical source hashes from the
+  accepted Git commit rather than future live files, preventing legitimate
+  source evolution from invalidating immutable evidence.
+- **Claim and handoff:** this establishes only startup-environment isolation
+  for the existing private Windows repository-bound `film-inspired / Look
+  Approximation` runtime. It is not a sandbox, hostile-host guarantee, signed
+  executable, standalone/public installer, release approval, calibrated stock
+  response or physical-film reproduction. Stop adjacent PATH/DLL hardening,
+  runtime wrappers and packaging variants; return to a different substantive
+  product capability/defect, M5 validation, human beta/legal gate or a truly
+  new rights-clear identifying observation.
