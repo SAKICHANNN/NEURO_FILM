@@ -44,3 +44,11 @@ def test_formal_controller_retains_stable_failure_node_lines() -> None:
     source = SCRIPT.read_text("utf-8")
     assert 'line.startswith(("FAILED ", "ERROR "))' in source
     assert '"failure_lines": failure_lines' in source
+
+
+def test_formal_science_excludes_unique_destination_recipe_hashes() -> None:
+    source = SCRIPT.read_text("utf-8")
+    assert '"temporary_recipe_sha256"' not in source
+    assert '"ordinary_recipe_sha256"' not in source
+    assert '"temporary_recipe_identity_bound"' in source
+    assert '"ordinary_recipe_identity_bound"' in source

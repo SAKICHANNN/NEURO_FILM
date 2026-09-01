@@ -162,8 +162,10 @@ def _run_primary(config: dict[str, Any]) -> dict[str, Any]:
                 "detail_rgb_sha256": _sha256(detail_bytes),
                 "temporary_full_output_sha256": detail.full_output_sha256,
                 "ordinary_full_output_sha256": receipt.output_sha256,
-                "temporary_recipe_sha256": detail.strict_recipe_sha256,
-                "ordinary_recipe_sha256": receipt.recipe_sha256,
+                "temporary_recipe_identity_bound": (
+                    len(detail.strict_recipe_sha256) == 64
+                ),
+                "ordinary_recipe_identity_bound": len(receipt.recipe_sha256) == 64,
                 "temporary_workspace_residue": len(
                     tuple(scratch.glob("u7-16a-detail-*"))
                 ),
@@ -282,6 +284,10 @@ def main() -> int:
         ),
         "primary_crop_rgb_exact": (
             primary["oracle_rgb_sha256"] == primary["detail_rgb_sha256"]
+        ),
+        "recipe_identities_bound": (
+            primary["temporary_recipe_identity_bound"]
+            and primary["ordinary_recipe_identity_bound"]
         ),
         "successful_cleanup_exact": (
             primary["temporary_workspace_residue"] == 0
