@@ -1,0 +1,78 @@
+{
+  "schema": "kmcfm.u7-11a-desktop-single-look-batch-contract.v1",
+  "node_id": "U7.11A",
+  "source_parent_commit": "bbcd5aa9c041521ff978d9c1d65570292e0b2e31",
+  "entrypoint": "scripts/open_product_desktop.py",
+  "limits": {
+    "minimum_inputs": 1,
+    "maximum_inputs": 100,
+    "look_amount_minimum": 0.0,
+    "look_amount_maximum": 1.0,
+    "output_bit_depth": 16,
+    "png_compression": 0,
+    "tile_size": 512,
+    "tile_workers": 1
+  },
+  "input_contract": {
+    "canonical_order": "resolved normalized path code-point order",
+    "unique_normalized_paths": true,
+    "unique_filesystem_identities": true,
+    "full_sha256_before_preview": true,
+    "representative_preview": "first canonical input",
+    "revalidate_before_each_child": true,
+    "revalidate_all_before_publish": true
+  },
+  "batch_contract": {
+    "single_explicit_look": true,
+    "single_bounded_amount": true,
+    "child_renderer": "scripts/render_film.py --product-look --output-bit-depth 16 --write-recipe",
+    "publish_unit": "one create-only directory",
+    "aggregate_receipt": "batch.json",
+    "receipt_paths": "relative POSIX output and recipe paths",
+    "safe_output_name": "four-digit ordinal, bounded normalized stem, explicit look id",
+    "cancel_boundary": "after current child before next child or final publication"
+  },
+  "looks": [
+    {
+      "style_id": "velvia_50",
+      "claim": "film-inspired / Look Approximation"
+    },
+    {
+      "style_id": "portra_400",
+      "claim": "film-inspired / Look Approximation"
+    },
+    {
+      "style_id": "ektar_100",
+      "claim": "film-inspired / Look Approximation"
+    }
+  ],
+  "gates": {
+    "two_input_png_count": 2,
+    "two_input_recipe_count": 2,
+    "aggregate_receipt_count": 1,
+    "direct_cli_output_exact": true,
+    "direct_cli_recipe_exact": true,
+    "strict_replay_exact": true,
+    "forward_reverse_canonical_order_exact": true,
+    "forward_reverse_receipt_exact": true,
+    "duplicate_path_and_identity_reject": true,
+    "source_session_and_head_drift_reject": true,
+    "child_failure_atomic": true,
+    "cancel_atomic": true,
+    "late_foreign_destination_preserved": true,
+    "window_close_waits_for_worker": true,
+    "owned_stage_and_worker_residue_zero": true,
+    "single_file_behavior_unchanged": true
+  },
+  "claim_ceiling": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false,
+    "stock_distinguishability": false,
+    "arbitrary_media_support": false,
+    "public_release": false,
+    "standalone_installer": false,
+    "cross_platform_gui": false
+  }
+}
