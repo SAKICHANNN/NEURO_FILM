@@ -1,0 +1,50 @@
+{
+  "schema": "kmcfm.u7-15c-desktop-batch-representative-path-disclosure-contract.v1",
+  "node_id": "U7.15C",
+  "parent_head": "020bb364d9d86824b8af4bb22418bb7a1e27c9ea",
+  "parent_evidence": {
+    "u7_15a": {
+      "path": "docs/evidence/U7_15A_DESKTOP_BATCH_REPRESENTATIVE_SELECTION_RESULT.json",
+      "bytes": 8565,
+      "sha256": "029122a26a0331854f92821017a72e52ee1a0cae6f06053495121c9eb47c6da8"
+    },
+    "u7_15b": {
+      "path": "docs/evidence/U7_15B_DESKTOP_VISIBLE_STRENGTH_QUANTIZATION_RESULT.json",
+      "bytes": 4705,
+      "sha256": "b472598327a61a5884828a406becb46f51da4369eebe8c061d290ed2a1fa0015"
+    }
+  },
+  "parent_bindings": {
+    "product_desktop_ui": {
+      "path": "src/inference/product_desktop_ui.py",
+      "git_blob": "f34ec4b2fa28e00d13f1919d433156579df04d64",
+      "sha256": "819b4d2c79486e9551b7851680800e5a0f77c30c0835b24f369b5e90124dbe08"
+    },
+    "product_desktop": {
+      "path": "src/inference/product_desktop.py",
+      "git_blob": "ab2eda5ef44ea1511a1130de24371161944dde97",
+      "sha256": "6e7f9701044ee515cf08d9f65ab6cf91b8a75050e7df2c6ce44a2df9156af059"
+    }
+  },
+  "presentation": {
+    "automatic_label": "Automatic · canonical first",
+    "explicit_template": "{one_based_index:03d} · {basename}",
+    "absolute_parent_visible": false,
+    "duplicate_basename_disambiguator": "one_based_index",
+    "internal_exact_path_binding": true
+  },
+  "gates": {
+    "require_parent_disclosure_reproduction": true,
+    "require_no_visible_parent_path": true,
+    "require_duplicate_basename_selection_exact": true,
+    "require_nonfirst_representative_exact": true,
+    "require_canonical_batch_order_exact": true,
+    "require_u7_15a_behavior_exact": true,
+    "require_u7_15b_strength_exact": true,
+    "require_product_core_and_renderer_unchanged": true,
+    "require_forward_reverse_report_exact": true,
+    "require_source_immutable": true,
+    "require_zero_owned_residue": true
+  },
+  "claim_ceiling": "Private Windows/Python Tk basename-only presentation for the existing explicit film-inspired Look Approximation batch representative only."
+}
