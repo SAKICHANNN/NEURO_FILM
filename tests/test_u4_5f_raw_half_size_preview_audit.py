@@ -3,7 +3,10 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from scripts.audit_u4_5f_raw_half_size_preview import evaluate_records
+from scripts.audit_u4_5f_raw_half_size_preview import (
+    _verify_execution_bindings,
+    evaluate_records,
+)
 from src.inference.three_stock_preview import preview_dimensions
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -56,6 +59,7 @@ def test_u4_5f_contract_binds_five_existing_p98_sources() -> None:
     assert config["gates"]["maximum_rgb_rmse_vs_full_decode"] == 0.03
     assert config["gates"]["maximum_rgb_absolute_error_p95"] == 0.08
     assert config["gates"]["maximum_new_boundary_fraction"] == 0.001
+    assert _verify_execution_bindings(config)
 
 
 def test_evaluate_records_passes_complete_safe_candidate() -> None:

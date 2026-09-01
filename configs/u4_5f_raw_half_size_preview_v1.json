@@ -48,6 +48,92 @@
       "height": 2976
     }
   ],
+  "execution_bindings": {
+    "raw_preview_decode": {
+      "path": "src/preprocess/raw_preview_decode.py",
+      "bytes": 2547,
+      "sha256": "d4f7c7e5e972d0cd1fa3238e01634ce06ac92a57f8f6e64aa52feaf88da6ccce",
+      "git_blob": "deff548795bd29ca0d1d4bee08ddae3dc97e921d",
+      "commit": "be0b53dd64c1676c49dbda59270a8740d593e944"
+    },
+    "raw_decode_dependency": {
+      "path": "src/preprocess/raw_decode.py",
+      "bytes": 4822,
+      "sha256": "6288a4b546b15dd28fcdd675603c65ba57ac67c3c4d42d552d9b825334cfebfe",
+      "git_blob": "f8435f97283631600b02bd734bf64a7ebe4228e8",
+      "commit": "7f3969dd692c43e2e5315f5661831ccc348c611b"
+    },
+    "preprocess_exports": {
+      "path": "src/preprocess/__init__.py",
+      "bytes": 3353,
+      "sha256": "ccdfb81f0e6e63258739b223f8a5172ab9b47ea1e57578b296c9868050ecf741",
+      "git_blob": "3989dc25e3649fff2d7553d3990549bcb015d299",
+      "commit": "be0b53dd64c1676c49dbda59270a8740d593e944"
+    },
+    "three_stock_preview": {
+      "path": "src/inference/three_stock_preview.py",
+      "bytes": 11333,
+      "sha256": "9f04c27cafaca263262e8cfc099fe79b0a991e6bcf29f4623e67dd2dba30d645",
+      "git_blob": "af844a9a2c9f440f7ab436f77bbed2ec6b524e7f",
+      "commit": "be0b53dd64c1676c49dbda59270a8740d593e944"
+    },
+    "three_stock_look": {
+      "path": "src/inference/three_stock_look.py",
+      "bytes": 7075,
+      "sha256": "43f758c999121be20f42c40d36ed25d56a7f478c669bc20379fbf1612dd1c943",
+      "git_blob": "a8d0058a0e543856b11a79cb105a58c65057e6e7",
+      "commit": "6eb98de324734085a0fbd47f8fcbfd59fbb1c5b2"
+    },
+    "render_contract": {
+      "path": "src/inference/render_contract.py",
+      "bytes": 33077,
+      "sha256": "378aeea559e41aba389022852f2f7f037f3b62e4eb29ce49d8bfc34d45bfd840",
+      "git_blob": "8942e4236ea4ed128d19df611bfecc57bc5c26ea",
+      "commit": "97af839648b165c14b0037238e71d95f4c164957"
+    },
+    "preview_cli": {
+      "path": "scripts/render_three_stock_preview.py",
+      "bytes": 1928,
+      "sha256": "78eb55a9ddce6c23842a45676fce9d8a8e82100d1b46e2793d73fc2e1ea22cd2",
+      "git_blob": "30fac7ded00568f0206577b72552bdf1aadd8fcb",
+      "commit": "be0b53dd64c1676c49dbda59270a8740d593e944"
+    },
+    "pipeline_color_baseline": {
+      "path": "scripts/pipeline_color_baseline.py",
+      "bytes": 30271,
+      "sha256": "11f546ff4805c4cc7a713771aa37764d79fd1786f0560eee4532a606855b78f5",
+      "git_blob": "f67f1d92c7b859846244bc37237e1f8f60f6736e",
+      "commit": "97af839648b165c14b0037238e71d95f4c164957"
+    },
+    "audit_runner": {
+      "path": "scripts/audit_u4_5f_raw_half_size_preview.py",
+      "bytes": 18280,
+      "sha256": "757197fe91d80084bbcbd776fe9c8154adaa4cf4898f23f3fa16f1b188f98e16",
+      "git_blob": "609ead9143971de58f486ef434939fcf0d1eabb6",
+      "commit": "ab686f513c4724dfd2481fdf10345cd4ff38527a"
+    },
+    "render_profile": {
+      "path": "configs/render_profiles/safe_rich_v1.json",
+      "bytes": 3912,
+      "sha256": "72a9948e6fc76e230c4593b847728712bc034840cd339e6b34f079ac7d424c79",
+      "git_blob": "a69894582312b481bdfea7281a767c724e224378",
+      "commit": "d0197f2ad34d1feb57ec2ab211f4c7ec06f90dfc"
+    },
+    "film_color_stats": {
+      "path": "configs/film_color_stats.json",
+      "bytes": 5271,
+      "sha256": "1a45e90765e577edd4ca1773fc8c6cf98fd09b8afbdddfa519b1f097c5dd7c04",
+      "git_blob": "c12ccafcea9ee8a283badba5b473d29f3d54e162",
+      "commit": "89624f1621658441204a5759e8789007943ae3d9"
+    },
+    "color_guardrails": {
+      "path": "configs/color_guardrails.json",
+      "bytes": 1540,
+      "sha256": "6669b7bc873febcc74ba7ddcbc1c1584807e38465447a5cdbeb24073efa00aa7",
+      "git_blob": "fa1b53449982b9d863600fb8bd77b7991952707d",
+      "commit": "015d3594a5cdeaa265950146bd944d902a72b657"
+    }
+  },
   "runtime": {
     "platform": "Windows",
     "rawpy": "0.26.1",
