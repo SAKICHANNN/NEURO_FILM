@@ -1,0 +1,44 @@
+{
+  "schema_version": "neuro-film.u7-2u-product-research-halation-isolation.v1",
+  "decision": "prospective",
+  "parent": "U7.2T",
+  "contract_commit": "7e218781",
+  "implementation_commit": "e77a57d01b8ec82bafd4fbf87f8c340e3589cdf7",
+  "source_locks": {
+    "contract": {
+      "path": "docs/planning/U7_2U_PRODUCT_RESEARCH_HALATION_ISOLATION_CONTRACT.md",
+      "git_blob": "4fba79d88a1d0832254c043c8012124a2f647f5b",
+      "sha256": "47d33348279a93a3a793d0107ea8f2d3a2a11f6a8f86d98a0ed57389c4a737fb"
+    },
+    "render_film": {
+      "path": "scripts/render_film.py",
+      "git_blob": "0e3ec3ecd6034d21ed03462b8b6106d8f871632d",
+      "sha256": "807627df991813ab0918bbf1c8902bf8889b90b59a741dd46cfbea1f51dae1ea"
+    },
+    "focused_test": {
+      "path": "tests/test_u7_2u_product_research_halation_isolation.py",
+      "git_blob": "5d7584fc0a8ec34d8b2cb1e23dcb547fd6ebdc91",
+      "sha256": "652be83ff305b5f62b5bc70115699b1a209fb6691724ef87db364ba0b796f02c"
+    }
+  },
+  "product_looks": ["velvia_50", "portra_400", "ektar_100"],
+  "allowed_product_halation_controls": ["simple", "physical"],
+  "rejected_product_halation_control": "staged-density-research",
+  "gates": {
+    "source_locks_exact": true,
+    "all_product_research_combinations_reject_predecode": true,
+    "product_rejections_publish_nothing": true,
+    "product_nonresearch_models_cross_preflight": true,
+    "nonproduct_research_route_crosses_preflight": true,
+    "fresh_process_reports_byte_exact": true,
+    "owned_runtime_residue_zero": true
+  },
+  "claim_ceiling": "Private first-class Look Approximation product isolation from the existing staged-density research halation route.",
+  "non_goals": [
+    "halation algorithm or parameter change",
+    "simple or physical halation realism claim",
+    "staged-density research evidence change",
+    "calibrated stock or physical-film claim",
+    "public package, installer or release claim"
+  ]
+}
