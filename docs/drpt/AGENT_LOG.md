@@ -22688,3 +22688,39 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   response, physical-film reproduction, stock distinguishability, a renderer
   change, public release or cross-platform GUI evidence. Existing foreign
   `.codex/` and `tmp/` remain untouched; no push occurred.
+
+### 2026-09-01 - U4.1A closes the current three-stock gold severe-artifact gate
+
+- **Node and routing:** `ULT > U4 evaluation > U4.1 > U4.1A`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the sole writer; DRPT-BI, plan-tracker,
+  project-structure and agent-log disciplines bounded the change. The long-term
+  Look Approximation Goal remained accurate and active. The parallel U7.12F
+  task and U4.1A used disjoint owned paths and explicit short Git-index windows.
+- **Frozen execution:** commits `5fd0a23b`, `743b3f3c`, `66fd5917`,
+  `c9ad2c18` and report-only correction `79389672` bind the exact nine gold
+  sources, including direct ingress of the original FilmSet face PNG, three
+  unchanged K=1 product looks, PNG16 plus strict recipe replay, four
+  deterministic exact-pixel crops per cell and three fixed arm rotations.
+  Accepted forward/reverse reports are byte-identical at 70,076 bytes, SHA
+  `90ae1784c24d855f888d1f91110d46ed37e23c3c80e7f9a8dca0ee96a58ff5b5`;
+  scientific identity is
+  `493b487170bf9db3a01f89c280f98a71155faf6989b7f4927d2627303a3bc589`.
+  All 27 source/look rows are finite, strict-replay exact and introduce zero
+  exact boundaries; output and normalized recipe identities are exact across
+  order reversal. The first forward materialization remains transparently
+  excluded because raw recipe hashes encoded run-specific absolute paths;
+  no review had begun and the V2 correction changed no pixels, crops, science,
+  gate or threshold.
+- **Autonomous adjudication and decision:** all 27 frozen review sheets were
+  inspected in each of the three rotations. The resulting 81/81 verdicts are
+  `PASS_NO_CONFIRMED_SEVERE_ARTIFACT`, including mandatory ID11 red-light and
+  the direct face/skin row; confirmed severe and unresolved counts are zero.
+  Evidence commit `4af18939` records rationales and exact sheet identities.
+  Focused implementation/evidence tests pass 5/5; Ruff, compileall, JSON and
+  diff checks pass. U4.1 is now complete for the current three-stock internal
+  gold severe gate, which removes the stale U4.2 dependency on U4.1
+  finalization. U4.2 still requires its own recorded blind style/appeal reviews.
+  FilmSet commercial rights, aesthetic preference, target-film closeness,
+  calibrated/physical stock response, universal safety, public release and
+  product promotion remain closed. Existing foreign `.codex/` and `tmp/`
+  remain untouched; no push occurred.
