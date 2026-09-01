@@ -48,6 +48,7 @@
     "pinned_distributions_exact": true,
     "pip_check_success": true,
     "dual_launcher_receipt_bound": true,
+    "all_four_launcher_files_receipt_bound": true,
     "legacy_cli_field_retained": true,
     "foreign_cwd_cli_exact": true,
     "foreign_cwd_desktop_mainloop": true,

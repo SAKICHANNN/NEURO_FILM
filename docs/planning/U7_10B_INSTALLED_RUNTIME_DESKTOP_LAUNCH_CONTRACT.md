@@ -33,10 +33,12 @@ existing Look Approximation claim ceiling?
   variable from their child environment. Source/requirements/tracked drift
   must reject before importing `tkinter`, creating a window, or reading an
   input image.
-- The new receipt schema binds both launcher paths and SHA-256 identities while
-  retaining the existing legacy CLI `launcher` field for current private
-  consumers. Historical v1 receipt/evidence stays immutable and is verified
-  from its recorded Git object rather than relabelled as current.
+- The new receipt schema binds the path and SHA-256 identity of all four
+  generated executable-chain files: `kmcfm-look.cmd`, `product-launch.py`,
+  `kmcfm-desktop.cmd`, and `product-desktop-launch.py`. It retains the existing
+  legacy CLI `launcher` field for current private consumers. Historical v1
+  receipt/evidence stays immutable and is verified from its recorded Git object
+  rather than relabelled as current.
 - Installation remains create-only and repository-bound. Existing or
   late-foreign destinations remain unchanged; cleanup removes only a still
   identity-owned failed installation.
@@ -45,8 +47,9 @@ existing Look Approximation claim ceiling?
 
 1. A fresh exact runtime installs with the same pinned distributions and
    `pip check` result as U7.9A.
-2. The versioned receipt binds the exact CLI and desktop launcher files, source
-   commit, requirements identity, repository path, claim and private status.
+2. The versioned receipt binds all four exact command/Python launcher files,
+   source commit, requirements identity, repository path, claim and private
+   status.
 3. From a foreign current directory, the CLI launcher reproduces the direct
    catalog and all three deterministic Look Approximation outputs exactly.
 4. From a foreign current directory and hostile mixed-case `PYTHON*`
@@ -82,4 +85,3 @@ preference, or release approval.
 - Run formal forward/reverse only from a tracked-clean committed HEAD.
 - Bind the accepted report, visual state and historical compatibility in a
   separate evidence commit before README/tracker/log propagation.
-
