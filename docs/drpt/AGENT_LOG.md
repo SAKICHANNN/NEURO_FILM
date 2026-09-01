@@ -22724,3 +22724,45 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   calibrated/physical stock response, universal safety, public release and
   product promotion remain closed. Existing foreign `.codex/` and `tmp/`
   remain untouched; no push occurred.
+
+### 2026-09-01 - U4.2A closes style-value promotion for the current three-look v1 catalog
+
+- **Node and routing:** `ULT > U4 evaluation > U4.2 > U4.2A`, DRPT L2 /
+  Mode C. `dev-research-reliability` was the sole writer; DRPT-BI,
+  project-structure and agent-log disciplines bounded the leaf. The long-lived
+  deterministic Look Approximation Goal remains accurate and active. U7.12G
+  owns disjoint desktop-batch-format paths.
+- **Frozen blind execution:** plan/implementation commits `1cbc925e`,
+  `2c4a80c1`, `a76ec614`, `8eba5ecb`, `90c5a4ec`, `e95b3c31`, `32dedcb8`
+  and `3239dab0` build 27 anonymous same-input identity-versus-look sheets for
+  the unchanged Velvia 50, Portra 400 and Ektar 100 product recipes over the
+  exact U4.1A nine-input gold set. Observation commit `a6211b79` freezes 108
+  anonymous ratings from one independent reviewer before formal unblinding;
+  the reviewer read exactly 27 public sheets and zero mapping or sibling media.
+  Root's six prescore v4 sheet reads and producer's non-image build facts are
+  disclosed and excluded. No pixels, scores or thresholds were changed after
+  review.
+- **Formal result:** accepted forward/reverse reports are byte-identical at
+  20,813 bytes, SHA
+  `46d3a0b2396c30367c24173772c47e82768aa5e79e63ba6e98bbb55dacb33619`;
+  scientific identity is
+  `bc6c57a8e88b223d86bad355ac1353e3dae40b905be3ecf5577aaa2862395781`.
+  All three looks have zero confirmed or uncertain severe artifacts, absolute
+  style medians `4/3/3`, paired appeal deltas `0/0/0` and appeal
+  noninferiority counts `6/9`, `7/9`, `8/9`. All fail only the two frozen
+  material style-advantage gates: paired style-delta medians are all zero and
+  style-delta-at-least-one counts are `4/9`, `3/9`, `3/9`. Portfolio pass is
+  `0/3`; decision is
+  `FAIL_CLOSED_CURRENT_THREE_LOOK_AUTONOMOUS_STYLE_APPEAL_VALUE`.
+- **Verification and boundary:** evidence commit `e307f309` binds tracked
+  evidence SHA
+  `412057d74ac8665b738d0311c94c6e62825b647faa9bd56e0ab42fb0cb813d6b`.
+  Dedicated and adjacent U4.1A/U4.2A/U4.3D/U7.2C/FilmCase tests pass `47/47`;
+  Ruff, formatting, py_compile, JSON and diff checks pass. Do not tune, rerun,
+  revote, replace rows or relabel the current v1 catalog. It remains a usable
+  deterministic `film-inspired / Look Approximation` baseline, not proved
+  materially better than identity. RF3.D15 stock distinguishability remains
+  failed. This is autonomous visual evidence, not human/population preference,
+  calibrated stock response, physical-film reproduction, authenticity,
+  universal safety or product promotion. Existing `.codex/` and `tmp/` remain
+  untouched; no push occurred.
