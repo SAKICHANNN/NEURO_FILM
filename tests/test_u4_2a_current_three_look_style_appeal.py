@@ -12,6 +12,7 @@ from src.eval.current_three_look_style_appeal import (
     sha256_bytes,
 )
 from src.filmcase.vision_audit import build_blind_audit
+from src.inference.product_desktop import product_output_format
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = json.loads(
@@ -86,4 +87,5 @@ def test_config_has_frozen_no_rescue_claim_boundary() -> None:
     assert "look_amount_or_parameter_tuning" in CONFIG["forbidden_rescue"]
     assert CONFIG["training_allowed"] is False
     assert CONFIG["operator_fitting_allowed"] is False
+    assert product_output_format("png16").recipe_format == "PNG"
     assert sha256_bytes(b"stable") == sha256_bytes(b"stable")

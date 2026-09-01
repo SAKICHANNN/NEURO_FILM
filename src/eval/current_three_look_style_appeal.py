@@ -179,9 +179,7 @@ def _materialize_identity(
     )
     try:
         state = workflow.render_previews(source_path, 0.0)
-        receipt = workflow.export(
-            "velvia_50", destination, output_format_id="png16-srgb"
-        )
+        receipt = workflow.export("velvia_50", destination, output_format_id="png16")
         if state.look_amount != 0.0 or receipt.look_amount != 0.0:
             raise CurrentThreeLookAuditError("identity look amount drift")
         return {
