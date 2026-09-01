@@ -1,0 +1,538 @@
+{
+  "automatic_pass": false,
+  "bootstrap_sha256": "b8d92b17c88d9df9e96551b10ec5e1eb081315e2526e2d2d61eded5f1306299c",
+  "claim": "Private Windows repository-bound installed-runtime batch-core composition for deterministic film-inspired / Look Approximation output only; no native dialog automation, calibrated stock response, physical-film reproduction, arbitrary media, public installer, or cross-platform GUI claim.",
+  "formal_root_residue_count": 0,
+  "parent_bindings": {
+    "batch_core": {
+      "actual_sha256": "acb366af5c1d6f4f9e683158813655f7a72734ff5ebfec3d1d3f998984b5aeba",
+      "exact": true,
+      "expected_sha256": "acb366af5c1d6f4f9e683158813655f7a72734ff5ebfec3d1d3f998984b5aeba",
+      "path": "src/inference/product_desktop.py"
+    },
+    "batch_evidence": {
+      "actual_sha256": "fe84f4adb85bac24dbe3bb598cca1266814cb77454f1ddf236d6df945054b2b3",
+      "exact": true,
+      "expected_sha256": "fe84f4adb85bac24dbe3bb598cca1266814cb77454f1ddf236d6df945054b2b3",
+      "path": "docs/evidence/U7_11A_DESKTOP_SINGLE_LOOK_BATCH_RESULT.json"
+    },
+    "batch_ui": {
+      "actual_sha256": "63f03f69e36775ceaacbd6a280355e071fb7a183642bfb37bf602b8375f86af1",
+      "exact": true,
+      "expected_sha256": "63f03f69e36775ceaacbd6a280355e071fb7a183642bfb37bf602b8375f86af1",
+      "path": "src/inference/product_desktop_ui.py"
+    },
+    "desktop_entrypoint": {
+      "actual_sha256": "c92f0a1c81ca896d7065144961fabdf0183b6a51e3368ac50df651da3ace4064",
+      "exact": true,
+      "expected_sha256": "c92f0a1c81ca896d7065144961fabdf0183b6a51e3368ac50df651da3ace4064",
+      "path": "scripts/open_product_desktop.py"
+    },
+    "desktop_runtime_evidence": {
+      "actual_sha256": "7139cf09716a230ac6c466a4a5e246c8b3e820cbbb7394c06bbc197f8c612ba8",
+      "exact": true,
+      "expected_sha256": "7139cf09716a230ac6c466a4a5e246c8b3e820cbbb7394c06bbc197f8c612ba8",
+      "path": "docs/evidence/U7_10B_INSTALLED_RUNTIME_DESKTOP_LAUNCH_RESULT.json"
+    },
+    "installer": {
+      "actual_sha256": "9c30f32118a7c0077040935885f4145f9540cda44abc5167169d5d791949a8c5",
+      "exact": true,
+      "expected_sha256": "9c30f32118a7c0077040935885f4145f9540cda44abc5167169d5d791949a8c5",
+      "path": "scripts/install_product_runtime.py"
+    },
+    "requirements": {
+      "actual_sha256": "78b2ec79ffd4053c42c90a5db765baf715fed261efa39a5e762e013145718517",
+      "exact": true,
+      "expected_sha256": "78b2ec79ffd4053c42c90a5db765baf715fed261efa39a5e762e013145718517",
+      "path": "requirements-product-v2.txt"
+    },
+    "startup_isolation_evidence": {
+      "actual_sha256": "500b551f1485696348b13c2613dac537b86449fe87fff98c8d40f3fb84559e71",
+      "exact": true,
+      "expected_sha256": "500b551f1485696348b13c2613dac537b86449fe87fff98c8d40f3fb84559e71",
+      "path": "docs/evidence/U7_9C_PRODUCT_RUNTIME_STARTUP_ISOLATION_RESULT.json"
+    }
+  },
+  "schema": "kmcfm.u7-11b-installed-runtime-desktop-batch-confirmation-result.v1",
+  "scientific": {
+    "batch_cases": [
+      {
+        "canonical_order_exact": true,
+        "canonical_receipt_identity_exact": true,
+        "direct_child_argv0": [
+          "C:\\Users\\hhvrf\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "C:\\Users\\hhvrf\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
+        ],
+        "direct_installed_artifacts_exact": true,
+        "installed": {
+          "batch_id": "3d4b5683e9fc1d921cf3ea10b793bdcf79921f45adb2efbdeaac2fd23f4f9750",
+          "batch_json_sha256": "2d15aac1a6cf57be6715ad2b364fccd2935a5cc5cde865e73042c7c540138dbc",
+          "canonical_receipt_identity_sha256": "204ed31994c6b76b0c9c7f6709ce8ed1dcdd1cc9b19ae5022ac10f9364613edc",
+          "child_argv0": [
+            "P:\\neuro_film_storage\\tmp\\u7-11b-formal-fixed\\installation\\runtime\\Scripts\\python.exe",
+            "P:\\neuro_film_storage\\tmp\\u7-11b-formal-fixed\\installation\\runtime\\Scripts\\python.exe"
+          ],
+          "child_python_environment_keys": [
+            [],
+            []
+          ],
+          "claim": {
+            "calibrated_stock_response": false,
+            "evidence_grade": "look-approximation",
+            "output_label": "film-inspired / Look Approximation",
+            "physical_film_reproduction": false,
+            "stock_distinguishability": false
+          },
+          "input_order": [
+            "a-source.png",
+            "B strange SOURCE.png"
+          ],
+          "job_count": 2,
+          "look_amount": 0.625,
+          "members": {
+            "0001-a-source-ektar_100.png": {
+              "bytes": 13092,
+              "sha256": "803030c0b4f32a104129f33faab54d71f3ca0f0109e6f23007288526dae90899"
+            },
+            "0001-a-source-ektar_100.recipe.json": {
+              "bytes": 3233,
+              "sha256": "94d2dba3cccc479db146056a34a05caf750103a30efa81cb2509efe06d1aa6e3"
+            },
+            "0002-b-strange-source-ektar_100.png": {
+              "bytes": 13092,
+              "sha256": "f92985b51841beb9d75e8cc1837aca931bce02e89c4fdaccfff5bb07124e087f"
+            },
+            "0002-b-strange-source-ektar_100.recipe.json": {
+              "bytes": 3249,
+              "sha256": "9ba4efc9cbbdf8c1f4427687902addb716a6cd2b9b5e3c6f3bb5a5f50c9c9f19"
+            },
+            "batch.json": {
+              "bytes": 1526,
+              "sha256": "2d15aac1a6cf57be6715ad2b364fccd2935a5cc5cde865e73042c7c540138dbc"
+            }
+          },
+          "progress": [
+            [
+              1,
+              2,
+              "a-source.png"
+            ],
+            [
+              2,
+              2,
+              "B strange SOURCE.png"
+            ]
+          ],
+          "replay_exact": {
+            "0001-a-source-ektar_100.png": true,
+            "0002-b-strange-source-ektar_100.png": true
+          },
+          "scratch_residue_count": 0,
+          "style_id": "ektar_100",
+          "worker_python": "P:\\neuro_film_storage\\tmp\\u7-11b-formal-fixed\\installation\\runtime\\Scripts\\python.exe"
+        },
+        "png16_exact": true,
+        "raw_batch_json_exact": true,
+        "raw_recipes_exact": true,
+        "selection": "forward"
+      },
+      {
+        "canonical_order_exact": true,
+        "canonical_receipt_identity_exact": true,
+        "direct_child_argv0": [
+          "C:\\Users\\hhvrf\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "C:\\Users\\hhvrf\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
+        ],
+        "direct_installed_artifacts_exact": true,
+        "installed": {
+          "batch_id": "3d4b5683e9fc1d921cf3ea10b793bdcf79921f45adb2efbdeaac2fd23f4f9750",
+          "batch_json_sha256": "2d15aac1a6cf57be6715ad2b364fccd2935a5cc5cde865e73042c7c540138dbc",
+          "canonical_receipt_identity_sha256": "204ed31994c6b76b0c9c7f6709ce8ed1dcdd1cc9b19ae5022ac10f9364613edc",
+          "child_argv0": [
+            "P:\\neuro_film_storage\\tmp\\u7-11b-formal-fixed\\installation\\runtime\\Scripts\\python.exe",
+            "P:\\neuro_film_storage\\tmp\\u7-11b-formal-fixed\\installation\\runtime\\Scripts\\python.exe"
+          ],
+          "child_python_environment_keys": [
+            [],
+            []
+          ],
+          "claim": {
+            "calibrated_stock_response": false,
+            "evidence_grade": "look-approximation",
+            "output_label": "film-inspired / Look Approximation",
+            "physical_film_reproduction": false,
+            "stock_distinguishability": false
+          },
+          "input_order": [
+            "a-source.png",
+            "B strange SOURCE.png"
+          ],
+          "job_count": 2,
+          "look_amount": 0.625,
+          "members": {
+            "0001-a-source-ektar_100.png": {
+              "bytes": 13092,
+              "sha256": "803030c0b4f32a104129f33faab54d71f3ca0f0109e6f23007288526dae90899"
+            },
+            "0001-a-source-ektar_100.recipe.json": {
+              "bytes": 3233,
+              "sha256": "94d2dba3cccc479db146056a34a05caf750103a30efa81cb2509efe06d1aa6e3"
+            },
+            "0002-b-strange-source-ektar_100.png": {
+              "bytes": 13092,
+              "sha256": "f92985b51841beb9d75e8cc1837aca931bce02e89c4fdaccfff5bb07124e087f"
+            },
+            "0002-b-strange-source-ektar_100.recipe.json": {
+              "bytes": 3249,
+              "sha256": "9ba4efc9cbbdf8c1f4427687902addb716a6cd2b9b5e3c6f3bb5a5f50c9c9f19"
+            },
+            "batch.json": {
+              "bytes": 1526,
+              "sha256": "2d15aac1a6cf57be6715ad2b364fccd2935a5cc5cde865e73042c7c540138dbc"
+            }
+          },
+          "progress": [
+            [
+              1,
+              2,
+              "a-source.png"
+            ],
+            [
+              2,
+              2,
+              "B strange SOURCE.png"
+            ]
+          ],
+          "replay_exact": {
+            "0001-a-source-ektar_100.png": true,
+            "0002-b-strange-source-ektar_100.png": true
+          },
+          "scratch_residue_count": 0,
+          "style_id": "ektar_100",
+          "worker_python": "P:\\neuro_film_storage\\tmp\\u7-11b-formal-fixed\\installation\\runtime\\Scripts\\python.exe"
+        },
+        "png16_exact": true,
+        "raw_batch_json_exact": true,
+        "raw_recipes_exact": true,
+        "selection": "reverse"
+      }
+    ],
+    "claim_ceiling": {
+      "arbitrary_media_support": false,
+      "calibrated_stock_response": false,
+      "cross_platform_gui": false,
+      "evidence_grade": "look-approximation",
+      "mode": "film-inspired",
+      "native_dialog_automation": false,
+      "physical_film_reproduction": false,
+      "public_release": false,
+      "standalone_installer": false,
+      "stock_distinguishability": false
+    },
+    "controls": {
+      "cancel_after_current": {
+        "child_argv0": [
+          "P:\\neuro_film_storage\\tmp\\u7-11b-formal-fixed\\installation\\runtime\\Scripts\\python.exe"
+        ],
+        "child_python_environment_keys": [
+          []
+        ],
+        "destination_absent": true,
+        "event_set": true,
+        "rejected": true,
+        "stage_count": 0
+      },
+      "child_nonzero": {
+        "calls": 2,
+        "child_argv0": [
+          "P:\\neuro_film_storage\\tmp\\u7-11b-formal-fixed\\installation\\runtime\\Scripts\\python.exe",
+          "P:\\neuro_film_storage\\tmp\\u7-11b-formal-fixed\\installation\\runtime\\Scripts\\python.exe"
+        ],
+        "child_python_environment_keys": [
+          [],
+          []
+        ],
+        "destination_absent": true,
+        "rejected": true,
+        "stage_count": 0
+      },
+      "late_foreign": {
+        "calls": 2,
+        "child_argv0": [
+          "P:\\neuro_film_storage\\tmp\\u7-11b-formal-fixed\\installation\\runtime\\Scripts\\python.exe",
+          "P:\\neuro_film_storage\\tmp\\u7-11b-formal-fixed\\installation\\runtime\\Scripts\\python.exe"
+        ],
+        "child_python_environment_keys": [
+          [],
+          []
+        ],
+        "marker_exact": true,
+        "member_names": [
+          "foreign.bin"
+        ],
+        "rejected": true,
+        "stage_count": 0
+      },
+      "owned_residue_count": 0
+    },
+    "desktop_smoke": {
+      "returncode": 0,
+      "scratch_residue_count": 0,
+      "stderr_empty": true,
+      "stdout_empty": true,
+      "window_count_after": 0,
+      "window_count_before": 0
+    },
+    "gates": {
+      "claim_ceiling_exact": true,
+      "direct_installed_canonical_order_exact": true,
+      "direct_installed_png16_exact": true,
+      "direct_installed_raw_batch_receipt_exact": true,
+      "direct_installed_raw_recipes_exact": true,
+      "exact_member_counts": true,
+      "fresh_install_and_wheelhouse_exact": true,
+      "installed_child_python_exact": false,
+      "installed_controls_fail_closed": true,
+      "installed_desktop_mainloop_foreign_cwd": true,
+      "installed_strict_replay_exact": true,
+      "late_foreign_destination_preserved": true,
+      "local_wheelhouse_network_locator_absent": true,
+      "parent_bindings_exact": true,
+      "python_environment_removed": true,
+      "runtime_receipt_and_pip_check_exact": true,
+      "source_and_owned_residue_exact": true,
+      "source_git_objects_exact": true,
+      "worker_and_control_residue_zero": true,
+      "worker_bytes_exact": true
+    },
+    "runtime": {
+      "distributions": {
+        "imageio": "2.37.3",
+        "lazy-loader": "0.5",
+        "networkx": "3.6.1",
+        "numpy": "2.4.4",
+        "opencv-python-headless": "4.13.0.92",
+        "packaging": "26.2",
+        "pillow": "12.1.1",
+        "pyyaml": "6.0.3",
+        "rawpy": "0.26.1",
+        "scikit-image": "0.26.0",
+        "scipy": "1.17.1",
+        "tifffile": "2026.4.11"
+      },
+      "launcher_bindings": {
+        "cli": {
+          "command_exact": true,
+          "python_exact": true
+        },
+        "desktop": {
+          "command_exact": true,
+          "python_exact": true
+        }
+      },
+      "python": {
+        "executable": "P:\\neuro_film_storage\\tmp\\u7-11b-formal-fixed\\installation\\runtime\\Scripts\\python.exe",
+        "implementation": "CPython",
+        "version": "3.12.10"
+      },
+      "receipt_sha256": "413178c9ee827361bb4b47c6095bb3ded9f9ef092ea42db229b484bd60e0d554",
+      "repository_bound": true,
+      "source_commit": "e58cfa4fa7c4f42eb7723b48eff60fd519210789"
+    },
+    "worker": {
+      "bootstrap_after_sha256": "b8d92b17c88d9df9e96551b10ec5e1eb081315e2526e2d2d61eded5f1306299c",
+      "bootstrap_before_sha256": "b8d92b17c88d9df9e96551b10ec5e1eb081315e2526e2d2d61eded5f1306299c",
+      "installer_commands": [
+        [
+          "git",
+          "-C",
+          "C:\\Users\\hhvrf\\Documents\\neuro_film",
+          "rev-parse",
+          "HEAD"
+        ],
+        [
+          "git",
+          "-C",
+          "C:\\Users\\hhvrf\\Documents\\neuro_film",
+          "status",
+          "--porcelain",
+          "--untracked-files=no"
+        ],
+        [
+          "C:\\Users\\hhvrf\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "-m",
+          "venv",
+          "P:\\neuro_film_storage\\tmp\\u7-11b-formal-fixed\\installation\\runtime"
+        ],
+        [
+          "P:\\neuro_film_storage\\tmp\\u7-11b-formal-fixed\\installation\\runtime\\Scripts\\python.exe",
+          "-m",
+          "pip",
+          "install",
+          "--disable-pip-version-check",
+          "--only-binary=:all:",
+          "--no-index",
+          "--find-links",
+          "P:\\neuro_film_storage\\tmp\\u7_9a_wheelhouse_v1",
+          "-r",
+          "C:\\Users\\hhvrf\\Documents\\neuro_film\\requirements-product-v2.txt"
+        ],
+        [
+          "P:\\neuro_film_storage\\tmp\\u7-11b-formal-fixed\\installation\\runtime\\Scripts\\python.exe",
+          "-m",
+          "pip",
+          "check"
+        ],
+        [
+          "P:\\neuro_film_storage\\tmp\\u7-11b-formal-fixed\\installation\\runtime\\Scripts\\python.exe",
+          "-c",
+          "import importlib\nimport importlib.metadata\nimport json\nmapping = json.loads('{\"imageio\": \"imageio\", \"lazy-loader\": \"lazy_loader\", \"networkx\": \"networkx\", \"numpy\": \"numpy\", \"opencv-python-headless\": \"cv2\", \"packaging\": \"packaging\", \"pillow\": \"PIL\", \"pyyaml\": \"yaml\", \"rawpy\": \"rawpy\", \"scikit-image\": \"skimage\", \"scipy\": \"scipy\", \"tifffile\": \"tifffile\"}')\nversions = {}\nfor distribution, module in mapping.items():\n    importlib.import_module(module)\n    versions[distribution] = importlib.metadata.version(distribution)\nfor forbidden in (\"omegaconf\", \"antlr4-python3-runtime\"):\n    try:\n        importlib.metadata.version(forbidden)\n    except importlib.metadata.PackageNotFoundError:\n        continue\n    raise SystemExit(\"forbidden distribution present: \" + forbidden)\nprint(json.dumps(versions, sort_keys=True, separators=(\",\", \":\")))\n"
+        ]
+      ],
+      "local_install_transport_exact": true,
+      "network_locator_arguments": []
+    }
+  },
+  "scientific_identity_sha256": "ad62b7eb9828c55a90f4fae43988002496afdb919913264e47a6effb93ff996d",
+  "source": {
+    "configs\\u7_11b_installed_runtime_desktop_batch_confirmation_v1.json": "42589c2529f8bec9df4bee04ec75a0cf8025f6f68c758fd8182b63c7c6442f7a",
+    "docs\\evidence\\U7_10B_INSTALLED_RUNTIME_DESKTOP_LAUNCH_RESULT.json": "7139cf09716a230ac6c466a4a5e246c8b3e820cbbb7394c06bbc197f8c612ba8",
+    "docs\\evidence\\U7_11A_DESKTOP_SINGLE_LOOK_BATCH_RESULT.json": "fe84f4adb85bac24dbe3bb598cca1266814cb77454f1ddf236d6df945054b2b3",
+    "docs\\evidence\\U7_9C_PRODUCT_RUNTIME_STARTUP_ISOLATION_RESULT.json": "500b551f1485696348b13c2613dac537b86449fe87fff98c8d40f3fb84559e71",
+    "docs\\planning\\U7_11B_INSTALLED_RUNTIME_DESKTOP_BATCH_CONFIRMATION_CONTRACT.md": "e3c94daecbbc0397ce0ca2db99e40f18777ce26d2512c753c4efccc53bad34dc",
+    "requirements-product-v2.txt": "78b2ec79ffd4053c42c90a5db765baf715fed261efa39a5e762e013145718517",
+    "scripts\\audit_u7_11b_installed_runtime_desktop_batch_confirmation.py": "b0a555b47099abd41006c321fe1a3ab43e1d33635b2c9f38f49cbc2f7d1c0dc0",
+    "scripts\\install_product_runtime.py": "9c30f32118a7c0077040935885f4145f9540cda44abc5167169d5d791949a8c5",
+    "scripts\\open_product_desktop.py": "c92f0a1c81ca896d7065144961fabdf0183b6a51e3368ac50df651da3ace4064",
+    "src\\inference\\product_desktop.py": "acb366af5c1d6f4f9e683158813655f7a72734ff5ebfec3d1d3f998984b5aeba",
+    "src\\inference\\product_desktop_ui.py": "63f03f69e36775ceaacbd6a280355e071fb7a183642bfb37bf602b8375f86af1",
+    "tests\\test_audit_u7_11b_installed_runtime_desktop_batch_confirmation.py": "ce9877f1c415fcd5af3573788b38aca27248c93e1471cf70926fbe5a3dd123fc"
+  },
+  "source_commit": "e58cfa4fa7c4f42eb7723b48eff60fd519210789",
+  "source_git_objects": {
+    "configs/u7_11b_installed_runtime_desktop_batch_confirmation_v1.json": {
+      "committed_git_blob": "5b3d29fffff8fe649b41e38a6b21e9d4e616bae4",
+      "exact": true,
+      "materialized_git_blob": "5b3d29fffff8fe649b41e38a6b21e9d4e616bae4"
+    },
+    "docs/evidence/U7_10B_INSTALLED_RUNTIME_DESKTOP_LAUNCH_RESULT.json": {
+      "committed_git_blob": "8a9f07053402ea911aa802348e0c720a0cd3fb47",
+      "exact": true,
+      "materialized_git_blob": "8a9f07053402ea911aa802348e0c720a0cd3fb47"
+    },
+    "docs/evidence/U7_11A_DESKTOP_SINGLE_LOOK_BATCH_RESULT.json": {
+      "committed_git_blob": "c2220b6efc89d7e160910ff2b8ec0c1d4837e874",
+      "exact": true,
+      "materialized_git_blob": "c2220b6efc89d7e160910ff2b8ec0c1d4837e874"
+    },
+    "docs/evidence/U7_9C_PRODUCT_RUNTIME_STARTUP_ISOLATION_RESULT.json": {
+      "committed_git_blob": "fce7e4b353742661cdf6a47cf994c1f10ea953b9",
+      "exact": true,
+      "materialized_git_blob": "fce7e4b353742661cdf6a47cf994c1f10ea953b9"
+    },
+    "docs/planning/U7_11B_INSTALLED_RUNTIME_DESKTOP_BATCH_CONFIRMATION_CONTRACT.md": {
+      "committed_git_blob": "c3d94e592425aa43f33df4fb9cb2dd8fed60d0fe",
+      "exact": true,
+      "materialized_git_blob": "c3d94e592425aa43f33df4fb9cb2dd8fed60d0fe"
+    },
+    "requirements-product-v2.txt": {
+      "committed_git_blob": "f527a0ca45d49b60d6f75812ce2b00ee9a25647e",
+      "exact": true,
+      "materialized_git_blob": "f527a0ca45d49b60d6f75812ce2b00ee9a25647e"
+    },
+    "scripts/audit_u7_11b_installed_runtime_desktop_batch_confirmation.py": {
+      "committed_git_blob": "32025ac518ea2a2935a3589478b69711e1f34a9c",
+      "exact": true,
+      "materialized_git_blob": "32025ac518ea2a2935a3589478b69711e1f34a9c"
+    },
+    "scripts/install_product_runtime.py": {
+      "committed_git_blob": "9fa2f272aa1f6ea2019993b96b2117d6d55b77a9",
+      "exact": true,
+      "materialized_git_blob": "9fa2f272aa1f6ea2019993b96b2117d6d55b77a9"
+    },
+    "scripts/open_product_desktop.py": {
+      "committed_git_blob": "8f02b05afe2698a534e715267249423f969ed6a6",
+      "exact": true,
+      "materialized_git_blob": "8f02b05afe2698a534e715267249423f969ed6a6"
+    },
+    "src/inference/product_desktop.py": {
+      "committed_git_blob": "a29fad325a19630074ab4ef16a3a0805635b4695",
+      "exact": true,
+      "materialized_git_blob": "a29fad325a19630074ab4ef16a3a0805635b4695"
+    },
+    "src/inference/product_desktop_ui.py": {
+      "committed_git_blob": "c124dea47eac625a90e3b83ab0539d9fd1133e89",
+      "exact": true,
+      "materialized_git_blob": "c124dea47eac625a90e3b83ab0539d9fd1133e89"
+    },
+    "tests/test_audit_u7_11b_installed_runtime_desktop_batch_confirmation.py": {
+      "committed_git_blob": "f2db187e5b645058218076190bf41e97f56c3b61",
+      "exact": true,
+      "materialized_git_blob": "f2db187e5b645058218076190bf41e97f56c3b61"
+    }
+  },
+  "source_stable": true,
+  "status": "FAIL_CLOSED_U7_11B_INSTALLED_RUNTIME_DESKTOP_BATCH_CONFIRMATION",
+  "wheelhouse": [
+    {
+      "bytes": 317646,
+      "name": "imageio-2.37.3-py3-none-any.whl",
+      "sha256": "46f5bb8522cd421c0f5ae104d8268f569d856b29eb1a13b92829d1970f32c9f0"
+    },
+    {
+      "bytes": 8044,
+      "name": "lazy_loader-0.5-py3-none-any.whl",
+      "sha256": "ab0ea149e9c554d4ffeeb21105ac60bed7f3b4fd69b1d2360a4add51b170b005"
+    },
+    {
+      "bytes": 2068504,
+      "name": "networkx-3.6.1-py3-none-any.whl",
+      "sha256": "d47fbf302e7d9cbbb9e2555a0d267983d2aa476bac30e90dfbe5669bd57f3762"
+    },
+    {
+      "bytes": 12320584,
+      "name": "numpy-2.4.4-cp312-cp312-win_amd64.whl",
+      "sha256": "b5f0362dc928a6ecd9db58868fca5e48485205e3855957bdedea308f8672ea4a"
+    },
+    {
+      "bytes": 40070414,
+      "name": "opencv_python_headless-4.13.0.92-cp37-abi3-win_amd64.whl",
+      "sha256": "77a82fe35ddcec0f62c15f2ba8a12ecc2ed4207c17b0902c7a3151ae29f37fb6"
+    },
+    {
+      "bytes": 100195,
+      "name": "packaging-26.2-py3-none-any.whl",
+      "sha256": "5fc45236b9446107ff2415ce77c807cee2862cb6fac22b8a73826d0693b0980e"
+    },
+    {
+      "bytes": 7033367,
+      "name": "pillow-12.1.1-cp312-cp312-win_amd64.whl",
+      "sha256": "21329ec8c96c6e979cd0dfd29406c40c1d52521a90544463057d2aaa937d66a6"
+    },
+    {
+      "bytes": 154003,
+      "name": "pyyaml-6.0.3-cp312-cp312-win_amd64.whl",
+      "sha256": "5fcd34e47f6e0b794d17de1b4ff496c00986e1c83f7ab2fb8fcfe9616ff7477b"
+    },
+    {
+      "bytes": 884562,
+      "name": "rawpy-0.26.1-cp312-cp312-win_amd64.whl",
+      "sha256": "30551fbb279f214390b9d7aa2b4227256f71324bb8a82cbe8dc4c8157835f834"
+    },
+    {
+      "bytes": 11911059,
+      "name": "scikit_image-0.26.0-cp312-cp312-win_amd64.whl",
+      "sha256": "abed017474593cd3056ae0fe948d07d0747b27a085e92df5474f4955dd65aec0"
+    },
+    {
+      "bytes": 36549682,
+      "name": "scipy-1.17.1-cp312-cp312-win_amd64.whl",
+      "sha256": "41b71f4a3a4cab9d366cd9065b288efc4d4f3c0b37a91a8e0947fb5bd7f31d87"
+    },
+    {
+      "bytes": 248227,
+      "name": "tifffile-2026.4.11-py3-none-any.whl",
+      "sha256": "9b94ffeddb39e97601af646345e8808f885773de01b299e480ed6d3a41509ec9"
+    }
+  ]
+}
