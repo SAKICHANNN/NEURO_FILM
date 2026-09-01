@@ -1,0 +1,79 @@
+{
+  "schema_version": "neuro-film.u7-2r-product-effect-argument-preflight.v1",
+  "decision": "prospective",
+  "parent": "U7.2O",
+  "contract_commit": "02caa1cc59462a8f14764c1e02bd78a413453031",
+  "implementation_commit": "71b19760bd7a99b5e72759c93684fb542d1d9e53",
+  "source_locks": {
+    "contract": {
+      "path": "docs/planning/U7_2R_PRODUCT_EFFECT_ARGUMENT_PREFLIGHT_CONTRACT.md",
+      "git_blob": "fe4dcb64bf678938789c6f0c3b871deb0c2d2b77",
+      "sha256": "6f3583280b74f1cf3540c88b91c8129bda877fc1859b0a632f8bc533dc52f796"
+    },
+    "render_film": {
+      "path": "scripts/render_film.py",
+      "git_blob": "f5ec1bfaeba0190abe01178fd1d9a80bc9250c32",
+      "sha256": "f25a26c835385c8934f4cfe7ed1bdd98b9ecd461212d026a1fb11f9b2dc9398b"
+    },
+    "focused_test": {
+      "path": "tests/test_u7_2r_product_effect_argument_preflight.py",
+      "git_blob": "582356923299be08ca8a989669d5732e94af5665",
+      "sha256": "799b70228b4ef799127d79d6c2a5e91912902a9437121abae71a9f1e55fc18e6"
+    },
+    "product_profile": {
+      "path": "configs/render_profiles/safe_rich_product_v1.json",
+      "git_blob": "db9921150bd0b628753a6062d0f409787e4ef101",
+      "sha256": "09722cb48c55d1c4c460220c9f59b9ced81801c1b6fe856708a27f5cc99d39fe"
+    },
+    "u7_2o_evidence": {
+      "path": "docs/evidence/U7_2O_PRODUCT_LOOK_CLI_ENTRY_RESULT.json",
+      "git_blob": "e6f34331954d19d8789dfe4a859d006468533b8d",
+      "sha256": "92402bfbb8347ada1f097c13f8e4cf7566f123d2cb1ca8982c3f2330e9a45fea"
+    },
+    "u7_2n_evidence": {
+      "path": "docs/evidence/U7_2N_PRODUCT_AUXILIARY_OUTPUT_TRANSACTION_RESULT.json",
+      "git_blob": "57b10d0c499523fba871cd6a59ac55512bcc14a8",
+      "sha256": "fd5966d53118490becd2e2ca1e505433f8215fbdc2754c220e9c4af949b70b28"
+    }
+  },
+  "invalid_strength_values": ["nan", "inf", "-inf", "-0.0001", "1.0001"],
+  "strength_options": ["--grain", "--halation", "--dust"],
+  "invalid_seed_values": [-2147483649, 2147483648],
+  "valid_strength_boundaries": [0.0, 1.0],
+  "valid_seed_boundaries": [-2147483648, 2147483647],
+  "u7_2o_default_output_sha256": {
+    "ektar_100": "e8e3195dc3ab222567ca03d432eac6e03f48a84fa1a7e6c07a885f3b35999981",
+    "portra_400": "b2b9d118087648f626a0fa2d03bbaf78714ba053347e617bdb2b9505c4cf9453",
+    "velvia_50": "2198b077eea5d29026694529e208d7db9428a36f97cb7af8fe330ce732e87fa7"
+  },
+  "u7_2o_full_effects_bundle": {
+    "output_sha256": "47c0e92dc968cf3f1c4e38f5b46c47126dfd980f15e7645cfbd37f2b703cbe7f",
+    "layer_sha256": {
+      "dust_scratch.png": "bf14cba9f275b9020798af5507f33c149abf37f5263c0897c537a9378d87081b",
+      "grain.png": "b407c1bbf07028c250988ed8a1fb6c133f1fbd669b3beddaab272c627667bcd4",
+      "halation.png": "be8e2409be4db8fa17451c5dfc70b89d9782fc879569f36ceac8ecabae75f75d",
+      "halation_on_black.png": "be8e2409be4db8fa17451c5dfc70b89d9782fc879569f36ceac8ecabae75f75d",
+      "halation_on_white.png": "a1e42a35694a89d8e20ec6db9f5b34e498464d25e17ea97fc0f8358891fe8306"
+    }
+  },
+  "gates": {
+    "all_invalid_strengths_reject_predecode": true,
+    "all_invalid_seeds_reject_predecode": true,
+    "invalid_cases_publish_nothing": true,
+    "valid_numeric_boundaries_execute": true,
+    "u7_2o_full_effects_bundle_exact": true,
+    "three_default_product_look_outputs_exact": true,
+    "legacy_numeric_behavior_unchanged": true,
+    "source_immutable": true,
+    "fresh_process_reports_byte_exact": true,
+    "owned_runtime_residue_zero": true
+  },
+  "claim_ceiling": "Private product-only predecode numeric-boundary enforcement for the existing Look Approximation CLI.",
+  "non_goals": [
+    "physical-halation expert control validation",
+    "effect algorithm or recipe schema change",
+    "research or historical CLI behavior change",
+    "calibrated stock or physical-film claim",
+    "public package, release or cross-platform claim"
+  ]
+}
