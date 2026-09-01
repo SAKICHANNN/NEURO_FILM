@@ -60,6 +60,26 @@ Inspect all current controls with:
 .\outputs\private-product-runtime\kmcfm-look.cmd --help
 ```
 
+### Native repository desktop workflow
+
+From a repository checkout with the product environment installed, open the
+private Windows desktop workflow directly. An optional supported input can be
+selected at startup; otherwise use **Choose photo** in the window.
+
+```powershell
+.\.venv\Scripts\python.exe -I scripts\open_product_desktop.py `
+  --input input.jpg
+```
+
+The window exposes one bounded strength control and renders three distinct
+Velvia 50, Portra 400 and Ektar 100 previews through the existing deterministic
+preview path. No look is selected by default: choose one visible radio option
+before the create-only PNG16 plus strict-recipe export becomes available.
+Every named choice is shown as `film-inspired / Look Approximation`, not a
+calibrated stock response. Preview scratch uses the repository-relative `tmp`
+junction by default. This is a private repository-bound Windows workflow, not
+a standalone or public app.
+
 The private runtime is deliberately repository-bound: every launch verifies
 the installed source commit, tracked-clean state and requirements hash. After a
 source update, install into a new absent destination rather than mutating the

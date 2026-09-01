@@ -9,6 +9,7 @@ files.
 | Script | Purpose |
 |--------|---------|
 | `render_film.py` | Integrated content-preserving renderer entrypoint. |
+| `open_product_desktop.py` | Private repository-bound Windows GUI for new-input three-look preview, explicit selection and PNG16 + recipe export. |
 | `install_product_runtime.py` | Create-only private Windows CPython 3.12 product runtime, launcher and receipt. |
 | `pipeline_color_baseline.py` | Deterministic safe Lab color baseline and safe-rich preset. |
 | `pipeline_filmfx_layers.py` | Deterministic film-effects layer pipeline. |

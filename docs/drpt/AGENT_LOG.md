@@ -22185,3 +22185,56 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   runtime wrappers and packaging variants; return to a different substantive
   product capability/defect, M5 validation, human beta/legal gate or a truly
   new rights-clear identifying observation.
+
+### 2026-09-01 - U7.10A adds the first native new-input desktop workflow
+
+- **Node and routing:** `ULT > U7 productization > U7.10A`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the sole write workflow; router, DRPT-BI,
+  planning, design, project-structure and agent-log disciplines were read-only
+  secondary reviewers. A concurrent producer independently reviewed U7.10A
+  and remained read-only with no writes to its owned paths.
+- **Product gap and implementation:** prior U7.3 desktop work began with existing
+  recipes/outputs. U7.10A adds one native Tk window for a new supported local
+  input: basename-only selection, bounded strength, three existing deterministic
+  previews, explicit Velvia 50/Portra 400/Ektar 100 choice, and create-only
+  PNG16 plus strict recipe through the existing public
+  `render_film.py --product-look` path. The session binds the input, exact
+  runtime assets and Git HEAD across preview/export; replacement, drift,
+  invalid input, renderer failure and existing/late-foreign destinations fail
+  closed while only identity-owned scratch is removed.
+- **Two corrections before propagation:** the first pre-evidence audit directly
+  injected a 65% preview state while the visible slider remained at 100%; its
+  two 7,145-byte reports (SHA `58d2f6c8...d1816`) and screenshot (SHA
+  `91e55eaf...2699`) are excluded. Platform policy blocked their exact owned
+  deletion before execution, so they remain quarantined. Commit `0fb1fc0a`
+  repaired the screenshot harness with the public worker path under a real Tk
+  `mainloop`, but post-evidence review then found that the UI default-selected
+  Velvia and left radios mutable during export. Initial evidence commit
+  `8e17b4e6` remains byte-immutable but is superseded. Commit `b80f4adc` starts
+  with no look, disables export until an actual radio action, clears selection
+  on input/amount invalidation, disables all radios during preview/export, and
+  restores them after completion. A dedicated held-background regression proves
+  the exported receipt retains the visibly selected Portra look.
+- **Final formal evidence:** from committed correction HEAD `b80f4adc`, forward
+  and reverse reports are each 7,562 bytes and byte-identical at SHA
+  `e2ccbe3993361ad8a1cd5c880448dcccfacf5c4cf128e58fb65d4332040b4ca1`;
+  scientific identity is
+  `687455dc84400b1c7352fe4553c658671066d782c2ecd8a1162805a0efef0021`.
+  All eleven frozen gates pass across two cases, three previews per case and
+  six exact direct-CLI PNG16/recipe exports. The accepted 1180x760 screenshot
+  is 32,395 bytes / SHA `8701e4c2...6b33`; automated facts bind the 65% state,
+  real `velvia_50_radio_invoke`, ready/export-enabled state and no absolute
+  path. Manual review confirms the selected radio, “Look selected” status,
+  three labelled Look Approximation cards, not-calibrated disclaimer and
+  primary export action without overlap or crop. Superseding evidence commit is
+  `c2330e20`; tracked evidence SHA is
+  `2195d1cbf1ebcddba907d322b8cece0a9fd6db93be8a1ff09c0b7384a54718f5`.
+- **Verification and boundary:** 20 implementation tests pass; the corrected
+  audit suite passes 3/3, historical-plus-current evidence tests pass 4/4, and
+  the earlier parent behavior run reports 86 passed/4 skipped. Ruff, JSON,
+  py_compile and diff checks pass. README and the scripts index expose the
+  repository command. This proves only private repo-local Windows workflow
+  mechanics for deterministic `film-inspired / Look Approximation` outputs—not
+  calibrated stock response, physical-film reproduction, stock
+  distinguishability, population preference, a public/standalone installer,
+  cross-platform GUI, or completed product release.
