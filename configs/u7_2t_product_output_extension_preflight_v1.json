@@ -1,0 +1,43 @@
+{
+  "schema_version": "neuro-film.u7-2t-product-output-extension-preflight.v1",
+  "decision": "prospective",
+  "parent": "U7.2S",
+  "contract_commit": "f3bb8cede2700276018ff6baa69f1af620ca20c4",
+  "implementation_commit": "7c85e8e1f61a31c6266ea9462350cf012ae53eea",
+  "source_locks": {
+    "contract": {
+      "path": "docs/planning/U7_2T_PRODUCT_OUTPUT_EXTENSION_PREFLIGHT_CONTRACT.md",
+      "git_blob": "875eec166f03bd0428f337867aeff26a0e47ece7",
+      "sha256": "0b5e243f15183285f96f67dc51377cb7f3311db49c00f8cd1d0185d50e14b295"
+    },
+    "render_film": {
+      "path": "scripts/render_film.py",
+      "git_blob": "fbbff5377035ede21d9a6f18cb91c5428e091183",
+      "sha256": "87ea43d0a0ea21ed8f5f83d4217a1556502fcf2dd92ca239fefe18943f0fa514"
+    },
+    "focused_test": {
+      "path": "tests/test_u7_2t_product_output_extension_preflight.py",
+      "git_blob": "eb5bb7f2d62eadd7894411d5050df5bee374704a",
+      "sha256": "b13a0db65af2b7064b6090fdae69123d860cd959f7242b68a0b42d4c4636eb8d"
+    }
+  },
+  "unsupported_suffixes": ["", ".webp", ".avif", ".heif", ".bmp", ".gif"],
+  "supported_suffixes": [".png", ".jpg", ".jpeg", ".tif", ".tiff", ".PNG", ".JPEG", ".TIFF"],
+  "gates": {
+    "source_locks_exact": true,
+    "unsupported_product_suffixes_reject_predecode": true,
+    "unsupported_product_suffixes_publish_nothing": true,
+    "supported_product_suffixes_cross_preflight": true,
+    "legacy_late_behavior_unchanged": true,
+    "fresh_process_reports_byte_exact": true,
+    "owned_runtime_residue_zero": true
+  },
+  "claim_ceiling": "Private product-only predecode extension validation for the existing Look Approximation CLI.",
+  "non_goals": [
+    "new output format",
+    "encoder or pixel change",
+    "legacy CLI behavior change",
+    "calibrated stock or physical-film claim",
+    "public package, installer or release claim"
+  ]
+}
