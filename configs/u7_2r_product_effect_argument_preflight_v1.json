@@ -57,6 +57,7 @@
     }
   },
   "gates": {
+    "source_locks_exact": true,
     "all_invalid_strengths_reject_predecode": true,
     "all_invalid_seeds_reject_predecode": true,
     "invalid_cases_publish_nothing": true,
