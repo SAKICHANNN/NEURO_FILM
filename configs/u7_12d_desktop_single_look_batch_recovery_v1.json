@@ -40,9 +40,12 @@
   "publication": {
     "aggregate_receipt_matches_unchanged_u7_11a": true,
     "resume_state_does_not_enter_final_receipt": true,
-    "operation": "same-parent Windows no-replace directory rename",
+    "workspace_is_never_renamed_directly_to_destination": true,
+    "assembly": "copy validated child image and recipe bytes create-only into one reserved flat U7.11A-compatible publication stage and write the exact aggregate receipt last",
+    "operation": "same-parent Windows no-replace rename of the flat publication stage",
     "late_foreign_destination_preserved": true,
-    "workspace_remains_resumable_after_publication_failure": true
+    "workspace_remains_resumable_after_publication_failure": true,
+    "workspace_removed_only_after_destination_and_members_validate": true
   },
   "formal_fixture": {
     "input_generator": "existing deterministic small raster product fixture",

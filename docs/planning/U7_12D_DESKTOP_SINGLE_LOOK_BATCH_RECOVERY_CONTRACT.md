@@ -36,7 +36,11 @@ behavior remains unchanged.
 U7.12D adds a separate explicit resumable entry point. The caller supplies a
 dedicated workspace and an absent final destination that are distinct siblings
 under one existing parent on Windows. The resumable operation must never be
-selected implicitly by the existing `export_batch` method.
+selected implicitly by the existing `export_batch` method. The desktop UI may
+call the new entry point deliberately and derive one reserved sibling workspace
+from the chosen destination; selecting the same inputs, look, amount, and
+destination after restart resumes only if the complete workspace identity
+validates.
 
 ## Frozen workspace identity
 
@@ -91,16 +95,23 @@ exit releases the OS lock without trusting a stale owner record.
 
 ## Final publication and receipt
 
-After all children validate, the implementation writes a deterministic
-relative-path `batch.json`, revalidates inputs, configuration, code, checkpoint,
-member set, and current desktop session, then performs one same-parent Windows
-no-replace rename from workspace to the absent destination. A destination that
-appears late is preserved and the unchanged workspace remains resumable.
+After all children validate, the implementation revalidates inputs,
+configuration, code, checkpoint, member set, and current desktop session, then
+builds a separate reserved flat publication stage. Image and recipe bytes are
+copied create-only from the validated child directories, rehashed, and placed
+under the exact U7.11A flat names; the exact U7.11A aggregate receipt is written
+last. The implementation then performs one same-parent Windows no-replace
+rename from the flat publication stage to the absent destination. A destination
+that appears late is preserved, the owned publication stage is removed, and the
+unchanged recovery workspace remains resumable. Directly renaming the
+checkpoint workspace is forbidden because its resume/checkpoint and
+child-directory topology cannot equal the U7.11A final directory.
 
 The final directory and aggregate receipt must be byte-for-byte identical to
 the unchanged U7.11A uninterrupted batch for the same inputs, style, amount,
 software commit, and destination semantics. No resume-only field may enter the
-final U7.11A receipt identity.
+final U7.11A receipt identity. Only after the renamed destination and every
+member validate may the owned recovery workspace and lease be removed.
 
 ## Frozen formal roles and gates
 
@@ -131,7 +142,8 @@ Success requires:
    byte-identical uninterrupted U7.11A results;
 8. source files remain immutable, network reads are zero, all outputs are
    finite/bounded PNG16, recipes remain strict Look Approximation receipts, and
-   owned transient residue is zero after terminal publication;
+   owned recovery/publication transient residue is zero after terminal
+   publication;
 9. focused U7.8B/U7.11A/U7.12A/U7.12B/U7.12C regressions, Ruff, compile, JSON,
    diff, and committed-head replay pass.
 
