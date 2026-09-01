@@ -110,4 +110,3 @@ distinguishability or preference.
    product CLI/recipe regressions. Historical hash evidence remains immutable.
 6. Propagate only after evidence is committed. Each scoped commit is locally
    revertible; no push is authorized.
-
