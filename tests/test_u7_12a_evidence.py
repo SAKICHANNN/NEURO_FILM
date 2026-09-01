@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE = (
     ROOT / "docs/evidence/U7_12A_DESKTOP_FOREGROUND_WORKER_CLOSE_SAFETY_RESULT.json"
 )
-EVIDENCE_SHA256 = "efb97ebfe819d8590f40f8e8bc2b1f82a7b6c647580f5ff8cd1b16ce43655d7b"
+EVIDENCE_SHA256 = "9a86a9b7315145b4e38cfc1787ff788361222b0ab812d52f3bc4e7b36d7de4cf"
 
 
 def _git_blob(commit: str, path: str) -> bytes:
@@ -46,4 +46,3 @@ def test_u7_12a_evidence_binds_formal_git_objects() -> None:
     commit = report["source_commit"]
     for path, expected in report["bindings"].items():
         assert hashlib.sha256(_git_blob(commit, path)).hexdigest() == expected
-

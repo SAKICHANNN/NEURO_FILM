@@ -4,7 +4,7 @@
     "docs/planning/U7_12A_DESKTOP_FOREGROUND_WORKER_CLOSE_SAFETY_CONTRACT.md": "93f99fae1b3ff2b7e7398c49e2aa149522136525d9f697c2f7e4430e9c446641",
     "scripts/audit_u7_12a_desktop_foreground_worker_close_safety.py": "3285f380a92ee14b665a6c5c50fdaa0831e559e370f474bced13f5735edce108",
     "src/inference/product_desktop_ui.py": "75babccc066585dc634f746b57d2614c4d8a6bb525833988d3e61b725795344d",
-    "tests/test_u7_12a_desktop_foreground_worker_close_safety.py": "e953b07db68666969e8086f4bd79a9ee93a17a568f3f18d6895f0939bfd29383"
+    "tests/test_u7_12a_desktop_foreground_worker_close_safety.py": "c78c15ad724dfc981ee840a9c140ac27c2ac3595ffc9bec2064e1005bd95dc62"
   },
   "case_results": {
     "preview-close": {
@@ -40,7 +40,7 @@
   },
   "node_id": "U7.12A",
   "schema": "kmcfm.u7-12a-desktop-foreground-worker-close-safety-report.v1",
-  "scientific_identity": "0849326a273805f82906127c819eb11fe40f815376481ddc6d703923ddf21abf",
-  "source_commit": "f347ed9d62c2df77add19dc5691977a268374132",
+  "scientific_identity": "c33a1a84c4f5f77fa0c86251d7b68448036193b8fbb1774eaae60e299d6a3474",
+  "source_commit": "56d854b1983900c5a99373cabcebd830dd75a2b0",
   "status": "PASS_PRIVATE_U7_12A_DESKTOP_FOREGROUND_CLOSE_SAFETY"
 }
