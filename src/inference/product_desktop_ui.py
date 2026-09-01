@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import hashlib
-import os
 import threading
 import tkinter as tk
 from collections.abc import Callable
@@ -15,10 +13,6 @@ from typing import Any
 
 from PIL import Image, ImageTk
 
-from .desktop_single_look_batch_recovery import (
-    DesktopBatchProgressReceipt,
-    export_resumable_desktop_single_look_batch,
-)
 from .product_desktop import (
     PRODUCT_LOOKS,
     PRODUCT_OUTPUT_FORMATS,
@@ -33,15 +27,6 @@ from .product_desktop import (
 )
 
 _LOOK_IDS = tuple(row["style_id"] for row in PRODUCT_LOOKS)
-
-
-def _batch_recovery_workspace(destination: Path) -> Path:
-    """Derive the private sibling workspace bound to one final destination."""
-
-    resolved = destination.resolve(strict=False)
-    normalized = os.path.normcase(os.path.abspath(os.fspath(resolved)))
-    digest = hashlib.sha256(normalized.encode("utf-8")).hexdigest()[:32]
-    return resolved.with_name(f".kmcfm-u7-12e-{digest}.recovery")
 
 
 class ProductDesktopApp:
@@ -372,7 +357,7 @@ class ProductDesktopApp:
             text=(
                 f"Export {output.display_name} + recipe"
                 if count <= 1
-                else f"Export / resume {count} PNG16 + recipes"
+                else f"Export {count} PNG16 + recipes"
             )
         )
 
@@ -440,7 +425,7 @@ class ProductDesktopApp:
                 if len(self.input_paths) <= 1
                 else (
                     f"Look selected for all {len(self.input_paths)} photos. "
-                    "Export or resume one verified batch folder."
+                    "Export one new atomic batch folder."
                 )
             )
 
@@ -568,7 +553,7 @@ class ProductDesktopApp:
             return
         if len(self.batch_inputs) > 1:
             destination = filedialog.asksaveasfilename(
-                title="Choose a batch folder to export or resume",
+                title="Choose a new batch folder",
                 initialfile=f"kmcfm-{selected}-{len(self.batch_inputs)}-photos",
                 filetypes=(("Batch folder name", "*"),),
             )
@@ -578,18 +563,14 @@ class ProductDesktopApp:
             self.batch_active = True
             self._set_busy(
                 True,
-                "Checking verified progress and rendering remaining photos…",
+                f"Rendering 0/{len(self.batch_inputs)} photos…",
             )
             inputs = self.batch_inputs
-            output_directory = Path(destination).resolve(strict=False)
-            workspace_directory = _batch_recovery_workspace(output_directory)
             self._background_batch(
-                lambda: export_resumable_desktop_single_look_batch(
-                    self.workflow,
+                lambda: self.workflow.export_batch(
                     inputs,
                     selected,
-                    workspace_directory,
-                    output_directory,
+                    Path(destination),
                     cancel_event=self._batch_cancel,
                     progress=self._batch_progress,
                 ),
@@ -638,11 +619,11 @@ class ProductDesktopApp:
                 break
         if latest is not None:
             completed, total, basename = latest
-            self.status.set(f"Completed {completed}/{total}: {basename}")
+            self.status.set(f"Rendered {completed}/{total}: {basename}")
 
     def _background_batch(
         self,
-        action: Callable[[], DesktopBatchReceipt | DesktopBatchProgressReceipt],
+        action: Callable[[], DesktopBatchReceipt],
         success: Callable[[DesktopBatchReceipt], None],
     ) -> None:
         if self._batch_thread is not None:
@@ -686,12 +667,6 @@ class ProductDesktopApp:
             else:
                 self._show_error(error)
             return
-        if isinstance(result, DesktopBatchProgressReceipt):
-            if self._closing:
-                self._finish_close()
-            else:
-                self._batch_paused(result)
-            return
         if not isinstance(result, DesktopBatchReceipt):
             if self._closing:
                 self._finish_close()
@@ -708,20 +683,7 @@ class ProductDesktopApp:
             return
         self._batch_cancel.set()
         self.cancel_button.configure(state="disabled")
-        self.status.set("Pausing safely after the current photo…")
-
-    def _batch_paused(self, receipt: DesktopBatchProgressReceipt) -> None:
-        total = receipt.completed_job_count + receipt.remaining_job_count
-        self._set_busy(
-            False,
-            (
-                f"Batch paused: {receipt.completed_job_count}/{total} complete "
-                f"({receipt.reused_job_count} reused, "
-                f"{receipt.newly_completed_job_count} new); "
-                f"{receipt.remaining_job_count} remaining. Select the same photos, "
-                "Look, strength and destination to resume."
-            ),
-        )
+        self.status.set("Stopping safely after the current photo…")
 
     def _batch_complete(self, receipt: DesktopBatchReceipt) -> None:
         self._set_busy(
@@ -771,10 +733,7 @@ class ProductDesktopApp:
             if self._batch_thread.is_alive():
                 self._closing = True
                 self._batch_cancel.set()
-                self._set_busy(
-                    True,
-                    "Closing safely after pausing the current batch…",
-                )
+                self._set_busy(True, "Closing safely after the current photo…")
                 self.cancel_button.configure(state="disabled")
                 return
             self._batch_thread.join(timeout=0)
@@ -809,6 +768,5 @@ def build_product_desktop_app(
 
 __all__ = [
     "ProductDesktopApp",
-    "_batch_recovery_workspace",
     "build_product_desktop_app",
 ]
