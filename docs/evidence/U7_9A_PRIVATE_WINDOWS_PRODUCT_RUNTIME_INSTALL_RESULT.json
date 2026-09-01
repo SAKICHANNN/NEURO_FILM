@@ -1,0 +1,89 @@
+{
+  "schema": "kmcfm.u7-9a-private-windows-product-runtime-install-evidence.v1",
+  "status": "PASS_PRIVATE_WINDOWS_REPOSITORY_BOUND_PRODUCT_RUNTIME_INSTALL",
+  "automatic_pass": true,
+  "formal_execution_commit": "7cc9ad6a70e87ae3125246767a5deca3a1ba5716",
+  "formal_reports": {
+    "forward": "outputs/eval/u7_9a_private_windows_product_runtime_install_v1/formal.json",
+    "reverse": "outputs/eval/u7_9a_private_windows_product_runtime_install_v1/formal_replay.json",
+    "bytes_each": 7474,
+    "byte_exact": true,
+    "sha256": "50db4f13f245d9b7a64095360a93e5dbf6fb9c1581456990e1f0659591d727f6",
+    "scientific_identity_sha256": "7c1877ff8ef97e4ef58e1a25becd52cca00c2666378220a5f5c34bf151e1b92f"
+  },
+  "source_bindings": {
+    "docs/planning/U7_9A_PRIVATE_WINDOWS_PRODUCT_RUNTIME_INSTALL_CONTRACT.md": {
+      "sha256": "2c661d979267fb1cbbc225dfbdcca6de86b88979c42cd311141ebf81e5810e3f",
+      "git_blob": "911d4167fec7fae29d1beca8aa9e4d66eed06aea"
+    },
+    "configs/u7_9a_private_windows_product_runtime_install_v1.json": {
+      "sha256": "b7894735e2edc59b368d2fab1bb1a6ba3792bdfd5f1dbacdbd98379fe6bb7af8",
+      "git_blob": "b73f68915d2a0d369394e5430a6c04dbd40b7ab1"
+    },
+    "scripts/install_product_runtime.py": {
+      "sha256": "723a15bc7462e00c66c90b5f8c8a93300fdcad3d3acf9dd5339f03172f050202",
+      "git_blob": "68ab17674f62eb2aedcceace6ea61c0d231ea530"
+    },
+    "scripts/audit_u7_9a_private_windows_product_runtime_install.py": {
+      "sha256": "73c2d295dcdcec453774351e5daa66f231f91c88eac1371934eda33bfc219afa",
+      "git_blob": "f42483b95a4ce414d27f391f2cfa438183842fb1"
+    },
+    "tests/test_u7_9a_private_windows_product_runtime_install.py": {
+      "sha256": "a926413f97f4951d10d05a66ae0ee0dd2668544e241b7c39e976a9e446b5e2c6",
+      "git_blob": "1bf47e12282f0dceafc6d2847f55caa302b5c6cc"
+    },
+    "requirements-product-v2.txt": {
+      "sha256": "78b2ec79ffd4053c42c90a5db765baf715fed261efa39a5e762e013145718517",
+      "git_blob": "f527a0ca45d49b60d6f75812ce2b00ee9a25647e"
+    }
+  },
+  "runtime": {
+    "python": "CPython 3.12.10",
+    "wheel_count": 12,
+    "wheel_bytes": 111666287,
+    "binary_only": true,
+    "pip_check": true,
+    "forbidden_distributions_absent": [
+      "omegaconf",
+      "antlr4-python3-runtime"
+    ],
+    "receipt_sha256": "03c32fd109f96b8e343ce633d77113f15f486c8fd78f282145d65168de2e4fff",
+    "launcher_sha256": "c2d900bd409a8528b44a99d03186fa469384522a48a331be056ddce02f8683bc",
+    "catalog_sha256": "9897ebc570625409d513fa1bed3df3e5f9cff76d863963fc307c791462bfdd78"
+  },
+  "renders": {
+    "ektar_100": "f04b89d085a51835d13425b47fdb22cb436883bae35865ef8c788c7e8386ad41",
+    "portra_400": "9d1be91fcb1989454bb4b15c25bd1fe41e35a9afc405ec4c1508622f9066bc42",
+    "velvia_50": "31413c3b1aaaa58f94f5bd3547cf9df3f3992bc2be8ae8117cb104997709a40d",
+    "direct_launcher_byte_exact": true
+  },
+  "gates": {
+    "source_and_requirements_exact": true,
+    "binary_install_and_pip_check": true,
+    "catalog_and_claim_ceiling_exact": true,
+    "foreign_current_directory_launch": true,
+    "three_direct_launcher_renders_exact": true,
+    "existing_destination_preserved": true,
+    "failed_install_cleanup": true,
+    "requirements_drift_rejected": true,
+    "head_drift_rejected": true,
+    "formal_installation_residue_count": 0,
+    "owned_cache_temp_residue_count": 0
+  },
+  "excluded_attempts": [
+    {
+      "stage": "pre-wheelhouse-path-validation",
+      "reason": "The first audit invocation compared the C-side junction spelling with the resolved P-side physical path and rejected the correct repo-relative tmp roots before wheel, environment, media or report work. Only the path-containment check changed; both accepted runs restarted from committed HEAD."
+    }
+  ],
+  "claim": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false,
+    "repository_bound": true,
+    "standalone_or_portable_installer": false,
+    "public_release": false
+  },
+  "stop_rule": "Stop adjacent bootstrap and launcher variants. Public distribution remains fail-closed because the repository has no root license."
+}
