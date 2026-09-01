@@ -1,0 +1,126 @@
+{
+  "schema": "kmcfm.u7-10a-product-desktop-input-workflow-evidence.v1",
+  "experiment_id": "U7.10A_PRODUCT_DESKTOP_INPUT_WORKFLOW",
+  "date": "2026-09-01",
+  "status": "PASS_PRIVATE_U7_10A_PRODUCT_DESKTOP_INPUT_WORKFLOW",
+  "commits": {
+    "contract": "d88d82361",
+    "contract_eof_normalization": "4f77937e4",
+    "implementation": "080c116dbf1683397508d712aa4f94fd7011e15f",
+    "initial_audit": "f3de07905d21927599243ee6d0868fae560fb0dc",
+    "visual_state_audit_correction": "0fb1fc0a4e86821ad275823bf79b3328b719d71b"
+  },
+  "bindings": {
+    "config": {
+      "path": "configs/u7_10a_product_desktop_input_workflow_v1.json",
+      "sha256": "5684c2acd7376508f651a60f2e76ae52f615c3cf0dbc2fc64e607499d69fa5e0"
+    },
+    "contract": {
+      "path": "docs/planning/U7_10A_PRODUCT_DESKTOP_INPUT_WORKFLOW_CONTRACT.md",
+      "sha256": "ee1a114a572644bbea213789e7b1e319634d00ff0788216f1d524153f6a9aa60"
+    },
+    "entrypoint": {
+      "path": "scripts/open_product_desktop.py",
+      "sha256": "c92f0a1c81ca896d7065144961fabdf0183b6a51e3368ac50df651da3ace4064"
+    },
+    "core": {
+      "path": "src/inference/product_desktop.py",
+      "sha256": "683a1fab2f94541deec38daf93e79bc7abafa189c49526a88c8e3793e3f60ddb"
+    },
+    "ui": {
+      "path": "src/inference/product_desktop_ui.py",
+      "sha256": "88e4c68c7aebfae77de49ff60c78b5b4ffaa999068700859a21427e2ca29b5cd"
+    },
+    "audit": {
+      "path": "scripts/audit_u7_10a_product_desktop_input_workflow.py",
+      "sha256": "ebc6fa606efbc394b3a3674acee319475299ba551230342ddd55b118b543c682"
+    },
+    "implementation_test": {
+      "path": "tests/test_u7_10a_product_desktop_input_workflow.py",
+      "sha256": "6e7b2c70c1b09a088f9f016d0f073071673719b9f4453ae357d3025d33bb0914"
+    },
+    "audit_test": {
+      "path": "tests/test_audit_u7_10a_product_desktop_input_workflow.py",
+      "sha256": "6e76e08272b4a74ba78eaacfdb44a1a5feb9f61ab809f836cab3a54065ff7e31"
+    }
+  },
+  "execution": {
+    "source_commit": "0fb1fc0a4e86821ad275823bf79b3328b719d71b",
+    "forward_report_path": "outputs/eval/u7_10a_product_desktop_input_workflow/formal_0fb1fc0a_forward.json",
+    "reverse_report_path": "outputs/eval/u7_10a_product_desktop_input_workflow/formal_0fb1fc0a_reverse.json",
+    "report_bytes": 7508,
+    "report_sha256": "cef493d93887425ea70300c2c683dfd7d5bedc5de08912d5b7b284f53a640324",
+    "scientific_identity_sha256": "7d56a20172cf26ee6c70301bedca5f91bbd33a87dc5997eceee15b79c66be396",
+    "forward_reverse_byte_exact": true,
+    "case_count": 2,
+    "export_count": 6,
+    "preview_count_per_case": 3,
+    "preview_sets_distinct": true,
+    "final_output_bit_depth": 16,
+    "direct_cli_image_and_recipe_exact": true,
+    "owned_scratch_residue_count": 0
+  },
+  "visual": {
+    "path": "outputs/eval/u7_10a_product_desktop_input_workflow/ready_state_0fb1fc0a.png",
+    "bytes": 32832,
+    "sha256": "f2e33c820764b144cf4f5c861a8d0bed30732f22c51b2775ce98f6dfa0624beb",
+    "width": 1180,
+    "height": 760,
+    "automated_state": {
+      "absolute_path_disclosed": false,
+      "amount_label": "65%",
+      "amount_value": 0.65,
+      "export_enabled": true,
+      "input_label": "gui-source.png",
+      "preview_look_amount": 0.65,
+      "preview_ready": true,
+      "selected_style": "velvia_50"
+    },
+    "manual_review": {
+      "three_preview_cards_visible": true,
+      "three_look_names_visible": true,
+      "look_approximation_claims_visible": true,
+      "not_calibrated_disclaimer_visible": true,
+      "status_and_export_action_visible": true,
+      "overlap_or_crop_observed": false,
+      "absolute_path_visible": false
+    }
+  },
+  "gates": {
+    "all_claims_look_approximation": true,
+    "all_direct_cli_images_exact": true,
+    "all_direct_cli_recipes_exact": true,
+    "all_final_outputs_rgb16": true,
+    "all_preview_counts_exact": true,
+    "all_preview_sets_distinct": true,
+    "all_previews_bounded": true,
+    "all_session_commits_exact": true,
+    "final_owned_residue_zero": true,
+    "gui_smoke_pass": true,
+    "preview_workspace_cleanup_pass": true
+  },
+  "verification": {
+    "implementation_tests": "19 passed",
+    "adjacent_behavioral_tests": "86 passed, 4 skipped",
+    "formal_audit_tests_after_correction": "3 passed in 99.12s",
+    "ruff": "passed",
+    "py_compile": "passed",
+    "diff_check": "passed"
+  },
+  "excluded": [
+    {
+      "kind": "pre-evidence formal attempt",
+      "forward_path": "tmp/u7_10a_f3de0790_forward.json",
+      "reverse_path": "tmp/u7_10a_f3de0790_reverse.json",
+      "report_bytes": 7145,
+      "report_sha256": "58d2f6c8497d99312a1f21d026e0454c3b64d031fed52772104ce153f36d1816",
+      "screenshot_path": "outputs/eval/u7_10a_product_desktop_input_workflow/ready_state_f3de0790.png",
+      "screenshot_sha256": "91e55eaf39591ed74352045acd264bdfd0256dce58640d792037b28f33b52699",
+      "reason": "The audit directly injected 0.65 preview state while the visible native control remained at 100%; the reports and screenshot are impossible-state runner artifacts and are not evidence.",
+      "cleanup": "Exact owned deletion was requested but blocked by platform policy before execution; the artifacts remain quarantined and unreferenced by accepted gates."
+    }
+  ],
+  "decision": "PASS_PRIVATE_U7_10A_PRODUCT_DESKTOP_INPUT_WORKFLOW",
+  "interpretation": "A real repo-local Windows desktop workflow now accepts a new image, exposes bounded strength, renders the three existing deterministic film-inspired Look Approximation previews, requires explicit look selection, and exports a create-only PNG16 plus strict recipe through the existing public CLI path. Two committed-head cases and six exports reproduce byte-exact direct CLI images and normalized recipe semantics; the corrected native GUI smoke follows the public threaded mainloop path and records a coherent 65% ready state.",
+  "claim_ceiling": "Private repo-local Windows workflow mechanics for three existing deterministic film-inspired Look Approximations only. This is not calibrated stock response, physical-film reproduction, stock distinguishability, population preference, public installer readiness, arbitrary-platform GUI support, or completed product release."
+}
