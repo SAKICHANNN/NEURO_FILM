@@ -19,17 +19,20 @@ The renderer is currently a safe engineering baseline, not yet a calibrated repr
 
 ## Product Look Approximation CLI
 
-For a fresh Windows CPython 3.12 environment, install the bounded product
-runtime without source builds or the research/ML dependency graph:
+For a private Windows CPython 3.12 installation, create a repository-bound
+runtime under the P-backed `outputs` junction. The destination must not already
+exist. The installer uses only the exact binary product dependencies, runs
+`pip check`, rejects the research/ML dependency graph, and publishes a launcher
+plus an installation receipt:
 
 ```powershell
-.\.venv\Scripts\python.exe -m pip install --only-binary=:all: -r requirements-product-v2.txt
+py -3.12 scripts\install_product_runtime.py outputs\private-product-runtime
 ```
 
 List the authoritative product catalog without reading an image:
 
 ```powershell
-.\.venv\Scripts\python.exe scripts\render_film.py --list-product-looks
+.\outputs\private-product-runtime\kmcfm-look.cmd --list-product-looks
 ```
 
 Render one explicitly selected film-inspired Look Approximation. The available
@@ -38,7 +41,7 @@ product look labels, not claims of calibrated stock response or physical-film
 reproduction.
 
 ```powershell
-.\.venv\Scripts\python.exe scripts\render_film.py input.jpg `
+.\outputs\private-product-runtime\kmcfm-look.cmd input.jpg `
   --product-look portra_400 `
   --look-amount 0.75 `
   --write-recipe `
@@ -54,7 +57,19 @@ or power-loss atomicity.
 Inspect all current controls with:
 
 ```powershell
-.\.venv\Scripts\python.exe scripts\render_film.py --help
+.\outputs\private-product-runtime\kmcfm-look.cmd --help
+```
+
+The private runtime is deliberately repository-bound: every launch verifies
+the installed source commit, tracked-clean state and requirements hash. After a
+source update, install into a new absent destination rather than mutating the
+old runtime. This is not a standalone or public installer; the repository has
+no root license, so public distribution remains closed.
+
+For repository development, the equivalent manual dependency command remains:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install --only-binary=:all: -r requirements-product-v2.txt
 ```
 
 Current output supports extension-correct 8-bit PNG, JPEG and TIFF with an embedded standard sRGB ICC profile. Add `--output-bit-depth 16` with a `.png`, `.tif` or `.tiff` output for the opt-in float32-to-uint16 path; 16-bit JPEG fails closed.

@@ -9,6 +9,7 @@ files.
 | Script | Purpose |
 |--------|---------|
 | `render_film.py` | Integrated content-preserving renderer entrypoint. |
+| `install_product_runtime.py` | Create-only private Windows CPython 3.12 product runtime, launcher and receipt. |
 | `pipeline_color_baseline.py` | Deterministic safe Lab color baseline and safe-rich preset. |
 | `pipeline_filmfx_layers.py` | Deterministic film-effects layer pipeline. |
 | `pipeline.py` | Legacy/general pipeline entrypoint. |
