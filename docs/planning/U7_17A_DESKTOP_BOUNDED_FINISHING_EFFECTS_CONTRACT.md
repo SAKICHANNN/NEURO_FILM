@@ -17,11 +17,11 @@ full-resolution `1:1` detail action and final single/batch export.
 
 ## Parent and ownership
 
-- Frozen parent HEAD: `fe83854c9`.
+- Frozen parent HEAD: `fe83854c99fed16dc2c948fc11d2797adf3f8c81`.
 - Parent product desktop SHA-256:
   `d9243200254947f9838da026d7e2edd9fa9415840ea92dd1ebae2a582ceb2aec`.
-- Parent desktop UI SHA-256:
-  `d19d308255cc0fdc1a42a40cc21ee00ecbc79ef8fd2a9c2e0cb1c13ed1de56d2`.
+- Parent desktop UI Git-blob SHA-256:
+  `92eb94bd59e582ed13a9e84833d8e14aa68f53f35239fa8bbc3221e59befce0a`.
 - Parent exact-detail helper SHA-256:
   `001d2b4a35f514e90b906eca54c010510b883dea10751a56ec51c6380e4a373b`.
 - Existing product renderer SHA-256:
@@ -32,6 +32,8 @@ full-resolution `1:1` detail action and final single/batch export.
   `3ac57e17191e18a704eb23c4fbbcd7356db20f2f2b46e160c040ac5d56481a68`.
 - Root is the sole writer and integration owner. Consumer has explicitly
   released all declared U7.17A paths. Existing `.codex/` and `tmp/` are foreign.
+- Parent bindings use Git-object bytes. Windows worktree CRLF bytes are not a
+  substitute for the immutable LF blob identity.
 
 ## Frozen behavior
 

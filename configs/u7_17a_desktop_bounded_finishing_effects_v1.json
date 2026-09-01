@@ -1,29 +1,35 @@
 {
   "schema": "kmcfm.u7-17a-desktop-bounded-finishing-effects-contract.v1",
-  "parent_head": "fe83854c9",
+  "parent_head": "fe83854c99fed16dc2c948fc11d2797adf3f8c81",
   "parent_bindings": {
     "product_desktop": {
       "path": "src/inference/product_desktop.py",
+      "git_blob": "c6bf335f773761027edaccc039740f0700ac19e7",
       "sha256": "d9243200254947f9838da026d7e2edd9fa9415840ea92dd1ebae2a582ceb2aec"
     },
     "product_desktop_ui": {
       "path": "src/inference/product_desktop_ui.py",
-      "sha256": "d19d308255cc0fdc1a42a40cc21ee00ecbc79ef8fd2a9c2e0cb1c13ed1de56d2"
+      "git_blob": "e8011f3d210280a0ba5609fe8aef68504ce4fcb0",
+      "sha256": "92eb94bd59e582ed13a9e84833d8e14aa68f53f35239fa8bbc3221e59befce0a"
     },
     "product_detail_inspection": {
       "path": "src/inference/product_detail_inspection.py",
+      "git_blob": "2d33f08736737bddda997d63383714b0ef5afdbb",
       "sha256": "001d2b4a35f514e90b906eca54c010510b883dea10751a56ec51c6380e4a373b"
     },
     "render_film": {
       "path": "scripts/render_film.py",
+      "git_blob": "fca3253810a002590ef07820035634fac7d5f6c9",
       "sha256": "2013e7c2f95c2f6a0b84ccff1d93db9bec2b189aead84b1ca6b5ab477447f786"
     },
     "u7_2r_evidence": {
       "path": "docs/evidence/U7_2R_PRODUCT_EFFECT_ARGUMENT_PREFLIGHT_RESULT.json",
+      "git_blob": "ff894955886f1d072cdb618ae55c6ecd7a01337b",
       "sha256": "8ce65a299cc3bea82e751e4465fb734a713c7e486f83692d2f45a96cbf804670"
     },
     "u7_16a_evidence": {
       "path": "docs/evidence/U7_16A_DESKTOP_EXACT_DETAIL_INSPECTION_RESULT.json",
+      "git_blob": "a7e84bac99d0be727bba778e39b768594535d4a0",
       "sha256": "3ac57e17191e18a704eb23c4fbbcd7356db20f2f2b46e160c040ac5d56481a68"
     }
   },
