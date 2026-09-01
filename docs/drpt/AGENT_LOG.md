@@ -22330,3 +22330,64 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   run a third confirmation, add UI automation hooks, bypass the native dialog or
   open an adjacent U7.10D rescue. No calibrated stock, physical-film,
   distinguishability, public installer, cross-platform GUI or release claim opens.
+
+### 2026-09-01 - U7.11A adds one atomic single-look desktop batch
+
+- **Node and routing:** `ULT > U7 productization > U7.11A`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the sole write workflow; router, DRPT-BI,
+  plan-tracker, project-structure and agent-log disciplines were read-only
+  secondary reviewers. Contract/config commits are `c8a2c060`/`a3164018`;
+  implementation `767e56c`, publication hardening `41e1c633`, audit `662e1c80`
+  and evidence `5bf0ddcd` are independently revertible. Existing `.codex/` and
+  `tmp/` were preserved, and both collaborating tasks avoided owned paths and
+  the final tracker/log window.
+- **Product gap and implementation:** U7.10A could preview and export only one
+  photo; U7.8A/B were research transactions that rendered all three looks per
+  input. The existing native window now chooses one to 100 files, binds and
+  canonically orders every resolved path/filesystem identity/full SHA before
+  preview, visibly names the canonical representative, freezes one explicit
+  available Look Approximation plus bounded amount, and publishes one RGB16 PNG
+  plus strict recipe per input with a relative-path `batch.json`. The final
+  renderer is still only `scripts/render_film.py`; no look, colour algorithm,
+  router, direct-RGB model, preview renderer, package or public API was added.
+  One input retains the prior Save workflow exactly.
+- **Transaction and UI safety:** the complete batch lives in one UUID sibling
+  stage and the absent final directory is published only after every child,
+  recipe, source, session asset and HEAD recheck passes. Post-publication full
+  recipe verification is mandatory. Final-path rebinding supports P-backed
+  exFAT inode synthesis; late destinations and foreign replacements survive;
+  child nonzero/partial output, cancellation, aggregate JSON failure and recipe
+  write/flush/fsync failure clean only handle- or identity-bound owned entries.
+  A late recipe replacement is opened without truncation and its handle identity
+  is checked before any write. The UI passes progress through a main-thread
+  polling queue, disables all mutation controls while busy, uses one tracked
+  non-daemon worker, cancels between children and waits without a blocking Tk
+  join before closing.
+- **Formal evidence:** committed audit HEAD `662e1c80` produced forward/reverse
+  reports of 5,478 bytes that are byte-identical at SHA
+  `fe84f4adb85bac24dbe3bb598cca1266814cb77454f1ddf236d6df945054b2b3`;
+  scientific identity is
+  `b14a624a21d95e0092857a7df2bd1c69730cfdc780240d5d7a9ba44463878283`.
+  The exact two-child Ektar-look case binds raw batch ID
+  `8c0e434c...8d4b06`, batch.json SHA `8268ccae...a8e1`, raw receipt SHA
+  `36868d0c...a9bdc`, both raw recipe identities, both direct CLI image/recipe
+  byte comparisons and strict replay. Canonical forward/reverse selection is
+  exact without path/hash normalization. All thirteen frozen gates pass,
+  repo-relative `tmp` resolves to `P:/neuro_film_storage/tmp`, and formal owned
+  residue is zero. The tracked evidence bytes are the exact formal report at
+  the same SHA.
+- **Verification, known environment fact and claim:** each formal controller
+  runs the 21 U7.11A core/UI controls twice in independent fresh processes;
+  both accepted runs are 21/21. Post-evidence isolated checks pass U7.10A 20/20,
+  U7.10B 5/5, U7.8A/B/G 36/36 and U7.11A plus evidence 22/22. This deliberately
+  does not claim a combined multi-Tk-interpreter pytest total: Python 3.12 on
+  this host intermittently reports existing Tcl library files unreadable when
+  several Tk roots are created in one process, while the supported product
+  lifecycle is one root per desktop process. Ruff, py_compile, JSON and diff
+  checks pass. The result proves only private Windows desktop single-look batch
+  mechanics. Every named output remains `film-inspired / Look Approximation`;
+  there is no calibrated stock response, physical-film reproduction, stock
+  distinguishability, arbitrary-media, cross-platform GUI, standalone/public
+  installer, release or preference claim. The exact U7.10C composition remains
+  closed; only a separately frozen installed-runtime batch confirmation may
+  open, and adjacent wrapper expansion remains stopped.
