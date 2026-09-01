@@ -21846,3 +21846,38 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Approximations; no calibrated/physical stock, preference, final-export
   performance, public API/package/installer or release claim opens. Stop
   adjacent compression/cache/RAW-preview timing wrapper work.
+
+### 2026-09-01 - U7.2T rejects unsupported product output suffixes predecode
+
+- **Node and routing:** `ULT > U7 > U7.2T`, DRPT L2 / Mode C. The sole write
+  workflow was `dev-research-reliability`; router, DRPT-BI, planning,
+  project-structure and agent-log disciplines were read-only secondary
+  reviewers. U7.2T owned only `render_film.py` and new U7.2T artifacts; U4.5G
+  separately owned preview/encoder paths.
+- **Observed defect and repair:** the 8-bit encoder already rejects unsupported
+  extensions, but the product CLI reached that check only after input decode
+  and full rendering. Contract `f3bb8ced`, implementation `7c85e8e1` and
+  protocol/audit `45e6961b` move only the existing case-insensitive
+  `.png/.jpg/.jpeg/.tif/.tiff` set into product argument preflight. Missing,
+  WebP, AVIF, HEIF, BMP and GIF suffixes now reject before profile loading,
+  transaction setup or input decode. No encoder, format, pixel, 16-bit or
+  legacy behavior changed.
+- **Formal evidence:** at stable execution commit `c78ba668`, forward/reverse
+  reports are byte-identical at 5,977 bytes / SHA
+  `eb070d23e80a991b5c8ac416f11141c735ddc2aa90686652a6c022b4a3b3c3fb`.
+  All 20 unsupported/supported/legacy cases and every frozen source,
+  predecode, publication and residue gate pass. Evidence/test commit
+  `68f1d236`; tracked evidence Git-LF SHA-256
+  `f073ff4882c5359b3a7b9051fadf24167766d6a97c116317fcf470f857515c01`.
+- **Shared-index correction:** while U4.5G and U7.2T used disjoint code paths,
+  `7c85e8e1` also captured two already-staged, intended U4.5G contract/config
+  corrections. The exact foreign files and ownership were disclosed to that
+  leaf owner; no amend/reset or duplicate commit was used, and neither leaf's
+  owned implementation was altered.
+- **Verification and handoff:** 23 focused/audit/evidence tests pass; the full
+  U7.2 family reports 236 passed and 4 skipped. Ruff, py_compile, JSON,
+  source-lock, byte-exact report and diff checks pass. Claim remains private
+  Look Approximation preflight only—not a new output format, package, installer,
+  public release, calibrated stock response or physical-film reproduction.
+  Stop adjacent output-option wrappers and return to independently observed
+  product defects.
