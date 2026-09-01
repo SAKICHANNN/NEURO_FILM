@@ -23339,3 +23339,30 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Existing whole-file Ruff findings outside the touched lines were not
   reformatted. Claim remains deterministic `film-inspired / Look
   Approximation`; no calibrated-stock, physical-film or public-release claim.
+
+### 2026-09-02 - U7.20B rejects invalid desktop startup inputs before Tk
+
+- **Node and routing:** `ULT > U7 productization > U7.20B`, DRPT L2 / Mode C,
+  R1 local. `dev-research-reliability` was the sole writer; router, structure
+  and agent-log disciplines were read-only secondary checks. The long-lived
+  Look Approximation Goal remains accurate; no leaf Goal was created or
+  replaced. Both parallel tasks confirmed exact code and shared-doc ownership.
+- **Trigger and invariant:** the current installed `kmcfm-desktop.cmd --input`
+  path reproduced a missing-file traceback with process exit `1`. Freeze
+  `48847e7e` requires missing files and directories to reject before Tk, pixel
+  decode or scratch creation with process exit `2`, one product error line and
+  no traceback; omitted input and one existing file must retain normal startup.
+- **Repair:** implementation `5853b983` adds one narrow optional startup-input
+  resolver to `scripts/open_product_desktop.py` and passes its resolved file to
+  the unchanged native workflow. It reuses the entrypoint's existing preflight
+  error boundary; UI, renderer, catalog, format and recipe code are untouched.
+- **Verification and boundary:** four frozen tests pass. A 48-test focused and
+  adjacent run passes with one host-capability skip. A broader 142-case Tk run
+  records 134 passes, one skip and seven cross-module Tcl/image-lifetime
+  failures; every affected module passes in a fresh process (67/67). Direct and
+  installed-runtime probes confirm invalid exit `2` without traceback plus
+  valid/omitted-input exit `0`. The catalog remains unchanged, and the frozen
+  Ektar `.65` output is still `fc51547d...2087d` with one `assumed_srgb`
+  warning and `look-approximation` evidence. Ruff, compileall and diff checks
+  pass. No new format, pixel behavior, calibrated-stock, physical-film or
+  public-release claim; no push.
