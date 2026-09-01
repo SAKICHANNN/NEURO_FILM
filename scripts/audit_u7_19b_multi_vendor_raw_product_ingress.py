@@ -303,6 +303,18 @@ def _scientific_view(report: dict[str, Any]) -> dict[str, Any]:
     return value
 
 
+def _prepare_controller_root(path: Path) -> bool:
+    """Create an owned controller root, clearing only an empty directory tree."""
+    recovered_empty_tree = False
+    if path.exists():
+        if any(item.is_file() for item in path.rglob("*")):
+            raise U719BError("owned controller scratch contains files")
+        shutil.rmtree(path)
+        recovered_empty_tree = True
+    path.mkdir(parents=True)
+    return recovered_empty_tree
+
+
 def execute_preflight(
     config_path: Path, producer_repo: Path, *, reverse: bool
 ) -> dict[str, Any]:
@@ -320,9 +332,7 @@ def execute_preflight(
         raise U719BError("a frozen extension is absent from public RAW_SUFFIXES")
 
     controller_root = ROOT / "tmp/u7_19b_multi_vendor_raw_product_ingress"
-    if controller_root.exists():
-        raise U719BError("owned controller scratch exists before execution")
-    controller_root.mkdir(parents=True)
+    recovered_empty_tree = _prepare_controller_root(controller_root)
     try:
         strata = list(config["strata"])
         if reverse:
@@ -375,6 +385,7 @@ def execute_preflight(
         "passed_extensions": passed,
         "results": results,
         "runtime": {"checks": runtime, **config["runtime"]},
+        "scratch_recovered_empty_tree": recovered_empty_tree,
         "schema": PREFLIGHT_SCHEMA,
         "scratch_residue_files": 0
         if not controller_root.exists()
@@ -426,9 +437,7 @@ def execute_formal(
         raise U719BError("admitted extensions differ from frozen preflight")
 
     controller_root = ROOT / "tmp/u7_19b_multi_vendor_raw_product_ingress"
-    if controller_root.exists():
-        raise U719BError("owned controller scratch exists before formal execution")
-    controller_root.mkdir(parents=True)
+    recovered_empty_tree = _prepare_controller_root(controller_root)
     try:
         extensions = list(admitted)
         if reverse:
@@ -497,6 +506,7 @@ def execute_formal(
         "preflight_reports": reports,
         "product_records": product_records,
         "runtime": {"checks": runtime, **config["runtime"]},
+        "scratch_recovered_empty_tree": recovered_empty_tree,
         "schema": FORMAL_SCHEMA,
         "scratch_residue_files": 0 if not controller_root.exists() else 1,
         "status": "PASS_PRIVATE_U7_19B_MULTI_VENDOR_RAW_PRODUCT_INGRESS"

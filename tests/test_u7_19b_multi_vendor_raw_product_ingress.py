@@ -122,3 +122,14 @@ def test_u7_19b_execution_lock_admits_exact_preflight_extensions() -> None:
     assert execution["preflight_scientific_identity"] == (
         "sha256:b9109865bcf2f27718f1323fdb64fc3ae1305f271c49a47e94bf150be8056b30"
     )
+
+
+def test_u7_19b_controller_root_recovers_only_empty_tree(tmp_path: Path) -> None:
+    root = tmp_path / "owned"
+    (root / "empty-child").mkdir(parents=True)
+    assert audit._prepare_controller_root(root) is True
+    assert root.is_dir()
+    (root / "foreign.bin").write_bytes(b"x")
+    with pytest.raises(audit.U719BError, match="contains files"):
+        audit._prepare_controller_root(root)
+    assert (root / "foreign.bin").read_bytes() == b"x"
