@@ -1,0 +1,80 @@
+{
+  "schema": "neuro_film.u4_2a_current_three_look_style_appeal.v1",
+  "schema_version": 1,
+  "experiment_id": "u4.2a-current-three-look-style-appeal-v1",
+  "node": "ULT > U4 > U4.2 > U4.2A",
+  "status": "contract_frozen_build_ready",
+  "parents": {
+    "u4_1a_evidence_commit": "4af18939d6567a96144d8df218974c0a64859227",
+    "u4_1a_formal_source_commit": "7938967269f7b08672cf6e0384eb95eefd58bcd5",
+    "u4_1a_report": {
+      "path": "outputs/eval/u4_1a_three_stock_gold_severe_adjudication_v1/formal_forward_v2.json",
+      "sha256": "90ae1784c24d855f888d1f91110d46ed37e23c3c80e7f9a8dca0ee96a58ff5b5",
+      "required_status": "PASS_NO_CONFIRMED_SEVERE_ARTIFACT_ACROSS_81_ARM_ROTATED_GOLD_VERDICTS"
+    }
+  },
+  "implementation_bindings": {
+    "product_profile": {
+      "path": "configs/render_profiles/safe_rich_product_v1.json",
+      "sha256": "09722cb48c55d1c4c460220c9f59b9ced81801c1b6fe856708a27f5cc99d39fe"
+    },
+    "product_look_core": {
+      "path": "src/inference/three_stock_look.py",
+      "sha256": "43f758c999121be20f42c40d36ed25d56a7f478c669bc20379fbf1612dd1c943"
+    },
+    "blind_protocol_core": {
+      "path": "src/filmcase/vision_audit.py",
+      "sha256": "bb700eb39e35f65a9e1a0114c06711fdda1d27772cc7e5dbc620ab896a2786dc"
+    }
+  },
+  "population": {
+    "sample_ids": ["01", "05", "08", "09", "11", "18", "21", "29", "FS_FACE_01"],
+    "expected_samples": 9,
+    "replacement_allowed": false
+  },
+  "arms": [
+    "velvia_50",
+    "portra_400",
+    "ektar_100",
+    "identity_product_path"
+  ],
+  "identity_control": {
+    "film_stock_id": "fujifilm_velvia_50",
+    "look_amount": 0.0,
+    "optional_effects_disabled": true,
+    "same_input_decode_and_product_profile_required": true
+  },
+  "blind_protocol": {
+    "seed": 420260901,
+    "rounds": 3,
+    "labels": ["A", "B", "C", "D"],
+    "expected_observations": 108,
+    "mapping_must_remain_unread_until_observations_are_frozen": true,
+    "additional_rounds_after_reveal_allowed": false
+  },
+  "gates": {
+    "formal_reports_byte_exact": true,
+    "all_observations_complete": true,
+    "maximum_severe_yes_per_look": 0,
+    "maximum_severe_uncertain_per_look": 0,
+    "minimum_style_median_of_samples_per_look": 3.0,
+    "minimum_paired_style_delta_median_vs_identity": 1.0,
+    "minimum_samples_with_style_delta_at_least_one": 6,
+    "minimum_paired_appeal_delta_median_vs_identity": 0.0,
+    "minimum_samples_with_appeal_at_least_identity": 6,
+    "required_passing_named_looks": 3
+  },
+  "forbidden_rescue": [
+    "revote_or_extra_round",
+    "threshold_relaxation",
+    "rerender_named_look",
+    "look_amount_or_parameter_tuning",
+    "sample_replacement",
+    "candidate_drop_or_relabel",
+    "stock_distinguishability_reinterpretation"
+  ],
+  "production_default_changed": false,
+  "training_allowed": false,
+  "operator_fitting_allowed": false,
+  "claim_ceiling": "autonomous style/appeal value of three unchanged deterministic Look Approximation outputs versus exact identity on one nine-input gold set; not human or population preference, product promotion, stock distinguishability, calibration, physical-film reproduction or authenticity"
+}
