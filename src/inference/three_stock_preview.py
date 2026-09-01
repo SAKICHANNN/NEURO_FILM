@@ -19,6 +19,7 @@ from scripts.pipeline_color_baseline import load_guardrail_config
 from src.preprocess import (
     inspect_input,
     load_jpeg_preview_working_image,
+    load_raw_preview_working_image,
     load_working_image,
     save_srgb8,
     working_image_to_srgb_float,
@@ -35,7 +36,11 @@ class ThreeStockPreviewError(ValueError):
 def preview_dimensions(width: int, height: int, max_pixels: int) -> tuple[int, int]:
     """Return deterministic aspect-preserving dimensions without upsampling."""
 
-    for value, label in ((width, "width"), (height, "height"), (max_pixels, "max_pixels")):
+    for value, label in (
+        (width, "width"),
+        (height, "height"),
+        (max_pixels, "max_pixels"),
+    ):
         if isinstance(value, bool) or not isinstance(value, int) or value < 1:
             raise ThreeStockPreviewError(f"{label} must be a positive integer")
     if width * height <= max_pixels:
@@ -85,7 +90,9 @@ def preview_fidelity_metrics(
     return {
         "rgb_rmse": float(np.sqrt(np.mean(np.square(absolute), dtype=np.float64))),
         "rgb_absolute_error_p95": float(np.percentile(absolute, 95.0)),
-        "new_boundary_fraction": float(np.mean(candidate_boundary & reference_interior)),
+        "new_boundary_fraction": float(
+            np.mean(candidate_boundary & reference_interior)
+        ),
     }
 
 
@@ -104,6 +111,7 @@ def render_three_stock_previews_to_directory(
     tile_workers: int = 1,
     png_compression: int = 6,
     jpeg_scaled_decode: bool = False,
+    raw_half_size_decode: bool = False,
 ) -> dict[str, Any]:
     """Render all three previews after one linear-light area downsample."""
 
@@ -123,6 +131,12 @@ def render_three_stock_previews_to_directory(
         raise ThreeStockPreviewError("png_compression must be an integer in [0, 9]")
     if not isinstance(jpeg_scaled_decode, bool):
         raise ThreeStockPreviewError("jpeg_scaled_decode must be a boolean")
+    if not isinstance(raw_half_size_decode, bool):
+        raise ThreeStockPreviewError("raw_half_size_decode must be a boolean")
+    if jpeg_scaled_decode and raw_half_size_decode:
+        raise ThreeStockPreviewError(
+            "jpeg_scaled_decode and raw_half_size_decode are mutually exclusive"
+        )
     if not input_path.is_file():
         raise ThreeStockPreviewError("input_path must be an existing file")
     if output_directory.exists():
@@ -147,6 +161,15 @@ def render_three_stock_previews_to_directory(
     use_scaled_decode = jpeg_scaled_decode and (
         (preview_width, preview_height) != (source_width, source_height)
     )
+    use_raw_half_size = raw_half_size_decode and (
+        (preview_width, preview_height) != (source_width, source_height)
+    )
+    if raw_half_size_decode and inspection.source_kind != "raw":
+        raise ThreeStockPreviewError("raw_half_size_decode requires a RAW input")
+    if raw_half_size_decode and not use_raw_half_size:
+        raise ThreeStockPreviewError(
+            "raw_half_size_decode requires a downsampled preview"
+        )
     if use_scaled_decode:
         try:
             working = load_jpeg_preview_working_image(
@@ -156,9 +179,20 @@ def render_three_stock_previews_to_directory(
             )
         except ValueError as exc:
             raise ThreeStockPreviewError(str(exc)) from exc
+    elif use_raw_half_size:
+        try:
+            working = load_raw_preview_working_image(input_path)
+        except (RuntimeError, ValueError) as exc:
+            raise ThreeStockPreviewError(str(exc)) from exc
     else:
         working = load_working_image(input_path)
     decoded_height, decoded_width = working.pixels.shape[:2]
+    if use_raw_half_size and (
+        decoded_width < preview_width or decoded_height < preview_height
+    ):
+        raise ThreeStockPreviewError(
+            "RAW half-size decode is smaller than the requested preview geometry"
+        )
     if (preview_width, preview_height) == (source_width, source_height):
         preview_linear = np.ascontiguousarray(working.pixels.copy())
     else:
@@ -223,7 +257,12 @@ def render_three_stock_previews_to_directory(
                 "libjpeg scaled decode then linear-light INTER_AREA resize before "
                 "shared-context render"
                 if use_scaled_decode
-                else "linear-light INTER_AREA resize before shared-context render"
+                else (
+                    "LibRaw half-size demosaic then linear-light INTER_AREA resize "
+                    "before shared-context render"
+                    if use_raw_half_size
+                    else "linear-light INTER_AREA resize before shared-context render"
+                )
             ),
             "rows": rows,
             "claim_ceiling": (
@@ -231,6 +270,8 @@ def render_three_stock_previews_to_directory(
                 "not final export, calibrated stock response or stock distinguishability."
             ),
         }
+        if use_raw_half_size:
+            manifest["raw_half_size_decode"] = True
         atomic_write_json(stage / "preview.json", manifest)
         os.rename(stage, output_directory)
         return manifest
