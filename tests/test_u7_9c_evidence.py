@@ -19,8 +19,12 @@ def _git(*arguments: str) -> str:
     ).stdout.strip()
 
 
-def _sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+def _git_bytes(*arguments: str) -> bytes:
+    return subprocess.run(
+        ["git", "-C", str(ROOT), *arguments],
+        check=True,
+        capture_output=True,
+    ).stdout
 
 
 def test_u7_9c_evidence_is_internally_exact() -> None:
@@ -54,16 +58,18 @@ def test_u7_9c_source_identities_resolve() -> None:
         f'{accepted["commit"]}:scripts/audit_u7_9c_product_runtime_startup_isolation.py',
     ) == accepted["audit_git_blob"]
     paths = {
-        "config_sha256": ROOT / "configs" / "u7_9c_product_runtime_startup_isolation_v1.json",
-        "contract_sha256": ROOT
-        / "docs"
-        / "planning"
-        / "U7_9C_PRODUCT_RUNTIME_STARTUP_ISOLATION_CONTRACT.md",
-        "installer_sha256": ROOT / "scripts" / "install_product_runtime.py",
-        "renderer_sha256": ROOT / "scripts" / "render_film.py",
-        "requirements_sha256": ROOT / "requirements-product-v2.txt",
+        "config_sha256": "configs/u7_9c_product_runtime_startup_isolation_v1.json",
+        "contract_sha256": "docs/planning/U7_9C_PRODUCT_RUNTIME_STARTUP_ISOLATION_CONTRACT.md",
+        "installer_sha256": "scripts/install_product_runtime.py",
+        "renderer_sha256": "scripts/render_film.py",
+        "requirements_sha256": "requirements-product-v2.txt",
     }
-    assert {key: _sha256(path) for key, path in paths.items()} == report["source"]
+    assert {
+        key: hashlib.sha256(
+            _git_bytes("show", f'{accepted["commit"]}:{relative}')
+        ).hexdigest()
+        for key, relative in paths.items()
+    } == report["source"]
 
 
 def test_u7_9c_excluded_attempts_are_not_relabelled() -> None:
