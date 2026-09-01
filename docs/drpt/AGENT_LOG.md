@@ -21701,3 +21701,39 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   capability skips in 161.20 seconds. Ruff, format and diff checks pass. This
   is evidence-integrity and CI repair only, not a new product capability,
   calibration, package, installer or release result.
+
+### 2026-09-01 - U7.2R closes the incomplete product effect preflight
+
+- **Node and routing:** `ULT > U7 > U7.2R`, DRPT L2 / Mode C. The sole write
+  workflow was `dev-research-reliability`; router, DRPT-BI, plan,
+  project-structure and agent-log disciplines were read-only secondary
+  reviewers. Exact ownership was coordinated with the concurrent U7.2S leaf;
+  U7.2R alone changed `render_film.py` and its new-only artifacts.
+- **Observed defect and retained repair:** deterministic pre-change injection
+  proved that product `NaN`, negative/out-of-range grain/halation/dust and an
+  out-of-int32 seed all crossed the input-decode boundary. Commit `71b19760`
+  makes `--product-look` reject those values in argument parsing. Historical
+  and research invocations, physical-halation expert controls, effect
+  algorithms, profiles and schemas remain unchanged.
+- **Frozen terminal result:** contract `02caa1cc`, protocol lock `f94baa2a`,
+  runner `5f1afc3d`, evidence/test `970e4e7b`. All 17 invalid rows reject with
+  stable option-specific messages before input decode and publish nothing;
+  strengths 0/1 and the int32 maximum execute. The frozen complete gate fails
+  only because the existing renderer cannot execute the recipe-valid signed
+  int32 minimum seed `-2147483648`. The three default product image hashes and
+  exact U7.2O Ektar image/layers/normalized recipe+metrics remain unchanged.
+- **Evidence and execution correction:** sequential from-zero forward/reverse
+  reports are byte-identical at 6,694 bytes / SHA
+  `1ff89227e7af9ed3fdb517cf2395ba24c0e094f835c5c7c4f33beae64457c369`;
+  9/10 gates pass. An earlier concurrent pair is transparently excluded: both
+  already failed the same seed boundary and differed only because one process
+  observed the other's owned `u7_2r_*` scratch root. No source, pixel oracle,
+  gate, threshold or algorithm changed before sequential restart. Tracked
+  evidence Git-LF SHA-256 is
+  `8ce65a299cc3bea82e751e4465fb734a713c7e486f83692d2f45a96cbf804670`.
+- **Verification and propagation:** 30 focused/evidence tests and the earlier
+  45 U7.2O/U7.2R adjacent tests pass; Ruff, compileall, JSON, source-object,
+  exact report and diff checks pass. The invalid-effect safety improvement is
+  retained, but complete signed-int32 execution, negative-seed rescue,
+  calibrated stock, physical-film, package, release and adjacent argument
+  wrapper claims remain closed.
