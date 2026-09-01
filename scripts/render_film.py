@@ -287,6 +287,48 @@ def parse_args() -> argparse.Namespace:
                 parser.error(f"{option} must be finite and in [0,1]")
         if not -(2**31) <= args.seed <= 2**31 - 1:
             parser.error("--seed must be a signed 32-bit integer")
+        if args.halation_model == "physical":
+            if args.halation_control_mode != "locked":
+                parser.error(
+                    "--product-look physical halation requires locked controls"
+                )
+            locked_domains = (
+                ("--halation-amount", args.halation_amount, 0.0, 2.4),
+                ("--halation-impact", args.halation_impact, 0.0, 1.0),
+                (
+                    "--halation-anti-halation",
+                    args.halation_anti_halation,
+                    0.0,
+                    1.0,
+                ),
+                (
+                    "--halation-source-selectivity",
+                    args.halation_source_selectivity,
+                    0.0,
+                    1.0,
+                ),
+                ("--halation-diffusion", args.halation_diffusion, 0.0, 1.0),
+                ("--halation-warm-core", args.halation_warm_core, 0.0, 1.0),
+                (
+                    "--halation-background-visibility",
+                    args.halation_background_visibility,
+                    0.0,
+                    1.0,
+                ),
+            )
+            for option, value, minimum, maximum in locked_domains:
+                if value is not None and (
+                    not np.isfinite(value) or not minimum <= value <= maximum
+                ):
+                    parser.error(
+                        f"{option} must be finite and in [{minimum:g},{maximum:g}]"
+                    )
+            try:
+                resolve_physical_halation_controls(
+                    _locked_physical_halation_controls(args)
+                )
+            except (TypeError, ValueError) as exc:
+                parser.error(f"invalid product physical halation controls: {exc}")
         if (
             args.output is not None
             and args.output_bit_depth == 8
@@ -341,6 +383,46 @@ def save_rgb(
 
 def _arg_or(value, fallback):
     return fallback if value is None else value
+
+
+def _locked_physical_halation_controls(
+    args: argparse.Namespace,
+) -> PhysicalHalationControls:
+    base_controls = (
+        get_halation_preset(args.halation_preset).controls
+        if args.halation_preset
+        else PhysicalHalationControls()
+    )
+    return PhysicalHalationControls(
+        model_family=base_controls.model_family
+        if args.halation_model_family == "auto"
+        else args.halation_model_family,
+        halation_type=base_controls.halation_type
+        if args.halation_type == "auto"
+        else args.halation_type,
+        color_response=_arg_or(
+            args.halation_color_response, base_controls.color_response
+        ),
+        profile=_arg_or(args.halation_profile, base_controls.profile),
+        amount=args.halation
+        if args.halation_amount is None
+        else args.halation_amount,
+        impact=_arg_or(args.halation_impact, base_controls.impact),
+        anti_halation=_arg_or(
+            args.halation_anti_halation, base_controls.anti_halation
+        ),
+        source_selectivity=_arg_or(
+            args.halation_source_selectivity,
+            base_controls.source_selectivity,
+        ),
+        diffusion=_arg_or(args.halation_diffusion, base_controls.diffusion),
+        warm_core=_arg_or(args.halation_warm_core, base_controls.warm_core),
+        background_visibility=_arg_or(
+            args.halation_background_visibility,
+            base_controls.background_visibility,
+        ),
+        source_normalization=args.halation_source_normalization,
+    )
 
 
 def _verify_recipe_profile_assets(profile: dict, args: argparse.Namespace) -> None:
@@ -819,42 +901,8 @@ def main() -> int:
             }
         elif args.halation_model == "physical":
             if args.halation_control_mode == "locked":
-                base_controls = (
-                    get_halation_preset(args.halation_preset).controls
-                    if args.halation_preset
-                    else PhysicalHalationControls()
-                )
                 halation_preset_id = args.halation_preset
-                controls = PhysicalHalationControls(
-                    model_family=base_controls.model_family
-                    if args.halation_model_family == "auto"
-                    else args.halation_model_family,
-                    halation_type=base_controls.halation_type
-                    if args.halation_type == "auto"
-                    else args.halation_type,
-                    color_response=_arg_or(
-                        args.halation_color_response, base_controls.color_response
-                    ),
-                    profile=_arg_or(args.halation_profile, base_controls.profile),
-                    amount=args.halation
-                    if args.halation_amount is None
-                    else args.halation_amount,
-                    impact=_arg_or(args.halation_impact, base_controls.impact),
-                    anti_halation=_arg_or(
-                        args.halation_anti_halation, base_controls.anti_halation
-                    ),
-                    source_selectivity=_arg_or(
-                        args.halation_source_selectivity,
-                        base_controls.source_selectivity,
-                    ),
-                    diffusion=_arg_or(args.halation_diffusion, base_controls.diffusion),
-                    warm_core=_arg_or(args.halation_warm_core, base_controls.warm_core),
-                    background_visibility=_arg_or(
-                        args.halation_background_visibility,
-                        base_controls.background_visibility,
-                    ),
-                    source_normalization=args.halation_source_normalization,
-                )
+                controls = _locked_physical_halation_controls(args)
                 halation_resolved = resolve_physical_halation_controls(controls)
                 halation_metadata = describe_physical_halation_controls(controls)
                 layers.append(build_physical_halation_layer(base, controls))

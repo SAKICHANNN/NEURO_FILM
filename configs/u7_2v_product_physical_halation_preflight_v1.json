@@ -2,7 +2,7 @@
   "schema_version": "neuro-film.u7-2v-product-physical-halation-preflight.v1",
   "decision": "prospective",
   "parent": "U7.2U",
-  "contract_commit": null,
+  "contract_commit": "9e5897595d14894541480f9545164097dad84a12",
   "implementation_commit": null,
   "source_locks": {},
   "product_looks": [
