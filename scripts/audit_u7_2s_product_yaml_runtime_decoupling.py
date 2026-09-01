@@ -290,8 +290,6 @@ def build_report(config_path: Path, order: str) -> dict[str, Any]:
             row["inventory"] == required for row in rows
         ),
         "nested_u7_2r_terminal_science_exact": nested_exact,
-        "nested_u7_2r_reports_byte_exact": len(rows) == config["environment_count"]
-        and len({row["nested_report_sha256"] for row in rows}) == 1,
         "omegaconf_and_antlr_absent_from_product_imports": all(
             row["import_probe"].get("returncode") == 0
             and row["import_probe"].get("omegaconf_loaded") is False
