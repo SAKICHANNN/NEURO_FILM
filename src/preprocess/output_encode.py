@@ -96,19 +96,36 @@ def _publish_output(
 
 
 def _save_srgb8(
-    rgb: np.ndarray, path: Path, *, create_only: bool
+    rgb: np.ndarray,
+    path: Path,
+    *,
+    png_compression: int | None = None,
+    create_only: bool,
 ) -> tuple[str, PublishedFileIdentity | None]:
     """Internal RGB8 encoder retaining the exact publication identity."""
     if rgb.ndim != 3 or rgb.shape[2] != 3:
         raise ValueError("sRGB output must be an HxWx3 array")
     if not np.isfinite(rgb).all():
         raise ValueError("sRGB output contains non-finite values")
+    suffix = path.suffix.casefold()
     try:
-        format_name, options = _OUTPUT_FORMATS[path.suffix.casefold()]
+        format_name, base_options = _OUTPUT_FORMATS[suffix]
     except KeyError as exc:
         raise ValueError(
             f"unsupported output extension: {path.suffix or '<none>'}"
         ) from exc
+    if png_compression is not None:
+        if suffix != ".png":
+            raise ValueError("PNG compression level requires a .png extension")
+        if (
+            isinstance(png_compression, bool)
+            or not isinstance(png_compression, int)
+            or not 0 <= png_compression <= 9
+        ):
+            raise ValueError("PNG compression level must be an integer in [0, 9]")
+    options = dict(base_options)
+    if png_compression is not None:
+        options["compress_level"] = png_compression
     encoded = np.rint(np.clip(rgb, 0.0, 1.0) * 255.0).astype(np.uint8)
     image = Image.fromarray(encoded, mode="RGB")
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -122,9 +139,20 @@ def _save_srgb8(
     return format_name, identity
 
 
-def save_srgb8(rgb: np.ndarray, path: Path, *, create_only: bool = False) -> str:
+def save_srgb8(
+    rgb: np.ndarray,
+    path: Path,
+    *,
+    png_compression: int | None = None,
+    create_only: bool = False,
+) -> str:
     """Encode finite HxWx3 display-sRGB values according to the file extension."""
-    format_name, _identity = _save_srgb8(rgb, path, create_only=create_only)
+    format_name, _identity = _save_srgb8(
+        rgb,
+        path,
+        png_compression=png_compression,
+        create_only=create_only,
+    )
     return format_name
 
 

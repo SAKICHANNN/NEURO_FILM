@@ -229,7 +229,11 @@ def render_three_stock_previews_to_directory(
             style = catalog_row["style_id"]
             filename = f"{style}.preview.png"
             staged_output = stage / filename
-            save_srgb8(output, staged_output)
+            save_srgb8(
+                output,
+                staged_output,
+                png_compression=png_compression,
+            )
             del output
             rows.append(
                 {
@@ -252,6 +256,7 @@ def render_three_stock_previews_to_directory(
             "decoded_width": decoded_width,
             "decoded_height": decoded_height,
             "jpeg_scaled_decode": use_scaled_decode,
+            "png_compression": png_compression,
             "look_amount": float(look_amount),
             "preview_basis": (
                 "libjpeg scaled decode then linear-light INTER_AREA resize before "
