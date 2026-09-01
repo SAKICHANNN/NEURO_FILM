@@ -45,8 +45,13 @@ and chosen destination.
 - A final `DesktopBatchReceipt` follows the existing completion dialog/status.
 - A `DesktopBatchProgressReceipt` is a truthful successful pause, not an
   error. The UI returns to an enabled preview state and reports exact completed
-  and remaining counts plus the instruction to select the same inputs, look,
-  strength and destination to resume.
+  and remaining counts, separately names reused and newly completed counts,
+  plus the instruction to select the same inputs, look, strength and
+  destination to resume.
+- Before U7.12D returns, the UI must not inspect or summarize checkpoint
+  contents. Initial copy says it is checking verified progress; callback copy
+  says **Completed X/Y**, not **Rendered X/Y**, because X may include reused
+  children from a prior process.
 - Cancel says **Pausing safely after the current photo…** and sets only the
   existing event. It does not delete verified children.
 - Close during a batch sets the same event, waits for the foreground batch
@@ -68,7 +73,7 @@ Success requires:
 4. the batch UI calls U7.12D, never legacy `export_batch`, with exact bound
    inputs/look/workspace/destination/cancel/progress;
 5. a paused receipt restores controls without error dialog and reports exact
-   counts/instructions;
+   completed/reused/new/remaining counts and resume instructions;
 6. a final receipt follows unchanged completion behavior;
 7. cancel and close preserve the workspace and non-daemon wait semantics;
 8. mismatched workspace/foreign destination errors remain fail-closed and are

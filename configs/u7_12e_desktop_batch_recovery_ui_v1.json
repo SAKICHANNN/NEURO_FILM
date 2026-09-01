@@ -25,7 +25,11 @@
     "cancel_copy": "Pausing safely after the current photo…",
     "paused_receipt_is_error": false,
     "paused_copy_binds_completed_and_remaining_counts": true,
+    "paused_copy_separates_reused_and_new_counts": true,
     "paused_copy_requires_same_inputs_look_strength_destination": true,
+    "initial_copy": "Checking verified progress and rendering remaining photos…",
+    "progress_copy": "Completed X/Y: basename",
+    "ui_reads_checkpoint": false,
     "single_photo_path_unchanged": true,
     "legacy_export_batch_called_by_ui": false,
     "u7_12d_entry_point_called_explicitly": true
