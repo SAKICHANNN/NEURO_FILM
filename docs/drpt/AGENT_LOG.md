@@ -23082,3 +23082,43 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   calibrated/physical stock response, distinguishability, public release,
   arbitrary-media quality or product value. Stop adjacent selector variants;
   no push occurred.
+
+### 2026-09-02 - U7.16A adds exact full-resolution desktop detail inspection
+
+- **Node and routing:** `ULT > U7 productization > U7.16A`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the sole writer; structure and agent-log
+  disciplines were read-only secondary checks. The active Goal remained the
+  single long-lived Look Approximation product Goal. Producer/consumer paths
+  were clear, and foreign `.codex/` / `tmp/` stayed untracked and unstaged.
+- **Product repair:** contract `672f16a2` freezes an honest detail boundary:
+  never upscale the 300x260 cards and never render an isolated crop with the
+  wrong whole-image context. Implementation `b32315ea` adds a preview-card
+  point selector and `Inspect selected at 1:1`. The helper invokes the
+  unchanged full-resolution export, validates the output/strict-recipe receipt,
+  crops at native spatial sampling, converts only the viewer crop to RGB8 and
+  identity-cleans the temporary pair. Input, representative, amount, Look,
+  format, failure and close invalidate old detail authority. Unknown or
+  tampered members are preserved and fail closed.
+- **Formal evidence:** controller lineage `430023a7` / `12b461bb` / `9566721c`
+  / `fee86cc4` makes only additive audit-identity corrections. V1 compares a
+  Windows worktree SHA to LF Git bytes; V2 records one U7.10A return code
+  without a failure node, immediately followed by a 20/20 isolated pass; V3
+  has both directions individually pass but serializes unique destination
+  recipe hashes into science. All are retained and excluded. Accepted V4
+  forward/reverse reports are byte-identical at 4,864 bytes / SHA
+  `4573b16abe5d2801199c44d4dd78de6e69c7c1c60c9dcec196c62aaf9e09c177`;
+  scientific identity is
+  `9561ff070ab971308d47217d433ac16a9ec461ce1f508e6ce643e506bd895c4f`.
+  Evidence commit `d53008e1` binds the result.
+- **Measured result and boundary:** frozen 4032x6048 JPEG input SHA
+  `7ea3d1ed...68d1c6`, Ektar amount `.65`, PNG16 and point `(.73,.31)` produce
+  temporary and ordinary full-output SHA `6a59b27a...e603`. Crop
+  `[2687,1619,3199,2131]` is exactly 512x512 and RGB SHA
+  `82b359a9...07ff` equals the independent final-output oracle. All 15 formal
+  gates, ten isolated behavioral suites, 21 focused tests and five audit tests
+  pass; Ruff, new-file format, compile, JSON and diff checks pass; owned
+  residue is zero. This is private Windows/Python spatial inspection for
+  deterministic `film-inspired / Look Approximation`, not exact 16-bit viewer
+  codes, display calibration, calibrated stock response, physical film,
+  distinguishability, HDR/wide gamut, public release or cross-platform GUI.
+  Stop adjacent loupe/zoom/history/automatic-point/cache expansion; no push.

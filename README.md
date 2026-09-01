@@ -94,6 +94,14 @@ response. Preview scratch uses the repository-relative `tmp` junction by
 default. This is a private repository-bound Windows workflow, not a standalone
 or public app.
 
+After previews finish, click inside the selected Look card to choose a spatial
+point, then use **Inspect selected at 1:1**. The desktop renders the unchanged
+full-resolution export to an identity-bound temporary pair, crops at native
+output sampling, and removes that pair after verification. Batch inspection
+uses the already selected representative. `1:1` describes spatial sampling;
+the window converts the crop to an RGB8 viewer image and does not claim exact
+16-bit sample codes or display calibration.
+
 The private runtime is deliberately repository-bound: every launch verifies
 the installed source commit, tracked-clean state and requirements hash. After a
 source update, install into a new absent destination rather than mutating the
@@ -187,4 +195,4 @@ The repository does not currently contain a root `LICENSE` file. Older documents
 
 ---
 
-*Last updated: 2026-09-01. Current default: deterministic content-safe Look Approximation renderer. FARO/FilmStyleSafe supports evaluation and product safety; calibrated named-stock work remains a separately gated future branch.*
+*Last updated: 2026-09-02. Current default: deterministic content-safe Look Approximation renderer. FARO/FilmStyleSafe supports evaluation and product safety; calibrated named-stock work remains a separately gated future branch.*
