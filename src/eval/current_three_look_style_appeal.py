@@ -304,6 +304,7 @@ def materialize_blind_package(
         "identity_rows": identity_rows,
         "public_manifest_sha256": sha256_bytes(manifest_payload),
         "sheet_rows": sheet_rows,
+        "builder_mapping_used_in_memory": True,
         "mapping_persisted": False,
         "network_reads": 0,
         "status": "READY_FOR_FROZEN_BLIND_OBSERVATIONS",

@@ -9,6 +9,7 @@ from src.eval.current_three_look_style_appeal import (
     contact_sheet_bytes,
     evaluate_observations,
     load_parent_rows,
+    materialize_blind_package,
     sha256_bytes,
 )
 from src.filmcase.vision_audit import build_blind_audit
@@ -89,3 +90,13 @@ def test_config_has_frozen_no_rescue_claim_boundary() -> None:
     assert CONFIG["operator_fitting_allowed"] is False
     assert product_output_format("png16").recipe_format == "PNG"
     assert sha256_bytes(b"stable") == sha256_bytes(b"stable")
+
+
+def test_builder_contract_distinguishes_in_memory_mapping_from_reviewer_access() -> (
+    None
+):
+    source = Path(materialize_blind_package.__code__.co_filename).read_text(
+        encoding="utf-8"
+    )
+    assert '"builder_mapping_used_in_memory": True' in source
+    assert '"mapping_persisted": False' in source
