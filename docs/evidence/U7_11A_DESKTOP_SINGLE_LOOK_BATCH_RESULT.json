@@ -1,0 +1,130 @@
+{
+  "bindings": {
+    "audit_test_sha256": "af0e8b50c25e2fcd6b1cf52b422d70b12614d5316ef009f0bf344e53c6a30d75",
+    "config_sha256": "26a419aef97ac133885aa8dc0ade7884471707a372a9789a09424b04195db79d",
+    "contract_sha256": "8f6a1271f50f72fead388f769ac14aa7315d42ab50be34d16f744fa56963baef",
+    "core_sha256": "acb366af5c1d6f4f9e683158813655f7a72734ff5ebfec3d1d3f998984b5aeba",
+    "test_sha256": "989a826b28538e9f34b0c85a34c55e570585df9994138d7a20e5b9f32b9883fb",
+    "ui_sha256": "63f03f69e36775ceaacbd6a280355e071fb7a183642bfb37bf602b8375f86af1"
+  },
+  "claim": "Private Windows desktop single-look batch mechanics only; every named look remains film-inspired / Look Approximation. No calibrated stock response, physical-film reproduction, stock distinguishability, public installer, arbitrary media, or cross-platform GUI claim.",
+  "implementation_commit": "41e1c633f4e6be157ed3cad5178c36f3cac82d79",
+  "schema": "kmcfm.u7-11a-desktop-single-look-batch-result.v1",
+  "scientific": {
+    "canonical_case": {
+      "absolute_path_disclosed_in_receipt": false,
+      "batch_id": "8c0e434c83cf90f60e0e2afc91d205aa1c4be1fc74029006f37c6456018d4b06",
+      "batch_json_sha256": "8268ccae389ba9cd7661ef6b3f6efeed79b56260445d2b9e082fc244dbe2a8e1",
+      "children": [
+        {
+          "direct_image_exact": true,
+          "direct_recipe_exact": true,
+          "input_basename": "a-source.png",
+          "input_sha256": "5eb81b20dc03ca24489610d739806425b8bb7c42e663f9ff8e26ac0fd2bd636c",
+          "output_name": "0001-a-source-ektar_100.png",
+          "output_sha256": "803030c0b4f32a104129f33faab54d71f3ca0f0109e6f23007288526dae90899",
+          "recipe_name": "0001-a-source-ektar_100.recipe.json",
+          "recipe_semantics_sha256": "361b2c0f8cd1cd93301efb5f8d2093f43103fe0714aa956f1314ab3d58b45db5",
+          "recipe_sha256": "677f5a5338ba20fce59f8c2d54a8861b6ca25ab74874c571187265680cbe6fb1",
+          "replay_exact": true,
+          "replay_sha256": "803030c0b4f32a104129f33faab54d71f3ca0f0109e6f23007288526dae90899"
+        },
+        {
+          "direct_image_exact": true,
+          "direct_recipe_exact": true,
+          "input_basename": "B strange SOURCE.png",
+          "input_sha256": "94f0e6e9f06f84bf3582d8aa93cd96d9d8c6f1f7dbb5c0146ca72b5121869195",
+          "output_name": "0002-b-strange-source-ektar_100.png",
+          "output_sha256": "f92985b51841beb9d75e8cc1837aca931bce02e89c4fdaccfff5bb07124e087f",
+          "recipe_name": "0002-b-strange-source-ektar_100.recipe.json",
+          "recipe_semantics_sha256": "bc643df0ef2f3904b46b1a92e3f3be279c616db12fc4ae1c31949ea46bcf4378",
+          "recipe_sha256": "901ef2ea5903529bfaf8856d0e924a38ae7eb13652921b09752d2a2e1f8d318d",
+          "replay_exact": true,
+          "replay_sha256": "f92985b51841beb9d75e8cc1837aca931bce02e89c4fdaccfff5bb07124e087f"
+        }
+      ],
+      "direct_member_count": 4,
+      "input_order": [
+        "a-source.png",
+        "B strange SOURCE.png"
+      ],
+      "job_count": 2,
+      "look_amount": 0.625,
+      "normalized_receipt_sha256": "05a811e866baf8b4bb926f458934ceaeb625bfad440f09a0d1dac74a148011e7",
+      "preview_residue_count": 0,
+      "progress": [
+        [
+          1,
+          2,
+          "a-source.png"
+        ],
+        [
+          2,
+          2,
+          "B strange SOURCE.png"
+        ]
+      ],
+      "raw_receipt_sha256": "36868d0c74352a3d2318cc11bcfcf429c2ce27d7b46c7a74bd6051a1641a9bdc",
+      "receipt_claim": {
+        "calibrated_stock_response": false,
+        "evidence_grade": "look-approximation",
+        "output_label": "film-inspired / Look Approximation",
+        "physical_film_reproduction": false,
+        "stock_distinguishability": false
+      },
+      "receipt_paths_relative": true,
+      "style_id": "ektar_100",
+      "workflow_cleaned": true
+    },
+    "claim_ceiling": {
+      "arbitrary_media_support": false,
+      "calibrated_stock_response": false,
+      "cross_platform_gui": false,
+      "evidence_grade": "look-approximation",
+      "mode": "film-inspired",
+      "physical_film_reproduction": false,
+      "public_release": false,
+      "standalone_installer": false,
+      "stock_distinguishability": false
+    },
+    "gates": {
+      "all_direct_cli_images_exact": true,
+      "all_direct_cli_recipes_exact": true,
+      "all_replays_exact": true,
+      "canonical_forward_reverse_exact": true,
+      "claim_ceiling_exact": true,
+      "exact_member_counts": true,
+      "explicit_single_look_and_amount": true,
+      "progress_exact": true,
+      "raw_child_and_receipt_identities_exact": true,
+      "receipt_is_path_bounded": true,
+      "repo_relative_p_storage": true,
+      "targeted_core_ui_controls_pass": true,
+      "workflow_and_formal_residue_zero": true
+    },
+    "selection_order_confirmation_exact": true,
+    "storage": {
+      "repo_relative_root": "tmp",
+      "resolved_root": "P:/neuro_film_storage/tmp",
+      "windows_directory_publication": true
+    },
+    "targeted_tests": {
+      "all_pass": true,
+      "runs": [
+        {
+          "passed_count": 21,
+          "returncode": 0,
+          "stderr_empty": true
+        },
+        {
+          "passed_count": 21,
+          "returncode": 0,
+          "stderr_empty": true
+        }
+      ]
+    }
+  },
+  "scientific_identity_sha256": "b14a624a21d95e0092857a7df2bd1c69730cfdc780240d5d7a9ba44463878283",
+  "source_commit": "662e1c80fc8cb49d04ea09677831edd71ebc3bbf",
+  "status": "PASS_PRIVATE_U7_11A_DESKTOP_SINGLE_LOOK_BATCH"
+}
