@@ -21680,3 +21680,24 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   process-level batch ownership safety only; no calibration, physical response,
   product value, installer, package, release or public API opens. Adjacent
   ownership-wrapper expansion stops.
+
+### 2026-09-01 - historical U7 product evidence survives evolved safety cores
+
+- **Scope:** L1 test/CI maintenance after U7.3L legitimately changed
+  `style_safe_engine.py`. No renderer, product profile, recipe, output,
+  contract, formal report or historical evidence file changed.
+- **Defect:** one U7.2J focused test still required the current engine file to
+  equal its pre-U7.3L hash, U7.2J's evidence test required every bound source
+  to remain current, and one U7.2N audit test rebuilt a historical report with
+  today's evolved safety core. These produced two false CI failures while the
+  current U7.2P/U7.3L behaviors passed.
+- **Correction:** commit `312cf625` routes evolved U7.2J source bindings
+  through the existing immutable Git-blob history helper and makes U7.2N's
+  historical audit test verify its committed forward/reverse report bytes and
+  gates instead of reconstructing them from current code. Old evidence stays
+  immutable and current behavior remains covered by its current-node tests.
+- **Verification:** the focused historical/current chain passes 25/25; the
+  complete `tests/test_u7_2*.py` family passes 173 tests with four declared
+  capability skips in 161.20 seconds. Ruff, format and diff checks pass. This
+  is evidence-integrity and CI repair only, not a new product capability,
+  calibration, package, installer or release result.
