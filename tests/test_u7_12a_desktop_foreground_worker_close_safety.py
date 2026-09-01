@@ -11,6 +11,25 @@ import pytest
 from src.inference.product_desktop import ProductDesktopError
 from src.inference.product_desktop_ui import build_product_desktop_app
 
+_SHARED_TK_ROOT: Any | None = None
+
+
+@pytest.fixture(scope="module", autouse=True)
+def _close_shared_tk_root_after_module() -> Any:
+    yield
+    if _SHARED_TK_ROOT is not None:
+        _SHARED_TK_ROOT.destroy()
+
+
+def _shared_tk_root() -> Any:
+    import tkinter as tk
+
+    global _SHARED_TK_ROOT
+    if _SHARED_TK_ROOT is None:
+        _SHARED_TK_ROOT = tk.Tk()
+        _SHARED_TK_ROOT.withdraw()
+    return _SHARED_TK_ROOT
+
 
 class _HeldWorkflow:
     def __init__(self, started: threading.Event, release: threading.Event) -> None:
@@ -62,7 +81,7 @@ def test_close_waits_asynchronously_for_foreground_operation(
     started = threading.Event()
     release = threading.Event()
     workflow = _HeldWorkflow(started, release)
-    root = tk.Tk()
+    root = tk.Toplevel(_shared_tk_root())
     root.withdraw()
     errors: list[tuple[str, str]] = []
     infos: list[tuple[str, str]] = []
@@ -126,7 +145,7 @@ def test_foreground_success_error_and_concurrency_are_serialized(
     started = threading.Event()
     release = threading.Event()
     workflow = _HeldWorkflow(started, release)
-    root = tk.Tk()
+    root = tk.Toplevel(_shared_tk_root())
     root.withdraw()
     shown: list[str] = []
     monkeypatch.setattr(
