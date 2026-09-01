@@ -1,18 +1,29 @@
 {
   "schema": "neuro-film.u7-13a-linux-product-cli-runtime-contract.v1",
   "node_id": "U7.13A",
-  "status": "FROZEN_BEFORE_WHEEL_ACQUISITION_OR_RUNTIME_EXECUTION",
+  "status": "IMPLEMENTATION_LOCKED_BEFORE_WHEEL_ACQUISITION_OR_RUNTIME_EXECUTION",
   "question": "Can the unchanged three-look product CLI run deterministically under WSL2 Ubuntu 22.04 CPython 3.12 and preserve strict replay plus exact decoded RGB16 parity to Windows on one exact real JPEG?",
   "bindings": {
     "contract_path": "docs/planning/U7_13A_LINUX_PRODUCT_CLI_RUNTIME_CONTRACT.md",
+    "contract_sha256": "d4c92abf0da1cd5b5174a34a4337517c2016e21f4f9026ff904ff95ae98fdbbf",
     "requirements_path": "requirements-product-v2.txt",
+    "requirements_sha256": "78b2ec79ffd4053c42c90a5db765baf715fed261efa39a5e762e013145718517",
     "render_cli_path": "scripts/render_film.py",
+    "render_cli_sha256": "2013e7c2f95c2f6a0b84ccff1d93db9bec2b189aead84b1ca6b5ab477447f786",
     "product_profile_path": "configs/render_profiles/safe_rich_product_v1.json",
+    "product_profile_sha256": "09722cb48c55d1c4c460220c9f59b9ced81801c1b6fe856708a27f5cc99d39fe",
     "product_catalog_path": "src/inference/product_look_catalog.py",
+    "product_catalog_sha256": "dd48420ed7d14fc505cbd3cc1f8daed76310922b4aa0564f153cad268facebe7",
     "render_contract_path": "src/inference/render_contract.py",
+    "render_contract_sha256": "378aeea559e41aba389022852f2f7f037f3b62e4eb29ce49d8bfc34d45bfd840",
     "style_safe_engine_path": "src/inference/style_safe_engine.py",
+    "style_safe_engine_sha256": "cfdc66119e2dace3dbfdd293eff8bbfa7e2dec08ca233d6efd440235f3a5e007",
     "three_stock_look_path": "src/inference/three_stock_look.py",
-    "replay_cli_path": "scripts/replay_film_recipe.py"
+    "three_stock_look_sha256": "43f758c999121be20f42c40d36ed25d56a7f478c669bc20379fbf1612dd1c943",
+    "replay_cli_path": "scripts/replay_film_recipe.py",
+    "replay_cli_sha256": "5bdb98a303aa4f7432e527ca763cccce0c2a81ad75fe164e313e75684bcec5b3",
+    "runner_path": "scripts/audit_u7_13a_linux_product_cli_runtime.py",
+    "runner_sha256": "3b6297d850385780bf8e1c70b2eea0d5795a518368d09b83fb1893b4d266cfed"
   },
   "runtime": {
     "distribution": "Ubuntu-22.04",

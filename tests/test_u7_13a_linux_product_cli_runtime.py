@@ -32,6 +32,7 @@ def _sha256(path: Path) -> str:
 def test_contract_freezes_twelve_exact_linux_wheels_and_claim_ceiling() -> None:
     config = _config()
     contract = CONTRACT.read_text(encoding="utf-8")
+    assert config["status"].startswith("IMPLEMENTATION_LOCKED_")
     assert "exact twelve names and versions" in contract
     assert len(config["wheels"]) == 12
     assert config["candidate"] == {
@@ -121,3 +122,10 @@ def test_wheel_verifier_rejects_size_or_hash_drift(tmp_path: Path) -> None:
     assert module._verify_wheel(wheel, row)
     wheel.write_bytes(b"drift")
     assert not module._verify_wheel(wheel, row)
+
+
+def test_implementation_lock_matches_every_bound_git_blob() -> None:
+    module = _load_module()
+    identities = module._bound_identities(_config())
+    assert identities
+    assert all(identities.values()), identities
