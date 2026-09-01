@@ -6,6 +6,7 @@ from pathlib import Path
 import numpy as np
 
 from src.eval.current_three_look_style_appeal import (
+    canonical_bytes,
     contact_sheet_bytes,
     evaluate_observations,
     load_parent_rows,
@@ -41,6 +42,23 @@ def _observations(plan, *, weak_look: str | None = None):
             )
     return {
         "schema": "neuro_film.u4_2a_blind_observations.v1",
+        "status": "OBSERVATIONS_FROZEN_BEFORE_MAPPING_REVEAL",
+        "mapping_read_or_reconstructed_before_freeze": False,
+        "reviewer_class": "autonomous_visual_evidence",
+        "score_rubric_sha256": sha256_bytes(canonical_bytes(CONFIG["score_rubric"])),
+        "public_manifest_sha256": "0" * 64,
+        "build_scientific_identity": "1" * 64,
+        "review_media_scope": "public_review_sheets_only",
+        "review_sheet_read_count": 27,
+        "review_sheet_sha256s": [str(index) * 64 for index in range(1, 4)],
+        "non_review_media_reads_before_freeze": {
+            "candidate_images": 0,
+            "identity_images": 0,
+            "source_images": 0,
+            "recipes": 0,
+            "build_report": 0,
+            "private_mapping": 0,
+        },
         "observations": rows,
     }
 
@@ -80,6 +98,31 @@ def test_all_three_looks_must_independently_pass() -> None:
     assert failed["portfolio_pass"] is False
     assert failed["passing_named_looks"] == 2
     assert failed["look_results"]["portra_400"]["pass"] is False
+
+
+def test_observation_freeze_and_media_scope_are_mandatory() -> None:
+    plan = build_blind_audit(
+        CONFIG["population"]["sample_ids"],
+        CONFIG["arms"],
+        seed=CONFIG["blind_protocol"]["seed"],
+    )
+    invalid = _observations(plan)
+    invalid["mapping_read_or_reconstructed_before_freeze"] = True
+    try:
+        evaluate_observations(CONFIG, plan, invalid)
+    except ValueError as exc:
+        assert "mapping access" in str(exc)
+    else:
+        raise AssertionError("mapping access before freeze must fail closed")
+
+    invalid = _observations(plan)
+    invalid["non_review_media_reads_before_freeze"]["identity_images"] = 1
+    try:
+        evaluate_observations(CONFIG, plan, invalid)
+    except ValueError as exc:
+        assert "media read boundary" in str(exc)
+    else:
+        raise AssertionError("non-review media access must fail closed")
 
 
 def test_config_has_frozen_no_rescue_claim_boundary() -> None:

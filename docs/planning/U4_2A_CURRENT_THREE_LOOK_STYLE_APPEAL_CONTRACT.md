@@ -35,7 +35,16 @@ robust three-stock distinguishability remains authoritative and immutable.
 1. Build exactly three deterministic rounds. Each sample receives a fresh
    permutation of four anonymous labels `A`-`D`.
 2. The private label mapping remains unread until all 108 observations are
-   durably recorded.
+   durably recorded. The committed observation blob must explicitly state
+   `OBSERVATIONS_FROZEN_BEFORE_MAPPING_REVEAL`, bind the exact public manifest,
+   build scientific identity, all 27 review-sheet hashes and the score-rubric
+   identity, classify the reviewer as `autonomous_visual_evidence`, and state
+   that the reviewer did not read or reconstruct the mapping before freeze.
+   Formal execution validates these facts rather than asserting them.
+   Builder/auditor reads of code and config are disclosed separately; during
+   the review phase the only media reads are the 27 public anonymous sheets.
+   Direct candidate, identity, source, recipe, build-report and private-mapping
+   reads are all zero before observation freeze.
 3. Each observation records `severe` (`no`, `yes`, or `uncertain`), film-style
    strength (1-5), and photographic appeal (1-5).
 4. Review happens from anonymous sheets only. No extra round, revote, threshold

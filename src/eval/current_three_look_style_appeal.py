@@ -329,6 +329,33 @@ def evaluate_observations(
 
     if observations.get("schema") != "neuro_film.u4_2a_blind_observations.v1":
         raise CurrentThreeLookAuditError("observation schema drift")
+    protocol = config["blind_protocol"]
+    if observations.get("status") != protocol["required_observation_status"]:
+        raise CurrentThreeLookAuditError("observation freeze status drift")
+    if observations.get("mapping_read_or_reconstructed_before_freeze") is not False:
+        raise CurrentThreeLookAuditError("reviewer mapping access boundary failed")
+    if observations.get("reviewer_class") != protocol["reviewer_class"]:
+        raise CurrentThreeLookAuditError("reviewer class drift")
+    expected_rubric = sha256_bytes(canonical_bytes(config["score_rubric"]))
+    if observations.get("score_rubric_sha256") != expected_rubric:
+        raise CurrentThreeLookAuditError("score rubric identity drift")
+    if observations.get("review_media_scope") != protocol["review_media_scope"]:
+        raise CurrentThreeLookAuditError("review media scope drift")
+    if (
+        observations.get("review_sheet_read_count")
+        != protocol["expected_review_sheet_reads"]
+    ):
+        raise CurrentThreeLookAuditError("review sheet read count drift")
+    forbidden_reads = observations.get("non_review_media_reads_before_freeze")
+    expected_forbidden_reads = {
+        key: 0 for key in protocol["forbidden_non_review_media_reads_before_freeze"]
+    }
+    if forbidden_reads != expected_forbidden_reads:
+        raise CurrentThreeLookAuditError("non-review media read boundary failed")
+    if not isinstance(
+        observations.get("public_manifest_sha256"), str
+    ) or not isinstance(observations.get("build_scientific_identity"), str):
+        raise CurrentThreeLookAuditError("blind package identity missing")
     rows = observations.get("observations")
     if not isinstance(rows, list):
         raise CurrentThreeLookAuditError("observation rows missing")

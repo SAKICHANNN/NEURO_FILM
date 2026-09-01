@@ -87,6 +87,11 @@ def main() -> int:
             != build["scientific_identity"]
         ):
             raise RuntimeError("frozen observations bind a different build identity")
+        expected_sheet_sha256s = [
+            row["sha256"] for row in build["scientific_payload"]["sheet_rows"]
+        ]
+        if observations.get("review_sheet_sha256s") != expected_sheet_sha256s:
+            raise RuntimeError("frozen observations bind different review sheets")
         plan = build_blind_audit(
             config["population"]["sample_ids"],
             config["arms"],
@@ -104,7 +109,18 @@ def main() -> int:
             "order_is_scientifically_invariant": True,
             "builder_mapping_used_in_memory": True,
             "mapping_persisted": False,
-            "reviewer_mapping_read_or_reconstructed_before_observation_freeze": False,
+            "reviewer_mapping_read_or_reconstructed_before_observation_freeze": observations[
+                "mapping_read_or_reconstructed_before_freeze"
+            ],
+            "observation_freeze_status": observations["status"],
+            "reviewer_class": observations["reviewer_class"],
+            "review_media_scope": observations["review_media_scope"],
+            "review_sheet_read_count": observations["review_sheet_read_count"],
+            "review_sheet_sha256s": observations["review_sheet_sha256s"],
+            "non_review_media_reads_before_freeze": observations[
+                "non_review_media_reads_before_freeze"
+            ],
+            "score_rubric_sha256": observations["score_rubric_sha256"],
             "new_data_downloads": 0,
             "network_reads": 0,
             "training_runs": 0,

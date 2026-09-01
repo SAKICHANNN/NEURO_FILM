@@ -60,6 +60,18 @@
     "labels": ["A", "B", "C", "D"],
     "expected_observations": 108,
     "mapping_must_remain_unread_until_observations_are_frozen": true,
+    "required_observation_status": "OBSERVATIONS_FROZEN_BEFORE_MAPPING_REVEAL",
+    "reviewer_class": "autonomous_visual_evidence",
+    "review_media_scope": "public_review_sheets_only",
+    "expected_review_sheet_reads": 27,
+    "forbidden_non_review_media_reads_before_freeze": [
+      "candidate_images",
+      "identity_images",
+      "source_images",
+      "recipes",
+      "build_report",
+      "private_mapping"
+    ],
     "additional_rounds_after_reveal_allowed": false
   },
   "score_rubric": {
