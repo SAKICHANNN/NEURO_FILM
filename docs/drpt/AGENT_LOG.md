@@ -21955,3 +21955,42 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   effect, calibrate a stock, reproduce physical film or open a package,
   installer or release. Stop adjacent halation wrappers and return to a
   materially distinct user-facing product defect.
+
+### 2026-09-01 - U7.2V bounds product physical-halation controls predecode
+
+- **Node and routing:** `ULT > U7 > U7.2V`, DRPT L2 / Mode C. The sole write
+  workflow was `dev-research-reliability`; router, DRPT-BI, planning,
+  project-structure, agent-log and code-review disciplines were read-only
+  secondary reviewers. The leaf owned `scripts/render_film.py` plus new U7.2V
+  contract/config/audit/test/evidence files; concurrent U7.9A and foreign
+  `.codex/`/`tmp/` paths remained untouched.
+- **Observed defect and repair:** the first-class product selector accepted
+  `--halation-model physical` with expert controls and nonfinite numeric values
+  through argument parsing into input decode. Contract `9e589759`,
+  implementation `92710f1f`, config identity correction `78d8705b`, and audit
+  protocol `bade1792` make the product route locked-only, validate seven
+  overrides against the existing finite resolver domains, and resolve existing
+  preset/category combinations before decode. The runtime locked branch reuses
+  the same helper. No algorithm, preset, domain, default, pixel or recipe schema
+  changed; non-product expert behavior remains executable.
+- **Formal evidence:** at execution lock `60654b14`, 59 frozen cases cover three
+  expert rejections, 28 numeric rejections, three invalid preset/category
+  combinations, 24 valid locked controls, one non-product expert control and
+  all three parent product looks. Forward/reverse reports are byte-identical at
+  14,512 bytes / SHA
+  `b92ea684fccb80b4bc4cff6d261bd7c838ce3808d0daf42af1a2e2157650cb54`;
+  every gate passes, parent output hashes remain exact and owned residue is
+  zero. Evidence/test commit `ada5911d`.
+- **Corrections and verification:** before protocol/formal execution, one
+  focused test changed negative-infinity spelling to argparse's unambiguous
+  `--option=-inf` form, and a separate config-only commit corrected a mistyped
+  full contract SHA. Neither produced reports or product artifacts and neither
+  changed science, controls or gates. Focused/evidence and adjacent U7.2O/R/U
+  plus halation tests pass; Ruff, compileall, JSON, Git-object/report identity
+  and diff checks pass.
+- **Propagation and handoff:** U7.2 is complete through V. The result establishes
+  only private bounded preflight for the existing film-inspired Look
+  Approximation product path—not halation realism, calibrated stock response,
+  physical-film reproduction, packaging, installer or release readiness. Stop
+  adjacent effect-option wrappers and return to a non-duplicate substantive
+  product defect or genuinely new identifying observation.
