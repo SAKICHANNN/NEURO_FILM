@@ -51,7 +51,7 @@ def test_u7_19b_resource_gate_is_frozen() -> None:
     config = json.loads(CONFIG.read_text("utf-8"))
     passing = {
         "worker_ok": True,
-        "resource": {"wall_seconds": 1.0, "peak_process_rss_bytes": 1024},
+        "resource": {"wall_seconds": 1.0, "peak_process_tree_rss_bytes": 1024},
     }
     assert audit._resource_gate(passing, config, product=False)
     assert audit._resource_gate(passing, config, product=True)
@@ -59,7 +59,7 @@ def test_u7_19b_resource_gate_is_frozen() -> None:
         "worker_ok": True,
         "resource": {
             "wall_seconds": config["limits"]["source_worker_seconds"] + 1,
-            "peak_process_rss_bytes": 1024,
+            "peak_process_tree_rss_bytes": 1024,
         },
     }
     assert not audit._resource_gate(failing, config, product=False)

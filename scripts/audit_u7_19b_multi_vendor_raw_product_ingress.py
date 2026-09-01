@@ -143,6 +143,7 @@ def _run_worker(
     key: str,
     scratch_root: Path,
     timeout_seconds: int,
+    peak_process_tree_rss_bytes: int,
 ) -> dict[str, Any]:
     output = scratch_root / f"{stage}-{key.lstrip('.').replace('/', '_')}.json"
     command = [
@@ -161,27 +162,82 @@ def _run_worker(
         "--output",
         str(output),
     ]
-    try:
-        completed = subprocess.run(
-            command,
-            cwd=ROOT,
-            capture_output=True,
-            text=True,
-            timeout=timeout_seconds,
-            check=False,
-        )
-    except subprocess.TimeoutExpired:
-        return {"error": "worker_timeout", "key": key, "worker_ok": False}
-    if completed.returncode != 0 or not output.is_file():
-        stderr = completed.stderr.strip().splitlines()
+    started = time.perf_counter()
+    peak_tree = 0
+    limit_exceeded = False
+    timed_out = False
+    process = subprocess.Popen(
+        command,
+        cwd=ROOT,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+    )
+    owned = psutil.Process(process.pid)
+    while process.poll() is None:
+        try:
+            members = [owned, *owned.children(recursive=True)]
+            current = sum(member.memory_info().rss for member in members)
+            peak_tree = max(peak_tree, current)
+        except (psutil.NoSuchProcess, psutil.AccessDenied):
+            pass
+        elapsed = time.perf_counter() - started
+        limit_exceeded = peak_tree > peak_process_tree_rss_bytes
+        timed_out = elapsed > timeout_seconds
+        if limit_exceeded or timed_out:
+            try:
+                members = [*owned.children(recursive=True), owned]
+            except (psutil.NoSuchProcess, psutil.AccessDenied):
+                members = []
+            for member in members:
+                try:
+                    member.kill()
+                except (psutil.NoSuchProcess, psutil.AccessDenied):
+                    pass
+            break
+        time.sleep(0.05)
+    stdout, stderr_text = process.communicate()
+    del stdout
+    wall_seconds = time.perf_counter() - started
+    if timed_out:
+        return {
+            "error": "worker_timeout",
+            "key": key,
+            "resource": {
+                "peak_process_tree_rss_bytes": peak_tree,
+                "wall_seconds": wall_seconds,
+            },
+            "worker_ok": False,
+        }
+    if limit_exceeded:
+        return {
+            "error": "worker_process_tree_rss_limit_exceeded",
+            "key": key,
+            "resource": {
+                "peak_process_tree_rss_bytes": peak_tree,
+                "wall_seconds": wall_seconds,
+            },
+            "worker_ok": False,
+        }
+    if process.returncode != 0 or not output.is_file():
+        stderr = stderr_text.strip().splitlines()
         return {
             "error": stderr[-1] if stderr else "worker_failed_without_stderr",
             "key": key,
-            "returncode": completed.returncode,
+            "resource": {
+                "peak_process_tree_rss_bytes": peak_tree,
+                "wall_seconds": wall_seconds,
+            },
+            "returncode": process.returncode,
             "worker_ok": False,
         }
     try:
         value = _load_json(output)
+        value["worker_resource"] = value.pop("resource")
+        value["resource"] = {
+            "peak_process_tree_rss_bytes": peak_tree,
+            "wall_seconds": wall_seconds,
+        }
         value["worker_ok"] = True
         return value
     finally:
@@ -196,7 +252,7 @@ def _resource_gate(
     limit_key = "product_worker_seconds" if product else "source_worker_seconds"
     return (
         record["resource"]["wall_seconds"] <= config["limits"][limit_key]
-        and record["resource"]["peak_process_rss_bytes"]
+        and record["resource"]["peak_process_tree_rss_bytes"]
         <= config["limits"]["peak_process_tree_rss_bytes"]
     )
 
@@ -240,8 +296,10 @@ def _scientific_view(report: dict[str, Any]) -> dict[str, Any]:
     for stratum in value.get("results", []):
         for record in stratum.get("records", []):
             record.pop("resource", None)
+            record.pop("worker_resource", None)
     for record in value.get("product_records", []):
         record.pop("resource", None)
+        record.pop("worker_resource", None)
     return value
 
 
@@ -282,6 +340,9 @@ def execute_preflight(
                     key=source["id"],
                     scratch_root=controller_root,
                     timeout_seconds=config["limits"]["source_worker_seconds"],
+                    peak_process_tree_rss_bytes=config["limits"][
+                        "peak_process_tree_rss_bytes"
+                    ],
                 )
                 for source in sources
             ]
@@ -380,6 +441,9 @@ def execute_formal(
                 key=extension,
                 scratch_root=controller_root,
                 timeout_seconds=config["limits"]["product_worker_seconds"],
+                peak_process_tree_rss_bytes=config["limits"][
+                    "peak_process_tree_rss_bytes"
+                ],
             )
             for extension in extensions
         ]
