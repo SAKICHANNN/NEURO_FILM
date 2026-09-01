@@ -221,16 +221,10 @@ def _existing_destination_control(
 def _missing_wheel_control(
     root: Path,
     *,
-    wheelhouse: Path,
-    expected: list[list[object]],
     env: dict[str, str],
 ) -> bool:
     incomplete = root / "missing-wheelhouse"
     incomplete.mkdir()
-    for name, _, _ in expected:
-        if str(name).casefold().startswith("rawpy-"):
-            continue
-        os.link(wheelhouse / str(name), incomplete / str(name))
     destination = root / "missing-wheel-install"
     try:
         try:
@@ -429,8 +423,6 @@ def audit(root: Path, wheelhouse: Path, order: str) -> dict[str, Any]:
         )
         missing_wheel = _missing_wheel_control(
             root,
-            wheelhouse=wheelhouse,
-            expected=expected_wheels,
             env=env,
         )
         drift_file = root / "source-drift.cr2"

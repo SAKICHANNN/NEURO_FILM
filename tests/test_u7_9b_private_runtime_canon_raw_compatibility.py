@@ -99,3 +99,21 @@ def test_formal_root_is_create_only_and_parent_bound(tmp_path: Path) -> None:
     scratch.mkdir()
     with pytest.raises(FileExistsError, match="must be absent"):
         audit._create_formal_root(root, scratch)
+
+
+def test_missing_wheel_control_uses_empty_exfat_safe_view(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    calls = 0
+
+    def reject_missing(destination: Path, *, wheelhouse: Path, environment):  # type: ignore[no-untyped-def]
+        nonlocal calls
+        calls += 1
+        assert list(wheelhouse.iterdir()) == []
+        assert not destination.exists()
+        raise RuntimeError("missing distributions")
+
+    monkeypatch.setattr(audit, "install_product_runtime", reject_missing)
+    assert audit._missing_wheel_control(tmp_path, env={})
+    assert calls == 1
+    assert not (tmp_path / "missing-wheelhouse").exists()
