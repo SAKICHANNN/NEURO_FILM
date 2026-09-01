@@ -273,6 +273,15 @@ def parse_args() -> argparse.Namespace:
             parser.error("--product-look cannot be combined with --render-profile")
         if args.color_engine != "safe_lab":
             parser.error("--product-look requires the safe_lab color engine")
+        for option, value in (
+            ("--grain", args.grain),
+            ("--halation", args.halation),
+            ("--dust", args.dust),
+        ):
+            if not np.isfinite(value) or not 0.0 <= value <= 1.0:
+                parser.error(f"{option} must be finite and in [0,1]")
+        if not -(2**31) <= args.seed <= 2**31 - 1:
+            parser.error("--seed must be a signed 32-bit integer")
         args.style = args.product_look
         args.use_render_profile = True
         args.render_profile = (
