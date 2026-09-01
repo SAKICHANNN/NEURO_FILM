@@ -344,7 +344,7 @@ class ProductDesktopApp:
         if len(resolved) > 1:
             labels = [_AUTO_REPRESENTATIVE]
             for index, path in enumerate(resolved, 1):
-                label = f"{index:03d} · {path}"
+                label = f"{index:03d} · {path.name}"
                 labels.append(label)
                 self._representative_paths[label] = path
             self.representative_combo.configure(values=tuple(labels))
