@@ -297,6 +297,19 @@ def _worker(config: dict[str, Any], scratch: Path, order: str) -> dict[str, Any]
 
 def run(config_path: Path, report_path: Path, scratch: Path, order: str) -> dict[str, Any]:
     config = json.loads(config_path.read_text(encoding="utf-8"))
+    formal_reports = {
+        key: (ROOT / value).resolve()
+        for key, value in config["formal_reports"].items()
+    }
+    resolved_report = report_path.resolve()
+    if resolved_report in formal_reports.values():
+        expected_order = next(
+            key for key, value in formal_reports.items() if value == resolved_report
+        )
+        if order != expected_order:
+            raise ValueError("formal report order differs from its frozen path")
+        if scratch.resolve() != (ROOT / config["formal_scratch"]).resolve():
+            raise ValueError("formal scratch differs from the frozen path")
     source_locks = _verify_source_locks(config)
     result = _worker(config, scratch, order)
     result["gates"]["fresh_process_scientific_payload_exact"] = True

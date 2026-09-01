@@ -10,6 +10,7 @@
     "forward": "outputs/eval/u7_3m_research_recipe_product_export_exclusion_v1/formal_forward.json",
     "reverse": "outputs/eval/u7_3m_research_recipe_product_export_exclusion_v1/formal_reverse.json"
   },
+  "formal_scratch": "outputs/eval/u7_3m_research_recipe_product_export_exclusion_v1/.formal-scratch",
   "source_locks": {
     "contract": {
       "path": "docs/planning/U7_3M_RESEARCH_RECIPE_PRODUCT_EXPORT_EXCLUSION_CONTRACT.md",
