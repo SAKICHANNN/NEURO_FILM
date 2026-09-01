@@ -96,6 +96,15 @@ def _tree_hashes(root: Path) -> dict[str, str]:
     }
 
 
+def _source_role(value: Path, first: Path, second: Path) -> str:
+    resolved = value.resolve(strict=True)
+    if resolved == first.resolve(strict=True):
+        return "private-alpha/same-name.png"
+    if resolved == second.resolve(strict=True):
+        return "private-beta/same-name.png"
+    raise RuntimeError("selected source escaped the frozen two-role cohort")
+
+
 def _ui_observation(
     root_path: Path, first: Path, second: Path
 ) -> dict[str, Any]:
@@ -121,8 +130,8 @@ def _ui_observation(
         visible = (*values, first_text, second_text, app.status.get())
         return {
             "values": list(values),
-            "selected_001": selected_first.relative_to(root_path).as_posix(),
-            "selected_002": selected_second.relative_to(root_path).as_posix(),
+            "selected_001": _source_role(selected_first, first, second),
+            "selected_002": _source_role(selected_second, first, second),
             "input_texts": [first_text, second_text],
             "visible_strength_percent": int(app.amount_label.cget("text")[:-1]),
             "visible_strength_amount": snapped,
@@ -142,6 +151,8 @@ def _batch_arm(
     name: str,
     sources: tuple[Path, Path],
     representative: Path | None,
+    first: Path,
+    second: Path,
 ) -> dict[str, Any]:
     workflow = _workflow(root_path, f"{name}-scratch")
     destination = root_path / "batch"
@@ -153,9 +164,9 @@ def _batch_arm(
         )
         receipt = workflow.export_batch(bound, "portra_400", destination)
         return {
-            "representative": state.input_path.relative_to(root_path).as_posix(),
+            "representative": _source_role(state.input_path, first, second),
             "canonical_inputs": [
-                row.path.relative_to(root_path).as_posix() for row in bound
+                _source_role(row.path, first, second) for row in bound
             ],
             "receipt_sha256": receipt.receipt_sha256,
             "tree_hashes": _tree_hashes(destination),
@@ -207,6 +218,8 @@ def evaluate(order: str) -> dict[str, Any]:
                 name,
                 (second, first),
                 None if name == "default" else second,
+                first,
+                second,
             )
         source_hashes_after = {
             first.relative_to(owned_root).as_posix(): sha256_file(first),
