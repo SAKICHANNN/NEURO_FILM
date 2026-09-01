@@ -1,0 +1,132 @@
+{
+  "schema": "kmcfm.u7-9b-private-runtime-canon-raw-compatibility.v1",
+  "experiment_id": "U7.9B",
+  "status": "FROZEN_BEFORE_REAL_RAW_PRODUCT_EXECUTION",
+  "source_parent_commit": "f04147f8393ff5e8f741d624fbae5f59454e81b0",
+  "bindings": {
+    "contract": {
+      "path": "docs/planning/U7_9B_PRIVATE_RUNTIME_CANON_RAW_COMPATIBILITY_CONTRACT.md",
+      "bytes": 4661,
+      "sha256": "aed1bf5bb3a002655782909b7d605fe1006518b62b4d23ae7772fbeff2402cad"
+    },
+    "u7_9a_config": {
+      "path": "configs/u7_9a_private_windows_product_runtime_install_v1.json",
+      "bytes": 1078,
+      "sha256": "b7894735e2edc59b368d2fab1bb1a6ba3792bdfd5f1dbacdbd98379fe6bb7af8"
+    },
+    "u7_9a_evidence": {
+      "path": "docs/evidence/U7_9A_PRIVATE_WINDOWS_PRODUCT_RUNTIME_INSTALL_RESULT.json",
+      "bytes": 4165,
+      "sha256": "e80f64478831dd68c5fa8b5575c8c57b1e8256ed6d0c35be043ae044a59430b3"
+    },
+    "installer": {
+      "path": "scripts/install_product_runtime.py",
+      "bytes": 12184,
+      "sha256": "723a15bc7462e00c66c90b5f8c8a93300fdcad3d3acf9dd5339f03172f050202"
+    },
+    "requirements": {
+      "path": "requirements-product-v2.txt",
+      "bytes": 357,
+      "sha256": "78b2ec79ffd4053c42c90a5db765baf715fed261efa39a5e762e013145718517"
+    },
+    "p313_config": {
+      "path": "configs/p313_canon_sraw_working_image_compatibility_v1.json",
+      "bytes": 4922,
+      "sha256": "dbbdf0670fb5fffd6a6ce00085e9cd0c39078a4f5303039e5192c942452a6e8b"
+    },
+    "p313_evidence": {
+      "path": "docs/evidence/P313_CANON_SRAW_WORKING_IMAGE_COMPATIBILITY_RESULT.json",
+      "bytes": 5246,
+      "sha256": "7aaf526207c7fd76d71ad7b1e7f2853e48a1fc8f7cb3359a1feaf27c07bf4e3a"
+    },
+    "p314_config": {
+      "path": "configs/p314_canon_sraw_product_chain_compatibility_v1.json",
+      "bytes": 5612,
+      "sha256": "fa1224bdce7224f436551fd64434ed26aa2c4e84596c21143351e79ae3c39f06"
+    },
+    "p314_evidence": {
+      "path": "docs/evidence/P314_CANON_SRAW_PRODUCT_CHAIN_COMPATIBILITY_RESULT.json",
+      "bytes": 6827,
+      "sha256": "e2b097ebb5a2c3f91e891c72c52e1d70ecc874332ecadcb5be15d727ca53abb1"
+    },
+    "renderer": {
+      "path": "scripts/render_film.py",
+      "bytes": 43535,
+      "sha256": "2013e7c2f95c2f6a0b84ccff1d93db9bec2b189aead84b1ca6b5ab477447f786"
+    },
+    "replay_cli": {
+      "path": "scripts/replay_film_recipe.py",
+      "bytes": 2545,
+      "sha256": "5bdb98a303aa4f7432e527ca763cccce0c2a81ad75fe164e313e75684bcec5b3"
+    },
+    "replay_engine": {
+      "path": "src/inference/style_safe_engine.py",
+      "bytes": 19218,
+      "sha256": "cfdc66119e2dace3dbfdd293eff8bbfa7e2dec08ca233d6efd440235f3a5e007"
+    },
+    "product_profile": {
+      "path": "configs/render_profiles/safe_rich_product_v1.json",
+      "bytes": 4259,
+      "sha256": "09722cb48c55d1c4c460220c9f59b9ced81801c1b6fe856708a27f5cc99d39fe"
+    }
+  },
+  "runtime": {
+    "direct_python": ".venv/Scripts/python.exe",
+    "wheelhouse": "tmp/u7_9a_wheelhouse_v1",
+    "scratch_root": "tmp/u7_9b_private_runtime_canon_raw_v1",
+    "python": "3.12.10",
+    "wheel_count": 12,
+    "wheel_bytes": 111666287,
+    "wheels": [
+      ["imageio-2.37.3-py3-none-any.whl", 317646, "46f5bb8522cd421c0f5ae104d8268f569d856b29eb1a13b92829d1970f32c9f0"],
+      ["lazy_loader-0.5-py3-none-any.whl", 8044, "ab0ea149e9c554d4ffeeb21105ac60bed7f3b4fd69b1d2360a4add51b170b005"],
+      ["networkx-3.6.1-py3-none-any.whl", 2068504, "d47fbf302e7d9cbbb9e2555a0d267983d2aa476bac30e90dfbe5669bd57f3762"],
+      ["numpy-2.4.4-cp312-cp312-win_amd64.whl", 12320584, "b5f0362dc928a6ecd9db58868fca5e48485205e3855957bdedea308f8672ea4a"],
+      ["opencv_python_headless-4.13.0.92-cp37-abi3-win_amd64.whl", 40070414, "77a82fe35ddcec0f62c15f2ba8a12ecc2ed4207c17b0902c7a3151ae29f37fb6"],
+      ["packaging-26.2-py3-none-any.whl", 100195, "5fc45236b9446107ff2415ce77c807cee2862cb6fac22b8a73826d0693b0980e"],
+      ["pillow-12.1.1-cp312-cp312-win_amd64.whl", 7033367, "21329ec8c96c6e979cd0dfd29406c40c1d52521a90544463057d2aaa937d66a6"],
+      ["pyyaml-6.0.3-cp312-cp312-win_amd64.whl", 154003, "5fcd34e47f6e0b794d17de1b4ff496c00986e1c83f7ab2fb8fcfe9616ff7477b"],
+      ["rawpy-0.26.1-cp312-cp312-win_amd64.whl", 884562, "30551fbb279f214390b9d7aa2b4227256f71324bb8a82cbe8dc4c8157835f834"],
+      ["scikit_image-0.26.0-cp312-cp312-win_amd64.whl", 11911059, "abed017474593cd3056ae0fe948d07d0747b27a085e92df5474f4955dd65aec0"],
+      ["scipy-1.17.1-cp312-cp312-win_amd64.whl", 36549682, "41b71f4a3a4cab9d366cd9065b288efc4d4f3c0b37a91a8e0947fb5bd7f31d87"],
+      ["tifffile-2026.4.11-py3-none-any.whl", 248227, "9b94ffeddb39e97601af646345e8808f885773de01b299e480ed6d3a41509ec9"]
+    ]
+  },
+  "execution": {
+    "look_id": "ektar_100",
+    "look_amount": 1.0,
+    "output_bit_depth": 8,
+    "profile_path": "configs/render_profiles/safe_rich_product_v1.json",
+    "effects": {"grain": 0.0, "halation": 0.0, "dust": 0.0},
+    "network_requests": 0,
+    "formal_orders": ["forward", "reverse"]
+  },
+  "p314_output_oracles": {
+    "canon_eos50d_mraw": "5d83372c430acc8aa21b2668b7f258aea663f72a7d683af72894f15790490c5a",
+    "canon_eos5d_mark_ii_mraw": "aabad94a165d6372527734c64259de26a121a5bb9de7d2f838713bd8aa7e7b2b",
+    "canon_eos5d_mark_iii_mraw": "f6ff55de81adaba39f9a4ca73cd34c4c492e9bfda34f1829ba000708cadb6c03",
+    "canon_eos5d_mark_iv_sraw": "536deeff3c73c31793a5fac19bb5e4d3c4f7d1ef61e3f3326b41107e35597437",
+    "canon_eos7d_mark_ii_mraw": "825dc8a017e79ec31b1b00c4cdeeb7b8d7a8d717cf9088aa48189b9012a643c2",
+    "canon_eos7d_mraw": "a54b2e269b342ede014325cf2f12c12aaeda42e6223bc4d05621b16f773be6e9"
+  },
+  "gates": {
+    "required_rows": 6,
+    "direct_launcher_png_byte_exact": true,
+    "direct_launcher_recipe_byte_exact": true,
+    "p314_output_oracle_exact": true,
+    "installed_replay_byte_exact": true,
+    "source_immutable": true,
+    "tracked_clean": true,
+    "owned_residue_zero": true
+  },
+  "claim": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false,
+    "general_raw_support": false,
+    "standalone_or_public_installer": false,
+    "public_release": false
+  },
+  "stop_rule": "Any failed gate closes exact U7.9B without source, cohort, look, dependency, recipe, identity, threshold, network or production-core rescue."
+}
