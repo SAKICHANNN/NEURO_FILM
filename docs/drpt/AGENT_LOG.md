@@ -23039,3 +23039,46 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   physical film, distinguishability, public/cross-platform release or product
   value. Stop adjacent strength widgets/presets/history/automatic-strength
   expansion; no push occurred.
+
+### 2026-09-02 - U7.15C removes batch representative path disclosure
+
+- **Node and routing:** `ULT > U7 productization > U7.15C`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the sole writer; DRPT, structure and agent-log
+  disciplines were read-only secondary checks. The single long-lived active
+  Goal remains accurate and was neither recreated nor completed for this leaf.
+  U7.15B released `product_desktop_ui.py` and shared docs before U7.15C writes;
+  foreign `.codex/` and `tmp/` stayed untracked and untouched.
+- **Defect and repair:** U7.15A's visible combobox label used
+  `f"{index:03d} · {path}"`, exposing every complete selected parent path and
+  regressing U7.10A's `absolute_path_disclosed=false` invariant. Contract
+  `63416208` and implementation `b74afe71` change only the visible label to
+  index plus `path.name`. The numeric index keeps duplicate basenames
+  unambiguous; the private mapping still holds each exact resolved path.
+  Invalid free-form values reject, single-photo/busy states are unchanged, and
+  no core, renderer, output, recipe, receipt or claim changes.
+- **Formal evidence:** audit `af78c2d2` with additive P-backed logical-role
+  corrections `65a0e2ff` / `88363264` reproduces the parent disclosure and
+  evaluates two same-name files from distinct directories. Current visible
+  values contain no parent path; `001` and `002` select the correct independent
+  exact paths. Default and explicit representative arms keep canonical order,
+  identical PNG/recipe trees and receipt SHA
+  `d449f25da6b3ed6362dee3d9f71223b8d5dbd3cf1ce19b5441c1ef9d3d9ee0c5`.
+  Visible/actual strength remains `63%` / `.63`. Accepted forward/reverse
+  reports are byte-identical at 4,891 bytes / SHA
+  `a9606a518ea1225f2178c2aa67a0d2745c1a32995cf0ff05d8edd6f932e4dfa3`;
+  scientific identity is
+  `438c5c734043c6b52b0abb8d45fe9d29caff3a5be36e1b11f48493c32fafee9e`
+  and all 13 gates pass. Evidence commits `d1befdda` / `3e4426e3` bind the
+  result and fresh-process parent regressions.
+- **Corrections, verification and boundary:** the first two audit attempts
+  stopped before report because the controller respectively compared resolved
+  P-backed paths to the C logical `tmp` junction and then passed the logical
+  alias where the real UI stores the resolved exact path. The corrections only
+  normalize frozen source roles and mirror the real UI call; strict alias
+  rejection remains unchanged. Focused tests pass 3/3, formal audit 1/1, and
+  fresh independent U7.10A/U7.11A/U7.12B/U7.12G/U7.14A/U7.15A/B/C plus
+  evidence files pass 91/91. Ruff, py_compile, JSON and diff checks pass. This
+  is only private basename-only Tk presentation—not filesystem secrecy,
+  calibrated/physical stock response, distinguishability, public release,
+  arbitrary-media quality or product value. Stop adjacent selector variants;
+  no push occurred.
