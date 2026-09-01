@@ -1,0 +1,119 @@
+{
+  "schema_version": "neuro-film.u7-2s-product-yaml-runtime-decoupling-evidence.v1",
+  "node_id": "U7.2S",
+  "decision": "PASS_PRIVATE_U7_2S_PRODUCT_YAML_RUNTIME_DECOUPLING",
+  "claim_ceiling": "Private Windows CPython 3.12 Look Approximation runtime dependency decoupling with exact preservation of the terminal U7.2R product behavior. This is not an installer, public package, calibrated stock response, physical-film reproduction, or completed multi-stock calibration result.",
+  "bindings": {
+    "contract_commit": "68e1695d3a5cb234a290676e27a82654f2d86179",
+    "implementation_commit": "97af839648b165c14b0037238e71d95f4c164957",
+    "protocol_commit": "34ac9c20ffa3c6f9d50286a2c275f5c904218384",
+    "runner_commit": "e7d6ef7cfcda96092cb5f4aeef8994b006f35278",
+    "execution_lock_commit": "e3cfb1fce842c1ed27624156a8dcb98196f4c898",
+    "formal_execution_commit": "b1a2f9192008402f1e3546f29533050baa8a367c",
+    "files": {
+      "docs/planning/U7_2S_PRODUCT_YAML_RUNTIME_DECOUPLING_CONTRACT.md": {
+        "bytes": 4795,
+        "git_blob": "c0c9a2386f0eeb4256cb037d94d08c4bab74e8f9",
+        "sha256": "8e08fef4d23c5bd19543c1904e8f5b5e4177bafe17a9af94317b11df2c1d853f"
+      },
+      "configs/u7_2s_product_yaml_runtime_decoupling_v1.json": {
+        "bytes": 5630,
+        "git_blob": "630b9a7556e1b5680b54933ede3a6ff80547c5d0",
+        "sha256": "41155c50fc2b0cb8c00130a8f4b74151fdc0241d161c1f02346ef7e0e0247f8f"
+      },
+      "requirements-product-v2.txt": {
+        "bytes": 357,
+        "git_blob": "f527a0ca45d49b60d6f75812ce2b00ee9a25647e",
+        "sha256": "78b2ec79ffd4053c42c90a5db765baf715fed261efa39a5e762e013145718517"
+      },
+      "src/inference/yaml_config.py": {
+        "bytes": 2328,
+        "git_blob": "f155372ef2f8933eebfbdc0fc80851798db55ce4",
+        "sha256": "b958efcf1a2e79df7791e979a4ca6415075b25dfe00d79595c17aa72787b97c2"
+      },
+      "scripts/pipeline_color_baseline.py": {
+        "bytes": 30271,
+        "git_blob": "f67f1d92c7b859846244bc37237e1f8f60f6736e",
+        "sha256": "11f546ff4805c4cc7a713771aa37764d79fd1786f0560eee4532a606855b78f5"
+      },
+      "src/inference/render_contract.py": {
+        "bytes": 33077,
+        "git_blob": "8942e4236ea4ed128d19df611bfecc57bc5c26ea",
+        "sha256": "378aeea559e41aba389022852f2f7f037f3b62e4eb29ce49d8bfc34d45bfd840"
+      },
+      "scripts/audit_u7_2s_product_yaml_runtime_decoupling.py": {
+        "bytes": 12912,
+        "git_blob": "e2fa00d26bcebc5b1a52f55556eb2e63feba43fe",
+        "sha256": "5bfe611ee2510826b4367de37e91925e319cd9d864d12f3d0d697efddfff5478"
+      },
+      "tests/test_u7_2s_product_yaml_runtime_decoupling.py": {
+        "bytes": 6185,
+        "git_blob": "12129042944243b56b6985d86459df9dd3cd0f2e",
+        "sha256": "9c31906c0fb4e8e88f00582d079d817e5e843bf019c386072cd712e3dc8530e7"
+      },
+      "tests/test_audit_u7_2s_product_yaml_runtime_decoupling.py": {
+        "bytes": 1469,
+        "git_blob": "58f35966b8cecdb427f016d267f3c1bce8976f6d",
+        "sha256": "95f63964db99fb0e639a47188c4f410e17e74a7d8076cbae986260a74f6d700c"
+      }
+    }
+  },
+  "formal_reports": {
+    "forward_path": "outputs/eval/u7_2s_product_yaml_runtime_decoupling_v1/formal.json",
+    "reverse_path": "outputs/eval/u7_2s_product_yaml_runtime_decoupling_v1/formal_replay.json",
+    "bytes_each": 5985,
+    "sha256": "fb5486dc711fba8c9733e22a5927726b228820ea45f509e56c32b8f35269a217",
+    "forward_reverse_byte_exact": true,
+    "fresh_outer_process_count": 2,
+    "fresh_environment_count": 4,
+    "execution_order": "sequential_from_zero"
+  },
+  "result": {
+    "formal_status": "PASS",
+    "formal_gate_count": 11,
+    "formal_gate_pass_count": 11,
+    "binary_only_install_pass_count": 4,
+    "pip_check_pass_count": 4,
+    "python_version": "3.12.10",
+    "required_distribution_count": 12,
+    "installed_inventories_exact": true,
+    "omegaconf_distribution_absent": true,
+    "antlr4_distribution_absent": true,
+    "omegaconf_product_import_absent": true,
+    "antlr4_product_import_absent": true,
+    "profile_yaml_canonical_bytes": 1027,
+    "profile_yaml_canonical_sha256": "dc30f8fd5a50db06d778ed44a747ed534b12552544596d41a08ce25a93b83600",
+    "u7_2r_nested_report_sha256": "117e8b834468b317ef03779af3b19f031d181700108c5a346fbf4afbaa2e3db4",
+    "u7_2r_normalized_scientific_sha256": "ac7e352bfea6e8a2fa636760e14a1d46db9b5f2f7a000adc41cf0f6bc24f50d3",
+    "u7_2r_terminal_status_preserved": "FAIL_CLOSED",
+    "u7_2r_failed_gate_preserved": "valid_numeric_boundaries_execute",
+    "u7_2r_default_looks_and_full_effects_bundle_exact": true,
+    "source_locks_exact": true,
+    "owned_runtime_residue_zero": true
+  },
+  "excluded_pre_correction_attempt": {
+    "report_bytes": 6032,
+    "report_sha256": "c8eed189bab0750e00abc64ec9295552fdc28643fc58ce957654f0ac7f0558b6",
+    "failed_gate": "nested_u7_2r_reports_byte_exact",
+    "reason": "The initial controller added an unfrozen full-parent-report byte gate. Concurrent U4.5F commits changed only execution_commit between nested reports; both normalized reports exactly matched the frozen U7.2R science. The audit-only gate was removed and identities were relocked before the accepted from-zero dual replay."
+  },
+  "verification": {
+    "focused_pre_execution_tests_passed": 12,
+    "adjacent_u7_2_tests_passed": 213,
+    "adjacent_u7_2_tests_skipped_for_platform_capability": 4,
+    "ruff_new_and_touched_scope_passed": true,
+    "python_compile_passed": true,
+    "json_parse_passed": true,
+    "git_diff_check_passed": true
+  },
+  "retained_boundaries": {
+    "u7_2q_manifest_or_evidence_changed": false,
+    "u7_2r_status_or_seed_boundary_changed": false,
+    "product_look_values_or_renderer_changed": false,
+    "profile_recipe_or_output_schema_changed": false,
+    "research_omegaconf_users_removed": false,
+    "calibrated_stock_response_or_physical_film_claim": false,
+    "public_package_installer_or_release_claim": false,
+    "ao6_promoted_beyond_velvia50_display_proxy_baseline": false
+  }
+}
