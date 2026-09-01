@@ -22470,3 +22470,42 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `film-inspired / Look Approximation`; no calibration, physical-film,
   distinguishability, public release or cross-platform claim opens. Shared UI
   is released to the separately frozen U7.12B product-format leaf.
+
+### 2026-09-01 - U7.12B exposes explicit single-photo output formats
+
+- **Node and routing:** `ULT > U7 productization > U7.12B`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the sole writer; router, DRPT-BI,
+  plan-tracker, project-structure and agent-log skills were read-only
+  governance. The long-term Look Approximation Goal remains active. Contract
+  and config are `109afbd2`/`a1ce9df6`; exact U7.12A dependency binding is
+  `c39af8f7`; implementation is `51f5a9b6`, idle-state copy correction
+  `8c67e7f4`, formal controller `2ce6046a` and evidence `076239be`.
+- **Product change:** one selected photo now exposes visible,
+  keyboard-reachable PNG16, TIFF16 and JPEG8 choices over the existing CLI
+  encoders. PNG16 remains default; zero inputs disable the selector with
+  truthful copy, and multi-photo U7.11A batches visibly remain exact PNG16.
+  Changing encoding preserves the hash-bound preview. The core binds format
+  ID, suffix, bit depth, recipe format/path and Look Approximation claim;
+  unknown or mismatched requests stop before the renderer/publication.
+  Renderer/look math, strength, batch commands and existing recipe semantics
+  are unchanged.
+- **Formal evidence:** committed-head forward/reverse controllers are
+  byte-exact at 3,562 bytes / SHA
+  `281ff125c9f019f83753c0a98ab2d7047232c0d61c7a656b8e1064b704d81488`,
+  scientific identity
+  `5f292133b785ca3a4d8562921abf84183028f2a9ec8bff20783c06f6f764ed3f`.
+  All 17 cases and 13 gates pass: direct CLI/raw recipe/replay for all three
+  formats, strict recipe semantics, invalid pre-render controls, PNG16
+  default/batch parity, UI states/routing, close safety, create-only/late
+  foreign preservation, residue and behavioral parents.
+- **Verification and boundary:** post-evidence isolated suites pass U7.12B +
+  evidence 16/16, U7.12A 5/5, U7.11A 22/22, U7.10A 20/20 and the non-Tk
+  CLI/recipe/create-only chain 83 passed/1 host skip. Ruff lint, py_compile,
+  JSON and diff checks pass. New audit/evidence tests pass formatter checks;
+  the whole mature desktop core/UI retain unrelated pre-existing mechanical
+  formatter drift and were not reformatted after evidence. The result proves
+  only private native single-photo SDR export mechanics for deterministic
+  `film-inspired / Look Approximation`; it does not establish calibrated stock
+  response, physical film, distinguishability, HDR/wide-gamut publication,
+  public release or cross-platform GUI. Existing `.codex/` and `tmp/` remain
+  untouched.
