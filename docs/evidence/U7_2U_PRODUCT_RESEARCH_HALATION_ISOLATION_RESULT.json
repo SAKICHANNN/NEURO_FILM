@@ -1,0 +1,47 @@
+{
+  "schema_version": "neuro-film.u7-2u-product-research-halation-isolation-evidence.v1",
+  "node_id": "U7.2U",
+  "decision": "PASS_PRIVATE_U7_2U_PRODUCT_RESEARCH_HALATION_ISOLATION",
+  "claim_ceiling": "Private first-class Look Approximation product isolation from the existing staged-density research halation route. This does not validate halation realism and is not a package, installer, release, calibrated stock response, physical-film reproduction, or completed multi-stock calibration result.",
+  "bindings": {
+    "contract_commit": "7e218781",
+    "implementation_commit": "e77a57d01b8ec82bafd4fbf87f8c340e3589cdf7",
+    "protocol_commit": "0e9d7ad00f3722a2267b80a0205fa87df8503bce",
+    "formal_execution_commit": "0e9d7ad00f3722a2267b80a0205fa87df8503bce",
+    "contract_sha256": "47d33348279a93a3a793d0107ea8f2d3a2a11f6a8f86d98a0ed57389c4a737fb",
+    "implementation_sha256": "807627df991813ab0918bbf1c8902bf8889b90b59a741dd46cfbea1f51dae1ea",
+    "focused_test_sha256": "652be83ff305b5f62b5bc70115699b1a209fb6691724ef87db364ba0b796f02c"
+  },
+  "formal_reports": {
+    "forward_path": "outputs/eval/u7_2u_product_research_halation_isolation_v1/formal.json",
+    "reverse_path": "outputs/eval/u7_2u_product_research_halation_isolation_v1/formal_replay.json",
+    "bytes_each": 4507,
+    "sha256": "a31414903ee028c06f45cf138471b91309067d05da50184d016878d26ac22afb",
+    "forward_reverse_byte_exact": true
+  },
+  "result": {
+    "formal_status": "PASS",
+    "case_count": 9,
+    "product_research_rejection_count": 6,
+    "product_nonresearch_control_count": 2,
+    "nonproduct_research_control_count": 1,
+    "all_frozen_gates_pass": true,
+    "owned_runtime_residue_zero": true
+  },
+  "gates": {
+    "source_locks_exact": true,
+    "all_product_research_combinations_reject_predecode": true,
+    "product_rejections_publish_nothing": true,
+    "product_nonresearch_models_cross_preflight": true,
+    "nonproduct_research_route_crosses_preflight": true,
+    "fresh_process_reports_byte_exact": true,
+    "owned_runtime_residue_zero": true
+  },
+  "non_goals": [
+    "halation algorithm or parameter change",
+    "simple or physical halation realism claim",
+    "staged-density research evidence change",
+    "calibrated stock or physical-film claim",
+    "public package, installer or release claim"
+  ]
+}
