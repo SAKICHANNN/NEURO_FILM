@@ -21609,3 +21609,41 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   No renderer, format, recipe schema, pixel, stock, calibration, browser,
   installer, release or public-product claim changes. Stop adjacent replay or
   export ownership-wrapper expansion.
+
+### 2026-09-01 - U7.2Q closes the exact binary-only product environment
+
+- **Node and routing:** `ULT > U7 > U7.2Q`, DRPT L2 / Mode C. The primary
+  workflow was `dev-research-reliability`; router, general reliability,
+  DRPT-BI, plan, agent-log and project-structure disciplines were read-only
+  secondary reviewers. It followed U7.2P and remained disjoint from U7.3L and
+  the concurrently owned U7.8G batch repair.
+- **Frozen question:** contract `087ab95d` asked whether the existing product
+  CLI could execute from two fresh Windows Python 3.12 environments using one
+  fully pinned binary-only runtime manifest and no CUDA, training, diffusion,
+  evaluation or document-research distribution. Manifest/tests commit is
+  `49e6fa09`; formal audit commit is `b0bf343e`.
+- **Terminal result:** both Python 3.12.10 virtual environments were created,
+  but both `pip install --only-binary=:all:` operations returned 1 before
+  `pip check`, inventory or U7.2P execution. The 2,510-byte formal report is
+  SHA `f2ec839a484d16d8078aec9133da42dc1453b9c3e5362fb6c7854da19f966cc8`
+  and status `FAIL_CLOSED`. Nested U7.2P reports, product image/recipe writes
+  and product executions are all zero; both formal environments and their
+  P-backed caches were removed. A post-stop no-dependency diagnostic confirmed
+  the cause: `omegaconf==2.3.0` pins
+  `antlr4-python3-runtime==4.9.*`, but 4.9.3 has no compatible binary wheel;
+  binary distributions begin at 4.11.0. No artifact was downloaded.
+- **Evidence and verification:** evidence/test commit `3234cd1d`; tracked
+  evidence SHA-256 is
+  `c08accb2fb9ce66414d82187b7b09ca4156e423d83724a2b5d4c8b4a15f3f0bb`.
+  Four dedicated manifest/audit/evidence tests pass; Ruff, format, py_compile,
+  JSON and diff checks pass. The binary diagnostic left only an empty ignored
+  `tmp/u7_2q_binary_diagnostic` directory because two exact-path PowerShell
+  deletion attempts were rejected before execution by platform policy; it is
+  not formal environment or media residue.
+- **Boundary and propagation:** the exact pinned binary-only manifest is
+  closed without version, source-build, dependency or product-execution
+  rescue. This does not negate U7.2P's current-environment import-isolation
+  pass or change renderer/profile/catalog/recipe behavior. It proves no
+  package, installer, public API, release, cross-platform environment,
+  calibrated stock response, physical-film reproduction or product value.
+  AO6 remains only a Velvia 50 display-proxy baseline.
