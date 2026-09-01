@@ -1,0 +1,101 @@
+{
+  "schema": "kmcfm.u7-19c-product-bounded-memory-policy-evidence.v1",
+  "node_id": "U7.19C",
+  "status": "FAIL_CLOSED_U7_19C_FROZEN_VISIBLE_DIMENSION_MISMATCH",
+  "lineage": {
+    "freeze_commit": "30ead8ac",
+    "implementation_commit": "d9e813b5",
+    "audit_commit": "09c2d725",
+    "execution_lock_commit": "78d9c0a1",
+    "formal_execution_commit": "78d9c0a153619059e8c3d7426efa6369785e6e35"
+  },
+  "bindings": {
+    "config": {"path": "configs/u7_19c_product_bounded_memory_policy_v1.json", "bytes": 3145, "sha256": "dcbd883e385c8ed09d52fd108784d419c90ec608d1591f8142fa152dc0bd1bb2", "git_blob": "e77d6ea9fd7919ffdb0536a94b22527b79c971cf"},
+    "execution_lock": {"path": "configs/u7_19c_product_bounded_memory_policy_execution_v1.json", "bytes": 2724, "sha256": "895c746714b320244738bec6331afe3b896b24b8a8b50ba0a60e968a807fe585", "git_blob": "91e8048467af53316bd76d225c5cd8ddc69193bc"},
+    "contract": {"path": "docs/planning/U7_19C_PRODUCT_BOUNDED_MEMORY_POLICY_CONTRACT.md", "bytes": 3260, "sha256": "3aa75cdd0282b1615f305afe747acbff2f90de29d90750c0d18016b356247573", "git_blob": "b52ac538eb2b363cebd74d93f5adc8b8a9c679ad"},
+    "audit": {"path": "scripts/audit_u7_19c_product_bounded_memory_policy.py", "bytes": 16278, "sha256": "26555ffcedcdd1edca810d75896c03afa3283251278f2b4141db318c6f3a4a4d", "git_blob": "4b805f302c81034dbfd015c3258a946a3982582e"},
+    "render_cli": {"path": "scripts/render_film.py", "bytes": 43965, "sha256": "385afaa3ec8a6909b783b0c5fd8dc420de0afe0e3eb10c5f3cf3ed356f19884b", "git_blob": "942e4359e9dc687c81a5476be6b03ce833157e94"},
+    "execution_policy": {"path": "src/inference/product_execution_policy.py", "bytes": 1789, "sha256": "cf8d8efa8a13ed354a1cb1be4f8ca014e2688975f8307effc26be844371338c7", "git_blob": "bb3a2c51176814fb9000488cfc6b2748c63c7142"},
+    "style_safe_engine": {"path": "src/inference/style_safe_engine.py", "bytes": 19457, "sha256": "80b17953a3299ec42d66347c152ae49cf621bfee7231f8b2d7caf4e26ce9f772", "git_blob": "310fd4878be5dde74bab55865d1ef063bd15bcc1"},
+    "policy_test": {"path": "tests/test_u7_19c_product_bounded_memory_policy.py", "bytes": 2881, "sha256": "e3e50cc29d361d72be29f6bbb73a5d0138b5bd7a2cc3082ffb815aeaf7d5e324", "git_blob": "67160387e8ffe91fe5c5b4106b1754b9abf6784c"},
+    "audit_test": {"path": "tests/test_audit_u7_19c_product_bounded_memory_policy.py", "bytes": 1591, "sha256": "58af9a73ddb6e4db78968d02e7a46a172020b0ae44b678e84233f9a6e3f34567", "git_blob": "d65835adf35a07b97bb6a3dcbb1d2842a7579852"}
+  },
+  "formal_report": {
+    "path": "outputs/u7_19c_product_bounded_memory_policy_formal_v1/forward.json",
+    "bytes": 5372,
+    "sha256": "501041d92f8a2386d3b95dd00d9777737c2bcdbe0ed48c269550e5211d70c20a",
+    "scientific_identity": "0686485efa1b96a99c26f732783acad2616246f0e67dd20e5dc1261d986d67e4",
+    "reverse_not_run": "The accepted forward report failed a frozen gate. The stop rule forbids spending a reverse run on an already closed candidate."
+  },
+  "policy": {
+    "automatic_tile_size": 256,
+    "automatic_tile_workers": 1,
+    "explicit_existing_policy_preserved": true,
+    "legacy_profile_default_unchanged": true,
+    "u7_19b_negative_unchanged": true
+  },
+  "observations": [
+    {
+      "source_id": "x2d_3fr_a",
+      "extension": ".3fr",
+      "peak_process_tree_rss_bytes": 10366980096,
+      "wall_seconds": 392.24164039999596,
+      "visible_output_height": 8750,
+      "visible_output_width": 11664,
+      "frozen_expected_height": 8842,
+      "frozen_expected_width": 11904,
+      "output_bytes": 143026337,
+      "output_sha256": "4e2a8006bf18954315e1661ca09cdb8cb7a4265a13e20270b60a217f1a9efd4e",
+      "recipe_sha256": "5be7fe8ff43bcb548b3e1a8b07a152e197ff92b60eceadb58fdfa28d1997065f",
+      "replay_byte_exact": true
+    },
+    {
+      "source_id": "x2d_fff_a",
+      "extension": ".fff",
+      "peak_process_tree_rss_bytes": 10367361024,
+      "wall_seconds": 393.1519297999912,
+      "visible_output_height": 8750,
+      "visible_output_width": 11664,
+      "frozen_expected_height": 8842,
+      "frozen_expected_width": 11904,
+      "output_bytes": 142806399,
+      "output_sha256": "6ea68785a401fb044c1f3bdfdb69911be38725d2280a79c8ba32a3fdf50e83a5",
+      "recipe_sha256": "c4403d63c9ebb7fe1769b9a0e39e49946d3c582a119a24756c64a6c72278fcec",
+      "replay_byte_exact": true
+    }
+  ],
+  "gates": {
+    "all_workers_complete": true,
+    "all_workers_within_resource_limits": true,
+    "automatic_policy_exact": true,
+    "bindings_exact": true,
+    "full_resolution_exact": false,
+    "look_approximation_claim_exact": true,
+    "network_requests_zero": true,
+    "output_and_replay_exact": true,
+    "scratch_residue_zero": true,
+    "sources_immutable": true,
+    "tracked_worktree_clean": true
+  },
+  "verification": {
+    "focused_before_formal": "28/28 pass",
+    "formal_and_policy_tests": "4/4 pass",
+    "adjacent_behavioral_after_formal": "95 pass; one historical U7.19A current-file binding assertion expectedly fails because scripts/render_film.py changed in U7.19C; historical evidence remains immutable",
+    "ruff": "pass on all U7.19C files and touched imports",
+    "compileall": "pass",
+    "json": "pass",
+    "diff_check": "pass"
+  },
+  "interpretation": "The fixed internal 256/1 product policy materially reduces both exact X2D product chains from U7.19B's 17.21--17.40GB failure to about 9.65GiB while preserving byte-exact replay and the strict Look Approximation claim. Nevertheless, U7.19C is formally fail-closed because its preregistration incorrectly froze stored/raw dimensions rather than the public LibRaw visible raster dimensions. The frozen full-resolution gate therefore fails for both rows. No dimension correction, reverse rerun, tile change, gate relaxation, or adjacent U7.19D rescue is allowed.",
+  "claim": {
+    "product_code_retained_as_safe_internal_policy": true,
+    "formal_u7_19c_promotion": false,
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false,
+    "generic_hasselblad_or_raw_capability": false,
+    "public_release": false,
+    "product_value_evidence": false
+  }
+}
