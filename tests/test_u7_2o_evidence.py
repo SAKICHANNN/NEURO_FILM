@@ -16,7 +16,7 @@ def test_u7_2o_evidence_binds_first_class_product_look_cli_entry() -> None:
     for path, binding in evidence["bindings"]["files"].items():
         assert_historical_evidence_binding(
             ROOT,
-            {"path": path, "sha256": binding["sha256"]},
+            {"path": path, **binding},
         )
 
     reports = evidence["formal_reports"]
