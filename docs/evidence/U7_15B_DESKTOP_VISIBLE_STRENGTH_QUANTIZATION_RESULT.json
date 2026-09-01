@@ -1,0 +1,107 @@
+{
+  "schema": "kmcfm.u7-15b-desktop-visible-strength-quantization-evidence.v1",
+  "node_id": "U7.15B",
+  "status": "PASS_PRIVATE_U7_15B_DESKTOP_VISIBLE_STRENGTH_QUANTIZATION",
+  "parent_head": "ea805347a1082737fc0efa3be47b1275ac6ff754",
+  "formal_source_commit": "51f71fc6fd7cc3679dc68a03438deca23e382d6d",
+  "commits": {
+    "contract": "3ffabb9bd",
+    "implementation": "fbdc76d36",
+    "audit": "85bbc935a",
+    "direct_entry_correction": "51f71fc6f"
+  },
+  "formal_report": {
+    "bytes": 2744,
+    "sha256": "fccc0a8d1e2a2ab25d58c7c9b5dc206ce4f541c40a7573d5b92e4ac788a0052b",
+    "scientific_identity": "b70aad78b7f756754c1f4545d6b8f6f1c6b59edef0f40ae48e60d3a97c3ca4f3",
+    "forward_reverse_byte_exact": true,
+    "all_gates_pass": true
+  },
+  "bindings": {
+    "configs/u7_15b_desktop_visible_strength_quantization_v1.json": {
+      "git_blob": "5c6d9d406beb7813204d9cf6665cc6588b03fcf5",
+      "sha256": "56d65d4a32fc7af881895da2f54e13b6cfab716089ae1af03b8d817c5e7ab13d"
+    },
+    "docs/planning/U7_15B_DESKTOP_VISIBLE_STRENGTH_QUANTIZATION_CONTRACT.md": {
+      "git_blob": "33d46e57fe6f3e87d0d91470e842abee76a35d41",
+      "sha256": "dc3d8e2b7bc1e6384f289abe8cbd94d4eaf53cf2c77dd56abfd6547865f5f780"
+    },
+    "scripts/audit_u7_15b_desktop_visible_strength_quantization.py": {
+      "git_blob": "b0d9f16dff81422929440204e8198e3ba2823c43",
+      "sha256": "1dbdeec5fe7deb3bc0e9cce82b225724efaf48d7c9bfa0ae19fbee95897b1759"
+    },
+    "src/inference/product_desktop.py": {
+      "git_blob": "ab2eda5ef44ea1511a1130de24371161944dde97",
+      "sha256": "6e7f9701044ee515cf08d9f65ab6cf91b8a75050e7df2c6ce44a2df9156af059"
+    },
+    "src/inference/product_desktop_ui.py": {
+      "git_blob": "f34ec4b2fa28e00d13f1919d433156579df04d64",
+      "sha256": "4751e33116442a51543c5d6d2af32e316a46848e8a611f524818ef1f71cdbbda"
+    },
+    "tests/test_audit_u7_15b_desktop_visible_strength_quantization.py": {
+      "git_blob": "8369cc319d41ee752febebe9560113116a2700a0",
+      "sha256": "27547c26336ef6827aceed6a5832901f17df13e4198db8082fd8fb9647522e01"
+    },
+    "tests/test_u7_15b_desktop_visible_strength_quantization.py": {
+      "git_blob": "3865645809a3b9f28730594f5996597228686b19",
+      "sha256": "efcb6a2cfa7a83ba86ed35e8108d246137a6b96e0c7ed51b4ebee040dee0a395"
+    }
+  },
+  "observations": {
+    "parent": {
+      "visible": "65%",
+      "variable": 0.654321,
+      "workflow_amount": 0.654321
+    },
+    "current_callback": {
+      "visible": "63%",
+      "variable": 0.63
+    },
+    "current_render_entry": {
+      "visible": "65%",
+      "variable": 0.65,
+      "workflow_amount": 0.65
+    },
+    "real_preview_export_recipe_amount": 0.65,
+    "non_finite_rejects_before_workflow": true,
+    "product_desktop_core_unchanged": true,
+    "representative_selection_unchanged": true,
+    "owned_residue": 0
+  },
+  "verification": {
+    "new_tests_passed": 13,
+    "preformal_parent_tests_passed": 33,
+    "formal_case_suites": 4,
+    "formal_audit_test_passed": 1,
+    "ruff": "pass",
+    "format": "pass",
+    "py_compile": "pass",
+    "json": "pass",
+    "diff_check": "pass"
+  },
+  "excluded_diagnostics": [
+    {
+      "stage": "pre-formal audit test",
+      "result": "stopped before Tk, tests, or report",
+      "reason": "direct script entry did not yet add the repository root to sys.path",
+      "correction_commit": "51f71fc6f",
+      "science_changed": false,
+      "product_changed": false
+    }
+  ],
+  "claim": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "private_windows_tk_visible_strength_consistency": true,
+    "workflow_continuous_api_changed": false,
+    "renderer_changed": false,
+    "look_or_profile_changed": false,
+    "recipe_or_receipt_schema_changed": false,
+    "representative_selection_changed": false,
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false,
+    "stock_distinguishability": false,
+    "public_release": false
+  },
+  "stop": "Stop adjacent strength widgets, presets, history, per-look strength, automatic strength, or slider variants."
+}
