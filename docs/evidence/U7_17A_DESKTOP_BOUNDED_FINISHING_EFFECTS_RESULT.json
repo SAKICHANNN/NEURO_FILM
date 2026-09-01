@@ -1,0 +1,122 @@
+{
+  "schema": "kmcfm.u7-17a-desktop-bounded-finishing-effects-evidence.v1",
+  "node_id": "U7.17A",
+  "status": "PASS_PRIVATE_U7_17A_DESKTOP_BOUNDED_FINISHING_EFFECTS",
+  "formal_source_commit": "b8f81ac6e912f55b43a837680b392063e1fa456b",
+  "bindings": {
+    "configs/u7_17a_desktop_bounded_finishing_effects_v1.json": {
+      "git_blob": "b8b58b8f68489e2a351a9e7755aaf0ec555e685c",
+      "bytes": 2932,
+      "sha256": "b5e2c0bfd114ad91baf3b2687b478529f77728255c4fb9951d0c8a25570603ad"
+    },
+    "docs/planning/U7_17A_DESKTOP_BOUNDED_FINISHING_EFFECTS_CONTRACT.md": {
+      "git_blob": "ebd48095fb82130e312fd3c6c4c7eed00ea2d7e3",
+      "bytes": 7837,
+      "sha256": "d871da2e79977bdc1055fd21055046a513c6bdcd19a7be3ec9e485e792b4f543"
+    },
+    "scripts/audit_u7_17a_desktop_bounded_finishing_effects.py": {
+      "git_blob": "29b659d1438ce31ae5617daf0600bc367248a089",
+      "bytes": 14293,
+      "sha256": "814b800cccc0db898e29598d7c7a21804f7c6e1e6163f75ba4567c97bf79cc25"
+    },
+    "src/inference/product_desktop.py": {
+      "git_blob": "46771de9cac091812ced96492eea851b1f515758",
+      "bytes": 59371,
+      "sha256": "3caa294dfe2317629c2dcbce0fb77be574241dba6d5161f19d0511ededb356de"
+    },
+    "src/inference/product_desktop_ui.py": {
+      "git_blob": "a3195b8dcf278728414558fe5e036714ef1a5cdf",
+      "bytes": 43201,
+      "sha256": "88c9e0734321aca8bf08f6eaf1d9949425d1228e81b8f329c561dd5c292aeba7"
+    },
+    "src/inference/product_detail_inspection.py": {
+      "git_blob": "25585294aa4b5740d22905a693672df5e9dd9e34",
+      "bytes": 8515,
+      "sha256": "7331a250d4b883fc3d2e34a737dc5b10d930e75beca2f8358c109fc4e8a01577"
+    },
+    "tests/test_audit_u7_17a_desktop_bounded_finishing_effects.py": {
+      "git_blob": "d58f61ad16bd4d061d9c7dde4d5a1d9bbe0260c0",
+      "bytes": 1782,
+      "sha256": "7171bfa3771aec616683e8bef1811228fdde52c63322a7375f3b57c98d520eba"
+    },
+    "tests/test_u7_17a_desktop_bounded_finishing_effects.py": {
+      "git_blob": "2a9f07bc72d6b8e44784340aeb9869f20573e861",
+      "bytes": 7614,
+      "sha256": "1486d8a207d253c007b4b8e9240c0be428ea4b4e7157daba11c485325dc2c5e3"
+    }
+  },
+  "formal_reports": {
+    "forward_path": "outputs/u7_17a_desktop_bounded_finishing_effects_formal_v2/forward.json",
+    "reverse_path": "outputs/u7_17a_desktop_bounded_finishing_effects_formal_v2/reverse.json",
+    "bytes_each": 6577,
+    "sha256": "3cae6fc09774e13955b514c0376e4915be136350b95147cb6c0426fce93eb947",
+    "scientific_identity": "ffbc2804f92b4fd776fce08aa3627ada82a4358fa70a60732d0d37fc5d7595d2",
+    "forward_reverse_byte_exact": true,
+    "all_gates_pass": true
+  },
+  "primary_observation": {
+    "input_sha256": "7ea3d1ed37b7df518c0466c1379f08aa34ea5ae00eb7dc8208fcff2cfe68d1c6",
+    "style_id": "ektar_100",
+    "look_amount": 0.65,
+    "output_format_id": "png16",
+    "dimensions": [4032, 6048],
+    "effects": {
+      "grain": 0.05,
+      "halation": 0.15,
+      "dust": 0.02,
+      "halation_model": "simple",
+      "seed": 7
+    },
+    "zero_output_sha256": "6a59b27af8a12da6edec5d157b3bc683cb9af4ec968dcf9f5da92d7b5849e603",
+    "expected_parent_zero_sha256": "6a59b27af8a12da6edec5d157b3bc683cb9af4ec968dcf9f5da92d7b5849e603",
+    "temporary_effect_output_sha256": "7f1f32d712378e3dcf0a8af199638d64ee6185466884b1e43516dd170931e35d",
+    "ordinary_effect_output_sha256": "7f1f32d712378e3dcf0a8af199638d64ee6185466884b1e43516dd170931e35d",
+    "detail_rgb_sha256": "0cc545f4dec284607aa18492230ae80991db3fc4c871f2fc506884fc130ccb09",
+    "oracle_rgb_sha256": "0cc545f4dec284607aa18492230ae80991db3fc4c871f2fc506884fc130ccb09",
+    "changed_component_fraction": 0.9292499182028778,
+    "effect_rgb_min": 4,
+    "effect_rgb_max": 251,
+    "effect_boundary_fraction": 0.0,
+    "new_boundary_fraction": 0.0,
+    "effect_recipe_exact": true,
+    "zero_command_effect_options_absent": true,
+    "temporary_workspace_residue": 0,
+    "scratch_residue": 0,
+    "source_immutable": true,
+    "workflow_close_clean": true
+  },
+  "excluded_reports": [
+    {
+      "path": "outputs/u7_17a_desktop_bounded_finishing_effects_formal_v1/forward.json",
+      "bytes": 6718,
+      "sha256": "ebf7fbbb29e98845878f126a36cede22b595d8be290dc8810307ed6aec61906a",
+      "scientific_identity": "a86495f59d802f21896b9905d3091071e9158ffe3c3e2f37da07da4a55532c81",
+      "reason": "one isolated U7.10A busy-state Tk process failed once; the exact test immediately passed 1/1 and the complete file passed 20/20 without a source, contract, role, cap, gate, or data change"
+    }
+  ],
+  "verification": {
+    "focused_u7_17a_tests": 13,
+    "audit_tests": 5,
+    "isolated_behavior_files_in_accepted_reports": 13,
+    "standalone_transient_test_rerun": "1/1 pass",
+    "standalone_u7_10a_file_rerun": "20/20 pass",
+    "ruff": "pass",
+    "format": "pass",
+    "compileall": "pass",
+    "json": "pass",
+    "diff_check": "pass",
+    "tracked_clean": true
+  },
+  "claim": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "private_desktop_finishing_controls": true,
+    "preview_cards_include_effects": false,
+    "detail_and_export_include_exact_effects": true,
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false,
+    "stock_distinguishability": false,
+    "arbitrary_media_or_population_safety": false,
+    "public_or_cross_platform_release": false
+  }
+}
