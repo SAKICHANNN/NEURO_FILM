@@ -28,6 +28,19 @@
     "save_dialog_title": "Export Look Approximation",
     "completion_title": "Export complete"
   },
+  "visual_lock": {
+    "expected_screenshot_bytes": 36202,
+    "expected_screenshot_sha256": "bddfe2ea290e00ff5d56e8a81484e3b75ba92bc27ac28304d2fc5252736cbf44",
+    "manual_preflight_review": {
+      "three_preview_cards_visible": true,
+      "velvia_selected": true,
+      "look_approximation_label_visible": true,
+      "not_calibrated_label_visible": true,
+      "final_png_name_visible": "installed-desktop-velvia.png",
+      "final_recipe_name_visible": "installed-desktop-velvia.recipe.json",
+      "layout_crop_or_overlap_observed": false
+    }
+  },
   "gates": {
     "fresh_install_and_pip_check": true,
     "receipt_and_launcher_exact": true,
@@ -40,7 +53,7 @@
     "gui_replay_png_byte_exact": true,
     "strict_recipe_semantics_exact": true,
     "source_commit_and_git_objects_exact": true,
-    "existing_and_late_foreign_preserved": true,
+    "parent_export_and_installer_foreign_controls_exact": true,
     "owned_process_window_and_root_residue_zero": true,
     "forward_reverse_report_and_visual_exact": true
   },

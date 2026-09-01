@@ -39,8 +39,11 @@ that output through the existing strict replay path exactly?
   and scratch remain under one identity-owned repo-relative `tmp/...` formal
   root and are removed before report publication.
 - Source commit, materialized Git objects, requirements, receipt, launcher,
-  input, output and recipe identities are bound. Existing/foreign files are
-  never overwritten, and no global Git, Python or OS configuration is changed.
+  input, output and recipe identities are bound. U7.10C consumes the exact
+  U7.10A export-pair preservation test and U7.10B installer existing/late-
+  foreign gate as immutable parent evidence; it does not mislabel the latter
+  as a new native-dialog race. Existing/foreign files remain protected, and no
+  global Git, Python or OS configuration is changed.
 
 ## Success gates
 
@@ -57,12 +60,18 @@ that output through the existing strict replay path exactly?
 6. The PNG is RGB16, the recipe binds input/output/profile/software, style
    `velvia_50`, look amount `1.0`, and `look-approximation` with calibrated
    reference disabled.
-7. Source/materialized Git objects remain exact, the commit stays fixed and the
-   tracked tree remains clean.
+7. Source/materialized Git objects, all three parent-evidence files and their
+   frozen SHA-256 identities remain exact; the commit stays fixed and the
+   tracked tree remains clean. The recipe software commit equals this exact
+   source commit and its profile id/version/SHA-256 equals the exact product
+   profile.
 8. Forward/reverse committed-head reports and accepted screenshots are
    byte-exact; formal root, stage, window and owned process residue are zero.
 9. U7.10A/B, U7.9A/C, recipe replay and create-only behavioral parents remain
-   green or are verified through immutable Git-object evidence.
+   green or are verified through immutable Git-object evidence. The screenshot
+   of the completed main window is frozen before formal execution and must be
+   byte-exact in both committed-head runs, after manual confirmation that its
+   visible status names the PNG and recipe.
 
 ## Stop rule and claim ceiling
 
