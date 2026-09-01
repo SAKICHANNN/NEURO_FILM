@@ -34,8 +34,10 @@ For every one of the 27 source/look cells:
    and strict-replay byte exact;
 2. new exact-boundary fraction is zero and existing content-safety metrics are
    recorded without replacing visual adjudication;
-3. one source/output overview plus four deterministic exact-pixel crops is
-   materialized from the frozen source and output bytes;
+3. one source/output overview plus four deterministic 256x256 exact-pixel
+   crops is materialized from the frozen source and output bytes. The crop
+   score maps are fixed as flat-region added high frequency, edge-direction
+   disagreement, edge-gain tail and encoded-RGB absolute delta;
 4. three complete autonomous review passes use fixed arm rotations and inspect
    dirty/blotchy colour, isolated chroma impulses, banding/posterization,
    objectionable halos and face/text/object/fine-structure loss;

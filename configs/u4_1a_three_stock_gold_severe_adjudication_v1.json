@@ -33,6 +33,13 @@
     "cells": 27,
     "overview_required_per_cell": true,
     "exact_crop_count_per_cell": 4,
+    "exact_crop_size": 256,
+    "exact_crop_strategies": [
+      "flat_new_high_frequency",
+      "edge_direction_disagreement",
+      "edge_gain_tail",
+      "encoded_rgb_absolute_delta"
+    ],
     "passes": 3,
     "arm_orders": [
       ["velvia_50", "portra_400", "ektar_100"],
