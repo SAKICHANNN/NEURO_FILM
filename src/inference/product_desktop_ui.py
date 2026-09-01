@@ -717,6 +717,7 @@ class ProductDesktopApp:
         )
 
     def _show_error(self, exc: BaseException) -> None:
+        self.style.set("")
         self.preview_ready = False
         self._set_busy(False, f"Stopped safely: {exc}")
         messagebox.showerror("K-MCFM stopped safely", str(exc))
