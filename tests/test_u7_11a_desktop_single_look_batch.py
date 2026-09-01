@@ -609,6 +609,47 @@ def test_native_batch_ui_tracks_progress_cancel_and_non_daemon_worker(
         _reset_shared_tk_app(app)
 
 
+def test_native_batch_ui_explicit_representative_requires_fresh_preview(
+    tmp_path: Path,
+) -> None:
+    first, second = _inputs(tmp_path)
+    workflow = _workflow(tmp_path)
+    root = _shared_tk_root()
+    app = build_product_desktop_app(root, workflow, initial_input=first)
+    try:
+        app._set_inputs((first, second))
+        values = tuple(app.representative_combo.cget("values"))
+        assert values[0] == "Automatic · canonical first"
+        assert len(values) == 3
+        assert str(app.representative_combo.cget("state")) == "readonly"
+        assert bool(app.representative_combo.cget("takefocus"))
+
+        app.representative.set(values[1])
+        app._representative_changed()
+        assert app.input_path == first.resolve()
+        state, bound = workflow.render_batch_previews(
+            (first, second), 0.5, representative_path=first
+        )
+        app._batch_preview_complete((state, bound))
+        assert app.input_text.get() == f"2 photos · previewing {first.name}"
+        app.look_buttons["portra_400"].invoke()
+        assert app.preview_ready is True
+        assert str(app.export_button.cget("state")) == "normal"
+
+        app.representative.set(values[2])
+        app._representative_changed()
+        assert app.input_path == second.resolve()
+        assert app.style.get() == ""
+        assert app.preview_ready is False
+        assert workflow.preview_state is None
+        assert str(app.export_button.cget("state")) == "disabled"
+        assert app.status.get() == (
+            "Batch preview representative selected. Render previews to compare looks."
+        )
+    finally:
+        _reset_shared_tk_app(app)
+
+
 def test_native_close_waits_for_active_batch_worker(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:

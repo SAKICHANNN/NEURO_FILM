@@ -934,12 +934,39 @@ class ProductDesktopWorkflow:
         self,
         input_paths: Sequence[Path],
         look_amount: float,
+        *,
+        representative_path: Path | None = None,
     ) -> tuple[DesktopPreviewState, tuple[DesktopBatchInput, ...]]:
-        """Bind every selected source, then preview the canonical first source."""
+        """Bind every source, then preview one explicit member or the canonical first."""
 
         bound = self.bind_batch_inputs(input_paths)
-        state = self.render_previews(bound[0].path, look_amount)
-        if state.input_sha256 != bound[0].sha256:
+        representative = bound[0]
+        if representative_path is not None:
+            try:
+                resolved = Path(representative_path).resolve(strict=True)
+                details = resolved.lstat()
+            except OSError as exc:
+                raise ProductDesktopError(
+                    "batch representative must be one selected photo"
+                ) from exc
+            matches = tuple(
+                row
+                for row in bound
+                if row.path == resolved
+                and (row.device, row.inode) == (details.st_dev, details.st_ino)
+            )
+            if len(matches) != 1:
+                raise ProductDesktopError(
+                    "batch representative must be one selected photo"
+                )
+            representative = matches[0]
+        if not _batch_input_matches(representative):
+            raise ProductDesktopError("batch representative changed before preview")
+        state = self.render_previews(representative.path, look_amount)
+        if (
+            state.input_path != representative.path
+            or state.input_sha256 != representative.sha256
+        ):
             self.close()
             raise ProductDesktopError("representative preview input identity drifted")
         return state, bound
@@ -974,8 +1001,15 @@ class ProductDesktopWorkflow:
                 {(row.device, row.inode) for row in rows}
             ) != len(rows):
                 raise ProductDesktopError("batch inputs must identify unique files")
-            if state.input_path != rows[0].path or state.input_sha256 != rows[0].sha256:
-                raise ProductDesktopError("representative preview does not bind this batch")
+            representative_matches = tuple(
+                row
+                for row in rows
+                if state.input_path == row.path and state.input_sha256 == row.sha256
+            )
+            if len(representative_matches) != 1:
+                raise ProductDesktopError(
+                    "representative preview does not bind this batch"
+                )
             self._validate_state(state)
             self._validate_session(state)
             if not all(_batch_input_matches(row) for row in rows):

@@ -28,6 +28,7 @@ from .product_desktop import (
 
 _LOOK_IDS = tuple(row["style_id"] for row in PRODUCT_LOOKS)
 _INPUT_PREVIEW_DISPLAY_SIZE = (160, 120)
+_AUTO_REPRESENTATIVE = "Automatic · canonical first"
 
 
 class ProductDesktopApp:
@@ -61,6 +62,8 @@ class ProductDesktopApp:
         self.style = tk.StringVar(value="")
         self.amount = tk.DoubleVar(value=1.0)
         self.output_format = tk.StringVar(value="png16")
+        self.representative = tk.StringVar(value="")
+        self._representative_paths: dict[str, Path] = {}
         self.output_format_text = tk.StringVar(value="Single-photo output")
         self.input_text = tk.StringVar(value="No photo selected")
         self.status = tk.StringVar(
@@ -178,6 +181,23 @@ class ProductDesktopApp:
         )
         self.preview_button.grid(
             row=1, column=3, columnspan=2, sticky="e", pady=(10, 0)
+        )
+        representative = ttk.Frame(controls, style="Panel.TFrame")
+        representative.grid(row=1, column=1, columnspan=2, sticky="ew", pady=(10, 0))
+        ttk.Label(representative, text="Batch preview", style="Panel.TLabel").pack(
+            side="left", padx=(0, 8)
+        )
+        self.representative_combo = ttk.Combobox(
+            representative,
+            textvariable=self.representative,
+            values=(),
+            state="disabled",
+            takefocus=True,
+            width=48,
+        )
+        self.representative_combo.pack(side="left", fill="x", expand=True)
+        self.representative_combo.bind(
+            "<<ComboboxSelected>>", self._representative_changed
         )
         input_basis = ttk.Frame(
             controls, style="Panel.TFrame", padding=(16, 0, 0, 0)
@@ -309,6 +329,18 @@ class ProductDesktopApp:
         self.input_paths = resolved
         self.input_path = resolved[0]
         self.batch_inputs = None
+        self._representative_paths = {}
+        if len(resolved) > 1:
+            labels = [_AUTO_REPRESENTATIVE]
+            for index, path in enumerate(resolved, 1):
+                label = f"{index:03d} · {path}"
+                labels.append(label)
+                self._representative_paths[label] = path
+            self.representative_combo.configure(values=tuple(labels))
+            self.representative.set(_AUTO_REPRESENTATIVE)
+        else:
+            self.representative_combo.configure(values=())
+            self.representative.set("")
         self.input_text.set(
             resolved[0].name
             if len(resolved) == 1
@@ -321,6 +353,7 @@ class ProductDesktopApp:
             self.output_format.set("png16")
         self._update_export_label()
         self._update_output_format_controls()
+        self._update_representative_control()
         self.status.set(
             "Photo selected. Render previews to compare the three looks."
             if len(resolved) == 1
@@ -351,6 +384,48 @@ class ProductDesktopApp:
             self._invalidate_previews(
                 "Strength changed. Render new previews before export."
             )
+
+    def _selected_representative_path(self) -> Path | None:
+        selected = self.representative.get()
+        if not selected or selected == _AUTO_REPRESENTATIVE:
+            return None
+        try:
+            return self._representative_paths[selected]
+        except KeyError as exc:
+            raise ProductDesktopError(
+                "batch preview representative is unavailable"
+            ) from exc
+
+    def _update_representative_control(self) -> None:
+        self.representative_combo.configure(
+            state=(
+                "readonly"
+                if len(self.input_paths) > 1 and not self.busy
+                else "disabled"
+            )
+        )
+
+    def _representative_changed(self, _event: object = None) -> None:
+        if len(self.input_paths) <= 1 or self.busy:
+            return
+        representative = self._selected_representative_path()
+        if self.workflow.preview_state is not None:
+            self._invalidate_previews(
+                "Batch preview representative changed. Render new previews before export."
+            )
+        else:
+            self.style.set("")
+            self.preview_ready = False
+            self.export_button.configure(state="disabled")
+            self._clear_preview_widgets()
+        self.input_path = representative or self.input_paths[0]
+        self.input_text.set(
+            f"{len(self.input_paths)} photos · preview representative "
+            f"{self.input_path.name}"
+        )
+        self.status.set(
+            "Batch preview representative selected. Render previews to compare looks."
+        )
 
     def _invalidate_previews(self, message: str) -> None:
         self.style.set("")
@@ -420,6 +495,7 @@ class ProductDesktopApp:
         self.choose_button.configure(state=state)
         self.preview_button.configure(state=state)
         self.amount_scale.configure(state=state)
+        self._update_representative_control()
         self._update_output_format_controls()
         look_state = "normal" if not busy and self.preview_ready else "disabled"
         for button in self.look_buttons.values():
@@ -516,9 +592,19 @@ class ProductDesktopApp:
             return
         amount = self.amount.get()
         sources = self.input_paths
+        representative = self._selected_representative_path()
         self._set_busy(True, "Rendering three bounded previews…")
+        action = (
+            (lambda: self.workflow.render_batch_previews(sources, amount))
+            if representative is None
+            else (
+                lambda: self.workflow.render_batch_previews(
+                    sources, amount, representative_path=representative
+                )
+            )
+        )
         self._background(
-            lambda: self.workflow.render_batch_previews(sources, amount),
+            action,
             self._batch_preview_complete,
         )
 
@@ -529,11 +615,11 @@ class ProductDesktopApp:
         state, inputs = result
         self.batch_inputs = inputs
         self.input_paths = tuple(row.path for row in inputs)
-        self.input_path = inputs[0].path
+        self.input_path = state.input_path
         self.input_text.set(
-            inputs[0].basename
+            state.input_path.name
             if len(inputs) == 1
-            else f"{len(inputs)} photos · previewing {inputs[0].basename}"
+            else f"{len(inputs)} photos · previewing {state.input_path.name}"
         )
         self._update_export_label()
         self._preview_complete(state)
