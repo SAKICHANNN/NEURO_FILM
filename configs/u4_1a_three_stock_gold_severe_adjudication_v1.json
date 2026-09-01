@@ -60,6 +60,8 @@
   "automatic_gates": {
     "input_hash_and_geometry_exact": true,
     "strict_recipe_replay_byte_exact": true,
+    "forward_reverse_output_byte_exact": true,
+    "forward_reverse_recipe_semantics_exact_after_absolute_path_redaction": true,
     "finite_output": true,
     "maximum_new_exact_boundary_fraction": 0.0,
     "forward_reverse_scientific_exact": true,

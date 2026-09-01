@@ -51,7 +51,10 @@ re-rendered, cropped differently or substituted after the first verdict.
 ## Reproducibility and stop rule
 
 - Forward/reverse source enumeration must yield one exact scientific payload,
-  the same 27 output/recipe identities and the same review material.
+  the same 27 output-byte identities, the same 27 recipe semantic identities
+  after redacting only the contract-required absolute input/output paths, and
+  the same review material. Each run still requires byte-exact strict replay
+  against its unredacted recipe.
 - Formal render and review roles are create-only under the repo-relative
   P-backed output root; source bytes are immutable, network reads are zero and
   owned scratch is removed.
