@@ -22859,3 +22859,49 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   public package/release, calibrated stock response, physical-film
   reproduction, distinguishability or authenticity claim opens. No push
   occurred.
+
+### 2026-09-02 - U7.14A adds a truthful desktop input-basis comparison
+
+- **Node and routing:** `ULT > U7 productization > U7.14A`, DRPT L2 / Mode C.
+  `dev-research-reliability` was the sole writing workflow; router,
+  project-structure and agent-log disciplines bounded the leaf. The single
+  long-lived Look Approximation Goal remains accurate and active. Parallel
+  tasks were notified to stop U7.14A writes after one shared-branch ownership
+  race; root restored and retained their valid scoped commits rather than
+  overwriting them. Existing foreign `.codex/` and `tmp/` were not touched.
+- **Product change:** freeze `4a3f31d2`, implementation `c6ae17b7` and formal
+  controller `51592f8e` add an opt-in `input.preview.png` derived from the
+  already decoded/resized display-sRGB source array. `ProductDesktopWorkflow`
+  alone requests and hash-binds it; the Tk window shows a bounded nonselectable
+  thumbnail with the exact disclosure `Input basis · generic display adapter,
+  not a calibrated camera rendering`. It never enters look IDs, recipes,
+  catalog rows or exports. Omitted/false renderer behavior and three processed
+  look bytes remain exact.
+- **Formal correction and result:** formatting commit `9de0aae5` made the
+  frozen controller satisfy repository quality checks. Its first 7,163-byte
+  report correctly remained FAIL_CLOSED at SHA `8016945e...66da5`, but a
+  no-pixel minimal construction proved the sole failure came from JSON-escaping
+  Windows paths before an unescaped textual root replacement. Correction
+  `08875899` changes only that report portability helper to structurally verify
+  every output parent before normalization and adds foreign-path rejection; no
+  source, decoder, pixel, product behavior, gate or threshold changed. From-zero
+  forward/reverse reports are byte-identical at 7,292 bytes / SHA
+  `f765c9657f8fac9e97e17862c5bba14c5de3d0376594905566b2fe5c0b35d446`,
+  scientific identity
+  `abd40a408426168be0520660d934b97bd01b65528547d2d9f6586f68d3fec9f1`;
+  all 11 gates pass. Both frozen inputs use exactly one candidate source decode,
+  the 173x260 JPEG and 300x158 DNG input PNGs equal their independent oracles,
+  all three look files remain exact, UI/session/tamper/cleanup gates pass, and
+  owned formal residue is zero.
+- **Verification and boundary:** evidence commit `6c7597c1` records 4,747-byte
+  tracked evidence SHA
+  `2c8257efb5ae49e779577c61a49a03997857121badb1ea261d4609f17ddb166f`.
+  Dedicated/evidence tests pass 14/14; independent fresh-process U7.10A,
+  U7.11A, U7.12C, U7.12F and U7.12G regressions pass 20/20, 21/21, 13/13,
+  3/3 and 5/5, for 76/76 total. Ruff, formatting, py_compile, JSON and diff
+  checks pass. This is only a private Windows/Python input-basis comparison aid
+  for deterministic `film-inspired / Look Approximation` output. It is not a
+  calibrated camera rendering, RAW development, neutral reference, calibrated
+  or physical stock response, stock distinguishability, HDR/wide-gamut support,
+  installer, public release or cross-platform GUI evidence. AO6 remains only
+  the Velvia 50 display-proxy Look Approximation baseline; no push occurred.
