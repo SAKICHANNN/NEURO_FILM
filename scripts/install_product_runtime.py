@@ -224,7 +224,7 @@ environment = {{
 }}
 raise SystemExit(subprocess.call(
     [sys.executable, "-I", str(entry), *sys.argv[1:]],
-    cwd=root,
+    cwd=Path.cwd(),
     env=environment,
 ))
 """
