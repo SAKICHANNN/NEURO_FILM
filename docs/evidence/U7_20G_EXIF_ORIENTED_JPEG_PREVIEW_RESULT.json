@@ -1,0 +1,122 @@
+{
+  "schema": "kmcfm.u7-20g-exif-oriented-jpeg-preview-evidence.v1",
+  "node_id": "U7.20G",
+  "status": "PASS_PRIVATE_U7_20G_EXIF_ORIENTED_JPEG_PREVIEW",
+  "automatic_pass": true,
+  "formal_execution": {
+    "source_commit": "e6925adb43d715c3740436b26accbbc17b40f3c3",
+    "reports": [
+      {
+        "path": "outputs/u7_20g_exif_oriented_jpeg_preview_audit/formal_forward.json",
+        "bytes": 5604,
+        "sha256": "e0035858c3c7c0470ea5f494a7e81cbd6e3bfa18b3cf2b86adc93a85ce5847b7"
+      },
+      {
+        "path": "outputs/u7_20g_exif_oriented_jpeg_preview_audit/formal_reverse.json",
+        "bytes": 5604,
+        "sha256": "e0035858c3c7c0470ea5f494a7e81cbd6e3bfa18b3cf2b86adc93a85ce5847b7"
+      }
+    ],
+    "byte_exact": true,
+    "scientific_identity": "311a034f77dd72d55f26b4b5c872ae0ec38014c5c54de8ba02986b31459a63e8"
+  },
+  "defect_reproduction": {
+    "source_role": "deterministic asymmetric JPEG with EXIF Orientation 6",
+    "stored_geometry": [320, 240],
+    "expected_oriented_geometry": [240, 320],
+    "pre_fix_status": "ThreeStockPreviewError",
+    "pre_fix_message": "scaled preview decode requires identity EXIF orientation",
+    "pre_fix_preview_outputs": 0
+  },
+  "observations": {
+    "orientation_values": [1, 2, 3, 4, 5, 6, 7, 8],
+    "maximum_scaled_full_linear_rmse": 1.814491845664179e-08,
+    "portrait_preview": {
+      "source_width": 240,
+      "source_height": 320,
+      "preview_width": 94,
+      "preview_height": 126,
+      "decoded_width": 120,
+      "decoded_height": 160,
+      "input_preview_size": [94, 126],
+      "three_look_outputs": 3
+    },
+    "canonical_product": {
+      "look": "ektar_100",
+      "look_amount": 0.65,
+      "output_sha256": "fc51547d1e00a0a4a36dce96847afe09d27b3b531b65172d3f32fa2a46d2087d",
+      "evidence_grade": "look-approximation",
+      "calibrated_reference_allowed": false
+    }
+  },
+  "gates": {
+    "all_orientation_values_supported": true,
+    "oriented_geometry_exact": true,
+    "scaled_decode_covers_requested_oriented_geometry": true,
+    "scaled_full_structure_rmse": true,
+    "portrait_preview_geometry": true,
+    "invalid_orientation_rejects": true,
+    "canonical_product_output_exact": true,
+    "claim_ceiling_exact": true
+  },
+  "source_bindings": {
+    "configs/u7_20g_exif_oriented_jpeg_preview_v1.json": {
+      "git_blob": "957383acfd2a81bd7f9903f07a194c22c3f5df5c",
+      "bytes": 797,
+      "sha256": "7ab00fec822551ade8eb95fe8880416b42c9a40c6552a4a183cbd6944ff8a830"
+    },
+    "docs/planning/U7_20G_EXIF_ORIENTED_JPEG_PREVIEW_CONTRACT.md": {
+      "git_blob": "038748f817b832cd1d9429864dc234d077f8de97",
+      "bytes": 2457,
+      "sha256": "7260fc8204d018266c2809b33a50d1d2ca06ad52fde417a1f1c2a51647e5aa92"
+    },
+    "src/preprocess/raster_decode.py": {
+      "git_blob": "578b6c3edd79cff343c6e0ba6b750808e1956bcf",
+      "bytes": 36558,
+      "sha256": "037d2b41d2816ad476d0b317789b38bd31dc2f634e09a98bcf5bc506d2a7874d"
+    },
+    "src/inference/three_stock_preview.py": {
+      "git_blob": "62f38ede5ca49f4b6bb32b14c5e8c06a5d0d6512",
+      "bytes": 14020,
+      "sha256": "8ebd7c872db2517f7c1e40bb15a7a763662f9be9694255654557135e8ca740e6"
+    },
+    "scripts/audit_u7_20g_exif_oriented_jpeg_preview.py": {
+      "git_blob": "0246837941dcbfac827ade9ec2cee50fdd7a6cc2",
+      "bytes": 10760,
+      "sha256": "168ed1efdff0f6a97340e61dd2b2e00ce3d5476e8d4e85b6aea722cbb4a71670"
+    },
+    "tests/test_u7_20g_exif_oriented_jpeg_preview.py": {
+      "git_blob": "44c69653fc8fbda2e7dd289b440a32f2cf46963f",
+      "bytes": 4309,
+      "sha256": "48f5d5252dc9db1fe6c975b1f5df1419c2d62ea77d6e0a25dae54670b0c25205"
+    },
+    "tests/test_audit_u7_20g_exif_oriented_jpeg_preview.py": {
+      "git_blob": "64eaa973181e03bc518e7ba041ee6747d16b7264",
+      "bytes": 571,
+      "sha256": "22256312e10590baa0a8be407fcadf9cac07e0f53cfa05c36ae60b7171ea1272"
+    }
+  },
+  "verification": {
+    "focused_and_adjacent_tests": 42,
+    "focused_and_adjacent_tests_passed": 42,
+    "ruff_new_files": "pass",
+    "compileall_touched_core": "pass",
+    "json_validation": "pass",
+    "diff_check": "pass",
+    "pre_existing_ruff_findings_in_raster_decode": ["BLE001", "C401"],
+    "pre_existing_line_ending_format_drift_in_touched_core": true
+  },
+  "claim_ceiling": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "private_exif_orientation_preview_compatibility": true,
+    "arbitrary_jpeg_or_exif_support": false,
+    "camera_colour_accuracy": false,
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false,
+    "public_release": false,
+    "cross_platform_parity": false
+  },
+  "decision": "The ordinary desktop preview path now accepts JPEG EXIF Orientation 1-8, chooses preview geometry in oriented axes, decoder-scales in stored axes, and applies only the existing axis transform before float32 expansion. The canonical product render and Look Approximation claim remain exact.",
+  "stop_rule": "Stop adjacent EXIF/preview expansion. Any future camera metadata, format, colour or resampling change requires a separately frozen product defect and must not infer calibrated stock or camera-colour behavior."
+}
