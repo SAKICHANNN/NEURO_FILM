@@ -20,6 +20,39 @@
     "byte_exact": true,
     "scientific_identity": "311a034f77dd72d55f26b4b5c872ae0ec38014c5c54de8ba02986b31459a63e8"
   },
+  "installed_runtime": {
+    "path": "outputs/private-product-runtime-u7-20g-5f1482f",
+    "installed_source_commit": "5f1482fae002bb61d10466c85068c9bbfa1b5266",
+    "receipt_schema": "kmcfm.private-product-runtime-receipt.v4",
+    "receipt_bytes": 3702,
+    "receipt_sha256": "446172da96deb51f7b2f4c0698ca2745eab21696a8b55917faaaedcb2e2cbaa0",
+    "authoritative_file_count": 7048,
+    "authoritative_logical_bytes": 380686299,
+    "catalog_launch": "pass",
+    "desktop_help_launch": "pass",
+    "installed_python_report": {
+      "path": "outputs/u7_20g_exif_oriented_jpeg_preview_audit/installed_forward.json",
+      "bytes": 5604,
+      "sha256": "5a729cc628762d680b0a253435884fcc856d3d41912e953ed86f69b60001ae5f",
+      "scientific_identity": "311a034f77dd72d55f26b4b5c872ae0ec38014c5c54de8ba02986b31459a63e8",
+      "difference_from_formal_reports": "source_commit only"
+    },
+    "retained_non_authoritative_probe_files": [
+      {
+        "path": "outputs/private-product-runtime-u7-20g-5f1482f/catalog-check.json",
+        "bytes": 2024
+      },
+      {
+        "path": "outputs/private-product-runtime-u7-20g-5f1482f/desktop-help-check.txt",
+        "bytes": 376
+      }
+    ],
+    "probe_cleanup_attempted": true,
+    "probe_cleanup_blocked_before_execution_by_platform_policy": true,
+    "probe_files_deleted": 0,
+    "probe_files_have_product_or_scientific_authority": false,
+    "p_free_bytes_after_install": 77579419648
+  },
   "defect_reproduction": {
     "source_role": "deterministic asymmetric JPEG with EXIF Orientation 6",
     "stored_geometry": [320, 240],
@@ -97,8 +130,8 @@
     }
   },
   "verification": {
-    "focused_and_adjacent_tests": 42,
-    "focused_and_adjacent_tests_passed": 42,
+    "focused_and_adjacent_tests": 97,
+    "focused_and_adjacent_tests_passed": 97,
     "ruff_new_files": "pass",
     "compileall_touched_core": "pass",
     "json_validation": "pass",

@@ -28,7 +28,7 @@ executables, their self-contained launcher sources, the Python launchers and
 compatibility command files:
 
 ```powershell
-$runtime = ".\outputs\private-product-runtime-u7-9d-78d4931"
+$runtime = ".\outputs\private-product-runtime-u7-20g-5f1482f"
 ```
 
 List the authoritative product catalog without reading an image:
