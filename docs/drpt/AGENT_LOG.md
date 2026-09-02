@@ -23391,3 +23391,32 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   recovery for deterministic `film-inspired / Look Approximation`; no pixel,
   calibration, physical-film, stock-distinguishability or release claim and
   no push.
+
+### 2026-09-02 - U7.20D contains ordinary public CLI failures without tracebacks
+
+- **Node and routing:** `ULT > U7 productization > U7.20D`, DRPT L2 / Mode C,
+  R1 local. `dev-research-reliability` was the sole writer; router, structure
+  and agent-log disciplines were read-only secondary checks. The long-lived
+  Look Approximation Goal remains accurate and active; no leaf Goal was
+  created, completed or replaced. Both parallel tasks avoided the exact
+  `render_film.py` / U7.20D test paths.
+- **Trigger and invariant:** the current installed CLI printed full Python
+  tracebacks for a missing input and an existing output destination. Freeze
+  `de61e920` requires one stable product stderr line, runtime exit `1`, no
+  traceback, no output/recipe overwrite and unchanged argparse exit `2`.
+- **Repair and corrections:** `2b1eaa3f` added a narrow terminal `_run_cli`
+  boundary, but initially returned argparse's exit `2` and added an eager
+  input check. Adjacent tests proved that both choices changed established
+  contracts. `a5b71bc4` restored runtime exit `1`; final `f4c02283` removed
+  the eager check and preserves original preflight/decode ordering plus the
+  originating exception type. No renderer, pixel, look, recipe or output
+  transaction logic changed.
+- **Verification and boundary:** the frozen three cases pass. The final
+  behavioral regression passes 128/128 with two host-capability skips and six
+  intentionally deselected stale historical normalized-recipe bindings;
+  separate U7.2R/T/U/V coverage passes 101/101. A real current-head Ektar
+  `.65` render remains `fc51547d...2087d`, retains one `assumed_srgb` warning
+  and records `film-inspired / Look Approximation`. Ruff, compileall and diff
+  checks pass. This is only a truthful local CLI error boundary; it does not
+  change calibration, physical-film, stock-distinguishability or public
+  release claims, and no push occurred.
