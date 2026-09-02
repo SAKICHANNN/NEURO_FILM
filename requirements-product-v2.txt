@@ -7,6 +7,7 @@ numpy==2.4.4
 opencv-python-headless==4.13.0.92
 packaging==26.2
 pillow==12.1.1
+pi-heif==1.4.0
 pyyaml==6.0.3
 rawpy==0.26.1
 scikit-image==0.26.0

@@ -70,6 +70,17 @@
       "sha256": "6ad78dff7607565a7cd945d2bdd60c654b5b2900ea7bce2415c6db14a5610288"
     }
   ],
+  "post_contract_validation_fixture": {
+    "role": "synthetic_srgb_nclx_branch_validation_only",
+    "path": "synthetic__srgb_nclx.heic",
+    "generator": "pillow-heif 1.5.0 exact Windows CPython 3.12 wheel",
+    "generator_wheel_sha256": "9aa2cdc94d8d0b26dd3c16c3421273eb394c24e708899d8740dc314904ea0453",
+    "bytes": 3463,
+    "sha256": "915a286b2f9bbeef1d3897686dcce0c009ece53566e92a16cd7accb5f6bcd303",
+    "decoded_rgb8_sha256": "25c720ff425c8dd7e3dd355bb5dc3096a4dee1033ec7b95f824fdf6ee4c786bc",
+    "linear_f32_sha256": "18a18d7df1f284e76bba33c4121f539ef8cb7a60e5ee53a425478837767a4984",
+    "scientific_or_product_admission": false
+  },
   "strict_subset": {
     "mimetype": "image/heic",
     "top_level_images": 1,

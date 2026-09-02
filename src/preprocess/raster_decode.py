@@ -14,6 +14,12 @@ from PIL import Image, ImageCms, ImageOps, UnidentifiedImageError
 from .adobe_rgb_icc import AdobeRGBICCError, decode_adobe_rgb16_to_linear_rec2020
 from .avif_sdr import StrictSdrAvifError, inspect_strict_sdr_avif, looks_like_avif
 from .color_management import REC2020_SDR_CICP, rec2020_to_linear_rec2020
+from .heic_sdr import (
+    StrictSdrHeicError,
+    decode_strict_sdr_heic,
+    inspect_strict_sdr_heic,
+    looks_like_heic,
+)
 from .output_encode import (
     normalized_icc_profile_sha256,
     srgb_icc_profile_fingerprint_sha256,
@@ -40,7 +46,6 @@ _MODE_BIT_DEPTH = {
     "F": 32,
 }
 
-_UNSUPPORTED_DYNAMIC_RANGE_FORMATS = {"HEIF", "HEIC"}
 _GAIN_MAP_PAYLOAD_MARKERS = (
     b"http://ns.adobe.com/hdr-gain-map/1.0/",
     b"hdrgm:version",
@@ -300,8 +305,11 @@ def _structured_payload_markers(path: Path, format_name: str) -> tuple[list[str]
 def unsupported_dynamic_range_signals(path: Path, inspection: InputInspection) -> list[str]:
     """Return deterministic signals that require an unavailable HDR decode path."""
     signals: list[str] = []
-    if inspection.format_name in _UNSUPPORTED_DYNAMIC_RANGE_FORMATS:
-        signals.append(f"container:{inspection.format_name}")
+    if inspection.format_name in {"HEIF", "HEIC"} and inspection.hdr_metadata.get(
+        "strict_sdr_heic"
+    ) != "accepted":
+        reason = str(inspection.hdr_metadata.get("strict_sdr_heic_reason", "untrusted"))
+        signals.append(f"container:{inspection.format_name}:{reason}")
     if inspection.format_name == "AVIF" and inspection.hdr_metadata.get(
         "strict_sdr_avif"
     ) != "accepted":
@@ -327,6 +335,73 @@ def unsupported_dynamic_range_signals(path: Path, inspection: InputInspection) -
 
 def inspect_raster(path: Path) -> InputInspection:
     warnings: list[DecodeWarning] = []
+    if looks_like_heic(path):
+        try:
+            strict_heic = inspect_strict_sdr_heic(path)
+        except StrictSdrHeicError as exc:
+            reason = str(exc)
+            return InputInspection(
+                path=path,
+                exists=path.exists(),
+                source_kind="raster",
+                format_name="HEIC",
+                source_profile=SourceProfile("unknown", "HEIC SDR identity rejected"),
+                transfer_state="unknown",
+                hdr_metadata={
+                    "strict_sdr_heic": "rejected",
+                    "strict_sdr_heic_reason": reason,
+                },
+                warnings=[
+                    DecodeWarning(
+                        "unsupported_dynamic_range",
+                        "HDR/gain-map reconstruction is not implemented; signals="
+                        f"container:HEIC:{reason}",
+                    )
+                ],
+            )
+        if strict_heic.colour_kind == "icc":
+            source_profile = SourceProfile(
+                "icc", "embedded HEIC ICC profile", len(strict_heic.icc_profile or b"")
+            )
+        else:
+            source_profile = SourceProfile(
+                "nclx",
+                "HEIC NCLX primaries=1 transfer=13 matrix=6 full-range",
+                7,
+            )
+        warnings.append(
+            DecodeWarning(
+                "strict_sdr_heic_ingress",
+                "Admitted a single-image 8-bit colour-identified SDR HEIC before pixel decode.",
+            )
+        )
+        if strict_heic.exif_orientation not in {None, 1}:
+            warnings.append(
+                DecodeWarning(
+                    "heic_container_transform_applied",
+                    "libheif applied the HEIC image transform; EXIF orientation was not applied twice.",
+                )
+            )
+        return InputInspection(
+            path=path,
+            exists=True,
+            source_kind="raster",
+            format_name="HEIC",
+            mode="RGB",
+            width=strict_heic.width,
+            height=strict_heic.height,
+            bit_depth=strict_heic.bit_depth,
+            has_alpha=False,
+            orientation=1,
+            frame_count=1,
+            source_profile=source_profile,
+            transfer_state="display_referred",
+            hdr_metadata={
+                "strict_sdr_heic": "accepted",
+                "colour_identity": strict_heic.colour_kind,
+            },
+            warnings=warnings,
+        )
     strict_avif = None
     if looks_like_avif(path):
         try:
@@ -769,7 +844,21 @@ def load_raster_working_image(path: Path) -> WorkingImage:
         inspection.source_profile.kind == "cicp"
         and inspection.hdr_metadata.get("cicp") == REC2020_SDR_CICP.hex()
     )
-    if supported_rec2020:
+    if inspection.format_name == "HEIC":
+        try:
+            strict_heic = inspect_strict_sdr_heic(path)
+            decoded = decode_strict_sdr_heic(path, strict_heic)
+        except StrictSdrHeicError as exc:
+            raise ValueError(str(exc)) from exc
+        if inspection.source_profile.kind == "icc":
+            rgb_image = _convert_with_icc(decoded, warnings)
+        elif inspection.source_profile.kind == "nclx":
+            rgb_image = decoded.convert("RGB")
+        else:
+            raise ValueError("HEIC colour identity changed between inspection and decode")
+        arr = np.asarray(rgb_image, dtype=np.float32) / 255.0
+        alpha_policy = "absent"
+    elif supported_rec2020:
         if inspection.has_alpha:
             raise ValueError("BT.2020 cICP alpha ingress is not implemented")
         if (
@@ -792,7 +881,7 @@ def load_raster_working_image(path: Path) -> WorkingImage:
             source_path=path,
             warnings=warnings,
         )
-    if (
+    elif (
         inspection.format_name == "TIFF"
         and inspection.bit_depth == 16
         and inspection.source_profile.kind == "icc"
