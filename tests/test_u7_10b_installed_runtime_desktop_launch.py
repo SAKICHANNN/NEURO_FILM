@@ -135,6 +135,11 @@ def test_success_receipt_binds_both_command_and_python_launchers(
             python.write_bytes(b"python-fixture")
             return ""
         if "-c" in arguments:
+            if "ScriptMaker" in arguments[arguments.index("-c") + 1]:
+                source_name = arguments[-2]
+                native = destination / f"{Path(source_name).stem}.exe"
+                native.write_bytes(b"native-launcher-fixture")
+                return json.dumps([str(native)])
             return json.dumps(
                 installer._pinned_versions(ROOT / "requirements-product-v2.txt")
             )
@@ -143,24 +148,43 @@ def test_success_receipt_binds_both_command_and_python_launchers(
     monkeypatch.setattr(installer, "_checked", checked)
     receipt = installer.install_product_runtime(destination)
 
-    assert receipt["schema"] == "kmcfm.private-product-runtime-receipt.v2"
+    assert receipt["schema"] == "kmcfm.private-product-runtime-receipt.v3"
     assert receipt["launcher"] == receipt["launchers"]["cli"]["command"]
     assert set(receipt["launchers"]) == {"cli", "desktop"}
     expected = {
-        "cli": ("kmcfm-look.cmd", "product-launch.py", "scripts/render_film.py"),
+        "cli": (
+            "kmcfm-look.exe",
+            "kmcfm-look.cmd",
+            "product-launch.py",
+            "scripts/render_film.py",
+        ),
         "desktop": (
+            "kmcfm-desktop.exe",
             "kmcfm-desktop.cmd",
             "product-desktop-launch.py",
             "scripts/open_product_desktop.py",
         ),
     }
-    for role, (command_name, python_name, entrypoint) in expected.items():
+    for role, (
+        command_name,
+        compatibility_name,
+        python_name,
+        entrypoint,
+    ) in expected.items():
         row = receipt["launchers"][role]
         command = Path(row["command"])
+        compatibility = Path(row["compatibility_command"])
+        native_source = Path(row["native_source"])
         python = Path(row["python"])
         assert command == destination / command_name
+        assert compatibility == destination / compatibility_name
+        assert native_source == (
+            destination / "native-launcher-sources" / f"{command.stem}.py"
+        )
         assert python == destination / python_name
         assert row["command_sha256"] == _sha256(command)
+        assert row["compatibility_command_sha256"] == _sha256(compatibility)
+        assert row["native_source_sha256"] == _sha256(native_source)
         assert row["python_sha256"] == _sha256(python)
         assert row["entrypoint"] == entrypoint
         python_source = python.read_text("utf-8")
@@ -169,9 +193,10 @@ def test_success_receipt_binds_both_command_and_python_launchers(
         else:
             assert 'entry = root / "scripts" / "render_film.py"' in python_source
             assert 'BOUND["entrypoint"]' not in python_source
-        command_text = command.read_text("utf-8")
+        command_text = compatibility.read_text("utf-8")
         assert " -I " in command_text
         assert str(python) in command_text
+        assert native_source.read_text("utf-8").startswith("#!python -I\n")
 
     published = json.loads((destination / "product-runtime.json").read_text("utf-8"))
     assert published == receipt

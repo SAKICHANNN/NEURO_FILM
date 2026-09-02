@@ -21,6 +21,7 @@ CONFIG_PATH = ROOT / "configs" / "u7_9a_private_windows_product_runtime_install_
 DESKTOP_CONFIG_PATH = (
     ROOT / "configs" / "u7_10b_installed_runtime_desktop_launch_v1.json"
 )
+NATIVE_CONFIG_PATH = ROOT / "configs" / "u7_20f_installed_native_launcher_v1.json"
 
 _IMPORTS = {
     "imageio": "imageio",
@@ -138,6 +139,82 @@ def _cleanup_owned_directory(path: Path, identity: tuple[int, int]) -> bool:
 def _write_new_text(path: Path, text: str, *, newline: str) -> None:
     with path.open("x", encoding="utf-8", newline=newline) as handle:
         handle.write(text)
+
+
+def _native_launcher_source(source: str) -> str:
+    """Make the existing bound launcher self-contained under an isolated shebang."""
+
+    prefix = "#!/usr/bin/env python3\n"
+    if not source.startswith(prefix):
+        raise ValueError("native launcher source has an unexpected shebang")
+    return "#!python -I\n" + source[len(prefix) :]
+
+
+def _native_launcher_builder_code() -> str:
+    return """import json
+import sys
+from pathlib import Path
+from pip._vendor.distlib.scripts import ScriptMaker
+
+source_root = Path(sys.argv[1])
+target_root = Path(sys.argv[2])
+source_name = sys.argv[3]
+python = Path(sys.argv[4])
+maker = ScriptMaker(str(source_root), str(target_root))
+maker.executable = str(python)
+maker.variants = {""}
+maker.clobber = False
+maker.set_mode = False
+print(json.dumps(maker.make(source_name), sort_keys=True, separators=(",", ":")))
+"""
+
+
+def _write_native_console_script(
+    *,
+    python: Path,
+    source: Path,
+    destination: Path,
+    source_date_epoch: int,
+    runner: CommandRunner = _run,
+    environment: dict[str, str] | None = None,
+) -> Path:
+    """Wrap one self-contained script in pip's Windows console launcher."""
+
+    python = Path(python).resolve(strict=True)
+    source = Path(source).resolve(strict=True)
+    destination = Path(destination).resolve(strict=False)
+    if source.suffix.casefold() != ".py" or destination.suffix.casefold() != ".exe":
+        raise ValueError("native launcher requires one .py source and .exe destination")
+    if source.stem != destination.stem:
+        raise ValueError("native launcher source and destination stems must match")
+    if os.path.lexists(destination):
+        raise FileExistsError(f"native launcher already exists: {destination}")
+    if not destination.parent.is_dir():
+        raise FileNotFoundError(destination.parent)
+    env = dict(os.environ if environment is None else environment)
+    env["SOURCE_DATE_EPOCH"] = str(source_date_epoch)
+    output = _checked(
+        runner,
+        (
+            str(python),
+            "-I",
+            "-c",
+            _native_launcher_builder_code(),
+            str(source.parent),
+            str(destination.parent),
+            source.name,
+            str(python),
+        ),
+        cwd=destination.parent,
+        env=env,
+    )
+    try:
+        published = [Path(item).resolve(strict=True) for item in json.loads(output)]
+    except (json.JSONDecodeError, OSError, TypeError) as exc:
+        raise RuntimeError("native launcher builder returned invalid output") from exc
+    if published != [destination] or not destination.is_file():
+        raise RuntimeError("native launcher builder published an unexpected file set")
+    return destination
 
 
 def _pinned_versions(requirements: Path) -> dict[str, str]:
@@ -275,6 +352,11 @@ def install_product_runtime(
     desktop_config = json.loads(
         (project_root / DESKTOP_CONFIG_PATH.relative_to(ROOT)).read_text("utf-8")
     )
+    native_config = json.loads(
+        (project_root / NATIVE_CONFIG_PATH.relative_to(ROOT)).read_text("utf-8")
+    )
+    if native_config["parent_receipt_schema"] != desktop_config["receipt_schema"]:
+        raise RuntimeError("native launcher parent receipt schema mismatch")
     git_directory = project_root / ".git"
     if (
         destination == project_root
@@ -338,40 +420,61 @@ def install_product_runtime(
             raise RuntimeError("installed product distribution set does not match pins")
         _require_owned_directory(destination, owned_identity)
         launchers: dict[str, dict[str, str]] = {}
+        native_source_root = destination / "native-launcher-sources"
+        native_source_root.mkdir()
         for role in ("cli", "desktop"):
             launcher_config = desktop_config["launchers"][role]
+            native_launcher_config = native_config["launchers"][role]
             launcher_py = destination / launcher_config["python_name"]
-            _write_new_text(
-                launcher_py,
-                _launcher_source(
-                    project_root=project_root,
-                    source_commit=source_commit,
-                    requirements_path=requirements,
-                    requirements_sha256=config["requirements"]["sha256"],
-                    entrypoint=(
-                        Path(launcher_config["entrypoint"])
-                        if role == "desktop"
-                        else None
-                    ),
+            launcher_source = _launcher_source(
+                project_root=project_root,
+                source_commit=source_commit,
+                requirements_path=requirements,
+                requirements_sha256=config["requirements"]["sha256"],
+                entrypoint=(
+                    Path(launcher_config["entrypoint"])
+                    if role == "desktop"
+                    else None
                 ),
-                newline="\n",
             )
-            launcher_cmd = destination / launcher_config["command_name"]
+            _write_new_text(launcher_py, launcher_source, newline="\n")
+            compatibility_cmd = destination / launcher_config["command_name"]
             _write_new_text(
-                launcher_cmd,
+                compatibility_cmd,
                 f'@echo off\r\n"{python}" -I "{launcher_py}" %*\r\n',
                 newline="",
             )
+            native_source = (
+                native_source_root / native_launcher_config["native_source_name"]
+            )
+            _write_new_text(
+                native_source,
+                _native_launcher_source(launcher_source),
+                newline="\n",
+            )
+            native_command = destination / native_launcher_config["native_name"]
+            _write_native_console_script(
+                python=python,
+                source=native_source,
+                destination=native_command,
+                source_date_epoch=int(native_config["source_date_epoch"]),
+                runner=runner,
+                environment=env,
+            )
             launchers[role] = {
-                "command": str(launcher_cmd),
-                "command_sha256": _sha256(launcher_cmd),
+                "command": str(native_command),
+                "command_sha256": _sha256(native_command),
+                "compatibility_command": str(compatibility_cmd),
+                "compatibility_command_sha256": _sha256(compatibility_cmd),
                 "entrypoint": launcher_config["entrypoint"],
+                "native_source": str(native_source),
+                "native_source_sha256": _sha256(native_source),
                 "python": str(launcher_py),
                 "python_sha256": _sha256(launcher_py),
             }
         launcher_cmd = Path(launchers["cli"]["command"])
         receipt = {
-            "schema": desktop_config["receipt_schema"],
+            "schema": native_config["receipt_schema"],
             "source_commit": source_commit,
             "project_root": str(project_root),
             "requirements": {
