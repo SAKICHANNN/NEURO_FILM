@@ -1072,8 +1072,7 @@ class ProductDesktopApp:
         self.style.set("")
         self.preview_ready = False
         self.detail_button.configure(state="disabled")
-        self._clear_detail_window()
-        self._clear_input_preview_widget()
+        self._clear_preview_widgets()
         self._set_busy(False, f"Stopped safely: {exc}")
         messagebox.showerror("K-MCFM stopped safely", str(exc))
 
