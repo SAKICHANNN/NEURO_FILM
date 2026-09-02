@@ -23550,3 +23550,47 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   root licence plus datasheet/cards/release audit. This is private runtime
   inventory—not legal clearance, vulnerability analysis, signing, calibrated
   stock evidence, physical-film reproduction or public release; no push.
+
+### 2026-09-02 - U7.9D keeps an exact runtime usable across non-runtime commits
+
+- **Node and routing:** `ULT > U7 delivery > U7.9D`, DRPT L2 / Mode C, R1
+  local. `dev-research-reliability` was the sole writer; router, DRPT,
+  structure and agent-log disciplines were read-only secondary checks. The
+  long-lived Look Approximation Goal remains active, while both parallel tasks
+  use no leaf Goal and reserved all U7.9D/shared paths.
+- **Observed defect and freeze:** the installed runtime correctly rejected
+  exact-HEAD drift, but the documented fixed path became unusable immediately
+  after any evidence-only commit. Freeze `24bfab91` permits only committed
+  descendants outside the exact runtime scope. Tracked dirt anywhere remains
+  forbidden; `src/`, `configs/`, both product entrypoints and
+  `requirements-product-v2.txt` must match the installed commit exactly and
+  contain no untracked files.
+- **Implementation:** `e4658863` adds descendant-history and scoped Git
+  validation plus receipt v4 disclosure while preserving requirements hashing,
+  hostile-Python isolation, native argv and create-only install behavior.
+  `78d49313` extends the existing deterministic SBOM reader to validate both
+  legacy v3 and the complete v4 repository-binding object. The final P-backed
+  runtime contains 7,048 files / 380,683,507 logical bytes and binds installed
+  source `78d49313...8a42d`; README commit `4cbcf73e` now points users to that
+  versioned runtime rather than the stale fixed directory.
+- **Formal evidence:** accepted forward/reverse reports at formal descendant
+  `ea2e7331...52081f` are byte-identical at 6,143 bytes / SHA
+  `f2ed2a1f...5988b`, scientific identity `7f388cd9...0413b`. Native CLI and
+  desktop launch, exact installed/direct image `b7711632...6a93`, current-HEAD
+  recipe binding, six positive/negative Git controls and receipt-v4 SBOM
+  generation all pass. Evidence commit `014eb211` records the final runtime,
+  report and source identities.
+- **Corrections and storage truth:** a pre-report control stopped because P:
+  exFAT requires a process-local Git `safe.directory`; no global Git setting
+  changed. One first report failed only because the audit expected an obsolete
+  five-field recipe claim, and one byte-exact intermediate-runtime pass was
+  superseded after revealing v4 SBOM incompatibility. Platform policy blocked
+  deletion of that intermediate 7,048-file runtime and an 18-file/27,254-byte
+  Git probe before execution; zero files were removed and both are explicitly
+  non-authoritative.
+- **Verification and boundary:** post-evidence/README native launches pass;
+  focused and adjacent coverage is 43/43, with Ruff, compileall, JSON and diff
+  checks clean. Claim is private descendant-safe repository-bound
+  `film-inspired / Look Approximation` delivery only—not standalone/public
+  packaging, signing, legal clearance, calibrated stock response or physical
+  film; no push.
