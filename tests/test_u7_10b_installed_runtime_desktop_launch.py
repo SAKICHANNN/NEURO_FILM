@@ -60,7 +60,7 @@ def test_launcher_source_binds_desktop_entrypoint_and_rejects_escape() -> None:
         )
 
 
-def test_cli_launcher_source_is_exact_historical_u7_9a_bytes(
+def test_cli_launcher_preserves_historical_u7_9a_bytes_except_caller_cwd_fix(
     tmp_path: Path,
 ) -> None:
     historical_source = subprocess.run(
@@ -108,7 +108,10 @@ def test_cli_launcher_source_is_exact_historical_u7_9a_bytes(
         text=True,
         encoding="utf-8",
     ).stdout
-    assert installer._launcher_source(**arguments) == expected
+    current = installer._launcher_source(**arguments)
+    assert "    cwd=root,\n" in expected
+    assert "    cwd=Path.cwd(),\n" in current
+    assert current.replace("    cwd=Path.cwd(),\n", "    cwd=root,\n") == expected
 
 
 def test_success_receipt_binds_both_command_and_python_launchers(
