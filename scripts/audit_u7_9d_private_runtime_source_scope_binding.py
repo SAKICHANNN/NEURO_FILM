@@ -20,16 +20,23 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from scripts import install_product_runtime as installer
+from src.inference.product_runtime_sbom import (
+    build_sbom_documents,
+    collect_installed_inventory,
+    validate_sbom_documents,
+)
 
 CONFIG = ROOT / "configs/u7_9d_private_runtime_source_scope_binding_v1.json"
-RUNTIME = ROOT / "outputs/private-product-runtime-u7-9d-e465886"
+RUNTIME = ROOT / "outputs/private-product-runtime-u7-9d-78d4931"
 SOURCE_PATHS = (
     Path("configs/u7_9d_private_runtime_source_scope_binding_v1.json"),
     Path("docs/planning/U7_9D_PRIVATE_RUNTIME_SOURCE_SCOPE_BINDING_CONTRACT.md"),
     Path("scripts/install_product_runtime.py"),
     Path("scripts/audit_u7_9d_private_runtime_source_scope_binding.py"),
+    Path("src/inference/product_runtime_sbom.py"),
     Path("tests/test_u7_9d_private_runtime_source_scope_binding.py"),
     Path("tests/test_u7_20f_installed_native_launcher_argv.py"),
+    Path("tests/test_u8_2a_private_product_runtime_sbom.py"),
 )
 
 
@@ -195,6 +202,16 @@ def _control(control: str, root: Path) -> dict[str, Any]:
 def _runtime_smoke(root: Path, current_head: str) -> dict[str, Any]:
     receipt_path = RUNTIME / "product-runtime.json"
     receipt = json.loads(receipt_path.read_text("utf-8"))
+    probed_receipt, receipt_sha256, inventory = collect_installed_inventory(
+        receipt_path
+    )
+    cyclonedx, spdx = build_sbom_documents(
+        receipt=probed_receipt,
+        receipt_sha256=receipt_sha256,
+        inventory=inventory,
+        creation_time="1980-01-01T00:00:00Z",
+    )
+    validate_sbom_documents(cyclonedx, spdx)
     cli = Path(receipt["launchers"]["cli"]["command"])
     desktop = Path(receipt["launchers"]["desktop"]["command"])
     catalog = _run([str(cli), "--list-product-looks"], cwd=ROOT)
@@ -250,6 +267,11 @@ def _runtime_smoke(root: Path, current_head: str) -> dict[str, Any]:
         "recipe_current_head": installed_recipe["software"]["commit"],
         "direct_recipe_current_head": direct_recipe["software"]["commit"],
         "claim": installed_recipe["claim"],
+        "sbom": {
+            "inventory_count": len(inventory),
+            "cyclonedx_sha256": hashlib.sha256(cyclonedx).hexdigest(),
+            "spdx_sha256": hashlib.sha256(spdx).hexdigest(),
+        },
         "source_commit_is_ancestor": _run(
             [
                 "git",
@@ -308,7 +330,7 @@ def _report(order: str) -> dict[str, Any]:
         smoke = _runtime_smoke(scratch, start_head)
     controls.sort(key=lambda row: row["name"])
     expected_binding = {
-        "installed_source_commit": "e46588632959ee6ef4a150857b2d491b94514f99",
+        "installed_source_commit": "78d4931328a3e8f08304f90e9dbba6c9b728a42d",
         "head_policy": "descendant",
         "runtime_scope": config["runtime_scope"],
         "runtime_scope_policy": "exact-to-installed-source-commit",
@@ -332,6 +354,9 @@ def _report(order: str) -> dict[str, Any]:
         "receipt_v4_exact": smoke["receipt"]["schema"] == config["receipt_schema"],
         "receipt_scope_disclosure_exact": smoke["receipt"]["repository_binding"]
         == expected_binding,
+        "sbom_receipt_v4_compatible": smoke["sbom"]["inventory_count"] == 13
+        and len(smoke["sbom"]["cyclonedx_sha256"]) == 64
+        and len(smoke["sbom"]["spdx_sha256"]) == 64,
         "installed_source_commit_exact": smoke["receipt"]["source_commit"]
         == expected_binding["installed_source_commit"],
         "current_head_is_descendant": smoke["source_commit_is_ancestor"],
