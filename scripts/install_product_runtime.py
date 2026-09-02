@@ -34,6 +34,7 @@ _IMPORTS = {
     "opencv-python-headless": "cv2",
     "packaging": "packaging",
     "pillow": "PIL",
+    "pi-heif": "pi_heif",
     "pyyaml": "yaml",
     "rawpy": "rawpy",
     "scikit-image": "skimage",
