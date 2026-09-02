@@ -63,6 +63,8 @@ schema.
 - requirements hash enforcement passes;
 - committed docs-only launcher execution passes;
 - receipt schema and scope disclosure pass;
+- the existing deterministic SBOM reader accepts v4 only after validating its
+  complete repository-binding object, while legacy v3 remains unchanged;
 - CLI and desktop launcher source share the exact policy;
 - existing native argv, foreign-CWD, claim, and create-only controls remain
   unchanged;

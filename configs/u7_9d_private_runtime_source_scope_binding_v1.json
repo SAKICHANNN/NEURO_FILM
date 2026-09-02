@@ -34,6 +34,7 @@
     "requirements_exact": true,
     "docs_only_descendant_executes": true,
     "receipt_discloses_scope": true,
+    "sbom_receipt_v4_compatible": true,
     "cli_desktop_policy_exact": true,
     "native_argv_regression": true,
     "foreign_cwd_regression": true,

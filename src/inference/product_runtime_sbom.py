@@ -18,7 +18,12 @@ from src.film_physics.create_only_file import (
     remove_if_published,
 )
 
-_RECEIPT_SCHEMA = "kmcfm.private-product-runtime-receipt.v3"
+_RECEIPT_SCHEMAS = frozenset(
+    {
+        "kmcfm.private-product-runtime-receipt.v3",
+        "kmcfm.private-product-runtime-receipt.v4",
+    }
+)
 _CDX_SPEC = "1.7"
 _SPDX_SPEC = "SPDX-2.3"
 _APPLICATION_NAME = "K-MCFM"
@@ -29,6 +34,44 @@ _NORMALIZE_NAME = re.compile(r"[-_.]+")
 
 class SbomValidationError(ValueError):
     """Raised when an input or generated SBOM violates the frozen contract."""
+
+
+def _validate_receipt_schema(receipt: Mapping[str, Any]) -> None:
+    schema = receipt.get("schema")
+    if schema not in _RECEIPT_SCHEMAS:
+        raise SbomValidationError("unsupported runtime receipt schema")
+    if schema == "kmcfm.private-product-runtime-receipt.v3":
+        return
+    binding = receipt.get("repository_binding")
+    if not isinstance(binding, Mapping) or set(binding) != {
+        "installed_source_commit",
+        "head_policy",
+        "runtime_scope",
+        "runtime_scope_policy",
+        "tracked_repository_policy",
+        "runtime_scope_untracked_policy",
+        "committed_non_runtime_drift_allowed",
+    }:
+        raise SbomValidationError("runtime repository binding field mismatch")
+    scope = binding["runtime_scope"]
+    if (
+        binding["installed_source_commit"] != receipt.get("source_commit")
+        or binding["head_policy"] != "descendant"
+        or binding["runtime_scope_policy"] != "exact-to-installed-source-commit"
+        or binding["tracked_repository_policy"] != "clean"
+        or binding["runtime_scope_untracked_policy"] != "reject"
+        or binding["committed_non_runtime_drift_allowed"] is not True
+        or not isinstance(scope, list)
+        or not scope
+        or any(
+            not isinstance(item, str)
+            or not item
+            or Path(item).is_absolute()
+            or ".." in Path(item).parts
+            for item in scope
+        )
+    ):
+        raise SbomValidationError("invalid runtime repository binding")
 
 
 def _sha256_bytes(payload: bytes) -> str:
@@ -140,8 +183,7 @@ def _validated_receipt(
     if expected_sha256 is not None and receipt_sha256 != expected_sha256.lower():
         raise SbomValidationError("runtime receipt SHA-256 mismatch")
     receipt = json.loads(receipt_bytes)
-    if receipt.get("schema") != _RECEIPT_SCHEMA:
-        raise SbomValidationError("unsupported runtime receipt schema")
+    _validate_receipt_schema(receipt)
     installation = receipt_path.parent.resolve(strict=True)
     runtime_python = Path(receipt["python"]["executable"])
     if not _contained(runtime_python, installation):
@@ -283,8 +325,7 @@ def build_sbom_documents(
 ) -> tuple[bytes, bytes]:
     """Build canonical CycloneDX 1.7 and SPDX 2.3 JSON documents."""
 
-    if receipt.get("schema") != _RECEIPT_SCHEMA:
-        raise SbomValidationError("unsupported runtime receipt schema")
+    _validate_receipt_schema(receipt)
     if not re.fullmatch(r"[0-9a-f]{64}", receipt_sha256):
         raise SbomValidationError("invalid receipt SHA-256")
     claim = receipt.get("claim", {})

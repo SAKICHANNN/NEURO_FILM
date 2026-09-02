@@ -122,6 +122,63 @@ def test_u8_2a_cross_format_documents_are_deterministic() -> None:
     assert pip["licenseDeclared"] == "NOASSERTION"
 
 
+def test_u8_2a_builder_accepts_validated_v4_repository_binding() -> None:
+    from src.inference import product_runtime_sbom as sbom
+
+    receipt = {
+        "schema": "kmcfm.private-product-runtime-receipt.v4",
+        "source_commit": "1" * 40,
+        "requirements": {"sha256": "2" * 64},
+        "claim": {
+            "mode": "film-inspired",
+            "evidence_grade": "look-approximation",
+            "calibrated_stock_response": False,
+            "physical_film_reproduction": False,
+            "public_release": False,
+        },
+        "distributions": {"alpha-lib": "1.2.3"},
+        "python": {"implementation": "CPython", "version": "3.12.10"},
+        "repository_binding": {
+            "installed_source_commit": "1" * 40,
+            "head_policy": "descendant",
+            "runtime_scope": ["src", "configs", "scripts/render_film.py"],
+            "runtime_scope_policy": "exact-to-installed-source-commit",
+            "tracked_repository_policy": "clean",
+            "runtime_scope_untracked_policy": "reject",
+            "committed_non_runtime_drift_allowed": True,
+        },
+    }
+    inventory = [
+        {
+            "name": "alpha-lib",
+            "normalized_name": "alpha-lib",
+            "version": "1.2.3",
+            "metadata_version": "2.4",
+            "license_expression": "MIT",
+            "license_raw": None,
+            "classifiers": [],
+            "metadata_sha256": "3" * 64,
+            "license_files": [],
+            "dependencies": [],
+        }
+    ]
+    documents = sbom.build_sbom_documents(
+        receipt=receipt,
+        receipt_sha256="5" * 64,
+        inventory=inventory,
+        creation_time="1980-01-01T00:00:00Z",
+    )
+    sbom.validate_sbom_documents(*documents)
+    receipt["repository_binding"]["runtime_scope"] = ["../escape"]
+    with pytest.raises(sbom.SbomValidationError, match="repository binding"):
+        sbom.build_sbom_documents(
+            receipt=receipt,
+            receipt_sha256="5" * 64,
+            inventory=inventory,
+            creation_time="1980-01-01T00:00:00Z",
+        )
+
+
 def test_u8_2a_publish_is_create_only_and_rolls_back_owned_first_file(
     tmp_path: Path,
 ) -> None:
