@@ -23594,3 +23594,47 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `film-inspired / Look Approximation` delivery only—not standalone/public
   packaging, signing, legal clearance, calibrated stock response or physical
   film; no push.
+
+### 2026-09-02 - U7.20G repairs EXIF-oriented JPEG desktop previews
+
+- **Node and routing:** `ULT > U7 delivery > U7.20G`, DRPT L2 / Mode C, R1
+  local. `dev-research-reliability` was the sole writer; router, DRPT,
+  structure and agent-log disciplines were read-only secondary checks. The
+  long-lived Look Approximation Goal remains active and both parallel tasks
+  reserved every U7.20G/shared path without overlap.
+- **Observed defect and freeze:** a deterministic 320x240 camera-style JPEG
+  tagged EXIF Orientation 6 failed the desktop's decoder-scaled preview before
+  all three Look cards. The non-scaled path also chose landscape preview axes
+  while full decode correctly produced 240x320 portrait pixels. Freeze
+  `4d33be75` requires Orientation 1--8, pure axis transforms, oriented geometry,
+  invalid-orientation rejection and zero canonical product drift.
+- **Implementation:** `89af2747` maps oriented targets back into stored JPEG
+  axes for `draft()`, then applies the existing EXIF flip/transpose before
+  float32 expansion. The direct-preview controller validates the tag and swaps
+  source dimensions for orientations 5--8 before selecting the preview canvas.
+  It changes no colour operator, look, effect, recipe, final decode or claim.
+- **Formal evidence:** audit commit `e6925adb` produces forward/reverse reports
+  that are byte-identical at 5,604 bytes / SHA `e0035858...847b7`, scientific
+  identity `311a034f...a63e8`. All eight orientations cover their requested
+  oriented targets and match full decode with maximum linear RMSE
+  `1.814491845664179e-8`; the Orientation-6 source, preview and scaled decode
+  remain portrait at 240x320, 94x126 and 120x160. The canonical Ektar `.65`
+  render remains `fc51547d...2087d` with `look-approximation` and no calibrated
+  claim. Evidence commit `5f1482fa` binds sources, reports and gates.
+- **Runtime propagation and cleanup truth:** because U7.9D rejects intentional
+  product-scope drift, a new absent P-backed runtime was installed at
+  `outputs/private-product-runtime-u7-20g-5f1482f`; receipt SHA is
+  `446172da...cbaa0`, installed source is `5f1482fa...b5266`, and installed
+  Python reproduces the formal scientific identity. Native catalog and desktop
+  help still launch after evidence/README descendants. A diagnostic redirected
+  those two outputs into the runtime; exact two-file cleanup was blocked by
+  platform policy before execution, so 2,400 bytes remain explicitly
+  non-authoritative and zero files were deleted.
+- **Verification and boundary:** 48 focused/preprocessing plus 49 desktop-input
+  and product-ingress tests pass. New files pass Ruff/format; touched core
+  passes Ruff with two recorded pre-existing findings excluded, compileall,
+  JSON and diff checks pass. Claim is private EXIF Orientation 1--8 JPEG
+  preview compatibility for deterministic `film-inspired / Look
+  Approximation` only—not arbitrary JPEG/EXIF, camera colour, calibrated stock,
+  physical film, standalone/public packaging or cross-platform parity. Stop
+  adjacent EXIF/preview expansion; no push.
