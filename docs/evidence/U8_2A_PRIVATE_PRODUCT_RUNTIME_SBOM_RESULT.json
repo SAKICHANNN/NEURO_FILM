@@ -1,0 +1,96 @@
+{
+  "schema": "kmcfm.u8-2a-private-product-runtime-sbom-evidence.v1",
+  "status": "PASS_PRIVATE_RUNTIME_SBOM_READINESS",
+  "formal_execution": {
+    "source_commit": "3006ee191d575d81d8e7525f2a638d76915a07dd",
+    "reports": [
+      "outputs/u8_2a_private_product_runtime_sbom_audit/formal_forward.json",
+      "outputs/u8_2a_private_product_runtime_sbom_audit/formal_reverse.json"
+    ],
+    "report_bytes": 6909,
+    "report_sha256": "1632e9f277cd7163cc3599afda37fd6b4e7aaa6011db8e745283c91b4cf5299e",
+    "forward_reverse_byte_exact": true,
+    "source_git_objects": {
+      "configs/u8_2a_private_product_runtime_sbom_v1.json": "e593f40470a89eec4a8ffe064a0cb0928ced94c7",
+      "docs/planning/U8_2A_PRIVATE_PRODUCT_RUNTIME_SBOM_CONTRACT.md": "16a337a30a30c2831cdb171ce5fa01ed63116ec4",
+      "scripts/audit_u8_2a_private_product_runtime_sbom.py": "3aa9e9f6225ea3d8dc95a28c1228d63e56c2300d",
+      "scripts/build_private_product_runtime_sbom.py": "f14c90f43a408903e03cb2fac669a42f00fc1fc3",
+      "src/inference/product_runtime_sbom.py": "3146c39ec838bded1d9bb05cc444fe06d205b2b7",
+      "tests/test_u8_2a_private_product_runtime_sbom.py": "7a9127a0350e5d02c8acfd79cd9305661209e254"
+    }
+  },
+  "input": {
+    "receipt": "outputs/private-product-runtime-u1-5h-73e720c/product-runtime.json",
+    "receipt_schema": "kmcfm.private-product-runtime-receipt.v3",
+    "receipt_sha256": "aa3a97686f9172de139f07edf0be784a23d86d9da85042d0cdda9bbbdb21f9c9",
+    "runtime_source_commit": "73e720c56ffe3cbe7d54868d16c1c7a8f33097a3",
+    "requirements_sha256": "78b2ec79ffd4053c42c90a5db765baf715fed261efa39a5e762e013145718517"
+  },
+  "inventory": {
+    "installed_distribution_count": 13,
+    "component_count_each_format": 15,
+    "inventory_sha256": "237cba2709e13ba4dc4d69cf337576f9afe11b941debf17f248725afb35962c0",
+    "fresh_probe_exact": true,
+    "receipt_versions_exact": true
+  },
+  "official_schema_validation": {
+    "cyclonedx": {
+      "version": "1.7",
+      "url": "https://cyclonedx.org/schema/bom-1.7.schema.json",
+      "bytes": 229588,
+      "sha256": "71152f97948eeeca2fd4a1434a9d29aab35d377be11828b504d029dfeeb1925a",
+      "valid": true
+    },
+    "spdx": {
+      "version": "SPDX-2.3",
+      "url": "https://raw.githubusercontent.com/spdx/spdx-spec/v2.3/schemas/spdx-schema.json",
+      "bytes": 45312,
+      "sha256": "239208b7ac287b3cf5d9a9af23f9d69863971102a5e1587a27a398b43490b89b",
+      "valid": true
+    }
+  },
+  "published_artifacts": {
+    "repo_relative": true,
+    "p_backed_parent_junction": true,
+    "stage_residue_zero": true,
+    "cyclonedx": {
+      "path": "outputs/u8_2a_private_product_runtime_sbom/kmcfm-private-runtime.cdx.json",
+      "bytes": 66066,
+      "sha256": "51748291a908a7174dac8cf63fba03bc86bb314f2c88dd079711946dd7484fbf"
+    },
+    "spdx": {
+      "path": "outputs/u8_2a_private_product_runtime_sbom/kmcfm-private-runtime.spdx.json",
+      "bytes": 71428,
+      "sha256": "38b7b26bd2c988184624c6b53dfcfe47c9c4569592e756022422361e9d765757"
+    }
+  },
+  "gates": {
+    "receipt_identity_exact": true,
+    "runtime_containment_exact": true,
+    "installed_inventory_complete": true,
+    "receipt_versions_exact": true,
+    "metadata_and_license_hashes_exact": true,
+    "dependency_edges_exact": true,
+    "official_schema_validation_pass": true,
+    "cross_format_identity_exact": true,
+    "project_license_noassertion": true,
+    "private_look_approximation_claim_exact": true,
+    "forward_reverse_byte_exact": true,
+    "create_only_foreign_preservation": true,
+    "owned_residue_zero": true
+  },
+  "claim": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false,
+    "public_release": false,
+    "legal_clearance": false,
+    "vulnerability_analysis": false
+  },
+  "limitations": [
+    "The repository has no owner-selected root licence; K-MCFM remains NOASSERTION and public release remains blocked.",
+    "This inventory is bound only to the exact private Windows runtime receipt and is not a vulnerability assessment or signature.",
+    "This leaf does not complete U8.2, change rendering behaviour, or establish calibrated film-stock evidence."
+  ]
+}
