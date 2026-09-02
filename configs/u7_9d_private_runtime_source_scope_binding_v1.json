@@ -1,0 +1,43 @@
+{
+  "schema": "kmcfm.u7-9d-private-runtime-source-scope-binding.v1",
+  "node_id": "U7.9D",
+  "parent_receipt_schema": "kmcfm.private-product-runtime-receipt.v3",
+  "receipt_schema": "kmcfm.private-product-runtime-receipt.v4",
+  "runtime_scope": [
+    "src",
+    "configs",
+    "scripts/render_film.py",
+    "scripts/open_product_desktop.py",
+    "requirements-product-v2.txt"
+  ],
+  "policy": {
+    "head_must_descend_from_installed_commit": true,
+    "tracked_repository_must_be_clean": true,
+    "runtime_scope_must_match_installed_commit": true,
+    "runtime_scope_untracked_files_allowed": false,
+    "committed_non_runtime_drift_allowed": true,
+    "recipe_records_current_head": true
+  },
+  "claim": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "public_release": false,
+    "standalone_runtime": false,
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false
+  },
+  "gates": {
+    "descendant_history": true,
+    "tracked_clean": true,
+    "runtime_scope_exact": true,
+    "runtime_scope_untracked_zero": true,
+    "requirements_exact": true,
+    "docs_only_descendant_executes": true,
+    "receipt_discloses_scope": true,
+    "cli_desktop_policy_exact": true,
+    "native_argv_regression": true,
+    "foreign_cwd_regression": true,
+    "look_approximation_claim_unchanged": true,
+    "render_recipe_behavior_exact": true
+  }
+}
