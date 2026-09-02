@@ -11,6 +11,18 @@
     "cyclonedx": "1.7",
     "spdx": "SPDX-2.3"
   },
+  "official_schemas": {
+    "cyclonedx": {
+      "url": "https://cyclonedx.org/schema/bom-1.7.schema.json",
+      "bytes": 229588,
+      "sha256": "71152f97948eeeca2fd4a1434a9d29aab35d377be11828b504d029dfeeb1925a"
+    },
+    "spdx": {
+      "url": "https://raw.githubusercontent.com/spdx/spdx-spec/v2.3/schemas/spdx-schema.json",
+      "bytes": 45312,
+      "sha256": "239208b7ac287b3cf5d9a9af23f9d69863971102a5e1587a27a398b43490b89b"
+    }
+  },
   "canonical_creation_time": "1980-01-01T00:00:00Z",
   "output": {
     "directory": "outputs/u8_2a_private_product_runtime_sbom",

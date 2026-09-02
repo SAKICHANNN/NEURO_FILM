@@ -17,6 +17,12 @@ def test_u8_2a_contract_freezes_private_claim_and_exact_runtime() -> None:
     config = _config()
     claim = config["claim_ceiling"]
     assert config["formats"] == {"cyclonedx": "1.7", "spdx": "SPDX-2.3"}
+    assert config["official_schemas"]["cyclonedx"]["sha256"] == (
+        "71152f97948eeeca2fd4a1434a9d29aab35d377be11828b504d029dfeeb1925a"
+    )
+    assert config["official_schemas"]["spdx"]["sha256"] == (
+        "239208b7ac287b3cf5d9a9af23f9d69863971102a5e1587a27a398b43490b89b"
+    )
     assert config["input"]["receipt_sha256"] == (
         "aa3a97686f9172de139f07edf0be784a23d86d9da85042d0cdda9bbbdb21f9c9"
     )
@@ -107,6 +113,40 @@ def test_u8_2a_publish_is_create_only_and_rolls_back_owned_first_file(
 ) -> None:
     from src.inference import product_runtime_sbom as sbom
 
+    receipt = {
+        "schema": "kmcfm.private-product-runtime-receipt.v3",
+        "source_commit": "1" * 40,
+        "requirements": {"sha256": "2" * 64},
+        "claim": {
+            "mode": "film-inspired",
+            "evidence_grade": "look-approximation",
+            "calibrated_stock_response": False,
+            "physical_film_reproduction": False,
+            "public_release": False,
+        },
+        "distributions": {"alpha-lib": "1.2.3"},
+        "python": {"implementation": "CPython", "version": "3.12.10"},
+    }
+    inventory = [
+        {
+            "name": "alpha-lib",
+            "normalized_name": "alpha-lib",
+            "version": "1.2.3",
+            "metadata_version": "2.4",
+            "license_expression": "MIT",
+            "license_raw": None,
+            "classifiers": [],
+            "metadata_sha256": "3" * 64,
+            "license_files": [],
+            "dependencies": [],
+        }
+    ]
+    cdx, spdx = sbom.build_sbom_documents(
+        receipt=receipt,
+        receipt_sha256="5" * 64,
+        inventory=inventory,
+        creation_time="1980-01-01T00:00:00Z",
+    )
     output = tmp_path / "output"
     output.mkdir()
     foreign = output / "runtime.spdx.json"
@@ -116,8 +156,8 @@ def test_u8_2a_publish_is_create_only_and_rolls_back_owned_first_file(
             output_directory=output,
             cyclonedx_name="runtime.cdx.json",
             spdx_name="runtime.spdx.json",
-            cyclonedx_bytes=b"{\"bomFormat\":\"CycloneDX\"}\n",
-            spdx_bytes=b"{\"spdxVersion\":\"SPDX-2.3\"}\n",
+            cyclonedx_bytes=cdx,
+            spdx_bytes=spdx,
         )
     assert foreign.read_bytes() == b"foreign"
     assert not (output / "runtime.cdx.json").exists()

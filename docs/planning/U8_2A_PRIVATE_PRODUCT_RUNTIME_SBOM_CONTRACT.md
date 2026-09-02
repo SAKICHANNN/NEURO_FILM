@@ -8,6 +8,10 @@ private Look Approximation runtime:
 - CycloneDX 1.7 JSON;
 - SPDX 2.3 JSON.
 
+Formal validation uses the exact official schemas frozen in the config by URL,
+byte length, and SHA-256. Schema retrieval belongs to the audit only; ordinary
+SBOM generation remains offline.
+
 This leaf inventories an already installed private runtime. It does not choose
 a project licence, authorize public distribution, complete U8.2, or change any
 renderer, look, recipe, launcher, or media path.
