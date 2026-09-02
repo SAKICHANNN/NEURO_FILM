@@ -1,0 +1,106 @@
+{
+  "schema": "neuro-film.u1-5h-strict-sdr-avif-ingress-evidence.v1",
+  "node": "ULT > U1 > U1.5 > U1.5H",
+  "date": "2026-09-02",
+  "status": "PASS_PRIVATE_STRICT_SDR_AVIF_LOOK_APPROXIMATION_INGRESS",
+  "commits": {
+    "freeze": "4decf5cbbafd3790b7516e28747769241679c664",
+    "implementation": "9ba69d4f59cb23a514362210b2cbfdaf4195f65e",
+    "audit": "0094d78cb783f7063cdb53eb70b5de52ccf95aa1",
+    "audit_import_correction": "08c69bdc0f6b38f5fcd6a8ba7aefab946976dda8",
+    "report_identity_correction": "40961925cb36263bd61cf7014f7dc7fa134fc8a2"
+  },
+  "bindings": [
+    {
+      "path": "configs/u1_5h_strict_sdr_avif_ingress_v1.json",
+      "sha256": "338e176737327c0b71cde38b4a0a8e533a0da57d428c8f015327a68089f83c43"
+    },
+    {
+      "path": "docs/planning/U1_5H_STRICT_SDR_AVIF_INGRESS_CONTRACT.md",
+      "sha256": "7437913d1db02c8dd9778eb4ca7d683149a30b0f9a1d86b3ea7772d6d0ef21d1"
+    },
+    {
+      "path": "src/preprocess/avif_sdr.py",
+      "sha256": "16a4f2d917d465abf90d72265dcf165976b2d24b4d262130f78ada9d798b8372"
+    },
+    {
+      "path": "src/preprocess/raster_decode.py",
+      "sha256": "4d7a4bcacfef3c6e17b17be224d01175e235144a9e7dacaded75db2b029599fd"
+    },
+    {
+      "path": "scripts/audit_u1_5h_strict_sdr_avif_ingress.py",
+      "sha256": "35927d3e719c22f664cca385ba382e8d1393ea6688df58c6a220c176a742894f"
+    },
+    {
+      "path": "tests/test_u1_5h_strict_sdr_avif_ingress.py",
+      "sha256": "d2b1002d8d92bd203f77fe068d0d074ab8655d1ff5e00bf62f850a96a6cb8c95"
+    }
+  ],
+  "official_source": {
+    "repository": "https://github.com/AOMediaCodec/libavif",
+    "commit": "265f1524ef5fa9a736005a73a75430a1ac35cfe5",
+    "path": "tests/data/io/kodim03_yuv420_8bpc.avif",
+    "local_path": "data/external/u1_5h_strict_sdr_avif_v1/kodim03_yuv420_8bpc.avif",
+    "size": 25430,
+    "sha256": "e69c973a3ddf635412c9a0c6cda66798102d0030303614873b337f658983ef5d",
+    "container": {
+      "width": 768,
+      "height": 512,
+      "bits_per_channel": [8, 8, 8],
+      "nclx": [1, 13, 6, true],
+      "primary_item_type": "av01",
+      "item_count": 1,
+      "compatible_brands": ["avif", "mif1", "miaf", "MA1B"]
+    }
+  },
+  "formal": {
+    "report_length": 5134,
+    "forward_report_sha256": "e17c00812bf5d61568a4c82bfd0735595f028528af22dab159b02a0bdae4b052",
+    "reverse_report_sha256": "e17c00812bf5d61568a4c82bfd0735595f028528af22dab159b02a0bdae4b052",
+    "reports_byte_exact": true,
+    "working_image_sha256": "efcdb8c0edd4411d121ae9f1b0bb70b94b79ea866b850e1633cb3bd6395a3800",
+    "product_output_sha256": "f44b135bf9813c3a60c34d33a9b8d93d321e315eab99c1873e729485c7766906",
+    "recipe_semantic_sha256": "b9384b23ca9a2a9eb56fd4f83793dadd65a8f98e6bfe8c4021b6a36811599f51",
+    "recipe_replay_sha256": "f44b135bf9813c3a60c34d33a9b8d93d321e315eab99c1873e729485c7766906",
+    "p278_negative_count": 6,
+    "p278_pixel_decoder_calls": 0,
+    "scratch_residue_count": 0
+  },
+  "gates": {
+    "committed_head_clean": true,
+    "official_source_identity_exact": true,
+    "official_source_immutable": true,
+    "official_sdr_container_exact": true,
+    "working_image_finite_linear_srgb": true,
+    "all_p278_reject_before_pillow": true,
+    "product_render_recipe_replay_exact": true,
+    "look_approximation_claim_exact": true,
+    "scratch_residue_zero": true,
+    "focused_and_adjacent_tests": {
+      "passed": 99,
+      "failed": 0,
+      "skipped": 0
+    },
+    "ruff_new_files": "pass",
+    "compileall": "pass",
+    "json": "pass",
+    "diff_check": "pass"
+  },
+  "excluded_execution_facts": [
+    {
+      "stage": "pre-evidence formal V1",
+      "result": "science, product PNG, negative controls and gates matched, but the two complete reports differed only because each raw recipe bound a different owned temporary output path",
+      "forward_report_sha256": "9e16d30da6a9baef75ccfb44047005868e38cca5a3b9e685ec8a5323e44ca548",
+      "reverse_report_sha256": "d56606d54292dd1ab513caddb49f6871f78be3153f44ee6362f617691811ce83",
+      "action": "additive report-only normalization replaced recipe.output.path with an explicit placeholder; V2 reran from zero without changing source, pixels, operator, gates or product output"
+    },
+    {
+      "stage": "expanded historical transaction regression",
+      "result": "108 passed and 2 skipped; four U7.2M assertions retained exact PNG outputs but expected obsolete normalized recipe hashes and were excluded from the U1.5H gate",
+      "action": "old evidence and oracles were not rewritten; U1.5H-specific and current behavioral product regressions passed separately"
+    }
+  ],
+  "decision": "admit_only_metadata_proven_single_image_8bit_srgb_nclx_avif",
+  "claim_ceiling": "Strict single-image 8-bit sRGB-NCLX AVIF input compatibility for deterministic film-inspired / Look Approximation rendering only. No arbitrary AVIF/HEIF, HDR or gain-map reconstruction, AVIF output, calibrated stock response, physical-film reproduction, or multi-stock calibration claim."
+}
+
